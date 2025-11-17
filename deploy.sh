@@ -6,7 +6,7 @@ if any_uncommitted_changes; then
     exit
 fi
 
-./extract_text.sh
+# ./extract_text.sh
 git commit -am"Update HTML"
 git checkout gh_pages
 git merge master
