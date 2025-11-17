@@ -80,6 +80,7 @@ HOUSE_OVERSIGHT_031054.txt	Personal contact	Personal/social plans
 
 OUTPUT_BASENAME = "epstein_text_msgs_7th_production_colorized_and_deanonymized"
 OUTPUT_DIR = Path('docs')
+OUTPUT_GH_PAGES_HTML = OUTPUT_DIR.joinpath('index.html')
 
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\n(?=(Sender))', re.DOTALL)
 FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
@@ -189,6 +190,15 @@ msgs_processed = 0
 
 console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS))
 console.record = True
+# console.print(Panel(, style='reverse', expand=False))
+
+console.print(Panel(Text(
+    "Oversight Committee Releases Additional Epstein Estate Documents"
+    "\nhttps://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/"
+    "\n\nEpstein Estate Documents - Seventh Production",
+    justify='center',
+    style='bold reverse'
+)))
 
 # Translation helper
 table = Table(title="Abbreviations Used Frequently In These Chats", show_header=True, header_style="bold")
@@ -275,7 +285,6 @@ def get_imessage_log_files() -> list[Path]:
 
     # Sort by first timestamp
     return sorted(log_files, key=lambda f: first_timestamp_in_file(f))
-
 
 
 for file_arg in get_imessage_log_files():
@@ -375,9 +384,9 @@ console.print(f"Processed {files_processed} log files with {msgs_processed} text
 
 
 if is_build:
-    output_html = OUTPUT_DIR.joinpath(f"{OUTPUT_BASENAME}.html")
-    console.save_html(output_html, inline_styles=True, clear=False)
-    console.print(f"Wrote HTML to '{output_html}' (is_build={is_build})")
+    # output_html = OUTPUT_DIR.joinpath(f"{OUTPUT_BASENAME}.html")
+    console.save_html(OUTPUT_GH_PAGES_HTML, inline_styles=True, clear=False)
+    console.print(f"Wrote HTML to '{OUTPUT_GH_PAGES_HTML}' (is_build={is_build})")
     # colored_text_filename = f"{OUTPUT_BASENAME}.ascii.txt"
     # console.save_text(colored_text_filename, styles=True)
     # console.print(f"Wrote colored ASCII to '{colored_text_filename}'")
