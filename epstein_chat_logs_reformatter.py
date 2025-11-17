@@ -390,7 +390,7 @@ for k, v in sorted(sender_counts.items(), key=lambda item: item[1], reverse=True
 
 console.print(counts_table, '\n\n')
 console.print(f"Processed {files_processed} log files with {msgs_processed} text messages ({convos_labeled} deanonymized conversations)")
-
+console.print(f"(Last deploy found 77 files with 4668 messages)\n", style='dim')
 
 if not is_debug:
     console.save_html(OUTPUT_GH_PAGES_HTML, inline_styles=True, clear=False)
