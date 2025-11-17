@@ -16,13 +16,14 @@ from io import StringIO
 from os import environ
 from pathlib import Path
 
+from dotenv import load_dotenv
 from rich.align import Align
 from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
 from rich.theme import Theme
-from sys import argv
+load_dotenv()
 
 #  of who is the counterparty in each file
 AI_COUNTERPARTY_DETERMINATION_TSV = StringIO("""
@@ -82,6 +83,7 @@ OUTPUT_BASENAME = "epstein_text_msgs_7th_production_colorized_and_deanonymized"
 OUTPUT_DIR = Path('docs')
 OUTPUT_GH_PAGES_HTML = OUTPUT_DIR.joinpath('index.html')
 
+#MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\n((?=(Sender)|\Z))', re.DOTALL)
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\n(?=(Sender))', re.DOTALL)
 FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
@@ -133,6 +135,7 @@ KNOWN_COUNTERPARTY_FILE_IDS = {
     '027165': MELANIE_WALKER,  # https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/
     '027128': SOON_YI,         # https://x.com/ImDrinknWyn/status/1990227281101434923
     '027217': SOON_YI,         # refs marriage to woody allen
+    '027244': SOON_YI,         # refs Woody
     '027257': 'Woody Allen',   # Participants: field
     '027333': SCARAMUCCI,      # unredacted phone number
     '027278': TERJE,
@@ -211,6 +214,7 @@ table.add_row('BG', "Bill Gates")
 table.add_row('Bill', "Bill Gates")
 table.add_row("Brock", "Brock Pierce")
 table.add_row('HBJ', "Hamad bin Jassim (Former Qatari Prime Minister)")
+table.add_row('Jagland', 'Thorbjørn Jagland')
 table.add_row('KSA', "Kingdom of Saudi Arabia")
 table.add_row('MBS', "Mohammed bin Salman Al Saud (Saudi ruler)")
 table.add_row('Jared', "Jared Kushner")
@@ -256,14 +260,20 @@ def first_timestamp_in_file(file_arg: Path):
 
 
 def get_imessage_log_files() -> list[Path]:
-    log_files = []
+    docs_dir = environ['EPSTEIN_DOCS_DIR']
 
-    for i, file_arg in enumerate(argv):
-        file_arg = Path(file_arg)
+    if not docs_dir:
+        raise EnvironmentError(f"EPSTEIN_DOCS_DIR env var not set!")
+
+    docs_dir = Path(docs_dir)
+    log_files = []
+    files = [f for f in docs_dir.iterdir() if f.is_file() and not f.name.startswith('.')]
+
+    for file_arg in files:
         file_text = ''
 
-        if i == 0 or file_arg.is_dir():
-            continue
+        if is_debug:
+            print(f"Checking '{file_arg}'...")
 
         with open(file_arg) as f:
             file_text = f.read()
@@ -278,13 +288,13 @@ def get_imessage_log_files() -> list[Path]:
                     file_arg.rename(json_subdir_path)
                 else:
                     file_lines = file_text.split('\n')
-                    console.print(f"'iMessage' string not found in '{file_arg.name}', top lines:")
+                    console.print(f"'Skipping file '{file_arg.name}', top lines:")
                     console.print('\n'.join(file_lines[0:4]) + '\n', style='dim')
 
             continue
 
-    # Sort by first timestamp
-    return sorted(log_files, key=lambda f: first_timestamp_in_file(f))
+    print(f"Found {len(log_files)} iMessage logs out of {len(files)} files in '{docs_dir}'...")
+    return sorted(log_files, key=lambda f: first_timestamp_in_file(f))   # Sort by first timestamp
 
 
 for file_arg in get_imessage_log_files():
