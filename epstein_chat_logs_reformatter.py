@@ -77,8 +77,8 @@ HOUSE_OVERSIGHT_029744.txt	Steve Bannon (likely)	Trump and New York Times covera
 HOUSE_OVERSIGHT_031045.txt	Steve Bannon (likely)	Trump and New York Times coverage
 HOUSE_OVERSIGHT_031054.txt	Personal contact	Personal/social plans
 """.strip())
-# HOUSE_OVERSIGHT_027764.txt	Michael Wolff	Trump book/journalism project
 
+OUTPUT_BASENAME = "epstein_text_msgs_7th_production_colorized_and_deanonymized"
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\n(?=(Sender))', re.DOTALL)
 FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
@@ -167,11 +167,6 @@ def extract_file_id(filename) -> str:
         raise RuntimeError(f"Failed to extract file ID from {filename}")
 
 
-# def attention_getting_panel(text: Text, title: str, style: str = 'white on red') -> Padding:
-#     p = Panel(text, padding=(2), title=title, style=style)
-#     return Padding(p, pad=(1, 10, 2, 10))
-
-
 for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
     file_id = extract_file_id(row['filename'].strip())
     counterparty = row['counterparty'].strip()
@@ -183,8 +178,8 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
         GUESSED_COUNTERPARTY_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
 
 
-is_debug = len(environ.get('DEBUG') or '') > 0
 is_build = len(environ.get('BUILD') or '') > 0
+is_debug = len(environ.get('DEBUG') or '') > 0
 sender_counts = defaultdict(int)
 convos_labeled = 0
 files_processed = 0
@@ -195,8 +190,8 @@ console.record = True
 
 # Translation helper
 table = Table(title="Abbreviations Used Frequently In These Chats", show_header=True, header_style="bold")
-table.add_column("Abbreviation", style="dark_khaki bold", justify="center", width=19)
-table.add_column("Translation", style="navajo_white3", justify="center")
+table.add_column("Abbreviation", style="steel_blue bold", justify="center", width=19)
+table.add_column("Translation", style="deep_sky_blue4", justify="center")
 table.add_row("AD", "Abu Dhabi")
 table.add_row("Barak", "Ehud Barak (Former Israeli prime minister)")
 table.add_row("Barrack", "Tom Barrack")
@@ -214,7 +209,7 @@ table.add_row("Woody", "Woody Allen")
 table.add_row("Zug", "City in Switzerland known as a crypto hot spot")
 console.print('\n', Align.center(table))
 console.line(2)
-console.print(Align.center("Conversations sorted chronologically on timestamp of first message."), style='bold green3')
+console.print(Align.center("Conversations are sorted chronologically based on timestamp of first message."), style='bold dark_green')
 console.line(2)
 
 
@@ -366,16 +361,22 @@ for file_arg in get_imessage_log_files():
     console.line(2)
 
 
-console.line(2)
-console.print_json(json.dumps(sender_counts, indent=4, sort_keys=True))
-console.print(f"\n\nProcessed {files_processed} log files with {msgs_processed} text messages ({convos_labeled} deanonymized conversations)")
-output_basename = "epstein_text_msgs_7th_production_colorized_and_deanonymized"
-output_html = f"{output_basename}.html"
-colored_text_filename = f"{output_basename}.ascii.txt"
+counts_table = Table(title="Message Counts By Sender", show_header=True, header_style="bold")
+counts_table.add_column("Sender", style="steel_blue bold", justify="left", width=30)
+counts_table.add_column("Message Count", justify="center")
+
+for k, v in sorted(sender_counts.items(), key=lambda item: item[1], reverse=True):
+    counts_table.add_row(Text(k, COUNTERPARTY_COLORS.get(k, 'grey23 bold')), str(v))
+
+console.print(counts_table, '\n\n')
+console.print(f"Processed {files_processed} log files with {msgs_processed} text messages ({convos_labeled} deanonymized conversations)")
+
 
 if is_build:
+    output_html = f"{OUTPUT_BASENAME}.html"
     console.save_html(output_html, inline_styles=True, clear=False)
     console.print(f"Wrote HTML to '{output_html}' (is_build={is_build})")
+    # colored_text_filename = f"{OUTPUT_BASENAME}.ascii.txt"
     # console.save_text(colored_text_filename, styles=True)
     # console.print(f"Wrote colored ASCII to '{colored_text_filename}'")
 else:
