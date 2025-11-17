@@ -79,6 +79,8 @@ HOUSE_OVERSIGHT_031054.txt	Personal contact	Personal/social plans
 """.strip())
 
 OUTPUT_BASENAME = "epstein_text_msgs_7th_production_colorized_and_deanonymized"
+OUTPUT_DIR = Path('docs')
+
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\n(?=(Sender))', re.DOTALL)
 FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
@@ -373,7 +375,7 @@ console.print(f"Processed {files_processed} log files with {msgs_processed} text
 
 
 if is_build:
-    output_html = f"{OUTPUT_BASENAME}.html"
+    output_html = OUTPUT_DIR.joinpath(f"{OUTPUT_BASENAME}.html")
     console.save_html(output_html, inline_styles=True, clear=False)
     console.print(f"Wrote HTML to '{output_html}' (is_build={is_build})")
     # colored_text_filename = f"{OUTPUT_BASENAME}.ascii.txt"
