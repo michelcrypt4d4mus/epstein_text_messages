@@ -16,8 +16,10 @@ from io import StringIO
 from os import environ
 from pathlib import Path
 
+from rich.align import Align
 from rich.console import Console
 from rich.panel import Panel
+from rich.table import Table
 from rich.text import Text
 from rich.theme import Theme
 from sys import argv
@@ -39,7 +41,6 @@ HOUSE_OVERSIGHT_025707.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_025734.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
 HOUSE_OVERSIGHT_025735.txt	Unidentified	unclear
 HOUSE_OVERSIGHT_027128.txt	Personal contact	Personal/social plans
-HOUSE_OVERSIGHT_027148.txt	Steve Bannon	Middle East politics and business deals; Trump discussions
 HOUSE_OVERSIGHT_027214.txt	unclear	unclear
 HOUSE_OVERSIGHT_027217.txt	Business associate	Business discussions
 HOUSE_OVERSIGHT_027225.txt	Personal contact	Personal/social plans
@@ -83,6 +84,7 @@ FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
 DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
 PHONE_NUMBER = 'phone_number'
+ANIL = "Anil Ambani"
 BANNON = 'Bannon'
 DEFAULT = 'default'
 EPSTEIN = 'Epstein'
@@ -97,10 +99,14 @@ UNKNOWN = '(unknown)'
 
 # Color different counterparties differently
 COUNTERPARTY_COLORS = {
+    ANIL: 'dark_green',
     BANNON: 'color(58)',
     DEFAULT: 'yellow1',
-    EPSTEIN: 'blue',  # Epstein
-    MELANIE_WALKER: 'light_salmon3',
+    EPSTEIN: 'blue',
+    'Eva': 'orchid',
+    # 'Joi Ito': 'light_salmon3',
+    'Joi Ito': 'light_slate_gray',
+    MELANIE_WALKER: 'deep_pink3',
     MIROSLAV: 'slate_blue3',
     "Michael Wolff": 'grey54',
     PHONE_NUMBER: 'bright_green',
@@ -128,8 +134,10 @@ KNOWN_COUNTERPARTY_FILE_IDS = {
     '027333': SCARAMUCCI,      # unredacted phone number
     '027278': TERJE,
     '027255': TERJE,
-    '031042': 'Anil Ambani',   # Participants: field
+    '031173': 'Ards',          # Participants: field
+    '031042': ANIL,            # Participants: field
     '027650': 'Joi Ito',       # Participants: field
+    '027401': 'Eva',           # Participants: field
 }
 
 GUESSED_COUNTERPARTY_FILE_IDS = {
@@ -143,8 +151,7 @@ GUESSED_COUNTERPARTY_FILE_IDS = {
     '027133': MELANIE_WALKER,
     '027184': MELANIE_WALKER,
     '027214': MELANIE_WALKER,
-    '031173': 'Ards',          # Participants: field
-    '027401': 'Eva',           # Participants: field
+    '027148': MELANIE_WALKER,
 }
 
 for counterparty in COUNTERPARTY_COLORS:
@@ -160,6 +167,11 @@ def extract_file_id(filename) -> str:
         raise RuntimeError(f"Failed to extract file ID from {filename}")
 
 
+# def attention_getting_panel(text: Text, title: str, style: str = 'white on red') -> Padding:
+#     p = Panel(text, padding=(2), title=title, style=style)
+#     return Padding(p, pad=(1, 10, 2, 10))
+
+
 for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
     file_id = extract_file_id(row['filename'].strip())
     counterparty = row['counterparty'].strip()
@@ -173,12 +185,38 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
 
 is_debug = len(environ.get('DEBUG') or '') > 0
 is_build = len(environ.get('BUILD') or '') > 0
+sender_counts = defaultdict(int)
+convos_labeled = 0
+files_processed = 0
+msgs_processed = 0
+
 console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS))
 console.record = True
-files_processed = 0
-convos_labeled = 0
-msgs_processed = 0
-sender_counts = defaultdict(int)
+
+# Translation helper
+table = Table(title="Abbreviations Used Frequently In These Chats", show_header=True, header_style="bold")
+table.add_column("Abbreviation", style="dark_khaki bold", justify="center", width=19)
+table.add_column("Translation", style="navajo_white3", justify="center")
+table.add_row("AD", "Abu Dhabi")
+table.add_row("Barak", "Ehud Barak (Former Israeli prime minister)")
+table.add_row("Barrack", "Tom Barrack")
+table.add_row('BG', "Bill Gates")
+table.add_row('Bill', "Bill Gates")
+table.add_row("Brock", "Brock Pierce")
+table.add_row('HBJ', "Hamad bin Jassim (Former Qatari Prime Minister)")
+table.add_row('KSA', "Kingdom of Saudi Arabia")
+table.add_row('MBS', "Mohammed bin Salman Al Saud (Saudi ruler)")
+table.add_row('Jared', "Jared Kushner")
+table.add_row("Miro", MIROSLAV)
+table.add_row("Mooch", "Anthony 'The Mooch' Scaramucci (Skybridge Capital)")
+table.add_row("Terje", TERJE)
+table.add_row("Woody", "Woody Allen")
+table.add_row("Zug", "City in Switzerland known as a crypto hot spot")
+console.print('\n', Align.center(table))
+console.line(2)
+console.print(Align.center("Conversations sorted chronologically on timestamp of first message."), style='bold green3')
+console.line(2)
+
 
 if is_debug:
     console.print('KNOWN_COUNTERPARTY_FILE_IDS\n--------------')
@@ -240,6 +278,7 @@ def get_imessage_log_files() -> list[Path]:
 
     # Sort by first timestamp
     return sorted(log_files, key=lambda f: first_timestamp_in_file(f))
+
 
 
 for file_arg in get_imessage_log_files():
