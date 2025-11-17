@@ -225,6 +225,7 @@ table.add_row("Zug", "City in Switzerland known as a crypto hot spot")
 console.print('\n', Align.center(table))
 console.line(2)
 console.print(Align.center("Conversations are sorted chronologically based on timestamp of first message."), style='bold dark_green')
+console.print(Align.center(f"If you think there's an attribution error or can deanonymize or confirm an {UNKNOWN} or (?) individual contact @cryptadamist."), style='dim')
 console.line(2)
 
 
