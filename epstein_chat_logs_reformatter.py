@@ -190,7 +190,6 @@ msgs_processed = 0
 
 console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS))
 console.record = True
-# console.print(Panel(, style='reverse', expand=False))
 
 console.print(Panel(Text(
     "Oversight Committee Releases Additional Epstein Estate Documents"
@@ -268,7 +267,7 @@ def get_imessage_log_files() -> list[Path]:
         with open(file_arg) as f:
             file_text = f.read()
 
-        if 'iMessage' in file_text:
+        if MSG_REGEX.search(file_text):
             log_files.append(file_arg)
         else:
             if is_debug:
