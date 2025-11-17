@@ -83,7 +83,7 @@ OUTPUT_BASENAME = "epstein_text_msgs_7th_production_colorized_and_deanonymized"
 OUTPUT_DIR = Path('docs')
 OUTPUT_GH_PAGES_HTML = OUTPUT_DIR.joinpath('index.html')
 
-MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\n((?=(Sender)|\Z))', re.DOTALL)
+MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 #MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\n(?=(Sender))', re.DOTALL)
 FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
