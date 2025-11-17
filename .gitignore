@@ -206,3 +206,4 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 .env
+docs/index.html   # not ignored on gh_pages branch
