@@ -15,7 +15,7 @@ fi
 
 git checkout gh_pages
 git merge master
-BUILD=true ./epstein_chat_logs_reformatter.py
+./epstein_chat_logs_reformatter.py
 git commit -am"Update HTML"
 git push origin gh_pages
 git checkout master

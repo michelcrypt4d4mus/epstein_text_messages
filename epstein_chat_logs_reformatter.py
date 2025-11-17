@@ -83,8 +83,8 @@ OUTPUT_BASENAME = "epstein_text_msgs_7th_production_colorized_and_deanonymized"
 OUTPUT_DIR = Path('docs')
 OUTPUT_GH_PAGES_HTML = OUTPUT_DIR.joinpath('index.html')
 
-#MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\n((?=(Sender)|\Z))', re.DOTALL)
-MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\n(?=(Sender))', re.DOTALL)
+MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\n((?=(Sender)|\Z))', re.DOTALL)
+#MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\n(?=(Sender))', re.DOTALL)
 FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
 DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
@@ -185,7 +185,6 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
         GUESSED_COUNTERPARTY_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
 
 
-is_build = len(environ.get('BUILD') or '') > 0
 is_debug = len(environ.get('DEBUG') or '') > 0
 sender_counts = defaultdict(int)
 convos_labeled = 0
@@ -393,12 +392,8 @@ console.print(counts_table, '\n\n')
 console.print(f"Processed {files_processed} log files with {msgs_processed} text messages ({convos_labeled} deanonymized conversations)")
 
 
-if is_build:
-    # output_html = OUTPUT_DIR.joinpath(f"{OUTPUT_BASENAME}.html")
+if not is_debug:
     console.save_html(OUTPUT_GH_PAGES_HTML, inline_styles=True, clear=False)
-    console.print(f"Wrote HTML to '{OUTPUT_GH_PAGES_HTML}' (is_build={is_build})")
-    # colored_text_filename = f"{OUTPUT_BASENAME}.ascii.txt"
-    # console.save_text(colored_text_filename, styles=True)
-    # console.print(f"Wrote colored ASCII to '{colored_text_filename}'")
+    console.print(f"Wrote HTML to '{OUTPUT_GH_PAGES_HTML}'.")
 else:
-    console.print(f"\nNot writing HTML because BUILD=true evn var is not set.")
+    console.print(f"\nNot writing HTML because DEBUG=true.")
