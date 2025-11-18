@@ -28,8 +28,6 @@ load_dotenv()
 #  of who is the counterparty in each file
 AI_COUNTERPARTY_DETERMINATION_TSV = StringIO("""
 filename	counterparty	source
-HOUSE_OVERSIGHT_025363.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_025368.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_025400.txt	Steve Bannon (likely)	Trump NYT article criticism; Hannity media strategy
 HOUSE_OVERSIGHT_025403.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_025408.txt	Steve Bannon	Trump and New York Times coverage
@@ -67,7 +65,6 @@ HOUSE_OVERSIGHT_027455.txt	Steve Bannon (likely)	China strategy and geopolitics;
 HOUSE_OVERSIGHT_027460.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027515.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_027536.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027568.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_027585.txt	Business associate	Business discussions
 HOUSE_OVERSIGHT_027655.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027707.txt	Steve Bannon	Italian politics; Trump discussions
@@ -83,7 +80,7 @@ OUTPUT_BASENAME = "epstein_text_msgs_7th_production_colorized_and_deanonymized"
 OUTPUT_DIR = Path('docs')
 OUTPUT_GH_PAGES_HTML = OUTPUT_DIR.joinpath('index.html')
 
-MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\n((?=(Sender)|\Z))', re.DOTALL)
+MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 #MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\n(?=(Sender))', re.DOTALL)
 FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
@@ -106,7 +103,7 @@ UNKNOWN = '(unknown)'
 COUNTERPARTY_COLORS = {
     ANIL: 'dark_green',
     BANNON: 'color(58)',
-    DEFAULT: 'yellow1',
+    DEFAULT: 'wheat4',
     EPSTEIN: 'blue',
     'Eva': 'orchid',
     # 'Joi Ito': 'light_salmon3',
@@ -147,11 +144,13 @@ KNOWN_COUNTERPARTY_FILE_IDS = {
 }
 
 GUESSED_COUNTERPARTY_FILE_IDS = {
-    '025363': BANNON,
-    '025368': BANNON,
+    '025363': BANNON,          # Trump and New York Times coverage
+    '025368': BANNON,          # Trump and New York Times coverage
     '027568': BANNON,
     '027695': BANNON,
     '027594': BANNON,
+    '027549': BANNON,
+    '027434': BANNON,          # References Maher appearance
     '027576': MELANIE_WALKER,  # https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700
     '027141': MELANIE_WALKER,
     '027232': MELANIE_WALKER,
@@ -182,6 +181,9 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
     if counterparty in ['unclear', 'Unidentified', 'Personal contact', 'Business associate']:
         continue
     else:
+        if file_id in GUESSED_COUNTERPARTY_FILE_IDS:
+            raise RuntimeError(f"About to overwrite attribution of {file_id} to {GUESSED_COUNTERPARTY_FILE_IDS[file_id]} with {counterparty}")
+
         GUESSED_COUNTERPARTY_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
 
 
