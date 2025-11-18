@@ -103,7 +103,7 @@ UNKNOWN = '(unknown)'
 COUNTERPARTY_COLORS = {
     ANIL: 'dark_green',
     BANNON: 'color(58)',
-    DEFAULT: 'yellow1',
+    DEFAULT: 'wheat4',
     EPSTEIN: 'blue',
     'Eva': 'orchid',
     # 'Joi Ito': 'light_salmon3',
