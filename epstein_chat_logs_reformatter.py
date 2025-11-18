@@ -150,6 +150,7 @@ GUESSED_COUNTERPARTY_FILE_IDS = {
     '027695': BANNON,
     '027594': BANNON,
     '027549': BANNON,
+    '027434': BANNON,          # References Maher appearance
     '027576': MELANIE_WALKER,  # https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700
     '027141': MELANIE_WALKER,
     '027232': MELANIE_WALKER,
