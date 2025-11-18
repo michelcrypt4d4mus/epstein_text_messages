@@ -210,7 +210,8 @@ console.line()
 console.print(Align.center("[link=https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great]I Made Epstein's Text Messages Great Again[/link]"))
 console.print(Align.center("https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great"))
 console.print(Align.center("[link=https://cryptadamus.substack.com/]Substack[/link]"))
-console.print(Align.center("[link=https://x.com/cryptadamist]Twitter[/link]"))
+console.print(Align.center("[link=https://universeodon.com/@cryptadamist]Mastodon[/link]"))
+console.print(Align.center("[link=https://x.com/Cryptadamist/status/1990866804630036988]Twitter[/link]"))
 
 # Translation helper
 table = Table(title="Abbreviations Used Frequently In These Chats", show_header=True, header_style="bold")
