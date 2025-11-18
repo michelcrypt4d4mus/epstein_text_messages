@@ -81,7 +81,6 @@ OUTPUT_DIR = Path('docs')
 OUTPUT_GH_PAGES_HTML = OUTPUT_DIR.joinpath('index.html')
 
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
-#MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\n(?=(Sender))', re.DOTALL)
 FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
 DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
@@ -106,8 +105,7 @@ COUNTERPARTY_COLORS = {
     DEFAULT: 'wheat4',
     EPSTEIN: 'blue',
     'Eva': 'orchid',
-    # 'Joi Ito': 'light_salmon3',
-    'Joi Ito': 'light_slate_gray',
+    'Joi Ito': 'blue_violet',
     MELANIE_WALKER: 'deep_pink3',
     MIROSLAV: 'slate_blue3',
     "Michael Wolff": 'grey54',
@@ -160,6 +158,7 @@ GUESSED_COUNTERPARTY_FILE_IDS = {
     '027148': MELANIE_WALKER,
 }
 
+
 for counterparty in COUNTERPARTY_COLORS:
     COUNTERPARTY_COLORS[counterparty] = f"{COUNTERPARTY_COLORS[counterparty]} bold"
 
@@ -182,7 +181,7 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
         continue
     else:
         if file_id in GUESSED_COUNTERPARTY_FILE_IDS:
-            raise RuntimeError(f"About to overwrite attribution of {file_id} to {GUESSED_COUNTERPARTY_FILE_IDS[file_id]} with {counterparty}")
+            raise RuntimeError(f"Can't overwrite attribution of {file_id} to {GUESSED_COUNTERPARTY_FILE_IDS[file_id]} with {counterparty}")
 
         GUESSED_COUNTERPARTY_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
 
