@@ -132,11 +132,11 @@ KNOWN_COUNTERPARTY_FILE_IDS = {
     '027128': SOON_YI,         # https://x.com/ImDrinknWyn/status/1990227281101434923
     '027217': SOON_YI,         # refs marriage to woody allen
     '027244': SOON_YI,         # refs Woody
-    '027257': 'Woody Allen',   # Participants: field
+    '027257': SOON_YI,  # 'Woody Allen',   # Participants: field
     '027333': SCARAMUCCI,      # unredacted phone number
     '027278': TERJE,
     '027255': TERJE,
-    '031173': 'Ards',          # Participants: field
+    '031173': 'Ards',          # Participants: field, possibly incomplete
     '031042': ANIL,            # Participants: field
     '027225': ANIL,            # Birthday
     '027650': 'Joi Ito',       # Participants: field
@@ -205,6 +205,12 @@ console.print(Panel(Text(
     justify='center',
     style='bold reverse'
 )))
+
+console.line()
+console.print(Align.center("[link=https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great]I Made Epstein's Text Messages Great Again[/link]"))
+console.print(Align.center("https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great"))
+console.print(Align.center("[link=https://cryptadamus.substack.com/]Substack[/link]"))
+console.print(Align.center("[link=https://x.com/cryptadamist]Twitter[/link]"))
 
 # Translation helper
 table = Table(title="Abbreviations Used Frequently In These Chats", show_header=True, header_style="bold")
