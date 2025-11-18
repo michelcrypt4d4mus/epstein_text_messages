@@ -81,7 +81,6 @@ OUTPUT_DIR = Path('docs')
 OUTPUT_GH_PAGES_HTML = OUTPUT_DIR.joinpath('index.html')
 
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
-#MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\n(?=(Sender))', re.DOTALL)
 FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
 DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
@@ -103,11 +102,11 @@ UNKNOWN = '(unknown)'
 COUNTERPARTY_COLORS = {
     ANIL: 'dark_green',
     BANNON: 'color(58)',
+    'Celina Dubin': 'medium_orchid1',
     DEFAULT: 'wheat4',
     EPSTEIN: 'blue',
     'Eva': 'orchid',
-    # 'Joi Ito': 'light_salmon3',
-    'Joi Ito': 'light_slate_gray',
+    'Joi Ito': 'blue_violet',
     MELANIE_WALKER: 'deep_pink3',
     MIROSLAV: 'slate_blue3',
     "Michael Wolff": 'grey54',
@@ -139,6 +138,7 @@ KNOWN_COUNTERPARTY_FILE_IDS = {
     '027255': TERJE,
     '031173': 'Ards',          # Participants: field
     '031042': ANIL,            # Participants: field
+    '027225': ANIL,            # Birthday
     '027650': 'Joi Ito',       # Participants: field
     '027401': 'Eva',           # Participants: field
 }
@@ -158,7 +158,9 @@ GUESSED_COUNTERPARTY_FILE_IDS = {
     '027184': MELANIE_WALKER,
     '027214': MELANIE_WALKER,
     '027148': MELANIE_WALKER,
+    '025436': 'Celina Dubin',
 }
+
 
 for counterparty in COUNTERPARTY_COLORS:
     COUNTERPARTY_COLORS[counterparty] = f"{COUNTERPARTY_COLORS[counterparty]} bold"
@@ -182,7 +184,7 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
         continue
     else:
         if file_id in GUESSED_COUNTERPARTY_FILE_IDS:
-            raise RuntimeError(f"About to overwrite attribution of {file_id} to {GUESSED_COUNTERPARTY_FILE_IDS[file_id]} with {counterparty}")
+            raise RuntimeError(f"Can't overwrite attribution of {file_id} to {GUESSED_COUNTERPARTY_FILE_IDS[file_id]} with {counterparty}")
 
         GUESSED_COUNTERPARTY_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
 
@@ -245,20 +247,11 @@ def first_timestamp_in_file(file_arg: Path):
 
     with open(file_arg) as f:
         for match in MSG_REGEX.finditer(f.read()):
-            timestamp_str = match.group(2).strip()
-
             try:
-                timestamp = datetime.strptime(timestamp_str, DATE_FORMAT)
-
-                if is_debug:
-                    console.log(f"   -> Parsed first timestamp '{timestamp_str}' to {timestamp}'")
-
-                return timestamp
+                timestamp_str = match.group(2).strip()
+                return datetime.strptime(timestamp_str, DATE_FORMAT)
             except ValueError as e:
-                if is_debug:
-                    console.print(f"   -> FAILED to parse '{timestamp_str}' to datetime! Error: {e}'", style='red')
-
-                continue
+                print(f"[WARNING] Failed to parse '{timestamp_str}' to datetime! Using next match. Error: {e}'")
 
 
 def get_imessage_log_files() -> list[Path]:
@@ -268,8 +261,8 @@ def get_imessage_log_files() -> list[Path]:
         raise EnvironmentError(f"EPSTEIN_DOCS_DIR env var not set!")
 
     docs_dir = Path(docs_dir)
-    log_files = []
     files = [f for f in docs_dir.iterdir() if f.is_file() and not f.name.startswith('.')]
+    log_files = []
 
     for file_arg in files:
         file_text = ''
@@ -291,7 +284,7 @@ def get_imessage_log_files() -> list[Path]:
                 else:
                     file_lines = file_text.split('\n')
                     console.print(f"'Skipping file '{file_arg.name}', top lines:")
-                    console.print('\n'.join(file_lines[0:4]) + '\n', style='dim')
+                    console.print('\n'.join(file_lines[0:10]) + '\n', style='dim')
 
             continue
 
