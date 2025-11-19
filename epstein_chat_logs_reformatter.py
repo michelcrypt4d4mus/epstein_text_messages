@@ -209,7 +209,7 @@ counts_table.add_column("From", justify="left", width=40)
 counts_table.add_column("Email Count", justify="center")
 
 for k, v in sorted(emailer_counts.items(), key=lambda item: item[1], reverse=True):
-    counts_table.add_row(f"[link={search_archive_url(k)}]{k}[/link]", str(v))
+    counts_table.add_row(f"[steel_blue][link={search_archive_url(k)}]{k}[/link][/steel_blue]", str(v))
 
 console.print(counts_table)
 console.print(f"\nScanned {num_potential_emails} potential emails, found {sum([i for i in emailer_counts.values()])} senders.")
