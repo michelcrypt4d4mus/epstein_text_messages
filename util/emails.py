@@ -7,7 +7,7 @@ from .env import deep_debug, is_debug
 DATE_REGEX = re.compile(r'^Date:\s*(.*)\n')
 EMAIL_REGEX = re.compile(r'From: (.*)')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
-BAD_EMAILER_REGEX = re.compile('^(sent|attachments).*|.*(11111111111|january|2016|saved by|talk in).*')
+BAD_EMAILER_REGEX = re.compile('^ok|((sent|attachments|subject|importance).*|.*(11111111111|january|2016|saved by|talk in|it was a|what do).*)$')
 EPSTEIN_EMAIL_REGEX = re.compile(r'jee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE)
 GHISLAINE_EMAIL_REGEX = re.compile(r'g ?max(well)?', re.IGNORECASE)
 EHUD_BARAK_EMAIL_REGEX = re.compile(r'(ehud|h)\s*barak', re.IGNORECASE)
@@ -49,8 +49,8 @@ def extract_email_sender(file_text):
     if not emailer:
         return
 
-    emailer = emailer.lstrip('"').lstrip("'").rstrip('"').rstrip("'")
-    emailer = emailer.strip().strip('_').strip('[').strip(']').strip('*').strip('<').strip()
+    emailer = emailer.strip().lstrip('"').lstrip("'").rstrip('"').rstrip("'")
+    emailer = emailer.strip().strip('_').strip('[').strip(']').strip('*').strip('<').strip('•').rstrip(',').strip()
 
     if EPSTEIN_EMAIL_REGEX.search(emailer):
         emailer = 'Jeffrey Epstein'
@@ -70,6 +70,8 @@ def extract_email_sender(file_text):
         emailer = 'Ken Starr'
     elif 'boris nikoli' in emailer.lower():
         emailer = 'Boris Nikolice'
+    elif emailer.lower().startswith('nicholas rib'):
+        emailer = 'Nicholas Ribis'
     else:
         for possible_emailer in EMAILERS:
             if possible_emailer.lower() in emailer.lower():
@@ -79,4 +81,4 @@ def extract_email_sender(file_text):
     if deep_debug:
         console.print(f"  -> Found email from '{emailer}'", style='dim')
 
-    return emailer
+    return emailer.lower()
