@@ -27,7 +27,7 @@ from rich.theme import Theme
 load_dotenv()
 
 from util.emails import BAD_EMAILER_REGEX, DETECT_EMAIL_REGEX, extract_email_sender
-from util.env import deep_debug, is_debug
+from util.env import deep_debug, include_redacted_emails, is_debug
 from util.file_helper import load_file, move_json_file
 
 
@@ -202,6 +202,7 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
 
 sender_counts = defaultdict(int)
 emailer_counts = defaultdict(int)
+redacted_emails = {}
 convos_labeled = 0
 files_processed = 0
 msgs_processed = 0
@@ -328,6 +329,8 @@ def get_imessage_log_files() -> list[Path]:
 
                     if len(emailer) >= 3 and emailer != UNKNOWN and is_ok_emailer:
                         continue  # Don't print contents if we found a valid email
+                    elif emailer == UNKNOWN:
+                        redacted_emails[file_arg.name] = file_text
                 except Exception as e:
                     console.print_exception()
                     console.print(f"\nError file '{file_arg.name}' with {len(file_lines)} lines, top lines:")
@@ -430,6 +433,7 @@ for file_arg in get_imessage_log_files():
     console.line(2)
 
 
+# Text message counts
 counts_table = Table(title="Message Counts By Sender", show_header=True, header_style="bold")
 counts_table.add_column("Sender", style="steel_blue bold", justify="left", width=30)
 counts_table.add_column("Message Count", justify="center")
@@ -441,7 +445,7 @@ console.print(counts_table)
 console.print(f"\nProcessed {files_processed} log files with {msgs_processed} text messages ({convos_labeled} deanonymized conversations)")
 console.print(f"(Last deploy found 77 files with 4668 messages)\n", style='dim')
 
-
+# Email sender counts
 console.line(2)
 num_potential_emails = emailer_counts.pop('TOTAL')
 counts_table = Table(title="Email Counts By Sender", show_header=True, header_style="bold")
@@ -453,6 +457,14 @@ for k, v in sorted(emailer_counts.items(), key=lambda item: item[1], reverse=Tru
 
 console.print(counts_table)
 console.print(f"Scanned {num_potential_emails} potential emails, found {sum([i for i in emailer_counts.values()])} senders.")
+
+# Redacted emails option
+if include_redacted_emails:
+    console.print(Panel(Text("Redacted Emails", justify='center', style='bold reverse')), '\n')
+
+    for filename, contents in redacted_emails.items():
+        console.print(Panel(filename, expand=False))
+        console.print(escape(contents), '\n\n', style='dim')
 
 
 if not is_debug:
