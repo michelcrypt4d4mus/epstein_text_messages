@@ -149,6 +149,7 @@ GUESSED_COUNTERPARTY_FILE_IDS = {
     '027568': BANNON,
     '027695': BANNON,
     '027594': BANNON,
+    '027720': BANNON,          # first 3 lines of 027722
     '027549': BANNON,
     '027434': BANNON,          # References Maher appearance
     '027576': MELANIE_WALKER,  # https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700
@@ -291,8 +292,13 @@ def get_imessage_log_files() -> list[Path]:
                     file_arg.rename(json_subdir_path)
                 else:
                     file_lines = file_text.split('\n')
-                    console.print(f"'Skipping file '{file_arg.name}', top lines:")
-                    console.print('\n'.join(file_lines[0:10]) + '\n', style='dim')
+
+                    if file_lines[0].startswith('From: ') or file_lines[0].startswith('Date: '):
+                        #console.print(f"'Skipping email '{file_arg.name}'...")
+                        pass
+                    else:
+                        console.print(f"'Skipping file '{file_arg.name}' with {len(file_lines)} lines, top lines:")
+                        console.print('\n'.join(file_lines[0:10]) + '\n', style='dim')
 
             continue
 
