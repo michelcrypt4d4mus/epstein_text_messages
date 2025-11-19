@@ -20,6 +20,7 @@ EMAILER_REGEXES = {
     'Ghislaine Maxwell': re.compile(r'g ?max(well)?', re.IGNORECASE),
     'Jeffrey Epstein': re.compile(r'jee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|joichi|^joi$', re.IGNORECASE),
+    'Kathy Ruemmler': re.compile(r'Kathy Ruemmle', re.IGNORECASE),
     'Ken Starr': re.compile('starr, ken', re.IGNORECASE),
     'Landon Thomas Jr.': re.compile('landon thomas jr|thomas jr.?, landon', re.IGNORECASE),
     'Larry Summers': re.compile(r'La(wrence|rry).*Summer|^LHS?$', re.IGNORECASE),
@@ -79,8 +80,8 @@ def extract_email_sender(file_text):
     if not emailer:
         return
 
-    emailer = emailer.strip().lstrip('"').lstrip("'").rstrip('"').rstrip("'")
-    emailer = emailer.strip().strip('_').strip('[').strip(']').strip('*').strip('<').strip('•').rstrip(',').strip()
+    emailer = emailer.strip().lstrip('"').lstrip("'").rstrip('"').rstrip("'").strip()
+    emailer = emailer.strip('_').strip('[').strip(']').strip('*').strip('<').strip('•').rstrip(',').strip()
     found_emailer = False
 
     for name, regex in EMAILER_REGEXES.items():
@@ -94,6 +95,9 @@ def extract_email_sender(file_text):
             if possible_emailer.lower() in emailer.lower():
                 emailer = possible_emailer
                 break
+
+    if ' [' in emailer:
+        emailer = emailer.split(' [')[0]
 
     if deep_debug:
         console.print(f"  -> Found email from '{emailer}'", style='dim')
