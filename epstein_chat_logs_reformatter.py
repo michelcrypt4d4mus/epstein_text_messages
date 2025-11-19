@@ -140,7 +140,7 @@ for file_arg in get_imessage_log_files():
     counterparty = UNKNOWN
     counterparty_guess = None
     console.print(Panel(file_arg.name, style='reverse', expand=False))
-    file_url = f"{COURIER_NEWSROOM_ARCHIVE}&page=1&q={file_arg}&p=1"
+    file_url = f"{COURIER_NEWSROOM_ARCHIVE}&page=1&q={file_arg.name}&p=1"
     console.print(f"[link={file_url}]View File in Courier Newsroom Archive[/link]")
 
     if file_id:
@@ -160,12 +160,12 @@ for file_arg in get_imessage_log_files():
         convos_labeled += 1
 
     for i, match in enumerate(MSG_REGEX.finditer(file_text)):
-        msgs_processed += 1
         sender = sender_str = match.group(1).strip()
         sender_style = None
         timestamp = Text(f"[{match.group(2).strip()}] ", style='dim')
         msg = match.group(4).strip()
         msg_lines = msg.split('\n')
+        msgs_processed += 1
 
         if len(sender) > 0:
             if sender == 'e:jeeitunes@gmail.com':
