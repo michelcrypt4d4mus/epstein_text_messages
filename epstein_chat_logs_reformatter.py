@@ -29,38 +29,19 @@ load_dotenv()
 AI_COUNTERPARTY_DETERMINATION_TSV = StringIO("""
 filename	counterparty	source
 HOUSE_OVERSIGHT_025400.txt	Steve Bannon (likely)	Trump NYT article criticism; Hannity media strategy
-HOUSE_OVERSIGHT_025403.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_025408.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_025423.txt	unclear	unclear
-HOUSE_OVERSIGHT_025426.txt	unclear	unclear
-HOUSE_OVERSIGHT_025429.txt	Stacey Plaskett	Michael Cohen congressional testimony coordination
 HOUSE_OVERSIGHT_025452.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_025479.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
 HOUSE_OVERSIGHT_025707.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_025734.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_025735.txt	Unidentified	unclear
-HOUSE_OVERSIGHT_027128.txt	Personal contact	Personal/social plans
-HOUSE_OVERSIGHT_027214.txt	unclear	unclear
-HOUSE_OVERSIGHT_027217.txt	Business associate	Business discussions
-HOUSE_OVERSIGHT_027225.txt	Personal contact	Personal/social plans
-HOUSE_OVERSIGHT_027248.txt	unclear	unclear
-HOUSE_OVERSIGHT_027250.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_027260.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027275.txt	unclear	unclear
-HOUSE_OVERSIGHT_027278.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_027281.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027330.txt	unclear	unclear
-HOUSE_OVERSIGHT_027333.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_027346.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027365.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027374.txt	Steve Bannon	China strategy and geopolitics
-HOUSE_OVERSIGHT_027396.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_027406.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027428.txt	unclear	unclear
-HOUSE_OVERSIGHT_027434.txt	Business associate	Business discussions
 HOUSE_OVERSIGHT_027440.txt	Michael Wolff	Trump book/journalism project
 HOUSE_OVERSIGHT_027445.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027452.txt	unclear	unclear
 HOUSE_OVERSIGHT_027455.txt	Steve Bannon (likely)	China strategy and geopolitics; Trump discussions
 HOUSE_OVERSIGHT_027460.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027515.txt	Personal contact	Personal/social plans
@@ -71,8 +52,7 @@ HOUSE_OVERSIGHT_027722.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027735.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027794.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_029744.txt	Steve Bannon (likely)	Trump and New York Times coverage
-HOUSE_OVERSIGHT_031045.txt	Steve Bannon (likely)	Trump and New York Times coverage
-HOUSE_OVERSIGHT_031054.txt	Personal contact	Personal/social plans""".strip())
+HOUSE_OVERSIGHT_031045.txt	Steve Bannon (likely)	Trump and New York Times coverage""".strip())
 
 OUTPUT_BASENAME = "epstein_text_msgs_7th_production_colorized_and_deanonymized"
 OUTPUT_DIR = Path('docs')
@@ -130,7 +110,7 @@ KNOWN_COUNTERPARTY_FILE_IDS = {
     '027128': SOON_YI,         # https://x.com/ImDrinknWyn/status/1990227281101434923
     '027217': SOON_YI,         # refs marriage to woody allen
     '027244': SOON_YI,         # refs Woody
-    '027257': SOON_YI,  # 'Woody Allen',   # Participants: field
+    '027257': SOON_YI,         # 'Woody Allen' in Participants: field
     '027333': SCARAMUCCI,      # unredacted phone number
     '027278': TERJE,
     '027255': TERJE,
@@ -152,7 +132,6 @@ GUESSED_COUNTERPARTY_FILE_IDS = {
     '027549': BANNON,
     '027434': BANNON,          # References Maher appearance
     '027764': BANNON,
-    '027396': BANNON,
     '027576': MELANIE_WALKER,  # https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700
     '027141': MELANIE_WALKER,
     '027232': MELANIE_WALKER,
@@ -184,13 +163,10 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
     counterparty = row['counterparty'].strip()
     counterparty = BANNON if counterparty.startswith('Steve Bannon') else counterparty
 
-    if counterparty in ['unclear', 'Unidentified', 'Personal contact', 'Business associate']:
-        continue
-    else:
-        if file_id in GUESSED_COUNTERPARTY_FILE_IDS:
-            raise RuntimeError(f"Can't overwrite attribution of {file_id} to {GUESSED_COUNTERPARTY_FILE_IDS[file_id]} with {counterparty}")
+    if file_id in GUESSED_COUNTERPARTY_FILE_IDS:
+        raise RuntimeError(f"Can't overwrite attribution of {file_id} to {GUESSED_COUNTERPARTY_FILE_IDS[file_id]} with {counterparty}")
 
-        GUESSED_COUNTERPARTY_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
+    GUESSED_COUNTERPARTY_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
 
 
 is_debug = len(environ.get('DEBUG') or '') > 0
@@ -419,7 +395,7 @@ for file_arg in get_imessage_log_files():
                 counterparty_guess = GUESSED_COUNTERPARTY_FILE_IDS[file_id]
                 txt = Text("(This might be a conversation with ", style='grey')
                 txt.append(counterparty_guess, style=f"{COUNTERPARTY_COLORS.get(counterparty_guess, DEFAULT)}")
-                console.print(txt.append(' according to AI)\n'))
+                console.print(txt.append(' according to research)\n'))
 
         if counterparty != UNKNOWN or counterparty_guess is not None:
             convos_labeled += 1
