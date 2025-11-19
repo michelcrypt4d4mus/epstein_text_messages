@@ -269,7 +269,7 @@ def first_timestamp_in_file(file_arg: Path):
 
 
 EMAIL_REGEX = re.compile(r'From: (.*)')
-BROKEN_EMAIL_REEGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(CC:\s*\n)?Subject:\s*\n(Importance:\s*\n)?(Attachments:\s*\n)?([\w ]{2,})\n')
+BROKEN_EMAIL_REEGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(CC:\s*\n)?Subject:\s*\n(Importance:\s*\n)?(Attachments:\s*\n)?([\w ]{2,}.*)\n')
 EPSTEIN_EMAIL_REGEX = re.compile(r'jee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE)
 GHISLAINE_EMAIL_REGEX = re.compile(r'g ?max(well)?', re.IGNORECASE)
 EHUD_BARAK_EMAIL_REGEX = re.compile(r'(ehud|h)\s*barak', re.IGNORECASE)
@@ -307,7 +307,7 @@ def tally_email(file_text):
         emailer = 'Jeffrey Epstein'
     elif GHISLAINE_EMAIL_REGEX.search(emailer):
         emailer = 'Ghislaine Maxwell'
-    elif emailer == 'ji@media.mitedu' or 'joichi ito' in emailer.lower():
+    elif emailer == 'ji@media.mitedu' or 'joichi ito' in emailer.lower() or emailer.lower() == 'joi':
         emailer = 'Joi Ito'
     elif EHUD_BARAK_EMAIL_REGEX.search(emailer):
         emailer = 'Ehud Barak'
@@ -330,8 +330,8 @@ def tally_email(file_text):
     elif DARREN_INDKE.search(emailer):
         emailer = 'Darren Indke'
 
-    if is_debug:
-        console.print(f"Handling email from '{emailer}'...")
+    # if is_debug:
+    #     console.print(f"Handling email from '{emailer}'...")
 
     emailer_counts[emailer.lower()] += 1
     return emailer
@@ -386,8 +386,8 @@ def get_imessage_log_files() -> list[Path]:
                     console.print(f"'{file_arg}' looks like JSON, moving to '{json_subdir_path}'\n", style='yellow1 bold')
                     file_arg.rename(json_subdir_path)
                 else:
-                    console.print(f"'Skipping file '{file_arg.name}' with {len(file_lines)} lines, top lines:")
-                    console.print('\n'.join(file_lines[0:10]) + '\n', style='dim')
+                    console.print(f"Skipping file '{file_arg.name}' with {len(file_lines)} lines, top lines:")
+                    print('\n'.join(file_lines[0:10]) + '\n')
 
             continue
 
