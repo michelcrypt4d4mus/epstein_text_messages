@@ -331,6 +331,8 @@ def tally_email(file_text):
         emailer = 'Michael Wolff'
     elif DARREN_INDKE.search(emailer):
         emailer = 'Darren Indke'
+    elif 'richard kahn' in emailer.lower():
+        emailer = 'Richard Kahn'
 
     # if is_debug:
     #     console.print(f"Handling email from '{emailer}'...")
