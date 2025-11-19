@@ -152,6 +152,7 @@ GUESSED_COUNTERPARTY_FILE_IDS = {
     '027720': BANNON,          # first 3 lines of 027722
     '027549': BANNON,
     '027434': BANNON,          # References Maher appearance
+    '027764': BANNON,
     '027576': MELANIE_WALKER,  # https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700
     '027141': MELANIE_WALKER,
     '027232': MELANIE_WALKER,
@@ -224,6 +225,7 @@ table.add_row("Barrack", "Tom Barrack")
 table.add_row('BG', "Bill Gates")
 table.add_row('Bill', "Bill Gates")
 table.add_row("Brock", "Brock Pierce")
+table.add_row("DB", "Deutsche Bank (maybe??)")
 table.add_row('HBJ', "Hamad bin Jassim (Former Qatari Prime Minister)")
 table.add_row('Jagland', 'Thorbjørn Jagland')
 table.add_row("Hoffenberg', 'Steven Hoffenberg (Epstein's partner in old ponzi scheme)")
