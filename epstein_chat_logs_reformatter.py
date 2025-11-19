@@ -441,12 +441,6 @@ console.print(counts_table, '\n\n')
 console.print(f"Processed {files_processed} log files with {msgs_processed} text messages ({convos_labeled} deanonymized conversations)")
 console.print(f"(Last deploy found 77 files with 4668 messages)\n", style='dim')
 
-if not is_debug:
-    console.save_html(OUTPUT_GH_PAGES_HTML, inline_styles=True, clear=False)
-    console.print(f"Wrote HTML to '{OUTPUT_GH_PAGES_HTML}'.")
-else:
-    console.print(f"\nNot writing HTML because DEBUG=true.")
-
 
 console.line(2)
 counts_table = Table(title="Email Counts By Sender", show_header=True, header_style="bold")
@@ -457,3 +451,10 @@ for k, v in sorted(emailer_counts.items(), key=lambda item: item[1], reverse=Tru
     counts_table.add_row(Text(k), str(v))
 
 console.print(counts_table, '\n\n')
+
+
+if not is_debug:
+    console.save_html(OUTPUT_GH_PAGES_HTML, inline_styles=True, clear=False)
+    console.print(f"Wrote HTML to '{OUTPUT_GH_PAGES_HTML}'.")
+else:
+    console.print(f"\nNot writing HTML because DEBUG=true.")
