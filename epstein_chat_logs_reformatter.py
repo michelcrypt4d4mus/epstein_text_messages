@@ -84,6 +84,8 @@ MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?
 EMAIL_REGEX = re.compile(r'From:\s*(.*)\n')
 EPSTEIN_EMAIL_REGEX = re.compile(r'jee[vy]acation@|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE)
 GHISLAINE_EMAIL_REGEX = re.compile(r'gmax1@ellmax', re.IGNORECASE)
+EHUD_BARAK_EMAIL_REGEX = re.compile(r'(ehud|h)\s*barak|', re.IGNORECASE)
+BANNON_EMAIL_REGEX = re.compile(r'steve bannon', re.IGNORECASE)
 DATE_REGEX = re.compile(r'^Date:\s*(.*)\n')
 FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
@@ -307,15 +309,19 @@ def get_imessage_log_files() -> list[Path]:
                     emailer = 'Jeffrey Epstein'
                 elif GHISLAINE_EMAIL_REGEX.search(emailer):
                     emailer = 'Ghislaine Maxwell'
-                elif emailer == 'ji@media.mitedu':
+                elif emailer == 'ji@media.mitedu' or 'joichi ito' in emailer:
                     emailer = 'Joi Ito'
+                elif EHUD_BARAK_EMAIL_REGEX.search(emailer):
+                    emailer = 'Ehud Barak'
+                elif BANNON_EMAIL_REGEX.search(emailer):
+                    emailer = 'Steve Bannon'
 
                 if is_debug:
                     console.print(f"Handling email from '{emailer}'...")
 
                 emailer_counts[emailer.lower()] += 1
 
-                if not emailer.startswith('Sent:'):
+                if not emailer.startswith('Sent:') or len(emailer) < 4:
                     continue
 
             if is_debug:
