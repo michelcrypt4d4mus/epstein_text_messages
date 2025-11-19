@@ -29,6 +29,7 @@ EMAILERS = [
     'Michael Wolff',
     'Peggy Siegal',
     'Richard Kahn',
+    'Robert Kuhn',
     'Paul Krassner',
     'Steven Victor MD',
     'Weingarten, Reid',
