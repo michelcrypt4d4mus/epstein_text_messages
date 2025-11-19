@@ -271,7 +271,7 @@ def first_timestamp_in_file(file_arg: Path):
 EMAIL_REGEX = re.compile(r'From: (.*)')
 BROKEN_EMAIL_REEGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(CC:\s*\n)?Subject:\s*\n(Importance:\s*\n)?(Attachments:\s*\n)?([\w ]{2,})\n')
 EPSTEIN_EMAIL_REGEX = re.compile(r'jee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE)
-GHISLAINE_EMAIL_REGEX = re.compile(r'gmax', re.IGNORECASE)
+GHISLAINE_EMAIL_REGEX = re.compile(r'g ?max(well)?', re.IGNORECASE)
 EHUD_BARAK_EMAIL_REGEX = re.compile(r'(ehud|h)\s*barak', re.IGNORECASE)
 BANNON_EMAIL_REGEX = re.compile(r'steve bannon', re.IGNORECASE)
 LARRY_SUMMERS_EMAIL_REGEX = re.compile(r'La(wrence|rry).*Summers', re.IGNORECASE)
@@ -320,6 +320,12 @@ def tally_email(file_text):
         emailer = 'Ken Starr'
     elif 'lesley groff' in emailer.lower():
         emailer = 'Lesley Groff'
+    elif 'boris nikolic' in emailer.lower():
+        emailer = 'Boris Nikolic'
+    elif 'al seckel' in emailer.lower():
+        emailer = 'Al Seckel'
+    elif 'michael wolff' in emailer.lower():
+        emailer = 'Michael Wolff'
 
     if is_debug:
         console.print(f"Handling email from '{emailer}'...")
