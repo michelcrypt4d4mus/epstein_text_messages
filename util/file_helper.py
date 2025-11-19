@@ -1,5 +1,6 @@
 from pathlib import Path
 
+
 def load_file(file_path):
     """Remove BOM and remove HOUSE OVERSIGHT lines."""
     with open(file_path) as f:

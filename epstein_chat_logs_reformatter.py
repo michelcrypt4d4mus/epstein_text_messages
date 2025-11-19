@@ -19,6 +19,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from rich.align import Align
 from rich.console import Console
+from rich.markup import escape
 from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
@@ -26,7 +27,7 @@ from rich.theme import Theme
 load_dotenv()
 
 from util.emails import BAD_EMAILER_REGEX, DETECT_EMAIL_REGEX, extract_email_sender
-from util.env import is_debug
+from util.env import deep_debug, is_debug
 from util.file_helper import load_file, move_json_file
 
 
@@ -254,13 +255,13 @@ console.print(Align.center(f"If you think there's an attribution error or can de
 console.line(2)
 
 
-def print_top_lines(file_text, n = 10, in_panel = False):
-    lines = '\n'.join(file_text.split("\n")[0:n])
-    output = Panel(lines, expand=False) if in_panel else lines + '\n'
+def print_top_lines(file_text, n = 10, max_chars = 250, in_panel = False):
+    top_text = escape('\n'.join(file_text.split("\n")[0:n])[0:max_chars])
+    output = Panel(top_text, expand=False) if in_panel else top_text + '\n'
     console.print(output, style='dim')
 
 
-if is_debug:
+if deep_debug:
     console.print('KNOWN_COUNTERPARTY_FILE_IDS\n--------------')
     console.print(json.dumps(KNOWN_COUNTERPARTY_FILE_IDS))
     console.print('\n\n\nGUESSED_COUNTERPARTY_FILE_IDS\n--------------')
@@ -269,7 +270,7 @@ if is_debug:
 
 
 def first_timestamp_in_file(file_arg: Path):
-    if is_debug:
+    if deep_debug:
         print(f"Getting timestamp from {file_arg}...")
 
     with open(file_arg) as f:
@@ -295,32 +296,37 @@ def get_imessage_log_files() -> list[Path]:
     for file_arg in files:
         file_text = ''
 
-        if is_debug:
+        if deep_debug:
             console.print(f"Scanning '{file_arg.name}'...", style='dim')
 
         file_text = load_file(file_arg)
         file_lines = file_text.split('\n')
 
         if len(file_text) == 0:
-            if is_debug:
-                console.print(f"Skipping empty file...", style='dim')
+            if deep_debug:
+                console.print(f"   -> Skipping empty file...", style='dim')
         elif MSG_REGEX.search(file_text):
+            if deep_debug:
+                console.print(f"    -> Found iMessage log file", style='dim')
+
             log_files.append(file_arg)
         elif file_text[0] == '{':  # Check for JSON
             move_json_file(file_arg)
         else:
-            # Handle emails
-            if DETECT_EMAIL_REGEX.match(file_text):
+            if DETECT_EMAIL_REGEX.match(file_text):  # Handle emails
                 emailer_counts['TOTAL'] += 1
 
                 try:
-                    emailer = extract_email_sender(file_text) or ''
+                    emailer = extract_email_sender(file_text)
 
-                    if emailer:
-                        emailer_counts[emailer.lower()] += 1
+                    if not emailer and is_debug:
+                        console.print(f"Failed to find an email pattern match in '{file_arg.name}'", style='red')
 
-                    if len(emailer) >= 3 and not BAD_EMAILER_REGEX.match(emailer):
-                        continue
+                    emailer = emailer or UNKNOWN
+                    emailer_counts[emailer.lower()] += 1
+
+                    if len(emailer) >= 3 and emailer != UNKNOWN and not BAD_EMAILER_REGEX.match(emailer):
+                        continue  # Don't print contents if we found a valid email
                 except Exception as e:
                     console.print_exception()
                     console.print(f"\nError file '{file_arg.name}' with {len(file_lines)} lines, top lines:")
@@ -328,7 +334,7 @@ def get_imessage_log_files() -> list[Path]:
                     raise e
 
             if is_debug:
-                console.print(f"  -> Skipping file '{file_arg.name}' with {len(file_lines)} lines, top lines:")
+                console.print(f"Questionable file '{file_arg.name}' with {len(file_lines)} lines, top lines:")
                 print_top_lines(file_text)
 
             continue
