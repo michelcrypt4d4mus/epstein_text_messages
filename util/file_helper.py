@@ -1,5 +1,6 @@
 import re
 from datetime import datetime
+from os import environ
 from pathlib import Path
 
 from .env import deep_debug
@@ -29,6 +30,16 @@ def first_timestamp_in_file(file_arg: Path):
                 return datetime.strptime(timestamp_str, DATE_FORMAT)
             except ValueError as e:
                 print(f"[WARNING] Failed to parse '{timestamp_str}' to datetime! Using next match. Error: {e}'")
+
+
+def get_files_in_dir() -> list[Path]:
+    docs_dir = environ['EPSTEIN_DOCS_DIR']
+
+    if not docs_dir:
+        raise EnvironmentError(f"EPSTEIN_DOCS_DIR env var not set!")
+
+    docs_dir = Path(docs_dir)
+    return [f for f in docs_dir.iterdir() if f.is_file() and not f.name.startswith('.')]
 
 
 def load_file(file_path):
