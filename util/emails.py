@@ -13,6 +13,7 @@ NUM_CAPTURES_IN_BROKEN_EMAIL_REGEX = 6
 BROKEN_CAPTURE_GROUP_IDXS = list(range(NUM_CAPTURES_IN_BROKEN_EMAIL_REGEX, 0, -1))
 
 EMAILER_REGEXES = {
+    'Amanda Ens': re.compile(r'ens, amand', re.IGNORECASE),
     'Barry J. Cohen': re.compile(r'barry (j.? )?cohen', re.IGNORECASE),
     'Boris Nikolic': re.compile(r'boris nikoli', re.IGNORECASE),
     'Darren Indke': re.compile(r'^darren$|darren [il]ndyke', re.IGNORECASE),
@@ -77,7 +78,7 @@ def extract_email_sender(file_text):
     elif email_match:
         emailer = email_match.group(1)
 
-    if not emailer:
+    if not emailer or 'momminnemummin' in emailer.lower():
         return
 
     emailer = emailer.strip().lstrip('"').lstrip("'").rstrip('"').rstrip("'").strip()
