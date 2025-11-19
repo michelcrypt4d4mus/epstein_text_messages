@@ -34,6 +34,14 @@ TEXTER_MAPPING = {
     '+13109906526': BANNON,
 }
 
+UNKNOWN_TEXTERS = [
+    '+16463880059',
+    '+13108737937',
+    '+13108802851',
+    'e:',
+    '+',
+]
+
 search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&page=1&q={urllib.parse.quote(txt)}&p=1"
 sender_counts = defaultdict(int)
 emailer_counts = defaultdict(int)
@@ -179,7 +187,7 @@ for file_arg in get_imessage_log_files(files):
         else:
             msg = msg.replace('\n', ' ')  # remove newlines
 
-        sender_counts[UNKNOWN if re.match('[-_1]+|[4Ide]', sender) else sender] += 1
+        sender_counts[UNKNOWN if (re.match(r'^([-+_1•F]+|[4Ide])$', sender) or sender in UNKNOWN_TEXTERS) else sender] += 1
         sender_txt = Text(sender_str, style=sender_style or COUNTERPARTY_COLORS.get(sender, DEFAULT))
         console.print(Text('').append(timestamp).append(sender_txt).append(': ', style='dim').append(msg))
         msgs_processed += 1
