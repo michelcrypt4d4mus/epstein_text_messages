@@ -162,8 +162,8 @@ for file_arg in get_imessage_log_files():
         timestamp = Text(f"[{match.group(2).strip()}] ", style='dim')
         msg = match.group(4).strip()
         msg_lines = msg.split('\n')
-        msgs_processed += 1
 
+        # If the Sender: is redacted we need to fill it in from our configuration
         if len(sender) > 0:
             if sender == 'e:jeeitunes@gmail.com':
                 sender = sender_str = EPSTEIN
@@ -184,13 +184,6 @@ for file_arg in get_imessage_log_files():
             else:
                 sender = sender_str = UNKNOWN
 
-        if re.match('[-_1]+|[4Ide]', sender):
-            sender_counts[UNKNOWN] += 1
-        else:
-            sender_counts[sender] += 1
-
-        sender_txt = Text(sender_str, style=sender_style or COUNTERPARTY_COLORS.get(sender, DEFAULT))
-
         # Fix multiline links
         if msg.startswith('http'):
             if len(msg_lines) > 1 and not msg_lines[0].endswith('html'):
@@ -208,7 +201,10 @@ for file_arg in get_imessage_log_files():
         else:
             msg = msg.replace('\n', ' ')  # remove newlines
 
+        sender_counts[UNKNOWN if re.match('[-_1]+|[4Ide]', sender) else sender] += 1
+        sender_txt = Text(sender_str, style=sender_style or COUNTERPARTY_COLORS.get(sender, DEFAULT))
         console.print(Text('').append(timestamp).append(sender_txt).append(': ', style='dim').append(msg))
+        msgs_processed += 1
 
     console.line(2)
 
