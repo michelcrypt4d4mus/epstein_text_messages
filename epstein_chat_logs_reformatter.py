@@ -7,6 +7,7 @@ Install: 'pip install rich'
     Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT/archive ./epstein_chat_logs_reformatter.py'
 """
 import re
+import urllib.parse
 from collections import defaultdict
 from os import environ
 from pathlib import Path
@@ -34,7 +35,7 @@ TEXTER_MAPPING = {
     '+13109906526': BANNON,
 }
 
-search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&page=1&q={txt}&p=1"
+search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&page=1&q={urllib.parse.quote(txt)}&p=1"
 sender_counts = defaultdict(int)
 emailer_counts = defaultdict(int)
 redacted_emails = {}
