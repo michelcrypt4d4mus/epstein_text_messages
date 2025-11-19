@@ -20,6 +20,7 @@ ANIL = "Anil Ambani"
 BANNON = 'Bannon'
 DEFAULT = 'default'
 EPSTEIN = 'Epstein'
+JOI_ITO = 'Joi Ito'
 MELANIE_WALKER = 'Melanie Walker'
 MIROSLAV = 'Miroslav Lajčák'
 PLASKETT = 'Stacey Plaskett'
@@ -71,7 +72,7 @@ KNOWN_COUNTERPARTY_FILE_IDS = {
     '031042': ANIL,            # Participants: field
     '027225': ANIL,            # Birthday
     '027401': 'Eva',           # Participants: field
-    '027650': 'Joi Ito',       # Participants: field
+    '027650': JOI_ITO,       # Participants: field
 }
 
 GUESSED_COUNTERPARTY_FILE_IDS = {
