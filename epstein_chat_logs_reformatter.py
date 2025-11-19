@@ -25,6 +25,31 @@ from rich.text import Text
 from rich.theme import Theme
 load_dotenv()
 
+
+CONSOLE_HTML_FORMAT = """\
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+{stylesheet}
+
+body {{
+    color: {foreground};
+    background-color: {background};
+}}
+</style>
+</head>
+<body>
+    <pre style="font-family: Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace; white-space: pre-wrap; overflow-wrap: break-word;">
+        <code style="font-family: inherit; white-space: pre-wrap; overflow-wrap: break-word;">
+            {code}
+        </code>
+    </pre>
+</body>
+</html>
+"""
+
 #  of who is the counterparty in each file
 AI_COUNTERPARTY_DETERMINATION_TSV = StringIO("""
 filename	counterparty	source
@@ -54,12 +79,11 @@ HOUSE_OVERSIGHT_027794.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_029744.txt	Steve Bannon (likely)	Trump and New York Times coverage
 HOUSE_OVERSIGHT_031045.txt	Steve Bannon (likely)	Trump and New York Times coverage""".strip())
 
-OUTPUT_BASENAME = "epstein_text_msgs_7th_production_colorized_and_deanonymized"
 OUTPUT_DIR = Path('docs')
 OUTPUT_GH_PAGES_HTML = OUTPUT_DIR.joinpath('index.html')
+FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
 
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
-FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
 DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
 PHONE_NUMBER = 'phone_number'
@@ -177,8 +201,9 @@ files_processed = 0
 msgs_processed = 0
 
 # Start output
-console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS))
+console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS), width=120)
 console.record = True
+console.line()
 
 console.print(Panel(Text(
     "Oversight Committee Releases Additional Epstein Estate Documents"
@@ -486,7 +511,7 @@ console.print(f"Scanned {num_potential_emails} potential emails, found {sum([i f
 
 
 if not is_debug:
-    console.save_html(OUTPUT_GH_PAGES_HTML, inline_styles=True, clear=False) #, code_format=HTML_
+    console.save_html(OUTPUT_GH_PAGES_HTML, inline_styles=False, clear=False, code_format=CONSOLE_HTML_FORMAT)
     console.print(f"Wrote HTML to '{OUTPUT_GH_PAGES_HTML}'.")
 else:
     console.print(f"\nNot writing HTML because DEBUG=true.")
