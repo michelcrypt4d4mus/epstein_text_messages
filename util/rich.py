@@ -27,6 +27,7 @@ PLASKETT = 'Stacey Plaskett'
 SCARAMUCCI = 'The Mooch'
 SOON_YI = 'Soon-Yi Previn'
 SUMMERS = 'Larry Summers'
+TEXT_LINK = 'text_link'
 TERJE = 'Terje Rød-Larsen'
 UNKNOWN = '(unknown)'
 
@@ -48,6 +49,7 @@ COUNTERPARTY_COLORS = {
     SOON_YI: 'hot_pink',
     SUMMERS: 'bright_red',
     TERJE: 'light_slate_blue',
+    TEXT_LINK: 'deep_sky_blue4 underline',
     UNKNOWN: 'cyan',
 }
 
