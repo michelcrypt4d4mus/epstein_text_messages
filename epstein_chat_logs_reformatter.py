@@ -144,17 +144,17 @@ for file_arg in get_imessage_log_files():
     if counterparty != UNKNOWN:
         hint_txt = Text(f"Found confirmed counterparty ", style='grey')
         hint_txt.append(counterparty, style=COUNTERPARTY_COLORS.get(counterparty, DEFAULT))
-        console.print(hint_txt.append(f" for file ID {file_id}...\n"))
+        console.print(hint_txt.append(f" for file ID {file_id}."))
         convos_labeled += 1
     elif file_id in GUESSED_COUNTERPARTY_FILE_IDS:
         counterparty_guess = GUESSED_COUNTERPARTY_FILE_IDS[file_id]
         txt = Text("(This is probably a conversation with ", style='grey')
         txt.append(counterparty_guess, style=f"{COUNTERPARTY_COLORS.get(counterparty_guess, DEFAULT)}")
-        console.print(txt.append(')\n'), style='dim')
+        console.print(txt.append(')'), style='dim')
         convos_labeled += 1
 
     file_url = f"{COURIER_NEWSROOM_ARCHIVE}&page=1&q={file_arg.name}&p=1"
-    console.print(f"[link={file_url}]View File in Courier Newsroom Archive[/link]")
+    console.print(f"[link={file_url}]View File in Courier Newsroom Archive[/link]\n", style='dim')
 
     for i, match in enumerate(MSG_REGEX.finditer(file_text)):
         sender = sender_str = match.group(1).strip()
