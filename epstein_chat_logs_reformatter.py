@@ -172,10 +172,9 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
 is_debug = len(environ.get('DEBUG') or '') > 0
 sender_counts = defaultdict(int)
 emailer_counts = defaultdict(int)
-convos_labeled = 0
-files_processed = 0
-msgs_processed = 0
+convos_labeled = files_processed = msgs_processed = emails_processed = 0
 
+# Start output
 console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS))
 console.record = True
 
@@ -343,8 +342,9 @@ def get_imessage_log_files() -> list[Path]:
             if 'From: ' in file_lines[0] or (len(file_lines) > 2 and ('From: ' in file_lines[1] or 'From: ' in file_lines[2])) or DATE_REGEX.match(file_lines[0]):
                 try:
                     emailer = tally_email(file_text) or ''
+                    emails_processed += 1
 
-                    if 'Sent' in emailer:
+                    if 'Sent' in emailer and is_debug:
                         console.print('First char:', emailer[0])
                         console.print(emailer[0])
                         console.print(f"startwith Sent = {emailer.startswith('Sent')}")
@@ -478,6 +478,7 @@ for k, v in sorted(emailer_counts.items(), key=lambda item: item[1], reverse=Tru
     counts_table.add_row(Text(k), str(v))
 
 console.print(counts_table, '\n\n')
+console.print(f"Scanned {files_processed} log files with {msgs_processed} text messages ({convos_labeled} deanonymized conversations)")
 
 
 if not is_debug:
