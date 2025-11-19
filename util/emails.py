@@ -7,7 +7,7 @@ from .env import deep_debug, is_debug
 DATE_REGEX = re.compile(r'^Date:\s*(.*)\n')
 EMAIL_REGEX = re.compile(r'From: (.*)')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
-BAD_EMAILER_REGEX = re.compile('^(sent|attachments)|.*(11111111111|january|2016).*')
+BAD_EMAILER_REGEX = re.compile('^(sent|attachments).*|.*(11111111111|january|2016|saved by|talk in).*')
 EPSTEIN_EMAIL_REGEX = re.compile(r'jee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE)
 GHISLAINE_EMAIL_REGEX = re.compile(r'g ?max(well)?', re.IGNORECASE)
 EHUD_BARAK_EMAIL_REGEX = re.compile(r'(ehud|h)\s*barak', re.IGNORECASE)
@@ -45,9 +45,11 @@ def extract_email_sender(file_text):
                 break
     elif email_match:
         emailer = email_match.group(1)
-    else:
+
+    if not emailer:
         return
 
+    emailer = emailer.lstrip('"').lstrip("'").rstrip('"').rstrip("'")
     emailer = emailer.strip().strip('_').strip('[').strip(']').strip('*').strip('<').strip()
 
     if EPSTEIN_EMAIL_REGEX.search(emailer):
