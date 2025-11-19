@@ -105,7 +105,6 @@ UNKNOWN = '(unknown)'
 EMAILERS = [
     'Al Seckel',
     'Boris Nikolic',
-    'Darren Indke',
     'Glenn Dubin',
     'Lesley Groff',
     'Michael Wolff',
@@ -343,6 +342,8 @@ def tally_email(file_text):
         emailer = 'Steve Bannon'
     elif LARRY_SUMMERS_EMAIL_REGEX.search(emailer):
         emailer = 'Larry Summers'
+    elif DARREN_INDKE.search(emailer):
+        emailer = 'Darren Indke'
     elif 'starr, ken' in emailer.lower():
         emailer = 'Ken Starr'
     elif 'boris nikoli' in emailer.lower():
@@ -390,18 +391,12 @@ def get_imessage_log_files() -> list[Path]:
         else:
             # Handle emails
             if DETECT_EMAIL_REGEX.match(file_text):
-            # if 'From: ' in file_lines[0] or (len(file_lines) > 2 and ('From: ' in file_lines[1] or 'From: ' in file_lines[2])) or DATE_REGEX.match(file_lines[0]):
                 emailer_counts['TOTAL'] += 1
 
                 try:
                     emailer = tally_email(file_text) or ''
-
-                    if 'Sent' in emailer and is_debug:
-                        console.print('First char:', emailer[0])
-                        console.print(emailer[0])
-                        console.print(f"startwith Sent = {emailer.startswith('Sent')}")
-
-                    if len(emailer) >= 3 and not emailer.startswith('Sent'):
+                    BAD_EMAILER_REGEX = re.compile('^(sent|attachments)|.*(11111111111|january|2016).*')
+                    if len(emailer) >= 3 and not BAD_EMAILER_REGEX.match(emailer):
                         continue
                 except Exception as e:
                     console.print_exception()
@@ -432,14 +427,14 @@ for file_arg in get_imessage_log_files():
         counterparty = KNOWN_COUNTERPARTY_FILE_IDS.get(file_id, UNKNOWN)
 
         if counterparty != UNKNOWN:
-            hint_txt = Text(f"Found known counterparty ", style='dim')
+            hint_txt = Text(f"Found confirmed counterparty ", style='grey')
             hint_txt.append(counterparty, style=COUNTERPARTY_COLORS.get(counterparty, DEFAULT))
             console.print(hint_txt.append(f" for file ID {file_id}...\n"))
         elif file_id in GUESSED_COUNTERPARTY_FILE_IDS:
             counterparty_guess = GUESSED_COUNTERPARTY_FILE_IDS[file_id]
             txt = Text("(This is probably a conversation with ", style='grey')
             txt.append(counterparty_guess, style=f"{COUNTERPARTY_COLORS.get(counterparty_guess, DEFAULT)}")
-            console.print(txt.append(' according to research)\n'))
+            console.print(txt.append(')\n'), style='dim')
 
     if counterparty != UNKNOWN or counterparty_guess is not None:
         convos_labeled += 1
@@ -508,8 +503,8 @@ counts_table.add_column("Message Count", justify="center")
 for k, v in sorted(sender_counts.items(), key=lambda item: item[1], reverse=True):
     counts_table.add_row(Text(k, COUNTERPARTY_COLORS.get(k, 'grey23 bold')), str(v))
 
-console.print(counts_table, '\n\n')
-console.print(f"Processed {files_processed} log files with {msgs_processed} text messages ({convos_labeled} deanonymized conversations)")
+console.print(counts_table)
+console.print(f"\nProcessed {files_processed} log files with {msgs_processed} text messages ({convos_labeled} deanonymized conversations)")
 console.print(f"(Last deploy found 77 files with 4668 messages)\n", style='dim')
 
 
