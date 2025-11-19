@@ -25,6 +25,8 @@ from rich.text import Text
 from rich.theme import Theme
 load_dotenv()
 
+from util.file_helper import load_file
+
 
 CONSOLE_HTML_FORMAT = """\
 <!DOCTYPE html>
@@ -268,22 +270,15 @@ if is_debug:
     console.line(2)
 
 
-def load_file(file_path):
-    """Remove BOM and remove HOUSE OVERSIGHT lines."""
-    with open(file_path) as f:
-        file_text = f.read()
-        file_text = file_text[1:] if (len(file_text) > 0 and file_text[0] == '\ufeff') else file_text  # remove BOM
-        file_lines = [l.strip() for l in file_text.split('\n') if not l.startswith('HOUSE OVERSIGHT')]
-        return '\n'.join(file_lines)
-
-
-def print_top_lines(file_text, n = 10):
-    console.print('\n'.join(file_text.split("\n")[0:n]))
+def print_top_lines(file_text, n = 10, in_panel = False):
+    lines = '\n'.join(file_text.split("\n")[0:n])
+    output = Panel(lines, expand=False) if in_panel else lines + '\n'
+    console.print(output, style='dim')
 
 
 def first_timestamp_in_file(file_arg: Path):
     if is_debug:
-        console.log(f"Getting timestamp from {file_arg}")
+        console.log(f"Getting timestamp from {file_arg}...")
 
     with open(file_arg) as f:
         for match in MSG_REGEX.finditer(f.read()):
@@ -294,7 +289,14 @@ def first_timestamp_in_file(file_arg: Path):
                 print(f"[WARNING] Failed to parse '{timestamp_str}' to datetime! Using next match. Error: {e}'")
 
 
+def move_json_file(file_arg: Path):
+    json_subdir_path = file_arg.parent.joinpath('json_files').joinpath(file_arg.name + '.json')
+    print(f"'{file_arg}' looks like JSON, moving to '{json_subdir_path}'\n")
+    file_arg.rename(json_subdir_path)
+
+
 EMAIL_REGEX = re.compile(r'From: (.*)')
+DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
 BROKEN_EMAIL_REEGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(CC:\s*\n)?Subject:\s*\n(Importance:\s*\n)?(Attachments:\s*\n)?([\w ]{2,}.*)\n')
 EPSTEIN_EMAIL_REGEX = re.compile(r'jee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE)
 GHISLAINE_EMAIL_REGEX = re.compile(r'g ?max(well)?', re.IGNORECASE)
@@ -313,13 +315,13 @@ def tally_email(file_text):
 
     if broken_match:
         emailer = broken_match.group(4) or broken_match.group(3) or broken_match.group(2) or broken_match.group(1)
-    else:
+    elif email_match:
         emailer = email_match.group(1)
-
-    if not emailer:
+    else:
         if is_debug:
-            console.print(f"Failed to find a match!")
-            return
+            console.print(f"Failed to find an email pattern match!")
+
+        return
 
     try:
         emailer = emailer.strip().strip('_').strip('[').strip(']').strip('*').strip('<').strip()
@@ -352,7 +354,7 @@ def tally_email(file_text):
                 break
 
     if is_debug:
-        console.print(f"Found email from '{emailer}'...")
+        console.print(f"  -> Found email from '{emailer}'...")
 
     emailer_counts[emailer.lower()] += 1
     return emailer
@@ -378,11 +380,17 @@ def get_imessage_log_files() -> list[Path]:
         file_text = load_file(file_arg)
         file_lines = file_text.split('\n')
 
-        if MSG_REGEX.search(file_text):
+        if len(file_text) == 0:
+            if is_debug:
+                console.print(f"Skipping empty file...", style='dim')
+        elif MSG_REGEX.search(file_text):
             log_files.append(file_arg)
+        elif file_text[0] == '{':  # Check for JSON
+            move_json_file(file_arg)
         else:
             # Handle emails
-            if 'From: ' in file_lines[0] or (len(file_lines) > 2 and ('From: ' in file_lines[1] or 'From: ' in file_lines[2])) or DATE_REGEX.match(file_lines[0]):
+            if DETECT_EMAIL_REGEX.match(file_text):
+            # if 'From: ' in file_lines[0] or (len(file_lines) > 2 and ('From: ' in file_lines[1] or 'From: ' in file_lines[2])) or DATE_REGEX.match(file_lines[0]):
                 emailer_counts['TOTAL'] += 1
 
                 try:
@@ -402,13 +410,8 @@ def get_imessage_log_files() -> list[Path]:
                     raise e
 
             if is_debug:
-                if len(file_text) > 1 and file_text[1] == '{':  # Check for JSON
-                    json_subdir_path = file_arg.parent.joinpath('json_files').joinpath(file_arg.name + '.json')
-                    console.print(f"'{file_arg}' looks like JSON, moving to '{json_subdir_path}'\n", style='yellow1 bold')
-                    file_arg.rename(json_subdir_path)
-                else:
-                    console.print(f"Skipping file '{file_arg.name}' with {len(file_lines)} lines, top lines:")
-                    print_top_lines(file_text)
+                console.print(f"Skipping file '{file_arg.name}' with {len(file_lines)} lines, top lines:")
+                print_top_lines(file_text)
 
             continue
 
