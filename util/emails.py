@@ -7,7 +7,7 @@ from .env import deep_debug, is_debug
 DATE_REGEX = re.compile(r'^Date:\s*(.*)\n')
 EMAIL_REGEX = re.compile(r'From: (.*)')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
-BAD_EMAILER_REGEX = re.compile(r'^>|ok|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|article 1|saved by|talk in|it was a|what do|cc:|call (back|me)).*)$')
+BAD_EMAILER_REGEX = re.compile(r'^>|ok|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|article 1.?|saved by|talk in|it was a|what do|cc:|call (back|me)).*)$')
 EPSTEIN_EMAIL_REGEX = re.compile(r'jee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE)
 GHISLAINE_EMAIL_REGEX = re.compile(r'g ?max(well)?', re.IGNORECASE)
 EHUD_BARAK_EMAIL_REGEX = re.compile(r'(ehud|h)\s*barak', re.IGNORECASE)
@@ -18,6 +18,22 @@ DARREN_INDKE = re.compile(r'^darren$|darren [il]ndyke', re.IGNORECASE)
 BROKEN_EMAIL_REGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(CC:\s*\n)?(Subject:\s*\n)?(To:\s*\n)?(Importance:\s*\n)?(Attachments:\s*\n)?([\w ]{2,}.*)\n')
 NUM_CAPTURES_IN_BROKEN_EMAIL_REGEX = 6
 BROKEN_CAPTURE_GROUP_IDXS = list(range(NUM_CAPTURES_IN_BROKEN_EMAIL_REGEX, 0, -1))
+
+EPSTEIN_SIGNATURE = """
+please note
+The information contained in this communication is
+confidential, may be attorney-client privileged, may
+constitute inside information, and is intended only for
+the use of the addressee. It is the property of
+JEE
+Unauthorized use, disclosure or copying of this
+communication or any part thereof is strictly prohibited
+and may be unlawful. If you have received this
+communication in error, please notify us immediately by
+return e-mail or by e-mail to jeevacation@gmail.com, and
+destroy this communication and all copies thereof,
+including all attachments. copyright -all rights reserved
+""".strip()
 
 EMAILERS = [
     'Al Seckel',
@@ -92,3 +108,7 @@ def extract_email_sender(file_text):
         console.print(f"  -> Found email from '{emailer}'", style='dim')
 
     return emailer.lower()
+
+
+def replace_signature(file_text: str) -> str:
+    return file_text.replace(EPSTEIN_SIGNATURE, '<...clipped epstein legal signature...>')

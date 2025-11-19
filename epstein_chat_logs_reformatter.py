@@ -24,7 +24,7 @@ from rich.text import Text
 from rich.theme import Theme
 load_dotenv()
 
-from util.emails import BAD_EMAILER_REGEX, DETECT_EMAIL_REGEX, extract_email_sender
+from util.emails import BAD_EMAILER_REGEX, DETECT_EMAIL_REGEX, extract_email_sender, replace_signature
 from util.env import AI_COUNTERPARTY_DETERMINATION_TSV, deep_debug, include_redacted_emails, is_debug
 from util.file_helper import extract_file_id, load_file, move_json_file
 
@@ -177,10 +177,12 @@ if deep_debug:
 console.print(Panel(Text(
     "Oversight Committee Releases Additional Epstein Estate Documents"
     "\nhttps://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/"
+    "\nRaw Data Archive: https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_"
     "\n\nEpstein Estate Documents - Seventh Production",
     justify='center',
     style='bold reverse'
 )))
+console.print(Align.center("[link=https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_]Google Drive Raw Documents[/link]"))
 
 console.line()
 console.print(Align.center("[link=https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great]I Made Epstein's Text Messages Great Again (And You Should Read Them)[/link]"))
@@ -261,6 +263,8 @@ def get_imessage_log_files() -> list[Path]:
         if len(file_text) == 0:
             if deep_debug:
                 console.print(f"   -> Skipping empty file...", style='dim')
+
+            continue
         elif MSG_REGEX.search(file_text):
             if deep_debug:
                 console.print(f"    -> Found iMessage log file", style='dim')
@@ -343,9 +347,9 @@ for file_arg in get_imessage_log_files():
             if sender == 'e:jeeitunes@gmail.com':
                 sender = sender_str = EPSTEIN
             elif sender == '+19174393646':
-                sender = SCARAMUCCI
+                sender = sender_str = SCARAMUCCI
             elif sender == '+13109906526':
-                sender = BANNON
+                sender = sender_str = BANNON
             elif PHONE_NUMBER_REGEX.match(sender):
                 sender_style = PHONE_NUMBER
             elif re.match('[ME]+', sender):
@@ -419,7 +423,7 @@ if include_redacted_emails:
 
     for filename, contents in redacted_emails.items():
         console.print(Panel(filename, expand=False))
-        console.print(escape(contents), '\n\n', style='dim')
+        console.print(escape(replace_signature(contents)), '\n\n', style='dim')
 
 
 if not is_debug:
