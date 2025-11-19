@@ -6,15 +6,12 @@ For use with iMessage log files from https://drive.google.com/drive/folders/1hTN
 Install: 'pip install rich'
     Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT/archive ./epstein_chat_logs_reformatter.py'
 """
-import json
 import re
 from collections import defaultdict
-from datetime import datetime
 from os import environ
 from pathlib import Path
 
 from dotenv import load_dotenv
-from rich.align import Align
 from rich.markup import escape
 from rich.panel import Panel
 from rich.table import Table
@@ -23,14 +20,13 @@ load_dotenv()
 
 from util.emails import BAD_EMAILER_REGEX, DETECT_EMAIL_REGEX, extract_email_sender, replace_signature
 from util.env import deep_debug, include_redacted_emails, is_debug
-from util.file_helper import extract_file_id, load_file, move_json_file
+from util.file_helper import MSG_REGEX, extract_file_id, first_timestamp_in_file, load_file, move_json_file
 from util.rich import *
 
 OUTPUT_DIR = Path('docs')
 OUTPUT_GH_PAGES_HTML = OUTPUT_DIR.joinpath('index.html')
-MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
-DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
+TOTAL = 'TOTAL'
 
 sender_counts = defaultdict(int)
 emailer_counts = defaultdict(int)
@@ -47,19 +43,6 @@ def print_top_lines(file_text, n = 10, max_chars = 300, in_panel = False):
     top_text = escape('\n'.join(file_text.split("\n")[0:n])[0:max_chars])
     output = Panel(top_text, expand=False) if in_panel else top_text + '\n'
     console.print(output, style='dim')
-
-
-def first_timestamp_in_file(file_arg: Path):
-    if deep_debug:
-        print(f"Getting timestamp from {file_arg}...")
-
-    with open(file_arg) as f:
-        for match in MSG_REGEX.finditer(f.read()):
-            try:
-                timestamp_str = match.group(2).strip()
-                return datetime.strptime(timestamp_str, DATE_FORMAT)
-            except ValueError as e:
-                print(f"[WARNING] Failed to parse '{timestamp_str}' to datetime! Using next match. Error: {e}'")
 
 
 def get_imessage_log_files() -> list[Path]:
@@ -98,7 +81,7 @@ def get_imessage_log_files() -> list[Path]:
             emailer = None
 
             if DETECT_EMAIL_REGEX.match(file_text):  # Handle emails
-                emailer_counts['TOTAL'] += 1
+                emailer_counts[TOTAL] += 1
 
                 try:
                     emailer = extract_email_sender(file_text) or UNKNOWN
@@ -223,7 +206,7 @@ console.print(f"(Last deploy found 77 files with 4668 messages)\n", style='dim')
 
 # Email sender counts
 console.line(2)
-num_potential_emails = emailer_counts.pop('TOTAL')
+num_potential_emails = emailer_counts.pop(TOTAL)
 counts_table = Table(title="Email Counts By Sender", show_header=True, header_style="bold")
 counts_table.add_column("From", style="steel_blue bold", justify="left", width=40)
 counts_table.add_column("Email Count", justify="center")
