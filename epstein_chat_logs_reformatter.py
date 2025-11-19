@@ -269,7 +269,7 @@ def first_timestamp_in_file(file_arg: Path):
 
 
 EMAIL_REGEX = re.compile(r'From: (.*)')
-BROKEN_EMAIL_REEGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(CC:\s*\n)?Subject:\s*\n(Attachments:\s*\n)?([\w ]{2,})\n')
+BROKEN_EMAIL_REEGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(CC:\s*\n)?Subject:\s*\n(Importance:\s*\n)?(Attachments:\s*\n)?([\w ]{2,})\n')
 EPSTEIN_EMAIL_REGEX = re.compile(r'jee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE)
 GHISLAINE_EMAIL_REGEX = re.compile(r'gmax', re.IGNORECASE)
 EHUD_BARAK_EMAIL_REGEX = re.compile(r'(ehud|h)\s*barak', re.IGNORECASE)
@@ -359,7 +359,7 @@ def get_imessage_log_files() -> list[Path]:
                         console.print(emailer[0])
                         console.print(f"startwith Sent = {emailer.startswith('Sent')}")
 
-                    if len(emailer) >= 4 and not emailer.startswith('Sent'):
+                    if len(emailer) >= 3 and not emailer.startswith('Sent'):
                         continue
                 except Exception as e:
                     console.print_exception()
