@@ -285,7 +285,7 @@ def tally_email(file_text):
     emailer = None
 
     if broken_match:
-        emailer = broken_match.group(3) or broken_match.group(2) or broken_match.group(1)
+        emailer = broken_match.group(4) or broken_match.group(3) or broken_match.group(2) or broken_match.group(1)
     else:
         emailer = email_match.group(1)
 
