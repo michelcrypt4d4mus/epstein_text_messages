@@ -25,7 +25,9 @@ from rich.text import Text
 from rich.theme import Theme
 load_dotenv()
 
-from util.file_helper import load_file
+from util.emails import BAD_EMAILER_REGEX, DETECT_EMAIL_REGEX, extract_email_sender
+from util.env import is_debug
+from util.file_helper import load_file, move_json_file
 
 
 CONSOLE_HTML_FORMAT = """\
@@ -83,11 +85,13 @@ HOUSE_OVERSIGHT_031045.txt	Steve Bannon (likely)	Trump and New York Times covera
 
 OUTPUT_DIR = Path('docs')
 OUTPUT_GH_PAGES_HTML = OUTPUT_DIR.joinpath('index.html')
-FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
+OUTPUT_WIDTH = 120
 
+FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
 DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
+
 PHONE_NUMBER = 'phone_number'
 ANIL = "Anil Ambani"
 BANNON = 'Bannon'
@@ -101,16 +105,6 @@ SOON_YI = 'Soon-Yi Previn'
 SUMMERS = 'Larry Summers'
 TERJE = 'Terje Rød-Larsen'
 UNKNOWN = '(unknown)'
-
-EMAILERS = [
-    'Al Seckel',
-    'Boris Nikolic',
-    'Glenn Dubin',
-    'Lesley Groff',
-    'Michael Wolff',
-    'Richard Kahn',
-    'Paul Krassner',
-]
 
 # Color different counterparties differently
 COUNTERPARTY_COLORS = {
@@ -205,7 +199,6 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
     GUESSED_COUNTERPARTY_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
 
 
-is_debug = len(environ.get('DEBUG') or '') > 0
 sender_counts = defaultdict(int)
 emailer_counts = defaultdict(int)
 convos_labeled = 0
@@ -213,7 +206,7 @@ files_processed = 0
 msgs_processed = 0
 
 # Start output
-console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS), width=120)
+console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS), width=OUTPUT_WIDTH)
 console.record = True
 console.line()
 
@@ -261,6 +254,12 @@ console.print(Align.center(f"If you think there's an attribution error or can de
 console.line(2)
 
 
+def print_top_lines(file_text, n = 10, in_panel = False):
+    lines = '\n'.join(file_text.split("\n")[0:n])
+    output = Panel(lines, expand=False) if in_panel else lines + '\n'
+    console.print(output, style='dim')
+
+
 if is_debug:
     console.print('KNOWN_COUNTERPARTY_FILE_IDS\n--------------')
     console.print(json.dumps(KNOWN_COUNTERPARTY_FILE_IDS))
@@ -269,15 +268,9 @@ if is_debug:
     console.line(2)
 
 
-def print_top_lines(file_text, n = 10, in_panel = False):
-    lines = '\n'.join(file_text.split("\n")[0:n])
-    output = Panel(lines, expand=False) if in_panel else lines + '\n'
-    console.print(output, style='dim')
-
-
 def first_timestamp_in_file(file_arg: Path):
     if is_debug:
-        console.log(f"Getting timestamp from {file_arg}...")
+        print(f"Getting timestamp from {file_arg}...")
 
     with open(file_arg) as f:
         for match in MSG_REGEX.finditer(f.read()):
@@ -286,79 +279,6 @@ def first_timestamp_in_file(file_arg: Path):
                 return datetime.strptime(timestamp_str, DATE_FORMAT)
             except ValueError as e:
                 print(f"[WARNING] Failed to parse '{timestamp_str}' to datetime! Using next match. Error: {e}'")
-
-
-def move_json_file(file_arg: Path):
-    json_subdir_path = file_arg.parent.joinpath('json_files').joinpath(file_arg.name + '.json')
-    print(f"'{file_arg}' looks like JSON, moving to '{json_subdir_path}'\n")
-    file_arg.rename(json_subdir_path)
-
-
-EMAIL_REGEX = re.compile(r'From: (.*)')
-DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
-BROKEN_EMAIL_REEGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(CC:\s*\n)?Subject:\s*\n(Importance:\s*\n)?(Attachments:\s*\n)?([\w ]{2,}.*)\n')
-EPSTEIN_EMAIL_REGEX = re.compile(r'jee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE)
-GHISLAINE_EMAIL_REGEX = re.compile(r'g ?max(well)?', re.IGNORECASE)
-EHUD_BARAK_EMAIL_REGEX = re.compile(r'(ehud|h)\s*barak', re.IGNORECASE)
-BANNON_EMAIL_REGEX = re.compile(r'steve bannon', re.IGNORECASE)
-LARRY_SUMMERS_EMAIL_REGEX = re.compile(r'La(wrence|rry).*Summers', re.IGNORECASE)
-DARREN_INDKE = re.compile(r'darren [il]ndyke', re.IGNORECASE)
-DATE_REGEX = re.compile(r'^Date:\s*(.*)\n')
-
-
-def tally_email(file_text):
-    email_match = EMAIL_REGEX.search(file_text)
-    broken_match = BROKEN_EMAIL_REEGEX.search(file_text)
-    date_match = DATE_REGEX.search(file_text)
-    emailer = None
-
-    if broken_match:
-        emailer = broken_match.group(4) or broken_match.group(3) or broken_match.group(2) or broken_match.group(1)
-    elif email_match:
-        emailer = email_match.group(1)
-    else:
-        if is_debug:
-            console.print(f"Failed to find an email pattern match!")
-
-        return
-
-    try:
-        emailer = emailer.strip().strip('_').strip('[').strip(']').strip('*').strip('<').strip()
-    except Exception as e:
-        console.print_exception()
-        console.print('\nFailed rows:')
-        print_top_lines(file_text)
-        raise e
-
-    if EPSTEIN_EMAIL_REGEX.search(emailer):
-        emailer = 'Jeffrey Epstein'
-    elif GHISLAINE_EMAIL_REGEX.search(emailer):
-        emailer = 'Ghislaine Maxwell'
-    elif emailer == 'ji@media.mitedu' or 'joichi ito' in emailer.lower() or emailer.lower() == 'joi':
-        emailer = 'Joi Ito'
-    elif EHUD_BARAK_EMAIL_REGEX.search(emailer):
-        emailer = 'Ehud Barak'
-    elif BANNON_EMAIL_REGEX.search(emailer):
-        emailer = 'Steve Bannon'
-    elif LARRY_SUMMERS_EMAIL_REGEX.search(emailer):
-        emailer = 'Larry Summers'
-    elif DARREN_INDKE.search(emailer):
-        emailer = 'Darren Indke'
-    elif 'starr, ken' in emailer.lower():
-        emailer = 'Ken Starr'
-    elif 'boris nikoli' in emailer.lower():
-        emailer = 'Boris Nikolice'
-    else:
-        for possible_emailer in EMAILERS:
-            if possible_emailer.lower() in emailer.lower():
-                emailer = possible_emailer
-                break
-
-    if is_debug:
-        console.print(f"  -> Found email from '{emailer}'", style='dim')
-
-    emailer_counts[emailer.lower()] += 1
-    return emailer
 
 
 def get_imessage_log_files() -> list[Path]:
@@ -394,8 +314,11 @@ def get_imessage_log_files() -> list[Path]:
                 emailer_counts['TOTAL'] += 1
 
                 try:
-                    emailer = tally_email(file_text) or ''
-                    BAD_EMAILER_REGEX = re.compile('^(sent|attachments)|.*(11111111111|january|2016).*')
+                    emailer = extract_email_sender(file_text) or ''
+
+                    if emailer:
+                        emailer_counts[emailer.lower()] += 1
+
                     if len(emailer) >= 3 and not BAD_EMAILER_REGEX.match(emailer):
                         continue
                 except Exception as e:
