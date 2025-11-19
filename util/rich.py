@@ -3,10 +3,10 @@ import json
 from io import StringIO
 
 from rich.align import Align
+from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
-from rich.console import Console
 from rich.theme import Theme
 
 from .env import deep_debug
@@ -184,8 +184,7 @@ def print_header():
     console.print(Align.center("[link=https://cryptadamus.substack.com/]Substack[/link]"))
     console.print(Align.center("[link=https://universeodon.com/@cryptadamist]Mastodon[/link]"))
     console.print(Align.center("[link=https://x.com/Cryptadamist/status/1990866804630036988]Twitter[/link]"))
-
-    # Translation helper
+    # Acronym table
     table = Table(title="Abbreviations Used Frequently In These Chats", show_header=True, header_style="bold")
     table.add_column("Abbreviation", style="steel_blue bold", justify="center", width=19)
     table.add_column("Translation", style="deep_sky_blue4", justify="center")

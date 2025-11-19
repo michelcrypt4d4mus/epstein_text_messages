@@ -9,7 +9,6 @@ Install: 'pip install rich'
 import re
 import urllib.parse
 from collections import defaultdict
-from os import environ
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -21,7 +20,7 @@ load_dotenv()
 
 from util.emails import DETECT_EMAIL_REGEX, extract_email_sender, valid_emailer, replace_signature
 from util.env import deep_debug, include_redacted_emails, is_debug
-from util.file_helper import MSG_REGEX, extract_file_id, first_timestamp_in_file, load_file, move_json_file
+from util.file_helper import MSG_REGEX, extract_file_id, first_timestamp_in_file, get_files_in_dir, load_file, move_json_file
 from util.rich import *
 
 OUTPUT_DIR = Path('docs')
@@ -40,10 +39,9 @@ sender_counts = defaultdict(int)
 emailer_counts = defaultdict(int)
 redacted_emails = {}
 convos_labeled = 0
+files_found = 0
 files_processed = 0
 msgs_processed = 0
-
-print_header()
 
 
 def print_top_lines(file_text, n = 10, max_chars = 300, in_panel = False):
@@ -53,23 +51,15 @@ def print_top_lines(file_text, n = 10, max_chars = 300, in_panel = False):
     console.print(output, style='dim')
 
 
-def get_imessage_log_files() -> list[Path]:
+def get_imessage_log_files(files: list[Path]) -> list[Path]:
     """Scan text files, count email senders, and return filtered list of iMessage log file paths."""
-    docs_dir = environ['EPSTEIN_DOCS_DIR']
-
-    if not docs_dir:
-        raise EnvironmentError(f"EPSTEIN_DOCS_DIR env var not set!")
-
-    docs_dir = Path(docs_dir)
-    files = [f for f in docs_dir.iterdir() if f.is_file() and not f.name.startswith('.')]
     log_files = []
 
     for file_arg in files:
-        file_text = ''
-
         if deep_debug:
             console.print(f"Scanning '{file_arg.name}'...", style='dim')
 
+        file_text = ''
         file_text = load_file(file_arg)
         file_lines = file_text.split('\n')
 
@@ -85,7 +75,7 @@ def get_imessage_log_files() -> list[Path]:
             log_files.append(file_arg)
         elif file_text[0] == '{':  # Check for JSON
             move_json_file(file_arg)
-        else:
+        else:  # Check if it's an email
             emailer = None
 
             if DETECT_EMAIL_REGEX.match(file_text):  # Handle emails
@@ -118,11 +108,14 @@ def get_imessage_log_files() -> list[Path]:
 
             continue
 
-    print(f"Found {len(log_files)} iMessage logs out of {len(files)} files in '{docs_dir}'...")
+    print(f"Found {len(log_files)} iMessage logs out of {len(files)} files...")
     return sorted(log_files, key=lambda f: first_timestamp_in_file(f))   # Sort by first timestamp
 
 
-for file_arg in get_imessage_log_files():
+print_header()
+files = get_files_in_dir()
+
+for file_arg in get_imessage_log_files(files):
     files_processed += 1
     file_text = load_file(file_arg)
     file_lines = file_text.split('\n')
@@ -203,7 +196,7 @@ for k, v in sorted(sender_counts.items(), key=lambda item: item[1], reverse=True
     counts_table.add_row(Text(k, COUNTERPARTY_COLORS.get(k, 'grey23 bold')), str(v))
 
 console.print(counts_table)
-console.print(f"\nProcessed {files_processed} log files with {msgs_processed} text messages ({convos_labeled} conversations deanonymized)")
+console.print(f"\nFound {msgs_processed} text messages in {files_processed} iMessage logs of {len(files)} total files ({convos_labeled} files deanonymized).")
 console.print(f"(Last deploy found 77 files with 4668 messages)\n", style='dim')
 
 # Email sender counts
