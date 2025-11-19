@@ -81,6 +81,10 @@ OUTPUT_DIR = Path('docs')
 OUTPUT_GH_PAGES_HTML = OUTPUT_DIR.joinpath('index.html')
 
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
+EMAIL_REGEX = re.compile(r'From:\s*(.*)\n')
+EPSTEIN_EMAIL_REGEX = re.compile(r'jee[vy]acation@|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE)
+GHISLAINE_EMAIL_REGEX = re.compile(r'gmax1@ellmax', re.IGNORECASE)
+DATE_REGEX = re.compile(r'^Date:\s*(.*)\n')
 FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
 DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
@@ -153,6 +157,7 @@ GUESSED_COUNTERPARTY_FILE_IDS = {
     '027549': BANNON,
     '027434': BANNON,          # References Maher appearance
     '027764': BANNON,
+    '027396': BANNON,
     '027576': MELANIE_WALKER,  # https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700
     '027141': MELANIE_WALKER,
     '027232': MELANIE_WALKER,
@@ -160,6 +165,8 @@ GUESSED_COUNTERPARTY_FILE_IDS = {
     '027184': MELANIE_WALKER,
     '027214': MELANIE_WALKER,
     '027148': MELANIE_WALKER,
+    '027396': SCARAMUCCI,
+    '031054': SCARAMUCCI,
     '025436': 'Celina Dubin',
 }
 
@@ -193,6 +200,7 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
 
 is_debug = len(environ.get('DEBUG') or '') > 0
 sender_counts = defaultdict(int)
+emailer_counts = defaultdict(int)
 convos_labeled = 0
 files_processed = 0
 msgs_processed = 0
@@ -287,20 +295,38 @@ def get_imessage_log_files() -> list[Path]:
         if MSG_REGEX.search(file_text):
             log_files.append(file_arg)
         else:
+            file_lines = file_text.split('\n')
+
+            # Handle emails
+            if 'From: ' in file_lines[0] or DATE_REGEX.match(file_lines[0]):
+                email_match = EMAIL_REGEX.search(file_text)
+                date_match = DATE_REGEX.search(file_text)
+                emailer = email_match.group(1).strip().strip('_').strip('[').strip(']').strip('<').strip()
+
+                if EPSTEIN_EMAIL_REGEX.search(emailer):
+                    emailer = 'Jeffrey Epstein'
+                elif GHISLAINE_EMAIL_REGEX.search(emailer):
+                    emailer = 'Ghislaine Maxwell'
+                elif emailer == 'ji@media.mitedu':
+                    emailer = 'Joi Ito'
+
+                if is_debug:
+                    console.print(f"Handling email from '{emailer}'...")
+
+                emailer_counts[emailer.lower()] += 1
+
+                if not emailer.startswith('Sent:'):
+                    continue
+
             if is_debug:
+                # Check for JSON
                 if len(file_text) > 1 and file_text[1] == '{':
                     json_subdir_path = file_arg.parent.joinpath('json_files').joinpath(file_arg.name + '.json')
                     console.print(f"'{file_arg}' looks like JSON, moving to '{json_subdir_path}'\n", style='yellow1 bold')
                     file_arg.rename(json_subdir_path)
                 else:
-                    file_lines = file_text.split('\n')
-
-                    if file_lines[0].startswith('From: ') or file_lines[0].startswith('Date: '):
-                        #console.print(f"'Skipping email '{file_arg.name}'...")
-                        pass
-                    else:
-                        console.print(f"'Skipping file '{file_arg.name}' with {len(file_lines)} lines, top lines:")
-                        console.print('\n'.join(file_lines[0:10]) + '\n', style='dim')
+                    console.print(f"'Skipping file '{file_arg.name}' with {len(file_lines)} lines, top lines:")
+                    console.print('\n'.join(file_lines[0:10]) + '\n', style='dim')
 
             continue
 
@@ -409,3 +435,14 @@ if not is_debug:
     console.print(f"Wrote HTML to '{OUTPUT_GH_PAGES_HTML}'.")
 else:
     console.print(f"\nNot writing HTML because DEBUG=true.")
+
+
+console.line(2)
+counts_table = Table(title="Email Counts By Sender", show_header=True, header_style="bold")
+counts_table.add_column("From", style="steel_blue bold", justify="left")
+counts_table.add_column("Email Count", justify="center")
+
+for k, v in sorted(emailer_counts.items(), key=lambda item: item[1], reverse=True):
+    counts_table.add_row(Text(k), str(v))
+
+console.print(counts_table, '\n\n')
