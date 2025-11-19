@@ -65,7 +65,6 @@ HOUSE_OVERSIGHT_027455.txt	Steve Bannon (likely)	China strategy and geopolitics;
 HOUSE_OVERSIGHT_027460.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027515.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_027536.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027585.txt	Business associate	Business discussions
 HOUSE_OVERSIGHT_027655.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027707.txt	Steve Bannon	Italian politics; Trump discussions
 HOUSE_OVERSIGHT_027722.txt	Steve Bannon	Trump and New York Times coverage
@@ -139,13 +138,14 @@ KNOWN_COUNTERPARTY_FILE_IDS = {
     '031173': 'Ards',          # Participants: field, possibly incomplete
     '031042': ANIL,            # Participants: field
     '027225': ANIL,            # Birthday
-    '027650': 'Joi Ito',       # Participants: field
     '027401': 'Eva',           # Participants: field
+    '027650': 'Joi Ito',       # Participants: field
 }
 
 GUESSED_COUNTERPARTY_FILE_IDS = {
     '025363': BANNON,          # Trump and New York Times coverage
     '025368': BANNON,          # Trump and New York Times coverage
+    '027585': BANNON,          # Tokyo trip
     '027568': BANNON,
     '027695': BANNON,
     '027594': BANNON,
