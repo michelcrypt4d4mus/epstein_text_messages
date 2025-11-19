@@ -213,7 +213,7 @@ console.print(Panel(Text("Email Analysis", justify='center', style='bold'), padd
 console.line()
 num_potential_emails = emailer_counts.pop(TOTAL)
 counts_table = Table(title="Email Counts By Sender", show_header=True, header_style="bold")
-counts_table.add_column("From", justify="left", width=40)
+counts_table.add_column("From", justify="left")#, width=40)
 counts_table.add_column("Email Count", justify="center")
 
 for k, v in sorted(emailer_counts.items(), key=lambda item: item[1], reverse=True):
