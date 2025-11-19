@@ -63,6 +63,8 @@ EMAILERS = [
     'Weingarten, Reid',
 ]
 
+valid_emailer = lambda emailer: not BAD_EMAILER_REGEX.match(emailer)
+
 
 def extract_email_sender(file_text):
     email_match = EMAIL_REGEX.search(file_text)

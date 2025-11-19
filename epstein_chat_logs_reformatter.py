@@ -18,7 +18,7 @@ from rich.table import Table
 from rich.text import Text
 load_dotenv()
 
-from util.emails import BAD_EMAILER_REGEX, DETECT_EMAIL_REGEX, extract_email_sender, replace_signature
+from util.emails import DETECT_EMAIL_REGEX, extract_email_sender, valid_emailer, replace_signature
 from util.env import deep_debug, include_redacted_emails, is_debug
 from util.file_helper import MSG_REGEX, extract_file_id, first_timestamp_in_file, load_file, move_json_file
 from util.rich import *
@@ -93,12 +93,11 @@ def get_imessage_log_files() -> list[Path]:
                 try:
                     emailer = extract_email_sender(file_text) or UNKNOWN
                     emailer = emailer or UNKNOWN
-                    is_ok_emailer = not BAD_EMAILER_REGEX.match(emailer)
 
-                    if is_ok_emailer:
+                    if valid_emailer(emailer):
                         emailer_counts[emailer.lower()] += 1
 
-                    if len(emailer) >= 3 and emailer != UNKNOWN and is_ok_emailer:
+                    if len(emailer) >= 3 and emailer != UNKNOWN and valid_emailer(emailer):
                         continue  # Don't print contents if we found a valid email
                     elif emailer == UNKNOWN:
                         redacted_emails[file_arg.name] = file_text
