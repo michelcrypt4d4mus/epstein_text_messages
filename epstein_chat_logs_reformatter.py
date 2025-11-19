@@ -268,10 +268,10 @@ def first_timestamp_in_file(file_arg: Path):
                 print(f"[WARNING] Failed to parse '{timestamp_str}' to datetime! Using next match. Error: {e}'")
 
 
-EMAIL_REGEX = re.compile(r'From:\s*(.*)')
+EMAIL_REGEX = re.compile(r'From: (.*)')
 BROKEN_EMAIL_REEGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(CC:\s*\n)?Subject:\s*\n(Attachments:\s*\n)?([\w ]{2,})\n')
 EPSTEIN_EMAIL_REGEX = re.compile(r'jee[vy]acation@|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE)
-GHISLAINE_EMAIL_REGEX = re.compile(r'gmax1@ellmax', re.IGNORECASE)
+GHISLAINE_EMAIL_REGEX = re.compile(r'gmax', re.IGNORECASE)
 EHUD_BARAK_EMAIL_REGEX = re.compile(r'(ehud|h)\s*barak', re.IGNORECASE)
 BANNON_EMAIL_REGEX = re.compile(r'steve bannon', re.IGNORECASE)
 LARRY_SUMMERS_EMAIL_REGEX = re.compile(r'La(wrence|rry).*Summers', re.IGNORECASE)
@@ -288,6 +288,11 @@ def tally_email(file_text):
         emailer = broken_match.group(3) or broken_match.group(2) or broken_match.group(1)
     else:
         emailer = email_match.group(1)
+
+    if not emailer:
+        if is_debug:
+            console.print(f"Failed to find a match!")
+            return
 
     try:
         emailer = emailer.strip().strip('_').strip('[').strip(']').strip('<').strip()
@@ -349,13 +354,18 @@ def get_imessage_log_files() -> list[Path]:
                 try:
                     emailer = tally_email(file_text) or ''
 
-                    if len(emailer) >= 4 or not emailer.startswith('Sent:'):
+                    if 'Sent' in emailer:
+                        console.print('First char:', emailer[0])
+                        console.print(emailer[0])
+                        console.print(f"startwith Sent = {emailer.startswith('Sent')}")
+
+                    if len(emailer) >= 4 and not emailer.startswith('Sent'):
                         continue
                 except Exception as e:
                     console.print_exception()
                     console.print(f"\nError file '{file_arg.name}' with {len(file_lines)} lines, top lines:")
                     console.print('\n'.join(file_lines[0:10]) + '\n', style='dim')
-                    raise d
+                    raise e
 
             if is_debug:
                 if len(file_text) > 1 and file_text[1] == '{':  # Check for JSON
