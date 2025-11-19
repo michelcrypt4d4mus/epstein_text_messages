@@ -295,7 +295,7 @@ def tally_email(file_text):
             return
 
     try:
-        emailer = emailer.strip().strip('_').strip('[').strip(']').strip('<').strip()
+        emailer = emailer.strip().strip('_').strip('[').strip(']').strip('*').strip('<').strip()
     except Exception as e:
         console.print_exception()
         console.print('\nFailed rows:')
@@ -316,6 +316,10 @@ def tally_email(file_text):
         emailer = 'Larry Summers'
     elif 'paul krassner' in emailer.lower():
         emailer = 'Paul Krassner'
+    elif 'starr, ken' in emailer.lower():
+        emailer = 'Ken Starr'
+    elif 'lesley groff' in emailer.lower():
+        emailer = 'Lesley Groff'
 
     if is_debug:
         console.print(f"Handling email from '{emailer}'...")
