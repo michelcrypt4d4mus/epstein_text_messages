@@ -19,11 +19,16 @@ from pathlib import Path
 from dotenv import load_dotenv
 from rich.align import Align
 from rich.console import Console
+from rich.markup import escape
 from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
 from rich.theme import Theme
 load_dotenv()
+
+from util.emails import BAD_EMAILER_REGEX, DETECT_EMAIL_REGEX, extract_email_sender
+from util.env import deep_debug, is_debug
+from util.file_helper import load_file, move_json_file
 
 
 CONSOLE_HTML_FORMAT = """\
@@ -81,11 +86,13 @@ HOUSE_OVERSIGHT_031045.txt	Steve Bannon (likely)	Trump and New York Times covera
 
 OUTPUT_DIR = Path('docs')
 OUTPUT_GH_PAGES_HTML = OUTPUT_DIR.joinpath('index.html')
-FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
+OUTPUT_WIDTH = 120
 
+FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
 DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
+
 PHONE_NUMBER = 'phone_number'
 ANIL = "Anil Ambani"
 BANNON = 'Bannon'
@@ -193,7 +200,6 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
     GUESSED_COUNTERPARTY_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
 
 
-is_debug = len(environ.get('DEBUG') or '') > 0
 sender_counts = defaultdict(int)
 emailer_counts = defaultdict(int)
 convos_labeled = 0
@@ -201,7 +207,7 @@ files_processed = 0
 msgs_processed = 0
 
 # Start output
-console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS), width=120)
+console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS), width=OUTPUT_WIDTH)
 console.record = True
 console.line()
 
@@ -249,7 +255,13 @@ console.print(Align.center(f"If you think there's an attribution error or can de
 console.line(2)
 
 
-if is_debug:
+def print_top_lines(file_text, n = 10, max_chars = 250, in_panel = False):
+    top_text = escape('\n'.join(file_text.split("\n")[0:n])[0:max_chars])
+    output = Panel(top_text, expand=False) if in_panel else top_text + '\n'
+    console.print(output, style='dim')
+
+
+if deep_debug:
     console.print('KNOWN_COUNTERPARTY_FILE_IDS\n--------------')
     console.print(json.dumps(KNOWN_COUNTERPARTY_FILE_IDS))
     console.print('\n\n\nGUESSED_COUNTERPARTY_FILE_IDS\n--------------')
@@ -258,8 +270,8 @@ if is_debug:
 
 
 def first_timestamp_in_file(file_arg: Path):
-    if is_debug:
-        console.log(f"Getting timestamp from {file_arg}")
+    if deep_debug:
+        print(f"Getting timestamp from {file_arg}...")
 
     with open(file_arg) as f:
         for match in MSG_REGEX.finditer(f.read()):
@@ -268,77 +280,6 @@ def first_timestamp_in_file(file_arg: Path):
                 return datetime.strptime(timestamp_str, DATE_FORMAT)
             except ValueError as e:
                 print(f"[WARNING] Failed to parse '{timestamp_str}' to datetime! Using next match. Error: {e}'")
-
-
-EMAIL_REGEX = re.compile(r'From: (.*)')
-BROKEN_EMAIL_REEGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(CC:\s*\n)?Subject:\s*\n(Importance:\s*\n)?(Attachments:\s*\n)?([\w ]{2,}.*)\n')
-EPSTEIN_EMAIL_REGEX = re.compile(r'jee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE)
-GHISLAINE_EMAIL_REGEX = re.compile(r'g ?max(well)?', re.IGNORECASE)
-EHUD_BARAK_EMAIL_REGEX = re.compile(r'(ehud|h)\s*barak', re.IGNORECASE)
-BANNON_EMAIL_REGEX = re.compile(r'steve bannon', re.IGNORECASE)
-LARRY_SUMMERS_EMAIL_REGEX = re.compile(r'La(wrence|rry).*Summers', re.IGNORECASE)
-DARREN_INDKE = re.compile(r'darren [il]ndyke', re.IGNORECASE)
-DATE_REGEX = re.compile(r'^Date:\s*(.*)\n')
-
-
-def tally_email(file_text):
-    email_match = EMAIL_REGEX.search(file_text)
-    broken_match = BROKEN_EMAIL_REEGEX.search(file_text)
-    date_match = DATE_REGEX.search(file_text)
-    emailer = None
-
-    if broken_match:
-        emailer = broken_match.group(4) or broken_match.group(3) or broken_match.group(2) or broken_match.group(1)
-    else:
-        emailer = email_match.group(1)
-
-    if not emailer:
-        if is_debug:
-            console.print(f"Failed to find a match!")
-            return
-
-    try:
-        emailer = emailer.strip().strip('_').strip('[').strip(']').strip('*').strip('<').strip()
-    except Exception as e:
-        console.print_exception()
-        console.print('\nFailed rows:')
-        console.print('\n'.join(file_text.split("\n")[0:10]))
-        raise e
-
-    if EPSTEIN_EMAIL_REGEX.search(emailer):
-        emailer = 'Jeffrey Epstein'
-    elif GHISLAINE_EMAIL_REGEX.search(emailer):
-        emailer = 'Ghislaine Maxwell'
-    elif emailer == 'ji@media.mitedu' or 'joichi ito' in emailer.lower() or emailer.lower() == 'joi':
-        emailer = 'Joi Ito'
-    elif EHUD_BARAK_EMAIL_REGEX.search(emailer):
-        emailer = 'Ehud Barak'
-    elif BANNON_EMAIL_REGEX.search(emailer):
-        emailer = 'Steve Bannon'
-    elif LARRY_SUMMERS_EMAIL_REGEX.search(emailer):
-        emailer = 'Larry Summers'
-    elif 'paul krassner' in emailer.lower():
-        emailer = 'Paul Krassner'
-    elif 'starr, ken' in emailer.lower():
-        emailer = 'Ken Starr'
-    elif 'lesley groff' in emailer.lower():
-        emailer = 'Lesley Groff'
-    elif 'boris nikolic' in emailer.lower():
-        emailer = 'Boris Nikolic'
-    elif 'al seckel' in emailer.lower():
-        emailer = 'Al Seckel'
-    elif 'michael wolff' in emailer.lower():
-        emailer = 'Michael Wolff'
-    elif DARREN_INDKE.search(emailer):
-        emailer = 'Darren Indke'
-    elif 'richard kahn' in emailer.lower():
-        emailer = 'Richard Kahn'
-
-    # if is_debug:
-    #     console.print(f"Handling email from '{emailer}'...")
-
-    emailer_counts[emailer.lower()] += 1
-    return emailer
 
 
 def get_imessage_log_files() -> list[Path]:
@@ -355,46 +296,51 @@ def get_imessage_log_files() -> list[Path]:
     for file_arg in files:
         file_text = ''
 
-        if is_debug:
-            console.print(f"Checking '{file_arg.name}'...", style='dim')
+        if deep_debug:
+            console.print(f"Scanning '{file_arg.name}'...", style='dim')
 
-        with open(file_arg) as f:
-            file_text = f.read()
-            file_text = file_text[1:] if (len(file_text) > 0 and file_text[0] == '\ufeff') else file_text  # remove BOM
+        file_text = load_file(file_arg)
+        file_lines = file_text.split('\n')
 
-        if MSG_REGEX.search(file_text):
+        if len(file_text) == 0:
+            if deep_debug:
+                console.print(f"   -> Skipping empty file...", style='dim')
+        elif MSG_REGEX.search(file_text):
+            if deep_debug:
+                console.print(f"    -> Found iMessage log file", style='dim')
+
             log_files.append(file_arg)
+        elif file_text[0] == '{':  # Check for JSON
+            move_json_file(file_arg)
         else:
-            file_lines = file_text.split('\n')
+            emailer = None
 
-            # Handle emails
-            if 'From: ' in file_lines[0] or (len(file_lines) > 2 and ('From: ' in file_lines[1] or 'From: ' in file_lines[2])) or DATE_REGEX.match(file_lines[0]):
+            if DETECT_EMAIL_REGEX.match(file_text):  # Handle emails
                 emailer_counts['TOTAL'] += 1
 
                 try:
-                    emailer = tally_email(file_text) or ''
+                    emailer = extract_email_sender(file_text) or UNKNOWN
+                    emailer = emailer or UNKNOWN
+                    is_ok_emailer = not BAD_EMAILER_REGEX.match(emailer)
 
-                    if 'Sent' in emailer and is_debug:
-                        console.print('First char:', emailer[0])
-                        console.print(emailer[0])
-                        console.print(f"startwith Sent = {emailer.startswith('Sent')}")
+                    if is_ok_emailer:
+                        emailer_counts[emailer.lower()] += 1
 
-                    if len(emailer) >= 3 and not emailer.startswith('Sent'):
-                        continue
+                    if len(emailer) >= 3 and emailer != UNKNOWN and is_ok_emailer:
+                        continue  # Don't print contents if we found a valid email
                 except Exception as e:
                     console.print_exception()
                     console.print(f"\nError file '{file_arg.name}' with {len(file_lines)} lines, top lines:")
-                    console.print('\n'.join(file_lines[0:10]) + '\n', style='dim')
+                    print_top_lines(file_text)
                     raise e
 
             if is_debug:
-                if len(file_text) > 1 and file_text[1] == '{':  # Check for JSON
-                    json_subdir_path = file_arg.parent.joinpath('json_files').joinpath(file_arg.name + '.json')
-                    console.print(f"'{file_arg}' looks like JSON, moving to '{json_subdir_path}'\n", style='yellow1 bold')
-                    file_arg.rename(json_subdir_path)
-                else:
-                    console.print(f"Skipping file '{file_arg.name}' with {len(file_lines)} lines, top lines:")
-                    print('\n'.join(file_lines[0:10]) + '\n')
+                console.print(f"Questionable file '{file_arg.name}' with {len(file_lines)} lines, top lines:")
+
+                if emailer and emailer != UNKNOWN:
+                    console.print(f"Failed to find valid email (got '{emailer}')", style='red')
+
+                print_top_lines(file_text)
 
             continue
 
@@ -403,86 +349,83 @@ def get_imessage_log_files() -> list[Path]:
 
 
 for file_arg in get_imessage_log_files():
-    with open(file_arg) as f:
-        file_basename = file_arg.name
-        file_lines = [l.strip() for l in f.read().split('\n') if not l.startswith('HOUSE OVERSIGHT')]
-        file_text = '\n'.join(file_lines)
+    file_text = load_file(file_arg)
+    file_lines = file_text.split('\n')
+    file_id = extract_file_id(file_arg.name)
+    files_processed += 1
+    counterparty = UNKNOWN
+    counterparty_guess = None
+    console.print(Panel(file_arg.name, style='reverse', expand=False))
 
-        files_processed += 1
-        console.print(Panel(file_basename, style='reverse', expand=False))
-        file_id = extract_file_id(file_basename)
-        counterparty = UNKNOWN
-        counterparty_guess = None
+    if file_id:
+        counterparty = KNOWN_COUNTERPARTY_FILE_IDS.get(file_id, UNKNOWN)
 
-        if file_id:
-            counterparty = KNOWN_COUNTERPARTY_FILE_IDS.get(file_id, UNKNOWN)
+        if counterparty != UNKNOWN:
+            hint_txt = Text(f"Found confirmed counterparty ", style='grey')
+            hint_txt.append(counterparty, style=COUNTERPARTY_COLORS.get(counterparty, DEFAULT))
+            console.print(hint_txt.append(f" for file ID {file_id}...\n"))
+        elif file_id in GUESSED_COUNTERPARTY_FILE_IDS:
+            counterparty_guess = GUESSED_COUNTERPARTY_FILE_IDS[file_id]
+            txt = Text("(This is probably a conversation with ", style='grey')
+            txt.append(counterparty_guess, style=f"{COUNTERPARTY_COLORS.get(counterparty_guess, DEFAULT)}")
+            console.print(txt.append(')\n'), style='dim')
 
+    if counterparty != UNKNOWN or counterparty_guess is not None:
+        convos_labeled += 1
+
+    for i, match in enumerate(MSG_REGEX.finditer(file_text)):
+        msgs_processed += 1
+        sender = sender_str = match.group(1).strip()
+        sender_style = None
+        timestamp = Text(f"[{match.group(2).strip()}] ", style='dim')
+        msg = match.group(4).strip()
+        msg_lines = msg.split('\n')
+
+        if len(sender) > 0:
+            if sender == 'e:jeeitunes@gmail.com':
+                sender = sender_str = EPSTEIN
+            elif sender == '+19174393646':
+                sender = SCARAMUCCI
+            elif sender == '+13109906526':
+                sender = BANNON
+            elif PHONE_NUMBER_REGEX.match(sender):
+                sender_style = PHONE_NUMBER
+            elif re.match('[ME]+', sender):
+                sender = MELANIE_WALKER
+        else:
             if counterparty != UNKNOWN:
-                hint_txt = Text(f"Found known counterparty ", style='dim')
-                hint_txt.append(counterparty, style=COUNTERPARTY_COLORS.get(counterparty, DEFAULT))
-                console.print(hint_txt.append(f" for file ID {file_id}...\n"))
-            elif file_id in GUESSED_COUNTERPARTY_FILE_IDS:
-                counterparty_guess = GUESSED_COUNTERPARTY_FILE_IDS[file_id]
-                txt = Text("(This is probably a conversation with ", style='grey')
-                txt.append(counterparty_guess, style=f"{COUNTERPARTY_COLORS.get(counterparty_guess, DEFAULT)}")
-                console.print(txt.append(' according to research)\n'))
-
-        if counterparty != UNKNOWN or counterparty_guess is not None:
-            convos_labeled += 1
-
-        for i, match in enumerate(MSG_REGEX.finditer(file_text)):
-            msgs_processed += 1
-            sender = sender_str = match.group(1).strip()
-            sender_style = None
-            timestamp = Text(f"[{match.group(2).strip()}] ", style='dim')
-            msg = match.group(4).strip()
-            msg_lines = msg.split('\n')
-
-            if len(sender) > 0:
-                if sender == 'e:jeeitunes@gmail.com':
-                    sender = sender_str = EPSTEIN
-                elif sender == '+19174393646':
-                    sender = SCARAMUCCI
-                elif sender == '+13109906526':
-                    sender = BANNON
-                elif PHONE_NUMBER_REGEX.match(sender):
-                    sender_style = PHONE_NUMBER
-                elif re.match('[ME]+', sender):
-                    sender = MELANIE_WALKER
+                sender = sender_str = counterparty
+            elif counterparty_guess is not None:
+                sender = counterparty_guess
+                sender_str = f"{counterparty_guess} (?)"
             else:
-                if counterparty != UNKNOWN:
-                    sender = sender_str = counterparty
-                elif counterparty_guess is not None:
-                    sender = counterparty_guess
-                    sender_str = f"{counterparty_guess} (?)"
+                sender = sender_str = UNKNOWN
+
+        if re.match('[-_1]+|[4Ide]', sender):
+            sender_counts[UNKNOWN] += 1
+        else:
+            sender_counts[sender] += 1
+
+        sender_txt = Text(sender_str, style=sender_style or COUNTERPARTY_COLORS.get(sender, DEFAULT))
+
+        # Fix multiline links
+        if msg.startswith('http'):
+            if len(msg_lines) > 1 and not msg_lines[0].endswith('html'):
+                if len(msg_lines) > 2 and msg_lines[1].endswith('-'):
+                    msg = msg.replace('\n', '', 2)
                 else:
-                    sender = sender_str = UNKNOWN
+                    msg = msg.replace('\n', '', 1)
 
-            if re.match('[-_1]+|[4Ide]', sender):
-                sender_counts[UNKNOWN] += 1
-            else:
-                sender_counts[sender] += 1
+            msg_lines = msg.split('\n')
+            link_text = msg_lines.pop()
+            msg = Text('').append(link_text, style='deep_sky_blue4 underline')
 
-            sender_txt = Text(sender_str, style=sender_style or COUNTERPARTY_COLORS.get(sender, DEFAULT))
+            if len(msg_lines) > 0:
+                msg = msg.append('\n' + ' '.join(msg_lines))
+        else:
+            msg = msg.replace('\n', ' ')  # remove newlines
 
-            # Fix multiline links
-            if msg.startswith('http'):
-                if len(msg_lines) > 1 and not msg_lines[0].endswith('html'):
-                    if len(msg_lines) > 2 and msg_lines[1].endswith('-'):
-                        msg = msg.replace('\n', '', 2)
-                    else:
-                        msg = msg.replace('\n', '', 1)
-
-                msg_lines = msg.split('\n')
-                link_text = msg_lines.pop()
-                msg = Text('').append(link_text, style='deep_sky_blue4 underline')
-
-                if len(msg_lines) > 0:
-                    msg = msg.append('\n' + ' '.join(msg_lines))
-            else:
-                msg = msg.replace('\n', ' ')  # remove newlines
-
-            console.print(Text('').append(timestamp).append(sender_txt).append(': ', style='dim').append(msg))
+        console.print(Text('').append(timestamp).append(sender_txt).append(': ', style='dim').append(msg))
 
     console.line(2)
 
@@ -494,8 +437,8 @@ counts_table.add_column("Message Count", justify="center")
 for k, v in sorted(sender_counts.items(), key=lambda item: item[1], reverse=True):
     counts_table.add_row(Text(k, COUNTERPARTY_COLORS.get(k, 'grey23 bold')), str(v))
 
-console.print(counts_table, '\n\n')
-console.print(f"Processed {files_processed} log files with {msgs_processed} text messages ({convos_labeled} deanonymized conversations)")
+console.print(counts_table)
+console.print(f"\nProcessed {files_processed} log files with {msgs_processed} text messages ({convos_labeled} deanonymized conversations)")
 console.print(f"(Last deploy found 77 files with 4668 messages)\n", style='dim')
 
 
