@@ -12,6 +12,21 @@ BROKEN_EMAIL_REGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(CC:\s*\n)?(Subje
 NUM_CAPTURES_IN_BROKEN_EMAIL_REGEX = 6
 BROKEN_CAPTURE_GROUP_IDXS = list(range(NUM_CAPTURES_IN_BROKEN_EMAIL_REGEX, 0, -1))
 
+EMAILERS = [
+    'Al Seckel',
+    'Daniel Sabba',
+    'Glenn Dubin',
+    'Lawrence Krauss',
+    'Lesley Groff',
+    'Michael Wolff',
+    'Peggy Siegal',
+    'Richard Kahn',
+    'Robert Kuhn',
+    'Paul Krassner',
+    'Steven Victor MD',
+    'Weingarten, Reid',
+]
+
 EMAILER_REGEXES = {
     'Amanda Ens': re.compile(r'ens, amand', re.IGNORECASE),
     'Barry J. Cohen': re.compile(r'barry (j.? )?cohen', re.IGNORECASE),
@@ -31,6 +46,9 @@ EMAILER_REGEXES = {
     'Steve Bannon': re.compile(r'steve bannon', re.IGNORECASE),
 }
 
+for emailer in EMAILERS:
+    EMAILER_REGEXES[emailer] = re.compile(emailer, re.IGNORECASE)
+
 EPSTEIN_SIGNATURE = """
 please note
 The information contained in this communication is
@@ -46,22 +64,6 @@ return e-mail or by e-mail to jeevacation@gmail.com, and
 destroy this communication and all copies thereof,
 including all attachments. copyright -all rights reserved
 """.strip()
-
-EMAILERS = [
-    'Al Seckel',
-    'Boris Nikolic',
-    'Daniel Sabba',
-    'Glenn Dubin',
-    'Lawrence Krauss',
-    'Lesley Groff',
-    'Michael Wolff',
-    'Peggy Siegal',
-    'Richard Kahn',
-    'Robert Kuhn',
-    'Paul Krassner',
-    'Steven Victor MD',
-    'Weingarten, Reid',
-]
 
 valid_emailer = lambda emailer: not BAD_EMAILER_REGEX.match(emailer)
 
@@ -85,19 +87,11 @@ def extract_email_sender(file_text):
 
     emailer = emailer.strip().lstrip('"').lstrip("'").rstrip('"').rstrip("'").strip()
     emailer = emailer.strip('_').strip('[').strip(']').strip('*').strip('<').strip('•').rstrip(',').strip()
-    found_emailer = False
 
     for name, regex in EMAILER_REGEXES.items():
         if regex.search(emailer):
             emailer = name
-            found_emailer = True
             break
-
-    if not found_emailer:
-        for possible_emailer in EMAILERS:
-            if possible_emailer.lower() in emailer.lower():
-                emailer = possible_emailer
-                break
 
     if ' [' in emailer:
         emailer = emailer.split(' [')[0]
