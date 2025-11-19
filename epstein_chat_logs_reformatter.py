@@ -81,13 +81,6 @@ OUTPUT_DIR = Path('docs')
 OUTPUT_GH_PAGES_HTML = OUTPUT_DIR.joinpath('index.html')
 
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
-EMAIL_REGEX = re.compile(r'From:\s*(.*)\n')
-EPSTEIN_EMAIL_REGEX = re.compile(r'jee[vy]acation@|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE)
-GHISLAINE_EMAIL_REGEX = re.compile(r'gmax1@ellmax', re.IGNORECASE)
-EHUD_BARAK_EMAIL_REGEX = re.compile(r'(ehud|h)\s*barak', re.IGNORECASE)
-BANNON_EMAIL_REGEX = re.compile(r'steve bannon', re.IGNORECASE)
-LARRY_SUMMERS_EMAIL_REGEX = re.compile(r'La(wrence|rry).*Summers', re.IGNORECASE)
-DATE_REGEX = re.compile(r'^Date:\s*(.*)\n')
 FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
 DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
@@ -172,7 +165,6 @@ GUESSED_COUNTERPARTY_FILE_IDS = {
     '031054': SCARAMUCCI,
     '025436': 'Celina Dubin',
 }
-
 
 for counterparty in COUNTERPARTY_COLORS:
     COUNTERPARTY_COLORS[counterparty] = f"{COUNTERPARTY_COLORS[counterparty]} bold"
@@ -276,6 +268,57 @@ def first_timestamp_in_file(file_arg: Path):
                 print(f"[WARNING] Failed to parse '{timestamp_str}' to datetime! Using next match. Error: {e}'")
 
 
+EMAIL_REGEX = re.compile(r'From:\s*(.*)')
+BROKEN_EMAIL_REEGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(CC:\s*\n)?Subject:\s*\n(Attachments:\s*\n)?([\w ]{2,})\n')
+EPSTEIN_EMAIL_REGEX = re.compile(r'jee[vy]acation@|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE)
+GHISLAINE_EMAIL_REGEX = re.compile(r'gmax1@ellmax', re.IGNORECASE)
+EHUD_BARAK_EMAIL_REGEX = re.compile(r'(ehud|h)\s*barak', re.IGNORECASE)
+BANNON_EMAIL_REGEX = re.compile(r'steve bannon', re.IGNORECASE)
+LARRY_SUMMERS_EMAIL_REGEX = re.compile(r'La(wrence|rry).*Summers', re.IGNORECASE)
+DATE_REGEX = re.compile(r'^Date:\s*(.*)\n')
+
+
+def tally_email(file_text):
+    email_match = EMAIL_REGEX.search(file_text)
+    broken_match = BROKEN_EMAIL_REEGEX.search(file_text)
+    date_match = DATE_REGEX.search(file_text)
+    emailer = None
+
+    if broken_match:
+        emailer = broken_match.group(3) or broken_match.group(2) or broken_match.group(1)
+    else:
+        emailer = email_match.group(1)
+
+    try:
+        emailer = emailer.strip().strip('_').strip('[').strip(']').strip('<').strip()
+    except Exception as e:
+        console.print_exception()
+        console.print('\nFailed rows:')
+        console.print('\n'.join(file_text.split("\n")[0:10]))
+        raise e
+
+    if EPSTEIN_EMAIL_REGEX.search(emailer):
+        emailer = 'Jeffrey Epstein'
+    elif GHISLAINE_EMAIL_REGEX.search(emailer):
+        emailer = 'Ghislaine Maxwell'
+    elif emailer == 'ji@media.mitedu' or 'joichi ito' in emailer.lower():
+        emailer = 'Joi Ito'
+    elif EHUD_BARAK_EMAIL_REGEX.search(emailer):
+        emailer = 'Ehud Barak'
+    elif BANNON_EMAIL_REGEX.search(emailer):
+        emailer = 'Steve Bannon'
+    elif LARRY_SUMMERS_EMAIL_REGEX.search(emailer):
+        emailer = 'Larry Summers'
+    elif 'paul krassner' in emailer.lower():
+        emailer = 'Paul Krassner'
+
+    if is_debug:
+        console.print(f"Handling email from '{emailer}'...")
+
+    emailer_counts[emailer.lower()] += 1
+    return emailer
+
+
 def get_imessage_log_files() -> list[Path]:
     docs_dir = environ['EPSTEIN_DOCS_DIR']
 
@@ -290,10 +333,11 @@ def get_imessage_log_files() -> list[Path]:
         file_text = ''
 
         if is_debug:
-            print(f"Checking '{file_arg}'...")
+            console.print(f"Checking '{file_arg.name}'...", style='dim')
 
         with open(file_arg) as f:
             file_text = f.read()
+            file_text = file_text[1:] if (len(file_text) > 0 and file_text[0] == '\ufeff') else file_text  # remove BOM
 
         if MSG_REGEX.search(file_text):
             log_files.append(file_arg)
@@ -301,37 +345,20 @@ def get_imessage_log_files() -> list[Path]:
             file_lines = file_text.split('\n')
 
             # Handle emails
-            if 'From: ' in file_lines[0] or DATE_REGEX.match(file_lines[0]):
-                email_match = EMAIL_REGEX.search(file_text)
-                date_match = DATE_REGEX.search(file_text)
-                emailer = email_match.group(1).strip().strip('_').strip('[').strip(']').strip('<').strip()
+            if 'From: ' in file_lines[0] or (len(file_lines) > 2 and 'From: ' in file_lines[2]) or DATE_REGEX.match(file_lines[0]):
+                try:
+                    emailer = tally_email(file_text) or ''
 
-                if EPSTEIN_EMAIL_REGEX.search(emailer):
-                    emailer = 'Jeffrey Epstein'
-                elif GHISLAINE_EMAIL_REGEX.search(emailer):
-                    emailer = 'Ghislaine Maxwell'
-                elif emailer == 'ji@media.mitedu' or 'joichi ito' in emailer.lower():
-                    emailer = 'Joi Ito'
-                elif EHUD_BARAK_EMAIL_REGEX.search(emailer):
-                    emailer = 'Ehud Barak'
-                elif BANNON_EMAIL_REGEX.search(emailer):
-                    emailer = 'Steve Bannon'
-                elif LARRY_SUMMERS_EMAIL_REGEX.search(emailer):
-                    emailer = 'Larry Summers'
-                elif 'paul krassner' in emailer.lower():
-                    emailer = 'Paul Krassner'
-
-                if is_debug:
-                    console.print(f"Handling email from '{emailer}'...")
-
-                emailer_counts[emailer.lower()] += 1
-
-                if not emailer.startswith('Sent:') or len(emailer) < 4:
-                    continue
+                    if len(emailer) >= 4 or not emailer.startswith('Sent:'):
+                        continue
+                except Exception as e:
+                    console.print_exception()
+                    console.print(f"\nError file '{file_arg.name}' with {len(file_lines)} lines, top lines:")
+                    console.print('\n'.join(file_lines[0:10]) + '\n', style='dim')
+                    raise d
 
             if is_debug:
-                # Check for JSON
-                if len(file_text) > 1 and file_text[1] == '{':
+                if len(file_text) > 1 and file_text[1] == '{':  # Check for JSON
                     json_subdir_path = file_arg.parent.joinpath('json_files').joinpath(file_arg.name + '.json')
                     console.print(f"'{file_arg}' looks like JSON, moving to '{json_subdir_path}'\n", style='yellow1 bold')
                     file_arg.rename(json_subdir_path)
