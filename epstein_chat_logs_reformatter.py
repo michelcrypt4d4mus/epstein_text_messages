@@ -54,6 +54,7 @@ body {{
 OUTPUT_DIR = Path('docs')
 OUTPUT_GH_PAGES_HTML = OUTPUT_DIR.joinpath('index.html')
 OUTPUT_WIDTH = 120
+COURIER_NEWSROOM_ARCHIVE = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
 
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
@@ -174,16 +175,7 @@ if deep_debug:
     console.print_json(json.dumps(GUESSED_COUNTERPARTY_FILE_IDS))
     console.line(2)
 
-console.print(Panel(Text(
-    "Reformatted Text Message From The Epstein Estate Documents - Seventh Production Collection"
-    "\n\nOversight Committee Releases Additional Epstein Estate Documents"
-    "\nhttps://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/"
-    "\nRaw Data Archive: https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_",
-    justify='center',
-    style='bold reverse'
-)))
-console.print(Align.center("[link=https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_]Google Drive Raw Documents[/link]"))
-
+console.print(Panel(Text("Epstein Estate Documents - Seventh Production Collection Reformatted Text Messages", justify='center', style='bold reverse')))
 console.line()
 console.print(Align.center("[link=https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great]I Made Epstein's Text Messages Great Again (And You Should Read Them)[/link]"))
 console.print(Align.center("https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great"))
@@ -204,7 +196,7 @@ table.add_row("Brock", "Brock Pierce")
 table.add_row("DB", "Deutsche Bank (maybe??)")
 table.add_row('HBJ', "Hamad bin Jassim (Former Qatari Prime Minister)")
 table.add_row('Jagland', 'Thorbjørn Jagland')
-table.add_row("Hoffenberg', 'Steven Hoffenberg (Epstein's partner in old ponzi scheme)")
+table.add_row("Hoffenberg", "Steven Hoffenberg (Epstein's partner in old ponzi scheme)")
 table.add_row('KSA', "Kingdom of Saudi Arabia")
 table.add_row('MBS', "Mohammed bin Salman Al Saud (Saudi ruler)")
 table.add_row('Jared', "Jared Kushner")
@@ -214,6 +206,10 @@ table.add_row("Terje", TERJE)
 table.add_row("Woody", "Woody Allen")
 table.add_row("Zug", "City in Switzerland known as a crypto hot spot")
 console.print('\n', Align.center(table))
+console.line()
+console.print(Align.center(f"[link=https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/]Oversight Committee Releases Additional Epstein Estate Documents[/link]"))
+console.print(Align.center(f"[link={COURIER_NEWSROOM_ARCHIVE}]Courier Newsroom's Searchable Archive[/link]"))
+console.print(Align.center("[link=https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_]Google Drive Raw Documents[/link]"))
 console.line(2)
 console.print(Align.center("Conversations are sorted chronologically based on timestamp of first message."), style='bold dark_green')
 console.print(Align.center(f"If you think there's an attribution error or can deanonymize or confirm an {UNKNOWN} or (?) individual contact @cryptadamist."), style='dim')
