@@ -321,9 +321,12 @@ def get_imessage_log_files() -> list[Path]:
                 try:
                     emailer = extract_email_sender(file_text) or UNKNOWN
                     emailer = emailer or UNKNOWN
-                    emailer_counts[emailer.lower()] += 1
+                    is_ok_emailer = not BAD_EMAILER_REGEX.match(emailer)
 
-                    if len(emailer) >= 3 and emailer != UNKNOWN and not BAD_EMAILER_REGEX.match(emailer):
+                    if is_ok_emailer:
+                        emailer_counts[emailer.lower()] += 1
+
+                    if len(emailer) >= 3 and emailer != UNKNOWN and is_ok_emailer:
                         continue  # Don't print contents if we found a valid email
                 except Exception as e:
                     console.print_exception()

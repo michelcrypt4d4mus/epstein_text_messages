@@ -13,3 +13,5 @@ file_lines = file_text.split('\n')
 print('\n'.join(file_lines[0:15]))
 
 m = BROKEN_EMAIL_REGEX.search(file_text)
+
+bad = BAD_EMAILER_REGEX = BAD_EMAILER_REGEX.match()
