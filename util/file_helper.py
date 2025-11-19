@@ -1,7 +1,12 @@
 import re
+from datetime import datetime
 from pathlib import Path
 
+from .env import deep_debug
+
+DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
 FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
+MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 
 
 def extract_file_id(filename) -> str:
@@ -11,6 +16,19 @@ def extract_file_id(filename) -> str:
         return file_match.group(1)
     else:
         raise RuntimeError(f"Failed to extract file ID from {filename}")
+
+
+def first_timestamp_in_file(file_arg: Path):
+    if deep_debug:
+        print(f"Getting timestamp from {file_arg}...")
+
+    with open(file_arg) as f:
+        for match in MSG_REGEX.finditer(f.read()):
+            try:
+                timestamp_str = match.group(2).strip()
+                return datetime.strptime(timestamp_str, DATE_FORMAT)
+            except ValueError as e:
+                print(f"[WARNING] Failed to parse '{timestamp_str}' to datetime! Using next match. Error: {e}'")
 
 
 def load_file(file_path):
