@@ -28,6 +28,12 @@ OUTPUT_GH_PAGES_HTML = OUTPUT_DIR.joinpath('index.html')
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
 TOTAL = 'TOTAL'
 
+TEXTER_MAPPING = {
+    'e:jeeitunes@gmail.com': EPSTEIN,
+    '+19174393646': SCARAMUCCI,
+    '+13109906526': BANNON,
+}
+
 search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&page=1&q={txt}&p=1"
 sender_counts = defaultdict(int)
 emailer_counts = defaultdict(int)
@@ -147,18 +153,7 @@ for file_arg in get_imessage_log_files():
         msg_lines = msg.split('\n')
 
         # If the Sender: is redacted we need to fill it in from our configuration
-        if len(sender) > 0:
-            if sender == 'e:jeeitunes@gmail.com':
-                sender = sender_str = EPSTEIN
-            elif sender == '+19174393646':
-                sender = sender_str = SCARAMUCCI
-            elif sender == '+13109906526':
-                sender = sender_str = BANNON
-            elif PHONE_NUMBER_REGEX.match(sender):
-                sender_style = PHONE_NUMBER
-            elif re.match('[ME]+', sender):
-                sender = MELANIE_WALKER
-        else:
+        if len(sender) == 0:
             if counterparty != UNKNOWN:
                 sender = sender_str = counterparty
             elif counterparty_guess is not None:
@@ -166,6 +161,13 @@ for file_arg in get_imessage_log_files():
                 sender_str = f"{counterparty_guess} (?)"
             else:
                 sender = sender_str = UNKNOWN
+        else:
+            if sender in TEXTER_MAPPING:
+                sender = sender_str = TEXTER_MAPPING[sender]
+            elif PHONE_NUMBER_REGEX.match(sender):
+                sender_style = PHONE_NUMBER
+            elif re.match('[ME]+', sender):
+                sender = MELANIE_WALKER
 
         # Fix multiline links
         if msg.startswith('http'):
