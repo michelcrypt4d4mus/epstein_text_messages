@@ -486,7 +486,7 @@ console.print(f"Scanned {num_potential_emails} potential emails, found {sum([i f
 
 
 if not is_debug:
-    console.save_html(OUTPUT_GH_PAGES_HTML, inline_styles=True, clear=False)
+    console.save_html(OUTPUT_GH_PAGES_HTML, inline_styles=True, clear=False) #, code_format=HTML_
     console.print(f"Wrote HTML to '{OUTPUT_GH_PAGES_HTML}'.")
 else:
     console.print(f"\nNot writing HTML because DEBUG=true.")
