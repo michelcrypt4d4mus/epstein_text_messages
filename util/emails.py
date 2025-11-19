@@ -14,6 +14,7 @@ EHUD_BARAK_EMAIL_REGEX = re.compile(r'(ehud|h)\s*barak', re.IGNORECASE)
 BANNON_EMAIL_REGEX = re.compile(r'steve bannon', re.IGNORECASE)
 LARRY_SUMMERS_EMAIL_REGEX = re.compile(r'La(wrence|rry).*Summer|^LHS?$', re.IGNORECASE)
 DARREN_INDKE = re.compile(r'^darren$|darren [il]ndyke', re.IGNORECASE)
+MARTIN_WEINBERG_REGEX = re.compile(f'martin (g.* )weinberg', re.IGNORECASE)
 
 BROKEN_EMAIL_REGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(CC:\s*\n)?(Subject:\s*\n)?(To:\s*\n)?(Importance:\s*\n)?(Attachments:\s*\n)?([\w ]{2,}.*)\n')
 NUM_CAPTURES_IN_BROKEN_EMAIL_REGEX = 6
@@ -88,6 +89,8 @@ def extract_email_sender(file_text):
         emailer = 'Larry Summers'
     elif DARREN_INDKE.search(emailer):
         emailer = 'Darren Indke'
+    elif MARTIN_WEINBERG_REGEX.search(emailer):
+        emailer = 'Martin Weinberg'
     elif 'starr, ken' in emailer.lower():
         emailer = 'Ken Starr'
     elif 'boris nikoli' in emailer.lower():
