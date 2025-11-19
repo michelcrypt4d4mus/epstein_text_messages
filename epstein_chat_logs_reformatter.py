@@ -494,7 +494,7 @@ console.print(f"(Last deploy found 77 files with 4668 messages)\n", style='dim')
 
 console.line(2)
 counts_table = Table(title="Email Counts By Sender", show_header=True, header_style="bold")
-counts_table.add_column("From", style="steel_blue bold", justify="left")
+counts_table.add_column("From", style="steel_blue bold", justify="left", width=40)
 counts_table.add_column("Email Count", justify="center")
 
 for k, v in sorted(emailer_counts.items(), key=lambda item: item[1], reverse=True):
