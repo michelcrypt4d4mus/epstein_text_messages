@@ -140,6 +140,8 @@ for file_arg in get_imessage_log_files():
     counterparty = UNKNOWN
     counterparty_guess = None
     console.print(Panel(file_arg.name, style='reverse', expand=False))
+    file_url = f"{COURIER_NEWSROOM_ARCHIVE}&page=1&q=HOUSE_OVERSIGHT_010477&p=1"
+    console.print(f"[link={file_url}]View File in Courier Newsroom Archive[/link]")
 
     if file_id:
         counterparty = KNOWN_COUNTERPARTY_FILE_IDS.get(file_id, UNKNOWN)
