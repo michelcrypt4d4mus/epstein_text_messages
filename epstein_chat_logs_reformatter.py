@@ -207,7 +207,7 @@ console.print(Panel(Text(
 )))
 
 console.line()
-console.print(Align.center("[link=https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great]I Made Epstein's Text Messages Great Again[/link]"))
+console.print(Align.center("[link=https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great]I Made Epstein's Text Messages Great Again (And You Should Read Them)[/link]"))
 console.print(Align.center("https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great"))
 console.print(Align.center("[link=https://cryptadamus.substack.com/]Substack[/link]"))
 console.print(Align.center("[link=https://universeodon.com/@cryptadamist]Mastodon[/link]"))
