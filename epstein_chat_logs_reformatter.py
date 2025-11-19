@@ -133,31 +133,28 @@ def get_imessage_log_files() -> list[Path]:
 
 
 for file_arg in get_imessage_log_files():
+    files_processed += 1
     file_text = load_file(file_arg)
     file_lines = file_text.split('\n')
     file_id = extract_file_id(file_arg.name)
-    files_processed += 1
-    counterparty = UNKNOWN
-    counterparty_guess = None
     console.print(Panel(file_arg.name, style='reverse', expand=False))
+    counterparty = KNOWN_COUNTERPARTY_FILE_IDS.get(file_id, UNKNOWN)
+    counterparty_guess = None
+
+    if counterparty != UNKNOWN:
+        hint_txt = Text(f"Found confirmed counterparty ", style='grey')
+        hint_txt.append(counterparty, style=COUNTERPARTY_COLORS.get(counterparty, DEFAULT))
+        console.print(hint_txt.append(f" for file ID {file_id}...\n"))
+        convos_labeled += 1
+    elif file_id in GUESSED_COUNTERPARTY_FILE_IDS:
+        counterparty_guess = GUESSED_COUNTERPARTY_FILE_IDS[file_id]
+        txt = Text("(This is probably a conversation with ", style='grey')
+        txt.append(counterparty_guess, style=f"{COUNTERPARTY_COLORS.get(counterparty_guess, DEFAULT)}")
+        console.print(txt.append(')\n'), style='dim')
+        convos_labeled += 1
+
     file_url = f"{COURIER_NEWSROOM_ARCHIVE}&page=1&q={file_arg.name}&p=1"
     console.print(f"[link={file_url}]View File in Courier Newsroom Archive[/link]")
-
-    if file_id:
-        counterparty = KNOWN_COUNTERPARTY_FILE_IDS.get(file_id, UNKNOWN)
-
-        if counterparty != UNKNOWN:
-            hint_txt = Text(f"Found confirmed counterparty ", style='grey')
-            hint_txt.append(counterparty, style=COUNTERPARTY_COLORS.get(counterparty, DEFAULT))
-            console.print(hint_txt.append(f" for file ID {file_id}...\n"))
-        elif file_id in GUESSED_COUNTERPARTY_FILE_IDS:
-            counterparty_guess = GUESSED_COUNTERPARTY_FILE_IDS[file_id]
-            txt = Text("(This is probably a conversation with ", style='grey')
-            txt.append(counterparty_guess, style=f"{COUNTERPARTY_COLORS.get(counterparty_guess, DEFAULT)}")
-            console.print(txt.append(')\n'), style='dim')
-
-    if counterparty != UNKNOWN or counterparty_guess is not None:
-        convos_labeled += 1
 
     for i, match in enumerate(MSG_REGEX.finditer(file_text)):
         sender = sender_str = match.group(1).strip()
@@ -225,7 +222,7 @@ for k, v in sorted(sender_counts.items(), key=lambda item: item[1], reverse=True
     counts_table.add_row(Text(k, COUNTERPARTY_COLORS.get(k, 'grey23 bold')), str(v))
 
 console.print(counts_table)
-console.print(f"\nProcessed {files_processed} log files with {msgs_processed} text messages ({convos_labeled} deanonymized conversations)")
+console.print(f"\nProcessed {files_processed} log files with {msgs_processed} text messages ({convos_labeled} conversations deanonymized)")
 console.print(f"(Last deploy found 77 files with 4668 messages)\n", style='dim')
 
 # Email sender counts
