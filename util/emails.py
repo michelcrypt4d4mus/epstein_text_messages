@@ -7,7 +7,7 @@ from .env import deep_debug, is_debug
 DATE_REGEX = re.compile(r'^Date:\s*(.*)\n')
 EMAIL_REGEX = re.compile(r'From: (.*)')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
-BAD_EMAILER_REGEX = re.compile('^ok|((sent|attachments|subject|importance).*|.*(11111111111|january|201\d|saved by|talk in|it was a|what do|cc:|call me).*)$')
+BAD_EMAILER_REGEX = re.compile('^>|ok|((sent|attachments|subject|importance).*|.*(11111111111|january|201\d|saved by|talk in|it was a|what do|cc:|call me).*)$')
 EPSTEIN_EMAIL_REGEX = re.compile(r'jee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE)
 GHISLAINE_EMAIL_REGEX = re.compile(r'g ?max(well)?', re.IGNORECASE)
 EHUD_BARAK_EMAIL_REGEX = re.compile(r'(ehud|h)\s*barak', re.IGNORECASE)
