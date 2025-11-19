@@ -318,6 +318,8 @@ def get_imessage_log_files() -> list[Path]:
                     emailer = 'Steve Bannon'
                 elif LARRY_SUMMERS_EMAIL_REGEX.search(emailer):
                     emailer = 'Larry Summers'
+                elif 'paul krassner' in emailer.lower():
+                    emailer = 'Paul Krassner'
 
                 if is_debug:
                     console.print(f"Handling email from '{emailer}'...")
