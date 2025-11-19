@@ -393,7 +393,7 @@ for file_arg in get_imessage_log_files():
                 console.print(hint_txt.append(f" for file ID {file_id}...\n"))
             elif file_id in GUESSED_COUNTERPARTY_FILE_IDS:
                 counterparty_guess = GUESSED_COUNTERPARTY_FILE_IDS[file_id]
-                txt = Text("(This might be a conversation with ", style='grey')
+                txt = Text("(This is probably a conversation with ", style='grey')
                 txt.append(counterparty_guess, style=f"{COUNTERPARTY_COLORS.get(counterparty_guess, DEFAULT)}")
                 console.print(txt.append(' according to research)\n'))
 
