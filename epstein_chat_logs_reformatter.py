@@ -34,6 +34,7 @@ TEXTER_MAPPING = {
     '+13109906526': BANNON,
 }
 
+search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&page=1&q={txt}&p=1"
 sender_counts = defaultdict(int)
 emailer_counts = defaultdict(int)
 redacted_emails = {}
@@ -142,8 +143,7 @@ for file_arg in get_imessage_log_files():
         console.print(txt.append(')'), style='dim')
         convos_labeled += 1
 
-    file_url = f"{COURIER_NEWSROOM_ARCHIVE}&page=1&q={file_arg.name}&p=1"
-    console.print(f"[link={file_url}]View File in Courier Newsroom Archive[/link]\n", style='dim')
+    console.print(f"[link={search_archive_url(file_arg.name)}]View File in Courier Newsroom Archive[/link]\n", style='dim')
 
     for i, match in enumerate(MSG_REGEX.finditer(file_text)):
         sender = sender_str = match.group(1).strip()
@@ -214,7 +214,7 @@ counts_table.add_column("From", style="steel_blue bold", justify="left", width=4
 counts_table.add_column("Email Count", justify="center")
 
 for k, v in sorted(emailer_counts.items(), key=lambda item: item[1], reverse=True):
-    counts_table.add_row(Text(k), str(v))
+    counts_table.add_row(f"[link={search_archive_url(k)}]{k}[/link]", str(v))
 
 console.print(counts_table)
 console.print(f"Scanned {num_potential_emails} potential emails, found {sum([i for i in emailer_counts.values()])} senders.")
