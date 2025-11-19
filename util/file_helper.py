@@ -1,4 +1,16 @@
+import re
 from pathlib import Path
+
+FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
+
+
+def extract_file_id(filename) -> str:
+    file_match = FILE_ID_REGEX.match(str(filename))
+
+    if file_match:
+        return file_match.group(1)
+    else:
+        raise RuntimeError(f"Failed to extract file ID from {filename}")
 
 
 def load_file(file_path):
