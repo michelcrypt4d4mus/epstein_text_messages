@@ -175,10 +175,10 @@ if deep_debug:
     console.line(2)
 
 console.print(Panel(Text(
-    "Oversight Committee Releases Additional Epstein Estate Documents"
+    "Reformatted Text Message From The Epstein Estate Documents - Seventh Production Collection"
+    "\n\nOversight Committee Releases Additional Epstein Estate Documents"
     "\nhttps://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/"
-    "\nRaw Data Archive: https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_"
-    "\n\nEpstein Estate Documents - Seventh Production",
+    "\nRaw Data Archive: https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_",
     justify='center',
     style='bold reverse'
 )))
