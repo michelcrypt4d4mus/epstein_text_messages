@@ -313,15 +313,13 @@ def get_imessage_log_files() -> list[Path]:
         elif file_text[0] == '{':  # Check for JSON
             move_json_file(file_arg)
         else:
+            emailer = None
+
             if DETECT_EMAIL_REGEX.match(file_text):  # Handle emails
                 emailer_counts['TOTAL'] += 1
 
                 try:
-                    emailer = extract_email_sender(file_text)
-
-                    if not emailer and is_debug:
-                        console.print(f"Failed to find an email pattern match in '{file_arg.name}'", style='red')
-
+                    emailer = extract_email_sender(file_text) or UNKNOWN
                     emailer = emailer or UNKNOWN
                     emailer_counts[emailer.lower()] += 1
 
@@ -335,6 +333,10 @@ def get_imessage_log_files() -> list[Path]:
 
             if is_debug:
                 console.print(f"Questionable file '{file_arg.name}' with {len(file_lines)} lines, top lines:")
+
+                if emailer:
+                    console.print(f"Failed to find valid email (got '{emailer}')", style='red')
+
                 print_top_lines(file_text)
 
             continue
