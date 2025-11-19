@@ -214,5 +214,5 @@ def print_header():
     console.print(Align.center("[link=https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_]Google Drive Raw Documents[/link]"))
     console.line(2)
     console.print(Align.center("Conversations are sorted chronologically based on timestamp of first message."), style='bold dark_green')
-    console.print(Align.center(f"If you think there's an attribution error or can deanonymize or confirm an {UNKNOWN} or (?) individual contact @cryptadamist."), style='dim')
+    console.print(Align.center(f"If you think there's an attribution error or can deanonymize an {UNKNOWN} contact @cryptadamist."), style='dim')
     console.line(2)
