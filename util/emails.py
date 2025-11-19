@@ -16,13 +16,12 @@ EMAILERS = [
     'Al Seckel',
     'Daniel Sabba',
     'Glenn Dubin',
-    'Lawrence Krauss',
+    'Kathleen Ruderman',
     'Lesley Groff',
     'Michael Wolff',
     'Peggy Siegal',
     'Richard Kahn',
     'Robert Kuhn',
-    'Paul Krassner',
     'Steven Victor MD',
     'Weingarten, Reid',
 ]
@@ -31,15 +30,18 @@ EMAILER_REGEXES = {
     'Amanda Ens': re.compile(r'ens, amand', re.IGNORECASE),
     'Barry J. Cohen': re.compile(r'barry (j.? )?cohen', re.IGNORECASE),
     'Boris Nikolic': re.compile(r'boris nikoli', re.IGNORECASE),
+    'Dangene and Jennie Enterprise': re.compile(r'Dangene and Jennie Enterpris', re.IGNORECASE),
     'Darren Indke': re.compile(r'^darren$|darren [il]ndyke', re.IGNORECASE),
     'Ehud Barak': re.compile(r'(ehud|h)\s*barak', re.IGNORECASE),
     'Ghislaine Maxwell': re.compile(r'g ?max(well)?', re.IGNORECASE),
+    'Google Alerts': re.compile(r'google\s?alerts', re.IGNORECASE),
     'Jeffrey Epstein': re.compile(r'jee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|joichi|^joi$', re.IGNORECASE),
     'Kathy Ruemmler': re.compile(r'Kathy Ruemmle', re.IGNORECASE),
     'Ken Starr': re.compile('starr, ken', re.IGNORECASE),
     'Landon Thomas Jr.': re.compile('landon thomas jr|thomas jr.?, landon', re.IGNORECASE),
     'Larry Summers': re.compile(r'La(wrence|rry).*Summer|^LHS?$', re.IGNORECASE),
+    'Lawrence Krauss': re.compile(r'Lawrence Kraus', re.IGNORECASE),
     'Martin Weinberg': re.compile(r'martin (g.* )weinberg', re.IGNORECASE),
     'Nicholas Ribis': re.compile(r'Nicholas Rib', re.IGNORECASE),
     'Paul Krassner': re.compile(r'Pa\s+ul Krassner', re.IGNORECASE),
@@ -47,6 +49,9 @@ EMAILER_REGEXES = {
 }
 
 for emailer in EMAILERS:
+    if emailer in EMAILER_REGEXES:
+        raise RuntimeError(f"Can't overwrite emailer regex for '{emailer}'")
+
     EMAILER_REGEXES[emailer] = re.compile(emailer, re.IGNORECASE)
 
 EPSTEIN_SIGNATURE = """
