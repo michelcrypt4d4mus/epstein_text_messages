@@ -307,6 +307,8 @@ def get_imessage_log_files() -> list[Path]:
                     emailer = 'Jeffrey Epstein'
                 elif GHISLAINE_EMAIL_REGEX.search(emailer):
                     emailer = 'Ghislaine Maxwell'
+                elif emailer == 'ji@media.mitedu':
+                    emailer = 'Joi Ito'
 
                 if is_debug:
                     console.print(f"Handling email from '{emailer}'...")
