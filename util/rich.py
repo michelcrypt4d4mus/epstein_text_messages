@@ -1,4 +1,5 @@
 import csv
+import json
 from io import StringIO
 
 from rich.align import Align
@@ -8,6 +9,7 @@ from rich.text import Text
 from rich.console import Console
 from rich.theme import Theme
 
+from .env import deep_debug
 from .file_helper import extract_file_id
 
 COURIER_NEWSROOM_ARCHIVE = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
@@ -148,7 +150,6 @@ body {{
 </html>
 """
 
-
 for counterparty in COUNTERPARTY_COLORS:
     COUNTERPARTY_COLORS[counterparty] = f"{COUNTERPARTY_COLORS[counterparty]} bold"
 
@@ -163,9 +164,18 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
     GUESSED_COUNTERPARTY_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
 
 console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS), width=OUTPUT_WIDTH)
+console.record = True
+
+if deep_debug:
+    console.print('KNOWN_COUNTERPARTY_FILE_IDS\n--------------')
+    console.print(json.dumps(KNOWN_COUNTERPARTY_FILE_IDS))
+    console.print('\n\n\nGUESSED_COUNTERPARTY_FILE_IDS\n--------------')
+    console.print_json(json.dumps(GUESSED_COUNTERPARTY_FILE_IDS))
+    console.line(2)
 
 
 def print_header():
+    console.line()
     console.print(Panel(Text("Epstein Estate Documents - Seventh Production Collection Reformatted Text Messages", justify='center', style='bold reverse')))
     console.line()
     console.print(Align.center("[link=https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great]I Made Epstein's Text Messages Great Again (And You Should Read Them)[/link]"))
