@@ -48,12 +48,6 @@ EMAILER_REGEXES = {
     'Steve Bannon': re.compile(r'steve bannon', re.IGNORECASE),
 }
 
-for emailer in EMAILERS:
-    if emailer in EMAILER_REGEXES:
-        raise RuntimeError(f"Can't overwrite emailer regex for '{emailer}'")
-
-    EMAILER_REGEXES[emailer] = re.compile(emailer, re.IGNORECASE)
-
 EPSTEIN_SIGNATURE = """
 please note
 The information contained in this communication is
@@ -69,6 +63,13 @@ return e-mail or by e-mail to jeevacation@gmail.com, and
 destroy this communication and all copies thereof,
 including all attachments. copyright -all rights reserved
 """.strip()
+
+
+for emailer in EMAILERS:
+    if emailer in EMAILER_REGEXES:
+        raise RuntimeError(f"Can't overwrite emailer regex for '{emailer}'")
+
+    EMAILER_REGEXES[emailer] = re.compile(emailer, re.IGNORECASE)
 
 valid_emailer = lambda emailer: not BAD_EMAILER_REGEX.match(emailer)
 
