@@ -275,6 +275,7 @@ GHISLAINE_EMAIL_REGEX = re.compile(r'g ?max(well)?', re.IGNORECASE)
 EHUD_BARAK_EMAIL_REGEX = re.compile(r'(ehud|h)\s*barak', re.IGNORECASE)
 BANNON_EMAIL_REGEX = re.compile(r'steve bannon', re.IGNORECASE)
 LARRY_SUMMERS_EMAIL_REGEX = re.compile(r'La(wrence|rry).*Summers', re.IGNORECASE)
+DARREN_INDKE = re.compile(r'darren [il]ndyke', re.IGNORECASE)
 DATE_REGEX = re.compile(r'^Date:\s*(.*)\n')
 
 
@@ -326,6 +327,8 @@ def tally_email(file_text):
         emailer = 'Al Seckel'
     elif 'michael wolff' in emailer.lower():
         emailer = 'Michael Wolff'
+    elif DARREN_INDKE.search(emailer):
+        emailer = 'Darren Indke'
 
     if is_debug:
         console.print(f"Handling email from '{emailer}'...")
