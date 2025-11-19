@@ -32,11 +32,6 @@ MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
 DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
 
-
-console.record = True
-console.line()
-print_header()
-
 sender_counts = defaultdict(int)
 emailer_counts = defaultdict(int)
 redacted_emails = {}
@@ -44,12 +39,7 @@ convos_labeled = 0
 files_processed = 0
 msgs_processed = 0
 
-if deep_debug:
-    console.print('KNOWN_COUNTERPARTY_FILE_IDS\n--------------')
-    console.print(json.dumps(KNOWN_COUNTERPARTY_FILE_IDS))
-    console.print('\n\n\nGUESSED_COUNTERPARTY_FILE_IDS\n--------------')
-    console.print_json(json.dumps(GUESSED_COUNTERPARTY_FILE_IDS))
-    console.line(2)
+print_header()
 
 
 def print_top_lines(file_text, n = 10, max_chars = 300, in_panel = False):
