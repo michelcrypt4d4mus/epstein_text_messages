@@ -170,14 +170,7 @@ for file_arg in get_imessage_log_files():
         msg_lines = msg.split('\n')
 
         # If the Sender: is redacted we need to fill it in from our configuration
-        if len(sender) > 0:
-            if sender in TEXTER_MAPPING:
-                sender = sender_str = TEXTER_MAPPING[sender]
-            elif PHONE_NUMBER_REGEX.match(sender):
-                sender_style = PHONE_NUMBER
-            elif re.match('[ME]+', sender):
-                sender = MELANIE_WALKER
-        else:
+        if len(sender) == 0:
             if counterparty != UNKNOWN:
                 sender = sender_str = counterparty
             elif counterparty_guess is not None:
@@ -185,6 +178,13 @@ for file_arg in get_imessage_log_files():
                 sender_str = f"{counterparty_guess} (?)"
             else:
                 sender = sender_str = UNKNOWN
+        else:
+            if sender in TEXTER_MAPPING:
+                sender = sender_str = TEXTER_MAPPING[sender]
+            elif PHONE_NUMBER_REGEX.match(sender):
+                sender_style = PHONE_NUMBER
+            elif re.match('[ME]+', sender):
+                sender = MELANIE_WALKER
 
         # Fix multiline links
         if msg.startswith('http'):
