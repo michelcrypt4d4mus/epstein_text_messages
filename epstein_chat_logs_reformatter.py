@@ -32,6 +32,12 @@ MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
 DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
 
+TEXTER_MAPPING = {
+    'e:jeeitunes@gmail.com': EPSTEIN,
+    '+19174393646': SCARAMUCCI,
+    '+13109906526': BANNON,
+}
+
 sender_counts = defaultdict(int)
 emailer_counts = defaultdict(int)
 redacted_emails = {}
@@ -165,12 +171,8 @@ for file_arg in get_imessage_log_files():
 
         # If the Sender: is redacted we need to fill it in from our configuration
         if len(sender) > 0:
-            if sender == 'e:jeeitunes@gmail.com':
-                sender = sender_str = EPSTEIN
-            elif sender == '+19174393646':
-                sender = sender_str = SCARAMUCCI
-            elif sender == '+13109906526':
-                sender = sender_str = BANNON
+            if sender in TEXTER_MAPPING:
+                sender = sender_str = TEXTER_MAPPING[sender]
             elif PHONE_NUMBER_REGEX.match(sender):
                 sender_style = PHONE_NUMBER
             elif re.match('[ME]+', sender):
