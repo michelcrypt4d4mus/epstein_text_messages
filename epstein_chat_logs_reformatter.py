@@ -144,7 +144,7 @@ for file_arg in get_imessage_log_files(files):
         console.print(txt.append(')'), style='dim')
         convos_labeled += 1
 
-    console.print(f"[link={search_archive_url(file_arg.name)}]View File in Courier Newsroom Archive[/link]\n", style='dim')
+    console.print(f"[link={search_archive_url(file_arg.name)}]View File in Courier Newsroom Archive[/link]\n", style='cornflower_blue dim')
 
     for i, match in enumerate(MSG_REGEX.finditer(file_text)):
         sender = sender_str = match.group(1).strip()
