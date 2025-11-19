@@ -7,13 +7,13 @@ from .env import deep_debug, is_debug
 DATE_REGEX = re.compile(r'^Date:\s*(.*)\n')
 EMAIL_REGEX = re.compile(r'From: (.*)')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
-BAD_EMAILER_REGEX = re.compile('^>|ok|((sent|attachments|subject|importance).*|.*(11111111111|january|201\d|saved by|talk in|it was a|what do|cc:|call me).*)$')
+BAD_EMAILER_REGEX = re.compile('^>|ok|((sent|attachments|subject|importance).*|.*(11111111111|january|201\d|saved by|talk in|it was a|what do|cc:|call (back|me)).*)$')
 EPSTEIN_EMAIL_REGEX = re.compile(r'jee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE)
 GHISLAINE_EMAIL_REGEX = re.compile(r'g ?max(well)?', re.IGNORECASE)
 EHUD_BARAK_EMAIL_REGEX = re.compile(r'(ehud|h)\s*barak', re.IGNORECASE)
 BANNON_EMAIL_REGEX = re.compile(r'steve bannon', re.IGNORECASE)
 LARRY_SUMMERS_EMAIL_REGEX = re.compile(r'La(wrence|rry).*Summer|^LHS?$', re.IGNORECASE)
-DARREN_INDKE = re.compile(r'darren [il]ndyke', re.IGNORECASE)
+DARREN_INDKE = re.compile(r'^darren$|darren [il]ndyke', re.IGNORECASE)
 
 BROKEN_EMAIL_REGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(CC:\s*\n)?(Subject:\s*\n)?(To:\s*\n)?(Importance:\s*\n)?(Attachments:\s*\n)?([\w ]{2,}.*)\n')
 NUM_CAPTURES_IN_BROKEN_EMAIL_REGEX = 6
