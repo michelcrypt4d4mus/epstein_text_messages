@@ -162,7 +162,6 @@ for file_arg in get_imessage_log_files():
         timestamp = Text(f"[{match.group(2).strip()}] ", style='dim')
         msg = match.group(4).strip()
         msg_lines = msg.split('\n')
-        msgs_processed += 1
 
         # If the Sender: is redacted we need to fill it in from our configuration
         if len(sender) > 0:
@@ -205,6 +204,7 @@ for file_arg in get_imessage_log_files():
         sender_counts[UNKNOWN if re.match('[-_1]+|[4Ide]', sender) else sender] += 1
         sender_txt = Text(sender_str, style=sender_style or COUNTERPARTY_COLORS.get(sender, DEFAULT))
         console.print(Text('').append(timestamp).append(sender_txt).append(': ', style='dim').append(msg))
+        msgs_processed += 1
 
     console.line(2)
 
