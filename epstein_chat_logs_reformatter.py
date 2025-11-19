@@ -1,18 +1,16 @@
 #!/usr/bin/env python
 """
-Reformat Epstein text message file form for readability. Requires python.
+Reformat Epstein text message files for readability and count email senders.
 For use with iMessage log files from https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_
-Can handle being called on multiple filenames and/or wildcards.
 
 Install: 'pip install rich'
-    Run: 'python epstein_chat_logs_reformatter.py [TEXT_MESSAGE_FILENAMES]'
+    Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT/archive ./epstein_chat_logs_reformatter.py'
 """
 import csv
 import json
 import re
 from collections import defaultdict
 from datetime import datetime
-from io import StringIO
 from os import environ
 from pathlib import Path
 
@@ -26,10 +24,9 @@ from rich.text import Text
 from rich.theme import Theme
 load_dotenv()
 
-from util.emails import BAD_EMAILER_REGEX, DETECT_EMAIL_REGEX, extract_email_sender
-from util.env import deep_debug, include_redacted_emails, is_debug
-from util.file_helper import load_file, move_json_file
-
+from util.emails import BAD_EMAILER_REGEX, DETECT_EMAIL_REGEX, extract_email_sender, replace_signature
+from util.env import AI_COUNTERPARTY_DETERMINATION_TSV, deep_debug, include_redacted_emails, is_debug
+from util.file_helper import extract_file_id, load_file, move_json_file
 
 CONSOLE_HTML_FORMAT = """\
 <!DOCTYPE html>
@@ -38,7 +35,6 @@ CONSOLE_HTML_FORMAT = """\
 <meta charset="UTF-8">
 <style>
 {stylesheet}
-
 body {{
     color: {foreground};
     background-color: {background};
@@ -55,40 +51,10 @@ body {{
 </html>
 """
 
-#  of who is the counterparty in each file
-AI_COUNTERPARTY_DETERMINATION_TSV = StringIO("""
-filename	counterparty	source
-HOUSE_OVERSIGHT_025400.txt	Steve Bannon (likely)	Trump NYT article criticism; Hannity media strategy
-HOUSE_OVERSIGHT_025408.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_025452.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_025479.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_025707.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_025734.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027260.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027281.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027346.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027365.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027374.txt	Steve Bannon	China strategy and geopolitics
-HOUSE_OVERSIGHT_027406.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027440.txt	Michael Wolff	Trump book/journalism project
-HOUSE_OVERSIGHT_027445.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027455.txt	Steve Bannon (likely)	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027460.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027515.txt	Personal contact	Personal/social plans
-HOUSE_OVERSIGHT_027536.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027655.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027707.txt	Steve Bannon	Italian politics; Trump discussions
-HOUSE_OVERSIGHT_027722.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027735.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027794.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_029744.txt	Steve Bannon (likely)	Trump and New York Times coverage
-HOUSE_OVERSIGHT_031045.txt	Steve Bannon (likely)	Trump and New York Times coverage""".strip())
-
 OUTPUT_DIR = Path('docs')
 OUTPUT_GH_PAGES_HTML = OUTPUT_DIR.joinpath('index.html')
 OUTPUT_WIDTH = 120
 
-FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
 DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
@@ -179,16 +145,6 @@ GUESSED_COUNTERPARTY_FILE_IDS = {
 for counterparty in COUNTERPARTY_COLORS:
     COUNTERPARTY_COLORS[counterparty] = f"{COUNTERPARTY_COLORS[counterparty]} bold"
 
-
-def extract_file_id(filename) -> str:
-    file_match = FILE_ID_REGEX.match(str(filename))
-
-    if file_match:
-        return file_match.group(1)
-    else:
-        raise RuntimeError(f"Failed to extract file ID from {filename}")
-
-
 for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
     file_id = extract_file_id(row['filename'].strip())
     counterparty = row['counterparty'].strip()
@@ -199,6 +155,10 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
 
     GUESSED_COUNTERPARTY_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
 
+# Start output
+console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS), width=OUTPUT_WIDTH)
+console.record = True
+console.line()
 
 sender_counts = defaultdict(int)
 emailer_counts = defaultdict(int)
@@ -207,18 +167,22 @@ convos_labeled = 0
 files_processed = 0
 msgs_processed = 0
 
-# Start output
-console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS), width=OUTPUT_WIDTH)
-console.record = True
-console.line()
+if deep_debug:
+    console.print('KNOWN_COUNTERPARTY_FILE_IDS\n--------------')
+    console.print(json.dumps(KNOWN_COUNTERPARTY_FILE_IDS))
+    console.print('\n\n\nGUESSED_COUNTERPARTY_FILE_IDS\n--------------')
+    console.print_json(json.dumps(GUESSED_COUNTERPARTY_FILE_IDS))
+    console.line(2)
 
 console.print(Panel(Text(
     "Oversight Committee Releases Additional Epstein Estate Documents"
     "\nhttps://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/"
+    "\nRaw Data Archive: https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_"
     "\n\nEpstein Estate Documents - Seventh Production",
     justify='center',
     style='bold reverse'
 )))
+console.print(Align.center("[link=https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_]Google Drive Raw Documents[/link]"))
 
 console.line()
 console.print(Align.center("[link=https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great]I Made Epstein's Text Messages Great Again (And You Should Read Them)[/link]"))
@@ -256,18 +220,11 @@ console.print(Align.center(f"If you think there's an attribution error or can de
 console.line(2)
 
 
-def print_top_lines(file_text, n = 10, max_chars = 250, in_panel = False):
+def print_top_lines(file_text, n = 10, max_chars = 300, in_panel = False):
+    "Print first n lines of a file."
     top_text = escape('\n'.join(file_text.split("\n")[0:n])[0:max_chars])
     output = Panel(top_text, expand=False) if in_panel else top_text + '\n'
     console.print(output, style='dim')
-
-
-if deep_debug:
-    console.print('KNOWN_COUNTERPARTY_FILE_IDS\n--------------')
-    console.print(json.dumps(KNOWN_COUNTERPARTY_FILE_IDS))
-    console.print('\n\n\nGUESSED_COUNTERPARTY_FILE_IDS\n--------------')
-    console.print_json(json.dumps(GUESSED_COUNTERPARTY_FILE_IDS))
-    console.line(2)
 
 
 def first_timestamp_in_file(file_arg: Path):
@@ -306,6 +263,8 @@ def get_imessage_log_files() -> list[Path]:
         if len(file_text) == 0:
             if deep_debug:
                 console.print(f"   -> Skipping empty file...", style='dim')
+
+            continue
         elif MSG_REGEX.search(file_text):
             if deep_debug:
                 console.print(f"    -> Found iMessage log file", style='dim')
@@ -388,9 +347,9 @@ for file_arg in get_imessage_log_files():
             if sender == 'e:jeeitunes@gmail.com':
                 sender = sender_str = EPSTEIN
             elif sender == '+19174393646':
-                sender = SCARAMUCCI
+                sender = sender_str = SCARAMUCCI
             elif sender == '+13109906526':
-                sender = BANNON
+                sender = sender_str = BANNON
             elif PHONE_NUMBER_REGEX.match(sender):
                 sender_style = PHONE_NUMBER
             elif re.match('[ME]+', sender):
@@ -464,7 +423,7 @@ if include_redacted_emails:
 
     for filename, contents in redacted_emails.items():
         console.print(Panel(filename, expand=False))
-        console.print(escape(contents), '\n\n', style='dim')
+        console.print(escape(replace_signature(contents)), '\n\n', style='dim')
 
 
 if not is_debug:
