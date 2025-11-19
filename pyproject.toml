@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.11"
 rich = "^14.2.0"
 python-dotenv = "^1.2.1"
+bpython = "^0.26"
 
 
 [build-system]
