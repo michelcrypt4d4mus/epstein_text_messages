@@ -209,11 +209,11 @@ console.print(f"(Last deploy found 77 files with 4668 messages)\n", style='dim')
 
 # Email sender counts
 console.line(2)
-console.print(Panel(Text("Email Analysis", justify='center', style='bold'), padding=(0,25), expand=False), style='reverse')
+console.print(Panel(Text("Email Analysis", justify='center', style='bold'), padding=(0, 35), expand=False), style='reverse')
 console.line()
 num_potential_emails = emailer_counts.pop(TOTAL)
 counts_table = Table(title="Email Counts By Sender", show_header=True, header_style="bold")
-counts_table.add_column("From", justify="left", width=40)
+counts_table.add_column("From", justify="left")#, width=40)
 counts_table.add_column("Email Count", justify="center")
 
 for k, v in sorted(emailer_counts.items(), key=lambda item: item[1], reverse=True):
