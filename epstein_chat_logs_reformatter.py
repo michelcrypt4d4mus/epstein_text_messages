@@ -25,6 +25,31 @@ from rich.text import Text
 from rich.theme import Theme
 load_dotenv()
 
+
+CONSOLE_HTML_FORMAT = """\
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+{stylesheet}
+
+body {{
+    color: {foreground};
+    background-color: {background};
+}}
+</style>
+</head>
+<body>
+    <pre style="font-family: Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace; white-space: pre-wrap; overflow-wrap: break-word;">
+        <code style="font-family: inherit; white-space: pre-wrap; overflow-wrap: break-word;">
+            {code}
+        </code>
+    </pre>
+</body>
+</html>
+"""
+
 #  of who is the counterparty in each file
 AI_COUNTERPARTY_DETERMINATION_TSV = StringIO("""
 filename	counterparty	source
@@ -54,12 +79,11 @@ HOUSE_OVERSIGHT_027794.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_029744.txt	Steve Bannon (likely)	Trump and New York Times coverage
 HOUSE_OVERSIGHT_031045.txt	Steve Bannon (likely)	Trump and New York Times coverage""".strip())
 
-OUTPUT_BASENAME = "epstein_text_msgs_7th_production_colorized_and_deanonymized"
 OUTPUT_DIR = Path('docs')
 OUTPUT_GH_PAGES_HTML = OUTPUT_DIR.joinpath('index.html')
+FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
 
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
-FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
 DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
 PHONE_NUMBER = 'phone_number'
@@ -176,8 +200,10 @@ convos_labeled = 0
 files_processed = 0
 msgs_processed = 0
 
-console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS))
+# Start output
+console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS), width=120)
 console.record = True
+console.line()
 
 console.print(Panel(Text(
     "Oversight Committee Releases Additional Epstein Estate Documents"
@@ -341,10 +367,12 @@ def get_imessage_log_files() -> list[Path]:
 
             # Handle emails
             if 'From: ' in file_lines[0] or (len(file_lines) > 2 and ('From: ' in file_lines[1] or 'From: ' in file_lines[2])) or DATE_REGEX.match(file_lines[0]):
+                emailer_counts['TOTAL'] += 1
+
                 try:
                     emailer = tally_email(file_text) or ''
 
-                    if 'Sent' in emailer:
+                    if 'Sent' in emailer and is_debug:
                         console.print('First char:', emailer[0])
                         console.print(emailer[0])
                         console.print(f"startwith Sent = {emailer.startswith('Sent')}")
@@ -393,7 +421,7 @@ for file_arg in get_imessage_log_files():
                 console.print(hint_txt.append(f" for file ID {file_id}...\n"))
             elif file_id in GUESSED_COUNTERPARTY_FILE_IDS:
                 counterparty_guess = GUESSED_COUNTERPARTY_FILE_IDS[file_id]
-                txt = Text("(This might be a conversation with ", style='grey')
+                txt = Text("(This is probably a conversation with ", style='grey')
                 txt.append(counterparty_guess, style=f"{COUNTERPARTY_COLORS.get(counterparty_guess, DEFAULT)}")
                 console.print(txt.append(' according to research)\n'))
 
@@ -470,6 +498,7 @@ console.print(f"(Last deploy found 77 files with 4668 messages)\n", style='dim')
 
 
 console.line(2)
+num_potential_emails = emailer_counts.pop('TOTAL')
 counts_table = Table(title="Email Counts By Sender", show_header=True, header_style="bold")
 counts_table.add_column("From", style="steel_blue bold", justify="left", width=40)
 counts_table.add_column("Email Count", justify="center")
@@ -477,11 +506,12 @@ counts_table.add_column("Email Count", justify="center")
 for k, v in sorted(emailer_counts.items(), key=lambda item: item[1], reverse=True):
     counts_table.add_row(Text(k), str(v))
 
-console.print(counts_table, '\n\n')
+console.print(counts_table)
+console.print(f"Scanned {num_potential_emails} potential emails, found {sum([i for i in emailer_counts.values()])} senders.")
 
 
 if not is_debug:
-    console.save_html(OUTPUT_GH_PAGES_HTML, inline_styles=True, clear=False)
+    console.save_html(OUTPUT_GH_PAGES_HTML, inline_styles=False, clear=False, code_format=CONSOLE_HTML_FORMAT)
     console.print(f"Wrote HTML to '{OUTPUT_GH_PAGES_HTML}'.")
 else:
     console.print(f"\nNot writing HTML because DEBUG=true.")
