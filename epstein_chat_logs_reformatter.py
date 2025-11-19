@@ -72,8 +72,7 @@ HOUSE_OVERSIGHT_027735.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027794.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_029744.txt	Steve Bannon (likely)	Trump and New York Times coverage
 HOUSE_OVERSIGHT_031045.txt	Steve Bannon (likely)	Trump and New York Times coverage
-HOUSE_OVERSIGHT_031054.txt	Personal contact	Personal/social plans
-""".strip())
+HOUSE_OVERSIGHT_031054.txt	Personal contact	Personal/social plans""".strip())
 
 OUTPUT_BASENAME = "epstein_text_msgs_7th_production_colorized_and_deanonymized"
 OUTPUT_DIR = Path('docs')
@@ -339,6 +338,7 @@ def tally_email(file_text):
 
 
 def get_imessage_log_files() -> list[Path]:
+    """Scan text files, count email senders, and return filtered list of iMessage log file paths."""
     docs_dir = environ['EPSTEIN_DOCS_DIR']
 
     if not docs_dir:
