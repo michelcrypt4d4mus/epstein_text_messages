@@ -97,7 +97,7 @@ def get_imessage_log_files(files: list[Path]) -> list[Path]:
                         emailer_counts[emailer.lower()] += 1
 
                     if len(emailer) >= 3 and emailer != UNKNOWN and valid_emailer(emailer):
-                        continue  # Don't print contents if we found a valid email
+                        continue  # Don't proceed to printing debug contents if we found a valid email
                     elif emailer == UNKNOWN:
                         redacted_emails[file_arg.name] = file_text
                 except Exception as e:
@@ -107,9 +107,9 @@ def get_imessage_log_files(files: list[Path]) -> list[Path]:
                     raise e
 
             if is_debug:
-                console.print(f"Questionable file '{file_arg.name}' with {len(file_lines)} lines, top lines:")
+                console.print(f"Unknown kind of file '{file_arg.name}' with {len(file_lines)} lines. First lines:")
 
-                if emailer and emailer != UNKNOWN:
+                if emailer and emailer != UNKNOWN and is_debug:
                     console.print(f"Failed to find valid email (got '{emailer}')", style='red')
 
                 print_top_lines(file_text)
@@ -149,10 +149,10 @@ for file_arg in get_imessage_log_files(files):
 
     for i, match in enumerate(MSG_REGEX.finditer(file_text)):
         sender = sender_str = match.group(1).strip()
-        sender_style = None
         timestamp = Text(f"[{match.group(2).strip()}] ", style='dim')
         msg = match.group(4).strip()
         msg_lines = msg.split('\n')
+        sender_style = None
 
         # If the Sender: is redacted we need to fill it in from our configuration
         if len(sender) == 0:
@@ -181,7 +181,7 @@ for file_arg in get_imessage_log_files(files):
 
             msg_lines = msg.split('\n')
             link_text = msg_lines.pop()
-            msg = Text('').append(link_text, style='deep_sky_blue4 underline')
+            msg = Text('').append(link_text, style=TEXT_LINK)
 
             if len(msg_lines) > 0:
                 msg = msg.append('\n' + ' '.join(msg_lines))
