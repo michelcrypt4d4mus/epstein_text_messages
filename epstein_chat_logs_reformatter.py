@@ -345,7 +345,7 @@ def get_imessage_log_files() -> list[Path]:
             file_lines = file_text.split('\n')
 
             # Handle emails
-            if 'From: ' in file_lines[0] or (len(file_lines) > 2 and 'From: ' in file_lines[2]) or DATE_REGEX.match(file_lines[0]):
+            if 'From: ' in file_lines[0] or (len(file_lines) > 2 and ('From: ' in file_lines[1] or 'From: ' in file_lines[2])) or DATE_REGEX.match(file_lines[0]):
                 try:
                     emailer = tally_email(file_text) or ''
 
