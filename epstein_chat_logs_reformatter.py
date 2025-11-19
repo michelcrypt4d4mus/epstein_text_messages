@@ -355,7 +355,7 @@ def tally_email(file_text):
                 break
 
     if is_debug:
-        console.print(f"  -> Found email from '{emailer}'...")
+        console.print(f"  -> Found email from '{emailer}'", style='dim')
 
     emailer_counts[emailer.lower()] += 1
     return emailer
@@ -405,7 +405,7 @@ def get_imessage_log_files() -> list[Path]:
                     raise e
 
             if is_debug:
-                console.print(f"Skipping file '{file_arg.name}' with {len(file_lines)} lines, top lines:")
+                console.print(f"  -> Skipping file '{file_arg.name}' with {len(file_lines)} lines, top lines:")
                 print_top_lines(file_text)
 
             continue
