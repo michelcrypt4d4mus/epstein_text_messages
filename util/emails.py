@@ -1,6 +1,6 @@
 import re
 
-from .env import deep_debug, is_debug
+from .env import deep_debug
 from .rich import JOI_ITO, console
 
 DATE_REGEX = re.compile(r'^Date:\s*(.*)\n')
