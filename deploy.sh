@@ -14,7 +14,7 @@ if [ -f "$INDEX_HTML_PATH" ]; then
 fi
 
 git checkout gh_pages
-git merge master
+git merge --no-edit master
 ./epstein_chat_logs_reformatter.py
 git commit -am"Update HTML"
 git push origin gh_pages
