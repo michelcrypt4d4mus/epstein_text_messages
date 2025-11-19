@@ -100,6 +100,17 @@ SUMMERS = 'Larry Summers'
 TERJE = 'Terje Rød-Larsen'
 UNKNOWN = '(unknown)'
 
+EMAILERS = [
+    'Al Seckel',
+    'Boris Nikolic',
+    'Darren Indke',
+    'Glenn Dubin',
+    'Lesley Groff',
+    'Michael Wolff',
+    'Richard Kahn',
+    'Paul Krassner',
+]
+
 # Color different counterparties differently
 COUNTERPARTY_COLORS = {
     ANIL: 'dark_green',
@@ -257,6 +268,19 @@ if is_debug:
     console.line(2)
 
 
+def load_file(file_path):
+    """Remove BOM and remove HOUSE OVERSIGHT lines."""
+    with open(file_path) as f:
+        file_text = f.read()
+        file_text = file_text[1:] if (len(file_text) > 0 and file_text[0] == '\ufeff') else file_text  # remove BOM
+        file_lines = [l.strip() for l in file_text.split('\n') if not l.startswith('HOUSE OVERSIGHT')]
+        return '\n'.join(file_lines)
+
+
+def print_top_lines(file_text, n = 10):
+    console.print('\n'.join(file_text.split("\n")[0:n]))
+
+
 def first_timestamp_in_file(file_arg: Path):
     if is_debug:
         console.log(f"Getting timestamp from {file_arg}")
@@ -302,7 +326,7 @@ def tally_email(file_text):
     except Exception as e:
         console.print_exception()
         console.print('\nFailed rows:')
-        console.print('\n'.join(file_text.split("\n")[0:10]))
+        print_top_lines(file_text)
         raise e
 
     if EPSTEIN_EMAIL_REGEX.search(emailer):
@@ -317,25 +341,18 @@ def tally_email(file_text):
         emailer = 'Steve Bannon'
     elif LARRY_SUMMERS_EMAIL_REGEX.search(emailer):
         emailer = 'Larry Summers'
-    elif 'paul krassner' in emailer.lower():
-        emailer = 'Paul Krassner'
     elif 'starr, ken' in emailer.lower():
         emailer = 'Ken Starr'
-    elif 'lesley groff' in emailer.lower():
-        emailer = 'Lesley Groff'
-    elif 'boris nikolic' in emailer.lower():
-        emailer = 'Boris Nikolic'
-    elif 'al seckel' in emailer.lower():
-        emailer = 'Al Seckel'
-    elif 'michael wolff' in emailer.lower():
-        emailer = 'Michael Wolff'
-    elif DARREN_INDKE.search(emailer):
-        emailer = 'Darren Indke'
-    elif 'richard kahn' in emailer.lower():
-        emailer = 'Richard Kahn'
+    elif 'boris nikoli' in emailer.lower():
+        emailer = 'Boris Nikolice'
+    else:
+        for possible_emailer in EMAILERS:
+            if possible_emailer.lower() in emailer.lower():
+                emailer = possible_emailer
+                break
 
-    # if is_debug:
-    #     console.print(f"Handling email from '{emailer}'...")
+    if is_debug:
+        console.print(f"Found email from '{emailer}'...")
 
     emailer_counts[emailer.lower()] += 1
     return emailer
@@ -356,17 +373,14 @@ def get_imessage_log_files() -> list[Path]:
         file_text = ''
 
         if is_debug:
-            console.print(f"Checking '{file_arg.name}'...", style='dim')
+            console.print(f"Scanning '{file_arg.name}'...", style='dim')
 
-        with open(file_arg) as f:
-            file_text = f.read()
-            file_text = file_text[1:] if (len(file_text) > 0 and file_text[0] == '\ufeff') else file_text  # remove BOM
+        file_text = load_file(file_arg)
+        file_lines = file_text.split('\n')
 
         if MSG_REGEX.search(file_text):
             log_files.append(file_arg)
         else:
-            file_lines = file_text.split('\n')
-
             # Handle emails
             if 'From: ' in file_lines[0] or (len(file_lines) > 2 and ('From: ' in file_lines[1] or 'From: ' in file_lines[2])) or DATE_REGEX.match(file_lines[0]):
                 emailer_counts['TOTAL'] += 1
@@ -384,7 +398,7 @@ def get_imessage_log_files() -> list[Path]:
                 except Exception as e:
                     console.print_exception()
                     console.print(f"\nError file '{file_arg.name}' with {len(file_lines)} lines, top lines:")
-                    console.print('\n'.join(file_lines[0:10]) + '\n', style='dim')
+                    print_top_lines(file_text)
                     raise e
 
             if is_debug:
@@ -394,7 +408,7 @@ def get_imessage_log_files() -> list[Path]:
                     file_arg.rename(json_subdir_path)
                 else:
                     console.print(f"Skipping file '{file_arg.name}' with {len(file_lines)} lines, top lines:")
-                    print('\n'.join(file_lines[0:10]) + '\n')
+                    print_top_lines(file_text)
 
             continue
 
@@ -403,86 +417,83 @@ def get_imessage_log_files() -> list[Path]:
 
 
 for file_arg in get_imessage_log_files():
-    with open(file_arg) as f:
-        file_basename = file_arg.name
-        file_lines = [l.strip() for l in f.read().split('\n') if not l.startswith('HOUSE OVERSIGHT')]
-        file_text = '\n'.join(file_lines)
+    file_text = load_file(file_arg)
+    file_lines = file_text.split('\n')
+    file_id = extract_file_id(file_arg.name)
+    files_processed += 1
+    counterparty = UNKNOWN
+    counterparty_guess = None
+    console.print(Panel(file_arg.name, style='reverse', expand=False))
 
-        files_processed += 1
-        console.print(Panel(file_basename, style='reverse', expand=False))
-        file_id = extract_file_id(file_basename)
-        counterparty = UNKNOWN
-        counterparty_guess = None
+    if file_id:
+        counterparty = KNOWN_COUNTERPARTY_FILE_IDS.get(file_id, UNKNOWN)
 
-        if file_id:
-            counterparty = KNOWN_COUNTERPARTY_FILE_IDS.get(file_id, UNKNOWN)
+        if counterparty != UNKNOWN:
+            hint_txt = Text(f"Found known counterparty ", style='dim')
+            hint_txt.append(counterparty, style=COUNTERPARTY_COLORS.get(counterparty, DEFAULT))
+            console.print(hint_txt.append(f" for file ID {file_id}...\n"))
+        elif file_id in GUESSED_COUNTERPARTY_FILE_IDS:
+            counterparty_guess = GUESSED_COUNTERPARTY_FILE_IDS[file_id]
+            txt = Text("(This is probably a conversation with ", style='grey')
+            txt.append(counterparty_guess, style=f"{COUNTERPARTY_COLORS.get(counterparty_guess, DEFAULT)}")
+            console.print(txt.append(' according to research)\n'))
 
+    if counterparty != UNKNOWN or counterparty_guess is not None:
+        convos_labeled += 1
+
+    for i, match in enumerate(MSG_REGEX.finditer(file_text)):
+        msgs_processed += 1
+        sender = sender_str = match.group(1).strip()
+        sender_style = None
+        timestamp = Text(f"[{match.group(2).strip()}] ", style='dim')
+        msg = match.group(4).strip()
+        msg_lines = msg.split('\n')
+
+        if len(sender) > 0:
+            if sender == 'e:jeeitunes@gmail.com':
+                sender = sender_str = EPSTEIN
+            elif sender == '+19174393646':
+                sender = SCARAMUCCI
+            elif sender == '+13109906526':
+                sender = BANNON
+            elif PHONE_NUMBER_REGEX.match(sender):
+                sender_style = PHONE_NUMBER
+            elif re.match('[ME]+', sender):
+                sender = MELANIE_WALKER
+        else:
             if counterparty != UNKNOWN:
-                hint_txt = Text(f"Found known counterparty ", style='dim')
-                hint_txt.append(counterparty, style=COUNTERPARTY_COLORS.get(counterparty, DEFAULT))
-                console.print(hint_txt.append(f" for file ID {file_id}...\n"))
-            elif file_id in GUESSED_COUNTERPARTY_FILE_IDS:
-                counterparty_guess = GUESSED_COUNTERPARTY_FILE_IDS[file_id]
-                txt = Text("(This is probably a conversation with ", style='grey')
-                txt.append(counterparty_guess, style=f"{COUNTERPARTY_COLORS.get(counterparty_guess, DEFAULT)}")
-                console.print(txt.append(' according to research)\n'))
-
-        if counterparty != UNKNOWN or counterparty_guess is not None:
-            convos_labeled += 1
-
-        for i, match in enumerate(MSG_REGEX.finditer(file_text)):
-            msgs_processed += 1
-            sender = sender_str = match.group(1).strip()
-            sender_style = None
-            timestamp = Text(f"[{match.group(2).strip()}] ", style='dim')
-            msg = match.group(4).strip()
-            msg_lines = msg.split('\n')
-
-            if len(sender) > 0:
-                if sender == 'e:jeeitunes@gmail.com':
-                    sender = sender_str = EPSTEIN
-                elif sender == '+19174393646':
-                    sender = SCARAMUCCI
-                elif sender == '+13109906526':
-                    sender = BANNON
-                elif PHONE_NUMBER_REGEX.match(sender):
-                    sender_style = PHONE_NUMBER
-                elif re.match('[ME]+', sender):
-                    sender = MELANIE_WALKER
+                sender = sender_str = counterparty
+            elif counterparty_guess is not None:
+                sender = counterparty_guess
+                sender_str = f"{counterparty_guess} (?)"
             else:
-                if counterparty != UNKNOWN:
-                    sender = sender_str = counterparty
-                elif counterparty_guess is not None:
-                    sender = counterparty_guess
-                    sender_str = f"{counterparty_guess} (?)"
+                sender = sender_str = UNKNOWN
+
+        if re.match('[-_1]+|[4Ide]', sender):
+            sender_counts[UNKNOWN] += 1
+        else:
+            sender_counts[sender] += 1
+
+        sender_txt = Text(sender_str, style=sender_style or COUNTERPARTY_COLORS.get(sender, DEFAULT))
+
+        # Fix multiline links
+        if msg.startswith('http'):
+            if len(msg_lines) > 1 and not msg_lines[0].endswith('html'):
+                if len(msg_lines) > 2 and msg_lines[1].endswith('-'):
+                    msg = msg.replace('\n', '', 2)
                 else:
-                    sender = sender_str = UNKNOWN
+                    msg = msg.replace('\n', '', 1)
 
-            if re.match('[-_1]+|[4Ide]', sender):
-                sender_counts[UNKNOWN] += 1
-            else:
-                sender_counts[sender] += 1
+            msg_lines = msg.split('\n')
+            link_text = msg_lines.pop()
+            msg = Text('').append(link_text, style='deep_sky_blue4 underline')
 
-            sender_txt = Text(sender_str, style=sender_style or COUNTERPARTY_COLORS.get(sender, DEFAULT))
+            if len(msg_lines) > 0:
+                msg = msg.append('\n' + ' '.join(msg_lines))
+        else:
+            msg = msg.replace('\n', ' ')  # remove newlines
 
-            # Fix multiline links
-            if msg.startswith('http'):
-                if len(msg_lines) > 1 and not msg_lines[0].endswith('html'):
-                    if len(msg_lines) > 2 and msg_lines[1].endswith('-'):
-                        msg = msg.replace('\n', '', 2)
-                    else:
-                        msg = msg.replace('\n', '', 1)
-
-                msg_lines = msg.split('\n')
-                link_text = msg_lines.pop()
-                msg = Text('').append(link_text, style='deep_sky_blue4 underline')
-
-                if len(msg_lines) > 0:
-                    msg = msg.append('\n' + ' '.join(msg_lines))
-            else:
-                msg = msg.replace('\n', ' ')  # remove newlines
-
-            console.print(Text('').append(timestamp).append(sender_txt).append(': ', style='dim').append(msg))
+        console.print(Text('').append(timestamp).append(sender_txt).append(': ', style='dim').append(msg))
 
     console.line(2)
 
