@@ -26,6 +26,27 @@ ARCHIVE_LINK_COLOR = 'blue3'
 PHONE_NUMBER = 'phone_number'
 TEXT_LINK = 'text_link'
 
+# Email Names
+# Names
+AL_SECKEL = 'Al Seckel'
+ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
+BARBRO_EHNBOM = 'Barbro Ehnbom'
+DARREN_INDKE = 'Darren Indke'
+EDWARD_EPSTEIN = 'Edward Epstein'
+EHUD_BARAK = 'Ehud Barak'
+GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
+JEFFREY_EPSTEIN = 'Jeffrey Epstein'
+JOHN_PAGE = 'John Page'
+JOHNNY_EL_HACHEM = 'Johnny el Hachem'
+JONATHAN_FARKAS = 'Jonathan Farkas'
+LAWRENCE_KRAUSS = 'Lawrence Krauss'
+LAWRANCE_VISOSKI = 'Lawrance Visoski'
+LEON_BLACK = 'Leon Black'
+NADIA_MARCINKO = 'Nadia Marcinko'
+STEVE_BANNON = 'Steve Bannon'
+REDACTED = '[REDACTED]'
+
+# Texting Names
 ANIL = "Anil Ambani"
 BANNON = 'Bannon'
 DEFAULT = 'default'
@@ -63,6 +84,26 @@ COUNTERPARTY_COLORS = {
     TEXT_LINK: 'deep_sky_blue4 underline',
     UNKNOWN: 'cyan',
 }
+
+PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
+    None: 'grey74',
+    STEVE_BANNON: COUNTERPARTY_COLORS[BANNON],
+    'Sean Bannon': COUNTERPARTY_COLORS[BANNON],
+    GHISLAINE_MAXWELL: 'deep_pink3',
+    AL_SECKEL: 'orange_red1',
+    EHUD_BARAK: 'chartreuse4',
+    LEON_BLACK: 'bright_red',
+    'Sultan bin Sulayem': 'green1',
+    'Deepak Chopra': 'dark_goldenrod',
+    'Darren Indke': 'purple3',
+    'Richard Kahn': 'purple4',
+}
+
+COUNTERPARTY_COLORS.update(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED)
+
+for counterparty in COUNTERPARTY_COLORS:
+    COUNTERPARTY_COLORS[counterparty] = f"{COUNTERPARTY_COLORS[counterparty]} bold"
+
 
 KNOWN_COUNTERPARTY_FILE_IDS = {
     '031042': ANIL,            # Participants: field
@@ -163,12 +204,10 @@ CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 </html>
 """
 
+
 COURIER_NEWSROOM_ARCHIVE = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
 search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&page=1&q={urllib.parse.quote(txt)}&p=1"
 archive_link = lambda file: f"[bold][{ARCHIVE_LINK_COLOR}][link={search_archive_url(file)}]{file}[/link][/{ARCHIVE_LINK_COLOR}][/bold]"
-
-for counterparty in COUNTERPARTY_COLORS:
-    COUNTERPARTY_COLORS[counterparty] = f"{COUNTERPARTY_COLORS[counterparty]} bold"
 
 for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
     file_id = extract_file_id(row['filename'].strip())
