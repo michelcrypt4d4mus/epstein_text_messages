@@ -97,7 +97,10 @@ def extract_email_sender(file_text):
     if not valid_emailer(emailer):
         return
 
-    return emailer.lower()
+    if emailer == 'Ed' and 'EDWARD JAY EPSTEIN' in file_text:
+        return 'Edward Jay Epstein'
+
+    return emailer
 
 
 def replace_signature(file_text: str) -> str:
