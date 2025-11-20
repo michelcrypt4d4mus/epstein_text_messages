@@ -111,7 +111,6 @@ def get_imessage_log_files(files: list[Path]) -> list[Path]:
 
             continue
 
-    print(f"Found {len(log_files)} iMessage logs out of {len(files)} files...")
     return sorted(log_files, key=lambda f: first_timestamp_in_file(f))   # Sort by first timestamp
 
 
@@ -205,7 +204,7 @@ console.print(f"(Last deploy found 77 files with 4668 messages)\n", style='dim')
 
 # Email sender counts
 console.line(2)
-console.print(Panel(Text("Email Analysis", justify='center', style='bold'), padding=(0, 35), expand=False), style='bold reverse')
+console.print(Panel(Text("Email Analysis", justify='center', style='bold'), expand=True), style='bold reverse')
 console.line()
 num_potential_emails = emailer_counts.pop(TOTAL)
 counts_table = Table(title="Email Counts By Sender", show_header=True, header_style="bold")
@@ -229,6 +228,6 @@ if include_redacted_emails:
 
 if not is_debug:
     console.save_html(OUTPUT_GH_PAGES_HTML, inline_styles=False, clear=False, code_format=CONSOLE_HTML_FORMAT)
-    console.print(f"Wrote HTML to '{OUTPUT_GH_PAGES_HTML}'.")
+    console.print(f"\nWrote HTML to '{OUTPUT_GH_PAGES_HTML}'.")
 else:
     console.print(f"\nNot writing HTML because DEBUG=true.")
