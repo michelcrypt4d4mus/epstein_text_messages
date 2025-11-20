@@ -139,6 +139,8 @@ for file_arg in get_imessage_log_files(files):
         console.print(txt.append(')'), style='dim')
         convos_labeled += 1
 
+    console.line()
+
     for i, match in enumerate(MSG_REGEX.finditer(file_text)):
         sender = sender_str = match.group(1).strip()
         timestamp = Text(f"[{match.group(2).strip()}] ", style='dim')
