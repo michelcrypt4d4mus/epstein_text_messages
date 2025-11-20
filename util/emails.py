@@ -1,9 +1,11 @@
 import re
+from dataclasses import dataclass, field
 from datetime import datetime
 
 from dateutil.parser import parse
 
 from .env import deep_debug, is_debug
+from .file_helper import extract_file_id
 from .rich import JOI_ITO, LARRY_SUMMERS, MAX_PREVIEW_CHARS, SOON_YI, console, logger, print_top_lines
 
 #DATE_REGEX = re.compile(r'(?:Date|Sent):\s?\s?([\w:,\s/]{6,})\n')
@@ -135,65 +137,83 @@ including all attachments. copyright -all rights reserved"""
 )
 
 
-def extract_email_sender(file_text):
-    email_match = EMAIL_REGEX.search(file_text)
-    broken_match = BROKEN_EMAIL_REGEX.search(file_text)
-    sent_at = extract_sent_at(file_text)
-    emailer = None
+@dataclass
+class Email:
+    filename: str
+    text: str
+    author: str | None = field(init=False)
+    file_id: str = field(init=False)
+    length: int = field(init=False)
+    timestamp: datetime | None = field(init=False)
 
-    if broken_match:
-        emailer = broken_match.group(1)
-    elif email_match:
-        emailer = email_match.group(1)
+    def __post_init__(self):
+        self.file_id = extract_file_id(self.filename)
+        self.length = len(self.text)
+        self.author = self.extract_email_sender()
+        self.timestamp = self.extract_sent_at()
 
-    if not emailer:
-        return
+    def extract_email_sender(self) -> str | None:
+        if self.file_id in KNOWN_EMAILS:
+            return KNOWN_EMAILS[self.file_id]
 
-    emailer = emailer.strip().lstrip('"').lstrip("'").rstrip('"').rstrip("'").strip()
-    emailer = emailer.strip('_').strip('[').strip(']').strip('*').strip('<').strip('•').rstrip(',').strip()
+        email_match = EMAIL_REGEX.search(self.text)
+        broken_match = BROKEN_EMAIL_REGEX.search(self.text)
+        emailer = None
 
-    for name, regex in EMAILER_REGEXES.items():
-        if regex.search(emailer):
-            emailer = name
-            break
+        if broken_match:
+            emailer = broken_match.group(1)
+        elif email_match:
+            emailer = email_match.group(1)
 
-    if ' [' in emailer:
-        emailer = emailer.split(' [')[0]
+        if not emailer:
+            return
 
-    if not valid_emailer(emailer):
-        return
-    elif emailer == 'Ed' and 'EDWARD JAY EPSTEIN' in file_text:
-        return EDWARD_EPSTEIN
+        emailer = emailer.strip().lstrip('"').lstrip("'").rstrip('"').rstrip("'").strip()
+        emailer = emailer.strip('_').strip('[').strip(']').strip('*').strip('<').strip('•').rstrip(',').strip()
 
-    return emailer
+        for name, regex in EMAILER_REGEXES.items():
+            if regex.search(emailer):
+                emailer = name
+                break
 
+        if ' [' in emailer:
+            emailer = emailer.split(' [')[0]
 
-def cleanup_email_txt(file_text: str) -> str:
-    if not EMPTY_HEADER_REGEX.search(file_text):
-        file_text = EMAIL_HEADER_REGEX.sub(r'\1\n', file_text, 1)
+        if not valid_emailer(emailer):
+            return
+        elif emailer == 'Ed' and 'EDWARD JAY EPSTEIN' in self.text:
+            return EDWARD_EPSTEIN
 
-    file_text = REPLY_REGEX.sub(r'\n\1', file_text)
-    return EPSTEIN_SIGNATURE.sub('<...clipped epstein legal signature...>', file_text)
+        return emailer
 
+    def cleanup_email_txt(self) -> str:
+        # add newline after header if header looks valid
+        if not EMPTY_HEADER_REGEX.search(self.text):
+            prettified_text = EMAIL_HEADER_REGEX.sub(r'\1\n', self.text, 1)
+        else:
+            prettified_text = self.text
 
-def extract_sent_at(file_text: str) -> datetime | str | None:
-    searchable_lines = '\n'.join(file_text.split('\n')[0:VALID_HEADER_LINES])
-    date_match = DATE_REGEX.search(searchable_lines)
+        prettified_text = REPLY_REGEX.sub(r'\n\1', prettified_text)  # Insert newlines between quoted replies
+        return EPSTEIN_SIGNATURE.sub('<...clipped epstein legal signature...>', prettified_text)
 
-    if not date_match:
-        top_text = '\n'.join(file_text.split("\n")[0:10])[0:MAX_PREVIEW_CHARS]
-        logger.info(f"Timestamp not found in email, top lines:\n{top_text}")
-        return
+    def extract_sent_at(self) -> datetime | None:
+        searchable_lines = '\n'.join(self.text.split('\n')[0:VALID_HEADER_LINES])
+        date_match = DATE_REGEX.search(searchable_lines)
 
-    timestamp_str = date_match.group(1).strip()
-    timestamp_str = timestamp_str.replace(' (UTC)', '') if timestamp_str.endswith(' (UTC)') else timestamp_str
+        if not date_match:
+            top_text = '\n'.join(self.text.split("\n")[0:10])[0:MAX_PREVIEW_CHARS]
+            logger.info(f"Timestamp not found in email, top lines:\n{top_text}")
+            return
 
-    try:
-        timestamp = parse(timestamp_str)
-        logger.info(f'Parsed timestamp "{timestamp}" from string "{timestamp_str}"')
-        return timestamp
-    except Exception as e:
-        logger.warning(f'Failed to parse "{timestamp_str}" to timestamp!')
+        timestamp_str = date_match.group(1).strip()
+        timestamp_str = timestamp_str.replace(' (UTC)', '') if timestamp_str.endswith(' (UTC)') else timestamp_str
+
+        try:
+            timestamp = parse(timestamp_str)
+            logger.info(f'Parsed timestamp "{timestamp}" from string "{timestamp_str}"')
+            return timestamp
+        except Exception as e:
+            logger.warning(f'Failed to parse "{timestamp_str}" to timestamp!')
 
 
 valid_emailer = lambda emailer: not BAD_EMAILER_REGEX.match(emailer)
