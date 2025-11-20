@@ -284,7 +284,7 @@ class Email(Document):
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield Panel(archive_link(self.filename), expand=False)
-        info_line = Text(" Email from ", style='dim').append(self.author_txt)
+        info_line = Text(" Email from ").append(self.author_txt)
         info_line.append(f" probably sent at ").append(f"{self.timestamp or '?'}", style='spring_green3')
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
         email_panel = Panel(escape(self.cleanup_email_txt()), expand=False)
