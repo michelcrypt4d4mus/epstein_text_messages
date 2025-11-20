@@ -47,6 +47,7 @@ LAWRANCE_VISOSKI = 'Lawrance Visoski'
 LEON_BLACK = 'Leon Black'
 NADIA_MARCINKO = 'Nadia Marcinko'
 STEVE_BANNON = 'Steve Bannon'
+REDACTED = '[REDACTED]'
 
 EMAILERS = [
     AL_SECKEL,
