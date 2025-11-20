@@ -18,6 +18,7 @@ DARREN_INDKE = 'Darren Indke'
 EDWARD_EPSTEIN = 'Edward Epstein'
 JEFFREY_EPSTEIN = 'Jeffrey Epstein'
 JOHN_PAGE = 'John Page'
+JOHNNY_EL_HACHEM = 'Johnny el Hachem'
 JONATHAN_FARKAS = 'Jonathan Farkas'
 LAWRENCE_KRAUSS = 'Lawrence Krauss'
 
@@ -56,6 +57,7 @@ EMAILER_REGEXES = {
     'Google Alerts': re.compile(r'google\s?alerts', re.IGNORECASE),
     JEFFREY_EPSTEIN: re.compile(r'jee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|joichi|^joi$', re.IGNORECASE),
+    JOHNNY_EL_HACHEM: re.compile('el hachem johnny|johnny el hachem', re.IGNORECASE),
     'Kathy Ruemmler': re.compile(r'Kathy Ruemmle', re.IGNORECASE),
     'Ken Starr': re.compile('starr, ken', re.IGNORECASE),
     'Landon Thomas Jr.': re.compile('landon thomas jr|thomas jr.?, landon', re.IGNORECASE),
@@ -81,6 +83,7 @@ KNOWN_EMAILS = {
     '029692': JEFFREY_EPSTEIN,
     '031624': JEFFREY_EPSTEIN,
     '016692': JOHN_PAGE,
+    '026064': JOHNNY_EL_HACHEM,
     '031732': JONATHAN_FARKAS,
     '029196': LAWRENCE_KRAUSS,
     '028789': 'Lawrance Visoski',
