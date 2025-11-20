@@ -16,7 +16,7 @@ from .file_helper import extract_file_id, load_file, move_json_file
 from .rich import (COUNTERPARTY_COLORS, DEFAULT, GUESSED_COUNTERPARTY_FILE_IDS, KNOWN_COUNTERPARTY_FILE_IDS,
     JOI_ITO, LARRY_SUMMERS, MAX_PREVIEW_CHARS, SOON_YI, UNKNOWN, archive_link, console, logger, print_top_lines)
 
-DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|via)([^\n]{6,})\n')
+DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
 EMAIL_REGEX = re.compile(r'From: (.*)')
 EMAIL_HEADER_REGEX = re.compile(r'^(((Date|Subject):.*\n)*From:.*\n((Date|Sent|To|CC|Importance|Subject|Attachments):.*\n)+)')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
@@ -44,6 +44,7 @@ JOHNNY_EL_HACHEM = 'Johnny el Hachem'
 JONATHAN_FARKAS = 'Jonathan Farkas'
 LAWRENCE_KRAUSS = 'Lawrence Krauss'
 LAWRANCE_VISOSKI = 'Lawrance Visoski'
+LEON_BLACK = 'Leon Black'
 NADIA_MARCINKO = 'Nadia Marcinko'
 STEVE_BANNON = 'Steve Bannon'
 
