@@ -14,8 +14,6 @@ from util.rich import ARIANE_DE_ROTHSCHILD
 
 from .env import deep_debug, is_debug
 from .file_helper import extract_file_id, load_file, move_json_file
-# from .rich import (AL_SECKEL, JOHN_PAGE, JONATHAN_FARKAS, DEFAULT, COUNTERPARTY_COLORS, DEFAULT, GUESSED_COUNTERPARTY_FILE_IDS, KNOWN_COUNTERPARTY_FILE_IDS,
-#     JOI_ITO, LARRY_SUMMERS, MAX_PREVIEW_CHARS, SOON_YI, UNKNOWN, archive_link, console, logger, print_top_lines)
 from .rich import *
 
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
@@ -25,7 +23,7 @@ DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
 BAD_EMAILER_REGEX = re.compile(r'^>|ok|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|hysterical|article 1.?|momminnemummin|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Subject|Attachments):\s*\n)+')
 BROKEN_EMAIL_REGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(?:(?:CC|Importance|Subject|Attachments):\s*\n)*(?!CC|Importance|Subject|Attachments)([a-zA-Z]{2,}.*|\[triyersr@gmail.com\])\n')
-REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*wrote:|-+Original\s*Message-+)')
+REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*wrote:|-+Original\s*Message-+|Begin forwarded message:?)')
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
 VALID_HEADER_LINES = 14
 EMAIL_INDENT = 3
