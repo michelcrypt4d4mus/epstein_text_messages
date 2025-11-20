@@ -104,7 +104,7 @@ def get_imessage_log_files(files: list[Path]) -> list[Path]:
                 elif emailer and emailer != UNKNOWN:
                     console.print(f"   -> Failed to find valid email for '{file_arg.name}' (got '{emailer}')", style='red')
                 else:
-                    console.print(f"   -> Unknown kind of file '{file_arg.name}' with {len(file_lines)} lines. First lines:")
+                    console.print(f"   -> Unknown kind of file '{file_arg.name}' with {len(file_lines)} lines. First lines:", style='dim')
 
                 print_top_lines(file_text)
 
@@ -126,13 +126,13 @@ for file_arg in iMessage_log_files:
     counterparty_guess = None
 
     if counterparty != UNKNOWN:
-        hint_txt = Text(f"Found confirmed counterparty ", style='grey')
+        hint_txt = Text(f" Found confirmed counterparty ", style='grey')
         hint_txt.append(counterparty, style=COUNTERPARTY_COLORS.get(counterparty, DEFAULT))
         console.print(hint_txt.append(f" for file ID {file_id}."))
         convos_labeled += 1
     elif file_id in GUESSED_COUNTERPARTY_FILE_IDS:
         counterparty_guess = GUESSED_COUNTERPARTY_FILE_IDS[file_id]
-        txt = Text("(This is probably a conversation with ", style='grey')
+        txt = Text(" (This is probably a conversation with ", style='grey')
         txt.append(counterparty_guess, style=f"{COUNTERPARTY_COLORS.get(counterparty_guess, DEFAULT)}")
         console.print(txt.append(')'), style='dim')
         convos_labeled += 1
