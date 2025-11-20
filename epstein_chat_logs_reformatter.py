@@ -54,13 +54,6 @@ files_processed = 0
 msgs_processed = 0
 
 
-def print_top_lines(file_text, n = 10, max_chars = 300, in_panel = False):
-    "Print first n lines of a file."
-    top_text = escape('\n'.join(file_text.split("\n")[0:n])[0:max_chars])
-    output = Panel(top_text, expand=False) if in_panel else top_text + '\n'
-    console.print(output, style='dim')
-
-
 def get_imessage_log_files(files: list[Path]) -> list[Path]:
     """Scan text files, count email senders, and return filtered list of iMessage log file paths."""
     log_files = []
@@ -79,14 +72,14 @@ def get_imessage_log_files(files: list[Path]) -> list[Path]:
                 console.print(f"   -> Skipping empty file...", style='dim')
 
             continue
+        elif file_text[0] == '{':  # Check for JSON
+            move_json_file(file_arg)
         elif MSG_REGEX.search(file_text):
             if deep_debug:
                 console.print(f"    -> Found iMessage log file", style='dim')
 
             log_files.append(file_arg)
-        elif file_text[0] == '{':  # Check for JSON
-            move_json_file(file_arg)
-        else:  # Check if it's an email
+        else:
             emailer = None
 
             if DETECT_EMAIL_REGEX.match(file_text):  # Handle emails

@@ -4,6 +4,7 @@ from io import StringIO
 
 from rich.align import Align
 from rich.console import Console
+from rich.markup import escape
 from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
@@ -220,3 +221,10 @@ def print_header():
     console.print(Align.center("Conversations are sorted chronologically based on timestamp of first message."), style='bold dark_green')
     console.print(Align.center(f"If you think there's an attribution error or can deanonymize an {UNKNOWN} contact @cryptadamist."), style='dim')
     console.line(2)
+
+
+def print_top_lines(file_text, n = 10, max_chars = 300, in_panel = False):
+    "Print first n lines of a file."
+    top_text = escape('\n'.join(file_text.split("\n")[0:n])[0:max_chars])
+    output = Panel(top_text, expand=False) if in_panel else top_text + '\n'
+    console.print(output, style='dim')
