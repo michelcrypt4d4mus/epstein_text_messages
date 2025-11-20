@@ -219,7 +219,7 @@ if include_redacted_emails:
 
     for filename, contents in redacted_emails.items():
         console.print(Panel(archive_link(filename), expand=False))
-        console.print(escape(cleanup_email_txt(contents)), '\n\n', highlight=False)
+        console.print(escape(cleanup_email_txt(contents)), '\n\n')
 
 
 if not is_debug:
