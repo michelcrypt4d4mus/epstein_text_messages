@@ -230,7 +230,6 @@ if include_redacted_emails:
 
     for filename, contents in redacted_emails.items():
         console.print(Panel(f"[link={search_archive_url(filename)}]{filename}[/link]", style='reverse', expand=False))
-        console.print(archive_file_url(filename))
         console.print(escape(cleanup_email_txt(contents)), '\n\n')
 
 
