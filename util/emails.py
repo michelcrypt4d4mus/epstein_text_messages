@@ -23,6 +23,7 @@ JOHNNY_EL_HACHEM = 'Johnny el Hachem'
 JONATHAN_FARKAS = 'Jonathan Farkas'
 LAWRENCE_KRAUSS = 'Lawrence Krauss'
 LAWRANCE_VISOSKI = 'Lawrance Visoski'
+NADIA_MARCINKO = 'Nadia Marcinko'
 
 EMAILERS = [
     'Al Seckel',
@@ -80,6 +81,7 @@ EMAILER_REGEXES = {
 KNOWN_EMAILS = {
     '026064': ARIANE_DE_ROTHSCHILD,
     '026069': ARIANE_DE_ROTHSCHILD,
+    '030741': ARIANE_DE_ROTHSCHILD,
     '026625': DARREN_INDKE,
     '031120': 'Gwendolyn',        # Signature
     '029968': 'Gwendolyn',        # Signature
@@ -88,11 +90,16 @@ KNOWN_EMAILS = {
     '031624': JEFFREY_EPSTEIN,
     '016692': JOHN_PAGE,
     '031732': JONATHAN_FARKAS,
+    '029013': LARRY_SUMMERS,
     '029196': LAWRENCE_KRAUSS,
     '028789': LAWRANCE_VISOSKI,
     '027046': LAWRANCE_VISOSKI,
+    '022190': NADIA_MARCINKO,
     '029020': 'Renata Bolotova',   # Signature
+    '029003': SOON_YI,
     '029005': SOON_YI,
+    '029007': SOON_YI,
+    '029010': SOON_YI,
 }
 
 for emailer in EMAILERS:
