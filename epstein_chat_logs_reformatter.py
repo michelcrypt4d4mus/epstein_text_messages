@@ -14,6 +14,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from rich.markup import escape
 from rich.panel import Panel
+from rich.padding import Padding
 from rich.table import Table
 from rich.text import Text
 load_dotenv()
@@ -26,6 +27,7 @@ from util.rich import *
 OUTPUT_DIR = Path('docs')
 OUTPUT_GH_PAGES_HTML = OUTPUT_DIR.joinpath('index.html')
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
+EMAIL_INDENT = 3
 
 TEXTER_MAPPING = {
     'e:jeeitunes@gmail.com': EPSTEIN,
@@ -143,8 +145,10 @@ if include_redacted_emails:
 
     for email in epstein_files.redacted_emails():
         console.print(Panel(archive_link(email.filename), expand=False))
-        console.print(f"Email from {email.author or UNKNOWN} sent at '{email.timestamp or '?'}'", style='dim')
-        console.print(escape(email.cleanup_email_txt()), '\n\n')
+        email_info = f" Email from {email.author or UNKNOWN} probably sent at '{email.timestamp or '?'}'"
+        console.print(Padding(email_info, (0, 0, 0, EMAIL_INDENT)), style='dim')
+        email_panel = Panel(escape(email.cleanup_email_txt()), expand=False)
+        console.print(Padding(email_panel, (0, 0, 2, EMAIL_INDENT)))
 
 
 if not is_debug:
