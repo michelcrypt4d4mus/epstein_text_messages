@@ -123,7 +123,7 @@ for file_arg in get_imessage_log_files(files):
     file_text = load_file(file_arg)
     file_lines = file_text.split('\n')
     file_id = extract_file_id(file_arg.name)
-    console.print(Panel(archive_link(file_arg.name), style='reverse', expand=False))
+    console.print(Panel(archive_link(file_arg.name), expand=False))
     counterparty = KNOWN_COUNTERPARTY_FILE_IDS.get(file_id, UNKNOWN)
     counterparty_guess = None
 
@@ -221,7 +221,7 @@ if include_redacted_emails:
     console.print('\n\n', Panel(Text("Emails Whose Senders Were Redacted", justify='center', style='reverse')), '\n')
 
     for filename, contents in redacted_emails.items():
-        console.print(Panel(archive_link(filename), style='reverse', expand=False))
+        console.print(Panel(archive_link(filename), expand=False))
         console.print(escape(cleanup_email_txt(contents)), '\n\n')
 
 
