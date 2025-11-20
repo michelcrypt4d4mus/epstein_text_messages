@@ -1,5 +1,6 @@
 import csv
 import json
+import re
 from io import StringIO
 
 from rich.align import Align
@@ -14,6 +15,7 @@ from .env import deep_debug
 from .file_helper import extract_file_id
 
 COURIER_NEWSROOM_ARCHIVE = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
+LEADING_WHITESPACE_REGEX = re.compile(r'\A\s*', re.MULTILINE)
 OUTPUT_WIDTH = 120
 
 ARCHIVE_LINK = 'archive_link'
@@ -186,7 +188,7 @@ def print_header():
     console.line()
     console.print(Panel(Text("Epstein Estate Documents - Seventh Production Collection Reformatted Text Messages", justify='center', style='bold reverse')))
     console.line()
-    console.print(Align.center("[link=https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great]I Made Epstein's Text Messages Great Again (And You Should Read Them)[/link]"))
+    console.print(Align.center("[bold][link=https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great]I Made Epstein's Text Messages Great Again (And You Should Read Them)[/link][/bold]"))
     console.print(Align.center("https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great"))
     console.print(Align.center("[link=https://cryptadamus.substack.com/]Substack[/link]"))
     console.print(Align.center("[link=https://universeodon.com/@cryptadamist]Mastodon[/link]"))
@@ -226,6 +228,7 @@ def print_header():
 
 def print_top_lines(file_text, n = 10, max_chars = 300, in_panel = False):
     "Print first n lines of a file."
+    file_text = LEADING_WHITESPACE_REGEX.sub('', file_text)
     top_text = escape('\n'.join(file_text.split("\n")[0:n])[0:max_chars])
     output = Panel(top_text, expand=False) if in_panel else top_text + '\n'
     console.print(output, style='dim')
