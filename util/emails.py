@@ -183,6 +183,8 @@ class MessengerLog(Document):
             self.author_str = self.author + ' (?)'
             self.author_txt = Text(self.author_str, style=author_style)
             self.hint_txt = Text(" (This is probably a conversation with ", style='grey').append(self.author_txt).append(')')
+        else:
+            self.hint_txt = None
 
         # Get timestamp
         for match in MSG_REGEX.finditer(self.text):
