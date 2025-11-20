@@ -143,6 +143,7 @@ if include_redacted_emails:
 
     for email in epstein_files.redacted_emails():
         console.print(Panel(archive_link(email.filename), expand=False))
+        console.print(f"Email from {email.author or UNKNOWN} sent at '{email.timestamp or '?'}'", style='dim')
         console.print(escape(email.cleanup_email_txt()), '\n\n')
 
 
