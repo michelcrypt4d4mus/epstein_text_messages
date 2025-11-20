@@ -88,6 +88,7 @@ KNOWN_EMAILS = {
     '031120': 'Gwendolyn',        # Signature
     '029968': 'Gwendolyn',        # Signature
     '026024': 'Jean Huguen',
+    '022949': JEFFREY_EPSTEIN,
     '028770': JEFFREY_EPSTEIN,
     '029692': JEFFREY_EPSTEIN,
     '031624': JEFFREY_EPSTEIN,
