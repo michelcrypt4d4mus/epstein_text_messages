@@ -44,7 +44,7 @@ UNKNOWN_TEXTERS = [
 
 search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&page=1&q={urllib.parse.quote(txt)}&p=1"
 archive_file_link = lambda file: f"[link={search_archive_url(file)}]View File in Courier Newsroom Archive[/link]\n"
-archive_link = lambda file: f"[link={search_archive_url(file)}]{file}[/link]\n"
+archive_link = lambda file: f"[link={search_archive_url(file)}]{file}[/link]"
 sender_counts = defaultdict(int)
 emailer_counts = defaultdict(int)
 redacted_emails = {}
