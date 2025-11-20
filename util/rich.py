@@ -2,6 +2,7 @@ import csv
 import json
 import logging
 import re
+import urllib.parse
 from io import StringIO
 
 from rich.align import Align
@@ -16,7 +17,6 @@ from rich.theme import Theme
 from .env import deep_debug, is_debug
 from .file_helper import extract_file_id
 
-COURIER_NEWSROOM_ARCHIVE = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
 LEADING_WHITESPACE_REGEX = re.compile(r'\A\s*', re.MULTILINE)
 MAX_PREVIEW_CHARS = 300
 OUTPUT_WIDTH = 120
@@ -162,6 +162,10 @@ CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 </body>
 </html>
 """
+
+COURIER_NEWSROOM_ARCHIVE = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
+search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&page=1&q={urllib.parse.quote(txt)}&p=1"
+archive_link = lambda file: f"[bold][{ARCHIVE_LINK_COLOR}][link={search_archive_url(file)}]{file}[/link][/{ARCHIVE_LINK_COLOR}][/bold]"
 
 for counterparty in COUNTERPARTY_COLORS:
     COUNTERPARTY_COLORS[counterparty] = f"{COUNTERPARTY_COLORS[counterparty]} bold"

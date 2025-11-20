@@ -7,7 +7,6 @@ Install: 'pip install python-dotenv rich'
     Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT/001 ./epstein_chat_logs_reformatter.py'
 """
 import re
-import urllib.parse
 from collections import defaultdict
 from pathlib import Path
 
@@ -19,7 +18,7 @@ from rich.table import Table
 from rich.text import Text
 load_dotenv()
 
-from util.emails import MSG_REGEX, EpsteinFiles
+from util.emails import MSG_REGEX, STEVE_BANNON, EpsteinFiles
 from util.env import deep_debug, include_redacted_emails, is_debug
 from util.file_helper import get_files_in_dir
 from util.rich import *
@@ -27,7 +26,6 @@ from util.rich import *
 OUTPUT_DIR = Path('docs')
 OUTPUT_GH_PAGES_HTML = OUTPUT_DIR.joinpath('index.html')
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
-EMAIL_INDENT = 3
 
 TEXTER_MAPPING = {
     'e:jeeitunes@gmail.com': EPSTEIN,
@@ -43,14 +41,10 @@ UNKNOWN_TEXTERS = [
     '+',
 ]
 
-search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&page=1&q={urllib.parse.quote(txt)}&p=1"
-archive_link = lambda file: f"[bold][{ARCHIVE_LINK_COLOR}][link={search_archive_url(file)}]{file}[/link][/{ARCHIVE_LINK_COLOR}][/bold]"
 sender_counts = defaultdict(int)
 convos_labeled = 0
 msgs_processed = 0
 print_header()
-
-
 epstein_files = EpsteinFiles(get_files_in_dir())
 
 for log_file in epstein_files.sorted_imessage_logs():
@@ -144,11 +138,13 @@ if include_redacted_emails:
     console.print('\n\n', Panel(Text(f"{len(redacted_emails)} Emails Whose Senders Were Redacted", justify='center')), '\n', style='bold reverse')
 
     for email in redacted_emails:
-        console.print(Panel(archive_link(email.filename), expand=False))
-        email_info = f" Email from {email.author or UNKNOWN} probably sent at '{email.timestamp or '?'}'"
-        console.print(Padding(email_info, (0, 0, 0, EMAIL_INDENT)), style='dim')
-        email_panel = Panel(escape(email.cleanup_email_txt()), expand=False)
-        console.print(Padding(email_panel, (0, 0, 2, EMAIL_INDENT)))
+        console.print(email)
+
+    bannon_emails = epstein_files.emails_by(STEVE_BANNON)
+    console.print('\n\n', Panel(Text(f"Steve Bannon {len(bannon_emails)} Emails ", justify='center')), '\n', style='bold reverse')
+
+    for email in bannon_emails:
+        console.print(email)
 
 
 if not is_debug:
