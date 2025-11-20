@@ -8,6 +8,8 @@ EMAIL_REGEX = re.compile(r'From: (.*)')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
 BAD_EMAILER_REGEX = re.compile(r'^>|ok|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|article 1.?|saved by|momminnemummin|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 BROKEN_EMAIL_REGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(?:(?:CC|Importance|Subject|Attachments):\s*\n)*(?!CC|Importance|Subject|Attachments)([a-zA-Z]{2,}.*|\[triyersr@gmail.com\])\n')
+REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2},)?\s*?[A-Z][a-z]{2}\s*\d+,\s*\d{4},\s*at\s*\d+:\d+\s*(AM|PM),.*wrote:)')
+
 
 EMAILERS = [
     'Al Seckel',
@@ -104,6 +106,8 @@ def extract_email_sender(file_text):
 
 
 def replace_signature(file_text: str) -> str:
+    # file_text = REPLY_REGEX.sub(file_text, 'fooo')
+    file_text = re.sub(r'(On ([A-Z][a-z]{2},)?\s*?[A-Z][a-z]{2}\s*\d+,\s*\d{4},\s*at\s*\d+:\d+\s*(AM|PM),.*wrote:)', r'\n\1', file_text)
     return file_text.replace(EPSTEIN_SIGNATURE, '<...clipped epstein legal signature...>')
 
 
