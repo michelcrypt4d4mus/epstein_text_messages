@@ -7,7 +7,8 @@ DATE_REGEX = re.compile(r'^Date:\s*(.*)\n')
 EMAIL_REGEX = re.compile(r'From: (.*)')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
 BAD_EMAILER_REGEX = re.compile(r'^>|ok|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|article 1.?|saved by|momminnemummin|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
-BROKEN_EMAIL_REGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(?:(?:CC|Importance|Subject|Attachments):\s*\n)*(?!CC|Importance|Subject|Attachments)([a-zA-Z]{2,}.*)\n')
+BROKEN_EMAIL_REGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(?:(?:CC|Importance|Subject|Attachments):\s*\n)*(?!CC|Importance|Subject|Attachments)([a-zA-Z]{2,}.*|\[triyersr@gmail.com\])\n')
+REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2},)?\s*?[A-Z][a-z]{2}\s*\d+,\s*\d{4},?\s*at\s*\d+:\d+\s*(AM|PM),.*wrote:)')
 
 EMAILERS = [
     'Al Seckel',
@@ -52,8 +53,8 @@ for emailer in EMAILERS:
 
     EMAILER_REGEXES[emailer] = re.compile(emailer, re.IGNORECASE)
 
-EPSTEIN_SIGNATURE = """
-please note
+EPSTEIN_SIGNATURE = re.compile(
+r"""please note
 The information contained in this communication is
 confidential, may be attorney-client privileged, may
 constitute inside information, and is intended only for
@@ -62,11 +63,11 @@ JEE
 Unauthorized use, disclosure or copying of this
 communication or any part thereof is strictly prohibited
 and may be unlawful. If you have received this
-communication in error, please notify us immediately by
-return e-mail or by e-mail to jeevacation@gmail.com, and
+communication in error, please notify us immediately by(\n\d\s*)?
+return e-mail or by e-mail to jeevacation.*gmail.com, and
 destroy this communication and all copies thereof,
-including all attachments. copyright -all rights reserved
-""".strip()
+including all attachments. copyright -all rights reserved"""
+)
 
 
 def extract_email_sender(file_text):
@@ -103,8 +104,9 @@ def extract_email_sender(file_text):
     return emailer
 
 
-def replace_signature(file_text: str) -> str:
-    return file_text.replace(EPSTEIN_SIGNATURE, '<...clipped epstein legal signature...>')
+def cleanup_email_txt(file_text: str) -> str:
+    file_text = REPLY_REGEX.sub(r'\n\1', file_text)
+    return EPSTEIN_SIGNATURE.sub('<...clipped epstein legal signature...>', file_text)
 
 
 valid_emailer = lambda emailer: not BAD_EMAILER_REGEX.match(emailer)

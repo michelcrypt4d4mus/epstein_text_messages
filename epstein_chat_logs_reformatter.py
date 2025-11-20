@@ -18,7 +18,7 @@ from rich.table import Table
 from rich.text import Text
 load_dotenv()
 
-from util.emails import DETECT_EMAIL_REGEX, extract_email_sender, replace_signature
+from util.emails import DETECT_EMAIL_REGEX, extract_email_sender, cleanup_email_txt
 from util.env import deep_debug, include_redacted_emails, is_debug
 from util.file_helper import MSG_REGEX, extract_file_id, first_timestamp_in_file, get_files_in_dir, load_file, move_json_file
 from util.rich import *
@@ -43,6 +43,7 @@ UNKNOWN_TEXTERS = [
 ]
 
 search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&page=1&q={urllib.parse.quote(txt)}&p=1"
+archive_file_url = lambda file: f"[link={search_archive_url(file)}]View File in Courier Newsroom Archive[/link]\n"
 sender_counts = defaultdict(int)
 emailer_counts = defaultdict(int)
 redacted_emails = {}
@@ -144,8 +145,7 @@ for file_arg in get_imessage_log_files(files):
         console.print(txt.append(')'), style='dim')
         convos_labeled += 1
 
-    archive_link_txt = f"[link={search_archive_url(file_arg.name)}]View File in Courier Newsroom Archive[/link]\n"
-    console.print(archive_link_txt, style='deep_sky_blue4 dim')
+    console.print(archive_file_url(file_arg.name), style='deep_sky_blue4 dim')
 
     for i, match in enumerate(MSG_REGEX.finditer(file_text)):
         sender = sender_str = match.group(1).strip()
@@ -229,7 +229,8 @@ if include_redacted_emails:
 
     for filename, contents in redacted_emails.items():
         console.print(Panel(filename, expand=False))
-        console.print(escape(replace_signature(contents)), '\n\n', style='dim')
+        console.print(archive_file_url(filename))
+        console.print(escape(cleanup_email_txt(contents)), '\n\n', style='dim')
 
 
 if not is_debug:
