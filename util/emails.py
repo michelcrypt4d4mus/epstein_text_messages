@@ -59,6 +59,7 @@ EMAILER_REGEXES = {
     'Martin Weinberg': re.compile(r'martin (g.* )weinberg', re.IGNORECASE),
     'Nicholas Ribis': re.compile(r'Nicholas Rib', re.IGNORECASE),
     'Paul Krassner': re.compile(r'Pa\s?ul Krassner', re.IGNORECASE),
+    'Robert Lawrence Kuhn': re.compile(r'Robert\s*(Lawrence\s*)?Kuhn', re.IGNORECASE),
     'Scott J. Link': re.compile(r'scott j. lin', re.IGNORECASE),
     'Sean Bannon': re.compile(r'sean banno', re.IGNORECASE),
     'Stephen Hanson': re.compile(r'ste(phen|ve) hanson|Shanson900', re.IGNORECASE),
