@@ -12,7 +12,7 @@ from .file_helper import extract_file_id, load_file, move_json_file
 from .rich import COUNTERPARTY_COLORS, DEFAULT, GUESSED_COUNTERPARTY_FILE_IDS, KNOWN_COUNTERPARTY_FILE_IDS, JOI_ITO, LARRY_SUMMERS, MAX_PREVIEW_CHARS, SOON_YI, UNKNOWN, console, logger, print_top_lines
 
 #DATE_REGEX = re.compile(r'(?:Date|Sent):\s?\s?([\w:,\s/]{6,})\n')
-DATE_REGEX = re.compile(r'(?:Date|Sent): *([^\n]{6,})\n')
+DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!from)([^\n]{6,})\n')
 EMAIL_REGEX = re.compile(r'From: (.*)')
 EMAIL_HEADER_REGEX = re.compile(r'^(((Date|Subject):.*\n)*From:.*\n((Date|Sent|To|CC|Importance|Subject|Attachments):.*\n)+)')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
@@ -252,23 +252,27 @@ class Email(Document):
         return EPSTEIN_SIGNATURE.sub('<...clipped epstein legal signature...>', prettified_text)
 
     def extract_sent_at(self) -> datetime | None:
-        searchable_lines = '\n'.join(self.text.split('\n')[0:VALID_HEADER_LINES])
-        date_match = DATE_REGEX.search(searchable_lines)
+        searchable_lines = self.text.split('\n')[0:VALID_HEADER_LINES]
+        searchable_text = '\n'.join(searchable_lines)
+        date_match = DATE_REGEX.search(searchable_text)
 
         if not date_match:
+            logger.info(f"Failed to find timestamp, using fallback of parsing top {VALID_HEADER_LINES} lines...")
+
+            for line in searchable_lines:
+                timestamp = parse_timestamp(line.strip())
+
+                if timestamp:
+                    logger.info(f"Fell back to timestamp {timestamp} in line '{line}'...")
+                    return timestamp
+
             top_text = '\n'.join(self.text.split("\n")[0:10])[0:MAX_PREVIEW_CHARS]
             logger.info(f"Timestamp not found in email, top lines:\n{top_text}")
             return
 
         timestamp_str = date_match.group(1).strip()
         timestamp_str = timestamp_str.replace(' (UTC)', '') if timestamp_str.endswith(' (UTC)') else timestamp_str
-
-        try:
-            timestamp = parse(timestamp_str)
-            logger.info(f'Parsed timestamp "{timestamp}" from string "{timestamp_str}"')
-            return timestamp
-        except Exception as e:
-            logger.warning(f'Failed to parse "{timestamp_str}" to timestamp!')
+        return parse_timestamp(timestamp_str)
 
     def is_redacted(self) -> bool:
         return self.author is None
@@ -349,4 +353,14 @@ class EpsteinFiles:
         return sorted(self.iMessage_logs, key=lambda f: f.timestamp)
 
     def redacted_emails(self) -> list[Email]:
-        return [e for e in self.emails if e.is_redacted()]
+        redacted = [e for e in self.emails if e.is_redacted()]
+        return sorted(redacted, key=lambda e: (e.timestamp or parse('2000-01-01')))
+
+
+def parse_timestamp(timestamp_str: str) -> None | datetime:
+    try:
+        timestamp = parse(timestamp_str)
+        logger.info(f'Parsed timestamp "{timestamp}" from string "{timestamp_str}"')
+        return timestamp
+    except Exception as e:
+        logger.info(f'Failed to parse "{timestamp_str}" to timestamp!')
