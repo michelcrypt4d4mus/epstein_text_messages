@@ -61,22 +61,18 @@ def get_imessage_log_files(files: list[Path]) -> list[Path]:
         if deep_debug:
             console.print(f"\nScanning '{file_arg.name}'...", style='dim')
 
-        file_text = ''
         file_text = load_file(file_arg)
         file_lines = file_text.split('\n')
         file_id = extract_file_id(file_arg.name)
 
         if len(file_text) == 0:
-            if deep_debug:
+            if is_debug:
                 console.print(f"   -> Skipping empty file...", style='dim')
 
             continue
         elif file_text[0] == '{':  # Check for JSON
             move_json_file(file_arg)
         elif MSG_REGEX.search(file_text):
-            if deep_debug:
-                console.print(f"    -> Found iMessage log file", style='dim')
-
             log_files.append(file_arg)
         else:
             emailer = None
@@ -142,7 +138,7 @@ for file_arg in get_imessage_log_files(files):
 
     for match in MSG_REGEX.finditer(file_text):
         sender = sender_str = match.group(1).strip()
-        timestamp = Text(f"[{match.group(2).strip()}] ", style='dim')
+        timestamp = Text(f"[{match.group(2).strip()}] ", style='gray30')
         msg = match.group(4).strip()
         msg_lines = msg.split('\n')
         sender_style = None
