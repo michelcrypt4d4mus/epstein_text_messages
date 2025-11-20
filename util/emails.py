@@ -54,7 +54,7 @@ for emailer in EMAILERS:
     EMAILER_REGEXES[emailer] = re.compile(emailer, re.IGNORECASE)
 
 EPSTEIN_SIGNATURE = re.compile(
-"""please note
+r"""please note
 The information contained in this communication is
 confidential, may be attorney-client privileged, may
 constitute inside information, and is intended only for
@@ -63,7 +63,7 @@ JEE
 Unauthorized use, disclosure or copying of this
 communication or any part thereof is strictly prohibited
 and may be unlawful. If you have received this
-communication in error, please notify us immediately by
+communication in error, please notify us immediately by(\n\d\s*)?
 return e-mail or by e-mail to jeevacation.*gmail.com, and
 destroy this communication and all copies thereof,
 including all attachments. copyright -all rights reserved"""
