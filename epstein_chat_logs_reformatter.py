@@ -141,7 +141,7 @@ for file_arg in get_imessage_log_files(files):
 
     console.line()
 
-    for i, match in enumerate(MSG_REGEX.finditer(file_text)):
+    for match in MSG_REGEX.finditer(file_text):
         sender = sender_str = match.group(1).strip()
         timestamp = Text(f"[{match.group(2).strip()}] ", style='dim')
         msg = match.group(4).strip()
