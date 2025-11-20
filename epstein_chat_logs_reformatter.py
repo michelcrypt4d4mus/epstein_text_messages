@@ -16,7 +16,7 @@ from rich.table import Table
 from rich.text import Text
 load_dotenv()
 
-from util.emails import AL_SECKEL, EHUD_BARAK, GHISLAINE_MAXWELL, LEON_BLACK, MSG_REGEX, STEVE_BANNON, EpsteinFiles
+from util.emails import AL_SECKEL, EHUD_BARAK, GHISLAINE_MAXWELL, LEON_BLACK, MSG_REGEX, REDACTED, STEVE_BANNON, EpsteinFiles
 from util.env import deep_debug, is_debug
 from util.file_helper import get_files_in_dir
 from util.rich import *
@@ -145,6 +145,10 @@ for k, v in sorted(epstein_files.emailer_counts.items(), key=lambda item: [item[
 
 console.print(counts_table)
 console.print(f"\nScanned {len(epstein_files.emails)} potential emails, found {sum([i for i in epstein_files.emailer_counts.values()])} senders.")
+console.print('\n\nChronologically sorted emails sent to Epstein by these people can be found below here in this order:\n')
+
+for i, author in enumerate(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED):
+    console.print(Text(f"   {i}. ", style='bold').append(author or REDACTED))
 
 # Emails
 for author in PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED:
