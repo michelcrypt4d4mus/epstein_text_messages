@@ -17,6 +17,7 @@ COURIER_NEWSROOM_ARCHIVE = 'https://journaliststudio.google.com/pinpoint/search?
 OUTPUT_WIDTH = 120
 
 ARCHIVE_LINK = 'archive_link'
+ARCHIVE_LINK_COLOR = 'blue3'
 PHONE_NUMBER = 'phone_number'
 TEXT_LINK = 'text_link'
 
