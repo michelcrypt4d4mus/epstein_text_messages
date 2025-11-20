@@ -18,7 +18,7 @@ from rich.table import Table
 from rich.text import Text
 load_dotenv()
 
-from util.emails import DETECT_EMAIL_REGEX, KNOWN_EMAILS, extract_email_sender, cleanup_email_txt
+from util.emails import DETECT_EMAIL_REGEX, KNOWN_EMAILS, NOT_REDACTED_EMAILER_REGEX, extract_email_sender, cleanup_email_txt
 from util.env import deep_debug, include_redacted_emails, is_debug
 from util.file_helper import MSG_REGEX, extract_file_id, first_timestamp_in_file, get_files_in_dir, load_file, move_json_file
 from util.rich import *
