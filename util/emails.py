@@ -6,10 +6,11 @@ from .rich import JOI_ITO, console
 DATE_REGEX = re.compile(r'^Date:\s*(.*)\n')
 EMAIL_REGEX = re.compile(r'From: (.*)')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
-BAD_EMAILER_REGEX = re.compile(r'^>|ok|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|article 1.?|saved by|momminnemummin|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
+BAD_EMAILER_REGEX = re.compile(r'^>|ok|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|hysterical|article 1.?|saved by|momminnemummin|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 BROKEN_EMAIL_REGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(?:(?:CC|Importance|Subject|Attachments):\s*\n)*(?!CC|Importance|Subject|Attachments)([a-zA-Z]{2,}.*|\[triyersr@gmail.com\])\n')
 REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,.*wrote:|-+Original\s*Message-+)')
 
+DARREN_INDKE = 'Darren Indke'
 EDWARD_EPSTEIN = 'Edward Epstein'
 JEFFREY_EPSTEIN = 'Jeffrey Epstein'
 
@@ -31,10 +32,11 @@ EMAILERS = [
 
 EMAILER_REGEXES = {
     'Amanda Ens': re.compile(r'ens, amand', re.IGNORECASE),
+    "Barbro Ehnbom": re.compile(r'behnbom@aol.com|Barbro\s.*Ehnbom', re.IGNORECASE),
     'Barry J. Cohen': re.compile(r'barry (j.? )?cohen', re.IGNORECASE),
     'Boris Nikolic': re.compile(r'boris nikoli', re.IGNORECASE),
     'Dangene and Jennie Enterprise': re.compile(r'Dangene and Jennie Enterpris', re.IGNORECASE),
-    'Darren Indke': re.compile(r'^darren$|darren [il]ndyke', re.IGNORECASE),
+    DARREN_INDKE: re.compile(r'^darren$|darren [il]ndyke', re.IGNORECASE),
     EDWARD_EPSTEIN: re.compile(r'Edward (Jay )?Epstein', re.IGNORECASE),
     'Ehud Barak': re.compile(r'(ehud|h)\s*barak', re.IGNORECASE),
     'Ghislaine Maxwell': re.compile(r'g ?max(well)?', re.IGNORECASE),
@@ -53,10 +55,11 @@ EMAILER_REGEXES = {
     'Paul Krassner': re.compile(r'Pa\s?ul Krassner', re.IGNORECASE),
     'Scott J. Link': re.compile(r'scott j. lin', re.IGNORECASE),
     'Sean Bannon': re.compile(r'sean banno', re.IGNORECASE),
-    'Steve Bannon': re.compile(r'steve bannon', re.IGNORECASE),
+    'Steve Bannon': re.compile(r'steve banno[nr]?', re.IGNORECASE),
 }
 
 KNOWN_EMAILS = {
+    '026625': DARREN_INDKE,
     '029692': JEFFREY_EPSTEIN,
 }
 
