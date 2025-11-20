@@ -10,18 +10,20 @@ from rich.markup import escape
 from rich.panel import Panel
 from rich.padding import Padding
 from rich.text import Text
+from util.rich import ARIANE_DE_ROTHSCHILD
 
 from .env import deep_debug, is_debug
 from .file_helper import extract_file_id, load_file, move_json_file
-from .rich import (COUNTERPARTY_COLORS, DEFAULT, GUESSED_COUNTERPARTY_FILE_IDS, KNOWN_COUNTERPARTY_FILE_IDS,
-    JOI_ITO, LARRY_SUMMERS, MAX_PREVIEW_CHARS, SOON_YI, UNKNOWN, archive_link, console, logger, print_top_lines)
+# from .rich import (AL_SECKEL, JOHN_PAGE, JONATHAN_FARKAS, DEFAULT, COUNTERPARTY_COLORS, DEFAULT, GUESSED_COUNTERPARTY_FILE_IDS, KNOWN_COUNTERPARTY_FILE_IDS,
+#     JOI_ITO, LARRY_SUMMERS, MAX_PREVIEW_CHARS, SOON_YI, UNKNOWN, archive_link, console, logger, print_top_lines)
+from .rich import *
 
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
 EMAIL_REGEX = re.compile(r'From: (.*)')
 EMAIL_HEADER_REGEX = re.compile(r'^(((Date|Subject):.*\n)*From:.*\n((Date|Sent|To|CC|Importance|Subject|Attachments):.*\n)+)')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
 BAD_EMAILER_REGEX = re.compile(r'^>|ok|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|hysterical|article 1.?|momminnemummin|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
-EMPTY_HEADER_REGEX = re.compile(r'From:\s*\n((Date|Sent|To|CC|Importance|Subject|Attachments):\s*\n)+')
+EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Subject|Attachments):\s*\n)+')
 BROKEN_EMAIL_REGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(?:(?:CC|Importance|Subject|Attachments):\s*\n)*(?!CC|Importance|Subject|Attachments)([a-zA-Z]{2,}.*|\[triyersr@gmail.com\])\n')
 REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*wrote:|-+Original\s*Message-+)')
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
@@ -30,24 +32,6 @@ EMAIL_INDENT = 3
 # iMessage
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 MSG_DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
-# Names
-AL_SECKEL = 'Al Seckel'
-ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
-BARBRO_EHNBOM = 'Barbro Ehnbom'
-DARREN_INDKE = 'Darren Indke'
-EDWARD_EPSTEIN = 'Edward Epstein'
-EHUD_BARAK = 'Ehud Barak'
-GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
-JEFFREY_EPSTEIN = 'Jeffrey Epstein'
-JOHN_PAGE = 'John Page'
-JOHNNY_EL_HACHEM = 'Johnny el Hachem'
-JONATHAN_FARKAS = 'Jonathan Farkas'
-LAWRENCE_KRAUSS = 'Lawrence Krauss'
-LAWRANCE_VISOSKI = 'Lawrance Visoski'
-LEON_BLACK = 'Leon Black'
-NADIA_MARCINKO = 'Nadia Marcinko'
-STEVE_BANNON = 'Steve Bannon'
-REDACTED = '[REDACTED]'
 
 EMAILERS = [
     AL_SECKEL,
@@ -213,12 +197,15 @@ class MessengerLog(Document):
 class Email(Document):
     author: str | None = field(init=False)
     author_lowercase: str | None = field(init=False)
+    author_txt: Text = field(init=False)
     timestamp: datetime | None = field(init=False)
 
     def __post_init__(self):
         super().__post_init__()
         self.author = self.extract_email_sender()
         self.author_lowercase = self.author.lower() if self.author else None
+        author_style = COUNTERPARTY_COLORS.get(self.author or UNKNOWN, DEFAULT)
+        self.author_txt = Text(self.author or UNKNOWN, style=author_style)
         self.timestamp = self.extract_sent_at()
 
     def extract_email_sender(self) -> str | None:
@@ -297,8 +284,9 @@ class Email(Document):
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield Panel(archive_link(self.filename), expand=False)
-        email_info = f" Email from {self.author or UNKNOWN} probably sent at '{self.timestamp or '?'}'"
-        yield Padding(Text(email_info, style='dim'), (0, 0, 0, EMAIL_INDENT))
+        info_line = Text(" Email from ").append(self.author_txt)
+        info_line.append(f" probably sent at ").append(f"{self.timestamp or '?'}", style='spring_green3')
+        yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
         email_panel = Panel(escape(self.cleanup_email_txt()), expand=False)
         yield Padding(email_panel, (0, 0, 2, EMAIL_INDENT))
 
