@@ -229,7 +229,7 @@ if include_redacted_emails:
     console.print('\n\n', Panel(Text("Emails Whose Senders Were Redacted", justify='center', style='bold reverse')), '\n')
 
     for filename, contents in redacted_emails.items():
-        console.print(Panel(filename, style='reverse', expand=False))
+        console.print(Panel(f"[link={search_archive_url(filename)}]{filename}[/link]", style='reverse', expand=False))
         console.print(archive_file_url(filename))
         console.print(escape(cleanup_email_txt(contents)), '\n\n')
 
