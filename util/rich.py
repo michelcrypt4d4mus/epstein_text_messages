@@ -137,18 +137,17 @@ HOUSE_OVERSIGHT_027794.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_029744.txt	Steve Bannon (likely)	Trump and New York Times coverage
 HOUSE_OVERSIGHT_031045.txt	Steve Bannon (likely)	Trump and New York Times coverage""".strip())
 
-CONSOLE_HTML_FORMAT = """\
-<!DOCTYPE html>
+CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<style>
-{stylesheet}
-body {{
-    color: {foreground};
-    background-color: {background};
-}}
-</style>
+    <meta charset="UTF-8">
+    <style>
+        {stylesheet}
+        body {{
+            color: {foreground};
+            background-color: {background};
+        }}
+    </style>
 </head>
 <body>
     <pre style="font-family: Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace; white-space: pre-wrap; overflow-wrap: break-word;">
