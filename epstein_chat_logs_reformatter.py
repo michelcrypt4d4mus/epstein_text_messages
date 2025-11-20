@@ -109,7 +109,7 @@ def get_imessage_log_files(files: list[Path]) -> list[Path]:
             if is_debug:
                 console.print(f"Unknown kind of file '{file_arg.name}' with {len(file_lines)} lines. First lines:")
 
-                if emailer and emailer != UNKNOWN and is_debug:
+                if emailer and emailer != UNKNOWN:
                     console.print(f"Failed to find valid email (got '{emailer}')", style='red')
 
                 print_top_lines(file_text)
