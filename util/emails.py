@@ -26,6 +26,7 @@ EMAILERS = [
     'Richard Kahn',
     'Robert Kuhn',
     'Robert Trivers',
+    'Sample, Elizabeth',
     'Steven Victor MD',
     'Weingarten, Reid',
 ]
@@ -33,7 +34,7 @@ EMAILERS = [
 EMAILER_REGEXES = {
     'Amanda Ens': re.compile(r'ens, amand', re.IGNORECASE),
     "Barbro Ehnbom": re.compile(r'behnbom@aol.com|Barbro\s.*Ehnbom', re.IGNORECASE),
-    'Barry J. Cohen': re.compile(r'barry (j.? )?cohen', re.IGNORECASE),
+    'Barry J. Cohen': re.compile(r'barry (j.? )?cohen?', re.IGNORECASE),
     'Boris Nikolic': re.compile(r'boris nikoli', re.IGNORECASE),
     'Dangene and Jennie Enterprise': re.compile(r'Dangene and Jennie Enterpris', re.IGNORECASE),
     DARREN_INDKE: re.compile(r'^darren$|darren [il]ndyke', re.IGNORECASE),
