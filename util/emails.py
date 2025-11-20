@@ -6,7 +6,7 @@ from .rich import JOI_ITO, console
 DATE_REGEX = re.compile(r'^Date:\s*(.*)\n')
 EMAIL_REGEX = re.compile(r'From: (.*)')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
-BAD_EMAILER_REGEX = re.compile(r'^>|ok|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|article 1.?|saved by|talk in|it was a|what do|cc:|call (back|me)).*)$')
+BAD_EMAILER_REGEX = re.compile(r'^>|ok|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|article 1.?|saved by|momminnemummin|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 BROKEN_EMAIL_REGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(?:(?:CC|Importance|Subject|Attachments):\s*\n)*(?!CC|Importance|Subject|Attachments)([a-zA-Z]{2,}.*)\n')
 
 EMAILERS = [
@@ -80,7 +80,7 @@ def extract_email_sender(file_text):
     elif email_match:
         emailer = email_match.group(1)
 
-    if not emailer or 'momminnemummin' in emailer.lower():
+    if not emailer:
         return
 
     emailer = emailer.strip().lstrip('"').lstrip("'").rstrip('"').rstrip("'").strip()
@@ -94,7 +94,13 @@ def extract_email_sender(file_text):
     if ' [' in emailer:
         emailer = emailer.split(' [')[0]
 
-    return emailer.lower()
+    if not valid_emailer(emailer):
+        return
+
+    if emailer == 'Ed' and 'EDWARD JAY EPSTEIN' in file_text:
+        return 'Edward Jay Epstein'
+
+    return emailer
 
 
 def replace_signature(file_text: str) -> str:
