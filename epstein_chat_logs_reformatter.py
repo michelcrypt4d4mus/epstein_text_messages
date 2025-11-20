@@ -57,7 +57,7 @@ def get_imessage_log_files(files: list[Path]) -> list[Path]:
 
     for file_arg in files:
         if deep_debug:
-            console.print(f"\nScanning '{file_arg.name}'...", style='dim')
+            console.print(f"\nScanning '{file_arg.name}'...")
 
         file_text = load_file(file_arg)
         file_lines = file_text.split('\n')
@@ -71,6 +71,9 @@ def get_imessage_log_files(files: list[Path]) -> list[Path]:
         elif file_text[0] == '{':  # Check for JSON
             move_json_file(file_arg)
         elif MSG_REGEX.search(file_text):
+            if is_debug:
+                console.print(f"   -> iMessage log file...", style='dim')
+
             log_files.append(file_arg)
         else:
             emailer = None
@@ -97,11 +100,11 @@ def get_imessage_log_files(files: list[Path]) -> list[Path]:
 
             if is_debug:
                 if emailer and emailer == UNKNOWN:
-                    console.print(f"Redacted email '{file_arg.name}' with {len(file_lines)} lines. First lines:")
+                    console.print(f"   -> Redacted email '{file_arg.name}' with {len(file_lines)} lines. First lines:")
                 elif emailer and emailer != UNKNOWN:
-                    console.print(f"Failed to find valid email for '{file_arg.name}' (got '{emailer}')", style='red')
+                    console.print(f"   -> Failed to find valid email for '{file_arg.name}' (got '{emailer}')", style='red')
                 else:
-                    console.print(f"Unknown kind of file '{file_arg.name}' with {len(file_lines)} lines. First lines:")
+                    console.print(f"   -> Unknown kind of file '{file_arg.name}' with {len(file_lines)} lines. First lines:")
 
                 print_top_lines(file_text)
 
