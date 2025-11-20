@@ -27,6 +27,7 @@ ANIL = "Anil Ambani"
 BANNON = 'Bannon'
 DEFAULT = 'default'
 EPSTEIN = 'Epstein'
+EVA = 'Eva'
 JOI_ITO = 'Joi Ito'
 MELANIE_WALKER = 'Melanie Walker'
 MIROSLAV = 'Miroslav Lajčák'
@@ -45,7 +46,7 @@ COUNTERPARTY_COLORS = {
     'Celina Dubin': 'medium_orchid1',
     DEFAULT: 'wheat4',
     EPSTEIN: 'blue',
-    'Eva': 'orchid',
+    EVA: 'orchid',
     'Joi Ito': 'blue_violet',
     MELANIE_WALKER: 'deep_pink3',
     MIROSLAV: 'slate_blue3',
@@ -61,30 +62,31 @@ COUNTERPARTY_COLORS = {
 }
 
 KNOWN_COUNTERPARTY_FILE_IDS = {
+    '031042': ANIL,            # Participants: field
+    '027225': ANIL,            # Birthday
+    '031173': 'Ards',          # Participants: field, possibly incomplete
     '025707': BANNON,
     '025734': BANNON,
     '025452': BANNON,
     '025408': BANNON,
     '027307': BANNON,
+    '027401': EVA,             # Participants: field
+    '027650': JOI_ITO,         # Participants: field
     '027515': MIROSLAV,        # https://x.com/ImDrinknWyn/status/1990210266114789713
-    '025429': PLASKETT,
-    '027777': SUMMERS,
     '027165': MELANIE_WALKER,  # https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/
+    '025429': PLASKETT,
+    '027333': SCARAMUCCI,      # unredacted phone number
     '027128': SOON_YI,         # https://x.com/ImDrinknWyn/status/1990227281101434923
     '027217': SOON_YI,         # refs marriage to woody allen
     '027244': SOON_YI,         # refs Woody
     '027257': SOON_YI,         # 'Woody Allen' in Participants: field
-    '027333': SCARAMUCCI,      # unredacted phone number
+    '027777': SUMMERS,
     '027278': TERJE,
     '027255': TERJE,
-    '031173': 'Ards',          # Participants: field, possibly incomplete
-    '031042': ANIL,            # Participants: field
-    '027225': ANIL,            # Birthday
-    '027401': 'Eva',           # Participants: field
-    '027650': JOI_ITO,       # Participants: field
 }
 
 GUESSED_COUNTERPARTY_FILE_IDS = {
+    '027221': ANIL,
     '025363': BANNON,          # Trump and New York Times coverage
     '025368': BANNON,          # Trump and New York Times coverage
     '027585': BANNON,          # Tokyo trip
@@ -95,6 +97,7 @@ GUESSED_COUNTERPARTY_FILE_IDS = {
     '027549': BANNON,
     '027434': BANNON,          # References Maher appearance
     '027764': BANNON,
+    '025436': 'Celina Dubin',
     '027576': MELANIE_WALKER,  # https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700
     '027141': MELANIE_WALKER,
     '027232': MELANIE_WALKER,
@@ -104,8 +107,6 @@ GUESSED_COUNTERPARTY_FILE_IDS = {
     '027148': MELANIE_WALKER,
     '027396': SCARAMUCCI,
     '031054': SCARAMUCCI,
-    '027221': ANIL,
-    '025436': 'Celina Dubin',
 }
 
 #  of who is the counterparty in each file
@@ -137,18 +138,17 @@ HOUSE_OVERSIGHT_027794.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_029744.txt	Steve Bannon (likely)	Trump and New York Times coverage
 HOUSE_OVERSIGHT_031045.txt	Steve Bannon (likely)	Trump and New York Times coverage""".strip())
 
-CONSOLE_HTML_FORMAT = """\
-<!DOCTYPE html>
+CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<style>
-{stylesheet}
-body {{
-    color: {foreground};
-    background-color: {background};
-}}
-</style>
+    <meta charset="UTF-8">
+    <style>
+        {stylesheet}
+        body {{
+            color: {foreground};
+            background-color: {background};
+        }}
+    </style>
 </head>
 <body>
     <pre style="font-family: Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace; white-space: pre-wrap; overflow-wrap: break-word;">
@@ -214,7 +214,7 @@ def print_header():
     table.add_row("Mooch", "Anthony 'The Mooch' Scaramucci (Skybridge Capital)")
     table.add_row("Terje", TERJE)
     table.add_row("Woody", "Woody Allen")
-    table.add_row("Zug", "City in Switzerland known as a crypto hot spot")
+    table.add_row("Zug", "City in Switzerland (crypto hub)")
     console.print('\n', Align.center(table))
     console.line()
     console.print(Align.center(f"[link=https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/]Oversight Committee Releases Additional Epstein Estate Documents[/link]"))
