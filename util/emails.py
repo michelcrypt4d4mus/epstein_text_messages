@@ -1,12 +1,15 @@
 import re
+from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
+from pathlib import Path
 
 from dateutil.parser import parse
+from rich.text import Text
 
 from .env import deep_debug, is_debug
-from .file_helper import extract_file_id
-from .rich import JOI_ITO, LARRY_SUMMERS, MAX_PREVIEW_CHARS, SOON_YI, console, logger, print_top_lines
+from .file_helper import extract_file_id, load_file, move_json_file
+from .rich import COUNTERPARTY_COLORS, DEFAULT, GUESSED_COUNTERPARTY_FILE_IDS, KNOWN_COUNTERPARTY_FILE_IDS, JOI_ITO, LARRY_SUMMERS, MAX_PREVIEW_CHARS, SOON_YI, UNKNOWN, console, logger, print_top_lines
 
 #DATE_REGEX = re.compile(r'(?:Date|Sent):\s?\s?([\w:,\s/]{6,})\n')
 DATE_REGEX = re.compile(r'(?:Date|Sent): *([^\n]{6,})\n')
@@ -19,6 +22,9 @@ BROKEN_EMAIL_REGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(?:(?:CC|Importan
 REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*wrote:|-+Original\s*Message-+)')
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
 VALID_HEADER_LINES = 14
+# iMessage
+MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
+MSG_DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
 
 ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
 BARBRO_EHNBOM = 'Barbro Ehnbom'
@@ -138,17 +144,64 @@ including all attachments. copyright -all rights reserved"""
 
 
 @dataclass
-class Email:
-    filename: str
-    text: str
-    author: str | None = field(init=False)
+class Document:
+    file_path: Path
+    filename: str = field(init=False)
+    text: str = field(init=False)
     file_id: str = field(init=False)
+    file_lines: list[str] = field(init=False)
+    num_lines: int = field(init=False)
     length: int = field(init=False)
+
+    def __post_init__(self):
+        self.filename = self.file_path.name
+        self.file_id = extract_file_id(self.filename)
+        self.text = load_file(self.file_path)
+        self.length = len(self.text)
+        self.file_lines = self.text.split('\n')
+        self.num_lines = len(self.file_lines)
+
+
+@dataclass
+class MessengerLog(Document):
+    author: str = field(init=False)
+    author_str: str = field(init=False)
+    author_txt: Text = field(init=False)
+    hint_txt: Text | None = field(init=False)
+    timestamp: datetime = field(init=False)
+
+    def __post_init__(self):
+        super().__post_init__()
+        self.author = KNOWN_COUNTERPARTY_FILE_IDS.get(self.file_id, GUESSED_COUNTERPARTY_FILE_IDS.get(self.file_id)) or UNKNOWN
+        self.author_str = self.author
+        author_style = COUNTERPARTY_COLORS.get(self.author, DEFAULT)
+        self.author_txt = Text(self.author, style=author_style)
+
+        if self.file_id in KNOWN_COUNTERPARTY_FILE_IDS:
+            self.hint_txt = Text(f" Found confirmed counterparty ", style='grey').append(self.author_txt).append(f" for file ID {self.file_id}.")
+        elif self.file_id in GUESSED_COUNTERPARTY_FILE_IDS:
+            self.author_str = self.author + ' (?)'
+            self.author_txt = Text(self.author_str, style=author_style)
+            self.hint_txt = Text(" (This is probably a conversation with ", style='grey').append(self.author_txt).append(')')
+
+        # Get timestamp
+        for match in MSG_REGEX.finditer(self.text):
+            timestamp_str = match.group(2).strip()
+
+            try:
+                self.timestamp = datetime.strptime(timestamp_str, MSG_DATE_FORMAT)
+                break
+            except ValueError as e:
+                logger.debug(f"[WARNING] Failed to parse '{timestamp_str}' to datetime! Using next match. Error: {e}'")
+
+
+@dataclass
+class Email(Document):
+    author: str | None = field(init=False)
     timestamp: datetime | None = field(init=False)
 
     def __post_init__(self):
-        self.file_id = extract_file_id(self.filename)
-        self.length = len(self.text)
+        super().__post_init__()
         self.author = self.extract_email_sender()
         self.timestamp = self.extract_sent_at()
 
@@ -215,5 +268,83 @@ class Email:
         except Exception as e:
             logger.warning(f'Failed to parse "{timestamp_str}" to timestamp!')
 
+    def is_redacted(self) -> bool:
+        return self.author is None
+
 
 valid_emailer = lambda emailer: not BAD_EMAILER_REGEX.match(emailer)
+
+
+@dataclass
+class EpsteinFiles:
+    all_files: list[Path]
+    emails: list[Email] = field(init=False)
+    iMessage_logs: list[MessengerLog] = field(init=False)
+    other_files: list[Document] = field(init=False)
+    emailer_counts: dict[str, int] = field(init=False)
+
+    def __post_init__(self):
+        self.emails = []
+        self.iMessage_logs = []
+        self.other_files = []
+        self.emailer_counts = defaultdict(int)
+
+        for file_arg in self.all_files:
+            if deep_debug:
+                console.print(f"\nScanning '{file_arg.name}'...")
+
+            document = Document(file_arg)
+
+            if document.length == 0:
+                if is_debug:
+                    console.print(f"   -> Skipping empty file...", style='dim')
+
+                continue
+            elif document.text[0] == '{':  # Check for JSON
+                move_json_file(file_arg)
+            elif MSG_REGEX.search(document.text):
+                if is_debug:
+                    console.print(f"   -> iMessage log file...", style='dim')
+
+                self.iMessage_logs.append(MessengerLog(file_arg))
+            else:
+                emailer = None
+
+                if DETECT_EMAIL_REGEX.match(document.text):  # Handle emails
+                    email = Email(file_arg)
+                    self.emails.append(email)
+
+                    try:
+                        emailer = email.author or UNKNOWN
+                        self.emailer_counts[emailer.lower()] += 1
+
+                        if deep_debug:
+                            console.print(f"   -> Emailer: '{emailer}'", style='dim')
+
+                        if len(emailer) >= 3 and emailer != UNKNOWN:
+                            continue  # Don't proceed to printing debug contents if we found a valid email
+                    except Exception as e:
+                        console.print_exception()
+                        console.print(f"\nError file '{file_arg.name}' with {document.num_lines} lines, top lines:")
+                        print_top_lines(document.text)
+                        raise e
+                else:
+                    self.other_files.append(document)
+
+                if is_debug:
+                    if emailer and emailer == UNKNOWN:
+                        console.print(f"   -> Redacted email '{file_arg.name}' with {document.num_lines} lines. First lines:")
+                    elif emailer and emailer != UNKNOWN:
+                        console.print(f"   -> Failed to find valid email for '{file_arg.name}' (got '{emailer}')", style='red')
+                    else:
+                        console.print(f"   -> Unknown kind of file '{file_arg.name}' with {document.num_lines} lines. First lines:", style='dim')
+
+                    print_top_lines(document.text)
+
+                continue
+
+    def sorted_imessage_logs(self) -> list[MessengerLog]:
+        return sorted(self.iMessage_logs, key=lambda f: f.timestamp)
+
+    def redacted_emails(self) -> list[Email]:
+        return [e for e in self.emails if e.is_redacted()]
