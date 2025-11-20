@@ -16,7 +16,7 @@ from .file_helper import extract_file_id, load_file, move_json_file
 from .rich import (COUNTERPARTY_COLORS, DEFAULT, GUESSED_COUNTERPARTY_FILE_IDS, KNOWN_COUNTERPARTY_FILE_IDS,
     JOI_ITO, LARRY_SUMMERS, MAX_PREVIEW_CHARS, SOON_YI, UNKNOWN, archive_link, console, logger, print_top_lines)
 
-DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!from)([^\n]{6,})\n')
+DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|via)([^\n]{6,})\n')
 EMAIL_REGEX = re.compile(r'From: (.*)')
 EMAIL_HEADER_REGEX = re.compile(r'^(((Date|Subject):.*\n)*From:.*\n((Date|Sent|To|CC|Importance|Subject|Attachments):.*\n)+)')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
@@ -31,6 +31,7 @@ EMAIL_INDENT = 3
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 MSG_DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
 # Names
+AL_SECKEL = 'Al Seckel'
 ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
 BARBRO_EHNBOM = 'Barbro Ehnbom'
 DARREN_INDKE = 'Darren Indke'
@@ -47,7 +48,7 @@ NADIA_MARCINKO = 'Nadia Marcinko'
 STEVE_BANNON = 'Steve Bannon'
 
 EMAILERS = [
-    'Al Seckel',
+    AL_SECKEL,
     'Daniel Sabba',
     'Glenn Dubin',
     'Jessica Cadwell',
