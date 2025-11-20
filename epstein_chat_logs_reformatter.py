@@ -18,9 +18,9 @@ from rich.table import Table
 from rich.text import Text
 load_dotenv()
 
-from util.emails import DETECT_EMAIL_REGEX, KNOWN_EMAILS, NOT_REDACTED_EMAILER_REGEX, Email
+from util.emails import DETECT_EMAIL_REGEX, MSG_REGEX, NOT_REDACTED_EMAILER_REGEX, Document, Email, EpsteinFiles, MessengerLog
 from util.env import deep_debug, include_redacted_emails, is_debug
-from util.file_helper import MSG_REGEX, extract_file_id, first_timestamp_in_file, get_files_in_dir, load_file, move_json_file
+from util.file_helper import extract_file_id, get_files_in_dir, load_file, move_json_file
 from util.rich import *
 
 OUTPUT_DIR = Path('docs')
@@ -51,110 +51,30 @@ convos_labeled = 0
 msgs_processed = 0
 
 
-def get_imessage_log_files(files: list[Path]) -> list[Path]:
-    """Scan text files, count email senders, and return filtered list of iMessage log file paths."""
-    log_files = []
-
-    for file_arg in files:
-        if deep_debug:
-            console.print(f"\nScanning '{file_arg.name}'...")
-
-        file_text = load_file(file_arg)
-        file_lines = file_text.split('\n')
-
-        if len(file_text) == 0:
-            if is_debug:
-                console.print(f"   -> Skipping empty file...", style='dim')
-
-            continue
-        elif file_text[0] == '{':  # Check for JSON
-            move_json_file(file_arg)
-        elif MSG_REGEX.search(file_text):
-            if is_debug:
-                console.print(f"   -> iMessage log file...", style='dim')
-
-            log_files.append(file_arg)
-        else:
-            emailer = None
-
-            if DETECT_EMAIL_REGEX.match(file_text):  # Handle emails
-                emailer_counts[TOTAL] += 1
-                email = Email(file_arg.name, file_text)
-
-                try:
-                    emailer = email.author or UNKNOWN
-                    emailer_counts[emailer.lower()] += 1
-
-                    if deep_debug:
-                        console.print(f"   -> Emailer: '{emailer}'", style='dim')
-
-                    if len(emailer) >= 3 and emailer != UNKNOWN:
-                        continue  # Don't proceed to printing debug contents if we found a valid email
-                    elif len(emailer) >= 3:
-                        redacted_emails[file_arg.name] = file_text
-                except Exception as e:
-                    console.print_exception()
-                    console.print(f"\nError file '{file_arg.name}' with {len(file_lines)} lines, top lines:")
-                    print_top_lines(file_text)
-                    raise e
-
-            if is_debug:
-                if emailer and emailer == UNKNOWN:
-                    console.print(f"   -> Redacted email '{file_arg.name}' with {len(file_lines)} lines. First lines:")
-                elif emailer and emailer != UNKNOWN:
-                    console.print(f"   -> Failed to find valid email for '{file_arg.name}' (got '{emailer}')", style='red')
-                else:
-                    console.print(f"   -> Unknown kind of file '{file_arg.name}' with {len(file_lines)} lines. First lines:", style='dim')
-
-                print_top_lines(file_text)
-
-            continue
-
-    return sorted(log_files, key=lambda f: first_timestamp_in_file(f))   # Sort by first timestamp
-
-
 print_header()
-files = get_files_in_dir()
-iMessage_log_files = get_imessage_log_files(files)
+epstein_files = EpsteinFiles(get_files_in_dir())
 
-for file_arg in iMessage_log_files:
-    file_text = load_file(file_arg)
-    file_lines = file_text.split('\n')
-    file_id = extract_file_id(file_arg.name)
-    console.print(Panel(archive_link(file_arg.name), expand=False))
-    counterparty = KNOWN_COUNTERPARTY_FILE_IDS.get(file_id, UNKNOWN)
-    counterparty_guess = None
+for log_file in epstein_files.sorted_imessage_logs():
+    console.print(Panel(archive_link(log_file.filename), expand=False))
 
-    if counterparty != UNKNOWN:
-        hint_txt = Text(f" Found confirmed counterparty ", style='grey')
-        hint_txt.append(counterparty, style=COUNTERPARTY_COLORS.get(counterparty, DEFAULT))
-        console.print(hint_txt.append(f" for file ID {file_id}."))
-        convos_labeled += 1
-    elif file_id in GUESSED_COUNTERPARTY_FILE_IDS:
-        counterparty_guess = GUESSED_COUNTERPARTY_FILE_IDS[file_id]
-        txt = Text(" (This is probably a conversation with ", style='grey')
-        txt.append(counterparty_guess, style=f"{COUNTERPARTY_COLORS.get(counterparty_guess, DEFAULT)}")
-        console.print(txt.append(')'), style='dim')
-        convos_labeled += 1
+    if log_file.hint_txt:
+        console.print(log_file.hint_txt)
 
     console.line()
 
-    for match in MSG_REGEX.finditer(file_text):
+    for match in MSG_REGEX.finditer(log_file.text):
         sender = sender_str = match.group(1).strip()
         timestamp = Text(f"[{match.group(2).strip()}] ", style='gray30')
         msg = match.group(4).strip()
         msg_lines = msg.split('\n')
         sender_style = None
+        sender_txt = None
 
         # If the Sender: is redacted we need to fill it in from our configuration
         if len(sender) == 0:
-            if counterparty != UNKNOWN:
-                sender = sender_str = counterparty
-            elif counterparty_guess is not None:
-                sender = counterparty_guess
-                sender_str = f"{counterparty_guess} (?)"
-            else:
-                sender = sender_str = UNKNOWN
+            sender = log_file.author
+            sender_str = log_file.author_str
+            sender_txt = log_file.author_txt
         else:
             if sender in TEXTER_MAPPING:
                 sender = sender_str = TEXTER_MAPPING[sender]
@@ -162,6 +82,8 @@ for file_arg in iMessage_log_files:
                 sender_style = PHONE_NUMBER
             elif re.match('[ME]+', sender):
                 sender = MELANIE_WALKER
+
+            sender_txt = Text(sender_str, style=sender_style or COUNTERPARTY_COLORS.get(sender, DEFAULT))
 
         # Fix multiline links
         if msg.startswith('http'):
@@ -181,9 +103,11 @@ for file_arg in iMessage_log_files:
             msg = msg.replace('\n', ' ')  # remove newlines
 
         sender_counts[UNKNOWN if (re.match(r'^([-+_1•F]+|[4Ide])$', sender) or sender in UNKNOWN_TEXTERS) else sender] += 1
-        sender_txt = Text(sender_str, style=sender_style or COUNTERPARTY_COLORS.get(sender, DEFAULT))
         console.print(Text('').append(timestamp).append(sender_txt).append(': ', style='dim').append(msg))
         msgs_processed += 1
+
+    if log_file.author != UNKNOWN:
+        convos_labeled += 1
 
     console.line(2)
 
@@ -197,7 +121,7 @@ for k, v in sorted(sender_counts.items(), key=lambda item: item[1], reverse=True
     counts_table.add_row(Text(k, COUNTERPARTY_COLORS.get(k, 'grey23 bold')), str(v))
 
 console.print(counts_table)
-console.print(f"\nFound {msgs_processed} text messages in {len(iMessage_log_files)} iMessage logs of {len(files)} total files ({convos_labeled} files deanonymized).")
+console.print(f"\nFound {msgs_processed} text messages in {len(epstein_files.iMessage_logs)} iMessage logs of {len(epstein_files.all_files)} total files ({convos_labeled} files deanonymized).")
 console.print(f"(Last deploy found 77 files with 4668 messages)\n", style='dim')
 
 
