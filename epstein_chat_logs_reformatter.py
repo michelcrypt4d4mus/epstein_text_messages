@@ -91,7 +91,9 @@ def get_imessage_log_files(files: list[Path]) -> list[Path]:
 
                 try:
                     emailer = extract_email_sender(file_text) or UNKNOWN
-                    emailer = emailer or UNKNOWN
+
+                    if deep_debug:
+                        console.print(f"Emailer: '{emailer}'", style='dim')
 
                     if valid_emailer(emailer):
                         emailer_counts[emailer.lower()] += 1
