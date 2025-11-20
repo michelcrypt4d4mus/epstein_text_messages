@@ -35,6 +35,8 @@ ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
 BARBRO_EHNBOM = 'Barbro Ehnbom'
 DARREN_INDKE = 'Darren Indke'
 EDWARD_EPSTEIN = 'Edward Epstein'
+EHUD_BARAK = 'Ehud Barak'
+GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
 JEFFREY_EPSTEIN = 'Jeffrey Epstein'
 JOHN_PAGE = 'John Page'
 JOHNNY_EL_HACHEM = 'Johnny el Hachem'
@@ -73,8 +75,8 @@ EMAILER_REGEXES = {
     DARREN_INDKE: re.compile(r'^darren$|darren [il]ndyke', re.IGNORECASE),
     'David Stern': re.compile(r'David Stern?', re.IGNORECASE),
     EDWARD_EPSTEIN: re.compile(r'Edward (Jay )?Epstein', re.IGNORECASE),
-    'Ehud Barak': re.compile(r'(ehud|h)\s*barak', re.IGNORECASE),
-    'Ghislaine Maxwell': re.compile(r'g ?max(well)?', re.IGNORECASE),
+    EHUD_BARAK: re.compile(r'(ehud|h)\s*barak', re.IGNORECASE),
+    GHISLAINE_MAXWELL: re.compile(r'g ?max(well)?', re.IGNORECASE),
     'Google Alerts': re.compile(r'google\s?alerts', re.IGNORECASE),
     JEFFREY_EPSTEIN: re.compile(r'jee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|joichi|^joi$', re.IGNORECASE),
@@ -207,11 +209,13 @@ class MessengerLog(Document):
 @dataclass
 class Email(Document):
     author: str | None = field(init=False)
+    author_lowercase: str | None = field(init=False)
     timestamp: datetime | None = field(init=False)
 
     def __post_init__(self):
         super().__post_init__()
         self.author = self.extract_email_sender()
+        self.author_lowercase = self.author.lower() if self.author else None
         self.timestamp = self.extract_sent_at()
 
     def extract_email_sender(self) -> str | None:
@@ -364,14 +368,25 @@ class EpsteinFiles:
 
                 continue
 
+    def print_emails_by(self, author: str | None) -> None:
+        emails = self.emails_by(author)
+        author = author or '[redacted]'
+
+        if len(emails) == 0:
+            logger.warning(f"No emails found for {author}")
+            return
+
+        console.print('\n\n', Panel(Text(f"{author} ({len(emails)} Emails Found)", justify='center')), '\n', style='bold reverse')
+
+        for email in emails:
+            console.print(email)
+
     def sorted_imessage_logs(self) -> list[MessengerLog]:
         return sorted(self.iMessage_logs, key=lambda f: f.timestamp)
 
-    def redacted_emails(self) -> list[Email]:
-        return EpsteinFiles.sort_emails([e for e in self.emails if e.is_redacted()])
-
-    def emails_by(self, author: str) -> list[Email]:
-        return EpsteinFiles.sort_emails([e for e in self.emails if e.author == author])
+    def emails_by(self, author: str | None) -> list[Email]:
+        author = author.lower() if author else None
+        return EpsteinFiles.sort_emails([e for e in self.emails if e.author_lowercase == author])
 
     @classmethod
     def sort_emails(cls, emails: list[Email]) -> list[Email]:

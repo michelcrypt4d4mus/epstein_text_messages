@@ -11,15 +11,13 @@ from collections import defaultdict
 from pathlib import Path
 
 from dotenv import load_dotenv
-from rich.markup import escape
 from rich.panel import Panel
-from rich.padding import Padding
 from rich.table import Table
 from rich.text import Text
 load_dotenv()
 
-from util.emails import MSG_REGEX, STEVE_BANNON, EpsteinFiles
-from util.env import deep_debug, include_redacted_emails, is_debug
+from util.emails import EHUD_BARAK, GHISLAINE_MAXWELL, MSG_REGEX, STEVE_BANNON, EpsteinFiles
+from util.env import deep_debug, is_debug
 from util.file_helper import get_files_in_dir
 from util.rich import *
 
@@ -132,19 +130,12 @@ for k, v in sorted(epstein_files.emailer_counts.items(), key=lambda item: [item[
 console.print(counts_table)
 console.print(f"\nScanned {len(epstein_files.emails)} potential emails, found {sum([i for i in epstein_files.emailer_counts.values()])} senders.")
 
-# Redacted emails option
-if include_redacted_emails:
-    redacted_emails = epstein_files.redacted_emails()
-    console.print('\n\n', Panel(Text(f"{len(redacted_emails)} Emails Whose Senders Were Redacted", justify='center')), '\n', style='bold reverse')
-
-    for email in redacted_emails:
-        console.print(email)
-
-    bannon_emails = epstein_files.emails_by(STEVE_BANNON)
-    console.print('\n\n', Panel(Text(f"Steve Bannon {len(bannon_emails)} Emails ", justify='center')), '\n', style='bold reverse')
-
-    for email in bannon_emails:
-        console.print(email)
+# Emails
+epstein_files.print_emails_by(None)
+epstein_files.print_emails_by(GHISLAINE_MAXWELL)
+epstein_files.print_emails_by(STEVE_BANNON)
+epstein_files.print_emails_by(JOI_ITO)
+epstein_files.print_emails_by(EHUD_BARAK)
 
 
 if not is_debug:
