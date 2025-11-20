@@ -49,7 +49,6 @@ emailer_counts = defaultdict(int)
 redacted_emails = {}
 convos_labeled = 0
 files_found = 0
-files_processed = 0
 msgs_processed = 0
 
 
@@ -98,10 +97,12 @@ def get_imessage_log_files(files: list[Path]) -> list[Path]:
                     raise e
 
             if is_debug:
-                console.print(f"Unknown kind of file '{file_arg.name}' with {len(file_lines)} lines. First lines:")
-
-                if emailer and emailer != UNKNOWN:
-                    console.print(f"Failed to find valid email (got '{emailer}')", style='red')
+                if emailer and emailer == UNKNOWN:
+                    console.print(f"Redacted email '{file_arg.name}' with {len(file_lines)} lines. First lines:")
+                elif emailer and emailer != UNKNOWN:
+                    console.print(f"Failed to find valid email for '{file_arg.name}' (got '{emailer}')", style='red')
+                else:
+                    console.print(f"Unknown kind of file '{file_arg.name}' with {len(file_lines)} lines. First lines:")
 
                 print_top_lines(file_text)
 
@@ -112,9 +113,9 @@ def get_imessage_log_files(files: list[Path]) -> list[Path]:
 
 print_header()
 files = get_files_in_dir()
+iMessage_log_files = get_imessage_log_files(files)
 
-for file_arg in get_imessage_log_files(files):
-    files_processed += 1
+for file_arg in iMessage_log_files:
     file_text = load_file(file_arg)
     file_lines = file_text.split('\n')
     file_id = extract_file_id(file_arg.name)
@@ -194,7 +195,7 @@ for k, v in sorted(sender_counts.items(), key=lambda item: item[1], reverse=True
     counts_table.add_row(Text(k, COUNTERPARTY_COLORS.get(k, 'grey23 bold')), str(v))
 
 console.print(counts_table)
-console.print(f"\nFound {msgs_processed} text messages in {files_processed} iMessage logs of {len(files)} total files ({convos_labeled} files deanonymized).")
+console.print(f"\nFound {msgs_processed} text messages in {len(iMessage_log_files)} iMessage logs of {len(files)} total files ({convos_labeled} files deanonymized).")
 console.print(f"(Last deploy found 77 files with 4668 messages)\n", style='dim')
 
 
