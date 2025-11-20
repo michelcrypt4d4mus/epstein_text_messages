@@ -31,6 +31,7 @@ EMAIL_INDENT = 3
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 MSG_DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
 # Names
+AL_SECKEL = 'Al Seckel'
 ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
 BARBRO_EHNBOM = 'Barbro Ehnbom'
 DARREN_INDKE = 'Darren Indke'
@@ -47,7 +48,7 @@ NADIA_MARCINKO = 'Nadia Marcinko'
 STEVE_BANNON = 'Steve Bannon'
 
 EMAILERS = [
-    'Al Seckel',
+    AL_SECKEL,
     'Daniel Sabba',
     'Glenn Dubin',
     'Jessica Cadwell',
