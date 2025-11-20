@@ -13,6 +13,7 @@ BROKEN_EMAIL_REGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(?:(?:CC|Importan
 REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*wrote:|-+Original\s*Message-+)')
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
 
+ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
 BARBRO_EHNBOM = 'Barbro Ehnbom'
 DARREN_INDKE = 'Darren Indke'
 EDWARD_EPSTEIN = 'Edward Epstein'
@@ -76,14 +77,14 @@ EMAILER_REGEXES = {
 }
 
 KNOWN_EMAILS = {
-    '026064': 'Ariane de Rothschild',
+    '026064': ARIANE_DE_ROTHSCHILD,
+    '026069': ARIANE_DE_ROTHSCHILD,
     '026625': DARREN_INDKE,
     '031120': 'Gwendolyn',        # Signature
     '028770': JEFFREY_EPSTEIN,
     '029692': JEFFREY_EPSTEIN,
     '031624': JEFFREY_EPSTEIN,
     '016692': JOHN_PAGE,
-    '026064': JOHNNY_EL_HACHEM,
     '031732': JONATHAN_FARKAS,
     '029196': LAWRENCE_KRAUSS,
     '028789': 'Lawrance Visoski',
