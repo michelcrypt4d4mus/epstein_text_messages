@@ -10,6 +10,7 @@ python = "^3.11"
 rich = "^14.2.0"
 python-dotenv = "^1.2.1"
 bpython = "^0.26"
+python-dateutil = "^2.9.0.post0"
 
 
 [build-system]
