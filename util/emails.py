@@ -1,7 +1,7 @@
 import re
 
 from .env import deep_debug
-from .rich import JOI_ITO, console
+from .rich import JOI_ITO, LARRY_SUMMERS, console
 
 DATE_REGEX = re.compile(r'^Date:\s*(.*)\n')
 EMAIL_REGEX = re.compile(r'From: (.*)')
@@ -10,13 +10,15 @@ DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
 BAD_EMAILER_REGEX = re.compile(r'^>|ok|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|hysterical|article 1.?|momminnemummin|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 EMPTY_HEADER_REGEX = re.compile(r'From:\s*\n((Date|Sent|To|CC|Importance|Subject|Attachments):\s*\n)+')
 BROKEN_EMAIL_REGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(?:(?:CC|Importance|Subject|Attachments):\s*\n)*(?!CC|Importance|Subject|Attachments)([a-zA-Z]{2,}.*|\[triyersr@gmail.com\])\n')
-REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,.*wrote:|-+Original\s*Message-+)')
+REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*wrote:|-+Original\s*Message-+)')
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
 
 DARREN_INDKE = 'Darren Indke'
 EDWARD_EPSTEIN = 'Edward Epstein'
 JEFFREY_EPSTEIN = 'Jeffrey Epstein'
 JOHN_PAGE = 'John Page'
+JONATHAN_FARKAS = 'Jonathan Farkas'
+LAWRENCE_KRAUSS = 'Lawrence Krauss'
 
 EMAILERS = [
     'Al Seckel',
@@ -28,7 +30,7 @@ EMAILERS = [
     'Kathleen Ruderman',
     'Lesley Groff',
     'Michael Wolff',
-    'Jonathan Farkas',
+    JONATHAN_FARKAS,
     'Peggy Siegal',
     'Richard Kahn',
     'Robert Kuhn',
@@ -55,8 +57,8 @@ EMAILER_REGEXES = {
     'Kathy Ruemmler': re.compile(r'Kathy Ruemmle', re.IGNORECASE),
     'Ken Starr': re.compile('starr, ken', re.IGNORECASE),
     'Landon Thomas Jr.': re.compile('landon thomas jr|thomas jr.?, landon', re.IGNORECASE),
-    'Larry Summers': re.compile(r'La(wrence|rry).*Summer|^LHS?$', re.IGNORECASE),
-    'Lawrence Krauss': re.compile(r'Lawrence Kraus', re.IGNORECASE),
+    LARRY_SUMMERS: re.compile(r'La(wrence|rry).*Summer|^LHS?$', re.IGNORECASE),
+    LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus', re.IGNORECASE),
     'Lisa New': re.compile(r'Lisa New?$', re.IGNORECASE),
     'Mohamed Waheed Hassan': re.compile(r'Mohamed Waheed', re.IGNORECASE),
     'Martin Weinberg': re.compile(r'martin (g.* )weinberg', re.IGNORECASE),
@@ -71,8 +73,14 @@ EMAILER_REGEXES = {
 
 KNOWN_EMAILS = {
     '026625': DARREN_INDKE,
+    '031120': 'Gwendolyn',        # Signature
     '029692': JEFFREY_EPSTEIN,
+    '031624': JEFFREY_EPSTEIN,
     '016692': JOHN_PAGE,
+    '031732': JONATHAN_FARKAS,
+    '029196': LAWRENCE_KRAUSS,
+    '028789': 'Lawrance Visoski',
+    '029020': 'Renata Bolotova',   # Signature
 }
 
 for emailer in EMAILERS:
