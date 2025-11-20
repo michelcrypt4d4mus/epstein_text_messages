@@ -16,7 +16,7 @@ from rich.table import Table
 from rich.text import Text
 load_dotenv()
 
-from util.emails import AL_SECKEL, EHUD_BARAK, GHISLAINE_MAXWELL, MSG_REGEX, STEVE_BANNON, EpsteinFiles
+from util.emails import AL_SECKEL, EHUD_BARAK, GHISLAINE_MAXWELL, LEON_BLACK, MSG_REGEX, STEVE_BANNON, EpsteinFiles
 from util.env import deep_debug, is_debug
 from util.file_helper import get_files_in_dir
 from util.rich import *
@@ -27,11 +27,18 @@ PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
 
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = [
     None,
-    GHISLAINE_MAXWELL,
     STEVE_BANNON,
+    'Sean Bannon',
+    GHISLAINE_MAXWELL,
     JOI_ITO,
     AL_SECKEL,
     EHUD_BARAK,
+    LEON_BLACK,
+    'Sultan bin Sulayem',
+    'Deepak Chopra',
+    'Darren Indke',
+    'Richard Kahn',
+
 ]
 
 TEXTER_MAPPING = {
@@ -127,7 +134,7 @@ console.print(f"(Last deploy found 77 files with 4668 messages)\n", style='dim')
 
 # Email sender counts
 console.line(2)
-console.print(Panel(Text("Email Analysis", justify='center', style='bold'), expand=True), style='bold reverse')
+console.print(Panel(Text("Email Analysis", justify='center', style='bold'), expand=True, padding=(2, 2)), style='bold on blue3')
 console.line()
 counts_table = Table(title="Email Counts By Sender", show_header=True, header_style="bold")
 counts_table.add_column("From", justify="left")
