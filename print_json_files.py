@@ -1,0 +1,21 @@
+import json
+
+from dotenv import load_dotenv
+from rich.align import Align
+from rich.markup import escape
+from rich.panel import Panel
+from rich.table import Table
+from rich.text import Text
+from rich.theme import Theme
+load_dotenv()
+
+from util.file_helper import JSON_DIR
+from util.rich import console
+
+
+for file in [f for f in JSON_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]:
+    console.print('\n', Panel(file.name, expand=False))
+
+    with open(file, encoding='utf-8-sig') as f:
+        json_data = json.load(f)
+        console.print_json(json.dumps(json_data))
