@@ -8,6 +8,14 @@ from .env import deep_debug
 DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
 FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
+JSON_FILES_SUBDIR = 'json_files'
+DOCS_DIR_ENV = environ['EPSTEIN_DOCS_DIR']
+
+if not DOCS_DIR_ENV:
+    raise EnvironmentError(f"EPSTEIN_DOCS_DIR env var not set!")
+
+DOCS_DIR = Path(DOCS_DIR_ENV)
+JSON_DIR = DOCS_DIR.joinpath(JSON_FILES_SUBDIR)
 
 
 def extract_file_id(filename) -> str:
@@ -33,13 +41,7 @@ def first_timestamp_in_file(file_arg: Path) -> datetime:
 
 
 def get_files_in_dir() -> list[Path]:
-    docs_dir = environ['EPSTEIN_DOCS_DIR']
-
-    if not docs_dir:
-        raise EnvironmentError(f"EPSTEIN_DOCS_DIR env var not set!")
-
-    docs_dir = Path(docs_dir)
-    return [f for f in docs_dir.iterdir() if f.is_file() and not f.name.startswith('.')]
+    return [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
 
 
 def load_file(file_path):
@@ -52,6 +54,6 @@ def load_file(file_path):
 
 
 def move_json_file(file_arg: Path):
-    json_subdir_path = file_arg.parent.joinpath('json_files').joinpath(file_arg.name + '.json')
+    json_subdir_path = file_arg.parent.joinpath(JSON_FILES_SUBDIR).joinpath(file_arg.name + '.json')
     print(f"'{file_arg}' looks like JSON, moving to '{json_subdir_path}'\n")
     file_arg.rename(json_subdir_path)
