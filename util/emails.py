@@ -7,7 +7,7 @@ DATE_REGEX = re.compile(r'^Date:\s*(.*)\n')
 EMAIL_REGEX = re.compile(r'From: (.*)')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
 BAD_EMAILER_REGEX = re.compile(r'^>|ok|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|article 1.?|saved by|talk in|it was a|what do|cc:|call (back|me)).*)$')
-BROKEN_EMAIL_REGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(?:(?:CC|Importance|Subject|Attachments):\s*\n)*(?!CC|Importance|Subject|Attachments)([\w ]{2,}.*)\n')
+BROKEN_EMAIL_REGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(?:(?:CC|Importance|Subject|Attachments):\s*\n)*(?!CC|Importance|Subject|Attachments)([a-zA-Z]{2,}.*)\n')
 
 EMAILERS = [
     'Al Seckel',
@@ -93,9 +93,6 @@ def extract_email_sender(file_text):
 
     if ' [' in emailer:
         emailer = emailer.split(' [')[0]
-
-    if deep_debug:
-        console.print(f"  -> Found email from '{emailer}'", style='dim')
 
     return emailer.lower()
 
