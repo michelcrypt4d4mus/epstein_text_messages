@@ -1,7 +1,7 @@
 import re
 
 from .env import deep_debug
-from .rich import JOI_ITO, LARRY_SUMMERS, console
+from .rich import JOI_ITO, LARRY_SUMMERS, SOON_YI, console
 
 DATE_REGEX = re.compile(r'^Date:\s*(.*)\n')
 EMAIL_REGEX = re.compile(r'From: (.*)')
@@ -22,6 +22,7 @@ JOHN_PAGE = 'John Page'
 JOHNNY_EL_HACHEM = 'Johnny el Hachem'
 JONATHAN_FARKAS = 'Jonathan Farkas'
 LAWRENCE_KRAUSS = 'Lawrence Krauss'
+LAWRANCE_VISOSKI = 'Lawrance Visoski'
 
 EMAILERS = [
     'Al Seckel',
@@ -81,15 +82,17 @@ KNOWN_EMAILS = {
     '026069': ARIANE_DE_ROTHSCHILD,
     '026625': DARREN_INDKE,
     '031120': 'Gwendolyn',        # Signature
+    '029968': 'Gwendolyn',        # Signature
     '028770': JEFFREY_EPSTEIN,
     '029692': JEFFREY_EPSTEIN,
     '031624': JEFFREY_EPSTEIN,
     '016692': JOHN_PAGE,
     '031732': JONATHAN_FARKAS,
     '029196': LAWRENCE_KRAUSS,
-    '028789': 'Lawrance Visoski',
-    '027046': 'Lawrance Visoski',
+    '028789': LAWRANCE_VISOSKI,
+    '027046': LAWRANCE_VISOSKI,
     '029020': 'Renata Bolotova',   # Signature
+    '029005': SOON_YI,
 }
 
 for emailer in EMAILERS:
