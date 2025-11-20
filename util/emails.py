@@ -5,14 +5,17 @@ from datetime import datetime
 from pathlib import Path
 
 from dateutil.parser import parse
+from rich.console import Console, ConsoleOptions, RenderResult
+from rich.markup import escape
+from rich.panel import Panel
+from rich.padding import Padding
 from rich.text import Text
 
 from .env import deep_debug, is_debug
 from .file_helper import extract_file_id, load_file, move_json_file
 from .rich import (COUNTERPARTY_COLORS, DEFAULT, GUESSED_COUNTERPARTY_FILE_IDS, KNOWN_COUNTERPARTY_FILE_IDS,
-    JOI_ITO, LARRY_SUMMERS, MAX_PREVIEW_CHARS, SOON_YI, UNKNOWN, console, logger, print_top_lines)
+    JOI_ITO, LARRY_SUMMERS, MAX_PREVIEW_CHARS, SOON_YI, UNKNOWN, archive_link, console, logger, print_top_lines)
 
-#DATE_REGEX = re.compile(r'(?:Date|Sent):\s?\s?([\w:,\s/]{6,})\n')
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!from)([^\n]{6,})\n')
 EMAIL_REGEX = re.compile(r'From: (.*)')
 EMAIL_HEADER_REGEX = re.compile(r'^(((Date|Subject):.*\n)*From:.*\n((Date|Sent|To|CC|Importance|Subject|Attachments):.*\n)+)')
@@ -23,10 +26,11 @@ BROKEN_EMAIL_REGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(?:(?:CC|Importan
 REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*wrote:|-+Original\s*Message-+)')
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
 VALID_HEADER_LINES = 14
+EMAIL_INDENT = 3
 # iMessage
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 MSG_DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
-
+# Names
 ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
 BARBRO_EHNBOM = 'Barbro Ehnbom'
 DARREN_INDKE = 'Darren Indke'
@@ -38,6 +42,7 @@ JONATHAN_FARKAS = 'Jonathan Farkas'
 LAWRENCE_KRAUSS = 'Lawrence Krauss'
 LAWRANCE_VISOSKI = 'Lawrance Visoski'
 NADIA_MARCINKO = 'Nadia Marcinko'
+STEVE_BANNON = 'Steve Bannon'
 
 EMAILERS = [
     'Al Seckel',
@@ -88,7 +93,7 @@ EMAILER_REGEXES = {
     'Scott J. Link': re.compile(r'scott j. lin', re.IGNORECASE),
     'Sean Bannon': re.compile(r'sean banno', re.IGNORECASE),
     'Stephen Hanson': re.compile(r'ste(phen|ve) hanson|Shanson900', re.IGNORECASE),
-    'Steve Bannon': re.compile(r'steve banno[nr]?', re.IGNORECASE),
+    STEVE_BANNON: re.compile(r'steve banno[nr]?', re.IGNORECASE),
 }
 
 KNOWN_EMAILS = {
@@ -279,8 +284,16 @@ class Email(Document):
     def is_redacted(self) -> bool:
         return self.author is None
 
+    def sort_time(self) -> datetime:
+        timestamp = self.timestamp or parse("1/1/2001 12:01:01 AM")
+        return timestamp.replace(tzinfo=None) if timestamp.tzinfo is not None else timestamp
 
-valid_emailer = lambda emailer: not BAD_EMAILER_REGEX.match(emailer)
+    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
+        yield Panel(archive_link(self.filename), expand=False)
+        email_info = f" Email from {self.author or UNKNOWN} probably sent at '{self.timestamp or '?'}'"
+        yield Padding(Text(email_info, style='dim'), (0, 0, 0, EMAIL_INDENT))
+        email_panel = Panel(escape(self.cleanup_email_txt()), expand=False)
+        yield Padding(email_panel, (0, 0, 2, EMAIL_INDENT))
 
 
 @dataclass
@@ -355,8 +368,14 @@ class EpsteinFiles:
         return sorted(self.iMessage_logs, key=lambda f: f.timestamp)
 
     def redacted_emails(self) -> list[Email]:
-        redacted = [e for e in self.emails if e.is_redacted()]
-        return sorted(redacted, key=lambda e: (e.timestamp or parse('2000-01-01')))
+        return EpsteinFiles.sort_emails([e for e in self.emails if e.is_redacted()])
+
+    def emails_by(self, author: str) -> list[Email]:
+        return EpsteinFiles.sort_emails([e for e in self.emails if e.author == author])
+
+    @classmethod
+    def sort_emails(cls, emails: list[Email]) -> list[Email]:
+        return sorted(emails, key=lambda e: (e.sort_time()))
 
 
 def parse_timestamp(timestamp_str: str) -> None | datetime:
@@ -366,3 +385,6 @@ def parse_timestamp(timestamp_str: str) -> None | datetime:
         return timestamp
     except Exception as e:
         logger.info(f'Failed to parse "{timestamp_str}" to timestamp!')
+
+
+valid_emailer = lambda emailer: not BAD_EMAILER_REGEX.match(emailer)
