@@ -18,7 +18,7 @@ from rich.table import Table
 from rich.text import Text
 load_dotenv()
 
-from util.emails import DETECT_EMAIL_REGEX, extract_email_sender, cleanup_email_txt
+from util.emails import DETECT_EMAIL_REGEX, KNOWN_EMAILS, extract_email_sender, cleanup_email_txt
 from util.env import deep_debug, include_redacted_emails, is_debug
 from util.file_helper import MSG_REGEX, extract_file_id, first_timestamp_in_file, get_files_in_dir, load_file, move_json_file
 from util.rich import *
@@ -71,6 +71,7 @@ def get_imessage_log_files(files: list[Path]) -> list[Path]:
         file_text = ''
         file_text = load_file(file_arg)
         file_lines = file_text.split('\n')
+        file_id = extract_file_id(file_arg.name)
 
         if len(file_text) == 0:
             if deep_debug:
@@ -91,7 +92,7 @@ def get_imessage_log_files(files: list[Path]) -> list[Path]:
                 emailer_counts[TOTAL] += 1
 
                 try:
-                    emailer = extract_email_sender(file_text) or UNKNOWN
+                    emailer = KNOWN_EMAILS.get(file_id) or extract_email_sender(file_text) or UNKNOWN
                     emailer_counts[emailer.lower()] += 1
 
                     if deep_debug:
