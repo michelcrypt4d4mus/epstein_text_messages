@@ -9,6 +9,7 @@ DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
 BAD_EMAILER_REGEX = re.compile(r'^>|ok|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|article 1.?|saved by|momminnemummin|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 BROKEN_EMAIL_REGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(?:(?:CC|Importance|Subject|Attachments):\s*\n)*(?!CC|Importance|Subject|Attachments)([a-zA-Z]{2,}.*|\[triyersr@gmail.com\])\n')
 REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,.*wrote:|-+Original\s*Message-+)')
+EDWARD_EPSTEIN = 'Edward Epstein'
 JEFFREY_EPSTEIN = 'Jeffrey Epstein'
 
 EMAILERS = [
@@ -31,6 +32,7 @@ EMAILER_REGEXES = {
     'Boris Nikolic': re.compile(r'boris nikoli', re.IGNORECASE),
     'Dangene and Jennie Enterprise': re.compile(r'Dangene and Jennie Enterpris', re.IGNORECASE),
     'Darren Indke': re.compile(r'^darren$|darren [il]ndyke', re.IGNORECASE),
+    'Edward Epstein': re.compile(r'Edward (Jay )?Epstein', re.IGNORECASE),
     'Ehud Barak': re.compile(r'(ehud|h)\s*barak', re.IGNORECASE),
     'Ghislaine Maxwell': re.compile(r'g ?max(well)?', re.IGNORECASE),
     'Google Alerts': re.compile(r'google\s?alerts', re.IGNORECASE),
@@ -42,9 +44,12 @@ EMAILER_REGEXES = {
     'Larry Summers': re.compile(r'La(wrence|rry).*Summer|^LHS?$', re.IGNORECASE),
     'Lawrence Krauss': re.compile(r'Lawrence Kraus', re.IGNORECASE),
     'Lisa New': re.compile(r'Lisa New?$', re.IGNORECASE),
+    'Mohamed Waheed Hassan': re.compile(r'Mohamed Waheed', re.IGNORECASE),
     'Martin Weinberg': re.compile(r'martin (g.* )weinberg', re.IGNORECASE),
     'Nicholas Ribis': re.compile(r'Nicholas Rib', re.IGNORECASE),
-    'Paul Krassner': re.compile(r'Pa\s+ul Krassner', re.IGNORECASE),
+    'Paul Krassner': re.compile(r'Pa\s?ul Krassner', re.IGNORECASE),
+    'Scott J. Lin': re.compile(r'scott j. lin', re.IGNORECASE),
+    'Sean Bannon': re.compile(r'sean banno', re.IGNORECASE),
     'Steve Bannon': re.compile(r'steve bannon', re.IGNORECASE),
 }
 
@@ -104,7 +109,7 @@ def extract_email_sender(file_text):
         return
 
     if emailer == 'Ed' and 'EDWARD JAY EPSTEIN' in file_text:
-        return 'Edward Jay Epstein'
+        return EDWARD_EPSTEIN
 
     return emailer
 
