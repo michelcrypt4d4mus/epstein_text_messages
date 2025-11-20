@@ -220,7 +220,7 @@ console.print(f"\nScanned {num_potential_emails} potential emails, found {sum([i
 
 # Redacted emails option
 if include_redacted_emails:
-    console.print('\n\n', Panel(Text("Emails Whose Senders Were Redacted", justify='center', style='reverse')), '\n')
+    console.print('\n\n', Panel(Text("Emails Whose Senders Were Redacted", justify='center', style='bold reverse')), '\n')
 
     for filename, contents in redacted_emails.items():
         console.print(Panel(archive_link(filename), expand=False))
