@@ -43,8 +43,7 @@ UNKNOWN_TEXTERS = [
 ]
 
 search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&page=1&q={urllib.parse.quote(txt)}&p=1"
-archive_file_link = lambda file: f"[link={search_archive_url(file)}]View File in Courier Newsroom Archive[/link]\n"
-archive_link = lambda file: f"[link={search_archive_url(file)}]{file}[/link]"
+archive_link = lambda file: f"[deep_sky_blue4][link={search_archive_url(file)}]{file}[/link][/deep_sky_blue4]"
 sender_counts = defaultdict(int)
 emailer_counts = defaultdict(int)
 redacted_emails = {}
@@ -139,8 +138,6 @@ for file_arg in get_imessage_log_files(files):
         txt.append(counterparty_guess, style=f"{COUNTERPARTY_COLORS.get(counterparty_guess, DEFAULT)}")
         console.print(txt.append(')'), style='dim')
         convos_labeled += 1
-
-    console.print(archive_file_link(file_arg.name), style='deep_sky_blue4 dim')
 
     for i, match in enumerate(MSG_REGEX.finditer(file_text)):
         sender = sender_str = match.group(1).strip()
