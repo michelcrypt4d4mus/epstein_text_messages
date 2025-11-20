@@ -43,7 +43,7 @@ UNKNOWN_TEXTERS = [
 ]
 
 search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&page=1&q={urllib.parse.quote(txt)}&p=1"
-archive_link = lambda file: f"[deep_sky_blue4][link={search_archive_url(file)}]{file}[/link][/deep_sky_blue4]"
+archive_link = lambda file: f"[bold][{ARCHIVE_LINK_COLOR}][link={search_archive_url(file)}]{file}[/link][/{ARCHIVE_LINK_COLOR}][/bold]"
 sender_counts = defaultdict(int)
 emailer_counts = defaultdict(int)
 redacted_emails = {}
@@ -220,7 +220,7 @@ console.print(f"\nScanned {num_potential_emails} potential emails, found {sum([i
 
 # Redacted emails option
 if include_redacted_emails:
-    console.print('\n\n', Panel(Text("Emails Whose Senders Were Redacted", justify='center', style='reverse')), '\n')
+    console.print('\n\n', Panel(Text("Emails Whose Senders Were Redacted", justify='center', style='bold reverse')), '\n')
 
     for filename, contents in redacted_emails.items():
         console.print(Panel(archive_link(filename), expand=False))
