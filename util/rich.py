@@ -185,7 +185,8 @@ if deep_debug:
     logger.setLevel(logging.DEBUG)
 elif is_debug:
     logger.setLevel(logging.INFO)
-
+else:
+    logger.setLevel(logging.WARNING)
 
 console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS), width=OUTPUT_WIDTH)
 console.record = True
