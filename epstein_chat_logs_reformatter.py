@@ -43,7 +43,8 @@ UNKNOWN_TEXTERS = [
 ]
 
 search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&page=1&q={urllib.parse.quote(txt)}&p=1"
-archive_file_url = lambda file: f"[link={search_archive_url(file)}]View File in Courier Newsroom Archive[/link]\n"
+archive_file_link = lambda file: f"[link={search_archive_url(file)}]View File in Courier Newsroom Archive[/link]\n"
+archive_link = lambda file: f"[link={search_archive_url(file)}]{file}[/link]\n"
 sender_counts = defaultdict(int)
 emailer_counts = defaultdict(int)
 redacted_emails = {}
@@ -130,7 +131,7 @@ for file_arg in get_imessage_log_files(files):
     file_text = load_file(file_arg)
     file_lines = file_text.split('\n')
     file_id = extract_file_id(file_arg.name)
-    console.print(Panel(file_arg.name, style='reverse', expand=False))
+    console.print(Panel(archive_link(file_arg.name), style='reverse', expand=False))
     counterparty = KNOWN_COUNTERPARTY_FILE_IDS.get(file_id, UNKNOWN)
     counterparty_guess = None
 
@@ -146,7 +147,7 @@ for file_arg in get_imessage_log_files(files):
         console.print(txt.append(')'), style='dim')
         convos_labeled += 1
 
-    console.print(archive_file_url(file_arg.name), style='deep_sky_blue4 dim')
+    console.print(archive_file_link(file_arg.name), style='deep_sky_blue4 dim')
 
     for i, match in enumerate(MSG_REGEX.finditer(file_text)):
         sender = sender_str = match.group(1).strip()
@@ -209,13 +210,14 @@ console.print(counts_table)
 console.print(f"\nFound {msgs_processed} text messages in {files_processed} iMessage logs of {len(files)} total files ({convos_labeled} files deanonymized).")
 console.print(f"(Last deploy found 77 files with 4668 messages)\n", style='dim')
 
+
 # Email sender counts
 console.line(2)
-console.print(Panel(Text("Email Analysis", justify='center', style='bold'), padding=(0, 35), expand=False), style='reverse')
+console.print(Panel(Text("Email Analysis", justify='center', style='bold'), padding=(0, 35), expand=False), style='bold reverse')
 console.line()
 num_potential_emails = emailer_counts.pop(TOTAL)
 counts_table = Table(title="Email Counts By Sender", show_header=True, header_style="bold")
-counts_table.add_column("From", justify="left")#, width=40)
+counts_table.add_column("From", justify="left")
 counts_table.add_column("Email Count", justify="center")
 
 for k, v in sorted(emailer_counts.items(), key=lambda item: item[1], reverse=True):
@@ -226,10 +228,10 @@ console.print(f"\nScanned {num_potential_emails} potential emails, found {sum([i
 
 # Redacted emails option
 if include_redacted_emails:
-    console.print('\n\n', Panel(Text("Emails Whose Senders Were Redacted", justify='center', style='bold reverse')), '\n')
+    console.print('\n\n', Panel(Text("Emails Whose Senders Were Redacted", justify='center', style='reverse')), '\n')
 
     for filename, contents in redacted_emails.items():
-        console.print(Panel(f"[link={search_archive_url(filename)}]{filename}[/link]", style='reverse', expand=False))
+        console.print(Panel(archive_link(filename), style='reverse', expand=False))
         console.print(escape(cleanup_email_txt(contents)), '\n\n')
 
 
