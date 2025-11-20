@@ -5,8 +5,10 @@ from .rich import JOI_ITO, console
 
 DATE_REGEX = re.compile(r'^Date:\s*(.*)\n')
 EMAIL_REGEX = re.compile(r'From: (.*)')
+EMAIL_HEADER_REGEX = re.compile(r'^(((Date|Subject):.*\n)*From:.*\n((Date|Sent|To|CC|Importance|Subject|Attachments):.*\n)+)')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
 BAD_EMAILER_REGEX = re.compile(r'^>|ok|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|hysterical|article 1.?|momminnemummin|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
+EMPTY_HEADER_REGEX = re.compile(r'From:\s*\n((Date|Sent|To|CC|Importance|Subject|Attachments):\s*\n)+')
 BROKEN_EMAIL_REGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(?:(?:CC|Importance|Subject|Attachments):\s*\n)*(?!CC|Importance|Subject|Attachments)([a-zA-Z]{2,}.*|\[triyersr@gmail.com\])\n')
 REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,.*wrote:|-+Original\s*Message-+)')
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
@@ -14,13 +16,14 @@ NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
 DARREN_INDKE = 'Darren Indke'
 EDWARD_EPSTEIN = 'Edward Epstein'
 JEFFREY_EPSTEIN = 'Jeffrey Epstein'
+JOHN_PAGE = 'John Page'
 
 EMAILERS = [
     'Al Seckel',
     'Daniel Sabba',
     'Glenn Dubin',
     'Jessica Cadwell',
-    'John Page',
+    JOHN_PAGE,
     'Jokeland',
     'Kathleen Ruderman',
     'Lesley Groff',
@@ -69,6 +72,7 @@ EMAILER_REGEXES = {
 KNOWN_EMAILS = {
     '026625': DARREN_INDKE,
     '029692': JEFFREY_EPSTEIN,
+    '016692': JOHN_PAGE,
 }
 
 for emailer in EMAILERS:
@@ -128,6 +132,9 @@ def extract_email_sender(file_text):
 
 
 def cleanup_email_txt(file_text: str) -> str:
+    if not EMPTY_HEADER_REGEX.search(file_text):
+        file_text = EMAIL_HEADER_REGEX.sub(r'\1\n', file_text, 1)
+
     file_text = REPLY_REGEX.sub(r'\n\1', file_text)
     return EPSTEIN_SIGNATURE.sub('<...clipped epstein legal signature...>', file_text)
 
