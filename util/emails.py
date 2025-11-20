@@ -8,7 +8,8 @@ EMAIL_REGEX = re.compile(r'From: (.*)')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
 BAD_EMAILER_REGEX = re.compile(r'^>|ok|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|article 1.?|saved by|momminnemummin|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 BROKEN_EMAIL_REGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(?:(?:CC|Importance|Subject|Attachments):\s*\n)*(?!CC|Importance|Subject|Attachments)([a-zA-Z]{2,}.*|\[triyersr@gmail.com\])\n')
-REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2},)?\s*?[A-Z][a-z]{2}\s*\d+,\s*\d{4},?\s*at\s*\d+:\d+\s*(AM|PM),.*wrote:|-+Original\s*Message-+)')
+REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,.*wrote:|-+Original\s*Message-+)')
+JEFFREY_EPSTEIN = 'Jeffrey Epstein'
 
 EMAILERS = [
     'Al Seckel',
@@ -33,7 +34,7 @@ EMAILER_REGEXES = {
     'Ehud Barak': re.compile(r'(ehud|h)\s*barak', re.IGNORECASE),
     'Ghislaine Maxwell': re.compile(r'g ?max(well)?', re.IGNORECASE),
     'Google Alerts': re.compile(r'google\s?alerts', re.IGNORECASE),
-    'Jeffrey Epstein': re.compile(r'jee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE),
+    JEFFREY_EPSTEIN: re.compile(r'jee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|joichi|^joi$', re.IGNORECASE),
     'Kathy Ruemmler': re.compile(r'Kathy Ruemmle', re.IGNORECASE),
     'Ken Starr': re.compile('starr, ken', re.IGNORECASE),
@@ -45,6 +46,10 @@ EMAILER_REGEXES = {
     'Nicholas Ribis': re.compile(r'Nicholas Rib', re.IGNORECASE),
     'Paul Krassner': re.compile(r'Pa\s+ul Krassner', re.IGNORECASE),
     'Steve Bannon': re.compile(r'steve bannon', re.IGNORECASE),
+}
+
+KNOWN_EMAILS = {
+    '029692': JEFFREY_EPSTEIN,
 }
 
 for emailer in EMAILERS:
