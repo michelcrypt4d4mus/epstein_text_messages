@@ -13,6 +13,7 @@ BROKEN_EMAIL_REGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(?:(?:CC|Importan
 REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*wrote:|-+Original\s*Message-+)')
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
 
+BARBRO_EHNBOM = 'Barbro Ehnbom'
 DARREN_INDKE = 'Darren Indke'
 EDWARD_EPSTEIN = 'Edward Epstein'
 JEFFREY_EPSTEIN = 'Jeffrey Epstein'
@@ -40,9 +41,10 @@ EMAILERS = [
     'Weingarten, Reid',
 ]
 
+
 EMAILER_REGEXES = {
     'Amanda Ens': re.compile(r'ens, amand', re.IGNORECASE),
-    "Barbro Ehnbom": re.compile(r'behnbom@aol.com|Barbro\s.*Ehnbom', re.IGNORECASE),
+    BARBRO_EHNBOM: re.compile(r'behnbom@aol.com|Barbro\s.*Ehnbom', re.IGNORECASE),
     'Barry J. Cohen': re.compile(r'barry (j.? )?cohen?', re.IGNORECASE),
     'Boris Nikolic': re.compile(r'boris nikoli', re.IGNORECASE),
     'Dangene and Jennie Enterprise': re.compile(r'Dangene and Jennie Enterpris', re.IGNORECASE),
@@ -75,12 +77,14 @@ KNOWN_EMAILS = {
     '026064': 'Ariane de Rothschild',
     '026625': DARREN_INDKE,
     '031120': 'Gwendolyn',        # Signature
+    '028770': JEFFREY_EPSTEIN,
     '029692': JEFFREY_EPSTEIN,
     '031624': JEFFREY_EPSTEIN,
     '016692': JOHN_PAGE,
     '031732': JONATHAN_FARKAS,
     '029196': LAWRENCE_KRAUSS,
     '028789': 'Lawrance Visoski',
+    '027046': 'Lawrance Visoski',
     '029020': 'Renata Bolotova',   # Signature
 }
 
