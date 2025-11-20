@@ -19,6 +19,7 @@ EMAILERS = [
     'Daniel Sabba',
     'Glenn Dubin',
     'Jessica Cadwell',
+    'John Page',
     'Jokeland',
     'Kathleen Ruderman',
     'Lesley Groff',
