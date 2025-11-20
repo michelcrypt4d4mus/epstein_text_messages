@@ -18,7 +18,7 @@ from rich.table import Table
 from rich.text import Text
 load_dotenv()
 
-from util.emails import DETECT_EMAIL_REGEX, extract_email_sender, valid_emailer, replace_signature
+from util.emails import DETECT_EMAIL_REGEX, extract_email_sender, replace_signature
 from util.env import deep_debug, include_redacted_emails, is_debug
 from util.file_helper import MSG_REGEX, extract_file_id, first_timestamp_in_file, get_files_in_dir, load_file, move_json_file
 from util.rich import *
@@ -65,7 +65,7 @@ def get_imessage_log_files(files: list[Path]) -> list[Path]:
 
     for file_arg in files:
         if deep_debug:
-            console.print(f"Scanning '{file_arg.name}'...", style='dim')
+            console.print(f"\nScanning '{file_arg.name}'...", style='dim')
 
         file_text = ''
         file_text = load_file(file_arg)
@@ -91,16 +91,14 @@ def get_imessage_log_files(files: list[Path]) -> list[Path]:
 
                 try:
                     emailer = extract_email_sender(file_text) or UNKNOWN
+                    emailer_counts[emailer.lower()] += 1
 
                     if deep_debug:
-                        console.print(f"Emailer: '{emailer}'", style='dim')
+                        console.print(f"   -> Emailer: '{emailer}'", style='dim')
 
-                    if valid_emailer(emailer):
-                        emailer_counts[emailer.lower()] += 1
-
-                    if len(emailer) >= 3 and emailer != UNKNOWN and valid_emailer(emailer):
+                    if len(emailer) >= 3 and emailer != UNKNOWN:
                         continue  # Don't proceed to printing debug contents if we found a valid email
-                    elif emailer == UNKNOWN:
+                    elif len(emailer) >= 3:
                         redacted_emails[file_arg.name] = file_text
                 except Exception as e:
                     console.print_exception()
