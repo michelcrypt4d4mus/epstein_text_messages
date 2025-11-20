@@ -15,7 +15,10 @@ from .file_helper import extract_file_id
 COURIER_NEWSROOM_ARCHIVE = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
 OUTPUT_WIDTH = 120
 
+ARCHIVE_LINK = 'archive_link'
 PHONE_NUMBER = 'phone_number'
+TEXT_LINK = 'text_link'
+
 ANIL = "Anil Ambani"
 BANNON = 'Bannon'
 DEFAULT = 'default'
@@ -27,13 +30,13 @@ PLASKETT = 'Stacey Plaskett'
 SCARAMUCCI = 'The Mooch'
 SOON_YI = 'Soon-Yi Previn'
 SUMMERS = 'Larry Summers'
-TEXT_LINK = 'text_link'
 TERJE = 'Terje Rød-Larsen'
 UNKNOWN = '(unknown)'
 
 # Color different counterparties differently
 COUNTERPARTY_COLORS = {
     ANIL: 'dark_green',
+    ARCHIVE_LINK: 'deep_sky_blue4',
     BANNON: 'color(58)',
     'Celina Dubin': 'medium_orchid1',
     DEFAULT: 'wheat4',
