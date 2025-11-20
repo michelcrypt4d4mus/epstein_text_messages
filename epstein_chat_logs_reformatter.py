@@ -3,8 +3,8 @@
 Reformat Epstein text message files for readability and count email senders.
 For use with iMessage log files from https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_
 
-Install: 'pip install rich'
-    Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT/archive ./epstein_chat_logs_reformatter.py'
+Install: 'pip install python-dotenv rich'
+    Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT/001 ./epstein_chat_logs_reformatter.py'
 """
 import re
 import urllib.parse
@@ -44,11 +44,10 @@ UNKNOWN_TEXTERS = [
 
 search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&page=1&q={urllib.parse.quote(txt)}&p=1"
 archive_link = lambda file: f"[bold][{ARCHIVE_LINK_COLOR}][link={search_archive_url(file)}]{file}[/link][/{ARCHIVE_LINK_COLOR}][/bold]"
-sender_counts = defaultdict(int)
 emailer_counts = defaultdict(int)
+sender_counts = defaultdict(int)
 redacted_emails = {}
 convos_labeled = 0
-files_found = 0
 msgs_processed = 0
 
 
@@ -203,12 +202,12 @@ console.print(f"(Last deploy found 77 files with 4668 messages)\n", style='dim')
 console.line(2)
 console.print(Panel(Text("Email Analysis", justify='center', style='bold'), expand=True), style='bold reverse')
 console.line()
-num_potential_emails = emailer_counts.pop(TOTAL)
 counts_table = Table(title="Email Counts By Sender", show_header=True, header_style="bold")
 counts_table.add_column("From", justify="left")
 counts_table.add_column("Email Count", justify="center")
+num_potential_emails = emailer_counts.pop(TOTAL)
 
-for k, v in sorted(emailer_counts.items(), key=lambda item: item[1], reverse=True):
+for k, v in sorted(emailer_counts.items(), key=lambda item: [item[1], item[0]], reverse=True):
     counts_table.add_row(f"[steel_blue][link={search_archive_url(k)}]{k}[/link][/steel_blue]", str(v))
 
 console.print(counts_table)
