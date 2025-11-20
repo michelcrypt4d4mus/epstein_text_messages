@@ -1,9 +1,13 @@
 import re
+from datetime import datetime
 
-from .env import deep_debug
-from .rich import JOI_ITO, LARRY_SUMMERS, SOON_YI, console
+from dateutil.parser import parse
 
-DATE_REGEX = re.compile(r'^Date:\s*(.*)\n')
+from .env import deep_debug, is_debug
+from .rich import JOI_ITO, LARRY_SUMMERS, MAX_PREVIEW_CHARS, SOON_YI, console, logger, print_top_lines
+
+#DATE_REGEX = re.compile(r'(?:Date|Sent):\s?\s?([\w:,\s/]{6,})\n')
+DATE_REGEX = re.compile(r'(?:Date|Sent): *([^\n]{6,})\n')
 EMAIL_REGEX = re.compile(r'From: (.*)')
 EMAIL_HEADER_REGEX = re.compile(r'^(((Date|Subject):.*\n)*From:.*\n((Date|Sent|To|CC|Importance|Subject|Attachments):.*\n)+)')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
@@ -12,6 +16,7 @@ EMPTY_HEADER_REGEX = re.compile(r'From:\s*\n((Date|Sent|To|CC|Importance|Subject
 BROKEN_EMAIL_REGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(?:(?:CC|Importance|Subject|Attachments):\s*\n)*(?!CC|Importance|Subject|Attachments)([a-zA-Z]{2,}.*|\[triyersr@gmail.com\])\n')
 REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*wrote:|-+Original\s*Message-+)')
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
+VALID_HEADER_LINES = 14
 
 ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
 BARBRO_EHNBOM = 'Barbro Ehnbom'
@@ -44,7 +49,6 @@ EMAILERS = [
     'Steven Victor MD',
     'Weingarten, Reid',
 ]
-
 
 EMAILER_REGEXES = {
     'Amanda Ens': re.compile(r'ens, amand', re.IGNORECASE),
@@ -134,7 +138,7 @@ including all attachments. copyright -all rights reserved"""
 def extract_email_sender(file_text):
     email_match = EMAIL_REGEX.search(file_text)
     broken_match = BROKEN_EMAIL_REGEX.search(file_text)
-    date_match = DATE_REGEX.search(file_text)
+    sent_at = extract_sent_at(file_text)
     emailer = None
 
     if broken_match:
@@ -170,6 +174,26 @@ def cleanup_email_txt(file_text: str) -> str:
 
     file_text = REPLY_REGEX.sub(r'\n\1', file_text)
     return EPSTEIN_SIGNATURE.sub('<...clipped epstein legal signature...>', file_text)
+
+
+def extract_sent_at(file_text: str) -> datetime | str | None:
+    searchable_lines = '\n'.join(file_text.split('\n')[0:VALID_HEADER_LINES])
+    date_match = DATE_REGEX.search(searchable_lines)
+
+    if not date_match:
+        top_text = '\n'.join(file_text.split("\n")[0:10])[0:MAX_PREVIEW_CHARS]
+        logger.info(f"Timestamp not found in email, top lines:\n{top_text}")
+        return
+
+    timestamp_str = date_match.group(1).strip()
+    timestamp_str = timestamp_str.replace(' (UTC)', '') if timestamp_str.endswith(' (UTC)') else timestamp_str
+
+    try:
+        timestamp = parse(timestamp_str)
+        logger.info(f'Parsed timestamp "{timestamp}" from string "{timestamp_str}"')
+        return timestamp
+    except Exception as e:
+        logger.warning(f'Failed to parse "{timestamp_str}" to timestamp!')
 
 
 valid_emailer = lambda emailer: not BAD_EMAILER_REGEX.match(emailer)

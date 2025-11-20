@@ -1,21 +1,24 @@
 import csv
 import json
+import logging
 import re
 from io import StringIO
 
 from rich.align import Align
 from rich.console import Console
+from rich.logging import RichHandler
 from rich.markup import escape
 from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
 from rich.theme import Theme
 
-from .env import deep_debug
+from .env import deep_debug, is_debug
 from .file_helper import extract_file_id
 
 COURIER_NEWSROOM_ARCHIVE = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
 LEADING_WHITESPACE_REGEX = re.compile(r'\A\s*', re.MULTILINE)
+MAX_PREVIEW_CHARS = 300
 OUTPUT_WIDTH = 120
 
 ARCHIVE_LINK = 'archive_link'
@@ -47,7 +50,7 @@ COUNTERPARTY_COLORS = {
     DEFAULT: 'wheat4',
     EPSTEIN: 'blue',
     EVA: 'orchid',
-    'Joi Ito': 'blue_violet',
+    JOI_ITO: 'blue_violet',
     LARRY_SUMMERS: 'bright_red',
     MELANIE_WALKER: 'deep_pink3',
     MIROSLAV: 'slate_blue3',
@@ -173,8 +176,20 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
 
     GUESSED_COUNTERPARTY_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
 
+
+
+logging.basicConfig(level="NOTSET", format="%(message)s", datefmt="[%X]", handlers=[RichHandler()])
+logger = logging.getLogger("rich")
+
+if deep_debug:
+    logger.setLevel(logging.DEBUG)
+elif is_debug:
+    logger.setLevel(logging.INFO)
+
+
 console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS), width=OUTPUT_WIDTH)
 console.record = True
+
 
 if deep_debug:
     console.print('KNOWN_COUNTERPARTY_FILE_IDS\n--------------')
@@ -226,7 +241,7 @@ def print_header():
     console.line(2)
 
 
-def print_top_lines(file_text, n = 10, max_chars = 300, in_panel = False):
+def print_top_lines(file_text, n = 10, max_chars = MAX_PREVIEW_CHARS, in_panel = False):
     "Print first n lines of a file."
     file_text = LEADING_WHITESPACE_REGEX.sub('', file_text)
     top_text = escape('\n'.join(file_text.split("\n")[0:n])[0:max_chars])
