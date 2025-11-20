@@ -19,7 +19,7 @@ def extract_file_id(filename) -> str:
         raise RuntimeError(f"Failed to extract file ID from {filename}")
 
 
-def first_timestamp_in_file(file_arg: Path):
+def first_timestamp_in_file(file_arg: Path) -> datetime:
     if deep_debug:
         print(f"Getting timestamp from {file_arg}...")
 
