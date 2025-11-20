@@ -29,12 +29,12 @@ DEFAULT = 'default'
 EPSTEIN = 'Epstein'
 EVA = 'Eva'
 JOI_ITO = 'Joi Ito'
+LARRY_SUMMERS = 'Larry Summers'
 MELANIE_WALKER = 'Melanie Walker'
 MIROSLAV = 'Miroslav Lajčák'
 PLASKETT = 'Stacey Plaskett'
 SCARAMUCCI = 'The Mooch'
 SOON_YI = 'Soon-Yi Previn'
-SUMMERS = 'Larry Summers'
 TERJE = 'Terje Rød-Larsen'
 UNKNOWN = '(unknown)'
 
@@ -48,6 +48,7 @@ COUNTERPARTY_COLORS = {
     EPSTEIN: 'blue',
     EVA: 'orchid',
     'Joi Ito': 'blue_violet',
+    LARRY_SUMMERS: 'bright_red',
     MELANIE_WALKER: 'deep_pink3',
     MIROSLAV: 'slate_blue3',
     "Michael Wolff": 'grey54',
@@ -55,7 +56,6 @@ COUNTERPARTY_COLORS = {
     PLASKETT: 'medium_orchid3',
     SCARAMUCCI: 'orange1',
     SOON_YI: 'hot_pink',
-    SUMMERS: 'bright_red',
     TERJE: 'light_slate_blue',
     TEXT_LINK: 'deep_sky_blue4 underline',
     UNKNOWN: 'cyan',
@@ -80,7 +80,7 @@ KNOWN_COUNTERPARTY_FILE_IDS = {
     '027217': SOON_YI,         # refs marriage to woody allen
     '027244': SOON_YI,         # refs Woody
     '027257': SOON_YI,         # 'Woody Allen' in Participants: field
-    '027777': SUMMERS,
+    '027777': LARRY_SUMMERS,
     '027278': TERJE,
     '027255': TERJE,
 }
