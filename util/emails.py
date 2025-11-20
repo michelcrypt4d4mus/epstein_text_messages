@@ -72,6 +72,7 @@ EMAILER_REGEXES = {
 }
 
 KNOWN_EMAILS = {
+    '026064': 'Ariane de Rothschild',
     '026625': DARREN_INDKE,
     '031120': 'Gwendolyn',        # Signature
     '029692': JEFFREY_EPSTEIN,
