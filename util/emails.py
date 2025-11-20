@@ -9,7 +9,8 @@ from rich.text import Text
 
 from .env import deep_debug, is_debug
 from .file_helper import extract_file_id, load_file, move_json_file
-from .rich import COUNTERPARTY_COLORS, DEFAULT, GUESSED_COUNTERPARTY_FILE_IDS, KNOWN_COUNTERPARTY_FILE_IDS, JOI_ITO, LARRY_SUMMERS, MAX_PREVIEW_CHARS, SOON_YI, UNKNOWN, console, logger, print_top_lines
+from .rich import (COUNTERPARTY_COLORS, DEFAULT, GUESSED_COUNTERPARTY_FILE_IDS, KNOWN_COUNTERPARTY_FILE_IDS,
+    JOI_ITO, LARRY_SUMMERS, MAX_PREVIEW_CHARS, SOON_YI, UNKNOWN, console, logger, print_top_lines)
 
 #DATE_REGEX = re.compile(r'(?:Date|Sent):\s?\s?([\w:,\s/]{6,})\n')
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!from)([^\n]{6,})\n')
@@ -100,6 +101,7 @@ KNOWN_EMAILS = {
     '031120': 'Gwendolyn',        # Signature
     '029968': 'Gwendolyn',        # Signature
     '026024': 'Jean Huguen',
+    '029779': JEFFREY_EPSTEIN,
     '022949': JEFFREY_EPSTEIN,
     '028770': JEFFREY_EPSTEIN,
     '029692': JEFFREY_EPSTEIN,
