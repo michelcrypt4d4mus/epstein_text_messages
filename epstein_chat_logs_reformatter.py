@@ -46,12 +46,11 @@ UNKNOWN_TEXTERS = [
 search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&page=1&q={urllib.parse.quote(txt)}&p=1"
 archive_link = lambda file: f"[bold][{ARCHIVE_LINK_COLOR}][link={search_archive_url(file)}]{file}[/link][/{ARCHIVE_LINK_COLOR}][/bold]"
 sender_counts = defaultdict(int)
-redacted_emails = {}
 convos_labeled = 0
 msgs_processed = 0
-
-
 print_header()
+
+
 epstein_files = EpsteinFiles(get_files_in_dir())
 
 for log_file in epstein_files.sorted_imessage_logs():
@@ -141,9 +140,10 @@ console.print(f"\nScanned {len(epstein_files.emails)} potential emails, found {s
 
 # Redacted emails option
 if include_redacted_emails:
-    console.print('\n\n', Panel(Text("Emails Whose Senders Were Redacted", justify='center')), '\n', style='bold reverse')
+    redacted_emails = epstein_files.redacted_emails()
+    console.print('\n\n', Panel(Text(f"{len(redacted_emails)} Emails Whose Senders Were Redacted", justify='center')), '\n', style='bold reverse')
 
-    for email in epstein_files.redacted_emails():
+    for email in redacted_emails:
         console.print(Panel(archive_link(email.filename), expand=False))
         email_info = f" Email from {email.author or UNKNOWN} probably sent at '{email.timestamp or '?'}'"
         console.print(Padding(email_info, (0, 0, 0, EMAIL_INDENT)), style='dim')
