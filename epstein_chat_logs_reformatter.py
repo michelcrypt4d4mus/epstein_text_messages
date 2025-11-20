@@ -18,15 +18,14 @@ from rich.table import Table
 from rich.text import Text
 load_dotenv()
 
-from util.emails import DETECT_EMAIL_REGEX, MSG_REGEX, NOT_REDACTED_EMAILER_REGEX, Document, Email, EpsteinFiles, MessengerLog
+from util.emails import MSG_REGEX, EpsteinFiles
 from util.env import deep_debug, include_redacted_emails, is_debug
-from util.file_helper import extract_file_id, get_files_in_dir, load_file, move_json_file
+from util.file_helper import get_files_in_dir
 from util.rich import *
 
 OUTPUT_DIR = Path('docs')
 OUTPUT_GH_PAGES_HTML = OUTPUT_DIR.joinpath('index.html')
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
-TOTAL = 'TOTAL'
 
 TEXTER_MAPPING = {
     'e:jeeitunes@gmail.com': EPSTEIN,
@@ -44,7 +43,6 @@ UNKNOWN_TEXTERS = [
 
 search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&page=1&q={urllib.parse.quote(txt)}&p=1"
 archive_link = lambda file: f"[bold][{ARCHIVE_LINK_COLOR}][link={search_archive_url(file)}]{file}[/link][/{ARCHIVE_LINK_COLOR}][/bold]"
-emailer_counts = defaultdict(int)
 sender_counts = defaultdict(int)
 redacted_emails = {}
 convos_labeled = 0
@@ -132,21 +130,20 @@ console.line()
 counts_table = Table(title="Email Counts By Sender", show_header=True, header_style="bold")
 counts_table.add_column("From", justify="left")
 counts_table.add_column("Email Count", justify="center")
-num_potential_emails = emailer_counts.pop(TOTAL)
 
-for k, v in sorted(emailer_counts.items(), key=lambda item: [item[1], item[0]], reverse=True):
+for k, v in sorted(epstein_files.emailer_counts.items(), key=lambda item: [item[1], item[0]], reverse=True):
     counts_table.add_row(f"[steel_blue][link={search_archive_url(k)}]{k}[/link][/steel_blue]", str(v))
 
 console.print(counts_table)
-console.print(f"\nScanned {num_potential_emails} potential emails, found {sum([i for i in emailer_counts.values()])} senders.")
+console.print(f"\nScanned {len(epstein_files.emails)} potential emails, found {sum([i for i in epstein_files.emailer_counts.values()])} senders.")
 
 # Redacted emails option
 if include_redacted_emails:
     console.print('\n\n', Panel(Text("Emails Whose Senders Were Redacted", justify='center')), '\n', style='bold reverse')
 
-    for filename, contents in redacted_emails.items():
-        console.print(Panel(archive_link(filename), expand=False))
-        console.print(escape(cleanup_email_txt(contents)), '\n\n')
+    for email in epstein_files.redacted_emails():
+        console.print(Panel(archive_link(email.filename), expand=False))
+        console.print(escape(email.cleanup_email_txt()), '\n\n')
 
 
 if not is_debug:
