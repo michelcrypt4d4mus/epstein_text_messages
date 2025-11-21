@@ -37,6 +37,7 @@ UNKNOWN_TEXTERS = [
     '+13108802851',
     'e:',
     '+',
+    None,
 ]
 
 sender_counts = defaultdict(int)
@@ -46,7 +47,7 @@ print_header()
 epstein_files = EpsteinFiles(get_files_in_dir())
 
 for log_file in epstein_files.sorted_imessage_logs():
-    console.print(Panel(archive_link(log_file.filename), expand=False))
+    console.print(Panel(archive_link(log_file.filename, log_file.author_style), expand=False))
 
     if log_file.hint_txt:
         console.print(log_file.hint_txt)
@@ -93,7 +94,7 @@ for log_file in epstein_files.sorted_imessage_logs():
         else:
             msg = msg.replace('\n', ' ')  # remove newlines
 
-        sender_counts[UNKNOWN if (re.match(r'^([-+_1•F]+|[4Ide])$', sender) or sender in UNKNOWN_TEXTERS) else sender] += 1
+        sender_counts[UNKNOWN if (sender in UNKNOWN_TEXTERS or re.match(r'^([-+_1•F]+|[4Ide])$', sender)) else sender] += 1
         console.print(Text('').append(timestamp).append(sender_txt).append(': ', style='dim').append(msg))
         msgs_processed += 1
 
