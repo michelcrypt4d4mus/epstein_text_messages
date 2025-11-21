@@ -121,6 +121,7 @@ console.print(f"(Last deploy found 77 files with 4668 messages)\n", style='dim')
 console.line(2)
 console.print(Panel(Text("Email Analysis", justify='center', style='bold'), expand=True, padding=(2, 2)), style='bold on blue3')
 console.line()
+
 counts_table = Table(title="Email Counts By Sender", show_header=True, header_style="bold")
 counts_table.add_column("From", justify="left")
 counts_table.add_column("Email Count", justify="center")
@@ -129,6 +130,15 @@ for k, v in sorted(epstein_files.emailer_counts.items(), key=lambda item: [item[
     counts_table.add_row(f"[steel_blue][link={search_archive_url(k)}]{k}[/link][/steel_blue]", str(v))
 
 console.print(counts_table)
+counts_table = Table(title="Email Recipient Counts", show_header=True, header_style="bold")
+counts_table.add_column("To", justify="left")
+counts_table.add_column("Email Count", justify="center")
+
+for k, v in sorted(epstein_files.email_recipient_counts.items(), key=lambda item: [item[1], item[0]], reverse=True):
+# for k, v in sorted(epstein_files.email_recipient_counts.items(), key=lambda item: item[0], reverse=True):
+    counts_table.add_row(f"[steel_blue][link={search_archive_url(k)}]{k}[/link][/steel_blue]", str(v))
+
+console.print('\n\n', counts_table)
 console.print(f"\nScanned {len(epstein_files.emails)} potential emails, found {sum([i for i in epstein_files.emailer_counts.values()])} senders.")
 console.print('\n\nChronologically sorted emails sent to Epstein by these people can be found below in this order:\n')
 
