@@ -13,14 +13,15 @@ from rich.padding import Padding
 from rich.text import Text
 from util.rich import ARIANE_DE_ROTHSCHILD
 
+from .email_header import EMAIL_SIMPLE_HEADER_REGEX, EmailHeader
 from .env import deep_debug, is_debug
 from .file_helper import extract_file_id, load_file, move_json_file
 from .rich import *
 
+TIME_REGEX = re.compile(r'^\d{1,2}/d{1,2}/d{1,2} .*$')
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
 EMAIL_REGEX = re.compile(r'From: (.*)')
 EMAIL_HEADER_REGEX = re.compile(r'^(((Date|Subject):.*\n)*From:.*\n((Date|Sent|To|CC|Importance|Subject|Attachments):.*\n)+)')
-EMAIL_SIMPLE_HEADER_REGEX = re.compile(r'^((Date|From|Sent|To|CC|Importance|Subject|Attachments):(?! +(by|from|to|via)).*\n){3,}')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
 BAD_EMAILER_REGEX = re.compile(r'^>|ok|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|hysterical|article 1.?|momminnemummin|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Subject|Attachments):\s*\n)+')
@@ -104,16 +105,20 @@ KNOWN_EMAILS = {
     '016693': JOHN_PAGE,
     '028507': JONATHAN_FARKAS,
     '031732': JONATHAN_FARKAS,
+    '026764':'Barry J. Cohen',
     '029013': LARRY_SUMMERS,
     '029196': LAWRENCE_KRAUSS,
     '028789': LAWRANCE_VISOSKI,
     '027046': LAWRANCE_VISOSKI,
+    '021814': NADIA_MARCINKO,
     '022190': NADIA_MARCINKO,
     '029020': 'Renata Bolotova',   # Signature
     '029003': SOON_YI,
     '029005': SOON_YI,
     '029007': SOON_YI,
     '029010': SOON_YI,
+    '026571': '(unknown french speaker)',
+    '017581': 'Lisa Randall',
 }
 
 for emailer in EMAILERS:
@@ -139,56 +144,6 @@ including all attachments. copyright -all rights reserved"""
 )
 
 
-@dataclass(kw_only=True)
-class EmailHeader:
-    field_names: list[str]  # Ordered
-    author: str | None = None
-    sent_at: str | None = None
-    subject: str | None = None
-    cc: str | None = None
-    importance: str | None = None
-    attachments: str | None = None
-    to: list[str] | None = None
-
-    def as_dict(self) -> dict[str, str | None]:
-        """Remove 'field_names' field."""
-        _dict = {}
-
-        for k, v in asdict(self).items():
-            if k != 'field_names':
-                _dict[k] = v
-
-        return _dict
-
-
-    def is_empty(self) -> bool:
-        return not any([v for _k, v in self.as_dict().items()])
-
-    def __str__(self) -> str:
-        return json.dumps(self.as_dict(), sort_keys=True, indent=4)
-
-    @classmethod
-    def from_str(cls, header: str) -> 'EmailHeader':
-        # logger.debug(f"Parsing email header:\n\n{header}\n")
-        kw_args = {}
-        field_names = []
-
-        for line in [l.strip() for l in header.strip().split('\n')]:
-            # logger.debug(f"extracting header line: '{line}'")
-            key, value = [element.strip() for element in line.split(':', 1)]
-            value = value.rstrip('_')
-            key = 'author' if key == 'From' else ('sent_at' if key in ['Date', 'Sent'] else key.lower())
-            field_names.append(key)
-
-            if key == 'to':
-                recipients = [element.strip() for element in value.split(';')]
-                kw_args[key] = None if len(value) == 0 else [r if len(r) > 0 else UNKNOWN for r in recipients]
-            else:
-                kw_args[key.lower()] = None if len(value) == 0 else value
-
-        return EmailHeader(field_names=field_names, **kw_args)
-
-
 @dataclass
 class Document:
     file_path: Path
@@ -209,6 +164,9 @@ class Document:
 
     def top_lines(self, n: int = 10) -> str:
         return '\n'.join(self.file_lines[0:n])
+
+    def log_top_lines(self, n: int = 10) -> None:
+        logger.info(f"Top lines of '{self.filename}':\n\n{self.top_lines(n)}")
 
 
 @dataclass
@@ -257,48 +215,71 @@ class MessengerLog(CommunicationDocument):
 @dataclass
 class Email(CommunicationDocument):
     author_lowercase: str | None = field(init=False)
-    header: EmailHeader | None = field(init=False)
+    header: EmailHeader = field(init=False)
+    recipients: list[str] = field(default_factory=list)
 
     def __post_init__(self):
         super().__post_init__()
-        self.author = self.extract_email_sender()
+        self._repair()
+
+        try:
+            self.extract_header()
+        except Exception as e:
+            console.print_exception()
+            self.log_top_lines()
+            raise e
+
+        self.author = self.determine_author()
         self.author_lowercase = self.author.lower() if self.author else None
         self.author_style = COUNTERPARTY_COLORS.get(self.author or UNKNOWN, DEFAULT)
         self.author_txt = Text(self.author or UNKNOWN, style=self.author_style)
         self.timestamp = self.extract_sent_at()
-        self.extract_header()
 
-    def extract_email_sender(self) -> str | None:
+    def determine_author(self) -> str | None:
         if self.file_id in KNOWN_EMAILS:
             return KNOWN_EMAILS[self.file_id]
+        # elif not self.header.author:
+        #     return
 
         email_match = EMAIL_REGEX.search(self.text)
         broken_match = BROKEN_EMAIL_REGEX.search(self.text)
         emailer = None
+        author = None
 
         if broken_match:
             emailer = broken_match.group(1)
         elif email_match:
             emailer = email_match.group(1)
 
-        if not emailer:
+        if not emailer and not self.header.author:
+            logger.info(f"No author found!")
             return
 
-        emailer = emailer.strip().lstrip('"').lstrip("'").rstrip('"').rstrip("'").strip()
-        emailer = emailer.strip('_').strip('[').strip(']').strip('*').strip('<').strip('•').rstrip(',').strip()
+        if emailer:
+            emailer = EmailHeader.cleanup_str(emailer)
 
-        for name, regex in EMAILER_REGEXES.items():
-            if regex.search(emailer):
-                emailer = name
-                break
+            for name, regex in EMAILER_REGEXES.items():
+                if regex.search(emailer):
+                    emailer = name
+                    break
 
-        if ' [' in emailer:
-            emailer = emailer.split(' [')[0]
+            if emailer == 'Ed' and 'EDWARD JAY EPSTEIN' in self.text:
+                emailer = EDWARD_EPSTEIN
 
-        if not valid_emailer(emailer):
-            return
-        elif emailer == 'Ed' and 'EDWARD JAY EPSTEIN' in self.text:
-            return EDWARD_EPSTEIN
+        if self.header.author:
+            author = EmailHeader.cleanup_str(self.header.author)
+
+            for name, regex in EMAILER_REGEXES.items():
+                if regex.search(author):
+                    author = name
+                    break
+
+        if author != emailer:
+            logger.warning(f"Got different results for the email author ('{author}') vs emailer ('{emailer}')")
+            self.log_top_lines(12)
+
+        if not emailer or not valid_emailer(emailer):
+            return author
 
         return emailer
 
@@ -353,15 +334,31 @@ class Email(CommunicationDocument):
                         break
 
                     value = self.file_lines[row_number_to_check]
+
+                    if field_name == 'from' and TIME_REGEX.match(value):
+                        logger.warning(f"Looks like a mismtch, decrementing num_headers and skipping!")
+                        num_headers -= 1
+                        continue
+
                     setattr(self.header, field_name, [v.strip() for v in value.split(';')] if field_name == 'to' else value)
 
-                logger.info(f"Corrected empty header to:\n{self.header}\n\nBased on contents:\n\n{self.top_lines(num_headers * 2)}\n")
+                logger.info(f"Corrected empty header to:\n{self.header}\n\n")
+                self.log_top_lines(num_headers * 2)
             else:
                 logger.debug(f"Parsed email header to:\n{self.header}")
+        else:
+            logger.warning(f"No header match found! Top lines:\n\n{self.top_lines()}")
+            self.header = EmailHeader(field_names=[])
 
     def sort_time(self) -> datetime:
         timestamp = self.timestamp or parse("1/1/2001 12:01:01 AM")
         return timestamp.replace(tzinfo=None) if timestamp.tzinfo is not None else timestamp
+
+    def _repair(self) -> None:
+        """Repair particularly janky files."""
+        if self.file_lines[0].startswith('Grant_Smith066474"eMailContent.htm'):
+            self.file_lines = self.file_lines[1:]
+            self.text = '\n'.join(self.file_lines)
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield Panel(archive_link(self.filename, self.author_style), expand=False)
