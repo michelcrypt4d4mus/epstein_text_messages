@@ -268,7 +268,7 @@ class MessengerLog(CommunicationDocument):
 class Email(CommunicationDocument):
     author_lowercase: str | None = field(init=False)
     header: EmailHeader = field(init=False)
-    recipients: list[str] = field(default_factory=list)
+    recipients: list[str | None] = field(default_factory=list)
 
     def __post_init__(self):
         super().__post_init__()
@@ -282,8 +282,8 @@ class Email(CommunicationDocument):
         else:
             self.author = _get_name(self.header.author)
 
-        recipients = [_get_name(r) for r in self.header.to] if self.header.to else []
-        self.recipients = [r for r in recipients if r]
+        self.recipients = [_get_name(r) for r in self.header.to] if self.header.to else []
+        self.recipients_lower = [r.lower() if r else None for r in self.recipients]
         self.timestamp = self.extract_sent_at()
         self.author_lowercase = self.author.lower() if self.author else None
         self.author_style = COUNTERPARTY_COLORS.get(self.author or UNKNOWN, DEFAULT)
@@ -439,15 +439,14 @@ class EpsteinFiles:
 
                 continue
 
-    def print_emails_by(self, author: str | None) -> None:
-        emails = self.emails_by(author)
+    def print_emails_for(self, author: str | None) -> None:
+        emails = self.emails_for(author)
         author = author or '[redacted]'
 
-        if len(emails) == 0:
+        if len(emails) > 0:
+            console.print('\n\n', Panel(Text(f"{len(emails)} emails to/from {author} Found)", justify='center')), '\n', style='bold reverse')
+        else:
             logger.warning(f"No emails found for {author}")
-            return
-
-        console.print('\n\n', Panel(Text(f"{author} ({len(emails)} Emails Found)", justify='center')), '\n', style='bold reverse')
 
         for email in emails:
             console.print(email)
@@ -455,9 +454,11 @@ class EpsteinFiles:
     def sorted_imessage_logs(self) -> list[MessengerLog]:
         return sorted(self.iMessage_logs, key=lambda f: f.timestamp)
 
-    def emails_by(self, author: str | None) -> list[Email]:
+    def emails_for(self, author: str | None) -> list[Email]:
         author = author.lower() if author else None
-        return EpsteinFiles.sort_emails([e for e in self.emails if e.author_lowercase == author])
+        emails_by = [e for e in self.emails if e.author_lowercase == author]
+        emails_to = [e for e in self.emails if author in e.recipients]
+        return EpsteinFiles.sort_emails(emails_by + emails_to)
 
     @classmethod
     def sort_emails(cls, emails: list[Email]) -> list[Email]:
