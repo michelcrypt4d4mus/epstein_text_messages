@@ -47,6 +47,7 @@ EMAILERS = [
     'Lesley Groff',
     'Michael Wolff',
     JONATHAN_FARKAS,
+    'Paul Morris',
     'Peggy Siegal',
     'Peter Green',
     'Richard Kahn',
@@ -69,6 +70,7 @@ EMAILER_REGEXES = {
     EHUD_BARAK: re.compile(r'(ehud|h)\s*barak', re.IGNORECASE),
     GHISLAINE_MAXWELL: re.compile(r'g ?max(well)?', re.IGNORECASE),
     'Google Alerts': re.compile(r'google\s?alerts', re.IGNORECASE),
+    'Intelligence Squared': re.compile(r'intelligence\s*squared', re.IGNORECASE),
     JEFFREY_EPSTEIN: re.compile(r'jee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|joichi|^joi$', re.IGNORECASE),
     JOHNNY_EL_HACHEM: re.compile('el hachem johnny|johnny el hachem', re.IGNORECASE),
@@ -111,11 +113,13 @@ KNOWN_EMAILS = {
     '029960': GWENDOLYN_BECK,     # Reply
     '026024': 'Jean Huguen',
     '026024': 'Jean Huguen',  # Signature
+    '030997': JEFFREY_EPSTEIN,
     '029779': JEFFREY_EPSTEIN,
     '022949': JEFFREY_EPSTEIN,
     '028770': JEFFREY_EPSTEIN,
     '029692': JEFFREY_EPSTEIN,
     '031624': JEFFREY_EPSTEIN,
+    '030768': JEFFREY_EPSTEIN,
     '016692': JOHN_PAGE,
     '016693': JOHN_PAGE,
     '028507': JONATHAN_FARKAS,
@@ -129,6 +133,7 @@ KNOWN_EMAILS = {
     '027046': LAWRANCE_VISOSKI,
     '030472': "Martin Weinberg",   #Maybe. in reply
     '030235': MELANIE_WALKER,    # In fwd
+    '022193': NADIA_MARCINKO,
     '021814': NADIA_MARCINKO,
     '021808': NADIA_MARCINKO,
     '022190': NADIA_MARCINKO,
@@ -387,7 +392,7 @@ class EpsteinFiles:
         self.emailer_counts = defaultdict(int)
 
         for file_arg in self.all_files:
-            if deep_debug:
+            if is_debug:
                 console.print(f"\nScanning '{file_arg.name}'...")
 
             document = Document(file_arg)
@@ -464,7 +469,7 @@ class EpsteinFiles:
 def parse_timestamp(timestamp_str: str) -> None | datetime:
     try:
         timestamp = parse(timestamp_str)
-        logger.info(f'Parsed timestamp "{timestamp}" from string "{timestamp_str}"')
+        logger.debug(f'Parsed timestamp "{timestamp}" from string "{timestamp_str}"')
         return timestamp
     except Exception as e:
         logger.info(f'Failed to parse "{timestamp_str}" to timestamp!')
