@@ -1,9 +1,8 @@
 import json
 import re
 from dataclasses import asdict, dataclass, field
-from datetime import datetime
 
-from .rich import UNKNOWN, logger
+from util.rich import UNKNOWN, logger
 
 EMAIL_SIMPLE_HEADER_REGEX = re.compile(r'^(((?:(?:Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):|on behalf of ?)(?! +(by |from my|via )).*\n){3,})')
 EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX = re.compile(r'(((?:(?:Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):|on behalf of ?)(?! +(by |from my|via )).*\n){3,})')

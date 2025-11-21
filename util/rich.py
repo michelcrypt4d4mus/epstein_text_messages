@@ -101,10 +101,10 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
     counterparty = row['counterparty'].strip()
     counterparty = BANNON if counterparty.startswith('Steve Bannon') else counterparty
 
-    if file_id in GUESSED_COUNTERPARTY_FILE_IDS:
-        raise RuntimeError(f"Can't overwrite attribution of {file_id} to {GUESSED_COUNTERPARTY_FILE_IDS[file_id]} with {counterparty}")
+    if file_id in GUESSED_IMESSAGE_FILE_IDS:
+        raise RuntimeError(f"Can't overwrite attribution of {file_id} to {GUESSED_IMESSAGE_FILE_IDS[file_id]} with {counterparty}")
 
-    GUESSED_COUNTERPARTY_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
+    GUESSED_IMESSAGE_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
 
 logging.basicConfig(level="NOTSET", format="%(message)s", datefmt="[%X]", handlers=[RichHandler()])
 logger = logging.getLogger("rich")
@@ -169,6 +169,18 @@ def print_header():
     console.line(2)
 
 
+def print_email_table(counts: dict[str, int], column_title: str) -> None:
+    counts_table = Table(title=f"Email Counts By {column_title}", show_header=True, header_style="bold")
+    counts_table.add_column(column_title, justify="left")
+    counts_table.add_column("Email Count", justify="center")
+
+    for k, v in sorted(counts.items(), key=lambda item: [item[1], item[0]], reverse=True):
+        k = k.title() if ' ' in k else k
+        counts_table.add_row(f"[steel_blue][link={epsteinify_url(k)}]{k}[/link][/steel_blue]", str(v))
+
+    console.print('\n', counts_table)
+
+
 def print_top_lines(file_text, n = 10, max_chars = MAX_PREVIEW_CHARS, in_panel = False):
     "Print first n lines of a file."
     file_text = LEADING_WHITESPACE_REGEX.sub('', file_text)
@@ -177,10 +189,9 @@ def print_top_lines(file_text, n = 10, max_chars = MAX_PREVIEW_CHARS, in_panel =
     console.print(output, style='dim')
 
 
-
 if deep_debug:
-    console.print('KNOWN_COUNTERPARTY_FILE_IDS\n--------------')
-    console.print(json.dumps(KNOWN_COUNTERPARTY_FILE_IDS))
-    console.print('\n\n\nGUESSED_COUNTERPARTY_FILE_IDS\n--------------')
-    console.print_json(json.dumps(GUESSED_COUNTERPARTY_FILE_IDS))
+    console.print('KNOWN_IMESSAGE_FILE_IDS\n--------------')
+    console.print(json.dumps(KNOWN_IMESSAGE_FILE_IDS))
+    console.print('\n\n\nGUESSED_IMESSAGE_FILE_IDS\n--------------')
+    console.print_json(json.dumps(GUESSED_IMESSAGE_FILE_IDS))
     console.line(2)
