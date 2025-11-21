@@ -246,6 +246,7 @@ KNOWN_EMAIL_AUTHORS = {
     '029196': LAWRENCE_KRAUSS,
     '028789': LAWRANCE_VISOSKI,
     '027046': LAWRANCE_VISOSKI,
+    '017581': 'Lisa Randall',
     '030472': "Martin Weinberg",   # Maybe. in reply
     '030235': MELANIE_WALKER,      # In fwd
     '022193': NADIA_MARCINKO,
@@ -254,6 +255,7 @@ KNOWN_EMAIL_AUTHORS = {
     '022190': NADIA_MARCINKO,
     '021818': NADIA_MARCINKO,
     '021811': NADIA_MARCINKO,      # Signature and email address in the message
+    '024923': 'Paul Krassner',
     '029981': 'Paula',             # reply
     '031694': 'Peggy Siegal',
     '029020': 'Renata Bolotova',   # Signature
@@ -264,8 +266,9 @@ KNOWN_EMAIL_AUTHORS = {
     '026620': TERRY_KAFKA,
     '028482': TERRY_KAFKA,         # Signature
     '029992': TERRY_KAFKA,         # Reply
+    '020666': TERRY_KAFKA,         # ends with 'Terry'
     # '026571': '(unknown french speaker)',
-    '017581': 'Lisa Randall',
+
 }
 
 KNOWN_EMAIL_RECIPIENTS = {

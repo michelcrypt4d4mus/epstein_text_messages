@@ -9,10 +9,10 @@ Install: 'pip install python-dotenv rich'
 from pathlib import Path
 
 from dotenv import load_dotenv
+load_dotenv()
 from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
-load_dotenv()
 
 from documents.epstein_files import EpsteinFiles
 from documents.messenger_log import sender_counts
