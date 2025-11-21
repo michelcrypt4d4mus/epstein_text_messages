@@ -23,10 +23,11 @@ BAD_EMAILER_REGEX = re.compile(r'^>|ok|re:|fwd:|((sent|attachments|subject|impor
 EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Subject|Attachments):\s*\n)+')
 REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*wrote:|-+(Forwarded|Original)\s*Message-+|Begin forwarded message:?)', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
-VALID_HEADER_LINES = 14
-EMAIL_INDENT = 3
 CLIPPED_SIGNATURE_REPLACEMENT = '<...clipped epstein legal signature...>'
 BAD_FIRST_LINES = ['026652', '029835', '031189']
+MAX_CHARS_TO_PRINT = 5000
+VALID_HEADER_LINES = 14
+EMAIL_INDENT = 3
 
 
 @dataclass
@@ -38,7 +39,7 @@ class Email(CommunicationDocument):
     def __post_init__(self):
         super().__post_init__()
         self._repair()
-        self.extract_header()
+        self._extract_header()
 
         if self.file_id in KNOWN_EMAILS:
             self.author = KNOWN_EMAILS[self.file_id]
@@ -55,7 +56,7 @@ class Email(CommunicationDocument):
         self.recipients_lower = [r.lower() if r else None for r in self.recipients]
         recipient = UNKNOWN if len(self.recipients) == 0 else (self.recipients[0] or UNKNOWN)
         self.recipient_txt = Text(recipient, COUNTERPARTY_COLORS.get(recipient, DEFAULT))
-        self.timestamp = self.extract_sent_at()
+        self.timestamp = self._extract_sent_at()
         self.author_lowercase = self.author.lower() if self.author else None
         self.author_style = COUNTERPARTY_COLORS.get(self.author or UNKNOWN, DEFAULT)
         self.author_txt = Text(self.author or UNKNOWN, style=self.author_style)
@@ -71,27 +72,30 @@ class Email(CommunicationDocument):
         prettified_text = EPSTEIN_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, prettified_text)
         return EPSTEIN_OLD_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, prettified_text)
 
-    def extract_sent_at(self) -> datetime | None:
+    def sort_time(self) -> datetime:
+        timestamp = self.timestamp or parse("1/1/2001 12:01:01 AM")
+        return timestamp.replace(tzinfo=None) if timestamp.tzinfo is not None else timestamp
+
+    def _extract_sent_at(self) -> datetime | None:
         searchable_lines = self.text.split('\n')[0:VALID_HEADER_LINES]
         searchable_text = '\n'.join(searchable_lines)
         date_match = DATE_REGEX.search(searchable_text)
 
-        if not date_match:
-            logger.debug(f"Failed to find timestamp, using fallback of parsing top {VALID_HEADER_LINES} lines...")
+        if date_match:
+            return _parse_timestamp(date_match.group(1).strip().replace(' (UTC)', ''))
 
-            for line in searchable_lines:
-                timestamp = parse_timestamp(line.strip())
+        logger.debug(f"Failed to find timestamp, using fallback of parsing {VALID_HEADER_LINES} lines...")
 
-                if timestamp:
-                    logger.info(f"Fell back to timestamp {timestamp} in line '{line}'...")
-                    return timestamp
+        for line in searchable_lines:
+            timestamp = _parse_timestamp(line.strip())
 
-            self.log_top_lines(msg="No valid timestamp found in email")
-            return
+            if timestamp:
+                logger.info(f"Fell back to timestamp {timestamp} in line '{line}'...")
+                return timestamp
 
-        return parse_timestamp(date_match.group(1).strip().replace(' (UTC)', ''))
+        self.log_top_lines(msg="No valid timestamp found in email")
 
-    def extract_header(self) -> EmailHeader | None:
+    def _extract_header(self) -> EmailHeader | None:
         header_match = EMAIL_SIMPLE_HEADER_REGEX.search(self.text)
 
         if header_match:
@@ -129,10 +133,6 @@ class Email(CommunicationDocument):
             logger.warning(f"No header match found! Top lines:\n\n{self.top_lines()}")
             self.header = EmailHeader(field_names=[])
 
-    def sort_time(self) -> datetime:
-        timestamp = self.timestamp or parse("1/1/2001 12:01:01 AM")
-        return timestamp.replace(tzinfo=None) if timestamp.tzinfo is not None else timestamp
-
     def _repair(self) -> None:
         """Repair particularly janky files."""
         if self.file_lines[0].startswith('Grant_Smith066474"eMailContent.htm') or self.file_id in BAD_FIRST_LINES:
@@ -154,16 +154,13 @@ class Email(CommunicationDocument):
         yield Padding(email_panel, (0, 0, 2, EMAIL_INDENT))
 
 
-def parse_timestamp(timestamp_str: str) -> None | datetime:
+def _parse_timestamp(timestamp_str: str) -> None | datetime:
     try:
         timestamp = parse(timestamp_str)
         logger.debug(f'Parsed timestamp "{timestamp}" from string "{timestamp_str}"')
         return timestamp
     except Exception as e:
         logger.debug(f'Failed to parse "{timestamp_str}" to timestamp!')
-
-
-valid_emailer = lambda emailer: not BAD_EMAILER_REGEX.match(emailer)
 
 
 def _get_name(author: str) -> str | None:
@@ -174,7 +171,7 @@ def _get_name(author: str) -> str | None:
             author = name
             break
 
-    if not valid_emailer(author) or TIME_REGEX.match(author):
+    if BAD_EMAILER_REGEX.match(author) or TIME_REGEX.match(author):
         logger.warning(f"Name '{author}' is invalid, returning None...")
         return None
 
