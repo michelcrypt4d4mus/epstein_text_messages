@@ -13,7 +13,7 @@ from rich.padding import Padding
 from rich.text import Text
 from util.rich import ARIANE_DE_ROTHSCHILD
 
-from .email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EmailHeader
+from .email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, EmailHeader
 from .env import deep_debug, is_debug
 from .file_helper import extract_file_id, load_file, move_json_file
 from .rich import *
@@ -25,10 +25,11 @@ EMAIL_HEADER_REGEX = re.compile(r'^(((Date|Subject):.*\n)*From:.*\n((Date|Sent|T
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
 BAD_EMAILER_REGEX = re.compile(r'^>|ok|re:|fwd:|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|hysterical|image0|so that people|article 1.?|momminnemummin|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Subject|Attachments):\s*\n)+')
-REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*wrote:|-+(Forwarded|Original)\s*Message-+|Begin forwarded message:?)')
+REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*wrote:|-+(Forwarded|Original)\s*Message-+|Begin forwarded message:?)', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
 VALID_HEADER_LINES = 14
 EMAIL_INDENT = 3
+CLIPPED_SIGNATURE_REPLACEMENT = '<...clipped epstein legal signature...>'
 # iMessage
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 MSG_DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
@@ -173,14 +174,17 @@ KNOWN_EMAILS = {
     '017581': 'Lisa Randall',
 }
 
+KNOWN_RECIPIENTS = {
+    '030522': LANDON_THOMAS,
+}
+
 for emailer in EMAILERS:
     if emailer in EMAILER_REGEXES:
         raise RuntimeError(f"Can't overwrite emailer regex for '{emailer}'")
 
     EMAILER_REGEXES[emailer] = re.compile(emailer, re.IGNORECASE)
 
-EPSTEIN_SIGNATURE = re.compile(
-r"""please note
+EPSTEIN_SIGNATURE = re.compile(r"""please note
 The information contained in this communication is
 confidential, may be attorney-client privileged, may
 constitute inside information, and is intended only for
@@ -192,8 +196,21 @@ and may be unlawful. If you have received this
 communication in error, please notify us immediately by(\n\d\s*)?
 return e-mail or by e-mail to jeevacation.*gmail.com, and
 destroy this communication and all copies thereof,
-including all attachments. copyright -all rights reserved"""
-)
+including all attachments. copyright -all rights reserved""")
+
+EPSTEIN_OLD_SIGNATURE = re.compile(r"""\*+
+The information contained in this communication is
+confidential, may be attorney-client privileged, may
+constitute inside information, and is intended only for
+the use of the addressee. It is the property of
+Jeffrey Epstein
+Unauthorized use, disclosure or copying of this
+communication or any part thereof is strictly prohibited
+and may be unlawful. If you have received this
+communication in error, please notify us immediately by
+return e-mail or by e-mail to.*
+destroy this communication and all copies thereof,
+including all attachments. copyright -all rights reserved""")
 
 
 @dataclass
@@ -282,8 +299,14 @@ class Email(CommunicationDocument):
         else:
             self.author = _get_name(self.header.author)
 
-        self.recipients = [_get_name(r) for r in self.header.to] if self.header.to else []
+        if self.file_id in KNOWN_RECIPIENTS:
+            self.recipients = [KNOWN_RECIPIENTS[self.file_id]]
+        else:
+            self.recipients = [_get_name(r) for r in self.header.to] if self.header.to else []
+
         self.recipients_lower = [r.lower() if r else None for r in self.recipients]
+        recipient = UNKNOWN if len(self.recipients) == 0 else (self.recipients[0] or UNKNOWN)
+        self.recipient_txt = Text(recipient, COUNTERPARTY_COLORS.get(recipient, DEFAULT))
         self.timestamp = self.extract_sent_at()
         self.author_lowercase = self.author.lower() if self.author else None
         self.author_style = COUNTERPARTY_COLORS.get(self.author or UNKNOWN, DEFAULT)
@@ -292,12 +315,13 @@ class Email(CommunicationDocument):
     def cleanup_email_txt(self) -> str:
         # add newline after header if header looks valid
         if not EMPTY_HEADER_REGEX.search(self.text):
-            prettified_text = EMAIL_HEADER_REGEX.sub(r'\1\n', self.text, 1)
+            prettified_text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\1\n', self.text)
         else:
             prettified_text = self.text
 
         prettified_text = REPLY_REGEX.sub(r'\n\1', prettified_text)  # Insert newlines between quoted replies
-        return EPSTEIN_SIGNATURE.sub('<...clipped epstein legal signature...>', prettified_text)
+        prettified_text = EPSTEIN_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, prettified_text)
+        return EPSTEIN_OLD_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, prettified_text)
 
     def extract_sent_at(self) -> datetime | None:
         searchable_lines = self.text.split('\n')[0:VALID_HEADER_LINES]
@@ -370,7 +394,7 @@ class Email(CommunicationDocument):
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield Panel(archive_link(self.filename, self.author_style), expand=False)
-        info_line = Text(" Email from ").append(self.author_txt)
+        info_line = Text(" Email from ").append(self.author_txt).append(f' to ').append(self.recipient_txt)
         info_line.append(f" probably sent at ").append(f"{self.timestamp or '?'}", style='spring_green3')
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
         email_panel = Panel(escape(self.cleanup_email_txt()), expand=False)
@@ -444,7 +468,7 @@ class EpsteinFiles:
         author = author or '[redacted]'
 
         if len(emails) > 0:
-            console.print('\n\n', Panel(Text(f"{len(emails)} emails to/from {author} Found)", justify='center')), '\n', style='bold reverse')
+            console.print('\n\n', Panel(Text(f"Found {len(emails)} emails to/from {author}", justify='center')), '\n', style='bold reverse')
         else:
             logger.warning(f"No emails found for {author}")
 

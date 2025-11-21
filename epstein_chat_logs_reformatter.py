@@ -105,7 +105,7 @@ for log_file in epstein_files.sorted_imessage_logs():
 
 
 # Text message counts
-counts_table = Table(title="Text Message Counts By Sender", show_header=True, header_style="bold")
+counts_table = Table(title="Text Message Counts By Author", show_header=True, header_style="bold")
 counts_table.add_column("Sender", style="steel_blue bold", justify="left", width=30)
 counts_table.add_column("Message Count", justify="center")
 
@@ -139,7 +139,7 @@ for k, v in sorted(epstein_files.email_recipient_counts.items(), key=lambda item
 
 console.print('\n\n', counts_table)
 console.print(f"\nScanned {len(epstein_files.emails)} potential emails, found {sum([i for i in epstein_files.emailer_counts.values()])} senders.")
-console.print('\n\nChronologically sorted emails Epstein sent to or received from these people can be found below:\n')
+console.print('Chronologically sorted emails Epstein sent to or received from these people can be found below:\n')
 
 for i, author in enumerate(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED):
     style = COUNTERPARTY_COLORS.get(author or UNKNOWN, DEFAULT)
