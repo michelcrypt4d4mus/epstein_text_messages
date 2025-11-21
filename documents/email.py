@@ -23,7 +23,7 @@ BAD_EMAILER_REGEX = re.compile(r'^>|ok|re:|fwd:|((sent|attachments|subject|impor
 EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Subject|Attachments):\s*\n)+')
 REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*wrote:|-+(Forwarded|Original)\s*Message-+|Begin forwarded message:?)', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
-CLIPPED_SIGNATURE_REPLACEMENT = '<...clipped epstein legal signature...>'
+CLIPPED_SIGNATURE_REPLACEMENT = '[dim]<...snipped epstein legal signature...>[/dim]'
 BAD_FIRST_LINES = ['026652', '029835', '031189']
 MAX_CHARS_TO_PRINT = 5000
 VALID_HEADER_LINES = 14
@@ -69,7 +69,7 @@ class Email(CommunicationDocument):
         else:
             prettified_text = self.text
 
-        prettified_text = REPLY_REGEX.sub(r'\n\1', prettified_text)  # Insert newlines between quoted replies
+        prettified_text = escape(REPLY_REGEX.sub(r'\n\1', prettified_text))  # Newlines between quoted replies
         prettified_text = EPSTEIN_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, prettified_text)
         return EPSTEIN_OLD_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, prettified_text)
 
@@ -151,7 +151,7 @@ class Email(CommunicationDocument):
         info_line = Text(" Email from ").append(self.author_txt).append(f' to ').append(self.recipient_txt)
         info_line.append(f" probably sent at ").append(f"{self.timestamp or '?'}", style='spring_green3')
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
-        text = escape(self.cleanup_email_txt())
+        text = self.cleanup_email_txt()
 
         if len(text) > MAX_CHARS_TO_PRINT:
             text = text[0:MAX_CHARS_TO_PRINT]
