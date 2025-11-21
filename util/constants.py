@@ -143,10 +143,9 @@ EMAILERS = [
     'Peter Aldhous',
     'Peter Green',
     'Robert Trivers',
-    'Sample, Elizabeth',
     'Steven Victor MD',
     'The Duke',
-    'Tom Barrack'
+    'Tom Barrack',
     'Weingarten, Reid',
 ]
 
@@ -203,11 +202,12 @@ for emailer in EMAILERS:
     EMAILER_REGEXES[emailer] = re.compile(emailer, re.IGNORECASE)
 
 
-KNOWN_EMAILS = {
+KNOWN_EMAIL_AUTHORS = {
     '026064': ARIANE_DE_ROTHSCHILD,
     '026069': ARIANE_DE_ROTHSCHILD,
     '030741': ARIANE_DE_ROTHSCHILD,
     '026018': ARIANE_DE_ROTHSCHILD,
+    '026659': BARBRO_EHNBOM,      # Reply
     '026745': BARBRO_EHNBOM,      # Signature
     '031227': 'Moskowitz, Bennet J.',
     '031442': 'Christina Galbraith',
@@ -219,6 +219,7 @@ KNOWN_EMAILS = {
     '026287': DAVID_SCHOEN,       # Signature
     '031460': EDWARD_EPSTEIN,
     '026547': 'Gerald G. Barton',
+    '029969': GWENDOLYN_BECK,     # Signature
     '031120': GWENDOLYN_BECK,     # Signature
     '029968': GWENDOLYN_BECK,     # Signature
     '029970': GWENDOLYN_BECK,
@@ -264,7 +265,9 @@ KNOWN_EMAILS = {
     '017581': 'Lisa Randall',
 }
 
-KNOWN_RECIPIENTS = {
+KNOWN_EMAIL_RECIPIENTS = {
+    '030764': ARIANE_DE_ROTHSCHILD,   # Reply
+    '026431': ARIANE_DE_ROTHSCHILD,   # Reply
     '030522': LANDON_THOMAS,
     '031413': LANDON_THOMAS,  # Reply
     '029692': LARRY_SUMMERS,  # Header
@@ -275,16 +278,15 @@ KNOWN_RECIPIENTS = {
 EPSTEIN_SIGNATURE = re.compile(r"""please note
 The information contained in this communication is
 confidential, may be attorney-client privileged, may
-constitute inside information, and is intended only for
-the use of the addressee. It is the property of
-JEE
+constitute inside information, and is intended only.*
+the use of the addressee. It is the property.*(\nJEE)?
 Unauthorized use, disclosure or copying of this
 communication or any part thereof is strictly prohibited
 and may be unlawful. If you have received this
 communication in error, please notify us immediately by(\n\d\s*)?
-return e-mail or by e-mail to jeevacation.*gmail.com, and
-destroy this communication and all copies thereof,
-including all attachments. copyright -all rights reserved""")
+return e-mail or by e-mail to.*
+destroy this communication and all copies thereo.*
+including all attachments. copyright -all rights reserved?""")
 
 EPSTEIN_OLD_SIGNATURE = re.compile(r"""\*+
 The information contained in this communication is
