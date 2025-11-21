@@ -29,6 +29,9 @@ class Document:
         self.lines = self.text.split('\n')
         self.num_lines = len(self.lines)
 
+    def count_regex_matches(self, pattern: str) -> int:
+        return len(re.findall(pattern, self.text))
+
     def log_top_lines(self, n: int = 10, msg: str | None = None) -> None:
         msg = f"{msg + '. ' if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"
         logger.info(f"{msg}:\n\n{self.top_lines(n)}")

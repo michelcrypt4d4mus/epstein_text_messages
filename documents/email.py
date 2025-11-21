@@ -23,6 +23,7 @@ BAD_EMAILER_REGEX = re.compile(r'^>|ok|re:|fwd:|((sent|attachments|subject|impor
 EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Subject|Attachments):\s*\n)+')
 REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?(?: [a-zA-Z]+)*(?:[ \n]wrote:)?|-+(Forwarded|Original)\s*Message-*|Begin forwarded message:?)', re.IGNORECASE)
 REDACTED_REPLY_REGEX = re.compile(r'<[ _\n]+> wrote:', re.IGNORECASE)
+QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
 CLIPPED_SIGNATURE_REPLACEMENT = '[dim]<...snipped epstein legal signature...>[/dim]'
 BAD_FIRST_LINES = ['026652', '029835', '031189']
@@ -86,6 +87,19 @@ class Email(CommunicationDocument):
     def sort_time(self) -> datetime:
         timestamp = self.timestamp or parse("1/1/2001 12:01:01 AM")
         return timestamp.replace(tzinfo=None) if timestamp.tzinfo is not None else timestamp
+
+    def idx_of_nth_quoted_reply(self, n: int = 4, text: str | None = None) -> int | None:
+        num_quotes = self.count_regex_matches(QUOTED_REPLY_LINE_REGEX.pattern)
+        text = text or self.text
+
+        if num_quotes <= n:
+            return
+        else:
+            logger.debug(f"Found {num_quotes} apparent quotes in body of email")
+
+        for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text)):
+            if i >= n:
+                return match.end() - 1
 
     def _extract_sent_at(self) -> datetime | None:
         searchable_lines = self.text.split('\n')[0:VALID_HEADER_LINES]
@@ -169,10 +183,16 @@ class Email(CommunicationDocument):
         info_line.append(f" probably sent at ").append(f"{self.timestamp or '?'}", style='spring_green3')
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
         text = self.cleanup_email_txt()
+        quote_cutoff = self.idx_of_nth_quoted_reply(text=text) or MAX_CHARS_TO_PRINT
+        num_chars = MAX_CHARS_TO_PRINT
 
-        if len(text) > MAX_CHARS_TO_PRINT:
-            text = text[0:MAX_CHARS_TO_PRINT]
-            text += f"\n\n[dim]<...truncated to {MAX_CHARS_TO_PRINT} characters, read the rest: {self.archive_link}...>[/dim]"
+        if quote_cutoff:
+            logger.debug(f"Found {self.count_regex_matches(QUOTED_REPLY_LINE_REGEX.pattern)} quotes, cutting off at char {quote_cutoff}")
+            num_chars = quote_cutoff
+
+        if len(text) > num_chars:
+            text = text[0:num_chars]
+            text += f"\n\n[dim]<...truncated to {num_chars} characters, read the rest: {self.archive_link}...>[/dim]"
 
         yield Padding(Panel(text, expand=False), (0, 0, 2, EMAIL_INDENT))
 
