@@ -13,19 +13,18 @@ from rich.padding import Padding
 from rich.text import Text
 from util.rich import ARIANE_DE_ROTHSCHILD
 
-from .email_header import EMAIL_SIMPLE_HEADER_REGEX, EmailHeader
+from .email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EmailHeader
 from .env import deep_debug, is_debug
 from .file_helper import extract_file_id, load_file, move_json_file
 from .rich import *
 
-TIME_REGEX = re.compile(r'^\d{1,2}/\d{1,2}/\d{2,4}.*$')
+TIME_REGEX = re.compile(r'^(\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday).*')
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
 EMAIL_REGEX = re.compile(r'From: (.*)')
 EMAIL_HEADER_REGEX = re.compile(r'^(((Date|Subject):.*\n)*From:.*\n((Date|Sent|To|CC|Importance|Subject|Attachments):.*\n)+)')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
 BAD_EMAILER_REGEX = re.compile(r'^>|ok|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|hysterical|article 1.?|momminnemummin|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Subject|Attachments):\s*\n)+')
-BROKEN_EMAIL_REGEX = re.compile(r'^From:\s*\nSent:\s*\nTo:\s*\n(?:(?:CC|Importance|Subject|Attachments):\s*\n)*(?!CC|Importance|Subject|Attachments)([a-zA-Z]{2,}.*|\[triyersr@gmail.com\])\n')
 REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*wrote:|-+(Forwarded|Original)\s*Message-+|Begin forwarded message:?)')
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
 VALID_HEADER_LINES = 14
@@ -35,7 +34,9 @@ MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?
 MSG_DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
 BAD_FIRST_LINES = ['026652', '029835', '031189']
 
+# If found as substring consider them the author
 EMAILERS = [
+    'Anne Boyles',
     AL_SECKEL,
     'Daniel Sabba',
     'Glenn Dubin',
@@ -47,6 +48,7 @@ EMAILERS = [
     'Michael Wolff',
     JONATHAN_FARKAS,
     'Peggy Siegal',
+    'Peter Green',
     'Richard Kahn',
     'Robert Kuhn',
     'Robert Trivers',
@@ -85,6 +87,7 @@ EMAILER_REGEXES = {
     'Sean Bannon': re.compile(r'sean banno', re.IGNORECASE),
     'Stephen Hanson': re.compile(r'ste(phen|ve) hanson|Shanson900', re.IGNORECASE),
     STEVE_BANNON: re.compile(r'steve banno[nr]?', re.IGNORECASE),
+    'Steven Sinofsky': re.compile(r'Steven Sinofsk', re.IGNORECASE),
 }
 
 KNOWN_EMAILS = {
@@ -142,7 +145,6 @@ KNOWN_EMAILS = {
     '029992': TERRY_KAFKA,    # Reply
     '026571': '(unknown french speaker)',
     '017581': 'Lisa Randall',
-    '031442': 'MAILER-DAEMON@p3pIsmtp05-03.prod.phx3.secureserver.net',
 }
 
 for emailer in EMAILERS:
@@ -262,50 +264,21 @@ class Email(CommunicationDocument):
     def determine_author(self) -> str | None:
         if self.file_id in KNOWN_EMAILS:
             return KNOWN_EMAILS[self.file_id]
-        # elif not self.header.author:
-        #     return
-
-        email_match = EMAIL_REGEX.search(self.text)
-        broken_match = BROKEN_EMAIL_REGEX.search(self.text)
-        emailer = None
-        author = None
-
-        if broken_match:
-            emailer = broken_match.group(1)
-        elif email_match:
-            emailer = email_match.group(1)
-
-        if not emailer and not self.header.author:
-            logger.info(f"No author found!")
+        elif not self.header.author:
             return
 
-        if emailer:
-            emailer = EmailHeader.cleanup_str(emailer)
+        author = EmailHeader.cleanup_str(self.header.author)
 
-            for name, regex in EMAILER_REGEXES.items():
-                if regex.search(emailer):
-                    emailer = name
-                    break
+        for name, regex in EMAILER_REGEXES.items():
+            if regex.search(author):
+                author = name
+                break
 
-            if emailer == 'Ed' and 'EDWARD JAY EPSTEIN' in self.text:
-                emailer = EDWARD_EPSTEIN
+        if not valid_emailer(author):
+            logger.warning(f"Author is invalid: '{author}', returning None...")
+            return None
 
-        if self.header.author:
-            author = EmailHeader.cleanup_str(self.header.author)
-
-            for name, regex in EMAILER_REGEXES.items():
-                if regex.search(author):
-                    author = name
-                    break
-
-        if author != emailer:
-            logger.warning(f"Got different results for the email author ('{author}') vs emailer ('{emailer}')")
-            self.log_top_lines(12)
-
-        if not emailer or not valid_emailer(emailer):
-            return author
-
-        return emailer
+        return author
 
     def cleanup_email_txt(self) -> str:
         # add newline after header if header looks valid
@@ -359,7 +332,7 @@ class Email(CommunicationDocument):
 
                     value = self.file_lines[row_number_to_check]
 
-                    if field_name == 'author' and TIME_REGEX.match(value):
+                    if field_name == AUTHOR and TIME_REGEX.match(value):
                         logger.debug(f"Looks like a mismatch, decrementing num_headers and skipping!")
                         num_headers -= 1
                         continue
@@ -420,16 +393,12 @@ class EpsteinFiles:
             document = Document(file_arg)
 
             if document.length == 0:
-                if is_debug:
-                    console.print(f"   -> Skipping empty file...", style='dim')
-
+                logger.info('   -> Skipping empty file...')
                 continue
             elif document.text[0] == '{':  # Check for JSON
                 move_json_file(file_arg)
             elif MSG_REGEX.search(document.text):
-                if is_debug:
-                    console.print(f"   -> iMessage log file...", style='dim')
-
+                logger.info('   -> iMessage log file...')
                 self.iMessage_logs.append(MessengerLog(file_arg))
             else:
                 emailer = None
