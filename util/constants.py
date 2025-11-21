@@ -146,7 +146,7 @@ EMAILERS = [
     'Sample, Elizabeth',
     'Steven Victor MD',
     'The Duke',
-    'Tom Barrack'
+    'Tom Barrack',
     'Weingarten, Reid',
 ]
 
