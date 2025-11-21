@@ -2,15 +2,15 @@ import re
 from os import environ
 from pathlib import Path
 
-FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
-JSON_FILES_SUBDIR = 'json_files'
 DOCS_DIR_ENV = environ['EPSTEIN_DOCS_DIR']
 
 if not DOCS_DIR_ENV:
     raise EnvironmentError(f"EPSTEIN_DOCS_DIR env var not set!")
 
 DOCS_DIR = Path(DOCS_DIR_ENV)
+JSON_FILES_SUBDIR = 'json_files'
 JSON_DIR = DOCS_DIR.joinpath(JSON_FILES_SUBDIR)
+FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
 
 
 def extract_file_id(filename) -> str:
@@ -20,15 +20,6 @@ def extract_file_id(filename) -> str:
         return file_match.group(1)
     else:
         raise RuntimeError(f"Failed to extract file ID from {filename}")
-
-
-def load_file(file_path):
-    """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
-    with open(file_path) as f:
-        file_text = f.read().strip()
-        file_text = file_text[1:] if (len(file_text) > 0 and file_text[0] == '\ufeff') else file_text  # remove BOM
-        file_lines = [l.strip() for l in file_text.split('\n') if not l.startswith('HOUSE OVERSIGHT')]
-        return '\n'.join(file_lines)
 
 
 def move_json_file(file_arg: Path):
