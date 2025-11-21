@@ -24,20 +24,10 @@ class Document:
     def __post_init__(self):
         self.filename = self.file_path.name
         self.file_id = extract_file_id(self.filename)
-        self.text = self.load_file()
+        self.text = self._load_file()
         self.length = len(self.text)
         self.file_lines = self.text.split('\n')
         self.num_lines = len(self.file_lines)
-
-
-    def load_file(self):
-        """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
-        with open(self.file_path) as f:
-            file_text = f.read()
-            file_text = file_text[1:] if (len(file_text) > 0 and file_text[0] == '\ufeff') else file_text  # remove BOM
-            file_text = file_text.strip()
-            file_lines = [l.strip() for l in file_text.split('\n') if not l.startswith('HOUSE OVERSIGHT')]
-            return MULTINEWLINE_REGEX.sub('\n\n\n', '\n'.join(file_lines))
 
     def top_lines(self, n: int = 10) -> str:
         return '\n'.join(self.file_lines[0:n])
@@ -45,6 +35,15 @@ class Document:
     def log_top_lines(self, n: int = 10, msg: str | None = None) -> None:
         msg = f"{msg + '. ' if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"
         logger.info(f"{msg}:\n\n{self.top_lines(n)}")
+
+    def _load_file(self):
+        """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
+        with open(self.file_path) as f:
+            file_text = f.read()
+            file_text = file_text[1:] if (len(file_text) > 0 and file_text[0] == '\ufeff') else file_text  # remove BOM
+            file_text = file_text.strip()
+            file_lines = [l.strip() for l in file_text.split('\n') if not l.startswith('HOUSE OVERSIGHT')]
+            return MULTINEWLINE_REGEX.sub('\n\n\n', '\n'.join(file_lines))
 
 
 @dataclass
