@@ -54,9 +54,8 @@ console.print(f"(Last deploy found 4668 messages in 77 conversations)\n\n\n", st
 console.print(Panel(Text("HIS EMAILS", justify='center'), expand=True, padding=(2, 2)), style='bold on blue3')
 print_email_table(epstein_files.email_author_counts, "Author")
 print_email_table(epstein_files.email_recipient_counts, "Recipients")
-
-console.print(f"\n\nScanned {len(epstein_files.emails)} potential email files, found {sum([i for i in epstein_files.email_author_counts.values()])} senders.")
-console.print('Chronologically sorted emails Epstein sent to or received from these people can be found below:\n')
+console.print(f"\n\nIdentified {epstein_files.num_identified_email_authors()} authors in {len(epstein_files.emails)} potential email files.")
+console.print('Chronologically sorted emails Epstein sent to/received from these people can be found below:\n')
 
 for i, author in enumerate(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED):
     style = COUNTERPARTY_COLORS.get(author or UNKNOWN, DEFAULT)
