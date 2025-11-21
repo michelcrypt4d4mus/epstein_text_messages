@@ -49,6 +49,7 @@ COUNTERPARTY_COLORS = {
     TEXT_LINK: 'deep_sky_blue4 underline',
     'Trump': 'red3',
     UNKNOWN: 'cyan',
+    'Victor Orban': 'purple4',
 }
 
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
@@ -69,6 +70,23 @@ COUNTERPARTY_COLORS.update(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED)
 
 for counterparty in COUNTERPARTY_COLORS:
     COUNTERPARTY_COLORS[counterparty] = f"{COUNTERPARTY_COLORS[counterparty]} bold"
+
+COUNTERPARTY_COLORS.update({
+    'bg': 'turquoise4',
+    'bill': 'turquoise4',
+    'DJT': COUNTERPARTY_COLORS['Trump'],
+    'Ivanka': 'medium_violet_red',
+    'Jared Kushner': 'medium_violet_red',
+    'Scaramucci': COUNTERPARTY_COLORS[SCARAMUCCI],
+    'Miro': COUNTERPARTY_COLORS[MIROSLAV],
+})
+
+FIRST_NAMES_TO_NOT_COLOR = [
+    'Michael',
+    'Steve',
+    'The',
+    'Victor',
+]
 
 CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 <html>
@@ -138,12 +156,17 @@ def highlight_names(text: str) -> str:
         if ' ' not in name:
             continue
 
-        # highlight last names
         names = name.split(' ')
         last_name = names[-1]
         first_name = ' '.join(names[0:-1])
-        name_regex = re.compile(rf"(?!{first_name}) +{last_name}\b")
-        text = name_regex.sub(f' [{style}]{last_name}[/{style}]', text)
+        # highlight last names
+        name_regex = re.compile(rf"(?!{first_name} ?)\b{last_name}\b")
+        text = name_regex.sub(f'[{style}]{last_name}[/{style}]', text)
+        # highlight first names
+
+        if len(first_name) > 2 and first_name not in FIRST_NAMES_TO_NOT_COLOR:
+            name_regex = re.compile(rf"\b{first_name}\b(?! ?{last_name})")
+            text = name_regex.sub(f'[{style}]{first_name}[/{style}]', text)
 
     return text
 
