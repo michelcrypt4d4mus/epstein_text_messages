@@ -81,7 +81,6 @@ class Email(CommunicationDocument):
         prettified_text = '\n'.join([line for line in prettified_text.split('\n') if not re.match(r'^\d{1,2}$', line)])
         prettified_text = REDACTED_REPLY_REGEX.sub('<REDACTED> wrote:', prettified_text)
         prettified_text = escape(REPLY_REGEX.sub(r'\n\1', prettified_text))  # Newlines between quoted replies
-        prettified_text = highlight_names(prettified_text)
         prettified_text = EPSTEIN_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, prettified_text)
         return EPSTEIN_OLD_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, prettified_text)
 
@@ -195,7 +194,7 @@ class Email(CommunicationDocument):
             text = text[0:num_chars]
             text += f"\n\n[dim]<...truncated to {num_chars} characters, read the rest: {self.archive_link}...>[/dim]"
 
-        yield Padding(Panel(text, expand=False), (0, 0, 2, EMAIL_INDENT))
+        yield Padding(Panel(highlight_names(text), expand=False), (0, 0, 2, EMAIL_INDENT))
 
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:
