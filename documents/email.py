@@ -10,7 +10,7 @@ from rich.panel import Panel
 from rich.text import Text
 
 from documents.document import CommunicationDocument
-from documents.email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, EmailHeader
+from documents.email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TO_FIELDS, EmailHeader
 from util.constants import *
 from util.rich import *
 
@@ -21,7 +21,7 @@ EMAIL_HEADER_REGEX = re.compile(r'^(((Date|Subject):.*\n)*From:.*\n((Date|Sent|T
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
 BAD_EMAILER_REGEX = re.compile(r'^>|ok|re:|fwd:|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|hysterical|image0|so that people|article 1.?|momminnemummin|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Subject|Attachments):\s*\n)+')
-REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*wrote:|-+(Forwarded|Original)\s*Message-+|Begin forwarded message:?)', re.IGNORECASE)
+REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*wrote:|-+(Forwarded|Original)\s*Message-*|Begin forwarded message:?)', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
 CLIPPED_SIGNATURE_REPLACEMENT = '[dim]<...snipped epstein legal signature...>[/dim]'
 BAD_FIRST_LINES = ['026652', '029835', '031189']
@@ -52,6 +52,12 @@ class Email(CommunicationDocument):
             self.recipients = [KNOWN_EMAIL_RECIPIENTS[self.file_id]]
         else:
             self.recipients = [_get_name(r) for r in self.header.to] if self.header.to else []
+
+        if self.header.cc or self.header.bcc:
+            all_cced = (self.header.cc or []) + (self.header.bcc or [])
+            cced = [_get_name(cc) for cc in all_cced]
+            self.recipients += cced
+            logger.debug(f"Added CC / BCC: {cced}")
 
         self.recipients_lower = [r.lower() if r else None for r in self.recipients]
         recipient = UNKNOWN if len(self.recipients) == 0 else (self.recipients[0] or UNKNOWN)
@@ -125,8 +131,15 @@ class Email(CommunicationDocument):
                             logger.debug(f"Looks like a mismatch, Trying the next line...")
                             num_headers += 1
                             value = self.lines[i + num_headers]
+                    elif field_name in TO_FIELDS:
+                        if TIME_REGEX.match(value):
+                            logger.debug(f"Looks like a mismatch for '{field_name}', trying next line...")
+                            num_headers += 1
+                            value = self.lines[i + num_headers]
 
-                    setattr(self.header, field_name, [v.strip() for v in value.split(';')] if field_name == 'to' else value)
+                        value = [v.strip() for v in value.split(';')]
+
+                    setattr(self.header, field_name, value)
 
                 logger.debug(f"Corrected empty header to:\n{self.header}\n\nTop rows of file\n\n{self.top_lines(num_headers * 2)}")
             else:
