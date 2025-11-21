@@ -71,7 +71,7 @@ class MessengerLog(CommunicationDocument):
         if self.hint_txt:
             yield self.hint_txt
 
-        yield Text('\n')
+        yield Text('')
 
         for match in MSG_REGEX.finditer(self.text):
             sender = sender_str = match.group(1).strip()
