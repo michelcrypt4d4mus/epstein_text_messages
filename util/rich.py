@@ -31,10 +31,9 @@ COUNTERPARTY_COLORS = {
     ANIL: 'dark_green',
     ARCHIVE_LINK: 'deep_sky_blue4',
     ARIANE_DE_ROTHSCHILD: 'indian_red',
-    BANNON: 'color(58)',
     'Celina Dubin': 'medium_orchid1',
     DEFAULT: 'wheat4',
-    EPSTEIN: 'blue',
+    JEFFREY_EPSTEIN: 'blue',
     EVA: 'orchid',
     JOI_ITO: 'blue_violet',
     LARRY_SUMMERS: 'bright_red',
@@ -45,6 +44,7 @@ COUNTERPARTY_COLORS = {
     PLASKETT: 'medium_orchid3',
     SCARAMUCCI: 'orange1',
     SOON_YI: 'hot_pink',
+    STEVE_BANNON: 'color(58)',
     TERJE: 'light_slate_blue',
     TEXT_LINK: 'deep_sky_blue4 underline',
     UNKNOWN: 'cyan',
@@ -52,8 +52,8 @@ COUNTERPARTY_COLORS = {
 
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     None: 'grey74',
-    STEVE_BANNON: COUNTERPARTY_COLORS[BANNON],
-    'Sean Bannon': COUNTERPARTY_COLORS[BANNON],
+    STEVE_BANNON: COUNTERPARTY_COLORS[STEVE_BANNON],
+    'Sean Bannon': COUNTERPARTY_COLORS[STEVE_BANNON],
     GHISLAINE_MAXWELL: 'deep_pink3',
     AL_SECKEL: 'orange_red1',
     EHUD_BARAK: 'chartreuse4',
@@ -102,7 +102,6 @@ search_coffeezilla_url = lambda txt: f"{COFFEEZILLA_ARCHIVE}&q={urllib.parse.quo
 for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
     file_id = extract_file_id(row['filename'].strip())
     counterparty = row['counterparty'].strip()
-    counterparty = BANNON if counterparty.startswith('Steve Bannon') else counterparty
 
     if file_id in GUESSED_IMESSAGE_FILE_IDS:
         raise RuntimeError(f"Can't overwrite attribution of {file_id} to {GUESSED_IMESSAGE_FILE_IDS[file_id]} with {counterparty}")
