@@ -266,12 +266,14 @@ KNOWN_EMAIL_AUTHORS = {
 }
 
 KNOWN_EMAIL_RECIPIENTS = {
+    '021106': 'Alexandra Preate',     # Reply
     '030764': ARIANE_DE_ROTHSCHILD,   # Reply
     '026431': ARIANE_DE_ROTHSCHILD,   # Reply
     '030522': LANDON_THOMAS,
-    '031413': LANDON_THOMAS,  # Reply
-    '029692': LARRY_SUMMERS,  # Header
-    '029779': LARRY_SUMMERS,  # Header
+    '031413': LANDON_THOMAS,          # Reply
+    '029692': LARRY_SUMMERS,          # Header
+    '029779': LARRY_SUMMERS,          # Header
+    '019334': STEVE_BANNON,
 }
 
 

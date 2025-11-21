@@ -69,7 +69,7 @@ class Email(CommunicationDocument):
         else:
             prettified_text = self.text
 
-        prettified_text = '\n'.join([line for line in prettified_text.split('\n') if not re.match(r'^\d$', line)]) # Remove single digit lines
+        prettified_text = '\n'.join([line for line in prettified_text.split('\n') if not re.match(r'^\d{1,2}$', line)]) # Remove single digit lines
         prettified_text = escape(REPLY_REGEX.sub(r'\n\1', prettified_text))  # Newlines between quoted replies
         prettified_text = EPSTEIN_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, prettified_text)
         return EPSTEIN_OLD_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, prettified_text)
