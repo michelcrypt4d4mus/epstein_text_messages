@@ -243,6 +243,7 @@ def archive_link(filename: str, style: str = ARCHIVE_LINK_COLOR) -> str:
 
 
 def print_header():
+    console.print(f"This site is not optimized for mobile but if you get past the header it should work ok.", style='dim')
     console.line()
     console.print(Panel(Text("Epstein Estate Documents - Seventh Production Collection Reformatted Text Messages", justify='center', style='bold reverse')))
     console.line()
