@@ -273,7 +273,14 @@ class Email(CommunicationDocument):
         super().__post_init__()
         self._repair()
         self.extract_header()
-        self.determine_author()
+
+        if self.file_id in KNOWN_EMAILS:
+            self.author = KNOWN_EMAILS[self.file_id]
+        elif not self.header.author:
+            self.author = None
+        else:
+            self.author = _get_name(self.header.author)
+
         recipients = [_get_name(r) for r in self.header.to] if self.header.to else []
         self.recipients = [r for r in recipients if r]
         self.timestamp = self.extract_sent_at()
@@ -281,13 +288,8 @@ class Email(CommunicationDocument):
         self.author_style = COUNTERPARTY_COLORS.get(self.author or UNKNOWN, DEFAULT)
         self.author_txt = Text(self.author or UNKNOWN, style=self.author_style)
 
-    def determine_author(self) -> str | None:
-        if self.file_id in KNOWN_EMAILS:
-            self.author = KNOWN_EMAILS[self.file_id]
-        elif not self.header.author:
-            self.author = None
-        else:
-            self.author = _get_name(self.header.author)
+        if self.author is None:
+            self.log_top_lines()
 
     def cleanup_email_txt(self) -> str:
         # add newline after header if header looks valid
@@ -341,7 +343,7 @@ class Email(CommunicationDocument):
 
                     value = self.file_lines[row_number_to_check]
 
-                    if field_name == AUTHOR and TIME_REGEX.match(value):
+                    if field_name == AUTHOR and (TIME_REGEX.match(value) or value == 'Darren,'):
                         logger.debug(f"Looks like a mismatch, decrementing num_headers and skipping!")
                         num_headers -= 1
                         continue
@@ -494,7 +496,7 @@ def _get_name(author: str) -> str | None:
             break
 
     if not valid_emailer(author) or TIME_REGEX.match(author):
-        logger.warning(f"Author is invalid: '{author}', returning None...")
+        logger.warning(f"Name '{author}' is invalid, returning None...")
         return None
 
     if ', ' in author:
