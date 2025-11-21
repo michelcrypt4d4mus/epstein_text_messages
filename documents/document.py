@@ -29,12 +29,12 @@ class Document:
         self.lines = self.text.split('\n')
         self.num_lines = len(self.lines)
 
-    def top_lines(self, n: int = 10) -> str:
-        return '\n'.join(self.lines[0:n])
-
     def log_top_lines(self, n: int = 10, msg: str | None = None) -> None:
         msg = f"{msg + '. ' if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"
         logger.info(f"{msg}:\n\n{self.top_lines(n)}")
+
+    def top_lines(self, n: int = 10) -> str:
+        return '\n'.join(self.lines[0:n])
 
     def _load_file(self):
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
