@@ -73,7 +73,7 @@ class EmailHeader:
                 kw_args[key.lower()] = None if len(value) == 0 else value
 
         if should_log_header:
-            logger.info(f"Header being parsed was this:\n\n{header}\n")
+            logger.debug(f"Header being parsed was this:\n\n{header}\n")
 
         return EmailHeader(field_names=field_names, **kw_args)
 
