@@ -1,11 +1,9 @@
 from collections import defaultdict
 from dataclasses import dataclass, field
-from datetime import datetime
 from pathlib import Path
 
 from rich.markup import escape
 from rich.panel import Panel
-from rich.padding import Padding
 from rich.text import Text
 
 from documents.document import Document
