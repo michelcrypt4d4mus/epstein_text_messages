@@ -216,8 +216,8 @@ class Document:
     def top_lines(self, n: int = 10) -> str:
         return '\n'.join(self.file_lines[0:n])
 
-    def log_top_lines(self, n: int = 10) -> None:
-        logger.info(f"Top lines of '{self.filename}':\n\n{self.top_lines(n)}")
+    def log_top_lines(self, n: int = 10, msg: str | None = None) -> None:
+        logger.info(f"{msg + '. ' if msg else ''}Top lines of '{self.filename}':\n\n{self.top_lines(n)}")
 
 
 @dataclass
@@ -287,9 +287,6 @@ class Email(CommunicationDocument):
         self.author_lowercase = self.author.lower() if self.author else None
         self.author_style = COUNTERPARTY_COLORS.get(self.author or UNKNOWN, DEFAULT)
         self.author_txt = Text(self.author or UNKNOWN, style=self.author_style)
-
-        if self.author is None:
-            self.log_top_lines()
 
     def cleanup_email_txt(self) -> str:
         # add newline after header if header looks valid
@@ -406,12 +403,12 @@ class EpsteinFiles:
             document = Document(file_arg)
 
             if document.length == 0:
-                logger.info('   -> Skipping empty file...')
+                logger.info('Skipping empty file...')
                 continue
             elif document.text[0] == '{':  # Check for JSON
                 move_json_file(file_arg)
             elif MSG_REGEX.search(document.text):
-                logger.info('   -> iMessage log file...')
+                logger.info('iMessage log file...')
                 self.iMessage_logs.append(MessengerLog(file_arg))
             else:
                 emailer = None
@@ -423,7 +420,7 @@ class EpsteinFiles:
                     try:
                         emailer = email.author or UNKNOWN
                         self.emailer_counts[emailer.lower()] += 1
-                        logger.debug(f"   -> Emailer: '{emailer}'")
+                        logger.debug(f"Emailer: '{emailer}'")
 
                         for recipient in email.recipients:
                             self.email_recipient_counts[recipient.lower()] += 1
@@ -481,7 +478,7 @@ def parse_timestamp(timestamp_str: str) -> None | datetime:
         logger.debug(f'Parsed timestamp "{timestamp}" from string "{timestamp_str}"')
         return timestamp
     except Exception as e:
-        logger.info(f'Failed to parse "{timestamp_str}" to timestamp!')
+        logger.debug(f'Failed to parse "{timestamp_str}" to timestamp!')
 
 
 valid_emailer = lambda emailer: not BAD_EMAILER_REGEX.match(emailer)
