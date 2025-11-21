@@ -185,6 +185,7 @@ EMAILER_REGEXES = {
     'Paul Morris': re.compile(r'morris, paul|Paul Morris', re.IGNORECASE),
     'Richard Kahn': re.compile(r'rich(ard)? kahn?', re.IGNORECASE),
     'Robert Lawrence Kuhn': re.compile(r'Robert\s*(Lawrence)?\s*Kuhn', re.IGNORECASE),
+    'Robert Trivers': re.compile(r'tri[vy]ersr@gmail|Robert\s*Trivers', re.IGNORECASE),
     'Scott J. Link': re.compile(r'scott j. lin', re.IGNORECASE),
     'Sean Bannon': re.compile(r'sean banno', re.IGNORECASE),
     SOON_YI: re.compile(r'Soon[- ]Yi Previn?', re.IGNORECASE),
