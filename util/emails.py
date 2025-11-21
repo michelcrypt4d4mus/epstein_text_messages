@@ -118,6 +118,7 @@ KNOWN_EMAILS = {
     '030741': ARIANE_DE_ROTHSCHILD,
     '026018': ARIANE_DE_ROTHSCHILD,
     '026745': BARBRO_EHNBOM,      # Signature
+    '031227': 'Moskowitz, Bennet J.',
     '031442': 'Christina Galbraith',
     '026625': DARREN_INDKE,
     '026290': DAVID_SCHOEN,       # Signature
@@ -304,7 +305,7 @@ class Email(CommunicationDocument):
         date_match = DATE_REGEX.search(searchable_text)
 
         if not date_match:
-            logger.info(f"Failed to find timestamp, using fallback of parsing top {VALID_HEADER_LINES} lines...")
+            logger.debug(f"Failed to find timestamp, using fallback of parsing top {VALID_HEADER_LINES} lines...")
 
             for line in searchable_lines:
                 timestamp = parse_timestamp(line.strip())
@@ -313,13 +314,10 @@ class Email(CommunicationDocument):
                     logger.info(f"Fell back to timestamp {timestamp} in line '{line}'...")
                     return timestamp
 
-            top_text = '\n'.join(self.text.split("\n")[0:10])[0:MAX_PREVIEW_CHARS]
-            logger.info(f"Timestamp not found in email, top lines:\n{top_text}")
+            self.log_top_lines(msg="No valid timestamp found in email")
             return
 
-        timestamp_str = date_match.group(1).strip()
-        timestamp_str = timestamp_str.replace(' (UTC)', '') if timestamp_str.endswith(' (UTC)') else timestamp_str
-        return parse_timestamp(timestamp_str)
+        return parse_timestamp(date_match.group(1).strip().replace(' (UTC)', ''))
 
     def extract_header(self) -> EmailHeader | None:
         header_match = EMAIL_SIMPLE_HEADER_REGEX.search(self.text)
@@ -347,8 +345,7 @@ class Email(CommunicationDocument):
 
                     setattr(self.header, field_name, [v.strip() for v in value.split(';')] if field_name == 'to' else value)
 
-                logger.info(f"Corrected empty header to:\n{self.header}\n\n")
-                self.log_top_lines(num_headers * 2)
+                logger.debug(f"Corrected empty header to:\n{self.header}\n\nTop rows of file\n\n{self.top_lines(num_headers * 2)}")
             else:
                 logger.debug(f"Parsed email header to:\n{self.header}")
         else:
@@ -414,25 +411,20 @@ class EpsteinFiles:
                 emailer = None
 
                 if DETECT_EMAIL_REGEX.match(document.text):  # Handle emails
+                    logger.info('Email...')
                     email = Email(file_arg)
                     self.emails.append(email)
+                    emailer = email.author or UNKNOWN
+                    self.emailer_counts[emailer.lower()] += 1
+                    logger.debug(f"Emailer: '{emailer}'")
 
-                    try:
-                        emailer = email.author or UNKNOWN
-                        self.emailer_counts[emailer.lower()] += 1
-                        logger.debug(f"Emailer: '{emailer}'")
+                    for recipient in email.recipients:
+                        self.email_recipient_counts[recipient.lower()] += 1
 
-                        for recipient in email.recipients:
-                            self.email_recipient_counts[recipient.lower()] += 1
-
-                        if len(emailer) >= 3 and emailer != UNKNOWN:
-                            continue  # Don't proceed to printing debug contents if we found a valid email
-                    except Exception as e:
-                        console.print_exception()
-                        console.print(f"\nError file '{file_arg.name}' with {document.num_lines} lines, top lines:")
-                        print_top_lines(document.text)
-                        raise e
+                    if len(emailer) >= 3 and emailer != UNKNOWN:
+                        continue  # Don't proceed to printing debug contents if we found a valid email
                 else:
+                    logger.info('Unknown file type...')
                     self.other_files.append(document)
 
                 if is_debug:
