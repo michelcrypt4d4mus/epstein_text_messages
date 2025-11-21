@@ -371,6 +371,7 @@ class Email(CommunicationDocument):
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield Panel(archive_link(self.filename, self.author_style), expand=False)
         info_line = Text(" Email from ").append(self.author_txt)
+        info_line.append(f' to {self.recipients[0] if self.recipients else UNKNOWN}')
         info_line.append(f" probably sent at ").append(f"{self.timestamp or '?'}", style='spring_green3')
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
         email_panel = Panel(escape(self.cleanup_email_txt()), expand=False)
@@ -444,7 +445,7 @@ class EpsteinFiles:
         author = author or '[redacted]'
 
         if len(emails) > 0:
-            console.print('\n\n', Panel(Text(f"{len(emails)} emails to/from {author} Found)", justify='center')), '\n', style='bold reverse')
+            console.print('\n\n', Panel(Text(f"Found {len(emails)} emails to/from {author}", justify='center')), '\n', style='bold reverse')
         else:
             logger.warning(f"No emails found for {author}")
 
