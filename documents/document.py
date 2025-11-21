@@ -48,6 +48,7 @@ class Document:
 
 @dataclass
 class CommunicationDocument(Document):
+    archive_link: str = field(init=False)
     author: str | None = field(init=False)
     author_style: str = field(init=False)
     author_txt: Text = field(init=False)

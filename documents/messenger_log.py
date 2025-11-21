@@ -1,7 +1,7 @@
 import re
 
 from util.constants import DEFAULT, GUESSED_IMESSAGE_FILE_IDS, KNOWN_IMESSAGE_FILE_IDS, UNKNOWN
-from util.rich import COUNTERPARTY_COLORS
+from util.rich import COUNTERPARTY_COLORS, archive_link
 from documents.document import *
 
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
@@ -19,6 +19,7 @@ class MessengerLog(CommunicationDocument):
         self.author_str = self.author or UNKNOWN
         self.author_style = COUNTERPARTY_COLORS.get(self.author_str, DEFAULT)
         self.author_txt = Text(self.author_str, style=self.author_style)
+        self.archive_link = archive_link(self.filename, self.author_style)
 
         if self.file_id in KNOWN_IMESSAGE_FILE_IDS:
             self.hint_txt = Text(f" Found confirmed counterparty ", style='grey').append(self.author_txt).append(f" for file ID {self.file_id}.")
