@@ -250,6 +250,7 @@ KNOWN_EMAIL_AUTHORS = {
     '021814': NADIA_MARCINKO,
     '021808': NADIA_MARCINKO,
     '022190': NADIA_MARCINKO,
+    '021818': NADIA_MARCINKO,
     '021811': NADIA_MARCINKO,      # Signature and email address in the message
     '029981': 'Paula',             # reply
     '031694': 'Peggy Siegal',
@@ -296,8 +297,7 @@ EPSTEIN_OLD_SIGNATURE = re.compile(r"""\*+
 The information contained in this communication is
 confidential, may be attorney-client privileged, may
 constitute inside information, and is intend.*
-the use of the addressee. It is the property of
-Jeffrey Epstein
+the use of the addressee. It is the property.*(\nJeffrey Epstein)?
 Unauthorized use, disclosure or copying of this
 communication or any part thereof is strictly prohibited
 and may be unlawful. If you have received this
