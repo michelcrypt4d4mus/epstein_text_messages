@@ -47,6 +47,7 @@ COUNTERPARTY_COLORS = {
     STEVE_BANNON: 'color(58)',
     TERJE: 'light_slate_blue',
     TEXT_LINK: 'deep_sky_blue4 underline',
+    'Trump': 'red3',
     UNKNOWN: 'cyan',
 }
 
@@ -134,14 +135,14 @@ def highlight_names(text: str) -> str:
         name_regex = re.compile(rf"\b{name}\b", re.IGNORECASE)
         text = name_regex.sub(f'[{style}]{name}[/{style}]', text)
 
-        # highlight last names
         if ' ' not in name:
             continue
 
+        # highlight last names
         names = name.split(' ')
         last_name = names[-1]
         first_name = ' '.join(names[0:-1])
-        name_regex = re.compile(f"(?!{first_name}) +{last_name}\b")
+        name_regex = re.compile(rf"(?!{first_name}) +{last_name}\b")
         text = name_regex.sub(f' [{style}]{last_name}[/{style}]', text)
 
     return text
