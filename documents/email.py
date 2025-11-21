@@ -112,7 +112,7 @@ class Email(CommunicationDocument):
                         logger.warning(f"Ran out of rows to check for a value for '{field_name}'")
                         break
 
-                    value = self.file_lines[row_number_to_check]
+                    value = self.lines[row_number_to_check]
 
                     if field_name == AUTHOR:
                         if TIME_REGEX.match(value) or value == 'Darren,':
@@ -122,7 +122,7 @@ class Email(CommunicationDocument):
                         elif value.startswith('call me'):
                             logger.debug(f"Looks like a mismatch, Trying the next line...")
                             num_headers += 1
-                            value = self.file_lines[i + num_headers]
+                            value = self.lines[i + num_headers]
 
                     setattr(self.header, field_name, [v.strip() for v in value.split(';')] if field_name == 'to' else value)
 
@@ -135,15 +135,15 @@ class Email(CommunicationDocument):
 
     def _repair(self) -> None:
         """Repair particularly janky files."""
-        if self.file_lines[0].startswith('Grant_Smith066474"eMailContent.htm') or self.file_id in BAD_FIRST_LINES:
-            self.file_lines = self.file_lines[1:]
-            self.text = '\n'.join(self.file_lines)
+        if self.lines[0].startswith('Grant_Smith066474"eMailContent.htm') or self.file_id in BAD_FIRST_LINES:
+            self.lines = self.lines[1:]
+            self.text = '\n'.join(self.lines)
         elif self.file_id == '029977':
             self.text = self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM')
-            self.file_lines = self.text.split('\n')
+            self.lines = self.text.split('\n')
         elif self.file_id == '031442':
-            self.file_lines = [self.file_lines[0] + self.file_lines[1]] + self.file_lines[2:]
-            self.text = '\n'.join(self.file_lines)
+            self.lines = [self.lines[0] + self.lines[1]] + self.lines[2:]
+            self.text = '\n'.join(self.lines)
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield Panel(archive_link(self.filename, self.author_style), expand=False)
