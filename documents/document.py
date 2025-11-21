@@ -14,12 +14,12 @@ MULTINEWLINE_REGEX = re.compile(r"\n{3,}")
 @dataclass
 class Document:
     file_path: Path
-    filename: str = field(init=False)
-    text: str = field(init=False)
     file_id: str = field(init=False)
+    filename: str = field(init=False)
+    length: int = field(init=False)
     lines: list[str] = field(init=False)
     num_lines: int = field(init=False)
-    length: int = field(init=False)
+    text: str = field(init=False)
 
     def __post_init__(self):
         self.filename = self.file_path.name
