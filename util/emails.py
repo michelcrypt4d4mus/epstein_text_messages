@@ -25,10 +25,11 @@ EMAIL_HEADER_REGEX = re.compile(r'^(((Date|Subject):.*\n)*From:.*\n((Date|Sent|T
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
 BAD_EMAILER_REGEX = re.compile(r'^>|ok|re:|fwd:|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|hysterical|image0|so that people|article 1.?|momminnemummin|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Subject|Attachments):\s*\n)+')
-REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*wrote:|-+(Forwarded|Original)\s*Message-+|Begin forwarded message:?)')
+REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*wrote:|-+(Forwarded|Original)\s*Message-+|Begin forwarded message:?)', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
 VALID_HEADER_LINES = 14
 EMAIL_INDENT = 3
+CLIPPED_SIGNATURE_REPLACEMENT = '<...clipped epstein legal signature...>'
 # iMessage
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 MSG_DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
@@ -173,14 +174,17 @@ KNOWN_EMAILS = {
     '017581': 'Lisa Randall',
 }
 
+KNOWN_RECIPIENTS = {
+    '030522': LANDON_THOMAS,
+}
+
 for emailer in EMAILERS:
     if emailer in EMAILER_REGEXES:
         raise RuntimeError(f"Can't overwrite emailer regex for '{emailer}'")
 
     EMAILER_REGEXES[emailer] = re.compile(emailer, re.IGNORECASE)
 
-EPSTEIN_SIGNATURE = re.compile(
-r"""please note
+EPSTEIN_SIGNATURE = re.compile(r"""please note
 The information contained in this communication is
 confidential, may be attorney-client privileged, may
 constitute inside information, and is intended only for
@@ -194,8 +198,7 @@ return e-mail or by e-mail to jeevacation.*gmail.com, and
 destroy this communication and all copies thereof,
 including all attachments. copyright -all rights reserved""")
 
-EPSTEIN_OLD_SIGNATURE="""
-***********************************************************
+EPSTEIN_OLD_SIGNATURE = re.compile(r"""\*+
 The information contained in this communication is
 confidential, may be attorney-client privileged, may
 constitute inside information, and is intended only for
@@ -205,10 +208,9 @@ Unauthorized use, disclosure or copying of this
 communication or any part thereof is strictly prohibited
 and may be unlawful. If you have received this
 communication in error, please notify us immediately by
-return e-mail or by e-mail to jeevacation@gmail.com , and
+return e-mail or by e-mail to.*
 destroy this communication and all copies thereof,
-including all attachments. copyright -all rights reserved
-""".strip()
+including all attachments. copyright -all rights reserved""")
 
 
 @dataclass
@@ -297,7 +299,11 @@ class Email(CommunicationDocument):
         else:
             self.author = _get_name(self.header.author)
 
-        self.recipients = [_get_name(r) for r in self.header.to] if self.header.to else []
+        if self.file_id in KNOWN_RECIPIENTS:
+            self.recipients = [KNOWN_RECIPIENTS[self.file_id]]
+        else:
+            self.recipients = [_get_name(r) for r in self.header.to] if self.header.to else []
+
         self.recipients_lower = [r.lower() if r else None for r in self.recipients]
         recipient = UNKNOWN if len(self.recipients) == 0 else (self.recipients[0] or UNKNOWN)
         self.recipient_txt = Text(recipient, COUNTERPARTY_COLORS.get(recipient, DEFAULT))
@@ -314,8 +320,8 @@ class Email(CommunicationDocument):
             prettified_text = self.text
 
         prettified_text = REPLY_REGEX.sub(r'\n\1', prettified_text)  # Insert newlines between quoted replies
-        prettified_text = EPSTEIN_SIGNATURE.sub('<...clipped epstein legal signature...>', prettified_text)
-        return prettified_text.replace(EPSTEIN_OLD_SIGNATURE, '<...clipped epstein legal signature...>')
+        prettified_text = EPSTEIN_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, prettified_text)
+        return EPSTEIN_OLD_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, prettified_text)
 
     def extract_sent_at(self) -> datetime | None:
         searchable_lines = self.text.split('\n')[0:VALID_HEADER_LINES]
