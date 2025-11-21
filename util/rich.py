@@ -47,6 +47,7 @@ LAWRANCE_VISOSKI = 'Lawrance Visoski'
 LEON_BLACK = 'Leon Black'
 NADIA_MARCINKO = 'Nadia Marcinko'
 STEVE_BANNON = 'Steve Bannon'
+SULTAN_BIN_SULAYEM = 'Sultan bin Sulayem'
 TERRY_KAFKA = 'Terry Kafka'
 REDACTED = '[REDACTED]'
 
@@ -97,7 +98,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     AL_SECKEL: 'orange_red1',
     EHUD_BARAK: 'chartreuse4',
     LEON_BLACK: 'bright_red',
-    'Sultan bin Sulayem': 'green1',
+    SULTAN_BIN_SULAYEM: 'green1',
     'Deepak Chopra': 'dark_goldenrod',
     'Darren Indke': 'purple3',
     'Richard Kahn': 'purple4',
