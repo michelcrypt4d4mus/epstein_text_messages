@@ -47,7 +47,6 @@ EMAILERS = [
     'Lesley Groff',
     'Michael Wolff',
     JONATHAN_FARKAS,
-    'Paul Morris',
     'Peggy Siegal',
     'Peter Green',
     'Richard Kahn',
@@ -68,6 +67,7 @@ EMAILER_REGEXES = {
     'David Stern': re.compile(r'David Stern?', re.IGNORECASE),
     EDWARD_EPSTEIN: re.compile(r'Edward (Jay )?Epstein', re.IGNORECASE),
     EHUD_BARAK: re.compile(r'(ehud|h)\s*barak', re.IGNORECASE),
+    'Faith Kates': re.compile(r'faith kate', re.IGNORECASE),
     GHISLAINE_MAXWELL: re.compile(r'g ?max(well)?', re.IGNORECASE),
     'Google Alerts': re.compile(r'google\s?alerts', re.IGNORECASE),
     'Intelligence Squared': re.compile(r'intelligence\s*squared', re.IGNORECASE),
@@ -78,15 +78,18 @@ EMAILER_REGEXES = {
     'Ken Starr': re.compile('starr, ken', re.IGNORECASE),
     LANDON_THOMAS: re.compile('landon thomas jr|thomas jr.?, landon', re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r'La(wrence|rry).*Summer|^LHS?$', re.IGNORECASE),
+    'lilly sanchez': re.compile(r'lily .*sanchez', re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus', re.IGNORECASE),
     'Lisa New': re.compile(r'Lisa New?$', re.IGNORECASE),
     'Mohamed Waheed Hassan': re.compile(r'Mohamed Waheed', re.IGNORECASE),
     'Martin Weinberg': re.compile(r'martin (g.* )weinberg', re.IGNORECASE),
     'Nicholas Ribis': re.compile(r'Nicholas Rib', re.IGNORECASE),
     'Paul Krassner': re.compile(r'Pa\s?ul Krassner', re.IGNORECASE),
+    'Paul Morris': re.compile(r'morris, paul|Paul Morris', re.IGNORECASE),
     'Robert Lawrence Kuhn': re.compile(r'Robert\s*(Lawrence\s*)?Kuhn', re.IGNORECASE),
     'Scott J. Link': re.compile(r'scott j. lin', re.IGNORECASE),
     'Sean Bannon': re.compile(r'sean banno', re.IGNORECASE),
+    SOON_YI: re.compile(r'Soon[- ]Yi Previn', re.IGNORECASE),
     'Stephen Hanson': re.compile(r'ste(phen|ve) hanson|Shanson900', re.IGNORECASE),
     STEVE_BANNON: re.compile(r'steve banno[nr]?', re.IGNORECASE),
     'Steven Sinofsky': re.compile(r'Steven Sinofsk', re.IGNORECASE),
@@ -148,7 +151,7 @@ KNOWN_EMAILS = {
     '026620': TERRY_KAFKA,
     '028482': TERRY_KAFKA,    # Signature
     '029992': TERRY_KAFKA,    # Reply
-    '026571': '(unknown french speaker)',
+    # '026571': '(unknown french speaker)',
     '017581': 'Lisa Randall',
 }
 
@@ -282,6 +285,9 @@ class Email(CommunicationDocument):
         if not valid_emailer(author):
             logger.warning(f"Author is invalid: '{author}', returning None...")
             return None
+        elif ', ' in author:
+            names = author.split(', ')
+            author = f"{names[1]} {names[0]}"
 
         return author
 
