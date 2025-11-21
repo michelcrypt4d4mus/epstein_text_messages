@@ -83,7 +83,7 @@ class Email(CommunicationDocument):
         prettified_text = escape(REPLY_REGEX.sub(r'\n\1', prettified_text))  # Newlines between quoted replies
 
         for name, style in COUNTERPARTY_COLORS.items():
-            if name is None:
+            if name is None or name == DEFAULT:
                 continue
 
             name_regex = re.compile(name, re.IGNORECASE)
