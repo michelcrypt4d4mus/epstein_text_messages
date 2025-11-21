@@ -1,3 +1,4 @@
+import json
 import re
 from collections import defaultdict
 from dataclasses import dataclass, field
@@ -19,6 +20,7 @@ from .rich import *
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
 EMAIL_REGEX = re.compile(r'From: (.*)')
 EMAIL_HEADER_REGEX = re.compile(r'^(((Date|Subject):.*\n)*From:.*\n((Date|Sent|To|CC|Importance|Subject|Attachments):.*\n)+)')
+EMAIL_SIMPLE_HEADER_REGEX = re.compile(r'^((Date|From|Sent|To|CC|Importance|Subject|Attachments):? +(?!by|from|to|via).*\n){3,}')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
 BAD_EMAILER_REGEX = re.compile(r'^>|ok|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|hysterical|article 1.?|momminnemummin|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Subject|Attachments):\s*\n)+')
@@ -137,6 +139,37 @@ including all attachments. copyright -all rights reserved"""
 )
 
 
+# EMAIL_HEADER_REGEX = re.compile(r'^(((Date|Subject):.*\n)*From:.*\n((Date|Sent|To|CC|Importance|Subject|Attachments):.*\n)+)')
+# From: ehbarak                                                                                                  │
+# Sent: 4/30/2017 8:23:59 PM                                                                                     │
+# To: jeffrey E. [jeeyacation@gmail.com]                                                                         │
+# Subject: Re: NYT                                                                                               │
+# Importance: High
+@dataclass(kw_only=True)
+class EmailHeader:
+    author: str | None = None
+    date: str | None = None
+    subject: str | None = None
+    cc: str | None = None
+    importance: str | None = None
+    attachments: str | None = None
+    sent: str | None = None
+    to: str | None = None
+
+    @classmethod
+    def from_str(cls, header: str) -> 'EmailHeader':
+        kw_args = {}
+
+        for line in [l.strip() for l in header.strip().split('\n')]:
+            print(f"extracting header line '{line}'")
+            key, value = [element.strip() for element in line.split(':', 1)]
+            key = 'author' if key == 'From' else key
+            kw_args[key.lower()] = value
+
+        logger.debug(f"Parsed email header to:\n{json.dumps(kw_args, sort_keys=True, indent=4)}")
+        return EmailHeader(**kw_args)
+
+
 @dataclass
 class Document:
     file_path: Path
@@ -210,6 +243,7 @@ class Email(CommunicationDocument):
         self.author_style = COUNTERPARTY_COLORS.get(self.author or UNKNOWN, DEFAULT)
         self.author_txt = Text(self.author or UNKNOWN, style=self.author_style)
         self.timestamp = self.extract_sent_at()
+        self.header_info()
 
     def extract_email_sender(self) -> str | None:
         if self.file_id in KNOWN_EMAILS:
@@ -278,8 +312,14 @@ class Email(CommunicationDocument):
         timestamp_str = timestamp_str.replace(' (UTC)', '') if timestamp_str.endswith(' (UTC)') else timestamp_str
         return parse_timestamp(timestamp_str)
 
-    def is_redacted(self) -> bool:
-        return self.author is None
+    def header_info(self) -> EmailHeader | None:
+        header_match = EMAIL_SIMPLE_HEADER_REGEX.search(self.text)
+
+        if header_match:
+            logger.debug(f"Matched email header:\n{header_match.group(0)}\n")
+            header = EmailHeader.from_str(header_match.group(0))
+            logger.debug(f"Built header:\n{header}\n")
+            return header
 
     def sort_time(self) -> datetime:
         timestamp = self.timestamp or parse("1/1/2001 12:01:01 AM")
