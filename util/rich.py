@@ -126,6 +126,27 @@ def archive_link(filename: str, style: str = ARCHIVE_LINK_COLOR) -> str:
     return f"[bold][{style}][link={search_archive_url(filename)}]{filename}[/link][/{style}][/bold]"
 
 
+def highlight_names(text: str) -> str:
+    for name, style in COUNTERPARTY_COLORS.items():
+        if name is None or name == DEFAULT:
+            continue
+
+        name_regex = re.compile(rf"\b{name}\b", re.IGNORECASE)
+        text = name_regex.sub(f'[{style}]{name}[/{style}]', text)
+
+        # highlight last names
+        if ' ' not in name:
+            continue
+
+        names = name.split(' ')
+        last_name = names[-1]
+        first_name = ' '.join(names[0:-1])
+        name_regex = re.compile(f"(?!{first_name}) +{last_name}\b")
+        text = name_regex.sub(f' [{style}]{last_name}[/{style}]', text)
+
+    return text
+
+
 def print_header():
     console.print(f"This site is not optimized for mobile but if you get past the header it should work ok.", style='dim')
     console.line()
