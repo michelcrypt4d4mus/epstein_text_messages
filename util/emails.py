@@ -419,7 +419,7 @@ class EpsteinFiles:
                     logger.debug(f"Emailer: '{emailer}'")
 
                     for recipient in email.recipients:
-                        self.email_recipient_counts[recipient.lower()] += 1
+                        self.email_recipient_counts[recipient.lower() if recipient else UNKNOWN] += 1
 
                     if len(emailer) >= 3 and emailer != UNKNOWN:
                         continue  # Don't proceed to printing debug contents if we found a valid email
