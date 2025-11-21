@@ -157,25 +157,33 @@ class Document:
 
 
 @dataclass
-class MessengerLog(Document):
-    author: str = field(init=False)
-    author_str: str = field(init=False)
+class CommunicationDocument(Document):
+    author: str | None = field(init=False)
+    author_style: str = field(init=False)
     author_txt: Text = field(init=False)
-    hint_txt: Text | None = field(init=False)
-    timestamp: datetime = field(init=False)
+    timestamp: datetime | None = field(init=False)
 
     def __post_init__(self):
         super().__post_init__()
-        self.author = KNOWN_COUNTERPARTY_FILE_IDS.get(self.file_id, GUESSED_COUNTERPARTY_FILE_IDS.get(self.file_id)) or UNKNOWN
-        self.author_str = self.author
-        author_style = COUNTERPARTY_COLORS.get(self.author, DEFAULT)
-        self.author_txt = Text(self.author, style=author_style)
+
+
+@dataclass
+class MessengerLog(CommunicationDocument):
+    author_str: str = field(init=False)
+    hint_txt: Text | None = field(init=False)
+
+    def __post_init__(self):
+        super().__post_init__()
+        self.author = KNOWN_COUNTERPARTY_FILE_IDS.get(self.file_id, GUESSED_COUNTERPARTY_FILE_IDS.get(self.file_id))
+        self.author_str = self.author or UNKNOWN
+        self.author_style = COUNTERPARTY_COLORS.get(self.author_str, DEFAULT)
+        self.author_txt = Text(self.author_str, style=self.author_style)
 
         if self.file_id in KNOWN_COUNTERPARTY_FILE_IDS:
             self.hint_txt = Text(f" Found confirmed counterparty ", style='grey').append(self.author_txt).append(f" for file ID {self.file_id}.")
         elif self.file_id in GUESSED_COUNTERPARTY_FILE_IDS:
-            self.author_str = self.author + ' (?)'
-            self.author_txt = Text(self.author_str, style=author_style)
+            self.author_str += ' (?)'
+            self.author_txt = Text(self.author_str, style=self.author_style)
             self.hint_txt = Text(" (This is probably a conversation with ", style='grey').append(self.author_txt).append(')')
         else:
             self.hint_txt = None
@@ -192,18 +200,15 @@ class MessengerLog(Document):
 
 
 @dataclass
-class Email(Document):
-    author: str | None = field(init=False)
+class Email(CommunicationDocument):
     author_lowercase: str | None = field(init=False)
-    author_txt: Text = field(init=False)
-    timestamp: datetime | None = field(init=False)
 
     def __post_init__(self):
         super().__post_init__()
         self.author = self.extract_email_sender()
         self.author_lowercase = self.author.lower() if self.author else None
-        author_style = COUNTERPARTY_COLORS.get(self.author or UNKNOWN, DEFAULT)
-        self.author_txt = Text(self.author or UNKNOWN, style=author_style)
+        self.author_style = COUNTERPARTY_COLORS.get(self.author or UNKNOWN, DEFAULT)
+        self.author_txt = Text(self.author or UNKNOWN, style=self.author_style)
         self.timestamp = self.extract_sent_at()
 
     def extract_email_sender(self) -> str | None:
@@ -281,7 +286,7 @@ class Email(Document):
         return timestamp.replace(tzinfo=None) if timestamp.tzinfo is not None else timestamp
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        yield Panel(archive_link(self.filename), expand=False)
+        yield Panel(archive_link(self.filename, self.author_style), expand=False)
         info_line = Text(" Email from ").append(self.author_txt)
         info_line.append(f" probably sent at ").append(f"{self.timestamp or '?'}", style='spring_green3')
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
