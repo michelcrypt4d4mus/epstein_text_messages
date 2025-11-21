@@ -1,17 +1,42 @@
 import re
+from collections import defaultdict
 
-from util.constants import DEFAULT, GUESSED_IMESSAGE_FILE_IDS, KNOWN_IMESSAGE_FILE_IDS, UNKNOWN
-from util.rich import COUNTERPARTY_COLORS, archive_link
+from rich.console import Console, ConsoleOptions, RenderResult
+from rich.panel import Panel
+from rich.text import Text
+
+from util.constants import *
+from util.rich import COUNTERPARTY_COLORS, PHONE_NUMBER, TEXT_LINK, archive_link
 from documents.document import *
 
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
+BAD_TEXTER_REGEX = re.compile(r'^([-+_1•F]+|[4Ide])$')
 MSG_DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
+PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
+
+UNKNOWN_TEXTERS = [
+    '+16463880059',
+    '+13108737937',
+    '+13108802851',
+    'e:',
+    '+',
+    None,
+]
+
+TEXTER_MAPPING = {
+    'e:jeeitunes@gmail.com': EPSTEIN,
+    '+19174393646': SCARAMUCCI,
+    '+13109906526': BANNON,
+}
+
+sender_counts = defaultdict(int)
 
 
 @dataclass
 class MessengerLog(CommunicationDocument):
     author_str: str = field(init=False)
     hint_txt: Text | None = field(init=False)
+    msg_count: int = 0
 
     def __post_init__(self):
         super().__post_init__()
@@ -39,3 +64,55 @@ class MessengerLog(CommunicationDocument):
                 break
             except ValueError as e:
                 logger.debug(f"[WARNING] Failed to parse '{timestamp_str}' to datetime! Using next match. Error: {e}'")
+
+    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
+        yield Panel(self.archive_link, expand=False)
+
+        if self.hint_txt:
+            yield self.hint_txt
+
+        yield Text('\n')
+
+        for match in MSG_REGEX.finditer(self.text):
+            sender = sender_str = match.group(1).strip()
+            timestamp = Text(f"[{match.group(2).strip()}] ", style='gray30')
+            msg = match.group(4).strip()
+            msg_lines = msg.split('\n')
+            sender_style = None
+            sender_txt = None
+
+            # If the Sender: is redacted we need to fill it in from our configuration
+            if len(sender) == 0:
+                sender = self.author
+                sender_str = self.author_str
+                sender_txt = self.author_txt
+            else:
+                if sender in TEXTER_MAPPING:
+                    sender = sender_str = TEXTER_MAPPING[sender]
+                elif PHONE_NUMBER_REGEX.match(sender):
+                    sender_style = PHONE_NUMBER
+                elif re.match('[ME]+', sender):
+                    sender = MELANIE_WALKER
+
+                sender_txt = Text(sender_str, style=sender_style or COUNTERPARTY_COLORS.get(sender, DEFAULT))
+
+            # Fix multiline links
+            if msg.startswith('http'):
+                if len(msg_lines) > 1 and not msg_lines[0].endswith('html'):
+                    if len(msg_lines) > 2 and msg_lines[1].endswith('-'):
+                        msg = msg.replace('\n', '', 2)
+                    else:
+                        msg = msg.replace('\n', '', 1)
+
+                msg_lines = msg.split('\n')
+                link_text = msg_lines.pop()
+                msg = Text('').append(link_text, style=TEXT_LINK)
+
+                if len(msg_lines) > 0:
+                    msg = msg.append('\n' + ' '.join(msg_lines))
+            else:
+                msg = msg.replace('\n', ' ')  # remove newlines
+
+            sender_counts[UNKNOWN if (sender in UNKNOWN_TEXTERS or BAD_TEXTER_REGEX.match(sender)) else sender] += 1
+            yield Text('').append(timestamp).append(sender_txt).append(': ', style='dim').append(msg)
+            self.msg_count += 1
