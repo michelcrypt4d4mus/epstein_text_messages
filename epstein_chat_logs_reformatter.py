@@ -16,9 +16,9 @@ from rich.table import Table
 from rich.text import Text
 load_dotenv()
 
-from util.emails import MSG_REGEX, REDACTED, EpsteinFiles
+from documents.epstein_files import EpsteinFiles
+from documents.messenger_log import MSG_REGEX
 from util.env import deep_debug, is_debug
-from util.file_helper import get_files_in_dir
 from util.rich import *
 
 OUTPUT_DIR = Path('docs')
@@ -44,7 +44,7 @@ sender_counts = defaultdict(int)
 convos_labeled = 0
 msgs_processed = 0
 print_header()
-epstein_files = EpsteinFiles(get_files_in_dir())
+epstein_files = EpsteinFiles()
 
 for log_file in epstein_files.sorted_imessage_logs():
     console.print(Panel(archive_link(log_file.filename, log_file.author_style), expand=False))
@@ -114,30 +114,15 @@ for k, v in sorted(sender_counts.items(), key=lambda item: item[1], reverse=True
 
 console.print(counts_table)
 console.print(f"\nFound {msgs_processed} text messages in {len(epstein_files.iMessage_logs)} iMessage logs of {len(epstein_files.all_files)} total files ({convos_labeled} files deanonymized).")
-console.print(f"(Last deploy found 77 files with 4668 messages)\n", style='dim')
+console.print(f"(Last deploy found 77 files with 4668 messages)\n\n\n", style='dim')
 
 
 # Email sender / recipient counts
-console.line(2)
 console.print(Panel(Text("HIS EMAILS", justify='center', style='bold'), expand=True, padding=(2, 2)), style='bold on blue3')
-
-
-def print_email_table(counts: dict[str, int], column_title: str) -> None:
-    counts_table = Table(title=f"Email Counts By {column_title}", show_header=True, header_style="bold")
-    counts_table.add_column(column_title, justify="left")
-    counts_table.add_column("Email Count", justify="center")
-
-    for k, v in sorted(counts.items(), key=lambda item: [item[1], item[0]], reverse=True):
-        k = k.title() if ' ' in k else k
-        counts_table.add_row(f"[steel_blue][link={epsteinify_url(k)}]{k}[/link][/steel_blue]", str(v))
-
-    console.print('\n', counts_table)
-
-
-print_email_table(epstein_files.emailer_counts, "Author")
+print_email_table(epstein_files.email_author_counts, "Author")
 print_email_table(epstein_files.email_recipient_counts, "Recipients")
 
-console.print(f"\n\nScanned {len(epstein_files.emails)} potential emails, found {sum([i for i in epstein_files.emailer_counts.values()])} senders.")
+console.print(f"\n\nScanned {len(epstein_files.emails)} potential emails, found {sum([i for i in epstein_files.email_author_counts.values()])} senders.")
 console.print('Chronologically sorted emails Epstein sent to or received from these people can be found below:\n')
 
 for i, author in enumerate(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED):
