@@ -118,6 +118,7 @@ KNOWN_EMAILS = {
     '030741': ARIANE_DE_ROTHSCHILD,
     '026018': ARIANE_DE_ROTHSCHILD,
     '026745': BARBRO_EHNBOM,      # Signature
+    '031227': 'Moskowitz, Bennet J.',
     '031442': 'Christina Galbraith',
     '026625': DARREN_INDKE,
     '026290': DAVID_SCHOEN,       # Signature
@@ -216,8 +217,8 @@ class Document:
     def top_lines(self, n: int = 10) -> str:
         return '\n'.join(self.file_lines[0:n])
 
-    def log_top_lines(self, n: int = 10) -> None:
-        logger.info(f"Top lines of '{self.filename}':\n\n{self.top_lines(n)}")
+    def log_top_lines(self, n: int = 10, msg: str | None = None) -> None:
+        logger.info(f"{msg + '. ' if msg else ''}Top lines of '{self.filename}':\n\n{self.top_lines(n)}")
 
 
 @dataclass
@@ -267,27 +268,26 @@ class MessengerLog(CommunicationDocument):
 class Email(CommunicationDocument):
     author_lowercase: str | None = field(init=False)
     header: EmailHeader = field(init=False)
-    recipients: list[str] = field(default_factory=list)
+    recipients: list[str | None] = field(default_factory=list)
 
     def __post_init__(self):
         super().__post_init__()
         self._repair()
         self.extract_header()
-        self.determine_author()
-        recipients = [_get_name(r) for r in self.header.to] if self.header.to else []
-        self.recipients = [r for r in recipients if r]
-        self.timestamp = self.extract_sent_at()
-        self.author_lowercase = self.author.lower() if self.author else None
-        self.author_style = COUNTERPARTY_COLORS.get(self.author or UNKNOWN, DEFAULT)
-        self.author_txt = Text(self.author or UNKNOWN, style=self.author_style)
 
-    def determine_author(self) -> str | None:
         if self.file_id in KNOWN_EMAILS:
             self.author = KNOWN_EMAILS[self.file_id]
         elif not self.header.author:
             self.author = None
         else:
             self.author = _get_name(self.header.author)
+
+        self.recipients = [_get_name(r) for r in self.header.to] if self.header.to else []
+        self.recipients_lower = [r.lower() if r else None for r in self.recipients]
+        self.timestamp = self.extract_sent_at()
+        self.author_lowercase = self.author.lower() if self.author else None
+        self.author_style = COUNTERPARTY_COLORS.get(self.author or UNKNOWN, DEFAULT)
+        self.author_txt = Text(self.author or UNKNOWN, style=self.author_style)
 
     def cleanup_email_txt(self) -> str:
         # add newline after header if header looks valid
@@ -305,7 +305,7 @@ class Email(CommunicationDocument):
         date_match = DATE_REGEX.search(searchable_text)
 
         if not date_match:
-            logger.info(f"Failed to find timestamp, using fallback of parsing top {VALID_HEADER_LINES} lines...")
+            logger.debug(f"Failed to find timestamp, using fallback of parsing top {VALID_HEADER_LINES} lines...")
 
             for line in searchable_lines:
                 timestamp = parse_timestamp(line.strip())
@@ -314,13 +314,10 @@ class Email(CommunicationDocument):
                     logger.info(f"Fell back to timestamp {timestamp} in line '{line}'...")
                     return timestamp
 
-            top_text = '\n'.join(self.text.split("\n")[0:10])[0:MAX_PREVIEW_CHARS]
-            logger.info(f"Timestamp not found in email, top lines:\n{top_text}")
+            self.log_top_lines(msg="No valid timestamp found in email")
             return
 
-        timestamp_str = date_match.group(1).strip()
-        timestamp_str = timestamp_str.replace(' (UTC)', '') if timestamp_str.endswith(' (UTC)') else timestamp_str
-        return parse_timestamp(timestamp_str)
+        return parse_timestamp(date_match.group(1).strip().replace(' (UTC)', ''))
 
     def extract_header(self) -> EmailHeader | None:
         header_match = EMAIL_SIMPLE_HEADER_REGEX.search(self.text)
@@ -341,15 +338,14 @@ class Email(CommunicationDocument):
 
                     value = self.file_lines[row_number_to_check]
 
-                    if field_name == AUTHOR and TIME_REGEX.match(value):
+                    if field_name == AUTHOR and (TIME_REGEX.match(value) or value == 'Darren,'):
                         logger.debug(f"Looks like a mismatch, decrementing num_headers and skipping!")
                         num_headers -= 1
                         continue
 
                     setattr(self.header, field_name, [v.strip() for v in value.split(';')] if field_name == 'to' else value)
 
-                logger.info(f"Corrected empty header to:\n{self.header}\n\n")
-                self.log_top_lines(num_headers * 2)
+                logger.debug(f"Corrected empty header to:\n{self.header}\n\nTop rows of file\n\n{self.top_lines(num_headers * 2)}")
             else:
                 logger.debug(f"Parsed email header to:\n{self.header}")
         else:
@@ -404,36 +400,31 @@ class EpsteinFiles:
             document = Document(file_arg)
 
             if document.length == 0:
-                logger.info('   -> Skipping empty file...')
+                logger.info('Skipping empty file...')
                 continue
             elif document.text[0] == '{':  # Check for JSON
                 move_json_file(file_arg)
             elif MSG_REGEX.search(document.text):
-                logger.info('   -> iMessage log file...')
+                logger.info('iMessage log file...')
                 self.iMessage_logs.append(MessengerLog(file_arg))
             else:
                 emailer = None
 
                 if DETECT_EMAIL_REGEX.match(document.text):  # Handle emails
+                    logger.info('Email...')
                     email = Email(file_arg)
                     self.emails.append(email)
+                    emailer = email.author or UNKNOWN
+                    self.emailer_counts[emailer.lower()] += 1
+                    logger.debug(f"Emailer: '{emailer}'")
 
-                    try:
-                        emailer = email.author or UNKNOWN
-                        self.emailer_counts[emailer.lower()] += 1
-                        logger.debug(f"   -> Emailer: '{emailer}'")
+                    for recipient in email.recipients:
+                        self.email_recipient_counts[recipient.lower()] += 1
 
-                        for recipient in email.recipients:
-                            self.email_recipient_counts[recipient.lower()] += 1
-
-                        if len(emailer) >= 3 and emailer != UNKNOWN:
-                            continue  # Don't proceed to printing debug contents if we found a valid email
-                    except Exception as e:
-                        console.print_exception()
-                        console.print(f"\nError file '{file_arg.name}' with {document.num_lines} lines, top lines:")
-                        print_top_lines(document.text)
-                        raise e
+                    if len(emailer) >= 3 and emailer != UNKNOWN:
+                        continue  # Don't proceed to printing debug contents if we found a valid email
                 else:
+                    logger.info('Unknown file type...')
                     self.other_files.append(document)
 
                 if is_debug:
@@ -448,15 +439,14 @@ class EpsteinFiles:
 
                 continue
 
-    def print_emails_by(self, author: str | None) -> None:
-        emails = self.emails_by(author)
+    def print_emails_for(self, author: str | None) -> None:
+        emails = self.emails_for(author)
         author = author or '[redacted]'
 
-        if len(emails) == 0:
+        if len(emails) > 0:
+            console.print('\n\n', Panel(Text(f"{len(emails)} emails to/from {author} Found)", justify='center')), '\n', style='bold reverse')
+        else:
             logger.warning(f"No emails found for {author}")
-            return
-
-        console.print('\n\n', Panel(Text(f"{author} ({len(emails)} Emails Found)", justify='center')), '\n', style='bold reverse')
 
         for email in emails:
             console.print(email)
@@ -464,9 +454,11 @@ class EpsteinFiles:
     def sorted_imessage_logs(self) -> list[MessengerLog]:
         return sorted(self.iMessage_logs, key=lambda f: f.timestamp)
 
-    def emails_by(self, author: str | None) -> list[Email]:
+    def emails_for(self, author: str | None) -> list[Email]:
         author = author.lower() if author else None
-        return EpsteinFiles.sort_emails([e for e in self.emails if e.author_lowercase == author])
+        emails_by = [e for e in self.emails if e.author_lowercase == author]
+        emails_to = [e for e in self.emails if author in e.recipients]
+        return EpsteinFiles.sort_emails(emails_by + emails_to)
 
     @classmethod
     def sort_emails(cls, emails: list[Email]) -> list[Email]:
@@ -479,7 +471,7 @@ def parse_timestamp(timestamp_str: str) -> None | datetime:
         logger.debug(f'Parsed timestamp "{timestamp}" from string "{timestamp_str}"')
         return timestamp
     except Exception as e:
-        logger.info(f'Failed to parse "{timestamp_str}" to timestamp!')
+        logger.debug(f'Failed to parse "{timestamp_str}" to timestamp!')
 
 
 valid_emailer = lambda emailer: not BAD_EMAILER_REGEX.match(emailer)
@@ -494,7 +486,7 @@ def _get_name(author: str) -> str | None:
             break
 
     if not valid_emailer(author) or TIME_REGEX.match(author):
-        logger.warning(f"Author is invalid: '{author}', returning None...")
+        logger.warning(f"Name '{author}' is invalid, returning None...")
         return None
 
     if ', ' in author:
