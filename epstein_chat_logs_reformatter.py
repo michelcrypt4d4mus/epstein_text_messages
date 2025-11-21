@@ -125,7 +125,7 @@ counts_table = Table(title="Email Counts By Sender", show_header=True, header_st
 counts_table.add_column("From", justify="left")
 counts_table.add_column("Email Count", justify="center")
 
-for k, v in sorted(epstein_files.emailer_counts.items(), key=lambda item: item[0], reverse=False):
+for k, v in sorted(epstein_files.emailer_counts.items(), key=lambda item: [item[1], item[0]], reverse=True):
     counts_table.add_row(f"[steel_blue][link={search_archive_url(k)}]{k}[/link][/steel_blue]", str(v))
 
 console.print(counts_table)
