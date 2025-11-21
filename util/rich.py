@@ -91,6 +91,8 @@ CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 """
 
 COURIER_NEWSROOM_ARCHIVE = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
+
+epsteinify_url = lambda name: f"https://epsteinify.com/?name={urllib.parse.quote(name)}"
 search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&page=1&q={urllib.parse.quote(txt)}&p=1"
 
 
