@@ -275,8 +275,7 @@ EPSTEIN_SIGNATURE = re.compile(r"""please note
 The information contained in this communication is
 confidential, may be attorney-client privileged, may
 constitute inside information, and is intended only.*
-the use of the addressee. It is the property.*
-JEE
+the use of the addressee. It is the property.*(\nJEE)?
 Unauthorized use, disclosure or copying of this
 communication or any part thereof is strictly prohibited
 and may be unlawful. If you have received this
