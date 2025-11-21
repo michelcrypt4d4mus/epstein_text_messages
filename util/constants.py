@@ -274,6 +274,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '029692': LARRY_SUMMERS,          # Header
     '029779': LARRY_SUMMERS,          # Header
     '019334': STEVE_BANNON,
+    '022258': NADIA_MARCINKO,         # Reply header
     '030096': 'Peter Mandelson',
 }
 
