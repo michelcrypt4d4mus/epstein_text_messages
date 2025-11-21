@@ -13,7 +13,7 @@ from rich.padding import Padding
 from rich.text import Text
 from util.rich import ARIANE_DE_ROTHSCHILD
 
-from .email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EmailHeader
+from .email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, EmailHeader
 from .env import deep_debug, is_debug
 from .file_helper import extract_file_id, load_file, move_json_file
 from .rich import *
@@ -315,7 +315,7 @@ class Email(CommunicationDocument):
     def cleanup_email_txt(self) -> str:
         # add newline after header if header looks valid
         if not EMPTY_HEADER_REGEX.search(self.text):
-            prettified_text = EMAIL_HEADER_REGEX.sub(r'\1\n', self.text, 1)
+            prettified_text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\1\n', self.text)
         else:
             prettified_text = self.text
 
