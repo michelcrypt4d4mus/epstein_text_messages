@@ -39,10 +39,10 @@ class Document:
     def _load_file(self):
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
         with open(self.file_path) as f:
-            file_text = f.read()
-            file_text = file_text[1:] if (len(file_text) > 0 and file_text[0] == '\ufeff') else file_text  # remove BOM
-            file_text = file_text.strip()
-            lines = [l.strip() for l in file_text.split('\n') if not l.startswith('HOUSE OVERSIGHT')]
+            text = f.read()
+            text = text[1:] if (len(text) > 0 and text[0] == '\ufeff') else text  # remove BOM
+            text = text.strip()
+            lines = [l.strip() for l in text.split('\n') if not l.startswith('HOUSE OVERSIGHT')]
             return MULTINEWLINE_REGEX.sub('\n\n\n', '\n'.join(lines))
 
 
