@@ -9,12 +9,12 @@ from rich.padding import Padding
 from rich.text import Text
 
 from documents.document import Document
+from documents.email import DETECT_EMAIL_REGEX, Email
 from documents.messenger_log import MSG_REGEX, MessengerLog
 from util.constants import *
 from util.env import deep_debug, is_debug
 from util.file_helper import move_json_file
 from util.rich import console, logger
-from util.emails import DETECT_EMAIL_REGEX, Email
 
 
 @dataclass
@@ -96,11 +96,14 @@ class EpsteinFiles:
 
     def emails_for(self, author: str | None) -> list[Email]:
         author = author.lower() if author else None
-        emails_to = []
         emails_by = [e for e in self.emails if e.author_lowercase == author]
+        emails_to = []
 
         if author is None:
-            emails_to = [e for e in self.emails if e.author == JEFFREY_EPSTEIN and (None in e.recipients or len(e.recipients) == 0)]
+            emails_to = [
+                e for e in self.emails
+                if e.author == JEFFREY_EPSTEIN and (None in e.recipients or len(e.recipients) == 0)
+            ]
         else:
             emails_to = [e for e in self.emails if author in e.recipients_lower]
 

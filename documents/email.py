@@ -1,8 +1,6 @@
 import re
-from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
-from pathlib import Path
 
 from dateutil.parser import parse
 from rich.console import Console, ConsoleOptions, RenderResult
@@ -11,8 +9,8 @@ from rich.panel import Panel
 from rich.padding import Padding
 from rich.text import Text
 
-from util.constants import *
 from documents.document import CommunicationDocument
+from util.constants import *
 from util.email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, EmailHeader
 from util.rich import *
 
