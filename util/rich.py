@@ -135,10 +135,10 @@ def highlight_names(text: str) -> str:
         name_regex = re.compile(rf"\b{name}\b", re.IGNORECASE)
         text = name_regex.sub(f'[{style}]{name}[/{style}]', text)
 
-        # highlight last names
         if ' ' not in name:
             continue
 
+        # highlight last names
         names = name.split(' ')
         last_name = names[-1]
         first_name = ' '.join(names[0:-1])
