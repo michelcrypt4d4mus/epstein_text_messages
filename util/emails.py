@@ -54,8 +54,8 @@ EMAILERS = [
     'middle.east.update@hotmail.com',
     JONATHAN_FARKAS,
     'Mark L. Epstein',
-    'nancy cain',
-    'nancy portland',
+    'Nancy Cain',
+    'Nancy Portland',
     'Peggy Siegal',
     'Peter Aldhous',
     'Peter Green',
@@ -129,12 +129,12 @@ KNOWN_EMAILS = {
     '026287': DAVID_SCHOEN,       # Signature
     '031460': EDWARD_EPSTEIN,
     '026547': 'Gerald G. Barton',
-    '031120': GWENDOLYN_BECK,        # Signature
-    '029968': GWENDOLYN_BECK,        # Signature
+    '031120': GWENDOLYN_BECK,     # Signature
+    '029968': GWENDOLYN_BECK,     # Signature
     '029970': GWENDOLYN_BECK,
     '029960': GWENDOLYN_BECK,     # Reply
     '026024': 'Jean Huguen',
-    '026024': 'Jean Huguen',  # Signature
+    '026024': 'Jean Huguen',      # Signature
     '030997': JEFFREY_EPSTEIN,
     '029779': JEFFREY_EPSTEIN,
     '022949': JEFFREY_EPSTEIN,
@@ -153,14 +153,14 @@ KNOWN_EMAILS = {
     '029196': LAWRENCE_KRAUSS,
     '028789': LAWRANCE_VISOSKI,
     '027046': LAWRANCE_VISOSKI,
-    '030472': "Martin Weinberg",   #Maybe. in reply
-    '030235': MELANIE_WALKER,    # In fwd
+    '030472': "Martin Weinberg",   # Maybe. in reply
+    '030235': MELANIE_WALKER,      # In fwd
     '022193': NADIA_MARCINKO,
     '021814': NADIA_MARCINKO,
     '021808': NADIA_MARCINKO,
     '022190': NADIA_MARCINKO,
     '021811': NADIA_MARCINKO,      # Signature and email address in the message
-    '029981': 'Paula',        # reply
+    '029981': 'Paula',             # reply
     '031694': 'Peggy Siegal',
     '029020': 'Renata Bolotova',   # Signature
     '029003': SOON_YI,
@@ -168,8 +168,8 @@ KNOWN_EMAILS = {
     '029007': SOON_YI,
     '029010': SOON_YI,
     '026620': TERRY_KAFKA,
-    '028482': TERRY_KAFKA,    # Signature
-    '029992': TERRY_KAFKA,    # Reply
+    '028482': TERRY_KAFKA,         # Signature
+    '029992': TERRY_KAFKA,         # Reply
     # '026571': '(unknown french speaker)',
     '017581': 'Lisa Randall',
 }
