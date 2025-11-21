@@ -19,13 +19,11 @@ from documents.messenger_log import sender_counts
 from util.env import is_debug
 from util.rich import *
 
-OUTPUT_DIR = Path('docs')
-OUTPUT_GH_PAGES_HTML = OUTPUT_DIR.joinpath('index.html')
+OUTPUT_GH_PAGES_HTML = Path('docs').joinpath('index.html')
 
 
 print_header()
 epstein_files = EpsteinFiles()
-
 
 # Text messages
 for log_file in epstein_files.sorted_imessage_logs():
@@ -49,7 +47,6 @@ console.print(
 console.print(f"Found {epstein_files.imessage_msg_count()} total text messages in {len(epstein_files.iMessage_logs)} conversations.")
 console.print(f"(Last deploy found 4668 messages in 77 conversations)\n\n\n", style='dim')
 
-
 # Email sender / recipient counts
 console.print(Panel(Text("HIS EMAILS", justify='center'), expand=True, padding=(2, 2)), style='bold on blue3')
 print_email_table(epstein_files.email_author_counts, "Author")
@@ -61,11 +58,10 @@ for i, author in enumerate(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED):
     style = COUNTERPARTY_COLORS.get(author or UNKNOWN, DEFAULT)
     console.print(Text(f"   {i}. ", style='bold').append(author or UNKNOWN, style=style))
 
-# Emails
 for author in PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED:
     epstein_files.print_emails_for(author)
 
-
+# Save output
 if not is_debug:
     console.save_html(OUTPUT_GH_PAGES_HTML, inline_styles=False, clear=False, code_format=CONSOLE_HTML_FORMAT)
     console.print(f"\nWrote HTML to '{OUTPUT_GH_PAGES_HTML}'.")
