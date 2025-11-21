@@ -11,6 +11,7 @@ EDWARD_EPSTEIN = 'Edward Epstein'
 EHUD_BARAK = 'Ehud Barak'
 GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
 GWENDOLYN_BECK = 'Gwendolyn Beck'
+JEAN_HUGUEN = 'Jean Huguen'
 JEFFREY_EPSTEIN = 'Jeffrey Epstein'
 JOHN_PAGE = 'John Page'
 JOHNNY_EL_HACHEM = 'Johnny el Hachem'
@@ -225,8 +226,8 @@ KNOWN_EMAIL_AUTHORS = {
     '029970': GWENDOLYN_BECK,
     '029960': GWENDOLYN_BECK,     # Reply
     '029959': GWENDOLYN_BECK,     # "Longevity & Aging"
-    '026024': 'Jean Huguen',
-    '026024': 'Jean Huguen',      # Signature
+    '026024': JEAN_HUGUEN,
+    '026024': JEAN_HUGUEN,        # Signature
     '030997': JEFFREY_EPSTEIN,
     '029779': JEFFREY_EPSTEIN,
     '022949': JEFFREY_EPSTEIN,
@@ -271,6 +272,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '021106': 'Alexandra Preate',     # Reply
     '030764': ARIANE_DE_ROTHSCHILD,   # Reply
     '026431': ARIANE_DE_ROTHSCHILD,   # Reply
+    '026426': JEAN_HUGUEN,            # Reply
     '030522': LANDON_THOMAS,
     '031413': LANDON_THOMAS,          # Reply
     '029692': LARRY_SUMMERS,          # Header
