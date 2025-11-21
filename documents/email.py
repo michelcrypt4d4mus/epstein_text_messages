@@ -41,15 +41,15 @@ class Email(CommunicationDocument):
         self._repair()
         self._extract_header()
 
-        if self.file_id in KNOWN_EMAILS:
-            self.author = KNOWN_EMAILS[self.file_id]
+        if self.file_id in KNOWN_EMAIL_AUTHORS:
+            self.author = KNOWN_EMAIL_AUTHORS[self.file_id]
         elif not self.header.author:
             self.author = None
         else:
             self.author = _get_name(self.header.author)
 
-        if self.file_id in KNOWN_RECIPIENTS:
-            self.recipients = [KNOWN_RECIPIENTS[self.file_id]]
+        if self.file_id in KNOWN_EMAIL_RECIPIENTS:
+            self.recipients = [KNOWN_EMAIL_RECIPIENTS[self.file_id]]
         else:
             self.recipients = [_get_name(r) for r in self.header.to] if self.header.to else []
 
