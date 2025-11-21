@@ -17,7 +17,7 @@ from rich.text import Text
 load_dotenv()
 
 from documents.epstein_files import EpsteinFiles
-from util.documents.messenger_log import MSG_REGEX
+from documents.messenger_log import MSG_REGEX
 from util.env import deep_debug, is_debug
 from util.file_helper import get_files_in_dir
 from util.rich import *

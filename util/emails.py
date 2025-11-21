@@ -11,11 +11,10 @@ from rich.panel import Panel
 from rich.padding import Padding
 from rich.text import Text
 
-from .constants import *
-from .documents.document import CommunicationDocument
-from .email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, EmailHeader
-from .env import deep_debug, is_debug
-from .rich import *
+from util.constants import *
+from documents.document import CommunicationDocument
+from util.email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, EmailHeader
+from util.rich import *
 
 TIME_REGEX = re.compile(r'^(\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday).*')
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')

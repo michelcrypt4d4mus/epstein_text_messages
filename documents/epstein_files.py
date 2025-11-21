@@ -8,9 +8,9 @@ from rich.panel import Panel
 from rich.padding import Padding
 from rich.text import Text
 
+from documents.document import Document
+from documents.messenger_log import MSG_REGEX, MessengerLog
 from util.constants import *
-from util.documents.document import Document
-from util.documents.messenger_log import MSG_REGEX, MessengerLog
 from util.env import deep_debug, is_debug
 from util.file_helper import move_json_file
 from util.rich import console, logger
