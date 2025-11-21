@@ -83,7 +83,7 @@ EMAILER_REGEXES = {
     'Intelligence Squared': re.compile(r'intelligence\s*squared', re.IGNORECASE),
     'jackie perczel':  re.compile(r'jackie percze', re.IGNORECASE),
     'Jabor Y.': re.compile(r'^[ji]abor\s*y', re.IGNORECASE),
-    JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE),
+    JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein?', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|joichi|^joi$', re.IGNORECASE),
     JOHNNY_EL_HACHEM: re.compile('el hachem johnny|johnny el hachem', re.IGNORECASE),
     'Kathy Ruemmler': re.compile(r'Kathy Ruemmle', re.IGNORECASE),
@@ -456,8 +456,14 @@ class EpsteinFiles:
 
     def emails_for(self, author: str | None) -> list[Email]:
         author = author.lower() if author else None
+        emails_to = []
         emails_by = [e for e in self.emails if e.author_lowercase == author]
-        emails_to = [e for e in self.emails if author in e.recipients]
+
+        if author is None:
+            emails_to = [e for e in self.emails if e.author == JEFFREY_EPSTEIN and (None in e.recipients or len(e.recipients) == 0)]
+        else:
+            emails_to = [e for e in self.emails if author in e.recipients_lower]
+
         return EpsteinFiles.sort_emails(emails_by + emails_to)
 
     @classmethod
