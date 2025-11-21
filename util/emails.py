@@ -1,7 +1,6 @@
-import json
 import re
 from collections import defaultdict
-from dataclasses import asdict, dataclass, field
+from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 
@@ -13,6 +12,7 @@ from rich.padding import Padding
 from rich.text import Text
 from util.rich import ARIANE_DE_ROTHSCHILD
 
+from .constants import *
 from .email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, EmailHeader
 from .env import deep_debug, is_debug
 from .file_helper import extract_file_id, load_file, move_json_file
@@ -176,6 +176,7 @@ KNOWN_EMAILS = {
 
 KNOWN_RECIPIENTS = {
     '030522': LANDON_THOMAS,
+    '031413': LANDON_THOMAS,  # Reply
 }
 
 for emailer in EMAILERS:
@@ -183,34 +184,6 @@ for emailer in EMAILERS:
         raise RuntimeError(f"Can't overwrite emailer regex for '{emailer}'")
 
     EMAILER_REGEXES[emailer] = re.compile(emailer, re.IGNORECASE)
-
-EPSTEIN_SIGNATURE = re.compile(r"""please note
-The information contained in this communication is
-confidential, may be attorney-client privileged, may
-constitute inside information, and is intended only for
-the use of the addressee. It is the property of
-JEE
-Unauthorized use, disclosure or copying of this
-communication or any part thereof is strictly prohibited
-and may be unlawful. If you have received this
-communication in error, please notify us immediately by(\n\d\s*)?
-return e-mail or by e-mail to jeevacation.*gmail.com, and
-destroy this communication and all copies thereof,
-including all attachments. copyright -all rights reserved""")
-
-EPSTEIN_OLD_SIGNATURE = re.compile(r"""\*+
-The information contained in this communication is
-confidential, may be attorney-client privileged, may
-constitute inside information, and is intended only for
-the use of the addressee. It is the property of
-Jeffrey Epstein
-Unauthorized use, disclosure or copying of this
-communication or any part thereof is strictly prohibited
-and may be unlawful. If you have received this
-communication in error, please notify us immediately by
-return e-mail or by e-mail to.*
-destroy this communication and all copies thereof,
-including all attachments. copyright -all rights reserved""")
 
 
 @dataclass
@@ -315,7 +288,7 @@ class Email(CommunicationDocument):
     def cleanup_email_txt(self) -> str:
         # add newline after header if header looks valid
         if not EMPTY_HEADER_REGEX.search(self.text):
-            prettified_text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\1\n', self.text)
+            prettified_text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\n\1\n', self.text).strip()
         else:
             prettified_text = self.text
 
@@ -362,10 +335,15 @@ class Email(CommunicationDocument):
 
                     value = self.file_lines[row_number_to_check]
 
-                    if field_name == AUTHOR and (TIME_REGEX.match(value) or value == 'Darren,'):
-                        logger.debug(f"Looks like a mismatch, decrementing num_headers and skipping!")
-                        num_headers -= 1
-                        continue
+                    if field_name == AUTHOR:
+                        if TIME_REGEX.match(value) or value == 'Darren,':
+                            logger.debug(f"Looks like a mismatch, decrementing num_headers and skipping...")
+                            num_headers -= 1
+                            continue
+                        elif value.startswith('call me'):
+                            logger.debug(f"Looks like a mismatch, Trying the next line...")
+                            num_headers += 1
+                            value = self.file_lines[i + num_headers]
 
                     setattr(self.header, field_name, [v.strip() for v in value.split(';')] if field_name == 'to' else value)
 
