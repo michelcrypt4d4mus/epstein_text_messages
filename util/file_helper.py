@@ -1,10 +1,6 @@
 import re
-from dataclasses import dataclass
-from datetime import datetime
 from os import environ
 from pathlib import Path
-
-from .env import deep_debug
 
 FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
 JSON_FILES_SUBDIR = 'json_files'
@@ -26,14 +22,10 @@ def extract_file_id(filename) -> str:
         raise RuntimeError(f"Failed to extract file ID from {filename}")
 
 
-def get_files_in_dir() -> list[Path]:
-    return [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
-
-
 def load_file(file_path):
-    """Remove BOM and remove HOUSE OVERSIGHT lines."""
+    """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
     with open(file_path) as f:
-        file_text = f.read()
+        file_text = f.read().strip()
         file_text = file_text[1:] if (len(file_text) > 0 and file_text[0] == '\ufeff') else file_text  # remove BOM
         file_lines = [l.strip() for l in file_text.split('\n') if not l.startswith('HOUSE OVERSIGHT')]
         return '\n'.join(file_lines)

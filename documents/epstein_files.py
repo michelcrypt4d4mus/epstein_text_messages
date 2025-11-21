@@ -11,24 +11,25 @@ from documents.email import DETECT_EMAIL_REGEX, Email
 from documents.messenger_log import MSG_REGEX, MessengerLog
 from util.constants import *
 from util.env import deep_debug, is_debug
-from util.file_helper import move_json_file
+from util.file_helper import DOCS_DIR, move_json_file
 from util.rich import console, logger
 
 
 @dataclass
 class EpsteinFiles:
-    all_files: list[Path]
+    all_files: list[Path] = field(init=False)
     emails: list[Email] = field(init=False)
     iMessage_logs: list[MessengerLog] = field(init=False)
     other_files: list[Document] = field(init=False)
-    emailer_counts: dict[str, int] = field(init=False)
+    email_author_counts: dict[str, int] = field(init=False)
     email_recipient_counts: dict[str, int] = field(init=False)
 
     def __post_init__(self):
+        self.all_files = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
         self.emails = []
         self.iMessage_logs = []
         self.other_files = []
-        self.emailer_counts = defaultdict(int)
+        self.email_author_counts = defaultdict(int)
         self.email_recipient_counts = defaultdict(int)
 
         for file_arg in self.all_files:
@@ -45,37 +46,22 @@ class EpsteinFiles:
             elif MSG_REGEX.search(document.text):
                 logger.info('iMessage log file...')
                 self.iMessage_logs.append(MessengerLog(file_arg))
+            elif DETECT_EMAIL_REGEX.match(document.text):  # Handle emails
+                email = Email(file_arg)
+                self.emails.append(email)
+                author = email.author or UNKNOWN
+                self.email_author_counts[author.lower()] += 1
+                logger.info(f"Email (author='{author}')")
+
+                for recipient in email.recipients:
+                    self.email_recipient_counts[recipient.lower() if recipient else UNKNOWN] += 1
+
+                if len(author) <= 3 or author == UNKNOWN:
+                    email.log_top_lines(msg=f"Redacted or invalid email author '{author}'")
             else:
-                emailer = None
-
-                if DETECT_EMAIL_REGEX.match(document.text):  # Handle emails
-                    logger.info('Email...')
-                    email = Email(file_arg)
-                    self.emails.append(email)
-                    emailer = email.author or UNKNOWN
-                    self.emailer_counts[emailer.lower()] += 1
-                    logger.debug(f"Emailer: '{emailer}'")
-
-                    for recipient in email.recipients:
-                        self.email_recipient_counts[recipient.lower() if recipient else UNKNOWN] += 1
-
-                    if len(emailer) >= 3 and emailer != UNKNOWN:
-                        continue  # Don't proceed to printing debug contents if we found a valid email
-                else:
-                    logger.info('Unknown file type...')
-                    self.other_files.append(document)
-
-                if is_debug:
-                    if emailer and emailer == UNKNOWN:
-                        console.print(f"   -> Redacted email '{file_arg.name}' with {document.num_lines} lines. First lines:")
-                    elif emailer and emailer != UNKNOWN:
-                        console.print(f"   -> Failed to find valid email for '{file_arg.name}' (got '{emailer}')", style='red')
-                    else:
-                        console.print(f"   -> Unknown kind of file '{file_arg.name}' with {document.num_lines} lines. First lines:", style='dim')
-
-                    document.log_top_lines()
-
-                continue
+                logger.info('Unknown file type...')
+                self.other_files.append(document)
+                document.log_top_lines()
 
     def print_emails_for(self, author: str | None) -> None:
         emails = self.emails_for(author)

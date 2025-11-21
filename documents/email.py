@@ -5,8 +5,8 @@ from datetime import datetime
 from dateutil.parser import parse
 from rich.console import Console, ConsoleOptions, RenderResult
 from rich.markup import escape
-from rich.panel import Panel
 from rich.padding import Padding
+from rich.panel import Panel
 from rich.text import Text
 
 from documents.document import CommunicationDocument
