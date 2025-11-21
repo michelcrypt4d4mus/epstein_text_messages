@@ -281,7 +281,7 @@ Unauthorized use, disclosure or copying of this
 communication or any part thereof is strictly prohibited
 and may be unlawful. If you have received this
 communication in error, please notify us immediately by(\n\d\s*)?
-return e-mail or by e-mail to jeevacation.*
+return e-mail or by e-mail to.*
 destroy this communication and all copies thereo.*
 including all attachments. copyright -all rights reserved?""")
 
