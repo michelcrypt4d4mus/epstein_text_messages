@@ -149,7 +149,7 @@ class Email(CommunicationDocument):
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield Panel(self.archive_link, expand=False)
-        info_line = Text(" Email from ").append(self.author_txt).append(f' to ').append(self.recipient_txt)
+        info_line = Text("Official OCR text of email from ").append(self.author_txt).append(f' to ').append(self.recipient_txt)
         info_line.append(f" probably sent at ").append(f"{self.timestamp or '?'}", style='spring_green3')
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
         text = self.cleanup_email_txt()
