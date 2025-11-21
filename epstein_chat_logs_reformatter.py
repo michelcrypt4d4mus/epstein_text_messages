@@ -120,25 +120,24 @@ console.print(f"(Last deploy found 77 files with 4668 messages)\n", style='dim')
 # Email sender / recipient counts
 console.line(2)
 console.print(Panel(Text("HIS EMAILS", justify='center', style='bold'), expand=True, padding=(2, 2)), style='bold on blue3')
-console.line(2)
 
-counts_table = Table(title="Email Counts By Author", show_header=True, header_style="bold")
-counts_table.add_column("From", justify="left")
-counts_table.add_column("Email Count", justify="center")
 
-for k, v in sorted(epstein_files.emailer_counts.items(), key=lambda item: [item[1], item[0]], reverse=True):
-    counts_table.add_row(f"[steel_blue][link={epsteinify_url(k.title())}]{k}[/link][/steel_blue]", str(v))
+def print_email_table(counts: dict[str, int], column_title: str) -> None:
+    counts_table = Table(title=f"Email Counts By {column_title}", show_header=True, header_style="bold")
+    counts_table.add_column(column_title, justify="left")
+    counts_table.add_column("Email Count", justify="center")
 
-console.print(counts_table)
-counts_table = Table(title="Email Counts By Recipient", show_header=True, header_style="bold")
-counts_table.add_column("To", justify="left")
-counts_table.add_column("Email Count", justify="center")
+    for k, v in sorted(counts.items(), key=lambda item: [item[1], item[0]], reverse=True):
+        k = k.title() if ' ' in k else k
+        counts_table.add_row(f"[steel_blue][link={epsteinify_url(k)}]{k}[/link][/steel_blue]", str(v))
 
-for k, v in sorted(epstein_files.email_recipient_counts.items(), key=lambda item: [item[1], item[0]], reverse=True):
-    counts_table.add_row(f"[steel_blue][link={epsteinify_url(k.title())}]{k}[/link][/steel_blue]", str(v))
+    console.print('\n', counts_table)
 
-console.print('\n\n', counts_table)
-console.print(f"\nScanned {len(epstein_files.emails)} potential emails, found {sum([i for i in epstein_files.emailer_counts.values()])} senders.")
+
+print_email_table(epstein_files.emailer_counts, "Author")
+print_email_table(epstein_files.email_recipient_counts, "Recipients")
+
+console.print(f"\n\nScanned {len(epstein_files.emails)} potential emails, found {sum([i for i in epstein_files.emailer_counts.values()])} senders.")
 console.print('Chronologically sorted emails Epstein sent to or received from these people can be found below:\n')
 
 for i, author in enumerate(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED):
