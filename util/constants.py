@@ -12,7 +12,6 @@ EHUD_BARAK = 'Ehud Barak'
 GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
 GWENDOLYN_BECK = 'Gwendolyn Beck'
 JEAN_HUGUEN = 'Jean Huguen'
-JEFFREY_EPSTEIN = 'Jeffrey Epstein'
 JOHN_PAGE = 'John Page'
 JOHNNY_EL_HACHEM = 'Johnny el Hachem'
 JONATHAN_FARKAS = 'Jonathan Farkas'
@@ -21,17 +20,15 @@ LAWRENCE_KRAUSS = 'Lawrence Krauss'
 LAWRANCE_VISOSKI = 'Lawrance Visoski'
 LEON_BLACK = 'Leon Black'
 NADIA_MARCINKO = 'Nadia Marcinko'
-STEVE_BANNON = 'Steve Bannon'
 SULTAN_BIN_SULAYEM = 'Sultan Bin Sulayem'
 TERRY_KAFKA = 'Terry Kafka'
 REDACTED = '[REDACTED]'
 
 # Texting Names
 ANIL = "Anil Ambani"
-BANNON = 'Bannon'
 DEFAULT = 'default'
-EPSTEIN = 'Epstein'
 EVA = 'Eva'
+JEFFREY_EPSTEIN = 'Jeffrey Epstein'
 JOI_ITO = 'Joi Ito'
 LARRY_SUMMERS = 'Larry Summers'
 MELANIE_WALKER = 'Melanie Walker'
@@ -39,6 +36,7 @@ MIROSLAV = 'Miroslav Lajčák'
 PLASKETT = 'Stacey Plaskett'
 SCARAMUCCI = 'The Mooch'
 SOON_YI = 'Soon-Yi Previn'
+STEVE_BANNON = 'Steve Bannon'
 TERJE = 'Terje Rød-Larsen'
 UNKNOWN = '(unknown)'
 
@@ -46,11 +44,11 @@ KNOWN_IMESSAGE_FILE_IDS = {
     '031042': ANIL,            # Participants: field
     '027225': ANIL,            # Birthday
     '031173': 'Ards',          # Participants: field, possibly incomplete
-    '025707': BANNON,
-    '025734': BANNON,
-    '025452': BANNON,
-    '025408': BANNON,
-    '027307': BANNON,
+    '025707': STEVE_BANNON,
+    '025734': STEVE_BANNON,
+    '025452': STEVE_BANNON,
+    '025408': STEVE_BANNON,
+    '027307': STEVE_BANNON,
     '027401': EVA,             # Participants: field
     '027650': JOI_ITO,         # Participants: field
     '027515': MIROSLAV,        # https://x.com/ImDrinknWyn/status/1990210266114789713
@@ -68,16 +66,16 @@ KNOWN_IMESSAGE_FILE_IDS = {
 
 GUESSED_IMESSAGE_FILE_IDS = {
     '027221': ANIL,
-    '025363': BANNON,          # Trump and New York Times coverage
-    '025368': BANNON,          # Trump and New York Times coverage
-    '027585': BANNON,          # Tokyo trip
-    '027568': BANNON,
-    '027695': BANNON,
-    '027594': BANNON,
-    '027720': BANNON,          # first 3 lines of 027722
-    '027549': BANNON,
-    '027434': BANNON,          # References Maher appearance
-    '027764': BANNON,
+    '025363': STEVE_BANNON,          # Trump and New York Times coverage
+    '025368': STEVE_BANNON,          # Trump and New York Times coverage
+    '027585': STEVE_BANNON,          # Tokyo trip
+    '027568': STEVE_BANNON,
+    '027695': STEVE_BANNON,
+    '027594': STEVE_BANNON,
+    '027720': STEVE_BANNON,          # first 3 lines of 027722
+    '027549': STEVE_BANNON,
+    '027434': STEVE_BANNON,          # References Maher appearance
+    '027764': STEVE_BANNON,
     '025436': 'Celina Dubin',
     '027576': MELANIE_WALKER,  # https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700
     '027141': MELANIE_WALKER,

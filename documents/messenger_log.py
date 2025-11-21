@@ -24,9 +24,9 @@ UNKNOWN_TEXTERS = [
 ]
 
 TEXTER_MAPPING = {
-    'e:jeeitunes@gmail.com': EPSTEIN,
+    'e:jeeitunes@gmail.com': JEFFREY_EPSTEIN,
     '+19174393646': SCARAMUCCI,
-    '+13109906526': BANNON,
+    '+13109906526': STEVE_BANNON,
 }
 
 sender_counts = defaultdict(int)
