@@ -71,7 +71,7 @@ class Email(CommunicationDocument):
     def cleanup_email_txt(self) -> str:
         # add newline after header if header looks valid
         if not EMPTY_HEADER_REGEX.search(self.text):
-            prettified_text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\n\1\n', self.text).strip()
+            prettified_text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', self.text).strip()
         else:
             prettified_text = self.text
 
