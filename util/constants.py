@@ -142,7 +142,6 @@ EMAILERS = [
     'Peggy Siegal',
     'Peter Aldhous',
     'Peter Green',
-    'Robert Trivers',
     'Steven Victor MD',
     'The Duke',
     'Tom Barrack',
@@ -185,7 +184,7 @@ EMAILER_REGEXES = {
     'Paul Morris': re.compile(r'morris, paul|Paul Morris', re.IGNORECASE),
     'Richard Kahn': re.compile(r'rich(ard)? kahn?', re.IGNORECASE),
     'Robert Lawrence Kuhn': re.compile(r'Robert\s*(Lawrence)?\s*Kuhn', re.IGNORECASE),
-    'Robert Trivers': re.compile(r'tri[vy]ersr@gmail|Robert\s*Trivers', re.IGNORECASE),
+    'Robert Trivers': re.compile(r'tri[vy]ersr@gmail|Robert\s*Trivers?', re.IGNORECASE),
     'Scott J. Link': re.compile(r'scott j. lin', re.IGNORECASE),
     'Sean Bannon': re.compile(r'sean banno', re.IGNORECASE),
     SOON_YI: re.compile(r'Soon[- ]Yi Previn?', re.IGNORECASE),
@@ -296,13 +295,13 @@ including all attachments. copyright -all rights reserved?""")
 EPSTEIN_OLD_SIGNATURE = re.compile(r"""\*+
 The information contained in this communication is
 confidential, may be attorney-client privileged, may
-constitute inside information, and is intended only for
+constitute inside information, and is intend.*
 the use of the addressee. It is the property of
 Jeffrey Epstein
 Unauthorized use, disclosure or copying of this
 communication or any part thereof is strictly prohibited
 and may be unlawful. If you have received this
 communication in error, please notify us immediately by
-return e-mail or by e-mail to.*
-destroy this communication and all copies thereof,
+return e-mail or by e-mail.*
+destroy this communication and all copies thereof.*
 including all attachments.( copyright -all rights reserved)?""")
