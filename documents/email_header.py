@@ -8,6 +8,7 @@ EMAIL_SIMPLE_HEADER_REGEX = re.compile(r'^(((?:(?:Date|From|Sent|To|C[cC]|Import
 EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX = re.compile(r'(((?:(?:Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):|on behalf of ?)(?! +(by |from my|via )).*\n){3,})')
 AUTHOR = 'author'
 ON_BEHALF_OF = 'on behalf of'
+TO_FIELDS = ['bcc', 'cc', 'to']
 
 
 @dataclass(kw_only=True)
@@ -16,8 +17,8 @@ class EmailHeader:
     author: str | None = None
     sent_at: str | None = None
     subject: str | None = None
-    bcc: str | None = None
-    cc: str | None = None
+    bcc: list[str] | None = None
+    cc: list[str] | None = None
     importance: str | None = None
     attachments: str | None = None
     to: list[str] | None = None
@@ -66,7 +67,7 @@ class EmailHeader:
 
             field_names.append(key)
 
-            if key == 'to':
+            if key in TO_FIELDS:
                 recipients = [element.strip() for element in value.split(';')]
                 kw_args[key] = None if len(value) == 0 else [r if len(r) > 0 else UNKNOWN for r in recipients]
             else:
