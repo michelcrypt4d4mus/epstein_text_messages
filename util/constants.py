@@ -224,6 +224,7 @@ KNOWN_EMAIL_AUTHORS = {
     '029968': GWENDOLYN_BECK,     # Signature
     '029970': GWENDOLYN_BECK,
     '029960': GWENDOLYN_BECK,     # Reply
+    '029959': GWENDOLYN_BECK,     # "Longevity & Aging"
     '026024': 'Jean Huguen',
     '026024': 'Jean Huguen',      # Signature
     '030997': JEFFREY_EPSTEIN,
