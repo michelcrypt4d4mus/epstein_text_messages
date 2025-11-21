@@ -49,7 +49,8 @@ console.print(Panel(Text("HIS EMAILS", justify='center'), expand=True, padding=(
 print_email_table(epstein_files.email_author_counts, "Author")
 print_email_table(epstein_files.email_recipient_counts, "Recipients")
 console.print(f"\n\nIdentified {epstein_files.num_identified_email_authors()} authors in {len(epstein_files.emails)} potential email files.")
-console.print('Chronologically sorted emails Epstein sent to/received from these people can be found below:\n')
+console.print('Chronological Epstein correspondence with the following people can be found below.')
+console.print('(note this site uses the OCR email text provided by Congress which is not the greatest)', style='dim')
 
 for i, author in enumerate(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED):
     style = COUNTERPARTY_COLORS.get(author or UNKNOWN, DEFAULT)
