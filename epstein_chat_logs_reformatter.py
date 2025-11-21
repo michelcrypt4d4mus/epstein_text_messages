@@ -119,8 +119,8 @@ console.print(f"(Last deploy found 77 files with 4668 messages)\n", style='dim')
 
 # Email sender counts
 console.line(2)
-console.print(Panel(Text("Email Analysis", justify='center', style='bold'), expand=True, padding=(2, 2)), style='bold on blue3')
-console.line()
+console.print(Panel(Text("HIS EMAILS", justify='center', style='bold'), expand=True, padding=(2, 2)), style='bold on blue3')
+console.line(2)
 
 counts_table = Table(title="Email Counts By Sender", show_header=True, header_style="bold")
 counts_table.add_column("From", justify="left")
