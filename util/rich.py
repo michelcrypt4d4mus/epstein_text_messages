@@ -101,10 +101,10 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
     counterparty = row['counterparty'].strip()
     counterparty = BANNON if counterparty.startswith('Steve Bannon') else counterparty
 
-    if file_id in GUESSED_COUNTERPARTY_FILE_IDS:
-        raise RuntimeError(f"Can't overwrite attribution of {file_id} to {GUESSED_COUNTERPARTY_FILE_IDS[file_id]} with {counterparty}")
+    if file_id in GUESSED_IMESSAGE_FILE_IDS:
+        raise RuntimeError(f"Can't overwrite attribution of {file_id} to {GUESSED_IMESSAGE_FILE_IDS[file_id]} with {counterparty}")
 
-    GUESSED_COUNTERPARTY_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
+    GUESSED_IMESSAGE_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
 
 logging.basicConfig(level="NOTSET", format="%(message)s", datefmt="[%X]", handlers=[RichHandler()])
 logger = logging.getLogger("rich")
@@ -179,8 +179,8 @@ def print_top_lines(file_text, n = 10, max_chars = MAX_PREVIEW_CHARS, in_panel =
 
 
 if deep_debug:
-    console.print('KNOWN_COUNTERPARTY_FILE_IDS\n--------------')
-    console.print(json.dumps(KNOWN_COUNTERPARTY_FILE_IDS))
-    console.print('\n\n\nGUESSED_COUNTERPARTY_FILE_IDS\n--------------')
-    console.print_json(json.dumps(GUESSED_COUNTERPARTY_FILE_IDS))
+    console.print('KNOWN_IMESSAGE_FILE_IDS\n--------------')
+    console.print(json.dumps(KNOWN_IMESSAGE_FILE_IDS))
+    console.print('\n\n\nGUESSED_IMESSAGE_FILE_IDS\n--------------')
+    console.print_json(json.dumps(GUESSED_IMESSAGE_FILE_IDS))
     console.line(2)
