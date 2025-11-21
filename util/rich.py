@@ -32,18 +32,23 @@ AL_SECKEL = 'Al Seckel'
 ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
 BARBRO_EHNBOM = 'Barbro Ehnbom'
 DARREN_INDKE = 'Darren Indke'
+DAVID_SCHOEN = 'David Schoen'
 EDWARD_EPSTEIN = 'Edward Epstein'
 EHUD_BARAK = 'Ehud Barak'
 GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
+GWENDOLYN_BECK = 'Gwendolyn Beck'
 JEFFREY_EPSTEIN = 'Jeffrey Epstein'
 JOHN_PAGE = 'John Page'
 JOHNNY_EL_HACHEM = 'Johnny el Hachem'
 JONATHAN_FARKAS = 'Jonathan Farkas'
+LANDON_THOMAS = 'Landon Thomas Jr.'
 LAWRENCE_KRAUSS = 'Lawrence Krauss'
 LAWRANCE_VISOSKI = 'Lawrance Visoski'
 LEON_BLACK = 'Leon Black'
 NADIA_MARCINKO = 'Nadia Marcinko'
 STEVE_BANNON = 'Steve Bannon'
+SULTAN_BIN_SULAYEM = 'Sultan bin Sulayem'
+TERRY_KAFKA = 'Terry Kafka'
 REDACTED = '[REDACTED]'
 
 # Texting Names
@@ -93,7 +98,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     AL_SECKEL: 'orange_red1',
     EHUD_BARAK: 'chartreuse4',
     LEON_BLACK: 'bright_red',
-    'Sultan bin Sulayem': 'green1',
+    SULTAN_BIN_SULAYEM: 'green1',
     'Deepak Chopra': 'dark_goldenrod',
     'Darren Indke': 'purple3',
     'Richard Kahn': 'purple4',
