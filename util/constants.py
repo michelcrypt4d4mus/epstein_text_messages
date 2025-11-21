@@ -219,6 +219,7 @@ KNOWN_EMAIL_AUTHORS = {
     '026287': DAVID_SCHOEN,       # Signature
     '031460': EDWARD_EPSTEIN,
     '026547': 'Gerald G. Barton',
+    '029969': GWENDOLYN_BECK,     # Signature
     '031120': GWENDOLYN_BECK,     # Signature
     '029968': GWENDOLYN_BECK,     # Signature
     '029970': GWENDOLYN_BECK,
