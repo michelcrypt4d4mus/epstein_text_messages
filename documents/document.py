@@ -17,7 +17,7 @@ class Document:
     filename: str = field(init=False)
     text: str = field(init=False)
     file_id: str = field(init=False)
-    file_lines: list[str] = field(init=False)
+    lines: list[str] = field(init=False)
     num_lines: int = field(init=False)
     length: int = field(init=False)
 
@@ -26,11 +26,11 @@ class Document:
         self.file_id = extract_file_id(self.filename)
         self.text = self._load_file()
         self.length = len(self.text)
-        self.file_lines = self.text.split('\n')
-        self.num_lines = len(self.file_lines)
+        self.lines = self.text.split('\n')
+        self.num_lines = len(self.lines)
 
     def top_lines(self, n: int = 10) -> str:
-        return '\n'.join(self.file_lines[0:n])
+        return '\n'.join(self.lines[0:n])
 
     def log_top_lines(self, n: int = 10, msg: str | None = None) -> None:
         msg = f"{msg + '. ' if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"
@@ -42,8 +42,8 @@ class Document:
             file_text = f.read()
             file_text = file_text[1:] if (len(file_text) > 0 and file_text[0] == '\ufeff') else file_text  # remove BOM
             file_text = file_text.strip()
-            file_lines = [l.strip() for l in file_text.split('\n') if not l.startswith('HOUSE OVERSIGHT')]
-            return MULTINEWLINE_REGEX.sub('\n\n\n', '\n'.join(file_lines))
+            lines = [l.strip() for l in file_text.split('\n') if not l.startswith('HOUSE OVERSIGHT')]
+            return MULTINEWLINE_REGEX.sub('\n\n\n', '\n'.join(lines))
 
 
 @dataclass
