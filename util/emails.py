@@ -18,7 +18,7 @@ from .env import deep_debug, is_debug
 from .file_helper import extract_file_id, load_file, move_json_file
 from .rich import *
 
-TIME_REGEX = re.compile(r'^\d{1,2}/d{1,2}/d{1,2} .*$')
+TIME_REGEX = re.compile(r'^\d{1,2}/\d{1,2}/\d{2,4}.*$')
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
 EMAIL_REGEX = re.compile(r'From: (.*)')
 EMAIL_HEADER_REGEX = re.compile(r'^(((Date|Subject):.*\n)*From:.*\n((Date|Sent|To|CC|Importance|Subject|Attachments):.*\n)+)')
@@ -33,6 +33,7 @@ EMAIL_INDENT = 3
 # iMessage
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 MSG_DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
+BAD_FIRST_LINES = ['026652', '029835', '031189']
 
 EMAILERS = [
     AL_SECKEL,
@@ -71,7 +72,7 @@ EMAILER_REGEXES = {
     JOHNNY_EL_HACHEM: re.compile('el hachem johnny|johnny el hachem', re.IGNORECASE),
     'Kathy Ruemmler': re.compile(r'Kathy Ruemmle', re.IGNORECASE),
     'Ken Starr': re.compile('starr, ken', re.IGNORECASE),
-    'Landon Thomas Jr.': re.compile('landon thomas jr|thomas jr.?, landon', re.IGNORECASE),
+    LANDON_THOMAS: re.compile('landon thomas jr|thomas jr.?, landon', re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r'La(wrence|rry).*Summer|^LHS?$', re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus', re.IGNORECASE),
     'Lisa New': re.compile(r'Lisa New?$', re.IGNORECASE),
@@ -91,11 +92,18 @@ KNOWN_EMAILS = {
     '026069': ARIANE_DE_ROTHSCHILD,
     '030741': ARIANE_DE_ROTHSCHILD,
     '026018': ARIANE_DE_ROTHSCHILD,
+    '026745': BARBRO_EHNBOM,      # Signature
     '026625': DARREN_INDKE,
+    '026290': DAVID_SCHOEN,       # Signature
+    '031339': DAVID_SCHOEN,       # Signature
+    '031492': DAVID_SCHOEN,       # Signature
+    '031560': DAVID_SCHOEN,       # Signature
+    '031460': EDWARD_EPSTEIN,
     '026547': 'Gerald G. Barton',
     '031120': 'Gwendolyn',        # Signature
     '029968': 'Gwendolyn',        # Signature
     '026024': 'Jean Huguen',
+    '026024': 'Jean Huguen',  # Signature
     '029779': JEFFREY_EPSTEIN,
     '022949': JEFFREY_EPSTEIN,
     '028770': JEFFREY_EPSTEIN,
@@ -105,20 +113,28 @@ KNOWN_EMAILS = {
     '016693': JOHN_PAGE,
     '028507': JONATHAN_FARKAS,
     '031732': JONATHAN_FARKAS,
-    '026764':'Barry J. Cohen',
+    '026764': 'Barry J. Cohen',
+    '030478': LANDON_THOMAS,
     '029013': LARRY_SUMMERS,
+    '031129': LARRY_SUMMERS,
     '029196': LAWRENCE_KRAUSS,
     '028789': LAWRANCE_VISOSKI,
     '027046': LAWRANCE_VISOSKI,
     '021814': NADIA_MARCINKO,
+    '021808': NADIA_MARCINKO,
     '022190': NADIA_MARCINKO,
+    '031694': 'Peggy Siegal',
     '029020': 'Renata Bolotova',   # Signature
     '029003': SOON_YI,
     '029005': SOON_YI,
     '029007': SOON_YI,
     '029010': SOON_YI,
+    '026620': TERRY_KAFKA,
+    '028482': TERRY_KAFKA,    # Signature
+    '029992': TERRY_KAFKA,    # Reply
     '026571': '(unknown french speaker)',
     '017581': 'Lisa Randall',
+    '031442': 'MAILER-DAEMON@p3pIsmtp05-03.prod.phx3.secureserver.net',
 }
 
 for emailer in EMAILERS:
@@ -335,7 +351,7 @@ class Email(CommunicationDocument):
 
                     value = self.file_lines[row_number_to_check]
 
-                    if field_name == 'from' and TIME_REGEX.match(value):
+                    if field_name == 'author' and TIME_REGEX.match(value):
                         logger.warning(f"Looks like a mismtch, decrementing num_headers and skipping!")
                         num_headers -= 1
                         continue
@@ -356,9 +372,12 @@ class Email(CommunicationDocument):
 
     def _repair(self) -> None:
         """Repair particularly janky files."""
-        if self.file_lines[0].startswith('Grant_Smith066474"eMailContent.htm'):
+        if self.file_lines[0].startswith('Grant_Smith066474"eMailContent.htm') or self.file_id in BAD_FIRST_LINES:
             self.file_lines = self.file_lines[1:]
             self.text = '\n'.join(self.file_lines)
+        elif self.file_id == '029977':
+            self.text = self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM')
+            self.file_lines = self.text.split('\n')
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield Panel(archive_link(self.filename, self.author_style), expand=False)
