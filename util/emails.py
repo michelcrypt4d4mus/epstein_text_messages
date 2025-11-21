@@ -48,8 +48,8 @@ EMAILERS = [
     'Jes Staley',
     'Kathleen Ruderman',
     'Kenneth E. Mapp',
+    'Joscha Bach',
     'Lesley Groff',
-    'Michael Wolff',
     'middle.east.update@hotmail.com',
     JONATHAN_FARKAS,
     'Mark L. Epstein',
@@ -58,11 +58,11 @@ EMAILERS = [
     'Peggy Siegal',
     'Peter Aldhous',
     'Peter Green',
-    'Robert Kuhn',
     'Robert Trivers',
     'Sample, Elizabeth',
     'Steven Victor MD',
     'The Duke',
+    'Tom Barrack'
     'Weingarten, Reid',
 ]
 
@@ -82,6 +82,7 @@ EMAILER_REGEXES = {
     'Google Alerts': re.compile(r'google\s?alerts', re.IGNORECASE),
     'Intelligence Squared': re.compile(r'intelligence\s*squared', re.IGNORECASE),
     'jackie perczel':  re.compile(r'jackie percze', re.IGNORECASE),
+    'Jabor Y.': re.compile(r'^[ji]abor\s*y', re.IGNORECASE),
     JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|joichi|^joi$', re.IGNORECASE),
     JOHNNY_EL_HACHEM: re.compile('el hachem johnny|johnny el hachem', re.IGNORECASE),
@@ -95,17 +96,19 @@ EMAILER_REGEXES = {
     'Lisa New': re.compile(r'Lisa New?$', re.IGNORECASE),
     'Mohamed Waheed Hassan': re.compile(r'Mohamed Waheed', re.IGNORECASE),
     'Martin Weinberg': re.compile(r'martin.*?weinberg', re.IGNORECASE),
+    'Michael Wolff': re.compile(r'Michael\s*Wol(ff|i)', re.IGNORECASE),
     'Nicholas Ribis': re.compile(r'Nicholas Rib', re.IGNORECASE),
     'Paul Krassner': re.compile(r'Pa\s?ul Krassner', re.IGNORECASE),
     'Paul Morris': re.compile(r'morris, paul|Paul Morris', re.IGNORECASE),
     'Richard Kahn': re.compile(r'rich(ard)? kahn?', re.IGNORECASE),
-    'Robert Lawrence Kuhn': re.compile(r'Robert\s*(Lawrence\s*)?Kuhn', re.IGNORECASE),
+    'Robert Lawrence Kuhn': re.compile(r'Robert\s*(Lawrence)?\s*Kuhn', re.IGNORECASE),
     'Scott J. Link': re.compile(r'scott j. lin', re.IGNORECASE),
     'Sean Bannon': re.compile(r'sean banno', re.IGNORECASE),
     SOON_YI: re.compile(r'Soon[- ]Yi Previn?', re.IGNORECASE),
     'Stephen Hanson': re.compile(r'ste(phen|ve) hanson|Shanson900', re.IGNORECASE),
     STEVE_BANNON: re.compile(r'steve banno[nr]?', re.IGNORECASE),
     'Steven Sinofsky': re.compile(r'Steven Sinofsk', re.IGNORECASE),
+    SULTAN_BIN_SULAYEM: re.compile(r'Sultan bin Sulay', re.IGNORECASE),
     TERRY_KAFKA: re.compile(r'Terry Kafk', re.IGNORECASE),
 }
 
@@ -490,7 +493,7 @@ def _get_name(author: str) -> str | None:
             author = name
             break
 
-    if not valid_emailer(author) or author.startswith('re: ') or author.startswith('fwd: '):
+    if not valid_emailer(author) or TIME_REGEX.match(author):
         logger.warning(f"Author is invalid: '{author}', returning None...")
         return None
 

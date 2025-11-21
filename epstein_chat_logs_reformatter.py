@@ -135,6 +135,7 @@ counts_table.add_column("To", justify="left")
 counts_table.add_column("Email Count", justify="center")
 
 for k, v in sorted(epstein_files.email_recipient_counts.items(), key=lambda item: [item[1], item[0]], reverse=True):
+# for k, v in sorted(epstein_files.email_recipient_counts.items(), key=lambda item: item[0], reverse=True):
     counts_table.add_row(f"[steel_blue][link={search_archive_url(k)}]{k}[/link][/steel_blue]", str(v))
 
 console.print('\n\n', counts_table)
