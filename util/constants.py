@@ -207,6 +207,7 @@ KNOWN_EMAILS = {
     '026069': ARIANE_DE_ROTHSCHILD,
     '030741': ARIANE_DE_ROTHSCHILD,
     '026018': ARIANE_DE_ROTHSCHILD,
+    '026659': BARBRO_EHNBOM,      # Reply
     '026745': BARBRO_EHNBOM,      # Signature
     '031227': 'Moskowitz, Bennet J.',
     '031442': 'Christina Galbraith',
@@ -264,6 +265,8 @@ KNOWN_EMAILS = {
 }
 
 KNOWN_RECIPIENTS = {
+    '030764': ARIANE_DE_ROTHSCHILD,   # Reply
+    '026431': ARIANE_DE_ROTHSCHILD,   # Reply
     '030522': LANDON_THOMAS,
     '031413': LANDON_THOMAS,  # Reply
     '029692': LARRY_SUMMERS,  # Header
