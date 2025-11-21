@@ -93,15 +93,19 @@ KNOWN_EMAILS = {
     '030741': ARIANE_DE_ROTHSCHILD,
     '026018': ARIANE_DE_ROTHSCHILD,
     '026745': BARBRO_EHNBOM,      # Signature
+    '031442': 'Christina Galbraith',
     '026625': DARREN_INDKE,
     '026290': DAVID_SCHOEN,       # Signature
     '031339': DAVID_SCHOEN,       # Signature
     '031492': DAVID_SCHOEN,       # Signature
     '031560': DAVID_SCHOEN,       # Signature
+    '026287': DAVID_SCHOEN,       # Signature
     '031460': EDWARD_EPSTEIN,
     '026547': 'Gerald G. Barton',
-    '031120': 'Gwendolyn',        # Signature
-    '029968': 'Gwendolyn',        # Signature
+    '031120': GWENDOLYN_BECK,        # Signature
+    '029968': GWENDOLYN_BECK,        # Signature
+    '029970': GWENDOLYN_BECK,
+    '029960': GWENDOLYN_BECK,     # Reply
     '026024': 'Jean Huguen',
     '026024': 'Jean Huguen',  # Signature
     '029779': JEFFREY_EPSTEIN,
@@ -120,9 +124,13 @@ KNOWN_EMAILS = {
     '029196': LAWRENCE_KRAUSS,
     '028789': LAWRANCE_VISOSKI,
     '027046': LAWRANCE_VISOSKI,
+    '030472': "Martin Weinberg",   #Maybe. in reply
+    '030235': MELANIE_WALKER,    # In fwd
     '021814': NADIA_MARCINKO,
     '021808': NADIA_MARCINKO,
     '022190': NADIA_MARCINKO,
+    '021811': NADIA_MARCINKO,      # Signature and email address in the message
+    '029981': 'Paula',        # reply
     '031694': 'Peggy Siegal',
     '029020': 'Renata Bolotova',   # Signature
     '029003': SOON_YI,
@@ -352,7 +360,7 @@ class Email(CommunicationDocument):
                     value = self.file_lines[row_number_to_check]
 
                     if field_name == 'author' and TIME_REGEX.match(value):
-                        logger.warning(f"Looks like a mismtch, decrementing num_headers and skipping!")
+                        logger.debug(f"Looks like a mismatch, decrementing num_headers and skipping!")
                         num_headers -= 1
                         continue
 
@@ -378,6 +386,9 @@ class Email(CommunicationDocument):
         elif self.file_id == '029977':
             self.text = self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM')
             self.file_lines = self.text.split('\n')
+        elif self.file_id == '031442':
+            self.file_lines = [self.file_lines[0] + self.file_lines[1]] + self.file_lines[2:]
+            self.text = '\n'.join(self.file_lines)
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield Panel(archive_link(self.filename, self.author_style), expand=False)
