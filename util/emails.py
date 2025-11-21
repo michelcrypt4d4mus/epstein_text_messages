@@ -23,7 +23,7 @@ DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
 EMAIL_REGEX = re.compile(r'From: (.*)')
 EMAIL_HEADER_REGEX = re.compile(r'^(((Date|Subject):.*\n)*From:.*\n((Date|Sent|To|CC|Importance|Subject|Attachments):.*\n)+)')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
-BAD_EMAILER_REGEX = re.compile(r'^>|ok|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|hysterical|article 1.?|momminnemummin|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
+BAD_EMAILER_REGEX = re.compile(r'^>|ok|re:|fwd:|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|hysterical|image0|so that people|article 1.?|momminnemummin|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Subject|Attachments):\s*\n)+')
 REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*wrote:|-+(Forwarded|Original)\s*Message-+|Begin forwarded message:?)')
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
@@ -38,27 +38,37 @@ BAD_FIRST_LINES = ['026652', '029835', '031189']
 EMAILERS = [
     'Anne Boyles',
     AL_SECKEL,
+    'Bill Gates',
+    'Bill Siegel',
     'Daniel Sabba',
     'Glenn Dubin',
     'Jessica Cadwell',
     JOHN_PAGE,
     'Jokeland',
+    'Jes Staley',
     'Kathleen Ruderman',
+    'Kenneth E. Mapp',
     'Lesley Groff',
     'Michael Wolff',
+    'middle.east.update@hotmail.com',
     JONATHAN_FARKAS,
+    'Mark L. Epstein',
+    'nancy cain',
+    'nancy portland',
     'Peggy Siegal',
+    'Peter Aldhous',
     'Peter Green',
-    'Richard Kahn',
     'Robert Kuhn',
     'Robert Trivers',
     'Sample, Elizabeth',
     'Steven Victor MD',
+    'The Duke',
     'Weingarten, Reid',
 ]
 
 EMAILER_REGEXES = {
     'Amanda Ens': re.compile(r'ens, amand', re.IGNORECASE),
+    'Alan Dershowitz': re.compile(r'alan.*dershowitz', re.IGNORECASE),
     BARBRO_EHNBOM: re.compile(r'behnbom@aol.com|Barbro\s.*Ehnbom', re.IGNORECASE),
     'Barry J. Cohen': re.compile(r'barry (j.? )?cohen?', re.IGNORECASE),
     'Boris Nikolic': re.compile(r'boris nikoli', re.IGNORECASE),
@@ -71,28 +81,32 @@ EMAILER_REGEXES = {
     GHISLAINE_MAXWELL: re.compile(r'g ?max(well)?', re.IGNORECASE),
     'Google Alerts': re.compile(r'google\s?alerts', re.IGNORECASE),
     'Intelligence Squared': re.compile(r'intelligence\s*squared', re.IGNORECASE),
-    JEFFREY_EPSTEIN: re.compile(r'jee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE),
+    'jackie perczel':  re.compile(r'jackie percze', re.IGNORECASE),
+    JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|joichi|^joi$', re.IGNORECASE),
     JOHNNY_EL_HACHEM: re.compile('el hachem johnny|johnny el hachem', re.IGNORECASE),
     'Kathy Ruemmler': re.compile(r'Kathy Ruemmle', re.IGNORECASE),
     'Ken Starr': re.compile('starr, ken', re.IGNORECASE),
-    LANDON_THOMAS: re.compile('landon thomas jr|thomas jr.?, landon', re.IGNORECASE),
-    LARRY_SUMMERS: re.compile(r'La(wrence|rry).*Summer|^LHS?$', re.IGNORECASE),
+    LANDON_THOMAS: re.compile('landon thomas|thomas jr.?, landon', re.IGNORECASE),
+    LARRY_SUMMERS: re.compile(r'La(wrence|rry).*Summer|^LH$|^LHS', re.IGNORECASE),
+    LEON_BLACK: re.compile(r'Leon Blac', re.IGNORECASE),
     'lilly sanchez': re.compile(r'lily .*sanchez', re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus', re.IGNORECASE),
     'Lisa New': re.compile(r'Lisa New?$', re.IGNORECASE),
     'Mohamed Waheed Hassan': re.compile(r'Mohamed Waheed', re.IGNORECASE),
-    'Martin Weinberg': re.compile(r'martin (g.* )weinberg', re.IGNORECASE),
+    'Martin Weinberg': re.compile(r'martin.*?weinberg', re.IGNORECASE),
     'Nicholas Ribis': re.compile(r'Nicholas Rib', re.IGNORECASE),
     'Paul Krassner': re.compile(r'Pa\s?ul Krassner', re.IGNORECASE),
     'Paul Morris': re.compile(r'morris, paul|Paul Morris', re.IGNORECASE),
+    'Richard Kahn': re.compile(r'rich(ard)? kahn?', re.IGNORECASE),
     'Robert Lawrence Kuhn': re.compile(r'Robert\s*(Lawrence\s*)?Kuhn', re.IGNORECASE),
     'Scott J. Link': re.compile(r'scott j. lin', re.IGNORECASE),
     'Sean Bannon': re.compile(r'sean banno', re.IGNORECASE),
-    SOON_YI: re.compile(r'Soon[- ]Yi Previn', re.IGNORECASE),
+    SOON_YI: re.compile(r'Soon[- ]Yi Previn?', re.IGNORECASE),
     'Stephen Hanson': re.compile(r'ste(phen|ve) hanson|Shanson900', re.IGNORECASE),
     STEVE_BANNON: re.compile(r'steve banno[nr]?', re.IGNORECASE),
     'Steven Sinofsky': re.compile(r'Steven Sinofsk', re.IGNORECASE),
+    TERRY_KAFKA: re.compile(r'Terry Kafk', re.IGNORECASE),
 }
 
 KNOWN_EMAILS = {
@@ -255,41 +269,22 @@ class Email(CommunicationDocument):
     def __post_init__(self):
         super().__post_init__()
         self._repair()
-
-        try:
-            self.extract_header()
-        except Exception as e:
-            console.print_exception()
-            self.log_top_lines()
-            raise e
-
-        self.author = self.determine_author()
+        self.extract_header()
+        self.determine_author()
+        recipients = [_get_name(r) for r in self.header.to] if self.header.to else []
+        self.recipients = [r for r in recipients if r]
+        self.timestamp = self.extract_sent_at()
         self.author_lowercase = self.author.lower() if self.author else None
         self.author_style = COUNTERPARTY_COLORS.get(self.author or UNKNOWN, DEFAULT)
         self.author_txt = Text(self.author or UNKNOWN, style=self.author_style)
-        self.timestamp = self.extract_sent_at()
 
     def determine_author(self) -> str | None:
         if self.file_id in KNOWN_EMAILS:
-            return KNOWN_EMAILS[self.file_id]
+            self.author = KNOWN_EMAILS[self.file_id]
         elif not self.header.author:
-            return
-
-        author = EmailHeader.cleanup_str(self.header.author)
-
-        for name, regex in EMAILER_REGEXES.items():
-            if regex.search(author):
-                author = name
-                break
-
-        if not valid_emailer(author):
-            logger.warning(f"Author is invalid: '{author}', returning None...")
-            return None
-        elif ', ' in author:
-            names = author.split(', ')
-            author = f"{names[1]} {names[0]}"
-
-        return author
+            self.author = None
+        else:
+            self.author = _get_name(self.header.author)
 
     def cleanup_email_txt(self) -> str:
         # add newline after header if header looks valid
@@ -390,12 +385,14 @@ class EpsteinFiles:
     iMessage_logs: list[MessengerLog] = field(init=False)
     other_files: list[Document] = field(init=False)
     emailer_counts: dict[str, int] = field(init=False)
+    email_recipient_counts: dict[str, int] = field(init=False)
 
     def __post_init__(self):
         self.emails = []
         self.iMessage_logs = []
         self.other_files = []
         self.emailer_counts = defaultdict(int)
+        self.email_recipient_counts = defaultdict(int)
 
         for file_arg in self.all_files:
             if is_debug:
@@ -421,9 +418,10 @@ class EpsteinFiles:
                     try:
                         emailer = email.author or UNKNOWN
                         self.emailer_counts[emailer.lower()] += 1
+                        logger.debug(f"   -> Emailer: '{emailer}'")
 
-                        if deep_debug:
-                            console.print(f"   -> Emailer: '{emailer}'", style='dim')
+                        for recipient in email.recipients:
+                            self.email_recipient_counts[recipient.lower()] += 1
 
                         if len(emailer) >= 3 and emailer != UNKNOWN:
                             continue  # Don't proceed to printing debug contents if we found a valid email
@@ -482,3 +480,22 @@ def parse_timestamp(timestamp_str: str) -> None | datetime:
 
 
 valid_emailer = lambda emailer: not BAD_EMAILER_REGEX.match(emailer)
+
+
+def _get_name(author: str) -> str | None:
+    author = EmailHeader.cleanup_str(author)
+
+    for name, regex in EMAILER_REGEXES.items():
+        if regex.search(author):
+            author = name
+            break
+
+    if not valid_emailer(author) or author.startswith('re: ') or author.startswith('fwd: '):
+        logger.warning(f"Author is invalid: '{author}', returning None...")
+        return None
+
+    if ', ' in author:
+        names = author.split(', ')
+        author = f"{names[1]} {names[0]}"
+
+    return author
