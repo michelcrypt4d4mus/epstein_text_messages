@@ -127,7 +127,7 @@ counts_table.add_column("From", justify="left")
 counts_table.add_column("Email Count", justify="center")
 
 for k, v in sorted(epstein_files.emailer_counts.items(), key=lambda item: [item[1], item[0]], reverse=True):
-    counts_table.add_row(f"[steel_blue][link={search_archive_url(k)}]{k}[/link][/steel_blue]", str(v))
+    counts_table.add_row(f"[steel_blue][link={epsteinify_url(k)}]{k}[/link][/steel_blue]", str(v))
 
 console.print(counts_table)
 counts_table = Table(title="Email Counts By Recipient", show_header=True, header_style="bold")
@@ -135,7 +135,7 @@ counts_table.add_column("To", justify="left")
 counts_table.add_column("Email Count", justify="center")
 
 for k, v in sorted(epstein_files.email_recipient_counts.items(), key=lambda item: [item[1], item[0]], reverse=True):
-    counts_table.add_row(f"[steel_blue][link={search_archive_url(k)}]{k}[/link][/steel_blue]", str(v))
+    counts_table.add_row(f"[steel_blue][link={epsteinify_url(k)}]{k}[/link][/steel_blue]", str(v))
 
 console.print('\n\n', counts_table)
 console.print(f"\nScanned {len(epstein_files.emails)} potential emails, found {sum([i for i in epstein_files.emailer_counts.values()])} senders.")
