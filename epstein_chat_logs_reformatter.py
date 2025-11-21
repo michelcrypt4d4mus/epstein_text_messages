@@ -105,7 +105,7 @@ for log_file in epstein_files.sorted_imessage_logs():
 
 
 # Text message counts
-counts_table = Table(title="Message Counts By Sender", show_header=True, header_style="bold")
+counts_table = Table(title="Text Message Counts By Sender", show_header=True, header_style="bold")
 counts_table.add_column("Sender", style="steel_blue bold", justify="left", width=30)
 counts_table.add_column("Message Count", justify="center")
 
