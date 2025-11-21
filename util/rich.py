@@ -207,7 +207,7 @@ CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 
 COURIER_NEWSROOM_ARCHIVE = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
 search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&page=1&q={urllib.parse.quote(txt)}&p=1"
-archive_link = lambda file: f"[bold][{ARCHIVE_LINK_COLOR}][link={search_archive_url(file)}]{file}[/link][/{ARCHIVE_LINK_COLOR}][/bold]"
+
 
 for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
     file_id = extract_file_id(row['filename'].strip())
@@ -218,8 +218,6 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
         raise RuntimeError(f"Can't overwrite attribution of {file_id} to {GUESSED_COUNTERPARTY_FILE_IDS[file_id]} with {counterparty}")
 
     GUESSED_COUNTERPARTY_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
-
-
 
 logging.basicConfig(level="NOTSET", format="%(message)s", datefmt="[%X]", handlers=[RichHandler()])
 logger = logging.getLogger("rich")
@@ -235,12 +233,8 @@ console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS), width=OU
 console.record = True
 
 
-if deep_debug:
-    console.print('KNOWN_COUNTERPARTY_FILE_IDS\n--------------')
-    console.print(json.dumps(KNOWN_COUNTERPARTY_FILE_IDS))
-    console.print('\n\n\nGUESSED_COUNTERPARTY_FILE_IDS\n--------------')
-    console.print_json(json.dumps(GUESSED_COUNTERPARTY_FILE_IDS))
-    console.line(2)
+def archive_link(filename: str, style: str = ARCHIVE_LINK_COLOR) -> str:
+    return f"[bold][{style}][link={search_archive_url(filename)}]{filename}[/link][/{style}][/bold]"
 
 
 def print_header():
@@ -291,3 +285,12 @@ def print_top_lines(file_text, n = 10, max_chars = MAX_PREVIEW_CHARS, in_panel =
     top_text = escape('\n'.join(file_text.split("\n")[0:n])[0:max_chars])
     output = Panel(top_text, expand=False) if in_panel else top_text + '\n'
     console.print(output, style='dim')
+
+
+
+if deep_debug:
+    console.print('KNOWN_COUNTERPARTY_FILE_IDS\n--------------')
+    console.print(json.dumps(KNOWN_COUNTERPARTY_FILE_IDS))
+    console.print('\n\n\nGUESSED_COUNTERPARTY_FILE_IDS\n--------------')
+    console.print_json(json.dumps(GUESSED_COUNTERPARTY_FILE_IDS))
+    console.line(2)
