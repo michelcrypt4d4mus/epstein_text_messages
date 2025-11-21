@@ -30,6 +30,7 @@ TEXT_LINK = 'text_link'
 COUNTERPARTY_COLORS = {
     ANIL: 'dark_green',
     ARCHIVE_LINK: 'deep_sky_blue4',
+    ARIANE_DE_ROTHSCHILD: 'indian_red',
     BANNON: 'color(58)',
     'Celina Dubin': 'medium_orchid1',
     DEFAULT: 'wheat4',

@@ -41,15 +41,15 @@ class Email(CommunicationDocument):
         self._repair()
         self._extract_header()
 
-        if self.file_id in KNOWN_EMAILS:
-            self.author = KNOWN_EMAILS[self.file_id]
+        if self.file_id in KNOWN_EMAIL_AUTHORS:
+            self.author = KNOWN_EMAIL_AUTHORS[self.file_id]
         elif not self.header.author:
             self.author = None
         else:
             self.author = _get_name(self.header.author)
 
-        if self.file_id in KNOWN_RECIPIENTS:
-            self.recipients = [KNOWN_RECIPIENTS[self.file_id]]
+        if self.file_id in KNOWN_EMAIL_RECIPIENTS:
+            self.recipients = [KNOWN_EMAIL_RECIPIENTS[self.file_id]]
         else:
             self.recipients = [_get_name(r) for r in self.header.to] if self.header.to else []
 
@@ -69,6 +69,7 @@ class Email(CommunicationDocument):
         else:
             prettified_text = self.text
 
+        prettified_text = '\n'.join([line for line in prettified_text.split('\n') if not re.match(r'^\d$', line)]) # Remove single digit lines
         prettified_text = escape(REPLY_REGEX.sub(r'\n\1', prettified_text))  # Newlines between quoted replies
         prettified_text = EPSTEIN_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, prettified_text)
         return EPSTEIN_OLD_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, prettified_text)
@@ -148,7 +149,7 @@ class Email(CommunicationDocument):
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield Panel(self.archive_link, expand=False)
-        info_line = Text(" Email from ").append(self.author_txt).append(f' to ').append(self.recipient_txt)
+        info_line = Text("Official OCR text of email from ").append(self.author_txt).append(f' to ').append(self.recipient_txt)
         info_line.append(f" probably sent at ").append(f"{self.timestamp or '?'}", style='spring_green3')
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
         text = self.cleanup_email_txt()
