@@ -93,6 +93,9 @@ class EpsteinFiles:
 
         return EpsteinFiles.sort_emails(emails_by + emails_to)
 
+    def num_identified_email_authors(self) -> int:
+        return sum([i for author, i in self.email_author_counts.items() if author != UNKNOWN])
+
     def identified_imessage_log_count(self) -> int:
         return len([log for log in self.iMessage_logs if log.author])
 
