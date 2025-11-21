@@ -91,7 +91,7 @@ EMAILER_REGEXES = {
     LANDON_THOMAS: re.compile('landon thomas|thomas jr.?, landon', re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r'La(wrence|rry).*Summer|^LH$|^LHS', re.IGNORECASE),
     LEON_BLACK: re.compile(r'Leon Blac', re.IGNORECASE),
-    'lilly sanchez': re.compile(r'lily .*sanchez', re.IGNORECASE),
+    'lilly sanchez': re.compile(r'Lilly.*Sanchez', re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus', re.IGNORECASE),
     'Lisa New': re.compile(r'Lisa New?$', re.IGNORECASE),
     'Mohamed Waheed Hassan': re.compile(r'Mohamed Waheed', re.IGNORECASE),
