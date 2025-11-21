@@ -171,8 +171,13 @@ class Email(CommunicationDocument):
         text = self.cleanup_email_txt()
 
         if len(text) > MAX_CHARS_TO_PRINT:
-            text = text[0:MAX_CHARS_TO_PRINT]
-            text += f"\n\n[dim]<...truncated to {MAX_CHARS_TO_PRINT} characters, read the rest: {self.archive_link}...>[/dim]"
+            num_chars = MAX_CHARS_TO_PRINT
+
+            if self.count_regex_matches(' wrote:\n') > 3:
+                num_chars = int(num_chars / 2)
+
+            text = text[0:num_chars]
+            text += f"\n\n[dim]<...truncated to {num_chars} characters, read the rest: {self.archive_link}...>[/dim]"
 
         yield Padding(Panel(text, expand=False), (0, 0, 2, EMAIL_INDENT))
 
