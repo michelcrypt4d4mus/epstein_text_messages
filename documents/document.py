@@ -30,7 +30,7 @@ class Document:
         return '\n'.join(self.file_lines[0:n])
 
     def log_top_lines(self, n: int = 10, msg: str | None = None) -> None:
-        logger.info(f"{msg + '. ' if msg else ''}Top lines of '{self.filename}':\n\n{self.top_lines(n)}")
+        logger.info(f"{msg + '. ' if msg else ''}Top lines of '{self.filename} with {self.num_lines} lines:\n\n{self.top_lines(n)}")
 
 
 @dataclass

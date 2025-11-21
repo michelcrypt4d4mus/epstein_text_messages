@@ -19,7 +19,6 @@ load_dotenv()
 from documents.epstein_files import EpsteinFiles
 from documents.messenger_log import MSG_REGEX
 from util.env import deep_debug, is_debug
-from util.file_helper import get_files_in_dir
 from util.rich import *
 
 OUTPUT_DIR = Path('docs')
@@ -45,7 +44,7 @@ sender_counts = defaultdict(int)
 convos_labeled = 0
 msgs_processed = 0
 print_header()
-epstein_files = EpsteinFiles(get_files_in_dir())
+epstein_files = EpsteinFiles()
 
 for log_file in epstein_files.sorted_imessage_logs():
     console.print(Panel(archive_link(log_file.filename, log_file.author_style), expand=False))
@@ -135,10 +134,10 @@ def print_email_table(counts: dict[str, int], column_title: str) -> None:
     console.print('\n', counts_table)
 
 
-print_email_table(epstein_files.emailer_counts, "Author")
+print_email_table(epstein_files.email_author_counts, "Author")
 print_email_table(epstein_files.email_recipient_counts, "Recipients")
 
-console.print(f"\n\nScanned {len(epstein_files.emails)} potential emails, found {sum([i for i in epstein_files.emailer_counts.values()])} senders.")
+console.print(f"\n\nScanned {len(epstein_files.emails)} potential emails, found {sum([i for i in epstein_files.email_author_counts.values()])} senders.")
 console.print('Chronologically sorted emails Epstein sent to or received from these people can be found below:\n')
 
 for i, author in enumerate(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED):
