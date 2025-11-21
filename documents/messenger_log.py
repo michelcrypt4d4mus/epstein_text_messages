@@ -1,10 +1,8 @@
 import re
 
-from ..constants import GUESSED_IMESSAGE_FILE_IDS, KNOWN_IMESSAGE_FILE_IDS, UNKNOWN
-from ..rich import COUNTERPARTY_COLORS
-
-from ..constants import DEFAULT
-from .document import *
+from util.constants import DEFAULT, GUESSED_IMESSAGE_FILE_IDS, KNOWN_IMESSAGE_FILE_IDS, UNKNOWN
+from util.rich import COUNTERPARTY_COLORS
+from documents.document import *
 
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 MSG_DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"

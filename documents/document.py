@@ -4,8 +4,8 @@ from pathlib import Path
 
 from rich.text import Text
 
-from ..file_helper import extract_file_id, load_file
-from ..rich import logger
+from util.file_helper import extract_file_id, load_file
+from util.rich import logger
 
 
 @dataclass
