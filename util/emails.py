@@ -192,8 +192,23 @@ and may be unlawful. If you have received this
 communication in error, please notify us immediately by(\n\d\s*)?
 return e-mail or by e-mail to jeevacation.*gmail.com, and
 destroy this communication and all copies thereof,
-including all attachments. copyright -all rights reserved"""
-)
+including all attachments. copyright -all rights reserved""")
+
+EPSTEIN_OLD_SIGNATURE="""
+***********************************************************
+The information contained in this communication is
+confidential, may be attorney-client privileged, may
+constitute inside information, and is intended only for
+the use of the addressee. It is the property of
+Jeffrey Epstein
+Unauthorized use, disclosure or copying of this
+communication or any part thereof is strictly prohibited
+and may be unlawful. If you have received this
+communication in error, please notify us immediately by
+return e-mail or by e-mail to jeevacation@gmail.com , and
+destroy this communication and all copies thereof,
+including all attachments. copyright -all rights reserved
+""".strip()
 
 
 @dataclass
@@ -284,6 +299,8 @@ class Email(CommunicationDocument):
 
         self.recipients = [_get_name(r) for r in self.header.to] if self.header.to else []
         self.recipients_lower = [r.lower() if r else None for r in self.recipients]
+        recipient = UNKNOWN if len(self.recipients) == 0 else (self.recipients[0] or UNKNOWN)
+        self.recipient_txt = Text(recipient, COUNTERPARTY_COLORS.get(recipient, DEFAULT))
         self.timestamp = self.extract_sent_at()
         self.author_lowercase = self.author.lower() if self.author else None
         self.author_style = COUNTERPARTY_COLORS.get(self.author or UNKNOWN, DEFAULT)
@@ -297,7 +314,8 @@ class Email(CommunicationDocument):
             prettified_text = self.text
 
         prettified_text = REPLY_REGEX.sub(r'\n\1', prettified_text)  # Insert newlines between quoted replies
-        return EPSTEIN_SIGNATURE.sub('<...clipped epstein legal signature...>', prettified_text)
+        prettified_text = EPSTEIN_SIGNATURE.sub('<...clipped epstein legal signature...>', prettified_text)
+        return prettified_text.replace(EPSTEIN_OLD_SIGNATURE, '<...clipped epstein legal signature...>')
 
     def extract_sent_at(self) -> datetime | None:
         searchable_lines = self.text.split('\n')[0:VALID_HEADER_LINES]
@@ -370,8 +388,7 @@ class Email(CommunicationDocument):
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield Panel(archive_link(self.filename, self.author_style), expand=False)
-        info_line = Text(" Email from ").append(self.author_txt)
-        info_line.append(f' to {self.recipients[0] if self.recipients else UNKNOWN}')
+        info_line = Text(" Email from ").append(self.author_txt).append(f' to ').append(self.recipient_txt)
         info_line.append(f" probably sent at ").append(f"{self.timestamp or '?'}", style='spring_green3')
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
         email_panel = Panel(escape(self.cleanup_email_txt()), expand=False)
