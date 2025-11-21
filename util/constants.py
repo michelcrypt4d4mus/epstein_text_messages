@@ -22,7 +22,7 @@ LAWRANCE_VISOSKI = 'Lawrance Visoski'
 LEON_BLACK = 'Leon Black'
 NADIA_MARCINKO = 'Nadia Marcinko'
 STEVE_BANNON = 'Steve Bannon'
-SULTAN_BIN_SULAYEM = 'Sultan bin Sulayem'
+SULTAN_BIN_SULAYEM = 'Sultan Bin Sulayem'
 TERRY_KAFKA = 'Terry Kafka'
 REDACTED = '[REDACTED]'
 

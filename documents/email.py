@@ -81,6 +81,14 @@ class Email(CommunicationDocument):
         prettified_text = '\n'.join([line for line in prettified_text.split('\n') if not re.match(r'^\d{1,2}$', line)])
         prettified_text = REDACTED_REPLY_REGEX.sub('<REDACTED> wrote:', prettified_text)
         prettified_text = escape(REPLY_REGEX.sub(r'\n\1', prettified_text))  # Newlines between quoted replies
+
+        for name, style in COUNTERPARTY_COLORS.items():
+            if name is None:
+                continue
+
+            name_regex = re.compile(name, re.IGNORECASE)
+            prettified_text = name_regex.sub(f'[{style}]{name}[/{style}]', prettified_text)
+
         prettified_text = EPSTEIN_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, prettified_text)
         return EPSTEIN_OLD_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, prettified_text)
 
