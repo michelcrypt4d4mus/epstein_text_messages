@@ -6,7 +6,7 @@ from pathlib import Path
 from rich.text import Text
 
 from util.file_helper import extract_file_id
-from util.rich import logger
+from util.rich import ARCHIVE_LINK_COLOR, epsteinify_doc_url, logger, make_link
 
 MULTINEWLINE_REGEX = re.compile(r"\n{3,}")
 GMAX_EMAIL = 'gmax1@ellmax.com'
@@ -43,6 +43,9 @@ class Document:
 
     def count_regex_matches(self, pattern: str) -> int:
         return len(re.findall(pattern, self.text))
+
+    def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR) -> Text:
+        return make_link(epsteinify_doc_url(self.file_path.stem), self.filename, style)
 
     def log_top_lines(self, n: int = 10, msg: str | None = None) -> None:
         msg = f"{msg + '. ' if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"
