@@ -64,10 +64,9 @@ class Email(CommunicationDocument):
 
         if self.header.cc or self.header.bcc:
             all_cced = (self.header.cc or []) + (self.header.bcc or [])
-            cced = [_get_name(cc) for cc in all_cced]
-            self.recipients += cced
-            logger.debug(f"Added CC / BCC: {cced}")
+            self.recipients += [_get_name(cc) for cc in all_cced]
 
+        self.recipients = [r for r in self.recipients if r != self.author]  # Remove self CCs
         self.recipients_lower = [r.lower() if r else None for r in self.recipients]
         recipient = UNKNOWN if len(self.recipients) == 0 else (self.recipients[0] or UNKNOWN)
         self.recipient_txt = Text(recipient, COUNTERPARTY_COLORS.get(recipient, DEFAULT))

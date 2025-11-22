@@ -142,6 +142,7 @@ COUNTERPARTY_COLORS.update({
     'Jared Kushner': 'medium_violet_red',
     'gmax1@ellmax.com': COUNTERPARTY_COLORS[GHISLAINE_MAXWELL],
     'jeevacation@gmail.com': COUNTERPARTY_COLORS[JEFFREY_EPSTEIN],
+    'Putin': 'dark_red dim',
     'Qatar': ARAB_COLOR,
     'Qatari': ARAB_COLOR,
     'Scaramucci': COUNTERPARTY_COLORS[SCARAMUCCI],
