@@ -72,6 +72,7 @@ COUNTERPARTY_COLORS = {
     MELANIE_WALKER: 'deep_pink3',
     MIROSLAV: 'slate_blue3',
     "Michael Wolff": 'grey54',
+    'Noam Chomsky': 'grey23',
     PHONE_NUMBER: 'bright_green',
     PLASKETT: 'medium_orchid3',
     SCARAMUCCI: 'orange1',
