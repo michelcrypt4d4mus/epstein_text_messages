@@ -117,6 +117,7 @@ GUESSED_IMESSAGE_FILE_IDS = {
     '027549': STEVE_BANNON,
     '027434': STEVE_BANNON,          # References Maher appearance
     '027764': STEVE_BANNON,
+    '027428': STEVE_BANNON,          # References HBJ meeting on 9/28 from other Bannon/Epstein convo
     '025436': 'Celina Dubin',
     '027576': MELANIE_WALKER,  # https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700
     '027141': MELANIE_WALKER,
