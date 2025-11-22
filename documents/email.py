@@ -89,7 +89,7 @@ class Email(CommunicationDocument):
         prettified_text = REDACTED_REPLY_REGEX.sub('<REDACTED> wrote:', prettified_text)
         prettified_text = REPLY_REGEX.sub(r'\n\1', prettified_text)  # Newlines between quoted replies
         prettified_text = EPSTEIN_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, prettified_text)
-        return EPSTEIN_OLD_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, prettified_text)
+        return escape(EPSTEIN_OLD_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, prettified_text))
 
     def sort_time(self) -> datetime:
         timestamp = self.timestamp or parse("1/1/2001 12:01:01 AM")
