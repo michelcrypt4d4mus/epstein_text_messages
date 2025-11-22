@@ -48,7 +48,8 @@ CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 </html>
 """
 
-FIRST_NAMES_TO_NOT_COLOR = [
+NAMES_TO_NOT_COLOR = [
+    'Black',
     'Michael',
     'Steve',
     'The',
@@ -62,6 +63,7 @@ COUNTERPARTY_COLORS = {
     ARIANE_DE_ROTHSCHILD: 'indian_red',
     'Celina Dubin': 'medium_orchid1',
     DEFAULT: 'wheat4',
+    DONALD_TRUMP: 'red3',
     JEFFREY_EPSTEIN: 'blue',
     EVA: 'orchid',
     JOI_ITO: 'blue_violet',
@@ -76,7 +78,6 @@ COUNTERPARTY_COLORS = {
     STEVE_BANNON: 'color(58)',
     TERJE: 'light_slate_blue',
     TEXT_LINK: 'deep_sky_blue4 underline',
-    'Trump': 'red3',
     UNKNOWN: 'cyan',
     'Victor Orban': 'purple4',
 }
@@ -88,7 +89,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     GHISLAINE_MAXWELL: 'deep_pink3',
     AL_SECKEL: 'orange_red1',
     EHUD_BARAK: 'chartreuse4',
-    LEON_BLACK: 'bright_red',
+    LEON_BLACK: 'dark_cyan',
     SULTAN_BIN_SULAYEM: 'green1',
     'Deepak Chopra': 'dark_goldenrod',
     'Darren Indke': 'purple3',
@@ -119,9 +120,11 @@ console.record = True
 # This is after the Theme() instantiation because 'bg' is reserved'
 COUNTERPARTY_COLORS.update({
     'bg': 'turquoise4',
-    'DJT': COUNTERPARTY_COLORS['Trump'],
+    'DJT': COUNTERPARTY_COLORS[DONALD_TRUMP],
     'Ivanka': 'medium_violet_red',
     'Jared Kushner': 'medium_violet_red',
+    'jeevacation@gmail.com': COUNTERPARTY_COLORS[JEFFREY_EPSTEIN],
+    'jeevacation©gmail.com': COUNTERPARTY_COLORS[JEFFREY_EPSTEIN],
     'Qatar': 'dark_green',
     'Qatari': 'dark_green',
     'Scaramucci': COUNTERPARTY_COLORS[SCARAMUCCI],
@@ -149,12 +152,14 @@ def highlight_names(text: str) -> str:
         names = name.split(' ')
         last_name = names[-1]
         first_name = ' '.join(names[0:-1])
-        # highlight last names
-        name_regex = re.compile(rf"(?!{first_name} ?)\b({last_name}s?)\b", re.IGNORECASE)
-        text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
-        # highlight first names
 
-        if len(first_name) > 2 and first_name not in FIRST_NAMES_TO_NOT_COLOR:
+        # highlight last names
+        if last_name not in NAMES_TO_NOT_COLOR:
+            name_regex = re.compile(rf"(?!{first_name} ?)\b({last_name}s?)\b", re.IGNORECASE)
+            text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
+
+        # highlight first names
+        if len(first_name) > 2 and first_name not in NAMES_TO_NOT_COLOR:
             name_regex = re.compile(rf"\b({first_name}s?)\b(?! ?{last_name})", re.IGNORECASE)
             text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
 
