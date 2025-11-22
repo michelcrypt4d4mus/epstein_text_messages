@@ -24,6 +24,7 @@ ARAB_COLOR = 'dark_green'
 ARCHIVE_LINK = 'archive_link'
 ARCHIVE_LINK_COLOR = 'blue3'
 BITCOIN_COLOR = 'orange1 bold'
+CHINA_COLOR = 'bright_red'
 PHONE_NUMBER = 'phone_number'
 RUSSIA_COLOR = 'dark_red dim'
 TEXT_LINK = 'text_link'
@@ -142,7 +143,8 @@ console.record = True
 COUNTERPARTY_COLORS.update({
     'bg': 'turquoise4',
     'Bitcoin': BITCOIN_COLOR,
-    'China': 'bright_red',
+    'CCP': CHINA_COLOR,
+    'China': CHINA_COLOR,
     'Clinton': 'sky_blue1',
     'coins': BITCOIN_COLOR,
     'cripto': BITCOIN_COLOR,
@@ -174,7 +176,7 @@ COUNTERPARTY_COLORS.update({
     'UAE': ARAB_COLOR,
     'Yemen': ARAB_COLOR,
     'Yemeni': ARAB_COLOR,
-    'xi': 'bright_red',
+    'xi': f"{CHINA_COLOR} bold",
 })
 
 
