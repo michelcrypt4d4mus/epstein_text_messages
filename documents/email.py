@@ -22,6 +22,7 @@ DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
 BAD_EMAILER_REGEX = re.compile(r'^>|ok|re:|fwd:|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|hysterical|image0|so that people|article 1.?|momminnemummin|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Subject|Attachments):\s*\n)+')
 REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?(?: [a-zA-Z]+)*(?:[ \n]wrote:)?|-+(Forwarded|Original)\s*Message-*|Begin forwarded message:?)', re.IGNORECASE)
+SENT_FROM_REGEX = re.compile(r'(Sent (from my|via) (iPhone|iPad|Samsung JackTM.*AT&T|AT&T Windows Mobile phone|BlackBerry.*(smartphone|wireless device|AT&T|T- ?Mobile))\.?)')
 REDACTED_REPLY_REGEX = re.compile(r'<[ _\n]+> wrote:', re.IGNORECASE)
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
@@ -202,6 +203,7 @@ class Email(CommunicationDocument):
             text = text[0:num_chars]
             text += f"\n\n[dim]<...truncated to {num_chars} characters, read the rest: {self.archive_link}...>[/dim]"
 
+        text = SENT_FROM_REGEX.sub(r'[dim]\1[/dim]', text)
         yield Padding(Panel(highlight_names(text), expand=False), (0, 0, 2, EMAIL_INDENT))
 
 
