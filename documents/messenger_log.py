@@ -48,11 +48,11 @@ class MessengerLog(CommunicationDocument):
         self.archive_link = archive_link(self.filename, self.author_style)
 
         if self.file_id in KNOWN_IMESSAGE_FILE_IDS:
-            self.hint_txt = Text(f" Found confirmed counterparty ", style='grey').append(self.author_txt).append(f" for file ID {self.file_id}.")
+            self.hint_txt = Text(f" Found confirmed counterparty ", style='dim').append(self.author_txt).append(f" for file ID {self.file_id}.")
         elif self.file_id in GUESSED_IMESSAGE_FILE_IDS:
             self.author_str += ' (?)'
             self.author_txt = Text(self.author_str, style=self.author_style)
-            self.hint_txt = Text(" (This is probably a conversation with ", style='grey').append(self.author_txt).append(')')
+            self.hint_txt = Text(" (This is probably a conversation with ", style='dim').append(self.author_txt).append(')')
         else:
             self.hint_txt = None
 
