@@ -141,8 +141,9 @@ COUNTERPARTY_COLORS.update({
 })
 
 
-def archive_link(filename: str, style: str = ARCHIVE_LINK_COLOR) -> str:
-    return f"[bold][{style}][link={search_archive_url(filename)}]{filename}[/link][/{style}][/bold]"
+def archive_link(filename: str, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> str:
+    link_txt = link_txt or filename
+    return f"[bold][{style}][link={search_archive_url(filename)}]{link_txt}[/link][/{style}][/bold]"
 
 
 def highlight_names(text: str) -> str:
