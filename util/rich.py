@@ -55,6 +55,7 @@ NAMES_TO_NOT_COLOR = [
     'Black',
     'Darren',
     'David',
+    'jeffrey',
     'Martin',
     'Melanie',
     'Michael',
