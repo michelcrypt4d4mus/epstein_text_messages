@@ -1,3 +1,4 @@
+import csv
 import re
 from io import StringIO
 
@@ -39,6 +40,34 @@ SOON_YI = 'Soon-Yi Previn'
 STEVE_BANNON = 'Steve Bannon'
 TERJE = 'Terje Rød-Larsen'
 UNKNOWN = '(unknown)'
+
+#  of who is the counterparty in each text message file
+AI_COUNTERPARTY_DETERMINATION_TSV = StringIO("""filename	counterparty	source
+HOUSE_OVERSIGHT_025400.txt	Steve Bannon (likely)	Trump NYT article criticism; Hannity media strategy
+HOUSE_OVERSIGHT_025408.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_025452.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_025479.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
+HOUSE_OVERSIGHT_025707.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_025734.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
+HOUSE_OVERSIGHT_027260.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027281.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027346.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027365.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027374.txt	Steve Bannon	China strategy and geopolitics
+HOUSE_OVERSIGHT_027406.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027440.txt	Michael Wolff	Trump book/journalism project
+HOUSE_OVERSIGHT_027445.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
+HOUSE_OVERSIGHT_027455.txt	Steve Bannon (likely)	China strategy and geopolitics; Trump discussions
+HOUSE_OVERSIGHT_027460.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027515.txt	Personal contact	Personal/social plans
+HOUSE_OVERSIGHT_027536.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
+HOUSE_OVERSIGHT_027655.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027707.txt	Steve Bannon	Italian politics; Trump discussions
+HOUSE_OVERSIGHT_027722.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027735.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027794.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_029744.txt	Steve Bannon (likely)	Trump and New York Times coverage
+HOUSE_OVERSIGHT_031045.txt	Steve Bannon (likely)	Trump and New York Times coverage""")
 
 KNOWN_IMESSAGE_FILE_IDS = {
     '031042': ANIL,            # Participants: field
@@ -88,33 +117,14 @@ GUESSED_IMESSAGE_FILE_IDS = {
     '031054': SCARAMUCCI,
 }
 
-#  of who is the counterparty in each file
-AI_COUNTERPARTY_DETERMINATION_TSV = StringIO("""filename	counterparty	source
-HOUSE_OVERSIGHT_025400.txt	Steve Bannon (likely)	Trump NYT article criticism; Hannity media strategy
-HOUSE_OVERSIGHT_025408.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_025452.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_025479.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_025707.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_025734.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027260.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027281.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027346.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027365.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027374.txt	Steve Bannon	China strategy and geopolitics
-HOUSE_OVERSIGHT_027406.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027440.txt	Michael Wolff	Trump book/journalism project
-HOUSE_OVERSIGHT_027445.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027455.txt	Steve Bannon (likely)	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027460.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027515.txt	Personal contact	Personal/social plans
-HOUSE_OVERSIGHT_027536.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027655.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027707.txt	Steve Bannon	Italian politics; Trump discussions
-HOUSE_OVERSIGHT_027722.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027735.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027794.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_029744.txt	Steve Bannon (likely)	Trump and New York Times coverage
-HOUSE_OVERSIGHT_031045.txt	Steve Bannon (likely)	Trump and New York Times coverage""")
+for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
+    file_id = row['filename'].strip().replace('HOUSE_OVERSIGHT_', '').replace('.txt', '')
+    counterparty = row['counterparty'].strip()
+
+    if file_id in GUESSED_IMESSAGE_FILE_IDS:
+        raise RuntimeError(f"Can't overwrite attribution of {file_id} to {GUESSED_IMESSAGE_FILE_IDS[file_id]} with {counterparty}")
+
+    GUESSED_IMESSAGE_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
 
 
 # If found as substring consider them the author
