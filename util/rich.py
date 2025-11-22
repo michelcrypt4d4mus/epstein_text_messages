@@ -88,7 +88,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     GHISLAINE_MAXWELL: 'deep_pink3',
     AL_SECKEL: 'orange_red1',
     EHUD_BARAK: 'chartreuse4',
-    LEON_BLACK: 'bright_red',
+    LEON_BLACK: 'dark_cyan',
     SULTAN_BIN_SULAYEM: 'green1',
     'Deepak Chopra': 'dark_goldenrod',
     'Darren Indke': 'purple3',
