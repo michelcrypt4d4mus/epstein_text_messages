@@ -122,6 +122,8 @@ console.record = True
 COUNTERPARTY_COLORS.update({
     'bg': 'turquoise4',
     'DJT': COUNTERPARTY_COLORS[DONALD_TRUMP],
+    'Israel': 'dodger_blue2',
+    'Israeli': 'dodger_blue2',
     'Ivanka': 'medium_violet_red',
     'Jared Kushner': 'medium_violet_red',
     'jeevacation@gmail.com': COUNTERPARTY_COLORS[JEFFREY_EPSTEIN],
