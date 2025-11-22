@@ -96,7 +96,7 @@ class MessengerLog(CommunicationDocument):
                 elif re.match('[ME]+', sender):
                     sender = MELANIE_WALKER
 
-                sender_txt = Text(sender_str, style=sender_style or COUNTERPARTY_COLORS.get(sender, DEFAULT))
+                sender_txt = Text(sender_str, style=sender_style or f"{COUNTERPARTY_COLORS.get(sender, DEFAULT)} bold")
 
             # Fix multiline links
             if msg.startswith('http'):
