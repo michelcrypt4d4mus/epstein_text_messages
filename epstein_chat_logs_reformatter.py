@@ -16,7 +16,7 @@ from rich.text import Text
 
 from documents.epstein_files import EpsteinFiles
 from documents.messenger_log import sender_counts
-from util.env import is_debug
+from util.env import is_build, is_debug
 from util.rich import *
 
 OUTPUT_GH_PAGES_HTML = Path('docs').joinpath('index.html')
@@ -74,8 +74,8 @@ for name in PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES.keys():
     epstein_files.print_emails_table_for(name)
 
 # Save output
-if not is_debug:
+if is_build:
     console.save_html(OUTPUT_GH_PAGES_HTML, inline_styles=False, clear=False, code_format=CONSOLE_HTML_FORMAT)
     console.print(f"\nWrote HTML to '{OUTPUT_GH_PAGES_HTML}'.")
 else:
-    console.print(f"\nNot writing HTML because DEBUG=true.")
+    console.print(f"\nNot writing HTML, BUILD_HTML not set.")
