@@ -72,6 +72,10 @@ class EpsteinFiles:
             console.print('\n\n', Panel(Text(f"Found {len(emails)} emails to/from {author}", justify='center')), '\n', style='bold reverse')
         else:
             logger.warning(f"No emails found for {author}")
+            return
+
+        if author is not None:
+            self.print_emails_table_for(author)
 
         for email in emails:
             console.print(email)
