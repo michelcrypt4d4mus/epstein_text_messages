@@ -65,6 +65,10 @@ for i, author in enumerate(PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES):
 for author in PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED:
     epstein_files.print_emails_for(author)
 
+# Print everyone with less than 3 sent emails
+# for author in [a for a in epstein_files.email_author_counts.keys() if len(epstein_files.emails_for(a)) < 3]:
+#     epstein_files.print_emails_for(author)
+
 for name in PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES.keys():
     epstein_files.print_emails_table_for(name)
 
