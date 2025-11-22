@@ -27,6 +27,7 @@ QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
 CLIPPED_SIGNATURE_REPLACEMENT = '[dim]<...snipped epstein legal signature...>[/dim]'
 BAD_FIRST_LINES = ['026652', '029835', '031189']
+TRUNCATE_TERMS = ['The rebuilding of Indonesia']
 MAX_CHARS_TO_PRINT = 4000
 VALID_HEADER_LINES = 14
 EMAIL_INDENT = 3
@@ -189,6 +190,8 @@ class Email(CommunicationDocument):
         if quote_cutoff:
             logger.debug(f"Found {self.count_regex_matches(QUOTED_REPLY_LINE_REGEX.pattern)} quotes, cutting off at char {quote_cutoff}")
             num_chars = quote_cutoff
+        if any((term in self.text) for term in TRUNCATE_TERMS):
+            num_chars = int(MAX_CHARS_TO_PRINT / 3)
 
         if len(text) > num_chars:
             text = text[0:num_chars]
