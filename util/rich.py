@@ -68,7 +68,6 @@ COUNTERPARTY_COLORS = {
     DONALD_TRUMP: 'red3',
     JEFFREY_EPSTEIN: 'blue',
     EVA: 'orchid',
-    JOI_ITO: 'blue_violet',
     LARRY_SUMMERS: 'dark_magenta',
     MELANIE_WALKER: 'deep_pink3',
     MIROSLAV: 'slate_blue3',
@@ -88,16 +87,17 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     None: 'grey74',
     STEVE_BANNON: COUNTERPARTY_COLORS[STEVE_BANNON],
     'Sean Bannon': COUNTERPARTY_COLORS[STEVE_BANNON],
-    GHISLAINE_MAXWELL: 'deep_pink3',
+    JOI_ITO: 'blue_violet',
     AL_SECKEL: 'orange_red1',
     EHUD_BARAK: 'chartreuse4',
-    LEON_BLACK: 'dark_cyan',
-    SULTAN_BIN_SULAYEM: 'green1',
 }
 
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {
     'Deepak Chopra': 'dark_goldenrod',
+    GHISLAINE_MAXWELL: 'deep_pink3',
+    LEON_BLACK: 'dark_cyan',
     LANDON_THOMAS: 'misty_rose3',  # FT journo
+    SULTAN_BIN_SULAYEM: 'green1',
     # Epstein's lawyers
     DARREN_INDYKE: 'purple3',
     'Richard Kahn': 'purple4',
