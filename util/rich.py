@@ -142,9 +142,16 @@ COUNTERPARTY_COLORS.update({
 })
 
 
-def archive_link(filename: str, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> str:
-    link_txt = link_txt or filename
-    return f"[bold][{style}][link={search_archive_url(filename)}]{link_txt}[/link][/{style}][/bold]"
+def make_link(url: str, link_text: str, style: str = ARCHIVE_LINK_COLOR) -> Text:
+    return Text.from_markup(f"[underline][bold][{style}][link={url}]{link_text}[/link][/{style}][/bold][/underline]")
+
+
+def archive_link(filename: str, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
+    return make_link(search_archive_url(filename), link_txt or filename, style)
+
+
+def coffeezilla_link(search_term: str, link_txt: str, style: str = ARCHIVE_LINK_COLOR) -> Text:
+    return make_link(search_archive_url(search_term), link_txt or search_term, style)
 
 
 def highlight_names(text: str) -> str:
