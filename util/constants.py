@@ -27,6 +27,7 @@ LESLEY_GROFF = 'Lesley Groff'
 LISA_NEW = 'Lisa New'          # Harvard poetry prof AKA "Elisa New"
 MARTIN_NOWAK = 'Martin Nowak'
 NADIA_MARCINKO = 'Nadia Marcinko'
+MELANIE_SPINELLA = 'Melanie Spinella'
 ROBERT_TRIVERS = 'Robert Trivers'
 SULTAN_BIN_SULAYEM = 'Sultan Bin Sulayem'
 TERRY_KAFKA = 'Terry Kafka'
@@ -151,6 +152,7 @@ EMAILERS = [
     'Kenneth E. Mapp',
     'Joscha Bach',
     'Lesley Groff',
+    'Brad Wechsler',
     'middle.east.update@hotmail.com',
     JONATHAN_FARKAS,
     'Mark L. Epstein',
@@ -199,6 +201,7 @@ EMAILER_REGEXES = {
     'Marc Leon': re.compile(r'Marc[.]+(Kensington|Leon)|Kensington2', re.IGNORECASE),
     'Martin Weinberg': re.compile(r'martin.*?weinberg', re.IGNORECASE),
     MARTIN_NOWAK: re.compile(r'Martin.*?Nowak|Nowak, Martin', re.IGNORECASE),
+    MELANIE_SPINELLA: re.compile(r'Melanie Spine[Il]{2}a', re.IGNORECASE),
     'Michael Wolff': re.compile(r'Michael\s*Wol(ff|i)', re.IGNORECASE),
     'Mike Sitrick': re.compile(r'Mi(chael|ke).*Sitrick', re.IGNORECASE),
     'Mohamed Waheed Hassan': re.compile(r'Mohamed Waheed', re.IGNORECASE),
@@ -251,6 +254,7 @@ KNOWN_EMAIL_AUTHORS = {
     '029959': GWENDOLYN_BECK,     # "Longevity & Aging"
     '026024': JEAN_HUGUEN,
     '026024': JEAN_HUGUEN,        # Signature
+    '021823': JEAN_LUC_BRUNEL,    # Reply
     '030997': JEFFREY_EPSTEIN,
     '029779': JEFFREY_EPSTEIN,
     '022949': JEFFREY_EPSTEIN,
@@ -302,6 +306,8 @@ KNOWN_EMAIL_RECIPIENTS = {
     '026431': ARIANE_DE_ROTHSCHILD,   # Reply
     '031607': EDWARD_EPSTEIN,
     '026426': JEAN_HUGUEN,            # Reply
+    '029975': JEAN_LUC_BRUNEL,        # Same as another file
+    '022202': JEAN_LUC_BRUNEL,        # Follow up
     '030522': LANDON_THOMAS,
     '031413': LANDON_THOMAS,          # Reply
     '029692': LARRY_SUMMERS,          # Header
