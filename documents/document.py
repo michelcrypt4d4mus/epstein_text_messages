@@ -44,7 +44,8 @@ class Document:
     def count_regex_matches(self, pattern: str) -> int:
         return len(re.findall(pattern, self.text))
 
-    def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR) -> Text:
+    def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
+        link_txt = link_txt or self.filename
         return make_link(epsteinify_doc_url(self.file_path.stem), self.filename, style)
 
     def log_top_lines(self, n: int = 10, msg: str | None = None) -> None:

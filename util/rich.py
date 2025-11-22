@@ -131,7 +131,6 @@ SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages
 EPSTEINIFY_URL = 'https://epsteinify.com'
 
 epsteinify_url = lambda name: f"{EPSTEINIFY_URL}/?name={urllib.parse.quote(name)}"
-#epsteinify_doc_url = lambda name: f"{EPSTEINIFY_URL}/document/HOUSE_OVERSIGHT_029833
 epsteinify_doc_url = lambda file_stem: f"{EPSTEINIFY_URL}/document/{file_stem}"
 search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&q={urllib.parse.quote(txt)}&p=1"
 search_coffeezilla_url = lambda txt: f"{COFFEEZILLA_ARCHIVE}&q={urllib.parse.quote(txt)}&p=1"
