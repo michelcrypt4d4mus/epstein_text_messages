@@ -76,6 +76,7 @@ class Email(CommunicationDocument):
         self.author_style = COUNTERPARTY_COLORS.get(self.author or UNKNOWN, DEFAULT)
         self.author_txt = Text(self.author or UNKNOWN, style=self.author_style)
         self.archive_link = self.epsteinify_link(self.author_style)
+        self.epsteinify_link_markup = make_link_markup(self.epsteinify_url, self.file_path.stem, self.author_style)
 
     def cleanup_email_txt(self) -> str:
         # add newline after header if header looks valid
@@ -200,7 +201,7 @@ class Email(CommunicationDocument):
 
         if len(text) > num_chars:
             text = text[0:num_chars]
-            text += f"\n\n[dim]<...truncated to {num_chars} characters, read the rest: {self.archive_link}...>[/dim]"
+            text += f"\n\n[dim]<...truncated to {num_chars} characters, read the rest: {self.epsteinify_link_markup}...>[/dim]"
 
         text = REPLY_REGEX.sub(r'[dim]\1[/dim]',text)
         text = SENT_FROM_REGEX.sub(r'[dim]\1[/dim]', text)
