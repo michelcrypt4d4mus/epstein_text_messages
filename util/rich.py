@@ -93,7 +93,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     LEON_BLACK: 'dark_cyan',
     SULTAN_BIN_SULAYEM: 'green1',
     'Deepak Chopra': 'dark_goldenrod',
-    'Darren Indke': 'purple3',
+    DARREN_INDYKE: 'purple3',
     'Richard Kahn': 'purple4',
 }
 
