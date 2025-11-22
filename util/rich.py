@@ -110,6 +110,7 @@ COUNTERPARTY_COLORS.update(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED)
 COUNTERPARTY_COLORS.update(PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES)
 COURIER_NEWSROOM_ARCHIVE = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
 COFFEEZILLA_ARCHIVE = 'https://journaliststudio.google.com/pinpoint/search?collection=061ce61c9e70bdfd'
+SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great'
 
 epsteinify_url = lambda name: f"https://epsteinify.com/?name={urllib.parse.quote(name)}"
 search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&q={urllib.parse.quote(txt)}&p=1"
@@ -196,8 +197,8 @@ def print_header():
     console.line()
     console.print(Panel(Text("Epstein Estate Documents - Seventh Production Collection Reformatted Text Messages", justify='center', style='bold reverse')))
     console.line()
-    console.print(Align.center("[bold][link=https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great]I Made Epstein's Text Messages Great Again (And You Should Read Them)[/link][/bold]"))
-    console.print(Align.center("https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great"))
+    console.print(Align.center(f"[bold][link={SUBSTACK_URL}]I Made Epstein's Text Messages Great Again (And You Should Read Them)[/link][/bold]"))
+    console.print(Align.center('[blue][underline][link={SUBSTACK_URL}]' + SUBSTACK_URL.removeprefix('https://') + '[/link][/underline][/blue]'))
     console.print(Align.center("[link=https://cryptadamus.substack.com/]Substack[/link]"))
     console.print(Align.center("[link=https://universeodon.com/@cryptadamist]Mastodon[/link]"))
     console.print(Align.center("[link=https://x.com/Cryptadamist/status/1990866804630036988]Twitter[/link]"))
