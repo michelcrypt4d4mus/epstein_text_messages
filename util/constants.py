@@ -18,6 +18,7 @@ GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
 GWENDOLYN_BECK = 'Gwendolyn Beck'
 JEAN_HUGUEN = 'Jean Huguen'
 JEAN_LUC_BRUNEL = 'Jean Luc Brunel'
+JABOR_Y = 'Jabor Y.'   # Qatari
 JEREMY_RUBIN = 'Jeremy Rubin'  # bitcoin dev
 JOHN_PAGE = 'John Page'
 JOHNNY_EL_HACHEM = 'Johnny el Hachem'
@@ -190,7 +191,7 @@ EMAILER_REGEXES = {
     'Google Alerts': re.compile(r'google\s?alerts', re.IGNORECASE),
     'Intelligence Squared': re.compile(r'intelligence\s*squared', re.IGNORECASE),
     'jackie perczel':  re.compile(r'jackie percze', re.IGNORECASE),
-    'Jabor Y.': re.compile(r'^[ji]abor\s*y', re.IGNORECASE),
+    JABOR_Y: re.compile(r'^[ji]abor\s*y', re.IGNORECASE),
     JEAN_LUC_BRUNEL: re.compile(r'Jean[- ]Luc Brunel?', re.IGNORECASE),
     JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein?', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|joichi|^joi$', re.IGNORECASE),

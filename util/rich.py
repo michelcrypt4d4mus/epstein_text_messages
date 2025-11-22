@@ -101,6 +101,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     JEREMY_RUBIN: BITCOIN_COLOR,
     JOI_ITO: 'blue_violet',
     AL_SECKEL: 'orange_red1',
+    JABOR_Y: ARAB_COLOR,
     DANIEL_SIAD: 'dark_khaki',
     JEAN_LUC_BRUNEL: 'wheat4',
     EHUD_BARAK: 'chartreuse4',
