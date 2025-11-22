@@ -9,6 +9,7 @@ BARBRO_EHNBOM = 'Barbro Ehnbom'
 BENNET_MOSKOWITZ = 'Bennet Moskowitz'
 DARREN_INDYKE = 'Darren Indyke'
 DAVID_SCHOEN = 'David Schoen'
+DAVID_STERN = 'David Stern'
 DONALD_TRUMP = 'Donald Trump'
 EDWARD_EPSTEIN = 'Edward Epstein'
 EHUD_BARAK = 'Ehud Barak'
@@ -16,6 +17,7 @@ GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
 GWENDOLYN_BECK = 'Gwendolyn Beck'
 JEAN_HUGUEN = 'Jean Huguen'
 JEAN_LUC_BRUNEL = 'Jean Luc Brunel'
+JEREMY_RUBIN = 'Jeremy Rubin'  # bitcoin dev
 JOHN_PAGE = 'John Page'
 JOHNNY_EL_HACHEM = 'Johnny el Hachem'
 JONATHAN_FARKAS = 'Jonathan Farkas'
@@ -178,7 +180,7 @@ EMAILER_REGEXES = {
     'Boris Nikolic': re.compile(r'boris nikoli', re.IGNORECASE),
     'Dangene and Jennie Enterprise': re.compile(r'Dangene and Jennie Enterpris', re.IGNORECASE),
     DARREN_INDYKE: re.compile(r'^darren$|darren [il]ndyke?|dkiesq', re.IGNORECASE),
-    'David Stern': re.compile(r'David Stern?', re.IGNORECASE),
+    DAVID_STERN: re.compile(r'David Stern?', re.IGNORECASE),
     EDWARD_EPSTEIN: re.compile(r'Edward (Jay )?Epstein', re.IGNORECASE),
     EHUD_BARAK: re.compile(r'(ehud|h)\s*barak', re.IGNORECASE),
     'Faith Kates': re.compile(r'faith kate', re.IGNORECASE),
