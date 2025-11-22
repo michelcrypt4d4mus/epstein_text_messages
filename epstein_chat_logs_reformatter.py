@@ -45,7 +45,7 @@ console.print(f"Found {epstein_files.imessage_msg_count()} total text messages i
 console.print(f"(Last deploy found 4668 messages in 77 conversations)\n\n\n", style='dim')
 
 # Email sender / recipient counts
-console.print(Panel(Text("HIS EMAILS", justify='center'), width=60, padding=(2, 2)), style='bold white on blue3')
+console.print(Panel(Text("HIS EMAILS", justify='center'), width=80, padding=(2, 2)), style='bold white on blue3')
 print_email_table(epstein_files.email_author_counts, "Author")
 print_email_table(epstein_files.email_recipient_counts, "Recipients")
 console.print(f"\n\nIdentified {epstein_files.num_identified_email_authors()} authors in {len(epstein_files.emails)} potential email files.")
