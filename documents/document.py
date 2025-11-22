@@ -15,6 +15,7 @@ OCR_REPAIRS = {
     'lndyke': 'Indyke',
     'jeevacation©gmail.com': JEEVACATION_GMAIL,
     'jeevacationagmail.com': JEEVACATION_GMAIL,
+    'jeeyacation@gmail.com': JEEVACATION_GMAIL,
 }
 
 
