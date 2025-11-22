@@ -45,14 +45,20 @@ console.print(f"Found {epstein_files.imessage_msg_count()} total text messages i
 console.print(f"(Last deploy found 4668 messages in 77 conversations)\n\n\n", style='dim')
 
 # Email sender / recipient counts
-console.print(Panel(Text("HIS EMAILS", justify='center'), expand=True, padding=(2, 2)), style='bold white on blue3')
+console.print(Panel(Text("HIS EMAILS", justify='center'), width=60, padding=(2, 2)), style='bold white on blue3')
 print_email_table(epstein_files.email_author_counts, "Author")
 print_email_table(epstein_files.email_recipient_counts, "Recipients")
 console.print(f"\n\nIdentified {epstein_files.num_identified_email_authors()} authors in {len(epstein_files.emails)} potential email files.")
 console.print('Chronological Epstein correspondence with the following people can be found below.')
-console.print('(note this site uses the OCR email text provided by Congress which is not the greatest)', style='dim')
+console.print('(note this site uses the OCR email text provided by Congress which is not the greatest)\n', style='dim')
 
 for i, author in enumerate(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED):
+    style = COUNTERPARTY_COLORS.get(author or UNKNOWN, DEFAULT)
+    console.print(Text(f"   {i}. ", style='bold').append(author or UNKNOWN, style=style))
+
+console.print("\n\nAfter that there's tables linking to (but not displaying) all known emails for each of these folks:\n")
+
+for i, author in enumerate(PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES):
     style = COUNTERPARTY_COLORS.get(author or UNKNOWN, DEFAULT)
     console.print(Text(f"   {i}. ", style='bold').append(author or UNKNOWN, style=style))
 

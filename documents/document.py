@@ -9,10 +9,12 @@ from util.file_helper import extract_file_id
 from util.rich import logger
 
 MULTINEWLINE_REGEX = re.compile(r"\n{3,}")
+JEEVACATION_GMAIL = 'jeevacation@gmail.com'
 
 OCR_REPAIRS = {
     'lndyke': 'Indyke',
-    'jeevacation©gmail.com': 'jeevacation@gmail.com',
+    'jeevacation©gmail.com': JEEVACATION_GMAIL,
+    'jeevacationagmail.com': JEEVACATION_GMAIL,
 }
 
 
