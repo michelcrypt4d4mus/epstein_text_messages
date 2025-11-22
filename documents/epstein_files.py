@@ -2,6 +2,7 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from rich.align import Align
 from rich.markup import escape
 from rich.panel import Panel
 from rich.table import Table
@@ -70,7 +71,8 @@ class EpsteinFiles:
 
         if len(emails) > 0:
             txt = Text(f"Found {len(emails)} emails to/from {author}", justify='center')
-            console.print('\n\n', Panel(txt, style=f"{COUNTERPARTY_COLORS.get(author, 'default')} bold reverse"), '\n')
+            panel = Panel(txt, width=80, style=f"{COUNTERPARTY_COLORS.get(author, 'default')} bold reverse")
+            console.print('\n\n', Align.center(panel), '\n')
         else:
             logger.warning(f"No emails found for {author}")
             return
