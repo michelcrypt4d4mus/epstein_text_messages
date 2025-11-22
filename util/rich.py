@@ -150,6 +150,7 @@ COUNTERPARTY_COLORS.update({
     'DJT': COUNTERPARTY_COLORS[DONALD_TRUMP],
     'Dubai': ARAB_COLOR,
     'ehbarak': COUNTERPARTY_COLORS[EHUD_BARAK],
+    'HBJ': ARAB_COLOR,
     'Iran': ARAB_COLOR,
     'Iranian': ARAB_COLOR,
     'Israel': 'dodger_blue2',
