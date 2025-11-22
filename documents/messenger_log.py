@@ -41,8 +41,9 @@ class MessengerLog(CommunicationDocument):
     def __post_init__(self):
         super().__post_init__()
         self.author = KNOWN_IMESSAGE_FILE_IDS.get(self.file_id, GUESSED_IMESSAGE_FILE_IDS.get(self.file_id))
-        self.author_str = self.author or UNKNOWN
-        self.author_style = COUNTERPARTY_COLORS.get(self.author_str, DEFAULT) + ' bold'
+        author_str = self.author or UNKNOWN
+        self.author_str = author_str.split(' ')[-1] if author_str in [STEVE_BANNON] else author_str
+        self.author_style = COUNTERPARTY_COLORS.get(author_str, DEFAULT) + ' bold'
         self.author_txt = Text(self.author_str, style=self.author_style)
         self.archive_link = archive_link(self.filename, self.author_style)
 
@@ -89,6 +90,7 @@ class MessengerLog(CommunicationDocument):
             else:
                 if sender in TEXTER_MAPPING:
                     sender = sender_str = TEXTER_MAPPING[sender]
+                    sender_str = JEFFREY_EPSTEIN.split(' ')[-1] if sender_str == JEFFREY_EPSTEIN else sender_str
                 elif PHONE_NUMBER_REGEX.match(sender):
                     sender_style = PHONE_NUMBER
                 elif re.match('[ME]+', sender):
