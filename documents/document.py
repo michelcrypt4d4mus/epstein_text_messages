@@ -12,6 +12,7 @@ MULTINEWLINE_REGEX = re.compile(r"\n{3,}")
 
 OCR_REPAIRS = {
     'lndyke': 'Indyke',
+    'jeevacation©gmail.com': 'jeevacation@gmail.com',
 }
 
 

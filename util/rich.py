@@ -125,7 +125,6 @@ COUNTERPARTY_COLORS.update({
     'Ivanka': 'medium_violet_red',
     'Jared Kushner': 'medium_violet_red',
     'jeevacation@gmail.com': COUNTERPARTY_COLORS[JEFFREY_EPSTEIN],
-    'jeevacation©gmail.com': COUNTERPARTY_COLORS[JEFFREY_EPSTEIN],
     'Qatar': 'dark_green',
     'Qatari': 'dark_green',
     'Scaramucci': COUNTERPARTY_COLORS[SCARAMUCCI],
