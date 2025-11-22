@@ -24,6 +24,7 @@ ARCHIVE_LINK = 'archive_link'
 ARCHIVE_LINK_COLOR = 'blue3'
 BITCOIN_COLOR = 'orange1 bold'
 CHINA_COLOR = 'bright_red'
+ISRAELI_COLOR = 'dodger_blue2'
 PHONE_NUMBER = 'phone_number'
 RUSSIA_COLOR = 'dark_red dim'
 TEXT_LINK = 'text_link'
@@ -160,6 +161,7 @@ console.record = True
 COUNTERPARTY_COLORS.update({
     'Abu Dhabi': ARAB_COLOR,
     'bg': 'turquoise4',
+    'Bibi': ISRAELI_COLOR,
     'Bitcoin': BITCOIN_COLOR,
     'CCP': CHINA_COLOR,
     'China': CHINA_COLOR,
@@ -178,8 +180,8 @@ COUNTERPARTY_COLORS.update({
     'HBJ': ARAB_COLOR,
     'Iran': ARAB_COLOR,
     'Iranian': ARAB_COLOR,
-    'Israel': 'dodger_blue2',
-    'Israeli': 'dodger_blue2',
+    'Israel': ISRAELI_COLOR,
+    'Israeli': ISRAELI_COLOR,
     'Ivanka': 'medium_violet_red',
     'Joichi Ito': COUNTERPARTY_COLORS[JOI_ITO],
     'Jabor': COUNTERPARTY_COLORS[JABOR_Y],
@@ -197,6 +199,7 @@ COUNTERPARTY_COLORS.update({
     'MBS': ARAB_COLOR,
     'Miro': COUNTERPARTY_COLORS[MIROSLAV],
     'Moscow': RUSSIA_COLOR,
+    'Netanyahu': ISRAELI_COLOR,
     'Putin': 'dark_red bold',
     'Roger Stone': COUNTERPARTY_COLORS[DONALD_TRUMP],
     'Russia': RUSSIA_COLOR,
