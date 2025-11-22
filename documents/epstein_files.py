@@ -2,6 +2,7 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from rich.align import Align
 from rich.markup import escape
 from rich.panel import Panel
 from rich.table import Table
@@ -13,7 +14,7 @@ from documents.messenger_log import MSG_REGEX, MessengerLog
 from util.constants import *
 from util.env import deep_debug, is_debug
 from util.file_helper import DOCS_DIR, move_json_file
-from util.rich import archive_link, console, logger
+from util.rich import COUNTERPARTY_COLORS, console, logger
 
 
 @dataclass
@@ -69,7 +70,9 @@ class EpsteinFiles:
         author = author or UNKNOWN
 
         if len(emails) > 0:
-            console.print('\n\n', Panel(Text(f"Found {len(emails)} emails to/from {author}", justify='center')), '\n', style='bold reverse')
+            txt = Text(f"Found {len(emails)} emails to/from {author}", justify='center')
+            panel = Panel(txt, width=80, style=f"{COUNTERPARTY_COLORS.get(author, 'default')} bold reverse")
+            console.print('\n\n', Align.center(panel), '\n')
         else:
             logger.warning(f"No emails found for {author}")
             return
