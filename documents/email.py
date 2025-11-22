@@ -184,7 +184,7 @@ class Email(CommunicationDocument):
             self.text = '\n'.join(self.lines)
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        yield Panel(Text('').append(self.archive_link).append(' ').append(coffeezilla_link(self.file_id, '(alt)', style='grey42')), expand=False)
+        yield Panel(self.epsteinify_link(self.author_style), expand=False)
         info_line = Text("Official OCR text of email from ").append(self.author_txt).append(f' to ').append(self.recipient_txt)
         info_line.append(f" probably sent at ").append(f"{self.timestamp or '?'}", style='spring_green3')
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
