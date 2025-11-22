@@ -116,7 +116,7 @@ class EpsteinFiles:
         for email in self.emails_for(author):
             table.add_row(
                 email.author_txt,
-                archive_link(email.filename, link_txt=str(email.sort_time())),
+                email.epsteinify_link(link_txt=str(email.sort_time())),
                 email.header.subject
             )
 
