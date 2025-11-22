@@ -63,7 +63,7 @@ COUNTERPARTY_COLORS = {
     ARIANE_DE_ROTHSCHILD: 'indian_red',
     'Celina Dubin': 'medium_orchid1',
     DEFAULT: 'wheat4',
-    'Donald Trump': 'red3',
+    DONALD_TRUMP: 'red3',
     JEFFREY_EPSTEIN: 'blue',
     EVA: 'orchid',
     JOI_ITO: 'blue_violet',
@@ -120,7 +120,7 @@ console.record = True
 # This is after the Theme() instantiation because 'bg' is reserved'
 COUNTERPARTY_COLORS.update({
     'bg': 'turquoise4',
-    'DJT': COUNTERPARTY_COLORS['Donald Trump'],
+    'DJT': COUNTERPARTY_COLORS[DONALD_TRUMP],
     'Ivanka': 'medium_violet_red',
     'Jared Kushner': 'medium_violet_red',
     'jeevacation@gmail.com': COUNTERPARTY_COLORS[JEFFREY_EPSTEIN],
