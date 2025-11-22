@@ -93,11 +93,16 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     LEON_BLACK: 'dark_cyan',
     SULTAN_BIN_SULAYEM: 'green1',
     'Deepak Chopra': 'dark_goldenrod',
+}
+
+PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {
+    # Epstein's lawyers
     DARREN_INDYKE: 'purple3',
     'Richard Kahn': 'purple4',
 }
 
 COUNTERPARTY_COLORS.update(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED)
+COUNTERPARTY_COLORS.update(PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES)
 COURIER_NEWSROOM_ARCHIVE = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
 COFFEEZILLA_ARCHIVE = 'https://journaliststudio.google.com/pinpoint/search?collection=061ce61c9e70bdfd'
 
@@ -136,8 +141,9 @@ COUNTERPARTY_COLORS.update({
 })
 
 
-def archive_link(filename: str, style: str = ARCHIVE_LINK_COLOR) -> str:
-    return f"[bold][{style}][link={search_archive_url(filename)}]{filename}[/link][/{style}][/bold]"
+def archive_link(filename: str, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> str:
+    link_txt = link_txt or filename
+    return f"[bold][{style}][link={search_archive_url(filename)}]{link_txt}[/link][/{style}][/bold]"
 
 
 def highlight_names(text: str) -> str:
