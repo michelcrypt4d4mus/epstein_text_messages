@@ -22,7 +22,7 @@ DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
 BAD_EMAILER_REGEX = re.compile(r'^>|ok|re:|fwd:|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|hysterical|image0|so that people|article 1.?|momminnemummin|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Subject|Attachments):\s*\n)+')
 REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?(?: [a-zA-Z]+)*(?:[ \n]wrote:)?|-+(Forwarded|Original)\s*Message-*|Begin forwarded message:?)', re.IGNORECASE)
-SENT_FROM_REGEX = re.compile(r'(Sent (from my|via) (iPhone|iPad|Samsung JackTM.*AT&T|AT&T Windows Mobile phone|BlackBerry.*(smartphone|wireless device|AT&T|T- ?Mobile))\.?)')
+SENT_FROM_REGEX = re.compile(r'([sS]ent (from my|via) (iPhone|iPad|Samsung JackTM.*AT&T|AT&T Windows Mobile phone|BlackBerry.*(smartphone|wireless device|AT&T|T- ?Mobile))\.?)')
 REDACTED_REPLY_REGEX = re.compile(r'<[ _\n]+> wrote:', re.IGNORECASE)
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
@@ -185,7 +185,7 @@ class Email(CommunicationDocument):
             self.text = '\n'.join(self.lines)
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        yield Panel(Text('').append(self.archive_link).append(' ').append(coffeezilla_link(self.file_id, '(coffeezilla)', style='grey42')), expand=False)
+        yield Panel(Text('').append(self.archive_link).append(' ').append(coffeezilla_link(self.file_id, '(alt)', style='grey42')), expand=False)
         info_line = Text("Official OCR text of email from ").append(self.author_txt).append(f' to ').append(self.recipient_txt)
         info_line.append(f" probably sent at ").append(f"{self.timestamp or '?'}", style='spring_green3')
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
