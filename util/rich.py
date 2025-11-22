@@ -99,22 +99,21 @@ COUNTERPARTY_COLORS = {
 
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     None: 'grey74',
-    STEVE_BANNON: COUNTERPARTY_COLORS[STEVE_BANNON],
-    'Sean Bannon': COUNTERPARTY_COLORS[STEVE_BANNON],
     JOI_ITO: 'blue_violet',
     AL_SECKEL: 'orange_red1',
     EHUD_BARAK: 'chartreuse4',
-    'Jean Luc Brunel': 'wheat4',
+    JEAN_LUC_BRUNEL: 'wheat4',
     MARTIN_NOWAK: 'navy_blue',
     'Masha Drokova': 'deep_pink2',
     'Peter Thiel': 'orange4',
+    STEVE_BANNON: COUNTERPARTY_COLORS[STEVE_BANNON],
+    'Sean Bannon': COUNTERPARTY_COLORS[STEVE_BANNON],
     # Temporary
     # 'Reid Weingarten': 'magenta',
     # 'Kathy Ruemmler': 'magenta',
 }
 
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {
-    'Deepak Chopra': 'dark_goldenrod',
     GHISLAINE_MAXWELL: 'deep_pink3',
     LEON_BLACK: 'dark_cyan',
     LANDON_THOMAS: 'misty_rose3',  # FT journo
@@ -122,6 +121,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {
     # Epstein's lawyers
     DARREN_INDYKE: 'purple3',
     'Richard Kahn': 'purple4',
+    'Deepak Chopra': 'dark_goldenrod',
 }
 
 COUNTERPARTY_COLORS.update(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED)
