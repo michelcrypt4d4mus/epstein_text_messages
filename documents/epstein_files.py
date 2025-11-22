@@ -4,6 +4,7 @@ from pathlib import Path
 
 from rich.markup import escape
 from rich.panel import Panel
+from rich.table import Table
 from rich.text import Text
 
 from documents.document import Document
@@ -101,6 +102,17 @@ class EpsteinFiles:
 
     def imessage_msg_count(self) -> int:
         return sum([log.msg_count for log in self.sorted_imessage_logs()])
+
+    def print_emails_table_for(self, author: str) -> None:
+        table = Table(title=f"Emails to/from {author}", show_header=True, header_style="bold")
+        table.add_column("From", justify="left")
+        table.add_column("Date", justify="center")
+        table.add_column("Subject", justify="center")
+
+        for email in self.emails_for(author):
+            table.add_row(email.author_txt, str(email.timestamp), email.header.subject)
+
+        console.print(table, '\n\n')
 
     @classmethod
     def sort_emails(cls, emails: list[Email]) -> list[Email]:
