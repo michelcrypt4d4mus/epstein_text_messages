@@ -79,7 +79,7 @@ COUNTERPARTY_COLORS = {
     ARIANE_DE_ROTHSCHILD: 'indian_red',
     'Celina Dubin': 'medium_orchid1',
     DEFAULT: 'wheat4',
-    DONALD_TRUMP: 'red3',
+    DONALD_TRUMP: 'red3 bold',
     JEFFREY_EPSTEIN: 'blue',
     EVA: 'orchid',
     'jeffrey wernick': BITCOIN_COLOR,
