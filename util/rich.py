@@ -114,7 +114,6 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     'Masha Drokova': 'deep_pink2',
     'Peter Thiel': 'orange4',
     STEVE_BANNON: COUNTERPARTY_COLORS[STEVE_BANNON],
-    'Sean Bannon': COUNTERPARTY_COLORS[STEVE_BANNON],
     DAVID_STERN: 'medium_purple3',
     # Temporary
     # 'Reid Weingarten': 'magenta',
