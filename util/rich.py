@@ -94,8 +94,6 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     AL_SECKEL: 'orange_red1',
     EHUD_BARAK: 'chartreuse4',
     # Temporary
-    # 'Bill Siegel': 'magenta',
-    # LISA_NEW: 'magenta',
     # 'Reid Weingarten': 'magenta',
     # 'Kathy Ruemmler': 'magenta',
 }
