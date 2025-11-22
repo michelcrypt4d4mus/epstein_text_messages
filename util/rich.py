@@ -1,4 +1,3 @@
-import csv
 import json
 import logging
 import re
@@ -99,6 +98,7 @@ COUNTERPARTY_COLORS = {
 
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     None: 'grey74',
+    JEREMY_RUBIN: BITCOIN_COLOR,
     JOI_ITO: 'blue_violet',
     AL_SECKEL: 'orange_red1',
     EHUD_BARAK: 'chartreuse4',
@@ -108,6 +108,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     'Peter Thiel': 'orange4',
     STEVE_BANNON: COUNTERPARTY_COLORS[STEVE_BANNON],
     'Sean Bannon': COUNTERPARTY_COLORS[STEVE_BANNON],
+    DAVID_STERN: 'medium_purple3',
     # Temporary
     # 'Reid Weingarten': 'magenta',
     # 'Kathy Ruemmler': 'magenta',
