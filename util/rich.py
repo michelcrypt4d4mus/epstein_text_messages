@@ -79,7 +79,7 @@ COUNTERPARTY_COLORS = {
     JEFFREY_EPSTEIN: 'blue',
     EVA: 'orchid',
     'jeffrey wernick': BITCOIN_COLOR,
-    LARRY_SUMMERS: 'dark_magenta',
+    LARRY_SUMMERS: 'spring_green4',
     MELANIE_WALKER: 'deep_pink4',
     MELANIE_SPINELLA: 'magenta3',
     MIROSLAV: 'slate_blue3',
