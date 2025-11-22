@@ -111,7 +111,7 @@ class EpsteinFiles:
         table = Table(title=f"Emails to/from {author}", show_header=True, header_style="bold")
         table.add_column("From", justify="left")
         table.add_column("Date", justify="center")
-        table.add_column("Subject", justify="left")
+        table.add_column("Subject", justify="left", style='pale_turquoise4')
 
         for email in self.emails_for(author):
             table.add_row(
