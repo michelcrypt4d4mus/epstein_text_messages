@@ -192,8 +192,12 @@ COUNTERPARTY_COLORS.update({
 })
 
 
+def make_link_markup(url: str, link_text: str, style: str = ARCHIVE_LINK_COLOR) -> str:
+    return f"[underline][bold][{style}][link={url}]{link_text}[/link][/{style}][/bold][/underline]"
+
+
 def make_link(url: str, link_text: str, style: str = ARCHIVE_LINK_COLOR) -> Text:
-    return Text.from_markup(f"[underline][bold][{style}][link={url}]{link_text}[/link][/{style}][/bold][/underline]")
+    return Text.from_markup(make_link_markup(url, link_text, style))
 
 
 def archive_link(filename: str, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
