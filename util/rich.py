@@ -21,6 +21,7 @@ LEADING_WHITESPACE_REGEX = re.compile(r'\A\s*', re.MULTILINE)
 MAX_PREVIEW_CHARS = 300
 OUTPUT_WIDTH = 120
 
+ARAB_COLOR = 'dark_green'
 ARCHIVE_LINK = 'archive_link'
 ARCHIVE_LINK_COLOR = 'blue3'
 PHONE_NUMBER = 'phone_number'
@@ -92,10 +93,11 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     EHUD_BARAK: 'chartreuse4',
     LEON_BLACK: 'dark_cyan',
     SULTAN_BIN_SULAYEM: 'green1',
-    'Deepak Chopra': 'dark_goldenrod',
 }
 
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {
+    'Deepak Chopra': 'dark_goldenrod',
+    LANDON_THOMAS: 'misty_rose3',  # FT journo
     # Epstein's lawyers
     DARREN_INDYKE: 'purple3',
     'Richard Kahn': 'purple4',
@@ -128,18 +130,21 @@ COUNTERPARTY_COLORS.update({
     'bg': 'turquoise4',
     'Clinton': 'sky_blue1',
     'DJT': COUNTERPARTY_COLORS[DONALD_TRUMP],
+    'Dubai': ARAB_COLOR,
+    'ehbarak': COUNTERPARTY_COLORS[EHUD_BARAK],
     'Israel': 'dodger_blue2',
     'Israeli': 'dodger_blue2',
     'Ivanka': 'medium_violet_red',
     'Jared Kushner': 'medium_violet_red',
     'gmax1@ellmax.com': COUNTERPARTY_COLORS[GHISLAINE_MAXWELL],
     'jeevacation@gmail.com': COUNTERPARTY_COLORS[JEFFREY_EPSTEIN],
-    'Qatar': 'dark_green',
-    'Qatari': 'dark_green',
+    'Qatar': ARAB_COLOR,
+    'Qatari': ARAB_COLOR,
     'Scaramucci': COUNTERPARTY_COLORS[SCARAMUCCI],
     'Miro': COUNTERPARTY_COLORS[MIROSLAV],
-    'Yemen': 'dark_green',
-    'Yemeni': 'dark_green',
+    'UAE': ARAB_COLOR,
+    'Yemen': ARAB_COLOR,
+    'Yemeni': ARAB_COLOR,
 })
 
 
