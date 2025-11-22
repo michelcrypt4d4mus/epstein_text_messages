@@ -24,6 +24,7 @@ LAWRENCE_KRAUSS = 'Lawrence Krauss'
 LEON_BLACK = 'Leon Black'
 LESLEY_GROFF = 'Lesley Groff'
 LISA_NEW = 'Lisa New'          # Harvard poetry prof AKA "Elisa New"
+MARTIN_NOWAK = 'Martin Nowak'
 NADIA_MARCINKO = 'Nadia Marcinko'
 ROBERT_TRIVERS = 'Robert Trivers'
 SULTAN_BIN_SULAYEM = 'Sultan Bin Sulayem'
@@ -149,7 +150,7 @@ EMAILERS = [
     'Kenneth E. Mapp',
     'Joscha Bach',
     'Lesley Groff',
-    'Martin Nowak',
+    MARTIN_NOWAK,
     'middle.east.update@hotmail.com',
     JONATHAN_FARKAS,
     'Mark L. Epstein',
@@ -194,6 +195,7 @@ EMAILER_REGEXES = {
     'lilly sanchez': re.compile(r'Lilly.*Sanchez', re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus', re.IGNORECASE),
     LISA_NEW: re.compile(r'Lisa New?$', re.IGNORECASE),
+    'Marc Leon': re.compile(r'Marc[.]+(Kensington|Leon)', re.IGNORECASE),
     'Martin Weinberg': re.compile(r'martin.*?weinberg', re.IGNORECASE),
     'Michael Wolff': re.compile(r'Michael\s*Wol(ff|i)', re.IGNORECASE),
     'Mike Sitrick': re.compile(r'Mi(chael|ke).*Sitrick', re.IGNORECASE),
@@ -273,6 +275,7 @@ KNOWN_EMAIL_AUTHORS = {
     '021808': NADIA_MARCINKO,
     '022190': NADIA_MARCINKO,
     '021818': NADIA_MARCINKO,
+    '022197': NADIA_MARCINKO,
     '021811': NADIA_MARCINKO,      # Signature and email address in the message
     '024923': 'Paul Krassner',
     '029981': 'Paula',             # reply

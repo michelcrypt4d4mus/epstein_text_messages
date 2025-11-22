@@ -53,6 +53,7 @@ NAMES_TO_NOT_COLOR = [
     'Black',
     'David',
     'Michael',
+    'Richard',
     'Robert',
     'Steve',
     'The',
@@ -70,7 +71,7 @@ COUNTERPARTY_COLORS = {
     JEFFREY_EPSTEIN: 'blue',
     EVA: 'orchid',
     LARRY_SUMMERS: 'dark_magenta',
-    MELANIE_WALKER: 'deep_pink3',
+    MELANIE_WALKER: 'deep_pink4',
     MIROSLAV: 'slate_blue3',
     "Michael Wolff": 'grey54',
     'Noam Chomsky': 'grey23',
@@ -93,6 +94,9 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     JOI_ITO: 'blue_violet',
     AL_SECKEL: 'orange_red1',
     EHUD_BARAK: 'chartreuse4',
+    'Jean Luc Brunel': 'wheat4',
+    MARTIN_NOWAK: 'navy_blue',
+    'Masha Drokova': 'deep_pink2',
     # Temporary
     # 'Reid Weingarten': 'magenta',
     # 'Kathy Ruemmler': 'magenta',
@@ -136,6 +140,7 @@ console.record = True
 COUNTERPARTY_COLORS.update({
     'bg': 'turquoise4',
     'Bitcoin': 'orange1 bold',
+    'China': 'bright_red',
     'Clinton': 'sky_blue1',
     'coins': 'orange1 bold',
     'DJT': COUNTERPARTY_COLORS[DONALD_TRUMP],
@@ -155,11 +160,13 @@ COUNTERPARTY_COLORS.update({
     'Russian': 'dark_red dim',
     'Qatar': ARAB_COLOR,
     'Qatari': ARAB_COLOR,
+    "Saudi": ARAB_COLOR,
     'Scaramucci': COUNTERPARTY_COLORS[SCARAMUCCI],
     'Miro': COUNTERPARTY_COLORS[MIROSLAV],
     'UAE': ARAB_COLOR,
     'Yemen': ARAB_COLOR,
     'Yemeni': ARAB_COLOR,
+    'xi': 'bright_red',
 })
 
 
@@ -180,7 +187,7 @@ def highlight_names(text: str) -> str:
         if name is None or name == DEFAULT:
             continue
 
-        name_regex = re.compile(rf"\b({name})\b", re.IGNORECASE)
+        name_regex = re.compile(rf"\b({name}s?)\b", re.IGNORECASE)
         text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
 
         if ' ' not in name:
