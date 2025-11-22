@@ -26,50 +26,6 @@ ARCHIVE_LINK_COLOR = 'blue3'
 PHONE_NUMBER = 'phone_number'
 TEXT_LINK = 'text_link'
 
-# Color different counterparties differently
-COUNTERPARTY_COLORS = {
-    ANIL: 'dark_green',
-    ARCHIVE_LINK: 'deep_sky_blue4',
-    ARIANE_DE_ROTHSCHILD: 'indian_red',
-    'Celina Dubin': 'medium_orchid1',
-    DEFAULT: 'wheat4',
-    JEFFREY_EPSTEIN: 'blue',
-    EVA: 'orchid',
-    JOI_ITO: 'blue_violet',
-    LARRY_SUMMERS: 'bright_red',
-    MELANIE_WALKER: 'deep_pink3',
-    MIROSLAV: 'slate_blue3',
-    "Michael Wolff": 'grey54',
-    PHONE_NUMBER: 'bright_green',
-    PLASKETT: 'medium_orchid3',
-    SCARAMUCCI: 'orange1',
-    SOON_YI: 'hot_pink',
-    STEVE_BANNON: 'color(58)',
-    TERJE: 'light_slate_blue',
-    TEXT_LINK: 'deep_sky_blue4 underline',
-    'Trump': 'red3',
-    UNKNOWN: 'cyan',
-}
-
-PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
-    None: 'grey74',
-    STEVE_BANNON: COUNTERPARTY_COLORS[STEVE_BANNON],
-    'Sean Bannon': COUNTERPARTY_COLORS[STEVE_BANNON],
-    GHISLAINE_MAXWELL: 'deep_pink3',
-    AL_SECKEL: 'orange_red1',
-    EHUD_BARAK: 'chartreuse4',
-    LEON_BLACK: 'bright_red',
-    SULTAN_BIN_SULAYEM: 'green1',
-    'Deepak Chopra': 'dark_goldenrod',
-    'Darren Indke': 'purple3',
-    'Richard Kahn': 'purple4',
-}
-
-COUNTERPARTY_COLORS.update(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED)
-
-for counterparty in COUNTERPARTY_COLORS:
-    COUNTERPARTY_COLORS[counterparty] = f"{COUNTERPARTY_COLORS[counterparty]} bold"
-
 CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 <html>
 <head>
@@ -92,22 +48,60 @@ CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 </html>
 """
 
+FIRST_NAMES_TO_NOT_COLOR = [
+    'Michael',
+    'Steve',
+    'The',
+    'Victor',
+]
+
+# Color different counterparties differently
+COUNTERPARTY_COLORS = {
+    ANIL: 'dark_green',
+    ARCHIVE_LINK: 'deep_sky_blue4',
+    ARIANE_DE_ROTHSCHILD: 'indian_red',
+    'Celina Dubin': 'medium_orchid1',
+    DEFAULT: 'wheat4',
+    JEFFREY_EPSTEIN: 'blue',
+    EVA: 'orchid',
+    JOI_ITO: 'blue_violet',
+    LARRY_SUMMERS: 'dark_magenta',
+    MELANIE_WALKER: 'deep_pink3',
+    MIROSLAV: 'slate_blue3',
+    "Michael Wolff": 'grey54',
+    PHONE_NUMBER: 'bright_green',
+    PLASKETT: 'medium_orchid3',
+    SCARAMUCCI: 'orange1',
+    SOON_YI: 'hot_pink',
+    STEVE_BANNON: 'color(58)',
+    TERJE: 'light_slate_blue',
+    TEXT_LINK: 'deep_sky_blue4 underline',
+    'Trump': 'red3',
+    UNKNOWN: 'cyan',
+    'Victor Orban': 'purple4',
+}
+
+PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
+    None: 'grey74',
+    STEVE_BANNON: COUNTERPARTY_COLORS[STEVE_BANNON],
+    'Sean Bannon': COUNTERPARTY_COLORS[STEVE_BANNON],
+    GHISLAINE_MAXWELL: 'deep_pink3',
+    AL_SECKEL: 'orange_red1',
+    EHUD_BARAK: 'chartreuse4',
+    LEON_BLACK: 'bright_red',
+    SULTAN_BIN_SULAYEM: 'green1',
+    'Deepak Chopra': 'dark_goldenrod',
+    'Darren Indke': 'purple3',
+    'Richard Kahn': 'purple4',
+}
+
+COUNTERPARTY_COLORS.update(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED)
 COURIER_NEWSROOM_ARCHIVE = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
 COFFEEZILLA_ARCHIVE = 'https://journaliststudio.google.com/pinpoint/search?collection=061ce61c9e70bdfd'
 
 epsteinify_url = lambda name: f"https://epsteinify.com/?name={urllib.parse.quote(name)}"
 search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&q={urllib.parse.quote(txt)}&p=1"
 search_coffeezilla_url = lambda txt: f"{COFFEEZILLA_ARCHIVE}&q={urllib.parse.quote(txt)}&p=1"
-
-
-for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
-    file_id = extract_file_id(row['filename'].strip())
-    counterparty = row['counterparty'].strip()
-
-    if file_id in GUESSED_IMESSAGE_FILE_IDS:
-        raise RuntimeError(f"Can't overwrite attribution of {file_id} to {GUESSED_IMESSAGE_FILE_IDS[file_id]} with {counterparty}")
-
-    GUESSED_IMESSAGE_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
 
 logging.basicConfig(level="NOTSET", format="%(message)s", datefmt="[%X]", handlers=[RichHandler()])
 logger = logging.getLogger("rich")
@@ -122,6 +116,20 @@ else:
 console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS), width=OUTPUT_WIDTH)
 console.record = True
 
+# This is after the Theme() instantiation because 'bg' is reserved'
+COUNTERPARTY_COLORS.update({
+    'bg': 'turquoise4',
+    'DJT': COUNTERPARTY_COLORS['Trump'],
+    'Ivanka': 'medium_violet_red',
+    'Jared Kushner': 'medium_violet_red',
+    'Qatar': 'dark_green',
+    'Qatari': 'dark_green',
+    'Scaramucci': COUNTERPARTY_COLORS[SCARAMUCCI],
+    'Miro': COUNTERPARTY_COLORS[MIROSLAV],
+    'Yemen': 'dark_green',
+    'Yemeni': 'dark_green',
+})
+
 
 def archive_link(filename: str, style: str = ARCHIVE_LINK_COLOR) -> str:
     return f"[bold][{style}][link={search_archive_url(filename)}]{filename}[/link][/{style}][/bold]"
@@ -132,18 +140,23 @@ def highlight_names(text: str) -> str:
         if name is None or name == DEFAULT:
             continue
 
-        name_regex = re.compile(rf"\b{name}\b", re.IGNORECASE)
-        text = name_regex.sub(f'[{style}]{name}[/{style}]', text)
+        name_regex = re.compile(rf"\b({name})\b", re.IGNORECASE)
+        text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
 
         if ' ' not in name:
             continue
 
-        # highlight last names
         names = name.split(' ')
         last_name = names[-1]
         first_name = ' '.join(names[0:-1])
-        name_regex = re.compile(rf"(?!{first_name}) +{last_name}\b")
-        text = name_regex.sub(f' [{style}]{last_name}[/{style}]', text)
+        # highlight last names
+        name_regex = re.compile(rf"(?!{first_name} ?)\b({last_name}s?)\b", re.IGNORECASE)
+        text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
+        # highlight first names
+
+        if len(first_name) > 2 and first_name not in FIRST_NAMES_TO_NOT_COLOR:
+            name_regex = re.compile(rf"\b({first_name}s?)\b(?! ?{last_name})", re.IGNORECASE)
+            text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
 
     return text
 
