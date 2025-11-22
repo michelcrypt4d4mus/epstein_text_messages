@@ -101,6 +101,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     'Jean Luc Brunel': 'wheat4',
     MARTIN_NOWAK: 'navy_blue',
     'Masha Drokova': 'deep_pink2',
+    'Peter Thiel': 'orange4',
     # Temporary
     # 'Reid Weingarten': 'magenta',
     # 'Kathy Ruemmler': 'magenta',
@@ -166,6 +167,7 @@ COUNTERPARTY_COLORS.update({
     'Jared Kushner': 'medium_violet_red',
     'jeevacation@gmail.com': COUNTERPARTY_COLORS[JEFFREY_EPSTEIN],
     'KSA': ARAB_COLOR,
+    'Lavrov': RUSSIA_COLOR,
     'MBS': ARAB_COLOR,
     'Moscow': RUSSIA_COLOR,
     'Putin': 'dark_red bold',
