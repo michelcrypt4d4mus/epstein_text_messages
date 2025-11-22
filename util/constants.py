@@ -275,6 +275,7 @@ KNOWN_EMAIL_AUTHORS = {
     '022193': NADIA_MARCINKO,
     '021814': NADIA_MARCINKO,
     '021808': NADIA_MARCINKO,
+    '022214': NADIA_MARCINKO,         # Reply header
     '022190': NADIA_MARCINKO,
     '021818': NADIA_MARCINKO,
     '022197': NADIA_MARCINKO,
@@ -307,7 +308,6 @@ KNOWN_EMAIL_RECIPIENTS = {
     '029779': LARRY_SUMMERS,          # Header
     '028787': LAWRANCE_VISOSKI,
     '022250': LESLEY_GROFF,           # Reply
-    '022214': NADIA_MARCINKO,         # Reply header
     '022258': NADIA_MARCINKO,         # Reply header
     '030096': 'Peter Mandelson',
     '019334': STEVE_BANNON,
