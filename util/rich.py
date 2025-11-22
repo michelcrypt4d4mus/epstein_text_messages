@@ -184,6 +184,7 @@ COUNTERPARTY_COLORS.update({
     'Lavrov': RUSSIA_COLOR,
     'Le Pen': 'purple4',
     'LePen': 'purple4',
+    'Howard Lutnick': BITCOIN_COLOR,
     'MBS': ARAB_COLOR,
     'Miro': COUNTERPARTY_COLORS[MIROSLAV],
     'Moscow': RUSSIA_COLOR,
