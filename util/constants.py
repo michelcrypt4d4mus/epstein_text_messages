@@ -304,7 +304,7 @@ KNOWN_EMAIL_AUTHORS = {
     '029992': TERRY_KAFKA,         # Reply
     '020666': TERRY_KAFKA,         # ends with 'Terry'
     # '026571': '(unknown french speaker)',
-
+    # '029504': Probably Audrey Raimbault (based on "GMI" in signature, a company registered by "aubrey raimbault")
 }
 
 KNOWN_EMAIL_RECIPIENTS = {
