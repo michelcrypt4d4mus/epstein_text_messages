@@ -47,8 +47,7 @@ class Document:
         return len(re.findall(pattern, self.text))
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        link_txt = link_txt or self.filename
-        return make_link(self.epsteinify_url, self.filename, style)
+        return make_link(self.epsteinify_url, link_txt or self.filename, style)
 
     def log_top_lines(self, n: int = 10, msg: str | None = None) -> None:
         msg = f"{msg + '. ' if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"
