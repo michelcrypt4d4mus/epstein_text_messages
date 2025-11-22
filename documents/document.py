@@ -26,6 +26,7 @@ OCR_REPAIRS = {
 @dataclass
 class Document:
     file_path: Path
+    epsteinify_url: str = field(init=False)
     file_id: str = field(init=False)
     filename: str = field(init=False)
     length: int = field(init=False)
@@ -40,12 +41,13 @@ class Document:
         self.length = len(self.text)
         self.lines = self.text.split('\n')
         self.num_lines = len(self.lines)
+        self.epsteinify_url = epsteinify_doc_url(self.file_path.stem)
 
     def count_regex_matches(self, pattern: str) -> int:
         return len(re.findall(pattern, self.text))
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR) -> Text:
-        return make_link(epsteinify_doc_url(self.file_path.stem), self.filename, style)
+        return make_link(self.epsteinify_url, self.filename, style)
 
     def log_top_lines(self, n: int = 10, msg: str | None = None) -> None:
         msg = f"{msg + '. ' if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"
