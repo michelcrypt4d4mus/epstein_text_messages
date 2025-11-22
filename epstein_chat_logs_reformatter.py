@@ -59,6 +59,9 @@ for i, author in enumerate(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED):
 for author in PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED:
     epstein_files.print_emails_for(author)
 
+for name in PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES.keys():
+    epstein_files.print_emails_table_for(name)
+
 # Save output
 if not is_debug:
     console.save_html(OUTPUT_GH_PAGES_HTML, inline_styles=False, clear=False, code_format=CONSOLE_HTML_FORMAT)
