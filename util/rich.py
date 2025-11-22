@@ -160,6 +160,7 @@ COUNTERPARTY_COLORS.update({
     'Bitcoin': BITCOIN_COLOR,
     'CCP': CHINA_COLOR,
     'China': CHINA_COLOR,
+    'Chinese': CHINA_COLOR,
     'Clinton': 'sky_blue1',
     'coins': BITCOIN_COLOR,
     'cripto': BITCOIN_COLOR,
