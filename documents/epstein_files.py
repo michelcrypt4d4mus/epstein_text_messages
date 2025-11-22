@@ -72,7 +72,7 @@ class EpsteinFiles:
         if len(emails) > 0:
             txt = Text(f"Found {len(emails)} emails to/from {author}", justify='center')
             panel = Panel(txt, width=80, style=f"{COUNTERPARTY_COLORS.get(author, 'default')} bold reverse")
-            console.print('\n\n', Align.center(panel), '\n')
+            console.print('\n\n', panel, '\n')
         else:
             logger.warning(f"No emails found for {author}")
             return
