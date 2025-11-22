@@ -158,6 +158,7 @@ console.record = True
 
 # This is after the Theme() instantiation because 'bg' is reserved'
 COUNTERPARTY_COLORS.update({
+    'Abu Dhabi': ARAB_COLOR,
     'bg': 'turquoise4',
     'Bitcoin': BITCOIN_COLOR,
     'CCP': CHINA_COLOR,
@@ -170,6 +171,7 @@ COUNTERPARTY_COLORS.update({
     'DJT': COUNTERPARTY_COLORS[DONALD_TRUMP],
     'Dubai': ARAB_COLOR,
     'ehbarak': COUNTERPARTY_COLORS[EHUD_BARAK],
+    'Erdogan': ARAB_COLOR,
     'Emirates': ARAB_COLOR,
     'GMAX': COUNTERPARTY_COLORS[GHISLAINE_MAXWELL],
     'gmax1@ellmax.com': COUNTERPARTY_COLORS[GHISLAINE_MAXWELL],
