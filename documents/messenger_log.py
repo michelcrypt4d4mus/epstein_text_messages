@@ -108,7 +108,7 @@ class MessengerLog(CommunicationDocument):
 
                 msg_lines = msg.split('\n')
                 link_text = msg_lines.pop()
-                msg = Text('').append(link_text, style=TEXT_LINK)
+                msg = Text('').append(Text.from_markup(f"[link={link_text}]{link_text}[/link]", style=TEXT_LINK))
 
                 if len(msg_lines) > 0:
                     msg = msg.append('\n' + ' '.join(msg_lines))
