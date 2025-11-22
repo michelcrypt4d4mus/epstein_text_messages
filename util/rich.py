@@ -50,6 +50,7 @@ CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 
 NAMES_TO_NOT_COLOR = [
     'Black',
+    'David',
     'Michael',
     'Steve',
     'The',

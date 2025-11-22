@@ -6,6 +6,7 @@ from io import StringIO
 AL_SECKEL = 'Al Seckel'
 ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
 BARBRO_EHNBOM = 'Barbro Ehnbom'
+BENNET_MOSKOWITZ = 'Bennet Moskowitz'
 DARREN_INDKE = 'Darren Indke'
 DAVID_SCHOEN = 'David Schoen'
 DONALD_TRUMP = 'Donald Trump'
@@ -136,6 +137,7 @@ EMAILERS = [
     'Bill Siegel',
     'Daniel Sabba',
     'Glenn Dubin',
+    'Gordon Getty',
     'Jessica Cadwell',
     JOHN_PAGE,
     'Jokeland',
@@ -144,11 +146,13 @@ EMAILERS = [
     'Kenneth E. Mapp',
     'Joscha Bach',
     'Lesley Groff',
+    'Martin Nowak',
     'middle.east.update@hotmail.com',
     JONATHAN_FARKAS,
     'Mark L. Epstein',
     'Nancy Cain',
     'Nancy Portland',
+    'Oliver Goodenough',
     'Peggy Siegal',
     'Peter Aldhous',
     'Peter Green',
@@ -159,8 +163,9 @@ EMAILERS = [
 ]
 
 EMAILER_REGEXES = {
-    'Amanda Ens': re.compile(r'ens, amand', re.IGNORECASE),
     'Alan Dershowitz': re.compile(r'alan.*dershowitz', re.IGNORECASE),
+    'Amanda Ens': re.compile(r'ens, amand', re.IGNORECASE),
+    'Anas Alrasheed': re.compile(r'anas\s*al\s*rasheed', re.IGNORECASE),
     BARBRO_EHNBOM: re.compile(r'behnbom@aol.com|Barbro\s.*Ehnbom', re.IGNORECASE),
     'Barry J. Cohen': re.compile(r'barry (j.? )?cohen?', re.IGNORECASE),
     'Boris Nikolic': re.compile(r'boris nikoli', re.IGNORECASE),
@@ -186,9 +191,11 @@ EMAILER_REGEXES = {
     'lilly sanchez': re.compile(r'Lilly.*Sanchez', re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus', re.IGNORECASE),
     'Lisa New': re.compile(r'Lisa New?$', re.IGNORECASE),
-    'Mohamed Waheed Hassan': re.compile(r'Mohamed Waheed', re.IGNORECASE),
     'Martin Weinberg': re.compile(r'martin.*?weinberg', re.IGNORECASE),
     'Michael Wolff': re.compile(r'Michael\s*Wol(ff|i)', re.IGNORECASE),
+    'Mike Sitrick': re.compile(r'Mi(chael|ke).*Sitrick', re.IGNORECASE),
+    'Mohamed Waheed Hassan': re.compile(r'Mohamed Waheed', re.IGNORECASE),
+    BENNET_MOSKOWITZ: re.compile(r'Moskowitz.*Bennet|Bennet.*Moskowitz', re.IGNORECASE),
     'Nicholas Ribis': re.compile(r'Nicholas Rib', re.IGNORECASE),
     'Paul Krassner': re.compile(r'Pa\s?ul Krassner', re.IGNORECASE),
     'Paul Morris': re.compile(r'morris, paul|Paul Morris', re.IGNORECASE),
@@ -219,7 +226,7 @@ KNOWN_EMAIL_AUTHORS = {
     '026018': ARIANE_DE_ROTHSCHILD,
     '026659': BARBRO_EHNBOM,      # Reply
     '026745': BARBRO_EHNBOM,      # Signature
-    '031227': 'Moskowitz, Bennet J.',
+    '031227': BENNET_MOSKOWITZ,
     '031442': 'Christina Galbraith',
     '026625': DARREN_INDKE,
     '026290': DAVID_SCHOEN,       # Signature
