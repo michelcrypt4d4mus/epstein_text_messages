@@ -93,6 +93,11 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     JOI_ITO: 'blue_violet',
     AL_SECKEL: 'orange_red1',
     EHUD_BARAK: 'chartreuse4',
+    # Temporary
+    # 'Bill Siegel': 'magenta',
+    # LISA_NEW: 'magenta',
+    # 'Reid Weingarten': 'magenta',
+    # 'Kathy Ruemmler': 'magenta',
 }
 
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {

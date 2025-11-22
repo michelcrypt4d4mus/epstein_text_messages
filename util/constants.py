@@ -19,10 +19,11 @@ JOHN_PAGE = 'John Page'
 JOHNNY_EL_HACHEM = 'Johnny el Hachem'
 JONATHAN_FARKAS = 'Jonathan Farkas'
 LANDON_THOMAS = 'Landon Thomas Jr.'
-LESLEY_GROFF = 'Lesley Groff'
-LAWRENCE_KRAUSS = 'Lawrence Krauss'
 LAWRANCE_VISOSKI = 'Lawrance Visoski'
+LAWRENCE_KRAUSS = 'Lawrence Krauss'
 LEON_BLACK = 'Leon Black'
+LESLEY_GROFF = 'Lesley Groff'
+LISA_NEW = 'Lisa New'          # Harvard poetry prof AKA "Elisa New"
 NADIA_MARCINKO = 'Nadia Marcinko'
 ROBERT_TRIVERS = 'Robert Trivers'
 SULTAN_BIN_SULAYEM = 'Sultan Bin Sulayem'
@@ -192,7 +193,7 @@ EMAILER_REGEXES = {
     LEON_BLACK: re.compile(r'Leon Blac', re.IGNORECASE),
     'lilly sanchez': re.compile(r'Lilly.*Sanchez', re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus', re.IGNORECASE),
-    'Lisa New': re.compile(r'Lisa New?$', re.IGNORECASE),
+    LISA_NEW: re.compile(r'Lisa New?$', re.IGNORECASE),
     'Martin Weinberg': re.compile(r'martin.*?weinberg', re.IGNORECASE),
     'Michael Wolff': re.compile(r'Michael\s*Wol(ff|i)', re.IGNORECASE),
     'Mike Sitrick': re.compile(r'Mi(chael|ke).*Sitrick', re.IGNORECASE),
