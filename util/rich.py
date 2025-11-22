@@ -53,6 +53,7 @@ CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 
 NAMES_TO_NOT_COLOR = [
     'Black',
+    'Darren',
     'David',
     'Martin',
     'Michael',
@@ -152,6 +153,8 @@ COUNTERPARTY_COLORS.update({
     'DJT': COUNTERPARTY_COLORS[DONALD_TRUMP],
     'Dubai': ARAB_COLOR,
     'ehbarak': COUNTERPARTY_COLORS[EHUD_BARAK],
+    'Emirates': ARAB_COLOR,
+    'GMAX': COUNTERPARTY_COLORS[GHISLAINE_MAXWELL],
     'gmax1@ellmax.com': COUNTERPARTY_COLORS[GHISLAINE_MAXWELL],
     'HBJ': ARAB_COLOR,
     'Iran': ARAB_COLOR,
