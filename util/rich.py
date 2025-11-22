@@ -126,6 +126,7 @@ console.record = True
 # This is after the Theme() instantiation because 'bg' is reserved'
 COUNTERPARTY_COLORS.update({
     'bg': 'turquoise4',
+    'Clinton': 'sky_blue1',
     'DJT': COUNTERPARTY_COLORS[DONALD_TRUMP],
     'Israel': 'dodger_blue2',
     'Israeli': 'dodger_blue2',
