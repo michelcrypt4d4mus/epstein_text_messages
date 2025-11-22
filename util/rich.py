@@ -15,7 +15,6 @@ from rich.theme import Theme
 
 from .constants import *
 from .env import deep_debug, is_debug
-from .file_helper import extract_file_id
 
 LEADING_WHITESPACE_REGEX = re.compile(r'\A\s*', re.MULTILINE)
 MAX_PREVIEW_CHARS = 300
@@ -26,6 +25,7 @@ ARCHIVE_LINK = 'archive_link'
 ARCHIVE_LINK_COLOR = 'blue3'
 BITCOIN_COLOR = 'orange1 bold'
 PHONE_NUMBER = 'phone_number'
+RUSSIA_COLOR = 'dark_red dim'
 TEXT_LINK = 'text_link'
 
 CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
@@ -150,6 +150,7 @@ COUNTERPARTY_COLORS.update({
     'DJT': COUNTERPARTY_COLORS[DONALD_TRUMP],
     'Dubai': ARAB_COLOR,
     'ehbarak': COUNTERPARTY_COLORS[EHUD_BARAK],
+    'gmax1@ellmax.com': COUNTERPARTY_COLORS[GHISLAINE_MAXWELL],
     'HBJ': ARAB_COLOR,
     'Iran': ARAB_COLOR,
     'Iranian': ARAB_COLOR,
@@ -158,12 +159,13 @@ COUNTERPARTY_COLORS.update({
     'Ivanka': 'medium_violet_red',
     'Joichi Ito': COUNTERPARTY_COLORS[JOI_ITO],
     'Jared Kushner': 'medium_violet_red',
-    'gmax1@ellmax.com': COUNTERPARTY_COLORS[GHISLAINE_MAXWELL],
     'jeevacation@gmail.com': COUNTERPARTY_COLORS[JEFFREY_EPSTEIN],
-    'Moscow': 'dark_red dim',
-    'Putin': 'dark_red dim bold',
-    'Russia': 'dark_red dim',
-    'Russian': 'dark_red dim',
+    'KSA': ARAB_COLOR,
+    'MBS': ARAB_COLOR,
+    'Moscow': RUSSIA_COLOR,
+    'Putin': 'dark_red bold',
+    'Russia': RUSSIA_COLOR,
+    'Russian': RUSSIA_COLOR,
     'Qatar': ARAB_COLOR,
     'Qatari': ARAB_COLOR,
     "Saudi": ARAB_COLOR,
