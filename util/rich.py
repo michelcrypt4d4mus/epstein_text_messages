@@ -66,6 +66,8 @@ NAMES_TO_NOT_COLOR = [
     'Steve',
     'The',
     'Victor',
+    "Y",
+    "Y.",
 ]
 
 # Color different counterparties differently
