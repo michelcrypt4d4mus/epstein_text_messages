@@ -236,6 +236,27 @@ def highlight_names(text: str) -> str:
     return text
 
 
+ABBREVIATIONS = {
+    highlight_names("AD"): "Abu Dhabi",
+    highlight_names("Barak"): "Ehud Barak (Former Israeli prime minister)",
+    highlight_names("Barrack"): "Tom Barrack",
+    highlight_names('BG'): "Bill Gates",
+    highlight_names('Bill'): "Bill Gates",
+    highlight_names("Brock"): "Brock Pierce",
+    highlight_names("DB"): "Deutsche Bank (maybe??)",
+    highlight_names('HBJ'): "Hamad bin Jassim (Former Qatari prime minister)",
+    highlight_names('Jagland'): 'Thorbjørn Jagland',
+    highlight_names("Hoffenberg"): "Steven Hoffenberg (Epstein's ponzi scheme partner)",
+    highlight_names('KSA'): "Kingdom of Saudi Arabia",
+    highlight_names('MBS'): "Mohammed bin Salman Al Saud (Saudi ruler)",
+    highlight_names('Jared'): "Jared Kushner",
+    highlight_names("Miro"): MIROSLAV,
+    highlight_names("Mooch"): "Anthony 'The Mooch' Scaramucci (Skybridge crypto bro)",
+    highlight_names("Terje"): TERJE,
+    highlight_names("Woody"): "Woody Allen",
+    highlight_names("Zug"): "City in Switzerland (crypto hub)",
+}
+
 def print_header():
     console.print(f"This site is not optimized for mobile but if you get past the header it should work ok.", style='dim')
     console.line()
@@ -248,26 +269,12 @@ def print_header():
     console.print(Align.center("[link=https://x.com/Cryptadamist/status/1990866804630036988]Twitter[/link]"))
     # Acronym table
     table = Table(title="Abbreviations Used Frequently In These Chats", show_header=True, header_style="bold")
-    table.add_column("Abbreviation", style="steel_blue bold", justify="center", width=19)
+    table.add_column("Abbreviation", justify="center", style='bold', width=19)
     table.add_column("Translation", style="deep_sky_blue4", justify="center")
-    table.add_row("AD", "Abu Dhabi")
-    table.add_row("Barak", "Ehud Barak (Former Israeli prime minister)")
-    table.add_row("Barrack", "Tom Barrack")
-    table.add_row('BG', "Bill Gates")
-    table.add_row('Bill', "Bill Gates")
-    table.add_row("Brock", "Brock Pierce")
-    table.add_row("DB", "Deutsche Bank (maybe??)")
-    table.add_row('HBJ', "Hamad bin Jassim (Former Qatari prime minister)")
-    table.add_row('Jagland', 'Thorbjørn Jagland')
-    table.add_row("Hoffenberg", "Steven Hoffenberg (Epstein's ponzi scheme partner)")
-    table.add_row('KSA', "Kingdom of Saudi Arabia")
-    table.add_row('MBS', "Mohammed bin Salman Al Saud (Saudi ruler)")
-    table.add_row('Jared', "Jared Kushner")
-    table.add_row("Miro", MIROSLAV)
-    table.add_row("Mooch", "Anthony 'The Mooch' Scaramucci (Skybridge crypto bro)")
-    table.add_row("Terje", TERJE)
-    table.add_row("Woody", "Woody Allen")
-    table.add_row("Zug", "City in Switzerland (crypto hub)")
+
+    for k, v in ABBREVIATIONS.items():
+        table.add_row(k, v)
+
     console.print('\n', Align.center(table))
     console.line()
     console.print(Align.center(f"[link=https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/]Oversight Committee Releases Additional Epstein Estate Documents[/link]"))
