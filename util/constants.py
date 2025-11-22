@@ -31,6 +31,7 @@ MELANIE_SPINELLA = 'Melanie Spinella'
 ROBERT_TRIVERS = 'Robert Trivers'
 SULTAN_BIN_SULAYEM = 'Sultan Bin Sulayem'
 TERRY_KAFKA = 'Terry Kafka'
+TONJA_HADDAD_COLEMAN = 'Tonja Haddad Coleman'
 REDACTED = '[REDACTED]'
 
 # Texting Names
@@ -220,6 +221,7 @@ EMAILER_REGEXES = {
     'Steven Sinofsky': re.compile(r'Steven Sinofsk', re.IGNORECASE),
     SULTAN_BIN_SULAYEM: re.compile(r'Sultan bin Sulay', re.IGNORECASE),
     TERRY_KAFKA: re.compile(r'Terry Kafk', re.IGNORECASE),
+    TONJA_HADDAD_COLEMAN: re.compile(fr"{TONJA_HADDAD_COLEMAN}|haddadfm@aol.com", re.IGNORECASE)
 }
 
 for emailer in EMAILERS:
