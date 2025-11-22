@@ -27,10 +27,15 @@ QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
 CLIPPED_SIGNATURE_REPLACEMENT = '[dim]<...snipped epstein legal signature...>[/dim]'
 BAD_FIRST_LINES = ['026652', '029835', '031189']
-TRUNCATE_TERMS = ['The rebuilding of Indonesia']
 MAX_CHARS_TO_PRINT = 4000
 VALID_HEADER_LINES = 14
 EMAIL_INDENT = 3
+
+TRUNCATE_TERMS = [
+    'The rebuilding of Indonesia',
+    'Dominique Strauss-Kahn',
+    'THOMAS L. FRIEDMAN',
+]
 
 
 @dataclass
@@ -179,7 +184,7 @@ class Email(CommunicationDocument):
             self.text = '\n'.join(self.lines)
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        yield Panel(self.archive_link, expand=False)
+        yield Panel(Text('').append(self.archive_link).append(' ').append(coffeezilla_link(self.file_id, '(img search)', style='white dim')), expand=False)
         info_line = Text("Official OCR text of email from ").append(self.author_txt).append(f' to ').append(self.recipient_txt)
         info_line.append(f" probably sent at ").append(f"{self.timestamp or '?'}", style='spring_green3')
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))

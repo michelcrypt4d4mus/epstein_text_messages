@@ -19,6 +19,7 @@ JOHN_PAGE = 'John Page'
 JOHNNY_EL_HACHEM = 'Johnny el Hachem'
 JONATHAN_FARKAS = 'Jonathan Farkas'
 LANDON_THOMAS = 'Landon Thomas Jr.'
+LESLEY_GROFF = 'Lesley Groff'
 LAWRENCE_KRAUSS = 'Lawrence Krauss'
 LAWRANCE_VISOSKI = 'Lawrance Visoski'
 LEON_BLACK = 'Leon Black'
@@ -296,9 +297,11 @@ KNOWN_EMAIL_RECIPIENTS = {
     '031413': LANDON_THOMAS,          # Reply
     '029692': LARRY_SUMMERS,          # Header
     '029779': LARRY_SUMMERS,          # Header
-    '019334': STEVE_BANNON,
+    '028787': LAWRANCE_VISOSKI,
+    '022250': LESLEY_GROFF,           # Reply
     '022258': NADIA_MARCINKO,         # Reply header
     '030096': 'Peter Mandelson',
+    '019334': STEVE_BANNON,
 }
 
 
