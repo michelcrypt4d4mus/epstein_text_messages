@@ -26,6 +26,7 @@ SENT_FROM_REGEX = re.compile(r'([sS]ent (from my|via) (iPhone|iPad|Samsung JackT
 REDACTED_REPLY_REGEX = re.compile(r'<[ _\n]+> wrote:', re.IGNORECASE)
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
+BAD_LINE_REGEX = re.compile(r'^\d{1,2}|Importance: High$')
 CLIPPED_SIGNATURE_REPLACEMENT = '[dim]<...snipped epstein legal signature...>[/dim]'
 BAD_FIRST_LINES = ['026652', '029835', '031189']
 MAX_CHARS_TO_PRINT = 4000
@@ -79,16 +80,15 @@ class Email(CommunicationDocument):
     def cleanup_email_txt(self) -> str:
         # add newline after header if header looks valid
         if not EMPTY_HEADER_REGEX.search(self.text):
-            prettified_text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', self.text).strip()
+            text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', self.text).strip()
         else:
-            prettified_text = self.text
+            text = self.text
 
-        # Remove single digit lines
-        prettified_text = '\n'.join([line for line in prettified_text.split('\n') if not re.match(r'^\d{1,2}$', line)])
-        prettified_text = REDACTED_REPLY_REGEX.sub('<REDACTED> wrote:', prettified_text)
-        prettified_text = REPLY_REGEX.sub(r'\n\1', prettified_text)  # Newlines between quoted replies
-        prettified_text = EPSTEIN_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, prettified_text)
-        return escape(EPSTEIN_OLD_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, prettified_text))
+        text = '\n'.join([line for line in text.split('\n') if not BAD_LINE_REGEX.match(line)])
+        text = REDACTED_REPLY_REGEX.sub('<REDACTED> wrote:', text)
+        text = escape(REPLY_REGEX.sub(r'\n\1', text))  # Newlines between quoted replies
+        text = EPSTEIN_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, text)
+        return EPSTEIN_OLD_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, text)
 
     def sort_time(self) -> datetime:
         timestamp = self.timestamp or parse("1/1/2001 12:01:01 AM")
@@ -96,6 +96,7 @@ class Email(CommunicationDocument):
 
     def idx_of_nth_quoted_reply(self, n: int = 4, text: str | None = None) -> int | None:
         num_quotes = self.count_regex_matches(QUOTED_REPLY_LINE_REGEX.pattern)
+        logger.debug(f"Found {num_quotes} apparent quotes in body of email")
         text = text or self.text
 
         if num_quotes <= n:
