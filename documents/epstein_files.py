@@ -66,7 +66,7 @@ class EpsteinFiles:
 
     def print_emails_for(self, author: str | None) -> None:
         emails = self.emails_for(author)
-        author = author or '[redacted]'
+        author = author or UNKNOWN
 
         if len(emails) > 0:
             console.print('\n\n', Panel(Text(f"Found {len(emails)} emails to/from {author}", justify='center')), '\n', style='bold reverse')
@@ -74,7 +74,7 @@ class EpsteinFiles:
             logger.warning(f"No emails found for {author}")
             return
 
-        if author is not None:
+        if author is not None and author != UNKNOWN:
             self.print_emails_table_for(author)
 
         for email in emails:
