@@ -24,6 +24,7 @@ OUTPUT_WIDTH = 120
 ARAB_COLOR = 'dark_green'
 ARCHIVE_LINK = 'archive_link'
 ARCHIVE_LINK_COLOR = 'blue3'
+BITCOIN_COLOR = 'orange1 bold'
 PHONE_NUMBER = 'phone_number'
 TEXT_LINK = 'text_link'
 
@@ -52,6 +53,7 @@ CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 NAMES_TO_NOT_COLOR = [
     'Black',
     'David',
+    'Martin',
     'Michael',
     'Richard',
     'Robert',
@@ -139,10 +141,12 @@ console.record = True
 # This is after the Theme() instantiation because 'bg' is reserved'
 COUNTERPARTY_COLORS.update({
     'bg': 'turquoise4',
-    'Bitcoin': 'orange1 bold',
+    'Bitcoin': BITCOIN_COLOR,
     'China': 'bright_red',
     'Clinton': 'sky_blue1',
-    'coins': 'orange1 bold',
+    'coins': BITCOIN_COLOR,
+    'cripto': BITCOIN_COLOR,
+    'crypto': BITCOIN_COLOR,
     'DJT': COUNTERPARTY_COLORS[DONALD_TRUMP],
     'Dubai': ARAB_COLOR,
     'ehbarak': COUNTERPARTY_COLORS[EHUD_BARAK],
