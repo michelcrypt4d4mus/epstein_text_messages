@@ -7,7 +7,7 @@ AL_SECKEL = 'Al Seckel'
 ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
 BARBRO_EHNBOM = 'Barbro Ehnbom'
 BENNET_MOSKOWITZ = 'Bennet Moskowitz'
-DARREN_INDKE = 'Darren Indke'
+DARREN_INDYKE = 'Darren Indyke'
 DAVID_SCHOEN = 'David Schoen'
 DONALD_TRUMP = 'Donald Trump'
 EDWARD_EPSTEIN = 'Edward Epstein'
@@ -170,7 +170,7 @@ EMAILER_REGEXES = {
     'Barry J. Cohen': re.compile(r'barry (j.? )?cohen?', re.IGNORECASE),
     'Boris Nikolic': re.compile(r'boris nikoli', re.IGNORECASE),
     'Dangene and Jennie Enterprise': re.compile(r'Dangene and Jennie Enterpris', re.IGNORECASE),
-    DARREN_INDKE: re.compile(r'^darren$|darren [il]ndyke|dkiesq', re.IGNORECASE),
+    DARREN_INDYKE: re.compile(r'^darren$|darren [il]ndyke|dkiesq', re.IGNORECASE),
     'David Stern': re.compile(r'David Stern?', re.IGNORECASE),
     EDWARD_EPSTEIN: re.compile(r'Edward (Jay )?Epstein', re.IGNORECASE),
     EHUD_BARAK: re.compile(r'(ehud|h)\s*barak', re.IGNORECASE),
@@ -228,7 +228,7 @@ KNOWN_EMAIL_AUTHORS = {
     '026745': BARBRO_EHNBOM,      # Signature
     '031227': BENNET_MOSKOWITZ,
     '031442': 'Christina Galbraith',
-    '026625': DARREN_INDKE,
+    '026625': DARREN_INDYKE,
     '026290': DAVID_SCHOEN,       # Signature
     '031339': DAVID_SCHOEN,       # Signature
     '031492': DAVID_SCHOEN,       # Signature

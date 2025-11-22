@@ -10,6 +10,10 @@ from util.rich import logger
 
 MULTINEWLINE_REGEX = re.compile(r"\n{3,}")
 
+OCR_REPAIRS = {
+    'lndyke': 'Indyke',
+}
+
 
 @dataclass
 class Document:
@@ -45,6 +49,10 @@ class Document:
             text = f.read()
             text = text[1:] if (len(text) > 0 and text[0] == '\ufeff') else text  # remove BOM
             text = text.strip()
+
+            for k, v in OCR_REPAIRS.items():
+                text = text.replace(k, v)
+
             lines = [l.strip() for l in text.split('\n') if not l.startswith('HOUSE OVERSIGHT')]
             return MULTINEWLINE_REGEX.sub('\n\n\n', '\n'.join(lines))
 
