@@ -15,6 +15,7 @@ EHUD_BARAK = 'Ehud Barak'
 GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
 GWENDOLYN_BECK = 'Gwendolyn Beck'
 JEAN_HUGUEN = 'Jean Huguen'
+JEAN_LUC_BRUNEL = 'Jean Luc Brunel'
 JOHN_PAGE = 'John Page'
 JOHNNY_EL_HACHEM = 'Johnny el Hachem'
 JONATHAN_FARKAS = 'Jonathan Farkas'
@@ -174,7 +175,7 @@ EMAILER_REGEXES = {
     'Barry J. Cohen': re.compile(r'barry (j.? )?cohen?', re.IGNORECASE),
     'Boris Nikolic': re.compile(r'boris nikoli', re.IGNORECASE),
     'Dangene and Jennie Enterprise': re.compile(r'Dangene and Jennie Enterpris', re.IGNORECASE),
-    DARREN_INDYKE: re.compile(r'^darren$|darren [il]ndyke|dkiesq', re.IGNORECASE),
+    DARREN_INDYKE: re.compile(r'^darren$|darren [il]ndyke?|dkiesq', re.IGNORECASE),
     'David Stern': re.compile(r'David Stern?', re.IGNORECASE),
     EDWARD_EPSTEIN: re.compile(r'Edward (Jay )?Epstein', re.IGNORECASE),
     EHUD_BARAK: re.compile(r'(ehud|h)\s*barak', re.IGNORECASE),
@@ -184,6 +185,7 @@ EMAILER_REGEXES = {
     'Intelligence Squared': re.compile(r'intelligence\s*squared', re.IGNORECASE),
     'jackie perczel':  re.compile(r'jackie percze', re.IGNORECASE),
     'Jabor Y.': re.compile(r'^[ji]abor\s*y', re.IGNORECASE),
+    JEAN_LUC_BRUNEL: re.compile(r'Jean[- ]Luc Brunel?', re.IGNORECASE),
     JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein?', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|joichi|^joi$', re.IGNORECASE),
     JOHNNY_EL_HACHEM: re.compile('el hachem johnny|johnny el hachem', re.IGNORECASE),
@@ -195,7 +197,7 @@ EMAILER_REGEXES = {
     'lilly sanchez': re.compile(r'Lilly.*Sanchez', re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus', re.IGNORECASE),
     LISA_NEW: re.compile(r'Lisa New?$', re.IGNORECASE),
-    'Marc Leon': re.compile(r'Marc[.]+(Kensington|Leon)', re.IGNORECASE),
+    'Marc Leon': re.compile(r'Marc[.]+(Kensington|Leon)|Kensington2', re.IGNORECASE),
     'Martin Weinberg': re.compile(r'martin.*?weinberg', re.IGNORECASE),
     'Michael Wolff': re.compile(r'Michael\s*Wol(ff|i)', re.IGNORECASE),
     'Mike Sitrick': re.compile(r'Mi(chael|ke).*Sitrick', re.IGNORECASE),
@@ -297,6 +299,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '021106': 'Alexandra Preate',     # Reply
     '030764': ARIANE_DE_ROTHSCHILD,   # Reply
     '026431': ARIANE_DE_ROTHSCHILD,   # Reply
+    '031607': EDWARD_EPSTEIN,
     '026426': JEAN_HUGUEN,            # Reply
     '030522': LANDON_THOMAS,
     '031413': LANDON_THOMAS,          # Reply

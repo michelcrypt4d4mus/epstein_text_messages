@@ -66,7 +66,8 @@ for author in PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED:
     epstein_files.print_emails_for(author)
 
 # Print everyone with less than 3 sent emails
-# for author in [a for a in epstein_files.email_author_counts.keys() if len(epstein_files.emails_for(a)) < 3]:
+# low_sent = [a for a in epstein_files.email_author_counts.keys() if len(epstein_files.emails_for(a)) < 3]
+# for author in [a for a in epstein_files.email_recipient_counts.keys() if len(epstein_files.emails_for(a)) < 3 and a not in low_sent]:
 #     epstein_files.print_emails_for(author)
 
 for name in PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES.keys():
