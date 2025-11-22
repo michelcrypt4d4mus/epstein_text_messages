@@ -19,10 +19,11 @@ JOHN_PAGE = 'John Page'
 JOHNNY_EL_HACHEM = 'Johnny el Hachem'
 JONATHAN_FARKAS = 'Jonathan Farkas'
 LANDON_THOMAS = 'Landon Thomas Jr.'
-LESLEY_GROFF = 'Lesley Groff'
-LAWRENCE_KRAUSS = 'Lawrence Krauss'
 LAWRANCE_VISOSKI = 'Lawrance Visoski'
+LAWRENCE_KRAUSS = 'Lawrence Krauss'
 LEON_BLACK = 'Leon Black'
+LESLEY_GROFF = 'Lesley Groff'
+LISA_NEW = 'Lisa New'          # Harvard poetry prof AKA "Elisa New"
 NADIA_MARCINKO = 'Nadia Marcinko'
 ROBERT_TRIVERS = 'Robert Trivers'
 SULTAN_BIN_SULAYEM = 'Sultan Bin Sulayem'
@@ -192,7 +193,7 @@ EMAILER_REGEXES = {
     LEON_BLACK: re.compile(r'Leon Blac', re.IGNORECASE),
     'lilly sanchez': re.compile(r'Lilly.*Sanchez', re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus', re.IGNORECASE),
-    'Lisa New': re.compile(r'Lisa New?$', re.IGNORECASE),
+    LISA_NEW: re.compile(r'Lisa New?$', re.IGNORECASE),
     'Martin Weinberg': re.compile(r'martin.*?weinberg', re.IGNORECASE),
     'Michael Wolff': re.compile(r'Michael\s*Wol(ff|i)', re.IGNORECASE),
     'Mike Sitrick': re.compile(r'Mi(chael|ke).*Sitrick', re.IGNORECASE),
@@ -305,29 +306,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '019334': STEVE_BANNON,
 }
 
-
-EPSTEIN_SIGNATURE = re.compile(r"""(> )please note
-(> )?(• )?The information contained in this communication is
-(> )?confidential, may be attorney-client privileged, may
-(> )?constitute inside information, and is intended only.*
-(> )?the use of the addressee. It is the property.*(\nJEE|Jeffrey Epstein)?
-(> )?Unauthorized use, disclosure or copying of this
-(> )?communication or any part thereof is strictly prohibit.*
-(> )?and may be unlawful. If you have received this
-(> )?communication in error, please notify us immediately by(\n\d\s*)?
-(> )?return e-mail or by e-mail to.*
-(> )?destroy this communication and all copies thereo.*
-(> )?including all attachments. copyright -all rights reserved?""")
-
-EPSTEIN_OLD_SIGNATURE = re.compile(r"""\*+
-The information contained in this communication is
-confidential, may be attorney-client privileged, may
-constitute inside information, and is intend.*
-the use of the addressee. It is the property.*(\nJeffrey Epstein)?
-Unauthorized use, disclosure or copying of this
-communication or any part thereof is strictly prohibited
-and may be unlawful. If you have received this
-communication in error, please notify us immediately by
-return e-mail or by e-mail.*
-destroy this communication and all copies thereof.*
-including all attachments.( copyright -all rights reserved)?""")
+EPSTEIN_SIGNATURE = re.compile(
+    r"((\*+|please note)\n)?(> )?(• )?(» )?The information contained in this communication is\n(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?",
+    re.DOTALL
+)
