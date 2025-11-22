@@ -42,7 +42,7 @@ class MessengerLog(CommunicationDocument):
         super().__post_init__()
         self.author = KNOWN_IMESSAGE_FILE_IDS.get(self.file_id, GUESSED_IMESSAGE_FILE_IDS.get(self.file_id))
         self.author_str = self.author or UNKNOWN
-        self.author_style = COUNTERPARTY_COLORS.get(self.author_str, DEFAULT)
+        self.author_style = COUNTERPARTY_COLORS.get(self.author_str, DEFAULT) + ' bold'
         self.author_txt = Text(self.author_str, style=self.author_style)
         self.archive_link = archive_link(self.filename, self.author_style)
 
