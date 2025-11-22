@@ -131,6 +131,7 @@ COUNTERPARTY_COLORS.update({
     'Israeli': 'dodger_blue2',
     'Ivanka': 'medium_violet_red',
     'Jared Kushner': 'medium_violet_red',
+    'gmax1@ellmax.com': COUNTERPARTY_COLORS[GHISLAINE_MAXWELL],
     'jeevacation@gmail.com': COUNTERPARTY_COLORS[JEFFREY_EPSTEIN],
     'Qatar': 'dark_green',
     'Qatari': 'dark_green',
