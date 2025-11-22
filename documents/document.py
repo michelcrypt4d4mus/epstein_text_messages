@@ -6,7 +6,7 @@ from pathlib import Path
 from rich.text import Text
 
 from util.file_helper import extract_file_id
-from util.rich import ARCHIVE_LINK_COLOR, epsteinify_doc_url, logger, make_link
+from util.rich import ARCHIVE_LINK_COLOR, epsteinify_doc_url, logger, make_link, make_link_markup
 
 MULTINEWLINE_REGEX = re.compile(r"\n{3,}")
 GMAX_EMAIL = 'gmax1@ellmax.com'
@@ -27,6 +27,7 @@ OCR_REPAIRS = {
 class Document:
     file_path: Path
     epsteinify_url: str = field(init=False)
+    epsteinify_url_markup: str = field(init=False)
     file_id: str = field(init=False)
     filename: str = field(init=False)
     length: int = field(init=False)
@@ -42,6 +43,7 @@ class Document:
         self.lines = self.text.split('\n')
         self.num_lines = len(self.lines)
         self.epsteinify_url = epsteinify_doc_url(self.file_path.stem)
+        self.epsteinify_link_markup = make_link_markup(self.epsteinify_url, self.file_path.stem)
 
     def count_regex_matches(self, pattern: str) -> int:
         return len(re.findall(pattern, self.text))
