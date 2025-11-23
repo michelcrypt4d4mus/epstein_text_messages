@@ -71,7 +71,7 @@ class Document:
                 text = text.replace(k, v)
 
             lines = [l.strip() for l in text.split('\n') if not l.startswith('HOUSE OVERSIGHT')]
-            lines = [lines[1:] if lines[0] == '>>' and len(lines) > 1]
+            lines = lines[1:] if (len(lines) > 1 and lines[0] == '>>') else lines
             return MULTINEWLINE_REGEX.sub('\n\n\n', '\n'.join(lines))
 
 
