@@ -139,6 +139,7 @@ SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages
 EPSTEINIFY_URL = 'https://epsteinify.com'
 
 epsteinify_url = lambda name: f"{EPSTEINIFY_URL}/?name={urllib.parse.quote(name)}"
+epsteinify_api_url = lambda file_id: f"{EPSTEINIFY_URL}/api/documents/HOUSE_OVERSIGHT_{file_id}"
 epsteinify_doc_url = lambda file_stem: f"{EPSTEINIFY_URL}/document/{file_stem}"
 search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&q={urllib.parse.quote(txt)}&p=1"
 search_coffeezilla_url = lambda txt: f"{COFFEEZILLA_ARCHIVE}&q={urllib.parse.quote(txt)}&p=1"
@@ -191,6 +192,7 @@ COUNTERPARTY_COLORS.update({
     'Kazak': ARAB_COLOR,
     'kazakh': ARAB_COLOR,
     'KSA': ARAB_COLOR,
+    'kwok': CHINA_COLOR,
     'Lavrov': RUSSIA_COLOR,
     'Le Pen': 'purple4',
     'LePen': 'purple4',
@@ -273,6 +275,7 @@ ABBREVIATIONS = {
     highlight_names('Jagland'): 'Thorbjørn Jagland',
     highlight_names("Hoffenberg"): "Steven Hoffenberg (Epstein's ponzi scheme partner)",
     highlight_names('KSA'): "Kingdom of Saudi Arabia",
+    highlight_names('Kwok'): "Convicted Chinese criminal Miles Guo AKA Miles Kwok AKA Guo Wengui",
     highlight_names('MBS'): "Mohammed bin Salman Al Saud (Saudi ruler)",
     highlight_names('MBZ'): "Mohamed bin Zayed Al Nahyan (Emirates' Sheikh)",
     highlight_names('Jared'): "Jared Kushner",
