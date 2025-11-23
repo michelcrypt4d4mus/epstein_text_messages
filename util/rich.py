@@ -281,6 +281,7 @@ ABBREVIATIONS = {
     highlight_names("Hoffenberg"): "Steven Hoffenberg (Epstein's ponzi scheme partner)",
     highlight_names('KSA'): "Kingdom of Saudi Arabia",
     highlight_names('Kwok'): "Chinese criminal Miles Kwok AKA Miles Guo AKA Guo Wengui",
+    highlight_names('Mapp'): 'Kenneth E. Mapp (VI Governor)',
     highlight_names('MBS'): "Mohammed bin Salman Al Saud (Saudi ruler)",
     highlight_names('MBZ'): "Mohamed bin Zayed Al Nahyan (Emirates' Sheikh)",
     highlight_names('Jared'): "Jared Kushner",
