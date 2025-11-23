@@ -3,6 +3,7 @@ from os import environ
 from pathlib import Path
 
 DOCS_DIR_ENV = environ['EPSTEIN_DOCS_DIR']
+HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
 
 if not DOCS_DIR_ENV:
     raise EnvironmentError(f"EPSTEIN_DOCS_DIR env var not set!")
@@ -10,7 +11,9 @@ if not DOCS_DIR_ENV:
 DOCS_DIR = Path(DOCS_DIR_ENV)
 JSON_FILES_SUBDIR = 'json_files'
 JSON_DIR = DOCS_DIR.joinpath(JSON_FILES_SUBDIR)
-FILE_ID_REGEX = re.compile(r'.*HOUSE_OVERSIGHT_(\d+)\.txt')
+FILE_ID_REGEX = re.compile(rf'.*{HOUSE_OVERSIGHT_PREFIX}(\d+)(\.txt)?')
+IMPORTED_DIR = DOCS_DIR.joinpath('imported')
+RAW_IMPORTED_DIR = IMPORTED_DIR.joinpath('raw')
 
 
 def extract_file_id(filename) -> str:

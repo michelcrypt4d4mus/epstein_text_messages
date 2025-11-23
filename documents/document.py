@@ -11,6 +11,7 @@ from util.rich import ARCHIVE_LINK_COLOR, epsteinify_doc_url, logger, make_link,
 MULTINEWLINE_REGEX = re.compile(r"\n{3,}")
 GMAX_EMAIL = 'gmax1@ellmax.com'
 JEEVACATION_GMAIL = 'jeevacation@gmail.com'
+MIN_DOCUMENT_ID = 10477
 
 OCR_REPAIRS = {
     'lndyke': 'Indyke',

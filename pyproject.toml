@@ -11,6 +11,7 @@ rich = "^14.2.0"
 python-dotenv = "^1.2.1"
 bpython = "^0.26"
 python-dateutil = "^2.9.0.post0"
+requests = "^2.32.5"
 
 
 [build-system]
