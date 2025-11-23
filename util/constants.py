@@ -311,6 +311,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '021106': 'Alexandra Preate',     # Reply
     '030764': ARIANE_DE_ROTHSCHILD,   # Reply
     '026431': ARIANE_DE_ROTHSCHILD,   # Reply
+    '026466': 'Diane Ziman',          # Quoted reply
     '031607': EDWARD_EPSTEIN,
     '026426': JEAN_HUGUEN,            # Reply
     '029975': JEAN_LUC_BRUNEL,        # Same as another file
@@ -320,6 +321,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '029692': LARRY_SUMMERS,          # Header
     '029779': LARRY_SUMMERS,          # Header
     '028787': LAWRANCE_VISOSKI,
+    '027097': LAWRANCE_VISOSKI,       # Signature of reply
     '022250': LESLEY_GROFF,           # Reply
     '022258': NADIA_MARCINKO,         # Reply header
     '030096': 'Peter Mandelson',
