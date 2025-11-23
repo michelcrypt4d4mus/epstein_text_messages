@@ -48,7 +48,7 @@ console.print(f"(Last deploy found 4668 messages in 77 conversations)\n\n\n", st
 console.print(Panel(Text("HIS EMAILS", justify='center'), width=80, padding=(2, 2)), style='bold white on blue3')
 print_email_table(epstein_files.email_author_counts, "Author")
 print_email_table(epstein_files.email_recipient_counts, "Recipients")
-console.print(f"\n\nIdentified {epstein_files.num_identified_email_authors()} authors in {len(epstein_files.emails)} potential email files.")
+console.print(f"\n\nIdentified authors of {epstein_files.num_identified_email_authors()} emails out of {len(epstein_files.emails)} potential email files.")
 console.print('Chronological Epstein correspondence with the following people can be found below.')
 console.print('(note this site uses the OCR email text provided by Congress which is not the greatest)\n', style='dim')
 
