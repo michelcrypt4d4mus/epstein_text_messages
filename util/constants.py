@@ -164,7 +164,6 @@ EMAILERS = [
     'Lesley Groff',
     'Brad Wechsler',
     'middle.east.update@hotmail.com',
-    JONATHAN_FARKAS,
     'Mark L. Epstein',
     MELANIE_WALKER,
     'Michael Simmons',  # Not the only "To:"
