@@ -12,8 +12,6 @@ DOCS_DIR = Path(DOCS_DIR_ENV)
 JSON_FILES_SUBDIR = 'json_files'
 JSON_DIR = DOCS_DIR.joinpath(JSON_FILES_SUBDIR)
 FILE_ID_REGEX = re.compile(rf'.*{HOUSE_OVERSIGHT_PREFIX}(\d+)(\.txt)?')
-IMPORTED_DIR = DOCS_DIR.joinpath('imported')
-RAW_IMPORTED_DIR = IMPORTED_DIR.joinpath('raw')
 
 
 def extract_file_id(filename) -> str:
