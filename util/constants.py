@@ -318,6 +318,9 @@ KNOWN_EMAIL_AUTHORS = {
     '033487': LAWRANCE_VISOSKI,
     '028789': LAWRANCE_VISOSKI,
     '027046': LAWRANCE_VISOSKI,
+    '033370': LAWRANCE_VISOSKI,       # Planes discussion signed larry
+    '029977': LAWRANCE_VISOSKI,       # Planes discussion signed larry
+    '033495': LAWRANCE_VISOSKI,       # Planes discussion signed larry
     '033154': LAWRANCE_VISOSKI,
     '033488': LAWRANCE_VISOSKI,
     '017581': 'Lisa Randall',
@@ -336,6 +339,7 @@ KNOWN_EMAIL_AUTHORS = {
     '024923': PAUL_KRASSNER,
     '032457': PAUL_KRASSNER,
     '029981': 'Paula',             # reply
+    '033383': 'Paul Prosperi',     # Reply
     '031694': PEGGY_SIEGAL,
     '032219': PEGGY_SIEGAL,        # Signed "Peggy"
     '029020': 'Renata Bolotova',   # Signature
@@ -369,10 +373,14 @@ KNOWN_EMAIL_RECIPIENTS = {
     '033169': JEFFREY_EPSTEIN,
     '033584': JEFFREY_EPSTEIN,
     '033487': JEFFREY_EPSTEIN,
+    '033456': 'Joel',                 # Reply
+    '033460': 'Joel',                 # Reply
     '030522': LANDON_THOMAS,
     '031413': LANDON_THOMAS,          # Reply
     '029692': LARRY_SUMMERS,          # Header
     '029779': LARRY_SUMMERS,          # Header
+    '033591': LAWRANCE_VISOSKI,       # Reply signature
+    '033466': LAWRANCE_VISOSKI,       # Reply signature
     '028787': LAWRANCE_VISOSKI,
     '027097': LAWRANCE_VISOSKI,       # Signature of reply
     '022250': LESLEY_GROFF,           # Reply
