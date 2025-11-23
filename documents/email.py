@@ -151,7 +151,7 @@ class Email(CommunicationDocument):
                             logger.debug(f"Looks like a mismatch, decrementing num_headers and skipping...")
                             num_headers -= 1
                             continue
-                        elif value.startswith('call me'):
+                        elif value.startswith('call me') or value.startswith('schwartman') or value.startswith('agreed'):
                             logger.debug(f"Looks like a mismatch, Trying the next line...")
                             num_headers += 1
                             value = self.lines[i + num_headers]

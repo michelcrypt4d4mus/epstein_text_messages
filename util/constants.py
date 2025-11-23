@@ -4,6 +4,7 @@ from io import StringIO
 
 # Email Names
 AL_SECKEL = 'Al Seckel'
+ALIREZA_ITTIHADIEH = 'Alireza Ittihadieh'
 ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
 BARBRO_EHNBOM = 'Barbro Ehnbom'
 BENNET_MOSKOWITZ = 'Bennet Moskowitz'
@@ -182,6 +183,7 @@ EMAILERS = [
 
 EMAILER_REGEXES = {
     'Alan Dershowitz': re.compile(r'alan.*dershowitz', re.IGNORECASE),
+    ALIREZA_ITTIHADIEH: re.compile(r'Alireza [IL]ttihadieh'),
     'Amanda Ens': re.compile(r'ens, amand', re.IGNORECASE),
     ANIL: re.compile(r'Anil.Ambani', re.IGNORECASE),
     'Anas Alrasheed': re.compile(r'anas\s*al\s*rasheed', re.IGNORECASE),
@@ -226,18 +228,21 @@ EMAILER_REGEXES = {
     'Nicholas Ribis': re.compile(r'Nicholas[ ._]Rib', re.IGNORECASE),
     PAUL_KRASSNER: re.compile(r'Pa\s?ul Krassner', re.IGNORECASE),
     'Paul Morris': re.compile(r'morris, paul|Paul Morris', re.IGNORECASE),
+    'Peter Attia': re.compile(r'Peter Atti', re.IGNORECASE),
+    'Reid Weingarten': re.compile(r'Weingarten, Reid|Rei[di] Weingarten'),
     'Richard Kahn': re.compile(r'rich(ard)? kahn?', re.IGNORECASE),
     'Robert Lawrence Kuhn': re.compile(r'Robert\s*(Lawrence)?\s*Kuhn', re.IGNORECASE),
     ROBERT_TRIVERS: re.compile(r'tri[vy]ersr@gmail|Robert\s*Trivers?', re.IGNORECASE),
     'Scott J. Link': re.compile(r'scott j. lin', re.IGNORECASE),
     'Sean Bannon': re.compile(r'sean banno', re.IGNORECASE),
+    'Shaher Abdulhak Besher (?)': re.compile(r's^Shaher$', re.IGNORECASE),
     SOON_YI: re.compile(r'Soon[- ]Yi Previn?', re.IGNORECASE),
     'Stephen Hanson': re.compile(r'ste(phen|ve) hanson|Shanson900', re.IGNORECASE),
     STEVE_BANNON: re.compile(r'steve banno[nr]?', re.IGNORECASE),
     'Steven Sinofsky': re.compile(r'Steven Sinofsk', re.IGNORECASE),
     SULTAN_BIN_SULAYEM: re.compile(r'Sultan bin Sulay', re.IGNORECASE),
     TERRY_KAFKA: re.compile(r'Terry Kafk', re.IGNORECASE),
-    THORBJORN_JAGLAND: re.compile(r'Thor.*Jagland?', re.IGNORECASE),
+    THORBJORN_JAGLAND: re.compile(r'Thor.*Jag[il]and?', re.IGNORECASE),
     TONJA_HADDAD_COLEMAN: re.compile(fr"{TONJA_HADDAD_COLEMAN}|haddadfm@aol.com", re.IGNORECASE)
 }
 
