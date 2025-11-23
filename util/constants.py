@@ -335,6 +335,7 @@ KNOWN_EMAIL_AUTHORS = {
     '021818': NADIA_MARCINKO,
     '022197': NADIA_MARCINKO,
     '021811': NADIA_MARCINKO,      # Signature and email address in the message
+    '026612': 'Norman D. Rau',     # Fwded from "to" address
     '028487': 'Norman D. Rau',     # Fwded from "to" address
     '024923': PAUL_KRASSNER,
     '032457': PAUL_KRASSNER,
