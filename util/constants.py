@@ -169,6 +169,7 @@ EMAILERS = [
     'Mark L. Epstein',
     MELANIE_WALKER,
     'Michael Simmons',  # Not the only "To:"
+    'Multiple Senders',  # Weird files like HOUSE_OVERSIGHT_032210
     'Nancy Cain',
     'Nancy Portland',
     'Oliver Goodenough',
@@ -186,6 +187,7 @@ EMAILER_REGEXES = {
     ALIREZA_ITTIHADIEH: re.compile(r'Alireza.[Il]ttihadieh', re.IGNORECASE),
     'Amanda Ens': re.compile(r'ens, amand', re.IGNORECASE),
     ANIL: re.compile(r'Anil.Ambani', re.IGNORECASE),
+    ARIANE_DE_ROTHSCHILD: re.compile(r'^(AdeR|Ariane de Roth)$'),
     'Anas Alrasheed': re.compile(r'anas\s*al\s*rasheed', re.IGNORECASE),
     BARBRO_EHNBOM: re.compile(r'behnbom@aol.com|Barbro\s.*Ehnbom', re.IGNORECASE),
     'Barry J. Cohen': re.compile(r'barry (j.? )?cohen?', re.IGNORECASE),
@@ -216,13 +218,13 @@ EMAILER_REGEXES = {
     LAWRANCE_VISOSKI: re.compile(r'La[rry|wrance] Visosk', re.IGNORECASE),
     LEON_BLACK: re.compile(r'Leon Blac', re.IGNORECASE),
     'lilly sanchez': re.compile(r'Lilly.*Sanchez', re.IGNORECASE),
-    LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus', re.IGNORECASE),
+    LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus|lawkrauss', re.IGNORECASE),
     LISA_NEW: re.compile(r'Lisa New?$', re.IGNORECASE),
     'Marc Leon': re.compile(r'Marc[.]+(Kensington|Leon)|Kensington2', re.IGNORECASE),
     'Martin Weinberg': re.compile(r'martin.*?weinberg', re.IGNORECASE),
     MARTIN_NOWAK: re.compile(r'Martin.*?Nowak|Nowak, Martin', re.IGNORECASE),
     MELANIE_SPINELLA: re.compile(r'Melanie Spine[Il]{2}a', re.IGNORECASE),
-    'Michael Miller': re.compile(r'Micha(el)? Miller', re.IGNORECASE),
+    'Michael Miller': re.compile(r'Micha(el)? Miller|Miller, Micha(el)?', re.IGNORECASE),
     'Michael Wolff': re.compile(r'Michael\s*Wol(ff|i)', re.IGNORECASE),
     'Mike Sitrick': re.compile(r'Mi(chael|ke).*Sitrick', re.IGNORECASE),
     'Mohamed Waheed Hassan': re.compile(r'Mohamed Waheed', re.IGNORECASE),
@@ -313,6 +315,7 @@ KNOWN_EMAIL_AUTHORS = {
     '029013': LARRY_SUMMERS,
     '031129': LARRY_SUMMERS,
     '029196': LAWRENCE_KRAUSS,
+    '033487': LAWRANCE_VISOSKI,
     '028789': LAWRANCE_VISOSKI,
     '027046': LAWRANCE_VISOSKI,
     '017581': 'Lisa Randall',
@@ -363,6 +366,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '032224': JEFFREY_EPSTEIN,        # Reply
     '033169': JEFFREY_EPSTEIN,
     '033584': JEFFREY_EPSTEIN,
+    '033487': JEFFREY_EPSTEIN,
     '030522': LANDON_THOMAS,
     '031413': LANDON_THOMAS,          # Reply
     '029692': LARRY_SUMMERS,          # Header
