@@ -340,6 +340,7 @@ KNOWN_EMAIL_AUTHORS = {
     '024923': PAUL_KRASSNER,
     '032457': PAUL_KRASSNER,
     '029981': 'Paula',             # reply
+    '033157': 'Paul Prosperi',     # Fwded from "to" address
     '033383': 'Paul Prosperi',     # Reply
     '031694': PEGGY_SIEGAL,
     '032219': PEGGY_SIEGAL,        # Signed "Peggy"
