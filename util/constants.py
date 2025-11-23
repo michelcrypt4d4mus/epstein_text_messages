@@ -318,6 +318,8 @@ KNOWN_EMAIL_AUTHORS = {
     '033487': LAWRANCE_VISOSKI,
     '028789': LAWRANCE_VISOSKI,
     '027046': LAWRANCE_VISOSKI,
+    '033154': LAWRANCE_VISOSKI,
+    '033488': LAWRANCE_VISOSKI,
     '017581': 'Lisa Randall',
     '030472': "Martin Weinberg",   # Maybe. in reply
     '030235': MELANIE_WALKER,      # In fwd
