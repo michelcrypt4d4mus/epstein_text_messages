@@ -15,6 +15,7 @@ DAVID_STERN = 'David Stern'
 DONALD_TRUMP = 'Donald Trump'
 EDWARD_EPSTEIN = 'Edward Epstein'
 EHUD_BARAK = 'Ehud Barak'
+GERALD_BARTON = 'Gerald Barton'
 GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
 GWENDOLYN_BECK = 'Gwendolyn Beck'
 JEAN_HUGUEN = 'Jean Huguen'
@@ -171,7 +172,6 @@ EMAILERS = [
     'Nancy Cain',
     'Nancy Portland',
     'Oliver Goodenough',
-    PEGGY_SIEGAL,
     'Peter Aldhous',
     'Peter Green',
     'Sam/Walli Leff',
@@ -183,7 +183,7 @@ EMAILERS = [
 
 EMAILER_REGEXES = {
     'Alan Dershowitz': re.compile(r'alan.*dershowitz', re.IGNORECASE),
-    ALIREZA_ITTIHADIEH: re.compile(r'Alireza [IL]ttihadieh'),
+    ALIREZA_ITTIHADIEH: re.compile(r'Alireza.[Il]ttihadieh', re.IGNORECASE),
     'Amanda Ens': re.compile(r'ens, amand', re.IGNORECASE),
     ANIL: re.compile(r'Anil.Ambani', re.IGNORECASE),
     'Anas Alrasheed': re.compile(r'anas\s*al\s*rasheed', re.IGNORECASE),
@@ -197,7 +197,7 @@ EMAILER_REGEXES = {
     EDWARD_EPSTEIN: re.compile(r'Edward (Jay )?Epstein', re.IGNORECASE),
     EHUD_BARAK: re.compile(r'(ehud|h)\s*barak', re.IGNORECASE),
     'Faith Kates': re.compile(r'faith kate', re.IGNORECASE),
-    'Gerald Barton': re.compile(r'Gerald.*Barton', re.IGNORECASE),
+    GERALD_BARTON: re.compile(r'Gerald.*Barton', re.IGNORECASE),
     GHISLAINE_MAXWELL: re.compile(r'g ?max(well)?', re.IGNORECASE),
     'Google Alerts': re.compile(r'google\s?alerts', re.IGNORECASE),
     'Heather Mann': re.compile(r'Heather Man', re.IGNORECASE),
@@ -211,8 +211,9 @@ EMAILER_REGEXES = {
     JONATHAN_FARKAS: re.compile('Jonathan Farka(s|il)', re.IGNORECASE),
     KATHY_RUEMMLER: re.compile(r'Kathy Ruemmle', re.IGNORECASE),
     'Ken Starr': re.compile('starr, ken|Ken star', re.IGNORECASE),
-    LANDON_THOMAS: re.compile('landon thomas|thomas jr.?, landon', re.IGNORECASE),
+    LANDON_THOMAS: re.compile(r'lando[nr] thomas|thomas jr.?, lando[nr]', re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r'La(wrence|rry).*Summer|^LH$|^LHS|Ihsofficel', re.IGNORECASE),
+    LAWRANCE_VISOSKI: re.compile(r'La[rry|wrance] Visosk', re.IGNORECASE),
     LEON_BLACK: re.compile(r'Leon Blac', re.IGNORECASE),
     'lilly sanchez': re.compile(r'Lilly.*Sanchez', re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus', re.IGNORECASE),
@@ -221,15 +222,18 @@ EMAILER_REGEXES = {
     'Martin Weinberg': re.compile(r'martin.*?weinberg', re.IGNORECASE),
     MARTIN_NOWAK: re.compile(r'Martin.*?Nowak|Nowak, Martin', re.IGNORECASE),
     MELANIE_SPINELLA: re.compile(r'Melanie Spine[Il]{2}a', re.IGNORECASE),
+    'Michael Miller': re.compile(r'Micha(el)? Miller', re.IGNORECASE),
     'Michael Wolff': re.compile(r'Michael\s*Wol(ff|i)', re.IGNORECASE),
     'Mike Sitrick': re.compile(r'Mi(chael|ke).*Sitrick', re.IGNORECASE),
     'Mohamed Waheed Hassan': re.compile(r'Mohamed Waheed', re.IGNORECASE),
     'Neal Kassell': re.compile(r'Neal Kassel', re.IGNORECASE),
     'Nicholas Ribis': re.compile(r'Nicholas[ ._]Rib', re.IGNORECASE),
+    'Paul Barrett': re.compile(r'Paul Barre(d|tt)', re.IGNORECASE),
     PAUL_KRASSNER: re.compile(r'Pa\s?ul Krassner', re.IGNORECASE),
     'Paul Morris': re.compile(r'morris, paul|Paul Morris', re.IGNORECASE),
+    PEGGY_SIEGAL:  re.compile(r'Peggy Siega', re.IGNORECASE),
     'Peter Attia': re.compile(r'Peter Atti', re.IGNORECASE),
-    'Reid Weingarten': re.compile(r'Weingarten, Reid|Rei[di] Weingarten'),
+    'Reid Weingarten': re.compile(r'Weingarten, Rei[cdi]|Rei[cdi] Weingarten', re.IGNORECASE),
     'Richard Kahn': re.compile(r'rich(ard)? kahn?', re.IGNORECASE),
     'Robert Lawrence Kuhn': re.compile(r'Robert\s*(Lawrence)?\s*Kuhn', re.IGNORECASE),
     ROBERT_TRIVERS: re.compile(r'tri[vy]ersr@gmail|Robert\s*Trivers?', re.IGNORECASE),
@@ -237,13 +241,13 @@ EMAILER_REGEXES = {
     'Sean Bannon': re.compile(r'sean banno', re.IGNORECASE),
     'Shaher Abdulhak Besher (?)': re.compile(r's^Shaher$', re.IGNORECASE),
     SOON_YI: re.compile(r'Soon[- ]Yi Previn?', re.IGNORECASE),
-    'Stephen Hanson': re.compile(r'ste(phen|ve) hanson|Shanson900', re.IGNORECASE),
+    'Stephen Hanson': re.compile(r'ste(phen|ve) hanson?|Shanson900', re.IGNORECASE),
     STEVE_BANNON: re.compile(r'steve banno[nr]?', re.IGNORECASE),
     'Steven Sinofsky': re.compile(r'Steven Sinofsk', re.IGNORECASE),
     SULTAN_BIN_SULAYEM: re.compile(r'Sultan bin Sulay', re.IGNORECASE),
     TERRY_KAFKA: re.compile(r'Terry Kafk', re.IGNORECASE),
     THORBJORN_JAGLAND: re.compile(r'Thor.*Jag[il]and?', re.IGNORECASE),
-    TONJA_HADDAD_COLEMAN: re.compile(fr"{TONJA_HADDAD_COLEMAN}|haddadfm@aol.com", re.IGNORECASE)
+    TONJA_HADDAD_COLEMAN: re.compile(fr"To(nj|rl)a Haddad Coleman|haddadfm@aol.com", re.IGNORECASE)
 }
 
 for emailer in EMAILERS:
@@ -271,7 +275,7 @@ KNOWN_EMAIL_AUTHORS = {
     '026287': DAVID_SCHOEN,       # Signature
     '033419': DAVID_SCHOEN,       # Sent by AOL
     '031460': EDWARD_EPSTEIN,
-    '026547': 'Gerald G. Barton',
+    '026547': GERALD_BARTON,
     '029969': GWENDOLYN_BECK,     # Signature
     '031120': GWENDOLYN_BECK,     # Signature
     '029968': GWENDOLYN_BECK,     # Signature

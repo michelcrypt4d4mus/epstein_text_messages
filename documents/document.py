@@ -21,7 +21,7 @@ OCR_REPAIRS = {
     'jeevacationagmail.com': JEEVACATION_GMAIL,
     'jeeyacation@gmail.com': JEEVACATION_GMAIL,
     'jeevacation@,gmail.com': JEEVACATION_GMAIL,
-    "'Eeyacation@Gmail.Com":  JEEVACATION_GMAIL,
+    "'eeyacation@gmail.com":  JEEVACATION_GMAIL,
 }
 
 
@@ -71,6 +71,7 @@ class Document:
                 text = text.replace(k, v)
 
             lines = [l.strip() for l in text.split('\n') if not l.startswith('HOUSE OVERSIGHT')]
+            lines = [lines[1:] if lines[0] == '>>' and len(lines) > 1]
             return MULTINEWLINE_REGEX.sub('\n\n\n', '\n'.join(lines))
 
 

@@ -327,7 +327,7 @@ def print_email_table(counts: dict[str, int], column_title: str) -> None:
     counts_table.add_column(column_title, justify="left")
     counts_table.add_column("Email Count", justify="center")
 
-    for k, v in sorted(counts.items(), key=lambda item: [item[1], item[0]], reverse=True):
+    for k, v in sorted(counts.items(), key=lambda item: item[0]): # [item[1], item[0]], reverse=True):
         k = k.title() if ' ' in k else k
         style = COUNTERPARTY_COLORS.get(k, 'white').replace('bold', '').strip()
         name_txt = Text.from_markup(f"[{style}][link={epsteinify_url(k)}]{k}[/link][/{style}]")
