@@ -21,6 +21,7 @@ OCR_REPAIRS = {
     'jeevacationagmail.com': JEEVACATION_GMAIL,
     'jeeyacation@gmail.com': JEEVACATION_GMAIL,
     'jeevacation@,gmail.com': JEEVACATION_GMAIL,
+    "'Eeyacation@Gmail.Com":  JEEVACATION_GMAIL,
 }
 
 

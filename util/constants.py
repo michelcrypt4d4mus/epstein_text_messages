@@ -38,6 +38,7 @@ PAUL_KRASSNER = 'Paul Krassner'
 ROBERT_TRIVERS = 'Robert Trivers'
 SULTAN_BIN_SULAYEM = 'Sultan Bin Sulayem'
 TERRY_KAFKA = 'Terry Kafka'
+THORBJORN_JAGLAND = 'Thorbjørn Jagland'
 TONJA_HADDAD_COLEMAN = 'Tonja Haddad Coleman'
 REDACTED = '[REDACTED]'
 
@@ -165,12 +166,15 @@ EMAILERS = [
     'middle.east.update@hotmail.com',
     JONATHAN_FARKAS,
     'Mark L. Epstein',
+    MELANIE_WALKER,
+    'Michael Simmons',  # Not the only "To:"
     'Nancy Cain',
     'Nancy Portland',
     'Oliver Goodenough',
     PEGGY_SIEGAL,
     'Peter Aldhous',
     'Peter Green',
+    'Sam/Walli Leff',
     'Steven Victor MD',
     'The Duke',
     'Tom Barrack',
@@ -180,9 +184,11 @@ EMAILERS = [
 EMAILER_REGEXES = {
     'Alan Dershowitz': re.compile(r'alan.*dershowitz', re.IGNORECASE),
     'Amanda Ens': re.compile(r'ens, amand', re.IGNORECASE),
+    ANIL: re.compile(r'Anil.Ambani', re.IGNORECASE),
     'Anas Alrasheed': re.compile(r'anas\s*al\s*rasheed', re.IGNORECASE),
     BARBRO_EHNBOM: re.compile(r'behnbom@aol.com|Barbro\s.*Ehnbom', re.IGNORECASE),
     'Barry J. Cohen': re.compile(r'barry (j.? )?cohen?', re.IGNORECASE),
+    BENNET_MOSKOWITZ: re.compile(r'Moskowitz.*Bennet|Bennet.*Moskowitz', re.IGNORECASE),
     'Boris Nikolic': re.compile(r'boris nikoli', re.IGNORECASE),
     'Dangene and Jennie Enterprise': re.compile(r'Dangene and Jennie Enterpris', re.IGNORECASE),
     DARREN_INDYKE: re.compile(r'^darren$|darren [il]ndyke?|dkiesq', re.IGNORECASE),
@@ -190,19 +196,22 @@ EMAILER_REGEXES = {
     EDWARD_EPSTEIN: re.compile(r'Edward (Jay )?Epstein', re.IGNORECASE),
     EHUD_BARAK: re.compile(r'(ehud|h)\s*barak', re.IGNORECASE),
     'Faith Kates': re.compile(r'faith kate', re.IGNORECASE),
+    'Gerald Barton': re.compile(r'Gerald.*Barton', re.IGNORECASE),
     GHISLAINE_MAXWELL: re.compile(r'g ?max(well)?', re.IGNORECASE),
     'Google Alerts': re.compile(r'google\s?alerts', re.IGNORECASE),
+    'Heather Mann': re.compile(r'Heather Man', re.IGNORECASE),
     'Intelligence Squared': re.compile(r'intelligence\s*squared', re.IGNORECASE),
     'jackie perczel':  re.compile(r'jackie percze', re.IGNORECASE),
     JABOR_Y: re.compile(r'^[ji]abor\s*y', re.IGNORECASE),
     JEAN_LUC_BRUNEL: re.compile(r'Jean[- ]Luc Brunel?', re.IGNORECASE),
-    JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein?', re.IGNORECASE),
+    JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]?|jeffrey E\.|Jeffrey Epstein?', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|joichi|^joi$', re.IGNORECASE),
     JOHNNY_EL_HACHEM: re.compile('el hachem johnny|johnny el hachem', re.IGNORECASE),
+    JONATHAN_FARKAS: re.compile('Jonathan Farka(s|il)', re.IGNORECASE),
     KATHY_RUEMMLER: re.compile(r'Kathy Ruemmle', re.IGNORECASE),
-    'Ken Starr': re.compile('starr, ken', re.IGNORECASE),
+    'Ken Starr': re.compile('starr, ken|Ken star', re.IGNORECASE),
     LANDON_THOMAS: re.compile('landon thomas|thomas jr.?, landon', re.IGNORECASE),
-    LARRY_SUMMERS: re.compile(r'La(wrence|rry).*Summer|^LH$|^LHS', re.IGNORECASE),
+    LARRY_SUMMERS: re.compile(r'La(wrence|rry).*Summer|^LH$|^LHS|Ihsofficel', re.IGNORECASE),
     LEON_BLACK: re.compile(r'Leon Blac', re.IGNORECASE),
     'lilly sanchez': re.compile(r'Lilly.*Sanchez', re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus', re.IGNORECASE),
@@ -214,8 +223,8 @@ EMAILER_REGEXES = {
     'Michael Wolff': re.compile(r'Michael\s*Wol(ff|i)', re.IGNORECASE),
     'Mike Sitrick': re.compile(r'Mi(chael|ke).*Sitrick', re.IGNORECASE),
     'Mohamed Waheed Hassan': re.compile(r'Mohamed Waheed', re.IGNORECASE),
-    BENNET_MOSKOWITZ: re.compile(r'Moskowitz.*Bennet|Bennet.*Moskowitz', re.IGNORECASE),
-    'Nicholas Ribis': re.compile(r'Nicholas Rib', re.IGNORECASE),
+    'Neal Kassell': re.compile(r'Neal Kassel', re.IGNORECASE),
+    'Nicholas Ribis': re.compile(r'Nicholas[ ._]Rib', re.IGNORECASE),
     PAUL_KRASSNER: re.compile(r'Pa\s?ul Krassner', re.IGNORECASE),
     'Paul Morris': re.compile(r'morris, paul|Paul Morris', re.IGNORECASE),
     'Richard Kahn': re.compile(r'rich(ard)? kahn?', re.IGNORECASE),
@@ -229,6 +238,7 @@ EMAILER_REGEXES = {
     'Steven Sinofsky': re.compile(r'Steven Sinofsk', re.IGNORECASE),
     SULTAN_BIN_SULAYEM: re.compile(r'Sultan bin Sulay', re.IGNORECASE),
     TERRY_KAFKA: re.compile(r'Terry Kafk', re.IGNORECASE),
+    THORBJORN_JAGLAND: re.compile(r'Thor.*Jagland?', re.IGNORECASE),
     TONJA_HADDAD_COLEMAN: re.compile(fr"{TONJA_HADDAD_COLEMAN}|haddadfm@aol.com", re.IGNORECASE)
 }
 
