@@ -13,7 +13,7 @@ from documents.email import DETECT_EMAIL_REGEX, Email
 from documents.messenger_log import MSG_REGEX, MessengerLog
 from util.constants import *
 from util.env import deep_debug, is_debug
-from util.file_helper import DOCS_DIR, move_json_file
+from util.file_helper import DOCS_DIR, IMPORTED_DIR, move_json_file
 from util.rich import COUNTERPARTY_COLORS, console, logger
 
 
@@ -28,6 +28,7 @@ class EpsteinFiles:
 
     def __post_init__(self):
         self.all_files = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
+        self.all_files += [f for f in IMPORTED_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
         self.emails = []
         self.iMessage_logs = []
         self.other_files = []
