@@ -23,6 +23,7 @@ JEREMY_RUBIN = 'Jeremy Rubin'  # bitcoin dev
 JOHN_PAGE = 'John Page'
 JOHNNY_EL_HACHEM = 'Johnny el Hachem'
 JONATHAN_FARKAS = 'Jonathan Farkas'
+KATHY_RUEMMLER = 'Kathy Ruemmler'
 LANDON_THOMAS = 'Landon Thomas Jr.'
 LAWRANCE_VISOSKI = 'Lawrance Visoski'
 LAWRENCE_KRAUSS = 'Lawrence Krauss'
@@ -30,8 +31,10 @@ LEON_BLACK = 'Leon Black'
 LESLEY_GROFF = 'Lesley Groff'
 LISA_NEW = 'Lisa New'          # Harvard poetry prof AKA "Elisa New"
 MARTIN_NOWAK = 'Martin Nowak'
-NADIA_MARCINKO = 'Nadia Marcinko'
 MELANIE_SPINELLA = 'Melanie Spinella'
+NADIA_MARCINKO = 'Nadia Marcinko'
+PEGGY_SIEGAL = 'Peggy Siegal'
+PAUL_KRASSNER = 'Paul Krassner'
 ROBERT_TRIVERS = 'Robert Trivers'
 SULTAN_BIN_SULAYEM = 'Sultan Bin Sulayem'
 TERRY_KAFKA = 'Terry Kafka'
@@ -165,7 +168,7 @@ EMAILERS = [
     'Nancy Cain',
     'Nancy Portland',
     'Oliver Goodenough',
-    'Peggy Siegal',
+    PEGGY_SIEGAL,
     'Peter Aldhous',
     'Peter Green',
     'Steven Victor MD',
@@ -196,7 +199,7 @@ EMAILER_REGEXES = {
     JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]|jeffrey E\.|Jeffrey Epstein?', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|joichi|^joi$', re.IGNORECASE),
     JOHNNY_EL_HACHEM: re.compile('el hachem johnny|johnny el hachem', re.IGNORECASE),
-    'Kathy Ruemmler': re.compile(r'Kathy Ruemmle', re.IGNORECASE),
+    KATHY_RUEMMLER: re.compile(r'Kathy Ruemmle', re.IGNORECASE),
     'Ken Starr': re.compile('starr, ken', re.IGNORECASE),
     LANDON_THOMAS: re.compile('landon thomas|thomas jr.?, landon', re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r'La(wrence|rry).*Summer|^LH$|^LHS', re.IGNORECASE),
@@ -213,7 +216,7 @@ EMAILER_REGEXES = {
     'Mohamed Waheed Hassan': re.compile(r'Mohamed Waheed', re.IGNORECASE),
     BENNET_MOSKOWITZ: re.compile(r'Moskowitz.*Bennet|Bennet.*Moskowitz', re.IGNORECASE),
     'Nicholas Ribis': re.compile(r'Nicholas Rib', re.IGNORECASE),
-    'Paul Krassner': re.compile(r'Pa\s?ul Krassner', re.IGNORECASE),
+    PAUL_KRASSNER: re.compile(r'Pa\s?ul Krassner', re.IGNORECASE),
     'Paul Morris': re.compile(r'morris, paul|Paul Morris', re.IGNORECASE),
     'Richard Kahn': re.compile(r'rich(ard)? kahn?', re.IGNORECASE),
     'Robert Lawrence Kuhn': re.compile(r'Robert\s*(Lawrence)?\s*Kuhn', re.IGNORECASE),
@@ -237,6 +240,7 @@ for emailer in EMAILERS:
 
 
 KNOWN_EMAIL_AUTHORS = {
+    '032436': 'Alireza Ittihadieh',  # Signature
     '026064': ARIANE_DE_ROTHSCHILD,
     '026069': ARIANE_DE_ROTHSCHILD,
     '030741': ARIANE_DE_ROTHSCHILD,
@@ -251,6 +255,7 @@ KNOWN_EMAIL_AUTHORS = {
     '031492': DAVID_SCHOEN,       # Signature
     '031560': DAVID_SCHOEN,       # Signature
     '026287': DAVID_SCHOEN,       # Signature
+    '033419': DAVID_SCHOEN,       # Sent by AOL
     '031460': EDWARD_EPSTEIN,
     '026547': 'Gerald G. Barton',
     '029969': GWENDOLYN_BECK,     # Signature
@@ -269,11 +274,23 @@ KNOWN_EMAIL_AUTHORS = {
     '029692': JEFFREY_EPSTEIN,
     '031624': JEFFREY_EPSTEIN,
     '030768': JEFFREY_EPSTEIN,
+    '031996': JEFFREY_EPSTEIN,
+    '022938': JEFFREY_EPSTEIN,
     '016692': JOHN_PAGE,
     '016693': JOHN_PAGE,
     '028507': JONATHAN_FARKAS,
     '031732': JONATHAN_FARKAS,
+    '033484': JONATHAN_FARKAS,
+    '033282': JONATHAN_FARKAS,
+    '033582': JONATHAN_FARKAS,    # Reply
+    '032389': JONATHAN_FARKAS,    # Reply
+    '033581': JONATHAN_FARKAS,    # Reply
+    '033203': JONATHAN_FARKAS,    # Reply
+    '032052': JONATHAN_FARKAS,    # Reply
+    '033490': JONATHAN_FARKAS,    # Signature
+    '032531': JONATHAN_FARKAS,    # Signature
     '026764': 'Barry J. Cohen',
+    '032224': KATHY_RUEMMLER,
     '030478': LANDON_THOMAS,
     '029013': LARRY_SUMMERS,
     '031129': LARRY_SUMMERS,
@@ -283,6 +300,7 @@ KNOWN_EMAIL_AUTHORS = {
     '017581': 'Lisa Randall',
     '030472': "Martin Weinberg",   # Maybe. in reply
     '030235': MELANIE_WALKER,      # In fwd
+    '032212': MIROSLAV,
     '022193': NADIA_MARCINKO,
     '021814': NADIA_MARCINKO,
     '021808': NADIA_MARCINKO,
@@ -291,14 +309,20 @@ KNOWN_EMAIL_AUTHORS = {
     '021818': NADIA_MARCINKO,
     '022197': NADIA_MARCINKO,
     '021811': NADIA_MARCINKO,      # Signature and email address in the message
-    '024923': 'Paul Krassner',
+    '028487': 'Norman D. Rau',     # Fwded from "to" address
+    '024923': PAUL_KRASSNER,
+    '032457': PAUL_KRASSNER,
     '029981': 'Paula',             # reply
-    '031694': 'Peggy Siegal',
+    '031694': PEGGY_SIEGAL,
+    '032219': PEGGY_SIEGAL,        # Signed "Peggy"
     '029020': 'Renata Bolotova',   # Signature
+    '033169': ROBERT_TRIVERS,      # Refs paper
+    '033584': ROBERT_TRIVERS,      # Refs paper
     '029003': SOON_YI,
     '029005': SOON_YI,
     '029007': SOON_YI,
     '029010': SOON_YI,
+    '032296': SOON_YI,             # Sent from soon-yi's phone
     '026620': TERRY_KAFKA,
     '028482': TERRY_KAFKA,         # Signature
     '029992': TERRY_KAFKA,         # Reply
@@ -311,11 +335,16 @@ KNOWN_EMAIL_RECIPIENTS = {
     '021106': 'Alexandra Preate',     # Reply
     '030764': ARIANE_DE_ROTHSCHILD,   # Reply
     '026431': ARIANE_DE_ROTHSCHILD,   # Reply
+    '031996': 'Christina Galbraith',  # bounced
+    '026245': 'Diane Ziman',          # Quoted reply
     '026466': 'Diane Ziman',          # Quoted reply
     '031607': EDWARD_EPSTEIN,
     '026426': JEAN_HUGUEN,            # Reply
     '029975': JEAN_LUC_BRUNEL,        # Same as another file
     '022202': JEAN_LUC_BRUNEL,        # Follow up
+    '032224': JEFFREY_EPSTEIN,        # Reply
+    '033169': JEFFREY_EPSTEIN,
+    '033584': JEFFREY_EPSTEIN,
     '030522': LANDON_THOMAS,
     '031413': LANDON_THOMAS,          # Reply
     '029692': LARRY_SUMMERS,          # Header
@@ -323,7 +352,9 @@ KNOWN_EMAIL_RECIPIENTS = {
     '028787': LAWRANCE_VISOSKI,
     '027097': LAWRANCE_VISOSKI,       # Signature of reply
     '022250': LESLEY_GROFF,           # Reply
+    '023291': MELANIE_SPINELLA,
     '022258': NADIA_MARCINKO,         # Reply header
+    '032951': 'Raafat Alsabbagh',
     '030096': 'Peter Mandelson',
     '019334': STEVE_BANNON,
 }
