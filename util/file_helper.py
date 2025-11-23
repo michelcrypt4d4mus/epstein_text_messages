@@ -26,6 +26,6 @@ def extract_file_id(filename) -> str:
 
 
 def move_json_file(file_arg: Path):
-    json_subdir_path = file_arg.parent.joinpath(JSON_FILES_SUBDIR).joinpath(file_arg.name + '.json')
+    json_subdir_path = JSON_DIR.joinpath(file_arg.name + '.json')
     print(f"'{file_arg}' looks like JSON, moving to '{json_subdir_path}'\n")
     file_arg.rename(json_subdir_path)
