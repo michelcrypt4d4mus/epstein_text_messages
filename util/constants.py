@@ -323,6 +323,7 @@ KNOWN_EMAIL_AUTHORS = {
     '033495': LAWRANCE_VISOSKI,       # Planes discussion signed larry
     '033154': LAWRANCE_VISOSKI,
     '033488': LAWRANCE_VISOSKI,
+    '033593': LAWRANCE_VISOSKI,    # Signature
     '017581': 'Lisa Randall',
     '030472': "Martin Weinberg",   # Maybe. in reply
     '030235': MELANIE_WALKER,      # In fwd
