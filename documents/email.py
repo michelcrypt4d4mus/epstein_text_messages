@@ -33,11 +33,14 @@ MAX_CHARS_TO_PRINT = 4000
 VALID_HEADER_LINES = 14
 EMAIL_INDENT = 3
 
+# These are long forwarded articles we don't want to display over and over
 TRUNCATE_TERMS = [
     'The rebuilding of Indonesia',
     'Dominique Strauss-Kahn',
     'THOMAS L. FRIEDMAN',
 ]
+
+SENT_FROM_SIGNATURES = {}
 
 
 @dataclass
