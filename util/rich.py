@@ -53,11 +53,13 @@ CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 </html>
 """
 
-NAMES_TO_NOT_COLOR = [
+NAMES_TO_NOT_COLOR = [name.lower() for name in [
     'Black',
     'Darren',
     'David',
     'jeffrey',
+    'Jr',
+    'JR.',
     'Le',
     'Martin',
     'Melanie',
@@ -73,7 +75,7 @@ NAMES_TO_NOT_COLOR = [
     'Victor',
     "Y",
     "Y.",
-]
+]]
 
 # Color different counterparties differently
 COUNTERPARTY_COLORS = {
@@ -172,6 +174,7 @@ COUNTERPARTY_COLORS.update({
     'bg': 'turquoise4',
     'Bibi': ISRAELI_COLOR,
     'Bitcoin': BITCOIN_COLOR,
+    'Blockchain': BITCOIN_COLOR,
     'CCP': CHINA_COLOR,
     'China': CHINA_COLOR,
     'Chinese': CHINA_COLOR,
@@ -263,12 +266,12 @@ def highlight_names(text: str) -> str:
         first_name = ' '.join(names[0:-1])
 
         # highlight last names
-        if last_name not in NAMES_TO_NOT_COLOR:
+        if last_name.lower() not in NAMES_TO_NOT_COLOR:
             name_regex = re.compile(rf"(?!{first_name} ?)\b({last_name}s?)\b", re.IGNORECASE)
             text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
 
         # highlight first names
-        if len(first_name) > 2 and first_name not in NAMES_TO_NOT_COLOR:
+        if len(first_name) > 2 and first_name.lower() not in NAMES_TO_NOT_COLOR:
             name_regex = re.compile(rf"\b({first_name}s?)\b(?! ?{last_name})", re.IGNORECASE)
             text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
 
