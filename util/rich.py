@@ -194,6 +194,7 @@ COUNTERPARTY_COLORS.update({
     'Emirates': ARAB_COLOR,
     'GMAX': COUNTERPARTY_COLORS[GHISLAINE_MAXWELL],
     'gmax1@ellmax.com': COUNTERPARTY_COLORS[GHISLAINE_MAXWELL],
+    'Harvard': 'red',
     'HBJ': ARAB_COLOR,
     'Iran': ARAB_COLOR,
     'Iranian': ARAB_COLOR,
