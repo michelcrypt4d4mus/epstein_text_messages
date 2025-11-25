@@ -128,7 +128,7 @@ class EpsteinFiles:
         table = Table(header_style="bold", show_header=True, show_lines=True)
         table.add_column("File", justify="left")
         table.add_column("Length", justify="center")
-        table.add_column("Top Lines", justify="center", style='pale_turquoise4')
+        table.add_column("First Few Lines", justify="center", style='pale_turquoise4')
 
         for doc in self.other_files:
             table.add_row(
