@@ -22,7 +22,6 @@ OCR_REPAIRS = {
     'jeeyacation@gmail.com': JEEVACATION_GMAIL,
     'jeevacation@,gmail.com': JEEVACATION_GMAIL,
     "'eeyacation@gmail.com":  JEEVACATION_GMAIL,
-    'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
 }
 
 

@@ -24,7 +24,7 @@ EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Sub
 REPLY_LINE_PATTERN = r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?(?: [a-zA-Z _1<>@.]+)*(?:[ \n]+wrote:)?|-+(Forwarded|Original)\s*Message-*|Begin forwarded message:?)'
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE)
 REPLY_TEXT_PATTERN = re.compile(rf"(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE)
-SENT_FROM_REGEX = re.compile(r'([sS]ent (from my|via) (iPhone|iPad|Samsung JackTM.*AT&T|AT&T Windows Mobile phone|BlackBerry.*(smartphone|wireless device|AT&T|T- ?Mobile))\.?)')
+SENT_FROM_REGEX = re.compile(r'([sS]ent (from my|via) (iPhone|iPad|Samsung JackTM.*AT&T|AT&T Windows Mobile phone|BlackBerry.*(smartphone|device|Handheld|AT&T|T- ?Mobile))\.?)')
 REDACTED_REPLY_REGEX = re.compile(r'<[ _\n]+> wrote:', re.IGNORECASE)
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
@@ -34,6 +34,13 @@ BAD_FIRST_LINES = ['026652', '029835', '031189']
 MAX_CHARS_TO_PRINT = 4000
 VALID_HEADER_LINES = 14
 EMAIL_INDENT = 3
+
+OCR_REPAIRS = {
+    'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
+    'from my BlackBerry0 wireless device': 'from my BlackBerry® wireless device',
+    'from my BlackBerry° wireless device': 'from my BlackBerry® wireless device',
+    "Sent from my 'Phone": 'Sent from my iPhone',
+}
 
 # These are long forwarded articles we don't want to display over and over
 TRUNCATE_TERMS = [
@@ -195,6 +202,9 @@ class Email(CommunicationDocument):
         elif self.file_id == '031442':
             self.lines = [self.lines[0] + self.lines[1]] + self.lines[2:]
             self.text = '\n'.join(self.lines)
+
+        for k, v in OCR_REPAIRS.items():
+            self.text = self.text.replace(k, v)
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield Panel(self.archive_link, expand=False)
