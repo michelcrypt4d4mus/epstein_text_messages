@@ -400,3 +400,28 @@ EPSTEIN_SIGNATURE = re.compile(
     r"((\*+|please note)\n)?(> )?(• )?(» )?The information contained in this communication is\n(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?",
     re.DOTALL
 )
+
+ABBREVIATIONS = {
+    "AD": "Abu Dhabi",
+    "Barak": "Ehud Barak (Former Israeli prime minister)",
+    "Barrack": "Tom Barrack",
+    'BG': "Bill Gates",
+    'Bill': "Bill Gates",
+    "Brock": "Brock Pierce",
+    "DB": "Deutsche Bank (maybe??)",
+    'HBJ': "Hamad bin Jassim (Former Qatari prime minister)",
+    'Jabor': '"an influential man in Qatar"',
+    'Jagland': 'Thorbjørn Jagland',
+    "Hoffenberg": "Steven Hoffenberg (Epstein's ponzi scheme partner)",
+    'KSA': "Kingdom of Saudi Arabia",
+    'Kwok': "Chinese criminal Miles Kwok AKA Miles Guo AKA Guo Wengui",
+    'Mapp': 'Kenneth E. Mapp (VI Governor)',
+    'MBS': "Mohammed bin Salman Al Saud (Saudi ruler)",
+    'MBZ': "Mohamed bin Zayed Al Nahyan (Emirates sheikh)",
+    'Jared': "Jared Kushner",
+    "Miro": MIROSLAV,
+    "Mooch": "Anthony 'The Mooch' Scaramucci (Skybridge crypto bro)",
+    "Terje": TERJE,
+    "Woody": "Woody Allen",
+    "Zug": "City in Switzerland (crypto hub)",
+}

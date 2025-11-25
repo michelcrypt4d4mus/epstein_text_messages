@@ -29,6 +29,7 @@ ISRAELI_COLOR = 'dodger_blue2'
 PHONE_NUMBER = 'phone_number'
 RUSSIA_COLOR = 'dark_red dim'
 TEXT_LINK = 'text_link'
+TIMESTAMP = 'timestamp'
 
 CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 <html>
@@ -77,7 +78,6 @@ NAMES_TO_NOT_COLOR = [
 # Color different counterparties differently
 COUNTERPARTY_COLORS = {
     ANIL: 'dark_green',
-    ARCHIVE_LINK: 'deep_sky_blue4',
     ARIANE_DE_ROTHSCHILD: 'indian_red',
     'Celina Dubin': 'medium_orchid1',
     DEFAULT: 'wheat4',
@@ -98,7 +98,6 @@ COUNTERPARTY_COLORS = {
     SOON_YI: 'hot_pink',
     STEVE_BANNON: 'color(58)',
     TERJE: 'light_slate_blue',
-    TEXT_LINK: 'deep_sky_blue4 underline',
     UNKNOWN: 'cyan',
 }
 
@@ -132,33 +131,15 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {
     'Deepak Chopra': 'dark_goldenrod',
 }
 
-ABBREVIATIONS = {
-    "AD": "Abu Dhabi",
-    "Barak": "Ehud Barak (Former Israeli prime minister)",
-    "Barrack": "Tom Barrack",
-    'BG': "Bill Gates",
-    'Bill': "Bill Gates",
-    "Brock": "Brock Pierce",
-    "DB": "Deutsche Bank (maybe??)",
-    'HBJ': "Hamad bin Jassim (Former Qatari prime minister)",
-    'Jabor': '"an influential man in Qatar"',
-    'Jagland': 'Thorbjørn Jagland',
-    "Hoffenberg": "Steven Hoffenberg (Epstein's ponzi scheme partner)",
-    'KSA': "Kingdom of Saudi Arabia",
-    'Kwok': "Chinese criminal Miles Kwok AKA Miles Guo AKA Guo Wengui",
-    'Mapp': 'Kenneth E. Mapp (VI Governor)',
-    'MBS': "Mohammed bin Salman Al Saud (Saudi ruler)",
-    'MBZ': "Mohamed bin Zayed Al Nahyan (Emirates sheikh)",
-    'Jared': "Jared Kushner",
-    "Miro": MIROSLAV,
-    "Mooch": "Anthony 'The Mooch' Scaramucci (Skybridge crypto bro)",
-    "Terje": TERJE,
-    "Woody": "Woody Allen",
-    "Zug": "City in Switzerland (crypto hub)",
+OTHER_STYLES = {
+    ARCHIVE_LINK: 'deep_sky_blue4',
+    TEXT_LINK: 'deep_sky_blue4 underline',
+    TIMESTAMP: 'gray30',
 }
 
 COUNTERPARTY_COLORS.update(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED)
 COUNTERPARTY_COLORS.update(PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES)
+COUNTERPARTY_COLORS.update(OTHER_STYLES)
 COURIER_NEWSROOM_ARCHIVE = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
 COFFEEZILLA_ARCHIVE = 'https://journaliststudio.google.com/pinpoint/search?collection=061ce61c9e70bdfd'
 SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great'
@@ -171,6 +152,7 @@ jmail_search_url = lambda txt: f"https://jmail.world/search?q={urllib.parse.quot
 search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&q={urllib.parse.quote(txt)}&p=1"
 search_coffeezilla_url = lambda txt: f"{COFFEEZILLA_ARCHIVE}&q={urllib.parse.quote(txt)}&p=1"
 
+# Setup logging
 logging.basicConfig(level="NOTSET", format="%(message)s", datefmt="[%X]", handlers=[RichHandler()])
 logger = logging.getLogger("rich")
 
