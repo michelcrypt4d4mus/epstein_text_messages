@@ -300,19 +300,21 @@ KNOWN_EMAIL_AUTHORS = {
     '030768': JEFFREY_EPSTEIN,
     '031996': JEFFREY_EPSTEIN,
     '022938': JEFFREY_EPSTEIN,
+    '028675': JEFFREY_EPSTEIN,    # Just bad OCR
+    '025041': JEFFREY_EPSTEIN,          # Just bad OCR
     '016692': JOHN_PAGE,
     '016693': JOHN_PAGE,
     '028507': JONATHAN_FARKAS,
     '031732': JONATHAN_FARKAS,
     '033484': JONATHAN_FARKAS,
     '033282': JONATHAN_FARKAS,
-    '033582': JONATHAN_FARKAS,    # Reply
-    '032389': JONATHAN_FARKAS,    # Reply
-    '033581': JONATHAN_FARKAS,    # Reply
-    '033203': JONATHAN_FARKAS,    # Reply
-    '032052': JONATHAN_FARKAS,    # Reply
-    '033490': JONATHAN_FARKAS,    # Signature
-    '032531': JONATHAN_FARKAS,    # Signature
+    '033582': JONATHAN_FARKAS,        # Reply
+    '032389': JONATHAN_FARKAS,        # Reply
+    '033581': JONATHAN_FARKAS,        # Reply
+    '033203': JONATHAN_FARKAS,        # Reply
+    '032052': JONATHAN_FARKAS,        # Reply
+    '033490': JONATHAN_FARKAS,        # Signature
+    '032531': JONATHAN_FARKAS,        # Signature
     '026764': 'Barry J. Cohen',
     '032224': KATHY_RUEMMLER,
     '030478': LANDON_THOMAS,
@@ -322,20 +324,20 @@ KNOWN_EMAIL_AUTHORS = {
     '033487': LAWRANCE_VISOSKI,
     '028789': LAWRANCE_VISOSKI,
     '027046': LAWRANCE_VISOSKI,
-    '033370': LAWRANCE_VISOSKI,       # Planes discussion signed larry
-    '029977': LAWRANCE_VISOSKI,       # Planes discussion signed larry
-    '033495': LAWRANCE_VISOSKI,       # Planes discussion signed larry
+    '033370': LAWRANCE_VISOSKI,        # Planes discussion signed larry
+    '029977': LAWRANCE_VISOSKI,        # Planes discussion signed larry
+    '033495': LAWRANCE_VISOSKI,        # Planes discussion signed larry
     '033154': LAWRANCE_VISOSKI,
     '033488': LAWRANCE_VISOSKI,
-    '033593': LAWRANCE_VISOSKI,    # Signature
+    '033593': LAWRANCE_VISOSKI,        # Signature
     '017581': 'Lisa Randall',
-    '030472': "Martin Weinberg",   # Maybe. in reply
-    '030235': MELANIE_WALKER,      # In fwd
+    '030472': "Martin Weinberg",       # Maybe. in reply
+    '030235': MELANIE_WALKER,          # In fwd
     '032212': MIROSLAV,
     '022193': NADIA_MARCINKO,
     '021814': NADIA_MARCINKO,
     '021808': NADIA_MARCINKO,
-    '022214': NADIA_MARCINKO,         # Reply header
+    '022214': NADIA_MARCINKO,          # Reply header
     '022190': NADIA_MARCINKO,
     '021818': NADIA_MARCINKO,
     '022197': NADIA_MARCINKO,
@@ -387,6 +389,8 @@ KNOWN_EMAIL_RECIPIENTS = {
     '031413': LANDON_THOMAS,          # Reply
     '029692': LARRY_SUMMERS,          # Header
     '029779': LARRY_SUMMERS,          # Header
+    '028675': LARRY_SUMMERS,          # Just bad OCR
+    '025041': LARRY_SUMMERS,          # Just bad OCR
     '033591': LAWRANCE_VISOSKI,       # Reply signature
     '033466': LAWRANCE_VISOSKI,       # Reply signature
     '028787': LAWRANCE_VISOSKI,
