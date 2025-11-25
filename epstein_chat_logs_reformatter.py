@@ -97,8 +97,7 @@ for email in epstein_files.emails:
         continue
 
     sent_from = 'S' + sent_from[1:] if sent_from.startswith('sent') else sent_from
-    logger.info(f"Got sent_from='{sent_from}' in email text:")
-    email.log_top_lines(15)
+    logger.info(f"Got sent_from='{sent_from}' in email text:\n{email.top_lines(15)}\n")
     SENT_FROM_AUTHOR_DEVICES[email.author] = SENT_FROM_AUTHOR_DEVICES.get(email.author, set([]))
     SENT_FROM_AUTHOR_DEVICES[email.author].add(sent_from)
 
