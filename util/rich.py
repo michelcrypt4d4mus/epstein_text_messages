@@ -110,7 +110,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     JABOR_Y: f"{ARAB_COLOR} bold",
     DANIEL_SIAD: 'dark_khaki',
     JEAN_LUC_BRUNEL: 'wheat4',
-    EHUD_BARAK: 'chartreuse4',
+    EHUD_BARAK: ISRAELI_COLOR,
     MARTIN_NOWAK: 'navy_blue',
     'Masha Drokova': 'deep_pink2',
     'Peter Thiel': 'orange4',
@@ -130,6 +130,31 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {
     DARREN_INDYKE: 'purple3',
     'Richard Kahn': 'purple4',
     'Deepak Chopra': 'dark_goldenrod',
+}
+
+ABBREVIATIONS = {
+    "AD": "Abu Dhabi",
+    "Barak": "Ehud Barak (Former Israeli prime minister)",
+    "Barrack": "Tom Barrack",
+    'BG': "Bill Gates",
+    'Bill': "Bill Gates",
+    "Brock": "Brock Pierce",
+    "DB": "Deutsche Bank (maybe??)",
+    'HBJ': "Hamad bin Jassim (Former Qatari prime minister)",
+    'Jabor': '"An Influential man in Qatar"',
+    'Jagland': 'Thorbjørn Jagland',
+    "Hoffenberg": "Steven Hoffenberg (Epstein's ponzi scheme partner)",
+    'KSA': "Kingdom of Saudi Arabia",
+    'Kwok': "Chinese criminal Miles Kwok AKA Miles Guo AKA Guo Wengui",
+    'Mapp': 'Kenneth E. Mapp (VI Governor)',
+    'MBS': "Mohammed bin Salman Al Saud (Saudi ruler)",
+    'MBZ': "Mohamed bin Zayed Al Nahyan (Emirates' Sheikh)",
+    'Jared': "Jared Kushner",
+    "Miro": MIROSLAV,
+    "Mooch": "Anthony 'The Mooch' Scaramucci (Skybridge crypto bro)",
+    "Terje": TERJE,
+    "Woody": "Woody Allen",
+    "Zug": "City in Switzerland (crypto hub)",
 }
 
 COUNTERPARTY_COLORS.update(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED)
@@ -268,31 +293,6 @@ def highlight_names(text: str) -> str:
     return text
 
 
-ABBREVIATIONS = {
-    highlight_names("AD"): "Abu Dhabi",
-    highlight_names("Barak"): "Ehud Barak (Former Israeli prime minister)",
-    highlight_names("Barrack"): "Tom Barrack",
-    highlight_names('BG'): "Bill Gates",
-    highlight_names('Bill'): "Bill Gates",
-    highlight_names("Brock"): "Brock Pierce",
-    highlight_names("DB"): "Deutsche Bank (maybe??)",
-    highlight_names('HBJ'): "Hamad bin Jassim (Former Qatari prime minister)",
-    highlight_names('Jabor'): '"An Influential man in Qatar"',
-    highlight_names('Jagland'): 'Thorbjørn Jagland',
-    highlight_names("Hoffenberg"): "Steven Hoffenberg (Epstein's ponzi scheme partner)",
-    highlight_names('KSA'): "Kingdom of Saudi Arabia",
-    highlight_names('Kwok'): "Chinese criminal Miles Kwok AKA Miles Guo AKA Guo Wengui",
-    highlight_names('Mapp'): 'Kenneth E. Mapp (VI Governor)',
-    highlight_names('MBS'): "Mohammed bin Salman Al Saud (Saudi ruler)",
-    highlight_names('MBZ'): "Mohamed bin Zayed Al Nahyan (Emirates' Sheikh)",
-    highlight_names('Jared'): "Jared Kushner",
-    highlight_names("Miro"): MIROSLAV,
-    highlight_names("Mooch"): "Anthony 'The Mooch' Scaramucci (Skybridge crypto bro)",
-    highlight_names("Terje"): TERJE,
-    highlight_names("Woody"): "Woody Allen",
-    highlight_names("Zug"): "City in Switzerland (crypto hub)",
-}
-
 def print_header():
     console.print(f"This site is not optimized for mobile but if you get past the header it should work ok.", style='dim')
     console.line()
@@ -309,7 +309,7 @@ def print_header():
     table.add_column("Translation", style="deep_sky_blue4", justify="center")
 
     for k, v in ABBREVIATIONS.items():
-        table.add_row(k, v)
+        table.add_row(highlight_names(k), v)
 
     console.print('\n', Align.center(table))
     console.line()
