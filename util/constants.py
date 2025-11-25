@@ -77,7 +77,6 @@ HOUSE_OVERSIGHT_027406.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027440.txt	Michael Wolff	Trump book/journalism project
 HOUSE_OVERSIGHT_027445.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
 HOUSE_OVERSIGHT_027455.txt	Steve Bannon (likely)	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027460.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027515.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_027536.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
 HOUSE_OVERSIGHT_027655.txt	Steve Bannon	Trump and New York Times coverage
@@ -92,6 +91,7 @@ KNOWN_IMESSAGE_FILE_IDS = {
     '031042': ANIL,            # Participants: field
     '027225': ANIL,            # Birthday
     '031173': 'Ards',          # Participants: field, possibly incomplete
+    '027460': STEVE_BANNON,    # Discusses leaving scotland when Bannon was confirmed in Scotland, also NYT
     '025707': STEVE_BANNON,
     '025734': STEVE_BANNON,
     '025452': STEVE_BANNON,
