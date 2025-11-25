@@ -15,6 +15,7 @@ DAVID_STERN = 'David Stern'
 DONALD_TRUMP = 'Donald Trump'
 EDWARD_EPSTEIN = 'Edward Epstein'
 EHUD_BARAK = 'Ehud Barak'
+FAITH_KATES = 'Faith Kates'
 GERALD_BARTON = 'Gerald Barton'
 GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
 GWENDOLYN_BECK = 'Gwendolyn Beck'
@@ -107,7 +108,7 @@ KNOWN_IMESSAGE_FILE_IDS = {
     '027217': SOON_YI,         # refs marriage to woody allen
     '027244': SOON_YI,         # refs Woody
     '027257': SOON_YI,         # 'Woody Allen' in Participants: field
-    '027777': LARRY_SUMMERS,
+    '027777': LARRY_SUMMERS,   # Participants: field
     '027278': TERJE,
     '027255': TERJE,
 }
@@ -198,7 +199,7 @@ EMAILER_REGEXES = {
     DAVID_STERN: re.compile(r'David Stern?', re.IGNORECASE),
     EDWARD_EPSTEIN: re.compile(r'Edward (Jay )?Epstein', re.IGNORECASE),
     EHUD_BARAK: re.compile(r'(ehud|h)\s*barak', re.IGNORECASE),
-    'Faith Kates': re.compile(r'faith kate', re.IGNORECASE),
+    FAITH_KATES: re.compile(r'faith kate', re.IGNORECASE),
     GERALD_BARTON: re.compile(r'Gerald.*Barton', re.IGNORECASE),
     GHISLAINE_MAXWELL: re.compile(r'g ?max(well)?', re.IGNORECASE),
     'Google Alerts': re.compile(r'google\s?alerts', re.IGNORECASE),
@@ -277,6 +278,7 @@ KNOWN_EMAIL_AUTHORS = {
     '026287': DAVID_SCHOEN,       # Signature
     '033419': DAVID_SCHOEN,       # Sent by AOL
     '031460': EDWARD_EPSTEIN,
+    '030578': FAITH_KATES,        # Same as unredacted 030414, same legal signature
     '026547': GERALD_BARTON,
     '029969': GWENDOLYN_BECK,     # Signature
     '031120': GWENDOLYN_BECK,     # Signature
@@ -371,6 +373,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '026245': 'Diane Ziman',          # Quoted reply
     '026466': 'Diane Ziman',          # Quoted reply
     '031607': EDWARD_EPSTEIN,
+    '030525': FAITH_KATES,            # Same as unredacted 030414, same legal signature
     '026426': JEAN_HUGUEN,            # Reply
     '029975': JEAN_LUC_BRUNEL,        # Same as another file
     '022202': JEAN_LUC_BRUNEL,        # Follow up
