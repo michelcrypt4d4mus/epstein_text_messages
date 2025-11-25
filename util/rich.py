@@ -299,7 +299,7 @@ def print_header():
     console.print(Panel(Text("Epstein Estate Documents - Seventh Production Collection Reformatted Text Messages", justify='center', style='bold reverse')))
     console.line()
     console.print(Align.center(f"[bold][link={SUBSTACK_URL}]I Made Epstein's Text Messages Great Again (And You Should Read Them)[/link][/bold]"))
-    console.print(Align.center('[blue][underline][link={SUBSTACK_URL}]' + SUBSTACK_URL.removeprefix('https://') + '[/link][/underline][/blue]'))
+    console.print(Align.center(f"[blue][underline][link={SUBSTACK_URL}]{SUBSTACK_URL.removeprefix('https://')}[/link][/underline][/blue]"))
     console.print(Align.center("[link=https://cryptadamus.substack.com/]Substack[/link]"))
     console.print(Align.center("[link=https://universeodon.com/@cryptadamist]Mastodon[/link]"))
     console.print(Align.center("[link=https://x.com/Cryptadamist/status/1990866804630036988]Twitter[/link]"))
