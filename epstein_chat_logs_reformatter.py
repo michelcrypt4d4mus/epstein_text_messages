@@ -75,6 +75,9 @@ for author in PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED:
 for name in PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES.keys():
     epstein_files.print_emails_table_for(name)
 
+print_section_header('Other Files')
+epstein_files.print_other_files_table()
+
 # Save output
 if is_build:
     console.save_html(OUTPUT_GH_PAGES_HTML, inline_styles=False, clear=False, code_format=CONSOLE_HTML_FORMAT)

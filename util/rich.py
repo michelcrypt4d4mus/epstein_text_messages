@@ -323,7 +323,7 @@ def print_email_table(counts: dict[str, int], column_title: str) -> None:
 
 
 def print_section_header(msg: str) -> None:
-    console.print(Align.center(Panel(Text(msg, justify='center'), width=80, padding=(1, 1)), style='bold white on blue3'))
+    console.print(Align.center(Panel(Text(msg, justify='center'), width=80, padding=(1, 1), style='bold white on blue3')))
     console.line()
 
 
