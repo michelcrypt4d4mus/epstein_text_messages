@@ -24,6 +24,8 @@ OUTPUT_GH_PAGES_HTML = Path('docs').joinpath('index.html')
 
 print_header()
 epstein_files = EpsteinFiles()
+epstein_files.print_summary()
+print_section_header('Text Messages')
 
 # Text messages
 for log_file in epstein_files.sorted_imessage_logs():
@@ -45,7 +47,7 @@ console.print(f"Found {epstein_files.imessage_msg_count()} total text messages i
 console.print(f"(Last deploy found 4668 messages in 77 conversations)\n\n\n", style='dim')
 
 # Email sender / recipient counts
-console.print(Panel(Text("HIS EMAILS", justify='center'), width=80, padding=(2, 2)), style='bold white on blue3')
+print_section_header('His Emails')
 print_email_table(epstein_files.email_author_counts, "Author")
 print_email_table(epstein_files.email_recipient_counts, "Recipients")
 console.print(f"\n\nIdentified authors of {epstein_files.num_identified_email_authors()} emails out of {len(epstein_files.emails)} potential email files.")
@@ -72,6 +74,9 @@ for author in PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED:
 
 for name in PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES.keys():
     epstein_files.print_emails_table_for(name)
+
+print_section_header('Other Files')
+epstein_files.print_other_files_table()
 
 # Save output
 if is_build:

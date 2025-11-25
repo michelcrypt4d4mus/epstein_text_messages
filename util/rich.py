@@ -322,6 +322,11 @@ def print_email_table(counts: dict[str, int], column_title: str) -> None:
     console.print('\n', counts_table)
 
 
+def print_section_header(msg: str) -> None:
+    console.print(Align.center(Panel(Text(msg, justify='center'), width=80, padding=(1, 1), style='bold white on blue3')))
+    console.line()
+
+
 def print_top_lines(file_text, n = 10, max_chars = MAX_PREVIEW_CHARS, in_panel = False):
     """Print first n lines of a file."""
     file_text = LEADING_WHITESPACE_REGEX.sub('', file_text)

@@ -29,7 +29,7 @@ OCR_REPAIRS = {
 class Document:
     file_path: Path
     epsteinify_url: str = field(init=False)
-    epsteinify_url_markup: str = field(init=False)
+    epsteinify_link_markup: str = field(init=False)
     file_id: str = field(init=False)
     filename: str = field(init=False)
     length: int = field(init=False)
