@@ -341,7 +341,7 @@ def print_email_table(counts: dict[str, int], column_title: str) -> None:
 
 
 def print_top_lines(file_text, n = 10, max_chars = MAX_PREVIEW_CHARS, in_panel = False):
-    "Print first n lines of a file."
+    """Print first n lines of a file."""
     file_text = LEADING_WHITESPACE_REGEX.sub('', file_text)
     top_text = escape('\n'.join(file_text.split("\n")[0:n])[0:max_chars])
     output = Panel(top_text, expand=False) if in_panel else top_text + '\n'
