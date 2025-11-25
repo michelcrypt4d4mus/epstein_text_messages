@@ -169,7 +169,7 @@ class Email(CommunicationDocument):
             else:
                 logger.debug(f"Parsed email header to:\n{self.header}")
         else:
-            logger.warning(f"No header match found! Top lines:\n\n{self.top_lines()}")
+            logger.warning(f"No header match found in '{self.filename}'! Top lines:\n\n{self.top_lines()}")
             self.header = EmailHeader(field_names=[])
 
     def _repair(self) -> None:
