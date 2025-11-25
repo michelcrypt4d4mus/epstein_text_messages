@@ -17,7 +17,7 @@ from util.env import is_debug
 from util.file_helper import DOCS_DIR, move_json_file
 from util.rich import COUNTERPARTY_COLORS, console, logger
 
-OTHER_FILE_PREVIEW_CHARS = 300
+OTHER_FILE_PREVIEW_CHARS = 500
 WHITESPACE_REGEX = re.compile(r"\s{2,}", re.MULTILINE)
 
 
@@ -135,13 +135,8 @@ class EpsteinFiles:
         table.add_column("First Few Lines", justify="center", style='pale_turquoise4')
 
         for doc in sorted(self.other_files, key=lambda document: document.filename):
-            logger.debug(f"Outputting '{doc.filename}'...")
-
-            table.add_row(
-                doc.epsteinify_link_markup,
-                f"{doc.length:,}",
-                WHITESPACE_REGEX.sub(' ', doc.text.strip().replace('\n', ' ').replace('\t', ' '))[0:OTHER_FILE_PREVIEW_CHARS]
-            )
+            txt = WHITESPACE_REGEX.sub(' ', doc.text.strip().replace('\n', ' ').replace('\t', ' '))[0:OTHER_FILE_PREVIEW_CHARS]
+            table.add_row(doc.epsteinify_link_markup, f"{doc.length:,}", txt)
 
         console.print(table)
 
