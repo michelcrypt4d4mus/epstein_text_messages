@@ -6,7 +6,7 @@ from rich.panel import Panel
 from rich.text import Text
 
 from util.constants import *
-from util.rich import COUNTERPARTY_COLORS, PHONE_NUMBER, TEXT_LINK, archive_link, highlight_names
+from util.rich import COUNTERPARTY_COLORS, PHONE_NUMBER, TEXT_LINK, TIMESTAMP, archive_link, highlight_names
 from documents.document import *
 
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
@@ -76,7 +76,7 @@ class MessengerLog(CommunicationDocument):
 
         for match in MSG_REGEX.finditer(self.text):
             sender = sender_str = match.group(1).strip()
-            timestamp = Text(f"[{match.group(2).strip()}] ", style='gray30')
+            timestamp = Text(f"[{match.group(2).strip()}] ", style=TIMESTAMP)
             msg = match.group(4).strip()
             msg_lines = msg.split('\n')
             sender_style = None

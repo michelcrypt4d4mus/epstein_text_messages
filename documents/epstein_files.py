@@ -12,7 +12,7 @@ from documents.document import Document
 from documents.email import DETECT_EMAIL_REGEX, Email
 from documents.messenger_log import MSG_REGEX, MessengerLog
 from util.constants import *
-from util.env import deep_debug, is_debug
+from util.env import is_debug
 from util.file_helper import DOCS_DIR, move_json_file
 from util.rich import COUNTERPARTY_COLORS, console, logger
 
@@ -29,10 +29,10 @@ class EpsteinFiles:
     def __post_init__(self):
         self.all_files = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
         self.emails = []
-        self.iMessage_logs = []
-        self.other_files = []
         self.email_author_counts = defaultdict(int)
         self.email_recipient_counts = defaultdict(int)
+        self.iMessage_logs = []
+        self.other_files = []
 
         for file_arg in self.all_files:
             if is_debug:
@@ -65,7 +65,33 @@ class EpsteinFiles:
                 self.other_files.append(document)
                 document.log_top_lines()
 
+    def emails_for(self, author: str | None) -> list[Email]:
+        """Returns emails to or from a given 'author' sorted chronologically."""
+        author = author.lower() if author else None
+        emails_by = [e for e in self.emails if e.author_lowercase == author]
+        emails_to = []
+
+        if author is None:
+            emails_to = [
+                e for e in self.emails
+                if e.author == JEFFREY_EPSTEIN and (None in e.recipients or len(e.recipients) == 0)
+            ]
+        else:
+            emails_to = [e for e in self.emails if author in e.recipients_lower]
+
+        return EpsteinFiles.sort_emails(emails_by + emails_to)
+
+    def identified_imessage_log_count(self) -> int:
+        return len([log for log in self.iMessage_logs if log.author])
+
+    def imessage_msg_count(self) -> int:
+        return sum([log.msg_count for log in self.sorted_imessage_logs()])
+
+    def num_identified_email_authors(self) -> int:
+        return sum([i for author, i in self.email_author_counts.items() if author != UNKNOWN])
+
     def print_emails_for(self, author: str | None) -> None:
+        """Print complete emails to or from a particular 'author'."""
         emails = self.emails_for(author)
         author = author or UNKNOWN
 
@@ -83,33 +109,6 @@ class EpsteinFiles:
         for email in emails:
             console.print(email)
 
-    def sorted_imessage_logs(self) -> list[MessengerLog]:
-        return sorted(self.iMessage_logs, key=lambda f: f.timestamp)
-
-    def emails_for(self, author: str | None) -> list[Email]:
-        author = author.lower() if author else None
-        emails_by = [e for e in self.emails if e.author_lowercase == author]
-        emails_to = []
-
-        if author is None:
-            emails_to = [
-                e for e in self.emails
-                if e.author == JEFFREY_EPSTEIN and (None in e.recipients or len(e.recipients) == 0)
-            ]
-        else:
-            emails_to = [e for e in self.emails if author in e.recipients_lower]
-
-        return EpsteinFiles.sort_emails(emails_by + emails_to)
-
-    def num_identified_email_authors(self) -> int:
-        return sum([i for author, i in self.email_author_counts.items() if author != UNKNOWN])
-
-    def identified_imessage_log_count(self) -> int:
-        return len([log for log in self.iMessage_logs if log.author])
-
-    def imessage_msg_count(self) -> int:
-        return sum([log.msg_count for log in self.sorted_imessage_logs()])
-
     def print_emails_table_for(self, author: str) -> None:
         table = Table(title=f"Emails to/from {author}", show_header=True, header_style="bold")
         table.add_column("From", justify="left")
@@ -125,6 +124,9 @@ class EpsteinFiles:
 
         console.print(table, '\n\n')
 
-    @classmethod
-    def sort_emails(cls, emails: list[Email]) -> list[Email]:
+    def sorted_imessage_logs(self) -> list[MessengerLog]:
+        return sorted(self.iMessage_logs, key=lambda f: f.timestamp)
+
+    @staticmethod
+    def sort_emails(emails: list[Email]) -> list[Email]:
         return sorted(emails, key=lambda e: (e.sort_time()))

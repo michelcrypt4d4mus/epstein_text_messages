@@ -77,7 +77,6 @@ HOUSE_OVERSIGHT_027406.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027440.txt	Michael Wolff	Trump book/journalism project
 HOUSE_OVERSIGHT_027445.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
 HOUSE_OVERSIGHT_027455.txt	Steve Bannon (likely)	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027460.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027515.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_027536.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
 HOUSE_OVERSIGHT_027655.txt	Steve Bannon	Trump and New York Times coverage
@@ -92,6 +91,7 @@ KNOWN_IMESSAGE_FILE_IDS = {
     '031042': ANIL,            # Participants: field
     '027225': ANIL,            # Birthday
     '031173': 'Ards',          # Participants: field, possibly incomplete
+    '027460': STEVE_BANNON,    # Discusses leaving scotland when Bannon was confirmed in Scotland, also NYT
     '025707': STEVE_BANNON,
     '025734': STEVE_BANNON,
     '025452': STEVE_BANNON,
@@ -400,3 +400,28 @@ EPSTEIN_SIGNATURE = re.compile(
     r"((\*+|please note)\n)?(> )?(• )?(» )?The information contained in this communication is\n(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?",
     re.DOTALL
 )
+
+ABBREVIATIONS = {
+    "AD": "Abu Dhabi",
+    "Barak": "Ehud Barak (Former Israeli prime minister)",
+    "Barrack": "Tom Barrack",
+    'BG': "Bill Gates",
+    'Bill': "Bill Gates",
+    "Brock": "Brock Pierce",
+    "DB": "Deutsche Bank (maybe??)",
+    'HBJ': "Hamad bin Jassim (Former Qatari prime minister)",
+    'Jabor': '"an influential man in Qatar"',
+    'Jagland': 'Thorbjørn Jagland',
+    "Hoffenberg": "Steven Hoffenberg (Epstein's ponzi scheme partner)",
+    'KSA': "Kingdom of Saudi Arabia",
+    'Kwok': "Chinese criminal Miles Kwok AKA Miles Guo AKA Guo Wengui",
+    'Mapp': 'Kenneth E. Mapp (VI Governor)',
+    'MBS': "Mohammed bin Salman Al Saud (Saudi ruler)",
+    'MBZ': "Mohamed bin Zayed Al Nahyan (Emirates sheikh)",
+    'Jared': "Jared Kushner",
+    "Miro": MIROSLAV,
+    "Mooch": "Anthony 'The Mooch' Scaramucci (Skybridge crypto bro)",
+    "Terje": TERJE,
+    "Woody": "Woody Allen",
+    "Zug": "City in Switzerland (crypto hub)",
+}
