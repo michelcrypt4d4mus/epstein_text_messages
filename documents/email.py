@@ -40,6 +40,7 @@ OCR_REPAIRS = {
     'from my BlackBerry0 wireless device': 'from my BlackBerry® wireless device',
     'from my BlackBerry° wireless device': 'from my BlackBerry® wireless device',
     "Sent from my 'Phone": 'Sent from my iPhone',
+    'BlackBerry by AT &T': 'BlackBerry by AT&T',
 }
 
 # These are long forwarded articles we don't want to display over and over
