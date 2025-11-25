@@ -172,6 +172,7 @@ COUNTERPARTY_COLORS.update({
     'bg': 'turquoise4',
     'Bibi': ISRAELI_COLOR,
     'Bitcoin': BITCOIN_COLOR,
+    'Blockchain': BITCOIN_COLOR,
     'CCP': CHINA_COLOR,
     'China': CHINA_COLOR,
     'Chinese': CHINA_COLOR,

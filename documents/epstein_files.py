@@ -24,19 +24,16 @@ WHITESPACE_REGEX = re.compile(r"\s{2,}", re.MULTILINE)
 @dataclass
 class EpsteinFiles:
     all_files: list[Path] = field(init=False)
-    emails: list[Email] = field(init=False)
-    iMessage_logs: list[MessengerLog] = field(init=False)
-    other_files: list[Document] = field(init=False)
+    emails: list[Email] = field(default_factory=list)
+    iMessage_logs: list[MessengerLog] = field(default_factory=list)
+    other_files: list[Document] = field(default_factory=list)
     email_author_counts: dict[str, int] = field(init=False)
     email_recipient_counts: dict[str, int] = field(init=False)
 
     def __post_init__(self):
         self.all_files = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
-        self.emails = []
         self.email_author_counts = defaultdict(int)
         self.email_recipient_counts = defaultdict(int)
-        self.iMessage_logs = []
-        self.other_files = []
 
         for file_arg in self.all_files:
             if is_debug:
@@ -147,7 +144,7 @@ class EpsteinFiles:
         table.add_column("Deanonymized Count", justify='center')
         table.add_row('iMessage Logs', f"{len(self.iMessage_logs)}", str(self.identified_imessage_log_count()))
         table.add_row('Emails', f"{len(self.emails)}", str(len([e for e in self.emails if e.author and e.author != UNKNOWN])))
-        table.add_row('Unknown', f"{len(self.other_files)}", 'n/a')
+        table.add_row('Other', f"{len(self.other_files)}", 'n/a')
         console.print('\n', Align.center(table), '\n\n')
 
     def sorted_imessage_logs(self) -> list[MessengerLog]:
