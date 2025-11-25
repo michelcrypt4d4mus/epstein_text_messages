@@ -220,6 +220,7 @@ COUNTERPARTY_COLORS.update({
     'Miro': COUNTERPARTY_COLORS[MIROSLAV],
     'Moscow': RUSSIA_COLOR,
     'Netanyahu': ISRAELI_COLOR,
+    'Obama': 'yellow',
     'Putin': 'dark_red bold',
     'Roger Stone': COUNTERPARTY_COLORS[DONALD_TRUMP],
     'Russia': RUSSIA_COLOR,
