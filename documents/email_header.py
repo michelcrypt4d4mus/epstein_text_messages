@@ -81,10 +81,5 @@ class EmailHeader:
 
     @staticmethod
     def cleanup_str(_str: str) -> str:
-        _str = _str.strip().lstrip('"').lstrip("'").rstrip('"').rstrip("'").strip()
-        _str = _str.strip('_').strip('[').strip(']').strip('*').strip('<').strip('•').rstrip(',').strip()
-
-        # if ' [' in _str:
-        #     _str = _str.split(' [')[0]
-
-        return _str
+        _str = _str.strip().lstrip('"').lstrip("'").rstrip('"').rstrip("'").strip().strip('_')
+        return _str.strip('[').strip(']').strip('*').strip('<').strip('•').rstrip(',').strip('>').strip()

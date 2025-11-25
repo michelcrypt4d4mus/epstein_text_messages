@@ -284,9 +284,11 @@ KNOWN_EMAIL_AUTHORS = {
     '029970': GWENDOLYN_BECK,
     '029960': GWENDOLYN_BECK,     # Reply
     '029959': GWENDOLYN_BECK,     # "Longevity & Aging"
+    '033384': 'Jack Goldberger',     # Might be Paul Prosperi?
     '026024': JEAN_HUGUEN,
     '026024': JEAN_HUGUEN,        # Signature
     '021823': JEAN_LUC_BRUNEL,    # Reply
+    '031826': JEFFREY_EPSTEIN,
     '030997': JEFFREY_EPSTEIN,
     '029779': JEFFREY_EPSTEIN,
     '022949': JEFFREY_EPSTEIN,

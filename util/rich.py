@@ -322,6 +322,7 @@ def print_header():
     console.line(2)
     console.print(Align.center("Conversations are sorted chronologically based on timestamp of first message."), style='bold dark_green')
     console.print(Align.center(f"If you think there's an attribution error or can deanonymize an {UNKNOWN} contact @cryptadamist."), style='dim')
+    console.print(Align.center("[link=https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/util/constants.py]Explanation of attributions[/link]"), style='magenta')
     console.line(2)
 
 
