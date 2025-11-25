@@ -26,6 +26,7 @@ ARCHIVE_LINK_COLOR = 'blue3'
 BITCOIN_COLOR = 'orange1 bold'
 CHINA_COLOR = 'bright_red'
 ISRAELI_COLOR = 'dodger_blue2'
+JOURNALIST_COLOR = 'grey54'
 PHONE_NUMBER = 'phone_number'
 RUSSIA_COLOR = 'dark_red dim'
 TEXT_LINK = 'text_link'
@@ -55,6 +56,7 @@ CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 
 NAMES_TO_NOT_COLOR = [name.lower() for name in [
     'Black',
+    'Daniel',
     'Darren',
     'David',
     'jeffrey',
@@ -91,9 +93,9 @@ COUNTERPARTY_COLORS = {
     MELANIE_WALKER: 'deep_pink4',
     MELANIE_SPINELLA: 'magenta3',
     MIROSLAV: 'slate_blue3',
-    "Michael Wolff": 'grey54',
+    "Michael Wolff": JOURNALIST_COLOR,
     'Noam Chomsky': 'grey23',
-    PHONE_NUMBER: 'bright_green',
+    PAUL_KRASSNER: JOURNALIST_COLOR,
     PLASKETT: 'medium_orchid3',
     ROBERT_TRIVERS: 'blue_violet',
     SCARAMUCCI: 'orange1',
@@ -135,6 +137,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {
 
 OTHER_STYLES = {
     ARCHIVE_LINK: 'deep_sky_blue4',
+    PHONE_NUMBER: 'bright_green',
     TEXT_LINK: 'deep_sky_blue4 underline',
     TIMESTAMP: 'gray30',
 }
@@ -182,6 +185,7 @@ COUNTERPARTY_COLORS.update({
     'coins': BITCOIN_COLOR,
     'cripto': BITCOIN_COLOR,
     'crypto': BITCOIN_COLOR,
+    'Dershowitz': 'medium_purple2',
     'DJT': COUNTERPARTY_COLORS[DONALD_TRUMP],
     'Dubai': ARAB_COLOR,
     'e-currency': BITCOIN_COLOR,
