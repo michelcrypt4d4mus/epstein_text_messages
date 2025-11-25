@@ -43,7 +43,6 @@ class EpsteinFiles:
 
             if document.length == 0:
                 logger.info('Skipping empty file...')
-                continue
             elif document.text[0] == '{':  # Check for JSON
                 move_json_file(file_arg)
             elif MSG_REGEX.search(document.text):
