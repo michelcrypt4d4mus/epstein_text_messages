@@ -17,8 +17,8 @@ from util.env import is_debug
 from util.file_helper import DOCS_DIR, move_json_file
 from util.rich import COUNTERPARTY_COLORS, console, logger
 
-WHITESPACE_REGEX = re.compile(r"\s{2,}")
 OTHER_FILE_PREVIEW_CHARS = 300
+WHITESPACE_REGEX = re.compile(r"\s{2,}", re.MULTILINE)
 
 
 @dataclass
@@ -140,7 +140,7 @@ class EpsteinFiles:
             table.add_row(
                 doc.epsteinify_link_markup,
                 f"{doc.length:,}",
-                WHITESPACE_REGEX.sub(' ', doc.text.strip().replace('\n', ' '))[0:OTHER_FILE_PREVIEW_CHARS]
+                WHITESPACE_REGEX.sub(' ', doc.text.strip().replace('\n', ' ').replace('\t', ' '))[0:OTHER_FILE_PREVIEW_CHARS]
             )
 
         console.print(table)
