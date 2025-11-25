@@ -1,3 +1,4 @@
+import re
 from collections import defaultdict
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -15,6 +16,9 @@ from util.constants import *
 from util.env import is_debug
 from util.file_helper import DOCS_DIR, move_json_file
 from util.rich import COUNTERPARTY_COLORS, console, logger
+
+WHITESPACE_REGEX = re.compile(r"\s{2,}")
+OTHER_FILE_PREVIEW_CHARS = 300
 
 
 @dataclass
@@ -130,11 +134,13 @@ class EpsteinFiles:
         table.add_column("Length", justify="center")
         table.add_column("First Few Lines", justify="center", style='pale_turquoise4')
 
-        for doc in self.other_files:
+        for doc in sorted(self.other_files, key=lambda document: document.filename):
+            logger.debug(f"Outputting '{doc.filename}'...")
+
             table.add_row(
                 doc.epsteinify_link_markup,
                 f"{doc.length:,}",
-                doc.text.replace('\n', ' ').replace('  ', ' ').replace('  ', ' ')[0:300]
+                WHITESPACE_REGEX.sub(' ', doc.text.strip().replace('\n', ' '))[0:OTHER_FILE_PREVIEW_CHARS]
             )
 
         console.print(table)
