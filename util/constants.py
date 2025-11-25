@@ -155,6 +155,7 @@ EMAILERS = [
     'Bill Gates',
     'Bill Siegel',
     'Daniel Sabba',
+    DAVID_SCHOEN,
     'Glenn Dubin',
     'Gordon Getty',
     'Jessica Cadwell',

@@ -21,8 +21,10 @@ EMAIL_HEADER_REGEX = re.compile(r'^(((Date|Subject):.*\n)*From:.*\n((Date|Sent|T
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
 BAD_EMAILER_REGEX = re.compile(r'^>|agreed|ok|sexy|rt|re:|fwd:|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|hysterical|i have|image0|so that people|article 1.?|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Subject|Attachments):\s*\n)+')
-REPLY_REGEX = re.compile(r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?(?: [a-zA-Z _1<>@.]+)*(?:[ \n]+wrote:)?|-+(Forwarded|Original)\s*Message-*|Begin forwarded message:?)', re.IGNORECASE)
-SENT_FROM_REGEX = re.compile(r'([sS]ent (from my|via) (iPhone|iPad|Samsung JackTM.*AT&T|AT&T Windows Mobile phone|BlackBerry.*(smartphone|wireless device|AT&T|T- ?Mobile))\.?)')
+REPLY_LINE_PATTERN = r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?(?: [a-zA-Z _1<>@.]+)*(?:[ \n]+wrote:)?|-+(Forwarded|Original)\s*Message-*|Begin forwarded message:?)'
+REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE)
+REPLY_TEXT_PATTERN = re.compile(rf"(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE)
+SENT_FROM_REGEX = re.compile(r'^([sS]ent (from|via).*(iPad|iPhone|Windows Mail|AT&T|phone|BlackBerry.*(smartphone|device|Handheld|AT&T|T- ?Mobile))\.?)', re.MULTILINE)
 REDACTED_REPLY_REGEX = re.compile(r'<[ _\n]+> wrote:', re.IGNORECASE)
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
@@ -33,6 +35,15 @@ MAX_CHARS_TO_PRINT = 4000
 VALID_HEADER_LINES = 14
 EMAIL_INDENT = 3
 
+OCR_REPAIRS = {
+    'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
+    'from my BlackBerry0 wireless device': 'from my BlackBerry® wireless device',
+    'from my BlackBerry° wireless device': 'from my BlackBerry® wireless device',
+    "Sent from my 'Phone": 'Sent from my iPhone',
+    'BlackBerry by AT &T': 'BlackBerry by AT&T',
+}
+
+# These are long forwarded articles we don't want to display over and over
 TRUNCATE_TERMS = [
     'The rebuilding of Indonesia',
     'Dominique Strauss-Kahn',
@@ -89,6 +100,15 @@ class Email(CommunicationDocument):
         text = REDACTED_REPLY_REGEX.sub('<REDACTED> wrote:', text)
         text = escape(REPLY_REGEX.sub(r'\n\1', text))  # Newlines between quoted replies
         return EPSTEIN_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, text)
+
+    def sent_from_device(self) -> str | None:
+        reply_text_match = REPLY_TEXT_PATTERN.search(self.text)
+        text = reply_text_match.group(1) if reply_text_match else self.text
+        sent_from_match = SENT_FROM_REGEX.search(text)
+
+        if sent_from_match:
+            sent_from = sent_from_match.group(0)
+            return 'S' + sent_from[1:] if sent_from.startswith('sent') else sent_from
 
     def sort_time(self) -> datetime:
         timestamp = self.timestamp or parse("1/1/2001 12:01:01 AM")
@@ -183,6 +203,9 @@ class Email(CommunicationDocument):
         elif self.file_id == '031442':
             self.lines = [self.lines[0] + self.lines[1]] + self.lines[2:]
             self.text = '\n'.join(self.lines)
+
+        for k, v in OCR_REPAIRS.items():
+            self.text = self.text.replace(k, v)
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield Panel(self.archive_link, expand=False)
