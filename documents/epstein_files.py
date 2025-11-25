@@ -124,6 +124,16 @@ class EpsteinFiles:
 
         console.print(table, '\n\n')
 
+    def print_summary(self) -> None:
+        table = Table(title=f"File Analysis Summary", show_header=True, header_style="bold")
+        table.add_column("File Type", justify='left')
+        table.add_column("File Count", justify='center')
+        table.add_column("Deanonymized Count", justify='center')
+        table.add_row('Text Messages', str(len(self.iMessage_logs)), str(self.identified_imessage_log_count()))
+        table.add_row('Emails', str(len(self.emails)), str(len([e for e in self.emails if e.author and e.author != UNKNOWN])))
+        table.add_row('Unknown', str(len(self.other_files)), 'n/a')
+        console.print('\n', Align.center(table), '\n\n')
+
     def sorted_imessage_logs(self) -> list[MessengerLog]:
         return sorted(self.iMessage_logs, key=lambda f: f.timestamp)
 
