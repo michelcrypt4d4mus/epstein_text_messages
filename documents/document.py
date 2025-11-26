@@ -135,7 +135,7 @@ class CommunicationDocument(Document):
     author: str | None = field(init=False)
     author_style: str = field(init=False)
     author_txt: Text = field(init=False)
-    timestamp: datetime | None = field(init=False)
+    timestamp: datetime = field(init=False)
 
     def __post_init__(self):
         super().__post_init__()

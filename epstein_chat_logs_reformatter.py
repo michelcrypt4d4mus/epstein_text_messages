@@ -32,7 +32,7 @@ epstein_files.print_summary()
 print_section_header('Text Messages')
 
 if not skip_texts:
-    for log_file in epstein_files.sorted_imessage_logs():
+    for log_file in epstein_files.iMessage_logs:
         console.print(log_file)
         console.line(2)
 

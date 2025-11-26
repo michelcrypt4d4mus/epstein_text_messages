@@ -84,6 +84,8 @@ class EpsteinFiles:
                 self.other_files.append(document)
                 document.log_top_lines()
 
+        self.iMessage_logs = sorted(self.iMessage_logs, key=lambda f: f.timestamp)
+
     def all_documents(self) -> list[Document]:
         return self.iMessage_logs + self.emails + self.other_files
 
@@ -107,7 +109,7 @@ class EpsteinFiles:
         return len([log for log in self.iMessage_logs if log.author])
 
     def imessage_msg_count(self) -> int:
-        return sum([log.msg_count for log in self.sorted_imessage_logs()])
+        return sum([log.msg_count for log in self.iMessage_logs])
 
     def num_identified_email_authors(self) -> int:
         return sum([i for author, i in self.email_author_counts.items() if author != UNKNOWN])
@@ -179,9 +181,6 @@ class EpsteinFiles:
 
     def lines_matching(self, _pattern: re.Pattern | str) -> list[str | Text]:
         return flatten([doc.lines_matching_txt(patternize(_pattern)) for doc in self.all_documents()])
-
-    def sorted_imessage_logs(self) -> list[MessengerLog]:
-        return sorted(self.iMessage_logs, key=lambda f: f.timestamp)
 
     @staticmethod
     def sort_emails(emails: list[Email]) -> list[Email]:
