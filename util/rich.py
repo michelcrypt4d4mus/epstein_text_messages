@@ -213,6 +213,8 @@ COUNTERPARTY_COLORS.update({
     'Kazak': ARAB_COLOR,
     'kazakh': ARAB_COLOR,
     'KSA': ARAB_COLOR,
+    'Kuwait': ARAB_COLOR,
+    'Kuwaiti': ARAB_COLOR,
     'kwok': CHINA_COLOR,
     'Lavrov': RUSSIA_COLOR,
     'Le Pen': 'purple4',
