@@ -175,7 +175,7 @@ COUNTERPARTY_COLORS.update(PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES)
 COUNTERPARTY_COLORS.update(OTHER_STYLES)
 
 HIGHLIGHT_PATTERNS: dict[str, str] = {
-    ARAB_COLOR: r"Abu Dhabi|Assad|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Iran(ian)?|Islam(ic|ist)?|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Muslim|Sharia|Syria|Turkey|UAE|((Iraq|Iran|Kuwait|Qatar|Saud|Yemen)i?)",
+    ARAB_COLOR: r"Abu\s+Dhabi|Assad|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Iran(ian)?|Islam(ic|ist)?|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Muslim|Sharia|Syria|Turkey|UAE|((Iraq|Iran|Kuwait|Qatar|Saud|Yemen)i?)",
     BITCOIN_COLOR: r"bitcoin|coins|cr[iy]pto(currency)?|e-currency|(Howard\s+)?Lutnick|Tether",
     BRASIL_COLOR: r"Bra[sz]il(ian)?|Bolsonar[aio]|Lula",
     CHINA_COLOR: r"CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|PRC|xi",
@@ -187,6 +187,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     'dark_cyan': r"(Steve\s+)?Wynn",
     'dark_magenta': r"Le\s*Pen|(Victor\s+)?Orbah?n",
     'orchid1': r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts",
+    'medium_purple2': r"(Alan (M\. )?)?Dershowi(l|tz)",
 }
 
 # Wrap in \b, add optional s? at end of all regex patterns
@@ -201,7 +202,6 @@ console.record = True
 COUNTERPARTY_COLORS.update({
     'bg': 'turquoise4',
     'Clinton': 'sky_blue1',
-    'Dershowitz': 'medium_purple2',
     'Harvard': 'red',
     'Ivanka': 'medium_violet_red',
     'Joichi Ito': COUNTERPARTY_COLORS[JOI_ITO],
