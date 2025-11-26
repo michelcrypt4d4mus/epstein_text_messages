@@ -33,6 +33,7 @@ PHONE_NUMBER = 'phone_number'
 RUSSIA_COLOR = 'dark_red'
 TEXT_LINK = 'text_link'
 TIMESTAMP = 'timestamp'
+TRUMP_COLOR = 'red3 bold'
 
 CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 <html>
@@ -114,7 +115,6 @@ COUNTERPARTY_COLORS = {
     ARIANE_DE_ROTHSCHILD: 'indian_red',
     'Celina Dubin': 'medium_orchid1',
     DEFAULT: 'wheat4',
-    DONALD_TRUMP: 'red3 bold',
     JEFFREY_EPSTEIN: 'blue1',
     EVA: 'orchid',
     'jeffrey wernick': BITCOIN_COLOR,
@@ -183,8 +183,8 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     INDIA_COLOR: r"Ambani|Indian?|Modi|mumbai",
     ISRAELI_COLOR: r"Bibi|ehbarak|Netanyahu|Israeli?",
     RUSSIA_COLOR: r"Moscow|Putin|Lavrov|Russian?",
+    TRUMP_COLOR: r"(Donald\s+(J\.\s+)?)?Trump|Donald|DJT|Roger\s+Stone",
     COUNTERPARTY_COLORS[GHISLAINE_MAXWELL]: r"GMAX|gmax1@ellmax.com",
-    COUNTERPARTY_COLORS[DONALD_TRUMP]: r"Donald|DJT|(Donald\s+)?Trump|Roger\s+Stone",
     'dark_cyan': r"(Steve\s+)?Wynn",
     'dark_magenta': r"Le\s*Pen|(Victor\s+)?Orbah?n",
     'orchid1': r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts",
