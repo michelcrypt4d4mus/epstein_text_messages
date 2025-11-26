@@ -452,6 +452,7 @@ HEADER_ABBREVIATIONS = {
     'KSA': "Kingdom of Saudi Arabia",
     'Kwok': "Chinese criminal Miles Kwok AKA Miles Guo AKA Guo Wengui",
     'Mapp': 'Kenneth E. Mapp (VI Governor)',
+    'Masa': 'Masayoshi Son (Softbank)',
     'MBS': "Mohammed bin Salman Al Saud (Saudi ruler)",
     'MBZ': "Mohamed bin Zayed Al Nahyan (Emirates sheikh)",
     'Jared': "Jared Kushner",
