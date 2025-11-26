@@ -170,7 +170,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     CHINA_COLOR: r"CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|PRC|xi",
     DEMS_COLOR: r"Maxine Waters|(Nancy )?Pelosi|Clinton|Hillary",
     INDIA_COLOR: r"Ambani|Indian?|Modi|mumbai",
-    ISRAELI_COLOR: r"Bibi|ehbarak|Netanyahu|Israeli?",
+    ISRAELI_COLOR: r"Bibi|(eh|Nili Priell )barak|Netanyahu|Israeli?",
     RUSSIA_COLOR: r"Moscow|(Vladimir )?Putin|Lavrov|Russian?",
     TRUMP_COLOR: r"(Donald\s+(J\.\s+)?)?Trump|Donald|DJT|Roger\s+Stone",
     COUNTERPARTY_COLORS[GHISLAINE_MAXWELL]: r"GMAX|gmax1@ellmax.com",
