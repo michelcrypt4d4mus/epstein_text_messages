@@ -75,7 +75,7 @@ COUNTERPARTY_COLORS = {
     LARRY_SUMMERS: 'spring_green4',
     MELANIE_SPINELLA: 'magenta3',
     MELANIE_WALKER: 'deep_pink4',
-    "Michael Wolff": JOURNALIST_COLOR,
+    MICHAEL_WOLFF: JOURNALIST_COLOR,
     MIROSLAV: 'slate_blue3',
     'Noam Chomsky': 'grey23',
     PAUL_KRASSNER: JOURNALIST_COLOR,
