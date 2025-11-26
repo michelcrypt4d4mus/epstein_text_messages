@@ -3,6 +3,22 @@ import re
 import urllib.parse
 from io import StringIO
 
+# Texting Names
+ANIL = "Anil Ambani"
+DEFAULT = 'default'
+EVA = 'Eva'
+JEFFREY_EPSTEIN = 'Jeffrey Epstein'
+JOI_ITO = 'Joi Ito'
+LARRY_SUMMERS = 'Larry Summers'
+MELANIE_WALKER = 'Melanie Walker'
+MIROSLAV = 'Miroslav Lajčák'
+PLASKETT = 'Stacey Plaskett'
+SCARAMUCCI = 'The Mooch'
+SOON_YI = 'Soon-Yi Previn'
+STEVE_BANNON = 'Steve Bannon'
+TERJE = 'Terje Rød-Larsen'
+UNKNOWN = '(unknown)'
+
 # Email Names
 AL_SECKEL = 'Al Seckel'
 ALIREZA_ITTIHADIEH = 'Alireza Ittihadieh'
@@ -63,23 +79,9 @@ TERRY_KAFKA = 'Terry Kafka'
 THORBJORN_JAGLAND = 'Thorbjørn Jagland'
 TOM_BARRACK = 'Tom Barrack'
 TONJA_HADDAD_COLEMAN = 'Tonja Haddad Coleman'
-REDACTED = '[REDACTED]'
 
-# Texting Names
-ANIL = "Anil Ambani"
-DEFAULT = 'default'
-EVA = 'Eva'
-JEFFREY_EPSTEIN = 'Jeffrey Epstein'
-JOI_ITO = 'Joi Ito'
-LARRY_SUMMERS = 'Larry Summers'
-MELANIE_WALKER = 'Melanie Walker'
-MIROSLAV = 'Miroslav Lajčák'
-PLASKETT = 'Stacey Plaskett'
-SCARAMUCCI = 'The Mooch'
-SOON_YI = 'Soon-Yi Previn'
-STEVE_BANNON = 'Steve Bannon'
-TERJE = 'Terje Rød-Larsen'
-UNKNOWN = '(unknown)'
+# Other strings
+REDACTED = '<REDACTED>'
 
 #  of who is the counterparty in each text message file
 AI_COUNTERPARTY_DETERMINATION_TSV = StringIO("""filename	counterparty	source
@@ -288,7 +290,7 @@ for emailer in EMAILERS:
 
 
 KNOWN_EMAIL_AUTHORS = {
-    '032436': 'Alireza Ittihadieh',  # Signature
+    '032436': ALIREZA_ITTIHADIEH,  # Signature
     '032543': ANAS_ALRASHEED,        # Later reply 033000 has quote
     '026064': ARIANE_DE_ROTHSCHILD,
     '026069': ARIANE_DE_ROTHSCHILD,

@@ -56,6 +56,7 @@ OCR_REPAIRS = {
     "Sent from my 'Phone": 'Sent from my iPhone',
     'Sent from Samsung Mob.le': 'Sent from Samsung Mobile',
     'Sent from Mabfl': 'Sent from Mobile',
+    'MOMMINNEMUMMIN': REDACTED,
 }
 
 # These are long forwarded articles we don't want to display over and over
@@ -255,17 +256,17 @@ class Email(CommunicationDocument):
     def _repair(self) -> None:
         """Repair particularly janky files."""
         if self.lines[0].startswith('Grant_Smith066474"eMailContent.htm') or self.file_id in BAD_FIRST_LINES:
-            self.lines = self.lines[1:]
-            self.text = '\n'.join(self.lines)
+            self.text = '\n'.join(self.lines[1:])
         elif self.file_id == '029977':
             self.text = self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM')
-            self.lines = self.text.split('\n')
         elif self.file_id == '031442':
             self.lines = [self.lines[0] + self.lines[1]] + self.lines[2:]
             self.text = '\n'.join(self.lines)
 
         for k, v in OCR_REPAIRS.items():
             self.text = self.text.replace(k, v)
+
+        self._set_computed_fields()
 
     def _sent_from_device(self) -> str | None:
         reply_text_match = REPLY_TEXT_REGEX.search(self.text)
