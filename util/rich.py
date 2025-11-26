@@ -294,7 +294,7 @@ def print_header():
     # Acronym table
     table = Table(title="Abbreviations Used Frequently In These Chats", show_header=True, header_style="bold")
     table.add_column("Abbreviation", justify="center", style='bold', width=19)
-    table.add_column("Translation", style="deep_sky_blue4", justify="center")
+    table.add_column("Translation", style="white", justify="center")
 
     for k, v in HEADER_ABBREVIATIONS.items():
         table.add_row(highlight_names(k), v)
@@ -336,8 +336,8 @@ def print_section_header(msg: str, style: str = 'bold white on blue3', is_center
     console.line()
 
 
-def print_panel(msg: str, style: str = 'white reverse') -> None:
-    console.print(Panel(Text(msg, justify='center'), width=50, style=style), '\n')
+def print_panel(msg: str, style: str = 'black on white') -> None:
+    console.print(Panel(Text(msg, justify='center'), width=70, style=style), '\n')
 
 
 def print_top_lines(file_text, n = 10, max_chars = MAX_PREVIEW_CHARS, in_panel = False):
