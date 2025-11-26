@@ -319,6 +319,7 @@ KNOWN_EMAIL_AUTHORS = {
     '033490': JONATHAN_FARKAS,        # Signature
     '032531': JONATHAN_FARKAS,        # Signature
     '026764': 'Barry J. Cohen',
+    '026652': KATHY_RUEMMLER,         # Just bad OCR
     '032224': KATHY_RUEMMLER,
     '030478': LANDON_THOMAS,
     '029013': LARRY_SUMMERS,
