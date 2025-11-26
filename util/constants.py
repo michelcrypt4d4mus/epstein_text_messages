@@ -310,6 +310,7 @@ KNOWN_EMAIL_AUTHORS = {
     '028675': JEFFREY_EPSTEIN,        # Just bad OCR
     '025041': JEFFREY_EPSTEIN,        # Just bad OCR
     '032214': JEFFREY_EPSTEIN,        # Just bad OCR
+    '028851': JOI_ITO,
     '016692': JOHN_PAGE,
     '016693': JOHN_PAGE,
     '028507': JONATHAN_FARKAS,
@@ -395,6 +396,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '033169': JEFFREY_EPSTEIN,
     '033584': JEFFREY_EPSTEIN,
     '033487': JEFFREY_EPSTEIN,
+    '028851': JEFFREY_EPSTEIN,
     '033456': 'Joel',                 # Reply
     '033460': 'Joel',                 # Reply
     '030522': LANDON_THOMAS,

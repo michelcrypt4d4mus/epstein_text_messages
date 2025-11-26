@@ -50,7 +50,7 @@ class EpsteinFiles:
             elif MSG_REGEX.search(document.text):
                 logger.info('iMessage log file...')
                 self.iMessage_logs.append(MessengerLog(file_arg))
-            elif DETECT_EMAIL_REGEX.match(document.text):  # Handle emails
+            elif DETECT_EMAIL_REGEX.match(document.text) or document.file_id in KNOWN_EMAIL_AUTHORS:  # Handle emails
                 email = Email(file_arg)
                 self.emails.append(email)
                 author = email.author or UNKNOWN
