@@ -8,6 +8,7 @@ from rich.console import Console
 from rich.logging import RichHandler
 from rich.markup import escape
 from rich.panel import Panel
+from rich.padding import Padding
 from rich.table import Table
 from rich.terminal_theme import TerminalTheme
 from rich.text import Text
@@ -69,6 +70,7 @@ NAMES_TO_NOT_COLOR = [name.lower() for name in [
 COUNTERPARTY_COLORS = {
     ANIL: INDIA_COLOR,
     ARIANE_DE_ROTHSCHILD: 'indian_red',
+    BORIS_NIKOLIC: 'tan',
     'Celina Dubin': 'medium_orchid1',
     DEFAULT: 'wheat4',
     JEFFREY_EPSTEIN: 'blue1',
@@ -340,8 +342,9 @@ def print_section_header(msg: str, style: str = 'bold white on blue3', is_center
     console.line()
 
 
-def print_panel(msg: str, style: str = 'black on white') -> None:
-    console.print(Panel(Text(msg, justify='center'), width=70, style=style), '\n')
+def print_panel(msg: str, style: str = 'black on white', padding: tuple = (0, 0, 0, 0)) -> None:
+    console.print(Padding(Panel(Text(msg, justify='center'), width=70, style=style), padding))
+    console.line()
 
 
 def print_top_lines(file_text, n = 10, max_chars = MAX_PREVIEW_CHARS, in_panel = False):
