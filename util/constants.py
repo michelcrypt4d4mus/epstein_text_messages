@@ -32,12 +32,14 @@ LAWRANCE_VISOSKI = 'Lawrance Visoski'
 LAWRENCE_KRAUSS = 'Lawrence Krauss'
 LEON_BLACK = 'Leon Black'
 LESLEY_GROFF = 'Lesley Groff'
+LINDA_STONE = 'Linda Stone'
 LISA_NEW = 'Lisa New'          # Harvard poetry prof AKA "Elisa New"
 MARTIN_NOWAK = 'Martin Nowak'
 MELANIE_SPINELLA = 'Melanie Spinella'
 NADIA_MARCINKO = 'Nadia Marcinko'
 PEGGY_SIEGAL = 'Peggy Siegal'
 PAUL_KRASSNER = 'Paul Krassner'
+PAUL_PROSPERI = 'Paul Prosperi'
 ROBERT_TRIVERS = 'Robert Trivers'
 SULTAN_BIN_SULAYEM = 'Sultan Bin Sulayem'
 TERRY_KAFKA = 'Terry Kafka'
@@ -287,7 +289,7 @@ KNOWN_EMAIL_AUTHORS = {
     '029970': GWENDOLYN_BECK,
     '029960': GWENDOLYN_BECK,     # Reply
     '029959': GWENDOLYN_BECK,     # "Longevity & Aging"
-    '033384': 'Jack Goldberger',     # Might be Paul Prosperi?
+    '033384': 'Jack Goldberger',  # Might be Paul Prosperi?
     '026024': JEAN_HUGUEN,
     '026024': JEAN_HUGUEN,        # Signature
     '021823': JEAN_LUC_BRUNEL,    # Reply
@@ -331,6 +333,7 @@ KNOWN_EMAIL_AUTHORS = {
     '033154': LAWRANCE_VISOSKI,
     '033488': LAWRANCE_VISOSKI,
     '033593': LAWRANCE_VISOSKI,        # Signature
+    '033309': LINDA_STONE,             # "Co-authored with iPhone autocorrect"
     '017581': 'Lisa Randall',
     '030472': "Martin Weinberg",       # Maybe. in reply
     '030235': MELANIE_WALKER,          # In fwd
@@ -348,8 +351,9 @@ KNOWN_EMAIL_AUTHORS = {
     '024923': PAUL_KRASSNER,
     '032457': PAUL_KRASSNER,
     '029981': 'Paula',             # reply
-    '033157': 'Paul Prosperi',     # Fwded from "to" address
-    '033383': 'Paul Prosperi',     # Reply
+    '033157': PAUL_PROSPERI,       # Fwded from "to" address
+    '033383': PAUL_PROSPERI,       # Reply
+    '033561': PAUL_PROSPERI,       # Fwded mail sent to Prosperi. Might be Subotnick Stuart ?
     '031694': PEGGY_SIEGAL,
     '032219': PEGGY_SIEGAL,        # Signed "Peggy"
     '029020': 'Renata Bolotova',   # Signature
@@ -399,8 +403,8 @@ KNOWN_EMAIL_RECIPIENTS = {
     '022250': LESLEY_GROFF,           # Reply
     '023291': MELANIE_SPINELLA,
     '022258': NADIA_MARCINKO,         # Reply header
-    '032951': 'Raafat Alsabbagh',
     '030096': 'Peter Mandelson',
+    '032951': 'Raafat Alsabbagh',
     '019334': STEVE_BANNON,
 }
 
