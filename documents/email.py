@@ -238,11 +238,11 @@ class Email(CommunicationDocument):
             log_msg = f"'{self.filename}': No valid emailer found in '{escape_single_quotes(emailer_str)}'"
 
             if UNDISCLOSED_RECIPIENTS_REGEX.match(emailer_str) and len(names) == 0:
-                logger.info(log_msg)
+                logger.debug(log_msg)
             elif len(names) == 0:
                 logger.warning(log_msg)
             else:
-                logger.debug(f"Extracted {len(names)} emailers from semi-invalid '{emailer_str}': {names}...")
+                logger.info(f"Extracted {len(names)} emailers from semi-invalid '{emailer_str}': {names}...")
 
             return names
 
