@@ -37,6 +37,10 @@ MAX_CHARS_TO_PRINT = 4000
 VALID_HEADER_LINES = 14
 EMAIL_INDENT = 3
 
+KNOWN_TIMESTAMPS = {
+    '028851': datetime(2014, 4, 27, 6, 00),
+}
+
 OCR_REPAIRS = {
     'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
     'from my BlackBerry0 wireless device': 'from my BlackBerry® wireless device',
@@ -125,6 +129,9 @@ class Email(CommunicationDocument):
                 return match.end() - 1
 
     def _extract_sent_at(self) -> datetime | None:
+        if self.file_id in KNOWN_TIMESTAMPS:
+            return KNOWN_TIMESTAMPS[self.file_id]
+
         searchable_lines = self.text.split('\n')[0:VALID_HEADER_LINES]
         searchable_text = '\n'.join(searchable_lines)
         date_match = DATE_REGEX.search(searchable_text)
