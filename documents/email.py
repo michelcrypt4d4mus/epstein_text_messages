@@ -76,18 +76,21 @@ class Email(CommunicationDocument):
         elif not self.header.author:
             self.author = None
         else:
-            self.author = _get_name(self.header.author)
+            authors = _get_names(self.header.author)
+            self.author = authors[0] if len(authors) > 0 else None
+
+            if len(authors) == 0:
+                logger.info(f"No authors found in '{self.header.author}'!")
 
         if self.file_id in KNOWN_EMAIL_RECIPIENTS:
             self.recipients = [KNOWN_EMAIL_RECIPIENTS[self.file_id]]
         else:
-            self.recipients = [_get_name(r) for r in self.header.to] if self.header.to else []
+            self.recipients = []
 
-        if self.header.cc or self.header.bcc:
-            all_cced = (self.header.cc or []) + (self.header.bcc or [])
-            self.recipients += [_get_name(cc) for cc in all_cced]
+            for recipient in ((self.header.to or []) + (self.header.cc or []) + (self.header.bcc or [])):
+                self.recipients += _get_names(recipient)
 
-        self.recipients = [r for r in self.recipients if r != self.author]  # Remove self CCs
+        self.recipients = list(set([r for r in self.recipients if r != self.author]))  # Remove self CCs
         self.recipients_lower = [r.lower() if r else None for r in self.recipients]
         recipient = UNKNOWN if len(self.recipients) == 0 else (self.recipients[0] or UNKNOWN)
         self.recipient_txt = Text(recipient, COUNTERPARTY_COLORS.get(recipient, DEFAULT))
@@ -186,6 +189,7 @@ class Email(CommunicationDocument):
                             value = self.lines[i + num_headers]
 
                         value = [v.strip() for v in value.split(';')]
+                        value = [v for v in value if len(v) > 0]
 
                     setattr(self.header, field_name, value)
 
@@ -253,20 +257,29 @@ def _parse_timestamp(timestamp_str: str) -> None | datetime:
         logger.debug(f'Failed to parse "{timestamp_str}" to timestamp!')
 
 
-def _get_name(author: str) -> str | None:
+def _get_names(author: str) -> list[str]:
     author = EmailHeader.cleanup_str(author)
+    names = []
 
     for name, regex in EMAILER_REGEXES.items():
         if regex.search(author):
-            author = name
-            break
+            names.append(name)
 
     if BAD_EMAILER_REGEX.match(author) or TIME_REGEX.match(author):
-        logger.warning(f"Name '{author}' is invalid, returning None...")
-        return None
+        logger.warning(f"Name '{author}' is invalid, returning {len(names)} emailers already found...")
+        return names
 
-    if ', ' in author:
-        names = author.split(', ')
-        author = f"{names[1]} {names[0]}"
+    if len(names) == 0:
+        names.append(author)
+    elif len(names) > 1:
+        logger.info(f"Found more than 1 emailer in '{author}': {names}")
 
-    return author
+    return [_reverse_first_and_last_names(name) for name in names]
+
+
+def _reverse_first_and_last_names(name: str) -> str:
+    if ', ' in name:
+        names = name.split(', ')
+        return f"{names[1]} {names[0]}"
+    else:
+        return name

@@ -58,8 +58,14 @@ class EpsteinFiles:
                 self.email_author_counts[author.lower()] += 1
                 logger.info(f"Email (author='{author}', recipients={email.recipients})")
 
-                for recipient in email.recipients:
-                    self.email_recipient_counts[recipient.lower() if recipient else UNKNOWN] += 1
+                if len(email.recipients) > 0:
+                    for recipient in email.recipients:
+                        self.email_recipient_counts[recipient.lower() if recipient else UNKNOWN] += 1
+                else:
+                    self.email_recipient_counts[UNKNOWN] += 1
+
+                if None in email.recipients or UNKNOWN in email.recipients or len(email.recipients) == 0:
+                    self.email_unknown_recipient_ids.add(email.file_id)
 
                 if None in email.recipients or UNKNOWN in email.recipients or len(email.recipients) == 0:
                     self.email_unknown_recipient_ids.add(email.file_id)
@@ -84,7 +90,7 @@ class EpsteinFiles:
         if author is None:
             emails_to = [
                 e for e in self.emails
-                if e.author == JEFFREY_EPSTEIN and (None in e.recipients or len(e.recipients) == 0)
+                if e.author == JEFFREY_EPSTEIN and (len(e.recipients) == 0 or None in e.recipients or UNKNOWN in e.recipients)
             ]
         else:
             emails_to = [e for e in self.emails if author in e.recipients_lower]

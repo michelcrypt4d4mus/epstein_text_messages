@@ -70,6 +70,7 @@ class EmailHeader:
 
             if key in TO_FIELDS:
                 recipients = [element.strip() for element in value.split(';')]
+                recipients = [r for r in recipients if len(r) > 0]
                 kw_args[key] = None if len(value) == 0 else [r if len(r) > 0 else UNKNOWN for r in recipients]
             else:
                 kw_args[key.lower()] = None if len(value) == 0 else value
