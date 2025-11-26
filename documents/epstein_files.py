@@ -18,7 +18,7 @@ from documents.messenger_log import MSG_REGEX, MessengerLog
 from util.constants import *
 from util.env import is_debug
 from util.file_helper import DOCS_DIR, move_json_file
-from util.rich import COUNTERPARTY_COLORS, console, highlight_names, logger, print_panel
+from util.rich import COUNTERPARTY_COLORS, console, highlight_text, logger, print_panel
 
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (0, 0, 0, 2)
@@ -195,6 +195,6 @@ def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str]
 
     for k in sorted(new_dict.keys()):
         _list = new_dict[k]
-        table.add_row(highlight_names(k or UNKNOWN), highlight_names(join_char.join(sorted(_list))))
+        table.add_row(highlight_text(k or UNKNOWN), highlight_text(join_char.join(sorted(_list))))
 
     return Padding(table, DEVICE_SIGNATURE_PADDING)

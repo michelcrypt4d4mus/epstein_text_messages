@@ -8,7 +8,7 @@ from rich.text import Text
 
 from util.constants import SEAN_BANNON, STEVE_BANNON
 from util.file_helper import extract_file_id
-from util.rich import ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_names, logger, make_link, make_link_markup
+from util.rich import ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_text, logger, make_link, make_link_markup
 from util.strings import *
 
 MULTINEWLINE_REGEX = re.compile(r"\n{3,}")
@@ -59,7 +59,7 @@ class Document:
         return make_link(self.epsteinify_name_url, link_txt or self.filename, style)
 
     def highlighted_preview_text(self) -> Text:
-        highlighted_txt_markup = highlight_names(escape(self.preview_text()))
+        highlighted_txt_markup = highlight_text(escape(self.preview_text()))
 
         try:
             return Text.from_markup(highlighted_txt_markup)

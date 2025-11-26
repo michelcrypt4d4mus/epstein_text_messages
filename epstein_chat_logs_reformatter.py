@@ -17,7 +17,7 @@ from rich.text import Text
 from documents.email_header import AUTHOR
 from documents.epstein_files import EpsteinFiles
 from documents.messenger_log import sender_counts
-from util.env import is_build, is_debug
+from util.env import is_build, is_debug, skip_texts
 from util.file_helper import OUTPUT_GH_PAGES_HTML
 from util.rich import *
 
@@ -29,9 +29,10 @@ print_section_header('Text Messages')
 
 
 # Text messages section
-for log_file in epstein_files.sorted_imessage_logs():
-    console.print(log_file)
-    console.line(2)
+if not skip_texts:
+    for log_file in epstein_files.sorted_imessage_logs():
+        console.print(log_file)
+        console.line(2)
 
 counts_table = Table(title="Text Message Counts By Author", show_header=True, header_style="bold")
 counts_table.add_column("Sender", style="steel_blue bold", justify="left", width=30)

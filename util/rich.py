@@ -6,6 +6,7 @@ from os import environ
 
 from rich.align import Align
 from rich.console import Console
+from rich.highlighter import RegexHighlighter
 from rich.logging import RichHandler
 from rich.markup import escape
 from rich.panel import Panel
@@ -23,6 +24,7 @@ LEADING_WHITESPACE_REGEX = re.compile(r'\A\s*', re.MULTILINE)
 NON_ALPHA_CHARS_REGEX = re.compile(r'[^a-zA-Z0-9 ]')
 MAX_PREVIEW_CHARS = 300
 OUTPUT_WIDTH = 120
+HEADER_FIELD = 'header_field'
 
 ARAB_COLOR = 'dark_green'
 ARCHIVE_LINK = 'archive_link'
@@ -34,6 +36,7 @@ CHINA_COLOR = 'bright_red'
 DEMS_COLOR = 'sky_blue1'
 DUBIN_COLOR = 'medium_orchid1'
 HEADER_LINK = 'deep_sky_blue1'
+HEADER_COLOR = 'light_sea_green'
 INDIA_COLOR = 'green'
 ISRAELI_COLOR = 'dodger_blue2'
 JAVANKA_COLOR = 'medium_violet_red'
@@ -44,6 +47,9 @@ RUSSIA_COLOR = 'dark_red'
 TEXT_LINK = 'text_link'
 TIMESTAMP = 'timestamp'
 TRUMP_COLOR = 'red3 bold'
+
+highlighter_style_name = lambda style_name: f"{HEADER_FIELD}.{style_name}"
+HEADER_STYLE = 'header_field'
 
 NAMES_TO_NOT_COLOR = [name.lower() for name in [
     'Black',
@@ -149,6 +155,8 @@ OTHER_STYLES = {
     PHONE_NUMBER: 'bright_green',
     TEXT_LINK: 'deep_sky_blue4 underline',
     TIMESTAMP: 'gray30',
+    HEADER_STYLE: 'plum4',
+    highlighter_style_name('email'): 'bright_cyan',
 }
 
 COUNTERPARTY_COLORS.update(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED)
@@ -172,10 +180,14 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     'medium_purple2': r"(Alan (M\. )?)?Dershowi(l|tz)|(Ken(neth W.)?\s+)?Starr",
     'pale_green1': r"Masa(yoshi)?|Najeev|Softbank",
     'turquoise4': r"BG|Bill\s+((and|or)\s+Melinda\s+)?Gates|Melinda(\s+Gates)?",
+    HEADER_STYLE: r"^((Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):)"
 }
 
 # Wrap in \b, add optional s? at end of all regex patterns
-HIGHLIGHT_REGEXES: dict[str, re.Pattern] = {k: re.compile(fr"\b(({v})s?)\b", re.I) for k, v in HIGHLIGHT_PATTERNS.items()}
+HIGHLIGHT_REGEXES: dict[str, re.Pattern] = {
+    k: re.compile(fr"\b(({v})s?)\b", re.I) if k != HEADER_STYLE else re.compile(v, re.MULTILINE)
+    for k, v in HIGHLIGHT_PATTERNS.items()
+}
 
 CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 <html>
@@ -227,7 +239,17 @@ HTML_TERMINAL_THEME = TerminalTheme(
 
 
 # Instantiate Console object
-console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS), width=OUTPUT_WIDTH)
+class EmailHeaderHighlighter(RegexHighlighter):
+    """Apply style to anything that looks like an email."""
+    base_style = f"{HEADER_FIELD}."
+
+    highlights = [
+        r"(?P<email>[\w-]+@([\w-]+\.)+[\w-]+)",
+        r"(?P<header>Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):",
+    ]
+
+highlighter = EmailHeaderHighlighter()
+console = Console(color_system='256', highlighter=highlighter, theme=Theme(COUNTERPARTY_COLORS), width=OUTPUT_WIDTH)
 console.record = True
 
 # This is after the Theme() instantiation because 'bg' is reserved'
@@ -274,12 +296,12 @@ def coffeezilla_link(search_term: str, link_txt: str, style: str = ARCHIVE_LINK_
     return make_link(search_archive_url(search_term), link_txt or search_term, style)
 
 
-def highlight_names(text: str) -> str:
+def highlight_text(text: str) -> str:
     for style, name_regex in HIGHLIGHT_REGEXES.items():
         text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
 
     for name, style in COUNTERPARTY_COLORS.items():
-        if name is None or name == DEFAULT:
+        if name in [None, DEFAULT, HEADER_STYLE]:
             continue
 
         name = regex_escape_periods(name)
@@ -328,7 +350,7 @@ def print_header():
     table.add_column("Translation", style="white", justify="center")
 
     for k, v in HEADER_ABBREVIATIONS.items():
-        table.add_row(highlight_names(k), v)
+        table.add_row(highlight_text(k), v)
 
     console.line()
     console.print(Align.center(table))
@@ -354,7 +376,7 @@ def print_email_table(counts: dict[str, int], column_title: str) -> None:
 
     for k, v in sorted(counts.items(), key=lambda item: item[0] if 'ALPHA' in environ else [item[1], item[0]], reverse=True):
         k = k.title() if ' ' in k else k
-        name_txt = Text.from_markup(f"[underline][link={epsteinify_name_url(k)}]{highlight_names(k)}[/link][/underline]")
+        name_txt = Text.from_markup(f"[underline][link={epsteinify_name_url(k)}]{highlight_text(k)}[/link][/underline]")
         jmail_link = make_link(jmail_search_url(k), 'Search Jmail')
         counts_table.add_row(name_txt, jmail_link, str(v))
 
