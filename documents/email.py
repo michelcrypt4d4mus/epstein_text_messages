@@ -134,9 +134,8 @@ class Email(CommunicationDocument):
         if is_fast_mode:
             return Text(self.filename)
         else:
-            return Text.from_markup(highlight_text(
-                f"Email (author='{self.author}', recipients={self.recipients}, timestamp='{self.timestamp}')"
-            ))
+            info_str = f"Email (author='{self.author}', recipients={self.recipients}, timestamp='{self.timestamp}')"
+            return Text.from_markup(highlight_text(info_str))
 
     def sort_time(self) -> datetime:
         timestamp = self.timestamp or parse("1/1/2001 12:01:01 AM")
