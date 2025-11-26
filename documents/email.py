@@ -3,6 +3,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 
 from dateutil.parser import parse
+from dateutil import tz
 from rich.console import Console, ConsoleOptions, RenderResult
 from rich.markup import escape
 from rich.padding import Padding
@@ -13,9 +14,13 @@ from documents.document import CommunicationDocument
 from documents.email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TO_FIELDS, EmailHeader
 from util.constants import *
 from util.rich import *
+from util.strings import *
 
 TIME_REGEX = re.compile(r'^(\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday).*')
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
+PACIFIC_TZ = tz.gettz("America/Los_Angeles")
+TIMEZONE_INFO = {"PST": PACIFIC_TZ, "PDT": PACIFIC_TZ}  # Suppresses annoying warnings from parse() calls
+
 EMAIL_REGEX = re.compile(r'From: (.*)')
 EMAIL_HEADER_REGEX = re.compile(r'^(((Date|Subject):.*\n)*From:.*\n((Date|Sent|To|CC|Importance|Subject|Attachments):.*\n)+)')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
@@ -33,6 +38,7 @@ BAD_LINE_REGEX = re.compile(r'^\d{1,2}|Importance: High$')
 UNKNOWN_SIGNATURE_REGEX = re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL)
 
 CLIPPED_SIGNATURE_REPLACEMENT = '[dim]<...snipped epstein legal signature...>[/dim]'
+UNDISCLOSED_RECIPIENTS = 'Undisclosed recipients:'
 BAD_FIRST_LINES = ['026652', '029835', '031189']
 MAX_CHARS_TO_PRINT = 4000
 VALID_HEADER_LINES = 14
@@ -78,7 +84,7 @@ class Email(CommunicationDocument):
         elif not self.header.author:
             self.author = None
         else:
-            authors = _get_names(self.header.author)
+            authors = self._get_names(self.header.author)
             self.author = authors[0] if len(authors) > 0 else None
 
             if len(authors) == 0:
@@ -91,7 +97,7 @@ class Email(CommunicationDocument):
             self.recipients = []
 
             for recipient in ((self.header.to or []) + (self.header.cc or []) + (self.header.bcc or [])):
-                self.recipients += _get_names(recipient)
+                self.recipients += self._get_names(recipient)
 
         logger.debug(f"Current recipients: {self.recipients}")
         self.recipients = list(set([r for r in self.recipients if r != self.author]))  # Remove self CCs
@@ -206,6 +212,33 @@ class Email(CommunicationDocument):
 
             self.header = EmailHeader(field_names=[])
 
+    def _get_names(self, emailer_str: str) -> list[str]:
+        emailer_str = EmailHeader.cleanup_str(emailer_str)
+        names = []
+
+        for name, regex in EMAILER_REGEXES.items():
+            if regex.search(emailer_str):
+                names.append(name)
+
+        if BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
+            log_msg = f"'{self.filename}': No valid emailer found in emailer_str: '{escape_double_quotes(emailer_str)}'"
+
+            if emailer_str == UNDISCLOSED_RECIPIENTS and len(names) == 0:
+                logger.info(log_msg)
+            elif len(names) == 0:
+                logger.warning(log_msg)
+            else:
+                logger.debug(f"Extracted {len(names)} emailers from semi-invalid '{emailer_str}': {names}...")
+
+            return names
+
+        if len(names) == 0:
+            names.append(emailer_str)
+        elif len(names) > 1:
+            logger.info(f"Found more than 1 emailer in '{emailer_str}': {names}")
+
+        return [_reverse_first_and_last_names(name) for name in names]
+
     def _repair(self) -> None:
         """Repair particularly janky files."""
         if self.lines[0].startswith('Grant_Smith066474"eMailContent.htm') or self.file_id in BAD_FIRST_LINES:
@@ -257,35 +290,11 @@ class Email(CommunicationDocument):
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:
     try:
-        timestamp = parse(timestamp_str)
+        timestamp = parse(timestamp_str, tzinfos=TIMEZONE_INFO)
         logger.debug(f'Parsed timestamp "{timestamp}" from string "{timestamp_str}"')
         return timestamp
     except Exception as e:
         logger.debug(f'Failed to parse "{timestamp_str}" to timestamp!')
-
-
-def _get_names(emailer_str: str) -> list[str]:
-    emailer_str = EmailHeader.cleanup_str(emailer_str)
-    names = []
-
-    for name, regex in EMAILER_REGEXES.items():
-        if regex.search(emailer_str):
-            names.append(name)
-
-    if BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
-        if len(names) == 0:
-            logger.warning(f"Name '{emailer_str}' is invalid, returning no valid emailers found...")
-        else:
-            logger.debug(f"Extracted {len(names)} emailers from semi-invalid '{emailer_str}': {names}...")
-
-        return names
-
-    if len(names) == 0:
-        names.append(emailer_str)
-    elif len(names) > 1:
-        logger.info(f"Found more than 1 emailer in '{emailer_str}': {names}")
-
-    return [_reverse_first_and_last_names(name) for name in names]
 
 
 def _reverse_first_and_last_names(name: str) -> str:
