@@ -6,6 +6,7 @@ from io import StringIO
 AL_SECKEL = 'Al Seckel'
 ALIREZA_ITTIHADIEH = 'Alireza Ittihadieh'
 ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
+AZIZA_ALAHMADI = 'Aziza Alahmadi'
 BARBRO_EHNBOM = 'Barbro Ehnbom'
 BENNET_MOSKOWITZ = 'Bennet Moskowitz'
 DARREN_INDYKE = 'Darren Indyke'
@@ -41,6 +42,7 @@ PEGGY_SIEGAL = 'Peggy Siegal'
 PAUL_KRASSNER = 'Paul Krassner'
 PAUL_PROSPERI = 'Paul Prosperi'
 ROBERT_TRIVERS = 'Robert Trivers'
+SEAN_BANNON = 'Sean Bannon'
 SULTAN_BIN_SULAYEM = 'Sultan Bin Sulayem'
 TERRY_KAFKA = 'Terry Kafka'
 THORBJORN_JAGLAND = 'Thorbjørn Jagland'
@@ -154,6 +156,7 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
 EMAILERS = [
     'Anne Boyles',
     AL_SECKEL,
+    AZIZA_ALAHMADI,
     'Bill Gates',
     'Bill Siegel',
     'Daniel Sabba',
@@ -244,7 +247,7 @@ EMAILER_REGEXES = {
     'Robert Lawrence Kuhn': re.compile(r'Robert\s*(Lawrence)?\s*Kuhn', re.IGNORECASE),
     ROBERT_TRIVERS: re.compile(r'tri[vy]ersr@gmail|Robert\s*Trivers?', re.IGNORECASE),
     'Scott J. Link': re.compile(r'scott j. lin', re.IGNORECASE),
-    'Sean Bannon': re.compile(r'sean banno', re.IGNORECASE),
+    SEAN_BANNON: re.compile(r'sean banno', re.IGNORECASE),
     'Shaher Abdulhak Besher (?)': re.compile(r'^Shaher$', re.IGNORECASE),
     SOON_YI: re.compile(r'Soon[- ]Yi Previn?', re.IGNORECASE),
     'Stephen Hanson': re.compile(r'ste(phen|ve) hanson?|Shanson900', re.IGNORECASE),
@@ -269,8 +272,9 @@ KNOWN_EMAIL_AUTHORS = {
     '026069': ARIANE_DE_ROTHSCHILD,
     '030741': ARIANE_DE_ROTHSCHILD,
     '026018': ARIANE_DE_ROTHSCHILD,
-    '026659': BARBRO_EHNBOM,      # Reply
-    '026745': BARBRO_EHNBOM,      # Signature
+    '033316': AZIZA_ALAHMADI,        # "Regards, Aziza" at bottom
+    '026659': BARBRO_EHNBOM,         # Reply
+    '026745': BARBRO_EHNBOM,         # Signature
     '031227': BENNET_MOSKOWITZ,
     '031442': 'Christina Galbraith',
     '026625': DARREN_INDYKE,
@@ -303,8 +307,9 @@ KNOWN_EMAIL_AUTHORS = {
     '030768': JEFFREY_EPSTEIN,
     '031996': JEFFREY_EPSTEIN,
     '022938': JEFFREY_EPSTEIN,
-    '028675': JEFFREY_EPSTEIN,    # Just bad OCR
-    '025041': JEFFREY_EPSTEIN,          # Just bad OCR
+    '028675': JEFFREY_EPSTEIN,        # Just bad OCR
+    '025041': JEFFREY_EPSTEIN,        # Just bad OCR
+    '032214': JEFFREY_EPSTEIN,        # Just bad OCR
     '016692': JOHN_PAGE,
     '016693': JOHN_PAGE,
     '028507': JONATHAN_FARKAS,
@@ -360,6 +365,7 @@ KNOWN_EMAIL_AUTHORS = {
     '029020': 'Renata Bolotova',   # Signature
     '033169': ROBERT_TRIVERS,      # Refs paper
     '033584': ROBERT_TRIVERS,      # Refs paper
+    '026320': SEAN_BANNON,         # From protonmail, Bannon wrote 'just sent from my protonmail' in 027067
     '029003': SOON_YI,
     '029005': SOON_YI,
     '029007': SOON_YI,
@@ -403,6 +409,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '027097': LAWRANCE_VISOSKI,       # Signature of reply
     '022250': LESLEY_GROFF,           # Reply
     '023291': MELANIE_SPINELLA,
+    '032214': MIROSLAV,               # Quoted reply has signature
     '022258': NADIA_MARCINKO,         # Reply header
     '030096': 'Peter Mandelson',
     '032951': 'Raafat Alsabbagh',
