@@ -65,6 +65,8 @@ NAMES_TO_NOT_COLOR = [name.lower() for name in [
     'Steve',
     'Stone',
     'The',
+    'Thomas',
+    'Tom',
     'Victor',
     "Y",
     "Y.",
@@ -93,6 +95,7 @@ COUNTERPARTY_COLORS = {
     SOON_YI: 'hot_pink',
     STEVE_BANNON: 'color(58)',
     TERJE: 'light_slate_blue',
+    TOM_BARRACK: BRO_COLOR,
     UNKNOWN: 'cyan',
     'Woody': 'light_steel_blue3',
 }

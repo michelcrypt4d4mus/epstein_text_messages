@@ -58,6 +58,7 @@ SEAN_BANNON = 'Sean Bannon'
 SULTAN_BIN_SULAYEM = 'Sultan Bin Sulayem'
 TERRY_KAFKA = 'Terry Kafka'
 THORBJORN_JAGLAND = 'Thorbjørn Jagland'
+TOM_BARRACK = 'Tom Barrack'
 TONJA_HADDAD_COLEMAN = 'Tonja Haddad Coleman'
 REDACTED = '[REDACTED]'
 
@@ -272,7 +273,7 @@ EMAILERS = [
     r'Sam/Walli Leff',
     'Steven Victor MD',
     'The Duke',
-    'Tom Barrack',
+    TOM_BARRACK,
     'Vincenzo Lozzo',
 ]
 
@@ -459,7 +460,7 @@ EPSTEIN_SIGNATURE = re.compile(
 HEADER_ABBREVIATIONS = {
     "AD": "Abu Dhabi",
     "Barak": "Ehud Barak (Former Israeli prime minister)",
-    "Barrack": "Tom Barrack",
+    "Barrack": "Tom Barrack (Trump ally)",
     'BG': "Bill Gates",
     'Bill': "Bill Gates",
     "Brock": "Brock Pierce",
