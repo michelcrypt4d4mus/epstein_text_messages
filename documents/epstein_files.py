@@ -56,7 +56,7 @@ class EpsteinFiles:
                 self.emails.append(email)
                 author = email.author or UNKNOWN
                 self.email_author_counts[author.lower()] += 1
-                logger.info(f"Email (author='{author}')")
+                logger.info(f"Email (author='{author}', recipients={email.recipients})")
 
                 for recipient in email.recipients:
                     self.email_recipient_counts[recipient.lower() if recipient else UNKNOWN] += 1
