@@ -28,7 +28,8 @@ epstein_files = EpsteinFiles()
 epstein_files.print_summary()
 print_section_header('Text Messages')
 
-# Text messages
+
+# Text messages section
 for log_file in epstein_files.sorted_imessage_logs():
     console.print(log_file)
     console.line(2)
@@ -47,7 +48,8 @@ console.print(text_summary_msg)
 console.print(f"Found {epstein_files.imessage_msg_count()} total text messages in {len(epstein_files.iMessage_logs)} conversations.")
 console.print(f"(Last deploy found 4668 messages in 77 conversations)\n\n\n", style='dim')
 
-# Email sender / recipient counts
+
+# Emails section
 print_section_header('His Emails')
 print_email_table(epstein_files.email_author_counts, "Author")
 print_email_table(epstein_files.email_recipient_counts, "Recipients")
@@ -76,8 +78,11 @@ for author in PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED:
 for name in PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES.keys():
     epstein_files.print_emails_table_for(name)
 
+
+# Other Files Section
 print_section_header('Other Files')
 epstein_files.print_other_files_table()
+
 
 # Save output
 if is_build:

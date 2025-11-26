@@ -18,9 +18,6 @@ from util.env import is_debug
 from util.file_helper import DOCS_DIR, move_json_file
 from util.rich import COUNTERPARTY_COLORS, console, highlight_names, logger
 
-OTHER_FILE_PREVIEW_CHARS = 500
-WHITESPACE_REGEX = re.compile(r"\s{2,}", re.MULTILINE)
-
 
 @dataclass
 class EpsteinFiles:
@@ -146,14 +143,7 @@ class EpsteinFiles:
         table.add_column("First Few Lines", justify="center", style='pale_turquoise4')
 
         for doc in sorted(self.other_files, key=lambda document: document.filename):
-            txt = WHITESPACE_REGEX.sub(' ', doc.text.strip().replace('\n', ' ').replace('\t', ' '))[0:OTHER_FILE_PREVIEW_CHARS]
-            logger.debug(escape(f"'{doc.filename}': \"{highlight_names(txt)}\""))
-
-            try:
-                table.add_row(doc.epsteinify_link_markup, f"{doc.length:,}", Text.from_markup(highlight_names(txt)))
-            except Exception as e:
-                logger.info(f"Failed on {highlight_names(txt)}")
-                raise e
+            table.add_row(doc.epsteinify_link_markup, f"{doc.length:,}", doc.highlighted_preview_text())
 
         console.print(table)
 
