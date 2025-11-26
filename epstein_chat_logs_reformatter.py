@@ -88,7 +88,7 @@ epstein_files.print_other_files_table()
 
 # Save output
 if is_build:
-    console.save_html(OUTPUT_GH_PAGES_HTML, inline_styles=False, code_format=CONSOLE_HTML_FORMAT, theme=HTML_TERMINAL_THEME)
+    console.save_html(OUTPUT_GH_PAGES_HTML, code_format=CONSOLE_HTML_FORMAT, inline_styles=False, theme=HTML_TERMINAL_THEME)
     console.print(f"\nWrote HTML to '{OUTPUT_GH_PAGES_HTML}', not computing signatures.")
     exit()
 else:
