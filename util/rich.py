@@ -26,6 +26,7 @@ ARCHIVE_LINK = 'archive_link'
 ARCHIVE_LINK_COLOR = 'blue3'
 BITCOIN_COLOR = 'orange1 bold'
 CHINA_COLOR = 'bright_red'
+INDIA_COLOR = 'green'
 ISRAELI_COLOR = 'dodger_blue2'
 JOURNALIST_COLOR = 'grey54'
 PHONE_NUMBER = 'phone_number'
@@ -108,7 +109,7 @@ NAMES_TO_NOT_COLOR = [name.lower() for name in [
 
 # Color different counterparties differently
 COUNTERPARTY_COLORS = {
-    ANIL: 'dark_green',
+    ANIL: INDIA_COLOR,
     ARIANE_DE_ROTHSCHILD: 'indian_red',
     'Celina Dubin': 'medium_orchid1',
     DEFAULT: 'wheat4',
@@ -232,6 +233,7 @@ HIGHLIGHT_REGEXES = {
     re.compile(r"\b((Steve\s+)?Wynn)\b", re.I): 'dark_cyan',
     re.compile(r"\b(Moscow|Putin|Lavrov|Russian?)\b", re.I): RUSSIA_COLOR,
     re.compile(r"\b(CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|PRC|xi)\b"): CHINA_COLOR,
+    re.compile(r"\b(Ambani|Indian?|Modi|mumbai)\b"): INDIA_COLOR,
 }
 
 
