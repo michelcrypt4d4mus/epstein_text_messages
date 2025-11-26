@@ -48,6 +48,7 @@ TRUNCATE_TERMS = [
     'The rebuilding of Indonesia',
     'Dominique Strauss-Kahn',
     'THOMAS L. FRIEDMAN',
+    'a sleek, briskly paced film whose title suggests a heist movie',
 ]
 
 
