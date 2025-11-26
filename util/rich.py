@@ -309,8 +309,13 @@ def print_email_table(counts: dict[str, int], column_title: str) -> None:
     console.print('\n', counts_table)
 
 
-def print_section_header(msg: str) -> None:
-    console.print(Align.center(Panel(Text(msg, justify='center'), width=80, padding=(1, 1), style='bold white on blue3')))
+def print_section_header(msg: str, style: str = 'bold white on blue3', is_centered: bool = True) -> None:
+    panel = Panel(Text(msg, justify='center'), width=80, padding=(1, 1), style=style)
+
+    if is_centered:
+        panel = Align.center(panel)
+
+    console.print(panel)
     console.line()
 
 

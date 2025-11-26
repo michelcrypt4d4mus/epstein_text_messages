@@ -16,7 +16,7 @@ from documents.messenger_log import MSG_REGEX, MessengerLog
 from util.constants import *
 from util.env import is_debug
 from util.file_helper import DOCS_DIR, move_json_file
-from util.rich import COUNTERPARTY_COLORS, console, highlight_names, logger
+from util.rich import COUNTERPARTY_COLORS, console, highlight_names, logger, print_section_header
 
 
 @dataclass
@@ -34,8 +34,8 @@ class EpsteinFiles:
         self.all_files = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
         self.email_author_counts = defaultdict(int)
         self.email_recipient_counts = defaultdict(int)
-        self.email_sent_from_devices = defaultdict(set)
         self.email_author_devices = defaultdict(set)
+        self.email_sent_from_devices = defaultdict(set)
 
         for file_arg in self.all_files:
             if is_debug:
@@ -131,10 +131,18 @@ class EpsteinFiles:
         console.print(table, '\n\n')
 
     def print_email_device_info(self) -> None:
-        console.print(f"\n\nemail_author_devices")
-        console.print_json(json.dumps(sets_to_lists(self.email_author_devices), indent=4, sort_keys=True))
-        console.print(f"\n\email_sent_from_devices")
-        console.print_json(json.dumps(sets_to_lists(self.email_sent_from_devices), indent=4, sort_keys=True))
+        print_section_header(f"Email 'Sent from [device]' Signature Info", style='bright_white', is_centered=False)
+        devices_table = Table(header_style="bold", show_header=True, show_lines=True)
+        devices_table.add_column('Author')
+        devices_table.add_column('Device Signatures')
+        add_str_to_list_dict_to_table(devices_table, self.email_author_devices)
+        console.print(devices_table, '\n\n')
+
+        devices_table = Table(header_style="bold", show_header=True, show_lines=True)
+        devices_table.add_column('Device Signature')
+        devices_table.add_column('Authors')
+        add_str_to_list_dict_to_table(devices_table, self.email_sent_from_devices)
+        console.print(devices_table, '\n\n')
 
     def print_other_files_table(self) -> None:
         table = Table(header_style="bold", show_header=True, show_lines=True)
@@ -172,3 +180,8 @@ def sets_to_lists(d: dict[str | None, set[str | None]]) -> dict[str | None, list
         new_dict[k] = list(v)
 
     return new_dict
+
+
+def add_str_to_list_dict_to_table(table: Table, keyed_sets: dict[str | None, set[str | None]]) -> None:
+    for k, _list in sets_to_lists(keyed_sets).items():
+        table.add_row(highlight_names(k or UNKNOWN), highlight_names('\n'.join(_list)))
