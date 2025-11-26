@@ -7,16 +7,21 @@ from pathlib import Path
 from rich.align import Align
 from rich.markup import escape
 from rich.panel import Panel
+from rich.padding import Padding
 from rich.table import Table
 from rich.text import Text
 
 from documents.document import Document
 from documents.email import DETECT_EMAIL_REGEX, Email
+from documents.email_header import AUTHOR
 from documents.messenger_log import MSG_REGEX, MessengerLog
 from util.constants import *
 from util.env import is_debug
 from util.file_helper import DOCS_DIR, move_json_file
 from util.rich import COUNTERPARTY_COLORS, console, highlight_names, logger, print_panel
+
+DEVICE_SIGNATURE = 'Device Signature'
+DEVICE_SIGNATURE_PADDING = (0, 0, 0, 2)
 
 
 @dataclass
@@ -144,10 +149,10 @@ class EpsteinFiles:
         console.print(table, '\n\n')
 
     def print_email_device_info(self) -> None:
-        print_panel(f"Email 'Sent from [device]' Signature Info")
-        console.print(build_signature_table(self.email_author_devices, ('Author', 'Device Signature')))
+        print_panel(f"Email 'Sent from [device]' Signature Info", padding=DEVICE_SIGNATURE_PADDING)
+        console.print(build_signature_table(self.email_author_devices, (AUTHOR, DEVICE_SIGNATURE)))
         console.line(2)
-        console.print(build_signature_table(self.email_sent_from_devices, ('Device Signature', 'Author'), ', '))
+        console.print(build_signature_table(self.email_sent_from_devices, (DEVICE_SIGNATURE, AUTHOR), ', '))
         console.line(2)
 
     def print_other_files_table(self) -> None:
@@ -179,11 +184,11 @@ class EpsteinFiles:
         return sorted(emails, key=lambda e: (e.sort_time()))
 
 
-def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Table:
+def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Padding:
     table = Table(header_style="bold reverse", show_header=True, show_lines=True)
 
     for i, col in enumerate(cols):
-        table.add_column(col + ('s' if i == 1 else ''), style='dim' if col.startswith('Device') else 'white')
+        table.add_column(col.title() + ('s' if i == 1 else ''), style='dim' if col == DEVICE_SIGNATURE else 'white')
 
     new_dict: dict[str, list[str]] = {}
 
@@ -194,4 +199,4 @@ def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str]
         _list = new_dict[k]
         table.add_row(highlight_names(k or UNKNOWN), highlight_names(join_char.join(sorted(_list))))
 
-    return table
+    return Padding(table, DEVICE_SIGNATURE_PADDING)
