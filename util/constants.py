@@ -1,5 +1,6 @@
 import csv
 import re
+import urllib.parse
 from io import StringIO
 
 # Email Names
@@ -9,10 +10,12 @@ ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
 AZIZA_ALAHMADI = 'Aziza Alahmadi'
 BARBRO_EHNBOM = 'Barbro Ehnbom'
 BENNET_MOSKOWITZ = 'Bennet Moskowitz'
+CHRISTINA_GALBRAITH = 'Christina Galbraith'
 DARREN_INDYKE = 'Darren Indyke'
 DANIEL_SIAD = 'Daniel Siad'
 DAVID_SCHOEN = 'David Schoen'
 DAVID_STERN = 'David Stern'
+DIANE_ZIMAN = 'Diane Ziman'
 DONALD_TRUMP = 'Donald Trump'
 EDWARD_EPSTEIN = 'Edward Epstein'
 EHUD_BARAK = 'Ehud Barak'
@@ -38,6 +41,7 @@ LISA_NEW = 'Lisa New'          # Harvard poetry prof AKA "Elisa New"
 MARTIN_NOWAK = 'Martin Nowak'
 MELANIE_SPINELLA = 'Melanie Spinella'
 NADIA_MARCINKO = 'Nadia Marcinko'
+NORMAN_D_RAU = 'Norman D. Rau'
 PEGGY_SIEGAL = 'Peggy Siegal'
 PAUL_KRASSNER = 'Paul Krassner'
 PAUL_PROSPERI = 'Paul Prosperi'
@@ -152,43 +156,7 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
     GUESSED_IMESSAGE_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
 
 
-# If found as substring consider them the author
-EMAILERS = [
-    'Anne Boyles',
-    AL_SECKEL,
-    AZIZA_ALAHMADI,
-    'Bill Gates',
-    'Bill Siegel',
-    'Daniel Sabba',
-    DAVID_SCHOEN,
-    'Glenn Dubin',
-    'Gordon Getty',
-    'Jessica Cadwell',
-    JOHN_PAGE,
-    'Jokeland',
-    'Jes Staley',
-    'Kathleen Ruderman',
-    'Kenneth E. Mapp',
-    'Joscha Bach',
-    'Lesley Groff',
-    'Brad Wechsler',
-    'middle.east.update@hotmail.com',
-    'Mark L. Epstein',
-    MELANIE_WALKER,
-    'Michael Simmons',  # Not the only "To:"
-    'Multiple Senders',  # Weird files like HOUSE_OVERSIGHT_032210
-    'Nancy Cain',
-    'Nancy Portland',
-    'Oliver Goodenough',
-    'Peter Aldhous',
-    'Peter Green',
-    'Sam/Walli Leff',
-    'Steven Victor MD',
-    'The Duke',
-    'Tom Barrack',
-    'Weingarten, Reid',
-]
-
+# Emailers
 EMAILER_REGEXES = {
     'Alan Dershowitz': re.compile(r'alan.*dershowitz', re.IGNORECASE),
     ALIREZA_ITTIHADIEH: re.compile(r'Alireza.[Il]ttihadieh', re.IGNORECASE),
@@ -259,6 +227,43 @@ EMAILER_REGEXES = {
     TONJA_HADDAD_COLEMAN: re.compile(fr"To(nj|rl)a Haddad Coleman|haddadfm@aol.com", re.IGNORECASE)
 }
 
+# If found as substring consider them the author
+EMAILERS = [
+    'Anne Boyles',
+    AL_SECKEL,
+    AZIZA_ALAHMADI,
+    'Bill Gates',
+    'Bill Siegel',
+    'Daniel Sabba',
+    DAVID_SCHOEN,
+    'Glenn Dubin',
+    'Gordon Getty',
+    'Jessica Cadwell',
+    JOHN_PAGE,
+    'Jokeland',
+    'Jes Staley',
+    'Kathleen Ruderman',
+    'Kenneth E. Mapp',
+    'Joscha Bach',
+    'Lesley Groff',
+    'Brad Wechsler',
+    'middle.east.update@hotmail.com',
+    'Mark L. Epstein',
+    MELANIE_WALKER,
+    'Michael Simmons',   # Not the only "To:"
+    'Multiple Senders',  # Weird files like HOUSE_OVERSIGHT_032210
+    'Nancy Cain',
+    'Nancy Portland',
+    'Oliver Goodenough',
+    'Peter Aldhous',
+    'Peter Green',
+    r'Sam/Walli Leff',
+    'Steven Victor MD',
+    'The Duke',
+    'Tom Barrack',
+    'Weingarten, Reid',
+]
+
 for emailer in EMAILERS:
     if emailer in EMAILER_REGEXES:
         raise RuntimeError(f"Can't overwrite emailer regex for '{emailer}'")
@@ -276,7 +281,7 @@ KNOWN_EMAIL_AUTHORS = {
     '026659': BARBRO_EHNBOM,         # Reply
     '026745': BARBRO_EHNBOM,         # Signature
     '031227': BENNET_MOSKOWITZ,
-    '031442': 'Christina Galbraith',
+    '031442': CHRISTINA_GALBRAITH,
     '026625': DARREN_INDYKE,
     '026290': DAVID_SCHOEN,       # Signature
     '031339': DAVID_SCHOEN,       # Signature
@@ -352,30 +357,30 @@ KNOWN_EMAIL_AUTHORS = {
     '022190': NADIA_MARCINKO,
     '021818': NADIA_MARCINKO,
     '022197': NADIA_MARCINKO,
-    '021811': NADIA_MARCINKO,      # Signature and email address in the message
-    '026612': 'Norman D. Rau',     # Fwded from "to" address
-    '028487': 'Norman D. Rau',     # Fwded from "to" address
+    '021811': NADIA_MARCINKO,          # Signature and email address in the message
+    '026612': NORMAN_D_RAU,            # Fwded from "to" address
+    '028487': NORMAN_D_RAU,            # Fwded from "to" address
     '024923': PAUL_KRASSNER,
     '032457': PAUL_KRASSNER,
-    '029981': 'Paula',             # reply
-    '033157': PAUL_PROSPERI,       # Fwded from "to" address
-    '033383': PAUL_PROSPERI,       # Reply
-    '033561': PAUL_PROSPERI,       # Fwded mail sent to Prosperi. Might be Subotnick Stuart ?
+    '029981': 'Paula',                 # reply
+    '033157': PAUL_PROSPERI,           # Fwded from "to" address
+    '033383': PAUL_PROSPERI,           # Reply
+    '033561': PAUL_PROSPERI,           # Fwded mail sent to Prosperi. Might be Subotnick Stuart ?
     '031694': PEGGY_SIEGAL,
-    '032219': PEGGY_SIEGAL,        # Signed "Peggy"
-    '029020': 'Renata Bolotova',   # Signature
-    '033169': ROBERT_TRIVERS,      # Refs paper
-    '033584': ROBERT_TRIVERS,      # Refs paper
-    '026320': SEAN_BANNON,         # From protonmail, Bannon wrote 'just sent from my protonmail' in 027067
+    '032219': PEGGY_SIEGAL,            # Signed "Peggy"
+    '029020': 'Renata Bolotova',       # Signature
+    '033169': ROBERT_TRIVERS,          # Refs paper
+    '033584': ROBERT_TRIVERS,          # Refs paper
+    '026320': SEAN_BANNON,             # From protonmail, Bannon wrote 'just sent from my protonmail' in 027067
     '029003': SOON_YI,
     '029005': SOON_YI,
     '029007': SOON_YI,
     '029010': SOON_YI,
-    '032296': SOON_YI,             # Sent from soon-yi's phone
+    '032296': SOON_YI,                 # "Sent from soon-yi's phone"
     '026620': TERRY_KAFKA,
-    '028482': TERRY_KAFKA,         # Signature
-    '029992': TERRY_KAFKA,         # Quoted reply
-    '020666': TERRY_KAFKA,         # ends with 'Terry'
+    '028482': TERRY_KAFKA,             # Signature
+    '029992': TERRY_KAFKA,             # Quoted reply
+    '020666': TERRY_KAFKA,             # ends with 'Terry'
     # '026571': '(unknown french speaker)',
     # '029504': Probably Audrey Raimbault (based on "GMI" in signature, a company registered by "aubrey raimbault")
 }
@@ -384,9 +389,9 @@ KNOWN_EMAIL_RECIPIENTS = {
     '021106': 'Alexandra Preate',     # Reply
     '030764': ARIANE_DE_ROTHSCHILD,   # Reply
     '026431': ARIANE_DE_ROTHSCHILD,   # Reply
-    '031996': 'Christina Galbraith',  # bounced
-    '026245': 'Diane Ziman',          # Quoted reply
-    '026466': 'Diane Ziman',          # Quoted reply
+    '031996': CHRISTINA_GALBRAITH,    # bounced
+    '026245': DIANE_ZIMAN,            # Quoted reply
+    '026466': DIANE_ZIMAN,            # Quoted reply
     '031607': EDWARD_EPSTEIN,
     '030525': FAITH_KATES,            # Same as unredacted 030414, same legal signature
     '026426': JEAN_HUGUEN,            # Reply
@@ -423,7 +428,7 @@ EPSTEIN_SIGNATURE = re.compile(
     re.DOTALL
 )
 
-ABBREVIATIONS = {
+HEADER_ABBREVIATIONS = {
     "AD": "Abu Dhabi",
     "Barak": "Ehud Barak (Former Israeli prime minister)",
     "Barrack": "Tom Barrack",
@@ -447,3 +452,17 @@ ABBREVIATIONS = {
     "Woody": "Woody Allen",
     "Zug": "City in Switzerland (crypto hub)",
 }
+
+
+# URLs
+COURIER_NEWSROOM_ARCHIVE = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
+COFFEEZILLA_ARCHIVE = 'https://journaliststudio.google.com/pinpoint/search?collection=061ce61c9e70bdfd'
+SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great'
+EPSTEINIFY_URL = 'https://epsteinify.com'
+
+epsteinify_url = lambda name: f"{EPSTEINIFY_URL}/?name={urllib.parse.quote(name)}"
+epsteinify_api_url = lambda file_id: f"{EPSTEINIFY_URL}/api/documents/HOUSE_OVERSIGHT_{file_id}"
+epsteinify_doc_url = lambda file_stem: f"{EPSTEINIFY_URL}/document/{file_stem}"
+jmail_search_url = lambda txt: f"https://jmail.world/search?q={urllib.parse.quote(txt)}"
+search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&q={urllib.parse.quote(txt)}&p=1"
+search_coffeezilla_url = lambda txt: f"{COFFEEZILLA_ARCHIVE}&q={urllib.parse.quote(txt)}&p=1"

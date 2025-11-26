@@ -1,7 +1,6 @@
 import json
 import logging
 import re
-import urllib.parse
 from os import environ
 
 from rich.align import Align
@@ -174,10 +173,6 @@ OTHER_STYLES = {
 COUNTERPARTY_COLORS.update(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED)
 COUNTERPARTY_COLORS.update(PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES)
 COUNTERPARTY_COLORS.update(OTHER_STYLES)
-COURIER_NEWSROOM_ARCHIVE = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
-COFFEEZILLA_ARCHIVE = 'https://journaliststudio.google.com/pinpoint/search?collection=061ce61c9e70bdfd'
-SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great'
-EPSTEINIFY_URL = 'https://epsteinify.com'
 
 HIGHLIGHT_PATTERNS: dict[str, str] = {
     ARAB_COLOR: r"Abu Dhabi|Dubai|Emir(ates)?|Erdogan|HBJ|Iran(ian)?|Islam(ic|ist)?|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Muslim|Sharia|Syria|Turkey|UAE|((Iraq|Iran|Kuwait|Qatar|Saud|Yemen)i?)",
@@ -187,6 +182,8 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     INDIA_COLOR: r"Ambani|Indian?|Modi|mumbai",
     ISRAELI_COLOR: r"Bibi|ehbarak|Netanyahu|Israeli?",
     RUSSIA_COLOR: r"Moscow|Putin|Lavrov|Russian?",
+    COUNTERPARTY_COLORS[GHISLAINE_MAXWELL]: r"GMAX|gmax1@ellmax.com",
+    COUNTERPARTY_COLORS[DONALD_TRUMP]: r"Donald|DJT|(Donald\s+)?Trump|Roger\s+Stone",
     'dark_cyan': r"(Steve\s+)?Wynn",
     'dark_magenta': r"Le\s*Pen|(Victor\s+)?Orbah?n",
 }
@@ -194,6 +191,8 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
 # Wrap in \b, add optional s? at end of all regex patterns
 HIGHLIGHT_REGEXES: dict[str, re.Pattern] = {k: re.compile(fr"\b(({v})s?)\b", re.I) for k, v in HIGHLIGHT_PATTERNS.items()}
 
+
+# Instantiate Console object
 console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS), width=OUTPUT_WIDTH)
 console.record = True
 
@@ -202,10 +201,6 @@ COUNTERPARTY_COLORS.update({
     'bg': 'turquoise4',
     'Clinton': 'sky_blue1',
     'Dershowitz': 'medium_purple2',
-    'DJT': COUNTERPARTY_COLORS[DONALD_TRUMP],
-    'ehbarak': COUNTERPARTY_COLORS[EHUD_BARAK],
-    'GMAX': COUNTERPARTY_COLORS[GHISLAINE_MAXWELL],
-    'gmax1@ellmax.com': COUNTERPARTY_COLORS[GHISLAINE_MAXWELL],
     'Harvard': 'red',
     'Ivanka': 'medium_violet_red',
     'Joichi Ito': COUNTERPARTY_COLORS[JOI_ITO],
@@ -215,17 +210,9 @@ COUNTERPARTY_COLORS.update({
     'Manafort': COUNTERPARTY_COLORS[STEVE_BANNON],
     'Miro': COUNTERPARTY_COLORS[MIROSLAV],
     'Obama': 'yellow',
-    'Roger Stone': COUNTERPARTY_COLORS[DONALD_TRUMP],
     'Scaramucci': COUNTERPARTY_COLORS[SCARAMUCCI],
 })
 
-
-epsteinify_url = lambda name: f"{EPSTEINIFY_URL}/?name={urllib.parse.quote(name)}"
-epsteinify_api_url = lambda file_id: f"{EPSTEINIFY_URL}/api/documents/HOUSE_OVERSIGHT_{file_id}"
-epsteinify_doc_url = lambda file_stem: f"{EPSTEINIFY_URL}/document/{file_stem}"
-jmail_search_url = lambda txt: f"https://jmail.world/search?q={urllib.parse.quote(txt)}"
-search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE}&q={urllib.parse.quote(txt)}&p=1"
-search_coffeezilla_url = lambda txt: f"{COFFEEZILLA_ARCHIVE}&q={urllib.parse.quote(txt)}&p=1"
 
 # Setup logging
 logging.basicConfig(level="NOTSET", format="%(message)s", datefmt="[%X]", handlers=[RichHandler()])
@@ -301,7 +288,7 @@ def print_header():
     table.add_column("Abbreviation", justify="center", style='bold', width=19)
     table.add_column("Translation", style="deep_sky_blue4", justify="center")
 
-    for k, v in ABBREVIATIONS.items():
+    for k, v in HEADER_ABBREVIATIONS.items():
         table.add_row(highlight_names(k), v)
 
     console.print('\n', Align.center(table))
