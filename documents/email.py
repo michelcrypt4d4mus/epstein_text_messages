@@ -39,6 +39,7 @@ EMAIL_INDENT = 3
 
 KNOWN_TIMESTAMPS = {
     '028851': datetime(2014, 4, 27, 6, 00),
+    '028849': datetime(2014, 4, 27, 6, 30),
 }
 
 OCR_REPAIRS = {
