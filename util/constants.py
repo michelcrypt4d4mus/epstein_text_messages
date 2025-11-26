@@ -45,6 +45,7 @@ NORMAN_D_RAU = 'Norman D. Rau'
 PEGGY_SIEGAL = 'Peggy Siegal'
 PAUL_KRASSNER = 'Paul Krassner'
 PAUL_PROSPERI = 'Paul Prosperi'
+PETER_MANDELSON = 'Peter Mandelson'
 ROBERT_TRIVERS = 'Robert Trivers'
 SEAN_BANNON = 'Sean Bannon'
 SULTAN_BIN_SULAYEM = 'Sultan Bin Sulayem'
@@ -257,11 +258,11 @@ EMAILERS = [
     'Oliver Goodenough',
     'Peter Aldhous',
     'Peter Green',
+    PETER_MANDELSON,
     r'Sam/Walli Leff',
     'Steven Victor MD',
     'The Duke',
     'Tom Barrack',
-    'Weingarten, Reid',
 ]
 
 for emailer in EMAILERS:
@@ -420,7 +421,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '023291': MELANIE_SPINELLA,
     '032214': MIROSLAV,               # Quoted reply has signature
     '022258': NADIA_MARCINKO,         # Reply header
-    '030096': 'Peter Mandelson',
+    '030096': PETER_MANDELSON,
     '032951': 'Raafat Alsabbagh',
     '019334': STEVE_BANNON,
 }

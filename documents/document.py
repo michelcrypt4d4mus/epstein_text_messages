@@ -5,6 +5,7 @@ from pathlib import Path
 
 from rich.text import Text
 
+from util.constants import SEAN_BANNON, STEVE_BANNON
 from util.file_helper import extract_file_id
 from util.rich import ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_names, logger, make_link, make_link_markup
 
@@ -17,6 +18,8 @@ MIN_DOCUMENT_ID = 10477
 
 OCR_REPAIRS = {
     'lndyke': 'Indyke',
+    re.compile(r'Sean Bannor?', re.I): SEAN_BANNON,
+    re.compile(r'Steve Bannor]?', re.I): STEVE_BANNON,
     re.compile(r'gmax ?[1l] ?[@g]ellmax.c ?om'): GMAX_EMAIL,
     re.compile(r"[jl']ee[vy]acation[©@a(&,]{1,3}gmail.com"): JEEVACATION_GMAIL,
 }

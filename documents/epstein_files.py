@@ -29,6 +29,7 @@ class EpsteinFiles:
     email_recipient_counts: dict[str, int] = field(init=False)
     email_sent_from_devices: dict[str, set[str ]] = field(default_factory=dict)
     email_author_devices: dict[str, set[str]] = field(default_factory=dict)
+    email_unknown_recipient_ids: set[str] = field(default_factory=set)
 
     def __post_init__(self):
         self.all_files = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
@@ -55,10 +56,19 @@ class EpsteinFiles:
                 self.emails.append(email)
                 author = email.author or UNKNOWN
                 self.email_author_counts[author.lower()] += 1
-                logger.info(f"Email (author='{author}')")
+                logger.info(f"Email (author='{author}', recipients={email.recipients})")
 
-                for recipient in email.recipients:
-                    self.email_recipient_counts[recipient.lower() if recipient else UNKNOWN] += 1
+                if len(email.recipients) > 0:
+                    for recipient in email.recipients:
+                        self.email_recipient_counts[recipient.lower() if recipient else UNKNOWN] += 1
+                else:
+                    self.email_recipient_counts[UNKNOWN] += 1
+
+                if None in email.recipients or UNKNOWN in email.recipients or len(email.recipients) == 0:
+                    self.email_unknown_recipient_ids.add(email.file_id)
+
+                if None in email.recipients or UNKNOWN in email.recipients or len(email.recipients) == 0:
+                    self.email_unknown_recipient_ids.add(email.file_id)
 
                 if email.sent_from_device:
                     self.email_author_devices[email.author or UNKNOWN].add(email.sent_from_device)
@@ -80,7 +90,7 @@ class EpsteinFiles:
         if author is None:
             emails_to = [
                 e for e in self.emails
-                if e.author == JEFFREY_EPSTEIN and (None in e.recipients or len(e.recipients) == 0)
+                if e.author == JEFFREY_EPSTEIN and (len(e.recipients) == 0 or None in e.recipients or UNKNOWN in e.recipients)
             ]
         else:
             emails_to = [e for e in self.emails if author in e.recipients_lower]
@@ -111,6 +121,9 @@ class EpsteinFiles:
 
         if author is not None and author != UNKNOWN:
             self.print_emails_table_for(author)
+
+        if author is None or author == UNKNOWN:
+            logger.info(f"{len(self.email_unknown_recipient_ids)} UNKNOWN RECIPIENT IDS:\n" + '\n'.join(sorted(list(self.email_unknown_recipient_ids))))
 
         for email in emails:
             console.print(email)
