@@ -39,6 +39,7 @@ LESLEY_GROFF = 'Lesley Groff'
 LINDA_STONE = 'Linda Stone'
 LISA_NEW = 'Lisa New'          # Harvard poetry prof AKA "Elisa New"
 MARTIN_NOWAK = 'Martin Nowak'
+MARTIN_WEINBERG = "Martin Weinberg"
 MELANIE_SPINELLA = 'Melanie Spinella'
 NADIA_MARCINKO = 'Nadia Marcinko'
 NORMAN_D_RAU = 'Norman D. Rau'
@@ -197,7 +198,7 @@ EMAILER_REGEXES = {
     'lilly sanchez': re.compile(r'Lilly.*Sanchez', re.IGNORECASE),
     LISA_NEW: re.compile(r'Lisa New?$', re.IGNORECASE),
     'Marc Leon': re.compile(r'Marc[.]+(Kensington|Leon)|Kensington2', re.IGNORECASE),
-    'Martin Weinberg': re.compile(r'martin.*?weinberg', re.IGNORECASE),
+    MARTIN_WEINBERG: re.compile(r'martin.*?weinberg', re.IGNORECASE),
     MARTIN_NOWAK: re.compile(r'Martin.*?Nowak|Nowak, Martin', re.IGNORECASE),
     MELANIE_SPINELLA: re.compile(r'Melanie Spine[Il]{2}a', re.IGNORECASE),
     'Michael Miller': re.compile(r'Micha(el)? Miller|Miller, Micha(el)?', re.IGNORECASE),
@@ -349,7 +350,7 @@ KNOWN_EMAIL_AUTHORS = {
     '033593': LAWRANCE_VISOSKI,        # Signature
     '033309': LINDA_STONE,             # "Co-authored with iPhone autocorrect"
     '017581': 'Lisa Randall',
-    '030472': "Martin Weinberg",       # Maybe. in reply
+    '030472': MARTIN_WEINBERG,       # Maybe. in reply
     '030235': MELANIE_WALKER,          # In fwd
     '032212': MIROSLAV,
     '022193': NADIA_MARCINKO,
