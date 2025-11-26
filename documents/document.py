@@ -19,6 +19,7 @@ MIN_DOCUMENT_ID = 10477
 OCR_REPAIRS = {
     'Follow me on twitter glhsummers': 'Follow me on twitter @lhsummers',
     'lndyke': 'Indyke',
+    re.compile(r'from my BlackBerry[0°] wireless device'): 'from my BlackBerry® wireless device',
     re.compile(r'Sean Bannor?', re.I): SEAN_BANNON,
     re.compile(r'Steve Bannor]?', re.I): STEVE_BANNON,
     re.compile(r'gmax ?[1l] ?[@g]ellmax.c ?om'): GMAX_EMAIL,

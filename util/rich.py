@@ -26,6 +26,7 @@ ARCHIVE_LINK = 'archive_link'
 ARCHIVE_LINK_COLOR = 'blue3'
 BITCOIN_COLOR = 'orange1 bold'
 BRASIL_COLOR = 'chartreuse2'
+BRO_COLOR = 'tan'
 CHINA_COLOR = 'bright_red'
 DEMS_COLOR = 'sky_blue1'
 HEADER_LINK = 'deep_sky_blue1'
@@ -73,13 +74,12 @@ NAMES_TO_NOT_COLOR = [name.lower() for name in [
 COUNTERPARTY_COLORS = {
     ANIL: INDIA_COLOR,
     ARIANE_DE_ROTHSCHILD: 'indian_red',
-    BORIS_NIKOLIC: 'dark_slate_gray3',
+    BORIS_NIKOLIC: BRO_COLOR,
     'Celina Dubin': 'medium_orchid1',
     DEFAULT: 'wheat4',
     JEFFREY_EPSTEIN: 'blue1',
     EVA: 'orchid',
-    'jeffrey wernick': BITCOIN_COLOR,
-    JONATHAN_FARKAS: 'dark_slate_gray3',
+    JONATHAN_FARKAS: BRO_COLOR,
     LARRY_SUMMERS: 'spring_green4',
     MELANIE_SPINELLA: 'magenta3',
     MELANIE_WALKER: 'deep_pink4',
@@ -142,7 +142,7 @@ COUNTERPARTY_COLORS.update(OTHER_STYLES)
 
 HIGHLIGHT_PATTERNS: dict[str, str] = {
     ARAB_COLOR: r"Abdulmalik Al-Makhlafi|Abu\s+Dhabi|Assad|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Saudi(\s+Arabian?)?|Sharia|Syria|Turkey|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
-    BITCOIN_COLOR: r"bitcoin|block ?chain( capital)?|coins|cr[iy]pto(currency)?|e-currency|(Howard\s+)?Lutnick|Libra|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)",
+    BITCOIN_COLOR: r"bitcoin|block ?chain( capital)?|coins|cr[iy]pto(currency)?|e-currency|(jeffrey\s+)?wernick|(Howard\s+)?Lutnick|Libra|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)",
     BRASIL_COLOR: r"Bra[sz]il(ian)?|Bolsonar[aio]|Lula",
     CHINA_COLOR: r"CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|PRC|xi",
     DEMS_COLOR: r"Maxine Waters|(Nancy )?Pelosi|Clinton|Hillary",
