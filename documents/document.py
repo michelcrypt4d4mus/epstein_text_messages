@@ -19,7 +19,7 @@ OCR_REPAIRS = {
     'lndyke': 'Indyke',
     'gmaxlgellmax.com': GMAX_EMAIL,
     'gmaxl@ellmax.com': GMAX_EMAIL,
-    re.compile(r"[jl']ee[vy]acation[©@a],?gmail.com"): JEEVACATION_GMAIL,
+    re.compile(r"[jl']ee[vy]acation[©@a(&,]{1,3}gmail.com"): JEEVACATION_GMAIL,
 }
 
 
