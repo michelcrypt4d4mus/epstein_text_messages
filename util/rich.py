@@ -88,6 +88,7 @@ COUNTERPARTY_COLORS = {
     STEVE_BANNON: 'color(58)',
     TERJE: 'light_slate_blue',
     UNKNOWN: 'cyan',
+    'Woody': 'light_steel_blue3',
 }
 
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
