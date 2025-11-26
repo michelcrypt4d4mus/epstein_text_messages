@@ -256,6 +256,7 @@ EMAILERS = [
     'middle.east.update@hotmail.com',
     'Mark L. Epstein',
     MELANIE_WALKER,
+    'Merwin Dela Cruz',
     'Michael Simmons',   # Not the only "To:"
     'Multiple Senders',  # Weird files like HOUSE_OVERSIGHT_032210
     'Nancy Cain',
@@ -268,6 +269,7 @@ EMAILERS = [
     'Steven Victor MD',
     'The Duke',
     'Tom Barrack',
+    'Vincenzo Lozzo',
 ]
 
 for emailer in EMAILERS:
