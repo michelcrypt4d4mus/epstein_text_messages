@@ -28,7 +28,7 @@ OCR_REPAIRS = {
 @dataclass
 class Document:
     file_path: Path
-    epsteinify_url: str = field(init=False)
+    epsteinify_name_url: str = field(init=False)
     epsteinify_link_markup: str = field(init=False)
     file_id: str = field(init=False)
     filename: str = field(init=False)
@@ -44,14 +44,14 @@ class Document:
         self.length = len(self.text)
         self.lines = self.text.split('\n')
         self.num_lines = len(self.lines)
-        self.epsteinify_url = epsteinify_doc_url(self.file_path.stem)
-        self.epsteinify_link_markup = make_link_markup(self.epsteinify_url, self.file_path.stem)
+        self.epsteinify_name_url = epsteinify_doc_url(self.file_path.stem)
+        self.epsteinify_link_markup = make_link_markup(self.epsteinify_name_url, self.file_path.stem)
 
     def count_regex_matches(self, pattern: str) -> int:
         return len(re.findall(pattern, self.text))
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return make_link(self.epsteinify_url, link_txt or self.filename, style)
+        return make_link(self.epsteinify_name_url, link_txt or self.filename, style)
 
     def highlighted_preview_text(self) -> Text:
         return Text.from_markup(highlight_names(self.preview_text()))

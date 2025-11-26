@@ -318,7 +318,7 @@ def print_email_table(counts: dict[str, int], column_title: str) -> None:
 
     for k, v in sorted(counts.items(), key=lambda item: item[0] if 'ALPHA' in environ else [item[1], item[0]], reverse=True):
         k = k.title() if ' ' in k else k
-        name_txt = Text.from_markup(f"[underline][link={epsteinify_url(k)}]{highlight_names(k)}[/link][/underline]")
+        name_txt = Text.from_markup(f"[underline][link={epsteinify_name_url(k)}]{highlight_names(k)}[/link][/underline]")
         counts_table.add_row(name_txt, str(v))
 
     console.print('\n', counts_table)

@@ -101,7 +101,7 @@ class Email(CommunicationDocument):
         self.author_style = COUNTERPARTY_COLORS.get(self.author or UNKNOWN, DEFAULT)
         self.author_txt = Text(self.author or UNKNOWN, style=self.author_style)
         self.archive_link = self.epsteinify_link(self.author_style)
-        self.epsteinify_link_markup = make_link_markup(self.epsteinify_url, self.file_path.stem, self.author_style)
+        self.epsteinify_link_markup = make_link_markup(self.epsteinify_name_url, self.file_path.stem, self.author_style)
         self.sent_from_device = self._sent_from_device()
 
     def cleanup_email_txt(self) -> str:
