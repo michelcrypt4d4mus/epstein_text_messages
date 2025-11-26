@@ -27,6 +27,7 @@ EMAIL_HEADER_REGEX = re.compile(r'^(((Date|Subject):.*\n)*From:.*\n((Date|Sent|T
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
 BAD_EMAILER_REGEX = re.compile(r'^>|agreed|ok|sexy|rt|re:|fwd:|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|hysterical|i have|image0|so that people|article 1.?|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Subject|Attachments):\s*\n)+')
+SKIP_HEADER_ROW_REGEX = re.compile(r"^(agreed|call me|schwartman).*")
 
 REPLY_LINE_PATTERN = r'(On ([A-Z][a-z]{2,9},)?\s*?([A-Z][a-z]{2,9}\s*\d+,\s*\d{4}|\d+/\d+/\d+ \d+:\d+ (AM|PM)),?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*(?:[ \n]+wrote:)?|-+(Forwarded|Original)\s*Message-*|Begin forwarded message:?)'
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE)
@@ -204,7 +205,7 @@ class Email(CommunicationDocument):
                             logger.debug(f"Looks like a mismatch, decrementing num_headers and skipping...")
                             num_headers -= 1
                             continue
-                        elif value.startswith('call me') or value.startswith('schwartman') or value.startswith('agreed'):
+                        elif SKIP_HEADER_ROW_REGEX.match(value):
                             logger.debug(f"Looks like a mismatch, Trying the next line...")
                             num_headers += 1
                             value = self.lines[i + num_headers]

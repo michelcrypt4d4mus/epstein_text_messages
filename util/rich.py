@@ -45,7 +45,7 @@ JOURNALIST_COLOR = 'grey54'
 OBAMA_COLOR = 'yellow'
 PHONE_NUMBER = 'phone_number'
 RICH_GUY_COLOR = 'dark_cyan'
-RUSSIA_COLOR = 'dark_red'
+RUSSIA_COLOR = 'red'
 TEXT_LINK = 'text_link'
 TIMESTAMP = 'timestamp'
 TRUMP_COLOR = 'red3 bold'
@@ -174,7 +174,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     DEMS_COLOR: r"Maxine Waters|(Nancy )?Pelosi|Clinton|Hillary",
     INDIA_COLOR: r"Ambani|Indian?|Modi|mumbai",
     ISRAELI_COLOR: r"Bibi|(eh|Nili Priell )barak|Netanyahu|Israeli?",
-    RUSSIA_COLOR: r"Moscow|(Vladimir )?Putin|Lavrov|Russian?",
+    RUSSIA_COLOR: r"GRU|FSB|Lavrov|Moscow|(Vladimir )?Putin|Russian?",
     TRUMP_COLOR: r"(Donald\s+(J\.\s+)?)?Trump|Donald|DJT|Roger\s+Stone",
     COUNTERPARTY_COLORS[GHISLAINE_MAXWELL]: r"GMAX|gmax1@ellmax.com",
     RICH_GUY_COLOR: r"(Steve\s+)?Wynn|(Leslie\s+)?Wexner",
