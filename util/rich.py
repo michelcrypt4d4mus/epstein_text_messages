@@ -140,7 +140,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     'dark_cyan': r"(Steve\s+)?Wynn|(Leslie\s+)?Wexner",
     'dark_magenta': r"Le\s*Pen|(Victor\s+)?Orbah?n",
     'orchid1': r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts",
-    'medium_purple2': r"(Alan (M\. )?)?Dershowi(l|tz)",
+    'medium_purple2': r"(Alan (M\. )?)?Dershowi(l|tz)|(Ken(neth W.)?\s+)?Starr",
     'turquoise4': r"BG|Bill\s+(and\s+Melinda\s+)?Gates",
 }
 
