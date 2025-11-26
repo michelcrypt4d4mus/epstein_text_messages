@@ -61,7 +61,7 @@ class EpsteinFiles:
                 self.emails.append(email)
                 author = email.author or UNKNOWN
                 self.email_author_counts[author.lower()] += 1
-                logger.info(f"Email (author='{author}', recipients={email.recipients})")
+                logger.info(email.description().plain)
 
                 if len(email.recipients) > 0:
                     for recipient in email.recipients:
@@ -149,7 +149,7 @@ class EpsteinFiles:
         console.print(table, '\n\n')
 
     def print_email_device_info(self) -> None:
-        print_panel(f"Email 'Sent from [device]' Signature Info", padding=DEVICE_SIGNATURE_PADDING)
+        print_panel(f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown", padding=DEVICE_SIGNATURE_PADDING)
         console.print(build_signature_table(self.email_author_devices, (AUTHOR, DEVICE_SIGNATURE)))
         console.line(2)
         console.print(build_signature_table(self.email_sent_from_devices, (DEVICE_SIGNATURE, AUTHOR), ', '))
@@ -185,7 +185,8 @@ class EpsteinFiles:
 
 
 def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Padding:
-    table = Table(header_style="bold reverse", show_header=True, show_lines=True)
+    title = 'Signatures Used By Authors' if cols[0] == AUTHOR else 'Authors Seen Using Signatures'
+    table = Table(header_style="bold reverse", show_header=True, show_lines=True, title=title)
 
     for i, col in enumerate(cols):
         table.add_column(col.title() + ('s' if i == 1 else ''), style='dim' if col == DEVICE_SIGNATURE else 'white')
