@@ -28,7 +28,8 @@ epstein_files = EpsteinFiles()
 epstein_files.print_summary()
 print_section_header('Text Messages')
 
-# Text messages
+
+# Text messages section
 for log_file in epstein_files.sorted_imessage_logs():
     console.print(log_file)
     console.line(2)
@@ -47,7 +48,8 @@ console.print(text_summary_msg)
 console.print(f"Found {epstein_files.imessage_msg_count()} total text messages in {len(epstein_files.iMessage_logs)} conversations.")
 console.print(f"(Last deploy found 4668 messages in 77 conversations)\n\n\n", style='dim')
 
-# Email sender / recipient counts
+
+# Emails section
 print_section_header('His Emails')
 print_email_table(epstein_files.email_author_counts, "Author")
 print_email_table(epstein_files.email_recipient_counts, "Recipients")
@@ -76,8 +78,11 @@ for author in PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED:
 for name in PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES.keys():
     epstein_files.print_emails_table_for(name)
 
+
+# Other Files Section
 print_section_header('Other Files')
 epstein_files.print_other_files_table()
+
 
 # Save output
 if is_build:
@@ -86,38 +91,4 @@ if is_build:
     exit()
 else:
     console.print(f"\nNot writing HTML, BUILD_HTML not set.")
-
-
-SENT_FROM_AUTHOR_DEVICES = {}
-SENT_FROM_AUTHOR_DEVICE_LISTS = {}
-SENT_FROM_SIGNATURES = {}
-
-for email in epstein_files.emails:
-    sent_from = email.sent_from_device()
-
-    if not sent_from:
-        continue
-
-    sent_from = 'S' + sent_from[1:] if sent_from.startswith('sent') else sent_from
-    logger.info(f"Got sent_from='{sent_from}' in email text of '{email.filename}':\n{email.top_lines(15)}\n")
-    SENT_FROM_AUTHOR_DEVICES[email.author] = SENT_FROM_AUTHOR_DEVICES.get(email.author, set([]))
-    SENT_FROM_AUTHOR_DEVICES[email.author].add(sent_from)
-
-for name, signatures in SENT_FROM_AUTHOR_DEVICES.items():
-    SENT_FROM_AUTHOR_DEVICE_LISTS[name] = list(signatures)
-
-console.print(f"SENT_FROM_AUTHOR_DEVICE_LISTS", style='bold')
-console.print(SENT_FROM_AUTHOR_DEVICE_LISTS)
-console.print_json(json.dumps(SENT_FROM_AUTHOR_DEVICE_LISTS, indent=4))
-
-for name, signatures in SENT_FROM_AUTHOR_DEVICES.items():
-    for sent_from in signatures:
-        SENT_FROM_SIGNATURES[sent_from] = SENT_FROM_SIGNATURES.get(sent_from, set([]))
-        SENT_FROM_SIGNATURES[sent_from].add(name)
-
-for sent_from, names in SENT_FROM_SIGNATURES.items():
-    SENT_FROM_SIGNATURES[sent_from] = list(names)
-
-console.print(f"SENT_FROM_SIGNATURES", style='bold')
-console.print(SENT_FROM_SIGNATURES)
-console.print_json(json.dumps(SENT_FROM_SIGNATURES, indent=4))
+    epstein_files.print_email_device_info()

@@ -6,9 +6,11 @@ from pathlib import Path
 from rich.text import Text
 
 from util.file_helper import extract_file_id
-from util.rich import ARCHIVE_LINK_COLOR, epsteinify_doc_url, logger, make_link, make_link_markup
+from util.rich import ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_names, logger, make_link, make_link_markup
 
 MULTINEWLINE_REGEX = re.compile(r"\n{3,}")
+WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
+PREVIEW_CHARS = 520
 GMAX_EMAIL = 'gmax1@ellmax.com'
 JEEVACATION_GMAIL = 'jeevacation@gmail.com'
 MIN_DOCUMENT_ID = 10477
@@ -49,9 +51,15 @@ class Document:
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         return make_link(self.epsteinify_url, link_txt or self.filename, style)
 
+    def highlighted_preview_text(self) -> Text:
+        return Text.from_markup(highlight_names(self.preview_text()))
+
     def log_top_lines(self, n: int = 10, msg: str | None = None) -> None:
         msg = f"{msg + '. ' if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"
         logger.info(f"{msg}:\n\n{self.top_lines(n)}")
+
+    def preview_text(self) -> str:
+        return WHITESPACE_REGEX.sub(' ', self.text)[0:PREVIEW_CHARS]
 
     def top_lines(self, n: int = 10) -> str:
         return '\n'.join(self.lines[0:n])
