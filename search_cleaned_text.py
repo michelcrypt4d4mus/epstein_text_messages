@@ -1,16 +1,14 @@
 #!/usr/bin/env python
 # Search the document text AFTER all OCR fixes have been applied.
-import re
-from pathlib import Path
-from subprocess import run
+from os import environ
 from sys import argv, exit
+environ.setdefault('FAST', 'true')
 
 from dotenv import load_dotenv
 load_dotenv()
 from rich.console import Console
 
 from documents.document import Document
-from documents.email import Email, REPLY_LINE_PATTERN, REPLY_REGEX, REPLY_TEXT_REGEX, SENT_FROM_REGEX, REDACTED_REPLY_REGEX
 from documents.epstein_files import EpsteinFiles
 from util.env import is_debug
 from util.file_helper import DOCS_DIR

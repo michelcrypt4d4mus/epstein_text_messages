@@ -15,6 +15,7 @@ from documents.email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMP
 from util.constants import *
 from util.rich import *
 from util.strings import *
+from util.env import is_fast_mode
 
 TIME_REGEX = re.compile(r'^(\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday).*')
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
@@ -79,6 +80,10 @@ class Email(CommunicationDocument):
         self._repair()
         self._extract_header()
 
+        if is_fast_mode:
+            self.author = UNKNOWN
+            return
+
         if self.file_id in KNOWN_EMAIL_AUTHORS:
             self.author = KNOWN_EMAIL_AUTHORS[self.file_id]
         elif not self.header.author:
@@ -126,7 +131,12 @@ class Email(CommunicationDocument):
         return EPSTEIN_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, text)
 
     def description(self) -> Text:
-        return Text.from_markup(highlight_text(f"Email (author='{self.author}', recipients={self.recipients}, timestamp='{self.timestamp}')"))
+        if is_fast_mode:
+            return Text(self.filename)
+        else:
+            return Text.from_markup(highlight_text(
+                f"Email (author='{self.author}', recipients={self.recipients}, timestamp='{self.timestamp}')"
+            ))
 
     def sort_time(self) -> datetime:
         timestamp = self.timestamp or parse("1/1/2001 12:01:01 AM")
