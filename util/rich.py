@@ -80,6 +80,7 @@ COUNTERPARTY_COLORS = {
     JEFFREY_EPSTEIN: 'blue1',
     EVA: 'orchid',
     JONATHAN_FARKAS: BRO_COLOR,
+    KATHY_RUEMMLER: 'magenta2',
     LARRY_SUMMERS: 'spring_green4',
     MELANIE_SPINELLA: 'magenta3',
     MELANIE_WALKER: 'deep_pink4',
