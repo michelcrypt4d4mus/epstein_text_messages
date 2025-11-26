@@ -57,6 +57,7 @@ TRUNCATE_TERMS = [
     'Dominique Strauss-Kahn',
     'THOMAS L. FRIEDMAN',
     'a sleek, briskly paced film whose title suggests a heist movie',
+    'quote from The Colbert Report distinguishes',
 ]
 
 

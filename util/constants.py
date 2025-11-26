@@ -7,6 +7,7 @@ from io import StringIO
 AL_SECKEL = 'Al Seckel'
 ALIREZA_ITTIHADIEH = 'Alireza Ittihadieh'
 ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
+ANAS_ALRASHEED = 'Anas Alrasheed'
 AZIZA_ALAHMADI = 'Aziza Alahmadi'
 BARBRO_EHNBOM = 'Barbro Ehnbom'
 BENNET_MOSKOWITZ = 'Bennet Moskowitz'
@@ -168,7 +169,7 @@ EMAILER_REGEXES = {
     'Amanda Ens': re.compile(r'ens, amand', re.IGNORECASE),
     ANIL: re.compile(r'Anil.Ambani', re.IGNORECASE),
     ARIANE_DE_ROTHSCHILD: re.compile(r'^(AdeR|Ariane de Roth)$'),
-    'Anas Alrasheed': re.compile(r'anas\s*al\s*rashee[cd]', re.IGNORECASE),
+    ANAS_ALRASHEED: re.compile(r'anas\s*al\s*rashee[cd]', re.IGNORECASE),
     BARBRO_EHNBOM: re.compile(r'behnbom@aol.com|Barbro\s.*Ehnbom', re.IGNORECASE),
     'Barry J. Cohen': re.compile(r'barry (j.? )?cohen?', re.IGNORECASE),
     BENNET_MOSKOWITZ: re.compile(r'Moskowitz.*Bennet|Bennet.*Moskowitz', re.IGNORECASE),
@@ -281,6 +282,7 @@ for emailer in EMAILERS:
 
 KNOWN_EMAIL_AUTHORS = {
     '032436': 'Alireza Ittihadieh',  # Signature
+    '032543': ANAS_ALRASHEED,        # Later reply 033000 has quote
     '026064': ARIANE_DE_ROTHSCHILD,
     '026069': ARIANE_DE_ROTHSCHILD,
     '030741': ARIANE_DE_ROTHSCHILD,
@@ -432,6 +434,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '030096': PETER_MANDELSON,
     '032951': 'Raafat Alsabbagh',
     '019334': STEVE_BANNON,
+    # '032213': Probably MIRO or Reid Weingarten based on replies but he sent it to a lot of people
 }
 
 EPSTEIN_SIGNATURE = re.compile(
