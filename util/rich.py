@@ -28,7 +28,9 @@ BRASIL_COLOR = 'chartreuse2'
 CHINA_COLOR = 'bright_red'
 INDIA_COLOR = 'green'
 ISRAELI_COLOR = 'dodger_blue2'
+JAVANKA_COLOR = 'medium_violet_red'
 JOURNALIST_COLOR = 'grey54'
+OBAMA_COLOR = 'yellow'
 PHONE_NUMBER = 'phone_number'
 RUSSIA_COLOR = 'dark_red'
 TEXT_LINK = 'text_link'
@@ -203,16 +205,17 @@ console.record = True
 
 # This is after the Theme() instantiation because 'bg' is reserved'
 COUNTERPARTY_COLORS.update({
+    'Biden': OBAMA_COLOR,
     'Clinton': 'sky_blue1',
     'Harvard': 'red',
-    'Ivanka': 'medium_violet_red',
+    'Ivanka': JAVANKA_COLOR,
     'Joichi Ito': COUNTERPARTY_COLORS[JOI_ITO],
     'Jabor': COUNTERPARTY_COLORS[JABOR_Y],
-    'Jared Kushner': 'medium_violet_red',
+    'Jared Kushner': JAVANKA_COLOR,
     'jeevacation@gmail.com': COUNTERPARTY_COLORS[JEFFREY_EPSTEIN],
     'Manafort': COUNTERPARTY_COLORS[STEVE_BANNON],
     'Miro': COUNTERPARTY_COLORS[MIROSLAV],
-    'Obama': 'yellow',
+    'Obama': OBAMA_COLOR,
     'Scaramucci': COUNTERPARTY_COLORS[SCARAMUCCI],
 })
 
