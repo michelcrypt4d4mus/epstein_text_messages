@@ -171,7 +171,7 @@ class Email(CommunicationDocument):
         logger.debug(f"Failed to find timestamp, using fallback of parsing {VALID_HEADER_LINES} lines...")
 
         for line in searchable_lines:
-            timestamp = _parse_timestamp(line.strip())
+            timestamp = _parse_timestamp(line)
 
             if timestamp:
                 logger.info(f"Fell back to timestamp {timestamp} in line '{line}'...")
