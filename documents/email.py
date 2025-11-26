@@ -289,7 +289,7 @@ class Email(CommunicationDocument):
         text = REPLY_REGEX.sub(r'[dim]\1[/dim]', text)
         text = SENT_FROM_REGEX.sub(r'[italic][dim]\1[/dim][/italic]', text)
         text = UNKNOWN_SIGNATURE_REGEX.sub(r'[dim]\1[/dim]', text)
-        yield Padding(Panel(highlight_names(text), expand=False), (0, 0, 2, EMAIL_INDENT))
+        yield Padding(Panel(highlighter(highlight_names(text)), expand=False), (0, 0, 2, EMAIL_INDENT))
 
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:

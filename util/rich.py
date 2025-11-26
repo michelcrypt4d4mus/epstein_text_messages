@@ -6,6 +6,7 @@ from os import environ
 
 from rich.align import Align
 from rich.console import Console
+from rich.highlighter import RegexHighlighter
 from rich.logging import RichHandler
 from rich.markup import escape
 from rich.panel import Panel
@@ -23,6 +24,7 @@ LEADING_WHITESPACE_REGEX = re.compile(r'\A\s*', re.MULTILINE)
 NON_ALPHA_CHARS_REGEX = re.compile(r'[^a-zA-Z0-9 ]')
 MAX_PREVIEW_CHARS = 300
 OUTPUT_WIDTH = 120
+HEADER_FIELD = 'header_field'
 
 ARAB_COLOR = 'dark_green'
 ARCHIVE_LINK = 'archive_link'
@@ -44,6 +46,8 @@ RUSSIA_COLOR = 'dark_red'
 TEXT_LINK = 'text_link'
 TIMESTAMP = 'timestamp'
 TRUMP_COLOR = 'red3 bold'
+
+highlighter_style_name = lambda style_name: f"{HEADER_FIELD}.{style_name}"
 
 NAMES_TO_NOT_COLOR = [name.lower() for name in [
     'Black',
@@ -149,6 +153,8 @@ OTHER_STYLES = {
     PHONE_NUMBER: 'bright_green',
     TEXT_LINK: 'deep_sky_blue4 underline',
     TIMESTAMP: 'gray30',
+    highlighter_style_name('header'): 'cyan',
+    highlighter_style_name('email'): 'bright_cyan',
 }
 
 COUNTERPARTY_COLORS.update(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED)
@@ -227,7 +233,17 @@ HTML_TERMINAL_THEME = TerminalTheme(
 
 
 # Instantiate Console object
-console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS), width=OUTPUT_WIDTH)
+class EmailHeaderHighlighter(RegexHighlighter):
+    """Apply style to anything that looks like an email."""
+    base_style = f"{HEADER_FIELD}."
+
+    highlights = [
+        r"(?P<email>[\w-]+@([\w-]+\.)+[\w-]+)",
+        r"(?P<header>Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):",
+    ]
+
+highlighter = EmailHeaderHighlighter()
+console = Console(color_system='256', highlighter=highlighter, theme=Theme(COUNTERPARTY_COLORS), width=OUTPUT_WIDTH)
 console.record = True
 
 # This is after the Theme() instantiation because 'bg' is reserved'

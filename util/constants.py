@@ -194,7 +194,7 @@ EMAILER_REGEXES = {
     'jackie perczel':  re.compile(r'jackie percze', re.IGNORECASE),
     JABOR_Y: re.compile(r'^[ji]abor\s+y\.?', re.IGNORECASE),
     JEAN_LUC_BRUNEL: re.compile(r'Jean[- ]Luc Brunel?', re.IGNORECASE),
-    JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]?|jeffrey E\.|Jeffrey Epstein?|jeeproject@yahoo.com', re.IGNORECASE),
+    JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]?|jeffrey E\.|Jeffrey Epstein?|jeeproject@yahoo.com|J Jep', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|joichi|^joi$', re.IGNORECASE),
     JOHNNY_EL_HACHEM: re.compile('el hachem johnny|johnny el hachem', re.IGNORECASE),
     JONATHAN_FARKAS: re.compile('Jonathan Farka(s|il)', re.IGNORECASE),
