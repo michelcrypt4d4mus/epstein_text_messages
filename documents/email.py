@@ -10,12 +10,12 @@ from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
 
-from documents.document import CommunicationDocument
+from documents.document import FALLBACK_TIMESTAMP, CommunicationDocument
 from documents.email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TO_FIELDS, EmailHeader
 from util.constants import *
+from util.env import is_fast_mode
 from util.rich import *
 from util.strings import *
-from util.env import is_fast_mode
 
 TIME_REGEX = re.compile(r'^(\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday).*')
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
@@ -57,6 +57,7 @@ OCR_REPAIRS = {
     'Sent from Samsung Mob.le': 'Sent from Samsung Mobile',
     'Sent from Mabfl': 'Sent from Mobile',
     'MOMMINNEMUMMIN': REDACTED,
+    'Torn Pritzker': 'Tom Pritzker',
 }
 
 # These are long forwarded articles we don't want to display over and over
@@ -139,7 +140,7 @@ class Email(CommunicationDocument):
             return Text.from_markup(highlight_text(info_str))
 
     def sort_time(self) -> datetime:
-        timestamp = self.timestamp or parse("1/1/2001 12:01:01 AM")
+        timestamp = self.timestamp or FALLBACK_TIMESTAMP
         return timestamp.replace(tzinfo=None) if timestamp.tzinfo is not None else timestamp
 
     def idx_of_nth_quoted_reply(self, n: int = 4, text: str | None = None) -> int | None:
@@ -156,7 +157,7 @@ class Email(CommunicationDocument):
             if i >= n:
                 return match.end() - 1
 
-    def _extract_sent_at(self) -> datetime | None:
+    def _extract_sent_at(self) -> datetime:
         if self.file_id in KNOWN_TIMESTAMPS:
             return KNOWN_TIMESTAMPS[self.file_id]
 
@@ -165,7 +166,7 @@ class Email(CommunicationDocument):
         date_match = DATE_REGEX.search(searchable_text)
 
         if date_match:
-            return _parse_timestamp(date_match.group(1).strip().replace(' (UTC)', ''))
+            return _parse_timestamp(date_match.group(1).strip().replace(' (UTC)', '')) or FALLBACK_TIMESTAMP
 
         logger.debug(f"Failed to find timestamp, using fallback of parsing {VALID_HEADER_LINES} lines...")
 
@@ -176,7 +177,8 @@ class Email(CommunicationDocument):
                 logger.info(f"Fell back to timestamp {timestamp} in line '{line}'...")
                 return timestamp
 
-        self.log_top_lines(msg="No valid timestamp found in email")
+        self.log_top_lines(msg="No valid timestamp found in email!")
+        raise RuntimeError(f"No timestamp found in '{self.file_path.name}'")
 
     def _extract_header(self) -> EmailHeader | None:
         header_match = EMAIL_SIMPLE_HEADER_REGEX.search(self.text)
@@ -238,11 +240,11 @@ class Email(CommunicationDocument):
             log_msg = f"'{self.filename}': No valid emailer found in '{escape_single_quotes(emailer_str)}'"
 
             if UNDISCLOSED_RECIPIENTS_REGEX.match(emailer_str) and len(names) == 0:
-                logger.info(log_msg)
+                logger.debug(log_msg)
             elif len(names) == 0:
                 logger.warning(log_msg)
             else:
-                logger.debug(f"Extracted {len(names)} emailers from semi-invalid '{emailer_str}': {names}...")
+                logger.info(f"Extracted {len(names)} emailers from semi-invalid '{emailer_str}': {names}...")
 
             return names
 
