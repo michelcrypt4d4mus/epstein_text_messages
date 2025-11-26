@@ -17,8 +17,7 @@ MIN_DOCUMENT_ID = 10477
 
 OCR_REPAIRS = {
     'lndyke': 'Indyke',
-    'gmaxlgellmax.com': GMAX_EMAIL,
-    'gmaxl@ellmax.com': GMAX_EMAIL,
+    re.compile(r'gmax ?[1l] ?[@g]ellmax.c ?om'): GMAX_EMAIL,
     re.compile(r"[jl']ee[vy]acation[©@a(&,]{1,3}gmail.com"): JEEVACATION_GMAIL,
 }
 
