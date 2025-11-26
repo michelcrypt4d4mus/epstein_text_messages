@@ -146,6 +146,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     'dark_magenta': r"Le\s*Pen|(Victor\s+)?Orbah?n",
     'orchid1': r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts",
     'medium_purple2': r"(Alan (M\. )?)?Dershowi(l|tz)|(Ken(neth W.)?\s+)?Starr",
+    'pale_green1': r"Masa(yoshi)?|Najeev|Softbank",
     'turquoise4': r"BG|Bill\s+(and\s+Melinda\s+)?Gates",
 }
 
