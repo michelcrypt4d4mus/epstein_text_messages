@@ -82,7 +82,7 @@ epstein_files.print_email_device_info()
 
 
 # Other Files Section
-print_section_header('Other Files')
+print_section_header(f"{len(epstein_files.other_files)} Other Files")
 epstein_files.print_other_files_table()
 
 
