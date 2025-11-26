@@ -358,8 +358,9 @@ KNOWN_EMAIL_AUTHORS = {
     '033593': LAWRANCE_VISOSKI,        # Signature
     '033309': LINDA_STONE,             # "Co-authored with iPhone autocorrect"
     '017581': 'Lisa Randall',
-    '030472': MARTIN_WEINBERG,       # Maybe. in reply
+    '030472': MARTIN_WEINBERG,         # Maybe. in reply
     '030235': MELANIE_WALKER,          # In fwd
+    '032343': MELANIE_WALKER,          # In later reply 032346
     '032212': MIROSLAV,
     '022193': NADIA_MARCINKO,
     '021814': NADIA_MARCINKO,
