@@ -171,79 +171,47 @@ else:
 console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS), width=OUTPUT_WIDTH)
 console.record = True
 
+
 # This is after the Theme() instantiation because 'bg' is reserved'
 COUNTERPARTY_COLORS.update({
-    'Abu Dhabi': ARAB_COLOR,
     'bg': 'turquoise4',
-    'Bibi': ISRAELI_COLOR,
-    'Bitcoin': BITCOIN_COLOR,
-    'Blockchain': BITCOIN_COLOR,
     'CCP': CHINA_COLOR,
     'China': CHINA_COLOR,
     'Chinese': CHINA_COLOR,
     'Clinton': 'sky_blue1',
-    'coins': BITCOIN_COLOR,
-    'cripto': BITCOIN_COLOR,
-    'crypto': BITCOIN_COLOR,
     'Dershowitz': 'medium_purple2',
     'DJT': COUNTERPARTY_COLORS[DONALD_TRUMP],
-    'Dubai': ARAB_COLOR,
-    'e-currency': BITCOIN_COLOR,
     'ehbarak': COUNTERPARTY_COLORS[EHUD_BARAK],
-    'Erdogan': ARAB_COLOR,
-    'Emirates': ARAB_COLOR,
     'GMAX': COUNTERPARTY_COLORS[GHISLAINE_MAXWELL],
     'gmax1@ellmax.com': COUNTERPARTY_COLORS[GHISLAINE_MAXWELL],
     'Harvard': 'red',
-    'HBJ': ARAB_COLOR,
-    'Iran': ARAB_COLOR,
-    'Iranian': ARAB_COLOR,
-    'Islam': ARAB_COLOR,
-    'Islamic': ARAB_COLOR,
-    'Islamist': ARAB_COLOR,
-    'Israel': ISRAELI_COLOR,
-    'Israeli': ISRAELI_COLOR,
     'Ivanka': 'medium_violet_red',
     'Joichi Ito': COUNTERPARTY_COLORS[JOI_ITO],
     'Jabor': COUNTERPARTY_COLORS[JABOR_Y],
     'Jared Kushner': 'medium_violet_red',
     'jeevacation@gmail.com': COUNTERPARTY_COLORS[JEFFREY_EPSTEIN],
-    'kazichstan': ARAB_COLOR,
-    'Kazakhstan': ARAB_COLOR,
-    'Kazak': ARAB_COLOR,
-    'kazakh': ARAB_COLOR,
-    'KSA': ARAB_COLOR,
-    'Kuwait': ARAB_COLOR,
-    'Kuwaiti': ARAB_COLOR,
     'kwok': CHINA_COLOR,
     'Lavrov': RUSSIA_COLOR,
     'Le Pen': 'purple4',
     'LePen': 'purple4',
-    'Howard Lutnick': BITCOIN_COLOR,
     'Manafort': COUNTERPARTY_COLORS[STEVE_BANNON],
-    'MBS': ARAB_COLOR,
-    'MBZ': ARAB_COLOR,
     'Miro': COUNTERPARTY_COLORS[MIROSLAV],
     'Moscow': RUSSIA_COLOR,
-    'Muslim': ARAB_COLOR,
-    'Netanyahu': ISRAELI_COLOR,
     'Obama': 'yellow',
     'Putin': 'dark_red bold',
     'Roger Stone': COUNTERPARTY_COLORS[DONALD_TRUMP],
     'Russia': RUSSIA_COLOR,
     'Russian': RUSSIA_COLOR,
-    'Qatar': ARAB_COLOR,
-    'Qatari': ARAB_COLOR,
-    "Saudi": ARAB_COLOR,
     'Scaramucci': COUNTERPARTY_COLORS[SCARAMUCCI],
-    'Sharia': ARAB_COLOR,
-    'Syria': ARAB_COLOR,
-    'UAE': ARAB_COLOR,
     'Victor Orban': 'purple4',
-    'Yemen': ARAB_COLOR,
-    'Yemeni': ARAB_COLOR,
     'xi': f"{CHINA_COLOR} bold",
 })
+
+HIGHLIGHT_REGEXES = {
+    re.compile(r'\b(Abu Dhabi|Dubai|Emirates|Erdogan|HBJ|Iran(ian)?|Iraq|Islam(ic|ist)?|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Muslim|Sharia|Syria|UAE|((Kuwait|Qatar|Saud|Yemen)i?))s?\b', re.I): ARAB_COLOR,
+    re.compile(r'\b(bitcoin|coins|cr[iy]pto(currency)?|e-currency|(Howard\s+)?Lutnick|Tether)\b', re.I): BITCOIN_COLOR,
+    re.compile(r'\b(Bibi|ehbarak|Netanyahu|Israeli?)\b', re.I): ISRAELI_COLOR,
+}
 
 
 def make_link_markup(url: str, link_text: str, style: str = ARCHIVE_LINK_COLOR) -> str:
@@ -263,6 +231,9 @@ def coffeezilla_link(search_term: str, link_txt: str, style: str = ARCHIVE_LINK_
 
 
 def highlight_names(text: str) -> str:
+    for name_regex, style in HIGHLIGHT_REGEXES.items():
+        text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
+
     for name, style in COUNTERPARTY_COLORS.items():
         if name is None or name == DEFAULT:
             continue

@@ -231,7 +231,7 @@ class Email(CommunicationDocument):
             text = text[0:num_chars]
             text += f"\n\n[dim]<...truncated to {num_chars} characters, read the rest: {self.epsteinify_link_markup}...>[/dim]"
 
-        text = REPLY_REGEX.sub(r'[dim]\1[/dim]',text)
+        text = REPLY_REGEX.sub(r'[dim]\1[/dim]', text)
         text = SENT_FROM_REGEX.sub(r'[dim]\1[/dim]', text)
         yield Padding(Panel(highlight_names(text), expand=False), (0, 0, 2, EMAIL_INDENT))
 
