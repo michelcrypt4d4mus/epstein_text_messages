@@ -17,6 +17,7 @@ JEEVACATION_GMAIL = 'jeevacation@gmail.com'
 MIN_DOCUMENT_ID = 10477
 
 OCR_REPAIRS = {
+    'Follow me on twitter glhsummers': 'Follow me on twitter @lhsummers',
     'lndyke': 'Indyke',
     re.compile(r'Sean Bannor?', re.I): SEAN_BANNON,
     re.compile(r'Steve Bannor]?', re.I): STEVE_BANNON,
