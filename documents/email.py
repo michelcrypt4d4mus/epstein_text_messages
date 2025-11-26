@@ -201,7 +201,9 @@ class Email(CommunicationDocument):
             else:
                 logger.debug(f"Parsed email header to:\n{self.header}")
         else:
-            logger.warning(f"No header match found in '{self.filename}'! Top lines:\n\n{self.top_lines()}")
+            if not (self.file_id in KNOWN_EMAIL_AUTHORS and self.file_id in KNOWN_EMAIL_RECIPIENTS):
+                logger.warning(f"No header match found in '{self.filename}'! Top lines:\n\n{self.top_lines()}")
+
             self.header = EmailHeader(field_names=[])
 
     def _repair(self) -> None:
@@ -262,22 +264,26 @@ def _parse_timestamp(timestamp_str: str) -> None | datetime:
         logger.debug(f'Failed to parse "{timestamp_str}" to timestamp!')
 
 
-def _get_names(author: str) -> list[str]:
-    author = EmailHeader.cleanup_str(author)
+def _get_names(emailer_str: str) -> list[str]:
+    emailer_str = EmailHeader.cleanup_str(emailer_str)
     names = []
 
     for name, regex in EMAILER_REGEXES.items():
-        if regex.search(author):
+        if regex.search(emailer_str):
             names.append(name)
 
-    if BAD_EMAILER_REGEX.match(author) or TIME_REGEX.match(author):
-        logger.warning(f"Name '{author}' is invalid, returning {len(names)} emailers already found...")
+    if BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
+        if len(names) == 0:
+            logger.warning(f"Name '{emailer_str}' is invalid, returning no valid emailers found...")
+        else:
+            logger.debug(f"Extracted {len(names)} emailers from semi-invalid '{emailer_str}': {names}...")
+
         return names
 
     if len(names) == 0:
-        names.append(author)
+        names.append(emailer_str)
     elif len(names) > 1:
-        logger.info(f"Found more than 1 emailer in '{author}': {names}")
+        logger.info(f"Found more than 1 emailer in '{emailer_str}': {names}")
 
     return [_reverse_first_and_last_names(name) for name in names]
 

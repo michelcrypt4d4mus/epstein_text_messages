@@ -70,6 +70,7 @@ NAMES_TO_NOT_COLOR = [name.lower() for name in [
 COUNTERPARTY_COLORS = {
     ANIL: INDIA_COLOR,
     ARIANE_DE_ROTHSCHILD: 'indian_red',
+    BORIS_NIKOLIC: 'tan',
     'Celina Dubin': 'medium_orchid1',
     DEFAULT: 'wheat4',
     JEFFREY_EPSTEIN: 'blue1',
