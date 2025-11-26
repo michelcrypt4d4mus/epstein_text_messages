@@ -166,12 +166,12 @@ class Email(CommunicationDocument):
         date_match = DATE_REGEX.search(searchable_text)
 
         if date_match:
-            return _parse_timestamp(date_match.group(1).strip().replace(' (UTC)', '')) or FALLBACK_TIMESTAMP
+            return _parse_timestamp(date_match.group(1)) or FALLBACK_TIMESTAMP
 
         logger.debug(f"Failed to find timestamp, using fallback of parsing {VALID_HEADER_LINES} lines...")
 
         for line in searchable_lines:
-            timestamp = _parse_timestamp(line.strip())
+            timestamp = _parse_timestamp(line)
 
             if timestamp:
                 logger.info(f"Fell back to timestamp {timestamp} in line '{line}'...")
@@ -307,7 +307,7 @@ class Email(CommunicationDocument):
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:
     try:
-        timestamp = parse(timestamp_str, tzinfos=TIMEZONE_INFO)
+        timestamp = parse(timestamp_str.replace(' (UTC)', '').strip(), tzinfos=TIMEZONE_INFO)
         logger.debug(f'Parsed timestamp "{timestamp}" from string "{timestamp_str}"')
         return timestamp
     except Exception as e:
