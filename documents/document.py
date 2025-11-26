@@ -3,11 +3,13 @@ from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
 
+from rich.markup import escape
 from rich.text import Text
 
 from util.constants import SEAN_BANNON, STEVE_BANNON
 from util.file_helper import extract_file_id
 from util.rich import ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_names, logger, make_link, make_link_markup
+from util.strings import *
 
 MULTINEWLINE_REGEX = re.compile(r"\n{3,}")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
@@ -57,7 +59,16 @@ class Document:
         return make_link(self.epsteinify_name_url, link_txt or self.filename, style)
 
     def highlighted_preview_text(self) -> Text:
-        return Text.from_markup(highlight_names(self.preview_text()))
+        highlighted_txt_markup = highlight_names(escape(self.preview_text()))
+
+        try:
+            return Text.from_markup(highlighted_txt_markup)
+        except Exception as e:
+            logger.error(f"Failed to apply markup in string '{escape_single_quotes(highlighted_txt_markup)}'\n"
+                         f"Original string: '{escape_single_quotes(self.preview_text())}'\n"
+                         f"File: '{self.filename}'\n")
+
+            return Text(escape(self.preview_text()))
 
     def log_top_lines(self, n: int = 10, msg: str | None = None) -> None:
         msg = f"{msg + '. ' if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"
