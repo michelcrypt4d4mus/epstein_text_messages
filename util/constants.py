@@ -323,7 +323,7 @@ KNOWN_EMAIL_AUTHORS = {
     '029692': JEFFREY_EPSTEIN,
     '031624': JEFFREY_EPSTEIN,
     '030768': JEFFREY_EPSTEIN,
-    '031996': JEFFREY_EPSTEIN,
+    '031996': JEFFREY_EPSTEIN,        # bounced
     '022938': JEFFREY_EPSTEIN,
     '028675': JEFFREY_EPSTEIN,        # Just bad OCR
     '025041': JEFFREY_EPSTEIN,        # Just bad OCR
@@ -393,7 +393,7 @@ KNOWN_EMAIL_AUTHORS = {
     '029007': SOON_YI,
     '029010': SOON_YI,
     '032296': SOON_YI,                 # "Sent from soon-yi's phone"
-    '026620': TERRY_KAFKA,
+    '026620': TERRY_KAFKA,             # "Respectfully, terry"
     '028482': TERRY_KAFKA,             # Signature
     '029992': TERRY_KAFKA,             # Quoted reply
     '020666': TERRY_KAFKA,             # ends with 'Terry'
@@ -403,6 +403,7 @@ KNOWN_EMAIL_AUTHORS = {
 
 KNOWN_EMAIL_RECIPIENTS = {
     '021106': 'Alexandra Preate',     # Reply
+    '026620': ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov ', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Mark Epstein', JEFFREY_EPSTEIN, 'Michael Buchholtz', 'Michael Horowitz', 'Marshall Funk'],
     '030764': ARIANE_DE_ROTHSCHILD,   # Reply
     '026431': ARIANE_DE_ROTHSCHILD,   # Reply
     '031996': CHRISTINA_GALBRAITH,    # bounced
