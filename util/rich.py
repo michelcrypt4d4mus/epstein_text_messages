@@ -175,25 +175,16 @@ console.record = True
 # This is after the Theme() instantiation because 'bg' is reserved'
 COUNTERPARTY_COLORS.update({
     'bg': 'turquoise4',
-    'Bibi': ISRAELI_COLOR,
-    'Bitcoin': BITCOIN_COLOR,
-    'Blockchain': BITCOIN_COLOR,
     'CCP': CHINA_COLOR,
     'China': CHINA_COLOR,
     'Chinese': CHINA_COLOR,
     'Clinton': 'sky_blue1',
-    'coins': BITCOIN_COLOR,
-    'cripto': BITCOIN_COLOR,
-    'crypto': BITCOIN_COLOR,
     'Dershowitz': 'medium_purple2',
     'DJT': COUNTERPARTY_COLORS[DONALD_TRUMP],
-    'e-currency': BITCOIN_COLOR,
     'ehbarak': COUNTERPARTY_COLORS[EHUD_BARAK],
     'GMAX': COUNTERPARTY_COLORS[GHISLAINE_MAXWELL],
     'gmax1@ellmax.com': COUNTERPARTY_COLORS[GHISLAINE_MAXWELL],
     'Harvard': 'red',
-    'Israel': ISRAELI_COLOR,
-    'Israeli': ISRAELI_COLOR,
     'Ivanka': 'medium_violet_red',
     'Joichi Ito': COUNTERPARTY_COLORS[JOI_ITO],
     'Jabor': COUNTERPARTY_COLORS[JABOR_Y],
@@ -203,11 +194,9 @@ COUNTERPARTY_COLORS.update({
     'Lavrov': RUSSIA_COLOR,
     'Le Pen': 'purple4',
     'LePen': 'purple4',
-    'Howard Lutnick': BITCOIN_COLOR,
     'Manafort': COUNTERPARTY_COLORS[STEVE_BANNON],
     'Miro': COUNTERPARTY_COLORS[MIROSLAV],
     'Moscow': RUSSIA_COLOR,
-    'Netanyahu': ISRAELI_COLOR,
     'Obama': 'yellow',
     'Putin': 'dark_red bold',
     'Roger Stone': COUNTERPARTY_COLORS[DONALD_TRUMP],
@@ -220,6 +209,8 @@ COUNTERPARTY_COLORS.update({
 
 HIGHLIGHT_REGEXES = {
     re.compile(r'\b(Abu Dhabi|Dubai|Emirates|Erdogan|HBJ|Iran(ian)?|Iraq|Islam(ic|ist)?|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Muslim|Sharia|Syria|UAE|((Kuwait|Qatar|Saud|Yemen)i?))s?\b', re.I): ARAB_COLOR,
+    re.compile(r'\b(bitcoin|coins|cr[iy]pto(currency)?|e-currency|(Howard\s+)?Lutnick|Tether)\b', re.I): BITCOIN_COLOR,
+    re.compile(r'\b(Bibi|ehbarak|Netanyahu|Israeli?)\b', re.I): ISRAELI_COLOR,
 }
 
 
