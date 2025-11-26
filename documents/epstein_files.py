@@ -144,7 +144,7 @@ class EpsteinFiles:
             table.add_row(
                 email.author_txt,
                 email.epsteinify_link(link_txt=str(email.sort_time())),
-                email.header.subject
+                highlight_text(email.header.subject or '')
             )
 
         console.print(table, '\n\n')
