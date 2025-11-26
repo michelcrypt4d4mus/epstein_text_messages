@@ -85,7 +85,8 @@ class Email(CommunicationDocument):
                 logger.info(f"No authors found in '{self.header.author}'!")
 
         if self.file_id in KNOWN_EMAIL_RECIPIENTS:
-            self.recipients = [KNOWN_EMAIL_RECIPIENTS[self.file_id]]
+            recipient = KNOWN_EMAIL_RECIPIENTS[self.file_id]
+            self.recipients = recipient if isinstance(recipient, list) else [recipient]
         else:
             self.recipients = []
 
