@@ -404,6 +404,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '033584': JEFFREY_EPSTEIN,
     '033487': JEFFREY_EPSTEIN,
     '028851': JEFFREY_EPSTEIN,
+    '022187': JEFFREY_EPSTEIN,        # Bad OCR
     '028849': JEFFREY_EPSTEIN,        # Conversation
     '033456': 'Joel',                 # Reply
     '033460': 'Joel',                 # Reply
@@ -427,7 +428,7 @@ KNOWN_EMAIL_RECIPIENTS = {
 }
 
 EPSTEIN_SIGNATURE = re.compile(
-    r"((\*+|please note)\n)?(> )?(• )?(» )?The information contained in this communication is\n(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?",
+    r"((\*+|please note)\n+)?(> )?(• )?(» )?The information contained in this communication is\n(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?",
     re.DOTALL
 )
 
