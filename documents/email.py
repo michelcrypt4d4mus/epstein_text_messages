@@ -99,10 +99,11 @@ class Email(CommunicationDocument):
             for recipient in ((self.header.to or []) + (self.header.cc or []) + (self.header.bcc or [])):
                 self.recipients += self._get_names(recipient)
 
-        logger.debug(f"Current recipients: {self.recipients}")
+        logger.debug(f"Found recipients: {self.recipients}")
         self.recipients = list(set([r for r in self.recipients if r != self.author]))  # Remove self CCs
         self.recipients_lower = [r.lower() if r else None for r in self.recipients]
         recipient = UNKNOWN if len(self.recipients) == 0 else (self.recipients[0] or UNKNOWN)
+        # TODO: add other recipients to recipient_txt
         self.recipient_txt = Text(recipient, COUNTERPARTY_COLORS.get(recipient, DEFAULT))
         self.timestamp = self._extract_sent_at()
         self.author_lowercase = self.author.lower() if self.author else None
@@ -123,6 +124,9 @@ class Email(CommunicationDocument):
         text = REDACTED_REPLY_REGEX.sub('<REDACTED> wrote:', text)
         text = escape(REPLY_REGEX.sub(r'\n\1', text))  # Newlines between quoted replies
         return EPSTEIN_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, text)
+
+    def description(self) -> Text:
+        return Text.from_markup(highlight_names(f"Email (author='{self.author}', recipients={self.recipients}, timestamp='{self.timestamp}')"))
 
     def sort_time(self) -> datetime:
         timestamp = self.timestamp or parse("1/1/2001 12:01:01 AM")
@@ -221,7 +225,7 @@ class Email(CommunicationDocument):
                 names.append(name)
 
         if BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
-            log_msg = f"'{self.filename}': No valid emailer found in emailer_str: '{escape_double_quotes(emailer_str)}'"
+            log_msg = f"'{self.filename}': No valid emailer found in '{escape_double_quotes(emailer_str)}'"
 
             if emailer_str == UNDISCLOSED_RECIPIENTS and len(names) == 0:
                 logger.info(log_msg)
@@ -283,7 +287,7 @@ class Email(CommunicationDocument):
             text += f"\n\n[dim]<...truncated to {num_chars} characters, read the rest: {self.epsteinify_link_markup}...>[/dim]"
 
         text = REPLY_REGEX.sub(r'[dim]\1[/dim]', text)
-        text = SENT_FROM_REGEX.sub(r'[dim]\1[/dim]', text)
+        text = SENT_FROM_REGEX.sub(r'[italic][dim]\1[/dim][/italic]', text)
         text = UNKNOWN_SIGNATURE_REGEX.sub(r'[dim]\1[/dim]', text)
         yield Padding(Panel(highlight_names(text), expand=False), (0, 0, 2, EMAIL_INDENT))
 

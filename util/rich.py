@@ -80,7 +80,6 @@ COUNTERPARTY_COLORS = {
     JEFFREY_EPSTEIN: 'blue1',
     EVA: 'orchid',
     JONATHAN_FARKAS: BRO_COLOR,
-    KATHY_RUEMMLER: 'magenta2',
     LARRY_SUMMERS: 'spring_green4',
     MELANIE_SPINELLA: 'magenta3',
     MELANIE_WALKER: 'deep_pink4',
@@ -128,6 +127,8 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {
     DARREN_INDYKE: 'purple3',
     'Richard Kahn': 'purple4',
     'Deepak Chopra': 'dark_goldenrod',
+    # Temporary
+    KATHY_RUEMMLER: 'magenta2',
 }
 
 OTHER_STYLES = {
@@ -348,7 +349,7 @@ def print_section_header(msg: str, style: str = 'bold white on blue3', is_center
 
 
 def print_panel(msg: str, style: str = 'black on white', padding: tuple = (0, 0, 0, 0)) -> None:
-    console.print(Padding(Panel(Text(msg, justify='center'), width=70, style=style), padding))
+    console.print(Padding(Panel(Text.from_markup(msg, justify='center'), width=70, style=style), padding))
     console.line()
 
 

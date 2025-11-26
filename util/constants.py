@@ -347,6 +347,8 @@ KNOWN_EMAIL_AUTHORS = {
     '026764': 'Barry J. Cohen',
     '026652': KATHY_RUEMMLER,         # Just bad OCR
     '032224': KATHY_RUEMMLER,
+    '032386': KATHY_RUEMMLER,         # from "Kathy" about dems, sent from iPad (not 100% confirmed)
+    '032727': KATHY_RUEMMLER,         # from "Kathy" about dems, sent from iPad (not 100% confirmed)
     '030478': LANDON_THOMAS,
     '029013': LARRY_SUMMERS,
     '031129': LARRY_SUMMERS,
@@ -424,6 +426,8 @@ KNOWN_EMAIL_RECIPIENTS = {
     '028849': JEFFREY_EPSTEIN,        # Conversation
     '033456': 'Joel',                 # Reply
     '033460': 'Joel',                 # Reply
+    '033073': KATHY_RUEMMLER,         # to "Kathy" about dems, sent from iPad (not 100% confirmed)
+    '032939': KATHY_RUEMMLER,         # to "Kathy" about dems, sent from iPad (not 100% confirmed)
     '030522': LANDON_THOMAS,
     '031413': LANDON_THOMAS,          # Reply
     '029692': LARRY_SUMMERS,          # Header
