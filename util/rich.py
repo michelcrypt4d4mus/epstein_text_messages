@@ -1,3 +1,4 @@
+import itertools
 import json
 import logging
 import re
@@ -16,6 +17,7 @@ from rich.theme import Theme
 
 from .constants import *
 from .env import deep_debug, is_debug
+from .strings import regex_escape_periods
 
 LEADING_WHITESPACE_REGEX = re.compile(r'\A\s*', re.MULTILINE)
 NON_ALPHA_CHARS_REGEX = re.compile(r'[^a-zA-Z0-9 ]')
@@ -74,8 +76,10 @@ NAMES_TO_NOT_COLOR = [name.lower() for name in [
     'Victor',
     "Y",
     "Y.",
-    r'Y\.?'
 ]]
+
+NAMES_TO_NOT_COLOR = [[n, regex_escape_periods(n)] if '.' in n else [n] for n in NAMES_TO_NOT_COLOR]
+NAMES_TO_NOT_COLOR = list(itertools.chain.from_iterable(NAMES_TO_NOT_COLOR))
 
 # Color different counterparties differently
 COUNTERPARTY_COLORS = {
@@ -278,7 +282,7 @@ def highlight_names(text: str) -> str:
         if name is None or name == DEFAULT:
             continue
 
-        name = name.replace('.', r'\.?')
+        name = regex_escape_periods(name)
         name_regex = re.compile(rf"\b({name}s?)\b", re.IGNORECASE)
         text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
 
