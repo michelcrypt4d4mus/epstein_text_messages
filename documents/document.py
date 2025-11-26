@@ -17,12 +17,7 @@ OCR_REPAIRS = {
     'lndyke': 'Indyke',
     'gmaxlgellmax.com': GMAX_EMAIL,
     'gmaxl@ellmax.com': GMAX_EMAIL,
-    'jeevacation©gmail.com': JEEVACATION_GMAIL,
-    'jeevacationagmail.com': JEEVACATION_GMAIL,
-    'jeeyacation@gmail.com': JEEVACATION_GMAIL,
-    'jeevacation@,gmail.com': JEEVACATION_GMAIL,
-    'leevacation@gmail.com': JEEVACATION_GMAIL,
-    "'eeyacation@gmail.com":  JEEVACATION_GMAIL,
+    re.compile(r"[jl']ee[vy]acation[©@a],?gmail.com"): JEEVACATION_GMAIL,
 }
 
 
@@ -69,7 +64,10 @@ class Document:
             text = text.strip()
 
             for k, v in OCR_REPAIRS.items():
-                text = text.replace(k, v)
+                if isinstance(k, re.Pattern):
+                    text = k.sub(v, text)
+                else:
+                    text = text.replace(k, v)
 
             lines = [l.strip() for l in text.split('\n') if not l.startswith('HOUSE OVERSIGHT')]
             lines = lines[1:] if (len(lines) > 1 and lines[0] == '>>') else lines
