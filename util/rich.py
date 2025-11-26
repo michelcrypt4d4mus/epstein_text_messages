@@ -208,9 +208,10 @@ COUNTERPARTY_COLORS.update({
 })
 
 HIGHLIGHT_REGEXES = {
-    re.compile(r'\b(Abu Dhabi|Dubai|Emirates|Erdogan|HBJ|Iran(ian)?|Iraq|Islam(ic|ist)?|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Muslim|Sharia|Syria|UAE|((Kuwait|Qatar|Saud|Yemen)i?))s?\b', re.I): ARAB_COLOR,
+    re.compile(r'\b(Abu Dhabi|Dubai|Emir(ates)?|Erdogan|HBJ|Iran(ian)?|Iraq|Islam(ic|ist)?|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Muslim|Sharia|Syria|Turkey|UAE|((Kuwait|Qatar|Saud|Yemen)i?))s?\b', re.I): ARAB_COLOR,
     re.compile(r'\b(bitcoin|coins|cr[iy]pto(currency)?|e-currency|(Howard\s+)?Lutnick|Tether)\b', re.I): BITCOIN_COLOR,
     re.compile(r'\b(Bibi|ehbarak|Netanyahu|Israeli?)\b', re.I): ISRAELI_COLOR,
+    re.compile(r'\b(Bra[sz]il(ian)?|Bolsonar[aio]|Lula)\b', re.I): 'chartreuse2',
 }
 
 
@@ -308,9 +309,18 @@ def print_email_table(counts: dict[str, int], column_title: str) -> None:
     console.print('\n', counts_table)
 
 
-def print_section_header(msg: str) -> None:
-    console.print(Align.center(Panel(Text(msg, justify='center'), width=80, padding=(1, 1), style='bold white on blue3')))
+def print_section_header(msg: str, style: str = 'bold white on blue3', is_centered: bool = True) -> None:
+    panel = Panel(Text(msg, justify='center'), width=80, padding=(1, 1), style=style)
+
+    if is_centered:
+        panel = Align.center(panel)
+
+    console.print(panel)
     console.line()
+
+
+def print_panel(msg: str, style: str = 'white reverse') -> None:
+    console.print(Panel(Text(msg, justify='center'), width=50, style=style), '\n')
 
 
 def print_top_lines(file_text, n = 10, max_chars = MAX_PREVIEW_CHARS, in_panel = False):

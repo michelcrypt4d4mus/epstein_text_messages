@@ -78,6 +78,8 @@ for author in PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED:
 for name in PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES.keys():
     epstein_files.print_emails_table_for(name)
 
+epstein_files.print_email_device_info()
+
 
 # Other Files Section
 print_section_header('Other Files')
@@ -91,4 +93,3 @@ if is_build:
     exit()
 else:
     console.print(f"\nNot writing HTML, BUILD_HTML not set.")
-    epstein_files.print_email_device_info()
