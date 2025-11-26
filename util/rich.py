@@ -48,6 +48,7 @@ RUSSIA_COLOR = 'dark_red'
 TEXT_LINK = 'text_link'
 TIMESTAMP = 'timestamp'
 TRUMP_COLOR = 'red3 bold'
+SECTION_HEADER_STYLE = 'bold white on blue3'
 
 highlighter_style_name = lambda style_name: f"{HEADER_FIELD}.{style_name}"
 HEADER_STYLE = 'header_field'
@@ -384,8 +385,8 @@ def print_email_table(counts: dict[str, int], column_title: str) -> None:
     console.print(counts_table)
 
 
-def print_section_header(msg: str, style: str = 'bold white on blue3', is_centered: bool = True) -> None:
-    panel = Panel(Text(msg, justify='center'), width=80, padding=(1, 1), style=style)
+def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = True) -> None:
+    panel = Panel(Text(msg, justify='center'), expand=True, padding=(1, 1), style=style)
 
     if is_centered:
         panel = Align.center(panel)
