@@ -91,6 +91,7 @@ class Email(CommunicationDocument):
             for recipient in ((self.header.to or []) + (self.header.cc or []) + (self.header.bcc or [])):
                 self.recipients += _get_names(recipient)
 
+        logger.debug(f"Current recipients: {self.recipients}")
         self.recipients = list(set([r for r in self.recipients if r != self.author]))  # Remove self CCs
         self.recipients_lower = [r.lower() if r else None for r in self.recipients]
         recipient = UNKNOWN if len(self.recipients) == 0 else (self.recipients[0] or UNKNOWN)
