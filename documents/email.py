@@ -39,7 +39,7 @@ BAD_LINE_REGEX = re.compile(r'^\d{1,2}|Importance: High$')
 UNKNOWN_SIGNATURE_REGEX = re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL)
 
 CLIPPED_SIGNATURE_REPLACEMENT = '[dim]<...snipped epstein legal signature...>[/dim]'
-UNDISCLOSED_RECIPIENTS = 'Undisclosed recipients:'
+UNDISCLOSED_RECIPIENTS_REGEX = re.compile(r'Undisclosed[- ]recipients:', re.IGNORECASE)
 BAD_FIRST_LINES = ['026652', '029835', '031189']
 MAX_CHARS_TO_PRINT = 4000
 VALID_HEADER_LINES = 14
@@ -234,9 +234,9 @@ class Email(CommunicationDocument):
                 names.append(name)
 
         if BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
-            log_msg = f"'{self.filename}': No valid emailer found in '{escape_double_quotes(emailer_str)}'"
+            log_msg = f"'{self.filename}': No valid emailer found in '{escape_single_quotes(emailer_str)}'"
 
-            if emailer_str == UNDISCLOSED_RECIPIENTS and len(names) == 0:
+            if UNDISCLOSED_RECIPIENTS_REGEX.match(emailer_str) and len(names) == 0:
                 logger.info(log_msg)
             elif len(names) == 0:
                 logger.warning(log_msg)
@@ -278,8 +278,9 @@ class Email(CommunicationDocument):
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield Panel(self.archive_link, expand=False)
-        info_line = Text("Official OCR text of email from ", style='grey46').append(self.author_txt).append(f' to ').append(self.recipient_txt)
-        info_line.append(f" probably sent at ").append(f"{self.timestamp or '?'}", style='spring_green3')
+        info_line = Text("Official OCR text of email from ", style='grey46').append(self.author_txt).append(f' to ')
+        info_line.append(self.recipient_txt).append(f" probably sent at ")
+        info_line.append(f"{self.timestamp or '?'}", style='spring_green3')
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
         text = self.cleanup_email_txt()
         quote_cutoff = self.idx_of_nth_quoted_reply(text=text) or MAX_CHARS_TO_PRINT

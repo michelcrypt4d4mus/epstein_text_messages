@@ -390,7 +390,7 @@ def print_email_table(counts: dict[str, int], column_title: str) -> None:
     console.print(counts_table)
 
 
-def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = True) -> None:
+def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
     panel = Panel(Text(msg, justify='center'), expand=True, padding=(1, 1), style=style)
 
     if is_centered:
