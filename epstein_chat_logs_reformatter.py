@@ -7,6 +7,7 @@ Install: 'pip install python-dotenv rich'
     Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT/001 ./epstein_chat_logs_reformatter.py'
 """
 from pathlib import Path
+from sys import exit
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -81,7 +82,8 @@ epstein_files.print_other_files_table()
 # Save output
 if is_build:
     console.save_html(OUTPUT_GH_PAGES_HTML, inline_styles=False, clear=False, code_format=CONSOLE_HTML_FORMAT)
-    console.print(f"\nWrote HTML to '{OUTPUT_GH_PAGES_HTML}'.")
+    console.print(f"\nWrote HTML to '{OUTPUT_GH_PAGES_HTML}', not computing signatures.")
+    exit()
 else:
     console.print(f"\nNot writing HTML, BUILD_HTML not set.")
 
