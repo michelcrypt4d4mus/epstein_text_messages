@@ -308,6 +308,7 @@ KNOWN_EMAIL_AUTHORS = {
     '029970': GWENDOLYN_BECK,
     '029960': GWENDOLYN_BECK,     # Reply
     '029959': GWENDOLYN_BECK,     # "Longevity & Aging"
+    '033360': 'Henry Holt',       # in signature
     '033384': 'Jack Goldberger',  # Might be Paul Prosperi?
     '026024': JEAN_HUGUEN,
     '026024': JEAN_HUGUEN,        # Signature
