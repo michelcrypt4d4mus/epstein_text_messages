@@ -337,6 +337,10 @@ def highlight_text(text: str) -> str:
     return text
 
 
+def highlight_pattern(text: str, pattern: re.Pattern, style: str = 'cyan') -> Text:
+    return Text.from_markup(pattern.sub(rf'[{style}]\1[/{style}]', text))
+
+
 def print_header():
     console.print(f"This site is not optimized for mobile but if you get past the header it should work ok.", style='dim')
     console.line()

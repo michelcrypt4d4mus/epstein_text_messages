@@ -10,7 +10,7 @@ from rich.text import Text
 from util.constants import SEAN_BANNON, STEVE_BANNON
 from util.data import patternize
 from util.file_helper import extract_file_id
-from util.rich import ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_text, logger, make_link, make_link_markup
+from util.rich import ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_pattern, highlight_text, logger, make_link, make_link_markup
 from util.strings import *
 
 MULTINEWLINE_REGEX = re.compile(r"\n{3,}")
@@ -93,11 +93,11 @@ class Document:
         if len(matched_lines) == 0:
             return []
 
-        filename_style = FILENAME_MATCH_STYLES[type(self).file_matching_idx % len(FILENAME_MATCH_STYLES)]
+        file_style = FILENAME_MATCH_STYLES[type(self).file_matching_idx % len(FILENAME_MATCH_STYLES)]
         type(self).file_matching_idx += 1
 
         return [
-            Text('').append(self.file_path.name, style=filename_style).append(':').append(Text.from_markup(pattern.sub(r'[cyan]\1[/cyan]', line)))
+            Text('').append(self.file_path.name, style=file_style).append(':').append(highlight_pattern(line, pattern))
             for line in matched_lines
         ]
 
