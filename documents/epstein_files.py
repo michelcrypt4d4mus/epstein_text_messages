@@ -64,8 +64,8 @@ class EpsteinFiles:
                     self.email_recipient_counts[recipient.lower() if recipient else UNKNOWN] += 1
 
                 if email.sent_from_device:
-                    self.email_author_devices[email.author].add(email.sent_from_device)
-                    self.email_sent_from_devices[email.sent_from_device].add(email.author)
+                    self.email_author_devices[email.author or UNKNOWN].add(email.sent_from_device)
+                    self.email_sent_from_devices[email.sent_from_device].add(email.author or UNKNOWN)
 
                 if len(author) <= 3 or author == UNKNOWN:
                     email.log_top_lines(msg=f"Redacted or invalid email author '{author}'")
@@ -135,9 +135,9 @@ class EpsteinFiles:
 
     def print_email_device_info(self) -> None:
         console.print(f"\n\nemail_author_devices")
-        console.print_json(json.dumps(sets_to_lists(self.email_author_devices)))
+        console.print_json(json.dumps(sets_to_lists(self.email_author_devices), indent=4, sort_keys=True))
         console.print(f"\n\email_sent_from_devices")
-        console.print_json(json.dumps(sets_to_lists(self.email_sent_from_devices)))
+        console.print_json(json.dumps(sets_to_lists(self.email_sent_from_devices), indent=4, sort_keys=True))
 
     def print_other_files_table(self) -> None:
         table = Table(header_style="bold", show_header=True, show_lines=True)
