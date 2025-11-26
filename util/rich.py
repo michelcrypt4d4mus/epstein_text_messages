@@ -179,6 +179,47 @@ COFFEEZILLA_ARCHIVE = 'https://journaliststudio.google.com/pinpoint/search?colle
 SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great'
 EPSTEINIFY_URL = 'https://epsteinify.com'
 
+HIGHLIGHT_PATTERNS: dict[str, str] = {
+    ARAB_COLOR: r"Abu Dhabi|Dubai|Emir(ates)?|Erdogan|HBJ|Iran(ian)?|Islam(ic|ist)?|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Muslim|Sharia|Syria|Turkey|UAE|((Iraq|Iran|Kuwait|Qatar|Saud|Yemen)i?)",
+    BITCOIN_COLOR: r"bitcoin|coins|cr[iy]pto(currency)?|e-currency|(Howard\s+)?Lutnick|Tether",
+    BRASIL_COLOR: r"Bra[sz]il(ian)?|Bolsonar[aio]|Lula",
+    CHINA_COLOR: r"CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|PRC|xi",
+    INDIA_COLOR: r"Ambani|Indian?|Modi|mumbai",
+    ISRAELI_COLOR: r"Bibi|ehbarak|Netanyahu|Israeli?",
+    RUSSIA_COLOR: r"Moscow|Putin|Lavrov|Russian?",
+    'dark_cyan': r"(Steve\s+)?Wynn",
+    'dark_magenta': r"Le\s*Pen|(Victor\s+)?Orbah?n",
+}
+
+# Wrap in \b, add optional s? at end of all regex patterns
+HIGHLIGHT_REGEXES: dict[str, re.Pattern] = {k: re.compile(fr"\b(({v})s?)\b", re.I) for k, v in HIGHLIGHT_PATTERNS.items()}
+
+console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS), width=OUTPUT_WIDTH)
+console.record = True
+
+# This is after the Theme() instantiation because 'bg' is reserved'
+COUNTERPARTY_COLORS.update({
+    'bg': 'turquoise4',
+    'Clinton': 'sky_blue1',
+    'Dershowitz': 'medium_purple2',
+    'DJT': COUNTERPARTY_COLORS[DONALD_TRUMP],
+    'ehbarak': COUNTERPARTY_COLORS[EHUD_BARAK],
+    'GMAX': COUNTERPARTY_COLORS[GHISLAINE_MAXWELL],
+    'gmax1@ellmax.com': COUNTERPARTY_COLORS[GHISLAINE_MAXWELL],
+    'Harvard': 'red',
+    'Ivanka': 'medium_violet_red',
+    'Joichi Ito': COUNTERPARTY_COLORS[JOI_ITO],
+    'Jabor': COUNTERPARTY_COLORS[JABOR_Y],
+    'Jared Kushner': 'medium_violet_red',
+    'jeevacation@gmail.com': COUNTERPARTY_COLORS[JEFFREY_EPSTEIN],
+    'Manafort': COUNTERPARTY_COLORS[STEVE_BANNON],
+    'Miro': COUNTERPARTY_COLORS[MIROSLAV],
+    'Obama': 'yellow',
+    'Roger Stone': COUNTERPARTY_COLORS[DONALD_TRUMP],
+    'Scaramucci': COUNTERPARTY_COLORS[SCARAMUCCI],
+})
+
+
 epsteinify_url = lambda name: f"{EPSTEINIFY_URL}/?name={urllib.parse.quote(name)}"
 epsteinify_api_url = lambda file_id: f"{EPSTEINIFY_URL}/api/documents/HOUSE_OVERSIGHT_{file_id}"
 epsteinify_doc_url = lambda file_stem: f"{EPSTEINIFY_URL}/document/{file_stem}"
@@ -196,49 +237,6 @@ elif is_debug:
     logger.setLevel(logging.INFO)
 else:
     logger.setLevel(logging.WARNING)
-
-console = Console(color_system='256', theme=Theme(COUNTERPARTY_COLORS), width=OUTPUT_WIDTH)
-console.record = True
-
-
-# This is after the Theme() instantiation because 'bg' is reserved'
-COUNTERPARTY_COLORS.update({
-    'bg': 'turquoise4',
-    'Clinton': 'sky_blue1',
-    'Dershowitz': 'medium_purple2',
-    'DJT': COUNTERPARTY_COLORS[DONALD_TRUMP],
-    'ehbarak': COUNTERPARTY_COLORS[EHUD_BARAK],
-    'GMAX': COUNTERPARTY_COLORS[GHISLAINE_MAXWELL],
-    'gmax1@ellmax.com': COUNTERPARTY_COLORS[GHISLAINE_MAXWELL],
-    'Harvard': 'red',
-    'Ivanka': 'medium_violet_red',
-    'Joichi Ito': COUNTERPARTY_COLORS[JOI_ITO],
-    'Jabor': COUNTERPARTY_COLORS[JABOR_Y],
-    'Jared Kushner': 'medium_violet_red',
-    'jeevacation@gmail.com': COUNTERPARTY_COLORS[JEFFREY_EPSTEIN],
-    'Le Pen': 'purple4',
-    'LePen': 'purple4',
-    'Manafort': COUNTERPARTY_COLORS[STEVE_BANNON],
-    'Miro': COUNTERPARTY_COLORS[MIROSLAV],
-    'Obama': 'yellow',
-    'Roger Stone': COUNTERPARTY_COLORS[DONALD_TRUMP],
-    'Scaramucci': COUNTERPARTY_COLORS[SCARAMUCCI],
-    'Victor Orban': 'purple4',
-})
-
-HIGHLIGHT_PATTERNS: dict[str, str] = {
-    ARAB_COLOR: r"Abu Dhabi|Dubai|Emir(ates)?|Erdogan|HBJ|Iran(ian)?|Islam(ic|ist)?|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Muslim|Sharia|Syria|Turkey|UAE|((Iraq|Iran|Kuwait|Qatar|Saud|Yemen)i?)",
-    BITCOIN_COLOR: r"bitcoin|coins|cr[iy]pto(currency)?|e-currency|(Howard\s+)?Lutnick|Tether",
-    BRASIL_COLOR: r"Bra[sz]il(ian)?|Bolsonar[aio]|Lula",
-    CHINA_COLOR: r"CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|PRC|xi",
-    INDIA_COLOR: r"Ambani|Indian?|Modi|mumbai",
-    ISRAELI_COLOR: r"Bibi|ehbarak|Netanyahu|Israeli?",
-    RUSSIA_COLOR: r"Moscow|Putin|Lavrov|Russian?",
-    'dark_cyan': r"(Steve\s+)?Wynn",
-}
-
-# Wrap in \b, add optional s? at end of all regex patterns
-HIGHLIGHT_REGEXES: dict[str, re.Pattern] = {k: re.compile(fr"\b(({v})s?)\b", re.I) for k, v in HIGHLIGHT_PATTERNS.items()}
 
 
 def make_link_markup(url: str, link_text: str, style: str = ARCHIVE_LINK_COLOR) -> str:
