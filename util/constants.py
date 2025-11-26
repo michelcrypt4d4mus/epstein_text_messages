@@ -47,6 +47,7 @@ MICHAEL_WOLFF = "Michael Wolff"
 MOHAMED_WAHEED_HASSAN = 'Mohamed Waheed Hassan'
 NADIA_MARCINKO = 'Nadia Marcinko'
 NORMAN_D_RAU = 'Norman D. Rau'
+PAULA = 'Paula'
 PEGGY_SIEGAL = 'Peggy Siegal'
 PAUL_KRASSNER = 'Paul Krassner'
 PAUL_PROSPERI = 'Paul Prosperi'
@@ -214,6 +215,7 @@ EMAILER_REGEXES = {
     'Nicholas Ribis': re.compile(r'Nicholas[ ._]Rib', re.IGNORECASE),
     'Paul Barrett': re.compile(r'Paul Barre(d|tt)', re.IGNORECASE),
     PAUL_KRASSNER: re.compile(r'Pa\s?ul Krassner', re.IGNORECASE),
+    PAULA: re.compile(r'^Paula$', re.IGNORECASE),
     'Paul Morris': re.compile(r'morris, paul|Paul Morris', re.IGNORECASE),
     PEGGY_SIEGAL:  re.compile(r'Peggy Siega', re.IGNORECASE),
     'Peter Attia': re.compile(r'Peter Atti', re.IGNORECASE),
@@ -375,7 +377,8 @@ KNOWN_EMAIL_AUTHORS = {
     '028487': NORMAN_D_RAU,            # Fwded from "to" address
     '024923': PAUL_KRASSNER,
     '032457': PAUL_KRASSNER,
-    '029981': 'Paula',                 # reply
+    '029981': PAULA,                   # reply
+    '030482': PAULA,                   # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
     '033157': PAUL_PROSPERI,           # Fwded from "to" address
     '033383': PAUL_PROSPERI,           # Reply
     '033561': PAUL_PROSPERI,           # Fwded mail sent to Prosperi. Might be Subotnick Stuart ?
@@ -433,6 +436,9 @@ KNOWN_EMAIL_RECIPIENTS = {
     '023291': MELANIE_SPINELLA,
     '032214': MIROSLAV,               # Quoted reply has signature
     '022258': NADIA_MARCINKO,         # Reply header
+    '030506': PAULA,                  # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
+    '030507': PAULA,                  # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
+    '030509': PAULA,                  # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
     '030096': PETER_MANDELSON,
     '032951': 'Raafat Alsabbagh',
     '019334': STEVE_BANNON,

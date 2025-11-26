@@ -100,11 +100,12 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     JEAN_LUC_BRUNEL: 'wheat4',
     EHUD_BARAK: ISRAELI_COLOR,
     MARTIN_NOWAK: 'dark_turquoise',
-    'Masha Drokova': 'deep_pink2',
+    'Masha Drokova': RUSSIA_COLOR,
     'Peter Thiel': 'orange4',
     STEVE_BANNON: COUNTERPARTY_COLORS[STEVE_BANNON],
     DAVID_STERN: 'medium_purple3',
     MOHAMED_WAHEED_HASSAN: ARAB_COLOR,
+    PAULA: 'pink1',
     # Temporary
     # 'Reid Weingarten': 'magenta',
     # 'Kathy Ruemmler': 'magenta',
