@@ -21,14 +21,16 @@ EMAIL_HEADER_REGEX = re.compile(r'^(((Date|Subject):.*\n)*From:.*\n((Date|Sent|T
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
 BAD_EMAILER_REGEX = re.compile(r'^>|agreed|ok|sexy|rt|re:|fwd:|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|hysterical|i have|image0|so that people|article 1.?|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Subject|Attachments):\s*\n)+')
+
 REPLY_LINE_PATTERN = r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?(?: [a-zA-Z _1<>@.]+)*(?:[ \n]+wrote:)?|-+(Forwarded|Original)\s*Message-*|Begin forwarded message:?)'
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE)
-REPLY_TEXT_PATTERN = re.compile(rf"(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE)
+REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re.DOTALL)
 SENT_FROM_REGEX = re.compile(r'^([sS]ent (from|via).*(iPad|iPhone|Windows Mail|AT&T|phone|BlackBerry.*(smartphone|device|Handheld|AT&T|T- ?Mobile))\.?)', re.MULTILINE)
 REDACTED_REPLY_REGEX = re.compile(r'<[ _\n]+> wrote:', re.IGNORECASE)
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
 BAD_LINE_REGEX = re.compile(r'^\d{1,2}|Importance: High$')
+
 CLIPPED_SIGNATURE_REPLACEMENT = '[dim]<...snipped epstein legal signature...>[/dim]'
 BAD_FIRST_LINES = ['026652', '029835', '031189']
 MAX_CHARS_TO_PRINT = 4000
@@ -202,7 +204,7 @@ class Email(CommunicationDocument):
             self.text = self.text.replace(k, v)
 
     def _sent_from_device(self) -> str | None:
-        reply_text_match = REPLY_TEXT_PATTERN.search(self.text)
+        reply_text_match = REPLY_TEXT_REGEX.search(self.text)
         text = reply_text_match.group(1) if reply_text_match else self.text
         sent_from_match = SENT_FROM_REGEX.search(text)
 
