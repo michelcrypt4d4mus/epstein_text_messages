@@ -29,6 +29,7 @@ BRASIL_COLOR = 'chartreuse2'
 BRO_COLOR = 'tan'
 CHINA_COLOR = 'bright_red'
 DEMS_COLOR = 'sky_blue1'
+DUBIN_COLOR = 'medium_orchid1'
 HEADER_LINK = 'deep_sky_blue1'
 INDIA_COLOR = 'green'
 ISRAELI_COLOR = 'dodger_blue2'
@@ -53,6 +54,8 @@ NAMES_TO_NOT_COLOR = [name.lower() for name in [
     'Jr',
     'JR.',
     'Le',
+    'Leon',
+    'Marc',
     'Martin',
     'Melanie',
     'Michael',
@@ -77,10 +80,11 @@ COUNTERPARTY_COLORS = {
     ANIL: INDIA_COLOR,
     ARIANE_DE_ROTHSCHILD: 'indian_red',
     BORIS_NIKOLIC: BRO_COLOR,
-    'Celina Dubin': 'medium_orchid1',
+    CELINA_DUBIN: DUBIN_COLOR,
     DEFAULT: 'wheat4',
     JEFFREY_EPSTEIN: 'blue1',
     EVA: 'orchid',
+    GLENN_DUBIN: DUBIN_COLOR,
     JONATHAN_FARKAS: BRO_COLOR,
     LARRY_SUMMERS: 'spring_green4',
     MELANIE_SPINELLA: 'magenta3',
