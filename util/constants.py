@@ -333,6 +333,7 @@ KNOWN_EMAIL_AUTHORS = {
     '028675': JEFFREY_EPSTEIN,        # Just bad OCR
     '025041': JEFFREY_EPSTEIN,        # Just bad OCR
     '032214': JEFFREY_EPSTEIN,        # Just bad OCR
+    '031791': 'Jessica Cadwell',      # paralegal, see https://x.com/ImDrinknWyn/status/1993765348898927022
     '028849': JOI_ITO,                # Conversation with Joi Ito
     '028851': JOI_ITO,
     '016692': JOHN_PAGE,
