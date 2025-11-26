@@ -321,7 +321,7 @@ def print_email_table(counts: dict[str, int], column_title: str) -> None:
         name_txt = Text.from_markup(f"[underline][link={epsteinify_name_url(k)}]{highlight_names(k)}[/link][/underline]")
         counts_table.add_row(name_txt, str(v))
 
-    console.print('\n', counts_table)
+    console.print(counts_table)
 
 
 def print_section_header(msg: str, style: str = 'bold white on blue3', is_centered: bool = True) -> None:

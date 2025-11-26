@@ -51,11 +51,13 @@ console.print(f"(Last deploy found 4668 messages in 77 conversations)\n\n\n", st
 
 # Emails section
 print_section_header('His Emails')
+console.line()
 print_email_table(epstein_files.email_author_counts, "Author")
+console.line(2)
 print_email_table(epstein_files.email_recipient_counts, "Recipient")
 console.print(f"\n\nIdentified authors of {epstein_files.num_identified_email_authors()} emails out of {len(epstein_files.emails)} potential email files.")
-console.print('Chronological Epstein correspondence with the following people can be found below.')
 console.print('(note this site uses the OCR email text provided by Congress which is not the greatest)\n', style='dim')
+console.print('Chronological Epstein correspondence with the following people can be found below.')
 
 for i, author in enumerate(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED):
     style = COUNTERPARTY_COLORS.get(author or UNKNOWN, DEFAULT)
@@ -88,7 +90,7 @@ epstein_files.print_other_files_table()
 
 # Save output
 if is_build:
-    console.save_html(OUTPUT_GH_PAGES_HTML, inline_styles=False, code_format=CONSOLE_HTML_FORMAT, theme=HTML_TERMINAL_THEME)
+    console.save_html(OUTPUT_GH_PAGES_HTML, code_format=CONSOLE_HTML_FORMAT, inline_styles=False, theme=HTML_TERMINAL_THEME)
     console.print(f"\nWrote HTML to '{OUTPUT_GH_PAGES_HTML}', not computing signatures.")
     exit()
 else:
