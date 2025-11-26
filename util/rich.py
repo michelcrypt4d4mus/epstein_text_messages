@@ -17,6 +17,7 @@ from rich.text import Text
 from rich.theme import Theme
 
 from .constants import *
+from .data import flatten
 from .env import deep_debug, is_debug
 from .strings import regex_escape_periods
 
@@ -53,7 +54,7 @@ SECTION_HEADER_STYLE = 'bold white on blue3'
 highlighter_style_name = lambda style_name: f"{HEADER_FIELD}.{style_name}"
 HEADER_STYLE = 'header_field'
 
-NAMES_TO_NOT_COLOR = [name.lower() for name in [
+BASE_NAMES_TO_NOT_COLOR: list[str] = [name.lower() for name in [
     'Black',
     'Daniel',
     'Darren',
@@ -86,8 +87,8 @@ NAMES_TO_NOT_COLOR = [name.lower() for name in [
     "Y.",
 ]]
 
-NAMES_TO_NOT_COLOR = [[n, regex_escape_periods(n)] if '.' in n else [n] for n in NAMES_TO_NOT_COLOR]
-NAMES_TO_NOT_COLOR = list(itertools.chain.from_iterable(NAMES_TO_NOT_COLOR))
+NAMES_TO_NOT_COLOR = [[n, regex_escape_periods(n)] if '.' in n else [n] for n in BASE_NAMES_TO_NOT_COLOR]
+NAMES_TO_NOT_COLOR = flatten(NAMES_TO_NOT_COLOR)
 
 # Color different counterparties differently
 COUNTERPARTY_COLORS = {
@@ -336,6 +337,10 @@ def highlight_text(text: str) -> str:
     return text
 
 
+def highlight_pattern(text: str, pattern: re.Pattern, style: str = 'cyan') -> Text:
+    return Text.from_markup(pattern.sub(rf'[{style}]\1[/{style}]', text))
+
+
 def print_header():
     console.print(f"This site is not optimized for mobile but if you get past the header it should work ok.", style='dim')
     console.line()
@@ -385,7 +390,7 @@ def print_email_table(counts: dict[str, int], column_title: str) -> None:
     console.print(counts_table)
 
 
-def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = True) -> None:
+def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
     panel = Panel(Text(msg, justify='center'), expand=True, padding=(1, 1), style=style)
 
     if is_centered:

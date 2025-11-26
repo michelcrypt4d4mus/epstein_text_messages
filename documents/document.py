@@ -2,13 +2,15 @@ import re
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
+from typing import ClassVar
 
 from rich.markup import escape
 from rich.text import Text
 
 from util.constants import SEAN_BANNON, STEVE_BANNON
+from util.data import patternize
 from util.file_helper import extract_file_id
-from util.rich import ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_text, logger, make_link, make_link_markup
+from util.rich import ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_pattern, highlight_text, logger, make_link, make_link_markup
 from util.strings import *
 
 MULTINEWLINE_REGEX = re.compile(r"\n{3,}")
@@ -19,6 +21,7 @@ JEEVACATION_GMAIL = 'jeevacation@gmail.com'
 MIN_DOCUMENT_ID = 10477
 
 OCR_REPAIRS = {
+    re.compile(r'\.corn\b'): '.com',
     'Follow me on twitter glhsummers': 'Follow me on twitter @lhsummers',
     'lndyke': 'Indyke',
     'Nil Priell': 'Nili Priell',
@@ -27,8 +30,14 @@ OCR_REPAIRS = {
     re.compile(r'Steve Bannor]?', re.I): STEVE_BANNON,
     re.compile(r'gmax ?[1l] ?[@g]ellmax.c ?om'): GMAX_EMAIL,
     re.compile(r"[jl']ee[vy]acation[©@a(&,]{1,3}gmail.com"): JEEVACATION_GMAIL,
-    re.compile(r"\.corn"): '.com',
+    re.compile(r"twitter\.com[i/][lI]krauss[1l]"): "twitter.com/lkrauss1",
 }
+
+FILENAME_MATCH_STYLES = [
+    'green',
+    'dark_green',
+    'spring_green4',
+]
 
 
 @dataclass
@@ -42,6 +51,8 @@ class Document:
     lines: list[str] = field(init=False)
     num_lines: int = field(init=False)
     text: str = field(init=False)
+
+    file_matching_idx: ClassVar[int] = 0
 
     def __post_init__(self):
         self.filename = self.file_path.name
@@ -70,6 +81,25 @@ class Document:
                          f"File: '{self.filename}'\n")
 
             return Text(escape(self.preview_text()))
+
+    def lines_matching(self, _pattern: re.Pattern | str) -> list[str]:
+        pattern = patternize(_pattern)
+        return [f"{self.file_path.name}:{line}" for line in self.lines if pattern.search(line)]
+
+    def lines_matching_txt(self, _pattern: re.Pattern | str) -> list[Text]:
+        pattern = patternize(_pattern)
+        matched_lines = [line for line in self.lines if pattern.search(line)]
+
+        if len(matched_lines) == 0:
+            return []
+
+        file_style = FILENAME_MATCH_STYLES[type(self).file_matching_idx % len(FILENAME_MATCH_STYLES)]
+        type(self).file_matching_idx += 1
+
+        return [
+            Text('').append(self.file_path.name, style=file_style).append(':').append(highlight_pattern(line, pattern))
+            for line in matched_lines
+        ]
 
     def log_top_lines(self, n: int = 10, msg: str | None = None) -> None:
         msg = f"{msg + '. ' if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"

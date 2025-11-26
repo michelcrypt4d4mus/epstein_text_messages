@@ -5,3 +5,4 @@ deep_debug = len(environ.get('DEEP_DEBUG') or '') > 0
 skip_texts = len(environ.get('SKIP_TEXTS') or '') > 0
 is_debug = deep_debug or len(environ.get('DEBUG') or '') > 0
 is_build = len(environ.get('BUILD_HTML') or '') > 0
+is_fast_mode = len(environ.get('FAST') or '') > 0
