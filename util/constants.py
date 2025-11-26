@@ -31,6 +31,7 @@ JOHN_PAGE = 'John Page'
 JOHNNY_EL_HACHEM = 'Johnny el Hachem'
 JONATHAN_FARKAS = 'Jonathan Farkas'
 KATHY_RUEMMLER = 'Kathy Ruemmler'
+KEN_STARR = 'Ken Starr'
 LANDON_THOMAS = 'Landon Thomas Jr.'
 LAWRANCE_VISOSKI = 'Lawrance Visoski'
 LAWRENCE_KRAUSS = 'Lawrence Krauss'
@@ -189,7 +190,7 @@ EMAILER_REGEXES = {
     JOHNNY_EL_HACHEM: re.compile('el hachem johnny|johnny el hachem', re.IGNORECASE),
     JONATHAN_FARKAS: re.compile('Jonathan Farka(s|il)', re.IGNORECASE),
     KATHY_RUEMMLER: re.compile(r'Kathy Ruemmle', re.IGNORECASE),
-    'Ken Starr': re.compile('starr, ken|Ken star', re.IGNORECASE),
+    KEN_STARR: re.compile('starr, ken|Ken star', re.IGNORECASE),
     LANDON_THOMAS: re.compile(r'lando[nr] thomas|thomas jr.?, lando[nr]', re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r'La(wrence|rry).*Summer|^LH$|^LHS|Ihsofficel', re.IGNORECASE),
     LAWRANCE_VISOSKI: re.compile(r'La(rry|wrance) Visosk', re.IGNORECASE),

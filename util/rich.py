@@ -35,54 +35,6 @@ TEXT_LINK = 'text_link'
 TIMESTAMP = 'timestamp'
 TRUMP_COLOR = 'red3 bold'
 
-CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <style>
-        {stylesheet}
-        body {{
-            color: {foreground};
-            background-color: {background};
-        }}
-    </style>
-</head>
-<body>
-    <pre style="font-family: Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace; white-space: pre-wrap; overflow-wrap: break-word;">
-        <code style="font-family: inherit; white-space: pre-wrap; overflow-wrap: break-word;">
-            {code}
-        </code>
-    </pre>
-</body>
-</html>
-"""
-
-# Swap black for white
-HTML_TERMINAL_THEME = TerminalTheme(
-    (0, 0, 0),
-    (255, 255, 255),
-    [
-        (0, 0, 0),
-        (128, 0, 0),
-        (0, 128, 0),
-        (128, 128, 0),
-        (0, 0, 128),
-        (128, 0, 128),
-        (0, 128, 128),
-        (192, 192, 192),
-    ],
-    [
-        (128, 128, 128),
-        (255, 0, 0),
-        (0, 255, 0),
-        (255, 255, 0),
-        (0, 0, 255),
-        (255, 0, 255),
-        (0, 255, 255),
-        (255, 255, 255),
-    ],
-)
-
 NAMES_TO_NOT_COLOR = [name.lower() for name in [
     'Black',
     'Daniel',
@@ -188,12 +140,60 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     'dark_cyan': r"(Steve\s+)?Wynn|(Leslie\s+)?Wexner",
     'dark_magenta': r"Le\s*Pen|(Victor\s+)?Orbah?n",
     'orchid1': r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts",
-    'medium_purple2': r"(Alan (M\. )?)?Dershowi(l|tz)",
+    'medium_purple2': r"(Alan (M\. )?)?Dershowi(l|tz)|(Ken(neth W.)?\s+)?Starr",
     'turquoise4': r"BG|Bill\s+(and\s+Melinda\s+)?Gates",
 }
 
 # Wrap in \b, add optional s? at end of all regex patterns
 HIGHLIGHT_REGEXES: dict[str, re.Pattern] = {k: re.compile(fr"\b(({v})s?)\b", re.I) for k, v in HIGHLIGHT_PATTERNS.items()}
+
+CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        {stylesheet}
+        body {{
+            color: {foreground};
+            background-color: {background};
+        }}
+    </style>
+</head>
+<body>
+    <pre style="font-family: Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace; white-space: pre-wrap; overflow-wrap: break-word;">
+        <code style="font-family: inherit; white-space: pre-wrap; overflow-wrap: break-word;">
+            {code}
+        </code>
+    </pre>
+</body>
+</html>
+"""
+
+# Swap black for white
+HTML_TERMINAL_THEME = TerminalTheme(
+    (0, 0, 0),
+    (255, 255, 255),
+    [
+        (0, 0, 0),
+        (128, 0, 0),
+        (0, 128, 0),
+        (128, 128, 0),
+        (0, 0, 128),
+        (128, 0, 128),
+        (0, 128, 128),
+        (192, 192, 192),
+    ],
+    [
+        (128, 128, 128),
+        (255, 0, 0),
+        (0, 255, 0),
+        (255, 255, 0),
+        (0, 0, 255),
+        (255, 0, 255),
+        (0, 255, 255),
+        (255, 255, 255),
+    ],
+)
 
 
 # Instantiate Console object
@@ -314,8 +314,7 @@ def print_email_table(counts: dict[str, int], column_title: str) -> None:
 
     for k, v in sorted(counts.items(), key=lambda item: item[0] if 'ALPHA' in environ else [item[1], item[0]], reverse=True):
         k = k.title() if ' ' in k else k
-        style = COUNTERPARTY_COLORS.get(k, 'white').replace('bold', '').strip()
-        name_txt = Text.from_markup(f"[{style}][link={epsteinify_url(k)}]{k}[/link][/{style}]")
+        name_txt = Text.from_markup(f"[link={epsteinify_url(k)}]{highlight_names(k)}[/link]")
         counts_table.add_row(name_txt, str(v))
 
     console.print('\n', counts_table)
