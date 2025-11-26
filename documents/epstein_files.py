@@ -1,3 +1,4 @@
+import json
 import re
 from collections import defaultdict
 from dataclasses import dataclass, field
@@ -29,11 +30,15 @@ class EpsteinFiles:
     other_files: list[Document] = field(default_factory=list)
     email_author_counts: dict[str, int] = field(init=False)
     email_recipient_counts: dict[str, int] = field(init=False)
+    email_sent_from_devices: dict[str | None, set[str | None]] = field(default_factory=dict)
+    email_author_devices: dict[str | None, set[str | None]] = field(default_factory=dict)
 
     def __post_init__(self):
         self.all_files = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
         self.email_author_counts = defaultdict(int)
         self.email_recipient_counts = defaultdict(int)
+        self.email_sent_from_devices = defaultdict(set)
+        self.email_author_devices = defaultdict(set)
 
         for file_arg in self.all_files:
             if is_debug:
@@ -57,6 +62,10 @@ class EpsteinFiles:
 
                 for recipient in email.recipients:
                     self.email_recipient_counts[recipient.lower() if recipient else UNKNOWN] += 1
+
+                if email.sent_from_device:
+                    self.email_author_devices[email.author].add(email.sent_from_device)
+                    self.email_sent_from_devices[email.sent_from_device].add(email.author)
 
                 if len(author) <= 3 or author == UNKNOWN:
                     email.log_top_lines(msg=f"Redacted or invalid email author '{author}'")
@@ -124,6 +133,12 @@ class EpsteinFiles:
 
         console.print(table, '\n\n')
 
+    def print_email_device_info(self) -> None:
+        console.print(f"\n\nemail_author_devices")
+        console.print_json(json.dumps(sets_to_lists(self.email_author_devices)))
+        console.print(f"\n\email_sent_from_devices")
+        console.print_json(json.dumps(sets_to_lists(self.email_sent_from_devices)))
+
     def print_other_files_table(self) -> None:
         table = Table(header_style="bold", show_header=True, show_lines=True)
         table.add_column("File", justify="left")
@@ -158,3 +173,12 @@ class EpsteinFiles:
     @staticmethod
     def sort_emails(emails: list[Email]) -> list[Email]:
         return sorted(emails, key=lambda e: (e.sort_time()))
+
+
+def sets_to_lists(d: dict[str | None, set[str | None]]) -> dict[str | None, list[str | None]]:
+    new_dict = {}
+
+    for k, v in d.items():
+        new_dict[k] = list(v)
+
+    return new_dict

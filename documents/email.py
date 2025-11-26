@@ -57,6 +57,7 @@ class Email(CommunicationDocument):
     author_lowercase: str | None = field(init=False)
     header: EmailHeader = field(init=False)
     recipients: list[str | None] = field(default_factory=list)
+    sent_from_device: str | None = None
 
     def __post_init__(self):
         super().__post_init__()
@@ -89,6 +90,7 @@ class Email(CommunicationDocument):
         self.author_txt = Text(self.author or UNKNOWN, style=self.author_style)
         self.archive_link = self.epsteinify_link(self.author_style)
         self.epsteinify_link_markup = make_link_markup(self.epsteinify_url, self.file_path.stem, self.author_style)
+        self.sent_from_device = self._sent_from_device()
 
     def cleanup_email_txt(self) -> str:
         # add newline after header if header looks valid
@@ -101,15 +103,6 @@ class Email(CommunicationDocument):
         text = REDACTED_REPLY_REGEX.sub('<REDACTED> wrote:', text)
         text = escape(REPLY_REGEX.sub(r'\n\1', text))  # Newlines between quoted replies
         return EPSTEIN_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, text)
-
-    def sent_from_device(self) -> str | None:
-        reply_text_match = REPLY_TEXT_PATTERN.search(self.text)
-        text = reply_text_match.group(1) if reply_text_match else self.text
-        sent_from_match = SENT_FROM_REGEX.search(text)
-
-        if sent_from_match:
-            sent_from = sent_from_match.group(0)
-            return 'S' + sent_from[1:] if sent_from.startswith('sent') else sent_from
 
     def sort_time(self) -> datetime:
         timestamp = self.timestamp or parse("1/1/2001 12:01:01 AM")
@@ -207,6 +200,15 @@ class Email(CommunicationDocument):
 
         for k, v in OCR_REPAIRS.items():
             self.text = self.text.replace(k, v)
+
+    def _sent_from_device(self) -> str | None:
+        reply_text_match = REPLY_TEXT_PATTERN.search(self.text)
+        text = reply_text_match.group(1) if reply_text_match else self.text
+        sent_from_match = SENT_FROM_REGEX.search(text)
+
+        if sent_from_match:
+            sent_from = sent_from_match.group(0)
+            return 'S' + sent_from[1:] if sent_from.startswith('sent') else sent_from
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield Panel(self.archive_link, expand=False)
