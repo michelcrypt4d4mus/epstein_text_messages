@@ -2,6 +2,7 @@ import re
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
+from typing import ClassVar
 
 from rich.markup import escape
 from rich.text import Text
@@ -32,6 +33,12 @@ OCR_REPAIRS = {
     re.compile(r"twitter\.com[i/][lI]krauss[1l]"): "twitter.com/lkrauss1",
 }
 
+FILENAME_MATCH_STYLES = [
+    'green',
+    'dark_green',
+    'spring_green4',
+]
+
 
 @dataclass
 class Document:
@@ -44,6 +51,8 @@ class Document:
     lines: list[str] = field(init=False)
     num_lines: int = field(init=False)
     text: str = field(init=False)
+
+    file_matching_idx: ClassVar[int] = 0
 
     def __post_init__(self):
         self.filename = self.file_path.name
@@ -79,11 +88,17 @@ class Document:
 
     def lines_matching_txt(self, _pattern: re.Pattern | str) -> list[Text]:
         pattern = patternize(_pattern)
+        matched_lines = [line for line in self.lines if pattern.search(line)]
+
+        if len(matched_lines) == 0:
+            return []
+
+        filename_style = FILENAME_MATCH_STYLES[type(self).file_matching_idx % len(FILENAME_MATCH_STYLES)]
+        type(self).file_matching_idx += 1
 
         return [
-            Text('').append(f"{self.file_path.name}", style='dark_green').append(':').append(Text.from_markup(pattern.sub(r'[cyan]\1[/cyan]', line)))
-            for line in self.lines
-            if pattern.search(line)
+            Text('').append(self.file_path.name, style=filename_style).append(':').append(Text.from_markup(pattern.sub(r'[cyan]\1[/cyan]', line)))
+            for line in matched_lines
         ]
 
     def log_top_lines(self, n: int = 10, msg: str | None = None) -> None:
