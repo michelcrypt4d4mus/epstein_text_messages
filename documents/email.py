@@ -126,7 +126,7 @@ class Email(CommunicationDocument):
         return EPSTEIN_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, text)
 
     def description(self) -> Text:
-        return Text.from_markup(highlight_names(f"Email (author='{self.author}', recipients={self.recipients}, timestamp='{self.timestamp}')"))
+        return Text.from_markup(highlight_text(f"Email (author='{self.author}', recipients={self.recipients}, timestamp='{self.timestamp}')"))
 
     def sort_time(self) -> datetime:
         timestamp = self.timestamp or parse("1/1/2001 12:01:01 AM")
@@ -289,7 +289,7 @@ class Email(CommunicationDocument):
         text = REPLY_REGEX.sub(r'[dim]\1[/dim]', text)
         text = SENT_FROM_REGEX.sub(r'[italic][dim]\1[/dim][/italic]', text)
         text = UNKNOWN_SIGNATURE_REGEX.sub(r'[dim]\1[/dim]', text)
-        yield Padding(Panel(highlighter(highlight_names(text)), expand=False), (0, 0, 2, EMAIL_INDENT))
+        yield Padding(Panel(highlight_text(text), expand=False), (0, 0, 2, EMAIL_INDENT))
 
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:

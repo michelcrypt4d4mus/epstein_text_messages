@@ -36,6 +36,7 @@ CHINA_COLOR = 'bright_red'
 DEMS_COLOR = 'sky_blue1'
 DUBIN_COLOR = 'medium_orchid1'
 HEADER_LINK = 'deep_sky_blue1'
+HEADER_COLOR = 'light_sea_green'
 INDIA_COLOR = 'green'
 ISRAELI_COLOR = 'dodger_blue2'
 JAVANKA_COLOR = 'medium_violet_red'
@@ -178,10 +179,14 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     'medium_purple2': r"(Alan (M\. )?)?Dershowi(l|tz)|(Ken(neth W.)?\s+)?Starr",
     'pale_green1': r"Masa(yoshi)?|Najeev|Softbank",
     'turquoise4': r"BG|Bill\s+((and|or)\s+Melinda\s+)?Gates|Melinda(\s+Gates)?",
+    HEADER_COLOR: r"^((Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):)"
 }
 
 # Wrap in \b, add optional s? at end of all regex patterns
-HIGHLIGHT_REGEXES: dict[str, re.Pattern] = {k: re.compile(fr"\b(({v})s?)\b", re.I) for k, v in HIGHLIGHT_PATTERNS.items()}
+HIGHLIGHT_REGEXES: dict[str, re.Pattern] = {
+    k: re.compile(fr"\b(({v})s?)\b", re.I) if k != HEADER_COLOR else re.compile(v, re.MULTILINE)
+    for k, v in HIGHLIGHT_PATTERNS.items()
+}
 
 CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 <html>
@@ -290,7 +295,7 @@ def coffeezilla_link(search_term: str, link_txt: str, style: str = ARCHIVE_LINK_
     return make_link(search_archive_url(search_term), link_txt or search_term, style)
 
 
-def highlight_names(text: str) -> str:
+def highlight_text(text: str) -> str:
     for style, name_regex in HIGHLIGHT_REGEXES.items():
         text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
 
@@ -344,7 +349,7 @@ def print_header():
     table.add_column("Translation", style="white", justify="center")
 
     for k, v in HEADER_ABBREVIATIONS.items():
-        table.add_row(highlight_names(k), v)
+        table.add_row(highlight_text(k), v)
 
     console.line()
     console.print(Align.center(table))
@@ -370,7 +375,7 @@ def print_email_table(counts: dict[str, int], column_title: str) -> None:
 
     for k, v in sorted(counts.items(), key=lambda item: item[0] if 'ALPHA' in environ else [item[1], item[0]], reverse=True):
         k = k.title() if ' ' in k else k
-        name_txt = Text.from_markup(f"[underline][link={epsteinify_name_url(k)}]{highlight_names(k)}[/link][/underline]")
+        name_txt = Text.from_markup(f"[underline][link={epsteinify_name_url(k)}]{highlight_text(k)}[/link][/underline]")
         jmail_link = make_link(jmail_search_url(k), 'Search Jmail')
         counts_table.add_row(name_txt, jmail_link, str(v))
 
