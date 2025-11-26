@@ -11,16 +11,15 @@ from sys import exit
 
 from dotenv import load_dotenv
 load_dotenv()
-from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
 
+from documents.email_header import AUTHOR
 from documents.epstein_files import EpsteinFiles
 from documents.messenger_log import sender_counts
 from util.env import is_build, is_debug
+from util.file_helper import OUTPUT_GH_PAGES_HTML
 from util.rich import *
-
-OUTPUT_GH_PAGES_HTML = Path('docs').joinpath('index.html')
 
 
 print_header()
@@ -52,7 +51,7 @@ console.print(f"(Last deploy found 4668 messages in 77 conversations)\n\n\n", st
 # Emails section
 print_section_header('His Emails')
 console.line()
-print_email_table(epstein_files.email_author_counts, "Author")
+print_email_table(epstein_files.email_author_counts, AUTHOR.title())
 console.line(2)
 print_email_table(epstein_files.email_recipient_counts, "Recipient")
 console.print(f"\n\nIdentified authors of {epstein_files.num_identified_email_authors()} emails out of {len(epstein_files.emails)} potential email files.")
