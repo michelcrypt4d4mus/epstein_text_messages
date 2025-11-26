@@ -49,6 +49,7 @@ TIMESTAMP = 'timestamp'
 TRUMP_COLOR = 'red3 bold'
 
 highlighter_style_name = lambda style_name: f"{HEADER_FIELD}.{style_name}"
+HEADER_STYLE = 'header_field'
 
 NAMES_TO_NOT_COLOR = [name.lower() for name in [
     'Black',
@@ -154,7 +155,7 @@ OTHER_STYLES = {
     PHONE_NUMBER: 'bright_green',
     TEXT_LINK: 'deep_sky_blue4 underline',
     TIMESTAMP: 'gray30',
-    highlighter_style_name('header'): 'cyan',
+    HEADER_STYLE: 'dim cyan',
     highlighter_style_name('email'): 'bright_cyan',
 }
 
@@ -179,12 +180,12 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     'medium_purple2': r"(Alan (M\. )?)?Dershowi(l|tz)|(Ken(neth W.)?\s+)?Starr",
     'pale_green1': r"Masa(yoshi)?|Najeev|Softbank",
     'turquoise4': r"BG|Bill\s+((and|or)\s+Melinda\s+)?Gates|Melinda(\s+Gates)?",
-    HEADER_COLOR: r"^((Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):)"
+    HEADER_STYLE: r"^((Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):)"
 }
 
 # Wrap in \b, add optional s? at end of all regex patterns
 HIGHLIGHT_REGEXES: dict[str, re.Pattern] = {
-    k: re.compile(fr"\b(({v})s?)\b", re.I) if k != HEADER_COLOR else re.compile(v, re.MULTILINE)
+    k: re.compile(fr"\b(({v})s?)\b", re.I) if k != HEADER_STYLE else re.compile(v, re.MULTILINE)
     for k, v in HIGHLIGHT_PATTERNS.items()
 }
 
@@ -300,7 +301,7 @@ def highlight_text(text: str) -> str:
         text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
 
     for name, style in COUNTERPARTY_COLORS.items():
-        if name is None or name == DEFAULT:
+        if name in [None, DEFAULT, HEADER_STYLE]:
             continue
 
         name = regex_escape_periods(name)
