@@ -16,7 +16,7 @@ from documents.messenger_log import MSG_REGEX, MessengerLog
 from util.constants import *
 from util.env import is_debug
 from util.file_helper import DOCS_DIR, move_json_file
-from util.rich import COUNTERPARTY_COLORS, console, highlight_names, logger, print_section_header
+from util.rich import COUNTERPARTY_COLORS, console, highlight_names, logger, print_panel
 
 
 @dataclass
@@ -27,8 +27,8 @@ class EpsteinFiles:
     other_files: list[Document] = field(default_factory=list)
     email_author_counts: dict[str, int] = field(init=False)
     email_recipient_counts: dict[str, int] = field(init=False)
-    email_sent_from_devices: dict[str | None, set[str | None]] = field(default_factory=dict)
-    email_author_devices: dict[str | None, set[str | None]] = field(default_factory=dict)
+    email_sent_from_devices: dict[str, set[str ]] = field(default_factory=dict)
+    email_author_devices: dict[str, set[str]] = field(default_factory=dict)
 
     def __post_init__(self):
         self.all_files = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
@@ -131,18 +131,11 @@ class EpsteinFiles:
         console.print(table, '\n\n')
 
     def print_email_device_info(self) -> None:
-        print_section_header(f"Email 'Sent from [device]' Signature Info", style='bright_white', is_centered=False)
-        devices_table = Table(header_style="bold", show_header=True, show_lines=True)
-        devices_table.add_column('Author')
-        devices_table.add_column('Device Signatures')
-        add_str_to_list_dict_to_table(devices_table, self.email_author_devices)
-        console.print(devices_table, '\n\n')
-
-        devices_table = Table(header_style="bold", show_header=True, show_lines=True)
-        devices_table.add_column('Device Signature')
-        devices_table.add_column('Authors')
-        add_str_to_list_dict_to_table(devices_table, self.email_sent_from_devices)
-        console.print(devices_table, '\n\n')
+        print_panel(f"Email 'Sent from [device]' Signature Info")
+        console.print(build_signature_table(self.email_author_devices, ('Author', 'Device Signatures')))
+        console.line(2)
+        console.print(build_signature_table(self.email_sent_from_devices, ('Device Signature', 'Authors'), ', '))
+        console.line(2)
 
     def print_other_files_table(self) -> None:
         table = Table(header_style="bold", show_header=True, show_lines=True)
@@ -173,15 +166,19 @@ class EpsteinFiles:
         return sorted(emails, key=lambda e: (e.sort_time()))
 
 
-def sets_to_lists(d: dict[str | None, set[str | None]]) -> dict[str | None, list[str | None]]:
-    new_dict = {}
+def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Table:
+    table = Table(header_style="bold reverse", show_header=True, show_lines=True)
 
-    for k, v in d.items():
+    for col in cols:
+        table.add_column(col)
+
+    new_dict: dict[str, list[str]] = {}
+
+    for k, v in keyed_sets.items():
         new_dict[k] = list(v)
 
-    return new_dict
+    for k in sorted(new_dict.keys()):
+        _list = new_dict[k]
+        table.add_row(highlight_names(k or UNKNOWN), highlight_names(join_char.join(sorted(_list))))
 
-
-def add_str_to_list_dict_to_table(table: Table, keyed_sets: dict[str | None, set[str | None]]) -> None:
-    for k, _list in sets_to_lists(keyed_sets).items():
-        table.add_row(highlight_names(k or UNKNOWN), highlight_names('\n'.join(_list)))
+    return table

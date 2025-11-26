@@ -319,6 +319,10 @@ def print_section_header(msg: str, style: str = 'bold white on blue3', is_center
     console.line()
 
 
+def print_panel(msg: str, style: str = 'white reverse') -> None:
+    console.print(Panel(Text(msg, justify='center'), width=50, style=style), '\n')
+
+
 def print_top_lines(file_text, n = 10, max_chars = MAX_PREVIEW_CHARS, in_panel = False):
     """Print first n lines of a file."""
     file_text = LEADING_WHITESPACE_REGEX.sub('', file_text)
