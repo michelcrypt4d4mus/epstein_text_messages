@@ -114,16 +114,16 @@ class EpsteinFiles:
         if len(emails) > 0:
             txt = Text(f"Found {len(emails)} emails to/from {author}", justify='center')
             panel = Panel(txt, width=80, style=f"bright_white on {COUNTERPARTY_COLORS.get(author, 'default')} bold")
-            console.print('\n\n', panel, '\n')
+            console.print('\n', Align.center(panel), '\n')
         else:
             logger.warning(f"No emails found for {author}")
             return
 
         if author is not None and author != UNKNOWN:
             self.print_emails_table_for(author)
-
-        if author is None or author == UNKNOWN:
-            logger.info(f"{len(self.email_unknown_recipient_ids)} UNKNOWN RECIPIENT IDS:\n" + '\n'.join(sorted(list(self.email_unknown_recipient_ids))))
+        else:
+            ids = list(self.email_unknown_recipient_ids)
+            logger.info(f"{len(ids)} UNKNOWN RECIPIENT IDS:\n" + '\n'.join(sorted(ids)))
 
         for email in emails:
             console.print(email)
