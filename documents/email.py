@@ -30,6 +30,7 @@ REDACTED_REPLY_REGEX = re.compile(r'<[ _\n]+> wrote:', re.IGNORECASE)
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
 BAD_LINE_REGEX = re.compile(r'^\d{1,2}|Importance: High$')
+UNKNOWN_SIGNATURE_REGEX = re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL)
 
 CLIPPED_SIGNATURE_REPLACEMENT = '[dim]<...snipped epstein legal signature...>[/dim]'
 BAD_FIRST_LINES = ['026652', '029835', '031189']
@@ -245,6 +246,7 @@ class Email(CommunicationDocument):
 
         text = REPLY_REGEX.sub(r'[dim]\1[/dim]', text)
         text = SENT_FROM_REGEX.sub(r'[dim]\1[/dim]', text)
+        text = UNKNOWN_SIGNATURE_REGEX.sub(r'[dim]\1[/dim]', text)
         yield Padding(Panel(highlight_names(text), expand=False), (0, 0, 2, EMAIL_INDENT))
 
 
