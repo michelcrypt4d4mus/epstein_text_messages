@@ -43,10 +43,12 @@ JAVANKA_COLOR = 'medium_violet_red'
 JOURNALIST_COLOR = 'grey54'
 OBAMA_COLOR = 'yellow'
 PHONE_NUMBER = 'phone_number'
+RICH_GUY_COLOR = 'dark_cyan'
 RUSSIA_COLOR = 'dark_red'
 TEXT_LINK = 'text_link'
 TIMESTAMP = 'timestamp'
 TRUMP_COLOR = 'red3 bold'
+SECTION_HEADER_STYLE = 'bold white on blue3'
 
 highlighter_style_name = lambda style_name: f"{HEADER_FIELD}.{style_name}"
 HEADER_STYLE = 'header_field'
@@ -174,7 +176,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     RUSSIA_COLOR: r"Moscow|(Vladimir )?Putin|Lavrov|Russian?",
     TRUMP_COLOR: r"(Donald\s+(J\.\s+)?)?Trump|Donald|DJT|Roger\s+Stone",
     COUNTERPARTY_COLORS[GHISLAINE_MAXWELL]: r"GMAX|gmax1@ellmax.com",
-    'dark_cyan': r"(Steve\s+)?Wynn|(Leslie\s+)?Wexner",
+    RICH_GUY_COLOR: r"(Steve\s+)?Wynn|(Leslie\s+)?Wexner",
     'dark_magenta': r"Le\s*Pen|(Victor\s+)?Orbah?n",
     'orchid1': r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts",
     'medium_purple2': r"(Alan (M\. )?)?Dershowi(l|tz)|(Ken(neth W.)?\s+)?Starr",
@@ -383,8 +385,8 @@ def print_email_table(counts: dict[str, int], column_title: str) -> None:
     console.print(counts_table)
 
 
-def print_section_header(msg: str, style: str = 'bold white on blue3', is_centered: bool = True) -> None:
-    panel = Panel(Text(msg, justify='center'), width=80, padding=(1, 1), style=style)
+def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = True) -> None:
+    panel = Panel(Text(msg, justify='center'), expand=True, padding=(1, 1), style=style)
 
     if is_centered:
         panel = Align.center(panel)
