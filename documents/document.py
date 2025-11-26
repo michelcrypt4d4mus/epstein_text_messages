@@ -7,7 +7,7 @@ from typing import ClassVar
 from rich.markup import escape
 from rich.text import Text
 
-from util.constants import SEAN_BANNON, STEVE_BANNON
+from util.constants import REDACTED, SEAN_BANNON, STEVE_BANNON
 from util.data import patternize
 from util.file_helper import extract_file_id
 from util.rich import ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_pattern, highlight_text, logger, make_link, make_link_markup
@@ -18,6 +18,7 @@ WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 PREVIEW_CHARS = 520
 GMAX_EMAIL = 'gmax1@ellmax.com'
 JEEVACATION_GMAIL = 'jeevacation@gmail.com'
+HOUSE_OVERSIGHT = 'HOUSE OVERSIGHT'
 MIN_DOCUMENT_ID = 10477
 
 OCR_REPAIRS = {
@@ -31,6 +32,8 @@ OCR_REPAIRS = {
     re.compile(r'gmax ?[1l] ?[@g]ellmax.c ?om'): GMAX_EMAIL,
     re.compile(r"[ijl']ee[vy]acation[©@a(&, ]{1,3}gmail.com"): JEEVACATION_GMAIL,
     re.compile(r"twitter\.com[i/][lI]krauss[1l]"): "twitter.com/lkrauss1",
+    re.compile(r"^To_{5,}", re.MULTILINE): f"To: {REDACTED}",
+    re.compile(r"^From_{5,}", re.MULTILINE): f"From: {REDACTED} ",
 }
 
 FILENAME_MATCH_STYLES = [
@@ -58,9 +61,7 @@ class Document:
         self.filename = self.file_path.name
         self.file_id = extract_file_id(self.filename)
         self.text = self._load_file()
-        self.length = len(self.text)
-        self.lines = self.text.split('\n')
-        self.num_lines = len(self.lines)
+        self._set_computed_fields()
         self.epsteinify_name_url = epsteinify_doc_url(self.file_path.stem)
         self.epsteinify_link_markup = make_link_markup(self.epsteinify_name_url, self.file_path.stem)
 
@@ -124,9 +125,14 @@ class Document:
                 else:
                     text = text.replace(k, v)
 
-            lines = [l.strip() for l in text.split('\n') if not l.startswith('HOUSE OVERSIGHT')]
+            lines = [l.strip() for l in text.split('\n') if not l.startswith(HOUSE_OVERSIGHT)]
             lines = lines[1:] if (len(lines) > 1 and lines[0] == '>>') else lines
             return MULTINEWLINE_REGEX.sub('\n\n\n', '\n'.join(lines))
+
+    def _set_computed_fields(self) -> None:
+        self.length = len(self.text)
+        self.lines = self.text.split('\n')
+        self.num_lines = len(self.lines)
 
 
 @dataclass
