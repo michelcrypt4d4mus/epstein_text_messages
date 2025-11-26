@@ -313,12 +313,12 @@ def print_header():
 
 def print_email_table(counts: dict[str, int], column_title: str) -> None:
     counts_table = Table(title=f"Email Counts By {column_title}", show_header=True, header_style="bold")
-    counts_table.add_column(column_title, justify="left", style='white underline')
+    counts_table.add_column(column_title, justify="left", style='white')
     counts_table.add_column("Email Count", justify="center")
 
     for k, v in sorted(counts.items(), key=lambda item: item[0] if 'ALPHA' in environ else [item[1], item[0]], reverse=True):
         k = k.title() if ' ' in k else k
-        name_txt = Text.from_markup(f"[link={epsteinify_url(k)}]{highlight_names(k)}[/link]")
+        name_txt = Text.from_markup(f"[underline][link={epsteinify_url(k)}]{highlight_names(k)}[/link][/underline]")
         counts_table.add_row(name_txt, str(v))
 
     console.print('\n', counts_table)
