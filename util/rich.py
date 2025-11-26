@@ -29,6 +29,7 @@ BRASIL_COLOR = 'chartreuse2'
 BRO_COLOR = 'tan'
 CHINA_COLOR = 'bright_red'
 DEMS_COLOR = 'sky_blue1'
+DUBIN_COLOR = 'medium_orchid1'
 HEADER_LINK = 'deep_sky_blue1'
 INDIA_COLOR = 'green'
 ISRAELI_COLOR = 'dodger_blue2'
@@ -53,6 +54,8 @@ NAMES_TO_NOT_COLOR = [name.lower() for name in [
     'Jr',
     'JR.',
     'Le',
+    'Leon',
+    'Marc',
     'Martin',
     'Melanie',
     'Michael',
@@ -77,10 +80,11 @@ COUNTERPARTY_COLORS = {
     ANIL: INDIA_COLOR,
     ARIANE_DE_ROTHSCHILD: 'indian_red',
     BORIS_NIKOLIC: BRO_COLOR,
-    'Celina Dubin': 'medium_orchid1',
+    CELINA_DUBIN: DUBIN_COLOR,
     DEFAULT: 'wheat4',
     JEFFREY_EPSTEIN: 'blue1',
     EVA: 'orchid',
+    GLENN_DUBIN: DUBIN_COLOR,
     JONATHAN_FARKAS: BRO_COLOR,
     LARRY_SUMMERS: 'spring_green4',
     MELANIE_SPINELLA: 'magenta3',
@@ -329,14 +333,16 @@ def print_header():
 
 
 def print_email_table(counts: dict[str, int], column_title: str) -> None:
-    counts_table = Table(title=f"Email Counts By {column_title}", show_header=True, header_style="bold")
+    counts_table = Table(title=f"Email Counts by {column_title}", show_header=True, header_style="bold")
     counts_table.add_column(column_title, justify="left", style='white')
+    counts_table.add_column('Jmail', justify="center")
     counts_table.add_column("Email Count", justify="center")
 
     for k, v in sorted(counts.items(), key=lambda item: item[0] if 'ALPHA' in environ else [item[1], item[0]], reverse=True):
         k = k.title() if ' ' in k else k
         name_txt = Text.from_markup(f"[underline][link={epsteinify_name_url(k)}]{highlight_names(k)}[/link][/underline]")
-        counts_table.add_row(name_txt, str(v))
+        jmail_link = make_link(jmail_search_url(k), 'Search Jmail')
+        counts_table.add_row(name_txt, jmail_link, str(v))
 
     console.print(counts_table)
 

@@ -72,12 +72,9 @@ class EpsteinFiles:
                 if None in email.recipients or UNKNOWN in email.recipients or len(email.recipients) == 0:
                     self.email_unknown_recipient_ids.add(email.file_id)
 
-                if None in email.recipients or UNKNOWN in email.recipients or len(email.recipients) == 0:
-                    self.email_unknown_recipient_ids.add(email.file_id)
-
                 if email.sent_from_device:
                     self.email_author_devices[email.author or UNKNOWN].add(email.sent_from_device)
-                    self.email_sent_from_devices[email.sent_from_device].add(email.author or UNKNOWN)
+                    self.email_sent_from_devices[email.sent_from_device].add(author)
 
                 if len(author) <= 3 or author == UNKNOWN:
                     email.log_top_lines(msg=f"Redacted or invalid email author '{author}'")

@@ -12,6 +12,7 @@ AZIZA_ALAHMADI = 'Aziza Alahmadi'
 BARBRO_EHNBOM = 'Barbro Ehnbom'
 BENNET_MOSKOWITZ = 'Bennet Moskowitz'
 BORIS_NIKOLIC = 'Boris Nikolic'
+CELINA_DUBIN = 'Celina Dubin'
 CHRISTINA_GALBRAITH = 'Christina Galbraith'
 DARREN_INDYKE = 'Darren Indyke'
 DANIEL_SIAD = 'Daniel Siad'
@@ -24,6 +25,7 @@ EHUD_BARAK = 'Ehud Barak'
 FAITH_KATES = 'Faith Kates'
 GERALD_BARTON = 'Gerald Barton'
 GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
+GLENN_DUBIN = 'Glenn Dubin'
 GWENDOLYN_BECK = 'Gwendolyn Beck'
 JEAN_HUGUEN = 'Jean Huguen'
 JEAN_LUC_BRUNEL = 'Jean Luc Brunel'
@@ -41,6 +43,7 @@ LEON_BLACK = 'Leon Black'
 LESLEY_GROFF = 'Lesley Groff'
 LINDA_STONE = 'Linda Stone'
 LISA_NEW = 'Lisa New'          # Harvard poetry prof AKA "Elisa New"
+MARK_EPSTEIN = 'Mark L. Epstein'
 MARTIN_NOWAK = 'Martin Nowak'
 MARTIN_WEINBERG = "Martin Weinberg"
 MELANIE_SPINELLA = 'Melanie Spinella'
@@ -202,6 +205,7 @@ EMAILER_REGEXES = {
     LAWRANCE_VISOSKI: re.compile(r'La(rry|wrance) Visosk', re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus|lawkrauss', re.IGNORECASE),
     LEON_BLACK: re.compile(r'Leon Blac', re.IGNORECASE),
+    MARK_EPSTEIN: re.compile(r'Mark (L\. )?Epstein', re.IGNORECASE),
     'lilly sanchez': re.compile(r'Lilly.*Sanchez', re.IGNORECASE),
     LISA_NEW: re.compile(r'Lisa New?$', re.IGNORECASE),
     'Marc Leon': re.compile(r'Marc[.]+(Kensington|Leon)|Kensington2', re.IGNORECASE),
@@ -232,7 +236,7 @@ EMAILER_REGEXES = {
     'Stephen Hanson': re.compile(r'ste(phen|ve) hanson?|Shanson900', re.IGNORECASE),
     STEVE_BANNON: re.compile(r'steve banno[nr]?', re.IGNORECASE),
     'Steven Sinofsky': re.compile(r'Steven Sinofsk', re.IGNORECASE),
-    SULTAN_BIN_SULAYEM: re.compile(r'Sultan bin Sulay', re.IGNORECASE),
+    SULTAN_BIN_SULAYEM: re.compile(r'Sultan (Ahmed )?bin Sulaye?m?', re.IGNORECASE),
     TERRY_KAFKA: re.compile(r'Terry Kafk', re.IGNORECASE),
     THORBJORN_JAGLAND: re.compile(r'Thor.*Jag[il]and?', re.IGNORECASE),
     TONJA_HADDAD_COLEMAN: re.compile(fr"To(nj|rl)a Haddad Coleman|haddadfm@aol.com", re.IGNORECASE)
@@ -259,7 +263,6 @@ EMAILERS = [
     'Lesley Groff',
     'Brad Wechsler',
     'middle.east.update@hotmail.com',
-    'Mark L. Epstein',
     MELANIE_WALKER,
     'Merwin Dela Cruz',
     'Michael Simmons',   # Not the only "To:"
@@ -407,7 +410,7 @@ KNOWN_EMAIL_AUTHORS = {
 
 KNOWN_EMAIL_RECIPIENTS = {
     '021106': 'Alexandra Preate',     # Reply
-    '026620': ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov ', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Mark Epstein', JEFFREY_EPSTEIN, 'Michael Buchholtz', 'Michael Horowitz', 'Marshall Funk'],
+    '026620': ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov ', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', MARK_EPSTEIN, JEFFREY_EPSTEIN, 'Michael Buchholtz', 'Michael Horowitz', 'Marshall Funk'],
     '030764': ARIANE_DE_ROTHSCHILD,   # Reply
     '026431': ARIANE_DE_ROTHSCHILD,   # Reply
     '031996': CHRISTINA_GALBRAITH,    # bounced
