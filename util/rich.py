@@ -148,7 +148,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     'orchid1': r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts",
     'medium_purple2': r"(Alan (M\. )?)?Dershowi(l|tz)|(Ken(neth W.)?\s+)?Starr",
     'pale_green1': r"Masa(yoshi)?|Najeev|Softbank",
-    'turquoise4': r"BG|Bill\s+(and\s+Melinda\s+)?Gates|Melinda(\s+Gates)?",
+    'turquoise4': r"BG|Bill\s+((and|or)\s+Melinda\s+)?Gates|Melinda(\s+Gates)?",
 }
 
 # Wrap in \b, add optional s? at end of all regex patterns
