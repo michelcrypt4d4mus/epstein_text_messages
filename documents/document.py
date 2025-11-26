@@ -7,6 +7,7 @@ from rich.markup import escape
 from rich.text import Text
 
 from util.constants import SEAN_BANNON, STEVE_BANNON
+from util.data import patternize
 from util.file_helper import extract_file_id
 from util.rich import ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_text, logger, make_link, make_link_markup
 from util.strings import *
@@ -73,8 +74,17 @@ class Document:
             return Text(escape(self.preview_text()))
 
     def lines_matching(self, _pattern: re.Pattern | str) -> list[str]:
-        pattern = _pattern if isinstance(_pattern, re.Pattern) else re.compile(rf"{_pattern}")
-        return [line for line in self.lines if pattern.search(line)]
+        pattern = patternize(_pattern)
+        return [f"{self.file_path.name}:{line}" for line in self.lines if pattern.search(line)]
+
+    def lines_matching_txt(self, _pattern: re.Pattern | str) -> list[Text]:
+        pattern = patternize(_pattern)
+
+        return [
+            Text('').append(f"{self.file_path.name}", style='dark_green').append(':').append(line, style='white')
+            for line in self.lines
+            if pattern.search(line)
+        ]
 
     def log_top_lines(self, n: int = 10, msg: str | None = None) -> None:
         msg = f"{msg + '. ' if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"
