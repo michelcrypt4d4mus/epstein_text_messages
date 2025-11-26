@@ -219,7 +219,7 @@ COUNTERPARTY_COLORS.update({
 })
 
 HIGHLIGHT_REGEXES = {
-    re.compile('\b(Abu Dhabi|Dubai|Emirates|Erdogan|HBJ|Iran(ian)?|Iraq|Islam(ic|ist)?|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Muslim|Sharia|Syria|UAE|((Kuwait|Qatar|Saud|Yemen)i?))s?\b', re.I): ARAB_COLOR,
+    re.compile(r'\b(Abu Dhabi|Dubai|Emirates|Erdogan|HBJ|Iran(ian)?|Iraq|Islam(ic|ist)?|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Muslim|Sharia|Syria|UAE|((Kuwait|Qatar|Saud|Yemen)i?))s?\b', re.I): ARAB_COLOR,
 }
 
 
@@ -241,11 +241,6 @@ def coffeezilla_link(search_term: str, link_txt: str, style: str = ARCHIVE_LINK_
 
 def highlight_names(text: str) -> str:
     for name_regex, style in HIGHLIGHT_REGEXES.items():
-        logger.info(f"Checking {name_regex} (style='{style}')...")
-
-        if name_regex.search(text):
-            logger.info(f"name_regex changes text:\n\n{text}")
-
         text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
 
     for name, style in COUNTERPARTY_COLORS.items():
