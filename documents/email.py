@@ -25,7 +25,7 @@ EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Sub
 REPLY_LINE_PATTERN = r'(On ([A-Z][a-z]{2,9},)?\s*?([A-Z][a-z]{2,9}\s*\d+,\s*\d{4}|\d+/\d+/\d+ \d+:\d+ (AM|PM)),?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*(?:[ \n]+wrote:)?|-+(Forwarded|Original)\s*Message-*|Begin forwarded message:?)'
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re.DOTALL)
-SENT_FROM_REGEX = re.compile(r'^(Sent (from|via).*(AT&T|iPad|Phone|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
+SENT_FROM_REGEX = re.compile(r'^(?:Please forgive typos. )?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
 REDACTED_REPLY_REGEX = re.compile(r'<[ _\n]+> wrote:', re.IGNORECASE)
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
@@ -44,9 +44,11 @@ KNOWN_TIMESTAMPS = {
 }
 
 OCR_REPAIRS = {
+    'BlackBerry by AT &T': 'BlackBerry by AT&T',
     'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
     "Sent from my 'Phone": 'Sent from my iPhone',
-    'BlackBerry by AT &T': 'BlackBerry by AT&T',
+    'Sent from Samsung Mob.le': 'Sent from Samsung Mobile',
+    'Sent from Mabfl': 'Sent from Mobile',
 }
 
 # These are long forwarded articles we don't want to display over and over
