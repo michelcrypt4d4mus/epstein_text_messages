@@ -75,7 +75,7 @@ COUNTERPARTY_COLORS = {
     LARRY_SUMMERS: 'spring_green4',
     MELANIE_SPINELLA: 'magenta3',
     MELANIE_WALKER: 'deep_pink4',
-    "Michael Wolff": JOURNALIST_COLOR,
+    MICHAEL_WOLFF: JOURNALIST_COLOR,
     MIROSLAV: 'slate_blue3',
     'Noam Chomsky': 'grey23',
     PAUL_KRASSNER: JOURNALIST_COLOR,
@@ -132,7 +132,7 @@ COUNTERPARTY_COLORS.update(OTHER_STYLES)
 
 HIGHLIGHT_PATTERNS: dict[str, str] = {
     ARAB_COLOR: r"Abu\s+Dhabi|Assad|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Saudi(\s+Arabian?)?|Sharia|Syria|Turkey|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
-    BITCOIN_COLOR: r"bitcoin|coins|cr[iy]pto(currency)?|e-currency|(Howard\s+)?Lutnick|Libra|Tether",
+    BITCOIN_COLOR: r"bitcoin|blockchain( capital)?|coins|cr[iy]pto(currency)?|e-currency|(Howard\s+)?Lutnick|Libra|Tether",
     BRASIL_COLOR: r"Bra[sz]il(ian)?|Bolsonar[aio]|Lula",
     CHINA_COLOR: r"CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|PRC|xi",
     INDIA_COLOR: r"Ambani|Indian?|Modi|mumbai",

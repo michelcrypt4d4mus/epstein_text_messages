@@ -42,6 +42,7 @@ LISA_NEW = 'Lisa New'          # Harvard poetry prof AKA "Elisa New"
 MARTIN_NOWAK = 'Martin Nowak'
 MARTIN_WEINBERG = "Martin Weinberg"
 MELANIE_SPINELLA = 'Melanie Spinella'
+MICHAEL_WOLFF = "Michael Wolff"
 MOHAMED_WAHEED_HASSAN = 'Mohamed Waheed Hassan'
 NADIA_MARCINKO = 'Nadia Marcinko'
 NORMAN_D_RAU = 'Norman D. Rau'
@@ -205,7 +206,7 @@ EMAILER_REGEXES = {
     "Matthew Schafer": re.compile(r"matthew\.?schafer?", re.IGNORECASE),
     MELANIE_SPINELLA: re.compile(r'Melanie Spine[Il]{2}a', re.IGNORECASE),
     'Michael Miller': re.compile(r'Micha(el)? Miller|Miller, Micha(el)?', re.IGNORECASE),
-    'Michael Wolff': re.compile(r'Michael\s*Wol(ff|i)', re.IGNORECASE),
+    MICHAEL_WOLFF: re.compile(r'Michael\s*Wol(ff|i)', re.IGNORECASE),
     'Mike Sitrick': re.compile(r'Mi(chael|ke).*Sitrick', re.IGNORECASE),
     MOHAMED_WAHEED_HASSAN: re.compile(r'Mohamed Waheed', re.IGNORECASE),
     'Neal Kassell': re.compile(r'Neal Kassel', re.IGNORECASE),
