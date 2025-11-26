@@ -81,7 +81,7 @@ class Document:
         pattern = patternize(_pattern)
 
         return [
-            Text('').append(f"{self.file_path.name}", style='dark_green').append(':').append(line, style='white')
+            Text('').append(f"{self.file_path.name}", style='dark_green').append(':').append(Text.from_markup(pattern.sub(r'[cyan]\1[/cyan]', line)))
             for line in self.lines
             if pattern.search(line)
         ]
