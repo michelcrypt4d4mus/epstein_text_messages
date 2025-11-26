@@ -22,7 +22,7 @@ DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
 BAD_EMAILER_REGEX = re.compile(r'^>|agreed|ok|sexy|rt|re:|fwd:|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|hysterical|i have|image0|so that people|article 1.?|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Subject|Attachments):\s*\n)+')
 
-REPLY_LINE_PATTERN = r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?(?: [a-zA-Z _1<>@.]+)*(?:[ \n]+wrote:)?|-+(Forwarded|Original)\s*Message-*|Begin forwarded message:?)'
+REPLY_LINE_PATTERN = r'(On ([A-Z][a-z]{2,9},)?\s*?[A-Z][a-z]{2,9}\s*\d+,\s*\d{4},?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*(?:[ \n]+wrote:)?|-+(Forwarded|Original)\s*Message-*|Begin forwarded message:?)'
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re.DOTALL)
 SENT_FROM_REGEX = re.compile(r'^([sS]ent (from|via).*(iPad|iPhone|Windows Mail|AT&T|phone|BlackBerry.*(smartphone|device|Handheld|AT&T|T- ?Mobile))\.?)', re.MULTILINE)
