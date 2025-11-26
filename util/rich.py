@@ -18,6 +18,7 @@ from .constants import *
 from .env import deep_debug, is_debug
 
 LEADING_WHITESPACE_REGEX = re.compile(r'\A\s*', re.MULTILINE)
+NON_ALPHA_CHARS_REGEX = re.compile(r'[^a-zA-Z0-9 ]')
 MAX_PREVIEW_CHARS = 300
 OUTPUT_WIDTH = 120
 
@@ -73,6 +74,7 @@ NAMES_TO_NOT_COLOR = [name.lower() for name in [
     'Victor',
     "Y",
     "Y.",
+    r'Y\.?'
 ]]
 
 # Color different counterparties differently
@@ -109,7 +111,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     JEREMY_RUBIN: BITCOIN_COLOR,
     JOI_ITO: 'blue_violet',
     AL_SECKEL: 'orange_red1',
-    JABOR_Y: f"{ARAB_COLOR} bold",
+    JABOR_Y: "spring_green1",
     DANIEL_SIAD: 'dark_khaki',
     JEAN_LUC_BRUNEL: 'wheat4',
     EHUD_BARAK: ISRAELI_COLOR,
@@ -227,10 +229,9 @@ console.record = True
 # This is after the Theme() instantiation because 'bg' is reserved'
 COUNTERPARTY_COLORS.update({
     'Biden': OBAMA_COLOR,
-    'Harvard': 'red',
+    'Harvard': 'deep_pink2',
     'Ivanka': JAVANKA_COLOR,
     'Joichi Ito': COUNTERPARTY_COLORS[JOI_ITO],
-    'Jabor': COUNTERPARTY_COLORS[JABOR_Y],
     'Jared Kushner': JAVANKA_COLOR,
     'jeevacation@gmail.com': COUNTERPARTY_COLORS[JEFFREY_EPSTEIN],
     'Paul Manafort': COUNTERPARTY_COLORS[STEVE_BANNON],
@@ -276,6 +277,7 @@ def highlight_names(text: str) -> str:
         if name is None or name == DEFAULT:
             continue
 
+        name = name.replace('.', r'\.?')
         name_regex = re.compile(rf"\b({name}s?)\b", re.IGNORECASE)
         text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
 
@@ -285,6 +287,12 @@ def highlight_names(text: str) -> str:
         names = name.split(' ')
         last_name = names[-1]
         first_name = ' '.join(names[0:-1])
+
+        # TODO: ugly handling for "Jabor You" case
+        if 'jabor' == first_name.lower():
+            name_regex = re.compile(rf"\b(jabors?)\b", re.IGNORECASE)
+            text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
+            continue
 
         # highlight last names
         if last_name.lower() not in NAMES_TO_NOT_COLOR:
