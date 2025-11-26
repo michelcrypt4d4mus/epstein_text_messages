@@ -374,7 +374,7 @@ KNOWN_EMAIL_AUTHORS = {
     '032296': SOON_YI,             # Sent from soon-yi's phone
     '026620': TERRY_KAFKA,
     '028482': TERRY_KAFKA,         # Signature
-    '029992': TERRY_KAFKA,         # Reply
+    '029992': TERRY_KAFKA,         # Quoted reply
     '020666': TERRY_KAFKA,         # ends with 'Terry'
     # '026571': '(unknown french speaker)',
     # '029504': Probably Audrey Raimbault (based on "GMI" in signature, a company registered by "aubrey raimbault")
