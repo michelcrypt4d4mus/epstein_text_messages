@@ -26,6 +26,7 @@ NON_ALPHA_CHARS_REGEX = re.compile(r'[^a-zA-Z0-9 ]')
 MAX_PREVIEW_CHARS = 300
 OUTPUT_WIDTH = 120
 HEADER_FIELD = 'header_field'
+SECTION_HEADER_STYLE = 'bold white on blue3'
 
 ARAB_COLOR = 'dark_green'
 ARCHIVE_LINK = 'archive_link'
@@ -49,7 +50,6 @@ RUSSIA_COLOR = 'red'
 TEXT_LINK = 'text_link'
 TIMESTAMP = 'timestamp'
 TRUMP_COLOR = 'red3 bold'
-SECTION_HEADER_STYLE = 'bold white on blue3'
 
 highlighter_style_name = lambda style_name: f"{HEADER_FIELD}.{style_name}"
 HEADER_STYLE = 'header_field'
