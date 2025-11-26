@@ -463,6 +463,7 @@ HEADER_ABBREVIATIONS = {
     'HBJ': "Hamad bin Jassim (Former Qatari prime minister)",
     'Jabor': '"an influential man in Qatar"',
     'Jagland': 'Thorbjørn Jagland',
+    'Jeffrey Wernick': 'Right wing crypto bro',
     "Hoffenberg": "Steven Hoffenberg (Epstein's ponzi scheme partner)",
     'KSA': "Kingdom of Saudi Arabia",
     'Kwok': "Chinese criminal Miles Kwok AKA Miles Guo AKA Guo Wengui",
