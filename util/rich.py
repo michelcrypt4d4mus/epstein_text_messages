@@ -202,9 +202,6 @@ console.record = True
 # This is after the Theme() instantiation because 'bg' is reserved'
 COUNTERPARTY_COLORS.update({
     'bg': 'turquoise4',
-    'CCP': CHINA_COLOR,
-    'China': CHINA_COLOR,
-    'Chinese': CHINA_COLOR,
     'Clinton': 'sky_blue1',
     'Dershowitz': 'medium_purple2',
     'DJT': COUNTERPARTY_COLORS[DONALD_TRUMP],
@@ -217,21 +214,14 @@ COUNTERPARTY_COLORS.update({
     'Jabor': COUNTERPARTY_COLORS[JABOR_Y],
     'Jared Kushner': 'medium_violet_red',
     'jeevacation@gmail.com': COUNTERPARTY_COLORS[JEFFREY_EPSTEIN],
-    'kwok': CHINA_COLOR,
-    'Lavrov': RUSSIA_COLOR,
     'Le Pen': 'purple4',
     'LePen': 'purple4',
     'Manafort': COUNTERPARTY_COLORS[STEVE_BANNON],
     'Miro': COUNTERPARTY_COLORS[MIROSLAV],
-    'Moscow': RUSSIA_COLOR,
     'Obama': 'yellow',
-    'Putin': 'dark_red bold',
     'Roger Stone': COUNTERPARTY_COLORS[DONALD_TRUMP],
-    'Russia': RUSSIA_COLOR,
-    'Russian': RUSSIA_COLOR,
     'Scaramucci': COUNTERPARTY_COLORS[SCARAMUCCI],
     'Victor Orban': 'purple4',
-    'xi': f"{CHINA_COLOR} bold",
 })
 
 HIGHLIGHT_REGEXES = {
@@ -240,6 +230,8 @@ HIGHLIGHT_REGEXES = {
     re.compile(r'\b(Bibi|ehbarak|Netanyahu|Israeli?)\b', re.I): ISRAELI_COLOR,
     re.compile(r'\b(Bra[sz]il(ian)?|Bolsonar[aio]|Lula)\b', re.I): 'chartreuse2',
     re.compile(r"\b((Steve\s+)?Wynn)\b", re.I): 'dark_cyan',
+    re.compile(r"\b(Moscow|Putin|Lavrov|Russian?)\b", re.I): RUSSIA_COLOR,
+    re.compile(r"\b(CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|PRC|xi)\b"): CHINA_COLOR,
 }
 
 
