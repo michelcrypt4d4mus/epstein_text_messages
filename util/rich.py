@@ -294,7 +294,7 @@ def print_header():
     # Acronym table
     table = Table(title="Abbreviations Used Frequently In These Chats", show_header=True, header_style="bold")
     table.add_column("Abbreviation", justify="center", style='bold', width=19)
-    table.add_column("Translation", style="deep_sky_blue4", justify="center")
+    table.add_column("Translation", style="white", justify="center")
 
     for k, v in HEADER_ABBREVIATIONS.items():
         table.add_row(highlight_names(k), v)
