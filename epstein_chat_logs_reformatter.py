@@ -32,7 +32,7 @@ epstein_files.print_summary()
 print_section_header('Text Messages')
 
 if not skip_texts:
-    for log_file in epstein_files.iMessage_logs:
+    for log_file in epstein_files.imessage_logs:
         console.print(log_file)
         console.line(2)
 
@@ -45,9 +45,9 @@ for k, v in sorted(sender_counts.items(), key=lambda item: item[1], reverse=True
 
 console.print(counts_table)
 text_summary_msg = f"\nDeanonymized {epstein_files.identified_imessage_log_count()} of "
-text_summary_msg += f"{len(epstein_files.iMessage_logs)} text msg logs found in {len(epstein_files.all_files)} files."
+text_summary_msg += f"{len(epstein_files.imessage_logs)} text msg logs found in {len(epstein_files.all_files)} files."
 console.print(text_summary_msg)
-console.print(f"Found {epstein_files.imessage_msg_count()} total text messages in {len(epstein_files.iMessage_logs)} conversations.")
+console.print(f"Found {epstein_files.imessage_msg_count()} total text messages in {len(epstein_files.imessage_logs)} conversations.")
 console.print(f"(Last deploy found 4668 messages in 77 conversations)\n\n\n", style='dim')
 
 

@@ -29,7 +29,7 @@ DEVICE_SIGNATURE_PADDING = (0, 0, 0, 2)
 class EpsteinFiles:
     all_files: list[Path] = field(init=False)
     emails: list[Email] = field(default_factory=list)
-    iMessage_logs: list[MessengerLog] = field(default_factory=list)
+    imessage_logs: list[MessengerLog] = field(default_factory=list)
     other_files: list[Document] = field(default_factory=list)
     email_author_counts: dict[str, int] = field(init=False)
     email_recipient_counts: dict[str, int] = field(init=False)
@@ -56,7 +56,7 @@ class EpsteinFiles:
                 move_json_file(file_arg)
             elif MSG_REGEX.search(document.text):
                 logger.info('iMessage log file...')
-                self.iMessage_logs.append(MessengerLog(file_arg))
+                self.imessage_logs.append(MessengerLog(file_arg))
             elif DETECT_EMAIL_REGEX.match(document.text) or document.file_id in KNOWN_EMAIL_AUTHORS:  # Handle emails
                 email = Email(file_arg)
                 self.emails.append(email)
@@ -84,10 +84,10 @@ class EpsteinFiles:
                 self.other_files.append(document)
                 document.log_top_lines()
 
-        self.iMessage_logs = sorted(self.iMessage_logs, key=lambda f: f.timestamp)
+        self.imessage_logs = sorted(self.imessage_logs, key=lambda f: f.timestamp)
 
     def all_documents(self) -> list[Document]:
-        return self.iMessage_logs + self.emails + self.other_files
+        return self.imessage_logs + self.emails + self.other_files
 
     def emails_for(self, author: str | None) -> list[Email]:
         """Returns emails to or from a given 'author' sorted chronologically."""
@@ -106,10 +106,10 @@ class EpsteinFiles:
         return EpsteinFiles.sort_emails(emails_by + emails_to)
 
     def identified_imessage_log_count(self) -> int:
-        return len([log for log in self.iMessage_logs if log.author])
+        return len([log for log in self.imessage_logs if log.author])
 
     def imessage_msg_count(self) -> int:
-        return sum([log.msg_count for log in self.iMessage_logs])
+        return sum([log.msg_count for log in self.imessage_logs])
 
     def num_identified_email_authors(self) -> int:
         return sum([i for author, i in self.email_author_counts.items() if author != UNKNOWN])
@@ -174,7 +174,7 @@ class EpsteinFiles:
         table.add_column("File Type", justify='left')
         table.add_column("File Count", justify='center')
         table.add_column("Deanonymized Count", justify='center')
-        table.add_row('iMessage Logs', f"{len(self.iMessage_logs)}", str(self.identified_imessage_log_count()))
+        table.add_row('iMessage Logs', f"{len(self.imessage_logs)}", str(self.identified_imessage_log_count()))
         table.add_row('Emails', f"{len(self.emails)}", str(len([e for e in self.emails if e.author and e.author != UNKNOWN])))
         table.add_row('Other', f"{len(self.other_files)}", 'n/a')
         console.print('\n', Align.center(table), '\n\n')
