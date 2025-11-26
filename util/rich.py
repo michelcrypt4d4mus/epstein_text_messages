@@ -226,16 +226,19 @@ COUNTERPARTY_COLORS.update({
     'Victor Orban': 'purple4',
 })
 
-HIGHLIGHT_REGEXES: dict[str, re.Pattern] = {
-    ARAB_COLOR: re.compile(r'\b((Abu Dhabi|Dubai|Emir(ates)?|Erdogan|HBJ|Iran(ian)?|Iraq|Islam(ic|ist)?|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Muslim|Sharia|Syria|Turkey|UAE|((Kuwait|Qatar|Saud|Yemen)i?))s?)\b', re.I),
-    BITCOIN_COLOR: re.compile(r'\b((bitcoin|coins|cr[iy]pto(currency)?|e-currency|(Howard\s+)?Lutnick|Tether)s?)\b', re.I),
-    BRASIL_COLOR: re.compile(r'\b((Bra[sz]il(ian)?|Bolsonar[aio]|Lula)s?)\b', re.I),
-    CHINA_COLOR: re.compile(r"\b((CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|PRC|xi)s?)\b", re.I),
-    INDIA_COLOR: re.compile(r"\b((Ambani|Indian?|Modi|mumbai)s?)\b", re.I),
-    ISRAELI_COLOR: re.compile(r'\b((Bibi|ehbarak|Netanyahu|Israeli?)s?)\b', re.I),
-    RUSSIA_COLOR: re.compile(r"\b((Moscow|Putin|Lavrov|Russian?)s?)\b", re.I),
-    'dark_cyan': re.compile(r"\b((Steve\s+)?Wynns?)\b", re.I),
+HIGHLIGHT_PATTERNS: dict[str, str] = {
+    ARAB_COLOR: r"Abu Dhabi|Dubai|Emir(ates)?|Erdogan|HBJ|Iran(ian)?|Islam(ic|ist)?|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Muslim|Sharia|Syria|Turkey|UAE|((Iraq|Iran|Kuwait|Qatar|Saud|Yemen)i?)",
+    BITCOIN_COLOR: r"bitcoin|coins|cr[iy]pto(currency)?|e-currency|(Howard\s+)?Lutnick|Tether",
+    BRASIL_COLOR: r"Bra[sz]il(ian)?|Bolsonar[aio]|Lula",
+    CHINA_COLOR: r"CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|PRC|xi",
+    INDIA_COLOR: r"Ambani|Indian?|Modi|mumbai",
+    ISRAELI_COLOR: r"Bibi|ehbarak|Netanyahu|Israeli?",
+    RUSSIA_COLOR: r"Moscow|Putin|Lavrov|Russian?",
+    'dark_cyan': r"(Steve\s+)?Wynn",
 }
+
+# Wrap in \b, add optional s? at end of all regex patterns
+HIGHLIGHT_REGEXES: dict[str, re.Pattern] = {k: re.compile(fr"\b(({v})s?)\b", re.I) for k, v in HIGHLIGHT_PATTERNS.items()}
 
 
 def make_link_markup(url: str, link_text: str, style: str = ARCHIVE_LINK_COLOR) -> str:
