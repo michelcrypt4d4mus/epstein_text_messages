@@ -155,7 +155,7 @@ OTHER_STYLES = {
     PHONE_NUMBER: 'bright_green',
     TEXT_LINK: 'deep_sky_blue4 underline',
     TIMESTAMP: 'gray30',
-    HEADER_STYLE: 'dim cyan',
+    HEADER_STYLE: 'plum4',
     highlighter_style_name('email'): 'bright_cyan',
 }
 
