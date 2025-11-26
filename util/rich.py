@@ -26,6 +26,7 @@ ARCHIVE_LINK_COLOR = 'blue3'
 BITCOIN_COLOR = 'orange1 bold'
 BRASIL_COLOR = 'chartreuse2'
 CHINA_COLOR = 'bright_red'
+DEMS_COLOR = 'sky_blue1'
 INDIA_COLOR = 'green'
 ISRAELI_COLOR = 'dodger_blue2'
 JAVANKA_COLOR = 'medium_violet_red'
@@ -135,6 +136,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     BITCOIN_COLOR: r"bitcoin|block ?chain( capital)?|coins|cr[iy]pto(currency)?|e-currency|(Howard\s+)?Lutnick|Libra|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)",
     BRASIL_COLOR: r"Bra[sz]il(ian)?|Bolsonar[aio]|Lula",
     CHINA_COLOR: r"CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|PRC|xi",
+    DEMS_COLOR: r"Maxine Waters|(Nancy )?Pelosi|Clinton|Hillary",
     INDIA_COLOR: r"Ambani|Indian?|Modi|mumbai",
     ISRAELI_COLOR: r"Bibi|ehbarak|Netanyahu|Israeli?",
     RUSSIA_COLOR: r"Moscow|Putin|Lavrov|Russian?",
@@ -206,7 +208,6 @@ console.record = True
 # This is after the Theme() instantiation because 'bg' is reserved'
 COUNTERPARTY_COLORS.update({
     'Biden': OBAMA_COLOR,
-    'Clinton': 'sky_blue1',
     'Harvard': 'red',
     'Ivanka': JAVANKA_COLOR,
     'Joichi Ito': COUNTERPARTY_COLORS[JOI_ITO],
