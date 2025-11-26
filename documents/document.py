@@ -4,6 +4,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import ClassVar
 
+from dateutil.parser import parse
 from rich.markup import escape
 from rich.text import Text
 
@@ -15,6 +16,7 @@ from util.strings import *
 
 MULTINEWLINE_REGEX = re.compile(r"\n{3,}")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
+FALLBACK_TIMESTAMP = parse("1/1/2001 12:01:01 AM")
 PREVIEW_CHARS = 520
 GMAX_EMAIL = 'gmax1@ellmax.com'
 JEEVACATION_GMAIL = 'jeevacation@gmail.com'
