@@ -19,6 +19,7 @@ JEEVACATION_GMAIL = 'jeevacation@gmail.com'
 MIN_DOCUMENT_ID = 10477
 
 OCR_REPAIRS = {
+    re.compile(r'\.corn\b'): '.com',
     'Follow me on twitter glhsummers': 'Follow me on twitter @lhsummers',
     'lndyke': 'Indyke',
     'Nil Priell': 'Nili Priell',
@@ -27,6 +28,7 @@ OCR_REPAIRS = {
     re.compile(r'Steve Bannor]?', re.I): STEVE_BANNON,
     re.compile(r'gmax ?[1l] ?[@g]ellmax.c ?om'): GMAX_EMAIL,
     re.compile(r"[jl']ee[vy]acation[©@a(&,]{1,3}gmail.com"): JEEVACATION_GMAIL,
+    re.compile(r"twitter\.com[i/][lI]krauss[1l]"): "twitter.com/lkrauss1",
 }
 
 
@@ -69,6 +71,10 @@ class Document:
                          f"File: '{self.filename}'\n")
 
             return Text(escape(self.preview_text()))
+
+    def lines_matching(self, _pattern: re.Pattern | str) -> list[str]:
+        pattern = _pattern if isinstance(_pattern, re.Pattern) else re.compile(rf"{_pattern}")
+        return [line for line in self.lines if pattern.search(line)]
 
     def log_top_lines(self, n: int = 10, msg: str | None = None) -> None:
         msg = f"{msg + '. ' if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"

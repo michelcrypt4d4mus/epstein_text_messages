@@ -16,6 +16,7 @@ from documents.email import DETECT_EMAIL_REGEX, Email
 from documents.email_header import AUTHOR
 from documents.messenger_log import MSG_REGEX, MessengerLog
 from util.constants import *
+from util.data import flatten
 from util.env import is_debug
 from util.file_helper import DOCS_DIR, move_json_file
 from util.rich import COUNTERPARTY_COLORS, console, highlight_text, logger, print_panel
@@ -82,6 +83,9 @@ class EpsteinFiles:
                 logger.info('Unknown file type...')
                 self.other_files.append(document)
                 document.log_top_lines()
+
+    def all_documents(self) -> list[Document]:
+        return self.iMessage_logs + self.emails + self.other_files
 
     def emails_for(self, author: str | None) -> list[Email]:
         """Returns emails to or from a given 'author' sorted chronologically."""
@@ -172,6 +176,10 @@ class EpsteinFiles:
         table.add_row('Emails', f"{len(self.emails)}", str(len([e for e in self.emails if e.author and e.author != UNKNOWN])))
         table.add_row('Other', f"{len(self.other_files)}", 'n/a')
         console.print('\n', Align.center(table), '\n\n')
+
+    def lines_matching(self, _pattern: re.Pattern | str) -> list[str]:
+        pattern = _pattern if isinstance(_pattern, re.Pattern) else re.compile(rf"{_pattern}")
+        return flatten([doc.lines_matching(pattern) for doc in self.all_documents()])
 
     def sorted_imessage_logs(self) -> list[MessengerLog]:
         return sorted(self.iMessage_logs, key=lambda f: f.timestamp)
