@@ -8,7 +8,7 @@ HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
 if not DOCS_DIR_ENV:
     raise EnvironmentError(f"EPSTEIN_DOCS_DIR env var not set!")
 
-DOCS_DIR = Path(DOCS_DIR_ENV)
+DOCS_DIR = Path(DOCS_DIR_ENV).resolve()
 JSON_FILES_SUBDIR = 'json_files'
 JSON_DIR = DOCS_DIR.joinpath(JSON_FILES_SUBDIR)
 FILE_ID_REGEX = re.compile(rf'.*{HOUSE_OVERSIGHT_PREFIX}(\d+)(\.txt)?')
