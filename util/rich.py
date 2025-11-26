@@ -10,6 +10,7 @@ from rich.logging import RichHandler
 from rich.markup import escape
 from rich.panel import Panel
 from rich.table import Table
+from rich.terminal_theme import TerminalTheme
 from rich.text import Text
 from rich.theme import Theme
 
@@ -28,7 +29,7 @@ CHINA_COLOR = 'bright_red'
 ISRAELI_COLOR = 'dodger_blue2'
 JOURNALIST_COLOR = 'grey54'
 PHONE_NUMBER = 'phone_number'
-RUSSIA_COLOR = 'dark_red dim'
+RUSSIA_COLOR = 'dark_red'
 TEXT_LINK = 'text_link'
 TIMESTAMP = 'timestamp'
 
@@ -53,6 +54,32 @@ CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 </body>
 </html>
 """
+
+# Swap black for white
+HTML_TERMINAL_THEME = TerminalTheme(
+    (0, 0, 0),
+    (255, 255, 255),
+    [
+        (0, 0, 0),
+        (128, 0, 0),
+        (0, 128, 0),
+        (128, 128, 0),
+        (0, 0, 128),
+        (128, 0, 128),
+        (0, 128, 128),
+        (192, 192, 192),
+    ],
+    [
+        (128, 128, 128),
+        (255, 0, 0),
+        (0, 255, 0),
+        (255, 255, 0),
+        (0, 0, 255),
+        (255, 0, 255),
+        (0, 255, 255),
+        (255, 255, 255),
+    ],
+)
 
 NAMES_TO_NOT_COLOR = [name.lower() for name in [
     'Black',
@@ -86,7 +113,7 @@ COUNTERPARTY_COLORS = {
     'Celina Dubin': 'medium_orchid1',
     DEFAULT: 'wheat4',
     DONALD_TRUMP: 'red3 bold',
-    JEFFREY_EPSTEIN: 'blue',
+    JEFFREY_EPSTEIN: 'blue1',
     EVA: 'orchid',
     'jeffrey wernick': BITCOIN_COLOR,
     LARRY_SUMMERS: 'spring_green4',
@@ -114,7 +141,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     DANIEL_SIAD: 'dark_khaki',
     JEAN_LUC_BRUNEL: 'wheat4',
     EHUD_BARAK: ISRAELI_COLOR,
-    MARTIN_NOWAK: 'navy_blue',
+    MARTIN_NOWAK: 'dark_turquoise',
     'Masha Drokova': 'deep_pink2',
     'Peter Thiel': 'orange4',
     STEVE_BANNON: COUNTERPARTY_COLORS[STEVE_BANNON],
@@ -269,7 +296,7 @@ def print_header():
     console.print(Panel(Text("Epstein Estate Documents - Seventh Production Collection Reformatted Text Messages", justify='center', style='bold reverse')))
     console.line()
     console.print(Align.center(f"[bold][link={SUBSTACK_URL}]I Made Epstein's Text Messages Great Again (And You Should Read Them)[/link][/bold]"))
-    console.print(Align.center(f"[blue][underline][link={SUBSTACK_URL}]{SUBSTACK_URL.removeprefix('https://')}[/link][/underline][/blue]"))
+    console.print(Align.center(f"[dodger_blue3][underline][link={SUBSTACK_URL}]{SUBSTACK_URL.removeprefix('https://')}[/link][/underline][/dodger_blue3]"))
     console.print(Align.center("[link=https://cryptadamus.substack.com/]Substack[/link]"))
     console.print(Align.center("[link=https://universeodon.com/@cryptadamist]Mastodon[/link]"))
     console.print(Align.center("[link=https://x.com/Cryptadamist/status/1990866804630036988]Twitter[/link]"))
@@ -293,7 +320,6 @@ def print_header():
     console.print(Align.center("Conversations are sorted chronologically based on timestamp of first message."), style='bold dark_green')
     console.print(Align.center(f"If you think there's an attribution error or can deanonymize an {UNKNOWN} contact @cryptadamist."), style='dim')
     console.print(Align.center("[link=https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/util/constants.py]Explanation of attributions[/link]"), style='magenta')
-    console.line(2)
 
 
 def print_email_table(counts: dict[str, int], column_title: str) -> None:
