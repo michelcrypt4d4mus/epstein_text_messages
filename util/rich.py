@@ -212,6 +212,7 @@ HIGHLIGHT_REGEXES = {
     re.compile(r'\b(bitcoin|coins|cr[iy]pto(currency)?|e-currency|(Howard\s+)?Lutnick|Tether)\b', re.I): BITCOIN_COLOR,
     re.compile(r'\b(Bibi|ehbarak|Netanyahu|Israeli?)\b', re.I): ISRAELI_COLOR,
     re.compile(r'\b(Bra[sz]il(ian)?|Bolsonar[aio]|Lula)\b', re.I): 'chartreuse2',
+    re.compile(r"\b((Steve\s+)?Wynn)\b", re.I): 'dark_cyan',
 }
 
 
