@@ -56,6 +56,7 @@ OCR_REPAIRS = {
     "Sent from my 'Phone": 'Sent from my iPhone',
     'Sent from Samsung Mob.le': 'Sent from Samsung Mobile',
     'Sent from Mabfl': 'Sent from Mobile',
+    'MOMMINNEMUMMIN': REDACTED,
 }
 
 # These are long forwarded articles we don't want to display over and over

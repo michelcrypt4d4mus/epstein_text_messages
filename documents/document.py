@@ -29,7 +29,7 @@ OCR_REPAIRS = {
     re.compile(r'Sean Bannor?', re.I): SEAN_BANNON,
     re.compile(r'Steve Bannor]?', re.I): STEVE_BANNON,
     re.compile(r'gmax ?[1l] ?[@g]ellmax.c ?om'): GMAX_EMAIL,
-    re.compile(r"[jl']ee[vy]acation[©@a(&,]{1,3}gmail.com"): JEEVACATION_GMAIL,
+    re.compile(r"[ijl']ee[vy]acation[©@a(&, ]{1,3}gmail.com"): JEEVACATION_GMAIL,
     re.compile(r"twitter\.com[i/][lI]krauss[1l]"): "twitter.com/lkrauss1",
 }
 
