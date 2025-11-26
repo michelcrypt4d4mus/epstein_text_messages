@@ -25,7 +25,9 @@ ARAB_COLOR = 'dark_green'
 ARCHIVE_LINK = 'archive_link'
 ARCHIVE_LINK_COLOR = 'blue3'
 BITCOIN_COLOR = 'orange1 bold'
+BRASIL_COLOR = 'chartreuse2'
 CHINA_COLOR = 'bright_red'
+INDIA_COLOR = 'green'
 ISRAELI_COLOR = 'dodger_blue2'
 JOURNALIST_COLOR = 'grey54'
 PHONE_NUMBER = 'phone_number'
@@ -108,7 +110,7 @@ NAMES_TO_NOT_COLOR = [name.lower() for name in [
 
 # Color different counterparties differently
 COUNTERPARTY_COLORS = {
-    ANIL: 'dark_green',
+    ANIL: INDIA_COLOR,
     ARIANE_DE_ROTHSCHILD: 'indian_red',
     'Celina Dubin': 'medium_orchid1',
     DEFAULT: 'wheat4',
@@ -224,14 +226,15 @@ COUNTERPARTY_COLORS.update({
     'Victor Orban': 'purple4',
 })
 
-HIGHLIGHT_REGEXES = {
-    re.compile(r'\b(Abu Dhabi|Dubai|Emir(ates)?|Erdogan|HBJ|Iran(ian)?|Iraq|Islam(ic|ist)?|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Muslim|Sharia|Syria|Turkey|UAE|((Kuwait|Qatar|Saud|Yemen)i?))s?\b', re.I): ARAB_COLOR,
-    re.compile(r'\b(bitcoin|coins|cr[iy]pto(currency)?|e-currency|(Howard\s+)?Lutnick|Tether)\b', re.I): BITCOIN_COLOR,
-    re.compile(r'\b(Bibi|ehbarak|Netanyahu|Israeli?)\b', re.I): ISRAELI_COLOR,
-    re.compile(r'\b(Bra[sz]il(ian)?|Bolsonar[aio]|Lula)\b', re.I): 'chartreuse2',
-    re.compile(r"\b((Steve\s+)?Wynn)\b", re.I): 'dark_cyan',
-    re.compile(r"\b(Moscow|Putin|Lavrov|Russian?)\b", re.I): RUSSIA_COLOR,
-    re.compile(r"\b(CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|PRC|xi)\b"): CHINA_COLOR,
+HIGHLIGHT_REGEXES: dict[str, re.Pattern] = {
+    ARAB_COLOR: re.compile(r'\b((Abu Dhabi|Dubai|Emir(ates)?|Erdogan|HBJ|Iran(ian)?|Iraq|Islam(ic|ist)?|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Muslim|Sharia|Syria|Turkey|UAE|((Kuwait|Qatar|Saud|Yemen)i?))s?)\b', re.I),
+    BITCOIN_COLOR: re.compile(r'\b((bitcoin|coins|cr[iy]pto(currency)?|e-currency|(Howard\s+)?Lutnick|Tether)s?)\b', re.I),
+    BRASIL_COLOR: re.compile(r'\b((Bra[sz]il(ian)?|Bolsonar[aio]|Lula)s?)\b', re.I),
+    CHINA_COLOR: re.compile(r"\b((CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|PRC|xi)s?)\b", re.I),
+    INDIA_COLOR: re.compile(r"\b((Ambani|Indian?|Modi|mumbai)s?)\b", re.I),
+    ISRAELI_COLOR: re.compile(r'\b((Bibi|ehbarak|Netanyahu|Israeli?)s?)\b', re.I),
+    RUSSIA_COLOR: re.compile(r"\b((Moscow|Putin|Lavrov|Russian?)s?)\b", re.I),
+    'dark_cyan': re.compile(r"\b((Steve\s+)?Wynns?)\b", re.I),
 }
 
 
@@ -252,7 +255,7 @@ def coffeezilla_link(search_term: str, link_txt: str, style: str = ARCHIVE_LINK_
 
 
 def highlight_names(text: str) -> str:
-    for name_regex, style in HIGHLIGHT_REGEXES.items():
+    for style, name_regex in HIGHLIGHT_REGEXES.items():
         text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
 
     for name, style in COUNTERPARTY_COLORS.items():
