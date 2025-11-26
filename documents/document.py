@@ -24,6 +24,7 @@ OCR_REPAIRS = {
     re.compile(r'Steve Bannor]?', re.I): STEVE_BANNON,
     re.compile(r'gmax ?[1l] ?[@g]ellmax.c ?om'): GMAX_EMAIL,
     re.compile(r"[jl']ee[vy]acation[©@a(&,]{1,3}gmail.com"): JEEVACATION_GMAIL,
+    re.compile(r"\.corn"): '.com',
 }
 
 
