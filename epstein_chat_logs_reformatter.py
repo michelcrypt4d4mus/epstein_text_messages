@@ -20,22 +20,24 @@ from documents.messenger_log import sender_counts
 from util.env import is_build, is_debug, skip_texts
 from util.file_helper import OUTPUT_GH_PAGES_HTML
 from util.rich import *
+from util.html import *
 
 
 print_header()
 epstein_files = EpsteinFiles()
 epstein_files.print_summary()
-print_section_header('Text Messages')
 
 
 # Text messages section
+print_section_header('Text Messages')
+
 if not skip_texts:
-    for log_file in epstein_files.sorted_imessage_logs():
+    for log_file in epstein_files.imessage_logs:
         console.print(log_file)
         console.line(2)
 
 counts_table = Table(title="Text Message Counts By Author", show_header=True, header_style="bold")
-counts_table.add_column("Sender", style="steel_blue bold", justify="left", width=30)
+counts_table.add_column(AUTHOR.title(), style="steel_blue bold", justify="left", width=30)
 counts_table.add_column("Message Count", justify="center")
 
 for k, v in sorted(sender_counts.items(), key=lambda item: item[1], reverse=True):
@@ -43,9 +45,9 @@ for k, v in sorted(sender_counts.items(), key=lambda item: item[1], reverse=True
 
 console.print(counts_table)
 text_summary_msg = f"\nDeanonymized {epstein_files.identified_imessage_log_count()} of "
-text_summary_msg += f"{len(epstein_files.iMessage_logs)} text msg logs found in {len(epstein_files.all_files)} files."
+text_summary_msg += f"{len(epstein_files.imessage_logs)} text msg logs found in {len(epstein_files.all_files)} files."
 console.print(text_summary_msg)
-console.print(f"Found {epstein_files.imessage_msg_count()} total text messages in {len(epstein_files.iMessage_logs)} conversations.")
+console.print(f"Found {epstein_files.imessage_msg_count()} total text messages in {len(epstein_files.imessage_logs)} conversations.")
 console.print(f"(Last deploy found 4668 messages in 77 conversations)\n\n\n", style='dim')
 
 
@@ -92,6 +94,5 @@ epstein_files.print_other_files_table()
 if is_build:
     console.save_html(OUTPUT_GH_PAGES_HTML, code_format=CONSOLE_HTML_FORMAT, inline_styles=False, theme=HTML_TERMINAL_THEME)
     console.print(f"\nWrote HTML to '{OUTPUT_GH_PAGES_HTML}', not computing signatures.")
-    exit()
 else:
-    console.print(f"\nNot writing HTML, BUILD_HTML not set.")
+    console.print(f"\nNot writing HTML because 'BUILD_HTML' env var not set.")
