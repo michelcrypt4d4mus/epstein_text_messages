@@ -23,6 +23,7 @@ UNKNOWN = '(unknown)'
 # TODO: no trailing periods!
 AL_SECKEL = 'Al Seckel'
 ALIREZA_ITTIHADIEH = 'Alireza Ittihadieh'
+ANTHONY_BARRETT = 'Anthony Barrett'
 ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
 ANAS_ALRASHEED = 'Anas Alrasheed'
 AZIZA_ALAHMADI = 'Aziza Alahmadi'
@@ -284,10 +285,11 @@ EMAILERS = [
     'Lesley Groff',
     LINDA_STONE,
     'Lyn Fontanilla',
-    'middle.east.update@hotmail.com',
+    'Mark Tramo',
     MELANIE_WALKER,
     'Merwin Dela Cruz',
     'Michael Simmons',   # Not the only "To:"
+    'middle.east.update@hotmail.com',
     'Multiple Senders',  # Weird files like HOUSE_OVERSIGHT_032210
     'Nancy Cain',
     'Nancy Portland',
@@ -313,6 +315,7 @@ for emailer in EMAILERS:
 KNOWN_EMAIL_AUTHORS = {
     '032436': ALIREZA_ITTIHADIEH,    # Signature
     '032543': ANAS_ALRASHEED,        # Later reply 033000 has quote
+    '027063': ANTHONY_BARRETT,
     '026064': ARIANE_DE_ROTHSCHILD,
     '026069': ARIANE_DE_ROTHSCHILD,
     '030741': ARIANE_DE_ROTHSCHILD,
