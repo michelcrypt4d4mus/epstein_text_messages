@@ -191,7 +191,7 @@ class EpsteinFiles:
 
     @staticmethod
     def sort_emails(emails: list[Email]) -> list[Email]:
-        return sorted(emails, key=lambda e: (e.sort_time()))
+        return sorted(emails, key=lambda e: e.sort_time())
 
 
 def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Padding:
