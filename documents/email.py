@@ -65,7 +65,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'MOMMINNEMUMMIN': REDACTED,
     'Torn Pritzker': 'Tom Pritzker',
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
-    re.compile(r"[41<>.=_I]{7,}"): REDACTED,
+    re.compile(r"[41<>.=_IM]{7,}"): REDACTED,
     re.compile(r"([,<>_]|AM|PM)\nwrote:?"): r'\1 wrote:',
 }
 
