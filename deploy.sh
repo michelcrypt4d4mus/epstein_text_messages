@@ -8,6 +8,8 @@ if any_uncommitted_changes; then
     exit
 fi
 
+git push origin master
+
 if [ -f "$INDEX_HTML_PATH" ]; then
     echo "Removing '$INDEX_HTML_PATH' on master..."
     rm "$INDEX_HTML_PATH"
