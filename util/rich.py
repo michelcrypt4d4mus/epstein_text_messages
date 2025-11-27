@@ -148,7 +148,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {
     GHISLAINE_MAXWELL: 'deep_pink3',
     LEON_BLACK: 'dark_cyan',
-    LANDON_THOMAS: 'misty_rose3',  # FT journo
+    LANDON_THOMAS.removesuffix('.'): 'misty_rose3',  # FT journo
     SULTAN_BIN_SULAYEM: 'green1',
     # Epstein's lawyers
     DARREN_INDYKE: 'purple3',
@@ -197,7 +197,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
 # Wrap in \b, add optional s? at end of all regex patterns
 HIGHLIGHT_REGEXES: dict[str, re.Pattern] = {
     # [\b\n] or no trailing \b is required for cases when last char in match is not a word char (e.g. when it's '.')
-    k: re.compile(fr"\b(({v})s?)", re.I) if k != HEADER_STYLE else re.compile(v, re.MULTILINE)
+    k: re.compile(fr"\b(({v})s?)\b", re.I) if k != HEADER_STYLE else re.compile(v, re.MULTILINE)
     for k, v in HIGHLIGHT_PATTERNS.items()
 }
 
