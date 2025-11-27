@@ -12,7 +12,7 @@ JOI_ITO = 'Joi Ito'
 LARRY_SUMMERS = 'Larry Summers'
 MELANIE_WALKER = 'Melanie Walker'
 MIROSLAV = 'Miroslav Lajčák'
-PLASKETT = 'Stacey Plaskett'
+STACY_PLASKETT = 'Stacey Plaskett'
 SCARAMUCCI = 'The Mooch'
 SOON_YI = 'Soon-Yi Previn'
 STEVE_BANNON = 'Steve Bannon'
@@ -124,7 +124,7 @@ KNOWN_IMESSAGE_FILE_IDS = {
     '027650': JOI_ITO,         # Participants: field
     '027515': MIROSLAV,        # https://x.com/ImDrinknWyn/status/1990210266114789713
     '027165': MELANIE_WALKER,  # https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/
-    '025429': PLASKETT,
+    '025429': STACY_PLASKETT,
     '027333': SCARAMUCCI,      # unredacted phone number
     '027128': SOON_YI,         # https://x.com/ImDrinknWyn/status/1990227281101434923
     '027217': SOON_YI,         # refs marriage to woody allen
@@ -239,6 +239,7 @@ EMAILER_REGEXES = {
     STEVE_BANNON: re.compile(r'steve banno[nr]?', re.IGNORECASE),
     'Steven Sinofsky': re.compile(r'Steven Sinofsk', re.IGNORECASE),
     SULTAN_BIN_SULAYEM: re.compile(r'Sultan (Ahmed )?bin Sulaye?m?', re.IGNORECASE),
+    TERJE: re.compile(r"Terje R[øo]e?d[- ]Larsen", re.IGNORECASE),
     TERRY_KAFKA: re.compile(r'Terry Kafk', re.IGNORECASE),
     THORBJORN_JAGLAND: re.compile(r'Thor.*Jag[il]and?', re.IGNORECASE),
     TONJA_HADDAD_COLEMAN: re.compile(fr"To(nj|rl)a Haddad Coleman|haddadfm@aol.com", re.IGNORECASE)
