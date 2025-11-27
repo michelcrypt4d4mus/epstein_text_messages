@@ -120,6 +120,7 @@ TRUNCATE_TERMS = [
     'We can also discuss single stock and Topix banks',
     'We are recording unprecedented divergences in falling equity vol',
     'As previously discussed between you and Ariane',
+    'The US trade war against China: The view from Beijing',
 ]
 
 # No point in ever displaying these
