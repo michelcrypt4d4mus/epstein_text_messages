@@ -438,6 +438,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '022187': JEFFREY_EPSTEIN,        # Bad OCR
     '028849': JEFFREY_EPSTEIN,        # Conversation
     '026547': JEFFREY_EPSTEIN,        # Bad OCR
+    '029498': [JEFFREY_EPSTEIN, 'Gordon Getty', 'David Haig', 'Norman Finkelstein'],  # Bad OCR
     '029282': [JOI_ITO, REID_HOFFMAN],# Bad OCR
     '033456': 'Joel',                 # Reply
     '033460': 'Joel',                 # Reply

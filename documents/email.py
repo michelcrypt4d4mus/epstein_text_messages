@@ -123,9 +123,16 @@ class Email(CommunicationDocument):
         logger.debug(f"Found recipients: {self.recipients}")
         self.recipients = list(set([r for r in self.recipients if r != self.author]))  # Remove self CCs
         self.recipients_lower = [r.lower() if r else None for r in self.recipients]
-        recipient = UNKNOWN if len(self.recipients) == 0 else (self.recipients[0] or UNKNOWN)
-        # TODO: add other recipients to recipient_txt
-        self.recipient_txt = Text(recipient, COUNTERPARTY_COLORS.get(recipient, DEFAULT))
+        recipients = self.recipients if len(self.recipients) > 0 else [UNKNOWN]
+        self.recipient_txt = Text('')
+
+        for i, recipient in enumerate(recipients):
+            if i > 0:
+                self.recipient_txt.append(', ')
+
+            recipient = recipient or UNKNOWN
+            self.recipient_txt.append(recipient, style=COUNTERPARTY_COLORS.get(recipient, DEFAULT))
+
         self.timestamp = self._extract_sent_at()
         self.author_lowercase = self.author.lower() if self.author else None
         self.author_style = COUNTERPARTY_COLORS.get(self.author or UNKNOWN, DEFAULT)
@@ -295,7 +302,7 @@ class Email(CommunicationDocument):
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield Panel(self.archive_link, expand=False)
-        info_line = Text("Official OCR text of email from ", style='grey46').append(self.author_txt).append(f' to ')
+        info_line = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(f' to ')
         info_line.append(self.recipient_txt).append(f" probably sent at ")
         info_line.append(f"{self.timestamp or '?'}", style='spring_green3')
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
