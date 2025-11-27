@@ -139,7 +139,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     MOHAMED_WAHEED_HASSAN: ARAB_COLOR,
     PAULA: 'pink1',
     REID_HOFFMAN: TECH_BRO_COLOR,
-    ALIREZA_ITTIHADIEH: ARAB_COLOR,
+    # ALIREZA_ITTIHADIEH: ARAB_COLOR,
     # Temporary
     # 'Reid Weingarten': 'magenta',
     # 'Kathy Ruemmler': 'magenta',
