@@ -119,7 +119,7 @@ class EpsteinFiles:
 
         if len(emails) > 0:
             txt = Text(f"Found {len(emails)} emails to/from {author}", justify='center')
-            panel = Panel(txt, width=80, style=f"bright_white on {COUNTERPARTY_COLORS.get(author, 'default')} bold")
+            panel = Panel(txt, width=80, style=f"black on {COUNTERPARTY_COLORS.get(author, 'default')} bold")
             console.print('\n', Align.center(panel), '\n')
         else:
             logger.warning(f"No emails found for {author}")
@@ -138,7 +138,7 @@ class EpsteinFiles:
         table = Table(title=f"Emails to/from {author}", show_header=True, header_style="bold")
         table.add_column("From", justify="left")
         table.add_column("Date", justify="center")
-        table.add_column("Subject", justify="left", style='pale_turquoise4')
+        table.add_column("Subject", justify="left", style='honeydew2')
 
         for email in self.emails_for(author):
             table.add_row(
