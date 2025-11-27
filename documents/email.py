@@ -156,6 +156,12 @@ TRUNCATE_TERMS = [
     'The Department of Justice lost its latest battle with Congress',
     # Diane Ziman
     'I was so proud to see him speak at the Women',
+    # Krauss
+    'On confronting dogma, I of course agree',
+    'I did neck with that woman, but never forced myself on her',
+    'It is hard to know how to respond to a list of false',
+    'The Women in the World Summit opens April 12',
+    'lecture in Heidelberg Oct 14 but they had to cancel',
 ]
 
 # No point in ever displaying these
