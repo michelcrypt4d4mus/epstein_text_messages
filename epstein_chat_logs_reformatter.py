@@ -17,7 +17,7 @@ from rich.text import Text
 from documents.email_header import AUTHOR
 from documents.epstein_files import EpsteinFiles
 from documents.messenger_log import sender_counts
-from util.env import additional_emails, is_build, is_debug, skip_texts
+from util.env import is_build, is_debug, skip_texts
 from util.file_helper import OUTPUT_GH_PAGES_HTML
 from util.rich import *
 from util.html import *

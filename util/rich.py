@@ -17,7 +17,7 @@ from rich.theme import Theme
 
 from .constants import *
 from .data import flatten
-from .env import additional_emails, deep_debug, logger
+from .env import additional_emailers, deep_debug, logger
 from .strings import regex_escape_periods
 
 LEADING_WHITESPACE_REGEX = re.compile(r'\A\s*', re.MULTILINE)
@@ -145,10 +145,6 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     # 'Kathy Ruemmler': 'magenta',
 }
 
-if len(additional_emails.keys()) > 0:
-    logger.info(f"Added additional emails: {[e for e in additional_emails.keys()]}")
-    PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED.update(additional_emails)
-
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {
     GHISLAINE_MAXWELL: 'deep_pink3',
     LEON_BLACK: 'dark_cyan',
@@ -203,6 +199,10 @@ HIGHLIGHT_REGEXES: dict[str, re.Pattern] = {
     k: re.compile(fr"\b(({v})s?)\b", re.I) if k != HEADER_STYLE else re.compile(v, re.MULTILINE)
     for k, v in HIGHLIGHT_PATTERNS.items()
 }
+
+if len(additional_emailers) > 0:
+    logger.info(f"Added additional emails: {[e for e in additional_emailers]}")
+    PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED.update({k: COUNTERPARTY_COLORS.get(k, DEFAULT) for k in additional_emailers})
 
 
 # Instantiate Console object
