@@ -26,6 +26,13 @@ NON_ALPHA_CHARS_REGEX = re.compile(r'[^a-zA-Z0-9 ]')
 MAX_PREVIEW_CHARS = 300
 OUTPUT_WIDTH = 120
 HEADER_FIELD = 'header_field'
+HEADER_STYLE = 'header_field'
+PHONE_NUMBER = 'phone_number'
+TEXT_LINK = 'text_link'
+TIMESTAMP = 'timestamp'
+SECTION_HEADER_STYLE = 'bold white on blue3'
+
+highlighter_style_name = lambda style_name: f"{HEADER_FIELD}.{style_name}"
 
 ARAB_COLOR = 'dark_green'
 ARCHIVE_LINK = 'archive_link'
@@ -43,16 +50,10 @@ ISRAELI_COLOR = 'dodger_blue2'
 JAVANKA_COLOR = 'medium_violet_red'
 JOURNALIST_COLOR = 'grey54'
 OBAMA_COLOR = 'yellow'
-PHONE_NUMBER = 'phone_number'
 RICH_GUY_COLOR = 'dark_cyan'
 RUSSIA_COLOR = 'red'
-TEXT_LINK = 'text_link'
-TIMESTAMP = 'timestamp'
+TECH_BRO_COLOR = 'orange4'
 TRUMP_COLOR = 'red3 bold'
-SECTION_HEADER_STYLE = 'bold white on blue3'
-
-highlighter_style_name = lambda style_name: f"{HEADER_FIELD}.{style_name}"
-HEADER_STYLE = 'header_field'
 
 BASE_NAMES_TO_NOT_COLOR: list[str] = [name.lower() for name in [
     'Black',
@@ -74,6 +75,7 @@ BASE_NAMES_TO_NOT_COLOR: list[str] = [name.lower() for name in [
     'Paul',
     'Pen',
     'Peter',
+    'Reid',
     'Richard',
     'Robert',
     'Roger',
@@ -130,11 +132,12 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     EHUD_BARAK: ISRAELI_COLOR,
     MARTIN_NOWAK: 'dark_turquoise',
     'Masha Drokova': RUSSIA_COLOR,
-    'Peter Thiel': 'orange4',
+    'Peter Thiel': TECH_BRO_COLOR,
     STEVE_BANNON: COUNTERPARTY_COLORS[STEVE_BANNON],
     DAVID_STERN: 'medium_purple3',
     MOHAMED_WAHEED_HASSAN: ARAB_COLOR,
     PAULA: 'pink1',
+    'Reid Hoffman': TECH_BRO_COLOR,
     # Temporary
     # 'Reid Weingarten': 'magenta',
     # 'Kathy Ruemmler': 'magenta',
