@@ -65,7 +65,7 @@ for i, author in enumerate(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED):
     style = COUNTERPARTY_COLORS.get(author or UNKNOWN, DEFAULT)
     console.print(Text(f"   {i}. ", style='bold').append(author or UNKNOWN, style=style))
 
-console.print("\n\nAfter that there's tables linking to (but not displaying) all known emails for each of these folks:\n")
+console.print("\n\nAfter that there's tables linking to (but not displaying) all known emails for each of these people:\n")
 
 for i, author in enumerate(PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES):
     style = COUNTERPARTY_COLORS.get(author or UNKNOWN, DEFAULT)
