@@ -105,6 +105,13 @@ TRUNCATE_TERMS = [
     'This much we know - the Fall elections are shaping up',
     "Bannon the European: He's opening the populist fort in Brussels",
     "Special counsel Robert Mueller's investigation may face a serious legal obstacle",
+    "nearly leak-proof since its inception more than a year ago",
+    "I appreciate the opportunity to respond to your email",
+    "Hello Peter. I am currently on a plane. I sent you earlier",
+    "I appreciate the opportunity to respond to your email",
+    'I just wanted to follow up on a couple of notes. I have been coordinating with Richard Kahn',
+    'So, Peggy, if you could just let me know what info to include on the donation',
+    'Consult a lawyer beforehand, if possible, but be cooperative/nice at this stage',
 ]
 
 # No point in ever displaying these
@@ -114,6 +121,7 @@ USELESS_EMAILERS = [
     'editorialstaff@flipboard.com',
     'How To Academy',
     'Jokeland',
+    'Saved by Internet Explorer 11',
 ]
 
 SUPPRESS_OUTPUT_FOR_IDS = {

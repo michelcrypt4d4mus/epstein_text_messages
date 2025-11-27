@@ -269,6 +269,7 @@ EMAILERS = [
     DEEPAK_CHOPRA,
     'Glenn Dubin',
     'Gordon Getty',
+    'Jack Lang',
     'Jessica Cadwell',
     JOHN_PAGE,
     'Jokeland',
