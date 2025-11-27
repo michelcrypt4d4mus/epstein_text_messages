@@ -78,6 +78,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
 
 TRUNCATE_ALL_EMAILS_FROM = [
     'middle.east.update@hotmail.com',
+    'Mitchell Bard',
     'us.gio@jpmorgan.com',
 ]
 
@@ -148,6 +149,8 @@ TRUNCATE_TERMS = [
     'General Election: Trump vs. Clinton LA Times/USC Tracking',
     'Location: Quicken Loans Arena in Cleveland, OH',
     'A friendly discussion about Syria with a former US State Department',
+    # Tom / Paul Krassner
+    'I forgot to post my cartoon from week before last, about Howard Schultz',
 ]
 
 # No point in ever displaying these

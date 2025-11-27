@@ -319,7 +319,6 @@ for emailer in EMAILERS:
 KNOWN_EMAIL_AUTHORS = {
     '032436': ALIREZA_ITTIHADIEH,    # Signature
     '032543': ANAS_ALRASHEED,        # Later reply 033000 has quote
-    '027063': ANTHONY_BARRETT,
     '026064': ARIANE_DE_ROTHSCHILD,
     '026069': ARIANE_DE_ROTHSCHILD,
     '030741': ARIANE_DE_ROTHSCHILD,
@@ -443,6 +442,7 @@ KNOWN_EMAIL_AUTHORS = {
 KNOWN_EMAIL_RECIPIENTS = {
     '021106': 'Alexandra Preate',     # Reply
     '026620': ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov ', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', MARK_EPSTEIN, JEFFREY_EPSTEIN, MICHAEL_BUCHHOLTZ, 'Michael Horowitz', 'Marshall Funk'],
+    '027063': ANTHONY_BARRETT,
     '030764': ARIANE_DE_ROTHSCHILD,   # Reply
     '026431': ARIANE_DE_ROTHSCHILD,   # Reply
     '031996': CHRISTINA_GALBRAITH,    # bounced
