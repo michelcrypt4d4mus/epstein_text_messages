@@ -74,10 +74,10 @@ MOHAMED_WAHEED_HASSAN = 'Mohamed Waheed Hassan'
 NADIA_MARCINKO = 'Nadia Marcinko'
 NORMAN_D_RAU = 'Norman D. Rau'
 PAULA = 'Paula'
-PEGGY_SIEGAL = 'Peggy Siegal'
-PETER_MANDELSON = 'Peter Mandelson'
+PAUL_BARRETT = 'Paul Barrett'
 PAUL_KRASSNER = 'Paul Krassner'
 PAUL_PROSPERI = 'Paul Prosperi'
+PEGGY_SIEGAL = 'Peggy Siegal'
 PETER_MANDELSON = 'Peter Mandelson'
 PRINCE_ANDREW = 'Prince Andrew'
 REID_HOFFMAN = 'Reid Hoffman'
@@ -235,7 +235,7 @@ EMAILER_REGEXES = {
     MOHAMED_WAHEED_HASSAN: re.compile(r'Mohamed Waheed', re.IGNORECASE),
     'Neal Kassell': re.compile(r'Neal Kassel', re.IGNORECASE),
     'Nicholas Ribis': re.compile(r'Nicholas[ ._]Ribi?s?', re.IGNORECASE),
-    'Paul Barrett': re.compile(r'Paul Barre(d|tt)', re.IGNORECASE),
+    PAUL_BARRETT: re.compile(r'Paul Barre(d|tt)', re.IGNORECASE),
     PAUL_KRASSNER: re.compile(r'Pa\s?ul Krassner', re.IGNORECASE),
     PAULA: re.compile(r'^Paula$', re.IGNORECASE),
     'Paul Morris': re.compile(r'morris, paul|Paul Morris', re.IGNORECASE),
@@ -494,6 +494,7 @@ EMAIL_SIGNATURES = {
     JEFFREY_EPSTEIN: re.compile(r"((\*+|please note)\n+)?(> )?(• )?(» )?The information contained in this communication is\n(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?", re.DOTALL),
     PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
     MARTIN_WEINBERG: re.compile(r"This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
+    PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
 }
 
 HEADER_ABBREVIATIONS = {
