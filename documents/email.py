@@ -148,14 +148,7 @@ class Email(CommunicationDocument):
         return timestamp.replace(tzinfo=None) if timestamp.tzinfo is not None else timestamp
 
     def idx_of_nth_quoted_reply(self, n: int = 4, text: str | None = None) -> int | None:
-        num_quotes = self.count_regex_matches(QUOTED_REPLY_LINE_REGEX.pattern)
-        logger.debug(f"Found {num_quotes} apparent quotes in body of email")
         text = text or self.text
-
-        if num_quotes <= n:
-            return
-        else:
-            logger.debug(f"Found {num_quotes} apparent quotes in body of email")
 
         for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text)):
             if i >= n:
