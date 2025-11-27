@@ -153,7 +153,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {
     # Epstein's lawyers
     DARREN_INDYKE: 'purple3',
     'Richard Kahn': 'purple4',
-    'Deepak Chopra': 'dark_goldenrod',
+    DEEPAK_CHOPRA: 'dark_goldenrod',
     # Temporary
     KATHY_RUEMMLER: 'magenta2',
 }

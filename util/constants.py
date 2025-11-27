@@ -35,6 +35,7 @@ DARREN_INDYKE = 'Darren Indyke'
 DANIEL_SIAD = 'Daniel Siad'
 DAVID_SCHOEN = 'David Schoen'
 DAVID_STERN = 'David Stern'
+DEEPAK_CHOPRA = 'Deepak Chopra'
 DIANE_ZIMAN = 'Diane Ziman'
 DONALD_TRUMP = 'Donald Trump'
 EDWARD_EPSTEIN = 'Edward Epstein'
@@ -254,8 +255,10 @@ EMAILERS = [
     AZIZA_ALAHMADI,
     'Bill Gates',
     'Bill Siegel',
+    'Brad Wechsler',
     'Daniel Sabba',
     DAVID_SCHOEN,
+    DEEPAK_CHOPRA,
     'Glenn Dubin',
     'Gordon Getty',
     'Jessica Cadwell',
@@ -266,7 +269,7 @@ EMAILERS = [
     'Kenneth E. Mapp',
     'Joscha Bach',
     'Lesley Groff',
-    'Brad Wechsler',
+    LINDA_STONE,
     'middle.east.update@hotmail.com',
     MELANIE_WALKER,
     'Merwin Dela Cruz',
