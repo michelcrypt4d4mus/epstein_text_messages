@@ -130,7 +130,7 @@ class EpsteinFiles:
         author = author or UNKNOWN
 
         if len(emails) > 0:
-            print_author_header(f"Found {len(emails)} emails to/from {author}", COUNTERPARTY_COLORS.get(author))
+            print_author_header(f"Found {len(emails)} {author} emails from {emails[0].timestamp.date()} to {emails[-1].timestamp.date()}", COUNTERPARTY_COLORS.get(author))
         else:
             logger.warning(f"No emails found for {author}")
             return
@@ -145,12 +145,14 @@ class EpsteinFiles:
             console.print(email)
 
     def print_emails_table_for(self, author: str) -> None:
-        table = Table(title=f"Emails to/from {author}", show_header=True, header_style="bold")
+        emails = self.emails_for(author)
+        table_title = f"Emails to/from {author} starting {emails[0].timestamp.date()}"
+        table = Table(title=table_title, show_header=True, header_style="bold")
         table.add_column("From", justify="left")
         table.add_column("Date", justify="center")
         table.add_column("Subject", justify="left", style='honeydew2')
 
-        for email in self.emails_for(author):
+        for email in emails:
             table.add_row(
                 email.author_txt,
                 email.epsteinify_link(link_txt=str(email.timestamp)),
