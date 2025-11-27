@@ -178,10 +178,14 @@ USELESS_EMAILERS = [
 
 SUPPRESS_OUTPUT_FOR_IDS = {
     '026499': "it's quoted in full in 026298",
-    '033207': "it's the same as 033580",
+    '028529': "it's the same as 022344",
+    '026563': "it's a redacted version of 028768",
+    '028621': "it's the same as 019412",
     '028765': "it's the same as 027053",
     '028773': "it's the same as 027049",
+    '028762': "it's a redacted version of 027056",
     '028781': "it's the same as 013460",
+    '033207': "it's the same as 033580",
 }
 
 
