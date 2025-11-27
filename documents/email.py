@@ -162,6 +162,8 @@ TRUNCATE_TERMS = [
     'It is hard to know how to respond to a list of false',
     'The Women in the World Summit opens April 12',
     'lecture in Heidelberg Oct 14 but they had to cancel',
+    # Nikolic
+    'people from LifeBall',
 ]
 
 # No point in ever displaying these
