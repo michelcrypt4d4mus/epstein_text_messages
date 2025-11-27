@@ -76,6 +76,10 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"([,<>_]|AM|PM)\n(>)? ?wrote:?"): r'\1\2 wrote:',
 }
 
+TRUNCATE_ALL_EMAILS_FROM = [
+    'us.gio@jpmorgan.com',
+]
+
 # These are long forwarded articles we don't want to display over and over
 TRUNCATE_TERMS = [
     'The rebuilding of Indonesia',
@@ -132,6 +136,11 @@ TRUNCATE_TERMS = [
     'Thanks so much for sharing both your note to Steven and your latest Manson essay',
     # Edward Larson
     'Coming from an international background, and having lived in Oslo, Tel Aviv',
+    # Katherine Keating
+    'Paul Keating is aware that many people see him as a puzzle and contradiction',
+    'his panoramic view of world affairs sharper than ever, Paul Keating blames',
+    # melanie
+    'Some years ago when I worked at the libertarian Cato Institute'
 ]
 
 # No point in ever displaying these
@@ -385,7 +394,7 @@ class Email(CommunicationDocument):
         quote_cutoff = self.idx_of_nth_quoted_reply(text=text)
         num_chars = MAX_CHARS_TO_PRINT
 
-        if any((term in self.text) for term in TRUNCATE_TERMS):
+        if self.author in TRUNCATE_ALL_EMAILS_FROM or any((term in self.text) for term in TRUNCATE_TERMS):
             num_chars = int(MAX_CHARS_TO_PRINT / 3)
         elif quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
             logger.debug(f"Found {self.count_regex_matches(QUOTED_REPLY_LINE_REGEX.pattern)} quotes, cutting off at char {quote_cutoff}")
