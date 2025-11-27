@@ -25,6 +25,7 @@ MIN_DOCUMENT_ID = 10477
 
 OCR_REPAIRS = {
     re.compile(r'\.corn\b'): '.com',
+    re.compile(r'grnail\.com'): 'gmail.com',
     'Follow me on twitter glhsummers': 'Follow me on twitter @lhsummers',
     'lndyke': 'Indyke',
     'Nil Priell': 'Nili Priell',
