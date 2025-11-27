@@ -54,9 +54,9 @@ console.print(f"(Last deploy found 4668 messages in 77 conversations)\n\n\n", st
 # Emails section
 print_section_header('His Emails')
 console.line()
-print_email_table(epstein_files.email_author_counts, AUTHOR.title())
+print_emailer_counts_table(epstein_files.email_author_counts, AUTHOR.title())
 console.line(2)
-print_email_table(epstein_files.email_recipient_counts, "Recipient")
+print_emailer_counts_table(epstein_files.email_recipient_counts, "Recipient")
 console.print(f"\n\nIdentified authors of {epstein_files.num_identified_email_authors()} emails out of {len(epstein_files.emails)} potential email files.")
 console.print('(note this site uses the OCR email text provided by Congress which is not the greatest)\n', style='dim')
 
