@@ -65,12 +65,14 @@ MARK_EPSTEIN = 'Mark L. Epstein'
 MARTIN_NOWAK = 'Martin Nowak'
 MARTIN_WEINBERG = "Martin Weinberg"
 MELANIE_SPINELLA = 'Melanie Spinella'
+MICHAEL_SITRICK = 'Michael Sitrick'
 MICHAEL_WOLFF = "Michael Wolff"
 MOHAMED_WAHEED_HASSAN = 'Mohamed Waheed Hassan'
 NADIA_MARCINKO = 'Nadia Marcinko'
 NORMAN_D_RAU = 'Norman D. Rau'
 PAULA = 'Paula'
 PEGGY_SIEGAL = 'Peggy Siegal'
+PETER_MANDELSON = 'Peter Mandelson'
 PAUL_KRASSNER = 'Paul Krassner'
 PAUL_PROSPERI = 'Paul Prosperi'
 PETER_MANDELSON = 'Peter Mandelson'
@@ -82,6 +84,7 @@ TERRY_KAFKA = 'Terry Kafka'
 THORBJORN_JAGLAND = 'Thorbjørn Jagland'
 TOM_BARRACK = 'Tom Barrack'
 TONJA_HADDAD_COLEMAN = 'Tonja Haddad Coleman'
+TYLER_SHEARS = 'Tyler Shears'  # Reputation manager, like Al Seckel
 
 # Other strings
 REDACTED = '<REDACTED>'
@@ -439,9 +442,12 @@ KNOWN_EMAIL_RECIPIENTS = {
     '028849': JEFFREY_EPSTEIN,        # Conversation
     '026547': JEFFREY_EPSTEIN,        # Bad OCR
     '029498': [JEFFREY_EPSTEIN, 'Gordon Getty', 'David Haig', 'Norman Finkelstein'],  # Bad OCR
-    '029282': [JOI_ITO, REID_HOFFMAN],# Bad OCR
+    '019407': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],  # Bad OCR
+    '019409': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],  # Bad OCR
+    '031980': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],  # Bad OCR
     '033456': 'Joel',                 # Reply
     '033460': 'Joel',                 # Reply
+    '029282': [JOI_ITO, REID_HOFFMAN],# Bad OCR
     '033073': KATHY_RUEMMLER,         # to "Kathy" about dems, sent from iPad (not 100% confirmed)
     '032939': KATHY_RUEMMLER,         # to "Kathy" about dems, sent from iPad (not 100% confirmed)
     '030522': LANDON_THOMAS,
@@ -455,7 +461,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '028787': LAWRANCE_VISOSKI,
     '027097': LAWRANCE_VISOSKI,       # Signature of reply
     '022250': LESLEY_GROFF,           # Reply
-    # '023291': MELANIE_SPINELLA,
+    '023291': MELANIE_SPINELLA,
     '032214': MIROSLAV,               # Quoted reply has signature
     '022258': NADIA_MARCINKO,         # Reply header
     '030506': PAULA,                  # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
@@ -468,10 +474,10 @@ KNOWN_EMAIL_RECIPIENTS = {
     # '032213': Probably MIRO or Reid Weingarten based on replies but he sent it to a lot of people
 }
 
-EPSTEIN_SIGNATURE = re.compile(
-    r"((\*+|please note)\n+)?(> )?(• )?(» )?The information contained in this communication is\n(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?",
-    re.DOTALL
-)
+EMAIL_SIGNATURES = {
+    JEFFREY_EPSTEIN: re.compile(r"((\*+|please note)\n+)?(> )?(• )?(» )?The information contained in this communication is\n(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?", re.DOTALL),
+    PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be confidential.*?.*?EC4V[ \n]+6BJ', re.DOTALL | re.IGNORECASE)
+}
 
 HEADER_ABBREVIATIONS = {
     "AD": "Abu Dhabi",

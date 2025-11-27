@@ -40,7 +40,6 @@ REPLY_LINE_PATTERN = rf"({REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DA
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re.DOTALL)
 SENT_FROM_REGEX = re.compile(r'^(?:Please forgive typos. |Sorry for all the typos .)?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
-#REDACTED_REPLY_REGEX = re.compile(r'<[ _\n]+> wrote:', re.IGNORECASE)
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
 BAD_LINE_REGEX = re.compile(r'^\d{1,2}|Importance: High$')
@@ -81,6 +80,12 @@ TRUNCATE_TERMS = [
     'THOMAS L. FRIEDMAN',
     'a sleek, briskly paced film whose title suggests a heist movie',
     'quote from The Colbert Report distinguishes',
+]
+
+# No point in ever displaying these
+USELESS_EMAILERS = [
+    'editorialstaff@flipboard.com',
+    'Jokeland',
 ]
 
 
@@ -150,9 +155,8 @@ class Email(CommunicationDocument):
             text = self.text
 
         text = '\n'.join([line for line in text.split('\n') if not BAD_LINE_REGEX.match(line)])
-        #text = REDACTED_REPLY_REGEX.sub('<REDACTED> wrote:', text)
         text = escape(REPLY_REGEX.sub(r'\n\1', text))  # Newlines between quoted replies
-        return EPSTEIN_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, text)
+        return EMAIL_SIGNATURES[JEFFREY_EPSTEIN].sub(CLIPPED_SIGNATURE_REPLACEMENT, text)
 
     def description(self) -> Text:
         if is_fast_mode:
@@ -311,12 +315,11 @@ class Email(CommunicationDocument):
         quote_cutoff = self.idx_of_nth_quoted_reply(text=text) or MAX_CHARS_TO_PRINT
         num_chars = MAX_CHARS_TO_PRINT
 
-        if quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
-            logger.debug(f"Found {self.count_regex_matches(QUOTED_REPLY_LINE_REGEX.pattern)} quotes, cutting off at char {quote_cutoff}")
-            num_chars = quote_cutoff
-
         if any((term in self.text) for term in TRUNCATE_TERMS):
             num_chars = int(MAX_CHARS_TO_PRINT / 3)
+        elif quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
+            logger.debug(f"Found {self.count_regex_matches(QUOTED_REPLY_LINE_REGEX.pattern)} quotes, cutting off at char {quote_cutoff}")
+            num_chars = quote_cutoff
 
         if len(text) > num_chars:
             text = text[0:num_chars]

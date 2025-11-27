@@ -37,6 +37,7 @@ highlighter_style_name = lambda style_name: f"{HEADER_FIELD}.{style_name}"
 ARAB_COLOR = 'dark_green'
 ARCHIVE_LINK = 'archive_link'
 ARCHIVE_LINK_COLOR = 'blue3'
+BANK_COLOR = 'bright_green' # 'green
 BITCOIN_COLOR = 'orange1 bold'
 BRASIL_COLOR = 'chartreuse2'
 BRO_COLOR = 'tan'
@@ -176,7 +177,7 @@ COUNTERPARTY_COLORS.update(OTHER_STYLES)
 HIGHLIGHT_PATTERNS: dict[str, str] = {
     ARAB_COLOR: r"Abdulmalik Al-Makhlafi|Abu\s+Dhabi|Assad|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Riya(dh|nd)|Saudi(\s+Arabian?)?|Sharia|Syria|Turkey|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
     BITCOIN_COLOR: r"bitcoin|block ?chain( capital)?|coins|cr[iy]pto(currency)?|e-currency|(jeffrey\s+)?wernick|(Howard\s+)?Lutnick|Libra|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)",
-    BRASIL_COLOR: r"Argentina|Bra[sz]il(ian)?|Bolsonar[aio]|Lula",
+    BRASIL_COLOR: r"Argentina|Bra[sz]il(ian)?|Bolsonar[aio]|Lula|(Nicolas )?Maduro|Venezuelan?s?",
     CHINA_COLOR: r"CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|PRC|xi",
     DEMS_COLOR: r"Maxine Waters|(Nancy )?Pelosi|Clinton|Hillary",
     INDIA_COLOR: r"Ambani|Indian?|Modi|mumbai|Zubair( Khan)?",
@@ -193,6 +194,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     'medium_purple2': r"(Alan (M\. )?)?Dershowi(l|tz)|(Ken(neth W.)?\s+)?Starr",
     'pale_green1': r"Masa(yoshi)?|Najeev|Softbank",
     'turquoise4': r"BG|Bill\s+((and|or)\s+Melinda\s+)?Gates|Melinda(\s+Gates)?",
+    BANK_COLOR: r"DB|Deutsche Bank|Goldman( Sachs)|Morgan Stanley|j\.?p\.? ?morgan( Chase)?|Chase Bank",
     HEADER_STYLE: r"^((Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):)"
 }
 
