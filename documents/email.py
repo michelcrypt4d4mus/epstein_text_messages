@@ -73,7 +73,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r'([/vkT]|Ai|li|(I|7)v)rote:'): 'wrote:',
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
     re.compile(r"([<>.=_HIM][<>.=_HIM14]{5,}[<>.=_HIM]|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
-    re.compile(r"([,<>_]|AM|PM)\nwrote:?"): r'\1 wrote:',
+    re.compile(r"([,<>_]|AM|PM)\n(>)? ?wrote:?"): r'\1\2 wrote:',
 }
 
 # These are long forwarded articles we don't want to display over and over
@@ -112,6 +112,14 @@ TRUNCATE_TERMS = [
     'I just wanted to follow up on a couple of notes. I have been coordinating with Richard Kahn',
     'So, Peggy, if you could just let me know what info to include on the donation',
     'Consult a lawyer beforehand, if possible, but be cooperative/nice at this stage',
+    # Amanda Ens
+    'We remain positive on banks that can make acceptable returns',
+    'David Woo (BAML head of FX, Rates and EM Strategy, very highly regarded',
+    "Please let me know if you're interested in joining a small group meeting",
+    'Erika Najarian, BAML financials research analyst, just returned',
+    'We can also discuss single stock and Topix banks',
+    'We are recording unprecedented divergences in falling equity vol',
+    'As previously discussed between you and Ariane',
 ]
 
 # No point in ever displaying these
@@ -125,7 +133,8 @@ USELESS_EMAILERS = [
 ]
 
 SUPPRESS_OUTPUT_FOR_IDS = {
-    '026499':  "it's quoted in full in 026298",
+    '026499': "it's quoted in full in 026298",
+    '033207': "it's the same as 033580",
 }
 
 
