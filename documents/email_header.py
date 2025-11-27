@@ -8,8 +8,9 @@ HEADER_REGEX_STR = r'(((?:(?:Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC
 EMAIL_SIMPLE_HEADER_REGEX = re.compile(rf'^{HEADER_REGEX_STR}')
 EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX = re.compile(HEADER_REGEX_STR)
 AUTHOR = 'author'
-ON_BEHALF_OF = 'on behalf of'
 TO_FIELDS = ['bcc', 'cc', 'to']
+EMAILER_FIELDS = [AUTHOR] + TO_FIELDS
+ON_BEHALF_OF = 'on behalf of'
 
 
 @dataclass(kw_only=True)

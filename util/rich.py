@@ -64,6 +64,7 @@ BASE_NAMES_TO_NOT_COLOR: list[str] = [name.lower() for name in [
     'John',
     'Jonathan',
     'Joseph',
+    'Kahn',
     'Jr',
     'JR.',
     'Le',
