@@ -111,6 +111,7 @@ TRUNCATE_TERMS = [
     "I appreciate the opportunity to respond to your email",
     'I just wanted to follow up on a couple of notes. I have been coordinating with Richard Kahn',
     'So, Peggy, if you could just let me know what info to include on the donation',
+    'Consult a lawyer beforehand, if possible, but be cooperative/nice at this stage',
 ]
 
 # No point in ever displaying these

@@ -34,7 +34,7 @@ SECTION_HEADER_STYLE = 'bold white on blue3'
 
 highlighter_style_name = lambda style_name: f"{HEADER_FIELD}.{style_name}"
 
-ARAB_COLOR = 'dark_green'
+ARAB_COLOR = 'dark_sea_green4'
 ARCHIVE_LINK = 'archive_link'
 ARCHIVE_LINK_COLOR = 'blue3'
 BANK_COLOR = 'bright_green' # 'green
@@ -198,7 +198,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     'medium_purple2': r"(Alan (M\. )?)?Dershowi(l|tz)|(Ken(neth W.)?\s+)?Starr",
     'pale_green1': r"Masa(yoshi)?|Najeev|Softbank",
     'turquoise4': r"BG|Bill\s+((and|or)\s+Melinda\s+)?Gates|Melinda(\s+Gates)?",
-    BANK_COLOR: r"DB|Deutsche Bank|Goldman( Sachs)|Morgan Stanley|j\.?p\.? ?morgan( Chase)?|Chase Bank",
+    BANK_COLOR: r"Black(rock|stone)|DB|Deutsche Bank|Goldman( Sachs)|Morgan Stanley|j\.?p\.? ?morgan( Chase)?|Chase Bank",
     HEADER_STYLE: r"^((Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):)"
 }
 
