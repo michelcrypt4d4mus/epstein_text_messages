@@ -12,7 +12,7 @@ from rich.table import Table
 from rich.text import Text
 
 from documents.document import Document
-from documents.email import DETECT_EMAIL_REGEX, Email
+from documents.email import DETECT_EMAIL_REGEX, USELESS_EMAILERS, Email
 from documents.email_header import AUTHOR
 from documents.messenger_log import MSG_REGEX, MessengerLog
 from util.constants import *
@@ -88,9 +88,10 @@ class EpsteinFiles:
         return self.imessage_logs + self.emails + self.other_files
 
     def all_emailers(self) -> list[str]:
-        """Returns all emailers except Epstein himself, sorted from least frequent to most."""
+        """Returns all emailers except Epstein and USELESS_EMAILERS, sorted from least frequent to most."""
+        not_included_emailers = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
         emailers = [a for a in self.email_author_counts.keys()] + [r for r in self.email_recipient_counts.keys()]
-        emailers = list(set([e for e in emailers if e.lower() != JEFFREY_EPSTEIN.lower()]))
+        emailers = list(set([e for e in emailers if e.lower() not in not_included_emailers]))
         return sorted(emailers, key=lambda e: self.email_author_counts[e] + self.email_recipient_counts[e])
 
     def emails_for(self, author: str | None) -> list[Email]:

@@ -65,23 +65,27 @@ MARK_EPSTEIN = 'Mark L. Epstein'
 MARTIN_NOWAK = 'Martin Nowak'
 MARTIN_WEINBERG = "Martin Weinberg"
 MELANIE_SPINELLA = 'Melanie Spinella'
+MICHAEL_SITRICK = 'Michael Sitrick'
 MICHAEL_WOLFF = "Michael Wolff"
 MOHAMED_WAHEED_HASSAN = 'Mohamed Waheed Hassan'
 NADIA_MARCINKO = 'Nadia Marcinko'
 NORMAN_D_RAU = 'Norman D. Rau'
 PAULA = 'Paula'
 PEGGY_SIEGAL = 'Peggy Siegal'
+PETER_MANDELSON = 'Peter Mandelson'
 PAUL_KRASSNER = 'Paul Krassner'
 PAUL_PROSPERI = 'Paul Prosperi'
 PETER_MANDELSON = 'Peter Mandelson'
 REID_HOFFMAN = 'Reid Hoffman'
 ROBERT_TRIVERS = 'Robert Trivers'
 SEAN_BANNON = 'Sean Bannon'
+STEVEN_PFEIFFER = 'Steven Pfeiffer'
 SULTAN_BIN_SULAYEM = 'Sultan Bin Sulayem'
 TERRY_KAFKA = 'Terry Kafka'
 THORBJORN_JAGLAND = 'Thorbjørn Jagland'
 TOM_BARRACK = 'Tom Barrack'
 TONJA_HADDAD_COLEMAN = 'Tonja Haddad Coleman'
+TYLER_SHEARS = 'Tyler Shears'  # Reputation manager, like Al Seckel
 
 # Other strings
 REDACTED = '<REDACTED>'
@@ -217,7 +221,7 @@ EMAILER_REGEXES = {
     MARTIN_NOWAK: re.compile(r'Martin.*?Nowak|Nowak, Martin', re.IGNORECASE),
     MARTIN_WEINBERG: re.compile(r'martin.*?weinberg', re.IGNORECASE),
     "Matthew Schafer": re.compile(r"matthew\.?schafer?", re.IGNORECASE),
-    MELANIE_SPINELLA: re.compile(r'Melanie Spine[Il]{2}a', re.IGNORECASE),
+    MELANIE_SPINELLA: re.compile(r'M?elanie Spine[Il]{2}a', re.IGNORECASE),
     'Michael Miller': re.compile(r'Micha(el)? Miller|Miller, Micha(el)?', re.IGNORECASE),
     MICHAEL_WOLFF: re.compile(r'Michael\s*Wol(ff|i)', re.IGNORECASE),
     'Mike Sitrick': re.compile(r'Mi(chael|ke).*Sitrick', re.IGNORECASE),
@@ -282,6 +286,7 @@ EMAILERS = [
     'Peter Green',
     PETER_MANDELSON,
     r'Sam/Walli Leff',
+    STEVEN_PFEIFFER,
     'Steven Victor MD',
     'The Duke',
     TOM_BARRACK,
@@ -439,9 +444,13 @@ KNOWN_EMAIL_RECIPIENTS = {
     '028849': JEFFREY_EPSTEIN,        # Conversation
     '026547': JEFFREY_EPSTEIN,        # Bad OCR
     '029498': [JEFFREY_EPSTEIN, 'Gordon Getty', 'David Haig', 'Norman Finkelstein'],  # Bad OCR
-    '029282': [JOI_ITO, REID_HOFFMAN],# Bad OCR
+    '019407': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR
+    '019409': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR
+    '031980': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR
+    '026228': [JEFFREY_EPSTEIN, STEVEN_PFEIFFER],  # Bad OCR
     '033456': 'Joel',                 # Reply
     '033460': 'Joel',                 # Reply
+    '029282': [JOI_ITO, REID_HOFFMAN],# Bad OCR
     '033073': KATHY_RUEMMLER,         # to "Kathy" about dems, sent from iPad (not 100% confirmed)
     '032939': KATHY_RUEMMLER,         # to "Kathy" about dems, sent from iPad (not 100% confirmed)
     '030522': LANDON_THOMAS,
@@ -468,10 +477,10 @@ KNOWN_EMAIL_RECIPIENTS = {
     # '032213': Probably MIRO or Reid Weingarten based on replies but he sent it to a lot of people
 }
 
-EPSTEIN_SIGNATURE = re.compile(
-    r"((\*+|please note)\n+)?(> )?(• )?(» )?The information contained in this communication is\n(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?",
-    re.DOTALL
-)
+EMAIL_SIGNATURES = {
+    JEFFREY_EPSTEIN: re.compile(r"((\*+|please note)\n+)?(> )?(• )?(» )?The information contained in this communication is\n(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?", re.DOTALL),
+    PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE)
+}
 
 HEADER_ABBREVIATIONS = {
     "AD": "Abu Dhabi",

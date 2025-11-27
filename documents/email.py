@@ -35,12 +35,11 @@ REPLY_LINE_IN_A_MSG_PATTERN = r"In a message dated \d+/\d+/\d+.*writes:"
 REPLY_LINE_ENDING_PATTERN = r"[_ \n](AM|PM|[<_]|wrote:?)"
 REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"On \d+/\d+/\d+[, ].*{REPLY_LINE_ENDING_PATTERN}"
 REPLY_LINE_ON_DATE_PATTERN = fr"On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*).*{REPLY_LINE_ENDING_PATTERN}"
-FORWARDED_LINE_PATTERN = r"-+(Forwarded|Original)\s*Message-*|Begin forwarded message:?"
+FORWARDED_LINE_PATTERN = r"-+ ?(Forwarded|Original)\s*Message ?-*|Begin forwarded message:?"
 REPLY_LINE_PATTERN = rf"({REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re.DOTALL)
 SENT_FROM_REGEX = re.compile(r'^(?:Please forgive typos. |Sorry for all the typos .)?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
-#REDACTED_REPLY_REGEX = re.compile(r'<[ _\n]+> wrote:', re.IGNORECASE)
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
 BAD_LINE_REGEX = re.compile(r'^\d{1,2}|Importance: High$')
@@ -52,6 +51,8 @@ BAD_FIRST_LINES = ['026652', '029835', '031189']
 MAX_CHARS_TO_PRINT = 4000
 VALID_HEADER_LINES = 14
 EMAIL_INDENT = 3
+
+clipped_signature_replacement = lambda name: f'[dim]<...snipped {name.split()[-1].lower()} legal signature...>[/dim]'
 
 KNOWN_TIMESTAMPS = {
     '028851': datetime(2014, 4, 27, 6, 00),
@@ -81,6 +82,17 @@ TRUNCATE_TERMS = [
     'THOMAS L. FRIEDMAN',
     'a sleek, briskly paced film whose title suggests a heist movie',
     'quote from The Colbert Report distinguishes',
+    'co-inventor of the GTX Smart Shoe',
+    'my latest Washington Post column',
+    'Whether you donated to Poetry in America through',
+    'supported my humanities work at Harvard',
+    'Calendar of Major Events, Openings, and Fundraisers',
+]
+
+# No point in ever displaying these
+USELESS_EMAILERS = [
+    'editorialstaff@flipboard.com',
+    'Jokeland',
 ]
 
 
@@ -131,7 +143,8 @@ class Email(CommunicationDocument):
                 self.recipient_txt.append(', ')
 
             recipient = recipient or UNKNOWN
-            self.recipient_txt.append(recipient, style=COUNTERPARTY_COLORS.get(recipient, DEFAULT))
+            recipient_str = recipient if (' ' not in recipient or len(recipients) < 3) else recipient.split()[-1]
+            self.recipient_txt.append(recipient_str, style=COUNTERPARTY_COLORS.get(recipient, DEFAULT))
 
         self.timestamp = self._extract_sent_at()
         self.author_lowercase = self.author.lower() if self.author else None
@@ -149,9 +162,12 @@ class Email(CommunicationDocument):
             text = self.text
 
         text = '\n'.join([line for line in text.split('\n') if not BAD_LINE_REGEX.match(line)])
-        #text = REDACTED_REPLY_REGEX.sub('<REDACTED> wrote:', text)
         text = escape(REPLY_REGEX.sub(r'\n\1', text))  # Newlines between quoted replies
-        return EPSTEIN_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, text)
+
+        for name, signature_regex in EMAIL_SIGNATURES.items():
+            text = signature_regex.sub(clipped_signature_replacement(name), text)
+
+        return text
 
     def description(self) -> Text:
         if is_fast_mode:
@@ -160,7 +176,7 @@ class Email(CommunicationDocument):
             info_str = f"Email (author='{self.author}', recipients={self.recipients}, timestamp='{self.timestamp}')"
             return Text.from_markup(highlight_text(info_str))
 
-    def idx_of_nth_quoted_reply(self, n: int = 3, text: str | None = None) -> int | None:
+    def idx_of_nth_quoted_reply(self, n: int = 2, text: str | None = None) -> int | None:
         text = text or self.text
 
         for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text)):
@@ -307,18 +323,18 @@ class Email(CommunicationDocument):
         info_line.append(f"{self.timestamp or '?'}", style='spring_green3')
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
         text = self.cleanup_email_txt()
-        quote_cutoff = self.idx_of_nth_quoted_reply(text=text) or MAX_CHARS_TO_PRINT
+        quote_cutoff = self.idx_of_nth_quoted_reply(text=text)
         num_chars = MAX_CHARS_TO_PRINT
 
-        if quote_cutoff:
-            logger.debug(f"Found {self.count_regex_matches(QUOTED_REPLY_LINE_REGEX.pattern)} quotes, cutting off at char {quote_cutoff}")
-            num_chars = quote_cutoff
         if any((term in self.text) for term in TRUNCATE_TERMS):
             num_chars = int(MAX_CHARS_TO_PRINT / 3)
+        elif quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
+            logger.debug(f"Found {self.count_regex_matches(QUOTED_REPLY_LINE_REGEX.pattern)} quotes, cutting off at char {quote_cutoff}")
+            num_chars = quote_cutoff
 
         if len(text) > num_chars:
             text = text[0:num_chars]
-            text += f"\n\n[dim]<...truncated to {num_chars} characters, read the rest: {self.epsteinify_link_markup}...>[/dim]"
+            text += f"\n\n[dim]<...trimmed to {num_chars} characters of {self.length}, read the rest: {self.epsteinify_link_markup}...>[/dim]"
 
         text = REPLY_REGEX.sub(r'[dim]\1[/dim]', text)
         text = SENT_FROM_REGEX.sub(fr'[{SENT_FROM}]\1[/{SENT_FROM}]', text)
