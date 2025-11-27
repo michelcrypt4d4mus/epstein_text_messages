@@ -204,26 +204,29 @@ class Email(CommunicationDocument):
                     value = self.lines[row_number_to_check]
 
                     if field_name == AUTHOR:
-                        if TIME_REGEX.match(value) or value == 'Darren,':
-                            logger.debug(f"Looks like a mismatch, decrementing num_headers and skipping...")
+                        if TIME_REGEX.match(value) or value == 'Darren,' or BAD_EMAILER_REGEX.match(value):
+                            logger.info(f"Looks like '{value}' is a mismatch for '{field_name}', decrementing num_headers and skipping...")
                             num_headers -= 1
                             continue
                         elif SKIP_HEADER_ROW_REGEX.match(value):
-                            logger.debug(f"Looks like a mismatch, Trying the next line...")
+                            logger.info(f"Looks like a mismatch, Trying the next line...")
                             num_headers += 1
                             value = self.lines[i + num_headers]
                     elif field_name in TO_FIELDS:
                         if TIME_REGEX.match(value):
-                            logger.debug(f"Looks like a mismatch for '{field_name}', trying next line...")
+                            logger.info(f"Looks like a mismatch for '{field_name}', trying next line...")
                             num_headers += 1
                             value = self.lines[i + num_headers]
+                        elif BAD_EMAILER_REGEX.match(value):
+                            logger.info(f"Looks like '{value}' is a mismatch for '{field_name}', decrementing num_headers and skipping...")
+                            num_headers -= 1
+                            continue
 
-                        value = [v.strip() for v in value.split(';')]
-                        value = [v for v in value if len(v) > 0]
+                        value = [v.strip() for v in value.split(';') if len(v.strip()) > 0]
 
                     setattr(self.header, field_name, value)
 
-                logger.debug(f"Corrected empty header to:\n{self.header}\n\nTop rows of file\n\n{self.top_lines(num_headers * 2)}")
+                logger.debug(f"Corrected empty header to:\n{self.header}\n\nTop rows of file\n\n{self.top_lines((num_headers + 1) * 2)}")
             else:
                 logger.debug(f"Parsed email header to:\n{self.header}")
         else:
