@@ -62,7 +62,9 @@ console.print('(note this site uses the OCR email text provided by Congress whic
 console.print('Chronological Epstein correspondence with the following people can be found below.')
 
 emailers_to_print = epstein_files.all_emailers() if args.all else PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED
+emailers_to_print = sorted(emailers_to_print, key=lambda e: epstein_files.earliest_email_at(e)) if args.all else emailers_to_print
 emailers_with_tables = epstein_files.all_emailers() if args.all_tables else PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES
+emailers_with_tables = sorted(emailers_with_tables, key=lambda e: epstein_files.earliest_email_at(e)) if args.all else emailers_to_print
 
 for i, author in enumerate(emailers_to_print):
     style = COUNTERPARTY_COLORS.get(author or UNKNOWN, DEFAULT)
