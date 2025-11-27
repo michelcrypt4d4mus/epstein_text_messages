@@ -51,6 +51,7 @@ INDIA_COLOR = 'green'
 ISRAELI_COLOR = 'dodger_blue2'
 JAVANKA_COLOR = 'medium_violet_red'
 JOURNALIST_COLOR = 'grey54'
+LAWYER_COLOR = 'purple3'
 OBAMA_COLOR = 'yellow'
 RICH_GUY_COLOR = 'dark_cyan'
 RUSSIA_COLOR = 'red'
@@ -97,6 +98,7 @@ NAMES_TO_NOT_COLOR = flatten(NAMES_TO_NOT_COLOR)
 
 # Color different counterparties differently
 COUNTERPARTY_COLORS = {
+    ALIREZA_ITTIHADIEH: ARAB_COLOR,  # Iranian / British?
     ANIL: INDIA_COLOR,
     ARIANE_DE_ROTHSCHILD: 'indian_red',
     CELINA_DUBIN: DUBIN_COLOR,
@@ -106,12 +108,14 @@ COUNTERPARTY_COLORS = {
     GLENN_DUBIN: DUBIN_COLOR,
     JONATHAN_FARKAS: BRO_COLOR,
     LARRY_SUMMERS: 'spring_green4',
+    MARTIN_WEINBERG: LAWYER_COLOR,
     MELANIE_SPINELLA: 'magenta3',
     MELANIE_WALKER: 'deep_pink4',
     MICHAEL_WOLFF: JOURNALIST_COLOR,
     MIROSLAV: 'slate_blue3',
     'Noam Chomsky': 'dark_sea_green',
     PAUL_KRASSNER: JOURNALIST_COLOR,
+    'Reid Weingarten': LAWYER_COLOR,
     ROBERT_TRIVERS: 'blue_violet',
     SCARAMUCCI: 'orange1',
     SOON_YI: 'hot_pink',
@@ -141,10 +145,6 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     PAULA: 'pink1',
     REID_HOFFMAN: TECH_BRO_COLOR,
     BORIS_NIKOLIC: BRO_COLOR,
-    # ALIREZA_ITTIHADIEH: ARAB_COLOR,
-    # Temporary
-    # 'Reid Weingarten': 'magenta',
-    # 'Kathy Ruemmler': 'magenta',
 }
 
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {
@@ -153,11 +153,12 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {
     LANDON_THOMAS: 'misty_rose3',  # FT journo
     SULTAN_BIN_SULAYEM: 'green1',
     # Epstein's lawyers
-    DARREN_INDYKE: 'purple3',
+    DARREN_INDYKE: LAWYER_COLOR,
     'Richard Kahn': 'purple4',
     DEEPAK_CHOPRA: 'dark_goldenrod',
     # Temporary
     KATHY_RUEMMLER: 'magenta2',
+    TYLER_SHEARS: BITCOIN_COLOR,  # PR
 }
 
 OTHER_STYLES = {
