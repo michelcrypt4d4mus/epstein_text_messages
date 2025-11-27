@@ -381,14 +381,15 @@ KNOWN_EMAIL_AUTHORS = {
     '033490': JONATHAN_FARKAS,        # Signature
     '032531': JONATHAN_FARKAS,        # Signature
     '026764': 'Barry J. Cohen',
-    '026652': KATHY_RUEMMLER,         # Just bad OCR
+    '026652': KATHY_RUEMMLER,          # Just bad OCR
     '032224': KATHY_RUEMMLER,
-    '032386': KATHY_RUEMMLER,         # from "Kathy" about dems, sent from iPad (not 100% confirmed)
-    '032727': KATHY_RUEMMLER,         # from "Kathy" about dems, sent from iPad (not 100% confirmed)
+    '032386': KATHY_RUEMMLER,          # from "Kathy" about dems, sent from iPad (not 100% confirmed)
+    '032727': KATHY_RUEMMLER,          # from "Kathy" about dems, sent from iPad (not 100% confirmed)
     '030478': LANDON_THOMAS,
     '029013': LARRY_SUMMERS,
     '031129': LARRY_SUMMERS,
     '029196': LAWRENCE_KRAUSS,
+    '032209': LAWRENCE_KRAUSS,         # More of a text convo?
     '033487': LAWRANCE_VISOSKI,
     '028789': LAWRANCE_VISOSKI,
     '027046': LAWRANCE_VISOSKI,
@@ -463,6 +464,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '022187': JEFFREY_EPSTEIN,        # Bad OCR
     '028849': JEFFREY_EPSTEIN,        # Conversation
     '026547': JEFFREY_EPSTEIN,        # Bad OCR
+    '032209': JEFFREY_EPSTEIN,        # More of a text convo?
     '029498': [JEFFREY_EPSTEIN, 'Gordon Getty', 'David Haig', 'Norman Finkelstein'],  # Bad OCR
     '019407': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR
     '019409': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR

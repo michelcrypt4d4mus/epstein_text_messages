@@ -12,7 +12,7 @@ DOCS_DIR = Path(DOCS_DIR_ENV).resolve()
 JSON_FILES_SUBDIR = 'json_files'
 JSON_DIR = DOCS_DIR.joinpath(JSON_FILES_SUBDIR)
 OUTPUT_GH_PAGES_HTML = Path('docs').joinpath('index.html')
-FILE_ID_REGEX = re.compile(rf'.*{HOUSE_OVERSIGHT_PREFIX}(\d+)(\.txt)?')
+FILE_ID_REGEX = re.compile(rf'.*{HOUSE_OVERSIGHT_PREFIX}(\d+)(_\d+)?(\.txt)?')
 
 
 def extract_file_id(filename) -> str:
