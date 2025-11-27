@@ -152,7 +152,7 @@ class EpsteinFiles:
         for email in self.emails_for(author):
             table.add_row(
                 email.author_txt,
-                email.epsteinify_link(link_txt=str(email.sort_time())),
+                email.epsteinify_link(link_txt=str(email.timestamp)),
                 highlight_text(email.header.subject or '')
             )
 
@@ -191,7 +191,7 @@ class EpsteinFiles:
 
     @staticmethod
     def sort_emails(emails: list[Email]) -> list[Email]:
-        return sorted(emails, key=lambda e: e.sort_time())
+        return sorted(emails, key=lambda email: email.timestamp)
 
 
 def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Padding:

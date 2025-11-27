@@ -1,6 +1,6 @@
 import re
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timezone
 
 from dateutil.parser import parse
 from dateutil import tz
@@ -152,10 +152,6 @@ class Email(CommunicationDocument):
         else:
             info_str = f"Email (author='{self.author}', recipients={self.recipients}, timestamp='{self.timestamp}')"
             return Text.from_markup(highlight_text(info_str))
-
-    def sort_time(self) -> datetime:
-        timestamp = self.timestamp or FALLBACK_TIMESTAMP
-        return timestamp.replace(tzinfo=None) if timestamp.tzinfo is not None else timestamp
 
     def idx_of_nth_quoted_reply(self, n: int = 3, text: str | None = None) -> int | None:
         text = text or self.text
@@ -324,6 +320,11 @@ def _parse_timestamp(timestamp_str: str) -> None | datetime:
     try:
         timestamp = parse(timestamp_str.replace(' (UTC)', '').replace(REDACTED, ' ').strip(), tzinfos=TIMEZONE_INFO)
         logger.debug(f'Parsed timestamp "{timestamp}" from string "{timestamp_str}"')
+
+        if timestamp.tzinfo:
+            timestamp = timestamp.astimezone(timezone.utc).replace(tzinfo=None)
+            logger.debug(f"    -> Converted to UTC: {timestamp}")
+
         return timestamp
     except Exception as e:
         logger.debug(f'Failed to parse "{timestamp_str}" to timestamp!')
