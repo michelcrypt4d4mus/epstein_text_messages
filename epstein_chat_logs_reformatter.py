@@ -91,8 +91,12 @@ epstein_files.print_email_device_info()
 
 
 # Other Files Section
-print_section_header(f"{len(epstein_files.other_files)} Other Files That Are Neither Emails Nor Text Msgs")
-epstein_files.print_other_files_table()
+if is_build:
+    console.line()
+    print_section_header(f"{len(epstein_files.other_files)} Other Files That Are Neither Emails Nor Text Msgs")
+    epstein_files.print_other_files_table()
+else:
+    print(f"Skipping other files section because is_build={is_build}...")
 
 
 # Save output
