@@ -291,7 +291,7 @@ for emailer in EMAILERS:
 
 
 KNOWN_EMAIL_AUTHORS = {
-    '032436': ALIREZA_ITTIHADIEH,  # Signature
+    '032436': ALIREZA_ITTIHADIEH,    # Signature
     '032543': ANAS_ALRASHEED,        # Later reply 033000 has quote
     '026064': ARIANE_DE_ROTHSCHILD,
     '026069': ARIANE_DE_ROTHSCHILD,
@@ -303,26 +303,26 @@ KNOWN_EMAIL_AUTHORS = {
     '031227': BENNET_MOSKOWITZ,
     '031442': CHRISTINA_GALBRAITH,
     '026625': DARREN_INDYKE,
-    '026290': DAVID_SCHOEN,       # Signature
-    '031339': DAVID_SCHOEN,       # Signature
-    '031492': DAVID_SCHOEN,       # Signature
-    '031560': DAVID_SCHOEN,       # Signature
-    '026287': DAVID_SCHOEN,       # Signature
-    '033419': DAVID_SCHOEN,       # Sent by AOL
+    '026290': DAVID_SCHOEN,         # Signature
+    '031339': DAVID_SCHOEN,         # Signature
+    '031492': DAVID_SCHOEN,         # Signature
+    '031560': DAVID_SCHOEN,         # Signature
+    '026287': DAVID_SCHOEN,         # Signature
+    '033419': DAVID_SCHOEN,         # Sent by AOL
     '031460': EDWARD_EPSTEIN,
-    '030578': FAITH_KATES,        # Same as unredacted 030414, same legal signature
+    '030578': FAITH_KATES,          # Same as unredacted 030414, same legal signature
     '026547': GERALD_BARTON,
-    '029969': GWENDOLYN_BECK,     # Signature
-    '031120': GWENDOLYN_BECK,     # Signature
-    '029968': GWENDOLYN_BECK,     # Signature
+    '029969': GWENDOLYN_BECK,       # Signature
+    '031120': GWENDOLYN_BECK,       # Signature
+    '029968': GWENDOLYN_BECK,       # Signature
     '029970': GWENDOLYN_BECK,
-    '029960': GWENDOLYN_BECK,     # Reply
-    '029959': GWENDOLYN_BECK,     # "Longevity & Aging"
-    '033360': 'Henry Holt',       # in signature
-    '033384': 'Jack Goldberger',  # Might be Paul Prosperi?
+    '029960': GWENDOLYN_BECK,       # Reply
+    '029959': GWENDOLYN_BECK,       # "Longevity & Aging"
+    '033360': 'Henry Holt',         # in signature
+    '033384': 'Jack Goldberger',    # Might be Paul Prosperi?
     '026024': JEAN_HUGUEN,
-    '026024': JEAN_HUGUEN,        # Signature
-    '021823': JEAN_LUC_BRUNEL,    # Reply
+    '026024': JEAN_HUGUEN,          # Signature
+    '021823': JEAN_LUC_BRUNEL,      # Reply
     '031826': JEFFREY_EPSTEIN,
     '030997': JEFFREY_EPSTEIN,
     '029779': JEFFREY_EPSTEIN,
@@ -331,13 +331,13 @@ KNOWN_EMAIL_AUTHORS = {
     '029692': JEFFREY_EPSTEIN,
     '031624': JEFFREY_EPSTEIN,
     '030768': JEFFREY_EPSTEIN,
-    '031996': JEFFREY_EPSTEIN,        # bounced
+    '031996': JEFFREY_EPSTEIN,       # bounced
     '022938': JEFFREY_EPSTEIN,
-    '028675': JEFFREY_EPSTEIN,        # Just bad OCR
-    '025041': JEFFREY_EPSTEIN,        # Just bad OCR
-    '032214': JEFFREY_EPSTEIN,        # Just bad OCR
-    '031791': 'Jessica Cadwell',      # paralegal, see https://x.com/ImDrinknWyn/status/1993765348898927022
-    '028849': JOI_ITO,                # Conversation with Joi Ito
+    '028675': JEFFREY_EPSTEIN,       # Just bad OCR
+    '025041': JEFFREY_EPSTEIN,       # Just bad OCR
+    '032214': JEFFREY_EPSTEIN,       # Just bad OCR
+    '031791': 'Jessica Cadwell',     # paralegal, see https://x.com/ImDrinknWyn/status/1993765348898927022
+    '028849': JOI_ITO,               # Conversation with Joi Ito
     '028851': JOI_ITO,
     '016692': JOHN_PAGE,
     '016693': JOHN_PAGE,
@@ -445,7 +445,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '033591': LAWRANCE_VISOSKI,       # Reply signature
     '033466': LAWRANCE_VISOSKI,       # Reply signature
     '028787': LAWRANCE_VISOSKI,
-    '027097': LAWRANCE_VISOSKI,       # Signature of reply
+    '027097': LAWRANCE_VISOSKI,         # Signature of reply
     '022250': LESLEY_GROFF,           # Reply
     '023291': MELANIE_SPINELLA,
     '032214': MIROSLAV,               # Quoted reply has signature
