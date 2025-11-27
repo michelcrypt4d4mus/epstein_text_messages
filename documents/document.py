@@ -10,6 +10,7 @@ from rich.text import Text
 
 from util.constants import REDACTED, SEAN_BANNON, STEVE_BANNON
 from util.data import patternize
+from util.env import logger
 from util.file_helper import extract_file_id
 from util.rich import ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_pattern, highlight_text, logger, make_link, make_link_markup
 from util.strings import *

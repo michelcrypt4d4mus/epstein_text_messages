@@ -7,7 +7,6 @@ from os import environ
 from rich.align import Align
 from rich.console import Console
 from rich.highlighter import RegexHighlighter
-from rich.logging import RichHandler
 from rich.markup import escape
 from rich.panel import Panel
 from rich.padding import Padding
@@ -18,7 +17,7 @@ from rich.theme import Theme
 
 from .constants import *
 from .data import flatten
-from .env import deep_debug, is_debug
+from .env import additional_emailers, deep_debug, logger
 from .strings import regex_escape_periods
 
 LEADING_WHITESPACE_REGEX = re.compile(r'\A\s*', re.MULTILINE)
@@ -201,6 +200,10 @@ HIGHLIGHT_REGEXES: dict[str, re.Pattern] = {
     for k, v in HIGHLIGHT_PATTERNS.items()
 }
 
+if len(additional_emailers) > 0:
+    logger.info(f"Added additional emails: {[e for e in additional_emailers]}")
+    PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED.update({k: COUNTERPARTY_COLORS.get(k, DEFAULT) for k in additional_emailers})
+
 
 # Instantiate Console object
 class EmailHeaderHighlighter(RegexHighlighter):
@@ -230,18 +233,6 @@ COUNTERPARTY_COLORS.update({
     'Obama': OBAMA_COLOR,
     'Scaramucci': COUNTERPARTY_COLORS[SCARAMUCCI],
 })
-
-
-# Setup logging
-logging.basicConfig(level="NOTSET", format="%(message)s", datefmt="[%X]", handlers=[RichHandler()])
-logger = logging.getLogger("rich")
-
-if deep_debug:
-    logger.setLevel(logging.DEBUG)
-elif is_debug:
-    logger.setLevel(logging.INFO)
-else:
-    logger.setLevel(logging.WARNING)
 
 
 def make_link_markup(url: str, link_text: str, style: str = ARCHIVE_LINK_COLOR) -> str:

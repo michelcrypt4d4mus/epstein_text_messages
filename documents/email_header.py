@@ -2,7 +2,8 @@ import json
 import re
 from dataclasses import asdict, dataclass, field
 
-from util.rich import UNKNOWN, logger
+from util.env import logger
+from util.rich import UNKNOWN
 
 HEADER_REGEX_STR = r'(((?:(?:Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):|on behalf of ?)(?! +(by |from my|via )).*\n){3,})'
 EMAIL_SIMPLE_HEADER_REGEX = re.compile(rf'^{HEADER_REGEX_STR}')

@@ -13,7 +13,7 @@ from rich.text import Text
 from documents.document import FALLBACK_TIMESTAMP, CommunicationDocument
 from documents.email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TO_FIELDS, EmailHeader
 from util.constants import *
-from util.env import is_fast_mode
+from util.env import is_fast_mode, logger
 from util.rich import *
 from util.strings import *
 
@@ -29,7 +29,8 @@ BAD_EMAILER_REGEX = re.compile(r'^>|agreed|ok|sexy|rt|re:|fwd:|((sent|attachment
 EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Subject|Attachments):\s*\n)+')
 SKIP_HEADER_ROW_REGEX = re.compile(r"^(agreed|call me|schwartman).*")
 
-REPLY_LINE_PATTERN = r'(On ([A-Z][a-z]{2,9},)?\s*?([A-Z][a-z]{2,9}\s*\d+,\s*\d{4}|\d+/\d+/\d+ \d+:\d+ (AM|PM)),?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*(?:[ \n]+wrote:)?|-+(Forwarded|Original)\s*Message-*|Begin forwarded message:?)'
+# TODO: fill out the regex for reply lines like: 'In a message dated 1/12/2012 10:21:24 A.M. Eastern Standard Time, jeevacation@gmail.com writes:'
+REPLY_LINE_PATTERN = r'((On|In a message dated) ([A-Z][a-z]{2,9},)?\s*?([A-Z][a-z]{2,9}\s*\d+,\s*\d{4}|\d+/\d+/\d+ \d+:\d+ (AM|PM)),?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*(?:[ \n]+wrote:)?|-+(Forwarded|Original)\s*Message-*|Begin forwarded message:?)'
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re.DOTALL)
 SENT_FROM_REGEX = re.compile(r'^(?:Please forgive typos. |Sorry for all the typos .)?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
@@ -203,26 +204,29 @@ class Email(CommunicationDocument):
                     value = self.lines[row_number_to_check]
 
                     if field_name == AUTHOR:
-                        if TIME_REGEX.match(value) or value == 'Darren,':
-                            logger.debug(f"Looks like a mismatch, decrementing num_headers and skipping...")
+                        if TIME_REGEX.match(value) or value == 'Darren,' or BAD_EMAILER_REGEX.match(value):
+                            logger.info(f"Looks like '{value}' is a mismatch for '{field_name}', decrementing num_headers and skipping...")
                             num_headers -= 1
                             continue
                         elif SKIP_HEADER_ROW_REGEX.match(value):
-                            logger.debug(f"Looks like a mismatch, Trying the next line...")
+                            logger.info(f"Looks like a mismatch, Trying the next line...")
                             num_headers += 1
                             value = self.lines[i + num_headers]
                     elif field_name in TO_FIELDS:
                         if TIME_REGEX.match(value):
-                            logger.debug(f"Looks like a mismatch for '{field_name}', trying next line...")
+                            logger.info(f"Looks like a mismatch for '{field_name}', trying next line...")
                             num_headers += 1
                             value = self.lines[i + num_headers]
+                        elif BAD_EMAILER_REGEX.match(value):
+                            logger.info(f"Looks like '{value}' is a mismatch for '{field_name}', decrementing num_headers and skipping...")
+                            num_headers -= 1
+                            continue
 
-                        value = [v.strip() for v in value.split(';')]
-                        value = [v for v in value if len(v) > 0]
+                        value = [v.strip() for v in value.split(';') if len(v.strip()) > 0]
 
                     setattr(self.header, field_name, value)
 
-                logger.debug(f"Corrected empty header to:\n{self.header}\n\nTop rows of file\n\n{self.top_lines(num_headers * 2)}")
+                logger.debug(f"Corrected empty header to:\n{self.header}\n\nTop rows of file\n\n{self.top_lines((num_headers + 1) * 2)}")
             else:
                 logger.debug(f"Parsed email header to:\n{self.header}")
         else:

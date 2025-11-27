@@ -9,18 +9,19 @@ load_dotenv()
 from rich.console import Console
 
 from documents.epstein_files import EpsteinFiles
+from util.env import args
 from util.rich import print_section_header
 
 
 console = Console(color_system='256')
 
-if len(argv) == 1:
+if len(args.search) == 0:
     console.print(f"Must provide an argument to search for.", style='bright_red')
     exit()
 
 epstein_files = EpsteinFiles()
 
-for search_term in argv[1:]:
+for search_term in args.search:
     print_section_header(f"Searching for '{search_term}'")
 
     for line in epstein_files.lines_matching(search_term):
