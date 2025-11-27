@@ -1,4 +1,4 @@
-from argparse import ArgumentParser, Namespace
+from argparse import ArgumentParser
 from os import environ
 
 
@@ -8,7 +8,6 @@ parser.add_argument('--fast', '-f', action='store_true', help='skip parsing of e
 parser.add_argument('--skip-texts', '-s', action='store_true', help='skip text message output')
 parser.add_argument('--debug', '-d', action='store_true', help='set debug level to INFO')
 parser.add_argument('--deep-debug', '-dd', action='store_true', help='set debug level to DEBUG')
-
 args = parser.parse_args()
 
 deep_debug = args.deep_debug or (len(environ.get('DEEP_DEBUG') or '') > 0)
