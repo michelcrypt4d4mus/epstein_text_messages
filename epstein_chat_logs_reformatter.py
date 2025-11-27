@@ -17,7 +17,7 @@ from rich.text import Text
 from documents.email_header import AUTHOR
 from documents.epstein_files import EpsteinFiles
 from documents.messenger_log import sender_counts
-from util.env import is_build, is_debug, skip_texts
+from util.env import args, is_build, is_debug, skip_texts
 from util.file_helper import OUTPUT_GH_PAGES_HTML
 from util.rich import *
 from util.html import *
@@ -61,17 +61,20 @@ console.print(f"\n\nIdentified authors of {epstein_files.num_identified_email_au
 console.print('(note this site uses the OCR email text provided by Congress which is not the greatest)\n', style='dim')
 console.print('Chronological Epstein correspondence with the following people can be found below.')
 
-for i, author in enumerate(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED):
+emailers_to_print = epstein_files.all_emailers() if args.all else PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED
+emailers_with_tables = epstein_files.all_emailers() if args.all_tables else PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES
+
+for i, author in enumerate(emailers_to_print):
     style = COUNTERPARTY_COLORS.get(author or UNKNOWN, DEFAULT)
     console.print(Text(f"   {i}. ", style='bold').append(author or UNKNOWN, style=style))
 
 console.print("\n\nAfter that there's tables linking to (but not displaying) all known emails for each of these people:\n")
 
-for i, author in enumerate(PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES):
+for i, author in enumerate(emailers_with_tables):
     style = COUNTERPARTY_COLORS.get(author or UNKNOWN, DEFAULT)
     console.print(Text(f"   {i}. ", style='bold').append(author or UNKNOWN, style=style))
 
-for author in PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED:
+for author in emailers_to_print:
     epstein_files.print_emails_for(author)
 
 # Print everyone with less than 3 sent emails
@@ -79,9 +82,9 @@ for author in PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED:
 # for author in [a for a in epstein_files.email_recipient_counts.keys() if len(epstein_files.emails_for(a)) < 3 and a not in low_sent]:
 #     epstein_files.print_emails_for(author)
 
-print_author_header(f"Email Tables for {len(PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES)} Other People", 'white')
+print_author_header(f"Email Tables for {len(emailers_with_tables)} Other People", 'white')
 
-for name in PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES.keys():
+for name in emailers_with_tables:
     epstein_files.print_emails_table_for(name)
 
 epstein_files.print_email_device_info()

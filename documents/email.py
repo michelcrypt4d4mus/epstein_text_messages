@@ -62,11 +62,10 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     "Sent from my 'Phone": 'Sent from my iPhone',
     'Sent from Samsung Mob.le': 'Sent from Samsung Mobile',
     'Sent from Mabfl': 'Sent from Mobile',
-    'MOMMINNEMUMMIN': REDACTED,
     'Torn Pritzker': 'Tom Pritzker',
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
-    re.compile(r"[41<>.=_IM]{7,}"): REDACTED,
+    re.compile(r"([41<>.=_HIM]{7,}|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
     re.compile(r"([,<>_]|AM|PM)\nwrote:?"): r'\1 wrote:',
 }
 
