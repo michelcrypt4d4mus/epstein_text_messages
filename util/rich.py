@@ -355,6 +355,12 @@ def print_author_header(msg: str, color: str | None) -> None:
     console.print('\n', Align.center(panel), '\n')
 
 
+def print_numbered_list(_list: list[str] | dict) -> None:
+    for i, name in enumerate(_list):
+        style = COUNTERPARTY_COLORS.get(name or UNKNOWN, DEFAULT)
+        console.print(Text(f"   {i}. ").append(name or UNKNOWN, style=style))
+
+
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
     panel = Panel(Text(msg, justify='center'), expand=True, padding=(1, 1), style=style)
 
