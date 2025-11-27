@@ -435,7 +435,7 @@ KNOWN_EMAIL_AUTHORS = {
     '028482': TERRY_KAFKA,             # Signature
     '029992': TERRY_KAFKA,             # Quoted reply
     '020666': TERRY_KAFKA,             # ends with 'Terry'
-    '022346': VINIT_SAHNI,             # Signature  #TODO: check this
+    '022346': VINIT_SAHNI,             # Signature  #TODO: check this, also maybe 022346 and 022322
     # '026571': '(unknown french speaker)',
     # '029504': Probably Audrey Raimbault (based on "GMI" in signature, a company registered by "aubrey raimbault")
 }

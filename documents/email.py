@@ -42,7 +42,7 @@ REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re
 SENT_FROM_REGEX = re.compile(r'^(?:Please forgive typos. |Sorry for all the typos .)?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
-BAD_LINE_REGEX = re.compile(r'^\d{1,2}|Importance: High$')
+BAD_LINE_REGEX = re.compile(r'^(\d{1,2}|Importance: High)$')
 UNKNOWN_SIGNATURE_REGEX = re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL)
 
 CLIPPED_SIGNATURE_REPLACEMENT = '[dim]<...snipped epstein legal signature...>[/dim]'
@@ -224,7 +224,7 @@ class Email(CommunicationDocument):
         self.epsteinify_link_markup = make_link_markup(self.epsteinify_name_url, self.file_path.stem, self.author_style)
         self.sent_from_device = self._sent_from_device()
 
-    def cleanup_email_txt(self) -> str:
+    def _cleaned_up_text(self) -> str:
         # add newline after header if header looks valid
         if not EMPTY_HEADER_REGEX.search(self.text):
             text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', self.text).strip()
@@ -397,7 +397,7 @@ class Email(CommunicationDocument):
         info_line.append(self.recipient_txt).append(f" probably sent at ")
         info_line.append(f"{self.timestamp or '?'}", style='spring_green3')
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
-        text = self.cleanup_email_txt()
+        text = self._cleaned_up_text()
         quote_cutoff = self.idx_of_nth_quoted_reply(text=text)
         num_chars = MAX_CHARS_TO_PRINT
 
