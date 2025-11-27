@@ -126,6 +126,12 @@ TRUNCATE_TERMS = [
     'Cells seem to be mostly indistinguishable (except',
     'gender differenece. unlikely motivational, every cell is different',
     'Some thoughts I meant to send back for a long time',
+    # Krassner
+    'My friend Michael Simmons, who has been the editor of National Lampoon',
+    "In the premiere episode of 'The Last Laugh' podcast, Sarah Silverman",
+    'Thanks so much for sharing both your note to Steven and your latest Manson essay',
+    # Edward Larson
+    'Coming from an international background, and having lived in Oslo, Tel Aviv',
 ]
 
 # No point in ever displaying these
