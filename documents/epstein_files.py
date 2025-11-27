@@ -4,6 +4,7 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
+from typing import Literal
 
 from rich.align import Align
 from rich.markup import escape
@@ -195,8 +196,9 @@ class EpsteinFiles:
         table.add_row('Other', f"{len(self.other_files):,}", 'n/a')
         console.print('\n', Align.center(table), '\n\n')
 
-    def lines_matching(self, _pattern: re.Pattern | str) -> list[str | Text]:
-        return flatten([doc.lines_matching_txt(patternize(_pattern)) for doc in self.all_documents()])
+    def lines_matching(self, _pattern: re.Pattern | str, file_type: Literal['all', 'other'] = 'all') -> list[str | Text]:
+        documents = self.all_documents() if file_type == 'all' else self.other_files
+        return flatten([doc.lines_matching_txt(patternize(_pattern)) for doc in documents])
 
     @staticmethod
     def sort_emails(emails: list[Email]) -> list[Email]:

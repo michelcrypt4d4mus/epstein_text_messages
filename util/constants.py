@@ -29,6 +29,7 @@ ANAS_ALRASHEED = 'Anas Alrasheed'
 AZIZA_ALAHMADI = 'Aziza Alahmadi'
 BARBRO_EHNBOM = 'Barbro Ehnbom'
 BENNET_MOSKOWITZ = 'Bennet Moskowitz'
+BRAD_WECHSLER = 'Brad Wechsler'
 BORIS_NIKOLIC = 'Boris Nikolic'
 CELINA_DUBIN = 'Celina Dubin'
 CHRISTINA_GALBRAITH = 'Christina Galbraith'  # Works with Tyler Shears on reputation stuff
@@ -272,7 +273,7 @@ EMAILERS = [
     AZIZA_ALAHMADI,
     'Bill Gates',
     'Bill Siegel',
-    'Brad Wechsler',
+    BRAD_WECHSLER,
     'Daniel Sabba',
     DAVID_SCHOEN,
     DEEPAK_CHOPRA,
@@ -485,7 +486,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '028787': LAWRANCE_VISOSKI,
     '027097': LAWRANCE_VISOSKI,       # Signature of reply
     '022250': LESLEY_GROFF,           # Reply
-    '023291': MELANIE_SPINELLA,
+    '023291': [MELANIE_SPINELLA, BRAD_WECHSLER],  # Can be seen in 023028
     '032214': MIROSLAV,               # Quoted reply has signature
     '022258': NADIA_MARCINKO,         # Reply header
     '033097': [PAUL_BARRETT, RICHARD_KAHN],  # Bad OCR #TODO: check
