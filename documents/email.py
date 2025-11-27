@@ -69,6 +69,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'Sent from Mabfl': 'Sent from Mobile',
     'Torn Pritzker': 'Tom Pritzker',
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
+    'Miroslav Laj6ak': MIROSLAV,
     re.compile(r'([/vkT]|Ai|li|(I|7)v)rote:'): 'wrote:',
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
     re.compile(r"([<>.=_HIM][<>.=_HIM14]{5,}[<>.=_HIM]|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
@@ -93,6 +94,17 @@ TRUNCATE_TERMS = [
     "In recent months, China's BAT collapse",
     'President Obama introduces Jim Yong Kim as his nominee',
     'Trump appears with mobster-affiliated felon at New',
+    'Lead Code Enforcement Walton presented the facts',
+    "Is UNRWA vital for the Palestinians' future",
+    'The New York company, led by Stephen Ross',
+    'I spent some time mulling additional aspects of a third choice presidential',
+    'you are referring to duplication of a gene',
+    'i am writing you both because i am attaching a still not-quite-complete response',
+    'Learn to meditate and discover what truly nourishes your entire being',
+    'Congratulations to the 2019 Hillman Prize recipients',
+    'This much we know - the Fall elections are shaping up',
+    "Bannon the European: He's opening the populist fort in Brussels",
+    "Special counsel Robert Mueller's investigation may face a serious legal obstacle",
 ]
 
 # No point in ever displaying these
@@ -103,6 +115,10 @@ USELESS_EMAILERS = [
     'How To Academy',
     'Jokeland',
 ]
+
+SUPPRESS_OUTPUT_FOR_IDS = {
+    '026499':  "it's quoted in full in 026298",
+}
 
 
 @dataclass
@@ -326,6 +342,11 @@ class Email(CommunicationDocument):
             return 'S' + sent_from[1:] if sent_from.startswith('sent') else sent_from
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
+        if self.file_id in SUPPRESS_OUTPUT_FOR_IDS:
+            txt = Text(f"Not showing ", style='dim').append(self.filename, style='cyan')
+            yield txt.append(f" because {SUPPRESS_OUTPUT_FOR_IDS[self.file_id]}").append('\n')
+            return
+
         yield Panel(self.archive_link, expand=False)
         info_line = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(f' to ')
         info_line.append(self.recipient_txt).append(f" probably sent at ")
