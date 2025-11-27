@@ -28,6 +28,7 @@ OUTPUT_WIDTH = 120
 HEADER_FIELD = 'header_field'
 HEADER_STYLE = 'header_field'
 PHONE_NUMBER = 'phone_number'
+SENT_FROM = 'sent_from'
 TEXT_LINK = 'text_link'
 TIMESTAMP = 'timestamp'
 SECTION_HEADER_STYLE = 'bold white on blue3'
@@ -165,6 +166,7 @@ OTHER_STYLES = {
     TIMESTAMP: 'gray30',
     HEADER_STYLE: 'plum4',
     highlighter_style_name('email'): 'bright_cyan',
+    SENT_FROM: 'gray50 italic dim',
 }
 
 COUNTERPARTY_COLORS.update(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED)
@@ -263,7 +265,7 @@ def highlight_text(text: str) -> str:
         text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
 
     for name, style in COUNTERPARTY_COLORS.items():
-        if name in [None, DEFAULT, HEADER_STYLE]:
+        if name in [None, DEFAULT, HEADER_STYLE, SENT_FROM]:
             continue
 
         name = regex_escape_periods(name)

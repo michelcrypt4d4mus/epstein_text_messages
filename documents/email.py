@@ -60,7 +60,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'MOMMINNEMUMMIN': REDACTED,
     'Torn Pritzker': 'Tom Pritzker',
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
-    re.compile(r"[41<>.=_]{7,}"): REDACTED,
+    re.compile(r"[41<>.=_I]{7,}"): REDACTED,
 }
 
 # These are long forwarded articles we don't want to display over and over
@@ -301,7 +301,7 @@ class Email(CommunicationDocument):
             text += f"\n\n[dim]<...truncated to {num_chars} characters, read the rest: {self.epsteinify_link_markup}...>[/dim]"
 
         text = REPLY_REGEX.sub(r'[dim]\1[/dim]', text)
-        text = SENT_FROM_REGEX.sub(r'[italic][gray39]\1[/gray39][/italic]', text)
+        text = SENT_FROM_REGEX.sub(fr'[{SENT_FROM}]\1[/{SENT_FROM}]', text)
         text = UNKNOWN_SIGNATURE_REGEX.sub(r'[dim]\1[/dim]', text)
         yield Padding(Panel(highlight_text(text), expand=False), (0, 0, 2, EMAIL_INDENT))
 
