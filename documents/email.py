@@ -42,7 +42,7 @@ REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re
 SENT_FROM_REGEX = re.compile(r'^(?:Please forgive typos. |Sorry for all the typos .)?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
-BAD_LINE_REGEX = re.compile(r'^(\d{1,2}|Importance:( High)?)$')
+BAD_LINE_REGEX = re.compile(r'^(\d{1,2}|Importance:( High)?|I)$')
 UNKNOWN_SIGNATURE_REGEX = re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL)
 
 CLIPPED_SIGNATURE_REPLACEMENT = '[dim]<...snipped epstein legal signature...>[/dim]'
@@ -109,7 +109,6 @@ TRUNCATE_TERMS = [
     'Learn to meditate and discover what truly nourishes your entire being',
     'Congratulations to the 2019 Hillman Prize recipients',
     'This much we know - the Fall elections are shaping up',
-    "Bannon the European: He's opening the populist fort in Brussels",
     "Special counsel Robert Mueller's investigation may face a serious legal obstacle",
     "nearly leak-proof since its inception more than a year ago",
     "I appreciate the opportunity to respond to your email",
@@ -151,6 +150,10 @@ TRUNCATE_TERMS = [
     'A friendly discussion about Syria with a former US State Department',
     # Tom / Paul Krassner
     'I forgot to post my cartoon from week before last, about Howard Schultz',
+    # Bannon
+    "Bannon the European: He's opening the populist fort in Brussels",
+    "Steve Bannon doesn't do subtle.",
+    'The Department of Justice lost its latest battle with Congress',
 ]
 
 # No point in ever displaying these

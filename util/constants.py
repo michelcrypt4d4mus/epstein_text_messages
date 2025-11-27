@@ -500,7 +500,7 @@ EMAIL_SIGNATURES = {
     JEFFREY_EPSTEIN: re.compile(r"((\*+|please note)\n+)?(> )?(• )?(» )?The information contained in this communication is\n(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?", re.DOTALL),
     MARTIN_WEINBERG: re.compile(r"This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
     PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
-    PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
+    PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(142 W 57th Street, 11th Floor, New York, NY 10019?[\n\s]+)?(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
     RICHARD_KAHN: re.compile(r'Richard Kahn[\n\s]+HBRK Associates Inc.?[\n\s]+(575 Lexington Avenue 4th Floor[\n\s]+)?New York, (NY|New York) 10022([\n\s]+(Tel|Phone)( I)?[\n\s]+Fa[x"]?[\n\s]+[Ce]el?l?)?', re.IGNORECASE),
 }
 
