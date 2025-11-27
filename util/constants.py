@@ -77,6 +77,7 @@ PETER_MANDELSON = 'Peter Mandelson'
 PAUL_KRASSNER = 'Paul Krassner'
 PAUL_PROSPERI = 'Paul Prosperi'
 PETER_MANDELSON = 'Peter Mandelson'
+PRINCE_ANDREW = 'Prince Andrew'
 REID_HOFFMAN = 'Reid Hoffman'
 ROBERT_TRIVERS = 'Robert Trivers'
 SEAN_BANNON = 'Sean Bannon'
@@ -236,6 +237,7 @@ EMAILER_REGEXES = {
     'Paul Morris': re.compile(r'morris, paul|Paul Morris', re.IGNORECASE),
     PEGGY_SIEGAL:  re.compile(r'Peggy Siegal?', re.IGNORECASE),
     'Peter Attia': re.compile(r'Peter Attia?', re.IGNORECASE),
+    PRINCE_ANDREW: re.compile(r'Prince Andrew|The Duke', re.IGNORECASE),
     'Reid Weingarten': re.compile(r'Weingarten, Rei[cdi]|Rei[cdi] Weingarten', re.IGNORECASE),
     'Richard Kahn': re.compile(r'rich(ard)? kahn?', re.IGNORECASE),
     'Robert Lawrence Kuhn': re.compile(r'Robert\s*(Lawrence)?\s*Kuhn', re.IGNORECASE),
