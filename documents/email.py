@@ -52,6 +52,8 @@ MAX_CHARS_TO_PRINT = 4000
 VALID_HEADER_LINES = 14
 EMAIL_INDENT = 3
 
+clipped_signature_replacement = lambda name: f'[dim]<...snipped {name.split()[-1].lower()} legal signature...>[/dim]'
+
 KNOWN_TIMESTAMPS = {
     '028851': datetime(2014, 4, 27, 6, 00),
     '028849': datetime(2014, 4, 27, 6, 30),
@@ -156,7 +158,11 @@ class Email(CommunicationDocument):
 
         text = '\n'.join([line for line in text.split('\n') if not BAD_LINE_REGEX.match(line)])
         text = escape(REPLY_REGEX.sub(r'\n\1', text))  # Newlines between quoted replies
-        return EMAIL_SIGNATURES[JEFFREY_EPSTEIN].sub(CLIPPED_SIGNATURE_REPLACEMENT, text)
+
+        for name, signature_regex in EMAIL_SIGNATURES.items():
+            text = signature_regex.sub(clipped_signature_replacement(name), text)
+
+        return text
 
     def description(self) -> Text:
         if is_fast_mode:
