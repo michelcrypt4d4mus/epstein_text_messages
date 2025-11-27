@@ -79,6 +79,7 @@ PETER_MANDELSON = 'Peter Mandelson'
 REID_HOFFMAN = 'Reid Hoffman'
 ROBERT_TRIVERS = 'Robert Trivers'
 SEAN_BANNON = 'Sean Bannon'
+STEVEN_PFEIFFER = 'Steven Pfeiffer'
 SULTAN_BIN_SULAYEM = 'Sultan Bin Sulayem'
 TERRY_KAFKA = 'Terry Kafka'
 THORBJORN_JAGLAND = 'Thorbjørn Jagland'
@@ -285,6 +286,7 @@ EMAILERS = [
     'Peter Green',
     PETER_MANDELSON,
     r'Sam/Walli Leff',
+    STEVEN_PFEIFFER,
     'Steven Victor MD',
     'The Duke',
     TOM_BARRACK,
@@ -442,9 +444,10 @@ KNOWN_EMAIL_RECIPIENTS = {
     '028849': JEFFREY_EPSTEIN,        # Conversation
     '026547': JEFFREY_EPSTEIN,        # Bad OCR
     '029498': [JEFFREY_EPSTEIN, 'Gordon Getty', 'David Haig', 'Norman Finkelstein'],  # Bad OCR
-    '019407': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],  # Bad OCR
-    '019409': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],  # Bad OCR
-    '031980': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],  # Bad OCR
+    '019407': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR
+    '019409': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR
+    '031980': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR
+    '026228': [JEFFREY_EPSTEIN, STEVEN_PFEIFFER],  # Bad OCR
     '033456': 'Joel',                 # Reply
     '033460': 'Joel',                 # Reply
     '029282': [JOI_ITO, REID_HOFFMAN],# Bad OCR

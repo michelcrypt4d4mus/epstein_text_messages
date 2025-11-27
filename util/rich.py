@@ -99,7 +99,6 @@ NAMES_TO_NOT_COLOR = flatten(NAMES_TO_NOT_COLOR)
 COUNTERPARTY_COLORS = {
     ANIL: INDIA_COLOR,
     ARIANE_DE_ROTHSCHILD: 'indian_red',
-    BORIS_NIKOLIC: BRO_COLOR,
     CELINA_DUBIN: DUBIN_COLOR,
     DEFAULT: 'wheat4',
     JEFFREY_EPSTEIN: 'blue1',
@@ -141,6 +140,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     MOHAMED_WAHEED_HASSAN: ARAB_COLOR,
     PAULA: 'pink1',
     REID_HOFFMAN: TECH_BRO_COLOR,
+    BORIS_NIKOLIC: BRO_COLOR,
     # ALIREZA_ITTIHADIEH: ARAB_COLOR,
     # Temporary
     # 'Reid Weingarten': 'magenta',
@@ -178,7 +178,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     ARAB_COLOR: r"Abdulmalik Al-Makhlafi|Abu\s+Dhabi|Assad|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Riya(dh|nd)|Saudi(\s+Arabian?)?|Sharia|Syria|Turkey|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
     BITCOIN_COLOR: r"bitcoin|block ?chain( capital)?|coins|cr[iy]pto(currency)?|e-currency|(jeffrey\s+)?wernick|(Howard\s+)?Lutnick|Libra|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)",
     BRASIL_COLOR: r"Argentina|Bra[sz]il(ian)?|Bolsonar[aio]|Lula|(Nicolas )?Maduro|Venezuelan?s?",
-    CHINA_COLOR: r"CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|PRC|xi",
+    CHINA_COLOR: r"Beijing|CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|Peking|PRC|xi",
     DEMS_COLOR: r"Maxine Waters|(Nancy )?Pelosi|Clinton|Hillary",
     INDIA_COLOR: r"Ambani|Indian?|Modi|mumbai|Zubair( Khan)?",
     ISRAELI_COLOR: r"Bibi|(eh|Nili Priell )barak|Netanyahu|Israeli?",

@@ -82,6 +82,11 @@ TRUNCATE_TERMS = [
     'THOMAS L. FRIEDMAN',
     'a sleek, briskly paced film whose title suggests a heist movie',
     'quote from The Colbert Report distinguishes',
+    'co-inventor of the GTX Smart Shoe',
+    'my latest Washington Post column',
+    'Whether you donated to Poetry in America through',
+    'supported my humanities work at Harvard',
+    'Calendar of Major Events, Openings, and Fundraisers',
 ]
 
 # No point in ever displaying these
@@ -171,7 +176,7 @@ class Email(CommunicationDocument):
             info_str = f"Email (author='{self.author}', recipients={self.recipients}, timestamp='{self.timestamp}')"
             return Text.from_markup(highlight_text(info_str))
 
-    def idx_of_nth_quoted_reply(self, n: int = 3, text: str | None = None) -> int | None:
+    def idx_of_nth_quoted_reply(self, n: int = 2, text: str | None = None) -> int | None:
         text = text or self.text
 
         for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text)):
@@ -318,7 +323,7 @@ class Email(CommunicationDocument):
         info_line.append(f"{self.timestamp or '?'}", style='spring_green3')
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
         text = self.cleanup_email_txt()
-        quote_cutoff = self.idx_of_nth_quoted_reply(text=text) or MAX_CHARS_TO_PRINT
+        quote_cutoff = self.idx_of_nth_quoted_reply(text=text)
         num_chars = MAX_CHARS_TO_PRINT
 
         if any((term in self.text) for term in TRUNCATE_TERMS):
