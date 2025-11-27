@@ -311,15 +311,16 @@ class Email(CommunicationDocument):
         quote_cutoff = self.idx_of_nth_quoted_reply(text=text) or MAX_CHARS_TO_PRINT
         num_chars = MAX_CHARS_TO_PRINT
 
-        if quote_cutoff:
+        if quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
             logger.debug(f"Found {self.count_regex_matches(QUOTED_REPLY_LINE_REGEX.pattern)} quotes, cutting off at char {quote_cutoff}")
             num_chars = quote_cutoff
+
         if any((term in self.text) for term in TRUNCATE_TERMS):
             num_chars = int(MAX_CHARS_TO_PRINT / 3)
 
         if len(text) > num_chars:
             text = text[0:num_chars]
-            text += f"\n\n[dim]<...truncated to {num_chars} characters, read the rest: {self.epsteinify_link_markup}...>[/dim]"
+            text += f"\n\n[dim]<...trimmed to {num_chars} characters of {self.length}, read the rest: {self.epsteinify_link_markup}...>[/dim]"
 
         text = REPLY_REGEX.sub(r'[dim]\1[/dim]', text)
         text = SENT_FROM_REGEX.sub(fr'[{SENT_FROM}]\1[/{SENT_FROM}]', text)
