@@ -342,6 +342,12 @@ def print_email_table(counts: dict[str, int], column_title: str) -> None:
     console.print(counts_table)
 
 
+def print_author_header(msg: str, color: str | None) -> None:
+    txt = Text(msg, justify='center')
+    panel = Panel(txt, width=80, style=f"black on {color or 'white'} bold")
+    console.print('\n', Align.center(panel), '\n')
+
+
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
     panel = Panel(Text(msg, justify='center'), expand=True, padding=(1, 1), style=style)
 

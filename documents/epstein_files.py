@@ -19,7 +19,7 @@ from util.constants import *
 from util.data import flatten, patternize
 from util.env import is_debug, logger
 from util.file_helper import DOCS_DIR, move_json_file
-from util.rich import COUNTERPARTY_COLORS, console, highlight_text, print_panel
+from util.rich import COUNTERPARTY_COLORS, console, highlight_text, print_author_header, print_panel
 
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (0, 0, 0, 2)
@@ -118,9 +118,7 @@ class EpsteinFiles:
         author = author or UNKNOWN
 
         if len(emails) > 0:
-            txt = Text(f"Found {len(emails)} emails to/from {author}", justify='center')
-            panel = Panel(txt, width=80, style=f"black on {COUNTERPARTY_COLORS.get(author, 'default')} bold")
-            console.print('\n', Align.center(panel), '\n')
+            print_author_header(f"Found {len(emails)} emails to/from {author}", COUNTERPARTY_COLORS.get(author))
         else:
             logger.warning(f"No emails found for {author}")
             return

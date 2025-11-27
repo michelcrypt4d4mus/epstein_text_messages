@@ -61,7 +61,6 @@ console.print(f"\n\nIdentified authors of {epstein_files.num_identified_email_au
 console.print('(note this site uses the OCR email text provided by Congress which is not the greatest)\n', style='dim')
 console.print('Chronological Epstein correspondence with the following people can be found below.')
 
-
 for i, author in enumerate(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED):
     style = COUNTERPARTY_COLORS.get(author or UNKNOWN, DEFAULT)
     console.print(Text(f"   {i}. ", style='bold').append(author or UNKNOWN, style=style))
@@ -79,6 +78,8 @@ for author in PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED:
 # low_sent = [a for a in epstein_files.email_author_counts.keys() if len(epstein_files.emails_for(a)) < 3]
 # for author in [a for a in epstein_files.email_recipient_counts.keys() if len(epstein_files.emails_for(a)) < 3 and a not in low_sent]:
 #     epstein_files.print_emails_for(author)
+
+print_author_header(f"Email Tables for {len(PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES)} Other People", 'white')
 
 for name in PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES.keys():
     epstein_files.print_emails_table_for(name)
