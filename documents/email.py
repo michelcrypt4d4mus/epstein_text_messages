@@ -154,6 +154,8 @@ TRUNCATE_TERMS = [
     "Bannon the European: He's opening the populist fort in Brussels",
     "Steve Bannon doesn't do subtle.",
     'The Department of Justice lost its latest battle with Congress',
+    # Diane Ziman
+    'I was so proud to see him speak at the Women',
 ]
 
 # No point in ever displaying these

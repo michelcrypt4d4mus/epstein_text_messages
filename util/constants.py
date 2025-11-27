@@ -466,6 +466,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '019409': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR
     '031980': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR
     '026228': [JEFFREY_EPSTEIN, STEVEN_PFEIFFER],    # Bad OCR
+    '028931': [JEFFREY_EPSTEIN, LAWRENCE_KRAUSS],    # Bad OCR
     '033456': 'Joel',                 # Reply
     '033460': 'Joel',                 # Reply
     '029282': [JOI_ITO, REID_HOFFMAN],# Bad OCR
@@ -486,6 +487,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '023291': MELANIE_SPINELLA,
     '032214': MIROSLAV,               # Quoted reply has signature
     '022258': NADIA_MARCINKO,         # Reply header
+    '033097': [PAUL_BARRETT, RICHARD_KAHN],  # Bad OCR #TODO: check
     '030506': PAULA,                  # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
     '030507': PAULA,                  # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
     '030508': PAULA,                  # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
@@ -498,6 +500,7 @@ KNOWN_EMAIL_RECIPIENTS = {
 
 EMAIL_SIGNATURES = {
     JEFFREY_EPSTEIN: re.compile(r"((\*+|please note)\n+)?(> )?(• )?(» )?The information contained in this communication is\n(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?", re.DOTALL),
+    LAWRENCE_KRAUSS: re.compile(r"Lawrence M. Krauss\nDirector.*\nFoundation.*\nSchool.*\nArizona.*\nResearch.*\nOrigins.*\norigins.*"),
     MARTIN_WEINBERG: re.compile(r"This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
     PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
     PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(142 W 57th Street, 11th Floor, New York, NY 10019?[\n\s]+)?(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
