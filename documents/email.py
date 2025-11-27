@@ -152,7 +152,7 @@ class Email(CommunicationDocument):
         timestamp = self.timestamp or FALLBACK_TIMESTAMP
         return timestamp.replace(tzinfo=None) if timestamp.tzinfo is not None else timestamp
 
-    def idx_of_nth_quoted_reply(self, n: int = 4, text: str | None = None) -> int | None:
+    def idx_of_nth_quoted_reply(self, n: int = 3, text: str | None = None) -> int | None:
         text = text or self.text
 
         for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text)):
