@@ -206,7 +206,7 @@ EMAILER_REGEXES = {
     'Heather Mann': re.compile(r'Heather Man', re.IGNORECASE),
     'Intelligence Squared': re.compile(r'intelligence\s*squared', re.IGNORECASE),
     'Jackie Perczel':  re.compile(r'jackie perczel?', re.IGNORECASE),
-    JABOR_Y: re.compile(r'^[ji]abor\s+y\.?', re.IGNORECASE),
+    JABOR_Y: re.compile(r'^[ji]abor\s*y\.?', re.IGNORECASE),
     JEAN_LUC_BRUNEL: re.compile(r'Jean[- ]Luc Brunel?', re.IGNORECASE),
     JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]?g(mail\.com)?|jeffrey E(sptein?)?|jeeproject@yahoo.com|J Jep', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|joichi|^joi$', re.IGNORECASE),
