@@ -2,6 +2,7 @@ import json
 import re
 from dataclasses import asdict, dataclass, field
 
+from util.constants import REDACTED
 from util.env import logger
 from util.rich import UNKNOWN
 
@@ -84,5 +85,7 @@ class EmailHeader:
 
     @staticmethod
     def cleanup_str(_str: str) -> str:
+        _str = _str.strip().removesuffix(REDACTED)
         _str = _str.strip().lstrip('"').lstrip("'").rstrip('"').rstrip("'").strip().strip('_')
-        return _str.strip('[').strip(']').strip('*').strip('<').strip('•').rstrip(',').strip('>').strip()
+        _str = _str.strip('[').strip(']').strip('*').strip('<').strip('•').rstrip(',').strip('>').strip()
+        return _str
