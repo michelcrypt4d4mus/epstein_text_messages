@@ -179,6 +179,7 @@ USELESS_EMAILERS = [
 SUPPRESS_OUTPUT_FOR_IDS = {
     '026499': "it's quoted in full in 026298",
     '033207': "it's the same as 033580",
+    '028765': "it's the same as 027053",
 }
 
 
