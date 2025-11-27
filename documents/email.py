@@ -30,7 +30,11 @@ EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Sub
 SKIP_HEADER_ROW_REGEX = re.compile(r"^(agreed|call me|Hysterical|schwartman).*")
 
 # TODO: fill out the regex for reply lines like: 'In a message dated 1/12/2012 10:21:24 A.M. Eastern Standard Time, jeevacation@gmail.com writes:'
-REPLY_LINE_PATTERN = r'((On|In a message dated) ([A-Z][a-z]{2,9},)?\s*?([A-Z][a-z]{2,9}\s*\d+,\s*\d{4}|\d+/\d+/\d+ \d+:\d+ (AM|PM)),?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*(?:[ \n]+wrote:)?|-+(Forwarded|Original)\s*Message-*|Begin forwarded message:?)'
+REPLY_LINE_IN_A_MSG_PATTERN = r"In a message dated \d+/\d+/\d+.*writes:"
+REPLY_LINE_ON_DATE_PATTERN = r"On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*)[, ].*[ \n](AM|PM|wrote:?)"
+FORWARDED_LINE_PATTERN = r"-+(Forwarded|Original)\s*Message-*|Begin forwarded message:?"
+REPLY_LINE_PATTERN = rf"({REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
+#REPLY_LINE_PATTERN = r'(On ([A-Z][a-z]{2,9},)?\s*?([A-Z][a-z]{2,9}\s*\d+,\s*\d{4}|\d+/\d+/\d+ \d+:\d+ (AM|PM)),?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*(?:[ \n]+wrote:)?|-+(Forwarded|Original)\s*Message-*|Begin forwarded message:?)'
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re.DOTALL)
 SENT_FROM_REGEX = re.compile(r'^(?:Please forgive typos. |Sorry for all the typos .)?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
