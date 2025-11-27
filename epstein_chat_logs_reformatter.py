@@ -59,22 +59,16 @@ console.line(2)
 print_email_table(epstein_files.email_recipient_counts, "Recipient")
 console.print(f"\n\nIdentified authors of {epstein_files.num_identified_email_authors()} emails out of {len(epstein_files.emails)} potential email files.")
 console.print('(note this site uses the OCR email text provided by Congress which is not the greatest)\n', style='dim')
-console.print('Chronological Epstein correspondence with the following people can be found below.')
 
+console.print('Chronological Epstein correspondence with the following people can be found below.')
 emailers_to_print = epstein_files.all_emailers() if args.all else PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED
 emailers_to_print = sorted(emailers_to_print, key=lambda e: epstein_files.earliest_email_at(e)) if args.all else emailers_to_print
-emailer_tables = epstein_files.all_emailers() if args.all_tables else PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES
-emailer_tables = sorted(emailer_tables, key=lambda e: epstein_files.earliest_email_at(e)) if args.all else emailer_tables
-
-for i, author in enumerate(emailers_to_print):
-    style = COUNTERPARTY_COLORS.get(author or UNKNOWN, DEFAULT)
-    console.print(Text(f"   {i}. ").append(author or UNKNOWN, style=style))
+print_numbered_list(emailers_to_print)
 
 console.print("\n\nAfter that there's tables linking to (but not displaying) all known emails for each of these people:\n")
-
-for i, author in enumerate(emailer_tables):
-    style = COUNTERPARTY_COLORS.get(author or UNKNOWN, DEFAULT)
-    console.print(Text(f"   {i}. ", style='bold').append(author or UNKNOWN, style=style))
+emailer_tables = epstein_files.all_emailers() if args.all_tables else PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES
+emailer_tables = sorted(emailer_tables, key=lambda e: epstein_files.earliest_email_at(e)) if args.all else emailer_tables
+print_numbered_list(emailer_tables)
 
 for author in emailers_to_print:
     epstein_files.print_emails_for(author)
