@@ -1,6 +1,4 @@
-import itertools
 import json
-import logging
 import re
 from os import environ
 
@@ -11,7 +9,6 @@ from rich.markup import escape
 from rich.panel import Panel
 from rich.padding import Padding
 from rich.table import Table
-from rich.terminal_theme import TerminalTheme
 from rich.text import Text
 from rich.theme import Theme
 
@@ -55,6 +52,7 @@ LAWYER_COLOR = 'purple3'
 OBAMA_COLOR = 'yellow'
 RICH_GUY_COLOR = 'dark_cyan'
 RUSSIA_COLOR = 'red'
+SCHOLAR_COLOR = 'light_goldenrod2'
 TECH_BRO_COLOR = 'orange4'
 TRUMP_COLOR = 'red3 bold'
 
@@ -100,6 +98,7 @@ NAMES_TO_NOT_COLOR = flatten(NAMES_TO_NOT_COLOR)
 COUNTERPARTY_COLORS = {
     ALIREZA_ITTIHADIEH: ARAB_COLOR,  # Iranian / British?
     ANIL: INDIA_COLOR,
+    BRAD_KARP: LAWYER_COLOR,
     CELINA_DUBIN: DUBIN_COLOR,
     DAVID_SCHOEN: LAWYER_COLOR,
     DEFAULT: 'wheat4',
@@ -107,17 +106,17 @@ COUNTERPARTY_COLORS = {
     EVA: 'orchid',
     GLENN_DUBIN: DUBIN_COLOR,
     JONATHAN_FARKAS: BRO_COLOR,
-    LARRY_SUMMERS: 'spring_green4',
+    LARRY_SUMMERS: SCHOLAR_COLOR,
     MARTIN_WEINBERG: LAWYER_COLOR,
     MELANIE_SPINELLA: 'magenta3',
     MELANIE_WALKER: 'deep_pink4',
     NADIA_MARCINKO: 'violet',
     MICHAEL_WOLFF: JOURNALIST_COLOR,
     MIROSLAV: 'slate_blue3',
-    'Noam Chomsky': 'dark_sea_green',
+    'Noam Chomsky': SCHOLAR_COLOR,
     PAUL_KRASSNER: JOURNALIST_COLOR,
     REID_WEINGARTEN: LAWYER_COLOR,
-    ROBERT_TRIVERS: 'blue_violet',
+    ROBERT_TRIVERS: SCHOLAR_COLOR,
     SCARAMUCCI: 'orange1',
     SOON_YI: 'hot_pink',
     STACY_PLASKETT: 'medium_orchid3',
