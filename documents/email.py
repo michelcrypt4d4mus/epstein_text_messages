@@ -51,7 +51,7 @@ KNOWN_TIMESTAMPS = {
     '028849': datetime(2014, 4, 27, 6, 30),
 }
 
-OCR_REPAIRS = {
+OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'BlackBerry by AT &T': 'BlackBerry by AT&T',
     'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
     "Sent from my 'Phone": 'Sent from my iPhone',
@@ -60,6 +60,8 @@ OCR_REPAIRS = {
     'MOMMINNEMUMMIN': REDACTED,
     'Torn Pritzker': 'Tom Pritzker',
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
+    re.compile(r"[41<>.]{8,}"): REDACTED,
+    #'1111111111111111111. wrote:'
 }
 
 # These are long forwarded articles we don't want to display over and over
@@ -267,9 +269,7 @@ class Email(CommunicationDocument):
             self.lines = [self.lines[0] + self.lines[1]] + self.lines[2:]
             self.text = '\n'.join(self.lines)
 
-        for k, v in OCR_REPAIRS.items():
-            self.text = self.text.replace(k, v)
-
+        self.text = self.regex_repair_text(OCR_REPAIRS, self.text)
         self._set_computed_fields()
 
     def _sent_from_device(self) -> str | None:

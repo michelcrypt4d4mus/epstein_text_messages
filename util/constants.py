@@ -183,7 +183,7 @@ EMAILER_REGEXES = {
     BENNET_MOSKOWITZ: re.compile(r'Moskowitz.*Bennet|Bennet.*Moskowitz', re.IGNORECASE),
     BORIS_NIKOLIC: re.compile(r'boris nikolic?', re.IGNORECASE),
     'Dangene and Jennie Enterprise': re.compile(r'Dangene and Jennie Enterpris', re.IGNORECASE),
-    DARREN_INDYKE: re.compile(r'^darren$|darren [il]ndyke?|dkiesq', re.IGNORECASE),
+    DARREN_INDYKE: re.compile(r'^darren$|darren [il]n[dq]_?yke?|dkiesq', re.IGNORECASE),
     DAVID_STERN: re.compile(r'David Stern?', re.IGNORECASE),
     EDWARD_EPSTEIN: re.compile(r'Edward (Jay )?Epstein', re.IGNORECASE),
     EHUD_BARAK: re.compile(r'(ehud|h)\s*barak', re.IGNORECASE),

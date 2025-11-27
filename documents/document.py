@@ -105,6 +105,15 @@ class Document:
             for line in matched_lines
         ]
 
+    def regex_repair_text(self, repairs: dict[str | re.Pattern, str], text: str) -> str:
+        for k, v in repairs.items():
+            if isinstance(k, re.Pattern):
+                text = k.sub(v, text)
+            else:
+                text = text.replace(k, v)
+
+        return text
+
     def log_top_lines(self, n: int = 10, msg: str | None = None) -> None:
         msg = f"{msg + '. ' if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"
         logger.info(f"{msg}:\n\n{self.top_lines(n)}")
@@ -120,14 +129,7 @@ class Document:
         with open(self.file_path) as f:
             text = f.read()
             text = text[1:] if (len(text) > 0 and text[0] == '\ufeff') else text  # remove BOM
-            text = text.strip()
-
-            for k, v in OCR_REPAIRS.items():
-                if isinstance(k, re.Pattern):
-                    text = k.sub(v, text)
-                else:
-                    text = text.replace(k, v)
-
+            text = self.regex_repair_text(OCR_REPAIRS, text.strip())
             lines = [l.strip() for l in text.split('\n') if not l.startswith(HOUSE_OVERSIGHT)]
             lines = lines[1:] if (len(lines) > 1 and lines[0] == '>>') else lines
             return MULTINEWLINE_REGEX.sub('\n\n\n', '\n'.join(lines))
