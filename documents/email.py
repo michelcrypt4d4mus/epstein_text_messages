@@ -73,7 +73,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r'([/vkT]|Ai|li|(I|7)v)rote:'): 'wrote:',
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
     re.compile(r"([<>.=_HIM][<>.=_HIM14]{5,}[<>.=_HIM]|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
-    re.compile(r"([,<>_]|AM|PM)\nwrote:?"): r'\1 wrote:',
+    re.compile(r"([,<>_]|AM|PM)\n(>)? ?wrote:?"): r'\1\2 wrote:',
 }
 
 # These are long forwarded articles we don't want to display over and over
@@ -125,7 +125,8 @@ USELESS_EMAILERS = [
 ]
 
 SUPPRESS_OUTPUT_FOR_IDS = {
-    '026499':  "it's quoted in full in 026298",
+    '026499': "it's quoted in full in 026298",
+    '033207': "it's the same as 033580",
 }
 
 
