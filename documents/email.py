@@ -87,6 +87,9 @@ TRUNCATE_TERMS = [
     'Whether you donated to Poetry in America through',
     'supported my humanities work at Harvard',
     'Calendar of Major Events, Openings, and Fundraisers',
+    'Nuclear Operator Raises Alarm on Crisis',
+    'as responsible for the democratisation of computing and',
+    'AROUND 1,000 operational satellites are circling the Earth',
 ]
 
 # No point in ever displaying these
