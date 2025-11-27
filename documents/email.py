@@ -224,6 +224,20 @@ class Email(CommunicationDocument):
         self.epsteinify_link_markup = make_link_markup(self.epsteinify_name_url, self.file_path.stem, self.author_style)
         self.sent_from_device = self._sent_from_device()
 
+    def description(self) -> Text:
+        if is_fast_mode:
+            return Text(self.filename)
+        else:
+            info_str = f"Email (author='{self.author}', recipients={self.recipients}, timestamp='{self.timestamp}')"
+            return Text.from_markup(highlight_text(info_str))
+
+    def idx_of_nth_quoted_reply(self, n: int = 2, text: str | None = None) -> int | None:
+        text = text or self.text
+
+        for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text)):
+            if i >= n:
+                return match.end() - 1
+
     def _cleaned_up_text(self) -> str:
         # add newline after header if header looks valid
         if not EMPTY_HEADER_REGEX.search(self.text):
@@ -238,20 +252,6 @@ class Email(CommunicationDocument):
             text = signature_regex.sub(clipped_signature_replacement(name), text)
 
         return text
-
-    def description(self) -> Text:
-        if is_fast_mode:
-            return Text(self.filename)
-        else:
-            info_str = f"Email (author='{self.author}', recipients={self.recipients}, timestamp='{self.timestamp}')"
-            return Text.from_markup(highlight_text(info_str))
-
-    def idx_of_nth_quoted_reply(self, n: int = 2, text: str | None = None) -> int | None:
-        text = text or self.text
-
-        for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text)):
-            if i >= n:
-                return match.end() - 1
 
     def _extract_sent_at(self) -> datetime:
         if self.file_id in KNOWN_TIMESTAMPS:
