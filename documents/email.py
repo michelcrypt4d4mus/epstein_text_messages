@@ -406,7 +406,7 @@ class Email(CommunicationDocument):
             yield txt.append(f" because {SUPPRESS_OUTPUT_FOR_IDS[self.file_id]}").append('\n')
             return
 
-        yield Panel(self.archive_link, expand=False)
+        yield Panel(self.archive_link, border_style=self.author_style, expand=False)
         info_line = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(f' to ')
         info_line.append(self.recipient_txt).append(f" probably sent at ")
         info_line.append(f"{self.timestamp or '?'}", style='spring_green3')
@@ -428,7 +428,7 @@ class Email(CommunicationDocument):
         text = REPLY_REGEX.sub(rf'[{HEADER_STYLE}]\1[/{HEADER_STYLE}]', text)
         text = SENT_FROM_REGEX.sub(fr'[{SENT_FROM}]\1[/{SENT_FROM}]', text)
         text = UNKNOWN_SIGNATURE_REGEX.sub(r'[dim]\1[/dim]', text)
-        yield Padding(Panel(highlight_text(text), expand=False), (0, 0, 2, EMAIL_INDENT))
+        yield Padding(Panel(highlight_text(text), border_style=self.author_style, expand=False), (0, 0, 2, EMAIL_INDENT))
 
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:
