@@ -26,6 +26,7 @@ ALIREZA_ITTIHADIEH = 'Alireza Ittihadieh'
 ANTHONY_BARRETT = 'Anthony Barrett'
 ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
 ANAS_ALRASHEED = 'Anas Alrasheed'
+BRAD_KARP = 'Brad Karp'
 AZIZA_ALAHMADI = 'Aziza Alahmadi'
 BARBRO_EHNBOM = 'Barbro Ehnbom'
 BENNET_MOSKOWITZ = 'Bennet Moskowitz'
@@ -200,6 +201,7 @@ EMAILER_REGEXES = {
     'Barry J. Cohen': re.compile(r'barry (j.? )?cohen?', re.IGNORECASE),
     BENNET_MOSKOWITZ: re.compile(r'Moskowitz.*Bennet|Bennet.*Moskowitz', re.IGNORECASE),
     BORIS_NIKOLIC: re.compile(r'boris nikolic?', re.IGNORECASE),
+    BRAD_KARP: re.compile(r'Brad (S.? )?Karp', re.IGNORECASE),
     'Dangene and Jennie Enterprise': re.compile(r'Dangene and Jennie Enterpris', re.IGNORECASE),
     DARREN_INDYKE: re.compile(r'^darren$|darren [il]n[dq]_?yke?|dkiesq', re.IGNORECASE),
     DAVID_STERN: re.compile(r'David Stern?', re.IGNORECASE),
