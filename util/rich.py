@@ -116,7 +116,7 @@ COUNTERPARTY_COLORS = {
     MIROSLAV: 'slate_blue3',
     'Noam Chomsky': 'dark_sea_green',
     PAUL_KRASSNER: JOURNALIST_COLOR,
-    'Reid Weingarten': LAWYER_COLOR,
+    REID_WEINGARTEN: LAWYER_COLOR,
     ROBERT_TRIVERS: 'blue_violet',
     SCARAMUCCI: 'orange1',
     SOON_YI: 'hot_pink',
