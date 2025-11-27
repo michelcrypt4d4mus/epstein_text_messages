@@ -181,6 +181,7 @@ SUPPRESS_OUTPUT_FOR_IDS = {
     '033207': "it's the same as 033580",
     '028765': "it's the same as 027053",
     '028773': "it's the same as 027049",
+    '028781': "it's the same as 013460",
 }
 
 
