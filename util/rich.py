@@ -148,7 +148,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {
     GHISLAINE_MAXWELL: 'deep_pink3',
     LEON_BLACK: 'dark_cyan',
-    LANDON_THOMAS.removesuffix('.'): 'misty_rose3',  # FT journo
+    LANDON_THOMAS: 'misty_rose3',  # FT journo
     SULTAN_BIN_SULAYEM: 'green1',
     # Epstein's lawyers
     DARREN_INDYKE: 'purple3',
