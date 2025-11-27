@@ -92,6 +92,7 @@ TRUNCATE_TERMS = [
     'AROUND 1,000 operational satellites are circling the Earth',
     "In recent months, China's BAT collapse",
     'President Obama introduces Jim Yong Kim as his nominee',
+    'Trump appears with mobster-affiliated felon at New',
 ]
 
 # No point in ever displaying these
@@ -344,7 +345,7 @@ class Email(CommunicationDocument):
             text = text[0:num_chars]
             text += f"\n\n[dim]<...trimmed to {num_chars} characters of {self.length}, read the rest: {self.epsteinify_link_markup}...>[/dim]"
 
-        text = REPLY_REGEX.sub(r'[dim]\1[/dim]', text)
+        text = REPLY_REGEX.sub(rf'[{HEADER_STYLE}]\1[/{HEADER_STYLE}]', text)
         text = SENT_FROM_REGEX.sub(fr'[{SENT_FROM}]\1[/{SENT_FROM}]', text)
         text = UNKNOWN_SIGNATURE_REGEX.sub(r'[dim]\1[/dim]', text)
         yield Padding(Panel(highlight_text(text), expand=False), (0, 0, 2, EMAIL_INDENT))
