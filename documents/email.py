@@ -1,6 +1,6 @@
 import re
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timezone
 
 from dateutil.parser import parse
 from dateutil import tz
@@ -19,6 +19,7 @@ from util.strings import *
 
 TIME_REGEX = re.compile(r'^(\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday).*')
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
+TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 PACIFIC_TZ = tz.gettz("America/Los_Angeles")
 TIMEZONE_INFO = {"PST": PACIFIC_TZ, "PDT": PACIFIC_TZ}  # Suppresses annoying warnings from parse() calls
 
@@ -31,10 +32,11 @@ SKIP_HEADER_ROW_REGEX = re.compile(r"^(agreed|call me|Hysterical|schwartman).*")
 
 # TODO: fill out the regex for reply lines like: 'In a message dated 1/12/2012 10:21:24 A.M. Eastern Standard Time, jeevacation@gmail.com writes:'
 REPLY_LINE_IN_A_MSG_PATTERN = r"In a message dated \d+/\d+/\d+.*writes:"
-REPLY_LINE_ON_DATE_PATTERN = r"On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*)[, ].*[ \n](AM|PM|wrote:?)"
+REPLY_LINE_ENDING_PATTERN = r"[_ \n](AM|PM|[<_]|wrote:?)"
+REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"On \d+/\d+/\d+[, ].*{REPLY_LINE_ENDING_PATTERN}"
+REPLY_LINE_ON_DATE_PATTERN = fr"On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*).*{REPLY_LINE_ENDING_PATTERN}"
 FORWARDED_LINE_PATTERN = r"-+(Forwarded|Original)\s*Message-*|Begin forwarded message:?"
-REPLY_LINE_PATTERN = rf"({REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
-#REPLY_LINE_PATTERN = r'(On ([A-Z][a-z]{2,9},)?\s*?([A-Z][a-z]{2,9}\s*\d+,\s*\d{4}|\d+/\d+/\d+ \d+:\d+ (AM|PM)),?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*(?:[ \n]+wrote:)?|-+(Forwarded|Original)\s*Message-*|Begin forwarded message:?)'
+REPLY_LINE_PATTERN = rf"({REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re.DOTALL)
 SENT_FROM_REGEX = re.compile(r'^(?:Please forgive typos. |Sorry for all the typos .)?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
@@ -54,6 +56,8 @@ EMAIL_INDENT = 3
 KNOWN_TIMESTAMPS = {
     '028851': datetime(2014, 4, 27, 6, 00),
     '028849': datetime(2014, 4, 27, 6, 30),
+    '032475': datetime(2017, 2, 15, 13, 31, 25),
+    '030373': datetime(2018, 10, 3, 1, 49, 27),
 }
 
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
@@ -64,8 +68,9 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'Sent from Mabfl': 'Sent from Mobile',
     'Torn Pritzker': 'Tom Pritzker',
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
+    re.compile(r'([/vkT]|Ai|li|(I|7)v)rote:'): 'wrote:',
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
-    re.compile(r"([41<>.=_HIM]{7,}|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
+    re.compile(r"([<>.=_HIM][<>.=_HIM14]{5,}[<>.=_HIM]|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
     re.compile(r"([,<>_]|AM|PM)\nwrote:?"): r'\1 wrote:',
 }
 
@@ -148,10 +153,6 @@ class Email(CommunicationDocument):
             info_str = f"Email (author='{self.author}', recipients={self.recipients}, timestamp='{self.timestamp}')"
             return Text.from_markup(highlight_text(info_str))
 
-    def sort_time(self) -> datetime:
-        timestamp = self.timestamp or FALLBACK_TIMESTAMP
-        return timestamp.replace(tzinfo=None) if timestamp.tzinfo is not None else timestamp
-
     def idx_of_nth_quoted_reply(self, n: int = 3, text: str | None = None) -> int | None:
         text = text or self.text
 
@@ -168,11 +169,17 @@ class Email(CommunicationDocument):
         date_match = DATE_REGEX.search(searchable_text)
 
         if date_match:
-            return _parse_timestamp(date_match.group(1)) or FALLBACK_TIMESTAMP
+            timestamp = _parse_timestamp(date_match.group(1))
 
-        logger.debug(f"Failed to find timestamp, using fallback of parsing {VALID_HEADER_LINES} lines...")
+            if timestamp:
+                return timestamp
+
+        logger.debug(f"Failed to find timestamp, falling back to parsing {VALID_HEADER_LINES} lines...")
 
         for line in searchable_lines:
+            if not TIMESTAMP_LINE_REGEX.search(line):
+                continue
+
             timestamp = _parse_timestamp(line)
 
             if timestamp:
@@ -227,7 +234,7 @@ class Email(CommunicationDocument):
 
                 logger.debug(f"Corrected empty header to:\n{self.header}\n\nTop rows of file\n\n{self.top_lines((num_headers + 1) * 2)}")
             else:
-                logger.debug(f"Parsed email header to:\n{self.header}")
+                logger.debug(f"Extracted email header:\n{self.header}")
         else:
             if not (self.file_id in KNOWN_EMAIL_AUTHORS and self.file_id in KNOWN_EMAIL_RECIPIENTS):
                 logger.warning(f"No header match found in '{self.filename}'! Top lines:\n\n{self.top_lines()}")
@@ -235,6 +242,9 @@ class Email(CommunicationDocument):
             self.header = EmailHeader(field_names=[])
 
     def _get_names(self, emailer_str: str) -> list[str]:
+        if emailer_str.strip() == REDACTED:
+            return []
+
         emailer_str = EmailHeader.cleanup_str(emailer_str)
         names = []
 
@@ -311,8 +321,13 @@ class Email(CommunicationDocument):
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:
     try:
-        timestamp = parse(timestamp_str.replace(' (UTC)', '').strip(), tzinfos=TIMEZONE_INFO)
+        timestamp = parse(timestamp_str.replace(' (UTC)', '').replace(REDACTED, ' ').strip(), tzinfos=TIMEZONE_INFO)
         logger.debug(f'Parsed timestamp "{timestamp}" from string "{timestamp_str}"')
+
+        if timestamp.tzinfo:
+            timestamp = timestamp.astimezone(timezone.utc).replace(tzinfo=None)
+            logger.debug(f"    -> Converted to UTC: {timestamp}")
+
         return timestamp
     except Exception as e:
         logger.debug(f'Failed to parse "{timestamp_str}" to timestamp!')
