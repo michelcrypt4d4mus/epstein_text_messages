@@ -2,6 +2,7 @@ import json
 import re
 from collections import defaultdict
 from dataclasses import dataclass, field
+from datetime import datetime
 from pathlib import Path
 
 from rich.align import Align
@@ -94,6 +95,9 @@ class EpsteinFiles:
         emailers = list(set([e for e in emailers if e.lower() not in not_included_emailers]))
         return sorted(emailers, key=lambda e: self.email_author_counts[e] + self.email_recipient_counts[e])
 
+    def earliest_email_at(self, author: str | None) -> datetime:
+        return self.emails_for(author)[0].timestamp
+
     def emails_for(self, author: str | None) -> list[Email]:
         """Returns emails to or from a given 'author' sorted chronologically."""
         author = author.lower() if (author and author != UNKNOWN) else None
@@ -124,18 +128,20 @@ class EpsteinFiles:
     def num_identified_email_authors(self) -> int:
         return sum([i for author, i in self.email_author_counts.items() if author != UNKNOWN])
 
-    def print_emails_for(self, author: str | None) -> None:
+    def print_emails_for(self, _author: str | None) -> None:
         """Print complete emails to or from a particular 'author'."""
-        emails = self.emails_for(author)
-        author = author or UNKNOWN
+        emails = self.emails_for(_author)
+        author = _author or UNKNOWN
 
         if len(emails) > 0:
-            print_author_header(f"Found {len(emails)} {author} emails from {emails[0].timestamp.date()} to {emails[-1].timestamp.date()}", COUNTERPARTY_COLORS.get(author))
+            print_author_header(
+                f"Found {len(emails)} {author} emails from {emails[0].timestamp.date()} to {emails[-1].timestamp.date()}",
+                COUNTERPARTY_COLORS.get(author)
+            )
         else:
-            logger.warning(f"No emails found for {author}")
-            return
+            raise RuntimeError(f"No emails found for '{_author}'")
 
-        if author is not None and author != UNKNOWN:
+        if author != UNKNOWN:
             self.print_emails_table_for(author)
         else:
             ids = list(self.email_unknown_recipient_file_ids)
