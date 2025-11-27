@@ -88,10 +88,10 @@ class EpsteinFiles:
         return self.imessage_logs + self.emails + self.other_files
 
     def all_emailers(self) -> list[str]:
-        """Returns all emailers except Epstein himself."""
+        """Returns all emailers except Epstein himself, sorted from least frequent to most."""
         emailers = [a for a in self.email_author_counts.keys()] + [r for r in self.email_recipient_counts.keys()]
         emailers = list(set([e for e in emailers if e.lower() != JEFFREY_EPSTEIN.lower()]))
-        return sorted(emailers, key=lambda e: self.email_author_counts[e] + self.email_recipient_counts[e], reverse=True)
+        return sorted(emailers, key=lambda e: self.email_author_counts[e] + self.email_recipient_counts[e])
 
     def emails_for(self, author: str | None) -> list[Email]:
         """Returns emails to or from a given 'author' sorted chronologically."""
