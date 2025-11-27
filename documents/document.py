@@ -18,6 +18,7 @@ from util.strings import *
 MULTINEWLINE_REGEX = re.compile(r"\n{3,}")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 FALLBACK_TIMESTAMP = parse("1/1/2001 12:01:01 AM")
+TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 PREVIEW_CHARS = 520
 GMAX_EMAIL = 'gmax1@ellmax.com'
 JEEVACATION_GMAIL = 'jeevacation@gmail.com'
@@ -149,3 +150,6 @@ class CommunicationDocument(Document):
 
     def __post_init__(self):
         super().__post_init__()
+
+    def timestamp_without_seconds(self) -> str:
+        return TIMESTAMP_SECONDS_REGEX.sub('', str(self.timestamp))
