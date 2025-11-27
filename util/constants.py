@@ -492,6 +492,9 @@ KNOWN_EMAIL_RECIPIENTS = {
     '028787': LAWRANCE_VISOSKI,
     '027097': LAWRANCE_VISOSKI,       # Signature of reply
     '022250': LESLEY_GROFF,           # Reply
+    '030368': MELANIE_SPINELLA,       # Actually a self fwd from jeffrey to jeffrey
+    '030369': MELANIE_SPINELLA,       # Actually a self fwd from jeffrey to jeffrey
+    '030371': MELANIE_SPINELLA,       # Actually a self fwd from jeffrey to jeffrey
     '023291': [MELANIE_SPINELLA, BRAD_WECHSLER],  # Can be seen in 023028
     '032214': MIROSLAV,               # Quoted reply has signature
     '022258': NADIA_MARCINKO,         # Reply header
