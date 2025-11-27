@@ -142,6 +142,9 @@ TRUNCATE_TERMS = [
     'his panoramic view of world affairs sharper than ever, Paul Keating blames',
     # melanie
     'Some years ago when I worked at the libertarian Cato Institute'
+    # rich kahn
+    'House and Senate Republicans on their respective tax overhaul',
+    'The Tax Act contains changes to the treatment of "carried interests"',
 ]
 
 # No point in ever displaying these
