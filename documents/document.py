@@ -31,10 +31,10 @@ OCR_REPAIRS = {
     'lndyke': 'Indyke',
     'Nil Priell': 'Nili Priell',
     re.compile(r'from my BlackBerry[0°] wireless device'): 'from my BlackBerry® wireless device',
-    re.compile(r' Bannor]?'): ' Bannon',
+    re.compile(r' Banno(r]?|\b)'): ' Bannon',
     re.compile(r'gmax ?[1l] ?[@g]ellmax.c ?om'): GMAX_EMAIL,
     re.compile(r"[ijl']ee[vy]acation[©@a(&, ]{1,3}gmail.com"): JEEVACATION_GMAIL,
-    re.compile(r"twitter\.com[i/][lI]krauss[1l]"): "twitter.com/lkrauss1",
+    re.compile(r"twitter\.com[i/][lI]krauss[1lt]"): "twitter.com/lkrauss1",
     re.compile(r"^(From|To)(: )?[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",
 }
 

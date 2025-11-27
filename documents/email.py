@@ -42,7 +42,7 @@ REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re
 SENT_FROM_REGEX = re.compile(r'^(?:Please forgive typos. |Sorry for all the typos .)?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
-BAD_LINE_REGEX = re.compile(r'^\d{1,2}|Importance: High$')
+BAD_LINE_REGEX = re.compile(r'^(\d{1,2}|Importance:( High)?|I)$')
 UNKNOWN_SIGNATURE_REGEX = re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL)
 
 CLIPPED_SIGNATURE_REPLACEMENT = '[dim]<...snipped epstein legal signature...>[/dim]'
@@ -78,6 +78,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
 
 TRUNCATE_ALL_EMAILS_FROM = [
     'middle.east.update@hotmail.com',
+    'Mitchell Bard',
     'us.gio@jpmorgan.com',
 ]
 
@@ -108,7 +109,6 @@ TRUNCATE_TERMS = [
     'Learn to meditate and discover what truly nourishes your entire being',
     'Congratulations to the 2019 Hillman Prize recipients',
     'This much we know - the Fall elections are shaping up',
-    "Bannon the European: He's opening the populist fort in Brussels",
     "Special counsel Robert Mueller's investigation may face a serious legal obstacle",
     "nearly leak-proof since its inception more than a year ago",
     "I appreciate the opportunity to respond to your email",
@@ -145,6 +145,23 @@ TRUNCATE_TERMS = [
     # rich kahn
     'House and Senate Republicans on their respective tax overhaul',
     'The Tax Act contains changes to the treatment of "carried interests"',
+    'General Election: Trump vs. Clinton LA Times/USC Tracking',
+    'Location: Quicken Loans Arena in Cleveland, OH',
+    'A friendly discussion about Syria with a former US State Department',
+    # Tom / Paul Krassner
+    'I forgot to post my cartoon from week before last, about Howard Schultz',
+    # Bannon
+    "Bannon the European: He's opening the populist fort in Brussels",
+    "Steve Bannon doesn't do subtle.",
+    'The Department of Justice lost its latest battle with Congress',
+    # Diane Ziman
+    'I was so proud to see him speak at the Women',
+    # Krauss
+    'On confronting dogma, I of course agree',
+    'I did neck with that woman, but never forced myself on her',
+    'It is hard to know how to respond to a list of false',
+    'The Women in the World Summit opens April 12',
+    'lecture in Heidelberg Oct 14 but they had to cancel',
 ]
 
 # No point in ever displaying these
@@ -221,21 +238,6 @@ class Email(CommunicationDocument):
         self.epsteinify_link_markup = make_link_markup(self.epsteinify_name_url, self.file_path.stem, self.author_style)
         self.sent_from_device = self._sent_from_device()
 
-    def cleanup_email_txt(self) -> str:
-        # add newline after header if header looks valid
-        if not EMPTY_HEADER_REGEX.search(self.text):
-            text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', self.text).strip()
-        else:
-            text = self.text
-
-        text = '\n'.join([line for line in text.split('\n') if not BAD_LINE_REGEX.match(line)])
-        text = escape(REPLY_REGEX.sub(r'\n\1', text))  # Newlines between quoted replies
-
-        for name, signature_regex in EMAIL_SIGNATURES.items():
-            text = signature_regex.sub(clipped_signature_replacement(name), text)
-
-        return text
-
     def description(self) -> Text:
         if is_fast_mode:
             return Text(self.filename)
@@ -249,6 +251,21 @@ class Email(CommunicationDocument):
         for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text)):
             if i >= n:
                 return match.end() - 1
+
+    def _cleaned_up_text(self) -> str:
+        # add newline after header if header looks valid
+        if not EMPTY_HEADER_REGEX.search(self.text):
+            text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', self.text).strip()
+        else:
+            text = self.text
+
+        text = '\n'.join([line for line in text.split('\n') if not BAD_LINE_REGEX.match(line)])
+        text = escape(REPLY_REGEX.sub(r'\n\1', text))  # Newlines between quoted replies
+
+        for name, signature_regex in EMAIL_SIGNATURES.items():
+            text = signature_regex.sub(clipped_signature_replacement(name), text)
+
+        return text
 
     def _extract_sent_at(self) -> datetime:
         if self.file_id in KNOWN_TIMESTAMPS:
@@ -394,7 +411,7 @@ class Email(CommunicationDocument):
         info_line.append(self.recipient_txt).append(f" probably sent at ")
         info_line.append(f"{self.timestamp or '?'}", style='spring_green3')
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
-        text = self.cleanup_email_txt()
+        text = self._cleaned_up_text()
         quote_cutoff = self.idx_of_nth_quoted_reply(text=text)
         num_chars = MAX_CHARS_TO_PRINT
 
@@ -416,7 +433,9 @@ class Email(CommunicationDocument):
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:
     try:
-        timestamp = parse(timestamp_str.replace(' (UTC)', '').replace(REDACTED, ' ').strip(), tzinfos=TIMEZONE_INFO)
+        timestamp_str = timestamp_str.replace(' (GMT-05:00)', 'EST').replace(' (UTC)', '')
+        timestamp_str = timestamp_str.replace(' (GMT+07:00)', '')  # TODO: fix
+        timestamp = parse(timestamp_str.replace(REDACTED, ' ').strip(), tzinfos=TIMEZONE_INFO)
         logger.debug(f'Parsed timestamp "{timestamp}" from string "{timestamp_str}"')
 
         if timestamp.tzinfo:

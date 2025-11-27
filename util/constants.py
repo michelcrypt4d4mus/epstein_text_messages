@@ -29,9 +29,10 @@ ANAS_ALRASHEED = 'Anas Alrasheed'
 AZIZA_ALAHMADI = 'Aziza Alahmadi'
 BARBRO_EHNBOM = 'Barbro Ehnbom'
 BENNET_MOSKOWITZ = 'Bennet Moskowitz'
+BRAD_WECHSLER = 'Brad Wechsler'
 BORIS_NIKOLIC = 'Boris Nikolic'
 CELINA_DUBIN = 'Celina Dubin'
-CHRISTINA_GALBRAITH = 'Christina Galbraith'
+CHRISTINA_GALBRAITH = 'Christina Galbraith'  # Works with Tyler Shears on reputation stuff
 DARREN_INDYKE = 'Darren Indyke'
 DANIEL_SIAD = 'Daniel Siad'
 DAVID_SCHOEN = 'David Schoen'
@@ -87,13 +88,14 @@ RICHARD_KAHN = 'Richard Kahn'
 ROBERT_TRIVERS = 'Robert Trivers'
 SEAN_BANNON = 'Sean Bannon'
 STEVEN_PFEIFFER = 'Steven Pfeiffer'
-SULTAN_BIN_SULAYEM = 'Sultan Bin Sulayem'
+SULTAN_BIN_SULAYEM = 'Sultan Ahmed Bin Sulayem'
 TERRY_KAFKA = 'Terry Kafka'
 THANU_BOONYAWATANA = 'Thanu Boonyawatana'
 THORBJORN_JAGLAND = 'Thorbjørn Jagland'
 TOM_BARRACK = 'Tom Barrack'
 TONJA_HADDAD_COLEMAN = 'Tonja Haddad Coleman'
 TYLER_SHEARS = 'Tyler Shears'  # Reputation manager, like Al Seckel
+VINIT_SAHNI = 'Vinit Sahni'
 
 # Other strings
 REDACTED = '<REDACTED>'
@@ -189,6 +191,7 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
 EMAILER_REGEXES = {
     'Alan Dershowitz': re.compile(r'alan.*dershowitz', re.IGNORECASE),
     ALIREZA_ITTIHADIEH: re.compile(r'Alireza.[Il]ttihadieh', re.IGNORECASE),
+    'Ann Marie Villafana': re.compile(r'Villafana', re.IGNORECASE),
     'Amanda Ens': re.compile(r'ens, amanda?', re.IGNORECASE),
     ANIL: re.compile(r'Anil.Ambani', re.IGNORECASE),
     ARIANE_DE_ROTHSCHILD: re.compile(r'^(AdeR|Ariane de Roth)$'),
@@ -271,7 +274,7 @@ EMAILERS = [
     AZIZA_ALAHMADI,
     'Bill Gates',
     'Bill Siegel',
-    'Brad Wechsler',
+    BRAD_WECHSLER,
     'Daniel Sabba',
     DAVID_SCHOEN,
     DEEPAK_CHOPRA,
@@ -295,6 +298,7 @@ EMAILERS = [
     'middle.east.update@hotmail.com',
     'Multiple Senders',  # Weird files like HOUSE_OVERSIGHT_032210
     'Nancy Cain',
+    'Nancy Dahl',
     'Nancy Portland',
     'Oliver Goodenough',
     'Peter Aldhous',
@@ -318,7 +322,6 @@ for emailer in EMAILERS:
 KNOWN_EMAIL_AUTHORS = {
     '032436': ALIREZA_ITTIHADIEH,    # Signature
     '032543': ANAS_ALRASHEED,        # Later reply 033000 has quote
-    '027063': ANTHONY_BARRETT,
     '026064': ARIANE_DE_ROTHSCHILD,
     '026069': ARIANE_DE_ROTHSCHILD,
     '030741': ARIANE_DE_ROTHSCHILD,
@@ -328,6 +331,7 @@ KNOWN_EMAIL_AUTHORS = {
     '026745': BARBRO_EHNBOM,         # Signature
     '031227': BENNET_MOSKOWITZ,
     '031442': CHRISTINA_GALBRAITH,
+    '019446': CHRISTINA_GALBRAITH,  # Not 100% but from "Christina media/PR" which fits
     '026625': DARREN_INDYKE,
     '026290': DAVID_SCHOEN,         # Signature
     '031339': DAVID_SCHOEN,         # Signature
@@ -379,14 +383,15 @@ KNOWN_EMAIL_AUTHORS = {
     '033490': JONATHAN_FARKAS,        # Signature
     '032531': JONATHAN_FARKAS,        # Signature
     '026764': 'Barry J. Cohen',
-    '026652': KATHY_RUEMMLER,         # Just bad OCR
+    '026652': KATHY_RUEMMLER,          # Just bad OCR
     '032224': KATHY_RUEMMLER,
-    '032386': KATHY_RUEMMLER,         # from "Kathy" about dems, sent from iPad (not 100% confirmed)
-    '032727': KATHY_RUEMMLER,         # from "Kathy" about dems, sent from iPad (not 100% confirmed)
+    '032386': KATHY_RUEMMLER,          # from "Kathy" about dems, sent from iPad (not 100% confirmed)
+    '032727': KATHY_RUEMMLER,          # from "Kathy" about dems, sent from iPad (not 100% confirmed)
     '030478': LANDON_THOMAS,
     '029013': LARRY_SUMMERS,
     '031129': LARRY_SUMMERS,
     '029196': LAWRENCE_KRAUSS,
+    '032209': LAWRENCE_KRAUSS,         # More of a text convo?
     '033487': LAWRANCE_VISOSKI,
     '028789': LAWRANCE_VISOSKI,
     '027046': LAWRANCE_VISOSKI,
@@ -398,6 +403,7 @@ KNOWN_EMAIL_AUTHORS = {
     '033593': LAWRANCE_VISOSKI,        # Signature
     '033309': LINDA_STONE,             # "Co-authored with iPhone autocorrect"
     '017581': 'Lisa Randall',
+    '026609': 'Mark Green',            # Actually a fwd
     '030472': MARTIN_WEINBERG,         # Maybe. in reply
     '030235': MELANIE_WALKER,          # In fwd
     '032343': MELANIE_WALKER,          # In later reply 032346
@@ -434,6 +440,7 @@ KNOWN_EMAIL_AUTHORS = {
     '028482': TERRY_KAFKA,             # Signature
     '029992': TERRY_KAFKA,             # Quoted reply
     '020666': TERRY_KAFKA,             # ends with 'Terry'
+    '022346': VINIT_SAHNI,             # Signature  #TODO: check this, also maybe 022346 and 022322
     # '026571': '(unknown french speaker)',
     # '029504': Probably Audrey Raimbault (based on "GMI" in signature, a company registered by "aubrey raimbault")
 }
@@ -441,6 +448,7 @@ KNOWN_EMAIL_AUTHORS = {
 KNOWN_EMAIL_RECIPIENTS = {
     '021106': 'Alexandra Preate',     # Reply
     '026620': ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov ', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', MARK_EPSTEIN, JEFFREY_EPSTEIN, MICHAEL_BUCHHOLTZ, 'Michael Horowitz', 'Marshall Funk'],
+    '027063': ANTHONY_BARRETT,
     '030764': ARIANE_DE_ROTHSCHILD,   # Reply
     '026431': ARIANE_DE_ROTHSCHILD,   # Reply
     '031996': CHRISTINA_GALBRAITH,    # bounced
@@ -459,11 +467,13 @@ KNOWN_EMAIL_RECIPIENTS = {
     '022187': JEFFREY_EPSTEIN,        # Bad OCR
     '028849': JEFFREY_EPSTEIN,        # Conversation
     '026547': JEFFREY_EPSTEIN,        # Bad OCR
+    '032209': JEFFREY_EPSTEIN,        # More of a text convo?
     '029498': [JEFFREY_EPSTEIN, 'Gordon Getty', 'David Haig', 'Norman Finkelstein'],  # Bad OCR
     '019407': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR
     '019409': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR
     '031980': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR
     '026228': [JEFFREY_EPSTEIN, STEVEN_PFEIFFER],    # Bad OCR
+    '028931': [JEFFREY_EPSTEIN, LAWRENCE_KRAUSS],    # Bad OCR
     '033456': 'Joel',                 # Reply
     '033460': 'Joel',                 # Reply
     '029282': [JOI_ITO, REID_HOFFMAN],# Bad OCR
@@ -481,9 +491,10 @@ KNOWN_EMAIL_RECIPIENTS = {
     '028787': LAWRANCE_VISOSKI,
     '027097': LAWRANCE_VISOSKI,       # Signature of reply
     '022250': LESLEY_GROFF,           # Reply
-    '023291': MELANIE_SPINELLA,
+    '023291': [MELANIE_SPINELLA, BRAD_WECHSLER],  # Can be seen in 023028
     '032214': MIROSLAV,               # Quoted reply has signature
     '022258': NADIA_MARCINKO,         # Reply header
+    '033097': [PAUL_BARRETT, RICHARD_KAHN],  # Bad OCR #TODO: check
     '030506': PAULA,                  # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
     '030507': PAULA,                  # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
     '030508': PAULA,                  # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
@@ -496,10 +507,11 @@ KNOWN_EMAIL_RECIPIENTS = {
 
 EMAIL_SIGNATURES = {
     JEFFREY_EPSTEIN: re.compile(r"((\*+|please note)\n+)?(> )?(• )?(» )?The information contained in this communication is\n(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?", re.DOTALL),
+    LAWRENCE_KRAUSS: re.compile(r"Lawrence (M. )?Krauss\n(Director.*\n)?(Co-director.*\n)?Foundation.*\nSchool.*\n(Co-director.*\n)?(and Director.*\n)?Arizona.*(\nResearch.*\nOrigins.*\norigins.*)?"),
     MARTIN_WEINBERG: re.compile(r"This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
     PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
-    PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
-    RICHARD_KAHN: re.compile(r'Richard Kahn[\n\s]+HBRK Associates Inc.?[\n\s]+(575 Lexington Avenue 4th Floor[\n\s]+)?New York, NY 10022([\n\s]+(Tel|Phone)( I)?[\n\s]+Fa[x"][\n\s]+[Ce]ell?)?', re.IGNORECASE),
+    PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(142 W 57th Street, 11th Floor, New York, NY 10019?[\n\s]+)?(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
+    RICHARD_KAHN: re.compile(r'Richard Kahn[\n\s]+HBRK Associates Inc.?[\n\s]+(575 Lexington Avenue 4th Floor[\n\s]+)?New York, (NY|New York) 10022([\n\s]+(Tel|Phone)( I)?[\n\s]+Fa[x"]?[\n\s]+[Ce]el?l?)?', re.IGNORECASE),
 }
 
 HEADER_ABBREVIATIONS = {
