@@ -19,6 +19,7 @@ from util.strings import *
 
 TIME_REGEX = re.compile(r'^(\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday).*')
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
+TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 PACIFIC_TZ = tz.gettz("America/Los_Angeles")
 TIMEZONE_INFO = {"PST": PACIFIC_TZ, "PDT": PACIFIC_TZ}  # Suppresses annoying warnings from parse() calls
 
@@ -55,6 +56,8 @@ EMAIL_INDENT = 3
 KNOWN_TIMESTAMPS = {
     '028851': datetime(2014, 4, 27, 6, 00),
     '028849': datetime(2014, 4, 27, 6, 30),
+    '032475': datetime(2017, 2, 15, 13, 31, 25),
+    '030373': datetime(2018, 10, 3, 1, 49, 27),
 }
 
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
@@ -67,7 +70,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
     re.compile(r'([/vkT]|Ai|li|(I|7)v)rote:'): 'wrote:',
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
-    re.compile(r"([41<>.=_HIM]{7,}|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
+    re.compile(r"([<>.=_HIM][<>.=_HIM14]{7,}[<>.=_HIM]|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
     re.compile(r"([,<>_]|AM|PM)\nwrote:?"): r'\1 wrote:',
 }
 
@@ -170,11 +173,17 @@ class Email(CommunicationDocument):
         date_match = DATE_REGEX.search(searchable_text)
 
         if date_match:
-            return _parse_timestamp(date_match.group(1)) or FALLBACK_TIMESTAMP
+            timestamp = _parse_timestamp(date_match.group(1))
+
+            if timestamp:
+                return timestamp
 
         logger.debug(f"Failed to find timestamp, using fallback of parsing {VALID_HEADER_LINES} lines...")
 
         for line in searchable_lines:
+            if not TIMESTAMP_LINE_REGEX.search(line):
+                continue
+
             timestamp = _parse_timestamp(line)
 
             if timestamp:
@@ -229,7 +238,7 @@ class Email(CommunicationDocument):
 
                 logger.debug(f"Corrected empty header to:\n{self.header}\n\nTop rows of file\n\n{self.top_lines((num_headers + 1) * 2)}")
             else:
-                logger.debug(f"Parsed email header to:\n{self.header}")
+                logger.debug(f"Extracted email header:\n{self.header}")
         else:
             if not (self.file_id in KNOWN_EMAIL_AUTHORS and self.file_id in KNOWN_EMAIL_RECIPIENTS):
                 logger.warning(f"No header match found in '{self.filename}'! Top lines:\n\n{self.top_lines()}")
@@ -313,7 +322,7 @@ class Email(CommunicationDocument):
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:
     try:
-        timestamp = parse(timestamp_str.replace(' (UTC)', '').strip(), tzinfos=TIMEZONE_INFO)
+        timestamp = parse(timestamp_str.replace(' (UTC)', '').replace(REDACTED, ' ').strip(), tzinfos=TIMEZONE_INFO)
         logger.debug(f'Parsed timestamp "{timestamp}" from string "{timestamp_str}"')
         return timestamp
     except Exception as e:
