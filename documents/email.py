@@ -38,7 +38,7 @@ REPLY_LINE_PATTERN = rf"({REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_DATE_PATTE
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re.DOTALL)
 SENT_FROM_REGEX = re.compile(r'^(?:Please forgive typos. |Sorry for all the typos .)?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
-REDACTED_REPLY_REGEX = re.compile(r'<[ _\n]+> wrote:', re.IGNORECASE)
+#REDACTED_REPLY_REGEX = re.compile(r'<[ _\n]+> wrote:', re.IGNORECASE)
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
 BAD_LINE_REGEX = re.compile(r'^\d{1,2}|Importance: High$')
@@ -66,7 +66,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'Torn Pritzker': 'Tom Pritzker',
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
     re.compile(r"[41<>.=_I]{7,}"): REDACTED,
-    re.compile(r"([,<>]|AM|PM)\nwrote:"): r'\1 wrote:',
+    re.compile(r"([,<>_]|AM|PM)\nwrote:?"): r'\1 wrote:',
 }
 
 # These are long forwarded articles we don't want to display over and over
@@ -137,7 +137,7 @@ class Email(CommunicationDocument):
             text = self.text
 
         text = '\n'.join([line for line in text.split('\n') if not BAD_LINE_REGEX.match(line)])
-        text = REDACTED_REPLY_REGEX.sub('<REDACTED> wrote:', text)
+        #text = REDACTED_REPLY_REGEX.sub('<REDACTED> wrote:', text)
         text = escape(REPLY_REGEX.sub(r'\n\1', text))  # Newlines between quoted replies
         return EPSTEIN_SIGNATURE.sub(CLIPPED_SIGNATURE_REPLACEMENT, text)
 
