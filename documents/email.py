@@ -96,7 +96,10 @@ TRUNCATE_TERMS = [
 
 # No point in ever displaying these
 USELESS_EMAILERS = [
+    'asmallworld@travel.asmallworld.net',  # Promo travel stuff
+    'digest-noreply@quora.com',
     'editorialstaff@flipboard.com',
+    'How To Academy',
     'Jokeland',
 ]
 
