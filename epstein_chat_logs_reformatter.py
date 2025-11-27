@@ -68,7 +68,7 @@ emailer_tables = sorted(emailer_tables, key=lambda e: epstein_files.earliest_ema
 
 for i, author in enumerate(emailers_to_print):
     style = COUNTERPARTY_COLORS.get(author or UNKNOWN, DEFAULT)
-    console.print(Text(f"   {i}. ", style='bold').append(author or UNKNOWN, style=style))
+    console.print(Text(f"   {i}. ").append(author or UNKNOWN, style=style))
 
 console.print("\n\nAfter that there's tables linking to (but not displaying) all known emails for each of these people:\n")
 
