@@ -196,7 +196,8 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
 
 # Wrap in \b, add optional s? at end of all regex patterns
 HIGHLIGHT_REGEXES: dict[str, re.Pattern] = {
-    k: re.compile(fr"\b(({v})s?)\b", re.I) if k != HEADER_STYLE else re.compile(v, re.MULTILINE)
+    # [\b\n] or no trailing \b is required for cases when last char in match is not a word char (e.g. when it's '.')
+    k: re.compile(fr"\b(({v})s?)", re.I) if k != HEADER_STYLE else re.compile(v, re.MULTILINE)
     for k, v in HIGHLIGHT_PATTERNS.items()
 }
 
