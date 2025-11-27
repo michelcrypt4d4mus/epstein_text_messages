@@ -87,9 +87,15 @@ class EpsteinFiles:
     def all_documents(self) -> list[Document]:
         return self.imessage_logs + self.emails + self.other_files
 
+    def all_emailers(self) -> list[str]:
+        """Returns all emailers except Epstein himself."""
+        emailers = [a for a in self.email_author_counts.keys()] + [r for r in self.email_recipient_counts.keys()]
+        emailers = list(set([e for e in emailers if e.lower() != JEFFREY_EPSTEIN.lower()]))
+        return sorted(emailers, key=lambda e: self.email_author_counts[e] + self.email_recipient_counts[e], reverse=True)
+
     def emails_for(self, author: str | None) -> list[Email]:
         """Returns emails to or from a given 'author' sorted chronologically."""
-        author = author.lower() if author else None
+        author = author.lower() if (author and author != UNKNOWN) else None
         emails_by = [e for e in self.emails if e.author_lowercase == author]
         emails_to = []
 
@@ -101,7 +107,12 @@ class EpsteinFiles:
         else:
             emails_to = [e for e in self.emails if author in e.recipients_lower]
 
-        return EpsteinFiles.sort_emails(emails_by + emails_to)
+        sorted_emails = EpsteinFiles.sort_emails(emails_by + emails_to)
+
+        if len(sorted_emails) == 0:
+            logger.warning(f"No emails found for '{author}'")
+
+        return sorted_emails
 
     def identified_imessage_log_count(self) -> int:
         return len([log for log in self.imessage_logs if log.author])
