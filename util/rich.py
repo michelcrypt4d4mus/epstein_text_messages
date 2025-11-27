@@ -129,7 +129,6 @@ COUNTERPARTY_COLORS = {
 }
 
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
-    None: 'grey74',
     JEREMY_RUBIN: BITCOIN_COLOR,
     JOI_ITO: 'blue_violet',
     AL_SECKEL: 'orange_red1',
@@ -148,6 +147,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     BORIS_NIKOLIC: BRO_COLOR,
     PRINCE_ANDREW: 'dodger_blue1',
     'Jide Zeitlin': BANK_COLOR,
+    None: 'grey74',
 }
 
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {
