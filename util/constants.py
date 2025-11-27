@@ -526,6 +526,7 @@ HEADER_ABBREVIATIONS = {
     'Jabor': '"an influential man in Qatar"',
     'Jagland': 'Thorbjørn Jagland',
     'Jeffrey Wernick': 'Right wing crypto bro',
+    'Joi': 'Joi Ito (MIT Media Lab)',
     "Hoffenberg": "Steven Hoffenberg (Epstein's ponzi scheme partner)",
     'KSA': "Kingdom of Saudi Arabia",
     'Kwok': "Chinese criminal Miles Kwok AKA Miles Guo AKA Guo Wengui",
