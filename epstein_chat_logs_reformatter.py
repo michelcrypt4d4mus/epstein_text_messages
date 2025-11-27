@@ -63,8 +63,8 @@ console.print('Chronological Epstein correspondence with the following people ca
 
 emailers_to_print = epstein_files.all_emailers() if args.all else PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED
 emailers_to_print = sorted(emailers_to_print, key=lambda e: epstein_files.earliest_email_at(e)) if args.all else emailers_to_print
-emailers_with_tables = epstein_files.all_emailers() if args.all_tables else PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES
-emailers_with_tables = sorted(emailers_with_tables, key=lambda e: epstein_files.earliest_email_at(e)) if args.all else emailers_to_print
+emailer_tables = epstein_files.all_emailers() if args.all_tables else PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES
+emailer_tables = sorted(emailer_tables, key=lambda e: epstein_files.earliest_email_at(e)) if args.all else emailer_tables
 
 for i, author in enumerate(emailers_to_print):
     style = COUNTERPARTY_COLORS.get(author or UNKNOWN, DEFAULT)
@@ -72,7 +72,7 @@ for i, author in enumerate(emailers_to_print):
 
 console.print("\n\nAfter that there's tables linking to (but not displaying) all known emails for each of these people:\n")
 
-for i, author in enumerate(emailers_with_tables):
+for i, author in enumerate(emailer_tables):
     style = COUNTERPARTY_COLORS.get(author or UNKNOWN, DEFAULT)
     console.print(Text(f"   {i}. ", style='bold').append(author or UNKNOWN, style=style))
 
@@ -84,9 +84,9 @@ for author in emailers_to_print:
 # for author in [a for a in epstein_files.email_recipient_counts.keys() if len(epstein_files.emails_for(a)) < 3 and a not in low_sent]:
 #     epstein_files.print_emails_for(author)
 
-print_author_header(f"Email Tables for {len(emailers_with_tables)} Other People", 'white')
+print_author_header(f"Email Tables for {len(emailer_tables)} Other People", 'white')
 
-for name in emailers_with_tables:
+for name in emailer_tables:
     epstein_files.print_emails_table_for(name)
 
 epstein_files.print_email_device_info()
