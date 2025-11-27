@@ -13,7 +13,7 @@ from rich.text import Text
 from documents.document import FALLBACK_TIMESTAMP, CommunicationDocument
 from documents.email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TO_FIELDS, EmailHeader
 from util.constants import *
-from util.env import is_fast_mode, logger
+from util.env import is_debug, is_fast_mode, logger
 from util.rich import *
 from util.strings import *
 
@@ -27,7 +27,7 @@ EMAIL_HEADER_REGEX = re.compile(r'^(((Date|Subject):.*\n)*From:.*\n((Date|Sent|T
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
 BAD_EMAILER_REGEX = re.compile(r'^>|agreed|ok|sexy|rt|re:|fwd:|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|hysterical|i have|image0|so that people|article 1.?|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Subject|Attachments):\s*\n)+')
-SKIP_HEADER_ROW_REGEX = re.compile(r"^(agreed|call me|schwartman).*")
+SKIP_HEADER_ROW_REGEX = re.compile(r"^(agreed|call me|Hysterical|schwartman).*")
 
 # TODO: fill out the regex for reply lines like: 'In a message dated 1/12/2012 10:21:24 A.M. Eastern Standard Time, jeevacation@gmail.com writes:'
 REPLY_LINE_PATTERN = r'((On|In a message dated) ([A-Z][a-z]{2,9},)?\s*?([A-Z][a-z]{2,9}\s*\d+,\s*\d{4}|\d+/\d+/\d+ \d+:\d+ (AM|PM)),?\s*(at\s*\d+:\d+\s*(AM|PM))?,?.*(?:[ \n]+wrote:)?|-+(Forwarded|Original)\s*Message-*|Begin forwarded message:?)'
@@ -202,23 +202,24 @@ class Email(CommunicationDocument):
                         break
 
                     value = self.lines[row_number_to_check]
+                    log_prefix = f"Looks like '{value}' is a mismatch for '{field_name}', " if is_debug else ''
 
                     if field_name == AUTHOR:
-                        if TIME_REGEX.match(value) or value == 'Darren,' or BAD_EMAILER_REGEX.match(value):
-                            logger.info(f"Looks like '{value}' is a mismatch for '{field_name}', decrementing num_headers and skipping...")
-                            num_headers -= 1
-                            continue
-                        elif SKIP_HEADER_ROW_REGEX.match(value):
-                            logger.info(f"Looks like a mismatch, Trying the next line...")
+                        if SKIP_HEADER_ROW_REGEX.match(value):
+                            logger.info(f"{log_prefix}, trying the next line...")
                             num_headers += 1
                             value = self.lines[i + num_headers]
+                        elif TIME_REGEX.match(value) or value == 'Darren,' or BAD_EMAILER_REGEX.match(value):
+                            logger.info(f"{log_prefix}, decrementing num_headers and skipping...")
+                            num_headers -= 1
+                            continue
                     elif field_name in TO_FIELDS:
                         if TIME_REGEX.match(value):
-                            logger.info(f"Looks like a mismatch for '{field_name}', trying next line...")
+                            logger.info(f"{log_prefix}, trying next line...")
                             num_headers += 1
                             value = self.lines[i + num_headers]
                         elif BAD_EMAILER_REGEX.match(value):
-                            logger.info(f"Looks like '{value}' is a mismatch for '{field_name}', decrementing num_headers and skipping...")
+                            logger.info(f"{log_prefix}, decrementing num_headers and skipping...")
                             num_headers -= 1
                             continue
 

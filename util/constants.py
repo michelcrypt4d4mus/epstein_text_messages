@@ -432,6 +432,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '028851': JEFFREY_EPSTEIN,
     '022187': JEFFREY_EPSTEIN,        # Bad OCR
     '028849': JEFFREY_EPSTEIN,        # Conversation
+    '026547': JEFFREY_EPSTEIN,        # Bad OCR
     '033456': 'Joel',                 # Reply
     '033460': 'Joel',                 # Reply
     '033073': KATHY_RUEMMLER,         # to "Kathy" about dems, sent from iPad (not 100% confirmed)
@@ -445,7 +446,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '033591': LAWRANCE_VISOSKI,       # Reply signature
     '033466': LAWRANCE_VISOSKI,       # Reply signature
     '028787': LAWRANCE_VISOSKI,
-    '027097': LAWRANCE_VISOSKI,         # Signature of reply
+    '027097': LAWRANCE_VISOSKI,       # Signature of reply
     '022250': LESLEY_GROFF,           # Reply
     '023291': MELANIE_SPINELLA,
     '032214': MIROSLAV,               # Quoted reply has signature
