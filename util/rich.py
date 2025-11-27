@@ -116,7 +116,7 @@ COUNTERPARTY_COLORS = {
     MIROSLAV: 'slate_blue3',
     'Noam Chomsky': 'dark_sea_green',
     PAUL_KRASSNER: JOURNALIST_COLOR,
-    'Reid Weingarten': LAWYER_COLOR,
+    REID_WEINGARTEN: LAWYER_COLOR,
     ROBERT_TRIVERS: 'blue_violet',
     SCARAMUCCI: 'orange1',
     SOON_YI: 'hot_pink',
@@ -158,7 +158,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {
     SULTAN_BIN_SULAYEM: 'green1',
     # Epstein's lawyers
     DARREN_INDYKE: LAWYER_COLOR,
-    'Richard Kahn': 'purple4',
+    RICHARD_KAHN: 'purple4',
     DEEPAK_CHOPRA: 'dark_goldenrod',
     # Temporary
     KATHY_RUEMMLER: 'magenta2',

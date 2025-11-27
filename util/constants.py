@@ -61,6 +61,7 @@ LAWRANCE_VISOSKI = 'Lawrance Visoski'
 LAWRENCE_KRAUSS = 'Lawrence Krauss'
 LEON_BLACK = 'Leon Black'
 LESLEY_GROFF = 'Lesley Groff'
+LILLY_SANCHEZ = 'Lilly Sanchez'
 LINDA_STONE = 'Linda Stone'
 LISA_NEW = 'Lisa New'          # Harvard poetry prof AKA "Elisa New"
 MARK_EPSTEIN = 'Mark L. Epstein'
@@ -74,13 +75,15 @@ MOHAMED_WAHEED_HASSAN = 'Mohamed Waheed Hassan'
 NADIA_MARCINKO = 'Nadia Marcinko'
 NORMAN_D_RAU = 'Norman D. Rau'
 PAULA = 'Paula'
-PEGGY_SIEGAL = 'Peggy Siegal'
-PETER_MANDELSON = 'Peter Mandelson'
+PAUL_BARRETT = 'Paul Barrett'
 PAUL_KRASSNER = 'Paul Krassner'
 PAUL_PROSPERI = 'Paul Prosperi'
+PEGGY_SIEGAL = 'Peggy Siegal'
 PETER_MANDELSON = 'Peter Mandelson'
 PRINCE_ANDREW = 'Prince Andrew'
 REID_HOFFMAN = 'Reid Hoffman'
+REID_WEINGARTEN = 'Reid Weingarten'
+RICHARD_KAHN = 'Richard Kahn'
 ROBERT_TRIVERS = 'Robert Trivers'
 SEAN_BANNON = 'Sean Bannon'
 STEVEN_PFEIFFER = 'Steven Pfeiffer'
@@ -221,7 +224,7 @@ EMAILER_REGEXES = {
     LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus|lawkrauss', re.IGNORECASE),
     LEON_BLACK: re.compile(r'Leon Blac', re.IGNORECASE),
     MARK_EPSTEIN: re.compile(r'Mark (L\. )?Epstein', re.IGNORECASE),
-    'Lilly Sanchez': re.compile(r'Lilly.*Sanchez', re.IGNORECASE),
+    LILLY_SANCHEZ: re.compile(r'Lilly.*Sanchez', re.IGNORECASE),
     LISA_NEW: re.compile(r'Lisa New?$', re.IGNORECASE),
     'Marc Leon': re.compile(r'Marc[.]+(Kensington|Leon)|Kensington2', re.IGNORECASE),
     MARTIN_NOWAK: re.compile(r'Martin.*?Nowak|Nowak, Martin', re.IGNORECASE),
@@ -235,15 +238,15 @@ EMAILER_REGEXES = {
     MOHAMED_WAHEED_HASSAN: re.compile(r'Mohamed Waheed', re.IGNORECASE),
     'Neal Kassell': re.compile(r'Neal Kassel', re.IGNORECASE),
     'Nicholas Ribis': re.compile(r'Nicholas[ ._]Ribi?s?', re.IGNORECASE),
-    'Paul Barrett': re.compile(r'Paul Barre(d|tt)', re.IGNORECASE),
+    PAUL_BARRETT: re.compile(r'Paul Barre(d|tt)', re.IGNORECASE),
     PAUL_KRASSNER: re.compile(r'Pa\s?ul Krassner', re.IGNORECASE),
     PAULA: re.compile(r'^Paula$', re.IGNORECASE),
     'Paul Morris': re.compile(r'morris, paul|Paul Morris', re.IGNORECASE),
     PEGGY_SIEGAL:  re.compile(r'Peggy Siegal?', re.IGNORECASE),
     'Peter Attia': re.compile(r'Peter Attia?', re.IGNORECASE),
     PRINCE_ANDREW: re.compile(r'Prince Andrew|The Duke', re.IGNORECASE),
-    'Reid Weingarten': re.compile(r'Weingarten, Rei[cdi]|Rei[cdi] Weingarten', re.IGNORECASE),
-    'Richard Kahn': re.compile(r'rich(ard)? kahn?', re.IGNORECASE),
+    REID_WEINGARTEN: re.compile(r'Weingarten, Rei[cdi]|Rei[cdi] Weingarten', re.IGNORECASE),
+    RICHARD_KAHN: re.compile(r'rich(ard)? kahn?', re.IGNORECASE),
     'Robert Lawrence Kuhn': re.compile(r'Robert\s*(Lawrence)?\s*Kuhn', re.IGNORECASE),
     ROBERT_TRIVERS: re.compile(r'tri[vy]ersr@gmail|Robert\s*Trivers?', re.IGNORECASE),
     'Scott J. Link': re.compile(r'scott j. link?', re.IGNORECASE),
@@ -460,12 +463,13 @@ KNOWN_EMAIL_RECIPIENTS = {
     '019407': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR
     '019409': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR
     '031980': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR
-    '026228': [JEFFREY_EPSTEIN, STEVEN_PFEIFFER],  # Bad OCR
+    '026228': [JEFFREY_EPSTEIN, STEVEN_PFEIFFER],    # Bad OCR
     '033456': 'Joel',                 # Reply
     '033460': 'Joel',                 # Reply
     '029282': [JOI_ITO, REID_HOFFMAN],# Bad OCR
     '033073': KATHY_RUEMMLER,         # to "Kathy" about dems, sent from iPad (not 100% confirmed)
     '032939': KATHY_RUEMMLER,         # to "Kathy" about dems, sent from iPad (not 100% confirmed)
+    '031388': [KEN_STARR, LILLY_SANCHEZ, MARTIN_WEINBERG, REID_WEINGARTEN],  # Bad OCR
     '030522': LANDON_THOMAS,
     '031413': LANDON_THOMAS,          # Reply
     '029692': LARRY_SUMMERS,          # Header
@@ -492,8 +496,10 @@ KNOWN_EMAIL_RECIPIENTS = {
 
 EMAIL_SIGNATURES = {
     JEFFREY_EPSTEIN: re.compile(r"((\*+|please note)\n+)?(> )?(• )?(» )?The information contained in this communication is\n(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?", re.DOTALL),
-    PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
     MARTIN_WEINBERG: re.compile(r"This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
+    PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
+    PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
+    RICHARD_KAHN: re.compile(r'Richard Kahn[\n\s]+HBRK Associates Inc.?[\n\s]+(575 Lexington Avenue 4th Floor[\n\s]+)?New York, NY 10022([\n\s]+(Tel|Phone)( I)?[\n\s]+Fa[x"][\n\s]+[Ce]ell?)?', re.IGNORECASE),
 }
 
 HEADER_ABBREVIATIONS = {
