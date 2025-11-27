@@ -112,6 +112,14 @@ TRUNCATE_TERMS = [
     'I just wanted to follow up on a couple of notes. I have been coordinating with Richard Kahn',
     'So, Peggy, if you could just let me know what info to include on the donation',
     'Consult a lawyer beforehand, if possible, but be cooperative/nice at this stage',
+    # Amanda Ens
+    'We remain positive on banks that can make acceptable returns',
+    'David Woo (BAML head of FX, Rates and EM Strategy, very highly regarded',
+    "Please let me know if you're interested in joining a small group meeting",
+    'Erika Najarian, BAML financials research analyst, just returned',
+    'We can also discuss single stock and Topix banks',
+    'We are recording unprecedented divergences in falling equity vol',
+    'As previously discussed between you and Ariane',
 ]
 
 # No point in ever displaying these
