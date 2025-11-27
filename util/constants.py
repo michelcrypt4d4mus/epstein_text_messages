@@ -191,6 +191,7 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
 EMAILER_REGEXES = {
     'Alan Dershowitz': re.compile(r'alan.*dershowitz', re.IGNORECASE),
     ALIREZA_ITTIHADIEH: re.compile(r'Alireza.[Il]ttihadieh', re.IGNORECASE),
+    'Ann Marie Villafana': re.compile(r'Villafana', re.IGNORECASE),
     'Amanda Ens': re.compile(r'ens, amanda?', re.IGNORECASE),
     ANIL: re.compile(r'Anil.Ambani', re.IGNORECASE),
     ARIANE_DE_ROTHSCHILD: re.compile(r'^(AdeR|Ariane de Roth)$'),
@@ -330,6 +331,7 @@ KNOWN_EMAIL_AUTHORS = {
     '026745': BARBRO_EHNBOM,         # Signature
     '031227': BENNET_MOSKOWITZ,
     '031442': CHRISTINA_GALBRAITH,
+    '019446': CHRISTINA_GALBRAITH,  # Not 100% but from "Christina media/PR" which fits
     '026625': DARREN_INDYKE,
     '026290': DAVID_SCHOEN,         # Signature
     '031339': DAVID_SCHOEN,         # Signature
@@ -401,6 +403,7 @@ KNOWN_EMAIL_AUTHORS = {
     '033593': LAWRANCE_VISOSKI,        # Signature
     '033309': LINDA_STONE,             # "Co-authored with iPhone autocorrect"
     '017581': 'Lisa Randall',
+    '026609': 'Mark Green',            # Actually a fwd
     '030472': MARTIN_WEINBERG,         # Maybe. in reply
     '030235': MELANIE_WALKER,          # In fwd
     '032343': MELANIE_WALKER,          # In later reply 032346
