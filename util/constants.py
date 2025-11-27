@@ -309,7 +309,6 @@ EMAILERS = [
     r'Sam/Walli Leff',
     STEVEN_PFEIFFER,
     'Steven Victor MD',
-    'The Duke',
     TOM_BARRACK,
     'Vincenzo Lozzo',
 ]
