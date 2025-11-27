@@ -83,6 +83,7 @@ PETER_MANDELSON = 'Peter Mandelson'
 PRINCE_ANDREW = 'Prince Andrew'
 REID_HOFFMAN = 'Reid Hoffman'
 REID_WEINGARTEN = 'Reid Weingarten'
+RICHARD_KAHN = 'Richard Kahn'
 ROBERT_TRIVERS = 'Robert Trivers'
 SEAN_BANNON = 'Sean Bannon'
 STEVEN_PFEIFFER = 'Steven Pfeiffer'
@@ -245,7 +246,7 @@ EMAILER_REGEXES = {
     'Peter Attia': re.compile(r'Peter Attia?', re.IGNORECASE),
     PRINCE_ANDREW: re.compile(r'Prince Andrew|The Duke', re.IGNORECASE),
     REID_WEINGARTEN: re.compile(r'Weingarten, Rei[cdi]|Rei[cdi] Weingarten', re.IGNORECASE),
-    'Richard Kahn': re.compile(r'rich(ard)? kahn?', re.IGNORECASE),
+    RICHARD_KAHN: re.compile(r'rich(ard)? kahn?', re.IGNORECASE),
     'Robert Lawrence Kuhn': re.compile(r'Robert\s*(Lawrence)?\s*Kuhn', re.IGNORECASE),
     ROBERT_TRIVERS: re.compile(r'tri[vy]ersr@gmail|Robert\s*Trivers?', re.IGNORECASE),
     'Scott J. Link': re.compile(r'scott j. link?', re.IGNORECASE),
@@ -495,9 +496,10 @@ KNOWN_EMAIL_RECIPIENTS = {
 
 EMAIL_SIGNATURES = {
     JEFFREY_EPSTEIN: re.compile(r"((\*+|please note)\n+)?(> )?(• )?(» )?The information contained in this communication is\n(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?", re.DOTALL),
-    PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
     MARTIN_WEINBERG: re.compile(r"This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
+    PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
     PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
+    RICHARD_KAHN: re.compile(r"Richard Kahn[\n\s]+HBRK Associates Inc.?[\n\s]+New York, NY 10022"),
 }
 
 HEADER_ABBREVIATIONS = {

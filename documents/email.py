@@ -77,6 +77,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
 }
 
 TRUNCATE_ALL_EMAILS_FROM = [
+    'middle.east.update@hotmail.com',
     'us.gio@jpmorgan.com',
 ]
 
