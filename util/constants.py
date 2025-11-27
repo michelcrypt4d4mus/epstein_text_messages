@@ -38,6 +38,7 @@ DAVID_STERN = 'David Stern'
 DEEPAK_CHOPRA = 'Deepak Chopra'
 DIANE_ZIMAN = 'Diane Ziman'
 DONALD_TRUMP = 'Donald Trump'
+EDUARDO_ROBLES = 'Eduardo Robles'
 EDWARD_EPSTEIN = 'Edward Epstein'
 EHUD_BARAK = 'Ehud Barak'
 FAITH_KATES = 'Faith Kates'
@@ -84,6 +85,7 @@ SEAN_BANNON = 'Sean Bannon'
 STEVEN_PFEIFFER = 'Steven Pfeiffer'
 SULTAN_BIN_SULAYEM = 'Sultan Bin Sulayem'
 TERRY_KAFKA = 'Terry Kafka'
+THANU_BOONYAWATANA = 'Thanu Boonyawatana'
 THORBJORN_JAGLAND = 'Thorbjørn Jagland'
 TOM_BARRACK = 'Tom Barrack'
 TONJA_HADDAD_COLEMAN = 'Tonja Haddad Coleman'
@@ -194,6 +196,7 @@ EMAILER_REGEXES = {
     'Dangene and Jennie Enterprise': re.compile(r'Dangene and Jennie Enterpris', re.IGNORECASE),
     DARREN_INDYKE: re.compile(r'^darren$|darren [il]n[dq]_?yke?|dkiesq', re.IGNORECASE),
     DAVID_STERN: re.compile(r'David Stern?', re.IGNORECASE),
+    EDUARDO_ROBLES: re.compile(r'Ed(uardo)?\s*Robles', re.IGNORECASE),
     EDWARD_EPSTEIN: re.compile(r'Edward (Jay )?Epstein', re.IGNORECASE),
     EHUD_BARAK: re.compile(r'(ehud|h)\s*barak', re.IGNORECASE),
     FAITH_KATES: re.compile(r'faith kates?', re.IGNORECASE),
@@ -252,6 +255,7 @@ EMAILER_REGEXES = {
     SULTAN_BIN_SULAYEM: re.compile(r'Sultan (Ahmed )?bin Sulaye?m?', re.IGNORECASE),
     TERJE: re.compile(r"Terje R[øo]e?d[- ]Larsen", re.IGNORECASE),
     TERRY_KAFKA: re.compile(r'Terry Kafka?', re.IGNORECASE),
+    THANU_BOONYAWATANA: re.compile(r"Thanu (BOONYAWATANA|Cnx)", re.IGNORECASE),
     THORBJORN_JAGLAND: re.compile(r'Thor.*Jag[il]and?', re.IGNORECASE),
     TONJA_HADDAD_COLEMAN: re.compile(fr"To(nj|rl)a Haddad Coleman|haddadfm@aol.com", re.IGNORECASE)
 }
