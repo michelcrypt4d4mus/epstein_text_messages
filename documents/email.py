@@ -70,7 +70,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
     re.compile(r'([/vkT]|Ai|li|(I|7)v)rote:'): 'wrote:',
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
-    re.compile(r"([<>.=_HIM][<>.=_HIM14]{7,}[<>.=_HIM]|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
+    re.compile(r"([<>.=_HIM][<>.=_HIM14]{5,}[<>.=_HIM]|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
     re.compile(r"([,<>_]|AM|PM)\nwrote:?"): r'\1 wrote:',
 }
 
@@ -242,6 +242,9 @@ class Email(CommunicationDocument):
             self.header = EmailHeader(field_names=[])
 
     def _get_names(self, emailer_str: str) -> list[str]:
+        if emailer_str.strip() == REDACTED:
+            return []
+
         emailer_str = EmailHeader.cleanup_str(emailer_str)
         names = []
 

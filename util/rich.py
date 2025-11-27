@@ -41,6 +41,7 @@ BITCOIN_COLOR = 'orange1 bold'
 BRASIL_COLOR = 'chartreuse2'
 BRO_COLOR = 'tan'
 CHINA_COLOR = 'bright_red'
+COLLEGE_COLOR = 'deep_pink2'
 DEMS_COLOR = 'sky_blue1'
 DUBIN_COLOR = 'medium_orchid1'
 HEADER_LINK = 'deep_sky_blue1'
@@ -109,7 +110,7 @@ COUNTERPARTY_COLORS = {
     MELANIE_WALKER: 'deep_pink4',
     MICHAEL_WOLFF: JOURNALIST_COLOR,
     MIROSLAV: 'slate_blue3',
-    'Noam Chomsky': 'grey23',
+    'Noam Chomsky': 'dark_sea_green',
     PAUL_KRASSNER: JOURNALIST_COLOR,
     ROBERT_TRIVERS: 'blue_violet',
     SCARAMUCCI: 'orange1',
@@ -185,6 +186,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     COUNTERPARTY_COLORS[GHISLAINE_MAXWELL]: r"GMAX|gmax1@ellmax.com",
     COUNTERPARTY_COLORS[TERJE]: r"Terje (R[øo]e?d[- ])?Lars[eo]n",
     RICH_GUY_COLOR: r"(Steve\s+)?Wynn|(Leslie\s+)?Wexner",
+    COLLEGE_COLOR: r"Harvard|MIT( Media Lab)?|Media Lab",
     COUNTERPARTY_COLORS[JEFFREY_EPSTEIN]: EMAILER_REGEXES[JEFFREY_EPSTEIN].pattern,
     'dark_magenta': r"Le\s*Pen|(Victor\s+)?Orbah?n",
     'orchid1': r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts",
@@ -223,12 +225,10 @@ console.record = True
 # This is after the Theme() instantiation because 'bg' is reserved'
 COUNTERPARTY_COLORS.update({
     'Biden': OBAMA_COLOR,
-    'Harvard': 'deep_pink2',
     'Ivanka': JAVANKA_COLOR,
     'Joichi Ito': COUNTERPARTY_COLORS[JOI_ITO],
     'Jared Kushner': JAVANKA_COLOR,
     'jeevacation@gmail.com': COUNTERPARTY_COLORS[JEFFREY_EPSTEIN],
-    'MIT': 'deep_pink2',
     'Paul Manafort': COUNTERPARTY_COLORS[STEVE_BANNON],
     'Miro': COUNTERPARTY_COLORS[MIROSLAV],
     'Obama': OBAMA_COLOR,

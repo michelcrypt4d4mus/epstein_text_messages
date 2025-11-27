@@ -31,13 +31,11 @@ OCR_REPAIRS = {
     'lndyke': 'Indyke',
     'Nil Priell': 'Nili Priell',
     re.compile(r'from my BlackBerry[0°] wireless device'): 'from my BlackBerry® wireless device',
-    re.compile(r'Sean Bannor?', re.I): SEAN_BANNON,
-    re.compile(r'Steve Bannor]?', re.I): STEVE_BANNON,
+    re.compile(r' Bannor]?'): ' Bannon',
     re.compile(r'gmax ?[1l] ?[@g]ellmax.c ?om'): GMAX_EMAIL,
     re.compile(r"[ijl']ee[vy]acation[©@a(&, ]{1,3}gmail.com"): JEEVACATION_GMAIL,
     re.compile(r"twitter\.com[i/][lI]krauss[1l]"): "twitter.com/lkrauss1",
-    re.compile(r"^To_{5,}", re.MULTILINE): f"To: {REDACTED}",
-    re.compile(r"^From_{5,}", re.MULTILINE): f"From: {REDACTED} ",
+    re.compile(r"^(From|To)(: )?[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",
 }
 
 FILENAME_MATCH_STYLES = [
