@@ -61,7 +61,6 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'Torn Pritzker': 'Tom Pritzker',
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
     re.compile(r"[41<>.=]{7,}"): REDACTED,
-    #'1111111111111111111. wrote:'
 }
 
 # These are long forwarded articles we don't want to display over and over
