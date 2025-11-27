@@ -274,6 +274,7 @@ EMAILERS = [
     'Joscha Bach',
     'Lesley Groff',
     LINDA_STONE,
+    'Lyn Fontanilla',
     'middle.east.update@hotmail.com',
     MELANIE_WALKER,
     'Merwin Dela Cruz',

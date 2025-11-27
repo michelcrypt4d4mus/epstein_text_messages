@@ -91,6 +91,7 @@ TRUNCATE_TERMS = [
     'as responsible for the democratisation of computing and',
     'AROUND 1,000 operational satellites are circling the Earth',
     "In recent months, China's BAT collapse",
+    'President Obama introduces Jim Yong Kim as his nominee',
 ]
 
 # No point in ever displaying these
@@ -269,7 +270,7 @@ class Email(CommunicationDocument):
             self.header = EmailHeader(field_names=[])
 
     def _get_names(self, emailer_str: str) -> list[str]:
-        if emailer_str.strip() == REDACTED:
+        if emailer_str.rstrip('<').strip() == REDACTED:  # TODO: this sucks, just for HOUSE_OVERSIGHT_022187
             return []
 
         emailer_str = EmailHeader.cleanup_str(emailer_str)
