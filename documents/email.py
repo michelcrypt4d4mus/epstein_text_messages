@@ -145,6 +145,9 @@ TRUNCATE_TERMS = [
     # rich kahn
     'House and Senate Republicans on their respective tax overhaul',
     'The Tax Act contains changes to the treatment of "carried interests"',
+    'General Election: Trump vs. Clinton LA Times/USC Tracking',
+    'Location: Quicken Loans Arena in Cleveland, OH',
+    'A friendly discussion about Syria with a former US State Department',
 ]
 
 # No point in ever displaying these
