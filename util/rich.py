@@ -57,6 +57,7 @@ TECH_BRO_COLOR = 'orange4'
 TRUMP_COLOR = 'red3 bold'
 
 BASE_NAMES_TO_NOT_COLOR: list[str] = [name.lower() for name in [
+    'Allen',
     'Black',
     'Daniel',
     'Darren',
@@ -124,7 +125,7 @@ COUNTERPARTY_COLORS = {
     TERJE: 'light_slate_blue',
     TOM_BARRACK: BRO_COLOR,
     UNKNOWN: 'cyan',
-    'Woody': 'light_steel_blue3',
+    'Woody Allen': 'light_steel_blue3',
 }
 
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
