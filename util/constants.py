@@ -72,6 +72,7 @@ PEGGY_SIEGAL = 'Peggy Siegal'
 PAUL_KRASSNER = 'Paul Krassner'
 PAUL_PROSPERI = 'Paul Prosperi'
 PETER_MANDELSON = 'Peter Mandelson'
+REID_HOFFMAN = 'Reid Hoffman'
 ROBERT_TRIVERS = 'Robert Trivers'
 SEAN_BANNON = 'Sean Bannon'
 SULTAN_BIN_SULAYEM = 'Sultan Bin Sulayem'
@@ -433,6 +434,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '022187': JEFFREY_EPSTEIN,        # Bad OCR
     '028849': JEFFREY_EPSTEIN,        # Conversation
     '026547': JEFFREY_EPSTEIN,        # Bad OCR
+    '029282': [JOI_ITO, REID_HOFFMAN],# Bad OCR
     '033456': 'Joel',                 # Reply
     '033460': 'Joel',                 # Reply
     '033073': KATHY_RUEMMLER,         # to "Kathy" about dems, sent from iPad (not 100% confirmed)

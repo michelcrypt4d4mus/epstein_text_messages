@@ -138,7 +138,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     DAVID_STERN: 'medium_purple3',
     MOHAMED_WAHEED_HASSAN: ARAB_COLOR,
     PAULA: 'pink1',
-    'Reid Hoffman': TECH_BRO_COLOR,
+    REID_HOFFMAN: TECH_BRO_COLOR,
     ALIREZA_ITTIHADIEH: ARAB_COLOR,
     # Temporary
     # 'Reid Weingarten': 'magenta',
