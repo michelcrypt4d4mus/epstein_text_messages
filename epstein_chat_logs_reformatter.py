@@ -17,7 +17,7 @@ from rich.text import Text
 from documents.email_header import AUTHOR
 from documents.epstein_files import EpsteinFiles
 from documents.messenger_log import sender_counts
-from util.env import is_build, is_debug, skip_texts
+from util.env import additional_emails, is_build, is_debug, skip_texts
 from util.file_helper import OUTPUT_GH_PAGES_HTML
 from util.rich import *
 from util.html import *
@@ -60,6 +60,7 @@ print_email_table(epstein_files.email_recipient_counts, "Recipient")
 console.print(f"\n\nIdentified authors of {epstein_files.num_identified_email_authors()} emails out of {len(epstein_files.emails)} potential email files.")
 console.print('(note this site uses the OCR email text provided by Congress which is not the greatest)\n', style='dim')
 console.print('Chronological Epstein correspondence with the following people can be found below.')
+
 
 for i, author in enumerate(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED):
     style = COUNTERPARTY_COLORS.get(author or UNKNOWN, DEFAULT)

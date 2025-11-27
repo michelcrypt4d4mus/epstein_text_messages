@@ -13,7 +13,7 @@ from rich.text import Text
 from documents.document import FALLBACK_TIMESTAMP, CommunicationDocument
 from documents.email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TO_FIELDS, EmailHeader
 from util.constants import *
-from util.env import is_fast_mode
+from util.env import is_fast_mode, logger
 from util.rich import *
 from util.strings import *
 

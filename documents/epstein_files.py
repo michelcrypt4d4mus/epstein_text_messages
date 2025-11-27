@@ -17,9 +17,9 @@ from documents.email_header import AUTHOR
 from documents.messenger_log import MSG_REGEX, MessengerLog
 from util.constants import *
 from util.data import flatten, patternize
-from util.env import is_debug
+from util.env import is_debug, logger
 from util.file_helper import DOCS_DIR, move_json_file
-from util.rich import COUNTERPARTY_COLORS, console, highlight_text, logger, print_panel
+from util.rich import COUNTERPARTY_COLORS, console, highlight_text, print_panel
 
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (0, 0, 0, 2)
