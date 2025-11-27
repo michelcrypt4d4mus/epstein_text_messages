@@ -121,6 +121,11 @@ TRUNCATE_TERMS = [
     'We are recording unprecedented divergences in falling equity vol',
     'As previously discussed between you and Ariane',
     'The US trade war against China: The view from Beijing',
+    'no evidence you got the latest so i have sent you just the key message',
+    # Joscha Bach
+    'Cells seem to be mostly indistinguishable (except',
+    'gender differenece. unlikely motivational, every cell is different',
+    'Some thoughts I meant to send back for a long time',
 ]
 
 # No point in ever displaying these
