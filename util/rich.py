@@ -335,7 +335,7 @@ def print_header():
     console.print(Align.center("[link=https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/util/constants.py]Explanation of attributions[/link]"), style='magenta')
 
 
-def print_email_table(counts: dict[str, int], column_title: str) -> None:
+def print_emailer_counts_table(counts: dict[str, int], column_title: str) -> None:
     counts_table = Table(title=f"Email Counts by {column_title}", show_header=True, header_style="bold")
     counts_table.add_column(column_title, justify="left", style='white')
     counts_table.add_column('Jmail', justify="center")
