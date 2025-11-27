@@ -52,7 +52,7 @@ MAX_CHARS_TO_PRINT = 4000
 VALID_HEADER_LINES = 14
 EMAIL_INDENT = 3
 
-clipped_signature_replacement = lambda name: f'[dim]<...snipped {name.split()[-1].lower()} legal signature...>[/dim]'
+clipped_signature_replacement = lambda name: f'[dim]<...snipped {name.lower()} legal signature...>[/dim]'
 
 KNOWN_TIMESTAMPS = {
     '028851': datetime(2014, 4, 27, 6, 00),
@@ -87,6 +87,10 @@ TRUNCATE_TERMS = [
     'Whether you donated to Poetry in America through',
     'supported my humanities work at Harvard',
     'Calendar of Major Events, Openings, and Fundraisers',
+    'Nuclear Operator Raises Alarm on Crisis',
+    'as responsible for the democratisation of computing and',
+    'AROUND 1,000 operational satellites are circling the Earth',
+    "In recent months, China's BAT collapse",
 ]
 
 # No point in ever displaying these
