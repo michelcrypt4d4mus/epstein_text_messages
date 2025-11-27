@@ -59,6 +59,7 @@ OCR_REPAIRS = {
     'Sent from Mabfl': 'Sent from Mobile',
     'MOMMINNEMUMMIN': REDACTED,
     'Torn Pritzker': 'Tom Pritzker',
+    'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
 }
 
 # These are long forwarded articles we don't want to display over and over

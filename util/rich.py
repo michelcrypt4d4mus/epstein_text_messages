@@ -138,6 +138,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     MOHAMED_WAHEED_HASSAN: ARAB_COLOR,
     PAULA: 'pink1',
     'Reid Hoffman': TECH_BRO_COLOR,
+    ALIREZA_ITTIHADIEH: ARAB_COLOR,
     # Temporary
     # 'Reid Weingarten': 'magenta',
     # 'Kathy Ruemmler': 'magenta',
@@ -182,6 +183,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     COUNTERPARTY_COLORS[GHISLAINE_MAXWELL]: r"GMAX|gmax1@ellmax.com",
     COUNTERPARTY_COLORS[TERJE]: r"Terje (R[øo]e?d[- ])?Lars[eo]n",
     RICH_GUY_COLOR: r"(Steve\s+)?Wynn|(Leslie\s+)?Wexner",
+    COUNTERPARTY_COLORS[JEFFREY_EPSTEIN]: EMAILER_REGEXES[JEFFREY_EPSTEIN].pattern,
     'dark_magenta': r"Le\s*Pen|(Victor\s+)?Orbah?n",
     'orchid1': r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts",
     'medium_purple2': r"(Alan (M\. )?)?Dershowi(l|tz)|(Ken(neth W.)?\s+)?Starr",
