@@ -138,6 +138,7 @@ COUNTERPARTY_COLORS = {
     SCOTT_J_LINK: LAWYER_COLOR,
     SOON_YI: 'hot_pink',
     STACY_PLASKETT: 'medium_orchid3',
+    'Stanley Rosenberg': LOBBYIST_COLOR,  # Former state senator?
     STEVE_BANNON: 'color(58)',
     TERJE: 'light_slate_blue',
     TOM_BARRACK: BRO_COLOR,
