@@ -71,14 +71,10 @@ if not args.all:
     emailer_tables = sorted(emailer_tables, key=lambda e: epstein_files.earliest_email_at(e)) if args.all_tables else emailer_tables
     print_numbered_list(emailer_tables)
 
-    for author in emailers_to_print:
-        epstein_files.print_emails_for(author)
+for author in emailers_to_print:
+    epstein_files.print_emails_for(author)
 
-    # Print everyone with less than 3 sent emails
-    # low_sent = [a for a in epstein_files.email_author_counts.keys() if len(epstein_files.emails_for(a)) < 3]
-    # for author in [a for a in epstein_files.email_recipient_counts.keys() if len(epstein_files.emails_for(a)) < 3 and a not in low_sent]:
-    #     epstein_files.print_emails_for(author)
-
+if not args.all:
     print_author_header(f"Email Tables for {len(emailer_tables)} Other People", 'white')
 
     for name in emailer_tables:
