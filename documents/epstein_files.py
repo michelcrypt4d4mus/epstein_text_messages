@@ -91,8 +91,8 @@ class EpsteinFiles:
 
     def all_emailers(self) -> list[str]:
         """Returns all emailers except Epstein and USELESS_EMAILERS, sorted from least frequent to most."""
-        not_included_emailers = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
         emailers = [a for a in self.email_author_counts.keys()] + [r for r in self.email_recipient_counts.keys()]
+        not_included_emailers = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
         emailers = list(set([e for e in emailers if e.lower() not in not_included_emailers]))
         return sorted(emailers, key=lambda e: self.email_author_counts[e] + self.email_recipient_counts[e])
 

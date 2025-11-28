@@ -167,7 +167,7 @@ TRUNCATE_TERMS = [
 ]
 
 # No point in ever displaying these
-USELESS_EMAILERS = [
+USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + [
     'asmallworld@travel.asmallworld.net',  # Promo travel stuff
     'digest-noreply@quora.com',
     'editorialstaff@flipboard.com',
