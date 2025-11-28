@@ -25,7 +25,15 @@ echo -e "Building '$INDEX_HTML_PATH'..."
 git commit -am"Update HTML"
 git push origin gh_pages
 git checkout master
-echo -e "\n\nepstein_text_messages deploy complete.\nDeploying '$EMAILS_DIR'...\n"
+echo -e "\n\nepstein_text_messages deploy complete.\n"
+
+if [ -n "$ONLY_TEXTS" ]; then
+    echo "Skipping deployment of emails site..."
+    exit(0)
+fi
+
+
+echo -e "Deploying '$EMAILS_DIR'..."
 
 # Deploy emails
 echo -e "\nBuilding all emails..."
