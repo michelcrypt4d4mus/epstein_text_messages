@@ -4,6 +4,9 @@
 * [I Made Epstein's Text Messages Great Again (And You Should Read Them)](https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great) post on [Substack](https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great)
 * Configuration variables assigning specific `HOUSE_OVERSIGHT_XXXXXX.txt` file IDs (the `111111` part) as being emails to or from particular people based on various research and contributions can be found in the [constants.py](./util/constants.py) file in this repo.
 
+
+Dependencies are in [pyproject.toml](./pyproject.toml). Use `poetry` for easiest time installing.
+
 Requires you have a local copy of OCR text from the House Oversight document dump in a directory `/path/to/epstein/ocr_txt_files`.  Then you can run with:
 
 ```bash

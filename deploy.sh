@@ -2,6 +2,9 @@
 set -e
 
 INDEX_HTML_PATH="docs/index.html"
+EMAILS_DIR="../epstein_emails_house_oversight"
+EMAILS_INDEX_HTML_PATH="${EMAILS_DIR}/${INDEX_HTML_PATH}"
+
 
 if any_uncommitted_changes; then
     echo "Uncommitted changes; halting."
@@ -21,3 +24,16 @@ git merge --no-edit master
 git commit -am"Update HTML"
 git push origin gh_pages
 git checkout master
+echo -e "\n\nepstein_text_messages deploy complete.\nDeploying $EMAILS_DIR...\n"
+
+# Deploy emails
+echo "Building all emails..."
+./epstein_chat_logs_reformatter.py --build --all --no-texts
+echo "Copying $INDEX_HTML_PATH to $EMAILS_INDEX_HTML_PATH..."
+mv "$INDEX_HTML_PATH" "$EMAILS_INDEX_HTML_PATH"
+pushd "$EMAILS_DIR"
+git commit -am"Update HTML"
+git push origin main
+popd
+
+echo -e "\n${EMAILS_DIR} deploy complete."
