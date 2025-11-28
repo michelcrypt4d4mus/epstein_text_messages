@@ -323,7 +323,6 @@ EMAILERS = [
     'Peter Aldhous',
     'Peter Green',
     PETER_MANDELSON,
-    'pink@mc2mm.com',
     'ross@acuityreputation.com',
     r'Sam/Walli Leff',
     STEVEN_PFEIFFER,
