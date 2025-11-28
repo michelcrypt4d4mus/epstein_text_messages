@@ -48,7 +48,7 @@ INDIA_COLOR = 'green'
 ISRAELI_COLOR = 'dodger_blue2'
 JAVANKA_COLOR = 'medium_violet_red'
 JOURNALIST_COLOR = 'yellow3'
-LAWYER_COLOR = 'purple3'
+LAWYER_COLOR = 'medium_purple2'
 LOBBYIST_COLOR = 'medium_purple'
 OBAMA_COLOR = 'yellow'
 POLICE_COLOR = 'color(24)'
@@ -62,6 +62,7 @@ BASE_NAMES_TO_NOT_COLOR: list[str] = [name.lower() for name in [
     'Allen',
     'Andrew',
     'Black',
+    'Brad',
     'Daniel',
     'Darren',
     'David',
@@ -109,20 +110,16 @@ COUNTERPARTY_COLORS = {
     ANIL: INDIA_COLOR,
     BRAD_KARP: LAWYER_COLOR,
     CELINA_DUBIN: DUBIN_COLOR,
-    DAVID_SCHOEN: LAWYER_COLOR,
     DAVID_HAIG: SCHOLAR_COLOR,
     DEFAULT: 'wheat4',
     EVA: 'orchid',
     'Eva Dubin': DUBIN_COLOR,
     GLENN_DUBIN: DUBIN_COLOR,
-    JAY_LEFKOWITZ: LAWYER_COLOR,
     JEFFREY_EPSTEIN: 'blue1',
     JONATHAN_FARKAS: BRO_COLOR,
     JOSCHA_BACH: SCHOLAR_COLOR,
     LARRY_SUMMERS: SCHOLAR_COLOR,
     LINDA_STONE: 'pink3',
-    LILLY_SANCHEZ: LAWYER_COLOR,
-    MARTIN_WEINBERG: LAWYER_COLOR,
     MELANIE_SPINELLA: 'magenta3',
     MELANIE_WALKER: 'light_pink3',
     NADIA_MARCINKO: 'violet',
@@ -130,12 +127,9 @@ COUNTERPARTY_COLORS = {
     'Moshe Hoffman': SCHOLAR_COLOR,
     'Noam Chomsky': SCHOLAR_COLOR,
     PAUL_MORRIS: BANK_COLOR,
-    REID_WEINGARTEN: LAWYER_COLOR,
     'Rob Crowe': LOBBYIST_COLOR,
     ROBERT_TRIVERS: SCHOLAR_COLOR,
-    'Roy Black': LAWYER_COLOR,
     SCARAMUCCI: 'orange1',
-    SCOTT_J_LINK: LAWYER_COLOR,
     SOON_YI: 'hot_pink',
     STACY_PLASKETT: 'medium_orchid3',
     'Stanley Rosenberg': LOBBYIST_COLOR,  # Former state senator?
@@ -159,7 +153,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     OLIVIER_COLOM: LOBBYIST_COLOR,
     'Peter Thiel': TECH_BRO_COLOR,
     STEVE_BANNON: COUNTERPARTY_COLORS[STEVE_BANNON],
-    DAVID_STERN: 'medium_purple3',
+    DAVID_STERN: LAWYER_COLOR,
     MOHAMED_WAHEED_HASSAN: ARAB_COLOR,
     PAULA: 'pink1',
     REID_HOFFMAN: TECH_BRO_COLOR,
@@ -177,7 +171,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {
     SULTAN_BIN_SULAYEM: 'green1',
     # Epstein's lawyers
     DARREN_INDYKE: LAWYER_COLOR,
-    RICHARD_KAHN: 'purple4',
+    RICHARD_KAHN: LAWYER_COLOR,
     DEEPAK_CHOPRA: 'dark_goldenrod',
     # Temporary
     KATHY_RUEMMLER: 'magenta2',
@@ -208,6 +202,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     INDIA_COLOR: rf"Ambani|Indian?|Modi|mumbai|Zubair( Khan)?|{VINIT_SAHNI}",
     ISRAELI_COLOR: r"Bibi|(eh|Nili Priell )barak|Netanyahu|Israeli?",
     JOURNALIST_COLOR: rf"Alex Yablon|{PAUL_KRASSNER}|{MICHAEL_WOLFF}|Wolff|Susan Edelman",
+    LAWYER_COLOR: rf"(Alan (M\. )?)?Dershowi(l|tz)|(Ken(neth W.)?\s+)?Starr|{DAVID_SCHOEN}|{JAY_LEFKOWITZ}|Lefkowitz|Lilly (Ann )?Sanchez|{MARTIN_WEINBERG}|{REID_WEINGARTEN}|Weinberg|Weingarten|Roy Black|{SCOTT_J_LINK}",
     POLICE_COLOR: f"Police Code Enforcement|Ann Marie Villafana|Kirk Blouin",
     RICH_GUY_COLOR: rf"(Steve\s+)?Wynn|(Leslie\s+)?Wexner|Amanda Ens|{NICHOLAS_RIBIS}|{ROBERT_LAWRENCE_KUHN}|{STEPHEN_HANSON}|{TERRY_KAFKA}",
     RUSSIA_COLOR: r"GRU|FSB|Lavrov|Moscow|(Vladimir )?Putin|Russian?|Vladimir Yudashkin",
@@ -217,7 +212,6 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     COUNTERPARTY_COLORS[JEFFREY_EPSTEIN]: EMAILER_REGEXES[JEFFREY_EPSTEIN].pattern,
     'dark_magenta': r"Le\s*Pen|(Victor\s+)?Orbah?n",
     'orchid1': r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts",
-    'medium_purple2': r"(Alan (M\. )?)?Dershowi(l|tz)|(Ken(neth W.)?\s+)?Starr",
     'pale_green1': r"Masa(yoshi)?|Najeev|Softbank",
     'turquoise4': r"BG|Bill\s+((and|or)\s+Melinda\s+)?Gates|Melinda(\s+Gates)?",
     BANK_COLOR: r"Black(rock|stone)|DB|Deutsche Bank|Goldman( Sachs)|Morgan Stanley|j\.?p\.? ?morgan( Chase)?|Chase Bank",
