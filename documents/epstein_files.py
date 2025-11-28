@@ -132,7 +132,7 @@ class EpsteinFiles:
     def print_emails_for(self, _author: str | None) -> None:
         """Print complete emails to or from a particular 'author'."""
         emails = self.emails_for(_author)
-        author = _author or UNKNOWN
+        author = _author.title() if _author else UNKNOWN
 
         if len(emails) > 0:
             print_author_header(
