@@ -37,6 +37,7 @@ CHRISTINA_GALBRAITH = 'Christina Galbraith'  # Works with Tyler Shears on reputa
 DARREN_INDYKE = 'Darren Indyke'
 DANIEL_SIAD = 'Daniel Siad'
 DAVID_SCHOEN = 'David Schoen'
+DAVID_HAIG = 'David Haig'
 DAVID_STERN = 'David Stern'
 DEEPAK_CHOPRA = 'Deepak Chopra'
 DIANE_ZIMAN = 'Diane Ziman'
@@ -57,6 +58,7 @@ JEREMY_RUBIN = 'Jeremy Rubin'  # bitcoin dev
 JOHN_PAGE = 'John Page'
 JOHNNY_EL_HACHEM = 'Johnny el Hachem'
 JONATHAN_FARKAS = 'Jonathan Farkas'
+JOSCHA_BACH = 'Joscha Bach'
 KATHY_RUEMMLER = 'Kathy Ruemmler'
 KEN_STARR = 'Ken Starr'
 LANDON_THOMAS = 'Landon Thomas Jr'
@@ -76,6 +78,7 @@ MICHAEL_SITRICK = 'Michael Sitrick'
 MICHAEL_WOLFF = "Michael Wolff"
 MOHAMED_WAHEED_HASSAN = 'Mohamed Waheed Hassan'
 NADIA_MARCINKO = 'Nadia Marcinko'
+NICHOLAS_RIBIS = 'Nicholas Ribis'
 NORMAN_D_RAU = 'Norman D. Rau'
 PAULA = 'Paula'
 PAUL_BARRETT = 'Paul Barrett'
@@ -245,7 +248,7 @@ EMAILER_REGEXES = {
     'Mike Sitrick': re.compile(r'Mi(chael|ke).*Sitrick', re.IGNORECASE),
     MOHAMED_WAHEED_HASSAN: re.compile(r'Mohamed Waheed', re.IGNORECASE),
     'Neal Kassell': re.compile(r'Neal Kassel', re.IGNORECASE),
-    'Nicholas Ribis': re.compile(r'Nicholas[ ._]Ribi?s?', re.IGNORECASE),
+    NICHOLAS_RIBIS: re.compile(r'Nicholas[ ._]Ribi?s?', re.IGNORECASE),
     PAUL_BARRETT: re.compile(r'Paul Barre(d|tt)', re.IGNORECASE),
     PAUL_KRASSNER: re.compile(r'Pa\s?ul Krassner', re.IGNORECASE),
     PAULA: re.compile(r'^Paula$', re.IGNORECASE),
@@ -293,7 +296,7 @@ EMAILERS = [
     'Jes Staley',
     'Kathleen Ruderman',
     'Kenneth E. Mapp',
-    'Joscha Bach',
+    JOSCHA_BACH,
     'Lesley Groff',
     'lorraine@mc2mm.com',
     LINDA_STONE,
@@ -480,12 +483,14 @@ KNOWN_EMAIL_RECIPIENTS = {
     '028849': JEFFREY_EPSTEIN,        # Conversation
     '026547': JEFFREY_EPSTEIN,        # Bad OCR
     '032209': JEFFREY_EPSTEIN,        # More of a text convo?
-    '029498': [JEFFREY_EPSTEIN, 'Gordon Getty', 'David Haig', 'Norman Finkelstein'],  # Bad OCR
+    '029498': [JEFFREY_EPSTEIN, DAVID_HAIG, 'Gordon Getty', 'Norman Finkelstein'],  # Bad OCR
+    '029154': [JEFFREY_EPSTEIN, DAVID_HAIG],         # Bad OCR
     '019407': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR
     '019409': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR
     '031980': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR
     '026228': [JEFFREY_EPSTEIN, STEVEN_PFEIFFER],    # Bad OCR
     '028931': [JEFFREY_EPSTEIN, LAWRENCE_KRAUSS],    # Bad OCR
+    '029163': [JEFFREY_EPSTEIN, ROBERT_TRIVERS],     # Bad OCR
     '033456': 'Joel',                 # Reply
     '033460': 'Joel',                 # Reply
     '029282': [JOI_ITO, REID_HOFFMAN],# Bad OCR
