@@ -28,7 +28,7 @@ git checkout master
 echo -e "\n\nepstein_text_messages deploy complete.\nDeploying '$EMAILS_DIR'...\n"
 
 # Deploy emails
-echo -e"\nBuilding all emails..."
+echo -e "\nBuilding all emails..."
 ./epstein_chat_logs_reformatter.py --build --all --no-texts
 echo "Copying '$INDEX_HTML_PATH' to '$EMAILS_INDEX_HTML_PATH'..."
 mv "$INDEX_HTML_PATH" "$EMAILS_INDEX_HTML_PATH"
