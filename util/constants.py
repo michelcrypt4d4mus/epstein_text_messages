@@ -261,6 +261,7 @@ EMAILER_REGEXES = {
     PAUL_MORRIS: re.compile(r'morris, paul|Paul Morris', re.IGNORECASE),
     PEGGY_SIEGAL:  re.compile(r'Peggy Siegal?', re.IGNORECASE),
     'Peter Attia': re.compile(r'Peter Attia?', re.IGNORECASE),
+    'pink@mc2mm.com': re.compile(r"^(Pink|pink@mc2mm.com)$", re.IGNORECASE),
     PRINCE_ANDREW: re.compile(r'Prince Andrew|The Duke', re.IGNORECASE),
     REID_WEINGARTEN: re.compile(r'Weingarten, Rei[cdi]|Rei[cdi] Weingarten', re.IGNORECASE),
     RICHARD_KAHN: re.compile(r'rich(ard)? kahn?', re.IGNORECASE),

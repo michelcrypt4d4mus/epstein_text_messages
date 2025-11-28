@@ -191,14 +191,17 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + [
     'Joseph Vinciguerra',                    # Random CC
     'Larry Cohen',                           # Random Bill Gates CC
     'Mark Albert',                           # Random CC
+    'Matthew Schafer',                       # Random CC
     'Michael Simmons',                       # Random CC
     'Owen Blicksilver',                      # Landon Thomas CC
     'Pink',                                  # Random Jean Luc Brunel CC
+    'Robert D. Critton Jr',                  # Random CC
     'Sam/Walli Leff',                        # Random CC
     'Saved by Internet Explorer 11',
     'Sean T Lehane',                         # Random CC
     'Stephen Rubin',                         # Random CC
     'Tim Kane',                              # Random CC
+    'Travis Pangburn',                       # Random CC
     'Vahe Stepanian',                        # Random CC
 ]
 
