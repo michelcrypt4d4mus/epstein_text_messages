@@ -90,6 +90,7 @@ PRINCE_ANDREW = 'Prince Andrew'
 REID_HOFFMAN = 'Reid Hoffman'
 REID_WEINGARTEN = 'Reid Weingarten'
 RICHARD_KAHN = 'Richard Kahn'
+ROBERT_LAWRENCE_KUHN = 'Robert Lawrence Kuhn'
 ROBERT_TRIVERS = 'Robert Trivers'
 SEAN_BANNON = 'Sean Bannon'
 STEVEN_PFEIFFER = 'Steven Pfeiffer'
@@ -258,7 +259,7 @@ EMAILER_REGEXES = {
     PRINCE_ANDREW: re.compile(r'Prince Andrew|The Duke', re.IGNORECASE),
     REID_WEINGARTEN: re.compile(r'Weingarten, Rei[cdi]|Rei[cdi] Weingarten', re.IGNORECASE),
     RICHARD_KAHN: re.compile(r'rich(ard)? kahn?', re.IGNORECASE),
-    'Robert Lawrence Kuhn': re.compile(r'Robert\s*(Lawrence)?\s*Kuhn', re.IGNORECASE),
+    ROBERT_LAWRENCE_KUHN: re.compile(r'Robert\s*(Lawrence)?\s*Kuhn', re.IGNORECASE),
     ROBERT_TRIVERS: re.compile(r'tri[vy]ersr@gmail|Robert\s*Trivers?', re.IGNORECASE),
     'Scott J. Link': re.compile(r'scott j. link?', re.IGNORECASE),
     SEAN_BANNON: re.compile(r'sean bannon?', re.IGNORECASE),
