@@ -59,9 +59,9 @@ print_emailer_counts_table(epstein_files.email_author_counts, AUTHOR.title())
 console.line(2)
 print_emailer_counts_table(epstein_files.email_recipient_counts, "Recipient")
 console.print(f"\n\nIdentified authors of {epstein_files.num_identified_email_authors()} emails out of {len(epstein_files.emails)} potential email files.")
-console.print('(note this site uses the OCR email text provided by Congress which is not the greatest)\n', style='dim')
+console.print('(note this site is based on the OCR email text provided by Congress which is not the greatest)\n', style='dim')
+console.print('Epstein correspondence grouped by counterparty can be found below. Groups are sorted chronologically based on time of the first email.')
 
-console.print('Chronological Epstein correspondence with the following people can be found below.')
 emailers_to_print = epstein_files.all_emailers() if args.all else PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED
 emailers_to_print = sorted(emailers_to_print, key=lambda e: epstein_files.earliest_email_at(e)) if args.all else emailers_to_print
 print_numbered_list(emailers_to_print)
@@ -85,9 +85,9 @@ epstein_files.print_email_device_info()
 
 
 # Other Files Section
-if is_build:
+if is_build and not args.all:
     console.line()
-    print_section_header(f"{len(epstein_files.other_files)} Other Files That Are Neither Emails Nor Text Msgs")
+    print_section_header(f"The {len(epstein_files.other_files)} Files That Are Neither Emails Nor Text Msgs")
     epstein_files.print_other_files_table()
 else:
     print(f"Skipping other files section because is_build={is_build}...")

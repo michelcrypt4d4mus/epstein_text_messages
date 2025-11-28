@@ -17,7 +17,7 @@ from .data import flatten
 from .env import additional_emailers, deep_debug, is_build, logger
 from .strings import regex_escape_periods
 
-EMAILS_URL = 'https://michelcrypt4d4mus.github.io/epstein_emails_house_oversight/'
+ALL_EMAILS_URL = 'https://michelcrypt4d4mus.github.io/epstein_emails_house_oversight/'
 LEADING_WHITESPACE_REGEX = re.compile(r'\A\s*', re.MULTILINE)
 NON_ALPHA_CHARS_REGEX = re.compile(r'[^a-zA-Z0-9 ]')
 MAX_PREVIEW_CHARS = 300
@@ -305,7 +305,7 @@ def highlight_pattern(text: str, pattern: re.Pattern, style: str = 'cyan') -> Te
 
 def print_all_emails_link() -> None:
     console.print(
-        Align.center(f"[underline][link={EMAILS_URL}]Another site made by this code where you can read His Emails[/link][/underline]"),
+        Align.center(f"[underline][link={ALL_EMAILS_URL}]Another site made by this code where you can read His Emails[/link][/underline]"),
         style=f'chartreuse3 bold'
     )
 
