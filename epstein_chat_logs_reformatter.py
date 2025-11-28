@@ -65,23 +65,24 @@ emailers_to_print = epstein_files.all_emailers() if args.all else PEOPLE_WHOSE_E
 emailers_to_print = sorted(emailers_to_print, key=lambda e: epstein_files.earliest_email_at(e)) if args.all else emailers_to_print
 print_numbered_list(emailers_to_print)
 
-console.print("\n\nAfter that there's tables linking to (but not displaying) all known emails for each of these people:\n")
-emailer_tables = epstein_files.all_emailers() if args.all_tables else PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES
-emailer_tables = sorted(emailer_tables, key=lambda e: epstein_files.earliest_email_at(e)) if args.all else emailer_tables
-print_numbered_list(emailer_tables)
+if not args.all:
+    console.print("\n\nAfter that there's tables linking to (but not displaying) all known emails for each of these people:\n")
+    emailer_tables = epstein_files.all_emailers() if args.all_tables else PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES
+    emailer_tables = sorted(emailer_tables, key=lambda e: epstein_files.earliest_email_at(e)) if args.all_tables else emailer_tables
+    print_numbered_list(emailer_tables)
 
-for author in emailers_to_print:
-    epstein_files.print_emails_for(author)
+    for author in emailers_to_print:
+        epstein_files.print_emails_for(author)
 
-# Print everyone with less than 3 sent emails
-# low_sent = [a for a in epstein_files.email_author_counts.keys() if len(epstein_files.emails_for(a)) < 3]
-# for author in [a for a in epstein_files.email_recipient_counts.keys() if len(epstein_files.emails_for(a)) < 3 and a not in low_sent]:
-#     epstein_files.print_emails_for(author)
+    # Print everyone with less than 3 sent emails
+    # low_sent = [a for a in epstein_files.email_author_counts.keys() if len(epstein_files.emails_for(a)) < 3]
+    # for author in [a for a in epstein_files.email_recipient_counts.keys() if len(epstein_files.emails_for(a)) < 3 and a not in low_sent]:
+    #     epstein_files.print_emails_for(author)
 
-print_author_header(f"Email Tables for {len(emailer_tables)} Other People", 'white')
+    print_author_header(f"Email Tables for {len(emailer_tables)} Other People", 'white')
 
-for name in emailer_tables:
-    epstein_files.print_emails_table_for(name)
+    for name in emailer_tables:
+        epstein_files.print_emails_table_for(name)
 
 epstein_files.print_email_device_info()
 
