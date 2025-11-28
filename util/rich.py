@@ -51,6 +51,7 @@ JAVANKA_COLOR = 'medium_violet_red'
 JOURNALIST_COLOR = 'grey54'
 LAWYER_COLOR = 'purple3'
 OBAMA_COLOR = 'yellow'
+POLICE_COLOR = 'color(24)'
 RICH_GUY_COLOR = 'dark_cyan'
 RUSSIA_COLOR = 'red bold'
 SCHOLAR_COLOR = 'light_goldenrod2'
@@ -83,6 +84,7 @@ BASE_NAMES_TO_NOT_COLOR: list[str] = [name.lower() for name in [
     'Richard',
     'Robert',
     'Roger',
+    'Rubin',
     'Steve',
     'Stone',
     'The',
@@ -189,6 +191,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     DEMS_COLOR: r"Maxine Waters|(Nancy )?Pelosi|Clinton|Hillary",
     INDIA_COLOR: rf"Ambani|Indian?|Modi|mumbai|Zubair( Khan)?|{VINIT_SAHNI}",
     ISRAELI_COLOR: r"Bibi|(eh|Nili Priell )barak|Netanyahu|Israeli?",
+    POLICE_COLOR: f"Police Code Enforcement|Ann Marie Villafana|Kirk Blouin",
     RUSSIA_COLOR: r"GRU|FSB|Lavrov|Moscow|(Vladimir )?Putin|Russian?",
     TRUMP_COLOR: r"(Donald\s+(J\.\s+)?)?Trump|Donald|DJT|Roger\s+Stone",
     COUNTERPARTY_COLORS[GHISLAINE_MAXWELL]: r"GMAX|gmax1@ellmax.com",
@@ -313,7 +316,7 @@ def highlight_pattern(text: str, pattern: re.Pattern, style: str = 'cyan') -> Te
 
 def print_all_emails_link() -> None:
     console.print(
-        Align.center(f"[underline][link={ALL_EMAILS_URL}]Another site made by this code where you can read all of His Emails[/link][/underline]"),
+        Align.center(f"[underline][link={ALL_EMAILS_URL}]Another site made by this code where you can read ALL of His Emails[/link][/underline]"),
         style=f'chartreuse3 bold'
     )
 
@@ -372,6 +375,7 @@ def print_emailer_counts_table(counts: dict[str, int], column_title: str) -> Non
 
 def print_author_header(msg: str, color: str | None) -> None:
     txt = Text(msg, justify='center')
+    color = 'white' if color == DEFAULT else (color or 'white')
     panel = Panel(txt, width=80, style=f"black on {color or 'white'} bold")
     console.print('\n', Align.center(panel), '\n')
 
