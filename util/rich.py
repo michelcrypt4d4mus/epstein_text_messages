@@ -303,6 +303,13 @@ def highlight_pattern(text: str, pattern: re.Pattern, style: str = 'cyan') -> Te
     return Text.from_markup(pattern.sub(rf'[{style}]\1[/{style}]', text))
 
 
+def print_all_emails_link() -> None:
+    console.print(
+        Align.center(f"[underline][link={EMAILS_URL}]Another site made by this code where you can read His Emails[/link][/underline]"),
+        style=f'chartreuse3 bold'
+    )
+
+
 def print_header():
     console.print(f"This site is not optimized for mobile but if you get past the header it should work ok.", style='dim')
     console.line()
@@ -314,7 +321,7 @@ def print_header():
     console.print(Align.center("[underline][link=https://universeodon.com/@cryptadamist]Mastodon[/link][/underline]"), style=HEADER_LINK)
     console.print(Align.center("[underline][link=https://x.com/Cryptadamist/status/1990866804630036988]Twitter[/link][/underline]"), style=HEADER_LINK)
     console.line()
-    console.print(Align.center(f"[underline][link={EMAILS_URL}]Another site made by this code where you can read His Emails[/link][/underline]"), style=f'chartreuse3 bold')
+    print_all_emails_link()
 
     # Acronym table
     table = Table(title="Abbreviations Used Frequently In These Chats", show_header=True, header_style="bold")

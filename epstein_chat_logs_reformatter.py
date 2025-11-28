@@ -53,7 +53,7 @@ if not skip_texts:
 
 # Emails section
 print_section_header('His Emails')
-console.print(Align.center(f"[underline][link={EMAILS_URL}]Another site made by this code where you can read His Emails[/link][/underline]"), style=f'chartreuse3 bold')
+print_all_emails_link()
 console.line()
 print_emailer_counts_table(epstein_files.email_author_counts, AUTHOR.title())
 console.line(2)
