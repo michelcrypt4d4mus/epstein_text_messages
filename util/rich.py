@@ -227,7 +227,8 @@ class EmailHeaderHighlighter(RegexHighlighter):
     ]
 
 highlighter = EmailHeaderHighlighter()
-console = Console(color_system='256', highlighter=highlighter, theme=Theme(COUNTERPARTY_COLORS), quiet=is_build, width=OUTPUT_WIDTH)
+# TODO: quiet=is_build suppresses everything
+console = Console(color_system='256', highlighter=highlighter, theme=Theme(COUNTERPARTY_COLORS), width=OUTPUT_WIDTH)
 console.record = True
 
 # This is after the Theme() instantiation because 'bg' is reserved'
