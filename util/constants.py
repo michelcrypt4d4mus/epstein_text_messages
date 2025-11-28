@@ -228,7 +228,7 @@ EMAILER_REGEXES = {
     'Jackie Perczel':  re.compile(r'jackie perczel?', re.IGNORECASE),
     JABOR_Y: re.compile(r'^[ji]abor\s*y\.?', re.IGNORECASE),
     JEAN_LUC_BRUNEL: re.compile(r'Jean[- ]Luc Brunel?', re.IGNORECASE),
-    JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]?g(mail\.com)?|jeffrey E(sptein?)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards', re.IGNORECASE),
+    JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]?g?(mail\.com)?|jeffrey E(sptein?)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|joichi|^joi$', re.IGNORECASE),
     JOHNNY_EL_HACHEM: re.compile('el hachem johnny|johnny el hachem', re.IGNORECASE),
     JONATHAN_FARKAS: re.compile('Jonathan Farka(s|il)', re.IGNORECASE),
@@ -411,8 +411,10 @@ KNOWN_EMAIL_AUTHORS = {
     '030478': LANDON_THOMAS,
     '029013': LARRY_SUMMERS,
     '031129': LARRY_SUMMERS,
-    '029196': LAWRENCE_KRAUSS,
+    '032206': LAWRENCE_KRAUSS,         # More of a text convo?
     '032209': LAWRENCE_KRAUSS,         # More of a text convo?
+    '032210': LAWRENCE_KRAUSS,         # More of a text convo?
+    '029196': LAWRENCE_KRAUSS,
     '033487': LAWRANCE_VISOSKI,
     '028789': LAWRANCE_VISOSKI,
     '027046': LAWRANCE_VISOSKI,

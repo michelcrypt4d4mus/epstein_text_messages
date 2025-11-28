@@ -188,9 +188,11 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + [
     'How To Academy',
     'Jeff Fuller',                           # Random Jean Luc Brunel CC
     'Jokeland',
-    'Larry Cohen',   # Random Bill Gates CC
+    'Joseph Vinciguerra',                    # Random CC
+    'Larry Cohen',                           # Random Bill Gates CC
     'Mark Albert',                           # Random CC
     'Michael Simmons',                       # Random CC
+    'Owen Blicksilver',                      # Landon Thomas CC
     'Pink',                                  # Random Jean Luc Brunel CC
     'Sam/Walli Leff',                        # Random CC
     'Saved by Internet Explorer 11',
