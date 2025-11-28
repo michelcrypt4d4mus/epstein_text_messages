@@ -14,7 +14,7 @@ from rich.theme import Theme
 
 from .constants import *
 from .data import flatten
-from .env import additional_emailers, deep_debug, logger
+from .env import additional_emailers, deep_debug, is_build, logger
 from .strings import regex_escape_periods
 
 EMAILS_URL = 'https://michelcrypt4d4mus.github.io/epstein_emails_house_oversight/'
@@ -227,7 +227,7 @@ class EmailHeaderHighlighter(RegexHighlighter):
     ]
 
 highlighter = EmailHeaderHighlighter()
-console = Console(color_system='256', highlighter=highlighter, theme=Theme(COUNTERPARTY_COLORS), width=OUTPUT_WIDTH)
+console = Console(color_system='256', highlighter=highlighter, theme=Theme(COUNTERPARTY_COLORS), quiet=is_build, width=OUTPUT_WIDTH)
 console.record = True
 
 # This is after the Theme() instantiation because 'bg' is reserved'
@@ -313,7 +313,7 @@ def print_header():
     console.print(Align.center("[underline][link=https://universeodon.com/@cryptadamist]Mastodon[/link][/underline]"), style=HEADER_LINK)
     console.print(Align.center("[underline][link=https://x.com/Cryptadamist/status/1990866804630036988]Twitter[/link][/underline]"), style=HEADER_LINK)
     console.line()
-    console.print(Align.center(f"[underline][link={EMAILS_URL}]Another site made by this code where you can read His Emails[/link][/underline]"), style=f'{HEADER_LINK} bold')
+    console.print(Align.center(f"[underline][link={EMAILS_URL}]Another site made by this code where you can read His Emails[/link][/underline]"), style=f'chartreuse3 bold')
 
     # Acronym table
     table = Table(title="Abbreviations Used Frequently In These Chats", show_header=True, header_style="bold")
