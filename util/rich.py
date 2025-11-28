@@ -1,6 +1,6 @@
 import json
 import re
-from os import environ
+from os import devnull, environ
 
 from rich.align import Align
 from rich.console import Console
@@ -16,13 +16,13 @@ from .constants import *
 from .data import flatten
 from .env import additional_emailers, deep_debug, is_build, logger
 from .strings import regex_escape_periods
+from .text_highlighter import EpsteinTextHighlighter
 
-EMAILS_URL = 'https://michelcrypt4d4mus.github.io/epstein_emails_house_oversight/'
+ALL_EMAILS_URL = 'https://michelcrypt4d4mus.github.io/epstein_emails_house_oversight/'
 LEADING_WHITESPACE_REGEX = re.compile(r'\A\s*', re.MULTILINE)
 NON_ALPHA_CHARS_REGEX = re.compile(r'[^a-zA-Z0-9 ]')
 MAX_PREVIEW_CHARS = 300
 OUTPUT_WIDTH = 120
-HEADER_FIELD = 'header_field'
 HEADER_STYLE = 'header_field'
 PHONE_NUMBER = 'phone_number'
 SENT_FROM = 'sent_from'
@@ -216,20 +216,21 @@ if len(additional_emailers) > 0:
     PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED.update({k: COUNTERPARTY_COLORS.get(k, DEFAULT) for k in additional_emailers})
 
 
-# Instantiate Console object
-class EmailHeaderHighlighter(RegexHighlighter):
-    """Apply style to anything that looks like an email."""
-    base_style = f"{HEADER_FIELD}."
+# Instantiate console object
+CONSOLE_ARGS = {
+    'color_system': '256',
+    'highlighter': EpsteinTextHighlighter(),
+    'record': True,
+    'theme': Theme(COUNTERPARTY_COLORS),
+    'width': OUTPUT_WIDTH,
+}
 
-    highlights = [
-        r"(?P<email>[\w-]+@([\w-]+\.)+[\w-]+)",
-        r"(?P<header>Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):",
-    ]
+if is_build:
+    print(f"Suppressing console output because is_build={is_build}...")
+    CONSOLE_ARGS.update({'file': open(devnull, "wt")})
 
-highlighter = EmailHeaderHighlighter()
-# TODO: quiet=is_build suppresses everything
-console = Console(color_system='256', highlighter=highlighter, theme=Theme(COUNTERPARTY_COLORS), width=OUTPUT_WIDTH)
-console.record = True
+console = Console(**CONSOLE_ARGS)
+
 
 # This is after the Theme() instantiation because 'bg' is reserved'
 COUNTERPARTY_COLORS.update({
@@ -303,6 +304,13 @@ def highlight_pattern(text: str, pattern: re.Pattern, style: str = 'cyan') -> Te
     return Text.from_markup(pattern.sub(rf'[{style}]\1[/{style}]', text))
 
 
+def print_all_emails_link() -> None:
+    console.print(
+        Align.center(f"[underline][link={ALL_EMAILS_URL}]Another site made by this code where you can read His Emails[/link][/underline]"),
+        style=f'chartreuse3 bold'
+    )
+
+
 def print_header():
     console.print(f"This site is not optimized for mobile but if you get past the header it should work ok.", style='dim')
     console.line()
@@ -314,7 +322,7 @@ def print_header():
     console.print(Align.center("[underline][link=https://universeodon.com/@cryptadamist]Mastodon[/link][/underline]"), style=HEADER_LINK)
     console.print(Align.center("[underline][link=https://x.com/Cryptadamist/status/1990866804630036988]Twitter[/link][/underline]"), style=HEADER_LINK)
     console.line()
-    console.print(Align.center(f"[underline][link={EMAILS_URL}]Another site made by this code where you can read His Emails[/link][/underline]"), style=f'chartreuse3 bold')
+    print_all_emails_link()
 
     # Acronym table
     table = Table(title="Abbreviations Used Frequently In These Chats", show_header=True, header_style="bold")
