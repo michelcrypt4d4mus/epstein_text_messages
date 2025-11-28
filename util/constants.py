@@ -290,6 +290,7 @@ EMAILERS = [
     'Bill Siegel',
     BRAD_WECHSLER,
     'Daniel Sabba',
+    'Danny Goldberg',
     DAVID_SCHOEN,
     DEEPAK_CHOPRA,
     'Glenn Dubin',
