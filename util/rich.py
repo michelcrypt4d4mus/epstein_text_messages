@@ -306,7 +306,7 @@ def highlight_pattern(text: str, pattern: re.Pattern, style: str = 'cyan') -> Te
 
 def print_all_emails_link() -> None:
     console.print(
-        Align.center(f"[underline][link={ALL_EMAILS_URL}]Another site made by this code where you can read His Emails[/link][/underline]"),
+        Align.center(f"[underline][link={ALL_EMAILS_URL}]Another site made by this code where you can read all of His Emails[/link][/underline]"),
         style=f'chartreuse3 bold'
     )
 
