@@ -118,7 +118,7 @@ COUNTERPARTY_COLORS = {
     LINDA_STONE: 'pink3',
     MARTIN_WEINBERG: LAWYER_COLOR,
     MELANIE_SPINELLA: 'magenta3',
-    MELANIE_WALKER: 'deep_pink4',
+    MELANIE_WALKER: 'light_pink3',
     NADIA_MARCINKO: 'violet',
     MICHAEL_WOLFF: JOURNALIST_COLOR,
     MIROSLAV: 'slate_blue3',
