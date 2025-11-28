@@ -17,7 +17,7 @@ from rich.text import Text
 from documents.email_header import AUTHOR
 from documents.epstein_files import EpsteinFiles
 from documents.messenger_log import sender_counts
-from util.env import args, is_build, is_debug, skip_texts
+from util.env import additional_emailers, args, is_build, is_debug, skip_texts
 from util.file_helper import OUTPUT_GH_PAGES_HTML
 from util.rich import *
 from util.html import *
@@ -64,7 +64,8 @@ console.line(2)
 print_emailer_counts_table(epstein_files.email_recipient_counts, "Recipient")
 console.print(f"\n\nIdentified authors of {epstein_files.num_identified_email_authors()} emails out of {len(epstein_files.emails)} potential email files.")
 console.print('(note this site is based on the OCR email text provided by Congress which is not the greatest)\n', style='dim')
-console.print('Epstein correspondence grouped by counterparty can be found below. Groups are sorted chronologically based on time of the first email.')
+console.print('Epstein correspondence grouped by counterparty can be found in the order listed below.')
+console.print('Groups are sorted chronologically based on time of the first email.\n', style='dim')
 
 emailers_to_print = epstein_files.all_emailers() if args.all else PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED
 emailers_to_print = sorted(emailers_to_print, key=lambda e: epstein_files.earliest_email_at(e)) if args.all else emailers_to_print
