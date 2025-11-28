@@ -17,6 +17,7 @@ from .data import flatten
 from .env import additional_emailers, deep_debug, logger
 from .strings import regex_escape_periods
 
+EMAILS_URL = 'https://michelcrypt4d4mus.github.io/epstein_emails_house_oversight/'
 LEADING_WHITESPACE_REGEX = re.compile(r'\A\s*', re.MULTILINE)
 NON_ALPHA_CHARS_REGEX = re.compile(r'[^a-zA-Z0-9 ]')
 MAX_PREVIEW_CHARS = 300
@@ -311,6 +312,9 @@ def print_header():
     console.print(Align.center("[underline][link=https://cryptadamus.substack.com/]Substack[/link][/underline]"), style=HEADER_LINK)
     console.print(Align.center("[underline][link=https://universeodon.com/@cryptadamist]Mastodon[/link][/underline]"), style=HEADER_LINK)
     console.print(Align.center("[underline][link=https://x.com/Cryptadamist/status/1990866804630036988]Twitter[/link][/underline]"), style=HEADER_LINK)
+    console.line()
+    console.print(Align.center(f"[underline][link={EMAILS_URL}]Another site made by this code where you can read His Emails[/link][/underline]"), style=f'{HEADER_LINK} bold')
+
     # Acronym table
     table = Table(title="Abbreviations Used Frequently In These Chats", show_header=True, header_style="bold")
     table.add_column("Abbreviation", justify="center", style='bold', width=19)
@@ -358,6 +362,7 @@ def print_author_header(msg: str, color: str | None) -> None:
 
 def print_numbered_list(_list: list[str] | dict) -> None:
     for i, name in enumerate(_list):
+        name = name.title() if name else name
         style = COUNTERPARTY_COLORS.get(name or UNKNOWN, DEFAULT)
         console.print(Text(f"   {i}. ").append(name or UNKNOWN, style=style))
 

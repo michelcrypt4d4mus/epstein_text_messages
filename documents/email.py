@@ -266,7 +266,7 @@ class Email(CommunicationDocument):
             if len(self.recipients) == 0:
                 return self.author_style
             else:
-                return COUNTERPARTY_COLORS[self.recipients[0] or UNKNOWN]
+                return COUNTERPARTY_COLORS.get(self.recipients[0], UNKNOWN)
         else:
             return self.author_style
 
