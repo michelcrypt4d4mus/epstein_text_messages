@@ -77,6 +77,8 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
 }
 
 TRUNCATE_ALL_EMAILS_FROM = [
+    'Alan S Halperin',
+    'Lvjet',
     'middle.east.update@hotmail.com',
     'Mitchell Bard',
     'us.gio@jpmorgan.com',
@@ -167,6 +169,10 @@ TRUNCATE_TERMS = [
     'people from LifeBall',
     # Random
     'Little Hodiaki',
+    "It began with deep worries regarding China's growth path",
+    'https://www.washingtonpost.com/politics/2018/09/04/transcript-phone-call',
+    # Epstein
+    'David Ben Gurion was asked why he, after 2000',
 ]
 
 # No point in ever displaying these
@@ -175,14 +181,23 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + [
     'asmallworld@travel.asmallworld.net',    # Promo travel stuff
     'BS Stern',                              # A random fwd of email we have
     'Dan Fleuette',                          # CC from sean bannon
+    'Danny Goldberg',                        # Random Paul Kranner emails
     'digest-noreply@quora.com',
     'editorialstaff@flipboard.com',
     'Gordon Getty',                          # Random CC
     'How To Academy',
+    'Jeff Fuller',                           # Random Jean Luc Brunel CC
     'Jokeland',
+    'Larry Cohen',   # Random Bill Gates CC
+    'Mark Albert',                           # Random CC
+    'Michael Simmons',                       # Random CC
+    'Pink',                                  # Random Jean Luc Brunel CC
+    'Sam/Walli Leff',                        # Random CC
     'Saved by Internet Explorer 11',
-    'Stephen Rubin',  # Random CC
+    'Sean T Lehane',                         # Random CC
+    'Stephen Rubin',                         # Random CC
     'Tim Kane',                              # Random CC
+    'Vahe Stepanian',                        # Random CC
 ]
 
 SUPPRESS_OUTPUT_FOR_IDS = {
