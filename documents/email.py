@@ -453,6 +453,7 @@ def _parse_timestamp(timestamp_str: str) -> None | datetime:
     try:
         timestamp_str = timestamp_str.replace(' (GMT-05:00)', 'EST').replace(' (UTC)', '')
         timestamp_str = timestamp_str.replace(' (GMT+07:00)', '')  # TODO: fix
+        timestamp_str = timestamp_str.replace(' (GMT+02:00)', '')  # TODO: fix
         timestamp = parse(timestamp_str.replace(REDACTED, ' ').strip(), tzinfos=TIMEZONE_INFO)
         logger.debug(f'Parsed timestamp "{timestamp}" from string "{timestamp_str}"')
 
