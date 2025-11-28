@@ -107,6 +107,7 @@ COUNTERPARTY_COLORS = {
     JEFFREY_EPSTEIN: 'blue1',
     EVA: 'orchid',
     GLENN_DUBIN: DUBIN_COLOR,
+    JAY_LEFKOWITZ: LAWYER_COLOR,
     JONATHAN_FARKAS: BRO_COLOR,
     LARRY_SUMMERS: SCHOLAR_COLOR,
     MARTIN_WEINBERG: LAWYER_COLOR,
@@ -211,11 +212,6 @@ HIGHLIGHT_REGEXES: dict[str, re.Pattern] = {
     for k, v in HIGHLIGHT_PATTERNS.items()
 }
 
-if len(additional_emailers) > 0:
-    logger.info(f"Added additional emails: {[e for e in additional_emailers]}")
-    PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED.update({k: COUNTERPARTY_COLORS.get(k, DEFAULT) for k in additional_emailers})
-
-
 # Instantiate console object
 CONSOLE_ARGS = {
     'color_system': '256',
@@ -260,6 +256,17 @@ def archive_link(filename: str, style: str = ARCHIVE_LINK_COLOR, link_txt: str |
 
 def coffeezilla_link(search_term: str, link_txt: str, style: str = ARCHIVE_LINK_COLOR) -> Text:
     return make_link(search_archive_url(search_term), link_txt or search_term, style)
+
+
+def get_style_for_name(name: str) -> str:
+    if name in COUNTERPARTY_COLORS:
+        return COUNTERPARTY_COLORS[name]
+
+    for style, name_regex in HIGHLIGHT_REGEXES.items():
+        if name_regex.search(name):
+            return style
+
+    return DEFAULT
 
 
 def highlight_text(text: str) -> str:
@@ -372,7 +379,7 @@ def print_author_header(msg: str, color: str | None) -> None:
 def print_numbered_list(_list: list[str] | dict) -> None:
     for i, name in enumerate(_list):
         name = name.title() if name else name
-        style = COUNTERPARTY_COLORS.get(name or UNKNOWN, DEFAULT)
+        style = get_style_for_name(name or UNKNOWN)
         console.print(Text(f"   {i}. ").append(name or UNKNOWN, style=style))
 
 

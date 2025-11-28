@@ -23,6 +23,10 @@ from util.rich import *
 from util.html import *
 
 
+if len(additional_emailers) > 0:
+    logger.info(f"Added additional emails: {[e for e in additional_emailers]}")
+    PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED.update({k: get_style_for_name(k) for k in additional_emailers})
+
 print_header()
 epstein_files = EpsteinFiles()
 epstein_files.print_summary()
@@ -41,7 +45,7 @@ if not skip_texts:
     counts_table.add_column("Message Count", justify="center")
 
     for k, v in sorted(sender_counts.items(), key=lambda item: item[1], reverse=True):
-        counts_table.add_row(Text(k, COUNTERPARTY_COLORS.get(k, 'grey23 bold')), str(v))
+        counts_table.add_row(Text(k, get_style_for_name(k)), str(v))
 
     console.print(counts_table)
     text_summary_msg = f"\nDeanonymized {epstein_files.identified_imessage_log_count()} of "

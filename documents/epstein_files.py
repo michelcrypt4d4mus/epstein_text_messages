@@ -21,7 +21,7 @@ from util.constants import *
 from util.data import flatten, patternize
 from util.env import is_debug, logger
 from util.file_helper import DOCS_DIR, move_json_file
-from util.rich import COUNTERPARTY_COLORS, console, highlight_text, print_author_header, print_panel
+from util.rich import console, get_style_for_name, highlight_text, print_author_header, print_panel
 
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (0, 0, 0, 2)
@@ -132,18 +132,19 @@ class EpsteinFiles:
     def print_emails_for(self, _author: str | None) -> None:
         """Print complete emails to or from a particular 'author'."""
         emails = self.emails_for(_author)
-        author = _author.title() if _author else UNKNOWN
+        author = _author or UNKNOWN
+        logger.info(f"print_emails_for({author}) [_author{_author}]")
 
         if len(emails) > 0:
             print_author_header(
-                f"Found {len(emails)} {author} emails from {emails[0].timestamp.date()} to {emails[-1].timestamp.date()}",
-                COUNTERPARTY_COLORS.get(author)
+                f"Found {len(emails)} {author.title()} emails from {emails[0].timestamp.date()} to {emails[-1].timestamp.date()}",
+                get_style_for_name(author.title())
             )
         else:
             raise RuntimeError(f"No emails found for '{_author}'")
 
         if author != UNKNOWN:
-            self.print_emails_table_for(author)
+            self.print_emails_table_for(author.title())
         else:
             ids = list(self.email_unknown_recipient_file_ids)
             logger.info(f"{len(ids)} UNKNOWN RECIPIENT IDS:\n" + '\n'.join(sorted(ids)))

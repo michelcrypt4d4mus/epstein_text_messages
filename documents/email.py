@@ -237,11 +237,11 @@ class Email(CommunicationDocument):
 
             recipient = recipient or UNKNOWN
             recipient_str = recipient if (' ' not in recipient or len(recipients) < 3) else recipient.split()[-1]
-            self.recipient_txt.append(recipient_str, style=COUNTERPARTY_COLORS.get(recipient, DEFAULT))
+            self.recipient_txt.append(recipient_str, style=get_style_for_name(recipient))
 
         self.timestamp = self._extract_sent_at()
         self.author_lowercase = self.author.lower() if self.author else None
-        self.author_style = COUNTERPARTY_COLORS.get(self.author or UNKNOWN, DEFAULT)
+        self.author_style = get_style_for_name(self.author or UNKNOWN)
         self.author_txt = Text(self.author or UNKNOWN, style=self.author_style)
         self.archive_link = self.epsteinify_link(self.author_style)
         self.epsteinify_link_markup = make_link_markup(self.epsteinify_name_url, self.file_path.stem, self.author_style)
@@ -266,7 +266,7 @@ class Email(CommunicationDocument):
             if len(self.recipients) == 0:
                 return self.author_style
             else:
-                return COUNTERPARTY_COLORS.get(self.recipients[0] or UNKNOWN, DEFAULT)
+                return get_style_for_name(self.recipients[0] or UNKNOWN)
         else:
             return self.author_style
 
