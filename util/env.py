@@ -16,6 +16,7 @@ parser.add_argument('--debug', '-d', action='store_true', help='set debug level 
 parser.add_argument('--deep-debug', '-dd', action='store_true', help='set debug level to DEBUG')
 parser.add_argument('--search', '-s', action='append', help='search for string in repaired OCR text')
 parser.add_argument('--search-other', '-so', action='append', help='search for string in non email/text files')
+parser.add_argument('--sort-alphabetical', '-alpha', action='store_true', help='sort emailers alphabetically in counts table')
 args = parser.parse_args()
 
 deep_debug = args.deep_debug or (len(environ.get('DEEP_DEBUG') or '') > 0)

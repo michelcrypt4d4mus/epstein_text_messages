@@ -63,12 +63,12 @@ class EpsteinFiles:
                 email = Email(file_arg)
                 self.emails.append(email)
                 author = email.author or UNKNOWN
-                self.email_author_counts[author.lower()] += 1
+                self.email_author_counts[author] += 1
                 logger.info(email.description().plain)
                 recipients = [UNKNOWN] if len(email.recipients) == 0 else [r or UNKNOWN for r in email.recipients]
 
                 for recipient in recipients:
-                    self.email_recipient_counts[recipient.lower()] += 1
+                    self.email_recipient_counts[recipient] += 1
 
                 if UNKNOWN in email.recipients:
                     self.email_unknown_recipient_file_ids.add(email.file_id)
@@ -137,14 +137,14 @@ class EpsteinFiles:
 
         if len(emails) > 0:
             print_author_header(
-                f"Found {len(emails)} {author.title()} emails from {emails[0].timestamp.date()} to {emails[-1].timestamp.date()}",
-                get_style_for_name(author.title())
+                f"Found {len(emails)} {author} emails from {emails[0].timestamp.date()} to {emails[-1].timestamp.date()}",
+                get_style_for_name(author)
             )
         else:
             raise RuntimeError(f"No emails found for '{_author}'")
 
         if author != UNKNOWN:
-            self.print_emails_table_for(author.title())
+            self.print_emails_table_for(author)
         else:
             ids = list(self.email_unknown_recipient_file_ids)
             logger.info(f"{len(ids)} UNKNOWN RECIPIENT IDS:\n" + '\n'.join(sorted(ids)))

@@ -1,10 +1,9 @@
 import json
 import re
-from os import devnull, environ
+from os import devnull
 
 from rich.align import Align
 from rich.console import Console
-from rich.highlighter import RegexHighlighter
 from rich.markup import escape
 from rich.panel import Panel
 from rich.padding import Padding
@@ -14,7 +13,7 @@ from rich.theme import Theme
 
 from .constants import *
 from .data import flatten
-from .env import additional_emailers, deep_debug, is_build, logger
+from .env import args, deep_debug, is_build, logger
 from .strings import regex_escape_periods
 from .text_highlighter import EpsteinTextHighlighter
 
@@ -86,7 +85,9 @@ BASE_NAMES_TO_NOT_COLOR: list[str] = [name.lower() for name in [
     'Robert',
     'Roger',
     'Rubin',
+    'Stephen',
     'Steve',
+    'Steven',
     'Stone',
     'The',
     'Thomas',
@@ -124,18 +125,15 @@ COUNTERPARTY_COLORS = {
     MICHAEL_WOLFF: JOURNALIST_COLOR,
     MIROSLAV: 'slate_blue3',
     'Moshe Hoffman': SCHOLAR_COLOR,
-    NICHOLAS_RIBIS: RICH_GUY_COLOR,
     'Noam Chomsky': SCHOLAR_COLOR,
     PAUL_KRASSNER: JOURNALIST_COLOR,
     REID_WEINGARTEN: LAWYER_COLOR,
     'Rob Crowe': LOBBYIST_COLOR,
-    ROBERT_LAWRENCE_KUHN: RICH_GUY_COLOR,
     ROBERT_TRIVERS: SCHOLAR_COLOR,
     'Roy Black': LAWYER_COLOR,
     SCARAMUCCI: 'orange1',
     SOON_YI: 'hot_pink',
     STACY_PLASKETT: 'medium_orchid3',
-    'Stephen Hanson': RICH_GUY_COLOR,
     STEVE_BANNON: 'color(58)',
     TERJE: 'light_slate_blue',
     TOM_BARRACK: BRO_COLOR,
@@ -153,6 +151,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     EHUD_BARAK: ISRAELI_COLOR,
     MARTIN_NOWAK: COLLEGE_COLOR,  # Really harvard color...
     'Masha Drokova': RUSSIA_COLOR,
+    OLIVIER_COLOM: LOBBYIST_COLOR,
     'Peter Thiel': TECH_BRO_COLOR,
     STEVE_BANNON: COUNTERPARTY_COLORS[STEVE_BANNON],
     DAVID_STERN: 'medium_purple3',
@@ -199,16 +198,16 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     BITCOIN_COLOR: r"bitcoin|block ?chain( capital)?|coins|cr[iy]pto(currency)?|e-currency|(jeffrey\s+)?wernick|(Howard\s+)?Lutnick|Libra|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)",
     BRASIL_COLOR: r"Argentina|Bra[sz]il(ian)?|Bolsonar[aio]|Lula|(Nicolas )?Maduro|Venezuelan?s?",
     CHINA_COLOR: r"Beijing|CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|Peking|PRC|xi",
+    COLLEGE_COLOR: rf"{LISA_NEW}|Harvard|MIT( Media Lab)?|Media Lab",
     DEMS_COLOR: r"Maxine Waters|(Nancy )?Pelosi|Clinton|Hillary",
     INDIA_COLOR: rf"Ambani|Indian?|Modi|mumbai|Zubair( Khan)?|{VINIT_SAHNI}",
     ISRAELI_COLOR: r"Bibi|(eh|Nili Priell )barak|Netanyahu|Israeli?",
     POLICE_COLOR: f"Police Code Enforcement|Ann Marie Villafana|Kirk Blouin",
+    RICH_GUY_COLOR: rf"(Steve\s+)?Wynn|(Leslie\s+)?Wexner|Amanda Ens|{NICHOLAS_RIBIS}|{ROBERT_LAWRENCE_KUHN}|{STEPHEN_HANSON}",
     RUSSIA_COLOR: r"GRU|FSB|Lavrov|Moscow|(Vladimir )?Putin|Russian?|Vladimir Yudashkin",
     TRUMP_COLOR: r"(Donald\s+(J\.\s+)?)?Trump|Donald|DJT|Roger\s+Stone",
     COUNTERPARTY_COLORS[GHISLAINE_MAXWELL]: r"GMAX|gmax1@ellmax.com",
     COUNTERPARTY_COLORS[TERJE]: r"Terje (R[øo]e?d[- ])?Lars[eo]n",
-    RICH_GUY_COLOR: r"(Steve\s+)?Wynn|(Leslie\s+)?Wexner",
-    COLLEGE_COLOR: rf"{LISA_NEW}|Harvard|MIT( Media Lab)?|Media Lab",
     COUNTERPARTY_COLORS[JEFFREY_EPSTEIN]: EMAILER_REGEXES[JEFFREY_EPSTEIN].pattern,
     'dark_magenta': r"Le\s*Pen|(Victor\s+)?Orbah?n",
     'orchid1': r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts",
@@ -375,8 +374,8 @@ def print_emailer_counts_table(counts: dict[str, int], column_title: str) -> Non
     counts_table.add_column('Jmail', justify="center")
     counts_table.add_column("Email Count", justify="center")
 
-    for k, v in sorted(counts.items(), key=lambda item: item[0] if 'ALPHA' in environ else [item[1], item[0]], reverse=True):
-        k = k.title() if ' ' in k else k
+    for k, v in sorted(counts.items(), key=lambda item: item[0] if args.sort_alphabetical else [item[1], item[0]], reverse=True):
+        k = k if ' ' in k else k
         name_txt = Text.from_markup(f"[underline][link={epsteinify_name_url(k)}]{highlight_text(k)}[/link][/underline]")
         jmail_link = make_link(jmail_search_url(k), 'Search Jmail')
         counts_table.add_row(name_txt, jmail_link, str(v))
