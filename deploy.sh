@@ -29,13 +29,12 @@ echo -e "\n\nepstein_text_messages deploy complete.\n"
 
 if [ -n "$ONLY_TEXTS" ]; then
     echo "Skipping deployment of emails site..."
-    exit(0)
+    exit
 fi
 
 
+# Deploy all emails
 echo -e "Deploying '$EMAILS_DIR'..."
-
-# Deploy emails
 echo -e "\nBuilding all emails..."
 ./epstein_chat_logs_reformatter.py --build --all --no-texts
 echo "Copying '$INDEX_HTML_PATH' to '$EMAILS_INDEX_HTML_PATH'..."
