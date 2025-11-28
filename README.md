@@ -4,10 +4,10 @@
 * [I Made Epstein's Text Messages Great Again (And You Should Read Them)](https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great) post on [Substack](https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great)
 * Configuration variables assigning specific `HOUSE_OVERSIGHT_XXXXXX.txt` file IDs (the `111111` part) as being emails to or from particular people based on various research and contributions can be found in the [constants.py](./util/constants.py) file in this repo.
 
-Requires you have a local copy of OCR text from the House Oversight document dump in a director `/path/to/docs_dir`.  Then you can run with:
+Requires you have a local copy of OCR text from the House Oversight document dump in a directory `/path/to/epstein/ocr_txt_files`.  Then you can run with:
 
 ```bash
-DOCS_DIR=/path/to/docs_dir ./epstein_chat_logs_reformatter
+DOCS_DIR=/path/to/epstein/ocr_txt_files ./epstein_chat_logs_reformatter
 ```
 
 Run `./epstein_chat_logs_reformatter.py --help` for command line option assistance.
