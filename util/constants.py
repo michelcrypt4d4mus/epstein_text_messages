@@ -99,6 +99,7 @@ TYLER_SHEARS = 'Tyler Shears'  # Reputation manager, like Al Seckel
 VINIT_SAHNI = 'Vinit Sahni'
 
 # Other strings
+HEADER_FIELD = 'header_field'
 REDACTED = '<REDACTED>'
 
 #  of who is the counterparty in each text message file
