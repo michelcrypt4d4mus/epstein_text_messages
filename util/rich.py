@@ -51,6 +51,7 @@ JAVANKA_COLOR = 'medium_violet_red'
 JOURNALIST_COLOR = 'grey54'
 LAWYER_COLOR = 'purple3'
 OBAMA_COLOR = 'yellow'
+POLICE_COLOR = 'color(24)'
 RICH_GUY_COLOR = 'dark_cyan'
 RUSSIA_COLOR = 'red bold'
 SCHOLAR_COLOR = 'light_goldenrod2'
@@ -83,6 +84,7 @@ BASE_NAMES_TO_NOT_COLOR: list[str] = [name.lower() for name in [
     'Richard',
     'Robert',
     'Roger',
+    'Rubin',
     'Steve',
     'Stone',
     'The',
@@ -107,6 +109,7 @@ COUNTERPARTY_COLORS = {
     JEFFREY_EPSTEIN: 'blue1',
     EVA: 'orchid',
     GLENN_DUBIN: DUBIN_COLOR,
+    JAY_LEFKOWITZ: LAWYER_COLOR,
     JONATHAN_FARKAS: BRO_COLOR,
     LARRY_SUMMERS: SCHOLAR_COLOR,
     MARTIN_WEINBERG: LAWYER_COLOR,
@@ -188,6 +191,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     DEMS_COLOR: r"Maxine Waters|(Nancy )?Pelosi|Clinton|Hillary",
     INDIA_COLOR: rf"Ambani|Indian?|Modi|mumbai|Zubair( Khan)?|{VINIT_SAHNI}",
     ISRAELI_COLOR: r"Bibi|(eh|Nili Priell )barak|Netanyahu|Israeli?",
+    POLICE_COLOR: f"Police Code Enforcement|Ann Marie Villafana|Kirk Blouin",
     RUSSIA_COLOR: r"GRU|FSB|Lavrov|Moscow|(Vladimir )?Putin|Russian?",
     TRUMP_COLOR: r"(Donald\s+(J\.\s+)?)?Trump|Donald|DJT|Roger\s+Stone",
     COUNTERPARTY_COLORS[GHISLAINE_MAXWELL]: r"GMAX|gmax1@ellmax.com",
@@ -210,11 +214,6 @@ HIGHLIGHT_REGEXES: dict[str, re.Pattern] = {
     k: re.compile(fr"\b(({v})s?)\b", re.I) if k != HEADER_STYLE else re.compile(v, re.MULTILINE)
     for k, v in HIGHLIGHT_PATTERNS.items()
 }
-
-if len(additional_emailers) > 0:
-    logger.info(f"Added additional emails: {[e for e in additional_emailers]}")
-    PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED.update({k: COUNTERPARTY_COLORS.get(k, DEFAULT) for k in additional_emailers})
-
 
 # Instantiate console object
 CONSOLE_ARGS = {
@@ -262,6 +261,17 @@ def coffeezilla_link(search_term: str, link_txt: str, style: str = ARCHIVE_LINK_
     return make_link(search_archive_url(search_term), link_txt or search_term, style)
 
 
+def get_style_for_name(name: str) -> str:
+    if name in COUNTERPARTY_COLORS:
+        return COUNTERPARTY_COLORS[name]
+
+    for style, name_regex in HIGHLIGHT_REGEXES.items():
+        if name_regex.search(name):
+            return style
+
+    return DEFAULT
+
+
 def highlight_text(text: str) -> str:
     for style, name_regex in HIGHLIGHT_REGEXES.items():
         text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
@@ -306,7 +316,7 @@ def highlight_pattern(text: str, pattern: re.Pattern, style: str = 'cyan') -> Te
 
 def print_all_emails_link() -> None:
     console.print(
-        Align.center(f"[underline][link={ALL_EMAILS_URL}]Another site made by this code where you can read all of His Emails[/link][/underline]"),
+        Align.center(f"[underline][link={ALL_EMAILS_URL}]Another site made by this code where you can read ALL of His Emails[/link][/underline]"),
         style=f'chartreuse3 bold'
     )
 
@@ -365,6 +375,7 @@ def print_emailer_counts_table(counts: dict[str, int], column_title: str) -> Non
 
 def print_author_header(msg: str, color: str | None) -> None:
     txt = Text(msg, justify='center')
+    color = 'white' if color == DEFAULT else (color or 'white')
     panel = Panel(txt, width=80, style=f"black on {color or 'white'} bold")
     console.print('\n', Align.center(panel), '\n')
 
@@ -372,7 +383,7 @@ def print_author_header(msg: str, color: str | None) -> None:
 def print_numbered_list(_list: list[str] | dict) -> None:
     for i, name in enumerate(_list):
         name = name.title() if name else name
-        style = COUNTERPARTY_COLORS.get(name or UNKNOWN, DEFAULT)
+        style = get_style_for_name(name or UNKNOWN)
         console.print(Text(f"   {i}. ").append(name or UNKNOWN, style=style))
 
 

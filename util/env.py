@@ -17,7 +17,6 @@ parser.add_argument('--deep-debug', '-dd', action='store_true', help='set debug 
 parser.add_argument('--search', '-s', action='append', help='search for string in repaired OCR text')
 parser.add_argument('--search-other', '-so', action='append', help='search for string in non email/text files')
 args = parser.parse_args()
-print(args)
 
 deep_debug = args.deep_debug or (len(environ.get('DEEP_DEBUG') or '') > 0)
 is_build = args.build or (len(environ.get('BUILD_HTML') or '') > 0)

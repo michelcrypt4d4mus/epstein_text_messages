@@ -51,7 +51,8 @@ GLENN_DUBIN = 'Glenn Dubin'
 GWENDOLYN_BECK = 'Gwendolyn Beck'
 JEAN_HUGUEN = 'Jean Huguen'
 JEAN_LUC_BRUNEL = 'Jean Luc Brunel'
-JABOR_Y = 'Jabor Y'   # Qatari
+JABOR_Y = 'Jabor Y'  # Qatari
+JAY_LEFKOWITZ = 'Jay Lefkowitz'
 JEREMY_RUBIN = 'Jeremy Rubin'  # bitcoin dev
 JOHN_PAGE = 'John Page'
 JOHNNY_EL_HACHEM = 'Johnny el Hachem'
@@ -285,7 +286,7 @@ EMAILERS = [
     'Glenn Dubin',
     'Gordon Getty',
     'Jack Lang',
-    'Jay Lefkowitz',
+    JAY_LEFKOWITZ,
     'Jessica Cadwell',
     JOHN_PAGE,
     'Jokeland',

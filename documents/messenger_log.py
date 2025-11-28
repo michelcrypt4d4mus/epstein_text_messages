@@ -6,7 +6,7 @@ from rich.panel import Panel
 from rich.text import Text
 
 from util.constants import *
-from util.rich import COUNTERPARTY_COLORS, PHONE_NUMBER, TEXT_LINK, TIMESTAMP, archive_link, highlight_text
+from util.rich import COUNTERPARTY_COLORS, PHONE_NUMBER, TEXT_LINK, TIMESTAMP, archive_link, get_style_for_name, highlight_text
 from documents.document import *
 
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
@@ -43,7 +43,7 @@ class MessengerLog(CommunicationDocument):
         self.author = KNOWN_IMESSAGE_FILE_IDS.get(self.file_id, GUESSED_IMESSAGE_FILE_IDS.get(self.file_id))
         author_str = self.author or UNKNOWN
         self.author_str = author_str.split(' ')[-1] if author_str in [STEVE_BANNON] else author_str
-        self.author_style = COUNTERPARTY_COLORS.get(author_str, DEFAULT) + ' bold'
+        self.author_style = get_style_for_name(author_str) + ' bold'
         self.author_txt = Text(self.author_str, style=self.author_style)
         self.archive_link = archive_link(self.filename, self.author_style)
 
@@ -96,7 +96,7 @@ class MessengerLog(CommunicationDocument):
                 elif re.match('[ME]+', sender):
                     sender = MELANIE_WALKER
 
-                sender_txt = Text(sender_str, style=sender_style or f"{COUNTERPARTY_COLORS.get(sender, DEFAULT)} bold")
+                sender_txt = Text(sender_str, style=sender_style or f"{get_style_for_name(sender)} bold")
 
             # Fix multiline links
             if msg.startswith('http'):
