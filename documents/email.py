@@ -80,6 +80,7 @@ TRUNCATE_ALL_EMAILS_FROM = [
     'middle.east.update@hotmail.com',
     'Mitchell Bard',
     'us.gio@jpmorgan.com',
+    'Skip Rimer',
 ]
 
 # These are long forwarded articles we don't want to display over and over
@@ -164,6 +165,8 @@ TRUNCATE_TERMS = [
     'lecture in Heidelberg Oct 14 but they had to cancel',
     # Nikolic
     'people from LifeBall',
+    # Random
+    'Little Hodiaki',
 ]
 
 # No point in ever displaying these
@@ -178,6 +181,8 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + [
     'How To Academy',
     'Jokeland',
     'Saved by Internet Explorer 11',
+    'Stephen Rubin',  # Random CC
+    'Tim Kane',                              # Random CC
 ]
 
 SUPPRESS_OUTPUT_FOR_IDS = {

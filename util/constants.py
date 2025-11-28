@@ -84,6 +84,7 @@ OLIVIER_COLOM = 'Olivier Colom'
 PAULA = 'Paula'
 PAUL_BARRETT = 'Paul Barrett'
 PAUL_KRASSNER = 'Paul Krassner'
+PAUL_MORRIS = 'Paul Morris'
 PAUL_PROSPERI = 'Paul Prosperi'
 PEGGY_SIEGAL = 'Peggy Siegal'
 PETER_MANDELSON = 'Peter Mandelson'
@@ -93,6 +94,7 @@ REID_WEINGARTEN = 'Reid Weingarten'
 RICHARD_KAHN = 'Richard Kahn'
 ROBERT_LAWRENCE_KUHN = 'Robert Lawrence Kuhn'
 ROBERT_TRIVERS = 'Robert Trivers'
+SCOTT_J_LINK = 'Scott J. Link'
 SEAN_BANNON = 'Sean Bannon'
 STEPHEN_HANSON = 'Stephen Hanson'
 STEVEN_PFEIFFER = 'Steven Pfeiffer'
@@ -256,7 +258,7 @@ EMAILER_REGEXES = {
     PAUL_BARRETT: re.compile(r'Paul Barre(d|tt)', re.IGNORECASE),
     PAUL_KRASSNER: re.compile(r'Pa\s?ul Krassner', re.IGNORECASE),
     PAULA: re.compile(r'^Paula$', re.IGNORECASE),
-    'Paul Morris': re.compile(r'morris, paul|Paul Morris', re.IGNORECASE),
+    PAUL_MORRIS: re.compile(r'morris, paul|Paul Morris', re.IGNORECASE),
     PEGGY_SIEGAL:  re.compile(r'Peggy Siegal?', re.IGNORECASE),
     'Peter Attia': re.compile(r'Peter Attia?', re.IGNORECASE),
     PRINCE_ANDREW: re.compile(r'Prince Andrew|The Duke', re.IGNORECASE),
@@ -264,7 +266,7 @@ EMAILER_REGEXES = {
     RICHARD_KAHN: re.compile(r'rich(ard)? kahn?', re.IGNORECASE),
     ROBERT_LAWRENCE_KUHN: re.compile(r'Robert\s*(Lawrence)?\s*Kuhn', re.IGNORECASE),
     ROBERT_TRIVERS: re.compile(r'tri[vy]ersr@gmail|Robert\s*Trivers?', re.IGNORECASE),
-    'Scott J. Link': re.compile(r'scott j. link?', re.IGNORECASE),
+    SCOTT_J_LINK: re.compile(r'scott j. link?', re.IGNORECASE),
     SEAN_BANNON: re.compile(r'sean bannon?', re.IGNORECASE),
     'Shaher Abdulhak Besher (?)': re.compile(r'^Shaher$', re.IGNORECASE),
     SOON_YI: re.compile(r'Soon[- ]Yi Previn?', re.IGNORECASE),
