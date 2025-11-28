@@ -25,9 +25,16 @@ echo -e "Building '$INDEX_HTML_PATH'..."
 git commit -am"Update HTML"
 git push origin gh_pages
 git checkout master
-echo -e "\n\nepstein_text_messages deploy complete.\nDeploying '$EMAILS_DIR'...\n"
+echo -e "\n\nepstein_text_messages deploy complete.\n"
 
-# Deploy emails
+if [ -n "$ONLY_TEXTS" ]; then
+    echo "Skipping deployment of emails site..."
+    exit
+fi
+
+
+# Deploy all emails
+echo -e "Deploying '$EMAILS_DIR'..."
 echo -e "\nBuilding all emails..."
 ./epstein_chat_logs_reformatter.py --build --all --no-texts
 echo "Copying '$INDEX_HTML_PATH' to '$EMAILS_INDEX_HTML_PATH'..."
