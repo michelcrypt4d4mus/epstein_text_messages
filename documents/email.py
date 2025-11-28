@@ -77,6 +77,8 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
 }
 
 TRUNCATE_ALL_EMAILS_FROM = [
+    'Alan S Halperin',
+    'Lvjet',
     'middle.east.update@hotmail.com',
     'Mitchell Bard',
     'us.gio@jpmorgan.com',
@@ -167,6 +169,8 @@ TRUNCATE_TERMS = [
     'people from LifeBall',
     # Random
     'Little Hodiaki',
+    # Epstein
+    'David Ben Gurion was asked why he, after 2000',
 ]
 
 # No point in ever displaying these
@@ -179,9 +183,13 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + [
     'editorialstaff@flipboard.com',
     'Gordon Getty',                          # Random CC
     'How To Academy',
+    'Jeff Fuller',                           # Random Jean Luc Brunel CC
     'Jokeland',
+    'Larry Cohen',   # Random Bill Gates CC
+    'Mark Albert',                           # Random CC
+    'Pink',                                  # Random Jean Luc Brunel CC
     'Saved by Internet Explorer 11',
-    'Stephen Rubin',  # Random CC
+    'Stephen Rubin',                         # Random CC
     'Tim Kane',                              # Random CC
 ]
 

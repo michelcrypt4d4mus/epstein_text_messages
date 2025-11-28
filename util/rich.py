@@ -47,7 +47,7 @@ HEADER_COLOR = 'light_sea_green'
 INDIA_COLOR = 'green'
 ISRAELI_COLOR = 'dodger_blue2'
 JAVANKA_COLOR = 'medium_violet_red'
-JOURNALIST_COLOR = 'grey54'
+JOURNALIST_COLOR = 'yellow3'
 LAWYER_COLOR = 'purple3'
 LOBBYIST_COLOR = 'medium_purple'
 OBAMA_COLOR = 'yellow'
@@ -60,6 +60,7 @@ TRUMP_COLOR = 'red3 bold'
 
 BASE_NAMES_TO_NOT_COLOR: list[str] = [name.lower() for name in [
     'Allen',
+    'Andrew',
     'Black',
     'Daniel',
     'Darren',
@@ -120,15 +121,14 @@ COUNTERPARTY_COLORS = {
     JOSCHA_BACH: SCHOLAR_COLOR,
     LARRY_SUMMERS: SCHOLAR_COLOR,
     LINDA_STONE: 'pink3',
+    LILLY_SANCHEZ: LAWYER_COLOR,
     MARTIN_WEINBERG: LAWYER_COLOR,
     MELANIE_SPINELLA: 'magenta3',
     MELANIE_WALKER: 'light_pink3',
     NADIA_MARCINKO: 'violet',
-    MICHAEL_WOLFF: JOURNALIST_COLOR,
     MIROSLAV: 'slate_blue3',
     'Moshe Hoffman': SCHOLAR_COLOR,
     'Noam Chomsky': SCHOLAR_COLOR,
-    PAUL_KRASSNER: JOURNALIST_COLOR,
     PAUL_MORRIS: BANK_COLOR,
     REID_WEINGARTEN: LAWYER_COLOR,
     'Rob Crowe': LOBBYIST_COLOR,
@@ -139,7 +139,6 @@ COUNTERPARTY_COLORS = {
     SOON_YI: 'hot_pink',
     STACY_PLASKETT: 'medium_orchid3',
     STEVE_BANNON: 'color(58)',
-    'Susan Edelman': JOURNALIST_COLOR,
     TERJE: 'light_slate_blue',
     TOM_BARRACK: BRO_COLOR,
     UNKNOWN: 'cyan',
@@ -207,6 +206,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     DEMS_COLOR: r"Maxine Waters|(Nancy )?Pelosi|Clinton|Hillary",
     INDIA_COLOR: rf"Ambani|Indian?|Modi|mumbai|Zubair( Khan)?|{VINIT_SAHNI}",
     ISRAELI_COLOR: r"Bibi|(eh|Nili Priell )barak|Netanyahu|Israeli?",
+    JOURNALIST_COLOR: rf"Alex Yablon|{PAUL_KRASSNER}|{MICHAEL_WOLFF}|Wolff|Susan Edelman",
     POLICE_COLOR: f"Police Code Enforcement|Ann Marie Villafana|Kirk Blouin",
     RICH_GUY_COLOR: rf"(Steve\s+)?Wynn|(Leslie\s+)?Wexner|Amanda Ens|{NICHOLAS_RIBIS}|{ROBERT_LAWRENCE_KUHN}|{STEPHEN_HANSON}|{TERRY_KAFKA}",
     RUSSIA_COLOR: r"GRU|FSB|Lavrov|Moscow|(Vladimir )?Putin|Russian?|Vladimir Yudashkin",
@@ -397,9 +397,8 @@ def print_author_header(msg: str, color: str | None) -> None:
 
 def print_numbered_list(_list: list[str] | dict) -> None:
     for i, name in enumerate(_list):
-        name = name.title() if name else name
-        style = get_style_for_name(name or UNKNOWN)
-        console.print(Text(f"   {i}. ").append(name or UNKNOWN, style=style))
+        name = name or UNKNOWN
+        console.print(Text(f"   {i}. ").append(name, style=get_style_for_name(name)))
 
 
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
