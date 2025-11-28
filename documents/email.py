@@ -174,7 +174,7 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + [
     'Dan Fleuette',                          # CC from sean bannon
     'digest-noreply@quora.com',
     'editorialstaff@flipboard.com',
-    'Gordon Getty':                          # Random CC
+    'Gordon Getty',                          # Random CC
     'How To Academy',
     'Jokeland',
     'Saved by Internet Explorer 11',
