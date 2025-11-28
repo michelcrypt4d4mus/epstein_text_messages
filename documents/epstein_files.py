@@ -158,7 +158,7 @@ class EpsteinFiles:
         table = Table(title=table_title, show_header=True, header_style="bold")
         table.add_column("From", justify="left")
         table.add_column("Date", justify="center")
-        table.add_column("Subject", justify="left", style='honeydew2')
+        table.add_column("Subject", justify="left", style='honeydew2', min_width=35)
 
         for email in emails:
             table.add_row(

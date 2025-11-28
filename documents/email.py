@@ -168,9 +168,13 @@ TRUNCATE_TERMS = [
 
 # No point in ever displaying these
 USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + [
-    'asmallworld@travel.asmallworld.net',  # Promo travel stuff
+    'Alan Rogers',                           # Random CC
+    'asmallworld@travel.asmallworld.net',    # Promo travel stuff
+    'BS Stern',                              # A random fwd of email we have
+    'Dan Fleuette',                          # CC from sean bannon
     'digest-noreply@quora.com',
     'editorialstaff@flipboard.com',
+    'Gordon Getty':                          # Random CC
     'How To Academy',
     'Jokeland',
     'Saved by Internet Explorer 11',
