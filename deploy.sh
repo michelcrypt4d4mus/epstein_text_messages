@@ -20,16 +20,17 @@ fi
 
 git checkout gh_pages
 git merge --no-edit master
+echo -e "Building '$INDEX_HTML_PATH'..."
 ./epstein_chat_logs_reformatter.py --build
 git commit -am"Update HTML"
 git push origin gh_pages
 git checkout master
-echo -e "\n\nepstein_text_messages deploy complete.\nDeploying $EMAILS_DIR...\n"
+echo -e "\n\nepstein_text_messages deploy complete.\nDeploying '$EMAILS_DIR'...\n"
 
 # Deploy emails
-echo "Building all emails..."
+echo -e "\nBuilding all emails..."
 ./epstein_chat_logs_reformatter.py --build --all --no-texts
-echo "Copying $INDEX_HTML_PATH to $EMAILS_INDEX_HTML_PATH..."
+echo "Copying '$INDEX_HTML_PATH' to '$EMAILS_INDEX_HTML_PATH'..."
 mv "$INDEX_HTML_PATH" "$EMAILS_INDEX_HTML_PATH"
 pushd "$EMAILS_DIR"
 git commit -am"Update HTML"
