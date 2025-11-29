@@ -215,6 +215,7 @@ SUPPRESS_OUTPUT_FOR_IDS = {
     '028762': "it's a redacted version of 027056",
     '028781': "it's the same as 013460",
     '033207': "it's the same as 033580",
+    '025547': "it's the same document as 028506",
 }
 
 

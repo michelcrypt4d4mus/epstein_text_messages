@@ -68,6 +68,7 @@ BASE_NAMES_TO_NOT_COLOR: list[str] = [name.lower() for name in [
     'Daniel',
     'Darren',
     'David',
+    'Etienne',
     'jeffrey',
     'John',
     'Jonathan',
@@ -116,6 +117,7 @@ COUNTERPARTY_COLORS = {
     DAVID_HAIG: SCHOLAR_COLOR,
     DEFAULT: 'wheat4',
     'Elon Musk': 'cyan',
+    'Etienne Binant': ENTERTAINER_COLOR,
     EVA: 'orchid',
     'Eva Dubin': DUBIN_COLOR,
     GLENN_DUBIN: DUBIN_COLOR,
@@ -131,6 +133,7 @@ COUNTERPARTY_COLORS = {
     'Moshe Hoffman': SCHOLAR_COLOR,
     'Noam Chomsky': SCHOLAR_COLOR,
     PAUL_MORRIS: BANK_COLOR,
+    'Ramsey Elkholy': ENTERTAINER_COLOR,
     'Rob Crowe': LOBBYIST_COLOR,
     ROBERT_TRIVERS: SCHOLAR_COLOR,
     SCARAMUCCI: 'orange1',
@@ -141,6 +144,7 @@ COUNTERPARTY_COLORS = {
     TERJE: 'light_slate_blue',
     TOM_BARRACK: BRO_COLOR,
     UNKNOWN: 'cyan',
+    'Valeria Chomsky': SCHOLAR_COLOR,
     'Woody Allen': ENTERTAINER_COLOR,
 }
 
