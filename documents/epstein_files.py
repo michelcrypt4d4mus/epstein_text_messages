@@ -181,9 +181,9 @@ class EpsteinFiles:
 
     def print_emailer_counts_table(self) -> None:
         counts_table = Table(title=f"Email Counts", show_header=True, header_style="bold")
-        counts_table.add_column('Name', justify="left", style='white')
+        counts_table.add_column('Name', justify="left", style='grey82')
         counts_table.add_column('Jmail', justify="center")
-        counts_table.add_column("Total", justify="center")
+        counts_table.add_column("Count", justify="center")
         counts_table.add_column("Sent", justify="center")
         counts_table.add_column("Received", justify="center")
         sort_key = lambda item: item[0] if args.sort_alphabetical else [item[1], item[0]]
@@ -198,6 +198,9 @@ class EpsteinFiles:
             )
 
         console.print(vertically_pad(counts_table))
+        console.print(f"Identified authors of {self.num_identified_email_authors()} emails out of {len(self.emails)} potential email files.")
+        console.print('(note this site is based on the OCR email text provided by Congress which is not the greatest)\n', style='dim')
+        console.print('Epstein emails grouped by counterparty can be found in the order listed below.')
 
     def print_other_files_table(self) -> None:
         table = Table(header_style="bold", show_header=True, show_lines=True)
