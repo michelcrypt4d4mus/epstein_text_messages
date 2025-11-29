@@ -21,7 +21,7 @@ from util.constants import *
 from util.data import flatten, patternize
 from util.env import is_debug, logger
 from util.file_helper import DOCS_DIR, move_json_file
-from util.rich import console, get_style_for_name, highlight_text, print_author_header, print_panel
+from util.rich import VERTICAL_PADDING, console, get_style_for_name, highlight_text, print_author_header, print_panel
 
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (0, 0, 0, 2)
@@ -195,7 +195,7 @@ class EpsteinFiles:
         table.add_row('iMessage Logs', f"{len(self.imessage_logs):,}", str(self.identified_imessage_log_count()))
         table.add_row('Emails', f"{len(self.emails):,}", f"{len([e for e in self.emails if e.author]):,}")
         table.add_row('Other', f"{len(self.other_files):,}", 'n/a')
-        console.print('\n', Align.center(table), '\n\n')
+        console.print(Padding(Align.center(table), (0, 0, 0, 1)))
 
     def lines_matching(self, _pattern: re.Pattern | str, file_type: Literal['all', 'other'] = 'all') -> list[str | Text]:
         documents = self.all_documents() if file_type == 'all' else self.other_files

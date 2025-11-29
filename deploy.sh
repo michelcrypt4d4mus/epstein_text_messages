@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash -l
 set -e
 
 INDEX_HTML_PATH="docs/index.html"
