@@ -42,6 +42,7 @@ CHINA_COLOR = 'bright_red'
 COLLEGE_COLOR = 'deep_pink2'
 DEMS_COLOR = 'sky_blue1'
 DUBIN_COLOR = 'medium_orchid1'
+ENTERTAINER_COLOR = 'light_steel_blue3'
 HEADER_LINK = 'deep_sky_blue1'
 HEADER_COLOR = 'light_sea_green'
 INDIA_COLOR = 'green'
@@ -60,12 +61,14 @@ TRUMP_COLOR = 'red3 bold'
 
 BASE_NAMES_TO_NOT_COLOR: list[str] = [name.lower() for name in [
     'Allen',
+    'Andres',
     'Andrew',
     'Black',
     'Brad',
     'Daniel',
     'Darren',
     'David',
+    'Etienne',
     'jeffrey',
     'John',
     'Jonathan',
@@ -107,11 +110,14 @@ NAMES_TO_NOT_COLOR = flatten(NAMES_TO_NOT_COLOR)
 # Color different counterparties differently
 COUNTERPARTY_COLORS = {
     ALIREZA_ITTIHADIEH: ARAB_COLOR,  # Iranian / British?
+    'Andres Serrano': ENTERTAINER_COLOR,
     ANIL: INDIA_COLOR,
     BRAD_KARP: LAWYER_COLOR,
     CELINA_DUBIN: DUBIN_COLOR,
     DAVID_HAIG: SCHOLAR_COLOR,
     DEFAULT: 'wheat4',
+    'Elon Musk': 'cyan',
+    'Etienne Binant': ENTERTAINER_COLOR,
     EVA: 'orchid',
     'Eva Dubin': DUBIN_COLOR,
     GLENN_DUBIN: DUBIN_COLOR,
@@ -127,6 +133,7 @@ COUNTERPARTY_COLORS = {
     'Moshe Hoffman': SCHOLAR_COLOR,
     'Noam Chomsky': SCHOLAR_COLOR,
     PAUL_MORRIS: BANK_COLOR,
+    'Ramsey Elkholy': ENTERTAINER_COLOR,
     'Rob Crowe': LOBBYIST_COLOR,
     ROBERT_TRIVERS: SCHOLAR_COLOR,
     SCARAMUCCI: 'orange1',
@@ -137,7 +144,8 @@ COUNTERPARTY_COLORS = {
     TERJE: 'light_slate_blue',
     TOM_BARRACK: BRO_COLOR,
     UNKNOWN: 'cyan',
-    'Woody Allen': 'light_steel_blue3',
+    'Valeria Chomsky': SCHOLAR_COLOR,
+    'Woody Allen': ENTERTAINER_COLOR,
 }
 
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
@@ -194,12 +202,12 @@ COUNTERPARTY_COLORS.update(OTHER_STYLES)
 
 HIGHLIGHT_PATTERNS: dict[str, str] = {
     ARAB_COLOR: rf"Abdulmalik Al-Makhlafi|Abu\s+Dhabi|{ANAS_ALRASHEED}|Assad|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Imran Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Riya(dh|nd)|Saudi(\s+Arabian?)?|Shaher Abdulhak Besher|Sharia|Syria|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
-    BITCOIN_COLOR: r"bitcoin|block ?chain( capital)?|coins|cr[iy]pto(currency)?|e-currency|(jeffrey\s+)?wernick|(Howard\s+)?Lutnick|Libra|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)",
+    BITCOIN_COLOR: r"bitcoin|block ?chain( capital)?|coins|cr[iy]pto(currency)?|e-currency|(jeffrey\s+)?wernick|(Howard\s+)?Lutnick|Libra|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)",
     BRASIL_COLOR: r"Argentina|Bra[sz]il(ian)?|Bolsonar[aio]|Lula|(Nicolas )?Maduro|Venezuelan?s?",
     CHINA_COLOR: r"Beijing|CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|Peking|PRC|xi",
     COLLEGE_COLOR: rf"{LISA_NEW}|Harvard|MIT( Media Lab)?|Media Lab",
     DEMS_COLOR: r"Maxine Waters|(Nancy )?Pelosi|Clinton|Hillary",
-    INDIA_COLOR: rf"Ambani|Indian?|Modi|mumbai|Zubair( Khan)?|{VINIT_SAHNI}",
+    INDIA_COLOR: rf"Ambani|Hardeep( puree)?|Indian?|Modi|mumbai|Zubair( Khan)?|{VINIT_SAHNI}",
     ISRAELI_COLOR: r"Bibi|(eh|Nili Priell )barak|Netanyahu|Israeli?",
     JOURNALIST_COLOR: rf"Alex Yablon|{PAUL_KRASSNER}|{MICHAEL_WOLFF}|Wolff|Susan Edelman",
     LAWYER_COLOR: rf"(Alan (M\. )?)?Dershowi(l|tz)|(Ken(neth W.)?\s+)?Starr|{DAVID_SCHOEN}|{JAY_LEFKOWITZ}|Lefkowitz|Lilly (Ann )?Sanchez|{MARTIN_WEINBERG}|{REID_WEINGARTEN}|Weinberg|Weingarten|Roy Black|{SCOTT_J_LINK}",
