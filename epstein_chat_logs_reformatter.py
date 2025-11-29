@@ -11,16 +11,46 @@ from sys import exit
 
 from dotenv import load_dotenv
 load_dotenv()
+from rich.columns import Columns
 from rich.table import Table
 from rich.text import Text
 
 from documents.email_header import AUTHOR
 from documents.epstein_files import EpsteinFiles
 from documents.messenger_log import sender_counts
+from util import rich
 from util.env import additional_emailers, args, is_build, is_debug, skip_texts
 from util.file_helper import OUTPUT_GH_PAGES_HTML
 from util.rich import *
 from util.html import *
+
+
+def build_color_highlight_info_table() -> None:
+    color_keys = [
+        Text(color_name.removesuffix(COLOR_SUFFIX), style=getattr(rich, color_name))
+        for color_name in sorted([item for item in dir(rich) if item.endswith(COLOR_SUFFIX)])
+        if color_name not in ['ARCHIVE_LINK_COLOR', 'HEADER_COLOR']
+    ]
+
+    color_table = Table(show_header=False, title='Rough Guide to Highlighted Colors')
+    num_colors = len(color_keys)
+    row_number = 0
+
+    for i in range(0, NUM_COLOR_KEY_COLS):
+        color_table.add_column(f"color_col_{i}", justify='center', width=20)
+
+    while (row_number * NUM_COLOR_KEY_COLS) < num_colors:
+        idx = row_number * NUM_COLOR_KEY_COLS
+        color_table.add_row(
+            color_keys[idx],
+            color_keys[idx + 1] if (idx + 1) < num_colors else '',
+            color_keys[idx + 2] if (idx + 2) < num_colors else '',
+        )
+        row_number += 1
+
+    # columns = Columns(color_keys, equal=False, expand=True, title='Rough Guide to Highlighted Colors')
+    # console.print(columns)
+    return color_table
 
 
 if len(additional_emailers) > 0:
@@ -28,6 +58,8 @@ if len(additional_emailers) > 0:
     PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED.update({k: get_style_for_name(k) for k in additional_emailers})
 
 print_header()
+console.line()
+console.print(Align.center(build_color_highlight_info_table()))
 epstein_files = EpsteinFiles()
 epstein_files.print_summary()
 
@@ -58,6 +90,8 @@ if not skip_texts:
 # Emails section
 print_section_header('His Emails')
 print_all_emails_link()
+console.line()
+console.print(Align.center(build_color_highlight_info_table()))
 console.line()
 print_emailer_counts_table(epstein_files.email_author_counts, AUTHOR.title())
 console.line(2)
