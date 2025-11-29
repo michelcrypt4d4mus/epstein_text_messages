@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Set ONLY_TEXTS=true to skip build/deploy of full emails site.
 # Running 'bash -l' uses the login shell but then the poetry venv isn't set :(
 set -e
 
@@ -40,7 +41,7 @@ echo -e "Building '$INDEX_HTML_PATH'..."
 git commit -am"Update HTML"
 git push origin gh_pages
 git checkout master
-echo -e "\n\n$TEXT_MSGS_PROJECT_NAME deploy complete: $EMAILS_URL\n"
+echo -e "\n\n$TEXT_MSGS_PROJECT_NAME deployed to '$TEXT_MSGS_URL'\n"
 
 if [ -n "$ONLY_TEXTS" ]; then
     echo "Skipping deployment of emails site..."
@@ -58,4 +59,4 @@ pushd "$EMAILS_DIR"
 git commit -am"Update HTML"
 git push origin main
 popd
-echo -e "\n${EMAILS_PROJECT_NAME} deploy complete: $EMAILS_URL"
+echo -e "\n${EMAILS_PROJECT_NAME} deployed to '$EMAILS_URL'\n"
