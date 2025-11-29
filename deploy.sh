@@ -7,6 +7,14 @@ EMAILS_DIR="../epstein_emails_house_oversight"
 EMAILS_INDEX_HTML_PATH="${EMAILS_DIR}/${INDEX_HTML_PATH}"
 
 
+any_uncommitted_changes() {
+    if [[ $(git status --porcelain --untracked-files=no | wc -l) -eq 0 ]]; then
+        return 1
+    else
+        return 0
+    fi
+}
+
 if any_uncommitted_changes; then
     echo "Uncommitted changes; halting."
     exit
