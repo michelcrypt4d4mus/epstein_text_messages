@@ -19,12 +19,13 @@ from documents.email_header import AUTHOR
 from documents.messenger_log import MSG_REGEX, MessengerLog
 from util.constants import *
 from util.data import flatten, patternize
-from util.env import is_debug, logger
+from util.env import args, is_debug, logger
 from util.file_helper import DOCS_DIR, move_json_file
-from util.rich import VERTICAL_PADDING, console, get_style_for_name, highlight_text, print_author_header, print_panel
+from util.rich import console, get_style_for_name, highlight_text, make_link, print_author_header, print_panel
 
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (0, 0, 0, 2)
+NOT_INCLUDED_EMAILERS = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
 
 
 @dataclass
@@ -89,12 +90,14 @@ class EpsteinFiles:
     def all_documents(self) -> list[Document]:
         return self.imessage_logs + self.emails + self.other_files
 
-    def all_emailers(self) -> list[str]:
+    def all_emailers(self, include_useless: bool = False) -> list[str]:
         """Returns all emailers except Epstein and USELESS_EMAILERS, sorted from least frequent to most."""
         emailers = [a for a in self.email_author_counts.keys()] + [r for r in self.email_recipient_counts.keys()]
-        not_included_emailers = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
-        emailers = list(set([e for e in emailers if e.lower() not in not_included_emailers]))
-        return sorted(emailers, key=lambda e: self.email_author_counts[e] + self.email_recipient_counts[e])
+        emailers = emailers if include_useless else [e for e in emailers if e.lower() not in NOT_INCLUDED_EMAILERS]
+        return sorted(list(set(emailers)), key=lambda e: self.email_author_counts[e] + self.email_recipient_counts[e])
+
+    def all_emailer_counts(self) -> dict[str, int]:
+        return {e: self.email_author_counts[e] + self.email_recipient_counts[e] for e in self.all_emailers(True)}
 
     def earliest_email_at(self, author: str | None) -> datetime:
         return self.emails_for(author)[0].timestamp
@@ -175,6 +178,30 @@ class EpsteinFiles:
         console.line(2)
         console.print(build_signature_table(self.email_sent_from_devices, (DEVICE_SIGNATURE, AUTHOR), ', '))
         console.line(2)
+
+    def print_emailer_counts_table(self) -> None:
+        counts_table = Table(title=f"Email Counts", show_header=True, header_style="bold")
+        counts_table.add_column('Name', justify="left", style='white')
+        counts_table.add_column('Jmail', justify="center")
+        counts_table.add_column("Sent/Received Count", justify="center")
+        counts_table.add_column("Sent", justify="center")
+        counts_table.add_column("Received", justify="center")
+        sort_key = lambda item: item[0] if args.sort_alphabetical else [item[1], item[0]]
+
+        for k, count in sorted(self.all_emailer_counts().items(), key=sort_key, reverse=True):
+            name_txt = Text.from_markup(f"[underline][link={epsteinify_name_url(k)}]{highlight_text(k)}[/link][/underline]")
+            jmail_link = make_link(jmail_search_url(k), 'Search Jmail')
+
+            #return {e: self.email_author_counts[e] + self.email_recipient_counts[e] for e in self.all_emailers(True)}
+            counts_table.add_row(
+                name_txt,
+                jmail_link,
+                str(count),
+                str(self.email_author_counts[k]),
+                str(self.email_recipient_counts[k])
+            )
+
+        console.print(counts_table)
 
     def print_other_files_table(self) -> None:
         table = Table(header_style="bold", show_header=True, show_lines=True)

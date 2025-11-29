@@ -89,9 +89,7 @@ if not skip_texts:
 # Emails section
 print_section_header('Selections from His Emails')
 print_other_site_link()
-print_emailer_counts_table(epstein_files.email_author_counts, AUTHOR.title())
-console.line(2)
-print_emailer_counts_table(epstein_files.email_recipient_counts, "Recipient")
+epstein_files.print_emailer_counts_table()
 console.print(f"\n\nIdentified authors of {epstein_files.num_identified_email_authors()} emails out of {len(epstein_files.emails)} potential email files.")
 console.print('(note this site is based on the OCR email text provided by Congress which is not the greatest)\n', style='dim')
 console.print('Epstein correspondence grouped by counterparty can be found in the order listed below.')

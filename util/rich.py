@@ -214,7 +214,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     POLICE_COLOR: f"Police Code Enforcement|Ann Marie Villafana|Kirk Blouin",
     RICH_GUY_COLOR: rf"(Steve\s+)?Wynn|(Leslie\s+)?Wexner|Amanda Ens|{NICHOLAS_RIBIS}|{ROBERT_LAWRENCE_KUHN}|{STEPHEN_HANSON}|{TERRY_KAFKA}",
     RUSSIA_COLOR: r"GRU|FSB|Lavrov|Moscow|(Vladimir )?Putin|Russian?|Vladimir Yudashkin",
-    SCHOLAR_COLOR: rf"((Noam|Valeria ))?Chomsky|{DAVID_HAIG}|{JOSCHA_BACH}|Joscha|Bach|Moshe Hoffman|{ROBERT_TRIVERS}|Trivers",
+    SCHOLAR_COLOR: rf"((Noam|Valeria) )?Chomsky|{DAVID_HAIG}|{JOSCHA_BACH}|Joscha|Bach|Moshe Hoffman|{ROBERT_TRIVERS}|Trivers",
     TRUMP_COLOR: r"(Donald\s+(J\.\s+)?)?Trump|Donald|DJT|Roger\s+Stone",
     COUNTERPARTY_COLORS[GHISLAINE_MAXWELL]: r"GMAX|gmax1@ellmax.com",
     COUNTERPARTY_COLORS[TERJE]: r"Terje (R[øo]e?d[- ])?Lars[eo]n",
@@ -223,7 +223,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     'orchid1': r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts",
     'pale_green1': r"Masa(yoshi)?|Najeev|Softbank",
     'turquoise4': r"BG|Bill\s+((and|or)\s+Melinda\s+)?Gates|Melinda(\s+Gates)?",
-    BANK_COLOR: r"Black(rock|stone)|DB|Deutsche Bank|Goldman( Sachs)|Morgan Stanley|j\.?p\.? ?morgan( Chase)?|Chase Bank",
+    BANK_COLOR: r"Black(rock|stone)|DB|Deutsche Bank|Goldman( ?Sachs)|Morgan Stanley|j\.?p\.? ?morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com",
     HEADER_STYLE: r"^((Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):)"
 }
 
@@ -361,7 +361,7 @@ def print_header():
     console.print(Align.center(f"[link={COURIER_NEWSROOM_ARCHIVE}]Courier Newsroom's Searchable Archive[/link]"))
     console.print(Align.center("[link=https://epsteinify.com/names]epsteinify.com[/link] (raw document images)"))
     console.print(Align.center("[link=https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_]Google Drive Raw Documents[/link]"))
-    console.line(2)
+    console.line()
     console.print(Align.center("Conversations are sorted chronologically based on timestamp of first message."), style='bold dark_green')
     console.print(Align.center(f"If you think there's an attribution error or can deanonymize an {UNKNOWN} contact @cryptadamist."), style='dim')
     console.print(Align.center("(thanks to [dodger_blue3][link=https://x.com/ImDrinknWyn]@ImDrinknWyn[/link][/dodger_blue3] and others for attribution help)"))
@@ -375,21 +375,6 @@ def print_author_header(msg: str, color: str | None) -> None:
     console.print('\n', Align.center(panel), '\n')
 
 
-def print_emailer_counts_table(counts: dict[str, int], column_title: str) -> None:
-    counts_table = Table(title=f"Email Counts by {column_title}", show_header=True, header_style="bold")
-    counts_table.add_column(column_title, justify="left", style='white')
-    counts_table.add_column('Jmail', justify="center")
-    counts_table.add_column("Email Count", justify="center")
-
-    for k, v in sorted(counts.items(), key=lambda item: item[0] if args.sort_alphabetical else [item[1], item[0]], reverse=True):
-        k = k if ' ' in k else k
-        name_txt = Text.from_markup(f"[underline][link={epsteinify_name_url(k)}]{highlight_text(k)}[/link][/underline]")
-        jmail_link = make_link(jmail_search_url(k), 'Search Jmail')
-        counts_table.add_row(name_txt, jmail_link, str(v))
-
-    console.print(counts_table)
-
-
 def print_numbered_list(_list: list[str] | dict) -> None:
     for i, name in enumerate(_list):
         name = name or UNKNOWN
@@ -397,7 +382,7 @@ def print_numbered_list(_list: list[str] | dict) -> None:
 
 
 def print_other_site_link() -> None:
-    msg = '(Another site made by this code where you can read'
+    msg = 'Another site made by this code where you can read'
     url = ''
 
     if args.all:
@@ -407,8 +392,8 @@ def print_other_site_link() -> None:
         msg += ' [italic]all[/italic] of His Emails'
         url = ALL_EMAILS_URL
 
-    markup_msg = make_link_markup(url, msg + ')', 'chartreuse3')
-    console.print(Align.center(markup_msg), style='bold')
+    markup_msg = make_link_markup(url, msg, 'chartreuse3')
+    console.print(Align.center(Text('(') + Text.from_markup(markup_msg).append(')')), style='bold')
 
 
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
