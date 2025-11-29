@@ -4,7 +4,7 @@ import re
 from os import devnull
 
 from rich.align import Align
-from rich.console import Console
+from rich.console import Console, RenderResult
 from rich.markup import escape
 from rich.panel import Panel
 from rich.padding import Padding
@@ -262,12 +262,12 @@ COUNTERPARTY_COLORS.update({
 })
 
 
-def make_link_markup(url: str, link_text: str, style: str = ARCHIVE_LINK_COLOR) -> str:
-    return f"[underline][bold][{style}][link={url}]{link_text}[/link][/{style}][/bold][/underline]"
+def make_link_markup(url: str, link_text: str, style: str | None = ARCHIVE_LINK_COLOR) -> str:
+    return wrap_in_markup_style(f"[underline][link={url}]{link_text}[/link][/underline]", style)
 
 
 def make_link(url: str, link_text: str, style: str = ARCHIVE_LINK_COLOR) -> Text:
-    return Text.from_markup(make_link_markup(url, link_text, style))
+    return Text.from_markup(make_link_markup(url, link_text, f"{style} bold"))  # TODO: shouldn't add 'bold'
 
 
 def archive_link(filename: str, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
@@ -278,7 +278,7 @@ def coffeezilla_link(search_term: str, link_txt: str, style: str = ARCHIVE_LINK_
     return make_link(search_archive_url(search_term), link_txt or search_term, style)
 
 
-def get_style_for_name(name: str) -> str:
+def get_style_for_name(name: str, default: str = DEFAULT) -> str:
     if name in COUNTERPARTY_COLORS:
         return COUNTERPARTY_COLORS[name]
 
@@ -286,7 +286,7 @@ def get_style_for_name(name: str) -> str:
         if name_regex.search(name):
             return style
 
-    return DEFAULT
+    return default
 
 
 def highlight_text(text: str) -> str:
@@ -410,12 +410,26 @@ def print_panel(msg: str, style: str = 'black on white', padding: tuple = (0, 0,
     console.line()
 
 
-def print_top_lines(file_text, n = 10, max_chars = MAX_PREVIEW_CHARS, in_panel = False):
+def print_top_lines(file_text, n = 10, max_chars = MAX_PREVIEW_CHARS, in_panel = False) -> None:
     """Print first n lines of a file."""
     file_text = LEADING_WHITESPACE_REGEX.sub('', file_text)
     top_text = escape('\n'.join(file_text.split("\n")[0:n])[0:max_chars])
     output = Panel(top_text, expand=False) if in_panel else top_text + '\n'
     console.print(output, style='dim')
+
+
+def vertically_pad(obj: RenderResult) -> Padding:
+    return Padding(obj, VERTICAL_PADDING)
+
+
+def wrap_in_markup_style(msg: str, style: str | None = None) -> str:
+    if style is None or len(style.strip()) == 0:
+        return msg
+
+    for style_word in style.split():
+        msg = f"[{style_word}]{msg}[/{style_word}]"
+
+    return msg
 
 
 if deep_debug:

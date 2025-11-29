@@ -50,7 +50,7 @@ def build_color_highlight_info_table() -> Align:
         row_number += 1
 
     # columns = Columns(color_keys, equal=False, expand=True, title='Rough Guide to Highlighted Colors')
-    return Align.center(Padding(color_table, VERTICAL_PADDING))
+    return Align.center(vertically_pad(color_table))
 
 
 print_header()
@@ -90,7 +90,7 @@ if not skip_texts:
 print_section_header('Selections from His Emails')
 print_other_site_link()
 epstein_files.print_emailer_counts_table()
-console.print(f"\n\nIdentified authors of {epstein_files.num_identified_email_authors()} emails out of {len(epstein_files.emails)} potential email files.")
+console.print(f"Identified authors of {epstein_files.num_identified_email_authors()} emails out of {len(epstein_files.emails)} potential email files.")
 console.print('(note this site is based on the OCR email text provided by Congress which is not the greatest)\n', style='dim')
 console.print('Epstein correspondence grouped by counterparty can be found in the order listed below.')
 
