@@ -53,16 +53,12 @@ def build_color_highlight_info_table() -> Align:
     return Align.center(Padding(color_table, VERTICAL_PADDING))
 
 
-if args.colors:
-    console.print(build_color_highlight_info_table())
-    exit()
-
-if len(additional_emailers) > 0:
-    logger.info(f"Added additional emails: {[e for e in additional_emailers]}")
-    PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED.update({k: get_style_for_name(k) for k in additional_emailers})
-
 print_header()
 console.print(build_color_highlight_info_table())
+
+if args.colors_only:
+    exit()
+
 epstein_files = EpsteinFiles()
 epstein_files.print_summary()
 
@@ -93,7 +89,6 @@ if not skip_texts:
 # Emails section
 print_section_header('Selections from His Emails')
 print_other_site_link()
-console.print(build_color_highlight_info_table())
 print_emailer_counts_table(epstein_files.email_author_counts, AUTHOR.title())
 console.line(2)
 print_emailer_counts_table(epstein_files.email_recipient_counts, "Recipient")
@@ -103,6 +98,10 @@ console.print('Epstein correspondence grouped by counterparty can be found in th
 
 if args.all:
     console.print('Groups are sorted chronologically based on time of the first email.\n', style='dim')
+
+if len(additional_emailers) > 0:
+    logger.info(f"Added additional emails: {[e for e in additional_emailers]}")
+    PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED.update({k: get_style_for_name(k) for k in additional_emailers})
 
 emailers_to_print = epstein_files.all_emailers() if args.all else PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED
 emailers_to_print = sorted(emailers_to_print, key=lambda e: epstein_files.earliest_email_at(e)) if args.all else emailers_to_print
