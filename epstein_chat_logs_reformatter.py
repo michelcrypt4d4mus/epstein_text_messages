@@ -50,7 +50,7 @@ def build_color_highlight_info_table() -> Align:
         row_number += 1
 
     # columns = Columns(color_keys, equal=False, expand=True, title='Rough Guide to Highlighted Colors')
-    return Align.center(Padding(color_table, (1, 0, 1, 0)))
+    return Align.center(Padding(color_table, VERTICAL_PADDING))
 
 
 if args.colors:
@@ -92,7 +92,7 @@ if not skip_texts:
 
 # Emails section
 print_section_header('His Emails')
-print_all_emails_link()
+print_text_msgs_link() if args.all else print_all_emails_link()
 console.print(build_color_highlight_info_table())
 print_emailer_counts_table(epstein_files.email_author_counts, AUTHOR.title())
 console.line(2)

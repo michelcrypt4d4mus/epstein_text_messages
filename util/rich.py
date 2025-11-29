@@ -19,8 +19,10 @@ from .strings import regex_escape_periods
 from .text_highlighter import EpsteinTextHighlighter
 
 ALL_EMAILS_URL = 'https://michelcrypt4d4mus.github.io/epstein_emails_house_oversight/'
+TEXT_MSGS_URL = 'https://michelcrypt4d4mus.github.io/epstein_text_messages/'
 LEADING_WHITESPACE_REGEX = re.compile(r'\A\s*', re.MULTILINE)
 NON_ALPHA_CHARS_REGEX = re.compile(r'[^a-zA-Z0-9 ]')
+VERTICAL_PADDING = (1, 0, 1, 0)
 MAX_PREVIEW_CHARS = 300
 OUTPUT_WIDTH = 120
 NUM_COLOR_KEY_COLS = 3
@@ -331,7 +333,14 @@ def highlight_pattern(text: str, pattern: re.Pattern, style: str = 'cyan') -> Te
 
 def print_all_emails_link() -> None:
     console.print(
-        Align.center(f"[underline][link={ALL_EMAILS_URL}]Another site made by this code where you can read ALL of His Emails[/link][/underline]"),
+        Align.center(f"[underline][link={ALL_EMAILS_URL}]Another site made by this code where you can read [italic]all[/italic] of His Emails[/link][/underline]"),
+        style=f'chartreuse3 bold'
+    )
+
+
+def print_text_msgs_link() -> None:
+    console.print(
+        Align.center(f"[underline][link={TEXT_MSGS_URL}]Another site made by this code where you can read Epstein's text messages[/link][/underline]"),
         style=f'chartreuse3 bold'
     )
 
@@ -347,9 +356,7 @@ def print_header():
     console.print(Align.center("[underline][link=https://universeodon.com/@cryptadamist]Mastodon[/link][/underline]"), style=HEADER_LINK)
     console.print(Align.center("[underline][link=https://x.com/Cryptadamist/status/1990866804630036988]Twitter[/link][/underline]"), style=HEADER_LINK)
     console.line()
-
-    if not args.all:
-        print_all_emails_link()
+    print_text_msgs_link() if args.all else print_all_emails_link()
 
     # Acronym table
     table = Table(title="Abbreviations Used Frequently In These Chats", show_header=True, header_style="bold")
