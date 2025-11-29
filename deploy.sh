@@ -36,7 +36,7 @@ fi
 git checkout gh_pages
 git merge --no-edit master
 echo -e "Building '$INDEX_HTML_PATH'..."
-./epstein_chat_logs_reformatter.py --build
+./epstein_chat_logs_reformatter.py --build --suppress-output
 git commit -am"Update HTML"
 git push origin gh_pages
 git checkout master
@@ -51,7 +51,7 @@ fi
 # Deploy all emails
 echo -e "Deploying '$EMAILS_PROJECT_NAME'..."
 echo -e "\nBuilding all emails..."
-./epstein_chat_logs_reformatter.py --all --build --no-texts
+./epstein_chat_logs_reformatter.py --all --build --no-texts --suppress-output
 echo "Copying '$INDEX_HTML_PATH' to '$EMAILS_INDEX_HTML_PATH'..."
 mv "$INDEX_HTML_PATH" "$EMAILS_INDEX_HTML_PATH"
 pushd "$EMAILS_DIR"

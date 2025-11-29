@@ -243,8 +243,8 @@ CONSOLE_ARGS = {
     'width': OUTPUT_WIDTH,
 }
 
-if is_build:
-    print(f"Suppressing console output because is_build={is_build}...")
+if args.suppress_output:
+    print(f"Suppressing terminal output because args.suppress_output={args.suppress_output}...")
     CONSOLE_ARGS.update({'file': open(devnull, "wt")})
 
 console = Console(**CONSOLE_ARGS)
