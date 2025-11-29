@@ -35,7 +35,7 @@ if [ -f "$INDEX_HTML_PATH" ]; then
 fi
 
 git checkout gh_pages
-git merge --no-edit master
+git merge --no-edit master --quiet
 echo -e "Building '$INDEX_HTML_PATH'..."
 ./epstein_chat_logs_reformatter.py --build --suppress-output
 git commit -am"Update HTML"
