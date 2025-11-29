@@ -12,6 +12,7 @@ from sys import exit
 from dotenv import load_dotenv
 load_dotenv()
 from rich.columns import Columns
+from rich.padding import Padding
 from rich.table import Table
 from rich.text import Text
 
@@ -25,7 +26,7 @@ from util.rich import *
 from util.html import *
 
 
-def build_color_highlight_info_table() -> None:
+def build_color_highlight_info_table() -> Align:
     color_keys = [
         Text(color_name.removesuffix(COLOR_SUFFIX), style=getattr(rich, color_name))
         for color_name in sorted([item for item in dir(rich) if item.endswith(COLOR_SUFFIX)])
@@ -49,7 +50,7 @@ def build_color_highlight_info_table() -> None:
         row_number += 1
 
     # columns = Columns(color_keys, equal=False, expand=True, title='Rough Guide to Highlighted Colors')
-    return color_table
+    return Align.center(Padding(color_table, (1, 0, 1, 0)))
 
 
 if args.colors:
@@ -61,8 +62,7 @@ if len(additional_emailers) > 0:
     PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED.update({k: get_style_for_name(k) for k in additional_emailers})
 
 print_header()
-console.line()
-console.print(Align.center(build_color_highlight_info_table()))
+console.print(build_color_highlight_info_table())
 epstein_files = EpsteinFiles()
 epstein_files.print_summary()
 
@@ -93,9 +93,7 @@ if not skip_texts:
 # Emails section
 print_section_header('His Emails')
 print_all_emails_link()
-console.line()
-console.print(Align.center(build_color_highlight_info_table()))
-console.line()
+console.print(build_color_highlight_info_table())
 print_emailer_counts_table(epstein_files.email_author_counts, AUTHOR.title())
 console.line(2)
 print_emailer_counts_table(epstein_files.email_recipient_counts, "Recipient")
