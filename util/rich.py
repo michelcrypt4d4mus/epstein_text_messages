@@ -331,35 +331,6 @@ def highlight_pattern(text: str, pattern: re.Pattern, style: str = 'cyan') -> Te
     return Text.from_markup(pattern.sub(rf'[{style}]\1[/{style}]', text))
 
 
-def print_all_emails_link() -> None:
-    console.print(
-        Align.center(f"[underline][link={ALL_EMAILS_URL}]Another site made by this code where you can read [italic]all[/italic] of His Emails[/link][/underline]"),
-        style=f'chartreuse3 bold'
-    )
-
-
-def print_text_msgs_link() -> None:
-    console.print(
-        Align.center(f"[underline][link={TEXT_MSGS_URL}]Another site made by this code where you can read Epstein's text messages[/link][/underline]"),
-        style=f'chartreuse3 bold'
-    )
-
-
-def print_other_site_link() -> None:
-    msg = 'Another site made by this code where you can read'
-    url = ''
-
-    if args.all:
-        msg += " Epstein's text messages"
-        url = TEXT_MSGS_URL
-    else:
-        msg += ' [italic]all[/italic] of His Emails'
-        url = ALL_EMAILS_URL
-
-    markup_msg = make_link_markup(url, msg, 'chartreuse3 bold')
-    console.print(Align.center(markup_msg))
-
-
 def print_header():
     console.print(f"This site is not optimized for mobile but if you get past the header it should work ok.", style='dim')
     console.line()
@@ -397,6 +368,13 @@ def print_header():
     console.print(Align.center("[link=https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/util/constants.py]Explanation of attributions[/link]"), style='magenta')
 
 
+def print_author_header(msg: str, color: str | None) -> None:
+    txt = Text(msg, justify='center')
+    color = 'white' if color == DEFAULT else (color or 'white')
+    panel = Panel(txt, width=80, style=f"black on {color or 'white'} bold")
+    console.print('\n', Align.center(panel), '\n')
+
+
 def print_emailer_counts_table(counts: dict[str, int], column_title: str) -> None:
     counts_table = Table(title=f"Email Counts by {column_title}", show_header=True, header_style="bold")
     counts_table.add_column(column_title, justify="left", style='white')
@@ -412,17 +390,25 @@ def print_emailer_counts_table(counts: dict[str, int], column_title: str) -> Non
     console.print(counts_table)
 
 
-def print_author_header(msg: str, color: str | None) -> None:
-    txt = Text(msg, justify='center')
-    color = 'white' if color == DEFAULT else (color or 'white')
-    panel = Panel(txt, width=80, style=f"black on {color or 'white'} bold")
-    console.print('\n', Align.center(panel), '\n')
-
-
 def print_numbered_list(_list: list[str] | dict) -> None:
     for i, name in enumerate(_list):
         name = name or UNKNOWN
         console.print(Text(f"   {i}. ").append(name, style=get_style_for_name(name)))
+
+
+def print_other_site_link() -> None:
+    msg = '(Another site made by this code where you can read'
+    url = ''
+
+    if args.all:
+        msg += " Epstein's text messages"
+        url = TEXT_MSGS_URL
+    else:
+        msg += ' [italic]all[/italic] of His Emails'
+        url = ALL_EMAILS_URL
+
+    markup_msg = make_link_markup(url, msg + ')', 'chartreuse3')
+    console.print(Align.center(markup_msg), style='bold')
 
 
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
