@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Set ONLY_TEXTS=true to skip build/deploy of full emails site.
 # Running 'bash -l' uses the login shell but then the poetry venv isn't set :(
 set -e
 
@@ -36,11 +37,11 @@ fi
 git checkout gh_pages
 git merge --no-edit master
 echo -e "Building '$INDEX_HTML_PATH'..."
-./epstein_chat_logs_reformatter.py --build
+./epstein_chat_logs_reformatter.py --build --suppress-output
 git commit -am"Update HTML"
 git push origin gh_pages
 git checkout master
-echo -e "\n\n$TEXT_MSGS_PROJECT_NAME deploy complete: $EMAILS_URL\n"
+echo -e "\n\n$TEXT_MSGS_PROJECT_NAME deployed to '$TEXT_MSGS_URL'\n"
 
 if [ -n "$ONLY_TEXTS" ]; then
     echo "Skipping deployment of emails site..."
@@ -51,11 +52,11 @@ fi
 # Deploy all emails
 echo -e "Deploying '$EMAILS_PROJECT_NAME'..."
 echo -e "\nBuilding all emails..."
-./epstein_chat_logs_reformatter.py --all --build --no-texts
+./epstein_chat_logs_reformatter.py --all --build --no-texts --suppress-output
 echo "Copying '$INDEX_HTML_PATH' to '$EMAILS_INDEX_HTML_PATH'..."
 mv "$INDEX_HTML_PATH" "$EMAILS_INDEX_HTML_PATH"
 pushd "$EMAILS_DIR"
 git commit -am"Update HTML"
 git push origin main
 popd
-echo -e "\n${EMAILS_PROJECT_NAME} deploy complete: $EMAILS_URL"
+echo -e "\n${EMAILS_PROJECT_NAME} deployed to '$EMAILS_URL'\n"
