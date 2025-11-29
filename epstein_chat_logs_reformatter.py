@@ -29,7 +29,7 @@ def build_color_highlight_info_table() -> None:
     color_keys = [
         Text(color_name.removesuffix(COLOR_SUFFIX), style=getattr(rich, color_name))
         for color_name in sorted([item for item in dir(rich) if item.endswith(COLOR_SUFFIX)])
-        if color_name not in ['ARCHIVE_LINK_COLOR']
+        if color_name not in ['ARCHIVE_LINK_COLOR', 'DUBIN_COLOR']
     ]
 
     color_table = Table(show_header=False, title='Rough Guide to Highlighted Colors')
@@ -49,9 +49,12 @@ def build_color_highlight_info_table() -> None:
         row_number += 1
 
     # columns = Columns(color_keys, equal=False, expand=True, title='Rough Guide to Highlighted Colors')
-    # console.print(columns)
     return color_table
 
+
+if args.colors:
+    console.print(build_color_highlight_info_table())
+    exit()
 
 if len(additional_emailers) > 0:
     logger.info(f"Added additional emails: {[e for e in additional_emailers]}")

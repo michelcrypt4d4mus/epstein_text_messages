@@ -37,19 +37,19 @@ highlighter_style_name = lambda style_name: f"{HEADER_FIELD}.{style_name}"
 
 # Constant variables that end in "_COLOR" will be scanned to create the color highlight guide table.
 ARCHIVE_LINK_COLOR = 'blue3'
-BANK_COLOR = 'bright_green' # 'green
+BANK_COLOR = 'green'
 BITCOIN_COLOR = 'orange1 bold'
-BRASIL_COLOR = 'chartreuse2'
+SOUTH_AMERICA_COLOR = 'chartreuse2'
 BRO_COLOR = 'tan'
 CHINA_COLOR = 'bright_red'
-COLLEGE_COLOR = 'deep_pink2'
 DEMOCRATS_COLOR = 'sky_blue1'
 DUBIN_COLOR = 'medium_orchid1'
 ELON_COLOR = 'cyan'
 ENTERTAINERS_COLOR = 'light_steel_blue3'
+HARVARD_COLOR = 'deep_pink2'
 HEADER_LINK = 'deep_sky_blue1'
-INDIA_COLOR = 'green'
-ISRAELI_COLOR = 'dodger_blue2'
+INDIA_COLOR = 'bright_green'
+ISRAEL_COLOR = 'dodger_blue2'
 JAVANKA_COLOR = 'medium_violet_red'
 JOURNALIST_COLOR = 'yellow3'
 LAWYER_COLOR = 'medium_purple2'
@@ -126,7 +126,7 @@ COUNTERPARTY_COLORS = {
     GLENN_DUBIN: DUBIN_COLOR,
     JEFFREY_EPSTEIN: 'blue1',
     JONATHAN_FARKAS: BRO_COLOR,
-    LARRY_SUMMERS: COLLEGE_COLOR,
+    LARRY_SUMMERS: HARVARD_COLOR,
     LINDA_STONE: 'pink3',
     MELANIE_SPINELLA: 'magenta3',
     MELANIE_WALKER: 'light_pink3',
@@ -153,8 +153,8 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     JABOR_Y: "spring_green1",
     DANIEL_SIAD: 'dark_khaki',
     JEAN_LUC_BRUNEL: 'wheat4',
-    EHUD_BARAK: ISRAELI_COLOR,
-    MARTIN_NOWAK: COLLEGE_COLOR,  # TODO: Really harvard color...
+    EHUD_BARAK: ISRAEL_COLOR,
+    MARTIN_NOWAK: HARVARD_COLOR,  # TODO: Really harvard color...
     'Masha Drokova': RUSSIA_COLOR,
     OLIVIER_COLOM: LOBBYIST_COLOR,
     'Peter Thiel': TECH_BRO_COLOR,
@@ -201,12 +201,12 @@ COUNTERPARTY_COLORS.update(OTHER_STYLES)
 HIGHLIGHT_PATTERNS: dict[str, str] = {
     MIDDLE_EAST_COLOR: rf"Abdulmalik Al-Makhlafi|Abu\s+Dhabi|{ANAS_ALRASHEED}|Assad|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Imran Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Riya(dh|nd)|Saudi(\s+Arabian?)?|Shaher Abdulhak Besher|Sharia|Syria|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
     BITCOIN_COLOR: r"bitcoin|block ?chain( capital)?|coins|cr[iy]pto(currency)?|e-currency|(jeffrey\s+)?wernick|(Howard\s+)?Lutnick|Libra|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)",
-    BRASIL_COLOR: r"Argentina|Bra[sz]il(ian)?|Bolsonar[aio]|Lula|(Nicolas )?Maduro|Venezuelan?s?",
+    SOUTH_AMERICA_COLOR: r"Argentina|Bra[sz]il(ian)?|Bolsonar[aio]|Lula|(Nicolas )?Maduro|Venezuelan?s?",
     CHINA_COLOR: r"Beijing|CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|Peking|PRC|xi",
-    COLLEGE_COLOR: rf"{LISA_NEW}|Harvard|MIT( Media Lab)?|Media Lab",
-    DEMOCRATS_COLOR: r"Maxine Waters|(Nancy )?Pelosi|Clinton|Hillary",
+    HARVARD_COLOR: rf"{LISA_NEW}|Harvard|MIT( Media Lab)?|Media Lab",
+    DEMOCRATS_COLOR: r"Biden|Maxine Waters|Obama|(Nancy )?Pelosi|Clinton|Hillary",
     INDIA_COLOR: rf"Ambani|Hardeep( puree)?|Indian?|Modi|mumbai|Zubair( Khan)?|{VINIT_SAHNI}",
-    ISRAELI_COLOR: r"Bibi|(eh|Nili Priell )barak|Netanyahu|Israeli?",
+    ISRAEL_COLOR: r"Bibi|(eh|Nili Priell )barak|Netanyahu|Israeli?",
     JOURNALIST_COLOR: rf"Alex Yablon|{PAUL_KRASSNER}|{MICHAEL_WOLFF}|Wolff|Susan Edelman",
     LAWYER_COLOR: rf"(Alan (M\. )?)?Dershowi(l|tz)|(Ken(neth W.)?\s+)?Starr|{DAVID_SCHOEN}|{JAY_LEFKOWITZ}|Lefkowitz|Lilly (Ann )?Sanchez|{MARTIN_WEINBERG}|{REID_WEINGARTEN}|Weinberg|Weingarten|Roy Black|{SCOTT_J_LINK}",
     POLICE_COLOR: f"Police Code Enforcement|Ann Marie Villafana|Kirk Blouin",
@@ -250,14 +250,12 @@ console = Console(**CONSOLE_ARGS)
 
 # This is after the Theme() instantiation because 'bg' is reserved'
 COUNTERPARTY_COLORS.update({
-    'Biden': OBAMA_COLOR,
     'Ivanka': JAVANKA_COLOR,
     'Joichi Ito': COUNTERPARTY_COLORS[JOI_ITO],
     'Jared Kushner': JAVANKA_COLOR,
     'jeevacation@gmail.com': COUNTERPARTY_COLORS[JEFFREY_EPSTEIN],
     'Paul Manafort': COUNTERPARTY_COLORS[STEVE_BANNON],
     'Miro': COUNTERPARTY_COLORS[MIROSLAV],
-    'Obama': OBAMA_COLOR,
     'Scaramucci': COUNTERPARTY_COLORS[SCARAMUCCI],
 })
 
