@@ -87,12 +87,12 @@ if not skip_texts:
     text_summary_msg += f"{len(epstein_files.imessage_logs)} text msg logs found in {len(epstein_files.all_files)} files."
     console.print(text_summary_msg)
     console.print(f"Found {epstein_files.imessage_msg_count()} total text messages in {len(epstein_files.imessage_logs)} conversations.")
-    console.print(f"(Last deploy found 4668 messages in 77 conversations)\n\n\n", style='dim')
+    console.print(f"(Last deploy found 4668 messages in 77 conversations)", style='dim')
 
 
 # Emails section
-print_section_header('His Emails')
-print_text_msgs_link() if args.all else print_all_emails_link()
+print_section_header('Selections from His Emails')
+print_other_site_link()
 console.print(build_color_highlight_info_table())
 print_emailer_counts_table(epstein_files.email_author_counts, AUTHOR.title())
 console.line(2)
@@ -128,7 +128,6 @@ epstein_files.print_email_device_info()
 
 # Other Files Section
 if is_build and not args.all:
-    console.line()
     print_section_header(f"The {len(epstein_files.other_files)} Files That Are Neither Emails Nor Text Msgs")
     epstein_files.print_other_files_table()
 else:

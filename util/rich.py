@@ -345,6 +345,21 @@ def print_text_msgs_link() -> None:
     )
 
 
+def print_other_site_link() -> None:
+    msg = 'Another site made by this code where you can read'
+    url = ''
+
+    if args.all:
+        msg += " Epstein's text messages"
+        url = TEXT_MSGS_URL
+    else:
+        msg += ' [italic]all[/italic] of His Emails'
+        url = ALL_EMAILS_URL
+
+    markup_msg = make_link_markup(url, msg, 'chartreuse3 bold')
+    console.print(Align.center(markup_msg))
+
+
 def print_header():
     console.print(f"This site is not optimized for mobile but if you get past the header it should work ok.", style='dim')
     console.line()
@@ -356,7 +371,7 @@ def print_header():
     console.print(Align.center("[underline][link=https://universeodon.com/@cryptadamist]Mastodon[/link][/underline]"), style=HEADER_LINK)
     console.print(Align.center("[underline][link=https://x.com/Cryptadamist/status/1990866804630036988]Twitter[/link][/underline]"), style=HEADER_LINK)
     console.line()
-    print_text_msgs_link() if args.all else print_all_emails_link()
+    print_other_site_link()
 
     # Acronym table
     table = Table(title="Abbreviations Used Frequently In These Chats", show_header=True, header_style="bold")
@@ -416,8 +431,7 @@ def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centere
     if is_centered:
         panel = Align.center(panel)
 
-    console.print(panel)
-    console.line()
+    console.print(Padding(panel, (3, 0, 1, 0)))
 
 
 def print_panel(msg: str, style: str = 'black on white', padding: tuple = (0, 0, 0, 0)) -> None:
