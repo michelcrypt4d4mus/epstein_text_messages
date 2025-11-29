@@ -22,6 +22,8 @@ LEADING_WHITESPACE_REGEX = re.compile(r'\A\s*', re.MULTILINE)
 NON_ALPHA_CHARS_REGEX = re.compile(r'[^a-zA-Z0-9 ]')
 MAX_PREVIEW_CHARS = 300
 OUTPUT_WIDTH = 120
+NUM_COLOR_KEY_COLS = 3
+COLOR_SUFFIX = '_COLOR'
 HEADER_STYLE = 'header_field'
 PHONE_NUMBER = 'phone_number'
 SENT_FROM = 'sent_from'
@@ -31,7 +33,6 @@ SECTION_HEADER_STYLE = 'bold white on blue3'
 
 highlighter_style_name = lambda style_name: f"{HEADER_FIELD}.{style_name}"
 
-ARAB_COLOR = 'dark_sea_green4'
 ARCHIVE_LINK = 'archive_link'
 ARCHIVE_LINK_COLOR = 'blue3'
 BANK_COLOR = 'bright_green' # 'green
@@ -50,7 +51,8 @@ ISRAELI_COLOR = 'dodger_blue2'
 JAVANKA_COLOR = 'medium_violet_red'
 JOURNALIST_COLOR = 'yellow3'
 LAWYER_COLOR = 'medium_purple2'
-LOBBYIST_COLOR = 'medium_purple'
+LOBBYIST_COLOR = 'light_coral'
+MIDDLE_EAST_COLOR = 'dark_sea_green4'
 OBAMA_COLOR = 'yellow'
 POLICE_COLOR = 'color(24)'
 RICH_GUY_COLOR = 'dark_cyan'
@@ -59,7 +61,7 @@ SCHOLAR_COLOR = 'light_goldenrod2'
 TECH_BRO_COLOR = 'orange4'
 TRUMP_COLOR = 'red3 bold'
 
-BASE_NAMES_TO_NOT_COLOR: list[str] = [name.lower() for name in [
+BASE_NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Allen',
     'Andres',
     'Andrew',
@@ -104,12 +106,12 @@ BASE_NAMES_TO_NOT_COLOR: list[str] = [name.lower() for name in [
     "Y.",
 ]]
 
-NAMES_TO_NOT_COLOR = [[n, regex_escape_periods(n)] if '.' in n else [n] for n in BASE_NAMES_TO_NOT_COLOR]
-NAMES_TO_NOT_COLOR = flatten(NAMES_TO_NOT_COLOR)
+NAMES_TO_NOT_HIGHLIGHT = [[n, regex_escape_periods(n)] if '.' in n else [n] for n in BASE_NAMES_TO_NOT_HIGHLIGHT]
+NAMES_TO_NOT_HIGHLIGHT = flatten(NAMES_TO_NOT_HIGHLIGHT)
 
 # Color different counterparties differently
 COUNTERPARTY_COLORS = {
-    ALIREZA_ITTIHADIEH: ARAB_COLOR,  # Iranian / British?
+    ALIREZA_ITTIHADIEH: MIDDLE_EAST_COLOR,  # Iranian / British?
     'Andres Serrano': ENTERTAINER_COLOR,
     ANIL: INDIA_COLOR,
     BRAD_KARP: LAWYER_COLOR,
@@ -162,7 +164,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     'Peter Thiel': TECH_BRO_COLOR,
     STEVE_BANNON: COUNTERPARTY_COLORS[STEVE_BANNON],
     DAVID_STERN: LAWYER_COLOR,
-    MOHAMED_WAHEED_HASSAN: ARAB_COLOR,
+    MOHAMED_WAHEED_HASSAN: MIDDLE_EAST_COLOR,
     PAULA: 'pink1',
     REID_HOFFMAN: TECH_BRO_COLOR,
     BORIS_NIKOLIC: BRO_COLOR,
@@ -201,7 +203,7 @@ COUNTERPARTY_COLORS.update(PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES)
 COUNTERPARTY_COLORS.update(OTHER_STYLES)
 
 HIGHLIGHT_PATTERNS: dict[str, str] = {
-    ARAB_COLOR: rf"Abdulmalik Al-Makhlafi|Abu\s+Dhabi|{ANAS_ALRASHEED}|Assad|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Imran Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Riya(dh|nd)|Saudi(\s+Arabian?)?|Shaher Abdulhak Besher|Sharia|Syria|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
+    MIDDLE_EAST_COLOR: rf"Abdulmalik Al-Makhlafi|Abu\s+Dhabi|{ANAS_ALRASHEED}|Assad|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Imran Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Riya(dh|nd)|Saudi(\s+Arabian?)?|Shaher Abdulhak Besher|Sharia|Syria|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
     BITCOIN_COLOR: r"bitcoin|block ?chain( capital)?|coins|cr[iy]pto(currency)?|e-currency|(jeffrey\s+)?wernick|(Howard\s+)?Lutnick|Libra|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)",
     BRASIL_COLOR: r"Argentina|Bra[sz]il(ian)?|Bolsonar[aio]|Lula|(Nicolas )?Maduro|Venezuelan?s?",
     CHINA_COLOR: r"Beijing|CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|Peking|PRC|xi",
@@ -316,12 +318,12 @@ def highlight_text(text: str) -> str:
             continue
 
         # highlight last names
-        if last_name.lower() not in NAMES_TO_NOT_COLOR:
+        if last_name.lower() not in NAMES_TO_NOT_HIGHLIGHT:
             name_regex = re.compile(rf"(?!{first_name} ?)\b({last_name}s?)\b", re.IGNORECASE)
             text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
 
         # highlight first names
-        if len(first_name) > 2 and first_name.lower() not in NAMES_TO_NOT_COLOR:
+        if len(first_name) > 2 and first_name.lower() not in NAMES_TO_NOT_HIGHLIGHT:
             name_regex = re.compile(rf"\b({first_name}s?)\b(?! ?{last_name})", re.IGNORECASE)
             text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
 
@@ -350,7 +352,9 @@ def print_header():
     console.print(Align.center("[underline][link=https://universeodon.com/@cryptadamist]Mastodon[/link][/underline]"), style=HEADER_LINK)
     console.print(Align.center("[underline][link=https://x.com/Cryptadamist/status/1990866804630036988]Twitter[/link][/underline]"), style=HEADER_LINK)
     console.line()
-    print_all_emails_link()
+
+    if not args.all:
+        print_all_emails_link()
 
     # Acronym table
     table = Table(title="Abbreviations Used Frequently In These Chats", show_header=True, header_style="bold")
