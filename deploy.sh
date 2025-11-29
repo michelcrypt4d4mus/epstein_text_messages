@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Running 'bash -l' uses the login shell but then the poetry venv isn't set :(
 set -e
 
 INDEX_HTML_PATH="docs/index.html"
