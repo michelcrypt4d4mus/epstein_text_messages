@@ -10,6 +10,7 @@ parser.add_argument('--build', '-b', action='store_true', help='write HTML to do
 parser.add_argument('--email', '-e', action='append', dest='emails', help='specify additional emailers to output')
 parser.add_argument('--all', '-a', action='store_true', help='all email authors and recipients (except Epstein)')
 parser.add_argument('--all-tables', '-at', action='store_true', help='all email tables (except Epstein)')
+parser.add_argument('--colors', action='store_true', help='print color key table and exit')
 parser.add_argument('--fast', '-f', action='store_true', help='skip parsing of email timestamps/authors/etc.')
 parser.add_argument('--no-texts', '-nt', action='store_true', help='skip text message output')
 parser.add_argument('--debug', '-d', action='store_true', help='set debug level to INFO')
