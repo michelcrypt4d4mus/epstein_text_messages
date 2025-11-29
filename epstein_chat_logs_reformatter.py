@@ -29,7 +29,7 @@ def build_color_highlight_info_table() -> None:
     color_keys = [
         Text(color_name.removesuffix(COLOR_SUFFIX), style=getattr(rich, color_name))
         for color_name in sorted([item for item in dir(rich) if item.endswith(COLOR_SUFFIX)])
-        if color_name not in ['ARCHIVE_LINK_COLOR', 'HEADER_COLOR']
+        if color_name not in ['ARCHIVE_LINK_COLOR']
     ]
 
     color_table = Table(show_header=False, title='Rough Guide to Highlighted Colors')
