@@ -66,6 +66,7 @@ epstein_files.print_summary()
 # Text messages section
 if not skip_texts:
     print_section_header('Text Messages')
+    console.print(Align.center("(conversations are sorted chronologically based on timestamp of first message)\n"))
 
     for log_file in epstein_files.imessage_logs:
         console.print(log_file)

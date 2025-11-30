@@ -40,10 +40,12 @@ highlighter_style_name = lambda style_name: f"{HEADER_FIELD}.{style_name}"
 # Constant variables that end in "_COLOR" will be scanned to create the color highlight guide table.
 ARCHIVE_LINK_COLOR = 'blue3'
 BANK_COLOR = 'green'
+BANNON_COLOR = 'color(58)'
 BITCOIN_COLOR = 'orange1 bold'
 BUSINESS_COLOR = 'spring_green4'
 BRO_COLOR = 'tan'
 CHINA_COLOR = 'bright_red'
+DEFAULT_NAME_COLOR = 'grey82'
 DEMOCRATS_COLOR = 'sky_blue1'
 DUBIN_COLOR = 'medium_orchid1'
 ELON_COLOR = 'light_goldenrod3'
@@ -99,6 +101,7 @@ BASE_NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Roger',
     'Rubin',
     'Scott',
+    'Sean',
     'Stephen',
     'Steve',
     'Steven',
@@ -141,12 +144,14 @@ COUNTERPARTY_COLORS = {
     SOON_YI: 'hot_pink',
     STACY_PLASKETT: 'medium_orchid3',
     'Stanley Rosenberg': LOBBYIST_COLOR,  # Former state senator?
-    STEVE_BANNON: 'color(58)',
+    SEAN_BANNON: BANNON_COLOR,
+    STEVE_BANNON: BANNON_COLOR,
     TERJE: 'light_slate_blue',
     TOM_BARRACK: BRO_COLOR,
     UNKNOWN: 'cyan',
 }
 
+# ORder matters (will be order of output)
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     JEREMY_RUBIN: BITCOIN_COLOR,
     JOI_ITO: 'blue_violet',
@@ -171,6 +176,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     None: 'grey74',
 }
 
+# ORder matters (will be order of output)
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {
     GHISLAINE_MAXWELL: 'deep_pink3',
     LEON_BLACK: 'dark_cyan',
@@ -219,7 +225,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     TRUMP_COLOR: r"(Donald\s+(J\.\s+)?)?Trump|Donald|DJT|Roger\s+Stone",
     COUNTERPARTY_COLORS[GHISLAINE_MAXWELL]: r"GMAX|gmax1@ellmax.com",
     COUNTERPARTY_COLORS[TERJE]: r"Terje (R[øo]e?d[- ])?Lars[eo]n",
-    COUNTERPARTY_COLORS[JEFFREY_EPSTEIN]: EMAILER_REGEXES[JEFFREY_EPSTEIN].pattern,
+    COUNTERPARTY_COLORS[JEFFREY_EPSTEIN]: EMAILER_REGEXES[JEFFREY_EPSTEIN].pattern + r'|Mark (L. )?Epstein',
     'orchid1': r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts",
     VC_COLOR: r"Masa(yoshi)?( Son)?|Najeev|Softbank",
     'turquoise4': r"BG|Bill\s+((and|or)\s+Melinda\s+)?Gates|Melinda(\s+Gates)?",
@@ -331,16 +337,20 @@ def highlight_pattern(text: str, pattern: re.Pattern, style: str = 'cyan') -> Te
     return Text.from_markup(pattern.sub(rf'[{style}]\1[/{style}]', text))
 
 
+def print_centered(msg: str, style: str = '') -> None:
+    console.print(Align.center(msg), style=style)
+
+
 def print_header():
     console.print(f"This site is not optimized for mobile but if you get past the header it should work ok.", style='dim')
     console.line()
     console.print(Panel(Text("Epstein Estate Documents - Seventh Production Collection Reformatted Text Messages", justify='center', style='bold reverse')))
     console.line()
-    console.print(Align.center(f"[underline][link={SUBSTACK_URL}]I Made Epstein's Text Messages Great Again (And You Should Read Them)[/link][/underline]"), style=f'{HEADER_LINK} bold')
-    console.print(Align.center(f"[dodger_blue3][underline][link={SUBSTACK_URL}]{SUBSTACK_URL.removeprefix('https://')}[/link][/underline][/dodger_blue3]"))
-    console.print(Align.center("[underline][link=https://cryptadamus.substack.com/]Substack[/link][/underline]"), style=HEADER_LINK)
-    console.print(Align.center("[underline][link=https://universeodon.com/@cryptadamist]Mastodon[/link][/underline]"), style=HEADER_LINK)
-    console.print(Align.center("[underline][link=https://x.com/Cryptadamist/status/1990866804630036988]Twitter[/link][/underline]"), style=HEADER_LINK)
+    print_centered(f"[underline][link={SUBSTACK_URL}]I Made Epstein's Text Messages Great Again (And You Should Read Them)[/link][/underline]", f'{HEADER_LINK} bold')
+    print_centered(f"[dodger_blue3][underline][link={SUBSTACK_URL}]{SUBSTACK_URL.removeprefix('https://')}[/link][/underline][/dodger_blue3]")
+    print_centered("[underline][link=https://cryptadamus.substack.com/]Substack[/link][/underline]", HEADER_LINK)
+    print_centered("[underline][link=https://universeodon.com/@cryptadamist]Mastodon[/link][/underline]", HEADER_LINK)
+    print_centered("[underline][link=https://x.com/Cryptadamist/status/1990866804630036988]Twitter[/link][/underline]", HEADER_LINK)
     console.line()
     print_other_site_link()
 
@@ -352,20 +362,18 @@ def print_header():
     for k, v in HEADER_ABBREVIATIONS.items():
         table.add_row(highlight_text(k), v)
 
+    console.print(Align.center(vertically_pad(table)))
+    print_centered(make_link_markup(OVERSIGHT_REPUBLICANS_PRESSER_URL, 'Oversight Committee Releases Additional Epstein Estate Documents'))
+    print_centered(make_link_markup(COFFEEZILLA_ARCHIVE_URL, 'Coffeezilla Archive Of Raw Epstein Materials'))
+    print_centered(make_link_markup(JMAIL_URL, 'Jmail') + " (read His Emails via Gmail interface)")
+    print_centered(make_link_markup(COURIER_NEWSROOM_ARCHIVE_URL, "Courier Newsroom's Searchable Archive"))
+    print_centered(make_link_markup(f"{EPSTEINIFY_URL}/names", 'epsteinify.com') + " (raw document images)")
+    print_centered(make_link_markup(RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL, 'Google Drive Raw Documents'))
     console.line()
-    console.print(Align.center(table))
-    console.line()
-    console.print(Align.center(f"[link=https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/]Oversight Committee Releases Additional Epstein Estate Documents[/link]"))
-    console.print(Align.center(f"[link={COFFEEZILLA_ARCHIVE}]Coffeezilla Archive Of Raw Epstein Materials[/link]"))
-    console.print(Align.center("[link=https://jmail.world]Jmail[/link] (read His Emails via Gmail interface)"))
-    console.print(Align.center(f"[link={COURIER_NEWSROOM_ARCHIVE}]Courier Newsroom's Searchable Archive[/link]"))
-    console.print(Align.center("[link=https://epsteinify.com/names]epsteinify.com[/link] (raw document images)"))
-    console.print(Align.center("[link=https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_]Google Drive Raw Documents[/link]"))
-    console.line()
-    console.print(Align.center("Conversations are sorted chronologically based on timestamp of first message."), style='bold dark_green')
-    console.print(Align.center(f"If you think there's an attribution error or can deanonymize an {UNKNOWN} contact @cryptadamist."), style='dim')
-    console.print(Align.center("(thanks to [dodger_blue3][link=https://x.com/ImDrinknWyn]@ImDrinknWyn[/link][/dodger_blue3] and others for attribution help)"))
-    console.print(Align.center("[link=https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/util/constants.py]Explanation of attributions[/link]"), style='magenta')
+    print_centered(make_link_markup(ATTRIBUTIONS_URL, "Explanation of Author Attributions", style='magenta'))
+    print_centered(f"(thanks to {make_link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} and others for attribution help)")
+    print_centered(f"If you think there's an attribution error or can deanonymize an {UNKNOWN} contact {make_link_markup('https://x.com/cryptadamist', '@cryptadamist')}.", 'dim')
+    print_centered('(note this site is based on the OCR text provided by Congress which is not the greatest)', 'dim')
 
 
 def print_author_header(msg: str, color: str | None) -> None:
@@ -378,7 +386,7 @@ def print_author_header(msg: str, color: str | None) -> None:
 def print_numbered_list(_list: list[str] | dict) -> None:
     for i, name in enumerate(_list):
         name = name or UNKNOWN
-        console.print(Text(f"   {i}. ").append(name, style=get_style_for_name(name)))
+        console.print(Text(f"   {i}. ").append(name, style=get_style_for_name(name, DEFAULT_NAME_COLOR)))
 
 
 def print_other_site_link() -> None:
@@ -393,7 +401,7 @@ def print_other_site_link() -> None:
         url = ALL_EMAILS_URL
 
     markup_msg = make_link_markup(url, msg, 'chartreuse3')
-    console.print(Align.center(Text('(') + Text.from_markup(markup_msg).append(')')), style='bold')
+    print_centered(Text('(') + Text.from_markup(markup_msg).append(')'), style='bold')
 
 
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
