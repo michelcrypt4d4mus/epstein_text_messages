@@ -457,6 +457,8 @@ class Email(CommunicationDocument):
             return 'S' + sent_from[1:] if sent_from.startswith('sent') else sent_from
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
+        logger.info(f"Printing '{self.filename}'...")
+
         if self.file_id in SUPPRESS_OUTPUT_FOR_IDS:
             txt = Text(f"Not showing ", style='dim').append(self.filename, style='cyan')
             yield txt.append(f" because it's {SUPPRESS_OUTPUT_FOR_IDS[self.file_id]}").append('\n')
