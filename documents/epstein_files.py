@@ -16,7 +16,7 @@ from rich.text import Text
 from documents.document import Document
 from documents.email import DETECT_EMAIL_REGEX, USELESS_EMAILERS, Email
 from documents.email_header import AUTHOR
-from documents.messenger_log import MSG_REGEX, MessengerLog
+from documents.messenger_log import MSG_REGEX, MessengerLog, sender_counts
 from util.constants import *
 from util.data import flatten, patternize
 from util.env import args, is_debug, logger
@@ -202,7 +202,23 @@ class EpsteinFiles:
                 str(self.email_recipient_counts[k])
             )
 
-        console.print(vertically_pad(counts_table))
+        console.print(vertically_pad(counts_table, 2))
+
+    def print_imessage_summary(self) -> None:
+        """Print summary table and stats for text messages."""
+        counts_table = Table(title="Text Message Counts By Author", show_header=True, header_style="bold")
+        counts_table.add_column(AUTHOR.title(), style="steel_blue bold", justify="left", width=30)
+        counts_table.add_column("Message Count", justify="center")
+
+        for k, v in sorted(sender_counts.items(), key=lambda item: item[1], reverse=True):
+            counts_table.add_row(Text(k, get_style_for_name(k)), str(v))
+
+        console.print(counts_table)
+        text_summary_msg = f"\nDeanonymized {self.identified_imessage_log_count()} of "
+        text_summary_msg += f"{len(self.imessage_logs)} text msg logs found in {len(self.all_files)} files."
+        console.print(text_summary_msg)
+        console.print(f"Found {self.imessage_msg_count()} total text messages in {len(self.imessage_logs)} conversations.")
+        console.print(f"(Last deploy found 4668 messages in 77 conversations)", style='dim')
 
     def print_other_files_table(self) -> None:
         table = Table(header_style="bold", show_header=True, show_lines=True)

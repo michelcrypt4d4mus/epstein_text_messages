@@ -21,21 +21,9 @@ from .text_highlighter import EpsteinTextHighlighter
 
 LEADING_WHITESPACE_REGEX = re.compile(r'\A\s*', re.MULTILINE)
 NON_ALPHA_CHARS_REGEX = re.compile(r'[^a-zA-Z0-9 ]')
-VERTICAL_PADDING = (1, 0, 1, 0)
 MAX_PREVIEW_CHARS = 300
-OUTPUT_WIDTH = 120
 NUM_COLOR_KEY_COLS = 3
-ARCHIVE_LINK = 'archive_link'
-COLOR_SUFFIX = '_COLOR'
-HEADER_STYLE = 'header_field'
-PHONE_NUMBER = 'phone_number'
-SENT_FROM = 'sent_from'
-TEXT_LINK = 'text_link'
-TITLE_STYLE = 'black on bright_white bold'
-TIMESTAMP = 'timestamp'
-SECTION_HEADER_STYLE = 'bold white on blue3'
-
-highlighter_style_name = lambda style_name: f"{EMAIL_HEADER_FIELD}.{style_name}"
+OUTPUT_WIDTH = 120
 
 # Constant variables that end in "_COLOR" will be scanned to create the color highlight guide table.
 ARCHIVE_LINK_COLOR = 'slate_blue3'
@@ -67,6 +55,18 @@ SOUTH_AMERICA_COLOR = 'yellow'
 TECH_BRO_COLOR = 'cyan2'  #dark_slate_gray3
 TRUMP_COLOR = 'red3 bold'
 VICTIM_COLOR = 'orchid1'
+
+# Theme style names
+ARCHIVE_LINK = 'archive_link'
+COLOR_SUFFIX = '_COLOR'
+HEADER_STYLE_NAME = 'header_field'
+PHONE_NUMBER = 'phone_number'
+SENT_FROM = 'sent_from'
+TEXT_LINK = 'text_link'
+TIMESTAMP = 'timestamp'
+# Other styles
+TITLE_STYLE = 'black on bright_white bold'
+SECTION_HEADER_STYLE = 'bold white on blue3'
 
 BASE_NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Allen',
@@ -118,6 +118,44 @@ BASE_NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
 NAMES_TO_NOT_HIGHLIGHT = [[n, regex_escape_periods(n)] if '.' in n else [n] for n in BASE_NAMES_TO_NOT_HIGHLIGHT]
 NAMES_TO_NOT_HIGHLIGHT = flatten(NAMES_TO_NOT_HIGHLIGHT)
 
+# Order matters (will be order of output)
+PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
+    JEREMY_RUBIN: BITCOIN_COLOR,
+    JOI_ITO: 'blue_violet',
+    AL_SECKEL: 'orange_red1',
+    JABOR_Y: "spring_green1",
+    DANIEL_SIAD: 'dark_khaki',
+    JEAN_LUC_BRUNEL: 'pale_violet_red1',
+    EHUD_BARAK: ISRAEL_COLOR,
+    MARTIN_NOWAK: HARVARD_COLOR,
+    'Masha Drokova': RUSSIA_COLOR,
+    STEVE_BANNON: BANNON_COLOR,
+    ARIANE_DE_ROTHSCHILD: 'indian_red',
+    OLIVIER_COLOM: LOBBYIST_COLOR,
+    DAVID_STERN: LAWYER_COLOR,
+    MOHAMED_WAHEED_HASSAN: MIDDLE_EAST_COLOR,
+    PAULA: 'pink1',
+    BORIS_NIKOLIC: BRO_COLOR,
+    PRINCE_ANDREW: 'dodger_blue1',
+    'Jide Zeitlin': BANK_COLOR,
+    None: 'grey74',
+}
+
+# ORder matters (will be order of output)
+PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {
+    GHISLAINE_MAXWELL: 'deep_pink3',
+    LEON_BLACK: BUSINESS_COLOR,
+    LANDON_THOMAS: JOURNALIST_COLOR,  # NYT journo
+    SULTAN_BIN_SULAYEM: 'green1',
+    # Epstein's lawyers
+    DARREN_INDYKE: LAWYER_COLOR,
+    RICHARD_KAHN: LAWYER_COLOR,
+    DEEPAK_CHOPRA: 'dark_goldenrod',
+    # Temporary
+    KATHY_RUEMMLER: 'magenta2',
+    TYLER_SHEARS: BITCOIN_COLOR,  # PR
+}
+
 # Color different counterparties differently
 COUNTERPARTY_COLORS = {
     ALIREZA_ITTIHADIEH: MIDDLE_EAST_COLOR,  # Iranian / British?
@@ -142,56 +180,19 @@ COUNTERPARTY_COLORS = {
     SOON_YI: 'hot_pink',
     STACY_PLASKETT: 'medium_orchid3',
     SEAN_BANNON: BANNON_COLOR,
-    STEVE_BANNON: BANNON_COLOR,
     TERJE: 'light_slate_blue',
     TOM_BARRACK: BRO_COLOR,
     UNKNOWN: 'cyan',
 }
 
-# ORder matters (will be order of output)
-PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
-    JEREMY_RUBIN: BITCOIN_COLOR,
-    JOI_ITO: 'blue_violet',
-    AL_SECKEL: 'orange_red1',
-    JABOR_Y: "spring_green1",
-    DANIEL_SIAD: 'dark_khaki',
-    JEAN_LUC_BRUNEL: 'pale_violet_red1',
-    EHUD_BARAK: ISRAEL_COLOR,
-    MARTIN_NOWAK: HARVARD_COLOR,
-    'Masha Drokova': RUSSIA_COLOR,
-    STEVE_BANNON: COUNTERPARTY_COLORS[STEVE_BANNON],
-    ARIANE_DE_ROTHSCHILD: 'indian_red',
-    OLIVIER_COLOM: LOBBYIST_COLOR,
-    DAVID_STERN: LAWYER_COLOR,
-    MOHAMED_WAHEED_HASSAN: MIDDLE_EAST_COLOR,
-    PAULA: 'pink1',
-    BORIS_NIKOLIC: BRO_COLOR,
-    PRINCE_ANDREW: 'dodger_blue1',
-    'Jide Zeitlin': BANK_COLOR,
-    None: 'grey74',
-}
-
-# ORder matters (will be order of output)
-PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {
-    GHISLAINE_MAXWELL: 'deep_pink3',
-    LEON_BLACK: 'dark_cyan',
-    LANDON_THOMAS: 'misty_rose3',  # FT journo
-    SULTAN_BIN_SULAYEM: 'green1',
-    # Epstein's lawyers
-    DARREN_INDYKE: LAWYER_COLOR,
-    RICHARD_KAHN: LAWYER_COLOR,
-    DEEPAK_CHOPRA: 'dark_goldenrod',
-    # Temporary
-    KATHY_RUEMMLER: 'magenta2',
-    TYLER_SHEARS: BITCOIN_COLOR,  # PR
-}
+highlighter_style_name = lambda style_name: f"{EMAIL_HEADER_FIELD}.{style_name}"
 
 OTHER_STYLES = {
     ARCHIVE_LINK: 'deep_sky_blue4',
     PHONE_NUMBER: 'bright_green',
     TEXT_LINK: 'deep_sky_blue4 underline',
     TIMESTAMP: 'gray30',
-    HEADER_STYLE: 'plum4',
+    HEADER_STYLE_NAME: 'plum4',
     highlighter_style_name('email'): 'bright_cyan',
     SENT_FROM: 'gray50 italic dim',
 }
@@ -206,7 +207,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     BUSINESS_COLOR: rf"(Steve\s+)?Wynn|(Leslie\s+)?Wexner|{NICHOLAS_RIBIS}|{ROBERT_LAWRENCE_KUHN}|{STEPHEN_HANSON}|{TERRY_KAFKA}",
     CHINA_COLOR: r"Beijing|CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|Peking|PRC|xi",
     DEMOCRATS_COLOR: r"Biden|Maxine Waters|Obama|(Nancy )?Pelosi|Clinton|Hillary|Democrat(ic)?",
-    ENTERTAINERS_COLOR: rf"Andres Serrano|Etienne Binant|Ramsey Elkholy|Woody( Allen)?",
+    ENTERTAINERS_COLOR: rf"Andres Serrano|David Blaine|Etienne Binant|Ramsey Elkholy|Woody( Allen)?",
     EUROPE_COLOR: r"Le\s*Pen|Macron|(Angela )?Merk(el|le)|(Vi(c|k)tor\s+)?Orbah?n",
     HARVARD_COLOR: rf"{LISA_NEW}|Harvard|MIT( Media Lab)?|Media Lab",
     INDIA_COLOR: rf"Ambani|Hardeep( puree)?|Indian?|Modi|mumbai|Zubair( Khan)?|{VINIT_SAHNI}",
@@ -230,13 +231,13 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     COUNTERPARTY_COLORS[TERJE]: r"Terje (R[øo]e?d[- ])?Lars[eo]n",
     'turquoise4': r"BG|Bill\s+((and|or)\s+Melinda\s+)?Gates|Melinda(\s+Gates)?",
     # Misc
-    HEADER_STYLE: r"^((Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):)"
+    HEADER_STYLE_NAME: r"^((Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):)"
 }
 
 # Wrap in \b, add optional s? at end of all regex patterns
 HIGHLIGHT_REGEXES: dict[str, re.Pattern] = {
     # [\b\n] or no trailing \b is required for cases when last char in match is not a word char (e.g. when it's '.')
-    k: re.compile(fr"\b(({v})s?)\b", re.I) if k != HEADER_STYLE else re.compile(v, re.MULTILINE)
+    k: re.compile(fr"\b(({v})s?)\b", re.I) if k != HEADER_STYLE_NAME else re.compile(v, re.MULTILINE)
     for k, v in HIGHLIGHT_PATTERNS.items()
 }
 
@@ -309,7 +310,7 @@ def highlight_text(text: str) -> str:
         text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
 
     for name, style in COUNTERPARTY_COLORS.items():
-        if name in [None, DEFAULT, HEADER_STYLE, SENT_FROM]:
+        if name in [None, DEFAULT, HEADER_STYLE_NAME, SENT_FROM]:
             continue
 
         name = regex_escape_periods(name)
@@ -453,8 +454,8 @@ def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centere
     console.print(Padding(panel, (3, 0, 1, 0)))
 
 
-def vertically_pad(obj: RenderableType) -> Padding:
-    return Padding(obj, VERTICAL_PADDING)
+def vertically_pad(obj: RenderableType, amount: int = 1) -> Padding:
+    return Padding(obj,  (amount, 0, amount, 0))
 
 
 def wrap_in_markup_style(msg: str, style: str | None = None) -> str:

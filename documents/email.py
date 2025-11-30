@@ -480,7 +480,7 @@ class Email(CommunicationDocument):
             trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest: {self.epsteinify_link_markup}...>"
             text = f"{text[0:num_chars]}\n\n[dim]{trim_note}[/dim]"
 
-        text = REPLY_REGEX.sub(rf'[{HEADER_STYLE}]\1[/{HEADER_STYLE}]', text)
+        text = REPLY_REGEX.sub(rf'[{HEADER_STYLE_NAME}]\1[/{HEADER_STYLE_NAME}]', text)
         text = SENT_FROM_REGEX.sub(fr'[{SENT_FROM}]\1[/{SENT_FROM}]', text)
         email_txt_panel = Panel(highlight_text(text), border_style=self._border_style(), expand=False)
         yield Padding(email_txt_panel, (0, 0, 2, EMAIL_INDENT))
