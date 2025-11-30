@@ -250,13 +250,6 @@ CONSOLE_ARGS = {
     'width': OUTPUT_WIDTH,
 }
 
-if args.suppress_output:
-    logger.warning(f"Suppressing terminal output because args.suppress_output={args.suppress_output}...")
-    CONSOLE_ARGS.update({'file': open(devnull, "wt")})
-
-console = Console(**CONSOLE_ARGS)
-
-
 # This is after the Theme() instantiation because 'bg' is reserved'
 COUNTERPARTY_COLORS.update({
     'Ivanka': JAVANKA_COLOR,
@@ -267,6 +260,17 @@ COUNTERPARTY_COLORS.update({
     'Miro': COUNTERPARTY_COLORS[MIROSLAV],
     'Scaramucci': COUNTERPARTY_COLORS[SCARAMUCCI],
 })
+
+
+if args.no_highlights:
+    COUNTERPARTY_COLORS = {}
+    HIGHLIGHT_REGEXES = {}
+
+if args.suppress_output:
+    logger.warning(f"Suppressing terminal output because args.suppress_output={args.suppress_output}...")
+    CONSOLE_ARGS.update({'file': open(devnull, "wt")})
+
+console = Console(**CONSOLE_ARGS)
 
 
 def make_link_markup(url: str, link_text: str, style: str | None = ARCHIVE_LINK_COLOR) -> str:

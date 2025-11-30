@@ -20,23 +20,14 @@ WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 FALLBACK_TIMESTAMP = parse("1/1/2001 12:01:01 AM")
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 PREVIEW_CHARS = 520
-GMAX_EMAIL = 'gmax1@ellmax.com'
-JEEVACATION_GMAIL = 'jeevacation@gmail.com'
 HOUSE_OVERSIGHT = 'HOUSE OVERSIGHT'
 MIN_DOCUMENT_ID = 10477
 
+# Takes ~1.1 seconds to apply these repairs
 OCR_REPAIRS = {
     re.compile(r'\.corn\b'): '.com',
-    re.compile(r'grnail\.com'): 'gmail.com',
-    'Follow me on twitter glhsummers': 'Follow me on twitter @lhsummers',
     'lndyke': 'Indyke',
     'Nil Priell': 'Nili Priell',
-    re.compile(r'from my BlackBerry[0°] wireless device'): 'from my BlackBerry® wireless device',
-    re.compile(r' Banno(r]?|\b)'): ' Bannon',
-    re.compile(r'gmax ?[1l] ?[@g]ellmax.c ?om'): GMAX_EMAIL,
-    re.compile(r"[ijlp']ee[vy]acation[©@a(&,P ]{1,3}gmail.com"): JEEVACATION_GMAIL,
-    re.compile(r"twitter\.com[i/][lI]krauss[1lt]"): "twitter.com/lkrauss1",
-    re.compile(r"^(From|To)(: )?[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",
 }
 
 FILENAME_MATCH_STYLES = [

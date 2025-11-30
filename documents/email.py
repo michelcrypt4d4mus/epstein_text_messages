@@ -23,6 +23,9 @@ TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 PACIFIC_TZ = tz.gettz("America/Los_Angeles")
 TIMEZONE_INFO = {"PST": PACIFIC_TZ, "PDT": PACIFIC_TZ}  # Suppresses annoying warnings from parse() calls
 
+GMAX_EMAIL = 'gmax1@ellmax.com'
+JEEVACATION_GMAIL = 'jeevacation@gmail.com'
+
 EMAIL_REGEX = re.compile(r'From: (.*)')
 EMAIL_HEADER_REGEX = re.compile(r'^(((Date|Subject):.*\n)*From:.*\n((Date|Sent|To|CC|Importance|Subject|Attachments):.*\n)+)')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
@@ -61,7 +64,16 @@ KNOWN_TIMESTAMPS = {
     '030373': datetime(2018, 10, 3, 1, 49, 27),
 }
 
+# Takes ~0.5 seconds to apply these repairs
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
+    re.compile(r' Banno(r]?|\b)'): ' Bannon',
+    re.compile(r'grnail\.com'): 'gmail.com',
+    'twitter glhsummers': 'twitter @lhsummers',
+    re.compile(r'from my BlackBerry[0°] wireless device'): 'from my BlackBerry® wireless device',
+    re.compile(r'gmax ?[1l] ?[@g]ellmax.c ?om'): GMAX_EMAIL,
+    re.compile(r"[ijlp']ee[vy]acation[©@a(&,P ]{1,3}gmail.com"): JEEVACATION_GMAIL,
+    re.compile(r"twitter\.com[i/][lI]krauss[1lt]"): "twitter.com/lkrauss1",
+    re.compile(r"^(From|To)(: )?[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",
     'BlackBerry by AT &T': 'BlackBerry by AT&T',
     'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
     "Sent from my 'Phone": 'Sent from my iPhone',
