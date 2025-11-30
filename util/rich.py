@@ -375,7 +375,7 @@ def print_header():
     print_centered(make_link_markup(f"{EPSTEINIFY_URL}/names", 'epsteinify.com') + " (raw document images)")
     print_centered_link(RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL, 'Google Drive Raw Documents')
     console.line()
-    print_centered_link(ATTRIBUTIONS_URL, "Some Explanations of Author Attributions", style='magenta')
+    print_centered_link(ATTRIBUTIONS_URL, "some explanations of author attributions", style='magenta')
     print_centered(f"(thanks to {make_link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} and others for attribution help)")
     print_centered(f"If you think there's an attribution error or can deanonymize an {UNKNOWN} contact {make_link_markup('https://x.com/cryptadamist', '@cryptadamist')}.", 'grey46')
     print_centered('(note this site is based on the OCR text provided by Congress which is not the greatest)', 'grey23')
