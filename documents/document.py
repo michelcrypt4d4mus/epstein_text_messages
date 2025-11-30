@@ -11,8 +11,8 @@ from util.constants import search_archive_url
 from util.data import patternize
 from util.env import logger
 from util.file_helper import extract_file_id
-from util.rich import (ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_interesting_text, logger,
-     make_link, make_link_markup)
+from util.rich import (ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_interesting_text, highlight_regex_match,
+     logger, make_link, make_link_markup)
 from util.strings import *
 
 MULTINEWLINE_REGEX = re.compile(r"\n{3,}")
