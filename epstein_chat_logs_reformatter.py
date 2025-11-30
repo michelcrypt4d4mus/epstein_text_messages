@@ -125,12 +125,12 @@ if is_build and not args.all:
     print_section_header(f"Top Lines of {len(epstein_files.other_files)} Files That Are Neither Emails Nor Text Msgs")
     epstein_files.print_other_files_table()
 else:
-    print(f"Skipping other files section (is_build={is_build}, args.all={args.all})...")
+    logger.warning(f"Skipping other files section (is_build={is_build}, args.all={args.all})...")
 
 
 # Save output
 if is_build:
     console.save_html(OUTPUT_GH_PAGES_HTML, code_format=CONSOLE_HTML_FORMAT, inline_styles=False, theme=HTML_TERMINAL_THEME)
-    console.print(f"\nWrote HTML to '{OUTPUT_GH_PAGES_HTML}', not computing signatures.")
+    print(f"\nWrote HTML to '{OUTPUT_GH_PAGES_HTML}'.")
 else:
-    console.print(f"\nNot writing HTML because 'BUILD_HTML' env var not set.")
+    logger.warning(f"Not writing HTML because 'BUILD_HTML' env var not set.")

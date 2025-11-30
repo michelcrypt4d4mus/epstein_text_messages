@@ -15,6 +15,7 @@ from rich.theme import Theme
 from .constants import *
 from .data import flatten
 from .env import args, deep_debug, logger
+from .html import PAGE_TITLE
 from .strings import regex_escape_periods
 from .text_highlighter import EpsteinTextHighlighter
 
@@ -52,7 +53,7 @@ ELON_COLOR = 'light_goldenrod3'
 ENTERTAINERS_COLOR = 'light_steel_blue3'
 EUROPEAN_COLOR = 'dark_magenta'
 HARVARD_COLOR = 'deep_pink2'
-HEADER_LINK = 'deep_sky_blue1'
+SOCIAL_MEDIA_LINK_STYLE = 'cadet_blue'
 INDIA_COLOR = 'bright_green'
 ISRAEL_COLOR = 'dodger_blue2'
 JAVANKA_COLOR = 'medium_violet_red'
@@ -250,7 +251,7 @@ CONSOLE_ARGS = {
 }
 
 if args.suppress_output:
-    print(f"Suppressing terminal output because args.suppress_output={args.suppress_output}...")
+    logger.warning(f"Suppressing terminal output because args.suppress_output={args.suppress_output}...")
     CONSOLE_ARGS.update({'file': open(devnull, "wt")})
 
 console = Console(**CONSOLE_ARGS)
@@ -348,13 +349,13 @@ def print_centered_link(url: str, link_text: str, style: str | None = None) -> N
 def print_header():
     console.print(f"This site is not optimized for mobile but if you get past the header it should work ok.", style='dim')
     console.line()
-    console.print(Panel(Text("Epstein Estate Documents - Seventh Production Collection Reformatted Text Messages", justify='center', style='bold reverse')))
+    console.print(Panel(Text(PAGE_TITLE, justify='center'), style='bold reverse'))
     console.line()
-    print_centered_link(SUBSTACK_URL, "I Made Epstein's Text Messages Great Again (And You Should Read Them)", style=f'{HEADER_LINK} bold')
+    print_centered_link(SUBSTACK_URL, "I Made Epstein's Text Messages Great Again (And You Should Read Them)", style=f'{SOCIAL_MEDIA_LINK_STYLE} bold')
     print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style='dodger_blue3')
-    print_centered_link('https://cryptadamus.substack.com/', 'Substack', style=HEADER_LINK)
-    print_centered_link('https://universeodon.com/@cryptadamist/115572634993386057', 'Mastodon', style=HEADER_LINK)
-    print_centered_link('https://x.com/Cryptadamist/status/1990866804630036988', 'Twitter', style=HEADER_LINK)
+    print_centered_link('https://cryptadamus.substack.com/', 'Substack', style=SOCIAL_MEDIA_LINK_STYLE)
+    print_centered_link('https://universeodon.com/@cryptadamist/115572634993386057', 'Mastodon', style=SOCIAL_MEDIA_LINK_STYLE)
+    print_centered_link('https://x.com/Cryptadamist/status/1990866804630036988', 'Twitter', style=SOCIAL_MEDIA_LINK_STYLE)
     console.line()
     print_other_site_link()
 

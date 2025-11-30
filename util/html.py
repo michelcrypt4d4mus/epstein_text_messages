@@ -1,5 +1,9 @@
 from rich.terminal_theme import TerminalTheme
 
+from .env import args
+
+
+PAGE_TITLE = "Epstein Estate Documents - Seventh Production Collection Reformatted Text Messages"
 
 CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 <html>
@@ -12,6 +16,7 @@ CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
             background-color: {background};
         }}
     </style>
+""" + f"<title>Epstein {'Emails' if args.all else 'Text Messages'}</title>" + """
 </head>
 <body>
     <pre style="font-family: Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace; white-space: pre-wrap; overflow-wrap: break-word;">
