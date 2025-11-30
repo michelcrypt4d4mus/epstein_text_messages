@@ -136,11 +136,12 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     STEVE_BANNON: BANNON_COLOR,
     ARIANE_DE_ROTHSCHILD: 'indian_red',
     OLIVIER_COLOM: LOBBYIST_COLOR,
-    DAVID_STERN: LAWYER_COLOR,
-    MOHAMED_WAHEED_HASSAN: MIDDLE_EAST_COLOR,
     BORIS_NIKOLIC: BUSINESS_COLOR,
     PRINCE_ANDREW: 'dodger_blue1',
+    TOM_PRITZKER: BUSINESS_COLOR,
     'Jide Zeitlin': BANK_COLOR,
+    DAVID_STERN: LAWYER_COLOR,
+    MOHAMED_WAHEED_HASSAN: MIDDLE_EAST_COLOR,
     None: 'grey74',
 }
 
@@ -150,7 +151,6 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {
     LEON_BLACK: BUSINESS_COLOR,
     LANDON_THOMAS: JOURNALIST_COLOR,  # NYT journo
     SULTAN_BIN_SULAYEM: 'green1',
-    # Epstein's lawyers
     DARREN_INDYKE: LAWYER_COLOR,
     RICHARD_KAHN: LAWYER_COLOR,
     DEEPAK_CHOPRA: 'dark_goldenrod',
@@ -203,7 +203,7 @@ COUNTERPARTY_COLORS.update(OTHER_STYLES)
 HIGHLIGHT_PATTERNS: dict[str, str] = {
     BANK_COLOR: fr"Amanda Ens|Black(rock|stone)|{DANIEL_SABBA}|DB|Deutsche Bank|Goldman( ?Sachs)|Morgan Stanley|j\.?p\.? ?morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com|Marc Leon|{PAUL_MORRIS}",
     BITCOIN_COLOR: r"bitcoin|block ?chain( capital)?|coins|cr[iy]pto(currency)?|e-currency|(jeffrey\s+)?wernick|(Howard\s+)?Lutnick|Libra|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)",
-    BUSINESS_COLOR: rf"Marc Rich|(Steve\s+)?Wynn|(Leslie\s+)?Wexner|{BARBRO_EHNBOM}|{NICHOLAS_RIBIS}|{ROBERT_LAWRENCE_KUHN}|{STEPHEN_HANSON}|{TERRY_KAFKA}",
+    BUSINESS_COLOR: rf"Marc Rich|(Steve\s+)?Wynn|(Leslie\s+)?Wexner|{BARBRO_EHNBOM}|{NICHOLAS_RIBIS}|{ROBERT_LAWRENCE_KUHN}|{STEPHEN_HANSON}|{TERRY_KAFKA}|{TOM_PRITZKER}",
     CHINA_COLOR: r"Beijing|CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|Peking|PRC|xi",
     DEMOCRATS_COLOR: r"Biden|(John )?Kerry|Maxine Waters|Obama|(Nancy )?Pelosi|Clinton|Hillary|Democrat(ic)?",
     EMPLOYEE_COLOR: fr"{EMAILER_REGEXES[LAWRANCE_VISOSKI].pattern}|{LESLEY_GROFF}|{NADIA_MARCINKO}",
@@ -211,15 +211,15 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     EUROPE_COLOR: fr"(Caroline|Jack)?\s*Lang(, Caroline)?|Lang|Le\s*Pen|Macron|(Angela )?Merk(el|le)|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Terje(( (R[øo]e?d[- ])?)?Lars[eo]n)?|Ukrain(e|ian)|Zug|{EMAILER_REGEXES[THORBJORN_JAGLAND].pattern}",
     HARVARD_COLOR: fr"{LISA_NEW}|Harvard|MIT( Media Lab)?|Media Lab|{EMAILER_REGEXES[LARRY_SUMMERS].pattern}",
     INDIA_COLOR: rf"Ambani|Hardeep( puree)?|Indian?|Modi|mumbai|Zubair( Khan)?|{VINIT_SAHNI}",
-    ISRAEL_COLOR: r"Bibi|(eh|Nili Priell )barak|Netanyahu|Israeli?",
+    ISRAEL_COLOR: r"Bibi|(eh|(Ehud|Nili Priell) )?barak|Mossad|Netanyahu|Israeli?",
     JOURNALIST_COLOR: rf"Alex Yablon|{EMAILER_REGEXES[EDWARD_EPSTEIN].pattern}|{PAUL_KRASSNER}|{MICHAEL_WOLFF}|Wolff|Susan Edelman|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk",
     LAWYER_COLOR: rf"(Alan (M\. )?)?Dershowi(l|tz)|(Ken(neth W.)?\s+)?Starr|{DAVID_SCHOEN}|{JAY_LEFKOWITZ}|Lefkowitz|Lilly (Ann )?Sanchez|{MARTIN_WEINBERG}|Paul Weiss|{REID_WEINGARTEN}|Weinberg|Weingarten|Roy Black|{SCOTT_J_LINK}",
     LOBBYIST_COLOR: r"Purevsuren Lundeg|Rob Crowe|Stanley Rosenberg", # lundeg mongolian ambassador, Rosenberg former state senator?
     MIDDLE_EAST_COLOR: rf"Abdulmalik Al-Makhlafi|Abu\s+Dhabi|{ANAS_ALRASHEED}|Assad|{AZIZA_ALAHMADI}|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Imran Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Riya(dh|nd)|Saudi(\s+Arabian?)?|Shaher Abdulhak Besher|Sharia|Syria|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
     MODELING_COLOR: rf'{EMAILER_REGEXES[JEAN_LUC_BRUNEL].pattern}|{DANIEL_SIAD}|Faith Kates?|mc2mm.com|{MARIANA_IDZKOWSKA}',
-    POLICE_COLOR: rf"Police Code Enforcement|Ann Marie Villafana|Kirk Blouin",
+    POLICE_COLOR: rf"Ann Marie Villafana|(James )?Comey|Kirk Blouin|((Bob|Robert) )?Mueller|Police Code Enforcement",
     PUBLICIST_COLOR: rf"{CHRISTINA_GALBRAITH}|Matthew Hiltzik|{PEGGY_SIEGAL}|{TYLER_SHEARS}|ross@acuityreputation.com",
-    REPUBLICANS_COLOR: r"bolton|cruz|kudlow|lewandowski|mnuchin|Pompeo|Republican",
+    REPUBLICANS_COLOR: r"bolton|Broidy|cruz|kudlow|lewandowski|mnuchin|Pompeo|Republican",
     RUSSIA_COLOR: fr"GRU|FSB|Lavrov|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Vladimir Yudashkin",
     SCHOLAR_COLOR: rf"((Noam|Valeria) )?Chomsky|{DAVID_HAIG}|{JOSCHA_BACH}|Joscha|Bach|Moshe Hoffman|{ROBERT_TRIVERS}|Trivers|{EMAILER_REGEXES[LAWRENCE_KRAUSS].pattern}",
     SOUTH_AMERICA_COLOR: r"Argentina|Bra[sz]il(ian)?|Bolsonar[aio]|Lula|(Nicolas )?Maduro|Venezuelan?s?",

@@ -74,7 +74,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     "Sent from my 'Phone": 'Sent from my iPhone',
     'Sent from Samsung Mob.le': 'Sent from Samsung Mobile',
     'Sent from Mabfl': 'Sent from Mobile',
-    'Torn Pritzker': 'Tom Pritzker',
+    'Torn Pritzker': TOM_PRITZKER,
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
     'Miroslav Laj6ak': MIROSLAV,
     re.compile(r'([/vkT]|Ai|li|(I|7)v)rote:'): 'wrote:',
