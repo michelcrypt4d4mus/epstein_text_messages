@@ -294,6 +294,7 @@ class Email(CommunicationDocument):
             return Text.from_markup(highlight_text(info_str))
 
     def idx_of_nth_quoted_reply(self, n: int = 2, text: str | None = None) -> int | None:
+        """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line."""
         text = text or self.text
 
         for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text)):
