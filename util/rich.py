@@ -196,7 +196,7 @@ COUNTERPARTY_COLORS.update(PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES)
 COUNTERPARTY_COLORS.update(OTHER_STYLES)
 
 HIGHLIGHT_PATTERNS: dict[str, str] = {
-    BANK_COLOR: fr"Amanda Ens|Black(rock|stone)|{DANIEL_SABBA}|DB|Deutsche Bank|Goldman( ?Sachs)|Jes Staley|Morgan Stanley|j\.?p\.? ?morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com|Marc Leon|{PAUL_MORRIS}|{PAUL_BARRETT}",
+    BANK_COLOR: fr"Amanda\s*Ens|Black(rock|stone)|{DANIEL_SABBA}|DB|Deutsche Bank|Goldman( ?Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|Jes\s+Staley|Merrill\s+Lynch|Morgan Stanley|j\.?p\.?\s*morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com|Marc\s*Leon|{PAUL_MORRIS}|{PAUL_BARRETT}",
     BITCOIN_COLOR: r"bitcoin|block ?chain( capital)?|Brock|coins|cr[iy]pto(currency)?|e-currency|(jeffrey\s+)?wernick|(Howard\s+)?Lutnick|Libra|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)",
     BUSINESS_COLOR: rf"Marc Rich|(Steve\s+)?Wynn|(Leslie\s+)?Wexner|{BARBRO_EHNBOM}|{NICHOLAS_RIBIS}|{ROBERT_LAWRENCE_KUHN}|{STEPHEN_HANSON}|{TERRY_KAFKA}|{TOM_PRITZKER}",
     CHINA_COLOR: r"Beijing|CCP|Chin(a|ese)|Gino Yu|Guo|Kwok|Tai(pei|wan)|Peking|PRC|xi",
