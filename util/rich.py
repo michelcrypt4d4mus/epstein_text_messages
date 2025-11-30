@@ -20,11 +20,7 @@ from .html import PAGE_TITLE
 from .strings import regex_escape_periods
 from .text_highlighter import EpsteinTextHighlighter
 
-LEADING_WHITESPACE_REGEX = re.compile(r'\A\s*', re.MULTILINE)
-NON_ALPHA_CHARS_REGEX = re.compile(r'[^a-zA-Z0-9 ]')
-MAX_PREVIEW_CHARS = 300
-NUM_COLOR_KEY_COLS = 3
-OUTPUT_WIDTH = 120
+COLOR_SUFFIX = '_COLOR'
 
 # Constant variables that end in "_COLOR" will be scanned to create the color highlight guide table.
 ARCHIVE_LINK_COLOR = 'slate_blue3'
@@ -60,8 +56,11 @@ TRUMP_COLOR = 'red3 bold'
 VICTIM_COLOR = 'orchid1'
 VIRGIN_ISLANDS_COLOR = 'sea_green1'
 
+COLOR_MAPPING = {v: k.removesuffix(COLOR_SUFFIX).lower() for k, v in locals().items() if k.endswith(COLOR_SUFFIX)}
+print(f"Color Mapping\n\n", COLOR_MAPPING)
+#get_dict_key_by_value
+
 # Theme style names
-COLOR_SUFFIX = '_COLOR'
 HEADER_STYLE_NAME = 'header_field'
 PHONE_NUMBER = 'phone_number'
 SENT_FROM = 'sent_from'
@@ -72,6 +71,13 @@ TIMESTAMP = 'timestamp'
 TITLE_STYLE = 'black on bright_white bold'
 SECTION_HEADER_STYLE = 'bold white on blue3'
 SOCIAL_MEDIA_LINK_STYLE = 'cadet_blue'
+
+# Misc
+LEADING_WHITESPACE_REGEX = re.compile(r'\A\s*', re.MULTILINE)
+NON_ALPHA_CHARS_REGEX = re.compile(r'[^a-zA-Z0-9 ]')
+MAX_PREVIEW_CHARS = 300
+NUM_COLOR_KEY_COLS = 3
+OUTPUT_WIDTH = 120
 
 BASE_NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Allen',
@@ -168,12 +174,16 @@ COUNTERPARTY_COLORS = {
     'Carolyn Rangel': PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES[DEEPAK_CHOPRA],  # Works for Deepak
     DEFAULT: 'wheat4',
     EVA: 'orchid',
+    'Ivanka': JAVANKA_COLOR,
+    'Jared Kushner': JAVANKA_COLOR,
     JEFFREY_EPSTEIN: 'blue1',
+    'Joichi Ito': PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED[JOI_ITO],
     JONATHAN_FARKAS: BRO_COLOR,
     LINDA_STONE: 'pink3',
     MELANIE_SPINELLA: 'magenta3',
     MELANIE_WALKER: 'light_pink3',
     MIROSLAV: EUROPE_COLOR,
+    'Miro': EUROPE_COLOR,
     PAULA: 'pink1',
     SOON_YI: 'hot_pink',
     TOM_BARRACK: BRO_COLOR,
@@ -249,14 +259,14 @@ CONSOLE_ARGS = {
     'width': OUTPUT_WIDTH,
 }
 
-# This is after the Theme() instantiation because 'bg' is reserved'
-COUNTERPARTY_COLORS.update({
-    'Ivanka': JAVANKA_COLOR,
-    'Joichi Ito': COUNTERPARTY_COLORS[JOI_ITO],
-    'Jared Kushner': JAVANKA_COLOR,
-    'Miro': COUNTERPARTY_COLORS[MIROSLAV],
-})
+HIGHLIGHTER_REGEXES = [
+    re.compile(fr"\b(?P<{COLOR_MAPPING[color]}>({pattern})s?)\b", re.I)
+    for color, pattern in HIGHLIGHT_PATTERNS.items()
+    if color in COLOR_MAPPING
+]
 
+for regex in HIGHLIGHTER_REGEXES:
+    print(f"    -> {regex.pattern}")
 
 if args.no_highlights:
     COUNTERPARTY_COLORS = {}
