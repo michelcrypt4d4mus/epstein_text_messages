@@ -341,16 +341,20 @@ def print_centered(msg: str, style: str = '') -> None:
     console.print(Align.center(msg), style=style)
 
 
+def print_centered_link(url: str, link_text: str, style: str | None = None) -> None:
+    print_centered(make_link_markup(url, link_text, style or ARCHIVE_LINK_COLOR))
+
+
 def print_header():
     console.print(f"This site is not optimized for mobile but if you get past the header it should work ok.", style='dim')
     console.line()
     console.print(Panel(Text("Epstein Estate Documents - Seventh Production Collection Reformatted Text Messages", justify='center', style='bold reverse')))
     console.line()
-    print_centered(f"[underline][link={SUBSTACK_URL}]I Made Epstein's Text Messages Great Again (And You Should Read Them)[/link][/underline]", f'{HEADER_LINK} bold')
-    print_centered(f"[dodger_blue3][underline][link={SUBSTACK_URL}]{SUBSTACK_URL.removeprefix('https://')}[/link][/underline][/dodger_blue3]")
-    print_centered("[underline][link=https://cryptadamus.substack.com/]Substack[/link][/underline]", HEADER_LINK)
-    print_centered("[underline][link=https://universeodon.com/@cryptadamist]Mastodon[/link][/underline]", HEADER_LINK)
-    print_centered("[underline][link=https://x.com/Cryptadamist/status/1990866804630036988]Twitter[/link][/underline]", HEADER_LINK)
+    print_centered_link(SUBSTACK_URL, "I Made Epstein's Text Messages Great Again (And You Should Read Them)", style=f'{HEADER_LINK} bold')
+    print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style='dodger_blue3')
+    print_centered_link('https://cryptadamus.substack.com/', 'Substack', style=HEADER_LINK)
+    print_centered_link('https://universeodon.com/@cryptadamist/115572634993386057', 'Mastodon', style=HEADER_LINK)
+    print_centered_link('https://x.com/Cryptadamist/status/1990866804630036988', 'Twitter', style=HEADER_LINK)
     console.line()
     print_other_site_link()
 
@@ -363,17 +367,17 @@ def print_header():
         table.add_row(highlight_text(k), v)
 
     console.print(Align.center(vertically_pad(table)))
-    print_centered(make_link_markup(OVERSIGHT_REPUBLICANS_PRESSER_URL, 'Oversight Committee Releases Additional Epstein Estate Documents'))
-    print_centered(make_link_markup(COFFEEZILLA_ARCHIVE_URL, 'Coffeezilla Archive Of Raw Epstein Materials'))
+    print_centered_link(OVERSIGHT_REPUBLICANS_PRESSER_URL, 'Oversight Committee Releases Additional Epstein Estate Documents')
+    print_centered_link(COFFEEZILLA_ARCHIVE_URL, 'Coffeezilla Archive Of Raw Epstein Materials')
     print_centered(make_link_markup(JMAIL_URL, 'Jmail') + " (read His Emails via Gmail interface)")
-    print_centered(make_link_markup(COURIER_NEWSROOM_ARCHIVE_URL, "Courier Newsroom's Searchable Archive"))
+    print_centered_link(COURIER_NEWSROOM_ARCHIVE_URL, "Courier Newsroom's Searchable Archive")
     print_centered(make_link_markup(f"{EPSTEINIFY_URL}/names", 'epsteinify.com') + " (raw document images)")
-    print_centered(make_link_markup(RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL, 'Google Drive Raw Documents'))
+    print_centered_link(RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL, 'Google Drive Raw Documents')
     console.line()
-    print_centered(make_link_markup(ATTRIBUTIONS_URL, "Explanation of Author Attributions", style='magenta'))
+    print_centered_link(ATTRIBUTIONS_URL, "Some Explanations of Author Attributions", style='magenta')
     print_centered(f"(thanks to {make_link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} and others for attribution help)")
-    print_centered(f"If you think there's an attribution error or can deanonymize an {UNKNOWN} contact {make_link_markup('https://x.com/cryptadamist', '@cryptadamist')}.", 'dim')
-    print_centered('(note this site is based on the OCR text provided by Congress which is not the greatest)', 'dim')
+    print_centered(f"If you think there's an attribution error or can deanonymize an {UNKNOWN} contact {make_link_markup('https://x.com/cryptadamist', '@cryptadamist')}.", 'grey46')
+    print_centered('(note this site is based on the OCR text provided by Congress which is not the greatest)', 'grey23')
 
 
 def print_author_header(msg: str, color: str | None) -> None:
@@ -390,18 +394,23 @@ def print_numbered_list(_list: list[str] | dict) -> None:
 
 
 def print_other_site_link() -> None:
-    msg = 'Another site made by this code where you can read'
+    msg = 'The other site made by this code'
     url = ''
 
     if args.all:
-        msg += " Epstein's text messages"
+        msg += " for Epstein's text messages"
         url = TEXT_MSGS_URL
     else:
-        msg += ' [italic]all[/italic] of His Emails'
+        msg += ' has [italic]all[/italic] of His Emails'
         url = ALL_EMAILS_URL
 
     markup_msg = make_link_markup(url, msg, 'chartreuse3')
     print_centered(Text('(') + Text.from_markup(markup_msg).append(')'), style='bold')
+
+
+def print_panel(msg: str, style: str = 'black on white', padding: tuple = (0, 0, 0, 0)) -> None:
+    console.print(Padding(Panel(Text.from_markup(msg, justify='center'), width=70, style=style), padding))
+    console.line()
 
 
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
@@ -411,19 +420,6 @@ def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centere
         panel = Align.center(panel)
 
     console.print(Padding(panel, (3, 0, 1, 0)))
-
-
-def print_panel(msg: str, style: str = 'black on white', padding: tuple = (0, 0, 0, 0)) -> None:
-    console.print(Padding(Panel(Text.from_markup(msg, justify='center'), width=70, style=style), padding))
-    console.line()
-
-
-def print_top_lines(file_text, n = 10, max_chars = MAX_PREVIEW_CHARS, in_panel = False) -> None:
-    """Print first n lines of a file."""
-    file_text = LEADING_WHITESPACE_REGEX.sub('', file_text)
-    top_text = escape('\n'.join(file_text.split("\n")[0:n])[0:max_chars])
-    output = Panel(top_text, expand=False) if in_panel else top_text + '\n'
-    console.print(output, style='dim')
 
 
 def vertically_pad(obj: RenderResult) -> Padding:
