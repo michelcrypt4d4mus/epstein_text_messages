@@ -173,7 +173,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     POLICE_COLOR: rf"Ann Marie Villafana|(James )?Comey|Kirk Blouin|((Bob|Robert) )?Mueller|Police Code Enforcement",
     PUBLICIST_COLOR: rf"{AL_SECKEL}|{CHRISTINA_GALBRAITH}|Henry Holt|Ian Osborne|Matthew Hiltzik|{PEGGY_SIEGAL}|{TYLER_SHEARS}|ross@acuityreputation.com|Citrick|{emailer_pattern(MICHAEL_SITRICK)}",
     REPUBLICANS_COLOR: r"bolton|Broidy|cruz|kudlow|lewandowski|mnuchin|(Paul )?Manafort|Pompeo|Republican",
-    RUSSIA_COLOR: fr"GRU|FSB|Lavrov|Masha\s*Drokova|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Vladimir Yudashkin",
+    RUSSIA_COLOR: fr"GRU|FSB|Lavrov|Masha\s*Drokova|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Rybolo(olev|vlev)|Vladimir Yudashkin",
     SCHOLAR_COLOR: fr"((Noam|Valeria) )?Chomsky|David Grosof|{DAVID_HAIG}|{JOSCHA_BACH}|Joscha|Bach|Moshe Hoffman|Peter Attia|{ROBERT_TRIVERS}|Trivers|{STEVEN_PFEIFFER}|{emailer_pattern(LAWRENCE_KRAUSS)}",
     SOUTH_AMERICA_COLOR: r"Argentina|Bra[sz]il(ian)?|Bolsonar[aio]|Lula|(Nicolas )?Maduro|Venezuelan?s?",
     TECH_BRO_COLOR: fr"Elon|Musk|Masa(yoshi)?( Son)?|Najeev|Reid Hoffman|(Peter )?Th(ie|ei)l|Softbank|{emailer_pattern(STEVEN_SINOFSKY)}",
