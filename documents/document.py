@@ -8,11 +8,11 @@ from dateutil.parser import parse
 from rich.markup import escape
 from rich.text import Text
 
-from util.constants import REDACTED, SEAN_BANNON, STEVE_BANNON
+from util.constants import search_archive_url
 from util.data import patternize
 from util.env import logger
 from util.file_helper import extract_file_id
-from util.rich import ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_pattern, highlight_text, logger, make_link, make_link_markup
+from util.rich import ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_regex_match, highlight_text, logger, make_link, make_link_markup
 from util.strings import *
 
 MULTINEWLINE_REGEX = re.compile(r"\n{3,}")
@@ -59,6 +59,9 @@ class Document:
         self.epsteinify_name_url = epsteinify_doc_url(self.file_path.stem)
         self.epsteinify_link_markup = make_link_markup(self.epsteinify_name_url, self.file_path.stem)
 
+    def archive_link(self, link_txt: str | None = None, style: str = ARCHIVE_LINK_COLOR) -> Text:
+        return make_link(search_archive_url(self.filename), link_txt or self.filename, style)
+
     def count_regex_matches(self, pattern: str) -> int:
         return len(re.findall(pattern, self.text))
 
@@ -92,7 +95,7 @@ class Document:
         type(self).file_matching_idx += 1
 
         return [
-            Text('').append(self.file_path.name, style=file_style).append(':').append(highlight_pattern(line, pattern))
+            Text('').append(self.file_path.name, style=file_style).append(':').append(highlight_regex_match(line, pattern))
             for line in matched_lines
         ]
 

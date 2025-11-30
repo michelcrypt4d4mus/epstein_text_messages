@@ -273,22 +273,6 @@ if args.suppress_output:
 console = Console(**CONSOLE_ARGS)
 
 
-def make_link_markup(url: str, link_text: str, style: str | None = ARCHIVE_LINK_COLOR) -> str:
-    return wrap_in_markup_style(f"[underline][link={url}]{link_text}[/link][/underline]", style)
-
-
-def make_link(url: str, link_text: str, style: str = ARCHIVE_LINK_COLOR) -> Text:
-    return Text.from_markup(make_link_markup(url, link_text, f"{style} bold"))  # TODO: shouldn't add 'bold'
-
-
-def archive_link(filename: str, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-    return make_link(search_archive_url(filename), link_txt or filename, style)
-
-
-def coffeezilla_link(search_term: str, link_txt: str, style: str = ARCHIVE_LINK_COLOR) -> Text:
-    return make_link(search_archive_url(search_term), link_txt or search_term, style)
-
-
 def get_style_for_name(name: str, default: str = DEFAULT) -> str:
     if name in COUNTERPARTY_COLORS:
         return COUNTERPARTY_COLORS[name]
@@ -300,7 +284,7 @@ def get_style_for_name(name: str, default: str = DEFAULT) -> str:
     return default
 
 
-def highlight_pattern(text: str, pattern: re.Pattern, style: str = 'cyan') -> Text:
+def highlight_regex_match(text: str, pattern: re.Pattern, style: str = 'cyan') -> Text:
     """Replace 'pattern' matches with markup of the match colored with 'style'."""
     return Text.from_markup(pattern.sub(rf'[{style}]\1[/{style}]', text))
 
@@ -341,6 +325,19 @@ def highlight_text(text: str) -> str:
             text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
 
     return text
+
+
+def make_link_markup(url: str, link_text: str, style: str | None = ARCHIVE_LINK_COLOR) -> str:
+    style = (style or '') + ' underline'
+    return wrap_in_markup_style(f"[link={url}]{link_text}[/link]", style)
+
+
+def make_link(url: str, link_text: str, style: str = ARCHIVE_LINK_COLOR) -> Text:
+    return Text.from_markup(make_link_markup(url, link_text, style))
+
+
+def search_coffeezilla_link(text: str, link_txt: str, style: str = ARCHIVE_LINK_COLOR) -> Text:
+    return make_link(search_coffeezilla_url(text), link_txt or text, style)
 
 
 def print_centered(obj: RenderableType, style: str = '') -> None:
