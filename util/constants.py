@@ -563,7 +563,7 @@ HEADER_ABBREVIATIONS = {
     "Barrack": "Tom Barrack (Trump ally)",
     'BG': "Bill Gates",
     'Bill': "Bill Gates",
-    "Brock": "Brock Pierce",
+    "Brock": 'Brock Pierce (crypto bro with a very sordid past)',
     "DB": "Deutsche Bank (maybe??)",
     'HBJ': "Hamad bin Jassim (former Qatari prime minister)",
     'Jabor': '"an influential man in Qatar"',
