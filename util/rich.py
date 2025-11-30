@@ -142,11 +142,9 @@ COUNTERPARTY_COLORS = {
     NADIA_MARCINKO: 'hot_pink',
     MIROSLAV: EUROPE_COLOR,
     PAUL_MORRIS: BANK_COLOR,
-    'Rob Crowe': LOBBYIST_COLOR,
     SCARAMUCCI: BITCOIN_COLOR.removesuffix(' bold'),
     SOON_YI: 'hot_pink',
     STACY_PLASKETT: 'medium_orchid3',
-    'Stanley Rosenberg': LOBBYIST_COLOR,  # Former state senator?
     SEAN_BANNON: BANNON_COLOR,
     STEVE_BANNON: BANNON_COLOR,
     TERJE: 'light_slate_blue',
@@ -165,15 +163,15 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     EHUD_BARAK: ISRAEL_COLOR,
     MARTIN_NOWAK: HARVARD_COLOR,
     'Masha Drokova': RUSSIA_COLOR,
-    OLIVIER_COLOM: LOBBYIST_COLOR,
     STEVE_BANNON: COUNTERPARTY_COLORS[STEVE_BANNON],
+    ARIANE_DE_ROTHSCHILD: 'indian_red',
+    OLIVIER_COLOM: LOBBYIST_COLOR,
     DAVID_STERN: LAWYER_COLOR,
     MOHAMED_WAHEED_HASSAN: MIDDLE_EAST_COLOR,
     PAULA: 'pink1',
     BORIS_NIKOLIC: BRO_COLOR,
     PRINCE_ANDREW: 'dodger_blue1',
     'Jide Zeitlin': BANK_COLOR,
-    ARIANE_DE_ROTHSCHILD: 'indian_red',
     None: 'grey74',
 }
 
@@ -207,7 +205,7 @@ COUNTERPARTY_COLORS.update(PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES)
 COUNTERPARTY_COLORS.update(OTHER_STYLES)
 
 HIGHLIGHT_PATTERNS: dict[str, str] = {
-    BANK_COLOR: r"Black(rock|stone)|DB|Deutsche Bank|Goldman( ?Sachs)|Morgan Stanley|j\.?p\.? ?morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com",
+    BANK_COLOR: r"Black(rock|stone)|DB|Deutsche Bank|Goldman( ?Sachs)|Morgan Stanley|j\.?p\.? ?morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com|Marc Leon",
     BITCOIN_COLOR: r"bitcoin|block ?chain( capital)?|coins|cr[iy]pto(currency)?|e-currency|(jeffrey\s+)?wernick|(Howard\s+)?Lutnick|Libra|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)",
     BUSINESS_COLOR: rf"(Steve\s+)?Wynn|(Leslie\s+)?Wexner|{NICHOLAS_RIBIS}|{ROBERT_LAWRENCE_KUHN}|{STEPHEN_HANSON}|{TERRY_KAFKA}",
     CHINA_COLOR: r"Beijing|CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|Peking|PRC|xi",
@@ -219,6 +217,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     ISRAEL_COLOR: r"Bibi|(eh|Nili Priell )barak|Netanyahu|Israeli?",
     JOURNALIST_COLOR: rf"Alex Yablon|{PAUL_KRASSNER}|{MICHAEL_WOLFF}|Wolff|Susan Edelman|(bbc|independent|mailonline|mirror)\.co\.uk",
     LAWYER_COLOR: rf"(Alan (M\. )?)?Dershowi(l|tz)|(Ken(neth W.)?\s+)?Starr|{DAVID_SCHOEN}|{JAY_LEFKOWITZ}|Lefkowitz|Lilly (Ann )?Sanchez|{MARTIN_WEINBERG}|{REID_WEINGARTEN}|Weinberg|Weingarten|Roy Black|{SCOTT_J_LINK}",
+    LOBBYIST_COLOR: r"Purevsuren Lundeg|Rob Crowe|Stanley Rosenberg", # lundeg mongolian ambassador, Rosenberg former state senator?
     MIDDLE_EAST_COLOR: rf"Abdulmalik Al-Makhlafi|Abu\s+Dhabi|{ANAS_ALRASHEED}|Assad|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Imran Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Riya(dh|nd)|Saudi(\s+Arabian?)?|Shaher Abdulhak Besher|Sharia|Syria|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
     POLICE_COLOR: f"Police Code Enforcement|Ann Marie Villafana|Kirk Blouin",
     REPUBLICANS_COLOR: r"bolton|lewandowski|mnuchin|Pompeo|Republican",
