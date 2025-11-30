@@ -341,13 +341,17 @@ def print_centered(msg: str, style: str = '') -> None:
     console.print(Align.center(msg), style=style)
 
 
+def print_centered_link(url: str, link_text: str, style: str | None = None) -> None:
+    print_centered(make_link_markup(url, link_text, style))
+
+
 def print_header():
     console.print(f"This site is not optimized for mobile but if you get past the header it should work ok.", style='dim')
     console.line()
     console.print(Panel(Text("Epstein Estate Documents - Seventh Production Collection Reformatted Text Messages", justify='center', style='bold reverse')))
     console.line()
-    print_centered(f"[underline][link={SUBSTACK_URL}]I Made Epstein's Text Messages Great Again (And You Should Read Them)[/link][/underline]", f'{HEADER_LINK} bold')
-    print_centered(f"[dodger_blue3][underline][link={SUBSTACK_URL}]{SUBSTACK_URL.removeprefix('https://')}[/link][/underline][/dodger_blue3]")
+    print_centered(make_link_markup(SUBSTACK_URL, "I Made Epstein's Text Messages Great Again (And You Should Read Them)", style=f'{HEADER_LINK} bold'))
+    print_centered(make_link_markup(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style='dodger_blue3'))
     print_centered(make_link_markup('https://cryptadamus.substack.com/', 'Substack', style=HEADER_LINK))
     print_centered(make_link_markup('https://universeodon.com/@cryptadamist/115572634993386057', 'Mastodon', style=HEADER_LINK))
     print_centered(make_link_markup('https://x.com/Cryptadamist/status/1990866804630036988', 'Twitter', style=HEADER_LINK))
