@@ -164,6 +164,7 @@ TRUNCATE_TERMS = [
     "Bannon the European: He's opening the populist fort in Brussels",
     "Steve Bannon doesn't do subtle.",
     'The Department of Justice lost its latest battle with Congress',
+    "Donald Trump's newly named chief strategist and senior counselor",
     # Diane Ziman
     'I was so proud to see him speak at the Women',
     # Krauss
