@@ -498,11 +498,11 @@ KNOWN_EMAIL_RECIPIENTS = {
     '032209': JEFFREY_EPSTEIN,        # More of a text convo?
     '029498': [JEFFREY_EPSTEIN, DAVID_HAIG, 'Gordon Getty', 'Norman Finkelstein'],  # Bad OCR
     '029154': [JEFFREY_EPSTEIN, DAVID_HAIG],         # Bad OCR
+    '028931': [JEFFREY_EPSTEIN, LAWRENCE_KRAUSS],    # Bad OCR
     '019407': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR
     '019409': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR
     '031980': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR
     '026228': [JEFFREY_EPSTEIN, STEVEN_PFEIFFER],    # Bad OCR
-    '028931': [JEFFREY_EPSTEIN, LAWRENCE_KRAUSS],    # Bad OCR
     '029163': [JEFFREY_EPSTEIN, ROBERT_TRIVERS],     # Bad OCR
     '033456': 'Joel',                 # Reply
     '033460': 'Joel',                 # Reply
