@@ -208,7 +208,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     CHINA_COLOR: r"Beijing|CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|Peking|PRC|xi",
     DEMOCRATS_COLOR: r"Biden|Maxine Waters|Obama|(Nancy )?Pelosi|Clinton|Hillary|Democrat(ic)?",
     ENTERTAINERS_COLOR: rf"Andres Serrano|David Blaine|Etienne Binant|Ramsey Elkholy|Woody( Allen)?",
-    EUROPE_COLOR: r"Le\s*Pen|Macron|(Angela )?Merk(el|le)|(Vi(c|k)tor\s+)?Orbah?n",
+    EUROPE_COLOR: r"Le\s*Pen|Macron|(Angela )?Merk(el|le)|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n",
     HARVARD_COLOR: rf"{LISA_NEW}|Harvard|MIT( Media Lab)?|Media Lab",
     INDIA_COLOR: rf"Ambani|Hardeep( puree)?|Indian?|Modi|mumbai|Zubair( Khan)?|{VINIT_SAHNI}",
     ISRAEL_COLOR: r"Bibi|(eh|Nili Priell )barak|Netanyahu|Israeli?",
@@ -217,7 +217,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     LOBBYIST_COLOR: r"Purevsuren Lundeg|Rob Crowe|Stanley Rosenberg", # lundeg mongolian ambassador, Rosenberg former state senator?
     MIDDLE_EAST_COLOR: rf"Abdulmalik Al-Makhlafi|Abu\s+Dhabi|{ANAS_ALRASHEED}|Assad|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Imran Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Riya(dh|nd)|Saudi(\s+Arabian?)?|Shaher Abdulhak Besher|Sharia|Syria|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
     POLICE_COLOR: f"Police Code Enforcement|Ann Marie Villafana|Kirk Blouin",
-    REPUBLICANS_COLOR: r"bolton|lewandowski|mnuchin|Pompeo|Republican",
+    REPUBLICANS_COLOR: r"bolton|cruz|lewandowski|mnuchin|Pompeo|Republican",
     RUSSIA_COLOR: r"GRU|FSB|Lavrov|Moscow|(Vladimir )?Putin|Russian?|Vladimir Yudashkin",
     SCHOLAR_COLOR: rf"((Noam|Valeria) )?Chomsky|{DAVID_HAIG}|{JOSCHA_BACH}|Joscha|Bach|Moshe Hoffman|{ROBERT_TRIVERS}|Trivers",
     SOUTH_AMERICA_COLOR: r"Argentina|Bra[sz]il(ian)?|Bolsonar[aio]|Lula|(Nicolas )?Maduro|Venezuelan?s?",
