@@ -12,14 +12,10 @@ from sys import exit
 from dotenv import load_dotenv
 load_dotenv()
 from rich.columns import Columns
-from rich.console import Console
 from rich.padding import Padding
-from rich.table import Table
 from rich.text import Text
 
-from documents.email_header import AUTHOR
 from documents.epstein_files import EpsteinFiles
-from documents.messenger_log import sender_counts
 from util import rich
 from util.env import additional_emailers, args, is_build, is_debug, skip_texts
 from util.file_helper import OUTPUT_GH_PAGES_HTML
@@ -34,13 +30,14 @@ COLOR_KEYS = [
 
 
 print_header()
-print_color_key(COLOR_KEYS)
 
 if args.colors_only:
+    print_color_key(COLOR_KEYS)
     exit()
 
 epstein_files = EpsteinFiles()
-epstein_files.print_summary()
+epstein_files.print_files_overview()
+print_color_key(COLOR_KEYS)
 
 
 # Text messages section

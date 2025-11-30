@@ -233,7 +233,7 @@ class EpsteinFiles:
 
         console.print(table)
 
-    def print_summary(self) -> None:
+    def print_files_overview(self) -> None:
         table = Table(title=f"File Analysis Summary", show_header=True, header_style="bold")
         table.add_column("File Type", justify='left')
         table.add_column("File Count", justify='center')
@@ -241,7 +241,7 @@ class EpsteinFiles:
         table.add_row('iMessage Logs', f"{len(self.imessage_logs):,}", str(self.identified_imessage_log_count()))
         table.add_row('Emails', f"{len(self.emails):,}", f"{len([e for e in self.emails if e.author]):,}")
         table.add_row('Other', f"{len(self.other_files):,}", 'n/a')
-        console.print(Padding(Align.center(table), (0, 0, 1, 0)))
+        console.print(Padding(Align.center(vertically_pad(table))))
 
     def lines_matching(self, _pattern: re.Pattern | str, file_type: Literal['all', 'other'] = 'all') -> list[str | Text]:
         documents = self.all_documents() if file_type == 'all' else self.other_files
