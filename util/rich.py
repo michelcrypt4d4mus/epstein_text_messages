@@ -201,13 +201,14 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     HEADER_FIELD_COLOR: r"^(Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):",
     SENT_FROM_COLOR: SENT_FROM_REGEX.pattern,
     SNIPPED_SIGNATURE_COLOR: r'<\.\.\.(snipped|trimmed).*\.\.\.>',
-    UNKNOWN_COLOR: UNKNOWN.replace('(', r'\(').replace(')', r'\)')
+    #UNKNOWN_COLOR: UNKNOWN.replace('(', '\\(').replace(')', '\\)'),
+    UNKNOWN_COLOR: r"\(unknown\)",
 }
 
 # Wrap in \b, add optional s? at end of all regex patterns
 HIGHLIGHT_REGEXES: dict[str, re.Pattern] = {
     # [\b\n] or no trailing \b is required for cases when last char in match is not a word char (e.g. when it's '.')
-    k: re.compile(fr"\b(({v})s?)\b", re.I) if k != HEADER_FIELD_COLOR else re.compile(v, re.MULTILINE)
+    k: re.compile(fr"\b(({v})s?)\b", re.I) if k not in [HEADER_FIELD_COLOR, UNKNOWN_COLOR] else re.compile(v, re.MULTILINE)
     for k, v in HIGHLIGHT_PATTERNS.items()
 }
 
@@ -273,6 +274,8 @@ def get_style_for_name(name: str, default: str = DEFAULT) -> str:
     for style, name_regex in HIGHLIGHT_REGEXES.items():
         if name_regex.search(name):
             return style
+        # else:
+        #     print(f"'{name}' did not match {name_regex.pattern}")
 
     return default
 
