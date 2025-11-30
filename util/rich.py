@@ -164,6 +164,7 @@ COUNTERPARTY_COLORS = {
     ALIREZA_ITTIHADIEH: MIDDLE_EAST_COLOR,  # Iranian / British?
     ANIL: INDIA_COLOR,
     BRAD_KARP: LAWYER_COLOR,
+    'Carolyn Rangel': PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES[DEEPAK_CHOPRA],  # Works for Deepak
     CELINA_DUBIN: DUBIN_COLOR,
     DEFAULT: 'wheat4',
     EVA: 'orchid',
@@ -208,7 +209,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     DEMOCRATS_COLOR: r"Biden|(Bill )?Clinton|Hillary|Democrat(ic)?|(John )?Kerry|Maxine\s*Waters|(Barack )?Obama|(Nancy )?Pelosi|Ron\s*Dellums",
     EMPLOYEE_COLOR: fr"{EMAILER_REGEXES[LAWRANCE_VISOSKI].pattern}|{LESLEY_GROFF}|{NADIA_MARCINKO}",
     ENTERTAINERS_COLOR: rf"Andres Serrano|Bobby slayton|David Blaine|Etienne Binant|Ramsey Elkholy|Woody( Allen)?",
-    EUROPE_COLOR: fr"(Caroline|Jack)?\s*Lang(, Caroline)?|Lang|Le\s*Pen|Macron|(Angela )?Merk(el|le)|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Terje(( (R[øo]e?d[- ])?)?Lars[eo]n)?|Ukrain(e|ian)|Zug|{EMAILER_REGEXES[THORBJORN_JAGLAND].pattern}",
+    EUROPE_COLOR: fr"(Caroline|Jack)?\s*Lang(, Caroline)?|Le\s*Pen|Macron|(Angela )?Merk(el|le)|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Terje(( (R[øo]e?d[- ])?)?Lars[eo]n)?|Edward Rod Larsen|Ukrain(e|ian)|Zug|{EMAILER_REGEXES[THORBJORN_JAGLAND].pattern}",
     HARVARD_COLOR: fr"{LISA_NEW}|Harvard|MIT( Media Lab)?|Media Lab|{EMAILER_REGEXES[LARRY_SUMMERS].pattern}",
     INDIA_COLOR: rf"Ambani|Hardeep( puree)?|Indian?|Modi|mumbai|Zubair( Khan)?|{VINIT_SAHNI}",
     ISRAEL_COLOR: r"Bibi|(eh|(Ehud|Nili Priell) )?barak|Mossad|Netanyahu|Israeli?",
