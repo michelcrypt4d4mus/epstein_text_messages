@@ -504,7 +504,7 @@ class Email(CommunicationDocument):
             console.print(f"{self.filename} body Text obj\n---------------------")
             console.print(highlighter(text))
 
-        email_txt_panel = Panel(highlighter(text), border_style=self._border_style(), expand=False)
+        email_txt_panel = Panel(highlighter(escape(text)), border_style=self._border_style(), expand=False)
         yield Padding(email_txt_panel, (0, 0, 2, EMAIL_INDENT))
 
 
