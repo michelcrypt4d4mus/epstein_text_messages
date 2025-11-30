@@ -49,22 +49,10 @@ if not skip_texts:
     print_centered("(conversations are sorted chronologically based on timestamp of first message)\n", style='gray30')
 
     for log_file in epstein_files.imessage_logs:
-        console.print(log_file)
+        console.print(Padding(log_file))
         console.line(2)
 
-    counts_table = Table(title="Text Message Counts By Author", show_header=True, header_style="bold")
-    counts_table.add_column(AUTHOR.title(), style="steel_blue bold", justify="left", width=30)
-    counts_table.add_column("Message Count", justify="center")
-
-    for k, v in sorted(sender_counts.items(), key=lambda item: item[1], reverse=True):
-        counts_table.add_row(Text(k, get_style_for_name(k)), str(v))
-
-    console.print(counts_table)
-    text_summary_msg = f"\nDeanonymized {epstein_files.identified_imessage_log_count()} of "
-    text_summary_msg += f"{len(epstein_files.imessage_logs)} text msg logs found in {len(epstein_files.all_files)} files."
-    console.print(text_summary_msg)
-    console.print(f"Found {epstein_files.imessage_msg_count()} total text messages in {len(epstein_files.imessage_logs)} conversations.")
-    console.print(f"(Last deploy found 4668 messages in 77 conversations)", style='dim')
+    epstein_files.print_imessage_summary()
 
 
 # Emails section
