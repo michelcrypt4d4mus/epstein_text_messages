@@ -330,7 +330,7 @@ class Email(CommunicationDocument):
             text = self.text
 
         text = '\n'.join([line for line in text.split('\n') if not BAD_LINE_REGEX.match(line)])
-        text = escape(REPLY_REGEX.sub(r'\n\1', text))  # Newlines between quoted replies
+        text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
 
         for name, signature_regex in EMAIL_SIGNATURES.items():
             text = signature_regex.sub(clipped_signature_replacement(name), text)
