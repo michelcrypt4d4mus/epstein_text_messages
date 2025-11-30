@@ -281,7 +281,7 @@ EMAILER_REGEXES = {
     TERJE: re.compile(r"Terje R[øo]e?d[- ]Larsen", re.IGNORECASE),
     TERRY_KAFKA: re.compile(r'Terry Kafka?', re.IGNORECASE),
     THANU_BOONYAWATANA: re.compile(r"Thanu (BOONYAWATANA|Cnx)", re.IGNORECASE),
-    THORBJORN_JAGLAND: re.compile(r'Thor.*Jag[il]and?', re.IGNORECASE),
+    THORBJORN_JAGLAND: re.compile(r'(Thor.{3, 8} )?Jag[il]and?', re.IGNORECASE),
     TONJA_HADDAD_COLEMAN: re.compile(fr"To(nj|rl)a Haddad Coleman|haddadfm@aol.com", re.IGNORECASE)
 }
 
