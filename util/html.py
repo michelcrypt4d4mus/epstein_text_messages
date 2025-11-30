@@ -9,6 +9,8 @@ CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="https://media.universeodon.com/accounts/avatars/109/363/179/904/598/380/original/eecdc2393e75e8bf.jpg" />
+
     <style>
         {stylesheet}
         body {{
