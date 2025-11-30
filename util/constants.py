@@ -107,6 +107,7 @@ TERRY_KAFKA = 'Terry Kafka'
 THANU_BOONYAWATANA = 'Thanu Boonyawatana'
 THORBJORN_JAGLAND = 'Thorbjørn Jagland'
 TOM_BARRACK = 'Tom Barrack'
+TOM_PRITZKER = 'Tom Pritzker'
 TONJA_HADDAD_COLEMAN = 'Tonja Haddad Coleman'
 TYLER_SHEARS = 'Tyler Shears'  # Reputation manager, like Al Seckel
 VINIT_SAHNI = 'Vinit Sahni'
