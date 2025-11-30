@@ -208,7 +208,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     CHINA_COLOR: r"Beijing|CCP|Chin(a|ese)|Gino Yu|Guo|Kwok|Tai(pei|wan)|Peking|PRC|xi",
     DEMOCRATS_COLOR: r"Biden|(Bill )?Clinton|Hillary|Democrat(ic)?|(John )?Kerry|Maxine\s*Waters|(Barack )?Obama|(Nancy )?Pelosi|Ron\s*Dellums",
     EMPLOYEE_COLOR: fr"{EMAILER_REGEXES[LAWRANCE_VISOSKI].pattern}|{LESLEY_GROFF}|{NADIA_MARCINKO}",
-    ENTERTAINERS_COLOR: rf"Andres Serrano|Bobby slayton|David Blaine|Etienne Binant|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?",
+    ENTERTAINERS_COLOR: rf"Andres Serrano|Bill Siegel|Bobby slayton|David Blaine|Etienne Binant|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?",
     EUROPE_COLOR: fr"(Caroline|Jack)?\s*Lang(, Caroline)?|Le\s*Pen|Macron|(Angela )?Merk(el|le)|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|((Lord|Peter) )?Mandelson|Terje(( (R[øo]e?d[- ])?)?Lars[eo]n)?|Edward Rod Larsen|Ukrain(e|ian)|Zug|{EMAILER_REGEXES[THORBJORN_JAGLAND].pattern}",
     HARVARD_COLOR: fr"{LISA_NEW}|Harvard|MIT( Media Lab)?|Media Lab|{EMAILER_REGEXES[LARRY_SUMMERS].pattern}",
     INDIA_COLOR: rf"Ambani|Hardeep( puree)?|Indian?|Modi|mumbai|Zubair( Khan)?|{VINIT_SAHNI}",
