@@ -422,7 +422,7 @@ KNOWN_EMAIL_AUTHORS = {
     '031129': LARRY_SUMMERS,
     '032206': LAWRENCE_KRAUSS,         # More of a text convo?
     '032209': LAWRENCE_KRAUSS,         # More of a text convo?
-    '032210': LAWRENCE_KRAUSS,         # More of a text convo?
+    # '032210': LAWRENCE_KRAUSS,         # More of a text convo?
     '029196': LAWRENCE_KRAUSS,
     '033487': LAWRANCE_VISOSKI,
     '028789': LAWRANCE_VISOSKI,
@@ -502,6 +502,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '028849': JEFFREY_EPSTEIN,        # Conversation
     '026547': JEFFREY_EPSTEIN,        # Bad OCR
     '032209': JEFFREY_EPSTEIN,        # More of a text convo?
+    '032210': JEFFREY_EPSTEIN,        # More of a text convo?
     '029498': [JEFFREY_EPSTEIN, DAVID_HAIG, 'Gordon Getty', 'Norman Finkelstein'],  # Bad OCR
     '029154': [JEFFREY_EPSTEIN, DAVID_HAIG],         # Bad OCR
     '028931': [JEFFREY_EPSTEIN, LAWRENCE_KRAUSS],    # Bad OCR

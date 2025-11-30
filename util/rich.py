@@ -33,7 +33,7 @@ BITCOIN_COLOR = 'orange1 bold'
 BUSINESS_COLOR = 'spring_green4'
 BRO_COLOR = 'tan'
 CHINA_COLOR = 'bright_red'
-DEFAULT_NAME_COLOR = 'grey82'
+DEFAULT_NAME_COLOR = 'gray46'
 DEMOCRATS_COLOR = 'sky_blue1'
 DUBIN_COLOR = 'medium_orchid1'
 EMPLOYEE_COLOR = 'deep_sky_blue4'
@@ -204,7 +204,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     BANK_COLOR: fr"Amanda Ens|Black(rock|stone)|{DANIEL_SABBA}|DB|Deutsche Bank|Goldman( ?Sachs)|Morgan Stanley|j\.?p\.? ?morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com|Marc Leon|{PAUL_MORRIS}",
     BITCOIN_COLOR: r"bitcoin|block ?chain( capital)?|coins|cr[iy]pto(currency)?|e-currency|(jeffrey\s+)?wernick|(Howard\s+)?Lutnick|Libra|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)",
     BUSINESS_COLOR: rf"Marc Rich|(Steve\s+)?Wynn|(Leslie\s+)?Wexner|{BARBRO_EHNBOM}|{NICHOLAS_RIBIS}|{ROBERT_LAWRENCE_KUHN}|{STEPHEN_HANSON}|{TERRY_KAFKA}|{TOM_PRITZKER}",
-    CHINA_COLOR: r"Beijing|CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|Peking|PRC|xi",
+    CHINA_COLOR: r"Beijing|CCP|Chin(a|ese)|Gino Yu|Guo|Kwok|Tai(pei|wan)|Peking|PRC|xi",
     DEMOCRATS_COLOR: r"Biden|(John )?Kerry|Maxine Waters|Obama|(Nancy )?Pelosi|Clinton|Hillary|Democrat(ic)?",
     EMPLOYEE_COLOR: fr"{EMAILER_REGEXES[LAWRANCE_VISOSKI].pattern}|{LESLEY_GROFF}|{NADIA_MARCINKO}",
     ENTERTAINERS_COLOR: rf"Andres Serrano|Bobby slayton|David Blaine|Etienne Binant|Ramsey Elkholy|Woody( Allen)?",
@@ -221,10 +221,10 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     PUBLICIST_COLOR: rf"{CHRISTINA_GALBRAITH}|Matthew Hiltzik|{PEGGY_SIEGAL}|{TYLER_SHEARS}|ross@acuityreputation.com",
     REPUBLICANS_COLOR: r"bolton|Broidy|cruz|kudlow|lewandowski|mnuchin|Pompeo|Republican",
     RUSSIA_COLOR: fr"GRU|FSB|Lavrov|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Vladimir Yudashkin",
-    SCHOLAR_COLOR: rf"((Noam|Valeria) )?Chomsky|{DAVID_HAIG}|{JOSCHA_BACH}|Joscha|Bach|Moshe Hoffman|{ROBERT_TRIVERS}|Trivers|{EMAILER_REGEXES[LAWRENCE_KRAUSS].pattern}",
+    SCHOLAR_COLOR: rf"((Noam|Valeria) )?Chomsky|David Grosof{DAVID_HAIG}|{JOSCHA_BACH}|Joscha|Bach|Moshe Hoffman|{ROBERT_TRIVERS}|Trivers|{EMAILER_REGEXES[LAWRENCE_KRAUSS].pattern}",
     SOUTH_AMERICA_COLOR: r"Argentina|Bra[sz]il(ian)?|Bolsonar[aio]|Lula|(Nicolas )?Maduro|Venezuelan?s?",
     TECH_BRO_COLOR: r"Elon|Musk|Masa(yoshi)?( Son)?|Najeev|Reid Hoffman|(Peter )?Thiel|Softbank",
-    TRUMP_COLOR: r"(DJT|Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)(?! Rubin)|Roger\s+Stone",
+    TRUMP_COLOR: r"DJT|(Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)(?! Rubin)|Roger\s+Stone",
     VICTIM_COLOR: r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts",
     # Individuals' colors
     BITCOIN_COLOR.removesuffix(' bold'): r"mooch|(Anthony ('The Mooch' )?)?Scaramucci",
