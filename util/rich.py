@@ -206,7 +206,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     BITCOIN_COLOR: r"bitcoin|block ?chain( capital)?|coins|cr[iy]pto(currency)?|e-currency|(jeffrey\s+)?wernick|(Howard\s+)?Lutnick|Libra|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)",
     BUSINESS_COLOR: rf"Marc Rich|(Steve\s+)?Wynn|(Leslie\s+)?Wexner|{NICHOLAS_RIBIS}|{ROBERT_LAWRENCE_KUHN}|{STEPHEN_HANSON}|{TERRY_KAFKA}",
     CHINA_COLOR: r"Beijing|CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|Peking|PRC|xi",
-    DEMOCRATS_COLOR: r"Biden|Maxine Waters|Obama|(Nancy )?Pelosi|Clinton|Hillary|Democrat(ic)?",
+    DEMOCRATS_COLOR: r"Biden|(John )?Kerry|Maxine Waters|Obama|(Nancy )?Pelosi|Clinton|Hillary|Democrat(ic)?",
     ENTERTAINERS_COLOR: rf"Andres Serrano|David Blaine|Etienne Binant|Ramsey Elkholy|Woody( Allen)?",
     EUROPE_COLOR: r"Le\s*Pen|Macron|(Angela )?Merk(el|le)|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n",
     HARVARD_COLOR: rf"{LISA_NEW}|Harvard|MIT( Media Lab)?|Media Lab",
