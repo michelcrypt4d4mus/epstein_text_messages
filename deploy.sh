@@ -14,6 +14,7 @@ EMAILS_URL="$GITHUB_PAGES_BASE_URL/$EMAILS_PROJECT_NAME/"
 TEXT_MSGS_URL="$GITHUB_PAGES_BASE_URL/$TEXT_MSGS_PROJECT_NAME/"
 
 
+# Preparation / checking for issues
 any_uncommitted_changes() {
     if [[ $(git status --porcelain --untracked-files=no | wc -l) -eq 0 ]]; then
         return 1
@@ -27,13 +28,14 @@ if any_uncommitted_changes; then
     exit
 fi
 
-git push origin master --quiet
-
 if [ -f "$INDEX_HTML_PATH" ]; then
     echo -e "Removing '$INDEX_HTML_PATH' on master..."
     rm "$INDEX_HTML_PATH"
 fi
 
+
+# Text messages
+git push origin master --quiet
 git checkout gh_pages
 git merge --no-edit master --quiet
 echo -e "Building '$INDEX_HTML_PATH'..."
