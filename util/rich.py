@@ -259,8 +259,8 @@ for style, pattern in HIGHLIGHT_PATTERNS.items():
     #print(f"    -> {regex.pattern}")
     THEME_STYLES[highlighter_style_name(style_name)] = style
 
-HIGHLIGHT_PATTERNS = {}
-HIGHLIGHT_REGEXES = {}
+# HIGHLIGHT_PATTERNS = {}
+# HIGHLIGHT_REGEXES = {}
 
 class TempHighlighter(RegexHighlighter):
     """Currently only highlights the email header."""
@@ -309,8 +309,8 @@ def get_style_for_name(name: str, default: str = DEFAULT) -> str:
 
 
 def highlight_interesting_text(text: str) -> str:
-    for style, name_regex in HIGHLIGHT_REGEXES.items():
-        text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
+    # for style, name_regex in HIGHLIGHT_REGEXES.items():
+    #     text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
 
     return text
 

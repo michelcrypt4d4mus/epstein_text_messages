@@ -302,7 +302,7 @@ class Email(CommunicationDocument):
             return Text(self.filename)
         else:
             info_str = f"Email (author='{self.author}', recipients={self.recipients}, timestamp='{self.timestamp}')"
-            return Text.from_markup(highlight_interesting_text(info_str))
+            return Text(info_str)
 
     def idx_of_nth_quoted_reply(self, n: int = 2, text: str | None = None) -> int | None:
         """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line."""

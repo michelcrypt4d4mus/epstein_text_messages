@@ -96,7 +96,9 @@ class MessengerLog(CommunicationDocument):
                 elif re.match('[ME]+', sender):
                     sender = MELANIE_WALKER
 
-                sender_txt = Text(sender_str, style=sender_style or f"{get_style_for_name(sender)} bold")
+                author_style = f"{get_style_for_name(sender)} bold"
+                logger.info(f"author_style for '{sender}' = '{author_style}', sender_style = '{sender_style}'")
+                sender_txt = Text(sender_str, style=sender_style or author_style)
 
             # Fix multiline links
             if msg.startswith('http'):
@@ -113,7 +115,7 @@ class MessengerLog(CommunicationDocument):
                 if len(msg_lines) > 0:
                     msg = msg.append('\n' + ' '.join(msg_lines))
             else:
-                msg = Text.from_markup(highlight_interesting_text(msg.replace('\n', ' ')))  # remove newlines
+                msg = Text(msg.replace('\n', ' '))  # remove newlines
 
             sender_counts[UNKNOWN if (sender in UNKNOWN_TEXTERS or BAD_TEXTER_REGEX.match(sender)) else sender] += 1
             yield Text('').append(timestamp).append(sender_txt).append(': ', style='dim').append(msg)
