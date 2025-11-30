@@ -26,36 +26,15 @@ from util.file_helper import OUTPUT_GH_PAGES_HTML
 from util.rich import *
 from util.html import *
 
-
-def build_color_highlight_info_table() -> Align:
-    color_keys = [
-        Text(color_name.removesuffix(COLOR_SUFFIX), style=getattr(rich, color_name))
-        for color_name in sorted([item for item in dir(rich) if item.endswith(COLOR_SUFFIX)])
-        if color_name not in ['ARCHIVE_LINK_COLOR', 'DUBIN_COLOR']
-    ]
-
-    color_table = Table(show_header=False, title='Rough Guide to Highlighted Colors')
-    num_colors = len(color_keys)
-    row_number = 0
-
-    for i in range(0, NUM_COLOR_KEY_COLS):
-        color_table.add_column(f"color_col_{i}", justify='center', width=20)
-
-    while (row_number * NUM_COLOR_KEY_COLS) < num_colors:
-        idx = row_number * NUM_COLOR_KEY_COLS
-        color_table.add_row(
-            color_keys[idx],
-            color_keys[idx + 1] if (idx + 1) < num_colors else '',
-            color_keys[idx + 2] if (idx + 2) < num_colors else '',
-        )
-        row_number += 1
-
-    # columns = Columns(color_keys, equal=False, expand=True, title='Rough Guide to Highlighted Colors')
-    return Align.center(vertically_pad(color_table))
+COLOR_KEYS = [
+    Text(color_name.removesuffix(COLOR_SUFFIX), style=getattr(rich, color_name))
+    for color_name in sorted([constant for constant in dir(rich) if constant.endswith(COLOR_SUFFIX)])
+    if color_name not in ['ARCHIVE_LINK_COLOR', 'DUBIN_COLOR', 'DEFAULT_NAME_COLOR']
+]
 
 
 print_header()
-console.print(build_color_highlight_info_table())
+print_color_key(COLOR_KEYS)
 
 if args.colors_only:
     exit()

@@ -4,7 +4,7 @@ import re
 from os import devnull
 
 from rich.align import Align
-from rich.console import Console, RenderResult
+from rich.console import Console, RenderableType
 from rich.markup import escape
 from rich.panel import Panel
 from rich.padding import Padding
@@ -345,8 +345,8 @@ def highlight_text(text: str) -> str:
     return text
 
 
-def print_centered(msg: str, style: str = '') -> None:
-    console.print(Align.center(msg), style=style)
+def print_centered(obj: RenderableType, style: str = '') -> None:
+    console.print(Align.center(obj), style=style)
 
 
 def print_centered_link(url: str, link_text: str, style: str | None = None) -> None:
@@ -395,6 +395,27 @@ def print_author_header(msg: str, color: str | None) -> None:
     console.print('\n', Align.center(panel), '\n')
 
 
+def print_color_key(color_keys: Text) -> None:
+    color_table = Table(show_header=False, title='Rough Guide to Highlighted Colors')
+    num_colors = len(color_keys)
+    row_number = 0
+
+    for i in range(0, NUM_COLOR_KEY_COLS):
+        color_table.add_column(f"color_col_{i}", justify='center', width=20)
+
+    while (row_number * NUM_COLOR_KEY_COLS) < num_colors:
+        idx = row_number * NUM_COLOR_KEY_COLS
+        color_table.add_row(
+            color_keys[idx],
+            color_keys[idx + 1] if (idx + 1) < num_colors else '',
+            color_keys[idx + 2] if (idx + 2) < num_colors else '',
+        )
+        row_number += 1
+
+    # columns = Columns(color_keys, equal=False, expand=True, title='Rough Guide to Highlighted Colors')
+    print_centered(vertically_pad(color_table))
+
+
 def print_numbered_list(_list: list[str] | dict) -> None:
     for i, name in enumerate(_list):
         name = name or UNKNOWN
@@ -431,7 +452,7 @@ def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centere
     console.print(Padding(panel, (3, 0, 1, 0)))
 
 
-def vertically_pad(obj: RenderResult) -> Padding:
+def vertically_pad(obj: RenderableType) -> Padding:
     return Padding(obj, VERTICAL_PADDING)
 
 
