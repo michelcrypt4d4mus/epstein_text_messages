@@ -223,6 +223,7 @@ SUPPRESS_OUTPUT_FOR_IDS = {
     '028781': "the same as 013460",
     '033207': "the same as 033580",
     '025547': "the same document as 028506",
+    '026549': "the same as 028784",
 }
 
 clipped_signature_replacement = lambda name: f'[dim]<...snipped {name.lower()} legal signature...>[/dim]'
