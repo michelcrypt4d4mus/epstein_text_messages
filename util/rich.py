@@ -18,7 +18,10 @@ from .constants import *
 from .env import args, deep_debug, is_debug, logger
 from .html import PAGE_TITLE
 
+# Misc
 COLOR_SUFFIX = '_COLOR'
+NUM_COLOR_KEY_COLS = 3
+OUTPUT_WIDTH = 120
 
 # Constant variables that end in "_COLOR" will be scanned to create the color highlight guide table.
 # Colors for highlighting members of groups
@@ -82,23 +85,16 @@ COLOR_MAPPING = {
     if k.endswith(COLOR_SUFFIX)
 }
 
-# Theme style names
-REGEX_STYLE_PREFIX = 'regex'
-PHONE_NUMBER = 'phone_number'
-TEXT_LINK = 'text_link'
-TIMESTAMP = 'timestamp'
-
 # Other styles
 TITLE_STYLE = 'black on bright_white bold'
 SECTION_HEADER_STYLE = 'bold white on blue3'
 SOCIAL_MEDIA_LINK_STYLE = 'cadet_blue'
 
-# Misc
-LEADING_WHITESPACE_REGEX = re.compile(r'\A\s*', re.MULTILINE)
-NON_ALPHA_CHARS_REGEX = re.compile(r'[^a-zA-Z0-9 ]')
-MAX_PREVIEW_CHARS = 300
-NUM_COLOR_KEY_COLS = 3
-OUTPUT_WIDTH = 120
+# Theme style names
+PHONE_NUMBER = 'phone_number'
+REGEX_STYLE_PREFIX = 'regex'
+TEXT_LINK = 'text_link'
+TIMESTAMP = 'timestamp'
 
 # Order matters (will be order of output)
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED_LIST = [
@@ -165,7 +161,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     JAVANKA_COLOR: fr"Ivanka( Trump)?|(Jared )?Kushner|Jared",
     JOURNALIST_COLOR: rf"Alex Yablon|{emailer_pattern(EDWARD_EPSTEIN)}|{emailer_pattern(LANDON_THOMAS)}|{PAUL_KRASSNER}|{MICHAEL_WOLFF}|Wolff|Susan Edelman|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk",
     LAWYER_COLOR: rf"{emailer_pattern(DARREN_INDYKE)}|{emailer_pattern(RICHARD_KAHN)}|{emailer_pattern(BRAD_KARP)}|(Alan (M\. )?)?Dershowi(l|tz)|{emailer_pattern(DAVID_STERN)}|(Erika )?Kellerhals|(Ken(neth W.)?\s+)?Starr|{DAVID_SCHOEN}|{JACK_GOLDBERGER}|{JAY_LEFKOWITZ}|Lefkowitz|Lilly (Ann )?Sanchez|{MARTIN_WEINBERG}|Michael J. Pike|Paul Weiss|{REID_WEINGARTEN}|Weinberg|Weingarten|Roy Black|{SCOTT_J_LINK}",
-    LOBBYIST_COLOR: fr"{OLIVIER_COLOM}|Purevsuren Lundeg|Rob Crowe|Stanley Rosenberg", # lundeg mongolian ambassador, Rosenberg former state senator?
+    LOBBYIST_COLOR: fr"{OLIVIER_COLOM}|Purevsuren Lundeg|Rob Crowe|Stanley Rosenberg",  # lundeg mongolian ambassador, Rosenberg former state senator?
     MIDDLE_EAST_COLOR: rf"{emailer_pattern(MOHAMED_WAHEED_HASSAN)}|Abdulmalik Al-Makhlafi|Abu\s+Dhabi|{ANAS_ALRASHEED}|Assad|{AZIZA_ALAHMADI}|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Imran Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Raafat\s*Alsabbagh|Riya(dh|nd)|Saudi(\s+Arabian?)?|Shaher( Abdulhak Besher)?|Sharia|Syria|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
     MODELING_COLOR: rf'{emailer_pattern(JEAN_LUC_BRUNEL)}|{DANIEL_SIAD}|Faith Kates?|\w+@mc2mm.com|{MARIANA_IDZKOWSKA}',
     POLICE_COLOR: rf"Ann Marie Villafana|(James )?Comey|Kirk Blouin|((Bob|Robert) )?Mueller|Police Code Enforcement",
@@ -199,7 +195,6 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     HEADER_FIELD_COLOR: r"^(Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):",
     SENT_FROM_COLOR: SENT_FROM_REGEX.pattern,
     SNIPPED_SIGNATURE_COLOR: r'<\.\.\.(snipped|trimmed).*\.\.\.>',
-    #UNKNOWN_COLOR: UNKNOWN.replace('(', '\\(').replace(')', '\\)'),
     UNKNOWN_COLOR: r"\(unknown\)",
 }
 
