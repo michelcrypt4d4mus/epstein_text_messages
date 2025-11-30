@@ -39,7 +39,7 @@ SECTION_HEADER_STYLE = 'bold white on blue3'
 highlighter_style_name = lambda style_name: f"{HEADER_FIELD}.{style_name}"
 
 # Constant variables that end in "_COLOR" will be scanned to create the color highlight guide table.
-ARCHIVE_LINK_COLOR = 'blue3'
+ARCHIVE_LINK_COLOR = 'slate_blue3'
 BANK_COLOR = 'green'
 BANNON_COLOR = 'color(58)'
 BITCOIN_COLOR = 'orange1 bold'
@@ -351,8 +351,8 @@ def print_header():
     console.line()
     console.print(Panel(Text(PAGE_TITLE, justify='center'), style='bold reverse'))
     console.line()
-    print_centered_link(SUBSTACK_URL, "I Made Epstein's Text Messages Great Again (And You Should Read Them)", style=f'chartreuse3 bold')
-    print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style='dodger_blue3')
+    print_centered_link(SUBSTACK_URL, "I Made Epstein's Text Messages Great Again (And You Should Read Them)", style=f'chartreuse1 bold')
+    print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style='dark_sea_green4 dim')
     print_centered_link('https://cryptadamus.substack.com/', 'Substack', style=SOCIAL_MEDIA_LINK_STYLE)
     print_centered_link('https://universeodon.com/@cryptadamist/115572634993386057', 'Mastodon', style=SOCIAL_MEDIA_LINK_STYLE)
     print_centered_link('https://x.com/Cryptadamist/status/1990866804630036988', 'Twitter', style=SOCIAL_MEDIA_LINK_STYLE)
