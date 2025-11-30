@@ -39,7 +39,7 @@ DUBIN_COLOR = 'medium_orchid1'
 ENTERTAINERS_COLOR = 'light_steel_blue3'
 EUROPE_COLOR = 'light_sky_blue3'
 HARVARD_COLOR = 'deep_pink2'
-SOCIAL_MEDIA_LINK_STYLE = 'cadet_blue'
+MODELING_COLOR = 'pale_violet_red1'
 INDIA_COLOR = 'bright_green'
 ISRAEL_COLOR = 'dodger_blue2'
 JAVANKA_COLOR = 'medium_violet_red'
@@ -65,9 +65,11 @@ PHONE_NUMBER = 'phone_number'
 SENT_FROM = 'sent_from'
 TEXT_LINK = 'text_link'
 TIMESTAMP = 'timestamp'
+
 # Other styles
 TITLE_STYLE = 'black on bright_white bold'
 SECTION_HEADER_STYLE = 'bold white on blue3'
+SOCIAL_MEDIA_LINK_STYLE = 'cadet_blue'
 
 BASE_NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Allen',
@@ -125,8 +127,8 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     JOI_ITO: 'blue_violet',
     AL_SECKEL: 'orange_red1',
     JABOR_Y: "spring_green1",
-    DANIEL_SIAD: 'dark_khaki',
-    JEAN_LUC_BRUNEL: 'pale_violet_red1',
+    DANIEL_SIAD: MODELING_COLOR,
+    JEAN_LUC_BRUNEL: MODELING_COLOR,
     EHUD_BARAK: ISRAEL_COLOR,
     MARTIN_NOWAK: HARVARD_COLOR,
     'Masha Drokova': RUSSIA_COLOR,
@@ -202,7 +204,7 @@ COUNTERPARTY_COLORS.update(OTHER_STYLES)
 HIGHLIGHT_PATTERNS: dict[str, str] = {
     BANK_COLOR: fr"Amanda Ens|Black(rock|stone)|DB|Deutsche Bank|Goldman( ?Sachs)|Morgan Stanley|j\.?p\.? ?morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com|Marc Leon|{PAUL_MORRIS}",
     BITCOIN_COLOR: r"bitcoin|block ?chain( capital)?|coins|cr[iy]pto(currency)?|e-currency|(jeffrey\s+)?wernick|(Howard\s+)?Lutnick|Libra|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)",
-    BUSINESS_COLOR: rf"Marc Rich|(Steve\s+)?Wynn|(Leslie\s+)?Wexner|{NICHOLAS_RIBIS}|{ROBERT_LAWRENCE_KUHN}|{STEPHEN_HANSON}|{TERRY_KAFKA}",
+    BUSINESS_COLOR: rf"Marc Rich|(Steve\s+)?Wynn|(Leslie\s+)?Wexner|{BARBRO_EHNBOM}|{NICHOLAS_RIBIS}|{ROBERT_LAWRENCE_KUHN}|{STEPHEN_HANSON}|{TERRY_KAFKA}",
     CHINA_COLOR: r"Beijing|CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|Peking|PRC|xi",
     DEMOCRATS_COLOR: r"Biden|(John )?Kerry|Maxine Waters|Obama|(Nancy )?Pelosi|Clinton|Hillary|Democrat(ic)?",
     ENTERTAINERS_COLOR: rf"Andres Serrano|David Blaine|Etienne Binant|Ramsey Elkholy|Woody( Allen)?",
@@ -214,6 +216,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     LAWYER_COLOR: rf"(Alan (M\. )?)?Dershowi(l|tz)|(Ken(neth W.)?\s+)?Starr|{DAVID_SCHOEN}|{JAY_LEFKOWITZ}|Lefkowitz|Lilly (Ann )?Sanchez|{MARTIN_WEINBERG}|Paul Weiss|{REID_WEINGARTEN}|Weinberg|Weingarten|Roy Black|{SCOTT_J_LINK}",
     LOBBYIST_COLOR: r"Purevsuren Lundeg|Rob Crowe|Stanley Rosenberg", # lundeg mongolian ambassador, Rosenberg former state senator?
     MIDDLE_EAST_COLOR: rf"Abdulmalik Al-Makhlafi|Abu\s+Dhabi|{ANAS_ALRASHEED}|Assad|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Imran Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Riya(dh|nd)|Saudi(\s+Arabian?)?|Shaher Abdulhak Besher|Sharia|Syria|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
+    MODELING_COLOR: rf'{EMAILER_REGEXES[JEAN_LUC_BRUNEL].pattern}|{DANIEL_SIAD}|Faith Kates?|mc2mm.com',
     POLICE_COLOR: rf"Police Code Enforcement|Ann Marie Villafana|Kirk Blouin",
     PUBLICIST_COLOR: rf"{CHRISTINA_GALBRAITH}|Matthew Hiltzik|{PEGGY_SIEGAL}|{TYLER_SHEARS}",
     REPUBLICANS_COLOR: r"bolton|cruz|kudlow|lewandowski|mnuchin|Pompeo|Republican",
@@ -226,7 +229,6 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     # Individuals' colors
     BITCOIN_COLOR.removesuffix(' bold'): r"mooch|(Anthony ('The Mooch' )?)?Scaramucci",
     COUNTERPARTY_COLORS[GHISLAINE_MAXWELL]: r"GMAX|gmax1@ellmax.com",
-    COUNTERPARTY_COLORS[JEAN_LUC_BRUNEL]: 'mc2mm.com',
     COUNTERPARTY_COLORS[JEFFREY_EPSTEIN]: EMAILER_REGEXES[JEFFREY_EPSTEIN].pattern + r'|Mark (L. )?Epstein',
     'turquoise4': r"BG|Bill\s+((and|or)\s+Melinda\s+)?Gates|Melinda(\s+Gates)?",
     # Misc
