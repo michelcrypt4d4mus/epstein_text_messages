@@ -63,7 +63,7 @@ print_msg "Building" "$INDEX_HTML_PATH"
 git commit -am"Update HTML"
 git push origin gh_pages --quiet
 git checkout master
-print_msg "\n\n$TEXT_MSGS_PROJECT_NAME deployed to" "$TEXT_MSGS_URL\n"
+print_msg "\n\n$TEXT_MSGS_PROJECT_NAME deployed to" "$TEXT_MSGS_URL"
 
 if [ -n "$ONLY_TEXTS" ]; then
     print_msg "Skipping deployment of emails site"
@@ -81,4 +81,4 @@ pushd "$EMAILS_DIR"
 git commit -am"Update HTML"
 git push origin main --quiet
 popd
-print_msg "\n${EMAILS_PROJECT_NAME} deployed to" "$EMAILS_URL\n"
+print_msg "${EMAILS_PROJECT_NAME} deployed to" "$EMAILS_URL"

@@ -250,7 +250,7 @@ CONSOLE_ARGS = {
 }
 
 if args.suppress_output:
-    print(f"Suppressing terminal output because args.suppress_output={args.suppress_output}...")
+    logger.warning(f"Suppressing terminal output because args.suppress_output={args.suppress_output}...")
     CONSOLE_ARGS.update({'file': open(devnull, "wt")})
 
 console = Console(**CONSOLE_ARGS)
