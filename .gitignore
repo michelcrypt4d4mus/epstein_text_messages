@@ -209,3 +209,4 @@ __marimo__/
 # not ignored on gh_pages branch
 docs/index.html
 tester.py
+social_media_post_with_url.txt
