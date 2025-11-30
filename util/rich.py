@@ -228,7 +228,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     SNIPPED_SIGNATURE_COLOR: r'<\.\.\.(snipped|trimmed).*\.\.\.>',
     SOUTH_AMERICA_COLOR: r"Argentina|Bra[sz]il(ian)?|Bolsonar[aio]|Lula|(Nicolas )?Maduro|Venezuelan?s?",
     TECH_BRO_COLOR: fr"Elon|Musk|Masa(yoshi)?( Son)?|Najeev|Reid Hoffman|(Peter )?Thiel|Softbank|{emailer_pattern(STEVEN_SINOFSKY)}",
-    TRUMP_COLOR: r"DJT|(Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)(?! Rubin)|Roger\s+Stone",
+    TRUMP_COLOR: r"DJT|(Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)(?! Rubin)|(Matt(hew)? )?Calamari|Roger\s+Stone",
     VICTIM_COLOR: r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts",
     VIRGIN_ISLANDS_COLOR: fr'Cecile de Jongh|(Kenneth E\. )?Mapp|{STACY_PLASKETT}',
 
