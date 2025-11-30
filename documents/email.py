@@ -431,10 +431,8 @@ class Email(CommunicationDocument):
 
         if len(names) == 0:
             names.append(emailer_str)
-        elif len(names) > 1:
-            logger.info(f"Found more than 1 emailer in '{emailer_str}': {names}")
 
-        return [_reverse_first_and_last_names(name) for name in names]
+        return [_reverse_first_and_last_names(name.lower() if '@' in name else name) for name in names]
 
     def _repair(self) -> None:
         """Repair particularly janky files."""
