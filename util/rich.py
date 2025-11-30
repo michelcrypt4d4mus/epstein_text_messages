@@ -255,10 +255,8 @@ COUNTERPARTY_COLORS.update({
     'Ivanka': JAVANKA_COLOR,
     'Joichi Ito': COUNTERPARTY_COLORS[JOI_ITO],
     'Jared Kushner': JAVANKA_COLOR,
-    'jeevacation@gmail.com': COUNTERPARTY_COLORS[JEFFREY_EPSTEIN],
-    'Paul Manafort': COUNTERPARTY_COLORS[STEVE_BANNON],
     'Miro': COUNTERPARTY_COLORS[MIROSLAV],
-    'Scaramucci': COUNTERPARTY_COLORS[SCARAMUCCI],
+    'Paul Manafort': REPUBLICANS_COLOR,
 })
 
 
