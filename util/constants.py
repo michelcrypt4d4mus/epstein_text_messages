@@ -563,6 +563,7 @@ HEADER_ABBREVIATIONS = {
     'Joi': 'Joi Ito (MIT Media Lab)',
     "Hoffenberg": "Steven Hoffenberg (Epstein's ponzi scheme partner)",
     'KSA': "Kingdom of Saudi Arabia",
+    'Kurz': 'Sebastian Kurz (former Austrian Chancellor)',
     'Kwok': "Chinese criminal Miles Kwok AKA Miles Guo AKA Guo Wengui",
     'Mapp': 'Kenneth E. Mapp (VI Governor)',
     'Masa': 'Masayoshi Son (Softbank)',
