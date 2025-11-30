@@ -412,7 +412,7 @@ def print_color_key(color_keys: Text) -> None:
     print_centered(vertically_pad(color_table))
 
 
-def print_numbered_list(_list: list[str] | dict, esptein_files) -> None:
+def print_numbered_list(_list: list[str] | dict, esptein_files = None) -> None:
     console.line()
 
     for i, name in enumerate(_list):
