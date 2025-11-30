@@ -73,6 +73,7 @@ SOON_YI_COLOR = 'hot_pink'
 SULTAN_BIN_SULAYEM_COLOR = 'green1'
 # Other styles
 DEFAULT_NAME_COLOR = 'gray46'
+HEADER_FIELD_COLOR = 'plum4'
 SENT_FROM_COLOR = 'grey39 italic'
 SNIPPED_SIGNATURE_COLOR = 'gray19'
 UNKNOWN_COLOR = 'cyan'
@@ -84,7 +85,6 @@ COLOR_MAPPING = {
 }
 
 # Theme style names
-HEADER_STYLE_NAME = 'header_field'
 REGEX_STYLE_PREFIX = 'regex'
 PHONE_NUMBER = 'phone_number'
 TEXT_LINK = 'text_link'
@@ -144,7 +144,6 @@ THEME_STYLES = {
     PHONE_NUMBER: 'bright_green',
     TEXT_LINK: 'deep_sky_blue4 underline',
     TIMESTAMP: 'gray30',
-    HEADER_STYLE_NAME: 'plum4',
     highlighter_style_name('email'): 'bright_cyan',
 }
 
@@ -169,7 +168,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     JOURNALIST_COLOR: rf"Alex Yablon|{emailer_pattern(EDWARD_EPSTEIN)}|{emailer_pattern(LANDON_THOMAS)}|{PAUL_KRASSNER}|{MICHAEL_WOLFF}|Wolff|Susan Edelman|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk",
     LAWYER_COLOR: rf"{emailer_pattern(DARREN_INDYKE)}|{emailer_pattern(RICHARD_KAHN)}|{emailer_pattern(BRAD_KARP)}|(Alan (M\. )?)?Dershowi(l|tz)|{emailer_pattern(DAVID_STERN)}|(Erika )?Kellerhals|(Ken(neth W.)?\s+)?Starr|{DAVID_SCHOEN}|{JACK_GOLDBERGER}|{JAY_LEFKOWITZ}|Lefkowitz|Lilly (Ann )?Sanchez|{MARTIN_WEINBERG}|Michael J. Pike|Paul Weiss|{REID_WEINGARTEN}|Weinberg|Weingarten|Roy Black|{SCOTT_J_LINK}",
     LOBBYIST_COLOR: fr"{OLIVIER_COLOM}|Purevsuren Lundeg|Rob Crowe|Stanley Rosenberg", # lundeg mongolian ambassador, Rosenberg former state senator?
-    MIDDLE_EAST_COLOR: rf"{emailer_pattern(MOHAMED_WAHEED_HASSAN)}|Abdulmalik Al-Makhlafi|Abu\s+Dhabi|{ANAS_ALRASHEED}|Assad|{AZIZA_ALAHMADI}|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Imran Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Raafat\s*Alsabbagh|Riya(dh|nd)|Saudi(\s+Arabian?)?|Shaher Abdulhak Besher|Sharia|Syria|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
+    MIDDLE_EAST_COLOR: rf"{emailer_pattern(MOHAMED_WAHEED_HASSAN)}|Abdulmalik Al-Makhlafi|Abu\s+Dhabi|{ANAS_ALRASHEED}|Assad|{AZIZA_ALAHMADI}|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Imran Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Raafat\s*Alsabbagh|Riya(dh|nd)|Saudi(\s+Arabian?)?|Shaher( Abdulhak Besher)?|Sharia|Syria|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
     MODELING_COLOR: rf'{emailer_pattern(JEAN_LUC_BRUNEL)}|{DANIEL_SIAD}|Faith Kates?|\w+@mc2mm.com|{MARIANA_IDZKOWSKA}',
     POLICE_COLOR: rf"Ann Marie Villafana|(James )?Comey|Kirk Blouin|((Bob|Robert) )?Mueller|Police Code Enforcement",
     PUBLICIST_COLOR: rf"{AL_SECKEL}|{CHRISTINA_GALBRAITH}|Henry Holt|Ian Osborne|Matthew Hiltzik|{PEGGY_SIEGAL}|{TYLER_SHEARS}|ross@acuityreputation.com|Citrick|{emailer_pattern(MICHAEL_SITRICK)}",
@@ -199,15 +198,16 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     SOON_YI_COLOR: emailer_pattern(SOON_YI),
     SULTAN_BIN_SULAYEM_COLOR: emailer_pattern(SULTAN_BIN_SULAYEM),
     # Misc
-    HEADER_STYLE_NAME: r"^((Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):)",
+    HEADER_FIELD_COLOR: r"^(Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):",
     SENT_FROM_COLOR: SENT_FROM_REGEX.pattern,
     SNIPPED_SIGNATURE_COLOR: r'<\.\.\.(snipped|trimmed).*\.\.\.>',
+    UNKNOWN_COLOR: UNKNOWN.replace('(', r'\(').replace(')', r'\)')
 }
 
 # Wrap in \b, add optional s? at end of all regex patterns
 HIGHLIGHT_REGEXES: dict[str, re.Pattern] = {
     # [\b\n] or no trailing \b is required for cases when last char in match is not a word char (e.g. when it's '.')
-    k: re.compile(fr"\b(({v})s?)\b", re.I) if k != HEADER_STYLE_NAME else re.compile(v, re.MULTILINE)
+    k: re.compile(fr"\b(({v})s?)\b", re.I) if k != HEADER_FIELD_COLOR else re.compile(v, re.MULTILINE)
     for k, v in HIGHLIGHT_PATTERNS.items()
 }
 
@@ -224,9 +224,7 @@ for style, pattern in HIGHLIGHT_PATTERNS.items():
     if prefixed_style_name in THEME_STYLES:
         raise RuntimeError(f"'{prefixed_style_name}' already in THEME_STYLE!")
 
-    if style in [HEADER_STYLE_NAME]:
-        regex = re.compile(pattern, re.MULTILINE)
-    elif style in [SENT_FROM_COLOR, SNIPPED_SIGNATURE_COLOR]:
+    if style in [HEADER_FIELD_COLOR, SENT_FROM_COLOR, SNIPPED_SIGNATURE_COLOR, UNKNOWN_COLOR]:
         regex = re.compile(fr"(?P<{style_name}>{pattern})", re.IGNORECASE | re.MULTILINE)
         print(f"style regex for '{style}': {regex.pattern}")
     else:
@@ -242,9 +240,6 @@ class TempHighlighter(RegexHighlighter):
 
 
 highlighter = TempHighlighter()
-
-if args.no_highlights:
-    HIGHLIGHT_REGEXES = {}
 
 # Instantiate console object
 CONSOLE_ARGS = {

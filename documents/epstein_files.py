@@ -183,7 +183,7 @@ class EpsteinFiles:
             table.add_row(
                 email.author_txt,
                 email.epsteinify_link(link_txt=email.timestamp_without_seconds()),
-                email.header.subject or ''
+                highlighter(email.header.subject or '')
             )
 
         console.print(Align.center(table), '\n')
@@ -269,6 +269,6 @@ def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str]
 
     for k in sorted(new_dict.keys()):
         _list = new_dict[k]
-        table.add_row(k or UNKNOWN, highlighter(join_char.join(sorted(_list))))
+        table.add_row(highlighter(k or UNKNOWN), highlighter(join_char.join(sorted(_list))))
 
     return Padding(table, DEVICE_SIGNATURE_PADDING)
