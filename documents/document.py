@@ -12,7 +12,7 @@ from util.constants import REDACTED, SEAN_BANNON, STEVE_BANNON
 from util.data import patternize
 from util.env import logger
 from util.file_helper import extract_file_id
-from util.rich import ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_pattern, highlight_text, logger, make_link, make_link_markup
+from util.rich import ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_regex_match, highlight_text, logger, make_link, make_link_markup
 from util.strings import *
 
 MULTINEWLINE_REGEX = re.compile(r"\n{3,}")
@@ -92,7 +92,7 @@ class Document:
         type(self).file_matching_idx += 1
 
         return [
-            Text('').append(self.file_path.name, style=file_style).append(':').append(highlight_pattern(line, pattern))
+            Text('').append(self.file_path.name, style=file_style).append(':').append(highlight_regex_match(line, pattern))
             for line in matched_lines
         ]
 

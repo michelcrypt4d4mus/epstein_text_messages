@@ -274,7 +274,8 @@ console = Console(**CONSOLE_ARGS)
 
 
 def make_link_markup(url: str, link_text: str, style: str | None = ARCHIVE_LINK_COLOR) -> str:
-    return wrap_in_markup_style(f"[underline][link={url}]{link_text}[/link][/underline]", style)
+    style = (style or '') + ' underline'
+    return wrap_in_markup_style(f"[link={url}]{link_text}[/link]", style)
 
 
 def make_link(url: str, link_text: str, style: str = ARCHIVE_LINK_COLOR) -> Text:
@@ -300,7 +301,7 @@ def get_style_for_name(name: str, default: str = DEFAULT) -> str:
     return default
 
 
-def highlight_pattern(text: str, pattern: re.Pattern, style: str = 'cyan') -> Text:
+def highlight_regex_match(text: str, pattern: re.Pattern, style: str = 'cyan') -> Text:
     """Replace 'pattern' matches with markup of the match colored with 'style'."""
     return Text.from_markup(pattern.sub(rf'[{style}]\1[/{style}]', text))
 
