@@ -84,6 +84,7 @@ COLOR_MAPPING = {
 
 # Theme style names
 HEADER_STYLE_NAME = 'header_field'
+REGEX_STYLE_PREFIX = 'regex'
 PHONE_NUMBER = 'phone_number'
 SENT_FROM = 'sent_from'
 TEXT_LINK = 'text_link'
@@ -136,7 +137,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES_LIST = [
     TYLER_SHEARS,
 ]
 
-highlighter_style_name = lambda style_name: f"{EMAIL_HEADER_FIELD}.{style_name.replace(' ', '_')}"
+highlighter_style_name = lambda style_name: f"{REGEX_STYLE_PREFIX}.{style_name.replace(' ', '_')}"
 
 THEME_STYLES = {
     DEFAULT: 'wheat4',
@@ -215,11 +216,14 @@ HIGHLIGHTER_REGEXES: list[re.Pattern] = []
 
 for style, pattern in HIGHLIGHT_PATTERNS.items():
     if style not in COLOR_MAPPING:
-        logger.debug(f"Skipping style '{style}' for highlighter...")
+        logger.warning(f"Skipping style '{style}' for highlighter...")
         continue
 
-    #print(f"Handling style '{style}'")
     style_name = COLOR_MAPPING[style]
+    prefixed_style_name = highlighter_style_name(style_name)
+
+    if prefixed_style_name in THEME_STYLES:
+        raise RuntimeError(f"'{prefixed_style_name}' already in THEME_STYLE!")
 
     if style in [HEADER_STYLE_NAME]:
         regex = re.compile(pattern, re.MULTILINE)
@@ -229,14 +233,11 @@ for style, pattern in HIGHLIGHT_PATTERNS.items():
         regex = re.compile(fr"\b(?P<{style_name}>({pattern})s?)\b", re.I)
 
     HIGHLIGHTER_REGEXES.append(regex)
-    THEME_STYLES[highlighter_style_name(style_name)] = style
+    THEME_STYLES[prefixed_style_name] = style
 
-# HIGHLIGHT_PATTERNS = {}
-# HIGHLIGHT_REGEXES = {}
 
 class TempHighlighter(RegexHighlighter):
-    """Currently only highlights the email header."""
-    base_style = f"{EMAIL_HEADER_FIELD}."
+    base_style = f"{REGEX_STYLE_PREFIX}."
     highlights = HIGHLIGHTER_REGEXES
 
 
