@@ -279,7 +279,7 @@ def make_link_markup(url: str, link_text: str, style: str | None = ARCHIVE_LINK_
 
 
 def make_link(url: str, link_text: str, style: str = ARCHIVE_LINK_COLOR) -> Text:
-    return Text.from_markup(make_link_markup(url, link_text, f"{style} bold"))  # TODO: shouldn't add 'bold'
+    return Text.from_markup(make_link_markup(url, link_text, style))
 
 
 def archive_link(filename: str, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
