@@ -109,6 +109,8 @@ VINIT_SAHNI = 'Vinit Sahni'
 
 # Other strings
 EMAIL_HEADER_FIELD = 'header_field'
+EMAIL = 'email'
+TEXT_MESSAGE = 'text message'
 REDACTED = '<REDACTED>'
 
 #  of who is the counterparty in each text message file
@@ -583,6 +585,12 @@ OVERSIGHT_REPUBLICANS_PRESSER_URL = 'https://oversight.house.gov/release/oversig
 RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_'
 SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great'
 EPSTEINIFY_URL = 'https://epsteinify.com'
+
+SITE_URLS = {
+    EMAIL: 'https://michelcrypt4d4mus.github.io/epstein_emails_house_oversight/',
+    TEXT_MESSAGE: 'https://michelcrypt4d4mus.github.io/epstein_text_messages/',
+}
+
 
 epsteinify_api_url = lambda file_id: f"{EPSTEINIFY_URL}/api/documents/HOUSE_OVERSIGHT_{file_id}"
 epsteinify_doc_url = lambda file_stem: f"{EPSTEINIFY_URL}/document/{file_stem}"
