@@ -150,7 +150,6 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {
     LEON_BLACK: BUSINESS_COLOR,
     LANDON_THOMAS: JOURNALIST_COLOR,  # NYT journo
     SULTAN_BIN_SULAYEM: 'green1',
-    # Epstein's lawyers
     DARREN_INDYKE: LAWYER_COLOR,
     RICHARD_KAHN: LAWYER_COLOR,
     DEEPAK_CHOPRA: 'dark_goldenrod',
@@ -219,7 +218,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     MODELING_COLOR: rf'{EMAILER_REGEXES[JEAN_LUC_BRUNEL].pattern}|{DANIEL_SIAD}|Faith Kates?|mc2mm.com|{MARIANA_IDZKOWSKA}',
     POLICE_COLOR: rf"Police Code Enforcement|Ann Marie Villafana|Kirk Blouin",
     PUBLICIST_COLOR: rf"{CHRISTINA_GALBRAITH}|Matthew Hiltzik|{PEGGY_SIEGAL}|{TYLER_SHEARS}|ross@acuityreputation.com",
-    REPUBLICANS_COLOR: r"bolton|cruz|kudlow|lewandowski|mnuchin|Pompeo|Republican",
+    REPUBLICANS_COLOR: r"bolton|Broidy|cruz|kudlow|lewandowski|mnuchin|Pompeo|Republican",
     RUSSIA_COLOR: fr"GRU|FSB|Lavrov|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Vladimir Yudashkin",
     SCHOLAR_COLOR: rf"((Noam|Valeria) )?Chomsky|{DAVID_HAIG}|{JOSCHA_BACH}|Joscha|Bach|Moshe Hoffman|{ROBERT_TRIVERS}|Trivers|{EMAILER_REGEXES[LAWRENCE_KRAUSS].pattern}",
     SOUTH_AMERICA_COLOR: r"Argentina|Bra[sz]il(ian)?|Bolsonar[aio]|Lula|(Nicolas )?Maduro|Venezuelan?s?",
