@@ -39,7 +39,7 @@ SECTION_HEADER_STYLE = 'bold white on blue3'
 highlighter_style_name = lambda style_name: f"{HEADER_FIELD}.{style_name}"
 
 # Constant variables that end in "_COLOR" will be scanned to create the color highlight guide table.
-ARCHIVE_LINK_COLOR = 'blue3'
+ARCHIVE_LINK_COLOR = 'slate_blue3'
 BANK_COLOR = 'green'
 BANNON_COLOR = 'color(58)'
 BITCOIN_COLOR = 'orange1 bold'
@@ -351,8 +351,8 @@ def print_header():
     console.line()
     console.print(Panel(Text(PAGE_TITLE, justify='center'), style='bold reverse'))
     console.line()
-    print_centered_link(SUBSTACK_URL, "I Made Epstein's Text Messages Great Again (And You Should Read Them)", style=f'{SOCIAL_MEDIA_LINK_STYLE} bold')
-    print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style='dodger_blue3')
+    print_centered_link(SUBSTACK_URL, "I Made Epstein's Text Messages Great Again (And You Should Read Them)", style=f'chartreuse1 bold')
+    print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style='dark_sea_green4 dim')
     print_centered_link('https://cryptadamus.substack.com/', 'Substack', style=SOCIAL_MEDIA_LINK_STYLE)
     print_centered_link('https://universeodon.com/@cryptadamist/115572634993386057', 'Mastodon', style=SOCIAL_MEDIA_LINK_STYLE)
     print_centered_link('https://x.com/Cryptadamist/status/1990866804630036988', 'Twitter', style=SOCIAL_MEDIA_LINK_STYLE)
@@ -375,7 +375,7 @@ def print_header():
     print_centered(make_link_markup(f"{EPSTEINIFY_URL}/names", 'epsteinify.com') + " (raw document images)")
     print_centered_link(RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL, 'Google Drive Raw Documents')
     console.line()
-    print_centered_link(ATTRIBUTIONS_URL, "Some Explanations of Author Attributions", style='magenta')
+    print_centered_link(ATTRIBUTIONS_URL, "some explanations of author attributions", style='magenta')
     print_centered(f"(thanks to {make_link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} and others for attribution help)")
     print_centered(f"If you think there's an attribution error or can deanonymize an {UNKNOWN} contact {make_link_markup('https://x.com/cryptadamist', '@cryptadamist')}.", 'grey46')
     print_centered('(note this site is based on the OCR text provided by Congress which is not the greatest)', 'grey23')
@@ -405,7 +405,7 @@ def print_other_site_link() -> None:
         msg += ' has [italic]all[/italic] of His Emails'
         url = ALL_EMAILS_URL
 
-    markup_msg = make_link_markup(url, msg, 'chartreuse3')
+    markup_msg = make_link_markup(url, msg, 'dark_goldenrod')
     print_centered(Text('(') + Text.from_markup(markup_msg).append(')'), style='bold')
 
 
