@@ -36,8 +36,9 @@ BRAD_WECHSLER = 'Brad Wechsler'
 BORIS_NIKOLIC = 'Boris Nikolic'
 CELINA_DUBIN = 'Celina Dubin'
 CHRISTINA_GALBRAITH = 'Christina Galbraith'  # Works with Tyler Shears on reputation stuff
-DARREN_INDYKE = 'Darren Indyke'
+DANIEL_SABBA = 'Daniel Sabba'
 DANIEL_SIAD = 'Daniel Siad'
+DARREN_INDYKE = 'Darren Indyke'
 DAVID_SCHOEN = 'David Schoen'
 DAVID_HAIG = 'David Haig'
 DAVID_STERN = 'David Stern'
@@ -296,7 +297,7 @@ EMAILERS = [
     'Bill Gates',
     'Bill Siegel',
     BRAD_WECHSLER,
-    'Daniel Sabba',
+    DANIEL_SABBA,
     'Danny Goldberg',
     DAVID_SCHOEN,
     DEEPAK_CHOPRA,
