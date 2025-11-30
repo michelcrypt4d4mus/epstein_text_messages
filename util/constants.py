@@ -240,7 +240,7 @@ EMAILER_REGEXES = {
     KATHY_RUEMMLER: re.compile(r'Kathy Ruemmler?', re.IGNORECASE),
     KEN_STARR: re.compile('starr, ken|Ken starr?', re.IGNORECASE),
     LANDON_THOMAS: re.compile(r'lando[nr] thomas|thomas jr.?, lando[nr]', re.IGNORECASE),
-    LARRY_SUMMERS: re.compile(r'La(wrence|rry).*Summer|^LH$|^LHS|Ihsofficel', re.IGNORECASE),
+    LARRY_SUMMERS: re.compile(r'(La(wrence|rry).{1, 5})?Summers?|^LH$|^LHS|Ihsofficel', re.IGNORECASE),
     LAWRANCE_VISOSKI: re.compile(r'La(rry|wrance) Visoski?', re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus|lawkrauss', re.IGNORECASE),
     LEON_BLACK: re.compile(r'Leon Blac', re.IGNORECASE),
