@@ -49,9 +49,8 @@ CHINA_COLOR = 'bright_red'
 DEFAULT_NAME_COLOR = 'grey82'
 DEMOCRATS_COLOR = 'sky_blue1'
 DUBIN_COLOR = 'medium_orchid1'
-ELON_COLOR = 'light_goldenrod3'
 ENTERTAINERS_COLOR = 'light_steel_blue3'
-EUROPEAN_COLOR = 'dark_magenta'
+EUROPE_COLOR = 'dark_magenta'
 HARVARD_COLOR = 'deep_pink2'
 SOCIAL_MEDIA_LINK_STYLE = 'cadet_blue'
 INDIA_COLOR = 'bright_green'
@@ -66,9 +65,8 @@ RUSSIA_COLOR = 'red bold'
 REPUBLICANS_COLOR = 'dark_red'
 SCHOLAR_COLOR = 'light_goldenrod2'
 SOUTH_AMERICA_COLOR = 'yellow'
-TECH_BRO_COLOR = 'orange4'
+TECH_BRO_COLOR = 'cyan2'  #dark_slate_gray3
 TRUMP_COLOR = 'red3 bold'
-VC_COLOR = 'pale_green1'
 
 BASE_NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Allen',
@@ -128,7 +126,6 @@ COUNTERPARTY_COLORS = {
     BRAD_KARP: LAWYER_COLOR,
     CELINA_DUBIN: DUBIN_COLOR,
     DEFAULT: 'wheat4',
-    'Elon Musk': ELON_COLOR,
     EVA: 'orchid',
     'Eva Dubin': DUBIN_COLOR,
     GLENN_DUBIN: DUBIN_COLOR,
@@ -139,7 +136,7 @@ COUNTERPARTY_COLORS = {
     MELANIE_SPINELLA: 'magenta3',
     MELANIE_WALKER: 'light_pink3',
     NADIA_MARCINKO: 'hot_pink',
-    MIROSLAV: EUROPEAN_COLOR,
+    MIROSLAV: EUROPE_COLOR,
     PAUL_MORRIS: BANK_COLOR,
     'Rob Crowe': LOBBYIST_COLOR,
     SCARAMUCCI: BITCOIN_COLOR.removesuffix(' bold'),
@@ -165,12 +162,10 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     MARTIN_NOWAK: HARVARD_COLOR,  # TODO: Really harvard color...
     'Masha Drokova': RUSSIA_COLOR,
     OLIVIER_COLOM: LOBBYIST_COLOR,
-    'Peter Thiel': TECH_BRO_COLOR,
     STEVE_BANNON: COUNTERPARTY_COLORS[STEVE_BANNON],
     DAVID_STERN: LAWYER_COLOR,
     MOHAMED_WAHEED_HASSAN: MIDDLE_EAST_COLOR,
     PAULA: 'pink1',
-    REID_HOFFMAN: TECH_BRO_COLOR,
     BORIS_NIKOLIC: BRO_COLOR,
     PRINCE_ANDREW: 'dodger_blue1',
     'Jide Zeitlin': BANK_COLOR,
@@ -213,7 +208,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     CHINA_COLOR: r"Beijing|CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|Peking|PRC|xi",
     DEMOCRATS_COLOR: r"Biden|Maxine Waters|Obama|(Nancy )?Pelosi|Clinton|Hillary|Democrat(ic)?",
     ENTERTAINERS_COLOR: rf"Andres Serrano|Etienne Binant|Ramsey Elkholy|Woody( Allen)?",
-    EUROPEAN_COLOR: r"Le\s*Pen|Macron|(Angela )?Merk(el|le)|(Vi(c|k)tor\s+)?Orbah?n",
+    EUROPE_COLOR: r"Le\s*Pen|Macron|(Angela )?Merk(el|le)|(Vi(c|k)tor\s+)?Orbah?n",
     HARVARD_COLOR: rf"{LISA_NEW}|Harvard|MIT( Media Lab)?|Media Lab",
     INDIA_COLOR: rf"Ambani|Hardeep( puree)?|Indian?|Modi|mumbai|Zubair( Khan)?|{VINIT_SAHNI}",
     ISRAEL_COLOR: r"Bibi|(eh|Nili Priell )barak|Netanyahu|Israeli?",
@@ -225,12 +220,12 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     RUSSIA_COLOR: r"GRU|FSB|Lavrov|Moscow|(Vladimir )?Putin|Russian?|Vladimir Yudashkin",
     SCHOLAR_COLOR: rf"((Noam|Valeria) )?Chomsky|{DAVID_HAIG}|{JOSCHA_BACH}|Joscha|Bach|Moshe Hoffman|{ROBERT_TRIVERS}|Trivers",
     SOUTH_AMERICA_COLOR: r"Argentina|Bra[sz]il(ian)?|Bolsonar[aio]|Lula|(Nicolas )?Maduro|Venezuelan?s?",
+    TECH_BRO_COLOR: r"Elon|Musk|Masa(yoshi)?( Son)?|Najeev|Reid Hoffman|(Peter )?Thiel|Softbank",
     TRUMP_COLOR: r"(DJT|Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)|Roger\s+Stone",
     COUNTERPARTY_COLORS[GHISLAINE_MAXWELL]: r"GMAX|gmax1@ellmax.com",
     COUNTERPARTY_COLORS[TERJE]: r"Terje (R[øo]e?d[- ])?Lars[eo]n",
     COUNTERPARTY_COLORS[JEFFREY_EPSTEIN]: EMAILER_REGEXES[JEFFREY_EPSTEIN].pattern + r'|Mark (L. )?Epstein',
     'orchid1': r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts",
-    VC_COLOR: r"Masa(yoshi)?( Son)?|Najeev|Softbank",
     'turquoise4': r"BG|Bill\s+((and|or)\s+Melinda\s+)?Gates|Melinda(\s+Gates)?",
     BANK_COLOR: r"Black(rock|stone)|DB|Deutsche Bank|Goldman( ?Sachs)|Morgan Stanley|j\.?p\.? ?morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com",
     HEADER_STYLE: r"^((Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):)"
@@ -405,11 +400,13 @@ def print_color_key(color_keys: Text) -> None:
 
     while (row_number * NUM_COLOR_KEY_COLS) < num_colors:
         idx = row_number * NUM_COLOR_KEY_COLS
+
         color_table.add_row(
             color_keys[idx],
             color_keys[idx + 1] if (idx + 1) < num_colors else '',
             color_keys[idx + 2] if (idx + 2) < num_colors else '',
         )
+
         row_number += 1
 
     # columns = Columns(color_keys, equal=False, expand=True, title='Rough Guide to Highlighted Colors')

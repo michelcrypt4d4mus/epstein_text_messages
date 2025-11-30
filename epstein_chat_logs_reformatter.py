@@ -27,7 +27,7 @@ from util.rich import *
 from util.html import *
 
 COLOR_KEYS = [
-    Text(color_name.removesuffix(COLOR_SUFFIX), style=getattr(rich, color_name))
+    Text(color_name.removesuffix(COLOR_SUFFIX).lower(), style=getattr(rich, color_name))
     for color_name in sorted([constant for constant in dir(rich) if constant.endswith(COLOR_SUFFIX)])
     if color_name not in ['ARCHIVE_LINK_COLOR', 'DUBIN_COLOR', 'DEFAULT_NAME_COLOR']
 ]
