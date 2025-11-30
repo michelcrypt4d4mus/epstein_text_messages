@@ -54,6 +54,7 @@ GERALD_BARTON = 'Gerald Barton'
 GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
 GLENN_DUBIN = 'Glenn Dubin'
 GWENDOLYN_BECK = 'Gwendolyn Beck'
+JACK_GOLDBERGER = 'Jack Goldberger'
 JEAN_HUGUEN = 'Jean Huguen'
 JEAN_LUC_BRUNEL = 'Jean Luc Brunel'
 JABOR_Y = 'Jabor Y'  # Qatari
@@ -380,7 +381,7 @@ KNOWN_EMAIL_AUTHORS = {
     '029960': GWENDOLYN_BECK,       # Reply
     '029959': GWENDOLYN_BECK,       # "Longevity & Aging"
     '033360': 'Henry Holt',         # in signature
-    '033384': 'Jack Goldberger',    # Might be Paul Prosperi?
+    '033384': JACK_GOLDBERGER,    # Might be Paul Prosperi?
     '026024': JEAN_HUGUEN,
     '026024': JEAN_HUGUEN,          # Signature
     '021823': JEAN_LUC_BRUNEL,      # Reply
