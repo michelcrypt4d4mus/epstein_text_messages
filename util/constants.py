@@ -13,7 +13,7 @@ LARRY_SUMMERS = 'Larry Summers'
 MELANIE_WALKER = 'Melanie Walker'
 MIROSLAV = 'Miroslav Lajčák'
 STACY_PLASKETT = 'Stacey Plaskett'
-SCARAMUCCI = 'The Mooch'
+SCARAMUCCI = "Anthony 'The Mooch' Scaramucci"
 SOON_YI = 'Soon-Yi Previn'
 STEVE_BANNON = 'Steve Bannon'
 TERJE = 'Terje Rød-Larsen'
@@ -230,7 +230,7 @@ EMAILER_REGEXES = {
     'Jackie Perczel':  re.compile(r'jackie perczel?', re.IGNORECASE),
     JABOR_Y: re.compile(r'^[ji]abor\s*y\.?', re.IGNORECASE),
     JEAN_LUC_BRUNEL: re.compile(r'Jean[- ]Luc Brunel?', re.IGNORECASE),
-    JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]?g?(mail\.com)?|jeffrey E(sptein?)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards', re.IGNORECASE),
+    JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]?g?(mail.com)?|jeffrey E(sptein?)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|joichi|^joi$', re.IGNORECASE),
     JOHNNY_EL_HACHEM: re.compile('el hachem johnny|johnny el hachem', re.IGNORECASE),
     JONATHAN_FARKAS: re.compile('Jonathan Farka(s|il)', re.IGNORECASE),

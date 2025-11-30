@@ -37,7 +37,7 @@ DEFAULT_NAME_COLOR = 'grey82'
 DEMOCRATS_COLOR = 'sky_blue1'
 DUBIN_COLOR = 'medium_orchid1'
 ENTERTAINERS_COLOR = 'light_steel_blue3'
-EUROPE_COLOR = 'dark_magenta'
+EUROPE_COLOR = 'light_sky_blue3'
 HARVARD_COLOR = 'deep_pink2'
 SOCIAL_MEDIA_LINK_STYLE = 'cadet_blue'
 INDIA_COLOR = 'bright_green'
@@ -153,13 +153,12 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES = {
     DEEPAK_CHOPRA: 'dark_goldenrod',
     # Temporary
     KATHY_RUEMMLER: 'magenta2',
-    TYLER_SHEARS: BITCOIN_COLOR,  # PR
+    TYLER_SHEARS: BITCOIN_COLOR,  # PR person
 }
 
 # Color different counterparties differently
 COUNTERPARTY_COLORS = {
     ALIREZA_ITTIHADIEH: MIDDLE_EAST_COLOR,  # Iranian / British?
-    'Amanda Ens': BANK_COLOR,
     ANIL: INDIA_COLOR,
     BRAD_KARP: LAWYER_COLOR,
     CELINA_DUBIN: DUBIN_COLOR,
@@ -176,11 +175,9 @@ COUNTERPARTY_COLORS = {
     NADIA_MARCINKO: 'hot_pink',
     MIROSLAV: EUROPE_COLOR,
     PAUL_MORRIS: BANK_COLOR,
-    SCARAMUCCI: BITCOIN_COLOR.removesuffix(' bold'),
     SOON_YI: 'hot_pink',
     STACY_PLASKETT: 'medium_orchid3',
     SEAN_BANNON: BANNON_COLOR,
-    TERJE: 'light_slate_blue',
     TOM_BARRACK: BRO_COLOR,
     UNKNOWN: 'cyan',
 }
@@ -202,22 +199,22 @@ COUNTERPARTY_COLORS.update(PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES)
 COUNTERPARTY_COLORS.update(OTHER_STYLES)
 
 HIGHLIGHT_PATTERNS: dict[str, str] = {
-    BANK_COLOR: r"Black(rock|stone)|DB|Deutsche Bank|Goldman( ?Sachs)|Morgan Stanley|j\.?p\.? ?morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com|Marc Leon",
+    BANK_COLOR: fr"Amanda Ens|Black(rock|stone)|DB|Deutsche Bank|Goldman( ?Sachs)|Morgan Stanley|j\.?p\.? ?morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com|Marc Leon|{PAUL_MORRIS}",
     BITCOIN_COLOR: r"bitcoin|block ?chain( capital)?|coins|cr[iy]pto(currency)?|e-currency|(jeffrey\s+)?wernick|(Howard\s+)?Lutnick|Libra|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)",
     BUSINESS_COLOR: rf"Marc Rich|(Steve\s+)?Wynn|(Leslie\s+)?Wexner|{NICHOLAS_RIBIS}|{ROBERT_LAWRENCE_KUHN}|{STEPHEN_HANSON}|{TERRY_KAFKA}",
     CHINA_COLOR: r"Beijing|CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|Peking|PRC|xi",
-    DEMOCRATS_COLOR: r"Biden|Maxine Waters|Obama|(Nancy )?Pelosi|Clinton|Hillary|Democrat(ic)?",
+    DEMOCRATS_COLOR: r"Biden|(John )?Kerry|Maxine Waters|Obama|(Nancy )?Pelosi|Clinton|Hillary|Democrat(ic)?",
     ENTERTAINERS_COLOR: rf"Andres Serrano|David Blaine|Etienne Binant|Ramsey Elkholy|Woody( Allen)?",
-    EUROPE_COLOR: r"Le\s*Pen|Macron|(Angela )?Merk(el|le)|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n",
+    EUROPE_COLOR: r"Le\s*Pen|Macron|(Angela )?Merk(el|le)|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Terje(( (R[øo]e?d[- ])?)?Lars[eo]n)?|Ukrain(e|ian)",
     HARVARD_COLOR: rf"{LISA_NEW}|Harvard|MIT( Media Lab)?|Media Lab",
     INDIA_COLOR: rf"Ambani|Hardeep( puree)?|Indian?|Modi|mumbai|Zubair( Khan)?|{VINIT_SAHNI}",
     ISRAEL_COLOR: r"Bibi|(eh|Nili Priell )barak|Netanyahu|Israeli?",
     JOURNALIST_COLOR: rf"Alex Yablon|{PAUL_KRASSNER}|{MICHAEL_WOLFF}|Wolff|Susan Edelman|(bbc|independent|mailonline|mirror)\.co\.uk",
-    LAWYER_COLOR: rf"(Alan (M\. )?)?Dershowi(l|tz)|(Ken(neth W.)?\s+)?Starr|{DAVID_SCHOEN}|{JAY_LEFKOWITZ}|Lefkowitz|Lilly (Ann )?Sanchez|{MARTIN_WEINBERG}|{REID_WEINGARTEN}|Weinberg|Weingarten|Roy Black|{SCOTT_J_LINK}",
+    LAWYER_COLOR: rf"(Alan (M\. )?)?Dershowi(l|tz)|(Ken(neth W.)?\s+)?Starr|{DAVID_SCHOEN}|{JAY_LEFKOWITZ}|Lefkowitz|Lilly (Ann )?Sanchez|{MARTIN_WEINBERG}|Paul Weiss|{REID_WEINGARTEN}|Weinberg|Weingarten|Roy Black|{SCOTT_J_LINK}",
     LOBBYIST_COLOR: r"Purevsuren Lundeg|Rob Crowe|Stanley Rosenberg", # lundeg mongolian ambassador, Rosenberg former state senator?
     MIDDLE_EAST_COLOR: rf"Abdulmalik Al-Makhlafi|Abu\s+Dhabi|{ANAS_ALRASHEED}|Assad|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Imran Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Riya(dh|nd)|Saudi(\s+Arabian?)?|Shaher Abdulhak Besher|Sharia|Syria|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
     POLICE_COLOR: f"Police Code Enforcement|Ann Marie Villafana|Kirk Blouin",
-    REPUBLICANS_COLOR: r"bolton|cruz|lewandowski|mnuchin|Pompeo|Republican",
+    REPUBLICANS_COLOR: r"bolton|cruz|kudlow|lewandowski|mnuchin|Pompeo|Republican",
     RUSSIA_COLOR: r"GRU|FSB|Lavrov|Moscow|(Vladimir )?Putin|Russian?|Vladimir Yudashkin",
     SCHOLAR_COLOR: rf"((Noam|Valeria) )?Chomsky|{DAVID_HAIG}|{JOSCHA_BACH}|Joscha|Bach|Moshe Hoffman|{ROBERT_TRIVERS}|Trivers",
     SOUTH_AMERICA_COLOR: r"Argentina|Bra[sz]il(ian)?|Bolsonar[aio]|Lula|(Nicolas )?Maduro|Venezuelan?s?",
@@ -225,10 +222,10 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     TRUMP_COLOR: r"(DJT|Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)|Roger\s+Stone",
     VICTIM_COLOR: r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts",
     # Individuals' colors
+    BITCOIN_COLOR.removesuffix(' bold'): r"mooch|(Anthony ('The Mooch' )?)?Scaramucci",
     COUNTERPARTY_COLORS[GHISLAINE_MAXWELL]: r"GMAX|gmax1@ellmax.com",
     COUNTERPARTY_COLORS[JEAN_LUC_BRUNEL]: 'mc2mm.com',
     COUNTERPARTY_COLORS[JEFFREY_EPSTEIN]: EMAILER_REGEXES[JEFFREY_EPSTEIN].pattern + r'|Mark (L. )?Epstein',
-    COUNTERPARTY_COLORS[TERJE]: r"Terje (R[øo]e?d[- ])?Lars[eo]n",
     'turquoise4': r"BG|Bill\s+((and|or)\s+Melinda\s+)?Gates|Melinda(\s+Gates)?",
     # Misc
     HEADER_STYLE_NAME: r"^((Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):)"
@@ -255,10 +252,8 @@ COUNTERPARTY_COLORS.update({
     'Ivanka': JAVANKA_COLOR,
     'Joichi Ito': COUNTERPARTY_COLORS[JOI_ITO],
     'Jared Kushner': JAVANKA_COLOR,
-    'jeevacation@gmail.com': COUNTERPARTY_COLORS[JEFFREY_EPSTEIN],
-    'Paul Manafort': COUNTERPARTY_COLORS[STEVE_BANNON],
     'Miro': COUNTERPARTY_COLORS[MIROSLAV],
-    'Scaramucci': COUNTERPARTY_COLORS[SCARAMUCCI],
+    'Paul Manafort': REPUBLICANS_COLOR,
 })
 
 
