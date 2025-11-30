@@ -48,7 +48,8 @@ class MessengerLog(CommunicationDocument):
         self.archive_link = self.epsteinify_link(self.author_style)
 
         if self.file_id in KNOWN_IMESSAGE_FILE_IDS:
-            self.hint_txt = Text(f" Found confirmed counterparty ", style='dim').append(self.author_txt).append(f" for file ID {self.file_id}.")
+            self.hint_txt = Text(f" Found confirmed counterparty ", style='dim').append(self.author_txt)
+            self.hint_txt.append(f" for file ID {self.file_id}.")
         elif self.file_id in GUESSED_IMESSAGE_FILE_IDS:
             self.author_str += ' (?)'
             self.author_txt = Text(self.author_str, style=self.author_style)
@@ -64,7 +65,7 @@ class MessengerLog(CommunicationDocument):
                 self.timestamp = datetime.strptime(timestamp_str, MSG_DATE_FORMAT)
                 break
             except ValueError as e:
-                logger.debug(f"[WARNING] Failed to parse '{timestamp_str}' to datetime! Using next match. Error: {e}'")
+                logger.info(f"[WARNING] Failed to parse '{timestamp_str}' to datetime! Using next match. Error: {e}'")
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield Panel(self.archive_link, border_style=self.author_style.removesuffix(' bold'), expand=False)
