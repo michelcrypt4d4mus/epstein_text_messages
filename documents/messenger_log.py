@@ -97,7 +97,6 @@ class MessengerLog(CommunicationDocument):
                     sender = MELANIE_WALKER
 
                 author_style = f"{get_style_for_name(sender)} bold"
-                logger.info(f"author_style for '{sender}' = '{author_style}', sender_style = '{sender_style}'")
                 sender_txt = Text(sender_str, style=sender_style or author_style)
 
             # Fix multiline links

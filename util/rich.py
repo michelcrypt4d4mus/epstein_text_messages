@@ -128,11 +128,12 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES_LIST = [
     GHISLAINE_MAXWELL,
     LEON_BLACK,
     LANDON_THOMAS,
+    KATHY_RUEMMLER,
+    DARREN_INDYKE,
+    RICHARD_KAHN,
+    TYLER_SHEARS,
     SULTAN_BIN_SULAYEM,
     DEEPAK_CHOPRA,
-    TYLER_SHEARS,
-    KATHY_RUEMMLER,
-    TYLER_SHEARS,
 ]
 
 highlighter_style_name = lambda style_name: f"{REGEX_STYLE_PREFIX}.{style_name.replace(' ', '_')}"
@@ -232,12 +233,12 @@ for style, pattern in HIGHLIGHT_PATTERNS.items():
     THEME_STYLES[prefixed_style_name] = style
 
 
-class TempHighlighter(RegexHighlighter):
+class InterestingNamesHighlighter(RegexHighlighter):
     base_style = f"{REGEX_STYLE_PREFIX}."
     highlights = HIGHLIGHTER_REGEXES
 
 
-highlighter = TempHighlighter()
+highlighter = InterestingNamesHighlighter()
 
 # Instantiate console object
 CONSOLE_ARGS = {
