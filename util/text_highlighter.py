@@ -5,7 +5,7 @@ from .constants import *
 
 class EpsteinTextHighlighter(RegexHighlighter):
     """Currently only highlights the email header."""
-    base_style = f"{HEADER_FIELD}."
+    base_style = f"{EMAIL_HEADER_FIELD}."
 
     highlights = [
         r"(?P<email>[\w-]+@([\w-]+\.)+[\w-]+)",  # TODO: doesn't work
