@@ -36,6 +36,7 @@ CHINA_COLOR = 'bright_red'
 DEFAULT_NAME_COLOR = 'grey82'
 DEMOCRATS_COLOR = 'sky_blue1'
 DUBIN_COLOR = 'medium_orchid1'
+EMPLOYEE_COLOR = 'deep_sky_blue4'
 ENTERTAINERS_COLOR = 'light_steel_blue3'
 EUROPE_COLOR = 'light_sky_blue3'
 HARVARD_COLOR = 'deep_pink2'
@@ -206,6 +207,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     BUSINESS_COLOR: rf"Marc Rich|(Steve\s+)?Wynn|(Leslie\s+)?Wexner|{BARBRO_EHNBOM}|{NICHOLAS_RIBIS}|{ROBERT_LAWRENCE_KUHN}|{STEPHEN_HANSON}|{TERRY_KAFKA}",
     CHINA_COLOR: r"Beijing|CCP|Chin(a|ese)|Guo|Kwok|Tai(pei|wan)|Peking|PRC|xi",
     DEMOCRATS_COLOR: r"Biden|(John )?Kerry|Maxine Waters|Obama|(Nancy )?Pelosi|Clinton|Hillary|Democrat(ic)?",
+    EMPLOYEE_COLOR: fr"{EMAILER_REGEXES[LAWRANCE_VISOSKI].pattern}|{LESLEY_GROFF}",
     ENTERTAINERS_COLOR: rf"Andres Serrano|Bobby slayton|David Blaine|Etienne Binant|Ramsey Elkholy|Woody( Allen)?",
     EUROPE_COLOR: fr"(Caroline|Jack)?\s*Lang(, Caroline)?|Lang|Le\s*Pen|Macron|(Angela )?Merk(el|le)|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Terje(( (R[øo]e?d[- ])?)?Lars[eo]n)?|Ukrain(e|ian)|Zug|{EMAILER_REGEXES[THORBJORN_JAGLAND].pattern}",
     HARVARD_COLOR: fr"{LISA_NEW}|Harvard|MIT( Media Lab)?|Media Lab|{EMAILER_REGEXES[LARRY_SUMMERS].pattern}",
