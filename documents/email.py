@@ -465,7 +465,7 @@ class Email(CommunicationDocument):
 
         yield Panel(self.archive_link, border_style=self._border_style(), expand=False)
         info_line = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(f' to ')
-        info_line.append(self.recipient_txt).append(f" probably sent ").append(str(self.timestamp), style='dark_cyan')
+        info_line.append(self.recipient_txt).append(f" probably sent at ").append(str(self.timestamp), style='dark_cyan')
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
         text = self._cleaned_up_text()
         quote_cutoff = self.idx_of_nth_quoted_reply(text=text)
