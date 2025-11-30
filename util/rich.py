@@ -351,7 +351,7 @@ def print_header():
     console.line()
     console.print(Panel(Text(PAGE_TITLE, justify='center'), style='bold reverse'))
     console.line()
-    print_centered_link(SUBSTACK_URL, "I Made Epstein's Text Messages Great Again (And You Should Read Them)", style=f'{SOCIAL_MEDIA_LINK_STYLE} bold')
+    print_centered_link(SUBSTACK_URL, "I Made Epstein's Text Messages Great Again (And You Should Read Them)", style=f'chartreuse3 bold')
     print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style='dodger_blue3')
     print_centered_link('https://cryptadamus.substack.com/', 'Substack', style=SOCIAL_MEDIA_LINK_STYLE)
     print_centered_link('https://universeodon.com/@cryptadamist/115572634993386057', 'Mastodon', style=SOCIAL_MEDIA_LINK_STYLE)
@@ -405,7 +405,7 @@ def print_other_site_link() -> None:
         msg += ' has [italic]all[/italic] of His Emails'
         url = ALL_EMAILS_URL
 
-    markup_msg = make_link_markup(url, msg, 'chartreuse3')
+    markup_msg = make_link_markup(url, msg, 'dark_goldenrod')
     print_centered(Text('(') + Text.from_markup(markup_msg).append(')'), style='bold')
 
 
