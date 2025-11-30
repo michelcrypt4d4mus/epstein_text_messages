@@ -161,9 +161,9 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED = {
     AL_SECKEL: 'orange_red1',
     JABOR_Y: "spring_green1",
     DANIEL_SIAD: 'dark_khaki',
-    JEAN_LUC_BRUNEL: 'wheat4',
+    JEAN_LUC_BRUNEL: 'pale_violet_red1',
     EHUD_BARAK: ISRAEL_COLOR,
-    MARTIN_NOWAK: HARVARD_COLOR,  # TODO: Really harvard color...
+    MARTIN_NOWAK: HARVARD_COLOR,
     'Masha Drokova': RUSSIA_COLOR,
     OLIVIER_COLOM: LOBBYIST_COLOR,
     STEVE_BANNON: COUNTERPARTY_COLORS[STEVE_BANNON],
