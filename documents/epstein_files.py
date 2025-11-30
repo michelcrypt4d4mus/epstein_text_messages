@@ -21,7 +21,8 @@ from util.constants import *
 from util.data import flatten, patternize
 from util.env import args, is_debug, logger
 from util.file_helper import DOCS_DIR, move_json_file
-from util.rich import DEFAULT_NAME_COLOR, console, get_style_for_name, highlight_interesting_text, make_link, make_link_markup, print_author_header, print_panel, vertically_pad
+from util.rich import (DEFAULT_NAME_COLOR, console, get_style_for_name, highlight_interesting_text, make_link,
+     make_link_markup, print_author_header, print_panel, vertically_pad)
 
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (0, 0, 0, 2)
@@ -131,14 +132,27 @@ class EpsteinFiles:
     def imessage_msg_count(self) -> int:
         return sum([log.msg_count for log in self.imessage_logs])
 
+    def lines_matching(self, _pattern: re.Pattern | str, file_type: Literal['all', 'other'] = 'all') -> list[str | Text]:
+        documents = self.all_documents() if file_type == 'all' else self.other_files
+        return flatten([doc.lines_matching_txt(patternize(_pattern)) for doc in documents])
+
     def num_identified_email_authors(self) -> int:
         return sum([i for author, i in self.email_author_counts.items() if author != UNKNOWN])
+
+    def print_files_overview(self) -> None:
+        table = Table(title=f"File Analysis Summary", show_header=True, header_style="bold")
+        table.add_column("File Type", justify='left')
+        table.add_column("File Count", justify='center')
+        table.add_column("Known Author Count", justify='center')
+        table.add_row('iMessage Logs', f"{len(self.imessage_logs):,}", str(self.identified_imessage_log_count()))
+        table.add_row('Emails', f"{len(self.emails):,}", f"{len([e for e in self.emails if e.author]):,}")
+        table.add_row('Other', f"{len(self.other_files):,}", 'n/a')
+        console.print(Padding(Align.center(vertically_pad(table))))
 
     def print_emails_for(self, _author: str | None) -> None:
         """Print complete emails to or from a particular 'author'."""
         emails = self.emails_for(_author)
         author = _author or UNKNOWN
-        logger.info(f"print_emails_for({author}) [_author{_author}]")
 
         if len(emails) > 0:
             print_author_header(
@@ -159,8 +173,8 @@ class EpsteinFiles:
 
     def print_emails_table_for(self, author: str) -> None:
         emails = self.emails_for(author)
-        table_title = f"Emails to/from {author} starting {emails[0].timestamp.date()}"
-        table = Table(title=table_title, border_style=get_style_for_name(author), header_style="bold", show_header=True)
+        title = f"Emails to/from {author} starting {emails[0].timestamp.date()}"
+        table = Table(title=title, border_style=get_style_for_name(author), header_style="bold", show_header=True)
         table.add_column("From", justify="left")
         table.add_column("Date", justify="center")
         table.add_column("Subject", justify="left", style='honeydew2', min_width=35)
@@ -172,7 +186,7 @@ class EpsteinFiles:
                 highlight_interesting_text(email.header.subject or '')
             )
 
-        console.print(table, '\n')
+        console.print(Align.center(table), '\n')
 
     def print_email_device_info(self) -> None:
         print_panel(f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown", padding=(0, 0, 0, 6))
@@ -232,20 +246,6 @@ class EpsteinFiles:
             table.add_row(doc.epsteinify_link_markup, f"{doc.length:,}", doc.highlighted_preview_text())
 
         console.print(table)
-
-    def print_files_overview(self) -> None:
-        table = Table(title=f"File Analysis Summary", show_header=True, header_style="bold")
-        table.add_column("File Type", justify='left')
-        table.add_column("File Count", justify='center')
-        table.add_column("Known Author Count", justify='center')
-        table.add_row('iMessage Logs', f"{len(self.imessage_logs):,}", str(self.identified_imessage_log_count()))
-        table.add_row('Emails', f"{len(self.emails):,}", f"{len([e for e in self.emails if e.author]):,}")
-        table.add_row('Other', f"{len(self.other_files):,}", 'n/a')
-        console.print(Padding(Align.center(vertically_pad(table))))
-
-    def lines_matching(self, _pattern: re.Pattern | str, file_type: Literal['all', 'other'] = 'all') -> list[str | Text]:
-        documents = self.all_documents() if file_type == 'all' else self.other_files
-        return flatten([doc.lines_matching_txt(patternize(_pattern)) for doc in documents])
 
     @staticmethod
     def sort_emails(emails: list[Email]) -> list[Email]:
