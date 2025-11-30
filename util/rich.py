@@ -60,7 +60,6 @@ VICTIM_COLOR = 'orchid1'
 VIRGIN_ISLANDS_COLOR = 'sea_green1'
 
 # Theme style names
-ARCHIVE_LINK = 'archive_link'
 COLOR_SUFFIX = '_COLOR'
 HEADER_STYLE_NAME = 'header_field'
 PHONE_NUMBER = 'phone_number'
@@ -166,21 +165,16 @@ COUNTERPARTY_COLORS = {
     ANIL: INDIA_COLOR,
     BRAD_KARP: LAWYER_COLOR,
     'Carolyn Rangel': PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES[DEEPAK_CHOPRA],  # Works for Deepak
-    CELINA_DUBIN: DUBIN_COLOR,
     DEFAULT: 'wheat4',
     EVA: 'orchid',
-    'Eva Dubin': DUBIN_COLOR,
-    GLENN_DUBIN: DUBIN_COLOR,
     JEFFREY_EPSTEIN: 'blue1',
     JONATHAN_FARKAS: BRO_COLOR,
     LINDA_STONE: 'pink3',
     MELANIE_SPINELLA: 'magenta3',
     MELANIE_WALKER: 'light_pink3',
     MIROSLAV: EUROPE_COLOR,
-    PAUL_MORRIS: BANK_COLOR,
     PAULA: 'pink1',
     SOON_YI: 'hot_pink',
-    SEAN_BANNON: BANNON_COLOR,
     TOM_BARRACK: BRO_COLOR,
     UNKNOWN: 'cyan',
 }
@@ -188,7 +182,6 @@ COUNTERPARTY_COLORS = {
 highlighter_style_name = lambda style_name: f"{EMAIL_HEADER_FIELD}.{style_name}"
 
 OTHER_STYLES = {
-    ARCHIVE_LINK: 'deep_sky_blue4',
     PHONE_NUMBER: 'bright_green',
     TEXT_LINK: 'deep_sky_blue4 underline',
     TIMESTAMP: 'gray30',
@@ -207,6 +200,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     BUSINESS_COLOR: rf"Marc Rich|(Steve\s+)?Wynn|(Leslie\s+)?Wexner|{BARBRO_EHNBOM}|{NICHOLAS_RIBIS}|{ROBERT_LAWRENCE_KUHN}|{STEPHEN_HANSON}|{TERRY_KAFKA}|{TOM_PRITZKER}",
     CHINA_COLOR: r"Beijing|CCP|Chin(a|ese)|Gino Yu|Guo|Kwok|Tai(pei|wan)|Peking|PRC|xi",
     DEMOCRATS_COLOR: r"Biden|(Bill )?Clinton|Hillary|Democrat(ic)?|(John )?Kerry|Maxine\s*Waters|(Barack )?Obama|(Nancy )?Pelosi|Ron\s*Dellums",
+    DUBIN_COLOR: fr"((Celina|Eva( Anderss?on)?|Glenn) )?Dubin",
     EMPLOYEE_COLOR: fr"{EMAILER_REGEXES[LAWRANCE_VISOSKI].pattern}|{LESLEY_GROFF}|{NADIA_MARCINKO}",
     ENTERTAINERS_COLOR: rf"Andres Serrano|Bill Siegel|Bobby slayton|David Blaine|Etienne Binant|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?",
     EUROPE_COLOR: fr"(Caroline|Jack)?\s*Lang(, Caroline)?|Le\s*Pen|Macron|(Angela )?Merk(el|le)|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|((Lord|Peter) )?Mandelson|Terje(( (R[øo]e?d[- ])?)?Lars[eo]n)?|Edward Rod Larsen|Ukrain(e|ian)|Zug|{EMAILER_REGEXES[THORBJORN_JAGLAND].pattern}",
@@ -220,7 +214,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     MODELING_COLOR: rf'{EMAILER_REGEXES[JEAN_LUC_BRUNEL].pattern}|{DANIEL_SIAD}|Faith Kates?|\w+@mc2mm.com|{MARIANA_IDZKOWSKA}',
     POLICE_COLOR: rf"Ann Marie Villafana|(James )?Comey|Kirk Blouin|((Bob|Robert) )?Mueller|Police Code Enforcement",
     PUBLICIST_COLOR: rf"{CHRISTINA_GALBRAITH}|Henry Holt|Ian Osborne|Matthew Hiltzik|{PEGGY_SIEGAL}|{TYLER_SHEARS}|ross@acuityreputation.com|Citrick|{EMAILER_REGEXES[MICHAEL_SITRICK].pattern}",
-    REPUBLICANS_COLOR: r"bolton|Broidy|cruz|kudlow|lewandowski|mnuchin|Pompeo|Republican",
+    REPUBLICANS_COLOR: r"bolton|Broidy|cruz|kudlow|lewandowski|mnuchin|(Paul )?Manafort|Pompeo|Republican",
     RUSSIA_COLOR: fr"GRU|FSB|Lavrov|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Vladimir Yudashkin",
     SCHOLAR_COLOR: fr"((Noam|Valeria) )?Chomsky|David Grosof|{DAVID_HAIG}|{JOSCHA_BACH}|Joscha|Bach|Moshe Hoffman|Peter Attia|{ROBERT_TRIVERS}|Trivers|{STEVEN_PFEIFFER}|{EMAILER_REGEXES[LAWRENCE_KRAUSS].pattern}",
     SOUTH_AMERICA_COLOR: r"Argentina|Bra[sz]il(ian)?|Bolsonar[aio]|Lula|(Nicolas )?Maduro|Venezuelan?s?",
@@ -229,6 +223,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     VICTIM_COLOR: r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts",
     VIRGIN_ISLANDS_COLOR: fr'Cecile de Jongh|(Kenneth E\. )?Mapp|{STACY_PLASKETT}',
     # Individuals' colors
+    BANNON_COLOR: r"((Steve|Sean)\s+)?Bannon",
     BITCOIN_COLOR.removesuffix(' bold'): r"mooch|(Anthony ('The Mooch' )?)?Scaramucci",
     COUNTERPARTY_COLORS[GHISLAINE_MAXWELL]: r"GMAX|gmax1@ellmax.com",
     COUNTERPARTY_COLORS[JEFFREY_EPSTEIN]: EMAILER_REGEXES[JEFFREY_EPSTEIN].pattern + r'|Mark (L. )?Epstein',
@@ -259,7 +254,6 @@ COUNTERPARTY_COLORS.update({
     'Joichi Ito': COUNTERPARTY_COLORS[JOI_ITO],
     'Jared Kushner': JAVANKA_COLOR,
     'Miro': COUNTERPARTY_COLORS[MIROSLAV],
-    'Paul Manafort': REPUBLICANS_COLOR,
 })
 
 
