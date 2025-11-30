@@ -8,7 +8,7 @@ from dateutil.parser import parse
 from rich.markup import escape
 from rich.text import Text
 
-from util.constants import REDACTED, SEAN_BANNON, STEVE_BANNON
+from util.constants import search_archive_url
 from util.data import patternize
 from util.env import logger
 from util.file_helper import extract_file_id
@@ -58,6 +58,9 @@ class Document:
         self._set_computed_fields()
         self.epsteinify_name_url = epsteinify_doc_url(self.file_path.stem)
         self.epsteinify_link_markup = make_link_markup(self.epsteinify_name_url, self.file_path.stem)
+
+    def archive_link(self, link_txt: str | None = None, style: str = ARCHIVE_LINK_COLOR) -> Text:
+        return make_link(search_archive_url(self.filename), link_txt or self.filename, style)
 
     def count_regex_matches(self, pattern: str) -> int:
         return len(re.findall(pattern, self.text))
