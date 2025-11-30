@@ -16,9 +16,8 @@ from rich.theme import Theme
 
 from .constants import *
 from .data import flatten
-from .env import args, deep_debug, logger
+from .env import args, deep_debug, is_debug, logger
 from .html import PAGE_TITLE
-from .strings import regex_escape_periods
 from .text_highlighter import EpsteinTextHighlighter
 
 COLOR_SUFFIX = '_COLOR'
@@ -268,9 +267,10 @@ def print_json(label: str, obj: object) -> None:
     console.line(2)
 
 
-console.line(2)
-print_json('HIGHLIGHTER_REGEXES', [r.pattern for r in HIGHLIGHTER_REGEXES])
-print_json('THEME_STYLES', THEME_STYLES)
+if is_debug:
+    console.line(2)
+    print_json('HIGHLIGHTER_REGEXES', [r.pattern for r in HIGHLIGHTER_REGEXES])
+    print_json('THEME_STYLES', THEME_STYLES)
 
 
 def get_style_for_name(name: str, default: str = DEFAULT) -> str:
