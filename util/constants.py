@@ -54,6 +54,7 @@ GERALD_BARTON = 'Gerald Barton'
 GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
 GLENN_DUBIN = 'Glenn Dubin'
 GWENDOLYN_BECK = 'Gwendolyn Beck'
+JACK_GOLDBERGER = 'Jack Goldberger'
 JEAN_HUGUEN = 'Jean Huguen'
 JEAN_LUC_BRUNEL = 'Jean Luc Brunel'
 JABOR_Y = 'Jabor Y'  # Qatari
@@ -259,7 +260,7 @@ EMAILER_REGEXES = {
     'Michael Miller': re.compile(r'Micha(el)? Miller|Miller, Micha(el)?', re.IGNORECASE),
     MICHAEL_BUCHHOLTZ: re.compile(r'Michael.*Buchholtz', re.IGNORECASE),
     MICHAEL_WOLFF: re.compile(r'Michael\s*Wol(ff|i)', re.IGNORECASE),
-    'Mike Sitrick': re.compile(r'Mi(chael|ke).*Sitrick', re.IGNORECASE),
+    MICHAEL_SITRICK: re.compile(r'Mi(chael|ke).{0,5}Sitrick', re.IGNORECASE),
     MOHAMED_WAHEED_HASSAN: re.compile(r'Mohamed Waheed', re.IGNORECASE),
     'Neal Kassell': re.compile(r'Neal Kassel', re.IGNORECASE),
     NICHOLAS_RIBIS: re.compile(r'Nicholas[ ._]Ribi?s?', re.IGNORECASE),
@@ -380,7 +381,7 @@ KNOWN_EMAIL_AUTHORS = {
     '029960': GWENDOLYN_BECK,       # Reply
     '029959': GWENDOLYN_BECK,       # "Longevity & Aging"
     '033360': 'Henry Holt',         # in signature
-    '033384': 'Jack Goldberger',    # Might be Paul Prosperi?
+    '033384': JACK_GOLDBERGER,    # Might be Paul Prosperi?
     '026024': JEAN_HUGUEN,
     '026024': JEAN_HUGUEN,          # Signature
     '021823': JEAN_LUC_BRUNEL,      # Reply
