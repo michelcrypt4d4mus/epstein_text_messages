@@ -21,7 +21,7 @@ from util.constants import *
 from util.data import flatten, patternize
 from util.env import args, is_debug, logger
 from util.file_helper import DOCS_DIR, move_json_file
-from util.rich import (DEFAULT_NAME_COLOR, console, get_style_for_name, make_link,
+from util.rich import (DEFAULT_NAME_COLOR, console, get_style_for_name, highlighter, make_link,
      make_link_markup, print_author_header, print_panel, vertically_pad)
 
 DEVICE_SIGNATURE = 'Device Signature'
@@ -257,7 +257,10 @@ def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str]
     table = Table(header_style="bold reverse", show_header=True, show_lines=True, title=title)
 
     for i, col in enumerate(cols):
-        table.add_column(col.title() + ('s' if i == 1 else ''), style='dim' if col == DEVICE_SIGNATURE else 'white')
+        table.add_column(
+            col.title() + ('s' if i == 1 else ''),
+            style='dim' if col == DEVICE_SIGNATURE else 'white'
+        )
 
     new_dict: dict[str, list[str]] = {}
 
@@ -266,6 +269,6 @@ def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str]
 
     for k in sorted(new_dict.keys()):
         _list = new_dict[k]
-        table.add_row(k or UNKNOWN, join_char.join(sorted(_list)))
+        table.add_row(k or UNKNOWN, highlighter(join_char.join(sorted(_list))))
 
     return Padding(table, DEVICE_SIGNATURE_PADDING)

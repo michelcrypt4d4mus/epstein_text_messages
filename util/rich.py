@@ -73,6 +73,7 @@ SOON_YI_COLOR = 'hot_pink'
 SULTAN_BIN_SULAYEM_COLOR = 'green1'
 # Other styles
 DEFAULT_NAME_COLOR = 'gray46'
+SENT_FROM_COLOR = 'grey39 italic'
 SNIPPED_SIGNATURE_COLOR = 'gray19'
 UNKNOWN_COLOR = 'cyan'
 
@@ -86,7 +87,6 @@ COLOR_MAPPING = {
 HEADER_STYLE_NAME = 'header_field'
 REGEX_STYLE_PREFIX = 'regex'
 PHONE_NUMBER = 'phone_number'
-SENT_FROM = 'sent_from'
 TEXT_LINK = 'text_link'
 TIMESTAMP = 'timestamp'
 
@@ -146,7 +146,6 @@ THEME_STYLES = {
     TIMESTAMP: 'gray30',
     HEADER_STYLE_NAME: 'plum4',
     highlighter_style_name('email'): 'bright_cyan',
-    SENT_FROM: 'gray50 italic dim',
 }
 
 SCARAMUCCI_PATTERN = r"mooch|(Anthony ('The Mooch' )?)?Scaramucci"  # TODO: integrate
@@ -177,32 +176,32 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     REPUBLICANS_COLOR: r"bolton|Broidy|cruz|kudlow|lewandowski|mnuchin|(Paul )?Manafort|Pompeo|Republican",
     RUSSIA_COLOR: fr"GRU|FSB|Lavrov|Masha\s*Drokova|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Vladimir Yudashkin",
     SCHOLAR_COLOR: fr"((Noam|Valeria) )?Chomsky|David Grosof|{DAVID_HAIG}|{JOSCHA_BACH}|Joscha|Bach|Moshe Hoffman|Peter Attia|{ROBERT_TRIVERS}|Trivers|{STEVEN_PFEIFFER}|{emailer_pattern(LAWRENCE_KRAUSS)}",
-    SNIPPED_SIGNATURE_COLOR: r'<\.\.\.(snipped|trimmed).*\.\.\.>',
     SOUTH_AMERICA_COLOR: r"Argentina|Bra[sz]il(ian)?|Bolsonar[aio]|Lula|(Nicolas )?Maduro|Venezuelan?s?",
     TECH_BRO_COLOR: fr"Elon|Musk|Masa(yoshi)?( Son)?|Najeev|Reid Hoffman|(Peter )?Thiel|Softbank|{emailer_pattern(STEVEN_SINOFSKY)}",
     TRUMP_COLOR: r"DJT|(Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)(?! Rubin)|(Matt(hew)? )?Calamari|Roger\s+Stone",
     VICTIM_COLOR: r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts",
     VIRGIN_ISLANDS_COLOR: fr'Cecile de Jongh|(Kenneth E\. )?Mapp|{STACY_PLASKETT}',
-
-    # Individuals' colors
+    # Individuals' styles
     ARIANE_DE_ROTHSCHILD_COLOR: emailer_pattern(ARIANE_DE_ROTHSCHILD),
-    JOI_ITO_COLOR: emailer_pattern(JOI_ITO),
+    BANNON_COLOR: r"((Steve|Sean)\s+)?Bannon",
+    BILL_GATES_COLOR: r"BG|(Bill\s+((and|or)\s+Melinda\s+)?)?Gates|Melinda(\s+Gates)?",
+    BITCOIN_COLOR.removesuffix(' bold'): SCARAMUCCI_PATTERN,
+    GHISLAINE_MAXWELL_COLOR: r"Ghislaine|Maxwell|GMAX|gmax1@ellmax.com",
     JABOR_Y_COLOR: emailer_pattern(JABOR_Y),
+    JEFFREY_EPSTEIN_COLOR: emailer_pattern(JEFFREY_EPSTEIN) + r'|Mark (L. )?Epstein',
+    JOI_ITO_COLOR: emailer_pattern(JOI_ITO),
     KATHY_RUEMMLER_COLOR: emailer_pattern(KATHY_RUEMMLER),
-    PRINCE_ANDREW_COLOR: emailer_pattern(PRINCE_ANDREW),
-    SULTAN_BIN_SULAYEM_COLOR: emailer_pattern(SULTAN_BIN_SULAYEM),
     LINDA_STONE_COLOR: emailer_pattern(LINDA_STONE),
     MELANIE_SPINELLA_COLOR: emailer_pattern(MELANIE_SPINELLA),
     MELANIE_WALKER_COLOR: emailer_pattern(MELANIE_WALKER),
     PAULA_COLOR: emailer_pattern(PAULA),
+    PRINCE_ANDREW_COLOR: emailer_pattern(PRINCE_ANDREW),
     SOON_YI_COLOR: emailer_pattern(SOON_YI),
-    BANNON_COLOR: r"((Steve|Sean)\s+)?Bannon",
-    BITCOIN_COLOR.removesuffix(' bold'): SCARAMUCCI_PATTERN,
-    GHISLAINE_MAXWELL_COLOR: r"GMAX|gmax1@ellmax.com",
-    JEFFREY_EPSTEIN_COLOR: emailer_pattern(JEFFREY_EPSTEIN) + r'|Mark (L. )?Epstein',
-    BILL_GATES_COLOR: r"BG|(Bill\s+((and|or)\s+Melinda\s+)?)?Gates|Melinda(\s+Gates)?",
+    SULTAN_BIN_SULAYEM_COLOR: emailer_pattern(SULTAN_BIN_SULAYEM),
     # Misc
-    HEADER_STYLE_NAME: r"^((Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):)"
+    HEADER_STYLE_NAME: r"^((Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):)",
+    SENT_FROM_COLOR: SENT_FROM_REGEX.pattern,
+    SNIPPED_SIGNATURE_COLOR: r'<\.\.\.(snipped|trimmed).*\.\.\.>',
 }
 
 # Wrap in \b, add optional s? at end of all regex patterns
@@ -227,10 +226,11 @@ for style, pattern in HIGHLIGHT_PATTERNS.items():
 
     if style in [HEADER_STYLE_NAME]:
         regex = re.compile(pattern, re.MULTILINE)
-    elif style in [SNIPPED_SIGNATURE_COLOR]:
-        regex = re.compile(fr"(?P<{style_name}>{pattern})")
+    elif style in [SENT_FROM_COLOR, SNIPPED_SIGNATURE_COLOR]:
+        regex = re.compile(fr"(?P<{style_name}>{pattern})", re.IGNORECASE | re.MULTILINE)
+        print(f"style regex for '{style}': {regex.pattern}")
     else:
-        regex = re.compile(fr"\b(?P<{style_name}>({pattern})s?)\b", re.I)
+        regex = re.compile(fr"\b(?P<{style_name}>({pattern})s?)\b", re.IGNORECASE)
 
     HIGHLIGHTER_REGEXES.append(regex)
     THEME_STYLES[prefixed_style_name] = style

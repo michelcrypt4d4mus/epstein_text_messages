@@ -9,7 +9,7 @@ from rich.console import Console
 from rich.text import Text
 
 from documents.document import Document
-from documents.email import Email, REPLY_LINE_PATTERN, REPLY_REGEX, REPLY_TEXT_REGEX, SENT_FROM_REGEX
+from documents.email import Email, REPLY_LINE_PATTERN, REPLY_REGEX, REPLY_TEXT_REGEX
 from util.env import deep_debug, is_debug
 from util.file_helper import DOCS_DIR
 
