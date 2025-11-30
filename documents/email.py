@@ -164,6 +164,7 @@ TRUNCATE_TERMS = [
     "Bannon the European: He's opening the populist fort in Brussels",
     "Steve Bannon doesn't do subtle.",
     'The Department of Justice lost its latest battle with Congress',
+    "Donald Trump's newly named chief strategist and senior counselor",
     # Diane Ziman
     'I was so proud to see him speak at the Women',
     # Krauss
@@ -200,9 +201,13 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + [
     'Mark Albert',                           # Random CC
     'Matthew Schafer',                       # Random CC
     'Michael Simmons',                       # Random CC
+    'Nancy Portland',                        # Lawrence Krauss CC
+    'Oliver Goodenough',                     # Robert Trivers CC
     'Owen Blicksilver',                      # Landon Thomas CC
+    'Peter Aldhous',                         # Lawrence Krauss CC
     'Pink',                                  # Random Jean Luc Brunel CC
     'Robert D. Critton Jr',                  # Random CC
+    'Sam Harris':                            # Lawrence Krauss CC
     'Sam/Walli Leff',                        # Random CC
     'Saved by Internet Explorer 11',
     'Sean T Lehane',                         # Random CC
