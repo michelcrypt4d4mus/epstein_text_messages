@@ -241,6 +241,7 @@ EMAILER_REGEXES = {
     LAWRANCE_VISOSKI: re.compile(r'La(rry|wrance) Visoski?', re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus|lawkrauss', re.IGNORECASE),
     LEON_BLACK: re.compile(r'Leon Blac', re.IGNORECASE),
+    'Mariana Idźkowska': re.compile(r'Mariana ldikowsk', re.IGNORECASE),  # Raw image
     MARK_EPSTEIN: re.compile(r'Mark (L\. )?Epstein', re.IGNORECASE),
     LILLY_SANCHEZ: re.compile(r'Lilly.*Sanchez', re.IGNORECASE),
     LISA_NEW: re.compile(r'Lisa New?$', re.IGNORECASE),
