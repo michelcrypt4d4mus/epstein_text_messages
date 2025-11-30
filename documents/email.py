@@ -46,7 +46,6 @@ SENT_FROM_REGEX = re.compile(r'^(?:Please forgive typos. |Sorry for all the typo
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
 BAD_LINE_REGEX = re.compile(r'^(\d{1,2}|Importance:( High)?|I)$')
-UNKNOWN_SIGNATURE_REGEX = re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL)
 
 UNDISCLOSED_RECIPIENTS_REGEX = re.compile(r'Undisclosed[- ]recipients:', re.IGNORECASE)
 BAD_FIRST_LINES = ['026652', '029835', '031189']
@@ -466,8 +465,7 @@ class Email(CommunicationDocument):
 
         yield Panel(self.archive_link, border_style=self._border_style(), expand=False)
         info_line = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(f' to ')
-        info_line.append(self.recipient_txt).append(f" probably sent at ")
-        info_line.append(f"{self.timestamp or '?'}", style='spring_green3')
+        info_line.append(self.recipient_txt).append(f" probably sent ").append(str(self.timestamp), style='dark_cyan')
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
         text = self._cleaned_up_text()
         quote_cutoff = self.idx_of_nth_quoted_reply(text=text)
@@ -480,13 +478,13 @@ class Email(CommunicationDocument):
             num_chars = quote_cutoff
 
         if len(text) > num_chars:
-            text = text[0:num_chars]
-            text += f"\n\n[dim]<...trimmed to {num_chars} characters of {self.length}, read the rest: {self.epsteinify_link_markup}...>[/dim]"
+            trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest: {self.epsteinify_link_markup}...>"
+            text = f"{text[0:num_chars]}\n\n[dim]{trim_note}[/dim]"
 
         text = REPLY_REGEX.sub(rf'[{HEADER_STYLE}]\1[/{HEADER_STYLE}]', text)
         text = SENT_FROM_REGEX.sub(fr'[{SENT_FROM}]\1[/{SENT_FROM}]', text)
-        text = UNKNOWN_SIGNATURE_REGEX.sub(r'[dim]\1[/dim]', text)
-        yield Padding(Panel(highlight_text(text), border_style=self._border_style(), expand=False), (0, 0, 2, EMAIL_INDENT))
+        email_txt_panel = Panel(highlight_text(text), border_style=self._border_style(), expand=False)
+        yield Padding(email_txt_panel, (0, 0, 2, EMAIL_INDENT))
 
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:
