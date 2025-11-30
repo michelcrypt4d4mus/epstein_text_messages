@@ -216,7 +216,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     LAWYER_COLOR: rf"(Alan (M\. )?)?Dershowi(l|tz)|(Ken(neth W.)?\s+)?Starr|{DAVID_SCHOEN}|{JAY_LEFKOWITZ}|Lefkowitz|Lilly (Ann )?Sanchez|{MARTIN_WEINBERG}|Paul Weiss|{REID_WEINGARTEN}|Weinberg|Weingarten|Roy Black|{SCOTT_J_LINK}",
     LOBBYIST_COLOR: r"Purevsuren Lundeg|Rob Crowe|Stanley Rosenberg", # lundeg mongolian ambassador, Rosenberg former state senator?
     MIDDLE_EAST_COLOR: rf"Abdulmalik Al-Makhlafi|Abu\s+Dhabi|{ANAS_ALRASHEED}|Assad|{AZIZA_ALAHMADI}|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Imran Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Riya(dh|nd)|Saudi(\s+Arabian?)?|Shaher Abdulhak Besher|Sharia|Syria|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
-    MODELING_COLOR: rf'{EMAILER_REGEXES[JEAN_LUC_BRUNEL].pattern}|{DANIEL_SIAD}|Faith Kates?|mc2mm.com|{MARIANA_IDZKOWSKA}',
+    MODELING_COLOR: rf'{EMAILER_REGEXES[JEAN_LUC_BRUNEL].pattern}|{DANIEL_SIAD}|Faith Kates?|\w+@mc2mm.com|{MARIANA_IDZKOWSKA}',
     POLICE_COLOR: rf"Ann Marie Villafana|(James )?Comey|Kirk Blouin|((Bob|Robert) )?Mueller|Police Code Enforcement",
     PUBLICIST_COLOR: rf"{CHRISTINA_GALBRAITH}|Matthew Hiltzik|{PEGGY_SIEGAL}|{TYLER_SHEARS}|ross@acuityreputation.com",
     REPUBLICANS_COLOR: r"bolton|Broidy|cruz|kudlow|lewandowski|mnuchin|Pompeo|Republican",

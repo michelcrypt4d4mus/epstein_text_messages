@@ -66,7 +66,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'twitter glhsummers': 'twitter @lhsummers',
     re.compile(r'from my BlackBerry[0°] wireless device'): 'from my BlackBerry® wireless device',
     re.compile(r'gmax ?[1l] ?[@g]ellmax.c ?om'): GMAX_EMAIL,
-    re.compile(r"[ijlp']ee[vy]acation[©@a(&,P ]{1,3}gmail.com"): JEEVACATION_GMAIL,
+    re.compile(r"[ijlp']ee[vy]acation[©@a(&,P ]{1,3}g?mail.com"): JEEVACATION_GMAIL,
     re.compile(r"twitter\.com[i/][lI]krauss[1lt]"): "twitter.com/lkrauss1",
     re.compile(r"^(From|To)(: )?[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",
     'BlackBerry by AT &T': 'BlackBerry by AT&T',
@@ -227,6 +227,8 @@ SUPPRESS_OUTPUT_FOR_IDS = {
     '033599': "the same as 033386",
     '030622': 'the same as 023024',
     '023026': 'the same as 030618',
+    '032246': 'a redacted version of 032248',
+    '012898': 'the same as 033575',
 }
 
 clipped_signature_replacement = lambda name: f'[dim]<...snipped {name.lower()} legal signature...>[/dim]'
