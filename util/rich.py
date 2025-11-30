@@ -6,6 +6,7 @@ from typing import Literal
 
 from rich.align import Align
 from rich.console import Console, RenderableType
+from rich.highlighter import RegexHighlighter
 from rich.markup import escape
 from rich.panel import Panel
 from rich.padding import Padding
@@ -57,7 +58,7 @@ VICTIM_COLOR = 'orchid1'
 VIRGIN_ISLANDS_COLOR = 'sea_green1'
 
 COLOR_MAPPING = {v: k.removesuffix(COLOR_SUFFIX).lower() for k, v in locals().items() if k.endswith(COLOR_SUFFIX)}
-print(f"Color Mapping\n\n", COLOR_MAPPING)
+# print(f"Color Mapping\n\n", COLOR_MAPPING)
 #get_dict_key_by_value
 
 # Theme style names
@@ -204,11 +205,12 @@ OTHER_STYLES = {
 COUNTERPARTY_COLORS.update(PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED)
 COUNTERPARTY_COLORS.update(PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES)
 COUNTERPARTY_COLORS.update(OTHER_STYLES)
+SCARAMUCCI_PATTERN = r"mooch|(Anthony ('The Mooch' )?)?Scaramucci"
 
 HIGHLIGHT_PATTERNS: dict[str, str] = {
     BANK_COLOR: fr"Amanda\s*Ens|Black(rock|stone)|{DANIEL_SABBA}|DB|Deutsche Bank|Goldman( ?Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|Jes\s+Staley|Merrill\s+Lynch|Morgan Stanley|j\.?p\.?\s*morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com|Marc\s*Leon|{PAUL_MORRIS}|{PAUL_BARRETT}",
-    BITCOIN_COLOR: r"bitcoin|block ?chain( capital)?|Brock|coins|cr[iy]?pto(currency)?|e-currency|(jeffrey\s+)?wernick|(Howard\s+)?Lutnick|Libra|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)",
-    BUSINESS_COLOR: rf"Marc Rich|(Steve\s+)?Wynn|(Leslie\s+)?Wexner|{BARBRO_EHNBOM}|{NICHOLAS_RIBIS}|{ROBERT_LAWRENCE_KUHN}|{STEPHEN_HANSON}|{TERRY_KAFKA}|{TOM_PRITZKER}",
+    BITCOIN_COLOR: fr"bitcoin|block ?chain( capital)?|Brock|coins|cr[iy]?pto(currency)?|e-currency|(jeffrey\s+)?wernick|(Howard\s+)?Lutnick|Libra|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)",
+    BUSINESS_COLOR: fr"Marc Rich|(Steve\s+)?Wynn|(Leslie\s+)?Wexner|{BARBRO_EHNBOM}|{NICHOLAS_RIBIS}|{ROBERT_LAWRENCE_KUHN}|{STEPHEN_HANSON}|{TERRY_KAFKA}|{TOM_PRITZKER}",
     CHINA_COLOR: r"Beijing|CCP|Chin(a|ese)|Gino Yu|Guo|Kwok|Tai(pei|wan)|Peking|PRC|xi",
     DEMOCRATS_COLOR: r"Biden|(Bill )?Clinton|Hillary|Democrat(ic)?|(John )?Kerry|Maxine\s*Waters|(Barack )?Obama|(Nancy )?Pelosi|Ron\s*Dellums",
     DUBIN_COLOR: fr"((Celina|Eva( Anderss?on)?|Glenn) )?Dubin",
@@ -235,7 +237,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     VIRGIN_ISLANDS_COLOR: fr'Cecile de Jongh|(Kenneth E\. )?Mapp|{STACY_PLASKETT}',
     # Individuals' colors
     BANNON_COLOR: r"((Steve|Sean)\s+)?Bannon",
-    BITCOIN_COLOR.removesuffix(' bold'): r"mooch|(Anthony ('The Mooch' )?)?Scaramucci",
+    BITCOIN_COLOR.removesuffix(' bold'): SCARAMUCCI_PATTERN,
     COUNTERPARTY_COLORS[GHISLAINE_MAXWELL]: r"GMAX|gmax1@ellmax.com",
     COUNTERPARTY_COLORS[JEFFREY_EPSTEIN]: EMAILER_REGEXES[JEFFREY_EPSTEIN].pattern + r'|Mark (L. )?Epstein',
     'turquoise4': r"BG|(Bill\s+((and|or)\s+Melinda\s+)?)?Gates|Melinda(\s+Gates)?",
@@ -250,6 +252,35 @@ HIGHLIGHT_REGEXES: dict[str, re.Pattern] = {
     for k, v in HIGHLIGHT_PATTERNS.items()
 }
 
+HIGHLIGHTER_REGEXES: list[re.Pattern] = []
+HIGHLIGHTER_STYLES: dict[str, str] = {}
+
+for style, pattern in HIGHLIGHT_PATTERNS.items():
+    if style not in COLOR_MAPPING:
+        logger.debug(f"Skipping style '{style}' for highlighter...")
+        continue
+
+    print(f"Handling style '{style}'")
+    style_name = COLOR_MAPPING[style]
+    regex = re.compile(fr"\b(?P<{style_name}>({pattern})s?)\b", re.I)
+    HIGHLIGHTER_REGEXES.append(regex)
+    print(f"    -> {regex.pattern}")
+    HIGHLIGHTER_STYLES[highlighter_style_name(style_name)] = style
+
+class TempHighlighter(RegexHighlighter):
+    """Currently only highlights the email header."""
+    base_style = f"{EMAIL_HEADER_FIELD}."
+
+    highlights = [
+        r"(?P<email>[\w-]+@([\w-]+\.)+[\w-]+)",  # TODO: doesn't work
+        # r"(?P<header>Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):",
+    ]
+
+
+if args.no_highlights:
+    COUNTERPARTY_COLORS = {}
+    HIGHLIGHT_REGEXES = {}
+
 # Instantiate console object
 CONSOLE_ARGS = {
     'color_system': '256',
@@ -259,24 +290,22 @@ CONSOLE_ARGS = {
     'width': OUTPUT_WIDTH,
 }
 
-HIGHLIGHTER_REGEXES = [
-    re.compile(fr"\b(?P<{COLOR_MAPPING[color]}>({pattern})s?)\b", re.I)
-    for color, pattern in HIGHLIGHT_PATTERNS.items()
-    if color in COLOR_MAPPING
-]
-
-for regex in HIGHLIGHTER_REGEXES:
-    print(f"    -> {regex.pattern}")
-
-if args.no_highlights:
-    COUNTERPARTY_COLORS = {}
-    HIGHLIGHT_REGEXES = {}
-
 if args.suppress_output:
     logger.warning(f"Suppressing terminal output because args.suppress_output={args.suppress_output}...")
     CONSOLE_ARGS.update({'file': open(devnull, "wt")})
 
 console = Console(**CONSOLE_ARGS)
+
+
+def print_json(label: str, obj: object) -> None:
+    console.print(f"{label}:\n")
+    console.print_json(json.dumps(obj, indent=4, sort_keys=True))
+
+
+console.line(2)
+print_json('HIGHLIGHTER_REGEXES', [r.pattern for r in HIGHLIGHTER_REGEXES])
+console.line(2)
+print_json('HIGHLIGHTER_STYLES', HIGHLIGHTER_STYLES)
 
 
 def get_style_for_name(name: str, default: str = DEFAULT) -> str:
