@@ -173,7 +173,7 @@ class EpsteinFiles:
         console.print(table, '\n')
 
     def print_email_device_info(self) -> None:
-        print_panel(f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown", padding=DEVICE_SIGNATURE_PADDING)
+        print_panel(f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown", padding=(0, 0, 0, 6))
         console.print(build_signature_table(self.email_author_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
         console.line(2)
         console.print(build_signature_table(self.email_sent_from_devices, (DEVICE_SIGNATURE, AUTHOR), ', '))
