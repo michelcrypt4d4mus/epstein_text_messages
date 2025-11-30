@@ -193,10 +193,12 @@ class EpsteinFiles:
         sort_key = lambda item: item[0] if args.sort_alphabetical else [item[1], item[0]]
 
         for k, count in sorted(self.all_emailer_counts().items(), key=sort_key, reverse=True):
+            style = get_style_for_name(k, DEFAULT_NAME_COLOR)
+
             counts_table.add_row(
-                Text.from_markup(make_link_markup(epsteinify_name_url(k), k, get_style_for_name(k, DEFAULT_NAME_COLOR))),
-                make_link(search_jmail_url(k), 'Search Jmail'),
-                make_link(search_twitter_url(f'"{k}"'), 'Search X'),
+                Text.from_markup(make_link_markup(epsteinify_name_url(k), k, style, underline=(style != DEFAULT_NAME_COLOR))),
+                '' if k == UNKNOWN else make_link(search_jmail_url(k), 'Search Jmail'),
+                '' if k == UNKNOWN else make_link(search_twitter_url(f'"{k}"'), 'Search X'),
                 str(count),
                 str(self.email_author_counts[k]),
                 str(self.email_recipient_counts[k])
