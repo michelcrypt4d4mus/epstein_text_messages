@@ -283,12 +283,7 @@ def get_style_for_name(name: str, default: str = DEFAULT) -> str:
     return default
 
 
-def highlight_regex_match(text: str, pattern: re.Pattern, style: str = 'cyan') -> Text:
-    """Replace 'pattern' matches with markup of the match colored with 'style'."""
-    return Text.from_markup(pattern.sub(rf'[{style}]\1[/{style}]', text))
-
-
-def highlight_text(text: str) -> str:
+def highlight_interesting_text(text: str) -> str:
     for style, name_regex in HIGHLIGHT_REGEXES.items():
         text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
 
@@ -324,6 +319,11 @@ def highlight_text(text: str) -> str:
             text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
 
     return text
+
+
+def highlight_regex_match(text: str, pattern: re.Pattern, style: str = 'cyan') -> Text:
+    """Replace 'pattern' matches with markup of the match colored with 'style'."""
+    return Text.from_markup(pattern.sub(rf'[{style}]\1[/{style}]', text))
 
 
 def make_link_markup(url: str, link_text: str, style: str | None = ARCHIVE_LINK_COLOR, underline: bool = True) -> str:
@@ -366,7 +366,7 @@ def print_header():
     table.add_column("Translation", style="white", justify="center")
 
     for k, v in HEADER_ABBREVIATIONS.items():
-        table.add_row(highlight_text(k), v)
+        table.add_row(highlight_interesting_text(k), v)
 
     console.print(Align.center(vertically_pad(table)))
     print_centered_link(OVERSIGHT_REPUBLICANS_PRESSER_URL, 'Oversight Committee Releases Additional Epstein Estate Documents')
@@ -412,10 +412,20 @@ def print_color_key(color_keys: Text) -> None:
     print_centered(vertically_pad(color_table))
 
 
-def print_numbered_list(_list: list[str] | dict) -> None:
+def print_numbered_list(_list: list[str] | dict, esptein_files) -> None:
+    console.line()
+
     for i, name in enumerate(_list):
+        txt = Text(F"   {i + 1}. ")
+
+        if esptein_files:
+            earliest_email_date = (esptein_files.earliest_email_at(name) or FALLBACK_TIMESTAMP).date()
+            txt.append(f"({earliest_email_date}) ", style='dim')
+
         name = name or UNKNOWN
-        console.print(Text(f"   {i}. ").append(name, style=get_style_for_name(name, DEFAULT_NAME_COLOR)))
+        console.print(txt + Text.from_markup(highlight_interesting_text(name)))
+
+    console.line()
 
 
 def print_other_site_link(is_header: bool = True) -> None:

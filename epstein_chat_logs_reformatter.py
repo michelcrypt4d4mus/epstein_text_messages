@@ -59,22 +59,22 @@ if not skip_texts:
 print_section_header(('Selections from ' if not args.all else '') + 'His Emails')
 print_other_site_link(is_header=False)
 epstein_files.print_emailer_counts_table()
-console.print('Epstein emails grouped by counterparty can be found in the order listed below.\n')
 
 if args.all:
-    console.print('Email conversations are sorted chronologically based on time of the first email.\n', style='dim')
+    console.print('Email conversations are sorted chronologically based on time of the first email.', style='dim')
     emailers_to_print = sorted(epstein_files.all_emailers(), key=lambda e: epstein_files.earliest_email_at(e))
-    print_numbered_list(emailers_to_print)
+    print_numbered_list(emailers_to_print, epstein_files)
 else:
     if len(additional_emailers) > 0:
         PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED.update({k: get_style_for_name(k) for k in additional_emailers})
 
+    console.print('Email conversations grouped by counterparty can be found in the order listed below.')
     emailers_to_print = [e for e in PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED.keys()]
-    print_numbered_list(emailers_to_print)
-    console.print("\nAfter that there's tables linking to (but not displaying) all known emails for each of these people:\n")
+    print_numbered_list(emailers_to_print, epstein_files)
+    console.print("\nAfter that there's tables linking to (but not displaying) all known emails for each of these people:")
     emailer_tables = epstein_files.all_emailers() if args.all_tables else PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES
     emailer_tables = sorted(emailer_tables, key=lambda e: epstein_files.earliest_email_at(e)) if args.all_tables else emailer_tables
-    print_numbered_list(emailer_tables)
+    print_numbered_list(emailer_tables, epstein_files)
 
 for author in emailers_to_print:
     epstein_files.print_emails_for(author)

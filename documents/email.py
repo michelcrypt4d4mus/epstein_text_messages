@@ -10,7 +10,7 @@ from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
 
-from documents.document import FALLBACK_TIMESTAMP, CommunicationDocument
+from documents.document import CommunicationDocument
 from documents.email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TO_FIELDS, EmailHeader
 from util.constants import *
 from util.env import is_debug, is_fast_mode, logger
@@ -291,7 +291,7 @@ class Email(CommunicationDocument):
             return Text(self.filename)
         else:
             info_str = f"Email (author='{self.author}', recipients={self.recipients}, timestamp='{self.timestamp}')"
-            return Text.from_markup(highlight_text(info_str))
+            return Text.from_markup(highlight_interesting_text(info_str))
 
     def idx_of_nth_quoted_reply(self, n: int = 2, text: str | None = None) -> int | None:
         """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line."""
@@ -484,7 +484,7 @@ class Email(CommunicationDocument):
 
         text = REPLY_REGEX.sub(rf'[{HEADER_STYLE_NAME}]\1[/{HEADER_STYLE_NAME}]', text)
         text = SENT_FROM_REGEX.sub(fr'[{SENT_FROM}]\1[/{SENT_FROM}]', text)
-        email_txt_panel = Panel(highlight_text(text), border_style=self._border_style(), expand=False)
+        email_txt_panel = Panel(highlight_interesting_text(text), border_style=self._border_style(), expand=False)
         yield Padding(email_txt_panel, (0, 0, 2, EMAIL_INDENT))
 
 

@@ -3,6 +3,8 @@ import re
 import urllib.parse
 from io import StringIO
 
+from dateutil.parser import parse
+
 # Texting Names
 ANIL = "Anil Ambani"
 DEFAULT = 'default'
@@ -593,6 +595,9 @@ SITE_URLS = {
     EMAIL: 'https://michelcrypt4d4mus.github.io/epstein_emails_house_oversight/',
     TEXT_MESSAGE: 'https://michelcrypt4d4mus.github.io/epstein_text_messages/',
 }
+
+# Misc
+FALLBACK_TIMESTAMP = parse("1/1/2001 12:01:01 AM")
 
 
 epsteinify_api_url = lambda file_id: f"{EPSTEINIFY_URL}/api/documents/HOUSE_OVERSIGHT_{file_id}"

@@ -12,12 +12,11 @@ from util.constants import search_archive_url
 from util.data import patternize
 from util.env import logger
 from util.file_helper import extract_file_id
-from util.rich import ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_regex_match, highlight_text, logger, make_link, make_link_markup
+from util.rich import ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_regex_match, highlight_interesting_text, logger, make_link, make_link_markup
 from util.strings import *
 
 MULTINEWLINE_REGEX = re.compile(r"\n{3,}")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
-FALLBACK_TIMESTAMP = parse("1/1/2001 12:01:01 AM")
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 PREVIEW_CHARS = 520
 HOUSE_OVERSIGHT = 'HOUSE OVERSIGHT'
@@ -69,7 +68,7 @@ class Document:
         return make_link(self.epsteinify_name_url, link_txt or self.filename, style)
 
     def highlighted_preview_text(self) -> Text:
-        highlighted_txt_markup = highlight_text(escape(self.preview_text()))
+        highlighted_txt_markup = highlight_interesting_text(escape(self.preview_text()))
 
         try:
             return Text.from_markup(highlighted_txt_markup)
