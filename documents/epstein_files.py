@@ -21,7 +21,7 @@ from util.constants import *
 from util.data import flatten, patternize
 from util.env import args, is_debug, logger
 from util.file_helper import DOCS_DIR, move_json_file
-from util.rich import (DEFAULT_NAME_COLOR, console, get_style_for_name, highlight_interesting_text, make_link,
+from util.rich import (DEFAULT_NAME_COLOR, console, get_style_for_name, highlighter, make_link,
      make_link_markup, print_author_header, print_panel, vertically_pad)
 
 DEVICE_SIGNATURE = 'Device Signature'
@@ -183,13 +183,13 @@ class EpsteinFiles:
             table.add_row(
                 email.author_txt,
                 email.epsteinify_link(link_txt=email.timestamp_without_seconds()),
-                highlight_interesting_text(email.header.subject or '')
+                highlighter(email.header.subject or '')
             )
 
         console.print(Align.center(table), '\n')
 
     def print_email_device_info(self) -> None:
-        print_panel(f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown", padding=(0, 0, 0, 6))
+        print_panel(f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown", padding=(0, 0, 0, 11))
         console.print(build_signature_table(self.email_author_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
         console.line(2)
         console.print(build_signature_table(self.email_sent_from_devices, (DEVICE_SIGNATURE, AUTHOR), ', '))
@@ -257,7 +257,7 @@ def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str]
     table = Table(header_style="bold reverse", show_header=True, show_lines=True, title=title)
 
     for i, col in enumerate(cols):
-        table.add_column(col.title() + ('s' if i == 1 else ''), style='dim' if col == DEVICE_SIGNATURE else 'white')
+        table.add_column(col.title() + ('s' if i == 1 else ''))
 
     new_dict: dict[str, list[str]] = {}
 
@@ -266,6 +266,6 @@ def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str]
 
     for k in sorted(new_dict.keys()):
         _list = new_dict[k]
-        table.add_row(highlight_interesting_text(k or UNKNOWN), highlight_interesting_text(join_char.join(sorted(_list))))
+        table.add_row(highlighter(k or UNKNOWN), highlighter(join_char.join(sorted(_list))))
 
     return Padding(table, DEVICE_SIGNATURE_PADDING)

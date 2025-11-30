@@ -11,7 +11,7 @@ from util.constants import search_archive_url
 from util.data import patternize
 from util.env import logger
 from util.file_helper import extract_file_id
-from util.rich import (ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_interesting_text, highlight_regex_match,
+from util.rich import (ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_regex_match, highlighter,
      logger, make_link, make_link_markup)
 from util.strings import *
 
@@ -69,12 +69,10 @@ class Document:
         return make_link(self.epsteinify_name_url, link_txt or self.filename, style)
 
     def highlighted_preview_text(self) -> Text:
-        highlighted_txt_markup = highlight_interesting_text(escape(self.preview_text()))
-
         try:
-            return Text.from_markup(highlighted_txt_markup)
+            return highlighter(escape(self.preview_text()))
         except Exception as e:
-            logger.error(f"Failed to apply markup in string '{escape_single_quotes(highlighted_txt_markup)}'\n"
+            logger.error(f"Failed to apply markup in string '{escape_single_quotes(self.preview_text())}'\n"
                          f"Original string: '{escape_single_quotes(self.preview_text())}'\n"
                          f"File: '{self.filename}'\n")
 

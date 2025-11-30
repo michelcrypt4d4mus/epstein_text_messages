@@ -6,7 +6,7 @@ from rich.panel import Panel
 from rich.text import Text
 
 from util.constants import *
-from util.rich import PHONE_NUMBER, TEXT_LINK, TIMESTAMP, get_style_for_name, highlight_interesting_text
+from util.rich import PHONE_NUMBER, TEXT_LINK, TIMESTAMP, get_style_for_name, highlighter
 from documents.document import *
 
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
@@ -96,7 +96,8 @@ class MessengerLog(CommunicationDocument):
                 elif re.match('[ME]+', sender):
                     sender = MELANIE_WALKER
 
-                sender_txt = Text(sender_str, style=sender_style or f"{get_style_for_name(sender)} bold")
+                author_style = f"{get_style_for_name(sender)} bold"
+                sender_txt = Text(sender_str, style=sender_style or author_style)
 
             # Fix multiline links
             if msg.startswith('http'):
@@ -113,7 +114,7 @@ class MessengerLog(CommunicationDocument):
                 if len(msg_lines) > 0:
                     msg = msg.append('\n' + ' '.join(msg_lines))
             else:
-                msg = Text.from_markup(highlight_interesting_text(msg.replace('\n', ' ')))  # remove newlines
+                msg = highlighter(msg.replace('\n', ' '))  # remove newlines
 
             sender_counts[UNKNOWN if (sender in UNKNOWN_TEXTERS or BAD_TEXTER_REGEX.match(sender)) else sender] += 1
             yield Text('').append(timestamp).append(sender_txt).append(': ', style='dim').append(msg)
