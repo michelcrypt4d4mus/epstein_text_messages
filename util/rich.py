@@ -225,7 +225,6 @@ for style, pattern in HIGHLIGHT_PATTERNS.items():
 
     if style in [HEADER_FIELD_COLOR, SENT_FROM_COLOR, SNIPPED_SIGNATURE_COLOR, UNKNOWN_COLOR]:
         regex = re.compile(fr"(?P<{style_name}>{pattern})", re.IGNORECASE | re.MULTILINE)
-        print(f"style regex for '{style}': {regex.pattern}")
     else:
         regex = re.compile(fr"\b(?P<{style_name}>({pattern})s?)\b", re.IGNORECASE)
 
