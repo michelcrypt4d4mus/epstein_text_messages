@@ -329,6 +329,7 @@ EMAILERS = [
     'Peter Aldhous',
     'Peter Green',
     PETER_MANDELSON,
+    'Roger Schank',
     'ross@acuityreputation.com',
     r'Sam/Walli Leff',
     STEVEN_PFEIFFER,
