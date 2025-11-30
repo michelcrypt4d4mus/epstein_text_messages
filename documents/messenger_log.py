@@ -6,7 +6,7 @@ from rich.panel import Panel
 from rich.text import Text
 
 from util.constants import *
-from util.rich import PHONE_NUMBER, TEXT_LINK, TIMESTAMP, archive_link, get_style_for_name, highlight_text
+from util.rich import PHONE_NUMBER, TEXT_LINK, TIMESTAMP, get_style_for_name, highlight_text
 from documents.document import *
 
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
