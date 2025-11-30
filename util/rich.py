@@ -60,6 +60,7 @@ VIRGIN_ISLANDS_COLOR = 'sea_green1'
 
 # TODO: add to HIGHLIGHTER_PATTERNS
 ARIANE_DE_ROTHSCHILD_COLOR = 'indian_red'
+BILL_GATES_COLOR = 'turquoise4'
 GHISLAINE_MAXWELL_COLOR = 'deep_pink3'
 JEFFREY_EPSTEIN_COLOR = 'blue1'
 JOI_ITO_COLOR = 'blue_violet'
@@ -207,10 +208,10 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     DEEPAK_COLOR: r"(Deepak )?Chopra|Deepak|Carolyn Rangel",
     DEMOCRATS_COLOR: r"Biden|(Bill )?Clinton|Hillary|Democrat(ic)?|(John )?Kerry|Maxine\s*Waters|(Barack )?Obama|(Nancy )?Pelosi|Ron\s*Dellums",
     DUBIN_COLOR: fr"((Celina|Eva( Anderss?on)?|Glenn) )?Dubin",
-    EMPLOYEE_COLOR: fr"{EMAILER_REGEXES[LAWRANCE_VISOSKI].pattern}|{LESLEY_GROFF}|{NADIA_MARCINKO}",
+    EMPLOYEE_COLOR: fr"{emailer_pattern(LAWRANCE_VISOSKI)}|{LESLEY_GROFF}|{NADIA_MARCINKO}",
     ENTERTAINERS_COLOR: rf"Andres Serrano|Bill Siegel|Bobby slayton|David Blaine|Etienne Binant|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?",
-    EUROPE_COLOR: fr"{MIROSLAV}|Miro(slav)?|(Caroline|Jack)?\s*Lang(, Caroline)?|Le\s*Pen|Macron|(Angela )?Merk(el|le)|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|((Lord|Peter) )?Mandelson|Terje(( (R[øo]e?d[- ])?)?Lars[eo]n)?|Edward Rod Larsen|Ukrain(e|ian)|Zug|{EMAILER_REGEXES[THORBJORN_JAGLAND].pattern}",
-    HARVARD_COLOR: fr"{LISA_NEW}|Harvard|MIT( Media Lab)?|Media Lab|{EMAILER_REGEXES[LARRY_SUMMERS].pattern}|{EMAILER_REGEXES[MARTIN_NOWAK].pattern}",
+    EUROPE_COLOR: fr"{MIROSLAV}|Miro(slav)?|(Caroline|Jack)?\s*Lang(, Caroline)?|Le\s*Pen|Macron|(Angela )?Merk(el|le)|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|((Lord|Peter) )?Mandelson|Terje(( (R[øo]e?d[- ])?)?Lars[eo]n)?|Edward Rod Larsen|Ukrain(e|ian)|Zug|{emailer_pattern(THORBJORN_JAGLAND)}",
+    HARVARD_COLOR: fr"{LISA_NEW}|Harvard|MIT( Media Lab)?|Media Lab|{emailer_pattern(LARRY_SUMMERS)}|{emailer_pattern(MARTIN_NOWAK)}",
     INDIA_COLOR: fr"Ambani|{ANIL}|Hardeep( puree)?|Indian?|Modi|mumbai|Zubair( Khan)?|{VINIT_SAHNI}",
     ISRAEL_COLOR: r"Bibi|(eh|(Ehud|Nili Priell) )?barak|Mossad|Netanyahu|Israeli?",
     JAVANKA_COLOR: fr"Ivanka( Trump)?|(Jared )?Kushner|Jared",
@@ -218,24 +219,36 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     LAWYER_COLOR: rf"{emailer_pattern(DARREN_INDYKE)}|{emailer_pattern(RICHARD_KAHN)}|{emailer_pattern(BRAD_KARP)}|(Alan (M\. )?)?Dershowi(l|tz)|{emailer_pattern(DAVID_STERN)}|(Erika )?Kellerhals|(Ken(neth W.)?\s+)?Starr|{DAVID_SCHOEN}|{JACK_GOLDBERGER}|{JAY_LEFKOWITZ}|Lefkowitz|Lilly (Ann )?Sanchez|{MARTIN_WEINBERG}|Michael J. Pike|Paul Weiss|{REID_WEINGARTEN}|Weinberg|Weingarten|Roy Black|{SCOTT_J_LINK}",
     LOBBYIST_COLOR: fr"{OLIVIER_COLOM}|Purevsuren Lundeg|Rob Crowe|Stanley Rosenberg", # lundeg mongolian ambassador, Rosenberg former state senator?
     MIDDLE_EAST_COLOR: rf"{emailer_pattern(MOHAMED_WAHEED_HASSAN)}|Abdulmalik Al-Makhlafi|Abu\s+Dhabi|{ANAS_ALRASHEED}|Assad|{AZIZA_ALAHMADI}|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Imran Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Raafat\s*Alsabbagh|Riya(dh|nd)|Saudi(\s+Arabian?)?|Shaher Abdulhak Besher|Sharia|Syria|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
-    MODELING_COLOR: rf'{EMAILER_REGEXES[JEAN_LUC_BRUNEL].pattern}|{DANIEL_SIAD}|Faith Kates?|\w+@mc2mm.com|{MARIANA_IDZKOWSKA}',
+    MODELING_COLOR: rf'{emailer_pattern(JEAN_LUC_BRUNEL)}|{DANIEL_SIAD}|Faith Kates?|\w+@mc2mm.com|{MARIANA_IDZKOWSKA}',
     POLICE_COLOR: rf"Ann Marie Villafana|(James )?Comey|Kirk Blouin|((Bob|Robert) )?Mueller|Police Code Enforcement",
-    PUBLICIST_COLOR: rf"{AL_SECKEL}|{CHRISTINA_GALBRAITH}|Henry Holt|Ian Osborne|Matthew Hiltzik|{PEGGY_SIEGAL}|{TYLER_SHEARS}|ross@acuityreputation.com|Citrick|{EMAILER_REGEXES[MICHAEL_SITRICK].pattern}",
+    PUBLICIST_COLOR: rf"{AL_SECKEL}|{CHRISTINA_GALBRAITH}|Henry Holt|Ian Osborne|Matthew Hiltzik|{PEGGY_SIEGAL}|{TYLER_SHEARS}|ross@acuityreputation.com|Citrick|{emailer_pattern(MICHAEL_SITRICK)}",
     REPUBLICANS_COLOR: r"bolton|Broidy|cruz|kudlow|lewandowski|mnuchin|(Paul )?Manafort|Pompeo|Republican",
     RUSSIA_COLOR: fr"GRU|FSB|Lavrov|Masha\s*Drokova|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Vladimir Yudashkin",
-    SCHOLAR_COLOR: fr"((Noam|Valeria) )?Chomsky|David Grosof|{DAVID_HAIG}|{JOSCHA_BACH}|Joscha|Bach|Moshe Hoffman|Peter Attia|{ROBERT_TRIVERS}|Trivers|{STEVEN_PFEIFFER}|{EMAILER_REGEXES[LAWRENCE_KRAUSS].pattern}",
+    SCHOLAR_COLOR: fr"((Noam|Valeria) )?Chomsky|David Grosof|{DAVID_HAIG}|{JOSCHA_BACH}|Joscha|Bach|Moshe Hoffman|Peter Attia|{ROBERT_TRIVERS}|Trivers|{STEVEN_PFEIFFER}|{emailer_pattern(LAWRENCE_KRAUSS)}",
     SNIPPED_SIGNATURE_COLOR: r'<\.\.\.(snipped|trimmed).*\.\.\.>',
     SOUTH_AMERICA_COLOR: r"Argentina|Bra[sz]il(ian)?|Bolsonar[aio]|Lula|(Nicolas )?Maduro|Venezuelan?s?",
-    TECH_BRO_COLOR: fr"Elon|Musk|Masa(yoshi)?( Son)?|Najeev|Reid Hoffman|(Peter )?Thiel|Softbank|{EMAILER_REGEXES[STEVEN_SINOFSKY].pattern}",
+    TECH_BRO_COLOR: fr"Elon|Musk|Masa(yoshi)?( Son)?|Najeev|Reid Hoffman|(Peter )?Thiel|Softbank|{emailer_pattern(STEVEN_SINOFSKY)}",
     TRUMP_COLOR: r"DJT|(Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)(?! Rubin)|Roger\s+Stone",
     VICTIM_COLOR: r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts",
     VIRGIN_ISLANDS_COLOR: fr'Cecile de Jongh|(Kenneth E\. )?Mapp|{STACY_PLASKETT}',
+
     # Individuals' colors
+    ARIANE_DE_ROTHSCHILD_COLOR: emailer_pattern(ARIANE_DE_ROTHSCHILD),
+    JOI_ITO_COLOR: emailer_pattern(JOI_ITO),
+    JABOR_Y_COLOR: emailer_pattern(JABOR_Y),
+    KATHY_RUEMMLER_COLOR: emailer_pattern(KATHY_RUEMMLER),
+    PRINCE_ANDREW_COLOR: emailer_pattern(PRINCE_ANDREW),
+    SULTAN_BIN_SULAYEM_COLOR: emailer_pattern(SULTAN_BIN_SULAYEM),
+    LINDA_STONE_COLOR: emailer_pattern(LINDA_STONE),
+    MELANIE_SPINELLA_COLOR: emailer_pattern(MELANIE_SPINELLA),
+    MELANIE_WALKER_COLOR: emailer_pattern(MELANIE_WALKER),
+    PAULA_COLOR: emailer_pattern(PAULA),
+    SOON_YI_COLOR: emailer_pattern(SOON_YI),
     BANNON_COLOR: r"((Steve|Sean)\s+)?Bannon",
     BITCOIN_COLOR.removesuffix(' bold'): SCARAMUCCI_PATTERN,
     GHISLAINE_MAXWELL_COLOR: r"GMAX|gmax1@ellmax.com",
-    JEFFREY_EPSTEIN_COLOR: EMAILER_REGEXES[JEFFREY_EPSTEIN].pattern + r'|Mark (L. )?Epstein',
-    'turquoise4': r"BG|(Bill\s+((and|or)\s+Melinda\s+)?)?Gates|Melinda(\s+Gates)?",
+    JEFFREY_EPSTEIN_COLOR: emailer_pattern(JEFFREY_EPSTEIN) + r'|Mark (L. )?Epstein',
+    BILL_GATES_COLOR: r"BG|(Bill\s+((and|or)\s+Melinda\s+)?)?Gates|Melinda(\s+Gates)?",
     # Misc
     HEADER_STYLE_NAME: r"^((Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):)"
 }

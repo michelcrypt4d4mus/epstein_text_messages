@@ -616,4 +616,4 @@ search_jmail_url = lambda txt: f"{JMAIL_URL}/search?q={urllib.parse.quote(txt)}"
 search_twitter_url = lambda txt: f"https://x.com/search?q={urllib.parse.quote(txt)}&src=typed_query&f=live"
 
 
-emailer_pattern = lambda name: EMAILER_REGEXES[LARRY_SUMMERS].pattern
+emailer_pattern = lambda name: EMAILER_REGEXES[name].pattern
