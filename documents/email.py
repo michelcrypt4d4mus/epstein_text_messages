@@ -48,14 +48,11 @@ NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
 BAD_LINE_REGEX = re.compile(r'^(\d{1,2}|Importance:( High)?|I)$')
 UNKNOWN_SIGNATURE_REGEX = re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL)
 
-CLIPPED_SIGNATURE_REPLACEMENT = '[dim]<...snipped epstein legal signature...>[/dim]'
 UNDISCLOSED_RECIPIENTS_REGEX = re.compile(r'Undisclosed[- ]recipients:', re.IGNORECASE)
 BAD_FIRST_LINES = ['026652', '029835', '031189']
 MAX_CHARS_TO_PRINT = 4000
 VALID_HEADER_LINES = 14
 EMAIL_INDENT = 3
-
-clipped_signature_replacement = lambda name: f'[dim]<...snipped {name.lower()} legal signature...>[/dim]'
 
 KNOWN_TIMESTAMPS = {
     '028851': datetime(2014, 4, 27, 6, 00),
@@ -64,7 +61,6 @@ KNOWN_TIMESTAMPS = {
     '030373': datetime(2018, 10, 3, 1, 49, 27),
 }
 
-# Takes ~0.5 seconds to apply these repairs
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r' Banno(r]?|\b)'): ' Bannon',
     re.compile(r'grnail\.com'): 'gmail.com',
@@ -218,17 +214,19 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + [
 ]
 
 SUPPRESS_OUTPUT_FOR_IDS = {
-    '026499': "it's quoted in full in 026298",
-    '028529': "it's the same as 022344",
-    '026563': "it's a redacted version of 028768",
-    '028621': "it's the same as 019412",
-    '028765': "it's the same as 027053",
-    '028773': "it's the same as 027049",
-    '028762': "it's a redacted version of 027056",
-    '028781': "it's the same as 013460",
-    '033207': "it's the same as 033580",
-    '025547': "it's the same document as 028506",
+    '026499': "quoted in full in 026298",
+    '028529': "the same as 022344",
+    '026563': "a redacted version of 028768",
+    '028621': "the same as 019412",
+    '028765': "the same as 027053",
+    '028773': "the same as 027049",
+    '028762': "a redacted version of 027056",
+    '028781': "the same as 013460",
+    '033207': "the same as 033580",
+    '025547': "the same document as 028506",
 }
+
+clipped_signature_replacement = lambda name: f'[dim]<...snipped {name.lower()} legal signature...>[/dim]'
 
 
 @dataclass
@@ -463,7 +461,7 @@ class Email(CommunicationDocument):
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         if self.file_id in SUPPRESS_OUTPUT_FOR_IDS:
             txt = Text(f"Not showing ", style='dim').append(self.filename, style='cyan')
-            yield txt.append(f" because {SUPPRESS_OUTPUT_FOR_IDS[self.file_id]}").append('\n')
+            yield txt.append(f" because it's {SUPPRESS_OUTPUT_FOR_IDS[self.file_id]}").append('\n')
             return
 
         yield Panel(self.archive_link, border_style=self._border_style(), expand=False)
