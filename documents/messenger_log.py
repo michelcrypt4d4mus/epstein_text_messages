@@ -1,18 +1,20 @@
 import re
 from collections import defaultdict
+from dataclasses import dataclass, field
+from datetime import datetime
 
 from rich.console import Console, ConsoleOptions, RenderResult
 from rich.panel import Panel
 from rich.text import Text
 
+from documents.document import CommunicationDocument
 from util.constants import *
-from util.rich import PHONE_NUMBER, TEXT_LINK, TIMESTAMP, get_style_for_name, highlighter
-from documents.document import *
+from util.rich import PHONE_NUMBER, TEXT_LINK, TIMESTAMP, get_style_for_name, highlighter, logger
 
-MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 BAD_TEXTER_REGEX = re.compile(r'^([-+_1•F]+|[4Ide])$')
-MSG_DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
+MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
+MSG_DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
 
 UNKNOWN_TEXTERS = [
     '+16463880059',

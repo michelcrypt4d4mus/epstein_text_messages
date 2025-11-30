@@ -143,6 +143,9 @@ THEME_STYLES = {
 
 SCARAMUCCI_PATTERN = r"mooch|(Anthony ('The Mooch' )?)?Scaramucci"  # TODO: integrate
 
+# class HighlightedGroup:
+
+
 HIGHLIGHT_PATTERNS: dict[str, str] = {
     BANK_COLOR: fr"{ALIREZA_ITTIHADIEH}|Amanda\s*Ens|Black(rock|stone)|{DANIEL_SABBA}|DB|Deutsche Bank|Goldman( ?Sachs)|HSBC|(Janet\s*)?Yellen|(Jide\s*)?Zeitlin|(Jerome\s*)?Powell|Jes\s+Staley|Merrill\s+Lynch|Morgan Stanley|j\.?p\.?\s*morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com|Marc\s*Leon|{LEON_BLACK}|{PAUL_MORRIS}|{PAUL_BARRETT}",
     BITCOIN_COLOR: fr"bitcoin|block ?chain( capital)?|Brock|coins|cr[iy]?pto(currency)?|e-currency|(Howard\s+)?Lutnick|(jeffrey\s+)?wernick|{JEREMY_RUBIN}|Libra|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)",
