@@ -1,5 +1,5 @@
-import json
 import re
+import time
 from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -41,6 +41,7 @@ class EpsteinFiles:
     email_unknown_recipient_file_ids: set[str] = field(default_factory=set)
 
     def __post_init__(self):
+        started_processing_at = time.perf_counter()
         self.all_files = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
         self.email_author_counts = defaultdict(int)
         self.email_author_device_signatures = defaultdict(set)
@@ -86,6 +87,7 @@ class EpsteinFiles:
                 document.log_top_lines()
 
         self.imessage_logs = sorted(self.imessage_logs, key=lambda f: f.timestamp)
+        logger.warning(f"Processed {len(self.all_files)} files in {(time.perf_counter() - started_processing_at):.2f} seconds")
 
     def all_documents(self) -> list[Document]:
         return self.imessage_logs + self.emails + self.other_files

@@ -14,7 +14,7 @@ parser.add_argument('--colors-only', '-c', action='store_true', help='print head
 parser.add_argument('--fast', '-f', action='store_true', help='skip parsing of email timestamps/authors/etc.')
 parser.add_argument('--no-texts', '-nt', action='store_true', help='skip text message output')
 parser.add_argument('--sort-alphabetical', '-alpha', action='store_true', help='sort emailers alphabetically in counts table')
-parser.add_argument('--suppress-output', action='store_true', help='no output to terminal (use with --build)')
+parser.add_argument('--suppress-output', '-sup', action='store_true', help='no output to terminal (use with --build)')
 parser.add_argument('--search', '-s', action='append', help='search for string in repaired OCR text')
 parser.add_argument('--search-other', '-so', action='append', help='search for string in non email/text files')
 parser.add_argument('--debug', '-d', action='store_true', help='set debug level to INFO')

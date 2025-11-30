@@ -12,6 +12,7 @@ from sys import exit
 from dotenv import load_dotenv
 load_dotenv()
 from rich.columns import Columns
+from rich.console import Console
 from rich.padding import Padding
 from rich.table import Table
 from rich.text import Text
@@ -131,6 +132,7 @@ else:
 # Save output
 if is_build:
     console.save_html(OUTPUT_GH_PAGES_HTML, code_format=CONSOLE_HTML_FORMAT, inline_styles=False, theme=HTML_TERMINAL_THEME)
-    print(f"\nWrote HTML to '{OUTPUT_GH_PAGES_HTML}'.")
+    html_size_in_mb = round(OUTPUT_GH_PAGES_HTML.stat().st_size / 1024 / 1024, 2)
+    logger.warning(f"Wrote HTML to '{OUTPUT_GH_PAGES_HTML}' ({html_size_in_mb} MB).")
 else:
     logger.warning(f"Not writing HTML because 'BUILD_HTML' env var not set.")
