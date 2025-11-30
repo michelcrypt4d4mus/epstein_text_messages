@@ -63,7 +63,7 @@ print_msg "Building" "$INDEX_HTML_PATH"
 git commit -am"Update HTML"
 git push origin gh_pages --quiet
 git checkout master
-print_msg "\n\n$TEXT_MSGS_PROJECT_NAME deployed to" "$TEXT_MSGS_URL"
+print_msg "$TEXT_MSGS_PROJECT_NAME deployed to" "$TEXT_MSGS_URL"
 
 if [ -n "$ONLY_TEXTS" ]; then
     print_msg "Skipping deployment of emails site"
@@ -72,7 +72,7 @@ fi
 
 
 # Deploy all emails
-print_msg "Deploying" "$EMAILS_PROJECT_NAME"
+print_msg "\nDeploying" "$EMAILS_PROJECT_NAME"
 print_msg "Building all emails version of" "$INDEX_HTML_PATH"
 ./epstein_chat_logs_reformatter.py --all --build --no-texts --suppress-output
 print_msg "Copying '$INDEX_HTML_PATH' to '$EMAILS_INDEX_HTML_PATH'"
