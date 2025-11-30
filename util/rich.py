@@ -15,10 +15,8 @@ from rich.text import Text
 from rich.theme import Theme
 
 from .constants import *
-from .data import flatten
 from .env import args, deep_debug, is_debug, logger
 from .html import PAGE_TITLE
-from .text_highlighter import EpsteinTextHighlighter
 
 COLOR_SUFFIX = '_COLOR'
 
@@ -144,7 +142,6 @@ THEME_STYLES = {
     PHONE_NUMBER: 'bright_green',
     TEXT_LINK: 'deep_sky_blue4 underline',
     TIMESTAMP: 'gray30',
-    highlighter_style_name('email'): 'bright_cyan',
 }
 
 SCARAMUCCI_PATTERN = r"mooch|(Anthony ('The Mooch' )?)?Scaramucci"  # TODO: integrate
