@@ -281,7 +281,7 @@ EMAILER_REGEXES = {
     TERJE: re.compile(r"Terje R[øo]e?d[- ]Larsen", re.IGNORECASE),
     TERRY_KAFKA: re.compile(r'Terry Kafka?', re.IGNORECASE),
     THANU_BOONYAWATANA: re.compile(r"Thanu (BOONYAWATANA|Cnx)", re.IGNORECASE),
-    THORBJORN_JAGLAND: re.compile(r'Thor.*Jag[il]and?', re.IGNORECASE),
+    THORBJORN_JAGLAND: re.compile(r'(Thor.{3, 8} )?Jag[il]and?', re.IGNORECASE),
     TONJA_HADDAD_COLEMAN: re.compile(fr"To(nj|rl)a Haddad Coleman|haddadfm@aol.com", re.IGNORECASE)
 }
 
@@ -556,16 +556,16 @@ HEADER_ABBREVIATIONS = {
     'Bill': "Bill Gates",
     "Brock": "Brock Pierce",
     "DB": "Deutsche Bank (maybe??)",
-    'HBJ': "Hamad bin Jassim (Former Qatari prime minister)",
+    'HBJ': "Hamad bin Jassim (former Qatari prime minister)",
     'Jabor': '"an influential man in Qatar"',
-    'Jagland': 'Thorbjørn Jagland',
+    'Jagland': 'Thorbjørn Jagland (former Norwegian prime minister)',
     'Jeffrey Wernick': 'Right wing crypto bro',
     'Joi': 'Joi Ito (MIT Media Lab)',
     "Hoffenberg": "Steven Hoffenberg (Epstein's ponzi scheme partner)",
     'KSA': "Kingdom of Saudi Arabia",
     'Kurz': 'Sebastian Kurz (former Austrian Chancellor)',
     'Kwok': "Chinese criminal Miles Kwok AKA Miles Guo AKA Guo Wengui",
-    'Mapp': 'Kenneth E. Mapp (VI Governor)',
+    'Mapp': 'Kenneth E. Mapp (Governor Virgin Islands)',
     'Masa': 'Masayoshi Son (Softbank)',
     'MBS': "Mohammed bin Salman Al Saud (Saudi ruler)",
     'MBZ': "Mohamed bin Zayed Al Nahyan (Emirates sheikh)",
