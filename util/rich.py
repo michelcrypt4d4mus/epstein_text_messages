@@ -221,10 +221,10 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     PUBLICIST_COLOR: rf"{CHRISTINA_GALBRAITH}|Matthew Hiltzik|{PEGGY_SIEGAL}|{TYLER_SHEARS}|ross@acuityreputation.com",
     REPUBLICANS_COLOR: r"bolton|Broidy|cruz|kudlow|lewandowski|mnuchin|Pompeo|Republican",
     RUSSIA_COLOR: fr"GRU|FSB|Lavrov|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Vladimir Yudashkin",
-    SCHOLAR_COLOR: rf"((Noam|Valeria) )?Chomsky|{DAVID_HAIG}|{JOSCHA_BACH}|Joscha|Bach|Moshe Hoffman|{ROBERT_TRIVERS}|Trivers|{EMAILER_REGEXES[LAWRENCE_KRAUSS].pattern}",
+    SCHOLAR_COLOR: rf"((Noam|Valeria) )?Chomsky|David Grosof{DAVID_HAIG}|{JOSCHA_BACH}|Joscha|Bach|Moshe Hoffman|{ROBERT_TRIVERS}|Trivers|{EMAILER_REGEXES[LAWRENCE_KRAUSS].pattern}",
     SOUTH_AMERICA_COLOR: r"Argentina|Bra[sz]il(ian)?|Bolsonar[aio]|Lula|(Nicolas )?Maduro|Venezuelan?s?",
     TECH_BRO_COLOR: r"Elon|Musk|Masa(yoshi)?( Son)?|Najeev|Reid Hoffman|(Peter )?Thiel|Softbank",
-    TRUMP_COLOR: r"(DJT|Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)(?! Rubin)|Roger\s+Stone",
+    TRUMP_COLOR: r"DJT|(Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)(?! Rubin)|Roger\s+Stone",
     VICTIM_COLOR: r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts",
     # Individuals' colors
     BITCOIN_COLOR.removesuffix(' bold'): r"mooch|(Anthony ('The Mooch' )?)?Scaramucci",
