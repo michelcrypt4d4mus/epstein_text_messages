@@ -1,10 +1,9 @@
 import re
-from dataclasses import asdict, dataclass, field
+from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from typing import ClassVar
 
-from dateutil.parser import parse
 from rich.markup import escape
 from rich.text import Text
 
@@ -12,15 +11,16 @@ from util.constants import search_archive_url
 from util.data import patternize
 from util.env import logger
 from util.file_helper import extract_file_id
-from util.rich import ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_regex_match, highlight_interesting_text, logger, make_link, make_link_markup
+from util.rich import (ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_interesting_text, logger,
+     make_link, make_link_markup)
 from util.strings import *
 
 MULTINEWLINE_REGEX = re.compile(r"\n{3,}")
-WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
-PREVIEW_CHARS = 520
+WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 HOUSE_OVERSIGHT = 'HOUSE OVERSIGHT'
 MIN_DOCUMENT_ID = 10477
+PREVIEW_CHARS = 520
 
 # Takes ~1.1 seconds to apply these repairs
 OCR_REPAIRS = {
@@ -30,8 +30,8 @@ OCR_REPAIRS = {
 }
 
 FILENAME_MATCH_STYLES = [
-    'green',
     'dark_green',
+    'green',
     'spring_green4',
 ]
 
