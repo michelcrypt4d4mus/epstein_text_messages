@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Set ONLY_TEXTS=true to skip build/deploy of full emails site.
 # Running 'bash -l' uses the login shell but then the poetry venv isn't set :(
+source .env
 set -e
 
 EMAILS_DIR="../epstein_emails_house_oversight"
@@ -15,6 +16,25 @@ TEXT_MSGS_URL="$GITHUB_PAGES_BASE_URL/$TEXT_MSGS_PROJECT_NAME/"
 
 
 # Preparation / checking for issues
+if [ -n "$BASH_COLORS_PATH" ]; then
+    source "$BASH_COLORS_PATH"
+    clr_cyan "Sourced '$(clr_green $BASH_COLORS_PATH)'..."
+else
+    echo -e "bash colors not found, can't print status msgs"
+fi
+
+print_msg() {
+    local msg="$1"
+    local colored_part="$2"
+
+    if [ -n "$colored_part" ]; then
+        echo "appending '$colored_part' to '$msg'"
+        msg="$msg '$(clr_green $colored_part)'"
+    fi
+
+    clr_cyan "$msg..."
+}
+
 any_uncommitted_changes() {
     if [[ $(git status --porcelain --untracked-files=no | wc -l) -eq 0 ]]; then
         return 1
@@ -23,14 +43,14 @@ any_uncommitted_changes() {
     fi
 }
 
-if any_uncommitted_changes; then
-    echo "Uncommitted changes; halting."
-    exit
+if [ -f "$INDEX_HTML_PATH" ]; then
+    print_msg "Removing master branch" "$INDEX_HTML_PATH"
+    rm "$INDEX_HTML_PATH"
 fi
 
-if [ -f "$INDEX_HTML_PATH" ]; then
-    echo -e "Removing '$INDEX_HTML_PATH' on master..."
-    rm "$INDEX_HTML_PATH"
+if any_uncommitted_changes; then
+    print_msg "Uncommitted changes; halting"
+    exit
 fi
 
 
@@ -38,27 +58,27 @@ fi
 git push origin master --quiet
 git checkout gh_pages
 git merge --no-edit master --quiet
-echo -e "Building '$INDEX_HTML_PATH'..."
+print_msg "Building" "$INDEX_HTML_PATH"
 ./epstein_chat_logs_reformatter.py --build --suppress-output
 git commit -am"Update HTML"
 git push origin gh_pages --quiet
 git checkout master
-echo -e "\n\n$TEXT_MSGS_PROJECT_NAME deployed to '$TEXT_MSGS_URL'\n"
+print_msg "\n\n$TEXT_MSGS_PROJECT_NAME deployed to", "$TEXT_MSGS_URL\n"
 
 if [ -n "$ONLY_TEXTS" ]; then
-    echo "Skipping deployment of emails site..."
+    print_msg "Skipping deployment of emails site"
     exit
 fi
 
 
 # Deploy all emails
-echo -e "Deploying '$EMAILS_PROJECT_NAME'..."
-echo -e "\nBuilding all emails..."
+print_msg "Deploying $EMAILS_PROJECT_NAME"
+print_msg "\nBuilding all emails..."
 ./epstein_chat_logs_reformatter.py --all --build --no-texts --suppress-output
-echo "Copying '$INDEX_HTML_PATH' to '$EMAILS_INDEX_HTML_PATH'..."
+print_msg "Copying '$INDEX_HTML_PATH' to '$EMAILS_INDEX_HTML_PATH'..."
 mv "$INDEX_HTML_PATH" "$EMAILS_INDEX_HTML_PATH"
 pushd "$EMAILS_DIR"
 git commit -am"Update HTML"
-git push origin main
+git push origin main --quiet
 popd
-echo -e "\n${EMAILS_PROJECT_NAME} deployed to '$EMAILS_URL'\n"
+print_msg "\n${EMAILS_PROJECT_NAME} deployed to '$EMAILS_URL'\n"
