@@ -23,6 +23,9 @@ TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 PACIFIC_TZ = tz.gettz("America/Los_Angeles")
 TIMEZONE_INFO = {"PST": PACIFIC_TZ, "PDT": PACIFIC_TZ}  # Suppresses annoying warnings from parse() calls
 
+GMAX_EMAIL = 'gmax1@ellmax.com'
+JEEVACATION_GMAIL = 'jeevacation@gmail.com'
+
 EMAIL_REGEX = re.compile(r'From: (.*)')
 EMAIL_HEADER_REGEX = re.compile(r'^(((Date|Subject):.*\n)*From:.*\n((Date|Sent|To|CC|Importance|Subject|Attachments):.*\n)+)')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
@@ -43,16 +46,12 @@ SENT_FROM_REGEX = re.compile(r'^(?:Please forgive typos. |Sorry for all the typo
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
 BAD_LINE_REGEX = re.compile(r'^(\d{1,2}|Importance:( High)?|I)$')
-UNKNOWN_SIGNATURE_REGEX = re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL)
 
-CLIPPED_SIGNATURE_REPLACEMENT = '[dim]<...snipped epstein legal signature...>[/dim]'
 UNDISCLOSED_RECIPIENTS_REGEX = re.compile(r'Undisclosed[- ]recipients:', re.IGNORECASE)
 BAD_FIRST_LINES = ['026652', '029835', '031189']
 MAX_CHARS_TO_PRINT = 4000
 VALID_HEADER_LINES = 14
 EMAIL_INDENT = 3
-
-clipped_signature_replacement = lambda name: f'[dim]<...snipped {name.lower()} legal signature...>[/dim]'
 
 KNOWN_TIMESTAMPS = {
     '028851': datetime(2014, 4, 27, 6, 00),
@@ -62,6 +61,14 @@ KNOWN_TIMESTAMPS = {
 }
 
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
+    re.compile(r' Banno(r]?|\b)'): ' Bannon',
+    re.compile(r'grnail\.com'): 'gmail.com',
+    'twitter glhsummers': 'twitter @lhsummers',
+    re.compile(r'from my BlackBerry[0°] wireless device'): 'from my BlackBerry® wireless device',
+    re.compile(r'gmax ?[1l] ?[@g]ellmax.c ?om'): GMAX_EMAIL,
+    re.compile(r"[ijlp']ee[vy]acation[©@a(&,P ]{1,3}gmail.com"): JEEVACATION_GMAIL,
+    re.compile(r"twitter\.com[i/][lI]krauss[1lt]"): "twitter.com/lkrauss1",
+    re.compile(r"^(From|To)(: )?[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",
     'BlackBerry by AT &T': 'BlackBerry by AT&T',
     'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
     "Sent from my 'Phone": 'Sent from my iPhone',
@@ -206,17 +213,19 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + [
 ]
 
 SUPPRESS_OUTPUT_FOR_IDS = {
-    '026499': "it's quoted in full in 026298",
-    '028529': "it's the same as 022344",
-    '026563': "it's a redacted version of 028768",
-    '028621': "it's the same as 019412",
-    '028765': "it's the same as 027053",
-    '028773': "it's the same as 027049",
-    '028762': "it's a redacted version of 027056",
-    '028781': "it's the same as 013460",
-    '033207': "it's the same as 033580",
-    '025547': "it's the same document as 028506",
+    '026499': "quoted in full in 026298",
+    '028529': "the same as 022344",
+    '026563': "a redacted version of 028768",
+    '028621': "the same as 019412",
+    '028765': "the same as 027053",
+    '028773': "the same as 027049",
+    '028762': "a redacted version of 027056",
+    '028781': "the same as 013460",
+    '033207': "the same as 033580",
+    '025547': "the same document as 028506",
 }
+
+clipped_signature_replacement = lambda name: f'[dim]<...snipped {name.lower()} legal signature...>[/dim]'
 
 
 @dataclass
@@ -451,13 +460,12 @@ class Email(CommunicationDocument):
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         if self.file_id in SUPPRESS_OUTPUT_FOR_IDS:
             txt = Text(f"Not showing ", style='dim').append(self.filename, style='cyan')
-            yield txt.append(f" because {SUPPRESS_OUTPUT_FOR_IDS[self.file_id]}").append('\n')
+            yield txt.append(f" because it's {SUPPRESS_OUTPUT_FOR_IDS[self.file_id]}").append('\n')
             return
 
         yield Panel(self.archive_link, border_style=self._border_style(), expand=False)
         info_line = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(f' to ')
-        info_line.append(self.recipient_txt).append(f" probably sent at ")
-        info_line.append(f"{self.timestamp or '?'}", style='spring_green3')
+        info_line.append(self.recipient_txt).append(f" probably sent at ").append(str(self.timestamp), style='dark_cyan')
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
         text = self._cleaned_up_text()
         quote_cutoff = self.idx_of_nth_quoted_reply(text=text)
@@ -470,13 +478,13 @@ class Email(CommunicationDocument):
             num_chars = quote_cutoff
 
         if len(text) > num_chars:
-            text = text[0:num_chars]
-            text += f"\n\n[dim]<...trimmed to {num_chars} characters of {self.length}, read the rest: {self.epsteinify_link_markup}...>[/dim]"
+            trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest: {self.epsteinify_link_markup}...>"
+            text = f"{text[0:num_chars]}\n\n[dim]{trim_note}[/dim]"
 
         text = REPLY_REGEX.sub(rf'[{HEADER_STYLE}]\1[/{HEADER_STYLE}]', text)
         text = SENT_FROM_REGEX.sub(fr'[{SENT_FROM}]\1[/{SENT_FROM}]', text)
-        text = UNKNOWN_SIGNATURE_REGEX.sub(r'[dim]\1[/dim]', text)
-        yield Padding(Panel(highlight_text(text), border_style=self._border_style(), expand=False), (0, 0, 2, EMAIL_INDENT))
+        email_txt_panel = Panel(highlight_text(text), border_style=self._border_style(), expand=False)
+        yield Padding(email_txt_panel, (0, 0, 2, EMAIL_INDENT))
 
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:

@@ -77,8 +77,8 @@ print_msg "Building all emails version of" "$INDEX_HTML_PATH"
 ./epstein_chat_logs_reformatter.py --all --build --no-texts --suppress-output
 print_msg "Copying '$INDEX_HTML_PATH' to '$EMAILS_INDEX_HTML_PATH'"
 mv "$INDEX_HTML_PATH" "$EMAILS_INDEX_HTML_PATH"
-pushd "$EMAILS_DIR"
+pushd "$EMAILS_DIR" > /dev/null
 git commit -am"Update HTML"
 git push origin main --quiet
-popd
+popd > /dev/null
 print_msg "${EMAILS_PROJECT_NAME} deployed to" "$EMAILS_URL"
