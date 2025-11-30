@@ -109,6 +109,8 @@ VINIT_SAHNI = 'Vinit Sahni'
 
 # Other strings
 EMAIL_HEADER_FIELD = 'header_field'
+EMAIL = 'email'
+TEXT_MESSAGE = 'text message'
 REDACTED = '<REDACTED>'
 
 #  of who is the counterparty in each text message file
@@ -584,9 +586,16 @@ RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL = 'https://drive.google.com/drive/folders/1h
 SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great'
 EPSTEINIFY_URL = 'https://epsteinify.com'
 
+SITE_URLS = {
+    EMAIL: 'https://michelcrypt4d4mus.github.io/epstein_emails_house_oversight/',
+    TEXT_MESSAGE: 'https://michelcrypt4d4mus.github.io/epstein_text_messages/',
+}
+
+
 epsteinify_api_url = lambda file_id: f"{EPSTEINIFY_URL}/api/documents/HOUSE_OVERSIGHT_{file_id}"
 epsteinify_doc_url = lambda file_stem: f"{EPSTEINIFY_URL}/document/{file_stem}"
 epsteinify_name_url = lambda name: f"{EPSTEINIFY_URL}/?name={urllib.parse.quote(name)}"
-jmail_search_url = lambda txt: f"{JMAIL_URL}/search?q={urllib.parse.quote(txt)}"
 search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE_URL}&q={urllib.parse.quote(txt)}&p=1"
 search_coffeezilla_url = lambda txt: f"{COFFEEZILLA_ARCHIVE_URL}&q={urllib.parse.quote(txt)}&p=1"
+search_jmail_url = lambda txt: f"{JMAIL_URL}/search?q={urllib.parse.quote(txt)}"
+search_twitter_url = lambda txt: f"https://x.com/search?q={urllib.parse.quote(txt)}&src=typed_query&f=live"
