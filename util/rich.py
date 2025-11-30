@@ -21,7 +21,6 @@ from .text_highlighter import EpsteinTextHighlighter
 
 LEADING_WHITESPACE_REGEX = re.compile(r'\A\s*', re.MULTILINE)
 NON_ALPHA_CHARS_REGEX = re.compile(r'[^a-zA-Z0-9 ]')
-VERTICAL_PADDING = (1, 0, 1, 0)
 MAX_PREVIEW_CHARS = 300
 OUTPUT_WIDTH = 120
 NUM_COLOR_KEY_COLS = 3
@@ -453,8 +452,8 @@ def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centere
     console.print(Padding(panel, (3, 0, 1, 0)))
 
 
-def vertically_pad(obj: RenderableType) -> Padding:
-    return Padding(obj, VERTICAL_PADDING)
+def vertically_pad(obj: RenderableType, amount: int = 1) -> Padding:
+    return Padding(obj,  (amount, 0, amount, 0))
 
 
 def wrap_in_markup_style(msg: str, style: str | None = None) -> str:

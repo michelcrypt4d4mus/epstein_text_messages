@@ -58,9 +58,8 @@ if not skip_texts:
 # Emails section
 print_section_header(('Selections from ' if not args.all else '') + 'His Emails')
 print_other_site_link(is_header=False)
-console.line()
 epstein_files.print_emailer_counts_table()
-console.print('\nEpstein emails grouped by counterparty can be found in the order listed below.\n')
+console.print('Epstein emails grouped by counterparty can be found in the order listed below.\n')
 
 if args.all:
     console.print('Email conversations are sorted chronologically based on time of the first email.\n', style='dim')

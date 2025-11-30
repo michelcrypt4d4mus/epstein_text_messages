@@ -202,7 +202,7 @@ class EpsteinFiles:
                 str(self.email_recipient_counts[k])
             )
 
-        console.print(vertically_pad(counts_table))
+        console.print(vertically_pad(counts_table, 2))
 
     def print_imessage_summary(self) -> None:
         """Print summary table and stats for text messages."""
