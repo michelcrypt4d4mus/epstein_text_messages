@@ -267,14 +267,13 @@ for style, pattern in HIGHLIGHT_PATTERNS.items():
     print(f"    -> {regex.pattern}")
     HIGHLIGHTER_STYLES[highlighter_style_name(style_name)] = style
 
+COUNTERPARTY_COLORS.update(HIGHLIGHTER_STYLES)
+HIGHLIGHT_PATTERNS = {}
+
 class TempHighlighter(RegexHighlighter):
     """Currently only highlights the email header."""
     base_style = f"{EMAIL_HEADER_FIELD}."
-
-    highlights = [
-        r"(?P<email>[\w-]+@([\w-]+\.)+[\w-]+)",  # TODO: doesn't work
-        # r"(?P<header>Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):",
-    ]
+    highlights = HIGHLIGHTER_REGEXES
 
 
 if args.no_highlights:
@@ -284,7 +283,7 @@ if args.no_highlights:
 # Instantiate console object
 CONSOLE_ARGS = {
     'color_system': '256',
-    'highlighter': EpsteinTextHighlighter(),
+    'highlighter': TempHighlighter(),
     'record': True,
     'theme': Theme(COUNTERPARTY_COLORS),
     'width': OUTPUT_WIDTH,
@@ -300,12 +299,13 @@ console = Console(**CONSOLE_ARGS)
 def print_json(label: str, obj: object) -> None:
     console.print(f"{label}:\n")
     console.print_json(json.dumps(obj, indent=4, sort_keys=True))
+    console.line(2)
 
 
 console.line(2)
 print_json('HIGHLIGHTER_REGEXES', [r.pattern for r in HIGHLIGHTER_REGEXES])
-console.line(2)
 print_json('HIGHLIGHTER_STYLES', HIGHLIGHTER_STYLES)
+print_json('COUNTERPARTY_COLORS', {k: v for k, v in COUNTERPARTY_COLORS.items() if k is not None})
 
 
 def get_style_for_name(name: str, default: str = DEFAULT) -> str:
