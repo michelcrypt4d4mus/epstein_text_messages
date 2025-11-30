@@ -186,7 +186,7 @@ class EpsteinFiles:
                 highlight_interesting_text(email.header.subject or '')
             )
 
-        console.print(table, '\n')
+        console.print(Align.center(table), '\n')
 
     def print_email_device_info(self) -> None:
         print_panel(f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown", padding=(0, 0, 0, 6))
