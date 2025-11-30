@@ -186,6 +186,7 @@ class EpsteinFiles:
         counts_table = Table(title=f"Email Counts", caption=footer, show_header=True, header_style="bold")
         counts_table.add_column('Name', justify="left", style=DEFAULT_NAME_COLOR)
         counts_table.add_column('Jmail', justify="center")
+        counts_table.add_column('Twitter', justify="center")
         counts_table.add_column("Count", justify="center")
         counts_table.add_column("Sent", justify="center")
         counts_table.add_column("Received", justify="center")
@@ -194,14 +195,14 @@ class EpsteinFiles:
         for k, count in sorted(self.all_emailer_counts().items(), key=sort_key, reverse=True):
             counts_table.add_row(
                 Text.from_markup(make_link_markup(epsteinify_name_url(k), k, get_style_for_name(k, DEFAULT_NAME_COLOR))),
-                make_link(jmail_search_url(k), 'Search Jmail'),
+                make_link(search_jmail_url(k), 'Search Jmail'),
+                make_link(search_twitter_url(f'"{k}"'), 'Search X'),
                 str(count),
                 str(self.email_author_counts[k]),
                 str(self.email_recipient_counts[k])
             )
 
         console.print(vertically_pad(counts_table))
-        console.print('Epstein emails grouped by counterparty can be found in the order listed below.')
 
     def print_other_files_table(self) -> None:
         table = Table(header_style="bold", show_header=True, show_lines=True)
