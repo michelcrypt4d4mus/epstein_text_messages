@@ -212,7 +212,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     HARVARD_COLOR: fr"{LISA_NEW}|Harvard|MIT( Media Lab)?|Media Lab|{EMAILER_REGEXES[LARRY_SUMMERS].pattern}",
     INDIA_COLOR: rf"Ambani|Hardeep( puree)?|Indian?|Modi|mumbai|Zubair( Khan)?|{VINIT_SAHNI}",
     ISRAEL_COLOR: r"Bibi|(eh|Nili Priell )barak|Netanyahu|Israeli?",
-    JOURNALIST_COLOR: rf"Alex Yablon|{EMAILER_REGEXES[EDWARD_EPSTEIN].pattern}|{PAUL_KRASSNER}|{MICHAEL_WOLFF}|Wolff|Susan Edelman|(bbc|independent|mailonline|mirror|thetimes)\.co\.uk",
+    JOURNALIST_COLOR: rf"Alex Yablon|{EMAILER_REGEXES[EDWARD_EPSTEIN].pattern}|{PAUL_KRASSNER}|{MICHAEL_WOLFF}|Wolff|Susan Edelman|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk",
     LAWYER_COLOR: rf"(Alan (M\. )?)?Dershowi(l|tz)|(Ken(neth W.)?\s+)?Starr|{DAVID_SCHOEN}|{JAY_LEFKOWITZ}|Lefkowitz|Lilly (Ann )?Sanchez|{MARTIN_WEINBERG}|Paul Weiss|{REID_WEINGARTEN}|Weinberg|Weingarten|Roy Black|{SCOTT_J_LINK}",
     LOBBYIST_COLOR: r"Purevsuren Lundeg|Rob Crowe|Stanley Rosenberg", # lundeg mongolian ambassador, Rosenberg former state senator?
     MIDDLE_EAST_COLOR: rf"Abdulmalik Al-Makhlafi|Abu\s+Dhabi|{ANAS_ALRASHEED}|Assad|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Imran Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Riya(dh|nd)|Saudi(\s+Arabian?)?|Shaher Abdulhak Besher|Sharia|Syria|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
