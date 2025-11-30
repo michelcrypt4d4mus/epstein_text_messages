@@ -494,11 +494,6 @@ class Email(CommunicationDocument):
             trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest at link to file above...>" # TODO: {self.epsteinify_link_markup}...>"
             text = f"{text[0:num_chars]}\n\n{trim_note}"
 
-        if is_debug:
-            print(f"{self.filename} body\n-----------------\n{text}\n\n")
-            console.print(f"{self.filename} body Text obj\n---------------------")
-            console.print(highlighter(text))
-
         email_txt_panel = Panel(highlighter(text), border_style=self._border_style(), expand=False)
         yield Padding(email_txt_panel, (0, 0, 2, EMAIL_INDENT))
 
