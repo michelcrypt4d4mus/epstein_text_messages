@@ -348,9 +348,9 @@ def print_header():
     console.line()
     print_centered(f"[underline][link={SUBSTACK_URL}]I Made Epstein's Text Messages Great Again (And You Should Read Them)[/link][/underline]", f'{HEADER_LINK} bold')
     print_centered(f"[dodger_blue3][underline][link={SUBSTACK_URL}]{SUBSTACK_URL.removeprefix('https://')}[/link][/underline][/dodger_blue3]")
-    print_centered("[underline][link=https://cryptadamus.substack.com/]Substack[/link][/underline]", HEADER_LINK)
-    print_centered("[underline][link=https://universeodon.com/@cryptadamist]Mastodon[/link][/underline]", HEADER_LINK)
-    print_centered("[underline][link=https://x.com/Cryptadamist/status/1990866804630036988]Twitter[/link][/underline]", HEADER_LINK)
+    print_centered(make_link_markup('https://cryptadamus.substack.com/', 'Substack', style=HEADER_LINK))
+    print_centered(make_link_markup('https://universeodon.com/@cryptadamist/115572634993386057', 'Mastodon', style=HEADER_LINK))
+    print_centered(make_link_markup('https://x.com/Cryptadamist/status/1990866804630036988', 'Twitter', style=HEADER_LINK))
     console.line()
     print_other_site_link()
 
@@ -390,18 +390,23 @@ def print_numbered_list(_list: list[str] | dict) -> None:
 
 
 def print_other_site_link() -> None:
-    msg = 'Another site made by this code where you can read'
+    msg = 'The other site made by this code'
     url = ''
 
     if args.all:
-        msg += " Epstein's text messages"
+        msg += " for Epstein's text messages"
         url = TEXT_MSGS_URL
     else:
-        msg += ' [italic]all[/italic] of His Emails'
+        msg += ' has [italic]all[/italic] of His Emails'
         url = ALL_EMAILS_URL
 
     markup_msg = make_link_markup(url, msg, 'chartreuse3')
     print_centered(Text('(') + Text.from_markup(markup_msg).append(')'), style='bold')
+
+
+def print_panel(msg: str, style: str = 'black on white', padding: tuple = (0, 0, 0, 0)) -> None:
+    console.print(Padding(Panel(Text.from_markup(msg, justify='center'), width=70, style=style), padding))
+    console.line()
 
 
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
@@ -411,19 +416,6 @@ def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centere
         panel = Align.center(panel)
 
     console.print(Padding(panel, (3, 0, 1, 0)))
-
-
-def print_panel(msg: str, style: str = 'black on white', padding: tuple = (0, 0, 0, 0)) -> None:
-    console.print(Padding(Panel(Text.from_markup(msg, justify='center'), width=70, style=style), padding))
-    console.line()
-
-
-def print_top_lines(file_text, n = 10, max_chars = MAX_PREVIEW_CHARS, in_panel = False) -> None:
-    """Print first n lines of a file."""
-    file_text = LEADING_WHITESPACE_REGEX.sub('', file_text)
-    top_text = escape('\n'.join(file_text.split("\n")[0:n])[0:max_chars])
-    output = Panel(top_text, expand=False) if in_panel else top_text + '\n'
-    console.print(output, style='dim')
 
 
 def vertically_pad(obj: RenderResult) -> Padding:
