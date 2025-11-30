@@ -342,7 +342,7 @@ def print_centered(msg: str, style: str = '') -> None:
 
 
 def print_centered_link(url: str, link_text: str, style: str | None = None) -> None:
-    print_centered(make_link_markup(url, link_text, style))
+    print_centered(make_link_markup(url, link_text, style or ARCHIVE_LINK_COLOR))
 
 
 def print_header():
@@ -350,11 +350,11 @@ def print_header():
     console.line()
     console.print(Panel(Text("Epstein Estate Documents - Seventh Production Collection Reformatted Text Messages", justify='center', style='bold reverse')))
     console.line()
-    print_centered(make_link_markup(SUBSTACK_URL, "I Made Epstein's Text Messages Great Again (And You Should Read Them)", style=f'{HEADER_LINK} bold'))
-    print_centered(make_link_markup(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style='dodger_blue3'))
-    print_centered(make_link_markup('https://cryptadamus.substack.com/', 'Substack', style=HEADER_LINK))
-    print_centered(make_link_markup('https://universeodon.com/@cryptadamist/115572634993386057', 'Mastodon', style=HEADER_LINK))
-    print_centered(make_link_markup('https://x.com/Cryptadamist/status/1990866804630036988', 'Twitter', style=HEADER_LINK))
+    print_centered_link(SUBSTACK_URL, "I Made Epstein's Text Messages Great Again (And You Should Read Them)", style=f'{HEADER_LINK} bold')
+    print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style='dodger_blue3')
+    print_centered_link('https://cryptadamus.substack.com/', 'Substack', style=HEADER_LINK)
+    print_centered_link('https://universeodon.com/@cryptadamist/115572634993386057', 'Mastodon', style=HEADER_LINK)
+    print_centered_link('https://x.com/Cryptadamist/status/1990866804630036988', 'Twitter', style=HEADER_LINK)
     console.line()
     print_other_site_link()
 
@@ -367,17 +367,17 @@ def print_header():
         table.add_row(highlight_text(k), v)
 
     console.print(Align.center(vertically_pad(table)))
-    print_centered(make_link_markup(OVERSIGHT_REPUBLICANS_PRESSER_URL, 'Oversight Committee Releases Additional Epstein Estate Documents'))
-    print_centered(make_link_markup(COFFEEZILLA_ARCHIVE_URL, 'Coffeezilla Archive Of Raw Epstein Materials'))
+    print_centered_link(OVERSIGHT_REPUBLICANS_PRESSER_URL, 'Oversight Committee Releases Additional Epstein Estate Documents')
+    print_centered_link(COFFEEZILLA_ARCHIVE_URL, 'Coffeezilla Archive Of Raw Epstein Materials')
     print_centered(make_link_markup(JMAIL_URL, 'Jmail') + " (read His Emails via Gmail interface)")
-    print_centered(make_link_markup(COURIER_NEWSROOM_ARCHIVE_URL, "Courier Newsroom's Searchable Archive"))
+    print_centered_link(COURIER_NEWSROOM_ARCHIVE_URL, "Courier Newsroom's Searchable Archive")
     print_centered(make_link_markup(f"{EPSTEINIFY_URL}/names", 'epsteinify.com') + " (raw document images)")
-    print_centered(make_link_markup(RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL, 'Google Drive Raw Documents'))
+    print_centered_link(RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL, 'Google Drive Raw Documents')
     console.line()
-    print_centered(make_link_markup(ATTRIBUTIONS_URL, "Explanation of Author Attributions", style='magenta'))
+    print_centered_link(ATTRIBUTIONS_URL, "Some Explanations of Author Attributions", style='magenta')
     print_centered(f"(thanks to {make_link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} and others for attribution help)")
-    print_centered(f"If you think there's an attribution error or can deanonymize an {UNKNOWN} contact {make_link_markup('https://x.com/cryptadamist', '@cryptadamist')}.", 'dim')
-    print_centered('(note this site is based on the OCR text provided by Congress which is not the greatest)', 'dim')
+    print_centered(f"If you think there's an attribution error or can deanonymize an {UNKNOWN} contact {make_link_markup('https://x.com/cryptadamist', '@cryptadamist')}.", 'grey46')
+    print_centered('(note this site is based on the OCR text provided by Congress which is not the greatest)', 'grey23')
 
 
 def print_author_header(msg: str, color: str | None) -> None:
