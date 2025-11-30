@@ -24,17 +24,14 @@ from .text_highlighter import EpsteinTextHighlighter
 COLOR_SUFFIX = '_COLOR'
 
 # Constant variables that end in "_COLOR" will be scanned to create the color highlight guide table.
+# Colors for highlighting members of groups
 ARCHIVE_LINK_COLOR = 'slate_blue3'
 BANK_COLOR = 'green'
-BANNON_COLOR = 'color(58)'
 BITCOIN_COLOR = 'orange1 bold'
 BUSINESS_COLOR = 'spring_green4'
 BRO_COLOR = 'tan'
 CHINA_COLOR = 'bright_red'
-DEEPAK_COLOR = 'dark_goldenrod'
-DEFAULT_NAME_COLOR = 'gray46'
 DEMOCRATS_COLOR = 'sky_blue1'
-DUBIN_COLOR = 'medium_orchid1'
 EMPLOYEE_COLOR = 'deep_sky_blue4'
 ENTERTAINERS_COLOR = 'light_steel_blue3'
 EUROPE_COLOR = 'light_sky_blue3'
@@ -42,7 +39,6 @@ HARVARD_COLOR = 'deep_pink2'
 MODELING_COLOR = 'pale_violet_red1'
 INDIA_COLOR = 'bright_green'
 ISRAEL_COLOR = 'dodger_blue2'
-JAVANKA_COLOR = 'medium_violet_red'
 JOURNALIST_COLOR = 'bright_yellow'
 LAWYER_COLOR = 'medium_purple2'
 LOBBYIST_COLOR = 'light_coral'
@@ -57,28 +53,35 @@ TECH_BRO_COLOR = 'cyan2'  #dark_slate_gray3
 TRUMP_COLOR = 'red3 bold'
 VICTIM_COLOR = 'orchid1'
 VIRGIN_ISLANDS_COLOR = 'sea_green1'
-
-# TODO: add to HIGHLIGHTER_PATTERNS
+# Personal colors
 ARIANE_DE_ROTHSCHILD_COLOR = 'indian_red'
+BANNON_COLOR = 'color(58)'
 BILL_GATES_COLOR = 'turquoise4'
+DEEPAK_CHOPRA_COLOR = 'dark_goldenrod'
+DUBIN_COLOR = 'medium_orchid1'
 GHISLAINE_MAXWELL_COLOR = 'deep_pink3'
+JAVANKA_COLOR = 'medium_violet_red'  # TODO: make trump color?
 JEFFREY_EPSTEIN_COLOR = 'blue1'
-JOI_ITO_COLOR = 'blue_violet'
 JABOR_Y_COLOR = "spring_green1"
+JOI_ITO_COLOR = 'blue_violet'
 KATHY_RUEMMLER_COLOR = 'magenta2'
-PRINCE_ANDREW_COLOR = 'dodger_blue1'
-SULTAN_BIN_SULAYEM_COLOR = 'green1'
 LINDA_STONE_COLOR = 'pink3'
 MELANIE_SPINELLA_COLOR = 'magenta3'
 MELANIE_WALKER_COLOR = 'light_pink3'
 PAULA_COLOR = 'pink1'
+PRINCE_ANDREW_COLOR = 'dodger_blue1'
 SOON_YI_COLOR = 'hot_pink'
-UNKNOWN_COLOR = 'cyan'
+SULTAN_BIN_SULAYEM_COLOR = 'green1'
+# Other styles
+DEFAULT_NAME_COLOR = 'gray46'
 SNIPPED_SIGNATURE_COLOR = 'gray19'
+UNKNOWN_COLOR = 'cyan'
 
-COLOR_MAPPING = {v: k.removesuffix(COLOR_SUFFIX).lower() for k, v in locals().items() if k.endswith(COLOR_SUFFIX)}
-# print(f"Color Mapping\n\n", COLOR_MAPPING)
-#get_dict_key_by_value
+COLOR_MAPPING = {
+    v: k.removesuffix(COLOR_SUFFIX).lower()
+    for k, v in locals().items()
+    if k.endswith(COLOR_SUFFIX)
+}
 
 # Theme style names
 HEADER_STYLE_NAME = 'header_field'
@@ -98,56 +101,6 @@ NON_ALPHA_CHARS_REGEX = re.compile(r'[^a-zA-Z0-9 ]')
 MAX_PREVIEW_CHARS = 300
 NUM_COLOR_KEY_COLS = 3
 OUTPUT_WIDTH = 120
-
-BASE_NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
-    'Allen',
-    'Amanda',
-    'Andres',
-    'Andrew',
-    'Black',
-    'Brad',
-    'Daniel',
-    'Darren',
-    'David',
-    'Etienne',
-    'jeffrey',
-    'John',
-    'Jonathan',
-    'Joseph',
-    'Kahn',
-    'Jr',
-    'JR.',
-    'Le',
-    'Leon',
-    'Marc',
-    'Martin',
-    'Melanie',
-    'Michael',
-    'Paul',
-    'Pen',
-    'Peter',
-    'Reid',
-    'Richard',
-    'Robert',
-    'Roger',
-    'Rubin',
-    'Scott',
-    'Sean',
-    'Stephen',
-    'Steve',
-    'Steven',
-    'Stone',
-    'Susan',
-    'The',
-    'Thomas',
-    'Tom',
-    'Victor',
-    "Y",
-    "Y.",
-]]
-
-NAMES_TO_NOT_HIGHLIGHT = [[n, regex_escape_periods(n)] if '.' in n else [n] for n in BASE_NAMES_TO_NOT_HIGHLIGHT]
-NAMES_TO_NOT_HIGHLIGHT = flatten(NAMES_TO_NOT_HIGHLIGHT)
 
 # Order matters (will be order of output)
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED_LIST = [
@@ -172,7 +125,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED_LIST = [
     None,
 ]
 
-# ORder matters (will be order of output)
+# Order matters (will be order of output)
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES_LIST = [
     GHISLAINE_MAXWELL,
     LEON_BLACK,
@@ -183,7 +136,6 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES_LIST = [
     KATHY_RUEMMLER,
     TYLER_SHEARS,
 ]
-
 
 highlighter_style_name = lambda style_name: f"{EMAIL_HEADER_FIELD}.{style_name.replace(' ', '_')}"
 
@@ -205,7 +157,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     BRO_COLOR: fr"{JONATHAN_FARKAS}|{TOM_BARRACK}",
     BUSINESS_COLOR: fr"{emailer_pattern(BORIS_NIKOLIC)}|Marc Rich|(Steve\s+)?Wynn|(Leslie\s+)?Wexner|{BARBRO_EHNBOM}|{NICHOLAS_RIBIS}|{ROBERT_LAWRENCE_KUHN}|{STEPHEN_HANSON}|{TERRY_KAFKA}|{TOM_PRITZKER}",
     CHINA_COLOR: r"Beijing|CCP|Chin(a|ese)|Gino Yu|Guo|Kwok|Tai(pei|wan)|Peking|PRC|xi",
-    DEEPAK_COLOR: r"(Deepak )?Chopra|Deepak|Carolyn Rangel",
+    DEEPAK_CHOPRA_COLOR: r"(Deepak )?Chopra|Deepak|Carolyn Rangel",
     DEMOCRATS_COLOR: r"Biden|(Bill )?Clinton|Hillary|Democrat(ic)?|(John )?Kerry|Maxine\s*Waters|(Barack )?Obama|(Nancy )?Pelosi|Ron\s*Dellums",
     DUBIN_COLOR: fr"((Celina|Eva( Anderss?on)?|Glenn) )?Dubin",
     EMPLOYEE_COLOR: fr"{emailer_pattern(LAWRANCE_VISOSKI)}|{LESLEY_GROFF}|{NADIA_MARCINKO}",
@@ -329,46 +281,6 @@ def get_style_for_name(name: str, default: str = DEFAULT) -> str:
     return default
 
 
-def highlight_interesting_text(text: str) -> str:
-    # for style, name_regex in HIGHLIGHT_REGEXES.items():
-    #     text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
-
-    return text
-
-    for name, style in COUNTERPARTY_COLORS.items():
-        if name in [None, DEFAULT, HEADER_STYLE_NAME, SENT_FROM]:
-            continue
-
-        name = regex_escape_periods(name)
-        name_regex = re.compile(rf"\b({name}s?)\b", re.IGNORECASE)
-        text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
-
-        if ' ' not in name:
-            continue
-
-        names = name.split(' ')
-        last_name = names[-1]
-        first_name = ' '.join(names[0:-1])
-
-        # TODO: ugly handling for "Jabor You" case
-        if 'jabor' == first_name.lower():
-            name_regex = re.compile(rf"\b(jabors?)\b", re.IGNORECASE)
-            text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
-            continue
-
-        # highlight last names
-        if last_name.lower() not in NAMES_TO_NOT_HIGHLIGHT:
-            name_regex = re.compile(rf"(?!{first_name} ?)\b({last_name}s?)\b", re.IGNORECASE)
-            text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
-
-        # highlight first names
-        if len(first_name) > 2 and first_name.lower() not in NAMES_TO_NOT_HIGHLIGHT:
-            name_regex = re.compile(rf"\b({first_name}s?)\b(?! ?{last_name})", re.IGNORECASE)
-            text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
-
-    return text
-
-
 def highlight_regex_match(text: str, pattern: re.Pattern, style: str = 'cyan') -> Text:
     """Replace 'pattern' matches with markup of the match colored with 'style'."""
     return Text.from_markup(pattern.sub(rf'[{style}]\1[/{style}]', text))
@@ -470,8 +382,7 @@ def print_numbered_list_of_emailers(_list: list[str] | dict, esptein_files = Non
             earliest_email_date = (esptein_files.earliest_email_at(name) or FALLBACK_TIMESTAMP).date()
             txt.append(f"({earliest_email_date}) ", style='dim')
 
-        name = name or UNKNOWN
-        console.print(txt + Text.from_markup(highlight_interesting_text(name)))
+        console.print(txt.append(name or UNKNOWN))
 
     console.line()
 
