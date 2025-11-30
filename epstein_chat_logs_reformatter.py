@@ -28,16 +28,23 @@ COLOR_KEYS = [
     if color_name not in ['ARCHIVE_LINK_COLOR', 'DUBIN_COLOR', 'DEFAULT_NAME_COLOR']
 ]
 
+PERSON_COLOR_KEYS = [
+    Text(name or UNKNOWN, style=COUNTERPARTY_COLORS[name])
+    for name in sorted(COUNTERPARTY_COLORS.keys(), key=lambda k: k or UNKNOWN)
+    if name not in [*OTHER_STYLES.keys()] + [DEFAULT, JOI_ITO, 'Miro', UNKNOWN]
+]
+
 
 print_header()
 
 if args.colors_only:
-    print_color_key(COLOR_KEYS)
+    print_color_key(COLOR_KEYS, 'Groups')
+    print_color_key(PERSON_COLOR_KEYS, 'People')
     exit()
 
 epstein_files = EpsteinFiles()
 epstein_files.print_files_overview()
-print_color_key(COLOR_KEYS)
+print_color_key(COLOR_KEYS, 'Groups')
 
 
 # Text messages section

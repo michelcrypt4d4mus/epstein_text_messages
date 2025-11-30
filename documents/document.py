@@ -59,6 +59,7 @@ class Document:
         self.epsteinify_link_markup = make_link_markup(self.epsteinify_name_url, self.file_path.stem)
 
     def archive_link(self, link_txt: str | None = None, style: str = ARCHIVE_LINK_COLOR) -> Text:
+        """Link to search courier newsroom Google drive."""
         return make_link(search_archive_url(self.filename), link_txt or self.filename, style)
 
     def count_regex_matches(self, pattern: str) -> int:
