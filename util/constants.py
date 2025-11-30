@@ -18,6 +18,7 @@ STACY_PLASKETT = 'Stacey Plaskett'
 SCARAMUCCI = "Anthony 'The Mooch' Scaramucci"
 SOON_YI = 'Soon-Yi Previn'
 STEVE_BANNON = 'Steve Bannon'
+STEVEN_SINOFSKY = 'Steven Sinofsky'
 TERJE = 'Terje Rød-Larsen'
 UNKNOWN = '(unknown)'
 
@@ -281,7 +282,7 @@ EMAILER_REGEXES = {
     SOON_YI: re.compile(r'Soon[- ]Yi Previn?', re.IGNORECASE),
     STEPHEN_HANSON: re.compile(r'ste(phen|ve) hanson?|Shanson900', re.IGNORECASE),
     STEVE_BANNON: re.compile(r'steve banno[nr]?', re.IGNORECASE),
-    'Steven Sinofsky': re.compile(r'Steven Sinofsky?', re.IGNORECASE),
+    STEVEN_SINOFSKY: re.compile(r'Steven Sinofsky?', re.IGNORECASE),
     SULTAN_BIN_SULAYEM: re.compile(r'Sultan (Ahmed )?bin Sulaye?m?', re.IGNORECASE),
     TERJE: re.compile(r"Terje R[øo]e?d[- ]Larsen", re.IGNORECASE),
     TERRY_KAFKA: re.compile(r'Terry Kafka?', re.IGNORECASE),
