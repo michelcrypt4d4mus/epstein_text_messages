@@ -2,6 +2,7 @@
 import json
 import re
 from os import devnull
+from typing import Literal
 
 from rich.align import Align
 from rich.console import Console, RenderableType
@@ -385,13 +386,13 @@ def print_author_header(msg: str, color: str | None) -> None:
     console.print('\n', Align.center(panel), '\n')
 
 
-def print_color_key(color_keys: Text) -> None:
-    color_table = Table(show_header=False, title='Rough Guide to Highlighted Colors')
+def print_color_key(color_keys: Text, key_type: Literal["Groups", "People"]) -> None:
+    color_table = Table(show_header=False, title=f'Rough Guide to Highlighted Colors for {key_type}')
     num_colors = len(color_keys)
     row_number = 0
 
     for i in range(0, NUM_COLOR_KEY_COLS):
-        color_table.add_column(f"color_col_{i}", justify='center', width=20)
+        color_table.add_column(f"color_col_{i}", justify='center')
 
     while (row_number * NUM_COLOR_KEY_COLS) < num_colors:
         idx = row_number * NUM_COLOR_KEY_COLS
