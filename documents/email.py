@@ -201,9 +201,12 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + [
     'Mark Albert',                           # Random CC
     'Matthew Schafer',                       # Random CC
     'Michael Simmons',                       # Random CC
+    'Nancy Portland',                        # Lawrence Krauss CC
     'Owen Blicksilver',                      # Landon Thomas CC
+    'Peter Aldhous',                         # Lawrence Krauss CC
     'Pink',                                  # Random Jean Luc Brunel CC
     'Robert D. Critton Jr',                  # Random CC
+    'Sam Harris':                            # Lawrence Krauss CC
     'Sam/Walli Leff',                        # Random CC
     'Saved by Internet Explorer 11',
     'Sean T Lehane',                         # Random CC
