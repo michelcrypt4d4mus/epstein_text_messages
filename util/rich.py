@@ -74,7 +74,7 @@ SULTAN_BIN_SULAYEM_COLOR = 'green1'
 # Other styles
 DEFAULT_NAME_COLOR = 'gray46'
 HEADER_FIELD_COLOR = 'plum4'
-SENT_FROM_COLOR = 'grey39 italic'
+SENT_FROM_COLOR = 'gray42 italic'
 SNIPPED_SIGNATURE_COLOR = 'gray19'
 UNKNOWN_COLOR = 'cyan'
 
@@ -176,7 +176,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     RUSSIA_COLOR: fr"GRU|FSB|Lavrov|Masha\s*Drokova|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Vladimir Yudashkin",
     SCHOLAR_COLOR: fr"((Noam|Valeria) )?Chomsky|David Grosof|{DAVID_HAIG}|{JOSCHA_BACH}|Joscha|Bach|Moshe Hoffman|Peter Attia|{ROBERT_TRIVERS}|Trivers|{STEVEN_PFEIFFER}|{emailer_pattern(LAWRENCE_KRAUSS)}",
     SOUTH_AMERICA_COLOR: r"Argentina|Bra[sz]il(ian)?|Bolsonar[aio]|Lula|(Nicolas )?Maduro|Venezuelan?s?",
-    TECH_BRO_COLOR: fr"Elon|Musk|Masa(yoshi)?( Son)?|Najeev|Reid Hoffman|(Peter )?Thiel|Softbank|{emailer_pattern(STEVEN_SINOFSKY)}",
+    TECH_BRO_COLOR: fr"Elon|Musk|Masa(yoshi)?( Son)?|Najeev|Reid Hoffman|(Peter )?Th(ie|ei)l|Softbank|{emailer_pattern(STEVEN_SINOFSKY)}",
     TRUMP_COLOR: r"DJT|(Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)(?! Rubin)|(Matt(hew)? )?Calamari|Roger\s+Stone",
     VICTIM_COLOR: r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts",
     VIRGIN_ISLANDS_COLOR: fr'Cecile de Jongh|(Kenneth E\. )?Mapp|{STACY_PLASKETT}',
@@ -378,7 +378,7 @@ def print_numbered_list_of_emailers(_list: list[str] | dict, esptein_files = Non
             earliest_email_date = (esptein_files.earliest_email_at(name) or FALLBACK_TIMESTAMP).date()
             txt.append(f"({earliest_email_date}) ", style='dim')
 
-        console.print(txt.append(name or UNKNOWN))
+        console.print(txt.append(highlighter(name or UNKNOWN)))
 
     console.line()
 

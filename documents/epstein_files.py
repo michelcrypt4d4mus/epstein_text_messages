@@ -189,7 +189,7 @@ class EpsteinFiles:
         console.print(Align.center(table), '\n')
 
     def print_email_device_info(self) -> None:
-        print_panel(f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown", padding=(0, 0, 0, 6))
+        print_panel(f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown", padding=(0, 0, 0, 11))
         console.print(build_signature_table(self.email_author_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
         console.line(2)
         console.print(build_signature_table(self.email_sent_from_devices, (DEVICE_SIGNATURE, AUTHOR), ', '))
@@ -257,10 +257,7 @@ def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str]
     table = Table(header_style="bold reverse", show_header=True, show_lines=True, title=title)
 
     for i, col in enumerate(cols):
-        table.add_column(
-            col.title() + ('s' if i == 1 else ''),
-            style='dim' if col == DEVICE_SIGNATURE else 'white'
-        )
+        table.add_column(col.title() + ('s' if i == 1 else ''))
 
     new_dict: dict[str, list[str]] = {}
 
