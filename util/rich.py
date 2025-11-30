@@ -409,9 +409,10 @@ def print_other_site_link() -> None:
     print_centered(Text('(') + Text.from_markup(markup_msg).append(')'), style='bold')
 
 
-def print_panel(msg: str, style: str = 'black on white', padding: tuple = (0, 0, 0, 0)) -> None:
-    console.print(Padding(Panel(Text.from_markup(msg, justify='center'), width=70, style=style), padding))
-    console.line()
+def print_panel(msg: str, style: str = 'black on white', padding: tuple | None = None) -> None:
+    _padding = list(padding or [0, 0, 0, 0])
+    _padding[2] += 1  # Bottom pad
+    console.print(Padding(Panel(Text.from_markup(msg, justify='center'), width=70, style=style), tuple(_padding)))
 
 
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
