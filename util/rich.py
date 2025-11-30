@@ -255,24 +255,10 @@ if args.suppress_output:
 console = Console(**CONSOLE_ARGS)
 
 
-def print_json(label: str, obj: object) -> None:
-    console.print(f"{label}:\n")
-    console.print_json(json.dumps(obj, indent=4, sort_keys=True))
-    console.line(2)
-
-
-if is_debug:
-    console.line(2)
-    print_json('HIGHLIGHTER_REGEXES', [r.pattern for r in HIGHLIGHTER_REGEXES])
-    print_json('THEME_STYLES', THEME_STYLES)
-
-
 def get_style_for_name(name: str, default: str = DEFAULT) -> str:
     for style, name_regex in HIGHLIGHT_REGEXES.items():
         if name_regex.search(name):
             return style
-        # else:
-        #     print(f"'{name}' did not match {name_regex.pattern}")
 
     return default
 
@@ -293,6 +279,13 @@ def make_link(url: str, link_text: str, style: str = ARCHIVE_LINK_COLOR) -> Text
 
 def search_coffeezilla_link(text: str, link_txt: str, style: str = ARCHIVE_LINK_COLOR) -> Text:
     return make_link(search_coffeezilla_url(text), link_txt or text, style)
+
+
+def print_author_header(msg: str, color: str | None) -> None:
+    txt = Text(msg, justify='center')
+    color = 'white' if color == DEFAULT else (color or 'white')
+    panel = Panel(txt, width=80, style=f"black on {color or 'white'} bold")
+    console.print('\n', Align.center(panel), '\n')
 
 
 def print_centered(obj: RenderableType, style: str = '') -> None:
@@ -338,13 +331,6 @@ def print_header():
     print_centered('(note this site is based on the OCR text provided by Congress which is not the greatest)', 'grey23')
 
 
-def print_author_header(msg: str, color: str | None) -> None:
-    txt = Text(msg, justify='center')
-    color = 'white' if color == DEFAULT else (color or 'white')
-    panel = Panel(txt, width=80, style=f"black on {color or 'white'} bold")
-    console.print('\n', Align.center(panel), '\n')
-
-
 def print_color_key(color_keys: Text, key_type: Literal["Groups", "People"]) -> None:
     color_table = Table(show_header=False, title=f'Rough Guide to Highlighted Colors for {key_type}')
     num_colors = len(color_keys)
@@ -365,6 +351,12 @@ def print_color_key(color_keys: Text, key_type: Literal["Groups", "People"]) -> 
         row_number += 1
 
     print_centered(vertically_pad(color_table))
+
+
+def print_json(label: str, obj: object) -> None:
+    console.print(f"{label}:\n")
+    console.print_json(json.dumps(obj, indent=4, sort_keys=True))
+    console.line(2)
 
 
 def print_numbered_list_of_emailers(_list: list[str] | dict, esptein_files = None) -> None:
@@ -430,6 +422,11 @@ def wrap_in_markup_style(msg: str, style: str | None = None) -> str:
 
     return msg
 
+
+if is_debug:
+    console.line(2)
+    print_json('HIGHLIGHTER_REGEXES', [r.pattern for r in HIGHLIGHTER_REGEXES])
+    print_json('THEME_STYLES', THEME_STYLES)
 
 if deep_debug:
     console.print('KNOWN_IMESSAGE_FILE_IDS\n--------------')
