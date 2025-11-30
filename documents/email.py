@@ -77,6 +77,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'Torn Pritzker': TOM_PRITZKER,
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
     'Miroslav Laj6ak': MIROSLAV,
+    'gJeremyRubin': '@geremyRubin',
     re.compile(r'([/vkT]|Ai|li|(I|7)v)rote:'): 'wrote:',
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
     re.compile(r"([<>.=_HIM][<>.=_HIM14]{5,}[<>.=_HIM]|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
@@ -236,7 +237,8 @@ SUPPRESS_OUTPUT_FOR_IDS = {
     '012898': 'the same as 033575',
 }
 
-clipped_signature_replacement = lambda name: f'[dim]<...snipped {name.lower()} legal signature...>[/dim]'
+# clipped_signature_replacement = lambda name: f'[dim]<...snipped {name.lower()} legal signature...>[/dim]'
+clipped_signature_replacement = lambda name: f'<...snipped {name.lower()} legal signature...>'
 
 
 @dataclass
@@ -490,12 +492,19 @@ class Email(CommunicationDocument):
             num_chars = quote_cutoff
 
         if len(text) > num_chars:
-            trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest: {self.epsteinify_link_markup}...>"
-            text = f"{text[0:num_chars]}\n\n[dim]{trim_note}[/dim]"
+            trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest: ...>" # TODO: {self.epsteinify_link_markup}...>"
+            #text = f"{text[0:num_chars]}\n\n[dim]{trim_note}[/dim]"
+            text = f"{text[0:num_chars]}\n\n{trim_note}"
 
-        text = REPLY_REGEX.sub(rf'[{HEADER_STYLE_NAME}]\1[/{HEADER_STYLE_NAME}]', text)
-        text = SENT_FROM_REGEX.sub(fr'[{SENT_FROM}]\1[/{SENT_FROM}]', text)
-        email_txt_panel = Panel(highlight_interesting_text(text), border_style=self._border_style(), expand=False)
+        # text = REPLY_REGEX.sub(rf'[{HEADER_STYLE_NAME}]\1[/{HEADER_STYLE_NAME}]', text)
+        # text = SENT_FROM_REGEX.sub(fr'[{SENT_FROM}]\1[/{SENT_FROM}]', text)
+
+        if is_debug:
+            print(f"{self.filename} body\n-----------------\n{text}\n\n")
+            console.print(f"{self.filename} body Text obj\n---------------------")
+            console.print(highlighter(text))
+
+        email_txt_panel = Panel(highlighter(text), border_style=self._border_style(), expand=False)
         yield Padding(email_txt_panel, (0, 0, 2, EMAIL_INDENT))
 
 

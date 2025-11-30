@@ -73,6 +73,7 @@ MELANIE_WALKER_COLOR = 'light_pink3'
 PAULA_COLOR = 'pink1'
 SOON_YI_COLOR = 'hot_pink'
 UNKNOWN_COLOR = 'cyan'
+SNIPPED_SIGNATURE_COLOR = 'gray19'
 
 COLOR_MAPPING = {v: k.removesuffix(COLOR_SUFFIX).lower() for k, v in locals().items() if k.endswith(COLOR_SUFFIX)}
 # print(f"Color Mapping\n\n", COLOR_MAPPING)
@@ -223,6 +224,7 @@ HIGHLIGHT_PATTERNS: dict[str, str] = {
     REPUBLICANS_COLOR: r"bolton|Broidy|cruz|kudlow|lewandowski|mnuchin|(Paul )?Manafort|Pompeo|Republican",
     RUSSIA_COLOR: fr"GRU|FSB|Lavrov|Masha\s*Drokova|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Vladimir Yudashkin",
     SCHOLAR_COLOR: fr"((Noam|Valeria) )?Chomsky|David Grosof|{DAVID_HAIG}|{JOSCHA_BACH}|Joscha|Bach|Moshe Hoffman|Peter Attia|{ROBERT_TRIVERS}|Trivers|{STEVEN_PFEIFFER}|{EMAILER_REGEXES[LAWRENCE_KRAUSS].pattern}",
+    SNIPPED_SIGNATURE_COLOR: r'<\.\.\.(snipped|trimmed).*\.\.\.>',
     SOUTH_AMERICA_COLOR: r"Argentina|Bra[sz]il(ian)?|Bolsonar[aio]|Lula|(Nicolas )?Maduro|Venezuelan?s?",
     TECH_BRO_COLOR: fr"Elon|Musk|Masa(yoshi)?( Son)?|Najeev|Reid Hoffman|(Peter )?Thiel|Softbank|{EMAILER_REGEXES[STEVEN_SINOFSKY].pattern}",
     TRUMP_COLOR: r"DJT|(Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)(?! Rubin)|Roger\s+Stone",
@@ -254,9 +256,15 @@ for style, pattern in HIGHLIGHT_PATTERNS.items():
 
     #print(f"Handling style '{style}'")
     style_name = COLOR_MAPPING[style]
-    regex = re.compile(fr"\b(?P<{style_name}>({pattern})s?)\b", re.I)
+
+    if style in [HEADER_STYLE_NAME]:
+        regex = re.compile(pattern, re.MULTILINE)
+    elif style in [SNIPPED_SIGNATURE_COLOR]:
+        regex = re.compile(fr"(?P<{style_name}>{pattern})")
+    else:
+        regex = re.compile(fr"\b(?P<{style_name}>({pattern})s?)\b", re.I)
+
     HIGHLIGHTER_REGEXES.append(regex)
-    #print(f"    -> {regex.pattern}")
     THEME_STYLES[highlighter_style_name(style_name)] = style
 
 # HIGHLIGHT_PATTERNS = {}
