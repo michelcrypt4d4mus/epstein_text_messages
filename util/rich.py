@@ -326,8 +326,8 @@ def highlight_text(text: str) -> str:
     return text
 
 
-def make_link_markup(url: str, link_text: str, style: str | None = ARCHIVE_LINK_COLOR) -> str:
-    style = (style or '') + ' underline'
+def make_link_markup(url: str, link_text: str, style: str | None = ARCHIVE_LINK_COLOR, underline: bool = True) -> str:
+    style = (style or '') + (' underline' if underline else '')
     return wrap_in_markup_style(f"[link={url}]{link_text}[/link]", style)
 
 
