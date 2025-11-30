@@ -42,7 +42,6 @@ FORWARDED_LINE_PATTERN = r"-+ ?(Forwarded|Original)\s*Message ?-*|Begin forwarde
 REPLY_LINE_PATTERN = rf"({REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re.DOTALL)
-SENT_FROM_REGEX = re.compile(r'^(?:Please forgive typos. |Sorry for all the typos .)?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 NOT_REDACTED_EMAILER_REGEX = re.compile(r'saved by internet', re.IGNORECASE)
 BAD_LINE_REGEX = re.compile(r'^(\d{1,2}|Importance:( High)?|I)$')
@@ -77,6 +76,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'Torn Pritzker': TOM_PRITZKER,
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
     'Miroslav Laj6ak': MIROSLAV,
+    'gJeremyRubin': '@geremyRubin',
     re.compile(r'([/vkT]|Ai|li|(I|7)v)rote:'): 'wrote:',
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
     re.compile(r"([<>.=_HIM][<>.=_HIM14]{5,}[<>.=_HIM]|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
@@ -236,7 +236,8 @@ SUPPRESS_OUTPUT_FOR_IDS = {
     '012898': 'the same as 033575',
 }
 
-clipped_signature_replacement = lambda name: f'[dim]<...snipped {name.lower()} legal signature...>[/dim]'
+# clipped_signature_replacement = lambda name: f'[dim]<...snipped {name.lower()} legal signature...>[/dim]'
+clipped_signature_replacement = lambda name: f'<...snipped {name.lower()} legal signature...>'
 
 
 @dataclass
@@ -302,7 +303,7 @@ class Email(CommunicationDocument):
             return Text(self.filename)
         else:
             info_str = f"Email (author='{self.author}', recipients={self.recipients}, timestamp='{self.timestamp}')"
-            return Text.from_markup(highlight_interesting_text(info_str))
+            return Text(info_str)
 
     def idx_of_nth_quoted_reply(self, n: int = 2, text: str | None = None) -> int | None:
         """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line."""
@@ -329,7 +330,7 @@ class Email(CommunicationDocument):
             text = self.text
 
         text = '\n'.join([line for line in text.split('\n') if not BAD_LINE_REGEX.match(line)])
-        text = escape(REPLY_REGEX.sub(r'\n\1', text))  # Newlines between quoted replies
+        text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
 
         for name, signature_regex in EMAIL_SIGNATURES.items():
             text = signature_regex.sub(clipped_signature_replacement(name), text)
@@ -490,12 +491,10 @@ class Email(CommunicationDocument):
             num_chars = quote_cutoff
 
         if len(text) > num_chars:
-            trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest: {self.epsteinify_link_markup}...>"
-            text = f"{text[0:num_chars]}\n\n[dim]{trim_note}[/dim]"
+            trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest at link to file above...>" # TODO: {self.epsteinify_link_markup}...>"
+            text = f"{text[0:num_chars]}\n\n{trim_note}"
 
-        text = REPLY_REGEX.sub(rf'[{HEADER_STYLE_NAME}]\1[/{HEADER_STYLE_NAME}]', text)
-        text = SENT_FROM_REGEX.sub(fr'[{SENT_FROM}]\1[/{SENT_FROM}]', text)
-        email_txt_panel = Panel(highlight_interesting_text(text), border_style=self._border_style(), expand=False)
+        email_txt_panel = Panel(highlighter(text), border_style=self._border_style(), expand=False)
         yield Padding(email_txt_panel, (0, 0, 2, EMAIL_INDENT))
 
 

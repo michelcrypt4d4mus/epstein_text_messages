@@ -28,18 +28,11 @@ COLOR_KEYS = [
     if color_name not in ['ARCHIVE_LINK_COLOR', 'DUBIN_COLOR', 'DEFAULT_NAME_COLOR']
 ]
 
-PERSON_COLOR_KEYS = [
-    Text(name or UNKNOWN, style=COUNTERPARTY_COLORS[name])
-    for name in sorted(COUNTERPARTY_COLORS.keys(), key=lambda k: k or UNKNOWN)
-    if name not in [*OTHER_STYLES.keys()] + [DEFAULT, JOI_ITO, 'Miro', UNKNOWN]
-]
-
 
 print_header()
 
 if args.colors_only:
     print_color_key(COLOR_KEYS, 'Groups')
-    print_color_key(PERSON_COLOR_KEYS, 'People')
     exit()
 
 epstein_files = EpsteinFiles()
@@ -70,13 +63,14 @@ if args.all:
     print_numbered_list_of_emailers(emailers_to_print, epstein_files)
 else:
     if len(additional_emailers) > 0:
-        PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED.update({k: get_style_for_name(k) for k in additional_emailers})
+        PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED_LIST.extend(additional_emailers)
+        logger.info(f"Added {len(additional_emailers)} from --email command line args...")
 
     console.print('Email conversations grouped by counterparty can be found in the order listed below.')
-    emailers_to_print = [e for e in PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED.keys()]
+    emailers_to_print = PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED_LIST
     print_numbered_list_of_emailers(emailers_to_print)
     console.print("\nAfter that there's tables linking to (but not displaying) all known emails for each of these people:")
-    emailer_tables = epstein_files.all_emailers() if args.all_tables else PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES
+    emailer_tables = epstein_files.all_emailers() if args.all_tables else PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES_LIST
     emailer_tables = sorted(emailer_tables, key=lambda e: epstein_files.earliest_email_at(e)) if args.all_tables else emailer_tables
     print_numbered_list_of_emailers(emailer_tables)
 
