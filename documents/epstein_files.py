@@ -21,7 +21,7 @@ from util.constants import *
 from util.data import flatten, patternize
 from util.env import args, is_debug, logger
 from util.file_helper import DOCS_DIR, move_json_file
-from util.rich import console, get_style_for_name, highlight_text, make_link, make_link_markup, print_author_header, print_panel, vertically_pad
+from util.rich import DEFAULT_NAME_COLOR, console, get_style_for_name, highlight_text, make_link, make_link_markup, print_author_header, print_panel, vertically_pad
 
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (0, 0, 0, 2)
@@ -180,8 +180,9 @@ class EpsteinFiles:
         console.line(2)
 
     def print_emailer_counts_table(self) -> None:
-        counts_table = Table(title=f"Email Counts", show_header=True, header_style="bold")
-        counts_table.add_column('Name', justify="left", style='grey82')
+        footer = f"Identified authors of {self.num_identified_email_authors()} emails out of {len(self.emails)} potential email files."
+        counts_table = Table(title=f"Email Counts", caption=footer, show_header=True, header_style="bold")
+        counts_table.add_column('Name', justify="left", style=DEFAULT_NAME_COLOR)
         counts_table.add_column('Jmail', justify="center")
         counts_table.add_column("Count", justify="center")
         counts_table.add_column("Sent", justify="center")
@@ -190,7 +191,7 @@ class EpsteinFiles:
 
         for k, count in sorted(self.all_emailer_counts().items(), key=sort_key, reverse=True):
             counts_table.add_row(
-                Text.from_markup(make_link_markup(epsteinify_name_url(k), k, get_style_for_name(k, 'grey82'))),
+                Text.from_markup(make_link_markup(epsteinify_name_url(k), k, get_style_for_name(k, DEFAULT_NAME_COLOR))),
                 make_link(jmail_search_url(k), 'Search Jmail'),
                 str(count),
                 str(self.email_author_counts[k]),
@@ -198,8 +199,6 @@ class EpsteinFiles:
             )
 
         console.print(vertically_pad(counts_table))
-        console.print(f"Identified authors of {self.num_identified_email_authors()} emails out of {len(self.emails)} potential email files.")
-        console.print('(note this site is based on the OCR email text provided by Congress which is not the greatest)\n', style='dim')
         console.print('Epstein emails grouped by counterparty can be found in the order listed below.')
 
     def print_other_files_table(self) -> None:
