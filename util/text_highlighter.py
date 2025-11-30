@@ -4,10 +4,10 @@ from .constants import *
 
 
 class EpsteinTextHighlighter(RegexHighlighter):
-    """Apply style to anything that looks like an email."""
+    """Currently only highlights the email header."""
     base_style = f"{HEADER_FIELD}."
 
     highlights = [
-        r"(?P<email>[\w-]+@([\w-]+\.)+[\w-]+)",
+        r"(?P<email>[\w-]+@([\w-]+\.)+[\w-]+)",  # TODO: doesn't work
         r"(?P<header>Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):",
     ]

@@ -296,6 +296,11 @@ def get_style_for_name(name: str, default: str = DEFAULT) -> str:
     return default
 
 
+def highlight_pattern(text: str, pattern: re.Pattern, style: str = 'cyan') -> Text:
+    """Replace 'pattern' matches with markup of the match colored with 'style'."""
+    return Text.from_markup(pattern.sub(rf'[{style}]\1[/{style}]', text))
+
+
 def highlight_text(text: str) -> str:
     for style, name_regex in HIGHLIGHT_REGEXES.items():
         text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
@@ -332,10 +337,6 @@ def highlight_text(text: str) -> str:
             text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
 
     return text
-
-
-def highlight_pattern(text: str, pattern: re.Pattern, style: str = 'cyan') -> Text:
-    return Text.from_markup(pattern.sub(rf'[{style}]\1[/{style}]', text))
 
 
 def print_centered(msg: str, style: str = '') -> None:
