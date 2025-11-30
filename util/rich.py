@@ -414,7 +414,7 @@ def print_header():
     table.add_column("Translation", style="white", justify="center")
 
     for k, v in HEADER_ABBREVIATIONS.items():
-        table.add_row(highlight_interesting_text(k), v)
+        table.add_row(highlighter(k), v)
 
     console.print(Align.center(vertically_pad(table)))
     print_centered_link(OVERSIGHT_REPUBLICANS_PRESSER_URL, 'Oversight Committee Releases Additional Epstein Estate Documents')
