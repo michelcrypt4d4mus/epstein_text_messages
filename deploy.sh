@@ -27,7 +27,7 @@ if any_uncommitted_changes; then
     exit
 fi
 
-git push origin master
+git push origin master --quiet
 
 if [ -f "$INDEX_HTML_PATH" ]; then
     echo -e "Removing '$INDEX_HTML_PATH' on master..."
@@ -39,7 +39,7 @@ git merge --no-edit master --quiet
 echo -e "Building '$INDEX_HTML_PATH'..."
 ./epstein_chat_logs_reformatter.py --build --suppress-output
 git commit -am"Update HTML"
-git push origin gh_pages
+git push origin gh_pages --quiet
 git checkout master
 echo -e "\n\n$TEXT_MSGS_PROJECT_NAME deployed to '$TEXT_MSGS_URL'\n"
 
