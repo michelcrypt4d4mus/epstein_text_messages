@@ -296,6 +296,11 @@ def get_style_for_name(name: str, default: str = DEFAULT) -> str:
     return default
 
 
+def highlight_pattern(text: str, pattern: re.Pattern, style: str = 'cyan') -> Text:
+    """Replace 'pattern' matches with markup of the match colored with 'style'."""
+    return Text.from_markup(pattern.sub(rf'[{style}]\1[/{style}]', text))
+
+
 def highlight_text(text: str) -> str:
     for style, name_regex in HIGHLIGHT_REGEXES.items():
         text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
@@ -332,10 +337,6 @@ def highlight_text(text: str) -> str:
             text = name_regex.sub(rf'[{style}]\1[/{style}]', text)
 
     return text
-
-
-def highlight_pattern(text: str, pattern: re.Pattern, style: str = 'cyan') -> Text:
-    return Text.from_markup(pattern.sub(rf'[{style}]\1[/{style}]', text))
 
 
 def print_centered(msg: str, style: str = '') -> None:
@@ -409,9 +410,10 @@ def print_other_site_link() -> None:
     print_centered(Text('(') + Text.from_markup(markup_msg).append(')'), style='bold')
 
 
-def print_panel(msg: str, style: str = 'black on white', padding: tuple = (0, 0, 0, 0)) -> None:
-    console.print(Padding(Panel(Text.from_markup(msg, justify='center'), width=70, style=style), padding))
-    console.line()
+def print_panel(msg: str, style: str = 'black on white', padding: tuple | None = None) -> None:
+    _padding = list(padding or [0, 0, 0, 0])
+    _padding[2] += 1  # Bottom pad
+    console.print(Padding(Panel(Text.from_markup(msg, justify='center'), width=70, style=style), tuple(_padding)))
 
 
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
