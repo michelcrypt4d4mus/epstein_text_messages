@@ -75,7 +75,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'Sent from Mabfl': 'Sent from Mobile',
     'Torn Pritzker': TOM_PRITZKER,
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
-    'Miroslav Laj6ak': MIROSLAV,
+    'Miroslav Laj6ak': MIROSLAV_LAJCAK,
     'gJeremyRubin': '@geremyRubin',
     re.compile(r'([/vkT]|Ai|li|(I|7)v)rote:'): 'wrote:',
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
@@ -236,7 +236,6 @@ SUPPRESS_OUTPUT_FOR_IDS = {
     '012898': 'the same as 033575',
 }
 
-# clipped_signature_replacement = lambda name: f'[dim]<...snipped {name.lower()} legal signature...>[/dim]'
 clipped_signature_replacement = lambda name: f'<...snipped {name.lower()} legal signature...>'
 
 
@@ -478,7 +477,7 @@ class Email(CommunicationDocument):
 
         yield Panel(self.archive_link, border_style=self._border_style(), expand=False)
         info_line = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(f' to ')
-        info_line.append(self.recipient_txt).append(f" probably sent at ").append(str(self.timestamp), style='dark_cyan')
+        info_line.append(self.recipient_txt).append(highlighter(f" probably sent at {self.timestamp}"))
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
         text = self._cleaned_up_text()
         quote_cutoff = self.idx_of_nth_quoted_reply(text=text)

@@ -6,14 +6,14 @@ from io import StringIO
 from dateutil.parser import parse
 
 # Texting Names
-ANIL = "Anil Ambani"
+ANIL_AMBANI = "Anil Ambani"
 DEFAULT = 'default'
 EVA = 'Eva'
 JEFFREY_EPSTEIN = 'Jeffrey Epstein'
 JOI_ITO = 'Joi Ito'
 LARRY_SUMMERS = 'Larry Summers'
 MELANIE_WALKER = 'Melanie Walker'
-MIROSLAV = 'Miroslav Lajčák'
+MIROSLAV_LAJCAK = 'Miroslav Lajčák'
 STACY_PLASKETT = 'Stacey Plaskett'
 SCARAMUCCI = "Anthony 'The Mooch' Scaramucci"
 SOON_YI = 'Soon-Yi Previn'
@@ -26,6 +26,7 @@ UNKNOWN = '(unknown)'
 # TODO: no trailing periods!
 AL_SECKEL = 'Al Seckel'
 ALIREZA_ITTIHADIEH = 'Alireza Ittihadieh'
+AMANDA_ENS = 'Amanda Ens'
 ANTHONY_BARRETT = 'Anthony Barrett'
 ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
 ANAS_ALRASHEED = 'Anas Alrasheed'
@@ -148,8 +149,8 @@ HOUSE_OVERSIGHT_029744.txt	Steve Bannon (likely)	Trump and New York Times covera
 HOUSE_OVERSIGHT_031045.txt	Steve Bannon (likely)	Trump and New York Times coverage""")
 
 KNOWN_IMESSAGE_FILE_IDS = {
-    '031042': ANIL,            # Participants: field
-    '027225': ANIL,            # Birthday
+    '031042': ANIL_AMBANI,            # Participants: field
+    '027225': ANIL_AMBANI,            # Birthday
     '031173': 'Ards',          # Participants: field, possibly incomplete
     '027460': STEVE_BANNON,    # Discusses leaving scotland when Bannon was confirmed in Scotland, also NYT
     '025707': STEVE_BANNON,
@@ -159,7 +160,7 @@ KNOWN_IMESSAGE_FILE_IDS = {
     '027307': STEVE_BANNON,
     '027401': EVA,             # Participants: field
     '027650': JOI_ITO,         # Participants: field
-    '027515': MIROSLAV,        # https://x.com/ImDrinknWyn/status/1990210266114789713
+    '027515': MIROSLAV_LAJCAK,        # https://x.com/ImDrinknWyn/status/1990210266114789713
     '027165': MELANIE_WALKER,  # https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/
     '025429': STACY_PLASKETT,
     '027333': SCARAMUCCI,      # unredacted phone number
@@ -173,7 +174,7 @@ KNOWN_IMESSAGE_FILE_IDS = {
 }
 
 GUESSED_IMESSAGE_FILE_IDS = {
-    '027221': ANIL,
+    '027221': ANIL_AMBANI,
     '025363': STEVE_BANNON,          # Trump and New York Times coverage
     '025368': STEVE_BANNON,          # Trump and New York Times coverage
     '027585': STEVE_BANNON,          # Tokyo trip
@@ -211,10 +212,10 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
 EMAILER_REGEXES = {
     'Alan Dershowitz': re.compile(r'alan.*dershowitz', re.IGNORECASE),
     ALIREZA_ITTIHADIEH: re.compile(r'Alireza.[Il]ttihadieh', re.IGNORECASE),
+    AMANDA_ENS: re.compile(r'ens, amanda?', re.IGNORECASE),
+    ANIL_AMBANI: re.compile(r'Anil.Ambani', re.IGNORECASE),
     'Ann Marie Villafana': re.compile(r'Villafana', re.IGNORECASE),
-    'Amanda Ens': re.compile(r'ens, amanda?', re.IGNORECASE),
-    ANIL: re.compile(r'Anil.Ambani', re.IGNORECASE),
-    ARIANE_DE_ROTHSCHILD: re.compile(r'AdeR|(Ariane de )?Rothschild|Ariane'),
+    ARIANE_DE_ROTHSCHILD: re.compile(r'AdeR|((Ariane|Edmond) de )?Rothschild|Ariane'),
     ANAS_ALRASHEED: re.compile(r'anas\s*al\s*rashee[cd]', re.IGNORECASE),
     BARBRO_EHNBOM: re.compile(r'behnbom@aol.com|Barbro\s.*Ehnbom', re.IGNORECASE),
     'Barry J. Cohen': re.compile(r'barry (j.? )?cohen?', re.IGNORECASE),
@@ -261,7 +262,7 @@ EMAILER_REGEXES = {
     MICHAEL_BUCHHOLTZ: re.compile(r'Michael.*Buchholtz', re.IGNORECASE),
     MICHAEL_WOLFF: re.compile(r'Michael\s*Wol(ff|i)', re.IGNORECASE),
     MICHAEL_SITRICK: re.compile(r'Mi(chael|ke).{0,5}Sitrick', re.IGNORECASE),
-    MOHAMED_WAHEED_HASSAN: re.compile(r'Mohamed Waheed', re.IGNORECASE),
+    MOHAMED_WAHEED_HASSAN: re.compile(r'Mohamed Waheed(\s+Hassan)?', re.IGNORECASE),
     'Neal Kassell': re.compile(r'Neal Kassel', re.IGNORECASE),
     NICHOLAS_RIBIS: re.compile(r'Nicholas[ ._]Ribi?s?', re.IGNORECASE),
     OLIVIER_COLOM: re.compile(fr'Colom, Olivier|{OLIVIER_COLOM}', re.IGNORECASE),
@@ -277,6 +278,7 @@ EMAILER_REGEXES = {
     RICHARD_KAHN: re.compile(r'rich(ard)? kahn?', re.IGNORECASE),
     ROBERT_LAWRENCE_KUHN: re.compile(r'Robert\s*(Lawrence)?\s*Kuhn', re.IGNORECASE),
     ROBERT_TRIVERS: re.compile(r'tri[vy]ersr@gmail|Robert\s*Trivers?', re.IGNORECASE),
+    SCARAMUCCI: re.compile(r"mooch|(Anthony ('The Mooch' )?)?Scaramucci", re.IGNORECASE),
     SCOTT_J_LINK: re.compile(r'scott j. link?', re.IGNORECASE),
     SEAN_BANNON: re.compile(r'sean bannon?', re.IGNORECASE),
     'Shaher Abdulhak Besher (?)': re.compile(r'Shaher ', re.IGNORECASE),
@@ -441,7 +443,7 @@ KNOWN_EMAIL_AUTHORS = {
     '030472': MARTIN_WEINBERG,         # Maybe. in reply
     '030235': MELANIE_WALKER,          # In fwd
     '032343': MELANIE_WALKER,          # In later reply 032346
-    '032212': MIROSLAV,
+    '032212': MIROSLAV_LAJCAK,
     '022193': NADIA_MARCINKO,
     '021814': NADIA_MARCINKO,
     '021808': NADIA_MARCINKO,
@@ -535,7 +537,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '030369': MELANIE_SPINELLA,       # Actually a self fwd from jeffrey to jeffrey
     '030371': MELANIE_SPINELLA,       # Actually a self fwd from jeffrey to jeffrey
     '023291': [MELANIE_SPINELLA, BRAD_WECHSLER],  # Can be seen in 023028
-    '032214': MIROSLAV,               # Quoted reply has signature
+    '032214': MIROSLAV_LAJCAK,               # Quoted reply has signature
     '022258': NADIA_MARCINKO,         # Reply header
     '033097': [PAUL_BARRETT, RICHARD_KAHN],  # Bad OCR #TODO: check
     '030506': PAULA,                  # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
@@ -580,7 +582,7 @@ HEADER_ABBREVIATIONS = {
     'MBS': "Mohammed bin Salman Al Saud (Saudi ruler)",
     'MBZ': "Mohamed bin Zayed Al Nahyan (Emirates sheikh)",
     'Jared': "Jared Kushner",
-    "Miro": MIROSLAV,
+    "Miro": MIROSLAV_LAJCAK,
     "Mooch": "Anthony 'The Mooch' Scaramucci (Skybridge crypto bro)",
     "Terje": TERJE,
     "Woody": "Woody Allen",
@@ -615,6 +617,3 @@ search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE_URL}&q={urllib.pars
 search_coffeezilla_url = lambda txt: f"{COFFEEZILLA_ARCHIVE_URL}&q={urllib.parse.quote(txt)}&p=1"
 search_jmail_url = lambda txt: f"{JMAIL_URL}/search?q={urllib.parse.quote(txt)}"
 search_twitter_url = lambda txt: f"https://x.com/search?q={urllib.parse.quote(txt)}&src=typed_query&f=live"
-
-
-emailer_pattern = lambda name: EMAILER_REGEXES[name].pattern
