@@ -156,26 +156,27 @@ HOUSE_OVERSIGHT_029744.txt	Steve Bannon (likely)	Trump and New York Times covera
 HOUSE_OVERSIGHT_031045.txt	Steve Bannon (likely)	Trump and New York Times coverage""")
 
 KNOWN_IMESSAGE_FILE_IDS = {
-    '031042': ANIL_AMBANI,            # Participants: field
-    '027225': ANIL_AMBANI,            # Birthday
-    '031173': 'Ards',          # Participants: field, possibly incomplete
-    '027460': STEVE_BANNON,    # Discusses leaving scotland when Bannon was confirmed in Scotland, also NYT
+    '031042': ANIL_AMBANI,       # Participants: field
+    '027225': ANIL_AMBANI,       # Birthday
+    '031173': 'Ards',            # Participants: field, possibly incomplete
+    '027401': EVA,               # Participants: field
+    '027650': JOI_ITO,           # Participants: field
+    '027777': LARRY_SUMMERS,     # Participants: field
+    '027515': MIROSLAV_LAJCAK,   # https://x.com/ImDrinknWyn/status/1990210266114789713
+    '027165': MELANIE_WALKER,    # https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/
+    '027248': MELANIE_WALKER,    # Says "we met through trump" which is confirmed by Melanie in 032803
+    '025429': STACEY_PLASKETT,
+    '027333': SCARAMUCCI,        # unredacted phone number in one of the messages
+    '027128': SOON_YI,           # https://x.com/ImDrinknWyn/status/1990227281101434923
+    '027217': SOON_YI,           # refs marriage to woody allen
+    '027244': SOON_YI,           # refs Woody
+    '027257': SOON_YI,           # 'Woody Allen' in Participants: field
+    '027460': STEVE_BANNON,      # Discusses leaving scotland when Bannon was confirmed in Scotland, also NYT
     '025707': STEVE_BANNON,
     '025734': STEVE_BANNON,
     '025452': STEVE_BANNON,
     '025408': STEVE_BANNON,
     '027307': STEVE_BANNON,
-    '027401': EVA,             # Participants: field
-    '027650': JOI_ITO,         # Participants: field
-    '027515': MIROSLAV_LAJCAK,        # https://x.com/ImDrinknWyn/status/1990210266114789713
-    '027165': MELANIE_WALKER,  # https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/
-    '025429': STACEY_PLASKETT,
-    '027333': SCARAMUCCI,      # unredacted phone number
-    '027128': SOON_YI,         # https://x.com/ImDrinknWyn/status/1990227281101434923
-    '027217': SOON_YI,         # refs marriage to woody allen
-    '027244': SOON_YI,         # refs Woody
-    '027257': SOON_YI,         # 'Woody Allen' in Participants: field
-    '027777': LARRY_SUMMERS,   # Participants: field
     '027278': TERJE_ROD_LARSEN,
     '027255': TERJE_ROD_LARSEN,
 }
@@ -618,6 +619,14 @@ SITE_URLS = {
 # Misc
 FALLBACK_TIMESTAMP = parse("1/1/2001 12:01:01 AM")
 SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
+# Email replies
+REPLY_LINE_IN_A_MSG_PATTERN = r"In a message dated \d+/\d+/\d+.*writes:"
+REPLY_LINE_ENDING_PATTERN = r"[_ \n](AM|PM|[<_]|wrote:?)"
+REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"On \d+/\d+/\d+[, ].*{REPLY_LINE_ENDING_PATTERN}"
+REPLY_LINE_ON_DATE_PATTERN = fr"On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*).*{REPLY_LINE_ENDING_PATTERN}"
+FORWARDED_LINE_PATTERN = r"-+ ?(Forwarded|Original)\s*Message ?-*|Begin forwarded message:?"
+REPLY_LINE_PATTERN = rf"({REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
+REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE)
 
 
 epsteinify_api_url = lambda file_id: f"{EPSTEINIFY_URL}/api/documents/HOUSE_OVERSIGHT_{file_id}"

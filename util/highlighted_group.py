@@ -433,6 +433,12 @@ HIGHLIGHTED_GROUPS = [
         is_multiline=True,
     ),
     HighlightedGroup(
+        label='quoted_reply_line',
+        style='dim',
+        pattern=REPLY_REGEX.pattern,
+        is_multiline=True,
+    ),
+    HighlightedGroup(
         label='sent_from',
         style='gray42 italic',
         pattern=SENT_FROM_REGEX.pattern,
