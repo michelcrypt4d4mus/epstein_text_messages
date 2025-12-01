@@ -8,10 +8,6 @@ from util.env import is_debug, logger
 
 REGEX_STYLE_PREFIX = 'regex'
 
-UNSPLITTABLE_NAMES = [
-    JEREMY_RUBIN,
-]
-
 
 @dataclass
 class HighlightedGroup:
@@ -48,7 +44,7 @@ class HighlightedGroup:
 
         if name in EMAILER_ID_REGEXES:
             return EMAILER_ID_REGEXES[name].pattern
-        elif name in UNSPLITTABLE_NAMES or ' ' not in name:
+        elif ' ' not in name:
             return name
 
         names = name.split()
@@ -68,7 +64,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='bank',
         style='green',
-        pattern=r'Apollo|Black(rock|stone)|DB|Deutsche Bank|Goldman( ?Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|Jes\s+Staley|Merrill\s+Lynch|Morgan Stanley|j\.?p\.?\s*morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com',
+        pattern=r'Apollo|Black(rock|stone)|DB|Deutsche\s*Bank|Goldman( ?Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|Jes\s+Staley|Merrill\s+Lynch|Morgan Stanley|j\.?p\.?\s*morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com',
         emailers=[
             ALIREZA_ITTIHADIEH,
             AMANDA_ENS,
@@ -127,7 +123,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='democrats',
         style='sky_blue1',
-        pattern=r'Biden|((Bill|Hillary) )?Clinton|DNC|(George )?Soros|Hill?ary|Democrat(ic)?|(John )?Kerry|Maxine\s*Waters|(Barac?k )?Obama|(Nancy )?Pelosi|Ron\s*Dellums',
+        pattern=r'Biden|((Bill|Hillary)\s*)?Clinton|DNC|(George\s*)?Soros|Hill?ary|Democrat(ic)?|(John\s*)?Kerry|Maxine\s*Waters|(Barac?k )?Obama|(Nancy )?Pelosi|Ron\s*Dellums',
     ),
     HighlightedGroup(
         label='dubin',
@@ -206,7 +202,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='lawyer',
         style='medium_purple2',
-        pattern='(Erika )?Kellerhals|Michael J. Pike|Paul Weiss|Weinberg|Weingarten|Roy Black',
+        pattern='(Erika )?Kellerhals|Michael J. Pike|Paul Weiss|Roy Black|Weinberg|Weingarten',
         emailers=[
             ALAN_DERSHOWITZ,
             DARREN_INDYKE,
@@ -237,7 +233,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='mideast',
         style='dark_sea_green4',
-        pattern=r"Abdulmalik Al-Makhlafi|Abu\s+Dhabi|Assad|Bahrain|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Imran\s+Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|kasshohgi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Riya(dh|nd)|Saudi(\s+Arabian?)?|Shaher( Abdulhak Besher)?|Sharia|Syria|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
+        pattern=r"Abdulmalik Al-Makhlafi|Abu\s+Dhabi|Assad|Bahrain|Dubai|Emir(at(es?|i))?|Erdogan|Gaddafi|HBJ|Imran\s+Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|kasshohgi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Riya(dh|nd)|Saudi(\s+Arabian?)?|Shaher( Abdulhak Besher)?|Sharia|Syria|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
         emailers=[
             ANAS_ALRASHEED,
             AZIZA_ALAHMADI,
@@ -309,7 +305,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='south_america',
         style='yellow',
-        pattern=r'Argentin(a|ian)|Bra[sz]il(ian)?|Bolsonar[aio]|Bukele|Caracas|El\s*Salvador|Lula|(Nicolas\s+)?Maduro|Venezuelan?',
+        pattern=r'Argentin(a|ian)|Bolsonar[aio]|Bra[sz]il(ian)?|Bukele|Caracas|El\s*Salvador|Lula|(Nicolas\s+)?Maduro|Venezuelan?',
     ),
     HighlightedGroup(
         label='tech_bro',
