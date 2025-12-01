@@ -255,7 +255,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     'Google Alerts': re.compile(r'google\s?alerts', re.IGNORECASE),
     'Heather Mann': re.compile(r'Heather Man', re.IGNORECASE),
     'Intelligence Squared': re.compile(r'intelligence\s*squared', re.IGNORECASE),
-    JACKIE_PERCZEK:  re.compile(r'jackie perczekl?', re.IGNORECASE),
+    JACKIE_PERCZEK:  re.compile(r'jackie percze[kl]?', re.IGNORECASE),
     JABOR_Y: re.compile(r'[ji]abor\s*y?', re.IGNORECASE),
     JEAN_LUC_BRUNEL: re.compile(r'Jean[- ]Luc Brunel?', re.IGNORECASE),
     JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]?g?(mail.com)?|JEE?\b|Jeffrey E((sp|ps)tein?)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!Mark L. )Epstein', re.IGNORECASE),
