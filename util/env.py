@@ -48,3 +48,6 @@ if len(specified_emailers) > 0:
     logger.warning(f"Found {len(specified_emailers)} --email so setting --no-texts to True")
     args.no_texts = True
     skip_texts = True
+
+if args.use_epstein_web_links:
+    logger.warning(f"Using links to epsteinweb.org links instead of epsteinify.com")

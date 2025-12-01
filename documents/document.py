@@ -10,7 +10,7 @@ from rich.text import Text
 from util.constants import HOUSE_OVERSIGHT_PREFIX, esptein_web_doc_url, search_archive_url
 from util.data import patternize
 from util.env import args, logger
-from util.file_helper import extract_file_id
+from util.file_helper import build_filename_for_id, extract_file_id, is_local_extract_file
 from util.rich import (ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_regex_match, highlighter,
      logger, make_link, make_link_markup)
 from util.strings import *
@@ -48,17 +48,24 @@ class Document:
     lines: list[str] = field(init=False)
     num_lines: int = field(init=False)
     text: str = field(init=False)
+    url_slug: str = field(init=False)  # e.g. 'HOUSE_OVERSIGHT_123456
 
     file_matching_idx: ClassVar[int] = 0
 
     def __post_init__(self):
         self.filename = self.file_path.name
         self.file_id = extract_file_id(self.filename)
+
+        if is_local_extract_file(self.filename):
+            self.url_slug = build_filename_for_id(self.file_id)
+        else:
+            self.url_slug = self.file_path.stem
+
         self.text = self._load_file()
         self._set_computed_fields()
-        self.epsteinify_doc_url = epsteinify_doc_url(self.file_path.stem)
+        self.epsteinify_doc_url = epsteinify_doc_url(self.url_slug)
         self.epsteinify_link_markup = make_link_markup(self.epsteinify_doc_url, self.file_path.stem)
-        self.epstein_web_doc_url = esptein_web_doc_url(self.file_path.stem)
+        self.epstein_web_doc_url = esptein_web_doc_url(self.url_slug)
         self.epstein_web_doc_link_markup = make_link_markup(self.epstein_web_doc_url, self.file_path.stem)
 
     def archive_link_txt(self) -> Text:

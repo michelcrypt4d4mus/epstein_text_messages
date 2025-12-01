@@ -5,6 +5,9 @@ from sys import exit
 
 from util.constants import HOUSE_OVERSIGHT_PREFIX
 
+FILE_ID_REGEX = re.compile(rf'.*{HOUSE_OVERSIGHT_PREFIX}(\d+)(_\d+)?(\.txt)?')
+OUTPUT_GH_PAGES_HTML = Path('docs').joinpath('index.html')
+
 EPSTEIN_DOCS_DIR_ENV_VAR_NAME = 'EPSTEIN_DOCS_DIR'
 DOCS_DIR_ENV = environ[EPSTEIN_DOCS_DIR_ENV_VAR_NAME]
 
@@ -15,8 +18,7 @@ if not DOCS_DIR_ENV:
 DOCS_DIR = Path(DOCS_DIR_ENV).resolve()
 JSON_FILES_SUBDIR = 'json_files'
 JSON_DIR = DOCS_DIR.joinpath(JSON_FILES_SUBDIR)
-OUTPUT_GH_PAGES_HTML = Path('docs').joinpath('index.html')
-FILE_ID_REGEX = re.compile(rf'.*{HOUSE_OVERSIGHT_PREFIX}(\d+)(_\d+)?(\.txt)?')
+
 
 if not DOCS_DIR.exists():
     print(f"ERROR: {EPSTEIN_DOCS_DIR_ENV_VAR_NAME}='{DOCS_DIR}' does not exist!")
@@ -35,6 +37,12 @@ def extract_file_id(filename) -> str:
         return file_match.group(1)
     else:
         raise RuntimeError(f"Failed to extract file ID from {filename}")
+
+
+def is_local_extract_file(filename) -> bool:
+    """Return true if filename is of form 'HOUSE_OVERSIGHT_029835_1.txt'."""
+    file_match = FILE_ID_REGEX.match(str(filename))
+    return True if file_match and file_match.group(2) else False
 
 
 def move_json_file(file_arg: Path):
