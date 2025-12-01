@@ -271,7 +271,7 @@ HIGHLIGHTED_GROUPS = [
     ),
     HighlightedGroup(
         label='republicans',
-        style='dark_red',
+        style='bold dark_red',
         pattern=r'(alex )?acosta|bolton|Broidy|GOP|(?<!Merwin Dela )Cruz|kobach|Kolfage|kudlow|lewandowski|(Marco )?Rubio|mattis|mnuchin|(Paul\s+)?Manafort|(Peter )?Navarro|Pompeo|Republican',
         emailers = [
             RUDY_GIULIANI,

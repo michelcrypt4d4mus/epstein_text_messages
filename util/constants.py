@@ -16,7 +16,7 @@ LARRY_SUMMERS = 'Larry Summers'
 MELANIE_WALKER = 'Melanie Walker'
 MIROSLAV_LAJCAK = 'Miroslav Lajčák'
 STACEY_PLASKETT = 'Stacey Plaskett'
-SCARAMUCCI = "Anthony 'The Mooch' Scaramucci"
+SCARAMUCCI = "Anthony Scaramucci"
 SOON_YI = 'Soon-Yi Previn'
 STEVE_BANNON = 'Steve Bannon'
 STEVEN_SINOFSKY = 'Steven Sinofsky'
@@ -605,6 +605,7 @@ HEADER_ABBREVIATIONS = {
 }
 
 NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
+    'Al',
     'Allen',
     'Amanda',
     'Andres',
