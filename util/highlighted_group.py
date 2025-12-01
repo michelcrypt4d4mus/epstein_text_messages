@@ -1,6 +1,8 @@
 import re
 from dataclasses import dataclass, field
 
+from rich.text import Text
+
 from util.constants import *
 from util.env import is_debug, logger
 
@@ -22,6 +24,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'David',
     'Etienne',
     'Jack',
+    'Jay',
     'Jeff',
     'jeffrey',
     'John',
@@ -87,6 +90,9 @@ class HighlightedGroup:
             self.regex = re.compile(fr"(?P<{self.label}>{pattern})", re.IGNORECASE | re.MULTILINE)
         else:
             self.regex = re.compile(fr"\b(?P<{self.label}>({pattern})s?)\b", re.IGNORECASE)
+
+    def colored_label(self) -> Text:
+        return Text(self.label.replace('_', ' '), style=self.style)
 
     # TODO: handle word boundary issue for names that end in symbols
     def emailer_pattern(self, name: str) -> str:
@@ -450,6 +456,8 @@ HIGHLIGHTED_GROUPS = [
         is_multiline=True,
     ),
 ]
+
+COLOR_KEYS = [h.colored_label() for h in HIGHLIGHTED_GROUPS if not h.is_multiline]
 
 
 if is_debug:

@@ -26,7 +26,6 @@ OUTPUT_WIDTH = 120
 
 # Constant variables that end in "_COLOR" will be scanned to create the color highlight guide table.
 # Colors for highlighting members of groups
-ARCHIVE_LINK_COLOR = 'slate_blue3'
 BANK_COLOR = 'green'
 BITCOIN_COLOR = 'orange1 bold'
 BUSINESS_COLOR = 'spring_green4'
@@ -80,13 +79,8 @@ SENT_FROM_COLOR = 'gray42 italic'
 SNIPPED_SIGNATURE_COLOR = 'gray19'
 UNKNOWN_COLOR = 'cyan'
 
-COLOR_MAPPING = {
-    v: k.removesuffix(COLOR_SUFFIX).lower()
-    for k, v in locals().items()
-    if k.endswith(COLOR_SUFFIX)
-}
-
 # Other styles
+ARCHIVE_LINK_COLOR = 'slate_blue3'
 TITLE_STYLE = 'black on bright_white bold'
 SECTION_HEADER_STYLE = 'bold white on blue3'
 SOCIAL_MEDIA_LINK_STYLE = 'cadet_blue'

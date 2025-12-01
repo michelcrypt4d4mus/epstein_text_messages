@@ -16,17 +16,11 @@ from rich.padding import Padding
 from rich.text import Text
 
 from documents.epstein_files import EpsteinFiles
-from util import rich
 from util.env import additional_emailers, args, is_build, is_debug, skip_texts
 from util.file_helper import OUTPUT_GH_PAGES_HTML
-from util.rich import *
+from util.highlighted_group import COLOR_KEYS
 from util.html import *
-
-COLOR_KEYS = [
-    Text(color_name.removesuffix(COLOR_SUFFIX).lower().replace('_', ' '), style=getattr(rich, color_name))
-    for color_name in sorted([constant for constant in dir(rich) if constant.endswith(COLOR_SUFFIX)])
-    if color_name not in ['ARCHIVE_LINK_COLOR', 'DUBIN_COLOR', 'DEFAULT_NAME_COLOR']
-]
+from util.rich import *
 
 
 print_header()
