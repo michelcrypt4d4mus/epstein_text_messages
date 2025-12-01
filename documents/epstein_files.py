@@ -140,7 +140,7 @@ class EpsteinFiles:
         return sum([i for author, i in self.email_author_counts.items() if author != UNKNOWN])
 
     def print_files_overview(self) -> None:
-        table = Table(title=f"File Analysis Summary", show_header=True, header_style="bold")
+        table = Table(title=f"File Analysis Summary", header_style="bold")
         table.add_column("File Type", justify='left')
         table.add_column("File Count", justify='center')
         table.add_column("Known Author Count", justify='center')
@@ -172,10 +172,10 @@ class EpsteinFiles:
     def print_emails_table_for(self, author: str) -> None:
         emails = self.emails_for(author)
         title = f"Emails to/from {author} starting {emails[0].timestamp.date()}"
-        table = Table(title=title, border_style=get_style_for_name(author), header_style="bold", show_header=True)
-        table.add_column("From", justify='left')
-        table.add_column("Date", justify='center')
-        table.add_column("Subject", justify='left', style='honeydew2', min_width=35)
+        table = Table(title=title, border_style=get_style_for_name(author), expand=True, header_style="bold")
+        table.add_column('From', justify='left')
+        table.add_column('Timestamp', justify='center')
+        table.add_column('Subject', justify='left', style='honeydew2', min_width=60)
 
         for email in emails:
             table.add_row(
@@ -195,7 +195,7 @@ class EpsteinFiles:
 
     def print_emailer_counts_table(self) -> None:
         footer = f"Identified authors of {self.num_identified_email_authors()} emails out of {len(self.emails)} potential email files."
-        counts_table = Table(title=f"Email Counts", caption=footer, show_header=True, header_style="bold")
+        counts_table = Table(title=f"Email Counts", caption=footer, header_style="bold")
         counts_table.add_column('Name', justify='left', style=DEFAULT_NAME_COLOR)
         counts_table.add_column('Jmail', justify='center')
         counts_table.add_column('Twitter', justify='center')
@@ -220,7 +220,7 @@ class EpsteinFiles:
 
     def print_imessage_summary(self) -> None:
         """Print summary table and stats for text messages."""
-        counts_table = Table(title="Text Message Counts By Author", show_header=True, header_style="bold")
+        counts_table = Table(title="Text Message Counts By Author", header_style="bold")
         counts_table.add_column(AUTHOR.title(), style="steel_blue bold", justify='left', width=30)
         counts_table.add_column("Message Count", justify='center')
 
@@ -235,7 +235,7 @@ class EpsteinFiles:
         console.print(f"(Last deploy found 4668 messages in 77 conversations)", style='dim')
 
     def print_other_files_table(self) -> None:
-        table = Table(header_style="bold", show_header=True, show_lines=True)
+        table = Table(header_style="bold", show_lines=True)
         table.add_column("File", justify='left')
         table.add_column("Length", justify='center')
         table.add_column("First Few Lines", justify='left', style='pale_turquoise4')
@@ -252,7 +252,7 @@ class EpsteinFiles:
 
 def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Padding:
     title = 'Signatures Used By Authors' if cols[0] == AUTHOR else 'Authors Seen Using Signatures'
-    table = Table(header_style="bold reverse", show_header=True, show_lines=True, title=title)
+    table = Table(header_style="bold reverse", show_lines=True, title=title)
 
     for i, col in enumerate(cols):
         table.add_column(col.title() + ('s' if i == 1 else ''))

@@ -151,7 +151,7 @@ def print_header():
     print_other_site_link()
 
     # Acronym table
-    table = Table(title="Abbreviations Used Frequently In These Chats", show_header=True, header_style="bold")
+    table = Table(title="Abbreviations Used Frequently In These Chats", header_style="bold")
     table.add_column("Abbreviation", justify="center", style='bold', width=19)
     table.add_column("Translation", style="white", justify="center")
 
@@ -173,7 +173,7 @@ def print_header():
 
 
 def print_color_key(key_type: Literal["Groups", "People"] = "Groups") -> None:
-    color_table = Table(show_header=False, title=f'Rough Guide to Highlighted Colors')
+    color_table = Table(title=f'Rough Guide to Highlighted Colors')
     num_colors = len(COLOR_KEYS)
     row_number = 0
 
