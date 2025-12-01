@@ -72,8 +72,8 @@ HIGHLIGHTED_GROUPS = [
             JIDE_ZEITLIN,
             LEON_BLACK,
             MARC_LEON,
-            PAUL_MORRIS,
             PAUL_BARRETT,
+            PAUL_MORRIS,
         ]
     ),
     HighlightedGroup(
@@ -202,7 +202,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='lawyer',
         style='medium_purple2',
-        pattern='(Erika )?Kellerhals|Michael J. Pike|Paul Weiss|Roy Black|Weinberg|Weingarten',
+        pattern='(Erika )?Kellerhals|Michael J. Pike|Paul Weiss|Roy Black|Wein(berg|garten)',
         emailers=[
             ALAN_DERSHOWITZ,
             DARREN_INDYKE,
@@ -292,7 +292,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='scholar',
         style='light_goldenrod2',
-        pattern='((Noam|Valeria) )?Chomsky|David Grosof|Moshe Hoffman|Peter Attia',
+        pattern='David Grosof|Moshe Hoffman|((Noam|Valeria) )?Chomsky|Peter Attia',
         emailers=[
             DAVID_HAIG,
             JOSCHA_BACH,
@@ -347,18 +347,10 @@ HIGHLIGHTED_GROUPS = [
         style='turquoise4',
         pattern=r'BG|(Bill\s+((and|or)\s+Melinda\s+)?)?Gates|Melinda(\s+Gates)?',
     ),
-    HighlightedGroup(
-        emailers=[GHISLAINE_MAXWELL],
-        style='deep_pink3',
-        pattern='gmax(1@ellmax.com)?',
-    ),
-    HighlightedGroup(
-        emailers=[JEFFREY_EPSTEIN],
-        style='blue1',
-        pattern='Mark (L. )?Epstein',
-    ),
     HighlightedGroup(emailers=[ARIANE_DE_ROTHSCHILD], style='indian_red'),
+    HighlightedGroup(emailers=[GHISLAINE_MAXWELL], pattern='gmax(1@ellmax.com)?', style='deep_pink3'),
     HighlightedGroup(emailers=[JABOR_Y], style='spring_green1'),
+    HighlightedGroup(emailers=[JEFFREY_EPSTEIN], pattern='Mark (L. )?Epstein', style='blue1'),
     HighlightedGroup(emailers=[JOI_ITO], style='blue_violet'),
     HighlightedGroup(emailers=[KATHY_RUEMMLER], style='magenta2'),
     HighlightedGroup(emailers=[LINDA_STONE], style='pink3'),
@@ -378,15 +370,15 @@ HIGHLIGHTED_GROUPS = [
         is_multiline=True,
     ),
     HighlightedGroup(
-        label='redacted',
-        style='grey58',
-        pattern=REDACTED,
-        is_multiline=True,
-    ),
-    HighlightedGroup(
         label='quoted_reply_line',
         style='dim',
         pattern=REPLY_REGEX.pattern,
+        is_multiline=True,
+    ),
+    HighlightedGroup(
+        label='redacted',
+        style='grey58',
+        pattern=REDACTED,
         is_multiline=True,
     ),
     HighlightedGroup(
