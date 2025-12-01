@@ -62,16 +62,18 @@ class HighlightedGroup:
 
 HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
-        label='bank',
+        label='finance',
         style='green',
         pattern=r'Apollo|Black(rock|stone)|DB|Deutsche\s*Bank|Goldman( ?Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|Jes\s+Staley|Merrill\s+Lynch|Morgan Stanley|j\.?p\.?\s*morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com',
         emailers=[
             ALIREZA_ITTIHADIEH,
             AMANDA_ENS,
             DANIEL_SABBA,
+            GWENDOLYN_BECK,  # https://www.lbc.co.uk/article/who-gwendolyn-beck-epstein-andrew-5HjdN66_2/
             JIDE_ZEITLIN,
             LEON_BLACK,
             MARC_LEON,
+            'Mortimer Zuckerman',  # Business partner
             PAUL_BARRETT,
             PAUL_MORRIS,
         ]

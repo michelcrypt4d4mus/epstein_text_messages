@@ -211,8 +211,8 @@ class EpsteinFiles:
 
             counts_table.add_row(
                 Text.from_markup(make_link_markup(epsteinify_name_url(k), k, style, underline=(style != DEFAULT_NAME_COLOR))),
-                '' if k == UNKNOWN else make_link(search_jmail_url(k), 'Search Jmail'),
-                '' if k == UNKNOWN else make_link(search_twitter_url(k), 'Search X'),
+                '' if k == UNKNOWN else make_link(search_jmail_url(k), 'Jmail'),
+                '' if k == UNKNOWN else make_link(search_twitter_url(k), 'search X'),
                 str(count),
                 str(self.email_author_counts[k]),
                 str(self.email_recipient_counts[k])
