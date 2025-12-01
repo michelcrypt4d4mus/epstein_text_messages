@@ -260,7 +260,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     JONATHAN_FARKAS: re.compile(r'Jonathan Farka(s|il)', re.IGNORECASE),
     KATHY_RUEMMLER: re.compile(r'Kathy Ruemmler?', re.IGNORECASE),
     KEN_STARR: re.compile(r'starr, ken|Ken(neth W.)?\s+starr?|starr', re.IGNORECASE),
-    LANDON_THOMAS: re.compile(r'lando[nr] thomas|thomas jr.?, lando[nr]', re.IGNORECASE),
+    LANDON_THOMAS: re.compile(r'lando[nr] thomas( jr)?|thomas jr.?, lando[nr]', re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r'(La(wrence|rry).{1,5})?Summers?|^LH$|LHS|Ihsofficel', re.IGNORECASE),
     LAWRANCE_VISOSKI: re.compile(r'La(rry|wrance) Visoski?', re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus|lawkrauss', re.IGNORECASE),
