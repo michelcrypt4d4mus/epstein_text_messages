@@ -14,6 +14,7 @@ from documents.document import CommunicationDocument
 from documents.email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TO_FIELDS, EmailHeader
 from util.constants import *
 from util.env import is_debug, is_fast_mode, logger
+from util.file_helper import build_filename_for_id
 from util.rich import *
 from util.strings import *
 
@@ -248,6 +249,8 @@ SUPPRESS_OUTPUT_FOR_IDS = {
     '028791': 'the same as 031136',
     '031134': 'the same as 030635',
     '026234': 'the same as 028494',
+    '021790': 'the same as 030311',
+    '029880': 'the same as 033508',
 }
 
 clipped_signature_replacement = lambda name: f'<...snipped {name.lower()} legal signature...>'
@@ -308,7 +311,7 @@ class Email(CommunicationDocument):
         self.author_style = get_style_for_name(self.author or UNKNOWN)
         self.author_txt = Text(self.author or UNKNOWN, style=self.author_style)
         self.archive_link = self.epsteinify_link(self.author_style)
-        self.epsteinify_link_markup = make_link_markup(self.epsteinify_name_url, self.file_path.stem, self.author_style)
+        self.epsteinify_link_markup = make_epsteinify_doc_link_markup(self.file_path.stem, self.author_style)
         self.sent_from_device = self._sent_from_device()
 
     def description(self) -> Text:
@@ -487,8 +490,10 @@ class Email(CommunicationDocument):
         logger.info(f"Printing '{self.filename}'...")
 
         if self.file_id in SUPPRESS_OUTPUT_FOR_IDS:
-            txt = Text(f"Not showing ", style='dim').append(self.filename, style='cyan')
-            yield txt.append(f" because it's {SUPPRESS_OUTPUT_FOR_IDS[self.file_id]}").append('\n')
+            supression_reason = SUPPRESS_OUTPUT_FOR_IDS[self.file_id]
+            txt = Text(f"Not showing ", style='dim').append(make_epsteinify_doc_link_txt(self.file_id, style='cyan'))
+            txt.append(f" because it's {supression_reason} ({build_filename_for_id(supression_reason.split()[-1])})")
+            yield txt.append('\n')
             return
 
         yield Panel(self.archive_link, border_style=self._border_style(), expand=False)

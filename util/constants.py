@@ -7,6 +7,7 @@ from io import StringIO
 from dateutil.parser import parse
 
 # Misc
+HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
 FALLBACK_TIMESTAMP = parse("1/1/2001 12:01:01 AM")
 SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
 # Email replies
@@ -232,7 +233,7 @@ GUESSED_IMESSAGE_FILE_IDS = {
 }
 
 for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
-    file_id = row['filename'].strip().replace('HOUSE_OVERSIGHT_', '').replace('.txt', '')
+    file_id = row['filename'].strip().replace(HOUSE_OVERSIGHT_PREFIX, '').replace('.txt', '')
     counterparty = row['counterparty'].strip()
 
     if file_id in GUESSED_IMESSAGE_FILE_IDS:
@@ -594,18 +595,20 @@ KNOWN_EMAIL_RECIPIENTS = {
     # '032213': Probably MIRO or Reid Weingarten based on replies but he sent it to a lot of people
 }
 
-#    │ Terry B. Kafka, President                                                                                         │
-#    │ Impact Outdoor Advertising Co.                                                                                    │
-#    │ 5454 La Sierra Dr., Suite 200                                                                                     │
-#    │ Dallas, TX 75231                                                                                                  │
-#    │ Impactoutdoor.com                                                                                                 │
-#    │ cell
+# frJaca &dazeEE e9), Yccia'
+# Certified Paralegal
+# Florida Registered Paralegal
+# BURMAN CRITTON LUTTIER & COLEMAN, LLP
+# 515 N. Flagler Drive
+# Suite #400
+# West Palm Beach, FL 33401
 
 EMAIL_SIGNATURES = {
     #DARREN_INDYKE: re.compile(r"(DARREN K. INDYKE\n)?DARREN.*\n575 Lexington.*\nNew York.*(\nTelephone.*)?(\nTelecop.*)?(\nMobil.*)?(\nemail.*)?\**\nThe info.*\nprivileged.*\nDarren.*\nor any part.*\n(communication.*\n){2}Copyright.*(\nIndyke.*)?\n\**", re.IGNORECASE),
     DARREN_INDYKE: re.compile(r"DARREN K. INDYKE.*?\**\nThe information contained in this communication.*?Darren K.[\n\s]+?[Il]ndyke(, PLLC)? — All rights reserved\.? ?\n\*{50,120}(\n\**)?", re.DOTALL),
     DEEPAK_CHOPRA: re.compile(fr"({DEEPAK_CHOPRA}( MD)?\n)?2013 Costa Del Mar Road\nCarlsbad, CA 92009(\n(Chopra Foundation|Super Genes: Unlock.*))?(\nJiyo)?(\nChopra Center for Wellbeing)?(\nHome: Where Everyone is Welcome)?"),
     JEFFREY_EPSTEIN: re.compile(r"((\*+|please note)\n+)?(> )?(• )?(» )?The information contained in this communication is\n(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?", re.DOTALL),
+    JESSICA_CADWELL: re.compile(r"(f.*\n)?Certified Para.*\nFlorida.*\nBURMAN.*\n515.*\nSuite.*\nWest Palm.*", re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r"Lawrence (M. )?Krauss\n(Director.*\n)?(Co-director.*\n)?Foundation.*\nSchool.*\n(Co-director.*\n)?(and Director.*\n)?Arizona.*(\nResearch.*\nOrigins.*\norigins.*)?"),
     MARTIN_WEINBERG: re.compile(r"This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
     PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),

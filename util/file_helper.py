@@ -1,18 +1,31 @@
 import re
 from os import environ
 from pathlib import Path
+from sys import exit
 
-DOCS_DIR_ENV = environ['EPSTEIN_DOCS_DIR']
-HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
+from util.constants import HOUSE_OVERSIGHT_PREFIX
+
+EPSTEIN_DOCS_DIR_ENV_VAR_NAME = 'EPSTEIN_DOCS_DIR'
+DOCS_DIR_ENV = environ[EPSTEIN_DOCS_DIR_ENV_VAR_NAME]
 
 if not DOCS_DIR_ENV:
-    raise EnvironmentError(f"EPSTEIN_DOCS_DIR env var not set!")
+    print(f"ERROR: {EPSTEIN_DOCS_DIR_ENV_VAR_NAME} env var not set!")
+    exit(1)
 
 DOCS_DIR = Path(DOCS_DIR_ENV).resolve()
 JSON_FILES_SUBDIR = 'json_files'
 JSON_DIR = DOCS_DIR.joinpath(JSON_FILES_SUBDIR)
 OUTPUT_GH_PAGES_HTML = Path('docs').joinpath('index.html')
 FILE_ID_REGEX = re.compile(rf'.*{HOUSE_OVERSIGHT_PREFIX}(\d+)(_\d+)?(\.txt)?')
+
+if not DOCS_DIR.exists():
+    print(f"ERROR: {EPSTEIN_DOCS_DIR_ENV_VAR_NAME}='{DOCS_DIR}' does not exist!")
+    exit(1)
+
+
+def build_filename_for_id(id: str | int, include_txt_suffix: bool = False) -> str:
+    id_str = f"{int(id):06d}"
+    return f"{HOUSE_OVERSIGHT_PREFIX}{id_str}" + ('.txt' if include_txt_suffix else '')
 
 
 def extract_file_id(filename) -> str:

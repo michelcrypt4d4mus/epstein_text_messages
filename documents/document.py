@@ -7,7 +7,7 @@ from typing import ClassVar
 from rich.markup import escape
 from rich.text import Text
 
-from util.constants import search_archive_url
+from util.constants import HOUSE_OVERSIGHT_PREFIX, search_archive_url
 from util.data import patternize
 from util.env import logger
 from util.file_helper import extract_file_id
@@ -55,7 +55,7 @@ class Document:
         self.file_id = extract_file_id(self.filename)
         self.text = self._load_file()
         self._set_computed_fields()
-        self.epsteinify_name_url = epsteinify_doc_url(self.file_path.stem)
+        self.epsteinify_name_url = epsteinify_doc_url(self.file_path.stem)  # URL to search epsteinify for the filename
         self.epsteinify_link_markup = make_link_markup(self.epsteinify_name_url, self.file_path.stem)
 
     def archive_link(self, link_txt: str | None = None, style: str = ARCHIVE_LINK_COLOR) -> Text:
@@ -115,6 +115,18 @@ class Document:
 
     def top_lines(self, n: int = 10) -> str:
         return '\n'.join(self.lines[0:n])
+
+    def write_clean_text(self, output_path: Path) -> None:
+        if output_path.exists():
+            if str(output_path.name).startswith(HOUSE_OVERSIGHT_PREFIX):
+                raise RuntimeError(f"'{output_path}' already exists! Not overwriting.")
+            else:
+                logger.warning(f"Overwriting '{output_path}'...")
+
+        with open(output_path, 'w') as f:
+            f.write(self.text)
+
+        logger.warning(f"Wrote {self.length} chars of cleaned {self.filename} to {output_path}.")
 
     def _load_file(self):
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
