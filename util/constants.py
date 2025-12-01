@@ -59,13 +59,15 @@ GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
 GLENN_DUBIN = 'Glenn Dubin'
 GWENDOLYN_BECK = 'Gwendolyn Beck'
 IVANKA = 'Ivanka'
+JABOR_Y = 'Jabor Y'                       # Qatari
 JACK_GOLDBERGER = 'Jack Goldberger'
-JEAN_HUGUEN = 'Jean Huguen'
-JEAN_LUC_BRUNEL = 'Jean Luc Brunel'
-JABOR_Y = 'Jabor Y'  # Qatari
+JACKIE_PERCZEK = 'Jackie Perczek'
 JARED_KUSHNER = 'Jared Kushner'
 JAY_LEFKOWITZ = 'Jay Lefkowitz'
-JEREMY_RUBIN = 'Jeremy Rubin'  # bitcoin dev
+JEAN_HUGUEN = 'Jean Huguen'
+JEAN_LUC_BRUNEL = 'Jean Luc Brunel'
+JEREMY_RUBIN = 'Jeremy Rubin'             # bitcoin dev
+JESSICA_CADWELL = 'Jessica Cadwell'       # Paralegal?
 JIDE_ZEITLIN = 'Jide Zeitlin'
 JOHN_PAGE = 'John Page'
 JOHNNY_EL_HACHEM = 'Johnny el Hachem'
@@ -80,7 +82,7 @@ LEON_BLACK = 'Leon Black'
 LESLEY_GROFF = 'Lesley Groff'
 LILLY_SANCHEZ = 'Lilly Sanchez'
 LINDA_STONE = 'Linda Stone'
-LISA_NEW = 'Lisa New'          # Harvard poetry prof AKA "Elisa New"
+LISA_NEW = 'Lisa New'                      # Harvard poetry prof AKA "Elisa New"
 MARIANA_IDZKOWSKA = 'Mariana Idźkowska'
 MARK_EPSTEIN = 'Mark L. Epstein'
 MARTIN_NOWAK = 'Martin Nowak'
@@ -247,7 +249,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     'Google Alerts': re.compile(r'google\s?alerts', re.IGNORECASE),
     'Heather Mann': re.compile(r'Heather Man', re.IGNORECASE),
     'Intelligence Squared': re.compile(r'intelligence\s*squared', re.IGNORECASE),
-    'Jackie Perczel':  re.compile(r'jackie perczel?', re.IGNORECASE),
+    JACKIE_PERCZEK:  re.compile(r'jackie perczekl?', re.IGNORECASE),
     JABOR_Y: re.compile(r'[ji]abor\s*y?', re.IGNORECASE),
     JEAN_LUC_BRUNEL: re.compile(r'Jean[- ]Luc Brunel?', re.IGNORECASE),
     JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]?g?(mail.com)?|JEE?\b|Jeffrey E((sp|ps)tein?)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|Epstein', re.IGNORECASE),
@@ -325,7 +327,7 @@ EMAILERS = [
     'Jack Lang',
     JAY_LEFKOWITZ,
     'Jes Staley',
-    'Jessica Cadwell',
+    JESSICA_CADWELL,
     JOHN_PAGE,
     'Jokeland',
     JOSCHA_BACH,
@@ -415,7 +417,7 @@ KNOWN_EMAIL_AUTHORS = {
     '028675': JEFFREY_EPSTEIN,       # Just bad OCR
     '025041': JEFFREY_EPSTEIN,       # Just bad OCR
     '032214': JEFFREY_EPSTEIN,       # Just bad OCR
-    '031791': 'Jessica Cadwell',     # paralegal, see https://x.com/ImDrinknWyn/status/1993765348898927022
+    '031791': JESSICA_CADWELL,       # paralegal, see https://x.com/ImDrinknWyn/status/1993765348898927022
     '028849': JOI_ITO,               # Conversation with Joi Ito
     '028851': JOI_ITO,
     '016692': JOHN_PAGE,
@@ -621,6 +623,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Jay',
     'Jeff',
     'jeffrey',
+    'jessica',
     'John',
     'Jonathan',
     'Joseph',
