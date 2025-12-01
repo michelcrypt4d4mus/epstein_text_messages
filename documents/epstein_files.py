@@ -102,8 +102,14 @@ class EpsteinFiles:
     def all_emailer_counts(self) -> dict[str, int]:
         return {e: self.email_author_counts[e] + self.email_recipient_counts[e] for e in self.all_emailers(True)}
 
+    def email_conversation_length_in_days(self, author: str | None) -> int:
+        return (self.last_email_at(author) - self.earliest_email_at(author)).days + 1
+
     def earliest_email_at(self, author: str | None) -> datetime:
         return self.emails_for(author)[0].timestamp
+
+    def last_email_at(self, author: str | None) -> datetime:
+        return self.emails_for(author)[-1].timestamp
 
     def emails_for(self, author: str | None) -> list[Email]:
         """Returns emails to or from a given 'author' sorted chronologically."""
@@ -153,9 +159,10 @@ class EpsteinFiles:
         """Print complete emails to or from a particular 'author'."""
         emails = self.emails_for(_author)
         author = _author or UNKNOWN
+        conversation_length = self.email_conversation_length_in_days(_author)
 
         print_author_header(
-            f"Found {len(emails)} {author} emails from {emails[0].timestamp.date()} to {emails[-1].timestamp.date()}",
+            f"Found {len(emails)} {author} emails starting {emails[0].timestamp.date()} over {conversation_length:,} days",
             get_style_for_name(author),
             get_info_for_name(author)
         )
