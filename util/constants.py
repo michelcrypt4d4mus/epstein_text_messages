@@ -66,6 +66,7 @@ JABOR_Y = 'Jabor Y'  # Qatari
 JARED_KUSHNER = 'Jared Kushner'
 JAY_LEFKOWITZ = 'Jay Lefkowitz'
 JEREMY_RUBIN = 'Jeremy Rubin'  # bitcoin dev
+JIDE_ZEITLIN = 'Jide Zeitlin'
 JOHN_PAGE = 'John Page'
 JOHNNY_EL_HACHEM = 'Johnny el Hachem'
 JONATHAN_FARKAS = 'Jonathan Farkas'
@@ -84,6 +85,7 @@ MARIANA_IDZKOWSKA = 'Mariana Idźkowska'
 MARK_EPSTEIN = 'Mark L. Epstein'
 MARTIN_NOWAK = 'Martin Nowak'
 MARTIN_WEINBERG = "Martin Weinberg"
+MASHA_DROKOVA = 'Masha Drokova'
 MELANIE_SPINELLA = 'Melanie Spinella'
 MICHAEL_BUCHHOLTZ = 'Michael Buchholtz'
 MICHAEL_SITRICK = 'Michael Sitrick'
@@ -111,6 +113,7 @@ SCOTT_J_LINK = 'Scott J. Link'
 SEAN_BANNON = 'Sean Bannon'
 STEPHEN_HANSON = 'Stephen Hanson'
 STEVEN_PFEIFFER = 'Steven Pfeiffer'
+STEVEN_HOFFENBERG = 'Steven Hoffenberg'
 SULTAN_BIN_SULAYEM = 'Sultan Ahmed Bin Sulayem'
 TERRY_KAFKA = 'Terry Kafka'
 THANU_BOONYAWATANA = 'Thanu Boonyawatana'
@@ -239,14 +242,14 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     EHUD_BARAK: re.compile(r'(ehud|h)\s*barak', re.IGNORECASE),
     FAITH_KATES: re.compile(r'faith kates?', re.IGNORECASE),
     GERALD_BARTON: re.compile(r'Gerald.*Barton', re.IGNORECASE),
-    GHISLAINE_MAXWELL: re.compile(r'g ?max(well)?', re.IGNORECASE),
+    GHISLAINE_MAXWELL: re.compile(r'g ?max(well)?|Ghislaine|Maxwell', re.IGNORECASE),
     'Google Alerts': re.compile(r'google\s?alerts', re.IGNORECASE),
     'Heather Mann': re.compile(r'Heather Man', re.IGNORECASE),
     'Intelligence Squared': re.compile(r'intelligence\s*squared', re.IGNORECASE),
     'Jackie Perczel':  re.compile(r'jackie perczel?', re.IGNORECASE),
     JABOR_Y: re.compile(r'[ji]abor\s*y?', re.IGNORECASE),
     JEAN_LUC_BRUNEL: re.compile(r'Jean[- ]Luc Brunel?', re.IGNORECASE),
-    JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]?g?(mail.com)?|Jeffrey E((sp|ps)tein?)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|Epstein', re.IGNORECASE),
+    JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]?g?(mail.com)?|JEE?\b|Jeffrey E((sp|ps)tein?)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|Epstein', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|(joichi|joi)( Ito)?', re.IGNORECASE),
     JOHNNY_EL_HACHEM: re.compile('el hachem johnny|johnny el hachem', re.IGNORECASE),
     JONATHAN_FARKAS: re.compile('Jonathan Farka(s|il)', re.IGNORECASE),
@@ -493,6 +496,7 @@ KNOWN_EMAIL_AUTHORS = {
 }
 
 IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
+PAUL_KRASSNER_MANSON_RECIPIENTS = ['Nancy Cain', 'Holly Krassner Dawson', 'Marie Moneysmith', 'Linda W. Grossman', 'Daniel Dawson', 'Danny Goldberg', 'Caryl Ratner', 'Michael Simmons', 'Barb Cowles', 'Lee Quarnstorm', 'Lynnie Tofte Fass', 'Kevin Bright', 'Samuel Leff', 'Bob Fass']
 
 KNOWN_EMAIL_RECIPIENTS = {
     '021106': 'Alexandra Preate',     # Reply
@@ -581,6 +585,7 @@ HEADER_ABBREVIATIONS = {
     "DB": "Deutsche Bank (maybe??)",
     'HBJ': "Hamad bin Jassim (former Qatari prime minister)",
     'Jabor': '"an influential man in Qatar"',
+    'Jared': "Jared Kushner",
     'Jagland': 'Thorbjørn Jagland (former Norwegian prime minister)',
     'Jeffrey Wernick': 'Right wing crypto bro',
     'Joi': 'Joi Ito (MIT Media Lab)',
@@ -592,7 +597,6 @@ HEADER_ABBREVIATIONS = {
     'Masa': 'Masayoshi Son (Softbank)',
     'MBS': "Mohammed bin Salman Al Saud (Saudi ruler)",
     'MBZ': "Mohamed bin Zayed Al Nahyan (Emirates sheikh)",
-    'Jared': "Jared Kushner",
     "Miro": MIROSLAV_LAJCAK,
     "Mooch": "Anthony 'The Mooch' Scaramucci (Skybridge crypto bro)",
     "Terje": TERJE_ROD_LARSEN,
@@ -600,16 +604,65 @@ HEADER_ABBREVIATIONS = {
     "Zug": "City in Switzerland (crypto hub)",
 }
 
+NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
+    'Allen',
+    'Amanda',
+    'Andres',
+    'Andrew',
+    'Black',
+    'Brad',
+    'Daniel',
+    'Darren',
+    'David',
+    'Etienne',
+    'Jack',
+    'Jay',
+    'Jeff',
+    'jeffrey',
+    'John',
+    'Jonathan',
+    'Joseph',
+    'Kahn',
+    'Jr',
+    'Leon',
+    'Lesley',
+    'Marc',
+    'Martin',
+    'Melanie',
+    'Michael',
+    'Mike',
+    'Paul',
+    'Pen',
+    'Peter',
+    'Reid',
+    'Richard',
+    'Robert',
+    'Roger',
+    'Rubin',
+    'Scott',
+    'Sean',
+    'Stephen',
+    'Steve',
+    'Steven',
+    'Stone',
+    'Susan',
+    'The',
+    'Thomas',
+    'Tom',
+    'Victor',
+    "Y",
+    "Y.",
+]]
 
 # URLs
 ATTRIBUTIONS_URL = 'https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/util/constants.py'
-COURIER_NEWSROOM_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
 COFFEEZILLA_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=061ce61c9e70bdfd'
+COURIER_NEWSROOM_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
+EPSTEINIFY_URL = 'https://epsteinify.com'
 JMAIL_URL = 'https://jmail.world'
 OVERSIGHT_REPUBLICANS_PRESSER_URL = 'https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/'
 RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_'
 SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great'
-EPSTEINIFY_URL = 'https://epsteinify.com'
 
 SITE_URLS = {
     EMAIL: 'https://michelcrypt4d4mus.github.io/epstein_emails_house_oversight/',

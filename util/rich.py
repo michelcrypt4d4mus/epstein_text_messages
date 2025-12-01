@@ -16,116 +16,23 @@ from rich.theme import Theme
 
 from .constants import *
 from .env import args, deep_debug, is_debug, logger
-from .highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS, REGEX_STYLE_PREFIX, highlighter_style_name
+from .highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS, REGEX_STYLE_PREFIX
 from .html import PAGE_TITLE
 
-# Misc
-COLOR_SUFFIX = '_COLOR'
 NUM_COLOR_KEY_COLS = 3
 OUTPUT_WIDTH = 120
 
-# Constant variables that end in "_COLOR" will be scanned to create the color highlight guide table.
-# Colors for highlighting members of groups
-BANK_COLOR = 'green'
-BITCOIN_COLOR = 'orange1 bold'
-BUSINESS_COLOR = 'spring_green4'
-BRO_COLOR = 'tan'
-CHINA_COLOR = 'bright_red'
-DEMOCRATS_COLOR = 'sky_blue1'
-EMPLOYEE_COLOR = 'deep_sky_blue4'
-ENTERTAINERS_COLOR = 'light_steel_blue3'
-EUROPE_COLOR = 'light_sky_blue3'
-HARVARD_COLOR = 'deep_pink2'
-MODELING_COLOR = 'pale_violet_red1'
-INDIA_COLOR = 'bright_green'
-ISRAEL_COLOR = 'dodger_blue2'
-JOURNALIST_COLOR = 'bright_yellow'
-LAWYER_COLOR = 'medium_purple2'
-LOBBYIST_COLOR = 'light_coral'
-MIDDLE_EAST_COLOR = 'dark_sea_green4'
-POLICE_COLOR = 'color(24)'
-PUBLICIST_COLOR = 'orange_red1'
-RUSSIA_COLOR = 'red bold'
-REPUBLICANS_COLOR = 'dark_red'
-SCHOLAR_COLOR = 'light_goldenrod2'
-SOUTH_AMERICA_COLOR = 'yellow'
-TECH_BRO_COLOR = 'cyan2'  #dark_slate_gray3
-TRUMP_COLOR = 'red3 bold'
-VICTIM_COLOR = 'orchid1'
-VIRGIN_ISLANDS_COLOR = 'sea_green1'
-# Personal colors
-ARIANE_DE_ROTHSCHILD_COLOR = 'indian_red'
-BANNON_COLOR = 'color(58)'
-BILL_GATES_COLOR = 'turquoise4'
-DEEPAK_CHOPRA_COLOR = 'dark_goldenrod'
-DUBIN_COLOR = 'medium_orchid1'
-GHISLAINE_MAXWELL_COLOR = 'deep_pink3'
-JAVANKA_COLOR = 'medium_violet_red'  # TODO: make trump color?
-JEFFREY_EPSTEIN_COLOR = 'blue1'
-JABOR_Y_COLOR = "spring_green1"
-JOI_ITO_COLOR = 'blue_violet'
-KATHY_RUEMMLER_COLOR = 'magenta2'
-LINDA_STONE_COLOR = 'pink3'
-MELANIE_SPINELLA_COLOR = 'magenta3'
-MELANIE_WALKER_COLOR = 'light_pink3'
-PAULA_COLOR = 'pink1'
-PRINCE_ANDREW_COLOR = 'dodger_blue1'
-SOON_YI_COLOR = 'hot_pink'
-SULTAN_BIN_SULAYEM_COLOR = 'green1'
-# Other styles
-DEFAULT_NAME_COLOR = 'gray46'
-HEADER_FIELD_COLOR = 'plum4'
-SENT_FROM_COLOR = 'gray42 italic'
-SNIPPED_SIGNATURE_COLOR = 'gray19'
-UNKNOWN_COLOR = 'cyan'
-
-# Other styles
+# Styles
 ARCHIVE_LINK_COLOR = 'slate_blue3'
-TITLE_STYLE = 'black on bright_white bold'
+DEFAULT_NAME_COLOR = 'gray46'
 SECTION_HEADER_STYLE = 'bold white on blue3'
 SOCIAL_MEDIA_LINK_STYLE = 'cadet_blue'
+TITLE_STYLE = 'black on bright_white bold'
 
 # Theme style names
 PHONE_NUMBER = 'phone_number'
 TEXT_LINK = 'text_link'
 TIMESTAMP = 'timestamp'
-
-# TODO: move to email.py or main script
-# Order matters (will be order of output)
-PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED_LIST = [
-    JEREMY_RUBIN,
-    JOI_ITO,
-    AL_SECKEL,
-    JABOR_Y,
-    DANIEL_SIAD,
-    JEAN_LUC_BRUNEL,
-    EHUD_BARAK,
-    MARTIN_NOWAK,
-    'Masha Drokova',
-    STEVE_BANNON,
-    ARIANE_DE_ROTHSCHILD,
-    OLIVIER_COLOM,
-    BORIS_NIKOLIC,
-    PRINCE_ANDREW,
-    TOM_PRITZKER,
-    'Jide Zeitlin',
-    DAVID_STERN,
-    MOHAMED_WAHEED_HASSAN,
-    None,
-]
-
-# Order matters (will be order of output)
-PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES_LIST = [
-    GHISLAINE_MAXWELL,
-    LEON_BLACK,
-    LANDON_THOMAS,
-    KATHY_RUEMMLER,
-    DARREN_INDYKE,
-    RICHARD_KAHN,
-    TYLER_SHEARS,
-    SULTAN_BIN_SULAYEM,
-    DEEPAK_CHOPRA,
-]
 
 THEME_STYLES = {
     DEFAULT: 'wheat4',
@@ -135,7 +42,7 @@ THEME_STYLES = {
 }
 
 for highlight_group in HIGHLIGHTED_GROUPS:
-    THEME_STYLES[highlighter_style_name(highlight_group.label)] = highlight_group.style
+    THEME_STYLES[highlight_group.style_name] = highlight_group.style
 
 
 class InterestingNamesHighlighter(RegexHighlighter):
