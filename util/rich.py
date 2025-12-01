@@ -98,7 +98,8 @@ def print_author_header(msg: str, color: str | None) -> None:
     txt = Text(msg, justify='center')
     color = 'white' if color == DEFAULT else (color or 'white')
     panel = Panel(txt, width=80, style=f"black on {color or 'white'} bold")
-    console.print('\n', Align.center(panel), '\n')
+    console.print('\n', Align.center(panel))
+    console.line()
 
 
 def print_centered(obj: RenderableType, style: str = '') -> None:
