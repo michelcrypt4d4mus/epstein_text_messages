@@ -210,6 +210,7 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + PAUL_KRASSNER_MANSO
     'Vahe Stepanian',                        # Random CC
 ]
 
+# Reason string should end in a file ID
 SUPPRESS_OUTPUT_FOR_IDS = {
     '026499': "quoted in full in 026298",
     '028529': "the same as 022344",
@@ -252,8 +253,6 @@ SUPPRESS_OUTPUT_FOR_IDS = {
     '021790': 'the same as 030311',
     '029880': 'the same as 033508',
 }
-
-clipped_signature_replacement = lambda name: f'<...snipped {name.lower()} legal signature...>'
 
 
 @dataclass
@@ -330,13 +329,18 @@ class Email(CommunicationDocument):
                 return match.end() - 1
 
     def _border_style(self) -> str:
+        style: str
+
+        # Color emails from epstein to others with the color for the first recipient
         if self.author == JEFFREY_EPSTEIN:
-            if len(self.recipients) == 0:
-                return self.author_style
+            if len(self.recipients) == 0 or self.recipients == [None]:
+                style = self.author_style
             else:
-                return get_style_for_name(self.recipients[0] or UNKNOWN)
+                style = get_style_for_name(self.recipients[0] or UNKNOWN)
         else:
-            return self.author_style
+            style = self.author_style
+
+        return style.replace('bold', '')
 
     def _cleaned_up_text(self) -> str:
         # add newline after header if header looks valid
@@ -349,9 +353,12 @@ class Email(CommunicationDocument):
         text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
 
         for name, signature_regex in EMAIL_SIGNATURES.items():
-            text = signature_regex.sub(clipped_signature_replacement(name), text)
+            text = signature_regex.sub(self._clipped_signature_replacement(name), text)
 
         return text.strip()
+
+    def _clipped_signature_replacement(self, name) -> str:
+        return f'<...snipped {name.lower()} legal signature...>'
 
     def _extract_sent_at(self) -> datetime:
         if self.file_id in KNOWN_TIMESTAMPS:
@@ -487,7 +494,7 @@ class Email(CommunicationDocument):
             return 'S' + sent_from[1:] if sent_from.startswith('sent') else sent_from
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        logger.info(f"Printing '{self.filename}'...")
+        logger.debug(f"Printing '{self.filename}'...")
 
         if self.file_id in SUPPRESS_OUTPUT_FOR_IDS:
             supression_reason = SUPPRESS_OUTPUT_FOR_IDS[self.file_id]
@@ -523,7 +530,7 @@ class Email(CommunicationDocument):
             panel_txt.append('\n\n').append(trim_footer_txt)
 
         email_txt_panel = Panel(panel_txt, border_style=self._border_style(), expand=False)
-        yield Padding(email_txt_panel, (0, 0, 2, EMAIL_INDENT))
+        yield Padding(email_txt_panel, (0, 0, 1, EMAIL_INDENT))
 
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:

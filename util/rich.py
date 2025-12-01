@@ -58,6 +58,7 @@ CONSOLE_ARGS = {
     'color_system': '256',
     'highlighter': highlighter,
     'record': True,
+    'safe_box': False,
     'theme': Theme(THEME_STYLES),
     'width': OUTPUT_WIDTH,
 }
@@ -71,7 +72,7 @@ console = Console(**CONSOLE_ARGS)
 
 def get_category_for_name(name: str) -> str | None:
     highlight_group = get_highlight_group_for_name(name)
-    return highlight_group.label if highlight_group else None
+    return highlight_group.get_info() if highlight_group else None
 
 
 def get_highlight_group_for_name(name: str) -> HighlightedGroup | None:
@@ -80,9 +81,10 @@ def get_highlight_group_for_name(name: str) -> HighlightedGroup | None:
             return highlight_group
 
 
-def get_style_for_name(name: str, default: str = DEFAULT) -> str:
+def get_style_for_name(name: str, default: str = DEFAULT, allow_bold: bool = True) -> str:
     highlight_group = get_highlight_group_for_name(name)
-    return highlight_group.style if highlight_group else default
+    style = highlight_group.style if highlight_group else default
+    return style if allow_bold else style.replace('bold', '').strip()
 
 
 def highlight_regex_match(text: str, pattern: re.Pattern, style: str = 'cyan') -> Text:
@@ -124,7 +126,7 @@ def print_author_header(msg: str, color: str | None, footer: str | None = None) 
     console.print('\n', Align.center(panel))
 
     if footer:
-        console.print(Align.center(f"({footer})"), style='dim italic')
+        console.print(Align.center(f"({footer})"), highlight=False, style=f'{color} dim italic')
 
     console.line()
 
@@ -151,7 +153,7 @@ def print_header():
     print_other_site_link()
 
     # Acronym table
-    table = Table(title="Abbreviations Used Frequently In These Chats", show_header=True, header_style="bold")
+    table = Table(title="Abbreviations Used Frequently In These Chats", header_style="bold")
     table.add_column("Abbreviation", justify="center", style='bold', width=19)
     table.add_column("Translation", style="white", justify="center")
 
@@ -173,7 +175,7 @@ def print_header():
 
 
 def print_color_key(key_type: Literal["Groups", "People"] = "Groups") -> None:
-    color_table = Table(show_header=False, title=f'Rough Guide to Highlighted Colors')
+    color_table = Table(title=f'Rough Guide to Highlighted Colors')
     num_colors = len(COLOR_KEYS)
     row_number = 0
 
