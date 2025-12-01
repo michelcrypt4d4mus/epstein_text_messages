@@ -206,7 +206,6 @@ HIGHLIGHTED_GROUPS = [
         style='medium_purple2',
         pattern=r'(Erika\s+)?Kellerhals|Michael J. Pike|Paul\sWeiss|Roy Black|Wein(berg|garten)',
         emailers=[
-            ALAN_DERSHOWITZ,
             BENNET_MOSKOWITZ,
             DARREN_INDYKE,
             BRAD_KARP,
@@ -218,13 +217,20 @@ HIGHLIGHTED_GROUPS = [
             JACKIE_PERCZEK,
             JAY_LEFKOWITZ,
             JESSICA_CADWELL,
-            KEN_STARR,
             LILLY_SANCHEZ,
             MARTIN_WEINBERG,
             REID_WEINGARTEN,
             RICHARD_KAHN,
             SCOTT_J_LINK,
             TONJA_HADDAD_COLEMAN,
+        ]
+    ),
+    HighlightedGroup(
+        label='famous_lawyer',
+        style='medium_purple3',
+        emailers=[
+            ALAN_DERSHOWITZ,
+            KEN_STARR,
         ]
     ),
     HighlightedGroup(
@@ -355,7 +361,7 @@ HIGHLIGHTED_GROUPS = [
         style='turquoise4',
         pattern=r'BG|(Bill\s+((and|or)\s+Melinda\s+)?)?Gates|Melinda(\s+Gates)?',
     ),
-    HighlightedGroup(emailers=[ARIANE_DE_ROTHSCHILD], style='indian_red'),
+    HighlightedGroup(emailers=[ARIANE_DE_ROTHSCHILD], style='indian_red', label='rothschild'),
     HighlightedGroup(emailers=[GHISLAINE_MAXWELL], pattern='gmax(1@ellmax.com)?', style='deep_pink3'),
     HighlightedGroup(emailers=[JABOR_Y], style='spring_green1'),
     HighlightedGroup(emailers=[JEFFREY_EPSTEIN], pattern='Mark (L. )?Epstein', style='blue1'),
