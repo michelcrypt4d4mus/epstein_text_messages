@@ -109,12 +109,12 @@ class EpsteinFiles:
         """Returns emails to or from a given 'author' sorted chronologically."""
         author = author.lower() if (author and author != UNKNOWN) else None
         emails_by = [e for e in self.emails if e.author_lowercase == author]
-        emails_to = []
 
         if author is None:
             emails_to = [
                 e for e in self.emails
-                if e.author == JEFFREY_EPSTEIN and (len(e.recipients) == 0 or None in e.recipients or UNKNOWN in e.recipients)
+                if e.author == JEFFREY_EPSTEIN
+                    and ((len(e.recipients) == 0) or (None in e.recipients) or (UNKNOWN in e.recipients))
             ]
         else:
             emails_to = [e for e in self.emails if author in e.recipients_lower]
@@ -122,7 +122,7 @@ class EpsteinFiles:
         sorted_emails = EpsteinFiles.sort_emails(emails_by + emails_to)
 
         if len(sorted_emails) == 0:
-            logger.warning(f"No emails found for '{author}'")
+            raise RuntimeError(f"No emails found for '{author}'")
 
         return sorted_emails
 
@@ -154,17 +154,14 @@ class EpsteinFiles:
         emails = self.emails_for(_author)
         author = _author or UNKNOWN
 
-        if len(emails) > 0:
-            print_author_header(
-                f"Found {len(emails)} {author} emails from {emails[0].timestamp.date()} to {emails[-1].timestamp.date()}",
-                get_style_for_name(author)
-            )
-        else:
-            raise RuntimeError(f"No emails found for '{_author}'")
+        print_author_header(
+            f"Found {len(emails)} {author} emails from {emails[0].timestamp.date()} to {emails[-1].timestamp.date()}",
+            get_style_for_name(author)
+        )
 
-        if author != UNKNOWN:
-            self.print_emails_table_for(author)
-        else:
+        self.print_emails_table_for(author)
+
+        if author == UNKNOWN:
             ids = list(self.email_unknown_recipient_file_ids)
             logger.info(f"{len(ids)} UNKNOWN RECIPIENT IDS:\n" + '\n'.join(sorted(ids)))
 
@@ -175,9 +172,9 @@ class EpsteinFiles:
         emails = self.emails_for(author)
         title = f"Emails to/from {author} starting {emails[0].timestamp.date()}"
         table = Table(title=title, border_style=get_style_for_name(author), header_style="bold", show_header=True)
-        table.add_column("From", justify="left")
-        table.add_column("Date", justify="center")
-        table.add_column("Subject", justify="left", style='honeydew2', min_width=35)
+        table.add_column("From", justify='left')
+        table.add_column("Date", justify='center')
+        table.add_column("Subject", justify='left', style='honeydew2', min_width=35)
 
         for email in emails:
             table.add_row(
@@ -198,12 +195,12 @@ class EpsteinFiles:
     def print_emailer_counts_table(self) -> None:
         footer = f"Identified authors of {self.num_identified_email_authors()} emails out of {len(self.emails)} potential email files."
         counts_table = Table(title=f"Email Counts", caption=footer, show_header=True, header_style="bold")
-        counts_table.add_column('Name', justify="left", style=DEFAULT_NAME_COLOR)
-        counts_table.add_column('Jmail', justify="center")
-        counts_table.add_column('Twitter', justify="center")
-        counts_table.add_column("Count", justify="center")
-        counts_table.add_column("Sent", justify="center")
-        counts_table.add_column("Received", justify="center")
+        counts_table.add_column('Name', justify='left', style=DEFAULT_NAME_COLOR)
+        counts_table.add_column('Jmail', justify='center')
+        counts_table.add_column('Twitter', justify='center')
+        counts_table.add_column('Count', justify='center')
+        counts_table.add_column('Sent', justify='center')
+        counts_table.add_column('Received', justify='center')
         sort_key = lambda item: item[0] if args.sort_alphabetical else [item[1], item[0]]
 
         for k, count in sorted(self.all_emailer_counts().items(), key=sort_key, reverse=True):
@@ -223,8 +220,8 @@ class EpsteinFiles:
     def print_imessage_summary(self) -> None:
         """Print summary table and stats for text messages."""
         counts_table = Table(title="Text Message Counts By Author", show_header=True, header_style="bold")
-        counts_table.add_column(AUTHOR.title(), style="steel_blue bold", justify="left", width=30)
-        counts_table.add_column("Message Count", justify="center")
+        counts_table.add_column(AUTHOR.title(), style="steel_blue bold", justify='left', width=30)
+        counts_table.add_column("Message Count", justify='center')
 
         for k, v in sorted(sender_counts.items(), key=lambda item: item[1], reverse=True):
             counts_table.add_row(Text(k, get_style_for_name(k)), str(v))
@@ -238,9 +235,9 @@ class EpsteinFiles:
 
     def print_other_files_table(self) -> None:
         table = Table(header_style="bold", show_header=True, show_lines=True)
-        table.add_column("File", justify="left")
-        table.add_column("Length", justify="center")
-        table.add_column("First Few Lines", justify="left", style='pale_turquoise4')
+        table.add_column("File", justify='left')
+        table.add_column("Length", justify='center')
+        table.add_column("First Few Lines", justify='left', style='pale_turquoise4')
 
         for doc in sorted(self.other_files, key=lambda document: document.filename):
             table.add_row(doc.epsteinify_link_markup, f"{doc.length:,}", doc.highlighted_preview_text())
