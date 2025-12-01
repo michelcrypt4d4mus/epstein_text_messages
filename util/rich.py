@@ -146,7 +146,7 @@ for highlight_group in HIGHLIGHTED_GROUPS:
 
 class InterestingNamesHighlighter(RegexHighlighter):
     base_style = f"{REGEX_STYLE_PREFIX}."
-    highlights = [highlight_group.regex() for highlight_group in HIGHLIGHTED_GROUPS]
+    highlights = [highlight_group.regex for highlight_group in HIGHLIGHTED_GROUPS]
 
 
 highlighter = InterestingNamesHighlighter()
@@ -169,7 +169,7 @@ console = Console(**CONSOLE_ARGS)
 
 def get_style_for_name(name: str, default: str = DEFAULT) -> str:
     for highlight_group in HIGHLIGHTED_GROUPS:
-        if highlight_group.regex().search(name):
+        if highlight_group.regex.search(name):
             return highlight_group.style
 
     return default

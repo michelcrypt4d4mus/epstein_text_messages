@@ -2,9 +2,61 @@ import re
 from dataclasses import dataclass, field
 
 from util.constants import *
-from util.env import is_debug
+from util.env import is_debug, logger
 
 REGEX_STYLE_PREFIX = 'regex'
+
+UNSPLITTABLE_NAMES = [
+    JEREMY_RUBIN,
+]
+
+NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
+    'Allen',
+    'Amanda',
+    'Andres',
+    'Andrew',
+    'Black',
+    'Brad',
+    'Daniel',
+    'Darren',
+    'David',
+    'Etienne',
+    'Jeff',
+    'jeffrey',
+    'John',
+    'Jonathan',
+    'Joseph',
+    'Kahn',
+    'Jr',
+    'JR.',
+    'Le',
+    'Leon',
+    'Marc',
+    'Martin',
+    'Melanie',
+    'Michael',
+    'Paul',
+    'Pen',
+    'Peter',
+    'Reid',
+    'Richard',
+    'Robert',
+    'Roger',
+    'Rubin',
+    'Scott',
+    'Sean',
+    'Stephen',
+    'Steve',
+    'Steven',
+    'Stone',
+    'Susan',
+    'The',
+    'Thomas',
+    'Tom',
+    'Victor',
+    "Y",
+    "Y.",
+]]
 
 emailer_pattern = lambda name: EMAILER_REGEXES[name].pattern if name in EMAILER_REGEXES else name
 highlighter_style_name = lambda style_name: f"{REGEX_STYLE_PREFIX}.{style_name.replace(' ', '_')}"
@@ -17,30 +69,61 @@ class HighlightedGroup:
     pattern: str = ''
     emailers: list[str] = field(default_factory=list)
     is_multiline: bool = False
+    regex: re.Pattern = field(init=False)
 
-    def regex(self) -> re.Pattern:
-        patterns = [emailer_pattern(e) for e in self.emailers] + ([self.pattern] if self.pattern else [])
+
+    def __post_init__(self):
+        patterns = [self.emailer_pattern(e) for e in self.emailers] + ([self.pattern] if self.pattern else [])
         pattern = '|'.join(patterns)
-        # TODO: handle word boundary issue for names that end in symbols
+
+        if self.label in ['bank']:
+            logger.warning(f"'{self.label}' pattern:\n{pattern}")
 
         if self.is_multiline:
-            return re.compile(fr"(?P<{self.label}>{pattern})", re.IGNORECASE | re.MULTILINE)
+            self.regex = re.compile(fr"(?P<{self.label}>{pattern})", re.IGNORECASE | re.MULTILINE)
         else:
-            return re.compile(fr"\b(?P<{self.label}>({pattern})s?)\b", re.IGNORECASE)
+            self.regex = re.compile(fr"\b(?P<{self.label}>({pattern})s?)\b", re.IGNORECASE)
+
+    # TODO: handle word boundary issue for names that end in symbols
+    def emailer_pattern(self, name: str) -> str:
+        if name in EMAILER_REGEXES:
+            return EMAILER_REGEXES[name].pattern
+        elif name in UNSPLITTABLE_NAMES or ' ' not in name:
+            return name
+
+        names = name.split()
+        first_name = ' '.join(names[0:-1])
+        last_name = names[-1]
+        name_regex_parts = [n for n in [name, first_name, last_name] if n not in NAMES_TO_NOT_HIGHLIGHT]
+
+        if len(names) > 2:
+            logger.warning(f"'{name}' has {len(names)} names (first_name='{first_name}')")
+
+        return '|'.join(name_regex_parts)
 
 
 HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='bank',
         style='green',
-        pattern='Black(rock|stone)|Daniel Sabba|DB|Deutsche Bank|Goldman( ?Sachs)|HSBC|(Janet\\s*)?Yellen|(Jide\\s*)?Zeitlin|(Jerome\\s*)?Powell|Jes\\s+Staley|Merrill\\s+Lynch|Morgan Stanley|j\\.?p\\.?\\s*morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com|Marc\\s*Leon|Leon Black|Paul Morris|Paul Barrett',
-        emailers=[ALIREZA_ITTIHADIEH, AMANDA_ENS]
+        pattern='Apollo|Black(rock|stone)|DB|Deutsche Bank|Goldman( ?Sachs)|HSBC|(Janet\\s*)?Yellen|(Jide\\s*)?Zeitlin|(Jerome\\s*)?Powell|Jes\\s+Staley|Merrill\\s+Lynch|Morgan Stanley|j\\.?p\\.?\\s*morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com|Marc\\s*Leon',
+        emailers=[
+            ALIREZA_ITTIHADIEH,
+            AMANDA_ENS,
+            DANIEL_SABBA,
+            LEON_BLACK,
+            PAUL_MORRIS,
+            PAUL_BARRETT,
+        ]
     ),
     HighlightedGroup(
         label='bitcoin',
         style='orange1 bold',
-        pattern='bitcoin|block ?chain( capital)?|Brock|coins|cr[iy]?pto(currency)?|e-currency|(Howard\\s+)?Lutnick|(jeffrey\\s+)?wernick|Jeremy Rubin|Libra|SpanCash|Tether|(zero\\s+knowledge\\s+|zk)pro(of|tocols?)',
-        emailers = [SCARAMUCCI],
+        pattern='bitcoin|block ?chain( capital)?|Brock|coins|cr[iy]?pto(currency)?|e-currency|(Howard\\s+)?Lutnick|(jeffrey\\s+)?wernick|Libra|SpanCash|Tether|(zero\\s+knowledge\\s+|zk)pro(of|tocols?)',
+        emailers = [
+            JEREMY_RUBIN,
+            SCARAMUCCI,
+        ],
     ),
     HighlightedGroup(
         label='bro',
@@ -51,7 +134,15 @@ HIGHLIGHTED_GROUPS = [
         label='business',
         style='spring_green4',
         pattern='Marc Rich|(Steve\\s+)?Wynn|(Leslie\\s+)?Wexner',
-        emailers=[BARBRO_EHNBOM, BORIS_NIKOLIC, NICHOLAS_RIBIS, ROBERT_LAWRENCE_KUHN, STEPHEN_HANSON, TERRY_KAFKA, TOM_PRITZKER]
+        emailers=[
+            BARBRO_EHNBOM,
+            BORIS_NIKOLIC,
+            NICHOLAS_RIBIS,
+            ROBERT_LAWRENCE_KUHN,
+            STEPHEN_HANSON,
+            TERRY_KAFKA,
+            TOM_PRITZKER,
+        ]
     ),
     HighlightedGroup(
         label='china',
@@ -77,8 +168,11 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='employee',
         style='deep_sky_blue4',
-        pattern='La(rry|wrance) Visoski?',
-        emailers=[LESLEY_GROFF, NADIA_MARCINKO]
+        emailers=[
+            LAWRANCE_VISOSKI,
+            LESLEY_GROFF,
+            NADIA_MARCINKO,
+        ]
     ),
     HighlightedGroup(
         label='entertainers',
@@ -88,8 +182,12 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='europe',
         style='light_sky_blue3',
-        pattern='Miro(slav)?|(Caroline|Jack)?\\s*Lang(, Caroline)?|Le\\s*Pen|Macron|(Angela )?Merk(el|le)|(Sebastian )?Kurz|(Vi(c|k)tor\\s+)?Orbah?n|((Lord|Peter) )?Mandelson|Terje(( (R[øo]e?d[- ])?)?Lars[eo]n)?|Edward Rod Larsen|Ukrain(e|ian)|Zug|(Thor.{3,8})?Jag[il]and?',
-        emailers=[MIROSLAV_LAJCAK]
+        pattern='Miro(slav)?|(Caroline|Jack)?\\s*Lang(, Caroline)?|Le\\s*Pen|Macron|(Angela )?Merk(el|le)|(Sebastian )?Kurz|(Vi(c|k)tor\\s+)?Orbah?n|Edward Rod Larsen|Ukrain(e|ian)|Zug|(Thor.{3,8})?Jag[il]and?',
+        emailers=[
+            MIROSLAV_LAJCAK,
+            PETER_MANDELSON,
+            TERJE_ROD_LARSEN,
+        ]
     ),
     HighlightedGroup(
         label='harvard',
@@ -122,8 +220,9 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='lawyer',
         style='medium_purple2',
-        pattern='(Alan (M\\. )?)?Dershowi(l|tz)|(Erika )?Kellerhals|(Ken(neth W.)?\\s+)?Starr|Lefkowitz|Michael J. Pike|Paul Weiss|Weinberg|Weingarten|Roy Black',
+        pattern='(Erika )?Kellerhals|(Ken(neth W.)?\\s+)?Starr|Lefkowitz|Michael J. Pike|Paul Weiss|Weinberg|Weingarten|Roy Black',
         emailers=[
+            ALAN_DERSHOWITZ,
             DARREN_INDYKE,
             BRAD_KARP,
             DAVID_STERN,
@@ -358,3 +457,4 @@ HIGHLIGHTED_GROUPS = [
 if is_debug:
     for hg in HIGHLIGHTED_GROUPS:
         print(hg)
+        print("\n")
