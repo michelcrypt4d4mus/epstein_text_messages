@@ -29,6 +29,7 @@ AL_SECKEL = 'Al Seckel'
 ALAN_DERSHOWITZ = 'Alan Dershowitz'
 ALIREZA_ITTIHADIEH = 'Alireza Ittihadieh'
 AMANDA_ENS = 'Amanda Ens'
+ANN_MARIE_VILLAFANA = 'Ann Marie Villafana'
 ANTHONY_BARRETT = 'Anthony Barrett'
 ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
 ANAS_ALRASHEED = 'Anas Alrasheed'
@@ -59,13 +60,15 @@ GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
 GLENN_DUBIN = 'Glenn Dubin'
 GWENDOLYN_BECK = 'Gwendolyn Beck'
 IVANKA = 'Ivanka'
+JABOR_Y = 'Jabor Y'                       # Qatari
 JACK_GOLDBERGER = 'Jack Goldberger'
-JEAN_HUGUEN = 'Jean Huguen'
-JEAN_LUC_BRUNEL = 'Jean Luc Brunel'
-JABOR_Y = 'Jabor Y'  # Qatari
+JACKIE_PERCZEK = 'Jackie Perczek'
 JARED_KUSHNER = 'Jared Kushner'
 JAY_LEFKOWITZ = 'Jay Lefkowitz'
-JEREMY_RUBIN = 'Jeremy Rubin'  # bitcoin dev
+JEAN_HUGUEN = 'Jean Huguen'
+JEAN_LUC_BRUNEL = 'Jean Luc Brunel'
+JEREMY_RUBIN = 'Jeremy Rubin'             # bitcoin dev
+JESSICA_CADWELL = 'Jessica Cadwell'       # Paralegal?
 JIDE_ZEITLIN = 'Jide Zeitlin'
 JOHN_PAGE = 'John Page'
 JOHNNY_EL_HACHEM = 'Johnny el Hachem'
@@ -80,7 +83,7 @@ LEON_BLACK = 'Leon Black'
 LESLEY_GROFF = 'Lesley Groff'
 LILLY_SANCHEZ = 'Lilly Sanchez'
 LINDA_STONE = 'Linda Stone'
-LISA_NEW = 'Lisa New'          # Harvard poetry prof AKA "Elisa New"
+LISA_NEW = 'Lisa New'                      # Harvard poetry prof AKA "Elisa New"
 MARIANA_IDZKOWSKA = 'Mariana Idźkowska'
 MARK_EPSTEIN = 'Mark L. Epstein'
 MARTIN_NOWAK = 'Martin Nowak'
@@ -103,11 +106,13 @@ PAUL_PROSPERI = 'Paul Prosperi'
 PEGGY_SIEGAL = 'Peggy Siegal'
 PETER_MANDELSON = 'Peter Mandelson'
 PRINCE_ANDREW = 'Prince Andrew'
+RAAFAT_ALSABBAGH = 'Raafat Alsabbagh'
 REID_HOFFMAN = 'Reid Hoffman'
 REID_WEINGARTEN = 'Reid Weingarten'
 RICHARD_KAHN = 'Richard Kahn'
 ROBERT_LAWRENCE_KUHN = 'Robert Lawrence Kuhn'
 ROBERT_TRIVERS = 'Robert Trivers'
+ROGER_SCHANK = 'Roger Schank'
 RUDY_GIULIANI = 'Rudy Giuliani'
 SCOTT_J_LINK = 'Scott J. Link'
 SEAN_BANNON = 'Sean Bannon'
@@ -225,8 +230,8 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     ALIREZA_ITTIHADIEH: re.compile(r'Alireza.[Il]ttihadieh', re.IGNORECASE),
     AMANDA_ENS: re.compile(r'ens, amanda?|Amanda Ens', re.IGNORECASE),
     ANIL_AMBANI: re.compile(r'Anil.Ambani', re.IGNORECASE),
-    'Ann Marie Villafana': re.compile(r'Villafana', re.IGNORECASE),
-    ARIANE_DE_ROTHSCHILD: re.compile(r'AdeR|((Ariane|Edmond) de )?Rothschild|Ariane'),
+    ANN_MARIE_VILLAFANA: re.compile(r'(A(\.|nn) Marie )?Villafana|Villafana, Ann Marie', re.IGNORECASE),
+    ARIANE_DE_ROTHSCHILD: re.compile(r'AdeR|((Ariane|Edmond) de )?Rothschild|Ariane', re.IGNORECASE),
     ANAS_ALRASHEED: re.compile(r'anas\s*al\s*rashee[cd]', re.IGNORECASE),
     BARBRO_EHNBOM: re.compile(r'behnbom@aol.com|(Barbro\s.*)?Ehnbom', re.IGNORECASE),
     'Barry J. Cohen': re.compile(r'barry (j.? )?cohen?', re.IGNORECASE),
@@ -246,15 +251,15 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     'Google Alerts': re.compile(r'google\s?alerts', re.IGNORECASE),
     'Heather Mann': re.compile(r'Heather Man', re.IGNORECASE),
     'Intelligence Squared': re.compile(r'intelligence\s*squared', re.IGNORECASE),
-    'Jackie Perczel':  re.compile(r'jackie perczel?', re.IGNORECASE),
+    JACKIE_PERCZEK:  re.compile(r'jackie perczekl?', re.IGNORECASE),
     JABOR_Y: re.compile(r'[ji]abor\s*y?', re.IGNORECASE),
     JEAN_LUC_BRUNEL: re.compile(r'Jean[- ]Luc Brunel?', re.IGNORECASE),
     JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]?g?(mail.com)?|JEE?\b|Jeffrey E((sp|ps)tein?)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|Epstein', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|(joichi|joi)( Ito)?', re.IGNORECASE),
-    JOHNNY_EL_HACHEM: re.compile('el hachem johnny|johnny el hachem', re.IGNORECASE),
-    JONATHAN_FARKAS: re.compile('Jonathan Farka(s|il)', re.IGNORECASE),
+    JOHNNY_EL_HACHEM: re.compile(r'el hachem johnny|johnny el hachem', re.IGNORECASE),
+    JONATHAN_FARKAS: re.compile(r'Jonathan Farka(s|il)', re.IGNORECASE),
     KATHY_RUEMMLER: re.compile(r'Kathy Ruemmler?', re.IGNORECASE),
-    KEN_STARR: re.compile('starr, ken|Ken starr?', re.IGNORECASE),
+    KEN_STARR: re.compile(r'starr, ken|Ken(neth W.)?\s+starr?|starr', re.IGNORECASE),
     LANDON_THOMAS: re.compile(r'lando[nr] thomas|thomas jr.?, lando[nr]', re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r'(La(wrence|rry).{1,5})?Summers?|^LH$|LHS|Ihsofficel', re.IGNORECASE),
     LAWRANCE_VISOSKI: re.compile(r'La(rry|wrance) Visoski?', re.IGNORECASE),
@@ -324,7 +329,7 @@ EMAILERS = [
     'Jack Lang',
     JAY_LEFKOWITZ,
     'Jes Staley',
-    'Jessica Cadwell',
+    JESSICA_CADWELL,
     JOHN_PAGE,
     'Jokeland',
     JOSCHA_BACH,
@@ -347,7 +352,7 @@ EMAILERS = [
     'Oliver Goodenough',
     'Peter Aldhous',
     'Peter Green',
-    'Roger Schank',
+    ROGER_SCHANK,
     'ross@acuityreputation.com',
     r'Sam/Walli Leff',
     STEVEN_PFEIFFER,
@@ -414,7 +419,7 @@ KNOWN_EMAIL_AUTHORS = {
     '028675': JEFFREY_EPSTEIN,       # Just bad OCR
     '025041': JEFFREY_EPSTEIN,       # Just bad OCR
     '032214': JEFFREY_EPSTEIN,       # Just bad OCR
-    '031791': 'Jessica Cadwell',     # paralegal, see https://x.com/ImDrinknWyn/status/1993765348898927022
+    '031791': JESSICA_CADWELL,       # paralegal, see https://x.com/ImDrinknWyn/status/1993765348898927022
     '028849': JOI_ITO,               # Conversation with Joi Ito
     '028851': JOI_ITO,
     '016692': JOHN_PAGE,
@@ -560,7 +565,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '030508': PAULA,                  # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
     '030509': PAULA,                  # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
     '030096': PETER_MANDELSON,
-    '032951': 'Raafat Alsabbagh',
+    '032951': RAAFAT_ALSABBAGH,
     '019334': STEVE_BANNON,
     # '032213': Probably MIRO or Reid Weingarten based on replies but he sent it to a lot of people
 }
@@ -620,6 +625,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Jay',
     'Jeff',
     'jeffrey',
+    'jessica',
     'John',
     'Jonathan',
     'Joseph',

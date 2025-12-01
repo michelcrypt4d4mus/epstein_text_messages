@@ -91,7 +91,7 @@ print_other_site_link(is_header=False)
 epstein_files.print_emailer_counts_table()
 
 if args.all:
-    console.print('Email conversations are sorted chronologically based on time of the first email.', style='dim')
+    console.print('Email conversations are sorted chronologically based on time of the first email.')
     emailers_to_print = sorted(epstein_files.all_emailers(), key=lambda e: epstein_files.earliest_email_at(e))
     print_numbered_list_of_emailers(emailers_to_print, epstein_files)
 else:
