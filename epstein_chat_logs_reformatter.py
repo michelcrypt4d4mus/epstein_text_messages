@@ -16,7 +16,7 @@ from rich.padding import Padding
 from rich.text import Text
 
 from documents.epstein_files import EpsteinFiles
-from util.env import additional_emailers, args, is_build, is_debug, skip_texts
+from util.env import specified_emailers, args, is_build, is_debug, skip_texts
 from util.file_helper import OUTPUT_GH_PAGES_HTML
 from util.html import *
 from util.rich import *
@@ -95,9 +95,8 @@ if args.all:
     emailers_to_print = sorted(epstein_files.all_emailers(), key=lambda e: epstein_files.earliest_email_at(e))
     print_numbered_list_of_emailers(emailers_to_print, epstein_files)
 else:
-    if len(additional_emailers) > 0:
-        PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED_LIST = additional_emailers
-        logger.info(f"Added {len(additional_emailers)} from --email command line args...")
+    if len(specified_emailers) > 0:
+        PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED_LIST = specified_emailers
 
     console.print('Email conversations grouped by counterparty can be found in the order listed below.')
     emailers_to_print = PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED_LIST
@@ -110,7 +109,7 @@ else:
 for author in emailers_to_print:
     epstein_files.print_emails_for(author)
 
-if not args.all:
+if not args.all and len(specified_emailers) == 0:
     print_author_header(f"Email Tables for {len(emailer_tables)} Other People", 'white')
 
     for name in emailer_tables:

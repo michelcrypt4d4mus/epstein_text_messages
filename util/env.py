@@ -10,9 +10,8 @@ parser.add_argument('--build', '-b', action='store_true', help='write HTML to do
 parser.add_argument('--all', '-a', action='store_true', help='all email authors and recipients (except Epstein)')
 parser.add_argument('--all-tables', '-at', action='store_true', help='all email tables (except Epstein)')
 parser.add_argument('--colors-only', '-c', action='store_true', help='print header with color key table and exit')
-parser.add_argument('--email', '-e', action='append', dest='emails', help='specify additional emailers to output')
+parser.add_argument('--email', '-e', action='append', dest='emails', help='specify the emailers to output (implies --no-texts)')
 parser.add_argument('--fast', '-f', action='store_true', help='skip parsing of email timestamps/authors/etc.')
-parser.add_argument('--no-highlights', '-nh', action='store_true', help="no color highlighting (to see how much faster it is without it)")
 parser.add_argument('--no-texts', '-nt', action='store_true', help='skip text message output')
 parser.add_argument('--sort-alphabetical', '-alpha', action='store_true', help='sort emailers alphabetically in counts table')
 parser.add_argument('--suppress-output', '-sup', action='store_true', help='no output to terminal (use with --build)')
@@ -28,9 +27,13 @@ is_debug = deep_debug or args.debug or (len(environ.get('DEBUG') or '') > 0)
 is_fast_mode = args.fast or (len(environ.get('FAST') or '') > 0)
 skip_texts = args.no_texts or (len(environ.get('SKIP_TEXTS') or '') > 0)
 
-additional_emailers = args.emails or []
+specified_emailers = args.emails or []
 args.search = args.search or []
 args.search_other = args.search_other or []
+
+if len(specified_emailers) > 0:
+    args.no_texts = True
+
 
 # Setup logging
 logging.basicConfig(level="NOTSET", format="%(message)s", datefmt="[%X]", handlers=[RichHandler()])
