@@ -48,7 +48,6 @@ class MessengerLog(CommunicationDocument):
         self.author_str = author_str.split(' ')[-1] if author_str in [STEVE_BANNON] else author_str
         self.author_style = get_style_for_name(author_str) + ' bold'
         self.author_txt = Text(self.author_str, style=self.author_style)
-        self.archive_link = self.epsteinify_link(self.author_style)
 
         if self.file_id in KNOWN_IMESSAGE_FILE_IDS:
             self.hint_txt = Text(f" Found confirmed counterparty ", style='dim').append(self.author_txt)
@@ -71,7 +70,7 @@ class MessengerLog(CommunicationDocument):
                 logger.info(f"[WARNING] Failed to parse '{timestamp_str}' to datetime! Using next match. Error: {e}'")
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        yield Panel(self.archive_link, border_style=self.author_style.removesuffix(' bold'), expand=False)
+        yield Panel(self.archive_link_txt(), border_style=self.author_style.removesuffix(' bold'), expand=False)
 
         if self.hint_txt:
             yield self.hint_txt

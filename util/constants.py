@@ -51,6 +51,7 @@ AZIZA_ALAHMADI = 'Aziza Alahmadi'
 BARBRO_EHNBOM = 'Barbro Ehnbom'
 BENNET_MOSKOWITZ = 'Bennet Moskowitz'
 BILL_GATES = 'Bill Gates'
+BILL_SIEGEL = 'Bill Siegel'
 BRAD_WECHSLER = 'Brad Wechsler'
 BORIS_NIKOLIC = 'Boris Nikolic'
 CELINA_DUBIN = 'Celina Dubin'
@@ -60,6 +61,7 @@ DANIEL_SIAD = 'Daniel Siad'
 DARREN_INDYKE = 'Darren Indyke'
 DAVID_SCHOEN = 'David Schoen'
 DAVID_HAIG = 'David Haig'
+DAVID_INGRAM = 'David Ingram'
 DAVID_STERN = 'David Stern'
 DEBBIE_FEIN = 'Debbie Fein'
 DEEPAK_CHOPRA = 'Deepak Chopra'
@@ -318,6 +320,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     PRINCE_ANDREW: re.compile(r'Prince Andrew|The Duke', re.IGNORECASE),
     REID_WEINGARTEN: re.compile(r'Weingarten, Rei[cdi]|Rei[cdi] Weingarten', re.IGNORECASE),
     RICHARD_KAHN: re.compile(r'rich(ard)? kahn?', re.IGNORECASE),
+    ROBERT_D_CRITTON: re.compile(r'Robert D.? Critton Jr.?', re.IGNORECASE),
     ROBERT_LAWRENCE_KUHN: re.compile(r'Robert\s*(Lawrence)?\s*Kuhn', re.IGNORECASE),
     ROBERT_TRIVERS: re.compile(r'tri[vy]ersr@gmail|Robert\s*Trivers?', re.IGNORECASE),
     SCARAMUCCI: re.compile(r"mooch|(Anthony ('The Mooch' )?)?Scaramucci", re.IGNORECASE),
@@ -341,14 +344,14 @@ EMAILERS = [
     'Anne Boyles',
     AL_SECKEL,
     AZIZA_ALAHMADI,
-    'Bill Gates',
-    'Bill Siegel',
+    BILL_GATES,
+    BILL_SIEGEL,
     BRAD_WECHSLER,
     DANIEL_SABBA,
     'Danny Goldberg',
     DAVID_SCHOEN,
     DEEPAK_CHOPRA,
-    'Glenn Dubin',
+    GLENN_DUBIN,
     'Gordon Getty',
     'Jack Lang',
     JAY_LEFKOWITZ,
@@ -613,6 +616,7 @@ KNOWN_EMAIL_RECIPIENTS = {
 EMAIL_SIGNATURES = {
     #DARREN_INDYKE: re.compile(r"(DARREN K. INDYKE\n)?DARREN.*\n575 Lexington.*\nNew York.*(\nTelephone.*)?(\nTelecop.*)?(\nMobil.*)?(\nemail.*)?\**\nThe info.*\nprivileged.*\nDarren.*\nor any part.*\n(communication.*\n){2}Copyright.*(\nIndyke.*)?\n\**", re.IGNORECASE),
     DARREN_INDYKE: re.compile(r"DARREN K. INDYKE.*?\**\nThe information contained in this communication.*?Darren K.[\n\s]+?[Il]ndyke(, PLLC)? — All rights reserved\.? ?\n\*{50,120}(\n\**)?", re.DOTALL),
+    DAVID_INGRAM: re.compile(r"Thank you in advance.*\nDavid Ingram.*\nCorrespondent\nReuters.*\nThomson.*(\n(Office|Mobile|Reuters.com).*)*"),
     DEEPAK_CHOPRA: re.compile(fr"({DEEPAK_CHOPRA}( MD)?\n)?2013 Costa Del Mar Road\nCarlsbad, CA 92009(\n(Chopra Foundation|Super Genes: Unlock.*))?(\nJiyo)?(\nChopra Center for Wellbeing)?(\nHome: Where Everyone is Welcome)?"),
     JEFFREY_EPSTEIN: re.compile(r"((\*+|please note)\n+)?(> )?(• )?(» )?The information contained in this communication is\n(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?", re.DOTALL),
     JESSICA_CADWELL: re.compile(r"(f.*\n)?Certified Para.*\nFlorida.*\nBURMAN.*\n515.*\nSuite.*\nWest Palm.*", re.IGNORECASE),
@@ -715,6 +719,7 @@ ATTRIBUTIONS_URL = 'https://github.com/michelcrypt4d4mus/epstein_text_messages/b
 COFFEEZILLA_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=061ce61c9e70bdfd'
 COURIER_NEWSROOM_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
 EPSTEINIFY_URL = 'https://epsteinify.com'
+EPSTEIN_WEB_DOC_URL = 'https://epsteinweb.org/wp-content/uploads/epstein_evidence/images'
 JMAIL_URL = 'https://jmail.world'
 OVERSIGHT_REPUBLICANS_PRESSER_URL = 'https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/'
 RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_'
@@ -729,6 +734,9 @@ SITE_URLS = {
 epsteinify_api_url = lambda file_id: f"{EPSTEINIFY_URL}/api/documents/HOUSE_OVERSIGHT_{file_id}"
 epsteinify_doc_url = lambda file_stem: f"{EPSTEINIFY_URL}/document/{file_stem}"
 epsteinify_name_url = lambda name: f"{EPSTEINIFY_URL}/?name={urllib.parse.quote(name)}"
+
+esptein_web_doc_url = lambda file_stem: f"{EPSTEIN_WEB_DOC_URL}/{file_stem}.jpg"
+
 search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE_URL}&q={urllib.parse.quote(txt)}&p=1"
 search_coffeezilla_url = lambda txt: f"{COFFEEZILLA_ARCHIVE_URL}&q={urllib.parse.quote(txt)}&p=1"
 search_jmail_url = lambda txt: f"{JMAIL_URL}/search?q={urllib.parse.quote(txt)}"

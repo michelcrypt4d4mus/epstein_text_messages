@@ -17,6 +17,7 @@ parser.add_argument('--fast', '-f', action='store_true', help='skip parsing of e
 parser.add_argument('--no-texts', '-nt', action='store_true', help='skip text message output')
 parser.add_argument('--sort-alphabetical', '-alpha', action='store_true', help='sort emailers alphabetically in counts table')
 parser.add_argument('--suppress-output', '-s', action='store_true', help='no output to terminal (use with --build)')
+parser.add_argument('--use-epstein-web-links', '-use', action='store_true', help='use epsteinweb.org links instead of epsteinify.com')
 parser.add_argument('--search-other', '-so', action='store_true', help='search for string in non email/text files (only used by search script)')
 parser.add_argument('--debug', '-d', action='store_true', help='set debug level to INFO')
 parser.add_argument('--deep-debug', '-dd', action='store_true', help='set debug level to DEBUG')
@@ -30,9 +31,6 @@ is_fast_mode = args.fast or is_env_var_set('FAST')
 skip_texts = args.no_texts or is_env_var_set('NO_TEXTS')
 specified_emailers = args.emails or []
 
-if len(specified_emailers) > 0:
-    args.no_texts = True
-
 
 # Setup logging
 logging.basicConfig(level="NOTSET", format="%(message)s", datefmt="[%X]", handlers=[RichHandler()])
@@ -44,3 +42,9 @@ elif is_debug:
     logger.setLevel(logging.INFO)
 else:
     logger.setLevel(logging.WARNING)
+
+
+if len(specified_emailers) > 0:
+    logger.warning(f"Found {len(specified_emailers)} --email so setting --no-texts to True")
+    args.no_texts = True
+    skip_texts = True

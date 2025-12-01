@@ -181,6 +181,7 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + PAUL_KRASSNER_MANSO
     'Alan Rogers',                           # Random CC
     'asmallworld@travel.asmallworld.net',    # Promo travel stuff
     'BS Stern',                              # A random fwd of email we have
+    'Cheryl Kleen',                          # Single email from Anne Boyles, displayed under Anne Boyles
     'Connie Zaguirre',                       # Random CC
     'Dan Fleuette',                          # CC from sean bannon
     'Danny Goldberg',                        # Random Paul Krassner emails
@@ -200,7 +201,7 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + PAUL_KRASSNER_MANSO
     'Owen Blicksilver',                      # Landon Thomas CC
     'Peter Aldhous',                         # Lawrence Krauss CC
     'Pink',                                  # Random Jean Luc Brunel CC
-    ROBERT_D_CRITTON,                  # Random CC
+    ROBERT_D_CRITTON,                        # Random CC
     'Sam Harris',                            # Lawrence Krauss CC
     'Sam/Walli Leff',                        # Random CC
     'Saved by Internet Explorer 11',
@@ -310,7 +311,6 @@ class Email(CommunicationDocument):
         self.author_lowercase = self.author.lower() if self.author else None
         self.author_style = get_style_for_name(self.author or UNKNOWN)
         self.author_txt = Text(self.author or UNKNOWN, style=self.author_style)
-        self.archive_link = self.epsteinify_link(self.author_style)
         self.epsteinify_link_markup = make_epsteinify_doc_link_markup(self.file_path.stem, self.author_style)
         self.sent_from_device = self._sent_from_device()
 
@@ -506,7 +506,7 @@ class Email(CommunicationDocument):
             yield txt.append(' (which is shown)\n')
             return
 
-        yield Panel(self.archive_link, border_style=self._border_style(), expand=False)
+        yield Panel(self.archive_link_txt(), border_style=self._border_style(), expand=False)
         info_line = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(f' to ')
         info_line.append(self.recipient_txt).append(highlighter(f" probably sent at {self.timestamp}"))
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
@@ -522,7 +522,6 @@ class Email(CommunicationDocument):
             num_chars = quote_cutoff
 
         if len(text) > num_chars:
-            #trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest at link to file above...>" # TODO: {self.epsteinify_link_markup}...>"
             trim_note = f"[dim]<...trimmed to {num_chars} characters of {self.length}, read the rest at {self.epsteinify_link_markup}...>[/dim]"
             trim_footer_txt = Text.from_markup(trim_note)
             text = text[0:num_chars]

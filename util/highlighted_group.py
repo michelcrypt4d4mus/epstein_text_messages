@@ -16,6 +16,7 @@ PEOPLE_INFO = {
     AL_SECKEL: 'husband of Isabel Maxwell, Mind State organizer, fell off a cliff',
     AZIZA_ALAHMADI: 'Abu Dhabi Department of Culture & Tourism',
     BARBRO_EHNBOM: 'Swedish pharmaceuticals',
+    BILL_SIEGEL: 'documentary film producer and director',
     BORIS_NIKOLIC: f'Biotech VC, {ESTATE_EXECUTOR}',
     DANIEL_SABBA: 'UBS Investment Bank',
     DARREN_INDYKE: ESTATE_EXECUTOR,
@@ -40,10 +41,10 @@ PEOPLE_INFO = {
     MOHAMED_WAHEED_HASSAN: 'former president of the Maldives',
     NADIA_MARCINKO: 'Pilot',
     NICHOLAS_RIBIS: 'Hilton CEO',
+    PAUL_KRASSNER: '60s guy',
     PUREVSUREN_LUNDEG: 'Mongolian ambassador to the UN',
     RICHARD_KAHN: ESTATE_EXECUTOR,
     ROBERT_TRIVERS: 'evolutionary biology',
-    SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of the ports in Dubai',
     TERRY_KAFKA: 'CEO of Impact Outdoor (highway billboards)',
     TOM_BARRACK: 'long time friend of Trump',
     TOM_PRITZKER: 'brother of J.B. Pritzker',
@@ -250,7 +251,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='journalist',
         style='bright_yellow',
-        pattern=r'Alex Yablon|Susan Edelman|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
+        pattern=r'Alex Yablon|Ingram, David|Susan Edelman|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
         emailers=[
             EDWARD_EPSTEIN,
             LANDON_THOMAS,
@@ -440,7 +441,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(emailers=[PAULA], style='pink1'),
     HighlightedGroup(emailers=[PRINCE_ANDREW], style='dodger_blue1'),
     HighlightedGroup(emailers=[SOON_YI], info="Woody Allen's wife", style='hot_pink'),
-    HighlightedGroup(emailers=[SULTAN_BIN_SULAYEM], style='green1'),
+    HighlightedGroup(emailers=[SULTAN_BIN_SULAYEM], info='CEO of DP World, chairman of the ports in Dubai', style='green1'),
 
     # Highlight regexes for things other than names
     HighlightedGroup(
