@@ -21,6 +21,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Darren',
     'David',
     'Etienne',
+    'Jack',
     'Jeff',
     'jeffrey',
     'John',
@@ -157,7 +158,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='china',
         style='bright_red',
-        pattern='Beijing|CCP|Chin(a|ese)|Gino Yu|Guo|Kwok|Tai(pei|wan)|Peking|PRC|xi',
+        pattern=r"Beijing|CCP|Chin(a|ese)|Gino\s+Yu|Guo|Jack\s+Ma|Kwok|Tai(pei|wan)|Peking|PRC|xi",
     ),
     HighlightedGroup(
         label='deepak_chopra',
@@ -170,7 +171,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='democrats',
         style='sky_blue1',
-        pattern='Biden|((Bill|Hillary) )?Clinton|Hill?ary|Democrat(ic)?|(John )?Kerry|Maxine\\s*Waters|(Barac?k )?Obama|(Nancy )?Pelosi|Ron\\s*Dellums',
+        pattern=r'Biden|((Bill|Hillary) )?Clinton|DNC|(George )?Soros|Hill?ary|Democrat(ic)?|(John )?Kerry|Maxine\s*Waters|(Barac?k )?Obama|(Nancy )?Pelosi|Ron\s*Dellums',
     ),
     HighlightedGroup(
         label='dubin',
@@ -205,7 +206,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='harvard',
         style='deep_pink2',
-        pattern=r'Harvard|MIT(\s*Media\s*Lab)?|Media\s*Lab',
+        pattern=r'Harvard|MIT(\s*Media\s*Lab)?|Media\s*Lab|Stanford',
         emailers=[
             LARRY_SUMMERS,
             LISA_NEW,
@@ -275,7 +276,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='middle_east',
         style='dark_sea_green4',
-        pattern=r"Abdulmalik Al-Makhlafi|Abu\\s+Dhabi|Assad|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Imran\s+Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Raafat\s*Alsabbagh|Riya(dh|nd)|Saudi(\s+Arabian?)?|Shaher( Abdulhak Besher)?|Sharia|Syria|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
+        pattern=r"Abdulmalik Al-Makhlafi|Abu\\s+Dhabi|Assad|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Imran\s+Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|kasshohgi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Raafat\s*Alsabbagh|Riya(dh|nd)|Saudi(\s+Arabian?)?|Shaher( Abdulhak Besher)?|Sharia|Syria|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
         emailers=[
             ANAS_ALRASHEED,
             AZIZA_ALAHMADI,
@@ -314,7 +315,10 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='republicans',
         style='dark_red',
-        pattern=r'bolton|Broidy|(?<!Merwin Dela )Cruz|kudlow|lewandowski|mattis|mnuchin|(Paul\s+)?Manafort|Pompeo|Republican',
+        pattern=r'(alex )?acosta|bolton|Broidy|GOP|(?<!Merwin Dela )Cruz|kudlow|lewandowski|(Marco )?Rubio|mattis|mnuchin|(Paul\s+)?Manafort|(Peter )?Navarro|Pompeo|Republican',
+        emailers = [
+            TULSI_GABBARD,
+        ]
     ),
     HighlightedGroup(
         label='russia',
