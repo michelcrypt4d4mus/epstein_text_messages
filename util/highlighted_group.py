@@ -13,12 +13,20 @@ NO_CATEGORY_LABELS = [BILL_GATES, STEVE_BANNON]
 
 # Keyed by the 'label' property
 PEOPLE_INFO = {
+    AL_SECKEL: 'husband of Isabel Maxwell, Mind State organizer, fell off a cliff',
+    BARBRO_EHNBOM: 'Swedish pharmaceuticals',
     BORIS_NIKOLIC: f'Biotech VC, {ESTATE_EXECUTOR}',
     DARREN_INDYKE: ESTATE_EXECUTOR,
+    GWENDOLYN_BECK: 'fund manager',
+    JEAN_LUC_BRUNEL: 'died by suicide in French prison',
+    JES_STALEY: 'former CEO of Barclays',
+    KATHERINE_KEATING: 'Daughter of former Australian PM',
     KENNETH_E_MAPP: 'Governor',
+    LANDON_THOMAS: 'New York Times',
     LEON_BLACK: 'Apollo CEO',
     LAWRANCE_VISOSKI: 'Pilot',
-    LESLEY_GROFF: 'Assistant?',
+    LESLEY_GROFF: 'Assistant (?)',
+    LISA_NEW: 'poetry',
     NADIA_MARCINKO: 'Pilot',
     NICHOLAS_RIBIS: 'Hilton CEO',
     RICHARD_KAHN: ESTATE_EXECUTOR,
@@ -101,7 +109,6 @@ HIGHLIGHTED_GROUPS = [
             ALIREZA_ITTIHADIEH,
             AMANDA_ENS,
             DANIEL_SABBA,
-            GWENDOLYN_BECK,  # https://www.lbc.co.uk/article/who-gwendolyn-beck-epstein-andrew-5HjdN66_2/
             JIDE_ZEITLIN,
             LEON_BLACK,
             MARC_LEON,
@@ -169,6 +176,7 @@ HIGHLIGHTED_GROUPS = [
         label='employee',
         style='deep_sky_blue4',
         emailers=[
+            GWENDOLYN_BECK,
             LAWRANCE_VISOSKI,
             LESLEY_GROFF,
             NADIA_MARCINKO,
@@ -271,7 +279,7 @@ HIGHLIGHTED_GROUPS = [
         style='light_coral',
         pattern='Purevsuren Lundeg|Rob Crowe|Stanley Rosenberg',
         emailers=[
-            'Katherine Keating',  # Daughter of former australian PM
+            KATHERINE_KEATING,
             OLIVIER_COLOM,
         ]
     ),

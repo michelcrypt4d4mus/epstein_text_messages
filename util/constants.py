@@ -74,7 +74,7 @@ FRED_HADDAD = 'Fred Haddad'
 GERALD_BARTON = 'Gerald Barton'
 GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
 GLENN_DUBIN = 'Glenn Dubin'
-GWENDOLYN_BECK = 'Gwendolyn Beck'
+GWENDOLYN_BECK = 'Gwendolyn Beck'         # https://www.lbc.co.uk/article/who-gwendolyn-beck-epstein-andrew-5HjdN66_2/
 IVANKA = 'Ivanka'
 JABOR_Y = 'Jabor Y'                       # Qatari
 JACK_GOLDBERGER = 'Jack Goldberger'
@@ -83,7 +83,8 @@ JARED_KUSHNER = 'Jared Kushner'
 JAY_LEFKOWITZ = 'Jay Lefkowitz'
 JEAN_HUGUEN = 'Jean Huguen'
 JEAN_LUC_BRUNEL = 'Jean Luc Brunel'
-JEREMY_RUBIN = 'Jeremy Rubin'             # bitcoin dev
+JEREMY_RUBIN = 'Jeremy Rubin'             # Bitcoin dev
+JES_STALEY = 'Jes Staley'
 JESSICA_CADWELL = 'Jessica Cadwell'       # Paralegal?
 JIDE_ZEITLIN = 'Jide Zeitlin'
 JOHN_PAGE = 'John Page'
@@ -91,6 +92,7 @@ JOHNNY_EL_HACHEM = 'Johnny el Hachem'
 JONATHAN_FARKAS = 'Jonathan Farkas'
 JOSCHA_BACH = 'Joscha Bach'
 KATHY_RUEMMLER = 'Kathy Ruemmler'
+KATHERINE_KEATING = 'Katherine Keating'
 KEN_STARR = 'Ken Starr'
 KENNETH_E_MAPP = 'Kenneth E. Mapp'
 LANDON_THOMAS = 'Landon Thomas Jr'
@@ -349,7 +351,7 @@ EMAILERS = [
     'Gordon Getty',
     'Jack Lang',
     JAY_LEFKOWITZ,
-    'Jes Staley',
+    JES_STALEY,
     JESSICA_CADWELL,
     JOHN_PAGE,
     'Jokeland',
