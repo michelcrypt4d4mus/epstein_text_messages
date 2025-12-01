@@ -92,10 +92,10 @@ class Document:
         return len(re.findall(pattern, self.text))
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return make_link(self.epsteinify_doc_url, link_txt or self.filename, style)
+        return make_link(self.epsteinify_doc_url, link_txt or self.file_path.stem, style)
 
     def epstein_web_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return make_link(self.epstein_web_doc_url, link_txt or self.filename, style)
+        return make_link(self.epstein_web_doc_url, link_txt or self.file_path.stem, style)
 
     def highlighted_preview_text(self) -> Text:
         try:
