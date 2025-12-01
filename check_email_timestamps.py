@@ -6,7 +6,7 @@ load_dotenv()
 from rich.console import Console
 
 from documents.document import Document
-from documents.email import SUPPRESS_OUTPUT_FOR_IDS
+from documents.email import SUPPRESS_OUTPUT_FOR_EMAIL_IDS
 from documents.epstein_files import EpsteinFiles
 from util.rich import *
 
@@ -25,7 +25,7 @@ for email in epstein_files.emails:
     if other_email.url_slug == email.url_slug:
         console.print(f"Skipping same url_slug for '{email.filename}'...", style='dim')
         continue
-    elif other_email.file_id in SUPPRESS_OUTPUT_FOR_IDS or email.file_id in SUPPRESS_OUTPUT_FOR_IDS:
+    elif other_email.file_id in SUPPRESS_OUTPUT_FOR_EMAIL_IDS or email.file_id in SUPPRESS_OUTPUT_FOR_EMAIL_IDS:
         console.print(f"Skipping already suppressed '{email.filename}'...", style='dim')
         continue
 
