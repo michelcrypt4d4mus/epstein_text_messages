@@ -605,6 +605,7 @@ HEADER_ABBREVIATIONS = {
 }
 
 NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
+    'Al',
     'Allen',
     'Amanda',
     'Andres',
