@@ -470,6 +470,7 @@ class Email(CommunicationDocument):
         text = self._cleaned_up_text()
         quote_cutoff = self.idx_of_nth_quoted_reply(text=text)
         num_chars = MAX_CHARS_TO_PRINT
+        trim_footer_txt = None
 
         if self.author in TRUNCATE_ALL_EMAILS_FROM or any((term in self.text) for term in TRUNCATE_TERMS):
             num_chars = int(MAX_CHARS_TO_PRINT / 3)
@@ -478,10 +479,17 @@ class Email(CommunicationDocument):
             num_chars = quote_cutoff
 
         if len(text) > num_chars:
-            trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest at link to file above...>" # TODO: {self.epsteinify_link_markup}...>"
-            text = f"{text[0:num_chars]}\n\n{trim_note}"
+            #trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest at link to file above...>" # TODO: {self.epsteinify_link_markup}...>"
+            trim_note = f"[dim]<...trimmed to {num_chars} characters of {self.length}, read the rest at {self.epsteinify_link_markup}...>[/dim]"
+            trim_footer_txt = Text.from_markup(trim_note)
+            text = text[0:num_chars]
 
-        email_txt_panel = Panel(highlighter(text), border_style=self._border_style(), expand=False)
+        panel_txt = highlighter(text)
+
+        if trim_footer_txt:
+            panel_txt.append('\n\n').append(trim_footer_txt)
+
+        email_txt_panel = Panel(panel_txt, border_style=self._border_style(), expand=False)
         yield Padding(email_txt_panel, (0, 0, 2, EMAIL_INDENT))
 
 
