@@ -60,6 +60,7 @@ DANIEL_SIAD = 'Daniel Siad'
 DARREN_INDYKE = 'Darren Indyke'
 DAVID_SCHOEN = 'David Schoen'
 DAVID_HAIG = 'David Haig'
+DAVID_INGRAM = 'David Ingram'
 DAVID_STERN = 'David Stern'
 DEBBIE_FEIN = 'Debbie Fein'
 DEEPAK_CHOPRA = 'Deepak Chopra'
@@ -614,6 +615,7 @@ KNOWN_EMAIL_RECIPIENTS = {
 EMAIL_SIGNATURES = {
     #DARREN_INDYKE: re.compile(r"(DARREN K. INDYKE\n)?DARREN.*\n575 Lexington.*\nNew York.*(\nTelephone.*)?(\nTelecop.*)?(\nMobil.*)?(\nemail.*)?\**\nThe info.*\nprivileged.*\nDarren.*\nor any part.*\n(communication.*\n){2}Copyright.*(\nIndyke.*)?\n\**", re.IGNORECASE),
     DARREN_INDYKE: re.compile(r"DARREN K. INDYKE.*?\**\nThe information contained in this communication.*?Darren K.[\n\s]+?[Il]ndyke(, PLLC)? — All rights reserved\.? ?\n\*{50,120}(\n\**)?", re.DOTALL),
+    DAVID_INGRAM: re.compile(r"Thank you in advance.*\nDavid Ingram.*\nCorrespondent\nReuters.*\nThomson.*(\n(Office|Mobile|Reuters.com).*)*"),
     DEEPAK_CHOPRA: re.compile(fr"({DEEPAK_CHOPRA}( MD)?\n)?2013 Costa Del Mar Road\nCarlsbad, CA 92009(\n(Chopra Foundation|Super Genes: Unlock.*))?(\nJiyo)?(\nChopra Center for Wellbeing)?(\nHome: Where Everyone is Welcome)?"),
     JEFFREY_EPSTEIN: re.compile(r"((\*+|please note)\n+)?(> )?(• )?(» )?The information contained in this communication is\n(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?", re.DOTALL),
     JESSICA_CADWELL: re.compile(r"(f.*\n)?Certified Para.*\nFlorida.*\nBURMAN.*\n515.*\nSuite.*\nWest Palm.*", re.IGNORECASE),

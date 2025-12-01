@@ -30,9 +30,6 @@ is_fast_mode = args.fast or is_env_var_set('FAST')
 skip_texts = args.no_texts or is_env_var_set('NO_TEXTS')
 specified_emailers = args.emails or []
 
-if len(specified_emailers) > 0:
-    args.no_texts = True
-
 
 # Setup logging
 logging.basicConfig(level="NOTSET", format="%(message)s", datefmt="[%X]", handlers=[RichHandler()])
@@ -44,3 +41,9 @@ elif is_debug:
     logger.setLevel(logging.INFO)
 else:
     logger.setLevel(logging.WARNING)
+
+
+if len(specified_emailers) > 0:
+    logger.warning(f"Found {len(specified_emailers)} --email so setting --no-texts to True")
+    args.no_texts = True
+    skip_texts = True
