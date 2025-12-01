@@ -114,7 +114,8 @@ class EpsteinFiles:
         if author is None:
             emails_to = [
                 e for e in self.emails
-                if e.author == JEFFREY_EPSTEIN and (len(e.recipients) == 0 or None in e.recipients or UNKNOWN in e.recipients)
+                if e.author == JEFFREY_EPSTEIN
+                    and ((len(e.recipients) == 0) or (None in e.recipients) or (UNKNOWN in e.recipients))
             ]
         else:
             emails_to = [e for e in self.emails if author in e.recipients_lower]
@@ -122,7 +123,7 @@ class EpsteinFiles:
         sorted_emails = EpsteinFiles.sort_emails(emails_by + emails_to)
 
         if len(sorted_emails) == 0:
-            logger.warning(f"No emails found for '{author}'")
+            raise RuntimeError(f"No emails found for '{author}'")
 
         return sorted_emails
 
@@ -154,17 +155,14 @@ class EpsteinFiles:
         emails = self.emails_for(_author)
         author = _author or UNKNOWN
 
-        if len(emails) > 0:
-            print_author_header(
-                f"Found {len(emails)} {author} emails from {emails[0].timestamp.date()} to {emails[-1].timestamp.date()}",
-                get_style_for_name(author)
-            )
-        else:
-            raise RuntimeError(f"No emails found for '{_author}'")
+        print_author_header(
+            f"Found {len(emails)} {author} emails from {emails[0].timestamp.date()} to {emails[-1].timestamp.date()}",
+            get_style_for_name(author)
+        )
 
-        if author != UNKNOWN:
-            self.print_emails_table_for(author)
-        else:
+        self.print_emails_table_for(author)
+
+        if author == UNKNOWN:
             ids = list(self.email_unknown_recipient_file_ids)
             logger.info(f"{len(ids)} UNKNOWN RECIPIENT IDS:\n" + '\n'.join(sorted(ids)))
 
