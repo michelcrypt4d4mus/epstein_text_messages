@@ -202,9 +202,10 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='lawyer',
         style='medium_purple2',
-        pattern='(Erika )?Kellerhals|Michael J. Pike|Paul Weiss|Roy Black|Wein(berg|garten)',
+        pattern='(Erika )?Kellerhals|Fred Haddad|Michael J. Pike|Paul Weiss|Roy Black|Wein(berg|garten)',
         emailers=[
             ALAN_DERSHOWITZ,
+            BENNET_MOSKOWITZ,
             DARREN_INDYKE,
             BRAD_KARP,
             DAVID_STERN,
@@ -227,6 +228,7 @@ HIGHLIGHTED_GROUPS = [
         style='light_coral',
         pattern='Purevsuren Lundeg|Rob Crowe|Stanley Rosenberg',
         emailers=[
+            'Katherine Keating',  # Daughter of former australian PM
             OLIVIER_COLOM,
         ]
     ),
@@ -292,7 +294,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='scholar',
         style='light_goldenrod2',
-        pattern='David Grosof|Moshe Hoffman|((Noam|Valeria) )?Chomsky|Peter Attia',
+        pattern='Alain Forget|David Grosof|Moshe Hoffman|((Noam|Valeria) )?Chomsky|Peter Attia',
         emailers=[
             DAVID_HAIG,
             JOSCHA_BACH,
