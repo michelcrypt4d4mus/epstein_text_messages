@@ -34,7 +34,7 @@ EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Sub
 
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re.DOTALL)
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
-BAD_LINE_REGEX = re.compile(r'^(>;|\d{1,2}|Importance:( High)?|[iI,•])$')
+BAD_LINE_REGEX = re.compile(r'^(>;|\d{1,2}|Importance:( High)?|[iI,•]|i (_ )?i)$')
 SKIP_HEADER_ROW_REGEX = re.compile(r"^(agreed|call me|Hysterical|schwartman).*")
 UNDISCLOSED_RECIPIENTS_REGEX = re.compile(r'Undisclosed[- ]recipients:', re.IGNORECASE)
 
