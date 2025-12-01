@@ -51,6 +51,7 @@ AZIZA_ALAHMADI = 'Aziza Alahmadi'
 BARBRO_EHNBOM = 'Barbro Ehnbom'
 BENNET_MOSKOWITZ = 'Bennet Moskowitz'
 BILL_GATES = 'Bill Gates'
+BILL_SIEGEL = 'Bill Siegel'
 BRAD_WECHSLER = 'Brad Wechsler'
 BORIS_NIKOLIC = 'Boris Nikolic'
 CELINA_DUBIN = 'Celina Dubin'
@@ -343,14 +344,14 @@ EMAILERS = [
     'Anne Boyles',
     AL_SECKEL,
     AZIZA_ALAHMADI,
-    'Bill Gates',
-    'Bill Siegel',
+    BILL_GATES,
+    BILL_SIEGEL,
     BRAD_WECHSLER,
     DANIEL_SABBA,
     'Danny Goldberg',
     DAVID_SCHOEN,
     DEEPAK_CHOPRA,
-    'Glenn Dubin',
+    GLENN_DUBIN,
     'Gordon Getty',
     'Jack Lang',
     JAY_LEFKOWITZ,
