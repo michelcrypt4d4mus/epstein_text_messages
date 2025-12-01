@@ -242,7 +242,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     EHUD_BARAK: re.compile(r'(ehud|h)\s*barak', re.IGNORECASE),
     FAITH_KATES: re.compile(r'faith kates?', re.IGNORECASE),
     GERALD_BARTON: re.compile(r'Gerald.*Barton', re.IGNORECASE),
-    GHISLAINE_MAXWELL: re.compile(r'g ?max(well)?', re.IGNORECASE),
+    GHISLAINE_MAXWELL: re.compile(r'g ?max(well)?|Ghislaine|Maxwell', re.IGNORECASE),
     'Google Alerts': re.compile(r'google\s?alerts', re.IGNORECASE),
     'Heather Mann': re.compile(r'Heather Man', re.IGNORECASE),
     'Intelligence Squared': re.compile(r'intelligence\s*squared', re.IGNORECASE),
