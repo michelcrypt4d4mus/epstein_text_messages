@@ -6,6 +6,7 @@ For use with iMessage log files from https://drive.google.com/drive/folders/1hTN
 Install: 'pip install python-dotenv rich'
     Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT/001 ./epstein_chat_logs_reformatter.py'
 """
+import time
 from pathlib import Path
 from sys import exit
 
@@ -21,6 +22,7 @@ from util.html import *
 from util.rich import *
 
 
+started_at = time.perf_counter()
 print_header()
 
 if args.colors_only:
@@ -28,6 +30,7 @@ if args.colors_only:
     exit()
 
 epstein_files = EpsteinFiles()
+finished_processing_at = checkpoint_at = time.perf_counter()
 epstein_files.print_files_overview()
 print_color_key()
 
@@ -42,6 +45,8 @@ if not skip_texts:
         console.line(2)
 
     epstein_files.print_imessage_summary()
+    logger.warning(f"Printed texts in {(time.perf_counter() - checkpoint_at):.2f} seconds")
+    checkpoint_at = time.perf_counter()
 
 
 # Emails section
@@ -76,12 +81,16 @@ if not args.all:
         epstein_files.print_emails_table_for(name)
 
 epstein_files.print_email_device_info()
+logger.warning(f"Printed emails in {(time.perf_counter() - checkpoint_at):.2f} seconds")
+checkpoint_at = time.perf_counter()
 
 
 # Other Files Section
 if not skip_texts:
     print_section_header(f"Top Lines of {len(epstein_files.other_files)} Files That Are Neither Emails Nor Text Msgs")
     epstein_files.print_other_files_table()
+    logger.warning(f"Printed other files in {(time.perf_counter() - checkpoint_at):.2f} seconds")
+    checkpoint_at = time.perf_counter()
 else:
     logger.warning(f"Skipping other files section (is_build={is_build}, args.all={args.all}, skip_texts={skip_texts})...")
 
@@ -90,6 +99,6 @@ else:
 if is_build:
     console.save_html(OUTPUT_GH_PAGES_HTML, code_format=CONSOLE_HTML_FORMAT, inline_styles=False, theme=HTML_TERMINAL_THEME)
     html_size_in_mb = round(OUTPUT_GH_PAGES_HTML.stat().st_size / 1024 / 1024, 2)
-    logger.warning(f"Wrote HTML to '{OUTPUT_GH_PAGES_HTML}' ({html_size_in_mb} MB).")
+    logger.warning(f"Wrote HTML to '{OUTPUT_GH_PAGES_HTML}' ({html_size_in_mb} MB, total time {(time.perf_counter() - started_at):.2f} seconds).")
 else:
-    logger.warning(f"Not writing HTML because 'BUILD_HTML' env var not set.")
+    logger.warning(f"Not writing HTML because 'BUILD_HTML' env var not set, total time {(time.perf_counter() - started_at):.2f} seconds.")

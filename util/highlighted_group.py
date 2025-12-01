@@ -323,6 +323,7 @@ HIGHLIGHTED_GROUPS = [
         style='dark_red',
         pattern=r'(alex )?acosta|bolton|Broidy|GOP|(?<!Merwin Dela )Cruz|kudlow|lewandowski|(Marco )?Rubio|mattis|mnuchin|(Paul\s+)?Manafort|(Peter )?Navarro|Pompeo|Republican',
         emailers = [
+            RUDY_GIULIANI,
             TULSI_GABBARD,
         ]
     ),

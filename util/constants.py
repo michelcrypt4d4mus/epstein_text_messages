@@ -106,6 +106,7 @@ REID_WEINGARTEN = 'Reid Weingarten'
 RICHARD_KAHN = 'Richard Kahn'
 ROBERT_LAWRENCE_KUHN = 'Robert Lawrence Kuhn'
 ROBERT_TRIVERS = 'Robert Trivers'
+RUDY_GIULIANI = 'Rudy Giuliani'
 SCOTT_J_LINK = 'Scott J. Link'
 SEAN_BANNON = 'Sean Bannon'
 STEPHEN_HANSON = 'Stephen Hanson'
@@ -216,7 +217,7 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
 
 # Emailers
 EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
-    ALAN_DERSHOWITZ: re.compile(r'alan.{1,7}dershowi(lz?|tz)', re.IGNORECASE),
+    ALAN_DERSHOWITZ: re.compile(r'(alan.{1,7})?dershowi(lz?|tz)', re.IGNORECASE),
     ALIREZA_ITTIHADIEH: re.compile(r'Alireza.[Il]ttihadieh', re.IGNORECASE),
     AMANDA_ENS: re.compile(r'ens, amanda?|Amanda Ens', re.IGNORECASE),
     ANIL_AMBANI: re.compile(r'Anil.Ambani', re.IGNORECASE),
@@ -266,7 +267,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     MELANIE_SPINELLA: re.compile(r'M?elanie Spine[Il]{2}a', re.IGNORECASE),
     'Michael Miller': re.compile(r'Micha(el)? Miller|Miller, Micha(el)?', re.IGNORECASE),
     MICHAEL_BUCHHOLTZ: re.compile(r'Michael.*Buchholtz', re.IGNORECASE),
-    MICHAEL_WOLFF: re.compile(r'Michael\s*Wol(ff|i)', re.IGNORECASE),
+    MICHAEL_WOLFF: re.compile(r'Michael\s*Wol(ff|i)|Wolff', re.IGNORECASE),
     MICHAEL_SITRICK: re.compile(r'(Mi(chael|ke).{0,5})?[CS]itrick', re.IGNORECASE),
     MIROSLAV_LAJCAK: re.compile(r"Miro(slav)?(\s+Laj[cč][aá]k)?"),
     MOHAMED_WAHEED_HASSAN: re.compile(r'Mohamed Waheed(\s+Hassan)?', re.IGNORECASE),
@@ -565,7 +566,7 @@ EMAIL_SIGNATURES = {
     MARTIN_WEINBERG: re.compile(r"This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
     PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
     PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(142 W 57th Street, 11th Floor, New York, NY 10019?[\n\s]+)?(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
-    RICHARD_KAHN: re.compile(r'Richard Kahn[\n\s]+HBRK Associates Inc.?[\n\s]+(575 Lexington Avenue 4th Floor[\n\s]+)?New York, (NY|New York) 10022([\n\s]+(Tel|Phone)( I)?[\n\s]+Fa[x"]?[\n\s]+[Ce]el?l?)?', re.IGNORECASE),
+    RICHARD_KAHN: re.compile(r'Richard Kahn[\n\s]+HBRK Associates Inc.?[\n\s]+((301 East 66th Street, Suite 1OF|575 Lexington Avenue,? 4th Floor,?)[\n\s]+)?New York, (NY|New York) 100(22|65)([\n\s]+(Tel|Phone)( I)?[\n\s]+Fa[x"]?[\n\s]+[Ce]el?l?)?', re.IGNORECASE),
     UNKNOWN: re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL),
 }
 
