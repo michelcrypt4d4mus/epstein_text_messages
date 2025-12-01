@@ -2,6 +2,7 @@
 import json
 import re
 from os import devnull
+from sys import argv
 from typing import Literal
 
 from rich.align import Align
@@ -15,7 +16,7 @@ from rich.text import Text
 from rich.theme import Theme
 
 from .constants import *
-from .env import args, deep_debug, is_debug, logger
+from .env import args, deep_debug, is_debug, is_main_script, logger
 from .file_helper import build_filename_for_id
 from .highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS, REGEX_STYLE_PREFIX, HighlightedGroup
 from .html import PAGE_TITLE
@@ -60,7 +61,7 @@ CONSOLE_ARGS = {
     'record': True,
     'safe_box': False,
     'theme': Theme(THEME_STYLES),
-    'width': OUTPUT_WIDTH,
+    'width': OUTPUT_WIDTH if is_main_script else None,
 }
 
 if args.suppress_output:

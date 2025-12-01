@@ -421,6 +421,7 @@ KNOWN_EMAIL_AUTHORS = {
     '033419': DAVID_SCHOEN,         # Sent by AOL
     '031460': EDWARD_EPSTEIN,
     '030578': FAITH_KATES,          # Same as unredacted 030414, same legal signature
+    '030634': FAITH_KATES,          # Same as unredacted 031135, same legal signature
     '026547': GERALD_BARTON,
     '029969': GWENDOLYN_BECK,       # Signature
     '031120': GWENDOLYN_BECK,       # Signature
@@ -469,7 +470,7 @@ KNOWN_EMAIL_AUTHORS = {
     '032727': KATHY_RUEMMLER,          # from "Kathy" about dems, sent from iPad (not 100% confirmed)
     '030478': LANDON_THOMAS,
     '029013': LARRY_SUMMERS,
-    '031129': LARRY_SUMMERS,
+    '031129': LAWRANCE_VISOSKI,        # Planes discussion, same as 029977
     '032206': LAWRENCE_KRAUSS,         # More of a text convo?
     '032209': LAWRENCE_KRAUSS,         # More of a text convo?
     # '032210': LAWRENCE_KRAUSS,         # More of a text convo?
@@ -557,9 +558,11 @@ KNOWN_EMAIL_RECIPIENTS = {
     '031489': JEFFREY_EPSTEIN,        # Bad OCR
     '032209': JEFFREY_EPSTEIN,        # More of a text convo?
     '032210': JEFFREY_EPSTEIN,        # More of a text convo?
-    '033575': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN],
-    '033228': [JEFFREY_EPSTEIN, DARREN_INDYKE, FRED_HADDAD],  # Bad OCR
+    '033486': [JEFFREY_EPSTEIN, DARREN_INDYKE, RICHARD_KAHN],  # OCR
+    '033156': [JEFFREY_EPSTEIN, DARREN_INDYKE, RICHARD_KAHN],  # OCR
+    '033228': [JEFFREY_EPSTEIN, DARREN_INDYKE, FRED_HADDAD],   # Bad OCR
     '023067': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN, TONJA_HADDAD_COLEMAN],      # Bad OCR
+    '033575': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN],
     '029498': [JEFFREY_EPSTEIN, DAVID_HAIG, 'Gordon Getty', 'Norman Finkelstein'],      # Bad OCR
     '029154': [JEFFREY_EPSTEIN, DAVID_HAIG],         # Bad OCR
     '029889': [JEFFREY_EPSTEIN, JACK_GOLDBERGER, ROBERT_D_CRITTON, 'Connie Zaguirre'],  # Bad OCR
@@ -589,6 +592,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '028787': LAWRANCE_VISOSKI,
     '027097': LAWRANCE_VISOSKI,       # Signature of reply
     '022250': LESLEY_GROFF,           # Reply
+    '032048': MARIANA_IDZKOWSKA,      # Redacted here, visisble in 030242
     '030368': MELANIE_SPINELLA,       # Actually a self fwd from jeffrey to jeffrey
     '030369': MELANIE_SPINELLA,       # Actually a self fwd from jeffrey to jeffrey
     '030371': MELANIE_SPINELLA,       # Actually a self fwd from jeffrey to jeffrey
