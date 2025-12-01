@@ -84,6 +84,7 @@ LESLEY_GROFF = 'Lesley Groff'
 LILLY_SANCHEZ = 'Lilly Sanchez'
 LINDA_STONE = 'Linda Stone'
 LISA_NEW = 'Lisa New'                      # Harvard poetry prof AKA "Elisa New"
+MARC_LEON = 'Marc Leon'
 MARIANA_IDZKOWSKA = 'Mariana Idźkowska'
 MARK_EPSTEIN = 'Mark L. Epstein'
 MARTIN_NOWAK = 'Martin Nowak'
@@ -269,7 +270,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     MARK_EPSTEIN: re.compile(r'Mark (L\. )?Epstein', re.IGNORECASE),
     LILLY_SANCHEZ: re.compile(r'Lilly.*Sanchez', re.IGNORECASE),
     LISA_NEW: re.compile(r'E?Lisa New?\b', re.IGNORECASE),
-    'Marc Leon': re.compile(r'Marc[.]+(Kensington|Leon)|Kensington2', re.IGNORECASE),
+    MARC_LEON: re.compile(r'Marc[.\s]+(Kensington|Leon)|Kensington2', re.IGNORECASE),
     MARTIN_NOWAK: re.compile(r'Martin.*?Nowak|Nowak, Martin', re.IGNORECASE),
     MARTIN_WEINBERG: re.compile(r'martin.*?weinberg', re.IGNORECASE),
     "Matthew Schafer": re.compile(r"matthew\.?schafer?", re.IGNORECASE),
@@ -634,11 +635,13 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Jay',
     'Jeff',
     'jeffrey',
+    'Jeremy',
     'jessica',
     'John',
     'Jonathan',
     'Joseph',
     'Kahn',
+    'Katherine',
     'Jr',
     'Leon',
     'Lesley',
