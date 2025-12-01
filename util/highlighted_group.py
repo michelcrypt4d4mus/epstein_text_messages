@@ -7,12 +7,21 @@ from rich.text import Text
 from util.constants import *
 from util.env import is_debug, logger
 
+ESTATE_EXECUTOR = 'Epstein estate executor'
 REGEX_STYLE_PREFIX = 'regex'
 NO_CATEGORY_LABELS = [BILL_GATES, STEVE_BANNON]
 
 # Keyed by the 'label' property
-PERSON_CATEGORIES = {
-    JOI_ITO: 'MIT Media Lab',
+PEOPLE_INFO = {
+    BORIS_NIKOLIC: f'Biotech VC, {ESTATE_EXECUTOR}',
+    DARREN_INDYKE: ESTATE_EXECUTOR,
+    KENNETH_E_MAPP: 'Governor',
+    LEON_BLACK: 'Apollo CEO',
+    LAWRANCE_VISOSKI: 'Pilot',
+    LESLEY_GROFF: 'Assistant?',
+    NADIA_MARCINKO: 'Pilot',
+    NICHOLAS_RIBIS: 'Hilton CEO',
+    RICHARD_KAHN: ESTATE_EXECUTOR,
 }
 
 safe_style_name = lambda label: label.lower().replace(' ', '_').replace('-', '_')
@@ -453,6 +462,32 @@ HIGHLIGHTED_GROUPS = [
 ]
 
 COLOR_KEYS = [h.colored_label() for h in HIGHLIGHTED_GROUPS if not h.is_multiline]
+
+
+def get_info_for_name(name: str) -> str | None:
+    highlight_group = get_highlight_group_for_name(name)
+
+    if not highlight_group:
+        return None
+
+    info = highlight_group.get_info()
+
+    if info and name in PEOPLE_INFO:
+        info += f", {PEOPLE_INFO[name]}"
+
+    return info
+
+
+def get_highlight_group_for_name(name: str) -> HighlightedGroup | None:
+    for highlight_group in HIGHLIGHTED_GROUPS:
+        if highlight_group.regex.search(name):
+            return highlight_group
+
+
+def get_style_for_name(name: str, default: str = DEFAULT, allow_bold: bool = True) -> str:
+    highlight_group = get_highlight_group_for_name(name)
+    style = highlight_group.style if highlight_group else default
+    return style if allow_bold else style.replace('bold', '').strip()
 
 
 if is_debug:

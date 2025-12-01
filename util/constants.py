@@ -92,6 +92,7 @@ JONATHAN_FARKAS = 'Jonathan Farkas'
 JOSCHA_BACH = 'Joscha Bach'
 KATHY_RUEMMLER = 'Kathy Ruemmler'
 KEN_STARR = 'Ken Starr'
+KENNETH_E_MAPP = 'Kenneth E. Mapp'
 LANDON_THOMAS = 'Landon Thomas Jr'
 LAWRANCE_VISOSKI = 'Lawrance Visoski'
 LAWRENCE_KRAUSS = 'Lawrence Krauss'
@@ -354,7 +355,7 @@ EMAILERS = [
     'Jokeland',
     JOSCHA_BACH,
     'Kathleen Ruderman',
-    'Kenneth E. Mapp',
+    KENNETH_E_MAPP,
     'Larry Cohen',
     LESLEY_GROFF,
     'lorraine@mc2mm.com',
@@ -638,7 +639,7 @@ HEADER_ABBREVIATIONS = {
     'KSA': "Kingdom of Saudi Arabia",
     'Kurz': 'Sebastian Kurz (former Austrian Chancellor)',
     'Kwok': "Chinese criminal Miles Kwok AKA Miles Guo AKA Guo Wengui",
-    'Mapp': 'Kenneth E. Mapp (Governor Virgin Islands)',
+    'Mapp': f'{KENNETH_E_MAPP} (Governor Virgin Islands)',
     'Masa': 'Masayoshi Son (Softbank)',
     'MBS': "Mohammed bin Salman Al Saud (Saudi ruler)",
     'MBZ': "Mohamed bin Zayed Al Nahyan (Emirates sheikh)",

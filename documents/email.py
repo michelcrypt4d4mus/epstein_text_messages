@@ -15,6 +15,7 @@ from documents.email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMP
 from util.constants import *
 from util.env import is_debug, is_fast_mode, logger
 from util.file_helper import build_filename_for_id
+from util.highlighted_group import get_style_for_name
 from util.rich import *
 from util.strings import *
 
@@ -32,7 +33,7 @@ EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Sub
 
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re.DOTALL)
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
-BAD_LINE_REGEX = re.compile(r'^(>;|\d{1,2}|Importance:( High)?|I)$')
+BAD_LINE_REGEX = re.compile(r'^(>;|\d{1,2}|Importance:( High)?|[iI,])$')
 SKIP_HEADER_ROW_REGEX = re.compile(r"^(agreed|call me|Hysterical|schwartman).*")
 UNDISCLOSED_RECIPIENTS_REGEX = re.compile(r'Undisclosed[- ]recipients:', re.IGNORECASE)
 
@@ -349,6 +350,7 @@ class Email(CommunicationDocument):
         else:
             text = self.text
 
+        # TODO: should bad lines be removed completely from self.text?
         text = '\n'.join([line for line in text.split('\n') if not BAD_LINE_REGEX.match(line)])
         text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
 

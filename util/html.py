@@ -18,7 +18,7 @@ CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
             background-color: {background};
         }}
     </style>
-""" + f"<title>Epstein {'Emails' if args.all else 'Text Messages'}</title>" + """
+""" + f"<title>Epstein {'Emails' if args.all_emails else 'Text Messages'}</title>" + """
 </head>
 <body>
     <pre style="font-family: Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace; white-space: pre-wrap; overflow-wrap: break-word;">
