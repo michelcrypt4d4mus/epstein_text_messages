@@ -204,7 +204,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='lawyer',
         style='medium_purple2',
-        pattern='(Erika )?Kellerhals|Fred Haddad|Michael J. Pike|Paul Weiss|Roy Black|Wein(berg|garten)',
+        pattern=r'(Erika\s+)?Kellerhals|Michael J. Pike|Paul\sWeiss|Roy Black|Wein(berg|garten)',
         emailers=[
             ALAN_DERSHOWITZ,
             BENNET_MOSKOWITZ,
@@ -212,6 +212,8 @@ HIGHLIGHTED_GROUPS = [
             BRAD_KARP,
             DAVID_STERN,
             DAVID_SCHOEN,
+            DEBBIE_FEIN,
+            FRED_HADDAD,
             JACK_GOLDBERGER,
             JACKIE_PERCZEK,
             JAY_LEFKOWITZ,

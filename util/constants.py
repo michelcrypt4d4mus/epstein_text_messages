@@ -47,6 +47,7 @@ DARREN_INDYKE = 'Darren Indyke'
 DAVID_SCHOEN = 'David Schoen'
 DAVID_HAIG = 'David Haig'
 DAVID_STERN = 'David Stern'
+DEBBIE_FEIN = 'Debbie Fein'
 DEEPAK_CHOPRA = 'Deepak Chopra'
 DIANE_ZIMAN = 'Diane Ziman'
 DONALD_TRUMP = 'Donald Trump'
@@ -55,6 +56,7 @@ EDWARD_EPSTEIN = 'Edward Epstein'
 EHUD_BARAK = 'Ehud Barak'
 ELON_MUSK = 'Elon Musk'
 FAITH_KATES = 'Faith Kates'
+FRED_HADDAD = 'Fred Haddad'
 GERALD_BARTON = 'Gerald Barton'
 GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
 GLENN_DUBIN = 'Glenn Dubin'
@@ -339,7 +341,7 @@ EMAILERS = [
     'Kathleen Ruderman',
     'Kenneth E. Mapp',
     'Larry Cohen',
-    'Lesley Groff',
+    LESLEY_GROFF,
     'lorraine@mc2mm.com',
     LINDA_STONE,
     'Lyn Fontanilla',
@@ -532,7 +534,9 @@ KNOWN_EMAIL_RECIPIENTS = {
     '026547': JEFFREY_EPSTEIN,        # Bad OCR
     '032209': JEFFREY_EPSTEIN,        # More of a text convo?
     '032210': JEFFREY_EPSTEIN,        # More of a text convo?
-    '033575': [JEFFREY_EPSTEIN, DARREN_INDYKE, 'Debbie Fein'],
+    '033575': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN],
+    '033228': [JEFFREY_EPSTEIN, DARREN_INDYKE, FRED_HADDAD],  # Bad OCR
+    '023067': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN, TONJA_HADDAD_COLEMAN],  # Bad OCR
     '029498': [JEFFREY_EPSTEIN, DAVID_HAIG, 'Gordon Getty', 'Norman Finkelstein'],  # Bad OCR
     '029154': [JEFFREY_EPSTEIN, DAVID_HAIG],         # Bad OCR
     '028931': [JEFFREY_EPSTEIN, LAWRENCE_KRAUSS],    # Bad OCR
@@ -575,6 +579,13 @@ KNOWN_EMAIL_RECIPIENTS = {
     # '032213': Probably MIRO or Reid Weingarten based on replies but he sent it to a lot of people
 }
 
+#    │ Terry B. Kafka, President                                                                                         │
+#    │ Impact Outdoor Advertising Co.                                                                                    │
+#    │ 5454 La Sierra Dr., Suite 200                                                                                     │
+#    │ Dallas, TX 75231                                                                                                  │
+#    │ Impactoutdoor.com                                                                                                 │
+#    │ cell
+
 EMAIL_SIGNATURES = {
     #DARREN_INDYKE: re.compile(r"(DARREN K. INDYKE\n)?DARREN.*\n575 Lexington.*\nNew York.*(\nTelephone.*)?(\nTelecop.*)?(\nMobil.*)?(\nemail.*)?\**\nThe info.*\nprivileged.*\nDarren.*\nor any part.*\n(communication.*\n){2}Copyright.*(\nIndyke.*)?\n\**", re.IGNORECASE),
     DARREN_INDYKE: re.compile(r"DARREN K. INDYKE.*?\**\nThe information contained in this communication.*?Darren K.[\n\s]+?[Il]ndyke(, PLLC)? — All rights reserved\.? ?\n\*{50,120}(\n\**)?", re.DOTALL),
@@ -585,6 +596,7 @@ EMAIL_SIGNATURES = {
     PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
     PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(142 W 57th Street, 11th Floor, New York, NY 10019?[\n\s]+)?(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
     RICHARD_KAHN: re.compile(r'Richard Kahn[\n\s]+HBRK Associates Inc.?[\n\s]+((301 East 66th Street, Suite 1OF|575 Lexington Avenue,? 4th Floor,?)[\n\s]+)?New York, (NY|New York) 100(22|65)([\n\s]+(Tel|Phone)( I)?[\n\s]+Fa[x"]?[\n\s]+[Ce]el?l?)?', re.IGNORECASE),
+    TERRY_KAFKA: re.compile(r"((>|I) )?Terry B.? Kafka.*\n(> )?Impact Outdoor.*\n(> )?5454.*\n(> )?Dallas.*\n((> )?c?ell.*\n)?(> )?Impactoutdoor.*(\n(> )?cell.*)?", re.IGNORECASE),
     TONJA_HADDAD_COLEMAN: re.compile(fr"Tonja Haddad Coleman.*\nTonja Haddad.*\nAdvocate Building\n315 SE 7th.*(\nSuite.*)?\nFort Lauderdale.*(\n({REDACTED} )?facsimile)?(\nwww.tonjahaddad.com?)?(\nPlease add this efiling.*\nThe information.*\nyou are not.*\nyou are not.*)?", re.IGNORECASE),
     UNKNOWN: re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL),
 }
@@ -630,6 +642,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Darren',
     'David',
     'Etienne',
+    'Fred',
     'Jack',
     'Jay',
     'Jeff',
