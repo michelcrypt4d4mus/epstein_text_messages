@@ -108,6 +108,7 @@ REID_WEINGARTEN = 'Reid Weingarten'
 RICHARD_KAHN = 'Richard Kahn'
 ROBERT_LAWRENCE_KUHN = 'Robert Lawrence Kuhn'
 ROBERT_TRIVERS = 'Robert Trivers'
+ROGER_SCHANK = 'Roger Schank'
 RUDY_GIULIANI = 'Rudy Giuliani'
 SCOTT_J_LINK = 'Scott J. Link'
 SEAN_BANNON = 'Sean Bannon'
@@ -347,7 +348,7 @@ EMAILERS = [
     'Oliver Goodenough',
     'Peter Aldhous',
     'Peter Green',
-    'Roger Schank',
+    ROGER_SCHANK,
     'ross@acuityreputation.com',
     r'Sam/Walli Leff',
     STEVEN_PFEIFFER,

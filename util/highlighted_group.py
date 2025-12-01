@@ -295,6 +295,7 @@ HIGHLIGHTED_GROUPS = [
             JOSCHA_BACH,
             LAWRENCE_KRAUSS,
             ROBERT_TRIVERS,
+            ROGER_SCHANK,
             STEVEN_PFEIFFER,
         ]
     ),
