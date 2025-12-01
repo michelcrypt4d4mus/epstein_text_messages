@@ -21,8 +21,8 @@ from util.constants import *
 from util.data import flatten, patternize
 from util.env import args, is_debug, logger
 from util.file_helper import DOCS_DIR, move_json_file
-from util.rich import (DEFAULT_NAME_COLOR, console, get_style_for_name, highlighter, make_link,
-     make_link_markup, print_author_header, print_panel, vertically_pad)
+from util.rich import (DEFAULT_NAME_COLOR, console, get_category_for_name, get_style_for_name, highlighter,
+     make_link, make_link_markup, print_author_header, print_panel, vertically_pad)
 
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (0, 0, 0, 2)
@@ -156,7 +156,8 @@ class EpsteinFiles:
 
         print_author_header(
             f"Found {len(emails)} {author} emails from {emails[0].timestamp.date()} to {emails[-1].timestamp.date()}",
-            get_style_for_name(author)
+            get_style_for_name(author),
+            get_category_for_name(author)
         )
 
         self.print_emails_table_for(author)
