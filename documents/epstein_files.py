@@ -159,9 +159,10 @@ class EpsteinFiles:
         """Print complete emails to or from a particular 'author'."""
         emails = self.emails_for(_author)
         author = _author or UNKNOWN
+        conversation_length = self.email_conversation_length_in_days(_author)
 
         print_author_header(
-            f"Found {len(emails)} {author} emails from {emails[0].timestamp.date()} to {emails[-1].timestamp.date()}",
+            f"Found {len(emails)} {author} emails from {emails[0].timestamp.date()} over {conversation_length:,} days",
             get_style_for_name(author),
             get_info_for_name(author)
         )
