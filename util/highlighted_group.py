@@ -63,14 +63,20 @@ highlighter_style_name = lambda style_name: f"{REGEX_STYLE_PREFIX}.{style_name.r
 
 @dataclass
 class HighlightedGroup:
-    label: str
     style: str
-    pattern: str = ''
+    label: str = ''      # TODO: make it default to None?
+    pattern: str = ''    # TODO: make it default to None?
     emailers: list[str] = field(default_factory=list)
     is_multiline: bool = False
     regex: re.Pattern = field(init=False)
 
     def __post_init__(self):
+        if not self.label:
+            if len(self.emailers) != 1:
+                raise RuntimeError(f"No label provided for {repr(self)}")
+            else:
+                self.label = self.emailers[0].lower().replace(' ', '_').replace('-', '_')
+
         patterns = [self.emailer_pattern(e) for e in self.emailers] + ([self.pattern] if self.pattern else [])
         pattern = '|'.join(patterns)
         logger.debug('')
@@ -378,7 +384,6 @@ HIGHLIGHTED_GROUPS = [
         pattern='BG|(Bill\\s+((and|or)\\s+Melinda\\s+)?)?Gates|Melinda(\\s+Gates)?',
     ),
     HighlightedGroup(
-        label='ghislaine_maxwell',
         style='deep_pink3',
         pattern='gmax(1@ellmax.com)?',
         emailers=[GHISLAINE_MAXWELL]
@@ -389,56 +394,19 @@ HIGHLIGHTED_GROUPS = [
         emailers=[JABOR_Y]
     ),
     HighlightedGroup(
-        label='jeffrey_epstein',
         style='blue1',
         pattern='Mark (L. )?Epstein',
         emailers=[JEFFREY_EPSTEIN]
     ),
-    HighlightedGroup(
-        label='joi_ito',
-        style='blue_violet',
-        emailers=[JOI_ITO]
-    ),
-    HighlightedGroup(
-        label='kathy_ruemmler',
-        style='magenta2',
-        emailers=[KATHY_RUEMMLER]
-    ),
-    HighlightedGroup(
-        label='linda_stone',
-        style='pink3',
-        emailers=[LINDA_STONE]
-    ),
-    HighlightedGroup(
-        label='melanie_spinella',
-        style='magenta3',
-        emailers=[MELANIE_SPINELLA]
-    ),
-    HighlightedGroup(
-        label='melanie_walker',
-        style='light_pink3',
-        emailers=[MELANIE_WALKER]
-    ),
-    HighlightedGroup(
-        label='paula',
-        style='pink1',
-        emailers=[PAULA]
-    ),
-    HighlightedGroup(
-        label='prince_andrew',
-        style='dodger_blue1',
-        emailers=[PRINCE_ANDREW]
-    ),
-    HighlightedGroup(
-        label='soon_yi',
-        style='hot_pink',
-        emailers=[SOON_YI]
-    ),
-    HighlightedGroup(
-        label='sultan_bin_sulayem',
-        style='green1',
-        emailers=[SULTAN_BIN_SULAYEM]
-    ),
+    HighlightedGroup(emailers=[JOI_ITO], style='blue_violet'),
+    HighlightedGroup(emailers=[KATHY_RUEMMLER], style='magenta2'),
+    HighlightedGroup(emailers=[LINDA_STONE], style='pink3'),
+    HighlightedGroup(emailers=[MELANIE_SPINELLA], style='magenta3'),
+    HighlightedGroup(emailers=[MELANIE_WALKER], style='light_pink3'),
+    HighlightedGroup(emailers=[PAULA], style='pink1'),
+    HighlightedGroup(emailers=[PRINCE_ANDREW], style='dodger_blue1'),
+    HighlightedGroup(emailers=[SOON_YI], style='hot_pink'),
+    HighlightedGroup(emailers=[SULTAN_BIN_SULAYEM], style='green1'),
 
     # Regexes for things other than names
     HighlightedGroup(
