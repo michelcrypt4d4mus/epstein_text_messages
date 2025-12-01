@@ -96,7 +96,7 @@ if args.all:
     print_numbered_list_of_emailers(emailers_to_print, epstein_files)
 else:
     if len(additional_emailers) > 0:
-        PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED_LIST.extend(additional_emailers)
+        PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED_LIST = additional_emailers
         logger.info(f"Added {len(additional_emailers)} from --email command line args...")
 
     console.print('Email conversations grouped by counterparty can be found in the order listed below.')
