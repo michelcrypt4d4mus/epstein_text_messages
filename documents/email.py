@@ -236,6 +236,7 @@ SUPPRESS_OUTPUT_FOR_IDS = {
     '032158': 'the same as 031912',
     '030514': 'the same as 030587',
     '012685': 'the same as 029773',
+    '033482': 'the same as 029849',
     '023065': 'a redacted version of 030628',
 }
 
