@@ -206,7 +206,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='lawyer',
         style='medium_purple2',
-        pattern='(Erika )?Kellerhals|Lefkowitz|Michael J. Pike|Paul Weiss|Weinberg|Weingarten|Roy Black',
+        pattern='(Erika )?Kellerhals|Michael J. Pike|Paul Weiss|Weinberg|Weingarten|Roy Black',
         emailers=[
             ALAN_DERSHOWITZ,
             DARREN_INDYKE,
@@ -258,8 +258,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='police',
         style='color(24)',
-        pattern='(Ann Marie )?Villafana|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|Police Code Enforcement',
-        emailers=[]
+        pattern='(Ann Marie )?Villafana|FBI|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|Police Code Enforcement',
     ),
     HighlightedGroup(
         label='publicist',
@@ -339,11 +338,6 @@ HIGHLIGHTED_GROUPS = [
 
     # Individuals
     HighlightedGroup(
-        label='ariane_de_rothschild',
-        style='indian_red',
-        emailers=[ARIANE_DE_ROTHSCHILD]
-    ),
-    HighlightedGroup(
         label='bannon',
         style='color(58)',
         pattern='((Steve|Sean)\\s+)?Bannon?',
@@ -354,15 +348,16 @@ HIGHLIGHTED_GROUPS = [
         pattern='BG|(Bill\\s+((and|or)\\s+Melinda\\s+)?)?Gates|Melinda(\\s+Gates)?',
     ),
     HighlightedGroup(
+        emailers=[GHISLAINE_MAXWELL],
         style='deep_pink3',
         pattern='gmax(1@ellmax.com)?',
-        emailers=[GHISLAINE_MAXWELL]
     ),
     HighlightedGroup(
+        emailers=[JEFFREY_EPSTEIN],
         style='blue1',
         pattern='Mark (L. )?Epstein',
-        emailers=[JEFFREY_EPSTEIN]
     ),
+    HighlightedGroup(emailers=[ARIANE_DE_ROTHSCHILD], style='indian_red'),
     HighlightedGroup(emailers=[JABOR_Y], style='spring_green1'),
     HighlightedGroup(emailers=[JOI_ITO], style='blue_violet'),
     HighlightedGroup(emailers=[KATHY_RUEMMLER], style='magenta2'),
@@ -375,7 +370,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(emailers=[STEVEN_HOFFENBERG], pattern=r'(steven?\s*)?hoffenberg?w?', style='spring_green3 bold'),
     HighlightedGroup(emailers=[SULTAN_BIN_SULAYEM], style='green1'),
 
-    # Regexes for things other than names
+    # Highlight regexes for things other than names
     HighlightedGroup(
         label='header_field',
         style='plum4',
