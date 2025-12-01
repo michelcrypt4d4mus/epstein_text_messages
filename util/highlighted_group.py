@@ -17,6 +17,7 @@ PEOPLE_INFO = {
     AZIZA_ALAHMADI: 'Abu Dhabi Department of Culture & Tourism',
     BARBRO_EHNBOM: 'Swedish pharmaceuticals',
     BORIS_NIKOLIC: f'Biotech VC, {ESTATE_EXECUTOR}',
+    DANIEL_SABBA: 'UBS Investment Bank',
     DARREN_INDYKE: ESTATE_EXECUTOR,
     EHUD_BARAK: 'former primer minister',
     GLENN_DUBIN: "Highbridge Capital Management, married to Epstein's ex-gf Eva",
@@ -39,9 +40,11 @@ PEOPLE_INFO = {
     MOHAMED_WAHEED_HASSAN: 'former president of the Maldives',
     NADIA_MARCINKO: 'Pilot',
     NICHOLAS_RIBIS: 'Hilton CEO',
+    PUREVSUREN_LUNDEG: 'Mongolian ambassador to the UN',
     RICHARD_KAHN: ESTATE_EXECUTOR,
     ROBERT_TRIVERS: 'evolutionary biology',
     SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of the ports in Dubai',
+    TERRY_KAFKA: 'CEO of Impact Outdoor (highway billboards)',
     TOM_BARRACK: 'long time friend of Trump',
     TOM_PRITZKER: 'brother of J.B. Pritzker',
 }
@@ -291,11 +294,12 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='lobbyist',
         style='light_coral',
-        pattern='Purevsuren Lundeg|Rob Crowe|Stanley Rosenberg',
+        pattern='Rob Crowe|Stanley Rosenberg',
         emailers=[
             KATHERINE_KEATING,
             MOHAMED_WAHEED_HASSAN,
             OLIVIER_COLOM,
+            PUREVSUREN_LUNDEG,
         ]
     ),
     HighlightedGroup(
