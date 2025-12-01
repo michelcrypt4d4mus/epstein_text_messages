@@ -314,7 +314,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='republicans',
         style='dark_red',
-        pattern='bolton|Broidy|(?!Merwin Dela )Cruz|kudlow|lewandowski|mattis|mnuchin|(Paul )?Manafort|Pompeo|Republican',
+        pattern=r'bolton|Broidy|(?<!Merwin Dela )Cruz|kudlow|lewandowski|mattis|mnuchin|(Paul\s+)?Manafort|Pompeo|Republican',
     ),
     HighlightedGroup(
         label='russia',
