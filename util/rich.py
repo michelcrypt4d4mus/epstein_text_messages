@@ -190,16 +190,18 @@ def print_numbered_list_of_emailers(_list: list[str] | dict, epstein_files = Non
     console.line()
 
     for i, name in enumerate(_list):
-        txt = Text(F"   {i + 1}. ", style=DEFAULT_NAME_COLOR)
+        txt = Text((' ' if i < 9 else '') + F"   {i + 1}. ", style=DEFAULT_NAME_COLOR)
 
         if epstein_files:
             earliest_email_date = (epstein_files.earliest_email_at(name) or FALLBACK_TIMESTAMP).date()
-            txt.append(escape(f"[{earliest_email_date}] "), style='dim')
+            txt.append(escape(f"[{earliest_email_date}] "), style='grey23')
 
         txt.append(highlighter(name or UNKNOWN))
 
         if epstein_files:
-            txt.append(f" ({len(epstein_files.emails_for(name))} emails)", style='grey23 italic')
+            num_days_in_converation = epstein_files.email_conversation_length_in_days(name)
+            msg = f" ({len(epstein_files.emails_for(name))} emails over {num_days_in_converation:,} days)"
+            txt.append(msg, style=f'italic')
 
         console.print(txt)
 
