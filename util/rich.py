@@ -16,7 +16,7 @@ from rich.theme import Theme
 
 from .constants import *
 from .env import args, deep_debug, is_debug, logger
-from .highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS, REGEX_STYLE_PREFIX
+from .highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS, REGEX_STYLE_PREFIX, HighlightedGroup
 from .html import PAGE_TITLE
 
 NUM_COLOR_KEY_COLS = 3
@@ -68,12 +68,20 @@ if args.suppress_output:
 console = Console(**CONSOLE_ARGS)
 
 
-def get_style_for_name(name: str, default: str = DEFAULT) -> str:
+def get_category_for_name(name: str) -> str | None:
+    highlight_group = get_highlight_group_for_name(name)
+    return highlight_group.label if highlight_group else None
+
+
+def get_highlight_group_for_name(name: str) -> HighlightedGroup | None:
     for highlight_group in HIGHLIGHTED_GROUPS:
         if highlight_group.regex.search(name):
-            return highlight_group.style
+            return highlight_group
 
-    return default
+
+def get_style_for_name(name: str, default: str = DEFAULT) -> str:
+    highlight_group = get_highlight_group_for_name(name)
+    return highlight_group.style if highlight_group else default
 
 
 def highlight_regex_match(text: str, pattern: re.Pattern, style: str = 'cyan') -> Text:
@@ -94,11 +102,16 @@ def search_coffeezilla_link(text: str, link_txt: str, style: str = ARCHIVE_LINK_
     return make_link(search_coffeezilla_url(text), link_txt or text, style)
 
 
-def print_author_header(msg: str, color: str | None) -> None:
+def print_author_header(msg: str, color: str | None, footer: str | None = None) -> None:
     txt = Text(msg, justify='center')
-    color = 'white' if color == DEFAULT else (color or 'white')
-    panel = Panel(txt, width=80, style=f"black on {color or 'white'} bold")
+    color = color or 'white'
+    color = 'white' if color == DEFAULT else color
+    panel = Panel(txt, width=80, style=f"black on {color} bold")
     console.print('\n', Align.center(panel))
+
+    if footer:
+        console.print(Align.center(f"({footer})"), style='dim italic')
+
     console.line()
 
 
