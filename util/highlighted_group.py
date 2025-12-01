@@ -43,7 +43,6 @@ PEOPLE_INFO = {
     PUREVSUREN_LUNDEG: 'Mongolian ambassador to the UN',
     RICHARD_KAHN: ESTATE_EXECUTOR,
     ROBERT_TRIVERS: 'evolutionary biology',
-    SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of the ports in Dubai',
     TERRY_KAFKA: 'CEO of Impact Outdoor (highway billboards)',
     TOM_BARRACK: 'long time friend of Trump',
     TOM_PRITZKER: 'brother of J.B. Pritzker',
@@ -440,7 +439,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(emailers=[PAULA], style='pink1'),
     HighlightedGroup(emailers=[PRINCE_ANDREW], style='dodger_blue1'),
     HighlightedGroup(emailers=[SOON_YI], info="Woody Allen's wife", style='hot_pink'),
-    HighlightedGroup(emailers=[SULTAN_BIN_SULAYEM], style='green1'),
+    HighlightedGroup(emailers=[SULTAN_BIN_SULAYEM], info='CEO of DP World, chairman of the ports in Dubai', style='green1'),
 
     # Highlight regexes for things other than names
     HighlightedGroup(

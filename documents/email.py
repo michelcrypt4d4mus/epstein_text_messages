@@ -200,7 +200,7 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + PAUL_KRASSNER_MANSO
     'Owen Blicksilver',                      # Landon Thomas CC
     'Peter Aldhous',                         # Lawrence Krauss CC
     'Pink',                                  # Random Jean Luc Brunel CC
-    ROBERT_D_CRITTON,                  # Random CC
+    ROBERT_D_CRITTON,                        # Random CC
     'Sam Harris',                            # Lawrence Krauss CC
     'Sam/Walli Leff',                        # Random CC
     'Saved by Internet Explorer 11',
