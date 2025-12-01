@@ -26,12 +26,12 @@ from util.rich import *
 print_header()
 
 if args.colors_only:
-    print_color_key(COLOR_KEYS, 'Groups')
+    print_color_key()
     exit()
 
 epstein_files = EpsteinFiles()
 epstein_files.print_files_overview()
-print_color_key(COLOR_KEYS, 'Groups')
+print_color_key()
 
 
 # Text messages section
@@ -81,11 +81,11 @@ epstein_files.print_email_device_info()
 
 
 # Other Files Section
-if is_build and not args.all:
+if not skip_texts:
     print_section_header(f"Top Lines of {len(epstein_files.other_files)} Files That Are Neither Emails Nor Text Msgs")
     epstein_files.print_other_files_table()
 else:
-    logger.warning(f"Skipping other files section (is_build={is_build}, args.all={args.all})...")
+    logger.warning(f"Skipping other files section (is_build={is_build}, args.all={args.all}, skip_texts={skip_texts})...")
 
 
 # Save output

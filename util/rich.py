@@ -16,7 +16,7 @@ from rich.theme import Theme
 
 from .constants import *
 from .env import args, deep_debug, is_debug, logger
-from .highlighted_group import HIGHLIGHTED_GROUPS, REGEX_STYLE_PREFIX, highlighter_style_name
+from .highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS, REGEX_STYLE_PREFIX, highlighter_style_name
 from .html import PAGE_TITLE
 
 # Misc
@@ -237,9 +237,9 @@ def print_header():
     print_centered('(note this site is based on the OCR text provided by Congress which is not the greatest)', 'grey23')
 
 
-def print_color_key(color_keys: Text, key_type: Literal["Groups", "People"]) -> None:
-    color_table = Table(show_header=False, title=f'Rough Guide to Highlighted Colors for {key_type}')
-    num_colors = len(color_keys)
+def print_color_key(key_type: Literal["Groups", "People"] = "Groups") -> None:
+    color_table = Table(show_header=False, title=f'Rough Guide to Highlighted Colors')
+    num_colors = len(COLOR_KEYS)
     row_number = 0
 
     for i in range(0, NUM_COLOR_KEY_COLS):
@@ -249,9 +249,9 @@ def print_color_key(color_keys: Text, key_type: Literal["Groups", "People"]) -> 
         idx = row_number * NUM_COLOR_KEY_COLS
 
         color_table.add_row(
-            color_keys[idx],
-            color_keys[idx + 1] if (idx + 1) < num_colors else '',
-            color_keys[idx + 2] if (idx + 2) < num_colors else '',
+            COLOR_KEYS[idx],
+            COLOR_KEYS[idx + 1] if (idx + 1) < num_colors else '',
+            COLOR_KEYS[idx + 2] if (idx + 2) < num_colors else '',
         )
 
         row_number += 1
