@@ -222,6 +222,9 @@ SUPPRESS_OUTPUT_FOR_IDS = {
     '023026': 'the same as 030618',
     '032246': 'a redacted version of 032248',
     '012898': 'the same as 033575',
+    '026834': 'the same as 028780',
+    '026835': 'the same as 028775',
+    '028968': 'the same as 029835',
 }
 
 clipped_signature_replacement = lambda name: f'<...snipped {name.lower()} legal signature...>'
