@@ -105,6 +105,7 @@ PAUL_PROSPERI = 'Paul Prosperi'
 PEGGY_SIEGAL = 'Peggy Siegal'
 PETER_MANDELSON = 'Peter Mandelson'
 PRINCE_ANDREW = 'Prince Andrew'
+RAAFAT_ALSABBAGH = 'Raafat Alsabbagh'
 REID_HOFFMAN = 'Reid Hoffman'
 REID_WEINGARTEN = 'Reid Weingarten'
 RICHARD_KAHN = 'Richard Kahn'
@@ -563,7 +564,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '030508': PAULA,                  # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
     '030509': PAULA,                  # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
     '030096': PETER_MANDELSON,
-    '032951': 'Raafat Alsabbagh',
+    '032951': RAAFAT_ALSABBAGH,
     '019334': STEVE_BANNON,
     # '032213': Probably MIRO or Reid Weingarten based on replies but he sent it to a lot of people
 }
