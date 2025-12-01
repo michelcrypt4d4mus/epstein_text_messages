@@ -116,6 +116,18 @@ class Document:
     def top_lines(self, n: int = 10) -> str:
         return '\n'.join(self.lines[0:n])
 
+    def write_clean_text(self, output_path: Path) -> None:
+        if output_path.exists():
+            if str(output_path.name).startswith('HOUSE_OVERSIGHT'):
+                raise RuntimeError(f"'{output_path}' already exists! Not overwriting.")
+            else:
+                logger.warning(f"Overwriting '{output_path}'...")
+
+        with open(output_path, 'w') as f:
+            f.write(self.text)
+
+        logger.warning(f"Wrote {self.length} chars of cleaned {self.filename} to {output_path}.")
+
     def _load_file(self):
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
         with open(self.file_path) as f:

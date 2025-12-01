@@ -1,9 +1,11 @@
 import logging
-from argparse import ArgumentParser
+from argparse import ArgumentParser, Namespace
 from os import environ
 
 from rich.logging import RichHandler
 
+
+is_env_var_set = lambda s: len(environ.get(s) or '') > 0
 
 parser = ArgumentParser(description="Parse epstein OCR docs and generate HTML page.")
 parser.add_argument('--build', '-b', action='store_true', help='write HTML to docs/index.html')
@@ -19,13 +21,14 @@ parser.add_argument('--search', '-s', action='append', help='search for string i
 parser.add_argument('--search-other', '-so', action='append', help='search for string in non email/text files')
 parser.add_argument('--debug', '-d', action='store_true', help='set debug level to INFO')
 parser.add_argument('--deep-debug', '-dd', action='store_true', help='set debug level to DEBUG')
+parser.add_argument('positional_args', nargs='*', help='Optional args (only used by helper scripts)')
 args = parser.parse_args()
 
-deep_debug = args.deep_debug or (len(environ.get('DEEP_DEBUG') or '') > 0)
-is_build = args.build or (len(environ.get('BUILD_HTML') or '') > 0)
-is_debug = deep_debug or args.debug or (len(environ.get('DEBUG') or '') > 0)
-is_fast_mode = args.fast or (len(environ.get('FAST') or '') > 0)
-skip_texts = args.no_texts or (len(environ.get('SKIP_TEXTS') or '') > 0)
+deep_debug = args.deep_debug or is_env_var_set('DEEP_DEBUG')
+is_build = args.build or is_env_var_set('BUILD_HTML')
+is_debug = deep_debug or args.debug or is_env_var_set('DEBUG')
+is_fast_mode = args.fast or is_env_var_set('FAST')
+skip_texts = args.no_texts or is_env_var_set('NO_TEXTS')
 
 specified_emailers = args.emails or []
 args.search = args.search or []
