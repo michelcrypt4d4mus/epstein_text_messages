@@ -255,6 +255,7 @@ HIGHLIGHTED_GROUPS = [
         emailers=[
             DANIEL_SIAD,
             FAITH_KATES,
+            'Gianni Serazzi',  # fashion consultant?
             JEAN_LUC_BRUNEL,
             MARIANA_IDZKOWSKA,
         ]
