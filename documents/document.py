@@ -2,20 +2,20 @@ import re
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
+from subprocess import run
 from typing import ClassVar
 
 from rich.markup import escape
 from rich.text import Text
 
 from util.constants import HOUSE_OVERSIGHT_PREFIX, esptein_web_doc_url, search_archive_url
-from util.data import patternize
+from util.data import collapse_newlines, patternize
 from util.env import args, logger
-from util.file_helper import build_filename_for_id, extract_file_id, is_local_extract_file
-from util.rich import (ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_regex_match, highlighter,
+from util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, is_local_extract_file
+from util.rich import (ARCHIVE_LINK_COLOR, console, epsteinify_doc_url, highlight_regex_match, highlighter,
      logger, make_link, make_link_markup)
 from util.strings import *
 
-MULTINEWLINE_REGEX = re.compile(r"\n{3,}")
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 HOUSE_OVERSIGHT = 'HOUSE OVERSIGHT'
@@ -165,12 +165,37 @@ class Document:
             text = self.regex_repair_text(OCR_REPAIRS, text.strip())
             lines = [l.strip() for l in text.split('\n') if not l.startswith(HOUSE_OVERSIGHT)]
             lines = lines[1:] if (len(lines) > 1 and lines[0] == '>>') else lines
-            return MULTINEWLINE_REGEX.sub('\n\n\n', '\n'.join(lines))
+            return collapse_newlines('\n'.join(lines))
 
     def _set_computed_fields(self) -> None:
         self.length = len(self.text)
         self.lines = self.text.split('\n')
         self.num_lines = len(self.lines)
+
+    @staticmethod
+    def diff_files(files: list[str]) -> None:
+        if len(files) != 2:
+            raise RuntimeError('Need 2 files')
+
+        files = [f if f.endswith('.txt') else f"{f}.txt" for f in files]
+        tmpfiles = [Path(f"tmp_{f}") for f in files]
+        docs = [Document(DOCS_DIR.joinpath(f)) for f in files]
+
+        for i, doc in enumerate(docs):
+            doc.write_clean_text(tmpfiles[i])
+
+        cmd = f"diff {tmpfiles[0]} {tmpfiles[1]}"
+        console.print(f"Running '{cmd}'...")
+        results = run(cmd, shell=True, capture_output=True, text=True).stdout
+        console.print(f"\nDiff results:")
+        console.print(f"{results}\n", style='dim', highlight=False)
+
+        console.print(f"Possible suppression with: ")
+        console.print(Text('   suppress left: ').append(f"   '{extract_file_id(files[0])}': 'the same as {extract_file_id(files[1])}',", style='cyan'))
+        console.print(Text('  suppress right: ').append(f"   '{extract_file_id(files[1])}': 'the same as {extract_file_id(files[0])}',", style='cyan'))
+
+        for f in tmpfiles:
+            f.unlink()
 
 
 @dataclass

@@ -404,7 +404,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='virgin islands',
         style='sea_green1',
-        pattern=r'Cecile de Jongh|(Kenneth E\. )?Mapp|Virgin\s*Islands',
+        pattern=r'Bahamas|Cecile de Jongh|(Kenneth E\. )?Mapp|Virgin\s*Islands',
         emailers=[
             STACEY_PLASKETT,
         ]

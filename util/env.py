@@ -1,8 +1,12 @@
 import logging
 from argparse import ArgumentParser, Namespace
 from os import environ
+from pathlib import Path
+from sys import argv
 
 from rich.logging import RichHandler
+
+MAIN_SCRIPT = 'epstein_chat_logs_reformatter.py'
 
 
 is_env_var_set = lambda s: len(environ.get(s) or '') > 0
@@ -28,6 +32,7 @@ deep_debug = args.deep_debug or is_env_var_set('DEEP_DEBUG')
 is_build = args.build or is_env_var_set('BUILD_HTML')
 is_debug = deep_debug or args.debug or is_env_var_set('DEBUG')
 is_fast_mode = args.fast or is_env_var_set('FAST')
+is_main_script = Path(argv[0]).name == MAIN_SCRIPT
 skip_texts = args.no_texts or is_env_var_set('NO_TEXTS')
 specified_emailers = args.emails or []
 
