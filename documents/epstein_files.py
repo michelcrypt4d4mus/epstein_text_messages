@@ -162,7 +162,7 @@ class EpsteinFiles:
         conversation_length = self.email_conversation_length_in_days(_author)
 
         print_author_header(
-            f"Found {len(emails)} {author} emails from {emails[0].timestamp.date()} over {conversation_length:,} days",
+            f"Found {len(emails)} {author} emails starting {emails[0].timestamp.date()} over {conversation_length:,} days",
             get_style_for_name(author),
             get_info_for_name(author)
         )
