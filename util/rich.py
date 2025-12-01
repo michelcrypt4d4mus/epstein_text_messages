@@ -16,7 +16,7 @@ from rich.theme import Theme
 
 from .constants import *
 from .env import args, deep_debug, is_debug, logger
-from .highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS, REGEX_STYLE_PREFIX, highlighter_style_name
+from .highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS, REGEX_STYLE_PREFIX
 from .html import PAGE_TITLE
 
 NUM_COLOR_KEY_COLS = 3
@@ -42,7 +42,7 @@ THEME_STYLES = {
 }
 
 for highlight_group in HIGHLIGHTED_GROUPS:
-    THEME_STYLES[highlighter_style_name(highlight_group.label)] = highlight_group.style
+    THEME_STYLES[highlight_group.style_name] = highlight_group.style
 
 
 class InterestingNamesHighlighter(RegexHighlighter):

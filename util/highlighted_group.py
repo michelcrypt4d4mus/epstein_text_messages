@@ -12,58 +12,6 @@ UNSPLITTABLE_NAMES = [
     JEREMY_RUBIN,
 ]
 
-NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
-    'Allen',
-    'Amanda',
-    'Andres',
-    'Andrew',
-    'Black',
-    'Brad',
-    'Daniel',
-    'Darren',
-    'David',
-    'Etienne',
-    'Jack',
-    'Jay',
-    'Jeff',
-    'jeffrey',
-    'John',
-    'Jonathan',
-    'Joseph',
-    'Kahn',
-    'Jr',
-    'Leon',
-    'Lesley',
-    'Marc',
-    'Martin',
-    'Melanie',
-    'Michael',
-    'Mike',
-    'Paul',
-    'Pen',
-    'Peter',
-    'Reid',
-    'Richard',
-    'Robert',
-    'Roger',
-    'Rubin',
-    'Scott',
-    'Sean',
-    'Stephen',
-    'Steve',
-    'Steven',
-    'Stone',
-    'Susan',
-    'The',
-    'Thomas',
-    'Tom',
-    'Victor',
-    "Y",
-    "Y.",
-]]
-
-highlighter_style_name = lambda style_name: f"{REGEX_STYLE_PREFIX}.{style_name.replace(' ', '_')}"
-
 
 @dataclass
 class HighlightedGroup:
@@ -73,6 +21,7 @@ class HighlightedGroup:
     emailers: list[str] = field(default_factory=list)
     is_multiline: bool = False
     regex: re.Pattern = field(init=False)
+    style_name: str = field(init=False)
 
     def __post_init__(self):
         if not self.label:
@@ -81,6 +30,7 @@ class HighlightedGroup:
             else:
                 self.label = self.emailers[0].lower().replace(' ', '_').replace('-', '_')
 
+        self.style_name = f"{REGEX_STYLE_PREFIX}.{self.label.replace(' ', '_')}"
         patterns = [self.emailer_pattern(e) for e in self.emailers] + ([self.pattern] if self.pattern else [])
         pattern = '|'.join(patterns)
         logger.debug('')

@@ -604,16 +604,65 @@ HEADER_ABBREVIATIONS = {
     "Zug": "City in Switzerland (crypto hub)",
 }
 
+NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
+    'Allen',
+    'Amanda',
+    'Andres',
+    'Andrew',
+    'Black',
+    'Brad',
+    'Daniel',
+    'Darren',
+    'David',
+    'Etienne',
+    'Jack',
+    'Jay',
+    'Jeff',
+    'jeffrey',
+    'John',
+    'Jonathan',
+    'Joseph',
+    'Kahn',
+    'Jr',
+    'Leon',
+    'Lesley',
+    'Marc',
+    'Martin',
+    'Melanie',
+    'Michael',
+    'Mike',
+    'Paul',
+    'Pen',
+    'Peter',
+    'Reid',
+    'Richard',
+    'Robert',
+    'Roger',
+    'Rubin',
+    'Scott',
+    'Sean',
+    'Stephen',
+    'Steve',
+    'Steven',
+    'Stone',
+    'Susan',
+    'The',
+    'Thomas',
+    'Tom',
+    'Victor',
+    "Y",
+    "Y.",
+]]
 
 # URLs
 ATTRIBUTIONS_URL = 'https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/util/constants.py'
-COURIER_NEWSROOM_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
 COFFEEZILLA_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=061ce61c9e70bdfd'
+COURIER_NEWSROOM_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
+EPSTEINIFY_URL = 'https://epsteinify.com'
 JMAIL_URL = 'https://jmail.world'
 OVERSIGHT_REPUBLICANS_PRESSER_URL = 'https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/'
 RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_'
 SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great'
-EPSTEINIFY_URL = 'https://epsteinify.com'
 
 SITE_URLS = {
     EMAIL: 'https://michelcrypt4d4mus.github.io/epstein_emails_house_oversight/',
