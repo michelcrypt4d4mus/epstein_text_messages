@@ -309,7 +309,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='south_america',
         style='yellow',
-        pattern=r'Argentin(a|ian)|Bolsonar[aio]|Bra[sz]il(ian)?|Bukele|Caracas|El\s*Salvador|Lula|(Nicolas\s+)?Maduro|Venezuelan?',
+        pattern=r'Argentin(a|ian)|Bolsonar[aio]|Bra[sz]il(ian)?|Bukele|Cuban?|El\s*Salvador|Lula|(Nicolas\s+)?Maduro|Venezuelan?',
     ),
     HighlightedGroup(
         label='tech_bro',
