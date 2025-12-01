@@ -329,13 +329,18 @@ class Email(CommunicationDocument):
                 return match.end() - 1
 
     def _border_style(self) -> str:
+        style: str
+
+        # Color emails from epstein to others with the color for the first recipient
         if self.author == JEFFREY_EPSTEIN:
-            if len(self.recipients) == 0:
-                return self.author_style
+            if len(self.recipients) == 0 or self.recipients == [None]:
+                style = self.author_style
             else:
-                return get_style_for_name(self.recipients[0] or UNKNOWN)
+                style = get_style_for_name(self.recipients[0] or UNKNOWN)
         else:
-            return self.author_style
+            style = self.author_style
+
+        return style.replace('bold', '')
 
     def _cleaned_up_text(self) -> str:
         # add newline after header if header looks valid

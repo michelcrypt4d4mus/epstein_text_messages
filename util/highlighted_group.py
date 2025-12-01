@@ -1,12 +1,21 @@
 import re
 from dataclasses import dataclass, field
 
+from inflection import titleize
 from rich.text import Text
 
 from util.constants import *
 from util.env import is_debug, logger
 
 REGEX_STYLE_PREFIX = 'regex'
+NO_CATEGORY_LABELS = [BILL_GATES, STEVE_BANNON]
+
+# Keyed by the 'label' property
+PERSON_CATEGORIES = {
+    JOI_ITO: 'MIT Media Lab',
+}
+
+safe_style_name = lambda label: label.lower().replace(' ', '_').replace('-', '_')
 
 
 @dataclass
@@ -15,25 +24,39 @@ class HighlightedGroup:
     label: str = ''      # TODO: make it default to None?
     pattern: str = ''    # TODO: make it default to None?
     emailers: list[str] = field(default_factory=list)
+    has_no_category: bool = False
+    info: str | None = None
     is_multiline: bool = False
     regex: re.Pattern = field(init=False)
     style_name: str = field(init=False)
+    style_suffix: str = field(init=False)
 
     def __post_init__(self):
         if not self.label:
             if len(self.emailers) != 1:
                 raise RuntimeError(f"No label provided for {repr(self)}")
             else:
-                self.label = self.emailers[0].lower().replace(' ', '_').replace('-', '_')
+                self.label = self.emailers[0]
+                self.has_no_category = True
 
-        self.style_name = f"{REGEX_STYLE_PREFIX}.{self.label.replace(' ', '_')}"
+        self.style_suffix = safe_style_name(self.label)
+        self.style_name = f"{REGEX_STYLE_PREFIX}.{self.style_suffix}"
         patterns = [self.emailer_pattern(e) for e in self.emailers] + ([self.pattern] if self.pattern else [])
         pattern = '|'.join(patterns)
 
         if self.is_multiline:
-            self.regex = re.compile(fr"(?P<{self.label}>{pattern})", re.IGNORECASE | re.MULTILINE)
+            self.regex = re.compile(fr"(?P<{self.style_suffix}>{pattern})", re.IGNORECASE | re.MULTILINE)
+            self.has_no_category = True
         else:
-            self.regex = re.compile(fr"\b(?P<{self.label}>({pattern})s?)\b", re.IGNORECASE)
+            self.regex = re.compile(fr"\b(?P<{self.style_suffix}>({pattern})s?)\b", re.IGNORECASE)
+
+    def get_info(self) -> str | None:
+        if self.info:
+            return self.info
+        elif self.has_no_category:
+            return None
+        else:
+            return titleize(self.label)
 
     def colored_label(self) -> Text:
         return Text(self.label.replace('_', ' '), style=self.style)
@@ -128,7 +151,7 @@ HIGHLIGHTED_GROUPS = [
         pattern=r'Biden|((Bill|Hillary)\s*)?Clinton|DNC|(George\s*)?Soros|Hill?ary|Democrat(ic)?|(John\s*)?Kerry|Maxine\s*Waters|(Barac?k )?Obama|(Nancy )?Pelosi|Ron\s*Dellums',
     ),
     HighlightedGroup(
-        label='dubin',
+        label='dubin family',
         style='medium_orchid1',
         pattern='((Celina|Eva( Anderss?on)?|Glenn) )?Dubin',
         emailers=[EVA],
@@ -143,7 +166,7 @@ HIGHLIGHTED_GROUPS = [
         ]
     ),
     HighlightedGroup(
-        label='entertainers',
+        label='entertainer',
         style='light_steel_blue3',
         pattern='Andres Serrano|Bill Siegel|Bobby slayton|David Blaine|Etienne Binant|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?',
     ),
@@ -227,6 +250,7 @@ HIGHLIGHTED_GROUPS = [
     ),
     HighlightedGroup(
         label='famous_lawyer',
+        info='lawyer',
         style='medium_purple3',
         emailers=[
             ALAN_DERSHOWITZ,
@@ -267,7 +291,7 @@ HIGHLIGHTED_GROUPS = [
         ]
     ),
     HighlightedGroup(
-        label='police',
+        label='law enforcement',
         style='color(24) bold',
         pattern='FBI|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|Police Code Enforcement|Strzok',
         emailers=[
@@ -317,12 +341,12 @@ HIGHLIGHTED_GROUPS = [
         ]
     ),
     HighlightedGroup(
-        label='south_america',
+        label='south america',
         style='yellow',
         pattern=r'Argentin(a|ian)|Bolsonar[aio]|Bra[sz]il(ian)?|Bukele|Cuban?|El\s*Salvador|Lula|(Nicolas\s+)?Maduro|Venezuelan?',
     ),
     HighlightedGroup(
-        label='tech_bro',
+        label='tech bro',
         style='cyan2',
         pattern='Masa(yoshi)?( Son)?|Najeev|(Peter )?Th(ie|ei)l|Softbank',
         emailers=[
@@ -342,7 +366,7 @@ HIGHLIGHTED_GROUPS = [
         pattern=r'(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts',
     ),
     HighlightedGroup(
-        label='virgin_islands',
+        label='virgin islands',
         style='sea_green1',
         pattern=r'Cecile de Jongh|(Kenneth E\. )?Mapp|Virgin\s*Islands',
         emailers=[
@@ -352,28 +376,35 @@ HIGHLIGHTED_GROUPS = [
 
     # Individuals
     HighlightedGroup(
-        label='bannon',
+        label=STEVE_BANNON,
+        info='War Room',
         style='color(58)',
         pattern=r'((Steve|Sean)\s+)?Bannon?',
     ),
     HighlightedGroup(
-        label='bill_gates',
+        label=BILL_GATES,
         style='turquoise4',
         pattern=r'BG|(Bill\s+((and|or)\s+Melinda\s+)?)?Gates|Melinda(\s+Gates)?',
+        has_no_category=True,
     ),
-    HighlightedGroup(emailers=[ARIANE_DE_ROTHSCHILD], style='indian_red', label='rothschild'),
+    HighlightedGroup(
+        emailers=[STEVEN_HOFFENBERG],
+        info=HEADER_ABBREVIATIONS['Hoffenberg'],
+        pattern=r'(steven?\s*)?hoffenberg?w?',
+        style='gold3'
+    ),
+    HighlightedGroup(emailers=[ARIANE_DE_ROTHSCHILD], style='indian_red', info='Rothschild family'),
     HighlightedGroup(emailers=[GHISLAINE_MAXWELL], pattern='gmax(1@ellmax.com)?', style='deep_pink3'),
-    HighlightedGroup(emailers=[JABOR_Y], style='spring_green1'),
+    HighlightedGroup(emailers=[JABOR_Y], info=HEADER_ABBREVIATIONS['Jabor'], style='spring_green1'),
     HighlightedGroup(emailers=[JEFFREY_EPSTEIN], pattern='Mark (L. )?Epstein', style='blue1'),
-    HighlightedGroup(emailers=[JOI_ITO], style='blue_violet'),
-    HighlightedGroup(emailers=[KATHY_RUEMMLER], style='magenta2'),
+    HighlightedGroup(emailers=[JOI_ITO], info='MIT Media Lab', style='blue_violet'),
+    HighlightedGroup(emailers=[KATHY_RUEMMLER], info='former Obama legal counsel', style='magenta2'),
     HighlightedGroup(emailers=[LINDA_STONE], style='pink3'),
     HighlightedGroup(emailers=[MELANIE_SPINELLA], style='magenta3'),
-    HighlightedGroup(emailers=[MELANIE_WALKER], style='light_pink3'),
+    HighlightedGroup(emailers=[MELANIE_WALKER], info='Doctor', style='light_pink3'),
     HighlightedGroup(emailers=[PAULA], style='pink1'),
     HighlightedGroup(emailers=[PRINCE_ANDREW], style='dodger_blue1'),
-    HighlightedGroup(emailers=[SOON_YI], style='hot_pink'),
-    HighlightedGroup(emailers=[STEVEN_HOFFENBERG], pattern=r'(steven?\s*)?hoffenberg?w?', style='gold3'),
+    HighlightedGroup(emailers=[SOON_YI], info="Woody Allen's wife", style='hot_pink'),
     HighlightedGroup(emailers=[SULTAN_BIN_SULAYEM], style='green1'),
 
     # Highlight regexes for things other than names

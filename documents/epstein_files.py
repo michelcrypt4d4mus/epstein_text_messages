@@ -39,7 +39,7 @@ class EpsteinFiles:
     email_author_device_signatures: dict[str, set[str]] = field(init=False)
     email_recipient_counts: dict[str, int] = field(init=False)
     email_sent_from_devices: dict[str, set[str ]] = field(init=False)
-    email_unknown_recipient_file_ids: set[str] = field(default_factory=set)
+    _email_unknown_recipient_file_ids: set[str] = field(default_factory=set)
 
     def __post_init__(self):
         started_processing_at = time.perf_counter()
@@ -74,7 +74,7 @@ class EpsteinFiles:
                     self.email_recipient_counts[recipient] += 1
 
                 if UNKNOWN in email.recipients:
-                    self.email_unknown_recipient_file_ids.add(email.file_id)
+                    self._email_unknown_recipient_file_ids.add(email.file_id)
 
                 if email.sent_from_device:
                     self.email_author_device_signatures[email.author or UNKNOWN].add(email.sent_from_device)
@@ -160,19 +160,20 @@ class EpsteinFiles:
             get_category_for_name(author)
         )
 
-        self.print_emails_table_for(author)
-
-        if author == UNKNOWN:
-            ids = list(self.email_unknown_recipient_file_ids)
-            logger.info(f"{len(ids)} UNKNOWN RECIPIENT IDS:\n" + '\n'.join(sorted(ids)))
+        self.print_emails_table_for(_author)
 
         for email in emails:
             console.print(email)
 
-    def print_emails_table_for(self, author: str) -> None:
-        emails = self.emails_for(author)
+    def email_unknown_recipient_file_ids(self) -> list[str]:
+        return sorted(list(self._email_unknown_recipient_file_ids))
+
+    def print_emails_table_for(self, _author: str | None) -> None:
+        emails = self.emails_for(_author)
+        author = _author or UNKNOWN
         title = f"Emails to/from {author} starting {emails[0].timestamp.date()}"
-        table = Table(title=title, border_style=get_style_for_name(author), expand=True, header_style="bold")
+        border_style = get_style_for_name(author, allow_bold=False)
+        table = Table(title=title, border_style=border_style, expand=True, header_style="bold")
         table.add_column('From', justify='left')
         table.add_column('Timestamp', justify='center')
         table.add_column('Subject', justify='left', style='honeydew2', min_width=60)
