@@ -232,6 +232,11 @@ SUPPRESS_OUTPUT_FOR_IDS = {
     '033517': 'a reminder with same text as 033528',
     '032012': 'a reminder with same text as 032023',
     '028482': 'the same as 026620',
+    '019465': 'the same as 031118',
+    '032158': 'the same as 031912',
+    '030514': 'the same as 030587',
+    '012685': 'the same as 029773',
+    '023065': 'a redacted version of 030628',
 }
 
 clipped_signature_replacement = lambda name: f'<...snipped {name.lower()} legal signature...>'
