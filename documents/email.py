@@ -498,9 +498,10 @@ class Email(CommunicationDocument):
 
         if self.file_id in SUPPRESS_OUTPUT_FOR_IDS:
             supression_reason = SUPPRESS_OUTPUT_FOR_IDS[self.file_id]
+            reason_msg = ' '.join(supression_reason.split()[0:-1])
             txt = Text(f"Not showing ", style='dim').append(make_epsteinify_doc_link_txt(self.file_id, style='cyan'))
-            txt.append(f" because it's {supression_reason} ({build_filename_for_id(supression_reason.split()[-1])})")
-            yield txt.append('\n')
+            txt.append(f" because it's {reason_msg} {build_filename_for_id(supression_reason.split()[-1])}")
+            yield txt.append(' (which is shown)\n')
             return
 
         yield Panel(self.archive_link, border_style=self._border_style(), expand=False)
