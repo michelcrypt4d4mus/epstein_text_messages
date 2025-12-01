@@ -74,7 +74,7 @@ FRED_HADDAD = 'Fred Haddad'
 GERALD_BARTON = 'Gerald Barton'
 GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
 GLENN_DUBIN = 'Glenn Dubin'
-GWENDOLYN_BECK = 'Gwendolyn Beck'
+GWENDOLYN_BECK = 'Gwendolyn Beck'         # https://www.lbc.co.uk/article/who-gwendolyn-beck-epstein-andrew-5HjdN66_2/
 IVANKA = 'Ivanka'
 JABOR_Y = 'Jabor Y'                       # Qatari
 JACK_GOLDBERGER = 'Jack Goldberger'
@@ -83,7 +83,8 @@ JARED_KUSHNER = 'Jared Kushner'
 JAY_LEFKOWITZ = 'Jay Lefkowitz'
 JEAN_HUGUEN = 'Jean Huguen'
 JEAN_LUC_BRUNEL = 'Jean Luc Brunel'
-JEREMY_RUBIN = 'Jeremy Rubin'             # bitcoin dev
+JEREMY_RUBIN = 'Jeremy Rubin'             # Bitcoin dev
+JES_STALEY = 'Jes Staley'
 JESSICA_CADWELL = 'Jessica Cadwell'       # Paralegal?
 JIDE_ZEITLIN = 'Jide Zeitlin'
 JOHN_PAGE = 'John Page'
@@ -91,7 +92,9 @@ JOHNNY_EL_HACHEM = 'Johnny el Hachem'
 JONATHAN_FARKAS = 'Jonathan Farkas'
 JOSCHA_BACH = 'Joscha Bach'
 KATHY_RUEMMLER = 'Kathy Ruemmler'
+KATHERINE_KEATING = 'Katherine Keating'
 KEN_STARR = 'Ken Starr'
+KENNETH_E_MAPP = 'Kenneth E. Mapp'
 LANDON_THOMAS = 'Landon Thomas Jr'
 LAWRANCE_VISOSKI = 'Lawrance Visoski'
 LAWRENCE_KRAUSS = 'Lawrence Krauss'
@@ -123,6 +126,7 @@ PAUL_PROSPERI = 'Paul Prosperi'
 PEGGY_SIEGAL = 'Peggy Siegal'
 PETER_MANDELSON = 'Peter Mandelson'
 PRINCE_ANDREW = 'Prince Andrew'
+PUREVSUREN_LUNDEG = 'Purevsuren Lundeg'
 RAAFAT_ALSABBAGH = 'Raafat Alsabbagh'
 REID_HOFFMAN = 'Reid Hoffman'
 REID_WEINGARTEN = 'Reid Weingarten'
@@ -348,13 +352,13 @@ EMAILERS = [
     'Gordon Getty',
     'Jack Lang',
     JAY_LEFKOWITZ,
-    'Jes Staley',
+    JES_STALEY,
     JESSICA_CADWELL,
     JOHN_PAGE,
     'Jokeland',
     JOSCHA_BACH,
     'Kathleen Ruderman',
-    'Kenneth E. Mapp',
+    KENNETH_E_MAPP,
     'Larry Cohen',
     LESLEY_GROFF,
     'lorraine@mc2mm.com',
@@ -547,6 +551,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '022187': JEFFREY_EPSTEIN,        # Bad OCR
     '028849': JEFFREY_EPSTEIN,        # Conversation
     '026547': JEFFREY_EPSTEIN,        # Bad OCR
+    '031489': JEFFREY_EPSTEIN,        # Bad OCR
     '032209': JEFFREY_EPSTEIN,        # More of a text convo?
     '032210': JEFFREY_EPSTEIN,        # More of a text convo?
     '033575': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN],
@@ -565,6 +570,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '033456': 'Joel',                 # Reply
     '033460': 'Joel',                 # Reply
     '029282': [JOI_ITO, REID_HOFFMAN],# Bad OCR
+    '021090': JONATHAN_FARKAS,        # Reply to a message signed " jonathan" same as other Farkas emails
     '033073': KATHY_RUEMMLER,         # to "Kathy" about dems, sent from iPad (not 100% confirmed)
     '032939': KATHY_RUEMMLER,         # to "Kathy" about dems, sent from iPad (not 100% confirmed)
     '031388': [KEN_STARR, LILLY_SANCHEZ, MARTIN_WEINBERG, REID_WEINGARTEN],  # Bad OCR
@@ -638,7 +644,7 @@ HEADER_ABBREVIATIONS = {
     'KSA': "Kingdom of Saudi Arabia",
     'Kurz': 'Sebastian Kurz (former Austrian Chancellor)',
     'Kwok': "Chinese criminal Miles Kwok AKA Miles Guo AKA Guo Wengui",
-    'Mapp': 'Kenneth E. Mapp (Governor Virgin Islands)',
+    'Mapp': f'{KENNETH_E_MAPP} (Governor Virgin Islands)',
     'Masa': 'Masayoshi Son (Softbank)',
     'MBS': "Mohammed bin Salman Al Saud (Saudi ruler)",
     'MBZ': "Mohamed bin Zayed Al Nahyan (Emirates sheikh)",

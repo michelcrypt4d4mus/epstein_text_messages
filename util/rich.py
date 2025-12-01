@@ -70,23 +70,6 @@ if args.suppress_output:
 console = Console(**CONSOLE_ARGS)
 
 
-def get_category_for_name(name: str) -> str | None:
-    highlight_group = get_highlight_group_for_name(name)
-    return highlight_group.get_info() if highlight_group else None
-
-
-def get_highlight_group_for_name(name: str) -> HighlightedGroup | None:
-    for highlight_group in HIGHLIGHTED_GROUPS:
-        if highlight_group.regex.search(name):
-            return highlight_group
-
-
-def get_style_for_name(name: str, default: str = DEFAULT, allow_bold: bool = True) -> str:
-    highlight_group = get_highlight_group_for_name(name)
-    style = highlight_group.style if highlight_group else default
-    return style if allow_bold else style.replace('bold', '').strip()
-
-
 def highlight_regex_match(text: str, pattern: re.Pattern, style: str = 'cyan') -> Text:
     """Replace 'pattern' matches with markup of the match colored with 'style'."""
     return Text.from_markup(pattern.sub(rf'[{style}]\1[/{style}]', text))
@@ -224,7 +207,7 @@ def print_numbered_list_of_emailers(_list: list[str] | dict, epstein_files = Non
 
 
 def print_other_site_link(is_header: bool = True) -> None:
-    site_type = EMAIL if args.all else TEXT_MESSAGE
+    site_type = EMAIL if args.all_emails else TEXT_MESSAGE
 
     if is_header:
         site_type = wrap_in_markup_style(f"  ******* This is the Epstein {site_type.title()}s site *******  ", TITLE_STYLE)

@@ -7,12 +7,46 @@ from rich.text import Text
 from util.constants import *
 from util.env import is_debug, logger
 
+ESTATE_EXECUTOR = 'Epstein estate executor'
 REGEX_STYLE_PREFIX = 'regex'
 NO_CATEGORY_LABELS = [BILL_GATES, STEVE_BANNON]
 
 # Keyed by the 'label' property
-PERSON_CATEGORIES = {
-    JOI_ITO: 'MIT Media Lab',
+PEOPLE_INFO = {
+    AL_SECKEL: 'husband of Isabel Maxwell, Mind State organizer, fell off a cliff',
+    AZIZA_ALAHMADI: 'Abu Dhabi Department of Culture & Tourism',
+    BARBRO_EHNBOM: 'Swedish pharmaceuticals',
+    BORIS_NIKOLIC: f'Biotech VC, {ESTATE_EXECUTOR}',
+    DANIEL_SABBA: 'UBS Investment Bank',
+    DARREN_INDYKE: ESTATE_EXECUTOR,
+    EHUD_BARAK: 'former primer minister',
+    GLENN_DUBIN: "Highbridge Capital Management, married to Epstein's ex-gf Eva",
+    GWENDOLYN_BECK: 'fund manager',
+    JEAN_LUC_BRUNEL: 'died by suicide in French prison',
+    JES_STALEY: 'former CEO of Barclays',
+    JIDE_ZEITLIN: 'former partner at Goldman Sachs, allegations of sexual misconduct',
+    KATHERINE_KEATING: 'Daughter of former Australian PM',
+    KENNETH_E_MAPP: 'Governor',
+    LANDON_THOMAS: 'New York Times',
+    LAWRANCE_VISOSKI: 'Pilot',
+    JOSCHA_BACH: 'cognitive science / AI research',
+    LEON_BLACK: 'Apollo CEO',
+    LESLEY_GROFF: 'Assistant (?)',
+    LISA_NEW: 'poetry',
+    MARK_EPSTEIN: 'brother',
+    'Nili Priell Barak': f'wife of {EHUD_BARAK}',
+    MASHA_DROKOVA: 'silicon valley VC',
+    MIROSLAV_LAJCAK: 'Russia friendly Slovak',
+    MOHAMED_WAHEED_HASSAN: 'former president of the Maldives',
+    NADIA_MARCINKO: 'Pilot',
+    NICHOLAS_RIBIS: 'Hilton CEO',
+    PUREVSUREN_LUNDEG: 'Mongolian ambassador to the UN',
+    RICHARD_KAHN: ESTATE_EXECUTOR,
+    ROBERT_TRIVERS: 'evolutionary biology',
+    SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of the ports in Dubai',
+    TERRY_KAFKA: 'CEO of Impact Outdoor (highway billboards)',
+    TOM_BARRACK: 'long time friend of Trump',
+    TOM_PRITZKER: 'brother of J.B. Pritzker',
 }
 
 safe_style_name = lambda label: label.lower().replace(' ', '_').replace('-', '_')
@@ -92,7 +126,6 @@ HIGHLIGHTED_GROUPS = [
             ALIREZA_ITTIHADIEH,
             AMANDA_ENS,
             DANIEL_SABBA,
-            GWENDOLYN_BECK,  # https://www.lbc.co.uk/article/who-gwendolyn-beck-epstein-andrew-5HjdN66_2/
             JIDE_ZEITLIN,
             LEON_BLACK,
             MARC_LEON,
@@ -160,6 +193,7 @@ HIGHLIGHTED_GROUPS = [
         label='employee',
         style='deep_sky_blue4',
         emailers=[
+            GWENDOLYN_BECK,
             LAWRANCE_VISOSKI,
             LESLEY_GROFF,
             NADIA_MARCINKO,
@@ -260,10 +294,12 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='lobbyist',
         style='light_coral',
-        pattern='Purevsuren Lundeg|Rob Crowe|Stanley Rosenberg',
+        pattern='Rob Crowe|Stanley Rosenberg',
         emailers=[
-            'Katherine Keating',  # Daughter of former australian PM
+            KATHERINE_KEATING,
+            MOHAMED_WAHEED_HASSAN,
             OLIVIER_COLOM,
+            PUREVSUREN_LUNDEG,
         ]
     ),
     HighlightedGroup(
@@ -273,7 +309,6 @@ HIGHLIGHTED_GROUPS = [
         emailers=[
             ANAS_ALRASHEED,
             AZIZA_ALAHMADI,
-            MOHAMED_WAHEED_HASSAN,
             RAAFAT_ALSABBAGH,
             SHAHER_ABDULHAK_BESHER,
         ]
@@ -401,7 +436,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(emailers=[KATHY_RUEMMLER], info='former Obama legal counsel', style='magenta2'),
     HighlightedGroup(emailers=[LINDA_STONE], style='pink3'),
     HighlightedGroup(emailers=[MELANIE_SPINELLA], style='magenta3'),
-    HighlightedGroup(emailers=[MELANIE_WALKER], info='Doctor', style='light_pink3'),
+    HighlightedGroup(emailers=[MELANIE_WALKER], info='Doctor', style='pale_violet_red1'),
     HighlightedGroup(emailers=[PAULA], style='pink1'),
     HighlightedGroup(emailers=[PRINCE_ANDREW], style='dodger_blue1'),
     HighlightedGroup(emailers=[SOON_YI], info="Woody Allen's wife", style='hot_pink'),
@@ -453,6 +488,32 @@ HIGHLIGHTED_GROUPS = [
 ]
 
 COLOR_KEYS = [h.colored_label() for h in HIGHLIGHTED_GROUPS if not h.is_multiline]
+
+
+def get_info_for_name(name: str) -> str | None:
+    highlight_group = get_highlight_group_for_name(name)
+
+    if not highlight_group:
+        return None
+
+    info = highlight_group.get_info()
+
+    if info and name in PEOPLE_INFO:
+        info += f", {PEOPLE_INFO[name]}"
+
+    return info
+
+
+def get_highlight_group_for_name(name: str) -> HighlightedGroup | None:
+    for highlight_group in HIGHLIGHTED_GROUPS:
+        if highlight_group.regex.search(name):
+            return highlight_group
+
+
+def get_style_for_name(name: str, default: str = DEFAULT, allow_bold: bool = True) -> str:
+    highlight_group = get_highlight_group_for_name(name)
+    style = highlight_group.style if highlight_group else default
+    return style if allow_bold else style.replace('bold', '').strip()
 
 
 if is_debug:

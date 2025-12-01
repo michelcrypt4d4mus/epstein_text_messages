@@ -86,11 +86,11 @@ if not skip_texts:
 
 
 # Emails section
-print_section_header(('Selections from ' if not args.all else '') + 'His Emails')
+print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
 print_other_site_link(is_header=False)
 epstein_files.print_emailer_counts_table()
 
-if args.all:
+if args.all_emails:
     console.print('Email conversations are sorted chronologically based on time of the first email.')
     emailers_to_print = sorted(epstein_files.all_emailers(), key=lambda e: epstein_files.earliest_email_at(e))
     print_numbered_list_of_emailers(emailers_to_print, epstein_files)
@@ -102,14 +102,18 @@ else:
     emailers_to_print = PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED_LIST
     print_numbered_list_of_emailers(emailers_to_print)
     console.print("\nAfter that there's tables linking to (but not displaying) all known emails for each of these people:")
-    emailer_tables = epstein_files.all_emailers() if args.all_tables else PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES_LIST
-    emailer_tables = sorted(emailer_tables, key=lambda e: epstein_files.earliest_email_at(e)) if args.all_tables else emailer_tables
+
+    if args.all_email_tables:
+        emailer_tables = sorted(epstein_files.all_emailers(), key=lambda e: epstein_files.earliest_email_at(e))
+    else:
+        emailer_tables = PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES_LIST
+
     print_numbered_list_of_emailers(emailer_tables)
 
 for author in emailers_to_print:
     epstein_files.print_emails_for(author)
 
-if not args.all and len(specified_emailers) == 0:
+if not args.all_emails and len(specified_emailers) == 0:
     print_author_header(f"Email Tables for {len(emailer_tables)} Other People", 'white')
 
     for name in emailer_tables:
@@ -127,7 +131,7 @@ if not skip_texts:
     logger.warning(f"Printed other files in {(time.perf_counter() - checkpoint_at):.2f} seconds")
     checkpoint_at = time.perf_counter()
 else:
-    logger.warning(f"Skipping other files section (is_build={is_build}, args.all={args.all}, skip_texts={skip_texts})...")
+    logger.warning(f"Skipping other files section (is_build={is_build}, args.all_emails={args.all_emails}, skip_texts={skip_texts})...")
 
 
 # Save output
