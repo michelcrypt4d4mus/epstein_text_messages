@@ -605,13 +605,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     # '032213': Probably MIRO or Reid Weingarten based on replies but he sent it to a lot of people
 }
 
-# frJaca &dazeEE e9), Yccia'
-# Certified Paralegal
-# Florida Registered Paralegal
-# BURMAN CRITTON LUTTIER & COLEMAN, LLP
-# 515 N. Flagler Drive
-# Suite #400
-# West Palm Beach, FL 33401
+MARTIN_WEINBERG_ADDRESS_PATTERN = r"Martin G. Weinberg, Esq.\n20 Park Plaza, Suite 1000\nBoston, MA 02116(\n61.*)?(\n.*([cC]ell|Office))*"
 
 EMAIL_SIGNATURES = {
     #DARREN_INDYKE: re.compile(r"(DARREN K. INDYKE\n)?DARREN.*\n575 Lexington.*\nNew York.*(\nTelephone.*)?(\nTelecop.*)?(\nMobil.*)?(\nemail.*)?\**\nThe info.*\nprivileged.*\nDarren.*\nor any part.*\n(communication.*\n){2}Copyright.*(\nIndyke.*)?\n\**", re.IGNORECASE),
@@ -621,8 +615,7 @@ EMAIL_SIGNATURES = {
     JEFFREY_EPSTEIN: re.compile(r"((\*+|please note)\n+)?(> )?(• )?(» )?The information contained in this communication is\n(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?", re.DOTALL),
     JESSICA_CADWELL: re.compile(r"(f.*\n)?Certified Para.*\nFlorida.*\nBURMAN.*\n515.*\nSuite.*\nWest Palm.*", re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r"Lawrence (M. )?Krauss\n(Director.*\n)?(Co-director.*\n)?Foundation.*\nSchool.*\n(Co-director.*\n)?(and Director.*\n)?Arizona.*(\nResearch.*\nOri.*\n(krauss.*\n)?origins.*)?", re.IGNORECASE),
-    MARTIN_WEINBERG: re.compile(r"This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
-    (MARTIN_WEINBERG + ' address'):  re.compile(r"Martin G. Weinberg, Esq.\n20 Park Plaza, Suite 1000\nBoston, MA 02116(\n61.*)?(\n.*([cC]ell|Office))*"),
+    MARTIN_WEINBERG: re.compile(fr"({MARTIN_WEINBERG_ADDRESS_PATTERN}\n)?This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
     PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
     PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(142 W 57th Street, 11th Floor, New York, NY 10019?[\n\s]+)?(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
     RICHARD_KAHN: re.compile(r'Richard Kahn[\n\s]+HBRK Associates Inc.?[\n\s]+((301 East 66th Street, Suite 1OF|575 Lexington Avenue,? 4th Floor,?)[\n\s]+)?New York, (NY|New York) 100(22|65)([\n\s]+(Tel|Phone)( I)?[\n\s]+Fa[x"]?[\n\s]+[Ce]el?l?)?', re.IGNORECASE),
