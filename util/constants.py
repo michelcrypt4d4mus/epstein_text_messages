@@ -85,6 +85,7 @@ MARIANA_IDZKOWSKA = 'Mariana Idźkowska'
 MARK_EPSTEIN = 'Mark L. Epstein'
 MARTIN_NOWAK = 'Martin Nowak'
 MARTIN_WEINBERG = "Martin Weinberg"
+MASHA_DROKOVA = 'Masha Drokova'
 MELANIE_SPINELLA = 'Melanie Spinella'
 MICHAEL_BUCHHOLTZ = 'Michael Buchholtz'
 MICHAEL_SITRICK = 'Michael Sitrick'
