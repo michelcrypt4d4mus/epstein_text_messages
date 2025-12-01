@@ -13,6 +13,7 @@ from rich.text import Text
 from documents.document import CommunicationDocument
 from documents.email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TO_FIELDS, EmailHeader
 from util.constants import *
+from util.data import collapse_newlines
 from util.env import is_debug, is_fast_mode, logger
 from util.file_helper import build_filename_for_id
 from util.highlighted_group import get_style_for_name
@@ -33,7 +34,7 @@ EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Sub
 
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re.DOTALL)
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
-BAD_LINE_REGEX = re.compile(r'^(>;|\d{1,2}|Importance:( High)?|[iI,])$')
+BAD_LINE_REGEX = re.compile(r'^(>;|\d{1,2}|Importance:( High)?|[iI,•])$')
 SKIP_HEADER_ROW_REGEX = re.compile(r"^(agreed|call me|Hysterical|schwartman).*")
 UNDISCLOSED_RECIPIENTS_REGEX = re.compile(r'Undisclosed[- ]recipients:', re.IGNORECASE)
 
@@ -351,13 +352,13 @@ class Email(CommunicationDocument):
             text = self.text
 
         # TODO: should bad lines be removed completely from self.text?
-        text = '\n'.join([line for line in text.split('\n') if not BAD_LINE_REGEX.match(line)])
+        text = '\n'.join(['' if BAD_LINE_REGEX.match(line) else line for line in text.split('\n')])
         text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
 
         for name, signature_regex in EMAIL_SIGNATURES.items():
             text = signature_regex.sub(self._clipped_signature_replacement(name), text)
 
-        return text.strip()
+        return collapse_newlines(text.strip())
 
     def _clipped_signature_replacement(self, name) -> str:
         return f'<...snipped {name.lower()} legal signature...>'

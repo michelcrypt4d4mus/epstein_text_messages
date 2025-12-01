@@ -8,14 +8,13 @@ from rich.markup import escape
 from rich.text import Text
 
 from util.constants import HOUSE_OVERSIGHT_PREFIX, esptein_web_doc_url, search_archive_url
-from util.data import patternize
+from util.data import collapse_newlines, patternize
 from util.env import args, logger
 from util.file_helper import build_filename_for_id, extract_file_id, is_local_extract_file
 from util.rich import (ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_regex_match, highlighter,
      logger, make_link, make_link_markup)
 from util.strings import *
 
-MULTINEWLINE_REGEX = re.compile(r"\n{3,}")
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 HOUSE_OVERSIGHT = 'HOUSE OVERSIGHT'
@@ -165,7 +164,7 @@ class Document:
             text = self.regex_repair_text(OCR_REPAIRS, text.strip())
             lines = [l.strip() for l in text.split('\n') if not l.startswith(HOUSE_OVERSIGHT)]
             lines = lines[1:] if (len(lines) > 1 and lines[0] == '>>') else lines
-            return MULTINEWLINE_REGEX.sub('\n\n\n', '\n'.join(lines))
+            return collapse_newlines('\n'.join(lines))
 
     def _set_computed_fields(self) -> None:
         self.length = len(self.text)
