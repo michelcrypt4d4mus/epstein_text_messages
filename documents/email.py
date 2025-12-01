@@ -35,6 +35,7 @@ BAD_LINE_REGEX = re.compile(r'^(\d{1,2}|Importance:( High)?|I)$')
 SKIP_HEADER_ROW_REGEX = re.compile(r"^(agreed|call me|Hysterical|schwartman).*")
 UNDISCLOSED_RECIPIENTS_REGEX = re.compile(r'Undisclosed[- ]recipients:', re.IGNORECASE)
 
+MULTIPLE_SENDERS = 'Multiple Senders'
 BAD_FIRST_LINES = ['026652', '029835', '031189']
 MAX_CHARS_TO_PRINT = 4000
 VALID_HEADER_LINES = 14
@@ -226,6 +227,8 @@ SUPPRESS_OUTPUT_FOR_IDS = {
     '026835': 'the same as 028775',
     '028968': 'the same as 029835',
     '033489': 'the same as 033251',
+    '033517': 'a reminder with same text as 033528',
+    '032012': 'a reminder with same text as 032023',
 }
 
 clipped_signature_replacement = lambda name: f'<...snipped {name.lower()} legal signature...>'
@@ -434,6 +437,8 @@ class Email(CommunicationDocument):
 
         if len(names) == 0:
             names.append(emailer_str)
+        elif names == [MULTIPLE_SENDERS]:
+            return []
 
         return [_reverse_first_and_last_names(name.lower() if '@' in name else name) for name in names]
 
