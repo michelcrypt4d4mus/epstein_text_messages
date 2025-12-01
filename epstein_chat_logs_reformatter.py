@@ -11,33 +11,25 @@ from sys import exit
 
 from dotenv import load_dotenv
 load_dotenv()
-from rich.columns import Columns
 from rich.padding import Padding
 from rich.text import Text
 
 from documents.epstein_files import EpsteinFiles
-from util import rich
 from util.env import additional_emailers, args, is_build, is_debug, skip_texts
 from util.file_helper import OUTPUT_GH_PAGES_HTML
-from util.rich import *
 from util.html import *
-
-COLOR_KEYS = [
-    Text(color_name.removesuffix(COLOR_SUFFIX).lower().replace('_', ' '), style=getattr(rich, color_name))
-    for color_name in sorted([constant for constant in dir(rich) if constant.endswith(COLOR_SUFFIX)])
-    if color_name not in ['ARCHIVE_LINK_COLOR', 'DUBIN_COLOR', 'DEFAULT_NAME_COLOR']
-]
+from util.rich import *
 
 
 print_header()
 
 if args.colors_only:
-    print_color_key(COLOR_KEYS, 'Groups')
+    print_color_key()
     exit()
 
 epstein_files = EpsteinFiles()
 epstein_files.print_files_overview()
-print_color_key(COLOR_KEYS, 'Groups')
+print_color_key()
 
 
 # Text messages section
@@ -87,11 +79,11 @@ epstein_files.print_email_device_info()
 
 
 # Other Files Section
-if is_build and not args.all:
+if not skip_texts:
     print_section_header(f"Top Lines of {len(epstein_files.other_files)} Files That Are Neither Emails Nor Text Msgs")
     epstein_files.print_other_files_table()
 else:
-    logger.warning(f"Skipping other files section (is_build={is_build}, args.all={args.all})...")
+    logger.warning(f"Skipping other files section (is_build={is_build}, args.all={args.all}, skip_texts={skip_texts})...")
 
 
 # Save output

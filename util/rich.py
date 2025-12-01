@@ -16,7 +16,7 @@ from rich.theme import Theme
 
 from .constants import *
 from .env import args, deep_debug, is_debug, logger
-from .highlighted_group import HIGHLIGHTED_GROUPS, REGEX_STYLE_PREFIX, highlighter_style_name
+from .highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS, REGEX_STYLE_PREFIX, highlighter_style_name
 from .html import PAGE_TITLE
 
 # Misc
@@ -26,7 +26,6 @@ OUTPUT_WIDTH = 120
 
 # Constant variables that end in "_COLOR" will be scanned to create the color highlight guide table.
 # Colors for highlighting members of groups
-ARCHIVE_LINK_COLOR = 'slate_blue3'
 BANK_COLOR = 'green'
 BITCOIN_COLOR = 'orange1 bold'
 BUSINESS_COLOR = 'spring_green4'
@@ -80,13 +79,8 @@ SENT_FROM_COLOR = 'gray42 italic'
 SNIPPED_SIGNATURE_COLOR = 'gray19'
 UNKNOWN_COLOR = 'cyan'
 
-COLOR_MAPPING = {
-    v: k.removesuffix(COLOR_SUFFIX).lower()
-    for k, v in locals().items()
-    if k.endswith(COLOR_SUFFIX)
-}
-
 # Other styles
+ARCHIVE_LINK_COLOR = 'slate_blue3'
 TITLE_STYLE = 'black on bright_white bold'
 SECTION_HEADER_STYLE = 'bold white on blue3'
 SOCIAL_MEDIA_LINK_STYLE = 'cadet_blue'
@@ -243,9 +237,9 @@ def print_header():
     print_centered('(note this site is based on the OCR text provided by Congress which is not the greatest)', 'grey23')
 
 
-def print_color_key(color_keys: Text, key_type: Literal["Groups", "People"]) -> None:
-    color_table = Table(show_header=False, title=f'Rough Guide to Highlighted Colors for {key_type}')
-    num_colors = len(color_keys)
+def print_color_key(key_type: Literal["Groups", "People"] = "Groups") -> None:
+    color_table = Table(show_header=False, title=f'Rough Guide to Highlighted Colors')
+    num_colors = len(COLOR_KEYS)
     row_number = 0
 
     for i in range(0, NUM_COLOR_KEY_COLS):
@@ -255,9 +249,9 @@ def print_color_key(color_keys: Text, key_type: Literal["Groups", "People"]) -> 
         idx = row_number * NUM_COLOR_KEY_COLS
 
         color_table.add_row(
-            color_keys[idx],
-            color_keys[idx + 1] if (idx + 1) < num_colors else '',
-            color_keys[idx + 2] if (idx + 2) < num_colors else '',
+            COLOR_KEYS[idx],
+            COLOR_KEYS[idx + 1] if (idx + 1) < num_colors else '',
+            COLOR_KEYS[idx + 2] if (idx + 2) < num_colors else '',
         )
 
         row_number += 1
