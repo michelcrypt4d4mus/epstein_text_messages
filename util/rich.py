@@ -172,18 +172,23 @@ def print_json(label: str, obj: object) -> None:
     console.line(2)
 
 
-def print_numbered_list_of_emailers(_list: list[str] | dict, esptein_files = None) -> None:
+def print_numbered_list_of_emailers(_list: list[str] | dict, epstein_files = None) -> None:
     """Add the first emailed_at for this emailer if 'epstein_files' provided."""
     console.line()
 
     for i, name in enumerate(_list):
-        txt = Text(F"   {i + 1}. ", style=DEFAULT_NAME_COLOR)
+        txt = Text("    " if epstein_files else F"   {i + 1}. ", style=DEFAULT_NAME_COLOR)
 
-        if esptein_files:
-            earliest_email_date = (esptein_files.earliest_email_at(name) or FALLBACK_TIMESTAMP).date()
-            txt.append(f"({earliest_email_date}) ", style='dim')
+        if epstein_files:
+            earliest_email_date = (epstein_files.earliest_email_at(name) or FALLBACK_TIMESTAMP).date()
+            txt.append(escape(f"[{earliest_email_date}] "), style='dim')
 
-        console.print(txt.append(highlighter(name or UNKNOWN)))
+        txt.append(highlighter(name or UNKNOWN))
+
+        if epstein_files:
+            txt.append(f" ({len(epstein_files.emails_for(name))} emails)", style='grey23 italic')
+
+        console.print(txt)
 
     console.line()
 
