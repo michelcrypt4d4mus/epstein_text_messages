@@ -170,6 +170,8 @@ TRUNCATE_TERMS = [
     'https://www.washingtonpost.com/politics/2018/09/04/transcript-phone-call',
     # Epstein
     'David Ben Gurion was asked why he, after 2000',
+    # Lisa New
+    'The raw materials for that period include interviews',
 ]
 
 # No point in ever displaying these
@@ -229,6 +231,7 @@ SUPPRESS_OUTPUT_FOR_IDS = {
     '033489': 'the same as 033251',
     '033517': 'a reminder with same text as 033528',
     '032012': 'a reminder with same text as 032023',
+    '028482': 'the same as 026620',
 }
 
 clipped_signature_replacement = lambda name: f'<...snipped {name.lower()} legal signature...>'
