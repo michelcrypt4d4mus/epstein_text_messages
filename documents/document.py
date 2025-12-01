@@ -68,11 +68,21 @@ class Document:
         self.epstein_web_doc_url = esptein_web_doc_url(self.url_slug)
         self.epstein_web_doc_link_markup = make_link_markup(self.epstein_web_doc_url, self.file_path.stem)
 
-    def archive_link_txt(self) -> Text:
+    def archive_link_txt(self, style: str = '', include_alt_link: bool = False) -> Text:
+        txt = Text('', style='white' if include_alt_link else ARCHIVE_LINK_COLOR)
+
         if args.use_epstein_web_links:
-            return self.epstein_web_link()
+            txt.append(self.epstein_web_link(style=style))
+
+            if include_alt_link:
+                txt.append(' (').append(self.epsteinify_link(style='white dim', link_txt='epsteinify')).append(')')
         else:
-            return self.epsteinify_link()
+            txt.append(self.epsteinify_link(style=style))
+
+            if include_alt_link:
+                txt.append(' (').append(self.epstein_web_link(style='white dim', link_txt='epsteinweb')).append(')')
+
+        return txt
 
     def courier_archive_link(self, link_txt: str | None = None, style: str = ARCHIVE_LINK_COLOR) -> Text:
         """Link to search courier newsroom Google drive."""
@@ -176,9 +186,6 @@ class CommunicationDocument(Document):
     def timestamp_without_seconds(self) -> str:
         return TIMESTAMP_SECONDS_REGEX.sub('', str(self.timestamp))
 
-    def archive_link_txt(self) -> Text:
+    def archive_link_txt(self, _style: str = '', include_alt_link: bool = True) -> Text:
         """Overrides super() method to apply style"""
-        if args.use_epstein_web_links:
-            return super().epstein_web_link(style=self.author_style)
-        else:
-            return super().epsteinify_link(style=self.author_style)
+        return super().archive_link_txt(self.author_style, include_alt_link=include_alt_link)
