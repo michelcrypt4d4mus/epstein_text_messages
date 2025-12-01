@@ -179,6 +179,7 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + PAUL_KRASSNER_MANSO
     'Alan Rogers',                           # Random CC
     'asmallworld@travel.asmallworld.net',    # Promo travel stuff
     'BS Stern',                              # A random fwd of email we have
+    'Connie Zaguirre',                       # Random CC
     'Dan Fleuette',                          # CC from sean bannon
     'Danny Goldberg',                        # Random Paul Krassner emails
     'digest-noreply@quora.com',
@@ -197,7 +198,7 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + PAUL_KRASSNER_MANSO
     'Owen Blicksilver',                      # Landon Thomas CC
     'Peter Aldhous',                         # Lawrence Krauss CC
     'Pink',                                  # Random Jean Luc Brunel CC
-    'Robert D. Critton Jr',                  # Random CC
+    ROBERT_D_CRITTON,                  # Random CC
     'Sam Harris',                            # Lawrence Krauss CC
     'Sam/Walli Leff',                        # Random CC
     'Saved by Internet Explorer 11',
