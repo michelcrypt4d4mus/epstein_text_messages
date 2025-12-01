@@ -33,8 +33,6 @@ class HighlightedGroup:
         self.style_name = f"{REGEX_STYLE_PREFIX}.{self.label.replace(' ', '_')}"
         patterns = [self.emailer_pattern(e) for e in self.emailers] + ([self.pattern] if self.pattern else [])
         pattern = '|'.join(patterns)
-        logger.debug('')
-        logger.debug(f"'{self.label}' pattern:\n{pattern}")
 
         if self.is_multiline:
             self.regex = re.compile(fr"(?P<{self.label}>{pattern})", re.IGNORECASE | re.MULTILINE)
@@ -70,13 +68,14 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='bank',
         style='green',
-        pattern=r'Apollo|Black(rock|stone)|DB|Deutsche Bank|Goldman( ?Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|Jes\s+Staley|Merrill\s+Lynch|Morgan Stanley|j\.?p\.?\s*morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com|Marc\s*Leon',
+        pattern=r'Apollo|Black(rock|stone)|DB|Deutsche Bank|Goldman( ?Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|Jes\s+Staley|Merrill\s+Lynch|Morgan Stanley|j\.?p\.?\s*morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com',
         emailers=[
             ALIREZA_ITTIHADIEH,
             AMANDA_ENS,
             DANIEL_SABBA,
             JIDE_ZEITLIN,
             LEON_BLACK,
+            MARC_LEON,
             PAUL_MORRIS,
             PAUL_BARRETT,
         ]
