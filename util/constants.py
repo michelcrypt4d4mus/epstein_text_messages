@@ -550,6 +550,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '022187': JEFFREY_EPSTEIN,        # Bad OCR
     '028849': JEFFREY_EPSTEIN,        # Conversation
     '026547': JEFFREY_EPSTEIN,        # Bad OCR
+    '031489': JEFFREY_EPSTEIN,        # Bad OCR
     '032209': JEFFREY_EPSTEIN,        # More of a text convo?
     '032210': JEFFREY_EPSTEIN,        # More of a text convo?
     '033575': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN],
@@ -568,6 +569,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '033456': 'Joel',                 # Reply
     '033460': 'Joel',                 # Reply
     '029282': [JOI_ITO, REID_HOFFMAN],# Bad OCR
+    '021090': JONATHAN_FARKAS,        # Reply to a message signed " jonathan" same as other Farkas emails
     '033073': KATHY_RUEMMLER,         # to "Kathy" about dems, sent from iPad (not 100% confirmed)
     '032939': KATHY_RUEMMLER,         # to "Kathy" about dems, sent from iPad (not 100% confirmed)
     '031388': [KEN_STARR, LILLY_SANCHEZ, MARTIN_WEINBERG, REID_WEINGARTEN],  # Bad OCR

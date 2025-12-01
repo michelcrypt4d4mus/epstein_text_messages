@@ -14,22 +14,36 @@ NO_CATEGORY_LABELS = [BILL_GATES, STEVE_BANNON]
 # Keyed by the 'label' property
 PEOPLE_INFO = {
     AL_SECKEL: 'husband of Isabel Maxwell, Mind State organizer, fell off a cliff',
+    AZIZA_ALAHMADI: 'Abu Dhabi Department of Culture & Tourism',
     BARBRO_EHNBOM: 'Swedish pharmaceuticals',
     BORIS_NIKOLIC: f'Biotech VC, {ESTATE_EXECUTOR}',
     DARREN_INDYKE: ESTATE_EXECUTOR,
+    EHUD_BARAK: 'former primer minister',
+    GLENN_DUBIN: "Highbridge Capital Management, married to Epstein's ex-gf Eva",
     GWENDOLYN_BECK: 'fund manager',
     JEAN_LUC_BRUNEL: 'died by suicide in French prison',
     JES_STALEY: 'former CEO of Barclays',
+    JIDE_ZEITLIN: 'former partner at Goldman Sachs, allegations of sexual misconduct',
     KATHERINE_KEATING: 'Daughter of former Australian PM',
     KENNETH_E_MAPP: 'Governor',
     LANDON_THOMAS: 'New York Times',
-    LEON_BLACK: 'Apollo CEO',
     LAWRANCE_VISOSKI: 'Pilot',
+    JOSCHA_BACH: 'cognitive science / AI research',
+    LEON_BLACK: 'Apollo CEO',
     LESLEY_GROFF: 'Assistant (?)',
     LISA_NEW: 'poetry',
+    MARK_EPSTEIN: 'brother',
+    'Nili Priell Barak': f'wife of {EHUD_BARAK}',
+    MASHA_DROKOVA: 'silicon valley VC',
+    MIROSLAV_LAJCAK: 'Russia friendly Slovak',
+    MOHAMED_WAHEED_HASSAN: 'former president of the Maldives',
     NADIA_MARCINKO: 'Pilot',
     NICHOLAS_RIBIS: 'Hilton CEO',
     RICHARD_KAHN: ESTATE_EXECUTOR,
+    ROBERT_TRIVERS: 'evolutionary biology',
+    SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of the ports in Dubai',
+    TOM_BARRACK: 'long time friend of Trump',
+    TOM_PRITZKER: 'brother of J.B. Pritzker',
 }
 
 safe_style_name = lambda label: label.lower().replace(' ', '_').replace('-', '_')
@@ -280,6 +294,7 @@ HIGHLIGHTED_GROUPS = [
         pattern='Purevsuren Lundeg|Rob Crowe|Stanley Rosenberg',
         emailers=[
             KATHERINE_KEATING,
+            MOHAMED_WAHEED_HASSAN,
             OLIVIER_COLOM,
         ]
     ),
@@ -290,7 +305,6 @@ HIGHLIGHTED_GROUPS = [
         emailers=[
             ANAS_ALRASHEED,
             AZIZA_ALAHMADI,
-            MOHAMED_WAHEED_HASSAN,
             RAAFAT_ALSABBAGH,
             SHAHER_ABDULHAK_BESHER,
         ]
@@ -418,7 +432,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(emailers=[KATHY_RUEMMLER], info='former Obama legal counsel', style='magenta2'),
     HighlightedGroup(emailers=[LINDA_STONE], style='pink3'),
     HighlightedGroup(emailers=[MELANIE_SPINELLA], style='magenta3'),
-    HighlightedGroup(emailers=[MELANIE_WALKER], info='Doctor', style='light_pink3'),
+    HighlightedGroup(emailers=[MELANIE_WALKER], info='Doctor', style='pale_violet_red1'),
     HighlightedGroup(emailers=[PAULA], style='pink1'),
     HighlightedGroup(emailers=[PRINCE_ANDREW], style='dodger_blue1'),
     HighlightedGroup(emailers=[SOON_YI], info="Woody Allen's wife", style='hot_pink'),
