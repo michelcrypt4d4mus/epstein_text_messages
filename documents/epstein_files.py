@@ -236,13 +236,13 @@ class EpsteinFiles:
         console.print(f"(Last deploy found 4668 messages in 77 conversations)", style='dim')
 
     def print_other_files_table(self) -> None:
-        table = Table(header_style="bold", show_lines=True)
-        table.add_column("File", justify='left')
-        table.add_column("Length", justify='center')
-        table.add_column("First Few Lines", justify='left', style='pale_turquoise4')
+        table = Table(header_style='bold', show_lines=True)
+        table.add_column('File', justify='left')
+        table.add_column('Length', justify='center')
+        table.add_column('First Few Lines', justify='left', style='pale_turquoise4')
 
         for doc in sorted(self.other_files, key=lambda document: document.filename):
-            table.add_row(doc.epsteinify_link_markup, f"{doc.length:,}", doc.highlighted_preview_text())
+            table.add_row(doc.archive_link_txt(), f"{doc.length:,}", doc.highlighted_preview_text())
 
         console.print(table)
 

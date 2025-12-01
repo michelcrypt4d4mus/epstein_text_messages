@@ -7,9 +7,9 @@ from typing import ClassVar
 from rich.markup import escape
 from rich.text import Text
 
-from util.constants import HOUSE_OVERSIGHT_PREFIX, search_archive_url
+from util.constants import HOUSE_OVERSIGHT_PREFIX, esptein_web_doc_url, search_archive_url
 from util.data import patternize
-from util.env import logger
+from util.env import args, logger
 from util.file_helper import extract_file_id
 from util.rich import (ARCHIVE_LINK_COLOR, epsteinify_doc_url, highlight_regex_match, highlighter,
      logger, make_link, make_link_markup)
@@ -39,8 +39,9 @@ FILENAME_MATCH_STYLES = [
 @dataclass
 class Document:
     file_path: Path
-    epsteinify_name_url: str = field(init=False)
+    epsteinify_doc_url: str = field(init=False)
     epsteinify_link_markup: str = field(init=False)
+    epstein_web_doc_link_markup: str = field(init=False)
     file_id: str = field(init=False)
     filename: str = field(init=False)
     length: int = field(init=False)
@@ -55,10 +56,18 @@ class Document:
         self.file_id = extract_file_id(self.filename)
         self.text = self._load_file()
         self._set_computed_fields()
-        self.epsteinify_name_url = epsteinify_doc_url(self.file_path.stem)  # URL to search epsteinify for the filename
-        self.epsteinify_link_markup = make_link_markup(self.epsteinify_name_url, self.file_path.stem)
+        self.epsteinify_doc_url = epsteinify_doc_url(self.file_path.stem)
+        self.epsteinify_link_markup = make_link_markup(self.epsteinify_doc_url, self.file_path.stem)
+        self.epstein_web_doc_url = esptein_web_doc_url(self.file_path.stem)
+        self.epstein_web_doc_link_markup = make_link_markup(self.epstein_web_doc_url, self.file_path.stem)
 
-    def archive_link(self, link_txt: str | None = None, style: str = ARCHIVE_LINK_COLOR) -> Text:
+    def archive_link_txt(self) -> Text:
+        if args.use_epstein_web_links:
+            return self.epstein_web_link()
+        else:
+            return self.epsteinify_link()
+
+    def courier_archive_link(self, link_txt: str | None = None, style: str = ARCHIVE_LINK_COLOR) -> Text:
         """Link to search courier newsroom Google drive."""
         return make_link(search_archive_url(self.filename), link_txt or self.filename, style)
 
@@ -66,7 +75,10 @@ class Document:
         return len(re.findall(pattern, self.text))
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return make_link(self.epsteinify_name_url, link_txt or self.filename, style)
+        return make_link(self.epsteinify_doc_url, link_txt or self.filename, style)
+
+    def epstein_web_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
+        return make_link(self.epstein_web_doc_url, link_txt or self.filename, style)
 
     def highlighted_preview_text(self) -> Text:
         try:
@@ -146,7 +158,6 @@ class Document:
 
 @dataclass
 class CommunicationDocument(Document):
-    archive_link: Text = field(init=False)
     author: str | None = field(init=False)
     author_style: str = field(init=False)
     author_txt: Text = field(init=False)
@@ -157,3 +168,10 @@ class CommunicationDocument(Document):
 
     def timestamp_without_seconds(self) -> str:
         return TIMESTAMP_SECONDS_REGEX.sub('', str(self.timestamp))
+
+    def archive_link_txt(self) -> Text:
+        """Overrides super() method to apply style"""
+        if args.use_epstein_web_links:
+            return super().epstein_web_link(style=self.author_style)
+        else:
+            return super().epsteinify_link(style=self.author_style)
