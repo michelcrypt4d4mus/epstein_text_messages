@@ -259,7 +259,10 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='police',
         style='color(24)',
-        pattern='(Ann Marie )?Villafana|FBI|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|Police Code Enforcement',
+        pattern='FBI|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|Police Code Enforcement',
+        emailers=[
+            ANN_MARIE_VILLAFANA,
+        ]
     ),
     HighlightedGroup(
         label='publicist',
@@ -276,7 +279,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='republicans',
         style='bold dark_red',
-        pattern=r'(Alex )?Acosta|Bolton|Broidy|GOP|(?<!Merwin Dela )Cruz|Kobach|Kolfage|Kudlow|Lewandowski|(Marco )?Rubio|mattis|mnuchin|(Paul\s+)?Manafort|(Peter )?Navarro|Pompeo|Republican',
+        pattern=r'(Alex )?Acosta|Bolton|Broidy|GOP|(?<!Merwin Dela )Cruz|Kobach|Kolfage|Kudlow|Lewandowski|(Marco )?Rubio|Mattis|Mnuchin|(Paul\s+)?Manafort|(Peter )?Navarro|Pompeo|Republican',
         emailers = [
             RUDY_GIULIANI,
             TULSI_GABBARD,
@@ -285,7 +288,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='russia',
         style='red bold',
-        pattern=r'GRU|FSB|Lavrov|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Rybolo(olev|vlev)|Vladimir Yudashkin',
+        pattern=r'FSB|GRU|Lavrov|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Rybolo(olev|vlev)|Vladimir Yudashkin',
         emailers = [
             MASHA_DROKOVA,
         ]
@@ -306,7 +309,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='south_america',
         style='yellow',
-        pattern=r'Argentina|Bra[sz]il(ian)?|Bolsonar[aio]|Bukele|Caracas|El\s*Salvador|Lula|(Nicolas )?Maduro|Venezuelan?',
+        pattern=r'Argentin(a|ian)|Bra[sz]il(ian)?|Bolsonar[aio]|Bukele|Caracas|El\s*Salvador|Lula|(Nicolas\s+)?Maduro|Venezuelan?',
     ),
     HighlightedGroup(
         label='tech_bro',

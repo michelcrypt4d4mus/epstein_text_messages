@@ -177,7 +177,7 @@ def print_numbered_list_of_emailers(_list: list[str] | dict, esptein_files = Non
     console.line()
 
     for i, name in enumerate(_list):
-        txt = Text(F"   {i + 1}. ")
+        txt = Text(F"   {i + 1}. ", style=DEFAULT_NAME_COLOR)
 
         if esptein_files:
             earliest_email_date = (esptein_files.earliest_email_at(name) or FALLBACK_TIMESTAMP).date()

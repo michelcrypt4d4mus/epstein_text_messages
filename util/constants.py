@@ -29,6 +29,7 @@ AL_SECKEL = 'Al Seckel'
 ALAN_DERSHOWITZ = 'Alan Dershowitz'
 ALIREZA_ITTIHADIEH = 'Alireza Ittihadieh'
 AMANDA_ENS = 'Amanda Ens'
+ANN_MARIE_VILLAFANA = 'Ann Marie Villafana'
 ANTHONY_BARRETT = 'Anthony Barrett'
 ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
 ANAS_ALRASHEED = 'Anas Alrasheed'
@@ -229,8 +230,8 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     ALIREZA_ITTIHADIEH: re.compile(r'Alireza.[Il]ttihadieh', re.IGNORECASE),
     AMANDA_ENS: re.compile(r'ens, amanda?|Amanda Ens', re.IGNORECASE),
     ANIL_AMBANI: re.compile(r'Anil.Ambani', re.IGNORECASE),
-    'Ann Marie Villafana': re.compile(r'Villafana', re.IGNORECASE),
-    ARIANE_DE_ROTHSCHILD: re.compile(r'AdeR|((Ariane|Edmond) de )?Rothschild|Ariane'),
+    ANN_MARIE_VILLAFANA: re.compile(r'(A(\.|nn) Marie )?Villafana|Villafana, Ann Marie', re.IGNORECASE),
+    ARIANE_DE_ROTHSCHILD: re.compile(r'AdeR|((Ariane|Edmond) de )?Rothschild|Ariane', re.IGNORECASE),
     ANAS_ALRASHEED: re.compile(r'anas\s*al\s*rashee[cd]', re.IGNORECASE),
     BARBRO_EHNBOM: re.compile(r'behnbom@aol.com|(Barbro\s.*)?Ehnbom', re.IGNORECASE),
     'Barry J. Cohen': re.compile(r'barry (j.? )?cohen?', re.IGNORECASE),
