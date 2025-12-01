@@ -11,14 +11,12 @@ from sys import exit
 
 from dotenv import load_dotenv
 load_dotenv()
-from rich.columns import Columns
 from rich.padding import Padding
 from rich.text import Text
 
 from documents.epstein_files import EpsteinFiles
 from util.env import additional_emailers, args, is_build, is_debug, skip_texts
 from util.file_helper import OUTPUT_GH_PAGES_HTML
-from util.highlighted_group import COLOR_KEYS
 from util.html import *
 from util.rich import *
 
