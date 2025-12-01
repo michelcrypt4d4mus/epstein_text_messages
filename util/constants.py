@@ -15,7 +15,7 @@ JOI_ITO = 'Joi Ito'
 LARRY_SUMMERS = 'Larry Summers'
 MELANIE_WALKER = 'Melanie Walker'
 MIROSLAV_LAJCAK = 'Miroslav Lajčák'
-STACY_PLASKETT = 'Stacey Plaskett'
+STACEY_PLASKETT = 'Stacey Plaskett'
 SCARAMUCCI = "Anthony 'The Mooch' Scaramucci"
 SOON_YI = 'Soon-Yi Previn'
 STEVE_BANNON = 'Steve Bannon'
@@ -167,7 +167,7 @@ KNOWN_IMESSAGE_FILE_IDS = {
     '027650': JOI_ITO,         # Participants: field
     '027515': MIROSLAV_LAJCAK,        # https://x.com/ImDrinknWyn/status/1990210266114789713
     '027165': MELANIE_WALKER,  # https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/
-    '025429': STACY_PLASKETT,
+    '025429': STACEY_PLASKETT,
     '027333': SCARAMUCCI,      # unredacted phone number
     '027128': SOON_YI,         # https://x.com/ImDrinknWyn/status/1990227281101434923
     '027217': SOON_YI,         # refs marriage to woody allen

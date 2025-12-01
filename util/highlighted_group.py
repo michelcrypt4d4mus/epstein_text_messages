@@ -345,21 +345,23 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='trump',
         style='red3 bold',
-        pattern='DJT|(Donald\\s+(J\\.\\s+)?)?Trump|Don(ald| Jr)(?! Rubin)|(Matt(hew)? )?Calamari|Roger\\s+Stone',
+        pattern=r"DJT|(Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)(?! Rubin)|(Matt(hew)? )?Calamari|Roger\s+Stone",
     ),
     HighlightedGroup(
         label='victim',
         style='orchid1',
-        pattern='(Virginia\\s+((L\\.?|Roberts)\\s+)?)?Giuffre|Virginia\\s+Roberts',
+        pattern=r'(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts',
     ),
     HighlightedGroup(
         label='virgin_islands',
         style='sea_green1',
-        pattern='Cecile de Jongh|(Kenneth E\\. )?Mapp',
+        pattern=r'Cecile de Jongh|(Kenneth E\. )?Mapp',
         emailers=[
-            STACY_PLASKETT,
+            STACEY_PLASKETT,
         ]
     ),
+
+    # Individuals
     HighlightedGroup(
         label='ariane_de_rothschild',
         style='indian_red',
@@ -368,7 +370,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='bannon',
         style='color(58)',
-        pattern='((Steve|Sean)\\s+)?Bannon',
+        pattern='((Steve|Sean)\\s+)?Bannon?',
     ),
     HighlightedGroup(
         label='bill_gates',
@@ -378,7 +380,8 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='ghislaine_maxwell',
         style='deep_pink3',
-        pattern='Ghislaine|Maxwell|GMAX|gmax1@ellmax.com',
+        pattern='gmax(1@ellmax.com)?',
+        emailers=[GHISLAINE_MAXWELL]
     ),
     HighlightedGroup(
         label='jabor_y',
