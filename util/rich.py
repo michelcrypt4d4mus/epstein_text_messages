@@ -201,7 +201,7 @@ def print_numbered_list_of_emailers(_list: list[str] | dict, epstein_files = Non
         if epstein_files:
             num_days_in_converation = epstein_files.email_conversation_length_in_days(name)
             msg = f" ({len(epstein_files.emails_for(name))} emails over {num_days_in_converation:,} days)"
-            txt.append(msg, style=f'italic')
+            txt.append(msg, style=f'dim italic')
 
         console.print(txt)
 
