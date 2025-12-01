@@ -117,6 +117,7 @@ ROGER_SCHANK = 'Roger Schank'
 RUDY_GIULIANI = 'Rudy Giuliani'
 SCOTT_J_LINK = 'Scott J. Link'
 SEAN_BANNON = 'Sean Bannon'
+SHAHER_ABDULHAK_BESHER = 'Shaher Abdulhak Besher (?)'
 STEPHEN_HANSON = 'Stephen Hanson'
 STEVEN_PFEIFFER = 'Steven Pfeiffer'
 STEVEN_HOFFENBERG = 'Steven Hoffenberg'
@@ -281,6 +282,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     MICHAEL_SITRICK: re.compile(r'(Mi(chael|ke).{0,5})?[CS]itrick', re.IGNORECASE),
     MIROSLAV_LAJCAK: re.compile(r"Miro(slav)?(\s+Laj[cč][aá]k)?"),
     MOHAMED_WAHEED_HASSAN: re.compile(r'Mohamed Waheed(\s+Hassan)?', re.IGNORECASE),
+    NADIA_MARCINKO: re.compile(r"Na[dď]i?a\s+Marcinko(v[aá])?", re.IGNORECASE),
     'Neal Kassell': re.compile(r'Neal Kassel', re.IGNORECASE),
     NICHOLAS_RIBIS: re.compile(r'Nicholas[ ._]Ribi?s?', re.IGNORECASE),
     OLIVIER_COLOM: re.compile(fr'Colom, Olivier|{OLIVIER_COLOM}', re.IGNORECASE),
@@ -300,7 +302,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     SCARAMUCCI: re.compile(r"mooch|(Anthony ('The Mooch' )?)?Scaramucci", re.IGNORECASE),
     SCOTT_J_LINK: re.compile(r'scott j. link?', re.IGNORECASE),
     SEAN_BANNON: re.compile(r'sean bannon?', re.IGNORECASE),
-    'Shaher Abdulhak Besher (?)': re.compile(r'Shaher ', re.IGNORECASE),
+    SHAHER_ABDULHAK_BESHER: re.compile(r'\bShaher( Abdulhak Besher)?\b', re.IGNORECASE),
     SOON_YI: re.compile(r'Soon[- ]Yi Previn?', re.IGNORECASE),
     STEPHEN_HANSON: re.compile(r'ste(phen|ve) hanson?|Shanson900', re.IGNORECASE),
     STEVE_BANNON: re.compile(r'steve banno[nr]?', re.IGNORECASE),
