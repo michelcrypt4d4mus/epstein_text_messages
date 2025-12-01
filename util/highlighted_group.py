@@ -115,7 +115,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='china',
         style='bright_red',
-        pattern=r"Beijing|CCP|Chin(a|ese)|Gino\s+Yu|Guo|Jack\s+Ma|Kwok|Tai(pei|wan)|Peking|PRC|xi",
+        pattern=r"Beijing|CCP|Chin(a|ese)|Gino\s+Yu|Global Times|Guo|Jack\s+Ma|Kwok|Tai(pei|wan)|Peking|PRC|xi",
     ),
     HighlightedGroup(
         label='deepak_chopra',
@@ -272,7 +272,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='republicans',
         style='dark_red',
-        pattern=r'(alex )?acosta|bolton|Broidy|GOP|(?<!Merwin Dela )Cruz|kudlow|lewandowski|(Marco )?Rubio|mattis|mnuchin|(Paul\s+)?Manafort|(Peter )?Navarro|Pompeo|Republican',
+        pattern=r'(alex )?acosta|bolton|Broidy|GOP|(?<!Merwin Dela )Cruz|kobach|Kolfage|kudlow|lewandowski|(Marco )?Rubio|mattis|mnuchin|(Paul\s+)?Manafort|(Peter )?Navarro|Pompeo|Republican',
         emailers = [
             RUDY_GIULIANI,
             TULSI_GABBARD,
@@ -316,7 +316,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='trump',
         style='red3 bold',
-        pattern=r"@?realDonaldTrump|DJT|(Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)(?! Rubin)|(Matt(hew)? )?Calamari|Roger\s+Stone",
+        pattern=r"@?realDonaldTrump|DJT|(Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)(?! Rubin)|Mar[- ]*a[- ]*Lago|(Matt(hew)? )?Calamari|Roger\s+Stone",
     ),
     HighlightedGroup(
         label='victim',
