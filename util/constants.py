@@ -66,6 +66,7 @@ JABOR_Y = 'Jabor Y'  # Qatari
 JARED_KUSHNER = 'Jared Kushner'
 JAY_LEFKOWITZ = 'Jay Lefkowitz'
 JEREMY_RUBIN = 'Jeremy Rubin'  # bitcoin dev
+JIDE_ZEITLIN = 'Jide Zeitlin'
 JOHN_PAGE = 'John Page'
 JOHNNY_EL_HACHEM = 'Johnny el Hachem'
 JONATHAN_FARKAS = 'Jonathan Farkas'
