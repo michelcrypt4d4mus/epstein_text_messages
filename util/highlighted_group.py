@@ -206,7 +206,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='lawyer',
         style='medium_purple2',
-        pattern='(Erika )?Kellerhals|(Ken(neth W.)?\\s+)?Starr|Lefkowitz|Michael J. Pike|Paul Weiss|Weinberg|Weingarten|Roy Black',
+        pattern='(Erika )?Kellerhals|Lefkowitz|Michael J. Pike|Paul Weiss|Weinberg|Weingarten|Roy Black',
         emailers=[
             ALAN_DERSHOWITZ,
             DARREN_INDYKE,
@@ -217,11 +217,13 @@ HIGHLIGHTED_GROUPS = [
             JACKIE_PERCZEK,
             JAY_LEFKOWITZ,
             JESSICA_CADWELL,
+            KEN_STARR,
             LILLY_SANCHEZ,
             MARTIN_WEINBERG,
             REID_WEINGARTEN,
             RICHARD_KAHN,
-            SCOTT_J_LINK
+            SCOTT_J_LINK,
+            TONJA_HADDAD_COLEMAN,
         ]
     ),
     HighlightedGroup(
