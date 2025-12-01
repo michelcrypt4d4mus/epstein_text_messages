@@ -281,9 +281,9 @@ HIGHLIGHTED_GROUPS = [
         ]
     ),
     HighlightedGroup(
-        label='middle_east',
+        label='mideast',
         style='dark_sea_green4',
-        pattern=r"Abdulmalik Al-Makhlafi|Abu\\s+Dhabi|Assad|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Imran\s+Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|kasshohgi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Raafat\s*Alsabbagh|Riya(dh|nd)|Saudi(\s+Arabian?)?|Shaher( Abdulhak Besher)?|Sharia|Syria|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
+        pattern=r"Abdulmalik Al-Makhlafi|Abu\\s+Dhabi|Assad|Bahrain|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Imran\s+Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|kasshohgi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Raafat\s*Alsabbagh|Riya(dh|nd)|Saudi(\s+Arabian?)?|Shaher( Abdulhak Besher)?|Sharia|Syria|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
         emailers=[
             ANAS_ALRASHEED,
             AZIZA_ALAHMADI,
@@ -366,7 +366,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='trump',
         style='red3 bold',
-        pattern=r"DJT|(Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)(?! Rubin)|(Matt(hew)? )?Calamari|Roger\s+Stone",
+        pattern=r"@?realDonaldTrump|DJT|(Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)(?! Rubin)|(Matt(hew)? )?Calamari|Roger\s+Stone",
     ),
     HighlightedGroup(
         label='victim',
@@ -404,15 +404,11 @@ HIGHLIGHTED_GROUPS = [
         emailers=[GHISLAINE_MAXWELL]
     ),
     HighlightedGroup(
-        label='jabor_y',
-        style='spring_green1',
-        emailers=[JABOR_Y]
-    ),
-    HighlightedGroup(
         style='blue1',
         pattern='Mark (L. )?Epstein',
         emailers=[JEFFREY_EPSTEIN]
     ),
+    HighlightedGroup(emailers=[JABOR_Y], style='spring_green1'),
     HighlightedGroup(emailers=[JOI_ITO], style='blue_violet'),
     HighlightedGroup(emailers=[KATHY_RUEMMLER], style='magenta2'),
     HighlightedGroup(emailers=[LINDA_STONE], style='pink3'),
@@ -421,6 +417,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(emailers=[PAULA], style='pink1'),
     HighlightedGroup(emailers=[PRINCE_ANDREW], style='dodger_blue1'),
     HighlightedGroup(emailers=[SOON_YI], style='hot_pink'),
+    HighlightedGroup(emailers=[STEVEN_HOFFENBERG], pattern=r'(steven\s*)?hoffenberg?w?', style='spring_green3 bold'),
     HighlightedGroup(emailers=[SULTAN_BIN_SULAYEM], style='green1'),
 
     # Regexes for things other than names

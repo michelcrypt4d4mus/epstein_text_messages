@@ -113,6 +113,7 @@ SCOTT_J_LINK = 'Scott J. Link'
 SEAN_BANNON = 'Sean Bannon'
 STEPHEN_HANSON = 'Stephen Hanson'
 STEVEN_PFEIFFER = 'Steven Pfeiffer'
+STEVEN_HOFFENBERG = 'Steven Hoffenberg'
 SULTAN_BIN_SULAYEM = 'Sultan Ahmed Bin Sulayem'
 TERRY_KAFKA = 'Terry Kafka'
 THANU_BOONYAWATANA = 'Thanu Boonyawatana'
@@ -248,7 +249,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     'Jackie Perczel':  re.compile(r'jackie perczel?', re.IGNORECASE),
     JABOR_Y: re.compile(r'[ji]abor\s*y?', re.IGNORECASE),
     JEAN_LUC_BRUNEL: re.compile(r'Jean[- ]Luc Brunel?', re.IGNORECASE),
-    JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]?g?(mail.com)?|Jeffrey E((sp|ps)tein?)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|Epstein', re.IGNORECASE),
+    JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]?g?(mail.com)?|JEE?\b|Jeffrey E((sp|ps)tein?)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|Epstein', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|(joichi|joi)( Ito)?', re.IGNORECASE),
     JOHNNY_EL_HACHEM: re.compile('el hachem johnny|johnny el hachem', re.IGNORECASE),
     JONATHAN_FARKAS: re.compile('Jonathan Farka(s|il)', re.IGNORECASE),
@@ -495,6 +496,7 @@ KNOWN_EMAIL_AUTHORS = {
 }
 
 IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
+PAUL_KRASSNER_MANSON_RECIPIENTS = ['Nancy Cain', 'Holly Krassner Dawson', 'Marie Moneysmith', 'Linda W. Grossman', 'Daniel Dawson', 'Danny Goldberg', 'Caryl Ratner', 'Michael Simmons', 'Barb Cowles', 'Lee Quarnstorm', 'Lynnie Tofte Fass', 'Kevin Bright', 'Samuel Leff', 'Bob Fass']
 
 KNOWN_EMAIL_RECIPIENTS = {
     '021106': 'Alexandra Preate',     # Reply

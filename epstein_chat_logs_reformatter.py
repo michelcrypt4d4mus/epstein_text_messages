@@ -21,6 +21,42 @@ from util.file_helper import OUTPUT_GH_PAGES_HTML
 from util.html import *
 from util.rich import *
 
+# Order matters (will be order of output)
+PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED_LIST = [
+    JEREMY_RUBIN,
+    JOI_ITO,
+    AL_SECKEL,
+    JABOR_Y,
+    DANIEL_SIAD,
+    JEAN_LUC_BRUNEL,
+    EHUD_BARAK,
+    MARTIN_NOWAK,
+    MASHA_DROKOVA,
+    STEVE_BANNON,
+    ARIANE_DE_ROTHSCHILD,
+    OLIVIER_COLOM,
+    BORIS_NIKOLIC,
+    PRINCE_ANDREW,
+    TOM_PRITZKER,
+    JIDE_ZEITLIN,
+    DAVID_STERN,
+    MOHAMED_WAHEED_HASSAN,
+    None,
+]
+
+# Order matters (will be order of output)
+PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES_LIST = [
+    GHISLAINE_MAXWELL,
+    LEON_BLACK,
+    LANDON_THOMAS,
+    KATHY_RUEMMLER,
+    DARREN_INDYKE,
+    RICHARD_KAHN,
+    TYLER_SHEARS,
+    SULTAN_BIN_SULAYEM,
+    DEEPAK_CHOPRA,
+]
+
 
 started_at = time.perf_counter()
 print_header()
