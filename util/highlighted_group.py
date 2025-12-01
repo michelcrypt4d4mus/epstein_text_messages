@@ -134,6 +134,7 @@ HIGHLIGHTED_GROUPS = [
         label='dubin',
         style='medium_orchid1',
         pattern='((Celina|Eva( Anderss?on)?|Glenn) )?Dubin',
+        emailers=[EVA],
     ),
     HighlightedGroup(
         label='employee',
@@ -258,8 +259,8 @@ HIGHLIGHTED_GROUPS = [
     ),
     HighlightedGroup(
         label='police',
-        style='color(24)',
-        pattern='FBI|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|Police Code Enforcement',
+        style='color(24) bold',
+        pattern='FBI|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|Police Code Enforcement|Strzok',
         emailers=[
             ANN_MARIE_VILLAFANA,
         ]
