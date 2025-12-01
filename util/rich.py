@@ -16,6 +16,7 @@ from rich.theme import Theme
 
 from .constants import *
 from .env import args, deep_debug, is_debug, logger
+from .highlighted_group import HIGHLIGHTED_GROUPS, REGEX_STYLE_PREFIX, highlighter_style_name
 from .html import PAGE_TITLE
 
 # Misc
@@ -92,10 +93,10 @@ SOCIAL_MEDIA_LINK_STYLE = 'cadet_blue'
 
 # Theme style names
 PHONE_NUMBER = 'phone_number'
-REGEX_STYLE_PREFIX = 'regex'
 TEXT_LINK = 'text_link'
 TIMESTAMP = 'timestamp'
 
+# TODO: move to email.py or main script
 # Order matters (will be order of output)
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED_LIST = [
     JEREMY_RUBIN,
@@ -132,8 +133,6 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES_LIST = [
     DEEPAK_CHOPRA,
 ]
 
-highlighter_style_name = lambda style_name: f"{REGEX_STYLE_PREFIX}.{style_name.replace(' ', '_')}"
-
 THEME_STYLES = {
     DEFAULT: 'wheat4',
     PHONE_NUMBER: 'bright_green',
@@ -141,98 +140,13 @@ THEME_STYLES = {
     TIMESTAMP: 'gray30',
 }
 
-SCARAMUCCI_PATTERN = r"mooch|(Anthony ('The Mooch' )?)?Scaramucci"  # TODO: integrate
-
-# class HighlightedGroup:
-
-
-HIGHLIGHT_PATTERNS: dict[str, str] = {
-    BANK_COLOR: fr"{ALIREZA_ITTIHADIEH}|Amanda\s*Ens|Black(rock|stone)|{DANIEL_SABBA}|DB|Deutsche Bank|Goldman( ?Sachs)|HSBC|(Janet\s*)?Yellen|(Jide\s*)?Zeitlin|(Jerome\s*)?Powell|Jes\s+Staley|Merrill\s+Lynch|Morgan Stanley|j\.?p\.?\s*morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com|Marc\s*Leon|{LEON_BLACK}|{PAUL_MORRIS}|{PAUL_BARRETT}",
-    BITCOIN_COLOR: fr"bitcoin|block ?chain( capital)?|Brock|coins|cr[iy]?pto(currency)?|e-currency|(Howard\s+)?Lutnick|(jeffrey\s+)?wernick|{JEREMY_RUBIN}|Libra|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)",
-    BRO_COLOR: fr"{JONATHAN_FARKAS}|{TOM_BARRACK}",
-    BUSINESS_COLOR: fr"{emailer_pattern(BORIS_NIKOLIC)}|Marc Rich|(Steve\s+)?Wynn|(Leslie\s+)?Wexner|{BARBRO_EHNBOM}|{NICHOLAS_RIBIS}|{ROBERT_LAWRENCE_KUHN}|{STEPHEN_HANSON}|{TERRY_KAFKA}|{TOM_PRITZKER}",
-    CHINA_COLOR: r"Beijing|CCP|Chin(a|ese)|Gino Yu|Guo|Kwok|Tai(pei|wan)|Peking|PRC|xi",
-    DEEPAK_CHOPRA_COLOR: r"(Deepak )?Chopra|Deepak|Carolyn Rangel",
-    DEMOCRATS_COLOR: r"Biden|(Bill )?Clinton|Hillary|Democrat(ic)?|(John )?Kerry|Maxine\s*Waters|(Barack )?Obama|(Nancy )?Pelosi|Ron\s*Dellums",
-    DUBIN_COLOR: fr"((Celina|Eva( Anderss?on)?|Glenn) )?Dubin",
-    EMPLOYEE_COLOR: fr"{LESLEY_GROFF}|{NADIA_MARCINKO}|{emailer_pattern(LAWRANCE_VISOSKI)}",
-    ENTERTAINERS_COLOR: rf"Andres Serrano|Bill Siegel|Bobby slayton|David Blaine|Etienne Binant|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?",
-    EUROPE_COLOR: fr"{MIROSLAV}|Miro(slav)?|(Caroline|Jack)?\s*Lang(, Caroline)?|Le\s*Pen|Macron|(Angela )?Merk(el|le)|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|((Lord|Peter) )?Mandelson|Terje(( (R[øo]e?d[- ])?)?Lars[eo]n)?|Edward Rod Larsen|Ukrain(e|ian)|Zug|{emailer_pattern(THORBJORN_JAGLAND)}",
-    HARVARD_COLOR: fr"{LISA_NEW}|Harvard|MIT( Media Lab)?|Media Lab|{emailer_pattern(LARRY_SUMMERS)}|{emailer_pattern(MARTIN_NOWAK)}",
-    INDIA_COLOR: fr"Ambani|{ANIL}|Hardeep( puree)?|Indian?|Modi|mumbai|Zubair( Khan)?|{VINIT_SAHNI}",
-    ISRAEL_COLOR: r"Bibi|(eh|(Ehud|Nili Priell) )?barak|Mossad|Netanyahu|Israeli?",
-    JAVANKA_COLOR: fr"Ivanka( Trump)?|(Jared )?Kushner|Jared",
-    JOURNALIST_COLOR: rf"Alex Yablon|{emailer_pattern(EDWARD_EPSTEIN)}|{emailer_pattern(LANDON_THOMAS)}|{PAUL_KRASSNER}|{MICHAEL_WOLFF}|Wolff|Susan Edelman|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk",
-    LAWYER_COLOR: rf"{emailer_pattern(DARREN_INDYKE)}|{emailer_pattern(RICHARD_KAHN)}|{emailer_pattern(BRAD_KARP)}|(Alan (M\. )?)?Dershowi(l|tz)|{emailer_pattern(DAVID_STERN)}|(Erika )?Kellerhals|(Ken(neth W.)?\s+)?Starr|{DAVID_SCHOEN}|{JACK_GOLDBERGER}|{JAY_LEFKOWITZ}|Lefkowitz|Lilly (Ann )?Sanchez|{MARTIN_WEINBERG}|Michael J. Pike|Paul Weiss|{REID_WEINGARTEN}|Weinberg|Weingarten|Roy Black|{SCOTT_J_LINK}",
-    LOBBYIST_COLOR: fr"{OLIVIER_COLOM}|Purevsuren Lundeg|Rob Crowe|Stanley Rosenberg",  # lundeg mongolian ambassador, Rosenberg former state senator?
-    MIDDLE_EAST_COLOR: rf"{emailer_pattern(MOHAMED_WAHEED_HASSAN)}|Abdulmalik Al-Makhlafi|Abu\s+Dhabi|{ANAS_ALRASHEED}|Assad|{AZIZA_ALAHMADI}|Dubai|Emir(ates)?|Erdogan|Gaddafi|HBJ|Imran Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Raafat\s*Alsabbagh|Riya(dh|nd)|Saudi(\s+Arabian?)?|Shaher( Abdulhak Besher)?|Sharia|Syria|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
-    MODELING_COLOR: rf'{emailer_pattern(JEAN_LUC_BRUNEL)}|{DANIEL_SIAD}|Faith Kates?|\w+@mc2mm.com|{MARIANA_IDZKOWSKA}',
-    POLICE_COLOR: rf"Ann Marie Villafana|(James )?Comey|Kirk Blouin|((Bob|Robert) )?Mueller|Police Code Enforcement",
-    PUBLICIST_COLOR: rf"{AL_SECKEL}|{CHRISTINA_GALBRAITH}|Henry Holt|Ian Osborne|Matthew Hiltzik|{PEGGY_SIEGAL}|{TYLER_SHEARS}|ross@acuityreputation.com|Citrick|{emailer_pattern(MICHAEL_SITRICK)}",
-    REPUBLICANS_COLOR: r"bolton|Broidy|(?!Merwin Dela )Cruz|kudlow|lewandowski|mattis|mnuchin|(Paul )?Manafort|Pompeo|Republican",
-    RUSSIA_COLOR: fr"GRU|FSB|Lavrov|Masha\s*Drokova|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Rybolo(olev|vlev)|Vladimir Yudashkin",
-    SCHOLAR_COLOR: fr"((Noam|Valeria) )?Chomsky|David Grosof|{DAVID_HAIG}|{JOSCHA_BACH}|Joscha|Bach|Moshe Hoffman|Peter Attia|{ROBERT_TRIVERS}|Trivers|{STEVEN_PFEIFFER}|{emailer_pattern(LAWRENCE_KRAUSS)}",
-    SOUTH_AMERICA_COLOR: r"Argentina|Bra[sz]il(ian)?|Bolsonar[aio]|Lula|(Nicolas )?Maduro|Venezuelan?s?",
-    TECH_BRO_COLOR: fr"Elon|Musk|Masa(yoshi)?( Son)?|Najeev|Reid Hoffman|(Peter )?Th(ie|ei)l|Softbank|{emailer_pattern(STEVEN_SINOFSKY)}",
-    TRUMP_COLOR: r"DJT|(Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)(?! Rubin)|(Matt(hew)? )?Calamari|Roger\s+Stone",
-    VICTIM_COLOR: r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts",
-    VIRGIN_ISLANDS_COLOR: fr'Cecile de Jongh|(Kenneth E\. )?Mapp|{STACY_PLASKETT}',
-    # Individuals' styles
-    ARIANE_DE_ROTHSCHILD_COLOR: emailer_pattern(ARIANE_DE_ROTHSCHILD),
-    BANNON_COLOR: r"((Steve|Sean)\s+)?Bannon",
-    BILL_GATES_COLOR: r"BG|(Bill\s+((and|or)\s+Melinda\s+)?)?Gates|Melinda(\s+Gates)?",
-    BITCOIN_COLOR.removesuffix(' bold'): SCARAMUCCI_PATTERN,
-    GHISLAINE_MAXWELL_COLOR: r"Ghislaine|Maxwell|GMAX|gmax1@ellmax.com",
-    JABOR_Y_COLOR: emailer_pattern(JABOR_Y),
-    JEFFREY_EPSTEIN_COLOR: emailer_pattern(JEFFREY_EPSTEIN) + r'|Mark (L. )?Epstein',
-    JOI_ITO_COLOR: emailer_pattern(JOI_ITO),
-    KATHY_RUEMMLER_COLOR: emailer_pattern(KATHY_RUEMMLER),
-    LINDA_STONE_COLOR: emailer_pattern(LINDA_STONE),
-    MELANIE_SPINELLA_COLOR: emailer_pattern(MELANIE_SPINELLA),
-    MELANIE_WALKER_COLOR: emailer_pattern(MELANIE_WALKER),
-    PAULA_COLOR: emailer_pattern(PAULA),
-    PRINCE_ANDREW_COLOR: emailer_pattern(PRINCE_ANDREW),
-    SOON_YI_COLOR: emailer_pattern(SOON_YI),
-    SULTAN_BIN_SULAYEM_COLOR: emailer_pattern(SULTAN_BIN_SULAYEM),
-    # Misc
-    HEADER_FIELD_COLOR: r"^(Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):",
-    SENT_FROM_COLOR: SENT_FROM_REGEX.pattern,
-    SNIPPED_SIGNATURE_COLOR: r'<\.\.\.(snipped|trimmed).*\.\.\.>',
-    UNKNOWN_COLOR: r"\(unknown\)",
-}
-
-# Wrap in \b, add optional s? at end of all regex patterns
-HIGHLIGHT_REGEXES: dict[str, re.Pattern] = {
-    # [\b\n] or no trailing \b is required for cases when last char in match is not a word char (e.g. when it's '.')
-    k: re.compile(fr"\b(({v})s?)\b", re.I) if k not in [HEADER_FIELD_COLOR, UNKNOWN_COLOR] else re.compile(v, re.MULTILINE)
-    for k, v in HIGHLIGHT_PATTERNS.items()
-}
-
-HIGHLIGHTER_REGEXES: list[re.Pattern] = []
-
-for style, pattern in HIGHLIGHT_PATTERNS.items():
-    if style not in COLOR_MAPPING:
-        logger.warning(f"Skipping style '{style}' for highlighter...")
-        continue
-
-    style_name = COLOR_MAPPING[style]
-    prefixed_style_name = highlighter_style_name(style_name)
-
-    if prefixed_style_name in THEME_STYLES:
-        raise RuntimeError(f"'{prefixed_style_name}' already in THEME_STYLE!")
-
-    if style in [HEADER_FIELD_COLOR, SENT_FROM_COLOR, SNIPPED_SIGNATURE_COLOR, UNKNOWN_COLOR]:
-        regex = re.compile(fr"(?P<{style_name}>{pattern})", re.IGNORECASE | re.MULTILINE)
-    else:
-        regex = re.compile(fr"\b(?P<{style_name}>({pattern})s?)\b", re.IGNORECASE)
-
-    HIGHLIGHTER_REGEXES.append(regex)
-    THEME_STYLES[prefixed_style_name] = style
+for highlight_group in HIGHLIGHTED_GROUPS:
+    THEME_STYLES[highlighter_style_name(highlight_group.label)] = highlight_group.style
 
 
 class InterestingNamesHighlighter(RegexHighlighter):
     base_style = f"{REGEX_STYLE_PREFIX}."
-    highlights = HIGHLIGHTER_REGEXES
+    highlights = [highlight_group.regex() for highlight_group in HIGHLIGHTED_GROUPS]
 
 
 highlighter = InterestingNamesHighlighter()
@@ -254,9 +168,9 @@ console = Console(**CONSOLE_ARGS)
 
 
 def get_style_for_name(name: str, default: str = DEFAULT) -> str:
-    for style, name_regex in HIGHLIGHT_REGEXES.items():
-        if name_regex.search(name):
-            return style
+    for highlight_group in HIGHLIGHTED_GROUPS:
+        if highlight_group.regex().search(name):
+            return highlight_group.style
 
     return default
 
@@ -423,7 +337,7 @@ def wrap_in_markup_style(msg: str, style: str | None = None) -> str:
 
 if is_debug:
     console.line(2)
-    print_json('HIGHLIGHTER_REGEXES', [r.pattern for r in HIGHLIGHTER_REGEXES])
+    # print_json('HIGHLIGHTER_REGEXES', [r.pattern for r in HIGHLIGHTER_REGEXES])
     print_json('THEME_STYLES', THEME_STYLES)
 
 if deep_debug:
