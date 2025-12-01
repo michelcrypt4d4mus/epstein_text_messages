@@ -7,6 +7,7 @@ from io import StringIO
 from dateutil.parser import parse
 
 # Misc
+HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
 FALLBACK_TIMESTAMP = parse("1/1/2001 12:01:01 AM")
 SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
 # Email replies
@@ -232,7 +233,7 @@ GUESSED_IMESSAGE_FILE_IDS = {
 }
 
 for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
-    file_id = row['filename'].strip().replace('HOUSE_OVERSIGHT_', '').replace('.txt', '')
+    file_id = row['filename'].strip().replace(HOUSE_OVERSIGHT_PREFIX, '').replace('.txt', '')
     counterparty = row['counterparty'].strip()
 
     if file_id in GUESSED_IMESSAGE_FILE_IDS:

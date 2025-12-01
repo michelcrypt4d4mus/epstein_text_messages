@@ -16,6 +16,7 @@ from rich.theme import Theme
 
 from .constants import *
 from .env import args, deep_debug, is_debug, logger
+from .file_helper import build_filename_for_id
 from .highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS, REGEX_STYLE_PREFIX, HighlightedGroup
 from .html import PAGE_TITLE
 
@@ -87,6 +88,19 @@ def get_style_for_name(name: str, default: str = DEFAULT) -> str:
 def highlight_regex_match(text: str, pattern: re.Pattern, style: str = 'cyan') -> Text:
     """Replace 'pattern' matches with markup of the match colored with 'style'."""
     return Text.from_markup(pattern.sub(rf'[{style}]\1[/{style}]', text))
+
+
+def make_epsteinify_doc_link_markup(filename_or_id: int | str, style: str = TEXT_LINK) -> str:
+    if isinstance(filename_or_id, int) or not filename_or_id.startswith(HOUSE_OVERSIGHT_PREFIX):
+        file_stem = build_filename_for_id(filename_or_id)
+    else:
+        file_stem = str(filename_or_id)
+
+    return make_link_markup(epsteinify_doc_url(file_stem), file_stem, style)
+
+
+def make_epsteinify_doc_link_txt(filename_or_id: int | str, style: str = TEXT_LINK) -> Text:
+    return Text.from_markup(make_epsteinify_doc_link_markup(filename_or_id, style))
 
 
 def make_link_markup(url: str, link_text: str, style: str | None = ARCHIVE_LINK_COLOR, underline: bool = True) -> str:
