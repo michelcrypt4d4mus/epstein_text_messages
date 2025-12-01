@@ -1,6 +1,7 @@
 import csv
 import re
 import urllib.parse
+from copy import deepcopy
 from io import StringIO
 
 from dateutil.parser import parse
@@ -14,17 +15,18 @@ JOI_ITO = 'Joi Ito'
 LARRY_SUMMERS = 'Larry Summers'
 MELANIE_WALKER = 'Melanie Walker'
 MIROSLAV_LAJCAK = 'Miroslav Lajčák'
-STACY_PLASKETT = 'Stacey Plaskett'
+STACEY_PLASKETT = 'Stacey Plaskett'
 SCARAMUCCI = "Anthony 'The Mooch' Scaramucci"
 SOON_YI = 'Soon-Yi Previn'
 STEVE_BANNON = 'Steve Bannon'
 STEVEN_SINOFSKY = 'Steven Sinofsky'
-TERJE = 'Terje Rød-Larsen'
+TERJE_ROD_LARSEN = 'Terje Rød-Larsen'
 UNKNOWN = '(unknown)'
 
 # Email Names
 # TODO: no trailing periods!
 AL_SECKEL = 'Al Seckel'
+ALAN_DERSHOWITZ = 'Alan Dershowitz'
 ALIREZA_ITTIHADIEH = 'Alireza Ittihadieh'
 AMANDA_ENS = 'Amanda Ens'
 ANTHONY_BARRETT = 'Anthony Barrett'
@@ -50,15 +52,18 @@ DONALD_TRUMP = 'Donald Trump'
 EDUARDO_ROBLES = 'Eduardo Robles'
 EDWARD_EPSTEIN = 'Edward Epstein'
 EHUD_BARAK = 'Ehud Barak'
+ELON_MUSK = 'Elon Musk'
 FAITH_KATES = 'Faith Kates'
 GERALD_BARTON = 'Gerald Barton'
 GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
 GLENN_DUBIN = 'Glenn Dubin'
 GWENDOLYN_BECK = 'Gwendolyn Beck'
+IVANKA = 'Ivanka'
 JACK_GOLDBERGER = 'Jack Goldberger'
 JEAN_HUGUEN = 'Jean Huguen'
 JEAN_LUC_BRUNEL = 'Jean Luc Brunel'
 JABOR_Y = 'Jabor Y'  # Qatari
+JARED_KUSHNER = 'Jared Kushner'
 JAY_LEFKOWITZ = 'Jay Lefkowitz'
 JEREMY_RUBIN = 'Jeremy Rubin'  # bitcoin dev
 JOHN_PAGE = 'John Page'
@@ -112,6 +117,7 @@ THORBJORN_JAGLAND = 'Thorbjørn Jagland'
 TOM_BARRACK = 'Tom Barrack'
 TOM_PRITZKER = 'Tom Pritzker'
 TONJA_HADDAD_COLEMAN = 'Tonja Haddad Coleman'
+TULSI_GABBARD = 'Tulsi Gabbard'
 TYLER_SHEARS = 'Tyler Shears'  # Reputation manager, like Al Seckel
 VINIT_SAHNI = 'Vinit Sahni'
 
@@ -162,15 +168,15 @@ KNOWN_IMESSAGE_FILE_IDS = {
     '027650': JOI_ITO,         # Participants: field
     '027515': MIROSLAV_LAJCAK,        # https://x.com/ImDrinknWyn/status/1990210266114789713
     '027165': MELANIE_WALKER,  # https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/
-    '025429': STACY_PLASKETT,
+    '025429': STACEY_PLASKETT,
     '027333': SCARAMUCCI,      # unredacted phone number
     '027128': SOON_YI,         # https://x.com/ImDrinknWyn/status/1990227281101434923
     '027217': SOON_YI,         # refs marriage to woody allen
     '027244': SOON_YI,         # refs Woody
     '027257': SOON_YI,         # 'Woody Allen' in Participants: field
     '027777': LARRY_SUMMERS,   # Participants: field
-    '027278': TERJE,
-    '027255': TERJE,
+    '027278': TERJE_ROD_LARSEN,
+    '027255': TERJE_ROD_LARSEN,
 }
 
 GUESSED_IMESSAGE_FILE_IDS = {
@@ -209,18 +215,18 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
 
 
 # Emailers
-EMAILER_REGEXES = {
-    'Alan Dershowitz': re.compile(r'alan.*dershowitz', re.IGNORECASE),
+EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
+    ALAN_DERSHOWITZ: re.compile(r'alan.{1,7}dershowi(lz?|tz)', re.IGNORECASE),
     ALIREZA_ITTIHADIEH: re.compile(r'Alireza.[Il]ttihadieh', re.IGNORECASE),
-    AMANDA_ENS: re.compile(r'ens, amanda?', re.IGNORECASE),
+    AMANDA_ENS: re.compile(r'ens, amanda?|Amanda Ens', re.IGNORECASE),
     ANIL_AMBANI: re.compile(r'Anil.Ambani', re.IGNORECASE),
     'Ann Marie Villafana': re.compile(r'Villafana', re.IGNORECASE),
     ARIANE_DE_ROTHSCHILD: re.compile(r'AdeR|((Ariane|Edmond) de )?Rothschild|Ariane'),
     ANAS_ALRASHEED: re.compile(r'anas\s*al\s*rashee[cd]', re.IGNORECASE),
-    BARBRO_EHNBOM: re.compile(r'behnbom@aol.com|Barbro\s.*Ehnbom', re.IGNORECASE),
+    BARBRO_EHNBOM: re.compile(r'behnbom@aol.com|(Barbro\s.*)?Ehnbom', re.IGNORECASE),
     'Barry J. Cohen': re.compile(r'barry (j.? )?cohen?', re.IGNORECASE),
     BENNET_MOSKOWITZ: re.compile(r'Moskowitz.*Bennet|Bennet.*Moskowitz', re.IGNORECASE),
-    BORIS_NIKOLIC: re.compile(r'boris nikolic?', re.IGNORECASE),
+    BORIS_NIKOLIC: re.compile(r'(boris )?nikolic?', re.IGNORECASE),
     BRAD_KARP: re.compile(r'Brad (S.? )?Karp|Karp, Brad', re.IGNORECASE),
     'Dangene and Jennie Enterprise': re.compile(r'Dangene and Jennie Enterpris', re.IGNORECASE),
     'Danny Frost': re.compile(r'Frost, Danny|frostd@dany.nyc.gov', re.IGNORECASE),
@@ -248,7 +254,7 @@ EMAILER_REGEXES = {
     LARRY_SUMMERS: re.compile(r'(La(wrence|rry).{1,5})?Summers?|^LH$|LHS|Ihsofficel', re.IGNORECASE),
     LAWRANCE_VISOSKI: re.compile(r'La(rry|wrance) Visoski?', re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus|lawkrauss', re.IGNORECASE),
-    LEON_BLACK: re.compile(r'Leon Blac', re.IGNORECASE),
+    LEON_BLACK: re.compile(r'Leon Black?', re.IGNORECASE),
     MARIANA_IDZKOWSKA: re.compile(r'Mariana ldikowsk', re.IGNORECASE),  # Raw image
     MARK_EPSTEIN: re.compile(r'Mark (L\. )?Epstein', re.IGNORECASE),
     LILLY_SANCHEZ: re.compile(r'Lilly.*Sanchez', re.IGNORECASE),
@@ -261,7 +267,8 @@ EMAILER_REGEXES = {
     'Michael Miller': re.compile(r'Micha(el)? Miller|Miller, Micha(el)?', re.IGNORECASE),
     MICHAEL_BUCHHOLTZ: re.compile(r'Michael.*Buchholtz', re.IGNORECASE),
     MICHAEL_WOLFF: re.compile(r'Michael\s*Wol(ff|i)', re.IGNORECASE),
-    MICHAEL_SITRICK: re.compile(r'Mi(chael|ke).{0,5}Sitrick', re.IGNORECASE),
+    MICHAEL_SITRICK: re.compile(r'(Mi(chael|ke).{0,5})?[CS]itrick', re.IGNORECASE),
+    MIROSLAV_LAJCAK: re.compile(r"Miro(slav)?(\s+Laj[cč][aá]k)?"),
     MOHAMED_WAHEED_HASSAN: re.compile(r'Mohamed Waheed(\s+Hassan)?', re.IGNORECASE),
     'Neal Kassell': re.compile(r'Neal Kassel', re.IGNORECASE),
     NICHOLAS_RIBIS: re.compile(r'Nicholas[ ._]Ribi?s?', re.IGNORECASE),
@@ -272,6 +279,7 @@ EMAILER_REGEXES = {
     PAUL_MORRIS: re.compile(r'morris, paul|Paul Morris', re.IGNORECASE),
     PEGGY_SIEGAL:  re.compile(r'Peggy Siegal?', re.IGNORECASE),
     'Peter Attia': re.compile(r'Peter Attia?', re.IGNORECASE),
+    PETER_MANDELSON: re.compile(r"((Lord|Peter) )?Mandelson", re.IGNORECASE),
     'pink@mc2mm.com': re.compile(r"^Pink$|pink@mc2mm\.com", re.IGNORECASE),
     PRINCE_ANDREW: re.compile(r'Prince Andrew|The Duke', re.IGNORECASE),
     REID_WEINGARTEN: re.compile(r'Weingarten, Rei[cdi]|Rei[cdi] Weingarten', re.IGNORECASE),
@@ -287,7 +295,7 @@ EMAILER_REGEXES = {
     STEVE_BANNON: re.compile(r'steve banno[nr]?', re.IGNORECASE),
     STEVEN_SINOFSKY: re.compile(r'Steven Sinofsky?', re.IGNORECASE),
     SULTAN_BIN_SULAYEM: re.compile(r'Sultan (Ahmed )?bin Sulaye?m?', re.IGNORECASE),
-    TERJE: re.compile(r"Terje R[øo]e?d[- ]Larsen", re.IGNORECASE),
+    TERJE_ROD_LARSEN: re.compile(r"Terje(( (R[øo]e?d[- ])?)?Lars[eo]n)?", re.IGNORECASE),
     TERRY_KAFKA: re.compile(r'Terry Kafka?', re.IGNORECASE),
     THANU_BOONYAWATANA: re.compile(r"Thanu (BOONYAWATANA|Cnx)", re.IGNORECASE),
     THORBJORN_JAGLAND: re.compile(r'(Thor.{3,8})?Jag[il]and?', re.IGNORECASE),
@@ -334,7 +342,6 @@ EMAILERS = [
     'Oliver Goodenough',
     'Peter Aldhous',
     'Peter Green',
-    PETER_MANDELSON,
     'Roger Schank',
     'ross@acuityreputation.com',
     r'Sam/Walli Leff',
@@ -345,6 +352,8 @@ EMAILERS = [
     'Vincenzo Lozzo',
     'Vladimir Yudashkin',
 ]
+
+EMAILER_REGEXES = deepcopy(EMAILER_ID_REGEXES)
 
 for emailer in EMAILERS:
     if emailer in EMAILER_REGEXES:
@@ -584,7 +593,7 @@ HEADER_ABBREVIATIONS = {
     'Jared': "Jared Kushner",
     "Miro": MIROSLAV_LAJCAK,
     "Mooch": "Anthony 'The Mooch' Scaramucci (Skybridge crypto bro)",
-    "Terje": TERJE,
+    "Terje": TERJE_ROD_LARSEN,
     "Woody": "Woody Allen",
     "Zug": "City in Switzerland (crypto hub)",
 }
