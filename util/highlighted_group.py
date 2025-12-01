@@ -359,7 +359,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(emailers=[PAULA], style='pink1'),
     HighlightedGroup(emailers=[PRINCE_ANDREW], style='dodger_blue1'),
     HighlightedGroup(emailers=[SOON_YI], style='hot_pink'),
-    HighlightedGroup(emailers=[STEVEN_HOFFENBERG], pattern=r'(steven?\s*)?hoffenberg?w?', style='spring_green3 bold'),
+    HighlightedGroup(emailers=[STEVEN_HOFFENBERG], pattern=r'(steven?\s*)?hoffenberg?w?', style='gold3'),
     HighlightedGroup(emailers=[SULTAN_BIN_SULAYEM], style='green1'),
 
     # Highlight regexes for things other than names
