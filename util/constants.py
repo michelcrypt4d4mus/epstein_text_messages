@@ -1,6 +1,7 @@
 import csv
 import re
 import urllib.parse
+from copy import deepcopy
 from io import StringIO
 
 from dateutil.parser import parse
@@ -51,15 +52,18 @@ DONALD_TRUMP = 'Donald Trump'
 EDUARDO_ROBLES = 'Eduardo Robles'
 EDWARD_EPSTEIN = 'Edward Epstein'
 EHUD_BARAK = 'Ehud Barak'
+ELON_MUSK = 'Elon Musk'
 FAITH_KATES = 'Faith Kates'
 GERALD_BARTON = 'Gerald Barton'
 GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
 GLENN_DUBIN = 'Glenn Dubin'
 GWENDOLYN_BECK = 'Gwendolyn Beck'
+IVANKA = 'Ivanka'
 JACK_GOLDBERGER = 'Jack Goldberger'
 JEAN_HUGUEN = 'Jean Huguen'
 JEAN_LUC_BRUNEL = 'Jean Luc Brunel'
 JABOR_Y = 'Jabor Y'  # Qatari
+JARED_KUSHNER = 'Jared Kushner'
 JAY_LEFKOWITZ = 'Jay Lefkowitz'
 JEREMY_RUBIN = 'Jeremy Rubin'  # bitcoin dev
 JOHN_PAGE = 'John Page'
@@ -210,18 +214,18 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
 
 
 # Emailers
-EMAILER_REGEXES = {
+EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     ALAN_DERSHOWITZ: re.compile(r'alan.{1,7}dershowi(lz?|tz)', re.IGNORECASE),
     ALIREZA_ITTIHADIEH: re.compile(r'Alireza.[Il]ttihadieh', re.IGNORECASE),
-    AMANDA_ENS: re.compile(r'ens, amanda?', re.IGNORECASE),
+    AMANDA_ENS: re.compile(r'ens, amanda?|Amanda Ens', re.IGNORECASE),
     ANIL_AMBANI: re.compile(r'Anil.Ambani', re.IGNORECASE),
     'Ann Marie Villafana': re.compile(r'Villafana', re.IGNORECASE),
     ARIANE_DE_ROTHSCHILD: re.compile(r'AdeR|((Ariane|Edmond) de )?Rothschild|Ariane'),
     ANAS_ALRASHEED: re.compile(r'anas\s*al\s*rashee[cd]', re.IGNORECASE),
-    BARBRO_EHNBOM: re.compile(r'behnbom@aol.com|Barbro\s.*Ehnbom', re.IGNORECASE),
+    BARBRO_EHNBOM: re.compile(r'behnbom@aol.com|(Barbro\s.*)?Ehnbom', re.IGNORECASE),
     'Barry J. Cohen': re.compile(r'barry (j.? )?cohen?', re.IGNORECASE),
     BENNET_MOSKOWITZ: re.compile(r'Moskowitz.*Bennet|Bennet.*Moskowitz', re.IGNORECASE),
-    BORIS_NIKOLIC: re.compile(r'boris nikolic?', re.IGNORECASE),
+    BORIS_NIKOLIC: re.compile(r'(boris )?nikolic?', re.IGNORECASE),
     BRAD_KARP: re.compile(r'Brad (S.? )?Karp|Karp, Brad', re.IGNORECASE),
     'Dangene and Jennie Enterprise': re.compile(r'Dangene and Jennie Enterpris', re.IGNORECASE),
     'Danny Frost': re.compile(r'Frost, Danny|frostd@dany.nyc.gov', re.IGNORECASE),
@@ -262,7 +266,8 @@ EMAILER_REGEXES = {
     'Michael Miller': re.compile(r'Micha(el)? Miller|Miller, Micha(el)?', re.IGNORECASE),
     MICHAEL_BUCHHOLTZ: re.compile(r'Michael.*Buchholtz', re.IGNORECASE),
     MICHAEL_WOLFF: re.compile(r'Michael\s*Wol(ff|i)', re.IGNORECASE),
-    MICHAEL_SITRICK: re.compile(r'Mi(chael|ke).{0,5}Sitrick', re.IGNORECASE),
+    MICHAEL_SITRICK: re.compile(r'(Mi(chael|ke).{0,5})?[CS]itrick', re.IGNORECASE),
+    MIROSLAV_LAJCAK: re.compile(r"Miro(slav)?(\s+Laj[cč][aá]k)?"),
     MOHAMED_WAHEED_HASSAN: re.compile(r'Mohamed Waheed(\s+Hassan)?', re.IGNORECASE),
     'Neal Kassell': re.compile(r'Neal Kassel', re.IGNORECASE),
     NICHOLAS_RIBIS: re.compile(r'Nicholas[ ._]Ribi?s?', re.IGNORECASE),
@@ -346,6 +351,8 @@ EMAILERS = [
     'Vincenzo Lozzo',
     'Vladimir Yudashkin',
 ]
+
+EMAILER_REGEXES = deepcopy(EMAILER_ID_REGEXES)
 
 for emailer in EMAILERS:
     if emailer in EMAILER_REGEXES:
