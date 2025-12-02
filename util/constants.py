@@ -5,6 +5,7 @@ from copy import deepcopy
 from io import StringIO
 
 from dateutil.parser import parse
+from inflection import parameterize
 
 # Misc
 HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
@@ -95,7 +96,7 @@ JOHN_PAGE = 'John Page'
 JOHNNY_EL_HACHEM = 'Johnny el Hachem'
 JONATHAN_FARKAS = 'Jonathan Farkas'
 JOSCHA_BACH = 'Joscha Bach'
-KATHY_RUEMMLER = 'Kathy Ruemmler'
+KATHY_RUEMMLER = 'Kathryn Ruemmler'
 KATHERINE_KEATING = 'Katherine Keating'
 KEN_STARR = 'Ken Starr'
 KENNETH_E_MAPP = 'Kenneth E. Mapp'
@@ -289,7 +290,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     JOI_ITO: re.compile(r'ji@media.mit.?edu|(joichi|joi)( Ito)?', re.IGNORECASE),
     JOHNNY_EL_HACHEM: re.compile(r'el hachem johnny|johnny el hachem', re.IGNORECASE),
     JONATHAN_FARKAS: re.compile(r'Jonathan Farka(s|il)', re.IGNORECASE),
-    KATHY_RUEMMLER: re.compile(r'Kathy Ruemmler?', re.IGNORECASE),
+    KATHY_RUEMMLER: re.compile(r'Kathr?yn? Ruemmler?', re.IGNORECASE),
     KEN_STARR: re.compile(r'starr, ken|Ken(neth W.)?\s+starr?|starr', re.IGNORECASE),
     LANDON_THOMAS: re.compile(r'lando[nr] thomas( jr)?|thomas jr.?, lando[nr]', re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r'(La(wrence|rry).{1,5})?Summers?|^LH$|LHS|Ihsofficel', re.IGNORECASE),
@@ -864,7 +865,8 @@ ATTRIBUTIONS_URL = 'https://github.com/michelcrypt4d4mus/epstein_text_messages/b
 COFFEEZILLA_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=061ce61c9e70bdfd'
 COURIER_NEWSROOM_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
 EPSTEINIFY_URL = 'https://epsteinify.com'
-EPSTEIN_WEB_DOC_URL = 'https://epsteinweb.org/wp-content/uploads/epstein_evidence/images'
+EPSTEIN_WEB_URL = 'https://epsteinweb.org'
+EPSTEIN_WEB_DOC_URL = f'{EPSTEIN_WEB_URL}/wp-content/uploads/epstein_evidence/images'
 JMAIL_URL = 'https://jmail.world'
 OVERSIGHT_REPUBLICANS_PRESSER_URL = 'https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/'
 RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_'
@@ -881,6 +883,8 @@ epsteinify_doc_url = lambda file_stem: f"{EPSTEINIFY_URL}/document/{file_stem}"
 epsteinify_name_url = lambda name: f"{EPSTEINIFY_URL}/?name={urllib.parse.quote(name)}"
 
 esptein_web_doc_url = lambda file_stem: f"{EPSTEIN_WEB_DOC_URL}/{file_stem}.jpg"
+epstein_web_search_url = lambda s: f"{EPSTEIN_WEB_URL}/?ewmfileq={urllib.parse.quote(s)}&ewmfilepp=20"
+epstein_web_person_url = lambda person: f"{EPSTEIN_WEB_URL}/{parameterize(person)}"
 
 search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE_URL}&q={urllib.parse.quote(txt)}&p=1"
 search_coffeezilla_url = lambda txt: f"{COFFEEZILLA_ARCHIVE_URL}&q={urllib.parse.quote(txt)}&p=1"

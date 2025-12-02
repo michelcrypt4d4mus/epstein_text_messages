@@ -6,6 +6,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Literal
 
+from inflection import parameterize
 from rich.align import Align
 from rich.markup import escape
 from rich.padding import Padding
@@ -208,22 +209,24 @@ class EpsteinFiles:
         counts_table = Table(title=f"Email Counts", caption=footer, header_style="bold")
         counts_table.add_column('Name', justify='left', style=DEFAULT_NAME_COLOR)
         counts_table.add_column('Jmail', justify='center')
+        counts_table.add_column('EpsteinWeb', justify='center')
         counts_table.add_column('Twitter', justify='center')
         counts_table.add_column('Count', justify='center')
         counts_table.add_column('Sent', justify='center')
         counts_table.add_column('Received', justify='center')
         sort_key = lambda item: item[0] if args.sort_alphabetical else [item[1], item[0]]
 
-        for k, count in sorted(self.all_emailer_counts().items(), key=sort_key, reverse=True):
-            style = get_style_for_name(k, DEFAULT_NAME_COLOR)
+        for p, count in sorted(self.all_emailer_counts().items(), key=sort_key, reverse=True):
+            style = get_style_for_name(p, DEFAULT_NAME_COLOR)
 
             counts_table.add_row(
-                Text.from_markup(make_link_markup(epsteinify_name_url(k), k, style, underline=(style != DEFAULT_NAME_COLOR))),
-                '' if k == UNKNOWN else make_link(search_jmail_url(k), 'Jmail'),
-                '' if k == UNKNOWN else make_link(search_twitter_url(k), 'search X'),
+                Text.from_markup(make_link_markup(epsteinify_name_url(p), p, style, underline=(style != DEFAULT_NAME_COLOR))),
+                '' if p == UNKNOWN else make_link(search_jmail_url(p), 'Jmail'),
+                '' if p == UNKNOWN else make_link(search_twitter_url(p), 'search X'),
+                '' if p == UNKNOWN else make_link(epstein_web_person_url(p), 'EpsteinWeb'),
                 str(count),
-                str(self.email_author_counts[k]),
-                str(self.email_recipient_counts[k])
+                str(self.email_author_counts[p]),
+                str(self.email_recipient_counts[p])
             )
 
         console.print(vertically_pad(counts_table, 2))
