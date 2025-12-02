@@ -373,7 +373,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='scholar',
         style='light_goldenrod2',
-        pattern=r'Alain Forget|David Grosof|MIT(\s*Media\s*Lab)?|Media\s*Lab|Moshe Hoffman|((Noam|Valeria) )?Chomsky|Peter Attia|Stanford',
+        pattern=r'Alain Forget|David Grosof|MIT(\s*Media\s*Lab)?|Media\s*Lab|Moshe Hoffman|((Noam|Valeria) )?Chomsky|Stanford',
         emailers = {
             'Barnaby Marsh': None,
             DAVID_HAIG: None,
@@ -381,6 +381,7 @@ HIGHLIGHTED_GROUPS = [
             LAWRENCE_KRAUSS: 'theoretical physicist',
             LINDA_STONE: 'ex-Microsoft, MIT Media Lab',
             NEAL_KASSELL: None,
+            PETER_ATTIA: None,
             ROBERT_TRIVERS: 'evolutionary biology',
             ROGER_SCHANK: None,
             STEVEN_PFEIFFER: None,

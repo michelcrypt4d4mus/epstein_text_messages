@@ -40,7 +40,8 @@ HEADER_ABBREVIATIONS = {
 # Misc
 FALLBACK_TIMESTAMP = parse("1/1/2001 12:01:01 AM")
 SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
-# Email replies
+
+# Email replies (has to be here for circular dependencies reasons)
 REPLY_LINE_IN_A_MSG_PATTERN = r"In a message dated \d+/\d+/\d+.*writes:"
 REPLY_LINE_ENDING_PATTERN = r"[_ \n](AM|PM|[<_]|wrote:?)"
 REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"On \d+/\d+/\d+[, ].*{REPLY_LINE_ENDING_PATTERN}"
@@ -48,36 +49,6 @@ REPLY_LINE_ON_DATE_PATTERN = fr"On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat
 FORWARDED_LINE_PATTERN = r"-+ ?(Forwarded|Original)\s*Message ?-*|Begin forwarded message:?"
 REPLY_LINE_PATTERN = rf"({REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE)
-
-# Other strings
-EMAIL_HEADER_FIELD = 'header_field'
-
-#  of who is the counterparty in each text message file
-AI_COUNTERPARTY_DETERMINATION_TSV = StringIO("""filename	counterparty	source
-HOUSE_OVERSIGHT_025400.txt	Steve Bannon (likely)	Trump NYT article criticism; Hannity media strategy
-HOUSE_OVERSIGHT_025408.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_025452.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_025479.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_025707.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_025734.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027260.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027281.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027346.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027365.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027374.txt	Steve Bannon	China strategy and geopolitics
-HOUSE_OVERSIGHT_027406.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027440.txt	Michael Wolff	Trump book/journalism project
-HOUSE_OVERSIGHT_027445.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027455.txt	Steve Bannon (likely)	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027515.txt	Personal contact	Personal/social plans
-HOUSE_OVERSIGHT_027536.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027655.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027707.txt	Steve Bannon	Italian politics; Trump discussions
-HOUSE_OVERSIGHT_027722.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027735.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027794.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_029744.txt	Steve Bannon (likely)	Trump and New York Times coverage
-HOUSE_OVERSIGHT_031045.txt	Steve Bannon (likely)	Trump and New York Times coverage""")
 
 KNOWN_IMESSAGE_FILE_IDS = {
     '031042': ANIL_AMBANI,       # Participants: field
@@ -129,6 +100,33 @@ GUESSED_IMESSAGE_FILE_IDS = {
     '027396': SCARAMUCCI,
     '031054': SCARAMUCCI,
 }
+
+#  of who is the counterparty in each text message file
+AI_COUNTERPARTY_DETERMINATION_TSV = StringIO("""filename	counterparty	source
+HOUSE_OVERSIGHT_025400.txt	Steve Bannon (likely)	Trump NYT article criticism; Hannity media strategy
+HOUSE_OVERSIGHT_025408.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_025452.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_025479.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
+HOUSE_OVERSIGHT_025707.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_025734.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
+HOUSE_OVERSIGHT_027260.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027281.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027346.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027365.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027374.txt	Steve Bannon	China strategy and geopolitics
+HOUSE_OVERSIGHT_027406.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027440.txt	Michael Wolff	Trump book/journalism project
+HOUSE_OVERSIGHT_027445.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
+HOUSE_OVERSIGHT_027455.txt	Steve Bannon (likely)	China strategy and geopolitics; Trump discussions
+HOUSE_OVERSIGHT_027515.txt	Personal contact	Personal/social plans
+HOUSE_OVERSIGHT_027536.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
+HOUSE_OVERSIGHT_027655.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027707.txt	Steve Bannon	Italian politics; Trump discussions
+HOUSE_OVERSIGHT_027722.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027735.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027794.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_029744.txt	Steve Bannon (likely)	Trump and New York Times coverage
+HOUSE_OVERSIGHT_031045.txt	Steve Bannon (likely)	Trump and New York Times coverage""")
 
 for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
     file_id = row['filename'].strip().replace(HOUSE_OVERSIGHT_PREFIX, '').replace('.txt', '')
@@ -206,7 +204,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     PAULA: re.compile(r'^Paula$', re.IGNORECASE),
     PAUL_MORRIS: re.compile(r'morris, paul|Paul Morris', re.IGNORECASE),
     PEGGY_SIEGAL:  re.compile(r'Peggy Siegal?', re.IGNORECASE),
-    'Peter Attia': re.compile(r'Peter Attia?', re.IGNORECASE),
+    PETER_ATTIA: re.compile(r'Peter Attia?', re.IGNORECASE),
     PETER_MANDELSON: re.compile(r"((Lord|Peter) )?Mandelson", re.IGNORECASE),
     'pink@mc2mm.com': re.compile(r"^Pink$|pink@mc2mm\.com", re.IGNORECASE),
     PRINCE_ANDREW: re.compile(r'Prince Andrew|The Duke', re.IGNORECASE),

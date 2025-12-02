@@ -1,4 +1,5 @@
 from epstein_files.documents.email import Email
+from epstein_files.util.constant.names import *
 from epstein_files.util.data import dict_sets_to_lists
 
 EMAIL_AUTHOR_COUNTS = {
@@ -145,7 +146,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Paul Prosperi": 3,
     "Paula": 2,
     "Peggy Siegal": 8,
-    "Peter Attia": 2,
+    PETER_ATTIA: 2,
     "Peter Green": 1,
     "Peter Mandelson": 4,
     "Peter Thiel": 1,
