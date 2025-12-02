@@ -178,7 +178,7 @@ TRUNCATE_TERMS = [
 ]
 
 # No point in ever displaying these
-USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + PAUL_KRASSNER_MANSON_RECIPIENTS + [
+USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + PAUL_KRASSNER_MANSON_RECIPIENTS + FLIGHT_IN_2012_PEOPLE + [
     'Alan Rogers',                           # Random CC
     'asmallworld@travel.asmallworld.net',    # Promo travel stuff
     'BS Stern',                              # A random fwd of email we have

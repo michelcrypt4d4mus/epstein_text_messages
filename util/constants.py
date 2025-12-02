@@ -473,7 +473,6 @@ KNOWN_EMAIL_AUTHORS = {
     '032727': KATHY_RUEMMLER,          # from "Kathy" about dems, sent from iPad (not 100% confirmed)
     '030478': LANDON_THOMAS,
     '029013': LARRY_SUMMERS,
-    '031129': LAWRANCE_VISOSKI,        # Planes discussion, same as 029977
     '032206': LAWRENCE_KRAUSS,         # More of a text convo?
     '032209': LAWRENCE_KRAUSS,         # More of a text convo?
     # '032210': LAWRENCE_KRAUSS,         # More of a text convo?
@@ -482,6 +481,7 @@ KNOWN_EMAIL_AUTHORS = {
     '028789': LAWRANCE_VISOSKI,
     '027046': LAWRANCE_VISOSKI,
     '033370': LAWRANCE_VISOSKI,        # Planes discussion signed larry
+    '031129': LAWRANCE_VISOSKI,        # Planes discussion, same file as 029977
     '029977': LAWRANCE_VISOSKI,        # Planes discussion signed larry
     '033495': LAWRANCE_VISOSKI,        # Planes discussion signed larry
     '033154': LAWRANCE_VISOSKI,
@@ -533,6 +533,7 @@ KNOWN_EMAIL_AUTHORS = {
 
 IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
 PAUL_KRASSNER_MANSON_RECIPIENTS = ['Nancy Cain', 'Holly Krassner Dawson', 'Marie Moneysmith', 'Linda W. Grossman', 'Daniel Dawson', 'Danny Goldberg', 'Caryl Ratner', 'Michael Simmons', 'Barb Cowles', 'Lee Quarnstorm', 'Lynnie Tofte Fass', 'Kevin Bright', 'Samuel Leff', 'Bob Fass']
+FLIGHT_IN_2012_PEOPLE = ['Francis Derby', 'Januiz Banasiak', 'Louella Rabuyo', 'Richard Barnnet']
 
 KNOWN_EMAIL_RECIPIENTS = {
     '021106': 'Alexandra Preate',     # Reply
@@ -561,6 +562,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '031489': JEFFREY_EPSTEIN,        # Bad OCR
     '032209': JEFFREY_EPSTEIN,        # More of a text convo?
     '032210': JEFFREY_EPSTEIN,        # More of a text convo?
+    '029977': [JEFFREY_EPSTEIN, DARREN_INDYKE, LESLEY_GROFF, RICHARD_KAHN] + FLIGHT_IN_2012_PEOPLE,
     '033486': [JEFFREY_EPSTEIN, DARREN_INDYKE, RICHARD_KAHN],  # OCR
     '033156': [JEFFREY_EPSTEIN, DARREN_INDYKE, RICHARD_KAHN],  # OCR
     '033228': [JEFFREY_EPSTEIN, DARREN_INDYKE, FRED_HADDAD],   # Bad OCR
