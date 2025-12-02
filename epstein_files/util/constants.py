@@ -654,23 +654,3 @@ SUPPRESS_OUTPUT_FOR_EMAIL_IDS = {
     '031129': 'the same as 029977',
     '033561': 'the same as 033157',
 }
-
-NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
-    'Al', 'Allen', 'Amanda', 'Andres', 'Andrew',
-    'Black', 'Brad',
-    'Daniel', 'Darren', 'David',
-    'Edwards', 'Eric', 'Etienne',
-    'Fred',
-    'Jack', 'Jay', 'Jean', 'Jeff', 'jeffrey', 'Jeremy', 'jessica', 'John', 'Jon', 'Jonathan', 'Joseph', 'Jr',
-    'Kahn', 'Katherine',
-    'Leon', 'Lesley', 'Linda',
-    'Marc', 'Martin', 'Melanie', 'Michael', 'Mike',
-    'Neal',
-    'Paul', 'Pen', 'Peter',
-    'Reid', 'Richard', 'Robert', 'Roger', 'Roth', 'Rubin',
-    'Scott', 'Sean', 'Stephen', 'Steve', 'Steven', 'Stone',
-    'Susan',
-    'The', 'Thomas', 'Tim', 'Tom',
-    'Victor',
-    "Y",
-]]

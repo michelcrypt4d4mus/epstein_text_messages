@@ -6,7 +6,7 @@ from rich.text import Text
 
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constants import *
-from epstein_files.util.env import is_debug, logger
+from epstein_files.util.env import deep_debug, logger
 
 ESTATE_EXECUTOR = 'Epstein estate executor'
 REGEX_STYLE_PREFIX = 'regex'
@@ -72,10 +72,11 @@ class HighlightedGroup:
         if name in EMAILER_ID_REGEXES:
             pattern = EMAILER_ID_REGEXES[name].pattern
 
-            if SIMPLE_NAME_REGEX.match(last_name):
+            if SIMPLE_NAME_REGEX.match(last_name) and last_name.lower() not in NAMES_TO_NOT_HIGHLIGHT:
+                logger.info(f"Adding last name '{last_name}' to existing pattern '{pattern}'")
                 pattern += fr"|{last_name}"  # Include regex for last name
             else:
-                logger.warning(f"Last name '{last_name}' of '{name}' not simple!")
+                logger.info(f"Last name '{last_name}' of '{name}' not added to pattern")
 
             return pattern
         elif ' ' not in name:
@@ -540,7 +541,7 @@ def _get_highlight_group_for_name(name: str) -> HighlightedGroup | None:
             return highlight_group
 
 
-if is_debug:
+if deep_debug:
     for hg in HIGHLIGHTED_GROUPS:
         print(hg)
         print("\n")
