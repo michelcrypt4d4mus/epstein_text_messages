@@ -254,6 +254,7 @@ HIGHLIGHTED_GROUPS = [
             JESSICA_CADWELL: None,
             LILLY_SANCHEZ: None,
             MARTIN_WEINBERG: None,
+            MICHAEL_MILLER: 'Steptoe',
             REID_WEINGARTEN: None,
             RICHARD_KAHN: ESTATE_EXECUTOR,
             SCOTT_J_LINK: None,
@@ -272,7 +273,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='lobbyist',
         style='light_coral',
-        pattern='Rob Crowe|Stanley Rosenberg',
+        pattern=r'[BR]ob Crowe|Stanley Rosenberg',
         emailers = {
             KATHERINE_KEATING: 'Daughter of former Australian PM',
             MOHAMED_WAHEED_HASSAN: 'former president of the Maldives',
@@ -374,7 +375,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='trump',
         style='red3 bold',
-        pattern=r"@?realDonaldTrump|DJT|(Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)(?! Rubin)|Mar[- ]*a[- ]*Lago|(Matt(hew)? )?Calamari|Roger\s+Stone",
+        pattern=r"@?realDonaldTrump|DJT|(Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)(?! Rubin)|Mar[- ]*a[- ]*Lago|(Matt(hew)? )?Calamari|\bMatt C\b|Roger\s+Stone",
     ),
     HighlightedGroup(
         label='victim',

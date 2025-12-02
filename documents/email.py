@@ -191,9 +191,11 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + PAUL_KRASSNER_MANSO
     'Gordon Getty',                          # Random CC
     'How To Academy',
     'Jeff Fuller',                           # Random Jean Luc Brunel CC
+    'Jojo Fontanilla',                       # Random CC
     'Jokeland',
     'Joseph Vinciguerra',                    # Random CC
     'Larry Cohen',                           # Random Bill Gates CC
+    'Lyn Fontanilla',                        # Random CC
     'Mark Albert',                           # Random CC
     'Matthew Schafer',                       # Random CC
     'Michael Simmons',                       # Random CC
