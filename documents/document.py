@@ -8,7 +8,7 @@ from typing import ClassVar
 from rich.markup import escape
 from rich.text import Text
 
-from util.constants import HOUSE_OVERSIGHT_PREFIX, esptein_web_doc_url, search_archive_url
+from util.constants import EPSTEINIFY, EPSTEIN_WEB, HOUSE_OVERSIGHT_PREFIX, esptein_web_doc_url, search_archive_url
 from util.data import collapse_newlines, patternize
 from util.env import args, logger
 from util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, is_local_extract_file
@@ -149,12 +149,12 @@ class Document:
             txt.append(self.epstein_web_link(style=style))
 
             if include_alt_link:
-                txt.append(' (').append(self.epsteinify_link(style='white dim', link_txt='epsteinify')).append(')')
+                txt.append(' (').append(self.epsteinify_link(style='white dim', link_txt=EPSTEINIFY)).append(')')
         else:
             txt.append(self.epsteinify_link(style=style))
 
             if include_alt_link:
-                txt.append(' (').append(self.epstein_web_link(style='white dim', link_txt='epsteinweb')).append(')')
+                txt.append(' (').append(self.epstein_web_link(style='white dim', link_txt=EPSTEIN_WEB)).append(')')
 
         return txt
 

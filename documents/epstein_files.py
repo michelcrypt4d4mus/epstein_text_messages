@@ -218,11 +218,11 @@ class EpsteinFiles:
         footer = f"Identified authors of {self.attributed_email_count()} emails out of {len(self.emails)} potential email files."
         counts_table = Table(title=f"Email Counts", caption=footer, header_style="bold")
         counts_table.add_column('Name', justify='left', style=DEFAULT_NAME_COLOR)
-        counts_table.add_column('Count', justify='center')
+        counts_table.add_column('Emails', justify='center')
         counts_table.add_column('Sent', justify='center')
-        counts_table.add_column('Received', justify='center')
-        counts_table.add_column('Jmail', justify='center')
-        counts_table.add_column('EpsteinWeb', justify='center')
+        counts_table.add_column("Recv'd", justify='center')
+        counts_table.add_column(JMAIL, justify='center')
+        counts_table.add_column(EPSTEIN_WEB, justify='center')
         counts_table.add_column('Twitter', justify='center')
         sort_key = lambda item: item[0] if args.sort_alphabetical else [item[1], item[0]]
 
@@ -230,12 +230,12 @@ class EpsteinFiles:
             style = get_style_for_name(p, DEFAULT_NAME_COLOR)
 
             counts_table.add_row(
-                Text.from_markup(make_link_markup(epsteinify_name_url(p), p, style, underline=(style != DEFAULT_NAME_COLOR))),
+                Text.from_markup(make_link_markup(epsteinify_name_url(p), p, style)),
                 str(count),
                 str(self.email_author_counts[p]),
                 str(self.email_recipient_counts[p]),
-                '' if p == UNKNOWN else make_link(search_jmail_url(p), 'Jmail'),
-                '' if not is_ok_for_epstein_web(p) else make_link(epstein_web_person_url(p), 'EpsteinWeb'),
+                '' if p == UNKNOWN else make_link(search_jmail_url(p), JMAIL),
+                '' if not is_ok_for_epstein_web(p) else make_link(epstein_web_person_url(p), EPSTEIN_WEB),
                 '' if p == UNKNOWN else make_link(search_twitter_url(p), 'search X'),
             )
 
