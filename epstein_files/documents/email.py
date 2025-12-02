@@ -326,8 +326,6 @@ class Email(CommunicationDocument):
                 return match.end() - 1
 
     def _border_style(self) -> str:
-        style: str
-
         # Color emails from epstein to others with the color for the first recipient
         if self.author == JEFFREY_EPSTEIN:
             if len(self.recipients) == 0 or self.recipients == [None]:
