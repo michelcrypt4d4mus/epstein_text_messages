@@ -46,13 +46,17 @@ class HighlightedGroup:
         else:
             self.regex = re.compile(fr"\b(?P<{self.style_suffix}>({pattern})s?)\b", re.IGNORECASE)
 
-    def get_info(self) -> str | None:
-        if self.info:
-            return self.info
-        elif self.has_no_category:
-            return None
-        else:
-            return titleize(self.label)
+    def get_info(self, name: str) -> str | None:
+        info_pieces = []
+
+        if not self.has_no_category:
+            info_pieces.append(self.info or titleize(self.label))
+
+        if self.emailers.get(name) is not None:
+            info_pieces.append(self.emailers[name])
+
+        if len(info_pieces) > 0:
+            return ', '.join(info_pieces)
 
     def colored_label(self) -> Text:
         return Text(self.label.replace('_', ' '), style=self.style)
@@ -444,8 +448,8 @@ HIGHLIGHTED_GROUPS = [
         pattern=r'(steven?\s*)?hoffenberg?w?',
         style='gold3'
     ),
-    HighlightedGroup(emailers={JABOR_Y: HEADER_ABBREVIATIONS['Jabor']}, style='spring_green1'),
     HighlightedGroup(emailers={GHISLAINE_MAXWELL: None}, pattern='gmax(1@ellmax.com)?', style='deep_pink3'),
+    HighlightedGroup(emailers={JABOR_Y: HEADER_ABBREVIATIONS['Jabor']}, style='spring_green1'),
     HighlightedGroup(emailers={JEFFREY_EPSTEIN: None}, pattern='Mark (L. )?Epstein', style='blue1'),
     HighlightedGroup(emailers={JOI_ITO: 'former head of MIT Media Lab'}, style='gold1'),
     HighlightedGroup(emailers={KATHY_RUEMMLER: 'former Obama legal counsel'}, style='magenta2'),
@@ -508,30 +512,22 @@ COLOR_KEYS = [
 
 
 def get_info_for_name(name: str) -> str | None:
-    highlight_group = get_highlight_group_for_name(name)
+    highlight_group = _get_highlight_group_for_name(name)
 
-    if not highlight_group:
-        return None
-
-    info = highlight_group.get_info()
-    info_pieces = [info] if info else []
-
-    if highlight_group.emailers.get(name) is not None:
-        info_pieces.append(highlight_group.emailers[name])
-
-    return ', '.join(info_pieces)
-
-
-def get_highlight_group_for_name(name: str) -> HighlightedGroup | None:
-    for highlight_group in HIGHLIGHTED_GROUPS:
-        if highlight_group.regex.search(name):
-            return highlight_group
+    if highlight_group:
+        return highlight_group.get_info(name)
 
 
 def get_style_for_name(name: str, default: str = DEFAULT, allow_bold: bool = True) -> str:
-    highlight_group = get_highlight_group_for_name(name)
+    highlight_group = _get_highlight_group_for_name(name)
     style = highlight_group.style if highlight_group else default
     return style if allow_bold else style.replace('bold', '').strip()
+
+
+def _get_highlight_group_for_name(name: str) -> HighlightedGroup | None:
+    for highlight_group in HIGHLIGHTED_GROUPS:
+        if highlight_group.regex.search(name):
+            return highlight_group
 
 
 if is_debug:
