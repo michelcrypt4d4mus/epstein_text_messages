@@ -25,7 +25,7 @@ from epstein_files.util.strings import *
 
 TIME_REGEX = re.compile(r'^(\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday).*')
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
-BAD_TIMEZONE_SUFFIX = re.compile(fr' \((UTC|GMT\+\d{2}:\d{2})\)')
+BAD_TIMEZONE_REGEX = re.compile(r'\((UTC|GMT\+\d{2}:\d{2})\)')
 TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 PACIFIC_TZ = tz.gettz("America/Los_Angeles")
 TIMEZONE_INFO = {"PST": PACIFIC_TZ, "PDT": PACIFIC_TZ}  # Suppresses annoying warnings from parse() calls
@@ -531,8 +531,9 @@ class Email(CommunicationDocument):
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:
     try:
-        timestamp_str = timestamp_str.replace(' (GMT-05:00)', 'EST')
-        timestamp_str = BAD_TIMEZONE_SUFFIX.sub('', timestamp_str).replace(REDACTED, ' ').strip()
+        timestamp_str = timestamp_str.replace('(GMT-05:00)', 'EST')
+        timestamp_str = BAD_TIMEZONE_REGEX.sub('', timestamp_str).replace(REDACTED, ' ').strip()
+        logger.debug(f"Parsing fixed timestamp_str '{timestamp_str}'")
         timestamp = parse(timestamp_str, tzinfos=TIMEZONE_INFO)
         logger.debug(f'Parsed timestamp "{timestamp}" from string "{timestamp_str}"')
 
