@@ -11,6 +11,7 @@ from epstein_files.util.env import is_debug, logger
 ESTATE_EXECUTOR = 'Epstein estate executor'
 REGEX_STYLE_PREFIX = 'regex'
 NO_CATEGORY_LABELS = [BILL_GATES, STEVE_BANNON]
+SIMPLE_NAME_REGEX = re.compile(r"^[-\w ]+$", re.IGNORECASE)
 
 safe_style_name = lambda label: label.lower().replace(' ', '_').replace('-', '_')
 
@@ -65,15 +66,22 @@ class HighlightedGroup:
     # TODO: handle word boundary issue for names that end in symbols
     def emailer_pattern(self, name: str) -> str:
         logger.debug(f"emailer_pattern() called for '{name}'")
+        names = name.split()
+        last_name = names[-1]
 
         if name in EMAILER_ID_REGEXES:
-            return EMAILER_ID_REGEXES[name].pattern
+            pattern = EMAILER_ID_REGEXES[name].pattern
+
+            if SIMPLE_NAME_REGEX.match(last_name):
+                pattern += fr"|{last_name}"  # Include regex for last name
+            else:
+                logger.warning(f"Last name '{last_name}' of '{name}' not simple!")
+
+            return pattern
         elif ' ' not in name:
             return name
 
-        names = name.split()
         first_name = ' '.join(names[0:-1])
-        last_name = names[-1]
         name_patterns = [name.replace(' ', r"\s+"), first_name, last_name]
         name_regex_parts = [n for n in name_patterns if n.lower() not in NAMES_TO_NOT_HIGHLIGHT]
         logger.debug(f"name_regex_parts for '{name}': {name_regex_parts}")
