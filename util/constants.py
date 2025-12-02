@@ -820,6 +820,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Fred',
     'Jack',
     'Jay',
+    'Jean',
     'Jeff',
     'jeffrey',
     'Jeremy',
