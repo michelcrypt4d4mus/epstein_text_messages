@@ -326,7 +326,7 @@ class Email(CommunicationDocument):
                 return match.end() - 1
 
     def _border_style(self) -> str:
-        # Color emails from epstein to others with the color for the first recipient
+        """Color emails from epstein to others with the color for the first recipient."""
         if self.author == JEFFREY_EPSTEIN:
             if len(self.recipients) == 0 or self.recipients == [None]:
                 style = self.author_style
@@ -338,7 +338,7 @@ class Email(CommunicationDocument):
         return style.replace('bold', '')
 
     def _cleaned_up_text(self) -> str:
-        # add newline after headers in text if actual header wasn't "empty"
+        """Add newline after headers in text if actual header wasn't 'empty', remove bad lines, etc."""
         if self.header.was_initially_empty:
             text = self.text
         else:
@@ -358,6 +358,12 @@ class Email(CommunicationDocument):
     def _extract_sent_at(self) -> datetime:
         if self.file_id in KNOWN_TIMESTAMPS:
             return KNOWN_TIMESTAMPS[self.file_id]
+
+        if self.header.sent_at:
+            timestamp = _parse_timestamp(self.header.sent_at)
+
+            if timestamp:
+                return timestamp
 
         searchable_lines = self.text.split('\n')[0:VALID_HEADER_LINES]
         searchable_text = '\n'.join(searchable_lines)
