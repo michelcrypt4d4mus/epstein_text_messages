@@ -4,7 +4,7 @@ Reformat Epstein text message files for readability and count email senders.
 For use with iMessage log files from https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_
 
 Install: 'pip install python-dotenv rich'
-    Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT/001 ./epstein_chat_logs_reformatter.py'
+    Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT/001 ./generate.py'
 """
 import time
 from pathlib import Path
