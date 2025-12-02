@@ -244,7 +244,7 @@ HIGHLIGHTED_GROUPS = [
     ),
     HighlightedGroup(
         label='lawyer',
-        style='medium_purple2',
+        style='purple4',
         pattern=r'(Erika\s+)?Kellerhals|Michael J. Pike|Paul,?\s*Weiss|Wein(berg|garten)',
         emailers = {
             BENNET_MOSKOWITZ: None,
@@ -312,14 +312,14 @@ HIGHLIGHTED_GROUPS = [
         style='pale_violet_red1',
         pattern=r'\w+@mc2mm.com',
         emailers = {
-            'Abi Schwinck': 'MC2 Model Management (/)',
+            'Abi Schwinck': 'MC2 Model Management (?)',
             DANIEL_SIAD: None,
             FAITH_KATES: 'Next Models co-founder',
             'Gianni Serazzi': 'fashion consultant?',
             JEAN_LUC_BRUNEL: 'MC2 Model Management founder, died by suicide in French jail',
             MANUELA_MARTINEZ: 'Mega Partners (Brazilian agency)',
             MARIANA_IDZKOWSKA: None,
-            'Michael Sanka': 'MC2 Model Management (/)',
+            'Michael Sanka': 'MC2 Model Management (?)',
         }
     ),
     HighlightedGroup(
