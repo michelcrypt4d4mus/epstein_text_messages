@@ -10,14 +10,18 @@ HEADER_REGEX_STR = r'(((?:(?:Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC
 EMAIL_SIMPLE_HEADER_REGEX = re.compile(rf'^{HEADER_REGEX_STR}')
 EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX = re.compile(HEADER_REGEX_STR)
 AUTHOR = 'author'
+ON_BEHALF_OF = 'on behalf of'
 TO_FIELDS = ['bcc', 'cc', 'to']
 EMAILER_FIELDS = [AUTHOR] + TO_FIELDS
-ON_BEHALF_OF = 'on behalf of'
+NON_HEADER_FIELDS = ['field_names', 'was_initially_empty']
 
 
 @dataclass(kw_only=True)
 class EmailHeader:
-    field_names: list[str]  # Ordered
+    field_names: list[str]  # Order is same as the order header fields appear in the email file text
+    was_initially_empty: bool = False
+
+    # Fields from the email text
     author: str | None = None
     sent_at: str | None = None
     subject: str | None = None
@@ -26,20 +30,13 @@ class EmailHeader:
     importance: str | None = None
     attachments: str | None = None
     to: list[str] | None = None
-    was_initially_empty: bool = False
 
     def __post_init__(self):
         self.was_initially_empty = self.is_empty()
 
     def as_dict(self) -> dict[str, str | None]:
-        """Remove 'field_names' field."""
-        _dict = {}
-
-        for k, v in asdict(self).items():
-            if k != 'field_names':
-                _dict[k] = v
-
-        return _dict
+        """Remove housekeeping fields that don't actually come from the email."""
+        return {k: v for k, v in asdict(self).items() if k not in NON_HEADER_FIELDS}
 
     def is_empty(self) -> bool:
         return not any([v for _k, v in self.as_dict().items()])
