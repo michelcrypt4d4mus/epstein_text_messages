@@ -21,7 +21,7 @@ from .file_helper import build_filename_for_id
 from .highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS, REGEX_STYLE_PREFIX, HighlightedGroup
 from .html import PAGE_TITLE
 
-NUM_COLOR_KEY_COLS = 3
+NUM_COLOR_KEY_COLS = 4
 OUTPUT_WIDTH = 120
 
 # Styles
@@ -173,6 +173,7 @@ def print_color_key(key_type: Literal["Groups", "People"] = "Groups") -> None:
             COLOR_KEYS[idx],
             COLOR_KEYS[idx + 1] if (idx + 1) < num_colors else '',
             COLOR_KEYS[idx + 2] if (idx + 2) < num_colors else '',
+            COLOR_KEYS[idx + 3] if (idx + 3) < num_colors else '',
         )
 
         row_number += 1

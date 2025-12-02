@@ -542,6 +542,7 @@ PAUL_KRASSNER_MANSON_RECIPIENTS = ['Nancy Cain', 'Holly Krassner Dawson', 'Marie
 FLIGHT_IN_2012_PEOPLE = ['Francis Derby', 'Januiz Banasiak', 'Louella Rabuyo', 'Richard Barnnet']
 
 KNOWN_EMAIL_RECIPIENTS = {
+    '030626': [ALAN_DERSHOWITZ, DARREN_INDYKE, KATHY_RUEMMLER, KEN_STARR, MARTIN_WEINBERG],
     '028968': [ALAN_DERSHOWITZ, JACK_GOLDBERGER, JEFFREY_EPSTEIN],
     '029835': [ALAN_DERSHOWITZ, JACK_GOLDBERGER, JEFFREY_EPSTEIN],
     '026620': [MARK_EPSTEIN, JEFFREY_EPSTEIN, MICHAEL_BUCHHOLTZ] + IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS,
@@ -826,11 +827,12 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'John',
     'Jonathan',
     'Joseph',
+    'Jr',
     'Kahn',
     'Katherine',
-    'Jr',
     'Leon',
     'Lesley',
+    'Linda',
     'Marc',
     'Martin',
     'Melanie',

@@ -282,7 +282,7 @@ def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str]
 
 
 def is_ok_for_epstein_web(name: str) -> bool:
-    if '@' in name or name in JUNK_EMAILERS or name == UNKNOWN:
+    if '@' in name or '/' in name or  name in JUNK_EMAILERS or name == UNKNOWN:
         return False
     elif name in ['ACT for America'] or ' ' not in name:
         return False
