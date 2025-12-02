@@ -142,3 +142,23 @@ TONJA_HADDAD_COLEMAN = 'Tonja Haddad Coleman'
 TULSI_GABBARD = 'Tulsi Gabbard'
 TYLER_SHEARS = 'Tyler Shears'  # Reputation manager, like Al Seckel
 VINIT_SAHNI = 'Vinit Sahni'
+
+
+NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
+    'Al', 'Allen', 'Amanda', 'Andres', 'Andrew',
+    'Black', 'Brad',
+    'Daniel', 'Darren', 'David',
+    'Edwards', 'Epstein', 'Eric', 'Etienne',
+    'Fred',
+    'Jack', 'Jay', 'Jean', 'Jeff', 'jeffrey', 'Jeremy', 'jessica', 'John', 'Jon', 'Jonathan', 'Joseph', 'Jr',
+    'Kahn', 'Katherine',
+    'Leon', 'Lesley', 'Linda', 'Link',
+    'Marc', 'Martin', 'Melanie', 'Michael', 'Mike', 'Miller',
+    'Neal', 'New',
+    'Paul', 'Paula', 'Pen', 'Peter',
+    'Reid', 'Richard', 'Robert', 'Roger', 'Roth', 'Rubin',
+    'Scott', 'Sean', 'Stern', 'Stephen', 'Steve', 'Steven', 'Stone', 'Susan',
+    'The', 'Thomas', 'Tim', 'Tom',
+    'Victor',
+    "Y",
+]]
