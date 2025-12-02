@@ -533,6 +533,8 @@ KNOWN_EMAIL_AUTHORS = {
     '029992': TERRY_KAFKA,             # Quoted reply
     '020666': TERRY_KAFKA,             # ends with 'Terry'
     '022346': VINIT_SAHNI,             # Signature  #TODO: check this, also maybe 022346 and 022322
+    # Unknowns
+    '022187': UNKNOWN,   # Bad OCR causes parsing problems
     # '026571': '(unknown french speaker)',
     # '029504': Probably Audrey Raimbault (based on "GMI" in signature, a company registered by "aubrey raimbault")
 }

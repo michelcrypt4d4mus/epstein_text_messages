@@ -426,9 +426,6 @@ class Email(CommunicationDocument):
             self.header = EmailHeader(field_names=[])
 
     def _get_names(self, emailer_str: str) -> list[str]:
-        if emailer_str.rstrip('<').strip() == REDACTED:  # TODO: this sucks, just for HOUSE_OVERSIGHT_022187
-            return []
-
         emailer_str = EmailHeader.cleanup_str(emailer_str)
         names = []
 
