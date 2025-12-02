@@ -18,11 +18,11 @@ from rich.text import Text
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import sender_counts
 from epstein_files.epstein_files import EpsteinFiles
+from epstein_files.util.constant.html import *
 from epstein_files.util.constant.strings import EMAIL_CLASS, MESSENGER_LOG_CLASS
 from epstein_files.util.data import dict_sets_to_lists
 from epstein_files.util.env import specified_emailers, args, is_build, is_debug, skip_texts
 from epstein_files.util.file_helper import OUTPUT_GH_PAGES_HTML
-from epstein_files.util.html import *
 from epstein_files.util.rich import *
 
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
