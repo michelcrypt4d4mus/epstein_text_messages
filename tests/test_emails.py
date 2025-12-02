@@ -624,8 +624,8 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         "Michael Miller"
     ],
     "Sent from my BlackBerry 10 smartphone.": [
+        "Nicholas Ribis",
         "Reid Weingarten",
-        "Nicholas Ribis"
     ],
     "Sent from my BlackBerry® wireless device": [
         "Landon Thomas Jr",
@@ -641,8 +641,8 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         "Darren Indyke"
     ],
     "Sent from my Verizon Wireless BlackBerry": [
+        "Alan Dershowitz",
         "Lisa Randall",
-        "Alan Dershowitz"
     ],
     "Sent from my Verizon, Samsung Galaxy smartphone": [
         "Reid Weingarten"
