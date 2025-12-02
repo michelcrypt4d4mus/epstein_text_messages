@@ -244,7 +244,7 @@ HIGHLIGHTED_GROUPS = [
     ),
     HighlightedGroup(
         label='lawyer',
-        style='medium_purple2',
+        style='purple4',
         pattern=r'(Erika\s+)?Kellerhals|Michael J. Pike|Paul,?\s*Weiss|Wein(berg|garten)',
         emailers = {
             BENNET_MOSKOWITZ: None,
