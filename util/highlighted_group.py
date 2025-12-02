@@ -172,8 +172,9 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='entertainer',
         style='light_steel_blue3',
-        pattern='Andres Serrano|Bill Siegel|Bobby slayton|David Blaine|Etienne Binant|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?',
+        pattern='Bobby slayton|David Blaine|Etienne Binant|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?',
         emailers={
+            'Andres Serrano': "'Piss Christ' artist",
             BILL_SIEGEL: 'documentary film producer and director',
         }
     ),
