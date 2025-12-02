@@ -76,7 +76,7 @@ class HighlightedGroup:
                 logger.info(f"Adding last name '{last_name}' to existing pattern '{pattern}'")
                 pattern += fr"|{last_name}"  # Include regex for last name
             else:
-                logger.info(f"Last name '{last_name}' of '{name}' not added to pattern")
+                logger.info(f"*NOT* adding last name '{last_name}' of '{name}' to pattern")
 
             return pattern
         elif ' ' not in name:
