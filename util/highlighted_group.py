@@ -14,6 +14,7 @@ NO_CATEGORY_LABELS = [BILL_GATES, STEVE_BANNON]
 # Keyed by the 'label' property
 PEOPLE_INFO = {
     AL_SECKEL: 'husband of Isabel Maxwell, Mind State organizer, fell off a cliff',
+    ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
     AZIZA_ALAHMADI: 'Abu Dhabi Department of Culture & Tourism',
     BARBRO_EHNBOM: 'Swedish pharmaceuticals',
     BILL_SIEGEL: 'documentary film producer and director',
@@ -223,7 +224,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='harvard',
         style='deep_pink2',
-        pattern=r'Harvard|MIT(\s*Media\s*Lab)?|Media\s*Lab|Stanford',
+        pattern=r'Harvard',
         emailers=[
             LARRY_SUMMERS,
             LISA_NEW,
@@ -370,7 +371,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='scholar',
         style='light_goldenrod2',
-        pattern='Alain Forget|David Grosof|Moshe Hoffman|((Noam|Valeria) )?Chomsky|Peter Attia',
+        pattern=r'Alain Forget|David Grosof|MIT(\s*Media\s*Lab)?|Media\s*Lab|Moshe Hoffman|((Noam|Valeria) )?Chomsky|Peter Attia|Stanford',
         emailers=[
             DAVID_HAIG,
             JOSCHA_BACH,
@@ -437,7 +438,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(emailers=[GHISLAINE_MAXWELL], pattern='gmax(1@ellmax.com)?', style='deep_pink3'),
     HighlightedGroup(emailers=[JABOR_Y], info=HEADER_ABBREVIATIONS['Jabor'], style='spring_green1'),
     HighlightedGroup(emailers=[JEFFREY_EPSTEIN], pattern='Mark (L. )?Epstein', style='blue1'),
-    HighlightedGroup(emailers=[JOI_ITO], info='MIT Media Lab', style='blue_violet'),
+    HighlightedGroup(emailers=[JOI_ITO], info='MIT Media Lab', style='gold1'),
     HighlightedGroup(emailers=[KATHY_RUEMMLER], info='former Obama legal counsel', style='magenta2'),
     HighlightedGroup(emailers=[LINDA_STONE], style='pink3'),
     HighlightedGroup(emailers=[MELANIE_SPINELLA], style='magenta3'),
