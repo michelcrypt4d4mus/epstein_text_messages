@@ -18,9 +18,22 @@ from util.strings import *
 
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
-HOUSE_OVERSIGHT = 'HOUSE OVERSIGHT'
+HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
 MIN_DOCUMENT_ID = 10477
 PREVIEW_CHARS = 520
+KB = 1024
+MB = KB * KB
+
+# Subclass names
+DOCUMENT = 'Document'
+EMAIL = 'Email'
+MESSENGER_LOG = 'MessengerLog'
+
+DOC_TYPE_STYLES = {
+    DOCUMENT: 'grey69',
+    EMAIL: 'sea_green2',
+    MESSENGER_LOG: 'cyan',
+}
 
 # Takes ~1.1 seconds to apply these repairs
 OCR_REPAIRS = {
@@ -34,12 +47,6 @@ FILENAME_MATCH_STYLES = [
     'green',
     'spring_green4',
 ]
-
-DOC_TYPE_STYLES = {
-    'Document': 'grey69',
-    'Email': 'sea_green2',
-    'MessengerLog': 'cyan',
-}
 
 
 @dataclass
@@ -83,10 +90,12 @@ class Document:
 
     def description(self) -> Text:
         doc_type = str(type(self).__name__)
-        txt = Text('').append(self.file_path.stem, style='bright_green').append(f' {doc_type} (')
-        txt.append(f"num_lines={self.num_lines}, length={self.length}")
+        txt = Text('').append(self.file_path.stem, style='bright_green')
+        txt.append(f' {doc_type} ', style=DOC_TYPE_STYLES[doc_type]).append(f"(num_lines=")
+        txt.append(f"{self.num_lines:,}", style='cyan').append(", size=")
+        txt.append(self.size_str(), style='aquamarine1')
 
-        if doc_type == 'Document':
+        if doc_type == DOCUMENT:
             txt.append(')')
 
         return txt
@@ -157,6 +166,21 @@ class Document:
                 text = text.replace(k, v)
 
         return text
+
+    def size_str(self) -> str:
+        file_size = float(self.file_path.stat().st_size)
+
+        if file_size > MB:
+            size_num = file_size / MB
+            size_str = 'MB'
+        elif file_size > KB:
+            size_num = file_size / KB
+            size_str = 'kb'
+        else:
+            size_num = file_size
+            size_str = 'bytes'
+
+        return f"{size_num:,.2f} {size_str}"
 
     def top_lines(self, n: int = 10) -> str:
         return '\n'.join(self.lines[0:n])
