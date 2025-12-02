@@ -164,7 +164,7 @@ HIGHLIGHTED_GROUPS = [
         emailers = {
             ERIC_ROTH: 'jet decorator',
             GWENDOLYN_BECK: 'Epstein fund manager in the 90s',
-            LAWRANCE_VISOSKI: 'Pilot',
+            LAWRANCE_VISOSKI: 'pilot',
             LESLEY_GROFF: 'assistant',
             JEAN_HUGUEN: 'interior design at Alberto Pinto Cabinet',
             'Linda Pinto': 'interior design at Alberto Pinto Cabinet',
