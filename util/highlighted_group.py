@@ -23,6 +23,8 @@ PEOPLE_INFO = {
     EHUD_BARAK: 'former primer minister',
     GLENN_DUBIN: "Highbridge Capital Management, married to Epstein's ex-gf Eva",
     GWENDOLYN_BECK: 'fund manager',
+    JEAN_HUGUEN: 'interior design at Alberto Pinto Cabinet',
+    'Linda Pinto': 'interior design at Alberto Pinto Cabinet',
     JEAN_LUC_BRUNEL: 'died by suicide in French prison',
     JES_STALEY: 'former CEO of Barclays',
     JIDE_ZEITLIN: 'former partner at Goldman Sachs, allegations of sexual misconduct',
@@ -197,6 +199,8 @@ HIGHLIGHTED_GROUPS = [
             GWENDOLYN_BECK,
             LAWRANCE_VISOSKI,
             LESLEY_GROFF,
+            JEAN_HUGUEN,
+            'Linda Pinto',
             NADIA_MARCINKO,
         ]
     ),
