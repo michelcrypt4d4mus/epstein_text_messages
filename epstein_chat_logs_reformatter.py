@@ -15,7 +15,9 @@ load_dotenv()
 from rich.padding import Padding
 from rich.text import Text
 
+from documents.document import DOCUMENT, EMAIL, MESSENGER_LOG
 from documents.epstein_files import EpsteinFiles
+from documents.messenger_log import sender_counts
 from util.env import specified_emailers, args, is_build, is_debug, skip_texts
 from util.file_helper import OUTPUT_GH_PAGES_HTML
 from util.html import *
@@ -148,3 +150,10 @@ if is_build:
     logger.warning(f"Wrote HTML to '{OUTPUT_GH_PAGES_HTML}' ({html_size_in_mb} MB, total time {(time.perf_counter() - started_at):.2f} seconds).\n")
 else:
     logger.warning(f"Not writing HTML because 'BUILD_HTML' env var not set, total time {(time.perf_counter() - started_at):.2f} seconds.")
+
+if args.json_stats:
+    console.line(5)
+    console.print(Panel('JSON Stats Dump', expand=True, style='reverse bold'), '\n')
+    print_json(f"{MESSENGER_LOG} Sender Counts", sender_counts)
+    print_json(f"{EMAIL} Author Counts", epstein_files.email_author_counts)
+    print_json(f"{EMAIL} Recipient Counts", epstein_files.email_recipient_counts)

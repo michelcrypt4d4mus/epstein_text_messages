@@ -182,9 +182,10 @@ def print_color_key(key_type: Literal["Groups", "People"] = "Groups") -> None:
 
 
 def print_json(label: str, obj: object) -> None:
-    console.print(f"{label}:\n")
+    console.line()
+    console.print(Panel(label, expand=False))
     console.print_json(json.dumps(obj, indent=4, sort_keys=True))
-    console.line(2)
+    console.line()
 
 
 def print_numbered_list_of_emailers(_list: list[str] | dict, epstein_files = None) -> None:
@@ -260,12 +261,9 @@ def wrap_in_markup_style(msg: str, style: str | None = None) -> str:
 
 if is_debug:
     console.line(2)
-    # print_json('HIGHLIGHTER_REGEXES', [r.pattern for r in HIGHLIGHTER_REGEXES])
     print_json('THEME_STYLES', THEME_STYLES)
 
 if deep_debug:
-    console.print('KNOWN_IMESSAGE_FILE_IDS\n--------------')
-    console.print(json.dumps(KNOWN_IMESSAGE_FILE_IDS))
-    console.print('\n\n\nGUESSED_IMESSAGE_FILE_IDS\n--------------')
-    console.print_json(json.dumps(GUESSED_IMESSAGE_FILE_IDS))
+    print_json('KNOWN_IMESSAGE_FILE_IDS', KNOWN_IMESSAGE_FILE_IDS)
+    print_json('GUESSED_IMESSAGE_FILE_IDS', GUESSED_IMESSAGE_FILE_IDS)
     console.line(2)
