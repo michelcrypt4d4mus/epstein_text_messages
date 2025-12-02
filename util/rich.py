@@ -159,7 +159,7 @@ def print_header():
 
 
 def print_color_key(key_type: Literal["Groups", "People"] = "Groups") -> None:
-    color_table = Table(title=f'Rough Guide to Highlighted Colors')
+    color_table = Table(title=f'Rough Guide to Highlighted Colors', show_header=False)
     num_colors = len(COLOR_KEYS)
     row_number = 0
 
