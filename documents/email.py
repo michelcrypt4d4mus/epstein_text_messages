@@ -249,7 +249,7 @@ class Email(CommunicationDocument):
     def __post_init__(self):
         super().__post_init__()
         self._repair()
-        self._extract_header()
+        self.header = self._extract_header()
 
         if is_fast_mode:
             self.author = UNKNOWN
@@ -373,57 +373,59 @@ class Email(CommunicationDocument):
         self.log_top_lines(msg="No valid timestamp found in email!")
         raise RuntimeError(f"No timestamp found in '{self.file_path.name}'")
 
-    def _extract_header(self) -> EmailHeader | None:
+    def _extract_header(self) -> EmailHeader:
         header_match = EMAIL_SIMPLE_HEADER_REGEX.search(self.text)
 
-        if header_match:
-            self.header = EmailHeader.from_str(header_match.group(0))
-
-            # Sometimes the headers and values are on separate rows
-            if self.header.is_empty():
-                num_headers = len(self.header.field_names)
-
-                for i, field_name in enumerate(self.header.field_names):
-                    row_number_to_check = i + num_headers
-
-                    if row_number_to_check > (self.num_lines - 1):
-                        logger.warning(f"Ran out of rows to check for a value for '{field_name}'")
-                        break
-
-                    value = self.lines[row_number_to_check]
-                    log_prefix = f"Looks like '{value}' is a mismatch for '{field_name}', " if is_debug else ''
-
-                    if field_name == AUTHOR:
-                        if SKIP_HEADER_ROW_REGEX.match(value):
-                            logger.info(f"{log_prefix}, trying the next line...")
-                            num_headers += 1
-                            value = self.lines[i + num_headers]
-                        elif TIME_REGEX.match(value) or value == 'Darren,' or BAD_EMAILER_REGEX.match(value):
-                            logger.info(f"{log_prefix}, decrementing num_headers and skipping...")
-                            num_headers -= 1
-                            continue
-                    elif field_name in TO_FIELDS:
-                        if TIME_REGEX.match(value):
-                            logger.info(f"{log_prefix}, trying next line...")
-                            num_headers += 1
-                            value = self.lines[i + num_headers]
-                        elif BAD_EMAILER_REGEX.match(value):
-                            logger.info(f"{log_prefix}, decrementing num_headers and skipping...")
-                            num_headers -= 1
-                            continue
-
-                        value = [v.strip() for v in value.split(';') if len(v.strip()) > 0]
-
-                    setattr(self.header, field_name, value)
-
-                logger.debug(f"Corrected empty header to:\n{self.header}\n\nTop rows of file\n\n{self.top_lines((num_headers + 1) * 2)}")
-            else:
-                logger.debug(f"Extracted email header:\n{self.header}")
-        else:
+        if not header_match:
             if not (self.file_id in KNOWN_EMAIL_AUTHORS and self.file_id in KNOWN_EMAIL_RECIPIENTS):
                 logger.warning(f"No header match found in '{self.filename}'! Top lines:\n\n{self.top_lines()}")
 
-            self.header = EmailHeader(field_names=[])
+            return EmailHeader(field_names=[])
+
+        header = EmailHeader.from_str(header_match.group(0))
+        num_headers = len(header.field_names)
+
+        if not header.is_empty():
+            logger.debug(f"Extracted email header:\n%s", header)
+            return header
+
+        # Sometimes the headers and values are on separate lines and we need to do some shenanigans
+        for i, field_name in enumerate(header.field_names):
+            row_number_to_check = i + num_headers  # Look ahead 3 lines if there's 3 header fields, 4 if 4, etc.
+
+            if row_number_to_check > (self.num_lines - 1):
+                logger.warning(f"Ran out of rows to check for a value for '{field_name}'")
+                break
+
+            value = self.lines[row_number_to_check]
+            log_prefix = f"Looks like '{value}' is a mismatch for '{field_name}', " if is_debug else ''
+
+            if field_name == AUTHOR:
+                if SKIP_HEADER_ROW_REGEX.match(value):
+                    logger.info(f"{log_prefix}, trying the next line...")
+                    num_headers += 1
+                    value = self.lines[i + num_headers]
+                elif TIME_REGEX.match(value) or value == 'Darren,' or BAD_EMAILER_REGEX.match(value):
+                    logger.info(f"{log_prefix}, decrementing num_headers and skipping...")
+                    num_headers -= 1
+                    continue
+            elif field_name in TO_FIELDS:
+                if TIME_REGEX.match(value):
+                    logger.info(f"{log_prefix}, trying next line...")
+                    num_headers += 1
+                    value = self.lines[i + num_headers]
+                elif BAD_EMAILER_REGEX.match(value):
+                    logger.info(f"{log_prefix}, decrementing num_headers and skipping...")
+                    num_headers -= 1
+                    continue
+
+                value = [v.strip() for v in value.split(';') if len(v.strip()) > 0]
+
+            setattr(header, field_name, value)
+
+        logger.debug(f"Corrected empty header to:\n%s\n\nTop lines:\n\n%s", header, self.top_lines((num_headers + 1) * 2))
+        return header
+
 
     def _get_names(self, emailer_str: str) -> list[str]:
         emailer_str = EmailHeader.cleanup_str(emailer_str)
