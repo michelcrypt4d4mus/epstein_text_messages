@@ -196,22 +196,28 @@ TRUNCATE_TERMS = [
     'The raw materials for that period include interviews',
 ]
 
-# No point in ever displaying these
-USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + PAUL_KRASSNER_MANSON_RECIPIENTS + FLIGHT_IN_2012_PEOPLE + [
-    'Alan Rogers',                           # Random CC
+JUNK_EMAILERS = [
     'asmallworld@travel.asmallworld.net',    # Promo travel stuff
+    'digest-noreply@quora.com',
+    'editorialstaff@flipboard.com',
+    'How To Academy',
+    'Jokeland',
+    'Saved by Internet Explorer 11',
+]
+
+# No point in ever displaying these
+USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
+                   PAUL_KRASSNER_MANSON_RECIPIENTS + \
+                   FLIGHT_IN_2012_PEOPLE + [
+    'Alan Rogers',                           # Random CC
     'BS Stern',                              # A random fwd of email we have
     'Cheryl Kleen',                          # Single email from Anne Boyles, displayed under Anne Boyles
     'Connie Zaguirre',                       # Random CC
     'Dan Fleuette',                          # CC from sean bannon
     'Danny Goldberg',                        # Random Paul Krassner emails
-    'digest-noreply@quora.com',
-    'editorialstaff@flipboard.com',
     'Gordon Getty',                          # Random CC
-    'How To Academy',
     'Jeff Fuller',                           # Random Jean Luc Brunel CC
     'Jojo Fontanilla',                       # Random CC
-    'Jokeland',
     'Joseph Vinciguerra',                    # Random CC
     'Larry Cohen',                           # Random Bill Gates CC
     'Lyn Fontanilla',                        # Random CC
@@ -222,11 +228,9 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + PAUL_KRASSNER_MANSO
     'Oliver Goodenough',                     # Robert Trivers CC
     'Owen Blicksilver',                      # Landon Thomas CC
     'Peter Aldhous',                         # Lawrence Krauss CC
-    'Pink',                                  # Random Jean Luc Brunel CC
     ROBERT_D_CRITTON,                        # Random CC
     'Sam Harris',                            # Lawrence Krauss CC
     'Sam/Walli Leff',                        # Random CC
-    'Saved by Internet Explorer 11',
     'Sean T Lehane',                         # Random CC
     'Stephen Rubin',                         # Random CC
     'Tim Kane',                              # Random CC

@@ -85,7 +85,6 @@ HIGHLIGHTED_GROUPS = [
         style='green',
         pattern=r'Apollo|Black(rock|stone)|DB|Deutsche\s*Bank|Goldman( ?Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|Merrill\s+Lynch|Morgan Stanley|j\.?p\.?\s*morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com',
         emailers={
-            ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
             AMANDA_ENS: None,
             DANIEL_SABBA: 'UBS Investment Bank',
             'David Fiszel': 'CIO Honeycomb Asset Management',
@@ -115,6 +114,7 @@ HIGHLIGHTED_GROUPS = [
             JONATHAN_FARKAS: None,
             'Peter Thomas Roth': 'student of Epstein at Dalton, skincare company founder',
             TOM_BARRACK: 'long time friend of Trump',
+            STEPHEN_HANSON: None,
         }
     ),
     HighlightedGroup(
@@ -122,11 +122,12 @@ HIGHLIGHTED_GROUPS = [
         style='spring_green4',
         pattern=r'Marc Rich|(Steve\s+)?Wynn|(Leslie\s+)?Wexner',
         emailers = {
+            ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
             BARBRO_EHNBOM: 'Swedish pharmaceuticals',
             BORIS_NIKOLIC: f'Biotech VC, {ESTATE_EXECUTOR}',
+            FRED_HADDAD: "co-founder of Heck's in West Virginia",
             NICHOLAS_RIBIS: 'Hilton CEO',
             ROBERT_LAWRENCE_KUHN: "investment banker, China expert",
-            STEPHEN_HANSON: None,
             TERRY_KAFKA: 'CEO of Impact Outdoor (highway billboards)',
             TOM_PRITZKER: 'brother of J.B. Pritzker',
         }
@@ -164,8 +165,8 @@ HIGHLIGHTED_GROUPS = [
         emailers = {
             ERIC_ROTH: 'jet decorator',
             GWENDOLYN_BECK: 'Epstein fund manager in the 90s',
-            LAWRANCE_VISOSKI: 'Pilot',
-            LESLEY_GROFF: 'Assistant (?)',
+            LAWRANCE_VISOSKI: 'pilot',
+            LESLEY_GROFF: 'assistant',
             JEAN_HUGUEN: 'interior design at Alberto Pinto Cabinet',
             'Linda Pinto': 'interior design at Alberto Pinto Cabinet',
             NADIA_MARCINKO: 'pilot',
@@ -178,6 +179,7 @@ HIGHLIGHTED_GROUPS = [
         emailers={
             'Andres Serrano': "'Piss Christ' artist",
             BILL_SIEGEL: 'documentary film producer and director',
+            'Richard Merkin': 'painter, illustrator and arts educator',
         }
     ),
     HighlightedGroup(
@@ -185,10 +187,10 @@ HIGHLIGHTED_GROUPS = [
         style='light_sky_blue3',
         pattern=r'(Caroline|Jack)?\s*Lang(, Caroline)?|Le\s*Pen|Macron|(Angela )?Merk(el|le)|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Ukrain(e|ian)|Zug',
         emailers = {
-            MIROSLAV_LAJCAK: 'Russia friendly Slovak',
+            MIROSLAV_LAJCAK: 'Russia-friendly Slovakian politician, friend of Steve Bannon',
             PETER_MANDELSON: 'UK politics',
             TERJE_ROD_LARSEN: 'Norwegian diplomat',
-            THORBJORN_JAGLAND: None,
+            THORBJORN_JAGLAND: 'former prime minister of Norway',
         }
     ),
     HighlightedGroup(
@@ -206,7 +208,7 @@ HIGHLIGHTED_GROUPS = [
         style='bright_green',
         pattern='Hardeep( puree)?|Indian?|Modi|mumbai|Zubair( Khan)?',
         emailers = {
-            ANIL_AMBANI: None,
+            ANIL_AMBANI: 'chairman of Reliance Group',
             VINIT_SAHNI: None,
         }
     ),
@@ -216,6 +218,7 @@ HIGHLIGHTED_GROUPS = [
         pattern='Bibi|(eh|(Ehud|Nili Priell) )?barak|Mossad|Netanyahu|Israeli?',
         emailers={
             EHUD_BARAK: 'former primer minister',
+            'Mitchell Bard': 'director of the American–Israeli Cooperative Enterprise (AICE)',
             'Nili Priell Barak': f'wife of {EHUD_BARAK}',
         }
     ),
@@ -230,9 +233,9 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='journalist',
         style='bright_yellow',
-        pattern=r'Alex Yablon|Ingram, David|Susan Edelman|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
+        pattern=r'Alex Yablon|Ingram, David|Susan Edelman|Vick[iy] Ward|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
         emailers = {
-            EDWARD_EPSTEIN: None,
+            EDWARD_EPSTEIN: 'no relation to Jeffrey',
             LANDON_THOMAS: 'New York Times',
             MICHAEL_WOLFF: None,
             PAUL_KRASSNER: '60s guy',
@@ -242,27 +245,34 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='lawyer',
         style='medium_purple2',
-        pattern=r'(Erika\s+)?Kellerhals|Michael J. Pike|Paul,?\s*Weiss|Roy Black|Wein(berg|garten)',
+        pattern=r'(Erika\s+)?Kellerhals|Michael J. Pike|Paul,?\s*Weiss|Wein(berg|garten)',
         emailers = {
             BENNET_MOSKOWITZ: None,
             'Brad Edwards': None,
-            BRAD_KARP: None,
-            DARREN_INDYKE: ESTATE_EXECUTOR,
+            BRAD_KARP: 'head of the law firm Paul Weiss',
             DAVID_STERN: None,
             DAVID_SCHOEN: None,
             DEBBIE_FEIN: None,
-            FRED_HADDAD: None,
             JACK_GOLDBERGER: None,
             JACKIE_PERCZEK: None,
             JAY_LEFKOWITZ: None,
-            JESSICA_CADWELL: None,
-            LILLY_SANCHEZ: None,
-            MARTIN_WEINBERG: None,
-            MICHAEL_MILLER: 'Steptoe',
-            REID_WEINGARTEN: None,
-            RICHARD_KAHN: ESTATE_EXECUTOR,
+            JESSICA_CADWELL: 'paralegal (?)',  # paralegal, see https://x.com/ImDrinknWyn/status/1993765348898927022
+            LILLY_SANCHEZ:  'criminal defense attorney',
+            MARTIN_WEINBERG: 'criminal defense attorney',
+            MICHAEL_MILLER: 'Steptoe LLP partner',
+            REID_WEINGARTEN: 'Steptoe LLP partner',
+            'Roy Black': 'criminal defense attorney',
             SCOTT_J_LINK: None,
-            TONJA_HADDAD_COLEMAN: None,
+            TONJA_HADDAD_COLEMAN: 'maybe daughter of Fred Haddad?',
+        }
+    ),
+    HighlightedGroup(
+        label='executor_lawyer',
+        info='lawyer',
+        style='purple3 bold',
+        emailers = {
+            DARREN_INDYKE: ESTATE_EXECUTOR,
+            RICHARD_KAHN: ESTATE_EXECUTOR,
         }
     ),
     HighlightedGroup(
@@ -271,7 +281,7 @@ HIGHLIGHTED_GROUPS = [
         style='medium_purple3',
         emailers = {
             ALAN_DERSHOWITZ: None,
-            KEN_STARR: None,
+            KEN_STARR: 'head of the Monica Lewinsky investigation against Bill Clinton',
         }
     ),
     HighlightedGroup(
@@ -293,8 +303,8 @@ HIGHLIGHTED_GROUPS = [
         emailers = {
             ANAS_ALRASHEED: None,
             AZIZA_ALAHMADI: 'Abu Dhabi Department of Culture & Tourism',
-            RAAFAT_ALSABBAGH: None,
-            SHAHER_ABDULHAK_BESHER: None,
+            RAAFAT_ALSABBAGH: 'Saudi royal advisor',
+            SHAHER_ABDULHAK_BESHER: 'Yemeni billionaire',
         }
     ),
     HighlightedGroup(
@@ -302,11 +312,14 @@ HIGHLIGHTED_GROUPS = [
         style='pale_violet_red1',
         pattern=r'\w+@mc2mm.com',
         emailers = {
+            'Abi Schwinck': 'MC2 Model Management (/)',
             DANIEL_SIAD: None,
-            FAITH_KATES: None,
+            FAITH_KATES: 'Next Models co-founder',
             'Gianni Serazzi': 'fashion consultant?',
-            JEAN_LUC_BRUNEL: 'sordid backstory, died by suicide in French prison',
+            JEAN_LUC_BRUNEL: 'MC2 Model Management founder, died by suicide in French jail',
+            MANUELA_MARTINEZ: 'Mega Partners (Brazilian agency)',
             MARIANA_IDZKOWSKA: None,
+            'Michael Sanka': 'MC2 Model Management (/)',
         }
     ),
     HighlightedGroup(
@@ -314,7 +327,7 @@ HIGHLIGHTED_GROUPS = [
         style='color(24) bold',
         pattern='FBI|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|Police Code Enforcement|Strzok',
         emailers = {
-            ANN_MARIE_VILLAFANA: None,
+            ANN_MARIE_VILLAFANA: 'southern district of Florida U.S. Attorney',
             DANNY_FROST: 'Director of Communications at Manhattan DA',
         }
     ),
@@ -326,7 +339,7 @@ HIGHLIGHTED_GROUPS = [
             AL_SECKEL: 'husband of Isabel Maxwell, Mind State organizer, fell off a cliff',
             CHRISTINA_GALBRAITH: None,
             MICHAEL_SITRICK: None,
-            PEGGY_SIEGAL: None,
+            PEGGY_SIEGAL: 'socialite',
             ROSS_GOW: 'Acuity Reputation Management',
             TYLER_SHEARS: None,
         }
@@ -336,7 +349,7 @@ HIGHLIGHTED_GROUPS = [
         style='bold dark_red',
         pattern=r'(Alex )?Acosta|Bolton|Broidy|GOP|(?<!Merwin Dela )Cruz|Kobach|Kolfage|Kudlow|Lewandowski|(Marco )?Rubio|Mattis|Mnuchin|(Paul\s+)?Manafort|(Peter )?Navarro|Pompeo|Republican',
         emailers = {
-            RUDY_GIULIANI: None,
+            RUDY_GIULIANI: 'disbarred formed mayor of New York City',
             TULSI_GABBARD: None,
         }
     ),
@@ -356,9 +369,9 @@ HIGHLIGHTED_GROUPS = [
             'Barnaby Marsh': None,
             DAVID_HAIG: None,
             JOSCHA_BACH: 'cognitive science / AI research',
-            LAWRENCE_KRAUSS: None,
+            LAWRENCE_KRAUSS: 'theoretical physicist',
+            LINDA_STONE: 'ex-Microsoft, MIT Media Lab',
             NEAL_KASSELL: None,
-            'Richard Merkin': None,
             ROBERT_TRIVERS: 'evolutionary biology',
             ROGER_SCHANK: None,
             STEVEN_PFEIFFER: None,
@@ -375,8 +388,8 @@ HIGHLIGHTED_GROUPS = [
         pattern='Masa(yoshi)?( Son)?|Najeev|Palantir|(Peter )?Th(ie|ei)l|Softbank',
         emailers = {
             ELON_MUSK: None,
-            REID_HOFFMAN: None,
-            STEVEN_SINOFSKY: None,
+            REID_HOFFMAN: 'founder of LinkedIn',
+            STEVEN_SINOFSKY: 'ex-Microsoft',
         }
     ),
     HighlightedGroup(
@@ -394,7 +407,7 @@ HIGHLIGHTED_GROUPS = [
         style='sea_green1',
         pattern=r'Bahamas|Cecile de Jongh|(Kenneth E\. )?Mapp|Virgin\s*Islands',
         emailers = {
-            STACEY_PLASKETT: None,
+            STACEY_PLASKETT: 'non-voting representative of VI in Congress',
             KENNETH_E_MAPP: 'Governor',
         }
     ),
@@ -421,7 +434,9 @@ HIGHLIGHTED_GROUPS = [
         has_no_category=True,
     ),
     HighlightedGroup(
-        emailers={STEVEN_HOFFENBERG: HEADER_ABBREVIATIONS['Hoffenberg']},
+        emailers={
+            STEVEN_HOFFENBERG: HEADER_ABBREVIATIONS['Hoffenberg']
+        },
         pattern=r'(steven?\s*)?hoffenberg?w?',
         style='gold3'
     ),
@@ -430,12 +445,11 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(emailers={JEFFREY_EPSTEIN: None}, pattern='Mark (L. )?Epstein', style='blue1'),
     HighlightedGroup(emailers={JOI_ITO: 'former head of MIT Media Lab'}, style='gold1'),
     HighlightedGroup(emailers={KATHY_RUEMMLER: 'former Obama legal counsel'}, style='magenta2'),
-    HighlightedGroup(emailers={LINDA_STONE: None}, style='pink3'),
     HighlightedGroup(emailers={MELANIE_WALKER: 'Doctor'}, style='pale_violet_red1'),
     HighlightedGroup(emailers={PAULA: None}, style='pink1'),
-    HighlightedGroup(emailers={PRINCE_ANDREW: None}, style='dodger_blue1'),
+    HighlightedGroup(emailers={PRINCE_ANDREW: 'British royal family'}, style='dodger_blue1'),
     HighlightedGroup(emailers={SOON_YI: "Woody Allen's wife"}, style='hot_pink'),
-    HighlightedGroup(emailers={SULTAN_BIN_SULAYEM: 'CEO of DP World}, chairman of the ports in Dubai'}, style='green1'),
+    HighlightedGroup(emailers={SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of the ports in Dubai'}, style='green1'),
 
     # Highlight regexes for things other than names
     HighlightedGroup(

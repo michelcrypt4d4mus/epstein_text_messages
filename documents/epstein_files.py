@@ -6,7 +6,6 @@ from datetime import datetime
 from pathlib import Path
 from typing import Literal
 
-from inflection import parameterize
 from rich.align import Align
 from rich.markup import escape
 from rich.padding import Padding
@@ -14,7 +13,7 @@ from rich.table import Table
 from rich.text import Text
 
 from documents.document import Document
-from documents.email import DETECT_EMAIL_REGEX, USELESS_EMAILERS, Email
+from documents.email import DETECT_EMAIL_REGEX, JUNK_EMAILERS, USELESS_EMAILERS, Email
 from documents.email_header import AUTHOR
 from documents.messenger_log import MSG_REGEX, MessengerLog, sender_counts
 from util.constants import *
@@ -225,7 +224,7 @@ class EpsteinFiles:
                 str(self.email_author_counts[p]),
                 str(self.email_recipient_counts[p]),
                 '' if p == UNKNOWN else make_link(search_jmail_url(p), 'Jmail'),
-                '' if p == UNKNOWN else make_link(epstein_web_person_url(p), 'EpsteinWeb'),
+                '' if not is_ok_for_epstein_web(p) else make_link(epstein_web_person_url(p), 'EpsteinWeb'),
                 '' if p == UNKNOWN else make_link(search_twitter_url(p), 'search X'),
             )
 
@@ -280,3 +279,12 @@ def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str]
         table.add_row(highlighter(k or UNKNOWN), highlighter(join_char.join(sorted(_list))))
 
     return Padding(table, DEVICE_SIGNATURE_PADDING)
+
+
+def is_ok_for_epstein_web(name: str) -> bool:
+    if '@' in name or name in JUNK_EMAILERS or name == UNKNOWN:
+        return False
+    elif name in ['ACT for America'] or ' ' not in name:
+        return False
+    else:
+        return True

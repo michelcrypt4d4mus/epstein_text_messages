@@ -49,7 +49,7 @@ ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
 ANAS_ALRASHEED = 'Anas Alrasheed'
 BRAD_KARP = 'Brad Karp'
 AZIZA_ALAHMADI = 'Aziza Alahmadi'
-BARBRO_EHNBOM = 'Barbro Ehnbom'
+BARBRO_EHNBOM = 'Barbro C. Ehnbom'
 BENNET_MOSKOWITZ = 'Bennet Moskowitz'
 BILL_GATES = 'Bill Gates'
 BILL_SIEGEL = 'Bill Siegel'
@@ -108,9 +108,10 @@ LESLEY_GROFF = 'Lesley Groff'
 LILLY_SANCHEZ = 'Lilly Sanchez'
 LINDA_STONE = 'Linda Stone'
 LISA_NEW = 'Lisa New'                      # Harvard poetry prof AKA "Elisa New"
+MANUELA_MARTINEZ = 'Manuela Martinez'
 MARC_LEON = 'Marc Leon'
 MARIANA_IDZKOWSKA = 'Mariana Idźkowska'
-MARK_EPSTEIN = 'Mark L. Epstein'
+MARK_EPSTEIN = 'Mark Epstein'
 MARTIN_NOWAK = 'Martin Nowak'
 MARTIN_WEINBERG = "Martin Weinberg"
 MASHA_DROKOVA = 'Masha Drokova'
@@ -297,6 +298,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     LAWRANCE_VISOSKI: re.compile(r'La(rry|wrance) Visoski?', re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus|lawkrauss', re.IGNORECASE),
     LEON_BLACK: re.compile(r'Leon Black?', re.IGNORECASE),
+    MANUELA_MARTINEZ: re.compile(fr'Manuela (- Mega Partners|Martinez)', re.IGNORECASE),
     MARIANA_IDZKOWSKA: re.compile(r'Mariana [Il]d[źi]kowska?', re.IGNORECASE),
     MARK_EPSTEIN: re.compile(r'Mark (L\. )?Epstein', re.IGNORECASE),
     LILLY_SANCHEZ: re.compile(r'Lilly.*Sanchez', re.IGNORECASE),
@@ -454,7 +456,7 @@ KNOWN_EMAIL_AUTHORS = {
     '028675': JEFFREY_EPSTEIN,       # Just bad OCR
     '025041': JEFFREY_EPSTEIN,       # Just bad OCR
     '032214': JEFFREY_EPSTEIN,       # Just bad OCR
-    '031791': JESSICA_CADWELL,       # paralegal, see https://x.com/ImDrinknWyn/status/1993765348898927022
+    '031791': JESSICA_CADWELL,
     '028849': JOI_ITO,               # Conversation with Joi Ito
     '028851': JOI_ITO,
     '016692': JOHN_PAGE,
