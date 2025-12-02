@@ -181,7 +181,10 @@ def print_color_key(key_type: Literal["Groups", "People"] = "Groups") -> None:
     print_centered(vertically_pad(color_table))
 
 
-def print_json(label: str, obj: object) -> None:
+def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
+    if isinstance(obj, dict) and skip_falsey:
+        obj = {k: v for k, v in obj.items() if v}
+
     console.line()
     console.print(Panel(label, expand=False))
     console.print_json(json.dumps(obj, sort_keys=True), indent=4)

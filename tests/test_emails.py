@@ -599,7 +599,6 @@ EMAIL_RECIPIENT_COUNTS = {
     "us.gio@jpmorgan.com": 0
 }
 
-
 DEVICE_SIGNATURE_TO_AUTHORS = {
     "Sent from AOL Mobile Mail": [
         "David Schoen"

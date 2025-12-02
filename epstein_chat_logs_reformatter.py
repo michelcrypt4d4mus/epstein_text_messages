@@ -156,9 +156,9 @@ else:
 if args.json_stats:
     console.line(5)
     console.print(Panel('JSON Stats Dump', expand=True, style='reverse bold'), '\n')
-    print_json(f"{MESSENGER_LOG} Sender Counts", sender_counts)
-    print_json(f"{EMAIL} Author Counts", epstein_files.email_author_counts)
-    print_json(f"{EMAIL} Recipient Counts", epstein_files.email_recipient_counts)
-    print_json("Email signature_substitution_counts", Email.signature_substitution_counts)
+    print_json(f"{MESSENGER_LOG} Sender Counts", sender_counts, skip_falsey=True)
+    print_json(f"{EMAIL} Author Counts", epstein_files.email_author_counts, skip_falsey=True)
+    print_json(f"{EMAIL} Recipient Counts", epstein_files.email_recipient_counts, skip_falsey=True)
+    print_json("Email signature_substitution_counts", Email.signature_substitution_counts, skip_falsey=True)
     print_json("email_author_device_signatures", dict_sets_to_lists(epstein_files.email_author_device_signatures))
     print_json("email_sent_from_devices", dict_sets_to_lists(epstein_files.email_sent_from_devices))
