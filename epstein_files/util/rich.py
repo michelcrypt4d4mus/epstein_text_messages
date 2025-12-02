@@ -2,7 +2,6 @@
 import json
 import re
 from os import devnull
-from sys import argv
 from typing import Literal
 
 from rich.align import Align
@@ -232,7 +231,8 @@ def print_other_site_link(is_header: bool = True) -> None:
 def print_panel(msg: str, style: str = 'black on white', padding: tuple | None = None) -> None:
     _padding = list(padding or [0, 0, 0, 0])
     _padding[2] += 1  # Bottom pad
-    console.print(Padding(Panel(Text.from_markup(msg, justify='center'), width=70, style=style), tuple(_padding)))
+    panel = Panel(Text.from_markup(msg, justify='center'), width=70, style=style)
+    console.print(Padding(panel, tuple(_padding)))
 
 
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
@@ -264,7 +264,6 @@ def wrap_in_markup_style(msg: str, style: str | None = None) -> str:
 
 
 if is_debug:
-    console.line(2)
     print_json('THEME_STYLES', THEME_STYLES)
 
 if deep_debug:
