@@ -247,7 +247,6 @@ HIGHLIGHTED_GROUPS = [
             BENNET_MOSKOWITZ: None,
             'Brad Edwards': None,
             BRAD_KARP: None,
-            DARREN_INDYKE: ESTATE_EXECUTOR,
             DAVID_STERN: None,
             DAVID_SCHOEN: None,
             DEBBIE_FEIN: None,
@@ -260,9 +259,17 @@ HIGHLIGHTED_GROUPS = [
             MARTIN_WEINBERG: None,
             MICHAEL_MILLER: 'Steptoe',
             REID_WEINGARTEN: None,
-            RICHARD_KAHN: ESTATE_EXECUTOR,
             SCOTT_J_LINK: None,
             TONJA_HADDAD_COLEMAN: None,
+        }
+    ),
+    HighlightedGroup(
+        label='executor_lawyer',
+        info='lawyer',
+        style='purple3 bold',
+        emailers = {
+            DARREN_INDYKE: ESTATE_EXECUTOR,
+            RICHARD_KAHN: ESTATE_EXECUTOR,
         }
     ),
     HighlightedGroup(
@@ -293,8 +300,8 @@ HIGHLIGHTED_GROUPS = [
         emailers = {
             ANAS_ALRASHEED: None,
             AZIZA_ALAHMADI: 'Abu Dhabi Department of Culture & Tourism',
-            RAAFAT_ALSABBAGH: None,
-            SHAHER_ABDULHAK_BESHER: None,
+            RAAFAT_ALSABBAGH: 'Saudi royal advisor',
+            SHAHER_ABDULHAK_BESHER: 'Yemeni billionaire',
         }
     ),
     HighlightedGroup(
@@ -303,7 +310,7 @@ HIGHLIGHTED_GROUPS = [
         pattern=r'\w+@mc2mm.com',
         emailers = {
             DANIEL_SIAD: None,
-            FAITH_KATES: None,
+            FAITH_KATES: 'Next Models co-founder',
             'Gianni Serazzi': 'fashion consultant?',
             JEAN_LUC_BRUNEL: 'sordid backstory, died by suicide in French prison',
             MARIANA_IDZKOWSKA: None,
