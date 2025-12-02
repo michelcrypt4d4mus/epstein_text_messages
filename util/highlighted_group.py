@@ -11,51 +11,6 @@ ESTATE_EXECUTOR = 'Epstein estate executor'
 REGEX_STYLE_PREFIX = 'regex'
 NO_CATEGORY_LABELS = [BILL_GATES, STEVE_BANNON]
 
-# Keyed by the 'label' property
-PEOPLE_INFO = {
-    AL_SECKEL: 'husband of Isabel Maxwell, Mind State organizer, fell off a cliff',
-    ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
-    AZIZA_ALAHMADI: 'Abu Dhabi Department of Culture & Tourism',
-    BARBRO_EHNBOM: 'Swedish pharmaceuticals',
-    BILL_SIEGEL: 'documentary film producer and director',
-    BORIS_NIKOLIC: f'Biotech VC, {ESTATE_EXECUTOR}',
-    DANIEL_SABBA: 'UBS Investment Bank',
-    DARREN_INDYKE: ESTATE_EXECUTOR,
-    EHUD_BARAK: 'former primer minister',
-    ERIC_ROTH: 'jet decorator',
-    GLENN_DUBIN: "Highbridge Capital Management, married to Epstein's ex-gf Eva",
-    GWENDOLYN_BECK: 'fund manager',
-    JEAN_HUGUEN: 'interior design at Alberto Pinto Cabinet',
-    'Linda Pinto': 'interior design at Alberto Pinto Cabinet',
-    JEAN_LUC_BRUNEL: 'died by suicide in French prison',
-    JES_STALEY: 'former CEO of Barclays',
-    JIDE_ZEITLIN: 'former partner at Goldman Sachs, allegations of sexual misconduct',
-    KATHERINE_KEATING: 'Daughter of former Australian PM',
-    KENNETH_E_MAPP: 'Governor',
-    LANDON_THOMAS: 'New York Times',
-    LAWRANCE_VISOSKI: 'Pilot',
-    JOSCHA_BACH: 'cognitive science / AI research',
-    LEON_BLACK: 'Apollo CEO',
-    LESLEY_GROFF: 'Assistant (?)',
-    LISA_NEW: 'poetry',
-    MARK_EPSTEIN: 'brother',
-    MELANIE_SPINELLA: f'representative of {LEON_BLACK}',
-    MORTIMER_ZUCKERMAN: 'business partner of Epstein',
-    'Nili Priell Barak': f'wife of {EHUD_BARAK}',
-    MASHA_DROKOVA: 'silicon valley VC',
-    MIROSLAV_LAJCAK: 'Russia friendly Slovak',
-    MOHAMED_WAHEED_HASSAN: 'former president of the Maldives',
-    NADIA_MARCINKO: 'Pilot',
-    NICHOLAS_RIBIS: 'Hilton CEO',
-    PAUL_KRASSNER: '60s guy',
-    PUREVSUREN_LUNDEG: 'Mongolian ambassador to the UN',
-    RICHARD_KAHN: ESTATE_EXECUTOR,
-    ROBERT_TRIVERS: 'evolutionary biology',
-    TERRY_KAFKA: 'CEO of Impact Outdoor (highway billboards)',
-    TOM_BARRACK: 'long time friend of Trump',
-    TOM_PRITZKER: 'brother of J.B. Pritzker',
-}
-
 safe_style_name = lambda label: label.lower().replace(' ', '_').replace('-', '_')
 
 
@@ -64,7 +19,7 @@ class HighlightedGroup:
     style: str
     label: str = ''      # TODO: make it default to None?
     pattern: str = ''    # TODO: make it default to None?
-    emailers: list[str] = field(default_factory=list)
+    emailers: dict[str, str | None] = field(default_factory=dict)
     has_no_category: bool = False
     info: str | None = None
     is_multiline: bool = False
@@ -77,7 +32,7 @@ class HighlightedGroup:
             if len(self.emailers) != 1:
                 raise RuntimeError(f"No label provided for {repr(self)}")
             else:
-                self.label = self.emailers[0]
+                self.label = [k for k in self.emailers.keys()][0]
                 self.has_no_category = True
 
         self.style_suffix = safe_style_name(self.label)
@@ -128,50 +83,51 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='finance',
         style='green',
-        pattern=r'Apollo|Black(rock|stone)|DB|Deutsche\s*Bank|Goldman( ?Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|Jes\s+Staley|Merrill\s+Lynch|Morgan Stanley|j\.?p\.?\s*morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com',
-        emailers=[
-            ALIREZA_ITTIHADIEH,
-            AMANDA_ENS,
-            DANIEL_SABBA,
-            JIDE_ZEITLIN,
-            LEON_BLACK,
-            MARC_LEON,
-            MELANIE_SPINELLA,
-            MORTIMER_ZUCKERMAN,  # Business partner
-            PAUL_BARRETT,
-            PAUL_MORRIS,
-        ]
+        pattern=r'Apollo|Black(rock|stone)|DB|Deutsche\s*Bank|Goldman( ?Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|Merrill\s+Lynch|Morgan Stanley|j\.?p\.?\s*morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com',
+        emailers={
+            ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
+            AMANDA_ENS: None,
+            DANIEL_SABBA: 'UBS Investment Bank',
+            JES_STALEY: 'former CEO of Barclays',
+            JIDE_ZEITLIN: 'former partner at Goldman Sachs, allegations of sexual misconduct',
+            LEON_BLACK: 'Apollo CEO',
+            MARC_LEON: None,
+            MELANIE_SPINELLA: f'representative of {LEON_BLACK}',
+            MORTIMER_ZUCKERMAN: 'business partner of Epstein',
+            PAUL_BARRETT: None,
+            PAUL_MORRIS: None,
+        }
     ),
     HighlightedGroup(
         label='bitcoin',
         style='orange1 bold',
         pattern=r'bitcoin|block ?chain( capital)?|Brock|coins|cr[iy]?pto(currency)?|e-currency|(Howard\s+)?Lutnick|(jeffrey\s+)?wernick|Libra|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)',
-        emailers = [
-            JEREMY_RUBIN,
-            SCARAMUCCI,
-        ],
+        emailers = {
+            JEREMY_RUBIN: 'developer/researcher',
+            SCARAMUCCI: None,
+        },
     ),
     HighlightedGroup(
         label='bro',
         style='tan',
-        emailers=[
-            JONATHAN_FARKAS,
-            TOM_BARRACK,
-        ]
+        emailers = {
+            JONATHAN_FARKAS: None,
+            TOM_BARRACK: 'long time friend of Trump',
+        }
     ),
     HighlightedGroup(
         label='business',
         style='spring_green4',
         pattern=r'Marc Rich|(Steve\s+)?Wynn|(Leslie\s+)?Wexner',
-        emailers=[
-            BARBRO_EHNBOM,
-            BORIS_NIKOLIC,
-            NICHOLAS_RIBIS,
-            ROBERT_LAWRENCE_KUHN,
-            STEPHEN_HANSON,
-            TERRY_KAFKA,
-            TOM_PRITZKER,
-        ]
+        emailers = {
+            BARBRO_EHNBOM: 'Swedish pharmaceuticals',
+            BORIS_NIKOLIC: f'Biotech VC, {ESTATE_EXECUTOR}',
+            NICHOLAS_RIBIS: 'Hilton CEO',
+            ROBERT_LAWRENCE_KUHN: None,
+            STEPHEN_HANSON: None,
+            TERRY_KAFKA: 'CEO of Impact Outdoor (highway billboards)',
+            TOM_PRITZKER: 'brother of J.B. Pritzker',
+        }
     ),
     HighlightedGroup(
         label='china',
@@ -182,9 +138,9 @@ HIGHLIGHTED_GROUPS = [
         label='deepak_chopra',
         style='dark_goldenrod',
         pattern='Carolyn Rangel',
-        emailers = [
-            DEEPAK_CHOPRA,
-        ]
+        emailers = {
+            DEEPAK_CHOPRA: None,
+        }
     ),
     HighlightedGroup(
         label='democrats',
@@ -195,200 +151,210 @@ HIGHLIGHTED_GROUPS = [
         label='dubin family',
         style='medium_orchid1',
         pattern='((Celina|Eva( Anderss?on)?|Glenn) )?Dubin',
-        emailers=[EVA],
+        emailers = {
+            GLENN_DUBIN: "Highbridge Capital Management, married to Epstein's ex-gf Eva",
+            EVA: "possibly Epstein's ex-girlfriend (?)",
+        },
     ),
     HighlightedGroup(
         label='employee',
         style='deep_sky_blue4',
-        emailers=[
-            ERIC_ROTH,
-            GWENDOLYN_BECK,
-            LAWRANCE_VISOSKI,
-            LESLEY_GROFF,
-            JEAN_HUGUEN,
-            'Linda Pinto',
-            NADIA_MARCINKO,
-        ]
+        emailers = {
+            ERIC_ROTH: 'jet decorator',
+            GWENDOLYN_BECK: 'Epstein fund manager in the 90s',
+            LAWRANCE_VISOSKI: 'Pilot',
+            LESLEY_GROFF: 'Assistant (?)',
+            JEAN_HUGUEN: 'interior design at Alberto Pinto Cabinet',
+            'Linda Pinto': 'interior design at Alberto Pinto Cabinet',
+            NADIA_MARCINKO: 'pilot',
+        }
     ),
     HighlightedGroup(
         label='entertainer',
         style='light_steel_blue3',
         pattern='Andres Serrano|Bill Siegel|Bobby slayton|David Blaine|Etienne Binant|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?',
+        emailers={
+            BILL_SIEGEL: 'documentary film producer and director',
+        }
     ),
     HighlightedGroup(
         label='europe',
         style='light_sky_blue3',
         pattern=r'(Caroline|Jack)?\s*Lang(, Caroline)?|Le\s*Pen|Macron|(Angela )?Merk(el|le)|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Ukrain(e|ian)|Zug',
-        emailers=[
-            MIROSLAV_LAJCAK,
-            PETER_MANDELSON,
-            TERJE_ROD_LARSEN,
-            THORBJORN_JAGLAND,
-        ]
+        emailers = {
+            MIROSLAV_LAJCAK: 'Russia friendly Slovak',
+            PETER_MANDELSON: 'UK politics',
+            TERJE_ROD_LARSEN: 'Norwegian diplomat',
+            THORBJORN_JAGLAND: None,
+        }
     ),
     HighlightedGroup(
         label='harvard',
         style='deep_pink2',
         pattern=r'Harvard',
-        emailers=[
-            LARRY_SUMMERS,
-            LISA_NEW,
-            MARTIN_NOWAK,
-        ]
+        emailers = {
+            LARRY_SUMMERS: 'board member of Digital Currency Group (DCG), Obama economic advisor',
+            LISA_NEW: 'poetry',
+            MARTIN_NOWAK: None,
+        }
     ),
     HighlightedGroup(
         label='india',
         style='bright_green',
         pattern='Hardeep( puree)?|Indian?|Modi|mumbai|Zubair( Khan)?',
-        emailers=[
-            ANIL_AMBANI,
-            VINIT_SAHNI,
-        ]
+        emailers = {
+            ANIL_AMBANI: None,
+            VINIT_SAHNI: None,
+        }
     ),
     HighlightedGroup(
         label='israel',
         style='dodger_blue2',
         pattern='Bibi|(eh|(Ehud|Nili Priell) )?barak|Mossad|Netanyahu|Israeli?',
+        emailers={
+            EHUD_BARAK: 'former primer minister',
+            'Nili Priell Barak': f'wife of {EHUD_BARAK}',
+        }
     ),
     HighlightedGroup(
         label='javanka',
         style='medium_violet_red',
-        emailers=[
-            IVANKA,
-            JARED_KUSHNER,
-        ]
+        emailers = {
+            IVANKA: None,
+            JARED_KUSHNER: None,
+        }
     ),
     HighlightedGroup(
         label='journalist',
         style='bright_yellow',
         pattern=r'Alex Yablon|Ingram, David|Susan Edelman|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
-        emailers=[
-            EDWARD_EPSTEIN,
-            LANDON_THOMAS,
-            MICHAEL_WOLFF,
-            PAUL_KRASSNER,
-            'Tim Zagat',
-        ]
+        emailers = {
+            EDWARD_EPSTEIN: None,
+            LANDON_THOMAS: 'New York Times',
+            MICHAEL_WOLFF: None,
+            PAUL_KRASSNER: '60s guy',
+            'Tim Zagat': 'Zagat restaurant guide CEO',
+        }
     ),
     HighlightedGroup(
         label='lawyer',
         style='medium_purple2',
         pattern=r'(Erika\s+)?Kellerhals|Michael J. Pike|Paul\sWeiss|Roy Black|Wein(berg|garten)',
-        emailers=[
-            BENNET_MOSKOWITZ,
-            DARREN_INDYKE,
-            BRAD_KARP,
-            DAVID_STERN,
-            DAVID_SCHOEN,
-            DEBBIE_FEIN,
-            FRED_HADDAD,
-            JACK_GOLDBERGER,
-            JACKIE_PERCZEK,
-            JAY_LEFKOWITZ,
-            JESSICA_CADWELL,
-            LILLY_SANCHEZ,
-            MARTIN_WEINBERG,
-            REID_WEINGARTEN,
-            RICHARD_KAHN,
-            SCOTT_J_LINK,
-            TONJA_HADDAD_COLEMAN,
-        ]
+        emailers = {
+            BENNET_MOSKOWITZ: None,
+            DARREN_INDYKE: ESTATE_EXECUTOR,
+            BRAD_KARP: None,
+            DAVID_STERN: None,
+            DAVID_SCHOEN: None,
+            DEBBIE_FEIN: None,
+            FRED_HADDAD: None,
+            JACK_GOLDBERGER: None,
+            JACKIE_PERCZEK: None,
+            JAY_LEFKOWITZ: None,
+            JESSICA_CADWELL: None,
+            LILLY_SANCHEZ: None,
+            MARTIN_WEINBERG: None,
+            REID_WEINGARTEN: None,
+            RICHARD_KAHN: ESTATE_EXECUTOR,
+            SCOTT_J_LINK: None,
+            TONJA_HADDAD_COLEMAN: None,
+        }
     ),
     HighlightedGroup(
         label='famous_lawyer',
         info='lawyer',
         style='medium_purple3',
-        emailers=[
-            ALAN_DERSHOWITZ,
-            KEN_STARR,
-        ]
+        emailers = {
+            ALAN_DERSHOWITZ: None,
+            KEN_STARR: None,
+        }
     ),
     HighlightedGroup(
         label='lobbyist',
         style='light_coral',
         pattern='Rob Crowe|Stanley Rosenberg',
-        emailers=[
-            KATHERINE_KEATING,
-            MOHAMED_WAHEED_HASSAN,
-            OLIVIER_COLOM,
-            PUREVSUREN_LUNDEG,
-        ]
+        emailers = {
+            KATHERINE_KEATING: 'Daughter of former Australian PM',
+            MOHAMED_WAHEED_HASSAN: 'former president of the Maldives',
+            OLIVIER_COLOM: 'France',
+            PUREVSUREN_LUNDEG: 'Mongolian ambassador to the UN',
+        }
     ),
     HighlightedGroup(
         label='mideast',
         style='dark_sea_green4',
         pattern=r"Abdulmalik Al-Makhlafi|Abu\s+Dhabi|Assad|Bahrain|Dubai|Emir(at(es?|i))?|Erdogan|Gaddafi|HBJ|Imran\s+Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|kasshohgi|Kaz(akh|ich)stan|Kazakh?|KSA|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Riya(dh|nd)|Saudi(\s+Arabian?)?|Sharia|Syria|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
-        emailers=[
-            ANAS_ALRASHEED,
-            AZIZA_ALAHMADI,
-            RAAFAT_ALSABBAGH,
-            SHAHER_ABDULHAK_BESHER,
-        ]
+        emailers = {
+            ANAS_ALRASHEED: None,
+            AZIZA_ALAHMADI: 'Abu Dhabi Department of Culture & Tourism',
+            RAAFAT_ALSABBAGH: None,
+            SHAHER_ABDULHAK_BESHER: None,
+        }
     ),
     HighlightedGroup(
         label='modeling',
         style='pale_violet_red1',
         pattern=r'\w+@mc2mm.com',
-        emailers=[
-            DANIEL_SIAD,
-            FAITH_KATES,
-            'Gianni Serazzi',  # fashion consultant?
-            JEAN_LUC_BRUNEL,
-            MARIANA_IDZKOWSKA,
-        ]
+        emailers = {
+            DANIEL_SIAD: None,
+            FAITH_KATES: None,
+            'Gianni Serazzi': 'fashion consultant?',
+            JEAN_LUC_BRUNEL: 'sordid backstory, died by suicide in French prison',
+            MARIANA_IDZKOWSKA: None,
+        }
     ),
     HighlightedGroup(
         label='law enforcement',
         style='color(24) bold',
         pattern='FBI|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|Police Code Enforcement|Strzok',
-        emailers=[
-            ANN_MARIE_VILLAFANA,
-        ]
+        emailers = {
+            ANN_MARIE_VILLAFANA: None,
+        }
     ),
     HighlightedGroup(
         label='publicist',
         style='orange_red1',
         pattern='Henry Holt|Ian Osborne|Matthew Hiltzik|ross@acuityreputation.com',
-        emailers=[
-            AL_SECKEL,
-            CHRISTINA_GALBRAITH,
-            MICHAEL_SITRICK,
-            PEGGY_SIEGAL,
-            TYLER_SHEARS,
-        ]
+        emailers = {
+            AL_SECKEL: 'husband of Isabel Maxwell, Mind State organizer, fell off a cliff',
+            CHRISTINA_GALBRAITH: None,
+            MICHAEL_SITRICK: None,
+            PEGGY_SIEGAL: None,
+            TYLER_SHEARS: None,
+        }
     ),
     HighlightedGroup(
         label='republicans',
         style='bold dark_red',
         pattern=r'(Alex )?Acosta|Bolton|Broidy|GOP|(?<!Merwin Dela )Cruz|Kobach|Kolfage|Kudlow|Lewandowski|(Marco )?Rubio|Mattis|Mnuchin|(Paul\s+)?Manafort|(Peter )?Navarro|Pompeo|Republican',
-        emailers = [
-            RUDY_GIULIANI,
-            TULSI_GABBARD,
-        ]
+        emailers = {
+            RUDY_GIULIANI: None,
+            TULSI_GABBARD: None,
+        }
     ),
     HighlightedGroup(
         label='russia',
         style='red bold',
         pattern=r'FSB|GRU|Lavrov|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Rybolo(olev|vlev)|Vladimir Yudashkin',
-        emailers = [
-            MASHA_DROKOVA,
-        ]
+        emailers = {
+            MASHA_DROKOVA: 'silicon valley VC',
+        }
     ),
     HighlightedGroup(
         label='scholar',
         style='light_goldenrod2',
         pattern=r'Alain Forget|David Grosof|MIT(\s*Media\s*Lab)?|Media\s*Lab|Moshe Hoffman|((Noam|Valeria) )?Chomsky|Peter Attia|Stanford',
-        emailers=[
-            'Barnaby Marsh',
-            DAVID_HAIG,
-            JOSCHA_BACH,
-            LAWRENCE_KRAUSS,
-            NEAL_KASSELL,
-            'Richard Merkin',
-            ROBERT_TRIVERS,
-            ROGER_SCHANK,
-            STEVEN_PFEIFFER,
-        ]
+        emailers = {
+            'Barnaby Marsh': None,
+            DAVID_HAIG: None,
+            JOSCHA_BACH: 'cognitive science / AI research',
+            LAWRENCE_KRAUSS: None,
+            NEAL_KASSELL: None,
+            'Richard Merkin': None,
+            ROBERT_TRIVERS: 'evolutionary biology',
+            ROGER_SCHANK: None,
+            STEVEN_PFEIFFER: None,
+        }
     ),
     HighlightedGroup(
         label='south america',
@@ -399,11 +365,11 @@ HIGHLIGHTED_GROUPS = [
         label='tech bro',
         style='cyan2',
         pattern='Masa(yoshi)?( Son)?|Najeev|Palantir|(Peter )?Th(ie|ei)l|Softbank',
-        emailers=[
-            ELON_MUSK,
-            REID_HOFFMAN,
-            STEVEN_SINOFSKY,
-        ]
+        emailers = {
+            ELON_MUSK: None,
+            REID_HOFFMAN: None,
+            STEVEN_SINOFSKY: None,
+        }
     ),
     HighlightedGroup(
         label='trump',
@@ -419,9 +385,10 @@ HIGHLIGHTED_GROUPS = [
         label='virgin islands',
         style='sea_green1',
         pattern=r'Bahamas|Cecile de Jongh|(Kenneth E\. )?Mapp|Virgin\s*Islands',
-        emailers=[
-            STACEY_PLASKETT,
-        ]
+        emailers = {
+            STACEY_PLASKETT: None,
+            KENNETH_E_MAPP: 'Governor',
+        }
     ),
 
     # Individuals
@@ -438,23 +405,22 @@ HIGHLIGHTED_GROUPS = [
         has_no_category=True,
     ),
     HighlightedGroup(
-        emailers=[STEVEN_HOFFENBERG],
-        info=HEADER_ABBREVIATIONS['Hoffenberg'],
+        emailers={STEVEN_HOFFENBERG: HEADER_ABBREVIATIONS['Hoffenberg']},
         pattern=r'(steven?\s*)?hoffenberg?w?',
         style='gold3'
     ),
-    HighlightedGroup(emailers=[ARIANE_DE_ROTHSCHILD], style='indian_red', info='Rothschild family'),
-    HighlightedGroup(emailers=[GHISLAINE_MAXWELL], pattern='gmax(1@ellmax.com)?', style='deep_pink3'),
-    HighlightedGroup(emailers=[JABOR_Y], info=HEADER_ABBREVIATIONS['Jabor'], style='spring_green1'),
-    HighlightedGroup(emailers=[JEFFREY_EPSTEIN], pattern='Mark (L. )?Epstein', style='blue1'),
-    HighlightedGroup(emailers=[JOI_ITO], info='MIT Media Lab', style='gold1'),
-    HighlightedGroup(emailers=[KATHY_RUEMMLER], info='former Obama legal counsel', style='magenta2'),
-    HighlightedGroup(emailers=[LINDA_STONE], style='pink3'),
-    HighlightedGroup(emailers=[MELANIE_WALKER], info='Doctor', style='pale_violet_red1'),
-    HighlightedGroup(emailers=[PAULA], style='pink1'),
-    HighlightedGroup(emailers=[PRINCE_ANDREW], style='dodger_blue1'),
-    HighlightedGroup(emailers=[SOON_YI], info="Woody Allen's wife", style='hot_pink'),
-    HighlightedGroup(emailers=[SULTAN_BIN_SULAYEM], info='CEO of DP World, chairman of the ports in Dubai', style='green1'),
+    HighlightedGroup(emailers={JABOR_Y: HEADER_ABBREVIATIONS['Jabor']}, style='spring_green1'),
+    HighlightedGroup(emailers={ARIANE_DE_ROTHSCHILD: 'Rothschild family'}, style='indian_red'),
+    HighlightedGroup(emailers={GHISLAINE_MAXWELL: None}, pattern='gmax(1@ellmax.com)?', style='deep_pink3'),
+    HighlightedGroup(emailers={JEFFREY_EPSTEIN: None}, pattern='Mark (L. )?Epstein', style='blue1'),
+    HighlightedGroup(emailers={JOI_ITO: 'former head of MIT Media Lab'}, style='gold1'),
+    HighlightedGroup(emailers={KATHY_RUEMMLER: 'former Obama legal counsel'}, style='magenta2'),
+    HighlightedGroup(emailers={LINDA_STONE: None}, style='pink3'),
+    HighlightedGroup(emailers={MELANIE_WALKER: 'Doctor'}, style='pale_violet_red1'),
+    HighlightedGroup(emailers={PAULA: None}, style='pink1'),
+    HighlightedGroup(emailers={PRINCE_ANDREW: None}, style='dodger_blue1'),
+    HighlightedGroup(emailers={SOON_YI: "Woody Allen's wife"}, style='hot_pink'),
+    HighlightedGroup(emailers={SULTAN_BIN_SULAYEM: 'CEO of DP World}, chairman of the ports in Dubai'}, style='green1'),
 
     # Highlight regexes for things other than names
     HighlightedGroup(
@@ -511,11 +477,12 @@ def get_info_for_name(name: str) -> str | None:
         return None
 
     info = highlight_group.get_info()
+    info_pieces = [info] if info else []
 
-    if info and name in PEOPLE_INFO:
-        info += f", {PEOPLE_INFO[name]}"
+    if highlight_group.emailers.get(name) is not None:
+        info_pieces.append(highlight_group.emailers[name])
 
-    return info
+    return ', '.join(info_pieces)
 
 
 def get_highlight_group_for_name(name: str) -> HighlightedGroup | None:
