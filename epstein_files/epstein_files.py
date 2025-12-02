@@ -235,7 +235,7 @@ class EpsteinFiles:
                 str(self.email_author_counts[p]),
                 str(self.email_recipient_counts[p]),
                 '' if p == UNKNOWN else make_link(search_jmail_url(p), JMAIL),
-                '' if not is_ok_for_epstein_web(p) else make_link(epstein_web_person_url(p), EPSTEIN_WEB),
+                '' if not is_ok_for_epstein_web(p) else make_link(epstein_web_person_url(p), EPSTEIN_WEB.lower()),
                 '' if p == UNKNOWN else make_link(search_twitter_url(p), 'search X'),
             )
 
