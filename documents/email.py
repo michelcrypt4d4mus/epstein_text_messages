@@ -504,8 +504,8 @@ class Email(CommunicationDocument):
             num_chars = quote_cutoff
 
         if len(text) > num_chars:
-            trim_note = f"[dim]<...trimmed to {num_chars} characters of {self.length}, read the rest at {self.epsteinify_link_markup}...>[/dim]"
-            trim_footer_txt = Text.from_markup(trim_note)
+            trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest at {self.epsteinify_link_markup}...>"
+            trim_footer_txt = Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
             text = text[0:num_chars]
 
         panel_txt = highlighter(text)

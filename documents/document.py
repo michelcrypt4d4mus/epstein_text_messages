@@ -252,7 +252,7 @@ class CommunicationDocument(Document):
     def description(self) -> Text:
         txt = super().description()
         txt.append(f", author=").append(self.author_str, style=self.author_style)
-        txt.append(f", timestamp=").append(str(self.timestamp), style='dark_cyan')
+        txt.append(f", timestamp=").append(str(self.timestamp), style='dim dark_cyan')
         return txt.append(')')
 
     def raw_document_link_txt(self, _style: str = '', include_alt_link: bool = True) -> Text:
@@ -267,3 +267,6 @@ class CommunicationDocument(Document):
 class SearchResult:
     document: Document
     lines: list[Text]
+
+    def unprefixed_lines(self) -> list[str]:
+        return [line.plain.split(':', 1)[1] for line in self.lines]
