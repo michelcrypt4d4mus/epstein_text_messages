@@ -1,3 +1,5 @@
+from epstein_files.util.data import dict_sets_to_lists
+
 EMAIL_AUTHOR_COUNTS = {
     "(unknown)": 112,
     "ACT for America": 0,
@@ -597,8 +599,376 @@ EMAIL_RECIPIENT_COUNTS = {
 }
 
 
+DEVICE_SIGNATURE_TO_AUTHORS = {
+    "Sent from AOL Mobile Mail": [
+        "David Schoen"
+    ],
+    "Sent from President's iPad": [
+        "Mohamed Waheed Hassan"
+    ],
+    "Sent from ProtonMail": [
+        "Jeffrey Epstein",
+        "Sean Bannon"
+    ],
+    "Sent from Soon-Yi's iPhone": [
+        "Soon-Yi Previn"
+    ],
+    "Sent from Steve Hanson's Blackberry": [
+        "Stephen Hanson"
+    ],
+    "Sent from Yahoo Mail for iPhone": [
+        "Merwin Dela Cruz"
+    ],
+    "Sent from my BlackBerry - the most secure mobile device": [
+        "Michael Miller"
+    ],
+    "Sent from my BlackBerry 10 smartphone.": [
+        "Reid Weingarten",
+        "Nicholas Ribis"
+    ],
+    "Sent from my BlackBerry® wireless device": [
+        "Landon Thomas Jr",
+        "Ross Gow"
+    ],
+    "Sent from my Iphone": [
+        "Vincenzo Lozzo"
+    ],
+    "Sent from my Samsung JackTM, a Windows Mobile® smartphone from AT&T": [
+        "Boris Nikolic"
+    ],
+    "Sent from my Verizon 4G LTE Droid": [
+        "Darren Indyke"
+    ],
+    "Sent from my Verizon Wireless BlackBerry": [
+        "Lisa Randall",
+        "Alan Dershowitz"
+    ],
+    "Sent from my Verizon, Samsung Galaxy smartphone": [
+        "Reid Weingarten"
+    ],
+    "Sent from my Windows 10 phone": [
+        "(unknown)"
+    ],
+    "Sent from my Windows Phone": [
+        "Boris Nikolic",
+        "Gwendolyn Beck"
+    ],
+    "Sent from my iPad": [
+        "Peggy Siegal",
+        "Mark Lloyd",
+        "Larry Summers",
+        "Cecilia Steen",
+        "Ehud Barak",
+        "Stephen Hanson",
+        "Richard Merkin",
+        "Neal Kassell",
+        "Kathryn Ruemmler",
+        "Lawrance Visoski",
+        "Glenn Dubin",
+        "(unknown)",
+        "Bruce Moskowitz",
+        "Joi Ito"
+    ],
+    "Sent from my iPhone": [
+        "Larry Summers",
+        "Terry Kafka",
+        "Jack Goldberger",
+        "Gino Yu",
+        "Martin Weinberg",
+        "Jonathan Farkas",
+        "Lawrance Visoski",
+        "Terje Rød-Larsen",
+        "Joi Ito",
+        "Neal Kassell",
+        "Faith Kates",
+        "Darren Indyke",
+        "(unknown)",
+        "Sean Bannon",
+        "Alan Dershowitz",
+        "David Schoen",
+        "Ghislaine Maxwell",
+        "Erika Kellerhals",
+        "Aziza Alahmadi",
+        "Harry Fisch",
+        "Tyler Shears",
+        "Landon Thomas Jr",
+        "Ehud Barak",
+        "Eva Dubin",
+        "Stanley Rosenberg",
+        "Kathryn Ruemmler",
+        "Jes Staley",
+        "Richard Kahn",
+        "Lisa New",
+        "Lesley Groff",
+        "Kelly Friendly",
+        "Bob Crowe",
+        "Tom Barrack",
+        "Bruce Moskowitz",
+        "Jeffrey Epstein",
+        "Stephen Hanson",
+        "Richard Merkin",
+        "Lawrence Krauss",
+        "Sultan Ahmed Bin Sulayem",
+        "Robert Lawrence Kuhn",
+        "Glenn Dubin",
+        "Mohamed Waheed Hassan",
+        "Johnny el Hachem",
+        "Heather Mann",
+        "Anas Alrasheed",
+        "Matthew Hiltzik",
+        "Ken Starr",
+        "Nicholas Ribis"
+    ],
+    "Sent from my iPhone and misspellings courtesy of iPhone.": [
+        "Cecile de Jongh"
+    ],
+    "Sent via BlackBerry by AT&T": [
+        "Terry Kafka",
+        "Steve Bannon",
+        "Peggy Siegal",
+        "(unknown)"
+    ],
+    "Sent via BlackBerry from T-Mobile": [
+        "Paula"
+    ],
+    "Sent via tin can and string.": [
+        "Mark Epstein"
+    ],
+    "Sorry for all the typos .Sent from my iPhone": [
+        "Jeffrey Epstein"
+    ]
+}
+
+AUTHORS_TO_DEVICE_SIGNATURES = {
+    "(unknown)": [
+        "Sent via BlackBerry by AT&T",
+        "Sent from my Windows 10 phone",
+        "Sent from my iPad",
+        "Sent from my iPhone"
+    ],
+    "Alan Dershowitz": [
+        "Sent from my iPhone",
+        "Sent from my Verizon Wireless BlackBerry"
+    ],
+    "Anas Alrasheed": [
+        "Sent from my iPhone"
+    ],
+    "Aziza Alahmadi": [
+        "Sent from my iPhone"
+    ],
+    "Bob Crowe": [
+        "Sent from my iPhone"
+    ],
+    "Boris Nikolic": [
+        "Sent from my Samsung JackTM, a Windows Mobile® smartphone from AT&T",
+        "Sent from my Windows Phone"
+    ],
+    "Bruce Moskowitz": [
+        "Sent from my iPad",
+        "Sent from my iPhone"
+    ],
+    "Cecile de Jongh": [
+        "Sent from my iPhone and misspellings courtesy of iPhone."
+    ],
+    "Cecilia Steen": [
+        "Sent from my iPad"
+    ],
+    "Darren Indyke": [
+        "Sent from my iPhone",
+        "Sent from my Verizon 4G LTE Droid"
+    ],
+    "David Schoen": [
+        "Sent from my iPhone",
+        "Sent from AOL Mobile Mail"
+    ],
+    "Ehud Barak": [
+        "Sent from my iPad",
+        "Sent from my iPhone"
+    ],
+    "Erika Kellerhals": [
+        "Sent from my iPhone"
+    ],
+    "Eva Dubin": [
+        "Sent from my iPhone"
+    ],
+    "Faith Kates": [
+        "Sent from my iPhone"
+    ],
+    "Ghislaine Maxwell": [
+        "Sent from my iPhone"
+    ],
+    "Gino Yu": [
+        "Sent from my iPhone"
+    ],
+    "Glenn Dubin": [
+        "Sent from my iPad",
+        "Sent from my iPhone"
+    ],
+    "Gwendolyn Beck": [
+        "Sent from my Windows Phone"
+    ],
+    "Harry Fisch": [
+        "Sent from my iPhone"
+    ],
+    "Heather Mann": [
+        "Sent from my iPhone"
+    ],
+    "Jack Goldberger": [
+        "Sent from my iPhone"
+    ],
+    "Jeffrey Epstein": [
+        "Sent from ProtonMail",
+        "Sent from my iPhone",
+        "Sorry for all the typos .Sent from my iPhone"
+    ],
+    "Jes Staley": [
+        "Sent from my iPhone"
+    ],
+    "Johnny el Hachem": [
+        "Sent from my iPhone"
+    ],
+    "Joi Ito": [
+        "Sent from my iPad",
+        "Sent from my iPhone"
+    ],
+    "Jonathan Farkas": [
+        "Sent from my iPhone"
+    ],
+    "Kathryn Ruemmler": [
+        "Sent from my iPad",
+        "Sent from my iPhone"
+    ],
+    "Kelly Friendly": [
+        "Sent from my iPhone"
+    ],
+    "Ken Starr": [
+        "Sent from my iPhone"
+    ],
+    "Landon Thomas Jr": [
+        "Sent from my iPhone",
+        "Sent from my BlackBerry® wireless device"
+    ],
+    "Larry Summers": [
+        "Sent from my iPad",
+        "Sent from my iPhone"
+    ],
+    "Lawrance Visoski": [
+        "Sent from my iPad",
+        "Sent from my iPhone"
+    ],
+    "Lawrence Krauss": [
+        "Sent from my iPhone"
+    ],
+    "Lesley Groff": [
+        "Sent from my iPhone"
+    ],
+    "Lisa New": [
+        "Sent from my iPhone"
+    ],
+    "Lisa Randall": [
+        "Sent from my Verizon Wireless BlackBerry"
+    ],
+    "Mark Epstein": [
+        "Sent via tin can and string."
+    ],
+    "Mark Lloyd": [
+        "Sent from my iPad"
+    ],
+    "Martin Weinberg": [
+        "Sent from my iPhone"
+    ],
+    "Matthew Hiltzik": [
+        "Sent from my iPhone"
+    ],
+    "Merwin Dela Cruz": [
+        "Sent from Yahoo Mail for iPhone"
+    ],
+    "Michael Miller": [
+        "Sent from my BlackBerry - the most secure mobile device"
+    ],
+    "Mohamed Waheed Hassan": [
+        "Sent from President's iPad",
+        "Sent from my iPhone"
+    ],
+    "Neal Kassell": [
+        "Sent from my iPad",
+        "Sent from my iPhone"
+    ],
+    "Nicholas Ribis": [
+        "Sent from my BlackBerry 10 smartphone.",
+        "Sent from my iPhone"
+    ],
+    "Paula": [
+        "Sent via BlackBerry from T-Mobile"
+    ],
+    "Peggy Siegal": [
+        "Sent via BlackBerry by AT&T",
+        "Sent from my iPad"
+    ],
+    "Reid Weingarten": [
+        "Sent from my BlackBerry 10 smartphone.",
+        "Sent from my Verizon, Samsung Galaxy smartphone"
+    ],
+    "Richard Kahn": [
+        "Sent from my iPhone"
+    ],
+    "Richard Merkin": [
+        "Sent from my iPad",
+        "Sent from my iPhone"
+    ],
+    "Robert Lawrence Kuhn": [
+        "Sent from my iPhone"
+    ],
+    "Ross Gow": [
+        "Sent from my BlackBerry® wireless device"
+    ],
+    "Sean Bannon": [
+        "Sent from ProtonMail",
+        "Sent from my iPhone"
+    ],
+    "Soon-Yi Previn": [
+        "Sent from Soon-Yi's iPhone"
+    ],
+    "Stanley Rosenberg": [
+        "Sent from my iPhone"
+    ],
+    "Stephen Hanson": [
+        "Sent from Steve Hanson's Blackberry",
+        "Sent from my iPad",
+        "Sent from my iPhone"
+    ],
+    "Steve Bannon": [
+        "Sent via BlackBerry by AT&T"
+    ],
+    "Sultan Ahmed Bin Sulayem": [
+        "Sent from my iPhone"
+    ],
+    "Terje Rød-Larsen": [
+        "Sent from my iPhone"
+    ],
+    "Terry Kafka": [
+        "Sent via BlackBerry by AT&T",
+        "Sent from my iPhone"
+    ],
+    "Tom Barrack": [
+        "Sent from my iPhone"
+    ],
+    "Tyler Shears": [
+        "Sent from my iPhone"
+    ],
+    "Vincenzo Lozzo": [
+        "Sent from my Iphone"
+    ]
+}
+
+
 def test_email_counts(epstein_files):
     author_counts = {k: v for k, v in EMAIL_AUTHOR_COUNTS.items() if v > 0}
     assert author_counts == epstein_files.email_author_counts
     recipient_counts = {k: v for k, v in EMAIL_RECIPIENT_COUNTS.items() if v > 0}
     assert recipient_counts == epstein_files.email_recipient_counts
+
+
+def test_signatures(epstein_files):
+    assert AUTHORS_TO_DEVICE_SIGNATURES == dict_sets_to_lists(epstein_files.email_author_device_signatures)
+    assert DEVICE_SIGNATURE_TO_AUTHORS == dict_sets_to_lists(epstein_files.email_sent_from_devices)

@@ -1,6 +1,8 @@
 import re
+from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
+from typing import ClassVar
 
 from dateutil.parser import parse
 from dateutil import tz
@@ -254,6 +256,8 @@ class Email(CommunicationDocument):
     recipients: list[str | None] = field(default_factory=list)
     sent_from_device: str | None = None
 
+    signature_substitution_counts: ClassVar[dict] = defaultdict(int)
+
     def __post_init__(self):
         super().__post_init__()
         self._repair()
@@ -345,7 +349,8 @@ class Email(CommunicationDocument):
         text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
 
         for name, signature_regex in EMAIL_SIGNATURES.items():
-            text = signature_regex.sub(self._clipped_signature_replacement(name), text)
+            text, num_replaced = signature_regex.subn(self._clipped_signature_replacement(name), text)
+            type(self).signature_substitution_counts[name] += num_replaced
 
         return collapse_newlines(text.strip())
 

@@ -17,7 +17,7 @@ from epstein_files.documents.email import DETECT_EMAIL_REGEX, JUNK_EMAILERS, USE
 from epstein_files.documents.email_header import AUTHOR
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog, sender_counts
 from epstein_files.util.constants import *
-from epstein_files.util.data import flatten, patternize
+from epstein_files.util.data import dict_sets_to_lists, flatten, patternize
 from epstein_files.util.env import args, is_debug, logger
 from epstein_files.util.file_helper import DOCS_DIR, move_json_file
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
@@ -280,10 +280,7 @@ def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str]
     for i, col in enumerate(cols):
         table.add_column(col.title() + ('s' if i == 1 else ''))
 
-    new_dict: dict[str, list[str]] = {}
-
-    for k, v in keyed_sets.items():
-        new_dict[k] = list(v)
+    new_dict = dict_sets_to_lists(keyed_sets)
 
     for k in sorted(new_dict.keys()):
         _list = new_dict[k]

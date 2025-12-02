@@ -22,3 +22,7 @@ def get_dict_key_by_value(_dict: dict, value):
 
 def patternize(_pattern: str | re.Pattern):
     return _pattern if isinstance(_pattern, re.Pattern) else re.compile(rf"({_pattern})", re.IGNORECASE)
+
+
+def dict_sets_to_lists(d: dict[str, set]) -> dict[str, list]:
+    return {k: list(v) for k, v in d.items()}
