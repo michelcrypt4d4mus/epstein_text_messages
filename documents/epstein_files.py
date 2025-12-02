@@ -143,7 +143,7 @@ class EpsteinFiles:
         documents = self.all_documents() if file_type == 'all' else self.other_files
         return flatten([doc.lines_matching_txt(patternize(_pattern)) for doc in documents])
 
-    def num_identified_email_authors(self) -> int:
+    def attributed_email_count(self) -> int:
         return sum([i for author, i in self.email_author_counts.items() if author != UNKNOWN])
 
     def print_files_overview(self) -> None:
@@ -205,7 +205,7 @@ class EpsteinFiles:
         console.line(2)
 
     def print_emailer_counts_table(self) -> None:
-        footer = f"Identified authors of {self.num_identified_email_authors()} emails out of {len(self.emails)} potential email files."
+        footer = f"Identified authors of {self.attributed_email_count()} emails out of {len(self.emails)} potential email files."
         counts_table = Table(title=f"Email Counts", caption=footer, header_style="bold")
         counts_table.add_column('Name', justify='left', style=DEFAULT_NAME_COLOR)
         counts_table.add_column('Count', justify='center')
