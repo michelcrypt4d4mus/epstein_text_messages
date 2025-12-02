@@ -37,18 +37,18 @@ class EpsteinFiles:
     imessage_logs: list[MessengerLog] = field(default_factory=list)
     other_files: list[Document] = field(default_factory=list)
     email_author_counts: dict[str, int] = field(init=False)
-    email_author_device_signatures: dict[str, set[str]] = field(init=False)
+    email_authors_to_device_signatures: dict[str, set[str]] = field(init=False)
     email_recipient_counts: dict[str, int] = field(init=False)
-    email_sent_from_devices: dict[str, set[str ]] = field(init=False)
+    email_device_signatures_to_authors: dict[str, set[str ]] = field(init=False)
     _email_unknown_recipient_file_ids: set[str] = field(default_factory=set)
 
     def __post_init__(self):
         started_processing_at = time.perf_counter()
         self.all_files = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
         self.email_author_counts = defaultdict(int)
-        self.email_author_device_signatures = defaultdict(set)
+        self.email_authors_to_device_signatures = defaultdict(set)
         self.email_recipient_counts = defaultdict(int)
-        self.email_sent_from_devices = defaultdict(set)
+        self.email_device_signatures_to_authors = defaultdict(set)
 
         for file_arg in self.all_files:
             if is_debug:
@@ -78,8 +78,8 @@ class EpsteinFiles:
                     self._email_unknown_recipient_file_ids.add(email.file_id)
 
                 if email.sent_from_device:
-                    self.email_author_device_signatures[email.author or UNKNOWN].add(email.sent_from_device)
-                    self.email_sent_from_devices[email.sent_from_device].add(author)
+                    self.email_authors_to_device_signatures[email.author or UNKNOWN].add(email.sent_from_device)
+                    self.email_device_signatures_to_authors[email.sent_from_device].add(author)
 
                 if len(author) <= 3 or author == UNKNOWN:
                     email.log_top_lines(msg=f"Redacted or invalid email author '{author}'")
@@ -210,9 +210,9 @@ class EpsteinFiles:
 
     def print_email_device_info(self) -> None:
         print_panel(f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown", padding=(0, 0, 0, 11))
-        console.print(build_signature_table(self.email_author_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
+        console.print(build_signature_table(self.email_authors_to_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
         console.line(2)
-        console.print(build_signature_table(self.email_sent_from_devices, (DEVICE_SIGNATURE, AUTHOR), ', '))
+        console.print(build_signature_table(self.email_device_signatures_to_authors, (DEVICE_SIGNATURE, AUTHOR), ', '))
         console.line(2)
 
     def print_emailer_counts_table(self) -> None:

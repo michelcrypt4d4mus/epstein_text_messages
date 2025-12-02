@@ -804,8 +804,8 @@ def test_email_counts(epstein_files):
 
 
 def test_signatures(epstein_files):
-    assert AUTHORS_TO_DEVICE_SIGNATURES == dict_sets_to_lists(epstein_files.email_author_device_signatures)
-    assert DEVICE_SIGNATURE_TO_AUTHORS == dict_sets_to_lists(epstein_files.email_sent_from_devices)
+    assert AUTHORS_TO_DEVICE_SIGNATURES == dict_sets_to_lists(epstein_files.email_authors_to_device_signatures)
+    assert DEVICE_SIGNATURE_TO_AUTHORS == dict_sets_to_lists(epstein_files.email_device_signatures_to_authors)
 
 
 def test_signature_substitutions(epstein_files):
