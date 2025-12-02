@@ -363,7 +363,7 @@ HIGHLIGHTED_GROUPS = [
             'Barnaby Marsh': None,
             DAVID_HAIG: None,
             JOSCHA_BACH: 'cognitive science / AI research',
-            LAWRENCE_KRAUSS: None,
+            LAWRENCE_KRAUSS: 'theoretical physicist',
             NEAL_KASSELL: None,
             'Richard Merkin': None,
             ROBERT_TRIVERS: 'evolutionary biology',
@@ -382,7 +382,7 @@ HIGHLIGHTED_GROUPS = [
         pattern='Masa(yoshi)?( Son)?|Najeev|Palantir|(Peter )?Th(ie|ei)l|Softbank',
         emailers = {
             ELON_MUSK: None,
-            REID_HOFFMAN: None,
+            REID_HOFFMAN: 'founder of LinkedIn',
             STEVEN_SINOFSKY: None,
         }
     ),
@@ -401,7 +401,7 @@ HIGHLIGHTED_GROUPS = [
         style='sea_green1',
         pattern=r'Bahamas|Cecile de Jongh|(Kenneth E\. )?Mapp|Virgin\s*Islands',
         emailers = {
-            STACEY_PLASKETT: None,
+            STACEY_PLASKETT: 'non-voting representative of VI in Congress',
             KENNETH_E_MAPP: 'Governor',
         }
     ),
