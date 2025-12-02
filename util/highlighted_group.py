@@ -388,7 +388,7 @@ HIGHLIGHTED_GROUPS = [
     ),
     HighlightedGroup(
         label='tech bro',
-        style='cyan2',
+        style='bright_cyan',
         pattern='Masa(yoshi)?( Son)?|Najeev|Palantir|(Peter )?Th(ie|ei)l|Softbank',
         emailers = {
             ELON_MUSK: None,
