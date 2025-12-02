@@ -278,7 +278,7 @@ HIGHLIGHTED_GROUPS = [
         style='medium_purple3',
         emailers = {
             ALAN_DERSHOWITZ: None,
-            KEN_STARR: None,
+            KEN_STARR: 'head of the Monica Lewinsky investigation against Bill Clinton',
         }
     ),
     HighlightedGroup(
