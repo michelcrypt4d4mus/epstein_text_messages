@@ -5,12 +5,43 @@ from io import StringIO
 
 from dateutil.parser import parse
 
+from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_PREFIX
+
+HEADER_ABBREVIATIONS = {
+    "AD": "Abu Dhabi",
+    "Barak": "Ehud Barak (Former Israeli prime minister)",
+    "Barrack": "Tom Barrack (Trump ally)",
+    'BG': "Bill Gates",
+    'Bill': "Bill Gates",
+    "Brock": 'Brock Pierce (crypto bro with a very sordid past)',
+    "DB": "Deutsche Bank (maybe??)",
+    'HBJ': "Hamad bin Jassim (former Qatari prime minister)",
+    'Jabor': '"an influential man in Qatar"',
+    'Jared': "Jared Kushner",
+    'Jagland': 'Thorbjørn Jagland (former Norwegian prime minister)',
+    'Jeffrey Wernick': 'Right wing crypto bro',
+    'Joi': 'Joi Ito (MIT Media Lab)',
+    "Hoffenberg": "Steven Hoffenberg (Epstein's ponzi scheme partner)",
+    'KSA': "Kingdom of Saudi Arabia",
+    'Kurz': 'Sebastian Kurz (former Austrian Chancellor)',
+    'Kwok': "Chinese criminal Miles Kwok AKA Miles Guo AKA Guo Wengui",
+    'Mapp': f'{KENNETH_E_MAPP} (Governor Virgin Islands)',
+    'Masa': 'Masayoshi Son (Softbank)',
+    'MBS': "Mohammed bin Salman Al Saud (Saudi ruler)",
+    'MBZ': "Mohamed bin Zayed Al Nahyan (Emirates sheikh)",
+    "Miro": MIROSLAV_LAJCAK,
+    "Mooch": "Anthony 'The Mooch' Scaramucci (Skybridge crypto bro)",
+    "Terje": TERJE_ROD_LARSEN,
+    "Woody": "Woody Allen",
+    "Zug": "City in Switzerland (crypto hub)",
+}
 
 # Misc
 FALLBACK_TIMESTAMP = parse("1/1/2001 12:01:01 AM")
 SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
-# Email replies
+
+# Email replies (has to be here for circular dependencies reasons)
 REPLY_LINE_IN_A_MSG_PATTERN = r"In a message dated \d+/\d+/\d+.*writes:"
 REPLY_LINE_ENDING_PATTERN = r"[_ \n](AM|PM|[<_]|wrote:?)"
 REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"On \d+/\d+/\d+[, ].*{REPLY_LINE_ENDING_PATTERN}"
@@ -18,179 +49,6 @@ REPLY_LINE_ON_DATE_PATTERN = fr"On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat
 FORWARDED_LINE_PATTERN = r"-+ ?(Forwarded|Original)\s*Message ?-*|Begin forwarded message:?"
 REPLY_LINE_PATTERN = rf"({REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE)
-
-# Texting Names
-ANIL_AMBANI = "Anil Ambani"
-DEFAULT = 'default'
-EVA = 'Eva'
-JEFFREY_EPSTEIN = 'Jeffrey Epstein'
-JOI_ITO = 'Joi Ito'
-LARRY_SUMMERS = 'Larry Summers'
-MELANIE_WALKER = 'Melanie Walker'
-MIROSLAV_LAJCAK = 'Miroslav Lajčák'
-STACEY_PLASKETT = 'Stacey Plaskett'
-SCARAMUCCI = "Anthony Scaramucci"
-SOON_YI = 'Soon-Yi Previn'
-STEVE_BANNON = 'Steve Bannon'
-STEVEN_SINOFSKY = 'Steven Sinofsky'
-TERJE_ROD_LARSEN = 'Terje Rød-Larsen'
-UNKNOWN = '(unknown)'
-
-# Email Names
-# TODO: no trailing periods!
-AL_SECKEL = 'Al Seckel'
-ALAN_DERSHOWITZ = 'Alan Dershowitz'
-ALIREZA_ITTIHADIEH = 'Alireza Ittihadieh'
-AMANDA_ENS = 'Amanda Ens'
-ANN_MARIE_VILLAFANA = 'Ann Marie Villafana'
-ANTHONY_BARRETT = 'Anthony Barrett'
-ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
-ANAS_ALRASHEED = 'Anas Alrasheed'
-BRAD_KARP = 'Brad Karp'
-AZIZA_ALAHMADI = 'Aziza Alahmadi'
-BARBRO_EHNBOM = 'Barbro C. Ehnbom'
-BENNET_MOSKOWITZ = 'Bennet Moskowitz'
-BILL_GATES = 'Bill Gates'
-BILL_SIEGEL = 'Bill Siegel'
-BRAD_WECHSLER = 'Brad Wechsler'
-BORIS_NIKOLIC = 'Boris Nikolic'
-CELINA_DUBIN = 'Celina Dubin'
-CHRISTINA_GALBRAITH = 'Christina Galbraith'  # Works with Tyler Shears on reputation stuff
-DANIEL_SABBA = 'Daniel Sabba'
-DANIEL_SIAD = 'Daniel Siad'
-DANNY_FROST = 'Danny Frost'
-DARREN_INDYKE = 'Darren Indyke'
-DAVID_SCHOEN = 'David Schoen'
-DAVID_HAIG = 'David Haig'
-DAVID_INGRAM = 'David Ingram'
-DAVID_STERN = 'David Stern'
-DEBBIE_FEIN = 'Debbie Fein'
-DEEPAK_CHOPRA = 'Deepak Chopra'
-DIANE_ZIMAN = 'Diane Ziman'
-DONALD_TRUMP = 'Donald Trump'
-EDUARDO_ROBLES = 'Eduardo Robles'
-EDWARD_EPSTEIN = 'Edward Epstein'
-EHUD_BARAK = 'Ehud Barak'
-ELON_MUSK = 'Elon Musk'
-ERIC_ROTH = 'Eric Roth'
-FAITH_KATES = 'Faith Kates'
-FRED_HADDAD = 'Fred Haddad'
-GERALD_BARTON = 'Gerald Barton'
-GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
-GLENN_DUBIN = 'Glenn Dubin'
-GWENDOLYN_BECK = 'Gwendolyn Beck'         # https://www.lbc.co.uk/article/who-gwendolyn-beck-epstein-andrew-5HjdN66_2/
-IVANKA = 'Ivanka'
-JABOR_Y = 'Jabor Y'                       # Qatari
-JACK_GOLDBERGER = 'Jack Goldberger'
-JACKIE_PERCZEK = 'Jackie Perczek'
-JARED_KUSHNER = 'Jared Kushner'
-JAY_LEFKOWITZ = 'Jay Lefkowitz'
-JEAN_HUGUEN = 'Jean Huguen'
-JEAN_LUC_BRUNEL = 'Jean Luc Brunel'
-JEREMY_RUBIN = 'Jeremy Rubin'             # Bitcoin dev
-JES_STALEY = 'Jes Staley'
-JESSICA_CADWELL = 'Jessica Cadwell'       # Paralegal?
-JIDE_ZEITLIN = 'Jide Zeitlin'
-JOHN_PAGE = 'John Page'
-JOHNNY_EL_HACHEM = 'Johnny el Hachem'
-JONATHAN_FARKAS = 'Jonathan Farkas'
-JOSCHA_BACH = 'Joscha Bach'
-KATHY_RUEMMLER = 'Kathryn Ruemmler'
-KATHERINE_KEATING = 'Katherine Keating'
-KEN_STARR = 'Ken Starr'
-KENNETH_E_MAPP = 'Kenneth E. Mapp'
-LANDON_THOMAS = 'Landon Thomas Jr'
-LAWRANCE_VISOSKI = 'Lawrance Visoski'
-LAWRENCE_KRAUSS = 'Lawrence Krauss'
-LEON_BLACK = 'Leon Black'
-LESLEY_GROFF = 'Lesley Groff'
-LILLY_SANCHEZ = 'Lilly Sanchez'
-LINDA_STONE = 'Linda Stone'
-LISA_NEW = 'Lisa New'                      # Harvard poetry prof AKA "Elisa New"
-MANUELA_MARTINEZ = 'Manuela Martinez'
-MARC_LEON = 'Marc Leon'
-MARIANA_IDZKOWSKA = 'Mariana Idźkowska'
-MARK_EPSTEIN = 'Mark Epstein'
-MARTIN_NOWAK = 'Martin Nowak'
-MARTIN_WEINBERG = "Martin Weinberg"
-MASHA_DROKOVA = 'Masha Drokova'
-MELANIE_SPINELLA = 'Melanie Spinella'
-MICHAEL_BUCHHOLTZ = 'Michael Buchholtz'
-MICHAEL_MILLER = 'Michael Miller'
-MICHAEL_SITRICK = 'Michael Sitrick'
-MICHAEL_WOLFF = "Michael Wolff"
-MOHAMED_WAHEED_HASSAN = 'Mohamed Waheed Hassan'
-MORTIMER_ZUCKERMAN = 'Mortimer Zuckerman'
-NADIA_MARCINKO = 'Nadia Marcinko'
-NEAL_KASSELL = 'Neal Kassell'
-NICHOLAS_RIBIS = 'Nicholas Ribis'
-NORMAN_D_RAU = 'Norman D. Rau'
-OLIVIER_COLOM = 'Olivier Colom'
-PAULA = 'Paula'
-PAUL_BARRETT = 'Paul Barrett'
-PAUL_KRASSNER = 'Paul Krassner'
-PAUL_MORRIS = 'Paul Morris'
-PAUL_PROSPERI = 'Paul Prosperi'
-PEGGY_SIEGAL = 'Peggy Siegal'
-PETER_MANDELSON = 'Peter Mandelson'
-PRINCE_ANDREW = 'Prince Andrew'
-PUREVSUREN_LUNDEG = 'Purevsuren Lundeg'
-RAAFAT_ALSABBAGH = 'Raafat Alsabbagh'
-REID_HOFFMAN = 'Reid Hoffman'
-REID_WEINGARTEN = 'Reid Weingarten'
-RICHARD_KAHN = 'Richard Kahn'
-ROBERT_D_CRITTON = 'Robert D. Critton Jr.'
-ROBERT_LAWRENCE_KUHN = 'Robert Lawrence Kuhn'
-ROBERT_TRIVERS = 'Robert Trivers'
-ROGER_SCHANK = 'Roger Schank'
-RUDY_GIULIANI = 'Rudy Giuliani'
-ROSS_GOW = 'Ross Gow'
-SCOTT_J_LINK = 'Scott J. Link'
-SEAN_BANNON = 'Sean Bannon'
-SHAHER_ABDULHAK_BESHER = 'Shaher Abdulhak Besher (?)'
-STEPHEN_HANSON = 'Stephen Hanson'
-STEVEN_PFEIFFER = 'Steven Pfeiffer'
-STEVEN_HOFFENBERG = 'Steven Hoffenberg'
-SULTAN_BIN_SULAYEM = 'Sultan Ahmed Bin Sulayem'
-TERRY_KAFKA = 'Terry Kafka'
-THANU_BOONYAWATANA = 'Thanu Boonyawatana'
-THORBJORN_JAGLAND = 'Thorbjørn Jagland'
-TOM_BARRACK = 'Tom Barrack'
-TOM_PRITZKER = 'Tom Pritzker'
-TONJA_HADDAD_COLEMAN = 'Tonja Haddad Coleman'
-TULSI_GABBARD = 'Tulsi Gabbard'
-TYLER_SHEARS = 'Tyler Shears'  # Reputation manager, like Al Seckel
-VINIT_SAHNI = 'Vinit Sahni'
-
-# Other strings
-EMAIL_HEADER_FIELD = 'header_field'
-
-#  of who is the counterparty in each text message file
-AI_COUNTERPARTY_DETERMINATION_TSV = StringIO("""filename	counterparty	source
-HOUSE_OVERSIGHT_025400.txt	Steve Bannon (likely)	Trump NYT article criticism; Hannity media strategy
-HOUSE_OVERSIGHT_025408.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_025452.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_025479.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_025707.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_025734.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027260.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027281.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027346.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027365.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027374.txt	Steve Bannon	China strategy and geopolitics
-HOUSE_OVERSIGHT_027406.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027440.txt	Michael Wolff	Trump book/journalism project
-HOUSE_OVERSIGHT_027445.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027455.txt	Steve Bannon (likely)	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027515.txt	Personal contact	Personal/social plans
-HOUSE_OVERSIGHT_027536.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027655.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027707.txt	Steve Bannon	Italian politics; Trump discussions
-HOUSE_OVERSIGHT_027722.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027735.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027794.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_029744.txt	Steve Bannon (likely)	Trump and New York Times coverage
-HOUSE_OVERSIGHT_031045.txt	Steve Bannon (likely)	Trump and New York Times coverage""")
 
 KNOWN_IMESSAGE_FILE_IDS = {
     '031042': ANIL_AMBANI,       # Participants: field
@@ -232,7 +90,7 @@ GUESSED_IMESSAGE_FILE_IDS = {
     '027764': STEVE_BANNON,
     '027428': STEVE_BANNON,          # References HBJ meeting on 9/28 from other Bannon/Epstein convo
     '025436': 'Celina Dubin',
-    '027576': MELANIE_WALKER,  # https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700
+    '027576': MELANIE_WALKER,        # https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700
     '027141': MELANIE_WALKER,
     '027232': MELANIE_WALKER,
     '027133': MELANIE_WALKER,
@@ -242,6 +100,33 @@ GUESSED_IMESSAGE_FILE_IDS = {
     '027396': SCARAMUCCI,
     '031054': SCARAMUCCI,
 }
+
+#  of who is the counterparty in each text message file
+AI_COUNTERPARTY_DETERMINATION_TSV = StringIO("""filename	counterparty	source
+HOUSE_OVERSIGHT_025400.txt	Steve Bannon (likely)	Trump NYT article criticism; Hannity media strategy
+HOUSE_OVERSIGHT_025408.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_025452.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_025479.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
+HOUSE_OVERSIGHT_025707.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_025734.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
+HOUSE_OVERSIGHT_027260.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027281.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027346.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027365.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027374.txt	Steve Bannon	China strategy and geopolitics
+HOUSE_OVERSIGHT_027406.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027440.txt	Michael Wolff	Trump book/journalism project
+HOUSE_OVERSIGHT_027445.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
+HOUSE_OVERSIGHT_027455.txt	Steve Bannon (likely)	China strategy and geopolitics; Trump discussions
+HOUSE_OVERSIGHT_027515.txt	Personal contact	Personal/social plans
+HOUSE_OVERSIGHT_027536.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
+HOUSE_OVERSIGHT_027655.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027707.txt	Steve Bannon	Italian politics; Trump discussions
+HOUSE_OVERSIGHT_027722.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027735.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_027794.txt	Steve Bannon	Trump and New York Times coverage
+HOUSE_OVERSIGHT_029744.txt	Steve Bannon (likely)	Trump and New York Times coverage
+HOUSE_OVERSIGHT_031045.txt	Steve Bannon (likely)	Trump and New York Times coverage""")
 
 for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
     file_id = row['filename'].strip().replace(HOUSE_OVERSIGHT_PREFIX, '').replace('.txt', '')
@@ -267,7 +152,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     BENNET_MOSKOWITZ: re.compile(r'Moskowitz.*Bennet|Bennet.*Moskowitz', re.IGNORECASE),
     BORIS_NIKOLIC: re.compile(r'(boris )?nikolic?', re.IGNORECASE),
     BRAD_KARP: re.compile(r'Brad (S.? )?Karp|Karp, Brad', re.IGNORECASE),
-    'Dangene and Jennie Enterprise': re.compile(r'Dangene and Jennie Enterpris', re.IGNORECASE),
+    'Dangene and Jennie Enterprise': re.compile(r'Dangene and Jennie Enterprise?', re.IGNORECASE),
     DANNY_FROST: re.compile(r'Frost, Danny|frostd@dany.nyc.gov', re.IGNORECASE),
     DARREN_INDYKE: re.compile(r'darren$|darren [il]n[dq]_?yke?|dkiesq', re.IGNORECASE),
     DAVID_STERN: re.compile(r'David Stern?', re.IGNORECASE),
@@ -278,7 +163,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     GERALD_BARTON: re.compile(r'Gerald.*Barton', re.IGNORECASE),
     GHISLAINE_MAXWELL: re.compile(r'g ?max(well)?|Ghislaine|Maxwell', re.IGNORECASE),
     'Google Alerts': re.compile(r'google\s?alerts', re.IGNORECASE),
-    'Heather Mann': re.compile(r'Heather Man', re.IGNORECASE),
+    'Heather Mann': re.compile(r'Heather Mann?', re.IGNORECASE),
     'Intelligence Squared': re.compile(r'intelligence\s*squared', re.IGNORECASE),
     JACKIE_PERCZEK:  re.compile(r'jackie percze[kl]?', re.IGNORECASE),
     JABOR_Y: re.compile(r'[ji]abor\s*y?', re.IGNORECASE),
@@ -319,7 +204,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     PAULA: re.compile(r'^Paula$', re.IGNORECASE),
     PAUL_MORRIS: re.compile(r'morris, paul|Paul Morris', re.IGNORECASE),
     PEGGY_SIEGAL:  re.compile(r'Peggy Siegal?', re.IGNORECASE),
-    'Peter Attia': re.compile(r'Peter Attia?', re.IGNORECASE),
+    PETER_ATTIA: re.compile(r'Peter Attia?', re.IGNORECASE),
     PETER_MANDELSON: re.compile(r"((Lord|Peter) )?Mandelson", re.IGNORECASE),
     'pink@mc2mm.com': re.compile(r"^Pink$|pink@mc2mm\.com", re.IGNORECASE),
     PRINCE_ANDREW: re.compile(r'Prince Andrew|The Duke', re.IGNORECASE),
@@ -358,7 +243,7 @@ EMAILERS = [
     DAVID_SCHOEN,
     DEEPAK_CHOPRA,
     GLENN_DUBIN,
-    'Gordon Getty',
+    GORDON_GETTY,
     'Jack Lang',
     JAY_LEFKOWITZ,
     JES_STALEY,
@@ -575,7 +460,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '033486': [JEFFREY_EPSTEIN, DARREN_INDYKE, RICHARD_KAHN],  # OCR
     '033156': [JEFFREY_EPSTEIN, DARREN_INDYKE, RICHARD_KAHN],  # OCR
     '029154': [JEFFREY_EPSTEIN, DAVID_HAIG],         # Bad OCR
-    '029498': [JEFFREY_EPSTEIN, DAVID_HAIG, 'Gordon Getty', 'Norman Finkelstein'],      # Bad OCR
+    '029498': [JEFFREY_EPSTEIN, DAVID_HAIG, GORDON_GETTY, 'Norman Finkelstein'],      # Bad OCR
     '029889': [JEFFREY_EPSTEIN, JACK_GOLDBERGER, ROBERT_D_CRITTON, 'Connie Zaguirre'],  # Bad OCR
     '028931': [JEFFREY_EPSTEIN, LAWRENCE_KRAUSS],    # Bad OCR
     '019407': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR
@@ -768,35 +653,6 @@ SUPPRESS_OUTPUT_FOR_EMAIL_IDS = {
     '030592': 'the same as 030339',
     '031129': 'the same as 029977',
     '033561': 'the same as 033157',
-}
-
-HEADER_ABBREVIATIONS = {
-    "AD": "Abu Dhabi",
-    "Barak": "Ehud Barak (Former Israeli prime minister)",
-    "Barrack": "Tom Barrack (Trump ally)",
-    'BG': "Bill Gates",
-    'Bill': "Bill Gates",
-    "Brock": 'Brock Pierce (crypto bro with a very sordid past)',
-    "DB": "Deutsche Bank (maybe??)",
-    'HBJ': "Hamad bin Jassim (former Qatari prime minister)",
-    'Jabor': '"an influential man in Qatar"',
-    'Jared': "Jared Kushner",
-    'Jagland': 'Thorbjørn Jagland (former Norwegian prime minister)',
-    'Jeffrey Wernick': 'Right wing crypto bro',
-    'Joi': 'Joi Ito (MIT Media Lab)',
-    "Hoffenberg": "Steven Hoffenberg (Epstein's ponzi scheme partner)",
-    'KSA': "Kingdom of Saudi Arabia",
-    'Kurz': 'Sebastian Kurz (former Austrian Chancellor)',
-    'Kwok': "Chinese criminal Miles Kwok AKA Miles Guo AKA Guo Wengui",
-    'Mapp': f'{KENNETH_E_MAPP} (Governor Virgin Islands)',
-    'Masa': 'Masayoshi Son (Softbank)',
-    'MBS': "Mohammed bin Salman Al Saud (Saudi ruler)",
-    'MBZ': "Mohamed bin Zayed Al Nahyan (Emirates sheikh)",
-    "Miro": MIROSLAV_LAJCAK,
-    "Mooch": "Anthony 'The Mooch' Scaramucci (Skybridge crypto bro)",
-    "Terje": TERJE_ROD_LARSEN,
-    "Woody": "Woody Allen",
-    "Zug": "City in Switzerland (crypto hub)",
 }
 
 NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [

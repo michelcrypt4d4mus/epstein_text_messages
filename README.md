@@ -10,7 +10,7 @@ Dependencies are in [pyproject.toml](./pyproject.toml). Use `poetry` for easiest
 Requires you have a local copy of OCR text from the House Oversight document dump in a directory `/path/to/epstein/ocr_txt_files`.  Then you can run with:
 
 ```bash
-DOCS_DIR=/path/to/epstein/ocr_txt_files ./epstein_chat_logs_reformatter
+DOCS_DIR=/path/to/epstein/ocr_txt_files ./generate.py
 ```
 
-Run `./epstein_chat_logs_reformatter.py --help` for command line option assistance.
+Run `./generate.py --help` for command line option assistance.

@@ -2,7 +2,6 @@
 import json
 import re
 from os import devnull
-from sys import argv
 from typing import Literal
 
 from rich.align import Align
@@ -15,12 +14,12 @@ from rich.table import Table
 from rich.text import Text
 from rich.theme import Theme
 
+from epstein_files.util.constant.html import PAGE_TITLE
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import *
 from epstein_files.util.env import args, deep_debug, is_debug, is_main_script, logger
 from epstein_files.util.file_helper import build_filename_for_id
-from epstein_files.util.highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS, REGEX_STYLE_PREFIX, HighlightedGroup
-from epstein_files.util.html import PAGE_TITLE
+from epstein_files.util.highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS, REGEX_STYLE_PREFIX
 
 NUM_COLOR_KEY_COLS = 4
 OUTPUT_WIDTH = 120
@@ -232,7 +231,8 @@ def print_other_site_link(is_header: bool = True) -> None:
 def print_panel(msg: str, style: str = 'black on white', padding: tuple | None = None) -> None:
     _padding = list(padding or [0, 0, 0, 0])
     _padding[2] += 1  # Bottom pad
-    console.print(Padding(Panel(Text.from_markup(msg, justify='center'), width=70, style=style), tuple(_padding)))
+    panel = Panel(Text.from_markup(msg, justify='center'), width=70, style=style)
+    console.print(Padding(panel, tuple(_padding)))
 
 
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
@@ -264,7 +264,6 @@ def wrap_in_markup_style(msg: str, style: str | None = None) -> str:
 
 
 if is_debug:
-    console.line(2)
     print_json('THEME_STYLES', THEME_STYLES)
 
 if deep_debug:

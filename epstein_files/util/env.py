@@ -6,7 +6,7 @@ from sys import argv
 
 from rich.logging import RichHandler
 
-MAIN_SCRIPT = 'epstein_chat_logs_reformatter.py'
+MAIN_SCRIPT = 'generate.py'
 
 
 is_env_var_set = lambda s: len(environ.get(s) or '') > 0
