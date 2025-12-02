@@ -188,9 +188,13 @@ class EpsteinFiles:
     def print_emails_table_for(self, _author: str | None) -> None:
         emails = self.emails_for(_author)
         author = _author or UNKNOWN
-        title = f"Emails to/from {author} starting {emails[0].timestamp.date()}"
-        border_style = get_style_for_name(author, allow_bold=False)
-        table = Table(title=title, border_style=border_style, expand=True, header_style="bold")
+
+        table = Table(
+            title=f"Emails to/from {author} starting {emails[0].timestamp.date()}",
+            border_style=get_style_for_name(author, allow_bold=False),
+            header_style="bold"
+        )
+
         table.add_column('From', justify='left')
         table.add_column('Timestamp', justify='center')
         table.add_column('Subject', justify='left', style='honeydew2', min_width=60)
