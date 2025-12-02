@@ -781,20 +781,20 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
 
 SIGNATURE_SUBSTITUTION_COUNTS = {
     "(unknown)": 2,
-    "Danny Frost": 16,
-    "Darren Indyke": 52,
-    "David Ingram": 11,
-    "Deepak Chopra": 21,
-    "Jeffrey Epstein": 3363,
-    "Jessica Cadwell": 43,
-    "Lawrence Krauss": 82,
-    "Martin Weinberg": 23,
-    "Paul Barrett": 19,
+    "Danny Frost": 8,
+    "Darren Indyke": 47,
+    "David Ingram": 9,
+    "Deepak Chopra": 19,
+    "Jeffrey Epstein": 3366,
+    "Jessica Cadwell": 57,
+    "Lawrence Krauss": 78,
+    "Martin Weinberg": 17,
+    "Paul Barrett": 10,
     "Peter Mandelson": 10,
-    "Richard Kahn": 122,
-    "Susan Edelman": 18,
+    "Richard Kahn": 120,
+    "Susan Edelman": 9,
     "Terry Kafka": 10,
-    "Tonja Haddad Coleman": 16
+    "Tonja Haddad Coleman": 9,
 }
 
 
