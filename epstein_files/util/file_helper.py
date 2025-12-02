@@ -3,7 +3,7 @@ from os import environ
 from pathlib import Path
 from sys import exit
 
-from util.constants import HOUSE_OVERSIGHT_PREFIX
+from epstein_files.util.constants import HOUSE_OVERSIGHT_PREFIX
 
 FILE_ID_REGEX = re.compile(rf'.*{HOUSE_OVERSIGHT_PREFIX}(\d+)(_\d+)?(\.txt)?')
 OUTPUT_GH_PAGES_HTML = Path('docs').joinpath('index.html')

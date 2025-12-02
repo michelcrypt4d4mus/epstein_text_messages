@@ -7,10 +7,10 @@ from rich.console import Console, ConsoleOptions, RenderResult
 from rich.panel import Panel
 from rich.text import Text
 
-from documents.document import CommunicationDocument
-from util.constants import *
-from util.highlighted_group import get_style_for_name
-from util.rich import PHONE_NUMBER, TEXT_LINK, TIMESTAMP, highlighter, logger
+from epstein_files.documents.document import CommunicationDocument
+from epstein_files.util.constants import *
+from epstein_files.util.highlighted_group import get_style_for_name
+from epstein_files.util.rich import PHONE_NUMBER, TEXT_LINK, TIMESTAMP, highlighter, logger
 
 BAD_TEXTER_REGEX = re.compile(r'^([-+_1•F]+|[4Ide])$')
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
@@ -37,7 +37,6 @@ sender_counts = defaultdict(int)
 
 @dataclass
 class MessengerLog(CommunicationDocument):
-    author_str: str = field(init=False)
     hint_txt: Text | None = field(init=False)
     msg_count: int = 0
 
@@ -70,7 +69,7 @@ class MessengerLog(CommunicationDocument):
                 logger.info(f"[WARNING] Failed to parse '{timestamp_str}' to datetime! Using next match. Error: {e}'")
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        yield Panel(self.archive_link_txt(), border_style=self.author_style.removesuffix(' bold'), expand=False)
+        yield Panel(self.raw_document_link_txt(), border_style=self.author_style.removesuffix(' bold'), expand=False)
 
         if self.hint_txt:
             yield self.hint_txt

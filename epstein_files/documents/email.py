@@ -1,6 +1,8 @@
 import re
+from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
+from typing import ClassVar
 
 from dateutil.parser import parse
 from dateutil import tz
@@ -10,15 +12,16 @@ from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
 
-from documents.document import CommunicationDocument
-from documents.email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TO_FIELDS, EmailHeader
-from util.constants import *
-from util.data import collapse_newlines
-from util.env import is_debug, is_fast_mode, logger
-from util.file_helper import build_filename_for_id
-from util.highlighted_group import get_style_for_name
-from util.rich import *
-from util.strings import *
+from epstein_files.documents.document import CommunicationDocument
+from epstein_files.documents.email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TO_FIELDS, EmailHeader
+from epstein_files.util.constant.strings import REDACTED
+from epstein_files.util.constants import *
+from epstein_files.util.data import collapse_newlines
+from epstein_files.util.env import is_debug, is_fast_mode, logger
+from epstein_files.util.file_helper import build_filename_for_id
+from epstein_files.util.highlighted_group import get_style_for_name
+from epstein_files.util.rich import *
+from epstein_files.util.strings import *
 
 TIME_REGEX = re.compile(r'^(\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday).*')
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
@@ -39,10 +42,15 @@ SKIP_HEADER_ROW_REGEX = re.compile(r"^(agreed|call me|Hysterical|schwartman).*")
 UNDISCLOSED_RECIPIENTS_REGEX = re.compile(r'Undisclosed[- ]recipients:', re.IGNORECASE)
 
 MULTIPLE_SENDERS = 'Multiple Senders'
-BAD_FIRST_LINES = ['026652', '029835', '031189']
 MAX_CHARS_TO_PRINT = 4000
 VALID_HEADER_LINES = 14
 EMAIL_INDENT = 2
+
+BAD_FIRST_LINES = [
+    '026652',
+    '029835',
+    '031189'
+]
 
 KNOWN_TIMESTAMPS = {
     '028851': datetime(2014, 4, 27, 6, 00),
@@ -54,27 +62,30 @@ KNOWN_TIMESTAMPS = {
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r' Banno(r]?|\b)'): ' Bannon',
     re.compile(r'grnail\.com'): 'gmail.com',
-    re.compile(r'from my BlackBerry[0°] wireless device'): 'from my BlackBerry® wireless device',
     re.compile(r'gmax ?[1l] ?[@g]ellmax.c ?om'): 'gmax1@ellmax.com',
     re.compile(r"[ijlp']ee[vy]acation[©@a(&,P ]{1,3}g?mail.com"): 'jeevacation@gmail.com',
-    re.compile(r"^(From|To)(: )?[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",
+    re.compile(r"^(From|To)(: )?[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",  # Redacted email addresses
     'BlackBerry by AT &T': 'BlackBerry by AT&T',
     'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
-    "Sent from my 'Phone": 'Sent from my iPhone',
-    'Sent from Samsung Mob.le': 'Sent from Samsung Mobile',
-    'Sent from Mabfl': 'Sent from Mobile',
-    'Torn Pritzker': TOM_PRITZKER,
-    'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
-    'Miroslav Laj6ak': MIROSLAV_LAJCAK,
+    "from my 'Phone": 'from my iPhone',
+    'from Samsung Mob.le': 'from Samsung Mobile',
+    # These 3 must come in this order!
     re.compile(r'([/vkT]|Ai|li|(I|7)v)rote:'): 'wrote:',
     re.compile(r"([<>.=_HIM][<>.=_HIM14]{5,}[<>.=_HIM]|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
     re.compile(r"([,<>_]|AM|PM)\n(>)? ?wrote:?"): r'\1\2 wrote:',
     # TODO: are these necessary?
+    'Torn Pritzker': TOM_PRITZKER,
+    'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
+    'Miroslav Laj6ak': MIROSLAV_LAJCAK,
+    re.compile(r'from my BlackBerry[0°] wireless device'): 'from my BlackBerry® wireless device',
     'gJeremyRubin': '@JeremyRubin',
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
     re.compile(r"twitter\.com[i/][lI]krauss[1lt]"): "twitter.com/lkrauss1",
     'twitter glhsummers': 'twitter @lhsummers',
+    # 'Sent from Mabfl': 'Sent from Mobile',  # NADIA_MARCINKO signature bad OCR
 }
+
+MARTIN_WEINBERG_SIGNATURE_PATTERN = r"Martin G. Weinberg, Esq.\n20 Park Plaza, Suite 1000\nBoston, MA 02116(\n61.*)?(\n.*([cC]ell|Office))*"
 
 EMAIL_SIGNATURES = {
     DANNY_FROST: re.compile(r"Danny Frost\nDirector.*\nManhattan District.*\n212.*", re.IGNORECASE),
@@ -84,7 +95,7 @@ EMAIL_SIGNATURES = {
     JEFFREY_EPSTEIN: re.compile(r"((\*+|please note)\n+)?(> )?(• )?(» )?The information contained in this communication is\n(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?", re.DOTALL),
     JESSICA_CADWELL: re.compile(r"(f.*\n)?Certified Para.*\nFlorida.*\nBURMAN.*\n515.*\nSuite.*\nWest Palm.*", re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r"Lawrence (M. )?Krauss\n(Director.*\n)?(Co-director.*\n)?Foundation.*\nSchool.*\n(Co-director.*\n)?(and Director.*\n)?Arizona.*(\nResearch.*\nOri.*\n(krauss.*\n)?origins.*)?", re.IGNORECASE),
-    MARTIN_WEINBERG: re.compile(fr"({MARTIN_WEINBERG_ADDRESS_PATTERN}\n)?This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
+    MARTIN_WEINBERG: re.compile(fr"({MARTIN_WEINBERG_SIGNATURE_PATTERN}\n)?This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
     PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
     PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(142 W 57th Street, 11th Floor, New York, NY 10019?[\n\s]+)?(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
     RICHARD_KAHN: re.compile(r'Richard Kahn[\n\s]+HBRK Associates Inc.?[\n\s]+((301 East 66th Street, Suite 1OF|575 Lexington Avenue,? 4th Floor,?)[\n\s]+)?New York, (NY|New York) 100(22|65)([\n\s]+(Tel|Phone)( I)?[\n\s]+Fa[x"]?[\n\s]+[Ce]el?l?)?', re.IGNORECASE),
@@ -242,14 +253,17 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
 @dataclass
 class Email(CommunicationDocument):
     author_lowercase: str | None = field(init=False)
+    cleaned_up_text: str = field(init=False)
     header: EmailHeader = field(init=False)
     recipients: list[str | None] = field(default_factory=list)
     sent_from_device: str | None = None
 
+    signature_substitution_counts: ClassVar[dict] = defaultdict(int)
+
     def __post_init__(self):
         super().__post_init__()
         self._repair()
-        self._extract_header()
+        self.header = self._extract_header()
 
         if is_fast_mode:
             self.author = UNKNOWN
@@ -291,17 +305,18 @@ class Email(CommunicationDocument):
 
         self.timestamp = self._extract_sent_at()
         self.author_lowercase = self.author.lower() if self.author else None
-        self.author_style = get_style_for_name(self.author or UNKNOWN)
-        self.author_txt = Text(self.author or UNKNOWN, style=self.author_style)
-        self.epsteinify_link_markup = make_epsteinify_doc_link_markup(self.file_path.stem, self.author_style)
+        self.author_str = self.author or UNKNOWN
+        self.author_style = get_style_for_name(self.author_str)
+        self.author_txt = Text(self.author_str, style=self.author_style)
+        self.cleaned_up_text = self._cleaned_up_text()
+        self.epsteinify_link_markup = epsteinify_doc_link_markup(self.file_path.stem, self.author_style)
         self.sent_from_device = self._sent_from_device()
 
     def description(self) -> Text:
         if is_fast_mode:
             return Text(self.filename)
-        else:
-            info_str = f"Email (author='{self.author}', recipients={self.recipients}, timestamp='{self.timestamp}')"
-            return Text(info_str)
+
+        return super().description()
 
     def idx_of_nth_quoted_reply(self, n: int = 2, text: str | None = None) -> int | None:
         """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line."""
@@ -337,7 +352,8 @@ class Email(CommunicationDocument):
         text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
 
         for name, signature_regex in EMAIL_SIGNATURES.items():
-            text = signature_regex.sub(self._clipped_signature_replacement(name), text)
+            text, num_replaced = signature_regex.subn(self._clipped_signature_replacement(name), text)
+            type(self).signature_substitution_counts[name] += num_replaced
 
         return collapse_newlines(text.strip())
 
@@ -373,62 +389,61 @@ class Email(CommunicationDocument):
         self.log_top_lines(msg="No valid timestamp found in email!")
         raise RuntimeError(f"No timestamp found in '{self.file_path.name}'")
 
-    def _extract_header(self) -> EmailHeader | None:
+    def _extract_header(self) -> EmailHeader:
         header_match = EMAIL_SIMPLE_HEADER_REGEX.search(self.text)
 
-        if header_match:
-            self.header = EmailHeader.from_str(header_match.group(0))
-
-            # Sometimes the headers and values are on separate rows
-            if self.header.is_empty():
-                num_headers = len(self.header.field_names)
-
-                for i, field_name in enumerate(self.header.field_names):
-                    row_number_to_check = i + num_headers
-
-                    if row_number_to_check > (self.num_lines - 1):
-                        logger.warning(f"Ran out of rows to check for a value for '{field_name}'")
-                        break
-
-                    value = self.lines[row_number_to_check]
-                    log_prefix = f"Looks like '{value}' is a mismatch for '{field_name}', " if is_debug else ''
-
-                    if field_name == AUTHOR:
-                        if SKIP_HEADER_ROW_REGEX.match(value):
-                            logger.info(f"{log_prefix}, trying the next line...")
-                            num_headers += 1
-                            value = self.lines[i + num_headers]
-                        elif TIME_REGEX.match(value) or value == 'Darren,' or BAD_EMAILER_REGEX.match(value):
-                            logger.info(f"{log_prefix}, decrementing num_headers and skipping...")
-                            num_headers -= 1
-                            continue
-                    elif field_name in TO_FIELDS:
-                        if TIME_REGEX.match(value):
-                            logger.info(f"{log_prefix}, trying next line...")
-                            num_headers += 1
-                            value = self.lines[i + num_headers]
-                        elif BAD_EMAILER_REGEX.match(value):
-                            logger.info(f"{log_prefix}, decrementing num_headers and skipping...")
-                            num_headers -= 1
-                            continue
-
-                        value = [v.strip() for v in value.split(';') if len(v.strip()) > 0]
-
-                    setattr(self.header, field_name, value)
-
-                logger.debug(f"Corrected empty header to:\n{self.header}\n\nTop rows of file\n\n{self.top_lines((num_headers + 1) * 2)}")
-            else:
-                logger.debug(f"Extracted email header:\n{self.header}")
-        else:
+        if not header_match:
             if not (self.file_id in KNOWN_EMAIL_AUTHORS and self.file_id in KNOWN_EMAIL_RECIPIENTS):
                 logger.warning(f"No header match found in '{self.filename}'! Top lines:\n\n{self.top_lines()}")
 
-            self.header = EmailHeader(field_names=[])
+            return EmailHeader(field_names=[])
+
+        header = EmailHeader.from_str(header_match.group(0))
+        num_headers = len(header.field_names)
+
+        if not header.is_empty():
+            logger.debug(f"Extracted email header:\n%s", header)
+            return header
+
+        # Sometimes the headers and values are on separate lines and we need to do some shenanigans
+        for i, field_name in enumerate(header.field_names):
+            row_number_to_check = i + num_headers  # Look ahead 3 lines if there's 3 header fields, 4 if 4, etc.
+
+            if row_number_to_check > (self.num_lines - 1):
+                logger.warning(f"Ran out of rows to check for a value for '{field_name}'")
+                break
+
+            value = self.lines[row_number_to_check]
+            log_prefix = f"Looks like '{value}' is a mismatch for '{field_name}', " if is_debug else ''
+
+            if field_name == AUTHOR:
+                if SKIP_HEADER_ROW_REGEX.match(value):
+                    logger.info(f"{log_prefix}, trying the next line...")
+                    num_headers += 1
+                    value = self.lines[i + num_headers]
+                elif TIME_REGEX.match(value) or value == 'Darren,' or BAD_EMAILER_REGEX.match(value):
+                    logger.info(f"{log_prefix}, decrementing num_headers and skipping...")
+                    num_headers -= 1
+                    continue
+            elif field_name in TO_FIELDS:
+                if TIME_REGEX.match(value):
+                    logger.info(f"{log_prefix}, trying next line...")
+                    num_headers += 1
+                    value = self.lines[i + num_headers]
+                elif BAD_EMAILER_REGEX.match(value):
+                    logger.info(f"{log_prefix}, decrementing num_headers and skipping...")
+                    num_headers -= 1
+                    continue
+
+                value = [v.strip() for v in value.split(';') if len(v.strip()) > 0]
+
+            setattr(header, field_name, value)
+
+        logger.debug(f"Corrected empty header to:\n%s\n\nTop lines:\n\n%s", header, self.top_lines((num_headers + 1) * 2))
+        return header
+
 
     def _get_names(self, emailer_str: str) -> list[str]:
-        if emailer_str.rstrip('<').strip() == REDACTED:  # TODO: this sucks, just for HOUSE_OVERSIGHT_022187
-            return []
-
         emailer_str = EmailHeader.cleanup_str(emailer_str)
         names = []
 
@@ -483,16 +498,16 @@ class Email(CommunicationDocument):
         if self.file_id in SUPPRESS_OUTPUT_FOR_EMAIL_IDS:
             supression_reason = SUPPRESS_OUTPUT_FOR_EMAIL_IDS[self.file_id]
             reason_msg = ' '.join(supression_reason.split()[0:-1])
-            txt = Text(f"Not showing ", style='dim').append(make_epsteinify_doc_link_txt(self.file_id, style='cyan'))
+            txt = Text(f"Not showing ", style='dim').append(epsteinify_doc_link_txt(self.file_id, style='cyan'))
             txt.append(f" because it's {reason_msg} {build_filename_for_id(supression_reason.split()[-1])}")
             yield txt.append(' (which is shown)\n')
             return
 
-        yield Panel(self.archive_link_txt(), border_style=self._border_style(), expand=False)
+        yield Panel(self.raw_document_link_txt(), border_style=self._border_style(), expand=False)
         info_line = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(f' to ')
         info_line.append(self.recipient_txt).append(highlighter(f" probably sent at {self.timestamp}"))
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
-        text = self._cleaned_up_text()
+        text = self.cleaned_up_text
         quote_cutoff = self.idx_of_nth_quoted_reply(text=text)
         num_chars = MAX_CHARS_TO_PRINT
         trim_footer_txt = None
@@ -504,8 +519,8 @@ class Email(CommunicationDocument):
             num_chars = quote_cutoff
 
         if len(text) > num_chars:
-            trim_note = f"[dim]<...trimmed to {num_chars} characters of {self.length}, read the rest at {self.epsteinify_link_markup}...>[/dim]"
-            trim_footer_txt = Text.from_markup(trim_note)
+            trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest at {self.epsteinify_link_markup}...>"
+            trim_footer_txt = Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
             text = text[0:num_chars]
 
         panel_txt = highlighter(text)

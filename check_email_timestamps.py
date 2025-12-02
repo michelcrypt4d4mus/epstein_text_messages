@@ -5,10 +5,10 @@ from dotenv import load_dotenv
 load_dotenv()
 from rich.console import Console
 
-from documents.document import Document
-from documents.email import SUPPRESS_OUTPUT_FOR_EMAIL_IDS
-from documents.epstein_files import EpsteinFiles
-from util.rich import *
+from epstein_files.documents.document import Document
+from epstein_files.documents.email import SUPPRESS_OUTPUT_FOR_EMAIL_IDS
+from epstein_files.documents.epstein_files import EpsteinFiles
+from epstein_files.util.rich import *
 
 console = Console(color_system='256')
 epstein_files = EpsteinFiles()

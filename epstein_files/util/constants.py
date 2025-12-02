@@ -1,14 +1,13 @@
 import csv
 import re
-import urllib.parse
 from copy import deepcopy
 from io import StringIO
 
 from dateutil.parser import parse
-from inflection import parameterize
+
+from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_PREFIX
 
 # Misc
-HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
 FALLBACK_TIMESTAMP = parse("1/1/2001 12:01:01 AM")
 SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
 # Email replies
@@ -165,9 +164,6 @@ VINIT_SAHNI = 'Vinit Sahni'
 
 # Other strings
 EMAIL_HEADER_FIELD = 'header_field'
-EMAIL = 'email'
-TEXT_MESSAGE = 'text message'
-REDACTED = '<REDACTED>'
 
 #  of who is the counterparty in each text message file
 AI_COUNTERPARTY_DETERMINATION_TSV = StringIO("""filename	counterparty	source
@@ -533,6 +529,8 @@ KNOWN_EMAIL_AUTHORS = {
     '029992': TERRY_KAFKA,             # Quoted reply
     '020666': TERRY_KAFKA,             # ends with 'Terry'
     '022346': VINIT_SAHNI,             # Signature  #TODO: check this, also maybe 022346 and 022322
+    # Unknowns
+    '022187': UNKNOWN,   # Bad OCR causes parsing problems
     # '026571': '(unknown french speaker)',
     # '029504': Probably Audrey Raimbault (based on "GMI" in signature, a company registered by "aubrey raimbault")
 }
@@ -772,8 +770,6 @@ SUPPRESS_OUTPUT_FOR_EMAIL_IDS = {
     '033561': 'the same as 033157',
 }
 
-MARTIN_WEINBERG_ADDRESS_PATTERN = r"Martin G. Weinberg, Esq.\n20 Park Plaza, Suite 1000\nBoston, MA 02116(\n61.*)?(\n.*([cC]ell|Office))*"
-
 HEADER_ABBREVIATIONS = {
     "AD": "Abu Dhabi",
     "Barak": "Ehud Barak (Former Israeli prime minister)",
@@ -804,94 +800,21 @@ HEADER_ABBREVIATIONS = {
 }
 
 NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
-    'Al',
-    'Allen',
-    'Amanda',
-    'Andres',
-    'Andrew',
-    'Black',
-    'Brad',
-    'Daniel',
-    'Darren',
-    'David',
-    'Edwards',
-    'Eric',
-    'Etienne',
+    'Al', 'Allen', 'Amanda', 'Andres', 'Andrew',
+    'Black', 'Brad',
+    'Daniel', 'Darren', 'David',
+    'Edwards', 'Eric', 'Etienne',
     'Fred',
-    'Jack',
-    'Jay',
-    'Jean',
-    'Jeff',
-    'jeffrey',
-    'Jeremy',
-    'jessica',
-    'John',
-    'Jonathan',
-    'Joseph',
-    'Jr',
-    'Kahn',
-    'Katherine',
-    'Leon',
-    'Lesley',
-    'Linda',
-    'Marc',
-    'Martin',
-    'Melanie',
-    'Michael',
-    'Mike',
+    'Jack', 'Jay', 'Jean', 'Jeff', 'jeffrey', 'Jeremy', 'jessica', 'John', 'Jon', 'Jonathan', 'Joseph', 'Jr',
+    'Kahn', 'Katherine',
+    'Leon', 'Lesley', 'Linda',
+    'Marc', 'Martin', 'Melanie', 'Michael', 'Mike',
     'Neal',
-    'Paul',
-    'Pen',
-    'Peter',
-    'Reid',
-    'Richard',
-    'Robert',
-    'Roger',
-    'Roth',
-    'Rubin',
-    'Scott',
-    'Sean',
-    'Stephen',
-    'Steve',
-    'Steven',
-    'Stone',
+    'Paul', 'Pen', 'Peter',
+    'Reid', 'Richard', 'Robert', 'Roger', 'Roth', 'Rubin',
+    'Scott', 'Sean', 'Stephen', 'Steve', 'Steven', 'Stone',
     'Susan',
-    'The',
-    'Thomas',
-    'Tim',
-    'Tom',
+    'The', 'Thomas', 'Tim', 'Tom',
     'Victor',
     "Y",
-    "Y.",
 ]]
-
-# URLs
-ATTRIBUTIONS_URL = 'https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/util/constants.py'
-COFFEEZILLA_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=061ce61c9e70bdfd'
-COURIER_NEWSROOM_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
-EPSTEINIFY_URL = 'https://epsteinify.com'
-EPSTEIN_WEB_URL = 'https://epsteinweb.org'
-EPSTEIN_WEB_DOC_URL = f'{EPSTEIN_WEB_URL}/wp-content/uploads/epstein_evidence/images'
-JMAIL_URL = 'https://jmail.world'
-OVERSIGHT_REPUBLICANS_PRESSER_URL = 'https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/'
-RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_'
-SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great'
-
-SITE_URLS = {
-    EMAIL: 'https://michelcrypt4d4mus.github.io/epstein_emails_house_oversight/',
-    TEXT_MESSAGE: 'https://michelcrypt4d4mus.github.io/epstein_text_messages/',
-}
-
-
-epsteinify_api_url = lambda file_id: f"{EPSTEINIFY_URL}/api/documents/HOUSE_OVERSIGHT_{file_id}"
-epsteinify_doc_url = lambda file_stem: f"{EPSTEINIFY_URL}/document/{file_stem}"
-epsteinify_name_url = lambda name: f"{EPSTEINIFY_URL}/?name={urllib.parse.quote(name)}"
-
-esptein_web_doc_url = lambda file_stem: f"{EPSTEIN_WEB_DOC_URL}/{file_stem}.jpg"
-epstein_web_search_url = lambda s: f"{EPSTEIN_WEB_URL}/?ewmfileq={urllib.parse.quote(s)}&ewmfilepp=20"
-epstein_web_person_url = lambda person: f"{EPSTEIN_WEB_URL}/{parameterize(person)}"
-
-search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE_URL}&q={urllib.parse.quote(txt)}&p=1"
-search_coffeezilla_url = lambda txt: f"{COFFEEZILLA_ARCHIVE_URL}&q={urllib.parse.quote(txt)}&p=1"
-search_jmail_url = lambda txt: f"{JMAIL_URL}/search?q={urllib.parse.quote(txt)}"
-search_twitter_url = lambda txt: f"https://x.com/search?q={urllib.parse.quote(txt)}&src=typed_query&f=live"

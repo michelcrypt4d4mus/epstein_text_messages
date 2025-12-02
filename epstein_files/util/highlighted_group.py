@@ -4,8 +4,9 @@ from dataclasses import dataclass, field
 from inflection import titleize
 from rich.text import Text
 
-from util.constants import *
-from util.env import is_debug, logger
+from epstein_files.util.constant.strings import REDACTED
+from epstein_files.util.constants import *
+from epstein_files.util.env import is_debug, logger
 
 ESTATE_EXECUTOR = 'Epstein estate executor'
 REGEX_STYLE_PREFIX = 'regex'
@@ -78,7 +79,7 @@ class HighlightedGroup:
         logger.debug(f"name_regex_parts for '{name}': {name_regex_parts}")
 
         if len(names) > 2:
-            logger.warning(f"'{name}' has {len(names)} names (first_name='{first_name}')")
+            logger.info(f"'{name}' has {len(names)} names (first_name='{first_name}')")
 
         return '|'.join(name_regex_parts)
 

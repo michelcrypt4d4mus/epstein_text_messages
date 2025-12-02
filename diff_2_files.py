@@ -5,9 +5,9 @@ from subprocess import run
 from dotenv import load_dotenv
 load_dotenv()
 
-from documents.document import Document
-from util.env import args
-from util.file_helper import DOCS_DIR, extract_file_id
+from epstein_files.documents.document import Document
+from epstein_files.util.env import args
+from epstein_files.util.file_helper import DOCS_DIR, extract_file_id
 
 
 if len(args.positional_args) != 2:

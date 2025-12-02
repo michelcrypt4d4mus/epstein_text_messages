@@ -12,16 +12,17 @@ from rich.padding import Padding
 from rich.table import Table
 from rich.text import Text
 
-from documents.document import Document
-from documents.email import DETECT_EMAIL_REGEX, JUNK_EMAILERS, USELESS_EMAILERS, Email
-from documents.email_header import AUTHOR
-from documents.messenger_log import MSG_REGEX, MessengerLog, sender_counts
-from util.constants import *
-from util.data import flatten, patternize
-from util.env import args, is_debug, logger
-from util.file_helper import DOCS_DIR, move_json_file
-from util.highlighted_group import get_info_for_name, get_style_for_name
-from util.rich import (DEFAULT_NAME_COLOR, console, highlighter, make_link, make_link_markup,
+from epstein_files.documents.document import Document, SearchResult
+from epstein_files.documents.email import DETECT_EMAIL_REGEX, JUNK_EMAILERS, USELESS_EMAILERS, Email
+from epstein_files.documents.email_header import AUTHOR
+from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog, sender_counts
+from epstein_files.util.constant.urls import EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url, search_jmail_url, search_twitter_url
+from epstein_files.util.constants import *
+from epstein_files.util.data import dict_sets_to_lists, flatten, patternize
+from epstein_files.util.env import args, is_debug, logger
+from epstein_files.util.file_helper import DOCS_DIR, move_json_file
+from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
+from epstein_files.util.rich import (DEFAULT_NAME_COLOR, console, highlighter, link_text_obj, link_markup,
      print_author_header, print_panel, vertically_pad)
 
 DEVICE_SIGNATURE = 'Device Signature'
@@ -142,6 +143,17 @@ class EpsteinFiles:
         documents = self.all_documents() if file_type == 'all' else self.other_files
         return flatten([doc.lines_matching_txt(patternize(_pattern)) for doc in documents])
 
+    def docs_matching(self, _pattern: re.Pattern | str, file_type: Literal['all', 'other'] = 'all') -> list[SearchResult]:
+        results: list[SearchResult] = []
+
+        for doc in (self.all_documents() if file_type == 'all' else self.other_files):
+            lines = doc.lines_matching_txt(patternize(_pattern))
+
+            if len(lines) > 0:
+                results.append(SearchResult(doc, lines))
+
+        return results
+
     def attributed_email_count(self) -> int:
         return sum([i for author, i in self.email_author_counts.items() if author != UNKNOWN])
 
@@ -209,9 +221,9 @@ class EpsteinFiles:
         counts_table.add_column('Name', justify='left', style=DEFAULT_NAME_COLOR)
         counts_table.add_column('Count', justify='center')
         counts_table.add_column('Sent', justify='center')
-        counts_table.add_column('Received', justify='center')
-        counts_table.add_column('Jmail', justify='center')
-        counts_table.add_column('EpsteinWeb', justify='center')
+        counts_table.add_column("Recv'd", justify='center')
+        counts_table.add_column(JMAIL, justify='center')
+        counts_table.add_column(EPSTEIN_WEB, justify='center')
         counts_table.add_column('Twitter', justify='center')
         sort_key = lambda item: item[0] if args.sort_alphabetical else [item[1], item[0]]
 
@@ -219,13 +231,13 @@ class EpsteinFiles:
             style = get_style_for_name(p, DEFAULT_NAME_COLOR)
 
             counts_table.add_row(
-                Text.from_markup(make_link_markup(epsteinify_name_url(p), p, style, underline=(style != DEFAULT_NAME_COLOR))),
+                Text.from_markup(link_markup(epsteinify_name_url(p), p, style)),
                 str(count),
                 str(self.email_author_counts[p]),
                 str(self.email_recipient_counts[p]),
-                '' if p == UNKNOWN else make_link(search_jmail_url(p), 'Jmail'),
-                '' if not is_ok_for_epstein_web(p) else make_link(epstein_web_person_url(p), 'EpsteinWeb'),
-                '' if p == UNKNOWN else make_link(search_twitter_url(p), 'search X'),
+                '' if p == UNKNOWN else link_text_obj(search_jmail_url(p), JMAIL),
+                '' if not is_ok_for_epstein_web(p) else link_text_obj(epstein_web_person_url(p), EPSTEIN_WEB.lower()),
+                '' if p == UNKNOWN else link_text_obj(search_twitter_url(p), 'search X'),
             )
 
         console.print(vertically_pad(counts_table, 2))
@@ -253,7 +265,7 @@ class EpsteinFiles:
         table.add_column('First Few Lines', justify='left', style='pale_turquoise4')
 
         for doc in sorted(self.other_files, key=lambda document: document.filename):
-            table.add_row(doc.archive_link_txt(), f"{doc.length:,}", doc.highlighted_preview_text())
+            table.add_row(doc.raw_document_link_txt(), f"{doc.length:,}", doc.highlighted_preview_text())
 
         console.print(table)
 
@@ -269,10 +281,7 @@ def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str]
     for i, col in enumerate(cols):
         table.add_column(col.title() + ('s' if i == 1 else ''))
 
-    new_dict: dict[str, list[str]] = {}
-
-    for k, v in keyed_sets.items():
-        new_dict[k] = list(v)
+    new_dict = dict_sets_to_lists(keyed_sets)
 
     for k in sorted(new_dict.keys()):
         _list = new_dict[k]

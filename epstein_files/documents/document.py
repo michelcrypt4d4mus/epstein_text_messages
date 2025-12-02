@@ -8,19 +8,29 @@ from typing import ClassVar
 from rich.markup import escape
 from rich.text import Text
 
-from util.constants import HOUSE_OVERSIGHT_PREFIX, esptein_web_doc_url, search_archive_url
-from util.data import collapse_newlines, patternize
-from util.env import args, logger
-from util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, is_local_extract_file
-from util.rich import (ARCHIVE_LINK_COLOR, console, epsteinify_doc_url, highlight_regex_match, highlighter,
-     logger, make_link, make_link_markup)
-from util.strings import *
+# TODO: fix 'esptein_web_doc_url'
+from epstein_files.util.constant.urls import EPSTEINIFY, EPSTEIN_WEB, epsteinify_doc_url, esptein_web_doc_url, search_archive_url
+from epstein_files.util.constant.strings import *
+from epstein_files.util.data import collapse_newlines, patternize
+from epstein_files.util.env import args, logger
+from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, is_local_extract_file
+from epstein_files.util.rich import (ARCHIVE_LINK_COLOR, console, highlight_regex_match, highlighter,
+     logger, link_text_obj, link_markup)
+from epstein_files.util.strings import *
 
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
-HOUSE_OVERSIGHT = 'HOUSE OVERSIGHT'
+HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
 MIN_DOCUMENT_ID = 10477
 PREVIEW_CHARS = 520
+KB = 1024
+MB = KB * KB
+
+DOC_TYPE_STYLES = {
+    DOCUMENT_CLASS: 'grey69',
+    EMAIL_CLASS: 'sea_green2',
+    MESSENGER_LOG_CLASS: 'cyan',
+}
 
 # Takes ~1.1 seconds to apply these repairs
 OCR_REPAIRS = {
@@ -64,38 +74,34 @@ class Document:
         self.text = self._load_file()
         self._set_computed_fields()
         self.epsteinify_doc_url = epsteinify_doc_url(self.url_slug)
-        self.epsteinify_link_markup = make_link_markup(self.epsteinify_doc_url, self.file_path.stem)
+        self.epsteinify_link_markup = link_markup(self.epsteinify_doc_url, self.file_path.stem)
         self.epstein_web_doc_url = esptein_web_doc_url(self.url_slug)
-        self.epstein_web_doc_link_markup = make_link_markup(self.epstein_web_doc_url, self.file_path.stem)
-
-    def archive_link_txt(self, style: str = '', include_alt_link: bool = False) -> Text:
-        txt = Text('', style='white' if include_alt_link else ARCHIVE_LINK_COLOR)
-
-        if args.use_epstein_web_links:
-            txt.append(self.epstein_web_link(style=style))
-
-            if include_alt_link:
-                txt.append(' (').append(self.epsteinify_link(style='white dim', link_txt='epsteinify')).append(')')
-        else:
-            txt.append(self.epsteinify_link(style=style))
-
-            if include_alt_link:
-                txt.append(' (').append(self.epstein_web_link(style='white dim', link_txt='epsteinweb')).append(')')
-
-        return txt
+        self.epstein_web_doc_link_markup = link_markup(self.epstein_web_doc_url, self.file_path.stem)
 
     def courier_archive_link(self, link_txt: str | None = None, style: str = ARCHIVE_LINK_COLOR) -> Text:
         """Link to search courier newsroom Google drive."""
-        return make_link(search_archive_url(self.filename), link_txt or self.filename, style)
+        return link_text_obj(search_archive_url(self.filename), link_txt or self.filename, style)
 
     def count_regex_matches(self, pattern: str) -> int:
         return len(re.findall(pattern, self.text))
 
+    def description(self) -> Text:
+        doc_type = str(type(self).__name__)
+        txt = Text('').append(self.file_path.stem, style='bright_green')
+        txt.append(f' {doc_type} ', style=DOC_TYPE_STYLES[doc_type]).append(f"(num_lines=")
+        txt.append(f"{self.num_lines:,}", style='cyan').append(", size=")
+        txt.append(self.size_str(), style='aquamarine1')
+
+        if doc_type == DOCUMENT_CLASS:
+            txt.append(')')
+
+        return txt
+
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return make_link(self.epsteinify_doc_url, link_txt or self.file_path.stem, style)
+        return link_text_obj(self.epsteinify_doc_url, link_txt or self.file_path.stem, style)
 
     def epstein_web_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return make_link(self.epstein_web_doc_url, link_txt or self.file_path.stem, style)
+        return link_text_obj(self.epstein_web_doc_url, link_txt or self.file_path.stem, style)
 
     def highlighted_preview_text(self) -> Text:
         try:
@@ -126,6 +132,29 @@ class Document:
             for line in matched_lines
         ]
 
+    def log_top_lines(self, n: int = 10, msg: str | None = None) -> None:
+        msg = f"{msg + '. ' if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"
+        logger.info(f"{msg}:\n\n{self.top_lines(n)}")
+
+    def preview_text(self) -> str:
+        return WHITESPACE_REGEX.sub(' ', self.text)[0:PREVIEW_CHARS]
+
+    def raw_document_link_txt(self, style: str = '', include_alt_link: bool = False) -> Text:
+        txt = Text('', style='white' if include_alt_link else ARCHIVE_LINK_COLOR)
+
+        if args.use_epstein_web_links:
+            txt.append(self.epstein_web_link(style=style))
+
+            if include_alt_link:
+                txt.append(' (').append(self.epsteinify_link(style='white dim', link_txt=EPSTEINIFY)).append(')')
+        else:
+            txt.append(self.epsteinify_link(style=style))
+
+            if include_alt_link:
+                txt.append(' (').append(self.epstein_web_link(style='white dim', link_txt=EPSTEIN_WEB)).append(')')
+
+        return txt
+
     def regex_repair_text(self, repairs: dict[str | re.Pattern, str], text: str) -> str:
         for k, v in repairs.items():
             if isinstance(k, re.Pattern):
@@ -135,12 +164,20 @@ class Document:
 
         return text
 
-    def log_top_lines(self, n: int = 10, msg: str | None = None) -> None:
-        msg = f"{msg + '. ' if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"
-        logger.info(f"{msg}:\n\n{self.top_lines(n)}")
+    def size_str(self) -> str:
+        file_size = float(self.file_path.stat().st_size)
 
-    def preview_text(self) -> str:
-        return WHITESPACE_REGEX.sub(' ', self.text)[0:PREVIEW_CHARS]
+        if file_size > MB:
+            size_num = file_size / MB
+            size_str = 'MB'
+        elif file_size > KB:
+            size_num = file_size / KB
+            size_str = 'kb'
+        else:
+            size_num = file_size
+            size_str = 'bytes'
+
+        return f"{size_num:,.2f} {size_str}"
 
     def top_lines(self, n: int = 10) -> str:
         return '\n'.join(self.lines[0:n])
@@ -201,6 +238,7 @@ class Document:
 @dataclass
 class CommunicationDocument(Document):
     author: str | None = field(init=False)
+    author_str: str = field(init=False)
     author_style: str = field(init=False)
     author_txt: Text = field(init=False)
     timestamp: datetime = field(init=False)
@@ -208,9 +246,24 @@ class CommunicationDocument(Document):
     def __post_init__(self):
         super().__post_init__()
 
+    def description(self) -> Text:
+        txt = super().description()
+        txt.append(f", author=").append(self.author_str, style=self.author_style)
+        txt.append(f", timestamp=").append(str(self.timestamp), style='dim dark_cyan')
+        return txt.append(')')
+
+    def raw_document_link_txt(self, _style: str = '', include_alt_link: bool = True) -> Text:
+        """Overrides super() method to apply style"""
+        return super().raw_document_link_txt(self.author_style, include_alt_link=include_alt_link)
+
     def timestamp_without_seconds(self) -> str:
         return TIMESTAMP_SECONDS_REGEX.sub('', str(self.timestamp))
 
-    def archive_link_txt(self, _style: str = '', include_alt_link: bool = True) -> Text:
-        """Overrides super() method to apply style"""
-        return super().archive_link_txt(self.author_style, include_alt_link=include_alt_link)
+
+@dataclass
+class SearchResult:
+    document: Document
+    lines: list[Text]
+
+    def unprefixed_lines(self) -> list[str]:
+        return [line.plain.split(':', 1)[1] for line in self.lines]

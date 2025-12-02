@@ -1,0 +1,812 @@
+from epstein_files.documents.email import Email
+from epstein_files.util.data import dict_sets_to_lists
+
+EMAIL_AUTHOR_COUNTS = {
+    "(unknown)": 112,
+    "Abi Schwinck": 1,
+    "Al Seckel": 7,
+    "Alain Forget": 3,
+    "Alan Dershowitz": 5,
+    "Alan S Halperin": 1,
+    "Alex Yablon": 1,
+    "Alireza Ittihadieh": 8,
+    "Amanda Ens": 8,
+    "Anas Alrasheed": 7,
+    "Andres Serrano": 3,
+    "Anil Ambani": 2,
+    "Ann Marie Villafana": 1,
+    "Anne Boyles": 1,
+    "Ariane de Rothschild": 4,
+    "Aziza Alahmadi": 2,
+    "Barbro C. Ehnbom": 11,
+    "Barnaby Marsh": 1,
+    "Barry J. Cohen": 5,
+    "Barry Josephson": 2,
+    "Bennet Moskowitz": 2,
+    "Bill Siegel": 5,
+    "Bob Crowe": 2,
+    "Boris Nikolic": 29,
+    "Brad Edwards": 1,
+    "Brad Karp": 5,
+    "Bruce Moskowitz": 6,
+    "Caroline Lang": 4,
+    "Carolyn Rangel": 1,
+    "Cecile de Jongh": 2,
+    "Cecilia Steen": 1,
+    "Christina Galbraith": 5,
+    "Dangene and Jennie Enterprise": 5,
+    "Daniel Sabba": 3,
+    "Daniel Siad": 2,
+    "Danny Frost": 1,
+    "Darren Indyke": 49,
+    "Dave Hope": 1,
+    "David Fiszel": 2,
+    "David Grosof": 1,
+    "David Haig": 1,
+    "David Mitchell": 1,
+    "David Schoen": 11,
+    "David Stern": 7,
+    "Deepak Chopra": 18,
+    "Diane Ziman": 1,
+    "Donald Rubin": 1,
+    "Eduardo Robles": 1,
+    "Edward Epstein": 2,
+    "Edward Rod Larsen": 2,
+    "Ehud Barak": 13,
+    "Eric Roth": 5,
+    "Erika Kellerhals": 3,
+    "Etienne Binant": 1,
+    "Eva Dubin": 2,
+    "Fabrice Aidan": 1,
+    "Faith Kates": 17,
+    "Fred Haddad": 3,
+    "Gerald Barton": 2,
+    "Ghislaine Maxwell": 15,
+    "Gianni Serazzi": 2,
+    "Gino Yu": 3,
+    "Glenn Dubin": 3,
+    "Gwendolyn Beck": 6,
+    "Harry Fisch": 1,
+    "Heather Mann": 2,
+    "Henry Holt": 1,
+    "How To Academy": 3,
+    "Ian Osborne": 2,
+    "Intelligence Squared": 4,
+    "Jabor Y": 3,
+    "Jack Goldberger": 4,
+    "Jack Lang": 3,
+    "Jay Lefkowitz": 7,
+    "Jean Huguen": 1,
+    "Jean Luc Brunel": 3,
+    "Jeffrey Epstein": 704,
+    "Jennifer Jacquet": 1,
+    "Jeremy Rubin": 3,
+    "Jes Staley": 2,
+    "Jessica Cadwell": 7,
+    "Jide Zeitlin": 3,
+    "John Brockman": 3,
+    "John Page": 2,
+    "Johnny el Hachem": 1,
+    "Joi Ito": 25,
+    "Jokeland": 2,
+    "Jonathan Farkas": 24,
+    "Joscha Bach": 3,
+    "Joshua Cooper Ramo": 1,
+    "Juleanna Glover": 1,
+    "Katherine Keating": 2,
+    "Kathryn Ruemmler": 82,
+    "Kelly Friendly": 4,
+    "Ken Jenne": 1,
+    "Ken Starr": 5,
+    "Kirk Blouin": 2,
+    "Landon Thomas Jr": 72,
+    "Larry Summers": 48,
+    "Laurie Cameron": 1,
+    "Lawrance Visoski": 42,
+    "Lawrence Krauss": 36,
+    "Leah Reis-Dennis": 1,
+    "Leon Black": 1,
+    "Lesley Groff": 24,
+    "Lilly Sanchez": 4,
+    "Linda Pinto": 1,
+    "Linda Stone": 13,
+    "Lisa New": 22,
+    "Lisa Randall": 2,
+    "Lvjet": 4,
+    "Manuela Martinez": 2,
+    "Marc Leon": 2,
+    "Mark Epstein": 5,
+    "Mark Green": 1,
+    "Mark Lloyd": 1,
+    "Mark Tramo": 1,
+    "Martin Nowak": 1,
+    "Martin Weinberg": 21,
+    "Masha Drokova": 2,
+    "Matthew Hiltzik": 2,
+    "Melanie Spinella": 1,
+    "Melanie Walker": 3,
+    "Merwin Dela Cruz": 1,
+    "Michael Miller": 4,
+    "Michael Sanka": 1,
+    "Michael Wolff": 84,
+    "Miroslav Lajčák": 1,
+    "Mitchell Bard": 4,
+    "Mohamed Waheed Hassan": 2,
+    "Moshe Hoffman": 1,
+    "Nadia Marcinko": 8,
+    "Neal Kassell": 2,
+    "Nicholas Ribis": 53,
+    "Noam Chomsky": 4,
+    "Norman D. Rau": 2,
+    "Olivier Colom": 1,
+    "Paul Barrett": 4,
+    "Paul Krassner": 29,
+    "Paul Morris": 5,
+    "Paul Prosperi": 3,
+    "Paula": 2,
+    "Peggy Siegal": 8,
+    "Peter Attia": 2,
+    "Peter Green": 1,
+    "Peter Mandelson": 4,
+    "Peter Thiel": 1,
+    "Peter Thomas Roth": 2,
+    "Philip Kafka": 1,
+    "Prince Andrew": 2,
+    "Purevsuren Lundeg": 1,
+    "R. Couri Hay": 1,
+    "Ramsey Elkholy": 1,
+    "Reid Hoffman": 1,
+    "Reid Weingarten": 72,
+    "Renata Bolotova": 1,
+    "Richard Kahn": 117,
+    "Richard Merkin": 3,
+    "Robert Lawrence Kuhn": 26,
+    "Robert Trivers": 16,
+    "Ross Gow": 1,
+    "Roy Black": 5,
+    "Saved by Internet Explorer 11": 1,
+    "Scott J. Link": 2,
+    "Sean Bannon": 3,
+    "Sean J. Lancaster": 1,
+    "Shaher Abdulhak Besher (?)": 2,
+    "Skip Rimer": 1,
+    "Soon-Yi Previn": 10,
+    "Stanley Rosenberg": 3,
+    "Stephanie": 4,
+    "Stephen Alexander": 1,
+    "Stephen Hanson": 5,
+    "Steve Bannon": 44,
+    "Steven Elkman": 1,
+    "Steven Pfeiffer": 2,
+    "Steven Sinofsky": 2,
+    "Steven Victor MD": 1,
+    "Sultan Ahmed Bin Sulayem": 15,
+    "Terje Rød-Larsen": 2,
+    "Terry Kafka": 8,
+    "Thorbjørn Jagland": 6,
+    "Tim Zagat": 1,
+    "Tom Barrack": 1,
+    "Tom Pritzker": 6,
+    "Tonja Haddad Coleman": 8,
+    "Tyler Shears": 6,
+    "Valeria Chomsky": 2,
+    "Vincenzo Lozzo": 1,
+    "Vinit Sahni": 3,
+    "Vladimir Yudashkin": 1,
+    "Zubair Khan": 9,
+    "asmallworld@travel.asmallworld.net": 4,
+    "digest-noreply@quora.com": 5,
+    "drsra": 1,
+    "editorialstaff@flipboard.com": 13,
+    "lorraine@mc2mm.com": 1,
+    "middle.east.update@hotmail.com": 1,
+    "us.gio@jpmorgan.com": 13
+}
+
+EMAIL_RECIPIENT_COUNTS = {
+    "(unknown)": 80,
+    "ACT for America": 1,
+    "Alan Dershowitz": 15,
+    "Alan Rogers": 1,
+    "Alireza Ittihadieh": 2,
+    "Allen West": 2,
+    "Amanda Ens": 1,
+    "Anas Alrasheed": 5,
+    "Andrew Friendly": 1,
+    "Anil Ambani": 1,
+    "Ann Marie Villafana": 3,
+    "Anthony Barrett": 1,
+    "Ariane de Rothschild": 3,
+    "BS Stern": 1,
+    "Barnaby Marsh": 2,
+    "Bennet Greenwald": 1,
+    "Bennet Moskowitz": 2,
+    "Bennett Schmidt": 1,
+    "Bill Gates": 2,
+    "Bill Siegel": 1,
+    "Boris Nikolic": 17,
+    "Brad Karp": 5,
+    "Brad Wechsler": 1,
+    "Caroline Lang": 2,
+    "Cecile de Jongh": 2,
+    "Charlotte Abrams": 1,
+    "Cheryl Kleen": 1,
+    "Christina Galbraith": 6,
+    "Connie Zaguirre": 1,
+    "Dan Fleuette": 1,
+    "Daniel Siad": 2,
+    "Danny Goldberg": 2,
+    "Darren Indyke": 56,
+    "David Blaine": 1,
+    "David Grosof": 6,
+    "David Haig": 2,
+    "David Schoen": 3,
+    "David Stern": 1,
+    "Debbie Fein": 8,
+    "Deepak Chopra": 1,
+    "Diane Ziman": 1,
+    "Ed Boyden": 1,
+    "Edward Epstein": 1,
+    "Ehud Barak": 3,
+    "Eric Roth": 2,
+    "Erika Kellerhals": 2,
+    "Etienne Binant": 1,
+    "Faith Kates": 5,
+    "Forrest Miller": 1,
+    "Francis Derby": 1,
+    "Fred Haddad": 4,
+    "Gary Gross": 1,
+    "George Krassner": 2,
+    "Gerald Barton": 1,
+    "Ghislaine Maxwell": 8,
+    "Gianni Serazzi": 1,
+    "Glenn Dubin": 1,
+    "Gordon Getty": 2,
+    "Grant J. Smith": 1,
+    "Grant Seeger": 1,
+    "Harry Fisch": 1,
+    "Henry Hortenstine": 1,
+    "Herb Goodman": 1,
+    "Jabor Y": 7,
+    "Jack Goldberger": 10,
+    "Jack Lang": 3,
+    "Jackie Perczek": 4,
+    "James Ramsey": 1,
+    "Janet Kafka": 1,
+    "Januiz Banasiak": 1,
+    "Jay Lefkowitz": 4,
+    "Jean Huguen": 1,
+    "Jean Luc Brunel": 9,
+    "Jeff Fuller": 1,
+    "Jeffrey Epstein": 1536,
+    "Jes Staley": 7,
+    "Jessica Cadwell": 5,
+    "Joel": 2,
+    "Joel Dunn": 1,
+    "John Page": 2,
+    "John Zouzelka": 1,
+    "Joi Ito": 11,
+    "Jojo Fontanilla": 1,
+    "Jonathan Farkas": 9,
+    "Joscha Bach": 4,
+    "Joseph Vinciguerra": 1,
+    "Joshua Cooper Ramo": 1,
+    "Katherine Keating": 3,
+    "Kathryn Ruemmler": 57,
+    "Ken Starr": 10,
+    "Kenneth E. Mapp": 1,
+    "Kevin Bright": 1,
+    "Landon Thomas Jr": 52,
+    "Larry Cohen": 1,
+    "Larry Summers": 42,
+    "Lawrance Visoski": 11,
+    "Lawrence Krauss": 13,
+    "Leah Reis-Dennis": 1,
+    "Leon Black": 4,
+    "Lesley Groff": 22,
+    "Lilly Sanchez": 3,
+    "Linda Stone": 2,
+    "Lisa Albert": 1,
+    "Lisa New": 14,
+    "Louella Rabuyo": 1,
+    "Lyn Fontanilla": 1,
+    "Marc Leon": 1,
+    "Marcie Brown": 1,
+    "Mariana Idźkowska": 2,
+    "Mark Albert": 1,
+    "Mark Epstein": 3,
+    "Marshall Funk": 1,
+    "Martin Nowak": 1,
+    "Martin Weinberg": 28,
+    "Masha Drokova": 2,
+    "Matthew Hiltzik": 1,
+    "Matthew Schafer": 1,
+    "Melanie Spinella": 14,
+    "Melanie Walker": 2,
+    "Michael Buchholtz": 2,
+    "Michael Horowitz": 1,
+    "Michael J. Pike": 2,
+    "Michael Simmons": 1,
+    "Michael Sitrick": 4,
+    "Michael Wolff": 69,
+    "Miroslav Lajčák": 1,
+    "Mohamed Waheed Hassan": 2,
+    "Mortimer Zuckerman": 3,
+    "Moshe Hoffman": 1,
+    "Nadia Marcinko": 1,
+    "Nancy Cain": 3,
+    "Nancy Dahl": 2,
+    "Nancy Portland": 2,
+    "Nate McClain": 1,
+    "Nate White": 1,
+    "Neal Kassell": 1,
+    "Neil Anderson": 1,
+    "Nicholas Ribis": 10,
+    "Nili Priell Barak": 1,
+    "Noam Chomsky": 2,
+    "Norman Finkelstein": 1,
+    "Oliver Goodenough": 1,
+    "Owen Blicksilver": 1,
+    "Paul Barrett": 1,
+    "Paul Krassner": 7,
+    "Paul Morris": 1,
+    "Paula": 4,
+    "Peggy Siegal": 18,
+    "Peter Aldhous": 2,
+    "Peter Mandelson": 4,
+    "Peter Thiel": 5,
+    "Philip Kafka": 3,
+    "Police Code Enforcement": 2,
+    "Prince Andrew": 2,
+    "Raafat Alsabbagh": 2,
+    "Rafael Bardaji": 1,
+    "Reid Hoffman": 2,
+    "Reid Weingarten": 34,
+    "Richard Barnnet": 1,
+    "Richard Joshi": 1,
+    "Richard Kahn": 30,
+    "Richard Merkin": 1,
+    "Rita Hortenstine": 1,
+    "Robert D. Critton Jr.": 8,
+    "Robert Gold": 1,
+    "Robert Lawrence Kuhn": 2,
+    "Robert Trivers": 3,
+    "Roger Schank": 2,
+    "Roy Black": 4,
+    "Sam Harris": 1,
+    "Sam/Walli Leff": 1,
+    "Scott J. Link": 1,
+    "Sean Bannon": 1,
+    "Sean T Lehane": 1,
+    "Soon-Yi Previn": 3,
+    "Stanley Rosenberg": 1,
+    "Stephen Hanson": 3,
+    "Stephen Rubin": 1,
+    "Steve Bannon": 31,
+    "Steven Gaydos": 2,
+    "Steven Pfeiffer": 2,
+    "Steven Sinofsky": 1,
+    "Sultan Ahmed Bin Sulayem": 14,
+    "Susan Edelman": 1,
+    "Taal Safdie": 1,
+    "Terry Kafka": 1,
+    "Thanu Boonyawatana": 1,
+    "Thorbjørn Jagland": 6,
+    "Tim Kane": 1,
+    "Tim Zagat": 1,
+    "Tom": 2,
+    "Tom Barrack": 2,
+    "Tom Pritzker": 9,
+    "Tonja Haddad Coleman": 6,
+    "Travis Pangburn": 1,
+    "Tyler Shears": 1,
+    "Uri Fouzailov": 1,
+    "Vahe Stepanian": 1,
+    "Val Sherman": 1,
+    "Valeria Chomsky": 1,
+    "Vinit Sahni": 1,
+    "Warren Eisenstein": 2,
+    "Zubair Khan": 1,
+    "david.brown@thetimes.co.uk": 1,
+    "io-anne.pugh@bbc.co.uk": 1,
+    "jeff@mc2mm.com": 1,
+    "martin.robinson@mailonline.co.uk": 1,
+    "nick.alwav@bbc.co.uk": 1,
+    "nick.sommerlad@mirror.co.uk": 1,
+    "p.peachev@independent.co.uk": 1,
+    "pink@mc2mm.com": 2
+}
+
+DEVICE_SIGNATURE_TO_AUTHORS = {
+    "Sent from AOL Mobile Mail": [
+        "David Schoen"
+    ],
+    "Sent from President's iPad": [
+        "Mohamed Waheed Hassan"
+    ],
+    "Sent from ProtonMail": [
+        "Jeffrey Epstein",
+        "Sean Bannon"
+    ],
+    "Sent from Soon-Yi's iPhone": [
+        "Soon-Yi Previn"
+    ],
+    "Sent from Steve Hanson's Blackberry": [
+        "Stephen Hanson"
+    ],
+    "Sent from Yahoo Mail for iPhone": [
+        "Merwin Dela Cruz"
+    ],
+    "Sent from my BlackBerry - the most secure mobile device": [
+        "Michael Miller"
+    ],
+    "Sent from my BlackBerry 10 smartphone.": [
+        "Nicholas Ribis",
+        "Reid Weingarten",
+    ],
+    "Sent from my BlackBerry® wireless device": [
+        "Landon Thomas Jr",
+        "Ross Gow"
+    ],
+    "Sent from my Iphone": [
+        "Vincenzo Lozzo"
+    ],
+    "Sent from my Samsung JackTM, a Windows Mobile® smartphone from AT&T": [
+        "Boris Nikolic"
+    ],
+    "Sent from my Verizon 4G LTE Droid": [
+        "Darren Indyke"
+    ],
+    "Sent from my Verizon Wireless BlackBerry": [
+        "Alan Dershowitz",
+        "Lisa Randall",
+    ],
+    "Sent from my Verizon, Samsung Galaxy smartphone": [
+        "Reid Weingarten"
+    ],
+    "Sent from my Windows 10 phone": [
+        "(unknown)"
+    ],
+    "Sent from my Windows Phone": [
+        "Boris Nikolic",
+        "Gwendolyn Beck"
+    ],
+    "Sent from my iPad": [
+        '(unknown)',
+        'Bruce Moskowitz',
+        'Cecilia Steen',
+        'Ehud Barak',
+        'Glenn Dubin',
+        'Joi Ito',
+        'Kathryn Ruemmler',
+        'Larry Summers',
+        'Lawrance Visoski',
+        'Mark Lloyd',
+        'Neal Kassell',
+        'Peggy Siegal',
+        'Richard Merkin',
+        'Stephen Hanson',
+    ],
+    "Sent from my iPhone": [
+        '(unknown)',
+        'Alan Dershowitz',
+        'Anas Alrasheed',
+        'Aziza Alahmadi',
+        'Bob Crowe',
+        'Bruce Moskowitz',
+        'Darren Indyke',
+        'David Schoen',
+        'Ehud Barak',
+        'Erika Kellerhals',
+        'Eva Dubin',
+        'Faith Kates',
+        'Ghislaine Maxwell',
+        'Gino Yu',
+        'Glenn Dubin',
+        'Harry Fisch',
+        'Heather Mann',
+        'Jack Goldberger',
+        'Jeffrey Epstein',
+        'Jes Staley',
+        'Johnny el Hachem',
+        'Joi Ito',
+        'Jonathan Farkas',
+        'Kathryn Ruemmler',
+        'Kelly Friendly',
+        'Ken Starr',
+        'Landon Thomas Jr',
+        'Larry Summers',
+        'Lawrance Visoski',
+        'Lawrence Krauss',
+        'Lesley Groff',
+        'Lisa New',
+        'Martin Weinberg',
+        'Matthew Hiltzik',
+        'Mohamed Waheed Hassan',
+        'Neal Kassell',
+        'Nicholas Ribis',
+        'Richard Kahn',
+        'Richard Merkin',
+        'Robert Lawrence Kuhn',
+        'Sean Bannon',
+        'Stanley Rosenberg',
+        'Stephen Hanson',
+        'Sultan Ahmed Bin Sulayem',
+        'Terje Rød-Larsen',
+        'Terry Kafka',
+        'Tom Barrack',
+        'Tyler Shears',
+    ],
+    "Sent from my iPhone and misspellings courtesy of iPhone.": [
+        "Cecile de Jongh"
+    ],
+    "Sent via BlackBerry by AT&T": [
+        "(unknown)",
+        "Peggy Siegal",
+        "Steve Bannon",
+        "Terry Kafka",
+    ],
+    "Sent via BlackBerry from T-Mobile": [
+        "Paula"
+    ],
+    "Sent via tin can and string.": [
+        "Mark Epstein"
+    ],
+    "Sorry for all the typos .Sent from my iPhone": [
+        "Jeffrey Epstein"
+    ]
+}
+
+AUTHORS_TO_DEVICE_SIGNATURES = {
+    "(unknown)": [
+        "Sent from my Windows 10 phone",
+        "Sent from my iPad",
+        "Sent from my iPhone",
+        "Sent via BlackBerry by AT&T"
+    ],
+    "Alan Dershowitz": [
+        "Sent from my Verizon Wireless BlackBerry",
+        "Sent from my iPhone"
+    ],
+    "Anas Alrasheed": [
+        "Sent from my iPhone"
+    ],
+    "Aziza Alahmadi": [
+        "Sent from my iPhone"
+    ],
+    "Bob Crowe": [
+        "Sent from my iPhone"
+    ],
+    "Boris Nikolic": [
+        "Sent from my Samsung JackTM, a Windows Mobile® smartphone from AT&T",
+        "Sent from my Windows Phone"
+    ],
+    "Bruce Moskowitz": [
+        "Sent from my iPad",
+        "Sent from my iPhone"
+    ],
+    "Cecile de Jongh": [
+        "Sent from my iPhone and misspellings courtesy of iPhone."
+    ],
+    "Cecilia Steen": [
+        "Sent from my iPad"
+    ],
+    "Darren Indyke": [
+        "Sent from my Verizon 4G LTE Droid",
+        "Sent from my iPhone"
+    ],
+    "David Schoen": [
+        "Sent from AOL Mobile Mail",
+        "Sent from my iPhone"
+    ],
+    "Ehud Barak": [
+        "Sent from my iPad",
+        "Sent from my iPhone"
+    ],
+    "Erika Kellerhals": [
+        "Sent from my iPhone"
+    ],
+    "Eva Dubin": [
+        "Sent from my iPhone"
+    ],
+    "Faith Kates": [
+        "Sent from my iPhone"
+    ],
+    "Ghislaine Maxwell": [
+        "Sent from my iPhone"
+    ],
+    "Gino Yu": [
+        "Sent from my iPhone"
+    ],
+    "Glenn Dubin": [
+        "Sent from my iPad",
+        "Sent from my iPhone"
+    ],
+    "Gwendolyn Beck": [
+        "Sent from my Windows Phone"
+    ],
+    "Harry Fisch": [
+        "Sent from my iPhone"
+    ],
+    "Heather Mann": [
+        "Sent from my iPhone"
+    ],
+    "Jack Goldberger": [
+        "Sent from my iPhone"
+    ],
+    "Jeffrey Epstein": [
+        "Sent from ProtonMail",
+        "Sent from my iPhone",
+        "Sorry for all the typos .Sent from my iPhone"
+    ],
+    "Jes Staley": [
+        "Sent from my iPhone"
+    ],
+    "Johnny el Hachem": [
+        "Sent from my iPhone"
+    ],
+    "Joi Ito": [
+        "Sent from my iPad",
+        "Sent from my iPhone"
+    ],
+    "Jonathan Farkas": [
+        "Sent from my iPhone"
+    ],
+    "Kathryn Ruemmler": [
+        "Sent from my iPad",
+        "Sent from my iPhone"
+    ],
+    "Kelly Friendly": [
+        "Sent from my iPhone"
+    ],
+    "Ken Starr": [
+        "Sent from my iPhone"
+    ],
+    "Landon Thomas Jr": [
+        "Sent from my BlackBerry® wireless device",
+        "Sent from my iPhone"
+    ],
+    "Larry Summers": [
+        "Sent from my iPad",
+        "Sent from my iPhone"
+    ],
+    "Lawrance Visoski": [
+        "Sent from my iPad",
+        "Sent from my iPhone"
+    ],
+    "Lawrence Krauss": [
+        "Sent from my iPhone"
+    ],
+    "Lesley Groff": [
+        "Sent from my iPhone"
+    ],
+    "Lisa New": [
+        "Sent from my iPhone"
+    ],
+    "Lisa Randall": [
+        "Sent from my Verizon Wireless BlackBerry"
+    ],
+    "Mark Epstein": [
+        "Sent via tin can and string."
+    ],
+    "Mark Lloyd": [
+        "Sent from my iPad"
+    ],
+    "Martin Weinberg": [
+        "Sent from my iPhone"
+    ],
+    "Matthew Hiltzik": [
+        "Sent from my iPhone"
+    ],
+    "Merwin Dela Cruz": [
+        "Sent from Yahoo Mail for iPhone"
+    ],
+    "Michael Miller": [
+        "Sent from my BlackBerry - the most secure mobile device"
+    ],
+    "Mohamed Waheed Hassan": [
+        "Sent from President's iPad",
+        "Sent from my iPhone"
+    ],
+    "Neal Kassell": [
+        "Sent from my iPad",
+        "Sent from my iPhone"
+    ],
+    "Nicholas Ribis": [
+        "Sent from my BlackBerry 10 smartphone.",
+        "Sent from my iPhone"
+    ],
+    "Paula": [
+        "Sent via BlackBerry from T-Mobile"
+    ],
+    "Peggy Siegal": [
+        "Sent from my iPad",
+        "Sent via BlackBerry by AT&T"
+    ],
+    "Reid Weingarten": [
+        "Sent from my BlackBerry 10 smartphone.",
+        "Sent from my Verizon, Samsung Galaxy smartphone"
+    ],
+    "Richard Kahn": [
+        "Sent from my iPhone"
+    ],
+    "Richard Merkin": [
+        "Sent from my iPad",
+        "Sent from my iPhone"
+    ],
+    "Robert Lawrence Kuhn": [
+        "Sent from my iPhone"
+    ],
+    "Ross Gow": [
+        "Sent from my BlackBerry® wireless device"
+    ],
+    "Sean Bannon": [
+        "Sent from ProtonMail",
+        "Sent from my iPhone"
+    ],
+    "Soon-Yi Previn": [
+        "Sent from Soon-Yi's iPhone"
+    ],
+    "Stanley Rosenberg": [
+        "Sent from my iPhone"
+    ],
+    "Stephen Hanson": [
+        "Sent from Steve Hanson's Blackberry",
+        "Sent from my iPad",
+        "Sent from my iPhone"
+    ],
+    "Steve Bannon": [
+        "Sent via BlackBerry by AT&T"
+    ],
+    "Sultan Ahmed Bin Sulayem": [
+        "Sent from my iPhone"
+    ],
+    "Terje Rød-Larsen": [
+        "Sent from my iPhone"
+    ],
+    "Terry Kafka": [
+        "Sent from my iPhone",
+        "Sent via BlackBerry by AT&T"
+    ],
+    "Tom Barrack": [
+        "Sent from my iPhone"
+    ],
+    "Tyler Shears": [
+        "Sent from my iPhone"
+    ],
+    "Vincenzo Lozzo": [
+        "Sent from my Iphone"
+    ]
+}
+
+SIGNATURE_SUBSTITUTION_COUNTS = {
+    "(unknown)": 2,
+    "Danny Frost": 8,
+    "Darren Indyke": 47,
+    "David Ingram": 9,
+    "Deepak Chopra": 19,
+    "Jeffrey Epstein": 3366,
+    "Jessica Cadwell": 57,
+    "Lawrence Krauss": 78,
+    "Martin Weinberg": 17,
+    "Paul Barrett": 10,
+    "Peter Mandelson": 10,
+    "Richard Kahn": 120,
+    "Susan Edelman": 9,
+    "Terry Kafka": 10,
+    "Tonja Haddad Coleman": 9,
+}
+
+
+def test_email_counts(epstein_files):
+    assert EMAIL_AUTHOR_COUNTS == epstein_files.email_author_counts
+    assert EMAIL_RECIPIENT_COUNTS == epstein_files.email_recipient_counts
+
+
+def test_signatures(epstein_files):
+    assert AUTHORS_TO_DEVICE_SIGNATURES == dict_sets_to_lists(epstein_files.email_author_device_signatures)
+    assert DEVICE_SIGNATURE_TO_AUTHORS == dict_sets_to_lists(epstein_files.email_sent_from_devices)
+
+
+def test_signature_substitutions(epstein_files):
+    assert SIGNATURE_SUBSTITUTION_COUNTS == Email.signature_substitution_counts

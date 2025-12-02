@@ -25,13 +25,14 @@ parser.add_argument('--use-epstein-web-links', '-use', action='store_true', help
 parser.add_argument('--search-other', '-so', action='store_true', help='search for string in non email/text files (only used by search script)')
 parser.add_argument('--debug', '-d', action='store_true', help='set debug level to INFO')
 parser.add_argument('--deep-debug', '-dd', action='store_true', help='set debug level to DEBUG')
+parser.add_argument('--json-stats', action='store_true', help='print JSON formatted stats at the end')
 parser.add_argument('positional_args', nargs='*', help='Optional args (only used by helper scripts)')
 args = parser.parse_args()
 
 deep_debug = args.deep_debug or is_env_var_set('DEEP_DEBUG')
 is_build = args.build or is_env_var_set('BUILD_HTML')
 is_debug = deep_debug or args.debug or is_env_var_set('DEBUG')
-is_fast_mode = args.fast or is_env_var_set('FAST')
+is_fast_mode = False # args.fast or is_env_var_set('FAST')
 is_main_script = Path(argv[0]).name == MAIN_SCRIPT
 skip_texts = args.no_texts or is_env_var_set('NO_TEXTS')
 specified_emailers = args.emails or []
