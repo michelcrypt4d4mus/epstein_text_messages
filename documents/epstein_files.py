@@ -155,8 +155,8 @@ class EpsteinFiles:
         table.add_row('Other', f"{len(self.other_files):,}", 'n/a')
         console.print(Padding(Align.center(vertically_pad(table))))
 
-    def print_emails_for(self, _author: str | None) -> None:
-        """Print complete emails to or from a particular 'author'."""
+    def print_emails_for(self, _author: str | None) -> int:
+        """Print complete emails to or from a particular 'author'. Returns number of emails printed."""
         emails = self.emails_for(_author)
         author = _author or UNKNOWN
         conversation_length = self.email_conversation_length_in_days(_author)
@@ -171,6 +171,8 @@ class EpsteinFiles:
 
         for email in emails:
             console.print(email)
+
+        return len(emails)
 
     def email_unknown_recipient_file_ids(self) -> list[str]:
         return sorted(list(self._email_unknown_recipient_file_ids))
