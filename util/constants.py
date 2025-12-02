@@ -539,7 +539,6 @@ PAUL_KRASSNER_MANSON_RECIPIENTS = ['Nancy Cain', 'Holly Krassner Dawson', 'Marie
 FLIGHT_IN_2012_PEOPLE = ['Francis Derby', 'Januiz Banasiak', 'Louella Rabuyo', 'Richard Barnnet']
 
 KNOWN_EMAIL_RECIPIENTS = {
-    '021106': 'Alexandra Preate',     # Reply
     '028968': [ALAN_DERSHOWITZ, JACK_GOLDBERGER, JEFFREY_EPSTEIN],
     '029835': [ALAN_DERSHOWITZ, JACK_GOLDBERGER, JEFFREY_EPSTEIN],
     '026620': [MARK_EPSTEIN, JEFFREY_EPSTEIN, MICHAEL_BUCHHOLTZ] + IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS,
@@ -617,6 +616,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '030096': PETER_MANDELSON,
     '032951': RAAFAT_ALSABBAGH,
     '019334': STEVE_BANNON,
+    '021106': STEVE_BANNON,     # Reply
     # '032213': Probably MIRO or Reid Weingarten based on replies but he sent it to a lot of people
 }
 
