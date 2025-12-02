@@ -165,7 +165,7 @@ HIGHLIGHTED_GROUPS = [
             ERIC_ROTH: 'jet decorator',
             GWENDOLYN_BECK: 'Epstein fund manager in the 90s',
             LAWRANCE_VISOSKI: 'Pilot',
-            LESLEY_GROFF: 'Assistant (?)',
+            LESLEY_GROFF: 'assistant',
             JEAN_HUGUEN: 'interior design at Alberto Pinto Cabinet',
             'Linda Pinto': 'interior design at Alberto Pinto Cabinet',
             NADIA_MARCINKO: 'pilot',
