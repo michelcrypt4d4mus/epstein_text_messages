@@ -252,6 +252,7 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
 @dataclass
 class Email(CommunicationDocument):
     author_lowercase: str | None = field(init=False)
+    cleaned_up_text: str = field(init=False)
     header: EmailHeader = field(init=False)
     recipients: list[str | None] = field(default_factory=list)
     sent_from_device: str | None = None
@@ -306,6 +307,7 @@ class Email(CommunicationDocument):
         self.author_str = self.author or UNKNOWN
         self.author_style = get_style_for_name(self.author_str)
         self.author_txt = Text(self.author_str, style=self.author_style)
+        self.cleaned_up_text = self._cleaned_up_text()
         self.epsteinify_link_markup = make_epsteinify_doc_link_markup(self.file_path.stem, self.author_style)
         self.sent_from_device = self._sent_from_device()
 
@@ -504,7 +506,7 @@ class Email(CommunicationDocument):
         info_line = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(f' to ')
         info_line.append(self.recipient_txt).append(highlighter(f" probably sent at {self.timestamp}"))
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
-        text = self._cleaned_up_text()
+        text = self.cleaned_up_text
         quote_cutoff = self.idx_of_nth_quoted_reply(text=text)
         num_chars = MAX_CHARS_TO_PRINT
         trim_footer_txt = None
