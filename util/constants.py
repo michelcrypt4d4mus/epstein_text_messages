@@ -114,6 +114,7 @@ MARTIN_WEINBERG = "Martin Weinberg"
 MASHA_DROKOVA = 'Masha Drokova'
 MELANIE_SPINELLA = 'Melanie Spinella'
 MICHAEL_BUCHHOLTZ = 'Michael Buchholtz'
+MICHAEL_MILLER = 'Michael Miller'
 MICHAEL_SITRICK = 'Michael Sitrick'
 MICHAEL_WOLFF = "Michael Wolff"
 MOHAMED_WAHEED_HASSAN = 'Mohamed Waheed Hassan'
@@ -302,8 +303,8 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     MARTIN_WEINBERG: re.compile(r'martin.*?weinberg', re.IGNORECASE),
     "Matthew Schafer": re.compile(r"matthew\.?schafer?", re.IGNORECASE),
     MELANIE_SPINELLA: re.compile(r'M?elanie Spine[Il]{2}a', re.IGNORECASE),
-    'Michael Miller': re.compile(r'Micha(el)? Miller|Miller, Micha(el)?', re.IGNORECASE),
     MICHAEL_BUCHHOLTZ: re.compile(r'Michael.*Buchholtz', re.IGNORECASE),
+    MICHAEL_MILLER: re.compile(r'Micha(el)? Miller|Miller, Micha(el)?', re.IGNORECASE),
     MICHAEL_WOLFF: re.compile(r'Michael\s*Wol(ff|i)|Wolff', re.IGNORECASE),
     MICHAEL_SITRICK: re.compile(r'(Mi(chael|ke).{0,5})?[CS]itrick', re.IGNORECASE),
     MIROSLAV_LAJCAK: re.compile(r"Miro(slav)?(\s+Laj[cč][aá]k)?"),
@@ -473,7 +474,6 @@ KNOWN_EMAIL_AUTHORS = {
     '032727': KATHY_RUEMMLER,          # from "Kathy" about dems, sent from iPad (not 100% confirmed)
     '030478': LANDON_THOMAS,
     '029013': LARRY_SUMMERS,
-    '031129': LAWRANCE_VISOSKI,        # Planes discussion, same as 029977
     '032206': LAWRENCE_KRAUSS,         # More of a text convo?
     '032209': LAWRENCE_KRAUSS,         # More of a text convo?
     # '032210': LAWRENCE_KRAUSS,         # More of a text convo?
@@ -482,6 +482,7 @@ KNOWN_EMAIL_AUTHORS = {
     '028789': LAWRANCE_VISOSKI,
     '027046': LAWRANCE_VISOSKI,
     '033370': LAWRANCE_VISOSKI,        # Planes discussion signed larry
+    '031129': LAWRANCE_VISOSKI,        # Planes discussion, same file as 029977
     '029977': LAWRANCE_VISOSKI,        # Planes discussion signed larry
     '033495': LAWRANCE_VISOSKI,        # Planes discussion signed larry
     '033154': LAWRANCE_VISOSKI,
@@ -533,6 +534,7 @@ KNOWN_EMAIL_AUTHORS = {
 
 IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
 PAUL_KRASSNER_MANSON_RECIPIENTS = ['Nancy Cain', 'Holly Krassner Dawson', 'Marie Moneysmith', 'Linda W. Grossman', 'Daniel Dawson', 'Danny Goldberg', 'Caryl Ratner', 'Michael Simmons', 'Barb Cowles', 'Lee Quarnstorm', 'Lynnie Tofte Fass', 'Kevin Bright', 'Samuel Leff', 'Bob Fass']
+FLIGHT_IN_2012_PEOPLE = ['Francis Derby', 'Januiz Banasiak', 'Louella Rabuyo', 'Richard Barnnet']
 
 KNOWN_EMAIL_RECIPIENTS = {
     '021106': 'Alexandra Preate',     # Reply
@@ -561,13 +563,16 @@ KNOWN_EMAIL_RECIPIENTS = {
     '031489': JEFFREY_EPSTEIN,        # Bad OCR
     '032209': JEFFREY_EPSTEIN,        # More of a text convo?
     '032210': JEFFREY_EPSTEIN,        # More of a text convo?
+    '029324': [JEFFREY_EPSTEIN, 'Jojo Fontanilla', 'Lyn Fontanilla'],
+    '033575': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN],
+    '023067': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN, TONJA_HADDAD_COLEMAN],      # Bad OCR
+    '033228': [JEFFREY_EPSTEIN, DARREN_INDYKE, FRED_HADDAD],   # Bad OCR
+    '029977': [JEFFREY_EPSTEIN, DARREN_INDYKE, LESLEY_GROFF, RICHARD_KAHN] + FLIGHT_IN_2012_PEOPLE,
+    '032063': [JEFFREY_EPSTEIN, DARREN_INDYKE, REID_WEINGARTEN],
     '033486': [JEFFREY_EPSTEIN, DARREN_INDYKE, RICHARD_KAHN],  # OCR
     '033156': [JEFFREY_EPSTEIN, DARREN_INDYKE, RICHARD_KAHN],  # OCR
-    '033228': [JEFFREY_EPSTEIN, DARREN_INDYKE, FRED_HADDAD],   # Bad OCR
-    '023067': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN, TONJA_HADDAD_COLEMAN],      # Bad OCR
-    '033575': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN],
-    '029498': [JEFFREY_EPSTEIN, DAVID_HAIG, 'Gordon Getty', 'Norman Finkelstein'],      # Bad OCR
     '029154': [JEFFREY_EPSTEIN, DAVID_HAIG],         # Bad OCR
+    '029498': [JEFFREY_EPSTEIN, DAVID_HAIG, 'Gordon Getty', 'Norman Finkelstein'],      # Bad OCR
     '029889': [JEFFREY_EPSTEIN, JACK_GOLDBERGER, ROBERT_D_CRITTON, 'Connie Zaguirre'],  # Bad OCR
     '028931': [JEFFREY_EPSTEIN, LAWRENCE_KRAUSS],    # Bad OCR
     '019407': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR
