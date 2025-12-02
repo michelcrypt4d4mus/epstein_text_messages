@@ -25,6 +25,7 @@ from epstein_files.util.strings import *
 
 TIME_REGEX = re.compile(r'^(\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday).*')
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
+BAD_TIMEZONE_SUFFIX = re.compile(fr' \((UTC|GMT+\d{2}:\d{2})\)')
 TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 PACIFIC_TZ = tz.gettz("America/Los_Angeles")
 TIMEZONE_INFO = {"PST": PACIFIC_TZ, "PDT": PACIFIC_TZ}  # Suppresses annoying warnings from parse() calls
@@ -352,13 +353,11 @@ class Email(CommunicationDocument):
         text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
 
         for name, signature_regex in EMAIL_SIGNATURES.items():
-            text, num_replaced = signature_regex.subn(self._clipped_signature_replacement(name), text)
+            signature_replacement = f'<...snipped {name.lower()} legal signature...>'
+            text, num_replaced = signature_regex.subn(signature_replacement, text)
             type(self).signature_substitution_counts[name] += num_replaced
 
-        return collapse_newlines(text.strip())
-
-    def _clipped_signature_replacement(self, name) -> str:
-        return f'<...snipped {name.lower()} legal signature...>'
+        return collapse_newlines(text).strip()
 
     def _extract_sent_at(self) -> datetime:
         if self.file_id in KNOWN_TIMESTAMPS:
@@ -383,11 +382,10 @@ class Email(CommunicationDocument):
             timestamp = _parse_timestamp(line)
 
             if timestamp:
-                logger.info(f"Fell back to timestamp {timestamp} in line '{line}'...")
+                logger.debug(f"Fell back to timestamp {timestamp} in line '{line}'...")
                 return timestamp
 
-        self.log_top_lines(msg="No valid timestamp found in email!")
-        raise RuntimeError(f"No timestamp found in '{self.file_path.name}'")
+        raise RuntimeError(f"No timestamp found in '{self.file_path.name}' top lines:\n{searchable_text}")
 
     def _extract_header(self) -> EmailHeader:
         header_match = EMAIL_SIMPLE_HEADER_REGEX.search(self.text)
@@ -410,11 +408,10 @@ class Email(CommunicationDocument):
             row_number_to_check = i + num_headers  # Look ahead 3 lines if there's 3 header fields, 4 if 4, etc.
 
             if row_number_to_check > (self.num_lines - 1):
-                logger.warning(f"Ran out of rows to check for a value for '{field_name}'")
-                break
+                raise RuntimeError(f"Ran out of header rows to check for '{field_name}' in {self.filename}")
 
             value = self.lines[row_number_to_check]
-            log_prefix = f"Looks like '{value}' is a mismatch for '{field_name}', " if is_debug else ''
+            log_prefix = f"Looks like '{value}' is a mismatch for '{field_name}', "
 
             if field_name == AUTHOR:
                 if SKIP_HEADER_ROW_REGEX.match(value):
@@ -459,7 +456,7 @@ class Email(CommunicationDocument):
             elif len(names) == 0:
                 logger.warning(log_msg)
             else:
-                logger.info(f"Extracted {len(names)} emailers from semi-invalid '{emailer_str}': {names}...")
+                logger.info(f"Extracted {len(names)} names from semi-invalid '{emailer_str}': {names}...")
 
             return names
 
@@ -508,8 +505,8 @@ class Email(CommunicationDocument):
         info_line.append(self.recipient_txt).append(highlighter(f" probably sent at {self.timestamp}"))
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
         text = self.cleaned_up_text
-        quote_cutoff = self.idx_of_nth_quoted_reply(text=text)
         num_chars = MAX_CHARS_TO_PRINT
+        quote_cutoff = self.idx_of_nth_quoted_reply(text=text)  # Trim if there's many quoted replies
         trim_footer_txt = None
 
         if self.author in TRUNCATE_ALL_EMAILS_FROM or any((term in self.text) for term in TRUNCATE_TERMS):
@@ -519,9 +516,9 @@ class Email(CommunicationDocument):
             num_chars = quote_cutoff
 
         if len(text) > num_chars:
+            text = text[0:num_chars]
             trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest at {self.epsteinify_link_markup}...>"
             trim_footer_txt = Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
-            text = text[0:num_chars]
 
         panel_txt = highlighter(text)
 
@@ -534,10 +531,9 @@ class Email(CommunicationDocument):
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:
     try:
-        timestamp_str = timestamp_str.replace(' (GMT-05:00)', 'EST').replace(' (UTC)', '')
-        timestamp_str = timestamp_str.replace(' (GMT+07:00)', '')  # TODO: fix
-        timestamp_str = timestamp_str.replace(' (GMT+02:00)', '')  # TODO: fix
-        timestamp = parse(timestamp_str.replace(REDACTED, ' ').strip(), tzinfos=TIMEZONE_INFO)
+        timestamp_str = timestamp_str.replace(' (GMT-05:00)', 'EST')
+        timestamp_str = BAD_TIMEZONE_SUFFIX.sub('', timestamp_str).replace(REDACTED, ' ').strip()
+        timestamp = parse(timestamp_str, tzinfos=TIMEZONE_INFO)
         logger.debug(f'Parsed timestamp "{timestamp}" from string "{timestamp_str}"')
 
         if timestamp.tzinfo:
