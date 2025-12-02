@@ -742,14 +742,14 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
 
 AUTHORS_TO_DEVICE_SIGNATURES = {
     "(unknown)": [
-        "Sent via BlackBerry by AT&T",
         "Sent from my Windows 10 phone",
         "Sent from my iPad",
-        "Sent from my iPhone"
+        "Sent from my iPhone",
+        "Sent via BlackBerry by AT&T"
     ],
     "Alan Dershowitz": [
-        "Sent from my iPhone",
-        "Sent from my Verizon Wireless BlackBerry"
+        "Sent from my Verizon Wireless BlackBerry",
+        "Sent from my iPhone"
     ],
     "Anas Alrasheed": [
         "Sent from my iPhone"
@@ -775,12 +775,12 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPad"
     ],
     "Darren Indyke": [
-        "Sent from my iPhone",
-        "Sent from my Verizon 4G LTE Droid"
+        "Sent from my Verizon 4G LTE Droid",
+        "Sent from my iPhone"
     ],
     "David Schoen": [
-        "Sent from my iPhone",
-        "Sent from AOL Mobile Mail"
+        "Sent from AOL Mobile Mail",
+        "Sent from my iPhone"
     ],
     "Ehud Barak": [
         "Sent from my iPad",
@@ -846,8 +846,8 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone"
     ],
     "Landon Thomas Jr": [
-        "Sent from my iPhone",
-        "Sent from my BlackBerry® wireless device"
+        "Sent from my BlackBerry® wireless device",
+        "Sent from my iPhone"
     ],
     "Larry Summers": [
         "Sent from my iPad",
@@ -903,8 +903,8 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent via BlackBerry from T-Mobile"
     ],
     "Peggy Siegal": [
-        "Sent via BlackBerry by AT&T",
-        "Sent from my iPad"
+        "Sent from my iPad",
+        "Sent via BlackBerry by AT&T"
     ],
     "Reid Weingarten": [
         "Sent from my BlackBerry 10 smartphone.",
@@ -948,8 +948,8 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone"
     ],
     "Terry Kafka": [
-        "Sent via BlackBerry by AT&T",
-        "Sent from my iPhone"
+        "Sent from my iPhone",
+        "Sent via BlackBerry by AT&T"
     ],
     "Tom Barrack": [
         "Sent from my iPhone"

@@ -25,4 +25,4 @@ def patternize(_pattern: str | re.Pattern):
 
 
 def dict_sets_to_lists(d: dict[str, set]) -> dict[str, list]:
-    return {k: list(v) for k, v in d.items()}
+    return {k: sorted(list(v)) for k, v in d.items()}
