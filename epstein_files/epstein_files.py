@@ -38,16 +38,16 @@ class EpsteinFiles:
     other_files: list[Document] = field(default_factory=list)
     email_author_counts: dict[str, int] = field(init=False)
     email_authors_to_device_signatures: dict[str, set[str]] = field(init=False)
-    email_recipient_counts: dict[str, int] = field(init=False)
     email_device_signatures_to_authors: dict[str, set[str ]] = field(init=False)
+    email_recipient_counts: dict[str, int] = field(init=False)
     _email_unknown_recipient_file_ids: set[str] = field(default_factory=set)
 
     def __post_init__(self):
         started_processing_at = time.perf_counter()
         self.all_files = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
         self.email_author_counts = defaultdict(int)
-        self.email_authors_to_device_signatures = defaultdict(set)
         self.email_recipient_counts = defaultdict(int)
+        self.email_authors_to_device_signatures = defaultdict(set)
         self.email_device_signatures_to_authors = defaultdict(set)
 
         for file_arg in self.all_files:

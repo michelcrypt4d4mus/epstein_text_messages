@@ -8,8 +8,8 @@ from typing import ClassVar
 from rich.markup import escape
 from rich.text import Text
 
-# TODO: fix 'esptein_web_doc_url'
-from epstein_files.util.constant.urls import EPSTEINIFY, EPSTEIN_WEB, epsteinify_doc_url, esptein_web_doc_url, search_archive_url
+# TODO: fix 'epstein_web_doc_url'
+from epstein_files.util.constant.urls import EPSTEINIFY, EPSTEIN_WEB, epsteinify_doc_url, epstein_web_doc_url, search_archive_url
 from epstein_files.util.constant.strings import *
 from epstein_files.util.data import collapse_newlines, patternize
 from epstein_files.util.env import args, logger
@@ -75,7 +75,7 @@ class Document:
         self._set_computed_fields()
         self.epsteinify_doc_url = epsteinify_doc_url(self.url_slug)
         self.epsteinify_link_markup = link_markup(self.epsteinify_doc_url, self.file_path.stem)
-        self.epstein_web_doc_url = esptein_web_doc_url(self.url_slug)
+        self.epstein_web_doc_url = epstein_web_doc_url(self.url_slug)
         self.epstein_web_doc_link_markup = link_markup(self.epstein_web_doc_url, self.file_path.stem)
 
     def courier_archive_link(self, link_txt: str | None = None, style: str = ARCHIVE_LINK_COLOR) -> Text:
