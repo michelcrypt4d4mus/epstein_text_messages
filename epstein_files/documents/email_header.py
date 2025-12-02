@@ -2,7 +2,7 @@ import json
 import re
 from dataclasses import asdict, dataclass, field
 
-from epstein_files.util.constants import REDACTED
+from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.env import logger
 from epstein_files.util.rich import UNKNOWN
 

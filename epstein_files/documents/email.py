@@ -14,6 +14,7 @@ from rich.text import Text
 
 from epstein_files.documents.document import CommunicationDocument
 from epstein_files.documents.email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TO_FIELDS, EmailHeader
+from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constants import *
 from epstein_files.util.data import collapse_newlines
 from epstein_files.util.env import is_debug, is_fast_mode, logger

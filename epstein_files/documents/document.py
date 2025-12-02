@@ -8,11 +8,14 @@ from typing import ClassVar
 from rich.markup import escape
 from rich.text import Text
 
-from epstein_files.util.constants import EPSTEINIFY, EPSTEIN_WEB, HOUSE_OVERSIGHT_PREFIX, esptein_web_doc_url, search_archive_url
+# TODO: fix 'esptein_web_doc_url'
+from epstein_files.util.constant.urls import EPSTEINIFY, EPSTEIN_WEB, epsteinify_doc_url, esptein_web_doc_url, search_archive_url
+from epstein_files.util.constant.strings import *
+from epstein_files.util.constants import HOUSE_OVERSIGHT_PREFIX
 from epstein_files.util.data import collapse_newlines, patternize
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, is_local_extract_file
-from epstein_files.util.rich import (ARCHIVE_LINK_COLOR, console, epsteinify_doc_url, highlight_regex_match, highlighter,
+from epstein_files.util.rich import (ARCHIVE_LINK_COLOR, console, highlight_regex_match, highlighter,
      logger, make_link, make_link_markup)
 from epstein_files.util.strings import *
 
@@ -24,15 +27,10 @@ PREVIEW_CHARS = 520
 KB = 1024
 MB = KB * KB
 
-# Subclass names
-DOCUMENT = 'Document'
-EMAIL = 'Email'
-MESSENGER_LOG = 'MessengerLog'
-
 DOC_TYPE_STYLES = {
-    DOCUMENT: 'grey69',
-    EMAIL: 'sea_green2',
-    MESSENGER_LOG: 'cyan',
+    DOCUMENT_CLASS: 'grey69',
+    EMAIL_CLASS: 'sea_green2',
+    MESSENGER_LOG_CLASS: 'cyan',
 }
 
 # Takes ~1.1 seconds to apply these repairs
@@ -95,7 +93,7 @@ class Document:
         txt.append(f"{self.num_lines:,}", style='cyan').append(", size=")
         txt.append(self.size_str(), style='aquamarine1')
 
-        if doc_type == DOCUMENT:
+        if doc_type == DOCUMENT_CLASS:
             txt.append(')')
 
         return txt

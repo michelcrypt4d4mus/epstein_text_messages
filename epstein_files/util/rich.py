@@ -15,11 +15,12 @@ from rich.table import Table
 from rich.text import Text
 from rich.theme import Theme
 
-from .constants import *
-from .env import args, deep_debug, is_debug, is_main_script, logger
-from .file_helper import build_filename_for_id
-from .highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS, REGEX_STYLE_PREFIX, HighlightedGroup
-from .html import PAGE_TITLE
+from epstein_files.util.constant.urls import *
+from epstein_files.util.constants import *
+from epstein_files.util.env import args, deep_debug, is_debug, is_main_script, logger
+from epstein_files.util.file_helper import build_filename_for_id
+from epstein_files.util.highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS, REGEX_STYLE_PREFIX, HighlightedGroup
+from epstein_files.util.html import PAGE_TITLE
 
 NUM_COLOR_KEY_COLS = 4
 OUTPUT_WIDTH = 120

@@ -15,10 +15,10 @@ load_dotenv()
 from rich.padding import Padding
 from rich.text import Text
 
-from epstein_files.documents.document import DOCUMENT, EMAIL, MESSENGER_LOG
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import sender_counts
 from epstein_files.epstein_files import EpsteinFiles
+from epstein_files.util.constant.strings import EMAIL_CLASS, MESSENGER_LOG_CLASS
 from epstein_files.util.data import dict_sets_to_lists
 from epstein_files.util.env import specified_emailers, args, is_build, is_debug, skip_texts
 from epstein_files.util.file_helper import OUTPUT_GH_PAGES_HTML
@@ -156,9 +156,9 @@ else:
 if args.json_stats:
     console.line(5)
     console.print(Panel('JSON Stats Dump', expand=True, style='reverse bold'), '\n')
-    print_json(f"{MESSENGER_LOG} Sender Counts", sender_counts, skip_falsey=True)
-    print_json(f"{EMAIL} Author Counts", epstein_files.email_author_counts, skip_falsey=True)
-    print_json(f"{EMAIL} Recipient Counts", epstein_files.email_recipient_counts, skip_falsey=True)
+    print_json(f"{MESSENGER_LOG_CLASS} Sender Counts", sender_counts, skip_falsey=True)
+    print_json(f"{EMAIL_CLASS} Author Counts", epstein_files.email_author_counts, skip_falsey=True)
+    print_json(f"{EMAIL_CLASS} Recipient Counts", epstein_files.email_recipient_counts, skip_falsey=True)
     print_json("Email signature_substitution_counts", Email.signature_substitution_counts, skip_falsey=True)
     print_json("email_author_device_signatures", dict_sets_to_lists(epstein_files.email_author_device_signatures))
     print_json("email_sent_from_devices", dict_sets_to_lists(epstein_files.email_sent_from_devices))
