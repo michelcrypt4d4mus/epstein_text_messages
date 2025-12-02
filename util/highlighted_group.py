@@ -312,12 +312,14 @@ HIGHLIGHTED_GROUPS = [
         style='pale_violet_red1',
         pattern=r'\w+@mc2mm.com',
         emailers = {
+            'Abi Schwinck': 'MC2 Model Management (/)',
             DANIEL_SIAD: None,
             FAITH_KATES: 'Next Models co-founder',
             'Gianni Serazzi': 'fashion consultant?',
             JEAN_LUC_BRUNEL: 'MC2 Model Management founder, died by suicide in French jail',
             MANUELA_MARTINEZ: 'Mega Partners (Brazilian agency)',
             MARIANA_IDZKOWSKA: None,
+            'Michael Sanka': 'MC2 Model Management (/)',
         }
     ),
     HighlightedGroup(
