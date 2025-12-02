@@ -72,35 +72,35 @@ if args.suppress_output:
 console = Console(**CONSOLE_ARGS)
 
 
-def highlight_regex_match(text: str, pattern: re.Pattern, style: str = 'cyan') -> Text:
-    """Replace 'pattern' matches with markup of the match colored with 'style'."""
-    return Text.from_markup(pattern.sub(rf'[{style}]\1[/{style}]', text))
-
-
-def make_epsteinify_doc_link_markup(filename_or_id: int | str, style: str = TEXT_LINK) -> str:
+def epsteinify_doc_link_markup(filename_or_id: int | str, style: str = TEXT_LINK) -> str:
     if isinstance(filename_or_id, int) or not filename_or_id.startswith(HOUSE_OVERSIGHT_PREFIX):
         file_stem = build_filename_for_id(filename_or_id)
     else:
         file_stem = str(filename_or_id)
 
-    return make_link_markup(epsteinify_doc_url(file_stem), file_stem, style)
+    return link_markup(epsteinify_doc_url(file_stem), file_stem, style)
 
 
-def make_epsteinify_doc_link_txt(filename_or_id: int | str, style: str = TEXT_LINK) -> Text:
-    return Text.from_markup(make_epsteinify_doc_link_markup(filename_or_id, style))
+def epsteinify_doc_link_txt(filename_or_id: int | str, style: str = TEXT_LINK) -> Text:
+    return Text.from_markup(epsteinify_doc_link_markup(filename_or_id, style))
 
 
-def make_link_markup(url: str, link_text: str, style: str | None = ARCHIVE_LINK_COLOR, underline: bool = True) -> str:
+def highlight_regex_match(text: str, pattern: re.Pattern, style: str = 'cyan') -> Text:
+    """Replace 'pattern' matches with markup of the match colored with 'style'."""
+    return Text.from_markup(pattern.sub(rf'[{style}]\1[/{style}]', text))
+
+
+def link_markup(url: str, link_text: str, style: str | None = ARCHIVE_LINK_COLOR, underline: bool = True) -> str:
     style = (style or '') + (' underline' if underline else '')
     return wrap_in_markup_style(f"[link={url}]{link_text}[/link]", style)
 
 
-def make_link(url: str, link_text: str, style: str = ARCHIVE_LINK_COLOR) -> Text:
-    return Text.from_markup(make_link_markup(url, link_text, style))
+def link_text_obj(url: str, link_text: str, style: str = ARCHIVE_LINK_COLOR) -> Text:
+    return Text.from_markup(link_markup(url, link_text, style))
 
 
 def search_coffeezilla_link(text: str, link_txt: str, style: str = ARCHIVE_LINK_COLOR) -> Text:
-    return make_link(search_coffeezilla_url(text), link_txt or text, style)
+    return link_text_obj(search_coffeezilla_url(text), link_txt or text, style)
 
 
 def print_author_header(msg: str, color: str | None, footer: str | None = None) -> None:
@@ -121,7 +121,7 @@ def print_centered(obj: RenderableType, style: str = '') -> None:
 
 
 def print_centered_link(url: str, link_text: str, style: str | None = None) -> None:
-    print_centered(make_link_markup(url, link_text, style or ARCHIVE_LINK_COLOR))
+    print_centered(link_markup(url, link_text, style or ARCHIVE_LINK_COLOR))
 
 
 def print_header():
@@ -148,14 +148,14 @@ def print_header():
     console.print(Align.center(vertically_pad(table)))
     print_centered_link(OVERSIGHT_REPUBLICANS_PRESSER_URL, 'Oversight Committee Releases Additional Epstein Estate Documents')
     print_centered_link(COFFEEZILLA_ARCHIVE_URL, 'Coffeezilla Archive Of Raw Epstein Materials')
-    print_centered(make_link_markup(JMAIL_URL, JMAIL) + " (read His Emails via Gmail interface)")
+    print_centered(link_markup(JMAIL_URL, JMAIL) + " (read His Emails via Gmail interface)")
     print_centered_link(COURIER_NEWSROOM_ARCHIVE_URL, "Courier Newsroom's Searchable Archive")
-    print_centered(make_link_markup(f"{EPSTEINIFY_URL}/names", 'epsteinify.com') + " (raw document images)")
+    print_centered(link_markup(f"{EPSTEINIFY_URL}/names", 'epsteinify.com') + " (raw document images)")
     print_centered_link(RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL, 'Google Drive Raw Documents')
     console.line()
     print_centered_link(ATTRIBUTIONS_URL, "some explanations of author attributions", style='magenta')
-    print_centered(f"(thanks to {make_link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} and others for attribution help)")
-    print_centered(f"If you think there's an attribution error or can deanonymize an {UNKNOWN} contact {make_link_markup('https://x.com/cryptadamist', '@cryptadamist')}.", 'grey46')
+    print_centered(f"(thanks to {link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} and others for attribution help)")
+    print_centered(f"If you think there's an attribution error or can deanonymize an {UNKNOWN} contact {link_markup('https://x.com/cryptadamist', '@cryptadamist')}.", 'grey46')
     print_centered('(note this site is based on the OCR text provided by Congress which is not the greatest)', 'grey23')
 
 
@@ -225,7 +225,7 @@ def print_other_site_link(is_header: bool = True) -> None:
     other_site_type = TEXT_MESSAGE if site_type == EMAIL else EMAIL
     other_site_msg = "there's a separate site for" + (' all of' if other_site_type == EMAIL else '')
     other_site_msg += f" Epstein's {other_site_type}s also generated by this code"
-    markup_msg = make_link_markup(SITE_URLS[other_site_type], other_site_msg, 'dark_goldenrod')
+    markup_msg = link_markup(SITE_URLS[other_site_type], other_site_msg, 'dark_goldenrod')
     print_centered(Text('(') + Text.from_markup(markup_msg).append(')'), style='bold')
 
 

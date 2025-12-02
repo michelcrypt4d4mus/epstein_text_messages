@@ -22,7 +22,7 @@ from epstein_files.util.data import dict_sets_to_lists, flatten, patternize
 from epstein_files.util.env import args, is_debug, logger
 from epstein_files.util.file_helper import DOCS_DIR, move_json_file
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
-from epstein_files.util.rich import (DEFAULT_NAME_COLOR, console, highlighter, make_link, make_link_markup,
+from epstein_files.util.rich import (DEFAULT_NAME_COLOR, console, highlighter, link_text_obj, link_markup,
      print_author_header, print_panel, vertically_pad)
 
 DEVICE_SIGNATURE = 'Device Signature'
@@ -231,13 +231,13 @@ class EpsteinFiles:
             style = get_style_for_name(p, DEFAULT_NAME_COLOR)
 
             counts_table.add_row(
-                Text.from_markup(make_link_markup(epsteinify_name_url(p), p, style)),
+                Text.from_markup(link_markup(epsteinify_name_url(p), p, style)),
                 str(count),
                 str(self.email_author_counts[p]),
                 str(self.email_recipient_counts[p]),
-                '' if p == UNKNOWN else make_link(search_jmail_url(p), JMAIL),
-                '' if not is_ok_for_epstein_web(p) else make_link(epstein_web_person_url(p), EPSTEIN_WEB.lower()),
-                '' if p == UNKNOWN else make_link(search_twitter_url(p), 'search X'),
+                '' if p == UNKNOWN else link_text_obj(search_jmail_url(p), JMAIL),
+                '' if not is_ok_for_epstein_web(p) else link_text_obj(epstein_web_person_url(p), EPSTEIN_WEB.lower()),
+                '' if p == UNKNOWN else link_text_obj(search_twitter_url(p), 'search X'),
             )
 
         console.print(vertically_pad(counts_table, 2))

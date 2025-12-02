@@ -15,7 +15,7 @@ from epstein_files.util.data import collapse_newlines, patternize
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, is_local_extract_file
 from epstein_files.util.rich import (ARCHIVE_LINK_COLOR, console, highlight_regex_match, highlighter,
-     logger, make_link, make_link_markup)
+     logger, link_text_obj, link_markup)
 from epstein_files.util.strings import *
 
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
@@ -74,13 +74,13 @@ class Document:
         self.text = self._load_file()
         self._set_computed_fields()
         self.epsteinify_doc_url = epsteinify_doc_url(self.url_slug)
-        self.epsteinify_link_markup = make_link_markup(self.epsteinify_doc_url, self.file_path.stem)
+        self.epsteinify_link_markup = link_markup(self.epsteinify_doc_url, self.file_path.stem)
         self.epstein_web_doc_url = esptein_web_doc_url(self.url_slug)
-        self.epstein_web_doc_link_markup = make_link_markup(self.epstein_web_doc_url, self.file_path.stem)
+        self.epstein_web_doc_link_markup = link_markup(self.epstein_web_doc_url, self.file_path.stem)
 
     def courier_archive_link(self, link_txt: str | None = None, style: str = ARCHIVE_LINK_COLOR) -> Text:
         """Link to search courier newsroom Google drive."""
-        return make_link(search_archive_url(self.filename), link_txt or self.filename, style)
+        return link_text_obj(search_archive_url(self.filename), link_txt or self.filename, style)
 
     def count_regex_matches(self, pattern: str) -> int:
         return len(re.findall(pattern, self.text))
@@ -98,10 +98,10 @@ class Document:
         return txt
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return make_link(self.epsteinify_doc_url, link_txt or self.file_path.stem, style)
+        return link_text_obj(self.epsteinify_doc_url, link_txt or self.file_path.stem, style)
 
     def epstein_web_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return make_link(self.epstein_web_doc_url, link_txt or self.file_path.stem, style)
+        return link_text_obj(self.epstein_web_doc_url, link_txt or self.file_path.stem, style)
 
     def highlighted_preview_text(self) -> Text:
         try:

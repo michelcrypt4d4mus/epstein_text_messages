@@ -309,7 +309,7 @@ class Email(CommunicationDocument):
         self.author_style = get_style_for_name(self.author_str)
         self.author_txt = Text(self.author_str, style=self.author_style)
         self.cleaned_up_text = self._cleaned_up_text()
-        self.epsteinify_link_markup = make_epsteinify_doc_link_markup(self.file_path.stem, self.author_style)
+        self.epsteinify_link_markup = epsteinify_doc_link_markup(self.file_path.stem, self.author_style)
         self.sent_from_device = self._sent_from_device()
 
     def description(self) -> Text:
@@ -498,7 +498,7 @@ class Email(CommunicationDocument):
         if self.file_id in SUPPRESS_OUTPUT_FOR_EMAIL_IDS:
             supression_reason = SUPPRESS_OUTPUT_FOR_EMAIL_IDS[self.file_id]
             reason_msg = ' '.join(supression_reason.split()[0:-1])
-            txt = Text(f"Not showing ", style='dim').append(make_epsteinify_doc_link_txt(self.file_id, style='cyan'))
+            txt = Text(f"Not showing ", style='dim').append(epsteinify_doc_link_txt(self.file_id, style='cyan'))
             txt.append(f" because it's {reason_msg} {build_filename_for_id(supression_reason.split()[-1])}")
             yield txt.append(' (which is shown)\n')
             return
