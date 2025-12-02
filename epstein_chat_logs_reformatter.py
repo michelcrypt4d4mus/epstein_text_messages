@@ -15,13 +15,13 @@ load_dotenv()
 from rich.padding import Padding
 from rich.text import Text
 
-from documents.document import DOCUMENT, EMAIL, MESSENGER_LOG
-from documents.epstein_files import EpsteinFiles
-from documents.messenger_log import sender_counts
-from util.env import specified_emailers, args, is_build, is_debug, skip_texts
-from util.file_helper import OUTPUT_GH_PAGES_HTML
-from util.html import *
-from util.rich import *
+from epstein_files.documents.document import DOCUMENT, EMAIL, MESSENGER_LOG
+from epstein_files.documents.messenger_log import sender_counts
+from epstein_files.epstein_files import EpsteinFiles
+from epstein_files.util.env import specified_emailers, args, is_build, is_debug, skip_texts
+from epstein_files.util.file_helper import OUTPUT_GH_PAGES_HTML
+from epstein_files.util.html import *
+from epstein_files.util.rich import *
 
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
 

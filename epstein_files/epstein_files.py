@@ -12,16 +12,16 @@ from rich.padding import Padding
 from rich.table import Table
 from rich.text import Text
 
-from documents.document import Document, SearchResult
-from documents.email import DETECT_EMAIL_REGEX, JUNK_EMAILERS, USELESS_EMAILERS, Email
-from documents.email_header import AUTHOR
-from documents.messenger_log import MSG_REGEX, MessengerLog, sender_counts
-from util.constants import *
-from util.data import flatten, patternize
-from util.env import args, is_debug, logger
-from util.file_helper import DOCS_DIR, move_json_file
-from util.highlighted_group import get_info_for_name, get_style_for_name
-from util.rich import (DEFAULT_NAME_COLOR, console, highlighter, make_link, make_link_markup,
+from epstein_files.documents.document import Document, SearchResult
+from epstein_files.documents.email import DETECT_EMAIL_REGEX, JUNK_EMAILERS, USELESS_EMAILERS, Email
+from epstein_files.documents.email_header import AUTHOR
+from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog, sender_counts
+from epstein_files.util.constants import *
+from epstein_files.util.data import flatten, patternize
+from epstein_files.util.env import args, is_debug, logger
+from epstein_files.util.file_helper import DOCS_DIR, move_json_file
+from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
+from epstein_files.util.rich import (DEFAULT_NAME_COLOR, console, highlighter, make_link, make_link_markup,
      print_author_header, print_panel, vertically_pad)
 
 DEVICE_SIGNATURE = 'Device Signature'

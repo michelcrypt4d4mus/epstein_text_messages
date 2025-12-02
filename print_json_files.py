@@ -9,8 +9,8 @@ from rich.text import Text
 from rich.theme import Theme
 load_dotenv()
 
-from util.file_helper import JSON_DIR
-from util.rich import console
+from epstein_files.util.file_helper import JSON_DIR
+from epstein_files.util.rich import console
 
 
 for file in [f for f in JSON_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]:

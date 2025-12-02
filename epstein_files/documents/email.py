@@ -10,15 +10,15 @@ from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
 
-from documents.document import CommunicationDocument
-from documents.email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TO_FIELDS, EmailHeader
-from util.constants import *
-from util.data import collapse_newlines
-from util.env import is_debug, is_fast_mode, logger
-from util.file_helper import build_filename_for_id
-from util.highlighted_group import get_style_for_name
-from util.rich import *
-from util.strings import *
+from epstein_files.documents.document import CommunicationDocument
+from epstein_files.documents.email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TO_FIELDS, EmailHeader
+from epstein_files.util.constants import *
+from epstein_files.util.data import collapse_newlines
+from epstein_files.util.env import is_debug, is_fast_mode, logger
+from epstein_files.util.file_helper import build_filename_for_id
+from epstein_files.util.highlighted_group import get_style_for_name
+from epstein_files.util.rich import *
+from epstein_files.util.strings import *
 
 TIME_REGEX = re.compile(r'^(\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday).*')
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')

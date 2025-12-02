@@ -8,10 +8,10 @@ load_dotenv()
 from rich.console import Console
 from rich.text import Text
 
-from documents.document import Document
-from documents.email import Email, REPLY_LINE_PATTERN, REPLY_REGEX, REPLY_TEXT_REGEX
-from util.env import deep_debug, is_debug
-from util.file_helper import DOCS_DIR
+from epstein_files.documents.document import Document
+from epstein_files.documents.email import Email, REPLY_LINE_PATTERN, REPLY_REGEX, REPLY_TEXT_REGEX
+from epstein_files.util.env import deep_debug, is_debug
+from epstein_files.util.file_helper import DOCS_DIR
 
 
 console = Console(color_system='256')

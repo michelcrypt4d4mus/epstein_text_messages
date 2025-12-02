@@ -7,9 +7,9 @@ from dotenv import load_dotenv
 load_dotenv()
 from rich.console import Console
 
-from util.constants import SENT_FROM_REGEX
-from util.env import is_debug
-from util.file_helper import DOCS_DIR
+from epstein_files.util.constants import SENT_FROM_REGEX
+from epstein_files.util.env import is_debug
+from epstein_files.util.file_helper import DOCS_DIR
 
 
 console = Console(color_system='256')

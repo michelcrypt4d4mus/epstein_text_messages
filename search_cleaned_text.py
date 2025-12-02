@@ -9,9 +9,9 @@ load_dotenv()
 from rich.console import Console
 from rich.panel import Panel
 
-from documents.epstein_files import EpsteinFiles
-from util.env import args
-from util.rich import console, print_section_header
+from epstein_files.documents.epstein_files import EpsteinFiles
+from epstein_files.util.env import args
+from epstein_files.util.rich import console, print_section_header
 
 
 if len(args.positional_args) == 0:

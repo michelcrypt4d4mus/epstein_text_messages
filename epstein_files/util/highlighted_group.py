@@ -4,8 +4,8 @@ from dataclasses import dataclass, field
 from inflection import titleize
 from rich.text import Text
 
-from util.constants import *
-from util.env import is_debug, logger
+from epstein_files.util.constants import *
+from epstein_files.util.env import is_debug, logger
 
 ESTATE_EXECUTOR = 'Epstein estate executor'
 REGEX_STYLE_PREFIX = 'regex'
