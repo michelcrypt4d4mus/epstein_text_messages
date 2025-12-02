@@ -143,6 +143,7 @@ ROBERT_LAWRENCE_KUHN = 'Robert Lawrence Kuhn'
 ROBERT_TRIVERS = 'Robert Trivers'
 ROGER_SCHANK = 'Roger Schank'
 RUDY_GIULIANI = 'Rudy Giuliani'
+ROSS_GOW = 'Ross Gow'
 SCOTT_J_LINK = 'Scott J. Link'
 SEAN_BANNON = 'Sean Bannon'
 SHAHER_ABDULHAK_BESHER = 'Shaher Abdulhak Besher (?)'
@@ -328,6 +329,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     ROBERT_D_CRITTON: re.compile(r'Robert D.? Critton Jr.?', re.IGNORECASE),
     ROBERT_LAWRENCE_KUHN: re.compile(r'Robert\s*(Lawrence)?\s*Kuhn', re.IGNORECASE),
     ROBERT_TRIVERS: re.compile(r'tri[vy]ersr@gmail|Robert\s*Trivers?', re.IGNORECASE),
+    ROSS_GOW: re.compile(fr"{ROSS_GOW}|ross@acuityreputation.com", re.IGNORECASE),
     SCARAMUCCI: re.compile(r"mooch|(Anthony ('The Mooch' )?)?Scaramucci", re.IGNORECASE),
     SCOTT_J_LINK: re.compile(r'scott j. link?', re.IGNORECASE),
     SEAN_BANNON: re.compile(r'sean bannon?', re.IGNORECASE),
@@ -385,7 +387,6 @@ EMAILERS = [
     'Peter Aldhous',
     'Peter Green',
     ROGER_SCHANK,
-    'ross@acuityreputation.com',
     r'Sam/Walli Leff',
     STEVEN_PFEIFFER,
     'Steven Victor MD',

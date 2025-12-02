@@ -320,12 +320,13 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='publicist',
         style='orange_red1',
-        pattern='Henry Holt|Ian Osborne|Matthew Hiltzik|ross@acuityreputation.com',
+        pattern='Henry Holt|Ian Osborne|Matthew Hiltzik',
         emailers = {
             AL_SECKEL: 'husband of Isabel Maxwell, Mind State organizer, fell off a cliff',
             CHRISTINA_GALBRAITH: None,
             MICHAEL_SITRICK: None,
             PEGGY_SIEGAL: None,
+            ROSS_GOW: 'Acuity Reputation Management',
             TYLER_SHEARS: None,
         }
     ),

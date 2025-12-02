@@ -54,11 +54,9 @@ KNOWN_TIMESTAMPS = {
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r' Banno(r]?|\b)'): ' Bannon',
     re.compile(r'grnail\.com'): 'gmail.com',
-    'twitter glhsummers': 'twitter @lhsummers',
     re.compile(r'from my BlackBerry[0°] wireless device'): 'from my BlackBerry® wireless device',
     re.compile(r'gmax ?[1l] ?[@g]ellmax.c ?om'): 'gmax1@ellmax.com',
     re.compile(r"[ijlp']ee[vy]acation[©@a(&,P ]{1,3}g?mail.com"): 'jeevacation@gmail.com',
-    re.compile(r"twitter\.com[i/][lI]krauss[1lt]"): "twitter.com/lkrauss1",
     re.compile(r"^(From|To)(: )?[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",
     'BlackBerry by AT &T': 'BlackBerry by AT&T',
     'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
@@ -68,11 +66,14 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'Torn Pritzker': TOM_PRITZKER,
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
     'Miroslav Laj6ak': MIROSLAV_LAJCAK,
-    'gJeremyRubin': '@geremyRubin',
     re.compile(r'([/vkT]|Ai|li|(I|7)v)rote:'): 'wrote:',
-    re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
     re.compile(r"([<>.=_HIM][<>.=_HIM14]{5,}[<>.=_HIM]|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
     re.compile(r"([,<>_]|AM|PM)\n(>)? ?wrote:?"): r'\1\2 wrote:',
+    # TODO: are these necessary?
+    'gJeremyRubin': '@JeremyRubin',
+    re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
+    re.compile(r"twitter\.com[i/][lI]krauss[1lt]"): "twitter.com/lkrauss1",
+    'twitter glhsummers': 'twitter @lhsummers',
 }
 
 EMAIL_SIGNATURES = {
