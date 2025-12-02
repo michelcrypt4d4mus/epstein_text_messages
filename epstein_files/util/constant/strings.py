@@ -5,4 +5,7 @@ MESSENGER_LOG_CLASS = 'MessengerLog'
 
 EMAIL = 'email'
 TEXT_MESSAGE = 'text message'
+
+# Misc
+HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
 REDACTED = '<REDACTED>'

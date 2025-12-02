@@ -5,8 +5,9 @@ from io import StringIO
 
 from dateutil.parser import parse
 
+from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_PREFIX
+
 # Misc
-HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
 FALLBACK_TIMESTAMP = parse("1/1/2001 12:01:01 AM")
 SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
 # Email replies
