@@ -71,6 +71,7 @@ EDUARDO_ROBLES = 'Eduardo Robles'
 EDWARD_EPSTEIN = 'Edward Epstein'
 EHUD_BARAK = 'Ehud Barak'
 ELON_MUSK = 'Elon Musk'
+ERIC_ROTH = 'Eric Roth'
 FAITH_KATES = 'Faith Kates'
 FRED_HADDAD = 'Fred Haddad'
 GERALD_BARTON = 'Gerald Barton'
@@ -116,7 +117,9 @@ MICHAEL_BUCHHOLTZ = 'Michael Buchholtz'
 MICHAEL_SITRICK = 'Michael Sitrick'
 MICHAEL_WOLFF = "Michael Wolff"
 MOHAMED_WAHEED_HASSAN = 'Mohamed Waheed Hassan'
+MORTIMER_ZUCKERMAN = 'Mortimer Zuckerman'
 NADIA_MARCINKO = 'Nadia Marcinko'
+NEAL_KASSELL = 'Neal Kassell'
 NICHOLAS_RIBIS = 'Nicholas Ribis'
 NORMAN_D_RAU = 'Norman D. Rau'
 OLIVIER_COLOM = 'Olivier Colom'
@@ -306,7 +309,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     MIROSLAV_LAJCAK: re.compile(r"Miro(slav)?(\s+Laj[cč][aá]k)?"),
     MOHAMED_WAHEED_HASSAN: re.compile(r'Mohamed Waheed(\s+Hassan)?', re.IGNORECASE),
     NADIA_MARCINKO: re.compile(r"Na[dď]i?a\s+Marcinko(v[aá])?", re.IGNORECASE),
-    'Neal Kassell': re.compile(r'Neal Kassel', re.IGNORECASE),
+    NEAL_KASSELL: re.compile(r'Neal Kassel', re.IGNORECASE),
     NICHOLAS_RIBIS: re.compile(r'Nicholas[ ._]Ribi?s?', re.IGNORECASE),
     OLIVIER_COLOM: re.compile(fr'Colom, Olivier|{OLIVIER_COLOM}', re.IGNORECASE),
     PAUL_BARRETT: re.compile(r'Paul Barre(d|tt)', re.IGNORECASE),
@@ -816,6 +819,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Daniel',
     'Darren',
     'David',
+    'Eric',
     'Etienne',
     'Fred',
     'Jack',
@@ -837,6 +841,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Melanie',
     'Michael',
     'Mike',
+    'Neal',
     'Paul',
     'Pen',
     'Peter',
@@ -854,6 +859,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Susan',
     'The',
     'Thomas',
+    'Tim',
     'Tom',
     'Victor',
     "Y",

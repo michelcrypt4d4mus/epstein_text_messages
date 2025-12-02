@@ -22,6 +22,7 @@ PEOPLE_INFO = {
     DANIEL_SABBA: 'UBS Investment Bank',
     DARREN_INDYKE: ESTATE_EXECUTOR,
     EHUD_BARAK: 'former primer minister',
+    ERIC_ROTH: 'jet decorator',
     GLENN_DUBIN: "Highbridge Capital Management, married to Epstein's ex-gf Eva",
     GWENDOLYN_BECK: 'fund manager',
     JEAN_HUGUEN: 'interior design at Alberto Pinto Cabinet',
@@ -38,6 +39,8 @@ PEOPLE_INFO = {
     LESLEY_GROFF: 'Assistant (?)',
     LISA_NEW: 'poetry',
     MARK_EPSTEIN: 'brother',
+    MELANIE_SPINELLA: f'representative of {LEON_BLACK}',
+    MORTIMER_ZUCKERMAN: 'business partner of Epstein',
     'Nili Priell Barak': f'wife of {EHUD_BARAK}',
     MASHA_DROKOVA: 'silicon valley VC',
     MIROSLAV_LAJCAK: 'Russia friendly Slovak',
@@ -133,7 +136,8 @@ HIGHLIGHTED_GROUPS = [
             JIDE_ZEITLIN,
             LEON_BLACK,
             MARC_LEON,
-            'Mortimer Zuckerman',  # Business partner
+            MELANIE_SPINELLA,
+            MORTIMER_ZUCKERMAN,  # Business partner
             PAUL_BARRETT,
             PAUL_MORRIS,
         ]
@@ -197,6 +201,7 @@ HIGHLIGHTED_GROUPS = [
         label='employee',
         style='deep_sky_blue4',
         emailers=[
+            ERIC_ROTH,
             GWENDOLYN_BECK,
             LAWRANCE_VISOSKI,
             LESLEY_GROFF,
@@ -262,6 +267,7 @@ HIGHLIGHTED_GROUPS = [
             LANDON_THOMAS,
             MICHAEL_WOLFF,
             PAUL_KRASSNER,
+            'Tim Zagat',
         ]
     ),
     HighlightedGroup(
@@ -373,9 +379,12 @@ HIGHLIGHTED_GROUPS = [
         style='light_goldenrod2',
         pattern=r'Alain Forget|David Grosof|MIT(\s*Media\s*Lab)?|Media\s*Lab|Moshe Hoffman|((Noam|Valeria) )?Chomsky|Peter Attia|Stanford',
         emailers=[
+            'Barnaby Marsh',
             DAVID_HAIG,
             JOSCHA_BACH,
             LAWRENCE_KRAUSS,
+            NEAL_KASSELL,
+            'Richard Merkin',
             ROBERT_TRIVERS,
             ROGER_SCHANK,
             STEVEN_PFEIFFER,
@@ -441,7 +450,6 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(emailers=[JOI_ITO], info='MIT Media Lab', style='gold1'),
     HighlightedGroup(emailers=[KATHY_RUEMMLER], info='former Obama legal counsel', style='magenta2'),
     HighlightedGroup(emailers=[LINDA_STONE], style='pink3'),
-    HighlightedGroup(emailers=[MELANIE_SPINELLA], style='magenta3'),
     HighlightedGroup(emailers=[MELANIE_WALKER], info='Doctor', style='pale_violet_red1'),
     HighlightedGroup(emailers=[PAULA], style='pink1'),
     HighlightedGroup(emailers=[PRINCE_ANDREW], style='dodger_blue1'),
