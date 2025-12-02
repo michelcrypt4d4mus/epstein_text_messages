@@ -21,4 +21,5 @@ MESSENGER_LOG_AUTHOR_COUNTS = {
 
 
 def test_message_counts(epstein_files):
-    assert MESSENGER_LOG_AUTHOR_COUNTS == sender_counts
+    assert len(epstein_files.imessage_logs) == 77
+    assert MESSENGER_LOG_AUTHOR_COUNTS == {k: v for k, v in sender_counts.items()}

@@ -598,5 +598,7 @@ EMAIL_RECIPIENT_COUNTS = {
 
 
 def test_email_counts(epstein_files):
-    assert EMAIL_AUTHOR_COUNTS == epstein_files.email_author_counts
-    assert EMAIL_RECIPIENT_COUNTS == epstein_files.email_recipient_counts
+    author_counts = {k: v for k, v in EMAIL_AUTHOR_COUNTS.items() if v > 0}
+    assert author_counts == epstein_files.email_author_counts
+    recipient_counts = {k: v for k, v in EMAIL_RECIPIENT_COUNTS.items() if v > 0}
+    assert recipient_counts == epstein_files.email_recipient_counts
