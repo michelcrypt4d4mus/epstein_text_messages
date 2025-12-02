@@ -35,6 +35,12 @@ FILENAME_MATCH_STYLES = [
     'spring_green4',
 ]
 
+DOC_TYPE_STYLES = {
+    'Document': 'grey69',
+    'Email': 'sea_green2',
+    'MessengerLog': 'cyan',
+}
+
 
 @dataclass
 class Document:
@@ -67,22 +73,6 @@ class Document:
         self.epsteinify_link_markup = make_link_markup(self.epsteinify_doc_url, self.file_path.stem)
         self.epstein_web_doc_url = esptein_web_doc_url(self.url_slug)
         self.epstein_web_doc_link_markup = make_link_markup(self.epstein_web_doc_url, self.file_path.stem)
-
-    def raw_document_link(self, style: str = '', include_alt_link: bool = False) -> Text:
-        txt = Text('', style='white' if include_alt_link else ARCHIVE_LINK_COLOR)
-
-        if args.use_epstein_web_links:
-            txt.append(self.epstein_web_link(style=style))
-
-            if include_alt_link:
-                txt.append(' (').append(self.epsteinify_link(style='white dim', link_txt='epsteinify')).append(')')
-        else:
-            txt.append(self.epsteinify_link(style=style))
-
-            if include_alt_link:
-                txt.append(' (').append(self.epstein_web_link(style='white dim', link_txt='epsteinweb')).append(')')
-
-        return txt
 
     def courier_archive_link(self, link_txt: str | None = None, style: str = ARCHIVE_LINK_COLOR) -> Text:
         """Link to search courier newsroom Google drive."""
@@ -136,6 +126,29 @@ class Document:
             for line in matched_lines
         ]
 
+    def log_top_lines(self, n: int = 10, msg: str | None = None) -> None:
+        msg = f"{msg + '. ' if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"
+        logger.info(f"{msg}:\n\n{self.top_lines(n)}")
+
+    def preview_text(self) -> str:
+        return WHITESPACE_REGEX.sub(' ', self.text)[0:PREVIEW_CHARS]
+
+    def raw_document_link_txt(self, style: str = '', include_alt_link: bool = False) -> Text:
+        txt = Text('', style='white' if include_alt_link else ARCHIVE_LINK_COLOR)
+
+        if args.use_epstein_web_links:
+            txt.append(self.epstein_web_link(style=style))
+
+            if include_alt_link:
+                txt.append(' (').append(self.epsteinify_link(style='white dim', link_txt='epsteinify')).append(')')
+        else:
+            txt.append(self.epsteinify_link(style=style))
+
+            if include_alt_link:
+                txt.append(' (').append(self.epstein_web_link(style='white dim', link_txt='epsteinweb')).append(')')
+
+        return txt
+
     def regex_repair_text(self, repairs: dict[str | re.Pattern, str], text: str) -> str:
         for k, v in repairs.items():
             if isinstance(k, re.Pattern):
@@ -144,13 +157,6 @@ class Document:
                 text = text.replace(k, v)
 
         return text
-
-    def log_top_lines(self, n: int = 10, msg: str | None = None) -> None:
-        msg = f"{msg + '. ' if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"
-        logger.info(f"{msg}:\n\n{self.top_lines(n)}")
-
-    def preview_text(self) -> str:
-        return WHITESPACE_REGEX.sub(' ', self.text)[0:PREVIEW_CHARS]
 
     def top_lines(self, n: int = 10) -> str:
         return '\n'.join(self.lines[0:n])
@@ -225,9 +231,9 @@ class CommunicationDocument(Document):
         txt.append(f", timestamp='{self.timestamp}')")
         return txt
 
-    def raw_document_link(self, _style: str = '', include_alt_link: bool = True) -> Text:
+    def raw_document_link_txt(self, _style: str = '', include_alt_link: bool = True) -> Text:
         """Overrides super() method to apply style"""
-        return super().raw_document_link(self.author_style, include_alt_link=include_alt_link)
+        return super().raw_document_link_txt(self.author_style, include_alt_link=include_alt_link)
 
     def timestamp_without_seconds(self) -> str:
         return TIMESTAMP_SECONDS_REGEX.sub('', str(self.timestamp))

@@ -264,7 +264,7 @@ class EpsteinFiles:
         table.add_column('First Few Lines', justify='left', style='pale_turquoise4')
 
         for doc in sorted(self.other_files, key=lambda document: document.filename):
-            table.add_row(doc.raw_document_link(), f"{doc.length:,}", doc.highlighted_preview_text())
+            table.add_row(doc.raw_document_link_txt(), f"{doc.length:,}", doc.highlighted_preview_text())
 
         console.print(table)
 

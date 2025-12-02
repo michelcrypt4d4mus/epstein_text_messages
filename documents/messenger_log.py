@@ -69,7 +69,7 @@ class MessengerLog(CommunicationDocument):
                 logger.info(f"[WARNING] Failed to parse '{timestamp_str}' to datetime! Using next match. Error: {e}'")
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        yield Panel(self.raw_document_link(), border_style=self.author_style.removesuffix(' bold'), expand=False)
+        yield Panel(self.raw_document_link_txt(), border_style=self.author_style.removesuffix(' bold'), expand=False)
 
         if self.hint_txt:
             yield self.hint_txt
