@@ -225,8 +225,8 @@ class EpsteinFiles:
                 str(self.email_author_counts[p]),
                 str(self.email_recipient_counts[p]),
                 '' if p == UNKNOWN else make_link(search_jmail_url(p), 'Jmail'),
-                '' if p == UNKNOWN else make_link(search_twitter_url(p), 'search X'),
                 '' if p == UNKNOWN else make_link(epstein_web_person_url(p), 'EpsteinWeb'),
+                '' if p == UNKNOWN else make_link(search_twitter_url(p), 'search X'),
             )
 
         console.print(vertically_pad(counts_table, 2))
