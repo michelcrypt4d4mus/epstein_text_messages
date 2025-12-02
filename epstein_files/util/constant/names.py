@@ -57,6 +57,7 @@ FRED_HADDAD = 'Fred Haddad'
 GERALD_BARTON = 'Gerald Barton'
 GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
 GLENN_DUBIN = 'Glenn Dubin'
+GORDON_GETTY = 'Gordon Getty'
 GWENDOLYN_BECK = 'Gwendolyn Beck'         # https://www.lbc.co.uk/article/who-gwendolyn-beck-epstein-andrew-5HjdN66_2/
 IVANKA = 'Ivanka'
 JABOR_Y = 'Jabor Y'                       # Qatari

@@ -8,6 +8,35 @@ from dateutil.parser import parse
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_PREFIX
 
+HEADER_ABBREVIATIONS = {
+    "AD": "Abu Dhabi",
+    "Barak": "Ehud Barak (Former Israeli prime minister)",
+    "Barrack": "Tom Barrack (Trump ally)",
+    'BG': "Bill Gates",
+    'Bill': "Bill Gates",
+    "Brock": 'Brock Pierce (crypto bro with a very sordid past)',
+    "DB": "Deutsche Bank (maybe??)",
+    'HBJ': "Hamad bin Jassim (former Qatari prime minister)",
+    'Jabor': '"an influential man in Qatar"',
+    'Jared': "Jared Kushner",
+    'Jagland': 'Thorbjørn Jagland (former Norwegian prime minister)',
+    'Jeffrey Wernick': 'Right wing crypto bro',
+    'Joi': 'Joi Ito (MIT Media Lab)',
+    "Hoffenberg": "Steven Hoffenberg (Epstein's ponzi scheme partner)",
+    'KSA': "Kingdom of Saudi Arabia",
+    'Kurz': 'Sebastian Kurz (former Austrian Chancellor)',
+    'Kwok': "Chinese criminal Miles Kwok AKA Miles Guo AKA Guo Wengui",
+    'Mapp': f'{KENNETH_E_MAPP} (Governor Virgin Islands)',
+    'Masa': 'Masayoshi Son (Softbank)',
+    'MBS': "Mohammed bin Salman Al Saud (Saudi ruler)",
+    'MBZ': "Mohamed bin Zayed Al Nahyan (Emirates sheikh)",
+    "Miro": MIROSLAV_LAJCAK,
+    "Mooch": "Anthony 'The Mooch' Scaramucci (Skybridge crypto bro)",
+    "Terje": TERJE_ROD_LARSEN,
+    "Woody": "Woody Allen",
+    "Zug": "City in Switzerland (crypto hub)",
+}
+
 # Misc
 FALLBACK_TIMESTAMP = parse("1/1/2001 12:01:01 AM")
 SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
@@ -90,7 +119,7 @@ GUESSED_IMESSAGE_FILE_IDS = {
     '027764': STEVE_BANNON,
     '027428': STEVE_BANNON,          # References HBJ meeting on 9/28 from other Bannon/Epstein convo
     '025436': 'Celina Dubin',
-    '027576': MELANIE_WALKER,  # https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700
+    '027576': MELANIE_WALKER,        # https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700
     '027141': MELANIE_WALKER,
     '027232': MELANIE_WALKER,
     '027133': MELANIE_WALKER,
@@ -125,7 +154,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     BENNET_MOSKOWITZ: re.compile(r'Moskowitz.*Bennet|Bennet.*Moskowitz', re.IGNORECASE),
     BORIS_NIKOLIC: re.compile(r'(boris )?nikolic?', re.IGNORECASE),
     BRAD_KARP: re.compile(r'Brad (S.? )?Karp|Karp, Brad', re.IGNORECASE),
-    'Dangene and Jennie Enterprise': re.compile(r'Dangene and Jennie Enterpris', re.IGNORECASE),
+    'Dangene and Jennie Enterprise': re.compile(r'Dangene and Jennie Enterprise?', re.IGNORECASE),
     DANNY_FROST: re.compile(r'Frost, Danny|frostd@dany.nyc.gov', re.IGNORECASE),
     DARREN_INDYKE: re.compile(r'darren$|darren [il]n[dq]_?yke?|dkiesq', re.IGNORECASE),
     DAVID_STERN: re.compile(r'David Stern?', re.IGNORECASE),
@@ -136,7 +165,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     GERALD_BARTON: re.compile(r'Gerald.*Barton', re.IGNORECASE),
     GHISLAINE_MAXWELL: re.compile(r'g ?max(well)?|Ghislaine|Maxwell', re.IGNORECASE),
     'Google Alerts': re.compile(r'google\s?alerts', re.IGNORECASE),
-    'Heather Mann': re.compile(r'Heather Man', re.IGNORECASE),
+    'Heather Mann': re.compile(r'Heather Mann?', re.IGNORECASE),
     'Intelligence Squared': re.compile(r'intelligence\s*squared', re.IGNORECASE),
     JACKIE_PERCZEK:  re.compile(r'jackie percze[kl]?', re.IGNORECASE),
     JABOR_Y: re.compile(r'[ji]abor\s*y?', re.IGNORECASE),
@@ -216,7 +245,7 @@ EMAILERS = [
     DAVID_SCHOEN,
     DEEPAK_CHOPRA,
     GLENN_DUBIN,
-    'Gordon Getty',
+    GORDON_GETTY,
     'Jack Lang',
     JAY_LEFKOWITZ,
     JES_STALEY,
@@ -433,7 +462,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '033486': [JEFFREY_EPSTEIN, DARREN_INDYKE, RICHARD_KAHN],  # OCR
     '033156': [JEFFREY_EPSTEIN, DARREN_INDYKE, RICHARD_KAHN],  # OCR
     '029154': [JEFFREY_EPSTEIN, DAVID_HAIG],         # Bad OCR
-    '029498': [JEFFREY_EPSTEIN, DAVID_HAIG, 'Gordon Getty', 'Norman Finkelstein'],      # Bad OCR
+    '029498': [JEFFREY_EPSTEIN, DAVID_HAIG, GORDON_GETTY, 'Norman Finkelstein'],      # Bad OCR
     '029889': [JEFFREY_EPSTEIN, JACK_GOLDBERGER, ROBERT_D_CRITTON, 'Connie Zaguirre'],  # Bad OCR
     '028931': [JEFFREY_EPSTEIN, LAWRENCE_KRAUSS],    # Bad OCR
     '019407': [JEFFREY_EPSTEIN, MICHAEL_SITRICK],    # Bad OCR
@@ -626,35 +655,6 @@ SUPPRESS_OUTPUT_FOR_EMAIL_IDS = {
     '030592': 'the same as 030339',
     '031129': 'the same as 029977',
     '033561': 'the same as 033157',
-}
-
-HEADER_ABBREVIATIONS = {
-    "AD": "Abu Dhabi",
-    "Barak": "Ehud Barak (Former Israeli prime minister)",
-    "Barrack": "Tom Barrack (Trump ally)",
-    'BG': "Bill Gates",
-    'Bill': "Bill Gates",
-    "Brock": 'Brock Pierce (crypto bro with a very sordid past)',
-    "DB": "Deutsche Bank (maybe??)",
-    'HBJ': "Hamad bin Jassim (former Qatari prime minister)",
-    'Jabor': '"an influential man in Qatar"',
-    'Jared': "Jared Kushner",
-    'Jagland': 'Thorbjørn Jagland (former Norwegian prime minister)',
-    'Jeffrey Wernick': 'Right wing crypto bro',
-    'Joi': 'Joi Ito (MIT Media Lab)',
-    "Hoffenberg": "Steven Hoffenberg (Epstein's ponzi scheme partner)",
-    'KSA': "Kingdom of Saudi Arabia",
-    'Kurz': 'Sebastian Kurz (former Austrian Chancellor)',
-    'Kwok': "Chinese criminal Miles Kwok AKA Miles Guo AKA Guo Wengui",
-    'Mapp': f'{KENNETH_E_MAPP} (Governor Virgin Islands)',
-    'Masa': 'Masayoshi Son (Softbank)',
-    'MBS': "Mohammed bin Salman Al Saud (Saudi ruler)",
-    'MBZ': "Mohamed bin Zayed Al Nahyan (Emirates sheikh)",
-    "Miro": MIROSLAV_LAJCAK,
-    "Mooch": "Anthony 'The Mooch' Scaramucci (Skybridge crypto bro)",
-    "Terje": TERJE_ROD_LARSEN,
-    "Woody": "Woody Allen",
-    "Zug": "City in Switzerland (crypto hub)",
 }
 
 NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [

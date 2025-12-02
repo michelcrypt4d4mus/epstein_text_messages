@@ -226,7 +226,7 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
     'Connie Zaguirre',                       # Random CC
     'Dan Fleuette',                          # CC from sean bannon
     'Danny Goldberg',                        # Random Paul Krassner emails
-    'Gordon Getty',                          # Random CC
+    GORDON_GETTY,                            # Random CC
     'Jeff Fuller',                           # Random Jean Luc Brunel CC
     'Jojo Fontanilla',                       # Random CC
     'Joseph Vinciguerra',                    # Random CC
