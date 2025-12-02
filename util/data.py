@@ -2,13 +2,13 @@ import itertools
 import re
 from typing import TypeVar
 
-MULTINEWLINE_REGEX = re.compile(r"\n{3,}")
+MULTINEWLINE_REGEX = re.compile(r"\n{2,}")
 
 T = TypeVar('T')
 
 
 def collapse_newlines(text: str) -> str:
-    return MULTINEWLINE_REGEX.sub('\n\n\n', text)
+    return MULTINEWLINE_REGEX.sub('\n\n', text)
 
 
 def flatten(_list: list[list[T]]) -> list[T]:
