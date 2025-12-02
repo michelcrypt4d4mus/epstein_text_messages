@@ -26,6 +26,10 @@ class EmailHeader:
     importance: str | None = None
     attachments: str | None = None
     to: list[str] | None = None
+    was_initially_empty: bool = False
+
+    def __post_init__(self):
+        self.was_initially_empty = self.is_empty()
 
     def as_dict(self) -> dict[str, str | None]:
         """Remove 'field_names' field."""

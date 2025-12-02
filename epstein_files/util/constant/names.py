@@ -1,3 +1,6 @@
+# no trailing periods! (messes up regexes)
+UNKNOWN = '(unknown)'
+
 # Texting Names
 ANIL_AMBANI = "Anil Ambani"
 DEFAULT = 'default'
@@ -13,10 +16,9 @@ SOON_YI = 'Soon-Yi Previn'
 STEVE_BANNON = 'Steve Bannon'
 STEVEN_SINOFSKY = 'Steven Sinofsky'
 TERJE_ROD_LARSEN = 'Terje Rød-Larsen'
-UNKNOWN = '(unknown)'
+
 
 # Email Names
-# TODO: no trailing periods!
 AL_SECKEL = 'Al Seckel'
 ALAN_DERSHOWITZ = 'Alan Dershowitz'
 ALIREZA_ITTIHADIEH = 'Alireza Ittihadieh'
@@ -43,9 +45,9 @@ DAVID_SCHOEN = 'David Schoen'
 DAVID_HAIG = 'David Haig'
 DAVID_INGRAM = 'David Ingram'
 DAVID_STERN = 'David Stern'
+DIANE_ZIMAN = 'Diane Ziman'
 DEBBIE_FEIN = 'Debbie Fein'
 DEEPAK_CHOPRA = 'Deepak Chopra'
-DIANE_ZIMAN = 'Diane Ziman'
 DONALD_TRUMP = 'Donald Trump'
 EDUARDO_ROBLES = 'Eduardo Robles'
 EDWARD_EPSTEIN = 'Edward Epstein'
@@ -146,19 +148,19 @@ VINIT_SAHNI = 'Vinit Sahni'
 
 NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Al', 'Allen', 'Amanda', 'Andres', 'Andrew',
-    'Black', 'Brad',
-    'Daniel', 'Darren', 'David',
+    'Bill', 'Black', 'Brad',
+    'Daniel', 'Darren', 'Dave', 'David',
     'Edwards', 'Epstein', 'Eric', 'Etienne',
     'Fred',
     'Jack', 'Jay', 'Jean', 'Jeff', 'jeffrey', 'Jeremy', 'jessica', 'John', 'Jon', 'Jonathan', 'Joseph', 'Jr',
     'Kahn', 'Katherine',
     'Leon', 'Lesley', 'Linda', 'Link',
-    'Marc', 'Martin', 'Melanie', 'Michael', 'Mike', 'Miller',
+    'Marc', 'Martin', 'Melanie', 'Michael', 'Mike', 'Miller', 'Moskowitz',
     'Neal', 'New',
     'Paul', 'Paula', 'Pen', 'Peter',
     'Reid', 'Richard', 'Robert', 'Roger', 'Roth', 'Rubin',
     'Scott', 'Sean', 'Stern', 'Stephen', 'Steve', 'Steven', 'Stone', 'Susan',
-    'The', 'Thomas', 'Tim', 'Tom',
+    'The', 'Thomas', 'Tim', 'Tom', 'Tyler',
     'Victor',
     "Y",
 ]]

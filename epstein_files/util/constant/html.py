@@ -30,7 +30,6 @@ CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 </html>
 """
 
-
 # Swap black for white
 HTML_TERMINAL_THEME = TerminalTheme(
     (0, 0, 0),
