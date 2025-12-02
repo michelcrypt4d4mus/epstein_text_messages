@@ -12,7 +12,7 @@ from rich.padding import Padding
 from rich.table import Table
 from rich.text import Text
 
-from documents.document import Document
+from documents.document import Document, SearchResult
 from documents.email import DETECT_EMAIL_REGEX, JUNK_EMAILERS, USELESS_EMAILERS, Email
 from documents.email_header import AUTHOR
 from documents.messenger_log import MSG_REGEX, MessengerLog, sender_counts
@@ -142,6 +142,17 @@ class EpsteinFiles:
         documents = self.all_documents() if file_type == 'all' else self.other_files
         return flatten([doc.lines_matching_txt(patternize(_pattern)) for doc in documents])
 
+    def docs_matching(self, _pattern: re.Pattern | str, file_type: Literal['all', 'other'] = 'all') -> list[SearchResult]:
+        results: list[SearchResult] = []
+
+        for doc in (self.all_documents() if file_type == 'all' else self.other_files):
+            lines = doc.lines_matching_txt(patternize(_pattern))
+
+            if len(lines) > 0:
+                results.append(SearchResult(doc, lines))
+
+        return results
+
     def attributed_email_count(self) -> int:
         return sum([i for author, i in self.email_author_counts.items() if author != UNKNOWN])
 
@@ -253,7 +264,7 @@ class EpsteinFiles:
         table.add_column('First Few Lines', justify='left', style='pale_turquoise4')
 
         for doc in sorted(self.other_files, key=lambda document: document.filename):
-            table.add_row(doc.archive_link_txt(), f"{doc.length:,}", doc.highlighted_preview_text())
+            table.add_row(doc.raw_document_link(), f"{doc.length:,}", doc.highlighted_preview_text())
 
         console.print(table)
 

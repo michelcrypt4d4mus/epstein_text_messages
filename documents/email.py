@@ -291,17 +291,17 @@ class Email(CommunicationDocument):
 
         self.timestamp = self._extract_sent_at()
         self.author_lowercase = self.author.lower() if self.author else None
-        self.author_style = get_style_for_name(self.author or UNKNOWN)
-        self.author_txt = Text(self.author or UNKNOWN, style=self.author_style)
+        self.author_str = self.author or UNKNOWN
+        self.author_style = get_style_for_name(self.author_str)
+        self.author_txt = Text(self.author_str, style=self.author_style)
         self.epsteinify_link_markup = make_epsteinify_doc_link_markup(self.file_path.stem, self.author_style)
         self.sent_from_device = self._sent_from_device()
 
     def description(self) -> Text:
         if is_fast_mode:
             return Text(self.filename)
-        else:
-            info_str = f"Email (author='{self.author}', recipients={self.recipients}, timestamp='{self.timestamp}')"
-            return Text(info_str)
+
+        return super().description()
 
     def idx_of_nth_quoted_reply(self, n: int = 2, text: str | None = None) -> int | None:
         """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line."""
@@ -488,7 +488,7 @@ class Email(CommunicationDocument):
             yield txt.append(' (which is shown)\n')
             return
 
-        yield Panel(self.archive_link_txt(), border_style=self._border_style(), expand=False)
+        yield Panel(self.raw_document_link(), border_style=self._border_style(), expand=False)
         info_line = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(f' to ')
         info_line.append(self.recipient_txt).append(highlighter(f" probably sent at {self.timestamp}"))
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))

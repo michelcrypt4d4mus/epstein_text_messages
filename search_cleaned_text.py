@@ -7,6 +7,7 @@ environ.setdefault('FAST', 'true')
 from dotenv import load_dotenv
 load_dotenv()
 from rich.console import Console
+from rich.panel import Panel
 
 from documents.epstein_files import EpsteinFiles
 from util.env import args
@@ -23,5 +24,9 @@ for search_term in args.positional_args:
     search_type = 'other' if args.search_other else 'all'
     print_section_header(f"Searching {search_type} documents for '{search_term}'")
 
-    for line in epstein_files.lines_matching(search_term, search_type):
-        console.print(line)
+    for search_result in epstein_files.docs_matching(search_term, search_type):
+        console.line(2)
+        console.print(Panel(search_result.document.description(), expand=False))
+
+        for line in search_result.lines:
+            console.print(line)

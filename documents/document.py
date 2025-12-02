@@ -68,7 +68,7 @@ class Document:
         self.epstein_web_doc_url = esptein_web_doc_url(self.url_slug)
         self.epstein_web_doc_link_markup = make_link_markup(self.epstein_web_doc_url, self.file_path.stem)
 
-    def archive_link_txt(self, style: str = '', include_alt_link: bool = False) -> Text:
+    def raw_document_link(self, style: str = '', include_alt_link: bool = False) -> Text:
         txt = Text('', style='white' if include_alt_link else ARCHIVE_LINK_COLOR)
 
         if args.use_epstein_web_links:
@@ -90,6 +90,16 @@ class Document:
 
     def count_regex_matches(self, pattern: str) -> int:
         return len(re.findall(pattern, self.text))
+
+    def description(self) -> Text:
+        doc_type = str(type(self).__name__)
+        txt = Text('').append(self.file_path.stem, style='bright_green').append(f' {doc_type} (')
+        txt.append(f"num_lines={self.num_lines}, length={self.length}")
+
+        if doc_type == 'Document':
+            txt.append(')')
+
+        return txt
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         return make_link(self.epsteinify_doc_url, link_txt or self.file_path.stem, style)
@@ -201,6 +211,7 @@ class Document:
 @dataclass
 class CommunicationDocument(Document):
     author: str | None = field(init=False)
+    author_str: str = field(init=False)
     author_style: str = field(init=False)
     author_txt: Text = field(init=False)
     timestamp: datetime = field(init=False)
@@ -208,9 +219,21 @@ class CommunicationDocument(Document):
     def __post_init__(self):
         super().__post_init__()
 
+    def description(self) -> Text:
+        txt = super().description()
+        txt.append(f", author='").append(self.author_str, style=self.author_style).append("'")
+        txt.append(f", timestamp='{self.timestamp}')")
+        return txt
+
+    def raw_document_link(self, _style: str = '', include_alt_link: bool = True) -> Text:
+        """Overrides super() method to apply style"""
+        return super().raw_document_link(self.author_style, include_alt_link=include_alt_link)
+
     def timestamp_without_seconds(self) -> str:
         return TIMESTAMP_SECONDS_REGEX.sub('', str(self.timestamp))
 
-    def archive_link_txt(self, _style: str = '', include_alt_link: bool = True) -> Text:
-        """Overrides super() method to apply style"""
-        return super().archive_link_txt(self.author_style, include_alt_link=include_alt_link)
+
+@dataclass
+class SearchResult:
+    document: Document
+    lines: list[Text]
