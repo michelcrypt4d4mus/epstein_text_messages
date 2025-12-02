@@ -101,7 +101,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='bitcoin',
         style='orange1 bold',
-        pattern=r'bitcoin|block ?chain( capital)?|Brock|coins|cr[iy]?pto(currency)?|e-currency|(Howard\s+)?Lutnick|(jeffrey\s+)?wernick|Libra|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)',
+        pattern=r'Balaji|bitcoin|block ?chain( capital)?|Brock|coins|cr[iy]?pto(currency)?|e-currency|(Howard\s+)?Lutnick|(jeffrey\s+)?wernick|Libra|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)',
         emailers = {
             JEREMY_RUBIN: 'developer/researcher',
             SCARAMUCCI: None,
@@ -112,6 +112,7 @@ HIGHLIGHTED_GROUPS = [
         style='tan',
         emailers = {
             JONATHAN_FARKAS: None,
+            'Peter Thomas Roth': 'student of Epstein at Dalton, skincare company founder',
             TOM_BARRACK: 'long time friend of Trump',
         }
     ),
@@ -240,11 +241,12 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='lawyer',
         style='medium_purple2',
-        pattern=r'(Erika\s+)?Kellerhals|Michael J. Pike|Paul\sWeiss|Roy Black|Wein(berg|garten)',
+        pattern=r'(Erika\s+)?Kellerhals|Michael J. Pike|Paul,?\s*Weiss|Roy Black|Wein(berg|garten)',
         emailers = {
             BENNET_MOSKOWITZ: None,
-            DARREN_INDYKE: ESTATE_EXECUTOR,
+            'Brad Edwards': None,
             BRAD_KARP: None,
+            DARREN_INDYKE: ESTATE_EXECUTOR,
             DAVID_STERN: None,
             DAVID_SCHOEN: None,
             DEBBIE_FEIN: None,
@@ -276,6 +278,7 @@ HIGHLIGHTED_GROUPS = [
         style='light_coral',
         pattern=r'[BR]ob Crowe|Stanley Rosenberg',
         emailers = {
+            'Joshua Cooper Ramo': 'co-CEO of Kissinger Associates',
             KATHERINE_KEATING: 'Daughter of former Australian PM',
             MOHAMED_WAHEED_HASSAN: 'former president of the Maldives',
             OLIVIER_COLOM: 'France',
@@ -311,6 +314,7 @@ HIGHLIGHTED_GROUPS = [
         pattern='FBI|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|Police Code Enforcement|Strzok',
         emailers = {
             ANN_MARIE_VILLAFANA: None,
+            DANNY_FROST: 'Director of Communications at Manhattan DA',
         }
     ),
     HighlightedGroup(
@@ -376,7 +380,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='trump',
         style='red3 bold',
-        pattern=r"@?realDonaldTrump|DJT|(Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)(?! Rubin)|Mar[- ]*a[- ]*Lago|(Matt(hew)? )?Calamari|\bMatt C\b|Roger\s+Stone",
+        pattern=r"@?realDonaldTrump|DJT|(Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)(?! Rubin)|Mar[- ]*a[- ]*Lago|(Matt(hew)? )?Calamari|\bMatt C\b|Melania|Roger\s+Stone",
     ),
     HighlightedGroup(
         label='victim',
