@@ -1,3 +1,4 @@
+from epstein_files.documents.email import Email
 from epstein_files.util.data import dict_sets_to_lists
 
 EMAIL_AUTHOR_COUNTS = {
@@ -961,6 +962,24 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ]
 }
 
+SIGNATURE_SUBSTITUTION_COUNTS = {
+    "(unknown)": 2,
+    "Danny Frost": 16,
+    "Darren Indyke": 52,
+    "David Ingram": 11,
+    "Deepak Chopra": 21,
+    "Jeffrey Epstein": 3363,
+    "Jessica Cadwell": 43,
+    "Lawrence Krauss": 82,
+    "Martin Weinberg": 23,
+    "Paul Barrett": 19,
+    "Peter Mandelson": 10,
+    "Richard Kahn": 122,
+    "Susan Edelman": 18,
+    "Terry Kafka": 10,
+    "Tonja Haddad Coleman": 16
+}
+
 
 def test_email_counts(epstein_files):
     author_counts = {k: v for k, v in EMAIL_AUTHOR_COUNTS.items() if v > 0}
@@ -972,3 +991,4 @@ def test_email_counts(epstein_files):
 def test_signatures(epstein_files):
     assert AUTHORS_TO_DEVICE_SIGNATURES == dict_sets_to_lists(epstein_files.email_author_device_signatures)
     assert DEVICE_SIGNATURE_TO_AUTHORS == dict_sets_to_lists(epstein_files.email_sent_from_devices)
+    assert SIGNATURE_SUBSTITUTION_COUNTS == Email.signature_substitution_counts

@@ -184,7 +184,7 @@ def print_color_key(key_type: Literal["Groups", "People"] = "Groups") -> None:
 def print_json(label: str, obj: object) -> None:
     console.line()
     console.print(Panel(label, expand=False))
-    console.print_json(json.dumps(obj, indent=4, sort_keys=True))
+    console.print_json(json.dumps(obj, sort_keys=True), indent=4)
     console.line()
 
 
