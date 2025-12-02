@@ -34,7 +34,6 @@ EMAIL_REGEX = re.compile(r'From: (.*)')
 EMAIL_HEADER_REGEX = re.compile(r'^(((Date|Subject):.*\n)*From:.*\n((Date|Sent|To|CC|Importance|Subject|Attachments):.*\n)+)')
 DETECT_EMAIL_REGEX = re.compile('^(From:|.*\nFrom:|.*\n.*\nFrom:)')
 BAD_EMAILER_REGEX = re.compile(r'^>|agreed|ok|sexy|rt|re:|fwd:|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|hysterical|i have|image0|so that people|article 1.?|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
-EMPTY_HEADER_REGEX = re.compile(r'^\s*From:\s*\n((Date|Sent|To|CC|Importance|Subject|Attachments):\s*\n)+')
 
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re.DOTALL)
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
@@ -115,7 +114,7 @@ TRUNCATE_ALL_EMAILS_FROM = [
     'Skip Rimer',
 ]
 
-# These are long forwarded articles we don't want to display over and over
+# These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
 TRUNCATE_TERMS = [
     'The rebuilding of Indonesia',
     'Dominique Strauss-Kahn',
@@ -208,16 +207,14 @@ TRUNCATE_TERMS = [
     'The raw materials for that period include interviews',
 ]
 
+# Invalid for links to EpsteinWeb
 JUNK_EMAILERS = [
-    'asmallworld@travel.asmallworld.net',    # Promo travel stuff
-    'digest-noreply@quora.com',
-    'editorialstaff@flipboard.com',
     'How To Academy',
     'Jokeland',
     'Saved by Internet Explorer 11',
 ]
 
-# No point in ever displaying these
+# No point in ever displaying these; their emails show up elsewhere because they're mostly CC recipients
 USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
                    PAUL_KRASSNER_MANSON_RECIPIENTS + \
                    FLIGHT_IN_2012_PEOPLE + [
@@ -342,8 +339,8 @@ class Email(CommunicationDocument):
         return style.replace('bold', '')
 
     def _cleaned_up_text(self) -> str:
-        # add newline after header if header looks valid
-        if not EMPTY_HEADER_REGEX.search(self.text):
+        # add newline after header if header wasn't empty
+        if not self.header.was_initially_empty:
             text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', self.text).strip()
         else:
             text = self.text
