@@ -88,7 +88,7 @@ HIGHLIGHTED_GROUPS = [
             ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
             AMANDA_ENS: None,
             DANIEL_SABBA: 'UBS Investment Bank',
-            'David Fiszel': 'CIO Honeycomb Asset Management'
+            'David Fiszel': 'CIO Honeycomb Asset Management',
             JES_STALEY: 'former CEO of Barclays',
             JIDE_ZEITLIN: 'former partner at Goldman Sachs, allegations of sexual misconduct',
             LEON_BLACK: 'Apollo CEO',
@@ -125,7 +125,7 @@ HIGHLIGHTED_GROUPS = [
             BARBRO_EHNBOM: 'Swedish pharmaceuticals',
             BORIS_NIKOLIC: f'Biotech VC, {ESTATE_EXECUTOR}',
             NICHOLAS_RIBIS: 'Hilton CEO',
-            ROBERT_LAWRENCE_KUHN: None,
+            ROBERT_LAWRENCE_KUHN: "investment banker, China expert",
             STEPHEN_HANSON: None,
             TERRY_KAFKA: 'CEO of Impact Outdoor (highway billboards)',
             TOM_PRITZKER: 'brother of J.B. Pritzker',
@@ -401,6 +401,13 @@ HIGHLIGHTED_GROUPS = [
 
     # Individuals
     HighlightedGroup(
+        emailers={
+            ARIANE_DE_ROTHSCHILD: 'Rothschild family',
+            JOHNNY_EL_HACHEM: f'Works with {ARIANE_DE_ROTHSCHILD}',
+        },
+        style='indian_red'
+    ),
+    HighlightedGroup(
         label=STEVE_BANNON,
         info='War Room',
         style='color(58)',
@@ -418,7 +425,6 @@ HIGHLIGHTED_GROUPS = [
         style='gold3'
     ),
     HighlightedGroup(emailers={JABOR_Y: HEADER_ABBREVIATIONS['Jabor']}, style='spring_green1'),
-    HighlightedGroup(emailers={ARIANE_DE_ROTHSCHILD: 'Rothschild family'}, style='indian_red'),
     HighlightedGroup(emailers={GHISLAINE_MAXWELL: None}, pattern='gmax(1@ellmax.com)?', style='deep_pink3'),
     HighlightedGroup(emailers={JEFFREY_EPSTEIN: None}, pattern='Mark (L. )?Epstein', style='blue1'),
     HighlightedGroup(emailers={JOI_ITO: 'former head of MIT Media Lab'}, style='gold1'),
