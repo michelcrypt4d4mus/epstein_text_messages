@@ -139,10 +139,6 @@ class EpsteinFiles:
     def imessage_msg_count(self) -> int:
         return sum([log.msg_count for log in self.imessage_logs])
 
-    def lines_matching(self, _pattern: re.Pattern | str, file_type: Literal['all', 'other'] = 'all') -> list[str | Text]:
-        documents = self.all_documents() if file_type == 'all' else self.other_files
-        return flatten([doc.lines_matching_txt(patternize(_pattern)) for doc in documents])
-
     def docs_matching(self, _pattern: re.Pattern | str, file_type: Literal['all', 'other'] = 'all') -> list[SearchResult]:
         results: list[SearchResult] = []
 
