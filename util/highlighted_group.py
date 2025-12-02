@@ -85,7 +85,7 @@ HIGHLIGHTED_GROUPS = [
         style='green',
         pattern=r'Apollo|Black(rock|stone)|DB|Deutsche\s*Bank|Goldman( ?Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|Merrill\s+Lynch|Morgan Stanley|j\.?p\.?\s*morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com',
         emailers={
-            AMANDA_ENS: None,
+            AMANDA_ENS: 'Citigroup',
             DANIEL_SABBA: 'UBS Investment Bank',
             'David Fiszel': 'CIO Honeycomb Asset Management',
             JES_STALEY: 'former CEO of Barclays',
@@ -95,7 +95,7 @@ HIGHLIGHTED_GROUPS = [
             MELANIE_SPINELLA: f'representative of {LEON_BLACK}',
             MORTIMER_ZUCKERMAN: 'business partner of Epstein',
             PAUL_BARRETT: None,
-            PAUL_MORRIS: None,
+            PAUL_MORRIS: 'Deutsche Bank',
         }
     ),
     HighlightedGroup(
@@ -104,7 +104,7 @@ HIGHLIGHTED_GROUPS = [
         pattern=r'Balaji|bitcoin|block ?chain( capital)?|Brock|coins|cr[iy]?pto(currency)?|e-currency|(Howard\s+)?Lutnick|(jeffrey\s+)?wernick|Libra|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)',
         emailers = {
             JEREMY_RUBIN: 'developer/researcher',
-            SCARAMUCCI: None,
+            SCARAMUCCI: 'Skybridge Capital, FTX investor',
         },
     ),
     HighlightedGroup(
@@ -127,6 +127,7 @@ HIGHLIGHTED_GROUPS = [
             BORIS_NIKOLIC: f'Biotech VC, {ESTATE_EXECUTOR}',
             FRED_HADDAD: "co-founder of Heck's in West Virginia",
             NICHOLAS_RIBIS: 'Hilton CEO',
+            'Philip Kafka': 'president of Prince Concepts (and son of Terry Kafka?)',
             ROBERT_LAWRENCE_KUHN: "investment banker, China expert",
             TERRY_KAFKA: 'CEO of Impact Outdoor (highway billboards)',
             TOM_PRITZKER: 'brother of J.B. Pritzker',
@@ -142,7 +143,7 @@ HIGHLIGHTED_GROUPS = [
         style='dark_goldenrod',
         pattern='Carolyn Rangel',
         emailers = {
-            DEEPAK_CHOPRA: None,
+            DEEPAK_CHOPRA: 'woo woo',
         }
     ),
     HighlightedGroup(
@@ -199,7 +200,9 @@ HIGHLIGHTED_GROUPS = [
         pattern=r'Harvard',
         emailers = {
             LARRY_SUMMERS: 'board member of Digital Currency Group (DCG), Obama economic advisor',
+            'Leah Reis-Dennis': 'producer for Poetry in America',
             LISA_NEW: 'poetry',
+            'Lisa Randall': 'theoretical physicist',
             MARTIN_NOWAK: None,
         }
     ),
@@ -407,7 +410,7 @@ HIGHLIGHTED_GROUPS = [
         style='sea_green1',
         pattern=r'Bahamas|Cecile de Jongh|(Kenneth E\. )?Mapp|Virgin\s*Islands',
         emailers = {
-            STACEY_PLASKETT: 'non-voting representative of VI in Congress',
+            STACEY_PLASKETT: 'non-voting member of Congress',
             KENNETH_E_MAPP: 'Governor',
         }
     ),
@@ -446,7 +449,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(emailers={JOI_ITO: 'former head of MIT Media Lab'}, style='gold1'),
     HighlightedGroup(emailers={KATHY_RUEMMLER: 'former Obama legal counsel'}, style='magenta2'),
     HighlightedGroup(emailers={MELANIE_WALKER: 'Doctor'}, style='pale_violet_red1'),
-    HighlightedGroup(emailers={PAULA: None}, style='pink1'),
+    HighlightedGroup(emailers={PAULA: 'Epstein niece?'}, style='pink1'),
     HighlightedGroup(emailers={PRINCE_ANDREW: 'British royal family'}, style='dodger_blue1'),
     HighlightedGroup(emailers={SOON_YI: "Woody Allen's wife"}, style='hot_pink'),
     HighlightedGroup(emailers={SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of the ports in Dubai'}, style='green1'),
