@@ -401,8 +401,9 @@ HIGHLIGHTED_GROUPS = [
 
     # Individuals
     HighlightedGroup(
+        label='Rothschild family',
         emailers={
-            ARIANE_DE_ROTHSCHILD: 'Rothschild family',
+            ARIANE_DE_ROTHSCHILD: None,
             JOHNNY_EL_HACHEM: f'Works with {ARIANE_DE_ROTHSCHILD}',
         },
         style='indian_red'
