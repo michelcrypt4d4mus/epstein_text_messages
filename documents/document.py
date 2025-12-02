@@ -251,9 +251,9 @@ class CommunicationDocument(Document):
 
     def description(self) -> Text:
         txt = super().description()
-        txt.append(f", author='").append(self.author_str, style=self.author_style).append("'")
-        txt.append(f", timestamp='{self.timestamp}')")
-        return txt
+        txt.append(f", author=").append(self.author_str, style=self.author_style)
+        txt.append(f", timestamp=").append(str(self.timestamp), style='dark_cyan')
+        return txt.append(')')
 
     def raw_document_link_txt(self, _style: str = '', include_alt_link: bool = True) -> Text:
         """Overrides super() method to apply style"""
