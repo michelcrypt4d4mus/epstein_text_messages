@@ -774,8 +774,6 @@ SUPPRESS_OUTPUT_FOR_EMAIL_IDS = {
     '033561': 'the same as 033157',
 }
 
-MARTIN_WEINBERG_ADDRESS_PATTERN = r"Martin G. Weinberg, Esq.\n20 Park Plaza, Suite 1000\nBoston, MA 02116(\n61.*)?(\n.*([cC]ell|Office))*"
-
 HEADER_ABBREVIATIONS = {
     "AD": "Abu Dhabi",
     "Barak": "Ehud Barak (Former Israeli prime minister)",
@@ -828,7 +826,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
 # External site names
 EPSTEIN_WEB = 'EpsteinWeb'.lower()
 EPSTEINIFY = 'epsteinify'
-JMAIL = 'jmail'
+JMAIL = 'Jmail'
 
 # URLs
 ATTRIBUTIONS_URL = 'https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/util/constants.py'

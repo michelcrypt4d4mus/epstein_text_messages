@@ -39,10 +39,15 @@ SKIP_HEADER_ROW_REGEX = re.compile(r"^(agreed|call me|Hysterical|schwartman).*")
 UNDISCLOSED_RECIPIENTS_REGEX = re.compile(r'Undisclosed[- ]recipients:', re.IGNORECASE)
 
 MULTIPLE_SENDERS = 'Multiple Senders'
-BAD_FIRST_LINES = ['026652', '029835', '031189']
 MAX_CHARS_TO_PRINT = 4000
 VALID_HEADER_LINES = 14
 EMAIL_INDENT = 2
+
+BAD_FIRST_LINES = [
+    '026652',
+    '029835',
+    '031189'
+]
 
 KNOWN_TIMESTAMPS = {
     '028851': datetime(2014, 4, 27, 6, 00),
@@ -54,27 +59,30 @@ KNOWN_TIMESTAMPS = {
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r' Banno(r]?|\b)'): ' Bannon',
     re.compile(r'grnail\.com'): 'gmail.com',
-    re.compile(r'from my BlackBerry[0°] wireless device'): 'from my BlackBerry® wireless device',
     re.compile(r'gmax ?[1l] ?[@g]ellmax.c ?om'): 'gmax1@ellmax.com',
     re.compile(r"[ijlp']ee[vy]acation[©@a(&,P ]{1,3}g?mail.com"): 'jeevacation@gmail.com',
-    re.compile(r"^(From|To)(: )?[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",
+    re.compile(r"^(From|To)(: )?[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",  # Redacted email addresses
     'BlackBerry by AT &T': 'BlackBerry by AT&T',
     'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
-    "Sent from my 'Phone": 'Sent from my iPhone',
-    'Sent from Samsung Mob.le': 'Sent from Samsung Mobile',
-    'Sent from Mabfl': 'Sent from Mobile',
-    'Torn Pritzker': TOM_PRITZKER,
-    'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
-    'Miroslav Laj6ak': MIROSLAV_LAJCAK,
+    "from my 'Phone": 'from my iPhone',
+    'from Samsung Mob.le': 'from Samsung Mobile',
+    # These 3 must come in this order!
     re.compile(r'([/vkT]|Ai|li|(I|7)v)rote:'): 'wrote:',
     re.compile(r"([<>.=_HIM][<>.=_HIM14]{5,}[<>.=_HIM]|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
     re.compile(r"([,<>_]|AM|PM)\n(>)? ?wrote:?"): r'\1\2 wrote:',
     # TODO: are these necessary?
+    'Torn Pritzker': TOM_PRITZKER,
+    'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
+    'Miroslav Laj6ak': MIROSLAV_LAJCAK,
+    re.compile(r'from my BlackBerry[0°] wireless device'): 'from my BlackBerry® wireless device',
     'gJeremyRubin': '@JeremyRubin',
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
     re.compile(r"twitter\.com[i/][lI]krauss[1lt]"): "twitter.com/lkrauss1",
     'twitter glhsummers': 'twitter @lhsummers',
+    # 'Sent from Mabfl': 'Sent from Mobile',  # NADIA_MARCINKO signature bad OCR
 }
+
+MARTIN_WEINBERG_SIGNATURE_PATTERN = r"Martin G. Weinberg, Esq.\n20 Park Plaza, Suite 1000\nBoston, MA 02116(\n61.*)?(\n.*([cC]ell|Office))*"
 
 EMAIL_SIGNATURES = {
     DANNY_FROST: re.compile(r"Danny Frost\nDirector.*\nManhattan District.*\n212.*", re.IGNORECASE),
@@ -84,7 +92,7 @@ EMAIL_SIGNATURES = {
     JEFFREY_EPSTEIN: re.compile(r"((\*+|please note)\n+)?(> )?(• )?(» )?The information contained in this communication is\n(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?", re.DOTALL),
     JESSICA_CADWELL: re.compile(r"(f.*\n)?Certified Para.*\nFlorida.*\nBURMAN.*\n515.*\nSuite.*\nWest Palm.*", re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r"Lawrence (M. )?Krauss\n(Director.*\n)?(Co-director.*\n)?Foundation.*\nSchool.*\n(Co-director.*\n)?(and Director.*\n)?Arizona.*(\nResearch.*\nOri.*\n(krauss.*\n)?origins.*)?", re.IGNORECASE),
-    MARTIN_WEINBERG: re.compile(fr"({MARTIN_WEINBERG_ADDRESS_PATTERN}\n)?This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
+    MARTIN_WEINBERG: re.compile(fr"({MARTIN_WEINBERG_SIGNATURE_PATTERN}\n)?This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
     PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
     PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(142 W 57th Street, 11th Floor, New York, NY 10019?[\n\s]+)?(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
     RICHARD_KAHN: re.compile(r'Richard Kahn[\n\s]+HBRK Associates Inc.?[\n\s]+((301 East 66th Street, Suite 1OF|575 Lexington Avenue,? 4th Floor,?)[\n\s]+)?New York, (NY|New York) 100(22|65)([\n\s]+(Tel|Phone)( I)?[\n\s]+Fa[x"]?[\n\s]+[Ce]el?l?)?', re.IGNORECASE),

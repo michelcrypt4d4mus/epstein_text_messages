@@ -218,7 +218,7 @@ class EpsteinFiles:
         footer = f"Identified authors of {self.attributed_email_count()} emails out of {len(self.emails)} potential email files."
         counts_table = Table(title=f"Email Counts", caption=footer, header_style="bold")
         counts_table.add_column('Name', justify='left', style=DEFAULT_NAME_COLOR)
-        counts_table.add_column('Emails', justify='center')
+        counts_table.add_column('Count', justify='center')
         counts_table.add_column('Sent', justify='center')
         counts_table.add_column("Recv'd", justify='center')
         counts_table.add_column(JMAIL, justify='center')
