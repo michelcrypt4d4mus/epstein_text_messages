@@ -1,3 +1,8 @@
+from os import devnull
+
+import pytest
+from rich.console import Console
+
 from epstein_files.documents.messenger_log import sender_counts
 
 MESSENGER_LOG_AUTHOR_COUNTS = {
@@ -20,6 +25,14 @@ MESSENGER_LOG_AUTHOR_COUNTS = {
 }
 
 
+
 def test_message_counts(epstein_files):
+    # @pytest.mark.skip(reason="Messenger Log counts are only built when printed.")
+    with open(devnull, "wt") as null_out:
+        console = Console(file=null_out)
+
+        for log in epstein_files.imessage_logs:
+            console.print(log)
+
     assert len(epstein_files.imessage_logs) == 77
     assert MESSENGER_LOG_AUTHOR_COUNTS == {k: v for k, v in sender_counts.items()}
