@@ -21,6 +21,8 @@ from util.file_helper import OUTPUT_GH_PAGES_HTML
 from util.html import *
 from util.rich import *
 
+PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
+
 # Order matters (will be order of output)
 PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED_LIST = [
     JEREMY_RUBIN,
@@ -59,6 +61,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES_LIST = [
 
 
 started_at = time.perf_counter()
+emails_printed = 0
 print_header()
 
 if args.colors_only:
@@ -111,7 +114,11 @@ else:
     print_numbered_list_of_emailers(emailer_tables)
 
 for author in emailers_to_print:
-    epstein_files.print_emails_for(author)
+    emails_printed += epstein_files.print_emails_for(author)
+
+    if emails_printed > PRINT_COLOR_KEY_EVERY_N_EMAILS:
+        print_color_key()
+        emails_printed = 0
 
 if not args.all_emails and len(specified_emailers) == 0:
     print_author_header(f"Email Tables for {len(emailer_tables)} Other People", 'white')
@@ -120,7 +127,7 @@ if not args.all_emails and len(specified_emailers) == 0:
         epstein_files.print_emails_table_for(name)
 
 epstein_files.print_email_device_info()
-logger.warning(f"Printed emails in {(time.perf_counter() - checkpoint_at):.2f} seconds")
+logger.warning(f"Printed {len(epstein_files.emails)} emails in {(time.perf_counter() - checkpoint_at):.2f} seconds")
 checkpoint_at = time.perf_counter()
 
 
