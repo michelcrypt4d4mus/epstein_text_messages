@@ -91,7 +91,7 @@ HIGHLIGHTED_GROUPS = [
             JES_STALEY: 'former CEO of Barclays',
             JIDE_ZEITLIN: 'former partner at Goldman Sachs, allegations of sexual misconduct',
             LEON_BLACK: 'Apollo CEO',
-            MARC_LEON: None,
+            MARC_LEON: 'Luxury Properties Sari Morrocco',
             MELANIE_SPINELLA: f'representative of {LEON_BLACK}',
             MORTIMER_ZUCKERMAN: 'business partner of Epstein',
             PAUL_BARRETT: None,
@@ -176,10 +176,11 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='entertainer',
         style='light_steel_blue3',
-        pattern='Bobby slayton|David Blaine|Etienne Binant|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?',
+        pattern='Bobby slayton|Etienne Binant|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?',
         emailers={
             'Andres Serrano': "'Piss Christ' artist",
             BILL_SIEGEL: 'documentary film producer and director',
+            'David Blaine': 'magician',
             'Richard Merkin': 'painter, illustrator and arts educator',
         }
     ),
@@ -270,7 +271,7 @@ HIGHLIGHTED_GROUPS = [
         }
     ),
     HighlightedGroup(
-        label='executor_lawyer',
+        label='estate_executor',
         info='lawyer',
         style='purple3 bold',
         emailers = {
@@ -499,7 +500,11 @@ HIGHLIGHTED_GROUPS = [
     ),
 ]
 
-COLOR_KEYS = [h.colored_label() for h in HIGHLIGHTED_GROUPS if not h.is_multiline]
+COLOR_KEYS = [
+    h.colored_label()
+    for h in sorted(HIGHLIGHTED_GROUPS, key=lambda hg: hg.label)
+    if not h.is_multiline
+]
 
 
 def get_info_for_name(name: str) -> str | None:
