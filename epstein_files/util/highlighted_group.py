@@ -15,8 +15,6 @@ REGEX_STYLE_PREFIX = 'regex'
 NO_CATEGORY_LABELS = [BILL_GATES, STEVE_BANNON]
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w ]+$", re.IGNORECASE)
 
-safe_style_name = lambda label: label.lower().replace(' ', '_').replace('-', '_')
-
 
 @dataclass
 class HighlightedGroup:
@@ -33,13 +31,13 @@ class HighlightedGroup:
 
     def __post_init__(self):
         if not self.label:
-            if len(self.emailers) != 1:
-                raise RuntimeError(f"No label provided for {repr(self)}")
-            else:
+            if len(self.emailers) == 1:
                 self.label = [k for k in self.emailers.keys()][0]
                 self.has_no_category = True
+            else:
+                raise RuntimeError(f"No label provided for {repr(self)}")
 
-        self.style_suffix = safe_style_name(self.label)
+        self.style_suffix = self.label.lower().replace(' ', '_').replace('-', '_')
         self.style_name = f"{REGEX_STYLE_PREFIX}.{self.style_suffix}"
         patterns = [self.emailer_pattern(e) for e in self.emailers] + ([self.pattern] if self.pattern else [])
         pattern = '|'.join(patterns)
@@ -77,8 +75,6 @@ class HighlightedGroup:
             if SIMPLE_NAME_REGEX.match(last_name) and last_name.lower() not in NAMES_TO_NOT_HIGHLIGHT:
                 logger.info(f"Adding last name '{last_name}' to existing pattern '{pattern}'")
                 pattern += fr"|{last_name}"  # Include regex for last name
-            else:
-                logger.info(f"*NOT* adding last name '{last_name}' of '{name}' to pattern")
 
             return pattern
         elif ' ' not in name:
@@ -99,7 +95,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='finance',
         style='green',
-        pattern=r'Apollo|Black(rock|stone)|DB|Deutsche\s*Bank|Goldman(\s*Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|Merrill\s+Lynch|Morgan Stanley|j\.?p\.?\s*morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com',
+        pattern=r'Apollo|Black(rock|stone)|DB|Deutsche\s*Bank|Goldman(\s*Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|Merrill\s+Lynch|Morgan Stanley|j\.?p\.?\s*morgan( Chase)?|Chase Bank|Schwartz?man|us.gio@jpmorgan.com',
         emailers={
             AMANDA_ENS: 'Citigroup',
             DANIEL_SABBA: 'UBS Investment Bank',
@@ -152,7 +148,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='china',
         style='bright_red',
-        pattern=r"Beijing|CCP|Chin(a|ese)|Gino\s+Yu|Global Times|Guo|Jack\s+Ma|Kwok|Tai(pei|wan)|Peking|PRC|xi",
+        pattern=r"Beijing|CCP|Chin(a|ese)|Gino\s+Yu|Global Times|Guo|Jack\s+Ma|Kwok|Peking|PRC|Tai(pei|wan)|xi",
     ),
     HighlightedGroup(
         label='deepak_chopra',
@@ -168,7 +164,7 @@ HIGHLIGHTED_GROUPS = [
         pattern=r'Biden|((Bill|Hillart?y)\s*)?Clinton|DNC|George\s*Mitchell|(George\s*)?Soros|Hill?ary|Democrat(ic)?|(John\s*)?Kerry|Maxine\s*Waters|(Barac?k )?Obama|(Nancy )?Pelosi|Ron\s*Dellums',
     ),
     HighlightedGroup(
-        label='dubin family',
+        label='Dubin family',
         style='medium_orchid1',
         pattern='((Celina|Eva( Anderss?on)?|Glenn) )?Dubin',
         emailers = {
@@ -465,7 +461,7 @@ HIGHLIGHTED_GROUPS = [
     ),
     HighlightedGroup(emailers={GHISLAINE_MAXWELL: None}, pattern='gmax(1@ellmax.com)?', style='deep_pink3'),
     HighlightedGroup(emailers={JABOR_Y: HEADER_ABBREVIATIONS['Jabor']}, style='spring_green1'),
-    HighlightedGroup(emailers={JEFFREY_EPSTEIN: None}, pattern='Mark (L. )?Epstein', style='blue1'),
+    HighlightedGroup(emailers={JEFFREY_EPSTEIN: None}, pattern='Mark (L. )?Epstein|\bJEGE\b', style='blue1'),
     HighlightedGroup(emailers={JOI_ITO: 'former head of MIT Media Lab'}, style='gold1'),
     HighlightedGroup(emailers={KATHY_RUEMMLER: 'former Obama legal counsel'}, style='magenta2'),
     HighlightedGroup(emailers={MELANIE_WALKER: 'doctor'}, style='pale_violet_red1'),
@@ -520,9 +516,9 @@ HIGHLIGHTED_GROUPS = [
 ]
 
 COLOR_KEYS = [
-    h.colored_label()
-    for h in sorted(HIGHLIGHTED_GROUPS, key=lambda hg: hg.label)
-    if not h.is_multiline
+    highlight_group.colored_label()
+    for highlight_group in sorted(HIGHLIGHTED_GROUPS, key=lambda hg: hg.label)
+    if not highlight_group.is_multiline
 ]
 
 

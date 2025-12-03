@@ -1,27 +1,23 @@
-from os import devnull
-
-import pytest
-from rich.console import Console
-
 from epstein_files.documents.messenger_log import sender_counts
+from epstein_files.util.constant.names import *
 
 MESSENGER_LOG_AUTHOR_COUNTS = {
-    "(unknown)": 173,
-    "Anil Ambani": 22,
-    "Anthony Scaramucci": 57,
+    UNKNOWN: 173,
+    ANIL_AMBANI: 22,
+    SCARAMUCCI: 57,
     "Ards": 2,
-    "Celina Dubin": 46,
+    CELINA_DUBIN: 46,
     "Eva": 8,
-    "Jeffrey Epstein": 2560,
-    "Joi Ito": 10,
-    "Larry Summers": 29,
-    "Melanie Walker": 346,
-    "Michael Wolff": 7,
-    "Miroslav Lajčák": 56,
-    "Soon-Yi Previn": 28,
-    "Stacey Plaskett": 12,
-    "Steve Bannon": 1303,
-    "Terje Rød-Larsen": 9,
+    JEFFREY_EPSTEIN: 2560,
+    JOI_ITO: 10,
+    LARRY_SUMMERS: 29,
+    MELANIE_WALKER: 346,
+    MICHAEL_WOLFF: 7,
+    MIROSLAV_LAJCAK: 56,
+    SOON_YI: 28,
+    STACEY_PLASKETT: 12,
+    STEVE_BANNON: 1303,
+    TERJE_ROD_LARSEN: 9,
 }
 
 

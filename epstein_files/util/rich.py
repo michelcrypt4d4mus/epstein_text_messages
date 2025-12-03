@@ -176,8 +176,8 @@ def print_other_site_link(is_header: bool = True) -> None:
     site_type = EMAIL if args.all_emails else TEXT_MESSAGE
 
     if is_header:
-        site_type = wrap_in_markup_style(f"  ******* This is the Epstein {site_type.title()}s site *******  ", TITLE_STYLE)
-        print_centered(site_type)
+        label = f"  ******* This is the Epstein {site_type.title()}s site *******  "
+        print_centered(wrap_in_markup_style(label, TITLE_STYLE))
 
     other_site_type: SiteType = TEXT_MESSAGE if site_type == EMAIL else EMAIL
     other_site_msg = "there's a separate site for" + (' all of' if other_site_type == EMAIL else '')

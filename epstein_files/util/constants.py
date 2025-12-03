@@ -8,12 +8,24 @@ from dateutil.parser import parse
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_PREFIX
 
+# Misc
+FALLBACK_TIMESTAMP = parse("1/1/2001 12:01:01 AM")
+SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
+
+# Email replies (has to be here for circular dependencies reasons)
+REPLY_LINE_IN_A_MSG_PATTERN = r"In a message dated \d+/\d+/\d+.*writes:"
+REPLY_LINE_ENDING_PATTERN = r"[_ \n](AM|PM|[<_]|wrote:?)"
+REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"On \d+/\d+/\d+[, ].*{REPLY_LINE_ENDING_PATTERN}"
+REPLY_LINE_ON_DATE_PATTERN = fr"On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*).*{REPLY_LINE_ENDING_PATTERN}"
+FORWARDED_LINE_PATTERN = r"-+ ?(Forwarded|Original)\s*Message ?-*|Begin forwarded message:?"
+REPLY_LINE_PATTERN = rf"({REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
+REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE)
+
 HEADER_ABBREVIATIONS = {
     "AD": "Abu Dhabi",
     "Barak": "Ehud Barak (Former Israeli prime minister)",
     "Barrack": "Tom Barrack (Trump ally)",
-    'BG': "Bill Gates",
-    'Bill': "Bill Gates",
+    'BG, Bill': "Bill Gates",
     "Brock": 'Brock Pierce (crypto bro with a very sordid past)',
     "DB": "Deutsche Bank (maybe??)",
     'HBJ': "Hamad bin Jassim (former Qatari prime minister)",
@@ -36,19 +48,6 @@ HEADER_ABBREVIATIONS = {
     "Woody": "Woody Allen",
     "Zug": "City in Switzerland (crypto hub)",
 }
-
-# Misc
-FALLBACK_TIMESTAMP = parse("1/1/2001 12:01:01 AM")
-SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
-
-# Email replies (has to be here for circular dependencies reasons)
-REPLY_LINE_IN_A_MSG_PATTERN = r"In a message dated \d+/\d+/\d+.*writes:"
-REPLY_LINE_ENDING_PATTERN = r"[_ \n](AM|PM|[<_]|wrote:?)"
-REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"On \d+/\d+/\d+[, ].*{REPLY_LINE_ENDING_PATTERN}"
-REPLY_LINE_ON_DATE_PATTERN = fr"On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*).*{REPLY_LINE_ENDING_PATTERN}"
-FORWARDED_LINE_PATTERN = r"-+ ?(Forwarded|Original)\s*Message ?-*|Begin forwarded message:?"
-REPLY_LINE_PATTERN = rf"({REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
-REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE)
 
 KNOWN_IMESSAGE_FILE_IDS = {
     '031042': ANIL_AMBANI,       # Participants: field
@@ -89,7 +88,7 @@ GUESSED_IMESSAGE_FILE_IDS = {
     '027434': STEVE_BANNON,          # References Maher appearance
     '027764': STEVE_BANNON,
     '027428': STEVE_BANNON,          # References HBJ meeting on 9/28 from other Bannon/Epstein convo
-    '025436': 'Celina Dubin',
+    '025436': CELINA_DUBIN,
     '027576': MELANIE_WALKER,        # https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700
     '027141': MELANIE_WALKER,
     '027232': MELANIE_WALKER,

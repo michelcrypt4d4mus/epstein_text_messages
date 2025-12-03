@@ -31,7 +31,6 @@ DOC_TYPE_STYLES = {
     MESSENGER_LOG_CLASS: 'cyan',
 }
 
-# Takes ~1.1 seconds to apply these repairs
 OCR_REPAIRS = {
     re.compile(r'\.corn\b'): '.com',
     'lndyke': 'Indyke',
@@ -77,20 +76,13 @@ class Document:
         self.epstein_web_doc_url = epstein_web_doc_url(self.url_slug)
         self.epstein_web_doc_link_markup = link_markup(self.epstein_web_doc_url, self.file_path.stem)
 
-    def count_regex_matches(self, pattern: str) -> int:
-        return len(re.findall(pattern, self.text))
-
     def description(self) -> Text:
         doc_type = str(type(self).__name__)
         txt = Text('').append(self.file_path.stem, style='magenta')
-        txt.append(f' {doc_type} ', style=DOC_TYPE_STYLES[doc_type]).append(f"(num_lines=")
-        txt.append(f"{self.num_lines:,}", style='cyan').append(", size=")
-        txt.append(self.size_str(), style='aquamarine1')
-
-        if doc_type == DOCUMENT_CLASS:
-            txt.append(')')
-
-        return txt
+        txt.append(f' {doc_type} ', style=DOC_TYPE_STYLES[doc_type])
+        txt.append(f"(num_lines=").append(f"{self.num_lines:,}", style='cyan')
+        txt.append(", size=").append(self.size_str(), style='aquamarine1')
+        return txt.append(')') if doc_type == DOCUMENT_CLASS else txt
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         return link_text_obj(self.epsteinify_doc_url, link_txt or self.file_path.stem, style)
@@ -147,6 +139,7 @@ class Document:
         return txt
 
     def regex_repair_text(self, repairs: dict[str | re.Pattern, str], text: str) -> str:
+        """Apply a dict of repairs (key is pattern or string, value is replacement string) to text."""
         for k, v in repairs.items():
             if isinstance(k, re.Pattern):
                 text = k.sub(v, text)
@@ -174,6 +167,7 @@ class Document:
         return '\n'.join(self.lines[0:n])
 
     def write_clean_text(self, output_path: Path) -> None:
+        """Write self.text to 'output_path'."""
         if output_path.exists():
             if str(output_path.name).startswith(HOUSE_OVERSIGHT_PREFIX):
                 raise RuntimeError(f"'{output_path}' already exists! Not overwriting.")
@@ -247,7 +241,7 @@ class CommunicationDocument(Document):
         return txt.append(')')
 
     def raw_document_link_txt(self, _style: str = '', include_alt_link: bool = True) -> Text:
-        """Overrides super() method to apply style"""
+        """Overrides super() method to apply author_style."""
         return super().raw_document_link_txt(self.author_style, include_alt_link=include_alt_link)
 
     def timestamp_without_seconds(self) -> str:
