@@ -11,5 +11,5 @@ from epstein_files.util.rich import console
 epstein_files = EpsteinFiles()
 
 for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
-    # print(f"{email.file_id},{email.timestamp}")
-    console.print(Text(email.file_id + ": ").append(str(email.recipients)))
+    print(f"{email.file_id},{email.timestamp}")
+    # console.print(Text(email.file_id + ": ").append(str(email.recipients)))

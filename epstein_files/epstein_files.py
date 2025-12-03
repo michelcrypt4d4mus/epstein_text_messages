@@ -18,7 +18,7 @@ from epstein_files.documents.email_header import AUTHOR
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog, sender_counts
 from epstein_files.util.constant.urls import EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url, search_jmail_url, search_twitter_url
 from epstein_files.util.constants import *
-from epstein_files.util.data import dict_sets_to_lists, flatten, patternize
+from epstein_files.util.data import dict_sets_to_lists, patternize
 from epstein_files.util.env import args, is_debug, logger
 from epstein_files.util.file_helper import DOCS_DIR, move_json_file
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
@@ -102,6 +102,9 @@ class EpsteinFiles:
     def all_emailer_counts(self) -> dict[str, int]:
         return {e: self.email_author_counts[e] + self.email_recipient_counts[e] for e in self.all_emailers(True)}
 
+    def attributed_email_count(self) -> int:
+        return sum([i for author, i in self.email_author_counts.items() if author != UNKNOWN])
+
     def email_conversation_length_in_days(self, author: str | None) -> int:
         return (self.last_email_at(author) - self.earliest_email_at(author)).days + 1
 
@@ -110,6 +113,9 @@ class EpsteinFiles:
 
     def last_email_at(self, author: str | None) -> datetime:
         return self.emails_for(author)[-1].timestamp
+
+    def email_unknown_recipient_file_ids(self) -> list[str]:
+        return sorted(list(self._email_unknown_recipient_file_ids))
 
     def emails_for(self, author: str | None) -> list[Email]:
         """Returns emails to or from a given 'author' sorted chronologically."""
@@ -143,9 +149,6 @@ class EpsteinFiles:
 
         return results
 
-    def attributed_email_count(self) -> int:
-        return sum([i for author, i in self.email_author_counts.items() if author != UNKNOWN])
-
     def print_files_overview(self) -> None:
         table = Table(title=f"File Analysis Summary", header_style="bold")
         table.add_column("File Type", justify='left')
@@ -174,9 +177,6 @@ class EpsteinFiles:
             console.print(email)
 
         return len(emails)
-
-    def email_unknown_recipient_file_ids(self) -> list[str]:
-        return sorted(list(self._email_unknown_recipient_file_ids))
 
     def print_emails_table_for(self, _author: str | None) -> None:
         emails = self.emails_for(_author)
