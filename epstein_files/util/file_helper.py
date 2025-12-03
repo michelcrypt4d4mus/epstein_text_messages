@@ -15,9 +15,8 @@ if not DOCS_DIR_ENV:
 DOCS_DIR = Path(DOCS_DIR_ENV).resolve()
 JSON_FILES_SUBDIR = 'json_files'
 JSON_DIR = DOCS_DIR.joinpath(JSON_FILES_SUBDIR)
-FILE_ID_REGEX = re.compile(rf'.*{HOUSE_OVERSIGHT_PREFIX}(\d+)(_\d+)?(\.txt)?')
+FILE_ID_REGEX = re.compile(fr".*{HOUSE_OVERSIGHT_PREFIX}(\d+)(_\d+)?(\.txt)?")
 OUTPUT_GH_PAGES_HTML = Path('docs').joinpath('index.html')
-
 
 if not DOCS_DIR.exists():
     print(f"ERROR: {EPSTEIN_DOCS_DIR_ENV_VAR_NAME}='{DOCS_DIR}' does not exist!")
@@ -25,8 +24,7 @@ if not DOCS_DIR.exists():
 
 
 def build_filename_for_id(id: str | int, include_txt_suffix: bool = False) -> str:
-    id_str = f"{int(id):06d}"
-    return f"{HOUSE_OVERSIGHT_PREFIX}{id_str}" + ('.txt' if include_txt_suffix else '')
+    return f"{HOUSE_OVERSIGHT_PREFIX}{int(id):06d}" + ('.txt' if include_txt_suffix else '')
 
 
 def extract_file_id(filename) -> str:

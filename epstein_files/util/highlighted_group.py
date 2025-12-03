@@ -2,6 +2,7 @@ import re
 from dataclasses import dataclass, field
 
 from inflection import titleize
+from rich.highlighter import RegexHighlighter
 from rich.text import Text
 
 from epstein_files.util.constant.names import *
@@ -523,6 +524,12 @@ COLOR_KEYS = [
 ]
 
 
+class InterestingNamesHighlighter(RegexHighlighter):
+    """rich.highlighter that finds and colors interesting keywords based on the above config."""
+    base_style = f"{REGEX_STYLE_PREFIX}."
+    highlights = [highlight_group.regex for highlight_group in HIGHLIGHTED_GROUPS]
+
+
 def get_info_for_name(name: str) -> str | None:
     highlight_group = _get_highlight_group_for_name(name)
 
@@ -540,9 +547,3 @@ def _get_highlight_group_for_name(name: str) -> HighlightedGroup | None:
     for highlight_group in HIGHLIGHTED_GROUPS:
         if highlight_group.regex.search(name):
             return highlight_group
-
-
-if deep_debug:
-    for hg in HIGHLIGHTED_GROUPS:
-        print(hg)
-        print("\n")

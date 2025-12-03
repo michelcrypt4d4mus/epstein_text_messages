@@ -2,14 +2,12 @@
 # Search the document text AFTER all OCR fixes have been applied.
 from os import environ
 from sys import argv, exit
-environ.setdefault('FAST', 'true')
 
 from dotenv import load_dotenv
 load_dotenv()
-from rich.console import Console
 from rich.panel import Panel
 
-from epstein_files.documents.epstein_files import EpsteinFiles
+from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.env import args
 from epstein_files.util.rich import console, print_section_header
 
@@ -25,7 +23,7 @@ for search_term in args.positional_args:
     print_section_header(f"Searching {search_type} documents for '{search_term}'")
 
     for search_result in epstein_files.docs_matching(search_term, search_type):
-        console.line(2)
+        console.line()
         console.print(Panel(search_result.document.description(), expand=False))
 
         for line in search_result.unprefixed_lines():

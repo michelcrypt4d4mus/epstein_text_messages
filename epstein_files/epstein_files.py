@@ -18,7 +18,7 @@ from epstein_files.documents.email_header import AUTHOR
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog, sender_counts
 from epstein_files.util.constant.urls import EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url, search_jmail_url, search_twitter_url
 from epstein_files.util.constants import *
-from epstein_files.util.data import dict_sets_to_lists, flatten, patternize
+from epstein_files.util.data import dict_sets_to_lists, patternize
 from epstein_files.util.env import args, is_debug, logger
 from epstein_files.util.file_helper import DOCS_DIR, move_json_file
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
@@ -36,6 +36,7 @@ class EpsteinFiles:
     emails: list[Email] = field(default_factory=list)
     imessage_logs: list[MessengerLog] = field(default_factory=list)
     other_files: list[Document] = field(default_factory=list)
+    # Analytics / calculations
     email_author_counts: dict[str, int] = field(init=False)
     email_authors_to_device_signatures: dict[str, set[str]] = field(init=False)
     email_device_signatures_to_authors: dict[str, set[str ]] = field(init=False)
@@ -51,41 +52,35 @@ class EpsteinFiles:
         self.email_device_signatures_to_authors = defaultdict(set)
 
         for file_arg in self.all_files:
-            if is_debug:
-                console.print(f"\nScanning '{file_arg.name}'...")
-
+            logger.debug(f"\nScanning '{file_arg.name}'...")
             document = Document(file_arg)
 
             if document.length == 0:
-                logger.info('Skipping empty file...')
+                logger.info(f'{file_arg.name}: Skipping empty file...')
             elif document.text[0] == '{':  # Check for JSON
                 move_json_file(file_arg)
             elif MSG_REGEX.search(document.text):
-                logger.info('iMessage log file...')
+                logger.info(f'{file_arg.name}: iMessage log file...')
                 self.imessage_logs.append(MessengerLog(file_arg))
             elif DETECT_EMAIL_REGEX.match(document.text) or document.file_id in KNOWN_EMAIL_AUTHORS:  # Handle emails
                 email = Email(file_arg, text=document.text)  # Avoid reloads
+                logger.info(f"{file_arg.name}: {email.description().plain}")
                 self.emails.append(email)
                 self.email_author_counts[email.author_or_unknown()] += 1
-                logger.info(email.description().plain)
-                recipients = [UNKNOWN] if len(email.recipients) == 0 else [(r or UNKNOWN) for r in email.recipients]
 
-                for recipient in recipients:
-                    self.email_recipient_counts[recipient] += 1
-
-                    if recipient == UNKNOWN:
-                        self._email_unknown_recipient_file_ids.add(email.file_id)
+                if len(email.recipients) == 0:
+                    self._email_unknown_recipient_file_ids.add(email.file_id)
+                    self.email_recipient_counts[UNKNOWN] += 1
+                else:
+                    for recipient in email.recipients:
+                        self.email_recipient_counts[recipient] += 1
 
                 if email.sent_from_device:
-                    self.email_authors_to_device_signatures[email.author or UNKNOWN].add(email.sent_from_device)
+                    self.email_authors_to_device_signatures[email.author_or_unknown()].add(email.sent_from_device)
                     self.email_device_signatures_to_authors[email.sent_from_device].add(email.author_or_unknown())
-
-                if email.author is None or len(email.author) <= 3:
-                    email.log_top_lines(msg=f"Redacted or invalid email author '{email.author_or_unknown()}'")
             else:
                 logger.info('Unknown file type...')
                 self.other_files.append(document)
-                document.log_top_lines()
 
         self.imessage_logs = sorted(self.imessage_logs, key=lambda f: f.timestamp)
         logger.warning(f"Processed {len(self.all_files)} files in {(time.perf_counter() - started_processing_at):.2f} seconds")
@@ -99,44 +94,8 @@ class EpsteinFiles:
         emailers = emailers if include_useless else [e for e in emailers if e.lower() not in NOT_INCLUDED_EMAILERS]
         return sorted(list(set(emailers)), key=lambda e: self.email_author_counts[e] + self.email_recipient_counts[e])
 
-    def all_emailer_counts(self) -> dict[str, int]:
-        return {e: self.email_author_counts[e] + self.email_recipient_counts[e] for e in self.all_emailers(True)}
-
-    def email_conversation_length_in_days(self, author: str | None) -> int:
-        return (self.last_email_at(author) - self.earliest_email_at(author)).days + 1
-
-    def earliest_email_at(self, author: str | None) -> datetime:
-        return self.emails_for(author)[0].timestamp
-
-    def last_email_at(self, author: str | None) -> datetime:
-        return self.emails_for(author)[-1].timestamp
-
-    def emails_for(self, author: str | None) -> list[Email]:
-        """Returns emails to or from a given 'author' sorted chronologically."""
-        author = author.lower() if (author and author != UNKNOWN) else None
-        emails_by = [e for e in self.emails if e.author_lowercase == author]
-
-        if author is None:
-            emails_to = [
-                e for e in self.emails
-                if e.author == JEFFREY_EPSTEIN
-                    and ((len(e.recipients) == 0) or (None in e.recipients) or (UNKNOWN in e.recipients))
-            ]
-        else:
-            emails_to = [e for e in self.emails if author in e.recipients_lower]
-
-        sorted_emails = EpsteinFiles.sort_emails(emails_by + emails_to)
-
-        if len(sorted_emails) == 0:
-            raise RuntimeError(f"No emails found for '{author}'")
-
-        return sorted_emails
-
-    def identified_imessage_log_count(self) -> int:
-        return len([log for log in self.imessage_logs if log.author])
-
-    def imessage_msg_count(self) -> int:
-        return sum([log.msg_count for log in self.imessage_logs])
+    def attributed_email_count(self) -> int:
+        return sum([i for author, i in self.email_author_counts.items() if author != UNKNOWN])
 
     def docs_matching(self, _pattern: re.Pattern | str, file_type: Literal['all', 'other'] = 'all') -> list[SearchResult]:
         results: list[SearchResult] = []
@@ -149,8 +108,35 @@ class EpsteinFiles:
 
         return results
 
-    def attributed_email_count(self) -> int:
-        return sum([i for author, i in self.email_author_counts.items() if author != UNKNOWN])
+    def earliest_email_at(self, author: str | None) -> datetime:
+        return self.emails_for(author)[0].timestamp
+
+    def last_email_at(self, author: str | None) -> datetime:
+        return self.emails_for(author)[-1].timestamp
+
+    def email_conversation_length_in_days(self, author: str | None) -> int:
+        return (self.last_email_at(author) - self.earliest_email_at(author)).days + 1
+
+    def email_unknown_recipient_file_ids(self) -> list[str]:
+        return sorted(list(self._email_unknown_recipient_file_ids))
+
+    def emails_for(self, author: str | None) -> list[Email]:
+        """Returns emails to or from a given 'author' sorted chronologically."""
+        emails_by = [e for e in self.emails if e.author == author]
+
+        # Only emails from Epstein to unknown/redacted recipients should be returned when getting emails_for(None)
+        if author is None:
+            emails_to = [e for e in self.emails if e.author == JEFFREY_EPSTEIN and len(e.recipients) == 0]
+        else:
+            emails_to = [e for e in self.emails if author in e.recipients]
+
+        if len(emails_by) == 0 and len(emails_to) == 0:
+            raise RuntimeError(f"No emails found for '{author}'")
+
+        return EpsteinFiles.sort_emails(emails_by + emails_to)
+
+    def identified_imessage_log_count(self) -> int:
+        return len([log for log in self.imessage_logs if log.author])
 
     def print_files_overview(self) -> None:
         table = Table(title=f"File Analysis Summary", header_style="bold")
@@ -164,9 +150,9 @@ class EpsteinFiles:
 
     def print_emails_for(self, _author: str | None) -> int:
         """Print complete emails to or from a particular 'author'. Returns number of emails printed."""
+        conversation_length = self.email_conversation_length_in_days(_author)
         emails = self.emails_for(_author)
         author = _author or UNKNOWN
-        conversation_length = self.email_conversation_length_in_days(_author)
 
         print_author_header(
             f"Found {len(emails)} {author} emails starting {emails[0].timestamp.date()} over {conversation_length:,} days",
@@ -180,9 +166,6 @@ class EpsteinFiles:
             console.print(email)
 
         return len(emails)
-
-    def email_unknown_recipient_file_ids(self) -> list[str]:
-        return sorted(list(self._email_unknown_recipient_file_ids))
 
     def print_emails_table_for(self, _author: str | None) -> None:
         emails = self.emails_for(_author)
@@ -217,16 +200,14 @@ class EpsteinFiles:
     def print_emailer_counts_table(self) -> None:
         footer = f"Identified authors of {self.attributed_email_count()} emails out of {len(self.emails)} potential email files."
         counts_table = Table(title=f"Email Counts", caption=footer, header_style="bold")
-        counts_table.add_column('Name', justify='left', style=DEFAULT_NAME_COLOR)
-        counts_table.add_column('Count', justify='center')
-        counts_table.add_column('Sent', justify='center')
-        counts_table.add_column("Recv'd", justify='center')
-        counts_table.add_column(JMAIL, justify='center')
-        counts_table.add_column(EPSTEIN_WEB, justify='center')
-        counts_table.add_column('Twitter', justify='center')
+
+        for i, col in enumerate(['Name', 'Count', 'Sent', "Recv'd", JMAIL, EPSTEIN_WEB, 'Twitter']):
+            counts_table.add_column(col, justify='left' if i == 0 else 'center')
+
+        emailer_counts = {e: self.email_author_counts[e] + self.email_recipient_counts[e] for e in self.all_emailers(True)}
         sort_key = lambda item: item[0] if args.sort_alphabetical else [item[1], item[0]]
 
-        for p, count in sorted(self.all_emailer_counts().items(), key=sort_key, reverse=True):
+        for p, count in sorted(emailer_counts.items(), key=sort_key, reverse=True):
             style = get_style_for_name(p, DEFAULT_NAME_COLOR)
 
             counts_table.add_row(
@@ -254,7 +235,8 @@ class EpsteinFiles:
         text_summary_msg = f"\nDeanonymized {self.identified_imessage_log_count()} of "
         text_summary_msg += f"{len(self.imessage_logs)} text msg logs found in {len(self.all_files)} files."
         console.print(text_summary_msg)
-        console.print(f"Found {self.imessage_msg_count()} total text messages in {len(self.imessage_logs)} conversations.")
+        imessage_msg_count = sum([log.msg_count for log in self.imessage_logs])
+        console.print(f"Found {imessage_msg_count} total text messages in {len(self.imessage_logs)} conversations.")
         console.print(f"(Last deploy found 4668 messages in 77 conversations)", style='dim')
 
     def print_other_files_table(self) -> None:

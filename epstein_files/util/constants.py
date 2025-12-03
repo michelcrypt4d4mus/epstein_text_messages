@@ -162,7 +162,6 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     FAITH_KATES: re.compile(r'faith kates?', re.IGNORECASE),
     GERALD_BARTON: re.compile(r'Gerald.*Barton', re.IGNORECASE),
     GHISLAINE_MAXWELL: re.compile(r'g ?max(well)?|Ghislaine|Maxwell', re.IGNORECASE),
-    'Google Alerts': re.compile(r'google\s?alerts', re.IGNORECASE),
     'Heather Mann': re.compile(r'Heather Mann?', re.IGNORECASE),
     'Intelligence Squared': re.compile(r'intelligence\s*squared', re.IGNORECASE),
     JACKIE_PERCZEK:  re.compile(r'jackie percze[kl]?', re.IGNORECASE),

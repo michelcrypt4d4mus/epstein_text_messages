@@ -10,11 +10,11 @@ from rich.text import Text
 
 from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import EPSTEINIFY, EPSTEIN_WEB, epsteinify_doc_url, epstein_web_doc_url
+from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, EPSTEINIFY, EPSTEIN_WEB, epsteinify_doc_url, epstein_web_doc_url
 from epstein_files.util.data import collapse_newlines, escape_single_quotes, patternize
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, is_local_extract_file
-from epstein_files.util.rich import (ARCHIVE_LINK_COLOR, console, highlight_regex_match, highlighter,
+from epstein_files.util.rich import (console, highlight_regex_match, highlighter,
      logger, link_text_obj, link_markup)
 
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
@@ -82,7 +82,7 @@ class Document:
 
     def description(self) -> Text:
         doc_type = str(type(self).__name__)
-        txt = Text('').append(self.file_path.stem, style='bright_green')
+        txt = Text('').append(self.file_path.stem, style='magenta')
         txt.append(f' {doc_type} ', style=DOC_TYPE_STYLES[doc_type]).append(f"(num_lines=")
         txt.append(f"{self.num_lines:,}", style='cyan').append(", size=")
         txt.append(self.size_str(), style='aquamarine1')
@@ -242,8 +242,8 @@ class CommunicationDocument(Document):
 
     def description(self) -> Text:
         txt = super().description()
-        txt.append(f", author=").append(self.author_str, style=self.author_style)
         txt.append(f", timestamp=").append(str(self.timestamp), style='dim dark_cyan')
+        txt.append(f", author=").append(self.author_str, style=self.author_style)
         return txt.append(')')
 
     def raw_document_link_txt(self, _style: str = '', include_alt_link: bool = True) -> Text:

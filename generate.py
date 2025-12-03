@@ -7,7 +7,6 @@ Install: 'pip install python-dotenv rich'
     Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT/001 ./generate.py'
 """
 import time
-from pathlib import Path
 from sys import exit
 
 from dotenv import load_dotenv
@@ -65,16 +64,15 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES_LIST = [
 ]
 
 
-started_at = time.perf_counter()
-emails_printed = 0
 print_header()
 
 if args.colors_only:
     print_color_key()
     exit()
 
+started_at = time.perf_counter()
 epstein_files = EpsteinFiles()
-finished_processing_at = checkpoint_at = time.perf_counter()
+checkpoint_at = time.perf_counter()
 epstein_files.print_files_overview()
 print_color_key()
 
@@ -97,6 +95,7 @@ if not skip_texts:
 print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
 print_other_site_link(is_header=False)
 epstein_files.print_emailer_counts_table()
+emails_printed = 0
 
 if args.all_emails:
     console.print('Email conversations are sorted chronologically based on time of the first email.')
@@ -121,7 +120,7 @@ else:
 for author in emailers_to_print:
     emails_printed += epstein_files.print_emails_for(author)
 
-    if emails_printed > PRINT_COLOR_KEY_EVERY_N_EMAILS:
+    if emails_printed > PRINT_COLOR_KEY_EVERY_N_EMAILS:  # Print color key every once in a while
         print_color_key()
         emails_printed = 0
 
