@@ -27,6 +27,7 @@ JMAIL_URL = 'https://jmail.world'
 OVERSIGHT_REPUBLICANS_PRESSER_URL = 'https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/'
 RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_'
 SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great'
+WORD_COUNT_URL = 'https://michelcrypt4d4mus.github.io/epstein_text_messages/epstein_emails_word_count.html'
 
 SITE_URLS: dict[SiteType, str] = {
     EMAIL: 'https://michelcrypt4d4mus.github.io/epstein_emails_house_oversight/',

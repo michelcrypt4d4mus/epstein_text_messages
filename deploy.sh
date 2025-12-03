@@ -5,7 +5,9 @@ source .env
 set -e
 
 EMAILS_DIR="../epstein_emails_house_oversight"
-INDEX_HTML_PATH="docs/index.html"
+DOCS_DIR="docs"
+INDEX_HTML_PATH="$DOCS_DIR/index.html"
+WORD_COUNT_HTML_PATH="$DOCS_DIR/epstein_emails_word_count.html"
 EMAILS_INDEX_HTML_PATH="${EMAILS_DIR}/${INDEX_HTML_PATH}"
 
 GITHUB_PAGES_BASE_URL='https://michelcrypt4d4mus.github.io'
@@ -14,8 +16,6 @@ TEXT_MSGS_PROJECT_NAME=`basename "$PWD"`
 EMAILS_URL="$GITHUB_PAGES_BASE_URL/$EMAILS_PROJECT_NAME/"
 TEXT_MSGS_URL="$GITHUB_PAGES_BASE_URL/$TEXT_MSGS_PROJECT_NAME/"
 
-
-# Preparation / checking for issues
 if [ -n "$BASH_COLORS_PATH" ]; then
     source "$BASH_COLORS_PATH"
     clr_cyan "Sourced '$(clr_green $BASH_COLORS_PATH)'..."
@@ -28,7 +28,6 @@ print_msg() {
     local colored_part="$2"
 
     if [ -n "$colored_part" ]; then
-        #echo "appending '$colored_part' to '$msg'"
         msg="$msg '$(clr_green $colored_part)'"
     fi
 
@@ -43,15 +42,24 @@ any_uncommitted_changes() {
     fi
 }
 
-if [ -f "$INDEX_HTML_PATH" ]; then
-    print_msg "Removing master branch" "$INDEX_HTML_PATH"
-    rm "$INDEX_HTML_PATH"
-fi
+remove_master_branch_file() {
+    local master_file="$1"
 
+    if [ -f "$master_file" ]; then
+        print_msg "Removing master branch version of" "$master_file"
+        rm "$master_file"
+    fi
+}
+
+
+# Preparation / checking for issues
 if any_uncommitted_changes; then
     print_msg "Uncommitted changes; halting"
     exit
 fi
+
+remove_master_branch_file "$INDEX_HTML_PATH"
+remove_master_branch_file "$WORD_COUNT_HTML_PATH"
 
 
 # Text messages
@@ -60,6 +68,8 @@ git checkout gh_pages
 git merge --no-edit master --quiet
 print_msg "Building" "$INDEX_HTML_PATH"
 ./generate.py --build --suppress-output
+print_msg "Building" "$WORD_COUNT_HTML_PATH"
+./scripts/count_words.py --build --suppress-output
 git commit -am"Update HTML"
 git push origin gh_pages --quiet
 git checkout master
