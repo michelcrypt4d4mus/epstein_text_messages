@@ -3,7 +3,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.data import dict_sets_to_lists
 
 EMAIL_AUTHOR_COUNTS = {
-    "(unknown)": 112,
+    None: 110,
     "Abi Schwinck": 1,
     AL_SECKEL: 7,
     "Alain Forget": 3,
@@ -206,7 +206,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    "(unknown)": 84,
+    None: 84,
     "ACT for America": 1,
     "Alan Dershowitz": 15,
     "Alan Rogers": 1,
