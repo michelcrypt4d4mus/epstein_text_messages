@@ -129,9 +129,6 @@ class EpsteinFiles:
     def identified_imessage_log_count(self) -> int:
         return len([log for log in self.imessage_logs if log.author])
 
-    def imessage_msg_count(self) -> int:
-        return sum([log.msg_count for log in self.imessage_logs])
-
     def docs_matching(self, _pattern: re.Pattern | str, file_type: Literal['all', 'other'] = 'all') -> list[SearchResult]:
         results: list[SearchResult] = []
 
@@ -240,7 +237,8 @@ class EpsteinFiles:
         text_summary_msg = f"\nDeanonymized {self.identified_imessage_log_count()} of "
         text_summary_msg += f"{len(self.imessage_logs)} text msg logs found in {len(self.all_files)} files."
         console.print(text_summary_msg)
-        console.print(f"Found {self.imessage_msg_count()} total text messages in {len(self.imessage_logs)} conversations.")
+        imessage_msg_count = sum([log.msg_count for log in self.imessage_logs])
+        console.print(f"Found {imessage_msg_count} total text messages in {len(self.imessage_logs)} conversations.")
         console.print(f"(Last deploy found 4668 messages in 77 conversations)", style='dim')
 
     def print_other_files_table(self) -> None:
