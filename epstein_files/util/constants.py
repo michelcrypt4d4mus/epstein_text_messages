@@ -263,7 +263,6 @@ EMAILERS = [
     'Merwin Dela Cruz',
     'Michael Simmons',   # Not the only "To:"
     'middle.east.update@hotmail.com',
-    'Multiple Senders',  # Weird files like HOUSE_OVERSIGHT_032210
     'Nancy Cain',
     'Nancy Dahl',
     'Nancy Portland',

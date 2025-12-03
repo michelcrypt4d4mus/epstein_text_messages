@@ -35,7 +35,6 @@ REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re
 BAD_LINE_REGEX = re.compile(r'^(>;|\d{1,2}|Importance:( High)?|[iI,•]|i (_ )?i|, [-,])$')
 UNDISCLOSED_RECIPIENTS_REGEX = re.compile(r'Undisclosed[- ]recipients:', re.IGNORECASE)
 
-MULTIPLE_SENDERS = 'Multiple Senders'
 MAX_CHARS_TO_PRINT = 4000
 VALID_HEADER_LINES = 14
 EMAIL_INDENT = 2
@@ -411,12 +410,8 @@ class Email(CommunicationDocument):
 
             return names
 
-        if len(names) == 0:
-            names.append(emailer_str)
-        elif names == [MULTIPLE_SENDERS]:
-            return []
-
-        return [_reverse_first_and_last_names(name.lower() if '@' in name else name) for name in names]
+        names = names or [emailer_str]
+        return [_reverse_first_and_last_names(name) for name in names]
 
     def _repair(self) -> None:
         """Repair particularly janky files."""
@@ -499,6 +494,9 @@ def _parse_timestamp(timestamp_str: str) -> None | datetime:
 
 
 def _reverse_first_and_last_names(name: str) -> str:
+    if '@' in name:
+        return name.lower()
+
     if ', ' in name:
         names = name.split(', ')
         return f"{names[1]} {names[0]}"
