@@ -15,26 +15,22 @@ from rich.theme import Theme
 
 from epstein_files.util.constant.html import PAGE_TITLE
 from epstein_files.util.constant.names import UNKNOWN
-from epstein_files.util.constant.strings import DEFAULT, HOUSE_OVERSIGHT_PREFIX
+from epstein_files.util.constant.strings import DEFAULT
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import HEADER_ABBREVIATIONS
 from epstein_files.util.env import args, deep_debug, is_debug, is_main_script, logger
-from epstein_files.util.file_helper import build_filename_for_id
 from epstein_files.util.highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS, InterestingNamesHighlighter
 
 NUM_COLOR_KEY_COLS = 4
 OUTPUT_WIDTH = 120
 
 # Styles
-ARCHIVE_LINK_COLOR = 'slate_blue3'
 DEFAULT_NAME_COLOR = 'gray46'
 SECTION_HEADER_STYLE = 'bold white on blue3'
 SOCIAL_MEDIA_LINK_STYLE = 'cadet_blue'
 TITLE_STYLE = 'black on bright_white bold'
-
 # Theme style names
 PHONE_NUMBER = 'phone_number'
-TEXT_LINK = 'text_link'
 TIMESTAMP = 'timestamp'
 
 THEME_STYLES = {
@@ -46,7 +42,6 @@ THEME_STYLES = {
 
 for highlight_group in HIGHLIGHTED_GROUPS:
     THEME_STYLES[highlight_group.style_name] = highlight_group.style
-
 
 highlighter = InterestingNamesHighlighter()
 
@@ -65,37 +60,6 @@ if args.suppress_output:
     CONSOLE_ARGS.update({'file': open(devnull, "wt")})
 
 console = Console(**CONSOLE_ARGS)
-
-
-def epsteinify_doc_link_markup(filename_or_id: int | str, style: str = TEXT_LINK) -> str:
-    if isinstance(filename_or_id, int) or not filename_or_id.startswith(HOUSE_OVERSIGHT_PREFIX):
-        file_stem = build_filename_for_id(filename_or_id)
-    else:
-        file_stem = str(filename_or_id)
-
-    return link_markup(epsteinify_doc_url(file_stem), file_stem, style)
-
-
-def epsteinify_doc_link_txt(filename_or_id: int | str, style: str = TEXT_LINK) -> Text:
-    return Text.from_markup(epsteinify_doc_link_markup(filename_or_id, style))
-
-
-def highlight_regex_match(text: str, pattern: re.Pattern, style: str = 'cyan') -> Text:
-    """Replace 'pattern' matches with markup of the match colored with 'style'."""
-    return Text.from_markup(pattern.sub(rf'[{style}]\1[/{style}]', text))
-
-
-def link_markup(url: str, link_text: str, style: str | None = ARCHIVE_LINK_COLOR, underline: bool = True) -> str:
-    style = (style or '') + (' underline' if underline else '')
-    return wrap_in_markup_style(f"[link={url}]{link_text}[/link]", style)
-
-
-def link_text_obj(url: str, link_text: str, style: str = ARCHIVE_LINK_COLOR) -> Text:
-    return Text.from_markup(link_markup(url, link_text, style))
-
-
-def search_coffeezilla_link(text: str, link_txt: str, style: str = ARCHIVE_LINK_COLOR) -> Text:
-    return link_text_obj(search_coffeezilla_url(text), link_txt or text, style)
 
 
 def print_author_header(msg: str, color: str | None, footer: str | None = None) -> None:

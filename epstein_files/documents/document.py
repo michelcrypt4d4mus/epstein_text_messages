@@ -10,11 +10,11 @@ from rich.text import Text
 
 from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import EPSTEINIFY, EPSTEIN_WEB, epsteinify_doc_url, epstein_web_doc_url
+from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, EPSTEINIFY, EPSTEIN_WEB, epsteinify_doc_url, epstein_web_doc_url
 from epstein_files.util.data import collapse_newlines, escape_single_quotes, patternize
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, is_local_extract_file
-from epstein_files.util.rich import (ARCHIVE_LINK_COLOR, console, highlight_regex_match, highlighter,
+from epstein_files.util.rich import (console, highlight_regex_match, highlighter,
      logger, link_text_obj, link_markup)
 
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
