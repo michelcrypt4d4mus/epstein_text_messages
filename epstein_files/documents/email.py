@@ -246,7 +246,7 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
 class Email(CommunicationDocument):
     cleaned_up_text: str = field(init=False)
     header: EmailHeader = field(init=False)
-    recipients: list[str | None] = field(default_factory=list)
+    recipients: list[str] = field(default_factory=list)
     sent_from_device: str | None = None
 
     signature_substitution_counts: ClassVar[dict] = defaultdict(int)  # Count EMAIL_SIGNATURES substitutions when printing

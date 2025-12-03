@@ -52,33 +52,31 @@ class EpsteinFiles:
         self.email_device_signatures_to_authors = defaultdict(set)
 
         for file_arg in self.all_files:
-            if is_debug:
-                console.print(f"\nScanning '{file_arg.name}'...")
-
+            logger.debug(f"\nScanning '{file_arg.name}'...")
             document = Document(file_arg)
 
             if document.length == 0:
-                logger.info('Skipping empty file...')
+                logger.info(f'{file_arg.name}: Skipping empty file...')
             elif document.text[0] == '{':  # Check for JSON
                 move_json_file(file_arg)
             elif MSG_REGEX.search(document.text):
-                logger.info('iMessage log file...')
+                logger.info(f'{file_arg.name}: iMessage log file...')
                 self.imessage_logs.append(MessengerLog(file_arg))
             elif DETECT_EMAIL_REGEX.match(document.text) or document.file_id in KNOWN_EMAIL_AUTHORS:  # Handle emails
                 email = Email(file_arg, text=document.text)  # Avoid reloads
+                logger.info(f"{file_arg.name}: {email.description().plain}")
                 self.emails.append(email)
                 self.email_author_counts[email.author_or_unknown()] += 1
-                logger.info(email.description().plain)
-                recipients = [UNKNOWN] if len(email.recipients) == 0 else [(r or UNKNOWN) for r in email.recipients]
 
-                for recipient in recipients:
-                    self.email_recipient_counts[recipient] += 1
-
-                    if recipient == UNKNOWN:
-                        self._email_unknown_recipient_file_ids.add(email.file_id)
+                if len(email.recipients) == 0:
+                    self._email_unknown_recipient_file_ids.add(email.file_id)
+                    self.email_recipient_counts[UNKNOWN] += 1
+                else:
+                    for recipient in email.recipients:
+                        self.email_recipient_counts[recipient] += 1
 
                 if email.sent_from_device:
-                    self.email_authors_to_device_signatures[email.author or UNKNOWN].add(email.sent_from_device)
+                    self.email_authors_to_device_signatures[email.author_or_unknown()].add(email.sent_from_device)
                     self.email_device_signatures_to_authors[email.sent_from_device].add(email.author_or_unknown())
             else:
                 logger.info('Unknown file type...')
@@ -98,6 +96,17 @@ class EpsteinFiles:
 
     def attributed_email_count(self) -> int:
         return sum([i for author, i in self.email_author_counts.items() if author != UNKNOWN])
+
+    def docs_matching(self, _pattern: re.Pattern | str, file_type: Literal['all', 'other'] = 'all') -> list[SearchResult]:
+        results: list[SearchResult] = []
+
+        for doc in (self.all_documents() if file_type == 'all' else self.other_files):
+            lines = doc.lines_matching_txt(patternize(_pattern))
+
+            if len(lines) > 0:
+                results.append(SearchResult(doc, lines))
+
+        return results
 
     def email_conversation_length_in_days(self, author: str | None) -> int:
         return (self.last_email_at(author) - self.earliest_email_at(author)).days + 1
@@ -128,17 +137,6 @@ class EpsteinFiles:
 
     def identified_imessage_log_count(self) -> int:
         return len([log for log in self.imessage_logs if log.author])
-
-    def docs_matching(self, _pattern: re.Pattern | str, file_type: Literal['all', 'other'] = 'all') -> list[SearchResult]:
-        results: list[SearchResult] = []
-
-        for doc in (self.all_documents() if file_type == 'all' else self.other_files):
-            lines = doc.lines_matching_txt(patternize(_pattern))
-
-            if len(lines) > 0:
-                results.append(SearchResult(doc, lines))
-
-        return results
 
     def print_files_overview(self) -> None:
         table = Table(title=f"File Analysis Summary", header_style="bold")
