@@ -316,6 +316,7 @@ HIGHLIGHTED_GROUPS = [
             MOHAMED_WAHEED_HASSAN: 'former president of the Maldives',
             OLIVIER_COLOM: 'France',
             PUREVSUREN_LUNDEG: 'Mongolian ambassador to the UN',
+            'Stanley Rosenberg': 'former President of the Massachusetts Senate',
         }
     ),
     HighlightedGroup(
@@ -394,7 +395,7 @@ HIGHLIGHTED_GROUPS = [
             LAWRENCE_KRAUSS: 'theoretical physicist',
             LINDA_STONE: 'ex-Microsoft, MIT Media Lab',
             NEAL_KASSELL: None,
-            PETER_ATTIA: None,
+            PETER_ATTIA: 'longevity medicine',
             ROBERT_TRIVERS: 'evolutionary biology',
             ROGER_SCHANK: None,
             STEVEN_PFEIFFER: None,
