@@ -330,6 +330,7 @@ KNOWN_EMAIL_AUTHORS = {
     '028770': JEFFREY_EPSTEIN,
     '029692': JEFFREY_EPSTEIN,
     '031624': JEFFREY_EPSTEIN,
+    '018726': JEFFREY_EPSTEIN,       # Strange fragment only showing what was replied to
     '030768': JEFFREY_EPSTEIN,
     '031996': JEFFREY_EPSTEIN,       # bounced
     '022938': JEFFREY_EPSTEIN,

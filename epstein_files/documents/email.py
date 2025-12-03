@@ -53,6 +53,7 @@ KNOWN_TIMESTAMPS = {
     '028849': datetime(2014, 4, 27, 6, 30),
     '032475': datetime(2017, 2, 15, 13, 31, 25),
     '030373': datetime(2018, 10, 3, 1, 49, 27),
+    '018726': datetime(2018, 6, 8, 8, 36),
 }
 
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
@@ -365,7 +366,7 @@ class Email(CommunicationDocument):
             if self.header.is_empty():
                 self.header.repair_empty_header(self.lines)
         else:
-            if not (self.file_id in KNOWN_EMAIL_AUTHORS and self.file_id in KNOWN_EMAIL_RECIPIENTS):
+            if not (self.file_id in KNOWN_EMAIL_AUTHORS or self.file_id in KNOWN_EMAIL_RECIPIENTS):
                 logger.warning(f"No header match found in '{self.filename}'! Top lines:\n\n{self.top_lines()}")
 
             self.header = EmailHeader(field_names=[])

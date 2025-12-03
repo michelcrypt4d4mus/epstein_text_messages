@@ -278,6 +278,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Jack Goldberger": 10,
     "Jack Lang": 3,
     "Jackie Perczek": 4,
+    'James Hill': 1,
     "James Ramsey": 1,
     "Janet Kafka": 1,
     "Januiz Banasiak": 1,
