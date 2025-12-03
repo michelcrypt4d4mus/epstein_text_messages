@@ -73,7 +73,7 @@ if args.colors_only:
     exit()
 
 epstein_files = EpsteinFiles()
-finished_processing_at = checkpoint_at = time.perf_counter()
+checkpoint_at = time.perf_counter()
 epstein_files.print_files_overview()
 print_color_key()
 emails_printed = 0
