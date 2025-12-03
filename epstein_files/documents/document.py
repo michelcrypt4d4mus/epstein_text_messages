@@ -79,9 +79,9 @@ class Document:
     def description(self) -> Text:
         doc_type = str(type(self).__name__)
         txt = Text('').append(self.file_path.stem, style='magenta')
-        txt.append(f' {doc_type} ', style=DOC_TYPE_STYLES[doc_type]).append(f"(num_lines=")
-        txt.append(f"{self.num_lines:,}", style='cyan').append(", size=")
-        txt.append(self.size_str(), style='aquamarine1')
+        txt.append(f' {doc_type} ', style=DOC_TYPE_STYLES[doc_type])
+        txt.append(f"(num_lines=").append(f"{self.num_lines:,}", style='cyan')
+        txt.append(", size=").append(self.size_str(), style='aquamarine1')
         return txt.append(')') if doc_type == DOCUMENT_CLASS else txt
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
