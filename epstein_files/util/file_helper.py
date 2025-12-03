@@ -13,10 +13,13 @@ if not DOCS_DIR_ENV:
     exit(1)
 
 DOCS_DIR = Path(DOCS_DIR_ENV).resolve()
-JSON_FILES_SUBDIR = 'json_files'
-JSON_DIR = DOCS_DIR.joinpath(JSON_FILES_SUBDIR)
+JSON_DIR = DOCS_DIR.joinpath('json_files')
+HTML_DIR = Path('docs')
+GH_PAGES_HTML_PATH = HTML_DIR.joinpath('index.html')
+WORD_COUNT_HTML_PATH = HTML_DIR.joinpath('epstein_emails_word_count.html')
 FILE_ID_REGEX = re.compile(fr".*{HOUSE_OVERSIGHT_PREFIX}(\d+)(_\d+)?(\.txt)?")
-OUTPUT_GH_PAGES_HTML = Path('docs').joinpath('index.html')
+KB = 1024
+MB = KB * KB
 
 if not DOCS_DIR.exists():
     print(f"ERROR: {EPSTEIN_DOCS_DIR_ENV_VAR_NAME}='{DOCS_DIR}' does not exist!")
@@ -27,13 +30,29 @@ def build_filename_for_id(id: str | int, include_txt_suffix: bool = False) -> st
     return f"{HOUSE_OVERSIGHT_PREFIX}{int(id):06d}" + ('.txt' if include_txt_suffix else '')
 
 
-def extract_file_id(filename) -> str:
+def extract_file_id(filename: str | Path) -> str:
     file_match = FILE_ID_REGEX.match(str(filename))
 
     if file_match:
         return file_match.group(1)
     else:
         raise RuntimeError(f"Failed to extract file ID from {filename}")
+
+
+def file_size_str(file_path: str | Path) -> str:
+    file_size = float(Path(file_path).stat().st_size)
+
+    if file_size > MB:
+        size_num = file_size / MB
+        size_str = 'MB'
+    elif file_size > KB:
+        size_num = file_size / KB
+        size_str = 'kb'
+    else:
+        size_num = file_size
+        size_str = 'bytes'
+
+    return f"{size_num:,.2f} {size_str}"
 
 
 def is_local_extract_file(filename) -> bool:

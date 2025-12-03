@@ -123,7 +123,7 @@ HIGHLIGHTED_GROUPS = [
         label='bro',
         style='tan',
         emailers = {
-            JONATHAN_FARKAS: None,
+            JONATHAN_FARKAS: "heir to the Alexander's department store fortune",
             'Peter Thomas Roth': 'student of Epstein at Dalton, skincare company founder',
             TOM_BARRACK: 'long time friend of Trump',
             STEPHEN_HANSON: None,
@@ -179,9 +179,9 @@ HIGHLIGHTED_GROUPS = [
         emailers = {
             ERIC_ROTH: 'jet decorator',
             GWENDOLYN_BECK: 'Epstein fund manager in the 90s',
+            JEAN_HUGUEN: 'interior design at Alberto Pinto Cabinet',
             LAWRANCE_VISOSKI: 'pilot',
             LESLEY_GROFF: 'assistant',
-            JEAN_HUGUEN: 'interior design at Alberto Pinto Cabinet',
             'Linda Pinto': 'interior design at Alberto Pinto Cabinet',
             MERWIN_DELA_CRUZ: None,  # HOUSE_OVERSIGHT_032652 Groff says "Jojo and Merwin both requested off Nov. 25 and 26"
             NADIA_MARCINKO: 'pilot',
@@ -193,6 +193,7 @@ HIGHLIGHTED_GROUPS = [
         pattern='Bobby slayton|Etienne Binant|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?',
         emailers={
             'Andres Serrano': "'Piss Christ' artist",
+            'Barry Josephson': 'American film producer and former music manager',
             BILL_SIEGEL: 'documentary film producer and director',
             'David Blaine': 'magician',
             'Richard Merkin': 'painter, illustrator and arts educator',
@@ -418,7 +419,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='trump',
         style='red3 bold',
-        pattern=r"@?realDonaldTrump|\bDJ?T\b|(Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)(?! Rubin)|Mar[- ]*a[- ]*Lago|(Matt(hew)? )?Calamari|\bMatt C\b|Melania|Roger\s+Stone",
+        pattern=r"@?realDonaldTrump|\bDJ?T\b|(Donald\s+(J\.\s+)?)?Trump|Don(ald| *Jr)(?! Rubin)|Mar[- ]*a[- ]*Lago|(Matt(hew)? )?Calamari|\bMatt C\b|Melania|Roger\s+Stone",
     ),
     HighlightedGroup(
         label='victim',

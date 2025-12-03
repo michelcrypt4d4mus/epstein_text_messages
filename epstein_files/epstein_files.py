@@ -50,15 +50,16 @@ class EpsteinFiles:
             document = Document(file_arg)
 
             if document.length == 0:
-                logger.info(f'{file_arg.name}: Skipping empty file...')
+                logger.info(f"Skipping empty file {document.description().plain}")
             elif document.text[0] == '{':  # Check for JSON
                 move_json_file(file_arg)
             elif MSG_REGEX.search(document.text):
-                logger.info(f'{file_arg.name}: iMessage log file...')
-                self.imessage_logs.append(MessengerLog(file_arg))
+                messenger_log = MessengerLog(file_arg)
+                logger.info(messenger_log.description().plain)
+                self.imessage_logs.append(messenger_log)
             elif DETECT_EMAIL_REGEX.match(document.text) or document.file_id in KNOWN_EMAIL_AUTHORS:  # Handle emails
                 email = Email(file_arg, text=document.text)  # Avoid reloads
-                logger.info(f"{file_arg.name}: {email.description().plain}")
+                logger.info(email.description().plain)
                 self.emails.append(email)
                 self.email_author_counts[email.author] += 1
 
@@ -73,7 +74,7 @@ class EpsteinFiles:
                     self.email_authors_to_device_signatures[email.author_or_unknown()].add(email.sent_from_device)
                     self.email_device_signatures_to_authors[email.sent_from_device].add(email.author_or_unknown())
             else:
-                logger.info('Unknown file type...')
+                logger.info(f"Unknown file type: {document.description().plain}")
                 self.other_files.append(document)
 
         self.imessage_logs = sorted(self.imessage_logs, key=lambda f: f.timestamp)

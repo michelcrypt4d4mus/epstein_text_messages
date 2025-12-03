@@ -667,4 +667,6 @@ SUPPRESS_OUTPUT_FOR_EMAIL_IDS = {
     '030592': 'the same as 030339',
     '031129': 'the same as 029977',
     '033561': 'the same as 033157',
+    '033589': 'the same as 032250',
+    '031708': 'the same as 026624',
 }

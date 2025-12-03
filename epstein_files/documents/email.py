@@ -253,6 +253,7 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
 class Email(CommunicationDocument):
     cleaned_up_text: str = field(init=False)
     header: EmailHeader = field(init=False)
+    is_duplicate: bool = False
     recipients: list[str] = field(default_factory=list)
     sent_from_device: str | None = None
 
@@ -285,6 +286,20 @@ class Email(CommunicationDocument):
         self.cleaned_up_text = self._cleaned_up_text()
         self.epsteinify_link_markup = epsteinify_doc_link_markup(self.file_path.stem, self.author_style)
         self.sent_from_device = self._sent_from_device()
+        self.is_duplicate = self.file_id in SUPPRESS_OUTPUT_FOR_EMAIL_IDS
+
+    def actual_text(self, use_clean_text: bool = False) -> str:
+        """The text that comes before likely quoted replies and forwards etc."""
+        text = self.cleaned_up_text if use_clean_text else self.text
+        reply_text_match = REPLY_TEXT_REGEX.search(text)
+
+        if reply_text_match:
+            actual_num_chars = len(reply_text_match.group(1))
+            actual_text_pct = f"{(100 * float(actual_num_chars) / len(text)):.1f}%"
+            logger.info(f"'{self.file_path.stem}': actual_text() is {actual_num_chars:,} chars ({actual_text_pct} of {len(text):,})")
+            return reply_text_match.group(1)
+        else:
+            return text
 
     def idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES, text: str | None = None) -> int | None:
         """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line."""
@@ -419,9 +434,7 @@ class Email(CommunicationDocument):
 
     def _sent_from_device(self) -> str | None:
         """Find any 'Sent from my iPhone' style lines if they exist."""
-        reply_text_match = REPLY_TEXT_REGEX.search(self.text)  # Only look at text above a REPLY_REGEX match
-        text = reply_text_match.group(1) if reply_text_match else self.text
-        sent_from_match = SENT_FROM_REGEX.search(text)
+        sent_from_match = SENT_FROM_REGEX.search(self.actual_text())
 
         if sent_from_match:
             sent_from = sent_from_match.group(0)

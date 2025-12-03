@@ -22,7 +22,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import EMAIL_CLASS, MESSENGER_LOG_CLASS
 from epstein_files.util.data import Timer, dict_sets_to_lists
 from epstein_files.util.env import specified_emailers, args, is_build, is_debug, skip_texts
-from epstein_files.util.file_helper import OUTPUT_GH_PAGES_HTML
+from epstein_files.util.file_helper import GH_PAGES_HTML_PATH
 from epstein_files.util.rich import *
 
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
@@ -144,9 +144,8 @@ else:
 
 # Save output
 if is_build:
-    console.save_html(OUTPUT_GH_PAGES_HTML, code_format=CONSOLE_HTML_FORMAT, inline_styles=False, theme=HTML_TERMINAL_THEME)
-    html_size_in_mb = round(OUTPUT_GH_PAGES_HTML.stat().st_size / 1024 / 1024, 2)
-    timer.print_at_checkpoint(f"Wrote {html_size_in_mb} MB to '{OUTPUT_GH_PAGES_HTML}' (total {timer.seconds_since_start()})")
+    write_html(GH_PAGES_HTML_PATH)
+    logger.warning(f"Total time: {timer.seconds_since_start()}")
 else:
     logger.warning(f"Not writing HTML because 'BUILD_HTML' env var not set, total time {timer.seconds_since_start()}.")
 
