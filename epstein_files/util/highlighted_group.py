@@ -123,7 +123,7 @@ HIGHLIGHTED_GROUPS = [
         label='bro',
         style='tan',
         emailers = {
-            JONATHAN_FARKAS: None,
+            JONATHAN_FARKAS: "heir to the Alexander's department store fortune",
             'Peter Thomas Roth': 'student of Epstein at Dalton, skincare company founder',
             TOM_BARRACK: 'long time friend of Trump',
             STEPHEN_HANSON: None,
