@@ -267,7 +267,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='lawyer',
         style='purple4',
-        pattern=r'(Erika\s+)?Kellerhals|Michael J. Pike|Paul,?\s*Weiss|Wein(berg|garten)',
+        pattern=r'Michael J. Pike|Paul,?\s*Weiss|Wein(berg|garten)',
         emailers = {
             BENNET_MOSKOWITZ: None,
             'Brad Edwards': None,
@@ -275,6 +275,7 @@ HIGHLIGHTED_GROUPS = [
             DAVID_STERN: None,
             DAVID_SCHOEN: None,
             DEBBIE_FEIN: None,
+            'Erika Kellerhals': 'attorney in St. Thomas',
             JACK_GOLDBERGER: None,
             JACKIE_PERCZEK: None,
             JAY_LEFKOWITZ: None,
@@ -316,6 +317,7 @@ HIGHLIGHTED_GROUPS = [
             MOHAMED_WAHEED_HASSAN: 'former president of the Maldives',
             OLIVIER_COLOM: 'France',
             PUREVSUREN_LUNDEG: 'Mongolian ambassador to the UN',
+            'Stanley Rosenberg': 'former President of the Massachusetts Senate',
         }
     ),
     HighlightedGroup(
@@ -369,7 +371,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='republicans',
         style='bold dark_red',
-        pattern=r'(Alex )?Acosta|Bolton|Broidy|GOP|(?<!Merwin Dela )Cruz|Kobach|Kolfage|Kudlow|Lewandowski|(Marco )?Rubio|Mattis|Mnuchin|(Paul\s+)?Manafort|(Peter )?Navarro|Pompeo|Republican',
+        pattern=r'(Alex )?Acosta|Bolton|Broidy|(George )?Nader|GOP|(?<!Merwin Dela )Cruz|Kobach|Kolfage|Kudlow|Lewandowski|(Marco )?Rubio|Mattis|Mnuchin|(Paul\s+)?Manafort|(Peter )?Navarro|Pompeo|Republican',
         emailers = {
             RUDY_GIULIANI: 'disbarred formed mayor of New York City',
             TULSI_GABBARD: None,
@@ -394,7 +396,7 @@ HIGHLIGHTED_GROUPS = [
             LAWRENCE_KRAUSS: 'theoretical physicist',
             LINDA_STONE: 'ex-Microsoft, MIT Media Lab',
             NEAL_KASSELL: None,
-            PETER_ATTIA: None,
+            PETER_ATTIA: 'longevity medicine',
             ROBERT_TRIVERS: 'evolutionary biology',
             ROGER_SCHANK: None,
             STEVEN_PFEIFFER: None,
