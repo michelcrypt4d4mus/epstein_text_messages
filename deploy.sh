@@ -66,10 +66,13 @@ remove_master_branch_file "$WORD_COUNT_HTML_PATH"
 git push origin master --quiet
 git checkout gh_pages
 git merge --no-edit master --quiet
+
 print_msg "Building" "$INDEX_HTML_PATH"
 ./generate.py --build --suppress-output
+echo -e ""
 print_msg "Building" "$WORD_COUNT_HTML_PATH"
 ./scripts/count_words.py --build --suppress-output
+
 git commit -am"Update HTML"
 git push origin gh_pages --quiet
 git checkout master

@@ -13,7 +13,7 @@ from epstein_files.util.constant.common_words import COMMON_WORDS
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
 from epstein_files.util.constant.html import PAGE_TITLE
-from epstein_files.util.rich import console, print_page_title, write_html
+from epstein_files.util.rich import console, print_centered, print_page_title, write_html
 
 BAD_CHARS_REGEX = re.compile(r"[-=+()$^&%!#/_`,.;:'’\"”?\d\\]")
 SKIP_WORDS_REGEX = re.compile(r"^(http|addresswww)|jee[vy]acation|html?$")
@@ -22,7 +22,7 @@ MAX_WORD_LEN = 45
 
 print_page_title(expand=False)
 epstein_files = EpsteinFiles()
-console.print(f"Most common words in the {len(epstein_files.emails)} emails:\n")
+print_centered(f"Most Common Words in the {len(epstein_files.emails):,} Emails\n")
 words = defaultdict(int)
 
 for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
