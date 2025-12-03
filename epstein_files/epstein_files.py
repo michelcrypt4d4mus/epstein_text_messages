@@ -78,6 +78,7 @@ class EpsteinFiles:
                 self.other_files.append(document)
 
         self.imessage_logs = sorted(self.imessage_logs, key=lambda f: f.timestamp)
+        self.identified_imessage_log_count = len([log for log in self.imessage_logs if log.author])
 
     def all_documents(self) -> list[Document]:
         return self.imessage_logs + self.emails + self.other_files
@@ -129,15 +130,12 @@ class EpsteinFiles:
 
         return EpsteinFiles.sort_emails(emails_by + emails_to)
 
-    def identified_imessage_log_count(self) -> int:
-        return len([log for log in self.imessage_logs if log.author])
-
     def print_files_overview(self) -> None:
         table = Table(title=f"File Analysis Summary", header_style="bold")
         table.add_column("File Type", justify='left')
         table.add_column("File Count", justify='center')
         table.add_column("Known Author Count", justify='center')
-        table.add_row('iMessage Logs', f"{len(self.imessage_logs):,}", str(self.identified_imessage_log_count()))
+        table.add_row('iMessage Logs', f"{len(self.imessage_logs):,}", str(self.identified_imessage_log_count))
         table.add_row('Emails', f"{len(self.emails):,}", f"{len([e for e in self.emails if e.author]):,}")
         table.add_row('Other', f"{len(self.other_files):,}", 'n/a')
         console.print(Padding(Align.center(vertically_pad(table))))
@@ -226,7 +224,7 @@ class EpsteinFiles:
             counts_table.add_row(Text(k, get_style_for_name(k)), str(v))
 
         console.print(counts_table)
-        text_summary_msg = f"\nDeanonymized {self.identified_imessage_log_count()} of "
+        text_summary_msg = f"\nDeanonymized {self.identified_imessage_log_count} of "
         text_summary_msg += f"{len(self.imessage_logs)} text msg logs found in {len(self.all_files)} files."
         console.print(text_summary_msg)
         imessage_msg_count = sum([log.msg_count for log in self.imessage_logs])
