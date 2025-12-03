@@ -263,32 +263,16 @@ class Email(CommunicationDocument):
             authors = self._get_names(self.header.author)
             self.author = authors[0] if len(authors) > 0 else None
 
-            if len(authors) == 0:
-                logger.info(f"No authors found in '{self.header.author}'!")
-
         if self.file_id in KNOWN_EMAIL_RECIPIENTS:
             recipient = KNOWN_EMAIL_RECIPIENTS[self.file_id]
             self.recipients = recipient if isinstance(recipient, list) else [recipient]
         else:
-            self.recipients = []
-
-            for recipient in ((self.header.to or []) + (self.header.cc or []) + (self.header.bcc or [])):
-                self.recipients += self._get_names(recipient)
+            for recipient in self.header.recipients():
+                self.recipients.extend(self._get_names(recipient))
 
         logger.debug(f"Found recipients: {self.recipients}")
         self.recipients = list(set([r for r in self.recipients if r != self.author]))  # Remove self CCs
         self.recipients_lower = [r.lower() if r else None for r in self.recipients]
-        recipients = self.recipients if len(self.recipients) > 0 else [UNKNOWN]
-        self.recipient_txt = Text('')
-
-        for i, recipient in enumerate(recipients):
-            if i > 0:
-                self.recipient_txt.append(', ')
-
-            recipient = recipient or UNKNOWN
-            recipient_str = recipient if (' ' not in recipient or len(recipients) < 3) else recipient.split()[-1]
-            self.recipient_txt.append(recipient_str, style=get_style_for_name(recipient))
-
         self.timestamp = self._extract_sent_at()
         self.author_lowercase = self.author.lower() if self.author else None
         self.author_str = self.author or UNKNOWN
@@ -305,6 +289,20 @@ class Email(CommunicationDocument):
         for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text)):
             if i >= n:
                 return match.end() - 1
+
+    def recipients_txt(self) -> Text:
+        recipients = self.recipients if len(self.recipients) > 0 else [UNKNOWN]
+        recipients_txt = Text('')
+
+        for i, recipient in enumerate(recipients):
+            if i > 0:
+                recipients_txt.append(', ')
+
+            recipient = recipient or UNKNOWN
+            recipient_str = recipient if (' ' not in recipient or len(recipients) < 3) else recipient.split()[-1]
+            recipients_txt.append(recipient_str, style=get_style_for_name(recipient))
+
+        return recipients_txt
 
     def _border_style(self) -> str:
         """Color emails from epstein to others with the color for the first recipient."""
@@ -436,7 +434,7 @@ class Email(CommunicationDocument):
 
         yield Panel(self.raw_document_link_txt(), border_style=self._border_style(), expand=False)
         info_line = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(f' to ')
-        info_line.append(self.recipient_txt).append(highlighter(f" probably sent at {self.timestamp}"))
+        info_line.append(self.recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
         text = self.cleaned_up_text
         num_chars = MAX_CHARS_TO_PRINT

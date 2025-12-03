@@ -44,6 +44,12 @@ class EmailHeader:
         """Remove housekeeping fields that don't actually come from the email."""
         return {k: v for k, v in asdict(self).items() if k not in NON_HEADER_FIELDS}
 
+    def is_empty(self) -> bool:
+        return not any([v for _k, v in self.as_dict().items()])
+
+    def recipients(self) -> list[str]:
+        return (self.to or []) + (self.cc or []) + (self.bcc or [])
+
     def repair_empty_header(self, email_lines: list[str]) -> None:
         num_headers = len(self.field_names)
 
@@ -81,9 +87,6 @@ class EmailHeader:
             setattr(self, field_name, value)
 
         logger.debug(f"Corrected empty header to:\n%s\n\nTop lines:\n\n%s", self, '\n'.join(email_lines[0:(num_headers + 1) * 2]))
-
-    def is_empty(self) -> bool:
-        return not any([v for _k, v in self.as_dict().items()])
 
     def __str__(self) -> str:
         return json.dumps(self.as_dict(), sort_keys=True, indent=4)
