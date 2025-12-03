@@ -226,10 +226,11 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='india',
         style='bright_green',
-        pattern='Hardeep( puree)?|Indian?|Modi|mumbai|Zubair( Khan)?',
+        pattern='Hardeep( puree)?|Indian?|Modi|mumbai',
         emailers = {
             ANIL_AMBANI: 'chairman of Reliance Group',
             VINIT_SAHNI: None,
+            ZUBAIR_KHAN: 'Tranchulas CEO',
         }
     ),
     HighlightedGroup(

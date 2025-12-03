@@ -54,6 +54,8 @@ KNOWN_TIMESTAMPS = {
     '032475': datetime(2017, 2, 15, 13, 31, 25),
     '030373': datetime(2018, 10, 3, 1, 49, 27),
     '018726': datetime(2018, 6, 8, 8, 36),
+    '032283': datetime(2016, 9, 14, 8, 4),
+    '026943': datetime(2019, 5, 22, 5, 47),
 }
 
 OCR_REPAIRS: dict[str | re.Pattern, str] = {

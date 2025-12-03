@@ -145,6 +145,7 @@ TONJA_HADDAD_COLEMAN = 'Tonja Haddad Coleman'
 TULSI_GABBARD = 'Tulsi Gabbard'
 TYLER_SHEARS = 'Tyler Shears'  # Reputation manager, like Al Seckel
 VINIT_SAHNI = 'Vinit Sahni'
+ZUBAIR_KHAN = 'Zubair Khan'
 
 
 NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
