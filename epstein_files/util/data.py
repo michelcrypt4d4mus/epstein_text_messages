@@ -1,6 +1,11 @@
 import itertools
 import re
+import time
+from dataclasses import dataclass, field
+from datetime import datetime
 from typing import TypeVar
+
+from epstein_files.util.env import logger
 
 MULTINEWLINE_REGEX = re.compile(r"\n{2,}")
 
@@ -22,6 +27,21 @@ def flatten(_list: list[list[T]]) -> list[T]:
 def patternize(_pattern: str | re.Pattern):
     return _pattern if isinstance(_pattern, re.Pattern) else re.compile(rf"({_pattern})", re.IGNORECASE)
 
+
+@dataclass
+class Timer:
+    started_at: float = field(default_factory=lambda: time.perf_counter())
+    checkpoint_at: float = field(default_factory=lambda: time.perf_counter())
+
+    def print_at_checkpoint(self, msg: str) -> None:
+        logger.warning(f"{msg} in {self.seconds_since_checkpoint()}")
+        self.checkpoint_at = time.perf_counter()
+
+    def seconds_since_checkpoint(self) -> str:
+        return f"{(time.perf_counter() - self.checkpoint_at):.2f} seconds"
+
+    def seconds_since_start(self) -> str:
+        return f"{(time.perf_counter() - self.started_at):.2f} seconds"
 
 escape_double_quotes = lambda text: text.replace('"', r'\"')
 escape_single_quotes = lambda text: text.replace("'", r"\'")

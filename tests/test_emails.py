@@ -39,7 +39,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Daniel Sabba": 3,
     "Daniel Siad": 2,
     "Danny Frost": 1,
-    "Darren Indyke": 49,
+    "Darren Indyke": 50,
     "Dave Hope": 1,
     "David Fiszel": 2,
     "David Grosof": 1,
@@ -76,10 +76,11 @@ EMAIL_AUTHOR_COUNTS = {
     "Jabor Y": 3,
     "Jack Goldberger": 4,
     "Jack Lang": 3,
+    'James Hill': 1,
     "Jay Lefkowitz": 7,
     "Jean Huguen": 1,
     "Jean Luc Brunel": 3,
-    "Jeffrey Epstein": 704,
+    "Jeffrey Epstein": 708,
     "Jennifer Jacquet": 1,
     "Jeremy Rubin": 3,
     "Jes Staley": 2,
@@ -205,7 +206,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    "(unknown)": 80,
+    "(unknown)": 84,
     "ACT for America": 1,
     "Alan Dershowitz": 15,
     "Alan Rogers": 1,
@@ -277,6 +278,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Jabor Y": 7,
     "Jack Goldberger": 10,
     "Jack Lang": 3,
+    'Jack Scarola': 1,
     "Jackie Perczek": 4,
     "James Ramsey": 1,
     "Janet Kafka": 1,
@@ -286,7 +288,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Jean Huguen": 1,
     "Jean Luc Brunel": 9,
     "Jeff Fuller": 1,
-    "Jeffrey Epstein": 1536,
+    "Jeffrey Epstein": 1537,
     "Jes Staley": 7,
     "Jessica Cadwell": 5,
     "Joel": 2,
@@ -440,6 +442,7 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     "013482",
     "016692",
     "016693",
+    '018726',
     "019871",
     "022193",
     "022247",
@@ -463,6 +466,7 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     "026677",
     "026755",
     "026788",
+    '026943',
     "028757",
     "028760",
     "029013",
@@ -506,6 +510,7 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     "031826",
     "031830",
     "032213",
+    "032283",
     "032780",
     "032876",
     "033021",
@@ -887,23 +892,27 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     "Darren Indyke": 47,
     "David Ingram": 9,
     "Deepak Chopra": 19,
-    "Jeffrey Epstein": 3366,
+    "Jeffrey Epstein": 3370,
     "Jessica Cadwell": 57,
     "Lawrence Krauss": 78,
     "Martin Weinberg": 17,
     "Paul Barrett": 10,
     "Peter Mandelson": 10,
-    "Richard Kahn": 120,
+    "Richard Kahn": 122,
     "Susan Edelman": 9,
     "Terry Kafka": 10,
     "Tonja Haddad Coleman": 9,
 }
 
 
-def test_email_counts(epstein_files):
+def test_email_author_counts(epstein_files):
     assert epstein_files.email_author_counts == EMAIL_AUTHOR_COUNTS
+
+
+def test_email_recipient_counts(epstein_files):
     assert epstein_files.email_recipient_counts == EMAIL_RECIPIENT_COUNTS
     assert epstein_files.email_unknown_recipient_file_ids() == UNKNOWN_RECIPIENT_FILE_IDS
+
 
 def test_signatures(epstein_files):
     assert dict_sets_to_lists(epstein_files.email_authors_to_device_signatures) == AUTHORS_TO_DEVICE_SIGNATURES

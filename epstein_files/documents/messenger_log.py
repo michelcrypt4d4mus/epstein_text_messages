@@ -10,7 +10,7 @@ from rich.text import Text
 from epstein_files.documents.document import CommunicationDocument
 from epstein_files.util.constants import *
 from epstein_files.util.highlighted_group import get_style_for_name
-from epstein_files.util.rich import PHONE_NUMBER, TEXT_LINK, TIMESTAMP, highlighter, logger
+from epstein_files.util.rich import PHONE_NUMBER, TEXT_LINK, highlighter, logger
 
 BAD_TEXTER_REGEX = re.compile(r'^([-+_1•F]+|[4Ide])$')
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
@@ -77,7 +77,7 @@ class MessengerLog(CommunicationDocument):
 
         for match in MSG_REGEX.finditer(self.text):
             sender = sender_str = match.group(1).strip()
-            timestamp = Text(f"[{match.group(2).strip()}] ", style=TIMESTAMP)
+            timestamp = Text(f"[{match.group(2).strip()}] ", style='gray30')
             msg = match.group(4).strip()
             msg_lines = msg.split('\n')
             sender_style = None

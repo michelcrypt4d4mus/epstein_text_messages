@@ -30,13 +30,11 @@ SOCIAL_MEDIA_LINK_STYLE = 'cadet_blue'
 TITLE_STYLE = 'black on bright_white bold'
 # Theme style names
 PHONE_NUMBER = 'phone_number'
-TIMESTAMP = 'timestamp'
 
 THEME_STYLES = {
     DEFAULT: 'wheat4',
     PHONE_NUMBER: 'bright_green',
     TEXT_LINK: 'deep_sky_blue4 underline',
-    TIMESTAMP: 'gray30',
 }
 
 for highlight_group in HIGHLIGHTED_GROUPS:

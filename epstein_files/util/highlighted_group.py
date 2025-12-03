@@ -99,7 +99,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='finance',
         style='green',
-        pattern=r'Apollo|Black(rock|stone)|DB|Deutsche\s*Bank|Goldman( ?Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|Merrill\s+Lynch|Morgan Stanley|j\.?p\.?\s*morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com',
+        pattern=r'Apollo|Black(rock|stone)|DB|Deutsche\s*Bank|Goldman(\s*Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|Merrill\s+Lynch|Morgan Stanley|j\.?p\.?\s*morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com',
         emailers={
             AMANDA_ENS: 'Citigroup',
             DANIEL_SABBA: 'UBS Investment Bank',
@@ -157,8 +157,8 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='deepak_chopra',
         style='dark_goldenrod',
-        pattern='Carolyn Rangel',
         emailers = {
+            'Carolyn Rangel': 'assistant',
             DEEPAK_CHOPRA: 'woo woo',
         }
     ),
@@ -226,10 +226,11 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='india',
         style='bright_green',
-        pattern='Hardeep( puree)?|Indian?|Modi|mumbai|Zubair( Khan)?',
+        pattern='Hardeep( puree)?|Indian?|Modi|mumbai',
         emailers = {
             ANIL_AMBANI: 'chairman of Reliance Group',
             VINIT_SAHNI: None,
+            ZUBAIR_KHAN: 'Tranchulas CEO',
         }
     ),
     HighlightedGroup(
@@ -256,6 +257,7 @@ HIGHLIGHTED_GROUPS = [
         pattern=r'Alex Yablon|Ingram, David|Susan Edelman|Vick[iy] Ward|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
         emailers = {
             EDWARD_EPSTEIN: 'no relation to Jeffrey',
+            'James Hill': 'ABC',
             LANDON_THOMAS: 'New York Times',
             MICHAEL_WOLFF: None,
             PAUL_KRASSNER: '60s guy',
@@ -399,9 +401,9 @@ HIGHLIGHTED_GROUPS = [
         }
     ),
     HighlightedGroup(
-        label='south america',
+        label='latin america',
         style='yellow',
-        pattern=r'Argentin(a|ian)|Bolsonar[aio]|Bra[sz]il(ian)?|Bukele|Cuban?|El\s*Salvador|Lula|(Nicolas\s+)?Maduro|Venezuelan?',
+        pattern=r'Argentin(a|ian)|Bolsonar[aio]|Bra[sz]il(ian)?|Bukele|Colombian?|Cuban?|El\s*Salvador|LatAm|Lula|Mexic(an|o)|(Nicolas\s+)?Maduro|Venezuelan?',
     ),
     HighlightedGroup(
         label='tech bro',
@@ -416,7 +418,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='trump',
         style='red3 bold',
-        pattern=r"@?realDonaldTrump|DJT|(Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)(?! Rubin)|Mar[- ]*a[- ]*Lago|(Matt(hew)? )?Calamari|\bMatt C\b|Melania|Roger\s+Stone",
+        pattern=r"@?realDonaldTrump|\bDJ?T\b|(Donald\s+(J\.\s+)?)?Trump|Don(ald| Jr)(?! Rubin)|Mar[- ]*a[- ]*Lago|(Matt(hew)? )?Calamari|\bMatt C\b|Melania|Roger\s+Stone",
     ),
     HighlightedGroup(
         label='victim',
@@ -435,6 +437,12 @@ HIGHLIGHTED_GROUPS = [
 
     # Individuals
     HighlightedGroup(
+        label=BILL_GATES,
+        style='turquoise4',
+        pattern=r'BG|(Bill\s+((and|or)\s+Melinda\s+)?)?Gates|Melinda(\s+Gates)?',
+        has_no_category=True,
+    ),
+    HighlightedGroup(
         label='Rothschild family',
         emailers={
             ARIANE_DE_ROTHSCHILD: None,
@@ -449,15 +457,7 @@ HIGHLIGHTED_GROUPS = [
         pattern=r'((Steve|Sean)\s+)?Bannon?',
     ),
     HighlightedGroup(
-        label=BILL_GATES,
-        style='turquoise4',
-        pattern=r'BG|(Bill\s+((and|or)\s+Melinda\s+)?)?Gates|Melinda(\s+Gates)?',
-        has_no_category=True,
-    ),
-    HighlightedGroup(
-        emailers={
-            STEVEN_HOFFENBERG: HEADER_ABBREVIATIONS['Hoffenberg']
-        },
+        emailers={STEVEN_HOFFENBERG: HEADER_ABBREVIATIONS['Hoffenberg']},
         pattern=r'(steven?\s*)?hoffenberg?w?',
         style='gold3'
     ),
@@ -466,11 +466,11 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(emailers={JEFFREY_EPSTEIN: None}, pattern='Mark (L. )?Epstein', style='blue1'),
     HighlightedGroup(emailers={JOI_ITO: 'former head of MIT Media Lab'}, style='gold1'),
     HighlightedGroup(emailers={KATHY_RUEMMLER: 'former Obama legal counsel'}, style='magenta2'),
-    HighlightedGroup(emailers={MELANIE_WALKER: 'Doctor'}, style='pale_violet_red1'),
-    HighlightedGroup(emailers={PAULA: 'Epstein niece?'}, style='pink1'),
+    HighlightedGroup(emailers={MELANIE_WALKER: 'doctor'}, style='pale_violet_red1'),
+    HighlightedGroup(emailers={PAULA: 'maybe Epstein\'s niece?'}, style='pink1'),
     HighlightedGroup(emailers={PRINCE_ANDREW: 'British royal family'}, style='dodger_blue1'),
-    HighlightedGroup(emailers={SOON_YI: "Woody Allen's wife"}, style='hot_pink'),
-    HighlightedGroup(emailers={SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of the ports in Dubai'}, style='green1'),
+    HighlightedGroup(emailers={SOON_YI: "wife of Woody Allen"}, style='hot_pink'),
+    HighlightedGroup(emailers={SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of ports in Dubai'}, style='green1'),
 
     # Highlight regexes for things other than names
     HighlightedGroup(

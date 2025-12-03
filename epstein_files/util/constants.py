@@ -158,7 +158,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     DAVID_STERN: re.compile(r'David Stern?', re.IGNORECASE),
     EDUARDO_ROBLES: re.compile(r'Ed(uardo)?\s*Robles', re.IGNORECASE),
     EDWARD_EPSTEIN: re.compile(r'Edward (Jay )?Epstein', re.IGNORECASE),
-    EHUD_BARAK: re.compile(r'(ehud|h)\s*barak', re.IGNORECASE),
+    EHUD_BARAK: re.compile(r'(ehud|e?h)\s*barak|\behud', re.IGNORECASE),
     FAITH_KATES: re.compile(r'faith kates?', re.IGNORECASE),
     GERALD_BARTON: re.compile(r'Gerald.*Barton', re.IGNORECASE),
     GHISLAINE_MAXWELL: re.compile(r'g ?max(well)?|Ghislaine|Maxwell', re.IGNORECASE),
@@ -166,6 +166,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     'Intelligence Squared': re.compile(r'intelligence\s*squared', re.IGNORECASE),
     JACKIE_PERCZEK:  re.compile(r'jackie percze[kl]?', re.IGNORECASE),
     JABOR_Y: re.compile(r'[ji]abor\s*y?', re.IGNORECASE),
+    JAMES_HILL: re.compile(r"hill, james e.|james.e.hill@abc.com", re.IGNORECASE),
     JEAN_LUC_BRUNEL: re.compile(r'Jean[- ]Luc Brunel?', re.IGNORECASE),
     JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]?g?(mail.com)?|\bJEE?\b|Jeffrey E((sp|ps)tein?)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!Mark L. )Epstein', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|(joichi|joi)( Ito)?', re.IGNORECASE),
@@ -245,6 +246,7 @@ EMAILERS = [
     GLENN_DUBIN,
     GORDON_GETTY,
     'Jack Lang',
+    'Jack Scarola',
     JAY_LEFKOWITZ,
     JES_STALEY,
     JESSICA_CADWELL,
@@ -329,6 +331,9 @@ KNOWN_EMAIL_AUTHORS = {
     '028770': JEFFREY_EPSTEIN,
     '029692': JEFFREY_EPSTEIN,
     '031624': JEFFREY_EPSTEIN,
+    '018726': JEFFREY_EPSTEIN,       # Strange fragment only showing what was replied to
+    '032283': JEFFREY_EPSTEIN,       # Strange fragment only showing what was replied to
+    '026943': JEFFREY_EPSTEIN,       # Strange fragment only showing what was replied to
     '030768': JEFFREY_EPSTEIN,
     '031996': JEFFREY_EPSTEIN,       # bounced
     '022938': JEFFREY_EPSTEIN,

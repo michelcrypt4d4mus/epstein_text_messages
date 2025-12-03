@@ -23,15 +23,15 @@ ALAN_DERSHOWITZ = 'Alan Dershowitz'
 ALIREZA_ITTIHADIEH = 'Alireza Ittihadieh'
 AMANDA_ENS = 'Amanda Ens'
 ANN_MARIE_VILLAFANA = 'Ann Marie Villafana'
+ANAS_ALRASHEED = 'Anas Alrasheed'
 ANTHONY_BARRETT = 'Anthony Barrett'
 ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
-ANAS_ALRASHEED = 'Anas Alrasheed'
-BRAD_KARP = 'Brad Karp'
 AZIZA_ALAHMADI = 'Aziza Alahmadi'
 BARBRO_EHNBOM = 'Barbro C. Ehnbom'
 BENNET_MOSKOWITZ = 'Bennet Moskowitz'
 BILL_GATES = 'Bill Gates'
 BILL_SIEGEL = 'Bill Siegel'
+BRAD_KARP = 'Brad Karp'
 BRAD_WECHSLER = 'Brad Wechsler'
 BORIS_NIKOLIC = 'Boris Nikolic'
 CELINA_DUBIN = 'Celina Dubin'
@@ -64,6 +64,7 @@ IVANKA = 'Ivanka'
 JABOR_Y = 'Jabor Y'                       # Qatari
 JACK_GOLDBERGER = 'Jack Goldberger'
 JACKIE_PERCZEK = 'Jackie Perczek'
+JAMES_HILL = 'James Hill'
 JARED_KUSHNER = 'Jared Kushner'
 JAY_LEFKOWITZ = 'Jay Lefkowitz'
 JEAN_HUGUEN = 'Jean Huguen'
@@ -76,8 +77,8 @@ JOHN_PAGE = 'John Page'
 JOHNNY_EL_HACHEM = 'Johnny el Hachem'
 JONATHAN_FARKAS = 'Jonathan Farkas'
 JOSCHA_BACH = 'Joscha Bach'
-KATHY_RUEMMLER = 'Kathryn Ruemmler'
 KATHERINE_KEATING = 'Katherine Keating'
+KATHY_RUEMMLER = 'Kathryn Ruemmler'
 KEN_STARR = 'Ken Starr'
 KENNETH_E_MAPP = 'Kenneth E. Mapp'
 LANDON_THOMAS = 'Landon Thomas Jr'
@@ -107,11 +108,11 @@ NEAL_KASSELL = 'Neal Kassell'
 NICHOLAS_RIBIS = 'Nicholas Ribis'
 NORMAN_D_RAU = 'Norman D. Rau'
 OLIVIER_COLOM = 'Olivier Colom'
-PAULA = 'Paula'
 PAUL_BARRETT = 'Paul Barrett'
 PAUL_KRASSNER = 'Paul Krassner'
 PAUL_MORRIS = 'Paul Morris'
 PAUL_PROSPERI = 'Paul Prosperi'
+PAULA = 'Paula'
 PEGGY_SIEGAL = 'Peggy Siegal'
 PETER_ATTIA = 'Peter Attia'
 PETER_MANDELSON = 'Peter Mandelson'
@@ -125,15 +126,15 @@ ROBERT_D_CRITTON = 'Robert D. Critton Jr.'
 ROBERT_LAWRENCE_KUHN = 'Robert Lawrence Kuhn'
 ROBERT_TRIVERS = 'Robert Trivers'
 ROGER_SCHANK = 'Roger Schank'
-RUDY_GIULIANI = 'Rudy Giuliani'
 ROSS_GOW = 'Ross Gow'
+RUDY_GIULIANI = 'Rudy Giuliani'
 SAMUEL_LEFF = 'Samuel Leff'
 SCOTT_J_LINK = 'Scott J. Link'
 SEAN_BANNON = 'Sean Bannon'
 SHAHER_ABDULHAK_BESHER = 'Shaher Abdulhak Besher (?)'
 STEPHEN_HANSON = 'Stephen Hanson'
-STEVEN_PFEIFFER = 'Steven Pfeiffer'
 STEVEN_HOFFENBERG = 'Steven Hoffenberg'
+STEVEN_PFEIFFER = 'Steven Pfeiffer'
 SULTAN_BIN_SULAYEM = 'Sultan Ahmed Bin Sulayem'
 TERRY_KAFKA = 'Terry Kafka'
 THANU_BOONYAWATANA = 'Thanu Boonyawatana'
@@ -144,16 +145,18 @@ TONJA_HADDAD_COLEMAN = 'Tonja Haddad Coleman'
 TULSI_GABBARD = 'Tulsi Gabbard'
 TYLER_SHEARS = 'Tyler Shears'  # Reputation manager, like Al Seckel
 VINIT_SAHNI = 'Vinit Sahni'
+ZUBAIR_KHAN = 'Zubair Khan'
 
 
 NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Al', 'Allen', 'Amanda', 'Andres', 'Andrew',
     'Bill', 'Black', 'Brad',
-    'Daniel', 'Darren', 'Dave', 'David',
+    'Carolyn',
+    'Dan', 'Daniel', 'Danny', 'Darren', 'Dave', 'David',
     'Edwards', 'Epstein', 'Eric', 'Etienne',
-    'Fred',
-    'Heather',
-    'Jack', 'Jay', 'Jean', 'Jeff', 'jeffrey', 'Jeremy', 'jessica', 'John', 'Jon', 'Jonathan', 'Joseph', 'Jr',
+    'Faith', 'Fred',
+    'Heather', 'Hill',
+    'Jack', 'James', 'Jay', 'Jean', 'Jeff', 'jeffrey', 'Jeremy', 'jessica', 'John', 'Jon', 'Jonathan', 'Joseph', 'Jr',
     'Kahn', 'Katherine', 'Ken',
     'Leon', 'Lesley', 'Linda', 'Link',
     'Marc', 'Marie', 'Mark', 'Martin', 'Melanie', 'Michael', 'Mike', 'Miller', 'Moskowitz',

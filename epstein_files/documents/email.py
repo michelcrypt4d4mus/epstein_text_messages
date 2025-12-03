@@ -13,7 +13,8 @@ from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.documents.document import CommunicationDocument
-from epstein_files.documents.email_header import BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TIME_REGEX, EmailHeader
+from epstein_files.documents.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX,
+     EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TIME_REGEX, EmailHeader)
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import *
@@ -24,7 +25,7 @@ from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import *
 
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
-BAD_TIMEZONE_REGEX = re.compile(r'\((UTC|GMT\+\d{2}:\d{2})\)')
+BAD_TIMEZONE_REGEX = re.compile(fr'\((UTC|GMT\+\d\d:\d\d)\)|{REDACTED}')
 TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 PACIFIC_TZ = tz.gettz("America/Los_Angeles")
 TIMEZONE_INFO = {"PST": PACIFIC_TZ, "PDT": PACIFIC_TZ}  # Suppresses annoying warnings from parse() calls
@@ -34,6 +35,7 @@ QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re.DOTALL)
 BAD_LINE_REGEX = re.compile(r'^(>;|\d{1,2}|Importance:( High)?|[iI,•]|i (_ )?i|, [-,])$')
 
+SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 MAX_CHARS_TO_PRINT = 4000
 MAX_QUOTED_REPLIES = 2
 VALID_HEADER_LINES = 14
@@ -51,6 +53,9 @@ KNOWN_TIMESTAMPS = {
     '028849': datetime(2014, 4, 27, 6, 30),
     '032475': datetime(2017, 2, 15, 13, 31, 25),
     '030373': datetime(2018, 10, 3, 1, 49, 27),
+    '018726': datetime(2018, 6, 8, 8, 36),
+    '032283': datetime(2016, 9, 14, 8, 4),
+    '026943': datetime(2019, 5, 22, 5, 47),
 }
 
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
@@ -363,7 +368,7 @@ class Email(CommunicationDocument):
             if self.header.is_empty():
                 self.header.repair_empty_header(self.lines)
         else:
-            if not (self.file_id in KNOWN_EMAIL_AUTHORS and self.file_id in KNOWN_EMAIL_RECIPIENTS):
+            if not (self.file_id in KNOWN_EMAIL_AUTHORS or self.file_id in KNOWN_EMAIL_RECIPIENTS):
                 logger.warning(f"No header match found in '{self.filename}'! Top lines:\n\n{self.top_lines()}")
 
             self.header = EmailHeader(field_names=[])
@@ -373,7 +378,7 @@ class Email(CommunicationDocument):
         names = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
 
         if BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
-            if len(names) == 0 and not emailer_str.startswith('Undisclosed'):
+            if len(names) == 0 and not emailer_str in SUPPRESS_LOGS_FOR_AUTHORS:
                 logger.warning(f"'{self.filename}': No emailer found in '{escape_single_quotes(emailer_str)}'")
             else:
                 logger.info(f"Extracted {len(names)} names from semi-invalid '{emailer_str}': {names}...")
@@ -388,11 +393,9 @@ class Email(CommunicationDocument):
         recipients_txt = Text('')
 
         for i, recipient in enumerate(recipients):
-            if i > 0:
-                recipients_txt.append(', ')
-
             recipient = recipient or UNKNOWN
             recipient_str = recipient if (' ' not in recipient or len(recipients) < 3) else recipient.split()[-1]
+            recipients_txt.append(', ' if i > 0 else '')
             recipients_txt.append(recipient_str, style=get_style_for_name(recipient))
 
         return recipients_txt
@@ -435,15 +438,15 @@ class Email(CommunicationDocument):
         info_line = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(f' to ')
         info_line.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
+
         text = self.cleaned_up_text
-        num_chars = MAX_CHARS_TO_PRINT
         quote_cutoff = self.idx_of_nth_quoted_reply(text=text)  # Trim if there's many quoted replies
+        num_chars = MAX_CHARS_TO_PRINT
         trim_footer_txt = None
 
         if self.author in TRUNCATE_ALL_EMAILS_FROM or any((term in self.text) for term in TRUNCATE_TERMS):
             num_chars = int(MAX_CHARS_TO_PRINT / 3)
         elif quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
-            logger.debug(f"Found {self.count_regex_matches(QUOTED_REPLY_LINE_REGEX.pattern)} quotes, cutting off at char {quote_cutoff}")
             num_chars = quote_cutoff
 
         if len(text) > num_chars:
@@ -463,10 +466,9 @@ class Email(CommunicationDocument):
 def _parse_timestamp(timestamp_str: str) -> None | datetime:
     try:
         timestamp_str = timestamp_str.replace('(GMT-05:00)', 'EST')
-        timestamp_str = BAD_TIMEZONE_REGEX.sub('', timestamp_str).replace(REDACTED, ' ').strip()
-        logger.debug(f"Parsing fixed timestamp_str '{timestamp_str}'")
+        timestamp_str = BAD_TIMEZONE_REGEX.sub(' ', timestamp_str).strip()
         timestamp = parse(timestamp_str, tzinfos=TIMEZONE_INFO)
-        logger.debug(f'Parsed timestamp "{timestamp}" from string "{timestamp_str}"')
+        logger.debug(f'Parsed timestamp "%s" from string "%s"', timestamp, timestamp_str)
 
         if timestamp.tzinfo:
             timestamp = timestamp.astimezone(timezone.utc).replace(tzinfo=None)
