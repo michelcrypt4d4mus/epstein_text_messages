@@ -4,7 +4,7 @@ import urllib.parse
 from inflection import parameterize
 from rich.text import Text
 
-from epstein_files.util.constant.strings import EMAIL, HOUSE_OVERSIGHT_PREFIX, TEXT_MESSAGE
+from epstein_files.util.constant.strings import EMAIL, HOUSE_OVERSIGHT_PREFIX, TEXT_MESSAGE, SiteType
 from epstein_files.util.file_helper import build_filename_for_id
 
 # External site names
@@ -28,7 +28,7 @@ OVERSIGHT_REPUBLICANS_PRESSER_URL = 'https://oversight.house.gov/release/oversig
 RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_'
 SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great'
 
-SITE_URLS = {
+SITE_URLS: dict[SiteType, str] = {
     EMAIL: 'https://michelcrypt4d4mus.github.io/epstein_emails_house_oversight/',
     TEXT_MESSAGE: 'https://michelcrypt4d4mus.github.io/epstein_text_messages/',
 }

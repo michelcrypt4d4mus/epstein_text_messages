@@ -1,4 +1,4 @@
-# no trailing periods! (messes up regexes)
+#
 UNKNOWN = '(unknown)'
 
 # Texting Names
@@ -17,7 +17,7 @@ STEVEN_SINOFSKY = 'Steven Sinofsky'
 TERJE_ROD_LARSEN = 'Terje Rød-Larsen'
 
 
-# Email Names
+# Email Names - no trailing periods! (messes up regexes)
 AL_SECKEL = 'Al Seckel'
 ALAN_DERSHOWITZ = 'Alan Dershowitz'
 ALIREZA_ITTIHADIEH = 'Alireza Ittihadieh'
