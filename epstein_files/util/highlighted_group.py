@@ -267,7 +267,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='lawyer',
         style='purple4',
-        pattern=r'(Erika\s+)?Kellerhals|Michael J. Pike|Paul,?\s*Weiss|Wein(berg|garten)',
+        pattern=r'Michael J. Pike|Paul,?\s*Weiss|Wein(berg|garten)',
         emailers = {
             BENNET_MOSKOWITZ: None,
             'Brad Edwards': None,
@@ -275,6 +275,7 @@ HIGHLIGHTED_GROUPS = [
             DAVID_STERN: None,
             DAVID_SCHOEN: None,
             DEBBIE_FEIN: None,
+            'Erika Kellerhals': 'attorney in St. Thomas',
             JACK_GOLDBERGER: None,
             JACKIE_PERCZEK: None,
             JAY_LEFKOWITZ: None,
