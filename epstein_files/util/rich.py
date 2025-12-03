@@ -16,7 +16,7 @@ from epstein_files.util.constant.html import PAGE_TITLE
 from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constant.strings import DEFAULT, EMAIL, SiteType
 from epstein_files.util.constant.urls import *
-from epstein_files.util.constants import HEADER_ABBREVIATIONS
+from epstein_files.util.constants import FALLBACK_TIMESTAMP, HEADER_ABBREVIATIONS
 from epstein_files.util.env import args, deep_debug, is_debug, is_main_script, logger
 from epstein_files.util.highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS, InterestingNamesHighlighter
 
@@ -148,7 +148,7 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
     console.line()
 
 
-def print_numbered_list_of_emailers(_list: list[str] | dict, epstein_files = None) -> None:
+def print_numbered_list_of_emailers(_list: list[str | None] | dict, epstein_files = None) -> None:
     """Add the first emailed_at for this emailer if 'epstein_files' provided."""
     console.line()
 
