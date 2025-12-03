@@ -179,9 +179,9 @@ HIGHLIGHTED_GROUPS = [
         emailers = {
             ERIC_ROTH: 'jet decorator',
             GWENDOLYN_BECK: 'Epstein fund manager in the 90s',
+            JEAN_HUGUEN: 'interior design at Alberto Pinto Cabinet',
             LAWRANCE_VISOSKI: 'pilot',
             LESLEY_GROFF: 'assistant',
-            JEAN_HUGUEN: 'interior design at Alberto Pinto Cabinet',
             'Linda Pinto': 'interior design at Alberto Pinto Cabinet',
             MERWIN_DELA_CRUZ: None,  # HOUSE_OVERSIGHT_032652 Groff says "Jojo and Merwin both requested off Nov. 25 and 26"
             NADIA_MARCINKO: 'pilot',
