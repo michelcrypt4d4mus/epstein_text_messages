@@ -7,7 +7,6 @@ Install: 'pip install python-dotenv rich'
     Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT/001 ./generate.py'
 """
 import time
-from pathlib import Path
 from sys import exit
 
 from dotenv import load_dotenv
@@ -121,7 +120,7 @@ else:
 for author in emailers_to_print:
     emails_printed += epstein_files.print_emails_for(author)
 
-    if emails_printed > PRINT_COLOR_KEY_EVERY_N_EMAILS:
+    if emails_printed > PRINT_COLOR_KEY_EVERY_N_EMAILS:  # Print color key every once in a while
         print_color_key()
         emails_printed = 0
 

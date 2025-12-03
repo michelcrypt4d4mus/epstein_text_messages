@@ -6,7 +6,6 @@ from typing import Literal
 
 from rich.align import Align
 from rich.console import Console, RenderableType
-from rich.highlighter import RegexHighlighter
 from rich.markup import escape
 from rich.panel import Panel
 from rich.padding import Padding
@@ -21,7 +20,7 @@ from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import HEADER_ABBREVIATIONS
 from epstein_files.util.env import args, deep_debug, is_debug, is_main_script, logger
 from epstein_files.util.file_helper import build_filename_for_id
-from epstein_files.util.highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS, REGEX_STYLE_PREFIX
+from epstein_files.util.highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS, InterestingNamesHighlighter
 
 NUM_COLOR_KEY_COLS = 4
 OUTPUT_WIDTH = 120
@@ -47,11 +46,6 @@ THEME_STYLES = {
 
 for highlight_group in HIGHLIGHTED_GROUPS:
     THEME_STYLES[highlight_group.style_name] = highlight_group.style
-
-
-class InterestingNamesHighlighter(RegexHighlighter):
-    base_style = f"{REGEX_STYLE_PREFIX}."
-    highlights = [highlight_group.regex for highlight_group in HIGHLIGHTED_GROUPS]
 
 
 highlighter = InterestingNamesHighlighter()
