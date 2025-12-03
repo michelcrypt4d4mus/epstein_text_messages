@@ -397,11 +397,7 @@ class Email(CommunicationDocument):
 
     def _get_names(self, emailer_str: str) -> list[str]:
         emailer_str = EmailHeader.cleanup_str(emailer_str)
-        names = []
-
-        for name, regex in EMAILER_REGEXES.items():
-            if regex.search(emailer_str):
-                names.append(name)
+        names = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
 
         if BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
             log_msg = f"'{self.filename}': No valid emailer found in '{escape_single_quotes(emailer_str)}'"
