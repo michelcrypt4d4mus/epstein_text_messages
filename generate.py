@@ -72,7 +72,7 @@ if args.colors_only:
 
 timer = Timer()
 epstein_files = EpsteinFiles()
-timer.print_at_checkpoint(f'Processed {len(epstein_files.all_files)} files')
+timer.print_at_checkpoint(f'Processed {len(epstein_files.all_files):,} files')
 epstein_files.print_files_overview()
 print_color_key()
 
@@ -87,7 +87,7 @@ if not skip_texts:
         console.line(2)
 
     epstein_files.print_imessage_summary()
-    timer.print_at_checkpoint(f'Printed {len(epstein_files.imessage_logs)} text message logs')
+    timer.print_at_checkpoint(f'Printed {len(epstein_files.imessage_logs):,} text message logs')
 
 
 # Emails section
@@ -130,14 +130,14 @@ if not args.all_emails and len(specified_emailers) == 0:
         epstein_files.print_emails_table_for(name)
 
 epstein_files.print_email_device_info()
-timer.print_at_checkpoint(f"Printed {len(epstein_files.emails)} emails")
+timer.print_at_checkpoint(f"Printed {len(epstein_files.emails):,} emails")
 
 
 # Other Files Section
 if not skip_texts:
     print_section_header(f"Top Lines of {len(epstein_files.other_files)} Files That Are Neither Emails Nor Text Msgs")
     epstein_files.print_other_files_table()
-    timer.print_at_checkpoint(f"Printed {len(epstein_files.other_files)} other files")
+    timer.print_at_checkpoint(f"Printed {len(epstein_files.other_files):,} other files")
 else:
     logger.warning(f"Skipping other files section (is_build={is_build}, args.all_emails={args.all_emails}, skip_texts={skip_texts})...")
 
