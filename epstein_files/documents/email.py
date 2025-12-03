@@ -375,6 +375,10 @@ class Email(CommunicationDocument):
 
     def _get_names(self, emailer_str: str) -> list[str]:
         emailer_str = EmailHeader.cleanup_str(emailer_str)
+
+        if len(emailer_str) == 0:
+            return []
+
         names = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
 
         if BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
