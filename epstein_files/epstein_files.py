@@ -73,8 +73,8 @@ class EpsteinFiles:
                 for recipient in recipients:
                     self.email_recipient_counts[recipient] += 1
 
-                if UNKNOWN in email.recipients:
-                    self._email_unknown_recipient_file_ids.add(email.file_id)
+                    if recipient == UNKNOWN:
+                        self._email_unknown_recipient_file_ids.add(email.file_id)
 
                 if email.sent_from_device:
                     self.email_authors_to_device_signatures[email.author or UNKNOWN].add(email.sent_from_device)

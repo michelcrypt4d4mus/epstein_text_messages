@@ -162,3 +162,4 @@ if args.json_stats:
     print_json("Email signature_substitution_counts", Email.signature_substitution_counts, skip_falsey=True)
     print_json("email_author_device_signatures", dict_sets_to_lists(epstein_files.email_authors_to_device_signatures))
     print_json("email_sent_from_devices", dict_sets_to_lists(epstein_files.email_device_signatures_to_authors))
+    print_json("email_unknown_recipient_file_ids", epstein_files.email_unknown_recipient_file_ids())
