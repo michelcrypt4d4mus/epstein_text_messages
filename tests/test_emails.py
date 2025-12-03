@@ -442,6 +442,7 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     "013482",
     "016692",
     "016693",
+    '018726',
     "019871",
     "022193",
     "022247",
@@ -465,6 +466,7 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     "026677",
     "026755",
     "026788",
+    '026943',
     "028757",
     "028760",
     "029013",
@@ -508,6 +510,7 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     "031826",
     "031830",
     "032213",
+    "032283",
     "032780",
     "032876",
     "033021",
@@ -904,8 +907,6 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
 
 def test_email_author_counts(epstein_files):
     assert epstein_files.email_author_counts == EMAIL_AUTHOR_COUNTS
-    assert epstein_files.email_recipient_counts == EMAIL_RECIPIENT_COUNTS
-    assert epstein_files.email_unknown_recipient_file_ids() == UNKNOWN_RECIPIENT_FILE_IDS
 
 
 def test_email_recipient_counts(epstein_files):
