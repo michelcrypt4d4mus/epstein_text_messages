@@ -186,9 +186,9 @@ def print_other_site_link(is_header: bool = True) -> None:
     print_centered(Text('(') + Text.from_markup(markup_msg).append(')'), style='bold')
 
 
-def print_page_title() -> None:
+def print_page_title(expand: bool = True) -> None:
     console.line()
-    console.print(Panel(Text(PAGE_TITLE, justify='center'), style=TITLE_STYLE))
+    console.print(Panel(Text(PAGE_TITLE, justify='center'), expand=expand, style=TITLE_STYLE))
     console.line()
 
 

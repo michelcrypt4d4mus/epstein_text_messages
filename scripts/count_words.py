@@ -20,7 +20,7 @@ SKIP_WORDS_REGEX = re.compile(r"^(http|addresswww)|jee[vy]acation|html?$")
 MAX_WORD_LEN = 45
 
 
-print_page_title()
+print_page_title(expand=False)
 epstein_files = EpsteinFiles()
 console.print(f"Most common words in the {len(epstein_files.emails)} emails:\n")
 words = defaultdict(int)

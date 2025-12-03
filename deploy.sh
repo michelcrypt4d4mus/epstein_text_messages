@@ -5,7 +5,9 @@ source .env
 set -e
 
 EMAILS_DIR="../epstein_emails_house_oversight"
-INDEX_HTML_PATH="docs/index.html"
+DOCS_DIR="docs"
+INDEX_HTML_PATH="$DOCS_DIR/index.html"
+WORD_COUNT_HTML_PATH="$DOCS_DIR/epstein_emails_word_count.html"
 EMAILS_INDEX_HTML_PATH="${EMAILS_DIR}/${INDEX_HTML_PATH}"
 
 GITHUB_PAGES_BASE_URL='https://michelcrypt4d4mus.github.io'
@@ -44,8 +46,13 @@ any_uncommitted_changes() {
 }
 
 if [ -f "$INDEX_HTML_PATH" ]; then
-    print_msg "Removing master branch" "$INDEX_HTML_PATH"
+    print_msg "Removing master branch version of" "$INDEX_HTML_PATH"
     rm "$INDEX_HTML_PATH"
+fi
+
+if [ -f "$WORD_COUNT_HTML_PATH" ]; then
+    print_msg "Removing master branch version of" "$WORD_COUNT_HTML_PATH"
+    rm "$WORD_COUNT_HTML_PATH"
 fi
 
 if any_uncommitted_changes; then
@@ -60,6 +67,8 @@ git checkout gh_pages
 git merge --no-edit master --quiet
 print_msg "Building" "$INDEX_HTML_PATH"
 ./generate.py --build --suppress-output
+print_msg "Building" "$WORD_COUNT_HTML_PATH"
+./scripts/count_words.py --build --suppress-output
 git commit -am"Update HTML"
 git push origin gh_pages --quiet
 git checkout master
