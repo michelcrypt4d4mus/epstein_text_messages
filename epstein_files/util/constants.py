@@ -411,9 +411,8 @@ KNOWN_EMAIL_AUTHORS = {
     '028482': TERRY_KAFKA,             # Signature
     '029992': TERRY_KAFKA,             # Quoted reply
     '020666': TERRY_KAFKA,             # ends with 'Terry'
-    '022346': VINIT_SAHNI,             # Signature  #TODO: check this, also maybe 022346 and 022322
     # Unknowns
-    '022187': UNKNOWN,   # Bad OCR causes parsing problems
+    '022187': UNKNOWN,                 # Bad OCR causes parsing problems
     # '026571': '(unknown french speaker)',
     # '029504': Probably Audrey Raimbault (based on "GMI" in signature, a company registered by "aubrey raimbault")
 }
@@ -493,7 +492,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '023291': [MELANIE_SPINELLA, BRAD_WECHSLER],  # Can be seen in 023028
     '032214': MIROSLAV_LAJCAK,               # Quoted reply has signature
     '022258': NADIA_MARCINKO,         # Reply header
-    '033097': [PAUL_BARRETT, RICHARD_KAHN],  # Bad OCR #TODO: check
+    '033097': [PAUL_BARRETT, RICHARD_KAHN],  # Bad OCR
     '030506': PAULA,                  # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
     '030507': PAULA,                  # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
     '030508': PAULA,                  # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
