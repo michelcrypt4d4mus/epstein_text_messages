@@ -235,7 +235,7 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
     'Peter Aldhous',                         # Lawrence Krauss CC
     ROBERT_D_CRITTON,                        # Random CC
     'Sam Harris',                            # Lawrence Krauss CC
-    SAM_LEFF,                                # Random CC
+    SAMUEL_LEFF,                                # Random CC
     'Sean T Lehane',                         # Random CC
     'Stephen Rubin',                         # Random CC
     'Tim Kane',                              # Random CC

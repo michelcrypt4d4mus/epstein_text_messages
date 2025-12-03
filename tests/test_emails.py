@@ -391,7 +391,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Roger Schank": 2,
     "Roy Black": 4,
     "Sam Harris": 1,
-    'Samuel Leff': 2,
+    SAMUEL_LEFF: 2,
     "Scott J. Link": 1,
     "Sean Bannon": 1,
     "Sean T Lehane": 1,

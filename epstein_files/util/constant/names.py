@@ -127,7 +127,7 @@ ROBERT_TRIVERS = 'Robert Trivers'
 ROGER_SCHANK = 'Roger Schank'
 RUDY_GIULIANI = 'Rudy Giuliani'
 ROSS_GOW = 'Ross Gow'
-SAM_LEFF = 'Sam Leff'
+SAMUEL_LEFF = 'Samuel Leff'
 SCOTT_J_LINK = 'Scott J. Link'
 SEAN_BANNON = 'Sean Bannon'
 SHAHER_ABDULHAK_BESHER = 'Shaher Abdulhak Besher (?)'
@@ -152,6 +152,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Daniel', 'Darren', 'Dave', 'David',
     'Edwards', 'Epstein', 'Eric', 'Etienne',
     'Fred',
+    'Heather',
     'Jack', 'Jay', 'Jean', 'Jeff', 'jeffrey', 'Jeremy', 'jessica', 'John', 'Jon', 'Jonathan', 'Joseph', 'Jr',
     'Kahn', 'Katherine',
     'Leon', 'Lesley', 'Linda', 'Link',
