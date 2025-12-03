@@ -193,6 +193,7 @@ HIGHLIGHTED_GROUPS = [
         pattern='Bobby slayton|Etienne Binant|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?',
         emailers={
             'Andres Serrano': "'Piss Christ' artist",
+            'Barry Josephson': 'American film producer and former music manager',
             BILL_SIEGEL: 'documentary film producer and director',
             'David Blaine': 'magician',
             'Richard Merkin': 'painter, illustrator and arts educator',
