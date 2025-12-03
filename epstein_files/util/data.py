@@ -43,6 +43,7 @@ class Timer:
     def seconds_since_start(self) -> str:
         return f"{(time.perf_counter() - self.started_at):.2f} seconds"
 
+
 escape_double_quotes = lambda text: text.replace('"', r'\"')
 escape_single_quotes = lambda text: text.replace("'", r"\'")
 uniquify = lambda _list: list(set(_list))

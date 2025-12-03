@@ -78,9 +78,9 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'Miroslav Laj6ak': MIROSLAV_LAJCAK,
     re.compile(r'from my BlackBerry[0°] wireless device'): 'from my BlackBerry® wireless device',
     'gJeremyRubin': '@JeremyRubin',
-    re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
     re.compile(r"twitter\.com[i/][lI]krauss[1lt]"): "twitter.com/lkrauss1",
-    'twitter glhsummers': 'twitter @lhsummers',
+    # re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
+    # 'twitter glhsummers': 'twitter @lhsummers',
     # 'Sent from Mabfl': 'Sent from Mobile',  # NADIA_MARCINKO signature bad OCR
 }
 

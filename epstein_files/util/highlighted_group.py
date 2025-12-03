@@ -516,9 +516,9 @@ HIGHLIGHTED_GROUPS = [
 ]
 
 COLOR_KEYS = [
-    h.colored_label()
-    for h in sorted(HIGHLIGHTED_GROUPS, key=lambda hg: hg.label)
-    if not h.is_multiline
+    highlight_group.colored_label()
+    for highlight_group in sorted(HIGHLIGHTED_GROUPS, key=lambda hg: hg.label)
+    if not highlight_group.is_multiline
 ]
 
 
