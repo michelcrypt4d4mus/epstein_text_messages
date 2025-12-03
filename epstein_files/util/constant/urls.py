@@ -67,7 +67,7 @@ def highlight_regex_match(text: str, pattern: re.Pattern, style: str = 'cyan') -
 
 
 def link_markup(url: str, link_text: str, style: str | None = ARCHIVE_LINK_COLOR, underline: bool = True) -> str:
-    style = (style or '') + (' underline' if underline else '')
+    style = ((style or '') + (' underline' if underline else '')).strip()
     return (f"[{style}][link={url}]{link_text}[/link][/{style}]")
 
 

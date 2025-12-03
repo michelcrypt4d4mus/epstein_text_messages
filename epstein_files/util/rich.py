@@ -83,6 +83,29 @@ def print_centered_link(url: str, link_text: str, style: str | None = None) -> N
     print_centered(link_markup(url, link_text, style or ARCHIVE_LINK_COLOR))
 
 
+def print_color_key(key_type: Literal["Groups", "People"] = "Groups") -> None:
+    color_table = Table(title=f'Rough Guide to Highlighted Colors', show_header=False)
+    num_colors = len(COLOR_KEYS)
+    row_number = 0
+
+    for i in range(0, NUM_COLOR_KEY_COLS):
+        color_table.add_column(f"color_col_{i}", justify='center')
+
+    while (row_number * NUM_COLOR_KEY_COLS) < num_colors:
+        idx = row_number * NUM_COLOR_KEY_COLS
+
+        color_table.add_row(
+            COLOR_KEYS[idx],
+            COLOR_KEYS[idx + 1] if (idx + 1) < num_colors else '',
+            COLOR_KEYS[idx + 2] if (idx + 2) < num_colors else '',
+            COLOR_KEYS[idx + 3] if (idx + 3) < num_colors else '',
+        )
+
+        row_number += 1
+
+    print_centered(vertically_pad(color_table))
+
+
 def print_header():
     console.print(f"This site is not optimized for mobile but if you get past the header it should work ok.", style='dim')
     console.line()
@@ -116,29 +139,6 @@ def print_header():
     print_centered(f"(thanks to {link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} and others for attribution help)")
     print_centered(f"If you think there's an attribution error or can deanonymize an {UNKNOWN} contact {link_markup('https://x.com/cryptadamist', '@cryptadamist')}.", 'grey46')
     print_centered('(note this site is based on the OCR text provided by Congress which is not the greatest)', 'grey23')
-
-
-def print_color_key(key_type: Literal["Groups", "People"] = "Groups") -> None:
-    color_table = Table(title=f'Rough Guide to Highlighted Colors', show_header=False)
-    num_colors = len(COLOR_KEYS)
-    row_number = 0
-
-    for i in range(0, NUM_COLOR_KEY_COLS):
-        color_table.add_column(f"color_col_{i}", justify='center')
-
-    while (row_number * NUM_COLOR_KEY_COLS) < num_colors:
-        idx = row_number * NUM_COLOR_KEY_COLS
-
-        color_table.add_row(
-            COLOR_KEYS[idx],
-            COLOR_KEYS[idx + 1] if (idx + 1) < num_colors else '',
-            COLOR_KEYS[idx + 2] if (idx + 2) < num_colors else '',
-            COLOR_KEYS[idx + 3] if (idx + 3) < num_colors else '',
-        )
-
-        row_number += 1
-
-    print_centered(vertically_pad(color_table))
 
 
 def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
@@ -175,6 +175,7 @@ def print_numbered_list_of_emailers(_list: list[str] | dict, epstein_files = Non
 
 
 def print_other_site_link(is_header: bool = True) -> None:
+    """Print a link to the emails site if we're building text messages site and vice versa."""
     site_type = EMAIL if args.all_emails else TEXT_MESSAGE
 
     if is_header:
