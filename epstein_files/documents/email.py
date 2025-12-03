@@ -41,7 +41,8 @@ EMAIL_INDENT = 2
 BAD_FIRST_LINES = [
     '026652',
     '029835',
-    '031189'
+    '030927',
+    '031189',
 ]
 
 KNOWN_TIMESTAMPS = {
@@ -410,7 +411,7 @@ class Email(CommunicationDocument):
 
     def _repair(self) -> None:
         """Repair particularly janky files."""
-        if self.lines[0].startswith('Grant_Smith066474"eMailContent.htm') or self.file_id in BAD_FIRST_LINES:
+        if self.file_id in BAD_FIRST_LINES:
             self.text = '\n'.join(self.lines[1:])
         elif self.file_id == '029977':
             self.text = self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM')
