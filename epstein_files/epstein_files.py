@@ -45,7 +45,6 @@ class EpsteinFiles:
 
     def __post_init__(self):
         self.all_files = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
-        started_processing_at = time.perf_counter()
 
         for file_arg in self.all_files:
             logger.debug(f"\nScanning '{file_arg.name}'...")
@@ -79,7 +78,6 @@ class EpsteinFiles:
                 self.other_files.append(document)
 
         self.imessage_logs = sorted(self.imessage_logs, key=lambda f: f.timestamp)
-        logger.warning(f"Processed {len(self.all_files)} files in {(time.perf_counter() - started_processing_at):.2f} seconds")
 
     def all_documents(self) -> list[Document]:
         return self.imessage_logs + self.emails + self.other_files

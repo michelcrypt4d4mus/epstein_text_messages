@@ -14,13 +14,13 @@ load_dotenv()
 from rich.padding import Padding
 from rich.text import Text
 
-from epstein_files.util.constant.names import *
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import sender_counts
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.constant.html import *
+from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import EMAIL_CLASS, MESSENGER_LOG_CLASS
-from epstein_files.util.data import dict_sets_to_lists
+from epstein_files.util.data import Timer, dict_sets_to_lists
 from epstein_files.util.env import specified_emailers, args, is_build, is_debug, skip_texts
 from epstein_files.util.file_helper import OUTPUT_GH_PAGES_HTML
 from epstein_files.util.rich import *
@@ -70,9 +70,9 @@ if args.colors_only:
     print_color_key()
     exit()
 
-started_at = time.perf_counter()
+timer = Timer()
 epstein_files = EpsteinFiles()
-checkpoint_at = time.perf_counter()
+timer.print_at_checkpoint(f'Processed {len(epstein_files.all_files)} files')
 epstein_files.print_files_overview()
 print_color_key()
 
@@ -87,15 +87,14 @@ if not skip_texts:
         console.line(2)
 
     epstein_files.print_imessage_summary()
-    logger.warning(f"Printed texts in {(time.perf_counter() - checkpoint_at):.2f} seconds")
-    checkpoint_at = time.perf_counter()
+    timer.print_at_checkpoint(f'Printed {len(epstein_files.imessage_logs)} text message logs')
 
 
 # Emails section
 print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
 print_other_site_link(is_header=False)
 epstein_files.print_emailer_counts_table()
-emails_printed = 0
+emails_printed_since_last_color_key = 0
 
 if args.all_emails:
     console.print('Email conversations are sorted chronologically based on time of the first email.')
@@ -118,11 +117,11 @@ else:
     print_numbered_list_of_emailers(emailer_tables)
 
 for author in emailers_to_print:
-    emails_printed += epstein_files.print_emails_for(author)
+    emails_printed_since_last_color_key += epstein_files.print_emails_for(author)
 
-    if emails_printed > PRINT_COLOR_KEY_EVERY_N_EMAILS:  # Print color key every once in a while
+    if emails_printed_since_last_color_key > PRINT_COLOR_KEY_EVERY_N_EMAILS:  # Print color key every once in a while
         print_color_key()
-        emails_printed = 0
+        emails_printed_since_last_color_key = 0
 
 if not args.all_emails and len(specified_emailers) == 0:
     print_author_header(f"Email Tables for {len(emailer_tables)} Other People", 'white')
@@ -131,16 +130,14 @@ if not args.all_emails and len(specified_emailers) == 0:
         epstein_files.print_emails_table_for(name)
 
 epstein_files.print_email_device_info()
-logger.warning(f"Printed {len(epstein_files.emails)} emails in {(time.perf_counter() - checkpoint_at):.2f} seconds")
-checkpoint_at = time.perf_counter()
+timer.print_at_checkpoint(f"Printed {len(epstein_files.emails)} emails")
 
 
 # Other Files Section
 if not skip_texts:
     print_section_header(f"Top Lines of {len(epstein_files.other_files)} Files That Are Neither Emails Nor Text Msgs")
     epstein_files.print_other_files_table()
-    logger.warning(f"Printed other files in {(time.perf_counter() - checkpoint_at):.2f} seconds")
-    checkpoint_at = time.perf_counter()
+    timer.print_at_checkpoint(f"Printed {len(epstein_files.other_files)} other files")
 else:
     logger.warning(f"Skipping other files section (is_build={is_build}, args.all_emails={args.all_emails}, skip_texts={skip_texts})...")
 
@@ -149,10 +146,11 @@ else:
 if is_build:
     console.save_html(OUTPUT_GH_PAGES_HTML, code_format=CONSOLE_HTML_FORMAT, inline_styles=False, theme=HTML_TERMINAL_THEME)
     html_size_in_mb = round(OUTPUT_GH_PAGES_HTML.stat().st_size / 1024 / 1024, 2)
-    logger.warning(f"Wrote HTML to '{OUTPUT_GH_PAGES_HTML}' in {(time.perf_counter() - started_at):.2f} seconds ({html_size_in_mb} MB)\n")
+    timer.print_at_checkpoint(f"Wrote {html_size_in_mb} MB to '{OUTPUT_GH_PAGES_HTML} in {timer.seconds_since_start()}")
 else:
-    logger.warning(f"Not writing HTML because 'BUILD_HTML' env var not set, total time {(time.perf_counter() - started_at):.2f} seconds.")
+    logger.warning(f"Not writing HTML because 'BUILD_HTML' env var not set, total time {timer.seconds_since_start()}.")
 
+# JSON stats
 if args.json_stats:
     console.line(5)
     console.print(Panel('JSON Stats Dump', expand=True, style='reverse bold'), '\n')
