@@ -143,8 +143,9 @@ wrote
 """.strip().split()
 
 COMMON_WORDS = {line.lower(): True for line in (WORDS_LIST + OTHER_WORDS)}
+COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
 
 
 if is_debug:
-    word_str = '\n'.join(sorted([k for k in COMMON_WORDS.keys()]))
+    word_str = '\n'.join(COMMON_WORDS_LIST)
     print(f"common words:\n\n{word_str}")
