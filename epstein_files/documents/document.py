@@ -78,10 +78,6 @@ class Document:
         self.epstein_web_doc_url = epstein_web_doc_url(self.url_slug)
         self.epstein_web_doc_link_markup = link_markup(self.epstein_web_doc_url, self.file_path.stem)
 
-    def courier_archive_link(self, link_txt: str | None = None, style: str = ARCHIVE_LINK_COLOR) -> Text:
-        """Link to search courier newsroom Google drive."""
-        return link_text_obj(search_archive_url(self.filename), link_txt or self.filename, style)
-
     def count_regex_matches(self, pattern: str) -> int:
         return len(re.findall(pattern, self.text))
 
@@ -112,10 +108,6 @@ class Document:
                          f"File: '{self.filename}'\n")
 
             return Text(escape(self.preview_text()))
-
-    def lines_matching(self, _pattern: re.Pattern | str) -> list[str]:
-        pattern = patternize(_pattern)
-        return [f"{self.file_path.name}:{line}" for line in self.lines if pattern.search(line)]
 
     def lines_matching_txt(self, _pattern: re.Pattern | str) -> list[Text]:
         pattern = patternize(_pattern)
