@@ -23,7 +23,7 @@ for search_term in args.positional_args:
     print_section_header(f"Searching {search_type} documents for '{search_term}'")
 
     for search_result in epstein_files.docs_matching(search_term, search_type):
-        console.line(2)
+        console.line()
         console.print(Panel(search_result.document.description(), expand=False))
 
         for line in search_result.unprefixed_lines():

@@ -82,7 +82,7 @@ class Document:
 
     def description(self) -> Text:
         doc_type = str(type(self).__name__)
-        txt = Text('').append(self.file_path.stem, style='bright_green')
+        txt = Text('').append(self.file_path.stem, style='magenta')
         txt.append(f' {doc_type} ', style=DOC_TYPE_STYLES[doc_type]).append(f"(num_lines=")
         txt.append(f"{self.num_lines:,}", style='cyan').append(", size=")
         txt.append(self.size_str(), style='aquamarine1')
