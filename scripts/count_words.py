@@ -24,7 +24,7 @@ for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
     if email.is_duplicate:
         continue
 
-    for word in email.cleaned_up_text.split():
+    for word in email.actual_text(True).split():
         word = BAD_CHARS_REGEX.sub('', EmailHeader.cleanup_str(word).lower()).strip()
 
         if word and (50 > len(word) > 1) and word not in COMMON_WORDS and not SKIP_WORDS_REGEX.search(word):
