@@ -255,7 +255,7 @@ class Email(CommunicationDocument):
     def __post_init__(self):
         super().__post_init__()
         self._repair()
-        self.header = self._extract_header()
+        self._extract_header()
 
         if is_fast_mode:
             self.author = UNKNOWN
@@ -380,21 +380,20 @@ class Email(CommunicationDocument):
 
         raise RuntimeError(f"No timestamp found in '{self.file_path.name}' top lines:\n{searchable_text}")
 
-    def _extract_header(self) -> EmailHeader:
+    def _extract_header(self) -> None:
+        """Extract an EmailHeader object from the OCR text."""
         header_match = EMAIL_SIMPLE_HEADER_REGEX.search(self.text)
 
-        if not header_match:
+        if header_match:
+            self.header = EmailHeader.from_header_lines(header_match.group(0))
+
+            if self.header.is_empty():
+                self.header.repair_empty_header(self.lines)
+        else:
             if not (self.file_id in KNOWN_EMAIL_AUTHORS and self.file_id in KNOWN_EMAIL_RECIPIENTS):
                 logger.warning(f"No header match found in '{self.filename}'! Top lines:\n\n{self.top_lines()}")
 
-            return EmailHeader(field_names=[])
-
-        header = EmailHeader.from_header_lines(header_match.group(0))
-
-        if header.is_empty():
-            header.repair_empty_header(self.lines)
-
-        return header
+            self.header = EmailHeader(field_names=[])
 
     def _get_names(self, emailer_str: str) -> list[str]:
         emailer_str = EmailHeader.cleanup_str(emailer_str)
