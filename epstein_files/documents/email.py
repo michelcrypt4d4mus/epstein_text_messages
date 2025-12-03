@@ -33,7 +33,6 @@ DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re.DOTALL)
 BAD_LINE_REGEX = re.compile(r'^(>;|\d{1,2}|Importance:( High)?|[iI,•]|i (_ )?i|, [-,])$')
-UNDISCLOSED_RECIPIENTS_REGEX = re.compile(r'Undisclosed[- ]recipients:', re.IGNORECASE)
 
 MAX_CHARS_TO_PRINT = 4000
 VALID_HEADER_LINES = 14
@@ -399,12 +398,8 @@ class Email(CommunicationDocument):
         names = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
 
         if BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
-            log_msg = f"'{self.filename}': No valid emailer found in '{escape_single_quotes(emailer_str)}'"
-
-            if UNDISCLOSED_RECIPIENTS_REGEX.match(emailer_str) and len(names) == 0:
-                logger.debug(log_msg)
-            elif len(names) == 0:
-                logger.warning(log_msg)
+            if len(names) == 0 and not emailer_str.startswith('Undisclosed'):
+                logger.warning(f"'{self.filename}': No emailer found in '{escape_single_quotes(emailer_str)}'")
             else:
                 logger.info(f"Extracted {len(names)} names from semi-invalid '{emailer_str}': {names}...")
 
