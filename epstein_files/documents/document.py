@@ -242,8 +242,8 @@ class CommunicationDocument(Document):
 
     def description(self) -> Text:
         txt = super().description()
-        txt.append(f", author=").append(self.author_str, style=self.author_style)
         txt.append(f", timestamp=").append(str(self.timestamp), style='dim dark_cyan')
+        txt.append(f", author=").append(self.author_str, style=self.author_style)
         return txt.append(')')
 
     def raw_document_link_txt(self, _style: str = '', include_alt_link: bool = True) -> Text:

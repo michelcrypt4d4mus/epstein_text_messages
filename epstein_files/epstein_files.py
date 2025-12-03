@@ -36,6 +36,7 @@ class EpsteinFiles:
     emails: list[Email] = field(default_factory=list)
     imessage_logs: list[MessengerLog] = field(default_factory=list)
     other_files: list[Document] = field(default_factory=list)
+    # Analytics / calculations
     email_author_counts: dict[str, int] = field(init=False)
     email_authors_to_device_signatures: dict[str, set[str]] = field(init=False)
     email_device_signatures_to_authors: dict[str, set[str ]] = field(init=False)
@@ -79,13 +80,9 @@ class EpsteinFiles:
                 if email.sent_from_device:
                     self.email_authors_to_device_signatures[email.author or UNKNOWN].add(email.sent_from_device)
                     self.email_device_signatures_to_authors[email.sent_from_device].add(email.author_or_unknown())
-
-                if email.author is None or len(email.author) <= 3:
-                    email.log_top_lines(msg=f"Redacted or invalid email author '{email.author_or_unknown()}'")
             else:
                 logger.info('Unknown file type...')
                 self.other_files.append(document)
-                document.log_top_lines()
 
         self.imessage_logs = sorted(self.imessage_logs, key=lambda f: f.timestamp)
         logger.warning(f"Processed {len(self.all_files)} files in {(time.perf_counter() - started_processing_at):.2f} seconds")
@@ -98,9 +95,6 @@ class EpsteinFiles:
         emailers = [a for a in self.email_author_counts.keys()] + [r for r in self.email_recipient_counts.keys()]
         emailers = emailers if include_useless else [e for e in emailers if e.lower() not in NOT_INCLUDED_EMAILERS]
         return sorted(list(set(emailers)), key=lambda e: self.email_author_counts[e] + self.email_recipient_counts[e])
-
-    def all_emailer_counts(self) -> dict[str, int]:
-        return {e: self.email_author_counts[e] + self.email_recipient_counts[e] for e in self.all_emailers(True)}
 
     def attributed_email_count(self) -> int:
         return sum([i for author, i in self.email_author_counts.items() if author != UNKNOWN])
@@ -211,16 +205,14 @@ class EpsteinFiles:
     def print_emailer_counts_table(self) -> None:
         footer = f"Identified authors of {self.attributed_email_count()} emails out of {len(self.emails)} potential email files."
         counts_table = Table(title=f"Email Counts", caption=footer, header_style="bold")
-        counts_table.add_column('Name', justify='left', style=DEFAULT_NAME_COLOR)
-        counts_table.add_column('Count', justify='center')
-        counts_table.add_column('Sent', justify='center')
-        counts_table.add_column("Recv'd", justify='center')
-        counts_table.add_column(JMAIL, justify='center')
-        counts_table.add_column(EPSTEIN_WEB, justify='center')
-        counts_table.add_column('Twitter', justify='center')
+
+        for i, col in enumerate(['Name', 'Count', 'Sent', "Recv'd", JMAIL, EPSTEIN_WEB, 'Twitter']):
+            counts_table.add_column(col, justify='left' if i == 0 else 'center')
+
+        emailer_counts = {e: self.email_author_counts[e] + self.email_recipient_counts[e] for e in self.all_emailers(True)}
         sort_key = lambda item: item[0] if args.sort_alphabetical else [item[1], item[0]]
 
-        for p, count in sorted(self.all_emailer_counts().items(), key=sort_key, reverse=True):
+        for p, count in sorted(emailer_counts.items(), key=sort_key, reverse=True):
             style = get_style_for_name(p, DEFAULT_NAME_COLOR)
 
             counts_table.add_row(
