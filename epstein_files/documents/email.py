@@ -35,6 +35,7 @@ REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re
 BAD_LINE_REGEX = re.compile(r'^(>;|\d{1,2}|Importance:( High)?|[iI,•]|i (_ )?i|, [-,])$')
 
 MAX_CHARS_TO_PRINT = 4000
+MAX_QUOTED_REPLIES = 2
 VALID_HEADER_LINES = 14
 EMAIL_INDENT = 2
 
@@ -297,7 +298,7 @@ class Email(CommunicationDocument):
         self.epsteinify_link_markup = epsteinify_doc_link_markup(self.file_path.stem, self.author_style)
         self.sent_from_device = self._sent_from_device()
 
-    def idx_of_nth_quoted_reply(self, n: int = 2, text: str | None = None) -> int | None:
+    def idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES, text: str | None = None) -> int | None:
         """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line."""
         text = text or self.text
 
