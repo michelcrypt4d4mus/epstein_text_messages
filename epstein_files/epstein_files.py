@@ -50,7 +50,7 @@ class EpsteinFiles:
             document = Document(file_arg)
 
             if document.length == 0:
-                logger.info(f"{document.description().plain}: Skipping empty file...")
+                logger.info(f"Skipping empty file {document.description().plain}")
             elif document.text[0] == '{':  # Check for JSON
                 move_json_file(file_arg)
             elif MSG_REGEX.search(document.text):
@@ -74,7 +74,7 @@ class EpsteinFiles:
                     self.email_authors_to_device_signatures[email.author_or_unknown()].add(email.sent_from_device)
                     self.email_device_signatures_to_authors[email.sent_from_device].add(email.author_or_unknown())
             else:
-                logger.info(f"{document.description().plain}: Unknown file type...")
+                logger.info(f"Unknown file type: {document.description().plain}")
                 self.other_files.append(document)
 
         self.imessage_logs = sorted(self.imessage_logs, key=lambda f: f.timestamp)

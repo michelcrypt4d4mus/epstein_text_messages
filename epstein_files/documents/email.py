@@ -294,7 +294,9 @@ class Email(CommunicationDocument):
         reply_text_match = REPLY_TEXT_REGEX.search(text)
 
         if reply_text_match:
-            logger.info(f"   {self.filename}: actual_text() is {len(reply_text_match.group(1))} chars of {len(text)}")
+            actual_num_chars = len(reply_text_match.group(1))
+            actual_text_pct = f"{(100 * float(actual_num_chars) / len(text)):.1f}%"
+            logger.info(f"'{self.file_path.stem}': actual_text() is {actual_num_chars:,} chars ({actual_text_pct} of {len(text):,})")
             return reply_text_match.group(1)
         else:
             return text

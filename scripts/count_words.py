@@ -13,8 +13,9 @@ from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.env import args
 from epstein_files.util.rich import console, print_json
 
-BAD_CHARS_REGEX = re.compile(r"[-=()$&%!#/_`,.;:'’\"”?\\\d]")
+BAD_CHARS_REGEX = re.compile(r"[-=+()$&%!#/_`,.;:'’\"”?\d\\]")
 SKIP_WORDS_REGEX = re.compile(r"^(http|addresswww)|jeevacation|html$")
+MAX_WORD_LEN = 45
 
 
 epstein_files = EpsteinFiles()
@@ -27,7 +28,7 @@ for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
     for word in email.actual_text(True).split():
         word = BAD_CHARS_REGEX.sub('', EmailHeader.cleanup_str(word).lower()).strip()
 
-        if word and (50 > len(word) > 1) and word not in COMMON_WORDS and not SKIP_WORDS_REGEX.search(word):
+        if word and (MAX_WORD_LEN > len(word) > 1) and word not in COMMON_WORDS and not SKIP_WORDS_REGEX.search(word):
             words[word] += 1
 
 sort_key = lambda item: item[0] if args.sort_alphabetical else [item[1], item[0]]
