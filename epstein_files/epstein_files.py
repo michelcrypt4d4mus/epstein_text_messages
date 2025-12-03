@@ -113,24 +113,18 @@ class EpsteinFiles:
 
     def emails_for(self, author: str | None) -> list[Email]:
         """Returns emails to or from a given 'author' sorted chronologically."""
-        author = author.lower() if (author and author != UNKNOWN) else None
-        emails_by = [e for e in self.emails if e.author_lowercase == author]
+        emails_by = [e for e in self.emails if e.author == author]
 
+        # Only emails from Epstein to unknown/redacted recipients should be returned when getting emails_for(None)
         if author is None:
-            emails_to = [
-                e for e in self.emails
-                if e.author == JEFFREY_EPSTEIN
-                    and ((len(e.recipients) == 0) or (None in e.recipients) or (UNKNOWN in e.recipients))
-            ]
+            emails_to = [e for e in self.emails if e.author == JEFFREY_EPSTEIN and len(e.recipients) == 0]
         else:
-            emails_to = [e for e in self.emails if author in e.recipients_lower]
+            emails_to = [e for e in self.emails if author in e.recipients]
 
-        sorted_emails = EpsteinFiles.sort_emails(emails_by + emails_to)
-
-        if len(sorted_emails) == 0:
+        if len(emails_by) == 0 and len(emails_to) == 0:
             raise RuntimeError(f"No emails found for '{author}'")
 
-        return sorted_emails
+        return EpsteinFiles.sort_emails(emails_by + emails_to)
 
     def identified_imessage_log_count(self) -> int:
         return len([log for log in self.imessage_logs if log.author])

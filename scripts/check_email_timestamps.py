@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# Look for emails with exact same timstamp and suggest them for suppression
 from datetime import datetime
 
 from dotenv import load_dotenv

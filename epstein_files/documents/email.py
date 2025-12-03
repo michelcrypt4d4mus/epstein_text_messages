@@ -244,7 +244,6 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
 
 @dataclass
 class Email(CommunicationDocument):
-    author_lowercase: str | None = field(init=False)
     cleaned_up_text: str = field(init=False)
     header: EmailHeader = field(init=False)
     recipients: list[str | None] = field(default_factory=list)
@@ -272,9 +271,7 @@ class Email(CommunicationDocument):
 
         logger.debug(f"Found recipients: {self.recipients}")
         self.recipients = list(set([r for r in self.recipients if r != self.author]))  # Remove self CCs
-        self.recipients_lower = [r.lower() if r else None for r in self.recipients]
         self.timestamp = self._extract_sent_at()
-        self.author_lowercase = self.author.lower() if self.author else None
         self.author_str = self.author or UNKNOWN
         self.author_style = get_style_for_name(self.author_str)
         self.author_txt = Text(self.author_str, style=self.author_style)
@@ -289,20 +286,6 @@ class Email(CommunicationDocument):
         for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text)):
             if i >= n:
                 return match.end() - 1
-
-    def recipients_txt(self) -> Text:
-        recipients = self.recipients if len(self.recipients) > 0 else [UNKNOWN]
-        recipients_txt = Text('')
-
-        for i, recipient in enumerate(recipients):
-            if i > 0:
-                recipients_txt.append(', ')
-
-            recipient = recipient or UNKNOWN
-            recipient_str = recipient if (' ' not in recipient or len(recipients) < 3) else recipient.split()[-1]
-            recipients_txt.append(recipient_str, style=get_style_for_name(recipient))
-
-        return recipients_txt
 
     def _border_style(self) -> str:
         """Color emails from epstein to others with the color for the first recipient."""
@@ -398,6 +381,20 @@ class Email(CommunicationDocument):
         names = names or [emailer_str]
         return [_reverse_first_and_last_names(name) for name in names]
 
+    def _recipients_txt(self) -> Text:
+        recipients = self.recipients if len(self.recipients) > 0 else [UNKNOWN]
+        recipients_txt = Text('')
+
+        for i, recipient in enumerate(recipients):
+            if i > 0:
+                recipients_txt.append(', ')
+
+            recipient = recipient or UNKNOWN
+            recipient_str = recipient if (' ' not in recipient or len(recipients) < 3) else recipient.split()[-1]
+            recipients_txt.append(recipient_str, style=get_style_for_name(recipient))
+
+        return recipients_txt
+
     def _repair(self) -> None:
         """Repair particularly janky files."""
         if self.file_id in BAD_FIRST_LINES:
@@ -434,7 +431,7 @@ class Email(CommunicationDocument):
 
         yield Panel(self.raw_document_link_txt(), border_style=self._border_style(), expand=False)
         info_line = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(f' to ')
-        info_line.append(self.recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
+        info_line.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
         text = self.cleaned_up_text
         num_chars = MAX_CHARS_TO_PRINT
