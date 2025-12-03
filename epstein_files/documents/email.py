@@ -253,6 +253,7 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
 class Email(CommunicationDocument):
     cleaned_up_text: str = field(init=False)
     header: EmailHeader = field(init=False)
+    is_duplicate: bool = False
     recipients: list[str] = field(default_factory=list)
     sent_from_device: str | None = None
 
@@ -285,6 +286,7 @@ class Email(CommunicationDocument):
         self.cleaned_up_text = self._cleaned_up_text()
         self.epsteinify_link_markup = epsteinify_doc_link_markup(self.file_path.stem, self.author_style)
         self.sent_from_device = self._sent_from_device()
+        self.is_duplicate = self.file_id in SUPPRESS_OUTPUT_FOR_EMAIL_IDS
 
     def idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES, text: str | None = None) -> int | None:
         """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line."""
