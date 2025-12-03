@@ -13,7 +13,7 @@ from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.documents.document import CommunicationDocument
-from epstein_files.documents.email_header import AUTHOR, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TO_FIELDS, EmailHeader
+from epstein_files.documents.email_header import BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TIME_REGEX, EmailHeader
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constants import *
 from epstein_files.util.data import collapse_newlines
@@ -23,7 +23,6 @@ from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import *
 from epstein_files.util.strings import *
 
-TIME_REGEX = re.compile(r'^(\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday).*')
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
 BAD_TIMEZONE_REGEX = re.compile(r'\((UTC|GMT\+\d{2}:\d{2})\)')
 TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
@@ -34,9 +33,7 @@ DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re.DOTALL)
 BAD_LINE_REGEX = re.compile(r'^(>;|\d{1,2}|Importance:( High)?|[iI,•]|i (_ )?i|, [-,])$')
-SKIP_HEADER_ROW_REGEX = re.compile(r"^(agreed|call me|Hysterical|schwartman).*")
 UNDISCLOSED_RECIPIENTS_REGEX = re.compile(r'Undisclosed[- ]recipients:', re.IGNORECASE)
-BAD_EMAILER_REGEX = re.compile(r'^>|agreed|ok|sexy|rt|re:|fwd:|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|hysterical|i have|image0|so that people|article 1.?|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 
 MULTIPLE_SENDERS = 'Multiple Senders'
 MAX_CHARS_TO_PRINT = 4000
@@ -392,47 +389,11 @@ class Email(CommunicationDocument):
 
             return EmailHeader(field_names=[])
 
-        header = EmailHeader.from_str(header_match.group(0))
-        num_headers = len(header.field_names)
+        header = EmailHeader.from_header_lines(header_match.group(0))
 
-        if not header.is_empty():
-            logger.debug(f"Extracted email header:\n%s", header)
-            return header
+        if header.is_empty():
+            header.repair_empty_header(self.lines)
 
-        # Sometimes the headers and values are on separate lines and we need to do some shenanigans
-        for i, field_name in enumerate(header.field_names):
-            row_number_to_check = i + num_headers  # Look ahead 3 lines if there's 3 header fields, 4 if 4, etc.
-
-            if row_number_to_check > (self.num_lines - 1):
-                raise RuntimeError(f"Ran out of header rows to check for '{field_name}' in {self.filename}")
-
-            value = self.lines[row_number_to_check]
-            log_prefix = f"Looks like '{value}' is a mismatch for '{field_name}', "
-
-            if field_name == AUTHOR:
-                if SKIP_HEADER_ROW_REGEX.match(value):
-                    logger.info(f"{log_prefix}, trying the next line...")
-                    num_headers += 1
-                    value = self.lines[i + num_headers]
-                elif TIME_REGEX.match(value) or value == 'Darren,' or BAD_EMAILER_REGEX.match(value):
-                    logger.info(f"{log_prefix}, decrementing num_headers and skipping...")
-                    num_headers -= 1
-                    continue
-            elif field_name in TO_FIELDS:
-                if TIME_REGEX.match(value):
-                    logger.info(f"{log_prefix}, trying next line...")
-                    num_headers += 1
-                    value = self.lines[i + num_headers]
-                elif BAD_EMAILER_REGEX.match(value):
-                    logger.info(f"{log_prefix}, decrementing num_headers and skipping...")
-                    num_headers -= 1
-                    continue
-
-                value = [v.strip() for v in value.split(';') if len(v.strip()) > 0]
-
-            setattr(header, field_name, value)
-
-        logger.debug(f"Corrected empty header to:\n%s\n\nTop lines:\n\n%s", header, self.top_lines((num_headers + 1) * 2))
         return header
 
     def _get_names(self, emailer_str: str) -> list[str]:
