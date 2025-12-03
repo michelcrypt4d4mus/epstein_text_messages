@@ -108,14 +108,14 @@ class EpsteinFiles:
 
         return results
 
-    def email_conversation_length_in_days(self, author: str | None) -> int:
-        return (self.last_email_at(author) - self.earliest_email_at(author)).days + 1
-
     def earliest_email_at(self, author: str | None) -> datetime:
         return self.emails_for(author)[0].timestamp
 
     def last_email_at(self, author: str | None) -> datetime:
         return self.emails_for(author)[-1].timestamp
+
+    def email_conversation_length_in_days(self, author: str | None) -> int:
+        return (self.last_email_at(author) - self.earliest_email_at(author)).days + 1
 
     def email_unknown_recipient_file_ids(self) -> list[str]:
         return sorted(list(self._email_unknown_recipient_file_ids))
@@ -150,9 +150,9 @@ class EpsteinFiles:
 
     def print_emails_for(self, _author: str | None) -> int:
         """Print complete emails to or from a particular 'author'. Returns number of emails printed."""
+        conversation_length = self.email_conversation_length_in_days(_author)
         emails = self.emails_for(_author)
         author = _author or UNKNOWN
-        conversation_length = self.email_conversation_length_in_days(_author)
 
         print_author_header(
             f"Found {len(emails)} {author} emails starting {emails[0].timestamp.date()} over {conversation_length:,} days",
