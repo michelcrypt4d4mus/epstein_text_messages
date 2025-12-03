@@ -246,6 +246,7 @@ EMAILERS = [
     GLENN_DUBIN,
     GORDON_GETTY,
     'Jack Lang',
+    'Jack Scarola',
     JAY_LEFKOWITZ,
     JES_STALEY,
     JESSICA_CADWELL,
