@@ -147,6 +147,7 @@ class Document:
         return txt
 
     def regex_repair_text(self, repairs: dict[str | re.Pattern, str], text: str) -> str:
+        """Apply a dict of repairs (key is pattern or string, value is replacement string) to text."""
         for k, v in repairs.items():
             if isinstance(k, re.Pattern):
                 text = k.sub(v, text)
@@ -174,6 +175,7 @@ class Document:
         return '\n'.join(self.lines[0:n])
 
     def write_clean_text(self, output_path: Path) -> None:
+        """Write self.text to 'output_path'."""
         if output_path.exists():
             if str(output_path.name).startswith(HOUSE_OVERSIGHT_PREFIX):
                 raise RuntimeError(f"'{output_path}' already exists! Not overwriting.")
@@ -247,7 +249,7 @@ class CommunicationDocument(Document):
         return txt.append(')')
 
     def raw_document_link_txt(self, _style: str = '', include_alt_link: bool = True) -> Text:
-        """Overrides super() method to apply style"""
+        """Overrides super() method to apply author_style."""
         return super().raw_document_link_txt(self.author_style, include_alt_link=include_alt_link)
 
     def timestamp_without_seconds(self) -> str:
