@@ -76,7 +76,6 @@ epstein_files = EpsteinFiles()
 checkpoint_at = time.perf_counter()
 epstein_files.print_files_overview()
 print_color_key()
-emails_printed = 0
 
 
 # Text messages section
@@ -97,6 +96,7 @@ if not skip_texts:
 print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
 print_other_site_link(is_header=False)
 epstein_files.print_emailer_counts_table()
+emails_printed = 0
 
 if args.all_emails:
     console.print('Email conversations are sorted chronologically based on time of the first email.')
