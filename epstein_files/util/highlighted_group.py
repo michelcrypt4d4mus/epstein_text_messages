@@ -75,8 +75,6 @@ class HighlightedGroup:
             if SIMPLE_NAME_REGEX.match(last_name) and last_name.lower() not in NAMES_TO_NOT_HIGHLIGHT:
                 logger.info(f"Adding last name '{last_name}' to existing pattern '{pattern}'")
                 pattern += fr"|{last_name}"  # Include regex for last name
-            else:
-                logger.info(f"*NOT* adding last name '{last_name}' of '{name}' to pattern")
 
             return pattern
         elif ' ' not in name:
@@ -150,7 +148,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='china',
         style='bright_red',
-        pattern=r"Beijing|CCP|Chin(a|ese)|Gino\s+Yu|Global Times|Guo|Jack\s+Ma|Kwok|Tai(pei|wan)|Peking|PRC|xi",
+        pattern=r"Beijing|CCP|Chin(a|ese)|Gino\s+Yu|Global Times|Guo|Jack\s+Ma|Kwok|Peking|PRC|Tai(pei|wan)|xi",
     ),
     HighlightedGroup(
         label='deepak_chopra',
@@ -166,7 +164,7 @@ HIGHLIGHTED_GROUPS = [
         pattern=r'Biden|((Bill|Hillart?y)\s*)?Clinton|DNC|George\s*Mitchell|(George\s*)?Soros|Hill?ary|Democrat(ic)?|(John\s*)?Kerry|Maxine\s*Waters|(Barac?k )?Obama|(Nancy )?Pelosi|Ron\s*Dellums',
     ),
     HighlightedGroup(
-        label='dubin family',
+        label='Dubin family',
         style='medium_orchid1',
         pattern='((Celina|Eva( Anderss?on)?|Glenn) )?Dubin',
         emailers = {
