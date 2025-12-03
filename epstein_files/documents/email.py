@@ -434,15 +434,15 @@ class Email(CommunicationDocument):
         info_line = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(f' to ')
         info_line.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
+
         text = self.cleaned_up_text
-        num_chars = MAX_CHARS_TO_PRINT
         quote_cutoff = self.idx_of_nth_quoted_reply(text=text)  # Trim if there's many quoted replies
+        num_chars = MAX_CHARS_TO_PRINT
         trim_footer_txt = None
 
         if self.author in TRUNCATE_ALL_EMAILS_FROM or any((term in self.text) for term in TRUNCATE_TERMS):
             num_chars = int(MAX_CHARS_TO_PRINT / 3)
         elif quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
-            logger.debug(f"Found {self.count_regex_matches(QUOTED_REPLY_LINE_REGEX.pattern)} quotes, cutting off at char {quote_cutoff}")
             num_chars = quote_cutoff
 
         if len(text) > num_chars:
