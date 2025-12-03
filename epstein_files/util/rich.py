@@ -15,9 +15,10 @@ from rich.text import Text
 from rich.theme import Theme
 
 from epstein_files.util.constant.html import PAGE_TITLE
+from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constant.strings import DEFAULT, HOUSE_OVERSIGHT_PREFIX
 from epstein_files.util.constant.urls import *
-from epstein_files.util.constants import *
+from epstein_files.util.constants import HEADER_ABBREVIATIONS
 from epstein_files.util.env import args, deep_debug, is_debug, is_main_script, logger
 from epstein_files.util.file_helper import build_filename_for_id
 from epstein_files.util.highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS, REGEX_STYLE_PREFIX
@@ -266,8 +267,3 @@ def wrap_in_markup_style(msg: str, style: str | None = None) -> str:
 
 if is_debug:
     print_json('THEME_STYLES', THEME_STYLES)
-
-if deep_debug:
-    print_json('KNOWN_IMESSAGE_FILE_IDS', KNOWN_IMESSAGE_FILE_IDS)
-    print_json('GUESSED_IMESSAGE_FILE_IDS', GUESSED_IMESSAGE_FILE_IDS)
-    console.line(2)
