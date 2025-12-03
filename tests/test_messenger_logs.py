@@ -1,8 +1,3 @@
-from os import devnull
-
-import pytest
-from rich.console import Console
-
 from epstein_files.documents.messenger_log import sender_counts
 from epstein_files.util.constant.names import *
 
