@@ -7,7 +7,7 @@ from rich.console import Console
 
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import SUPPRESS_OUTPUT_FOR_EMAIL_IDS
-from epstein_files.documents.epstein_files import EpsteinFiles
+from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.rich import *
 
 console = Console(color_system='256')
