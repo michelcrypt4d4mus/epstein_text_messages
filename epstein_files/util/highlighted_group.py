@@ -165,7 +165,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='democrats',
         style='sky_blue1',
-        pattern=r'Biden|((Bill|Hillary)\s*)?Clinton|DNC|George\s*Mitchell|(George\s*)?Soros|Hill?ary|Democrat(ic)?|(John\s*)?Kerry|Maxine\s*Waters|(Barac?k )?Obama|(Nancy )?Pelosi|Ron\s*Dellums',
+        pattern=r'Biden|((Bill|Hillart?y)\s*)?Clinton|DNC|George\s*Mitchell|(George\s*)?Soros|Hill?ary|Democrat(ic)?|(John\s*)?Kerry|Maxine\s*Waters|(Barac?k )?Obama|(Nancy )?Pelosi|Ron\s*Dellums',
     ),
     HighlightedGroup(
         label='dubin family',
@@ -236,7 +236,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='israel',
         style='dodger_blue2',
-        pattern='Bibi|(eh|(Ehud|Nili Priell) )?barak|Mossad|Netanyahu|Israeli?',
+        pattern=r"Bibi|(eh|(Ehud|Nili Priell) )?barak|Israeli?|Jerusalem|Mossad|Netanyahu|(Sheldon\s*)?Adelson|Tel\s*Aviv",
         emailers={
             EHUD_BARAK: 'former primer minister',
             'Mitchell Bard': 'director of the American–Israeli Cooperative Enterprise (AICE)',
