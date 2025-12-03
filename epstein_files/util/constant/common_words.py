@@ -124,7 +124,10 @@ your
 """.strip().split()
 
 OTHER_WORDS = """
+attachments
 epstein
+fwd
+iphone iPad BlackBerry
 january february march april may june july august september october november december
 jan feb mar apr jun jul aug sep oct nov dec
 jeffrey
@@ -137,7 +140,7 @@ trimmed
 wrote
 """.strip().split()
 
-COMMON_WORDS = {line: True for line in (WORDS_LIST + OTHER_WORDS)}
+COMMON_WORDS = {line.lower(): True for line in (WORDS_LIST + OTHER_WORDS)}
 
 
 if is_debug:

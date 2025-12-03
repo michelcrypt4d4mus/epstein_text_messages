@@ -292,7 +292,12 @@ class Email(CommunicationDocument):
         """The text that comes before likely quoted replies and forwards etc."""
         text = self.cleaned_up_text if use_clean_text else self.text
         reply_text_match = REPLY_TEXT_REGEX.search(text)
-        return reply_text_match.group(1) if reply_text_match else text
+
+        if reply_text_match:
+            logger.info(f"   {self.filename}: actual_text() is {len(reply_text_match.group(1))} chars of {len(text)}")
+            return reply_text_match.group(1)
+        else:
+            return text
 
     def idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES, text: str | None = None) -> int | None:
         """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line."""
