@@ -257,7 +257,7 @@ class Email(CommunicationDocument):
     recipients: list[str | None] = field(default_factory=list)
     sent_from_device: str | None = None
 
-    signature_substitution_counts: ClassVar[dict] = defaultdict(int)
+    signature_substitution_counts: ClassVar[dict] = defaultdict(int)  # Count EMAIL_SIGNATURES substitutions when printing
 
     def __post_init__(self):
         super().__post_init__()
@@ -270,9 +270,7 @@ class Email(CommunicationDocument):
 
         if self.file_id in KNOWN_EMAIL_AUTHORS:
             self.author = KNOWN_EMAIL_AUTHORS[self.file_id]
-        elif not self.header.author:
-            self.author = None
-        else:
+        elif self.header.author:
             authors = self._get_names(self.header.author)
             self.author = authors[0] if len(authors) > 0 else None
 

@@ -8,9 +8,9 @@ from typing import ClassVar
 from rich.markup import escape
 from rich.text import Text
 
-# TODO: fix 'epstein_web_doc_url'
-from epstein_files.util.constant.urls import EPSTEINIFY, EPSTEIN_WEB, epsteinify_doc_url, epstein_web_doc_url, search_archive_url
+from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constant.strings import *
+from epstein_files.util.constant.urls import EPSTEINIFY, EPSTEIN_WEB, epsteinify_doc_url, epstein_web_doc_url, search_archive_url
 from epstein_files.util.data import collapse_newlines, patternize
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, is_local_extract_file
@@ -57,10 +57,10 @@ class Document:
     length: int = field(init=False)
     lines: list[str] = field(init=False)
     num_lines: int = field(init=False)
-    text: str = field(init=False)
+    text: str = ''
     url_slug: str = field(init=False)  # e.g. 'HOUSE_OVERSIGHT_123456
 
-    file_matching_idx: ClassVar[int] = 0
+    file_matching_idx: ClassVar[int] = 0  # only used to cycle color of output when using lines_match()
 
     def __post_init__(self):
         self.filename = self.file_path.name
@@ -71,7 +71,7 @@ class Document:
         else:
             self.url_slug = self.file_path.stem
 
-        self.text = self._load_file()
+        self.text = self.text or self._load_file()
         self._set_computed_fields()
         self.epsteinify_doc_url = epsteinify_doc_url(self.url_slug)
         self.epsteinify_link_markup = link_markup(self.epsteinify_doc_url, self.file_path.stem)
@@ -237,7 +237,7 @@ class Document:
 
 @dataclass
 class CommunicationDocument(Document):
-    author: str | None = field(init=False)
+    author: str | None = None
     author_str: str = field(init=False)
     author_style: str = field(init=False)
     author_txt: Text = field(init=False)
@@ -245,6 +245,9 @@ class CommunicationDocument(Document):
 
     def __post_init__(self):
         super().__post_init__()
+
+    def author_or_unknown(self) -> str:
+        return self.author or UNKNOWN
 
     def description(self) -> Text:
         txt = super().description()
