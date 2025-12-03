@@ -146,7 +146,7 @@ else:
 if is_build:
     console.save_html(OUTPUT_GH_PAGES_HTML, code_format=CONSOLE_HTML_FORMAT, inline_styles=False, theme=HTML_TERMINAL_THEME)
     html_size_in_mb = round(OUTPUT_GH_PAGES_HTML.stat().st_size / 1024 / 1024, 2)
-    logger.warning(f"Wrote {html_size_in_mb} MB to '{OUTPUT_GH_PAGES_HTML}' in {timer.seconds_since_start()}")
+    timer.print_at_checkpoint(f"Wrote {html_size_in_mb} MB to '{OUTPUT_GH_PAGES_HTML}' (total {timer.seconds_since_start()})")
 else:
     logger.warning(f"Not writing HTML because 'BUILD_HTML' env var not set, total time {timer.seconds_since_start()}.")
 
