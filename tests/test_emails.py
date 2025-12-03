@@ -418,6 +418,89 @@ EMAIL_RECIPIENT_COUNTS = {
     "pink@mc2mm.com": 2
 }
 
+UNKNOWN_RECIPIENT_FILE_IDS = [
+    "013482",
+    "016692",
+    "016693",
+    "019871",
+    "022193",
+    "022247",
+    "022344",
+    "022811",
+    "022936",
+    "022938",
+    "023054",
+    "023062",
+    "023550",
+    "023627",
+    "024930",
+    "025215",
+    "025226",
+    "025233",
+    "025235",
+    "026245",
+    "026631",
+    "026632",
+    "026659",
+    "026677",
+    "026755",
+    "026788",
+    "028757",
+    "028760",
+    "029013",
+    "029196",
+    "029206",
+    "029558",
+    "029581",
+    "029622",
+    "029752",
+    "029962",
+    "029982",
+    "030006",
+    "030095",
+    "030211",
+    "030238",
+    "030245",
+    "030347",
+    "030367",
+    "030572",
+    "030581",
+    "030768",
+    "030823",
+    "030837",
+    "030844",
+    "030992",
+    "030997",
+    "031038",
+    "031039",
+    "031040",
+    "031114",
+    "031121",
+    "031126",
+    "031130",
+    "031146",
+    "031156",
+    "031159",
+    "031165",
+    "031329",
+    "031688",
+    "031747",
+    "031826",
+    "031830",
+    "032213",
+    "032780",
+    "032876",
+    "033021",
+    "033025",
+    "033027",
+    "033205",
+    "033242",
+    "033274",
+    "033345",
+    "033428",
+    "033458"
+]
+
 DEVICE_SIGNATURE_TO_AUTHORS = {
     "Sent from AOL Mobile Mail": [
         "David Schoen"
@@ -800,14 +883,14 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
 
 
 def test_email_counts(epstein_files):
-    assert EMAIL_AUTHOR_COUNTS == epstein_files.email_author_counts
-    assert EMAIL_RECIPIENT_COUNTS == epstein_files.email_recipient_counts
-
+    assert epstein_files.email_author_counts == EMAIL_AUTHOR_COUNTS
+    assert epstein_files.email_recipient_counts == EMAIL_RECIPIENT_COUNTS
+    assert epstein_files.email_unknown_recipient_file_ids() == UNKNOWN_RECIPIENT_FILE_IDS
 
 def test_signatures(epstein_files):
-    assert AUTHORS_TO_DEVICE_SIGNATURES == dict_sets_to_lists(epstein_files.email_authors_to_device_signatures)
-    assert DEVICE_SIGNATURE_TO_AUTHORS == dict_sets_to_lists(epstein_files.email_device_signatures_to_authors)
+    assert dict_sets_to_lists(epstein_files.email_authors_to_device_signatures) == AUTHORS_TO_DEVICE_SIGNATURES
+    assert dict_sets_to_lists(epstein_files.email_device_signatures_to_authors) == DEVICE_SIGNATURE_TO_AUTHORS
 
 
 def test_signature_substitutions(epstein_files):
-    assert SIGNATURE_SUBSTITUTION_COUNTS == Email.signature_substitution_counts
+    assert Email.signature_substitution_counts == SIGNATURE_SUBSTITUTION_COUNTS

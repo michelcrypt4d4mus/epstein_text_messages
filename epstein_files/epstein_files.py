@@ -64,25 +64,24 @@ class EpsteinFiles:
                 logger.info('iMessage log file...')
                 self.imessage_logs.append(MessengerLog(file_arg))
             elif DETECT_EMAIL_REGEX.match(document.text) or document.file_id in KNOWN_EMAIL_AUTHORS:  # Handle emails
-                email = Email(file_arg)
+                email = Email(file_arg, text=document.text)  # Avoid reloads
                 self.emails.append(email)
-                author = email.author or UNKNOWN
-                self.email_author_counts[author] += 1
+                self.email_author_counts[email.author_or_unknown()] += 1
                 logger.info(email.description().plain)
-                recipients = [UNKNOWN] if len(email.recipients) == 0 else [r or UNKNOWN for r in email.recipients]
+                recipients = [UNKNOWN] if len(email.recipients) == 0 else [(r or UNKNOWN) for r in email.recipients]
 
                 for recipient in recipients:
                     self.email_recipient_counts[recipient] += 1
 
-                if UNKNOWN in email.recipients:
-                    self._email_unknown_recipient_file_ids.add(email.file_id)
+                    if recipient == UNKNOWN:
+                        self._email_unknown_recipient_file_ids.add(email.file_id)
 
                 if email.sent_from_device:
                     self.email_authors_to_device_signatures[email.author or UNKNOWN].add(email.sent_from_device)
-                    self.email_device_signatures_to_authors[email.sent_from_device].add(author)
+                    self.email_device_signatures_to_authors[email.sent_from_device].add(email.author_or_unknown())
 
-                if len(author) <= 3 or author == UNKNOWN:
-                    email.log_top_lines(msg=f"Redacted or invalid email author '{author}'")
+                if email.author is None or len(email.author) <= 3:
+                    email.log_top_lines(msg=f"Redacted or invalid email author '{email.author_or_unknown()}'")
             else:
                 logger.info('Unknown file type...')
                 self.other_files.append(document)
