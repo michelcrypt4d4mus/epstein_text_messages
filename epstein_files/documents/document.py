@@ -31,7 +31,6 @@ DOC_TYPE_STYLES = {
     MESSENGER_LOG_CLASS: 'cyan',
 }
 
-# Takes ~1.1 seconds to apply these repairs
 OCR_REPAIRS = {
     re.compile(r'\.corn\b'): '.com',
     'lndyke': 'Indyke',
@@ -76,9 +75,6 @@ class Document:
         self.epsteinify_link_markup = link_markup(self.epsteinify_doc_url, self.file_path.stem)
         self.epstein_web_doc_url = epstein_web_doc_url(self.url_slug)
         self.epstein_web_doc_link_markup = link_markup(self.epstein_web_doc_url, self.file_path.stem)
-
-    def count_regex_matches(self, pattern: str) -> int:
-        return len(re.findall(pattern, self.text))
 
     def description(self) -> Text:
         doc_type = str(type(self).__name__)
