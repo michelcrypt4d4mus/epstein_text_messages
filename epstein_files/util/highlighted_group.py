@@ -99,7 +99,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='finance',
         style='green',
-        pattern=r'Apollo|Black(rock|stone)|DB|Deutsche\s*Bank|Goldman( ?Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|Merrill\s+Lynch|Morgan Stanley|j\.?p\.?\s*morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com',
+        pattern=r'Apollo|Black(rock|stone)|DB|Deutsche\s*Bank|Goldman(\s*Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|Merrill\s+Lynch|Morgan Stanley|j\.?p\.?\s*morgan( Chase)?|Chase Bank|us.gio@jpmorgan.com',
         emailers={
             AMANDA_ENS: 'Citigroup',
             DANIEL_SABBA: 'UBS Investment Bank',
