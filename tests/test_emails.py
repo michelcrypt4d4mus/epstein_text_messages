@@ -5,9 +5,9 @@ from epstein_files.util.data import dict_sets_to_lists
 EMAIL_AUTHOR_COUNTS = {
     "(unknown)": 112,
     "Abi Schwinck": 1,
-    "Al Seckel": 7,
+    AL_SECKEL: 7,
     "Alain Forget": 3,
-    "Alan Dershowitz": 5,
+    ALAN_DERSHOWITZ: 5,
     "Alan S Halperin": 1,
     "Alex Yablon": 1,
     "Alireza Ittihadieh": 8,
