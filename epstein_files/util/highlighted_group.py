@@ -175,6 +175,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='employee',
         style='deep_sky_blue4',
+        pattern='Merwin',
         emailers = {
             ERIC_ROTH: 'jet decorator',
             GWENDOLYN_BECK: 'Epstein fund manager in the 90s',
@@ -182,6 +183,7 @@ HIGHLIGHTED_GROUPS = [
             LESLEY_GROFF: 'assistant',
             JEAN_HUGUEN: 'interior design at Alberto Pinto Cabinet',
             'Linda Pinto': 'interior design at Alberto Pinto Cabinet',
+            MERWIN_DELA_CRUZ: None,  # HOUSE_OVERSIGHT_032652 Groff says "Jojo and Merwin both requested off Nov. 25 and 26"
             NADIA_MARCINKO: 'pilot',
         }
     ),

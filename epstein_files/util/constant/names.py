@@ -97,6 +97,7 @@ MARTIN_NOWAK = 'Martin Nowak'
 MARTIN_WEINBERG = "Martin Weinberg"
 MASHA_DROKOVA = 'Masha Drokova'
 MELANIE_SPINELLA = 'Melanie Spinella'
+MERWIN_DELA_CRUZ = 'Merwin Dela Cruz'
 MICHAEL_BUCHHOLTZ = 'Michael Buchholtz'
 MICHAEL_MILLER = 'Michael Miller'
 MICHAEL_SITRICK = 'Michael Sitrick'
@@ -163,7 +164,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Marc', 'Marie', 'Mark', 'Martin', 'Melanie', 'Michael', 'Mike', 'Miller', 'Mitchell', 'Moskowitz',
     'Nancy', 'Neal', 'New',
     'Paul', 'Paula', 'Pen', 'Peter', 'Philip',
-    'Reid', 'Richard', 'Robert', 'Roger', 'Rosenberg', 'Roth', 'Rubin',
+    'Randall', 'Reid', 'Richard', 'Robert', 'Roger', 'Rosenberg', 'Roth', 'Rubin',
     'Scott', 'Sean', 'Stanley', 'Stern', 'Stephen', 'Steve', 'Steven', 'Stone', 'Susan',
     'The', 'Thomas', 'Tim', 'Tom', 'Tyler',
     'Victor',
