@@ -238,6 +238,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Christina Galbraith": 6,
     "Connie Zaguirre": 1,
     "Dan Fleuette": 1,
+    'Daniel Dawson': 2,
     "Daniel Siad": 2,
     "Danny Goldberg": 4,
     "Darren Indyke": 56,
