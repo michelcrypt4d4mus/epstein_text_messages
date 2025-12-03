@@ -267,7 +267,7 @@ class Email(CommunicationDocument):
             self.author = KNOWN_EMAIL_AUTHORS[self.file_id]
         elif self.header.author:
             authors = self._get_names(self.header.author)
-            self.author = authors[0] if len(authors) > 0 else None
+            self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
 
         if self.file_id in KNOWN_EMAIL_RECIPIENTS:
             recipient = KNOWN_EMAIL_RECIPIENTS[self.file_id]
