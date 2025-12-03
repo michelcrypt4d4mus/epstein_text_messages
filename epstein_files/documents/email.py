@@ -34,6 +34,7 @@ QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re.DOTALL)
 BAD_LINE_REGEX = re.compile(r'^(>;|\d{1,2}|Importance:( High)?|[iI,•]|i (_ )?i|, [-,])$')
 
+SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 MAX_CHARS_TO_PRINT = 4000
 MAX_QUOTED_REPLIES = 2
 VALID_HEADER_LINES = 14
@@ -373,7 +374,7 @@ class Email(CommunicationDocument):
         names = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
 
         if BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
-            if len(names) == 0: # and not emailer_str.lower().startswith('undisclosed'):
+            if len(names) == 0 and not emailer_str in SUPPRESS_LOGS_FOR_AUTHORS:
                 logger.warning(f"'{self.filename}': No emailer found in '{escape_single_quotes(emailer_str)}'")
             else:
                 logger.info(f"Extracted {len(names)} names from semi-invalid '{emailer_str}': {names}...")
