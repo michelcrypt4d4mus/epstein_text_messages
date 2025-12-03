@@ -9,6 +9,7 @@ from epstein_files.util.rich import UNKNOWN
 HEADER_REGEX_STR = r'(((?:(?:Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):|on behalf of ?)(?! +(by |from my|via )).*\n){3,})'
 EMAIL_SIMPLE_HEADER_REGEX = re.compile(rf'^{HEADER_REGEX_STR}')
 EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX = re.compile(HEADER_REGEX_STR)
+BAD_NAME_CHARS_REGEX = re.compile(r"[\"'\[\]*><•]")
 AUTHOR = 'author'
 ON_BEHALF_OF = 'on behalf of'
 TO_FIELDS = ['bcc', 'cc', 'to']
@@ -86,7 +87,4 @@ class EmailHeader:
 
     @staticmethod
     def cleanup_str(_str: str) -> str:
-        _str = _str.strip().removesuffix(REDACTED)
-        _str = _str.strip().lstrip('"').lstrip("'").rstrip('"').rstrip("'").strip().strip('_')
-        _str = _str.strip('[').strip(']').strip('*').strip('<').strip('•').rstrip(',').strip('>').strip()
-        return _str
+        return BAD_NAME_CHARS_REGEX.sub('', _str.replace(REDACTED, '')).strip().strip('_').strip()

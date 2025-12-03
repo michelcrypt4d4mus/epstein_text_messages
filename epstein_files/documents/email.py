@@ -31,13 +31,12 @@ PACIFIC_TZ = tz.gettz("America/Los_Angeles")
 TIMEZONE_INFO = {"PST": PACIFIC_TZ, "PDT": PACIFIC_TZ}  # Suppresses annoying warnings from parse() calls
 
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
-BAD_EMAILER_REGEX = re.compile(r'^>|agreed|ok|sexy|rt|re:|fwd:|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|hysterical|i have|image0|so that people|article 1.?|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
-
-REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re.DOTALL)
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
+REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re.DOTALL)
 BAD_LINE_REGEX = re.compile(r'^(>;|\d{1,2}|Importance:( High)?|[iI,•]|i (_ )?i|, [-,])$')
 SKIP_HEADER_ROW_REGEX = re.compile(r"^(agreed|call me|Hysterical|schwartman).*")
 UNDISCLOSED_RECIPIENTS_REGEX = re.compile(r'Undisclosed[- ]recipients:', re.IGNORECASE)
+BAD_EMAILER_REGEX = re.compile(r'^>|agreed|ok|sexy|rt|re:|fwd:|((sent|attachments|subject|importance).*|.*(11111111|january|201\d|hysterical|i have|image0|so that people|article 1.?|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 
 MULTIPLE_SENDERS = 'Multiple Senders'
 MAX_CHARS_TO_PRINT = 4000
@@ -436,7 +435,6 @@ class Email(CommunicationDocument):
         logger.debug(f"Corrected empty header to:\n%s\n\nTop lines:\n\n%s", header, self.top_lines((num_headers + 1) * 2))
         return header
 
-
     def _get_names(self, emailer_str: str) -> list[str]:
         emailer_str = EmailHeader.cleanup_str(emailer_str)
         names = []
@@ -478,7 +476,8 @@ class Email(CommunicationDocument):
         self._set_computed_fields()
 
     def _sent_from_device(self) -> str | None:
-        reply_text_match = REPLY_TEXT_REGEX.search(self.text)
+        """Find any 'Sent from my iPhone' style lines if they exist."""
+        reply_text_match = REPLY_TEXT_REGEX.search(self.text)  # Only look at text above a REPLY_REGEX match
         text = reply_text_match.group(1) if reply_text_match else self.text
         sent_from_match = SENT_FROM_REGEX.search(text)
 
