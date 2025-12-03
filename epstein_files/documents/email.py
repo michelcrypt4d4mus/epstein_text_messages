@@ -18,7 +18,7 @@ from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import *
 from epstein_files.util.data import collapse_newlines, escape_single_quotes
-from epstein_files.util.env import is_debug, is_fast_mode, logger
+from epstein_files.util.env import is_debug, logger
 from epstein_files.util.file_helper import build_filename_for_id
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import *
@@ -256,10 +256,6 @@ class Email(CommunicationDocument):
         self._repair()
         self._extract_header()
 
-        if is_fast_mode:
-            self.author = UNKNOWN
-            return
-
         if self.file_id in KNOWN_EMAIL_AUTHORS:
             self.author = KNOWN_EMAIL_AUTHORS[self.file_id]
         elif self.header.author:
@@ -300,12 +296,6 @@ class Email(CommunicationDocument):
         self.cleaned_up_text = self._cleaned_up_text()
         self.epsteinify_link_markup = epsteinify_doc_link_markup(self.file_path.stem, self.author_style)
         self.sent_from_device = self._sent_from_device()
-
-    def description(self) -> Text:
-        if is_fast_mode:
-            return Text(self.filename)
-
-        return super().description()
 
     def idx_of_nth_quoted_reply(self, n: int = 2, text: str | None = None) -> int | None:
         """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line."""

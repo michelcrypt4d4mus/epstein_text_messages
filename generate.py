@@ -15,6 +15,7 @@ load_dotenv()
 from rich.padding import Padding
 from rich.text import Text
 
+from epstein_files.util.constant.names import *
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import sender_counts
 from epstein_files.epstein_files import EpsteinFiles

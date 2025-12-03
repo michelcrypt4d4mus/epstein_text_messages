@@ -15,7 +15,6 @@ parser.add_argument('--all-emails', '-a', action='store_true', help='all the ema
 parser.add_argument('--all-email-tables', '-at', action='store_true', help='all email tables (except Epstein)')
 parser.add_argument('--colors-only', '-c', action='store_true', help='print header with color key table and exit')
 parser.add_argument('--email', '-e', action='append', dest='emails', help='specify the emailers to output (implies --no-texts)')
-parser.add_argument('--fast', '-f', action='store_true', help='skip parsing of email timestamps/authors/etc.')
 parser.add_argument('--no-texts', '-nt', action='store_true', help='skip text message output')
 parser.add_argument('--sort-alphabetical', '-alpha', action='store_true', help='sort emailers alphabetically in counts table')
 parser.add_argument('--suppress-output', '-s', action='store_true', help='no output to terminal (use with --build)')
@@ -32,7 +31,6 @@ is_env_var_set = lambda s: len(environ.get(s) or '') > 0
 deep_debug = args.deep_debug or is_env_var_set('DEEP_DEBUG')
 is_build = args.build or is_env_var_set('BUILD_HTML')
 is_debug = deep_debug or args.debug or is_env_var_set('DEBUG')
-is_fast_mode = False # args.fast or is_env_var_set('FAST')
 is_main_script = Path(argv[0]).name == MAIN_SCRIPT
 skip_texts = args.no_texts or is_env_var_set('NO_TEXTS')
 specified_emailers = args.emails or []
