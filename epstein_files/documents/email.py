@@ -389,11 +389,9 @@ class Email(CommunicationDocument):
         recipients_txt = Text('')
 
         for i, recipient in enumerate(recipients):
-            if i > 0:
-                recipients_txt.append(', ')
-
             recipient = recipient or UNKNOWN
             recipient_str = recipient if (' ' not in recipient or len(recipients) < 3) else recipient.split()[-1]
+            recipients_txt.append(', ' if i > 0 else '')
             recipients_txt.append(recipient_str, style=get_style_for_name(recipient))
 
         return recipients_txt
