@@ -15,8 +15,6 @@ REGEX_STYLE_PREFIX = 'regex'
 NO_CATEGORY_LABELS = [BILL_GATES, STEVE_BANNON]
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w ]+$", re.IGNORECASE)
 
-safe_style_name = lambda label: label.lower().replace(' ', '_').replace('-', '_')
-
 
 @dataclass
 class HighlightedGroup:
@@ -33,13 +31,13 @@ class HighlightedGroup:
 
     def __post_init__(self):
         if not self.label:
-            if len(self.emailers) != 1:
-                raise RuntimeError(f"No label provided for {repr(self)}")
-            else:
+            if len(self.emailers) == 1:
                 self.label = [k for k in self.emailers.keys()][0]
                 self.has_no_category = True
+            else:
+                raise RuntimeError(f"No label provided for {repr(self)}")
 
-        self.style_suffix = safe_style_name(self.label)
+        self.style_suffix = self.label.lower().replace(' ', '_').replace('-', '_')
         self.style_name = f"{REGEX_STYLE_PREFIX}.{self.style_suffix}"
         patterns = [self.emailer_pattern(e) for e in self.emailers] + ([self.pattern] if self.pattern else [])
         pattern = '|'.join(patterns)
