@@ -417,7 +417,7 @@ KNOWN_EMAIL_AUTHORS = {
     '029992': TERRY_KAFKA,             # Quoted reply
     '020666': TERRY_KAFKA,             # ends with 'Terry'
     # Unknowns
-    '022187': UNKNOWN,                 # Bad OCR causes parsing problems
+    '022187': None,                    # Bad OCR causes parsing problems
     # '026571': '(unknown french speaker)',
     # '029504': Probably Audrey Raimbault (based on "GMI" in signature, a company registered by "aubrey raimbault")
 }

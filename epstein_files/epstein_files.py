@@ -37,10 +37,10 @@ class EpsteinFiles:
     imessage_logs: list[MessengerLog] = field(default_factory=list)
     other_files: list[Document] = field(default_factory=list)
     # Analytics / calculations
-    email_author_counts: dict[str, int] = field(default_factory=lambda: defaultdict(int))
+    email_author_counts: dict[str | None, int] = field(default_factory=lambda: defaultdict(int))
     email_authors_to_device_signatures: dict[str, set] = field(default_factory=lambda: defaultdict(set))
     email_device_signatures_to_authors: dict[str, set] = field(default_factory=lambda: defaultdict(set))
-    email_recipient_counts: dict[str, int] = field(default_factory=lambda: defaultdict(int))
+    email_recipient_counts: dict[str | None, int] = field(default_factory=lambda: defaultdict(int))
     _email_unknown_recipient_file_ids: set[str] = field(default_factory=set)
 
     def __post_init__(self):
@@ -61,11 +61,11 @@ class EpsteinFiles:
                 email = Email(file_arg, text=document.text)  # Avoid reloads
                 logger.info(f"{file_arg.name}: {email.description().plain}")
                 self.emails.append(email)
-                self.email_author_counts[email.author_or_unknown()] += 1
+                self.email_author_counts[email.author] += 1
 
                 if len(email.recipients) == 0:
                     self._email_unknown_recipient_file_ids.add(email.file_id)
-                    self.email_recipient_counts[UNKNOWN] += 1
+                    self.email_recipient_counts[None] += 1
                 else:
                     for recipient in email.recipients:
                         self.email_recipient_counts[recipient] += 1
@@ -82,11 +82,11 @@ class EpsteinFiles:
     def all_documents(self) -> list[Document]:
         return self.imessage_logs + self.emails + self.other_files
 
-    def all_emailers(self, include_useless: bool = False) -> list[str]:
+    def all_emailers(self, include_useless: bool = False) -> list[str | None]:
         """Returns all emailers except Epstein and USELESS_EMAILERS, sorted from least frequent to most."""
-        emailers = [a for a in self.email_author_counts.keys()] + [r for r in self.email_recipient_counts.keys()]
-        emailers = emailers if include_useless else [e for e in emailers if e.lower() not in NOT_INCLUDED_EMAILERS]
-        return sorted(list(set(emailers)), key=lambda e: self.email_author_counts[e] + self.email_recipient_counts[e])
+        names = [a for a in self.email_author_counts.keys()] + [r for r in self.email_recipient_counts.keys()]
+        names = names if include_useless else [e for e in names if e is None or e.lower() not in NOT_INCLUDED_EMAILERS]
+        return sorted(list(set(names)), key=lambda e: self.email_author_counts[e] + self.email_recipient_counts[e])
 
     def attributed_email_count(self) -> int:
         return sum([i for author, i in self.email_author_counts.items() if author != UNKNOWN])
@@ -205,13 +205,13 @@ class EpsteinFiles:
             style = get_style_for_name(p, DEFAULT_NAME_COLOR)
 
             counts_table.add_row(
-                Text.from_markup(link_markup(epsteinify_name_url(p), p, style)),
+                Text.from_markup(link_markup(epsteinify_name_url(p or UNKNOWN), p or UNKNOWN, style)),
                 str(count),
                 str(self.email_author_counts[p]),
                 str(self.email_recipient_counts[p]),
-                '' if p == UNKNOWN else link_text_obj(search_jmail_url(p), JMAIL),
+                '' if p is None else link_text_obj(search_jmail_url(p), JMAIL),
                 '' if not is_ok_for_epstein_web(p) else link_text_obj(epstein_web_person_url(p), EPSTEIN_WEB.lower()),
-                '' if p == UNKNOWN else link_text_obj(search_twitter_url(p), 'search X'),
+                '' if p is None else link_text_obj(search_twitter_url(p), 'search X'),
             )
 
         console.print(vertically_pad(counts_table, 2))
@@ -265,7 +265,9 @@ def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str]
     return Padding(table, DEVICE_SIGNATURE_PADDING)
 
 
-def is_ok_for_epstein_web(name: str) -> bool:
+def is_ok_for_epstein_web(name: str | None) -> bool:
+    if name is None:
+        return False
     if '@' in name or '/' in name or name in JUNK_EMAILERS or name in KRASSNER_RECIPIENTS or name == UNKNOWN:
         return False
     elif name in ['ACT for America'] or ' ' not in name:

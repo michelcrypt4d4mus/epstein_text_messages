@@ -267,7 +267,7 @@ class Email(CommunicationDocument):
             self.author = KNOWN_EMAIL_AUTHORS[self.file_id]
         elif self.header.author:
             authors = self._get_names(self.header.author)
-            self.author = authors[0] if len(authors) > 0 else None
+            self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
 
         if self.file_id in KNOWN_EMAIL_RECIPIENTS:
             recipient = KNOWN_EMAIL_RECIPIENTS[self.file_id]
@@ -375,6 +375,10 @@ class Email(CommunicationDocument):
 
     def _get_names(self, emailer_str: str) -> list[str]:
         emailer_str = EmailHeader.cleanup_str(emailer_str)
+
+        if len(emailer_str) == 0:
+            return []
+
         names = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
 
         if BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
