@@ -65,13 +65,13 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES_LIST = [
 ]
 
 
-started_at = time.perf_counter()
 print_header()
 
 if args.colors_only:
     print_color_key()
     exit()
 
+started_at = time.perf_counter()
 epstein_files = EpsteinFiles()
 checkpoint_at = time.perf_counter()
 epstein_files.print_files_overview()
