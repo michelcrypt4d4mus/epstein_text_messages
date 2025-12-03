@@ -64,6 +64,7 @@ IVANKA = 'Ivanka'
 JABOR_Y = 'Jabor Y'                       # Qatari
 JACK_GOLDBERGER = 'Jack Goldberger'
 JACKIE_PERCZEK = 'Jackie Perczek'
+JAMES_HILL = 'James Hill'
 JARED_KUSHNER = 'Jared Kushner'
 JAY_LEFKOWITZ = 'Jay Lefkowitz'
 JEAN_HUGUEN = 'Jean Huguen'
@@ -153,8 +154,8 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Dan', 'Daniel', 'Danny', 'Darren', 'Dave', 'David',
     'Edwards', 'Epstein', 'Eric', 'Etienne',
     'Faith', 'Fred',
-    'Heather',
-    'Jack', 'Jay', 'Jean', 'Jeff', 'jeffrey', 'Jeremy', 'jessica', 'John', 'Jon', 'Jonathan', 'Joseph', 'Jr',
+    'Heather', 'Hill',
+    'Jack', 'James', 'Jay', 'Jean', 'Jeff', 'jeffrey', 'Jeremy', 'jessica', 'John', 'Jon', 'Jonathan', 'Joseph', 'Jr',
     'Kahn', 'Katherine', 'Ken',
     'Leon', 'Lesley', 'Linda', 'Link',
     'Marc', 'Marie', 'Mark', 'Martin', 'Melanie', 'Michael', 'Mike', 'Miller', 'Moskowitz',

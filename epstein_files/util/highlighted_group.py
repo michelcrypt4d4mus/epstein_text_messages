@@ -256,6 +256,7 @@ HIGHLIGHTED_GROUPS = [
         pattern=r'Alex Yablon|Ingram, David|Susan Edelman|Vick[iy] Ward|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
         emailers = {
             EDWARD_EPSTEIN: 'no relation to Jeffrey',
+            'James Hill': 'ABC',
             LANDON_THOMAS: 'New York Times',
             MICHAEL_WOLFF: None,
             PAUL_KRASSNER: '60s guy',
