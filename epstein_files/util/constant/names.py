@@ -3,7 +3,6 @@ UNKNOWN = '(unknown)'
 
 # Texting Names
 ANIL_AMBANI = "Anil Ambani"
-DEFAULT = 'default'
 EVA = 'Eva'
 JEFFREY_EPSTEIN = 'Jeffrey Epstein'
 JOI_ITO = 'Joi Ito'

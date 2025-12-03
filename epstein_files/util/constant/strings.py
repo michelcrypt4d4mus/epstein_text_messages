@@ -7,5 +7,6 @@ EMAIL = 'email'
 TEXT_MESSAGE = 'text message'
 
 # Misc
+DEFAULT = 'default'
 HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
 REDACTED = '<REDACTED>'

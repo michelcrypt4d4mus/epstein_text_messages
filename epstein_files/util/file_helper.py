@@ -3,10 +3,7 @@ from os import environ
 from pathlib import Path
 from sys import exit
 
-from epstein_files.util.constants import HOUSE_OVERSIGHT_PREFIX
-
-FILE_ID_REGEX = re.compile(rf'.*{HOUSE_OVERSIGHT_PREFIX}(\d+)(_\d+)?(\.txt)?')
-OUTPUT_GH_PAGES_HTML = Path('docs').joinpath('index.html')
+from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_PREFIX
 
 EPSTEIN_DOCS_DIR_ENV_VAR_NAME = 'EPSTEIN_DOCS_DIR'
 DOCS_DIR_ENV = environ[EPSTEIN_DOCS_DIR_ENV_VAR_NAME]
@@ -18,6 +15,8 @@ if not DOCS_DIR_ENV:
 DOCS_DIR = Path(DOCS_DIR_ENV).resolve()
 JSON_FILES_SUBDIR = 'json_files'
 JSON_DIR = DOCS_DIR.joinpath(JSON_FILES_SUBDIR)
+FILE_ID_REGEX = re.compile(rf'.*{HOUSE_OVERSIGHT_PREFIX}(\d+)(_\d+)?(\.txt)?')
+OUTPUT_GH_PAGES_HTML = Path('docs').joinpath('index.html')
 
 
 if not DOCS_DIR.exists():

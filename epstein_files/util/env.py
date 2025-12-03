@@ -9,8 +9,6 @@ from rich.logging import RichHandler
 MAIN_SCRIPT = 'generate.py'
 
 
-is_env_var_set = lambda s: len(environ.get(s) or '') > 0
-
 parser = ArgumentParser(description="Parse epstein OCR docs and generate HTML page.")
 parser.add_argument('--build', '-b', action='store_true', help='write HTML to docs/index.html')
 parser.add_argument('--all-emails', '-a', action='store_true', help='all the emails (also --no-texts)')
@@ -28,6 +26,8 @@ parser.add_argument('--deep-debug', '-dd', action='store_true', help='set debug 
 parser.add_argument('--json-stats', action='store_true', help='print JSON formatted stats at the end')
 parser.add_argument('positional_args', nargs='*', help='Optional args (only used by helper scripts)')
 args = parser.parse_args()
+
+is_env_var_set = lambda s: len(environ.get(s) or '') > 0
 
 deep_debug = args.deep_debug or is_env_var_set('DEEP_DEBUG')
 is_build = args.build or is_env_var_set('BUILD_HTML')
