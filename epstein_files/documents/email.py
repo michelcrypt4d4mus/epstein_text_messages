@@ -13,7 +13,8 @@ from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.documents.document import CommunicationDocument
-from epstein_files.documents.email_header import BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TIME_REGEX, EmailHeader
+from epstein_files.documents.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX,
+     EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TIME_REGEX, EmailHeader)
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import *
@@ -24,7 +25,7 @@ from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import *
 
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
-BAD_TIMEZONE_REGEX = re.compile(r'\((UTC|GMT\+\d{2}:\d{2})\)')
+BAD_TIMEZONE_REGEX = re.compile(fr'\((UTC|GMT\+\d\d:\d\d)\)|{REDACTED}')
 TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 PACIFIC_TZ = tz.gettz("America/Los_Angeles")
 TIMEZONE_INFO = {"PST": PACIFIC_TZ, "PDT": PACIFIC_TZ}  # Suppresses annoying warnings from parse() calls
@@ -462,10 +463,9 @@ class Email(CommunicationDocument):
 def _parse_timestamp(timestamp_str: str) -> None | datetime:
     try:
         timestamp_str = timestamp_str.replace('(GMT-05:00)', 'EST')
-        timestamp_str = BAD_TIMEZONE_REGEX.sub('', timestamp_str).replace(REDACTED, ' ').strip()
-        logger.debug(f"Parsing fixed timestamp_str '{timestamp_str}'")
+        timestamp_str = BAD_TIMEZONE_REGEX.sub(' ', timestamp_str).strip()
         timestamp = parse(timestamp_str, tzinfos=TIMEZONE_INFO)
-        logger.debug(f'Parsed timestamp "{timestamp}" from string "{timestamp_str}"')
+        logger.debug(f'Parsed timestamp "%s" from string "%s"', timestamp, timestamp_str)
 
         if timestamp.tzinfo:
             timestamp = timestamp.astimezone(timezone.utc).replace(tzinfo=None)
