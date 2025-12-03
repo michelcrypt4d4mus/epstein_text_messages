@@ -1,6 +1,7 @@
 # Rich reference: https://rich.readthedocs.io/en/latest/reference.html
 import json
 from os import devnull
+from pathlib import Path
 from typing import Literal
 
 from rich.align import Align
@@ -12,12 +13,13 @@ from rich.table import Table
 from rich.text import Text
 from rich.theme import Theme
 
-from epstein_files.util.constant.html import PAGE_TITLE
+from epstein_files.util.constant.html import CONSOLE_HTML_FORMAT, HTML_TERMINAL_THEME, PAGE_TITLE
 from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constant.strings import DEFAULT, EMAIL, SiteType
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import FALLBACK_TIMESTAMP, HEADER_ABBREVIATIONS
 from epstein_files.util.env import args, deep_debug, is_debug, is_main_script, logger
+from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS, InterestingNamesHighlighter
 
 NUM_COLOR_KEY_COLS = 4
@@ -219,6 +221,11 @@ def wrap_in_markup_style(msg: str, style: str | None = None) -> str:
         modifier = ''
 
     return msg
+
+
+def write_html(output_path: Path) -> None:
+    console.save_html(output_path, code_format=CONSOLE_HTML_FORMAT, theme=HTML_TERMINAL_THEME)
+    logger.warning(f"Wrote {file_size_str(output_path)} to '{output_path}'")
 
 
 if is_debug:

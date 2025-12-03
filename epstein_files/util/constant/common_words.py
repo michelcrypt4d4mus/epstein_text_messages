@@ -125,8 +125,10 @@ your
 
 OTHER_WORDS = """
 attachments
+email
 epstein
 fwd
+im
 iphone iPad BlackBerry
 january february march april may june july august september october november december
 jan feb mar apr jun jul aug sep oct nov dec

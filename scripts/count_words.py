@@ -11,10 +11,11 @@ from epstein_files.documents.email_header import EmailHeader
 from epstein_files.util.constant.common_words import COMMON_WORDS
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.env import args
-from epstein_files.util.rich import console, print_json
+from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
+from epstein_files.util.rich import console, write_html
 
 BAD_CHARS_REGEX = re.compile(r"[-=+()$&%!#/_`,.;:'’\"”?\d\\]")
-SKIP_WORDS_REGEX = re.compile(r"^(http|addresswww)|jeevacation|html$")
+SKIP_WORDS_REGEX = re.compile(r"^(http|addresswww)|jee[vy]acation|html$")
 MAX_WORD_LEN = 45
 
 
@@ -35,3 +36,5 @@ sort_key = lambda item: item[0] if args.sort_alphabetical else [item[1], item[0]
 
 for word, count in sorted(words.items(), key=sort_key, reverse=True):
     console.print(Text('').append(f"{word:>45}", style='wheat4').append(': ').append(f"{count:,}"))
+
+write_html(WORD_COUNT_HTML_PATH)

@@ -13,7 +13,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, EPSTEINIFY, EPSTEIN_WEB, epsteinify_doc_url, epstein_web_doc_url
 from epstein_files.util.data import collapse_newlines, escape_single_quotes, patternize
 from epstein_files.util.env import args, logger
-from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, is_local_extract_file
+from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, file_size_str, is_local_extract_file
 from epstein_files.util.rich import (console, highlight_regex_match, highlighter,
      logger, link_text_obj, link_markup)
 
@@ -22,8 +22,6 @@ WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
 MIN_DOCUMENT_ID = 10477
 PREVIEW_CHARS = 520
-KB = 1024
-MB = KB * KB
 
 DOC_TYPE_STYLES = {
     DOCUMENT_CLASS: 'grey69',
@@ -81,7 +79,7 @@ class Document:
         txt = Text('').append(self.file_path.stem, style='magenta')
         txt.append(f' {doc_type} ', style=DOC_TYPE_STYLES[doc_type])
         txt.append(f"(num_lines=").append(f"{self.num_lines:,}", style='cyan')
-        txt.append(", size=").append(self.size_str(), style='aquamarine1')
+        txt.append(", size=").append(file_size_str(self.file_path), style='aquamarine1')
         return txt.append(')') if doc_type == DOCUMENT_CLASS else txt
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
@@ -147,21 +145,6 @@ class Document:
                 text = text.replace(k, v)
 
         return text
-
-    def size_str(self) -> str:
-        file_size = float(self.file_path.stat().st_size)
-
-        if file_size > MB:
-            size_num = file_size / MB
-            size_str = 'MB'
-        elif file_size > KB:
-            size_num = file_size / KB
-            size_str = 'kb'
-        else:
-            size_num = file_size
-            size_str = 'bytes'
-
-        return f"{size_num:,.2f} {size_str}"
 
     def top_lines(self, n: int = 10) -> str:
         return '\n'.join(self.lines[0:n])
