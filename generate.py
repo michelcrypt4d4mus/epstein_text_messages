@@ -66,7 +66,6 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES_LIST = [
 
 
 started_at = time.perf_counter()
-emails_printed = 0
 print_header()
 
 if args.colors_only:
@@ -77,6 +76,7 @@ epstein_files = EpsteinFiles()
 finished_processing_at = checkpoint_at = time.perf_counter()
 epstein_files.print_files_overview()
 print_color_key()
+emails_printed = 0
 
 
 # Text messages section
