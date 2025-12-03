@@ -157,8 +157,8 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='deepak_chopra',
         style='dark_goldenrod',
-        pattern='Carolyn Rangel',
         emailers = {
+            'Carolyn Rangel': 'assistant',
             DEEPAK_CHOPRA: 'woo woo',
         }
     ),
