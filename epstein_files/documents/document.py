@@ -86,11 +86,7 @@ class Document:
         txt.append(f' {doc_type} ', style=DOC_TYPE_STYLES[doc_type]).append(f"(num_lines=")
         txt.append(f"{self.num_lines:,}", style='cyan').append(", size=")
         txt.append(self.size_str(), style='aquamarine1')
-
-        if doc_type == DOCUMENT_CLASS:
-            txt.append(')')
-
-        return txt
+        return txt.append(')') if doc_type == DOCUMENT_CLASS else txt
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         return link_text_obj(self.epsteinify_doc_url, link_txt or self.file_path.stem, style)
