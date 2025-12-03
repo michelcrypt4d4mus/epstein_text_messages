@@ -30,10 +30,11 @@ args = parser.parse_args()
 
 is_env_var_set = lambda s: len(environ.get(s) or '') > 0
 
+current_script = Path(argv[0]).name
 deep_debug = args.deep_debug or is_env_var_set('DEEP_DEBUG')
 is_build = args.build or is_env_var_set('BUILD_HTML')
 is_debug = deep_debug or args.debug or is_env_var_set('DEBUG')
-is_html_script = Path(argv[0]).name in [HTML_SCRIPTS]
+is_html_script = current_script in HTML_SCRIPTS
 skip_texts = args.no_texts or is_env_var_set('NO_TEXTS')
 
 args.width = args.width if is_html_script else None
@@ -59,3 +60,6 @@ if len(specified_emailers) > 0:
 
 if args.use_epstein_web_links:
     logger.warning(f"Using links to epsteinweb.org links instead of epsteinify.com")
+
+
+logger.debug(f"is_html_script={is_html_script}, args.width={args.width}, current_script='{current_script}'")
