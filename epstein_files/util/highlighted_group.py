@@ -309,7 +309,7 @@ HIGHLIGHTED_GROUPS = [
         style='light_coral',
         pattern=r'[BR]ob Crowe|Stanley Rosenberg',
         emailers = {
-            'Joshua Cooper Ramo': 'co-CEO of Kissinger Associates',
+            'Joshua Cooper Ramo': 'co-CEO of Henry Kissinger Associates',
             KATHERINE_KEATING: 'Daughter of former Australian PM',
             MOHAMED_WAHEED_HASSAN: 'former president of the Maldives',
             OLIVIER_COLOM: 'France',

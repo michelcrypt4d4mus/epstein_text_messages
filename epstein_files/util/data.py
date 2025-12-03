@@ -25,3 +25,4 @@ def patternize(_pattern: str | re.Pattern):
 
 escape_double_quotes = lambda text: text.replace('"', r'\"')
 escape_single_quotes = lambda text: text.replace("'", r"\'")
+uniquify = lambda _list: list(set(_list))

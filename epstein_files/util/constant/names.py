@@ -1,4 +1,4 @@
-# no trailing periods! (messes up regexes)
+#
 UNKNOWN = '(unknown)'
 
 # Texting Names
@@ -17,7 +17,7 @@ STEVEN_SINOFSKY = 'Steven Sinofsky'
 TERJE_ROD_LARSEN = 'Terje Rød-Larsen'
 
 
-# Email Names
+# Email Names - no trailing periods! (messes up regexes)
 AL_SECKEL = 'Al Seckel'
 ALAN_DERSHOWITZ = 'Alan Dershowitz'
 ALIREZA_ITTIHADIEH = 'Alireza Ittihadieh'
@@ -127,6 +127,7 @@ ROBERT_TRIVERS = 'Robert Trivers'
 ROGER_SCHANK = 'Roger Schank'
 RUDY_GIULIANI = 'Rudy Giuliani'
 ROSS_GOW = 'Ross Gow'
+SAMUEL_LEFF = 'Samuel Leff'
 SCOTT_J_LINK = 'Scott J. Link'
 SEAN_BANNON = 'Sean Bannon'
 SHAHER_ABDULHAK_BESHER = 'Shaher Abdulhak Besher (?)'
@@ -151,11 +152,12 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Daniel', 'Darren', 'Dave', 'David',
     'Edwards', 'Epstein', 'Eric', 'Etienne',
     'Fred',
+    'Heather',
     'Jack', 'Jay', 'Jean', 'Jeff', 'jeffrey', 'Jeremy', 'jessica', 'John', 'Jon', 'Jonathan', 'Joseph', 'Jr',
-    'Kahn', 'Katherine',
+    'Kahn', 'Katherine', 'Ken',
     'Leon', 'Lesley', 'Linda', 'Link',
-    'Marc', 'Mark', 'Martin', 'Melanie', 'Michael', 'Mike', 'Miller', 'Moskowitz',
-    'Neal', 'New',
+    'Marc', 'Marie', 'Mark', 'Martin', 'Melanie', 'Michael', 'Mike', 'Miller', 'Moskowitz',
+    'Nancy', 'Neal', 'New',
     'Paul', 'Paula', 'Pen', 'Peter', 'Philip',
     'Reid', 'Richard', 'Robert', 'Roger', 'Roth', 'Rubin',
     'Scott', 'Sean', 'Stern', 'Stephen', 'Steve', 'Steven', 'Stone', 'Susan',
