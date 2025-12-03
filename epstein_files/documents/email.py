@@ -210,7 +210,9 @@ JUNK_EMAILERS = [
 
 # No point in ever displaying these; their emails show up elsewhere because they're mostly CC recipients
 USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
-                   PAUL_KRASSNER_MANSON_RECIPIENTS + \
+                   KRASSNER_MANSON_RECIPIENTS + \
+                   KRASSNER_033568_RECIPIENTS + \
+                   KRASSNER_024923_RECIPIENTS + \
                    FLIGHT_IN_2012_PEOPLE + [
     'Alan Rogers',                           # Random CC
     'BS Stern',                              # A random fwd of email we have
