@@ -17,7 +17,7 @@ from epstein_files.documents.email_header import BAD_EMAILER_REGEX, EMAIL_SIMPLE
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import *
-from epstein_files.util.data import collapse_newlines, escape_single_quotes
+from epstein_files.util.data import collapse_newlines, escape_single_quotes, uniquify
 from epstein_files.util.env import is_debug, logger
 from epstein_files.util.file_helper import build_filename_for_id
 from epstein_files.util.highlighted_group import get_style_for_name
@@ -208,11 +208,11 @@ JUNK_EMAILERS = [
     'Saved by Internet Explorer 11',
 ]
 
+KRASSNER_RECIPIENTS = uniquify(KRASSNER_MANSON_RECIPIENTS + KRASSNER_024923_RECIPIENTS + KRASSNER_033568_RECIPIENTS)
+
 # No point in ever displaying these; their emails show up elsewhere because they're mostly CC recipients
 USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
-                   KRASSNER_MANSON_RECIPIENTS + \
-                   KRASSNER_033568_RECIPIENTS + \
-                   KRASSNER_024923_RECIPIENTS + \
+                   KRASSNER_RECIPIENTS + \
                    FLIGHT_IN_2012_PEOPLE + [
     'Alan Rogers',                           # Random CC
     'BS Stern',                              # A random fwd of email we have
