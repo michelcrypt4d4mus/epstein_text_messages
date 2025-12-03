@@ -97,6 +97,7 @@ MARTIN_NOWAK = 'Martin Nowak'
 MARTIN_WEINBERG = "Martin Weinberg"
 MASHA_DROKOVA = 'Masha Drokova'
 MELANIE_SPINELLA = 'Melanie Spinella'
+MERWIN_DELA_CRUZ = 'Merwin Dela Cruz'
 MICHAEL_BUCHHOLTZ = 'Michael Buchholtz'
 MICHAEL_MILLER = 'Michael Miller'
 MICHAEL_SITRICK = 'Michael Sitrick'

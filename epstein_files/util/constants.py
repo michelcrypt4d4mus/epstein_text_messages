@@ -261,7 +261,7 @@ EMAILERS = [
     'Lyn Fontanilla',
     'Mark Tramo',
     MELANIE_WALKER,
-    'Merwin Dela Cruz',
+    MERWIN_DELA_CRUZ,
     'Michael Simmons',   # Not the only "To:"
     'middle.east.update@hotmail.com',
     'Nancy Cain',
