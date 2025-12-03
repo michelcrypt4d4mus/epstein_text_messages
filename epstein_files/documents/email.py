@@ -15,13 +15,12 @@ from rich.text import Text
 from epstein_files.documents.document import CommunicationDocument
 from epstein_files.documents.email_header import BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TIME_REGEX, EmailHeader
 from epstein_files.util.constant.strings import REDACTED
-from epstein_files.util.constants import *
-from epstein_files.util.data import collapse_newlines
+# from epstein_files.util.constants import *
+from epstein_files.util.data import collapse_newlines, escape_single_quotes
 from epstein_files.util.env import is_debug, is_fast_mode, logger
 from epstein_files.util.file_helper import build_filename_for_id
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import *
-from epstein_files.util.strings import *
 
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
 BAD_TIMEZONE_REGEX = re.compile(r'\((UTC|GMT\+\d{2}:\d{2})\)')
