@@ -37,19 +37,15 @@ class EpsteinFiles:
     imessage_logs: list[MessengerLog] = field(default_factory=list)
     other_files: list[Document] = field(default_factory=list)
     # Analytics / calculations
-    email_author_counts: dict[str, int] = field(init=False)
-    email_authors_to_device_signatures: dict[str, set[str]] = field(init=False)
-    email_device_signatures_to_authors: dict[str, set[str ]] = field(init=False)
-    email_recipient_counts: dict[str, int] = field(init=False)
+    email_author_counts: dict[str, int] = field(default_factory=lambda: defaultdict(int))
+    email_authors_to_device_signatures: dict[str, set] = field(default_factory=lambda: defaultdict(set))
+    email_device_signatures_to_authors: dict[str, set] = field(default_factory=lambda: defaultdict(set))
+    email_recipient_counts: dict[str, int] = field(default_factory=lambda: defaultdict(int))
     _email_unknown_recipient_file_ids: set[str] = field(default_factory=set)
 
     def __post_init__(self):
-        started_processing_at = time.perf_counter()
         self.all_files = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
-        self.email_author_counts = defaultdict(int)
-        self.email_recipient_counts = defaultdict(int)
-        self.email_authors_to_device_signatures = defaultdict(set)
-        self.email_device_signatures_to_authors = defaultdict(set)
+        started_processing_at = time.perf_counter()
 
         for file_arg in self.all_files:
             logger.debug(f"\nScanning '{file_arg.name}'...")
