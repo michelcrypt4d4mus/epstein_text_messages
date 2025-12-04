@@ -73,7 +73,7 @@ git merge --no-edit master --quiet
 
 print_msg "Building" "$INDEX_HTML_PATH"
 PICKLE_ARG=$([ -n $PICKLED ] && echo "--pickled" || echo "--overwrite-pickle")
-echo -e "  -> using PICKLE_ARG" "$PICKLE_ARG"
+echo -e "  -> using $PICKLE_ARG"
 exit
 ./generate.py --build --overwrite-pickle --suppress-output
 echo -e ""
