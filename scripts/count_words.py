@@ -23,7 +23,7 @@ NON_SINGULARIZABLE = UNSINGULARIZABLE_WORDS + [n.lower() for n in FIRST_AND_LAST
 SKIP_WORDS_REGEX = re.compile(r"^(asmallworld@|enwiki|http|imagepng|nymagcomnymetro|addresswww|mailto|www)|jee[vy]acation|(gif|html?|jpe?g|utm)$")
 BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#/_`,.;:'‘’\"„“”?\d\\]")
 NO_SINGULARIZE_REGEX = re.compile(r".*io?us$")
-FLAGGED_WORDS = ['vium']
+FLAGGED_WORDS = []
 MAX_WORD_LEN = 45
 MIN_COUNT_CUTOFF = 3
 PADDING = (0, 0, 2, 2)
@@ -41,6 +41,8 @@ EMAIL_IDS_TO_SKIP = [
 
 BAD_WORDS = [
     'summarypricesquotesstatistic',
+    'classdmsonormaluucauup',
+    'fortunehtmlsmidnytnowsharesmprodnytnow',
 ]
 
 BAD_CHARS_OK = [
@@ -56,6 +58,7 @@ SINGULARIZATIONS = {
     'believes': 'believe',
     'busses': 'bus',
     'colletcions': 'collection',
+    'dies': 'die',
     'dives': 'dive',
     'drives': 'drive',
     'enterpris': 'enterprise',
