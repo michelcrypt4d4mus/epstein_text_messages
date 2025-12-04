@@ -25,7 +25,7 @@ BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#/_`,.;:'‘’\"„�
 NO_SINGULARIZE_REGEX = re.compile(r".*io?us$")
 FLAGGED_WORDS = []
 MAX_WORD_LEN = 45
-MIN_COUNT_CUTOFF = 2
+MIN_COUNT_CUTOFF = 3
 PADDING = (0, 0, 0, 2)
 
 BAD_CHARS_OK = [
@@ -112,7 +112,7 @@ for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
             if not is_invalid_word(word):
                 words[word] += 1
 
-words_to_print = [kv for kv in sort_dict(words) if kv[1] > MIN_COUNT_CUTOFF]
+words_to_print = [kv for kv in sort_dict(words) if kv[1] >= MIN_COUNT_CUTOFF]
 
 txts_to_print = [
     highlighter(Text('').append(f"{word}", style='wheat4').append(': ').append(f"{count:,}"))
@@ -122,7 +122,7 @@ txts_to_print = [
 cols = Columns(txts_to_print, column_first=False, equal=False, expand=False)
 console.print(Padding(cols, PADDING))
 console.line(3)
-console.print(f"Showing {len(words_to_print):,} words appearing at least {MIN_COUNT_CUTOFF} time (out of {len(words):,} words).\n")
+console.print(f"Showing {len(words_to_print):,} words appearing at least {MIN_COUNT_CUTOFF} times (out of {len(words):,} words).\n")
 print_panel(f"{len(COMMON_WORDS_LIST):,} Excluded Words")
 console.print(', '.join(COMMON_WORDS_LIST), highlight=False)
 write_html(WORD_COUNT_HTML_PATH)
