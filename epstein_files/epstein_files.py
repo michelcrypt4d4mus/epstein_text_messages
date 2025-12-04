@@ -17,7 +17,8 @@ from epstein_files.documents.email import DETECT_EMAIL_REGEX, JUNK_EMAILERS, KRA
 from epstein_files.documents.email_header import AUTHOR
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog, sender_counts
 from epstein_files.util.constant.strings import AUTHOR
-from epstein_files.util.constant.urls import EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url, search_jmail_url, search_twitter_url
+from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url,
+     search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
 from epstein_files.util.data import dict_sets_to_lists, patternize, sort_dict
 from epstein_files.util.env import args, is_debug, logger
