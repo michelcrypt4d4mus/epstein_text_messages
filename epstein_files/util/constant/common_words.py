@@ -186,28 +186,29 @@ COMMON_WORDS = {line.lower(): True for line in (MOST_COMMON_WORDS + OTHER_COMMON
 COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
 
 UNSINGULARIZABLE_WORDS = """
-    aids alas always angeles anomalous anus apropos ares asia asus atlanta
-    betts bias bonus brookings
-    campus carlos caucus cbs cds chris clothes cms collins courteous curves cvs cyprus
-    dallas davis denis des dis drougas dubious
-    emirates ens eps
+    acosta aids alas always angeles anomalous anus apropos arabia ares asia asus atlanta australia avia
+    bata betts bias bonus brookings
+    california campus candia carlos caucus cbs cds chris clothes cms collins columbia conchita costa courteous curves cvs cyprus
+    dallas data davis dementia denis des dis drougas dubious
+    emirates encyclopedia ens eps
     famous ferris focus folks forbes francis
     gas gaydos gmt gps
     halitosis has hillis his hivaids
-    impetus innocuous ios ips irs isis
+    impetus innocuous india indonesia ios ips irs isis
     jános josephus
     las lens les lewis lhs lls los louis luis
-    madars maldives mbs mets meyers moonves
-    nautilus nas notorious nous nucleus nunes
+    madars maldives maria mbs melania mets meyers moonves
+    nafta nautilus nas nigeria notorious nous nucleus nunes
     olas outrageous
-    pants parkes pbs peres physics pls plus potus prevus
-    reis-dennis reuters rogers
-    sach sadis saks ses sous stimulus syria
+    pants parkes patricia pbs peres philadelphia physics pls plus potus prevus
+    reis-dennis reuters rogers russia
+    sach sadis saks santa ses sous stimulus syria
     texas this thus tous trans tremendous tries
     ups
-    versus via vicious vinicius vis vous
-    was whoops
+    valeria versus via vicious victoria vinicius virginia vis vous
+    was whoops wikipedia
     yemen yes yikes
+    zakaria
 """.strip().split()
 
 

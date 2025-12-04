@@ -16,14 +16,15 @@ from epstein_files.util.constant.common_words import COMMON_WORDS, COMMON_WORDS_
 from epstein_files.util.data import ALL_NAMES, Timer, flatten, sort_dict
 from epstein_files.util.env import args, logger, specified_emailers
 from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
-from epstein_files.util.rich import console, highlighter, print_centered, print_page_title, print_panel, print_social_media_links, print_starred_header, write_html
+from epstein_files.util.rich import (console, highlighter, print_centered, print_page_title, print_panel,
+     print_social_media_links, print_starred_header, write_html)
 
 FIRST_AND_LAST_NAMES = flatten([n.split() for n in ALL_NAMES])
 NON_SINGULARIZABLE = UNSINGULARIZABLE_WORDS + [n.lower() for n in FIRST_AND_LAST_NAMES if n.endswith('s')]
 SKIP_WORDS_REGEX = re.compile(r"^(asmallworld@|enwiki|http|imagepng|nymagcomnymetro|addresswww|mailto|www)|jee[vy]acation|(gif|html?|jpe?g|utm)$")
 BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#/_`,.;:'‘’\"„“”?\d\\]")
 NO_SINGULARIZE_REGEX = re.compile(r".*io?us$")
-FLAGGED_WORDS = [ 'em']
+FLAGGED_WORDS = ['candium','costum', 'avium','batum','conchitum','referendum','valerium', 'villafarium']
 MAX_WORD_LEN = 45
 MIN_COUNT_CUTOFF = 3
 PADDING = (0, 0, 2, 2)
