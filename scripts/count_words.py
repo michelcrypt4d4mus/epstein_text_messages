@@ -18,7 +18,7 @@ from epstein_files.util.rich import console, print_centered, print_page_title, p
 
 FIRST_AND_LAST_NAMES = flatten([n.split() for n in ALL_NAMES])
 BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#/_`,.;:'‘’\"„“”?\d\\]")
-SKIP_WORDS_REGEX = re.compile(r"^(http|addresswww|mailto)|jee[vy]acation|(gif|html?|jpe?g)$")
+SKIP_WORDS_REGEX = re.compile(r"^(http|addresswww|mailto|www)|jee[vy]acation|(gif|html?|jpe?g)$")
 NO_SINGULARIZE_REGEX = re.compile(r".*io?us$")
 FLAGGED_WORDS = []
 MAX_WORD_LEN = 45
@@ -31,19 +31,25 @@ NON_SINGULARIZABLE_CONST = """
     anomalous
     anus
     apropos
+    ares
     asus
     betts
     bias
+    bonus
     brookings
     cbs
     cds
     carlos
     caucus
+    chris
     clothes
     cms
+    collins
     courteous
     curves
     cvs
+    cyprus
+    denis
     des
     dis
     drougas
@@ -61,12 +67,15 @@ NON_SINGULARIZABLE_CONST = """
     hivaids
     impetus
     innocuous
+    ios
+    irs
     isis
     jános
     josephus
     las
     lens
     les
+    lewis
     lhs
     lls
     los
@@ -74,17 +83,23 @@ NON_SINGULARIZABLE_CONST = """
     maldives
     mbs
     mets
+    meyers
     moonves
     nautilus
     nas
     notorious
+    nous
+    nucleus
+    nunes
     olas
     outrageous
     pants
     parkes
     pbs
     physics
+    pls
     prevus
+    reis-dennis
     reuters
     rogers
     saks
@@ -92,8 +107,10 @@ NON_SINGULARIZABLE_CONST = """
     sous
     texas
     this
+    thus
     tous
     trans
+    tremendous
     tries
     ups
     vicious
@@ -106,18 +123,23 @@ NON_SINGULARIZABLE_CONST = """
 
 BAD_CHARS_OK = [
     'MLPF&S'.lower(),
+    'reis-dennis',
 ]
 
 # inflection.singularize() messes these up
 SINGULARIZATIONS = {
     'approves': 'approve',
     'arrives': 'arrive',
+    'awards/awards': 'award',
     'believes': 'believe',
     'busses': 'bus',
+    'colletcions': 'collection',
     'dives': 'dive',
     'drives': 'drive',
+    'enterpris': 'enterprise',
     'gives': 'give',
     'involves': 'involve',
+    'jackies': 'jackie',
     'leaves': 'leave',
     'lies': 'lie',
     'lives': 'live',
@@ -126,7 +148,9 @@ SINGULARIZATIONS = {
     'proves': 'prove',
     'receives': 'receive',
     'reserves': 'reserve',
+    'shes': 'she',
     'slaves': 'slave',
+    'thnks': 'thank',
     'thieves': 'thief',
     'toes': 'toe',
 }
