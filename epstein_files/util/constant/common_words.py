@@ -154,100 +154,27 @@ COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
 
 
 UNSINGULARIZABLE_WORDS = """
-    aids
-    alas
-    angeles
-    anomalous
-    anus
-    apropos
-    ares
-    asus
-    betts
-    bias
-    bonus
-    brookings
-    cbs
-    cds
-    carlos
-    caucus
-    chris
-    clothes
-    cms
-    collins
-    courteous
-    curves
-    cvs
-    cyprus
-    denis
-    des
-    dis
-    drougas
-    dubious
-    emirates
-    ens
-    ferris
-    folks
-    francis
-    gas
-    gaydos
-    halitosis
-    has
-    hillis
-    his
-    hivaids
-    impetus
-    innocuous
-    ios
-    irs
-    isis
-    jános
-    josephus
-    las
-    lens
-    les
-    lewis
-    lhs
-    lls
-    los
-    madars
-    maldives
-    mbs
-    mets
-    meyers
-    moonves
-    nautilus
-    nas
-    notorious
-    nous
-    nucleus
-    nunes
-    olas
-    outrageous
-    pants
-    parkes
-    pbs
-    physics
-    pls
-    prevus
-    reis-dennis
-    reuters
-    rogers
-    saks
-    ses
-    sous
-    texas
-    this
-    thus
-    tous
-    trans
-    tremendous
-    tries
+    aids alas angeles anomalous anus apropos ares asus
+    betts bias bonus brookings
+    cbs cds carlos caucus chris clothes cms collins courteous curves cvs cyprus
+    denis des dis drougas dubious
+    emirates ens
+    ferris folks francis
+    gas gaydos
+    halitosis has hillis his hivaids
+    impetus innocuous ios irs isis
+    jános josephus
+    las lens les lewis lhs lls los
+    madars maldives mbs mets meyers moonves
+    nautilus nas notorious nous nucleus nunes
+    olas outrageous
+    pants parkes pbs physics pls prevus
+    reis-dennis reuters rogers
+    saks ses sous
+    texas this thus tous trans tremendous tries
     ups
-    vicious
-    vinicius
-    vous
-    was
-    whoops
+    vicious vinicius vous
+    was whoops
     yes
 """.strip().split()
 
