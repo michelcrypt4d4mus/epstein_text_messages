@@ -16,7 +16,7 @@ if len(args.positional_args) == 0:
     console.print(f"Must provide an argument to search for.", style='bright_red')
     exit()
 
-epstein_files = EpsteinFiles()
+epstein_files = EpsteinFiles.get_files()
 
 for search_term in args.positional_args:
     search_type = 'other' if args.search_other else 'all'

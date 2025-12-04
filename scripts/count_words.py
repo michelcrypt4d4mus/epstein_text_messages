@@ -14,7 +14,7 @@ from epstein_files.documents.email_header import EmailHeader
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.constant.common_words import COMMON_WORDS, COMMON_WORDS_LIST, UNSINGULARIZABLE_WORDS
 from epstein_files.util.data import ALL_NAMES, Timer, flatten, sort_dict
-from epstein_files.util.env import args, logger
+from epstein_files.util.env import args, logger, specified_emailers
 from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
 from epstein_files.util.rich import console, highlighter, print_centered, print_page_title, print_panel, print_social_media_links, print_starred_header, write_html
 
@@ -23,10 +23,21 @@ NON_SINGULARIZABLE = UNSINGULARIZABLE_WORDS + [n.lower() for n in FIRST_AND_LAST
 SKIP_WORDS_REGEX = re.compile(r"^(asmallworld@|enwiki|http|imagepng|nymagcomnymetro|addresswww|mailto|www)|jee[vy]acation|(gif|html?|jpe?g|utm)$")
 BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#/_`,.;:'‘’\"„“”?\d\\]")
 NO_SINGULARIZE_REGEX = re.compile(r".*io?us$")
-FLAGGED_WORDS = []
+FLAGGED_WORDS = ['vium']
 MAX_WORD_LEN = 45
 MIN_COUNT_CUTOFF = 3
 PADDING = (0, 0, 2, 2)
+
+EMAIL_IDS_TO_SKIP = [
+    '029692',  # WaPo article
+    '029779',  # WaPo article
+    '026298',  # Written by someone else?
+    '026755',  # HuffPo
+    '023627',  # Article about epstein
+    '031569',  # Article by Kathryn Alexeeff
+    '030528',  # Vicky Ward article
+    '030522',  # Vicky Ward article
+]
 
 BAD_WORDS = [
     'summarypricesquotesstatistic',
@@ -76,7 +87,7 @@ timer = Timer()
 print_page_title(expand=False)
 print_social_media_links()
 console.line(2)
-epstein_files = EpsteinFiles()
+epstein_files = EpsteinFiles.get_files()
 print_starred_header(f"Most Common Words in the {len(epstein_files.emails):,} Emails")
 print_centered(f"(excluding {len(COMMON_WORDS_LIST)} particularly common words at bottom)", style='dim')
 console.line()
@@ -87,8 +98,15 @@ for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
     if email.is_duplicate or email.is_junk_mail:
         logger.info(f"Skipping duplicate or junk file '{email.filename}'...")
         continue
+    elif specified_emailers:
+        if email.author not in specified_emailers:
+            logger.debug(f"Skipping email from '{email.author}'...")
+            continue
+        elif email.file_id in EMAIL_IDS_TO_SKIP:
+            logger.debug(f"Skipping EMAIL_IDS_TO_SKIP '{email.file_id}' from '{email.author}'...")
+            continue
 
-    for line in email.actual_text(use_clean_text=True, skip_header=True).split('\n'):
+    for line in email.actual_text.split('\n'):
         if line.startswith('htt'):
             continue
 
@@ -98,9 +116,6 @@ for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
 
             if word not in BAD_CHARS_OK:
                 word = BAD_CHARS_REGEX.sub('', word).strip()
-
-            if word in FLAGGED_WORDS:
-                logger.warning(f"Found '{word}' in '{line}'")
 
             if is_invalid_word(word):
                 continue
@@ -116,6 +131,9 @@ for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
 
             if not is_invalid_word(word):
                 words[word] += 1
+
+            if word in FLAGGED_WORDS:
+                logger.warning(f"Found '{word}' in '{line}'")
 
 txts_to_print = [
     highlighter(Text('').append(f"{word}", style='wheat4').append(': ').append(f"{count:,}"))

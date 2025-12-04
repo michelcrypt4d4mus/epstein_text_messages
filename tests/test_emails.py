@@ -80,7 +80,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Jay Lefkowitz": 7,
     "Jean Huguen": 1,
     "Jean Luc Brunel": 3,
-    "Jeffrey Epstein": 708,
+    "Jeffrey Epstein": 707,
     "Jennifer Jacquet": 1,
     "Jeremy Rubin": 3,
     "Jes Staley": 2,
@@ -206,7 +206,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 84,
+    None: 83,
     "ACT for America": 1,
     "Alan Dershowitz": 15,
     'Alan Dlugash': 1,
@@ -682,9 +682,6 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     "Aziza Alahmadi": [
         "Sent from my iPhone"
     ],
-    "Bob Crowe": [
-        "Sent from my iPhone"
-    ],
     "Boris Nikolic": [
         "Sent from my Samsung JackTM, a Windows Mobile® smartphone from AT&T",
         "Sent from my Windows Phone"
@@ -720,8 +717,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     "Faith Kates": [
         "Sent from my iPhone"
     ],
-    "Ghislaine Maxwell": [
-        "Sent from my iPhone"
+    'Fred Haddad': [
+        'Sent from my iPad',
+        "Sent from my iPhone",
     ],
     "Gino Yu": [
         "Sent from my iPhone"
@@ -743,7 +741,6 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone"
     ],
     "Jeffrey Epstein": [
-        "Sent from ProtonMail",
         "Sent from my iPhone",
         "Sorry for all the typos .Sent from my iPhone"
     ],
@@ -833,7 +830,6 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     "Reid Weingarten": [
         "Sent from my BlackBerry 10 smartphone.",
-        "Sent from my Verizon, Samsung Galaxy smartphone"
     ],
     "Richard Kahn": [
         "Sent from my iPhone"
@@ -851,6 +847,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     "Sean Bannon": [
         "Sent from ProtonMail",
         "Sent from my iPhone"
+    ],
+    SHAHER_ABDULHAK_BESHER: [
+        'Sent from my iPad',
     ],
     "Soon-Yi Previn": [
         "Sent from Soon-Yi's iPhone"
@@ -879,6 +878,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     "Tom Barrack": [
         "Sent from my iPhone"
     ],
+    TONJA_HADDAD_COLEMAN: [
+        'Sent from my iPhone',
+    ],
     "Tyler Shears": [
         "Sent from my iPhone"
     ],
@@ -893,13 +895,13 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     "Darren Indyke": 47,
     "David Ingram": 9,
     "Deepak Chopra": 19,
-    "Jeffrey Epstein": 3370,
+    "Jeffrey Epstein": 3369,
     "Jessica Cadwell": 57,
     "Lawrence Krauss": 78,
     "Martin Weinberg": 17,
     "Paul Barrett": 10,
     "Peter Mandelson": 10,
-    "Richard Kahn": 122,
+    "Richard Kahn": 121,
     "Susan Edelman": 9,
     "Terry Kafka": 10,
     "Tonja Haddad Coleman": 9,

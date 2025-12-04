@@ -23,7 +23,6 @@ can
 can't
 come
 could
-date
 day
 do
 dont
@@ -83,7 +82,6 @@ re
 said
 say
 see
-sent
 she
 so
 some
@@ -162,7 +160,7 @@ UNSINGULARIZABLE_WORDS = """
     aids alas always angeles anomalous anus apropos ares asus
     betts bias bonus brookings
     cbs cds carlos caucus chris clothes cms collins courteous curves cvs cyprus
-    denis des dis drougas dubious
+    date denis des dis drougas dubious
     emirates ens
     ferris folks francis
     gas gaydos
@@ -175,11 +173,11 @@ UNSINGULARIZABLE_WORDS = """
     olas outrageous
     pants parkes pbs physics pls prevus
     reis-dennis reuters rogers
-    saks ses sous
+    saks sent ses sous
     texas this thus tous trans tremendous tries
     ups
     vicious vinicius vous
-    was whoops
+    via was whoops
     yes
 """.strip().split()
 

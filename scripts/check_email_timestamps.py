@@ -10,7 +10,7 @@ from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.rich import *
 
 console = Console(color_system='256')
-epstein_files = EpsteinFiles()
+epstein_files = EpsteinFiles.get_files()
 email_timestamps = {}
 
 

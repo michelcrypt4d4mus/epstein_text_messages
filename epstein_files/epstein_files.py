@@ -1,3 +1,4 @@
+import pickle
 import re
 from collections import defaultdict
 from dataclasses import dataclass, field
@@ -27,6 +28,7 @@ from epstein_files.util.rich import (DEFAULT_NAME_COLOR, console, highlighter, l
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (0, 0, 0, 2)
 NOT_INCLUDED_EMAILERS = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
+PICKLED_PATH = Path("the_epstein_files.pkl")
 
 
 @dataclass
@@ -79,6 +81,22 @@ class EpsteinFiles:
 
         self.imessage_logs = sorted(self.imessage_logs, key=lambda f: f.timestamp)
         self.identified_imessage_log_count = len([log for log in self.imessage_logs if log.author])
+
+    @classmethod
+    def get_files(cls) -> 'EpsteinFiles':
+        if args.pickled and PICKLED_PATH.exists():
+            with open(PICKLED_PATH, 'rb') as file:
+                logger.warning(f"Loading pickled data from '{PICKLED_PATH}'...")
+                return pickle.load(file)
+
+        epstein_files = EpsteinFiles()
+
+        if args.pickled:
+            with open(PICKLED_PATH, 'wb') as file:
+                pickle.dump(epstein_files, file)
+                logger.warning(f"Pickled data to '{PICKLED_PATH}'...")
+
+        return epstein_files
 
     def all_documents(self) -> list[Document]:
         return self.imessage_logs + self.emails + self.other_files
