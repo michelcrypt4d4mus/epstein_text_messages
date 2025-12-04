@@ -109,11 +109,7 @@ def print_color_key(key_type: Literal["Groups", "People"] = "Groups") -> None:
 def print_header():
     console.print(f"This site is not optimized for mobile but if you get past the header it should work ok.", style='dim')
     print_page_title()
-    print_centered_link(SUBSTACK_URL, "I Made Epstein's Text Messages Great Again (And You Should Read Them)", style=f'chartreuse1 bold')
-    print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style='dark_sea_green4 dim')
-    print_centered_link('https://cryptadamus.substack.com/', 'Substack', style=SOCIAL_MEDIA_LINK_STYLE)
-    print_centered_link('https://universeodon.com/@cryptadamist/115572634993386057', 'Mastodon', style=SOCIAL_MEDIA_LINK_STYLE)
-    print_centered_link('https://x.com/Cryptadamist/status/1990866804630036988', 'Twitter', style=SOCIAL_MEDIA_LINK_STYLE)
+    print_social_media_links()
     console.line()
     print_other_site_link()
 
@@ -177,8 +173,7 @@ def print_other_site_link(is_header: bool = True) -> None:
     site_type = EMAIL if args.all_emails else TEXT_MESSAGE
 
     if is_header:
-        label = f"  ******* This is the Epstein {site_type.title()}s site *******  "
-        print_centered(wrap_in_markup_style(label, TITLE_STYLE))
+        print_starred_header(f"This is the Epstein {site_type.title()}s site")
         console.line()
 
     other_site_type: SiteType = TEXT_MESSAGE if site_type == EMAIL else EMAIL
@@ -192,7 +187,7 @@ def print_other_site_link(is_header: bool = True) -> None:
 
 def print_page_title(expand: bool = True) -> None:
     console.line()
-    console.print(Panel(Text(PAGE_TITLE, justify='center'), expand=expand, style=TITLE_STYLE))
+    console.print(Align.center(Panel(Text(PAGE_TITLE, justify='center'), expand=expand, style=TITLE_STYLE)))
     console.line()
 
 
@@ -203,10 +198,25 @@ def print_panel(msg: str, style: str = 'black on white', padding: tuple | None =
     console.print(Padding(panel, tuple(_padding)))
 
 
+def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2) -> None:
+    stars = '*' * num_stars
+    spaces = ' ' * num_spaces
+    msg = f"{spaces}{stars} {msg} {stars}{spaces}"
+    print_centered(wrap_in_markup_style(msg, TITLE_STYLE))
+
+
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
     panel = Panel(Text(msg, justify='center'), expand=True, padding=(1, 1), style=style)
     panel = Align.center(panel) if is_centered else panel
     console.print(Padding(panel, (3, 0, 1, 0)))
+
+
+def print_social_media_links() -> None:
+    print_centered_link(SUBSTACK_URL, "I Made Epstein's Text Messages Great Again (And You Should Read Them)", style=f'chartreuse1 bold')
+    print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style='dark_sea_green4 dim')
+    print_centered_link('https://cryptadamus.substack.com/', 'Substack', style=SOCIAL_MEDIA_LINK_STYLE)
+    print_centered_link('https://universeodon.com/@cryptadamist/115572634993386057', 'Mastodon', style=SOCIAL_MEDIA_LINK_STYLE)
+    print_centered_link('https://x.com/Cryptadamist/status/1990866804630036988', 'Twitter', style=SOCIAL_MEDIA_LINK_STYLE)
 
 
 def vertically_pad(obj: RenderableType, amount: int = 1) -> Padding:
