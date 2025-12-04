@@ -23,7 +23,7 @@ NON_SINGULARIZABLE = UNSINGULARIZABLE_WORDS + [n.lower() for n in FIRST_AND_LAST
 SKIP_WORDS_REGEX = re.compile(r"^(asmallworld@|enwiki|http|imagepng|nymagcomnymetro|addresswww|mailto|www)|jee[vy]acation|(gif|html?|jpe?g|utm)$")
 BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#/_`,.;:'‘’\"„“”?\d\\]")
 NO_SINGULARIZE_REGEX = re.compile(r".*io?us$")
-FLAGGED_WORDS = []
+FLAGGED_WORDS = ['vium']
 MAX_WORD_LEN = 45
 MIN_COUNT_CUTOFF = 3
 PADDING = (0, 0, 2, 2)
@@ -76,7 +76,7 @@ timer = Timer()
 print_page_title(expand=False)
 print_social_media_links()
 console.line(2)
-epstein_files = EpsteinFiles()
+epstein_files = EpsteinFiles.get_files()
 print_starred_header(f"Most Common Words in the {len(epstein_files.emails):,} Emails")
 print_centered(f"(excluding {len(COMMON_WORDS_LIST)} particularly common words at bottom)", style='dim')
 console.line()
@@ -99,9 +99,6 @@ for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
             if word not in BAD_CHARS_OK:
                 word = BAD_CHARS_REGEX.sub('', word).strip()
 
-            if word in FLAGGED_WORDS:
-                logger.warning(f"Found '{word}' in '{line}'")
-
             if is_invalid_word(word):
                 continue
             elif word in SINGULARIZATIONS:
@@ -116,6 +113,9 @@ for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
 
             if not is_invalid_word(word):
                 words[word] += 1
+
+            if word in FLAGGED_WORDS:
+                logger.warning(f"Found '{word}' in '{line}'")
 
 txts_to_print = [
     highlighter(Text('').append(f"{word}", style='wheat4').append(': ').append(f"{count:,}"))
