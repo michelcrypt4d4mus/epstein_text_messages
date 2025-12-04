@@ -23,7 +23,7 @@ NON_SINGULARIZABLE = UNSINGULARIZABLE_WORDS + [n.lower() for n in FIRST_AND_LAST
 SKIP_WORDS_REGEX = re.compile(r"^(asmallworld@|enwiki|http|imagepng|nymagcomnymetro|addresswww|mailto|www)|jee[vy]acation|(gif|html?|jpe?g|utm)$")
 BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#/_`,.;:'‘’\"„“”?\d\\]")
 NO_SINGULARIZE_REGEX = re.compile(r".*io?us$")
-FLAGGED_WORDS = []
+FLAGGED_WORDS = ['glhsummer']
 MAX_WORD_LEN = 45
 MIN_COUNT_CUTOFF = 3
 PADDING = (0, 0, 2, 2)
@@ -55,6 +55,7 @@ SINGULARIZATIONS = {
     'approves': 'approve',
     'arrives': 'arrive',
     'awards/awards': 'award',
+    'bann': 'bannon',
     'believes': 'believe',
     'busses': 'bus',
     'colletcions': 'collection',
@@ -138,7 +139,7 @@ for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
                 words[word] += 1
 
             if word in FLAGGED_WORDS:
-                logger.warning(f"Found '{word}' in '{line}'")
+                logger.warning(f"{email.filename}: Found '{word}' in '{line}'")
 
 txts_to_print = [
     highlighter(Text('').append(f"{word}", style='wheat4').append(': ').append(f"{count:,}"))
