@@ -533,7 +533,6 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         "Mohamed Waheed Hassan"
     ],
     "Sent from ProtonMail": [
-        "Jeffrey Epstein",
         "Sean Bannon"
     ],
     "Sent from Soon-Yi's iPhone": [
@@ -569,9 +568,6 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         "Alan Dershowitz",
         "Lisa Randall",
     ],
-    "Sent from my Verizon, Samsung Galaxy smartphone": [
-        "Reid Weingarten"
-    ],
     "Sent from my Windows 10 phone": [
         "(unknown)"
     ],
@@ -584,6 +580,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Bruce Moskowitz',
         'Cecilia Steen',
         'Ehud Barak',
+        FRED_HADDAD,
         'Glenn Dubin',
         'Joi Ito',
         'Kathryn Ruemmler',
@@ -593,6 +590,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Neal Kassell',
         'Peggy Siegal',
         'Richard Merkin',
+        SHAHER_ABDULHAK_BESHER,
         'Stephen Hanson',
     ],
     "Sent from my iPhone": [
@@ -600,7 +598,6 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Alan Dershowitz',
         'Anas Alrasheed',
         'Aziza Alahmadi',
-        'Bob Crowe',
         'Bruce Moskowitz',
         'Darren Indyke',
         'David Schoen',
@@ -608,7 +605,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Erika Kellerhals',
         'Eva Dubin',
         'Faith Kates',
-        'Ghislaine Maxwell',
+        FRED_HADDAD,
         'Gino Yu',
         'Glenn Dubin',
         'Harry Fisch',

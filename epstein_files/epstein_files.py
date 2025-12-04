@@ -84,14 +84,14 @@ class EpsteinFiles:
 
     @classmethod
     def get_files(cls) -> 'EpsteinFiles':
-        if args.pickled and PICKLED_PATH.exists():
+        if (args.pickled and PICKLED_PATH.exists()) and not args.pickle_overwrite:
             with open(PICKLED_PATH, 'rb') as file:
                 logger.warning(f"Loading pickled data from '{PICKLED_PATH}'...")
                 return pickle.load(file)
 
         epstein_files = EpsteinFiles()
 
-        if args.pickled:
+        if args.pickle_overwrite or (args.pickled and not PICKLED_PATH.exists()):
             with open(PICKLED_PATH, 'wb') as file:
                 pickle.dump(epstein_files, file)
                 logger.warning(f"Pickled data to '{PICKLED_PATH}'...")
