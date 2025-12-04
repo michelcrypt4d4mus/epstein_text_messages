@@ -5,9 +5,12 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import TypeVar
 
+from epstein_files.util.constant import names
 from epstein_files.util.env import args, logger
 
 MULTINEWLINE_REGEX = re.compile(r"\n{2,}")
+CONSTANT_VAR_REGEX = re.compile(r"^[A-Z_]+$")
+ALL_NAMES = [v for k, v in vars(names).items() if isinstance(v, str) and CONSTANT_VAR_REGEX.match(k)]
 
 T = TypeVar('T')
 

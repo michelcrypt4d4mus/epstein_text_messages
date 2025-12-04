@@ -125,6 +125,8 @@ your
 
 OTHER_WORDS = """
 attachments
+bcc
+cc
 contenttransferencoding
 dont
 email
@@ -136,7 +138,7 @@ january february march april may june july august september october november dec
 jan feb mar apr jun jul aug sep oct nov dec
 jeffrey
 jr
-mr
+mr mrs
 nd th rd st
 snipped signature
 sunday monday tuesday wednesday thursday friday saturday
