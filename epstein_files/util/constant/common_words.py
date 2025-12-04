@@ -33,6 +33,7 @@ first
 for
 from
 get
+got
 give
 go
 had
@@ -98,6 +99,7 @@ thing
 think
 this
 those
+through
 time
 to
 too
@@ -113,6 +115,7 @@ well
 were
 what
 when
+where
 which
 who
 will
@@ -125,27 +128,27 @@ your
 """.strip().split()
 
 OTHER_COMMON_WORDS = """
+    january february march april may june july august september october november december
+    jan feb mar apr jun jul aug sep oct nov dec
+    nd th rd st
     addthis attachments
     bcc
     cc
     contenttransferencoding
     dont
-    email
-    epstein
+    email epstein
     fwd
     im iphone iPad BlackBerry
-    january february march april may june july august september october november december
-    jan feb mar apr jun jul aug sep oct nov dec
     jeffrey
     jr
     mr mrs
-    nd th rd st
+    over
     rss
     snipped signature
     sunday monday tuesday wednesday thursday friday saturday
     sun mon tues wed thur thurs fri sat
     trimmed
-    wrote
+    whether wrote
 """.strip().split()
 
 COMMON_WORDS = {line.lower(): True for line in (MOST_COMMON_WORDS + OTHER_COMMON_WORDS)}
