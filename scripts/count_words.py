@@ -6,120 +6,31 @@ from collections import defaultdict
 from dotenv import load_dotenv
 load_dotenv()
 from inflection import singularize
+from rich.columns import Columns
+from rich.padding import Padding
 from rich.text import Text
 
 from epstein_files.documents.email_header import EmailHeader
 from epstein_files.epstein_files import EpsteinFiles
-from epstein_files.util.constant.common_words import COMMON_WORDS, COMMON_WORDS_LIST
+from epstein_files.util.constant.common_words import COMMON_WORDS, COMMON_WORDS_LIST, UNSINGULARIZABLE_WORDS
 from epstein_files.util.data import ALL_NAMES, flatten, sort_dict
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
 from epstein_files.util.rich import console, print_centered, print_page_title, print_panel, write_html
 
 FIRST_AND_LAST_NAMES = flatten([n.split() for n in ALL_NAMES])
+<<<<<<< HEAD
 BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#/_`,.;:'‘’\"„“”?\d\\]")
 SKIP_WORDS_REGEX = re.compile(r"^(http|addresswww|mailto|www)|jee[vy]acation|(gif|html?|jpe?g|utm)$")
+=======
+NON_SINGULARIZABLE = UNSINGULARIZABLE_WORDS + [n.lower() for n in FIRST_AND_LAST_NAMES if n.endswith('s')]
+SKIP_WORDS_REGEX = re.compile(r"^(http|addresswww|mailto|www)|jee[vy]acation|(gif|html?|jpe?g)$")
+BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#/_`,.;:'‘’\"„“”?\d\\]")
+>>>>>>> master
 NO_SINGULARIZE_REGEX = re.compile(r".*io?us$")
 FLAGGED_WORDS = []
 MAX_WORD_LEN = 45
 MIN_COUNT_CUTOFF = 2
-
-NON_SINGULARIZABLE_CONST = """
-    aids
-    alas
-    angeles
-    anomalous
-    anus
-    apropos
-    ares
-    asus
-    betts
-    bias
-    bonus
-    brookings
-    cbs
-    cds
-    carlos
-    caucus
-    chris
-    clothes
-    cms
-    collins
-    courteous
-    curves
-    cvs
-    cyprus
-    denis
-    des
-    dis
-    drougas
-    dubious
-    emirates
-    ens
-    ferris
-    folks
-    francis
-    gas
-    gaydos
-    halitosis
-    has
-    his
-    hivaids
-    impetus
-    innocuous
-    ios
-    irs
-    isis
-    jános
-    josephus
-    las
-    lens
-    les
-    lewis
-    lhs
-    lls
-    los
-    madars
-    maldives
-    mbs
-    mets
-    meyers
-    moonves
-    nautilus
-    nas
-    notorious
-    nous
-    nucleus
-    nunes
-    olas
-    outrageous
-    pants
-    parkes
-    pbs
-    physics
-    pls
-    prevus
-    reis-dennis
-    reuters
-    rogers
-    saks
-    ses
-    sous
-    texas
-    this
-    thus
-    tous
-    trans
-    tremendous
-    tries
-    ups
-    vicious
-    vinicius
-    vous
-    was
-    whoops
-    yes
-""".strip().split()
 
 BAD_CHARS_OK = [
     'MLPF&S'.lower(),
@@ -154,9 +65,6 @@ SINGULARIZATIONS = {
     'thieves': 'thief',
     'toes': 'toe',
 }
-
-NON_SINGULARIZABLE = NON_SINGULARIZABLE_CONST + [n.lower() for n in FIRST_AND_LAST_NAMES if n.endswith('s')]
-# print(f"NON_SINGULARIZABLE: {NON_SINGULARIZABLE}")
 
 
 def is_invalid_word(w: str) -> bool:
@@ -205,11 +113,26 @@ for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
 
 words_to_print = [kv for kv in sort_dict(words) if kv[1] > MIN_COUNT_CUTOFF]
 
-for word, count in words_to_print:
-    console.print(Text('').append(f"{word:>{MAX_WORD_LEN}}", style='wheat4').append(': ').append(f"{count:,}"))
+txts_to_print = [
+    Text('').append(f"{word:>{MAX_WORD_LEN}}", style='wheat4').append(': ').append(f"{count:,}")
+    for word, count in words_to_print
+]
+
+for txt_line in txts_to_print:
+    console.print(txt_line)
 
 console.line(3)
 console.print(f"Showing {len(words_to_print):,} words appearing at least {MIN_COUNT_CUTOFF} time (out of {len(words):,} words).\n")
 print_panel(f"{len(COMMON_WORDS_LIST):,} Excluded Words")
 console.print(', '.join(COMMON_WORDS_LIST), highlight=False)
 write_html(WORD_COUNT_HTML_PATH)
+
+txts_to_print = [
+    Text('').append(f"{word}", style='wheat4').append(': ').append(f"{count:,}")
+    for word, count in words_to_print
+]
+
+console.line(4)
+cols = Columns(txts_to_print[0:400], column_first=True, equal=False, expand=False)
+console.print(Padding(cols, (0, 0, 0, 2)))
+console.line(4)
