@@ -42,10 +42,11 @@ EMAIL_IDS_TO_SKIP = [
 
 BAD_WORDS = [
     'classdhoenzbfont',
-    'contenttransferencoding',
-    'summarypricesquotesstatistic',
     'classdmsonormaluucauup',
+    'contenttransferencoding',
     'fortunehtmlsmidnytnowsharesmprodnytnow',
+    'inthe',
+    'summarypricesquotesstatistic',
 ]
 
 BAD_CHARS_OK = [
