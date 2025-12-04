@@ -1,7 +1,7 @@
 from epstein_files.util.env import is_debug
 
 # https://www.gonaturalenglish.com/1000-most-common-words-in-the-english-language/
-WORDS_LIST = """
+MOST_COMMON_WORDS = """
 a
 about
 after
@@ -123,35 +123,32 @@ you
 your
 """.strip().split()
 
-OTHER_WORDS = """
-addthis
-attachments
-bcc
-cc
-contenttransferencoding
-dont
-email
-epstein
-fwd
-im
-iphone iPad BlackBerry
-january february march april may june july august september october november december
-jan feb mar apr jun jul aug sep oct nov dec
-jeffrey
-jr
-mr mrs
-nd th rd st
-rss
-snipped signature
-sunday monday tuesday wednesday thursday friday saturday
-sun mon tues wed thur thurs fri sat
-trimmed
-wrote
+OTHER_COMMON_WORDS = """
+    addthis attachments
+    bcc
+    cc
+    contenttransferencoding
+    dont
+    email
+    epstein
+    fwd
+    im iphone iPad BlackBerry
+    january february march april may june july august september october november december
+    jan feb mar apr jun jul aug sep oct nov dec
+    jeffrey
+    jr
+    mr mrs
+    nd th rd st
+    rss
+    snipped signature
+    sunday monday tuesday wednesday thursday friday saturday
+    sun mon tues wed thur thurs fri sat
+    trimmed
+    wrote
 """.strip().split()
 
-COMMON_WORDS = {line.lower(): True for line in (WORDS_LIST + OTHER_WORDS)}
+COMMON_WORDS = {line.lower(): True for line in (MOST_COMMON_WORDS + OTHER_COMMON_WORDS)}
 COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
-
 
 UNSINGULARIZABLE_WORDS = """
     aids alas angeles anomalous anus apropos ares asus

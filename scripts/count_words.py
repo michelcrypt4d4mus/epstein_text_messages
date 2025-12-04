@@ -113,7 +113,9 @@ txts_to_print = [
     for word, count in words_to_print
 ]
 
-console.print(txts_to_print)
+for txt_line in txts_to_print:
+    console.print(txt_line)
+
 console.line(3)
 console.print(f"Showing {len(words_to_print):,} words appearing at least {MIN_COUNT_CUTOFF} time (out of {len(words):,} words).\n")
 print_panel(f"{len(COMMON_WORDS_LIST):,} Excluded Words")
