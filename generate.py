@@ -71,7 +71,7 @@ if args.colors_only:
     exit()
 
 timer = Timer()
-epstein_files = EpsteinFiles()
+epstein_files = EpsteinFiles.get_files()
 timer.print_at_checkpoint(f'Processed {len(epstein_files.all_files):,} files')
 epstein_files.print_files_overview()
 print_color_key()
