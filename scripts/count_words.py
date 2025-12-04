@@ -24,10 +24,10 @@ NON_SINGULARIZABLE = UNSINGULARIZABLE_WORDS + [n.lower() for n in FIRST_AND_LAST
 SKIP_WORDS_REGEX = re.compile(r"^(asmallworld@|enwiki|http|imagepng|nymagcomnymetro|addresswww|mailto|www)|jee[vy]acation|(gif|html?|jpe?g|utm)$")
 BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#/_`,.;:'‘’\"„“”?\d\\]")
 NO_SINGULARIZE_REGEX = re.compile(r".*io?us$")
-FLAGGED_WORDS = ['candium','costum', 'avium','batum','conchitum','referendum','valerium', 'villafarium']
+PADDING = (0, 0, 2, 2)
 MAX_WORD_LEN = 45
 MIN_COUNT_CUTOFF = 3
-PADDING = (0, 0, 2, 2)
+FLAGGED_WORDS = []
 
 EMAIL_IDS_TO_SKIP = [
     '029692',  # WaPo article
@@ -41,6 +41,7 @@ EMAIL_IDS_TO_SKIP = [
 ]
 
 BAD_WORDS = [
+    'classdhoenzbfont',
     'contenttransferencoding',
     'summarypricesquotesstatistic',
     'classdmsonormaluucauup',
@@ -55,6 +56,7 @@ BAD_CHARS_OK = [
 
 # inflection.singularize() messes these up
 SINGULARIZATIONS = {
+    'abuses': 'abuse',
     'approves': 'approve',
     'arrives': 'arrive',
     'awards/awards': 'award',
@@ -75,6 +77,7 @@ SINGULARIZATIONS = {
     'lives': 'live',
     'loves': 'love',
     'missives': 'missive',
+    'polouse': 'police',
     'proves': 'prove',
     'receives': 'receive',
     'reserves': 'reserve',
