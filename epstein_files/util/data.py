@@ -32,7 +32,7 @@ def patternize(_pattern: str | re.Pattern):
 
 
 def sort_dict(d: dict[str | None, int]) -> list[tuple[str | None, int]]:
-    sort_key = lambda e: (e[0] or '').lower() if args.sort_alphabetical else [-e[1], (e[0] or '')[0].lower()]
+    sort_key = lambda e: (e[0] or '').lower() if args.sort_alphabetical else [-e[1], (e[0] or '').lower()]
     return sorted(d.items(), key=sort_key)
 
 
