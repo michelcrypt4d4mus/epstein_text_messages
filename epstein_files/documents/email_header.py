@@ -2,7 +2,7 @@ import json
 import re
 from dataclasses import asdict, dataclass, field
 
-from epstein_files.util.constant.strings import REDACTED
+from epstein_files.util.constant.strings import AUTHOR, REDACTED
 from epstein_files.util.env import logger
 from epstein_files.util.rich import UNKNOWN
 
@@ -17,7 +17,6 @@ BAD_NAME_CHARS_REGEX = re.compile(r"[\"'\[\]*><•]")
 BAD_EMAILER_REGEX = re.compile(r'^(>|11111111)|agreed|ok|sexy|rt|re:|fwd:|Multiple Senders|((sent|attachments|subject|importance).*|.*(january|201\d|hysterical|i have|image0|so that people|article 1.?|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 SKIP_HEADER_ROW_REGEX = re.compile(r"^(agreed|call me|Hysterical|schwartman).*")  # Known bad rows in bad OCR
 
-AUTHOR = 'author'
 ON_BEHALF_OF = 'on behalf of'
 TO_FIELDS = ['bcc', 'cc', 'to']
 EMAILER_FIELDS = [AUTHOR] + TO_FIELDS
