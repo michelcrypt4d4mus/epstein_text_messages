@@ -48,18 +48,6 @@ class HighlightedGroup:
         else:
             self.regex = re.compile(fr"\b(?P<{self.style_suffix}>({pattern})s?)\b", re.IGNORECASE)
 
-    def get_info(self, name: str) -> str | None:
-        info_pieces = []
-
-        if not self.has_no_category:
-            info_pieces.append(self.info or titleize(self.label))
-
-        if self.emailers.get(name) is not None:
-            info_pieces.append(self.emailers[name])
-
-        if len(info_pieces) > 0:
-            return ', '.join(info_pieces)
-
     def colored_label(self) -> Text:
         return Text(self.label.replace('_', ' '), style=self.style)
 
@@ -89,6 +77,18 @@ class HighlightedGroup:
             logger.info(f"'{name}' has {len(names)} names (first_name='{first_name}')")
 
         return '|'.join(name_regex_parts)
+
+    def get_info(self, name: str) -> str | None:
+        info_pieces = []
+
+        if not self.has_no_category:
+            info_pieces.append(self.info or titleize(self.label))
+
+        if self.emailers.get(name) is not None:
+            info_pieces.append(self.emailers[name])
+
+        if len(info_pieces) > 0:
+            return ', '.join(info_pieces)
 
 
 HIGHLIGHTED_GROUPS = [
