@@ -2,6 +2,7 @@
 # Print email ID + timestamp
 from dotenv import load_dotenv
 load_dotenv()
+from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.epstein_files import EpsteinFiles
@@ -20,5 +21,6 @@ epstein_emails = [e for e in epstein_files.emails if e.author == JEFFREY_EPSTEIN
 
 for email in sorted(epstein_emails, key=lambda e: -len(e.actual_text)):
     console.print(email.description())
-    console.print(email.actual_text)
+    console.print(Panel(email.actual_text[0:700], title='actual_text'))
+    console.print(Panel(email.text[0:400], title='raw_text'))
     console.line(2)

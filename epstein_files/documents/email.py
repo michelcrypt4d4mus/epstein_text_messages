@@ -294,6 +294,9 @@ class Email(CommunicationDocument):
 
     def _actual_text(self) -> str:
         """The text that comes before likely quoted replies and forwards etc."""
+        if self.header.num_header_rows == 0:
+            return self.text
+
         text = '\n'.join(self.text.split('\n')[self.header.num_header_rows:])
         reply_text_match = REPLY_TEXT_REGEX.search(text)
 
@@ -312,7 +315,7 @@ class Email(CommunicationDocument):
             if field_string not in text:
                 continue
 
-            logger.info(f"'{self.file_path.stem}': Splitting based on '{field_string.strip()}'")
+            logger.debug(f"'{self.file_path.stem}': Splitting based on '{field_string.strip()}'")
             pre_from_text = text.split(field_string)[0]
             actual_num_chars = len(pre_from_text)
             actual_text_pct = f"{(100 * float(actual_num_chars) / len(text)):.1f}%"
@@ -320,7 +323,7 @@ class Email(CommunicationDocument):
             text = pre_from_text
             break
 
-        return text
+        return text.strip()
 
     def idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES, text: str | None = None) -> int | None:
         """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line."""
@@ -403,8 +406,12 @@ class Email(CommunicationDocument):
             if self.header.is_empty():
                 self.header.repair_empty_header(self.lines)
         else:
-            if not (self.file_id in KNOWN_EMAIL_AUTHORS or self.file_id in KNOWN_EMAIL_RECIPIENTS):
-                logger.warning(f"No header match found in '{self.filename}'! Top lines:\n\n{self.top_lines()}")
+            msg = f"No header match found in '{self.filename}'! Top lines:\n\n{self.top_lines()}"
+
+            if self.file_id in KNOWN_EMAIL_AUTHORS or self.file_id in KNOWN_EMAIL_RECIPIENTS:
+                logger.info(msg)
+            else:
+                logger.warning(msg)
 
             self.header = EmailHeader(field_names=[])
 
