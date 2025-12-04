@@ -26,7 +26,9 @@ could
 date
 day
 do
+dont
 did
+didnt
 even
 find
 first
@@ -118,6 +120,7 @@ when
 where
 which
 who
+why
 will
 with
 won't
@@ -155,7 +158,7 @@ COMMON_WORDS = {line.lower(): True for line in (MOST_COMMON_WORDS + OTHER_COMMON
 COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
 
 UNSINGULARIZABLE_WORDS = """
-    aids alas angeles anomalous anus apropos ares asus
+    aids alas always angeles anomalous anus apropos ares asus
     betts bias bonus brookings
     cbs cds carlos caucus chris clothes cms collins courteous curves cvs cyprus
     denis des dis drougas dubious
