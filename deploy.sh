@@ -71,7 +71,7 @@ print_msg "Building" "$INDEX_HTML_PATH"
 ./generate.py --build --suppress-output
 echo -e ""
 print_msg "Building" "$WORD_COUNT_HTML_PATH"
-./scripts/count_words.py --build --suppress-output
+./scripts/count_words.py --build --suppress-output --width 95
 
 git commit -am"Update HTML"
 git push origin gh_pages --quiet
