@@ -17,7 +17,8 @@ from epstein_files.documents.email import DETECT_EMAIL_REGEX, JUNK_EMAILERS, KRA
 from epstein_files.documents.email_header import AUTHOR
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog, sender_counts
 from epstein_files.util.constant.strings import AUTHOR
-from epstein_files.util.constant.urls import EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url, search_jmail_url, search_twitter_url
+from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url,
+     search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
 from epstein_files.util.data import dict_sets_to_lists, patternize, sort_dict
 from epstein_files.util.env import args, is_debug, logger
@@ -85,6 +86,7 @@ class EpsteinFiles:
 
     @classmethod
     def get_files(cls) -> 'EpsteinFiles':
+        """Alternate constructor that can read from/write to a pickled version of the data."""
         if (args.pickled and PICKLED_PATH.exists()) and not args.overwrite_pickle:
             with open(PICKLED_PATH, 'rb') as file:
                 logger.warning(f"Loading pickled data from '{PICKLED_PATH}'...")
@@ -235,7 +237,7 @@ class EpsteinFiles:
     def print_imessage_summary(self) -> None:
         """Print summary table and stats for text messages."""
         counts_table = Table(title="Text Message Counts By Author", header_style="bold")
-        counts_table.add_column(AUTHOR.title(), style="steel_blue bold", justify='left', width=30)
+        counts_table.add_column(AUTHOR.title(), justify='left', style="steel_blue bold", width=30)
         counts_table.add_column("Message Count", justify='center')
 
         for k, v in sort_dict(sender_counts):
@@ -275,13 +277,13 @@ def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str]
     new_dict = dict_sets_to_lists(keyed_sets)
 
     for k in sorted(new_dict.keys()):
-        _list = new_dict[k]
-        table.add_row(highlighter(k or UNKNOWN), highlighter(join_char.join(sorted(_list))))
+        table.add_row(highlighter(k or UNKNOWN), highlighter(join_char.join(sorted(new_dict[k]))))
 
     return Padding(table, DEVICE_SIGNATURE_PADDING)
 
 
 def is_ok_for_epstein_web(name: str | None) -> bool:
+    """Return True if it's likely that EpsteinWeb has a page for this name."""
     if name is None:
         return False
     if '@' in name or '/' in name or name in JUNK_EMAILERS or name in KRASSNER_RECIPIENTS or name == UNKNOWN:

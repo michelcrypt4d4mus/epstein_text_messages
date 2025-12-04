@@ -6,7 +6,7 @@ from rich.highlighter import RegexHighlighter
 from rich.text import Text
 
 from epstein_files.util.constant.names import *
-from epstein_files.util.constant.strings import DEFAULT, REDACTED
+from epstein_files.util.constant.strings import DEFAULT, PHONE_NUMBER_STYLE, REDACTED
 from epstein_files.util.constants import EMAILER_ID_REGEXES, REPLY_REGEX, SENT_FROM_REGEX, HEADER_ABBREVIATIONS
 from epstein_files.util.env import deep_debug, logger
 
@@ -19,8 +19,8 @@ SIMPLE_NAME_REGEX = re.compile(r"^[-\w ]+$", re.IGNORECASE)
 @dataclass
 class HighlightedGroup:
     style: str
-    label: str = ''      # TODO: make it default to None?
-    pattern: str = ''    # TODO: make it default to None?
+    label: str = ''
+    pattern: str = ''
     emailers: dict[str, str | None] = field(default_factory=dict)
     has_no_category: bool = False
     info: str | None = None
@@ -39,7 +39,7 @@ class HighlightedGroup:
 
         self.style_suffix = self.label.lower().replace(' ', '_').replace('-', '_')
         self.style_name = f"{REGEX_STYLE_PREFIX}.{self.style_suffix}"
-        patterns = [self.emailer_pattern(e) for e in self.emailers] + ([self.pattern] if self.pattern else [])
+        patterns = [self._emailer_pattern(e) for e in self.emailers] + ([self.pattern] if self.pattern else [])
         pattern = '|'.join(patterns)
 
         if self.is_multiline:
@@ -47,6 +47,9 @@ class HighlightedGroup:
             self.has_no_category = True
         else:
             self.regex = re.compile(fr"\b(?P<{self.style_suffix}>({pattern})s?)\b", re.IGNORECASE)
+
+    def colored_label(self) -> Text:
+        return Text(self.label.replace('_', ' '), style=self.style)
 
     def get_info(self, name: str) -> str | None:
         info_pieces = []
@@ -60,11 +63,8 @@ class HighlightedGroup:
         if len(info_pieces) > 0:
             return ', '.join(info_pieces)
 
-    def colored_label(self) -> Text:
-        return Text(self.label.replace('_', ' '), style=self.style)
-
     # TODO: handle word boundary issue for names that end in symbols
-    def emailer_pattern(self, name: str) -> str:
+    def _emailer_pattern(self, name: str) -> str:
         logger.debug(f"emailer_pattern() called for '{name}'")
         names = name.split()
         last_name = names[-1]
@@ -95,7 +95,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='finance',
         style='green',
-        pattern=r'Apollo|Black(rock|stone)|DB|Deutsche\s*Bank|Goldman(\s*Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|Merrill\s+Lynch|Morgan Stanley|j\.?p\.?\s*morgan( Chase)?|Chase Bank|Schwartz?man|us.gio@jpmorgan.com',
+        pattern=r'Apollo|Black(rock|stone)|DB|Deutsche\s*Bank|Goldman(\s*Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|Merrill\s+Lynch|(money\s+)?launder(s?|ers?|ing)?(\s+money)?|Morgan Stanley|j\.?p\.?\s*morgan( Chase)?|Chase Bank|Schwartz?man|us.gio@jpmorgan.com',
         emailers={
             AMANDA_ENS: 'Citigroup',
             DANIEL_SABBA: 'UBS Investment Bank',
@@ -202,7 +202,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='europe',
         style='light_sky_blue3',
-        pattern=r'(Caroline|Jack)?\s*Lang(, Caroline)?|Le\s*Pen|Macron|(Angela )?Merk(el|le)|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Ukrain(e|ian)|Zug',
+        pattern=r'(Caroline|Jack)?\s*Lang(, Caroline)?|Cyprus|Le\s*Pen|Macron|(Angela )?Merk(el|le)|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Ukrain(e|ian)|Zug',
         emailers = {
             MIROSLAV_LAJCAK: 'Russia-friendly Slovakian politician, friend of Steve Bannon',
             PETER_MANDELSON: 'UK politics',
@@ -238,7 +238,7 @@ HIGHLIGHTED_GROUPS = [
         pattern=r"Bibi|(eh|(Ehud|Nili Priell) )?barak|Israeli?|Jerusalem|Mossad|Netanyahu|(Sheldon\s*)?Adelson|Tel\s*Aviv",
         emailers={
             EHUD_BARAK: 'former primer minister',
-            'Mitchell Bard': 'director of the American–Israeli Cooperative Enterprise (AICE)',
+            'Mitchell Bard': 'director of the American-Israeli Cooperative Enterprise (AICE)',
             'Nili Priell Barak': f'wife of {EHUD_BARAK}',
         }
     ),
@@ -379,7 +379,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='russia',
         style='red bold',
-        pattern=r'FSB|GRU|Lavrov|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Rybolo(olev|vlev)|Sberbank|Vladimir Yudashkin',
+        pattern=r'FSB|GRU|Lavrov|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Rybolo(olev|vlev)|Sberbank|Vladimir Yudashkin|Xitrans',
         emailers = {
             MASHA_DROKOVA: 'silicon valley VC',
         }
@@ -404,7 +404,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='latin america',
         style='yellow',
-        pattern=r'Argentin(a|ian)|Bolsonar[aio]|Bra[sz]il(ian)?|Bukele|Colombian?|Cuban?|El\s*Salvador|LatAm|Lula|Mexic(an|o)|(Nicolas\s+)?Maduro|Venezuelan?',
+        pattern=r'Argentin(a|ian)|Bolsonar[aio]|Bra[sz]il(ian)?|Bukele|Colombian?|Cuban?|El\s*Salvador|LatAm|Lula|Mexic(an|o)|(Nicolas\s+)?Maduro|Panama( Papers)?|Venezuelan?',
     ),
     HighlightedGroup(
         label='tech bro',
@@ -424,7 +424,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='victim',
         style='orchid1',
-        pattern=r'(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts',
+        pattern=r'BVI|(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts',
     ),
     HighlightedGroup(
         label='virgin islands',
@@ -478,6 +478,12 @@ HIGHLIGHTED_GROUPS = [
         label='header_field',
         style='plum4',
         pattern='^(Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):',
+        is_multiline=True,
+    ),
+    HighlightedGroup(
+        label='phone_number',
+        style=PHONE_NUMBER_STYLE,
+        pattern=r"\+?(1?\(?\d{3}\)?[- ]\d{3}[- ]\d{4}|\d{2}[- ]\(?0?\)?\d{2}[- ]\d{4}[- ]\d{4})",
         is_multiline=True,
     ),
     HighlightedGroup(
