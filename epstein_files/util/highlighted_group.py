@@ -19,8 +19,8 @@ SIMPLE_NAME_REGEX = re.compile(r"^[-\w ]+$", re.IGNORECASE)
 @dataclass
 class HighlightedGroup:
     style: str
-    label: str = ''      # TODO: make it default to None?
-    pattern: str = ''    # TODO: make it default to None?
+    label: str = ''
+    pattern: str = ''
     emailers: dict[str, str | None] = field(default_factory=dict)
     has_no_category: bool = False
     info: str | None = None
