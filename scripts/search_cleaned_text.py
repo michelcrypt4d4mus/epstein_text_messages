@@ -28,4 +28,4 @@ for search_term in args.positional_args:
         console.print(Panel(search_result.document.description(), expand=False))
 
         for line in search_result.unprefixed_lines():
-            console.print(line)
+            console.print(line, style='wheat4')
