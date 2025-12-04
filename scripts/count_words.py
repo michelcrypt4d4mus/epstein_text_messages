@@ -77,7 +77,7 @@ SINGULARIZATIONS = {
     'lives': 'live',
     'loves': 'love',
     'missives': 'missive',
-    'polouse': 'police',
+    'police': 'police',
     'proves': 'prove',
     'receives': 'receive',
     'reserves': 'reserve',
