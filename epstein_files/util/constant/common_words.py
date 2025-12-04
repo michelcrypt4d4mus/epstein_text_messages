@@ -165,6 +165,7 @@ OTHER_COMMON_WORDS = """
     date de des dont du
     each ecrit edt el email en envoye epstein et
     fb fwd
+    herself himself
     id iii im iphone iPad BlackBerry
     je jeffrey jr
     las le les let
@@ -186,7 +187,7 @@ UNSINGULARIZABLE_WORDS = """
     aids alas always angeles anomalous anus apropos ares asia asus
     betts bias bonus brookings
     campus carlos caucus cbs cds chris clothes cms collins courteous curves cvs cyprus
-    dallas denis des dis drougas dubious
+    dallas davis denis des dis drougas dubious
     emirates ens eps
     famous ferris focus folks forbes francis
     gas gaydos gmt gps
@@ -204,7 +205,7 @@ UNSINGULARIZABLE_WORDS = """
     ups
     versus via vicious vinicius vis vous
     was whoops
-    yemen yes
+    yemen yes yikes
 """.strip().split()
 
 
