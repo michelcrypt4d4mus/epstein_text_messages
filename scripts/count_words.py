@@ -24,7 +24,7 @@ NON_SINGULARIZABLE = UNSINGULARIZABLE_WORDS + [n.lower() for n in FIRST_AND_LAST
 SKIP_WORDS_REGEX = re.compile(r"^(asmallworld@|enwiki|http|imagepng|nymagcomnymetro|addresswww|mailto|www)|jee[vy]acation|(gif|html?|jpe?g|utm)$")
 BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#/_`,.;:'‘’\"„“”?\d\\]")
 NO_SINGULARIZE_REGEX = re.compile(r".*io?us$")
-FLAGGED_WORDS = [ 'em']
+FLAGGED_WORDS = ['candium','costum', 'avium','batum','conchitum','referendum','valerium', 'villafarium']
 MAX_WORD_LEN = 45
 MIN_COUNT_CUTOFF = 3
 PADDING = (0, 0, 2, 2)
