@@ -16,7 +16,7 @@ from epstein_files.util.rich import TEXT_LINK, highlighter, logger
 BAD_TEXTER_REGEX = re.compile(r'^([-+_1•F]+|[4Ide])$')
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
-MSG_DATE_FORMAT = "%m/%d/%y %I:%M:%S %p"
+MSG_DATE_FORMAT = r"%m/%d/%y %I:%M:%S %p"
 
 UNKNOWN_TEXTERS = [
     '+16463880059',
@@ -36,13 +36,14 @@ TEXTER_MAPPING = {
 
 @dataclass
 class TextMessage:
-    timestamp: datetime
     author: str
     author_txt: Text
     text: Text
+    timestamp_str: str
 
     def __rich__(self) -> Text:
-        return Text('').append(self.timestamp).append(self.author_txt).append(': ', style='dim').append(self.text)
+        timestamp_txt = Text(f"[{self.timestamp_str}] ", style='gray30')
+        return Text('').append(timestamp_txt).append(self.author_txt).append(': ', style='dim').append(self.text)
 
 
 @dataclass
@@ -68,7 +69,6 @@ class MessengerLog(CommunicationDocument):
 
         for match in MSG_REGEX.finditer(self.text):
             sender = sender_str = match.group(1).strip()
-            timestamp = Text(f"[{match.group(2).strip()}] ", style='gray30')
             msg = match.group(4).strip()
             msg_lines = msg.split('\n')
             sender_style = None
@@ -101,18 +101,18 @@ class MessengerLog(CommunicationDocument):
 
                 msg_lines = msg.split('\n')
                 link_text = msg_lines.pop()
-                msg = Text('').append(Text.from_markup(f"[link={link_text}]{link_text}[/link]", style=TEXT_LINK))
+                msg_txt = Text('').append(Text.from_markup(f"[link={link_text}]{link_text}[/link]", style=TEXT_LINK))
 
                 if len(msg_lines) > 0:
-                    msg = msg.append('\n' + ' '.join(msg_lines))
+                    msg_txt.append('\n' + ' '.join(msg_lines))
             else:
-                msg = highlighter(msg.replace('\n', ' '))  # remove newlines
+                msg_txt = highlighter(msg.replace('\n', ' '))  # remove newlines
 
             text_message = TextMessage(
-                timestamp=timestamp,
                 author=UNKNOWN if (sender in UNKNOWN_TEXTERS or BAD_TEXTER_REGEX.match(sender)) else sender,
                 author_txt=sender_txt,
-                text=msg
+                text=msg_txt,
+                timestamp_str=match.group(2).strip(),
             )
 
             self._messages.append(text_message)
