@@ -19,14 +19,9 @@ from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
 from epstein_files.util.rich import console, highlighter, print_centered, print_page_title, print_panel, write_html
 
 FIRST_AND_LAST_NAMES = flatten([n.split() for n in ALL_NAMES])
-<<<<<<< HEAD
-BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#/_`,.;:'‘’\"„“”?\d\\]")
-SKIP_WORDS_REGEX = re.compile(r"^(http|addresswww|mailto|www)|jee[vy]acation|(gif|html?|jpe?g|utm)$")
-=======
 NON_SINGULARIZABLE = UNSINGULARIZABLE_WORDS + [n.lower() for n in FIRST_AND_LAST_NAMES if n.endswith('s')]
-SKIP_WORDS_REGEX = re.compile(r"^(http|addresswww|mailto|www)|jee[vy]acation|(gif|html?|jpe?g)$")
+SKIP_WORDS_REGEX = re.compile(r"^(http|addresswww|mailto|www)|jee[vy]acation|(gif|html?|jpe?g|utm)$")
 BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#/_`,.;:'‘’\"„“”?\d\\]")
->>>>>>> master
 NO_SINGULARIZE_REGEX = re.compile(r".*io?us$")
 FLAGGED_WORDS = []
 MAX_WORD_LEN = 45
