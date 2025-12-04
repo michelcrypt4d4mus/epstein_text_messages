@@ -24,10 +24,10 @@ NON_SINGULARIZABLE = UNSINGULARIZABLE_WORDS + [n.lower() for n in FIRST_AND_LAST
 SKIP_WORDS_REGEX = re.compile(r"^(asmallworld@|enwiki|http|imagepng|nymagcomnymetro|addresswww|mailto|www)|jee[vy]acation|(gif|html?|jpe?g|utm)$")
 BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#/_`,.;:'‘’\"„“”?\d\\]")
 NO_SINGULARIZE_REGEX = re.compile(r".*io?us$")
-FLAGGED_WORDS = []
+PADDING = (0, 0, 2, 2)
 MAX_WORD_LEN = 45
 MIN_COUNT_CUTOFF = 3
-PADDING = (0, 0, 2, 2)
+FLAGGED_WORDS = ['yom','yacoub']
 
 EMAIL_IDS_TO_SKIP = [
     '029692',  # WaPo article
