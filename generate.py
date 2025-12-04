@@ -15,7 +15,6 @@ from rich.padding import Padding
 from rich.text import Text
 
 from epstein_files.documents.email import Email
-from epstein_files.documents.messenger_log import sender_counts
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
@@ -152,10 +151,10 @@ logger.warning(f"Total time: {timer.seconds_since_start()}")
 if args.json_stats:
     console.line(5)
     console.print(Panel('JSON Stats Dump', expand=True, style='reverse bold'), '\n')
-    print_json(f"{MESSENGER_LOG_CLASS} Sender Counts", sender_counts, skip_falsey=True)
+    print_json(f"{MESSENGER_LOG_CLASS} Sender Counts", epstein_files.imessage_sender_counts(), skip_falsey=True)
     print_json(f"{EMAIL_CLASS} Author Counts", epstein_files.email_author_counts, skip_falsey=True)
     print_json(f"{EMAIL_CLASS} Recipient Counts", epstein_files.email_recipient_counts, skip_falsey=True)
-    print_json("Email signature_substitution_counts", Email.signature_substitution_counts, skip_falsey=True)
+    print_json("Email signature_substitution_counts", epstein_files.email_signature_substitution_counts(), skip_falsey=True)
     print_json("email_author_device_signatures", dict_sets_to_lists(epstein_files.email_authors_to_device_signatures))
     print_json("email_sent_from_devices", dict_sets_to_lists(epstein_files.email_device_signatures_to_authors))
     print_json("email_unknown_recipient_file_ids", epstein_files.email_unknown_recipient_file_ids())

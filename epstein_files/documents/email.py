@@ -261,8 +261,7 @@ class Email(CommunicationDocument):
     is_junk_mail: bool = False
     recipients: list[str] = field(default_factory=list)
     sent_from_device: str | None = None
-
-    signature_substitution_counts: ClassVar[dict] = defaultdict(int)  # Count EMAIL_SIGNATURES substitutions when printing
+    signature_substitution_count: dict[str, int] = field(default_factory=lambda: defaultdict(int))
 
     def __post_init__(self):
         super().__post_init__()
@@ -284,7 +283,7 @@ class Email(CommunicationDocument):
 
         logger.debug(f"Found recipients: {self.recipients}")
         self.recipients = list(set([r for r in self.recipients if r != self.author]))  # Remove self CCs
-        self.timestamp = self._extract_sent_at()
+        self.timestamp = self._extract_timestamp()
         self.author_str = self.author or UNKNOWN
         self.author_style = get_style_for_name(self.author_str)
         self.author_txt = Text(self.author_str, style=self.author_style)
@@ -295,6 +294,14 @@ class Email(CommunicationDocument):
         self.is_duplicate = self.file_id in SUPPRESS_OUTPUT_FOR_EMAIL_IDS
         self.is_junk_mail = self.author in JUNK_EMAILERS
 
+    def idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES, text: str | None = None) -> int | None:
+        """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line."""
+        text = text or self.text
+
+        for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text)):
+            if i >= n:
+                return match.end() - 1
+
     def _actual_text(self) -> str:
         """The text that comes before likely quoted replies and forwards etc."""
         if self.header.num_header_rows == 0:
@@ -302,7 +309,6 @@ class Email(CommunicationDocument):
 
         text = '\n'.join(self.text.split('\n')[self.header.num_header_rows:])
         reply_text_match = REPLY_TEXT_REGEX.search(text)
-
         # logger.info(f"Raw text:\n" + self.top_lines(20) + '\n\n')
         # logger.info(f"With header removed:\n" + text[0:500] + '\n\n')
 
@@ -327,14 +333,6 @@ class Email(CommunicationDocument):
             break
 
         return text.strip()
-
-    def idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES, text: str | None = None) -> int | None:
-        """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line."""
-        text = text or self.text
-
-        for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text)):
-            if i >= n:
-                return match.end() - 1
 
     def _border_style(self) -> str:
         """Color emails from epstein to others with the color for the first recipient."""
@@ -361,11 +359,11 @@ class Email(CommunicationDocument):
         for name, signature_regex in EMAIL_SIGNATURES.items():
             signature_replacement = f'<...snipped {name.lower()} legal signature...>'
             text, num_replaced = signature_regex.subn(signature_replacement, text)
-            type(self).signature_substitution_counts[name] += num_replaced
+            self.signature_substitution_count[name] += num_replaced
 
         return collapse_newlines(text).strip()
 
-    def _extract_sent_at(self) -> datetime:
+    def _extract_timestamp(self) -> datetime:
         if self.file_id in KNOWN_TIMESTAMPS:
             return KNOWN_TIMESTAMPS[self.file_id]
 

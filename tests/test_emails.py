@@ -923,4 +923,4 @@ def test_signatures(epstein_files):
 
 
 def test_signature_substitutions(epstein_files):
-    assert Email.signature_substitution_counts == SIGNATURE_SUBSTITUTION_COUNTS
+    assert epstein_files.email_signature_substitution_counts() == SIGNATURE_SUBSTITUTION_COUNTS

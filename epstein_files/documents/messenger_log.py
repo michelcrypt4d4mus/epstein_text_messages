@@ -33,13 +33,23 @@ TEXTER_MAPPING = {
     '+13109906526': STEVE_BANNON,
 }
 
-sender_counts = defaultdict(int)
+
+@dataclass
+class TextMessage:
+    timestamp: datetime
+    author: str
+    author_txt: Text
+    text: Text
+
+    def __rich__(self) -> Text:
+        return Text('').append(self.timestamp).append(self.author_txt).append(': ', style='dim').append(self.text)
 
 
 @dataclass
 class MessengerLog(CommunicationDocument):
     hint_txt: Text | None = field(init=False)
-    msg_count: int = 0
+    _messages: list[TextMessage] = field(default_factory=list)
+    _author_counts: dict[str | None, int] = field(default_factory=lambda: defaultdict(int))
 
     def __post_init__(self):
         super().__post_init__()
@@ -48,6 +58,7 @@ class MessengerLog(CommunicationDocument):
         self.author_str = author_str.split(' ')[-1] if author_str in [STEVE_BANNON] else author_str
         self.author_style = get_style_for_name(author_str) + ' bold'
         self.author_txt = Text(self.author_str, style=self.author_style)
+        self.timestamp = self._extract_timstamp()
 
         if self.file_id in KNOWN_IMESSAGE_FILE_IDS:
             self.hint_txt = Text(f" Found confirmed counterparty ", style='dim').append(self.author_txt)
@@ -59,22 +70,9 @@ class MessengerLog(CommunicationDocument):
         else:
             self.hint_txt = None
 
-        # Get timestamp
-        for match in MSG_REGEX.finditer(self.text):
-            timestamp_str = match.group(2).strip()
-
-            try:
-                self.timestamp = datetime.strptime(timestamp_str, MSG_DATE_FORMAT)
-                break
-            except ValueError as e:
-                logger.info(f"[WARNING] Failed to parse '{timestamp_str}' to datetime! Using next match. Error: {e}'")
-
-    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        yield Panel(self.raw_document_link_txt(), border_style=self.author_style.removesuffix(' bold'), expand=False)
-
-        if self.hint_txt:
-            yield self.hint_txt
-            yield Text('')
+    def messages(self) -> list[TextMessage]:
+        if len(self._messages) > 0:
+            return self._messages
 
         for match in MSG_REGEX.finditer(self.text):
             sender = sender_str = match.group(1).strip()
@@ -118,6 +116,34 @@ class MessengerLog(CommunicationDocument):
             else:
                 msg = highlighter(msg.replace('\n', ' '))  # remove newlines
 
-            sender_counts[UNKNOWN if (sender in UNKNOWN_TEXTERS or BAD_TEXTER_REGEX.match(sender)) else sender] += 1
-            yield Text('').append(timestamp).append(sender_txt).append(': ', style='dim').append(msg)
-            self.msg_count += 1
+            text_message = TextMessage(
+                timestamp=timestamp,
+                author=UNKNOWN if (sender in UNKNOWN_TEXTERS or BAD_TEXTER_REGEX.match(sender)) else sender,
+                author_txt=sender_txt,
+                text=msg
+            )
+
+            self._messages.append(text_message)
+
+        return self._messages
+
+    def _extract_timstamp(self) -> datetime:
+        for match in MSG_REGEX.finditer(self.text):
+            timestamp_str = match.group(2).strip()
+
+            try:
+                return datetime.strptime(timestamp_str, MSG_DATE_FORMAT)
+            except ValueError as e:
+                logger.info(f"[WARNING] Failed to parse '{timestamp_str}' to datetime! Using next match. Error: {e}'")
+
+        raise RuntimeError(f"{self}: No timestamp found!")
+
+    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
+        yield Panel(self.raw_document_link_txt(), border_style=self.author_style.removesuffix(' bold'), expand=False)
+
+        if self.hint_txt:
+            yield self.hint_txt
+            yield Text('')
+
+        for message in self.messages():
+            yield message

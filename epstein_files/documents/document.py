@@ -177,6 +177,9 @@ class Document:
         self.lines = self.text.split('\n')
         self.num_lines = len(self.lines)
 
+    def __str__(self) -> str:
+        return self.description().plain
+
     @staticmethod
     def diff_files(files: list[str]) -> None:
         if len(files) != 2:

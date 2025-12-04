@@ -15,7 +15,7 @@ from rich.text import Text
 from epstein_files.documents.document import Document, SearchResult
 from epstein_files.documents.email import DETECT_EMAIL_REGEX, JUNK_EMAILERS, KRASSNER_RECIPIENTS, USELESS_EMAILERS, Email
 from epstein_files.documents.email_header import AUTHOR
-from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog, sender_counts
+from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.util.constant.strings import AUTHOR
 from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url,
      search_jmail_url, search_twitter_url)
@@ -133,9 +133,6 @@ class EpsteinFiles:
     def email_conversation_length_in_days(self, author: str | None) -> int:
         return (self.last_email_at(author) - self.earliest_email_at(author)).days + 1
 
-    def email_unknown_recipient_file_ids(self) -> list[str]:
-        return sorted(list(self._email_unknown_recipient_file_ids))
-
     def emails_for(self, author: str | None) -> list[Email]:
         """Returns emails to or from a given 'author' sorted chronologically."""
         emails_by = [e for e in self.emails if e.author == author]
@@ -150,6 +147,27 @@ class EpsteinFiles:
             raise RuntimeError(f"No emails found for '{author}'")
 
         return EpsteinFiles.sort_emails(emails_by + emails_to)
+
+    def email_signature_substitution_counts(self) -> dict[str, int]:
+        substitution_counts = defaultdict(int)
+
+        for email in self.emails:
+            for name, num_replaced in email.signature_substitution_count.items():
+                substitution_counts[name] += num_replaced
+
+        return substitution_counts
+
+    def email_unknown_recipient_file_ids(self) -> list[str]:
+        return sorted(list(self._email_unknown_recipient_file_ids))
+
+    def imessage_sender_counts(self) -> dict[str, int]:
+        sender_counts = defaultdict(int)
+
+        for message_log in self.imessage_logs:
+            for message in message_log.messages():
+                sender_counts[message.author] += 1
+
+        return sender_counts
 
     def print_files_overview(self) -> None:
         table = Table(title=f"File Analysis Summary", header_style="bold")
@@ -240,14 +258,14 @@ class EpsteinFiles:
         counts_table.add_column(AUTHOR.title(), justify='left', style="steel_blue bold", width=30)
         counts_table.add_column("Message Count", justify='center')
 
-        for k, v in sort_dict(sender_counts):
+        for k, v in sort_dict(self.imessage_sender_counts()):
             counts_table.add_row(Text(k, get_style_for_name(k)), str(v))
 
         console.print(counts_table)
         text_summary_msg = f"\nDeanonymized {self.identified_imessage_log_count} of "
         text_summary_msg += f"{len(self.imessage_logs)} text msg logs found in {len(self.all_files)} files."
         console.print(text_summary_msg)
-        imessage_msg_count = sum([log.msg_count for log in self.imessage_logs])
+        imessage_msg_count = sum([len(log.messages()) for log in self.imessage_logs])
         console.print(f"Found {imessage_msg_count} total text messages in {len(self.imessage_logs)} conversations.")
         console.print(f"(Last deploy found 4668 messages in 77 conversations)", style='dim')
 
