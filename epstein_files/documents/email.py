@@ -208,6 +208,7 @@ TRUNCATE_TERMS = [
 
 # Invalid for links to EpsteinWeb
 JUNK_EMAILERS = [
+    'editorialstaff@flipboard.com',
     'How To Academy',
     'Jokeland',
     'Saved by Internet Explorer 11',
@@ -254,6 +255,7 @@ class Email(CommunicationDocument):
     cleaned_up_text: str = field(init=False)
     header: EmailHeader = field(init=False)
     is_duplicate: bool = False
+    is_junk_mail: bool = False
     recipients: list[str] = field(default_factory=list)
     sent_from_device: str | None = None
 
@@ -287,6 +289,7 @@ class Email(CommunicationDocument):
         self.epsteinify_link_markup = epsteinify_doc_link_markup(self.file_path.stem, self.author_style)
         self.sent_from_device = self._sent_from_device()
         self.is_duplicate = self.file_id in SUPPRESS_OUTPUT_FOR_EMAIL_IDS
+        self.is_junk_mail = self.author in JUNK_EMAILERS
 
     def actual_text(self, use_clean_text: bool = False, skip_header: bool = False) -> str:
         """The text that comes before likely quoted replies and forwards etc."""

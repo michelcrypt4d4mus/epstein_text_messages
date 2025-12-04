@@ -143,11 +143,9 @@ else:
 
 
 # Save output
-if is_build:
-    write_html(GH_PAGES_HTML_PATH)
-    logger.warning(f"Total time: {timer.seconds_since_start()}")
-else:
-    logger.warning(f"Not writing HTML because 'BUILD_HTML' env var not set, total time {timer.seconds_since_start()}.")
+write_html(GH_PAGES_HTML_PATH)
+logger.warning(f"Total time: {timer.seconds_since_start()}")
+
 
 # JSON stats
 if args.json_stats:
