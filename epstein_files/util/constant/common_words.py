@@ -170,13 +170,14 @@ OTHER_COMMON_WORDS = """
     herself himself
     id ii iii im iphone iPad BlackBerry
     je jeffrey jr
+    kl
     las le les let
     mr mrs ms much
     ne nor
     ou over
     pdt pst
     rss
-    sent si signature snipped
+    sent si signature smtp snipped
     te tel tenu tho though trimmed
     via vous voye
     was wasnt whether while wrote
@@ -186,12 +187,12 @@ COMMON_WORDS = {line.lower(): True for line in (MOST_COMMON_WORDS + OTHER_COMMON
 COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
 
 UNSINGULARIZABLE_WORDS = """
-    acosta aids alas always angeles anomalous anus apropos arabia ares asia asus atlanta australia avia
+    acosta aids alas always angeles anomalous anus apropos arabia ares asia asus atlanta australia ave avia
     bata betts bias bonus brookings
     california campus candia carlos caucus cbs cds chris clothes cms collins columbia conchita costa courteous curves cvs cyprus
-    dallas data davis dementia denis des dis drougas dubious
+    dallas data davis dementia denis dennis des dis drougas dubious
     emirates encyclopedia ens eps
-    famous ferris focus folks forbes francis
+    famous ferris focus folks forbes francis frivolous
     gas gaydos gmt gps
     halitosis has hillis his hivaids
     impetus innocuous india indonesia ios ips irs isis
