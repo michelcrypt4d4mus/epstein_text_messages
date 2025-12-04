@@ -19,12 +19,13 @@ AUTHOR = 'author'
 ON_BEHALF_OF = 'on behalf of'
 TO_FIELDS = ['bcc', 'cc', 'to']
 EMAILER_FIELDS = [AUTHOR] + TO_FIELDS
-NON_HEADER_FIELDS = ['field_names', 'was_initially_empty']
+NON_HEADER_FIELDS = ['field_names', 'num_header_rows', 'was_initially_empty']
 
 
 @dataclass(kw_only=True)
 class EmailHeader:
     field_names: list[str]  # Order is same as the order header fields appear in the email file text
+    num_header_rows: int = field(init=False)
     was_initially_empty: bool = False
 
     # Fields from the email text
@@ -38,6 +39,7 @@ class EmailHeader:
     to: list[str] | None = None
 
     def __post_init__(self):
+        self.num_header_rows = len(self.field_names)
         self.was_initially_empty = self.is_empty()
 
     def as_dict(self) -> dict[str, str | None]:
@@ -86,7 +88,8 @@ class EmailHeader:
 
             setattr(self, field_name, value)
 
-        logger.debug(f"Corrected empty header to:\n%s\n\nTop lines:\n\n%s", self, '\n'.join(email_lines[0:(num_headers + 1) * 2]))
+        self.num_header_rows = len(self.field_names) + num_headers
+        logger.debug(f"Corrected empty header using {self.num_header_rows} lines to:\n%s\n\nTop lines:\n\n%s", self, '\n'.join(email_lines[0:(num_headers + 1) * 2]))
 
     def __str__(self) -> str:
         return json.dumps(self.as_dict(), sort_keys=True, indent=4)

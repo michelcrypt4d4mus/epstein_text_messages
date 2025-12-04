@@ -16,7 +16,7 @@ from epstein_files.util.constant.common_words import COMMON_WORDS, COMMON_WORDS_
 from epstein_files.util.data import ALL_NAMES, flatten, sort_dict
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
-from epstein_files.util.rich import console, print_centered, print_page_title, print_panel, write_html
+from epstein_files.util.rich import console, highlighter, print_centered, print_page_title, print_panel, write_html
 
 FIRST_AND_LAST_NAMES = flatten([n.split() for n in ALL_NAMES])
 <<<<<<< HEAD
@@ -64,6 +64,7 @@ SINGULARIZATIONS = {
     'thnks': 'thank',
     'thieves': 'thief',
     'toes': 'toe',
+    #'trying': 'try',
 }
 
 
@@ -82,7 +83,7 @@ for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
         logger.info(f"Skipping duplicate file '{email.filename}'...")
         continue
 
-    for line in email.actual_text(True).split('\n'):
+    for line in email.actual_text(use_clean_text=True, skip_header=True).split('\n'):
         if line.startswith('htt'):
             continue
 
@@ -106,7 +107,7 @@ for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
 
                 # Log the raw_word if we've seen it more than once (but only once)
                 if raw_word.endswith('s') and singularized[raw_word] == 2:
-                    logger.warning(f"Singularized '{raw_word}' to '{word}'...")
+                    logger.info(f"Singularized '{raw_word}' to '{word}'...")
 
             if not is_invalid_word(word):
                 words[word] += 1
@@ -128,7 +129,7 @@ console.print(', '.join(COMMON_WORDS_LIST), highlight=False)
 write_html(WORD_COUNT_HTML_PATH)
 
 txts_to_print = [
-    Text('').append(f"{word}", style='wheat4').append(': ').append(f"{count:,}")
+    highlighter(Text('').append(f"{word}", style='wheat4').append(': ').append(f"{count:,}"))
     for word, count in words_to_print
 ]
 

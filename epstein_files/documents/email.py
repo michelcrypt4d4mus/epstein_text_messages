@@ -288,10 +288,15 @@ class Email(CommunicationDocument):
         self.sent_from_device = self._sent_from_device()
         self.is_duplicate = self.file_id in SUPPRESS_OUTPUT_FOR_EMAIL_IDS
 
-    def actual_text(self, use_clean_text: bool = False) -> str:
+    def actual_text(self, use_clean_text: bool = False, skip_header: bool = False) -> str:
         """The text that comes before likely quoted replies and forwards etc."""
         text = self.cleaned_up_text if use_clean_text else self.text
+        text = '\n'.join(text.split('\n')[self.header.num_header_rows:]) if skip_header else text
         reply_text_match = REPLY_TEXT_REGEX.search(text)
+
+        if skip_header:
+            logger.info(f"Raw text:\n" + self.top_lines(20) + '\n\n')
+            logger.info(f"With header removed:\n" + text[0:500] + '\n\n')
 
         if reply_text_match:
             actual_num_chars = len(reply_text_match.group(1))
