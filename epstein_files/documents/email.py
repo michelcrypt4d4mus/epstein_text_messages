@@ -349,7 +349,6 @@ class Email(CommunicationDocument):
         else:
             text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', self.text).strip()
 
-        # TODO: should bad lines be removed completely from self.text?
         text = '\n'.join(['' if BAD_LINE_REGEX.match(line) else line for line in text.split('\n')])
         text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
 
@@ -477,7 +476,7 @@ class Email(CommunicationDocument):
         info_line.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
         yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
 
-        text = self.cleaned_up_text
+        text = self.text
         quote_cutoff = self.idx_of_nth_quoted_reply(text=text)  # Trim if there's many quoted replies
         num_chars = MAX_CHARS_TO_PRINT
         trim_footer_txt = None
