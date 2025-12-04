@@ -7,6 +7,7 @@ EMAIL_CLASS = 'Email'
 MESSENGER_LOG_CLASS = 'MessengerLog'
 
 # Misc
+AUTHOR = 'author'
 DEFAULT = 'default'
 HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
 REDACTED = '<REDACTED>'
