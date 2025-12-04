@@ -682,9 +682,6 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     "Aziza Alahmadi": [
         "Sent from my iPhone"
     ],
-    "Bob Crowe": [
-        "Sent from my iPhone"
-    ],
     "Boris Nikolic": [
         "Sent from my Samsung JackTM, a Windows Mobile® smartphone from AT&T",
         "Sent from my Windows Phone"
