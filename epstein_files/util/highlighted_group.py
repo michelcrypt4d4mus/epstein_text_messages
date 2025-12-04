@@ -238,7 +238,7 @@ HIGHLIGHTED_GROUPS = [
         pattern=r"Bibi|(eh|(Ehud|Nili Priell) )?barak|Israeli?|Jerusalem|Mossad|Netanyahu|(Sheldon\s*)?Adelson|Tel\s*Aviv",
         emailers={
             EHUD_BARAK: 'former primer minister',
-            'Mitchell Bard': 'director of the American–Israeli Cooperative Enterprise (AICE)',
+            'Mitchell Bard': 'director of the American-Israeli Cooperative Enterprise (AICE)',
             'Nili Priell Barak': f'wife of {EHUD_BARAK}',
         }
     ),
