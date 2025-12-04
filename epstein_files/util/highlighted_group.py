@@ -95,7 +95,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='finance',
         style='green',
-        pattern=r'Apollo|Black(rock|stone)|DB|Deutsche\s*Bank|Goldman(\s*Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|Merrill\s+Lynch|Morgan Stanley|j\.?p\.?\s*morgan( Chase)?|Chase Bank|Schwartz?man|us.gio@jpmorgan.com',
+        pattern=r'Apollo|Black(rock|stone)|DB|Deutsche\s*Bank|Goldman(\s*Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|Merrill\s+Lynch|(money\s+)?launder(s?|ers?|ing)?(\s+money)?|Morgan Stanley|j\.?p\.?\s*morgan( Chase)?|Chase Bank|Schwartz?man|us.gio@jpmorgan.com',
         emailers={
             AMANDA_ENS: 'Citigroup',
             DANIEL_SABBA: 'UBS Investment Bank',
@@ -379,7 +379,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='russia',
         style='red bold',
-        pattern=r'FSB|GRU|Lavrov|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Rybolo(olev|vlev)|Sberbank|Vladimir Yudashkin',
+        pattern=r'FSB|GRU|Lavrov|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Rybolo(olev|vlev)|Sberbank|Vladimir Yudashkin|Xitrans',
         emailers = {
             MASHA_DROKOVA: 'silicon valley VC',
         }
@@ -404,7 +404,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='latin america',
         style='yellow',
-        pattern=r'Argentin(a|ian)|Bolsonar[aio]|Bra[sz]il(ian)?|Bukele|Colombian?|Cuban?|El\s*Salvador|LatAm|Lula|Mexic(an|o)|(Nicolas\s+)?Maduro|Venezuelan?',
+        pattern=r'Argentin(a|ian)|Bolsonar[aio]|Bra[sz]il(ian)?|Bukele|Colombian?|Cuban?|El\s*Salvador|LatAm|Lula|Mexic(an|o)|(Nicolas\s+)?Maduro|Panama( Papers)?|Venezuelan?',
     ),
     HighlightedGroup(
         label='tech bro',
@@ -424,7 +424,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='victim',
         style='orchid1',
-        pattern=r'(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts',
+        pattern=r'BVI|(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts',
     ),
     HighlightedGroup(
         label='virgin islands',
