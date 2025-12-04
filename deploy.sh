@@ -2,7 +2,6 @@
 
 # Running 'bash -l' uses the login shell but then the poetry venv isn't set :(
 # - Set ONLY_TEXTS=true to skip build/deploy of full emails site.
-# - Set PICKLED=true to use pickled data file
 source .env
 set -e
 
@@ -19,13 +18,16 @@ TEXT_MSGS_PROJECT_NAME=`basename "$PWD"`
 EMAILS_URL="$GITHUB_PAGES_BASE_URL/$EMAILS_PROJECT_NAME"
 TEXT_MSGS_URL="$GITHUB_PAGES_BASE_URL/$TEXT_MSGS_PROJECT_NAME"
 WORD_COUNT_URL="$TEXT_MSGS_URL/$WORD_COUNT_HTML_STEM"
+
 CURRENT_BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+PICKLE_ARG=$([[ $1 == '--pickled' ]] && echo "--pickled" || echo "--overwrite-pickle")
 
 if [ -n "$BASH_COLORS_PATH" ]; then
     source "$BASH_COLORS_PATH"
     clr_cyan "Sourced '$(clr_green $BASH_COLORS_PATH)'..."
 else
     echo -e "bash colors not found, can't print status msgs"
+    exit 1
 fi
 
 print_msg() {
@@ -76,10 +78,9 @@ git push origin master --quiet
 git checkout gh_pages
 git merge --no-edit master --quiet
 
-PICKLE_ARG=$([ -n $PICKLED ] && echo "--pickled" || echo "--overwrite-pickle")
 print_msg "Building" "$INDEX_HTML_PATH"
 echo -e "  -> using $PICKLE_ARG"
-./generate.py --build --overwrite-pickle --suppress-output
+./generate.py --build --suppress-output $PICKLE_ARG
 echo -e ""
 print_msg "Building" "$WORD_COUNT_HTML_PATH"
 ./scripts/count_words.py --build --pickled --suppress-output --width 105
