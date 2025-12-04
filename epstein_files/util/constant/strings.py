@@ -16,3 +16,6 @@ REDACTED = '<REDACTED>'
 EMAIL = 'email'
 TEXT_MESSAGE = 'text message'
 SiteType = Literal['email', 'text message']
+
+# Styles
+PHONE_NUMBER_STYLE = 'bright_green'

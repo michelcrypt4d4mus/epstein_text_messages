@@ -8,9 +8,10 @@ from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.documents.document import CommunicationDocument
+from epstein_files.util.constant.strings import PHONE_NUMBER_STYLE
 from epstein_files.util.constants import *
 from epstein_files.util.highlighted_group import get_style_for_name
-from epstein_files.util.rich import PHONE_NUMBER, TEXT_LINK, highlighter, logger
+from epstein_files.util.rich import TEXT_LINK, highlighter, logger
 
 BAD_TEXTER_REGEX = re.compile(r'^([-+_1•F]+|[4Ide])$')
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
@@ -93,7 +94,7 @@ class MessengerLog(CommunicationDocument):
                     sender = sender_str = TEXTER_MAPPING[sender]
                     sender_str = JEFFREY_EPSTEIN.split(' ')[-1] if sender_str == JEFFREY_EPSTEIN else sender_str
                 elif PHONE_NUMBER_REGEX.match(sender):
-                    sender_style = PHONE_NUMBER
+                    sender_style = PHONE_NUMBER_STYLE
                 elif re.match('[ME]+', sender):
                     sender = MELANIE_WALKER
 

@@ -6,7 +6,7 @@ from rich.highlighter import RegexHighlighter
 from rich.text import Text
 
 from epstein_files.util.constant.names import *
-from epstein_files.util.constant.strings import DEFAULT, REDACTED
+from epstein_files.util.constant.strings import DEFAULT, PHONE_NUMBER_STYLE, REDACTED
 from epstein_files.util.constants import EMAILER_ID_REGEXES, REPLY_REGEX, SENT_FROM_REGEX, HEADER_ABBREVIATIONS
 from epstein_files.util.env import deep_debug, logger
 
@@ -478,6 +478,12 @@ HIGHLIGHTED_GROUPS = [
         label='header_field',
         style='plum4',
         pattern='^(Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):',
+        is_multiline=True,
+    ),
+    HighlightedGroup(
+        label='phone_number',
+        style=PHONE_NUMBER_STYLE,
+        pattern=r"\+?(1?\(?\d{3}\)?[- ]\d{3}[- ]\d{4}|\d{2}[- ]\(?0?\)?\d{2}[- ]\d{4}[- ]\d{4})",
         is_multiline=True,
     ),
     HighlightedGroup(

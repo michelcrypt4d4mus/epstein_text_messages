@@ -26,12 +26,10 @@ DEFAULT_NAME_COLOR = 'gray46'
 SECTION_HEADER_STYLE = 'bold white on blue3'
 SOCIAL_MEDIA_LINK_STYLE = 'cadet_blue'
 TITLE_STYLE = 'black on bright_white bold'
-PHONE_NUMBER = 'phone_number'
 NUM_COLOR_KEY_COLS = 4
 
 THEME_STYLES = {
     DEFAULT: 'wheat4',
-    PHONE_NUMBER: 'bright_green',
     TEXT_LINK: 'deep_sky_blue4 underline',
 }
 
