@@ -70,10 +70,10 @@ git checkout gh_pages
 git merge --no-edit master --quiet
 
 print_msg "Building" "$INDEX_HTML_PATH"
-./generate.py --build --suppress-output
+./generate.py --build --overwrite-pickle --suppress-output
 echo -e ""
 print_msg "Building" "$WORD_COUNT_HTML_PATH"
-./scripts/count_words.py --build --suppress-output --width 105
+./scripts/count_words.py --build --pickled --suppress-output --width 105
 
 git commit -am"Update HTML"
 git push origin gh_pages --quiet
@@ -90,7 +90,7 @@ fi
 
 # Deploy all emails
 print_msg "Building all emails version of" "$INDEX_HTML_PATH"
-./generate.py --all-emails --build --no-texts --suppress-output
+./generate.py --all-emails --build --no-texts --pickled --suppress-output
 print_msg "Copying '$INDEX_HTML_PATH' to '$EMAILS_INDEX_HTML_PATH'"
 mv "$INDEX_HTML_PATH" "$EMAILS_INDEX_HTML_PATH"
 pushd "$EMAILS_DIR" > /dev/null

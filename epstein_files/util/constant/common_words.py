@@ -139,24 +139,26 @@ OTHER_COMMON_WORDS = """
     jan feb mar apr jun jul aug sep oct nov dec
     sunday monday tuesday wednesday thursday friday saturday
     sun mon tues wed thur thurs fri sat
-    nd th rd st
+    nd th rd st skrev
 
     addthis attachments
     bcc
     cc
     contenttransferencoding
-    dont
-    email epstein
+    date de des dont
+    el email epstein et
     fwd
-    im iphone iPad BlackBerry
-    jeffrey
-    jr
-    mr mrs much
-    over
+    id im iphone iPad BlackBerry
+    jeffrey jr
+    le les
+    mr mrs ms much
+    nor
+    ou over
     rss
     sent snipped signature
-    trimmed
-    whether while wrote
+    tenu trimmed
+    via vous
+    was wasnt whether while wrote
 """.strip().split()
 
 COMMON_WORDS = {line.lower(): True for line in (MOST_COMMON_WORDS + OTHER_COMMON_WORDS)}
@@ -166,9 +168,9 @@ UNSINGULARIZABLE_WORDS = """
     aids alas always angeles anomalous anus apropos ares asus
     betts bias bonus brookings
     carlos caucus cbs cds ce cel chris clothes cms collins courteous curves cvs cyprus
-    date denis des dis drougas dubious
+    dallas denis des dis drougas dubious
     emirates ens
-    ferris folks francis
+    famous ferris folks francis
     gas gaydos
     halitosis has hillis his hivaids
     impetus innocuous ios irs isis
@@ -177,13 +179,13 @@ UNSINGULARIZABLE_WORDS = """
     madars maldives mbs mets meyers moonves
     nautilus nas ne notorious nous nucleus nunes
     olas outrageous
-    pants parkes pbs physics pls prevus
+    pants parkes pbs physics pls potus prevus
     reis-dennis reuters rogers
     saks sent ses sous
     tel texas this thus tous trans tremendous tries
     ups
-    vicious vinicius vous
-    via was wasnt whoops
+    via vicious vinicius vis vous
+    was whoops
     yes
 """.strip().split()
 

@@ -78,6 +78,7 @@ SINGULARIZATIONS = {
     'thnks': 'thank',
     'thieves': 'thief',
     'toes': 'toe',
+    'woes': 'woe',
     #'trying': 'try',
 }
 
