@@ -43,5 +43,5 @@ for word, count in sorted(words.items(), key=sort_key, reverse=True):
 console.line(3)
 console.print(f"Printed {len(words):,} words.\n")
 print_panel(f"{len(COMMON_WORDS_LIST):,} Excluded Words")
-console.print(', '.join(COMMON_WORDS_LIST))
+console.print(', '.join(COMMON_WORDS_LIST), highlight=False)
 write_html(WORD_COUNT_HTML_PATH)
