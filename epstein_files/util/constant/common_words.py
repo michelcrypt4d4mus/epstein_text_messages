@@ -41,10 +41,14 @@ give
 go
 going
 had
+hadnt
 has
+hasnt
 have
+havent
 having
 he
+hed
 her
 here
 him
@@ -102,6 +106,8 @@ then
 there
 these
 they
+theyll
+theyve
 thing
 think
 this
@@ -122,9 +128,13 @@ well
 went
 were
 what
+whatever
 when
+whenever
 where
+wherever
 which
+whichever
 who
 why
 will
@@ -136,6 +146,8 @@ wouldnt
 wouldve
 year
 you
+youd
+youll
 your
 youre
 """.strip().split()
@@ -151,18 +163,19 @@ OTHER_COMMON_WORDS = """
     bcc bst btn
     cc ce cel
     date de des dont du
-    each ecrit edt el email en epstein et
+    each ecrit edt el email en envoye epstein et
     fb fwd
-    id im iphone iPad BlackBerry
+    id iii im iphone iPad BlackBerry
     je jeffrey jr
     las le les let
     mr mrs ms much
     ne nor
     ou over
+    pdt pst
     rss
     sent si snipped signature
-    tel tenu theyll tho though trimmed
-    via vous
+    te tel tenu tho though trimmed
+    via vous voye
     was wasnt whether while wrote
 """.strip().split()
 
