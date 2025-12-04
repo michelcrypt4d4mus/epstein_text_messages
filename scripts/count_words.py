@@ -5,43 +5,211 @@ from collections import defaultdict
 
 from dotenv import load_dotenv
 load_dotenv()
+from inflection import singularize
 from rich.text import Text
 
 from epstein_files.documents.email_header import EmailHeader
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.constant.common_words import COMMON_WORDS, COMMON_WORDS_LIST
+from epstein_files.util.data import ALL_NAMES, flatten, sort_dict
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
 from epstein_files.util.rich import console, print_centered, print_page_title, print_panel, write_html
 
-BAD_CHARS_REGEX = re.compile(r"[-=+()$^&%!#/_`,.;:'’\"”?\d\\]")
-SKIP_WORDS_REGEX = re.compile(r"^(http|addresswww)|jee[vy]acation|html?$")
+FIRST_AND_LAST_NAMES = flatten([n.split() for n in ALL_NAMES])
+BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#/_`,.;:'‘’\"„“”?\d\\]")
+SKIP_WORDS_REGEX = re.compile(r"^(http|addresswww|mailto|www)|jee[vy]acation|(gif|html?|jpe?g)$")
+NO_SINGULARIZE_REGEX = re.compile(r".*io?us$")
+FLAGGED_WORDS = []
 MAX_WORD_LEN = 45
+MIN_COUNT_CUTOFF = 2
+
+NON_SINGULARIZABLE_CONST = """
+    aids
+    alas
+    angeles
+    anomalous
+    anus
+    apropos
+    ares
+    asus
+    betts
+    bias
+    bonus
+    brookings
+    cbs
+    cds
+    carlos
+    caucus
+    chris
+    clothes
+    cms
+    collins
+    courteous
+    curves
+    cvs
+    cyprus
+    denis
+    des
+    dis
+    drougas
+    dubious
+    emirates
+    ens
+    ferris
+    folks
+    francis
+    gas
+    gaydos
+    halitosis
+    has
+    his
+    hivaids
+    impetus
+    innocuous
+    ios
+    irs
+    isis
+    jános
+    josephus
+    las
+    lens
+    les
+    lewis
+    lhs
+    lls
+    los
+    madars
+    maldives
+    mbs
+    mets
+    meyers
+    moonves
+    nautilus
+    nas
+    notorious
+    nous
+    nucleus
+    nunes
+    olas
+    outrageous
+    pants
+    parkes
+    pbs
+    physics
+    pls
+    prevus
+    reis-dennis
+    reuters
+    rogers
+    saks
+    ses
+    sous
+    texas
+    this
+    thus
+    tous
+    trans
+    tremendous
+    tries
+    ups
+    vicious
+    vinicius
+    vous
+    was
+    whoops
+    yes
+""".strip().split()
+
+BAD_CHARS_OK = [
+    'MLPF&S'.lower(),
+    'reis-dennis',
+]
+
+# inflection.singularize() messes these up
+SINGULARIZATIONS = {
+    'approves': 'approve',
+    'arrives': 'arrive',
+    'awards/awards': 'award',
+    'believes': 'believe',
+    'busses': 'bus',
+    'colletcions': 'collection',
+    'dives': 'dive',
+    'drives': 'drive',
+    'enterpris': 'enterprise',
+    'gives': 'give',
+    'involves': 'involve',
+    'jackies': 'jackie',
+    'leaves': 'leave',
+    'lies': 'lie',
+    'lives': 'live',
+    'loves': 'love',
+    'missives': 'missive',
+    'proves': 'prove',
+    'receives': 'receive',
+    'reserves': 'reserve',
+    'shes': 'she',
+    'slaves': 'slave',
+    'thnks': 'thank',
+    'thieves': 'thief',
+    'toes': 'toe',
+}
+
+NON_SINGULARIZABLE = NON_SINGULARIZABLE_CONST + [n.lower() for n in FIRST_AND_LAST_NAMES if n.endswith('s')]
+# print(f"NON_SINGULARIZABLE: {NON_SINGULARIZABLE}")
+
+
+def is_invalid_word(w: str) -> bool:
+    return bool(SKIP_WORDS_REGEX.search(w)) or len(w) <= 1 or len(w) >= MAX_WORD_LEN or w in COMMON_WORDS
 
 
 print_page_title(expand=False)
 epstein_files = EpsteinFiles()
 print_centered(f"Most Common Words in the {len(epstein_files.emails):,} Emails\n")
 words = defaultdict(int)
+singularized = defaultdict(int)
 
 for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
     if email.is_duplicate:
         logger.info(f"Skipping duplicate file '{email.filename}'...")
         continue
 
-    for word in email.actual_text(True).split():
-        word = BAD_CHARS_REGEX.sub('', EmailHeader.cleanup_str(word).lower()).strip()
+    for line in email.actual_text(True).split('\n'):
+        if line.startswith('htt'):
+            continue
 
-        if word and (MAX_WORD_LEN > len(word) > 1) and word not in COMMON_WORDS and not SKIP_WORDS_REGEX.search(word):
-            words[word] += 1
+        for word in line.split():
+            word = EmailHeader.cleanup_str(word).lower().strip()
+            raw_word = word
 
-sort_key = lambda item: item[0] if args.sort_alphabetical else [item[1], item[0]]
+            if word not in BAD_CHARS_OK:
+                word = BAD_CHARS_REGEX.sub('', word).strip()
 
-for word, count in sorted(words.items(), key=sort_key, reverse=True):
+            if word in FLAGGED_WORDS:
+                logger.warning(f"Found '{word}' in '{line}'")
+
+            if is_invalid_word(word):
+                continue
+            elif word in SINGULARIZATIONS:
+                word = SINGULARIZATIONS[word]
+            elif not (word in NON_SINGULARIZABLE or NO_SINGULARIZE_REGEX.match(word) or len(word) <= 2):
+                word = singularize(word)
+                singularized[raw_word] += 1
+
+                # Log the raw_word if we've seen it more than once (but only once)
+                if raw_word.endswith('s') and singularized[raw_word] == 2:
+                    logger.warning(f"Singularized '{raw_word}' to '{word}'...")
+
+            if not is_invalid_word(word):
+                words[word] += 1
+
+words_to_print = [kv for kv in sort_dict(words) if kv[1] > MIN_COUNT_CUTOFF]
+
+for word, count in words_to_print:
     console.print(Text('').append(f"{word:>{MAX_WORD_LEN}}", style='wheat4').append(': ').append(f"{count:,}"))
 
 console.line(3)
-console.print(f"Printed {len(words):,} words.\n")
+console.print(f"Showing {len(words_to_print):,} words appearing at least {MIN_COUNT_CUTOFF} time (out of {len(words):,} words).\n")
 print_panel(f"{len(COMMON_WORDS_LIST):,} Excluded Words")
 console.print(', '.join(COMMON_WORDS_LIST), highlight=False)
 write_html(WORD_COUNT_HTML_PATH)

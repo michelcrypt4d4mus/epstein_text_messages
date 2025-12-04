@@ -17,7 +17,7 @@ from epstein_files.documents.email_header import AUTHOR
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog, sender_counts
 from epstein_files.util.constant.urls import EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url, search_jmail_url, search_twitter_url
 from epstein_files.util.constants import *
-from epstein_files.util.data import dict_sets_to_lists, patternize
+from epstein_files.util.data import dict_sets_to_lists, patternize, sort_dict
 from epstein_files.util.env import args, is_debug, logger
 from epstein_files.util.file_helper import DOCS_DIR, move_json_file
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
@@ -197,9 +197,8 @@ class EpsteinFiles:
             counts_table.add_column(col, justify='left' if i == 0 else 'center')
 
         emailer_counts = {e: self.email_author_counts[e] + self.email_recipient_counts[e] for e in self.all_emailers(True)}
-        sort_key = lambda item: item[0] if args.sort_alphabetical else [item[1], item[0]]
 
-        for p, count in sorted(emailer_counts.items(), key=sort_key, reverse=True):
+        for p, count in sort_dict(emailer_counts):
             style = get_style_for_name(p, DEFAULT_NAME_COLOR)
 
             counts_table.add_row(
@@ -220,7 +219,7 @@ class EpsteinFiles:
         counts_table.add_column(AUTHOR.title(), style="steel_blue bold", justify='left', width=30)
         counts_table.add_column("Message Count", justify='center')
 
-        for k, v in sorted(sender_counts.items(), key=lambda item: item[1], reverse=True):
+        for k, v in sort_dict(sender_counts):
             counts_table.add_row(Text(k, get_style_for_name(k)), str(v))
 
         console.print(counts_table)

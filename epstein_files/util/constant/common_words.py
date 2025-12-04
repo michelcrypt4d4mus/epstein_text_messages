@@ -124,7 +124,11 @@ your
 """.strip().split()
 
 OTHER_WORDS = """
+addthis
 attachments
+bcc
+cc
+contenttransferencoding
 dont
 email
 epstein
@@ -135,8 +139,9 @@ january february march april may june july august september october november dec
 jan feb mar apr jun jul aug sep oct nov dec
 jeffrey
 jr
-mr
+mr mrs
 nd th rd st
+rss
 snipped signature
 sunday monday tuesday wednesday thursday friday saturday
 sun mon tues wed thur thurs fri sat
