@@ -39,7 +39,7 @@ is_debug = deep_debug or args.debug or is_env_var_set('DEBUG')
 is_html_script = current_script in HTML_SCRIPTS
 skip_texts = args.no_texts or is_env_var_set('NO_TEXTS')
 
-args.pickle = args.pickle or is_env_var_set('PICKLE')
+args.pickled = args.pickled or is_env_var_set('PICKLED')
 args.width = args.width if is_html_script else None
 specified_emailers = args.emails or []
 
