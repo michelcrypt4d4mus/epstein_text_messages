@@ -4,8 +4,9 @@ from os import environ
 from sys import argv, exit
 
 from dotenv import load_dotenv
-load_dotenv()
 from rich.panel import Panel
+load_dotenv()
+environ.setdefault('PICKLE', 'true')
 
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.env import args

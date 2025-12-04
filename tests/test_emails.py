@@ -889,12 +889,14 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
 
 SIGNATURE_SUBSTITUTION_COUNTS = {
     "(unknown)": 2,
+    ARIANE_DE_ROTHSCHILD: 4,
     "Danny Frost": 8,
     "Darren Indyke": 47,
     "David Ingram": 9,
     "Deepak Chopra": 19,
     "Jeffrey Epstein": 3369,
     "Jessica Cadwell": 57,
+    LARRY_SUMMERS: 232,
     "Lawrence Krauss": 78,
     "Martin Weinberg": 17,
     "Paul Barrett": 10,
