@@ -198,13 +198,6 @@ def print_panel(msg: str, style: str = 'black on white', padding: tuple | None =
     console.print(Padding(panel, tuple(_padding)))
 
 
-def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2) -> None:
-    stars = '*' * num_stars
-    spaces = ' ' * num_spaces
-    msg = f"{spaces}{stars} {msg} {stars}{spaces}"
-    print_centered(wrap_in_markup_style(msg, TITLE_STYLE))
-
-
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
     panel = Panel(Text(msg, justify='center'), expand=True, padding=(1, 1), style=style)
     panel = Align.center(panel) if is_centered else panel
@@ -217,6 +210,13 @@ def print_social_media_links() -> None:
     print_centered_link('https://cryptadamus.substack.com/', 'Substack', style=SOCIAL_MEDIA_LINK_STYLE)
     print_centered_link('https://universeodon.com/@cryptadamist/115572634993386057', 'Mastodon', style=SOCIAL_MEDIA_LINK_STYLE)
     print_centered_link('https://x.com/Cryptadamist/status/1990866804630036988', 'Twitter', style=SOCIAL_MEDIA_LINK_STYLE)
+
+
+def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2) -> None:
+    stars = '*' * num_stars
+    spaces = ' ' * num_spaces
+    msg = f"{spaces}{stars} {msg} {stars}{spaces}"
+    print_centered(wrap_in_markup_style(msg, TITLE_STYLE))
 
 
 def vertically_pad(obj: RenderableType, amount: int = 1) -> Padding:
@@ -245,7 +245,7 @@ def write_html(output_path: Path) -> None:
     if not args.build:
         logger.warning(f"Not writing HTML because args.build={args.build}.")
         return
-    
+
     console.save_html(output_path, code_format=CONSOLE_HTML_FORMAT, theme=HTML_TERMINAL_THEME)
     logger.warning(f"Wrote {file_size_str(output_path)} to '{output_path}'")
 
