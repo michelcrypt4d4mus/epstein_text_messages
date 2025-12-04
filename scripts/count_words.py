@@ -28,6 +28,17 @@ MAX_WORD_LEN = 45
 MIN_COUNT_CUTOFF = 3
 PADDING = (0, 0, 2, 2)
 
+EMAIL_IDS_TO_SKIP = [
+    '029692',  # WaPo article
+    '029779',  # WaPo article
+    '026298',  # Written by someone else?
+    '026755',  # HuffPo
+    '023627',  # Article about epstein
+    '031569',  # Article by Kathryn Alexeeff
+    '030528',  # Vicky Ward article
+    '030522',  # Vicky Ward article
+]
+
 BAD_WORDS = [
     'summarypricesquotesstatistic',
 ]
@@ -87,9 +98,13 @@ for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
     if email.is_duplicate or email.is_junk_mail:
         logger.info(f"Skipping duplicate or junk file '{email.filename}'...")
         continue
-    elif specified_emailers and email.author not in specified_emailers:
-        logger.debug(f"Skipping email from '{email.author}'...")
-        continue
+    elif specified_emailers:
+        if email.author not in specified_emailers:
+            logger.debug(f"Skipping email from '{email.author}'...")
+            continue
+        elif email.file_id in EMAIL_IDS_TO_SKIP:
+            logger.debug(f"Skipping EMAIL_IDS_TO_SKIP '{email.file_id}' from '{email.author}'...")
+            continue
 
     for line in email.actual_text(use_clean_text=True, skip_header=True).split('\n'):
         if line.startswith('htt'):
