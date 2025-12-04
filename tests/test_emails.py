@@ -640,6 +640,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Terje Rød-Larsen',
         'Terry Kafka',
         'Tom Barrack',
+        'Tonja Haddad Coleman',
         'Tyler Shears',
     ],
     "Sent from my iPhone and misspellings courtesy of iPhone.": [
