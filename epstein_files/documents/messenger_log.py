@@ -58,8 +58,6 @@ class MessengerLog(CommunicationDocument):
             self.hint_txt = Text(f" Found confirmed counterparty ", style='dim').append(self.author_txt)
             self.hint_txt.append(f" for file ID {self.file_id}.")
         elif self.file_id in GUESSED_IMESSAGE_FILE_IDS:
-            self.author_str += ' (?)'
-            self.author_txt = Text(self.author_str, style=self.author_style)
             self.hint_txt = Text(" (This is probably a conversation with ", style='dim').append(self.author_txt).append(')')
         else:
             self.hint_txt = None
@@ -125,7 +123,11 @@ class MessengerLog(CommunicationDocument):
         self.author = KNOWN_IMESSAGE_FILE_IDS.get(self.file_id, GUESSED_IMESSAGE_FILE_IDS.get(self.file_id))
         author_str = self.author or UNKNOWN
         self.author_str = author_str.split(' ')[-1] if author_str in [STEVE_BANNON] else author_str
-        self.author_style = get_style_for_name(author_str) + ' bold'
+        self.author_style = get_style_for_name(self.author_or_unknown()) + ' bold'
+
+        if self.file_id in GUESSED_IMESSAGE_FILE_IDS:
+            self.author_str += ' (?)'
+
         self.author_txt = Text(self.author_str, style=self.author_style)
 
     def _extract_timestamp(self) -> datetime:
