@@ -16,7 +16,7 @@ from epstein_files.util.constant.common_words import COMMON_WORDS, COMMON_WORDS_
 from epstein_files.util.data import ALL_NAMES, flatten, sort_dict
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
-from epstein_files.util.rich import console, highlighter, print_centered, print_other_site_link, print_page_title, print_panel, print_social_media_links, print_starred_header, write_html
+from epstein_files.util.rich import console, highlighter, print_centered, print_page_title, print_panel, print_social_media_links, print_starred_header, write_html
 
 FIRST_AND_LAST_NAMES = flatten([n.split() for n in ALL_NAMES])
 NON_SINGULARIZABLE = UNSINGULARIZABLE_WORDS + [n.lower() for n in FIRST_AND_LAST_NAMES if n.endswith('s')]
@@ -26,7 +26,11 @@ NO_SINGULARIZE_REGEX = re.compile(r".*io?us$")
 FLAGGED_WORDS = []
 MAX_WORD_LEN = 45
 MIN_COUNT_CUTOFF = 3
-PADDING = (0, 0, 0, 2)
+PADDING = (0, 0, 2, 2)
+
+BAD_WORDS = [
+    'summarypricesquotesstatistic',
+]
 
 BAD_CHARS_OK = [
     'MLPF&S'.lower(),
@@ -112,22 +116,16 @@ for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
             if not is_invalid_word(word):
                 words[word] += 1
 
-words_to_print = [kv for kv in sort_dict(words) if kv[1] >= MIN_COUNT_CUTOFF]
-
 txts_to_print = [
     highlighter(Text('').append(f"{word}", style='wheat4').append(': ').append(f"{count:,}"))
-    for word, count in words_to_print
+    for word, count in [kv for kv in sort_dict(words) if kv[1] >= MIN_COUNT_CUTOFF]
+    if word not in BAD_WORDS
 ]
 
 cols = Columns(txts_to_print, column_first=False, equal=False, expand=False)
 console.print(Padding(cols, PADDING))
+console.print(f"Showing {len(txts_to_print):,} words appearing at least {MIN_COUNT_CUTOFF} times (out of {len(words):,} words).")
 console.line(3)
-console.print(f"Showing {len(words_to_print):,} words appearing at least {MIN_COUNT_CUTOFF} times (out of {len(words):,} words).\n")
 print_panel(f"{len(COMMON_WORDS_LIST):,} Excluded Words")
 console.print(', '.join(COMMON_WORDS_LIST), highlight=False)
 write_html(WORD_COUNT_HTML_PATH)
-
-# console.line(4)
-# cols = Columns(txts_to_print[0:400], column_first=True, equal=False, expand=False)
-# console.print(Padding(cols, PADDING))
-# console.line(4)
