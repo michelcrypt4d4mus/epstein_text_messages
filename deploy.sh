@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-# Set ONLY_TEXTS=true to skip build/deploy of full emails site.
+
 # Running 'bash -l' uses the login shell but then the poetry venv isn't set :(
+# - Set ONLY_TEXTS=true to skip build/deploy of full emails site.
+# - Set PICKLED=true to use pickled data file
 source .env
 set -e
 
@@ -70,6 +72,8 @@ git checkout gh_pages
 git merge --no-edit master --quiet
 
 print_msg "Building" "$INDEX_HTML_PATH"
+PICKLE_ARG=$([ -n $PICKLED ] && echo "--pickled" || echo "--overwrite-pickle")
+print_msg "  -> using PICKLE_ARG" "$PICKLE_ARG"
 ./generate.py --build --overwrite-pickle --suppress-output
 echo -e ""
 print_msg "Building" "$WORD_COUNT_HTML_PATH"
