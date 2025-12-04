@@ -44,7 +44,7 @@ highlighter = InterestingNamesHighlighter()
 CONSOLE_ARGS = {
     'color_system': '256',
     'highlighter': highlighter,
-    'record': True,
+    'record': args.build,
     'safe_box': False,
     'theme': Theme(THEME_STYLES),
     'width': args.width,
