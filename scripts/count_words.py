@@ -62,6 +62,7 @@ SINGULARIZATIONS = {
     'dives': 'dive',
     'drives': 'drive',
     'enterpris': 'enterprise',
+    'girsl': 'girl',
     'gives': 'give',
     'involves': 'involve',
     'jackies': 'jackie',

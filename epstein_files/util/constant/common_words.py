@@ -152,13 +152,13 @@ OTHER_COMMON_WORDS = """
     el email epstein et
     fwd
     id im iphone iPad BlackBerry
-    jeffrey jr
+    je jeffrey jr
     le les
     mr mrs ms much
     nor
     ou over
     rss
-    sent snipped signature
+    sent si snipped signature
     tenu trimmed
     via vous
     was wasnt whether while wrote
@@ -168,13 +168,13 @@ COMMON_WORDS = {line.lower(): True for line in (MOST_COMMON_WORDS + OTHER_COMMON
 COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
 
 UNSINGULARIZABLE_WORDS = """
-    aids alas always angeles anomalous anus apropos ares asus
+    aids alas always angeles anomalous anus apropos ares asia asus
     betts bias bonus brookings
     carlos caucus cbs cds ce cel chris clothes cms collins courteous curves cvs cyprus
     dallas denis des dis drougas dubious
-    each emirates ens
+    each edt emirates ens
     famous ferris folks francis
-    gas gaydos
+    gas gaydos gps
     halitosis has hillis his hivaids
     impetus innocuous ios irs isis
     jános josephus
