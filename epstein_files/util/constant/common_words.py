@@ -93,6 +93,7 @@ saying
 says
 see
 she
+shed
 so
 some
 subject
@@ -150,6 +151,7 @@ youd
 youll
 your
 youre
+youve
 """.strip().split()
 
 OTHER_COMMON_WORDS = """
@@ -162,11 +164,11 @@ OTHER_COMMON_WORDS = """
     addthis attachments
     bcc bst btn
     cc ce cel
-    date de des dont du
+    date de des div dont du
     each ecrit edt el email en envoye epstein et
     fb fwd
     herself himself
-    id iii im iphone iPad BlackBerry
+    id ii iii im iphone iPad BlackBerry
     je jeffrey jr
     las le les let
     mr mrs ms much
@@ -174,7 +176,7 @@ OTHER_COMMON_WORDS = """
     ou over
     pdt pst
     rss
-    sent si snipped signature
+    sent si signature snipped
     te tel tenu tho though trimmed
     via vous voye
     was wasnt whether while wrote
@@ -184,7 +186,7 @@ COMMON_WORDS = {line.lower(): True for line in (MOST_COMMON_WORDS + OTHER_COMMON
 COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
 
 UNSINGULARIZABLE_WORDS = """
-    aids alas always angeles anomalous anus apropos ares asia asus
+    aids alas always angeles anomalous anus apropos ares asia asus atlanta
     betts bias bonus brookings
     campus carlos caucus cbs cds chris clothes cms collins courteous curves cvs cyprus
     dallas davis denis des dis drougas dubious
@@ -192,7 +194,7 @@ UNSINGULARIZABLE_WORDS = """
     famous ferris focus folks forbes francis
     gas gaydos gmt gps
     halitosis has hillis his hivaids
-    impetus innocuous ios irs isis
+    impetus innocuous ios ips irs isis
     jános josephus
     las lens les lewis lhs lls los louis luis
     madars maldives mbs mets meyers moonves
@@ -200,7 +202,7 @@ UNSINGULARIZABLE_WORDS = """
     olas outrageous
     pants parkes pbs peres physics pls plus potus prevus
     reis-dennis reuters rogers
-    sach sadis saks ses sous syria
+    sach sadis saks ses sous stimulus syria
     texas this thus tous trans tremendous tries
     ups
     versus via vicious vinicius vis vous
