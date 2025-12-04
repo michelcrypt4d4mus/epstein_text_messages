@@ -39,7 +39,7 @@ class HighlightedGroup:
 
         self.style_suffix = self.label.lower().replace(' ', '_').replace('-', '_')
         self.style_name = f"{REGEX_STYLE_PREFIX}.{self.style_suffix}"
-        patterns = [self.emailer_pattern(e) for e in self.emailers] + ([self.pattern] if self.pattern else [])
+        patterns = [self._emailer_pattern(e) for e in self.emailers] + ([self.pattern] if self.pattern else [])
         pattern = '|'.join(patterns)
 
         if self.is_multiline:
@@ -51,8 +51,20 @@ class HighlightedGroup:
     def colored_label(self) -> Text:
         return Text(self.label.replace('_', ' '), style=self.style)
 
+    def get_info(self, name: str) -> str | None:
+        info_pieces = []
+
+        if not self.has_no_category:
+            info_pieces.append(self.info or titleize(self.label))
+
+        if self.emailers.get(name) is not None:
+            info_pieces.append(self.emailers[name])
+
+        if len(info_pieces) > 0:
+            return ', '.join(info_pieces)
+
     # TODO: handle word boundary issue for names that end in symbols
-    def emailer_pattern(self, name: str) -> str:
+    def _emailer_pattern(self, name: str) -> str:
         logger.debug(f"emailer_pattern() called for '{name}'")
         names = name.split()
         last_name = names[-1]
@@ -77,18 +89,6 @@ class HighlightedGroup:
             logger.info(f"'{name}' has {len(names)} names (first_name='{first_name}')")
 
         return '|'.join(name_regex_parts)
-
-    def get_info(self, name: str) -> str | None:
-        info_pieces = []
-
-        if not self.has_no_category:
-            info_pieces.append(self.info or titleize(self.label))
-
-        if self.emailers.get(name) is not None:
-            info_pieces.append(self.emailers[name])
-
-        if len(info_pieces) > 0:
-            return ', '.join(info_pieces)
 
 
 HIGHLIGHTED_GROUPS = [
