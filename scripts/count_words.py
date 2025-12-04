@@ -106,7 +106,7 @@ for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
             logger.debug(f"Skipping EMAIL_IDS_TO_SKIP '{email.file_id}' from '{email.author}'...")
             continue
 
-    for line in email.actual_text(use_clean_text=True, skip_header=True).split('\n'):
+    for line in email.actual_text.split('\n'):
         if line.startswith('htt'):
             continue
 

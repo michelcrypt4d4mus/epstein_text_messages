@@ -13,7 +13,7 @@ from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.documents.document import CommunicationDocument
-from epstein_files.documents.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX,
+from epstein_files.documents.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX, FIELD_NAMES,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TIME_REGEX, EmailHeader)
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constant.names import *
@@ -252,7 +252,7 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
 
 @dataclass
 class Email(CommunicationDocument):
-    cleaned_up_text: str = field(init=False)
+    actual_text: str = field(init=False)
     header: EmailHeader = field(init=False)
     is_duplicate: bool = False
     is_junk_mail: bool = False
@@ -285,29 +285,42 @@ class Email(CommunicationDocument):
         self.author_str = self.author or UNKNOWN
         self.author_style = get_style_for_name(self.author_str)
         self.author_txt = Text(self.author_str, style=self.author_style)
-        self.cleaned_up_text = self._cleaned_up_text()
+        self.text = self._cleaned_up_text()
+        self.actual_text = self._actual_text()
         self.epsteinify_link_markup = epsteinify_doc_link_markup(self.file_path.stem, self.author_style)
         self.sent_from_device = self._sent_from_device()
         self.is_duplicate = self.file_id in SUPPRESS_OUTPUT_FOR_EMAIL_IDS
         self.is_junk_mail = self.author in JUNK_EMAILERS
 
-    def actual_text(self, use_clean_text: bool = False, skip_header: bool = False) -> str:
+    def _actual_text(self) -> str:
         """The text that comes before likely quoted replies and forwards etc."""
-        text = self.cleaned_up_text if use_clean_text else self.text
-        text = '\n'.join(text.split('\n')[self.header.num_header_rows:]) if skip_header else text
+        text = '\n'.join(self.text.split('\n')[self.header.num_header_rows:])
         reply_text_match = REPLY_TEXT_REGEX.search(text)
 
-        if skip_header:
-            logger.info(f"Raw text:\n" + self.top_lines(20) + '\n\n')
-            logger.info(f"With header removed:\n" + text[0:500] + '\n\n')
+        # logger.info(f"Raw text:\n" + self.top_lines(20) + '\n\n')
+        # logger.info(f"With header removed:\n" + text[0:500] + '\n\n')
 
         if reply_text_match:
             actual_num_chars = len(reply_text_match.group(1))
             actual_text_pct = f"{(100 * float(actual_num_chars) / len(text)):.1f}%"
-            logger.info(f"'{self.file_path.stem}': actual_text() is {actual_num_chars:,} chars ({actual_text_pct} of {len(text):,})")
-            return reply_text_match.group(1)
-        else:
-            return text
+            logger.info(f"'{self.file_path.stem}': actual_text() reply_text_match is {actual_num_chars:,} chars ({actual_text_pct} of {len(text):,})")
+            text = reply_text_match.group(1)
+
+        for field_name in FIELD_NAMES:
+            field_string = f'\n{field_name}:'
+
+            if field_string not in text:
+                continue
+
+            logger.info(f"'{self.file_path.stem}': Splitting based on '{field_string.strip()}'")
+            pre_from_text = text.split(field_string)[0]
+            actual_num_chars = len(pre_from_text)
+            actual_text_pct = f"{(100 * float(actual_num_chars) / len(text)):.1f}%"
+            logger.info(f"'{self.file_path.stem}': actual_text() fwd_text_match is {actual_num_chars:,} chars ({actual_text_pct} of {len(text):,})")
+            text = pre_from_text
+            break
+
+        return text
 
     def idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES, text: str | None = None) -> int | None:
         """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line."""
@@ -442,7 +455,7 @@ class Email(CommunicationDocument):
 
     def _sent_from_device(self) -> str | None:
         """Find any 'Sent from my iPhone' style lines if they exist."""
-        sent_from_match = SENT_FROM_REGEX.search(self.actual_text())
+        sent_from_match = SENT_FROM_REGEX.search(self.actual_text)
 
         if sent_from_match:
             sent_from = sent_from_match.group(0)
