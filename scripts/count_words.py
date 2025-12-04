@@ -17,7 +17,7 @@ from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
 from epstein_files.util.rich import console, print_centered, print_page_title, print_panel, write_html
 
 BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#/_`,.;:'‘’\"„“”?\d\\]")
-SKIP_WORDS_REGEX = re.compile(r"^(http|addresswww)|jee[vy]acation|(gif|html?|jpe?g)$")
+SKIP_WORDS_REGEX = re.compile(r"^(http|addresswww|mailto)|jee[vy]acation|(gif|html?|jpe?g)$")
 MAX_WORD_LEN = 45
 MIN_COUNT_CUTOFF = 2
 
