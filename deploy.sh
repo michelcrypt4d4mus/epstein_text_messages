@@ -19,6 +19,7 @@ TEXT_MSGS_PROJECT_NAME=`basename "$PWD"`
 EMAILS_URL="$GITHUB_PAGES_BASE_URL/$EMAILS_PROJECT_NAME"
 TEXT_MSGS_URL="$GITHUB_PAGES_BASE_URL/$TEXT_MSGS_PROJECT_NAME"
 WORD_COUNT_URL="$TEXT_MSGS_URL/$WORD_COUNT_HTML_STEM"
+CURRENT_BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
 
 if [ -n "$BASH_COLORS_PATH" ]; then
     source "$BASH_COLORS_PATH"
@@ -55,11 +56,15 @@ remove_master_branch_file() {
     fi
 }
 
+if [[ $CURRENT_BRANCH != "master" ]]; then
+    print_msg "Current branch is not master" "($CURRENT_BRANCH)"
+    exit 1
+fi
 
 # Preparation / checking for issues
 if any_uncommitted_changes; then
     print_msg "Uncommitted changes; halting"
-    exit
+    exit 1
 fi
 
 remove_master_branch_file "$INDEX_HTML_PATH"
