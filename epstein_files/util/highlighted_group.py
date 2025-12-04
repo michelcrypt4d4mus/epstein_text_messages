@@ -215,7 +215,7 @@ HIGHLIGHTED_GROUPS = [
         style='deep_pink2',
         pattern=r'Harvard',
         emailers = {
-            LARRY_SUMMERS: 'board member of Digital Currency Group (DCG), Obama economic advisor',
+            LARRY_SUMMERS: 'Obama economic advisor, board of Digital Currency Group (DCG)',
             'Leah Reis-Dennis': 'producer for Poetry in America',
             LISA_NEW: 'poetry',
             'Lisa Randall': 'theoretical physicist',
