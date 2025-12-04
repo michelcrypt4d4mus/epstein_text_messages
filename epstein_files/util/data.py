@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import TypeVar
 
-from epstein_files.util.env import logger
+from epstein_files.util.env import args, logger
 
 MULTINEWLINE_REGEX = re.compile(r"\n{2,}")
 
@@ -26,6 +26,12 @@ def flatten(_list: list[list[T]]) -> list[T]:
 
 def patternize(_pattern: str | re.Pattern):
     return _pattern if isinstance(_pattern, re.Pattern) else re.compile(rf"({_pattern})", re.IGNORECASE)
+
+
+def sort_dict(d: dict[str, int]) -> list[tuple[str, int]]:
+    sort_key = lambda item: item[0].lower() if args.sort_alphabetical else [-item[1], item[0].lower()]
+    return sorted(d.items(), key=sort_key)
+
 
 
 @dataclass

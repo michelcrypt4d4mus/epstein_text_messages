@@ -10,11 +10,12 @@ from rich.text import Text
 from epstein_files.documents.email_header import EmailHeader
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.constant.common_words import COMMON_WORDS, COMMON_WORDS_LIST
+from epstein_files.util.data import sort_dict
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
 from epstein_files.util.rich import console, print_centered, print_page_title, print_panel, write_html
 
-BAD_CHARS_REGEX = re.compile(r"[-=+()$^&%!#/_`,.;:'’\"”?\d\\]")
+BAD_CHARS_REGEX = re.compile(r"[-=+()$€©°«—^&%!#/_`,.;:'’\"“”?\d\\]")
 SKIP_WORDS_REGEX = re.compile(r"^(http|addresswww)|jee[vy]acation|html?$")
 MAX_WORD_LEN = 45
 
@@ -35,9 +36,7 @@ for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
         if word and (MAX_WORD_LEN > len(word) > 1) and word not in COMMON_WORDS and not SKIP_WORDS_REGEX.search(word):
             words[word] += 1
 
-sort_key = lambda item: item[0] if args.sort_alphabetical else [item[1], item[0]]
-
-for word, count in sorted(words.items(), key=sort_key, reverse=True):
+for word, count in sort_dict(words):
     console.print(Text('').append(f"{word:>{MAX_WORD_LEN}}", style='wheat4').append(': ').append(f"{count:,}"))
 
 console.line(3)
