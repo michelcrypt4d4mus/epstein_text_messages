@@ -125,6 +125,7 @@ your
 
 OTHER_WORDS = """
 attachments
+dont
 email
 epstein
 fwd
@@ -133,6 +134,7 @@ iphone iPad BlackBerry
 january february march april may june july august september october november december
 jan feb mar apr jun jul aug sep oct nov dec
 jeffrey
+jr
 mr
 nd th rd st
 snipped signature
