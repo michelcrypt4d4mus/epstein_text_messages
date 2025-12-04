@@ -159,7 +159,7 @@ OTHER_COMMON_WORDS = """
     jan feb mar apr jun jul aug sep oct nov dec
     sunday monday tuesday wednesday thursday friday saturday
     sun mon tues wed thur thurs fri sat
-    nd th rd st skrev
+    st nd rd th skrev
 
     addthis attachments
     bcc bst btn
