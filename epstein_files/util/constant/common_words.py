@@ -174,7 +174,7 @@ UNSINGULARIZABLE_WORDS = """
     betts bias bonus brookings
     campus carlos caucus cbs cds chris clothes cms collins courteous curves cvs cyprus
     dallas denis des dis drougas dubious
-    emirates ens
+    emirates ens eps
     famous ferris focus folks forbes francis
     gas gaydos gmt gps
     halitosis has hillis his hivaids
@@ -189,7 +189,7 @@ UNSINGULARIZABLE_WORDS = """
     sach sadis saks ses sous syria
     texas this thus tous trans tremendous tries
     ups
-    via vicious vinicius vis vous
+    versus via vicious vinicius vis vous
     was whoops
     yemen yes
 """.strip().split()
