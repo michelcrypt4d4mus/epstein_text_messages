@@ -15,9 +15,10 @@ from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
 from epstein_files.util.rich import console, print_centered, print_page_title, print_panel, write_html
 
-BAD_CHARS_REGEX = re.compile(r"[-–=+()$€©°«—^&%!#/_`,.;:'‘’\"“”?\d\\]")
+BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#/_`,.;:'‘’\"„“”?\d\\]")
 SKIP_WORDS_REGEX = re.compile(r"^(http|addresswww)|jee[vy]acation|html?$")
 MAX_WORD_LEN = 45
+MIN_COUNT_CUTOFF = 2
 
 
 print_page_title(expand=False)
@@ -36,11 +37,13 @@ for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
         if word and (MAX_WORD_LEN > len(word) > 1) and word not in COMMON_WORDS and not SKIP_WORDS_REGEX.search(word):
             words[word] += 1
 
-for word, count in sort_dict(words):
+words_to_print = [kv for kv in sort_dict(words) if kv[1] > MIN_COUNT_CUTOFF]
+
+for word, count in words_to_print:
     console.print(Text('').append(f"{word:>{MAX_WORD_LEN}}", style='wheat4').append(': ').append(f"{count:,}"))
 
 console.line(3)
-console.print(f"Printed {len(words):,} words.\n")
+console.print(f"Printed {len(words_to_print):,} of {len(words):,} words.\n")
 print_panel(f"{len(COMMON_WORDS_LIST):,} Excluded Words")
 console.print(', '.join(COMMON_WORDS_LIST), highlight=False)
 write_html(WORD_COUNT_HTML_PATH)
