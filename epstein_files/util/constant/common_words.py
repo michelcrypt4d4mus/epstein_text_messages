@@ -206,7 +206,7 @@ UNSINGULARIZABLE_WORDS = """
     sach sadis saks santa ses sous stimulus syria
     texas this thus tous trans tremendous tries
     ups
-    valeria versus via vicious victoria vinicius virginia vis vous
+    valeria versus via vicious victoria villafaria vinicius virginia vis vous
     was whoops wikipedia
     yemen yes yikes
     zakaria
