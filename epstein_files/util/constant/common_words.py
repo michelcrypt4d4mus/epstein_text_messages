@@ -42,6 +42,7 @@ going
 had
 has
 have
+having
 he
 her
 here
@@ -83,6 +84,8 @@ pm
 re
 said
 say
+saying
+says
 see
 she
 so
@@ -169,13 +172,13 @@ UNSINGULARIZABLE_WORDS = """
     betts bias bonus brookings
     carlos caucus cbs cds ce cel chris clothes cms collins courteous curves cvs cyprus
     dallas denis des dis drougas dubious
-    emirates ens
+    each emirates ens
     famous ferris folks francis
     gas gaydos
     halitosis has hillis his hivaids
     impetus innocuous ios irs isis
     jános josephus
-    las lens les lewis lhs lls los
+    las lens les let lewis lhs lls los
     madars maldives mbs mets meyers moonves
     nautilus nas ne notorious nous nucleus nunes
     olas outrageous
