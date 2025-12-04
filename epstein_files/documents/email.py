@@ -244,7 +244,7 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
     'Peter Aldhous',                         # Lawrence Krauss CC
     ROBERT_D_CRITTON,                        # Random CC
     'Sam Harris',                            # Lawrence Krauss CC
-    SAMUEL_LEFF,                                # Random CC
+    SAMUEL_LEFF,                             # Random CC
     'Sean T Lehane',                         # Random CC
     'Stephen Rubin',                         # Random CC
     'Tim Kane',                              # Random CC
@@ -265,14 +265,6 @@ class Email(CommunicationDocument):
 
     def __post_init__(self):
         super().__post_init__()
-        self._repair()
-        self._extract_header()
-
-        if self.file_id in KNOWN_EMAIL_AUTHORS:
-            self.author = KNOWN_EMAIL_AUTHORS[self.file_id]
-        elif self.header.author:
-            authors = self._get_names(self.header.author)
-            self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
 
         if self.file_id in KNOWN_EMAIL_RECIPIENTS:
             recipient = KNOWN_EMAIL_RECIPIENTS[self.file_id]
@@ -283,10 +275,6 @@ class Email(CommunicationDocument):
 
         logger.debug(f"Found recipients: {self.recipients}")
         self.recipients = list(set([r for r in self.recipients if r != self.author]))  # Remove self CCs
-        self.timestamp = self._extract_timestamp()
-        self.author_str = self.author or UNKNOWN
-        self.author_style = get_style_for_name(self.author_str)
-        self.author_txt = Text(self.author_str, style=self.author_style)
         self.text = self._cleaned_up_text()
         self.actual_text = self._actual_text()
         self.epsteinify_link_markup = epsteinify_doc_link_markup(self.file_path.stem, self.author_style)
@@ -396,6 +384,19 @@ class Email(CommunicationDocument):
                 return timestamp
 
         raise RuntimeError(f"No timestamp found in '{self.file_path.name}' top lines:\n{searchable_text}")
+
+    def _extract_author(self) -> None:
+        self._extract_header()
+
+        if self.file_id in KNOWN_EMAIL_AUTHORS:
+            self.author = KNOWN_EMAIL_AUTHORS[self.file_id]
+        elif self.header.author:
+            authors = self._get_names(self.header.author)
+            self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
+
+        self.author_str = self.author or UNKNOWN
+        self.author_style = get_style_for_name(self.author_str)
+        self.author_txt = Text(self.author_str, style=self.author_style)
 
     def _extract_header(self) -> None:
         """Extract an EmailHeader object from the OCR text."""

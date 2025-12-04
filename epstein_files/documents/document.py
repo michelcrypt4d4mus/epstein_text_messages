@@ -216,6 +216,9 @@ class CommunicationDocument(Document):
 
     def __post_init__(self):
         super().__post_init__()
+        self._repair()
+        self._extract_author()
+        self.timestamp = self._extract_timestamp()
 
     def author_or_unknown(self) -> str:
         return self.author or UNKNOWN
@@ -232,6 +235,16 @@ class CommunicationDocument(Document):
 
     def timestamp_without_seconds(self) -> str:
         return TIMESTAMP_SECONDS_REGEX.sub('', str(self.timestamp))
+
+    def _extract_author(self) -> None:
+        raise NotImplementedError(f"Should be implemented in subclasses!")
+
+    def _extract_timestamp(self) -> datetime:
+        raise NotImplementedError(f"Should be implemented in subclasses!")
+
+    def _repair(self) -> None:
+        """Can optionally be overloaded in subclasses."""
+        pass
 
 
 @dataclass

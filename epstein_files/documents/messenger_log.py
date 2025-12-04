@@ -53,12 +53,6 @@ class MessengerLog(CommunicationDocument):
 
     def __post_init__(self):
         super().__post_init__()
-        self.author = KNOWN_IMESSAGE_FILE_IDS.get(self.file_id, GUESSED_IMESSAGE_FILE_IDS.get(self.file_id))
-        author_str = self.author or UNKNOWN
-        self.author_str = author_str.split(' ')[-1] if author_str in [STEVE_BANNON] else author_str
-        self.author_style = get_style_for_name(author_str) + ' bold'
-        self.author_txt = Text(self.author_str, style=self.author_style)
-        self.timestamp = self._extract_timstamp()
 
         if self.file_id in KNOWN_IMESSAGE_FILE_IDS:
             self.hint_txt = Text(f" Found confirmed counterparty ", style='dim').append(self.author_txt)
@@ -127,7 +121,14 @@ class MessengerLog(CommunicationDocument):
 
         return self._messages
 
-    def _extract_timstamp(self) -> datetime:
+    def _extract_author(self) -> None:
+        self.author = KNOWN_IMESSAGE_FILE_IDS.get(self.file_id, GUESSED_IMESSAGE_FILE_IDS.get(self.file_id))
+        author_str = self.author or UNKNOWN
+        self.author_str = author_str.split(' ')[-1] if author_str in [STEVE_BANNON] else author_str
+        self.author_style = get_style_for_name(author_str) + ' bold'
+        self.author_txt = Text(self.author_str, style=self.author_style)
+
+    def _extract_timestamp(self) -> datetime:
         for match in MSG_REGEX.finditer(self.text):
             timestamp_str = match.group(2).strip()
 
