@@ -24,6 +24,7 @@ can
 can't
 come
 could
+couldnt
 day
 do
 dont
@@ -131,6 +132,8 @@ with
 without
 wont
 would
+wouldnt
+wouldve
 year
 you
 your
@@ -145,21 +148,20 @@ OTHER_COMMON_WORDS = """
     nd th rd st skrev
 
     addthis attachments
-    bcc
-    cc
-    contenttransferencoding
-    date de des dont
-    el email epstein et
-    fwd
+    bcc bst btn
+    cc ce cel
+    date de des dont du
+    each ecrit edt el email en epstein et
+    fb fwd
     id im iphone iPad BlackBerry
     je jeffrey jr
-    le les
+    las le les let
     mr mrs ms much
-    nor
+    ne nor
     ou over
     rss
     sent si snipped signature
-    tenu theyll trimmed
+    tel tenu theyll tho though trimmed
     via vous
     was wasnt whether while wrote
 """.strip().split()
@@ -170,26 +172,26 @@ COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
 UNSINGULARIZABLE_WORDS = """
     aids alas always angeles anomalous anus apropos ares asia asus
     betts bias bonus brookings
-    carlos caucus cbs cds ce cel chris clothes cms collins courteous curves cvs cyprus
+    campus carlos caucus cbs cds chris clothes cms collins courteous curves cvs cyprus
     dallas denis des dis drougas dubious
-    each edt emirates ens
-    famous ferris folks francis
-    gas gaydos gps
+    emirates ens eps
+    famous ferris focus folks forbes francis
+    gas gaydos gmt gps
     halitosis has hillis his hivaids
     impetus innocuous ios irs isis
     jános josephus
-    las lens les let lewis lhs lls los
+    las lens les lewis lhs lls los louis luis
     madars maldives mbs mets meyers moonves
-    nautilus nas ne notorious nous nucleus nunes
+    nautilus nas notorious nous nucleus nunes
     olas outrageous
-    pants parkes pbs physics pls potus prevus
+    pants parkes pbs peres physics pls plus potus prevus
     reis-dennis reuters rogers
-    saks sent ses sous
-    tel texas this thus tous trans tremendous tries
+    sach sadis saks ses sous syria
+    texas this thus tous trans tremendous tries
     ups
-    via vicious vinicius vis vous
+    versus via vicious vinicius vis vous
     was whoops
-    yes
+    yemen yes
 """.strip().split()
 
 
