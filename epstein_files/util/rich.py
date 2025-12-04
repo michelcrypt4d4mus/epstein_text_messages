@@ -174,6 +174,7 @@ def print_other_site_link(is_header: bool = True) -> None:
 
     if is_header:
         print_starred_header(f"This is the Epstein {site_type.title()}s site")
+        console.line()
 
     other_site_type: SiteType = TEXT_MESSAGE if site_type == EMAIL else EMAIL
     other_site_msg = "there's a separate site for" + (' all of' if other_site_type == EMAIL else '')
@@ -202,7 +203,6 @@ def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2) -> N
     spaces = ' ' * num_spaces
     msg = f"{spaces}{stars} {msg} {stars}{spaces}"
     print_centered(wrap_in_markup_style(msg, TITLE_STYLE))
-    console.line()
 
 
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
