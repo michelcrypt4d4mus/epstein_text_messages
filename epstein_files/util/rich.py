@@ -93,14 +93,7 @@ def print_color_key(key_type: Literal["Groups", "People"] = "Groups") -> None:
 
     while (row_number * NUM_COLOR_KEY_COLS) < num_colors:
         idx = row_number * NUM_COLOR_KEY_COLS
-
-        color_table.add_row(
-            COLOR_KEYS[idx],
-            COLOR_KEYS[idx + 1] if (idx + 1) < num_colors else '',
-            COLOR_KEYS[idx + 2] if (idx + 2) < num_colors else '',
-            COLOR_KEYS[idx + 3] if (idx + 3) < num_colors else '',
-        )
-
+        color_table.add_row(*COLOR_KEYS[idx:(idx + NUM_COLOR_KEY_COLS)])
         row_number += 1
 
     print_centered(vertically_pad(color_table))
