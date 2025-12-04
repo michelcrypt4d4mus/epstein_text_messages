@@ -6,15 +6,17 @@ set -e
 
 EMAILS_DIR="../epstein_emails_house_oversight"
 DOCS_DIR="docs"
+WORD_COUNT_HTML_STEM='epstein_emails_word_count.html'
 INDEX_HTML_PATH="$DOCS_DIR/index.html"
-WORD_COUNT_HTML_PATH="$DOCS_DIR/epstein_emails_word_count.html"
+WORD_COUNT_HTML_PATH="$DOCS_DIR/$WORD_COUNT_HTML_STEM"
 EMAILS_INDEX_HTML_PATH="${EMAILS_DIR}/${INDEX_HTML_PATH}"
 
 GITHUB_PAGES_BASE_URL='https://michelcrypt4d4mus.github.io'
 EMAILS_PROJECT_NAME=`basename "$EMAILS_DIR"`
 TEXT_MSGS_PROJECT_NAME=`basename "$PWD"`
-EMAILS_URL="$GITHUB_PAGES_BASE_URL/$EMAILS_PROJECT_NAME/"
-TEXT_MSGS_URL="$GITHUB_PAGES_BASE_URL/$TEXT_MSGS_PROJECT_NAME/"
+EMAILS_URL="$GITHUB_PAGES_BASE_URL/$EMAILS_PROJECT_NAME"
+TEXT_MSGS_URL="$GITHUB_PAGES_BASE_URL/$TEXT_MSGS_PROJECT_NAME"
+WORD_COUNT_URL="$TEXT_MSGS_URL/$WORD_COUNT_HTML_STEM"
 
 if [ -n "$BASH_COLORS_PATH" ]; then
     source "$BASH_COLORS_PATH"
@@ -77,6 +79,7 @@ git commit -am"Update HTML"
 git push origin gh_pages --quiet
 git checkout master
 print_msg "$TEXT_MSGS_PROJECT_NAME deployed to" "$TEXT_MSGS_URL"
+print_msg "$TEXT_MSGS_PROJECT_NAME word counts deployed to" "$TEXT_MSGS_URL"
 echo -e "\n\n"
 
 if [ -n "$ONLY_TEXTS" ]; then
