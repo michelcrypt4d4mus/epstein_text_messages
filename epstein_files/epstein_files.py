@@ -149,6 +149,7 @@ class EpsteinFiles:
         return EpsteinFiles.sort_emails(emails_by + emails_to)
 
     def email_signature_substitution_counts(self) -> dict[str, int]:
+        """Return the number of times an email signature was replaced with "...snipped..." for each author."""
         substitution_counts = defaultdict(int)
 
         for email in self.emails:
