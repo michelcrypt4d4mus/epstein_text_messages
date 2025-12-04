@@ -18,7 +18,7 @@ from epstein_files.util.rich import console, print_centered, print_page_title, p
 
 FIRST_AND_LAST_NAMES = flatten([n.split() for n in ALL_NAMES])
 BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#/_`,.;:'‘’\"„“”?\d\\]")
-SKIP_WORDS_REGEX = re.compile(r"^(http|addresswww|mailto|www)|jee[vy]acation|(gif|html?|jpe?g)$")
+SKIP_WORDS_REGEX = re.compile(r"^(http|addresswww|mailto|www)|jee[vy]acation|(gif|html?|jpe?g|utm)$")
 NO_SINGULARIZE_REGEX = re.compile(r".*io?us$")
 FLAGGED_WORDS = []
 MAX_WORD_LEN = 45

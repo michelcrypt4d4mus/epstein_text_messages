@@ -142,7 +142,7 @@ jr
 mr mrs
 nd th rd st
 rss
-snipped signature
+said snipped signature
 sunday monday tuesday wednesday thursday friday saturday
 sun mon tues wed thur thurs fri sat
 trimmed
