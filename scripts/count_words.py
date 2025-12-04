@@ -77,7 +77,7 @@ for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
         logger.info(f"Skipping duplicate file '{email.filename}'...")
         continue
 
-    for line in email.actual_text(True).split('\n'):
+    for line in email.actual_text(use_clean_text=True, skip_header=True).split('\n'):
         if line.startswith('htt'):
             continue
 
