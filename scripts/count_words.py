@@ -5,6 +5,7 @@ from collections import defaultdict
 
 from dotenv import load_dotenv
 load_dotenv()
+from inflection import singularize
 from rich.text import Text
 
 from epstein_files.documents.email_header import EmailHeader
@@ -16,7 +17,7 @@ from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
 from epstein_files.util.rich import console, print_centered, print_page_title, print_panel, write_html
 
 BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#/_`,.;:'‘’\"„“”?\d\\]")
-SKIP_WORDS_REGEX = re.compile(r"^(http|addresswww)|jee[vy]acation|html?$")
+SKIP_WORDS_REGEX = re.compile(r"^(http|addresswww)|jee[vy]acation|(gif|html?|jpe?g)$")
 MAX_WORD_LEN = 45
 MIN_COUNT_CUTOFF = 2
 
@@ -31,11 +32,16 @@ for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
         logger.info(f"Skipping duplicate file '{email.filename}'...")
         continue
 
-    for word in email.actual_text(True).split():
-        word = BAD_CHARS_REGEX.sub('', EmailHeader.cleanup_str(word).lower()).strip()
+    for line in email.actual_text(True).split('\n'):
+        if line.startswith('http'):
+            continue
 
-        if word and (MAX_WORD_LEN > len(word) > 1) and word not in COMMON_WORDS and not SKIP_WORDS_REGEX.search(word):
-            words[word] += 1
+        for word in line.split():
+            word = BAD_CHARS_REGEX.sub('', EmailHeader.cleanup_str(word).lower()).strip()
+            word = singularize(word)
+
+            if word and (MAX_WORD_LEN > len(word) > 1) and word not in COMMON_WORDS and not SKIP_WORDS_REGEX.search(word):
+                words[word] += 1
 
 words_to_print = [kv for kv in sort_dict(words) if kv[1] > MIN_COUNT_CUTOFF]
 
@@ -43,7 +49,7 @@ for word, count in words_to_print:
     console.print(Text('').append(f"{word:>{MAX_WORD_LEN}}", style='wheat4').append(': ').append(f"{count:,}"))
 
 console.line(3)
-console.print(f"Printed {len(words_to_print):,} of {len(words):,} words.\n")
+console.print(f"Showing {len(words_to_print):,} words appearing at least {MIN_COUNT_CUTOFF} time (out of {len(words):,} words).\n")
 print_panel(f"{len(COMMON_WORDS_LIST):,} Excluded Words")
 console.print(', '.join(COMMON_WORDS_LIST), highlight=False)
 write_html(WORD_COUNT_HTML_PATH)
