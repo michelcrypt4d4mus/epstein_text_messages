@@ -6,7 +6,7 @@ load_dotenv()
 from epstein_files.documents.document import SearchResult
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.constant.common_words import COMMON_WORDS_LIST
-from epstein_files.util.data import Timer, sort_dict
+from epstein_files.util.data import Timer
 from epstein_files.util.env import args, logger, specified_names
 from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
 from epstein_files.util.rich import (console, highlighter, print_centered, print_page_title, print_panel,
@@ -27,8 +27,6 @@ EMAIL_IDS_TO_SKIP = [
 
 timer = Timer()
 print_page_title(expand=False)
-print_social_media_links()
-console.line(2)
 epstein_files = EpsteinFiles.get_files()
 print_starred_header(f"Most Common Words in the {len(epstein_files.emails):,} Emails")
 print_centered(f"(excluding {len(COMMON_WORDS_LIST)} particularly common words at bottom)", style='dim')

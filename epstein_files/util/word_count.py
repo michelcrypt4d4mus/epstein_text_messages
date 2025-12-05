@@ -13,7 +13,7 @@ from epstein_files.documents.email_header import EmailHeader
 from epstein_files.util.constant.common_words import COMMON_WORDS, COMMON_WORDS_LIST, UNSINGULARIZABLE_WORDS
 from epstein_files.util.data import ALL_NAMES, Timer, flatten, sort_dict
 from epstein_files.util.env import args, logger
-from epstein_files.util.rich import (console, highlighter, print_centered, print_page_title, print_panel,
+from epstein_files.util.rich import (console, highlighter, print_centered, print_panel,
      print_social_media_links, print_starred_header, write_html)
 
 FIRST_AND_LAST_NAMES = flatten([n.split() for n in ALL_NAMES])
