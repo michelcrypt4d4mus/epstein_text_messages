@@ -113,7 +113,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='bitcoin',
         style='orange1 bold',
-        pattern=r'Balaji|bitcoin|block ?chain( capital)?|Brock|coins|cr[iy]?pto(currency)?|e-currency|(Howard\s+)?Lutnic?k|(jeffrey\s+)?wernick|Libra|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)',
+        pattern=r'Balaji|bitcoin|block ?chain( capital)?|Brock|coins|cr[iy]?pto(currency)?|e-currency|(Gavin )?Andressen|(Howard\s+)?Lutnic?k|(jeffrey\s+)?wernick|Libra|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)',
         emailers = {
             JEREMY_RUBIN: 'developer/researcher',
             SCARAMUCCI: 'Skybridge Capital, FTX investor',
@@ -215,7 +215,7 @@ HIGHLIGHTED_GROUPS = [
         style='deep_pink2',
         pattern=r'Harvard',
         emailers = {
-            LARRY_SUMMERS: 'board member of Digital Currency Group (DCG), Obama economic advisor',
+            LARRY_SUMMERS: 'Obama economic advisor, board of Digital Currency Group (DCG)',
             'Leah Reis-Dennis': 'producer for Poetry in America',
             LISA_NEW: 'poetry',
             'Lisa Randall': 'theoretical physicist',

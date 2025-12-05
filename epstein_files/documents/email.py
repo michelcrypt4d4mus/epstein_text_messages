@@ -244,7 +244,7 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
     'Peter Aldhous',                         # Lawrence Krauss CC
     ROBERT_D_CRITTON,                        # Random CC
     'Sam Harris',                            # Lawrence Krauss CC
-    SAMUEL_LEFF,                                # Random CC
+    SAMUEL_LEFF,                             # Random CC
     'Sean T Lehane',                         # Random CC
     'Stephen Rubin',                         # Random CC
     'Tim Kane',                              # Random CC
@@ -261,19 +261,10 @@ class Email(CommunicationDocument):
     is_junk_mail: bool = False
     recipients: list[str] = field(default_factory=list)
     sent_from_device: str | None = None
-
-    signature_substitution_counts: ClassVar[dict] = defaultdict(int)  # Count EMAIL_SIGNATURES substitutions when printing
+    signature_substitution_count: dict[str, int] = field(default_factory=lambda: defaultdict(int))
 
     def __post_init__(self):
         super().__post_init__()
-        self._repair()
-        self._extract_header()
-
-        if self.file_id in KNOWN_EMAIL_AUTHORS:
-            self.author = KNOWN_EMAIL_AUTHORS[self.file_id]
-        elif self.header.author:
-            authors = self._get_names(self.header.author)
-            self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
 
         if self.file_id in KNOWN_EMAIL_RECIPIENTS:
             recipient = KNOWN_EMAIL_RECIPIENTS[self.file_id]
@@ -284,16 +275,20 @@ class Email(CommunicationDocument):
 
         logger.debug(f"Found recipients: {self.recipients}")
         self.recipients = list(set([r for r in self.recipients if r != self.author]))  # Remove self CCs
-        self.timestamp = self._extract_sent_at()
-        self.author_str = self.author or UNKNOWN
-        self.author_style = get_style_for_name(self.author_str)
-        self.author_txt = Text(self.author_str, style=self.author_style)
         self.text = self._cleaned_up_text()
         self.actual_text = self._actual_text()
         self.epsteinify_link_markup = epsteinify_doc_link_markup(self.file_path.stem, self.author_style)
         self.sent_from_device = self._sent_from_device()
         self.is_duplicate = self.file_id in SUPPRESS_OUTPUT_FOR_EMAIL_IDS
         self.is_junk_mail = self.author in JUNK_EMAILERS
+
+    def idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES, text: str | None = None) -> int | None:
+        """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line."""
+        text = text or self.text
+
+        for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text)):
+            if i >= n:
+                return match.end() - 1
 
     def _actual_text(self) -> str:
         """The text that comes before likely quoted replies and forwards etc."""
@@ -302,7 +297,6 @@ class Email(CommunicationDocument):
 
         text = '\n'.join(self.text.split('\n')[self.header.num_header_rows:])
         reply_text_match = REPLY_TEXT_REGEX.search(text)
-
         # logger.info(f"Raw text:\n" + self.top_lines(20) + '\n\n')
         # logger.info(f"With header removed:\n" + text[0:500] + '\n\n')
 
@@ -327,14 +321,6 @@ class Email(CommunicationDocument):
             break
 
         return text.strip()
-
-    def idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES, text: str | None = None) -> int | None:
-        """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line."""
-        text = text or self.text
-
-        for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text)):
-            if i >= n:
-                return match.end() - 1
 
     def _border_style(self) -> str:
         """Color emails from epstein to others with the color for the first recipient."""
@@ -361,11 +347,11 @@ class Email(CommunicationDocument):
         for name, signature_regex in EMAIL_SIGNATURES.items():
             signature_replacement = f'<...snipped {name.lower()} legal signature...>'
             text, num_replaced = signature_regex.subn(signature_replacement, text)
-            type(self).signature_substitution_counts[name] += num_replaced
+            self.signature_substitution_count[name] += num_replaced
 
         return collapse_newlines(text).strip()
 
-    def _extract_sent_at(self) -> datetime:
+    def _extract_timestamp(self) -> datetime:
         if self.file_id in KNOWN_TIMESTAMPS:
             return KNOWN_TIMESTAMPS[self.file_id]
 
@@ -398,6 +384,19 @@ class Email(CommunicationDocument):
                 return timestamp
 
         raise RuntimeError(f"No timestamp found in '{self.file_path.name}' top lines:\n{searchable_text}")
+
+    def _extract_author(self) -> None:
+        self._extract_header()
+
+        if self.file_id in KNOWN_EMAIL_AUTHORS:
+            self.author = KNOWN_EMAIL_AUTHORS[self.file_id]
+        elif self.header.author:
+            authors = self._get_names(self.header.author)
+            self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
+
+        self.author_str = self.author or UNKNOWN
+        self.author_style = get_style_for_name(self.author_str)
+        self.author_txt = Text(self.author_str, style=self.author_style)
 
     def _extract_header(self) -> None:
         """Extract an EmailHeader object from the OCR text."""
