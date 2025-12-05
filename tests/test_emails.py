@@ -3,7 +3,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.data import dict_sets_to_lists
 
 EMAIL_AUTHOR_COUNTS = {
-    None: 109,
+    None: 108,
     "Abi Schwinck": 1,
     AL_SECKEL: 7,
     "Alain Forget": 3,
@@ -81,7 +81,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Jean Huguen": 1,
     JEAN_LUC_BRUNEL: 3,
     JEFF_FULLER: 1,
-    "Jeffrey Epstein": 707,
+    "Jeffrey Epstein": 708,
     "Jennifer Jacquet": 1,
     "Jeremy Rubin": 3,
     JES_STALEY: 2,
