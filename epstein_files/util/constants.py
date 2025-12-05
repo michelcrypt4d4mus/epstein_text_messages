@@ -406,7 +406,6 @@ KNOWN_EMAIL_AUTHORS = {
     '029020': RENATA_BOLOTOVA,         # Signature
     '029605': RENATA_BOLOTOVA,         # Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")
     '029606': RENATA_BOLOTOVA,         # Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")
-    '029582': RENATA_BOLOTOVA,         # Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")
     '029604': RENATA_BOLOTOVA,         # Continued in 239606 etc
     '033169': ROBERT_TRIVERS,          # Refs paper
     '033584': ROBERT_TRIVERS,          # Refs paper
@@ -521,6 +520,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '030096': PETER_MANDELSON,
     '032951': RAAFAT_ALSABBAGH,
     '029581': RENATA_BOLOTOVA,        # Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")
+    '029582': RENATA_BOLOTOVA,         # Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")
     '030384': [RICHARD_KAHN, 'Alan Dlugash'],
     '019334': STEVE_BANNON,
     '021106': STEVE_BANNON,     # Reply
