@@ -2,10 +2,10 @@
 # Search the document text AFTER all OCR fixes have been applied.
 import shutil
 from os import environ
+environ.setdefault('PICKLED', 'true')
 
 from dotenv import load_dotenv
 load_dotenv()
-environ.setdefault('PICKLED', 'true')
 
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.file_helper import EXTRACTED_EMAILS_DIR
