@@ -44,8 +44,6 @@ FILENAME_MATCH_STYLES = [
 @dataclass
 class Document:
     file_path: Path
-    epsteinify_doc_url: str = field(init=False)
-    epstein_web_doc_link_markup: str = field(init=False)
     file_id: str = field(init=False)
     filename: str = field(init=False)
     length: int = field(init=False)
@@ -67,9 +65,6 @@ class Document:
 
         self.text = self.text or self._load_file()
         self._set_computed_fields()
-        self.epsteinify_doc_url = epsteinify_doc_url(self.url_slug)
-        self.epstein_web_doc_url = epstein_web_doc_url(self.url_slug)
-        self.epstein_web_doc_link_markup = link_markup(self.epstein_web_doc_url, self.file_path.stem)
 
     def description(self) -> Text:
         doc_type = str(type(self).__name__)
@@ -80,10 +75,12 @@ class Document:
         return txt.append(')') if doc_type == DOCUMENT_CLASS else txt
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return link_text_obj(self.epsteinify_doc_url, link_txt or self.file_path.stem, style)
+        """Create a Text obj link to this document on epsteinify.com."""
+        return link_text_obj(epsteinify_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
 
     def epstein_web_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return link_text_obj(self.epstein_web_doc_url, link_txt or self.file_path.stem, style)
+        """Create a Text obj link to this document on EpsteinWeb."""
+        return link_text_obj(epstein_web_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
 
     def highlighted_preview_text(self) -> Text:
         try:
