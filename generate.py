@@ -89,6 +89,10 @@ if not skip_texts:
     epstein_files.print_imessage_summary()
     timer.print_at_checkpoint(f'Printed {len(epstein_files.imessage_logs):,} text message logs')
 
+    if args.only_texts:
+        logger.warning(f"Existing because --only-texts...")
+        exit()
+
 
 # Emails section
 print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')

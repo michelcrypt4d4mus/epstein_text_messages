@@ -17,6 +17,7 @@ parser.add_argument('--all-email-tables', '-at', action='store_true', help='all 
 parser.add_argument('--colors-only', '-c', action='store_true', help='print header with color key table and exit')
 parser.add_argument('--email', '-e', action='append', dest='emails', help='specify the emailers to output (implies --no-texts)')
 parser.add_argument('--no-texts', '-nt', action='store_true', help='skip text message output')
+parser.add_argument('--only-texts', '-ot', action='store_true', help='print text messages then quit')
 parser.add_argument('--pickled', '-p', action='store_true', help='use pickled EpsteinFiles object')
 parser.add_argument('--overwrite-pickle', '-op', action='store_true', help='generate new pickled EpsteinFiles object')
 parser.add_argument('--sort-alphabetical', '-alpha', action='store_true', help='sort emailers alphabetically in counts table')

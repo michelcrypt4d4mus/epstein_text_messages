@@ -13,21 +13,19 @@ from epstein_files.util.constants import *
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import TEXT_LINK, highlighter, logger
 
-BAD_TEXTER_REGEX = re.compile(r'^([-+_1•F]+|[4Ide])$')
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
-REDACTED_AUTHOR_REGEX = re.compile(r"^[_1]+$")
+REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
 MSG_DATE_FORMAT = r"%m/%d/%y %I:%M:%S %p"
 
 UNKNOWN_TEXTERS = [
     '+16463880059',
     '+13108737937',
     '+13108802851',
-    'e:',
-    '+',
 ]
 
 TEXTER_MAPPING = {
+    'e:': JEFFREY_EPSTEIN,
     'e:jeeitunes@gmail.com': JEFFREY_EPSTEIN,
     '+19174393646': SCARAMUCCI,
     '+13109906526': STEVE_BANNON,
@@ -52,7 +50,8 @@ class TextMessage:
 
         if self.author is None:
             self.author_str = UNKNOWN
-        elif self.author in UNKNOWN_TEXTERS or BAD_TEXTER_REGEX.match(self.author):
+        elif self.author in UNKNOWN_TEXTERS:
+            logger.warning(f"Bad text from '{self.author}': \"{self.text}\"")
             self.author_str = self.author
             self.author = None
         elif self.author in LAST_NAMES_ONLY:
