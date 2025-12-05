@@ -42,10 +42,8 @@ LAST_NAMES_ONLY = [
 class TextMessage:
     author: str | None
     author_str: str = field(init=False)
-    author_style: str = field(init=False)
-    author_txt: Text = field(init=False)
     id_confirmed: bool = False
-    text: Text
+    text: str
     timestamp_str: str
 
     def __post_init__(self):
@@ -53,6 +51,9 @@ class TextMessage:
 
         if self.author is None:
             self.author_str = UNKNOWN
+        elif self.author in UNKNOWN_TEXTERS or BAD_TEXTER_REGEX.match(self.author):
+            self.author_str = self.author
+            self.author = None
         elif self.author in LAST_NAMES_ONLY:
             self.author_str = self.author.split()[-1]
         elif not self.id_confirmed:
@@ -60,16 +61,38 @@ class TextMessage:
         else:
             self.author_str = self.author
 
-        if PHONE_NUMBER_REGEX.match(self.author_str):
-            self.author_style = PHONE_NUMBER_STYLE
-        else:
-            self.author_style = get_style_for_name(self.author)
+    def _message(self) -> Text:
+        msg = self.text
+        lines = self.text.split('\n')
 
-        self.author_txt = Text(self.author_str, style=self.author_style)
+        # Fix multiline links
+        if self.text.startswith('http'):
+            if len(lines) > 1 and not lines[0].endswith('html'):
+                if len(lines) > 2 and lines[1].endswith('-'):
+                    msg = msg.replace('\n', '', 2)
+                else:
+                    msg = msg.replace('\n', '', 1)
+
+            lines = msg.split('\n')
+            link_text = lines.pop()
+            msg_txt = Text('').append(Text.from_markup(f"[link={link_text}]{link_text}[/link]", style=TEXT_LINK))
+
+            if len(lines) > 0:
+                msg_txt.append('\n' + ' '.join(lines))
+        else:
+            msg_txt = highlighter(' '.join(lines))  # remove newlines
+
+        return msg_txt
 
     def __rich__(self) -> Text:
+        if PHONE_NUMBER_REGEX.match(self.author_str):
+            author_style = PHONE_NUMBER_STYLE
+        else:
+            author_style = get_style_for_name(self.author)
+
+        author_txt = Text(self.author_str, style=author_style)
         timestamp_txt = Text(f"[{self.timestamp_str}] ", style='gray30')
-        return Text('').append(timestamp_txt).append(self.author_txt).append(': ', style='dim').append(self.text)
+        return Text('').append(timestamp_txt).append(author_txt).append(': ', style='dim').append(self._message())
 
 
 @dataclass
@@ -90,45 +113,16 @@ class MessengerLog(CommunicationDocument):
             self.hint_txt = None
 
     def messages(self) -> list[TextMessage]:
-        if len(self._messages) > 0:
-            return self._messages
-
-        for match in MSG_REGEX.finditer(self.text):
-            sender: str | None = match.group(1).strip()
-            msg = match.group(4).strip()
-            msg_lines = msg.split('\n')
-
-            # If the Sender: is redacted we need to fill it in from our configuration
-            if not sender:
-                sender = self.author
-            elif sender in UNKNOWN_TEXTERS or BAD_TEXTER_REGEX.match(sender):
-                sender = None
-
-            # Fix multiline links
-            if msg.startswith('http'):
-                if len(msg_lines) > 1 and not msg_lines[0].endswith('html'):
-                    if len(msg_lines) > 2 and msg_lines[1].endswith('-'):
-                        msg = msg.replace('\n', '', 2)
-                    else:
-                        msg = msg.replace('\n', '', 1)
-
-                msg_lines = msg.split('\n')
-                link_text = msg_lines.pop()
-                msg_txt = Text('').append(Text.from_markup(f"[link={link_text}]{link_text}[/link]", style=TEXT_LINK))
-
-                if len(msg_lines) > 0:
-                    msg_txt.append('\n' + ' '.join(msg_lines))
-            else:
-                msg_txt = highlighter(msg.replace('\n', ' '))  # remove newlines
-
-            text_message = TextMessage(
-                author=sender,
-                id_confirmed=self.file_id in KNOWN_IMESSAGE_FILE_IDS,
-                text=msg_txt,
-                timestamp_str=match.group(2).strip(),
-            )
-
-            self._messages.append(text_message)
+        if len(self._messages) == 0:
+            self._messages = [
+                TextMessage(
+                    author=match.group(1).strip() or self.author,  # If the Sender: is redacted that means it's from self.author
+                    id_confirmed=self.file_id in KNOWN_IMESSAGE_FILE_IDS,
+                    text=match.group(4).strip(),
+                    timestamp_str=match.group(2).strip(),
+                )
+                for match in MSG_REGEX.finditer(self.text)
+            ]
 
         return self._messages
 
