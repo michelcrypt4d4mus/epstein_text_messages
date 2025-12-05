@@ -149,15 +149,15 @@ for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
             if word in FLAGGED_WORDS:
                 logger.warning(f"{email.filename}: Found '{word}' in '{line}'")
 
-txts_to_print = [
+word_txts = [
     highlighter(Text('').append(f"{word}", style='wheat4').append(': ').append(f"{count:,}"))
     for word, count in [kv for kv in sort_dict(words) if kv[1] >= MIN_COUNT_CUTOFF]
     if word not in BAD_WORDS
 ]
 
-cols = Columns(txts_to_print, column_first=False, equal=False, expand=True)
+cols = Columns(word_txts, column_first=False, equal=False, expand=True)
 console.print(Padding(cols, PADDING))
-console.print(f"Showing {len(txts_to_print):,} words appearing at least {MIN_COUNT_CUTOFF} times (out of {len(words):,} words).")
+console.print(f"Showing {len(word_txts):,} words appearing at least {MIN_COUNT_CUTOFF} times (out of {len(words):,} words).")
 console.line(3)
 print_panel(f"{len(COMMON_WORDS_LIST):,} Excluded Words")
 console.print(', '.join(COMMON_WORDS_LIST), highlight=False)
