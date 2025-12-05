@@ -362,6 +362,38 @@ class Email(CommunicationDocument):
 
         return collapse_newlines(text).strip()
 
+    def _extract_author(self) -> None:
+        self._extract_header()
+
+        if self.file_id in KNOWN_EMAIL_AUTHORS:
+            self.author = KNOWN_EMAIL_AUTHORS[self.file_id]
+        elif self.header.author:
+            authors = self._get_names(self.header.author)
+            self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
+
+        self.author_str = self.author or UNKNOWN
+        self.author_style = get_style_for_name(self.author_str)
+        self.author_txt = Text(self.author_str, style=self.author_style)
+
+    def _extract_header(self) -> None:
+        """Extract an EmailHeader object from the OCR text."""
+        header_match = EMAIL_SIMPLE_HEADER_REGEX.search(self.text)
+
+        if header_match:
+            self.header = EmailHeader.from_header_lines(header_match.group(0))
+
+            if self.header.is_empty():
+                self.header.repair_empty_header(self.lines)
+        else:
+            msg = f"No header match found in '{self.filename}'! Top lines:\n\n{self.top_lines()}"
+
+            if self.file_id in KNOWN_EMAIL_AUTHORS or self.file_id in KNOWN_EMAIL_RECIPIENTS:
+                logger.info(msg)
+            else:
+                logger.warning(msg)
+
+            self.header = EmailHeader(field_names=[])
+
     def _extract_timestamp(self) -> datetime:
         if self.file_id in KNOWN_TIMESTAMPS:
             return KNOWN_TIMESTAMPS[self.file_id]
@@ -394,38 +426,6 @@ class Email(CommunicationDocument):
                 return timestamp
 
         raise RuntimeError(f"No timestamp found in '{self.file_path.name}' top lines:\n{searchable_text}")
-
-    def _extract_author(self) -> None:
-        self._extract_header()
-
-        if self.file_id in KNOWN_EMAIL_AUTHORS:
-            self.author = KNOWN_EMAIL_AUTHORS[self.file_id]
-        elif self.header.author:
-            authors = self._get_names(self.header.author)
-            self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
-
-        self.author_str = self.author or UNKNOWN
-        self.author_style = get_style_for_name(self.author_str)
-        self.author_txt = Text(self.author_str, style=self.author_style)
-
-    def _extract_header(self) -> None:
-        """Extract an EmailHeader object from the OCR text."""
-        header_match = EMAIL_SIMPLE_HEADER_REGEX.search(self.text)
-
-        if header_match:
-            self.header = EmailHeader.from_header_lines(header_match.group(0))
-
-            if self.header.is_empty():
-                self.header.repair_empty_header(self.lines)
-        else:
-            msg = f"No header match found in '{self.filename}'! Top lines:\n\n{self.top_lines()}"
-
-            if self.file_id in KNOWN_EMAIL_AUTHORS or self.file_id in KNOWN_EMAIL_RECIPIENTS:
-                logger.info(msg)
-            else:
-                logger.warning(msg)
-
-            self.header = EmailHeader(field_names=[])
 
     def _get_names(self, emailer_str: str) -> list[str]:
         emailer_str = EmailHeader.cleanup_str(emailer_str)
