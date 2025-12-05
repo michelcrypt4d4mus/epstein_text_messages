@@ -17,7 +17,7 @@ from epstein_files.documents.document import Document, SearchResult
 from epstein_files.documents.email import DETECT_EMAIL_REGEX, JUNK_EMAILERS, KRASSNER_RECIPIENTS, USELESS_EMAILERS, Email
 from epstein_files.documents.email_header import AUTHOR
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
-from epstein_files.util.constant.strings import AUTHOR
+from epstein_files.util.constant.strings import AUTHOR, TEXT_MESSAGE
 from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url,
      search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
@@ -162,12 +162,12 @@ class EpsteinFiles:
     def email_unknown_recipient_file_ids(self) -> list[str]:
         return sorted(list(self._email_unknown_recipient_file_ids))
 
-    def imessage_sender_counts(self) -> dict[str, int]:
-        sender_counts: dict[str, int] = defaultdict(int)
+    def imessage_sender_counts(self) -> dict[str | None, int]:
+        sender_counts: dict[str | None, int] = defaultdict(int)
 
         for message_log in self.imessage_logs:
             for message in message_log.messages():
-                sender_counts[message.author or UNKNOWN] += 1
+                sender_counts[message.author] += 1
 
         return sender_counts
 
@@ -258,14 +258,24 @@ class EpsteinFiles:
         """Print summary table and stats for text messages."""
         counts_table = Table(title="Text Message Counts By Author", header_style="bold")
         counts_table.add_column(AUTHOR.title(), justify='left', style="steel_blue bold", width=30)
-        counts_table.add_column("Message Count", justify='center')
+        counts_table.add_column("Count", justify='center')
+        counts_table.add_column('First Sent At', justify='center', highlight=True, width=21)
+        counts_table.add_column('Last Sent At', justify='center', style='wheat4', width=21)
 
-        for k, v in sort_dict(self.imessage_sender_counts()):
-            counts_table.add_row(Text(k, get_style_for_name(k)), str(v))
+        for name, count in sort_dict(self.imessage_sender_counts()):
+            if name == JEFFREY_EPSTEIN:
+                first_at = self.imessage_logs[0].first_message_at(name)
+                last_at = self.imessage_logs[-1].first_message_at(name)
+            else:
+                logs = [log for log in self.imessage_logs if log.author == name]
+                first_at = logs[0].first_message_at(name)
+                last_at = logs[-1].first_message_at(name)
+
+            counts_table.add_row(Text(name or UNKNOWN, get_style_for_name(name)), str(count), first_at, last_at)
 
         console.print(counts_table)
         text_summary_msg = f"\nDeanonymized {self.identified_imessage_log_count} of "
-        text_summary_msg += f"{len(self.imessage_logs)} text msg logs found in {len(self.all_files)} files."
+        text_summary_msg += f"{len(self.imessage_logs)} {TEXT_MESSAGE} logs found in {len(self.all_files)} files."
         console.print(text_summary_msg)
         imessage_msg_count = sum([len(log.messages()) for log in self.imessage_logs])
         console.print(f"Found {imessage_msg_count} total text messages in {len(self.imessage_logs)} conversations.")

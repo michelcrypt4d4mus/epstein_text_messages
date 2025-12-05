@@ -61,6 +61,9 @@ class TextMessage:
         else:
             self.author_str = self.author
 
+    def timestamp(self) -> datetime:
+        return datetime.strptime(self.timestamp_str, MSG_DATE_FORMAT)
+
     def _message(self) -> Text:
         msg = self.text
         lines = self.text.split('\n')
@@ -112,6 +115,15 @@ class MessengerLog(CommunicationDocument):
         else:
             self.hint_txt = None
 
+    def first_message_at(self, name: str | None) -> str:
+        return self.messages_by(name)[0].timestamp().isoformat().replace('T', ' ')
+
+    def last_message_at(self, name: str | None) -> str:
+        return self.messages_by(name)[-1].timestamp().isoformat().replace('T', ' ')
+
+    def messages_by(self, name: str | None) -> list[TextMessage]:
+        return [m for m in self.messages() if m.author == name]
+
     def messages(self) -> list[TextMessage]:
         if len(self._messages) == 0:
             self._messages = [
@@ -129,9 +141,8 @@ class MessengerLog(CommunicationDocument):
 
     def _extract_author(self) -> None:
         self.author = KNOWN_IMESSAGE_FILE_IDS.get(self.file_id, GUESSED_IMESSAGE_FILE_IDS.get(self.file_id))
-        author_str = self.author or UNKNOWN
-        self.author_str = author_str.split(' ')[-1] if author_str in [STEVE_BANNON] else author_str
-        self.author_style = get_style_for_name(self.author_or_unknown()) + ' bold'
+        self.author_str = self.author or UNKNOWN
+        self.author_style = get_style_for_name(self.author) + ' bold'
 
         if self.file_id in GUESSED_IMESSAGE_FILE_IDS:
             self.author_str += ' (?)'

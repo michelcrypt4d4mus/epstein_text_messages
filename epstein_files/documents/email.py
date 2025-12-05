@@ -339,7 +339,7 @@ class Email(CommunicationDocument):
             if len(self.recipients) == 0 or self.recipients == [None]:
                 style = self.author_style
             else:
-                style = get_style_for_name(self.recipients[0] or UNKNOWN)
+                style = get_style_for_name(self.recipients[0])
         else:
             style = self.author_style
 
