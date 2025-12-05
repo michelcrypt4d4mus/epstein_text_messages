@@ -401,7 +401,7 @@ HIGHLIGHTED_GROUPS = [
             NEAL_KASSELL: None,
             PETER_ATTIA: 'longevity medicine',
             ROBERT_TRIVERS: 'evolutionary biology',
-            ROGER_SCHANK: None,
+            ROGER_SCHANK: 'Teachers College, Columbia University',
             STEVEN_PFEIFFER: None,
         }
     ),
