@@ -14,8 +14,7 @@ from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, EPSTEINIFY, EPS
 from epstein_files.util.data import collapse_newlines, escape_single_quotes, patternize
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, file_size_str, is_local_extract_file
-from epstein_files.util.rich import (console, highlight_regex_match, highlighter,
-     logger, link_text_obj, link_markup)
+from epstein_files.util.rich import console, highlighter, logger, link_text_obj, link_markup
 
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
@@ -45,9 +44,6 @@ FILENAME_MATCH_STYLES = [
 @dataclass
 class Document:
     file_path: Path
-    epsteinify_doc_url: str = field(init=False)
-    epsteinify_link_markup: str = field(init=False)
-    epstein_web_doc_link_markup: str = field(init=False)
     file_id: str = field(init=False)
     filename: str = field(init=False)
     length: int = field(init=False)
@@ -69,10 +65,6 @@ class Document:
 
         self.text = self.text or self._load_file()
         self._set_computed_fields()
-        self.epsteinify_doc_url = epsteinify_doc_url(self.url_slug)
-        self.epsteinify_link_markup = link_markup(self.epsteinify_doc_url, self.file_path.stem)
-        self.epstein_web_doc_url = epstein_web_doc_url(self.url_slug)
-        self.epstein_web_doc_link_markup = link_markup(self.epstein_web_doc_url, self.file_path.stem)
 
     def description(self) -> Text:
         doc_type = str(type(self).__name__)
@@ -83,10 +75,12 @@ class Document:
         return txt.append(')') if doc_type == DOCUMENT_CLASS else txt
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return link_text_obj(self.epsteinify_doc_url, link_txt or self.file_path.stem, style)
+        """Create a Text obj link to this document on epsteinify.com."""
+        return link_text_obj(epsteinify_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
 
     def epstein_web_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return link_text_obj(self.epstein_web_doc_url, link_txt or self.file_path.stem, style)
+        """Create a Text obj link to this document on EpsteinWeb."""
+        return link_text_obj(epstein_web_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
 
     def highlighted_preview_text(self) -> Text:
         try:
@@ -109,7 +103,7 @@ class Document:
         type(self).file_matching_idx += 1
 
         return [
-            Text('').append(self.file_path.name, style=file_style).append(':').append(highlight_regex_match(line, pattern))
+            Text('').append(self.file_path.name, style=file_style).append(':').append(line)
             for line in matched_lines
         ]
 
