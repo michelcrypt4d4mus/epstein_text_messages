@@ -257,8 +257,9 @@ HIGHLIGHTED_GROUPS = [
         emailers = {
             EDWARD_EPSTEIN: 'no relation to Jeffrey',
             'James Hill': 'ABC',
+            JOHN_BROCKMAN: 'literary agent and author specializing in scientific literature',
             LANDON_THOMAS: 'New York Times',
-            MICHAEL_WOLFF: None,
+            MICHAEL_WOLFF: "Author or 'Fire and Fury: Inside the Trump White House'",
             PAUL_KRASSNER: '60s guy',
             'Tim Zagat': 'Zagat restaurant guide CEO',
         }
@@ -396,6 +397,7 @@ HIGHLIGHTED_GROUPS = [
             JOSCHA_BACH: 'cognitive science / AI research',
             LAWRENCE_KRAUSS: 'theoretical physicist',
             LINDA_STONE: 'ex-Microsoft, MIT Media Lab',
+            MARK_TRAMO: 'professor of neurology at UCLA',
             NEAL_KASSELL: None,
             PETER_ATTIA: 'longevity medicine',
             ROBERT_TRIVERS: 'evolutionary biology',

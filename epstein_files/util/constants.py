@@ -260,7 +260,7 @@ EMAILERS = [
     'lorraine@mc2mm.com',
     LINDA_STONE,
     'Lyn Fontanilla',
-    'Mark Tramo',
+    MARK_TRAMO,
     MELANIE_WALKER,
     MERWIN_DELA_CRUZ,
     'Michael Simmons',   # Not the only "To:"
