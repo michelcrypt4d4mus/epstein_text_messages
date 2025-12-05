@@ -341,6 +341,7 @@ HIGHLIGHTED_GROUPS = [
             FAITH_KATES: 'Next Models co-founder',
             'Gianni Serazzi': 'fashion consultant?',
             JEAN_LUC_BRUNEL: 'MC2 Model Management founder, died by suicide in French jail',
+            JEFF_FULLER: 'president of MC2 Model Management USA',
             MANUELA_MARTINEZ: 'Mega Partners (Brazilian agency)',
             MARIANA_IDZKOWSKA: None,
             'Michael Sanka': 'MC2 Model Management (?)',
