@@ -5,11 +5,8 @@ from subprocess import run
 
 from dotenv import load_dotenv
 load_dotenv()
-from rich.console import Console
 from rich.text import Text
 
-from epstein_files.documents.document import Document
-from epstein_files.documents.email import Email, REPLY_LINE_PATTERN, REPLY_TEXT_REGEX
 from epstein_files.util.constants import REPLY_REGEX
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_PREFIX
 from epstein_files.util.env import deep_debug, is_debug
@@ -42,8 +39,8 @@ for _line in lines:
         continue
 
     file_path, line = _line.split(':', 1)
-    file_path = Path(file_path)
     reply_match = REPLY_REGEX.search(line)
+    file_path = Path(file_path)
 
     if is_debug:
         console.print(f"Checking line: '{line}'", style='dim')
