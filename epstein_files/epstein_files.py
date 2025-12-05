@@ -261,6 +261,7 @@ class EpsteinFiles:
         counts_table.add_column("Count", justify='center')
         counts_table.add_column('First Sent At', justify='center', highlight=True, width=21)
         counts_table.add_column('Last Sent At', justify='center', style='wheat4', width=21)
+        counts_table.add_column('Days', justify='right', style='dark_cyan')
 
         for name, count in sort_dict(self.imessage_sender_counts()):
             if name == JEFFREY_EPSTEIN:
@@ -271,7 +272,14 @@ class EpsteinFiles:
                 first_at = logs[0].first_message_at(name)
                 last_at = logs[-1].first_message_at(name)
 
-            counts_table.add_row(Text(name or UNKNOWN, get_style_for_name(name)), str(count), first_at, last_at)
+            counts_table.add_row(
+                Text(name or UNKNOWN,
+                    get_style_for_name(name)),
+                    str(count),
+                    first_at.isoformat().replace('T', ' '),
+                    last_at.isoformat().replace('T', ' '),
+                    str((last_at - first_at).days + 1)
+                )
 
         console.print(counts_table)
         text_summary_msg = f"\nDeanonymized {self.identified_imessage_log_count} of "
