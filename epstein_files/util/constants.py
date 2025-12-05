@@ -340,6 +340,7 @@ KNOWN_EMAIL_AUTHORS = {
     '028675': JEFFREY_EPSTEIN,       # Just bad OCR
     '025041': JEFFREY_EPSTEIN,       # Just bad OCR
     '032214': JEFFREY_EPSTEIN,       # Just bad OCR
+    '029582': JEFFREY_EPSTEIN,
     '031791': JESSICA_CADWELL,
     '028849': JOI_ITO,               # Conversation with Joi Ito
     '028851': JOI_ITO,
@@ -460,7 +461,6 @@ KNOWN_EMAIL_RECIPIENTS = {
     '031489': JEFFREY_EPSTEIN,        # Bad OCR
     '032209': JEFFREY_EPSTEIN,        # More of a text convo?
     '032210': JEFFREY_EPSTEIN,        # More of a text convo?
-    '029582': JEFFREY_EPSTEIN,
     '029324': [JEFFREY_EPSTEIN, 'Jojo Fontanilla', 'Lyn Fontanilla'],
     '033575': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN],
     '023067': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN, TONJA_HADDAD_COLEMAN],      # Bad OCR
