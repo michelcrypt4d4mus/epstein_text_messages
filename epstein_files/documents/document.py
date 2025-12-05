@@ -14,8 +14,7 @@ from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, EPSTEINIFY, EPS
 from epstein_files.util.data import collapse_newlines, escape_single_quotes, patternize
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, file_size_str, is_local_extract_file
-from epstein_files.util.rich import (console, highlight_regex_match, highlighter,
-     logger, link_text_obj, link_markup)
+from epstein_files.util.rich import console, highlighter, logger, link_text_obj, link_markup
 
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
@@ -109,7 +108,7 @@ class Document:
         type(self).file_matching_idx += 1
 
         return [
-            Text('').append(self.file_path.name, style=file_style).append(':').append(highlight_regex_match(line, pattern))
+            Text('').append(self.file_path.name, style=file_style).append(':').append(line)
             for line in matched_lines
         ]
 
