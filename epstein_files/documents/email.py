@@ -277,7 +277,6 @@ class Email(CommunicationDocument):
         self.recipients = list(set([r for r in self.recipients if r != self.author]))  # Remove self CCs
         self.text = self._cleaned_up_text()
         self.actual_text = self._actual_text()
-        self.epsteinify_link_markup = epsteinify_doc_link_markup(self.file_path.stem, self.author_style)
         self.sent_from_device = self._sent_from_device()
         self.is_duplicate = self.file_id in SUPPRESS_OUTPUT_FOR_EMAIL_IDS
         self.is_junk_mail = self.author in JUNK_EMAILERS
@@ -500,7 +499,8 @@ class Email(CommunicationDocument):
 
         if len(text) > num_chars:
             text = text[0:num_chars]
-            trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest at {self.epsteinify_link_markup}...>"
+            epsteinify_link_markup = epsteinify_doc_link_markup(self.url_slug, self.author_style)
+            trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest at {epsteinify_link_markup}...>"
             trim_footer_txt = Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
 
         panel_txt = highlighter(text)

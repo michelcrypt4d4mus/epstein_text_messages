@@ -45,7 +45,6 @@ FILENAME_MATCH_STYLES = [
 class Document:
     file_path: Path
     epsteinify_doc_url: str = field(init=False)
-    epsteinify_link_markup: str = field(init=False)
     epstein_web_doc_link_markup: str = field(init=False)
     file_id: str = field(init=False)
     filename: str = field(init=False)
@@ -69,7 +68,6 @@ class Document:
         self.text = self.text or self._load_file()
         self._set_computed_fields()
         self.epsteinify_doc_url = epsteinify_doc_url(self.url_slug)
-        self.epsteinify_link_markup = link_markup(self.epsteinify_doc_url, self.file_path.stem)
         self.epstein_web_doc_url = epstein_web_doc_url(self.url_slug)
         self.epstein_web_doc_link_markup = link_markup(self.epstein_web_doc_url, self.file_path.stem)
 
