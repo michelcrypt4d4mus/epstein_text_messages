@@ -107,6 +107,10 @@ EMAIL_SIGNATURES = {
     UNKNOWN: re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL),
 }
 
+TRUNCATION_LENGTHS = {
+    '023627': 15_750,  # Micheal Wolff article with brock pierce
+}
+
 TRUNCATE_ALL_EMAILS_FROM = [
     'Alan S Halperin',
     'Lvjet',
@@ -492,7 +496,9 @@ class Email(CommunicationDocument):
         num_chars = MAX_CHARS_TO_PRINT
         trim_footer_txt = None
 
-        if self.author in TRUNCATE_ALL_EMAILS_FROM or any((term in self.text) for term in TRUNCATE_TERMS):
+        if self.file_id in TRUNCATION_LENGTHS:
+            num_chars = TRUNCATION_LENGTHS[self.file_id]
+        elif self.author in TRUNCATE_ALL_EMAILS_FROM or any((term in self.text) for term in TRUNCATE_TERMS):
             num_chars = int(MAX_CHARS_TO_PRINT / 3)
         elif quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
             num_chars = quote_cutoff
