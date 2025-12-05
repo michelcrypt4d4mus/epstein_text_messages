@@ -178,6 +178,8 @@ class Document:
     def diff_files(files: list[str]) -> None:
         if len(files) != 2:
             raise RuntimeError('Need 2 files')
+        elif files[0] == files[1]:
+            raise RuntimeError(f"Filenames are the same!")
 
         files = [f if f.endswith('.txt') else f"{f}.txt" for f in files]
         tmpfiles = [Path(f"tmp_{f}") for f in files]
