@@ -20,7 +20,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constants import *
 from epstein_files.util.data import collapse_newlines, escape_single_quotes, uniquify
 from epstein_files.util.env import is_debug, logger
-from epstein_files.util.file_helper import build_filename_for_id
+from epstein_files.util.file_helper import build_filename_for_id, is_local_extract_file
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import *
 
@@ -289,6 +289,9 @@ class Email(CommunicationDocument):
         for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text)):
             if i >= n:
                 return match.end() - 1
+
+    def is_local_extract_file(self) -> bool:
+        return is_local_extract_file(self.filename)
 
     def _actual_text(self) -> str:
         """The text that comes before likely quoted replies and forwards etc."""

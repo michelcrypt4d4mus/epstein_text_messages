@@ -148,7 +148,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='china',
         style='bright_red',
-        pattern=r"Beijing|CCP|Chin(a|ese)|Gino\s+Yu|Global Times|Guo|Jack\s+Ma|Kwok|Peking|PRC|Tai(pei|wan)|xi",
+        pattern=r"Beijing|CCP|Chin(a|e?se)|Gino\s+Yu|Global Times|Guo|Jack\s+Ma|Kwok|Peking|PRC|Tai(pei|wan)|xi",
     ),
     HighlightedGroup(
         label='deepak_chopra',
@@ -341,6 +341,7 @@ HIGHLIGHTED_GROUPS = [
             FAITH_KATES: 'Next Models co-founder',
             'Gianni Serazzi': 'fashion consultant?',
             JEAN_LUC_BRUNEL: 'MC2 Model Management founder, died by suicide in French jail',
+            JEFF_FULLER: 'president of MC2 Model Management USA',
             MANUELA_MARTINEZ: 'Mega Partners (Brazilian agency)',
             MARIANA_IDZKOWSKA: None,
             'Michael Sanka': 'MC2 Model Management (?)',

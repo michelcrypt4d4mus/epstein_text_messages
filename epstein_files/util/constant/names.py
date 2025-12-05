@@ -4,7 +4,7 @@ UNKNOWN = '(unknown)'
 # Texting Names
 ANIL_AMBANI = "Anil Ambani"
 ARDA_BESKARES = 'Arda Beskardes'
-EVA = 'Eva'
+EVA = 'Eva (Dubin?)'
 JEFFREY_EPSTEIN = 'Jeffrey Epstein'
 JOI_ITO = 'Joi Ito'
 LARRY_SUMMERS = 'Larry Summers'
@@ -70,6 +70,7 @@ JARED_KUSHNER = 'Jared Kushner'
 JAY_LEFKOWITZ = 'Jay Lefkowitz'
 JEAN_HUGUEN = 'Jean Huguen'
 JEAN_LUC_BRUNEL = 'Jean Luc Brunel'
+JEFF_FULLER = 'Jeff Fuller'
 JEREMY_RUBIN = 'Jeremy Rubin'             # Bitcoin dev
 JES_STALEY = 'Jes Staley'
 JESSICA_CADWELL = 'Jessica Cadwell'       # Paralegal?
@@ -156,7 +157,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Carolyn',
     'Dan', 'Daniel', 'Danny', 'Darren', 'Dave', 'David',
     'Ed', 'Edward', 'Edwards', 'Epstein', 'Eric', 'Erika', 'Etienne',
-    'Faith', 'Fred',
+    'Faith', 'Fred', 'Fuller',
     'George',
     'Heather', 'Hill',
     'Jack', 'James', 'Jay', 'Jean', 'Jeff', 'jeffrey', 'Jeremy', 'jessica', 'John', 'Jon', 'Jonathan', 'Joseph', 'Jr',
