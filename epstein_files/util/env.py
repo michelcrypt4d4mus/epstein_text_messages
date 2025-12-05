@@ -15,7 +15,7 @@ parser.add_argument('--build', '-b', action='store_true', help='write HTML to do
 parser.add_argument('--all-emails', '-a', action='store_true', help='all the emails (also --no-texts)')
 parser.add_argument('--all-email-tables', '-at', action='store_true', help='all email tables (except Epstein)')
 parser.add_argument('--colors-only', '-c', action='store_true', help='print header with color key table and exit')
-parser.add_argument('--email', '-e', action='append', dest='emails', help='specify the emailers to output (implies --no-texts)')
+parser.add_argument('--name', '-n', action='append', dest='emails', help='specify the name(s) whose emails should be output (implies --no-texts)')
 parser.add_argument('--no-texts', '-nt', action='store_true', help='skip text message output')
 parser.add_argument('--only-texts', '-ot', action='store_true', help='print text messages then quit')
 parser.add_argument('--pickled', '-p', action='store_true', help='use pickled EpsteinFiles object')
@@ -42,7 +42,7 @@ skip_texts = args.no_texts or is_env_var_set('NO_TEXTS')
 
 args.pickled = args.pickled or is_env_var_set('PICKLED')
 args.width = args.width if is_html_script else None
-specified_emailers = args.emails or []
+specified_names = args.emails or []
 
 
 # Setup logging
@@ -57,8 +57,8 @@ else:
     logger.setLevel(logging.WARNING)
 
 
-if len(specified_emailers) > 0:
-    logger.warning(f"Found {len(specified_emailers)} --email so setting --no-texts to True")
+if len(specified_names) > 0:
+    logger.warning(f"Found {len(specified_names)} --email so setting --no-texts to True")
     args.no_texts = True
     skip_texts = True
 

@@ -14,7 +14,7 @@ from epstein_files.documents.email_header import EmailHeader
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.constant.common_words import COMMON_WORDS, COMMON_WORDS_LIST, UNSINGULARIZABLE_WORDS
 from epstein_files.util.data import ALL_NAMES, Timer, flatten, sort_dict
-from epstein_files.util.env import args, logger, specified_emailers
+from epstein_files.util.env import args, logger, specified_names
 from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
 from epstein_files.util.rich import (console, highlighter, print_centered, print_page_title, print_panel,
      print_social_media_links, print_starred_header, write_html)
@@ -112,8 +112,8 @@ for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
     if email.is_duplicate or email.is_junk_mail:
         logger.info(f"Skipping duplicate or junk file '{email.filename}'...")
         continue
-    elif specified_emailers:
-        if email.author not in specified_emailers:
+    elif specified_names:
+        if email.author not in specified_names:
             logger.debug(f"Skipping email from '{email.author}'...")
             continue
         elif email.file_id in EMAIL_IDS_TO_SKIP:

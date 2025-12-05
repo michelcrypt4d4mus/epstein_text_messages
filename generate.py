@@ -20,7 +20,7 @@ from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import EMAIL_CLASS, MESSENGER_LOG_CLASS
 from epstein_files.util.data import Timer, dict_sets_to_lists
-from epstein_files.util.env import specified_emailers, args, is_build, is_debug, skip_texts
+from epstein_files.util.env import specified_names, args, is_build, is_debug, skip_texts
 from epstein_files.util.file_helper import GH_PAGES_HTML_PATH
 from epstein_files.util.rich import *
 
@@ -106,8 +106,8 @@ if args.all_emails:
     emailers_to_print = sorted(epstein_files.all_emailers(), key=lambda e: epstein_files.earliest_email_at(e))
     print_numbered_list_of_emailers(emailers_to_print, epstein_files)
 else:
-    if len(specified_emailers) > 0:
-        PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED_LIST = specified_emailers
+    if len(specified_names) > 0:
+        PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED_LIST = specified_names
 
     console.print('Email conversations grouped by counterparty can be found in the order listed below.')
     emailers_to_print = PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED_LIST
@@ -128,7 +128,7 @@ for author in emailers_to_print:
         print_color_key()
         emails_printed_since_last_color_key = 0
 
-if not args.all_emails and len(specified_emailers) == 0:
+if not args.all_emails and len(specified_names) == 0:
     print_author_header(f"Email Tables for {len(emailer_tables)} Other People", 'white')
 
     for name in emailer_tables:
