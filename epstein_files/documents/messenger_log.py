@@ -61,6 +61,9 @@ class TextMessage:
         else:
             self.author_str = self.author
 
+    def timestamp(self) -> datetime:
+        return datetime.strptime(self.timestamp_str, MSG_DATE_FORMAT)
+
     def _message(self) -> Text:
         msg = self.text
         lines = self.text.split('\n')
@@ -113,10 +116,10 @@ class MessengerLog(CommunicationDocument):
             self.hint_txt = None
 
     def first_message_at(self, name: str | None) -> str:
-        return self.messages_by(name)[0].timestamp_str
+        return self.messages_by(name)[0].timestamp().isoformat().replace('T', ' ')
 
     def last_message_at(self, name: str | None) -> str:
-        return self.messages_by(name)[-1].timestamp_str
+        return self.messages_by(name)[-1].timestamp().isoformat().replace('T', ' ')
 
     def messages_by(self, name: str | None) -> list[TextMessage]:
         return [m for m in self.messages() if m.author == name]
