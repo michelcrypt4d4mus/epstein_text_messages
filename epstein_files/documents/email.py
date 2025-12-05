@@ -40,9 +40,14 @@ SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:
 MAX_CHARS_TO_PRINT = 4000
 MAX_QUOTED_REPLIES = 2
 VALID_HEADER_LINES = 14
-EMAIL_INDENT = 2
+INFO_INDENT = 2
+INFO_PADDING = (0, 0, 0, INFO_INDENT)
 
-BAD_FIRST_LINES = [
+CONTENT_HINTS = {
+    '023627': "Some or all of an unpublished article by Michael Wolff written ca. 2014-2016",
+}
+
+FILE_IDS_WITH_BAD_FIRST_LINES = [
     '026652',
     '029835',
     '030927',
@@ -456,7 +461,7 @@ class Email(CommunicationDocument):
 
     def _repair(self) -> None:
         """Repair particularly janky files."""
-        if self.file_id in BAD_FIRST_LINES:
+        if self.file_id in FILE_IDS_WITH_BAD_FIRST_LINES:
             self.text = '\n'.join(self.lines[1:])
         elif self.file_id == '029977':
             self.text = self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM')
@@ -489,7 +494,10 @@ class Email(CommunicationDocument):
         yield Panel(self.raw_document_link_txt(), border_style=self._border_style(), expand=False)
         info_line = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(f' to ')
         info_line.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
-        yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
+        yield Padding(info_line, INFO_PADDING)
+
+        if self.file_id in CONTENT_HINTS:
+            yield Padding(Text(f"({CONTENT_HINTS[self.file_id]})", style='wheat4'), INFO_PADDING)
 
         text = self.text
         quote_cutoff = self.idx_of_nth_quoted_reply(text=text)  # Trim if there's many quoted replies
@@ -515,7 +523,7 @@ class Email(CommunicationDocument):
             panel_txt.append('\n\n').append(trim_footer_txt)
 
         email_txt_panel = Panel(panel_txt, border_style=self._border_style(), expand=False)
-        yield Padding(email_txt_panel, (0, 0, 1, EMAIL_INDENT))
+        yield Padding(email_txt_panel, (0, 0, 1, INFO_INDENT))
 
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:
