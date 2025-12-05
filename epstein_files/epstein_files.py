@@ -1,3 +1,4 @@
+import gzip
 import pickle
 import re
 from collections import defaultdict
@@ -22,7 +23,7 @@ from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_nam
 from epstein_files.util.constants import *
 from epstein_files.util.data import dict_sets_to_lists, patternize, sort_dict
 from epstein_files.util.env import args, is_debug, logger
-from epstein_files.util.file_helper import DOCS_DIR, move_json_file
+from epstein_files.util.file_helper import DOCS_DIR, file_size_str, move_json_file
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_COLOR, console, highlighter, link_text_obj, link_markup,
      print_author_header, print_panel, vertically_pad)
@@ -30,7 +31,7 @@ from epstein_files.util.rich import (DEFAULT_NAME_COLOR, console, highlighter, l
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (0, 0, 0, 2)
 NOT_INCLUDED_EMAILERS = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
-PICKLED_PATH = Path("the_epstein_files.pkl")
+PICKLED_PATH = Path("the_epstein_files.pkl.gz")
 
 
 @dataclass
@@ -88,16 +89,16 @@ class EpsteinFiles:
     def get_files(cls) -> 'EpsteinFiles':
         """Alternate constructor that can read from/write to a pickled version of the data."""
         if (args.pickled and PICKLED_PATH.exists()) and not args.overwrite_pickle:
-            with open(PICKLED_PATH, 'rb') as file:
-                logger.warning(f"Loading pickled data from '{PICKLED_PATH}'...")
+            with gzip.open(PICKLED_PATH, 'rb') as file:
+                logger.warning(f"Loading pickled data from '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})...")
                 return pickle.load(file)
 
         epstein_files = EpsteinFiles()
 
         if args.overwrite_pickle or (args.pickled and not PICKLED_PATH.exists()):
-            with open(PICKLED_PATH, 'wb') as file:
+            with gzip.open(PICKLED_PATH, 'wb') as file:
                 pickle.dump(epstein_files, file)
-                logger.warning(f"Pickled data to '{PICKLED_PATH}'...")
+                logger.warning(f"Pickled data to '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})...")
 
         return epstein_files
 
