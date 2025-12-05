@@ -85,9 +85,9 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r'from my BlackBerry[0°] wireless device'): 'from my BlackBerry® wireless device',
     'gJeremyRubin': '@JeremyRubin',
     re.compile(r"twitter\.com[i/][lI]krauss[1lt]"): "twitter.com/lkrauss1",
-    # re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
-    # 'twitter glhsummers': 'twitter @lhsummers',
-    # 'Sent from Mabfl': 'Sent from Mobile',  # NADIA_MARCINKO signature bad OCR
+    re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
+    'twitter glhsummers': 'twitter @lhsummers',
+    'Sent from Mabfl': 'Sent from Mobile',  # NADIA_MARCINKO signature bad OCR
 }
 
 MARTIN_WEINBERG_SIGNATURE_PATTERN = r"Martin G. Weinberg, Esq.\n20 Park Plaza, Suite 1000\nBoston, MA 02116(\n61.*)?(\n.*([cC]ell|Office))*"
@@ -239,7 +239,7 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
     'Dan Fleuette',                          # CC from sean bannon
     'Danny Goldberg',                        # Random Paul Krassner emails
     GORDON_GETTY,                            # Random CC
-    'Jeff Fuller',                           # Random Jean Luc Brunel CC
+    JEFF_FULLER,                           # Random Jean Luc Brunel CC
     'Jojo Fontanilla',                       # Random CC
     'Joseph Vinciguerra',                    # Random CC
     'Larry Cohen',                           # Random Bill Gates CC
@@ -365,14 +365,13 @@ class Email(CommunicationDocument):
     def _extract_timestamp(self) -> datetime:
         if self.file_id in KNOWN_TIMESTAMPS:
             return KNOWN_TIMESTAMPS[self.file_id]
-
-        if self.header.sent_at:
+        elif self.header.sent_at:
             timestamp = _parse_timestamp(self.header.sent_at)
 
             if timestamp:
                 return timestamp
 
-        searchable_lines = self.text.split('\n')[0:VALID_HEADER_LINES]
+        searchable_lines = self.lines[0:VALID_HEADER_LINES]
         searchable_text = '\n'.join(searchable_lines)
         date_match = DATE_REGEX.search(searchable_text)
 
