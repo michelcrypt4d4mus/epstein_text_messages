@@ -3,7 +3,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.data import dict_sets_to_lists
 
 EMAIL_AUTHOR_COUNTS = {
-    None: 112,
+    None: 108,
     "Abi Schwinck": 1,
     AL_SECKEL: 7,
     "Alain Forget": 3,
@@ -73,7 +73,7 @@ EMAIL_AUTHOR_COUNTS = {
     "How To Academy": 3,
     "Ian Osborne": 2,
     "Intelligence Squared": 4,
-    "Jabor Y": 3,
+    JABOR_Y: 3,
     "Jack Goldberger": 4,
     "Jack Lang": 3,
     'James Hill': 1,
@@ -84,10 +84,10 @@ EMAIL_AUTHOR_COUNTS = {
     "Jeffrey Epstein": 707,
     "Jennifer Jacquet": 1,
     "Jeremy Rubin": 3,
-    "Jes Staley": 2,
+    JES_STALEY: 2,
     "Jessica Cadwell": 7,
     "Jide Zeitlin": 3,
-    "John Brockman": 3,
+    JOHN_BROCKMAN: 3,
     "John Page": 2,
     "Johnny el Hachem": 1,
     "Joi Ito": 25,
@@ -121,7 +121,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Mark Epstein": 5,
     "Mark Green": 1,
     "Mark Lloyd": 1,
-    "Mark Tramo": 1,
+    MARK_TRAMO: 1,
     "Martin Nowak": 1,
     "Martin Weinberg": 21,
     "Masha Drokova": 2,
@@ -160,7 +160,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Ramsey Elkholy": 1,
     "Reid Hoffman": 1,
     "Reid Weingarten": 72,
-    "Renata Bolotova": 1,
+    RENATA_BOLOTOVA: 5,
     "Richard Kahn": 117,
     "Richard Merkin": 3,
     "Robert Lawrence Kuhn": 26,
@@ -207,7 +207,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 83,
+    None: 82,
     "ACT for America": 1,
     "Alan Dershowitz": 15,
     'Alan Dlugash': 1,
@@ -289,9 +289,9 @@ EMAIL_RECIPIENT_COUNTS = {
     'Jay Levin': 1,
     "Jean Huguen": 1,
     JEAN_LUC_BRUNEL: 10,
-    "Jeff Fuller": 1,
+    JEFF_FULLER: 2,
     "Jeffrey Epstein": 1538,
-    "Jes Staley": 7,
+    JES_STALEY: 7,
     "Jessica Cadwell": 5,
     "Joel": 2,
     "Joel Dunn": 1,
@@ -383,6 +383,7 @@ EMAIL_RECIPIENT_COUNTS = {
     'Rebecca Risman': 1,
     "Reid Hoffman": 2,
     "Reid Weingarten": 34,
+    RENATA_BOLOTOVA: 1,
     "Richard Barnnet": 1,
     "Richard Joshi": 1,
     "Richard Kahn": 30,
@@ -432,7 +433,6 @@ EMAIL_RECIPIENT_COUNTS = {
     "Zubair Khan": 1,
     "david.brown@thetimes.co.uk": 1,
     "io-anne.pugh@bbc.co.uk": 1,
-    "jeff@mc2mm.com": 1,
     "martin.robinson@mailonline.co.uk": 1,
     "nick.alwav@bbc.co.uk": 1,
     "nick.sommerlad@mirror.co.uk": 1,
@@ -475,7 +475,6 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     "029196",
     "029206",
     "029558",
-    "029581",
     "029622",
     "029752",
     "029962",
@@ -743,7 +742,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone",
         "Sorry for all the typos .Sent from my iPhone"
     ],
-    "Jes Staley": [
+    JES_STALEY: [
         "Sent from my iPhone"
     ],
     "Johnny el Hachem": [

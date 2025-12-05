@@ -5,17 +5,19 @@ from subprocess import run
 
 from dotenv import load_dotenv
 load_dotenv()
-from rich.console import Console
 from rich.text import Text
 
-from epstein_files.documents.document import Document
-from epstein_files.documents.email import Email, REPLY_LINE_PATTERN, REPLY_TEXT_REGEX
 from epstein_files.util.constants import REPLY_REGEX
+from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_PREFIX
 from epstein_files.util.env import deep_debug, is_debug
 from epstein_files.util.file_helper import DOCS_DIR
+from epstein_files.util.rich import console
+
+FILE_PREFIX_LENGTH = len(HOUSE_OVERSIGHT_PREFIX) + 10
+MIN_LINE_LENGTH = FILE_PREFIX_LENGTH + 14
+MAX_LINE_LENGTH = FILE_PREFIX_LENGTH + 170
 
 
-console = Console(color_system='256')
 cmd = f'egrep -i "^(On|In a message dated) .*" {DOCS_DIR}/*.txt'
 print(f"egrep command: '{cmd}'")
 results = run(cmd, shell=True, capture_output=True, text=True, check=True).stdout
@@ -27,12 +29,7 @@ lines = [l.strip().removeprefix(str(DOCS_DIR)) for l in results.split('\n') if l
 print(f"Found {len(lines)} potential reply lines to check...")
 matches = 0
 failures = 0
-FILE_PREFIX_LENGTH = len('HOUSE_OVERSIGHT_032430.txt:')
-MIN_LINE_LENGTH = FILE_PREFIX_LENGTH + 14
-MAX_LINE_LENGTH = FILE_PREFIX_LENGTH + 170
 
-
-# Matched 4631 of 6997 potential signatuares, 2366 failures.
 for _line in lines:
     if len(_line) < MIN_LINE_LENGTH or _line.endswith('.ichat'):
         console.print(f'  -> Skipping empty, short, or ichat line: "{_line}"', style='dim')
@@ -42,8 +39,8 @@ for _line in lines:
         continue
 
     file_path, line = _line.split(':', 1)
-    file_path = Path(file_path)
     reply_match = REPLY_REGEX.search(line)
+    file_path = Path(file_path)
 
     if is_debug:
         console.print(f"Checking line: '{line}'", style='dim')
@@ -55,12 +52,12 @@ for _line in lines:
             console.print(f'  -> Matched...', style='bright_green')
     else:
         failures += 1
-        console.print(Text('').append(f'  -> Failed: ', style='red3').append(f"'{line}'", style='cyan').append(f" (file: '{file_path.name}')", style='dim'))
-
+        txt = Text('').append(f'  -> Failed: ', style='red3').append(f"'{line}'", style='cyan')
+        console.print(txt.append(f" (file: '{file_path.name}')", style='dim'))
 
 console.print(
     f"\n\nMatched {matches} of {len(lines)} potential signatuares, [red]{failures}[/red] failures.",
     style='bright_white bold'
 )
 
-#console.print("(Previously 139 of 1787 failures)\n", style='dim')
+console.print(f"Previously matched 4631 of 6997 potential signatuares, 2366 failures.", style='dim')

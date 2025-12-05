@@ -34,7 +34,7 @@ EMAIL_IDS_TO_SKIP = [
     '029779',  # WaPo article
     '026298',  # Written by someone else?
     '026755',  # HuffPo
-    '023627',  # Article about epstein
+    '023627',  # Wolff article about epstein
     '031569',  # Article by Kathryn Alexeeff
     '030528',  # Vicky Ward article
     '030522',  # Vicky Ward article

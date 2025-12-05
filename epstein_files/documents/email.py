@@ -40,9 +40,14 @@ SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:
 MAX_CHARS_TO_PRINT = 4000
 MAX_QUOTED_REPLIES = 2
 VALID_HEADER_LINES = 14
-EMAIL_INDENT = 2
+INFO_INDENT = 2
+INFO_PADDING = (0, 0, 0, INFO_INDENT)
 
-BAD_FIRST_LINES = [
+CONTENT_HINTS = {
+    '023627': "Some or all of an unpublished article by Michael Wolff written ca. 2014-2016",
+}
+
+FILE_IDS_WITH_BAD_FIRST_LINES = [
     '026652',
     '029835',
     '030927',
@@ -80,9 +85,9 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r'from my BlackBerry[0°] wireless device'): 'from my BlackBerry® wireless device',
     'gJeremyRubin': '@JeremyRubin',
     re.compile(r"twitter\.com[i/][lI]krauss[1lt]"): "twitter.com/lkrauss1",
-    # re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
-    # 'twitter glhsummers': 'twitter @lhsummers',
-    # 'Sent from Mabfl': 'Sent from Mobile',  # NADIA_MARCINKO signature bad OCR
+    re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
+    'twitter glhsummers': 'twitter @lhsummers',
+    'Sent from Mabfl': 'Sent from Mobile',  # NADIA_MARCINKO signature bad OCR
 }
 
 MARTIN_WEINBERG_SIGNATURE_PATTERN = r"Martin G. Weinberg, Esq.\n20 Park Plaza, Suite 1000\nBoston, MA 02116(\n61.*)?(\n.*([cC]ell|Office))*"
@@ -234,7 +239,7 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
     'Dan Fleuette',                          # CC from sean bannon
     'Danny Goldberg',                        # Random Paul Krassner emails
     GORDON_GETTY,                            # Random CC
-    'Jeff Fuller',                           # Random Jean Luc Brunel CC
+    JEFF_FULLER,                           # Random Jean Luc Brunel CC
     'Jojo Fontanilla',                       # Random CC
     'Joseph Vinciguerra',                    # Random CC
     'Larry Cohen',                           # Random Bill Gates CC
@@ -357,40 +362,6 @@ class Email(CommunicationDocument):
 
         return collapse_newlines(text).strip()
 
-    def _extract_timestamp(self) -> datetime:
-        if self.file_id in KNOWN_TIMESTAMPS:
-            return KNOWN_TIMESTAMPS[self.file_id]
-
-        if self.header.sent_at:
-            timestamp = _parse_timestamp(self.header.sent_at)
-
-            if timestamp:
-                return timestamp
-
-        searchable_lines = self.text.split('\n')[0:VALID_HEADER_LINES]
-        searchable_text = '\n'.join(searchable_lines)
-        date_match = DATE_REGEX.search(searchable_text)
-
-        if date_match:
-            timestamp = _parse_timestamp(date_match.group(1))
-
-            if timestamp:
-                return timestamp
-
-        logger.debug(f"Failed to find timestamp, falling back to parsing {VALID_HEADER_LINES} lines...")
-
-        for line in searchable_lines:
-            if not TIMESTAMP_LINE_REGEX.search(line):
-                continue
-
-            timestamp = _parse_timestamp(line)
-
-            if timestamp:
-                logger.debug(f"Fell back to timestamp {timestamp} in line '{line}'...")
-                return timestamp
-
-        raise RuntimeError(f"No timestamp found in '{self.file_path.name}' top lines:\n{searchable_text}")
-
     def _extract_author(self) -> None:
         self._extract_header()
 
@@ -422,6 +393,39 @@ class Email(CommunicationDocument):
                 logger.warning(msg)
 
             self.header = EmailHeader(field_names=[])
+
+    def _extract_timestamp(self) -> datetime:
+        if self.file_id in KNOWN_TIMESTAMPS:
+            return KNOWN_TIMESTAMPS[self.file_id]
+        elif self.header.sent_at:
+            timestamp = _parse_timestamp(self.header.sent_at)
+
+            if timestamp:
+                return timestamp
+
+        searchable_lines = self.lines[0:VALID_HEADER_LINES]
+        searchable_text = '\n'.join(searchable_lines)
+        date_match = DATE_REGEX.search(searchable_text)
+
+        if date_match:
+            timestamp = _parse_timestamp(date_match.group(1))
+
+            if timestamp:
+                return timestamp
+
+        logger.debug(f"Failed to find timestamp, falling back to parsing {VALID_HEADER_LINES} lines...")
+
+        for line in searchable_lines:
+            if not TIMESTAMP_LINE_REGEX.search(line):
+                continue
+
+            timestamp = _parse_timestamp(line)
+
+            if timestamp:
+                logger.debug(f"Fell back to timestamp {timestamp} in line '{line}'...")
+                return timestamp
+
+        raise RuntimeError(f"No timestamp found in '{self.file_path.name}' top lines:\n{searchable_text}")
 
     def _get_names(self, emailer_str: str) -> list[str]:
         emailer_str = EmailHeader.cleanup_str(emailer_str)
@@ -456,7 +460,7 @@ class Email(CommunicationDocument):
 
     def _repair(self) -> None:
         """Repair particularly janky files."""
-        if self.file_id in BAD_FIRST_LINES:
+        if self.file_id in FILE_IDS_WITH_BAD_FIRST_LINES:
             self.text = '\n'.join(self.lines[1:])
         elif self.file_id == '029977':
             self.text = self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM')
@@ -489,7 +493,10 @@ class Email(CommunicationDocument):
         yield Panel(self.raw_document_link_txt(), border_style=self._border_style(), expand=False)
         info_line = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(f' to ')
         info_line.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
-        yield Padding(info_line, (0, 0, 0, EMAIL_INDENT))
+        yield Padding(info_line, INFO_PADDING)
+
+        if self.file_id in CONTENT_HINTS:
+            yield Padding(Text(f"({CONTENT_HINTS[self.file_id]})", style='wheat4'), INFO_PADDING)
 
         text = self.text
         quote_cutoff = self.idx_of_nth_quoted_reply(text=text)  # Trim if there's many quoted replies
@@ -515,7 +522,7 @@ class Email(CommunicationDocument):
             panel_txt.append('\n\n').append(trim_footer_txt)
 
         email_txt_panel = Panel(panel_txt, border_style=self._border_style(), expand=False)
-        yield Padding(email_txt_panel, (0, 0, 1, EMAIL_INDENT))
+        yield Padding(email_txt_panel, (0, 0, 1, INFO_INDENT))
 
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:
