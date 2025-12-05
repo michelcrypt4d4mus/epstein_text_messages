@@ -3,7 +3,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.data import dict_sets_to_lists
 
 EMAIL_AUTHOR_COUNTS = {
-    None: 112,
+    None: 108,
     "Abi Schwinck": 1,
     AL_SECKEL: 7,
     "Alain Forget": 3,
@@ -80,7 +80,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Jay Lefkowitz": 7,
     "Jean Huguen": 1,
     JEAN_LUC_BRUNEL: 3,
-    JEFF_FULLER: 2,
+    JEFF_FULLER: 1,
     "Jeffrey Epstein": 707,
     "Jennifer Jacquet": 1,
     "Jeremy Rubin": 3,
@@ -160,7 +160,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Ramsey Elkholy": 1,
     "Reid Hoffman": 1,
     "Reid Weingarten": 72,
-    "Renata Bolotova": 1,
+    RENATA_BOLOTOVA: 5,
     "Richard Kahn": 117,
     "Richard Merkin": 3,
     "Robert Lawrence Kuhn": 26,
@@ -207,7 +207,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 83,
+    None: 82,
     "ACT for America": 1,
     "Alan Dershowitz": 15,
     'Alan Dlugash': 1,
@@ -289,7 +289,7 @@ EMAIL_RECIPIENT_COUNTS = {
     'Jay Levin': 1,
     "Jean Huguen": 1,
     JEAN_LUC_BRUNEL: 10,
-    "Jeff Fuller": 1,
+    JEFF_FULLER: 2,
     "Jeffrey Epstein": 1538,
     JES_STALEY: 7,
     "Jessica Cadwell": 5,
@@ -383,6 +383,7 @@ EMAIL_RECIPIENT_COUNTS = {
     'Rebecca Risman': 1,
     "Reid Hoffman": 2,
     "Reid Weingarten": 34,
+    RENATA_BOLOTOVA: 1,
     "Richard Barnnet": 1,
     "Richard Joshi": 1,
     "Richard Kahn": 30,
