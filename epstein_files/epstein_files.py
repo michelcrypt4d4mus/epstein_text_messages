@@ -275,7 +275,7 @@ class EpsteinFiles:
             counts_table.add_row(
                 Text(name or UNKNOWN,
                     get_style_for_name(name)),
-                    str(count),
+                    f"{count:,}",
                     first_at.isoformat().replace('T', ' '),
                     last_at.isoformat().replace('T', ' '),
                     str((last_at - first_at).days + 1)
