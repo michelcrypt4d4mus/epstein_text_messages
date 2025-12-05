@@ -100,7 +100,7 @@ class TextMessage:
 
 @dataclass
 class MessengerLog(CommunicationDocument):
-    hint_txt: Text | None = field(init=False)
+    hint_txt: Text | None = None
     _messages: list[TextMessage] = field(default_factory=list)
     _author_counts: dict[str | None, int] = field(default_factory=lambda: defaultdict(int))
 
@@ -112,8 +112,6 @@ class MessengerLog(CommunicationDocument):
             self.hint_txt.append(f" for file ID {self.file_id}.")
         elif self.file_id in GUESSED_IMESSAGE_FILE_IDS:
             self.hint_txt = Text(" (This is probably a conversation with ", style='dim').append(self.author_txt).append(')')
-        else:
-            self.hint_txt = None
 
     def first_message_at(self, name: str | None) -> datetime:
         return self.messages_by(name)[0].timestamp()

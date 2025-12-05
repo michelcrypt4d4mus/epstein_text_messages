@@ -258,13 +258,15 @@ class EpsteinFiles:
         """Print summary table and stats for text messages."""
         counts_table = Table(title="Text Message Counts By Author", header_style="bold")
         counts_table.add_column(AUTHOR.title(), justify='left', style="steel_blue bold", width=30)
-        counts_table.add_column("Count", justify='center')
+        counts_table.add_column("Count", justify='right')
+        counts_table.add_column('Files', justify='right', style='white')
         counts_table.add_column('First Sent At', justify='center', highlight=True, width=21)
         counts_table.add_column('Last Sent At', justify='center', style='wheat4', width=21)
-        counts_table.add_column('Days', justify='right', style='dark_cyan')
+        counts_table.add_column('Days', justify='right', style='dim')
 
         for name, count in sort_dict(self.imessage_sender_counts()):
             if name == JEFFREY_EPSTEIN:
+                logs = self.imessage_logs
                 first_at = self.imessage_logs[0].first_message_at(name)
                 last_at = self.imessage_logs[-1].first_message_at(name)
             else:
@@ -275,10 +277,11 @@ class EpsteinFiles:
             counts_table.add_row(
                 Text(name or UNKNOWN,
                     get_style_for_name(name)),
-                    str(count),
+                    f"{count:,}",
+                    str(len(logs)),
                     first_at.isoformat().replace('T', ' '),
                     last_at.isoformat().replace('T', ' '),
-                    str((last_at - first_at).days + 1)
+                    str((last_at - first_at).days + 1),
                 )
 
         console.print(counts_table)
