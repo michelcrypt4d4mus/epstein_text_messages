@@ -258,7 +258,7 @@ class EpsteinFiles:
         """Print summary table and stats for text messages."""
         counts_table = Table(title="Text Message Counts By Author", header_style="bold")
         counts_table.add_column(AUTHOR.title(), justify='left', style="steel_blue bold", width=30)
-        counts_table.add_column("Count", justify='center')
+        counts_table.add_column("Count", justify='right')
         counts_table.add_column('First Sent At', justify='center', highlight=True, width=21)
         counts_table.add_column('Last Sent At', justify='center', style='wheat4', width=21)
         counts_table.add_column('Days', justify='right', style='dark_cyan')
