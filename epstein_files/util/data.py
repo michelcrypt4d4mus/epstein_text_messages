@@ -31,7 +31,7 @@ def patternize(_pattern: str | re.Pattern):
     return _pattern if isinstance(_pattern, re.Pattern) else re.compile(rf"({_pattern})", re.IGNORECASE)
 
 
-def sort_dict(d: dict[str | None, int]) -> list[tuple[str | None, int]]:
+def sort_dict(d: dict[str | None, int] | dict[str, int]) -> list[tuple[str | None, int]]:
     sort_key = lambda e: (e[0] or '').lower() if args.sort_alphabetical else [-e[1], (e[0] or '').lower()]
     return sorted(d.items(), key=sort_key)
 
