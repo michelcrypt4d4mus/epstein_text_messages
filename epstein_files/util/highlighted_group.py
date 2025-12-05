@@ -268,6 +268,7 @@ HIGHLIGHTED_GROUPS = [
         style='purple4',
         pattern=r'Michael J. Pike|Paul,?\s*Weiss|Wein(berg|garten)',
         emailers = {
+            ARDA_BESKARES: 'NYC immigration attorney allegedly involved in sex-trafficking operations',
             BENNET_MOSKOWITZ: None,
             'Brad Edwards': None,
             BRAD_KARP: 'head of the law firm Paul Weiss',
