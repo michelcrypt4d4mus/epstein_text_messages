@@ -84,7 +84,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Jeffrey Epstein": 707,
     "Jennifer Jacquet": 1,
     "Jeremy Rubin": 3,
-    "Jes Staley": 2,
+    JES_STALEY: 2,
     "Jessica Cadwell": 7,
     "Jide Zeitlin": 3,
     JOHN_BROCKMAN: 3,
@@ -291,7 +291,7 @@ EMAIL_RECIPIENT_COUNTS = {
     JEAN_LUC_BRUNEL: 10,
     "Jeff Fuller": 1,
     "Jeffrey Epstein": 1538,
-    "Jes Staley": 7,
+    JES_STALEY: 7,
     "Jessica Cadwell": 5,
     "Joel": 2,
     "Joel Dunn": 1,
@@ -742,7 +742,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone",
         "Sorry for all the typos .Sent from my iPhone"
     ],
-    "Jes Staley": [
+    JES_STALEY: [
         "Sent from my iPhone"
     ],
     "Johnny el Hachem": [

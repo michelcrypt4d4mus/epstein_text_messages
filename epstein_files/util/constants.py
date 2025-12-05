@@ -403,7 +403,11 @@ KNOWN_EMAIL_AUTHORS = {
     '033561': PAUL_PROSPERI,           # Fwded mail sent to Prosperi. Might be Subotnick Stuart ?
     '031694': PEGGY_SIEGAL,
     '032219': PEGGY_SIEGAL,            # Signed "Peggy"
-    '029020': 'Renata Bolotova',       # Signature
+    '029020': RENATA_BOLOTOVA,         # Signature
+    '029605': RENATA_BOLOTOVA,         # Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")
+    '029606': RENATA_BOLOTOVA,         # Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")
+    '029582': RENATA_BOLOTOVA,         # Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")
+    '029604': RENATA_BOLOTOVA,         # Continued in 239606 etc
     '033169': ROBERT_TRIVERS,          # Refs paper
     '033584': ROBERT_TRIVERS,          # Refs paper
     '026320': SEAN_BANNON,             # From protonmail, Bannon wrote 'just sent from my protonmail' in 027067
@@ -516,6 +520,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '030509': PAULA,                  # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
     '030096': PETER_MANDELSON,
     '032951': RAAFAT_ALSABBAGH,
+    '029581': RENATA_BOLOTOVA,        # Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")
     '030384': [RICHARD_KAHN, 'Alan Dlugash'],
     '019334': STEVE_BANNON,
     '021106': STEVE_BANNON,     # Reply
