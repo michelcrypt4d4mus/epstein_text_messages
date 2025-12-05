@@ -16,6 +16,7 @@ from epstein_files.util.rich import TEXT_LINK, highlighter, logger
 BAD_TEXTER_REGEX = re.compile(r'^([-+_1•F]+|[4Ide])$')
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
+REDACTED_AUTHOR_REGEX = re.compile(r"^[_1]+$")
 MSG_DATE_FORMAT = r"%m/%d/%y %I:%M:%S %p"
 
 UNKNOWN_TEXTERS = [
@@ -116,7 +117,8 @@ class MessengerLog(CommunicationDocument):
         if len(self._messages) == 0:
             self._messages = [
                 TextMessage(
-                    author=match.group(1).strip() or self.author,  # If the Sender: is redacted that means it's from self.author
+                    # If the Sender: is redacted that means it's from self.author
+                    author=REDACTED_AUTHOR_REGEX.sub('', match.group(1).strip()) or self.author,
                     id_confirmed=self.file_id in KNOWN_IMESSAGE_FILE_IDS,
                     text=match.group(4).strip(),
                     timestamp_str=match.group(2).strip(),

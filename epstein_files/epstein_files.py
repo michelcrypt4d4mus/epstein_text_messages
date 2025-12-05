@@ -162,11 +162,11 @@ class EpsteinFiles:
         return sorted(list(self._email_unknown_recipient_file_ids))
 
     def imessage_sender_counts(self) -> dict[str, int]:
-        sender_counts = defaultdict(int)
+        sender_counts: dict[str, int] = defaultdict(int)
 
         for message_log in self.imessage_logs:
             for message in message_log.messages():
-                sender_counts[message.author] += 1
+                sender_counts[message.author or UNKNOWN] += 1
 
         return sender_counts
 
