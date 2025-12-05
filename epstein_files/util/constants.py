@@ -507,7 +507,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '030369': MELANIE_SPINELLA,       # Actually a self fwd from jeffrey to jeffrey
     '030371': MELANIE_SPINELLA,       # Actually a self fwd from jeffrey to jeffrey
     '023291': [MELANIE_SPINELLA, BRAD_WECHSLER],  # Can be seen in 023028
-    '032214': MIROSLAV_LAJCAK,               # Quoted reply has signature
+    '032214': MIROSLAV_LAJCAK,        # Quoted reply has signature
     '022258': NADIA_MARCINKO,         # Reply header
     '033097': [PAUL_BARRETT, RICHARD_KAHN],  # Bad OCR
     '030506': PAULA,                  # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
