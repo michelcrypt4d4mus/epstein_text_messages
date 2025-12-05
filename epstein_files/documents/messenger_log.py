@@ -24,7 +24,6 @@ UNKNOWN_TEXTERS = [
     '+13108802851',
     'e:',
     '+',
-    None,
 ]
 
 TEXTER_MAPPING = {
@@ -33,13 +32,40 @@ TEXTER_MAPPING = {
     '+13109906526': STEVE_BANNON,
 }
 
+LAST_NAMES_ONLY = [
+    JEFFREY_EPSTEIN,
+    STEVE_BANNON,
+]
 
-@dataclass
+
+@dataclass(kw_only=True)
 class TextMessage:
-    author: str
-    author_txt: Text
+    author: str | None
+    author_str: str = field(init=False)
+    author_style: str = field(init=False)
+    author_txt: Text = field(init=False)
+    id_confirmed: bool = False
     text: Text
     timestamp_str: str
+
+    def __post_init__(self):
+        self.author = TEXTER_MAPPING.get(self.author or UNKNOWN, self.author)
+
+        if self.author is None:
+            self.author_str = UNKNOWN
+        elif self.author in LAST_NAMES_ONLY:
+            self.author_str = self.author.split()[-1]
+        elif not self.id_confirmed:
+            self.author_str = self.author + ' (?)'
+        else:
+            self.author_str = self.author
+
+        if PHONE_NUMBER_REGEX.match(self.author_str):
+            self.author_style = PHONE_NUMBER_STYLE
+        else:
+            self.author_style = get_style_for_name(self.author)
+
+        self.author_txt = Text(self.author_str, style=self.author_style)
 
     def __rich__(self) -> Text:
         timestamp_txt = Text(f"[{self.timestamp_str}] ", style='gray30')
@@ -68,28 +94,15 @@ class MessengerLog(CommunicationDocument):
             return self._messages
 
         for match in MSG_REGEX.finditer(self.text):
-            sender = sender_str = match.group(1).strip()
+            sender: str | None = match.group(1).strip()
             msg = match.group(4).strip()
             msg_lines = msg.split('\n')
-            sender_style = None
-            sender_txt = None
 
             # If the Sender: is redacted we need to fill it in from our configuration
-            if len(sender) == 0:
+            if not sender:
                 sender = self.author
-                sender_str = self.author_str
-                sender_txt = self.author_txt
-            else:
-                if sender in TEXTER_MAPPING:
-                    sender = sender_str = TEXTER_MAPPING[sender]
-                    sender_str = JEFFREY_EPSTEIN.split(' ')[-1] if sender_str == JEFFREY_EPSTEIN else sender_str
-                elif PHONE_NUMBER_REGEX.match(sender):
-                    sender_style = PHONE_NUMBER_STYLE
-                elif re.match('[ME]+', sender):
-                    sender = MELANIE_WALKER
-
-                author_style = f"{get_style_for_name(sender)} bold"
-                sender_txt = Text(sender_str, style=sender_style or author_style)
+            elif sender in UNKNOWN_TEXTERS or BAD_TEXTER_REGEX.match(sender):
+                sender = None
 
             # Fix multiline links
             if msg.startswith('http'):
@@ -109,8 +122,8 @@ class MessengerLog(CommunicationDocument):
                 msg_txt = highlighter(msg.replace('\n', ' '))  # remove newlines
 
             text_message = TextMessage(
-                author=UNKNOWN if (sender in UNKNOWN_TEXTERS or BAD_TEXTER_REGEX.match(sender)) else sender,
-                author_txt=sender_txt,
+                author=sender,
+                id_confirmed=self.file_id in KNOWN_IMESSAGE_FILE_IDS,
                 text=msg_txt,
                 timestamp_str=match.group(2).strip(),
             )
