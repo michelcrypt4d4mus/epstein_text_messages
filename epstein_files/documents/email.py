@@ -116,7 +116,15 @@ TRUNCATION_LENGTHS = {
     '023627': 15_750,  # Micheal Wolff article with brock pierce
 }
 
-TRUNCATE_ALL_EMAILS_FROM = [
+# Invalid for links to EpsteinWeb
+JUNK_EMAILERS = [
+    'editorialstaff@flipboard.com',
+    'How To Academy',
+    'Jokeland',
+    'Saved by Internet Explorer 11',
+]
+
+TRUNCATE_ALL_EMAILS_FROM = JUNK_EMAILERS + [
     'Alan S Halperin',
     'Lvjet',
     'middle.east.update@hotmail.com',
@@ -216,14 +224,6 @@ TRUNCATE_TERMS = [
     'David Ben Gurion was asked why he, after 2000',
     # Lisa New
     'The raw materials for that period include interviews',
-]
-
-# Invalid for links to EpsteinWeb
-JUNK_EMAILERS = [
-    'editorialstaff@flipboard.com',
-    'How To Academy',
-    'Jokeland',
-    'Saved by Internet Explorer 11',
 ]
 
 KRASSNER_RECIPIENTS = uniquify(KRASSNER_MANSON_RECIPIENTS + KRASSNER_024923_RECIPIENTS + KRASSNER_033568_RECIPIENTS)

@@ -190,7 +190,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='entertainer',
         style='light_steel_blue3',
-        pattern='Bobby slayton|Etienne Binant|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?',
+        pattern='Bobby slayton|Etienne Binant|Jagger|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?',
         emailers={
             'Andres Serrano': "'Piss Christ' artist",
             'Barry Josephson': 'American film producer and former music manager',
@@ -253,7 +253,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='journalist',
         style='bright_yellow',
-        pattern=r'Alex Yablon|Ingram, David|Susan Edelman|Vick[iy] Ward|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
+        pattern=r'Alex Yablon|Charlie rose|George Stephanopoulus|Ingram, David|Katie Couric|Susan Edelman|Vick[iy] Ward|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
         emailers = {
             EDWARD_EPSTEIN: 'no relation to Jeffrey',
             'James Hill': 'ABC',
@@ -267,7 +267,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='lawyer',
         style='purple4',
-        pattern=r'Michael J. Pike|Paul,?\s*Weiss|Wein(berg|garten)',
+        pattern=r'Kate Kelly|Michael J. Pike|Paul,?\s*Weiss|Wein(berg|garten)',
         emailers = {
             ARDA_BESKARES: 'NYC immigration attorney allegedly involved in sex-trafficking operations',
             BENNET_MOSKOWITZ: None,
@@ -373,7 +373,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='republicans',
         style='bold dark_red',
-        pattern=r'(Alex )?Acosta|Bolton|Broidy|(George )?Nader|GOP|(?<!Merwin Dela )Cruz|Kobach|Kolfage|Kudlow|Lewandowski|(Marco )?Rubio|Mattis|Mnuchin|(Paul\s+)?Manafort|(Peter )?Navarro|Pompeo|Republican',
+        pattern=r'(Alex )?Acosta|(Bill )?Barr|Bolton|Broidy|(George )?Nader|GOP|(?<!Merwin Dela )Cruz|Kobach|Kolfage|Kudlow|Lewandowski|(Marco )?Rubio|Mattis|Mnuchin|(Paul\s+)?Manafort|(Peter )?Navarro|Pompeo|Republican',
         emailers = {
             RUDY_GIULIANI: 'disbarred formed mayor of New York City',
             TULSI_GABBARD: None,
@@ -401,7 +401,7 @@ HIGHLIGHTED_GROUPS = [
             NEAL_KASSELL: None,
             PETER_ATTIA: 'longevity medicine',
             ROBERT_TRIVERS: 'evolutionary biology',
-            ROGER_SCHANK: None,
+            ROGER_SCHANK: 'Teachers College, Columbia University',
             STEVEN_PFEIFFER: None,
         }
     ),
