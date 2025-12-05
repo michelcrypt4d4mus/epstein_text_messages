@@ -261,7 +261,7 @@ class EpsteinFiles:
         counts_table.add_column("Count", justify='right')
         counts_table.add_column('First Sent At', justify='center', highlight=True, width=21)
         counts_table.add_column('Last Sent At', justify='center', style='wheat4', width=21)
-        counts_table.add_column('Days', justify='right', style='dark_cyan')
+        counts_table.add_column('Days', justify='right', style='dim')
 
         for name, count in sort_dict(self.imessage_sender_counts()):
             if name == JEFFREY_EPSTEIN:
