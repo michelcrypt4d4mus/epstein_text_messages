@@ -9,12 +9,12 @@ from epstein_files.documents.email import SUPPRESS_OUTPUT_FOR_EMAIL_IDS
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.rich import *
 
-console = Console(color_system='256')
-epstein_files = EpsteinFiles.get_files()
+OK_FILE_IDS = ['025594', '025603']
+
 email_timestamps = {}
 
 
-for email in epstein_files.emails:
+for email in EpsteinFiles.get_files().emails:
     if email.timestamp not in email_timestamps:
         email_timestamps[email.timestamp] = email
         continue
@@ -26,6 +26,9 @@ for email in epstein_files.emails:
         continue
     elif other_email.file_id in SUPPRESS_OUTPUT_FOR_EMAIL_IDS or email.file_id in SUPPRESS_OUTPUT_FOR_EMAIL_IDS:
         console.print(f"Skipping already suppressed '{email.filename}'...", style='dim')
+        continue
+    elif email.file_id in OK_FILE_IDS:
+        console.print(f"Skipping OK_FILE_IDS '{email.filename}'", style='dim')
         continue
 
     console.print(f"\ncollision between {other_email.file_id} and {email.file_id}")
