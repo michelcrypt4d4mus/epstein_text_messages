@@ -271,7 +271,6 @@ class EpsteinFiles:
                 first_at = logs[0].first_message_at(name)
                 last_at = logs[-1].first_message_at(name)
 
-            name = name or UNKNOWN
             counts_table.add_row(Text(name or UNKNOWN, get_style_for_name(name)), str(count), first_at, last_at)
 
         console.print(counts_table)
