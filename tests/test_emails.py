@@ -3,7 +3,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.data import dict_sets_to_lists
 
 EMAIL_AUTHOR_COUNTS = {
-    None: 108,
+    None: 109,
     "Abi Schwinck": 1,
     AL_SECKEL: 7,
     "Alain Forget": 3,
@@ -160,7 +160,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Ramsey Elkholy": 1,
     "Reid Hoffman": 1,
     "Reid Weingarten": 72,
-    RENATA_BOLOTOVA: 5,
+    RENATA_BOLOTOVA: 4,
     "Richard Kahn": 117,
     "Richard Merkin": 3,
     "Robert Lawrence Kuhn": 26,
@@ -290,7 +290,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Jean Huguen": 1,
     JEAN_LUC_BRUNEL: 10,
     JEFF_FULLER: 2,
-    "Jeffrey Epstein": 1538,
+    "Jeffrey Epstein": 1537,
     JES_STALEY: 7,
     "Jessica Cadwell": 5,
     "Joel": 2,
@@ -383,7 +383,7 @@ EMAIL_RECIPIENT_COUNTS = {
     'Rebecca Risman': 1,
     "Reid Hoffman": 2,
     "Reid Weingarten": 34,
-    RENATA_BOLOTOVA: 1,
+    RENATA_BOLOTOVA: 2,
     "Richard Barnnet": 1,
     "Richard Joshi": 1,
     "Richard Kahn": 30,

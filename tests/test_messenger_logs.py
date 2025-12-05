@@ -1,7 +1,7 @@
 from epstein_files.util.constant.names import *
 
 MESSENGER_LOG_AUTHOR_COUNTS = {
-    UNKNOWN: 67,
+    None: 67,
     ANIL_AMBANI: 24,
     SCARAMUCCI: 57,
     ARDA_BESKARES: 2,
