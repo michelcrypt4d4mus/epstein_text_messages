@@ -207,7 +207,7 @@ HIGHLIGHTED_GROUPS = [
             MIROSLAV_LAJCAK: 'Russia-friendly Slovakian politician, friend of Steve Bannon',
             PETER_MANDELSON: 'UK politics',
             TERJE_ROD_LARSEN: 'Norwegian diplomat',
-            THORBJORN_JAGLAND: 'former prime minister of Norway',
+            THORBJORN_JAGLAND: 'former prime minister of Norway and head of the Nobel Peace Prize Committee',
         }
     ),
     HighlightedGroup(
