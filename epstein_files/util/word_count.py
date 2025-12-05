@@ -3,13 +3,16 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 
 from inflection import singularize
+from rich.columns import Columns
+from rich.console import Console, ConsoleOptions, RenderResult
+from rich.padding import Padding
+from rich.text import Text
 
 from epstein_files.documents.document import SearchResult
 from epstein_files.documents.email_header import EmailHeader
 from epstein_files.util.constant.common_words import COMMON_WORDS, COMMON_WORDS_LIST, UNSINGULARIZABLE_WORDS
 from epstein_files.util.data import ALL_NAMES, Timer, flatten, sort_dict
-from epstein_files.util.env import args, logger, specified_names
-from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
+from epstein_files.util.env import args, logger
 from epstein_files.util.rich import (console, highlighter, print_centered, print_page_title, print_panel,
      print_social_media_links, print_starred_header, write_html)
 
@@ -18,6 +21,8 @@ NON_SINGULARIZABLE = UNSINGULARIZABLE_WORDS + [n.lower() for n in FIRST_AND_LAST
 SKIP_WORDS_REGEX = re.compile(r"^(asmallworld@|enwiki|http|imagepng|nymagcomnymetro|addresswww|mailto|www)|jee[vy]acation|(gif|html?|jpe?g|utm)$")
 BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#/_`,.;:'‘’\"„“”?\d\\]")
 NO_SINGULARIZE_REGEX = re.compile(r".*io?us$")
+PADDING = (0, 0, 2, 2)
+MIN_COUNT_CUTOFF = 3
 MAX_WORD_LEN = 45
 
 BAD_WORDS = [
@@ -111,3 +116,13 @@ class WordCount:
             or len(w) >= MAX_WORD_LEN \
             or w in COMMON_WORDS \
             or w in BAD_WORDS
+
+    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
+        word_txts = [
+            highlighter(Text('').append(f"{word}", style='wheat4').append(': ').append(f"{count:,}"))
+            for word, count in [kv for kv in sort_dict(self.count) if kv[1] >= MIN_COUNT_CUTOFF]
+        ]
+
+        cols = Columns(word_txts, column_first=False, equal=False, expand=True)
+        yield Padding(cols, PADDING)
+        yield f"Showing {len(word_txts):,} words appearing at least {MIN_COUNT_CUTOFF} times (out of {len(self.count):,} words)."
