@@ -3,6 +3,7 @@ UNKNOWN = '(unknown)'
 
 # Texting Names
 ANIL_AMBANI = "Anil Ambani"
+ARDA_BESKARES = 'Arda Beskardes'
 EVA = 'Eva'
 JEFFREY_EPSTEIN = 'Jeffrey Epstein'
 JOI_ITO = 'Joi Ito'

@@ -52,7 +52,7 @@ HEADER_ABBREVIATIONS = {
 KNOWN_IMESSAGE_FILE_IDS = {
     '031042': ANIL_AMBANI,       # Participants: field
     '027225': ANIL_AMBANI,       # Birthday
-    '031173': 'Ards',            # Participants: field, possibly incomplete
+    '031173': ARDA_BESKARES,     # Participants: field
     '027401': EVA,               # Participants: field
     '027650': JOI_ITO,           # Participants: field
     '027777': LARRY_SUMMERS,     # Participants: field
