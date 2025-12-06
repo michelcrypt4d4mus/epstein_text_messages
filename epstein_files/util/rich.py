@@ -241,5 +241,5 @@ def write_html(output_path: Path) -> None:
     logger.warning(f"Wrote {file_size_str(output_path)} to '{output_path}'")
 
 
-if is_debug:
+if deep_debug:
     print_json('THEME_STYLES', THEME_STYLES)
