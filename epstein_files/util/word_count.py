@@ -71,6 +71,7 @@ SINGULARIZATIONS = {
     'reserves': 'reserve',
     'serves': 'serve',
     'shes': 'she',
+    'sholes': 'scholes',
     'slaves': 'slave',
     'thnks': 'thank',
     'ties': 'tie',
