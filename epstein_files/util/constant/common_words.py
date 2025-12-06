@@ -179,7 +179,7 @@ OTHER_COMMON_WORDS = """
     ou over
     pdt pst
     rss
-    sent si signature smtp snipped
+    sent si signature smtp snipped somers
     te tel tenu tho though trimmed
     via vous voye
     was wasnt whether while wrote
@@ -189,27 +189,27 @@ COMMON_WORDS = {line.lower(): True for line in (MOST_COMMON_WORDS + OTHER_COMMON
 COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
 
 UNSINGULARIZABLE_WORDS = """
-    acosta aids alas always angeles anomalous anus apropos arabia ares asia asus atlanta australia ave avia
-    bata betts bias bonus brookings
-    california campus candia carlos caucus cbs cds chris clothes cms collins columbia comms conchita costa courteous csis curves cvs cyprus
+    acosta aids alas always andres angeles anomalous anus apropos arabia ares asia asus atlanta australia ave avia
+    bata betts bias boies bonus brookings
+    california campus candia carlos caucus cbs cds census chris clothes cms collins columbia comms conchita costa courteous csis curves cvs cyprus
     dallas dangerous data davis dementia denis dennis des dis drougas dubious
-    emirates encyclopedia ens eps
-    famous ferris focus folks forbes francis frivolous
-    gas gaydos gittes gmt gps
-    halitosis has hiatus hillis his hivaids
+    emirates emphasis encyclopedia enormous ens eps
+    fabulous famous ferris focus folks forbes francis frivolous
+    gas gaydos gittes gmt gorgeous gps
+    halitosis hamas has hiatus hillis his hivaids
     impetus innocuous india indonesia ios ips irs isis
-    jános josephus
+    jános jones josephus
     las lens les lewis lhs lls los louis luis
-    madars maldives maria mbs melania mets meyers moonves
-    nafta nautilus nas nigeria notorious nous nucleus nunes
+    madars maldives maria mbs melania mets meyers miscellaneous mlpf&s momentous moonves
+    nafta nautilus nas nigeria notorious nous nucleus numerous nunes
     olas outrageous
-    pants paris parkes patricia pbs peres philadelphia physics pls plus potus prevus
+    pants paris parkes patricia pbs peres philadelphia physics pls plus potus pres prevus
     reis-dennis reuters rogers russia
-    sach sadis saks santa ses sometimes sous stimulus syria
-    texas this thus tous trans tremendous tries
+    sachs sadis saks santa ses sometimes sous stimulus syria
+    tennis texas this thus tous trans tremendous tries
     ups
     valeria versus via vicious victoria villafaria vinicius virginia vis vous
-    was whoops wikipedia
+    was whereas whoops wikipedia
     yemen yes yikes
     zakaria
 """.strip().split()

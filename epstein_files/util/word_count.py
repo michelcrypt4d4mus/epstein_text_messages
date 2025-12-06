@@ -20,7 +20,7 @@ FIRST_AND_LAST_NAMES = flatten([n.split() for n in ALL_NAMES])
 NON_SINGULARIZABLE = UNSINGULARIZABLE_WORDS + [n.lower() for n in FIRST_AND_LAST_NAMES if n.endswith('s')]
 SKIP_WORDS_REGEX = re.compile(r"^(asmallworld@|enwiki|http|imagepng|nymagcomnymetro|addresswww|mailto|www)|jee[vy]acation|(gif|html?|jpe?g|utm)$")
 BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#/_`,.;:'‘’\"„“”?\d\\]")
-NO_SINGULARIZE_REGEX = re.compile(r".*io?us$")
+NO_SINGULARIZE_REGEX = re.compile(r".*[io]us$")
 PADDING = (0, 0, 2, 2)
 MIN_COUNT_CUTOFF = 3
 MAX_WORD_LEN = 45
@@ -50,10 +50,12 @@ SINGULARIZATIONS = {
     'believes': 'believe',
     'busses': 'bus',
     'colletcions': 'collection',
+    'deserves': 'deserve',
     'dies': 'die',
     'dives': 'dive',
     'drives': 'drive',
     'enterpris': 'enterprise',
+    'focuses': 'focus',
     'girsl': 'girl',
     'gives': 'give',
     'involves': 'involve',
@@ -67,9 +69,11 @@ SINGULARIZATIONS = {
     'proves': 'prove',
     'receives': 'receive',
     'reserves': 'reserve',
+    'serves': 'serve',
     'shes': 'she',
     'slaves': 'slave',
     'thnks': 'thank',
+    'ties': 'tie',
     'thieves': 'thief',
     'toes': 'toe',
     'viruses': 'virus',
@@ -102,10 +106,16 @@ class WordCount:
 
             # Log the raw_word if we've seen it more than once (but only once)
             if raw_word.endswith('s') and self.singularized[raw_word] == 2:
-                logger.info(f"Singularized '{raw_word}' to '{word}'...")
+                logger.info(f"   Singularized '{raw_word}' to '{word}'...")
 
-        if not self._is_invalid_word(word):
-            self.count[word] += 1
+        if '/' in word:
+            logger.info(f"Splitting word with '/' in it '{word}'...")
+
+            for w in word.split('/'):
+                self.count_word(word, document_line)
+        else:
+            if not self._is_invalid_word(word):
+                self.count[word] += 1
 
         if word in FLAGGED_WORDS:
             logger.warning(f"{document_line.document.filename}: Found '{word}' in '{document_line.lines[0]}'")
