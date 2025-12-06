@@ -10,16 +10,15 @@ from rich.text import Text
 
 from epstein_files.documents.document import SearchResult
 from epstein_files.documents.email_header import EmailHeader
-from epstein_files.util.constant.common_words import COMMON_WORDS, COMMON_WORDS_LIST, UNSINGULARIZABLE_WORDS
-from epstein_files.util.data import ALL_NAMES, Timer, flatten, sort_dict
+from epstein_files.util.constant.common_words import COMMON_WORDS, UNSINGULARIZABLE_WORDS
+from epstein_files.util.data import ALL_NAMES, flatten, sort_dict
 from epstein_files.util.env import args, logger
-from epstein_files.util.rich import (console, highlighter, print_centered, print_panel,
-     print_social_media_links, print_starred_header, write_html)
+from epstein_files.util.rich import highlighter
 
 FIRST_AND_LAST_NAMES = flatten([n.split() for n in ALL_NAMES])
 NON_SINGULARIZABLE = UNSINGULARIZABLE_WORDS + [n.lower() for n in FIRST_AND_LAST_NAMES if n.endswith('s')]
 SKIP_WORDS_REGEX = re.compile(r"^(asmallworld@|enwiki|http|imagepng|nymagcomnymetro|addresswww|mailto|www)|jee[vy]acation|(gif|html?|jpe?g|utm)$")
-BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#/_`,.;:'‘’\"„“”?\d\\]")
+BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#_`,.;:'‘’\"„“”?\d\\]")
 NO_SINGULARIZE_REGEX = re.compile(r".*[io]us$")
 PADDING = (0, 0, 2, 2)
 MIN_COUNT_CUTOFF = 3
@@ -78,10 +77,10 @@ SINGULARIZATIONS = {
     'ties': 'tie',
     'thieves': 'thief',
     'toes': 'toe',
+    #'trying': 'try',
     'viruses': 'virus',
     'waves': 'wave',
     'woes': 'woe',
-    #'trying': 'try',
 }
 
 FLAGGED_WORDS = []
@@ -96,14 +95,17 @@ class WordCount:
         word = EmailHeader.cleanup_str(word).lower().strip()
         raw_word = word
 
+        if 'ttp' in word or 'www' in word or word == '/':
+            return
+
         if word not in BAD_CHARS_OK:
             word = BAD_CHARS_REGEX.sub('', word).strip()
 
         if '/' in word:
-            logger.info(f"    Splitting word with '/' in it '{word}'...")
+            logger.info(f"  Splitting word with '/' in it '{word}'...")
 
             for w in word.split('/'):
-                self.count_word(word, document_line)
+                self.count_word(w, document_line)
 
             return
 
