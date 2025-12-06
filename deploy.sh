@@ -88,6 +88,7 @@ print_msg "Building" "$WORD_COUNT_HTML_PATH"
 git commit -am"Update HTML"
 git push origin gh_pages --quiet
 git checkout master
+echo -e ""
 print_msg "$TEXT_MSGS_PROJECT_NAME deployed to" "$TEXT_MSGS_URL"
 print_msg "          word counts deployed to" "$WORD_COUNT_URL"
 echo -e "\n\n"
