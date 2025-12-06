@@ -97,9 +97,15 @@ class WordCount:
 
         if 'ttp' in word or 'www' in word or word == '/':
             return
+        elif word == 'p/e':
+            self.count[word] += 1
+            return
 
         if word not in BAD_CHARS_OK:
             word = BAD_CHARS_REGEX.sub('', word).strip()
+
+        if self._is_invalid_word(word):
+            return
 
         if '/' in word:
             logger.info(f"  Splitting word with '/' in it '{word}'...")
@@ -109,9 +115,7 @@ class WordCount:
 
             return
 
-        if self._is_invalid_word(word):
-            return
-        elif word in SINGULARIZATIONS:
+        if word in SINGULARIZATIONS:
             word = SINGULARIZATIONS[word]
         elif not (word in NON_SINGULARIZABLE or NO_SINGULARIZE_REGEX.match(word) or len(word) <= 2):
             word = singularize(word)

@@ -205,7 +205,7 @@ UNSINGULARIZABLE_WORDS = """
     nafta nautilus nas nigeria nucleus nunes
     olas
     pants paris parkes patricia pbs peres philadelphia physics pls plus potus pres prevus
-    rees reis-dennis reuters rogers russia
+    rees reis-dennis reuters rodgers rogers russia
     sachs sadis saks santa ses simmons sometimes stimulus syria
     tennis texas this thus trans tries
     ups
