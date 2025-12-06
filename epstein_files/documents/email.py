@@ -34,6 +34,7 @@ QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re.DOTALL)
 BAD_LINE_REGEX = re.compile(r'^(>;|\d{1,2}|Importance:( High)?|[iI,•]|i (_ )?i|, [-,])$')
 REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + ['********************************']
+LINK_LINE_REGEX = re.compile(f"^(> )?htt")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 MAX_CHARS_TO_PRINT = 4000
@@ -475,7 +476,7 @@ class Email(CommunicationDocument):
         while i < len(self.lines):
             line = self.lines[i]
 
-            if line.startswith('htt'):
+            if LINK_LINE_REGEX.search(line):
                 if i < (len(self.lines) - 1) and 'htm' not in line and (any(s in self.lines[i + 1] for s in URL_SIGNIFIERS) or self.lines[i + 1].endswith('/')):
                     logger.warning(f"{self.filename}: Joining lines\n   1. {line}\n   2. {self.lines[i + 1]}\n")
                     line += self.lines[i + 1]
