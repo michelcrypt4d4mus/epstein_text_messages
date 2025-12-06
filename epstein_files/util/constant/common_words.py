@@ -17,6 +17,7 @@ MOST_COMMON_WORDS = """
     be
     because
     been
+    being
     but
     by
     came
@@ -189,22 +190,22 @@ COMMON_WORDS = {line.lower(): True for line in (MOST_COMMON_WORDS + OTHER_COMMON
 COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
 
 UNSINGULARIZABLE_WORDS = """
-    acosta aids alas always andres angeles anus apropos arabia ares asia asus atlanta australia avia
-    bata betts bias boies bonus brookings
-    california campus candia carlos caucus cbs cds census chorus chris clothes cms collins columbia comms conchita costa csis curves cvs cyprus
-    dallas data davis dementia denis dennis des dis drougas
+    acosta aids alas always andres angeles anus apparatus apropos arabia ares asia asus atlanta australia avia
+    bahamas bata betts bias boies bonus brookings
+    california campus candia carlos caucus cbs cds census chaos chorus chris clothes cms collins columbia comms conchita costa csis curves cvs cyprus
+    dallas data davis davos dementia denis dennis des dis drougas
     emirates emphasis encyclopedia  ens eps
     ferris focus folks forbes francis
     gas gaydos gittes gmt gps
-    halitosis hamas has hiatus hillis his hivaids
+    halitosis hamas harris has hiatus hillis his hivaids
     impetus india indonesia ios ips irs isis isosceles
-    jános jones josephus
+    jacques jános jones josephus
     las lens les lewis lhs lls los louis luis
     madars maldives maria massachusetts mbs melania mets meyers mlpf&s moonves
     nafta nautilus nas nigeria nucleus nunes
     olas
     pants paris parkes patricia pbs peres philadelphia physics pls plus potus pres prevus
-    reis-dennis reuters rogers russia
+    rees reis-dennis reuters rogers russia
     sachs sadis saks santa ses simmons sometimes stimulus syria
     tennis texas this thus trans tries
     ups

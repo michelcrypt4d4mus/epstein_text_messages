@@ -28,7 +28,7 @@ EMAIL_IDS_TO_SKIP = [
 timer = Timer()
 epstein_files = EpsteinFiles.get_files()
 emails = flatten([epstein_files.emails_by(n) for n in specified_names]) if specified_names else epstein_files.emails
-imessage_logs = epstein_files.imessage_logs_for(specified_names) if specified_names else []
+imessage_logs = epstein_files.imessage_logs_for(specified_names) if specified_names else epstein_files.imessage_logs
 word_count = WordCount()
 
 for email in emails:
