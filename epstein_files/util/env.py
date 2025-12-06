@@ -60,4 +60,5 @@ specified_names: list[str | None] = args.emails or []
 if args.use_epstein_web_links:
     logger.warning(f"Using links to epsteinweb.org links instead of epsteinify.com...")
 
-logger.warning(f"is_html_script={is_html_script}, args.width={args.width}, current_script='{current_script}', specified_names={specified_names}")
+if is_debug:
+    logger.warning(f"is_html_script={is_html_script}, args.width={args.width}, current_script='{current_script}', specified_names={specified_names}")

@@ -87,7 +87,7 @@ class HighlightedGroup:
         logger.debug(f"name_regex_parts for '{name}': {name_regex_parts}")
 
         if len(names) > 2:
-            logger.info(f"'{name}' has {len(names)} names (first_name='{first_name}')")
+            logger.debug(f"'{name}' has {len(names)} names (first_name='{first_name}')")
 
         return '|'.join(name_regex_parts)
 
