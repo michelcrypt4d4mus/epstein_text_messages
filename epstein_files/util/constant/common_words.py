@@ -27,6 +27,7 @@ MOST_COMMON_WORDS = """
     couldnt
     day
     do
+    doing
     dont
     did
     didnt
@@ -36,6 +37,7 @@ MOST_COMMON_WORDS = """
     for
     from
     get
+    getting
     got
     give
     go
