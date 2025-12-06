@@ -477,8 +477,10 @@ class Email(CommunicationDocument):
             line = self.lines[i]
 
             if LINK_LINE_REGEX.search(line):
-                if i < (len(self.lines) - 1) and 'htm' not in line and (any(s in self.lines[i + 1] for s in URL_SIGNIFIERS) or self.lines[i + 1].endswith('/')):
-                    logger.warning(f"{self.filename}: Joining lines\n   1. {line}\n   2. {self.lines[i + 1]}\n")
+                if 'htm' not in line \
+                         and i < (len(self.lines) - 1) \
+                         and (self.lines[i + 1].endswith('/') or any(s in self.lines[i + 1] for s in URL_SIGNIFIERS)):
+                    logger.info(f"{self.filename}: Joining lines\n   1. {line}\n   2. {self.lines[i + 1]}\n")
                     line += self.lines[i + 1]
                     i += 1
 
