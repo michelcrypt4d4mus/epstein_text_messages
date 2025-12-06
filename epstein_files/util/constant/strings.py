@@ -12,7 +12,7 @@ DEFAULT = 'default'
 EVERYONE = 'everyone'
 HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
 REDACTED = '<REDACTED>'
-URL_SIGNIFIERS = ['htm', 'utm']
+URL_SIGNIFIERS = ['gclid', 'htm', 'ref=', 'utm']
 
 # Site types
 EMAIL = 'email'

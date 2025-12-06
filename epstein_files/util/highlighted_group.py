@@ -7,6 +7,7 @@ from rich.text import Text
 
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import DEFAULT, PHONE_NUMBER_STYLE, REDACTED
+from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
 from epstein_files.util.constants import EMAILER_ID_REGEXES, REPLY_REGEX, SENT_FROM_REGEX, HEADER_ABBREVIATIONS
 from epstein_files.util.env import deep_debug, logger
 
@@ -482,6 +483,12 @@ HIGHLIGHTED_GROUPS = [
         label='header_field',
         style='plum4',
         pattern='^(Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):',
+        is_multiline=True,
+    ),
+    HighlightedGroup(
+        label='http_links',
+        style=f'{ARCHIVE_LINK_COLOR} underline',
+        pattern=r"https?:[^\s]+",
         is_multiline=True,
     ),
     HighlightedGroup(
