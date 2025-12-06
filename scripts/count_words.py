@@ -10,7 +10,7 @@ from epstein_files.util.data import Timer
 from epstein_files.util.env import args, logger, specified_names
 from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
 from epstein_files.util.rich import (console, highlighter, print_centered, print_page_title, print_panel,
-     print_social_media_links, print_starred_header, write_html)
+     print_starred_header, write_html)
 from epstein_files.util.word_count import WordCount
 
 EMAIL_IDS_TO_SKIP = [

@@ -17,7 +17,7 @@ from epstein_files.documents.document import Document, SearchResult
 from epstein_files.documents.email import DETECT_EMAIL_REGEX, JUNK_EMAILERS, KRASSNER_RECIPIENTS, USELESS_EMAILERS, Email
 from epstein_files.documents.email_header import AUTHOR
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
-from epstein_files.util.constant.strings import AUTHOR, TEXT_MESSAGE
+from epstein_files.util.constant.strings import AUTHOR, EVERYONE, TEXT_MESSAGE
 from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url,
      search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
@@ -136,6 +136,9 @@ class EpsteinFiles:
 
     def emails_for(self, author: str | None) -> list[Email]:
         """Returns emails to or from a given 'author' sorted chronologically."""
+        if author == EVERYONE:
+            return EpsteinFiles.sort_emails(self.emails)
+
         emails_by = [e for e in self.emails if e.author == author]
 
         # Only emails from Epstein to unknown/redacted recipients should be returned when getting emails_for(None)
@@ -162,8 +165,11 @@ class EpsteinFiles:
     def email_unknown_recipient_file_ids(self) -> list[str]:
         return sorted(list(self._email_unknown_recipient_file_ids))
 
-    def imessages_logs_for(self, author: str | None) -> list[MessengerLog]:
-        return [log for log in self.imessage_logs if author == JEFFREY_EPSTEIN or author == log.author]
+    def imessage_logs_for(self, author: str | None) -> list[MessengerLog]:
+        if author == EVERYONE:
+            return self.imessage_logs
+        else:
+            return [log for log in self.imessage_logs if author == JEFFREY_EPSTEIN or author == log.author]
 
     def imessage_sender_counts(self) -> dict[str | None, int]:
         sender_counts: dict[str | None, int] = defaultdict(int)
@@ -268,7 +274,7 @@ class EpsteinFiles:
         counts_table.add_column('Days', justify='right', style='dim')
 
         for name, count in sort_dict(self.imessage_sender_counts()):
-            logs = self.imessages_logs_for(name)
+            logs = self.imessage_logs_for(name)
             first_at = logs[0].first_message_at(name)
             last_at = logs[-1].first_message_at(name)
 

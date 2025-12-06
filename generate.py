@@ -14,11 +14,10 @@ load_dotenv()
 from rich.padding import Padding
 from rich.text import Text
 
-from epstein_files.documents.email import Email
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
-from epstein_files.util.constant.strings import EMAIL_CLASS, MESSENGER_LOG_CLASS
+from epstein_files.util.constant.strings import EMAIL_CLASS, EVERYONE, MESSENGER_LOG_CLASS
 from epstein_files.util.data import Timer, dict_sets_to_lists
 from epstein_files.util.env import specified_names, args, is_build, is_debug, skip_texts
 from epstein_files.util.file_helper import GH_PAGES_HTML_PATH
@@ -27,10 +26,10 @@ from epstein_files.util.rich import *
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
 
 # Order matters (will be order of output)
-PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED_LIST = [
+PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED: list[str | None] = [
     JEREMY_RUBIN,
-    JOI_ITO,
     AL_SECKEL,
+    JOI_ITO,
     JABOR_Y,
     STEVEN_SINOFSKY,
     DANIEL_SIAD,
@@ -50,7 +49,7 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED_LIST = [
 ]
 
 # Order matters (will be order of output)
-PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES_LIST: list[str | None] = [
+PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES: list[str | None] = [
     GHISLAINE_MAXWELL,
     LEON_BLACK,
     LANDON_THOMAS,
@@ -65,13 +64,13 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES_LIST: list[str | None] = [
 ]
 
 
+timer = Timer()
 print_header()
 
 if args.colors_only:
     print_color_key()
     exit()
 
-timer = Timer()
 epstein_files = EpsteinFiles.get_files()
 timer.print_at_checkpoint(f'Processed {len(epstein_files.all_files):,} files')
 epstein_files.print_files_overview()
@@ -83,15 +82,18 @@ if not skip_texts:
     print_section_header('Text Messages')
     print_centered("(conversations are sorted chronologically based on timestamp of first message)\n", style='gray30')
 
-    for log_file in epstein_files.imessage_logs:
-        console.print(Padding(log_file))
-        console.line(2)
+    for name in specified_names:
+        logger.warning(f"Printing texts for {name}...")
+
+        for log_file in epstein_files.imessage_logs_for(name):
+            console.print(Padding(log_file))
+            console.line(2)
 
     epstein_files.print_imessage_summary()
     timer.print_at_checkpoint(f'Printed {len(epstein_files.imessage_logs):,} text message logs')
 
     if args.only_texts:
-        logger.warning(f"Existing because --only-texts...")
+        logger.warning(f"Exiting because --only-texts...")
         exit()
 
 
@@ -100,6 +102,8 @@ print_section_header(('Selections from ' if not args.all_emails else '') + 'His 
 print_other_site_link(is_header=False)
 epstein_files.print_emailer_counts_table()
 emails_printed_since_last_color_key = 0
+emailers_to_print: list[str | None]
+emailer_tables: list[str | None] = []
 
 if args.all_emails:
     console.print('Email conversations are sorted chronologically based on time of the first email.')
@@ -107,28 +111,30 @@ if args.all_emails:
     print_numbered_list_of_emailers(emailers_to_print, epstein_files)
 else:
     if len(specified_names) > 0:
-        PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED_LIST = specified_names
+        emailers_to_print = specified_names
+    else:
+        emailers_to_print = PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED
 
     console.print('Email conversations grouped by counterparty can be found in the order listed below.')
-    emailers_to_print = PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED_LIST
     print_numbered_list_of_emailers(emailers_to_print)
     console.print("\nAfter that there's tables linking to (but not displaying) all known emails for each of these people:")
 
     if args.all_email_tables:
         emailer_tables = sorted(epstein_files.all_emailers(), key=lambda e: epstein_files.earliest_email_at(e))
     else:
-        emailer_tables = PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES_LIST
+        emailer_tables = PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES
 
     print_numbered_list_of_emailers(emailer_tables)
 
 for author in emailers_to_print:
     emails_printed_since_last_color_key += epstein_files.print_emails_for(author)
 
-    if emails_printed_since_last_color_key > PRINT_COLOR_KEY_EVERY_N_EMAILS:  # Print color key every once in a while
+    # Print color key every once in a while
+    if emails_printed_since_last_color_key > PRINT_COLOR_KEY_EVERY_N_EMAILS:
         print_color_key()
         emails_printed_since_last_color_key = 0
 
-if not args.all_emails and len(specified_names) == 0:
+if len(emailer_tables) > 0:
     print_author_header(f"Email Tables for {len(emailer_tables)} Other People", 'white')
 
     for name in emailer_tables:

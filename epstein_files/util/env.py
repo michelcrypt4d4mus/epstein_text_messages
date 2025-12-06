@@ -1,5 +1,5 @@
 import logging
-from argparse import ArgumentParser, Namespace
+from argparse import ArgumentParser
 from os import environ
 from pathlib import Path
 from sys import argv
@@ -42,8 +42,6 @@ skip_texts = args.no_texts or is_env_var_set('NO_TEXTS')
 
 args.pickled = args.pickled or is_env_var_set('PICKLED')
 args.width = args.width if is_html_script else None
-specified_names = args.emails or []
-
 
 # Setup logging
 logging.basicConfig(level="NOTSET", format="%(message)s", datefmt="[%X]", handlers=[RichHandler()])
@@ -57,13 +55,9 @@ else:
     logger.setLevel(logging.WARNING)
 
 
-if len(specified_names) > 0:
-    logger.warning(f"Found {len(specified_names)} --email so setting --no-texts to True")
-    args.no_texts = True
-    skip_texts = True
+specified_names: list[str | None] = args.emails or []
 
 if args.use_epstein_web_links:
-    logger.warning(f"Using links to epsteinweb.org links instead of epsteinify.com")
+    logger.warning(f"Using links to epsteinweb.org links instead of epsteinify.com...")
 
-
-logger.debug(f"is_html_script={is_html_script}, args.width={args.width}, current_script='{current_script}'")
+logger.warning(f"is_html_script={is_html_script}, args.width={args.width}, current_script='{current_script}', specified_names={specified_names}")
