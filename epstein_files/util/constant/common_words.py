@@ -163,7 +163,7 @@ OTHER_COMMON_WORDS = """
     sun mon tues wed thur thurs fri sat
     st nd rd th skrev
 
-    addthis attachments
+    addthis attachments ave
     bcc bst btn
     cc ce cel
     date de des div dont du
@@ -189,13 +189,13 @@ COMMON_WORDS = {line.lower(): True for line in (MOST_COMMON_WORDS + OTHER_COMMON
 COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
 
 UNSINGULARIZABLE_WORDS = """
-    acosta aids alas always andres angeles anus apropos arabia ares asia asus atlanta australia ave avia
+    acosta aids alas always andres angeles anus apropos arabia ares asia asus atlanta australia avia
     bata betts bias boies bonus brookings
     california campus candia carlos caucus cbs cds census chorus chris clothes cms collins columbia comms conchita costa csis curves cvs cyprus
     dallas data davis dementia denis dennis des dis drougas
     emirates emphasis encyclopedia  ens eps
     ferris focus folks forbes francis
-    gas gaydos gittes gmt  gps
+    gas gaydos gittes gmt gps
     halitosis hamas has hiatus hillis his hivaids
     impetus india indonesia ios ips irs isis isosceles
     jános jones josephus
