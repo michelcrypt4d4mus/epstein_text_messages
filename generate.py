@@ -18,7 +18,7 @@ from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import EMAIL_CLASS, EVERYONE, MESSENGER_LOG_CLASS
-from epstein_files.util.data import Timer, dict_sets_to_lists
+from epstein_files.util.data import Timer, dict_sets_to_lists, flatten
 from epstein_files.util.env import specified_names, args, is_build, is_debug, skip_texts
 from epstein_files.util.file_helper import GH_PAGES_HTML_PATH
 from epstein_files.util.rich import *
@@ -82,12 +82,14 @@ if not skip_texts:
     print_section_header('Text Messages')
     print_centered("(conversations are sorted chronologically based on timestamp of first message)\n", style='gray30')
 
-    for name in specified_names:
-        logger.warning(f"Printing texts for {name}...")
+    if len(specified_names) == 0:
+        log_files = epstein_files.imessage_logs_for(EVERYONE)
+    else:
+        log_files = flatten([epstein_files.imessage_logs_for(name) for name in specified_names])
 
-        for log_file in epstein_files.imessage_logs_for(name):
-            console.print(Padding(log_file))
-            console.line(2)
+    for log_file in log_files:
+        console.print(Padding(log_file))
+        console.line(2)
 
     epstein_files.print_imessage_summary()
     timer.print_at_checkpoint(f'Printed {len(epstein_files.imessage_logs):,} text message logs')
