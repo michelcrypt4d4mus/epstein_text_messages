@@ -468,26 +468,27 @@ class Email(CommunicationDocument):
             self.lines = [self.lines[0] + self.lines[1]] + self.lines[2:]
             self.text = '\n'.join(self.lines)
 
-
-        self.lines = self.regex_repair_text(OCR_REPAIRS, self.text).split('\n')
-        lines = []
+        lines = self.regex_repair_text(OCR_REPAIRS, self.text).split('\n')
+        new_lines = []
         i = 0
 
-        while i < len(self.lines):
-            line = self.lines[i]
+        while i < len(lines):
+            line = lines[i]
 
             if LINK_LINE_REGEX.search(line):
-                if i < (len(self.lines) - 1) and 'htm' not in line and (any(s in self.lines[i + 1] for s in URL_SIGNIFIERS) or self.lines[i + 1].endswith('/')):
-                    logger.warning(f"{self.filename}: Joining lines\n   1. {line}\n   2. {self.lines[i + 1]}\n")
-                    line += self.lines[i + 1]
+                if 'htm' not in line \
+                         and i < (len(lines) - 1) \
+                         and (lines[i + 1].endswith('/') or any(s in lines[i + 1] for s in URL_SIGNIFIERS)):
+                    logger.info(f"{self.filename}: Joining lines\n   1. {line}\n   2. {lines[i + 1]}\n")
+                    line += lines[i + 1]
                     i += 1
 
                 line = line.replace(' ', '')
 
-            lines.append(line)
+            new_lines.append(line)
             i += 1
 
-        self.text = '\n'.join(lines)
+        self.text = '\n'.join(new_lines)
         self._set_computed_fields()
 
     def _sent_from_device(self) -> str | None:

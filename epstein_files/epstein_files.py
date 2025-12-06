@@ -134,24 +134,6 @@ class EpsteinFiles:
     def email_conversation_length_in_days(self, author: str | None) -> int:
         return (self.last_email_at(author) - self.earliest_email_at(author)).days + 1
 
-    def emails_for(self, author: str | None) -> list[Email]:
-        """Returns emails to or from a given 'author' sorted chronologically."""
-        if author == EVERYONE:
-            return EpsteinFiles.sort_emails(self.emails)
-
-        emails_by = [e for e in self.emails if e.author == author]
-
-        # Only emails from Epstein to unknown/redacted recipients should be returned when getting emails_for(None)
-        if author is None:
-            emails_to = [e for e in self.emails if e.author == JEFFREY_EPSTEIN and len(e.recipients) == 0]
-        else:
-            emails_to = [e for e in self.emails if author in e.recipients]
-
-        if len(emails_by) == 0 and len(emails_to) == 0:
-            raise RuntimeError(f"No emails found for '{author}'")
-
-        return EpsteinFiles.sort_emails(emails_by + emails_to)
-
     def email_signature_substitution_counts(self) -> dict[str, int]:
         """Return the number of times an email signature was replaced with "...snipped..." for each author."""
         substitution_counts = defaultdict(int)
@@ -165,11 +147,30 @@ class EpsteinFiles:
     def email_unknown_recipient_file_ids(self) -> list[str]:
         return sorted(list(self._email_unknown_recipient_file_ids))
 
-    def imessage_logs_for(self, author: str | None) -> list[MessengerLog]:
-        if author == EVERYONE:
-            return self.imessage_logs
+    def emails_by(self, author: str | None) -> list[Email]:
+        return [e for e in self.emails if e.author == author]
+
+    def emails_for(self, author: str | None) -> list[Email]:
+        """Returns emails to or from a given 'author' sorted chronologically."""
+        emails = self.emails if author == EVERYONE else self.emails_by(author) + self.emails_to(author)
+
+        if len(emails) == 0:
+            raise RuntimeError(f"No emails found for '{author}'")
+
+        return EpsteinFiles.sort_emails(emails)
+
+    def emails_to(self, author: str | None) -> list[Email]:
+        if author is None:
+            return [e for e in self.emails if len(e.recipients) == 0]
         else:
-            return [log for log in self.imessage_logs if author == JEFFREY_EPSTEIN or author == log.author]
+            return [e for e in self.emails if author in e.recipients]
+
+    def imessage_logs_for(self, author: str | None | list[str | None]) -> list[MessengerLog]:
+        if author in [EVERYONE, JEFFREY_EPSTEIN]:
+            return self.imessage_logs
+
+        authors = author if isinstance(author, list) else [author]
+        return [log for log in self.imessage_logs if log.author in authors]
 
     def imessage_sender_counts(self) -> dict[str | None, int]:
         sender_counts: dict[str | None, int] = defaultdict(int)

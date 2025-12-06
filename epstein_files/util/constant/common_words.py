@@ -1,4 +1,4 @@
-from epstein_files.util.env import is_debug
+from epstein_files.util.env import deep_debug
 
 # https://www.gonaturalenglish.com/1000-most-common-words-in-the-english-language/
 MOST_COMMON_WORDS = """
@@ -27,6 +27,7 @@ MOST_COMMON_WORDS = """
     couldnt
     day
     do
+    doing
     dont
     did
     didnt
@@ -36,6 +37,7 @@ MOST_COMMON_WORDS = """
     for
     from
     get
+    getting
     got
     give
     go
@@ -177,7 +179,7 @@ OTHER_COMMON_WORDS = """
     ou over
     pdt pst
     rss
-    sent si signature smtp snipped
+    sent si signature smtp snipped somers
     te tel tenu tho though trimmed
     via vous voye
     was wasnt whether while wrote
@@ -187,32 +189,32 @@ COMMON_WORDS = {line.lower(): True for line in (MOST_COMMON_WORDS + OTHER_COMMON
 COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
 
 UNSINGULARIZABLE_WORDS = """
-    acosta aids alas always angeles anomalous anus apropos arabia ares asia asus atlanta australia ave avia
-    bata betts bias bonus brookings
-    california campus candia carlos caucus cbs cds chris clothes cms collins columbia conchita costa courteous curves cvs cyprus
-    dallas data davis dementia denis dennis des dis drougas dubious
-    emirates encyclopedia ens eps
-    famous ferris focus folks forbes francis frivolous
-    gas gaydos gmt gps
-    halitosis has hillis his hivaids
-    impetus innocuous india indonesia ios ips irs isis
-    jános josephus
+    acosta aids alas always andres angeles anus apropos arabia ares asia asus atlanta australia ave avia
+    bata betts bias boies bonus brookings
+    california campus candia carlos caucus cbs cds census chorus chris clothes cms collins columbia comms conchita costa csis curves cvs cyprus
+    dallas data davis dementia denis dennis des dis drougas
+    emirates emphasis encyclopedia  ens eps
+    ferris focus folks forbes francis
+    gas gaydos gittes gmt  gps
+    halitosis hamas has hiatus hillis his hivaids
+    impetus india indonesia ios ips irs isis isosceles
+    jános jones josephus
     las lens les lewis lhs lls los louis luis
-    madars maldives maria mbs melania mets meyers moonves
-    nafta nautilus nas nigeria notorious nous nucleus nunes
-    olas outrageous
-    pants parkes patricia pbs peres philadelphia physics pls plus potus prevus
+    madars maldives maria massachusetts mbs melania mets meyers mlpf&s moonves
+    nafta nautilus nas nigeria nucleus nunes
+    olas
+    pants paris parkes patricia pbs peres philadelphia physics pls plus potus pres prevus
     reis-dennis reuters rogers russia
-    sach sadis saks santa ses sous stimulus syria
-    texas this thus tous trans tremendous tries
+    sachs sadis saks santa ses simmons sometimes stimulus syria
+    tennis texas this thus trans tries
     ups
-    valeria versus via vicious victoria villafaria vinicius virginia vis vous
-    was whoops wikipedia
+    valeria versus via victoria villafaria vinicius virginia vis
+    was whereas whoops wikipedia
     yemen yes yikes
     zakaria
 """.strip().split()
 
 
-if is_debug:
+if deep_debug:
     word_str = '\n'.join(COMMON_WORDS_LIST)
     print(f"common words:\n\n{word_str}")

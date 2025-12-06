@@ -172,7 +172,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     JOI_ITO: re.compile(r'ji@media.mit.?edu|(joichi|joi)( Ito)?', re.IGNORECASE),
     JOHNNY_EL_HACHEM: re.compile(r'el hachem johnny|johnny el hachem', re.IGNORECASE),
     JONATHAN_FARKAS: re.compile(r'Jonathan Farka(s|il)', re.IGNORECASE),
-    KATHY_RUEMMLER: re.compile(r'Kathr?yn? Ruemmler?', re.IGNORECASE),
+    KATHRYN_RUEMMLER: re.compile(r'Kathr?yn? Ruemmler?', re.IGNORECASE),
     KEN_STARR: re.compile(r'starr, ken|Ken(neth W.)?\s+starr?|starr', re.IGNORECASE),
     LANDON_THOMAS: re.compile(r'lando[nr] thomas( jr)?|thomas jr.?, lando[nr]', re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r'(La(wrence|rry).{1,5})?Summers?|^LH$|LHS|Ihsofficel', re.IGNORECASE),
@@ -358,10 +358,10 @@ KNOWN_EMAIL_AUTHORS = {
     '033490': JONATHAN_FARKAS,        # Signature
     '032531': JONATHAN_FARKAS,        # Signature
     '026764': 'Barry J. Cohen',
-    '026652': KATHY_RUEMMLER,          # Just bad OCR
-    '032224': KATHY_RUEMMLER,
-    '032386': KATHY_RUEMMLER,          # from "Kathy" about dems, sent from iPad (not 100% confirmed)
-    '032727': KATHY_RUEMMLER,          # from "Kathy" about dems, sent from iPad (not 100% confirmed)
+    '026652': KATHRYN_RUEMMLER,          # Just bad OCR
+    '032224': KATHRYN_RUEMMLER,
+    '032386': KATHRYN_RUEMMLER,          # from "Kathy" about dems, sent from iPad (not 100% confirmed)
+    '032727': KATHRYN_RUEMMLER,          # from "Kathy" about dems, sent from iPad (not 100% confirmed)
     '030478': LANDON_THOMAS,
     '029013': LARRY_SUMMERS,
     '032206': LAWRENCE_KRAUSS,         # More of a text convo?
@@ -433,7 +433,7 @@ KRASSNER_033568_RECIPIENTS = ['George Krassner', 'Daniel Dawson', 'Danny Goldber
 FLIGHT_IN_2012_PEOPLE = ['Francis Derby', 'Januiz Banasiak', 'Louella Rabuyo', 'Richard Barnnet']
 
 KNOWN_EMAIL_RECIPIENTS = {
-    '030626': [ALAN_DERSHOWITZ, DARREN_INDYKE, KATHY_RUEMMLER, KEN_STARR, MARTIN_WEINBERG],
+    '030626': [ALAN_DERSHOWITZ, DARREN_INDYKE, KATHRYN_RUEMMLER, KEN_STARR, MARTIN_WEINBERG],
     '028968': [ALAN_DERSHOWITZ, JACK_GOLDBERGER, JEFFREY_EPSTEIN],
     '029835': [ALAN_DERSHOWITZ, JACK_GOLDBERGER, JEFFREY_EPSTEIN],
     '027063': ANTHONY_BARRETT,
@@ -488,8 +488,8 @@ KNOWN_EMAIL_RECIPIENTS = {
     '033460': 'Joel',                 # Reply
     '029282': [JOI_ITO, REID_HOFFMAN],# Bad OCR
     '021090': JONATHAN_FARKAS,        # Reply to a message signed " jonathan" same as other Farkas emails
-    '033073': KATHY_RUEMMLER,         # to "Kathy" about dems, sent from iPad (not 100% confirmed)
-    '032939': KATHY_RUEMMLER,         # to "Kathy" about dems, sent from iPad (not 100% confirmed)
+    '033073': KATHRYN_RUEMMLER,         # to "Kathy" about dems, sent from iPad (not 100% confirmed)
+    '032939': KATHRYN_RUEMMLER,         # to "Kathy" about dems, sent from iPad (not 100% confirmed)
     '031428': [KEN_STARR, LILLY_SANCHEZ, MARTIN_WEINBERG, REID_WEINGARTEN],  # Bad OCR
     '031388': [KEN_STARR, LILLY_SANCHEZ, MARTIN_WEINBERG, REID_WEINGARTEN],  # Bad OCR
     '025329': KRASSNER_MANSON_RECIPIENTS,
