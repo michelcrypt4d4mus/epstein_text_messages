@@ -2,7 +2,6 @@ import re
 from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
-from typing import ClassVar
 
 from dateutil.parser import parse
 from dateutil import tz
@@ -15,7 +14,7 @@ from rich.text import Text
 from epstein_files.documents.document import CommunicationDocument
 from epstein_files.documents.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX, FIELD_NAMES,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TIME_REGEX, EmailHeader)
-from epstein_files.util.constant.strings import REDACTED
+from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import *
 from epstein_files.util.data import collapse_newlines, escape_single_quotes, uniquify
@@ -35,6 +34,7 @@ QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.IGNORECASE | re.DOTALL)
 BAD_LINE_REGEX = re.compile(r'^(>;|\d{1,2}|Importance:( High)?|[iI,•]|i (_ )?i|, [-,])$')
 REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + ['********************************']
+LINK_LINE_REGEX = re.compile(f"^(> )?htt")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 MAX_CHARS_TO_PRINT = 4000
@@ -468,7 +468,26 @@ class Email(CommunicationDocument):
             self.lines = [self.lines[0] + self.lines[1]] + self.lines[2:]
             self.text = '\n'.join(self.lines)
 
-        self.text = self.regex_repair_text(OCR_REPAIRS, self.text)
+
+        self.lines = self.regex_repair_text(OCR_REPAIRS, self.text).split('\n')
+        lines = []
+        i = 0
+
+        while i < len(self.lines):
+            line = self.lines[i]
+
+            if LINK_LINE_REGEX.search(line):
+                if i < (len(self.lines) - 1) and 'htm' not in line and (any(s in self.lines[i + 1] for s in URL_SIGNIFIERS) or self.lines[i + 1].endswith('/')):
+                    logger.warning(f"{self.filename}: Joining lines\n   1. {line}\n   2. {self.lines[i + 1]}\n")
+                    line += self.lines[i + 1]
+                    i += 1
+
+                line = line.replace(' ', '')
+
+            lines.append(line)
+            i += 1
+
+        self.text = '\n'.join(lines)
         self._set_computed_fields()
 
     def _sent_from_device(self) -> str | None:

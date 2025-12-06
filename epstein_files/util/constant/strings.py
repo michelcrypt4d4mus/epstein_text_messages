@@ -9,8 +9,10 @@ MESSENGER_LOG_CLASS = 'MessengerLog'
 # Misc
 AUTHOR = 'author'
 DEFAULT = 'default'
+EVERYONE = 'everyone'
 HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
 REDACTED = '<REDACTED>'
+URL_SIGNIFIERS = ['gclid', 'htm', 'ref=', 'utm']
 
 # Site types
 EMAIL = 'email'

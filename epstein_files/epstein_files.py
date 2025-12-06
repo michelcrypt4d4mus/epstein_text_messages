@@ -17,7 +17,7 @@ from epstein_files.documents.document import Document, SearchResult
 from epstein_files.documents.email import DETECT_EMAIL_REGEX, JUNK_EMAILERS, KRASSNER_RECIPIENTS, USELESS_EMAILERS, Email
 from epstein_files.documents.email_header import AUTHOR
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
-from epstein_files.util.constant.strings import AUTHOR, TEXT_MESSAGE
+from epstein_files.util.constant.strings import AUTHOR, EVERYONE, TEXT_MESSAGE
 from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url,
      search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
@@ -136,6 +136,9 @@ class EpsteinFiles:
 
     def emails_for(self, author: str | None) -> list[Email]:
         """Returns emails to or from a given 'author' sorted chronologically."""
+        if author == EVERYONE:
+            return EpsteinFiles.sort_emails(self.emails)
+
         emails_by = [e for e in self.emails if e.author == author]
 
         # Only emails from Epstein to unknown/redacted recipients should be returned when getting emails_for(None)
@@ -161,6 +164,12 @@ class EpsteinFiles:
 
     def email_unknown_recipient_file_ids(self) -> list[str]:
         return sorted(list(self._email_unknown_recipient_file_ids))
+
+    def imessage_logs_for(self, author: str | None) -> list[MessengerLog]:
+        if author == EVERYONE:
+            return self.imessage_logs
+        else:
+            return [log for log in self.imessage_logs if author == JEFFREY_EPSTEIN or author == log.author]
 
     def imessage_sender_counts(self) -> dict[str | None, int]:
         sender_counts: dict[str | None, int] = defaultdict(int)
@@ -258,27 +267,22 @@ class EpsteinFiles:
         """Print summary table and stats for text messages."""
         counts_table = Table(title="Text Message Counts By Author", header_style="bold")
         counts_table.add_column(AUTHOR.title(), justify='left', style="steel_blue bold", width=30)
-        counts_table.add_column("Count", justify='right')
         counts_table.add_column('Files', justify='right', style='white')
+        counts_table.add_column("Msgs", justify='right')
         counts_table.add_column('First Sent At', justify='center', highlight=True, width=21)
         counts_table.add_column('Last Sent At', justify='center', style='wheat4', width=21)
         counts_table.add_column('Days', justify='right', style='dim')
 
         for name, count in sort_dict(self.imessage_sender_counts()):
-            if name == JEFFREY_EPSTEIN:
-                logs = self.imessage_logs
-                first_at = self.imessage_logs[0].first_message_at(name)
-                last_at = self.imessage_logs[-1].first_message_at(name)
-            else:
-                logs = [log for log in self.imessage_logs if log.author == name]
-                first_at = logs[0].first_message_at(name)
-                last_at = logs[-1].first_message_at(name)
+            logs = self.imessage_logs_for(name)
+            first_at = logs[0].first_message_at(name)
+            last_at = logs[-1].first_message_at(name)
 
             counts_table.add_row(
                 Text(name or UNKNOWN,
                     get_style_for_name(name)),
-                    f"{count:,}",
                     str(len(logs)),
+                    f"{count:,}",
                     first_at.isoformat().replace('T', ' '),
                     last_at.isoformat().replace('T', ' '),
                     str((last_at - first_at).days + 1),

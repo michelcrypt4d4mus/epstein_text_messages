@@ -18,6 +18,7 @@ HTML_DIR = Path('docs')
 EXTRACTED_EMAILS_DIR = Path('emails_extracted_from_legal_filings')
 GH_PAGES_HTML_PATH = HTML_DIR.joinpath('index.html')
 WORD_COUNT_HTML_PATH = HTML_DIR.joinpath('epstein_emails_word_count.html')
+EPSTEIN_WORD_COUNT_HTML_PATH = HTML_DIR.joinpath('epstein_texts_and_emails_word_count.html')
 FILE_ID_REGEX = re.compile(fr".*{HOUSE_OVERSIGHT_PREFIX}(\d+)(_\d+)?(\.txt)?")
 KB = 1024
 MB = KB * KB

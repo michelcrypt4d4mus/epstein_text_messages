@@ -100,8 +100,6 @@ def print_color_key(key_type: Literal["Groups", "People"] = "Groups") -> None:
 def print_header():
     console.print(f"This site is not optimized for mobile but if you get past the header it should work ok.", style='dim')
     print_page_title()
-    print_social_media_links()
-    console.line()
     print_other_site_link()
 
     # Acronym table
@@ -179,6 +177,8 @@ def print_other_site_link(is_header: bool = True) -> None:
 def print_page_title(expand: bool = True) -> None:
     console.line()
     console.print(Align.center(Panel(Text(PAGE_TITLE, justify='center'), expand=expand, style=TITLE_STYLE)))
+    console.line()
+    print_social_media_links()
     console.line()
 
 
