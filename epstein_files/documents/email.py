@@ -475,8 +475,8 @@ class Email(CommunicationDocument):
         while i < len(self.lines):
             line = self.lines[i]
 
-            if line.startswith('htt') and i < (len(self.lines) - 1) and any(s in self.lines[i + 1] for s in URL_SIGNIFIERS):
-                logger.warning(f"{self.filename}: Joining lines\n   1. {line}\n   2. {self.lines[i + 1]}")
+            if line.startswith('htt') and i < (len(self.lines) - 1) and 'htm' not in line and any(s in self.lines[i + 1] for s in URL_SIGNIFIERS):
+                logger.warning(f"{self.filename}: Joining lines\n   1. {line}\n   2. {self.lines[i + 1]}\n")
                 line = (line + self.lines[i + 1]).replace(' ', '')
                 i += 1
 
