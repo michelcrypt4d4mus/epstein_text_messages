@@ -9,7 +9,7 @@ from epstein_files.util.constant.common_words import COMMON_WORDS_LIST
 from epstein_files.util.data import Timer, flatten
 from epstein_files.util.env import args, logger, specified_names
 from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
-from epstein_files.util.rich import (console, highlighter, print_centered, print_page_title, print_panel,
+from epstein_files.util.rich import (console, print_centered, print_page_title, print_panel,
      print_starred_header, write_html)
 from epstein_files.util.word_count import WordCount
 
@@ -47,7 +47,7 @@ for email in emails:
             continue
 
     for line in email.actual_text.split('\n'):
-        if line.startswith('htt'):
+        if line.startswith('http'):
             continue
 
         for word in line.split():
@@ -57,7 +57,7 @@ for imessage_log in imessage_logs:
     logger.info(f"Counting words in {email}")
 
     for msg in imessage_log.messages():
-        if msg.text.startswith('http') or len(msg.text) == 0:
+        if msg.text.startswith('http'):
             continue
 
         for word in msg.text.split():
