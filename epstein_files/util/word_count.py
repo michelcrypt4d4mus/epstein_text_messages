@@ -69,6 +69,7 @@ SINGULARIZATIONS = {
     'proves': 'prove',
     'receives': 'receive',
     'reserves': 'reserve',
+    'selfies': 'selfie',
     'serves': 'serve',
     'shes': 'she',
     'sholes': 'scholes',
@@ -78,6 +79,7 @@ SINGULARIZATIONS = {
     'thieves': 'thief',
     'toes': 'toe',
     'viruses': 'virus',
+    'waves': 'wave',
     'woes': 'woe',
     #'trying': 'try',
 }
