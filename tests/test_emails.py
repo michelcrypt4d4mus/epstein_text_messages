@@ -97,7 +97,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Joshua Cooper Ramo": 1,
     "Juleanna Glover": 1,
     "Katherine Keating": 2,
-    "Kathryn Ruemmler": 82,
+    KATHRYN_RUEMMLER: 82,
     "Kelly Friendly": 4,
     "Ken Jenne": 1,
     "Ken Starr": 5,
@@ -304,7 +304,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Joseph Vinciguerra": 1,
     "Joshua Cooper Ramo": 1,
     "Katherine Keating": 3,
-    "Kathryn Ruemmler": 57,
+    KATHRYN_RUEMMLER: 57,
     "Ken Starr": 10,
     "Kenneth E. Mapp": 1,
     "Kevin Bright": 3,
@@ -582,9 +582,9 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Ehud Barak',
         FRED_HADDAD,
         'Glenn Dubin',
-        'Joi Ito',
-        'Kathryn Ruemmler',
-        'Larry Summers',
+        JOI_ITO,
+        KATHRYN_RUEMMLER,
+        LARRY_SUMMERS,
         'Lawrance Visoski',
         'Mark Lloyd',
         'Neal Kassell',
@@ -614,9 +614,9 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Jeffrey Epstein',
         'Jes Staley',
         'Johnny el Hachem',
-        'Joi Ito',
+        JOI_ITO,
         'Jonathan Farkas',
-        'Kathryn Ruemmler',
+        KATHRYN_RUEMMLER,
         'Kelly Friendly',
         'Ken Starr',
         'Landon Thomas Jr',
@@ -755,7 +755,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     "Jonathan Farkas": [
         "Sent from my iPhone"
     ],
-    "Kathryn Ruemmler": [
+    KATHRYN_RUEMMLER: [
         "Sent from my iPad",
         "Sent from my iPhone"
     ],

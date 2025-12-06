@@ -471,7 +471,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(emailers={JABOR_Y: HEADER_ABBREVIATIONS['Jabor']}, style='spring_green1'),
     HighlightedGroup(emailers={JEFFREY_EPSTEIN: None}, pattern='Mark (L. )?Epstein|\bJEGE\b', style='blue1'),
     HighlightedGroup(emailers={JOI_ITO: 'former head of MIT Media Lab'}, style='gold1'),
-    HighlightedGroup(emailers={KATHY_RUEMMLER: 'former Obama legal counsel'}, style='magenta2'),
+    HighlightedGroup(emailers={KATHRYN_RUEMMLER: 'former Obama legal counsel'}, style='magenta2'),
     HighlightedGroup(emailers={MELANIE_WALKER: 'doctor'}, style='pale_violet_red1'),
     HighlightedGroup(emailers={PAULA: 'maybe Epstein\'s niece?'}, style='pink1'),
     HighlightedGroup(emailers={PRINCE_ANDREW: 'British royal family'}, style='dodger_blue1'),
