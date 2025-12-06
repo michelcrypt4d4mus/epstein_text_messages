@@ -35,14 +35,14 @@ for email in emails:
     logger.info(f"Counting words in {email}")
 
     if email.is_duplicate or email.is_junk_mail:
-        logger.info(f"Skipping duplicate or junk file '{email.filename}'...")
+        logger.info(f"    Skipping duplicate or junk file '{email.filename}'...")
         continue
     elif specified_names:
         if email.author not in specified_names:
-            logger.debug(f"Skipping email from '{email.author}'...")
+            logger.debug(f"    Skipping email from '{email.author}'...")
             continue
         elif email.file_id in EMAIL_IDS_TO_SKIP:
-            logger.debug(f"Skipping EMAIL_IDS_TO_SKIP '{email.file_id}' from '{email.author}'...")
+            logger.debug(f"    Skipping EMAIL_IDS_TO_SKIP '{email.file_id}' from '{email.author}'...")
             continue
 
     for line in email.actual_text.split('\n'):

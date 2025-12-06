@@ -96,6 +96,14 @@ class WordCount:
         if word not in BAD_CHARS_OK:
             word = BAD_CHARS_REGEX.sub('', word).strip()
 
+        if '/' in word:
+            logger.info(f"    Splitting word with '/' in it '{word}'...")
+
+            for w in word.split('/'):
+                self.count_word(word, document_line)
+
+            return
+
         if self._is_invalid_word(word):
             return
         elif word in SINGULARIZATIONS:
@@ -106,16 +114,10 @@ class WordCount:
 
             # Log the raw_word if we've seen it more than once (but only once)
             if raw_word.endswith('s') and self.singularized[raw_word] == 2:
-                logger.info(f"   Singularized '{raw_word}' to '{word}'...")
+                logger.info(f"    Singularized '{raw_word}' to '{word}'...")
 
-        if '/' in word:
-            logger.info(f"Splitting word with '/' in it '{word}'...")
-
-            for w in word.split('/'):
-                self.count_word(word, document_line)
-        else:
-            if not self._is_invalid_word(word):
-                self.count[word] += 1
+        if not self._is_invalid_word(word):
+            self.count[word] += 1
 
         if word in FLAGGED_WORDS:
             logger.warning(f"{document_line.document.filename}: Found '{word}' in '{document_line.lines[0]}'")

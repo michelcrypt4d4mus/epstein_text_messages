@@ -189,26 +189,26 @@ COMMON_WORDS = {line.lower(): True for line in (MOST_COMMON_WORDS + OTHER_COMMON
 COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
 
 UNSINGULARIZABLE_WORDS = """
-    acosta aids alas always andres angeles anomalous anus apropos arabia ares asia asus atlanta australia ave avia
+    acosta aids alas always andres angeles anus apropos arabia ares asia asus atlanta australia ave avia
     bata betts bias boies bonus brookings
-    california campus candia carlos caucus cbs cds census chris clothes cms collins columbia comms conchita costa courteous csis curves cvs cyprus
-    dallas dangerous data davis dementia denis dennis des dis drougas dubious
-    emirates emphasis encyclopedia enormous ens eps
-    fabulous famous ferris focus folks forbes francis frivolous
-    gas gaydos gittes gmt gorgeous gps
+    california campus candia carlos caucus cbs cds census chris clothes cms collins columbia comms conchita costa csis curves cvs cyprus
+    dallas data davis dementia denis dennis des dis drougas
+    emirates emphasis encyclopedia  ens eps
+    ferris focus folks forbes francis
+    gas gaydos gittes gmt  gps
     halitosis hamas has hiatus hillis his hivaids
-    impetus innocuous india indonesia ios ips irs isis
+    impetus  india indonesia ios ips irs isis
     jános jones josephus
     las lens les lewis lhs lls los louis luis
-    madars maldives maria mbs melania mets meyers miscellaneous mlpf&s momentous moonves
-    nafta nautilus nas nigeria notorious nous nucleus numerous nunes
-    olas outrageous
+    madars maldives maria mbs melania mets meyers mlpf&s moonves
+    nafta nautilus nas nigeria nucleus nunes
+    olas
     pants paris parkes patricia pbs peres philadelphia physics pls plus potus pres prevus
     reis-dennis reuters rogers russia
-    sachs sadis saks santa ses sometimes sous stimulus syria
-    tennis texas this thus tous trans tremendous tries
+    sachs sadis saks santa ses sometimes stimulus syria
+    tennis texas this thus trans tries
     ups
-    valeria versus via vicious victoria villafaria vinicius virginia vis vous
+    valeria versus via victoria villafaria vinicius virginia vis
     was whereas whoops wikipedia
     yemen yes yikes
     zakaria
