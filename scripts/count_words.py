@@ -26,7 +26,6 @@ EMAIL_IDS_TO_SKIP = [
 
 
 timer = Timer()
-print_page_title(expand=False)
 epstein_files = EpsteinFiles.get_files()
 emails = flatten([epstein_files.emails_by(n) for n in specified_names]) if specified_names else epstein_files.emails
 imessage_logs = epstein_files.imessage_logs_for(specified_names) if specified_names else []
@@ -66,6 +65,7 @@ for imessage_log in imessage_logs:
         for word in msg.text.split():
             word_count.count_word(word, SearchResult(imessage_log, [line]))
 
+print_page_title(expand=False)
 print_starred_header(f"Most Common Words in {len(emails):,} Emails and {len(imessage_logs)} iMessage Logs")
 print_centered(f"(excluding {len(COMMON_WORDS_LIST)} particularly common words at bottom)", style='dim')
 console.line()
