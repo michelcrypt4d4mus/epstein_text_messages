@@ -1,4 +1,4 @@
-from epstein_files.util.env import is_debug
+from epstein_files.util.env import deep_debug
 
 # https://www.gonaturalenglish.com/1000-most-common-words-in-the-english-language/
 MOST_COMMON_WORDS = """
@@ -189,21 +189,21 @@ COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
 UNSINGULARIZABLE_WORDS = """
     acosta aids alas always angeles anomalous anus apropos arabia ares asia asus atlanta australia ave avia
     bata betts bias bonus brookings
-    california campus candia carlos caucus cbs cds chris clothes cms collins columbia conchita costa courteous curves cvs cyprus
-    dallas data davis dementia denis dennis des dis drougas dubious
+    california campus candia carlos caucus cbs cds chris clothes cms collins columbia comms conchita costa courteous csis curves cvs cyprus
+    dallas dangerous data davis dementia denis dennis des dis drougas dubious
     emirates encyclopedia ens eps
     famous ferris focus folks forbes francis frivolous
-    gas gaydos gmt gps
-    halitosis has hillis his hivaids
+    gas gaydos gittes gmt gps
+    halitosis has hiatus hillis his hivaids
     impetus innocuous india indonesia ios ips irs isis
     jános josephus
     las lens les lewis lhs lls los louis luis
     madars maldives maria mbs melania mets meyers moonves
     nafta nautilus nas nigeria notorious nous nucleus nunes
     olas outrageous
-    pants parkes patricia pbs peres philadelphia physics pls plus potus prevus
+    pants paris parkes patricia pbs peres philadelphia physics pls plus potus prevus
     reis-dennis reuters rogers russia
-    sach sadis saks santa ses sous stimulus syria
+    sach sadis saks santa ses sometimes sous stimulus syria
     texas this thus tous trans tremendous tries
     ups
     valeria versus via vicious victoria villafaria vinicius virginia vis vous
@@ -213,6 +213,6 @@ UNSINGULARIZABLE_WORDS = """
 """.strip().split()
 
 
-if is_debug:
+if deep_debug:
     word_str = '\n'.join(COMMON_WORDS_LIST)
     print(f"common words:\n\n{word_str}")

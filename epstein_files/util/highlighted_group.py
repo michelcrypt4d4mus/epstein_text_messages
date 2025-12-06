@@ -74,7 +74,7 @@ class HighlightedGroup:
             pattern = EMAILER_ID_REGEXES[name].pattern
 
             if SIMPLE_NAME_REGEX.match(last_name) and last_name.lower() not in NAMES_TO_NOT_HIGHLIGHT:
-                logger.info(f"Adding last name '{last_name}' to existing pattern '{pattern}'")
+                logger.debug(f"Adding last name '{last_name}' to existing pattern '{pattern}'")
                 pattern += fr"|{last_name}"  # Include regex for last name
 
             return pattern

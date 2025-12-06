@@ -6,7 +6,7 @@ load_dotenv()
 from epstein_files.documents.document import SearchResult
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.constant.common_words import COMMON_WORDS_LIST
-from epstein_files.util.data import Timer
+from epstein_files.util.data import Timer, flatten
 from epstein_files.util.env import args, logger, specified_names
 from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
 from epstein_files.util.rich import (console, highlighter, print_centered, print_page_title, print_panel,
@@ -28,12 +28,13 @@ EMAIL_IDS_TO_SKIP = [
 timer = Timer()
 print_page_title(expand=False)
 epstein_files = EpsteinFiles.get_files()
-print_starred_header(f"Most Common Words in the {len(epstein_files.emails):,} Emails")
-print_centered(f"(excluding {len(COMMON_WORDS_LIST)} particularly common words at bottom)", style='dim')
-console.line()
+emails = flatten([epstein_files.emails_for(n) for n in specified_names]) if specified_names else epstein_files.emails
+imessage_logs = epstein_files.imessage_logs_for(specified_names) if specified_names else []
 word_count = WordCount()
 
-for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
+for email in emails:
+    logger.info(f"Counting words in {email}")
+
     if email.is_duplicate or email.is_junk_mail:
         logger.info(f"Skipping duplicate or junk file '{email.filename}'...")
         continue
@@ -52,6 +53,19 @@ for email in sorted(epstein_files.emails, key=lambda e: e.file_id):
         for word in line.split():
             word_count.count_word(word, SearchResult(email, [line]))
 
+for imessage_log in imessage_logs:
+    logger.info(f"Counting words in {email}")
+
+    for msg in imessage_log.messages():
+        if msg.text.startswith('http') or len(msg.text) == 0:
+            continue
+
+        for word in msg.text.split():
+            word_count.count_word(word, SearchResult(imessage_log, [line]))
+
+print_starred_header(f"Most Common Words in the {len(epstein_files.emails):,} Emails")
+print_centered(f"(excluding {len(COMMON_WORDS_LIST)} particularly common words at bottom)", style='dim')
+console.line()
 console.print(word_count)
 console.line(3)
 print_panel(f"{len(COMMON_WORDS_LIST):,} Excluded Words")

@@ -165,11 +165,12 @@ class EpsteinFiles:
     def email_unknown_recipient_file_ids(self) -> list[str]:
         return sorted(list(self._email_unknown_recipient_file_ids))
 
-    def imessage_logs_for(self, author: str | None) -> list[MessengerLog]:
-        if author == EVERYONE:
+    def imessage_logs_for(self, author: str | None | list[str | None]) -> list[MessengerLog]:
+        if author in [EVERYONE, JEFFREY_EPSTEIN]:
             return self.imessage_logs
-        else:
-            return [log for log in self.imessage_logs if author == JEFFREY_EPSTEIN or author == log.author]
+
+        authors = author if isinstance(author, list) else [author]
+        return [log for log in self.imessage_logs if log.author in authors]
 
     def imessage_sender_counts(self) -> dict[str | None, int]:
         sender_counts: dict[str | None, int] = defaultdict(int)
