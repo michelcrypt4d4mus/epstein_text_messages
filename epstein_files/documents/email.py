@@ -14,7 +14,7 @@ from rich.text import Text
 from epstein_files.documents.document import CommunicationDocument
 from epstein_files.documents.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX, FIELD_NAMES,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TIME_REGEX, EmailHeader)
-from epstein_files.util.constant.strings import REDACTED
+from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import *
 from epstein_files.util.data import collapse_newlines, escape_single_quotes, uniquify
@@ -475,7 +475,7 @@ class Email(CommunicationDocument):
         while i < len(self.lines):
             line = self.lines[i]
 
-            if line.startswith('http') and i < (len(self.lines) - 1) and 'htm' in self.lines[i + 1]:
+            if line.startswith('htt') and i < (len(self.lines) - 1) and any(s in self.lines[i + 1] for s in URL_SIGNIFIERS):
                 logger.warning(f"{self.filename}: Joining lines\n   1. {line}\n   2. {self.lines[i + 1]}")
                 line = (line + self.lines[i + 1]).replace(' ', '')
                 i += 1
