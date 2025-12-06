@@ -108,5 +108,6 @@ pushd "$EMAILS_DIR" > /dev/null
 git commit -am"Update HTML"
 git push origin main --quiet
 popd > /dev/null
+echo -e ""
 print_msg "${EMAILS_PROJECT_NAME} deployed to" "$EMAILS_URL"
 echo -e ""
