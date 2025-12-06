@@ -479,7 +479,7 @@ class Email(CommunicationDocument):
                 if 'htm' not in line \
                          and i < (len(lines) - 1) \
                          and (lines[i + 1].endswith('/') or any(s in lines[i + 1] for s in URL_SIGNIFIERS)):
-                    logger.warning(f"{self.filename}: Joining lines\n   1. {line}\n   2. {lines[i + 1]}\n")
+                    logger.info(f"{self.filename}: Joining lines\n   1. {line}\n   2. {lines[i + 1]}\n")
                     line += lines[i + 1]
                     i += 1
 
