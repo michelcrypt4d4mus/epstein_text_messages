@@ -195,7 +195,7 @@ UNSINGULARIZABLE_WORDS = """
     california campus candia carlos caucus cbs cds census chaos chorus chris clothes cms collins columbia comms conchita costa csis curves cvs cyprus
     dallas data davis davos dementia denis dennis des dis drougas
     emirates emphasis encyclopedia  ens eps
-    ferris focus folks forbes francis
+    facs ferris focus folks forbes francis
     gas gaydos gittes gmt gps
     halitosis hamas harris has hiatus hillis his hivaids
     impetus india indonesia ios ips irs isis isosceles
