@@ -19,7 +19,7 @@ epstein_files = EpsteinFiles.get_files()
 
 epstein_emails = [e for e in epstein_files.emails if e.author == JEFFREY_EPSTEIN]
 
-for email in sorted(epstein_emails, key=lambda e: -len(e.actual_text)):
+for email in sorted(epstein_files.emails, key=lambda e: -len(e.actual_text)):
     console.print(email.description())
     console.print(Panel(email.actual_text[0:700], title='actual_text'))
     console.print(Panel(email.text[0:400], title='raw_text'))

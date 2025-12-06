@@ -99,7 +99,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Katherine Keating": 2,
     KATHRYN_RUEMMLER: 82,
     "Kelly Friendly": 4,
-    "Ken Jenne": 1,
+    KEN_JENNE: 1,
     "Ken Starr": 5,
     "Kirk Blouin": 2,
     "Landon Thomas Jr": 72,
