@@ -199,7 +199,7 @@ COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
 
 UNSINGULARIZABLE_WORDS = """
     academia acosta aids alas algeria alice always andres angeles anus apparatus apropos arabia ares asia asus atlanta australia austria avia
-    bahamas bata beatles beta betts bias boies bonus brookings
+    bahamas bata beatles beta betts bias boies bonus brookings brussels
     california campus candia carlos caucus cbs cds census chaos chorus chris christmas clothes cms collins columbia com comms conchita costa csis curves cvs cyprus
     dallas data davis davos dawkins deborah dementia denis dennis des dis drougas
     emirates emphasis encyclopedia ens eps eta
