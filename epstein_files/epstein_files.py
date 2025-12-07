@@ -255,7 +255,10 @@ class EpsteinFiles:
         for i, col in enumerate(['Name', 'Count', 'Sent', "Recv'd", JMAIL, EPSTEIN_WEB, 'Twitter']):
             counts_table.add_column(col, justify='left' if i == 0 else 'center')
 
-        emailer_counts = {e: self.email_author_counts[e] + self.email_recipient_counts[e] for e in self.all_emailers(True)}
+        emailer_counts = {
+            e: self.email_author_counts[e] + self.email_recipient_counts[e]
+            for e in self.all_emailers(True)
+        }
 
         for p, count in sort_dict(emailer_counts):
             style = get_style_for_name(p, DEFAULT_NAME_COLOR)
