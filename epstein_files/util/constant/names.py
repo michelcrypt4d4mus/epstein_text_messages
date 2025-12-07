@@ -187,12 +187,12 @@ OTHER_NAMES = """
     francis frank
     geoff geoffrey george gilbert gonzalez gould greene guarino gwyneth
     harold harrison helen hofstadter
-    jason jen jennifer joe joel johnson justin
+    jane janet jason jen jennifer joe joel johnson justin
     kate kathy kelly kevin kim
     lynch
     marcus marianne matt matthew melissa michele michelle mike moscowitz
     paul paula paulson philip
     rob rodriguez ron ryan
-    seligman serge silverman stanley stevie
+    seligman serge silverman sloman stanley stevie
     timothy
 """.strip().split()
