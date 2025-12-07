@@ -142,10 +142,15 @@ class WordCount:
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         word_txts = [
-            highlighter(Text('').append(f"{word}", style='bright_white' if word in FIRST_AND_LAST_NAMES else 'wheat4').append(': ').append(f"{count:,}"))
+            highlighter(Text('').append(f"{word}", style=_word_style(word)).append(': ').append(f"{count:,}"))
             for word, count in [kv for kv in sort_dict(self.count) if kv[1] >= MIN_COUNT_CUTOFF]
         ]
 
         cols = Columns(word_txts, column_first=False, equal=False, expand=True)
         yield Padding(cols, PADDING)
         yield f"Showing {len(word_txts):,} words appearing at least {MIN_COUNT_CUTOFF} times (out of {len(self.count):,} words)."
+
+
+def _word_style(word: str | None) -> str:
+    word = word or ''
+    return 'bright_white' if word in FIRST_AND_LAST_NAMES else 'wheat4'
