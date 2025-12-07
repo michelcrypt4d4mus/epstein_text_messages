@@ -268,6 +268,8 @@ ACTUAL_TEXT = {
     '028770': 'call me now',
     '026625': 'Hysterical.',
     '033050': 'schwartman',
+    '022938': 'what do you suggest?',
+    '026612': '',
 }
 
 
@@ -321,6 +323,9 @@ class Email(CommunicationDocument):
         reply_text_match = REPLY_TEXT_REGEX.search(text)
         # logger.info(f"Raw text:\n" + self.top_lines(20) + '\n\n')
         # logger.info(f"With header removed:\n" + text[0:500] + '\n\n')
+
+        if self.file_id in ['024624']:
+            return text
 
         if reply_text_match:
             actual_num_chars = len(reply_text_match.group(1))
