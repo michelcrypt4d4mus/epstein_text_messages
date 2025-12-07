@@ -64,6 +64,7 @@ MOST_COMMON_WORDS = """
     in
     into
     is
+    isnt
     it
     its
     ive
@@ -136,6 +137,7 @@ MOST_COMMON_WORDS = """
     went
     were
     werent
+    weve
     what
     whatever
     when

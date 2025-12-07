@@ -94,8 +94,8 @@ SINGULARIZATIONS = {
     'twittercom': 'twitter',
 }
 
-FLAGGED_WORDS = []
 SPLIT_WORDS_BY = ['@', '/']
+FLAGGED_WORDS = ['weve']
 
 
 @dataclass
