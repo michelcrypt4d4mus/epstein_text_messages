@@ -194,5 +194,6 @@ OTHER_NAMES = """
     lynch
     marianne melissa michele michelle mike
     rob rodriguez
-    serge silverman stevie
+    serge silverman stanley stevie
+    timothy
 """.strip().split()
