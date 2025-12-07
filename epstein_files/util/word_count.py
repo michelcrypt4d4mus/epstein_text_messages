@@ -95,7 +95,7 @@ SINGULARIZATIONS = {
     'twittercom': 'twitter',
 }
 
-HTML_REGEX = re.compile(r"com/|font-(family|size)|http|margin-bottom|text-decoration|ttps|www")
+HTML_REGEX = re.compile(r"com/|font-(family|size)|http|\.html?\??|margin-bottom|text-decoration|ttps|www")
 OK_SYMBOL_WORDS = ['p/e', 's&p', ':-)', ';-)']
 SYMBOL_WORD_REGEX = re.compile(r"^[-/]+$")
 SPLIT_WORDS_BY = ['@', '/']
@@ -113,6 +113,9 @@ class WordCount:
 
         if HTML_REGEX.search(word):
             logger.info(f"  Skipping HTML word '{word}'")
+            return
+        elif SYMBOL_WORD_REGEX.match(word):
+            logger.debug(f"  Skipping symbol word '{word}'")
             return
         elif word in OK_SYMBOL_WORDS:
             self.count[word] += 1
