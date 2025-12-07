@@ -361,7 +361,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='publicist',
         style='orange_red1',
-        pattern='Henry Holt|Ian Osborne|Matthew Hiltzik',
+        pattern=r"Henry Holt|Ian Osborne|(Matt(hew)? )?Hiltzi[gk]",
         emailers = {
             AL_SECKEL: 'husband of Isabel Maxwell, Mind State organizer, fell off a cliff',
             CHRISTINA_GALBRAITH: None,

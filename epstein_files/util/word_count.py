@@ -20,7 +20,7 @@ FIRST_AND_LAST_NAMES = flatten([n.split() for n in ALL_NAMES])
 FIRST_AND_LAST_NAMES = [n.lower() for n in FIRST_AND_LAST_NAMES] + OTHER_FIRST_NAMES
 
 NON_SINGULARIZABLE = UNSINGULARIZABLE_WORDS + [n for n in FIRST_AND_LAST_NAMES if n.endswith('s')]
-SKIP_WORDS_REGEX = re.compile(r"^(asmallworld@|enwiki|http|imagepng|nymagcomnymetro|addresswww|mailto|www|/font|colordu|classdms|targetdblank|nymagcom)|jee[vy]acation|fontfamily|(gif|html?|jpe?g|utm)$")
+SKIP_WORDS_REGEX = re.compile(r"^(asmallworld@|enwiki|http|imagepng|nymagcomnymetro|addresswww|mailto|www|/font|colordu|classdms|targetdblank|nymagcom|palmbeachdailynews)|jee[vy]acation|fontfamily|(gif|html?|jpe?g|utm)$")
 BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#_`,.;:'‘’\"„“”?\d\\]")
 NO_SINGULARIZE_REGEX = re.compile(r".*[io]us$")
 PADDING = (0, 0, 2, 2)
@@ -36,6 +36,7 @@ BAD_WORDS = [
     'quotedprintable',
     'researchdisclosureinquiries@jpmorgancom',
     'summarypricesquotesstatistic',
+    'emichotpmiamiheraldcom',
 ]
 
 BAD_CHARS_OK = [
@@ -89,7 +90,8 @@ SINGULARIZATIONS = {
     'woes': 'woe',
 }
 
-FLAGGED_WORDS = ['fo']
+FLAGGED_WORDS = []
+SPLIT_WORDS_BY = ['@', '/']
 
 
 @dataclass
@@ -113,12 +115,14 @@ class WordCount:
         if self._is_invalid_word(word):
             return
 
-        if '/' in word:
-            logger.info(f"  Splitting word with '/' in it '{word}'...")
+        for symbol in SPLIT_WORDS_BY:
+            if symbol not in word:
+                continue
 
-            for w in word.split('/'):
+            for w in word.split(symbol):
                 self.count_word(w, document_line)
 
+            logger.info(f"  Split word with '{symbol}' in it '{word}'...")
             return
 
         if word in SINGULARIZATIONS:

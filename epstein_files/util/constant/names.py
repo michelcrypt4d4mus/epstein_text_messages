@@ -182,14 +182,14 @@ OTHER_FIRST_NAMES = """
     barry barbro branson bruce bruno burton
     davis
     erik
-    gilbert gonzalez gwyneth
+    gilbert gonzalez greene gwyneth
     francis
     guarino
     helen
     hofstadter
     joe joel johnson
     kathy kelly kim
-    michele michelle mike
+    marianne melissa michele michelle mike
     rob
     serge silverman
 """.strip().split()
