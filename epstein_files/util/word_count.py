@@ -83,7 +83,7 @@ SINGULARIZATIONS = {
     'woes': 'woe',
 }
 
-FLAGGED_WORDS = ['ve']
+FLAGGED_WORDS = ['ther']
 
 
 @dataclass
