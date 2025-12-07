@@ -144,6 +144,7 @@ MOST_COMMON_WORDS = """
     which
     whichever
     who
+    whoever
     why
     will
     with
@@ -200,7 +201,7 @@ UNSINGULARIZABLE_WORDS = """
     dallas data davis davos dementia denis dennis des dis drougas
     emirates emphasis encyclopedia  ens eps
     facs ferris focus folks forbes francis
-    gas gaydos georgia gittes gloria gmt gps
+    gas gaydos georgia gittes gloria gmt gps gravitas
     halitosis hamas harris has hiatus hillis his hivaids
     impetus india indonesia ios ips irs isis isosceles
     jacques jános jones josephus
