@@ -191,7 +191,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='entertainer',
         style='light_steel_blue3',
-        pattern='Bobby slayton|Etienne Binant|Jagger|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?',
+        pattern='(Art )?Spiegelman|Bobby slayton|Etienne Binant|Jagger|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?',
         emailers={
             'Andres Serrano': "'Piss Christ' artist",
             'Barry Josephson': 'American film producer and former music manager',
@@ -383,7 +383,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='russia',
         style='red bold',
-        pattern=r'Day\s+One\s+Ventures|FSB|GRU|KGB|Lavrov|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Rybolo(o?lev|vlev)|Sberbank|Vladimir Yudashkin|Xitrans',
+        pattern=r'Chernobyl|Day\s+One\s+Ventures|FSB|GRU|KGB|Lavrov|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Rybolo(o?lev|vlev)|Sberbank|Vladimir Yudashkin|Xitrans',
         emailers = {
             MASHA_DROKOVA: 'silicon valley VC',
         }
