@@ -94,24 +94,6 @@ class HighlightedGroup:
 
 HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
-        label='finance',
-        style='green',
-        pattern=r'Apollo|Black(rock|stone)|Chase Bank|DB|Deutsche\s*Bank|Goldman(\s*Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|(Jimmy\s*)?Cayne|j\.?p\.?\s*morgan(\.?com|\s*Chase)?|Madoff|Merrill(\s*Lynch)?|(Michael\s*)?Milken|(money\s+)?launder(s?|ers?|ing)?(\s+money)?|Morgan Stanley|(Peter L. )?Scher|Schwartz?man|Serageldin|us.gio@jpmorgan.com',
-        emailers={
-            AMANDA_ENS: 'Citigroup',
-            DANIEL_SABBA: 'UBS Investment Bank',
-            'David Fiszel': 'CIO Honeycomb Asset Management',
-            JES_STALEY: 'former CEO of Barclays',
-            JIDE_ZEITLIN: 'former partner at Goldman Sachs, allegations of sexual misconduct',
-            LEON_BLACK: 'Apollo CEO',
-            MARC_LEON: 'Luxury Properties Sari Morrocco',
-            MELANIE_SPINELLA: f'representative of {LEON_BLACK}',
-            MORTIMER_ZUCKERMAN: 'business partner of Epstein',
-            PAUL_BARRETT: None,
-            PAUL_MORRIS: 'Deutsche Bank',
-        }
-    ),
-    HighlightedGroup(
         label='bitcoin',
         style='orange1 bold',
         pattern=r'Balaji|bitcoin|block ?chain( capital)?|Brock|coins?|cr[iy]?pto(currency)?|e-currency|(Gavin )?Andressen|(Howard\s+)?Lutnic?k|(jeffrey\s+)?wernick|Libra|(Patrick\s*)?Murck|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)',
@@ -201,6 +183,15 @@ HIGHLIGHTED_GROUPS = [
         },
     ),
     HighlightedGroup(
+        label='estate_executor',
+        info='lawyer',
+        style='purple3 bold',
+        emailers = {
+            DARREN_INDYKE: ESTATE_EXECUTOR,
+            RICHARD_KAHN: ESTATE_EXECUTOR,
+        }
+    ),
+    HighlightedGroup(
         label='europe',
         style='light_sky_blue3',
         pattern=r'(Angela )?Merk(el|le)|(Benjamin\s*)?Harnwell|Berlin|Brussels|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|Europe(an)?|Ital(ian|y)|Jacques|Le\s*Pen|London|Macron|(Natalia\s*)?Veselnitskaya|Nigel(\s*Farage)?|Paris|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strauss[- ]?Kahn|(Tony\s)?Blair|Ukrain(e|ian)|Vienna|Zug',
@@ -209,6 +200,33 @@ HIGHLIGHTED_GROUPS = [
             PETER_MANDELSON: 'UK politics',
             TERJE_ROD_LARSEN: 'Norwegian diplomat',
             THORBJORN_JAGLAND: 'former prime minister of Norway and head of the Nobel Peace Prize Committee',
+        }
+    ),
+    HighlightedGroup(
+        label='famous_lawyer',
+        info='lawyer',
+        style='medium_purple3',
+        emailers = {
+            ALAN_DERSHOWITZ: None,
+            KEN_STARR: 'head of the Monica Lewinsky investigation against Bill Clinton',
+        }
+    ),
+    HighlightedGroup(
+        label='finance',
+        style='green',
+        pattern=r'Apollo|Black(rock|stone)|Chase Bank|DB|Deutsche\s*Bank|Goldman(\s*Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|(Jimmy\s*)?Cayne|j\.?p\.?\s*morgan(\.?com|\s*Chase)?|Madoff|Merrill(\s*Lynch)?|(Michael\s*)?Milken|(money\s+)?launder(s?|ers?|ing)?(\s+money)?|Morgan Stanley|(Peter L. )?Scher|Schwartz?man|Serageldin|us.gio@jpmorgan.com',
+        emailers={
+            AMANDA_ENS: 'Citigroup',
+            DANIEL_SABBA: 'UBS Investment Bank',
+            'David Fiszel': 'CIO Honeycomb Asset Management',
+            JES_STALEY: 'former CEO of Barclays',
+            JIDE_ZEITLIN: 'former partner at Goldman Sachs, allegations of sexual misconduct',
+            LEON_BLACK: 'Apollo CEO',
+            MARC_LEON: 'Luxury Properties Sari Morrocco',
+            MELANIE_SPINELLA: f'representative of {LEON_BLACK}',
+            MORTIMER_ZUCKERMAN: 'business partner of Epstein',
+            PAUL_BARRETT: None,
+            PAUL_MORRIS: 'Deutsche Bank',
         }
     ),
     HighlightedGroup(
@@ -266,6 +284,15 @@ HIGHLIGHTED_GROUPS = [
         }
     ),
     HighlightedGroup(
+        label='law enforcement',
+        style='color(24) bold',
+        pattern=r'ag|(Alicia\s*)?Valle|(Lann?a\s*)?Belohlavek|CFTC|CIA|DOJ|FBI|FDIC|FTC|IRS|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|(Byung\s)?Pak|(Michael\s*)?Reiter|Police Code Enforcement|SEC|Strzok|TSA|(William\s*J\.?\s*)?Zloch',
+        emailers = {
+            ANN_MARIE_VILLAFANA: 'southern district of Florida U.S. Attorney',
+            DANNY_FROST: 'Director of Communications at Manhattan DA',
+        }
+    ),
+    HighlightedGroup(
         label='lawyer',
         style='purple4',
         pattern=r'Avenatti|(David\s*)?Boies|Kate Kelly|(Leon\s*)?Jaworski|Michael J. Pike|Paul,?\s*Weiss|Steptoe|Wein(berg|garten)',
@@ -289,24 +316,6 @@ HIGHLIGHTED_GROUPS = [
             'Roy Black': 'criminal defense attorney',
             SCOTT_J_LINK: None,
             TONJA_HADDAD_COLEMAN: 'maybe daughter of Fred Haddad?',
-        }
-    ),
-    HighlightedGroup(
-        label='estate_executor',
-        info='lawyer',
-        style='purple3 bold',
-        emailers = {
-            DARREN_INDYKE: ESTATE_EXECUTOR,
-            RICHARD_KAHN: ESTATE_EXECUTOR,
-        }
-    ),
-    HighlightedGroup(
-        label='famous_lawyer',
-        info='lawyer',
-        style='medium_purple3',
-        emailers = {
-            ALAN_DERSHOWITZ: None,
-            KEN_STARR: 'head of the Monica Lewinsky investigation against Bill Clinton',
         }
     ),
     HighlightedGroup(
@@ -347,15 +356,6 @@ HIGHLIGHTED_GROUPS = [
             MANUELA_MARTINEZ: 'Mega Partners (Brazilian agency)',
             MARIANA_IDZKOWSKA: None,
             'Michael Sanka': 'MC2 Model Management (?)',
-        }
-    ),
-    HighlightedGroup(
-        label='law enforcement',
-        style='color(24) bold',
-        pattern=r'ag|(Alicia\s*)?Valle|(Lann?a\s*)?Belohlavek|CFTC|CIA|DOJ|FBI|FDIC|FTC|IRS|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|(Byung\s)?Pak|(Michael\s*)?Reiter|Police Code Enforcement|SEC|Strzok|TSA|(William\s*J\.?\s*)?Zloch',
-        emailers = {
-            ANN_MARIE_VILLAFANA: 'southern district of Florida U.S. Attorney',
-            DANNY_FROST: 'Director of Communications at Manhattan DA',
         }
     ),
     HighlightedGroup(
