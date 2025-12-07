@@ -264,7 +264,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='japan',
         style='color(168)',
-        pattern='|BOJ|japan(ese)?|jpy?'
+        pattern='BOJ|japan(ese)?|jpy?'
     ),
     HighlightedGroup(
         label='javanka',
