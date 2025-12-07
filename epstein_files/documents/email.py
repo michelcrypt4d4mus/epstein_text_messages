@@ -325,7 +325,7 @@ class Email(CommunicationDocument):
         # logger.info(f"With header removed:\n" + text[0:500] + '\n\n')
 
         if self.file_id in ['024624']:
-            return text
+            return text.strip()
 
         if reply_text_match:
             actual_num_chars = len(reply_text_match.group(1))
