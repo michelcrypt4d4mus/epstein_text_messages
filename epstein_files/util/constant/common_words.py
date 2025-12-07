@@ -183,7 +183,7 @@ OTHER_COMMON_WORDS = """
     ou over
     pdt pst
     rss
-    sent si signature smtp snipped somers
+    sent ses si signature smtp snipped somers
     te tel tenu tho though trimmed
     via vous voye
     was wasnt whether while wrote
@@ -205,8 +205,8 @@ UNSINGULARIZABLE_WORDS = """
     jacques jános jones josephus
     las lens les lewis lhs lls los louis luis
     madars malaysia maldives maria massachusetts mbs media melania mets meyers mlpf&s mongolia moonves multimedia
-    nadia nafta nautilus nas nigeria nucleus nunes
-    olas
+    nadia nafta nautilus nas nigeria novartis nucleus nunes
+    olas orleans
     pants paris parkes patricia pbs pennsylvania peres perhaps philadelphia physics pls plus potus pres prevus
     rees reis-dennis reuters rodgers rogers russia
     sachs sadis saks santa ses shia simmons sometimes stimulus syria

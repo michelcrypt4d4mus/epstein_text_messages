@@ -6,6 +6,7 @@ load_dotenv()
 from epstein_files.documents.document import SearchResult
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.constant.common_words import COMMON_WORDS_LIST
+from epstein_files.util.constants import EMAILED_ARTICLE_IDS
 from epstein_files.util.data import Timer, flatten
 from epstein_files.util.env import args, logger, specified_names
 from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
@@ -13,39 +14,23 @@ from epstein_files.util.rich import (console, print_centered, print_page_title, 
      print_starred_header, write_html)
 from epstein_files.util.word_count import WordCount
 
-EMAIL_IDS_TO_SKIP = [
-    '029692',  # WaPo article
-    '029779',  # WaPo article
-    '026298',  # Written by someone else?
-    '026755',  # HuffPo
-    '023627',  # Wolff article about epstein
-    '031569',  # Article by Kathryn Alexeeff
-    '030528',  # Vicky Ward article
-    '030522',  # Vicky Ward article
-    '018197', '028648',  # Ray Takeyh article fwd
-]
-
 
 timer = Timer()
 epstein_files = EpsteinFiles.get_files()
-emails = flatten([epstein_files.emails_by(n) for n in specified_names]) if specified_names else epstein_files.emails
+emails = epstein_files.valid_emails()
 imessage_logs = epstein_files.imessage_logs_for(specified_names) if specified_names else epstein_files.imessage_logs
 word_count = WordCount()
+email_subjects: set[str] = set()
 
 for email in emails:
     logger.info(f"Counting words in {email}\n  [SUBJECT] {email.subject()}")
+    lines = email.actual_text.split('\n')
 
-    if email.file_id in EMAIL_IDS_TO_SKIP:
-        logger.debug(f"    Skipping EMAIL_IDS_TO_SKIP '{email.file_id}' from '{email.author}'...")
-        continue
-    elif email.is_duplicate or email.is_junk_mail:
-        logger.info(f"    Skipping duplicate or junk file '{email.filename}'...")
-        continue
-    elif specified_names and email.author not in specified_names:
-        logger.debug(f"    Skipping email from '{email.author}'...")
-        continue
+    if email.subject() not in email_subjects and f'Re: {email.subject()}' not in email_subjects:
+        email_subjects.add(email.subject())
+        lines.append(email.subject())
 
-    for line in [email.subject()] + email.actual_text.split('\n'):
+    for line in lines:
         if line.startswith('http') or '#yiv' in line:
             continue
 

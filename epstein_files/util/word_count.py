@@ -11,15 +11,16 @@ from rich.text import Text
 from epstein_files.documents.document import SearchResult
 from epstein_files.documents.email_header import EmailHeader
 from epstein_files.util.constant.common_words import COMMON_WORDS, UNSINGULARIZABLE_WORDS
+from epstein_files.util.constant.names import OTHER_FIRST_NAMES
 from epstein_files.util.data import ALL_NAMES, flatten, sort_dict
 from epstein_files.util.env import args, logger
 from epstein_files.util.rich import highlighter
 
 FIRST_AND_LAST_NAMES = flatten([n.split() for n in ALL_NAMES])
-FIRST_AND_LAST_NAMES = [n.lower() for n in FIRST_AND_LAST_NAMES] + \
-                       'alexandra barry barbro davis francis helen johnson kathy kelly michele michelle mike rob serge silverman'.split()
+FIRST_AND_LAST_NAMES = [n.lower() for n in FIRST_AND_LAST_NAMES] + OTHER_FIRST_NAMES
+
 NON_SINGULARIZABLE = UNSINGULARIZABLE_WORDS + [n for n in FIRST_AND_LAST_NAMES if n.endswith('s')]
-SKIP_WORDS_REGEX = re.compile(r"^(asmallworld@|enwiki|http|imagepng|nymagcomnymetro|addresswww|mailto|www|/font|colordu|classdms|targetdblank|nymagcom)|jee[vy]acation|fontfamily|(gif|html?|jpe?g|utm)$")
+SKIP_WORDS_REGEX = re.compile(r"^(asmallworld@|enwiki|http|imagepng|nymagcomnymetro|addresswww|mailto|www|/font|colordu|classdms|targetdblank|nymagcom|palmbeachdailynews)|jee[vy]acation|fontfamily|(gif|html?|jpe?g|utm)$")
 BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#_`,.;:'‘’\"„“”?\d\\]")
 NO_SINGULARIZE_REGEX = re.compile(r".*[io]us$")
 PADDING = (0, 0, 2, 2)
@@ -32,8 +33,10 @@ BAD_WORDS = [
     'contenttransferencoding',
     'fortunehtmlsmidnytnowsharesmprodnytnow',
     'inthe',
+    'quotedprintable',
     'researchdisclosureinquiries@jpmorgancom',
     'summarypricesquotesstatistic',
+    'emichotpmiamiheraldcom',
 ]
 
 BAD_CHARS_OK = [
@@ -58,6 +61,7 @@ SINGULARIZATIONS = {
     'drives': 'drive',
     'enterpris': 'enterprise',
     'focuses': 'focus',
+    'foes': 'foe',
     'girsl': 'girl',
     'gives': 'give',
     'involves': 'involve',
@@ -86,7 +90,8 @@ SINGULARIZATIONS = {
     'woes': 'woe',
 }
 
-FLAGGED_WORDS = ['fashi']
+FLAGGED_WORDS = []
+SPLIT_WORDS_BY = ['@', '/']
 
 
 @dataclass
@@ -110,12 +115,14 @@ class WordCount:
         if self._is_invalid_word(word):
             return
 
-        if '/' in word:
-            logger.info(f"  Splitting word with '/' in it '{word}'...")
+        for symbol in SPLIT_WORDS_BY:
+            if symbol not in word:
+                continue
 
-            for w in word.split('/'):
+            for w in word.split(symbol):
                 self.count_word(w, document_line)
 
+            logger.info(f"  Split word with '{symbol}' in it '{word}'...")
             return
 
         if word in SINGULARIZATIONS:

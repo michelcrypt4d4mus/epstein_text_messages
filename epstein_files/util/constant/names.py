@@ -176,3 +176,20 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Victor',
     "Y",
 ]]
+
+OTHER_FIRST_NAMES = """
+    alexandra
+    barry barbro branson bruce bruno burton
+    davis
+    erik
+    gilbert gonzalez greene gwyneth
+    francis
+    guarino
+    helen
+    hofstadter
+    joe joel johnson
+    kathy kelly kim
+    marianne melissa michele michelle mike
+    rob
+    serge silverman
+""".strip().split()
