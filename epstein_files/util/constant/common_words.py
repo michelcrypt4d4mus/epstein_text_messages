@@ -183,7 +183,7 @@ OTHER_COMMON_WORDS = """
     ou over
     pdt pst
     rss
-    sent si signature smtp snipped somers
+    sent ses si signature smtp snipped somers
     te tel tenu tho though trimmed
     via vous voye
     was wasnt whether while wrote
