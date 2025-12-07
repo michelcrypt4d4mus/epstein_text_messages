@@ -32,7 +32,7 @@ HEADER_ABBREVIATIONS = {
     'Jabor': '"an influential man in Qatar"',
     'Jared': "Jared Kushner",
     'Jagland': 'Thorbjørn Jagland (former Norwegian prime minister)',
-    'Jeffrey Wernick': 'Right wing crypto bro',
+    'Jeffrey Wernick': 'Right wing crypto bro and former COO of Parler',
     'Joi': 'Joi Ito (MIT Media Lab)',
     "Hoffenberg": "Steven Hoffenberg (Epstein's ponzi scheme partner)",
     'KSA': "Kingdom of Saudi Arabia",
