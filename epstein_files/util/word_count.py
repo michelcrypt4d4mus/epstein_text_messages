@@ -96,7 +96,8 @@ SINGULARIZATIONS = {
 }
 
 HTML_REGEX = re.compile(r"com/|font-(family|size)|http|\.html?\??|margin-bottom|text-decoration|ttps|www")
-OK_SYMBOL_WORDS = ['p/e', 's&p', ':-)', ';-)']
+HYPHENATED_WORD_REGEX = re.compile(r"[a-z]+-[a-z]+", re.IGNORECASE)
+OK_SYMBOL_WORDS = ['mar-a-lago', 'p/e', 's&p', ':-)', ';-)']
 SYMBOL_WORD_REGEX = re.compile(r"^[-/]+$")
 SPLIT_WORDS_BY = ['@', '/']
 FLAGGED_WORDS = []
@@ -112,15 +113,15 @@ class WordCount:
         raw_word = word
 
         if HTML_REGEX.search(word):
-            logger.info(f"  Skipping HTML word '{word}'")
+            logger.info(f" Skipping HTML word '{word}'")
             return
         elif SYMBOL_WORD_REGEX.match(word):
-            logger.debug(f"  Skipping symbol word '{word}'")
+            logger.debug(f" Skipping symbol word '{word}'")
             return
         elif word in OK_SYMBOL_WORDS:
             self.count[word] += 1
             return
-        elif '-' in word:
+        elif HYPHENATED_WORD_REGEX.search(word):
             logger.info(f"  Word with hyphen: '{word}'")
 
         if word not in BAD_CHARS_OK:
@@ -129,7 +130,7 @@ class WordCount:
         if self._is_invalid_word(word):
             return
         elif SYMBOL_WORD_REGEX.match(word):
-            logger.debug(f"  Skipping symbol word '{word}'")
+            logger.debug(f" Skipping symbol word '{word}'")
             return
 
         for symbol in SPLIT_WORDS_BY:
