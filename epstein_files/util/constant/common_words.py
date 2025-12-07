@@ -184,7 +184,7 @@ OTHER_COMMON_WORDS = """
     kl
     las le les let
     mr mrs ms much
-    ne nor
+    ne nonus nor
     ou over
     pdt pst
     rss
@@ -216,7 +216,7 @@ UNSINGULARIZABLE_WORDS = """
     rees reis-dennis reuters rodgers rogers russia
     sachs sadis saks santa ses shia simmons slovakia sometimes soros stimulus syria
     tennis texas this thus trans tries tunisia
-    ups
+    ups uterus
     valeria vegas versus via victoria villafaria vinicius virginia vis
     was whereas whoops wikipedia
     yemen yes yikes
