@@ -60,6 +60,17 @@ def parenthesize(msg: str | Text, style: str = '') -> Text:
     return Text('(', style=style).append(txt).append(')')
 
 
+def print_abbreviations_table() -> None:
+    table = Table(title="Abbreviations Used Frequently In These Chats", header_style="bold")
+    table.add_column("Abbreviation", justify="center", style='bold', width=19)
+    table.add_column("Translation", style="white", justify="center")
+
+    for k, v in HEADER_ABBREVIATIONS.items():
+        table.add_row(highlighter(k), v)
+
+    console.print(Align.center(vertically_pad(table)))
+
+
 def print_author_header(msg: str, color: str | None, footer: str | None = None) -> None:
     txt = Text(msg, justify='center')
     color = color or 'white'
@@ -97,20 +108,11 @@ def print_color_key(key_type: Literal["Groups", "People"] = "Groups") -> None:
     print_centered(vertically_pad(color_table))
 
 
-def print_header():
+def print_header() -> None:
     console.print(f"This site is not optimized for mobile but if you get past the header it should work ok.", style='dim')
     print_page_title()
     print_other_site_link()
-
-    # Acronym table
-    table = Table(title="Abbreviations Used Frequently In These Chats", header_style="bold")
-    table.add_column("Abbreviation", justify="center", style='bold', width=19)
-    table.add_column("Translation", style="white", justify="center")
-
-    for k, v in HEADER_ABBREVIATIONS.items():
-        table.add_row(highlighter(k), v)
-
-    console.print(Align.center(vertically_pad(table)))
+    print_abbreviations_table()
     print_centered_link(OVERSIGHT_REPUBLICANS_PRESSER_URL, 'Oversight Committee Releases Additional Epstein Estate Documents')
     print_centered_link(COFFEEZILLA_ARCHIVE_URL, 'Coffeezilla Archive Of Raw Epstein Materials')
     print_centered(link_markup(JMAIL_URL, JMAIL) + " (read His Emails via Gmail interface)")
