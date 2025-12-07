@@ -20,21 +20,17 @@ epstein_files = EpsteinFiles.get_files()
 emails = epstein_files.valid_emails()
 imessage_logs = epstein_files.imessage_logs_for(specified_names) if specified_names else epstein_files.imessage_logs
 word_count = WordCount()
+email_subjects: set[str] = set()
 
 for email in emails:
     logger.info(f"Counting words in {email}\n  [SUBJECT] {email.subject()}")
+    lines = email.actual_text.split('\n')
 
-    if email.file_id in EMAILED_ARTICLE_IDS:
-        logger.debug(f"    Skipping EMAIL_IDS_TO_SKIP '{email.file_id}' from '{email.author}'...")
-        continue
-    elif email.is_duplicate or email.is_junk_mail:
-        logger.info(f"    Skipping duplicate or junk file '{email.filename}'...")
-        continue
-    elif specified_names and email.author not in specified_names:
-        logger.debug(f"    Skipping email from '{email.author}'...")
-        continue
+    if email.subject() not in email_subjects and f'Re: {email.subject()}' not in email_subjects:
+        email_subjects.add(email.subject())
+        lines.append(email.subject())
 
-    for line in [email.subject()] + email.actual_text.split('\n'):
+    for line in lines:
         if line.startswith('http') or '#yiv' in line:
             continue
 
