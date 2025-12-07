@@ -90,7 +90,7 @@ SINGULARIZATIONS = {
     'woes': 'woe',
 }
 
-FLAGGED_WORDS = ['giv']
+FLAGGED_WORDS = []
 SPLIT_WORDS_BY = ['@', '/']
 
 

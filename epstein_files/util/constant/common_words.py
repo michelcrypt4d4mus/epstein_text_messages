@@ -174,7 +174,7 @@ OTHER_COMMON_WORDS = """
     cc ce cel
     date de des div dont du
     each ecrit edt el email en envoye epstein et
-    fa fax fb fwd
+    fa fax fb fw fwd
     herself himself
     id ii iii im iphone iPad BlackBerry
     je jeffrey jr

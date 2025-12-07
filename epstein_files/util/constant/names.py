@@ -189,6 +189,7 @@ OTHER_FIRST_NAMES = """
     hofstadter
     jason joe joel johnson
     kathy kelly kim
+    lynch
     marianne melissa michele michelle mike
     rob rodriguez
     serge silverman
