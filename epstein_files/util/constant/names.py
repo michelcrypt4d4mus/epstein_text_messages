@@ -182,7 +182,7 @@ OTHER_NAMES = """
     aaron alec alex alexandra alice allen ann anna anne arthur
     barry barbro ben benjamin binant bob bonner boyden brad bradley branson bruce bruno burton
     charles charlie cohen colin conway
-    dave davis diana diane diaz dixon don dylan
+    dave davis diana diane diaz dennis dixon don dylan
     ed elizabeth emily erik etienne
     francis frank
     gardner geoff geoffrey george gilbert gonzalez gould greene guarino gwyneth
@@ -193,7 +193,7 @@ OTHER_NAMES = """
     louis lynch
     marcus marianne matt matthew melissa michele michelle mike moscowitz
     paul paula paulson philip
-    richardson rob rodriguez ron ryan
+    ray richardson rob rodriguez ron ryan
     sara sarah seligman serge sergey silverman sloman snowden stanley stevie
     theresa tim timothy tom
     walter william
