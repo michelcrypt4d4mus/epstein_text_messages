@@ -149,7 +149,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='china',
         style='bright_red',
-        pattern=r"Beijing|CCP|Chin(a|e?se)|Gino\s+Yu|Global Times|Guo|Jack\s+Ma|Kwok|Peking|PRC|Tai(pei|wan)|xi",
+        pattern=r"Beijing|CCP|Chin(a|e?se)|Gino\s+Yu|Global Times|Guo|Jack\s+Ma|Kwok|Ministry\sof\sState\sSecurity|MSS|Peking|PRC|Tai(pei|wan)|xi",
     ),
     HighlightedGroup(
         label='deepak_chopra',
