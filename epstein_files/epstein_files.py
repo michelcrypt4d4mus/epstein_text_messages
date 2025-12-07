@@ -22,7 +22,7 @@ from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_nam
      search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
 from epstein_files.util.data import dict_sets_to_lists, patternize, sort_dict
-from epstein_files.util.env import args, is_debug, logger
+from epstein_files.util.env import args, is_debug, logger, specified_names
 from epstein_files.util.file_helper import DOCS_DIR, file_size_str, move_json_file
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_COLOR, console, highlighter, link_text_obj, link_markup,
@@ -318,6 +318,14 @@ class EpsteinFiles:
             table.add_row(doc.raw_document_link_txt(), f"{doc.length:,}", doc.highlighted_preview_text())
 
         console.print(table)
+
+    def valid_emails(self) -> list[Email]:
+        """Remove dupes, junk mail, and fwded articles."""
+        return [
+            e for e in self.emails
+            if not (e.is_duplicate or e.is_junk_mail or e.file_id in EMAILED_ARTICLE_IDS) \
+               and (len(specified_names) == 0 or e.author in specified_names)
+        ]
 
     @staticmethod
     def sort_emails(emails: list[Email]) -> list[Email]:

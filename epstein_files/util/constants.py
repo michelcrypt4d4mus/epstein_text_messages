@@ -679,3 +679,16 @@ SUPPRESS_OUTPUT_FOR_EMAIL_IDS = {
     '033589': 'the same as 032250',
     '031708': 'the same as 026624',
 }
+
+EMAILED_ARTICLE_IDS = [
+    '029692',  # WaPo article
+    '029779',  # WaPo article
+    '026298',  # Written by someone else?
+    '026755',  # HuffPo
+    '023627',  # Wolff article about epstein
+    '031569',  # Article by Kathryn Alexeeff
+    '030528',  # Vicky Ward article
+    '030522',  # Vicky Ward article
+    '018197', '028648',  # Ray Takeyh article fwd
+    '028728', '027102',  # WSJ forward to Larry Summers
+]
