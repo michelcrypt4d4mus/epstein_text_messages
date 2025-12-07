@@ -88,6 +88,8 @@ SINGULARIZATIONS = {
     'viruses': 'virus',
     'waves': 'wave',
     'woes': 'woe',
+    # spelling
+    'prostituion': 'prostitution',
 }
 
 FLAGGED_WORDS = []

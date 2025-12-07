@@ -203,7 +203,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='europe',
         style='light_sky_blue3',
-        pattern=r'(Angela )?Merk(el|le)|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|Jacques|Le\s*Pen|London|Macron|(Natalia\s*)Veselnitskaya|Nigel(\s*Farage)?|Paris|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strauss[- ]?Kahn|(Tony\s)?Blair|Ukrain(e|ian)|Zug',
+        pattern=r'(Angela )?Merk(el|le)|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|Jacques|Le\s*Pen|London|Macron|(Natalia\s*)?Veselnitskaya|Nigel(\s*Farage)?|Paris|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strauss[- ]?Kahn|(Tony\s)?Blair|Ukrain(e|ian)|Zug',
         emailers = {
             MIROSLAV_LAJCAK: 'Russia-friendly Slovakian politician, friend of Steve Bannon',
             PETER_MANDELSON: 'UK politics',
@@ -236,7 +236,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='israel',
         style='dodger_blue2',
-        pattern=r"Bibi|(eh|(Ehud|Nili Priell) )?barak|Israeli?|Jerusalem|Mossad|Netanyahu|(Sheldon\s*)?Adelson|Tel\s*Aviv",
+        pattern=r"Bibi|(eh|(Ehud|Nili Priell) )?barak|Israeli?|Jerusalem|Mossad|Netanyahu|(Sheldon\s*)?Adelson|Tel\s*Aviv|zionist",
         emailers={
             EHUD_BARAK: 'former primer minister',
             'Mitchell Bard': 'director of the American-Israeli Cooperative Enterprise (AICE)',
