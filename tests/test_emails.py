@@ -680,6 +680,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     "Aziza Alahmadi": [
         "Sent from my iPhone"
     ],
+    BARBRO_EHNBOM: [
+        'Sent from iPad',
+    ],
     "Boris Nikolic": [
         "Sent from my Samsung JackTM, a Windows Mobile® smartphone from AT&T",
         "Sent from my Windows Phone"
@@ -826,6 +829,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPad",
         "Sent via BlackBerry by AT&T"
     ],
+    PUREVSUREN_LUNDEG: [
+        'Sent from my iPad',
+    ],
     "Reid Weingarten": [
         "Sent from my BlackBerry 10 smartphone.",
     ],
@@ -896,6 +902,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     "Deepak Chopra": 19,
     "Jeffrey Epstein": 3369,
     "Jessica Cadwell": 57,
+    KEN_JENNE: 1,
     LARRY_SUMMERS: 232,
     "Lawrence Krauss": 78,
     "Martin Weinberg": 17,

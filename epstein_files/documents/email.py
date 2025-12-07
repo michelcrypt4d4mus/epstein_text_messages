@@ -90,7 +90,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'Sent from Mabfl': 'Sent from Mobile',  # NADIA_MARCINKO signature bad OCR
 }
 
-MARTIN_WEINBERG_SIGNATURE_PATTERN = r"Martin G. Weinberg, Esq.\n20 Park Plaza, Suite 1000\nBoston, MA 02116(\n61.*)?(\n.*([cC]ell|Office))*"
+MARTIN_WEINBERG_SIGNATURE_PATTERN = r"Martin G. Weinberg, Esq.\n20 Park Plaza((, )|\n)Suite 1000\nBoston, MA 02116(\n61.*)?(\n.*([cC]ell|Office))*"
 
 EMAIL_SIGNATURES = {
     ARIANE_DE_ROTHSCHILD: re.compile(r"Ensemble.*\nCe.*\ndestinataires.*\nremercions.*\nautorisee.*\nd.*\nLe.*\ncontenues.*\nEdmond.*\nRoth.*\nlo.*\nRoth.*\ninfo.*\nFranc.*\n.2.*", re.I),
