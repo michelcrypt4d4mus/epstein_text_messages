@@ -188,7 +188,7 @@ OTHER_FIRST_NAMES = """
     helen
     hofstadter
     joe joel johnson
-    kathy kelly
+    kathy kelly kim
     michele michelle mike
     rob
     serge silverman

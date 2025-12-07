@@ -60,6 +60,7 @@ SINGULARIZATIONS = {
     'drives': 'drive',
     'enterpris': 'enterprise',
     'focuses': 'focus',
+    'foes': 'foe',
     'girsl': 'girl',
     'gives': 'give',
     'involves': 'involve',
