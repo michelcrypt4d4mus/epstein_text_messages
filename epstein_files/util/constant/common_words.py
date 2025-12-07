@@ -190,24 +190,24 @@ COMMON_WORDS = {line.lower(): True for line in (MOST_COMMON_WORDS + OTHER_COMMON
 COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
 
 UNSINGULARIZABLE_WORDS = """
-    acosta aids alas always andres angeles anus apparatus apropos arabia ares asia asus atlanta australia avia
+    academia acosta aids alas algeria always andres angeles anus apparatus apropos arabia ares asia asus atlanta australia austria avia
     bahamas bata betts bias boies bonus brookings
     california campus candia carlos caucus cbs cds census chaos chorus chris christmas clothes cms collins columbia comms conchita costa csis curves cvs cyprus
     dallas data davis davos dementia denis dennis des dis drougas
     emirates emphasis encyclopedia  ens eps
     facs ferris focus folks forbes francis
-    gas gaydos gittes gmt gps
+    gas gaydos georgia gittes gloria gmt gps
     halitosis hamas harris has hiatus hillis his hivaids
     impetus india indonesia ios ips irs isis isosceles
     jacques jános jones josephus
     las lens les lewis lhs lls los louis luis
-    madars maldives maria massachusetts mbs melania mets meyers mlpf&s moonves
-    nafta nautilus nas nigeria nucleus nunes
+    madars malaysia maldives maria massachusetts mbs media melania mets meyers mlpf&s mongolia moonves multimedia
+    nadia nafta nautilus nas nigeria nucleus nunes
     olas
-    pants paris parkes patricia pbs peres perhaps philadelphia physics pls plus potus pres prevus
+    pants paris parkes patricia pbs pennsylvania peres perhaps philadelphia physics pls plus potus pres prevus
     rees reis-dennis reuters rodgers rogers russia
-    sachs sadis saks santa ses simmons sometimes stimulus syria
-    tennis texas this thus trans tries
+    sachs sadis saks santa ses shia simmons sometimes stimulus syria
+    tennis texas this thus trans tries tunisia
     ups
     valeria versus via victoria villafaria vinicius virginia vis
     was whereas whoops wikipedia
