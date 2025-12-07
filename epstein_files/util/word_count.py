@@ -11,13 +11,13 @@ from rich.text import Text
 from epstein_files.documents.document import SearchResult
 from epstein_files.documents.email_header import EmailHeader
 from epstein_files.util.constant.common_words import COMMON_WORDS, UNSINGULARIZABLE_WORDS
-from epstein_files.util.constant.names import OTHER_FIRST_NAMES
+from epstein_files.util.constant.names import OTHER_NAMES
 from epstein_files.util.data import ALL_NAMES, flatten, sort_dict
 from epstein_files.util.env import args, logger
 from epstein_files.util.rich import highlighter
 
 FIRST_AND_LAST_NAMES = flatten([n.split() for n in ALL_NAMES])
-FIRST_AND_LAST_NAMES = [n.lower() for n in FIRST_AND_LAST_NAMES] + OTHER_FIRST_NAMES
+FIRST_AND_LAST_NAMES = [n.lower() for n in FIRST_AND_LAST_NAMES] + OTHER_NAMES
 
 NON_SINGULARIZABLE = UNSINGULARIZABLE_WORDS + [n for n in FIRST_AND_LAST_NAMES if n.endswith('s')]
 SKIP_WORDS_REGEX = re.compile(r"^(asmallworld@|enwiki|http|imagepng|nymagcomnymetro|addresswww|mailto|www|/font|colordu|classdms|targetdblank|nymagcom|palmbeachdailynews)|jee[vy]acation|fontfamily|(gif|html?|jpe?g|utm)$")
@@ -88,6 +88,10 @@ SINGULARIZATIONS = {
     'viruses': 'virus',
     'waves': 'wave',
     'woes': 'woe',
+    # spelling
+    'prostituion': 'prostitution',
+    # eh...
+    'twittercom': 'twitter',
 }
 
 FLAGGED_WORDS = []

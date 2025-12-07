@@ -149,7 +149,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='china',
         style='bright_red',
-        pattern=r"Beijing|CCP|Chin(a|e?se)|Gino\s+Yu|Global Times|Guo|Jack\s+Ma|Kwok|Peking|PRC|Tai(pei|wan)|xi",
+        pattern=r"Beijing|CCP|Chin(a|e?se)|Gino\s+Yu|Global Times|Guo|Jack\s+Ma|Kwok|Ministry\sof\sState\sSecurity|MSS|Peking|PRC|Tai(pei|wan)|xi",
     ),
     HighlightedGroup(
         label='deepak_chopra',
@@ -162,7 +162,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='democrats',
         style='sky_blue1',
-        pattern=r'Biden|((Bill|Hillart?y)\s*)?Clinton|DNC|George\s*Mitchell|(George\s*)?Soros|Hill?ary|Democrat(ic)?|(John\s*)?Kerry|(Matteo\s*)?Salvini|Maxine\s*Waters|(Barac?k )?Obama|(Nancy )?Pelosi|Ron\s*Dellums|Vernon\s*Jordan',
+        pattern=r'Biden|((Bill|Hillart?y)\s*)?Clinton|DNC|George\s*Mitchell|(George\s*)?Soros|Hill?ary|Democrat(ic)?|(John\s*)?Kerry|(Matteo\s*)?Salvini|Maxine\s*Waters|(Barac?k )?Obama|(Nancy )?Pelosi|Ron\s*Dellums|Schumer|Vernon\s*Jordan',
     ),
     HighlightedGroup(
         label='Dubin family',
@@ -203,7 +203,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='europe',
         style='light_sky_blue3',
-        pattern=r'(Angela )?Merk(el|le)|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|Jacques|Le\s*Pen|London|Macron|(Natalia\s*)Veselnitskaya|Nigel(\s*Farage)?|Paris|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strauss[- ]?Kahn|(Tony\s)?Blair|Ukrain(e|ian)|Zug',
+        pattern=r'(Angela )?Merk(el|le)|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|Jacques|Le\s*Pen|London|Macron|(Natalia\s*)?Veselnitskaya|Nigel(\s*Farage)?|Paris|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strauss[- ]?Kahn|(Tony\s)?Blair|Ukrain(e|ian)|Zug',
         emailers = {
             MIROSLAV_LAJCAK: 'Russia-friendly Slovakian politician, friend of Steve Bannon',
             PETER_MANDELSON: 'UK politics',
@@ -236,7 +236,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='israel',
         style='dodger_blue2',
-        pattern=r"Bibi|(eh|(Ehud|Nili Priell) )?barak|Israeli?|Jerusalem|Mossad|Netanyahu|(Sheldon\s*)?Adelson|Tel\s*Aviv",
+        pattern=r"Bibi|(eh|(Ehud|Nili Priell) )?barak|Israeli?|Jerusalem|Mossad|Netanyahu|(Sheldon\s*)?Adelson|Tel\s*Aviv|zionist",
         emailers={
             EHUD_BARAK: 'former primer minister',
             'Mitchell Bard': 'director of the American-Israeli Cooperative Enterprise (AICE)',
@@ -254,7 +254,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='journalist',
         style='bright_yellow',
-        pattern=r'Alex Yablon|Arianna( Huffington)?|Charlie rose|George Stephanopoulus|Ingram, David|Jonathan Karl|Katie Couric|Sulzberger|Susan Edelman|Vick[iy] Ward|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
+        pattern=r'Alex Yablon|Arianna( Huffington)?|Charlie rose|(Emily )?Michot|George Stephanopoulus|Ingram, David|Jonathan Karl|(Katie )?Couric|Sulzberger|Susan Edelman|Vick[iy] Ward|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
         emailers = {
             EDWARD_EPSTEIN: 'no relation to Jeffrey',
             'James Hill': 'ABC',
@@ -325,7 +325,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='mideast',
         style='dark_sea_green4',
-        pattern=r"Abdulmalik Al-Makhlafi|Abu\s+Dhabi|Aramco|Assad|Bahrain|Dubai|Emir(at(es?|i))?|Erdogan|Fashi|Gaddafi|HBJ|Houthi|Imran\s+Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|kasshohgi|Kaz(akh|ich)stan|Kazakh?|KSA|Libyan?|Marra[hk]e[cs]h|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Riya(dh|nd)|Saudi(\s+Arabian?)?|Sharia|sheikh|Syria|Tehran|Tunisian?|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
+        pattern=r"Abdulmalik Al-Makhlafi|Abu\s+Dhabi|Aramco|Assad|Bahrain|Dubai|Emir(at(es?|i))?|Erdogan|Fashi|Gaddafi|HBJ|Houthi|Imran\s+Khan|Iran(ian)?|Islam(ic|ist)?|Istanbul|Kh?ashoggi|kasshohgi|Kaz(akh|ich)stan|Kazakh?|KSA|Libyan?|Mahmoud|Marra[hk]e[cs]h|MB(S|Z)|Mohammed\s+bin\s+Salman|Muslim|Pakistani?|Persian?|Riya(dh|nd)|Saudi(\s+Arabian?)?|Shariah?|sheikh|Syria|Tehran|Tunisian?|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
         emailers = {
             ANAS_ALRASHEED: None,
             AZIZA_ALAHMADI: 'Abu Dhabi Department of Culture & Tourism',
@@ -352,7 +352,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='law enforcement',
         style='color(24) bold',
-        pattern=r'CIA|FBI|IRS|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|(Byung\s)?Pak|Police Code Enforcement|Strzok',
+        pattern=r'(Lann?a\s*)?Belohlavek|CIA|FBI|IRS|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|(Byung\s)?Pak|Police Code Enforcement|Strzok',
         emailers = {
             ANN_MARIE_VILLAFANA: 'southern district of Florida U.S. Attorney',
             DANNY_FROST: 'Director of Communications at Manhattan DA',
@@ -383,7 +383,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='russia',
         style='red bold',
-        pattern=r'Chernobyl|Day\s+One\s+Ventures|FSB|GRU|KGB|Lavrov|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Rybolo(o?lev|vlev)|Sberbank|Vladimir Yudashkin|Xitrans',
+        pattern=r'Chernobyl|Day\s+One\s+Ventures|FSB|GRU|KGB|Kremlin|Lavrov|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Rybolo(o?lev|vlev)|Sberbank|Vladimir Yudashkin|Xitrans',
         emailers = {
             MASHA_DROKOVA: 'silicon valley VC',
         }
@@ -434,7 +434,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='virgin islands',
         style='sea_green1',
-        pattern=r'Bahamas|Cecile de Jongh|(Kenneth E\. )?Mapp|Virgin\s*Islands',
+        pattern=r'Bahamas|Cecile de Jongh|(Kenneth E\. )?Mapp|USVI|VI|Virgin\s*Islands',
         emailers = {
             STACEY_PLASKETT: 'non-voting member of Congress',
             KENNETH_E_MAPP: 'Governor',
