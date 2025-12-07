@@ -97,8 +97,9 @@ SINGULARIZATIONS = {
 
 HTML_REGEX = re.compile(r"com/|content-(transfe|type)|font(/|-(family|size))|http|\.html?\??|margin-bottom|quoted-printable|region=|text-decoration|ttps|www|\.(gif|jpe?g|png);?$")
 HYPHENATED_WORD_REGEX = re.compile(r"[a-z]+-[a-z]+", re.IGNORECASE)
-OK_SYMBOL_WORDS = ['mar-a-lago', 'p/e', 's&p', ':-)', ';-)']
-SYMBOL_WORD_REGEX = re.compile(r"^[-/]+$")
+OK_SYMBOL_WORDS = ['mar-a-lago', 'p/e', 's&p', ':)', ';)', ':-)', ';-)']
+SYMBOL_WORD_REGEX = re.compile(r"^[-—–@%/?.,&=]+$")
+ONLY_SYMBOLS_REGEX = re.compile(r"^[^a-zA-Z0-9]+$")
 SPLIT_WORDS_BY = ['@', '/']
 FLAGGED_WORDS = []
 
@@ -123,6 +124,10 @@ class WordCount:
             return
         elif HYPHENATED_WORD_REGEX.search(word):
             logger.info(f"  Word with hyphen: '{word}'")
+
+        if ONLY_SYMBOLS_REGEX.match(word):
+            logger.info(f"    ONLY_SYMBOLS_REGEX match: '{word}'")
+            return
 
         if word not in BAD_CHARS_OK:
             word = BAD_CHARS_REGEX.sub('', word).strip()
