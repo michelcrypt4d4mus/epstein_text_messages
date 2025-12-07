@@ -182,8 +182,7 @@ OTHER_NAMES = """
     barry barbro branson bruce bruno burton
     charles charlie colin conway
     davis
-    emily
-    erik
+    elizabeth emily erik
     frank
     geoff gilbert gonzalez greene gwyneth
     francis

@@ -31,6 +31,7 @@ BAD_WORDS = [
     'classdhoenzbfont',
     'classdmsonormaluucauup',
     'contenttransferencoding',
+    'facedarial',
     'fortunehtmlsmidnytnowsharesmprodnytnow',
     'inthe',
     'quotedprintable',
@@ -95,7 +96,7 @@ SINGULARIZATIONS = {
 }
 
 SPLIT_WORDS_BY = ['@', '/']
-FLAGGED_WORDS = ['weve']
+FLAGGED_WORDS = []
 
 
 @dataclass
