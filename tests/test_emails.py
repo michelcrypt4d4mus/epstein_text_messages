@@ -3,7 +3,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.data import dict_sets_to_lists
 
 EMAIL_AUTHOR_COUNTS = {
-    None: 108,
+    None: 107,
     "Abi Schwinck": 1,
     AL_SECKEL: 7,
     "Alain Forget": 3,
@@ -18,7 +18,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Ann Marie Villafana": 1,
     "Anne Boyles": 1,
     "Ariane de Rothschild": 4,
-    "Aziza Alahmadi": 2,
+    AZIZA_ALAHMADI: 3,
     "Barbro C. Ehnbom": 11,
     "Barnaby Marsh": 1,
     "Barry J. Cohen": 5,
@@ -99,7 +99,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Katherine Keating": 2,
     KATHRYN_RUEMMLER: 82,
     "Kelly Friendly": 4,
-    "Ken Jenne": 1,
+    KEN_JENNE: 1,
     "Ken Starr": 5,
     "Kirk Blouin": 2,
     "Landon Thomas Jr": 72,
@@ -155,7 +155,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Peter Thomas Roth": 2,
     "Philip Kafka": 1,
     "Prince Andrew": 2,
-    "Purevsuren Lundeg": 1,
+    PUREVSUREN_LUNDEG: 1,
     "R. Couri Hay": 1,
     "Ramsey Elkholy": 1,
     "Reid Hoffman": 1,
@@ -207,7 +207,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 82,
+    None: 81,
     "ACT for America": 1,
     "Alan Dershowitz": 15,
     'Alan Dlugash': 1,
@@ -290,7 +290,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Jean Huguen": 1,
     JEAN_LUC_BRUNEL: 10,
     JEFF_FULLER: 2,
-    "Jeffrey Epstein": 1537,
+    "Jeffrey Epstein": 1538,
     JES_STALEY: 7,
     "Jessica Cadwell": 5,
     "Joel": 2,
@@ -544,6 +544,9 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
     "Sent from Yahoo Mail for iPhone": [
         "Merwin Dela Cruz"
     ],
+    'Sent from iPad': [
+        BARBRO_EHNBOM,
+    ],
     "Sent from my BlackBerry - the most secure mobile device": [
         "Michael Miller"
     ],
@@ -589,6 +592,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Mark Lloyd',
         'Neal Kassell',
         'Peggy Siegal',
+        PUREVSUREN_LUNDEG,
         'Richard Merkin',
         SHAHER_ABDULHAK_BESHER,
         'Stephen Hanson',
@@ -679,6 +683,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     "Aziza Alahmadi": [
         "Sent from my iPhone"
+    ],
+    BARBRO_EHNBOM: [
+        'Sent from iPad',
     ],
     "Boris Nikolic": [
         "Sent from my Samsung JackTM, a Windows Mobile® smartphone from AT&T",
@@ -826,6 +833,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPad",
         "Sent via BlackBerry by AT&T"
     ],
+    PUREVSUREN_LUNDEG: [
+        'Sent from my iPad',
+    ],
     "Reid Weingarten": [
         "Sent from my BlackBerry 10 smartphone.",
     ],
@@ -889,6 +899,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
 
 SIGNATURE_SUBSTITUTION_COUNTS = {
     "(unknown)": 2,
+    BARBRO_EHNBOM: 5,
     ARIANE_DE_ROTHSCHILD: 4,
     "Danny Frost": 8,
     "Darren Indyke": 47,
@@ -896,6 +907,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     "Deepak Chopra": 19,
     "Jeffrey Epstein": 3369,
     "Jessica Cadwell": 57,
+    KEN_JENNE: 1,
     LARRY_SUMMERS: 232,
     "Lawrence Krauss": 78,
     "Martin Weinberg": 17,

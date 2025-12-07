@@ -9,6 +9,7 @@ from rich.panel import Panel
 load_dotenv()
 environ.setdefault('PICKLED', 'true')
 
+from epstein_files.documents.email import Email
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.env import args
 from epstein_files.util.highlighted_group import REGEX_STYLE_PREFIX
@@ -39,5 +40,11 @@ for search_term in args.positional_args:
         console.line()
         console.print(Panel(search_result.document.description(), expand=False))
 
-        for line in search_result.unprefixed_lines():
-            console.print(temp_highlighter(line), style='wheat4')
+        if isinstance(search_result.document, Email):
+            console.print(search_result.document.info_line())
+
+        if args.whole_file:
+            console.print(search_result.document.text)
+        else:
+            for line in search_result.unprefixed_lines():
+                console.print(temp_highlighter(line), style='wheat4')

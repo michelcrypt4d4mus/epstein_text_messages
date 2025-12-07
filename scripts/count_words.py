@@ -63,7 +63,7 @@ for imessage_log in imessage_logs:
             continue
 
         for word in msg.text.split():
-            word_count.count_word(word, SearchResult(imessage_log, [line]))
+            word_count.count_word(word, SearchResult(imessage_log, [msg.text]))
 
 print_page_title(expand=False)
 print_starred_header(f"Most Common Words in {len(emails):,} Emails and {len(imessage_logs)} iMessage Logs")

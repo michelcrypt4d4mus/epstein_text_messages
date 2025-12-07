@@ -159,7 +159,7 @@ MOST_COMMON_WORDS = """
 
 OTHER_COMMON_WORDS = """
     january february march april may june july august september october november december
-    jan feb mar apr jun jul aug sep oct nov dec
+    jan feb mar apr jun jul aug sep sept oct nov dec
     sunday monday tuesday wednesday thursday friday saturday
     sun mon tues wed thur thurs fri sat
     st nd rd th skrev
@@ -192,10 +192,10 @@ COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
 UNSINGULARIZABLE_WORDS = """
     acosta aids alas always andres angeles anus apparatus apropos arabia ares asia asus atlanta australia avia
     bahamas bata betts bias boies bonus brookings
-    california campus candia carlos caucus cbs cds census chaos chorus chris clothes cms collins columbia comms conchita costa csis curves cvs cyprus
+    california campus candia carlos caucus cbs cds census chaos chorus chris christmas clothes cms collins columbia comms conchita costa csis curves cvs cyprus
     dallas data davis davos dementia denis dennis des dis drougas
     emirates emphasis encyclopedia  ens eps
-    ferris focus folks forbes francis
+    facs ferris focus folks forbes francis
     gas gaydos gittes gmt gps
     halitosis hamas harris has hiatus hillis his hivaids
     impetus india indonesia ios ips irs isis isosceles
@@ -204,8 +204,8 @@ UNSINGULARIZABLE_WORDS = """
     madars maldives maria massachusetts mbs melania mets meyers mlpf&s moonves
     nafta nautilus nas nigeria nucleus nunes
     olas
-    pants paris parkes patricia pbs peres philadelphia physics pls plus potus pres prevus
-    rees reis-dennis reuters rogers russia
+    pants paris parkes patricia pbs peres perhaps philadelphia physics pls plus potus pres prevus
+    rees reis-dennis reuters rodgers rogers russia
     sachs sadis saks santa ses simmons sometimes stimulus syria
     tennis texas this thus trans tries
     ups
