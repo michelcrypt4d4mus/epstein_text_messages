@@ -693,4 +693,5 @@ EMAILED_ARTICLE_IDS = [
     '028728', '027102',  # WSJ forward to Larry Summers
     '028508',  # nanosatellites article
     '013460', '028781',  # Atlantic on Jim Yong Kim, Obama's World Bank Pick
+    '019845',  # article on Preet Bharara
 ]
