@@ -188,9 +188,9 @@ OTHER_NAMES = """
     geoff geoffrey george gilbert gonzalez gould greene guarino gwyneth
     harold harrison helen hofstadter
     isaac isaacson
-    jane janet jason jen jennifer joe joel johnson justin
+    jamie james jane janet jason jen jennifer jim joe joel johnson justin
     kate kathy kelly kevin kim
-    lynch
+    louis lynch
     marcus marianne matt matthew melissa michele michelle mike moscowitz
     paul paula paulson philip
     richardson rob rodriguez ron ryan
