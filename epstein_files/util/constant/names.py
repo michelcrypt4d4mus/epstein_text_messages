@@ -180,18 +180,18 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
 OTHER_NAMES = """
     alexandra
     barry barbro branson bruce bruno burton
-    charles charlie colin
+    charles charlie colin conway
     davis
     emily
     erik
-    gilbert gonzalez greene gwyneth
+    geoff gilbert gonzalez greene gwyneth
     francis
     guarino
     harrison
     helen
     hofstadter
-    jason joe joel johnson
-    kathy kelly kim
+    jason jen jennifer joe joel johnson
+    kathy kelly kevin kim
     lynch
     marianne melissa michele michelle mike
     rob rodriguez
