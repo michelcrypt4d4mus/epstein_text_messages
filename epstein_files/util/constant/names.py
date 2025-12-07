@@ -180,10 +180,10 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
 
 OTHER_NAMES = """
     aaron alec alex alexandra alice allen arthur
-    barry barbro ben benjamin bob bonner boyden brad bradley branson bruce bruno burton
+    barry barbro ben benjamin binant bob bonner boyden brad bradley branson bruce bruno burton
     charles charlie cohen colin conway
-    dave davis dixon don dylan
-    elizabeth emily erik
+    dave davis diana diane diaz dixon don dylan
+    elizabeth emily erik etienne
     francis frank
     geoff geoffrey george gilbert gonzalez gould greene guarino gwyneth
     harold harrison helen hofstadter
@@ -194,5 +194,5 @@ OTHER_NAMES = """
     paul paula paulson philip
     richardson rob rodriguez ron ryan
     seligman serge sergey silverman sloman stanley stevie
-    tim timothy tom
+    theresa tim timothy tom
 """.strip().split()

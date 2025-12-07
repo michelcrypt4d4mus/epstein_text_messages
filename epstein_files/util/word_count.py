@@ -31,6 +31,7 @@ BAD_WORDS = [
     'classdhoenzbfont',
     'classdmsonormaluucauup',
     'contenttransferencoding',
+    'dbfcefacdbfla',
     'ehomep',
     'facedarial',
     'fortunehtmlsmidnytnowsharesmprodnytnow',
