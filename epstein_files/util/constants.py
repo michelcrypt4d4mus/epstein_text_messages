@@ -117,7 +117,6 @@ HOUSE_OVERSIGHT_027406.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027440.txt	Michael Wolff	Trump book/journalism project
 HOUSE_OVERSIGHT_027445.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
 HOUSE_OVERSIGHT_027455.txt	Steve Bannon (likely)	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027515.txt	Personal contact	Personal/social plans
 HOUSE_OVERSIGHT_027536.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
 HOUSE_OVERSIGHT_027655.txt	Steve Bannon	Trump and New York Times coverage
 HOUSE_OVERSIGHT_027707.txt	Steve Bannon	Italian politics; Trump discussions
