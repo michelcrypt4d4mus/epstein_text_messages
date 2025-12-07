@@ -192,7 +192,7 @@ OTHER_NAMES = """
     lynch
     marcus marianne matt matthew melissa michele michelle mike moscowitz
     paul paula paulson philip
-    rob rodriguez ron ryan
-    seligman serge silverman sloman stanley stevie
+    richardson rob rodriguez ron ryan
+    seligman serge sergey silverman sloman stanley stevie
     tim timothy tom
 """.strip().split()
