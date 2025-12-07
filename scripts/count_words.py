@@ -22,6 +22,7 @@ EMAIL_IDS_TO_SKIP = [
     '031569',  # Article by Kathryn Alexeeff
     '030528',  # Vicky Ward article
     '030522',  # Vicky Ward article
+    '018197', '028648',  # Ray Takeyh article fwd
 ]
 
 
@@ -34,16 +35,15 @@ word_count = WordCount()
 for email in emails:
     logger.info(f"Counting words in {email}")
 
-    if email.is_duplicate or email.is_junk_mail:
+    if email.file_id in EMAIL_IDS_TO_SKIP:
+        logger.debug(f"    Skipping EMAIL_IDS_TO_SKIP '{email.file_id}' from '{email.author}'...")
+        continue
+    elif email.is_duplicate or email.is_junk_mail:
         logger.info(f"    Skipping duplicate or junk file '{email.filename}'...")
         continue
-    elif specified_names:
-        if email.author not in specified_names:
-            logger.debug(f"    Skipping email from '{email.author}'...")
-            continue
-        elif email.file_id in EMAIL_IDS_TO_SKIP:
-            logger.debug(f"    Skipping EMAIL_IDS_TO_SKIP '{email.file_id}' from '{email.author}'...")
-            continue
+    elif specified_names and email.author not in specified_names:
+        logger.debug(f"    Skipping email from '{email.author}'...")
+        continue
 
     for line in email.actual_text.split('\n'):
         if line.startswith('http') or '#yiv' in line:
