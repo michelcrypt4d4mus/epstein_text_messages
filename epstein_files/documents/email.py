@@ -368,7 +368,7 @@ class Email(CommunicationDocument):
         else:
             text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', self.text).strip()
 
-        text = '\n'.join(['' if BAD_LINE_REGEX.match(line) else line for line in text.split('\n')])
+        text = '\n'.join(['' if BAD_LINE_REGEX.match(line) else line.strip() for line in text.split('\n')])
         text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
 
         for name, signature_regex in EMAIL_SIGNATURES.items():
