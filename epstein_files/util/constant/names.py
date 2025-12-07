@@ -179,9 +179,9 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
 
 
 OTHER_NAMES = """
-    aaron alec alex alexandra alice arthur
-    barry barbro ben benjamin bonner boyden branson bruce bruno burton
-    charles charlie colin conway
+    aaron alec alex alexandra alice allen arthur
+    barry barbro ben benjamin bob bonner boyden branson bruce bruno burton
+    charles charlie cohen colin conway
     dave davis dixon don dylan
     elizabeth emily erik
     francis frank
