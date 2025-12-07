@@ -319,13 +319,13 @@ class Email(CommunicationDocument):
         elif self.header.num_header_rows == 0:
             return self.text
 
-        text = '\n'.join(self.text.split('\n')[self.header.num_header_rows:])
+        text = '\n'.join(self.text.split('\n')[self.header.num_header_rows:]).strip()
         reply_text_match = REPLY_TEXT_REGEX.search(text)
         # logger.info(f"Raw text:\n" + self.top_lines(20) + '\n\n')
         # logger.info(f"With header removed:\n" + text[0:500] + '\n\n')
 
         if self.file_id in ['024624']:
-            return text.strip()
+            return text
 
         if reply_text_match:
             actual_num_chars = len(reply_text_match.group(1))
