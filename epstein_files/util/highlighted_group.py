@@ -374,7 +374,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='republicans',
         style='bold dark_red',
-        pattern=r'Alberto\sGonzale[sz]|(Alex )?Acosta|(Bill )?Barr|(Bob\s*)?Corker|Bolton|Broidy|(George )?Nader|GOP|(?<!Merwin Dela )Cruz|Kobach|Kolfage|Kudlow|Lewandowski|(Marco\s)?Rubio|Mattis|(Michael\s)?Hayden|Mnuchin|(Paul\s+)?Manafort|(Peter\s)?Navarro|Pompeo|Republican|(Mitt\s*)?Romney|Sasse',
+        pattern=r'Alberto\sGonzale[sz]|(Alex )?Acosta|(Bill )?Barr|(Bob\s*)?Corker|Bolton|Broidy|(George )?Nader|GOP|(?<!Merwin Dela )Cruz|Kobach|Kolfage|Kudlow|Lewandowski|(Marco\s)?Rubio|Mattis|(Michael\s)?Hayden|(Mitt\s*)?Romney|Mnuchin|(Paul\s+)?Manafort|(Peter\s)?Navarro|Pompeo|Republican|(Richard\s*)?Nixon|Sasse',
         emailers = {
             RUDY_GIULIANI: 'disbarred formed mayor of New York City',
             TULSI_GABBARD: None,
