@@ -113,6 +113,7 @@ MOST_COMMON_WORDS = """
     these
     they
     theyll
+    theyre
     theyve
     thing
     think
