@@ -133,7 +133,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='business',
         style='spring_green4',
-        pattern=r'Marc Rich|(Steve\s+)?Wynn|(Leslie\s+)?Wexner',
+        pattern=r'Marc Rich|Mi(chael|ke)\s*Ovitz|(Steve\s+)?Wynn|(Leslie\s+)?Wexner',
         emailers = {
             ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
             BARBRO_EHNBOM: 'Swedish pharmaceuticals',
@@ -352,7 +352,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='law enforcement',
         style='color(24) bold',
-        pattern='CIA|FBI|IRS|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|Police Code Enforcement|Strzok',
+        pattern=r'CIA|FBI|IRS|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|(Byung\s)?Pak|Police Code Enforcement|Strzok',
         emailers = {
             ANN_MARIE_VILLAFANA: 'southern district of Florida U.S. Attorney',
             DANNY_FROST: 'Director of Communications at Manhattan DA',
