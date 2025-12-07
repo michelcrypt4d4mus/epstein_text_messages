@@ -383,7 +383,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='russia',
         style='red bold',
-        pattern=r'Chernobyl|Day\s+One\s+Ventures|FSB|GRU|KGB|Kremlin|Lavrov|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Rybolo(o?lev|vlev)|Sberbank|Vladimir( Yudashkin)?|Xitrans',
+        pattern=r'Chernobyl|Day\s+One\s+Ventures|FSB|GRU|KGB|Kislyak|Kremlin|Lavrov|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Rybolo(o?lev|vlev)|Sberbank|Vladimir( Yudashkin)?|Xitrans',
         emailers = {
             MASHA_DROKOVA: 'silicon valley VC',
         }
