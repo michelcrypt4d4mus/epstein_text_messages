@@ -312,6 +312,10 @@ class Email(CommunicationDocument):
             if i >= n:
                 return match.end() - 1
 
+    def info_line(self) -> Text:
+        txt = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(f' to ')
+        return txt.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
+
     def is_local_extract_file(self) -> bool:
         return is_local_extract_file(self.filename)
 
@@ -530,9 +534,7 @@ class Email(CommunicationDocument):
             return
 
         yield Panel(self.raw_document_link_txt(), border_style=self._border_style(), expand=False)
-        info_line = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(f' to ')
-        info_line.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
-        yield Padding(info_line, INFO_PADDING)
+        yield Padding(self.info_line(), INFO_PADDING)
 
         if self.file_id in CONTENT_HINTS:
             yield Padding(Text(f"({CONTENT_HINTS[self.file_id]})", style='wheat4'), INFO_PADDING)

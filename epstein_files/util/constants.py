@@ -297,6 +297,7 @@ KNOWN_EMAIL_AUTHORS = {
     '030741': ARIANE_DE_ROTHSCHILD,
     '026018': ARIANE_DE_ROTHSCHILD,
     '033316': AZIZA_ALAHMADI,        # "Regards, Aziza" at bottom
+    '033328': AZIZA_ALAHMADI,        # "Regards, #####" at bottom with same pattern
     '026659': BARBRO_EHNBOM,         # Reply
     '026745': BARBRO_EHNBOM,         # Signature
     '031227': BENNET_MOSKOWITZ,
