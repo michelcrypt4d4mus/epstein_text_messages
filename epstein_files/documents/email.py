@@ -119,6 +119,7 @@ TRUNCATION_LENGTHS = {
 
 # Invalid for links to EpsteinWeb
 JUNK_EMAILERS = [
+    'asmallworld@travel.asmallworld.net',
     'editorialstaff@flipboard.com',
     'How To Academy',
     'Jokeland',
@@ -262,6 +263,13 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
     'Vahe Stepanian',                        # Random CC
 ]
 
+ACTUAL_TEXT = {
+    '032214': 'Agreed',
+    '028770': 'call me now',
+    '026625': 'Hysterical.',
+    '033050': 'schwartman',
+}
+
 
 @dataclass
 class Email(CommunicationDocument):
@@ -304,7 +312,9 @@ class Email(CommunicationDocument):
 
     def _actual_text(self) -> str:
         """The text that comes before likely quoted replies and forwards etc."""
-        if self.header.num_header_rows == 0:
+        if self.file_id in ACTUAL_TEXT:
+            return ACTUAL_TEXT[self.file_id]
+        elif self.header.num_header_rows == 0:
             return self.text
 
         text = '\n'.join(self.text.split('\n')[self.header.num_header_rows:])
