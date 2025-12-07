@@ -90,6 +90,8 @@ SINGULARIZATIONS = {
     'woes': 'woe',
     # spelling
     'prostituion': 'prostitution',
+    # eh...
+    'twittercom': 'twitter',
 }
 
 FLAGGED_WORDS = []
