@@ -30,6 +30,7 @@ BAD_WORDS = [
     'contenttransferencoding',
     'fortunehtmlsmidnytnowsharesmprodnytnow',
     'inthe',
+    'researchdisclosureinquiries@jpmorgancom',
     'summarypricesquotesstatistic',
 ]
 
@@ -83,7 +84,7 @@ SINGULARIZATIONS = {
     'woes': 'woe',
 }
 
-FLAGGED_WORDS = ['ther']
+FLAGGED_WORDS = []
 
 
 @dataclass
