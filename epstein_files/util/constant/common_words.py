@@ -164,7 +164,7 @@ OTHER_COMMON_WORDS = """
     january february march april may june july august september october november december
     jan feb mar apr jun jul aug sep sept oct nov dec
     sunday monday tuesday wednesday thursday friday saturday
-    sun mon tues wed thur thurs fri sat
+    sun mon tue tues wed thu thur thurs fri sat
     st nd rd th skrev
 
     addthis attachments ave
