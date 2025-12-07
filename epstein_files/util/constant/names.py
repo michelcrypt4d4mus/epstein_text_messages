@@ -177,6 +177,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     "Y",
 ]]
 
+
 OTHER_NAMES = """
     aaron alec alex alexandra alice arthur
     barry barbro ben benjamin bonner boyden branson bruce bruno burton
