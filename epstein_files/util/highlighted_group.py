@@ -191,7 +191,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='entertainer',
         style='light_steel_blue3',
-        pattern=r'(Art )?Spiegelman|Bobby slayton|Etienne Binant|(Frank\s)?Gehry|Jagger|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?|Zach Braff',
+        pattern=r'(Art )?Spiegelman|Bobby slayton|Etienne Binant|(Frank\s)?Gehry|Jagger|Madonna|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?|Zach Braff',
         emailers={
             'Andres Serrano': "'Piss Christ' artist",
             'Barry Josephson': 'American film producer and former music manager',
@@ -268,7 +268,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='lawyer',
         style='purple4',
-        pattern=r'Avenatti|(David\s*)?Boies|Kate Kelly|Michael J. Pike|Paul,?\s*Weiss|Steptoe|Wein(berg|garten)',
+        pattern=r'Avenatti|(David\s*)?Boies|Kate Kelly|(Leon\s*)?Jaworski|Michael J. Pike|Paul,?\s*Weiss|Steptoe|Wein(berg|garten)',
         emailers = {
             ARDA_BESKARES: 'NYC immigration attorney allegedly involved in sex-trafficking operations',
             BENNET_MOSKOWITZ: None,
@@ -409,7 +409,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='latin america',
         style='yellow',
-        pattern=r'Argentin(a|ian)|Bolsonar[aio]|Bra[sz]il(ian)?|Bukele|Colombian?|Cuban?|El\s*Salvador|LatAm|Lula|Mexic(an|o)|(Nicolas\s+)?Maduro|Panama( Papers)?|Peru|Venezuelan?',
+        pattern=r'Argentin(a|ian)|Bolsonar[aio]|Bra[sz]il(ian)?|Bukele|Castro|Colombian?|Cuban?|El\s*Salvador|LatAm|Lula|Mexic(an|o)|(Nicolas\s+)?Maduro|Panama( Papers)?|Peru|Venezuelan?',
     ),
     HighlightedGroup(
         label='tech bro',

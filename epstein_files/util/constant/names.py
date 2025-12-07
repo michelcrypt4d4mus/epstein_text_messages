@@ -182,7 +182,7 @@ OTHER_NAMES = """
     aaron alec alex alexandra alice arthur
     barry barbro ben benjamin bonner boyden branson bruce bruno burton
     charles charlie colin conway
-    davis dixon don dylan
+    dave davis dixon don dylan
     elizabeth emily erik
     francis frank
     geoff geoffrey george gilbert gonzalez gould greene guarino gwyneth
