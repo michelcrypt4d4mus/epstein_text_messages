@@ -198,7 +198,7 @@ HIGHLIGHTED_GROUPS = [
             BILL_SIEGEL: 'documentary film producer and director',
             'David Blaine': 'magician',
             'Richard Merkin': 'painter, illustrator and arts educator',
-        }
+        },
     ),
     HighlightedGroup(
         label='europe',
@@ -404,7 +404,7 @@ HIGHLIGHTED_GROUPS = [
             ROBERT_TRIVERS: 'evolutionary biology',
             ROGER_SCHANK: 'Teachers College, Columbia University',
             STEVEN_PFEIFFER: None,
-        }
+        },
     ),
     HighlightedGroup(
         label='latin america',
@@ -414,12 +414,12 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='tech bro',
         style='bright_cyan',
-        pattern='Masa(yoshi)?( Son)?|Najeev|Palantir|(Peter )?Th(ie|ei)l|Softbank',
+        pattern=r"Eric\sSchmidt|Masa(yoshi)?(\sSon)?|Najeev|Palantir|(Peter\s)?Th(ie|ei)l|Softbank",
         emailers = {
             ELON_MUSK: None,
             REID_HOFFMAN: 'founder of LinkedIn',
             STEVEN_SINOFSKY: 'ex-Microsoft',
-        }
+        },
     ),
     HighlightedGroup(
         label='trump',

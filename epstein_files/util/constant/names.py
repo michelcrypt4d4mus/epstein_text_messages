@@ -181,10 +181,12 @@ OTHER_FIRST_NAMES = """
     alexandra
     barry barbro
     davis
+    erik
     gilbert gonzalez gwyneth
     francis
     guarino
     helen
+    hofstadter
     johnson
     kathy kelly
     michele michelle mike

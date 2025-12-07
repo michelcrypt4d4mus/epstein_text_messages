@@ -691,4 +691,5 @@ EMAILED_ARTICLE_IDS = [
     '030522',  # Vicky Ward article
     '018197', '028648',  # Ray Takeyh article fwd
     '028728', '027102',  # WSJ forward to Larry Summers
+    '028508',  # nanosatellites article
 ]
