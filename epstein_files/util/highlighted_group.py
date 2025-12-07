@@ -96,7 +96,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='finance',
         style='green',
-        pattern=r'Apollo|Black(rock|stone)|Chase Bank|DB|Deutsche\s*Bank|Goldman(\s*Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|j\.?p\.?\s*morgan( Chase)?|Merrill(\s*Lynch)?|(Michael\s*)?Milken|(money\s+)?launder(s?|ers?|ing)?(\s+money)?|Morgan Stanley|(Peter L. )?Scher|Schwartz?man|Serageldin|us.gio@jpmorgan.com',
+        pattern=r'Apollo|Black(rock|stone)|Chase Bank|DB|Deutsche\s*Bank|Goldman(\s*Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|(Jimmy\s*)?Cayne|j\.?p\.?\s*morgan(\.?com|\s*Chase)?|Madoff|Merrill(\s*Lynch)?|(Michael\s*)?Milken|(money\s+)?launder(s?|ers?|ing)?(\s+money)?|Morgan Stanley|(Peter L. )?Scher|Schwartz?man|Serageldin|us.gio@jpmorgan.com',
         emailers={
             AMANDA_ENS: 'Citigroup',
             DANIEL_SABBA: 'UBS Investment Bank',
@@ -114,7 +114,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='bitcoin',
         style='orange1 bold',
-        pattern=r'Balaji|bitcoin|block ?chain( capital)?|Brock|coins|cr[iy]?pto(currency)?|e-currency|(Gavin )?Andressen|(Howard\s+)?Lutnic?k|(jeffrey\s+)?wernick|Libra|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)',
+        pattern=r'Balaji|bitcoin|block ?chain( capital)?|Brock|coins?|cr[iy]?pto(currency)?|e-currency|(Gavin )?Andressen|(Howard\s+)?Lutnic?k|(jeffrey\s+)?wernick|Libra|(Patrick\s*)?Murck|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)',
         emailers = {
             JEREMY_RUBIN: 'developer/researcher',
             SCARAMUCCI: 'Skybridge Capital, FTX investor',
@@ -191,7 +191,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='entertainer',
         style='light_steel_blue3',
-        pattern='(Art )?Spiegelman|Bobby slayton|Etienne Binant|Jagger|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?',
+        pattern=r'(Art )?Spiegelman|Bobby slayton|Etienne Binant|(Frank\s)?Gehry|Jagger|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?|Zach Braff',
         emailers={
             'Andres Serrano': "'Piss Christ' artist",
             'Barry Josephson': 'American film producer and former music manager',
@@ -254,7 +254,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='journalist',
         style='bright_yellow',
-        pattern=r'Alex Yablon|Arianna( Huffington)?|Bloomberg|Charlie rose|(Emily )?Michot|George Stephanopoulus|Huffington|Ingram, David|Jonathan Karl|(Katie )?Couric|Sulzberger|Susan Edelman|Vick[iy] Ward|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
+        pattern=r'Alex Yablon|Arianna( Huffington)?|Bloomberg|Charlie rose|Conchita|Sarnoff|(Emily )?Michot|George Stephanopoulus|Huffington|Ingram, David|Jonathan Karl|(Katie )?Couric|Sulzberger|Susan Edelman|Vick[iy] Ward|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
         emailers = {
             EDWARD_EPSTEIN: 'no relation to Jeffrey',
             'James Hill': 'ABC',
@@ -352,7 +352,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='law enforcement',
         style='color(24) bold',
-        pattern=r'(Lann?a\s*)?Belohlavek|CIA|FBI|IRS|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|(Byung\s)?Pak|Police Code Enforcement|Strzok',
+        pattern=r'ag|(Alicia\s*)?Valle|(Lann?a\s*)?Belohlavek|CIA|FBI|IRS|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|(Byung\s)?Pak|(Michael\s*)?Reiter|Police Code Enforcement|Strzok',
         emailers = {
             ANN_MARIE_VILLAFANA: 'southern district of Florida U.S. Attorney',
             DANNY_FROST: 'Director of Communications at Manhattan DA',
@@ -374,7 +374,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='republicans',
         style='bold dark_red',
-        pattern=r'Alberto\sGonzale[sz]|(Alex )?Acosta|(Bill )?Barr|(Bob\s*)?Corker|Bolton|Broidy|(George )?Nader|GOP|(?<!Merwin Dela )Cruz|Kobach|Kolfage|Kudlow|Lewandowski|(Marco\s)?Rubio|Mattis|(Michael\s)?Hayden|Mnuchin|(Paul\s+)?Manafort|(Peter\s)?Navarro|Pompeo|Republican|Sasse',
+        pattern=r'Alberto\sGonzale[sz]|(Alex )?Acosta|(Bill )?Barr|(Bob\s*)?Corker|Bolton|Broidy|(George )?Nader|GOP|(?<!Merwin Dela )Cruz|Kobach|Kolfage|Kudlow|Lewandowski|(Marco\s)?Rubio|Mattis|(Michael\s)?Hayden|Mnuchin|(Paul\s+)?Manafort|(Peter\s)?Navarro|Pompeo|Republican|(Mitt\s*)?Romney|Sasse',
         emailers = {
             RUDY_GIULIANI: 'disbarred formed mayor of New York City',
             TULSI_GABBARD: None,
@@ -391,7 +391,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='scholar',
         style='light_goldenrod2',
-        pattern=r'Alain Forget|David Grosof|MIT(\s*Media\s*Lab)?|Media\s*Lab|Moshe Hoffman|((Noam|Valeria) )?Chomsky|Regeneron|Stanford|UCLA',
+        pattern=r'Alain Forget|David Grosof|MIT(\s*Media\s*Lab)?|Media\s*Lab|Moshe Hoffman|((Noam|Valeria) )?Chomsky|Regeneron|(Richard\s*)?Dawkins|Stanford|UCLA',
         emailers = {
             'Barnaby Marsh': None,
             DAVID_HAIG: None,
