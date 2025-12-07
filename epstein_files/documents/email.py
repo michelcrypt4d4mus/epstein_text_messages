@@ -269,6 +269,7 @@ ACTUAL_TEXT = {
     '028770': 'call me now',
     '026625': 'Hysterical.',
     '033050': 'schwartman',
+    '029196': 'Talk in 40?',
     '022938': 'what do you suggest?',
     '026612': '',
     '031384': '',
