@@ -187,6 +187,7 @@ OTHER_NAMES = """
     francis frank
     geoff geoffrey george gilbert gonzalez gould greene guarino gwyneth
     harold harrison helen hofstadter
+    isaac isaacson
     jane janet jason jen jennifer joe joel johnson justin
     kate kathy kelly kevin kim
     lynch
@@ -195,4 +196,5 @@ OTHER_NAMES = """
     richardson rob rodriguez ron ryan
     seligman serge sergey silverman sloman stanley stevie
     theresa tim timothy tom
+    walter william
 """.strip().split()

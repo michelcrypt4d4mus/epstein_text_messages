@@ -173,7 +173,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='entertainer',
         style='light_steel_blue3',
-        pattern=r'(Art )?Spiegelman|Bobby slayton|Etienne Binant|(Frank\s)?Gehry|Jagger|Madonna|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?|Zach Braff',
+        pattern=r'(Art )?Spiegelman|Bobby slayton|Etienne Binant|(Frank\s)?Gehry|Jagger|Lena Dunham|Madonna|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?|Zach Braff',
         emailers={
             'Andres Serrano': "'Piss Christ' artist",
             'Barry Josephson': 'American film producer and former music manager',
