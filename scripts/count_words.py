@@ -15,7 +15,6 @@ from epstein_files.util.rich import (console, print_centered, print_page_title, 
 from epstein_files.util.word_count import WordCount
 
 
-
 timer = Timer()
 epstein_files = EpsteinFiles.get_files()
 emails = epstein_files.valid_emails()
