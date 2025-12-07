@@ -214,7 +214,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='harvard',
         style='deep_pink2',
-        pattern=r'Harvard',
+        pattern=r'Cambridge|Harvard',
         emailers = {
             LARRY_SUMMERS: 'Obama economic advisor, board of Digital Currency Group (DCG)',
             'Leah Reis-Dennis': 'producer for Poetry in America',

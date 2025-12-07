@@ -180,7 +180,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
 OTHER_NAMES = """
     alexandra
     barry barbro branson bruce bruno burton
-    charles charlie colin
+    charles charlie colin conway
     davis
     emily
     erik
