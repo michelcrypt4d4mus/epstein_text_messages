@@ -184,11 +184,15 @@ def print_page_title(expand: bool = True) -> None:
     console.line()
 
 
-def print_panel(msg: str, style: str = 'black on white', padding: tuple | None = None) -> None:
+def print_panel(msg: str, style: str = 'black on white', padding: tuple | None = None, centered: bool = False) -> None:
     _padding = list(padding or [0, 0, 0, 0])
     _padding[2] += 1  # Bottom pad
     panel = Panel(Text.from_markup(msg, justify='center'), width=70, style=style)
-    console.print(Padding(panel, tuple(_padding)))
+
+    if centered:
+        console.print(Align.center(Padding(panel, tuple(_padding))))
+    else:
+        console.print(Padding(panel, tuple(_padding)))
 
 
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:

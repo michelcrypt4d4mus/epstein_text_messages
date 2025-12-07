@@ -28,9 +28,11 @@ MIN_COUNT_CUTOFF = 3
 MAX_WORD_LEN = 45
 
 BAD_WORDS = [
+    'charsetutf',
     'classdhoenzbfont',
     'classdmsonormaluucauup',
     'contenttransferencoding',
+    'dbfcefacdbfla',
     'ehomep',
     'facedarial',
     'fortunehtmlsmidnytnowsharesmprodnytnow',
@@ -92,6 +94,7 @@ SINGULARIZATIONS = {
     'woes': 'woe',
     # spelling
     'prostituion': 'prostitution',
+    'visoki': 'visoski',
     # eh...
     'twittercom': 'twitter',
 }

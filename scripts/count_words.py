@@ -9,7 +9,7 @@ from epstein_files.util.constant.common_words import COMMON_WORDS_LIST
 from epstein_files.util.data import Timer, flatten
 from epstein_files.util.env import args, logger, specified_names
 from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
-from epstein_files.util.rich import (console, print_abbreviations_table, print_centered, print_page_title, print_panel,
+from epstein_files.util.rich import (console, print_abbreviations_table, print_centered, print_color_key, print_page_title, print_panel,
      print_starred_header, write_html)
 from epstein_files.util.word_count import WordCount
 
@@ -52,11 +52,13 @@ for imessage_log in imessage_logs:
 print_page_title(expand=False)
 print_starred_header(f"Most Common Words in {len(emails):,} Emails and {len(imessage_logs)} iMessage Logs")
 print_centered(f"(excluding {len(COMMON_WORDS_LIST)} particularly common words at bottom)", style='dim')
+console.line()
+print_color_key()
 # print_abbreviations_table()
 console.line()
 console.print(word_count)
-console.line(3)
-print_panel(f"{len(COMMON_WORDS_LIST):,} Excluded Words")
+console.line(2)
+print_panel(f"{len(COMMON_WORDS_LIST):,} Excluded Words", centered=True)
 console.print(', '.join(COMMON_WORDS_LIST), highlight=False)
 write_html(WORD_COUNT_HTML_PATH)
 timer.print_at_checkpoint(f"Finished counting words")
