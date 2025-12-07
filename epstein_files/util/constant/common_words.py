@@ -214,7 +214,7 @@ UNSINGULARIZABLE_WORDS = """
     olas orleans
     pants paris parkes patricia pbs pennsylvania peres perhaps philadelphia physics pls plus potus pres prevus
     rees reis-dennis reuters rodgers rogers russia
-    sachs sadis saks santa ses shia simmons slovakia sometimes stimulus syria
+    sachs sadis saks santa ses shia simmons slovakia sometimes soros stimulus syria
     tennis texas this thus trans tries tunisia
     ups
     valeria vegas versus via victoria villafaria vinicius virginia vis

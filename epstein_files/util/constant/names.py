@@ -190,7 +190,7 @@ OTHER_NAMES = """
     guarino
     harrison helen hofstadter
     jason jen jennifer joe joel johnson justin
-    kathy kelly kevin kim
+    kate kathy kelly kevin kim
     lynch
     marianne melissa michele michelle mike
     rob rodriguez
