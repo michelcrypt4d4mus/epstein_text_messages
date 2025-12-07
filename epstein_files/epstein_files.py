@@ -114,11 +114,19 @@ class EpsteinFiles:
     def attributed_email_count(self) -> int:
         return sum([i for author, i in self.email_author_counts.items() if author != UNKNOWN])
 
-    def docs_matching(self, _pattern: re.Pattern | str, file_type: Literal['all', 'other'] = 'all') -> list[SearchResult]:
+    def docs_matching(
+            self,
+            _pattern: re.Pattern | str,
+            file_type: Literal['all', 'other'] = 'all',
+            names: list[str | None] | None = None
+        ) -> list[SearchResult]:
         results: list[SearchResult] = []
 
         for doc in (self.all_documents() if file_type == 'all' else self.other_files):
             lines = doc.lines_matching_txt(patternize(_pattern))
+
+            if names and ((not isinstance(doc, (Email, MessengerLog))) or doc.author not in names):
+                continue
 
             if len(lines) > 0:
                 results.append(SearchResult(doc, lines))
