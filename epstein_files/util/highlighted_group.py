@@ -396,7 +396,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='scholar',
         style='light_goldenrod2',
-        pattern=r'Alain Forget|David Grosof|MIT(\s*Media\s*Lab)?|Media\s*Lab|Minsky|Moshe Hoffman|((Noam|Valeria) )?Chomsky|Praluent|Regeneron|(Richard\s*)?Dawkins|Stanford|UCLA',
+        pattern=r'Alain Forget|Brotherton|David Grosof|MIT(\s*Media\s*Lab)?|Media\s*Lab|Minsky|Moshe Hoffman|((Noam|Valeria) )?Chomsky|Praluent|Regeneron|(Richard\s*)?Dawkins|Stanford|UCLA',
         emailers = {
             'Barnaby Marsh': None,
             DAVID_HAIG: None,
