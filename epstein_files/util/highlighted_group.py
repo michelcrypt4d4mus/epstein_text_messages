@@ -291,7 +291,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='law enforcement',
         style='color(24) bold',
-        pattern=r'ag|(Alicia\s*)?Valle|(Lann?a\s*)?Belohlavek|CFTC|CIA|DOJ|FBI|FDIC|FTC|IRS|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|(Byung\s)?Pak|(Michael\s*)?Reiter|Police Code Enforcement|SEC|Strzok|TSA|(William\s*J\.?\s*)?Zloch',
+        pattern=r'ag|(Alicia\s*)?Valle|(Lann?a\s*)?Belohlavek|CFTC|CIA|DOJ|FBI|FDIC|FINRA|FTC|IRS|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|OCC|(Byung\s)?Pak|(Michael\s*)?Reiter|Police Code Enforcement|SEC|Strzok|TSA|(William\s*J\.?\s*)?Zloch',
         emailers = {
             ANN_MARIE_VILLAFANA: 'southern district of Florida U.S. Attorney',
             DANNY_FROST: 'Director of Communications at Manhattan DA',
@@ -379,7 +379,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='republicans',
         style='bold dark_red',
-        pattern=r'Alberto\sGonzale[sz]|(Alex )?Acosta|(Bill )?Barr|(Bob\s*)?Corker|Bolton|Broidy|(Chris\s)?Christie|(George )?Nader|GOP|(?<!Merwin Dela )Cruz|Kobach|Kolfage|Kudlow|Lewandowski|(Marco\s)?Rubio|Mattis|(Michael\s)?Hayden|(Mitt\s*)?Romney|Mnuchin|(Paul\s+)?Manafort|(Peter\s)?Navarro|Pompeo|Republican|(Richard\s*)?Nixon|Sasse',
+        pattern=r'Alberto\sGonzale[sz]|(Alex )?Acosta|(Bill )?Barr|(Bob\s*)?Corker|Bolton|Broidy|(Chris\s)?Christie|(George )?Nader|GOP|(?<!Merwin Dela )Cruz|Kobach|Kolfage|Kudlow|Lewandowski|(Marco\s)?Rubio|Mattis|(Michael\s)?Hayden|(Mitt\s*)?Romney|Mnuchin|(Paul\s+)?Manafort|(Peter\s)?Navarro|Pompeo|Reagan|Republican|(Richard\s*)?Nixon|Sasse',
         emailers = {
             RUDY_GIULIANI: 'disbarred formed mayor of New York City',
             TULSI_GABBARD: None,
@@ -429,7 +429,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='trump',
         style='red3 bold',
-        pattern=r"@?realDonaldTrump|\bDJ?T\b|(Donald\s+(J\.\s+)?)?Trump(ism)?|Don(ald| *Jr)(?! Rubin)|Mar[- ]*a[- ]*Lago|(Matt(hew)? )?Calamari|\bMatt C\b|Melania|Roger\s+Stone|rona",
+        pattern=r"@?realDonaldTrump|\bDJ?T\b|(Donald\s+(J\.\s+)?)?Trump(ism)?|Don(ald| *Jr)(?! Rubin)|(Madeleine\s*)?Westerhout|Mar[- ]*a[- ]*Lago|(Matt(hew)? )?Calamari|\bMatt C\b|Melania|Roger\s+Stone|rona",
     ),
     HighlightedGroup(
         label='victim',
