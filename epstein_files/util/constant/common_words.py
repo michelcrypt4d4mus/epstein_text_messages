@@ -195,7 +195,7 @@ COMMON_WORDS = {line.lower(): True for line in (MOST_COMMON_WORDS + OTHER_COMMON
 COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
 
 UNSINGULARIZABLE_WORDS = """
-    academia acosta aids alas algeria always andres angeles anus apparatus apropos arabia ares asia asus atlanta australia austria avia
+    academia acosta aids alas algeria alice always andres angeles anus apparatus apropos arabia ares asia asus atlanta australia austria avia
     bahamas bata beatles beta betts bias boies bonus brookings
     california campus candia carlos caucus cbs cds census chaos chorus chris christmas clothes cms collins columbia com comms conchita costa csis curves cvs cyprus
     dallas data davis davos dementia denis dennis des dis drougas
