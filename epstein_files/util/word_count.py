@@ -16,7 +16,9 @@ from epstein_files.util.env import args, logger
 from epstein_files.util.rich import highlighter
 
 FIRST_AND_LAST_NAMES = flatten([n.split() for n in ALL_NAMES])
-NON_SINGULARIZABLE = UNSINGULARIZABLE_WORDS + [n.lower() for n in FIRST_AND_LAST_NAMES if n.endswith('s')]
+FIRST_AND_LAST_NAMES = [n.lower() for n in FIRST_AND_LAST_NAMES] + \
+                       ['alexandra', 'barry', 'kathy', 'kelly', 'mike', 'serge', 'silverman']
+NON_SINGULARIZABLE = UNSINGULARIZABLE_WORDS + [n for n in FIRST_AND_LAST_NAMES if n.endswith('s')]
 SKIP_WORDS_REGEX = re.compile(r"^(asmallworld@|enwiki|http|imagepng|nymagcomnymetro|addresswww|mailto|www|/font|colordu|classdms|targetdblank|nymagcom)|jee[vy]acation|fontfamily|(gif|html?|jpe?g|utm)$")
 BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#_`,.;:'‘’\"„“”?\d\\]")
 NO_SINGULARIZE_REGEX = re.compile(r".*[io]us$")
@@ -141,10 +143,15 @@ class WordCount:
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         word_txts = [
-            highlighter(Text('').append(f"{word}", style='wheat4').append(': ').append(f"{count:,}"))
+            highlighter(Text('').append(f"{word}", style=_word_style(word)).append(': ').append(f"{count:,}"))
             for word, count in [kv for kv in sort_dict(self.count) if kv[1] >= MIN_COUNT_CUTOFF]
         ]
 
         cols = Columns(word_txts, column_first=False, equal=False, expand=True)
         yield Padding(cols, PADDING)
         yield f"Showing {len(word_txts):,} words appearing at least {MIN_COUNT_CUTOFF} times (out of {len(self.count):,} words)."
+
+
+def _word_style(word: str | None) -> str:
+    word = word or ''
+    return 'bright_white' if word in FIRST_AND_LAST_NAMES else 'wheat4'
