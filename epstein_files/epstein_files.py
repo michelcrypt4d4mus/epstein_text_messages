@@ -236,7 +236,7 @@ class EpsteinFiles:
             table.add_row(
                 email.author_txt,
                 email.epsteinify_link(link_txt=email.timestamp_without_seconds()),
-                highlighter(email.header.subject or '')
+                highlighter(email.subject())
             )
 
         console.print(Align.center(table), '\n')
