@@ -19,7 +19,8 @@ epstein_files = EpsteinFiles.get_files()
 
 epstein_emails = [e for e in epstein_files.emails if e.author == JEFFREY_EPSTEIN]
 
-for email in sorted(epstein_files.emails, key=lambda e: -len(e.actual_text)):
+#for email in sorted(epstein_files.emails, key=lambda e: -len(e.actual_text)):
+for email in sorted(epstein_files.emails, key=lambda e: e.timestamp):
     if email.is_junk_mail:
         continue
 
