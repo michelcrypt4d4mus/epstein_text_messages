@@ -114,11 +114,19 @@ class EpsteinFiles:
     def attributed_email_count(self) -> int:
         return sum([i for author, i in self.email_author_counts.items() if author != UNKNOWN])
 
-    def docs_matching(self, _pattern: re.Pattern | str, file_type: Literal['all', 'other'] = 'all') -> list[SearchResult]:
+    def docs_matching(
+            self,
+            _pattern: re.Pattern | str,
+            file_type: Literal['all', 'other'] = 'all',
+            names: list[str | None] | None = None
+        ) -> list[SearchResult]:
         results: list[SearchResult] = []
 
         for doc in (self.all_documents() if file_type == 'all' else self.other_files):
             lines = doc.lines_matching_txt(patternize(_pattern))
+
+            if names and ((not isinstance(doc, (Email, MessengerLog))) or doc.author not in names):
+                continue
 
             if len(lines) > 0:
                 results.append(SearchResult(doc, lines))
@@ -228,7 +236,7 @@ class EpsteinFiles:
             table.add_row(
                 email.author_txt,
                 email.epsteinify_link(link_txt=email.timestamp_without_seconds()),
-                highlighter(email.header.subject or '')
+                highlighter(email.subject())
             )
 
         console.print(Align.center(table), '\n')
@@ -247,7 +255,10 @@ class EpsteinFiles:
         for i, col in enumerate(['Name', 'Count', 'Sent', "Recv'd", JMAIL, EPSTEIN_WEB, 'Twitter']):
             counts_table.add_column(col, justify='left' if i == 0 else 'center')
 
-        emailer_counts = {e: self.email_author_counts[e] + self.email_recipient_counts[e] for e in self.all_emailers(True)}
+        emailer_counts = {
+            e: self.email_author_counts[e] + self.email_recipient_counts[e]
+            for e in self.all_emailers(True)
+        }
 
         for p, count in sort_dict(emailer_counts):
             style = get_style_for_name(p, DEFAULT_NAME_COLOR)

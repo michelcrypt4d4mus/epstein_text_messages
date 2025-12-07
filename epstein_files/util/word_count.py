@@ -17,7 +17,7 @@ from epstein_files.util.rich import highlighter
 
 FIRST_AND_LAST_NAMES = flatten([n.split() for n in ALL_NAMES])
 FIRST_AND_LAST_NAMES = [n.lower() for n in FIRST_AND_LAST_NAMES] + \
-                       ['alexandra', 'barry', 'kathy', 'kelly', 'mike', 'serge', 'silverman']
+                       'alexandra barry barbro davis francis helen johnson kathy kelly michele michelle mike rob serge silverman'.split()
 NON_SINGULARIZABLE = UNSINGULARIZABLE_WORDS + [n for n in FIRST_AND_LAST_NAMES if n.endswith('s')]
 SKIP_WORDS_REGEX = re.compile(r"^(asmallworld@|enwiki|http|imagepng|nymagcomnymetro|addresswww|mailto|www|/font|colordu|classdms|targetdblank|nymagcom)|jee[vy]acation|fontfamily|(gif|html?|jpe?g|utm)$")
 BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#_`,.;:'‘’\"„“”?\d\\]")
@@ -86,7 +86,7 @@ SINGULARIZATIONS = {
     'woes': 'woe',
 }
 
-FLAGGED_WORDS = []
+FLAGGED_WORDS = ['fashi']
 
 
 @dataclass
@@ -98,9 +98,9 @@ class WordCount:
         word = EmailHeader.cleanup_str(word).lower().strip()
         raw_word = word
 
-        if 'ttp' in word or 'www' in word or word == '/':
+        if 'http' in word or 'ttps' in word or 'www' in word or word == '/':
             return
-        elif word == 'p/e':
+        elif word in ['p/e', 's&p']:
             self.count[word] += 1
             return
 

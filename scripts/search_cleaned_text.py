@@ -11,7 +11,7 @@ environ.setdefault('PICKLED', 'true')
 
 from epstein_files.documents.email import Email
 from epstein_files.epstein_files import EpsteinFiles
-from epstein_files.util.env import args
+from epstein_files.util.env import args, specified_names
 from epstein_files.util.highlighted_group import REGEX_STYLE_PREFIX
 from epstein_files.util.rich import console, print_section_header
 
@@ -36,7 +36,7 @@ for search_term in args.positional_args:
     print_section_header(f"Searching {search_type} documents for '{search_term}'")
     temp_highlighter = build_highlighter(search_term)
 
-    for search_result in epstein_files.docs_matching(search_term, search_type):
+    for search_result in epstein_files.docs_matching(search_term, search_type, specified_names):
         console.line()
         console.print(Panel(search_result.document.description(), expand=False))
 

@@ -23,6 +23,8 @@ MOST_COMMON_WORDS = """
     came
     can
     can't
+    cannot
+    cant
     come
     could
     couldnt
@@ -131,6 +133,7 @@ MOST_COMMON_WORDS = """
     well
     went
     were
+    werent
     what
     whatever
     when
@@ -161,7 +164,7 @@ OTHER_COMMON_WORDS = """
     january february march april may june july august september october november december
     jan feb mar apr jun jul aug sep sept oct nov dec
     sunday monday tuesday wednesday thursday friday saturday
-    sun mon tues wed thur thurs fri sat
+    sun mon tue tues wed thu thur thurs fri sat
     st nd rd th skrev
 
     addthis attachments ave
@@ -191,8 +194,8 @@ COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
 
 UNSINGULARIZABLE_WORDS = """
     academia acosta aids alas algeria always andres angeles anus apparatus apropos arabia ares asia asus atlanta australia austria avia
-    bahamas bata betts bias boies bonus brookings
-    california campus candia carlos caucus cbs cds census chaos chorus chris christmas clothes cms collins columbia comms conchita costa csis curves cvs cyprus
+    bahamas bata beatles betts bias boies bonus brookings
+    california campus candia carlos caucus cbs cds census chaos chorus chris christmas clothes cms collins columbia com comms conchita costa csis curves cvs cyprus
     dallas data davis davos dementia denis dennis des dis drougas
     emirates emphasis encyclopedia  ens eps
     facs ferris focus folks forbes francis
@@ -209,7 +212,7 @@ UNSINGULARIZABLE_WORDS = """
     sachs sadis saks santa ses shia simmons sometimes stimulus syria
     tennis texas this thus trans tries tunisia
     ups
-    valeria versus via victoria villafaria vinicius virginia vis
+    valeria vegas versus via victoria villafaria vinicius virginia vis
     was whereas whoops wikipedia
     yemen yes yikes
     zakaria
