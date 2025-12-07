@@ -319,6 +319,9 @@ class Email(CommunicationDocument):
     def is_local_extract_file(self) -> bool:
         return is_local_extract_file(self.filename)
 
+    def subject(self) -> str:
+        return self.header.subject or ''
+
     def _actual_text(self) -> str:
         """The text that comes before likely quoted replies and forwards etc."""
         if self.file_id in ACTUAL_TEXT:

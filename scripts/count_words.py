@@ -33,7 +33,7 @@ imessage_logs = epstein_files.imessage_logs_for(specified_names) if specified_na
 word_count = WordCount()
 
 for email in emails:
-    logger.info(f"Counting words in {email}")
+    logger.info(f"Counting words in {email}\n  [SUBJECT] {email.subject()}")
 
     if email.file_id in EMAIL_IDS_TO_SKIP:
         logger.debug(f"    Skipping EMAIL_IDS_TO_SKIP '{email.file_id}' from '{email.author}'...")
@@ -45,7 +45,7 @@ for email in emails:
         logger.debug(f"    Skipping email from '{email.author}'...")
         continue
 
-    for line in email.actual_text.split('\n'):
+    for line in [email.subject()] + email.actual_text.split('\n'):
         if line.startswith('http') or '#yiv' in line:
             continue
 
