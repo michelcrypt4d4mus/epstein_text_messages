@@ -187,9 +187,9 @@ OTHER_FIRST_NAMES = """
     guarino
     helen
     hofstadter
-    joe joel johnson
+    jason joe joel johnson
     kathy kelly kim
     marianne melissa michele michelle mike
-    rob
+    rob rodriguez
     serge silverman
 """.strip().split()
