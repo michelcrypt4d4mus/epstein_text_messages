@@ -95,7 +95,11 @@ SINGULARIZATIONS = {
     'twittercom': 'twitter',
 }
 
-HTML_REGEX = re.compile(r"com/|font-(family|size)|http|margin-bottom|text-decoration|ttps|www")
+HTML_REGEX = re.compile(r"com/|cae-v2w=|content-(transfe|type)|font(/|-(family|size))|http|\.html?\??|margin-bottom|padding-left|quoted-printable|region=|text-decoration|ttps|www|\.(gif|jpe?g|png);?$")
+HYPHENATED_WORD_REGEX = re.compile(r"[a-z]+-[a-z]+", re.IGNORECASE)
+OK_SYMBOL_WORDS = ['mar-a-lago', 'p/e', 's&p', ':)', ':).', ';)', ':-)', ';-)']
+SYMBOL_WORD_REGEX = re.compile(r"^[-—–@%/?.,&=]+$")
+ONLY_SYMBOLS_REGEX = re.compile(r"^[^a-zA-Z0-9]+$")
 SPLIT_WORDS_BY = ['@', '/']
 FLAGGED_WORDS = []
 
@@ -110,18 +114,28 @@ class WordCount:
         raw_word = word
 
         if HTML_REGEX.search(word):
-            logger.info(f"Skipping HTML word '{word}'")
+            logger.info(f" Skipping HTML word '{word}'")
             return
-        elif word in ['p/e', 's&p']:
-            self.count[word] += 1
+        elif SYMBOL_WORD_REGEX.match(word):
+            logger.debug(f" Skipping symbol word '{word}'")
             return
-        elif '-' in word:
-            logger.info(f"Word with hyphen: '{word}'")
+        elif word in OK_SYMBOL_WORDS:
+            self.count[':)' if word == ':).' else word] += 1
+            return
+        elif HYPHENATED_WORD_REGEX.search(word):
+            logger.info(f"  Word with hyphen: '{word}'")
+
+        if ONLY_SYMBOLS_REGEX.match(word):
+            logger.info(f"    ONLY_SYMBOLS_REGEX match: '{word}'")
+            return
 
         if word not in BAD_CHARS_OK:
             word = BAD_CHARS_REGEX.sub('', word).strip()
 
         if self._is_invalid_word(word):
+            return
+        elif SYMBOL_WORD_REGEX.match(word):
+            logger.debug(f" Skipping symbol word '{word}'")
             return
 
         for symbol in SPLIT_WORDS_BY:
