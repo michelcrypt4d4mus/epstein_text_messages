@@ -184,14 +184,14 @@ OTHER_NAMES = """
     davis
     emily
     erik
-    gilbert gonzalez greene gwyneth
+    geoff gilbert gonzalez greene gwyneth
     francis
     guarino
     harrison
     helen
     hofstadter
-    jason joe joel johnson
-    kathy kelly kim
+    jason jen jennifer joe joel johnson
+    kathy kelly kevin kim
     lynch
     marianne melissa michele michelle mike
     rob rodriguez
