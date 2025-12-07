@@ -254,7 +254,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='journalist',
         style='bright_yellow',
-        pattern=r'Alex Yablon|Arianna( Huffington)?|Bloomberg|Charlie rose|Conchita|Sarnoff|(Emily )?Michot|George Stephanopoulus|Huffington|Ingram, David|Jonathan Karl|(Katie )?Couric|(Michele\s*)?Dargan|NYT(imes)?|Sulzberger|Susan Edelman|Vick[iy] Ward|WGBH|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
+        pattern=r'Alex Yablon|Arianna( Huffington)?|Bloomberg|Charlie rose|Conchita|Sarnoff|(Emily )?Michot|George Stephanopoulus|Huffington|Ingram, David|Jonathan Karl|(Katie )?Couric|(Michele\s*)?Dargan|NYT(imes)?|Politico|Sulzberger|Susan Edelman|Vick[iy] Ward|WGBH|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
         emailers = {
             EDWARD_EPSTEIN: 'no relation to Jeffrey',
             'James Hill': 'ABC',
