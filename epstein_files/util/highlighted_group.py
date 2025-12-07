@@ -149,7 +149,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='china',
         style='bright_red',
-        pattern=r"Beijing|CCP|Chin(a|e?se)|Gino\s+Yu|Global Times|Guo|Jack\s+Ma|Kwok|Ministry\sof\sState\sSecurity|MSS|Peking|PRC|Tai(pei|wan)|xi",
+        pattern=r"Beijing|CCP|Chin(a|e?se)|Gino\s+Yu|Global Times|Guo|Hong|Kong|Jack\s+Ma|Kwok|Ministry\sof\sState\sSecurity|MSS|Peking|PRC|Tai(pei|wan)|xi",
     ),
     HighlightedGroup(
         label='deepak_chopra',
@@ -162,7 +162,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='democrats',
         style='sky_blue1',
-        pattern=r'Biden|((Bill|Hillart?y)\s*)?Clinton|DNC|George\s*Mitchell|(George\s*)?Soros|Hill?ary|Dem(ocrat(ic)?)?|(John\s*)?Kerry|(Matteo\s*)?Salvini|Maxine\s*Waters|(Barac?k )?Obama|(Nancy )?Pelosi|Ron\s*Dellums|Schumer|Vernon\s*Jordan',
+        pattern=r'(Al\s*)?Franken|Biden|((Bill|Hillart?y)\s*)?Clinton|DNC|George\s*Mitchell|(George\s*)?Soros|Hill?ary|Dem(ocrat(ic)?)?|(John\s*)?Kerry|(Matteo\s*)?Salvini|Maxine\s*Waters|(Barac?k )?Obama|(Nancy )?Pelosi|Ron\s*Dellums|Schumer|Vernon\s*Jordan',
     ),
     HighlightedGroup(
         label='Dubin family',
@@ -214,7 +214,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='harvard',
         style='deep_pink2',
-        pattern=r'Cambridge|Harvard',
+        pattern=r'Cambridge|Elisa(\s*New)?|Harvard',
         emailers = {
             LARRY_SUMMERS: 'Obama economic advisor, board of Digital Currency Group (DCG)',
             'Leah Reis-Dennis': 'producer for Poetry in America',
@@ -352,7 +352,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='law enforcement',
         style='color(24) bold',
-        pattern=r'ag|(Alicia\s*)?Valle|(Lann?a\s*)?Belohlavek|CIA|FBI|IRS|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|(Byung\s)?Pak|(Michael\s*)?Reiter|Police Code Enforcement|Strzok',
+        pattern=r'ag|(Alicia\s*)?Valle|(Lann?a\s*)?Belohlavek|CIA|FBI|IRS|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|(Byung\s)?Pak|(Michael\s*)?Reiter|Police Code Enforcement|Strzok|(William\s*J\.?\s*)?Zloch',
         emailers = {
             ANN_MARIE_VILLAFANA: 'southern district of Florida U.S. Attorney',
             DANNY_FROST: 'Director of Communications at Manhattan DA',

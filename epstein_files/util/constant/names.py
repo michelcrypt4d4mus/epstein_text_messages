@@ -182,8 +182,7 @@ OTHER_NAMES = """
     barry barbro branson bruce bruno burton
     charles charlie colin conway
     davis
-    emily
-    erik
+    elizabeth emily erik
     frank
     geoff gilbert gonzalez greene gwyneth
     francis
@@ -193,7 +192,7 @@ OTHER_NAMES = """
     kate kathy kelly kevin kim
     lynch
     marianne melissa michele michelle mike
-    rob rodriguez
+    rob rodriguez ryan
     serge silverman stanley stevie
     timothy
 """.strip().split()

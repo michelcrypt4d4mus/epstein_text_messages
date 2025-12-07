@@ -31,6 +31,7 @@ BAD_WORDS = [
     'classdhoenzbfont',
     'classdmsonormaluucauup',
     'contenttransferencoding',
+    'facedarial',
     'fortunehtmlsmidnytnowsharesmprodnytnow',
     'inthe',
     'quotedprintable',
@@ -94,8 +95,9 @@ SINGULARIZATIONS = {
     'twittercom': 'twitter',
 }
 
+HTML_REGEX = re.compile(r"com/|font-(family|size)|http|margin-bottom|text-decoration|ttps|www")
 SPLIT_WORDS_BY = ['@', '/']
-FLAGGED_WORDS = ['weve']
+FLAGGED_WORDS = []
 
 
 @dataclass
@@ -107,11 +109,14 @@ class WordCount:
         word = EmailHeader.cleanup_str(word).lower().strip()
         raw_word = word
 
-        if 'http' in word or 'ttps' in word or 'www' in word or word == '/':
+        if HTML_REGEX.search(word):
+            logger.info(f"Skipping HTML word '{word}'")
             return
         elif word in ['p/e', 's&p']:
             self.count[word] += 1
             return
+        elif '-' in word:
+            logger.info(f"Word with hyphen: '{word}'")
 
         if word not in BAD_CHARS_OK:
             word = BAD_CHARS_REGEX.sub('', word).strip()
