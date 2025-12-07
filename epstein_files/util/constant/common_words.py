@@ -131,6 +131,7 @@ MOST_COMMON_WORDS = """
     well
     went
     were
+    werent
     what
     whatever
     when
@@ -209,7 +210,7 @@ UNSINGULARIZABLE_WORDS = """
     sachs sadis saks santa ses shia simmons sometimes stimulus syria
     tennis texas this thus trans tries tunisia
     ups
-    valeria versus via victoria villafaria vinicius virginia vis
+    valeria vegas versus via victoria villafaria vinicius virginia vis
     was whereas whoops wikipedia
     yemen yes yikes
     zakaria
