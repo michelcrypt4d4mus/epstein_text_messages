@@ -195,6 +195,6 @@ OTHER_NAMES = """
     paul paula paulson philip
     ray richardson rob rodriguez ron ryan
     sara sarah seligman serge sergey silverman sloman snowden stanley stevie
-    theresa tim timothy tom
+    theresa thompson tim timothy tom
     walter william
 """.strip().split()
