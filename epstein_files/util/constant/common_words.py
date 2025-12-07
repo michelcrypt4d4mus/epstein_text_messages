@@ -23,6 +23,8 @@ MOST_COMMON_WORDS = """
     came
     can
     can't
+    cannot
+    cant
     come
     could
     couldnt
