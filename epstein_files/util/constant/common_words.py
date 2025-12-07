@@ -207,10 +207,10 @@ UNSINGULARIZABLE_WORDS = """
     gas gaydos georgia gittes gloria gmt gps gravitas
     halitosis hamas harris has hiatus hillis his hivaids
     impetus india indonesia ios ips irs isis isosceles
-    jacques jános jones josephus
+    jacques jános jones josephus jules
     las lens les lewis lhs lls los louis luis
     madars malaysia maldives marcus maria massachusetts mbs media melania meta mets meyers mlpf&s mongolia moonves multimedia
-    nadia nafta nautilus nas nigeria novartis nucleus nunes
+    nadia nafta natalie nautilus nas nigeria novartis nucleus nunes
     olas orleans
     pants paris parkes patricia pbs pennsylvania peres perhaps philadelphia physics pls plus potus pres prevus
     rees reis-dennis reuters rodgers rogers russia
