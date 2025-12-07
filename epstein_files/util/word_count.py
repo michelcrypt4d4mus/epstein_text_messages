@@ -95,7 +95,7 @@ SINGULARIZATIONS = {
     'twittercom': 'twitter',
 }
 
-HTML_REGEX = re.compile(r"com/|content-(transfe|type)|font(/|-(family|size))|http|\.html?\??|margin-bottom|quoted-printable|text-decoration|ttps|www")
+HTML_REGEX = re.compile(r"com/|content-(transfe|type)|font(/|-(family|size))|http|\.html?\??|margin-bottom|quoted-printable|region=|text-decoration|ttps|www|\.(gif|jpe?g|png);?$")
 HYPHENATED_WORD_REGEX = re.compile(r"[a-z]+-[a-z]+", re.IGNORECASE)
 OK_SYMBOL_WORDS = ['mar-a-lago', 'p/e', 's&p', ':-)', ';-)']
 SYMBOL_WORD_REGEX = re.compile(r"^[-/]+$")
