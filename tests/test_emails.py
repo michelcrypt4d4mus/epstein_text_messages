@@ -155,7 +155,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Peter Thomas Roth": 2,
     "Philip Kafka": 1,
     "Prince Andrew": 2,
-    "Purevsuren Lundeg": 1,
+    PUREVSUREN_LUNDEG: 1,
     "R. Couri Hay": 1,
     "Ramsey Elkholy": 1,
     "Reid Hoffman": 1,
@@ -544,6 +544,9 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
     "Sent from Yahoo Mail for iPhone": [
         "Merwin Dela Cruz"
     ],
+    'Sent from iPad': [
+        BARBRO_EHNBOM,
+    ],
     "Sent from my BlackBerry - the most secure mobile device": [
         "Michael Miller"
     ],
@@ -589,6 +592,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Mark Lloyd',
         'Neal Kassell',
         'Peggy Siegal',
+        PUREVSUREN_LUNDEG,
         'Richard Merkin',
         SHAHER_ABDULHAK_BESHER,
         'Stephen Hanson',
@@ -895,6 +899,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
 
 SIGNATURE_SUBSTITUTION_COUNTS = {
     "(unknown)": 2,
+    BARBRO_EHNBOM: 5,
     ARIANE_DE_ROTHSCHILD: 4,
     "Danny Frost": 8,
     "Darren Indyke": 47,
