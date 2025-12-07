@@ -46,7 +46,7 @@ for email in emails:
             continue
 
     for line in email.actual_text.split('\n'):
-        if line.startswith('http'):
+        if line.startswith('http') or '#yiv' in line:
             continue
 
         for word in line.split():

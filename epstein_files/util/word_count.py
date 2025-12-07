@@ -86,7 +86,7 @@ SINGULARIZATIONS = {
     'woes': 'woe',
 }
 
-FLAGGED_WORDS = []
+FLAGGED_WORDS = ['yiv']
 
 
 @dataclass
@@ -98,9 +98,9 @@ class WordCount:
         word = EmailHeader.cleanup_str(word).lower().strip()
         raw_word = word
 
-        if 'ttp' in word or 'www' in word or word == '/':
+        if 'http' in word or 'ttps' in word or 'www' in word or word == '/':
             return
-        elif word == 'p/e':
+        elif word in ['p/e', 's&p']:
             self.count[word] += 1
             return
 
