@@ -93,6 +93,7 @@ SINGULARIZATIONS = {
     'woes': 'woe',
     # spelling
     'prostituion': 'prostitution',
+    'visoki': 'visoski',
     # eh...
     'twittercom': 'twitter',
 }
