@@ -196,22 +196,22 @@ COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
 
 UNSINGULARIZABLE_WORDS = """
     academia acosta aids alas algeria always andres angeles anus apparatus apropos arabia ares asia asus atlanta australia austria avia
-    bahamas bata beatles betts bias boies bonus brookings
+    bahamas bata beatles beta betts bias boies bonus brookings
     california campus candia carlos caucus cbs cds census chaos chorus chris christmas clothes cms collins columbia com comms conchita costa csis curves cvs cyprus
     dallas data davis davos dementia denis dennis des dis drougas
-    emirates emphasis encyclopedia  ens eps
+    emirates emphasis encyclopedia ens eps eta
     facs ferris focus folks forbes francis
     gas gaydos georgia gittes gloria gmt gps gravitas
     halitosis hamas harris has hiatus hillis his hivaids
     impetus india indonesia ios ips irs isis isosceles
     jacques jános jones josephus
     las lens les lewis lhs lls los louis luis
-    madars malaysia maldives maria massachusetts mbs media melania mets meyers mlpf&s mongolia moonves multimedia
+    madars malaysia maldives marcus maria massachusetts mbs media melania meta mets meyers mlpf&s mongolia moonves multimedia
     nadia nafta nautilus nas nigeria novartis nucleus nunes
     olas orleans
     pants paris parkes patricia pbs pennsylvania peres perhaps philadelphia physics pls plus potus pres prevus
     rees reis-dennis reuters rodgers rogers russia
-    sachs sadis saks santa ses shia simmons sometimes stimulus syria
+    sachs sadis saks santa ses shia simmons slovakia sometimes stimulus syria
     tennis texas this thus trans tries tunisia
     ups
     valeria vegas versus via victoria villafaria vinicius virginia vis
