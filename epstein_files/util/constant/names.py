@@ -196,5 +196,5 @@ OTHER_NAMES = """
     rafael ray richardson rob rodriguez ron rudolph ryan
     sara sarah seligman serge sergey silverman sloman snowden stanley stevie susan
     theresa thompson tim timothy tom
-    walter weiss william
+    walter warren weinstein weiss william
 """.strip().split()
