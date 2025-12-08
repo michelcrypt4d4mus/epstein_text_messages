@@ -3,7 +3,7 @@
 Reformat Epstein text message files for readability and count email senders.
 For use with iMessage log files from https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_
 
-Install: 'pip install python-dotenv rich'
+Install: 'poetry install'
     Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT/001 ./generate.py'
 """
 import time
@@ -83,7 +83,7 @@ if not skip_texts:
     print_centered("(conversations are sorted chronologically based on timestamp of first message)\n", style='gray30')
 
     if len(specified_names) == 0:
-        log_files = epstein_files.imessage_logs_for(EVERYONE)
+        log_files = epstein_files.imessage_logs
     else:
         log_files = flatten([epstein_files.imessage_logs_for(name) for name in specified_names])
 
@@ -103,9 +103,9 @@ if not skip_texts:
 print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
 print_other_site_link(is_header=False)
 epstein_files.print_emailer_counts_table()
-emails_printed_since_last_color_key = 0
 emailers_to_print: list[str | None]
 emailer_tables: list[str | None] = []
+emails_printed_since_last_color_key = 0
 
 if args.all_emails:
     console.print('Email conversations are sorted chronologically based on time of the first email.')

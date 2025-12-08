@@ -5,7 +5,7 @@
 * Configuration variables assigning specific `HOUSE_OVERSIGHT_XXXXXX.txt` file IDs (the `111111` part) as being emails to or from particular people based on various research and contributions can be found in the [constants.py](./epstein_files/util/constants.py) file in this repo.
 
 
-Dependencies are in [pyproject.toml](./pyproject.toml). Use `poetry` for easiest time installing.
+Dependencies are in [pyproject.toml](./pyproject.toml). Use `poetry install` for easiest time installing. `pip install .` may or may not work.
 
 Requires you have a local copy of OCR text from the House Oversight document dump in a directory `/path/to/epstein/ocr_txt_files`.  Then you can run with:
 
