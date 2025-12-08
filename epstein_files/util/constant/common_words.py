@@ -1,168 +1,33 @@
 from epstein_files.util.env import args
 
+# see no
 # https://www.gonaturalenglish.com/1000-most-common-words-in-the-english-language/
 MOST_COMMON_WORDS = """
-    a
-    about
-    after
-    all
-    also
-    am
-    an
-    and
-    any
-    are
-    as
-    at
-    be
-    because
-    been
-    being
-    but
-    by
-    came
-    can
-    can't
-    cannot
-    cant
-    come
-    could
-    couldnt
-    day
-    do
-    doing
-    dont
-    did
-    didnt
+    a about after all also am an and any are as at
+    be because been being but by
+    came can can't cannot cant come could couldnt
+    day do doing dont did didnt
     even
-    find
-    first
-    for
-    from
-    get
-    getting
-    got
-    give
-    go
-    going
-    had
-    hadnt
-    has
-    hasnt
-    have
-    havent
-    having
-    he
-    hed
-    her
-    here
-    him
-    his
-    how
-    i
-    if
-    in
-    into
-    is
-    isnt
-    it
-    its
-    ive
+    find first for from
+    get getting got give go going
+    had hadnt has hasnt have havent having he hed her here him his how
+    i if in into is isnt it its ive
     just
     know
-    like
-    look
-    make
-    man
-    many
-    me
-    more
-    my
-    new
-    no
-    not
-    now
-    of
-    on
-    one
-    only
-    or
-    other
-    our
-    out
-    people
-    pm
+    like look
+    make man many me more my
+    new no not now
+    of on one only or other our out
+    people pm
     re
-    said
-    say
-    saying
-    says
-    see
-    she
-    shed
-    so
-    some
-    subject
-    take
-    than
-    that
-    the
-    their
-    them
-    then
-    there
-    these
-    they
-    theyd
-    theyll
-    theyre
-    theyve
-    thing
-    think
-    this
-    those
-    through
-    time
-    to
-    too
-    two
-    up
-    use
+    said say saying says see she shed so some subject
+    take than that the their them then there these they theyd theyll theyre theyve thing think this those through time to too two
+    up use
     very
-    want
-    was
-    way
-    we
-    well
-    went
-    were
-    werent
-    weve
-    what
-    whatever
-    when
-    whenever
-    where
-    wherever
-    which
-    whichever
-    who
-    whoever
-    why
-    will
-    with
-    without
-    wont
-    would
-    wouldnt
-    wouldve
-    year
-    you
-    youd
-    youll
-    your
-    youre
-    youve
+    want was way we well went were werent weve
+      what whatever when whenever where wherever which whichever who whoever why
+      will with without wont would wouldnt wouldve
+    year you youd youll your youre youve
 """.strip().split()
 
 OTHER_COMMON_WORDS = """
