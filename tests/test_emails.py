@@ -207,7 +207,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 81,
+    None: 80,
     "ACT for America": 1,
     "Alan Dershowitz": 15,
     'Alan Dlugash': 1,
@@ -674,20 +674,20 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone",
         "Sent via BlackBerry by AT&T"
     ],
-    "Alan Dershowitz": [
+    ALAN_DERSHOWITZ: [
         "Sent from my Verizon Wireless BlackBerry",
         "Sent from my iPhone"
     ],
     "Anas Alrasheed": [
         "Sent from my iPhone"
     ],
-    "Aziza Alahmadi": [
+    AZIZA_ALAHMADI: [
         "Sent from my iPhone"
     ],
     BARBRO_EHNBOM: [
         'Sent from iPad',
     ],
-    "Boris Nikolic": [
+    BORIS_NIKOLIC: [
         "Sent from my Samsung JackTM, a Windows Mobile® smartphone from AT&T",
         "Sent from my Windows Phone"
     ],
