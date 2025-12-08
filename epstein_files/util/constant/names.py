@@ -33,6 +33,7 @@ BILL_SIEGEL = 'Bill Siegel'
 BRAD_KARP = 'Brad Karp'
 BRAD_WECHSLER = 'Brad Wechsler'
 BORIS_NIKOLIC = 'Boris Nikolic'
+CECILIA_STEEN = 'Cecilia Steen'
 CELINA_DUBIN = 'Celina Dubin'
 CHRISTINA_GALBRAITH = 'Christina Galbraith'  # Works with Tyler Shears on reputation stuff
 DANIEL_SABBA = 'Daniel Sabba'

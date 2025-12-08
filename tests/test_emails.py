@@ -33,7 +33,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Caroline Lang": 4,
     "Carolyn Rangel": 1,
     "Cecile de Jongh": 2,
-    "Cecilia Steen": 1,
+    CECILIA_STEEN: 1,
     "Christina Galbraith": 5,
     "Dangene and Jennie Enterprise": 5,
     "Daniel Sabba": 3,
@@ -236,6 +236,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Caroline Lang": 2,
     'Caryl Ratner': 1,
     "Cecile de Jongh": 2,
+    CECILIA_STEEN: 1,
     "Charlotte Abrams": 1,
     "Cheryl Kleen": 1,
     "Christina Galbraith": 6,
@@ -580,7 +581,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
     "Sent from my iPad": [
         '(unknown)',
         'Bruce Moskowitz',
-        'Cecilia Steen',
+        CECILIA_STEEN,
         'Ehud Barak',
         FRED_HADDAD,
         'Glenn Dubin',
@@ -697,7 +698,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     "Cecile de Jongh": [
         "Sent from my iPhone and misspellings courtesy of iPhone."
     ],
-    "Cecilia Steen": [
+    CECILIA_STEEN: [
         "Sent from my iPad"
     ],
     "Darren Indyke": [
