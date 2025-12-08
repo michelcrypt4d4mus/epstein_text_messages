@@ -422,7 +422,7 @@ HIGHLIGHTED_GROUPS = [
         pattern=r"Eric\sSchmidt|(Mark\s*)?Zuckerberg|Masa(yoshi)?(\sSon)?|Najeev|Palantir|(Peter\s)?Th(ie|ei)l|Sergey\s*Brin|Softbank|SpaceX",
         emailers = {
             ELON_MUSK: None,
-            REID_HOFFMAN: 'founder of LinkedIn',
+            REID_HOFFMAN: 'PayPal mafia member, founder of LinkedIn',
             STEVEN_SINOFSKY: 'ex-Microsoft',
         },
     ),
