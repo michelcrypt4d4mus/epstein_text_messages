@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "epstein-py"
+name = "epstein-files"
 version = "1.0.0"
 description = "Tools for working with the Jeffrey Epstein documents released in November 2025."
 authors = ["Michel de Cryptadamus"]
