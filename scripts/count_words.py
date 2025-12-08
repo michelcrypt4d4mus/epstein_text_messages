@@ -1,12 +1,12 @@
 #!/usr/bin/env python
-# Count word usage in emails (and texts?)
+# Count word usage in emails and texts
 from dotenv import load_dotenv
 load_dotenv()
 
 from epstein_files.documents.document import SearchResult
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.constant.common_words import COMMON_WORDS_LIST
-from epstein_files.util.data import Timer, flatten
+from epstein_files.util.data import Timer
 from epstein_files.util.env import args, logger, specified_names
 from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
 from epstein_files.util.rich import (console, print_abbreviations_table, print_centered, print_color_key,
