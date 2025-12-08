@@ -522,7 +522,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '030508': PAULA,                  # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
     '030509': PAULA,                  # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
     '030096': PETER_MANDELSON,
-    '032951': RAAFAT_ALSABBAGH,
+    '032951': [RAAFAT_ALSABBAGH, None],  # Redacted
     '029581': RENATA_BOLOTOVA,        # Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")
     '029582': RENATA_BOLOTOVA,         # Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")
     '030384': [RICHARD_KAHN, 'Alan Dlugash'],
