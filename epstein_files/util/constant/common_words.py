@@ -1,6 +1,6 @@
 from epstein_files.util.env import args
 
-# see no
+# Removed: look, make, no, see, think, up, use, want
 # https://www.gonaturalenglish.com/1000-most-common-words-in-the-english-language/
 MOST_COMMON_WORDS = """
     a about after all also am an and any are as at
@@ -14,17 +14,16 @@ MOST_COMMON_WORDS = """
     i if in into is isnt it its ive
     just
     know
-    like look
-    make man many me more my
-    new no not now
+    like
+    man many me more my
+    new not now
     of on one only or other our out
     people pm
     re
-    said say saying says see she shed so some subject
-    take than that the their them then there these they theyd theyll theyre theyve thing think this those through time to too two
-    up use
+    said say saying says she shed so some subject
+    take than that the their them then there these they theyd theyll theyre theyve thing this those through time to too two
     very
-    want was way we well went were werent weve
+    was way we well went were werent weve
       what whatever when whenever where wherever which whichever who whoever why
       will with without wont would wouldnt wouldve
     year you youd youll your youre youve
@@ -60,6 +59,7 @@ OTHER_COMMON_WORDS = """
 """.strip().split()
 
 COMMON_WORDS = {line.lower(): True for line in (MOST_COMMON_WORDS + OTHER_COMMON_WORDS)}
+# COMMON_WORDS = {line.lower(): True for line in (OTHER_COMMON_WORDS)}
 COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
 
 UNSINGULARIZABLE_WORDS = """
