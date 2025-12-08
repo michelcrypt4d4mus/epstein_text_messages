@@ -277,7 +277,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='journalist',
         style='bright_yellow',
-        pattern=r'Alex Yablon|(Andrew\s*)?Marra|Arianna( Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Charlie rose|Conchita|Sarnoff|(Emily )?Michot|George Stephanopoulus|Huffington|Ingram, David|Jonathan Karl|(Katie )?Couric|(Michele\s*)?Dargan|NYT(imes)?|Politico|Sulzberger|Susan Edelman|Vick[iy] Ward|WaPo|WGBH|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
+        pattern=r'Alex Yablon|(Andrew\s*)?Marra|Arianna( Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Charlie rose|Conchita|Sarnoff|(Emily )?Michot|(George\s*)?Stephanopoulus|Graydon(\s*Carter)?|Huffington|Ingram, David|Jonathan Karl|(Katie )?Couric|(Michele\s*)?Dargan|NYT(imes)?|Politico|Sulzberger|Susan Edelman|Vick[iy] Ward|WaPo|WGBH|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
         emailers = {
             EDWARD_EPSTEIN: 'no relation to Jeffrey',
             'James Hill': 'ABC',
@@ -300,7 +300,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='lawyer',
         style='purple4',
-        pattern=r'Avenatti|(David\s*)?Boies|Kate Kelly|(Leon\s*)?Jaworski|Michael J. Pike|Paul,?\s*Weiss|Steptoe|Wein(berg|garten)',
+        pattern=r'Avenatti|(David\s*)?Boies|(Jack\s*)?Scarola|Kate Kelly|(Leon\s*)?Jaworski|Michael J. Pike|Paul,?\s*Weiss|Steptoe|Wein(berg|garten)',
         emailers = {
             ARDA_BESKARES: 'NYC immigration attorney allegedly involved in sex-trafficking operations',
             BENNET_MOSKOWITZ: None,

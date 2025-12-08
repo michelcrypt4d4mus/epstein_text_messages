@@ -186,13 +186,13 @@ OTHER_NAMES = """
     gardner geoff geoffrey george gilbert gonzalez gould greene guarino gwyneth
     harold harrison helen hofstadter horowitz
     isaac isaacson
-    jamie james jane janet jason jen jennifer jim joe joel johnson justin
+    jamie james jane janet jason jen jennifer jim joe joel johnson julie justin
     kate kathy kelly kevin kim kyle
     louis lynch
     marcus marianne matt matthew melissa michele michelle mike mitchell moscowitz
     paul paula paulson philip
     ray richardson rob rodriguez ron ryan
-    sara sarah seligman serge sergey silverman sloman snowden stanley stevie
+    sara sarah seligman serge sergey silverman sloman snowden stanley stevie susan
     theresa thompson tim timothy tom
-    walter william
+    walter weiss william
 """.strip().split()
