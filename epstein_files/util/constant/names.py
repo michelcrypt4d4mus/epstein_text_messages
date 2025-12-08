@@ -1,4 +1,3 @@
-#
 UNKNOWN = '(unknown)'
 
 # Texting Names
@@ -16,7 +15,6 @@ SOON_YI = 'Soon-Yi Previn'
 STEVE_BANNON = 'Steve Bannon'
 STEVEN_SINOFSKY = 'Steven Sinofsky'
 TERJE_ROD_LARSEN = 'Terje Rød-Larsen'
-
 
 # Email Names - no trailing periods! (messes up regexes)
 AL_SECKEL = 'Al Seckel'
@@ -154,7 +152,7 @@ TYLER_SHEARS = 'Tyler Shears'  # Reputation manager, like Al Seckel
 VINIT_SAHNI = 'Vinit Sahni'
 ZUBAIR_KHAN = 'Zubair Khan'
 
-
+# Names that should be made part of a highlighting regex
 NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Al', 'Allen', 'Amanda', 'Andres', 'Andrew',
     'Barry', 'Bill', 'Black', 'Brad',
@@ -177,7 +175,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     "Y",
 ]]
 
-
+# Names to color white in the word counts
 OTHER_NAMES = """
     aaron alec alex alexandra alice allen ann anna anne arthur
     barry barbro ben benjamin binant bob bonner boyden brad bradley branson bruce bruno burton
