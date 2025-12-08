@@ -179,22 +179,22 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
 # Names to color white in the word counts
 OTHER_NAMES = """
     aaron alec alex alexandra alice allen anderson andre andres ann anna anne arthur
-    barry barbro ben benjamin berger bert binant bob bonner boyden brad bradley branson bruce bruno burton
-    charles charlie chris christopher cohen colin conway
+    baldwin barry barbro ben benjamin berger bert binant bob bonner boyden brad bradley brady branson bruce bruno burton
+    chapman charles charlie chris christopher clint cohen colin conway
     dave davis diana diane diaz dennis dixon don dylan
-    ed elizabeth emily erik etienne
-    francis frank
-    gardner geoff geoffrey george gilbert gonzalez gould greene guarino gwyneth
-    hancock harold harrison helen hirsch hofstadter horowitz
+    ed elizabeth emily entwistle erik erika etienne evelyn
+    flachsbart francis frank
+    gardner gary geoff geoffrey george gilbert gonzalez gould graham greene guarino gwyneth
+    hancock harold harrison harry helen hirsch hofstadter horowitz hussein
     isaac isaacson
     jamie james jane janet jason jen jennifer jim joe joel johnson julie justin
-    kate kathy kelly kevin kim kyle
+    kate kathy kelly kevin kim kruger kyle
     louis lynch
     marcus marianne matt matthew melissa michele michelle mike mitchell moscowitz
     nicole
     paul paula paulson philip philippe
     rafael ray richardson rob rodriguez ron rudolph ryan
-    sara sarah seligman serge sergey silverman sloman snowden stanley stevie susan
-    theresa thompson tim timothy tom
-    walter weiss william
+    sara sarah seligman serge sergey silverman sloman smith snowden sorkin stanley stevie susan
+    theresa thompson tiffany tim timothy tom
+    walter warren weinstein weiss william
 """.strip().split()
