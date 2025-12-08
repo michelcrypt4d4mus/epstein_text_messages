@@ -33,7 +33,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Caroline Lang": 4,
     "Carolyn Rangel": 1,
     "Cecile de Jongh": 2,
-    "Cecilia Steen": 1,
+    CECILIA_STEEN: 1,
     "Christina Galbraith": 5,
     "Dangene and Jennie Enterprise": 5,
     "Daniel Sabba": 3,
@@ -207,7 +207,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 81,
+    None: 80,
     "ACT for America": 1,
     "Alan Dershowitz": 15,
     'Alan Dlugash': 1,
@@ -236,6 +236,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Caroline Lang": 2,
     'Caryl Ratner': 1,
     "Cecile de Jongh": 2,
+    CECILIA_STEEN: 1,
     "Charlotte Abrams": 1,
     "Cheryl Kleen": 1,
     "Christina Galbraith": 6,
@@ -580,7 +581,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
     "Sent from my iPad": [
         '(unknown)',
         'Bruce Moskowitz',
-        'Cecilia Steen',
+        CECILIA_STEEN,
         'Ehud Barak',
         FRED_HADDAD,
         'Glenn Dubin',
@@ -673,20 +674,20 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone",
         "Sent via BlackBerry by AT&T"
     ],
-    "Alan Dershowitz": [
+    ALAN_DERSHOWITZ: [
         "Sent from my Verizon Wireless BlackBerry",
         "Sent from my iPhone"
     ],
     "Anas Alrasheed": [
         "Sent from my iPhone"
     ],
-    "Aziza Alahmadi": [
+    AZIZA_ALAHMADI: [
         "Sent from my iPhone"
     ],
     BARBRO_EHNBOM: [
         'Sent from iPad',
     ],
-    "Boris Nikolic": [
+    BORIS_NIKOLIC: [
         "Sent from my Samsung JackTM, a Windows Mobile® smartphone from AT&T",
         "Sent from my Windows Phone"
     ],
@@ -697,7 +698,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     "Cecile de Jongh": [
         "Sent from my iPhone and misspellings courtesy of iPhone."
     ],
-    "Cecilia Steen": [
+    CECILIA_STEEN: [
         "Sent from my iPad"
     ],
     "Darren Indyke": [

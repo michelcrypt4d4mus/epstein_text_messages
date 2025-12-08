@@ -1,25 +1,25 @@
 #!/usr/bin/env python
-# Count word usage in emails (and texts?)
+# Count word usage in emails and texts
 from dotenv import load_dotenv
 load_dotenv()
 
 from epstein_files.documents.document import SearchResult
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.constant.common_words import COMMON_WORDS_LIST
-from epstein_files.util.data import Timer, flatten
+from epstein_files.util.data import Timer
 from epstein_files.util.env import args, logger, specified_names
 from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
-from epstein_files.util.rich import (console, print_abbreviations_table, print_centered, print_color_key, print_page_title, print_panel,
-     print_starred_header, write_html)
+from epstein_files.util.rich import (console, print_abbreviations_table, print_centered, print_color_key,
+     print_page_title, print_panel, print_starred_header, write_html)
 from epstein_files.util.word_count import WordCount
 
 
 timer = Timer()
 epstein_files = EpsteinFiles.get_files()
-emails = epstein_files.valid_emails()
 imessage_logs = epstein_files.imessage_logs_for(specified_names) if specified_names else epstein_files.imessage_logs
-word_count = WordCount()
+emails = epstein_files.valid_emails()
 email_subjects: set[str] = set()
+word_count = WordCount()
 
 for email in emails:
     logger.info(f"Counting words in {email}\n  [SUBJECT] {email.subject()}")
@@ -54,7 +54,6 @@ print_starred_header(f"Most Common Words in {len(emails):,} Emails and {len(imes
 print_centered(f"(excluding {len(COMMON_WORDS_LIST)} particularly common words at bottom)", style='dim')
 console.line()
 print_color_key()
-# print_abbreviations_table()
 console.line()
 console.print(word_count)
 console.line(2)
