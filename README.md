@@ -17,3 +17,25 @@ DOCS_DIR=/path/to/epstein/ocr_txt_files ./generate.py
 ```
 
 Run `./generate.py --help` for command line option assistance. Look in the [scripts](./scripts/) folder for various scripts.
+
+#### As A Library
+```python
+from epstein_files.epstein_files import EpsteinFiles
+epstein_files = EpsteinFiles.get_files()
+
+# All files
+for document in epstein_files.all_documents():
+    do_stuff()
+
+# Emails
+for email in epstein_files.emails:
+    do_stuff()
+
+# iMessage Logs
+for imessage_log in epstein_files.imessage_logs:
+    do_stuff()
+
+# Other Files
+for document in epstein_files.other_files:
+    do_stuff()
+```
