@@ -1,4 +1,4 @@
-from epstein_files.util.env import deep_debug
+from epstein_files.util.env import args
 
 # https://www.gonaturalenglish.com/1000-most-common-words-in-the-english-language/
 MOST_COMMON_WORDS = """
@@ -224,6 +224,6 @@ UNSINGULARIZABLE_WORDS = """
 """.strip().split()
 
 
-if deep_debug:
+if args.deep_debug:
     word_str = '\n'.join(COMMON_WORDS_LIST)
     print(f"common words:\n\n{word_str}")

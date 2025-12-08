@@ -37,9 +37,8 @@ args = parser.parse_args()
 is_env_var_set = lambda s: len(environ.get(s) or '') > 0
 
 current_script = Path(argv[0]).name
-deep_debug = args.deep_debug or is_env_var_set('DEEP_DEBUG')
-is_build = args.build or is_env_var_set('BUILD_HTML')
-is_debug = deep_debug or args.debug or is_env_var_set('DEBUG')
+args.deep_debug = args.deep_debug or is_env_var_set('DEEP_DEBUG')
+args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 is_html_script = current_script in HTML_SCRIPTS
 
 args.pickled = args.pickled or is_env_var_set('PICKLED')
@@ -49,9 +48,9 @@ args.width = args.width if is_html_script else None
 logging.basicConfig(level="NOTSET", format="%(message)s", datefmt="[%X]", handlers=[RichHandler()])
 logger = logging.getLogger("rich")
 
-if deep_debug:
+if args.deep_debug:
     logger.setLevel(logging.DEBUG)
-elif is_debug:
+elif args.debug:
     logger.setLevel(logging.INFO)
 else:
     logger.setLevel(logging.WARNING)
@@ -62,5 +61,5 @@ specified_names: list[str | None] = args.emails or []
 if args.use_epstein_web_links:
     logger.warning(f"Using links to epsteinweb.org links instead of epsteinify.com...")
 
-if is_debug:
-    logger.warning(f"is_html_script={is_html_script}, args.width={args.width}, current_script='{current_script}', specified_names={specified_names}")
+if args.debug:
+    logger.warning(f"is_html_script={is_html_script}, args={args}")

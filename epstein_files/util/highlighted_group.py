@@ -9,7 +9,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import DEFAULT, PHONE_NUMBER_STYLE, REDACTED
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
 from epstein_files.util.constants import EMAILER_ID_REGEXES, HEADER_ABBREVIATIONS, REPLY_REGEX, SENT_FROM_REGEX
-from epstein_files.util.env import deep_debug, logger
+from epstein_files.util.env import args, logger
 
 ESTATE_EXECUTOR = 'Epstein estate executor'
 REGEX_STYLE_PREFIX = 'regex'
@@ -573,6 +573,6 @@ def _get_highlight_group_for_name(name: str) -> HighlightedGroup | None:
             return highlight_group
 
 
-if deep_debug:
+if args.deep_debug:
     for hg in HIGHLIGHTED_GROUPS:
         print(f"{hg.label}: {hg.regex.pattern}\n")

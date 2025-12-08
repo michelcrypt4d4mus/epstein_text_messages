@@ -9,7 +9,7 @@ from rich.text import Text
 
 from epstein_files.util.constants import REPLY_REGEX
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_PREFIX
-from epstein_files.util.env import deep_debug, is_debug
+from epstein_files.util.env import args
 from epstein_files.util.file_helper import DOCS_DIR
 from epstein_files.util.rich import console
 
@@ -22,7 +22,7 @@ cmd = f'egrep -i "^(On|In a message dated) .*" {DOCS_DIR}/*.txt'
 print(f"egrep command: '{cmd}'")
 results = run(cmd, shell=True, capture_output=True, text=True, check=True).stdout
 
-if deep_debug:
+if args.deep_debug:
     print("\n\ncommand results:\n", results)
 
 lines = [l.strip().removeprefix(str(DOCS_DIR)) for l in results.split('\n') if len(l.strip()) > 0]
@@ -42,13 +42,13 @@ for _line in lines:
     reply_match = REPLY_REGEX.search(line)
     file_path = Path(file_path)
 
-    if is_debug:
+    if args.debug:
         console.print(f"Checking line: '{line}'", style='dim')
 
     if reply_match:
         matches += 1
 
-        if is_debug:
+        if args.debug:
             console.print(f'  -> Matched...', style='bright_green')
     else:
         failures += 1

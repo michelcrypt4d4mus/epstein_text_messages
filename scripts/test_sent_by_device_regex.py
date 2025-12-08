@@ -8,7 +8,7 @@ load_dotenv()
 from rich.console import Console
 
 from epstein_files.util.constants import SENT_FROM_REGEX
-from epstein_files.util.env import is_debug
+from epstein_files.util.env import args
 from epstein_files.util.file_helper import DOCS_DIR
 
 
@@ -18,7 +18,7 @@ print(f"DOCS_DIR='{DOCS_DIR.resolve()}'")
 print(f"Command: {cmd}")
 results = run(cmd, shell=True, capture_output=True, text=True, check=True).stdout
 
-if is_debug:
+if args.debug:
     print("\n\ncommand results:\n", results)
 
 lines = [l.strip() for l in results.split('\n') if len(l.strip()) > 0]
@@ -34,7 +34,7 @@ for _line in lines:
     if not line:
         console.print(f'Skipping empty line? "{_line}"')
         continue
-    elif is_debug:
+    elif args.debug:
         console.print(f"Checking line: '{line}'", style='dim')
 
     file_path, line = line.split(':', 1)
@@ -46,7 +46,7 @@ for _line in lines:
         signatures.add(signature)
         matches += 1
 
-        if is_debug:
+        if args.debug:
             console.print(f'Matched signature "{signature}" in line "{line}"', style='cyan')
     else:
         if line.startswith('>'):
