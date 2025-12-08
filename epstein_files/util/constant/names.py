@@ -194,7 +194,7 @@ OTHER_NAMES = """
     nicole
     paul paula paulson philip philippe
     rafael ray richardson rob rodriguez ron rudolph ryan
-    sara sarah seligman serge sergey silverman sloman snowden stanley stevie susan
+    sara sarah seligman serge sergey silverman sloman snowden sorkin stanley stevie susan
     theresa thompson tim timothy tom
     walter warren weinstein weiss william
 """.strip().split()
