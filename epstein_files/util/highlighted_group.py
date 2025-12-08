@@ -368,7 +368,7 @@ HIGHLIGHTED_GROUPS = [
         style='orange_red1',
         pattern=r"Henry Holt|Ian Osborne|(Matt(hew)? )?Hiltzi[gk]",
         emailers = {
-            AL_SECKEL: 'husband of Isabel Maxwell, Mind State organizer, fell off a cliff',
+            AL_SECKEL: 'husband of Isabel Maxwell and Mindshift conference organizer who fell off a cliff',
             CHRISTINA_GALBRAITH: None,
             MICHAEL_SITRICK: None,
             PEGGY_SIEGAL: 'socialite',
