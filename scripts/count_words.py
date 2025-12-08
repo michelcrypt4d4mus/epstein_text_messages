@@ -16,10 +16,10 @@ from epstein_files.util.word_count import WordCount
 
 timer = Timer()
 epstein_files = EpsteinFiles.get_files()
-emails = epstein_files.valid_emails()
 imessage_logs = epstein_files.imessage_logs_for(specified_names) if specified_names else epstein_files.imessage_logs
-word_count = WordCount()
+emails = epstein_files.valid_emails()
 email_subjects: set[str] = set()
+word_count = WordCount()
 
 for email in emails:
     logger.info(f"Counting words in {email}\n  [SUBJECT] {email.subject()}")
@@ -54,7 +54,6 @@ print_starred_header(f"Most Common Words in {len(emails):,} Emails and {len(imes
 print_centered(f"(excluding {len(COMMON_WORDS_LIST)} particularly common words at bottom)", style='dim')
 console.line()
 print_color_key()
-# print_abbreviations_table()
 console.line()
 console.print(word_count)
 console.line(2)
