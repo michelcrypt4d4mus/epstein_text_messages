@@ -18,7 +18,7 @@ from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import *
 from epstein_files.util.data import collapse_newlines, escape_single_quotes, uniquify
-from epstein_files.util.env import is_debug, logger
+from epstein_files.util.env import logger
 from epstein_files.util.file_helper import build_filename_for_id, is_local_extract_file
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import *

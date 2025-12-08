@@ -1,168 +1,32 @@
-from epstein_files.util.env import deep_debug
+from epstein_files.util.env import args
 
+# Removed: look, make, no, see, think, up, use, want
 # https://www.gonaturalenglish.com/1000-most-common-words-in-the-english-language/
 MOST_COMMON_WORDS = """
-    a
-    about
-    after
-    all
-    also
-    am
-    an
-    and
-    any
-    are
-    as
-    at
-    be
-    because
-    been
-    being
-    but
-    by
-    came
-    can
-    can't
-    cannot
-    cant
-    come
-    could
-    couldnt
-    day
-    do
-    doing
-    dont
-    did
-    didnt
+    a about after all also am an and any are as at
+    be because been being but by
+    came can can't cannot cant come could couldnt
+    day do doing dont did didnt
     even
-    find
-    first
-    for
-    from
-    get
-    getting
-    got
-    give
-    go
-    going
-    had
-    hadnt
-    has
-    hasnt
-    have
-    havent
-    having
-    he
-    hed
-    her
-    here
-    him
-    his
-    how
-    i
-    if
-    in
-    into
-    is
-    isnt
-    it
-    its
-    ive
+    find first for from
+    get getting got give go going
+    had hadnt has hasnt have havent having he hed her here him his how
+    i if in into is isnt it its ive
     just
     know
     like
-    look
-    make
-    man
-    many
-    me
-    more
-    my
-    new
-    no
-    not
-    now
-    of
-    on
-    one
-    only
-    or
-    other
-    our
-    out
-    people
-    pm
+    man many me more my
+    new not now
+    of on one only or other our out
+    people pm
     re
-    said
-    say
-    saying
-    says
-    see
-    she
-    shed
-    so
-    some
-    subject
-    take
-    than
-    that
-    the
-    their
-    them
-    then
-    there
-    these
-    they
-    theyd
-    theyll
-    theyre
-    theyve
-    thing
-    think
-    this
-    those
-    through
-    time
-    to
-    too
-    two
-    up
-    use
+    said say saying says she shed so some subject
+    take than that the their them then there these they theyd theyll theyre theyve thing this those through time to too two
     very
-    want
-    was
-    way
-    we
-    well
-    went
-    were
-    werent
-    weve
-    what
-    whatever
-    when
-    whenever
-    where
-    wherever
-    which
-    whichever
-    who
-    whoever
-    why
-    will
-    with
-    without
-    wont
-    would
-    wouldnt
-    wouldve
-    year
-    you
-    youd
-    youll
-    your
-    youre
-    youve
+    was way we well went were werent weve
+      what whatever when whenever where wherever which whichever who whoever why
+      will with without wont would wouldnt wouldve
+    year you youd youll your youre youve
 """.strip().split()
 
 OTHER_COMMON_WORDS = """
@@ -195,10 +59,11 @@ OTHER_COMMON_WORDS = """
 """.strip().split()
 
 COMMON_WORDS = {line.lower(): True for line in (MOST_COMMON_WORDS + OTHER_COMMON_WORDS)}
+# COMMON_WORDS = {line.lower(): True for line in (OTHER_COMMON_WORDS)}
 COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
 
 UNSINGULARIZABLE_WORDS = """
-    academia acosta aids alas algeria alice always andres angeles anus apparatus apropos arabia ares asia asus atlanta australia austria avia
+    abbas academia acosta aids alas algeria alice always andres angeles anus apparatus apropos arabia ares asia asus atlanta australia austria avia
     bahamas bata beatles beta betts bias boies bonus brookings brussels
     california campus candia cannes carlos caucus cbs cds census chaos chorus chris christmas clothes cms collins columbia com comms conchita costa csis curves cvs cyprus
     dallas data davis davos dawkins deborah dementia denis dennis des diabetes dis drougas
@@ -224,6 +89,6 @@ UNSINGULARIZABLE_WORDS = """
 """.strip().split()
 
 
-if deep_debug:
+if args.deep_debug:
     word_str = '\n'.join(COMMON_WORDS_LIST)
     print(f"common words:\n\n{word_str}")

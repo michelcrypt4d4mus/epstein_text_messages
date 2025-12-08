@@ -22,7 +22,7 @@ from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_nam
      search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
 from epstein_files.util.data import dict_sets_to_lists, patternize, sort_dict
-from epstein_files.util.env import args, is_debug, logger, specified_names
+from epstein_files.util.env import args, logger, specified_names
 from epstein_files.util.file_helper import DOCS_DIR, file_size_str, move_json_file
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_COLOR, console, highlighter, link_text_obj, link_markup,

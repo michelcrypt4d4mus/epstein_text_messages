@@ -18,7 +18,7 @@ from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constant.strings import DEFAULT, EMAIL, SiteType
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import FALLBACK_TIMESTAMP, HEADER_ABBREVIATIONS
-from epstein_files.util.env import args, deep_debug, is_debug, logger
+from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS, InterestingNamesHighlighter
 
@@ -247,5 +247,5 @@ def write_html(output_path: Path) -> None:
     logger.warning(f"Wrote {file_size_str(output_path)} to '{output_path}'")
 
 
-if deep_debug:
+if args.deep_debug:
     print_json('THEME_STYLES', THEME_STYLES)
