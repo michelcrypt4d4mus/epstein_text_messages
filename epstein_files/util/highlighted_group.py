@@ -232,7 +232,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='harvard',
         style='deep_pink2',
-        pattern=r'Cambridge|(Derek\s*)?Bok|Elisa(\s*New)?|Harvard',
+        pattern=r'Cambridge|(Derek\s*)?Bok|Elisa(\s*New)?|Harvard|(Stephen\s*)?Kosslyn',
         emailers = {
             LARRY_SUMMERS: 'Obama economic advisor, board of Digital Currency Group (DCG)',
             'Leah Reis-Dennis': 'producer for Poetry in America',
@@ -291,7 +291,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='law enforcement',
         style='color(24) bold',
-        pattern=r'ag|(Alicia\s*)?Valle|(Lann?a\s*)?Belohlavek|CFTC|CIA|DOJ|FBI|FDIC|FINRA|FTC|IRS|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|OCC|(Byung\s)?Pak|(Michael\s*)?Reiter|Police Code Enforcement|SEC|Strzok|TSA|(William\s*J\.?\s*)?Zloch',
+        pattern=r'ag|(Alicia\s*)?Valle|(Lann?a\s*)?Belohlavek|CFTC|CIA|CVRA|DOJ|FBI|FDIC|FINRA|FTC|IRS|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|OCC|(Byung\s)?Pak|(Michael\s*)?Reiter|Police Code Enforcement|SEC|Strzok|TSA|(William\s*J\.?\s*)?Zloch',
         emailers = {
             ANN_MARIE_VILLAFANA: 'southern district of Florida U.S. Attorney',
             DANNY_FROST: 'Director of Communications at Manhattan DA',
