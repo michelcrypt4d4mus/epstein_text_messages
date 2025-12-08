@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# Search the document text AFTER all OCR fixes have been applied.
+# Copy any emails extracted from legal filings into the repo.
 import shutil
 from os import environ
 environ.setdefault('PICKLED', 'true')

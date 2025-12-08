@@ -131,7 +131,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='china',
         style='bright_red',
-        pattern=r"Beijing|CCP|Chin(a|e?se)|Gino\s+Yu|Global Times|Guo|Hong|Kong|Jack\s+Ma|Kwok|Ministry\sof\sState\sSecurity|Mongolian?|MSS|Peking|PRC|Tai(pei|wan)|Xi",
+        pattern=r"Beijing|CCP|Chin(a|e?se)|Gino\s+Yu|Global Times|Guo|Hong|Huaw[ae]i|Kong|Jack\s+Ma|Kwok|Ministry\sof\sState\sSecurity|Mongolian?|MSS|Peking|PRC|Tai(pei|wan)|Xi",
     ),
     HighlightedGroup(
         label='deepak_chopra',
@@ -194,7 +194,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='europe',
         style='light_sky_blue3',
-        pattern=r'(Angela )?Merk(el|le)|(Benjamin\s*)?Harnwell|Berlin|Brussels|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|ECB|Europe(an)?|Germany?|Gree(ce|k)|Ital(ian|y)|Jacques|Le\s*Pen|London|Macron|(Natalia\s*)?Veselnitskaya|Nigel(\s*Farage)?|Oslo|Paris|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strauss[- ]?Kahn|(Tony\s)?Blair|Ukrain(e|ian)|Vienna|(Vitaly\s*)?Churkin|Zug',
+        pattern=r'(Angela )?Merk(el|le)|(Benjamin\s*)?Harnwell|Berlin|Brussels|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|Davos|ECB|Europe(an)?|Germany?|Gree(ce|k)|Ital(ian|y)|Jacques|Le\s*Pen|London|Macron|(Natalia\s*)?Veselnitskaya|Nigel(\s*Farage)?|Oslo|Paris|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strauss[- ]?Kahn|(Tony\s)?Blair|Ukrain(e|ian)|Vienna|(Vitaly\s*)?Churkin|Zug',
         emailers = {
             MIROSLAV_LAJCAK: 'Russia-friendly Slovakian politician, friend of Steve Bannon',
             PETER_MANDELSON: 'UK politics',
@@ -379,7 +379,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='republicans',
         style='bold dark_red',
-        pattern=r'Alberto\sGonzale[sz]|(Alex )?Acosta|(Bill )?Barr|(Bob\s*)?Corker|Bolton|Broidy|(Chris\s)?Christie|(George )?Nader|GOP|(?<!Merwin Dela )Cruz|Kobach|Kolfage|Kudlow|Lewandowski|(Marco\s)?Rubio|Mattis|(Michael\s)?Hayden|(Mitt\s*)?Romney|Mnuchin|(Paul\s+)?Manafort|(Peter\s)?Navarro|Pompeo|Reagan|Republican|(Richard\s*)?Nixon|Sasse',
+        pattern=r'Alberto\sGonzale[sz]|(Alex )?Acosta|(Bill )?Barr|(Bob\s*)?Corker|Bolton|Broidy|(Chris\s)?Christie|(George )?Nader|GOP|(?<!Merwin Dela )Cruz|Kobach|Kolfage|Kudlow|Lewandowski|(Marco\s)?Rubio|Mattis|(Michael\s)?Hayden|(Mike\s*)?Pence|(Mitt\s*)?Romney|Mnuchin|(Paul\s+)?Manafort|(Peter\s)?Navarro|Pompeo|Reagan|Republican|(Richard\s*)?Nixon|Sasse',
         emailers = {
             RUDY_GIULIANI: 'disbarred formed mayor of New York City',
             TULSI_GABBARD: None,
@@ -388,7 +388,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='russia',
         style='red bold',
-        pattern=r'Chernobyl|Day\s+One\s+Ventures|(Dmitry\s)?(Kiselyov|Medvedev|Rybolo(o?lev|vlev))|Dmitry|FSB|GRU|KGB|Kislyak|Kremlin|Lavrov|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Sberbank|Vladimir( Yudashkin)?|Xitrans',
+        pattern=r'Chernobyl|Day\s+One\s+Ventures|(Dmitry\s)?(Kiselyov|Medvedev|Rybolo(o?l?ev|vlev))|Dmitry|FSB|GRU|KGB|Kislyak|Kremlin|Lavrov|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Sberbank|Vladimir( Yudashkin)?|Xitrans',
         emailers = {
             MASHA_DROKOVA: 'silicon valley VC',
         }

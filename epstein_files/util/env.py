@@ -7,7 +7,7 @@ from sys import argv
 from rich.logging import RichHandler
 
 DEFAULT_WIDTH = 120
-HTML_SCRIPTS = ['generate.py', 'count_words.py']
+HTML_SCRIPTS = ['generate_html.py', 'count_words.py']
 
 
 parser = ArgumentParser(description="Parse epstein OCR docs and generate HTML page.")
@@ -15,9 +15,11 @@ parser.add_argument('--build', '-b', action='store_true', help='write HTML to do
 parser.add_argument('--all-emails', '-a', action='store_true', help='all the emails (also --no-texts)')
 parser.add_argument('--all-email-tables', '-at', action='store_true', help='all email tables (except Epstein)')
 parser.add_argument('--colors-only', '-c', action='store_true', help='print header with color key table and exit')
-parser.add_argument('--name', '-n', action='append', dest='emails', help='specify the name(s) whose emails should be output (implies --no-texts)')
-parser.add_argument('--no-texts', '-nt', action='store_true', help='skip text message output')
+parser.add_argument('--name', '-n', action='append', dest='emails', help='specify the name(s) whose communications should be output')
 parser.add_argument('--only-texts', '-ot', action='store_true', help='print text messages then quit')
+parser.add_argument('--output-emails', '-e', action='store_true', help='generate other files section')
+parser.add_argument('--output-other-files', '-of', action='store_true', help='generate other files section')
+parser.add_argument('--output-texts', '-t', action='store_true', help='generate other files section')
 parser.add_argument('--pickled', '-p', action='store_true', help='use pickled EpsteinFiles object')
 parser.add_argument('--overwrite-pickle', '-op', action='store_true', help='generate new pickled EpsteinFiles object')
 parser.add_argument('--sort-alphabetical', '-alpha', action='store_true', help='sort emailers alphabetically in counts table')
@@ -39,7 +41,6 @@ deep_debug = args.deep_debug or is_env_var_set('DEEP_DEBUG')
 is_build = args.build or is_env_var_set('BUILD_HTML')
 is_debug = deep_debug or args.debug or is_env_var_set('DEBUG')
 is_html_script = current_script in HTML_SCRIPTS
-skip_texts = args.no_texts or is_env_var_set('NO_TEXTS')
 
 args.pickled = args.pickled or is_env_var_set('PICKLED')
 args.width = args.width if is_html_script else None
