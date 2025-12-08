@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "epstein-py"
 version = "1.0.0"
-description = "Some tools for working with the Jeffrey Epstein documents released in November 2025."
+description = "Tools for working with the Jeffrey Epstein documents released in November 2025."
 authors = ["Michel de Cryptadamus"]
 readme = "README.md"
 
