@@ -177,8 +177,8 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
 
 # Names to color white in the word counts
 OTHER_NAMES = """
-    aaron alec alex alexandra alice allen andre andres ann anna anne arthur
-    barry barbro ben benjamin berger binant bob bonner boyden brad bradley branson bruce bruno burton
+    aaron alec alex alexandra alice allen anderson andre andres ann anna anne arthur
+    barry barbro ben benjamin berger bert binant bob bonner boyden brad bradley branson bruce bruno burton
     charles charlie chris christopher cohen colin conway
     dave davis diana diane diaz dennis dixon don dylan
     ed elizabeth emily erik etienne
