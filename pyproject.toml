@@ -5,6 +5,7 @@ description = "Some tools for working with the Jeffrey Epstein documents release
 authors = ["Michel de Cryptadamus"]
 readme = "README.md"
 
+
 [tool.poetry.dependencies]
 python = "^3.11"
 rich = "^14.2.0"
@@ -14,9 +15,9 @@ python-dateutil = "^2.9.0.post0"
 requests = "^2.32.5"
 inflection = "^0.5.1"
 
-
 [tool.poetry.group.dev.dependencies]
 pytest = "^9.0.1"
+
 
 [build-system]
 requires = ["poetry-core"]
