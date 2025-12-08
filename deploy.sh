@@ -80,7 +80,7 @@ git merge --no-edit master --quiet
 
 print_msg "Building" "$INDEX_HTML_PATH"
 echo -e "  -> using $PICKLE_ARG"
-./generate.py --build --suppress-output $PICKLE_ARG
+./generate_html.py --build --output-emails --output-texts --output-other-files --suppress-output $PICKLE_ARG
 echo -e ""
 print_msg "Building" "$WORD_COUNT_HTML_PATH"
 ./scripts/count_words.py --build --pickled --suppress-output --width 105
@@ -101,7 +101,7 @@ fi
 
 # Deploy all emails
 print_msg "Building all emails version of" "$INDEX_HTML_PATH"
-./generate.py --all-emails --build --no-texts --pickled --suppress-output
+./generate_html.py --all-emails --build --output-emails --pickled --suppress-output
 print_msg "Copying '$INDEX_HTML_PATH' to '$EMAILS_INDEX_HTML_PATH'"
 mv "$INDEX_HTML_PATH" "$EMAILS_INDEX_HTML_PATH"
 pushd "$EMAILS_DIR" > /dev/null
