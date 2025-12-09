@@ -203,7 +203,7 @@ EMAIL_AUTHOR_COUNTS = {
     "editorialstaff@flipboard.com": 13,
     "lorraine@mc2mm.com": 1,
     "middle.east.update@hotmail.com": 1,
-    "us.gio@jpmorgan.com": 13
+    JP_MORGAN_USGIO: 13
 }
 
 EMAIL_RECIPIENT_COUNTS = {

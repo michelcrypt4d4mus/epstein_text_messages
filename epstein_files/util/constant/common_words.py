@@ -65,7 +65,7 @@ COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
 UNSINGULARIZABLE_WORDS = """
     abbas academia acosta aids alas algeria alice always andres angeles anus apparatus apropos arabia ares asia asus atlanta australia austria avia
     bahamas bata beatles beta betts bias boies bonus brookings brussels
-    california campus candia cannes carlos caucus cbs cds census chaos chorus chris christmas clothes cms collins columbia com comms conchita costa csis curves cvs cyprus
+    california campus candia cannes carlos caucus cbs cds census chaos chorus chris christmas clothes cms collins columbia com comms conchita consensus costa csis curves cvs cyprus
     dallas data davis davos dawkins deborah dementia denis dennis des diabetes dis drougas
     emirates emphasis encyclopedia ens eps eta
     facs ferris focus folks forbes francis
@@ -73,6 +73,7 @@ UNSINGULARIZABLE_WORDS = """
     halitosis hamas harris has hiatus hillis his hivaids hopkins
     impetus india indonesia ios ips irs isis isosceles
     jacques jános jones josephus jules
+    kansas
     las lens les lewis lhs lls los louis luis
     madars malaysia maldives marcus maria massachusetts mbs media melania meta mets meyers mlpf&s mongolia moonves multimedia
     nadia nafta natalie nautilus nas nigeria novartis nucleus nunes
