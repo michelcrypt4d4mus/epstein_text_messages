@@ -696,4 +696,5 @@ EMAILED_ARTICLE_IDS = [
     '028508',  # nanosatellites article
     '013460', '028781',  # Atlantic on Jim Yong Kim, Obama's World Bank Pick
     '019845',  # article on Preet Bharara
+    '029021',  # article about bannon sent by Alain Forget
 ]
