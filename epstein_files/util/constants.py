@@ -419,6 +419,7 @@ KNOWN_EMAIL_AUTHORS = {
     '026620': TERRY_KAFKA,             # "Respectfully, terry"
     '028482': TERRY_KAFKA,             # Signature
     '029992': TERRY_KAFKA,             # Quoted reply
+    '029985': TERRY_KAFKA,             # Quoted reply in 029992
     '020666': TERRY_KAFKA,             # ends with 'Terry'
     # Unknowns
     '022187': None,                    # Bad OCR causes parsing problems
@@ -448,6 +449,8 @@ KNOWN_EMAIL_RECIPIENTS = {
     '026466': DIANE_ZIMAN,            # Quoted reply
     '031607': EDWARD_EPSTEIN,
     '030525': FAITH_KATES,            # Same as unredacted 030414, same legal signature
+    '030575': FAITH_KATES,            # Same Next Management LLC legal signature
+    '030475': FAITH_KATES,            # Same Next Management LLC legal signature
     '030999': [JACK_GOLDBERGER, ROBERT_D_CRITTON],
     '026426': JEAN_HUGUEN,            # Reply
     '029975': JEAN_LUC_BRUNEL,        # Same as another file
@@ -680,6 +683,7 @@ SUPPRESS_OUTPUT_FOR_EMAIL_IDS = {
     '033561': 'the same as 033157',
     '033589': 'the same as 032250',
     '031708': 'the same as 026624',
+    '030575': 'a redacted version of 030475',
 }
 
 EMAILED_ARTICLE_IDS = [
@@ -697,4 +701,5 @@ EMAILED_ARTICLE_IDS = [
     '013460', '028781',  # Atlantic on Jim Yong Kim, Obama's World Bank Pick
     '019845',  # article on Preet Bharara
     '029021',  # article about bannon sent by Alain Forget
+    '031688',  # Bill Siegel fwd of email about hamas
 ]
