@@ -58,6 +58,11 @@ else:
 
 specified_names: list[str | None] = [None if n == 'None' else n for n in (args.names or [])]
 
+if not (args.output_texts or args.output_emails or args.output_other_files):
+    args.output_texts = True
+    args.output_emails = True
+    args.output_other_files = True
+
 if args.use_epstein_web_links:
     logger.warning(f"Using links to epsteinweb.org links instead of epsteinify.com...")
 
