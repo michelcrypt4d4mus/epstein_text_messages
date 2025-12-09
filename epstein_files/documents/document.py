@@ -30,7 +30,7 @@ DOC_TYPE_STYLES = {
 
 OCR_REPAIRS = {
     re.compile(r'\.corn\b'): '.com',
-    'lndyke': 'Indyke',
+    re.compile('ln(adequate|dyke)'): r'In\1',
     'Nil Priell': 'Nili Priell',
 }
 
