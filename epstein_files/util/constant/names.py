@@ -190,7 +190,7 @@ OTHER_NAMES = """
     isaac isaacson
     jamie james jane janet jason jen jennifer jim joe joel johnson jones julie justin
     kate kathy kelly kevin kim kruger kyle
-    leonard lieberman louis lynch lynn
+    leonard lenny lieberman louis lynch lynn
     marcus marianne matt matthew melissa michele michelle mike mitchell moore moscowitz
     nicole nussbaum
     paul paula paulson philip philippe
