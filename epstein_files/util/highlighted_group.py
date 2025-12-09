@@ -391,6 +391,7 @@ HIGHLIGHTED_GROUPS = [
         pattern=r'Chernobyl|Day\s+One\s+Ventures|(Dmitry\s)?(Kiselyov|Medvedev|Rybolo(o?l?ev|vlev))|Dmitry|FSB|GRU|KGB|Kislyak|Kremlin|Lavrov|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Sberbank|Vladimir( Yudashkin)?|Xitrans',
         emailers = {
             MASHA_DROKOVA: 'silicon valley VC',
+            RENATA_BOLOTOVA: 'former aspiring model, now fund manager at NYSIF',
         }
     ),
     HighlightedGroup(
@@ -422,7 +423,7 @@ HIGHLIGHTED_GROUPS = [
         pattern=r"Eric\sSchmidt|(Mark\s*)?Zuckerberg|Masa(yoshi)?(\sSon)?|Najeev|Palantir|(Peter\s)?Th(ie|ei)l|Sergey\s*Brin|Softbank|SpaceX",
         emailers = {
             ELON_MUSK: None,
-            REID_HOFFMAN: 'founder of LinkedIn',
+            REID_HOFFMAN: 'PayPal mafia member, founder of LinkedIn',
             STEVEN_SINOFSKY: 'ex-Microsoft',
         },
     ),
