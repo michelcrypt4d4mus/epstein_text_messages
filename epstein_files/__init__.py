@@ -175,7 +175,3 @@ def print_text_messages(epstein_files: EpsteinFiles) -> None:
         console.line(2)
 
     epstein_files.print_imessage_summary()
-
-    if args.only_texts:
-        logger.warning(f"Exiting because --only-texts...")
-        exit()
