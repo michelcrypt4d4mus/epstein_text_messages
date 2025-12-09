@@ -87,7 +87,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"twitter\.com[i/][lI]krauss[1lt]"): "twitter.com/lkrauss1",
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
     'twitter glhsummers': 'twitter @lhsummers',
-    re.compile(r"Lawyer for Susan Rice: Obama administration '?justifiably concerned' about sharing Intel with[ \n]*Trump team -(\n+)?POLITICO"): "Lawyer for Susan Rice: Obama administration 'justifiably concerned' about sharing Intel with Trump team - POLITICO",
+    re.compile(r"Lawyer for Susan Rice: Obama administration '?justifiably concerned' about sharing Intel with[ \n]*Trump team -(\n+)*POLITICO", re.I): "Lawyer for Susan Rice: Obama administration 'justifiably concerned' about sharing Intel with Trump team - POLITICO",
     'Sent from Mabfl': 'Sent from Mobile',  # NADIA_MARCINKO signature bad OCR
 }
 
