@@ -292,7 +292,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='latin america',
         style='yellow',
-        pattern=r'Argentin(a|ian)|Bolsonar[aio]|Bra[sz]il(ian)?|Bukele|Castro|Colombian?|Cuban?|El\s*Salvador|LatAm|Lula|Mexic(an|o)|(Nicolas\s+)?Maduro|Panama( Papers)?|Peru|Venezuelan?',
+        pattern=r'Argentin(a|ian)|Bolsonar[aio]|Bra[sz]il(ian)?|Bukele|Castro|Colombian?|Cuban?|El\s*Salvador|((Enrique )?Pena )?Nieto|LatAm|Lula|Mexic(an|o)|(Nicolas\s+)?Maduro|Panama( Papers)?|Peru|Venezuelan?',
     ),
     HighlightedGroup(
         label='law enforcement',
