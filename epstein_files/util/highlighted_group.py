@@ -173,7 +173,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='entertainer',
         style='light_steel_blue3',
-        pattern=r'(Art )?Spiegelman|Bobby slayton|Errol(\s*Morris)?|Etienne Binant|(Frank\s)?Gehry|Jagger|(Jeffrey\s*)?Katzenberg|(Johnny\s*)?Depp|Lena Dunham|Madonna|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?|Zach Braff',
+        pattern=r'(Art )?Spiegelman|Bobby slayton|Errol(\s*Morris)?|Etienne Binant|(Frank\s)?Gehry|Jagger|(Jeffrey\s*)?Katzenberg|(Johnny\s*)?Depp|Lena Dunham|Madonna|Mark\s*Burnett|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?|Zach Braff',
         emailers={
             'Andres Serrano': "'Piss Christ' artist",
             'Barry Josephson': 'American film producer and former music manager',
@@ -441,7 +441,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='virgin islands',
         style='sea_green1',
-        pattern=r'Bahamas|Cecile de Jongh|(Kenneth E\. )?Mapp|USVI|VI|Virgin\s*Islands',
+        pattern=r'Bahamas|Cecile de Jongh|(Kenneth E\. )?Mapp|S(ain)?t.?\s*Thomas|USVI|VI|Virgin\s*Islands',
         emailers = {
             STACEY_PLASKETT: 'non-voting member of Congress',
             KENNETH_E_MAPP: 'Governor',

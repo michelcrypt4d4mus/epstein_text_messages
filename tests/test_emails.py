@@ -3,7 +3,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.data import dict_sets_to_lists
 
 EMAIL_AUTHOR_COUNTS = {
-    None: 107,
+    None: 105,
     "Abi Schwinck": 1,
     AL_SECKEL: 7,
     "Alain Forget": 3,
@@ -155,6 +155,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Peter Thomas Roth": 2,
     "Philip Kafka": 1,
     "Prince Andrew": 2,
+    'Probably Audrey/Aubrey Raimbault': 1,
     PUREVSUREN_LUNDEG: 1,
     "R. Couri Hay": 1,
     "Ramsey Elkholy": 1,
@@ -185,7 +186,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Steven Victor MD": 1,
     "Sultan Ahmed Bin Sulayem": 15,
     "Terje Rød-Larsen": 2,
-    "Terry Kafka": 8,
+    TERRY_KAFKA: 9,
     "Thorbjørn Jagland": 6,
     "Tim Zagat": 1,
     "Tom Barrack": 1,
@@ -207,7 +208,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 81,
+    None: 75,
     "ACT for America": 1,
     "Alan Dershowitz": 15,
     'Alan Dlugash': 1,
@@ -230,7 +231,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Bill Gates": 2,
     "Bill Siegel": 1,
     'Bob Fass': 1,
-    "Boris Nikolic": 17,
+    BORIS_NIKOLIC: 17,
     "Brad Karp": 5,
     "Brad Wechsler": 1,
     "Caroline Lang": 2,
@@ -260,7 +261,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Eric Roth": 2,
     "Erika Kellerhals": 2,
     "Etienne Binant": 1,
-    "Faith Kates": 5,
+    FAITH_KATES: 7,
     "Forrest Miller": 1,
     "Francis Derby": 1,
     "Fred Haddad": 4,
@@ -291,7 +292,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Jean Huguen": 1,
     JEAN_LUC_BRUNEL: 10,
     JEFF_FULLER: 2,
-    "Jeffrey Epstein": 1538,
+    JEFFREY_EPSTEIN: 1543,
     JES_STALEY: 7,
     "Jessica Cadwell": 5,
     "Joel": 2,
