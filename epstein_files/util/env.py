@@ -56,7 +56,7 @@ else:
     logger.setLevel(logging.WARNING)
 
 
-specified_names: list[str | None] = args.names or []
+specified_names: list[str | None] = [None if n == 'None' else n for n in (args.names or [])]
 
 if args.use_epstein_web_links:
     logger.warning(f"Using links to epsteinweb.org links instead of epsteinify.com...")
