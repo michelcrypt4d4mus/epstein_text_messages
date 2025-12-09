@@ -15,7 +15,7 @@ parser.add_argument('--build', '-b', action='store_true', help='write HTML to do
 parser.add_argument('--all-emails', '-a', action='store_true', help='all the emails (also --no-texts)')
 parser.add_argument('--all-email-tables', '-at', action='store_true', help='all email tables (except Epstein)')
 parser.add_argument('--colors-only', '-c', action='store_true', help='print header with color key table and exit')
-parser.add_argument('--name', '-n', action='append', dest='emails', help='specify the name(s) whose communications should be output')
+parser.add_argument('--name', '-n', action='append', dest='names', help='specify the name(s) whose communications should be output')
 parser.add_argument('--only-texts', '-ot', action='store_true', help='print text messages then quit')
 parser.add_argument('--output-emails', '-e', action='store_true', help='generate other files section')
 parser.add_argument('--output-other-files', '-of', action='store_true', help='generate other files section')
@@ -56,10 +56,10 @@ else:
     logger.setLevel(logging.WARNING)
 
 
-specified_names: list[str | None] = args.emails or []
+specified_names: list[str | None] = [None if n == 'None' else n for n in (args.names or [])]
 
 if args.use_epstein_web_links:
     logger.warning(f"Using links to epsteinweb.org links instead of epsteinify.com...")
 
 if args.debug:
-    logger.warning(f"is_html_script={is_html_script}, args={args}")
+    logger.warning(f"is_html_script={is_html_script}, specified_names={specified_names}, args={args}")

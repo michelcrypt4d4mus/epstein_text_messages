@@ -116,6 +116,7 @@ EMAIL_SIGNATURES = {
 
 TRUNCATION_LENGTHS = {
     '023627': 15_750,  # Micheal Wolff article with brock pierce
+    '030781': 1_700,
 }
 
 # Invalid for links to EpsteinWeb
