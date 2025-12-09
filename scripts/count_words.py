@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # Count word usage in emails and texts
+import re
+
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -12,6 +14,8 @@ from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
 from epstein_files.util.rich import (console, print_abbreviations_table, print_centered, print_color_key,
      print_page_title, print_panel, print_starred_header, write_html)
 from epstein_files.util.word_count import WordCount
+
+HTML_REGEX = re.compile(r"^http|#yiv")
 
 
 timer = Timer()
@@ -30,7 +34,7 @@ for email in emails:
         lines.append(email.subject())
 
     for line in lines:
-        if line.startswith('http') or '#yiv' in line:
+        if HTML_REGEX.search(line):
             continue
 
         for word in line.split():
@@ -42,8 +46,7 @@ for imessage_log in imessage_logs:
     for msg in imessage_log.messages():
         if len(specified_names) > 0 and msg.author not in specified_names:
             continue
-
-        if msg.text.startswith('http'):
+        elif HTML_REGEX.search(line):
             continue
 
         for word in msg.text.split():

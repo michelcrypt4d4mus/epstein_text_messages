@@ -124,6 +124,7 @@ JUNK_EMAILERS = [
     'editorialstaff@flipboard.com',
     'How To Academy',
     'Jokeland',
+    JP_MORGAN_USGIO,
     'Saved by Internet Explorer 11',
 ]
 
@@ -132,7 +133,6 @@ TRUNCATE_ALL_EMAILS_FROM = JUNK_EMAILERS + [
     'Lvjet',
     'middle.east.update@hotmail.com',
     'Mitchell Bard',
-    'us.gio@jpmorgan.com',
     'Skip Rimer',
 ]
 

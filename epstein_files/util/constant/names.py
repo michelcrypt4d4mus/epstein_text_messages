@@ -79,6 +79,7 @@ JOHN_PAGE = 'John Page'
 JOHNNY_EL_HACHEM = 'Johnny el Hachem'
 JONATHAN_FARKAS = 'Jonathan Farkas'
 JOSCHA_BACH = 'Joscha Bach'
+JP_MORGAN_USGIO = 'us.gio@jpmorgan.com',
 KATHERINE_KEATING = 'Katherine Keating'
 KATHRYN_RUEMMLER = 'Kathryn Ruemmler'
 KEN_JENNE = 'Ken Jenne'
@@ -178,23 +179,25 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
 
 # Names to color white in the word counts
 OTHER_NAMES = """
-    aaron alec alex alexandra alice allen anderson andre andres ann anna anne arthur
-    baldwin barry barbro ben benjamin berger bert binant bob bonner boyden brad bradley brady branson bruce bruno burton
-    chapman charles charlie chris christopher clint cohen colin conway
-    dave davis diana diane diaz dennis dixon don dylan
-    ed elizabeth emily entwistle erik erika etienne evelyn
-    flachsbart francis frank
-    gardner gary geoff geoffrey george gilbert gonzalez gould graham greene guarino gwyneth
+    aaron albert alberto alec alex alexandra alice allen anderson andre andres ann anna anne ariana arthur
+    baldwin barack barbro barry ben benjamin berger bert binant bob bonner boyden brad bradley brady branson bruce bruno burton
+    chapman charles charlie chris christopher clint cohen colin collins conway
+    dave davis dean debra deborah dennis diana diane diaz dickinson dixon dominique don dylan
+    ed edmond elizabeth emily entwistle erik erika etienne evelyn
+    ferguson flachsbart francis franco frank
+    gardner gary geoff geoffrey george gilbert goldberg gonzalez gould graham greene guarino gwyneth
     hancock harold harrison harry helen hirsch hofstadter horowitz hussein
     isaac isaacson
-    jamie james jane janet jason jen jennifer jim joe joel johnson julie justin
+    jamie james jane janet jason jen jennifer jim joe joel johnson jones julie justin
     kate kathy kelly kevin kim kruger kyle
-    louis lynch
-    marcus marianne matt matthew melissa michele michelle mike mitchell moscowitz
-    nicole
+    leonard lieberman louis lynch lynn
+    marcus marianne matt matthew melissa michele michelle mike mitchell moore moscowitz
+    nicole nussbaum
     paul paula paulson philip philippe
-    rafael ray richardson rob rodriguez ron rudolph ryan
-    sara sarah seligman serge sergey silverman sloman smith snowden sorkin stanley stevie susan
-    theresa thompson tiffany tim timothy tom
+    rafael ray richardson rob robin rodriguez ron rudolph ryan
+    sara sarah seligman serge sergey silverman sloman smith snowden sorkin stanley steele stevie stewart susan
+    ted theresa thompson tiffany tim timothy tom
+    valeria
     walter warren weinstein weiss william
+    zach zack
 """.strip().split()

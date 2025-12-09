@@ -188,4 +188,4 @@ class WordCount:
 
 def _word_style(word: str | None) -> str:
     word = word or ''
-    return 'bright_white' if word in FIRST_AND_LAST_NAMES else 'wheat4'
+    return 'bright_white' if word in FIRST_AND_LAST_NAMES else 'grey53'
