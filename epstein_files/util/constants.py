@@ -424,7 +424,7 @@ KNOWN_EMAIL_AUTHORS = {
     # Unknowns
     '022187': None,                    # Bad OCR causes parsing problems
     # '026571': '(unknown french speaker)',
-    # '029504': Probably Audrey Raimbault (based on "GMI" in signature, a company registered by "aubrey raimbault")
+    '029504': 'Probably Audrey/Aubrey Raimbault',  # (based on "GMI" in signature, a company registered by "aubrey raimbault")
 }
 
 # Some emails have a lot of uninteresting CCs
@@ -470,6 +470,10 @@ KNOWN_EMAIL_RECIPIENTS = {
     '022344': JEFFREY_EPSTEIN,        # Bad OCR
     '029013': JEFFREY_EPSTEIN,        # Bad OCR
     '030347': JEFFREY_EPSTEIN,        # Bad OCR
+    '030367': JEFFREY_EPSTEIN,        # Bad OCR
+    '026245': JEFFREY_EPSTEIN,        # Bad OCR
+    '033274': JEFFREY_EPSTEIN,        # this is a note sent to self
+    '032780': JEFFREY_EPSTEIN,        # Bad OCR
     '029324': [JEFFREY_EPSTEIN, 'Jojo Fontanilla', 'Lyn Fontanilla'],
     '033575': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN],
     '023067': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN, TONJA_HADDAD_COLEMAN],      # Bad OCR

@@ -281,6 +281,11 @@ ACTUAL_TEXT = {
     '031826': 'I have',
 }
 
+# Emails sent by epstein to himself that are just notes
+NOTES_TO_SELF = [
+    '033274',
+]
+
 
 @dataclass
 class Email(CommunicationDocument):
@@ -303,7 +308,7 @@ class Email(CommunicationDocument):
                 self.recipients.extend(self._get_names(recipient))
 
         logger.debug(f"Found recipients: {self.recipients}")
-        self.recipients = list(set([r for r in self.recipients if r != self.author]))  # Remove self CCs
+        self.recipients = list(set([r for r in self.recipients if r != self.author or self.file_id in NOTES_TO_SELF]))  # Remove self CCs
         self.text = self._cleaned_up_text()
         self.actual_text = self._actual_text()
         self.sent_from_device = self._sent_from_device()
