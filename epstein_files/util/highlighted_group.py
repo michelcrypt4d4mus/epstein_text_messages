@@ -289,6 +289,11 @@ HIGHLIGHTED_GROUPS = [
         }
     ),
     HighlightedGroup(
+        label='latin america',
+        style='yellow',
+        pattern=r'Argentin(a|ian)|Bolsonar[aio]|Bra[sz]il(ian)?|Bukele|Castro|Colombian?|Cuban?|El\s*Salvador|LatAm|Lula|Mexic(an|o)|(Nicolas\s+)?Maduro|Panama( Papers)?|Peru|Venezuelan?',
+    ),
+    HighlightedGroup(
         label='law enforcement',
         style='color(24) bold',
         pattern=r'ag|(Alicia\s*)?Valle|(Lann?a\s*)?Belohlavek|CFTC|CIA|CVRA|DOJ|FBI|FDIC|FINRA|FTC|IRS|(James )?Comey|(Kirk )?Blouin|((Bob|Robert) )?Mueller|OCC|(Byung\s)?Pak|(Michael\s*)?Reiter|Police Code Enforcement|SEC|Strzok|TSA|(William\s*J\.?\s*)?Zloch',
@@ -383,7 +388,7 @@ HIGHLIGHTED_GROUPS = [
         emailers = {
             RUDY_GIULIANI: 'disbarred formed mayor of New York City',
             TULSI_GABBARD: None,
-        }
+        },
     ),
     HighlightedGroup(
         label='russia',
@@ -411,11 +416,6 @@ HIGHLIGHTED_GROUPS = [
             ROGER_SCHANK: 'Teachers College, Columbia University',
             STEVEN_PFEIFFER: None,
         },
-    ),
-    HighlightedGroup(
-        label='latin america',
-        style='yellow',
-        pattern=r'Argentin(a|ian)|Bolsonar[aio]|Bra[sz]il(ian)?|Bukele|Castro|Colombian?|Cuban?|El\s*Salvador|LatAm|Lula|Mexic(an|o)|(Nicolas\s+)?Maduro|Panama( Papers)?|Peru|Venezuelan?',
     ),
     HighlightedGroup(
         label='tech bro',
