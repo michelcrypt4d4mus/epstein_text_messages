@@ -82,8 +82,8 @@ def generate_html() -> None:
 
     # Emails section
     if args.output_emails:
-        print_emails(epstein_files)
-        timer.print_at_checkpoint(f"Printed {len(epstein_files.emails):,} emails")
+        emails_printed = print_emails(epstein_files)
+        timer.print_at_checkpoint(f"Printed {emails_printed:,} emails")
 
     if args.output_other_files:
         print_section_header(f"Top Lines of {len(epstein_files.other_files)} Files That Are Neither Emails Nor Text Msgs")
@@ -110,13 +110,15 @@ def generate_html() -> None:
         print_json("email_unknown_recipient_file_ids", epstein_files.email_unknown_recipient_file_ids())
 
 
-def print_emails(epstein_files: EpsteinFiles) -> None:
+def print_emails(epstein_files: EpsteinFiles) -> int:
+    """Returns number of emails printed."""
     print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
     print_other_site_link(is_header=False)
     epstein_files.print_emailer_counts_table()
     emailers_to_print: list[str | None]
     emailer_tables: list[str | None] = []
     emails_printed_since_last_color_key = 0
+    emails_printed_total = 0
 
     if args.all_emails:
         console.print('Email conversations are sorted chronologically based on time of the first email.')
@@ -140,7 +142,9 @@ def print_emails(epstein_files: EpsteinFiles) -> None:
         print_numbered_list_of_emailers(emailer_tables)
 
     for author in emailers_to_print:
-        emails_printed_since_last_color_key += epstein_files.print_emails_for(author)
+        emails_printed = epstein_files.print_emails_for(author)
+        emails_printed_total += emails_printed
+        emails_printed_since_last_color_key += emails_printed
 
         # Print color key every once in a while
         if emails_printed_since_last_color_key > PRINT_COLOR_KEY_EVERY_N_EMAILS:
@@ -154,6 +158,7 @@ def print_emails(epstein_files: EpsteinFiles) -> None:
             epstein_files.print_emails_table_for(name)
 
     epstein_files.print_email_device_info()
+    return emails_printed_total
 
 
 def print_text_messages(epstein_files: EpsteinFiles) -> None:
@@ -170,7 +175,3 @@ def print_text_messages(epstein_files: EpsteinFiles) -> None:
         console.line(2)
 
     epstein_files.print_imessage_summary()
-
-    if args.only_texts:
-        logger.warning(f"Exiting because --only-texts...")
-        exit()

@@ -16,10 +16,9 @@ parser.add_argument('--all-emails', '-a', action='store_true', help='all the ema
 parser.add_argument('--all-email-tables', '-at', action='store_true', help='all email tables (except Epstein)')
 parser.add_argument('--colors-only', '-c', action='store_true', help='print header with color key table and exit')
 parser.add_argument('--name', '-n', action='append', dest='names', help='specify the name(s) whose communications should be output')
-parser.add_argument('--only-texts', '-ot', action='store_true', help='print text messages then quit')
-parser.add_argument('--output-emails', '-e', action='store_true', help='generate other files section')
-parser.add_argument('--output-other-files', '-of', action='store_true', help='generate other files section')
-parser.add_argument('--output-texts', '-t', action='store_true', help='generate other files section')
+parser.add_argument('--output-emails', '-oe', action='store_true', help='generate other files section')
+parser.add_argument('--output-other-files', '-oo', action='store_true', help='generate other files section')
+parser.add_argument('--output-texts', '-ot', action='store_true', help='generate other files section')
 parser.add_argument('--pickled', '-p', action='store_true', help='use pickled EpsteinFiles object')
 parser.add_argument('--overwrite-pickle', '-op', action='store_true', help='generate new pickled EpsteinFiles object')
 parser.add_argument('--sort-alphabetical', '-alpha', action='store_true', help='sort emailers alphabetically in counts table')
@@ -57,6 +56,11 @@ else:
 
 
 specified_names: list[str | None] = [None if n == 'None' else n for n in (args.names or [])]
+
+if not (args.output_texts or args.output_emails or args.output_other_files):
+    args.output_texts = True
+    args.output_emails = True
+    args.output_other_files = True
 
 if args.use_epstein_web_links:
     logger.warning(f"Using links to epsteinweb.org links instead of epsteinify.com...")
