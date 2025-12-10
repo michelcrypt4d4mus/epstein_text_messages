@@ -71,7 +71,7 @@ def generate_html() -> None:
         exit()
 
     epstein_files = EpsteinFiles.get_files()
-    timer.print_at_checkpoint(f'Processed {len(epstein_files.all_files):,} files')
+    timer.print_at_checkpoint(f'Processed {len(epstein_files.all_files):,} documents')
     epstein_files.print_files_overview()
     print_color_key()
 
@@ -91,7 +91,6 @@ def generate_html() -> None:
         timer.print_at_checkpoint(f"Printed {len(epstein_files.other_files):,} other files")
     else:
         logger.warning(f"Skipping other files section...")
-
 
     # Save output
     write_html(GH_PAGES_HTML_PATH)
