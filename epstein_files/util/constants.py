@@ -498,10 +498,10 @@ KNOWN_EMAIL_RECIPIENTS = {
     '029163': [JEFFREY_EPSTEIN, ROBERT_TRIVERS],     # Bad OCR
     '026228': [JEFFREY_EPSTEIN, STEVEN_PFEIFFER],    # Bad OCR
     '021794': [JESSICA_CADWELL, ROBERT_D_CRITTON],   # Bad OCR
-    '033456': 'Joel',                 # Reply
-    '033460': 'Joel',                 # Reply
-    '029282': [JOI_ITO, REID_HOFFMAN],# Bad OCR
-    '021090': JONATHAN_FARKAS,        # Reply to a message signed " jonathan" same as other Farkas emails
+    '033456': 'Joel',                   # Reply
+    '033460': 'Joel',                   # Reply
+    '029282': [JOI_ITO, REID_HOFFMAN],  # Bad OCR
+    '021090': JONATHAN_FARKAS,          # Reply to a message signed " jonathan" same as other Farkas emails
     '033073': KATHRYN_RUEMMLER,         # to "Kathy" about dems, sent from iPad (not 100% confirmed)
     '032939': KATHRYN_RUEMMLER,         # to "Kathy" about dems, sent from iPad (not 100% confirmed)
     '031428': [KEN_STARR, LILLY_SANCHEZ, MARTIN_WEINBERG, REID_WEINGARTEN],  # Bad OCR
@@ -709,4 +709,5 @@ EMAILED_ARTICLE_IDS = [
     '019845',  # article on Preet Bharara
     '029021',  # article about bannon sent by Alain Forget
     '031688',  # Bill Siegel fwd of email about hamas
+    '021090',  # Fwd to Jonathan Farkas
 ]

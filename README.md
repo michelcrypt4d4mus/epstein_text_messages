@@ -8,9 +8,10 @@
 
 
 ### Usage
-Dependencies are in [pyproject.toml](./pyproject.toml). Use `poetry install` for easiest time installing. `pip install .` may or may not work.
+1. Requires you have a local copy of OCR text from the House Oversight document dump in a directory `/path/to/epstein/ocr_txt_files`. You can download them from [the Congressional Google Drive folder](https://drive.google.com/drive/folders/1ldncvdqIf6miiskDp_EDuGSDAaI_fJx8).
+1. Dependencies are in [pyproject.toml](./pyproject.toml). Use `poetry install` for easiest time installing. `pip install .` may or may not work.
 
-Requires you have a local copy of OCR text from the House Oversight document dump in a directory `/path/to/epstein/ocr_txt_files`.  Then you can run with:
+Then you can run with:
 
 ```bash
 DOCS_DIR=/path/to/epstein/ocr_txt_files ./generate.py

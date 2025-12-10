@@ -197,7 +197,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Vincenzo Lozzo": 1,
     "Vinit Sahni": 2,
     "Vladimir Yudashkin": 1,
-    "Zubair Khan": 9,
+    ZUBAIR_KHAN: 9,
     "asmallworld@travel.asmallworld.net": 4,
     "digest-noreply@quora.com": 5,
     "drsra": 1,
@@ -208,7 +208,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 74,
+    None: 70,
     "ACT for America": 1,
     "Alan Dershowitz": 15,
     'Alan Dlugash': 1,
@@ -261,7 +261,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Eric Roth": 2,
     "Erika Kellerhals": 2,
     "Etienne Binant": 1,
-    FAITH_KATES: 7,
+    FAITH_KATES: 8,
     "Forrest Miller": 1,
     "Francis Derby": 1,
     "Fred Haddad": 4,
@@ -289,7 +289,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Januiz Banasiak": 1,
     "Jay Lefkowitz": 4,
     'Jay Levin': 1,
-    "Jean Huguen": 1,
+    JEAN_HUGUEN: 1,
     JEAN_LUC_BRUNEL: 10,
     JEFF_FULLER: 2,
     JEFFREY_EPSTEIN: 1544,
@@ -301,7 +301,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "John Zouzelka": 1,
     "Joi Ito": 11,
     "Jojo Fontanilla": 1,
-    'Jokeland': 1
+    'Jokeland': 1,
     "Jonathan Farkas": 9,
     "Joscha Bach": 4,
     "Joseph Vinciguerra": 1,
@@ -403,7 +403,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Scott J. Link": 1,
     "Sean Bannon": 1,
     "Sean T Lehane": 1,
-    "Soon-Yi Previn": 3,
+    SOON_YI: 4,
     "Stanley Rosenberg": 1,
     "Stephen Hanson": 3,
     "Stephen Rubin": 1,
@@ -429,11 +429,11 @@ EMAIL_RECIPIENT_COUNTS = {
     "Vahe Stepanian": 1,
     "Val Sherman": 1,
     "Valeria Chomsky": 1,
-    "Vinit Sahni": 1,
+    VINIT_SAHNI: 1,
     'W&K': 1,
     'Walli Leff': 1,
     "Warren Eisenstein": 2,
-    "Zubair Khan": 1,
+    ZUBAIR_KHAN: 1,
     "david.brown@thetimes.co.uk": 1,
     "io-anne.pugh@bbc.co.uk": 1,
     "martin.robinson@mailonline.co.uk": 1,
@@ -451,7 +451,6 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     "019871",
     "022193",
     "022247",
-    "022344",
     "022811",
     "022936",
     "022938",
@@ -462,9 +461,7 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     "024930",
     "025215",
     "025226",
-    "025233",
     "025235",
-    "026245",
     "026631",
     "026632",
     "026659",
@@ -473,20 +470,15 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     '026943',
     "028757",
     "028760",
-    "029013",
     "029206",
     "029558",
     "029622",
-    "029752",
     "029962",
     "029982",
     "030006",
     "030095",
     "030211",
-    "030238",
     "030245",
-    "030347",
-    "030367",
     "030572",
     "030581",
     "030768",
@@ -513,16 +505,14 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     "031830",
     "032213",
     "032283",
-    "032780",
     "033021",
     "033025",
     "033027",
     "033205",
     "033242",
-    "033274",
     "033345",
     "033428",
-    "033458"
+    "033458",
 ]
 
 DEVICE_SIGNATURE_TO_AUTHORS = {
@@ -926,6 +916,9 @@ def test_email_author_counts(epstein_files):
 
 def test_email_recipient_counts(epstein_files):
     assert epstein_files.email_recipient_counts == EMAIL_RECIPIENT_COUNTS
+
+
+def test_unknown_recipient_file_ids(epstein_files):
     assert epstein_files.email_unknown_recipient_file_ids() == UNKNOWN_RECIPIENT_FILE_IDS
 
 
