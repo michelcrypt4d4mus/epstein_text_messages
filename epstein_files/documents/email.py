@@ -284,6 +284,9 @@ ACTUAL_TEXT = {
 # Emails sent by epstein to himself that are just notes
 NOTES_TO_SELF = [
     '033274',
+    '030238',
+    '029752',
+    '026677',
 ]
 
 
