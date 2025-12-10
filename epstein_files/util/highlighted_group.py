@@ -105,6 +105,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='bro',
         style='tan',
+        pattern=r"Andrew Farkas",
         emailers = {
             JONATHAN_FARKAS: "heir to the Alexander's department store fortune",
             'Peter Thomas Roth': 'student of Epstein at Dalton, skincare company founder',
