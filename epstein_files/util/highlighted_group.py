@@ -359,7 +359,7 @@ HIGHLIGHTED_GROUPS = [
         style='pale_violet_red1',
         pattern=r'\w+@mc2mm.com',
         emailers = {
-            'Abi Schwinck': 'MC2 Model Management (?)',
+            'Abi Schwinck': 'MC2 Model Management (?)|(Nicole\s*)?Junkerman',
             DANIEL_SIAD: None,
             FAITH_KATES: 'Next Models co-founder',
             'Gianni Serazzi': 'fashion consultant?',
