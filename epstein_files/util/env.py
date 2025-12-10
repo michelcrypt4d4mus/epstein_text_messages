@@ -34,12 +34,12 @@ parser.add_argument('positional_args', nargs='*', help='Optional args (only used
 args = parser.parse_args()
 
 is_env_var_set = lambda s: len(environ.get(s) or '') > 0
-
 current_script = Path(argv[0]).name
-args.deep_debug = args.deep_debug or is_env_var_set('DEEP_DEBUG')
-args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 is_html_script = current_script in HTML_SCRIPTS
 
+args.deep_debug = args.deep_debug or is_env_var_set('DEEP_DEBUG')
+args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
+args.output_emails = args.output_emails or args.all_emails
 args.pickled = args.pickled or is_env_var_set('PICKLED')
 args.width = args.width if is_html_script else None
 
