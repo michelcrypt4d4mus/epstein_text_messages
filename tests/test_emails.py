@@ -208,7 +208,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 74,
+    None: 70,
     "ACT for America": 1,
     "Alan Dershowitz": 15,
     'Alan Dlugash': 1,
@@ -261,7 +261,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Eric Roth": 2,
     "Erika Kellerhals": 2,
     "Etienne Binant": 1,
-    FAITH_KATES: 7,
+    FAITH_KATES: 8,
     "Forrest Miller": 1,
     "Francis Derby": 1,
     "Fred Haddad": 4,
@@ -403,7 +403,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Scott J. Link": 1,
     "Sean Bannon": 1,
     "Sean T Lehane": 1,
-    "Soon-Yi Previn": 3,
+    SOON_YI: 4,
     "Stanley Rosenberg": 1,
     "Stephen Hanson": 3,
     "Stephen Rubin": 1,
