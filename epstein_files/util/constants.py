@@ -38,6 +38,7 @@ HEADER_ABBREVIATIONS = {
     'KSA': "Kingdom of Saudi Arabia",
     'Kurz': 'Sebastian Kurz (former Austrian Chancellor)',
     'Kwok': "Chinese criminal Miles Kwok AKA Miles Guo AKA Guo Wengui",
+    'Madars': 'co-founder of the privacy coin ZCash (ZEC) Madars Virza',
     'Mapp': f'{KENNETH_E_MAPP} (Governor Virgin Islands)',
     'Masa': 'Masayoshi Son (Softbank)',
     'MBS': "Mohammed bin Salman Al Saud (Saudi ruler)",
