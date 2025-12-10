@@ -301,7 +301,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "John Zouzelka": 1,
     "Joi Ito": 11,
     "Jojo Fontanilla": 1,
-    'Jokeland': 1
+    'Jokeland': 1,
     "Jonathan Farkas": 9,
     "Joscha Bach": 4,
     "Joseph Vinciguerra": 1,
