@@ -11,7 +11,7 @@
 1. Requires you have a local copy of OCR text from the House Oversight document dump in a directory `/path/to/epstein/ocr_txt_files`. You can download them from [the Congressional Google Drive folder](https://drive.google.com/drive/folders/1ldncvdqIf6miiskDp_EDuGSDAaI_fJx8).
 1. Dependencies are in [pyproject.toml](./pyproject.toml). Use `poetry install` for easiest time installing. `pip install .` may or may not work.
 
-Then you can run with:
+You need to set the `DOCS_DIR` environment variable with the path to the folder of files you just downloaded when running. You can either create a `.env` file modeled on [`.env.example`](./.env.example) (which will set it permanently) or you can run with:
 
 ```bash
 DOCS_DIR=/path/to/epstein/ocr_txt_files ./generate.py
