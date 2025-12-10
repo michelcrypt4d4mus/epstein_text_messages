@@ -201,6 +201,12 @@ class Document:
         for f in tmpfiles:
             f.unlink()
 
+    @staticmethod
+    def uniquify(documents: list['Document']) -> list['Document']:
+        """Uniquify by file_id."""
+        id_map = {doc.file_id: doc for doc in documents}
+        return [doc for doc in id_map.values()]
+
 
 @dataclass
 class CommunicationDocument(Document):

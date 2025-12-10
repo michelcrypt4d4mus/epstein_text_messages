@@ -32,7 +32,7 @@ TIMEZONE_INFO = {"PST": PACIFIC_TZ, "PDT": PACIFIC_TZ}  # Suppresses annoying wa
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
-BAD_LINE_REGEX = re.compile(r'^(>;|\d{1,2}|Importance:( High)?|[iI,•]|i (_ )?i|, [-,])$')
+BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|Importance:( High)?|[iI,•]|i (_ )?i|, [-,])$')
 REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + ['********************************']
 LINK_LINE_REGEX = re.compile(f"^(> )?htt")
 
@@ -284,6 +284,9 @@ ACTUAL_TEXT = {
 # Emails sent by epstein to himself that are just notes
 NOTES_TO_SELF = [
     '033274',
+    '030238',
+    '029752',
+    '026677',
 ]
 
 
