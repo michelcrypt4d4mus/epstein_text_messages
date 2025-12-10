@@ -289,7 +289,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Januiz Banasiak": 1,
     "Jay Lefkowitz": 4,
     'Jay Levin': 1,
-    "Jean Huguen": 1,
+    JEAN_HUGUEN: 1,
     JEAN_LUC_BRUNEL: 10,
     JEFF_FULLER: 2,
     JEFFREY_EPSTEIN: 1544,
