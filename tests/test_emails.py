@@ -292,7 +292,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Jean Huguen": 1,
     JEAN_LUC_BRUNEL: 10,
     JEFF_FULLER: 2,
-    JEFFREY_EPSTEIN: 1543,
+    JEFFREY_EPSTEIN: 1544,
     JES_STALEY: 7,
     "Jessica Cadwell": 5,
     "Joel": 2,
@@ -301,6 +301,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "John Zouzelka": 1,
     "Joi Ito": 11,
     "Jojo Fontanilla": 1,
+    'Jokeland': 1
     "Jonathan Farkas": 9,
     "Joscha Bach": 4,
     "Joseph Vinciguerra": 1,

@@ -165,7 +165,7 @@ class EpsteinFiles:
         if len(emails) == 0:
             raise RuntimeError(f"No emails found for '{author}'")
 
-        return EpsteinFiles.sort_emails(emails)
+        return EpsteinFiles.sort_emails(Document.uniquify(emails))
 
     def emails_to(self, author: str | None) -> list[Email]:
         if author is None:
