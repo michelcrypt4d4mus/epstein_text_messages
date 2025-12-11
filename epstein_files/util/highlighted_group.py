@@ -120,7 +120,7 @@ HIGHLIGHTED_GROUPS = [
         emailers = {
             ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
             BARBRO_EHNBOM: 'Swedish pharmaceuticals',
-            BORIS_NIKOLIC: f'Biotech VC, {ESTATE_EXECUTOR}',
+            BORIS_NIKOLIC: f'Biotech VC, {ESTATE_EXECUTOR}, VC partner of Bill Gates',
             FRED_HADDAD: "co-founder of Heck's in West Virginia",
             NICHOLAS_RIBIS: 'Hilton CEO',
             'Philip Kafka': 'president of Prince Concepts (and son of Terry Kafka?)',
