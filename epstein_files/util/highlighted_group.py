@@ -109,8 +109,8 @@ HIGHLIGHTED_GROUPS = [
         emailers = {
             JONATHAN_FARKAS: "heir to the Alexander's department store fortune",
             'Peter Thomas Roth': 'student of Epstein at Dalton, skincare company founder',
-            TOM_BARRACK: 'long time friend of Trump',
             STEPHEN_HANSON: None,
+            TOM_BARRACK: 'long time friend of Trump',
         }
     ),
     HighlightedGroup(
@@ -317,6 +317,7 @@ HIGHLIGHTED_GROUPS = [
             DAVID_SCHOEN: None,
             DEBBIE_FEIN: None,
             'Erika Kellerhals': 'attorney in St. Thomas',
+            GERALD_LEFCOURT: f'friend of {ALAN_DERSHOWITZ}',
             JACK_GOLDBERGER: None,
             JACKIE_PERCZEK: None,
             JAY_LEFKOWITZ: None,
