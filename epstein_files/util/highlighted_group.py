@@ -177,7 +177,7 @@ HIGHLIGHTED_GROUPS = [
         pattern=r'(Art )?Spiegelman|Bobby slayton|Errol(\s*Morris)?|Etienne Binant|(Frank\s)?Gehry|Jagger|(Jeffrey\s*)?Katzenberg|(Johnny\s*)?Depp|Lena Dunham|Madonna|Mark\s*Burnett|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?|Zach Braff',
         emailers={
             'Andres Serrano': "'Piss Christ' artist",
-            'Barry Josephson': 'American film producer and former music manager',
+            'Barry Josephson': 'American film producer and former music manager, editor FamilySecurityMatters.org',
             BILL_SIEGEL: 'documentary film producer and director',
             'David Blaine': 'magician',
             'Richard Merkin': 'painter, illustrator and arts educator',

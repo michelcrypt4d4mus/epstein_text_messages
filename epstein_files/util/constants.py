@@ -714,4 +714,6 @@ EMAILED_ARTICLE_IDS = [
     '029021',  # article about bannon sent by Alain Forget
     '031688',  # Bill Siegel fwd of email about hamas
     '021090',  # Fwd to Jonathan Farkas
+    '026551',  # Sultan bin Sulayem Ayatollah between the sheets
+    '031768',  # Sultan bin Sulayem 'Horseface'
 ]
