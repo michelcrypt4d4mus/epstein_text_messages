@@ -41,7 +41,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Danny Frost": 1,
     "Darren Indyke": 50,
     "Dave Hope": 1,
-    "David Fiszel": 2,
+    DAVID_FISZEL: 2,
     "David Grosof": 1,
     "David Haig": 1,
     "David Mitchell": 1,
