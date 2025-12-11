@@ -220,7 +220,7 @@ HIGHLIGHTED_GROUPS = [
         emailers={
             AMANDA_ENS: 'Citigroup',
             DANIEL_SABBA: 'UBS Investment Bank',
-            'David Fiszel': 'CIO Honeycomb Asset Management',
+            DAVID_FISZEL: 'CIO Honeycomb Asset Management',
             JES_STALEY: 'former CEO of Barclays',
             JIDE_ZEITLIN: 'former partner at Goldman Sachs, allegations of sexual misconduct',
             LEON_BLACK: 'Apollo CEO',
