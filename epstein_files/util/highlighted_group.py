@@ -395,7 +395,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='russia',
         style='red bold',
-        pattern=r'Chernobyl|Day\s+One\s+Ventures|(Dmitry\s)?(Kiselyov|Medvedev|Rybolo(o?l?ev|vlev))|Dmitry|FSB|GRU|KGB|Kislyak|Kremlin|Lavrov|Moscow|(Oleg )?Deripaska|(Vladimir )?Putin|Russian?|Sberbank|Vladimir( Yudashkin)?|Xitrans',
+        pattern=r'Chernobyl|Day\s+One\s+Ventures|(Dmitry\s)?(Kiselyov|Medvedev|Rybolo(o?l?ev|vlev))|Dmitry|FSB|GRU|KGB|Kislyak|Kremlin|Lavrov|Moscow|(Oleg )?Deripaska|Oleksandr Vilkul|(Vladimir )?Putin|Russian?|Sberbank|Vladimir( Yudashkin)?|Xitrans',
         emailers = {
             MASHA_DROKOVA: 'silicon valley VC',
             RENATA_BOLOTOVA: 'former aspiring model, now fund manager at NYSIF',
