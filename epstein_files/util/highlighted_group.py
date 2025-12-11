@@ -434,6 +434,9 @@ HIGHLIGHTED_GROUPS = [
         label='trump',
         style='red3 bold',
         pattern=r"@?realDonaldTrump|\bDJ?T\b|(Donald\s+(J\.\s+)?)?Trump(ism)?|Don(ald| *Jr)(?! Rubin)|(Madeleine\s*)?Westerhout|Mar[-\s]*a[-\s]*Lago|(Marla\s*)?Maples|(Matt(hew)? )?Calamari|\bMatt C\b|Melania|Roger\s+Stone|rona",
+        emailers = {
+            'Bruce Moskowitz': "'Trump's health guy' according to Epstein",
+        }
     ),
     HighlightedGroup(
         label='victim',
