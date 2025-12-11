@@ -70,7 +70,7 @@ class Document:
         doc_type = str(type(self).__name__)
         txt = Text('').append(self.file_path.stem, style='magenta')
         txt.append(f' {doc_type} ', style=DOC_TYPE_STYLES[doc_type])
-        txt.append(f"(num_lines=").append(f"{self.num_lines:,}", style='cyan')
+        txt.append(f"(num_lines=").append(f"{self.num_lines}", style='cyan')
         txt.append(", size=").append(file_size_str(self.file_path), style='aquamarine1')
         return txt.append(')') if doc_type == DOCUMENT_CLASS else txt
 

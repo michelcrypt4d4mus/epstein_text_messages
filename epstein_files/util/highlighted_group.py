@@ -109,8 +109,8 @@ HIGHLIGHTED_GROUPS = [
         emailers = {
             JONATHAN_FARKAS: "heir to the Alexander's department store fortune",
             'Peter Thomas Roth': 'student of Epstein at Dalton, skincare company founder',
-            TOM_BARRACK: 'long time friend of Trump',
             STEPHEN_HANSON: None,
+            TOM_BARRACK: 'long time friend of Trump',
         }
     ),
     HighlightedGroup(
@@ -177,7 +177,7 @@ HIGHLIGHTED_GROUPS = [
         pattern=r'(Art )?Spiegelman|Bobby slayton|Errol(\s*Morris)?|Etienne Binant|(Frank\s)?Gehry|Jagger|(Jeffrey\s*)?Katzenberg|(Johnny\s*)?Depp|Lena Dunham|Madonna|Mark\s*Burnett|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?|Zach Braff',
         emailers={
             'Andres Serrano': "'Piss Christ' artist",
-            'Barry Josephson': 'American film producer and former music manager',
+            'Barry Josephson': 'American film producer and former music manager, editor FamilySecurityMatters.org',
             BILL_SIEGEL: 'documentary film producer and director',
             'David Blaine': 'magician',
             'Richard Merkin': 'painter, illustrator and arts educator',
@@ -317,6 +317,7 @@ HIGHLIGHTED_GROUPS = [
             DAVID_SCHOEN: None,
             DEBBIE_FEIN: None,
             'Erika Kellerhals': 'attorney in St. Thomas',
+            GERALD_LEFCOURT: f'friend of {ALAN_DERSHOWITZ}',
             JACK_GOLDBERGER: None,
             JACKIE_PERCZEK: None,
             JAY_LEFKOWITZ: None,
@@ -433,6 +434,9 @@ HIGHLIGHTED_GROUPS = [
         label='trump',
         style='red3 bold',
         pattern=r"@?realDonaldTrump|\bDJ?T\b|(Donald\s+(J\.\s+)?)?Trump(ism)?|Don(ald| *Jr)(?! Rubin)|(Madeleine\s*)?Westerhout|Mar[-\s]*a[-\s]*Lago|(Marla\s*)?Maples|(Matt(hew)? )?Calamari|\bMatt C\b|Melania|Roger\s+Stone|rona",
+        emailers = {
+            'Bruce Moskowitz': "'Trump's health guy' according to Epstein",
+        }
     ),
     HighlightedGroup(
         label='victim',
