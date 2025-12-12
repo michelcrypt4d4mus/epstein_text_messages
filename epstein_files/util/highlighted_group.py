@@ -120,7 +120,7 @@ HIGHLIGHTED_GROUPS = [
         emailers = {
             ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
             BARBRO_EHNBOM: 'Swedish pharmaceuticals',
-            BORIS_NIKOLIC: f'Biotech VC, {ESTATE_EXECUTOR}',
+            BORIS_NIKOLIC: f'Biotech VC, {ESTATE_EXECUTOR}, VC partner of Bill Gates',
             FRED_HADDAD: "co-founder of Heck's in West Virginia",
             NICHOLAS_RIBIS: 'Hilton CEO',
             'Philip Kafka': 'president of Prince Concepts (and son of Terry Kafka?)',
@@ -279,7 +279,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='journalist',
         style='bright_yellow',
-        pattern=r'ABC|Alex Yablon|(Andrew\s*)?Marra|Arianna( Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie rose|CNN(politics?)?|Conchita|Sarnoff|David\s*Pecker|(Emily )?Michot|(George\s*)?Stephanopoulus|Graydon(\s*Carter)?|Huffington|Ingram, David|Jonathan Karl|(Katie )?Couric|(Michele\s*)?Dargan|NYT(imes)?|Politico|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|Viceland|Vick[iy] Ward|WaPo|WGBH|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
+        pattern=r'ABC|Alex Yablon|(Andrew\s*)?Marra|Arianna( Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie rose|CNN(politics?)?|Conchita|Sarnoff|(David\s*)?Pecker|(Emily )?Michot|(George\s*)?Stephanopoulus|Graydon(\s*Carter)?|(Sean\s*)?Hannity|Huffington|Ingram, David|Jonathan Karl|(Katie )?Couric|(Michele\s*)?Dargan|NYT(imes)?|Politico|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|Viceland|Vick[iy] Ward|WaPo|WGBH|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
         emailers = {
             EDWARD_EPSTEIN: 'no relation to Jeffrey',
             'James Hill': 'ABC',
@@ -387,7 +387,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='republicans',
         style='bold dark_red',
-        pattern=r'Alberto\sGonzale[sz]|(Alex\s*)?Acosta|(Bill\s*)?Barr|(Bob\s*)?Corker|Bolton|Broidy|(Chris\s)?Christie|(George\s*)?Nader|GOP|Kissinger|Kobach|Kolfage|Kudlow|Lewandowski|(Marco\s)?Rubio|Mattis|(?<!Merwin Dela )Cruz|(Michael\s)?Hayden|((General|Mike)\s*)?(Flynn|Pence)|(Mitt\s*)?Romney|Mnuchin|Nikki|Haley|(Paul\s+)?Manafort|(Peter\s)?Navarro|Pompeo|Reagan|Republican|(Richard\s*)?Nixon|Sasse|(Rex\s*)?Tillerson',
+        pattern=r'Alberto\sGonzale[sz]|(Alex\s*)?Acosta|(Bill\s*)?Barr|Bill\s*Shine|(Bob\s*)?Corker|Bolton|Broidy|(Chris\s)?Christie|(George\s*)?Nader|GOP|Kissinger|Kobach|Kolfage|Kudlow|Lewandowski|(Marco\s)?Rubio|(Mark\s*)Meadows|Mattis|(?<!Merwin Dela )Cruz|(Michael\s)?Hayden|((General|Mike)\s*)?(Flynn|Pence)|(Mitt\s*)?Romney|Mnuchin|Nikki|Haley|(Paul\s+)?Manafort|(Peter\s)?Navarro|Pompeo|Reagan|Republican|(Richard\s*)?Nixon|Sasse|(Rex\s*)?Tillerson',
         emailers = {
             RUDY_GIULIANI: 'disbarred formed mayor of New York City',
             TULSI_GABBARD: None,
@@ -433,7 +433,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='trump',
         style='red3 bold',
-        pattern=r"@?realDonaldTrump|\bDJ?T\b|(Donald\s+(J\.\s+)?)?Trump(ism)?|Don(ald| *Jr)(?! Rubin)|(Madeleine\s*)?Westerhout|Mar[-\s]*a[-\s]*Lago|(Marla\s*)?Maples|(Matt(hew)? )?Calamari|\bMatt C\b|Melania|Roger\s+Stone|rona",
+        pattern=r"@?realDonaldTrump|\bDJ?T\b|(Donald\s+(J\.\s+)?)?Trump(ism)?|Don(ald| *Jr)(?! Rubin)|(Madeleine\s*)?Westerhout|Mar[-\s]*a[-\s]*Lago|(Marla\s*)?Maples|(Matt(hew)? )?Calamari|\bMatt C\b|Melania|Roger\s+Stone|rona|(Alan\s*)?Weiss?elberg",
         emailers = {
             'Bruce Moskowitz': "'Trump's health guy' according to Epstein",
         }
