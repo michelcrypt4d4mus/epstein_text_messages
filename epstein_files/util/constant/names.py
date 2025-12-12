@@ -1,7 +1,7 @@
 UNKNOWN = '(unknown)'
 
 # Texting Names
-ANDRZEJ_DUDA = 'Andrzej Duda or Entourage'
+ANDRZEJ_DUDA = 'Andrzej Duda or entourage'
 ANIL_AMBANI = "Anil Ambani"
 ARDA_BESKARES = 'Arda Beskardes'
 EVA = 'Eva (Dubin?)'
