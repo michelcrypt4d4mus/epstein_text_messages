@@ -1,6 +1,7 @@
 UNKNOWN = '(unknown)'
 
 # Texting Names
+ANDRZEJ_DUDA = 'Andrzej Duda or Entourage'
 ANIL_AMBANI = "Anil Ambani"
 ARDA_BESKARES = 'Arda Beskardes'
 EVA = 'Eva (Dubin?)'
@@ -163,13 +164,13 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Carolyn',
     'Dan', 'Daniel', 'Danny', 'Darren', 'Dave', 'David',
     'Ed', 'Edward', 'Edwards', 'Epstein', 'Eric', 'Erika', 'Etienne',
-    'Faith', 'Fred', 'Fuller',
+    'Faith', 'Fred', 'Frost', 'Fuller',
     'George',
     'Heather', 'Hill',
     'Jack', 'James', 'Jay', 'Jean', 'Jeff', 'jeffrey', 'Jeremy', 'jessica', 'John', 'Jon', 'Jonathan', 'Joseph', 'Jr',
     'Kahn', 'Katherine', 'Ken',
     'Leon', 'Lesley', 'Linda', 'Link', 'Lisa',
-    'Marc', 'Marie', 'Mark', 'Martin', 'Melanie', 'Michael', 'Mike', 'Miller', 'Mitchell', 'Moskowitz',
+    'Marc', 'Marie', 'Mark', 'Martin', 'Melanie', 'Michael', 'Mike', 'Miller', 'Mitchell', 'Morris', 'Moskowitz',
     'Nancy', 'Neal', 'New',
     'Paul', 'Paula', 'Pen', 'Peter', 'Philip',
     'Randall', 'Reid', 'Richard', 'Robert', 'Roger', 'Rosenberg', 'Ross', 'Roth', 'Rubin',
