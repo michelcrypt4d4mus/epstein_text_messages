@@ -79,6 +79,8 @@ KNOWN_IMESSAGE_FILE_IDS = {
 }
 
 GUESSED_IMESSAGE_FILE_IDS = {
+    '027762': ANDRZEJ_DUDA,
+    '027774': ANDRZEJ_DUDA,
     '027221': ANIL_AMBANI,
     '025363': STEVE_BANNON,          # Trump and New York Times coverage
     '025368': STEVE_BANNON,          # Trump and New York Times coverage
