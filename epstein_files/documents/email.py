@@ -271,6 +271,7 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
     'Vahe Stepanian',                        # Random CC
 ]
 
+# Override the ._actual_text() method
 ACTUAL_TEXT = {
     '032214': 'Agreed',
     '028770': 'call me now',
