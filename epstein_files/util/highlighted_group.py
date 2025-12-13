@@ -312,7 +312,7 @@ HIGHLIGHTED_GROUPS = [
         emailers = {
             ARDA_BESKARES: 'NYC immigration attorney allegedly involved in sex-trafficking operations',
             BENNET_MOSKOWITZ: None,
-            'Brad Edwards': None,
+            'Brad Edwards': 'sued Epstein?? Rothstein Rosenfeldt Adler (Rothstein was a crook & partner of Roger Stone)',
             BRAD_KARP: 'head of the law firm Paul Weiss',
             DAVID_STERN: None,
             DAVID_SCHOEN: None,
