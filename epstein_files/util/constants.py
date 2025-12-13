@@ -154,6 +154,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     'Barry J. Cohen': re.compile(r'barry (j.? )?cohen?', re.IGNORECASE),
     BENNET_MOSKOWITZ: re.compile(r'Moskowitz.*Bennet|Bennet.*Moskowitz', re.IGNORECASE),
     BORIS_NIKOLIC: re.compile(r'(boris )?nikolic?', re.IGNORECASE),
+    BRAD_EDWARDS:  re.compile(r'Brad(ley)?( J.?)?\s*Edwards', re.IGNORECASE),
     BRAD_KARP: re.compile(r'Brad (S.? )?Karp|Karp, Brad', re.IGNORECASE),
     'Dangene and Jennie Enterprise': re.compile(r'Dangene and Jennie Enterprise?', re.IGNORECASE),
     DANNY_FROST: re.compile(r'Frost, Danny|frostd@dany.nyc.gov', re.IGNORECASE),

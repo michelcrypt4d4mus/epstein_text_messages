@@ -312,7 +312,6 @@ HIGHLIGHTED_GROUPS = [
         emailers = {
             ARDA_BESKARES: 'NYC immigration attorney allegedly involved in sex-trafficking operations',
             BENNET_MOSKOWITZ: None,
-            'Brad Edwards': 'sued Epstein?? Rothstein Rosenfeldt Adler (Rothstein was a crook & partner of Roger Stone)',
             BRAD_KARP: 'head of the law firm Paul Weiss',
             DAVID_STERN: None,
             DAVID_SCHOEN: None,
@@ -330,6 +329,13 @@ HIGHLIGHTED_GROUPS = [
             'Roy Black': 'criminal defense attorney',
             SCOTT_J_LINK: None,
             TONJA_HADDAD_COLEMAN: 'maybe daughter of Fred Haddad?',
+        }
+    ),
+    HighlightedGroup(
+        label='lawyer for victims',
+        style='dark_magenta bold',
+        emailers = {
+            BRAD_EDWARDS: 'Rothstein Rosenfeldt Adler (Rothstein was a crook & partner of Roger Stone)',
         }
     ),
     HighlightedGroup(
