@@ -79,7 +79,7 @@ def print_author_header(msg: str, color: str | None, footer: str | None = None) 
     console.print('\n', Align.center(panel))
 
     if footer:
-        console.print(Align.center(f"({footer})"), highlight=False, style=f'{color} dim italic')
+        console.print(Align.center(f"({footer})"), highlight=False, style=f'{color} italic')
 
     console.line()
 
