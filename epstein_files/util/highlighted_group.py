@@ -307,7 +307,7 @@ HIGHLIGHTED_GROUPS = [
     ),
     HighlightedGroup(
         label='lawyer',
-        style='purple4',
+        style='purple',
         pattern=r'Avenatti|(Barry (E. )?)?Krischer|(David\s*)?Boies|(Jack\s*)?Scarola|Kate Kelly|(Leon\s*)?Jaworski|Michael J. Pike|Paul,?\s*Weiss|Steptoe|Wein(berg|garten)',
         emailers = {
             ARDA_BESKARES: 'NYC immigration attorney allegedly involved in sex-trafficking operations',
