@@ -22,6 +22,7 @@ from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS, InterestingNamesHighlighter
 
+GREY_NUMBERS = [grey for grey in reversed([15, 15, 15, 19, 19, 23, 23, 27, 30, 35, 39, 39, 58])]
 DEFAULT_NAME_COLOR = 'gray46'
 SECTION_HEADER_STYLE = 'bold white on blue3'
 SOCIAL_MEDIA_LINK_STYLE = 'cadet_blue'
@@ -139,6 +140,8 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
 def print_numbered_list_of_emailers(_list: list[str | None], epstein_files = None) -> None:
     """Add the first emailed_at timestamp for this emailer if 'epstein_files' provided."""
     current_year = 1990
+    current_year_month = current_year * 12
+    grey_idx = 0
     console.line()
 
     for i, name in enumerate(_list):
@@ -147,10 +150,17 @@ def print_numbered_list_of_emailers(_list: list[str | None], epstein_files = Non
 
         if epstein_files:
             earliest_email_date = (epstein_files.earliest_email_at(name) or FALLBACK_TIMESTAMP).date()
+            year_months = (earliest_email_date.year * 12) + earliest_email_date.month
+
             # Color year rollovers more brightly
-            date_style = 'grey23' if current_year == earliest_email_date.year else 'white'
+            if current_year != earliest_email_date.year:
+                grey_idx = 0
+            elif current_year_month != year_months:
+                grey_idx = ((current_year_month - 1) % 12) + 1
+
+            current_year_month = year_months
             current_year = earliest_email_date.year
-            txt.append(escape(f"[{earliest_email_date}] "), style=date_style)
+            txt.append(escape(f"[{earliest_email_date}] "), style=f"grey{GREY_NUMBERS[grey_idx]}")
 
         txt.append(highlighter(name or UNKNOWN))
 
