@@ -86,14 +86,14 @@ EMAIL_AUTHOR_COUNTS = {
     "Jeremy Rubin": 3,
     JES_STALEY: 2,
     "Jessica Cadwell": 7,
-    "Jide Zeitlin": 3,
+    JIDE_ZEITLIN: 3,
     JOHN_BROCKMAN: 3,
     JOHN_PAGE: 2,
     JOHNNY_EL_HACHEM: 1,
-    "Joi Ito": 25,
+    JOI_ITO: 25,
     "Jokeland": 2,
-    "Jonathan Farkas": 24,
-    "Joscha Bach": 3,
+    JONATHAN_FARKAS: 24,
+    JOSCHA_BACH: 3,
     "Joshua Cooper Ramo": 1,
     "Juleanna Glover": 1,
     "Katherine Keating": 2,
@@ -184,7 +184,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Steven Pfeiffer": 2,
     "Steven Sinofsky": 2,
     "Steven Victor MD": 1,
-    "Sultan Ahmed Bin Sulayem": 15,
+    SULTAN_BIN_SULAYEM: 15,
     "Terje Rød-Larsen": 2,
     TERRY_KAFKA: 9,
     "Thorbjørn Jagland": 6,
@@ -202,9 +202,9 @@ EMAIL_AUTHOR_COUNTS = {
     "digest-noreply@quora.com": 5,
     "drsra": 1,
     "editorialstaff@flipboard.com": 13,
+    JP_MORGAN_USGIO: 13,
     "lorraine@mc2mm.com": 1,
     "middle.east.update@hotmail.com": 1,
-    JP_MORGAN_USGIO: 13
 }
 
 EMAIL_RECIPIENT_COUNTS = {
