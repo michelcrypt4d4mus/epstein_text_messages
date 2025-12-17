@@ -884,6 +884,7 @@ FILE_DESCRIPTIONS = {
     '024271': f"Brock Pierce's Blockchain Capital presentation Oct 2015",
     '024631': f"Ackrell Capital Cannabis Investment Report 2018",
     '024302': f"Carvana form 14A SEC filing proxy statement 2019-04-23",
+    '029305': f"CCH Tax Briefing on end of Defense of Marriage Act",
     '024817': f"Cowen's Collective View of CBD / Cannabis report",
     '026794': f'Deutsche Bank Global Public Affairs report: "Global Political and Regulatory Risk in 2015/2016"',
     '022361': f'Deutsche Bank Wealth Management Tax Topics 2013-05',
