@@ -705,6 +705,7 @@ DUPLICATE_FILE_IDS = {
     '030575': 'a redacted version of 030475',
     '023291': 'the same as (?) 023208',
     '031415': 'the same as 031396',
+    '029357': 'the same as (?) 028887',
 }
 
 EMAILED_ARTICLE_IDS = [
@@ -882,6 +883,7 @@ FILE_DESCRIPTIONS = {
     # misc
     '029102': HBS_APPLICATION_NERIO,
     '029104': HBS_APPLICATION_NERIO,
+    '028281': f'art show for "The House Of The Nobleman" curated by Wolfe Von Lenkiewicz & Victoria Golembiovskaya',
     '012718': f"Congressional record from 2011-06-17 about Crime Victims' Rights Act (CVRA)",
     '010617': f"Donald Trump financial disclosures from U.S. Office of Government Ethics",
     '024117': f"FAQ about anti-money laundering and terrorist financing law in the U.S.",
