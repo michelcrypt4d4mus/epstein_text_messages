@@ -94,6 +94,11 @@ class HighlightedGroup:
 
 HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
+        label='africa',
+        style='light_pink4',
+        pattern=r'Econet(\s*Wireless)|Ghana(ian)?|(South\s*)?African?|(Strive\s*)?Masiyiwa|Zimbabwe',
+    ),
+    HighlightedGroup(
         label='bitcoin',
         style='orange1 bold',
         pattern=r'Balaji|bitcoin|block ?chain( capital)?|Brock|coins?|cr[iy]?pto(currenc(y|ies))?|e-currency|(Gavin )?Andressen|(Howard\s+)?Lutnic?k|(jeffrey\s+)?wernick|Libra|Madars|(Patrick\s*)?Murck|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)',
