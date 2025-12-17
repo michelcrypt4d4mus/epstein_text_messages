@@ -1,15 +1,14 @@
 #!/usr/bin/env python
 # Search the document text AFTER all OCR fixes have been applied.
+import re
 from os import environ
-from sys import argv, exit
+from sys import exit
 
 from dotenv import load_dotenv
 from rich.highlighter import RegexHighlighter
-from rich.panel import Panel
 load_dotenv()
 environ.setdefault('PICKLED', 'true')
 
-from epstein_files.documents.email import Email
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.env import args, specified_names
 from epstein_files.util.highlighted_group import REGEX_STYLE_PREFIX
@@ -20,7 +19,7 @@ def build_highlighter(pattern: str) -> RegexHighlighter:
     class TempHighlighter(RegexHighlighter):
         """rich.highlighter that finds and colors interesting keywords based on the above config."""
         base_style = f"{REGEX_STYLE_PREFIX}."
-        highlights = [fr"(?P<lawyer>{pattern})"]
+        highlights = [re.compile(fr"(?P<lawyer>{pattern})", re.IGNORECASE)]
 
     return TempHighlighter()
 
@@ -38,13 +37,14 @@ for search_term in args.positional_args:
 
     for search_result in epstein_files.docs_matching(search_term, search_type, specified_names):
         console.line()
-        console.print(Panel(search_result.document.description(), expand=False))
-
-        if isinstance(search_result.document, Email):
-            console.print(search_result.document.info_line())
 
         if args.whole_file:
-            console.print(search_result.document.text)
+            console.print(search_result.document)
         else:
+            console.print(search_result.document.description_panel())
+
+            if search_result.document.hint_txt():
+                console.line()
+
             for line in search_result.unprefixed_lines():
                 console.print(temp_highlighter(line), style='wheat4')

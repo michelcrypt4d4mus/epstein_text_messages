@@ -66,7 +66,7 @@ def parenthesize(msg: str | Text, style: str = '') -> Text:
 
 def print_abbreviations_table() -> None:
     table = Table(title="Abbreviations Used Frequently In These Conversations", header_style="bold", show_header=False)
-    table.add_column("Abbreviation", justify="center", style='bold', width=19)
+    table.add_column("Abbreviation", justify="center", style='bold')
     table.add_column("Translation", style="white", justify="center")
 
     for k, v in HEADER_ABBREVIATIONS.items():

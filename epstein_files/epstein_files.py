@@ -120,14 +120,15 @@ class EpsteinFiles:
 
     def docs_matching(
             self,
-            _pattern: re.Pattern | str,
+            pattern: re.Pattern | str,
             file_type: Literal['all', 'other'] = 'all',
             names: list[str | None] | None = None
         ) -> list[SearchResult]:
+        """Find documents whose text matches a pattern (file_type and names args limit the documents searched)."""
         results: list[SearchResult] = []
 
         for doc in (self.all_documents() if file_type == 'all' else self.other_files):
-            lines = doc.lines_matching_txt(patternize(_pattern))
+            lines = doc.lines_matching_txt(pattern)
 
             if names and ((not isinstance(doc, (Email, MessengerLog))) or doc.author not in names):
                 continue
@@ -194,7 +195,6 @@ class EpsteinFiles:
         return sender_counts
 
     def print_files_overview(self) -> None:
-        # print_starred_header('File Type Summary', num_stars=0, num_spaces=1)
         table = Table()
         table.add_column("File Type", justify='left')
         table.add_column("Files", justify='center')
@@ -202,19 +202,19 @@ class EpsteinFiles:
         table.add_column("Author Unknown", justify='center')
         table.add_column("Duplicates", justify='center')
 
-        def add_row(label: str, documents: list, known: int | None = None, dupes: int | None = None):
+        def add_row(label: str, docs: list, known: int | None = None, dupes: int | None = None):
             table.add_row(
                 label,
-                f"{len(documents):,}",
-                NA_TXT if known is None else f"{known:,}",
-                NA_TXT if known is None else f"{len(documents) - known:,}",
-                NA_TXT if dupes is None else f"{dupes:,}",
+                f"{len(docs):,}",
+                f"{known:,}" if known else NA_TXT,
+                f"{len(docs) - known:,}" if known else NA_TXT,
+                f"{dupes:,}" if dupes else NA_TXT,
             )
 
         add_row('iMessage Logs', self.imessage_logs, self.identified_imessage_log_count)
         add_row('Emails', self.emails, len([e for e in self.emails if e.author]), len(DUPLICATE_EMAIL_IDS))
         add_row('Other', self.other_files)
-        console.print(Padding(Align.center(table)))
+        console.print(Align.center(table))
         console.line()
 
     def print_emails_for(self, _author: str | None) -> int:

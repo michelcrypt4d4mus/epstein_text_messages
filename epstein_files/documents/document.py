@@ -5,7 +5,10 @@ from pathlib import Path
 from subprocess import run
 from typing import ClassVar
 
+from rich.console import Console, ConsoleOptions, Group, RenderResult
 from rich.markup import escape
+from rich.padding import Padding
+from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.util.constant.names import UNKNOWN
@@ -14,13 +17,19 @@ from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, EPSTEINIFY, EPS
 from epstein_files.util.data import collapse_newlines, escape_single_quotes, patternize
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, file_size_str, is_local_extract_file
-from epstein_files.util.rich import console, highlighter, logger, link_text_obj, link_markup
+from epstein_files.util.rich import console, highlighter, logger, link_text_obj
 
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
 MIN_DOCUMENT_ID = 10477
 PREVIEW_CHARS = 520
+INFO_INDENT = 2
+INFO_PADDING = (0, 0, 0, INFO_INDENT)
+
+CONTENT_HINTS = {
+    '023627': "Some or all of an unpublished article by Michael Wolff written ca. 2014-2016",
+}
 
 DOC_TYPE_STYLES = {
     DOCUMENT_CLASS: 'grey69',
@@ -52,7 +61,8 @@ class Document:
     text: str = ''
     url_slug: str = field(init=False)  # e.g. 'HOUSE_OVERSIGHT_123456
 
-    file_matching_idx: ClassVar[int] = 0  # only used to cycle color of output when using lines_match()
+    # Class variable; only used to cycle color of output when using lines_match()
+    file_matching_idx: ClassVar[int] = 0
 
     def __post_init__(self):
         self.filename = self.file_path.name
@@ -67,12 +77,20 @@ class Document:
         self._set_computed_fields()
 
     def description(self) -> Text:
+        """Mostly for logging."""
         doc_type = str(type(self).__name__)
         txt = Text('').append(self.file_path.stem, style='magenta')
         txt.append(f' {doc_type} ', style=DOC_TYPE_STYLES[doc_type])
         txt.append(f"(num_lines=").append(f"{self.num_lines}", style='cyan')
         txt.append(", size=").append(file_size_str(self.file_path), style='aquamarine1')
         return txt.append(')') if doc_type == DOCUMENT_CLASS else txt
+
+    def description_panel(self) -> Group:
+        """Panelized description() with hint_txt()."""
+        renderables = [Panel(self.description(), expand=False)]
+        hint_txt = self.hint_txt()
+        renderables += [Padding(hint_txt, INFO_PADDING)] if hint_txt else []
+        return Group(*renderables)
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on epsteinify.com."""
@@ -81,6 +99,19 @@ class Document:
     def epstein_web_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on EpsteinWeb."""
         return link_text_obj(epstein_web_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
+
+    def file_info_panel(self) -> Group:
+        """Panel with filename linking to raw file plus any hints/info about the file."""
+        headers = [Panel(self.raw_document_link_txt(include_alt_link=True), border_style=self._border_style(), expand=False)]
+        file_info = self.hint_txt()
+        headers += [file_info] if file_info else []
+        headers += [Text(f"({CONTENT_HINTS[self.file_id]})", style='wheat4')] if self.file_id in CONTENT_HINTS else []
+        elements = [h if isinstance(h, Panel) else Padding(h, INFO_PADDING) for h in headers]
+        return Group(*elements)
+
+    def hint_txt(self) -> Text | None:
+        """Secondary info about this file (recipients, level of certainty, etc). Overload in subclasses."""
+        return None
 
     def highlighted_preview_text(self) -> Text:
         try:
@@ -115,6 +146,7 @@ class Document:
         return WHITESPACE_REGEX.sub(' ', self.text)[0:PREVIEW_CHARS]
 
     def raw_document_link_txt(self, style: str = '', include_alt_link: bool = False) -> Text:
+        """Returns colored links to epsteinify and and epsteinweb in a Text object."""
         txt = Text('', style='white' if include_alt_link else ARCHIVE_LINK_COLOR)
 
         if args.use_epstein_web_links:
@@ -156,6 +188,10 @@ class Document:
 
         logger.warning(f"Wrote {self.length} chars of cleaned {self.filename} to {output_path}.")
 
+    def _border_style(self) -> str:
+        """Should be implemented in subclasses."""
+        return 'white'
+
     def _load_file(self):
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
         with open(self.file_path) as f:
@@ -170,6 +206,11 @@ class Document:
         self.length = len(self.text)
         self.lines = self.text.split('\n')
         self.num_lines = len(self.lines)
+
+    def __rich_console__(self, _console: Console, _options: ConsoleOptions) -> RenderResult:
+        yield self.file_info_panel()
+        text_panel = Panel(highlighter(self.text), border_style=self._border_style(), expand=False)
+        yield Padding(text_panel, (0, 0, 1, INFO_INDENT))
 
     def __str__(self) -> str:
         return self.description().plain
@@ -210,6 +251,7 @@ class Document:
 
 @dataclass
 class CommunicationDocument(Document):
+    """Superclass for Email and MessengerLog."""
     author: str | None = None
     author_str: str = field(init=False)
     author_style: str = field(init=False)
@@ -220,12 +262,14 @@ class CommunicationDocument(Document):
         super().__post_init__()
         self._repair()
         self._extract_author()
+        self.author_txt = Text(self.author_str, style=self.author_style)
         self.timestamp = self._extract_timestamp()
 
     def author_or_unknown(self) -> str:
         return self.author or UNKNOWN
 
     def description(self) -> Text:
+        """One line summary mostly for logging."""
         txt = super().description()
         txt.append(f", timestamp=").append(str(self.timestamp), style='dim dark_cyan')
         txt.append(f", author=").append(self.author_str, style=self.author_style)

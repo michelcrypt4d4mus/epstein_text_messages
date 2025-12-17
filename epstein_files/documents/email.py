@@ -11,7 +11,7 @@ from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
 
-from epstein_files.documents.document import CommunicationDocument
+from epstein_files.documents.document import INFO_INDENT, INFO_PADDING, CommunicationDocument
 from epstein_files.documents.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX, FIELD_NAMES,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TIME_REGEX, EmailHeader)
 from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
@@ -40,12 +40,6 @@ SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:
 MAX_CHARS_TO_PRINT = 4000
 MAX_QUOTED_REPLIES = 2
 VALID_HEADER_LINES = 14
-INFO_INDENT = 2
-INFO_PADDING = (0, 0, 0, INFO_INDENT)
-
-CONTENT_HINTS = {
-    '023627': "Some or all of an unpublished article by Michael Wolff written ca. 2014-2016",
-}
 
 FILE_IDS_WITH_BAD_FIRST_LINES = [
     '026652',
@@ -332,7 +326,7 @@ class Email(CommunicationDocument):
             if i >= n:
                 return match.end() - 1
 
-    def info_line(self) -> Text:
+    def hint_txt(self) -> Text:
         txt = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(f' to ')
         return txt.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
 
@@ -389,7 +383,7 @@ class Email(CommunicationDocument):
         else:
             style = self.author_style
 
-        return style.replace('bold', '')
+        return style.replace('bold', '').strip()
 
     def _cleaned_up_text(self) -> str:
         """Add newline after headers in text if actual header wasn't 'empty', remove bad lines, etc."""
@@ -419,7 +413,6 @@ class Email(CommunicationDocument):
 
         self.author_str = self.author or UNKNOWN
         self.author_style = get_style_for_name(self.author_str)
-        self.author_txt = Text(self.author_str, style=self.author_style)
 
     def _extract_header(self) -> None:
         """Extract an EmailHeader object from the OCR text."""
@@ -556,12 +549,7 @@ class Email(CommunicationDocument):
             yield txt.append(' (which is shown)\n')
             return
 
-        yield Panel(self.raw_document_link_txt(), border_style=self._border_style(), expand=False)
-        yield Padding(self.info_line(), INFO_PADDING)
-
-        if self.file_id in CONTENT_HINTS:
-            yield Padding(Text(f"({CONTENT_HINTS[self.file_id]})", style='wheat4'), INFO_PADDING)
-
+        yield self.file_info_panel()
         text = self.text
         quote_cutoff = self.idx_of_nth_quoted_reply(text=text)  # Trim if there's many quoted replies
         num_chars = MAX_CHARS_TO_PRINT
