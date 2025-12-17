@@ -26,7 +26,7 @@ MIN_DOCUMENT_ID = 10477
 PREVIEW_CHARS = 520
 INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
-MICHAEL_WOLFF_ARTICLE_HINT = "Some or all of an unpublished article by Michael Wolff written ca. 2014-2016"
+MICHAEL_WOLFF_ARTICLE_HINT = "Draft of an unpublished article about Epstein by Michael Wolff written ca. 2014-2016"
 
 CONTENT_HINTS = {
     '022707': MICHAEL_WOLFF_ARTICLE_HINT,
