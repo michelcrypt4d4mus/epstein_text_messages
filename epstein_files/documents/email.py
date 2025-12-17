@@ -321,6 +321,7 @@ class Email(CommunicationDocument):
         self.text = self._cleaned_up_text()
         self.actual_text = self._actual_text()
         self.sent_from_device = self._sent_from_device()
+        self.hint_txt = self.info_line()
         self.is_duplicate = self.file_id in DUPLICATE_EMAIL_IDS
         self.is_junk_mail = self.author in JUNK_EMAILERS
 
@@ -557,7 +558,7 @@ class Email(CommunicationDocument):
             return
 
         yield Panel(self.raw_document_link_txt(), border_style=self._border_style(), expand=False)
-        yield Padding(self.info_line(), INFO_PADDING)
+        yield Padding(self.hint_txt, INFO_PADDING)
 
         if self.file_id in CONTENT_HINTS:
             yield Padding(Text(f"({CONTENT_HINTS[self.file_id]})", style='wheat4'), INFO_PADDING)

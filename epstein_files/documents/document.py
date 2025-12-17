@@ -214,6 +214,7 @@ class CommunicationDocument(Document):
     author_str: str = field(init=False)
     author_style: str = field(init=False)
     author_txt: Text = field(init=False)
+    hint_txt: Text = field(init=False)
     timestamp: datetime = field(init=False)
 
     def __post_init__(self):
