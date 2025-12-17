@@ -167,6 +167,7 @@ HIGHLIGHTED_GROUPS = [
         style='deep_sky_blue4',
         pattern='Merwin',
         emailers = {
+            'Alfredo Rodriguez': "Epstein's butler, stole the journal",
             ERIC_ROTH: 'jet decorator',
             GWENDOLYN_BECK: 'Epstein fund manager in the 90s',
             JEAN_HUGUEN: 'interior design at Alberto Pinto Cabinet',
@@ -340,7 +341,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='lawyer for victims',
         style='dark_magenta bold',
-        pattern=r'Paul\s*(G.\s*)?Cassell',
+        pattern=r'Paul\s*(G.\s*)?Cassell|Rothstein\s*Rosenfeldt\s*Adler|(Scott\s*)?Rothstein',
         emailers = {
             BRAD_EDWARDS: 'Rothstein Rosenfeldt Adler (Rothstein was a crook & partner of Roger Stone)',
             JACK_SCAROLA: 'Searcy Denney Scarola Barnhart & Shipley',
