@@ -335,6 +335,13 @@ class OtherFile(Document):
     def _extract_timestamp(self) -> datetime | None:
         timestamps: list[datetime] = []
 
+        # Check for configured values
+        if self.file_id in FILE_DESCRIPTIONS:
+            timestamp = extract_datetime(FILE_DESCRIPTIONS[self.file_id])
+
+            if timestamp and (timestamp.date != 1 or timestamp.month != 1):
+                return timestamp
+
         try:
             for i, timestamp in enumerate(datefinder.find_dates(self.text, strict=True)):
                 logger.debug(f"{self.file_id}: Found {ordinal_str(i + 1)} timestamp '{timestamp}'...")
@@ -347,13 +354,6 @@ class OtherFile(Document):
                     break
         except ValueError as e:
             logger.error(f"Error while iterating with datefinder: {e}")
-
-        # Fall back to configured values
-        if self.file_id in FILE_DESCRIPTIONS:
-            timestamp = extract_datetime(FILE_DESCRIPTIONS[self.file_id])
-
-            if timestamp and (timestamp.date != 1 or timestamp.month != 1):
-                return timestamp
 
         sorted_date_strs = [str(dt) for dt in sorted(timestamps)]
         logger.warning(f"{self.file_id}: Found {len(timestamps)} timestamps:\n    " + '\n     '.join(sorted_date_strs))

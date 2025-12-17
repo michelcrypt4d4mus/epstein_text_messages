@@ -349,7 +349,7 @@ class EpsteinFiles:
                 logger.warning(f"Skipping {doc.description()} because --output-unlabeled")
                 continue
 
-            table.add_row(link, doc.date_str() or NA_TXT, f"{doc.length:,}", preview_text)
+            table.add_row(link, highlighter(doc.date_str() or NA_TXT), f"{doc.length:,}", preview_text)
 
         console.print(table)
 

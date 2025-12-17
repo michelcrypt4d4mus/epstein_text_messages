@@ -11,7 +11,7 @@ from dateutil.parser import parse
 from epstein_files.util.constant import names
 from epstein_files.util.env import args, logger
 
-ISO_DATE_REGEX = re.compile(r'\d{4}(-\d{2}(-\d{2})?)?')
+ISO_DATE_REGEX = re.compile(r'\d{4}-\d{2}(-\d{2})?')
 MULTINEWLINE_REGEX = re.compile(r"\n{2,}")
 CONSTANT_VAR_REGEX = re.compile(r"^[A-Z_]+$")
 ALL_NAMES = [v for k, v in vars(names).items() if isinstance(v, str) and CONSTANT_VAR_REGEX.match(k)]
