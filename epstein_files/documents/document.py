@@ -13,8 +13,8 @@ from rich.text import Text
 
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, EPSTEINIFY, EPSTEIN_WEB, epsteinify_doc_url, epstein_web_doc_url
-from epstein_files.util.constants import FILE_DESCRIPTIONS
+from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, EPSTEINIFY, EPSTEIN_WEB, epsteinify_doc_link_txt, epsteinify_doc_url, epstein_web_doc_url
+from epstein_files.util.constants import DUPLICATE_FILE_IDS, FILE_DESCRIPTIONS
 from epstein_files.util.data import collapse_newlines, escape_single_quotes, patternize
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, file_size_str, is_local_extract_file
@@ -89,6 +89,14 @@ class Document:
 
     def document_type_style(self) -> str:
         return DOC_TYPE_STYLES[self._document_type()]
+
+    def duplicate_file_txt(self) -> Text:
+        """If the file is a dupe (exists in DUPLICATE_FILE_IDS) make a nice message."""
+        supression_reason = DUPLICATE_FILE_IDS[self.file_id]
+        reason_msg = ' '.join(supression_reason.split()[0:-1])
+        txt = Text(f"Not showing ", style='dim').append(epsteinify_doc_link_txt(self.file_id, style='cyan'))
+        txt.append(f" because it's {reason_msg} {build_filename_for_id(supression_reason.split()[-1])}")
+        return txt
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on epsteinify.com."""
@@ -234,6 +242,7 @@ class Document:
         elif files[0] == files[1]:
             raise RuntimeError(f"Filenames are the same!")
 
+        files = [f"{HOUSE_OVERSIGHT_PREFIX}{f}" if len(f) == 6 else f for f in files]
         files = [f if f.endswith('.txt') else f"{f}.txt" for f in files]
         tmpfiles = [Path(f"tmp_{f}") for f in files]
         docs = [Document(DOCS_DIR.joinpath(f)) for f in files]

@@ -315,7 +315,7 @@ class Email(CommunicationDocument):
         self.text = self._cleaned_up_text()
         self.actual_text = self._actual_text()
         self.sent_from_device = self._sent_from_device()
-        self.is_duplicate = self.file_id in DUPLICATE_EMAIL_IDS
+        self.is_duplicate = self.file_id in DUPLICATE_FILE_IDS
         self.is_junk_mail = self.author in JUNK_EMAILERS
 
     def idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES, text: str | None = None) -> int | None:
@@ -541,12 +541,9 @@ class Email(CommunicationDocument):
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         logger.debug(f"Printing '{self.filename}'...")
 
-        if self.file_id in DUPLICATE_EMAIL_IDS:
-            supression_reason = DUPLICATE_EMAIL_IDS[self.file_id]
-            reason_msg = ' '.join(supression_reason.split()[0:-1])
-            txt = Text(f"Not showing ", style='dim').append(epsteinify_doc_link_txt(self.file_id, style='cyan'))
-            txt.append(f" because it's {reason_msg} {build_filename_for_id(supression_reason.split()[-1])}")
-            yield txt.append(' (which is shown)\n')
+        if self.file_id in DUPLICATE_FILE_IDS:
+            yield self.duplicate_file_txt()
+            yield Text('')
             return
 
         yield self.file_info_panel()
