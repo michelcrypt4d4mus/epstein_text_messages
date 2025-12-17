@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # Search the document text AFTER all OCR fixes have been applied.
+import re
 from os import environ
 from sys import exit
 
@@ -18,7 +19,7 @@ def build_highlighter(pattern: str) -> RegexHighlighter:
     class TempHighlighter(RegexHighlighter):
         """rich.highlighter that finds and colors interesting keywords based on the above config."""
         base_style = f"{REGEX_STYLE_PREFIX}."
-        highlights = [fr"(?P<lawyer>{pattern})"]
+        highlights = [re.compile(fr"(?P<lawyer>{pattern})", re.IGNORECASE)]
 
     return TempHighlighter()
 
