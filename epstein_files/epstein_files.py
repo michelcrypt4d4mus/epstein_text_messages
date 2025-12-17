@@ -83,7 +83,9 @@ class EpsteinFiles:
                 logger.info(f"Unknown file type: {document.description().plain}")
                 self.other_files.append(document)
 
+        self.emails = sorted(self.emails, key=lambda f: f.timestamp)
         self.imessage_logs = sorted(self.imessage_logs, key=lambda f: f.timestamp)
+        self.other_files = sorted(self.other_files, key=lambda f: f.file_id)
         self.identified_imessage_log_count = len([log for log in self.imessage_logs if log.author])
 
     @classmethod
