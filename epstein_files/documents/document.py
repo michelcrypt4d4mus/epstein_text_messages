@@ -94,15 +94,13 @@ class Document:
         return link_text_obj(epstein_web_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
 
     def file_info_panel(self) -> Group:
+        """Panel with links to raw file plus any hints/info about the file."""
         headers = [Panel(self.raw_document_link_txt(), border_style=self._border_style(), expand=False)]
-        hint = self.hint_txt()
-        headers += [hint] if hint else []
+        file_info = self.hint_txt()
+        headers += [file_info] if file_info else []
         headers += [Text(f"({CONTENT_HINTS[self.file_id]})", style='wheat4')] if self.file_id in CONTENT_HINTS else []
-
-        return Group(*[
-            element if isinstance(element, Panel) else Padding(element, INFO_PADDING)
-            for element in headers
-        ])
+        elements = [h if isinstance(h, Panel) else Padding(h, INFO_PADDING) for h in headers]
+        return Group(*elements)
 
     def hint_txt(self) -> Text | None:
         """Secondary info about this file (recipients, level of certainty, etc). Overload in subclasses."""
