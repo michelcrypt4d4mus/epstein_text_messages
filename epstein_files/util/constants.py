@@ -724,6 +724,7 @@ EMAILED_ARTICLE_IDS = [
 
 # Descriptions of non-email, non-text message files
 DEEP_THINKING_HINT = 'book: "Deep Thinking: Twenty-Five Ways of Looking at AI" by John Brockman'
+EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} and Paul Cassell v. {ALAN_DERSHOWITZ}"
 KEN_STARR_LETTER = f"letter from {KEN_STARR} to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta",
 MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014-2016"
 NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight" by {EHUD_BARAK}?'
@@ -771,17 +772,27 @@ FILE_DESCRIPTIONS = {
     '023638': f'magazine interview with {PAUL_KRASSNER}',
     '028481': f'photo of NYT article about Steve Bannon',
     '025328': f"scan of NYT page with articles about radio host Bob Fass and Robert Durst",
+    '025610': f'The Shimon Post (selection of articles in NYT etc. about the mideast ca. 2011-04-03)',
+    '030531': f'The Shimon Post (selection of articles in NYT etc. about the mideast ca. 2011-04-20)',
+    '018085': f'The Shimon Post (selection of articles in Guardian, NYer, etc. about the mideast ca. 2011-06)',
     # court docs
+    '010723': KEN_STARR_LETTER,
+    '010732': KEN_STARR_LETTER,
     '012135': KEN_STARR_LETTER,
     '025704': KEN_STARR_LETTER,
     '025353': KEN_STARR_LETTER,
     '010757': VIRGINIA_FILING,
     '015529': VIRGINIA_FILING,
+    '025939': f'affidavit of Jane Doe describing being raped by Epstein',
+    '010887': f"court filing in {EDWARDS_V_DERSHOWITZ}",
+    '010566': f"court filing in Epstein v. Scott Rothstein and {BRAD_EDWARDS}",
     '018872': f"FBI seized property inventory (redacted)",
+    '019352': f"FBI report on Epstein investigation (redacted)",
     '012197': f"letter from DOJ to {JAY_LEFKOWITZ} about Epstein's prosecution agreement",
     '010560': f"letter from Gloria Allred to {SCOTT_J_LINK} alleging abuse of a girl from Kansas",
+    '020662': f"letter to Daily Mail threatening libel lawsuit from {ALAN_DERSHOWITZ}'s British lawyers Mishcon de Reya",
     '013304': f"motion filed in response to Epstein's lawsuit against {BRAD_EDWARDS}",
-    '021824': f"transcript of deposition of Paul Cassell in case of {BRAD_EDWARDS} and Paul Cassell v. {ALAN_DERSHOWITZ}",
+    '021824': f"transcript of deposition of Paul Cassell in {EDWARDS_V_DERSHOWITZ}",
     # conferences
     '014315': f'BofA / Merrill Lynch 2016 Future of Financials Conference report',
     '017526': f'Intellectual Jazz conference brochure',
@@ -792,18 +803,17 @@ FILE_DESCRIPTIONS = {
     '025296': f'Laffer Associates report from 2016-07 predicting Trump win',
     '012048': f'press release "Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm" and other articles',
     '033338': f"press release on June 7th, 2000 announcing Donald Trump & {NICHOLAS_RIBIS} ended their working relationship at Trump's casino",
+    '020447': f'Promoting Constructive Vigilance: Report of the Working Group on Chinese Influence Activities in the U.S. (Hoover Group/Stanford 2018)',
     '025247': f'UBS CIO Monthly Extended November 2012',
+    '020824': f"USA Inc: A Basic Summary of America's Financial Statements compiled by Mary Meeker",
     # letters
     '022405': f"letter from {NOAM_CHOMSKY} attesting to Epstein's good character",
     '026134': f'letter to someone named George about investment opportunities in the Ukraine banking sector',
     '019086': f"letter from David Blaine recommending visa approval for a Russian model 'Svet' (Svetlana Pozhidaeva?) naming Putin puppets",
     # misc
     '012718': f"Congressional record from 2011-06-17 about Crime Victims' Rights Act (CVRA)",
-    '024432': "Michael Milken's Knowledge Universe Education (KUE) $1,000,000 corporate share placement notice (SEC filing?)",
-    '025939': 'affidavit of Jane Doe describing being raped by Epstein',
-    '025610': 'The Shimon Post (selection of articles in NYT etc. about the mideast ca. 2011-04-03)',
-    '030531': 'The Shimon Post (selection of articles in NYT etc. about the mideast ca. 2011-04-20)',
-    '018085': 'The Shimon Post (selection of articles in Guardian, NYer, etc. about the mideast ca. 2011-06)',
-    '011170': 'tweets about #Brexit collected by InsightsPod',
-    '031743': 'few pages describing the internet as a "New Nation State"',
+    '010617': f"Donald Trump financial disclosures from U.S. Office of Government Ethics",
+    '031743': f'few pages describing the internet as a "New Nation State" (Network State?)',
+    '024432': f"Michael Milken's Knowledge Universe Education (KUE) $1,000,000 corporate share placement notice (SEC filing?)",
+    '011170': f'tweets about #Brexit collected by InsightsPod',
 }
