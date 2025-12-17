@@ -729,6 +729,7 @@ KEN_STARR_LETTER = f"letter from {KEN_STARR} to judge overseeing Epstein's crimi
 MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014-2016"
 NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight" by {EHUD_BARAK}?'
 PATTERSON_BOOK_SCANS = f'scans of pages of "Filthy Rich: The Shocking True Story of Jeffrey Epstein" by James Patterson'
+SHIMON_POST = 'The Shimon Post selection of articles in NYT etc. about the mideast '
 VIRGINIA_FILING = f"court filings from Virginia Giuffre's lawsuit against Epstein (and {ALAN_DERSHOWITZ}?)"
 
 FILE_DESCRIPTIONS = {
@@ -755,6 +756,7 @@ FILE_DESCRIPTIONS = {
     '018232': f'book: "The Seventh Sense: Power, Fortune & Survival in the Age of Networks" by Joshua Cooper Ramo',
     '020153': f'book: "The Snowden Affair: A Spy Story In Six Parts" by {EDWARD_EPSTEIN}',
     '021120': f'chapter of "Siege: Trump Under Fire" by {MICHAEL_WOLFF}',
+    '031533': 'few pages from book about the Baylor University sexual assault scandal and Sam Ukwuachu',
     # articles
     '022707': MICHAEL_WOLFF_ARTICLE_HINT,
     '022727': MICHAEL_WOLFF_ARTICLE_HINT,
@@ -765,6 +767,12 @@ FILE_DESCRIPTIONS = {
     '022952': MICHAEL_WOLFF_ARTICLE_HINT,
     '023627': MICHAEL_WOLFF_ARTICLE_HINT,
     '024229': MICHAEL_WOLFF_ARTICLE_HINT,
+    '025610': f'{SHIMON_POST} 2011-04-03',
+    '030531': f'{SHIMON_POST} 2011-04-20',
+    '030531': f'{SHIMON_POST} 2011-05-16',
+    '018085': f'{SHIMON_POST} 2011-06-07',
+    '031876': f'{SHIMON_POST} 2011-06-14',
+    '032171': f'{SHIMON_POST} 2011-06-26',
     '031186': f'article about rape accusations against Trump',
     '024256': f'article by {JOI_ITO}: "Internet & Society: The Technologies and Politics of Control',
     '019212': f'article in The Times Tribune and WaPo about Bannon, Trump, and healthcare execs',
@@ -772,9 +780,6 @@ FILE_DESCRIPTIONS = {
     '023638': f'magazine interview with {PAUL_KRASSNER}',
     '028481': f'photo of NYT article about Steve Bannon',
     '025328': f"scan of NYT page with articles about radio host Bob Fass and Robert Durst",
-    '025610': f'The Shimon Post (selection of articles in NYT etc. about the mideast ca. 2011-04-03)',
-    '030531': f'The Shimon Post (selection of articles in NYT etc. about the mideast ca. 2011-04-20)',
-    '018085': f'The Shimon Post (selection of articles in Guardian, NYer, etc. about the mideast ca. 2011-06)',
     # court docs
     '010723': KEN_STARR_LETTER,
     '010732': KEN_STARR_LETTER,
@@ -786,6 +791,7 @@ FILE_DESCRIPTIONS = {
     '025939': f'affidavit of Jane Doe describing being raped by Epstein',
     '010887': f"court filing in {EDWARDS_V_DERSHOWITZ}",
     '010566': f"court filing in Epstein v. Scott Rothstein and {BRAD_EDWARDS}",
+    '032321': f"court filing in Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}",
     '018872': f"FBI seized property inventory (redacted)",
     '019352': f"FBI report on Epstein investigation (redacted)",
     '012197': f"letter from DOJ to {JAY_LEFKOWITZ} about Epstein's prosecution agreement",
