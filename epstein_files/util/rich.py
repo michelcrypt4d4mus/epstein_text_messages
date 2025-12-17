@@ -126,7 +126,7 @@ def print_header(epstein_files: 'EpsteinFiles') -> None:
     console.line(2)
     epstein_files.print_files_overview()
     print_color_key()
-    print_centered(f"If you think there's an attribution error or can deanonymize an {UNKNOWN} contact {link_markup('https://x.com/cryptadamist', '@cryptadamist')}.", 'grey46')
+    print_centered(f"if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {link_markup('https://x.com/cryptadamist', '@cryptadamist')}", 'grey46')
     print_centered('note this site is based on the OCR text provided by Congress which is not always the greatest', 'grey23')
     print_centered(f"(thanks to {link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} + others for help attributing redacted emails)")
     print_centered_link(ATTRIBUTIONS_URL, "(some explanations of author attributions)", style='magenta')
@@ -144,10 +144,10 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
 
 def print_list(txts: list[Text], join='  '):
     """Print list in one line."""
-    txt = Text('(').append(txts.pop()).append(')')
+    txt = Text('[').append(txts.pop()).append(']')
 
     for t in txts:
-        txt.append(join).append('(').append(t).append(')')
+        txt.append(join).append('[').append(t).append(']')
 
     print_centered(txt)
 
