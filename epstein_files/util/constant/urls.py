@@ -79,3 +79,6 @@ def link_text_obj(url: str, link_text: str | None = None, style: str = ARCHIVE_L
 
 def search_coffeezilla_link(text: str, link_txt: str, style: str = ARCHIVE_LINK_COLOR) -> Text:
     return link_text_obj(search_coffeezilla_url(text), link_txt or text, style)
+
+
+CRYPTADAMUS_TWITTER = link_markup('https://x.com/cryptadamist', '@cryptadamist')

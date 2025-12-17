@@ -25,6 +25,7 @@ from epstein_files.util.highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS,
 GREY_NUMBERS = [grey for grey in reversed([15, 15, 15, 19, 19, 23, 23, 27, 30, 35, 39, 39, 58])]
 DEFAULT_NAME_COLOR = 'gray46'
 SECTION_HEADER_STYLE = 'bold white on blue3'
+SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 SOCIAL_MEDIA_LINK_STYLE = ARCHIVE_LINK_COLOR + ' bold'
 TITLE_STYLE = 'black on bright_white bold'
 NUM_COLOR_KEY_COLS = 4
@@ -113,24 +114,12 @@ def print_header(epstein_files: 'EpsteinFiles') -> None:
     console.print(f"This site isn't optimized for mobile but if you get past the header it should be readable.", style='dim')
     print_page_title()
     print_other_site_link()
+    _print_external_links()
     console.line()
     print_abbreviations_table()
-    console.line()
-    print_starred_header('External Links', num_stars=0, num_spaces=25)
-    presser_link = link_text_obj(OVERSIGHT_REPUBLICANS_PRESSER_URL, 'Official Oversight Committee Press Release')
-    raw_docs_link = join_text([link_text_obj(RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL, 'raw files', style=f"{ARCHIVE_LINK_COLOR} dim")], encloser='()')
-    print_centered(join_text([presser_link, raw_docs_link]))
-    print_centered(link_markup(JMAIL_URL, JMAIL) + " (read His Emails via Gmail interface)")
-    print_centered(link_markup(COFFEEZILLA_ARCHIVE_URL, 'Archive Of Epstein Materials') + " (Coffeezilla)")
-    print_centered(link_markup(COURIER_NEWSROOM_ARCHIVE_URL, 'Searchable Archive') + " (Courier Newsroom)")
-    print_centered(link_markup(EPSTEINIFY_URL) + " (raw document images)")
-    print_centered(link_markup(EPSTEIN_WEB_URL) + " (character summaries)")
-
-
-    console.line(2)
     epstein_files.print_files_overview()
     print_color_key()
-    print_centered(f"if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {link_markup('https://x.com/cryptadamist', '@cryptadamist')}", 'grey46')
+    print_centered(f"if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {CRYPTADAMUS_TWITTER}", 'grey46')
     print_centered('note this site is based on the OCR text provided by Congress which is not always the greatest', 'grey23')
     print_centered(f"(thanks to {link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} + others for help attributing redacted emails)")
     print_centered_link(ATTRIBUTIONS_URL, "(some explanations of author attributions)", style='magenta')
@@ -225,13 +214,13 @@ def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centere
 
 
 def print_social_media_links() -> None:
-    print_centered_link(SUBSTACK_URL, "I Made Epstein's Text Messages Great Again (And You Should Read Them)", style=f'chartreuse1 bold')
-    print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style='dark_sea_green4 dim')
+    print_centered_link(SUBSTACK_URL, "I Made Epstein's Text Messages Great Again (And You Should Read Them)", style=f'{SUBSTACK_POST_LINK_STYLE} bold')
+    print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style=f'{SUBSTACK_POST_LINK_STYLE} dim')
 
     social_links = [
         link_text_obj('https://cryptadamus.substack.com/', 'substack', style=SOCIAL_MEDIA_LINK_STYLE),
         link_text_obj('https://universeodon.com/@cryptadamist/115572634993386057', 'mastodon', style=SOCIAL_MEDIA_LINK_STYLE),
-        link_text_obj('https://x.com/Cryptadamist/status/1990866804630036988', 'twitter', style=SOCIAL_MEDIA_LINK_STYLE),
+        link_text_obj('https://x.com/Cryptadamist/status/1990866804630036988', '@cryptadamist', style=SOCIAL_MEDIA_LINK_STYLE),
     ]
 
     print_centered(join_text(social_links, join='     ', encloser='[]'))
@@ -251,11 +240,11 @@ def join_text(txts: list[Text], join: str = ' ', encloser: str = '') -> Text:
     return txt
 
 
-def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2) -> None:
+def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, style: str = TITLE_STYLE) -> None:
     stars = '*' * num_stars
     spaces = ' ' * num_spaces
     msg = f"{spaces}{stars} {msg} {stars}{spaces}"
-    print_centered(wrap_in_markup_style(msg, TITLE_STYLE))
+    print_centered(wrap_in_markup_style(msg, style))
 
 
 def vertically_pad(obj: RenderableType, amount: int = 1) -> Padding:
@@ -287,6 +276,19 @@ def write_html(output_path: Path) -> None:
 
     console.save_html(output_path, code_format=CONSOLE_HTML_FORMAT, theme=HTML_TERMINAL_THEME)
     logger.warning(f"Wrote {file_size_str(output_path)} to '{output_path}'")
+
+
+def _print_external_links() -> None:
+    console.line()
+    print_starred_header('External Links', num_stars=0, num_spaces=20, style=f"italic")
+    presser_link = link_text_obj(OVERSIGHT_REPUBLICANS_PRESSER_URL, 'Official Oversight Committee Press Release')
+    raw_docs_link = join_text([link_text_obj(RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL, 'raw files', style=f"{ARCHIVE_LINK_COLOR} dim")], encloser='()')
+    print_centered(join_text([presser_link, raw_docs_link]))
+    print_centered(link_markup(JMAIL_URL, JMAIL) + " (read His Emails via Gmail interface)")
+    print_centered(link_markup(COFFEEZILLA_ARCHIVE_URL, 'Archive Of Epstein Materials') + " (Coffeezilla)")
+    print_centered(link_markup(COURIER_NEWSROOM_ARCHIVE_URL, 'Searchable Archive') + " (Courier Newsroom)")
+    print_centered(link_markup(EPSTEINIFY_URL) + " (raw document images)")
+    print_centered(link_markup(EPSTEIN_WEB_URL) + " (character summaries)")
 
 
 if args.deep_debug:

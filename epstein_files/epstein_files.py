@@ -194,7 +194,7 @@ class EpsteinFiles:
         return sender_counts
 
     def print_files_overview(self) -> None:
-        print_starred_header('File Type Summary', num_stars=0, num_spaces=20)
+        # print_starred_header('File Type Summary', num_stars=0, num_spaces=1)
         table = Table()
         table.add_column("File Type", justify='left')
         table.add_column("Total Count", justify='center')
