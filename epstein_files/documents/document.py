@@ -201,6 +201,8 @@ class Document:
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield self.file_info_panel()
+        text_panel = Panel(highlighter(self.text), border_style=self._border_style(), expand=False)
+        yield Padding(text_panel, (0, 0, 1, INFO_INDENT))
 
     def __str__(self) -> str:
         return self.description().plain
