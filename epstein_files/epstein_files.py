@@ -14,7 +14,7 @@ from rich.padding import Padding
 from rich.table import Table
 from rich.text import Text
 
-from epstein_files.documents.document import Document, SearchResult
+from epstein_files.documents.document import Document, OtherFile, SearchResult
 from epstein_files.documents.email import DETECT_EMAIL_REGEX, JUNK_EMAILERS, KRASSNER_RECIPIENTS, USELESS_EMAILERS, Email
 from epstein_files.documents.email_header import AUTHOR
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
@@ -40,7 +40,7 @@ class EpsteinFiles:
     all_files: list[Path] = field(init=False)
     emails: list[Email] = field(default_factory=list)
     imessage_logs: list[MessengerLog] = field(default_factory=list)
-    other_files: list[Document] = field(default_factory=list)
+    other_files: list[OtherFile] = field(default_factory=list)
     # Analytics / calculations
     email_author_counts: dict[str | None, int] = field(default_factory=lambda: defaultdict(int))
     email_authors_to_device_signatures: dict[str, set] = field(default_factory=lambda: defaultdict(set))
@@ -81,11 +81,11 @@ class EpsteinFiles:
                     self.email_device_signatures_to_authors[email.sent_from_device].add(email.author_or_unknown())
             else:
                 logger.info(f"Unknown file type: {document.description().plain}")
-                self.other_files.append(document)
+                self.other_files.append(OtherFile(file_arg))
 
         self.emails = sorted(self.emails, key=lambda f: f.timestamp)
         self.imessage_logs = sorted(self.imessage_logs, key=lambda f: f.timestamp)
-        self.other_files = sorted(self.other_files, key=lambda f: f.file_id)
+        self.other_files = sorted(self.other_files, key=lambda f: [f.get_timestamp(), f.file_id])
         self.identified_imessage_log_count = len([log for log in self.imessage_logs if log.author])
 
     @classmethod
