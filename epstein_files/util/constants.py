@@ -857,6 +857,8 @@ FILE_DESCRIPTIONS = {
     '025663': f'Goldman Sachs Nov 2017 report "An Overview of the Current State of Cryptocurrencies and Blockchain"',
     '026944': f'Goldman Sachs Investment Management Division 2019-05-23 report "Risk of a US-Iran Military Conflict and Other Geopolitical Risks"',
     '026909': f'Goldman Sachs Investment Management Division 2018-10-14 report "The Unsteady Undertow Commands the Seas (Temporarily)"',
+    '026679': f'Invesco report: "Global Sovereign Asset Management Study 2017"',
+    '026584': f'article from 2009 about tax implications of disregarded entities',
     '030848': f"JP Morgan report on Global Asset Allocation dated 2013-03-28",
     '030010': f"{JP_MORGAN_EYE_ON_THE_MARKET} 2011-06-14",
     '030808': f"{JP_MORGAN_EYE_ON_THE_MARKET} 2011-07-11",
@@ -883,7 +885,7 @@ FILE_DESCRIPTIONS = {
     # misc
     '029102': HBS_APPLICATION_NERIO,
     '029104': HBS_APPLICATION_NERIO,
-    '028281': f'art show for "The House Of The Nobleman" curated by Wolfe Von Lenkiewicz & Victoria Golembiovskaya',
+    '028281': f'art show flier for "The House Of The Nobleman" curated by Wolfe Von Lenkiewicz & Victoria Golembiovskaya',
     '012718': f"Congressional record from 2011-06-17 about Crime Victims' Rights Act (CVRA)",
     '010617': f"Donald Trump financial disclosures from U.S. Office of Government Ethics",
     '024117': f"FAQ about anti-money laundering and terrorist financing law in the U.S.",
