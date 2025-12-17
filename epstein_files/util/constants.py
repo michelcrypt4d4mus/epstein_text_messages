@@ -1,6 +1,7 @@
 import csv
 import re
 from copy import deepcopy
+from datetime import datetime
 from io import StringIO
 
 from dateutil.parser import parse
@@ -554,6 +555,18 @@ KNOWN_EMAIL_RECIPIENTS = {
     '019334': STEVE_BANNON,
     '021106': STEVE_BANNON,     # Reply
     # '032213': Probably MIRO or Reid Weingarten based on replies but he sent it to a lot of people
+}
+
+# Some files are so broken we just have to hardcode it
+EMAIL_TIMESTAMPS = {
+    '028851': datetime(2014, 4, 27, 6, 00),
+    '028849': datetime(2014, 4, 27, 6, 30),
+    '032283': datetime(2016, 9, 14, 8, 4),
+    '026014': datetime(2016, 11, 4, 17, 46),
+    '032475': datetime(2017, 2, 15, 13, 31, 25),
+    '018726': datetime(2018, 6, 8, 8, 36),
+    '030373': datetime(2018, 10, 3, 1, 49, 27),
+    '026943': datetime(2019, 5, 22, 5, 47),
 }
 
 # Reason string should end in a file ID
