@@ -847,17 +847,18 @@ FILE_DESCRIPTIONS = {
     '025939': f'affidavit of Jane Doe describing being raped by Epstein',
     '010887': f"court filing in {EDWARDS_V_DERSHOWITZ}",
     '010566': f"court filing in {EPSTEIN_V_EDWARDS}",
-    '022237': f"partial court filing involving {ALAN_DERSHOWITZ} and Virginia Giuffre with fact checking questions?",
     '032321': f"court filing in Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}",
     '014084': f"court filing in Jane Doe #1 and Jane Doe #2 v. United States",
     '018872': f"FBI seized property inventory (redacted)",
     '019352': f"FBI report on Epstein investigation (redacted)",
+    '017904': f"laws and court filing regarding a lawsuit against Saudi Arabia for 9/11?",
     '012197': f"letter from DOJ to {JAY_LEFKOWITZ} about Epstein's prosecution agreement",
     '010560': f"letter from Gloria Allred to {SCOTT_J_LINK} alleging abuse of a girl from Kansas",
     '029315': f"letter from {JACK_SCAROLA} about {EPSTEIN_V_EDWARDS}",
     '026793': f"letter from {STEVEN_HOFFENBERG}'s lawyer Alan P. Fraade offering to take over Epstein's business and resolve his legal issues",
     '020662': f"letter to Daily Mail threatening libel lawsuit from {ALAN_DERSHOWITZ}'s British lawyers Mishcon de Reya",
     '013304': f"motion filed in response to Epstein's lawsuit against {BRAD_EDWARDS}",
+    '022237': f"partial court filing involving {ALAN_DERSHOWITZ} and Virginia Giuffre with fact checking questions?",
     '021824': f"transcript of deposition of Paul Cassell in {EDWARDS_V_DERSHOWITZ}",
     # conferences
     '023069': f'BofA / Merrill Lynch 2016 Future of Financials Conference report',
@@ -913,6 +914,7 @@ FILE_DESCRIPTIONS = {
     '024432': f"Michael Milken's Knowledge Universe Education (KUE) $1,000,000 corporate share placement notice (SEC filing?)",
     '024003': f"New Leaf Ventures private placement memorandum",
     # property
+    '018727': f"property deal in Virgin Islands for a building that will be leased to the U.S. Govt (GSA)",
     '018743': f"property listing in Las Vegas",
     '018804': f"appraisal of going concern for IGY American Yacht Harbor Marina in Virgin Islands",
     # misc
