@@ -6,7 +6,7 @@ from rich.highlighter import RegexHighlighter
 from rich.text import Text
 
 from epstein_files.util.constant.names import *
-from epstein_files.util.constant.strings import DEFAULT, PHONE_NUMBER_STYLE, REDACTED
+from epstein_files.util.constant.strings import DEFAULT, OTHER_SITE_LINK_STYLE, PHONE_NUMBER_STYLE, REDACTED
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
 from epstein_files.util.constants import EMAILER_ID_REGEXES, HEADER_ABBREVIATIONS, REPLY_REGEX, SENT_FROM_REGEX
 from epstein_files.util.env import args, logger
@@ -136,7 +136,7 @@ HIGHLIGHTED_GROUPS = [
     ),
     HighlightedGroup(
         label='deepak_chopra',
-        style='dark_goldenrod',
+        style='dark_sea_green4',
         emailers = {
             'Carolyn Rangel': 'assistant',
             DEEPAK_CHOPRA: 'woo woo',

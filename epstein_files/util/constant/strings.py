@@ -21,4 +21,5 @@ TEXT_MESSAGE = 'text message'
 SiteType = Literal['email', 'text message']
 
 # Styles
+OTHER_SITE_LINK_STYLE = 'dark_goldenrod'
 PHONE_NUMBER_STYLE = 'bright_green'
