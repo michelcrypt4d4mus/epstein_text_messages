@@ -320,17 +320,11 @@ class OtherFile(Document):
     """Non email/iMessage log files."""
 
     def get_date(self) -> str | None:
-        ts = self.get_timestamp()
-
-        if not ts:
-            return None
-
-        return ts.isoformat()[0:10]
+        timestamp = self.get_timestamp()
+        return timestamp.isoformat()[0:10] if timestamp else None
 
     def get_timestamp(self) -> datetime | None:
-        timestamp = extract_datetime(FILE_DESCRIPTIONS.get(self.file_id, ''))
-        logger.warning(f"{self.file_id}: timestamp '{timestamp}'")
-        return timestamp
+        return extract_datetime(FILE_DESCRIPTIONS.get(self.file_id, ''))
 
 
 @dataclass
