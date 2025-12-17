@@ -703,7 +703,7 @@ DUPLICATE_EMAIL_IDS = {
     '033589': 'the same as 032250',
     '031708': 'the same as 026624',
     '030575': 'a redacted version of 030475',
-    '023291': 'the same as (?) 023028',
+    '023291': 'the same as (?) 023208',
 }
 
 EMAILED_ARTICLE_IDS = [
