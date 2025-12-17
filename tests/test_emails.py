@@ -62,6 +62,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Faith Kates": 17,
     "Fred Haddad": 3,
     "Gerald Barton": 2,
+    GERALD_LEFCOURT: 1,
     "Ghislaine Maxwell": 15,
     "Gianni Serazzi": 2,
     "Gino Yu": 3,

@@ -1,7 +1,8 @@
 from epstein_files.util.constant.names import *
 
 MESSENGER_LOG_AUTHOR_COUNTS = {
-    None: 67,
+    None: 59,
+    ANDRZEJ_DUDA: 8,
     ANIL_AMBANI: 24,
     SCARAMUCCI: 57,
     ARDA_BESKARES: 2,
