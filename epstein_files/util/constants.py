@@ -709,6 +709,7 @@ DUPLICATE_FILE_IDS = {
     '029357': 'the same as (?) 028887',
     '025210': 'the same as 025205',
     '019864': 'the same as 019849',
+    '033481': 'the same as 033480',
 }
 
 EMAILED_ARTICLE_IDS = [
@@ -832,13 +833,17 @@ FILE_DESCRIPTIONS = {
     '026761': f'Forbes article "Swedish American Group Focuses On Cancer" about {BARBRO_EHNBOM}',
     '031716': f'Fortune Magazine article by {TOM_BARRACK} 2016-10-22',
     '027051': f"German language article about Lifeball / AIDS Gala 2012",
+    '021094': f"Globe and Mail article about Gerd Heindrich from 2007",
     '014037': f"Journal of Criminal Law and Criminology article on {CVRA}",
     '015462': f'magazine (?) issue: Nautilus Education',
     '019444': f'Frontlines magazine article "Biologists Dig Deeper"',
     '029925': f"New Yorker article about the placebo effect by Michael Specter",
     '031972': f"NYT article about #MeToo allegations against {LAWRENCE_KRAUSS}",
+    '033479': f"NYT article about Rex Tillerson",
     '021093': f"page of an article about Epstein and Maxwell",
     '028481': f'photo of NYT article about Steve Bannon',
+    '033480': f"press clipping about John Bolton",
+    '033481': f"press clipping about John Bolton",
     '031794': f"press clipping in French",
     '027068': f"real estate news article by Keith Larsen",
     '025328': f"scan of NYT page with articles about radio host Bob Fass and Robert Durst",
@@ -984,4 +989,5 @@ FILE_DESCRIPTIONS = {
     '023050': f"tweet by {ALAN_DERSHOWITZ} about Virginia Giuffre",
     '031546': f"tweets by Donald Trump about Russian collusion",
     '011170': f'tweets about #Brexit collected by InsightsPod',
+    '033236': f'tweets about Ivanka Trump in Arabic',
 }
