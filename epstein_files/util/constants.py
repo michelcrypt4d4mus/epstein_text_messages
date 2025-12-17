@@ -859,6 +859,7 @@ FILE_DESCRIPTIONS = {
     '020662': f"letter to Daily Mail threatening libel lawsuit from {ALAN_DERSHOWITZ}'s British lawyers Mishcon de Reya",
     '013304': f"motion filed in response to Epstein's lawsuit against {BRAD_EDWARDS}",
     '022237': f"partial court filing involving {ALAN_DERSHOWITZ} and Virginia Giuffre with fact checking questions?",
+    '028540': f"Supreme Court decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP",
     '021824': f"transcript of deposition of Paul Cassell in {EDWARDS_V_DERSHOWITZ}",
     # conferences
     '023069': f'BofA / Merrill Lynch 2016 Future of Financials Conference report',
@@ -871,6 +872,7 @@ FILE_DESCRIPTIONS = {
     '024271': f"Brock Pierce's Blockchain Capital presentation Oct 2015",
     '024631': f"Ackrell Capital Cannabis Investment Report 2018",
     '024302': f"Carvana form 14A SEC filing proxy statement 2019-04-23",
+    '024817': f"Cowen's Collective View of CBD / Cannabis report",
     '026794': f'Deutsche Bank Global Public Affairs report: "Global Political and Regulatory Risk in 2015/2016"',
     '022361': f'Deutsche Bank Wealth Management Tax Topics 2013-05',
     '022325': f'Deutsche Bank Wealth Management Tax Topics 2013-12-20',
@@ -928,6 +930,7 @@ FILE_DESCRIPTIONS = {
     '022277': f"text of America's National Labour Relationsh Board (NLRB) law",
     '031743': f'few pages describing the internet as a "New Nation State" (Network State?)',
     '022445': f"Inference: International Review of Science Feedback & Comments November 2018",
+    '028815': f'InsightsPod business plan',
     '022780': f'flight logs',
     '033434': f"iMessage screenshot labeled 'Edwards' at the top",
     '016636': f"Palm Beach Water Committee Meeting on January 29, 2009",
