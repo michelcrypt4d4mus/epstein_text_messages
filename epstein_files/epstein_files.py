@@ -25,7 +25,7 @@ from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_nam
 from epstein_files.util.constants import *
 from epstein_files.util.data import Timer, dict_sets_to_lists, sort_dict
 from epstein_files.util.env import args, logger, specified_names
-from epstein_files.util.file_helper import DOCS_DIR, FILENAME_LENGTH, file_size_str, move_json_file
+from epstein_files.util.file_helper import DOCS_DIR, FILENAME_LENGTH, PICKLED_PATH, file_size_str, move_json_file
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_COLOR, NA_TXT, console, highlighter, link_text_obj, link_markup,
      print_author_header, print_panel, vertically_pad)
@@ -33,7 +33,6 @@ from epstein_files.util.rich import (DEFAULT_NAME_COLOR, NA_TXT, console, highli
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (0, 0, 0, 2)
 NOT_INCLUDED_EMAILERS = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
-PICKLED_PATH = Path("the_epstein_files.pkl.gz")
 
 
 @dataclass

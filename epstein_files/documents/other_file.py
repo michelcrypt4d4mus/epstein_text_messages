@@ -57,7 +57,7 @@ class OtherFile(Document):
             timestamp = extract_datetime(FILE_DESCRIPTIONS[self.file_id])
 
             if timestamp:
-                if timestamp.date != 1:  # Avoid hacky '-01' appended date strings
+                if timestamp.date != 1:  # Avoid hacky '-01' appended date strings for now
                     return timestamp
                 else:
                     timestamps.append(timestamp)
@@ -76,7 +76,7 @@ class OtherFile(Document):
             logger.error(f"Error while iterating with datefinder: {e}")
 
         sorted_date_strs = [str(dt) for dt in sorted(timestamps)]
-        logger.warning(f"{self.file_id}: Found {len(timestamps)} timestamps:\n      " + '\n     '.join(sorted_date_strs))
+        logger.warning(f"{self.file_id}: Found {len(timestamps)} timestamps\n     " + '\n     '.join(sorted_date_strs) + '\n')
         self.log_top_lines(level=logging.WARNING)
 
         if len(timestamps) == 0:
