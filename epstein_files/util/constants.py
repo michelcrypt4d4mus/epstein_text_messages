@@ -767,18 +767,21 @@ FILE_DESCRIPTIONS = {
     '025353': f"letter from {KEN_STARR} to judge overseeing Epstein's criminal prosecution that mentions Alex Acosta",
     # press releases, reports, etc.
     '014315': 'BofA / Merrill Lynch 2016 Future of Financials Conference report',
+    '025663': 'Goldman Sachs Nov 2017 report "An Overview of the Current State of Cryptocurrencies and Blockchain"',
     '017526': 'Intellectual Jazz conference brochure',
     '012048': 'press release: "Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm" and other articles',
     '024271': "Brock Pierce's Blockchain Capital presentation Oct 2015",
     '025296': 'Laffer Associates report from 2016-07 predicting Trump win',
     '025247': 'UBS CIO Monthly Extended November 2012',
+    # letters
+    '022405': f"letter from {NOAM_CHOMSKY} attesting to Epstein's good character",
+    '026134': f'letter to someone named George about investment opportunities in the Ukraine banking sector',
+    '019086': f"letter from David Blaine recommending visa approval for a Russian model 'Svet' (Svetlana Pozhidaeva?) naming Putin puppets",
     # misc
     '024432': "Michael Milken's Knowledge Universe Education (KUE) $1,000,000 corporate share placement notice (SEC filing?)",
     '025939': 'affidavit of Jane Doe describing being raped by Epstein',
-    '025663': 'Goldman Sachs Nov 2017 report "An Overview of the Current State of Cryptocurrencies and Blockchain"',
     '018085': 'The Shimon Post (selection of articles in Guardian, NYer, etc. about the mideast ca. 2011-06)',
     '025610': 'The Shimon Post (selection of articles in NYT etc. about the mideast ca. 2011-04-03)',
     '011170': 'tweets about #Brexit collected by InsightsPod',
     '031743': 'few pages describing the internet as a "New Nation State"',
-    '026134': 'letter to someone named George about investment opportunities in the Ukraine banking sector',
 }
