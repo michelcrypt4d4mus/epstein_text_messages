@@ -162,7 +162,7 @@ ZUBAIR_KHAN = 'Zubair Khan'
 
 # Names that should be made part of a highlighting regex
 NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
-    'Al', 'Allen', 'Amanda', 'Andres', 'Andrew',
+    'Al', 'Alfredo', 'Allen', 'Amanda', 'Andres', 'Andrew',
     'Barry', 'Bill', 'Black', 'Brad',
     'Carolyn', 'Chris', 'Christina',
     'Dan', 'Daniel', 'Danny', 'Darren', 'Dave', 'David',
@@ -176,7 +176,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Marc', 'Marie', 'Mark', 'Martin', 'Melanie', 'Michael', 'Mike', 'Miller', 'Mitchell', 'Morris', 'Moskowitz',
     'Nancy', 'Neal', 'New',
     'Paul', 'Paula', 'Pen', 'Peter', 'Philip',
-    'Randall', 'Reid', 'Richard', 'Robert', 'Roger', 'Rosenberg', 'Ross', 'Roth', 'Rubin',
+    'Randall', 'Reid', 'Richard', 'Robert', 'Rodriguez', 'Roger', 'Rosenberg', 'Ross', 'Roth', 'Rubin',
     'Scott', 'Sean', 'Stanley', 'Stern', 'Stephen', 'Steve', 'Steven', 'Stone', 'Susan',
     'The', 'Thomas', 'Tim', 'Tom', 'Tyler',
     'Victor',

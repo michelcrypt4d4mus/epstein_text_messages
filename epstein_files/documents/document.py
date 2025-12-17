@@ -15,7 +15,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, EPSTEINIFY, EPSTEIN_WEB, epsteinify_doc_link_txt, epsteinify_doc_url, epstein_web_doc_url
 from epstein_files.util.constants import DUPLICATE_FILE_IDS, FILE_DESCRIPTIONS
-from epstein_files.util.data import collapse_newlines, escape_single_quotes, patternize
+from epstein_files.util.data import collapse_newlines, escape_single_quotes, extract_datetime, patternize
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, file_size_str, is_local_extract_file
 from epstein_files.util.rich import console, highlighter, logger, link_text_obj
@@ -27,7 +27,7 @@ MIN_DOCUMENT_ID = 10477
 PREVIEW_CHARS = 520
 INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
-VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*islands\s*daily\s*news', re.IGNORECASE)
+VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
 DOC_TYPE_STYLES = {
     DOCUMENT_CLASS: 'grey69',
@@ -313,6 +313,24 @@ class CommunicationDocument(Document):
     def _repair(self) -> None:
         """Can optionally be overloaded in subclasses."""
         pass
+
+
+@dataclass
+class OtherFile(Document):
+    """Non email/iMessage log files."""
+
+    def get_date(self) -> str | None:
+        ts = self.get_timestamp()
+
+        if not ts:
+            return None
+
+        return ts.isoformat()[0:10]
+
+    def get_timestamp(self) -> datetime | None:
+        timestamp = extract_datetime(FILE_DESCRIPTIONS.get(self.file_id, ''))
+        logger.warning(f"{self.file_id}: timestamp '{timestamp}'")
+        return timestamp
 
 
 @dataclass

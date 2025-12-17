@@ -11,7 +11,7 @@ from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
 
-from epstein_files.documents.document import INFO_INDENT, INFO_PADDING, CommunicationDocument
+from epstein_files.documents.document import INFO_INDENT, CommunicationDocument
 from epstein_files.documents.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX, FIELD_NAMES,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TIME_REGEX, EmailHeader)
 from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
@@ -19,7 +19,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constants import *
 from epstein_files.util.data import collapse_newlines, escape_single_quotes, uniquify
 from epstein_files.util.env import logger
-from epstein_files.util.file_helper import build_filename_for_id, is_local_extract_file
+from epstein_files.util.file_helper import is_local_extract_file
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import *
 
@@ -47,16 +47,6 @@ FILE_IDS_WITH_BAD_FIRST_LINES = [
     '030927',
     '031189',
 ]
-
-KNOWN_TIMESTAMPS = {
-    '028851': datetime(2014, 4, 27, 6, 00),
-    '028849': datetime(2014, 4, 27, 6, 30),
-    '032475': datetime(2017, 2, 15, 13, 31, 25),
-    '030373': datetime(2018, 10, 3, 1, 49, 27),
-    '018726': datetime(2018, 6, 8, 8, 36),
-    '032283': datetime(2016, 9, 14, 8, 4),
-    '026943': datetime(2019, 5, 22, 5, 47),
-}
 
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r' Banno(r]?|\b)'): ' Bannon',
@@ -434,8 +424,8 @@ class Email(CommunicationDocument):
             self.header = EmailHeader(field_names=[])
 
     def _extract_timestamp(self) -> datetime:
-        if self.file_id in KNOWN_TIMESTAMPS:
-            return KNOWN_TIMESTAMPS[self.file_id]
+        if self.file_id in EMAIL_TIMESTAMPS:
+            return EMAIL_TIMESTAMPS[self.file_id]
         elif self.header.sent_at:
             timestamp = _parse_timestamp(self.header.sent_at)
 
