@@ -283,7 +283,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Jabor Y": 7,
     "Jack Goldberger": 12,
     "Jack Lang": 3,
-    'Jack Scarola': 1,
+    JACK_SCAROLA: 1,
     "Jackie Perczek": 4,
     "James Ramsey": 1,
     "Janet Kafka": 1,

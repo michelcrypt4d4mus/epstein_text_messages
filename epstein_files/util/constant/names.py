@@ -67,6 +67,7 @@ GWENDOLYN_BECK = 'Gwendolyn Beck'         # https://www.lbc.co.uk/article/who-gw
 IVANKA = 'Ivanka'
 JABOR_Y = 'Jabor Y'                       # Qatari
 JACK_GOLDBERGER = 'Jack Goldberger'
+JACK_SCAROLA = 'Jack Scarola'
 JACKIE_PERCZEK = 'Jackie Perczek'
 JAMES_HILL = 'James Hill'
 JARED_KUSHNER = 'Jared Kushner'
@@ -116,6 +117,7 @@ MORTIMER_ZUCKERMAN = 'Mortimer Zuckerman'
 NADIA_MARCINKO = 'Nadia Marcinko'
 NEAL_KASSELL = 'Neal Kassell'
 NICHOLAS_RIBIS = 'Nicholas Ribis'
+NOAM_CHOMSKY = 'Noam Chomsky'
 NORMAN_D_RAU = 'Norman D. Rau'
 OLIVIER_COLOM = 'Olivier Colom'
 PAUL_BARRETT = 'Paul Barrett'
@@ -162,7 +164,7 @@ ZUBAIR_KHAN = 'Zubair Khan'
 NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Al', 'Allen', 'Amanda', 'Andres', 'Andrew',
     'Barry', 'Bill', 'Black', 'Brad',
-    'Carolyn',
+    'Carolyn', 'Chris', 'Christina',
     'Dan', 'Daniel', 'Danny', 'Darren', 'Dave', 'David',
     'Ed', 'Edward', 'Edwards', 'Epstein', 'Eric', 'Erika', 'Etienne',
     'Faith', 'Fred', 'Frost', 'Fuller',

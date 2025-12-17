@@ -326,7 +326,7 @@ class Email(CommunicationDocument):
             if i >= n:
                 return match.end() - 1
 
-    def hint_txt(self) -> Text:
+    def info_txt(self) -> Text:
         txt = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(f' to ')
         return txt.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
 

@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Literal
 
 from rich.align import Align
+from rich.console import Group
 from rich.markup import escape
 from rich.padding import Padding
 from rich.table import Table
@@ -21,12 +22,12 @@ from epstein_files.util.constant.strings import AUTHOR, EVERYONE, TEXT_MESSAGE
 from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url,
      search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
-from epstein_files.util.data import Timer, dict_sets_to_lists, patternize, sort_dict
+from epstein_files.util.data import Timer, dict_sets_to_lists, sort_dict
 from epstein_files.util.env import args, logger, specified_names
-from epstein_files.util.file_helper import DOCS_DIR, file_size_str, move_json_file
+from epstein_files.util.file_helper import DOCS_DIR, FILENAME_LENGTH, file_size_str, move_json_file
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_COLOR, NA_TXT, console, highlighter, link_text_obj, link_markup,
-     print_author_header, print_panel, print_starred_header, vertically_pad)
+     print_author_header, print_panel, vertically_pad)
 
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (0, 0, 0, 2)
@@ -82,7 +83,9 @@ class EpsteinFiles:
                 logger.info(f"Unknown file type: {document.description().plain}")
                 self.other_files.append(document)
 
+        self.emails = sorted(self.emails, key=lambda f: f.timestamp)
         self.imessage_logs = sorted(self.imessage_logs, key=lambda f: f.timestamp)
+        self.other_files = sorted(self.other_files, key=lambda f: f.file_id)
         self.identified_imessage_log_count = len([log for log in self.imessage_logs if log.author])
 
     @classmethod
@@ -328,12 +331,13 @@ class EpsteinFiles:
 
     def print_other_files_table(self) -> None:
         table = Table(header_style='bold', show_lines=True)
-        table.add_column('File', justify='left')
+        table.add_column('File', justify='left', width=FILENAME_LENGTH + 2)
         table.add_column('Length', justify='center')
         table.add_column('First Few Lines', justify='left', style='pale_turquoise4')
 
         for doc in sorted(self.other_files, key=lambda document: document.filename):
-            table.add_row(doc.raw_document_link_txt(), f"{doc.length:,}", doc.highlighted_preview_text())
+            link = Group(*[doc.raw_document_link_txt(), *doc.hints()])
+            table.add_row(link, f"{doc.length:,}", doc.highlighted_preview_text())
 
         console.print(table)
 

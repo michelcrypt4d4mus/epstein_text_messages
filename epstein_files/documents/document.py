@@ -11,9 +11,10 @@ from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
 
-from epstein_files.util.constant.names import UNKNOWN
+from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, EPSTEINIFY, EPSTEIN_WEB, epsteinify_doc_url, epstein_web_doc_url
+from epstein_files.util.constants import FILE_DESCRIPTIONS
 from epstein_files.util.data import collapse_newlines, escape_single_quotes, patternize
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, file_size_str, is_local_extract_file
@@ -26,10 +27,7 @@ MIN_DOCUMENT_ID = 10477
 PREVIEW_CHARS = 520
 INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
-
-CONTENT_HINTS = {
-    '023627': "Some or all of an unpublished article by Michael Wolff written ca. 2014-2016",
-}
+VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*islands\s*daily\s*news', re.IGNORECASE)
 
 DOC_TYPE_STYLES = {
     DOCUMENT_CLASS: 'grey69',
@@ -78,19 +76,19 @@ class Document:
 
     def description(self) -> Text:
         """Mostly for logging."""
-        doc_type = str(type(self).__name__)
         txt = Text('').append(self.file_path.stem, style='magenta')
-        txt.append(f' {doc_type} ', style=DOC_TYPE_STYLES[doc_type])
+        txt.append(f' {self._document_type()} ', style=self.document_type_style())
         txt.append(f"(num_lines=").append(f"{self.num_lines}", style='cyan')
         txt.append(", size=").append(file_size_str(self.file_path), style='aquamarine1')
-        return txt.append(')') if doc_type == DOCUMENT_CLASS else txt
+        return txt.append(')') if self._document_type() == DOCUMENT_CLASS else txt
 
-    def description_panel(self) -> Group:
-        """Panelized description() with hint_txt()."""
-        renderables = [Panel(self.description(), expand=False)]
-        hint_txt = self.hint_txt()
-        renderables += [Padding(hint_txt, INFO_PADDING)] if hint_txt else []
-        return Group(*renderables)
+    def description_panel(self, include_hints: bool = True) -> Panel:
+        """Panelized description() with info_txt(), used in search results."""
+        hints = [Text('', style='italic').append(h) for h in (self.hints() if include_hints else [])]
+        return Panel(Group(*([self.description()] + hints)), border_style=self.document_type_style(), expand=False)
+
+    def document_type_style(self) -> str:
+        return DOC_TYPE_STYLES[self._document_type()]
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on epsteinify.com."""
@@ -102,16 +100,9 @@ class Document:
 
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any hints/info about the file."""
-        headers = [Panel(self.raw_document_link_txt(include_alt_link=True), border_style=self._border_style(), expand=False)]
-        file_info = self.hint_txt()
-        headers += [file_info] if file_info else []
-        headers += [Text(f"({CONTENT_HINTS[self.file_id]})", style='wheat4')] if self.file_id in CONTENT_HINTS else []
-        elements = [h if isinstance(h, Panel) else Padding(h, INFO_PADDING) for h in headers]
-        return Group(*elements)
-
-    def hint_txt(self) -> Text | None:
-        """Secondary info about this file (recipients, level of certainty, etc). Overload in subclasses."""
-        return None
+        panel = Panel(self.raw_document_link_txt(include_alt_link=True), border_style=self._border_style(), expand=False)
+        hints = [Padding(hint, INFO_PADDING) for hint in self.hints()]
+        return Group(*([panel] + hints))
 
     def highlighted_preview_text(self) -> Text:
         try:
@@ -122,6 +113,24 @@ class Document:
                          f"File: '{self.filename}'\n")
 
             return Text(escape(self.preview_text()))
+
+    def hints(self) -> list[Text]:
+        """Additional info about the Document (author, FILE_DESCRIPTIONS value, and so on)."""
+        file_info = self.info_txt()
+        hints = [file_info] if file_info else []
+        hint_msg = FILE_DESCRIPTIONS.get(self.file_id)
+
+        if not (hint_msg or self._document_type() == EMAIL_CLASS) and VI_DAILY_NEWS_REGEX.search(self.text):
+            hint_msg = 'article in Virgin Islands Daily News'
+
+        if hint_msg:
+            hints.append(highlighter(Text(f"({hint_msg})", style='gray30 italic')))
+
+        return hints
+
+    def info_txt(self) -> Text | None:
+        """Secondary info about this file (recipients, level of certainty, etc). Overload in subclasses."""
+        return None
 
     def lines_matching_txt(self, _pattern: re.Pattern | str) -> list[Text]:
         pattern = patternize(_pattern)
@@ -192,6 +201,9 @@ class Document:
         """Should be implemented in subclasses."""
         return 'white'
 
+    def _document_type(self) -> str:
+        return str(type(self).__name__)
+
     def _load_file(self):
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
         with open(self.file_path) as f:
@@ -232,8 +244,9 @@ class Document:
         cmd = f"diff {tmpfiles[0]} {tmpfiles[1]}"
         console.print(f"Running '{cmd}'...")
         results = run(cmd, shell=True, capture_output=True, text=True).stdout
-        console.print(f"\nDiff results:")
-        console.print(f"{results}\n", style='dim', highlight=False)
+
+        for line in _color_diff_output(results):
+            console.print(line, highlight=True)
 
         console.print(f"Possible suppression with: ")
         console.print(Text('   suppress left: ').append(f"   '{extract_file_id(files[0])}': 'the same as {extract_file_id(files[1])}',", style='cyan'))
@@ -300,3 +313,18 @@ class SearchResult:
 
     def unprefixed_lines(self) -> list[str]:
         return [line.plain.split(':', 1)[1] for line in self.lines]
+
+
+def _color_diff_output(diff_result: str) -> list[Text]:
+    txts = [Text('diff output:')]
+    style = 'dim'
+
+    for line in diff_result.split('\n'):
+        if line.startswith('>'):
+            style='spring_green4'
+        elif line.startswith('<'):
+            style='sea_green1'
+
+        txts.append(Text(line, style=style))
+
+    return txts
