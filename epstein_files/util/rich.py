@@ -142,6 +142,15 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
     console.line()
 
 
+def print_list(txts: list[Text], spacer='  '):
+    txt = Text('').append(txts.pop())
+
+    for t in txts:
+        txt.append(spacer).append(t)
+
+    print_centered(txt)
+
+
 def print_numbered_list_of_emailers(_list: list[str | None], epstein_files = None) -> None:
     """Add the first emailed_at timestamp for this emailer if 'epstein_files' provided."""
     current_year = 1990
@@ -200,7 +209,7 @@ def print_page_title(expand: bool = True) -> None:
     console.print(Align.center(Panel(Text(PAGE_TITLE, justify='center'), expand=expand, style=TITLE_STYLE)))
     console.line()
     print_social_media_links()
-    console.line()
+    console.line(2)
 
 
 def print_panel(msg: str, style: str = 'black on white', padding: tuple | None = None, centered: bool = False) -> None:
@@ -223,9 +232,16 @@ def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centere
 def print_social_media_links() -> None:
     print_centered_link(SUBSTACK_URL, "I Made Epstein's Text Messages Great Again (And You Should Read Them)", style=f'chartreuse1 bold')
     print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style='dark_sea_green4 dim')
-    print_centered_link('https://cryptadamus.substack.com/', 'Substack', style=SOCIAL_MEDIA_LINK_STYLE)
-    print_centered_link('https://universeodon.com/@cryptadamist/115572634993386057', 'Mastodon', style=SOCIAL_MEDIA_LINK_STYLE)
-    print_centered_link('https://x.com/Cryptadamist/status/1990866804630036988', 'Twitter', style=SOCIAL_MEDIA_LINK_STYLE)
+    style = f"{SOCIAL_MEDIA_LINK_STYLE} bold"
+
+    social_links = [
+        link_text_obj('https://cryptadamus.substack.com/', 'Substack', style=style),
+        link_text_obj('https://universeodon.com/@cryptadamist/115572634993386057', 'Mastodon', style=style),
+        link_text_obj('https://x.com/Cryptadamist/status/1990866804630036988', 'Twitter', style=style),
+    ]
+
+    # ⦾⦿•◦◘
+    print_list(social_links, spacer = '       ')
 
 
 def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2) -> None:
