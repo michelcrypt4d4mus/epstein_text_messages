@@ -101,7 +101,7 @@ class Document:
         return link_text_obj(epstein_web_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
 
     def file_info_panel(self) -> Group:
-        """Panel with links to raw file plus any hints/info about the file."""
+        """Panel with filename linking to raw file plus any hints/info about the file."""
         headers = [Panel(self.raw_document_link_txt(include_alt_link=True), border_style=self._border_style(), expand=False)]
         file_info = self.hint_txt()
         headers += [file_info] if file_info else []
