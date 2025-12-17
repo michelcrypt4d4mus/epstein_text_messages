@@ -7,12 +7,15 @@ from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_PREFIX
 
 EPSTEIN_DOCS_DIR_ENV_VAR_NAME = 'EPSTEIN_DOCS_DIR'
 DOCS_DIR_ENV = environ[EPSTEIN_DOCS_DIR_ENV_VAR_NAME]
+DOCS_DIR = Path(DOCS_DIR_ENV or '').resolve()
 
 if not DOCS_DIR_ENV:
     print(f"ERROR: {EPSTEIN_DOCS_DIR_ENV_VAR_NAME} env var not set!")
     exit(1)
+elif not DOCS_DIR.exists():
+    print(f"ERROR: {EPSTEIN_DOCS_DIR_ENV_VAR_NAME}='{DOCS_DIR}' does not exist!")
+    exit(1)
 
-DOCS_DIR = Path(DOCS_DIR_ENV).resolve()
 JSON_DIR = DOCS_DIR.joinpath('json_files')
 HTML_DIR = Path('docs')
 EXTRACTED_EMAILS_DIR = Path('emails_extracted_from_legal_filings')
@@ -20,12 +23,9 @@ GH_PAGES_HTML_PATH = HTML_DIR.joinpath('index.html')
 WORD_COUNT_HTML_PATH = HTML_DIR.joinpath('epstein_emails_word_count.html')
 EPSTEIN_WORD_COUNT_HTML_PATH = HTML_DIR.joinpath('epstein_texts_and_emails_word_count.html')
 FILE_ID_REGEX = re.compile(fr".*{HOUSE_OVERSIGHT_PREFIX}(\d+)(_\d+)?(\.txt)?")
+FILENAME_LENGTH = len(HOUSE_OVERSIGHT_PREFIX) + 6
 KB = 1024
 MB = KB * KB
-
-if not DOCS_DIR.exists():
-    print(f"ERROR: {EPSTEIN_DOCS_DIR_ENV_VAR_NAME}='{DOCS_DIR}' does not exist!")
-    exit(1)
 
 
 def build_filename_for_id(id: str | int, include_txt_suffix: bool = False) -> str:

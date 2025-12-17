@@ -26,15 +26,25 @@ MIN_DOCUMENT_ID = 10477
 PREVIEW_CHARS = 520
 INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
+MICHAEL_WOLFF_ARTICLE_HINT = "Some or all of an unpublished article by Michael Wolff written ca. 2014-2016"
 
 CONTENT_HINTS = {
-    '023627': "Some or all of an unpublished article by Michael Wolff written ca. 2014-2016",
+    '022707': MICHAEL_WOLFF_ARTICLE_HINT,
+    '022727': MICHAEL_WOLFF_ARTICLE_HINT,
+    '022746': MICHAEL_WOLFF_ARTICLE_HINT,
+    '022844': MICHAEL_WOLFF_ARTICLE_HINT,
+    '022863': MICHAEL_WOLFF_ARTICLE_HINT,
+    '022894': MICHAEL_WOLFF_ARTICLE_HINT,
+    '022952': MICHAEL_WOLFF_ARTICLE_HINT,
+    '023627': MICHAEL_WOLFF_ARTICLE_HINT,
+    '024229': MICHAEL_WOLFF_ARTICLE_HINT,
     '024271': "Brock Pierce's Blockchain Capital presentation Oct 2015",
     '018232': '"The Seventh Sense: Power, Fortune and Survival in the Age of Networks" by Joshua Cooper Ramo',
     '011170': 'Tweets about #Brexit collected by InsightsPod',
     '025663': 'Goldman Sachs Nov 2017 report "An Overview of the Current State of Cryptocurrencies and Blockchain"',
     '024256': 'Joi Ito: "Internet & Society: The Technologies and Politics of Control',
     '014315': 'BofA / Merrill Lynch 2016 Future of Financials Conference report',
+
 }
 
 DOC_TYPE_STYLES = {
