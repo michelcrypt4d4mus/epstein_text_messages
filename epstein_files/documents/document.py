@@ -26,8 +26,8 @@ MIN_DOCUMENT_ID = 10477
 PREVIEW_CHARS = 520
 INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
-DEEP_THINKING_HINT = 'Book: "Deep Thinking: Twenty-Five Ways of Looking at AI" by John Brockman'
-MICHAEL_WOLFF_ARTICLE_HINT = "Draft of an unpublished article about Epstein by Michael Wolff written ca. 2014-2016"
+DEEP_THINKING_HINT = 'book: "Deep Thinking: Twenty-Five Ways of Looking at AI" by John Brockman'
+MICHAEL_WOLFF_ARTICLE_HINT = "draft of an unpublished article about Epstein by Michael Wolff written ca. 2014-2016"
 
 CONTENT_HINTS = {
     '022707': MICHAEL_WOLFF_ARTICLE_HINT,
@@ -39,14 +39,15 @@ CONTENT_HINTS = {
     '022952': MICHAEL_WOLFF_ARTICLE_HINT,
     '023627': MICHAEL_WOLFF_ARTICLE_HINT,
     '024229': MICHAEL_WOLFF_ARTICLE_HINT,
-    '015462': 'Magazine (?) issue: "Nautilus Education"',
-    '015529': "Court filings from Virginia Giuffre's lawsuit against Epstein",
+    '028481': 'photo of NYT article about Steve Bannon',
+    '015462': 'magazine (?) issue: "Nautilus Education"',
+    '015529': "court filings from Virginia Giuffre's lawsuit against Epstein",
     '016221': DEEP_THINKING_HINT,
     '016804': DEEP_THINKING_HINT,
-    '012747': 'Book: "Evilicious: Explaining Our Taste For Excessive Harm" by Marc D. Hauser',
+    '012747': 'book: "Evilicious: Explaining Our Taste For Excessive Harm" by Marc D. Hauser',
     '024271': "Brock Pierce's Blockchain Capital presentation Oct 2015",
     '018232': '"The Seventh Sense: Power, Fortune and Survival in the Age of Networks" by Joshua Cooper Ramo',
-    '011170': 'Tweets about #Brexit collected by InsightsPod',
+    '011170': 'tweets about #Brexit collected by InsightsPod',
     '025663': 'Goldman Sachs Nov 2017 report "An Overview of the Current State of Cryptocurrencies and Blockchain"',
     '024256': 'Joi Ito: "Internet & Society: The Technologies and Politics of Control',
     '014315': 'BofA / Merrill Lynch 2016 Future of Financials Conference report',
