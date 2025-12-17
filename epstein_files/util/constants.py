@@ -431,6 +431,7 @@ KNOWN_EMAIL_AUTHORS = {
     '029992': TERRY_KAFKA,             # Quoted reply
     '029985': TERRY_KAFKA,             # Quoted reply in 029992
     '020666': TERRY_KAFKA,             # ends with 'Terry'
+    '026014': ZUBAIR_KHAN,             # truncated to only show the quoted reply
     # Unknowns
     '022187': None,                    # Bad OCR causes parsing problems
     # '026571': '(unknown french speaker)',
@@ -486,6 +487,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '032780': JEFFREY_EPSTEIN,        # Bad OCR
     '025233': JEFFREY_EPSTEIN,        # Bad OCR
     '032208': JEFFREY_EPSTEIN,        # More of a text convo with Lawrence Krauss?
+    '026014': JEFFREY_EPSTEIN,        # truncated to only show the quoted reply
     '029324': [JEFFREY_EPSTEIN, 'Jojo Fontanilla', 'Lyn Fontanilla'],
     '033575': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN],
     '023067': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN, TONJA_HADDAD_COLEMAN],      # Bad OCR

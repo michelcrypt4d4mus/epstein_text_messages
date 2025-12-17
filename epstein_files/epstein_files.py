@@ -343,6 +343,10 @@ class EpsteinFiles:
             else:
                 preview_text = doc.highlighted_preview_text()
 
+            if args.output_unlabeled and doc.hints():
+                logger.warning(f"Skipping {doc.description()} because --output-unlabeled")
+                continue
+
             table.add_row(link, f"{doc.length:,}", preview_text)
 
         console.print(table)
