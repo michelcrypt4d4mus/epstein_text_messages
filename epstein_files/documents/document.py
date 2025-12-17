@@ -86,10 +86,10 @@ class Document:
         txt.append(", size=").append(file_size_str(self.file_path), style='aquamarine1')
         return txt.append(')') if doc_type == DOCUMENT_CLASS else txt
 
-    def description_panel(self) -> Group:
-        """Panelized description() with hint_txt()."""
-        renderables = [Panel(self.description(), expand=False)] + self.hints()
-        return Group(*renderables)
+    def description_panel(self) -> Panel:
+        """Panelized description() with hint_txt(), used in search results."""
+        renderables = [self.description()] + self.hints()
+        return Panel(Group(*renderables), expand=False)
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on epsteinify.com."""
