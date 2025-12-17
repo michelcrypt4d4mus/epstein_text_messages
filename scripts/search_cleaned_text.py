@@ -14,7 +14,7 @@ from epstein_files.documents.document import INFO_PADDING
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.env import args, specified_names
 from epstein_files.util.highlighted_group import REGEX_STYLE_PREFIX
-from epstein_files.util.rich import console, print_section_header
+from epstein_files.util.rich import console, print_panel, print_section_header
 
 
 def build_highlighter(pattern: str) -> RegexHighlighter:
@@ -34,10 +34,12 @@ epstein_files = EpsteinFiles.get_files()
 
 for search_term in args.positional_args:
     search_type = 'other' if args.search_other else 'all'
-    print_section_header(f"Searching {search_type} documents for '{search_term}'")
     temp_highlighter = build_highlighter(search_term)
+    search_results = epstein_files.docs_matching(search_term, search_type, specified_names)
+    console.line(2)
+    print_panel(f"Found {len(search_results)} documents matching '{search_term}'", centered=True)
 
-    for search_result in epstein_files.docs_matching(search_term, search_type, specified_names):
+    for search_result in search_results:
         console.line()
 
         if args.whole_file:
