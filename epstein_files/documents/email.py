@@ -550,7 +550,7 @@ class Email(CommunicationDocument):
             yield txt.append(' (which is shown)\n')
             return
 
-        for header_element in self.header_txt():
+        for header_element in self.file_info_panel():
             yield header_element
 
         text = self.text

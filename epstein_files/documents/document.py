@@ -91,6 +91,14 @@ class Document:
         """Create a Text obj link to this document on EpsteinWeb."""
         return link_text_obj(epstein_web_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
 
+    def hint_txt(self) -> Text | None:
+        """Secondary info about this file (recipients, level of certainty, etc). Overload in subclasses."""
+        return None
+
+    def hint_txts(self) -> list[Padding]:
+        hint = self.hint_txt()
+        return [Padding(hint, INFO_PADDING)] if hint else []
+
     def highlighted_preview_text(self) -> Text:
         try:
             return highlighter(escape(self.preview_text()))
@@ -236,12 +244,13 @@ class CommunicationDocument(Document):
         return self.author or UNKNOWN
 
     def description(self) -> Text:
+        """One line summary mostly for logging."""
         txt = super().description()
         txt.append(f", timestamp=").append(str(self.timestamp), style='dim dark_cyan')
         txt.append(f", author=").append(self.author_str, style=self.author_style)
         return txt.append(')')
 
-    def header_txt(self) -> list[Padding | Panel]:
+    def file_info_panel(self) -> list[Padding | Panel]:
         headers = [Panel(self.raw_document_link_txt(), border_style=self._border_style(), expand=False)]
         headers += self.hint_txts()
 
@@ -249,13 +258,6 @@ class CommunicationDocument(Document):
             headers += [Padding(Text(f"({CONTENT_HINTS[self.file_id]})", style='wheat4'), INFO_PADDING)]
 
         return headers
-
-    def hint_txt(self) -> Text | None:
-        raise NotImplementedError(f"Should be implemented in subclasses!")
-
-    def hint_txts(self) -> list[Padding]:
-        hint = self.hint_txt()
-        return [Padding(hint, INFO_PADDING)] if hint else []
 
     def raw_document_link_txt(self, _style: str = '', include_alt_link: bool = True) -> Text:
         """Overrides super() method to apply author_style."""

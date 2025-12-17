@@ -164,7 +164,7 @@ class MessengerLog(CommunicationDocument):
         return self.author_style.removesuffix(' bold')
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        for header_element in self.header_txt():
+        for header_element in self.file_info_panel():
             yield header_element
 
         yield(Text(''))
