@@ -726,12 +726,14 @@ EMAILED_ARTICLE_IDS = [
 DEEP_THINKING_HINT = 'book: "Deep Thinking: Twenty-Five Ways of Looking at AI" by John Brockman'
 EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} and Paul Cassell v. {ALAN_DERSHOWITZ}"
 EPSTEIN_V_EDWARDS = f"Epstein v. Scott Rothstein and {BRAD_EDWARDS}"
-KEN_STARR_LETTER = f"letter from {KEN_STARR} to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta",
+HBS_APPLICATION_NERIO = f"Harvard Business School application letter from Nerio Alessandri (Founder and Chairman Technogym SPA Italy)"
+KEN_STARR_LETTER = f"letter from {KEN_STARR} to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
 MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014-2016"
 NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight" by {EHUD_BARAK}?'
 PATTERSON_BOOK_SCANS = f'scans of pages of "Filthy Rich: The Shocking True Story of Jeffrey Epstein" by James Patterson'
 SHIMON_POST = 'The Shimon Post selection of articles about the mideast '
 VIRGINIA_FILING = f"court filings from Virginia Giuffre's lawsuit against Epstein (and {ALAN_DERSHOWITZ}?)"
+WEINBERG_ABC_LETTER = f"letter from {MARTIN_WEINBERG} to ABC / Good Morning America threatening libel lawsuit"
 
 FILE_DESCRIPTIONS = {
     # books
@@ -839,10 +841,14 @@ FILE_DESCRIPTIONS = {
     '025247': f'UBS CIO Monthly Extended November 2012',
     '020824': f"USA Inc: A Basic Summary of America's Financial Statements compiled by Mary Meeker",
     # letters
+    '028928': WEINBERG_ABC_LETTER,
+    '028965': WEINBERG_ABC_LETTER,
     '022405': f"letter from {NOAM_CHOMSKY} attesting to Epstein's good character",
     '026134': f'letter to someone named George about investment opportunities in the Ukraine banking sector',
     '019086': f"letter from David Blaine recommending visa approval for a Russian model 'Svet' (Svetlana Pozhidaeva?) naming Putin puppets",
     # misc
+    '029102': HBS_APPLICATION_NERIO,
+    '029104': HBS_APPLICATION_NERIO,
     '012718': f"Congressional record from 2011-06-17 about Crime Victims' Rights Act (CVRA)",
     '010617': f"Donald Trump financial disclosures from U.S. Office of Government Ethics",
     '031743': f'few pages describing the internet as a "New Nation State" (Network State?)',
