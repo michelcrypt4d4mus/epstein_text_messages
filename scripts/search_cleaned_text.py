@@ -41,7 +41,7 @@ for search_term in args.positional_args:
         console.print(Panel(search_result.document.description(), expand=False))
 
         if isinstance(search_result.document, Email):
-            console.print(search_result.document.info_line())
+            console.print(search_result.document.hint_txt())
 
         if args.whole_file:
             console.print(search_result.document.text)

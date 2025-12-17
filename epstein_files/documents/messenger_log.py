@@ -13,6 +13,7 @@ from epstein_files.util.constants import *
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import TEXT_LINK, highlighter, logger
 
+KNOWN_IDS = [id for id in KNOWN_IMESSAGE_FILE_IDS.keys()] + [id for id in GUESSED_IMESSAGE_FILE_IDS.keys()]
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
 REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
@@ -100,23 +101,22 @@ class TextMessage:
 
 @dataclass
 class MessengerLog(CommunicationDocument):
-    hint_txt: Text | None = None
     _messages: list[TextMessage] = field(default_factory=list)
     _author_counts: dict[str | None, int] = field(default_factory=lambda: defaultdict(int))
 
-    def __post_init__(self):
-        super().__post_init__()
-
-        if self.file_id in KNOWN_IMESSAGE_FILE_IDS or self.file_id in GUESSED_IMESSAGE_FILE_IDS:
-            if self.file_id in KNOWN_IMESSAGE_FILE_IDS:
-                hint_msg = 'Found confirmed counterparty'
-            else:
-                hint_msg = 'This is probably a conversation with'
-
-            self.hint_txt = Text(f" {hint_msg} ", style='dim').append(self.author_txt)
-
     def first_message_at(self, name: str | None) -> datetime:
         return self.messages_by(name)[0].timestamp()
+
+    def hint_txt(self) -> Text | None:
+        if self.file_id not in KNOWN_IDS:
+            return None
+
+        if self.file_id in KNOWN_IMESSAGE_FILE_IDS:
+            hint_msg = 'Found confirmed counterparty'
+        else:
+            hint_msg = 'This is probably a conversation with'
+
+        return Text(f"({hint_msg} ", style='dim').append(self.author_txt).append(')')
 
     def last_message_at(self, name: str | None) -> datetime:
         return self.messages_by(name)[-1].timestamp()
@@ -160,12 +160,14 @@ class MessengerLog(CommunicationDocument):
 
         raise RuntimeError(f"{self}: No timestamp found!")
 
-    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        yield Panel(self.raw_document_link_txt(), border_style=self.author_style.removesuffix(' bold'), expand=False)
+    def _border_style(self) -> str:
+        return self.author_style.removesuffix(' bold')
 
-        if self.hint_txt:
-            yield self.hint_txt
-            yield Text('')
+    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
+        for header_element in self.header_txt():
+            yield header_element
+
+        yield(Text(''))
 
         for message in self.messages():
             yield message

@@ -5,7 +5,10 @@ from pathlib import Path
 from subprocess import run
 from typing import ClassVar
 
+from rich.console import RenderableType
 from rich.markup import escape
+from rich.padding import Padding
+from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.util.constant.names import UNKNOWN
@@ -21,6 +24,12 @@ WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
 MIN_DOCUMENT_ID = 10477
 PREVIEW_CHARS = 520
+INFO_INDENT = 2
+INFO_PADDING = (0, 0, 0, INFO_INDENT)
+
+CONTENT_HINTS = {
+    '023627': "Some or all of an unpublished article by Michael Wolff written ca. 2014-2016",
+}
 
 DOC_TYPE_STYLES = {
     DOCUMENT_CLASS: 'grey69',
@@ -210,11 +219,11 @@ class Document:
 
 @dataclass
 class CommunicationDocument(Document):
+    """Superclass for Email and MessengerLog."""
     author: str | None = None
     author_str: str = field(init=False)
     author_style: str = field(init=False)
     author_txt: Text = field(init=False)
-    hint_txt: Text = field(init=False)
     timestamp: datetime = field(init=False)
 
     def __post_init__(self):
@@ -232,12 +241,31 @@ class CommunicationDocument(Document):
         txt.append(f", author=").append(self.author_str, style=self.author_style)
         return txt.append(')')
 
+    def header_txt(self) -> list[Padding | Panel]:
+        headers = [Panel(self.raw_document_link_txt(), border_style=self._border_style(), expand=False)]
+        headers += self.hint_txts()
+
+        if self.file_id in CONTENT_HINTS:
+            headers += [Padding(Text(f"({CONTENT_HINTS[self.file_id]})", style='wheat4'), INFO_PADDING)]
+
+        return headers
+
+    def hint_txt(self) -> Text | None:
+        raise NotImplementedError(f"Should be implemented in subclasses!")
+
+    def hint_txts(self) -> list[Padding]:
+        hint = self.hint_txt()
+        return [Padding(hint, INFO_PADDING)] if hint else []
+
     def raw_document_link_txt(self, _style: str = '', include_alt_link: bool = True) -> Text:
         """Overrides super() method to apply author_style."""
         return super().raw_document_link_txt(self.author_style, include_alt_link=include_alt_link)
 
     def timestamp_without_seconds(self) -> str:
         return TIMESTAMP_SECONDS_REGEX.sub('', str(self.timestamp))
+
+    def _border_style(self) -> str:
+        raise NotImplementedError(f"Should be implemented in subclasses!")
 
     def _extract_author(self) -> None:
         raise NotImplementedError(f"Should be implemented in subclasses!")
