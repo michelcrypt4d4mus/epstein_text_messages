@@ -85,7 +85,7 @@ class EpsteinFiles:
 
         self.emails = sorted(self.emails, key=lambda f: f.timestamp)
         self.imessage_logs = sorted(self.imessage_logs, key=lambda f: f.timestamp)
-        self.other_files = sorted(self.other_files, key=lambda f: [f.get_timestamp() or FALLBACK_TIMESTAMP, f.file_id])
+        self.other_files = sorted(self.other_files, key=lambda f: [f.timestamp or FALLBACK_TIMESTAMP, f.file_id])
         self.identified_imessage_log_count = len([log for log in self.imessage_logs if log.author])
 
     @classmethod
@@ -330,6 +330,7 @@ class EpsteinFiles:
         console.print(f"(Last deploy found 4668 messages in 77 conversations)", style='dim')
 
     def print_other_files_table(self) -> None:
+        self.other_files = sorted(self.other_files, key=lambda f: [f.timestamp or FALLBACK_TIMESTAMP, f.file_id])  # TODO: remove this, it's for pickle issues
         table = Table(header_style='bold', show_lines=True)
         table.add_column('File', justify='left', width=FILENAME_LENGTH)
         table.add_column('Date', justify='center')
@@ -348,7 +349,7 @@ class EpsteinFiles:
                 logger.warning(f"Skipping {doc.description()} because --output-unlabeled")
                 continue
 
-            table.add_row(link, doc.get_date() or NA_TXT, f"{doc.length:,}", preview_text)
+            table.add_row(link, doc.date_str() or NA_TXT, f"{doc.length:,}", preview_text)
 
         console.print(table)
 

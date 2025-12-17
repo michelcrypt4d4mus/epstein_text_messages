@@ -5,6 +5,7 @@ from pathlib import Path
 from subprocess import run
 from typing import ClassVar
 
+import datefinder
 from rich.console import Console, ConsoleOptions, Group, RenderResult
 from rich.markup import escape
 from rich.padding import Padding
@@ -14,8 +15,8 @@ from rich.text import Text
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, EPSTEINIFY, EPSTEIN_WEB, epsteinify_doc_link_txt, epsteinify_doc_url, epstein_web_doc_url
-from epstein_files.util.constants import DUPLICATE_FILE_IDS, FILE_DESCRIPTIONS
-from epstein_files.util.data import collapse_newlines, escape_single_quotes, extract_datetime, patternize
+from epstein_files.util.constants import DUPLICATE_FILE_IDS, FALLBACK_TIMESTAMP, FILE_DESCRIPTIONS
+from epstein_files.util.data import collapse_newlines, date_str, escape_single_quotes, extract_datetime, ordinal_str, patternize, remove_timezone
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, file_size_str, is_local_extract_file
 from epstein_files.util.rich import console, highlighter, logger, link_text_obj
@@ -27,6 +28,10 @@ MIN_DOCUMENT_ID = 10477
 PREVIEW_CHARS = 520
 INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
+
+MAX_EXTRACTED_TIMESTAMPS = 6
+MIN_TIMESTAMP = datetime(1991, 1, 1)
+MAX_TIMESTAMP = datetime(2022, 12, 31)
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
 DOC_TYPE_STYLES = {
@@ -57,6 +62,7 @@ class Document:
     lines: list[str] = field(init=False)
     num_lines: int = field(init=False)
     text: str = ''
+    timestamp: datetime | None = None
     url_slug: str = field(init=False)  # e.g. 'HOUSE_OVERSIGHT_123456
 
     # Class variable; only used to cycle color of output when using lines_match()
@@ -73,6 +79,9 @@ class Document:
 
         self.text = self.text or self._load_file()
         self._set_computed_fields()
+
+    def date_str(self) -> str | None:
+        return date_str(self.timestamp)
 
     def description(self) -> Text:
         """Mostly for logging."""
@@ -212,6 +221,9 @@ class Document:
     def _document_type(self) -> str:
         return str(type(self).__name__)
 
+    def _extract_timestamp(self) -> datetime:
+        raise NotImplementedError(f"Should be implemented in subclasses!")
+
     def _load_file(self):
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
         with open(self.file_path) as f:
@@ -278,7 +290,7 @@ class CommunicationDocument(Document):
     author_str: str = field(init=False)
     author_style: str = field(init=False)
     author_txt: Text = field(init=False)
-    timestamp: datetime = field(init=False)
+    timestamp: datetime = FALLBACK_TIMESTAMP  # TODO this sucks
 
     def __post_init__(self):
         super().__post_init__()
@@ -307,9 +319,6 @@ class CommunicationDocument(Document):
     def _extract_author(self) -> None:
         raise NotImplementedError(f"Should be implemented in subclasses!")
 
-    def _extract_timestamp(self) -> datetime:
-        raise NotImplementedError(f"Should be implemented in subclasses!")
-
     def _repair(self) -> None:
         """Can optionally be overloaded in subclasses."""
         pass
@@ -319,12 +328,36 @@ class CommunicationDocument(Document):
 class OtherFile(Document):
     """Non email/iMessage log files."""
 
-    def get_date(self) -> str | None:
-        timestamp = self.get_timestamp()
-        return timestamp.isoformat()[0:10] if timestamp else None
+    def __post_init__(self):
+        super().__post_init__()
+        self.timestamp = self._extract_timestamp()
 
-    def get_timestamp(self) -> datetime | None:
-        return extract_datetime(FILE_DESCRIPTIONS.get(self.file_id, ''))
+    def _extract_timestamp(self) -> datetime | None:
+        timestamps: list[datetime] = []
+
+        try:
+            for i, timestamp in enumerate(datefinder.find_dates(self.text, strict=True)):
+                logger.debug(f"{self.file_id}: Found {ordinal_str(i + 1)} timestamp '{timestamp}'...")
+                timestamp = remove_timezone(timestamp)
+
+                if MIN_TIMESTAMP < timestamp < MAX_TIMESTAMP:
+                    timestamps.append(timestamp)
+
+                if len(timestamps) > MAX_EXTRACTED_TIMESTAMPS:
+                    break
+        except ValueError as e:
+            logger.error(f"Error while iterating with datefinder: {e}")
+
+        # Fall back to configured values
+        if self.file_id in FILE_DESCRIPTIONS:
+            timestamp = extract_datetime(FILE_DESCRIPTIONS[self.file_id])
+
+            if timestamp and (timestamp.date != 1 or timestamp.month != 1):
+                return timestamp
+
+        sorted_date_strs = [str(dt) for dt in sorted(timestamps)]
+        logger.warning(f"{self.file_id}: Found {len(timestamps)} timestamps:\n    " + '\n     '.join(sorted_date_strs))
+        return timestamps[0] if len(timestamps) > 0 else None
 
 
 @dataclass
