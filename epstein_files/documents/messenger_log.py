@@ -104,6 +104,10 @@ class MessengerLog(CommunicationDocument):
     _messages: list[TextMessage] = field(default_factory=list)
     _author_counts: dict[str | None, int] = field(default_factory=lambda: defaultdict(int))
 
+    def description_panel(self) -> Panel:
+        """Panelized description() with hint_txt(), used in search results."""
+        return super().description_panel(include_hints=False)
+
     def first_message_at(self, name: str | None) -> datetime:
         return self.messages_by(name)[0].timestamp()
 

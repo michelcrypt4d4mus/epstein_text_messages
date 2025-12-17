@@ -86,9 +86,9 @@ class Document:
         txt.append(", size=").append(file_size_str(self.file_path), style='aquamarine1')
         return txt.append(')') if doc_type == DOCUMENT_CLASS else txt
 
-    def description_panel(self) -> Panel:
+    def description_panel(self, include_hints: bool = True) -> Panel:
         """Panelized description() with hint_txt(), used in search results."""
-        renderables = [self.description()] + self.hints()
+        renderables = [self.description()] + (self.hints() if include_hints else [])
         return Panel(Group(*renderables), expand=False)
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
