@@ -29,6 +29,7 @@ INFO_PADDING = (0, 0, 0, INFO_INDENT)
 
 CONTENT_HINTS = {
     '023627': "Some or all of an unpublished article by Michael Wolff written ca. 2014-2016",
+    '024271': "Brock Pierce's Blockchain Capital fund presentation Oct 2015",
 }
 
 DOC_TYPE_STYLES = {
@@ -87,9 +88,7 @@ class Document:
 
     def description_panel(self) -> Group:
         """Panelized description() with hint_txt()."""
-        renderables = [Panel(self.description(), expand=False)]
-        hint_txt = self.hint_txt()
-        renderables += [Padding(hint_txt, INFO_PADDING)] if hint_txt else []
+        renderables = [Panel(self.description(), expand=False)] + self.hints()
         return Group(*renderables)
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
@@ -102,16 +101,8 @@ class Document:
 
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any hints/info about the file."""
-        headers = [Panel(self.raw_document_link_txt(include_alt_link=True), border_style=self._border_style(), expand=False)]
-        file_info = self.hint_txt()
-        headers += [file_info] if file_info else []
-        headers += [Text(f"({CONTENT_HINTS[self.file_id]})", style='wheat4')] if self.file_id in CONTENT_HINTS else []
-        elements = [h if isinstance(h, Panel) else Padding(h, INFO_PADDING) for h in headers]
-        return Group(*elements)
-
-    def hint_txt(self) -> Text | None:
-        """Secondary info about this file (recipients, level of certainty, etc). Overload in subclasses."""
-        return None
+        panel = Panel(self.raw_document_link_txt(include_alt_link=True), border_style=self._border_style(), expand=False)
+        return Group(*([panel] + self.hints()))
 
     def highlighted_preview_text(self) -> Text:
         try:
@@ -122,6 +113,17 @@ class Document:
                          f"File: '{self.filename}'\n")
 
             return Text(escape(self.preview_text()))
+
+    def hint_txt(self) -> Text | None:
+        """Secondary info about this file (recipients, level of certainty, etc). Overload in subclasses."""
+        return None
+
+    def hints(self) -> list[Padding]:
+        """Additional info about the Document (author, CONTENT_HINTS value, and so on)."""
+        file_info = self.hint_txt()
+        hints = [file_info] if file_info else []
+        hints += [Text(f"({CONTENT_HINTS[self.file_id]})", style='gray30')] if self.file_id in CONTENT_HINTS else []
+        return [Padding(h, INFO_PADDING) for h in hints]
 
     def lines_matching_txt(self, _pattern: re.Pattern | str) -> list[Text]:
         pattern = patternize(_pattern)

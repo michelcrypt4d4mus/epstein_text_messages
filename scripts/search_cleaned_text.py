@@ -43,7 +43,7 @@ for search_term in args.positional_args:
         else:
             console.print(search_result.document.description_panel())
 
-            if search_result.document.hint_txt():
+            if search_result.document.hints():
                 console.line()
 
             for line in search_result.unprefixed_lines():
