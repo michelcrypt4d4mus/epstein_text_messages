@@ -139,6 +139,7 @@ class Document:
         return WHITESPACE_REGEX.sub(' ', self.text)[0:PREVIEW_CHARS]
 
     def raw_document_link_txt(self, style: str = '', include_alt_link: bool = False) -> Text:
+        """Returns colored links to epsteinify and and epsteinweb in a Text object."""
         txt = Text('', style='white' if include_alt_link else ARCHIVE_LINK_COLOR)
 
         if args.use_epstein_web_links:
@@ -199,7 +200,7 @@ class Document:
         self.lines = self.text.split('\n')
         self.num_lines = len(self.lines)
 
-    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
+    def __rich_console__(self, _console: Console, _options: ConsoleOptions) -> RenderResult:
         yield self.file_info_panel()
         text_panel = Panel(highlighter(self.text), border_style=self._border_style(), expand=False)
         yield Padding(text_panel, (0, 0, 1, INFO_INDENT))
