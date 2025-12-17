@@ -224,7 +224,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='finance',
         style='green',
-        pattern=r'Apollo|Black(rock|stone)|BofA|Chase Bank|DB|Deutsche\s*Bank|Fenner|FRBNY|Goldman(\s*Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|(Jimmy\s*)?Cayne|JPMC?|j\.?p\.?\s*morgan(\.?com|\s*Chase)?|Madoff|Merrill(\s*Lynch)?|(Michael\s*)?(Cembalest|Milken)|MLPF&S|(money\s+)?launder(s?|ers?|ing)?(\s+money)?|Morgan Stanley|(Peter L. )?Scher|(Ray\s*)?Dalio|Schwartz?man|Serageldin|UBS|us.gio@jpmorgan.com',
+        pattern=r'Apollo|(Bernie\s*)?Madoff|Black(rock|stone)|BofA|Chase Bank|DB|Deutsche\s*Bank|Fenner|FRBNY|Goldman(\s*Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell|(Jimmy\s*)?Cayne|JPMC?|j\.?p\.?\s*morgan(\.?com|\s*Chase)?|Madoff|Merrill(\s*Lynch)?|(Michael\s*)?(Cembalest|Milken)|MLPF&S|(money\s+)?launder(s?|ers?|ing)?(\s+money)?|Morgan Stanley|(Peter L. )?Scher|(Ray\s*)?Dalio|Schwartz?man|Serageldin|UBS|us.gio@jpmorgan.com',
         emailers={
             AMANDA_ENS: 'Citigroup',
             DANIEL_SABBA: 'UBS Investment Bank',
@@ -264,7 +264,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='israel',
         style='dodger_blue2',
-        pattern=r"Bibi|(eh|(Ehud|Nili Priell) )?barak|Israeli?|Jerusalem|Mossad|Netanyahu|(Sheldon\s*)?Adelson|Tel\s*Aviv|YIVO|zionist",
+        pattern=r"Bibi|(eh|(Ehud|Nili Priell) )?barak|Israeli?|Jerusalem|Mossad|Netanyahu|(Sheldon\s*)?Adelson|Tel\s*Aviv|Yitzhak|Rabin|YIVO|zionist",
         emailers={
             EHUD_BARAK: 'former primer minister',
             'Mitchell Bard': 'director of the American-Israeli Cooperative Enterprise (AICE)',

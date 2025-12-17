@@ -725,6 +725,7 @@ DUPLICATE_FILE_IDS = {
     '025210': 'the same as 025205',
     '019864': 'the same as 019849',
     '033481': 'the same as 033480',
+    '014697': 'the same as 011284',  # Jeremy Gillula name removed
 }
 
 EMAILED_ARTICLE_IDS = [
@@ -753,7 +754,9 @@ CVRA = "Crime Victims' Rights Act (CVRA)"
 DEEP_THINKING_HINT = 'book: "Deep Thinking: Twenty-Five Ways of Looking at AI" by John Brockman'
 EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} and Paul Cassell v. {ALAN_DERSHOWITZ}"
 EPSTEIN_V_EDWARDS = f"Epstein v. Scott Rothstein and {BRAD_EDWARDS}"
+GIUFFRE_V_MAXWELL = f"Virginia Giuffre v. {GHISLAINE_MAXWELL}"
 HBS_APPLICATION_NERIO = f"Harvard Business School application letter from Nerio Alessandri (Founder and Chairman Technogym SPA Italy)"
+JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
 JP_MORGAN_EYE_ON_THE_MARKET = f"JP Morgan Eye On The Market report"
 KEN_STARR_LETTER = f"letter from {KEN_STARR} to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
 MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014-2016"
@@ -837,7 +840,8 @@ FILE_DESCRIPTIONS = {
     '030187': f'{PAUL_KRASSNER} "Remembering Lenny Bruce While We\'re Thinking About Trump" (draft?)',
     '019088': f'{PAUL_KRASSNER} "Are Rape Jokes Funny? (draft?)',
     '031725': f"article about Gloria Allred and Trump allegations",
-    '012704': f"article about Jane Doe #1 and Jane Doe #2 v. United States and {CVRA}",
+    '012704': f"article about {JANE_DOE_V_USA} and {CVRA}",
+    '010754': f"article about Yitzhak Rabin in U.S. News 2015-11-04",
     '031186': f'article about rape accusations against Trump',
     '032159': f"article about microfinance and cell phones in Zimbabwe, Strive Masiyiwa (Econet Wireless)",
     '031776': f"article about Michael Avenatti by Andrew Strickler",
@@ -845,6 +849,7 @@ FILE_DESCRIPTIONS = {
     '027004': f'article by {JOSCHA_BACH}: "The Computational Structure of Mental Representation" 2013-02-26',
     '019212': f'article in The Times Tribune and WaPo about Bannon, Trump, and healthcare execs',
     '015501': f'article on "Game Theory and Morality" by Moshe Hoffman, Erez Yoeli, Carlos David Navarrete',
+    '013275': f"Bloomberg article on notable 2013 obituaries 2013-12-26",
     '019468': f"Daily Mail article on Epstein and Clinton",
     '030258': f'draft of an article about Mueller probe, almost same as 030248',
     '030248': f'draft of an article about Mueller probe, almost same as 030258',
@@ -882,6 +887,7 @@ FILE_DESCRIPTIONS = {
     '015529': VIRGINIA_FILING,
     '014118': VIRGINIA_FILING,
     '025939': f'affidavit of Jane Doe describing being raped by Epstein',
+    '010735': f"court filing by {ALAN_DERSHOWITZ} in {JANE_DOE_V_USA}",
     '010887': f"court filing in {EDWARDS_V_DERSHOWITZ}",
     '010566': f"court filing in {EPSTEIN_V_EDWARDS}",
     '017488': f"court filing in {EPSTEIN_V_EDWARDS}",
@@ -892,7 +898,9 @@ FILE_DESCRIPTIONS = {
     '014084': f"court filing in Jane Doe #1 and Jane Doe #2 v. United States",
     '011908': f"court filing in {JEAN_LUC_BRUNEL} v. {JEFFREY_EPSTEIN} and Tyler McDonald d/b/a YI.org",
     '017935': f"court filing in Virginia Giuffre v. {ALAN_DERSHOWITZ}",
-    '014652': f"court filing in Virginia Giuffre v. {GHISLAINE_MAXWELL}",
+    '014652': f"court filing in {GIUFFRE_V_MAXWELL}",
+    '011304': f"court filing in {GIUFFRE_V_MAXWELL}",
+    '011463': f"court filing in {GIUFFRE_V_MAXWELL}",
     '018872': f"FBI seized property inventory (redacted)",
     '019352': f"FBI report on Epstein investigation (redacted)",
     '021434': f"FBI report on Epstein investigation (redacted)",
@@ -907,6 +915,7 @@ FILE_DESCRIPTIONS = {
     '020662': f"letter to Daily Mail threatening libel lawsuit from {ALAN_DERSHOWITZ}'s British lawyers Mishcon de Reya",
     '017603': f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN}",
     '017635': f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN}",
+    '013403': f"Lexis Nexis result from The Evening Standard about Bernie Madoff",
     '013304': f"motion filed in response to Epstein's lawsuit against {BRAD_EDWARDS}",
     '022237': f"partial court filing involving {ALAN_DERSHOWITZ} and Virginia Giuffre with fact checking questions?",
     '028540': f"Supreme Court decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP",
@@ -918,13 +927,15 @@ FILE_DESCRIPTIONS = {
     '031359': f"Nobel Charitable Trust Earth Environment Convention about ESG investing",
     # press releases, reports, etc.
     '014697': f'ASU Origins Project ({LAWRENCE_KRAUSS}) report "Challenges of AI: Envisioning and Addressing Adverse Outcomes"',
-    '014972': f'BofA / Merrill Lynch 2017 report "Global Equity Volatility Insights"',
-    '023575': f'BofA / Merrill Lynch 2017-06 report "Global Equity Volatility Insights"',
+    '011284': f'ASU Origins Project ({LAWRENCE_KRAUSS}) report "Challenges of AI: Envisioning and Addressing Adverse Outcomes"',
+    '010609': f'BofA / Merrill Lynch 2016-09-22 "Liquid Insight Trump’s effect on MXN"',
     '014404': f'BofA / Merrill Lynch 2016-11-18 Japan Investment Strategy Report',
     '014410': f'BofA / Merrill Lynch 2016-11-18 Japan Investment Strategy Report',
     '014424': f'BofA / Merrill Lynch 2016-11-14 Japan Macro Watch',
     '014731': f'BofA / Merrill Lynch 2016-11-16 "Global Rates, FX & EM 2017 Year Ahead',
     '014721': f'BofA / Merrill Lynch 2017-02-13 "Cause and Effect Fade the Trump risk premium',
+    '014972': f'BofA / Merrill Lynch 2017 report "Global Equity Volatility Insights"',
+    '023575': f'BofA / Merrill Lynch 2017-06 report "Global Equity Volatility Insights"',
     '029438': f'BofA Wealth Management 2018-01-02 tax report',
     '024271': f"Brock Pierce's Blockchain Capital presentation Oct 2015",
     '024631': f"Ackrell Capital Cannabis Investment Report 2018",
