@@ -55,7 +55,6 @@ CONTENT_HINTS = {
     '025663': 'Goldman Sachs Nov 2017 report "An Overview of the Current State of Cryptocurrencies and Blockchain"',
     '024256': 'Joi Ito: "Internet & Society: The Technologies and Politics of Control',
     '014315': 'BofA / Merrill Lynch 2016 Future of Financials Conference report',
-
 }
 
 DOC_TYPE_STYLES = {
@@ -107,7 +106,7 @@ class Document:
         """Mostly for logging."""
         doc_type = str(type(self).__name__)
         txt = Text('').append(self.file_path.stem, style='magenta')
-        txt.append(f' {doc_type} ', style=DOC_TYPE_STYLES[doc_type])
+        txt.append(f' {doc_type} ', style=self.document_type_style())
         txt.append(f"(num_lines=").append(f"{self.num_lines}", style='cyan')
         txt.append(", size=").append(file_size_str(self.file_path), style='aquamarine1')
         return txt.append(')') if doc_type == DOCUMENT_CLASS else txt
@@ -115,7 +114,10 @@ class Document:
     def description_panel(self, include_hints: bool = True) -> Panel:
         """Panelized description() with info_txt(), used in search results."""
         hints = [Text('', style='italic').append(h) for h in (self.hints() if include_hints else [])]
-        return Panel(Group(*([self.description()] + hints)), expand=False)
+        return Panel(Group(*([self.description()] + hints)), border_style=self.document_type_style(), expand=False)
+
+    def document_type_style(self) -> str:
+        return DOC_TYPE_STYLES[str(type(self).__name__)]
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on epsteinify.com."""
