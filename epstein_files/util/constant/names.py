@@ -67,6 +67,7 @@ GWENDOLYN_BECK = 'Gwendolyn Beck'         # https://www.lbc.co.uk/article/who-gw
 IVANKA = 'Ivanka'
 JABOR_Y = 'Jabor Y'                       # Qatari
 JACK_GOLDBERGER = 'Jack Goldberger'
+JACK_SCAROLA = 'Jack Scarola'
 JACKIE_PERCZEK = 'Jackie Perczek'
 JAMES_HILL = 'James Hill'
 JARED_KUSHNER = 'Jared Kushner'

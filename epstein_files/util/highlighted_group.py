@@ -309,7 +309,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='lawyer',
         style='purple',
-        pattern=r'Avenatti|(Barry (E. )?)?Krischer|(David\s*)?Boies|(Jack\s*)?Scarola|Kate Kelly|(Leon\s*)?Jaworski|Michael J. Pike|Paul,?\s*Weiss|Steptoe|Wein(berg|garten)',
+        pattern=r'Avenatti|(Barry (E. )?)?Krischer|(David\s*)?Boies|Kate Kelly|(Leon\s*)?Jaworski|Michael J. Pike|Paul,?\s*Weiss|Steptoe|Wein(berg|garten)',
         emailers = {
             ARDA_BESKARES: 'NYC immigration attorney allegedly involved in sex-trafficking operations',
             BENNET_MOSKOWITZ: None,
@@ -338,6 +338,7 @@ HIGHLIGHTED_GROUPS = [
         pattern=r'Paul\s*(G.\s*)?Cassell',
         emailers = {
             BRAD_EDWARDS: 'Rothstein Rosenfeldt Adler (Rothstein was a crook & partner of Roger Stone)',
+            JACK_SCAROLA: 'Searcy Denney Scarola Barnhart & Shipley',
         }
     ),
     HighlightedGroup(

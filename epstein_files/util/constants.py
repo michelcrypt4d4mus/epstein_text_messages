@@ -253,7 +253,7 @@ EMAILERS = [
     GLENN_DUBIN,
     GORDON_GETTY,
     'Jack Lang',
-    'Jack Scarola',
+    JACK_SCAROLA,
     JAY_LEFKOWITZ,
     JES_STALEY,
     JESSICA_CADWELL,
@@ -725,6 +725,7 @@ EMAILED_ARTICLE_IDS = [
 # Descriptions of non-email, non-text message files
 DEEP_THINKING_HINT = 'book: "Deep Thinking: Twenty-Five Ways of Looking at AI" by John Brockman'
 EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} and Paul Cassell v. {ALAN_DERSHOWITZ}"
+EPSTEIN_V_EDWARDS = f"Epstein v. Scott Rothstein and {BRAD_EDWARDS}"
 KEN_STARR_LETTER = f"letter from {KEN_STARR} to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta",
 MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014-2016"
 NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight" by {EHUD_BARAK}?'
@@ -795,6 +796,7 @@ FILE_DESCRIPTIONS = {
     '014037': f"Journal of Criminal Law and Criminology article on Crime Victims' Rights Act (CVRA)",
     '015462': f'magazine (?) issue: Nautilus Education',
     '023638': f'magazine interview with {PAUL_KRASSNER}',
+    '029925': f"New Yorker article about the placebo effect by Michael Specter",
     '031972': f"NYT article about #MeToo allegations against {LAWRENCE_KRAUSS}",
     '028481': f'photo of NYT article about Steve Bannon',
     '025328': f"scan of NYT page with articles about radio host Bob Fass and Robert Durst",
@@ -809,8 +811,9 @@ FILE_DESCRIPTIONS = {
     '014118': VIRGINIA_FILING,
     '025939': f'affidavit of Jane Doe describing being raped by Epstein',
     '010887': f"court filing in {EDWARDS_V_DERSHOWITZ}",
-    '010566': f"court filing in Epstein v. Scott Rothstein and {BRAD_EDWARDS}",
+    '010566': f"court filing in {EPSTEIN_V_EDWARDS}",
     '032321': f"court filing in Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}",
+    '029315': f"letter from {JACK_SCAROLA} about {EPSTEIN_V_EDWARDS}",
     '014084': f"court filing in Jane Doe #1 and Jane Doe #2 v. United States",
     '018872': f"FBI seized property inventory (redacted)",
     '019352': f"FBI report on Epstein investigation (redacted)",
@@ -825,6 +828,7 @@ FILE_DESCRIPTIONS = {
     '031359': f"Nobel Charitable Trust Earth Environment Convention about ESG investing",
     # press releases, reports, etc.
     '014972': f'BofA / Merrill Lynch 2017 report "Global Equity Volatility Insights"',
+    '029438': f'BofA Wealth Management 2018-01-02 tax report',
     '024271': f"Brock Pierce's Blockchain Capital presentation Oct 2015",
     '025663': f'Goldman Sachs Nov 2017 report "An Overview of the Current State of Cryptocurrencies and Blockchain"',
     '030848': f"JP Morgan report on Global Asset Allocation dated 2013-03-28",
@@ -843,6 +847,8 @@ FILE_DESCRIPTIONS = {
     '010617': f"Donald Trump financial disclosures from U.S. Office of Government Ethics",
     '031743': f'few pages describing the internet as a "New Nation State" (Network State?)',
     '024432': f"Michael Milken's Knowledge Universe Education (KUE) $1,000,000 corporate share placement notice (SEC filing?)",
+    '029328': f"Rafanelli Events promotional deck",
+    '029357': f"some text about Israel's challenges going into 2015",
     '030884': f"tweet",
     '011170': f'tweets about #Brexit collected by InsightsPod',
 }
