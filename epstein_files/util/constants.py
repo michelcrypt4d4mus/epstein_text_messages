@@ -320,6 +320,7 @@ KNOWN_EMAIL_AUTHORS = {
     '031460': EDWARD_EPSTEIN,
     '030578': FAITH_KATES,          # Same as unredacted 030414, same legal signature
     '030634': FAITH_KATES,          # Same as unredacted 031135, same legal signature
+    '023208': FRED_HADDAD,
     '026547': GERALD_BARTON,
     '029969': GWENDOLYN_BECK,       # Signature
     '031120': GWENDOLYN_BECK,       # Signature
@@ -485,6 +486,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '032780': JEFFREY_EPSTEIN,        # Bad OCR
     '025233': JEFFREY_EPSTEIN,        # Bad OCR
     '032208': JEFFREY_EPSTEIN,        # More of a text convo with Lawrence Krauss?
+    '023208': JEFFREY_EPSTEIN,
     '029324': [JEFFREY_EPSTEIN, 'Jojo Fontanilla', 'Lyn Fontanilla'],
     '033575': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN],
     '023067': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN, TONJA_HADDAD_COLEMAN],      # Bad OCR
@@ -866,6 +868,7 @@ FILE_DESCRIPTIONS = {
     '010617': f"Donald Trump financial disclosures from U.S. Office of Government Ethics",
     '024117': f"FAQ about anti-money laundering and terrorist financing law in the U.S.",
     '031743': f'few pages describing the internet as a "New Nation State" (Network State?)',
+    '016636': f"Palm Beach Water Committee Meeting on January 29, 2009",
     '029328': f"Rafanelli Events promotional deck",
     '029357': f"some text about Israel's challenges going into 2015",
     '030884': f"tweet",
