@@ -28,7 +28,7 @@ SECTION_HEADER_STYLE = 'bold white on blue3'
 SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 SOCIAL_MEDIA_LINK_STYLE = ARCHIVE_LINK_COLOR + ' bold'
 TITLE_STYLE = 'black on bright_white bold'
-TITLE_WIDTH = 50
+TITLE_WIDTH = 70
 NUM_COLOR_KEY_COLS = 4
 NA_TXT = Text(NA, style='dim')
 
