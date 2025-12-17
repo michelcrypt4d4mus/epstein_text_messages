@@ -729,7 +729,7 @@ KEN_STARR_LETTER = f"letter from {KEN_STARR} to judge overseeing Epstein's crimi
 MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014-2016"
 NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight" by {EHUD_BARAK}?'
 PATTERSON_BOOK_SCANS = f'scans of pages of "Filthy Rich: The Shocking True Story of Jeffrey Epstein" by James Patterson'
-SHIMON_POST = 'The Shimon Post selection of articles in NYT etc. about the mideast '
+SHIMON_POST = 'The Shimon Post selection of articles about the mideast '
 VIRGINIA_FILING = f"court filings from Virginia Giuffre's lawsuit against Epstein (and {ALAN_DERSHOWITZ}?)"
 
 FILE_DESCRIPTIONS = {
@@ -768,18 +768,34 @@ FILE_DESCRIPTIONS = {
     '023627': MICHAEL_WOLFF_ARTICLE_HINT,
     '024229': MICHAEL_WOLFF_ARTICLE_HINT,
     '010715': f"{PEGGY_SIEGAL}'s Oscar Diary April 2012",
+    '030030': f'{SHIMON_POST} 2011-03-29',
     '025610': f'{SHIMON_POST} 2011-04-03',
+    '023458': f'{SHIMON_POST} 2011-04-17',
+    '023487': f'{SHIMON_POST} 2011-04-18',
     '030531': f'{SHIMON_POST} 2011-04-20',
+    '024958': f'{SHIMON_POST} 2011-05-08',
+    '030060': f'{SHIMON_POST} 2011-05-13',
     '030531': f'{SHIMON_POST} 2011-05-16',
+    '031834': f'{SHIMON_POST} 2011-05-16',
+    '023517': f'{SHIMON_POST} 2011-05-26',
+    '030268': f'{SHIMON_POST} 2011-05-29',
+    '029628': f'{SHIMON_POST} 2011-06-04',
     '018085': f'{SHIMON_POST} 2011-06-07',
+    '030156': f'{SHIMON_POST} 2011-06-22',
     '031876': f'{SHIMON_POST} 2011-06-14',
     '032171': f'{SHIMON_POST} 2011-06-26',
+    '029932': f'{SHIMON_POST} 2011-07-03',
+    '031913': f'{SHIMON_POST} 2011-08-24',
+    '024592': f'{SHIMON_POST} 2011-08-25',
+    '024997': f'{SHIMON_POST} 2011-09-08',
+    '031941': f'{SHIMON_POST} 2011-11-17',
     '031186': f'article about rape accusations against Trump',
     '024256': f'article by {JOI_ITO}: "Internet & Society: The Technologies and Politics of Control',
     '019212': f'article in The Times Tribune and WaPo about Bannon, Trump, and healthcare execs',
     '014037': f"Journal of Criminal Law and Criminology article on Crime Victims' Rights Act (CVRA)",
     '015462': f'magazine (?) issue: Nautilus Education',
     '023638': f'magazine interview with {PAUL_KRASSNER}',
+    '031972': f"NYT article about #MeToo allegations against {LAWRENCE_KRAUSS}",
     '028481': f'photo of NYT article about Steve Bannon',
     '025328': f"scan of NYT page with articles about radio host Bob Fass and Robert Durst",
     # court docs
