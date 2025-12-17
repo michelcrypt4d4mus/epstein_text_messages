@@ -11,6 +11,7 @@ AUTHOR = 'author'
 DEFAULT = 'default'
 EVERYONE = 'everyone'
 HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
+NA = 'n/a'
 REDACTED = '<REDACTED>'
 URL_SIGNIFIERS = ['gclid', 'htm', 'ref=', 'utm']
 
