@@ -214,7 +214,7 @@ class EpsteinFiles:
         add_row('iMessage Logs', self.imessage_logs, self.identified_imessage_log_count)
         add_row('Emails', self.emails, len([e for e in self.emails if e.author]), len(DUPLICATE_EMAIL_IDS))
         add_row('Other', self.other_files)
-        console.print(Padding(Align.center(table)))
+        console.print(Align.center(table))
         console.line()
 
     def print_emails_for(self, _author: str | None) -> int:
