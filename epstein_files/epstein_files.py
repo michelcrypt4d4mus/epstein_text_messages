@@ -202,12 +202,12 @@ class EpsteinFiles:
         table.add_column("Author Unknown", justify='center')
         table.add_column("Duplicates", justify='center')
 
-        def add_row(label: str, documents: list, known: int | None = None, dupes: int | None = None):
+        def add_row(label: str, docs: list, known: int | None = None, dupes: int | None = None):
             table.add_row(
                 label,
-                f"{len(documents):,}",
+                f"{len(docs):,}",
                 f"{known:,}" if known else NA_TXT,
-                f"{len(documents) - known:,}" if known else NA_TXT,
+                f"{len(docs) - known:,}" if known else NA_TXT,
                 f"{dupes:,}" if dupes else NA_TXT,
             )
 
