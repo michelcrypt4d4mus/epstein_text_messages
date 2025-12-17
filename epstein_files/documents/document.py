@@ -87,7 +87,8 @@ class Document:
 
     def description_panel(self) -> Group:
         renderables = [Panel(self.description(), expand=False)]
-        renderables += [Padding(self.hint_txt(), INFO_PADDING)] if self.hint_txt() else []
+        hint_txt = self.hint_txt()
+        renderables += [Padding(hint_txt, INFO_PADDING)] if hint_txt else []
         return Group(*renderables)
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
