@@ -849,6 +849,7 @@ FILE_DESCRIPTIONS = {
     '013304': f"motion filed in response to Epstein's lawsuit against {BRAD_EDWARDS}",
     '021824': f"transcript of deposition of Paul Cassell in {EDWARDS_V_DERSHOWITZ}",
     # conferences
+    '023069': f'BofA / Merrill Lynch 2016 Future of Financials Conference report',
     '014315': f'BofA / Merrill Lynch 2016 Future of Financials Conference report',
     '017526': f'Intellectual Jazz conference brochure',
     '031359': f"Nobel Charitable Trust Earth Environment Convention about ESG investing",
@@ -904,7 +905,10 @@ FILE_DESCRIPTIONS = {
     '033434': f"iMessage screenshot labeled 'Edwards' at the top",
     '016636': f"Palm Beach Water Committee Meeting on January 29, 2009",
     '029328': f"Rafanelli Events promotional deck",
+    '023666': f"{ROBERT_LAWRENCE_KUHN} sizzle reel / television appearances",
     '029357': f"some text about Israel's challenges going into 2015",
+    '023644': f"transcription of an interview with MBS from Saudi",
     '030884': f"tweet",
+    '023050': f"tweet by {ALAN_DERSHOWITZ} about Virginia Giuffre",
     '011170': f'tweets about #Brexit collected by InsightsPod',
 }

@@ -456,7 +456,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='virgin islands',
         style='sea_green1',
-        pattern=r'Bahamas|Cecile de Jongh|Dominican\s*Republic|Haiti|(Kenneth E\. )?Mapp|S(ain)?t.?\s*Thomas|USVI|VI|Virgin\s*Islands',
+        pattern=r'Bahamas|Cecile de Jongh|Dominican\s*Republic|Haiti|(Kenneth E\. )?Mapp|Palm\s*Beach|PBI|S(ain)?t.?\s*Thomas|USVI|VI|Virgin\s*Islands',
         emailers = {
             STACEY_PLASKETT: 'non-voting member of Congress',
             KENNETH_E_MAPP: 'Governor',
