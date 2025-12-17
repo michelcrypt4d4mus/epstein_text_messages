@@ -733,6 +733,7 @@ EMAILED_ARTICLE_IDS = [
 ]
 
 # Descriptions of non-email, non-text message files
+CVRA = "Crime Victims' Rights Act (CVRA)"
 DEEP_THINKING_HINT = 'book: "Deep Thinking: Twenty-Five Ways of Looking at AI" by John Brockman'
 EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} and Paul Cassell v. {ALAN_DERSHOWITZ}"
 EPSTEIN_V_EDWARDS = f"Epstein v. Scott Rothstein and {BRAD_EDWARDS}"
@@ -766,6 +767,7 @@ FILE_DESCRIPTIONS = {
     '010912': f'book: "Free Growth and Other Surprises" by Gordon Getty (draft)',
     '021247': f'book: "Invisible Forces And Powerful Beliefs: Gravity, Gods, And Minds" by The Chicago Social Brain Network',
     '019477': f'book: "How America Lost Its Secrets: Edward Snowden, the Man, and the Theft" by {EDWARD_EPSTEIN}',
+    '017088': f'book: "Taking the Stand: My Life in the Law" by {ALAN_DERSHOWITZ} (draft)',
     '023731': f'book: "Teaching Minds How Cognitive Science Can Save Our Schools" by {ROGER_SCHANK}',
     '013796': f'book: "The 4-Hour Workweek" by Tim Ferriss',
     '021145': f'book: "The Billionaire\'s Playboy Club" by Virginia Giuffre (draft?)',
@@ -823,7 +825,7 @@ FILE_DESCRIPTIONS = {
     '026761': f'Forbes article "Swedish American Group Focuses On Cancer" about {BARBRO_EHNBOM}',
     '031716': f'Fortune Magazine article by {TOM_BARRACK} 2016-10-22',
     '027051': f"German language article about Lifeball / AIDS Gala 2012",
-    '014037': f"Journal of Criminal Law and Criminology article on Crime Victims' Rights Act (CVRA)",
+    '014037': f"Journal of Criminal Law and Criminology article on {CVRA}",
     '015462': f'magazine (?) issue: Nautilus Education',
     '019444': f'Frontlines magazine article "Biologists Dig Deeper"',
     '029925': f"New Yorker article about the placebo effect by Michael Specter",
@@ -848,16 +850,21 @@ FILE_DESCRIPTIONS = {
     '025939': f'affidavit of Jane Doe describing being raped by Epstein',
     '010887': f"court filing in {EDWARDS_V_DERSHOWITZ}",
     '010566': f"court filing in {EPSTEIN_V_EDWARDS}",
+    '017488': f"court filing in {EPSTEIN_V_EDWARDS}",
     '032321': f"court filing in Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}",
     '014084': f"court filing in Jane Doe #1 and Jane Doe #2 v. United States",
     '018872': f"FBI seized property inventory (redacted)",
     '019352': f"FBI report on Epstein investigation (redacted)",
-    '017904': f"laws and court filing regarding a lawsuit against Saudi Arabia for 9/11?",
+    '021434': f"FBI report on Epstein investigation (redacted)",
+    '017904': f"laws and court filing regarding lawsuit against Saudi Arabia for 9/11?",
+    '023361': f"laws and court filing regarding lawsuit against Saudi Arabia for 9/11?",
     '012197': f"letter from DOJ to {JAY_LEFKOWITZ} about Epstein's prosecution agreement",
     '010560': f"letter from Gloria Allred to {SCOTT_J_LINK} alleging abuse of a girl from Kansas",
     '029315': f"letter from {JACK_SCAROLA} about {EPSTEIN_V_EDWARDS}",
     '026793': f"letter from {STEVEN_HOFFENBERG}'s lawyer Alan P. Fraade offering to take over Epstein's business and resolve his legal issues",
     '020662': f"letter to Daily Mail threatening libel lawsuit from {ALAN_DERSHOWITZ}'s British lawyers Mishcon de Reya",
+    '017603': f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN}",
+    '017635': f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN}",
     '013304': f"motion filed in response to Epstein's lawsuit against {BRAD_EDWARDS}",
     '022237': f"partial court filing involving {ALAN_DERSHOWITZ} and Virginia Giuffre with fact checking questions?",
     '028540': f"Supreme Court decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP",
@@ -869,6 +876,7 @@ FILE_DESCRIPTIONS = {
     '031359': f"Nobel Charitable Trust Earth Environment Convention about ESG investing",
     # press releases, reports, etc.
     '014972': f'BofA / Merrill Lynch 2017 report "Global Equity Volatility Insights"',
+    '023575': f'BofA / Merrill Lynch 2017-06 report "Global Equity Volatility Insights"',
     '029438': f'BofA Wealth Management 2018-01-02 tax report',
     '024271': f"Brock Pierce's Blockchain Capital presentation Oct 2015",
     '024631': f"Ackrell Capital Cannabis Investment Report 2018",
@@ -896,6 +904,7 @@ FILE_DESCRIPTIONS = {
     '030814': f"{JP_MORGAN_EYE_ON_THE_MARKET} 2011-11-21",
     '024132': f"{JP_MORGAN_EYE_ON_THE_MARKET} 2012-03-15",
     '025242': f"{JP_MORGAN_EYE_ON_THE_MARKET} 2012-04-09",
+    '024194': f"{JP_MORGAN_EYE_ON_THE_MARKET} 2012-10-22",
     '025296': f'Laffer Associates report from 2016-07 predicting Trump win',
     '025551': f'Morgan Stanley report about alternative asset managers 2018-01-30',
     '026759': f'press release by Ritz-Carlton club about damage from Hurricane Irma',
@@ -924,7 +933,7 @@ FILE_DESCRIPTIONS = {
     '029102': HBS_APPLICATION_NERIO,
     '029104': HBS_APPLICATION_NERIO,
     '028281': f'art show flier for "The House Of The Nobleman" curated by Wolfe Von Lenkiewicz & Victoria Golembiovskaya',
-    '012718': f"Congressional record from 2011-06-17 about Crime Victims' Rights Act (CVRA)",
+    '012718': f"Congressional record from 2011-06-17 about {CVRA}",
     '010617': f"Donald Trump financial disclosures from U.S. Office of Government Ethics",
     '025540': f"Epstein's rough draft of 'his side' of the story?",
     '024117': f"FAQ about anti-money laundering and terrorist financing law in the U.S.",
