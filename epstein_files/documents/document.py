@@ -30,7 +30,7 @@ DEEP_THINKING_HINT = 'book: "Deep Thinking: Twenty-Five Ways of Looking at AI" b
 MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014-2016"
 NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight" by {EHUD_BARAK}?'
 
-CONTENT_HINTS = {
+FILE_DESCRIPTIONS = {
     '022707': MICHAEL_WOLFF_ARTICLE_HINT,
     '022727': MICHAEL_WOLFF_ARTICLE_HINT,
     '022746': MICHAEL_WOLFF_ARTICLE_HINT,
@@ -164,10 +164,10 @@ class Document:
             return Text(escape(self.preview_text()))
 
     def hints(self) -> list[Text]:
-        """Additional info about the Document (author, CONTENT_HINTS value, and so on)."""
+        """Additional info about the Document (author, FILE_DESCRIPTIONS value, and so on)."""
         file_info = self.info_txt()
         hints = [file_info] if file_info else []
-        hints += [Text(f"({CONTENT_HINTS[self.file_id]})", style='gray30')] if self.file_id in CONTENT_HINTS else []
+        hints += [Text(f"({FILE_DESCRIPTIONS[self.file_id]})", style='gray30')] if self.file_id in FILE_DESCRIPTIONS else []
         return hints
 
     def info_txt(self) -> Text | None:
