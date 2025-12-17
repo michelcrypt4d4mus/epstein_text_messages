@@ -48,4 +48,4 @@ for search_term in args.positional_args:
             console.print(search_result.document.description_panel())
 
             for line in search_result.unprefixed_lines():
-                console.print(Padding(temp_highlighter(line), INFO_PADDING), style='grey42')
+                console.print(Padding(temp_highlighter(line), INFO_PADDING), style='gray37')
