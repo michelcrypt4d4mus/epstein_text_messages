@@ -147,8 +147,6 @@ class MessengerLog(CommunicationDocument):
         if self.file_id in GUESSED_IMESSAGE_FILE_IDS:
             self.author_str += ' (?)'
 
-        self.author_txt = Text(self.author_str, style=self.author_style)
-
     def _extract_timestamp(self) -> datetime:
         for match in MSG_REGEX.finditer(self.text):
             timestamp_str = match.group(2).strip()

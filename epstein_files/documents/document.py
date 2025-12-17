@@ -255,6 +255,7 @@ class CommunicationDocument(Document):
         super().__post_init__()
         self._repair()
         self._extract_author()
+        self.author_txt = Text(self.author_str, style=self.author_style)
         self.timestamp = self._extract_timestamp()
 
     def author_or_unknown(self) -> str:
