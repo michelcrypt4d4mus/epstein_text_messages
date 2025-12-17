@@ -320,7 +320,6 @@ KNOWN_EMAIL_AUTHORS = {
     '031460': EDWARD_EPSTEIN,
     '030578': FAITH_KATES,          # Same as unredacted 030414, same legal signature
     '030634': FAITH_KATES,          # Same as unredacted 031135, same legal signature
-    '023208': FRED_HADDAD,
     '026547': GERALD_BARTON,
     '029969': GWENDOLYN_BECK,       # Signature
     '031120': GWENDOLYN_BECK,       # Signature
@@ -350,6 +349,7 @@ KNOWN_EMAIL_AUTHORS = {
     '025041': JEFFREY_EPSTEIN,       # Just bad OCR
     '032214': JEFFREY_EPSTEIN,       # Just bad OCR
     '029582': JEFFREY_EPSTEIN,
+    '023208': JEFFREY_EPSTEIN,       # Same as 023291
     '031791': JESSICA_CADWELL,
     '028849': JOI_ITO,               # Conversation with Joi Ito
     '028851': JOI_ITO,
@@ -486,7 +486,6 @@ KNOWN_EMAIL_RECIPIENTS = {
     '032780': JEFFREY_EPSTEIN,        # Bad OCR
     '025233': JEFFREY_EPSTEIN,        # Bad OCR
     '032208': JEFFREY_EPSTEIN,        # More of a text convo with Lawrence Krauss?
-    '023208': JEFFREY_EPSTEIN,
     '029324': [JEFFREY_EPSTEIN, 'Jojo Fontanilla', 'Lyn Fontanilla'],
     '033575': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN],
     '023067': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN, TONJA_HADDAD_COLEMAN],      # Bad OCR
@@ -537,6 +536,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '030369': MELANIE_SPINELLA,       # Actually a self fwd from jeffrey to jeffrey
     '030371': MELANIE_SPINELLA,       # Actually a self fwd from jeffrey to jeffrey
     '023291': [MELANIE_SPINELLA, BRAD_WECHSLER],  # Can be seen in 023028
+    '023208': [MELANIE_SPINELLA, BRAD_WECHSLER],  # Can be seen in 023291
     '032214': MIROSLAV_LAJCAK,        # Quoted reply has signature
     '022258': NADIA_MARCINKO,         # Reply header
     '033097': [PAUL_BARRETT, RICHARD_KAHN],  # Bad OCR
@@ -703,6 +703,7 @@ DUPLICATE_EMAIL_IDS = {
     '033589': 'the same as 032250',
     '031708': 'the same as 026624',
     '030575': 'a redacted version of 030475',
+    '023291': 'the same as (?) 023028',
 }
 
 EMAILED_ARTICLE_IDS = [
