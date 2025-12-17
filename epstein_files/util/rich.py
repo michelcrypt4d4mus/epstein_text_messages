@@ -142,11 +142,12 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
     console.line()
 
 
-def print_list(txts: list[Text], spacer='  '):
-    txt = Text('').append(txts.pop())
+def print_list(txts: list[Text], join='  '):
+    """Print list in one line."""
+    txt = Text('(').append(txts.pop()).append(')')
 
     for t in txts:
-        txt.append(spacer).append(t)
+        txt.append(join).append('(').append(t).append(')')
 
     print_centered(txt)
 
@@ -235,13 +236,13 @@ def print_social_media_links() -> None:
     style = f"{SOCIAL_MEDIA_LINK_STYLE} bold"
 
     social_links = [
-        link_text_obj('https://cryptadamus.substack.com/', 'Substack', style=style),
-        link_text_obj('https://universeodon.com/@cryptadamist/115572634993386057', 'Mastodon', style=style),
-        link_text_obj('https://x.com/Cryptadamist/status/1990866804630036988', 'Twitter', style=style),
+        link_text_obj('https://cryptadamus.substack.com/', 'substack', style=style),
+        link_text_obj('https://universeodon.com/@cryptadamist/115572634993386057', 'mastodon', style=style),
+        link_text_obj('https://x.com/Cryptadamist/status/1990866804630036988', 'twitter', style=style),
     ]
 
     # ⦾⦿•◦◘
-    print_list(social_links, spacer = '       ')
+    print_list(social_links, join = '       ')
 
 
 def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2) -> None:
