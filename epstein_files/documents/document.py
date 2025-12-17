@@ -250,8 +250,9 @@ class Document:
         cmd = f"diff {tmpfiles[0]} {tmpfiles[1]}"
         console.print(f"Running '{cmd}'...")
         results = run(cmd, shell=True, capture_output=True, text=True).stdout
-        console.print(f"\nDiff results:")
-        console.print(f"{results}\n", style='dim', highlight=False)
+
+        for line in _color_diff_output(results):
+            console.print(line, highlight=True)
 
         console.print(f"Possible suppression with: ")
         console.print(Text('   suppress left: ').append(f"   '{extract_file_id(files[0])}': 'the same as {extract_file_id(files[1])}',", style='cyan'))
@@ -318,3 +319,18 @@ class SearchResult:
 
     def unprefixed_lines(self) -> list[str]:
         return [line.plain.split(':', 1)[1] for line in self.lines]
+
+
+def _color_diff_output(diff_result: str) -> list[Text]:
+    txts = [Text('diff output:')]
+    style = 'dim'
+
+    for line in diff_result.split('\n'):
+        if line.startswith('>'):
+            style='spring_green4'
+        elif line.startswith('<'):
+            style='sea_green1'
+
+        txts.append(Text(line, style=style))
+
+    return txts
