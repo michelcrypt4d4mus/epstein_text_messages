@@ -17,7 +17,7 @@ from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, EPSTEINIFY, EPS
 from epstein_files.util.data import collapse_newlines, escape_single_quotes, patternize
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, file_size_str, is_local_extract_file
-from epstein_files.util.rich import console, highlighter, logger, link_text_obj, link_markup
+from epstein_files.util.rich import console, highlighter, logger, link_text_obj
 
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
@@ -61,7 +61,8 @@ class Document:
     text: str = ''
     url_slug: str = field(init=False)  # e.g. 'HOUSE_OVERSIGHT_123456
 
-    file_matching_idx: ClassVar[int] = 0  # only used to cycle color of output when using lines_match()
+    # Class variable; only used to cycle color of output when using lines_match()
+    file_matching_idx: ClassVar[int] = 0
 
     def __post_init__(self):
         self.filename = self.file_path.name
@@ -76,6 +77,7 @@ class Document:
         self._set_computed_fields()
 
     def description(self) -> Text:
+        """Mostly for logging."""
         doc_type = str(type(self).__name__)
         txt = Text('').append(self.file_path.stem, style='magenta')
         txt.append(f' {doc_type} ', style=DOC_TYPE_STYLES[doc_type])
@@ -91,14 +93,18 @@ class Document:
         """Create a Text obj link to this document on EpsteinWeb."""
         return link_text_obj(epstein_web_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
 
-    def file_info_panel(self) -> list[Padding | Panel]:
+    def file_info_panel(self) -> list[Padding | Panel | Text]:
         headers = [Panel(self.raw_document_link_txt(), border_style=self._border_style(), expand=False)]
-        headers += self.hint_txts()
+        hint = self.hint_txt()
+        headers += [hint] if hint else []
 
         if self.file_id in CONTENT_HINTS:
-            headers += [Padding(Text(f"({CONTENT_HINTS[self.file_id]})", style='wheat4'), INFO_PADDING)]
+            headers += [Text(f"({CONTENT_HINTS[self.file_id]})", style='wheat4')]
 
-        return headers
+        return [
+            element if isinstance(element, Panel) else Padding(element, INFO_PADDING)
+            for element in headers
+        ]
 
     def print_file_info_panel(self) -> None:
         for header_element in self.file_info_panel():
@@ -107,10 +113,6 @@ class Document:
     def hint_txt(self) -> Text | None:
         """Secondary info about this file (recipients, level of certainty, etc). Overload in subclasses."""
         return None
-
-    def hint_txts(self) -> list[Padding]:
-        hint = self.hint_txt()
-        return [Padding(hint, INFO_PADDING)] if hint else []
 
     def highlighted_preview_text(self) -> Text:
         try:

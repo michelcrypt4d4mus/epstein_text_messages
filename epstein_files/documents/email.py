@@ -383,7 +383,7 @@ class Email(CommunicationDocument):
         else:
             style = self.author_style
 
-        return style.replace('bold', '')
+        return style.replace('bold', '').strip()
 
     def _cleaned_up_text(self) -> str:
         """Add newline after headers in text if actual header wasn't 'empty', remove bad lines, etc."""
