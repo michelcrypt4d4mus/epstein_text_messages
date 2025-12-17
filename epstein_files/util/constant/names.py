@@ -163,7 +163,7 @@ ZUBAIR_KHAN = 'Zubair Khan'
 NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Al', 'Allen', 'Amanda', 'Andres', 'Andrew',
     'Barry', 'Bill', 'Black', 'Brad',
-    'Carolyn',
+    'Carolyn', 'Chris', 'Christina',
     'Dan', 'Daniel', 'Danny', 'Darren', 'Dave', 'David',
     'Ed', 'Edward', 'Edwards', 'Epstein', 'Eric', 'Erika', 'Etienne',
     'Faith', 'Fred', 'Frost', 'Fuller',

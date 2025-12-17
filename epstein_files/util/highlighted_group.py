@@ -208,7 +208,7 @@ HIGHLIGHTED_GROUPS = [
         label='famous_lawyer',
         info='lawyer',
         style='medium_purple3',
-        pattern='dersh',
+        pattern=r'dersh|Gloria\s*Allred',
         emailers = {
             ALAN_DERSHOWITZ: None,
             KEN_STARR: 'head of the Monica Lewinsky investigation against Bill Clinton',
@@ -430,7 +430,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='tech bro',
         style='bright_cyan',
-        pattern=r"Eric\sSchmidt|(Mark\s*)?Zuckerberg|Masa(yoshi)?(\sSon)?|Najeev|Palantir|(Peter\s)?Th(ie|ei)l|Sergey\s*Brin|Softbank|SpaceX",
+        pattern=r"AG?I|Eric\sSchmidt|(Mark\s*)?Zuckerberg|Masa(yoshi)?(\sSon)?|Najeev|Palantir|(Peter\s)?Th(ie|ei)l|Sergey\s*Brin|Softbank|SpaceX",
         emailers = {
             ELON_MUSK: None,
             REID_HOFFMAN: 'PayPal mafia member, founder of LinkedIn',

@@ -118,9 +118,13 @@ class Document:
         """Additional info about the Document (author, FILE_DESCRIPTIONS value, and so on)."""
         file_info = self.info_txt()
         hints = [file_info] if file_info else []
+        hint_msg = FILE_DESCRIPTIONS.get(self.file_id)
 
-        if self.file_id in FILE_DESCRIPTIONS:
-            hints.append(highlighter(Text(f"({FILE_DESCRIPTIONS[self.file_id]})", style='gray30')))
+        if not hint_msg and 'Virgin Islands Daily News' in self.text:
+            hint_msg = 'article in Virgin Islands Daily News'
+
+        if hint_msg:
+            hints.append(highlighter(Text(f"({hint_msg})", style='gray30 italic')))
 
         return hints
 
