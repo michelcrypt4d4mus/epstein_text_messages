@@ -1,15 +1,13 @@
 #!/usr/bin/env python
 # Search the document text AFTER all OCR fixes have been applied.
 from os import environ
-from sys import argv, exit
+from sys import exit
 
 from dotenv import load_dotenv
 from rich.highlighter import RegexHighlighter
-from rich.panel import Panel
 load_dotenv()
 environ.setdefault('PICKLED', 'true')
 
-from epstein_files.documents.email import Email
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.env import args, specified_names
 from epstein_files.util.highlighted_group import REGEX_STYLE_PREFIX
