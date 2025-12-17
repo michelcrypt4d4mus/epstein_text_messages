@@ -206,9 +206,9 @@ class EpsteinFiles:
             table.add_row(
                 label,
                 f"{len(documents):,}",
-                NA_TXT if known is None else f"{known:,}",
-                NA_TXT if known is None else f"{len(documents) - known:,}",
-                NA_TXT if dupes is None else f"{dupes:,}",
+                f"{known:,}" if known else NA_TXT,
+                f"{len(documents) - known:,}" if known else NA_TXT,
+                f"{dupes:,}" if dupes else NA_TXT,
             )
 
         add_row('iMessage Logs', self.imessage_logs, self.identified_imessage_log_count)
