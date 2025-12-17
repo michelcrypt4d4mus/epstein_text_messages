@@ -11,7 +11,7 @@ from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
 
-from epstein_files.util.constant.names import UNKNOWN
+from epstein_files.util.constant.names import PAUL_KRASSNER, UNKNOWN
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, EPSTEINIFY, EPSTEIN_WEB, epsteinify_doc_url, epstein_web_doc_url
 from epstein_files.util.data import collapse_newlines, escape_single_quotes, patternize
@@ -39,9 +39,13 @@ CONTENT_HINTS = {
     '022952': MICHAEL_WOLFF_ARTICLE_HINT,
     '023627': MICHAEL_WOLFF_ARTICLE_HINT,
     '024229': MICHAEL_WOLFF_ARTICLE_HINT,
+    '018438': 'book: "The S&M Feminist" by Clarisse Thorn',
+    '019874': 'book: "Fire And Fury" by Michael Wolff',
     '028481': 'photo of NYT article about Steve Bannon',
-    '015462': 'magazine (?) issue: "Nautilus Education"',
+    '015462': 'magazine (?) issue: Nautilus Education',
     '015529': "court filings from Virginia Giuffre's lawsuit against Epstein",
+    '019212': 'article in The Times Tribune and WaPo about Bannon, Trump, and healthcare execs',
+    '023638': f'magazine interview with {PAUL_KRASSNER}',
     '016221': DEEP_THINKING_HINT,
     '016804': DEEP_THINKING_HINT,
     '012747': 'book: "Evilicious: Explaining Our Taste For Excessive Harm" by Marc D. Hauser',
