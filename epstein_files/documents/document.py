@@ -91,6 +91,19 @@ class Document:
         """Create a Text obj link to this document on EpsteinWeb."""
         return link_text_obj(epstein_web_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
 
+    def file_info_panel(self) -> list[Padding | Panel]:
+        headers = [Panel(self.raw_document_link_txt(), border_style=self._border_style(), expand=False)]
+        headers += self.hint_txts()
+
+        if self.file_id in CONTENT_HINTS:
+            headers += [Padding(Text(f"({CONTENT_HINTS[self.file_id]})", style='wheat4'), INFO_PADDING)]
+
+        return headers
+
+    def print_file_info_panel(self) -> None:
+        for header_element in self.file_info_panel():
+            console.print(header_element)
+
     def hint_txt(self) -> Text | None:
         """Secondary info about this file (recipients, level of certainty, etc). Overload in subclasses."""
         return None
@@ -173,6 +186,10 @@ class Document:
 
         logger.warning(f"Wrote {self.length} chars of cleaned {self.filename} to {output_path}.")
 
+    def _border_style(self) -> str:
+        """Should be implemented in subclasses."""
+        return 'white'
+
     def _load_file(self):
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
         with open(self.file_path) as f:
@@ -250,24 +267,12 @@ class CommunicationDocument(Document):
         txt.append(f", author=").append(self.author_str, style=self.author_style)
         return txt.append(')')
 
-    def file_info_panel(self) -> list[Padding | Panel]:
-        headers = [Panel(self.raw_document_link_txt(), border_style=self._border_style(), expand=False)]
-        headers += self.hint_txts()
-
-        if self.file_id in CONTENT_HINTS:
-            headers += [Padding(Text(f"({CONTENT_HINTS[self.file_id]})", style='wheat4'), INFO_PADDING)]
-
-        return headers
-
     def raw_document_link_txt(self, _style: str = '', include_alt_link: bool = True) -> Text:
         """Overrides super() method to apply author_style."""
         return super().raw_document_link_txt(self.author_style, include_alt_link=include_alt_link)
 
     def timestamp_without_seconds(self) -> str:
         return TIMESTAMP_SECONDS_REGEX.sub('', str(self.timestamp))
-
-    def _border_style(self) -> str:
-        raise NotImplementedError(f"Should be implemented in subclasses!")
 
     def _extract_author(self) -> None:
         raise NotImplementedError(f"Should be implemented in subclasses!")
