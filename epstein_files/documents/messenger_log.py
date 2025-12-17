@@ -107,11 +107,13 @@ class MessengerLog(CommunicationDocument):
     def __post_init__(self):
         super().__post_init__()
 
-        if self.file_id in KNOWN_IMESSAGE_FILE_IDS:
-            self.hint_txt = Text(f" Found confirmed counterparty ", style='dim').append(self.author_txt)
-            self.hint_txt.append(f" for file ID {self.file_id}.")
-        elif self.file_id in GUESSED_IMESSAGE_FILE_IDS:
-            self.hint_txt = Text(" (This is probably a conversation with ", style='dim').append(self.author_txt).append(')')
+        if self.file_id in KNOWN_IMESSAGE_FILE_IDS or self.file_id in GUESSED_IMESSAGE_FILE_IDS:
+            if self.file_id in KNOWN_IMESSAGE_FILE_IDS:
+                hint_msg = 'Found confirmed counterparty'
+            else:
+                hint_msg = 'This is probably a conversation with'
+
+            self.hint_txt = Text(f" {hint_msg} ", style='dim').append(self.author_txt)
 
     def first_message_at(self, name: str | None) -> datetime:
         return self.messages_by(name)[0].timestamp()
