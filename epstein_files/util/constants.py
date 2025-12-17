@@ -366,14 +366,15 @@ KNOWN_EMAIL_AUTHORS = {
     '033490': JONATHAN_FARKAS,        # Signature
     '032531': JONATHAN_FARKAS,        # Signature
     '026764': 'Barry J. Cohen',
-    '026652': KATHRYN_RUEMMLER,          # Just bad OCR
+    '026652': KATHRYN_RUEMMLER,       # Just bad OCR
     '032224': KATHRYN_RUEMMLER,
-    '032386': KATHRYN_RUEMMLER,          # from "Kathy" about dems, sent from iPad (not 100% confirmed)
-    '032727': KATHRYN_RUEMMLER,          # from "Kathy" about dems, sent from iPad (not 100% confirmed)
+    '032386': KATHRYN_RUEMMLER,       # from "Kathy" about dems, sent from iPad (not 100% confirmed)
+    '032727': KATHRYN_RUEMMLER,       # from "Kathy" about dems, sent from iPad (not 100% confirmed)
     '030478': LANDON_THOMAS,
     '029013': LARRY_SUMMERS,
     '032206': LAWRENCE_KRAUSS,         # More of a text convo?
     '032209': LAWRENCE_KRAUSS,         # More of a text convo?
+    '032208': LAWRENCE_KRAUSS,         # More of a text convo?
     # '032210': LAWRENCE_KRAUSS,         # More of a text convo?
     '029196': LAWRENCE_KRAUSS,
     '033487': LAWRANCE_VISOSKI,
@@ -483,6 +484,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '033274': JEFFREY_EPSTEIN,        # this is a note sent to self
     '032780': JEFFREY_EPSTEIN,        # Bad OCR
     '025233': JEFFREY_EPSTEIN,        # Bad OCR
+    '032208': JEFFREY_EPSTEIN,        # More of a text convo with Lawrence Krauss?
     '029324': [JEFFREY_EPSTEIN, 'Jojo Fontanilla', 'Lyn Fontanilla'],
     '033575': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN],
     '023067': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN, TONJA_HADDAD_COLEMAN],      # Bad OCR
@@ -727,6 +729,7 @@ DEEP_THINKING_HINT = 'book: "Deep Thinking: Twenty-Five Ways of Looking at AI" b
 EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} and Paul Cassell v. {ALAN_DERSHOWITZ}"
 EPSTEIN_V_EDWARDS = f"Epstein v. Scott Rothstein and {BRAD_EDWARDS}"
 HBS_APPLICATION_NERIO = f"Harvard Business School application letter from Nerio Alessandri (Founder and Chairman Technogym SPA Italy)"
+JP_MORGAN_EYE_ON_THE_MARKET = f"JP Morgan Eye On The Market report"
 KEN_STARR_LETTER = f"letter from {KEN_STARR} to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
 MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014-2016"
 NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight" by {EHUD_BARAK}?'
@@ -801,6 +804,7 @@ FILE_DESCRIPTIONS = {
     '023638': f'magazine interview with {PAUL_KRASSNER}',
     '029925': f"New Yorker article about the placebo effect by Michael Specter",
     '031972': f"NYT article about #MeToo allegations against {LAWRENCE_KRAUSS}",
+    '031794': f"press clipping in French",
     '028481': f'photo of NYT article about Steve Bannon',
     '025328': f"scan of NYT page with articles about radio host Bob Fass and Robert Durst",
     # court docs
@@ -835,11 +839,11 @@ FILE_DESCRIPTIONS = {
     '024271': f"Brock Pierce's Blockchain Capital presentation Oct 2015",
     '025663': f'Goldman Sachs Nov 2017 report "An Overview of the Current State of Cryptocurrencies and Blockchain"',
     '030848': f"JP Morgan report on Global Asset Allocation dated 2013-03-28",
-    '030010': f"JP Morgan Eye On The Market report 2011-06-14",
-    '030808': f"JP Morgan Eye On The Market report 2011-07-11",
-    '025221': f"JP Morgan Eye On The Market report 2011-07-25",
-    '030814': f"JP Morgan Eye On The Market report 2011-11-21",
-    '024132': f"JP Morgan Eye On The Market report 2012-03-15",
+    '030010': f"{JP_MORGAN_EYE_ON_THE_MARKET} 2011-06-14",
+    '030808': f"{JP_MORGAN_EYE_ON_THE_MARKET} 2011-07-11",
+    '025221': f"{JP_MORGAN_EYE_ON_THE_MARKET} 2011-07-25",
+    '030814': f"{JP_MORGAN_EYE_ON_THE_MARKET} 2011-11-21",
+    '024132': f"{JP_MORGAN_EYE_ON_THE_MARKET} 2012-03-15",
     '025296': f'Laffer Associates report from 2016-07 predicting Trump win',
     '012048': f'press release "Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm" and other articles',
     '033338': f"press release on June 7th, 2000 announcing Donald Trump & {NICHOLAS_RIBIS} ended their working relationship at Trump's casino",
