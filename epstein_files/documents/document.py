@@ -87,7 +87,7 @@ class Document:
         return txt.append(')') if doc_type == DOCUMENT_CLASS else txt
 
     def description_panel(self, include_hints: bool = True) -> Panel:
-        """Panelized description() with hint_txt(), used in search results."""
+        """Panelized description() with info_txt(), used in search results."""
         renderables = [self.description()] + (self.hints() if include_hints else [])
         return Panel(Group(*renderables), expand=False)
 
@@ -114,16 +114,16 @@ class Document:
 
             return Text(escape(self.preview_text()))
 
-    def hint_txt(self) -> Text | None:
-        """Secondary info about this file (recipients, level of certainty, etc). Overload in subclasses."""
-        return None
-
     def hints(self) -> list[Padding]:
         """Additional info about the Document (author, CONTENT_HINTS value, and so on)."""
-        file_info = self.hint_txt()
+        file_info = self.info_txt()
         hints = [file_info] if file_info else []
         hints += [Text(f"({CONTENT_HINTS[self.file_id]})", style='gray30')] if self.file_id in CONTENT_HINTS else []
         return [Padding(h, INFO_PADDING) for h in hints]
+
+    def info_txt(self) -> Text | None:
+        """Secondary info about this file (recipients, level of certainty, etc). Overload in subclasses."""
+        return None
 
     def lines_matching_txt(self, _pattern: re.Pattern | str) -> list[Text]:
         pattern = patternize(_pattern)

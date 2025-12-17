@@ -105,13 +105,13 @@ class MessengerLog(CommunicationDocument):
     _author_counts: dict[str | None, int] = field(default_factory=lambda: defaultdict(int))
 
     def description_panel(self) -> Panel:
-        """Panelized description() with hint_txt(), used in search results."""
+        """Panelized description() with info_txt(), used in search results."""
         return super().description_panel(include_hints=False)
 
     def first_message_at(self, name: str | None) -> datetime:
         return self.messages_by(name)[0].timestamp()
 
-    def hint_txt(self) -> Text | None:
+    def info_txt(self) -> Text | None:
         if self.file_id not in KNOWN_IDS:
             return None
 
