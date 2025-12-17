@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-
-# Running 'bash -l' uses the login shell but then the poetry venv isn't set :(
-# - Set ONLY_TEXTS=true to skip build/deploy of full emails site.
+#   * Use --pickled arg to use pickled data file
+#   * Set ONLY_TEXTS=true to skip build/deploy of full emails site.
 source .env
 set -e
 
@@ -41,6 +40,7 @@ print_msg() {
     clr_cyan "$msg..."
 }
 
+# Running 'bash -l' uses the login shell but then the poetry venv isn't set :(
 any_uncommitted_changes() {
     if [[ $(git status --porcelain --untracked-files=no | wc -l) -eq 0 ]]; then
         return 1
