@@ -25,7 +25,7 @@ from epstein_files.util.highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS,
 GREY_NUMBERS = [grey for grey in reversed([15, 15, 15, 19, 19, 23, 23, 27, 30, 35, 39, 39, 58])]
 DEFAULT_NAME_COLOR = 'gray46'
 SECTION_HEADER_STYLE = 'bold white on blue3'
-SOCIAL_MEDIA_LINK_STYLE = 'cadet_blue'
+SOCIAL_MEDIA_LINK_STYLE = 'cadet_blue bold'
 TITLE_STYLE = 'black on bright_white bold'
 NUM_COLOR_KEY_COLS = 4
 
@@ -142,16 +142,6 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
     console.line()
 
 
-def print_list(txts: list[Text], join='  '):
-    """Print list in one line."""
-    txt = Text('[').append(txts.pop()).append(']')
-
-    for t in txts:
-        txt.append(join).append('[').append(t).append(']')
-
-    print_centered(txt)
-
-
 def print_numbered_list_of_emailers(_list: list[str | None], epstein_files = None) -> None:
     """Add the first emailed_at timestamp for this emailer if 'epstein_files' provided."""
     current_year = 1990
@@ -233,16 +223,19 @@ def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centere
 def print_social_media_links() -> None:
     print_centered_link(SUBSTACK_URL, "I Made Epstein's Text Messages Great Again (And You Should Read Them)", style=f'chartreuse1 bold')
     print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style='dark_sea_green4 dim')
-    style = f"{SOCIAL_MEDIA_LINK_STYLE} bold"
+    join = '       '  # ⦾⦿•◦◘
+    txt = Text('')
 
     social_links = [
-        link_text_obj('https://cryptadamus.substack.com/', 'substack', style=style),
-        link_text_obj('https://universeodon.com/@cryptadamist/115572634993386057', 'mastodon', style=style),
-        link_text_obj('https://x.com/Cryptadamist/status/1990866804630036988', 'twitter', style=style),
+        link_text_obj('https://cryptadamus.substack.com/', 'substack', style=SOCIAL_MEDIA_LINK_STYLE),
+        link_text_obj('https://universeodon.com/@cryptadamist/115572634993386057', 'mastodon', style=SOCIAL_MEDIA_LINK_STYLE),
+        link_text_obj('https://x.com/Cryptadamist/status/1990866804630036988', 'twitter', style=SOCIAL_MEDIA_LINK_STYLE),
     ]
 
-    # ⦾⦿•◦◘
-    print_list(social_links, join = '       ')
+    for i, link in enumerate(social_links):
+        txt.append(join if i >= 1 else '').append('[').append(link).append(']')
+
+    print_centered(txt)
 
 
 def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2) -> None:
