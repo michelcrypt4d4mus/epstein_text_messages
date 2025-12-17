@@ -550,9 +550,7 @@ class Email(CommunicationDocument):
             yield txt.append(' (which is shown)\n')
             return
 
-        for header_element in self.file_info_panel():
-            yield header_element
-
+        yield self.file_info_panel()
         text = self.text
         quote_cutoff = self.idx_of_nth_quoted_reply(text=text)  # Trim if there's many quoted replies
         num_chars = MAX_CHARS_TO_PRINT

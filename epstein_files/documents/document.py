@@ -5,7 +5,7 @@ from pathlib import Path
 from subprocess import run
 from typing import ClassVar
 
-from rich.console import RenderableType
+from rich.console import Console, ConsoleOptions, Group, RenderResult
 from rich.markup import escape
 from rich.padding import Padding
 from rich.panel import Panel
@@ -93,20 +93,16 @@ class Document:
         """Create a Text obj link to this document on EpsteinWeb."""
         return link_text_obj(epstein_web_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
 
-    def file_info_panel(self) -> list[Padding | Panel | Text]:
+    def file_info_panel(self) -> Group:
         headers = [Panel(self.raw_document_link_txt(), border_style=self._border_style(), expand=False)]
         hint = self.hint_txt()
         headers += [hint] if hint else []
         headers += [Text(f"({CONTENT_HINTS[self.file_id]})", style='wheat4')] if self.file_id in CONTENT_HINTS else []
 
-        return [
+        return Group(*[
             element if isinstance(element, Panel) else Padding(element, INFO_PADDING)
             for element in headers
-        ]
-
-    def print_file_info_panel(self) -> None:
-        for header_element in self.file_info_panel():
-            console.print(header_element)
+        ])
 
     def hint_txt(self) -> Text | None:
         """Secondary info about this file (recipients, level of certainty, etc). Overload in subclasses."""
@@ -204,6 +200,9 @@ class Document:
         self.length = len(self.text)
         self.lines = self.text.split('\n')
         self.num_lines = len(self.lines)
+
+    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
+        yield self.file_info_panel()
 
     def __str__(self) -> str:
         return self.description().plain
