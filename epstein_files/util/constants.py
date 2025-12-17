@@ -890,9 +890,11 @@ FILE_DESCRIPTIONS = {
     '025328': f"scan of NYT page with articles about radio host Bob Fass and Robert Durst",
     '016996': f'SciencExpress article "Quantitative Analysis of Culture Using Millions of Digitized Books" by Jean-Baptiste Michel',
     '025104': f"SCMP article about China and globalisation",
+    '030829': f'South Florida Sun Sentinel article about {BRAD_EDWARDS} and {JEFFREY_EPSTEIN}',
     '013437': f"The Telegraph article about Epstein diary 2011-03-05",
     '017771': f'Vanity Fair article "The Talented Mr. Epstein" by Vicky Ward 2011-06-27',
     '033379': f'WaPo "How Washington Pivoted From Finger-Wagging to Appeasement" about Viktor Orban',
+    '031396': f'WaPo "A Justice Dept. discipline office with limited reach to probe handling of controversial sex abuse case" 2019-02-06',
     '019206': f"WSJ article about Edward Snowden by {EDWARD_EPSTEIN} 2016-12-30",
     # court docs
     '010723': KEN_STARR_LETTER,
@@ -960,6 +962,7 @@ FILE_DESCRIPTIONS = {
     '014315': f'BofA / Merrill Lynch 2016 Future of Financials Conference report',
     '017526': f'Intellectual Jazz conference brochure',
     '031359': f"Nobel Charitable Trust Earth Environment Convention about ESG investing",
+    '031354': f'Nobel Charitable Trust "Thinking About the Environment and Technology" report 2011',
     '024185': f'Programme for 67th U.N. GA showing "Presidents Private Dinner Event - Jeffrey Epstine (sic)" 2012-09-21',
     '017060': f'World Economic Forum (WEF) Annual Meeting 2011 List of Participants 2011-01-18',
     # press releases, reports, etc.
