@@ -95,7 +95,7 @@ class Document:
 
     def file_info_panel(self) -> Group:
         """Panel with links to raw file plus any hints/info about the file."""
-        headers = [Panel(self.raw_document_link_txt(), border_style=self._border_style(), expand=False)]
+        headers = [Panel(self.raw_document_link_txt(include_alt_link=True), border_style=self._border_style(), expand=False)]
         file_info = self.hint_txt()
         headers += [file_info] if file_info else []
         headers += [Text(f"({CONTENT_HINTS[self.file_id]})", style='wheat4')] if self.file_id in CONTENT_HINTS else []
