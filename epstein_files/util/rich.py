@@ -117,12 +117,16 @@ def print_header(epstein_files: 'EpsteinFiles') -> None:
     print_abbreviations_table()
     console.line()
     print_starred_header('External Links', num_stars=0, num_spaces=25)
-    print_centered_link(OVERSIGHT_REPUBLICANS_PRESSER_URL, 'Official Oversight Committee Press Release')
-    print_centered_link(RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL, 'Oversight Committee Raw Documents')
+    presser_link = link_text_obj(OVERSIGHT_REPUBLICANS_PRESSER_URL, 'Official Oversight Committee Press Release')
+    raw_docs_link = join_text([link_text_obj(RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL, 'Raw Files')], encloser='()')
+    print_centered(join_text([presser_link, raw_docs_link]))
     print_centered(link_markup(JMAIL_URL, JMAIL) + " (read His Emails via Gmail interface)")
     print_centered_link(COFFEEZILLA_ARCHIVE_URL, "Coffeezilla's Archive Of Epstein Materials")
     print_centered_link(COURIER_NEWSROOM_ARCHIVE_URL, "Courier Newsroom's Searchable Archive")
-    print_centered(link_markup(f"{EPSTEINIFY_URL}/names", 'epsteinify.com') + " (raw document images)")
+    print_centered(link_markup(EPSTEINIFY_URL) + " (raw document images)")
+    print_centered(link_markup(EPSTEIN_WEB_URL) + " (character summaries)")
+
+
     console.line(2)
     epstein_files.print_files_overview()
     print_color_key()
@@ -223,8 +227,6 @@ def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centere
 def print_social_media_links() -> None:
     print_centered_link(SUBSTACK_URL, "I Made Epstein's Text Messages Great Again (And You Should Read Them)", style=f'chartreuse1 bold')
     print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style='dark_sea_green4 dim')
-    join = '       '  # ⦾⦿•◦◘
-    txt = Text('')
 
     social_links = [
         link_text_obj('https://cryptadamus.substack.com/', 'substack', style=SOCIAL_MEDIA_LINK_STYLE),
@@ -232,10 +234,21 @@ def print_social_media_links() -> None:
         link_text_obj('https://x.com/Cryptadamist/status/1990866804630036988', 'twitter', style=SOCIAL_MEDIA_LINK_STYLE),
     ]
 
-    for i, link in enumerate(social_links):
-        txt.append(join if i >= 1 else '').append('[').append(link).append(']')
+    print_centered(join_text(social_links, join='     ', encloser='[]'))
 
-    print_centered(txt)
+
+def join_text(txts: list[Text], join: str = ' ', encloser: str = '') -> Text:
+    if encloser:
+        encloser, enclose_ender = (encloser[0], encloser[1])
+    else:
+        enclose_ender = ''
+
+    txt = Text('')
+
+    for i, link in enumerate(txts):
+        txt.append(join if i >= 1 else '').append(encloser).append(link).append(enclose_ender)
+
+    return txt
 
 
 def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2) -> None:

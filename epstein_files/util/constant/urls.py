@@ -62,12 +62,18 @@ def epsteinify_doc_link_txt(filename_or_id: int | str, style: str = TEXT_LINK) -
     return Text.from_markup(epsteinify_doc_link_markup(filename_or_id, style))
 
 
-def link_markup(url: str, link_text: str, style: str | None = ARCHIVE_LINK_COLOR, underline: bool = True) -> str:
+def link_markup(
+        url: str,
+        link_text: str | None = None,
+        style: str | None = ARCHIVE_LINK_COLOR,
+        underline: bool = True
+    ) -> str:
+    link_text = link_text or url.removeprefix('https://')
     style = ((style or '') + (' underline' if underline else '')).strip()
     return (f"[{style}][link={url}]{link_text}[/link][/{style}]")
 
 
-def link_text_obj(url: str, link_text: str, style: str = ARCHIVE_LINK_COLOR) -> Text:
+def link_text_obj(url: str, link_text: str | None = None, style: str = ARCHIVE_LINK_COLOR) -> Text:
     return Text.from_markup(link_markup(url, link_text, style))
 
 
