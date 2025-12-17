@@ -853,6 +853,8 @@ FILE_DESCRIPTIONS = {
     '010566': f"court filing in {EPSTEIN_V_EDWARDS}",
     '017488': f"court filing in {EPSTEIN_V_EDWARDS}",
     '032321': f"court filing in Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}",
+    '013463': f'court filing in Jane Doe v. Epstein filed by {BRAD_EDWARDS}',
+    '013489': f'court filing in Jane Doe v. Epstein filed by {BRAD_EDWARDS}',
     '014084': f"court filing in Jane Doe #1 and Jane Doe #2 v. United States",
     '018872': f"FBI seized property inventory (redacted)",
     '019352': f"FBI report on Epstein investigation (redacted)",
