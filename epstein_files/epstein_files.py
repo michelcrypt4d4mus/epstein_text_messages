@@ -25,7 +25,7 @@ from epstein_files.util.data import Timer, dict_sets_to_lists, patternize, sort_
 from epstein_files.util.env import args, logger, specified_names
 from epstein_files.util.file_helper import DOCS_DIR, file_size_str, move_json_file
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
-from epstein_files.util.rich import (DEFAULT_NAME_COLOR, console, highlighter, link_text_obj, link_markup,
+from epstein_files.util.rich import (DEFAULT_NAME_COLOR, NA_TXT, console, highlighter, link_text_obj, link_markup,
      print_author_header, print_panel, print_starred_header, vertically_pad)
 
 DEVICE_SIGNATURE = 'Device Signature'
@@ -197,20 +197,22 @@ class EpsteinFiles:
         # print_starred_header('File Type Summary', num_stars=0, num_spaces=1)
         table = Table()
         table.add_column("File Type", justify='left')
-        table.add_column("Total Count", justify='center')
-        table.add_column("Known Author", justify='center')
-        table.add_column("Unknown Author", justify='center')
+        table.add_column("Files", justify='center')
+        table.add_column("Author Known", justify='center')
+        table.add_column("Author Unknown", justify='center')
+        table.add_column("Duplicates", justify='center')
 
-        def add_row(label: str, documents: list[Document], known: int | None = None):
+        def add_row(label: str, documents: list, known: int | None = None, dupes: int | None = None):
             table.add_row(
                 label,
                 f"{len(documents):,}",
-                'n/a' if known is None else f"{known:,}",
-                'n/a' if known is None else f"{len(documents) - known:,}",
+                NA_TXT if known is None else f"{known:,}",
+                NA_TXT if known is None else f"{len(documents) - known:,}",
+                NA_TXT if dupes is None else f"{dupes:,}",
             )
 
         add_row('iMessage Logs', self.imessage_logs, self.identified_imessage_log_count)
-        add_row('Emails', self.emails, len([e for e in self.emails if e.author]))
+        add_row('Emails', self.emails, len([e for e in self.emails if e.author]), len(DUPLICATE_EMAIL_IDS))
         add_row('Other', self.other_files)
         console.print(Padding(Align.center(table)))
         console.line()

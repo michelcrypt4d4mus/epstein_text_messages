@@ -551,7 +551,7 @@ KNOWN_EMAIL_RECIPIENTS = {
 }
 
 # Reason string should end in a file ID
-SUPPRESS_OUTPUT_FOR_EMAIL_IDS = {
+DUPLICATE_EMAIL_IDS = {
     '026499': "quoted in full in 026298",
     '028529': "the same as 022344",
     '026563': "a redacted version of 028768",
