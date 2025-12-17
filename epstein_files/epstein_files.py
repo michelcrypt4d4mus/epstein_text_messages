@@ -128,7 +128,7 @@ class EpsteinFiles:
         results: list[SearchResult] = []
 
         for doc in (self.all_documents() if file_type == 'all' else self.other_files):
-            lines = doc.lines_matching_txt(patternize(pattern))
+            lines = doc.lines_matching_txt(pattern)
 
             if names and ((not isinstance(doc, (Email, MessengerLog))) or doc.author not in names):
                 continue
@@ -195,7 +195,6 @@ class EpsteinFiles:
         return sender_counts
 
     def print_files_overview(self) -> None:
-        # print_starred_header('File Type Summary', num_stars=0, num_spaces=1)
         table = Table()
         table.add_column("File Type", justify='left')
         table.add_column("Files", justify='center')
