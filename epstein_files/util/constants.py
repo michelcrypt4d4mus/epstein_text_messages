@@ -721,3 +721,55 @@ EMAILED_ARTICLE_IDS = [
     '026551',  # Sultan bin Sulayem Ayatollah between the sheets
     '031768',  # Sultan bin Sulayem 'Horseface'
 ]
+
+# Descriptions of non-email, non-text message files
+DEEP_THINKING_HINT = 'book: "Deep Thinking: Twenty-Five Ways of Looking at AI" by John Brockman'
+MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014-2016"
+NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight" by {EHUD_BARAK}?'
+
+FILE_DESCRIPTIONS = {
+    # books
+    '016221': DEEP_THINKING_HINT,
+    '016804': DEEP_THINKING_HINT,
+    '011472': NIGHT_FLIGHT_HINT,
+    '027849': NIGHT_FLIGHT_HINT,
+    '012747': f'book: "Evilicious: Explaining Our Taste For Excessive Harm" by Marc D. Hauser',
+    '018438': f'book: "The S&M Feminist" by Clarisse Thorn',
+    '019874': f'book: "Fire And Fury" by {MICHAEL_WOLFF}',
+    '018232': f'book: "The Seventh Sense: Power, Fortune & Survival in the Age of Networks" by Joshua Cooper Ramo',
+    '013796': f'book: "The 4-Hour Workweek" by Tim Ferriss',
+    '015675': f'book: "Are the Androids Dreaming Yet?: Amazing Brain Human Communication, Creativity & Free Will" by James Tagg',
+    '020153': f'book: "The Snowden Affair: A Spy Story In Six Parts" by {EDWARD_EPSTEIN}',
+    '019477': f'book: "How America Lost Its Secrets: Edward Snowden, the Man, and the Theft" by {EDWARD_EPSTEIN}',
+    '015032': f'book: "60 Years of Investigative Satire: The Best of {PAUL_KRASSNER}"',
+    '021120': f'chapter of "Siege: Trump Under Fire" by {MICHAEL_WOLFF}',
+    '022118': f'scans of pages of a book chapter about Epstein and Prince Andrew',
+    '021958': f'scans of pages of a book by James Patterson',
+    # articles
+    '022707': MICHAEL_WOLFF_ARTICLE_HINT,
+    '022727': MICHAEL_WOLFF_ARTICLE_HINT,
+    '022746': MICHAEL_WOLFF_ARTICLE_HINT,
+    '022844': MICHAEL_WOLFF_ARTICLE_HINT,
+    '022863': MICHAEL_WOLFF_ARTICLE_HINT,
+    '022894': MICHAEL_WOLFF_ARTICLE_HINT,
+    '022952': MICHAEL_WOLFF_ARTICLE_HINT,
+    '023627': MICHAEL_WOLFF_ARTICLE_HINT,
+    '024229': MICHAEL_WOLFF_ARTICLE_HINT,
+    '028481': f'photo of NYT article about Steve Bannon',
+    '015462': f'magazine (?) issue: Nautilus Education',
+    '019212': f'article in The Times Tribune and WaPo about Bannon, Trump, and healthcare execs',
+    '023638': f'magazine interview with {PAUL_KRASSNER}',
+    '024256': f'article by {JOI_ITO}: "Internet & Society: The Technologies and Politics of Control',
+    # court docs
+    '015529': "court filings from Virginia Giuffre's lawsuit against Epstein",
+    # press releases, reports, etc.
+    '014315': 'BofA / Merrill Lynch 2016 Future of Financials Conference report',
+    '017526': 'Intellectual Jazz conference brochure',
+    '012048': 'press release: "Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm" and other articles',
+    '024271': "Brock Pierce's Blockchain Capital presentation Oct 2015",
+    # misc
+    '025663': 'Goldman Sachs Nov 2017 report "An Overview of the Current State of Cryptocurrencies and Blockchain"',
+    '018085': 'The Shimon Post (selection of articles in Guardian, NYer, etc. about the mideast ca. 2011-06)',
+    '011170': 'tweets about #Brexit collected by InsightsPod',
+    '031743': 'few pages describing the internet as a "New Nation State"',
+}
