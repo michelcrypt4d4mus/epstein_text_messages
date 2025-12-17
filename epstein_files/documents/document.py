@@ -102,7 +102,8 @@ class Document:
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any hints/info about the file."""
         panel = Panel(self.raw_document_link_txt(include_alt_link=True), border_style=self._border_style(), expand=False)
-        return Group(*([panel] + self.hints()))
+        hints = [Padding(hint, INFO_PADDING) for hint in self.hints()]
+        return Group(*([panel] + hints))
 
     def highlighted_preview_text(self) -> Text:
         try:
@@ -114,12 +115,12 @@ class Document:
 
             return Text(escape(self.preview_text()))
 
-    def hints(self) -> list[Padding]:
+    def hints(self) -> list[Text]:
         """Additional info about the Document (author, CONTENT_HINTS value, and so on)."""
         file_info = self.info_txt()
         hints = [file_info] if file_info else []
         hints += [Text(f"({CONTENT_HINTS[self.file_id]})", style='gray30')] if self.file_id in CONTENT_HINTS else []
-        return [Padding(h, INFO_PADDING) for h in hints]
+        return hints
 
     def info_txt(self) -> Text | None:
         """Secondary info about this file (recipients, level of certainty, etc). Overload in subclasses."""
