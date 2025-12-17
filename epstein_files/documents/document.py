@@ -319,6 +319,14 @@ class CommunicationDocument(Document):
 class OtherFile(Document):
     """Non email/iMessage log files."""
 
+    def get_date(self) -> str | None:
+        ts = self.get_timestamp()
+
+        if not ts:
+            return None
+
+        return ts.isoformat()[0:10]
+
     def get_timestamp(self) -> datetime | None:
         timestamp = extract_datetime(FILE_DESCRIPTIONS.get(self.file_id, ''))
         logger.warning(f"{self.file_id}: timestamp '{timestamp}'")

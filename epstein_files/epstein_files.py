@@ -331,11 +331,12 @@ class EpsteinFiles:
 
     def print_other_files_table(self) -> None:
         table = Table(header_style='bold', show_lines=True)
-        table.add_column('File', justify='left', width=FILENAME_LENGTH + 2)
+        table.add_column('File', justify='left', width=FILENAME_LENGTH)
+        table.add_column('Date', justify='center')
         table.add_column('Length', justify='center')
         table.add_column('First Few Lines', justify='left', style='pale_turquoise4')
 
-        for doc in sorted(self.other_files, key=lambda document: document.filename):
+        for doc in self.other_files:
             link = Group(*[doc.raw_document_link_txt(), *doc.hints()])
 
             if doc.file_id in DUPLICATE_FILE_IDS:
@@ -347,7 +348,7 @@ class EpsteinFiles:
                 logger.warning(f"Skipping {doc.description()} because --output-unlabeled")
                 continue
 
-            table.add_row(link, f"{doc.length:,}", preview_text)
+            table.add_row(link, doc.get_date() or NA_TXT, f"{doc.length:,}", preview_text)
 
         console.print(table)
 
