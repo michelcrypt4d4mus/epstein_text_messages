@@ -86,7 +86,7 @@ class Document:
         return txt.append(')') if doc_type == DOCUMENT_CLASS else txt
 
     def description_panel(self) -> Group:
-        """Return Panelized description() with hint_txt()."""
+        """Panelized description() with hint_txt()."""
         renderables = [Panel(self.description(), expand=False)]
         hint_txt = self.hint_txt()
         renderables += [Padding(hint_txt, INFO_PADDING)] if hint_txt else []
