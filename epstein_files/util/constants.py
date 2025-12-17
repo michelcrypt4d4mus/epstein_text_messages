@@ -555,7 +555,7 @@ KNOWN_EMAIL_RECIPIENTS = {
 }
 
 # Reason string should end in a file ID
-DUPLICATE_EMAIL_IDS = {
+DUPLICATE_FILE_IDS = {
     '026499': "quoted in full in 026298",
     '028529': "the same as 022344",
     '026563': "a redacted version of 028768",
@@ -704,6 +704,7 @@ DUPLICATE_EMAIL_IDS = {
     '031708': 'the same as 026624',
     '030575': 'a redacted version of 030475',
     '023291': 'the same as (?) 023208',
+    '031415': 'the same as 031396',
 }
 
 EMAILED_ARTICLE_IDS = [
@@ -766,6 +767,7 @@ FILE_DESCRIPTIONS = {
     '018232': f'book: "The Seventh Sense: Power, Fortune & Survival in the Age of Networks" by Joshua Cooper Ramo',
     '020153': f'book: "The Snowden Affair: A Spy Story In Six Parts" by {EDWARD_EPSTEIN}',
     '021120': f'chapter of "Siege: Trump Under Fire" by {MICHAEL_WOLFF}',
+    '031753': f'essay by {PAUL_KRASSNER}',
     '031533': f'few pages from book about the Baylor University sexual assault scandal and Sam Ukwuachu',
     # articles
     '022707': MICHAEL_WOLFF_ARTICLE_HINT,
@@ -802,6 +804,7 @@ FILE_DESCRIPTIONS = {
     '031186': f'article about rape accusations against Trump',
     '024256': f'article by {JOI_ITO}: "Internet & Society: The Technologies and Politics of Control',
     '019212': f'article in The Times Tribune and WaPo about Bannon, Trump, and healthcare execs',
+    '031716': f'Fortune Magazine article by {TOM_BARRACK} 2016-10-22',
     '014037': f"Journal of Criminal Law and Criminology article on Crime Victims' Rights Act (CVRA)",
     '015462': f'magazine (?) issue: Nautilus Education',
     '023638': f'magazine interview with {PAUL_KRASSNER}',
@@ -869,6 +872,7 @@ FILE_DESCRIPTIONS = {
     '010617': f"Donald Trump financial disclosures from U.S. Office of Government Ethics",
     '024117': f"FAQ about anti-money laundering and terrorist financing law in the U.S.",
     '031743': f'few pages describing the internet as a "New Nation State" (Network State?)',
+    '033434': f"iMessage screenshot labeled 'Edwards' at the top",
     '016636': f"Palm Beach Water Committee Meeting on January 29, 2009",
     '029328': f"Rafanelli Events promotional deck",
     '029357': f"some text about Israel's challenges going into 2015",

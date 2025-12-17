@@ -215,7 +215,7 @@ class EpsteinFiles:
             )
 
         add_row('iMessage Logs', self.imessage_logs, self.identified_imessage_log_count)
-        add_row('Emails', self.emails, len([e for e in self.emails if e.author]), len(DUPLICATE_EMAIL_IDS))
+        add_row('Emails', self.emails, len([e for e in self.emails if e.author]), len(DUPLICATE_FILE_IDS))
         add_row('Other', self.other_files)
         console.print(Align.center(table))
         console.line()
@@ -337,7 +337,13 @@ class EpsteinFiles:
 
         for doc in sorted(self.other_files, key=lambda document: document.filename):
             link = Group(*[doc.raw_document_link_txt(), *doc.hints()])
-            table.add_row(link, f"{doc.length:,}", doc.highlighted_preview_text())
+
+            if doc.file_id in DUPLICATE_FILE_IDS:
+                preview_text = doc.duplicate_file_txt()
+            else:
+                preview_text = doc.highlighted_preview_text()
+
+            table.add_row(link, f"{doc.length:,}", preview_text)
 
         console.print(table)
 
