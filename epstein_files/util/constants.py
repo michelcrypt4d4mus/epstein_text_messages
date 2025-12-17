@@ -755,6 +755,7 @@ FILE_DESCRIPTIONS = {
     '022952': MICHAEL_WOLFF_ARTICLE_HINT,
     '023627': MICHAEL_WOLFF_ARTICLE_HINT,
     '024229': MICHAEL_WOLFF_ARTICLE_HINT,
+    '025328': f"scan of NYT page with articles about radio host Bob Fass and Robert Durst",
     '028481': f'photo of NYT article about Steve Bannon',
     '015462': f'magazine (?) issue: Nautilus Education',
     '019212': f'article in The Times Tribune and WaPo about Bannon, Trump, and healthcare execs',
@@ -762,14 +763,22 @@ FILE_DESCRIPTIONS = {
     '024256': f'article by {JOI_ITO}: "Internet & Society: The Technologies and Politics of Control',
     # court docs
     '015529': "court filings from Virginia Giuffre's lawsuit against Epstein",
+    '025704': f"letter from {KEN_STARR} to judge overseeing Epstein's criminal prosecution that mentions Alex Acosta",
+    '025353': f"letter from {KEN_STARR} to judge overseeing Epstein's criminal prosecution that mentions Alex Acosta",
     # press releases, reports, etc.
     '014315': 'BofA / Merrill Lynch 2016 Future of Financials Conference report',
     '017526': 'Intellectual Jazz conference brochure',
     '012048': 'press release: "Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm" and other articles',
     '024271': "Brock Pierce's Blockchain Capital presentation Oct 2015",
+    '025296': 'Laffer Associates report from 2016-07 predicting Trump win',
+    '025247': 'UBS CIO Monthly Extended November 2012',
     # misc
+    '024432': "Michael Milken's Knowledge Universe Education (KUE) $1,000,000 corporate share placement notice (SEC filing?)",
+    '025939': 'affidavit of Jane Doe describing being raped by Epstein',
     '025663': 'Goldman Sachs Nov 2017 report "An Overview of the Current State of Cryptocurrencies and Blockchain"',
     '018085': 'The Shimon Post (selection of articles in Guardian, NYer, etc. about the mideast ca. 2011-06)',
+    '025610': 'The Shimon Post (selection of articles in NYT etc. about the mideast ca. 2011-04-03)',
     '011170': 'tweets about #Brexit collected by InsightsPod',
     '031743': 'few pages describing the internet as a "New Nation State"',
+    '026134': 'letter to someone named George about investment opportunities in the Ukraine banking sector',
 }

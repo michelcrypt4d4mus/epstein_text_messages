@@ -118,7 +118,10 @@ class Document:
         """Additional info about the Document (author, FILE_DESCRIPTIONS value, and so on)."""
         file_info = self.info_txt()
         hints = [file_info] if file_info else []
-        hints += [Text(f"({FILE_DESCRIPTIONS[self.file_id]})", style='gray30')] if self.file_id in FILE_DESCRIPTIONS else []
+
+        if self.file_id in FILE_DESCRIPTIONS:
+            hints.append(highlighter(Text(f"({FILE_DESCRIPTIONS[self.file_id]})", style='gray30')))
+
         return hints
 
     def info_txt(self) -> Text | None:
