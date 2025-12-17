@@ -97,9 +97,7 @@ class Document:
         headers = [Panel(self.raw_document_link_txt(), border_style=self._border_style(), expand=False)]
         hint = self.hint_txt()
         headers += [hint] if hint else []
-
-        if self.file_id in CONTENT_HINTS:
-            headers += [Text(f"({CONTENT_HINTS[self.file_id]})", style='wheat4')]
+        headers += [Text(f"({CONTENT_HINTS[self.file_id]})", style='wheat4')] if self.file_id in CONTENT_HINTS else []
 
         return [
             element if isinstance(element, Panel) else Padding(element, INFO_PADDING)
