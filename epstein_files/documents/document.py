@@ -1,3 +1,4 @@
+import logging
 import re
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -31,6 +32,7 @@ INFO_PADDING = (0, 0, 0, INFO_INDENT)
 
 MAX_EXTRACTED_TIMESTAMPS = 6
 MIN_TIMESTAMP = datetime(1991, 1, 1)
+MID_TIMESTAMP = datetime(2007, 1, 1)
 MAX_TIMESTAMP = datetime(2022, 12, 31)
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
@@ -121,16 +123,6 @@ class Document:
         hints = [Padding(hint, INFO_PADDING) for hint in self.hints()]
         return Group(*([panel] + hints))
 
-    def highlighted_preview_text(self) -> Text:
-        try:
-            return highlighter(escape(self.preview_text()))
-        except Exception as e:
-            logger.error(f"Failed to apply markup in string '{escape_single_quotes(self.preview_text())}'\n"
-                         f"Original string: '{escape_single_quotes(self.preview_text())}'\n"
-                         f"File: '{self.filename}'\n")
-
-            return Text(escape(self.preview_text()))
-
     def hints(self) -> list[Text]:
         """Additional info about the Document (author, FILE_DESCRIPTIONS value, and so on)."""
         file_info = self.info_txt()
@@ -164,12 +156,10 @@ class Document:
             for line in matched_lines
         ]
 
-    def log_top_lines(self, n: int = 10, msg: str | None = None) -> None:
+    def log_top_lines(self, n: int = 10, msg: str | None = None, level: int = logging.INFO) -> None:
         msg = f"{msg + '. ' if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"
-        logger.info(f"{msg}:\n\n{self.top_lines(n)}")
-
-    def preview_text(self) -> str:
-        return WHITESPACE_REGEX.sub(' ', self.text)[0:PREVIEW_CHARS]
+        msg = f"{msg}:\n\n{self.top_lines(n)}"
+        logger.log(level, msg)
 
     def raw_document_link_txt(self, style: str = '', include_alt_link: bool = False) -> Text:
         """Returns colored links to epsteinify and and epsteinweb in a Text object."""
@@ -332,6 +322,19 @@ class OtherFile(Document):
         super().__post_init__()
         self.timestamp = self._extract_timestamp()
 
+    def highlighted_preview_text(self) -> Text:
+        try:
+            return highlighter(escape(self.preview_text()))
+        except Exception as e:
+            logger.error(f"Failed to apply markup in string '{escape_single_quotes(self.preview_text())}'\n"
+                         f"Original string: '{escape_single_quotes(self.preview_text())}'\n"
+                         f"File: '{self.filename}'\n")
+
+            return Text(escape(self.preview_text()))
+
+    def preview_text(self) -> str:
+        return WHITESPACE_REGEX.sub(' ', self.text)[0:PREVIEW_CHARS]
+
     def _extract_timestamp(self) -> datetime | None:
         timestamps: list[datetime] = []
 
@@ -339,8 +342,11 @@ class OtherFile(Document):
         if self.file_id in FILE_DESCRIPTIONS:
             timestamp = extract_datetime(FILE_DESCRIPTIONS[self.file_id])
 
-            if timestamp and (timestamp.date != 1 or timestamp.month != 1):
-                return timestamp
+            if timestamp:
+                if timestamp.date != 1:  # Avoid hacky '-01' appended date strings
+                    return timestamp
+                else:
+                    timestamps.append(timestamp)
 
         try:
             for i, timestamp in enumerate(datefinder.find_dates(self.text, strict=True)):
@@ -350,14 +356,24 @@ class OtherFile(Document):
                 if MIN_TIMESTAMP < timestamp < MAX_TIMESTAMP:
                     timestamps.append(timestamp)
 
-                if len(timestamps) > MAX_EXTRACTED_TIMESTAMPS:
+                if len(timestamps) == MAX_EXTRACTED_TIMESTAMPS:
                     break
         except ValueError as e:
             logger.error(f"Error while iterating with datefinder: {e}")
 
         sorted_date_strs = [str(dt) for dt in sorted(timestamps)]
-        logger.warning(f"{self.file_id}: Found {len(timestamps)} timestamps:\n    " + '\n     '.join(sorted_date_strs))
-        return timestamps[0] if len(timestamps) > 0 else None
+        logger.warning(f"{self.file_id}: Found {len(timestamps)} timestamps:\n      " + '\n     '.join(sorted_date_strs))
+        self.log_top_lines(level=logging.WARNING)
+
+        if len(timestamps) == 0:
+            return None
+        elif len(timestamps) == 1:
+            return timestamps[0]
+        else:
+            if timestamps[0] < MID_TIMESTAMP and any(ts > MID_TIMESTAMP for ts in timestamps):
+                return next(ts for ts in timestamps if ts > MID_TIMESTAMP)
+            else:
+                return timestamps[0]
 
 
 @dataclass

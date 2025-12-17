@@ -47,6 +47,7 @@ args.width = args.width if is_html_script else None
 
 # Setup logging
 logging.basicConfig(level="NOTSET", format="%(message)s", datefmt="[%X]", handlers=[RichHandler()])
+# logging.basicConfig(level="DEBUG", handlers=[RichHandler()])
 logger = logging.getLogger("rich")
 
 if args.deep_debug:
@@ -58,6 +59,8 @@ elif args.suppress_logs:
 else:
     logger.setLevel(logging.WARNING)
 
+datefinder_logger = logging.getLogger('datefinder')  # Suppress annoying output
+datefinder_logger.setLevel(logger.level)
 
 args.output_other_files = args.output_other_files or args.output_unlabeled
 specified_names: list[str | None] = [None if n == 'None' else n for n in (args.names or [])]
