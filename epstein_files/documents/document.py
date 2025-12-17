@@ -27,6 +27,7 @@ MIN_DOCUMENT_ID = 10477
 PREVIEW_CHARS = 520
 INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
+VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*islands\s*daily\s*news', re.IGNORECASE)
 
 DOC_TYPE_STYLES = {
     DOCUMENT_CLASS: 'grey69',
@@ -75,12 +76,11 @@ class Document:
 
     def description(self) -> Text:
         """Mostly for logging."""
-        doc_type = str(type(self).__name__)
         txt = Text('').append(self.file_path.stem, style='magenta')
-        txt.append(f' {doc_type} ', style=self.document_type_style())
+        txt.append(f' {self._document_type()} ', style=self.document_type_style())
         txt.append(f"(num_lines=").append(f"{self.num_lines}", style='cyan')
         txt.append(", size=").append(file_size_str(self.file_path), style='aquamarine1')
-        return txt.append(')') if doc_type == DOCUMENT_CLASS else txt
+        return txt.append(')') if self._document_type() == DOCUMENT_CLASS else txt
 
     def description_panel(self, include_hints: bool = True) -> Panel:
         """Panelized description() with info_txt(), used in search results."""
@@ -88,7 +88,7 @@ class Document:
         return Panel(Group(*([self.description()] + hints)), border_style=self.document_type_style(), expand=False)
 
     def document_type_style(self) -> str:
-        return DOC_TYPE_STYLES[str(type(self).__name__)]
+        return DOC_TYPE_STYLES[self._document_type()]
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on epsteinify.com."""
@@ -120,7 +120,7 @@ class Document:
         hints = [file_info] if file_info else []
         hint_msg = FILE_DESCRIPTIONS.get(self.file_id)
 
-        if not hint_msg and 'Virgin Islands Daily News' in self.text:
+        if not (hint_msg or self._document_type() == EMAIL_CLASS) and VI_DAILY_NEWS_REGEX.search(self.text):
             hint_msg = 'article in Virgin Islands Daily News'
 
         if hint_msg:
@@ -200,6 +200,9 @@ class Document:
     def _border_style(self) -> str:
         """Should be implemented in subclasses."""
         return 'white'
+
+    def _document_type(self) -> str:
+        return str(type(self).__name__)
 
     def _load_file(self):
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
