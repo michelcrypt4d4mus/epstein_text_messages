@@ -64,16 +64,11 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES: list[str | None] = [
 
 def generate_html() -> None:
     timer = Timer()
-    print_header()
+    epstein_files = EpsteinFiles.get_files(timer)
+    print_header(epstein_files)
 
     if args.colors_only:
-        print_color_key()
         exit()
-
-    epstein_files = EpsteinFiles.get_files()
-    timer.print_at_checkpoint(f'Processed {len(epstein_files.all_files):,} documents')
-    epstein_files.print_files_overview()
-    print_color_key()
 
     # Text messages section
     if args.output_texts:

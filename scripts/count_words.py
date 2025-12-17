@@ -19,7 +19,7 @@ HTML_REGEX = re.compile(r"^http|#yiv")
 
 
 timer = Timer()
-epstein_files = EpsteinFiles.get_files()
+epstein_files = EpsteinFiles.get_files(timer)
 imessage_logs = epstein_files.imessage_logs_for(specified_names) if specified_names else epstein_files.imessage_logs
 emails = epstein_files.valid_emails()
 email_subjects: set[str] = set()

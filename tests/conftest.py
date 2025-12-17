@@ -7,4 +7,4 @@ from epstein_files.epstein_files import EpsteinFiles
 
 @pytest.fixture(scope='session', autouse=True)
 def epstein_files() -> EpsteinFiles:
-    return EpsteinFiles()
+    return EpsteinFiles.get_files()

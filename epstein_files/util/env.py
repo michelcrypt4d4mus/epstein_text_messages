@@ -14,7 +14,7 @@ parser = ArgumentParser(description="Parse epstein OCR docs and generate HTML pa
 parser.add_argument('--build', '-b', action='store_true', help='write HTML to docs/index.html')
 parser.add_argument('--all-emails', '-a', action='store_true', help='all the emails (also --no-texts)')
 parser.add_argument('--all-email-tables', '-at', action='store_true', help='all email tables (except Epstein)')
-parser.add_argument('--colors-only', '-c', action='store_true', help='print header with color key table and exit')
+parser.add_argument('--colors-only', '-c', action='store_true', help='print header with color key table and links and exit')
 parser.add_argument('--name', '-n', action='append', dest='names', help='specify the name(s) whose communications should be output')
 parser.add_argument('--output-emails', '-oe', action='store_true', help='generate other files section')
 parser.add_argument('--output-other-files', '-oo', action='store_true', help='generate other files section')
@@ -29,6 +29,7 @@ parser.add_argument('--width', '-w', type=int, default=DEFAULT_WIDTH, help='scre
 parser.add_argument('--whole-file', '-wf', action='store_true', help='print whole file (only used by search script)')
 parser.add_argument('--debug', '-d', action='store_true', help='set debug level to INFO')
 parser.add_argument('--deep-debug', '-dd', action='store_true', help='set debug level to DEBUG')
+parser.add_argument('--suppress-logs', '-sl', action='store_true', help='set debug level to FATAL')
 parser.add_argument('--json-stats', action='store_true', help='print JSON formatted stats at the end')
 parser.add_argument('positional_args', nargs='*', help='Optional args (only used by helper scripts)')
 args = parser.parse_args()
@@ -40,7 +41,7 @@ is_html_script = current_script in HTML_SCRIPTS
 args.deep_debug = args.deep_debug or is_env_var_set('DEEP_DEBUG')
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 args.output_emails = args.output_emails or args.all_emails
-args.pickled = args.pickled or is_env_var_set('PICKLED')
+args.pickled = args.pickled or is_env_var_set('PICKLED') or args.colors_only
 args.width = args.width if is_html_script else None
 
 # Setup logging
@@ -51,6 +52,8 @@ if args.deep_debug:
     logger.setLevel(logging.DEBUG)
 elif args.debug:
     logger.setLevel(logging.INFO)
+elif args.suppress_logs:
+    logger.setLevel(logging.FATAL)
 else:
     logger.setLevel(logging.WARNING)
 

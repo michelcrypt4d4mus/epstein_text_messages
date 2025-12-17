@@ -21,12 +21,12 @@ from epstein_files.util.constant.strings import AUTHOR, EVERYONE, TEXT_MESSAGE
 from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url,
      search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
-from epstein_files.util.data import dict_sets_to_lists, patternize, sort_dict
+from epstein_files.util.data import Timer, dict_sets_to_lists, patternize, sort_dict
 from epstein_files.util.env import args, logger, specified_names
 from epstein_files.util.file_helper import DOCS_DIR, file_size_str, move_json_file
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_COLOR, console, highlighter, link_text_obj, link_markup,
-     print_author_header, print_panel, vertically_pad)
+     print_author_header, print_panel, print_starred_header, vertically_pad)
 
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (0, 0, 0, 2)
@@ -86,12 +86,15 @@ class EpsteinFiles:
         self.identified_imessage_log_count = len([log for log in self.imessage_logs if log.author])
 
     @classmethod
-    def get_files(cls) -> 'EpsteinFiles':
-        """Alternate constructor that can read from/write to a pickled version of the data."""
+    def get_files(cls, timer: Timer | None = None) -> 'EpsteinFiles':
+        """Alternate constructor that reads/writes a pickled version of the data ('timer' arg is for logging)."""
+        timer = timer or Timer()
+
         if (args.pickled and PICKLED_PATH.exists()) and not args.overwrite_pickle:
             with gzip.open(PICKLED_PATH, 'rb') as file:
-                logger.warning(f"Loading pickled data from '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})...")
-                return pickle.load(file)
+                epstein_files = pickle.load(file)
+                timer.print_at_checkpoint(f"Loaded {len(epstein_files.all_files):,} documents from '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})")
+                return epstein_files
 
         epstein_files = EpsteinFiles()
 
@@ -100,6 +103,7 @@ class EpsteinFiles:
                 pickle.dump(epstein_files, file)
                 logger.warning(f"Pickled data to '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})...")
 
+        timer.print_at_checkpoint(f'Processed {len(epstein_files.all_files):,} documents')
         return epstein_files
 
     def all_documents(self) -> list[Document]:
@@ -190,14 +194,16 @@ class EpsteinFiles:
         return sender_counts
 
     def print_files_overview(self) -> None:
-        table = Table(title=f"File Analysis Summary", header_style="bold")
+        print_starred_header('File Type Summary', num_stars=0, num_spaces=16)
+        table = Table()
         table.add_column("File Type", justify='left')
         table.add_column("File Count", justify='center')
         table.add_column("Known Author Count", justify='center')
         table.add_row('iMessage Logs', f"{len(self.imessage_logs):,}", str(self.identified_imessage_log_count))
         table.add_row('Emails', f"{len(self.emails):,}", f"{len([e for e in self.emails if e.author]):,}")
         table.add_row('Other', f"{len(self.other_files):,}", 'n/a')
-        console.print(Padding(Align.center(vertically_pad(table))))
+        console.print(Padding(Align.center(table)))
+        console.line()
 
     def print_emails_for(self, _author: str | None) -> int:
         """Print complete emails to or from a particular 'author'. Returns number of emails printed."""
