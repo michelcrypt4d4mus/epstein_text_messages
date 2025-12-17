@@ -85,7 +85,7 @@ class EpsteinFiles:
 
         self.emails = sorted(self.emails, key=lambda f: f.timestamp)
         self.imessage_logs = sorted(self.imessage_logs, key=lambda f: f.timestamp)
-        self.other_files = sorted(self.other_files, key=lambda f: [f.get_timestamp(), f.file_id])
+        self.other_files = sorted(self.other_files, key=lambda f: [f.get_timestamp() or FALLBACK_TIMESTAMP, f.file_id])
         self.identified_imessage_log_count = len([log for log in self.imessage_logs if log.author])
 
     @classmethod
