@@ -194,14 +194,24 @@ class EpsteinFiles:
         return sender_counts
 
     def print_files_overview(self) -> None:
-        print_starred_header('File Type Summary', num_stars=0, num_spaces=16)
+        # print_starred_header('File Type Summary', num_stars=0, num_spaces=1)
         table = Table()
         table.add_column("File Type", justify='left')
-        table.add_column("File Count", justify='center')
-        table.add_column("Known Author Count", justify='center')
-        table.add_row('iMessage Logs', f"{len(self.imessage_logs):,}", str(self.identified_imessage_log_count))
-        table.add_row('Emails', f"{len(self.emails):,}", f"{len([e for e in self.emails if e.author]):,}")
-        table.add_row('Other', f"{len(self.other_files):,}", 'n/a')
+        table.add_column("Total Count", justify='center')
+        table.add_column("Known Author", justify='center')
+        table.add_column("Unknown Author", justify='center')
+
+        def add_row(label: str, documents: list[Document], known: int | None = None):
+            table.add_row(
+                label,
+                f"{len(documents):,}",
+                'n/a' if known is None else f"{known:,}",
+                'n/a' if known is None else f"{len(documents) - known:,}",
+            )
+
+        add_row('iMessage Logs', self.imessage_logs, self.identified_imessage_log_count)
+        add_row('Emails', self.emails, len([e for e in self.emails if e.author]))
+        add_row('Other', self.other_files)
         console.print(Padding(Align.center(table)))
         console.line()
 

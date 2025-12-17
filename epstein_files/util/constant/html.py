@@ -3,7 +3,8 @@ from rich.terminal_theme import TerminalTheme
 from epstein_files.util.env import args
 
 
-PAGE_TITLE = "Epstein Estate Documents - Seventh Production Collection Reformatted Text Messages"
+#PAGE_TITLE = "Epstein Estate Documents - Seventh Production Collection Reformatted Text Messages"
+PAGE_TITLE = '  ⚯  Michel de Cryptadamus ⚯   '
 
 CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 <html>
