@@ -88,8 +88,8 @@ class Document:
 
     def description_panel(self, include_hints: bool = True) -> Panel:
         """Panelized description() with info_txt(), used in search results."""
-        renderables = [self.description()] + (self.hints() if include_hints else [])
-        return Panel(Group(*renderables), expand=False)
+        hints = [Text('', style='italic').append(h) for h in (self.hints() if include_hints else [])]
+        return Panel(Group(*([self.description()] + hints)), expand=False)
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on epsteinify.com."""

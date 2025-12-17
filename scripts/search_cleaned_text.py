@@ -6,9 +6,11 @@ from sys import exit
 
 from dotenv import load_dotenv
 from rich.highlighter import RegexHighlighter
+from rich.padding import Padding
 load_dotenv()
 environ.setdefault('PICKLED', 'true')
 
+from epstein_files.documents.document import INFO_PADDING
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.env import args, specified_names
 from epstein_files.util.highlighted_group import REGEX_STYLE_PREFIX
@@ -43,8 +45,5 @@ for search_term in args.positional_args:
         else:
             console.print(search_result.document.description_panel())
 
-            if search_result.document.hints():
-                console.line()
-
             for line in search_result.unprefixed_lines():
-                console.print(temp_highlighter(line), style='wheat4')
+                console.print(Padding(temp_highlighter(line), INFO_PADDING), style='grey42')
