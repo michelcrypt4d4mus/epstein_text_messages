@@ -215,7 +215,7 @@ HIGHLIGHTED_GROUPS = [
         label='famous_lawyer',
         info='lawyer',
         style='medium_purple3',
-        pattern=r'dersh|Gloria\s*Allred|(Mi(chael|ke)\s*)?Avenatti',
+        pattern=r'(David\s*)?Boies|dersh|Gloria\s*Allred|(Mi(chael|ke)\s*)?Avenatti',
         emailers = {
             ALAN_DERSHOWITZ: None,
             KEN_STARR: 'head of the Monica Lewinsky investigation against Bill Clinton',
@@ -315,7 +315,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='lawyer',
         style='purple',
-        pattern=r'(Barry (E. )?)?Krischer|(David\s*)?Boies|Kate Kelly|(Leon\s*)?Jaworski|Michael J. Pike|Paul,?\s*Weiss|Steptoe|Wein(berg|garten)',
+        pattern=r'(Barry (E. )?)?Krischer|Kate Kelly|(Leon\s*)?Jaworski|Michael J. Pike|Paul,?\s*Weiss|Steptoe|Wein(berg|garten)',
         emailers = {
             ARDA_BESKARES: 'NYC immigration attorney allegedly involved in sex-trafficking operations',
             BENNET_MOSKOWITZ: None,
