@@ -757,6 +757,7 @@ DEEP_THINKING_HINT = 'book: "Deep Thinking: Twenty-Five Ways of Looking at AI" b
 EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} and Paul Cassell v. {ALAN_DERSHOWITZ}"
 EPSTEIN_V_EDWARDS = f"Epstein v. Scott Rothstein and {BRAD_EDWARDS}"
 GIUFFRE_V_MAXWELL = f"Virginia Giuffre v. {GHISLAINE_MAXWELL}"
+HARVARD_POETRY = f'Harvard poetry stuff from {LISA_NEW}'
 HBS_APPLICATION_NERIO = f"Harvard Business School application letter from Nerio Alessandri (Founder and Chairman Technogym SPA Italy)"
 JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
 JP_MORGAN_EYE_ON_THE_MARKET = f"JP Morgan Eye On The Market report"
@@ -852,6 +853,7 @@ FILE_DESCRIPTIONS = {
     '027004': f'article by {JOSCHA_BACH}: "The Computational Structure of Mental Representation" 2013-02-26',
     '019212': f'article in The Times Tribune and WaPo about Bannon, Trump, and healthcare execs',
     '015501': f'article on "Game Theory and Morality" by Moshe Hoffman, Erez Yoeli, Carlos David Navarrete',
+    '030013': f'Aviation International News article 2012-07',
     '013275': f"Bloomberg article on notable 2013 obituaries 2013-12-26",
     '023571': f'China Daily front page (articles about terrorism, Macau, trade initiatives)',
     '025115': f'China Daily opinion page 2017-05-14',
@@ -881,7 +883,6 @@ FILE_DESCRIPTIONS = {
     '033480': f"press clipping about John Bolton",
     '033481': f"press clipping about John Bolton",
     '031794': f"press clipping in French",
-    '027068': f"real estate news article by Keith Larsen",
     '025328': f"scan of NYT page with articles about radio host Bob Fass and Robert Durst",
     '016996': f'SciencExpress article "Quantitative Analysis of Culture Using Millions of Digitized Books" by Jean-Baptiste Michel',
     '025104': f"SCMP article about China and globalisation",
@@ -949,6 +950,7 @@ FILE_DESCRIPTIONS = {
     '021824': f"transcript of deposition of Paul Cassell in {EDWARDS_V_DERSHOWITZ}",
     # conferences
     '014951': f"2017 TED Talks program 2017-04-20",
+    '017524': f'{BARBRO_EHNBOM} Swedish American Life Science Summit 2012 program',
     '023069': f'BofA / Merrill Lynch 2016 Future of Financials Conference report',
     '014315': f'BofA / Merrill Lynch 2016 Future of Financials Conference report',
     '017526': f'Intellectual Jazz conference brochure',
@@ -1035,6 +1037,7 @@ FILE_DESCRIPTIONS = {
     '024003': f"New Leaf Ventures private placement memorandum",
     # property
     '018804': f"appraisal of going concern for IGY American Yacht Harbor Marina in Virgin Islands",
+    '016597': f'letter from Trump Properties LLC appealing decision about Mar-a-Lago',
     '016602': f"Palm Beach code enforcement board minutes 2008-04-17",
     '016616': f"Palm Beach code enforcement board minutes 2008-07-17",
     '016554': f"Palm Beach code enforcement board minutes 2008-07-17",
@@ -1043,6 +1046,8 @@ FILE_DESCRIPTIONS = {
     '016696': f"Palm Beach water quality report",
     '018727': f"property deal in Virgin Islands for a building that will be leased to the U.S. Govt (GSA)",
     '018743': f"property listing in Las Vegas",
+    '027068': f"The Real Deal article by Keith Larsen",
+    '029520': f'The Real Deal article by Keith Larsen "Lost Paradise at the Palm House" 2019-06-17',
     '016552': f"TSV of Palm Beach property information",
     '016599': f"TSV of Palm Beach property consumption (water?)",
     '016600': f"TSV of Palm Beach property consumption (water?)",
@@ -1064,14 +1069,22 @@ FILE_DESCRIPTIONS = {
     '031743': f'few pages describing the internet as a "New Nation State" (Network State?)',
     '022780': f'flight logs',
     '019396': f'Harvard Economics 1545 Professor Kenneth Rogoff syllabus',
+    '029517': HARVARD_POETRY,
+    '029543': HARVARD_POETRY,
+    '029589': HARVARD_POETRY,
+    '029589': HARVARD_POETRY,
+    '029603': HARVARD_POETRY,
     '033434': f"iMessage screenshot labeled 'Edwards' at the top",
+    '029564': f'joke about Obama',
     '022445': f"Inference: International Review of Science Feedback & Comments November 2018",
     '028815': f'InsightsPod business plan',
     '025205': f'Mercury Films partner profiles of Jennifer Baichwal, Nicholas de Pencier, Kermit Blackwood, Travis Rummel',
+    '030426': f'Osborne & Partners reputation management proposal (cites Michael Milken) 2011-06-14',
     '022417': f"Park Partners NYC letter to partners in real estate project with architectural plans",
     '022367': f"professional resumé of Jack J Grynberg July 2014",
     '015672': f"professional resumé of Robin Solomon",
     '019448': f"proposal for Jacmel, Haiti business investment",
+    '029475': f'Virgin Islands Twin City Mobile Integrated Health Services (TCMIH) proposal (donation request?)',
     '029328': f"Rafanelli Events promotional deck",
     '023666': f"{ROBERT_LAWRENCE_KUHN} sizzle reel / television appearances",
     '029357': f"some text about Israel's challenges going into 2015",
@@ -1079,6 +1092,7 @@ FILE_DESCRIPTIONS = {
     '023644': f"transcription of an interview with MBS from Saudi",
     '030884': f"tweet",
     '023050': f"tweet by {ALAN_DERSHOWITZ} about Virginia Giuffre",
+    '017787': f"tweet by {ALAN_DERSHOWITZ} about Virginia Giuffre",
     '031546': f"tweets by Donald Trump about Russian collusion",
     '011170': f'tweets about #Brexit collected by InsightsPod',
     '033236': f'tweets about Ivanka Trump in Arabic',

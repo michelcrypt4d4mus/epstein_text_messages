@@ -27,7 +27,7 @@ MIN_DOCUMENT_ID = 10477
 PREVIEW_CHARS = 520
 INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
-VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*islands\s*daily\s*news', re.IGNORECASE)
+VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
 DOC_TYPE_STYLES = {
     DOCUMENT_CLASS: 'grey69',
