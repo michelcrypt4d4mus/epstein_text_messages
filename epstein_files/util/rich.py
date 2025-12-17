@@ -126,7 +126,7 @@ def print_header(epstein_files: 'EpsteinFiles') -> None:
     console.line(2)
     epstein_files.print_files_overview()
     print_color_key()
-    print_centered(f"If you think there's an attribution error or can deanonymize an {UNKNOWN} contact {link_markup('https://x.com/cryptadamist', '@cryptadamist')}.", 'grey46')
+    print_centered(f"if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {link_markup('https://x.com/cryptadamist', '@cryptadamist')}", 'grey46')
     print_centered('note this site is based on the OCR text provided by Congress which is not always the greatest', 'grey23')
     print_centered(f"(thanks to {link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} + others for help attributing redacted emails)")
     print_centered_link(ATTRIBUTIONS_URL, "(some explanations of author attributions)", style='magenta')
@@ -140,6 +140,16 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
     console.print(Panel(label, expand=False))
     console.print_json(json.dumps(obj, sort_keys=True), indent=4)
     console.line()
+
+
+def print_list(txts: list[Text], join='  '):
+    """Print list in one line."""
+    txt = Text('[').append(txts.pop()).append(']')
+
+    for t in txts:
+        txt.append(join).append('[').append(t).append(']')
+
+    print_centered(txt)
 
 
 def print_numbered_list_of_emailers(_list: list[str | None], epstein_files = None) -> None:
@@ -200,7 +210,7 @@ def print_page_title(expand: bool = True) -> None:
     console.print(Align.center(Panel(Text(PAGE_TITLE, justify='center'), expand=expand, style=TITLE_STYLE)))
     console.line()
     print_social_media_links()
-    console.line()
+    console.line(2)
 
 
 def print_panel(msg: str, style: str = 'black on white', padding: tuple | None = None, centered: bool = False) -> None:
@@ -223,9 +233,16 @@ def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centere
 def print_social_media_links() -> None:
     print_centered_link(SUBSTACK_URL, "I Made Epstein's Text Messages Great Again (And You Should Read Them)", style=f'chartreuse1 bold')
     print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style='dark_sea_green4 dim')
-    print_centered_link('https://cryptadamus.substack.com/', 'Substack', style=SOCIAL_MEDIA_LINK_STYLE)
-    print_centered_link('https://universeodon.com/@cryptadamist/115572634993386057', 'Mastodon', style=SOCIAL_MEDIA_LINK_STYLE)
-    print_centered_link('https://x.com/Cryptadamist/status/1990866804630036988', 'Twitter', style=SOCIAL_MEDIA_LINK_STYLE)
+    style = f"{SOCIAL_MEDIA_LINK_STYLE} bold"
+
+    social_links = [
+        link_text_obj('https://cryptadamus.substack.com/', 'substack', style=style),
+        link_text_obj('https://universeodon.com/@cryptadamist/115572634993386057', 'mastodon', style=style),
+        link_text_obj('https://x.com/Cryptadamist/status/1990866804630036988', 'twitter', style=style),
+    ]
+
+    # ⦾⦿•◦◘
+    print_list(social_links, join = '       ')
 
 
 def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2) -> None:

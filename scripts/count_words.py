@@ -11,8 +11,8 @@ from epstein_files.util.constant.common_words import COMMON_WORDS_LIST
 from epstein_files.util.data import Timer
 from epstein_files.util.env import args, logger, specified_names
 from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
-from epstein_files.util.rich import (console, print_abbreviations_table, print_centered, print_color_key,
-     print_page_title, print_panel, print_starred_header, write_html)
+from epstein_files.util.rich import (console, print_centered, print_color_key, print_page_title, print_panel,
+     print_starred_header, write_html)
 from epstein_files.util.word_count import WordCount
 
 HTML_REGEX = re.compile(r"^http|#yiv")
