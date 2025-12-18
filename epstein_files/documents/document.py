@@ -298,7 +298,7 @@ class CommunicationDocument(Document):
     def description(self) -> Text:
         """One line summary mostly for logging."""
         txt = super().description()
-        txt.append(f", timestamp=").append(str(self.timestamp), style='dim dark_cyan')
+        txt.append(f", timestamp=").append(str(self.timestamp), style=TIMESTAMP_DIM)
         txt.append(f", author=").append(self.author_str, style=self.author_style)
         return txt.append(')')
 

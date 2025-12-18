@@ -312,6 +312,7 @@ KNOWN_EMAIL_AUTHORS = {
     '031442': CHRISTINA_GALBRAITH,
     '019446': CHRISTINA_GALBRAITH,  # Not 100% but from "Christina media/PR" which fits
     '026625': DARREN_INDYKE,
+    '026624': DARREN_INDYKE,        # weird format (signature on top)
     '026290': DAVID_SCHOEN,         # Signature
     '031339': DAVID_SCHOEN,         # Signature
     '031492': DAVID_SCHOEN,         # Signature
@@ -489,6 +490,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '025233': JEFFREY_EPSTEIN,        # Bad OCR
     '032208': JEFFREY_EPSTEIN,        # More of a text convo with Lawrence Krauss?
     '026014': JEFFREY_EPSTEIN,        # truncated to only show the quoted reply
+    '026624': JEFFREY_EPSTEIN,        # weird format (signature on top)
     '029324': [JEFFREY_EPSTEIN, 'Jojo Fontanilla', 'Lyn Fontanilla'],
     '033575': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN],
     '023067': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN, TONJA_HADDAD_COLEMAN],      # Bad OCR
@@ -562,6 +564,7 @@ EMAIL_TIMESTAMPS = {
     '028851': datetime(2014, 4, 27, 6, 00),
     '028849': datetime(2014, 4, 27, 6, 30),
     '032283': datetime(2016, 9, 14, 8, 4),
+    '026624': datetime(2016, 10, 1, 16, 40),
     '026014': datetime(2016, 11, 4, 17, 46),
     '032475': datetime(2017, 2, 15, 13, 31, 25),
     '018726': datetime(2018, 6, 8, 8, 36),
@@ -716,7 +719,7 @@ DUPLICATE_FILE_IDS = {
     '031129': 'the same as 029977',
     '033561': 'the same as 033157',
     '033589': 'the same as 032250',
-    '031708': 'the same as 026624',
+    '026624': 'the same as 031708',
     '030575': 'a redacted version of 030475',
     '023291': 'the same as (?) 023208',
     # non-email documents
@@ -900,6 +903,7 @@ FILE_DESCRIPTIONS = {
     '016996': f'SciencExpress article "Quantitative Analysis of Culture Using Millions of Digitized Books" by Jean-Baptiste Michel',
     '025104': f"SCMP article about China and globalisation",
     '030829': f'South Florida Sun Sentinel article about {BRAD_EDWARDS} and {JEFFREY_EPSTEIN}',
+    '026520': f'Spanish language article about {SULTAN_BIN_SULAYEM} 2013-09-27',
     '021092': f'Tatler page about {GHISLAINE_MAXWELL} shredding documents 2019-08-15',
     '013437': f"The Telegraph article about Epstein diary 2011-03-05",
     '031736': f'translation of Arabic article by Abdulnaser Salamah "Trump; Prince of Believers (Caliph)!" 2017-05-13',
