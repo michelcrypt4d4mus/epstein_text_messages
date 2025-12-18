@@ -8,7 +8,7 @@ from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.documents.document import CommunicationDocument
-from epstein_files.util.constant.strings import PHONE_NUMBER_STYLE, TIMESTAMP_DIM
+from epstein_files.util.constant.strings import PHONE_NUMBER_STYLE
 from epstein_files.util.constants import *
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import SYMBOL_STYLE, TEXT_LINK, highlighter, logger
