@@ -291,6 +291,7 @@ HIGHLIGHTED_GROUPS = [
         emailers = {
             EDWARD_EPSTEIN: 'no relation to Jeffrey',
             'James Hill': 'ABC',
+            JENNIFER_JACQUET: 'Future Science',
             JOHN_BROCKMAN: 'literary agent and author specializing in scientific literature',
             LANDON_THOMAS: 'New York Times',
             MICHAEL_WOLFF: "Author or 'Fire and Fury: Inside the Trump White House'",
@@ -461,7 +462,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='victim',
         style='orchid1',
-        pattern=r'BVI|(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts',
+        pattern=r'BVI|(Jane|Tiffany)\s*Doe|Katie\s*Johnson|(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts',
     ),
     HighlightedGroup(
         label='virgin islands',

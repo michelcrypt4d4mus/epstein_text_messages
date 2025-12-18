@@ -82,7 +82,7 @@ EMAIL_AUTHOR_COUNTS = {
     JEAN_LUC_BRUNEL: 3,
     JEFF_FULLER: 1,
     JEFFREY_EPSTEIN: 709,
-    "Jennifer Jacquet": 1,
+    JENNIFER_JACQUET: 1,
     "Jeremy Rubin": 3,
     JES_STALEY: 2,
     "Jessica Cadwell": 7,
