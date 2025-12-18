@@ -16,7 +16,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, EPSTEINIFY, EPSTEIN_WEB, epsteinify_doc_link_txt, epsteinify_doc_url, epstein_web_doc_url
 from epstein_files.util.constants import DUPLICATE_FILE_IDS, FALLBACK_TIMESTAMP, FILE_DESCRIPTIONS, VI_DAILY_NEWS_ARTICLE
-from epstein_files.util.data import collapse_newlines, date_str, patternize
+from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, patternize
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, file_size_str, is_local_extract_file
 from epstein_files.util.rich import console, highlighter, logger, link_text_obj
@@ -82,6 +82,7 @@ class Document:
 
         self.text = self.text or self._load_file()
         self._set_computed_fields()
+        self._repair()
 
     def date_str(self) -> str | None:
         return date_str(self.timestamp)
@@ -89,8 +90,12 @@ class Document:
     def description(self) -> Text:
         """Mostly for logging."""
         txt = Text('').append(self.file_path.stem, style='magenta')
-        txt.append(f' {self.document_type()} ', style=self.document_type_style())
-        txt.append(f"(num_lines=").append(f"{self.num_lines}", style='cyan')
+        txt.append(f' {self.document_type()}', style=self.document_type_style())
+
+        if self.timestamp:
+            txt.append(' [').append(f"{iso_timestamp(self.timestamp)}", style=TIMESTAMP_DIM).append(']')
+
+        txt.append(" (num_lines=").append(f"{self.num_lines}", style='cyan')
         txt.append(", size=").append(file_size_str(self.file_path), style='aquamarine1')
         return txt.append(')') if self.document_type() == OTHER_FILE_CLASS else txt
 
@@ -100,6 +105,7 @@ class Document:
         return Panel(Group(*([self.description()] + hints)), border_style=self.document_type_style(), expand=False)
 
     def document_type(self) -> str:
+        """Annoying workaround for circular import issues and isinstance()."""
         return str(type(self).__name__)
 
     def document_type_style(self) -> str:
@@ -211,7 +217,7 @@ class Document:
         logger.warning(f"Wrote {self.length} chars of cleaned {self.filename} to {output_path}.")
 
     def _border_style(self) -> str:
-        """Should be implemented in subclasses."""
+        """Should be overloaded in subclasses."""
         return 'white'
 
     def _extract_timestamp(self) -> datetime:
@@ -226,6 +232,10 @@ class Document:
             lines = [l.strip() for l in text.split('\n') if not l.startswith(HOUSE_OVERSIGHT)]
             lines = lines[1:] if (len(lines) > 1 and lines[0] == '>>') else lines
             return collapse_newlines('\n'.join(lines))
+
+    def _repair(self) -> None:
+        """Can optionally be overloaded in subclasses."""
+        pass
 
     def _set_computed_fields(self) -> None:
         self.length = len(self.text)
@@ -287,7 +297,6 @@ class CommunicationDocument(Document):
 
     def __post_init__(self):
         super().__post_init__()
-        self._repair()
         self._extract_author()
         self.author_txt = Text(self.author_str, style=self.author_style)
         self.timestamp = self._extract_timestamp()
@@ -298,7 +307,6 @@ class CommunicationDocument(Document):
     def description(self) -> Text:
         """One line summary mostly for logging."""
         txt = super().description()
-        txt.append(f", timestamp=").append(str(self.timestamp), style=TIMESTAMP_DIM)
         txt.append(f", author=").append(self.author_str, style=self.author_style)
         return txt.append(')')
 
@@ -311,10 +319,6 @@ class CommunicationDocument(Document):
 
     def _extract_author(self) -> None:
         raise NotImplementedError(f"Should be implemented in subclasses!")
-
-    def _repair(self) -> None:
-        """Can optionally be overloaded in subclasses."""
-        pass
 
 
 @dataclass
