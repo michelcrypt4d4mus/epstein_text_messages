@@ -19,7 +19,7 @@ from epstein_files.documents.email import DETECT_EMAIL_REGEX, JUNK_EMAILERS, KRA
 from epstein_files.documents.email_header import AUTHOR
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.util.constant.strings import AUTHOR, EVERYONE, TEXT_MESSAGE, TIMESTAMP_DIM
+from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url,
      search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
@@ -197,7 +197,13 @@ class EpsteinFiles:
 
         return sender_counts
 
-    def print_files_overview(self) -> None:
+    def print_files_summary(self) -> None:
+        dupes = defaultdict(int)
+
+        for doc in self.all_documents():
+            if doc.file_id in DUPLICATE_FILE_IDS:
+                dupes[doc.document_type()] += 1
+
         table = Table()
         table.add_column("File Type", justify='left')
         table.add_column("Files", justify='center')
@@ -215,8 +221,8 @@ class EpsteinFiles:
             )
 
         add_row('iMessage Logs', self.imessage_logs, self.identified_imessage_log_count)
-        add_row('Emails', self.emails, len([e for e in self.emails if e.author]), len(DUPLICATE_FILE_IDS))
-        add_row('Other', self.other_files)
+        add_row('Emails', self.emails, len([e for e in self.emails if e.author]), dupes[EMAIL_CLASS])
+        add_row('Other', self.other_files, dupes=dupes[OTHER_FILE_CLASS])
         console.print(Align.center(table))
         console.line()
 
