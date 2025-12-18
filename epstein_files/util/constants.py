@@ -313,6 +313,7 @@ KNOWN_EMAIL_AUTHORS = {
     '019446': CHRISTINA_GALBRAITH,  # Not 100% but from "Christina media/PR" which fits
     '026625': DARREN_INDYKE,
     '026624': DARREN_INDYKE,        # weird format (signature on top)
+    '031278': DARREN_INDYKE,        # weird format (signature on top)
     '026290': DAVID_SCHOEN,         # Signature
     '031339': DAVID_SCHOEN,         # Signature
     '031492': DAVID_SCHOEN,         # Signature
@@ -563,6 +564,7 @@ KNOWN_EMAIL_RECIPIENTS = {
 EMAIL_TIMESTAMPS = {
     '028851': datetime(2014, 4, 27, 6, 00),
     '028849': datetime(2014, 4, 27, 6, 30),
+    '031278': datetime(2016, 8, 17, 11, 26),
     '032283': datetime(2016, 9, 14, 8, 4),
     '026624': datetime(2016, 10, 1, 16, 40),
     '026014': datetime(2016, 11, 4, 17, 46),
@@ -909,10 +911,12 @@ FILE_DESCRIPTIONS = {
     '033479': f"NYT article about Rex Tillerson 2010-03-14",
     '019439': f"NYT column by Maureen Dowd 2013-08-17",
     '033365': f'NYT column by Kevin Rudd "Trump Hands China An Easy Win in the Trade War"',
-    '025328': f"NYT scanned page with articles about radio host Bob Fass and Robert Durst",
+    '025328': f"NYT single page of articles about radio host Bob Fass and Robert Durst",
+    '032435': f'NYT single page of article about Chinese butlers',
     '021093': f"page of an article about Epstein and Maxwell",
-    '013435': f"{PALM_BEACH_DAILY_ARTICLE} Epstein address book 2011-03-11",
-    '013440': f"{PALM_BEACH_DAILY_ARTICLE} Epstein gag order 2011-07-13",
+    '013435': f"{PALM_BEACH_DAILY_ARTICLE} Epstein's address book 2011-03-11",
+    '013440': f"{PALM_BEACH_DAILY_ARTICLE} Epstein's gag order 2011-07-13",
+    '029238': f"{PALM_BEACH_DAILY_ARTICLE} Epstein's plea deal",
     '015028': f"Palm Beach Post article about reopening Epstein's criminal case",
     '028481': f'photo of NYT article about Steve Bannon 2018-03-09',
     '033480': f"press clipping about John Bolton 2018-04-06",
@@ -1086,6 +1090,8 @@ FILE_DESCRIPTIONS = {
     '025247': f'UBS CIO Monthly Extended report 2012-10-25',
     '025849': f'US Office of Government Information Services report: "Building a Bridge Between FOIA Requesters & Agencies"',
     '020824': f"USA Inc: A Basic Summary of America's Financial Statements compiled by Mary Meeker 2011-02-01",
+    # emails
+    '031278': f"highly redacted, quoted replies are about James Patterson's Epstein book",
     # letters
     '017789': f'{ALAN_DERSHOWITZ} letter to Harvard Crimson complaining he was defamed',
     '031670': f"letter from General Mike Flynn's lawyers to senators Mark Warner & Richard Burr about subpoena",
