@@ -19,7 +19,7 @@ from epstein_files.util.constants import DUPLICATE_FILE_IDS, FALLBACK_TIMESTAMP,
 from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, patternize
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, file_size_str, is_local_extract_file
-from epstein_files.util.rich import console, highlighter, logger, link_text_obj
+from epstein_files.util.rich import console, highlighter, key_value_txt, logger, link_text_obj
 
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
@@ -95,8 +95,8 @@ class Document:
         if self.timestamp:
             txt.append(' [').append(f"{iso_timestamp(self.timestamp)}", style=TIMESTAMP_DIM).append(']')
 
-        txt.append(" (num_lines=").append(f"{self.num_lines}", style='cyan')
-        txt.append(", size=").append(file_size_str(self.file_path), style='aquamarine1')
+        txt.append(" (").append(key_value_txt('num_lines', Text(f"{self.num_lines}", style='cyan')))
+        txt.append(', ').append(key_value_txt('size', Text(file_size_str(self.file_path), style='aquamarine1')))
         return txt.append(')') if self.document_type() == OTHER_FILE_CLASS else txt
 
     def description_panel(self, include_hints: bool = True) -> Panel:
@@ -307,7 +307,7 @@ class CommunicationDocument(Document):
     def description(self) -> Text:
         """One line summary mostly for logging."""
         txt = super().description()
-        txt.append(f", author=").append(self.author_str, style=self.author_style)
+        txt.append(', ').append(key_value_txt('author', Text(self.author_str, style=self.author_style)))
         return txt.append(')')
 
     def raw_document_link_txt(self, _style: str = '', include_alt_link: bool = True) -> Text:
