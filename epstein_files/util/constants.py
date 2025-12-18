@@ -779,6 +779,7 @@ OSBORNE_LLP = f"{IAN_OSBORNE} & Partners LLP"
 PALM_BEACH_DAILY_ARTICLE = 'Palm Beach Daily News article about'
 PALM_BEACH_TSV = 'TSV of Palm Beach property'
 PATTERSON_BOOK_SCANS = f'pages of "Filthy Rich: The Shocking True Story of Jeffrey Epstein" by James Patterson 2016-10-10'
+SAUDI_JASTA_LAWSUIT = f"JASTA lawsuit against Saudi Arabia by 9/11 victims"
 SHIMON_POST = 'The Shimon Post selection of articles about the mideast'
 SWEDISH_LIFE_SCIENCES_SUMMIT = f"{BARBRO_EHNBOM}'s Swedish American Life Science Summit"
 TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Government Ethics 2017-01-20"
@@ -973,17 +974,17 @@ FILE_DESCRIPTIONS = {
     '018872': f"FBI seized property inventory (redacted)",
     '019352': f"FBI report on Epstein investigation (redacted)",
     '021434': f"FBI report on Epstein investigation (redacted)",
-    '017904': f"laws and court filing regarding lawsuit against Saudi Arabia for 9/11?",
-    '023361': f"laws and court filing regarding lawsuit against Saudi Arabia for 9/11?",
-    '017830': f"laws and court filing regarding lawsuit against Saudi Arabia for 9/11?",
+    '017904': f"Westlaw search results re: {SAUDI_JASTA_LAWSUIT} 2019-01",
+    '023361': f"laws and court documents re: {SAUDI_JASTA_LAWSUIT} 2012-01-20",
+    '017830': f"laws and court documents re: {SAUDI_JASTA_LAWSUIT}",
     '012197': f"letter from DOJ to {JAY_LEFKOWITZ} about Epstein's prosecution agreement",
     '010560': f"letter from Gloria Allred to {SCOTT_J_LINK} alleging abuse of a girl from Kansas 2019-06-19",
     '019297': f'letter from {ALAN_DERSHOWITZ} lawyer Andrew G. Celli about {GIUFFRE_V_MAXWELL} 2018-02-07',
+    '020662': f"letter from {ALAN_DERSHOWITZ}'s British lawyers Mishcon de Reya to Daily Mail threatening libel suiit",
     '031447': f"letter from {MARTIN_WEINBERG} to Melanie Ann Pustay and Sean O'Neill re: an Epstein FOIA request",
     '029315': f"letter from {JACK_SCAROLA} about {EPSTEIN_V_EDWARDS}",
     '012707': f"letter from {JACK_SCAROLA} about {EPSTEIN_V_EDWARDS} with Master Contact List",
     '026793': f"letter from {STEVEN_HOFFENBERG}'s lawyer Alan P. Fraade offering to take over Epstein's business and resolve his legal issues",
-    '020662': f"letter to Daily Mail threatening libel lawsuit from {ALAN_DERSHOWITZ}'s British lawyers Mishcon de Reya",
     '017603': DAVID_SCHOEN_CVRA_LEXIS_SEARCH,
     '017635': DAVID_SCHOEN_CVRA_LEXIS_SEARCH,
     '016509': DAVID_SCHOEN_CVRA_LEXIS_SEARCH,
@@ -1040,7 +1041,7 @@ FILE_DESCRIPTIONS = {
     '022325': f'{DEUTSCHE_BANK_TAX_TOPICS} 2013-12-20',
     '022330': f'{DEUTSCHE_BANK_TAX_TOPICS} 2013-12-20 TOC',
     '019440': f'{DEUTSCHE_BANK_TAX_TOPICS} 2014-01-29',
-    '022494': f'DOJ Resource Guide to the U.S. Foreign Corrupt Practices Act (FCPA)',
+    '022494': f'US Foreign Corrupt Practices Act (FCPA) DOJ Resource Guide ca. 2013-01',
     '024202': f'Electron Capital Partners LLC "Global Utility White Paper" 2013-03-08',
     '022372': f'Ernst & Young 2016 election report',
     '025663': f'Goldman Sachs 2017-11 report "An Overview of the Current State of Cryptocurrencies and Blockchain"',
