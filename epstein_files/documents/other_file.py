@@ -33,12 +33,13 @@ class OtherFile(Document):
         self.timestamp = self._extract_timestamp()
 
     def is_interesting(self):
+        """False for lame prefixes and duplicates."""
         hints = self.hints()
 
         if len(hints) == 0:
             return True
-
-        hint = hints[0]
+        elif self.file_id in DUPLICATE_FILE_IDS:
+            return False
 
         for prefix in UNINTERESTING_PREFIXES:
             if hints[0].plain.startswith(prefix):
