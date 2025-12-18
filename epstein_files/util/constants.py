@@ -766,6 +766,7 @@ EMAILED_ARTICLE_IDS = [
 BOFA_MERRILL = 'BofA / Merrill Lynch'
 CHALLENGES_OF_AI = f'ASU Origins Project ({LAWRENCE_KRAUSS}) report "Challenges of AI: Envisioning and Addressing Adverse Outcomes"'
 CHINA_DAILY_ARTICLE = "China Daily article about"
+CNN = 'CNN'
 CVRA = "Crime Victims' Rights Act [CVRA]"
 DAILY_MAIL_ARTICLE = "Daily Mail article about"
 DAILY_TELEGRAPH_ARTICLE = "Daily Telegraph article about"
@@ -773,7 +774,8 @@ DAVID_BLAINE_VISA_LETTER = 'letter of recommendation for visa for a model by Dav
 DAVID_SCHOEN_CVRA_LEXIS_SEARCH = f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN} 2019-02-28"
 DEEP_THINKING_HINT = 'book: "Deep Thinking: Twenty-Five Ways of Looking at AI" by John Brockman 2019-02-19'
 DERSH_GIUFFRE_TWEET = f"tweet by {ALAN_DERSHOWITZ} about Virginia Giuffre"
-DEUTSCHE_BANK_TAX_TOPICS = 'Deutsche Bank Wealth Management Tax Topics'
+DEUTSCHE_BANK = 'Deutsche Bank'
+DEUTSCHE_BANK_TAX_TOPICS = f'{DEUTSCHE_BANK} Wealth Management Tax Topics'
 DIANA_DEGETTES_CAMPAIGN = "Colorado legislator Diana DeGette's campaign"
 EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} and Paul Cassell v. {ALAN_DERSHOWITZ}"
 EPSTEIN_FOUNDATION = 'Jeffrey Epstein VI Foundation'
@@ -788,7 +790,8 @@ INSIGHTS_POD = f"{ZUBAIR_KHAN} and Anya Rasulova's InsightsPod"
 JANE_DOE_V_EPSTEIN_TRUMP = f"Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}"
 JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
 JOHN_BOLTON_PRESS_CLIPPING = 'John Bolton press clipping'
-JP_MORGAN_EYE_ON_THE_MARKET = f"JP Morgan Eye On The Market report"
+JP_MORGAN = 'JP Morgan'
+JP_MORGAN_EYE_ON_THE_MARKET = f"{JP_MORGAN} Eye On The Market report"
 KEN_STARR_LETTER = f"letter from {KEN_STARR} to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
 MERCURY_FILMS_PROFILES = f'Mercury Films partner profiles of Jennifer Baichwal, Nicholas de Pencier, Kermit Blackwood, Travis Rummel ca. 2010-02-01'
 MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
@@ -908,11 +911,11 @@ FILE_DESCRIPTIONS = {
     '023571': f'{CHINA_DAILY_ARTICLE} terrorism, Macau, trade initiatives 2016-09-18',
     '023570': f'{CHINA_DAILY_ARTICLE} Belt & Road in Central/South America, Xi philosophy 2017-05-14',
     '025115': f'{CHINA_DAILY_ARTICLE} China and the US working together 2017-05-14',
-    '026877': f'CNN "New Tariffs - Trade War" by {ROBERT_LAWRENCE_KUHN}',
-    '026868': f'CNN "Quest Means Business New China Tariffs — Trade War" by {ROBERT_LAWRENCE_KUHN} 2018-09-18',
-    '023707': f'CNN "Quest Means Business U.S. and China Agree to Pause Trade War" by {ROBERT_LAWRENCE_KUHN} 2018-12-03',
-    '029176': f'CNN "U.S. China Tariffs - Trade War" by {ROBERT_LAWRENCE_KUHN}',
-    '032638': f'CNN "Xi Jinping and the New Politburo Committee" by {ROBERT_LAWRENCE_KUHN}',
+    '026877': f'{CNN} "New Tariffs - Trade War" by {ROBERT_LAWRENCE_KUHN}',
+    '026868': f'{CNN} "Quest Means Business New China Tariffs — Trade War" by {ROBERT_LAWRENCE_KUHN} 2018-09-18',
+    '023707': f'{CNN} "Quest Means Business U.S. and China Agree to Pause Trade War" by {ROBERT_LAWRENCE_KUHN} 2018-12-03',
+    '029176': f'{CNN} "U.S. China Tariffs - Trade War" by {ROBERT_LAWRENCE_KUHN}',
+    '032638': f'{CNN} "Xi Jinping and the New Politburo Committee" by {ROBERT_LAWRENCE_KUHN}',
     '025292': f"{DAILY_MAIL_ARTICLE} Bill Clinton being named in a lawsuit",
     '019468': f"{DAILY_MAIL_ARTICLE} Epstein and Clinton",
     '022970': f"{DAILY_MAIL_ARTICLE} Epstein and Prince Andrew",
@@ -1102,7 +1105,7 @@ FILE_DESCRIPTIONS = {
     '014697': CHALLENGES_OF_AI,
     '011284': CHALLENGES_OF_AI,
     '024817': f"Cowen's Collective View of CBD / Cannabis report",
-    '026794': f'Deutsche Bank Global Public Affairs report: "Global Political and Regulatory Risk in 2015/2016"',
+    '026794': f'{DEUTSCHE_BANK} Global Public Affairs report: "Global Political and Regulatory Risk in 2015/2016"',
     '022361': f'{DEUTSCHE_BANK_TAX_TOPICS} 2013-05',
     '022325': f'{DEUTSCHE_BANK_TAX_TOPICS} 2013-12-20',
     '022330': f'{DEUTSCHE_BANK_TAX_TOPICS} table of contents 2013-12-20',
@@ -1272,3 +1275,29 @@ FILE_DESCRIPTIONS = {
     '029475': f'Virgin Islands Twin City Mobile Integrated Health Services (TCMIH) proposal/request for donation',
     '029448': f'weird short essay about Obama',
 }
+
+UNINTERESTING_PREFIXES = [
+    BOFA_MERRILL,
+    CHALLENGES_OF_AI,
+    CNN,
+    DAILY_MAIL_ARTICLE,
+    DAILY_TELEGRAPH_ARTICLE,
+    DERSH_GIUFFRE_TWEET,
+    DEUTSCHE_BANK_TAX_TOPICS,
+    FLIGHT_LOGS,
+    GOLDMAN_REPORT,
+    GORDON_GETTY,
+    HARVARD_POETRY,
+    JOHN_BOLTON_PRESS_CLIPPING,
+    JP_MORGAN,
+    NYT_ARTICLE,
+    NYT_COLUMN,
+    OBAMA_JOKE,
+    PALM_BEACH_DAILY_ARTICLE,
+    PALM_BEACH_POST_ARTICLE,
+    ROBERT_LAWRENCE_KUHN,
+    ROBERT_TRIVERS,
+    STACEY_PLASKETT,
+    THE_REAL_DEAL_ARTICLE,
+    TRUMP_DISCLOSURES,
+]
