@@ -90,6 +90,7 @@ KATHRYN_RUEMMLER = 'Kathryn Ruemmler'
 KEN_JENNE = 'Ken Jenne'
 KEN_STARR = 'Ken Starr'
 KENNETH_E_MAPP = 'Kenneth E. Mapp'
+SVETLANA_POZHIDAEVA = 'Svetlana Pozhidaeva'  # Epstein assistant / WE founder recommended by Belyakov
 LANDON_THOMAS = 'Landon Thomas Jr'
 LAWRANCE_VISOSKI = 'Lawrance Visoski'
 LAWRENCE_KRAUSS = 'Lawrence Krauss'

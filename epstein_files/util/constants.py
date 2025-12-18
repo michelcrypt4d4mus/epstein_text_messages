@@ -731,7 +731,7 @@ DUPLICATE_FILE_IDS = {
     '014697': 'the same as 011284',  # Jeremy Gillula name removed
     '016616': 'the same as 016554',
     '016574': 'the same as 016554',
-    '023121': 'earlier draft of 023123'
+    '023121': 'earlier draft of 023123',
 }
 
 EMAILED_ARTICLE_IDS = [
@@ -984,12 +984,15 @@ FILE_DESCRIPTIONS = {
     '023069': f'BofA / Merrill Lynch 2016 Future of Financials Conference report',
     '014315': f'BofA / Merrill Lynch 2016 Future of Financials Conference report',
     '017526': f'Intellectual Jazz conference brochure',
-    '023121': f"{LAWRENCE_KRAUSS} 'Strange Bedfellows' potential invitees f. Johnny Depp, Woody Allen, Obama, and more",
+    '023120': f"{LAWRENCE_KRAUSS} 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more (old draft)",
+    '023121': f"{LAWRENCE_KRAUSS} 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more (old draft)",
+    '023123': f"{LAWRENCE_KRAUSS} 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more",
     '031359': f"Nobel Charitable Trust Earth Environment Convention about ESG investing",
     '031354': f'Nobel Charitable Trust "Thinking About the Environment and Technology" report 2011',
     '024185': f'schedule of 67th U.N. General Assembly w/"Presidents Private Dinner - Jeffrey Epstine (sic)" 2012-09-21',
     '024179': f'president and first lady schedule at 67th U.N. General Assembly 2012-09-21',
     '025797': f'someone\'s notes from Aspen Strategy Group 2013-05-29 (?)',
+    '019300': f'Women empowerment conference f. {KATHRYN_RUEMMLER} 2019-04-05',
     '017060': f'World Economic Forum (WEF) Annual Meeting 2011 List of Participants 2011-01-18',
     # press releases, reports, etc.
     '024631': f"Ackrell Capital Cannabis Investment Report 2018",
@@ -1108,6 +1111,8 @@ FILE_DESCRIPTIONS = {
     '024117': f"FAQ about anti-money laundering and terrorist financing law in the U.S.",
     '031743': f'a few pages describing the internet as a "New Nation State" (Network State?)',
     '022780': f'flight logs',
+    '022816': f'flight logs',
+    '022267': f'essay by {SVETLANA_POZHIDAEVA} about growing her WE (women\'s empowerment) lecture series',
     '019396': f'Harvard Economics 1545 Professor Kenneth Rogoff syllabus',
     '029517': HARVARD_POETRY,
     '029543': HARVARD_POETRY,
@@ -1119,7 +1124,7 @@ FILE_DESCRIPTIONS = {
     '029353': OBAMA_JOKE,
     '029352': OBAMA_JOKE,
     '029351': OBAMA_JOKE,
-    '022445': f"Inference: International Review of Science Feedback & Comments November 2018",
+    '022445': f"Inference: International Review of Science Feedback & Comments 2018-11",
     '028815': f'InsightsPod business plan',
     '033478': f'meme showing Kim Jong Un reading "Fire And Fury" by {MICHAEL_WOLFF}',
     '025205': f'Mercury Films partner profiles of Jennifer Baichwal, Nicholas de Pencier, Kermit Blackwood, Travis Rummel',
