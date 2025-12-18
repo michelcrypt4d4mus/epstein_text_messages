@@ -2,9 +2,6 @@ import logging
 import re
 from dataclasses import dataclass, field
 from datetime import datetime
-from pathlib import Path
-from subprocess import run
-from typing import ClassVar
 
 import datefinder
 from rich.console import Console, ConsoleOptions, Group, RenderResult
@@ -16,12 +13,12 @@ from rich.text import Text
 from epstein_files.documents.document import PREVIEW_CHARS, WHITESPACE_REGEX, Document
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constants import DUPLICATE_FILE_IDS, FALLBACK_TIMESTAMP, FILE_DESCRIPTIONS
+from epstein_files.util.constants import DUPLICATE_FILE_IDS, FILE_DESCRIPTIONS
 from epstein_files.util.data import escape_single_quotes, extract_datetime, ordinal_str, remove_timezone
-from epstein_files.util.env import args, logger
+from epstein_files.util.env import logger
 from epstein_files.util.rich import console, highlighter, logger
 
-MAX_EXTRACTED_TIMESTAMPS = 6
+MAX_EXTRACTED_TIMESTAMPS = 10
 MIN_TIMESTAMP = datetime(1991, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
 MAX_TIMESTAMP = datetime(2022, 12, 31)
