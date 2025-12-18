@@ -1201,7 +1201,7 @@ FILE_DESCRIPTIONS = {
     '030875': f"{REPUTATION_MGMT} screenshot of Epstein's Wikipedia page",
     # misc
     '031743': f'a few pages describing the internet as a "New Nation State" (Network State?)',
-    '018703': f"Andres Serrano artists statement about Trump objects",
+    '018703': f"{ANDRES_SERRANO} artist statement about Trump objects",
     '028281': f'art show flier for "The House Of The Nobleman" curated by Wolfe Von Lenkiewicz & Victoria Golembiovskaya',
     '025147': f'Brockman hot list Frankfurt Book Fair (includes article about Silk Road/Ross Ulbricht) 2016-10-23',
     '023438': f"Brockman announcemeent of auction of 'Noise' by Daniel Kahneman, Olivier Sibony, and Cass Sunstein",
@@ -1244,7 +1244,7 @@ FILE_DESCRIPTIONS = {
     '033177': f'meme of Trump with text "WOULD YOU TRUST THIS MAN WITH YOUR DAUGHTER?"',
     '025205': MERCURY_FILMS_PROFILES,
     '025210': MERCURY_FILMS_PROFILES,
-    '030142': f"mostly empty, references JASTA (Justice Against Sponsors of Terrorism Act) suit against Saudi f. {KATHRYN_RUEMMLER} & {KEN_STARR} ca. 2016-09-01",
+    '030142': f"JASTA (Justice Against Sponsors of Terrorism Act) doc that's mostly empty, references suit against Saudi f. {KATHRYN_RUEMMLER} & {KEN_STARR} ca. 2016-09-01",
     '029564': f"{OBAMA_JOKE} ca. 2013-07-26",
     '029353': f"{OBAMA_JOKE} ca. 2013-07-26",
     '029352': f"{OBAMA_JOKE} ca. 2013-07-26",
@@ -1280,6 +1280,7 @@ FILE_DESCRIPTIONS = {
 }
 
 UNINTERESTING_PREFIXES = [
+    'book:',
     BOFA_MERRILL,
     CHALLENGES_OF_AI,
     CNN,
@@ -1290,14 +1291,17 @@ UNINTERESTING_PREFIXES = [
     FLIGHT_LOGS,
     GOLDMAN_REPORT,
     GORDON_GETTY,
+    'Harvard',
     HARVARD_POETRY,
     JOHN_BOLTON_PRESS_CLIPPING,
     JP_MORGAN,
+    'meme',
     NYT_ARTICLE,
     NYT_COLUMN,
     OBAMA_JOKE,
     PALM_BEACH_DAILY_ARTICLE,
     PALM_BEACH_POST_ARTICLE,
+    PALM_BEACH_TSV,
     ROBERT_LAWRENCE_KUHN,
     ROBERT_TRIVERS,
     STACEY_PLASKETT,
