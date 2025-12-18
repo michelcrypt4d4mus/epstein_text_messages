@@ -8,10 +8,10 @@ from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.documents.document import CommunicationDocument
-from epstein_files.util.constant.strings import PHONE_NUMBER_STYLE
+from epstein_files.util.constant.strings import PHONE_NUMBER_STYLE, TIMESTAMP_DIM
 from epstein_files.util.constants import *
 from epstein_files.util.highlighted_group import get_style_for_name
-from epstein_files.util.rich import TEXT_LINK, highlighter, logger
+from epstein_files.util.rich import SYMBOL_STYLE, TEXT_LINK, highlighter, logger
 
 KNOWN_IDS = [id for id in KNOWN_IMESSAGE_FILE_IDS.keys()] + [id for id in GUESSED_IMESSAGE_FILE_IDS.keys()]
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
@@ -95,7 +95,7 @@ class TextMessage:
             author_style = get_style_for_name(self.author)
 
         author_txt = Text(self.author_str, style=author_style)
-        timestamp_txt = Text(f"[{self.timestamp_str}] ", style='gray30')
+        timestamp_txt = Text(f"[{self.timestamp_str}]", style='turquoise4 dim').append(' ')
         return Text('').append(timestamp_txt).append(author_txt).append(': ', style='dim').append(self._message())
 
 
