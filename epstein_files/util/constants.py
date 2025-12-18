@@ -762,6 +762,7 @@ EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} and Paul Cassell v. {ALAN_DERSHOWITZ}"
 EPSTEIN_V_EDWARDS = f"Epstein v. Scott Rothstein and {BRAD_EDWARDS}"
 GIUFFRE_V_MAXWELL = f"Virginia Giuffre v. {GHISLAINE_MAXWELL}"
 HARVARD_POETRY = f'Harvard poetry stuff from {LISA_NEW}'
+INSIGHTS_POD = f"{ZUBAIR_KHAN} and Anya Rasulova's InsightsPod"
 HBS_APPLICATION_NERIO = f"Harvard Business School application letter from Nerio Alessandri (Founder and Chairman Technogym SPA Italy)"
 JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
 JP_MORGAN_EYE_ON_THE_MARKET = f"JP Morgan Eye On The Market report"
@@ -1128,6 +1129,10 @@ FILE_DESCRIPTIONS = {
     '029603': HARVARD_POETRY,
     '033434': f"iMessage screenshot labeled 'Edwards' at the top",
     '022445': f"Inference: International Review of Science Feedback & Comments 2018-11",
+    '011170': f'{INSIGHTS_POD} collected tweets about #Brexit 2016-06-23',
+    '032324': f"{INSIGHTS_POD} election social media trend analysis 2016-11-05",
+    '032281': f"{INSIGHTS_POD} forecasting election for Trump ca. 2016-10-25",
+    '028815': f"{INSIGHTS_POD} pitch deck",
     '033478': f'meme showing Kim Jong Un reading "Fire And Fury" by {MICHAEL_WOLFF}',
     '025205': f'Mercury Films partner profiles of Jennifer Baichwal, Nicholas de Pencier, Kermit Blackwood, Travis Rummel ca. 2010-02-01',
     '030142': f"mostly empty Saudi Arabian proposal for JASTA f. {KATHRYN_RUEMMLER} and {KEN_STARR}",
@@ -1162,10 +1167,7 @@ FILE_DESCRIPTIONS = {
     '033433': f"tweet by {ALAN_DERSHOWITZ} about Virginia Giuffre / David Boies 2019-03-02",
     '033432': f"tweet by {ALAN_DERSHOWITZ} about Virginia Giuffre / David Boies 2019-05-02",
     '031546': f"tweets by Donald Trump about Russian collusion 2018-01-06",
-    '011170': f'tweets about #Brexit collected by {ZUBAIR_KHAN} and InsightsPod 2016-06-23',
     '033236': f'tweets about Ivanka Trump in Arabic 2017-05-20',
     '029475': f'Virgin Islands Twin City Mobile Integrated Health Services (TCMIH) proposal (donation request?)',
     '029448': f'weird short essay about Obama',
-    '032281': f"{ZUBAIR_KHAN} forecasting election for Trump 2016-10-25 (roughly)",
-    '028815': f"{ZUBAIR_KHAN} and Anya Rasulova's InsightsPod pitch deck",
 }
