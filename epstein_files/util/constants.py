@@ -990,6 +990,7 @@ FILE_DESCRIPTIONS = {
     '017824': f"{GIUFFRE_V_DERSHOWITZ} article by Julie K. Brown in Miami Herald",
     '017935': f"{GIUFFRE_V_DERSHOWITZ} court filing",
     '022237': f"{GIUFFRE_V_DERSHOWITZ} partial court filing with fact checking questions?",
+    '017792': f"{GIUFFRE_V_DERSHOWITZ} article about Dershowitz's appearance on Wolf Blitzer",
     '014652': f"{GIUFFRE_V_MAXWELL} complaint 2015-04-22",
     '011463': f"{GIUFFRE_V_MAXWELL} court filing 2017-03-17",
     '014788': f"{GIUFFRE_V_MAXWELL} court filing 2017-03-17",

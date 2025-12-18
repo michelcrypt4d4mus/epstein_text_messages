@@ -337,22 +337,15 @@ class EpsteinFiles:
 
     def print_other_files_table(self) -> None:
         table = Table(header_style='bold', show_lines=True)
-        table.add_column('File', justify='center', width=FILENAME_LENGTH)
-        table.add_column('Date', justify='center')
-        table.add_column('Length', justify='center')
-        table.add_column('First Few Lines', justify='left', style='pale_turquoise4')
+        table.add_column('File', justify='center', vertical='middle', width=FILENAME_LENGTH)
+        table.add_column('Date', justify='center', vertical='middle')
+        table.add_column('Length', justify='center', vertical='middle')
+        table.add_column('First Few Lines', justify='left', style='pale_turquoise4', vertical='middle')
 
         for doc in self.other_files:
-            link_and_info = [doc.raw_document_link_txt()]
+            link_and_info = [doc.raw_document_link_txt(), *doc.hints()]
             date_str = doc.date_str()
-            hints = doc.hints()
             row_style = ''
-
-            if hints:
-                # if doc.num_lines > 2:
-                #     link_and_info.append(Text(''))  # Add a newline
-
-                link_and_info.extend(hints)
 
             if doc.file_id in DUPLICATE_FILE_IDS:
                 preview_text = doc.duplicate_file_txt()
