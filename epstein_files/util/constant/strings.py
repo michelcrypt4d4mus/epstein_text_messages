@@ -1,10 +1,10 @@
 from typing import Literal
 
 
-# Document subclass names
-DOCUMENT_CLASS = 'Document'
+# Document subclass names (this sucks)
 EMAIL_CLASS = 'Email'
 MESSENGER_LOG_CLASS = 'MessengerLog'
+OTHER_FILE_CLASS = 'OtherFile'
 
 # Misc
 AUTHOR = 'author'

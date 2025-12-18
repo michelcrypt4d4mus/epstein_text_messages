@@ -17,7 +17,7 @@ from epstein_files.documents.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPL
 from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import *
-from epstein_files.util.data import collapse_newlines, escape_single_quotes, uniquify
+from epstein_files.util.data import collapse_newlines, escape_single_quotes, remove_timezone, uniquify
 from epstein_files.util.env import logger
 from epstein_files.util.file_helper import is_local_extract_file
 from epstein_files.util.highlighted_group import get_style_for_name
@@ -570,12 +570,7 @@ def _parse_timestamp(timestamp_str: str) -> None | datetime:
         timestamp_str = BAD_TIMEZONE_REGEX.sub(' ', timestamp_str).strip()
         timestamp = parse(timestamp_str, tzinfos=TIMEZONE_INFO)
         logger.debug(f'Parsed timestamp "%s" from string "%s"', timestamp, timestamp_str)
-
-        if timestamp.tzinfo:
-            timestamp = timestamp.astimezone(timezone.utc).replace(tzinfo=None)
-            logger.debug(f"    -> Converted to UTC: {timestamp}")
-
-        return timestamp
+        return remove_timezone(timestamp)
     except Exception as e:
         logger.debug(f'Failed to parse "{timestamp_str}" to timestamp!')
 

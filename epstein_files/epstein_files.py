@@ -14,17 +14,18 @@ from rich.padding import Padding
 from rich.table import Table
 from rich.text import Text
 
-from epstein_files.documents.document import Document, OtherFile, SearchResult
+from epstein_files.documents.document import Document, SearchResult
 from epstein_files.documents.email import DETECT_EMAIL_REGEX, JUNK_EMAILERS, KRASSNER_RECIPIENTS, USELESS_EMAILERS, Email
 from epstein_files.documents.email_header import AUTHOR
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
+from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.strings import AUTHOR, EVERYONE, TEXT_MESSAGE
 from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url,
      search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
 from epstein_files.util.data import Timer, dict_sets_to_lists, sort_dict
 from epstein_files.util.env import args, logger, specified_names
-from epstein_files.util.file_helper import DOCS_DIR, FILENAME_LENGTH, file_size_str, move_json_file
+from epstein_files.util.file_helper import DOCS_DIR, FILENAME_LENGTH, PICKLED_PATH, file_size_str, move_json_file
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_COLOR, NA_TXT, console, highlighter, link_text_obj, link_markup,
      print_author_header, print_panel, vertically_pad)
@@ -32,7 +33,6 @@ from epstein_files.util.rich import (DEFAULT_NAME_COLOR, NA_TXT, console, highli
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (0, 0, 0, 2)
 NOT_INCLUDED_EMAILERS = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
-PICKLED_PATH = Path("the_epstein_files.pkl.gz")
 
 
 @dataclass
@@ -85,7 +85,7 @@ class EpsteinFiles:
 
         self.emails = sorted(self.emails, key=lambda f: f.timestamp)
         self.imessage_logs = sorted(self.imessage_logs, key=lambda f: f.timestamp)
-        self.other_files = sorted(self.other_files, key=lambda f: [f.get_timestamp() or FALLBACK_TIMESTAMP, f.file_id])
+        self.other_files = sorted(self.other_files, key=lambda f: [f.timestamp or FALLBACK_TIMESTAMP, f.file_id])
         self.identified_imessage_log_count = len([log for log in self.imessage_logs if log.author])
 
     @classmethod
@@ -348,7 +348,7 @@ class EpsteinFiles:
                 logger.warning(f"Skipping {doc.description()} because --output-unlabeled")
                 continue
 
-            table.add_row(link, doc.get_date() or NA_TXT, f"{doc.length:,}", preview_text)
+            table.add_row(link, highlighter(doc.date_str() or NA_TXT), f"{doc.length:,}", preview_text)
 
         console.print(table)
 

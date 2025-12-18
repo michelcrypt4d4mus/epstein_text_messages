@@ -1,3 +1,4 @@
+import logging
 import re
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -14,8 +15,8 @@ from rich.text import Text
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, EPSTEINIFY, EPSTEIN_WEB, epsteinify_doc_link_txt, epsteinify_doc_url, epstein_web_doc_url
-from epstein_files.util.constants import DUPLICATE_FILE_IDS, FILE_DESCRIPTIONS
-from epstein_files.util.data import collapse_newlines, escape_single_quotes, extract_datetime, patternize
+from epstein_files.util.constants import DUPLICATE_FILE_IDS, FALLBACK_TIMESTAMP, FILE_DESCRIPTIONS, VI_DAILY_NEWS_ARTICLE
+from epstein_files.util.data import collapse_newlines, date_str, patternize
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, file_size_str, is_local_extract_file
 from epstein_files.util.rich import console, highlighter, logger, link_text_obj
@@ -27,12 +28,17 @@ MIN_DOCUMENT_ID = 10477
 PREVIEW_CHARS = 520
 INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
+
+MAX_EXTRACTED_TIMESTAMPS = 6
+MIN_TIMESTAMP = datetime(1991, 1, 1)
+MID_TIMESTAMP = datetime(2007, 1, 1)
+MAX_TIMESTAMP = datetime(2022, 12, 31)
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
 DOC_TYPE_STYLES = {
-    DOCUMENT_CLASS: 'grey69',
     EMAIL_CLASS: 'sea_green2',
     MESSENGER_LOG_CLASS: 'cyan',
+    OTHER_FILE_CLASS: 'grey69',
 }
 
 OCR_REPAIRS = {
@@ -57,6 +63,7 @@ class Document:
     lines: list[str] = field(init=False)
     num_lines: int = field(init=False)
     text: str = ''
+    timestamp: datetime | None = None
     url_slug: str = field(init=False)  # e.g. 'HOUSE_OVERSIGHT_123456
 
     # Class variable; only used to cycle color of output when using lines_match()
@@ -74,13 +81,16 @@ class Document:
         self.text = self.text or self._load_file()
         self._set_computed_fields()
 
+    def date_str(self) -> str | None:
+        return date_str(self.timestamp)
+
     def description(self) -> Text:
         """Mostly for logging."""
         txt = Text('').append(self.file_path.stem, style='magenta')
         txt.append(f' {self._document_type()} ', style=self.document_type_style())
         txt.append(f"(num_lines=").append(f"{self.num_lines}", style='cyan')
         txt.append(", size=").append(file_size_str(self.file_path), style='aquamarine1')
-        return txt.append(')') if self._document_type() == DOCUMENT_CLASS else txt
+        return txt.append(')') if self._document_type() == OTHER_FILE_CLASS else txt
 
     def description_panel(self, include_hints: bool = True) -> Panel:
         """Panelized description() with info_txt(), used in search results."""
@@ -112,16 +122,6 @@ class Document:
         hints = [Padding(hint, INFO_PADDING) for hint in self.hints()]
         return Group(*([panel] + hints))
 
-    def highlighted_preview_text(self) -> Text:
-        try:
-            return highlighter(escape(self.preview_text()))
-        except Exception as e:
-            logger.error(f"Failed to apply markup in string '{escape_single_quotes(self.preview_text())}'\n"
-                         f"Original string: '{escape_single_quotes(self.preview_text())}'\n"
-                         f"File: '{self.filename}'\n")
-
-            return Text(escape(self.preview_text()))
-
     def hints(self) -> list[Text]:
         """Additional info about the Document (author, FILE_DESCRIPTIONS value, and so on)."""
         file_info = self.info_txt()
@@ -129,7 +129,7 @@ class Document:
         hint_msg = FILE_DESCRIPTIONS.get(self.file_id)
 
         if not (hint_msg or self._document_type() == EMAIL_CLASS) and VI_DAILY_NEWS_REGEX.search(self.text):
-            hint_msg = 'article in Virgin Islands Daily News'
+            hint_msg = VI_DAILY_NEWS_ARTICLE
 
         if hint_msg:
             hints.append(highlighter(Text(f"({hint_msg})", style='gray30 italic')))
@@ -155,12 +155,11 @@ class Document:
             for line in matched_lines
         ]
 
-    def log_top_lines(self, n: int = 10, msg: str | None = None) -> None:
-        msg = f"{msg + '. ' if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"
-        logger.info(f"{msg}:\n\n{self.top_lines(n)}")
-
-    def preview_text(self) -> str:
-        return WHITESPACE_REGEX.sub(' ', self.text)[0:PREVIEW_CHARS]
+    def log_top_lines(self, n: int = 10, msg: str = '', level: int = logging.INFO) -> None:
+        """Log first 'n' lines of self.text at 'level'. 'msg' can be optionally provided."""
+        separator = '\n\n' if '\n' in msg else '. '
+        msg = f"{msg + separator if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"
+        logger.log(level, f"{msg}\n\n{self.top_lines(n)}\n")
 
     def raw_document_link_txt(self, style: str = '', include_alt_link: bool = False) -> Text:
         """Returns colored links to epsteinify and and epsteinweb in a Text object."""
@@ -211,6 +210,9 @@ class Document:
 
     def _document_type(self) -> str:
         return str(type(self).__name__)
+
+    def _extract_timestamp(self) -> datetime:
+        raise NotImplementedError(f"Should be implemented in subclasses!")
 
     def _load_file(self):
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
@@ -278,7 +280,7 @@ class CommunicationDocument(Document):
     author_str: str = field(init=False)
     author_style: str = field(init=False)
     author_txt: Text = field(init=False)
-    timestamp: datetime = field(init=False)
+    timestamp: datetime = FALLBACK_TIMESTAMP  # TODO this sucks
 
     def __post_init__(self):
         super().__post_init__()
@@ -307,30 +309,9 @@ class CommunicationDocument(Document):
     def _extract_author(self) -> None:
         raise NotImplementedError(f"Should be implemented in subclasses!")
 
-    def _extract_timestamp(self) -> datetime:
-        raise NotImplementedError(f"Should be implemented in subclasses!")
-
     def _repair(self) -> None:
         """Can optionally be overloaded in subclasses."""
         pass
-
-
-@dataclass
-class OtherFile(Document):
-    """Non email/iMessage log files."""
-
-    def get_date(self) -> str | None:
-        ts = self.get_timestamp()
-
-        if not ts:
-            return None
-
-        return ts.isoformat()[0:10]
-
-    def get_timestamp(self) -> datetime | None:
-        timestamp = extract_datetime(FILE_DESCRIPTIONS.get(self.file_id, ''))
-        logger.warning(f"{self.file_id}: timestamp '{timestamp}'")
-        return timestamp
 
 
 @dataclass

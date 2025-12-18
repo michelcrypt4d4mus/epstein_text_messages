@@ -2,7 +2,8 @@ import itertools
 import re
 import time
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timezone
+from dateutil import tz
 from typing import TypeVar
 
 from dateutil.parser import parse
@@ -10,7 +11,7 @@ from dateutil.parser import parse
 from epstein_files.util.constant import names
 from epstein_files.util.env import args, logger
 
-ISO_DATE_REGEX = re.compile(r'\d{4}(-\d{2}(-\d{2})?)?')
+ISO_DATE_REGEX = re.compile(r'\d{4}-\d{2}(-\d{2})?')
 MULTINEWLINE_REGEX = re.compile(r"\n{2,}")
 CONSTANT_VAR_REGEX = re.compile(r"^[A-Z_]+$")
 ALL_NAMES = [v for k, v in vars(names).items() if isinstance(v, str) and CONSTANT_VAR_REGEX.match(k)]
@@ -42,12 +43,33 @@ def extract_datetime(s: str) -> datetime | None:
     return parse(date_str)
 
 
+def date_str(timestamp: datetime | None) -> str | None:
+    return timestamp.isoformat()[0:10] if timestamp else None
+
+
 def flatten(_list: list[list[T]]) -> list[T]:
     return list(itertools.chain.from_iterable(_list))
 
 
+def ordinal_str(n: int) -> str:
+    if 11 <= (n % 100) <= 13:
+        suffix = 'th'
+    else:
+        suffix = {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')
+
+    return str(n) + suffix
+
+
 def patternize(_pattern: str | re.Pattern):
     return _pattern if isinstance(_pattern, re.Pattern) else re.compile(rf"({_pattern})", re.IGNORECASE)
+
+
+def remove_timezone(timestamp: datetime) -> datetime:
+    if timestamp.tzinfo:
+        timestamp = timestamp.astimezone(timezone.utc).replace(tzinfo=None)
+        logger.debug(f"    -> Converted to UTC: {timestamp}")
+
+    return timestamp
 
 
 def sort_dict(d: dict[str | None, int] | dict[str, int]) -> list[tuple[str | None, int]]:
