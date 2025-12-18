@@ -75,16 +75,15 @@ class OtherFile(Document):
         except ValueError as e:
             logger.error(f"Error while iterating with datefinder: {e}")
 
-        sorted_date_strs = [str(dt) for dt in sorted(timestamps)]
-        logger.warning(f"{self.file_id}: Found {len(timestamps)} timestamps\n     " + '\n     '.join(sorted_date_strs) + '\n')
-        self.log_top_lines(level=logging.WARNING)
-
         if len(timestamps) == 0:
+            logger.warning(f"{self.file_id}: No timestamps found!")
+            self.log_top_lines(30, level=logging.WARNING)
             return None
         elif len(timestamps) == 1:
             return timestamps[0]
         else:
-            if timestamps[0] < MID_TIMESTAMP and any(ts > MID_TIMESTAMP for ts in timestamps):
-                return next(ts for ts in timestamps if ts > MID_TIMESTAMP)
-            else:
-                return timestamps[0]
+            timestamps = sorted(timestamps, reverse=True)
+            sorted_date_strs = [str(dt) for dt in timestamps]
+            logger.warning(f"{self.file_id}: Found {len(timestamps)} timestamps\n     " + '\n     '.join(sorted_date_strs) + '\n')
+            self.log_top_lines(15, level=logging.WARNING)
+            return timestamps[0]  # Most recent timestamp in text should be closest
