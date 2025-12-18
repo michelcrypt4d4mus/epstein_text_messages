@@ -83,7 +83,7 @@ class OtherFile(Document):
         timestamp_strs = [str(dt) for dt in timestamps]
         num_days_spanned = (timestamps[0] - timestamps[-1]).days
 
-        if num_days_spanned > MAX_DAYS_SPANNED_TO_BE_VALID:
+        if num_days_spanned > MAX_DAYS_SPANNED_TO_BE_VALID and 'vast house' not in self.text:
             msg = f"{self.file_id}: Found {len(timestamps)} timestamps spanning {num_days_spanned} days\n     "
             msg += '\n     '.join(timestamp_strs)
             self.log_top_lines(15, msg=msg, level=logging.WARNING)
