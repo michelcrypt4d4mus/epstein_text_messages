@@ -29,6 +29,7 @@ PREVIEW_CHARS = 520
 INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
 
+CLOSE_PROPERTIES_CHAR = ']'
 MAX_EXTRACTED_TIMESTAMPS = 6
 MIN_TIMESTAMP = datetime(1991, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
@@ -93,12 +94,17 @@ class Document:
         txt.append(f' {self.document_type()}', style=self.document_type_style())
 
         if self.timestamp:
-            txt.append(' [', style=SYMBOL_STYLE)
-            txt.append(f"{iso_timestamp(self.timestamp)}", style=TIMESTAMP_DIM).append(']', style=SYMBOL_STYLE)
+            txt.append(' (', style=SYMBOL_STYLE)
+            txt.append(f"{iso_timestamp(self.timestamp)}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
 
-        txt.append(" (").append(key_value_txt('num_lines', Text(f"{self.num_lines}", style='cyan')))
+        txt.append(" [").append(key_value_txt('num_lines', Text(f"{self.num_lines}", style='cyan')))
         txt.append(', ').append(key_value_txt('size', Text(file_size_str(self.file_path), style='aquamarine1')))
-        return txt.append(')') if self.document_type() == OTHER_FILE_CLASS else txt
+
+        # Leave brackets open for subclasses to add stuff:
+        if self.document_type() == OTHER_FILE_CLASS:
+            return txt.append(CLOSE_PROPERTIES_CHAR)
+        else:
+            return txt
 
     def description_panel(self, include_hints: bool = True) -> Panel:
         """Panelized description() with info_txt(), used in search results."""
@@ -309,7 +315,7 @@ class CommunicationDocument(Document):
         """One line summary mostly for logging."""
         txt = super().description()
         txt.append(', ').append(key_value_txt('author', Text(self.author_str, style=self.author_style)))
-        return txt.append(')')
+        return txt.append(CLOSE_PROPERTIES_CHAR)
 
     def raw_document_link_txt(self, _style: str = '', include_alt_link: bool = True) -> Text:
         """Overrides super() method to apply author_style."""
