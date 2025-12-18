@@ -343,8 +343,16 @@ class EpsteinFiles:
         table.add_column('First Few Lines', justify='left', style='pale_turquoise4')
 
         for doc in self.other_files:
-            link = Group(*[doc.raw_document_link_txt(), *doc.hints()])
+            link_and_info = [doc.raw_document_link_txt()]
+            date_str = doc.date_str()
+            hints = doc.hints()
             row_style = ''
+
+            if hints:
+                # if doc.num_lines > 2:
+                #     link_and_info.append(Text(''))  # Add a newline
+
+                link_and_info.extend(hints)
 
             if doc.file_id in DUPLICATE_FILE_IDS:
                 preview_text = doc.duplicate_file_txt()
@@ -352,13 +360,18 @@ class EpsteinFiles:
             else:
                 preview_text = doc.highlighted_preview_text()
 
+            # Temporary way to only show other files without hint info
             if args.output_unlabeled and doc.hints():
                 logger.warning(f"Skipping {doc.description()} because --output-unlabeled")
                 continue
 
-            date_str = doc.date_str()
-            timestamp_txt = Text(date_str, style=TIMESTAMP_DIM) if date_str else QUESTION_MARK_TXT
-            table.add_row(link, timestamp_txt, f"{doc.length:,}", preview_text, style=row_style)
+            table.add_row(
+                Group(*link_and_info),
+                Text(date_str, style=TIMESTAMP_DIM) if date_str else QUESTION_MARK_TXT,
+                f"{doc.length:,}",
+                preview_text,
+                style=row_style
+            )
 
         console.print(table)
 
