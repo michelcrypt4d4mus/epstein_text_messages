@@ -1119,7 +1119,7 @@ FILE_DESCRIPTIONS = {
     '023050': f"tweet by {ALAN_DERSHOWITZ} about Virginia Giuffre",
     '017787': f"tweet by {ALAN_DERSHOWITZ} about Virginia Giuffre",
     '033433': f"tweet by {ALAN_DERSHOWITZ} about Virginia Giuffre / David Boies",
-    '033432': f"tweet by {ALAN_DERSHOWITZ} about Virginia Giuffre / David Boies",
+    '033432': f"tweet by {ALAN_DERSHOWITZ} about Virginia Giuffre / David Boies 2019-05-02",
     '031546': f"tweets by Donald Trump about Russian collusion 2018-01-06",
     '011170': f'tweets about #Brexit collected by InsightsPod 2016-06-23',
     '033236': f'tweets about Ivanka Trump in Arabic 2017-05-20',
