@@ -429,6 +429,7 @@ KNOWN_EMAIL_AUTHORS = {
     '029007': SOON_YI,
     '029010': SOON_YI,
     '032296': SOON_YI,                 # "Sent from soon-yi's phone"
+    '019109': STEVEN_HOFFENBERG,       # Actually a fwd by Charles Michael but Hofenberg email more intersting
     '026620': TERRY_KAFKA,             # "Respectfully, terry"
     '028482': TERRY_KAFKA,             # Signature
     '029992': TERRY_KAFKA,             # Quoted reply
@@ -551,6 +552,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '030508': PAULA,                  # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
     '030509': PAULA,                  # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
     '030096': PETER_MANDELSON,
+    '019109': 'Players2',
     '032951': [RAAFAT_ALSABBAGH, None],  # Redacted
     '029581': RENATA_BOLOTOVA,        # Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")
     '029582': RENATA_BOLOTOVA,         # Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")
@@ -564,6 +566,7 @@ KNOWN_EMAIL_RECIPIENTS = {
 EMAIL_TIMESTAMPS = {
     '028851': datetime(2014, 4, 27, 6, 00),
     '028849': datetime(2014, 4, 27, 6, 30),
+    '019109': datetime(2016, 8, 11, 9, 36, 1),
     '031278': datetime(2016, 8, 17, 11, 26),
     '032283': datetime(2016, 9, 14, 8, 4),
     '026624': datetime(2016, 10, 1, 16, 40),
