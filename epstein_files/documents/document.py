@@ -36,9 +36,9 @@ MAX_TIMESTAMP = datetime(2022, 12, 31)
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
 DOC_TYPE_STYLES = {
-    DOCUMENT_CLASS: 'grey69',
     EMAIL_CLASS: 'sea_green2',
     MESSENGER_LOG_CLASS: 'cyan',
+    OTHER_FILE_CLASS: 'grey69',
 }
 
 OCR_REPAIRS = {
@@ -90,7 +90,7 @@ class Document:
         txt.append(f' {self._document_type()} ', style=self.document_type_style())
         txt.append(f"(num_lines=").append(f"{self.num_lines}", style='cyan')
         txt.append(", size=").append(file_size_str(self.file_path), style='aquamarine1')
-        return txt.append(')') if self._document_type() == DOCUMENT_CLASS else txt
+        return txt.append(')') if self._document_type() == OTHER_FILE_CLASS else txt
 
     def description_panel(self, include_hints: bool = True) -> Panel:
         """Panelized description() with info_txt(), used in search results."""
@@ -156,9 +156,10 @@ class Document:
         ]
 
     def log_top_lines(self, n: int = 10, msg: str = '', level: int = logging.INFO) -> None:
+        """Log first 'n' lines of self.text at 'level'. 'msg' can be optionally provided."""
         separator = '\n\n' if '\n' in msg else '. '
         msg = f"{msg + separator if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"
-        logger.log(level, f"{msg}:\n\n{self.top_lines(n)}\n")
+        logger.log(level, f"{msg}\n\n{self.top_lines(n)}\n")
 
     def raw_document_link_txt(self, style: str = '', include_alt_link: bool = False) -> Text:
         """Returns colored links to epsteinify and and epsteinweb in a Text object."""
