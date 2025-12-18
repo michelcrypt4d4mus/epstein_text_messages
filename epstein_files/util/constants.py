@@ -924,7 +924,7 @@ FILE_DESCRIPTIONS = {
     '014037': f"Journal of Criminal Law and Criminology article on {CVRA}",
     '029865': f"LA Times front page article about {DEEPAK_CHOPRA} and young Iranians 2016-11-05",
     '026598': f"LA Times op-ed about why America needs a Ministry of Culture",
-    '013403': f"Lexis Nexis result from The Evening Standard about Bernie Madoff",
+    '013403': f"Lexis Nexis result from The Evening Standard about Bernie Madoff 2009-12-24",
     '023102': f"Litigation Daily article about {REID_WEINGARTEN} 2015-09-04",
     '015462': f'magazine (?) issue: Nautilus Education',
     '029340': f'MarketWatch article about estate taxes, particularly Epstein\'s favoured GRATs',
