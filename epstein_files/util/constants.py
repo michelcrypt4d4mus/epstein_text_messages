@@ -764,6 +764,7 @@ EMAILED_ARTICLE_IDS = [
 # Descriptions of non-email, non-text message files
 BOFA_MERRILL = 'BofA / Merrill Lynch'
 CVRA = "Crime Victims' Rights Act [CVRA]"
+DAVID_BLAINE_VISA_LETTER = 'letter of recommendation for visa for a model by David Blaine'
 DAVID_SCHOEN_CVRA_LEXIS_SEARCH = f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN} 2019-02-28"
 DEEP_THINKING_HINT = 'book: "Deep Thinking: Twenty-Five Ways of Looking at AI" by John Brockman 2019-02-19'
 DEUTSCHE_BANK_TAX_TOPICS = 'Deutsche Bank Wealth Management Tax Topics'
@@ -1100,9 +1101,9 @@ FILE_DESCRIPTIONS = {
     '031670': f"letter from General Mike Flynn's lawyers to senators Mark Warner & Richard Burr about subpoena",
     '029301': f"letter from Michael J. Boccio, former lawyer at the Trump Organization 2011-08-07",
     '022405': f"letter from {NOAM_CHOMSKY} attesting to Epstein's good character",
-    '019086': f"letter of recommendation for visa for Russian model 'Svet' ({SVETLANA_POZHIDAEVA}?) by David Blaine, names Putin puppets",
-    '019474': f"letter of recommendation for visa for a model by David Blaine 2015-05-29",
-    '019476': f"letter of recommendation for visa for a model by David Blaine 2015-06-01",
+    '019086': f"{DAVID_BLAINE_VISA_LETTER} from Russia 'Svet' ({SVETLANA_POZHIDAEVA}?), names Putin puppet regimes",
+    '019474': f"{DAVID_BLAINE_VISA_LETTER} 2015-05-29",
+    '019476': f"{DAVID_BLAINE_VISA_LETTER} 2015-06-01",
     '026011': f"letter to Epstein about algorithmic trading by Gennady Mashtalyar ca. 2016-06-24",  # date is based on Brexit reference but he could be backtesting
     '026134': f'letter to someone named George about investment opportunities in the Ukraine banking sector',
     '028928': WEINBERG_ABC_LETTER,
