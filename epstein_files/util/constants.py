@@ -731,6 +731,7 @@ DUPLICATE_FILE_IDS = {
     '014697': 'the same as 011284',  # Jeremy Gillula name removed
     '016616': 'the same as 016554',
     '016574': 'the same as 016554',
+    '023121': 'earlier draft of 023123'
 }
 
 EMAILED_ARTICLE_IDS = [
@@ -756,7 +757,7 @@ EMAILED_ARTICLE_IDS = [
 
 # Descriptions of non-email, non-text message files
 CVRA = "Crime Victims' Rights Act [CVRA]"
-DEEP_THINKING_HINT = 'book: "Deep Thinking: Twenty-Five Ways of Looking at AI" by John Brockman'
+DEEP_THINKING_HINT = 'book: "Deep Thinking: Twenty-Five Ways of Looking at AI" by John Brockman 2019-02-19'
 EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} and Paul Cassell v. {ALAN_DERSHOWITZ}"
 EPSTEIN_V_EDWARDS = f"Epstein v. Scott Rothstein and {BRAD_EDWARDS}"
 GIUFFRE_V_MAXWELL = f"Virginia Giuffre v. {GHISLAINE_MAXWELL}"
@@ -767,6 +768,7 @@ JP_MORGAN_EYE_ON_THE_MARKET = f"JP Morgan Eye On The Market report"
 KEN_STARR_LETTER = f"letter from {KEN_STARR} to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
 MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
 NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight" by {EHUD_BARAK}?'
+OBAMA_JOKE = f'joke about Obama'
 PATTERSON_BOOK_SCANS = f'pages of "Filthy Rich: The Shocking True Story of Jeffrey Epstein" by James Patterson 2016-10-10'
 SHIMON_POST = 'The Shimon Post selection of articles about the mideast '
 VI_DAILY_NEWS_ARTICLE = 'article in Virgin Islands Daily News'
@@ -814,7 +816,7 @@ FILE_DESCRIPTIONS = {
     '023627': MICHAEL_WOLFF_ARTICLE_HINT,
     '024229': MICHAEL_WOLFF_ARTICLE_HINT,
     '012740': f"{PEGGY_SIEGAL} article about Venice Film Festival 2011-09-06",
-    '013442': f"{PEGGY_SIEGAL} draft about Oscars in 2011 (?)",
+    '013442': f"{PEGGY_SIEGAL} draft about Oscars around 2011-02-27",
     '012700': f"{PEGGY_SIEGAL} film events diary 2011-02-27",
     '012690': f"{PEGGY_SIEGAL} film events diary 2011-02-27, draft of 012700",
     '013450': f"{PEGGY_SIEGAL} Oscar Diary April 2011-02-27 (Avenue Magazine)",
@@ -846,7 +848,7 @@ FILE_DESCRIPTIONS = {
     '023638': f'{PAUL_KRASSNER} magazine interview',
     '024374': f'{PAUL_KRASSNER} "Remembering Cavalier Magazine"',
     '030187': f'{PAUL_KRASSNER} "Remembering Lenny Bruce While We\'re Thinking About Trump" (draft?)',
-    '019088': f'{PAUL_KRASSNER} "Are Rape Jokes Funny? (draft?)',
+    '019088': f'{PAUL_KRASSNER} "Are Rape Jokes Funny? (draft) 2012-07-28',
     '031725': f"article about Gloria Allred and Trump allegations 2016-10-10",
     '012704': f"article about {JANE_DOE_V_USA} and {CVRA} 2011-04-21",
     '026584': f'article from 2009 about tax implications of disregarded entities',
@@ -982,6 +984,7 @@ FILE_DESCRIPTIONS = {
     '023069': f'BofA / Merrill Lynch 2016 Future of Financials Conference report',
     '014315': f'BofA / Merrill Lynch 2016 Future of Financials Conference report',
     '017526': f'Intellectual Jazz conference brochure',
+    '023121': f"{LAWRENCE_KRAUSS} 'Strange Bedfellows' potential invitees f. Johnny Depp, Woody Allen, Obama, and more",
     '031359': f"Nobel Charitable Trust Earth Environment Convention about ESG investing",
     '031354': f'Nobel Charitable Trust "Thinking About the Environment and Technology" report 2011',
     '024185': f'schedule of 67th U.N. General Assembly w/"Presidents Private Dinner - Jeffrey Epstine (sic)" 2012-09-21',
@@ -1044,7 +1047,7 @@ FILE_DESCRIPTIONS = {
     '025296': f'Laffer Associates report from 2016-07 predicting Trump win',
     '025551': f'Morgan Stanley report about alternative asset managers 2018-01-30',
     '026759': f'press release by Ritz-Carlton club about damage from Hurricane Irma 2017-09-13',
-    '033338': f"press release on June 7th, 2000 announcing Donald Trump & {NICHOLAS_RIBIS} ended their working relationship at Trump's casino",
+    '033338': f"press release announcing Donald Trump & {NICHOLAS_RIBIS} ended their working relationship at Trump's casino 2000-06-07",
     '012048': f'press release "Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm" and other articles',
     '020447': f'Promoting Constructive Vigilance: Report of the Working Group on Chinese Influence Activities in the U.S. (Hoover Group/Stanford 2018)',
     '025763': f'S&P Economic Research: "How Increasing Income Inequality Is Dampening U.S. Growth" 2014-08-05',
@@ -1112,10 +1115,10 @@ FILE_DESCRIPTIONS = {
     '029589': HARVARD_POETRY,
     '029603': HARVARD_POETRY,
     '033434': f"iMessage screenshot labeled 'Edwards' at the top",
-    '029564': f'joke about Obama',
-    '029353': f'joke about Obama',
-    '029352': f'joke about Obama',
-    '029351': f'joke about Obama',
+    '029564': OBAMA_JOKE,
+    '029353': OBAMA_JOKE,
+    '029352': OBAMA_JOKE,
+    '029351': OBAMA_JOKE,
     '022445': f"Inference: International Review of Science Feedback & Comments November 2018",
     '028815': f'InsightsPod business plan',
     '033478': f'meme showing Kim Jong Un reading "Fire And Fury" by {MICHAEL_WOLFF}',
@@ -1125,10 +1128,10 @@ FILE_DESCRIPTIONS = {
     '026851': f"Politifact lying politicians chart 2016-07-26",
     '022367': f"professional resumé of Jack J Grynberg 2014-07",
     '029302': f"professional resumé of Michael J. Boccio 2011-08 (roughly)",
+    '015671': f"professional resumé of Robin Solomon",
     '015672': f"professional resumé of Robin Solomon",
     '019448': f"proposal for Jacmel, Haiti business investment",
     '030142': f"mostly empty Saudi Arabian proposal for JASTA f. {KATHRYN_RUEMMLER} and {KEN_STARR}",
-    '029475': f'Virgin Islands Twin City Mobile Integrated Health Services (TCMIH) proposal (donation request?)',
     '029328': f"Rafanelli Events promotional deck",
     '023666': f"{ROBERT_LAWRENCE_KUHN} sizzle reel / television appearances",
     '022213': f'screenshot of Facebook discussion in Shit Pilots Say disparaging a "global girl"',
@@ -1144,5 +1147,7 @@ FILE_DESCRIPTIONS = {
     '031546': f"tweets by Donald Trump about Russian collusion 2018-01-06",
     '011170': f'tweets about #Brexit collected by InsightsPod 2016-06-23',
     '033236': f'tweets about Ivanka Trump in Arabic 2017-05-20',
+    '029475': f'Virgin Islands Twin City Mobile Integrated Health Services (TCMIH) proposal (donation request?)',
     '029448': f'weird short essay about Obama',
+    '032281': f"{ZUBAIR_KHAN} forecasting election for Trump 2016-10-25 (roughly)",
 }
