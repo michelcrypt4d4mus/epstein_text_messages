@@ -342,7 +342,7 @@ class EpsteinFiles:
         print_section_header(f"{FIRST_FEW_LINES} of {len(interesting_files)} {header_pfx}Files That Are Neither Emails Nor Text Msgs")
 
         if not args.all_other_files:
-            print_centered('(the other site has all the unclassifiable file in addition to all the emails)', style='dim')
+            print_centered(f"(the other site is uncurated and has all {len(self.other_files)} unclassifiable files and all {len(self.emails):,} emails)", style='dim')
             print_other_site_link(False)
             console.line(2)
 
