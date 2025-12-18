@@ -769,6 +769,7 @@ GOLDMAN_REPORT = 'Goldman Sachs Investment Management Division report'
 HARVARD_POETRY = f'Harvard poetry stuff from {LISA_NEW}'
 INSIGHTS_POD = f"{ZUBAIR_KHAN} and Anya Rasulova's InsightsPod"
 HBS_APPLICATION_NERIO = f"Harvard Business School application letter from Nerio Alessandri (Founder and Chairman Technogym SPA Italy)"
+JANE_DOE_V_EPSTEIN_TRUMP = f"Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}"
 JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
 JP_MORGAN_EYE_ON_THE_MARKET = f"JP Morgan Eye On The Market report"
 KEN_STARR_LETTER = f"letter from {KEN_STARR} to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
@@ -959,9 +960,10 @@ FILE_DESCRIPTIONS = {
     '010566': f"court filing in {EPSTEIN_V_EDWARDS}",
     '017488': f"court filing in {EPSTEIN_V_EDWARDS}",
     '012103': f"court filing in {EPSTEIN_V_EDWARDS} 2011-05-17",
-    '032321': f"court filing in Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}",
-    '013489': f'court filing in Jane Doe v. Epstein filed by {BRAD_EDWARDS} 2010-07-20',
-    '014084': f"court filing in Jane Doe #1 and Jane Doe #2 v. United States",
+    '026384': f"court filing in {JANE_DOE_V_EPSTEIN_TRUMP}",
+    '032321': f"court filing in {JANE_DOE_V_EPSTEIN_TRUMP}",
+    '013489': f'court filing in {JANE_DOE_V_EPSTEIN_TRUMP} filed by {BRAD_EDWARDS} 2010-07-20',
+    '014084': f"court filing in {JANE_DOE_V_USA}",
     '011908': f"court filing in {JEAN_LUC_BRUNEL} v. {JEFFREY_EPSTEIN} and Tyler McDonald d/b/a YI.org",
     '017935': f"court filing in Virginia Giuffre v. {ALAN_DERSHOWITZ}",
     '014652': f"court filing complaint in {GIUFFRE_V_MAXWELL} 2015-04-22",
