@@ -788,6 +788,7 @@ NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight" by {EHUD_BARAK}?'
 OBAMA_JOKE = f'joke about Obama'
 OSBORNE_LLP = f"{IAN_OSBORNE} & Partners LLP"
 PALM_BEACH_DAILY_ARTICLE = 'Palm Beach Daily News article about'
+PALM_BEACH_POST_ARTICLE = 'Palm Beach Post article about'
 PALM_BEACH_TSV = 'TSV of Palm Beach property'
 PATTERSON_BOOK_SCANS = f'pages of "Filthy Rich: The Shocking True Story of Jeffrey Epstein" by James Patterson 2016-10-10'
 SAUDI_JASTA_LAWSUIT = f"JASTA lawsuit against Saudi Arabia by 9/11 victims"
@@ -885,6 +886,7 @@ FILE_DESCRIPTIONS = {
     '015501': f'article on "Game Theory and Morality" by Moshe Hoffman, Erez Yoeli, Carlos David Navarrete',
     '030013': f'Aviation International News article 2012-07',
     '033253': f'BBC article about Rohingya in Myanmar by {ROBERT_LAWRENCE_KUHN}',
+    '026887': f'BBC "New Tariffs - Trade War" by {ROBERT_LAWRENCE_KUHN}',
     '013275': f"Bloomberg article on notable 2013 obituaries 2013-12-26",
     '026543': f"Bloomberg BNA article about taxes",
     '014865': f"Boston Globe article about {ALAN_DERSHOWITZ}",
@@ -893,9 +895,12 @@ FILE_DESCRIPTIONS = {
     '023571': f'China Daily front page articles about terrorism, Macau, trade initiatives 2016-09-18',
     '023570': f'China Daily articles about Belt & Road in Central/South America, Xi philosophy 2017-05-14',
     '025115': f'China Daily opinion page 2017-05-14',
-    '032638': f'CNN "Xi Jinping and the New Politburo Committee" by {ROBERT_LAWRENCE_KUHN}',
+    '026877': f'CNN "New Tariffs - Trade War" by {ROBERT_LAWRENCE_KUHN}',
     '026868': f'CNN "Quest Means Business New China Tariffs — Trade War" by {ROBERT_LAWRENCE_KUHN} 2018-09-18',
     '023707': f'CNN "Quest Means Business U.S. and China Agree to Pause Trade War" by {ROBERT_LAWRENCE_KUHN} 2018-12-03',
+    '029176': f'CNN "U.S. China Tariffs - Trade War" by {ROBERT_LAWRENCE_KUHN}',
+    '032638': f'CNN "Xi Jinping and the New Politburo Committee" by {ROBERT_LAWRENCE_KUHN}',
+    '025292': f"Daily Mail article on Bill Clinton being named in a lawsuit",
     '019468': f"Daily Mail article on Epstein and Clinton",
     '022970': f"Daily Mail article on Epstein and Prince Andrew",
     '031186': f'Daily News article about rape of 13 year old accusations against Trump 2016-11-02',
@@ -922,6 +927,7 @@ FILE_DESCRIPTIONS = {
     '013403': f"Lexis Nexis result from The Evening Standard about Bernie Madoff",
     '023102': f"Litigation Daily article about {REID_WEINGARTEN} 2015-09-04",
     '015462': f'magazine (?) issue: Nautilus Education',
+    '029340': f'MarketWatch article about estate taxes, particularly Epstein\'s favoured GRATs',
     '029416': f"National Enquirer / Radar Online v. FBI FOIA lawsuit court filing 2017-05-25",
     '029405': f"National Enquirer / Radar Online v. FBI FOIA lawsuit court filing 2017-05-25",
     '029925': f"New Yorker article about the placebo effect by Michael Specter 2011-12-04",
@@ -938,9 +944,11 @@ FILE_DESCRIPTIONS = {
     '013435': f"{PALM_BEACH_DAILY_ARTICLE} Epstein's address book 2011-03-11",
     '013440': f"{PALM_BEACH_DAILY_ARTICLE} Epstein's gag order 2011-07-13",
     '029238': f"{PALM_BEACH_DAILY_ARTICLE} Epstein's plea deal",
-    '021775': f'Palm Beach Post op-ed "He Was 50. And They Were Girls"',
-    '022989': f"Palm Beach Post article about alleged rape of 13 year old by Trump",
-    '015028': f"Palm Beach Post article about reopening Epstein's criminal case",
+    '021775': f'{PALM_BEACH_POST_ARTICLE} "He Was 50. And They Were Girls"',
+    '022989': f"{PALM_BEACH_POST_ARTICLE} alleged rape of 13 year old by Trump",
+    '022987': f"{PALM_BEACH_POST_ARTICLE} just a headline on Trump and Epstein",
+    '015028': f"{PALM_BEACH_POST_ARTICLE} reopening Epstein's criminal case",
+    '022990': f"{PALM_BEACH_POST_ARTICLE} Trump and Epstein",
     '028481': f'photo of NYT article about Steve Bannon 2018-03-09',
     '033480': f"press clipping about John Bolton 2018-04-06",
     '033481': f"press clipping about John Bolton",
@@ -952,6 +960,7 @@ FILE_DESCRIPTIONS = {
     '030829': f'South Florida Sun Sentinel article about {BRAD_EDWARDS} and {JEFFREY_EPSTEIN}',
     '026520': f'Spanish language article about {SULTAN_BIN_SULAYEM} 2013-09-27',
     '021092': f'Tatler article page about {GHISLAINE_MAXWELL} shredding documents 2019-08-15',
+    '030333': f'The Independent article about Prince Andrew, Epstein, and Epstein\'s butler who stole his address book',
     '019212': f'Times Tribune and WaPo about Bannon, Trump, and healthcare execs',
     '031736': f'translation of Arabic article by Abdulnaser Salamah "Trump; Prince of Believers (Caliph)!" 2017-05-13',
     '025094': f'translation of Spanish article about Cuba 2015-11-08',
@@ -998,6 +1007,7 @@ FILE_DESCRIPTIONS = {
     '011304': f"{GIUFFRE_V_MAXWELL} transcript of hearing in 2017-03-17",
     '016507': f'horrible OCR, may contain text of "Perversion of Justice" by Julie K. Brown',
     '025937': f'{JANE_DOE_V_EPSTEIN_TRUMP} affidavit of Tiffany Doe describing Jane Doe raped by Epstein and Trump',
+    '029398': f'{JANE_DOE_V_EPSTEIN_TRUMP} article in Law.com',
     '026854': f"{JANE_DOE_V_EPSTEIN_TRUMP} court filing",
     '026384': f"{JANE_DOE_V_EPSTEIN_TRUMP} court filing",
     '032321': f"{JANE_DOE_V_EPSTEIN_TRUMP} court filing",
@@ -1039,6 +1049,7 @@ FILE_DESCRIPTIONS = {
     '023069': f'{BOFA_MERRILL} 2016 Future of Financials Conference report',
     '014315': f'{BOFA_MERRILL} 2016 Future of Financials Conference report',
     '029427': f"concerns China's attempt to absorb Mongolia, seems related to an IRL meeting",
+    '026825': f"Deutsche Asset & Wealth Management featured speaker bios",
     '017526': f'Intellectual Jazz conference brochure',
     '023120': f"{LAWRENCE_KRAUSS} 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more (old draft)",
     '023121': f"{LAWRENCE_KRAUSS} 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more (old draft)",
@@ -1192,6 +1203,7 @@ FILE_DESCRIPTIONS = {
     '022816': f'flight logs',
     '026678': f"fragment of image metadata??? 2017-06-29",
     '022986': f"fragment of a screenshot???",
+    '026521': f"game theory paper by {MARTIN_NOWAK}, Erez Yoeli, and Moshe Hoffman",
     '032735': f"{GORDON_GETTY} on Trump ca. 2018-03-20",  # Dated based on concurrent emails
     '019396': f'Harvard Economics 1545 Professor Kenneth Rogoff syllabus',
     '029517': HARVARD_POETRY,
