@@ -60,6 +60,10 @@ class OtherFile(Document):
                 else:
                     timestamps.append(timestamp)
 
+        # Avoid scanning large TSVs for dates
+        if self.file_id in FILE_DESCRIPTIONS and FILE_DESCRIPTIONS[self.file_id].startswith('TSV'):
+            return timestamps[0] if timestamps else None
+
         try:
             for i, timestamp in enumerate(datefinder.find_dates(self.text, strict=True)):
                 logger.debug(f"{self.file_id}: Found {ordinal_str(i + 1)} timestamp '{timestamp}'...")
