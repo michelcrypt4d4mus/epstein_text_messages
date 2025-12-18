@@ -19,6 +19,7 @@ from epstein_files.util.env import logger
 from epstein_files.util.rich import console, highlighter, logger
 
 MAX_EXTRACTED_TIMESTAMPS = 10
+MAX_DAYS_SPANNED_TO_BE_VALID = 10
 MIN_TIMESTAMP = datetime(1991, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
 MAX_TIMESTAMP = datetime(2022, 12, 31)
@@ -77,9 +78,14 @@ class OtherFile(Document):
             return None
         elif len(timestamps) == 1:
             return timestamps[0]
-        else:
-            timestamps = sorted(timestamps, reverse=True)
-            timestamp_strs = [str(dt) for dt in timestamps]
-            msg = f"{self.file_id}: Found {len(timestamps)} timestamps\n     " + '\n     '.join(timestamp_strs)
+
+        timestamps = sorted(timestamps, reverse=True)
+        timestamp_strs = [str(dt) for dt in timestamps]
+        num_days_spanned = (timestamps[0] - timestamps[-1]).days
+
+        if num_days_spanned > MAX_DAYS_SPANNED_TO_BE_VALID:
+            msg = f"{self.file_id}: Found {len(timestamps)} timestamps spanning {num_days_spanned} days\n     "
+            msg += '\n     '.join(timestamp_strs)
             self.log_top_lines(15, msg=msg, level=logging.WARNING)
-            return timestamps[0]  # Most recent timestamp in text should be closest
+
+        return timestamps[0]  # Most recent timestamp in text should be closest
