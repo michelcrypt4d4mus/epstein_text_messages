@@ -337,7 +337,7 @@ class EpsteinFiles:
 
     def print_other_files_table(self) -> None:
         table = Table(header_style='bold', show_lines=True)
-        table.add_column('File', justify='left', width=FILENAME_LENGTH)
+        table.add_column('File', justify='center', width=FILENAME_LENGTH)
         table.add_column('Date', justify='center')
         table.add_column('Length', justify='center')
         table.add_column('First Few Lines', justify='left', style='pale_turquoise4')

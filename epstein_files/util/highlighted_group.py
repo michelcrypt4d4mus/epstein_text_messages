@@ -423,11 +423,12 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='scholar',
         style='light_goldenrod2',
-        pattern=r'Alain Forget|Brotherton|Columbia|David Grosof|J(ames|im)\s*Watson|MIT(\s*Media\s*Lab)?|Media\s*Lab|Minsky|Moshe\s*Hoffman|((Noam|Valeria)\s*)?Chomsky|Praluent|Regeneron|(Richard\s*)?Dawkins|Sanofi|Stanford|(Stephen\s*)?Hawking|UCLA',
+        pattern=r'Alain Forget|Brotherton|Columbia|David Grosof|J(ames|im)\s*Watson|MIT(\s*Media\s*Lab)?|Media\s*Lab|Minsky|Moshe\s*Hoffman|((Noam|Valeria)\s*)?Chomsky|Praluent|Regeneron|(Richard\s*)?Dawkins|Sanofi|Stanford|(Stephen\s*)?Hawking|(Steven?\s*)?Pinker|UCLA',
         emailers = {
             'Barnaby Marsh': None,
             DAVID_HAIG: None,
             JOSCHA_BACH: 'cognitive science / AI research',
+            'Daniel Kahneman': 'Nobel economic sciences laureate and cognitivie psychologist (?)',
             LAWRENCE_KRAUSS: 'theoretical physicist',
             LINDA_STONE: 'ex-Microsoft, MIT Media Lab',
             MARK_TRAMO: 'professor of neurology at UCLA',
