@@ -19,7 +19,7 @@ from epstein_files.util.constants import DUPLICATE_FILE_IDS, FALLBACK_TIMESTAMP,
 from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, patternize
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, file_size_str, is_local_extract_file
-from epstein_files.util.rich import console, highlighter, key_value_txt, logger, link_text_obj
+from epstein_files.util.rich import SYMBOL_STYLE, console, highlighter, key_value_txt, logger, link_text_obj
 
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
@@ -93,7 +93,8 @@ class Document:
         txt.append(f' {self.document_type()}', style=self.document_type_style())
 
         if self.timestamp:
-            txt.append(' [').append(f"{iso_timestamp(self.timestamp)}", style=TIMESTAMP_DIM).append(']')
+            txt.append(' [', style=SYMBOL_STYLE)
+            txt.append(f"{iso_timestamp(self.timestamp)}", style=TIMESTAMP_DIM).append(']', style=SYMBOL_STYLE)
 
         txt.append(" (").append(key_value_txt('num_lines', Text(f"{self.num_lines}", style='cyan')))
         txt.append(', ').append(key_value_txt('size', Text(file_size_str(self.file_path), style='aquamarine1')))

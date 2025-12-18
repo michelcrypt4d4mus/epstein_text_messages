@@ -28,6 +28,7 @@ KEY_STYLE='honeydew2 bold'
 SECTION_HEADER_STYLE = 'bold white on blue3'
 SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 SOCIAL_MEDIA_LINK_STYLE = 'cyan3 bold'
+SYMBOL_STYLE = 'grey70'
 TITLE_STYLE = 'black on bright_white bold'
 
 TITLE_WIDTH = 50
@@ -63,7 +64,7 @@ console = Console(**CONSOLE_ARGS)
 
 
 def key_value_txt(key: str, value: Text | str) -> Text:
-    return Text('').append(key, style=KEY_STYLE).append('=', style='grey70').append(value)
+    return Text('').append(key, style=KEY_STYLE).append('=', style=SYMBOL_STYLE).append(value)
 
 
 def parenthesize(msg: str | Text, style: str = '') -> Text:
