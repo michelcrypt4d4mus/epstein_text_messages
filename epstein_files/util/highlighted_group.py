@@ -342,7 +342,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='lawyer for victims',
         style='dark_magenta bold',
-        pattern=r'Paul\s*(G.\s*)?Cassell|Rothstein\s*Rosenfeldt\s*Adler|(Scott\s*)?Rothstein',
+        pattern=r'(Alan(\s*P.)?|MINTZ)\s*FRAADE|Paul\s*(G.\s*)?Cassell|Rothstein\s*Rosenfeldt\s*Adler|(Scott\s*)?Rothstein',
         emailers = {
             BRAD_EDWARDS: 'Rothstein Rosenfeldt Adler (Rothstein was a crook & partner of Roger Stone)',
             JACK_SCAROLA: 'Searcy Denney Scarola Barnhart & Shipley',
