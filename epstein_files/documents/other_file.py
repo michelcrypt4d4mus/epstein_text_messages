@@ -8,20 +8,22 @@ from rich.console import Console, ConsoleOptions, Group
 from rich.markup import escape
 from rich.text import Text
 
-from epstein_files.documents.document import PREVIEW_CHARS, WHITESPACE_REGEX, Document
+from epstein_files.documents.document import WHITESPACE_REGEX, Document
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import DUPLICATE_FILE_IDS, FILE_DESCRIPTIONS, UNINTERESTING_PREFIXES
 from epstein_files.util.data import escape_single_quotes, extract_datetime, ordinal_str, remove_timezone
-from epstein_files.util.env import logger
+from epstein_files.util.env import args, logger
 from epstein_files.util.rich import console, highlighter, logger
+
+PREVIEW_CHARS = int(520 * (1 if args.all_other_files else 1.5))
+VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
 MAX_EXTRACTED_TIMESTAMPS = 100
 MAX_DAYS_SPANNED_TO_BE_VALID = 10
 MIN_TIMESTAMP = datetime(1991, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
 MAX_TIMESTAMP = datetime(2022, 12, 31)
-VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
 
 @dataclass

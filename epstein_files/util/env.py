@@ -43,6 +43,7 @@ is_html_script = current_script in HTML_SCRIPTS
 args.deep_debug = args.deep_debug or is_env_var_set('DEEP_DEBUG')
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 args.output_emails = args.output_emails or args.all_emails
+args.output_other_files = args.output_other_files or args.all_other_files
 args.pickled = args.pickled or is_env_var_set('PICKLED') or args.colors_only
 args.width = args.width if is_html_script else None
 
