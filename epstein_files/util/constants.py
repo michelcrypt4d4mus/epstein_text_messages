@@ -766,6 +766,7 @@ MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by 
 NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight" by {EHUD_BARAK}?'
 PATTERSON_BOOK_SCANS = f'scans of pages of "Filthy Rich: The Shocking True Story of Jeffrey Epstein" by James Patterson'
 SHIMON_POST = 'The Shimon Post selection of articles about the mideast '
+VI_DAILY_NEWS_ARTICLE = 'article in Virgin Islands Daily News'
 VIRGINIA_FILING = f"court filings from Virginia Giuffre's lawsuit against Epstein (and {ALAN_DERSHOWITZ}?)"
 WEINBERG_ABC_LETTER = f"letter from {MARTIN_WEINBERG} to ABC / Good Morning America threatening libel lawsuit"
 
@@ -894,6 +895,8 @@ FILE_DESCRIPTIONS = {
     '013437': f"The Telegraph article about Epstein diary 2011-03-05",
     '031736': f'translation of Arabic language article by Abdulnaser Salamah "Trump; Prince of Believers (Caliph)!" 2017-05-13',
     '017771': f'Vanity Fair article "The Talented Mr. Epstein" by Vicky Ward 2011-06-27',
+    '031171': f"{VI_DAILY_NEWS_ARTICLE} 2019-02-06",
+    '031170': f"{VI_DAILY_NEWS_ARTICLE} 2019-03-06",
     '033379': f'WaPo "How Washington Pivoted From Finger-Wagging to Appeasement" about Viktor Orban 2018-05-25',
     '031396': f'WaPo "A Justice Dept. discipline office with limited reach to probe handling of controversial sex abuse case" 2019-02-06',
     '019206': f"WSJ article about Edward Snowden by {EDWARD_EPSTEIN} 2016-12-30",

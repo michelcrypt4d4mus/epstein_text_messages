@@ -15,7 +15,7 @@ from rich.text import Text
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, EPSTEINIFY, EPSTEIN_WEB, epsteinify_doc_link_txt, epsteinify_doc_url, epstein_web_doc_url
-from epstein_files.util.constants import DUPLICATE_FILE_IDS, FALLBACK_TIMESTAMP, FILE_DESCRIPTIONS
+from epstein_files.util.constants import DUPLICATE_FILE_IDS, FALLBACK_TIMESTAMP, FILE_DESCRIPTIONS, VI_DAILY_NEWS_ARTICLE
 from epstein_files.util.data import collapse_newlines, date_str, patternize
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, file_size_str, is_local_extract_file
@@ -129,7 +129,7 @@ class Document:
         hint_msg = FILE_DESCRIPTIONS.get(self.file_id)
 
         if not (hint_msg or self._document_type() == EMAIL_CLASS) and VI_DAILY_NEWS_REGEX.search(self.text):
-            hint_msg = 'article in Virgin Islands Daily News'
+            hint_msg = VI_DAILY_NEWS_ARTICLE
 
         if hint_msg:
             hints.append(highlighter(Text(f"({hint_msg})", style='gray30 italic')))
