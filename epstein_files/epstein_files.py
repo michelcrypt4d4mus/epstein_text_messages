@@ -101,7 +101,7 @@ class EpsteinFiles:
 
         epstein_files = EpsteinFiles()
 
-        if args.overwrite_pickle or (args.pickled and not PICKLED_PATH.exists()):
+        if args.overwrite_pickle or not PICKLED_PATH.exists():
             with gzip.open(PICKLED_PATH, 'wb') as file:
                 pickle.dump(epstein_files, file)
                 logger.warning(f"Pickled data to '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})...")

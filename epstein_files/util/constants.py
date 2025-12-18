@@ -893,7 +893,7 @@ FILE_DESCRIPTIONS = {
     '033480': f"press clipping about John Bolton 2018-04-06",
     '033481': f"press clipping about John Bolton",
     '031794': f"press clipping in French",
-    '033323': f'{ROBERT_TRIVERS} and Nathan H. Lents "Does Trump Fit the Evolutionary Role of Narcissistic Sociopath?" (draft)',
+    '033323': f'{ROBERT_TRIVERS} and Nathan H. Lents "Does Trump Fit the Evolutionary Role of Narcissistic Sociopath?" (draft) 2018-12-07',
     '025328': f"scan of NYT page with articles about radio host Bob Fass and Robert Durst",
     '016996': f'SciencExpress article "Quantitative Analysis of Culture Using Millions of Digitized Books" by Jean-Baptiste Michel',
     '025104': f"SCMP article about China and globalisation",

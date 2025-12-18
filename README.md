@@ -18,6 +18,7 @@ DOCS_DIR=/path/to/epstein/ocr_txt_files ./generate.py
 ```
 
 Run `./generate.py --help` for command line option assistance. Look in the [scripts](./scripts/) folder for various scripts.
+The first time you run anything it will take a few minutes to fix all the data, attribute the redacted emails, etc. Once you've run things once you can run the `./generate.py --pickled` to load the cached fixed up data and things will be quick.
 
 #### As A Library
 ```python
