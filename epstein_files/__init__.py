@@ -83,7 +83,6 @@ def generate_html() -> None:
         timer.print_at_checkpoint(f"Printed {emails_printed:,} emails")
 
     if args.output_other_files:
-        print_section_header(f"Top Lines of {len(epstein_files.other_files)} Files That Are Neither Emails Nor Text Msgs")
         epstein_files.print_other_files_table()
         timer.print_at_checkpoint(f"Printed {len(epstein_files.other_files):,} other files")
     else:
