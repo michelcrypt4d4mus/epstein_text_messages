@@ -11,7 +11,7 @@ from rich.text import Text
 from epstein_files.documents.document import PREVIEW_CHARS, WHITESPACE_REGEX, Document
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constants import FILE_DESCRIPTIONS
+from epstein_files.util.constants import DUPLICATE_FILE_IDS, FILE_DESCRIPTIONS, UNINTERESTING_PREFIXES
 from epstein_files.util.data import escape_single_quotes, extract_datetime, ordinal_str, remove_timezone
 from epstein_files.util.env import logger
 from epstein_files.util.rich import console, highlighter, logger
@@ -31,6 +31,21 @@ class OtherFile(Document):
     def __post_init__(self):
         super().__post_init__()
         self.timestamp = self._extract_timestamp()
+
+    def is_interesting(self):
+        """False for lame prefixes and duplicates."""
+        hints = self.hints()
+
+        if len(hints) == 0:
+            return True
+        elif self.file_id in DUPLICATE_FILE_IDS:
+            return False
+
+        for prefix in UNINTERESTING_PREFIXES:
+            if hints[0].plain.startswith(prefix):
+                return False
+
+        return True
 
     def highlighted_preview_text(self) -> Text:
         try:
