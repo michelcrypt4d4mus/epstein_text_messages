@@ -913,6 +913,7 @@ FILE_DESCRIPTIONS = {
     '029925': f"New Yorker article about the placebo effect by Michael Specter 2011-12-04",
     '033181': f'NYT "Donald Trump Used Legally Dubious Method to Avoid Paying Taxes" 2016-10-31',
     '031972': f"NYT article about #MeToo allegations against {LAWRENCE_KRAUSS} 2018-03-07",
+    '029452': f"NYT article about {PETER_THIEL}",
     '033479': f"NYT article about Rex Tillerson 2010-03-14",
     '019439': f"NYT column by Maureen Dowd 2013-08-17",
     '033365': f'NYT column by Kevin Rudd "Trump Hands China An Easy Win in the Trade War"',
@@ -1009,6 +1010,7 @@ FILE_DESCRIPTIONS = {
     '022277': f"text of America's National Labour Relationsh Board (NLRB) law",
     '021824': f"transcript of deposition of Paul Cassell in {EDWARDS_V_DERSHOWITZ}",
     # conferences
+    '030769': f"2017 Independent Filmmaker Project (IFP) Gotham Awards invitation",
     '014951': f"2017 TED Talks program 2017-04-20",
     '017524': f"{SWEDISH_LIFE_SCIENCES_SUMMIT} 2012 program 2012-08-22",
     '026747': f"{SWEDISH_LIFE_SCIENCES_SUMMIT} 2017 program 2017-08-23",
@@ -1098,12 +1100,13 @@ FILE_DESCRIPTIONS = {
     '031278': f"very redacted, quoted replies are from {STEVEN_HOFFENBERG} about James Patterson's book",  # Quoted replies are in 019109
     # letters
     '017789': f'{ALAN_DERSHOWITZ} letter to Harvard Crimson complaining he was defamed',
-    '031670': f"letter from General Mike Flynn's lawyers to senators Mark Warner & Richard Burr about subpoena",
-    '029301': f"letter from Michael J. Boccio, former lawyer at the Trump Organization 2011-08-07",
-    '022405': f"letter from {NOAM_CHOMSKY} attesting to Epstein's good character",
     '019086': f"{DAVID_BLAINE_VISA_LETTER} from Russia 'Svet' ({SVETLANA_POZHIDAEVA}?), names Putin puppet regimes",
     '019474': f"{DAVID_BLAINE_VISA_LETTER} 2015-05-29",
     '019476': f"{DAVID_BLAINE_VISA_LETTER} 2015-06-01",
+    '031670': f"letter from General Mike Flynn's lawyers to senators Mark Warner & Richard Burr about subpoena",
+    '029301': f"letter from Michael J. Boccio, former lawyer at the Trump Organization 2011-08-07",
+    '022405': f"letter from {NOAM_CHOMSKY} attesting to Epstein's good character",
+    '026248': f'letter from Trump lawyer Don McGahn to Devin Nunes (R-CA) about FISA courts and Trump',
     '026011': f"letter to Epstein about algorithmic trading by Gennady Mashtalyar ca. 2016-06-24",  # date is based on Brexit reference but he could be backtesting
     '026134': f'letter to someone named George about investment opportunities in the Ukraine banking sector',
     '028928': WEINBERG_ABC_LETTER,
