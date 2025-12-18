@@ -770,7 +770,8 @@ MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by 
 NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight" by {EHUD_BARAK}?'
 OBAMA_JOKE = f'joke about Obama'
 PATTERSON_BOOK_SCANS = f'pages of "Filthy Rich: The Shocking True Story of Jeffrey Epstein" by James Patterson 2016-10-10'
-SHIMON_POST = 'The Shimon Post selection of articles about the mideast '
+SHIMON_POST = 'The Shimon Post selection of articles about the mideast'
+SWEDISH_LIFE_SCIENCES_SUMMIT = f"{BARBRO_EHNBOM}'s Swedish American Life Science Summit"
 VI_DAILY_NEWS_ARTICLE = 'article in Virgin Islands Daily News'
 VIRGINIA_FILING = f"court filings from Virginia Giuffre's lawsuit against Epstein (and {ALAN_DERSHOWITZ}?)"
 WEINBERG_ABC_LETTER = f"letter from {MARTIN_WEINBERG} to ABC / Good Morning America threatening libel lawsuit"
@@ -982,7 +983,8 @@ FILE_DESCRIPTIONS = {
     '021824': f"transcript of deposition of Paul Cassell in {EDWARDS_V_DERSHOWITZ}",
     # conferences
     '014951': f"2017 TED Talks program 2017-04-20",
-    '017524': f'{BARBRO_EHNBOM} Swedish American Life Science Summit 2012 program',
+    '017524': f"{SWEDISH_LIFE_SCIENCES_SUMMIT} 2012 program 2012-08-22",
+    '026747': f"{SWEDISH_LIFE_SCIENCES_SUMMIT} 2017 program 2017-08-23",
     '023069': f'BofA / Merrill Lynch 2016 Future of Financials Conference report',
     '014315': f'BofA / Merrill Lynch 2016 Future of Financials Conference report',
     '017526': f'Intellectual Jazz conference brochure',
