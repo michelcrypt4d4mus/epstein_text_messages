@@ -287,7 +287,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='journalist',
         style='bright_yellow',
-        pattern=r'Palm\s*Beach\s*(Daily\s*News|Post)|ABC|Alex\s*Yablon|(Andrew\s*)?Marra|Arianna(\s*Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie\s*Rose|China\s*Daily|CNBC|CNN(politics?)?|Conchita|Sarnoff|(?<!Virgin Islands )Daily\s*(Mail|News|Telegraph)|(David\s*)?Pecker|Ed\s*Krassenstein|(Emily )?Michot|(George\s*)?Stephanopoulus|Globe\s*and\s*Mail|Graydon(\s*Carter)?|Huffington|Ingram, David|(James\s*)?Patterson|Jonathan\s*Karl|(Katie\s*)?Couric|Miami\s*Herald|(Michele\s*)?Dargan|(National\s*)?Enquirer|N(ew\s*)?Y(ork\s*)?(P(ost)?|T(imes))?|New\s*Yorker|NYer|PERVERSION\s*OF\s*JUSTICE|Politico|(Sean\s*)?Hannity|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|Viceland|Vick[iy]\s*Ward|WaPo|WGBH|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
+        pattern=r'Palm\s*Beach\s*(Daily\s*News|Post)|ABC|Alex\s*Yablon|(Andrew\s*)?Marra|Arianna(\s*Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie\s*Rose|China\s*Daily|CNBC|CNN(politics?)?|Conchita|Sarnoff|(?<!Virgin Islands )Daily\s*(Mail|News|Telegraph)|(David\s*)?Pecker|Ed\s*Krassenstein|(Emily )?Michot|(George\s*)?Stephanopoulus|Globe\s*and\s*Mail|Graydon(\s*Carter)?|Huffington|Ingram, David|(James\s*)?Patterson|Jonathan\s*Karl|(Katie\s*)?Couric|Miami\s*Herald|(Michele\s*)?Dargan|(National\s*)?Enquirer|(The\s*)?N(ew\s*)?Y(ork\s*)?(P(ost)?|T(imes)?)|New\s*Yorker|NYer|PERVERSION\s*OF\s*JUSTICE|Politico|(Sean\s*)?Hannity|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|Viceland|Vick[iy]\s*Ward|(The\s*)Wa(shington\s*)?Po(st)?|WGBH|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
         emailers = {
             EDWARD_EPSTEIN: 'no relation to Jeffrey',
             'James Hill': 'ABC',
@@ -364,7 +364,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='mideast',
         style='dark_sea_green4',
-        pattern=r"Abdulmalik Al-Makhlafi|Abdullah|Abu\s+Dhabi|Afghanistan|Al[-\s]?Qaeda|Ahmadinejad|Arab|Aramco|Assad|Bahrain|Basiji?|Benghazi|Dj[iu]bo?uti|Doha|Dubai|Egypt(ian)?|Emir(at(es?|i))?|Erdogan|Fashi|Gaddafi|HBJ|Houthi|Imran\s+Khan|Iran(ian)?|Isi[ls]|Islam(ic|ist)?|Istanbul|Kh?ashoggi|kasshohgi|Kaz(akh|ich)stan|Kazakh?|Kh[ao]menei|KSA|Libyan?|Mahmoud|Marra[hk]e[cs]h|MB(N|S|Z)|Mohammed\s+bin\s+Salman|Morocco|Mubarak|Muslim|Nayaf|Pakistani?|Omar|Palestin(e|ian)|Persian?|Riya(dh|nd)|Saddam|Salman|Saudi(\s+Arabian?)?|Shariah?|SHC|sheikh|shia|(Sultan\s*)?Yacoub|Syrian?|(Tarek\s*)?El\s*Sayed|Tehran|Tunisian?|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
+        pattern=r"Abdulmalik Al-Makhlafi|Abdullah|Abu\s+Dhabi|Afghanistan|Al[-\s]?Qaeda|Ahmadinejad|Arab|Aramco|Assad|Bahrain|Basiji?|Benghazi|Cairo|Dj[iu]bo?uti|Doha|Dubai|Egypt(ian)?|Emir(at(es?|i))?|Erdogan|Fashi|Gaddafi|HBJ|Houthi|Imran\s+Khan|Iran(ian)?|Isi[ls]|Islam(ic|ist)?|Istanbul|Kh?ashoggi|kasshohgi|Kaz(akh|ich)stan|Kazakh?|Kh[ao]menei|KSA|Libyan?|Mahmoud|Marra[hk]e[cs]h|MB(N|S|Z)|Mohammed\s+bin\s+Salman|Morocco|Mubarak|Muslim|Nayaf|Pakistani?|Omar|Palestin(e|ian)|Persian?|Riya(dh|nd)|Saddam|Salman|Saudi(\s+Arabian?)?|Shariah?|SHC|sheikh|shia|(Sultan\s*)?Yacoub|Syrian?|(Tarek\s*)?El\s*Sayed|Tehran|Tunisian?|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
         emailers = {
             ANAS_ALRASHEED: None,
             AZIZA_ALAHMADI: 'Abu Dhabi Department of Culture & Tourism',
