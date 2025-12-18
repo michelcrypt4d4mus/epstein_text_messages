@@ -1,12 +1,10 @@
 import re
 from collections import defaultdict
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import datetime
 
 from dateutil.parser import parse
-from dateutil import tz
 from rich.console import Console, ConsoleOptions, RenderResult
-from rich.markup import escape
 from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
@@ -17,7 +15,7 @@ from epstein_files.documents.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPL
 from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import *
-from epstein_files.util.data import collapse_newlines, escape_single_quotes, remove_timezone, uniquify
+from epstein_files.util.data import TIMEZONE_INFO, collapse_newlines, escape_single_quotes, remove_timezone, uniquify
 from epstein_files.util.env import logger
 from epstein_files.util.file_helper import is_local_extract_file
 from epstein_files.util.highlighted_group import get_style_for_name
@@ -26,8 +24,6 @@ from epstein_files.util.rich import *
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
 BAD_TIMEZONE_REGEX = re.compile(fr'\((UTC|GMT\+\d\d:\d\d)\)|{REDACTED}')
 TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
-PACIFIC_TZ = tz.gettz("America/Los_Angeles")
-TIMEZONE_INFO = {"PST": PACIFIC_TZ, "PDT": PACIFIC_TZ}  # Suppresses annoying warnings from parse() calls
 
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)

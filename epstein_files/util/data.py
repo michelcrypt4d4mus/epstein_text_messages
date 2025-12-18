@@ -11,12 +11,15 @@ from dateutil.parser import parse
 from epstein_files.util.constant import names
 from epstein_files.util.env import args, logger
 
+T = TypeVar('T')
+
 ISO_DATE_REGEX = re.compile(r'\d{4}-\d{2}(-\d{2})?')
 MULTINEWLINE_REGEX = re.compile(r"\n{2,}")
 CONSTANT_VAR_REGEX = re.compile(r"^[A-Z_]+$")
 ALL_NAMES = [v for k, v in vars(names).items() if isinstance(v, str) and CONSTANT_VAR_REGEX.match(k)]
 
-T = TypeVar('T')
+PACIFIC_TZ = tz.gettz("America/Los_Angeles")
+TIMEZONE_INFO = {"PST": PACIFIC_TZ, "PDT": PACIFIC_TZ}  # Suppresses annoying warnings from parse() calls
 
 
 def collapse_newlines(text: str) -> str:
@@ -40,7 +43,7 @@ def extract_datetime(s: str) -> datetime | None:
     elif len(date_str) == 7:
         date_str += '-01'
 
-    return parse(date_str)
+    return parse(date_str, tzinfos=TIMEZONE_INFO)
 
 
 def date_str(timestamp: datetime | None) -> str | None:
