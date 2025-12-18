@@ -4,10 +4,8 @@ from dataclasses import dataclass, field
 from datetime import datetime
 
 import datefinder
-from rich.console import Console, ConsoleOptions, Group, RenderResult
+from rich.console import Console, ConsoleOptions, Group
 from rich.markup import escape
-from rich.padding import Padding
-from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.documents.document import PREVIEW_CHARS, WHITESPACE_REGEX, Document
@@ -18,7 +16,7 @@ from epstein_files.util.data import escape_single_quotes, extract_datetime, ordi
 from epstein_files.util.env import logger
 from epstein_files.util.rich import console, highlighter, logger
 
-MAX_EXTRACTED_TIMESTAMPS = 10
+MAX_EXTRACTED_TIMESTAMPS = 100
 MAX_DAYS_SPANNED_TO_BE_VALID = 10
 MIN_TIMESTAMP = datetime(1991, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
