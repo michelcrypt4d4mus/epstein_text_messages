@@ -146,12 +146,15 @@ class Document:
         hints = [file_info] if file_info else []
         hint_msg = FILE_DESCRIPTIONS.get(self.file_id)
 
-        if not (hint_msg or self.document_type() == EMAIL_CLASS) and VI_DAILY_NEWS_REGEX.search(self.text):
-            hint_msg = VI_DAILY_NEWS_ARTICLE
+        if self.document_type() == OTHER_FILE_CLASS:
+            if not hint_msg and VI_DAILY_NEWS_REGEX.search(self.text):
+                hint_msg = VI_DAILY_NEWS_ARTICLE
+        elif hint_msg:
+            hint_msg = f"({hint_msg})"
 
         if hint_msg:
             hint_msg = TRAILING_DATE_REGEX.sub('', hint_msg)  # a lot of configured file infos have trailing ISO date
-            hints.append(highlighter(Text(f"({hint_msg})", style='gray30 italic')))
+            hints.append(highlighter(Text(hint_msg, style='white dim italic')))
 
         return hints
 
