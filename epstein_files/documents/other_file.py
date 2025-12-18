@@ -76,7 +76,7 @@ class OtherFile(Document):
             logger.error(f"Error while iterating with datefinder: {e}")
 
         if len(timestamps) == 0 and 'vast house' not in self.text:
-            self.log_top_lines(15, msg=f"{self.file_id}: No timestamps found!", level=logging.WARNING)
+            self.log_top_lines(15, msg=f"{self.file_id}: No timestamps found", level=logging.WARNING)
             return None
         elif len(timestamps) == 1:
             return timestamps[0]
