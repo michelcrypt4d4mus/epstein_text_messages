@@ -24,5 +24,5 @@ SiteType = Literal['email', 'text message']
 # Styles
 OTHER_SITE_LINK_STYLE = 'dark_goldenrod'
 PHONE_NUMBER_STYLE = 'bright_green'
-TIMESTAMP_STYLE = 'dark_cyan'
-TIMESTAMP_DIM = f"{TIMESTAMP_STYLE} dim"
+TIMESTAMP_STYLE = 'turquoise4'
+TIMESTAMP_DIM = f"turquoise4 dim"

@@ -24,13 +24,17 @@ from epstein_files.util.highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS,
 
 GREY_NUMBERS = [grey for grey in reversed([15, 15, 15, 19, 19, 23, 23, 27, 30, 35, 39, 39, 58])]
 DEFAULT_NAME_COLOR = 'gray46'
+KEY_STYLE='honeydew2 bold'
 SECTION_HEADER_STYLE = 'bold white on blue3'
 SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 SOCIAL_MEDIA_LINK_STYLE = 'cyan3 bold'
+SYMBOL_STYLE = 'grey70'
 TITLE_STYLE = 'black on bright_white bold'
+
 TITLE_WIDTH = 50
 NUM_COLOR_KEY_COLS = 4
 NA_TXT = Text(NA, style='dim')
+QUESTION_MARK_TXT = Text('???', style='dim')
 
 THEME_STYLES = {
     DEFAULT: 'wheat4',
@@ -57,6 +61,10 @@ if args.suppress_output:
     CONSOLE_ARGS.update({'file': open(devnull, "wt")})
 
 console = Console(**CONSOLE_ARGS)
+
+
+def key_value_txt(key: str, value: Text | str) -> Text:
+    return Text('').append(key, style=KEY_STYLE).append('=', style=SYMBOL_STYLE).append(value)
 
 
 def parenthesize(msg: str | Text, style: str = '') -> Text:

@@ -101,7 +101,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='bitcoin',
         style='orange1 bold',
-        pattern=r'Balaji|bitcoin|block ?chain( capital)?|Brock|coins?|cr[iy]?pto(currenc(y|ies))?|e-currency|(Gavin )?Andressen|(Howard\s+)?Lutnic?k|(jeffrey\s+)?wernick|Libra|Madars|(Patrick\s*)?Murck|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)',
+        pattern=r'Balaji|bitcoin|block ?chain( capital)?|Brock|coins?|cr[iy]?pto(currenc(y|ies))?|e-currency|(Gavin )?Andressen|(Howard\s+)?Lutnic?k|(jeffrey\s+)?wernick|Libra|Madars|(Patrick\s*)?Murck|(Ross\s*)?Ulbricht|Silk\s*Road|SpanCash|Tether|(zero\s+knowledge\s+|zk)pro(of|tocols?)',
         emailers = {
             JEREMY_RUBIN: 'developer/researcher',
             SCARAMUCCI: 'Skybridge Capital, FTX investor',
@@ -121,7 +121,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='business',
         style='spring_green4',
-        pattern=r'(John\s*)?Kluge|Marc Rich|(Mi(chael|ke)\s*)?Ovitz|(Steve\s+)?Wynn|(Leslie\s+)?Wexner|Valhi|(Yves\s*)?Bouvier',
+        pattern=r'Gruterite|(John\s*)?Kluge|Marc Rich|(Mi(chael|ke)\s*)?Ovitz|(Steve\s+)?Wynn|(Leslie\s+)?Wexner|Valhi|(Yves\s*)?Bouvier',
         emailers = {
             ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
             BARBRO_EHNBOM: 'Swedish pharmaceuticals',
@@ -258,7 +258,7 @@ HIGHLIGHTED_GROUPS = [
         emailers = {
             ANIL_AMBANI: 'chairman of Reliance Group',
             VINIT_SAHNI: None,
-            ZUBAIR_KHAN: 'Tranchulas CEO',
+            ZUBAIR_KHAN: 'Tranchulas CEO, InsightsPod founder',
         }
     ),
     HighlightedGroup(
@@ -412,7 +412,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='russia',
         style='red bold',
-        pattern=r'Chernobyl|Day\s+One\s+Ventures|(Dmitry\s)?(Kiselyov|(Lana\s*)?Pozhidaeva|Medvedev|Rybolo(o?l?ev|vlev))|Dmitry|FSB|GRU|KGB|Kislyak|Kremlin|Lavrov|Lukoil|Moscow|(Oleg )?Deripaska|Oleksandr Vilkul|Rosneft|(Vladimir )?Putin|Russian?|Sberbank|Vladimir( Yudashkin)?|Xitrans',
+        pattern=r'Chernobyl|Day\s+One\s+Ventures|(Dmitry\s)?(Kiselyov|(Lana\s*)?Pozhidaeva|Medvedev|Rybolo(o?l?ev|vlev))|Dmitry|FSB|GRU|KGB|Kislyak|Kremlin|Lavrov|Lukoil|Moscow|(Oleg )?Deripaska|Oleksandr Vilkul|Rosneft|RT|(Vladimir )?Putin|Russian?|Sberbank|Vladimir( Yudashkin)?|Xitrans',
         emailers = {
             MASHA_DROKOVA: 'silicon valley VC',
             RENATA_BOLOTOVA: 'former aspiring model, now fund manager at New York State Insurance Fund',
@@ -450,7 +450,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='trump',
         style='red3 bold',
-        pattern=r"@?realDonaldTrump|\bDJ?T\b|(Donald\s+(J\.\s+)?)?Trump(ism)?|Don(ald| *Jr)(?! Rubin)|(Madeleine\s*)?Westerhout|Mar[-\s]*a[-\s]*Lago|(Marla\s*)?Maples|(Matt(hew)? )?Calamari|\bMatt C\b|Melania|Roger\s+Stone|rona|(Alan\s*)?Weiss?elberg",
+        pattern=r"@?realDonaldTrump|\bDJ?T\b|(Donald\s+(J\.\s+)?)?Trump(ism)?|Don(ald| *Jr)(?! Rubin)|(Madeleine\s*)?Westerhout|Mar[-\s]*a[-\s]*Lago|(Marla\s*)?Maples|(Matt(hew)? )?Calamari|\bMatt C\b|Melania|(Michael (J.? )?)?Boccio|Roger\s+Stone|rona|(Alan\s*)?Weiss?elberg",
         emailers = {
             'Bruce Moskowitz': "'Trump's health guy' according to Epstein",
         }

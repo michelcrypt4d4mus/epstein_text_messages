@@ -51,6 +51,10 @@ def flatten(_list: list[list[T]]) -> list[T]:
     return list(itertools.chain.from_iterable(_list))
 
 
+def iso_timestamp(dt: datetime) -> str:
+    return dt.isoformat().replace('T', ' ')
+
+
 def ordinal_str(n: int) -> str:
     if 11 <= (n % 100) <= 13:
         suffix = 'th'
