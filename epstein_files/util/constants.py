@@ -7,7 +7,7 @@ from io import StringIO
 from dateutil.parser import parse
 
 from epstein_files.util.constant.names import *
-from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_PREFIX
+from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_PREFIX, REDACTED
 
 # Misc
 FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
@@ -798,6 +798,7 @@ MERCURY_FILMS_PROFILES = f'Mercury Films partner profiles of Jennifer Baichwal, 
 MIAMI_HERALD = 'Miami Herald'
 MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
 NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight" by {EHUD_BARAK}?'
+NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
 NYT_ARTICLE = 'NYT article about'
 NYT_COLUMN =  'NYT column about'
 OBAMA_JOKE = f'joke about Obama'
@@ -836,7 +837,7 @@ FILE_DESCRIPTIONS = {
     '018438': f'book: "The S&M Feminist" by Clarisse Thorn',
     '018232': f'book: "The Seventh Sense: Power, Fortune & Survival in the Age of Networks" by Joshua Cooper Ramo',
     '020153': f'book: "The Snowden Affair: A Spy Story In Six Parts" by {EDWARD_EPSTEIN}',
-    '021120': f'chapter of "Siege: Trump Under Fire" by {MICHAEL_WOLFF}',
+    '021120': f'book: chapter of "Siege: Trump Under Fire" by {MICHAEL_WOLFF}',
     '016221': DEEP_THINKING_HINT,
     '016804': DEEP_THINKING_HINT,
     '031533': f'few pages from a book about the Baylor University sexual assault scandal and Sam Ukwuachu',
@@ -1073,8 +1074,8 @@ FILE_DESCRIPTIONS = {
     '023120': f"{LAWRENCE_KRAUSS} 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more (old draft)",
     '023121': f"{LAWRENCE_KRAUSS} 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more (old draft)",
     '023123': f"{LAWRENCE_KRAUSS} 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more",
-    '031359': f"Nobel Charitable Trust Earth Environment Convention about ESG investing",
-    '031354': f'Nobel Charitable Trust "Thinking About the Environment and Technology" report 2011',
+    '031359': f"{NOBEL_CHARITABLE_TRUST} Earth Environment Convention about ESG investing",
+    '031354': f'{NOBEL_CHARITABLE_TRUST} "Thinking About the Environment and Technology" report 2011',
     '024179': f'president and first lady schedule at 67th U.N. General Assembly 2012-09-21',
     '029427': f"seems related to an IRL meeting about concerns China will attempt to absorb Mongolia",
     '024185': f'schedule of 67th U.N. General Assembly w/"Presidents Private Dinner - Jeffrey Epstine (sic)" 2012-09-21',
@@ -1124,10 +1125,10 @@ FILE_DESCRIPTIONS = {
     '023096': f'{EPSTEIN_FOUNDATION} blog 2012-11-15',
     '029326': f'{EPSTEIN_FOUNDATION} press release 2013-02-15',
     '026565': f'{EPSTEIN_FOUNDATION} press release, maybe a draft of 029326 2013-02-15',
-    '026572': f"JP Morgan Global Asset Allocation report dated 2012-11-09",
-    '030848': f"JP Morgan Global Asset Allocation report dated 2013-03-28",
-    '030840': f"JP Morgan Market Thoughts 2012-11",
-    '022350': f"JP Morgan report on tax efficiency of Intentionally Defective Grantor Trusts (IDGT)",
+    '026572': f"{JP_MORGAN} Global Asset Allocation report dated 2012-11-09",
+    '030848': f"{JP_MORGAN} Global Asset Allocation report dated 2013-03-28",
+    '030840': f"{JP_MORGAN} Market Thoughts 2012-11",
+    '022350': f"{JP_MORGAN} report on tax efficiency of Intentionally Defective Grantor Trusts (IDGT)",
     '025242': f"{JP_MORGAN_EYE_ON_THE_MARKET} 2011-04-09",
     '030010': f"{JP_MORGAN_EYE_ON_THE_MARKET} 2011-06-14",
     '030808': f"{JP_MORGAN_EYE_ON_THE_MARKET} 2011-07-11",
@@ -1165,7 +1166,7 @@ FILE_DESCRIPTIONS = {
     '026011': f"letter to Epstein about algorithmic trading by Gennady Mashtalyar ca. 2016-06-24",  # date is based on Brexit reference but he could be backtesting
     '026134': f'letter to someone named George about investment opportunities in the Ukraine banking sector',
     '029304': f"Trump recommendation letter for recently departed Trump Organization lawyer Michael J. Boccio",
-    '031278': f"very redacted email, quoted replies are from {STEVEN_HOFFENBERG} about James Patterson's book",  # Quoted replies are in 019109
+    '031278': f"{REDACTED} email, quoted replies are from {STEVEN_HOFFENBERG} about James Patterson's book",  # Quoted replies are in 019109
     '028928': WEINBERG_ABC_LETTER,
     '028965': WEINBERG_ABC_LETTER,
     # private placement memoranda
@@ -1207,8 +1208,8 @@ FILE_DESCRIPTIONS = {
     '023438': f"Brockman announcemeent of auction of 'Noise' by Daniel Kahneman, Olivier Sibony, and Cass Sunstein",
     '029918': f"{DIANA_DEGETTES_CAMPAIGN} campaign bio ca. 2012-01-01",
     '031184': f"{DIANA_DEGETTES_CAMPAIGN} fundraiser invitation",
-    '031425': f'completely redacted email from {SCOTT_J_LINK}',
-    '012718': f"congressional record from about {CVRA} 2011-06-17",
+    '031425': f'{REDACTED} email from {SCOTT_J_LINK}',
+    '012718': f"{CVRA} congressional record ca. 2011-06-17",
     '018224': f"conversation with {LAWRENCE_KRAUSS}?",
     '010617': TRUMP_DISCLOSURES,
     '016699': TRUMP_DISCLOSURES,
@@ -1280,33 +1281,61 @@ FILE_DESCRIPTIONS = {
 }
 
 UNINTERESTING_PREFIXES = [
+    'article about',
     'book:',
+    'Brockman',
+    'BofA',
     BOFA_MERRILL,
     CHALLENGES_OF_AI,
     CNN,
+    CVRA,
     DAILY_MAIL_ARTICLE,
     DAILY_TELEGRAPH_ARTICLE,
+    DAVID_SCHOEN_CVRA_LEXIS_SEARCH,
+    DEEP_THINKING_HINT,
     DERSH_GIUFFRE_TWEET,
     DEUTSCHE_BANK_TAX_TOPICS,
+    'draft of an article',
     FLIGHT_LOGS,
+    'fragment',
     GOLDMAN_REPORT,
     GORDON_GETTY,
     'Harvard',
     HARVARD_POETRY,
+    'horrible OCR',
+    'Invesco',
     JOHN_BOLTON_PRESS_CLIPPING,
     JP_MORGAN,
+    'LA Times',
     'meme',
+    'Morgan Stanley',
+    NOBEL_CHARITABLE_TRUST,
+    'New Yorker',
+    NIGHT_FLIGHT_HINT,
     NYT_ARTICLE,
     NYT_COLUMN,
     OBAMA_JOKE,
+    PALM_BEACH_CODE_ENFORCEMENT,
     PALM_BEACH_DAILY_ARTICLE,
     PALM_BEACH_POST_ARTICLE,
     PALM_BEACH_TSV,
+    'Palm Beach Water Committee',
+    PAUL_KRASSNER,
+    PEGGY_SIEGAL,
+    REDACTED,
     ROBERT_LAWRENCE_KUHN,
     ROBERT_TRIVERS,
+    'S&P',
+    SHIMON_POST,
+    'single page',
     STACEY_PLASKETT,
     'text of U.S.',  # laws
+    'translation',
     'tweet',
     THE_REAL_DEAL_ARTICLE,
     TRUMP_DISCLOSURES,
+    UBS_CIO_REPORT,
+    'Vanity Fair',
+    VI_DAILY_NEWS_ARTICLE,
+    'WaPo',
 ]
