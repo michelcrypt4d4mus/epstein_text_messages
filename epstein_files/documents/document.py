@@ -36,6 +36,7 @@ MAX_TIMESTAMP = datetime(2022, 12, 31)
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
 DOC_TYPE_STYLES = {
+    DOCUMENT_CLASS: 'grey69',
     EMAIL_CLASS: 'sea_green2',
     MESSENGER_LOG_CLASS: 'cyan',
     OTHER_FILE_CLASS: 'grey69',
