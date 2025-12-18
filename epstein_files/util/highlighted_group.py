@@ -287,7 +287,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='journalist',
         style='bright_yellow',
-        pattern=r'ABC|Alex\s*Yablon|(Andrew\s*)?Marra|Arianna(\s*Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie\s*Rose|China\s*Daily|CNBC|CNN(politics?)?|Conchita|Sarnoff|(?<!Virgin Islands )Daily\s*(Mail|News|Telegraph)|(David\s*)?Pecker|Ed\s*Krassenstein|(Emily )?Michot|(George\s*)?Stephanopoulus|Globe\s*and\s*Mail|Graydon(\s*Carter)?|(Sean\s*)?Hannity|Huffington|Ingram, David|Jonathan\s*Karl|(Katie\s*)?Couric|(Michele\s*)?Dargan|(National\s*)?Enquirer|N(ew\s*)?Y(ork\s*)?T(imes)?|New\s*Yorker|NYer|PERVERSION\s*OF\s*JUSTICE|Politico|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|Viceland|Vick[iy]\s*Ward|WaPo|WGBH|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
+        pattern=r'ABC|Alex\s*Yablon|(Andrew\s*)?Marra|Arianna(\s*Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie\s*Rose|China\s*Daily|CNBC|CNN(politics?)?|Conchita|Sarnoff|(?<!Virgin Islands )Daily\s*(Mail|News|Telegraph)|(David\s*)?Pecker|Ed\s*Krassenstein|(Emily )?Michot|(George\s*)?Stephanopoulus|Globe\s*and\s*Mail|Graydon(\s*Carter)?|Huffington|Ingram, David|(James\s*)?Patterson|Jonathan\s*Karl|(Katie\s*)?Couric|(Michele\s*)?Dargan|(National\s*)?Enquirer|N(ew\s*)?Y(ork\s*)?T(imes)?|New\s*Yorker|NYer|PERVERSION\s*OF\s*JUSTICE|Politico|(Sean\s*)?Hannity|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|Viceland|Vick[iy]\s*Ward|WaPo|WGBH|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
         emailers = {
             EDWARD_EPSTEIN: 'no relation to Jeffrey',
             'James Hill': 'ABC',
