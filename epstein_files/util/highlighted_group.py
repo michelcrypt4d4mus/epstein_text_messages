@@ -215,7 +215,7 @@ HIGHLIGHTED_GROUPS = [
         label='famous_lawyer',
         info='lawyer',
         style='medium_purple3',
-        pattern=r'(David\s*)?Boies|dersh|Gloria\s*Allred|(Mi(chael|ke)\s*)?Avenatti',
+        pattern=r'(David\s*)?Boies|dersh|(Gloria\s*)?Allred|(Mi(chael|ke)\s*)?Avenatti',
         emailers = {
             ALAN_DERSHOWITZ: None,
             KEN_STARR: 'head of the Monica Lewinsky investigation against Bill Clinton',
@@ -287,7 +287,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='journalist',
         style='bright_yellow',
-        pattern=r'ABC|Alex Yablon|(Andrew\s*)?Marra|Arianna( Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie rose|CNBC|CNN(politics?)?|Conchita|Sarnoff|Daily\s*(Mail|News|Telegraph)|(David\s*)?Pecker|(Emily )?Michot|(George\s*)?Stephanopoulus|Globe\s*and\s*Mail|Graydon(\s*Carter)?|(Sean\s*)?Hannity|Huffington|Ingram, David|Jonathan Karl|(Katie )?Couric|(Michele\s*)?Dargan|NYT(imes)?|Politico|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|Viceland|Vick[iy] Ward|WaPo|WGBH|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
+        pattern=r'ABC|Alex Yablon|(Andrew\s*)?Marra|Arianna( Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie rose|CNBC|CNN(politics?)?|Conchita|Sarnoff|Daily\s*(Mail|News|Telegraph)|(David\s*)?Pecker|(Emily )?Michot|(George\s*)?Stephanopoulus|Globe\s*and\s*Mail|Graydon(\s*Carter)?|(Sean\s*)?Hannity|Huffington|Ingram, David|Jonathan Karl|(Katie )?Couric|(Michele\s*)?Dargan|(National\s*)?Enquirer|N(ew\s*)?Y(ork\s*)?T(imes)?|Politico|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|Viceland|Vick[iy] Ward|WaPo|WGBH|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
         emailers = {
             EDWARD_EPSTEIN: 'no relation to Jeffrey',
             'James Hill': 'ABC',
