@@ -776,12 +776,13 @@ GIUFFRE_V_DERSHOWITZ = f"Virginia Giuffre v. {ALAN_DERSHOWITZ}"
 GIUFFRE_V_MAXWELL = f"Virginia Giuffre v. {GHISLAINE_MAXWELL}"
 GOLDMAN_REPORT = 'Goldman Sachs Investment Management Division report'
 HARVARD_POETRY = f'Harvard poetry stuff from {LISA_NEW}'
-INSIGHTS_POD = f"{ZUBAIR_KHAN} and Anya Rasulova's InsightsPod"
 HBS_APPLICATION_NERIO = f"Harvard Business School application letter from Nerio Alessandri (Founder and Chairman Technogym SPA Italy)"
+INSIGHTS_POD = f"{ZUBAIR_KHAN} and Anya Rasulova's InsightsPod"
 JANE_DOE_V_EPSTEIN_TRUMP = f"Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}"
 JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
 JP_MORGAN_EYE_ON_THE_MARKET = f"JP Morgan Eye On The Market report"
 KEN_STARR_LETTER = f"letter from {KEN_STARR} to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
+MERCURY_FILMS_PROFILES = f'Mercury Films partner profiles of Jennifer Baichwal, Nicholas de Pencier, Kermit Blackwood, Travis Rummel ca. 2010-02-01'
 MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
 NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight" by {EHUD_BARAK}?'
 OBAMA_JOKE = f'joke about Obama'
@@ -1208,8 +1209,8 @@ FILE_DESCRIPTIONS = {
     '026627': f"{INSIGHTS_POD} report on the presidential debate",
     '033478': f'meme of Kim Jong Un reading "Fire And Fury" by {MICHAEL_WOLFF}',
     '033177': f'meme of Trump with text "WOULD YOU TRUST THIS MAN WITH YOUR DAUGHTER?"',
-    '025205': f'Mercury Films partner profiles of Jennifer Baichwal, Nicholas de Pencier, Kermit Blackwood, Travis Rummel ca. 2010-02-01',
-    '025210': f'Mercury Films partner profiles of Jennifer Baichwal, Nicholas de Pencier, Kermit Blackwood, Travis Rummel ca. 2010-02-01',
+    '025205': MERCURY_FILMS_PROFILES,
+    '025210': MERCURY_FILMS_PROFILES,
     '030142': f"mostly empty file about JASTA (Justice Against Sponsors of Terrorism Act) w/r/t Saudi f. {KATHRYN_RUEMMLER} & {KEN_STARR} ca. 2016-09-01",
     '029564': f"{OBAMA_JOKE} ca. 2013-07-26",
     '029353': f"{OBAMA_JOKE} ca. 2013-07-26",
