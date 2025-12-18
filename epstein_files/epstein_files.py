@@ -27,8 +27,8 @@ from epstein_files.util.data import Timer, dict_sets_to_lists, sort_dict
 from epstein_files.util.env import args, logger, specified_names
 from epstein_files.util.file_helper import DOCS_DIR, FILENAME_LENGTH, PICKLED_PATH, file_size_str, move_json_file
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
-from epstein_files.util.rich import (DEFAULT_NAME_COLOR, NA_TXT, console, highlighter, link_text_obj, link_markup,
-     print_author_header, print_panel, vertically_pad)
+from epstein_files.util.rich import (DEFAULT_NAME_COLOR, NA_TXT, QUESTION_MARK_TXT, console, highlighter,
+     link_text_obj, link_markup, print_author_header, print_panel, vertically_pad)
 
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (0, 0, 0, 2)
@@ -355,7 +355,7 @@ class EpsteinFiles:
                 continue
 
             date_str = doc.date_str()
-            timestamp_txt = Text(date_str, style=TIMESTAMP_DIM) if date_str else NA_TXT
+            timestamp_txt = Text(date_str, style=TIMESTAMP_DIM) if date_str else QUESTION_MARK_TXT
             table.add_row(link, timestamp_txt, f"{doc.length:,}", preview_text)
 
         console.print(table)

@@ -31,6 +31,7 @@ TITLE_STYLE = 'black on bright_white bold'
 TITLE_WIDTH = 50
 NUM_COLOR_KEY_COLS = 4
 NA_TXT = Text(NA, style='dim')
+QUESTION_MARK_TXT = Text('???', style='dim')
 
 THEME_STYLES = {
     DEFAULT: 'wheat4',
