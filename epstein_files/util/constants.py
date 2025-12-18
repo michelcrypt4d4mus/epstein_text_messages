@@ -752,7 +752,7 @@ EMAILED_ARTICLE_IDS = [
 ]
 
 # Descriptions of non-email, non-text message files
-CVRA = "Crime Victims' Rights Act (CVRA)"
+CVRA = "Crime Victims' Rights Act [CVRA]"
 DEEP_THINKING_HINT = 'book: "Deep Thinking: Twenty-Five Ways of Looking at AI" by John Brockman'
 EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} and Paul Cassell v. {ALAN_DERSHOWITZ}"
 EPSTEIN_V_EDWARDS = f"Epstein v. Scott Rothstein and {BRAD_EDWARDS}"
@@ -845,7 +845,7 @@ FILE_DESCRIPTIONS = {
     '030187': f'{PAUL_KRASSNER} "Remembering Lenny Bruce While We\'re Thinking About Trump" (draft?)',
     '019088': f'{PAUL_KRASSNER} "Are Rape Jokes Funny? (draft?)',
     '031725': f"article about Gloria Allred and Trump allegations 2016-10-10",
-    '012704': f"article about {JANE_DOE_V_USA} and {CVRA}",
+    '012704': f"article about {JANE_DOE_V_USA} and {CVRA} 2011-04-21",
     '026584': f'article from 2009 about tax implications of disregarded entities',
     '032159': f"article about microfinance and cell phones in Zimbabwe, Strive Masiyiwa (Econet Wireless)",
     '031776': f"article about Michael Avenatti by Andrew Strickler",
@@ -938,9 +938,9 @@ FILE_DESCRIPTIONS = {
     '014084': f"court filing in Jane Doe #1 and Jane Doe #2 v. United States",
     '011908': f"court filing in {JEAN_LUC_BRUNEL} v. {JEFFREY_EPSTEIN} and Tyler McDonald d/b/a YI.org",
     '017935': f"court filing in Virginia Giuffre v. {ALAN_DERSHOWITZ}",
-    '014652': f"court filing in {GIUFFRE_V_MAXWELL}",
-    '011304': f"court filing in {GIUFFRE_V_MAXWELL}",
-    '011463': f"court filing in {GIUFFRE_V_MAXWELL}",
+    '014652': f"court filing complaint in {GIUFFRE_V_MAXWELL} 2015-04-22",
+    '011304': f"court filing transcript of hearing in {GIUFFRE_V_MAXWELL} 2017-03-17",
+    '011463': f"court filing in {GIUFFRE_V_MAXWELL} 2017-03-17",
     '014788': f"court filing in {GIUFFRE_V_MAXWELL} 2017-03-17",
     '014797': f"court filing in {GIUFFRE_V_MAXWELL} 2017-03-17",
     '016420': f"court filing in N.Y. v. {JEFFREY_EPSTEIN} 2019-01-11",
@@ -1135,7 +1135,7 @@ FILE_DESCRIPTIONS = {
     '030884': f"tweet by Ed Krassenstein",
     '023050': f"tweet by {ALAN_DERSHOWITZ} about Virginia Giuffre",
     '017787': f"tweet by {ALAN_DERSHOWITZ} about Virginia Giuffre",
-    '033433': f"tweet by {ALAN_DERSHOWITZ} about Virginia Giuffre / David Boies",
+    '033433': f"tweet by {ALAN_DERSHOWITZ} about Virginia Giuffre / David Boies 2019-03-02",
     '033432': f"tweet by {ALAN_DERSHOWITZ} about Virginia Giuffre / David Boies 2019-05-02",
     '031546': f"tweets by Donald Trump about Russian collusion 2018-01-06",
     '011170': f'tweets about #Brexit collected by InsightsPod 2016-06-23',
