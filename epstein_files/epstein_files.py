@@ -330,7 +330,6 @@ class EpsteinFiles:
         console.print(f"(Last deploy found 4668 messages in 77 conversations)", style='dim')
 
     def print_other_files_table(self) -> None:
-        self.other_files = sorted(self.other_files, key=lambda f: [f.timestamp or FALLBACK_TIMESTAMP, f.file_id])  # TODO: remove this, it's for pickle issues
         table = Table(header_style='bold', show_lines=True)
         table.add_column('File', justify='left', width=FILENAME_LENGTH)
         table.add_column('Date', justify='center')
