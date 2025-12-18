@@ -101,7 +101,7 @@ fi
 
 # Deploy all emails
 print_msg "Building all emails version of" "$INDEX_HTML_PATH"
-./generate_html.py --all-emails --build --output-emails --pickled --suppress-output
+./generate_html.py --all-emails --all-other-files --build --output-emails --pickled --suppress-output
 print_msg "Copying '$INDEX_HTML_PATH' to '$EMAILS_INDEX_HTML_PATH'"
 mv "$INDEX_HTML_PATH" "$EMAILS_INDEX_HTML_PATH"
 pushd "$EMAILS_DIR" > /dev/null

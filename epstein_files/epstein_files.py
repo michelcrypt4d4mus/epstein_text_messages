@@ -28,9 +28,10 @@ from epstein_files.util.env import args, logger, specified_names
 from epstein_files.util.file_helper import DOCS_DIR, FILENAME_LENGTH, PICKLED_PATH, file_size_str, move_json_file
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_COLOR, NA_TXT, QUESTION_MARK_TXT, console, highlighter,
-     link_text_obj, link_markup, print_author_header, print_panel, vertically_pad)
+     link_text_obj, link_markup, print_author_header, print_centered, print_other_site_link, print_panel, print_section_header, vertically_pad)
 
 DEVICE_SIGNATURE = 'Device Signature'
+FIRST_FEW_LINES = 'First Few Lines'
 DEVICE_SIGNATURE_PADDING = (0, 0, 0, 2)
 NOT_INCLUDED_EMAILERS = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
 
@@ -336,23 +337,25 @@ class EpsteinFiles:
         console.print(f"(Last deploy found 4668 messages in 77 conversations)", style='dim')
 
     def print_other_files_table(self) -> None:
+        interesting_files = [doc for doc in self.other_files if doc.is_interesting() or args.all_other_files]
+        header_pfx = '' if args.all_other_files else 'Selected '
+        print_section_header(f"{FIRST_FEW_LINES} of {len(interesting_files)} {header_pfx}Files That Are Neither Emails Nor Text Msgs")
+
+        if not args.all_other_files:
+            print_centered(f"(the other site is uncurated and has all {len(self.other_files)} unclassifiable files and all {len(self.emails):,} emails)", style='dim')
+            print_other_site_link(False)
+            console.line(2)
+
         table = Table(header_style='bold', show_lines=True)
         table.add_column('File', justify='center', width=FILENAME_LENGTH)
         table.add_column('Date', justify='center')
         table.add_column('Length', justify='center')
-        table.add_column('First Few Lines', justify='left', style='pale_turquoise4')
+        table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
 
-        for doc in self.other_files:
-            link_and_info = [doc.raw_document_link_txt()]
+        for doc in interesting_files:
+            link_and_info = [doc.raw_document_link_txt(), *doc.hints()]
             date_str = doc.date_str()
-            hints = doc.hints()
             row_style = ''
-
-            if hints:
-                # if doc.num_lines > 2:
-                #     link_and_info.append(Text(''))  # Add a newline
-
-                link_and_info.extend(hints)
 
             if doc.file_id in DUPLICATE_FILE_IDS:
                 preview_text = doc.duplicate_file_txt()
@@ -374,6 +377,8 @@ class EpsteinFiles:
             )
 
         console.print(table)
+        num_skipped = len(self.other_files) - len(interesting_files)
+        logger.warning(f"Skipped {num_skipped} uninteresting files...")
 
     def valid_emails(self) -> list[Email]:
         """Remove dupes, junk mail, and fwded articles."""

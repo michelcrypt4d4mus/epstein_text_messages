@@ -13,7 +13,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Alireza Ittihadieh": 8,
     AMANDA_ENS: 8,
     "Anas Alrasheed": 7,
-    "Andres Serrano": 3,
+    ANDRES_SERRANO: 3,
     "Anil Ambani": 2,
     "Ann Marie Villafana": 1,
     "Anne Boyles": 1,
