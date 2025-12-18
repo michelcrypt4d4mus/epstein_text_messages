@@ -783,7 +783,8 @@ EPSTEIN_V_ROTHSTEIN_AND_EDWARDS = f"Epstein v. Scott Rothstein, {BRAD_EDWARDS}, 
 FLIGHT_LOGS = 'flight logs'
 GIUFFRE_V_DERSHOWITZ = f"Virginia Giuffre v. {ALAN_DERSHOWITZ}"
 GIUFFRE_V_MAXWELL = f"Virginia Giuffre v. {GHISLAINE_MAXWELL}"
-GOLDMAN_REPORT = 'Goldman Sachs Investment Management Division report'
+GOLDMAN_SACHS = 'Goldman Sachs'
+GOLDMAN_REPORT = f'{GOLDMAN_SACHS} Investment Management Division report'
 HARVARD_POETRY = f'Harvard poetry stuff from {LISA_NEW}'
 HBS_APPLICATION_NERIO = f"Harvard Business School application letter from Nerio Alessandri (Founder and Chairman Technogym SPA Italy)"
 INSIGHTS_POD = f"{ZUBAIR_KHAN} and Anya Rasulova's InsightsPod"
@@ -794,6 +795,7 @@ JP_MORGAN = 'JP Morgan'
 JP_MORGAN_EYE_ON_THE_MARKET = f"{JP_MORGAN} Eye On The Market report"
 KEN_STARR_LETTER = f"letter from {KEN_STARR} to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
 MERCURY_FILMS_PROFILES = f'Mercury Films partner profiles of Jennifer Baichwal, Nicholas de Pencier, Kermit Blackwood, Travis Rummel ca. 2010-02-01'
+MIAMI_HERALD = 'Miami Herald'
 MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
 NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight" by {EHUD_BARAK}?'
 NYT_ARTICLE = 'NYT article about'
@@ -805,6 +807,7 @@ PALM_BEACH_DAILY_ARTICLE = 'Palm Beach Daily News article about'
 PALM_BEACH_POST_ARTICLE = 'Palm Beach Post article about'
 PALM_BEACH_TSV = 'TSV of Palm Beach property'
 PATTERSON_BOOK_SCANS = f'pages of "Filthy Rich: The Shocking True Story of Jeffrey Epstein" by James Patterson 2016-10-10'
+REPUTATION_MGMT = 'reputation management:'
 SAUDI_JASTA_LAWSUIT = f"JASTA lawsuit against Saudi Arabia by 9/11 victims"
 SHIMON_POST = 'The Shimon Post selection of articles about the mideast'
 SWEDISH_LIFE_SCIENCES_SUMMIT = f"{BARBRO_EHNBOM}'s Swedish American Life Science Summit"
@@ -1047,14 +1050,15 @@ FILE_DESCRIPTIONS = {
     '020662': f"letter from {ALAN_DERSHOWITZ}'s British lawyers Mishcon de Reya to Daily Mail threatening libel suiit",
     '031447': f"letter from {MARTIN_WEINBERG} to Melanie Ann Pustay and Sean O'Neill re: an Epstein FOIA request",
     '026793': f"letter from {STEVEN_HOFFENBERG}'s lawyers at Mintz Fraade offering to take over Epstein's business and resolve his legal issues 2018-03-23",
-    '017818': f"Miami Herald article about accusations against {ALAN_DERSHOWITZ} by Julie K. Brown 2018-12-27",
-    '017800': f'Miami Herald: "Perversion of Justice" by Julie K. Brown',
+    '017818': f"{MIAMI_HERALD} article about accusations against {ALAN_DERSHOWITZ} by Julie K. Brown 2018-12-27",
+    '017800': f'{MIAMI_HERALD} "Perversion of Justice" by Julie K. Brown',
     '016420': f"New York v. {JEFFREY_EPSTEIN} court filing 2019-01-11",
     '016197': f"response to Florida Bar complaint by {ALAN_DERSHOWITZ} about David Boies from Paul Cassell",
     '023361': f"{SAUDI_JASTA_LAWSUIT} legal text and court documents 2012-01-20",
     '017830': f"{SAUDI_JASTA_LAWSUIT} legal text and court documents",
     '028540': f"Supreme Court decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP",
-    '022277': f"text of America's National Labour Relationsh Board (NLRB) law",
+    '022277': f"text of U.S. National Labour Relationsh Board (NLRB) law",
+    '022494': f'text of U.S. Foreign Corrupt Practices Act (FCPA) DOJ Resource Guide ca. 2013-01',
     '010757': VIRGINIA_FILING,  # TODO: which case are these?
     '015529': VIRGINIA_FILING,  # TODO: which case are these?
     '014118': VIRGINIA_FILING,  # TODO: which case are these?
@@ -1110,10 +1114,9 @@ FILE_DESCRIPTIONS = {
     '022325': f'{DEUTSCHE_BANK_TAX_TOPICS} 2013-12-20',
     '022330': f'{DEUTSCHE_BANK_TAX_TOPICS} table of contents 2013-12-20',
     '019440': f'{DEUTSCHE_BANK_TAX_TOPICS} 2014-01-29',
-    '022494': f'US Foreign Corrupt Practices Act (FCPA) DOJ Resource Guide ca. 2013-01',
     '024202': f'Electron Capital Partners LLC "Global Utility White Paper" 2013-03-08',
     '022372': f'Ernst & Young 2016 election report',
-    '025663': f'Goldman Sachs report "An Overview of the Current State of Cryptocurrencies and Blockchain" 2017-11',
+    '025663': f'{GOLDMAN_SACHS} report "An Overview of the Current State of Cryptocurrencies and Blockchain" 2017-11',
     '014532': f'{GOLDMAN_REPORT} "Outlook - Half Full" 2017-01-01',
     '026909': f'{GOLDMAN_REPORT} "The Unsteady Undertow Commands the Seas (Temporarily)" 2018-10-14',
     '026944': f'{GOLDMAN_REPORT} "Risk of a US-Iran Military Conflict" 2019-05-23',
@@ -1191,10 +1194,11 @@ FILE_DESCRIPTIONS = {
     '016698': f"{PALM_BEACH_TSV} info (broken?)",
     '016696': f"{PALM_BEACH_TSV} info (water quality?",
     # reputation management
-    '026582': f'reputation management: Epstein internet search results at start of reputation repair campaign, maybe from {OSBORNE_LLP}',
-    '030573': f"reputation management: Epstein's unflattering Google search results, maybe screenshot by {AL_SECKEL}",
-    '030426': f'reputation management: {OSBORNE_LLP} reputation management proposal (cites Michael Milken) 2011-06-14',
-    '029350': f"reputation management: Microsoft Bing search results for Epstein with sex offender at top, maybe from {AL_SECKEL}",
+    '026582': f"{REPUTATION_MGMT} Epstein's internet search results at start of reputation repair campaign, maybe from {OSBORNE_LLP}",
+    '030573': f"{REPUTATION_MGMT} Epstein's unflattering Google search results, maybe screenshot by {AL_SECKEL}",
+    '029350': f"{REPUTATION_MGMT} Microsoft Bing search results for Epstein with sex offender at top, maybe from {AL_SECKEL}",
+    '030426': f'{REPUTATION_MGMT} {OSBORNE_LLP} reputation repair proposal (cites Michael Milken) 2011-06-14',
+    '030875': f"{REPUTATION_MGMT} screenshot of Epstein's Wikipedia page",
     # misc
     '031743': f'a few pages describing the internet as a "New Nation State" (Network State?)',
     '018703': f"Andres Serrano artists statement about Trump objects",
@@ -1255,7 +1259,6 @@ FILE_DESCRIPTIONS = {
     '029328': f"Rafanelli Events promotional deck",
     '029155': f'response sent to the Gruterites ({GORDON_GETTY} fans) by {ROBERT_TRIVERS} ca. 2018-03-19',
     '023666': f"{ROBERT_LAWRENCE_KUHN} sizzle reel / television appearances",
-    '030875': f"screenshot of Epstein's Wikipedia page",
     '022213': f"screenshot of Facebook group called 'Shit Pilots Say' disparaging a 'global girl'",
     '033434': f"screenshot of iPhone chat labeled 'Edwards' at the top",
     '029355': f'screenshot of two pages of a book in which {LARRY_SUMMERS} is mentioned',
@@ -1298,6 +1301,8 @@ UNINTERESTING_PREFIXES = [
     ROBERT_LAWRENCE_KUHN,
     ROBERT_TRIVERS,
     STACEY_PLASKETT,
+    'text of U.S.',  # laws
+    'tweet',
     THE_REAL_DEAL_ARTICLE,
     TRUMP_DISCLOSURES,
 ]
