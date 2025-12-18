@@ -993,6 +993,7 @@ FILE_DESCRIPTIONS = {
     '016506': f"{VI_DAILY_NEWS_ARTICLE} 2019-02-28",
     '019212': f'WaPo and Times Tribune articles about Bannon, Trump, and healthcare execs',
     '033379': f'WaPo "How Washington Pivoted From Finger-Wagging to Appeasement" about Viktor Orban 2018-05-25',
+    '031415': f'WaPo "DOJ discipline office with limited reach to probe handling of controversial sex abuse case" 2019-02-06',
     '031396': f'WaPo "DOJ discipline office with limited reach to probe handling of controversial sex abuse case" 2019-02-06',
     '019206': f"WSJ article about Edward Snowden by {EDWARD_EPSTEIN} 2016-12-30",
     # court docs
