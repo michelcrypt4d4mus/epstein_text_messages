@@ -28,7 +28,7 @@ from epstein_files.util.env import args, logger, specified_names
 from epstein_files.util.file_helper import DOCS_DIR, FILENAME_LENGTH, PICKLED_PATH, file_size_str, move_json_file
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_COLOR, NA_TXT, QUESTION_MARK_TXT, console, highlighter,
-     link_text_obj, link_markup, print_author_header, print_panel, print_section_header, vertically_pad)
+     link_text_obj, link_markup, print_author_header, print_centered, print_other_site_link, print_panel, print_section_header, vertically_pad)
 
 DEVICE_SIGNATURE = 'Device Signature'
 FIRST_FEW_LINES = 'First Few Lines'
@@ -338,8 +338,13 @@ class EpsteinFiles:
 
     def print_other_files_table(self) -> None:
         interesting_files = [doc for doc in self.other_files if doc.is_interesting() or args.all_other_files]
-        header_pfx = 'Selected ' if not args.all_other_files else ''
+        header_pfx = '' if args.all_other_files else 'Selected '
         print_section_header(f"{FIRST_FEW_LINES} of {len(interesting_files)} {header_pfx}Files That Are Neither Emails Nor Text Msgs")
+
+        if not args.all_other_files:
+            print_centered('(the other site has all the unclassifiable file in addition to all the emails)', style='dim')
+            print_other_site_link(False)
+            console.line(2)
 
         table = Table(header_style='bold', show_lines=True)
         table.add_column('File', justify='center', width=FILENAME_LENGTH)

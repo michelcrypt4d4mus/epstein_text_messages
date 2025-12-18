@@ -765,7 +765,7 @@ EMAILED_ARTICLE_IDS = [
 # Descriptions of non-email, non-text message files
 BOFA_MERRILL = 'BofA / Merrill Lynch'
 CHALLENGES_OF_AI = f'ASU Origins Project ({LAWRENCE_KRAUSS}) report "Challenges of AI: Envisioning and Addressing Adverse Outcomes"'
-CHINA_DAILY_ARTICLE = "China Daily article about"
+CHINA_DAILY = "China Daily article about"
 CNN = 'CNN'
 CVRA = "Crime Victims' Rights Act [CVRA]"
 DAILY_MAIL_ARTICLE = "Daily Mail article about"
@@ -817,6 +817,7 @@ TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Gov
 UBS_CIO_REPORT = 'UBS CIO Monthly Extended report'
 VI_DAILY_NEWS_ARTICLE = 'article in Virgin Islands Daily News'
 VIRGINIA_FILING = f"court filings from Virginia Giuffre's lawsuit against Epstein (and {ALAN_DERSHOWITZ}?)"
+WAPO = 'WaPo'
 WEINBERG_ABC_LETTER = f"letter from {MARTIN_WEINBERG} to ABC / Good Morning America threatening libel lawsuit"
 
 FILE_DESCRIPTIONS = {
@@ -911,10 +912,10 @@ FILE_DESCRIPTIONS = {
     '026543': f"Bloomberg BNA article about taxes",
     '014865': f"Boston Globe article about {ALAN_DERSHOWITZ}",
     '033231': f"Business Standard article about Trump's visit with India's Modi",
-    '023572': f"{CHINA_DAILY_ARTICLE} China's Belt & Road Initiative by {ROBERT_LAWRENCE_KUHN}",
-    '023571': f'{CHINA_DAILY_ARTICLE} terrorism, Macau, trade initiatives 2016-09-18',
-    '023570': f'{CHINA_DAILY_ARTICLE} Belt & Road in Central/South America, Xi philosophy 2017-05-14',
-    '025115': f'{CHINA_DAILY_ARTICLE} China and the US working together 2017-05-14',
+    '023572': f"{CHINA_DAILY} China's Belt & Road Initiative by {ROBERT_LAWRENCE_KUHN}",
+    '023571': f'{CHINA_DAILY} terrorism, Macau, trade initiatives 2016-09-18',
+    '023570': f'{CHINA_DAILY} Belt & Road in Central/South America, Xi philosophy 2017-05-14',
+    '025115': f'{CHINA_DAILY} China and the US working together 2017-05-14',
     '026877': f'{CNN} "New Tariffs - Trade War" by {ROBERT_LAWRENCE_KUHN}',
     '026868': f'{CNN} "Quest Means Business New China Tariffs — Trade War" by {ROBERT_LAWRENCE_KUHN} 2018-09-18',
     '023707': f'{CNN} "Quest Means Business U.S. and China Agree to Pause Trade War" by {ROBERT_LAWRENCE_KUHN} 2018-12-03',
@@ -991,10 +992,10 @@ FILE_DESCRIPTIONS = {
     '023046': f"{VI_DAILY_NEWS_ARTICLE} 2019-02-27",
     '031170': f"{VI_DAILY_NEWS_ARTICLE} 2019-03-06",
     '016506': f"{VI_DAILY_NEWS_ARTICLE} 2019-02-28",
-    '019212': f'WaPo and Times Tribune articles about Bannon, Trump, and healthcare execs',
-    '033379': f'WaPo "How Washington Pivoted From Finger-Wagging to Appeasement" about Viktor Orban 2018-05-25',
-    '031415': f'WaPo "DOJ discipline office with limited reach to probe handling of controversial sex abuse case" 2019-02-06',
-    '031396': f'WaPo "DOJ discipline office with limited reach to probe handling of controversial sex abuse case" 2019-02-06',
+    '019212': f'{WAPO} and Times Tribune articles about Bannon, Trump, and healthcare execs',
+    '033379': f'{WAPO} "How Washington Pivoted From Finger-Wagging to Appeasement" about Viktor Orban 2018-05-25',
+    '031415': f'{WAPO} "DOJ discipline office with limited reach to probe handling of controversial sex abuse case" 2019-02-06',
+    '031396': f'{WAPO} "DOJ discipline office with limited reach to probe handling of controversial sex abuse case" 2019-02-06',
     '019206': f"WSJ article about Edward Snowden by {EDWARD_EPSTEIN} 2016-12-30",
     # court docs
     '017767': f"court exhibit of article about {ALAN_DERSHOWITZ} working with {JEFFREY_EPSTEIN}",
@@ -1228,6 +1229,10 @@ FILE_DESCRIPTIONS = {
     '026521': f"game theory paper by {MARTIN_NOWAK}, Erez Yoeli, and Moshe Hoffman",
     '032735': f"{GORDON_GETTY} on Trump ca. 2018-03-20",  # Dated based on concurrent emails from Getty
     '019396': f'Harvard Economics 1545 Professor Kenneth Rogoff syllabus',
+    '023416': HARVARD_POETRY,
+    '023435': HARVARD_POETRY,
+    '023450': HARVARD_POETRY,
+    '023452': HARVARD_POETRY,
     '029517': HARVARD_POETRY,
     '029543': HARVARD_POETRY,
     '029589': HARVARD_POETRY,
@@ -1283,28 +1288,33 @@ FILE_DESCRIPTIONS = {
 
 UNINTERESTING_PREFIXES = [
     'article about',
+    'BBC',
+    'Bloomberg',
     'book:',
     'Brockman',
     'BofA',
     BOFA_MERRILL,
+    'Boston Globe',
     CHALLENGES_OF_AI,
+    CHINA_DAILY,
     CNN,
     CVRA,
     DAILY_MAIL_ARTICLE,
     DAILY_TELEGRAPH_ARTICLE,
-    DAVID_SCHOEN_CVRA_LEXIS_SEARCH,
+    DAVID_SCHOEN_CVRA_LEXIS_SEARCH[0:-12],  # Because date at end :(
     DEEP_THINKING_HINT,
     DERSH_GIUFFRE_TWEET,
     DEUTSCHE_BANK_TAX_TOPICS,
     'draft of an article',
-    FLIGHT_LOGS,
     'fragment',
     GOLDMAN_REPORT,
     GORDON_GETTY,
     'Harvard',
     HARVARD_POETRY,
     'horrible OCR',
+    'Inference',
     'Invesco',
+    'JASTA',
     JOHN_BOLTON_PRESS_CLIPPING,
     JP_MORGAN,
     'LA Times',
@@ -1321,6 +1331,7 @@ UNINTERESTING_PREFIXES = [
     PALM_BEACH_POST_ARTICLE,
     PALM_BEACH_TSV,
     'Palm Beach Water Committee',
+    PATTERSON_BOOK_SCANS,
     PAUL_KRASSNER,
     PEGGY_SIEGAL,
     REDACTED,
@@ -1338,5 +1349,6 @@ UNINTERESTING_PREFIXES = [
     UBS_CIO_REPORT,
     'Vanity Fair',
     VI_DAILY_NEWS_ARTICLE,
-    'WaPo',
+    'Virgin Islands',
+    WAPO,
 ]
