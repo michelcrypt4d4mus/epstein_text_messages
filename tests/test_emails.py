@@ -71,7 +71,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Heather Mann": 2,
     "Henry Holt": 1,
     "How To Academy": 3,
-    "Ian Osborne": 2,
+    IAN_OSBORNE: 2,
     "Intelligence Squared": 4,
     JABOR_Y: 3,
     "Jack Goldberger": 4,
