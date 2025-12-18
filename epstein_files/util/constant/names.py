@@ -64,6 +64,7 @@ GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
 GLENN_DUBIN = 'Glenn Dubin'
 GORDON_GETTY = 'Gordon Getty'
 GWENDOLYN_BECK = 'Gwendolyn Beck'         # https://www.lbc.co.uk/article/who-gwendolyn-beck-epstein-andrew-5HjdN66_2/
+IAN_OSBORNE = 'Ian Osborne'
 IVANKA = 'Ivanka'
 JABOR_Y = 'Jabor Y'                       # Qatari
 JACK_GOLDBERGER = 'Jack Goldberger'
@@ -171,6 +172,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Faith', 'Fred', 'Frost', 'Fuller',
     'George',
     'Heather', 'Hill',
+    'Ian',
     'Jack', 'James', 'Jay', 'Jean', 'Jeff', 'jeffrey', 'Jeremy', 'jessica', 'John', 'Jon', 'Jonathan', 'Joseph', 'Jr',
     'Kahn', 'Katherine', 'Ken',
     'Leon', 'Lesley', 'Linda', 'Link', 'Lisa',
