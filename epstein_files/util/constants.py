@@ -312,6 +312,7 @@ KNOWN_EMAIL_AUTHORS = {
     '031442': CHRISTINA_GALBRAITH,
     '019446': CHRISTINA_GALBRAITH,  # Not 100% but from "Christina media/PR" which fits
     '026625': DARREN_INDYKE,
+    '026624': DARREN_INDYKE,        # weird format (signature on top)
     '026290': DAVID_SCHOEN,         # Signature
     '031339': DAVID_SCHOEN,         # Signature
     '031492': DAVID_SCHOEN,         # Signature
@@ -489,6 +490,7 @@ KNOWN_EMAIL_RECIPIENTS = {
     '025233': JEFFREY_EPSTEIN,        # Bad OCR
     '032208': JEFFREY_EPSTEIN,        # More of a text convo with Lawrence Krauss?
     '026014': JEFFREY_EPSTEIN,        # truncated to only show the quoted reply
+    '026624': JEFFREY_EPSTEIN,        # weird format (signature on top)
     '029324': [JEFFREY_EPSTEIN, 'Jojo Fontanilla', 'Lyn Fontanilla'],
     '033575': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN],
     '023067': [JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN, TONJA_HADDAD_COLEMAN],      # Bad OCR
@@ -562,6 +564,7 @@ EMAIL_TIMESTAMPS = {
     '028851': datetime(2014, 4, 27, 6, 00),
     '028849': datetime(2014, 4, 27, 6, 30),
     '032283': datetime(2016, 9, 14, 8, 4),
+    '026624': datetime(2016, 10, 1, 16, 40),
     '026014': datetime(2016, 11, 4, 17, 46),
     '032475': datetime(2017, 2, 15, 13, 31, 25),
     '018726': datetime(2018, 6, 8, 8, 36),
@@ -716,7 +719,7 @@ DUPLICATE_FILE_IDS = {
     '031129': 'the same as 029977',
     '033561': 'the same as 033157',
     '033589': 'the same as 032250',
-    '031708': 'the same as 026624',
+    '026624': 'the same as 031708',
     '030575': 'a redacted version of 030475',
     '023291': 'the same as (?) 023208',
     # non-email documents
@@ -728,6 +731,7 @@ DUPLICATE_FILE_IDS = {
     '014697': 'the same as 011284',  # Jeremy Gillula name removed
     '016616': 'the same as 016554',
     '016574': 'the same as 016554',
+    '023121': 'earlier draft of 023123',
 }
 
 EMAILED_ARTICLE_IDS = [
@@ -753,7 +757,7 @@ EMAILED_ARTICLE_IDS = [
 
 # Descriptions of non-email, non-text message files
 CVRA = "Crime Victims' Rights Act [CVRA]"
-DEEP_THINKING_HINT = 'book: "Deep Thinking: Twenty-Five Ways of Looking at AI" by John Brockman'
+DEEP_THINKING_HINT = 'book: "Deep Thinking: Twenty-Five Ways of Looking at AI" by John Brockman 2019-02-19'
 EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} and Paul Cassell v. {ALAN_DERSHOWITZ}"
 EPSTEIN_V_EDWARDS = f"Epstein v. Scott Rothstein and {BRAD_EDWARDS}"
 GIUFFRE_V_MAXWELL = f"Virginia Giuffre v. {GHISLAINE_MAXWELL}"
@@ -764,6 +768,7 @@ JP_MORGAN_EYE_ON_THE_MARKET = f"JP Morgan Eye On The Market report"
 KEN_STARR_LETTER = f"letter from {KEN_STARR} to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
 MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
 NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight" by {EHUD_BARAK}?'
+OBAMA_JOKE = f'joke about Obama'
 PATTERSON_BOOK_SCANS = f'pages of "Filthy Rich: The Shocking True Story of Jeffrey Epstein" by James Patterson 2016-10-10'
 SHIMON_POST = 'The Shimon Post selection of articles about the mideast '
 VI_DAILY_NEWS_ARTICLE = 'article in Virgin Islands Daily News'
@@ -794,7 +799,7 @@ FILE_DESCRIPTIONS = {
     '023731': f'book: "Teaching Minds How Cognitive Science Can Save Our Schools" by {ROGER_SCHANK}',
     '013796': f'book: "The 4-Hour Workweek" by Tim Ferriss',
     '021145': f'book: "The Billionaire\'s Playboy Club" by Virginia Giuffre (draft?)',
-    '013501': f'book: "The Nearness Of Grace: A Personal Science Of Spiritual Transformation" by Arnold J. Mandell',
+    '013501': f'book: "The Nearness Of Grace: A Personal Science Of Spiritual Transformation" by Arnold J. Mandell 2005-01-01 (ish)',
     '018438': f'book: "The S&M Feminist" by Clarisse Thorn',
     '018232': f'book: "The Seventh Sense: Power, Fortune & Survival in the Age of Networks" by Joshua Cooper Ramo',
     '020153': f'book: "The Snowden Affair: A Spy Story In Six Parts" by {EDWARD_EPSTEIN}',
@@ -811,7 +816,7 @@ FILE_DESCRIPTIONS = {
     '023627': MICHAEL_WOLFF_ARTICLE_HINT,
     '024229': MICHAEL_WOLFF_ARTICLE_HINT,
     '012740': f"{PEGGY_SIEGAL} article about Venice Film Festival 2011-09-06",
-    '013442': f"{PEGGY_SIEGAL} draft about Oscars in 2011 (?)",
+    '013442': f"{PEGGY_SIEGAL} draft about Oscars around 2011-02-27",
     '012700': f"{PEGGY_SIEGAL} film events diary 2011-02-27",
     '012690': f"{PEGGY_SIEGAL} film events diary 2011-02-27, draft of 012700",
     '013450': f"{PEGGY_SIEGAL} Oscar Diary April 2011-02-27 (Avenue Magazine)",
@@ -843,7 +848,7 @@ FILE_DESCRIPTIONS = {
     '023638': f'{PAUL_KRASSNER} magazine interview',
     '024374': f'{PAUL_KRASSNER} "Remembering Cavalier Magazine"',
     '030187': f'{PAUL_KRASSNER} "Remembering Lenny Bruce While We\'re Thinking About Trump" (draft?)',
-    '019088': f'{PAUL_KRASSNER} "Are Rape Jokes Funny? (draft?)',
+    '019088': f'{PAUL_KRASSNER} "Are Rape Jokes Funny? (draft) 2012-07-28',
     '031725': f"article about Gloria Allred and Trump allegations 2016-10-10",
     '012704': f"article about {JANE_DOE_V_USA} and {CVRA} 2011-04-21",
     '026584': f'article from 2009 about tax implications of disregarded entities',
@@ -900,6 +905,7 @@ FILE_DESCRIPTIONS = {
     '016996': f'SciencExpress article "Quantitative Analysis of Culture Using Millions of Digitized Books" by Jean-Baptiste Michel',
     '025104': f"SCMP article about China and globalisation",
     '030829': f'South Florida Sun Sentinel article about {BRAD_EDWARDS} and {JEFFREY_EPSTEIN}',
+    '026520': f'Spanish language article about {SULTAN_BIN_SULAYEM} 2013-09-27',
     '021092': f'Tatler page about {GHISLAINE_MAXWELL} shredding documents 2019-08-15',
     '013437': f"The Telegraph article about Epstein diary 2011-03-05",
     '031736': f'translation of Arabic article by Abdulnaser Salamah "Trump; Prince of Believers (Caliph)!" 2017-05-13',
@@ -934,7 +940,7 @@ FILE_DESCRIPTIONS = {
     '017488': f"court filing in {EPSTEIN_V_EDWARDS}",
     '012103': f"court filing in {EPSTEIN_V_EDWARDS} 2011-05-17",
     '032321': f"court filing in Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}",
-    '013489': f'court filing in Jane Doe v. Epstein filed by {BRAD_EDWARDS}',
+    '013489': f'court filing in Jane Doe v. Epstein filed by {BRAD_EDWARDS} 2010-07-20',
     '014084': f"court filing in Jane Doe #1 and Jane Doe #2 v. United States",
     '011908': f"court filing in {JEAN_LUC_BRUNEL} v. {JEFFREY_EPSTEIN} and Tyler McDonald d/b/a YI.org",
     '017935': f"court filing in Virginia Giuffre v. {ALAN_DERSHOWITZ}",
@@ -946,7 +952,7 @@ FILE_DESCRIPTIONS = {
     '016420': f"court filing in N.Y. v. {JEFFREY_EPSTEIN} 2019-01-11",
     '017767': f"court exhibit of article about {ALAN_DERSHOWITZ} working with {JEFFREY_EPSTEIN}",
     '017796': f"court exhibit of article about {ALAN_DERSHOWITZ}",
-    '017818': f"court exhibit of article about {ALAN_DERSHOWITZ} and Julie K. Brown (Miami Herald)",
+    '017818': f"court exhibit of article about {ALAN_DERSHOWITZ} by Julie K. Brown (Miami Herald) 2018-12-27",
     '017800': f'court exhibit of "Perversion of Justice" by Julie K. Brown (Miami Herald)',
     '013463': f'deposition of Scott Rothstein in Jane Doe v. Epstein filed by {BRAD_EDWARDS} 2010-03-23',
     '018872': f"FBI seized property inventory (redacted)",
@@ -963,10 +969,10 @@ FILE_DESCRIPTIONS = {
     '012707': f"letter from {JACK_SCAROLA} about {EPSTEIN_V_EDWARDS} with Master Contact List",
     '026793': f"letter from {STEVEN_HOFFENBERG}'s lawyer Alan P. Fraade offering to take over Epstein's business and resolve his legal issues",
     '020662': f"letter to Daily Mail threatening libel lawsuit from {ALAN_DERSHOWITZ}'s British lawyers Mishcon de Reya",
-    '017603': f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN}",
-    '017635': f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN}",
-    '016509': f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN}",
-    '017714': f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN}",
+    '017603': f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN} 2019-02-28",
+    '017635': f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN} 2019-02-28",
+    '016509': f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN} 2019-02-28",
+    '017714': f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN} 2019-02-28",
     '013304': f"motion filed in response to Epstein's lawsuit against {BRAD_EDWARDS}",
     '022237': f"partial court filing involving {ALAN_DERSHOWITZ} and Virginia Giuffre with fact checking questions?",
     '016197': f"response to Florida Bar complaint by {ALAN_DERSHOWITZ} about David Boies from Paul Cassell",
@@ -978,11 +984,15 @@ FILE_DESCRIPTIONS = {
     '023069': f'BofA / Merrill Lynch 2016 Future of Financials Conference report',
     '014315': f'BofA / Merrill Lynch 2016 Future of Financials Conference report',
     '017526': f'Intellectual Jazz conference brochure',
+    '023120': f"{LAWRENCE_KRAUSS} 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more (old draft)",
+    '023121': f"{LAWRENCE_KRAUSS} 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more (old draft)",
+    '023123': f"{LAWRENCE_KRAUSS} 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more",
     '031359': f"Nobel Charitable Trust Earth Environment Convention about ESG investing",
     '031354': f'Nobel Charitable Trust "Thinking About the Environment and Technology" report 2011',
     '024185': f'schedule of 67th U.N. General Assembly w/"Presidents Private Dinner - Jeffrey Epstine (sic)" 2012-09-21',
     '024179': f'president and first lady schedule at 67th U.N. General Assembly 2012-09-21',
     '025797': f'someone\'s notes from Aspen Strategy Group 2013-05-29 (?)',
+    '019300': f'Women empowerment conference f. {KATHRYN_RUEMMLER} 2019-04-05',
     '017060': f'World Economic Forum (WEF) Annual Meeting 2011 List of Participants 2011-01-18',
     # press releases, reports, etc.
     '024631': f"Ackrell Capital Cannabis Investment Report 2018",
@@ -1040,7 +1050,7 @@ FILE_DESCRIPTIONS = {
     '025296': f'Laffer Associates report from 2016-07 predicting Trump win',
     '025551': f'Morgan Stanley report about alternative asset managers 2018-01-30',
     '026759': f'press release by Ritz-Carlton club about damage from Hurricane Irma 2017-09-13',
-    '033338': f"press release on June 7th, 2000 announcing Donald Trump & {NICHOLAS_RIBIS} ended their working relationship at Trump's casino",
+    '033338': f"press release announcing Donald Trump & {NICHOLAS_RIBIS} ended their working relationship at Trump's casino 2000-06-07",
     '012048': f'press release "Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm" and other articles',
     '020447': f'Promoting Constructive Vigilance: Report of the Working Group on Chinese Influence Activities in the U.S. (Hoover Group/Stanford 2018)',
     '025763': f'S&P Economic Research: "How Increasing Income Inequality Is Dampening U.S. Growth" 2014-08-05',
@@ -1059,9 +1069,9 @@ FILE_DESCRIPTIONS = {
     '028965': WEINBERG_ABC_LETTER,
     '022405': f"letter from {NOAM_CHOMSKY} attesting to Epstein's good character",
     '031670': f"letter from General Mike Flynn's lawyers to senators Mark Warner & Richard Burr about subpoena",
-    '019086': f"letter from David Blaine recommending visa approval for a Russian model 'Svet' (Svetlana Pozhidaeva?) naming Putin puppets",
-    '019474': f"letter from David Blaine recommending visa approval for a model 2015-05-29",
-    '019476': f"letter from David Blaine recommending visa approval for a model 2015-06-01",
+    '019086': f"letter of recommendation for visa for Russian model 'Svet' ({SVETLANA_POZHIDAEVA}?) by David Blaine, names Putin puppets",
+    '019474': f"letter of recommendation for visa for a model by David Blaine 2015-05-29",
+    '019476': f"letter of recommendation for visa for a model by David Blaine 2015-06-01",
     '026011': f"letter to Epstein about trading algorithm from Gennady Mashtalyar",
     '026134': f'letter to someone named George about investment opportunities in the Ukraine banking sector',
     # private placement memoranda
@@ -1075,16 +1085,16 @@ FILE_DESCRIPTIONS = {
     '016554': f"Palm Beach code enforcement board minutes 2008-07-17",
     '016574': f"Palm Beach code enforcement board minutes 2008-07-17",
     '016636': f"Palm Beach Water Committee Meeting on January 29, 2009",
-    '016696': f"Palm Beach water quality report",
-    '018727': f"property deal in Virgin Islands for a building that will be leased to the U.S. Govt (GSA)",
+    '018727': f"property deal in Virgin Islands for building intended to be leased to the U.S. govt GSA ca. 2014-06-01",
     '018743': f"property listing in Las Vegas",
     '027068': f"The Real Deal article by Keith Larsen 2018-10-11",
     '029520': f'The Real Deal article by Keith Larsen "Lost Paradise at the Palm House" 2019-06-17',
-    '016552': f"TSV of Palm Beach property information",
     '016599': f"TSV of Palm Beach property consumption (water?)",
     '016600': f"TSV of Palm Beach property consumption (water?)",
     '016601': f"TSV of Palm Beach property consumption (water?)",
     '016694': f"TSV of Palm Beach property consumption (water?)",
+    '016552': f"TSV of Palm Beach property info",
+    '016696': f"TSV of Palm Beach property info (water quality?",
     '016698': f"TSV of Palm Beach property info (broken?)",
     # misc
     '029102': HBS_APPLICATION_NERIO,
@@ -1101,6 +1111,8 @@ FILE_DESCRIPTIONS = {
     '024117': f"FAQ about anti-money laundering and terrorist financing law in the U.S.",
     '031743': f'a few pages describing the internet as a "New Nation State" (Network State?)',
     '022780': f'flight logs',
+    '022816': f'flight logs',
+    '022267': f'essay by {SVETLANA_POZHIDAEVA} about growing her WE (women\'s empowerment) lecture series',
     '019396': f'Harvard Economics 1545 Professor Kenneth Rogoff syllabus',
     '029517': HARVARD_POETRY,
     '029543': HARVARD_POETRY,
@@ -1108,11 +1120,11 @@ FILE_DESCRIPTIONS = {
     '029589': HARVARD_POETRY,
     '029603': HARVARD_POETRY,
     '033434': f"iMessage screenshot labeled 'Edwards' at the top",
-    '029564': f'joke about Obama',
-    '029353': f'joke about Obama',
-    '029352': f'joke about Obama',
-    '029351': f'joke about Obama',
-    '022445': f"Inference: International Review of Science Feedback & Comments November 2018",
+    '029564': OBAMA_JOKE,
+    '029353': OBAMA_JOKE,
+    '029352': OBAMA_JOKE,
+    '029351': OBAMA_JOKE,
+    '022445': f"Inference: International Review of Science Feedback & Comments 2018-11",
     '028815': f'InsightsPod business plan',
     '033478': f'meme showing Kim Jong Un reading "Fire And Fury" by {MICHAEL_WOLFF}',
     '025205': f'Mercury Films partner profiles of Jennifer Baichwal, Nicholas de Pencier, Kermit Blackwood, Travis Rummel',
@@ -1121,10 +1133,10 @@ FILE_DESCRIPTIONS = {
     '026851': f"Politifact lying politicians chart 2016-07-26",
     '022367': f"professional resumé of Jack J Grynberg 2014-07",
     '029302': f"professional resumé of Michael J. Boccio 2011-08 (roughly)",
+    '015671': f"professional resumé of Robin Solomon",
     '015672': f"professional resumé of Robin Solomon",
     '019448': f"proposal for Jacmel, Haiti business investment",
     '030142': f"mostly empty Saudi Arabian proposal for JASTA f. {KATHRYN_RUEMMLER} and {KEN_STARR}",
-    '029475': f'Virgin Islands Twin City Mobile Integrated Health Services (TCMIH) proposal (donation request?)',
     '029328': f"Rafanelli Events promotional deck",
     '023666': f"{ROBERT_LAWRENCE_KUHN} sizzle reel / television appearances",
     '022213': f'screenshot of Facebook discussion in Shit Pilots Say disparaging a "global girl"',
@@ -1140,5 +1152,7 @@ FILE_DESCRIPTIONS = {
     '031546': f"tweets by Donald Trump about Russian collusion 2018-01-06",
     '011170': f'tweets about #Brexit collected by InsightsPod 2016-06-23',
     '033236': f'tweets about Ivanka Trump in Arabic 2017-05-20',
+    '029475': f'Virgin Islands Twin City Mobile Integrated Health Services (TCMIH) proposal (donation request?)',
     '029448': f'weird short essay about Obama',
+    '032281': f"{ZUBAIR_KHAN} forecasting election for Trump 2016-10-25 (roughly)",
 }

@@ -6,7 +6,7 @@ from rich.highlighter import RegexHighlighter
 from rich.text import Text
 
 from epstein_files.util.constant.names import *
-from epstein_files.util.constant.strings import DEFAULT, OTHER_SITE_LINK_STYLE, PHONE_NUMBER_STYLE, REDACTED
+from epstein_files.util.constant.strings import DEFAULT, PHONE_NUMBER_STYLE, REDACTED, TIMESTAMP_STYLE
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
 from epstein_files.util.constants import EMAILER_ID_REGEXES, HEADER_ABBREVIATIONS, REPLY_REGEX, SENT_FROM_REGEX
 from epstein_files.util.env import args, logger
@@ -56,7 +56,7 @@ class HighlightedGroup:
         info_pieces = []
 
         if not self.has_no_category:
-            info_pieces.append(self.info or titleize(self.label))
+            info_pieces.append(self.info or titleize(self.label))  # TODO: just use .title()?
 
         if self.emailers.get(name) is not None:
             info_pieces.append(self.emailers[name])
@@ -412,10 +412,11 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='russia',
         style='red bold',
-        pattern=r'Chernobyl|Day\s+One\s+Ventures|(Dmitry\s)?(Kiselyov|Medvedev|Rybolo(o?l?ev|vlev))|Dmitry|FSB|GRU|KGB|Kislyak|Kremlin|Lavrov|Lukoil|Moscow|(Oleg )?Deripaska|Oleksandr Vilkul|Rosneft|(Vladimir )?Putin|Russian?|Sberbank|Vladimir( Yudashkin)?|Xitrans',
+        pattern=r'Chernobyl|Day\s+One\s+Ventures|(Dmitry\s)?(Kiselyov|(Lana\s*)?Pozhidaeva|Medvedev|Rybolo(o?l?ev|vlev))|Dmitry|FSB|GRU|KGB|Kislyak|Kremlin|Lavrov|Lukoil|Moscow|(Oleg )?Deripaska|Oleksandr Vilkul|Rosneft|(Vladimir )?Putin|Russian?|Sberbank|Vladimir( Yudashkin)?|Xitrans',
         emailers = {
             MASHA_DROKOVA: 'silicon valley VC',
             RENATA_BOLOTOVA: 'former aspiring model, now fund manager at New York State Insurance Fund',
+            SVETLANA_POZHIDAEVA: 'Epstein\'s Russian who was recommended for a visa by Sergei Belyakov (FSB) and David Blaine',
         }
     ),
     HighlightedGroup(
@@ -551,7 +552,7 @@ HIGHLIGHTED_GROUPS = [
     ),
     HighlightedGroup(
         label='timestamp_2',
-        style='dark_cyan',
+        style=TIMESTAMP_STYLE,
         pattern=r"\d{1,4}[-/]\d{1,2}[-/]\d{2,4} \d{1,2}:\d{2}:\d{2}( [AP]M)?",
         is_multiline=True,
     ),

@@ -89,18 +89,21 @@ class Document:
     def description(self) -> Text:
         """Mostly for logging."""
         txt = Text('').append(self.file_path.stem, style='magenta')
-        txt.append(f' {self._document_type()} ', style=self.document_type_style())
+        txt.append(f' {self.document_type()} ', style=self.document_type_style())
         txt.append(f"(num_lines=").append(f"{self.num_lines}", style='cyan')
         txt.append(", size=").append(file_size_str(self.file_path), style='aquamarine1')
-        return txt.append(')') if self._document_type() == OTHER_FILE_CLASS else txt
+        return txt.append(')') if self.document_type() == OTHER_FILE_CLASS else txt
 
     def description_panel(self, include_hints: bool = True) -> Panel:
         """Panelized description() with info_txt(), used in search results."""
         hints = [Text('', style='italic').append(h) for h in (self.hints() if include_hints else [])]
         return Panel(Group(*([self.description()] + hints)), border_style=self.document_type_style(), expand=False)
 
+    def document_type(self) -> str:
+        return str(type(self).__name__)
+
     def document_type_style(self) -> str:
-        return DOC_TYPE_STYLES[self._document_type()]
+        return DOC_TYPE_STYLES[self.document_type()]
 
     def duplicate_file_txt(self) -> Text:
         """If the file is a dupe (exists in DUPLICATE_FILE_IDS) make a nice message."""
@@ -130,7 +133,7 @@ class Document:
         hints = [file_info] if file_info else []
         hint_msg = FILE_DESCRIPTIONS.get(self.file_id)
 
-        if not (hint_msg or self._document_type() == EMAIL_CLASS) and VI_DAILY_NEWS_REGEX.search(self.text):
+        if not (hint_msg or self.document_type() == EMAIL_CLASS) and VI_DAILY_NEWS_REGEX.search(self.text):
             hint_msg = VI_DAILY_NEWS_ARTICLE
 
         if hint_msg:
@@ -210,9 +213,6 @@ class Document:
     def _border_style(self) -> str:
         """Should be implemented in subclasses."""
         return 'white'
-
-    def _document_type(self) -> str:
-        return str(type(self).__name__)
 
     def _extract_timestamp(self) -> datetime:
         raise NotImplementedError(f"Should be implemented in subclasses!")
@@ -298,7 +298,7 @@ class CommunicationDocument(Document):
     def description(self) -> Text:
         """One line summary mostly for logging."""
         txt = super().description()
-        txt.append(f", timestamp=").append(str(self.timestamp), style='dim dark_cyan')
+        txt.append(f", timestamp=").append(str(self.timestamp), style=TIMESTAMP_DIM)
         txt.append(f", author=").append(self.author_str, style=self.author_style)
         return txt.append(')')
 

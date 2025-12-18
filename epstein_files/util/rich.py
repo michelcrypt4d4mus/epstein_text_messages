@@ -119,7 +119,7 @@ def print_header(epstein_files: 'EpsteinFiles') -> None:
     _print_external_links()
     console.line()
     print_abbreviations_table()
-    epstein_files.print_files_overview()
+    epstein_files.print_files_summary()
     print_color_key()
     print_centered(f"if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {CRYPTADAMUS_TWITTER}", 'grey46')
     print_centered('note this site is based on the OCR text provided by Congress which is not always the greatest', 'grey23')
