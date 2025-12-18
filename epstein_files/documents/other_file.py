@@ -76,14 +76,13 @@ class OtherFile(Document):
             logger.error(f"Error while iterating with datefinder: {e}")
 
         if len(timestamps) == 0:
-            logger.warning(f"{self.file_id}: No timestamps found!")
-            self.log_top_lines(30, level=logging.WARNING)
+            self.log_top_lines(30, msg=f"{self.file_id}: No timestamps found!", level=logging.WARNING)
             return None
         elif len(timestamps) == 1:
             return timestamps[0]
         else:
             timestamps = sorted(timestamps, reverse=True)
-            sorted_date_strs = [str(dt) for dt in timestamps]
-            logger.warning(f"{self.file_id}: Found {len(timestamps)} timestamps\n     " + '\n     '.join(sorted_date_strs) + '\n')
-            self.log_top_lines(15, level=logging.WARNING)
+            timestamp_strs = [str(dt) for dt in timestamps]
+            msg = f"{self.file_id}: Found {len(timestamps)} timestamps\n     " + '\n     '.join(timestamp_strs) + '\n'
+            self.log_top_lines(15, msg=msg, level=logging.WARNING)
             return timestamps[0]  # Most recent timestamp in text should be closest
