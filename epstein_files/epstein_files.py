@@ -344,9 +344,11 @@ class EpsteinFiles:
 
         for doc in self.other_files:
             link = Group(*[doc.raw_document_link_txt(), *doc.hints()])
+            row_style = ''
 
             if doc.file_id in DUPLICATE_FILE_IDS:
                 preview_text = doc.duplicate_file_txt()
+                row_style = ' dim'
             else:
                 preview_text = doc.highlighted_preview_text()
 
@@ -356,7 +358,7 @@ class EpsteinFiles:
 
             date_str = doc.date_str()
             timestamp_txt = Text(date_str, style=TIMESTAMP_DIM) if date_str else QUESTION_MARK_TXT
-            table.add_row(link, timestamp_txt, f"{doc.length:,}", preview_text)
+            table.add_row(link, timestamp_txt, f"{doc.length:,}", preview_text, style=row_style)
 
         console.print(table)
 
