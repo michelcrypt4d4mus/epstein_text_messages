@@ -83,6 +83,6 @@ class OtherFile(Document):
         else:
             timestamps = sorted(timestamps, reverse=True)
             timestamp_strs = [str(dt) for dt in timestamps]
-            msg = f"{self.file_id}: Found {len(timestamps)} timestamps\n     " + '\n     '.join(timestamp_strs) + '\n'
+            msg = f"{self.file_id}: Found {len(timestamps)} timestamps\n     " + '\n     '.join(timestamp_strs)
             self.log_top_lines(15, msg=msg, level=logging.WARNING)
             return timestamps[0]  # Most recent timestamp in text should be closest
