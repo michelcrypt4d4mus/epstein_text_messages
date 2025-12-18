@@ -1094,7 +1094,7 @@ FILE_DESCRIPTIONS = {
     '025849': f'US Office of Government Information Services report: "Building a Bridge Between FOIA Requesters & Agencies"',
     '020824': f"USA Inc: A Basic Summary of America's Financial Statements compiled by Mary Meeker 2011-02-01",
     # emails
-    '031278': f"highly redacted, quoted replies are about James Patterson's Epstein book",
+    '031278': f"very redacted, quoted replies are from {STEVEN_HOFFENBERG} about James Patterson's book",  # Quoted replies are in 019109
     # letters
     '017789': f'{ALAN_DERSHOWITZ} letter to Harvard Crimson complaining he was defamed',
     '031670': f"letter from General Mike Flynn's lawyers to senators Mark Warner & Richard Burr about subpoena",
