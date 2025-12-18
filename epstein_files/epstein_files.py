@@ -341,8 +341,13 @@ class EpsteinFiles:
         table.add_column('Date', justify='center')
         table.add_column('Length', justify='center')
         table.add_column('First Few Lines', justify='left', style='pale_turquoise4')
+        num_skipped = 0
 
         for doc in self.other_files:
+            if not (doc.is_interesting() or args.all_other_files):
+                num_skipped += 1
+                continue
+
             link_and_info = [doc.raw_document_link_txt(), *doc.hints()]
             date_str = doc.date_str()
             row_style = ''
@@ -367,6 +372,7 @@ class EpsteinFiles:
             )
 
         console.print(table)
+        logger.warning(f"Skipped {num_skipped} uninteresting files...")
 
     def valid_emails(self) -> list[Email]:
         """Remove dupes, junk mail, and fwded articles."""
