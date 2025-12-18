@@ -155,7 +155,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     'Barry J. Cohen': re.compile(r'barry\s*((j.?|james)\s*)?cohen?', re.IGNORECASE),
     BENNET_MOSKOWITZ: re.compile(r'Moskowitz.*Bennet|Bennet.*Moskowitz', re.IGNORECASE),
     BORIS_NIKOLIC: re.compile(r'(boris )?nikolic?', re.IGNORECASE),
-    BRAD_EDWARDS:  re.compile(r'Brad(ley)?( J.?)?\s*Edwards', re.IGNORECASE),
+    BRAD_EDWARDS:  re.compile(r'Brad(ley)?(\s*J(.?|ames))?\s*Edwards', re.IGNORECASE),
     BRAD_KARP: re.compile(r'Brad (S.? )?Karp|Karp, Brad', re.IGNORECASE),
     'Dangene and Jennie Enterprise': re.compile(r'Dangene and Jennie Enterprise?', re.IGNORECASE),
     DANNY_FROST: re.compile(r'Frost, Danny|frostd@dany.nyc.gov', re.IGNORECASE),
@@ -762,9 +762,9 @@ HBS_APPLICATION_NERIO = f"Harvard Business School application letter from Nerio 
 JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
 JP_MORGAN_EYE_ON_THE_MARKET = f"JP Morgan Eye On The Market report"
 KEN_STARR_LETTER = f"letter from {KEN_STARR} to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
-MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014 / 2015"
+MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
 NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight" by {EHUD_BARAK}?'
-PATTERSON_BOOK_SCANS = f'scans of pages of "Filthy Rich: The Shocking True Story of Jeffrey Epstein" by James Patterson'
+PATTERSON_BOOK_SCANS = f'pages of "Filthy Rich: The Shocking True Story of Jeffrey Epstein" by James Patterson 2016-10-10'
 SHIMON_POST = 'The Shimon Post selection of articles about the mideast '
 VI_DAILY_NEWS_ARTICLE = 'article in Virgin Islands Daily News'
 VIRGINIA_FILING = f"court filings from Virginia Giuffre's lawsuit against Epstein (and {ALAN_DERSHOWITZ}?)"
@@ -856,7 +856,8 @@ FILE_DESCRIPTIONS = {
     '015501': f'article on "Game Theory and Morality" by Moshe Hoffman, Erez Yoeli, Carlos David Navarrete',
     '030013': f'Aviation International News article 2012-07',
     '013275': f"Bloomberg article on notable 2013 obituaries 2013-12-26",
-    '023571': f'China Daily front page (articles about terrorism, Macau, trade initiatives)',
+    '023571': f'China Daily front page articles about terrorism, Macau, trade initiatives 2016-09-18',
+    '023570': f'China Daily articles about Belt & Road in Central/South America, Xi philosophy 2017-05-14',
     '025115': f'China Daily opinion page 2017-05-14',
     '026868': f'CNN "Quest Means Business New Tariffs — Trade War" by {ROBERT_LAWRENCE_KUHN} 2018-09-18',
     '019468': f"Daily Mail article on Epstein and Clinton",
@@ -870,7 +871,7 @@ FILE_DESCRIPTIONS = {
     '026761': f'Forbes article "Swedish American Group Focuses On Cancer" about {BARBRO_EHNBOM}',
     '031716': f'Fortune Magazine article by {TOM_BARRACK} 2016-10-22',
     '019233': f'Freedom House: "Breaking Down Democracy: Goals, Strategies, and Methods of Modern Authoritarians" 2017-06',
-    '019444': f'Frontlines magazine article "Biologists Dig Deeper"',
+    '019444': f'Frontlines magazine article "Biologists Dig Deeper" 2008-01-01',
     '027051': f"German language article about Lifeball / AIDS Gala 2012",
     '021094': f"Globe and Mail article about Gerd Heindrich from 2007",
     '013268': f"JetGala article about airplane interior designer {ERIC_ROTH}",
@@ -883,7 +884,7 @@ FILE_DESCRIPTIONS = {
     '033181': f'NYT "Donald Trump Used Legally Dubious Method to Avoid Paying Taxes" 2016-10-31',
     '031972': f"NYT article about #MeToo allegations against {LAWRENCE_KRAUSS} 2018-03-07",
     '033479': f"NYT article about Rex Tillerson 2010-03-14",
-    '019439': f"NYT column by Maureen Dowd",
+    '019439': f"NYT column by Maureen Dowd 2013-08-17",
     '033365': f'NYT column by Kevin Rudd "Trump Hands China An Easy Win in the Trade War"',
     '021093': f"page of an article about Epstein and Maxwell",
     '013435': f"Palm Beach Daily News article about Epstein address book 2011-03-11",
@@ -898,11 +899,14 @@ FILE_DESCRIPTIONS = {
     '016996': f'SciencExpress article "Quantitative Analysis of Culture Using Millions of Digitized Books" by Jean-Baptiste Michel',
     '025104': f"SCMP article about China and globalisation",
     '030829': f'South Florida Sun Sentinel article about {BRAD_EDWARDS} and {JEFFREY_EPSTEIN}',
+    '021092': f'Tatler page about {GHISLAINE_MAXWELL} shredding documents 2019-08-15',
     '013437': f"The Telegraph article about Epstein diary 2011-03-05",
     '031736': f'translation of Arabic article by Abdulnaser Salamah "Trump; Prince of Believers (Caliph)!" 2017-05-13',
     '025094': f'translation of Spanish article about Cuba 2015-11-08',
     '017771': f'Vanity Fair article "The Talented Mr. Epstein" by Vicky Ward 2011-06-27',
     '031171': f"{VI_DAILY_NEWS_ARTICLE} 2019-02-06",
+    '023048': f"{VI_DAILY_NEWS_ARTICLE} 2019-02-27",
+    '023046': f"{VI_DAILY_NEWS_ARTICLE} 2019-02-27",
     '031170': f"{VI_DAILY_NEWS_ARTICLE} 2019-03-06",
     '016506': f"{VI_DAILY_NEWS_ARTICLE} 2019-02-28",
     '033379': f'WaPo "How Washington Pivoted From Finger-Wagging to Appeasement" about Viktor Orban 2018-05-25',
@@ -1121,10 +1125,11 @@ FILE_DESCRIPTIONS = {
     '029475': f'Virgin Islands Twin City Mobile Integrated Health Services (TCMIH) proposal (donation request?)',
     '029328': f"Rafanelli Events promotional deck",
     '023666': f"{ROBERT_LAWRENCE_KUHN} sizzle reel / television appearances",
+    '022213': f'screenshot of Facebook discussion in Shit Pilots Say disparaging a "global girl"',
     '029356': f'screenshot of quote in book about {LARRY_SUMMERS}',
     '029357': f"some text about Israel's challenges going into 2015",
     '022277': f"text of America's National Labour Relationsh Board (NLRB) law",
-    '023644': f"transcription of an interview with MBS from Saudi",
+    '023644': f"transcription of an interview with MBS from Saudi 2016-04-25",
     '030884': f"tweet by Ed Krassenstein",
     '023050': f"tweet by {ALAN_DERSHOWITZ} about Virginia Giuffre",
     '017787': f"tweet by {ALAN_DERSHOWITZ} about Virginia Giuffre",
