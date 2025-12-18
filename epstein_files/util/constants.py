@@ -1206,6 +1206,7 @@ FILE_DESCRIPTIONS = {
     '033478': f'meme of Kim Jong Un reading "Fire And Fury" by {MICHAEL_WOLFF}',
     '033177': f'meme of Trump with text "WOULD YOU TRUST THIS MAN WITH YOUR DAUGHTER?"',
     '025205': f'Mercury Films partner profiles of Jennifer Baichwal, Nicholas de Pencier, Kermit Blackwood, Travis Rummel ca. 2010-02-01',
+    '025210': f'Mercury Films partner profiles of Jennifer Baichwal, Nicholas de Pencier, Kermit Blackwood, Travis Rummel ca. 2010-02-01',
     '030142': f"mostly empty file about JASTA (Justice Against Sponsors of Terrorism Act) w/r/t Saudi f. {KATHRYN_RUEMMLER} & {KEN_STARR} ca. 2016-09-01",
     '029564': f"{OBAMA_JOKE} ca. 2013-07-26",
     '029353': f"{OBAMA_JOKE} ca. 2013-07-26",
