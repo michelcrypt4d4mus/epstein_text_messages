@@ -464,7 +464,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='virgin islands',
         style='sea_green1',
-        pattern=r'Bahamas|Cecile de Jongh|Dominican\s*Republic|(Great|Little)\s*St.?\s*James|Haiti(an)?|(Kenneth E\. )?Mapp|Palm\s*Beach|PBI|S(ain)?t.?\s*Thomas|USVI|VI|Virgin\s*Islands(\s*Daily\s*News)?',  # TODO: VI Daily News should be yellow but it's hard bc Daily News xists
+        pattern=r'Bahamas|Cecile de Jongh|Dominican\s*Republic|(Great|Little)\s*St.?\s*James|Haiti(an)?|(Kenneth E\. )?Mapp|Palm\s*Beach|PBI|S(ain)?t.?\s*Thomas|USVI|VI|(The\s*)?Virgin\s*Islands(\s*Daily\s*News)?',  # TODO: VI Daily News should be yellow but it's hard bc Daily News xists
         emailers = {
             STACEY_PLASKETT: 'non-voting member of Congress',
             KENNETH_E_MAPP: 'Governor',
