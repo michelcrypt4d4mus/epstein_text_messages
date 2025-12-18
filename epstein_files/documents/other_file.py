@@ -1,6 +1,6 @@
 import logging
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime
 
 import datefinder
@@ -11,7 +11,7 @@ from rich.text import Text
 from epstein_files.documents.document import PREVIEW_CHARS, WHITESPACE_REGEX, Document
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constants import DUPLICATE_FILE_IDS, FILE_DESCRIPTIONS
+from epstein_files.util.constants import FILE_DESCRIPTIONS
 from epstein_files.util.data import escape_single_quotes, extract_datetime, ordinal_str, remove_timezone
 from epstein_files.util.env import logger
 from epstein_files.util.rich import console, highlighter, logger
