@@ -158,8 +158,7 @@ class Document:
     def log_top_lines(self, n: int = 10, msg: str = '', level: int = logging.INFO) -> None:
         separator = '\n\n' if '\n' in msg else '. '
         msg = f"{msg + separator if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"
-        msg = f"{msg}:\n\n{self.top_lines(n)}"
-        logger.log(level, msg)
+        logger.log(level, f"{msg}:\n\n{self.top_lines(n)}\n")
 
     def raw_document_link_txt(self, style: str = '', include_alt_link: bool = False) -> Text:
         """Returns colored links to epsteinify and and epsteinweb in a Text object."""
