@@ -880,6 +880,7 @@ FILE_DESCRIPTIONS = {
     '013403': f"Lexis Nexis result from The Evening Standard about Bernie Madoff",
     '023102': f"Litigation Daily article about {REID_WEINGARTEN} 2015-09-04",
     '015462': f'magazine (?) issue: Nautilus Education',
+    '029416': f'National Enquirer FOIA filing',
     '029925': f"New Yorker article about the placebo effect by Michael Specter 2011-12-04",
     '033181': f'NYT "Donald Trump Used Legally Dubious Method to Avoid Paying Taxes" 2016-10-31',
     '031972': f"NYT article about #MeToo allegations against {LAWRENCE_KRAUSS} 2018-03-07",
