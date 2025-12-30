@@ -261,7 +261,7 @@ HIGHLIGHTED_GROUPS = [
         emailers = {
             LARRY_SUMMERS: 'board of Digital Currency Group (DCG), Harvard president, Obama economic advisor',
             'Leah Reis-Dennis': 'producer for Lisa New\'s Poetry in America',
-            LISA_NEW: 'professor of poetry',
+            LISA_NEW: 'professor of poetry AKA "Elisa New"',
             'Lisa Randall': 'theoretical physicist',
             MARTIN_NOWAK: 'professor of mathematics and biology',
         }
