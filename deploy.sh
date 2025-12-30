@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-#   * Use --pickled arg to use pickled data file
-#   * Set ONLY_TEXTS=true to skip build/deploy of full emails site.
+# Use --pickled arg to use pickled data file
+# Set ONLY_TEXTS=true to skip build/deploy of full emails site.
+
 source .env
 set -e
 
