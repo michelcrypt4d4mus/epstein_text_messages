@@ -24,7 +24,7 @@ epstein_files = EpsteinFiles.get_files(timer)
 email_subjects: set[str] = set()
 word_count = WordCount()
 
-#Remove dupes, junk mail, and fwded articles.
+# Remove dupes, junk mail, and fwded articles from emails
 emails = [
     e for e in epstein_files.emails
     if not (e.is_duplicate or e.is_junk_mail or e.file_id in EMAILED_ARTICLE_IDS) \
@@ -46,6 +46,7 @@ for email in emails:
         for word in line.split():
             word_count.count_word(word, SearchResult(email, [line]))
 
+# Add in iMessage conversation words
 imessage_logs = epstein_files.imessage_logs_for(specified_names) if specified_names else epstein_files.imessage_logs
 
 for imessage_log in imessage_logs:
