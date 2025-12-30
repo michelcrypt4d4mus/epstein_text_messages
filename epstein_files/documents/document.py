@@ -87,7 +87,7 @@ class Document:
         return date_str(self.timestamp)
 
     def description(self) -> Text:
-        """Mostly for logging."""
+        """Mostly for logging. Brackets are left open for subclasses to add stuff."""
         txt = Text('').append(self.file_path.stem, style='magenta')
         txt.append(f' {self.document_type()}', style=self.document_type_style())
 
@@ -97,12 +97,7 @@ class Document:
 
         txt.append(" [").append(key_value_txt('num_lines', Text(f"{self.num_lines}", style='cyan')))
         txt.append(', ').append(key_value_txt('size', Text(file_size_str(self.file_path), style='aquamarine1')))
-
-        # Leave brackets open for subclasses to add stuff:
-        if self.document_type() == OTHER_FILE_CLASS:
-            return txt.append(CLOSE_PROPERTIES_CHAR)
-        else:
-            return txt
+        return txt
 
     def description_panel(self, include_hints: bool = True) -> Panel:
         """Panelized description() with info_txt(), used in search results."""
