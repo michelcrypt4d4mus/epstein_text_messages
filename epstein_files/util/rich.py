@@ -36,7 +36,7 @@ NUM_COLOR_KEY_COLS = 4
 NA_TXT = Text(NA, style='dim')
 QUESTION_MARK_TXT = Text('???', style='dim')
 
-COLOR_KEYS = [
+HIGHLIGHTED_GROUP_COLOR_KEYS = [
     Text(highlight_group.label.replace('_', ' '), style=highlight_group.style)
     for highlight_group in sorted(HIGHLIGHTED_GROUPS, key=lambda hg: hg.label)
     if not highlight_group.is_multiline
@@ -47,9 +47,7 @@ THEME_STYLES = {
     TEXT_LINK: 'deep_sky_blue4 underline',
 }
 
-for highlight_group in HIGHLIGHTED_GROUPS:
-    THEME_STYLES[highlight_group.theme_style_name()] = highlight_group.style
-
+THEME_STYLES.update({hg.theme_style_name(): hg.style for hg in HIGHLIGHTED_GROUPS})
 highlighter = InterestingNamesHighlighter()
 
 # Instantiate console object
@@ -112,7 +110,7 @@ def print_centered_link(url: str, link_text: str, style: str | None = None) -> N
 
 def print_color_key(_key_type: Literal["Groups", "People"] = "Groups") -> None:
     color_table = Table(title=f'Rough Guide to Highlighted Colors', show_header=False)
-    num_colors = len(COLOR_KEYS)
+    num_colors = len(HIGHLIGHTED_GROUP_COLOR_KEYS)
     row_number = 0
 
     for i in range(0, NUM_COLOR_KEY_COLS):
@@ -120,7 +118,7 @@ def print_color_key(_key_type: Literal["Groups", "People"] = "Groups") -> None:
 
     while (row_number * NUM_COLOR_KEY_COLS) < num_colors:
         idx = row_number * NUM_COLOR_KEY_COLS
-        color_table.add_row(*COLOR_KEYS[idx:(idx + NUM_COLOR_KEY_COLS)])
+        color_table.add_row(*HIGHLIGHTED_GROUP_COLOR_KEYS[idx:(idx + NUM_COLOR_KEY_COLS)])
         row_number += 1
 
     print_centered(vertically_pad(color_table))
