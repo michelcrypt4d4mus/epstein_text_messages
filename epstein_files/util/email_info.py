@@ -1,6 +1,5 @@
 from dataclasses import dataclass, field
 from datetime import datetime
-
 from typing import Literal
 
 ConfiguredAttr = Literal['actual_text', 'author', 'is_fwded_article', 'recipients', 'timestamp']
