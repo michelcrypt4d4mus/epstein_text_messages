@@ -320,13 +320,11 @@ EMAIL_INFO = {
     '033328': EmailInfo(author=AZIZA_ALAHMADI),        # "Regards, Aziza" at bottom
     '026659': EmailInfo(author=BARBRO_EHNBOM),         # Reply
     '026745': EmailInfo(author=BARBRO_EHNBOM),         # Signature
+    '026764': EmailInfo(author='Barry J. Cohen'),
     '031227': EmailInfo(author=BENNET_MOSKOWITZ),
     '031442': EmailInfo(author=CHRISTINA_GALBRAITH),
     '019446': EmailInfo(author=CHRISTINA_GALBRAITH),   # Not 100% but from "Christina media/PR" which fits
-    '026625': EmailInfo(
-        author=DARREN_INDYKE,
-        actual_text='Hysterical.'
-    ),
+    '026625': EmailInfo(author=DARREN_INDYKE, actual_text='Hysterical.'),
     '026624': EmailInfo(
         author=DARREN_INDYKE,                          # weird format (signature on top)
         recipients=[JEFFREY_EPSTEIN],
@@ -342,6 +340,7 @@ EMAIL_INFO = {
     '031560': EmailInfo(author=DAVID_SCHOEN),          # Signature
     '026287': EmailInfo(author=DAVID_SCHOEN),          # Signature
     '033419': EmailInfo(author=DAVID_SCHOEN),          # Signature
+    '026245': EmailInfo(author=DIANE_ZIMAN, recipients=[JEFFREY_EPSTEIN]),  # TODO: Shouldn't need to be configured
     '031460': EmailInfo(author=EDWARD_EPSTEIN),
     '030578': EmailInfo(author=FAITH_KATES),           # Same as unredacted 030414, same legal signature
     '030634': EmailInfo(author=FAITH_KATES),           # Same as unredacted 031135, same legal signature
@@ -356,16 +355,12 @@ EMAIL_INFO = {
     '033384': EmailInfo(author=JACK_GOLDBERGER),       # Might be Paul Prosperi?
     '026024': EmailInfo(author=JEAN_HUGUEN),           # Signature
     '021823': EmailInfo(author=JEAN_LUC_BRUNEL),       # Reply
-    '031826': EmailInfo(author=JEFFREY_EPSTEIN, actual_text='I have'),
-    '030997': EmailInfo(author=JEFFREY_EPSTEIN, actual_text='call back'),
-    '029779': EmailInfo(
-        author=JEFFREY_EPSTEIN,
-        recipients=[LARRY_SUMMERS],                    # Header
-    ),
     '022949': EmailInfo(author=JEFFREY_EPSTEIN),
-    '028770': EmailInfo(author=JEFFREY_EPSTEIN, actual_text='call me now'),
-    '029692': EmailInfo(author=JEFFREY_EPSTEIN, recipients=[LARRY_SUMMERS]),  # Bad OCR
     '031624': EmailInfo(author=JEFFREY_EPSTEIN),
+    '029779': EmailInfo(author=JEFFREY_EPSTEIN, is_fwded_article=True, recipients=[LARRY_SUMMERS]),  # Bad OCR, WaPo article
+    '029692': EmailInfo(author=JEFFREY_EPSTEIN, is_fwded_article=True, recipients=[LARRY_SUMMERS]),  # Bad OCR, WaPo article
+    '028675': EmailInfo(author=JEFFREY_EPSTEIN, recipients=[LARRY_SUMMERS]),  # Bad OCR
+    '025041': EmailInfo(author=JEFFREY_EPSTEIN, recipients=[LARRY_SUMMERS]),  # Bad OCR
     '018726': EmailInfo(
         author=JEFFREY_EPSTEIN,                        # Strange fragment only showing what was replied to
         timestamp=datetime.fromisoformat('2018-06-08 08:36:00')
@@ -378,21 +373,14 @@ EMAIL_INFO = {
         author=JEFFREY_EPSTEIN,                         # Strange fragment only showing what was replied to
         timestamp=datetime.fromisoformat('2019-05-22 05:47:00')
     ),
-    '030768': EmailInfo(author=JEFFREY_EPSTEIN, actual_text='ok'),
     '031996': EmailInfo(
         author=JEFFREY_EPSTEIN,                         # bounced
         recipients=[CHRISTINA_GALBRAITH]
-    ),
-    '022938': EmailInfo(
-        author=JEFFREY_EPSTEIN,
-        actual_text='what do you suggest?'
     ),
     '023208': EmailInfo(
         author=JEFFREY_EPSTEIN,                         # Same as 023291
         recipients=[BRAD_WECHSLER, MELANIE_SPINELLA]
     ),
-    '028675': EmailInfo(author=JEFFREY_EPSTEIN, recipients=[LARRY_SUMMERS]),  # Just bad OCR
-    '025041': EmailInfo(author=JEFFREY_EPSTEIN, recipients=[LARRY_SUMMERS]),  # Just bad OCR
     '032214': EmailInfo(
         author=JEFFREY_EPSTEIN,
         recipients=[MIROSLAV_LAJCAK],                   # Quoted reply has signature
@@ -402,6 +390,11 @@ EMAIL_INFO = {
         author=JEFFREY_EPSTEIN,
         recipients=[RENATA_BOLOTOVA]                     # Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")
     ),
+    '030997': EmailInfo(author=JEFFREY_EPSTEIN, actual_text='call back'),
+    '028770': EmailInfo(author=JEFFREY_EPSTEIN, actual_text='call me now'),
+    '031826': EmailInfo(author=JEFFREY_EPSTEIN, actual_text='I have'),
+    '030768': EmailInfo(author=JEFFREY_EPSTEIN, actual_text='ok'),
+    '022938': EmailInfo(author=JEFFREY_EPSTEIN, actual_text='what do you suggest?'),
     '031791': EmailInfo(author=JESSICA_CADWELL),
     '028849': EmailInfo(
         author=JOI_ITO,                                   # Conversation with Joi Ito
@@ -426,9 +419,8 @@ EMAIL_INFO = {
     '032052': EmailInfo(author=JONATHAN_FARKAS),         # Reply
     '033490': EmailInfo(author=JONATHAN_FARKAS),         # Signature
     '032531': EmailInfo(author=JONATHAN_FARKAS),         # Signature
-    '026764': EmailInfo(author='Barry J. Cohen'),
     '026652': EmailInfo(author=KATHRYN_RUEMMLER),        # bad OCR
-    '032224': EmailInfo(author=KATHRYN_RUEMMLER, recipients=[JEFFREY_EPSTEIN]),        # Reply
+    '032224': EmailInfo(author=KATHRYN_RUEMMLER, recipients=[JEFFREY_EPSTEIN]),  # Reply
     '032386': EmailInfo(author=KATHRYN_RUEMMLER),        # from "Kathy" about dems, sent from iPad (not 100% confirmed)
     '032727': EmailInfo(author=KATHRYN_RUEMMLER),        # from "Kathy" about dems, sent from iPad (not 100% confirmed)
     '030478': EmailInfo(author=LANDON_THOMAS),
@@ -436,24 +428,20 @@ EMAIL_INFO = {
     '032206': EmailInfo(author=LAWRENCE_KRAUSS),         # More of a text convo?
     '032209': EmailInfo(author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
     '032208': EmailInfo(author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
-    '029196': EmailInfo(
-        author=LAWRENCE_KRAUSS,
-        recipients=[JEFFREY_EPSTEIN],
-        actual_text='Talk in 40?',
-    ),
-    '033487': EmailInfo(author=LAWRANCE_VISOSKI, recipients=[JEFFREY_EPSTEIN]),
+    '029196': EmailInfo(author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN], actual_text='Talk in 40?'),
     '028789': EmailInfo(author=LAWRANCE_VISOSKI),
     '027046': EmailInfo(author=LAWRANCE_VISOSKI),
     '033370': EmailInfo(author=LAWRANCE_VISOSKI),        # Planes discussion signed larry
     '031129': EmailInfo(author=LAWRANCE_VISOSKI),        # Planes discussion signed larry
-    '029977': EmailInfo(
-        author=LAWRANCE_VISOSKI,                         # Planes discussion signed larry
-        recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, LESLEY_GROFF, RICHARD_KAHN] + FLIGHT_IN_2012_PEOPLE
-    ),
     '033495': EmailInfo(author=LAWRANCE_VISOSKI),        # Planes discussion signed larry
     '033154': EmailInfo(author=LAWRANCE_VISOSKI),
     '033488': EmailInfo(author=LAWRANCE_VISOSKI),
     '033593': EmailInfo(author=LAWRANCE_VISOSKI),        # Signature
+    '033487': EmailInfo(author=LAWRANCE_VISOSKI, recipients=[JEFFREY_EPSTEIN]),
+    '029977': EmailInfo(
+        author=LAWRANCE_VISOSKI,                         # Planes discussion signed larry
+        recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, LESLEY_GROFF, RICHARD_KAHN] + FLIGHT_IN_2012_PEOPLE
+    ),
     '033309': EmailInfo(author=LINDA_STONE),             # "Co-authored with iPhone autocorrect"
     '017581': EmailInfo(author='Lisa Randall'),
     '026609': EmailInfo(author='Mark Green'),            # Actually a fwd
@@ -487,11 +475,11 @@ EMAIL_INFO = {
     '033169': EmailInfo(author=ROBERT_TRIVERS, recipients=[JEFFREY_EPSTEIN]),  # Refs paper
     '033584': EmailInfo(author=ROBERT_TRIVERS, recipients=[JEFFREY_EPSTEIN]),  # Refs paper
     '026320': EmailInfo(author='Sean Bannon'),           # From protonmail, Bannon wrote 'just sent from my protonmail' in 027067
-    '029003': EmailInfo(author=SOON_YI),
-    '029005': EmailInfo(author=SOON_YI),
-    '029007': EmailInfo(author=SOON_YI),
-    '029010': EmailInfo(author=SOON_YI),
-    '032296': EmailInfo(author=SOON_YI),                 # "Sent from soon-yi's phone"
+    '029003': EmailInfo(author=SOON_YI),                 # "Sent from Soon-Yi's iPhone"
+    '029005': EmailInfo(author=SOON_YI),                 # "Sent from Soon-Yi's iPhone"
+    '029007': EmailInfo(author=SOON_YI),                 # "Sent from Soon-Yi's iPhone"
+    '029010': EmailInfo(author=SOON_YI),                 # "Sent from Soon-Yi's iPhone"
+    '032296': EmailInfo(author=SOON_YI),                 # "Sent from Soon-Yi's iPhone"
     '019109': EmailInfo(
         author=STEVEN_HOFFENBERG,                        # Actually a fwd by Charles Michael but Hofenberg email more intersting
         recipients=['Players2'],
@@ -511,7 +499,7 @@ EMAIL_INFO = {
         timestamp=datetime.fromisoformat('2016-11-04 17:46:00')
     ),
     '022187': EmailInfo(author=None, recipients=[JEFFREY_EPSTEIN]),  # bad OCR causes issues
-    '029504': EmailInfo(author='Probably Audrey/Aubrey Raimbault'),  # (based on "GMI" in signature, a company registered by "aubrey raimbault")
+    '029504': EmailInfo(author='Audrey/Aubrey Raimbault (???)'),  # (based on "GMI" in signature, a company registered by "aubrey raimbault")
     '030626': EmailInfo(recipients=[ALAN_DERSHOWITZ, DARREN_INDYKE, KATHRYN_RUEMMLER, KEN_STARR, MARTIN_WEINBERG]),
     '028968': EmailInfo(recipients=[ALAN_DERSHOWITZ, JACK_GOLDBERGER, JEFFREY_EPSTEIN]),
     '029835': EmailInfo(recipients=[ALAN_DERSHOWITZ, JACK_GOLDBERGER, JEFFREY_EPSTEIN]),
@@ -521,7 +509,6 @@ EMAIL_INFO = {
     '032876': EmailInfo(recipients=[CECILIA_STEEN]),
     '033583': EmailInfo(recipients=[DARREN_INDYKE, JACK_GOLDBERGER]),  # Bad OCR
     '033144': EmailInfo(recipients=[DARREN_INDYKE, RICHARD_KAHN]),
-    '026245': EmailInfo(author=DIANE_ZIMAN, recipients=[JEFFREY_EPSTEIN]),  # TODO: Shouldn't need to be configured
     '026466': EmailInfo(recipients=[DIANE_ZIMAN]),            # Quoted reply
     '031607': EmailInfo(recipients=[EDWARD_EPSTEIN]),
     '030525': EmailInfo(recipients=[FAITH_KATES]),            # Same as unredacted 030414, same legal signature
@@ -542,8 +529,8 @@ EMAIL_INFO = {
     '029324': EmailInfo(recipients=[JEFFREY_EPSTEIN, 'Jojo Fontanilla', 'Lyn Fontanilla']),
     '033575': EmailInfo(recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN]),
     '023067': EmailInfo(recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN, TONJA_HADDAD_COLEMAN]),  # Bad OCR
-    '033228': EmailInfo(recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, FRED_HADDAD]),   # Bad OCR
-    '025790': EmailInfo(recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, JACK_GOLDBERGER]),   # Bad OCR
+    '033228': EmailInfo(recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, FRED_HADDAD]),  # Bad OCR
+    '025790': EmailInfo(recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, JACK_GOLDBERGER]),  # Bad OCR
     '031384': EmailInfo(
         recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, JACK_GOLDBERGER, MARTIN_WEINBERG, SCOTT_J_LINK],
         actual_text='',
@@ -555,24 +542,24 @@ EMAIL_INFO = {
     '029154': EmailInfo(recipients=[JEFFREY_EPSTEIN, DAVID_HAIG]),         # Bad OCR
     '029498': EmailInfo(recipients=[JEFFREY_EPSTEIN, DAVID_HAIG, GORDON_GETTY, 'Norman Finkelstein']),  # Bad OCR
     '029889': EmailInfo(recipients=[JEFFREY_EPSTEIN, 'Connie Zaguirre', JACK_GOLDBERGER, ROBERT_D_CRITTON]),  # Bad OCR
-    '028931': EmailInfo(recipients=[JEFFREY_EPSTEIN, LAWRENCE_KRAUSS]),    # Bad OCR
-    '019407': EmailInfo(recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK]),    # Bad OCR
-    '019409': EmailInfo(recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK]),    # Bad OCR
-    '031980': EmailInfo(recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK]),    # Bad OCR
+    '028931': EmailInfo(recipients=[JEFFREY_EPSTEIN, LAWRENCE_KRAUSS]),  # Bad OCR
+    '019407': EmailInfo(recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK]),  # Bad OCR
+    '019409': EmailInfo(recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK]),  # Bad OCR
+    '031980': EmailInfo(recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK]),  # Bad OCR
     '029163': EmailInfo(recipients=[JEFFREY_EPSTEIN, ROBERT_TRIVERS]),     # Bad OCR
-    '026228': EmailInfo(recipients=[JEFFREY_EPSTEIN, STEVEN_PFEIFFER]),    # Bad OCR
+    '026228': EmailInfo(recipients=[JEFFREY_EPSTEIN, STEVEN_PFEIFFER]),  # Bad OCR
     '021794': EmailInfo(recipients=[JESSICA_CADWELL, ROBERT_D_CRITTON]),   # Bad OCR
     '033456': EmailInfo(recipients=['Joel']),                    # Reply
     '033460': EmailInfo(recipients=['Joel']),                    # Reply
     '029282': EmailInfo(recipients=[JOI_ITO, REID_HOFFMAN]),     # Bad OCR
-    '021090': EmailInfo(recipients=[JONATHAN_FARKAS]),           # Reply to a message signed " jonathan" same as other Farkas emails
+    '021090': EmailInfo(recipients=[JONATHAN_FARKAS], is_fwded_article=True),           # Reply to a message signed " jonathan" same as other Farkas emails
     '033073': EmailInfo(recipients=[KATHRYN_RUEMMLER]),          # to "Kathy" about dems, sent from iPad (not 100% confirmed)
     '032939': EmailInfo(recipients=[KATHRYN_RUEMMLER]),          # to "Kathy" about dems, sent from iPad (not 100% confirmed)
     '031428': EmailInfo(recipients=[KEN_STARR, LILLY_SANCHEZ, MARTIN_WEINBERG, REID_WEINGARTEN]),  # Bad OCR
     '031388': EmailInfo(recipients=[KEN_STARR, LILLY_SANCHEZ, MARTIN_WEINBERG, REID_WEINGARTEN]),  # Bad OCR
     '025329': EmailInfo(recipients=KRASSNER_MANSON_RECIPIENTS),
     '033568': EmailInfo(recipients=KRASSNER_033568_RECIPIENTS),
-    '030522': EmailInfo(recipients=[LANDON_THOMAS]),
+    '030522': EmailInfo(recipients=[LANDON_THOMAS], is_fwded_article=True),  # Vicky Ward article
     '031413': EmailInfo(recipients=[LANDON_THOMAS]),
     '033591': EmailInfo(recipients=[LAWRANCE_VISOSKI]),       # Reply signature
     '033466': EmailInfo(recipients=[LAWRANCE_VISOSKI]),       # Reply signature
@@ -599,6 +586,23 @@ EMAIL_INFO = {
     '032475': EmailInfo(timestamp=datetime.fromisoformat('2017-02-15 13:31:25')),
     '030373': EmailInfo(timestamp=datetime.fromisoformat('2018-10-03 01:49:27')),
     '033050': EmailInfo(actual_text='schwartman'),
+    '026298': EmailInfo(is_fwded_article=True),               # Written by someone else?
+    '026755': EmailInfo(is_fwded_article=True),               # HuffPo
+    '023627': EmailInfo(is_fwded_article=True),               # Wolff article about epstein
+    '030528': EmailInfo(is_fwded_article=True),               # Vicky Ward
+    '018197': EmailInfo(is_fwded_article=True),               # Ray Takeyh article fwd
+    '028648': EmailInfo(is_fwded_article=True),               # Ray Takeyh article fwd
+    '028728': EmailInfo(is_fwded_article=True),               # WSJ forward to Larry Summers
+    '027102': EmailInfo(is_fwded_article=True),               # WSJ forward to Larry Summers
+    '028508': EmailInfo(is_fwded_article=True),               # nanosatellites article
+    '013460': EmailInfo(is_fwded_article=True),               # Atlantic on Jim Yong Kim, Obama's World Bank Pick
+    '028781': EmailInfo(is_fwded_article=True),               # Atlantic on Jim Yong Kim, Obama's World Bank Pick
+    '019845': EmailInfo(is_fwded_article=True),               # article on Preet Bharara
+    '029021': EmailInfo(is_fwded_article=True),               # article about bannon sent by Alain Forget
+    '031688': EmailInfo(is_fwded_article=True),               # Bill Siegel fwd of email about hamas
+    '026551': EmailInfo(is_fwded_article=True),               # Sultan bin Sulayem Ayatollah between the sheets
+    '031768': EmailInfo(is_fwded_article=True),               # Sultan bin Sulayem 'Horseface'
+    '031569': EmailInfo(is_fwded_article=True),               # Article by Kathryn Alexeeff fwded to Peter Thiel
     # '032213': Probably MIRO or Reid Weingarten based on replies but he sent it to a lot of people
 }
 
@@ -765,26 +769,6 @@ DUPLICATE_FILE_IDS = {
     '029405': 'the same as 029416',
     '029356': 'zoomed in section of 029355',
 }
-
-EMAILED_ARTICLE_IDS = [
-    '029692',  # WaPo article
-    '029779',  # WaPo article
-    '026298',  # Written by someone else?
-    '026755',  # HuffPo
-    '023627',  # Wolff article about epstein
-    '030528', '030522', # Vicky Ward article
-    '018197', '028648',  # Ray Takeyh article fwd
-    '028728', '027102',  # WSJ forward to Larry Summers
-    '028508',  # nanosatellites article
-    '013460', '028781',  # Atlantic on Jim Yong Kim, Obama's World Bank Pick
-    '019845',  # article on Preet Bharara
-    '029021',  # article about bannon sent by Alain Forget
-    '031688',  # Bill Siegel fwd of email about hamas
-    '021090',  # Fwd to Jonathan Farkas
-    '026551',  # Sultan bin Sulayem Ayatollah between the sheets
-    '031768',  # Sultan bin Sulayem 'Horseface'
-    #'031569',  # Article by Kathryn Alexeeff fwded to Peter Thiel
-]
 
 # Descriptions of non-email, non-text message files
 ARTICLE_DRAFT = 'draft of an article about'
