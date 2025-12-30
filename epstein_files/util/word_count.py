@@ -9,12 +9,12 @@ from rich.padding import Padding
 from rich.text import Text
 
 from epstein_files.documents.email_header import EmailHeader
-from epstein_files.documents.search_result import SearchResult
 from epstein_files.util.constant.common_words import COMMON_WORDS, UNSINGULARIZABLE_WORDS
 from epstein_files.util.constant.names import OTHER_NAMES
 from epstein_files.util.data import ALL_NAMES, flatten, sort_dict
 from epstein_files.util.env import args, logger
 from epstein_files.util.rich import highlighter
+from epstein_files.util.search_result import SearchResult
 
 FIRST_AND_LAST_NAMES = flatten([n.split() for n in ALL_NAMES])
 FIRST_AND_LAST_NAMES = [n.lower() for n in FIRST_AND_LAST_NAMES] + OTHER_NAMES
