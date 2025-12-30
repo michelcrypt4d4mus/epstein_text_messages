@@ -771,7 +771,7 @@ BOFA_MERRILL = f'{BOFA} / Merrill Lynch Report'
 BOFA_WEALTH_MGMT = f'{BOFA} Wealth Management'
 BOOK = 'book:'
 CHALLENGES_OF_AI = f'ASU Origins Project ({LAWRENCE_KRAUSS}) report "Challenges of AI: Envisioning and Addressing Adverse Outcomes"'
-CHINA_DAILY = "China Daily article about"
+CHINA_DAILY_ARTICLE = "China Daily article about"
 CVRA = "Crime Victims' Rights Act [CVRA]"
 DAILY_MAIL_ARTICLE = "Daily Mail article about"
 DAILY_TELEGRAPH_ARTICLE = "Daily Telegraph article about"
@@ -931,10 +931,10 @@ FILE_DESCRIPTIONS = {
     '026543': f"Bloomberg BNA article about taxes",
     '014865': f"Boston Globe article about {ALAN_DERSHOWITZ}",
     '033231': f"Business Standard article about Trump's visit with India's Modi",
-    '023572': f"{CHINA_DAILY} China's Belt & Road Initiative by {ROBERT_LAWRENCE_KUHN}",
-    '023571': f'{CHINA_DAILY} terrorism, Macau, trade initiatives 2016-09-18',
-    '023570': f'{CHINA_DAILY} Belt & Road in Central/South America, Xi philosophy 2017-05-14',
-    '025115': f'{CHINA_DAILY} China and the US working together 2017-05-14',
+    '023572': f"{CHINA_DAILY_ARTICLE} China's Belt & Road Initiative by {ROBERT_LAWRENCE_KUHN}",
+    '023571': f'{CHINA_DAILY_ARTICLE} terrorism, Macau, trade initiatives 2016-09-18',
+    '023570': f'{CHINA_DAILY_ARTICLE} Belt & Road in Central/South America, Xi philosophy 2017-05-14',
+    '025115': f'{CHINA_DAILY_ARTICLE} China and the US working together 2017-05-14',
     '026877': f'{CNN} "New Tariffs - Trade War" by {ROBERT_LAWRENCE_KUHN}',
     '026868': f'{CNN} "Quest Means Business New China Tariffs — Trade War" by {ROBERT_LAWRENCE_KUHN} 2018-09-18',
     '023707': f'{CNN} "Quest Means Business U.S. and China Agree to Pause Trade War" by {ROBERT_LAWRENCE_KUHN} 2018-12-03',
@@ -1314,7 +1314,7 @@ UNINTERESTING_PREFIXES = [
     BOFA_MERRILL,
     'Boston Globe',
     CHALLENGES_OF_AI,
-    CHINA_DAILY,
+    CHINA_DAILY_ARTICLE,
     CNN,
     CVRA,
     DAILY_MAIL_ARTICLE,
