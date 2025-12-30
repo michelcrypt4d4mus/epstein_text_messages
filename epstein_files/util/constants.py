@@ -785,6 +785,7 @@ DIANA_DEGETTES_CAMPAIGN = "Colorado legislator Diana DeGette's campaign"
 EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} and Paul Cassell v. {ALAN_DERSHOWITZ}"
 EPSTEIN_FOUNDATION = 'Jeffrey Epstein VI Foundation'
 EPSTEIN_V_ROTHSTEIN_AND_EDWARDS = f"Epstein v. Scott Rothstein, {BRAD_EDWARDS}, and L.M."
+FEMALE_HEALTH_COMPANY = 'Female Health Company (FHX)'
 FIRE_AND_FURY = f'"Fire And Fury" by {MICHAEL_WOLFF}'
 FLIGHT_LOGS = 'flight logs'
 GIUFFRE_V_DERSHOWITZ = f"{VIRGINIA_GIUFFRE} v. {ALAN_DERSHOWITZ}"
@@ -1191,8 +1192,8 @@ FILE_DESCRIPTIONS = {
     '024432': f"Michael Milken's Knowledge Universe Education (KUE) $1,000,000 corporate share placement notice (SEC filing?)",
     '024003': f"New Leaf Ventures private placement memorandum",
     # property
-    '018804': f"appraisal of going concern for IGY American Yacht Harbor Marina in Virgin Islands",
-    '016597': f'letter from Trump Properties LLC appealing some decision about Mar-a-Lago by Palm Beach authorities',
+    '018804': f"appraisal of going concern for IGY American Yacht Harbor Marina in {VIRGIN_ISLANDS}",
+    '016597': f'letter from Trump Properties LLC appealing some decision about Mar-a-Lago by {PALM_BEACH} authorities',
     '016602': f"{PALM_BEACH_CODE_ENFORCEMENT} 2008-04-17",
     '016616': f"{PALM_BEACH_CODE_ENFORCEMENT} 2008-07-17",
     '016554': f"{PALM_BEACH_CODE_ENFORCEMENT} 2008-07-17",
@@ -1237,8 +1238,8 @@ FILE_DESCRIPTIONS = {
     '027009': f"{EHUD_BARAK} speech to AIPAC 2013-03-03",
     '025540': f"Epstein's rough draft of his side of the story?",
     '024117': f"FAQ about anti-money laundering and terrorist financing law in the U.S.",
-    '027071': f"Female Health Company (FHX) brochure request donations for female condoms in Uganda",
-    '027074': f"Female Health Company (FHX) pitch deck (USAID was a customer)",
+    '027071': f"{FEMALE_HEALTH_COMPANY} brochure request donations for female condoms in Uganda",
+    '027074': f"{FEMALE_HEALTH_COMPANY} pitch deck (USAID was a customer)",
     '022780': FLIGHT_LOGS,
     '022816': FLIGHT_LOGS,
     '026678': f"fragment of image metadata (???) 2017-06-29",
