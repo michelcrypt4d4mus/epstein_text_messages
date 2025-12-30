@@ -65,7 +65,6 @@ GLENN_DUBIN = 'Glenn Dubin'
 GORDON_GETTY = 'Gordon Getty'
 GWENDOLYN_BECK = 'Gwendolyn Beck'         # https://www.lbc.co.uk/article/who-gwendolyn-beck-epstein-andrew-5HjdN66_2/
 IAN_OSBORNE = 'Ian Osborne'
-IVANKA = 'Ivanka'
 JABOR_Y = 'Jabor Y'                       # mysterious 'influential man in Qatar"
 JACK_GOLDBERGER = 'Jack Goldberger'
 JACK_SCAROLA = 'Jack Scarola'
@@ -91,7 +90,7 @@ KATHRYN_RUEMMLER = 'Kathryn Ruemmler'
 KEN_JENNE = 'Ken Jenne'
 KEN_STARR = 'Ken Starr'
 KENNETH_E_MAPP = 'Kenneth E. Mapp'
-SVETLANA_POZHIDAEVA = 'Svetlana Pozhidaeva'  # Epstein assistant / WE founder recommended by Belyakov
+SVETLANA_POZHIDAEVA = 'Svetlana Pozhidaeva'
 LANDON_THOMAS = 'Landon Thomas Jr'
 LAWRANCE_VISOSKI = 'Lawrance Visoski'
 LAWRENCE_KRAUSS = 'Lawrence Krauss'
@@ -99,7 +98,7 @@ LEON_BLACK = 'Leon Black'
 LESLEY_GROFF = 'Lesley Groff'
 LILLY_SANCHEZ = 'Lilly Sanchez'
 LINDA_STONE = 'Linda Stone'
-LISA_NEW = 'Lisa New'                      # Harvard poetry prof AKA "Elisa New"
+LISA_NEW = 'Lisa New'
 MANUELA_MARTINEZ = 'Manuela Martinez'
 MARC_LEON = 'Marc Leon'
 MARIANA_IDZKOWSKA = 'Mariana Idźkowska'
@@ -164,6 +163,7 @@ ZUBAIR_KHAN = 'Zubair Khan'
 # No communications but name is in the files
 BILL_GATES = 'Bill Gates'
 ELON_MUSK = 'Elon Musk'
+IVANKA = 'Ivanka'
 JARED_KUSHNER = 'Jared Kushner'
 JULIE_K_BROWN = 'Julie K. Brown'
 KARIM_SADJADPOUR = 'KARIM SADJADPOUR'.title()
@@ -171,10 +171,11 @@ RUDY_GIULIANI = 'Rudy Giuliani'
 TULSI_GABBARD = 'Tulsi Gabbard'
 VIRGINIA_GIUFFRE = 'Virginia Giuffre'
 
-# Businesses
+# Organizations
 CNN = 'CNN'
 DEUTSCHE_BANK = 'Deutsche Bank'
 GOLDMAN_SACHS = 'Goldman Sachs'
+HARVARD = 'Harvard'
 JP_MORGAN = 'JP Morgan'
 
 # Locations
