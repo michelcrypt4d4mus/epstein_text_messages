@@ -833,6 +833,7 @@ FILE_DESCRIPTIONS = {
     '012899': f'book: "Engineering General Intelligence: A Path to Advanced AGI Via Embodied Learning and Cognitive Synergy" by Ben Goertzel',
     '012747': f'book: "Evilicious: Explaining Our Taste For Excessive Harm" by Marc D. Hauser',
     '019874': f'book: "Fire And Fury" by {MICHAEL_WOLFF}',
+    '032724': f'book: "Fire and Fury" by {MICHAEL_WOLFF} (photo of cover)',
     '010912': f'book: "Free Growth and Other Surprises" by Gordon Getty (draft) 2018-10-18',
     '021247': f'book: "Invisible Forces And Powerful Beliefs: Gravity, Gods, And Minds" by The Chicago Social Brain Network 2010-10-04',
     '019477': f'book: "How America Lost Its Secrets: Edward Snowden, the Man, and the Theft" by {EDWARD_EPSTEIN}',
