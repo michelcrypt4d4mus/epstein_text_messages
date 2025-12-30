@@ -782,6 +782,7 @@ DIANA_DEGETTES_CAMPAIGN = "Colorado legislator Diana DeGette's campaign"
 EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} and Paul Cassell v. {ALAN_DERSHOWITZ}"
 EPSTEIN_FOUNDATION = 'Jeffrey Epstein VI Foundation'
 EPSTEIN_V_ROTHSTEIN_AND_EDWARDS = f"Epstein v. Scott Rothstein, {BRAD_EDWARDS}, and L.M."
+FIRE_AND_FURY = f'"Fire And Fury" by {MICHAEL_WOLFF}'
 FLIGHT_LOGS = 'flight logs'
 GIUFFRE_V_DERSHOWITZ = f"{VIRGINIA_GIUFFRE} v. {ALAN_DERSHOWITZ}"
 GIUFFRE_V_MAXWELL = f"{VIRGINIA_GIUFFRE} v. {GHISLAINE_MAXWELL}"
@@ -824,14 +825,15 @@ VI_DAILY_NEWS_ARTICLE = f'{VIRGIN_ISLANDS} Daily News article'
 WAPO = 'WaPo'
 WEINBERG_ABC_LETTER = f"letter from {MARTIN_WEINBERG} to ABC / Good Morning America threatening libel lawsuit"
 
+# If last chars are an ISO date that will be interpolated as the timestamp for the file
 FILE_DESCRIPTIONS = {
     # books
     '015032': f'book: "60 Years of Investigative Satire: The Best of {PAUL_KRASSNER}"',
     '015675': f'book: "Are the Androids Dreaming Yet? Amazing Brain Human Communication, Creativity & Free Will" by James Tagg',
     '012899': f'book: "Engineering General Intelligence: A Path to Advanced AGI Via Embodied Learning and Cognitive Synergy" by Ben Goertzel',
     '012747': f'book: "Evilicious: Explaining Our Taste For Excessive Harm" by Marc D. Hauser',
-    '019874': f'book: "Fire And Fury" by {MICHAEL_WOLFF} 2018-01-05',
-    '032724': f'book: "Fire and Fury" by {MICHAEL_WOLFF} (photo of cover) 2018-01-05',
+    '019874': f'book: {FIRE_AND_FURY} 2018-01-05',
+    '032724': f'book: {FIRE_AND_FURY} (photo of cover) 2018-01-05',
     '010912': f'book: "Free Growth and Other Surprises" by Gordon Getty (draft) 2018-10-18',
     '021247': f'book: "Invisible Forces And Powerful Beliefs: Gravity, Gods, And Minds" by The Chicago Social Brain Network 2010-10-04',
     '019477': f'book: "How America Lost Its Secrets: Edward Snowden, the Man, and the Theft" by {EDWARD_EPSTEIN}',
@@ -1254,7 +1256,7 @@ FILE_DESCRIPTIONS = {
     '028988': f"{INSIGHTS_POD} pitch deck 2016-08-20",
     '026627': f"{INSIGHTS_POD} report on the presidential debate",
     '030142': f"JASTA (Justice Against Sponsors of Terrorism Act) doc that's mostly empty, references suit against Saudi f. {KATHRYN_RUEMMLER} & {KEN_STARR} ca. 2016-09-01",
-    '033478': f'meme of Kim Jong Un reading "Fire And Fury" by {MICHAEL_WOLFF}',
+    '033478': f'meme of Kim Jong Un reading {FIRE_AND_FURY}',
     '033177': f'meme of Trump with text "WOULD YOU TRUST THIS MAN WITH YOUR DAUGHTER?"',
     '025205': MERCURY_FILMS_PROFILES,
     '025210': MERCURY_FILMS_PROFILES,
