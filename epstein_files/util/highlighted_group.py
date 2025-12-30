@@ -50,10 +50,9 @@ class HighlightedGroup:
             else:
                 raise ValueError(f"No label provided for {repr(self)}")
 
+        pattern = '|'.join([self._emailer_pattern(e) for e in self.emailers] + listify(self.pattern))
         self._style_suffix = self.label.lower().replace(' ', '_').replace('-', '_')
         match_group_var = fr"?P<{self._style_suffix}>"
-        patterns = [self._emailer_pattern(e) for e in self.emailers] + listify(self.pattern)
-        pattern = '|'.join(patterns)
 
         if self.is_multiline:
             self.regex = re.compile(fr"({match_group_var}{pattern})", re.IGNORECASE | re.MULTILINE)
