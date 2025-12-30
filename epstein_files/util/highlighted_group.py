@@ -67,10 +67,8 @@ class HighlightedGroup:
             self.emailers.get(name),
         ]
 
-        info_pieces = [piece for piece in info_pieces if piece is not None]
-
-        if len(info_pieces) > 0:
-            return ', '.join(info_pieces)
+        info_pieces = [p for p in info_pieces if p is not None]
+        return ', '.join(info_pieces) if info_pieces else None
 
     def theme_style_name(self) -> str:
         """Prefixed rich style name used by RegexHighlighter to color matches based on match group variable."""
