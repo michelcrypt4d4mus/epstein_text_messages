@@ -1201,7 +1201,7 @@ FILE_DESCRIPTIONS = {
     '016697': f"{PALM_BEACH} property tax info (?) that mentions Trump",
     '016636': f"{PALM_BEACH_WATER_COMMITTEE} Meeting on January 29, 2009",
     '022417': f"Park Partners NYC letter to partners in real estate project with architectural plans",
-    '018743': f"property listing in Las Vegas",
+    '018743': f"Las Vegas property listing",
     '027068': f"{THE_REAL_DEAL_ARTICLE} 2018-10-11",
     '029520': f'{THE_REAL_DEAL_ARTICLE} "Lost Paradise at the Palm House" 2019-06-17',
     '018727': f"{VIRGIN_ISLANDS} property deal pitch deck, building will be leased to the U.S. govt GSA ca. 2014-06-01",
