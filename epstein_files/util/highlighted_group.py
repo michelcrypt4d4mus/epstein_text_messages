@@ -28,8 +28,8 @@ class HighlightedGroup:
         is_multiline (bool): True if this regex is only used by RegexHighlighter and group has no other info
         label (str): RegexHighlighter match group name, defaults to 1st 'emailers' key if only 1 emailer provided
         pattern (str): optional regex pattern identifying strings matching this group
+        regex (re.Pattern): matches self.pattern + all first and last names (and pluralizations) in self.emailers
         style (str): Rich style to apply to text matching this group
-        _regex (re.Pattern): matches self.pattern + all first and last names (and pluralizations) in self.emailers
     """
     category: str = ''
     emailers: dict[str, str | None] = field(default_factory=dict)
