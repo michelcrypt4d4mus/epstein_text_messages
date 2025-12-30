@@ -65,8 +65,8 @@ class TextMessage:
         return datetime.strptime(self.timestamp_str, MSG_DATE_FORMAT)
 
     def _message(self) -> Text:
-        msg = self.text
         lines = self.text.split('\n')
+        msg = self.text
 
         # Fix multiline links
         if self.text.startswith('http'):
