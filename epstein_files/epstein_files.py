@@ -9,7 +9,6 @@ from typing import Literal
 
 from rich.align import Align
 from rich.console import Group
-from rich.markup import escape
 from rich.padding import Padding
 from rich.table import Table
 from rich.text import Text
@@ -19,21 +18,22 @@ from epstein_files.documents.email import DETECT_EMAIL_REGEX, JUNK_EMAILERS, KRA
 from epstein_files.documents.email_header import AUTHOR
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.documents.search_result import SearchResult
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url,
      search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
 from epstein_files.util.data import Timer, dict_sets_to_lists, iso_timestamp, sort_dict
-from epstein_files.util.env import args, logger, specified_names
+from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, FILENAME_LENGTH, PICKLED_PATH, file_size_str, move_json_file
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_COLOR, NA_TXT, QUESTION_MARK_TXT, console, highlighter,
-     link_text_obj, link_markup, print_author_header, print_centered, print_other_site_link, print_panel, print_section_header, vertically_pad)
+     link_text_obj, link_markup, print_author_header, print_centered, print_other_site_link, print_panel,
+     print_section_header, vertically_pad)
+from epstein_files.util.search_result import SearchResult
 
 DEVICE_SIGNATURE = 'Device Signature'
 FIRST_FEW_LINES = 'First Few Lines'
-DEVICE_SIGNATURE_PADDING = (0, 0, 0, 2)
+DEVICE_SIGNATURE_PADDING = (1, 0)
 NOT_INCLUDED_EMAILERS = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
 
 
@@ -61,11 +61,11 @@ class EpsteinFiles:
                 logger.info(f"Skipping empty file {document.description().plain}")
             elif document.text[0] == '{':  # Check for JSON
                 move_json_file(file_arg)
-            elif MSG_REGEX.search(document.text):
+            elif MSG_REGEX.search(document.text):     # Handle iMessage log files
                 messenger_log = MessengerLog(file_arg)
                 logger.info(messenger_log.description().plain)
                 self.imessage_logs.append(messenger_log)
-            elif DETECT_EMAIL_REGEX.match(document.text) or document.file_id in KNOWN_EMAIL_AUTHORS:  # Handle emails
+            elif DETECT_EMAIL_REGEX.match(document.text) or document.file_id in EMAIL_INFO:  # Handle emails
                 email = Email(file_arg, text=document.text)  # Avoid reloads
                 logger.info(email.description().plain)
                 self.emails.append(email)
@@ -271,11 +271,9 @@ class EpsteinFiles:
         console.print(Align.center(table), '\n')
 
     def print_email_device_info(self) -> None:
-        print_panel(f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown", padding=(0, 0, 0, 11))
+        print_panel(f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown", padding=(4, 0, 0, 0), centered=True)
         console.print(build_signature_table(self.email_authors_to_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
-        console.line(2)
         console.print(build_signature_table(self.email_device_signatures_to_authors, (DEVICE_SIGNATURE, AUTHOR), ', '))
-        console.line(2)
 
     def print_emailer_counts_table(self) -> None:
         footer = f"Identified authors of {self.attributed_email_count()} emails out of {len(self.emails)} potential email files."
@@ -380,14 +378,6 @@ class EpsteinFiles:
         console.print(table)
         num_skipped = len(self.other_files) - len(interesting_files)
         logger.warning(f"Skipped {num_skipped} uninteresting files...")
-
-    def valid_emails(self) -> list[Email]:
-        """Remove dupes, junk mail, and fwded articles."""
-        return [
-            e for e in self.emails
-            if not (e.is_duplicate or e.is_junk_mail or e.file_id in EMAILED_ARTICLE_IDS) \
-               and (len(specified_names) == 0 or e.author in specified_names)
-        ]
 
     @staticmethod
     def sort_emails(emails: list[Email]) -> list[Email]:

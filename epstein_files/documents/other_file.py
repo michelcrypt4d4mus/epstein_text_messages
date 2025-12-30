@@ -7,7 +7,7 @@ import datefinder
 from rich.markup import escape
 from rich.text import Text
 
-from epstein_files.documents.document import WHITESPACE_REGEX, Document
+from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_REGEX, Document
 from epstein_files.util.constants import DUPLICATE_FILE_IDS, FILE_DESCRIPTIONS, UNINTERESTING_PREFIXES
 from epstein_files.util.data import escape_single_quotes, extract_datetime, ordinal_str, remove_timezone
 from epstein_files.util.env import args, logger
@@ -31,6 +31,20 @@ class OtherFile(Document):
         super().__post_init__()
         self.timestamp = self._extract_timestamp()
 
+    def description(self) -> Text:
+        """One line summary mostly for logging."""
+        return super().description().append(CLOSE_PROPERTIES_CHAR)
+
+    def highlighted_preview_text(self) -> Text:
+        try:
+            return highlighter(escape(self.preview_text()))
+        except Exception as e:
+            logger.error(f"Failed to apply markup in string '{escape_single_quotes(self.preview_text())}'\n"
+                         f"Original string: '{escape_single_quotes(self.preview_text())}'\n"
+                         f"File: '{self.filename}'\n")
+
+            return Text(escape(self.preview_text()))
+
     def is_interesting(self):
         """False for lame prefixes and duplicates."""
         hints = self.hints()
@@ -45,16 +59,6 @@ class OtherFile(Document):
                 return False
 
         return True
-
-    def highlighted_preview_text(self) -> Text:
-        try:
-            return highlighter(escape(self.preview_text()))
-        except Exception as e:
-            logger.error(f"Failed to apply markup in string '{escape_single_quotes(self.preview_text())}'\n"
-                         f"Original string: '{escape_single_quotes(self.preview_text())}'\n"
-                         f"File: '{self.filename}'\n")
-
-            return Text(escape(self.preview_text()))
 
     def preview_text(self) -> str:
         return WHITESPACE_REGEX.sub(' ', self.text)[0:PREVIEW_CHARS]

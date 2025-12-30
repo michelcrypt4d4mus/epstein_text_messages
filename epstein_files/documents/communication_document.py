@@ -20,7 +20,7 @@ class CommunicationDocument(Document):
     author: str | None = None
     author_style: str = field(init=False)
     author_txt: Text = field(init=False)
-    timestamp: datetime = FALLBACK_TIMESTAMP  # TODO this sucks
+    timestamp: datetime = FALLBACK_TIMESTAMP  # TODO this default sucks (though it never happens)
 
     def __post_init__(self):
         super().__post_init__()

@@ -17,6 +17,7 @@ from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import *
 from epstein_files.util.data import TIMEZONE_INFO, collapse_newlines, escape_single_quotes, remove_timezone, uniquify
+from epstein_files.util.email_info import ConfiguredAttr
 from epstein_files.util.env import logger
 from epstein_files.util.file_helper import is_local_extract_file
 from epstein_files.util.highlighted_group import get_style_for_name
@@ -254,21 +255,6 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
     'Vahe Stepanian',                        # Random CC
 ]
 
-# Override the ._actual_text() method
-ACTUAL_TEXT = {
-    '032214': 'Agreed',
-    '028770': 'call me now',
-    '026625': 'Hysterical.',
-    '033050': 'schwartman',
-    '029196': 'Talk in 40?',
-    '022938': 'what do you suggest?',
-    '026612': '',
-    '031384': '',
-    '030768': 'ok',
-    '030997': 'call back',
-    '031826': 'I have',
-}
-
 # Emails sent by epstein to himself that are just notes
 NOTES_TO_SELF = [
     '033274',
@@ -284,16 +270,15 @@ class Email(CommunicationDocument):
     header: EmailHeader = field(init=False)
     is_duplicate: bool = False
     is_junk_mail: bool = False
-    recipients: list[str] = field(default_factory=list)
+    recipients: list[str | None] = field(default_factory=list)
     sent_from_device: str | None = None
     signature_substitution_count: dict[str, int] = field(default_factory=lambda: defaultdict(int))
 
     def __post_init__(self):
         super().__post_init__()
 
-        if self.file_id in KNOWN_EMAIL_RECIPIENTS:
-            recipient = KNOWN_EMAIL_RECIPIENTS[self.file_id]
-            self.recipients = recipient if isinstance(recipient, list) else [recipient]
+        if self.configured_attr('recipients'):
+            self.recipients = EMAIL_INFO[self.file_id].recipients
         else:
             for recipient in self.header.recipients():
                 self.recipients.extend(self._get_names(recipient))
@@ -305,6 +290,11 @@ class Email(CommunicationDocument):
         self.sent_from_device = self._sent_from_device()
         self.is_duplicate = self.file_id in DUPLICATE_FILE_IDS
         self.is_junk_mail = self.author in JUNK_EMAILERS
+
+    def configured_attr(self, attr: ConfiguredAttr) -> bool | datetime | str | None:
+        """Find the value configured in constants.py for the 'attr' attribute of this email (if any)."""
+        if self.file_id in EMAIL_INFO:
+            return getattr(EMAIL_INFO[self.file_id], attr)
 
     def idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES, text: str | None = None) -> int | None:
         """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line."""
@@ -326,8 +316,8 @@ class Email(CommunicationDocument):
 
     def _actual_text(self) -> str:
         """The text that comes before likely quoted replies and forwards etc."""
-        if self.file_id in ACTUAL_TEXT:
-            return ACTUAL_TEXT[self.file_id]
+        if self.configured_attr('actual_text') is not None:
+            return self.configured_attr('actual_text')
         elif self.header.num_header_rows == 0:
             return self.text
 
@@ -393,8 +383,8 @@ class Email(CommunicationDocument):
     def _extract_author(self) -> None:
         self._extract_header()
 
-        if self.file_id in KNOWN_EMAIL_AUTHORS:
-            self.author = KNOWN_EMAIL_AUTHORS[self.file_id]
+        if self.configured_attr('author'):
+            self.author = EMAIL_INFO[self.file_id].author
         elif self.header.author:
             authors = self._get_names(self.header.author)
             self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
@@ -411,7 +401,7 @@ class Email(CommunicationDocument):
         else:
             msg = f"No header match found in '{self.filename}'! Top lines:\n\n{self.top_lines()}"
 
-            if self.file_id in KNOWN_EMAIL_AUTHORS or self.file_id in KNOWN_EMAIL_RECIPIENTS:
+            if self.file_id in EMAIL_INFO:
                 logger.info(msg)
             else:
                 logger.warning(msg)
@@ -419,8 +409,8 @@ class Email(CommunicationDocument):
             self.header = EmailHeader(field_names=[])
 
     def _extract_timestamp(self) -> datetime:
-        if self.file_id in EMAIL_TIMESTAMPS:
-            return EMAIL_TIMESTAMPS[self.file_id]
+        if self.configured_attr('timestamp'):
+            return EMAIL_INFO[self.file_id].timestamp
         elif self.header.sent_at:
             timestamp = _parse_timestamp(self.header.sent_at)
 
@@ -525,7 +515,7 @@ class Email(CommunicationDocument):
             sent_from = sent_from_match.group(0)
             return 'S' + sent_from[1:] if sent_from.startswith('sent') else sent_from
 
-    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
+    def __rich_console__(self, _console: Console, _options: ConsoleOptions) -> RenderResult:
         logger.debug(f"Printing '{self.filename}'...")
 
         if self.file_id in DUPLICATE_FILE_IDS:
