@@ -25,15 +25,16 @@ from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_nam
      search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
 from epstein_files.util.data import Timer, dict_sets_to_lists, iso_timestamp, sort_dict
-from epstein_files.util.env import args, logger, specified_names
+from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, FILENAME_LENGTH, PICKLED_PATH, file_size_str, move_json_file
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_COLOR, NA_TXT, QUESTION_MARK_TXT, console, highlighter,
-     link_text_obj, link_markup, print_author_header, print_centered, print_other_site_link, print_panel, print_section_header, vertically_pad)
+     link_text_obj, link_markup, print_author_header, print_centered, print_other_site_link, print_panel,
+     print_section_header, vertically_pad)
 
 DEVICE_SIGNATURE = 'Device Signature'
 FIRST_FEW_LINES = 'First Few Lines'
-DEVICE_SIGNATURE_PADDING = (0, 0, 0, 2)
+DEVICE_SIGNATURE_PADDING = (1, 0)
 NOT_INCLUDED_EMAILERS = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
 
 
@@ -271,11 +272,9 @@ class EpsteinFiles:
         console.print(Align.center(table), '\n')
 
     def print_email_device_info(self) -> None:
-        print_panel(f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown", padding=(0, 0, 0, 11))
+        print_panel(f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown", padding=(4, 0, 0, 0), centered=True)
         console.print(build_signature_table(self.email_authors_to_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
-        console.line(2)
         console.print(build_signature_table(self.email_device_signatures_to_authors, (DEVICE_SIGNATURE, AUTHOR), ', '))
-        console.line(2)
 
     def print_emailer_counts_table(self) -> None:
         footer = f"Identified authors of {self.attributed_email_count()} emails out of {len(self.emails)} potential email files."
