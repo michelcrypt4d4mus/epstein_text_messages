@@ -34,12 +34,12 @@ class CommunicationDocument(Document):
 
     def description(self) -> Text:
         """One line summary mostly for logging."""
-        txt = super().description()
-        txt.append(', ').append(key_value_txt('author', Text(self.author_or_unknown(), style=self.author_style)))
+        txt = super().description().append(', ')
+        txt.append(key_value_txt('author', Text(self.author_or_unknown(), style=self.author_style)))
         return txt.append(CLOSE_PROPERTIES_CHAR)
 
     def raw_document_link_txt(self, _style: str = '', include_alt_link: bool = True) -> Text:
-        """Overrides super() method to apply author_style."""
+        """Overrides super() method to apply self.author_style."""
         return super().raw_document_link_txt(self.author_style, include_alt_link=include_alt_link)
 
     def timestamp_without_seconds(self) -> str:
