@@ -9,7 +9,8 @@ from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
 
-from epstein_files.documents.document import INFO_INDENT, CommunicationDocument
+from epstein_files.documents.communication_document import CommunicationDocument
+from epstein_files.documents.document import INFO_INDENT
 from epstein_files.documents.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX, FIELD_NAMES,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TIME_REGEX, EmailHeader)
 from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
