@@ -7,7 +7,6 @@ from subprocess import run
 from typing import ClassVar
 
 from rich.console import Console, ConsoleOptions, Group, RenderResult
-from rich.markup import escape
 from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
