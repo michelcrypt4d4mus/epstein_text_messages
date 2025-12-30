@@ -186,7 +186,7 @@ HIGHLIGHTED_GROUPS = [
             ANDRES_SERRANO: "'Piss Christ' artist",
             'Barry Josephson': 'American film producer and former music manager, editor FamilySecurityMatters.org',
             BILL_SIEGEL: 'documentary film producer and director',
-            'David Blaine': 'magician',
+            DAVID_BLAINE: 'magician',
             'Richard Merkin': 'painter, illustrator and arts educator',
         },
     ),
@@ -418,7 +418,7 @@ HIGHLIGHTED_GROUPS = [
         emailers = {
             MASHA_DROKOVA: 'silicon valley VC',
             RENATA_BOLOTOVA: 'former aspiring model, now fund manager at New York State Insurance Fund',
-            SVETLANA_POZHIDAEVA: 'Epstein\'s Russian who was recommended for a visa by Sergei Belyakov (FSB) and David Blaine',
+            SVETLANA_POZHIDAEVA: f'Epstein\'s Russian who was recommended for a visa by Sergei Belyakov (FSB) and {DAVID_BLAINE}',
         }
     ),
     HighlightedGroup(
