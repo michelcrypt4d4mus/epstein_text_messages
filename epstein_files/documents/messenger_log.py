@@ -66,9 +66,7 @@ class MessengerLog(CommunicationDocument):
 
     def _extract_author(self) -> None:
         self.author = KNOWN_IMESSAGE_FILE_IDS.get(self.file_id, GUESSED_IMESSAGE_FILE_IDS.get(self.file_id))
-        self.author_str = self.author_or_unknown()
         self.author_style = get_style_for_name(self.author) + ' bold'
-        logger.warning(f"set author_str for {self.file_id} to {self.author_str}")
 
     def _extract_timestamp(self) -> datetime:
         for match in MSG_REGEX.finditer(self.text):

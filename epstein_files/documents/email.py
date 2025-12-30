@@ -399,8 +399,7 @@ class Email(CommunicationDocument):
             authors = self._get_names(self.header.author)
             self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
 
-        self.author_str = self.author or UNKNOWN
-        self.author_style = get_style_for_name(self.author_str)
+        self.author_style = get_style_for_name(self.author_or_unknown())
 
     def _extract_header(self) -> None:
         """Extract an EmailHeader object from the OCR text."""
