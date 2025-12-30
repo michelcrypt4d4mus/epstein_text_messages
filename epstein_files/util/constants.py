@@ -28,6 +28,7 @@ HEADER_ABBREVIATIONS = {
     "Barak": "Ehud Barak (Former Israeli prime minister)",
     "Barrack": "Tom Barrack (Trump ally)",
     'BG, Bill': "Bill Gates",
+    'bgC3': 'Bill Gates Ventures (renamed in 2018)',
     "Brock": 'Brock Pierce (crypto bro with a very sordid past)',
     "DB": "Deutsche Bank (maybe??)",
     'HBJ': "Hamad bin Jassim (former Qatari prime minister)",
