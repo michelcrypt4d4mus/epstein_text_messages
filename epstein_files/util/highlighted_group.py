@@ -24,16 +24,16 @@ class HighlightedGroup:
     Constructor must be called with either an 'emailers' arg or a 'pattern' arg (or both).
 
     Attributes:
+        category (str): optional string to use as an override for self.label in some contexts
         emailers (dict[str, str | None]): optional names to construct regexes for (values are descriptions)
-        info (str): string to use as an override for self.label in some contexts
         is_multiline (bool): True if this regex is only used by RegexHighlighter and group has no other info
         label (str): RegexHighlighter match group name, defaults to 1st 'emailers' key if only 1 emailer provided
         pattern (str): optional regex pattern identifying strings matching this group
         style (str): Rich style to apply to text matching this group
         _regex (re.Pattern): matches self.pattern + all first and last names (and pluralizations) in self.emailers
     """
+    category: str = ''
     emailers: dict[str, str | None] = field(default_factory=dict)
-    info: str = ''
     is_multiline: bool = False
     label: str = ''
     pattern: str = ''
@@ -42,13 +42,13 @@ class HighlightedGroup:
     _style_suffix: str = field(init=False)
 
     def __post_init__(self):
-        if not self.emailers and not self.pattern:
-            raise RuntimeError(f"Must provide either 'emailers' or 'pattern' arg.")
+        if not (self.emailers or self.pattern):
+            raise ValueError(f"Must provide either 'emailers' or 'pattern' arg.")
         elif not self.label:
             if len(self.emailers) == 1:
                 self.label = [k for k in self.emailers.keys()][0]
             else:
-                raise RuntimeError(f"No label provided for {repr(self)}")
+                raise ValueError(f"No label provided for {repr(self)}")
 
         self._style_suffix = self.label.lower().replace(' ', '_').replace('-', '_')
         match_group_var = fr"?P<{self._style_suffix}>"
@@ -62,13 +62,12 @@ class HighlightedGroup:
 
     def get_info(self, name: str) -> str | None:
         """Label for people in this group with the additional info for 'name' if 'name' is in self.emailers."""
-        info_pieces = []
+        info_pieces = [
+            None if len(self.emailers) == 1 else (self.category or self.label.title()),
+            self.emailers.get(name),
+        ]
 
-        if not len(self.emailers) == 1:
-            info_pieces.append(self.info or titleize(self.label))  # TODO: just use .title()?
-
-        if self.emailers.get(name) is not None:
-            info_pieces.append(self.emailers[name])
+        info_pieces = [piece for piece in info_pieces if piece is not None]
 
         if len(info_pieces) > 0:
             return ', '.join(info_pieces)
@@ -79,7 +78,7 @@ class HighlightedGroup:
 
     # TODO: handle word boundary issue for names that end in symbols
     def _emailer_pattern(self, name: str) -> str:
-        logger.debug(f"emailer_pattern() called for '{name}'")
+        """Pattern matching 'name'. Extends value in EMAILER_ID_REGEXES with last name if it exists."""
         names = name.split()
         last_name = names[-1]
 
@@ -87,7 +86,6 @@ class HighlightedGroup:
             pattern = EMAILER_ID_REGEXES[name].pattern
 
             if SIMPLE_NAME_REGEX.match(last_name) and last_name.lower() not in NAMES_TO_NOT_HIGHLIGHT:
-                logger.debug(f"Adding last name '{last_name}' to existing pattern '{pattern}'")
                 pattern += fr"|{last_name}"  # Include regex for last name
 
             return pattern
@@ -97,10 +95,9 @@ class HighlightedGroup:
         first_name = ' '.join(names[0:-1])
         name_patterns = [name.replace(' ', r"\s+"), first_name, last_name]
         name_regex_parts = [n for n in name_patterns if n.lower() not in NAMES_TO_NOT_HIGHLIGHT]
-        logger.debug(f"name_regex_parts for '{name}': {name_regex_parts}")
 
         if len(names) > 2:
-            logger.debug(f"'{name}' has {len(names)} names (first_name='{first_name}')")
+            logger.info(f"'{name}' has {len(names)} names (first_name='{first_name}')")
 
         return '|'.join(name_regex_parts)
 
@@ -204,9 +201,9 @@ HIGHLIGHTED_GROUPS = [
         },
     ),
     HighlightedGroup(
-        info='lawyer',
         label='estate_executor',
         style='purple3 bold',
+        category='lawyer',
         emailers = {
             DARREN_INDYKE: ESTATE_EXECUTOR,
             RICHARD_KAHN: ESTATE_EXECUTOR,
@@ -215,7 +212,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='europe',
         style='light_sky_blue3',
-        pattern=r'(Angela )?Merk(el|le)|Austria|(Benjamin\s*)?Harnwell|Berlin|Brit(ain|ish)|Brussels|Cannes|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|Davos|ECB|Europe(an)?|Geneva|Germany?|Gree(ce|k)|Ital(ian|y)|Jacques|Le\s*Pen|London|Macron|Munich|(Natalia\s*)?Veselnitskaya|Nigel(\s*Farage)?|Oslo|Paris|Polish|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strauss[- ]?Kahn|(Tony\s)?Blair|Ukrain(e|ian)|Vienna|(Vitaly\s*)?Churkin|Zug',
+        pattern=r'(Angela )?Merk(el|le)|Austria|(Benjamin\s*)?Harnwell|Berlin|Brexit(eers?)?|Brit(ain|ish)|Brussels|Cannes|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|Davos|ECB|Europe(an)?|Geneva|Germany?|Gree(ce|k)|Ital(ian|y)|Jacques|Le\s*Pen|London|Macron|Munich|(Natalia\s*)?Veselnitskaya|Nigel(\s*Farage)?|Oslo|Paris|Polish|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strauss[- ]?Kahn|(Tony\s)?Blair|Ukrain(e|ian)|Vienna|(Vitaly\s*)?Churkin|Zug',
         emailers = {
             ANDRZEJ_DUDA: 'former president of Poland',
             MIROSLAV_LAJCAK: 'Russia-friendly Slovakian politician, friend of Steve Bannon',
@@ -225,9 +222,9 @@ HIGHLIGHTED_GROUPS = [
         }
     ),
     HighlightedGroup(
-        info='lawyer',
         label='famous_lawyer',
         style='medium_purple3',
+        category='lawyer',
         pattern=r'(David\s*)?Boies|dersh|(Gloria\s*)?Allred|(Mi(chael|ke)\s*)?Avenatti',
         emailers = {
             ALAN_DERSHOWITZ: 'Harvard Law School professor and all around (in)famous American lawyer',
@@ -502,7 +499,6 @@ HIGHLIGHTED_GROUPS = [
         pattern=r'BG|b?g?C3|(Bill\s*((and|or)\s*Melinda\s*)?)?Gates|Melinda(\s*Gates)?|Microsoft|MSFT',
     ),
     HighlightedGroup(
-        info='War Room',
         label=STEVE_BANNON,
         style='color(58)',
         pattern=r'((Steve|Sean)\s*)?Bannon?',

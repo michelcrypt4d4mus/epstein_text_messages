@@ -459,20 +459,21 @@ class Email(CommunicationDocument):
         if len(emailer_str) == 0:
             return []
 
-        names = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
+        names_found = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
 
         if BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
-            if len(names) == 0 and emailer_str not in SUPPRESS_LOGS_FOR_AUTHORS:
+            if len(names_found) == 0 and emailer_str not in SUPPRESS_LOGS_FOR_AUTHORS:
                 logger.warning(f"'{self.filename}': No emailer found in '{escape_single_quotes(emailer_str)}'")
             else:
-                logger.info(f"Extracted {len(names)} names from semi-invalid '{emailer_str}': {names}...")
+                logger.info(f"Extracted {len(names_found)} names from semi-invalid '{emailer_str}': {names_found}...")
 
-            return names
+            return names_found
 
-        names = names or [emailer_str]
-        return [_reverse_first_and_last_names(name) for name in names]
+        names_found = names_found or [emailer_str]
+        return [_reverse_first_and_last_names(name) for name in names_found]
 
     def _recipients_txt(self) -> Text:
+        """Text object with comma separated colored versions of all recipients."""
         recipients = self.recipients if len(self.recipients) > 0 else [UNKNOWN]
         recipients_txt = Text('')
 
