@@ -61,11 +61,11 @@ class EpsteinFiles:
                 logger.info(f"Skipping empty file {document.description().plain}")
             elif document.text[0] == '{':  # Check for JSON
                 move_json_file(file_arg)
-            elif MSG_REGEX.search(document.text):
+            elif MSG_REGEX.search(document.text):     # Handle iMessage log files
                 messenger_log = MessengerLog(file_arg)
                 logger.info(messenger_log.description().plain)
                 self.imessage_logs.append(messenger_log)
-            elif DETECT_EMAIL_REGEX.match(document.text) or document.file_id in KNOWN_EMAIL_AUTHORS:  # Handle emails
+            elif DETECT_EMAIL_REGEX.match(document.text) or document.file_id in EMAIL_INFO:  # Handle emails
                 email = Email(file_arg, text=document.text)  # Avoid reloads
                 logger.info(email.description().plain)
                 self.emails.append(email)
