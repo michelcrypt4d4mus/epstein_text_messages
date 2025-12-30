@@ -51,27 +51,28 @@ class TextMessage:
             self.author = None
         elif self.author in DISPLAY_LAST_NAME_ONLY:
             self.author_str = self.author.split()[-1]
-        elif not self.id_confirmed:
-            self.author_str = self.author + ' (?)'
         else:
             self.author_str = self.author
+
+        if not self.id_confirmed and self.author is not None:
+            self.author_str = self.author + ' (?)'
 
     def timestamp(self) -> datetime:
         return datetime.strptime(self.timestamp_str, MSG_DATE_FORMAT)
 
     def _message(self) -> Text:
         lines = self.text.split('\n')
-        msg = self.text
+        text = self.text
 
         # Fix multiline links
         if self.text.startswith('http'):
             if len(lines) > 1 and not lines[0].endswith('html'):
                 if len(lines) > 2 and lines[1].endswith('-'):
-                    msg = msg.replace('\n', '', 2)
+                    text = text.replace('\n', '', 2)
                 else:
-                    msg = msg.replace('\n', '', 1)
+                    text = text.replace('\n', '', 1)
 
-            lines = msg.split('\n')
+            lines = text.split('\n')
             link_text = lines.pop()
             msg_txt = Text('').append(Text.from_markup(f"[link={link_text}]{link_text}[/link]", style=TEXT_LINK))
 
@@ -83,6 +84,8 @@ class TextMessage:
         return msg_txt
 
     def __rich__(self) -> Text:
-        author_txt = Text(self.author_str, style=get_style_for_name(self.author))
+        # TODO: Workaround for phone numbers that sucks
+        author_style = get_style_for_name(self.author_str if self.author_str.startswith('+') else self.author)
+        author_txt = Text(self.author_str, style=author_style)
         timestamp_txt = Text(f"[{self.timestamp_str}]", style=TIMESTAMP_STYLE).append(' ')
         return Text('').append(timestamp_txt).append(author_txt).append(': ', style='dim').append(self._message())
