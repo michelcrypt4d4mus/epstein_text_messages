@@ -381,14 +381,6 @@ class EpsteinFiles:
         num_skipped = len(self.other_files) - len(interesting_files)
         logger.warning(f"Skipped {num_skipped} uninteresting files...")
 
-    def valid_emails(self) -> list[Email]:
-        """Remove dupes, junk mail, and fwded articles."""
-        return [
-            e for e in self.emails
-            if not (e.is_duplicate or e.is_junk_mail or e.file_id in EMAILED_ARTICLE_IDS) \
-               and (len(specified_names) == 0 or e.author in specified_names)
-        ]
-
     @staticmethod
     def sort_emails(emails: list[Email]) -> list[Email]:
         return sorted(emails, key=lambda email: email.timestamp)

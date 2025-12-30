@@ -705,7 +705,6 @@ DUPLICATE_FILE_IDS = {
     '033579': 'the same as 032456',
     '030255': 'the same as 030315',
     '032052': 'the same as 031732',
-    '026745': 'the same except for \'your Anna!\' as 031215',
     '028787': 'the same as 027097',
     '030876': 'the same as 031112',
     '030491': 'the same as 030614',
@@ -730,6 +729,7 @@ DUPLICATE_FILE_IDS = {
     '033589': 'the same as 032250',
     '026624': 'the same as 031708',
     '023291': 'the same as (?) 023208',
+    '026745': 'the same except for \'your Anna!\' as 031215',
     # non-email documents
     '031415': 'the same as 031396',
     '029357': 'the same as (?) 028887',
@@ -750,9 +750,7 @@ EMAILED_ARTICLE_IDS = [
     '026298',  # Written by someone else?
     '026755',  # HuffPo
     '023627',  # Wolff article about epstein
-    '031569',  # Article by Kathryn Alexeeff
-    '030528',  # Vicky Ward article
-    '030522',  # Vicky Ward article
+    '030528', '030522', # Vicky Ward article
     '018197', '028648',  # Ray Takeyh article fwd
     '028728', '027102',  # WSJ forward to Larry Summers
     '028508',  # nanosatellites article
@@ -763,6 +761,7 @@ EMAILED_ARTICLE_IDS = [
     '021090',  # Fwd to Jonathan Farkas
     '026551',  # Sultan bin Sulayem Ayatollah between the sheets
     '031768',  # Sultan bin Sulayem 'Horseface'
+    #'031569',  # Article by Kathryn Alexeeff fwded to Peter Thiel
 ]
 
 # Descriptions of non-email, non-text message files
