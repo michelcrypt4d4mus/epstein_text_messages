@@ -1,6 +1,7 @@
 import csv
 import re
 from copy import deepcopy
+from dataclasses import dataclass, field
 from datetime import datetime
 from io import StringIO
 
@@ -8,6 +9,7 @@ from dateutil.parser import parse
 
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_PREFIX, REDACTED
+from epstein_files.util.data import listify
 
 # Misc
 FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
@@ -579,6 +581,42 @@ EMAIL_TIMESTAMPS = {
     '030373': datetime(2018, 10, 3, 1, 49, 27),
     '026943': datetime(2019, 5, 22, 5, 47),
 }
+
+@dataclass
+class EmailInfo:
+    author: str | None = None
+    recipients: list[str] = field(default_factory=list)
+    timestamp: datetime | None = None
+
+    def __repr__(self) -> str:
+        props = []
+
+        if self.author:
+            props.append(f"author='{self.author}'")
+        if self.recipients:
+            props.append(f"recipients={self.recipients}")
+        if self.timestamp:
+            props.append(f"timestamp='{self.timestamp}'")
+
+        return f"{type(self).__name__}({', '.join(props)})"
+
+EMAIL_INFO = {id: EmailInfo(author=author) for id, author in KNOWN_EMAIL_AUTHORS.items()}
+
+for id, recipients in KNOWN_EMAIL_RECIPIENTS.items():
+    if id in EMAIL_INFO:
+        EMAIL_INFO[id].recipients = listify(recipients)
+    else:
+        EMAIL_INFO[id] = EmailInfo(recipients=listify(recipients))
+
+for id, timestamp in EMAIL_TIMESTAMPS.items():
+    if id in EMAIL_INFO:
+        EMAIL_INFO[id].timestamp = timestamp
+    else:
+        EMAIL_INFO[id] = EmailInfo(timestamp=timestamp)
+
+
+for k,v in EMAIL_INFO.items():
+    print(f"    '{k}': {repr(v)},")
 
 # Reason string should end in a file ID
 DUPLICATE_FILE_IDS = {
