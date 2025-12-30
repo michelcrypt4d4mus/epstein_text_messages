@@ -26,13 +26,13 @@ TITLE_WIDTH = 50
 NUM_COLOR_KEY_COLS = 4
 NA_TXT = Text(NA, style='dim')
 QUESTION_MARK_TXT = Text('???', style='dim')
+GREY_NUMBERS = [58, 39, 39, 35, 30, 27, 23, 23, 19, 19, 15, 15, 15]
 
-GREY_NUMBERS = [grey for grey in reversed([15, 15, 15, 19, 19, 23, 23, 27, 30, 35, 39, 39, 58])]
-DEFAULT_NAME_COLOR = 'gray46'
+DEFAULT_NAME_STYLE = 'gray46'
 KEY_STYLE='honeydew2 bold'
 SECTION_HEADER_STYLE = 'bold white on blue3'
-SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 SOCIAL_MEDIA_LINK_STYLE = 'cyan3 bold'
+SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 SYMBOL_STYLE = 'grey70'
 TITLE_STYLE = 'black on bright_white bold'
 
@@ -171,7 +171,7 @@ def print_numbered_list_of_emailers(_list: list[str | None], epstein_files = Non
 
     for i, name in enumerate(_list):
         indent = '   ' if i < 9 else ('  ' if i < 99 else ' ')
-        txt = Text((indent) + F"   {i + 1}. ", style=DEFAULT_NAME_COLOR)
+        txt = Text((indent) + F"   {i + 1}. ", style=DEFAULT_NAME_STYLE)
 
         if epstein_files:
             earliest_email_date = (epstein_files.earliest_email_at(name) or FALLBACK_TIMESTAMP).date()
