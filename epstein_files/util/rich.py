@@ -163,7 +163,7 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
 
 
 def print_numbered_list_of_emailers(_list: list[str | None], epstein_files = None) -> None:
-    """Add the first emailed_at timestamp for this emailer if 'epstein_files' provided."""
+    """Add the first emailed_at timestamp for each emailer if 'epstein_files' provided."""
     current_year = 1990
     current_year_month = current_year * 12
     grey_idx = 0
