@@ -11,6 +11,7 @@ from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_PREFIX, REDACTED
 
 # Misc
 FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
+RESUME_OF = 'professional resumé of'
 SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
 
 # Email reply regexes (has to be here for circular dependencies reasons)
@@ -1259,10 +1260,10 @@ FILE_DESCRIPTIONS = {
     '029351': f"{OBAMA_JOKE} ca. 2013-07-26",
     '029354': f"{OBAMA_JOKE} ca. 2013-07-26",
     '026851': f"Politifact lying politicians chart 2016-07-26",
-    '022367': f"professional resumé of Jack J Grynberg 2014-07",
-    '029302': f"professional resumé of Michael J. Boccio 2011-08-07",
-    '015671': f"professional resumé of Robin Solomon",
-    '015672': f"professional resumé of Robin Solomon",
+    '022367': f"{RESUME_OF} Jack J Grynberg 2014-07",
+    '029302': f"{RESUME_OF} Michael J. Boccio 2011-08-07",
+    '015671': f"{RESUME_OF} Robin Solomon",
+    '015672': f"{RESUME_OF} Robin Solomon",
     '019448': f"Haitian business investment proposal called Jacmel",
     '029328': f"Rafanelli Events promotional deck",
     '029155': f'response sent to the Gruterites ({GORDON_GETTY} fans) by {ROBERT_TRIVERS} ca. 2018-03-19',
