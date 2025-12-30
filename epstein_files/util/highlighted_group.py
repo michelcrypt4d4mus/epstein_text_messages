@@ -418,7 +418,7 @@ HIGHLIGHTED_GROUPS = [
         emailers = {
             MASHA_DROKOVA: 'silicon valley VC, former Putin Youth',
             RENATA_BOLOTOVA: 'former aspiring model, now fund manager at New York State Insurance Fund',
-            SVETLANA_POZHIDAEVA: f'Epstein\'s Russian who was recommended for a visa by Sergei Belyakov (FSB) and {DAVID_BLAINE}',
+            SVETLANA_POZHIDAEVA: f'Epstein\'s Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and {DAVID_BLAINE}',
         }
     ),
     HighlightedGroup(
@@ -445,7 +445,7 @@ HIGHLIGHTED_GROUPS = [
         style='bright_cyan',
         pattern=r"AG?I|Chamath|Palihapitiya|Drew\s*Houston|Eric\sSchmidt|(Mark\s*)?Zuckerberg|Masa(yoshi)?(\sSon)?|Najeev|Palantir|(Peter\s)?Th(ie|ei)l|Sergey\s*Brin|Softbank|SpaceX|Tim\s*Ferriss?",
         emailers = {
-            ELON_MUSK: None,
+            ELON_MUSK: 'father of MechaHitler',
             PETER_THIEL: 'Paypal mafia member, founder of Palantir, early Facebook investor, reactionary',
             REID_HOFFMAN: 'PayPal mafia member, founder of LinkedIn',
             STEVEN_SINOFSKY: 'ex-Microsoft',
