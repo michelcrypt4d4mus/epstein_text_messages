@@ -416,7 +416,7 @@ HIGHLIGHTED_GROUPS = [
         style='red bold',
         pattern=r'Alfa\s*Bank|Anya\s*Rasulova|Chernobyl|Day\s+One\s+Ventures|(Dmitry\s)?(Kiselyov|(Lana\s*)?Pozhidaeva|Medvedev|Rybolo(o?l?ev|vlev))|Dmitry|FSB|GRU|KGB|Kislyak|Kremlin|Lavrov|Lukoil|Moscow|(Oleg\s*)?Deripaska|Oleksandr Vilkul|Rosneft|RT|St.?\s*?Petersburg|Russian?|Sberbank|(Vladimir\s*)?(Putin|Yudashkin)|Xitrans',
         emailers = {
-            MASHA_DROKOVA: 'silicon valley VC',
+            MASHA_DROKOVA: 'silicon valley VC, former Putin Youth',
             RENATA_BOLOTOVA: 'former aspiring model, now fund manager at New York State Insurance Fund',
             SVETLANA_POZHIDAEVA: f'Epstein\'s Russian who was recommended for a visa by Sergei Belyakov (FSB) and {DAVID_BLAINE}',
         }
