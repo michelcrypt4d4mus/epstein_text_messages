@@ -8,7 +8,7 @@ from rich.text import Text
 
 from epstein_files.documents.document import CommunicationDocument
 from epstein_files.documents.imessage.text_message import MSG_DATE_FORMAT, TextMessage
-from epstein_files.util.constants import *
+from epstein_files.util.constants import GUESSED_IMESSAGE_FILE_IDS, KNOWN_IMESSAGE_FILE_IDS
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import logger
 
