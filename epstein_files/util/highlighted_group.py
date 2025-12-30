@@ -30,6 +30,7 @@ class HighlightedGroup:
         pattern (str): optional regex pattern identifying strings matching this group
         regex (re.Pattern): matches self.pattern + all first and last names (and pluralizations) in self.emailers
         style (str): Rich style to apply to text matching this group
+        _capture_group_label (str): regex capture group variable name for matches of this HighlightedGroup's 'regex'
     """
     category: str = ''
     emailers: dict[str, str | None] = field(default_factory=dict)
@@ -39,7 +40,7 @@ class HighlightedGroup:
     style: str
     # Computed fields
     regex: re.Pattern = field(init=False)
-    _style_suffix: str = field(init=False)
+    _capture_group_label: str = field(init=False)
 
     def __post_init__(self):
         if not (self.emailers or self.pattern):
@@ -53,8 +54,9 @@ class HighlightedGroup:
                 raise ValueError(f"No label provided for {repr(self)}")
 
         pattern = '|'.join([self._emailer_pattern(e) for e in self.emailers] + listify(self.pattern))
-        self._style_suffix = self.label.lower().replace(' ', '_').replace('-', '_')
-        match_group_var = fr"?P<{self._style_suffix}>"
+        self._capture_group_label = self.label.lower().replace(' ', '_').replace('-', '_')
+        self.theme_style_name = f"{REGEX_STYLE_PREFIX}.{self._capture_group_label}"
+        match_group_var = fr"?P<{self._capture_group_label}>"
 
         if self.is_multiline:
             self.regex = re.compile(fr"({match_group_var}{pattern})", re.IGNORECASE | re.MULTILINE)
@@ -70,10 +72,6 @@ class HighlightedGroup:
 
         info_pieces = [p for p in info_pieces if p is not None]
         return ', '.join(info_pieces) if info_pieces else None
-
-    def theme_style_name(self) -> str:
-        """Prefixed rich style name used by RegexHighlighter to color matches based on match group variable."""
-        return f"{REGEX_STYLE_PREFIX}.{self._style_suffix}"
 
     # TODO: handle word boundary issue for names that end in symbols
     def _emailer_pattern(self, name: str) -> str:

@@ -45,7 +45,7 @@ HIGHLIGHTED_GROUP_COLOR_KEYS = [
 THEME_STYLES = {
     DEFAULT: 'wheat4',
     TEXT_LINK: 'deep_sky_blue4 underline',
-    **{hg.theme_style_name(): hg.style for hg in HIGHLIGHTED_GROUPS},
+    **{hg.theme_style_name: hg.style for hg in HIGHLIGHTED_GROUPS},  # Inject style names for HighlightedGroups
 }
 
 # Instantiate console object
