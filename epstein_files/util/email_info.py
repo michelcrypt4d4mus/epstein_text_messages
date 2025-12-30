@@ -19,9 +19,13 @@ class EmailInfo:
 
         if self.author:
             props.append(f"author='{self.author}'")
+        if self.is_fwded_article:
+            props.append(f"is_fwded_article={self.is_fwded_article}")
         if self.recipients:
             props.append(f"recipients={self.recipients}")
         if self.timestamp:
             props.append(f"timestamp='{self.timestamp}'")
+        if self.actual_text:
+            props.append(f"actual_text='{self.actual_text}'")
 
         return f"{type(self).__name__}({', '.join(props)})"
