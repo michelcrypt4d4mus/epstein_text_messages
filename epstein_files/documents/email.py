@@ -298,9 +298,7 @@ class Email(CommunicationDocument):
 
     def idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES, text: str | None = None) -> int | None:
         """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line."""
-        text = text or self.text
-
-        for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text)):
+        for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text or self.text)):
             if i >= n:
                 return match.end() - 1
 
