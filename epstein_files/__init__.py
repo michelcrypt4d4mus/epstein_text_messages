@@ -105,8 +105,8 @@ def print_emails(epstein_files: EpsteinFiles) -> int:
     epstein_files.print_emailer_counts_table()
     emailers_to_print: list[str | None]
     emailer_tables: list[str | None] = []
-    emails_printed_since_last_color_key = 0
-    emails_printed_total = 0
+    num_emails_printed_since_last_color_key = 0
+    num_emails_printed_total = 0
 
     if args.all_emails:
         console.print('Email conversations are sorted chronologically based on time of the first email.')
@@ -131,13 +131,13 @@ def print_emails(epstein_files: EpsteinFiles) -> int:
 
     for author in emailers_to_print:
         emails_printed = epstein_files.print_emails_for(author)
-        emails_printed_total += emails_printed
-        emails_printed_since_last_color_key += emails_printed
+        num_emails_printed_total += emails_printed
+        num_emails_printed_since_last_color_key += emails_printed
 
         # Print color key every once in a while
-        if emails_printed_since_last_color_key > PRINT_COLOR_KEY_EVERY_N_EMAILS:
+        if num_emails_printed_since_last_color_key > PRINT_COLOR_KEY_EVERY_N_EMAILS:
             print_color_key()
-            emails_printed_since_last_color_key = 0
+            num_emails_printed_since_last_color_key = 0
 
     if len(emailer_tables) > 0:
         print_author_header(f"Email Tables for {len(emailer_tables)} Other People", 'white')
@@ -146,7 +146,7 @@ def print_emails(epstein_files: EpsteinFiles) -> int:
             epstein_files.print_emails_table_for(name)
 
     epstein_files.print_email_device_info()
-    return emails_printed_total
+    return num_emails_printed_total
 
 
 def print_text_messages(epstein_files: EpsteinFiles) -> None:

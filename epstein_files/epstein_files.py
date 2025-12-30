@@ -290,7 +290,7 @@ class EpsteinFiles:
         }
 
         for p, count in sort_dict(emailer_counts):
-            style = get_style_for_name(p, DEFAULT_NAME_COLOR)
+            style = get_style_for_name(p, default_style=DEFAULT_NAME_COLOR)
 
             counts_table.add_row(
                 Text.from_markup(link_markup(epsteinify_name_url(p or UNKNOWN), p or UNKNOWN, style)),

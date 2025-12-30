@@ -5,7 +5,6 @@ from datetime import datetime
 from rich.text import Text
 
 from epstein_files.util.constant.names import *
-from epstein_files.util.constant.strings import PHONE_NUMBER_STYLE
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import TEXT_LINK, highlighter, logger
 
@@ -84,11 +83,6 @@ class TextMessage:
         return msg_txt
 
     def __rich__(self) -> Text:
-        if PHONE_NUMBER_REGEX.match(self.author_str):
-            author_style = PHONE_NUMBER_STYLE
-        else:
-            author_style = get_style_for_name(self.author)
-
-        author_txt = Text(self.author_str, style=author_style)
+        author_txt = Text(self.author_str, style=get_style_for_name(self.author))
         timestamp_txt = Text(f"[{self.timestamp_str}]", style=TIMESTAMP_STYLE).append(' ')
         return Text('').append(timestamp_txt).append(author_txt).append(': ', style='dim').append(self._message())

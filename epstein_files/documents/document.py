@@ -15,8 +15,8 @@ from rich.text import Text
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, EPSTEINIFY, EPSTEIN_WEB, epsteinify_doc_link_txt, epsteinify_doc_url, epstein_web_doc_url
-from epstein_files.util.constants import DUPLICATE_FILE_IDS, FALLBACK_TIMESTAMP, FILE_DESCRIPTIONS, VI_DAILY_NEWS_ARTICLE
-from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, patternize
+from epstein_files.util.constants import DUPLICATE_FILE_IDS, FILE_DESCRIPTIONS, VI_DAILY_NEWS_ARTICLE
+from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, listify, patternize
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, file_size_str, is_local_extract_file
 from epstein_files.util.rich import SYMBOL_STYLE, console, highlighter, key_value_txt, logger, link_text_obj
@@ -141,7 +141,7 @@ class Document:
     def hints(self) -> list[Text]:
         """Additional info about the Document (author, FILE_DESCRIPTIONS value, and so on)."""
         file_info = self.info_txt()
-        hints = [file_info] if file_info else []
+        hints = listify(file_info)
         hint_msg = FILE_DESCRIPTIONS.get(self.file_id)
 
         if self.document_type() == OTHER_FILE_CLASS:

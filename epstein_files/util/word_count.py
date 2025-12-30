@@ -105,7 +105,7 @@ OK_SYMBOL_WORDS = ['mar-a-lago', 'p/e', 's&p', ':)', ':).', ';)', ':-)', ';-)']
 SYMBOL_WORD_REGEX = re.compile(r"^[-—–@%/?.,&=]+$")
 ONLY_SYMBOLS_REGEX = re.compile(r"^[^a-zA-Z0-9]+$")
 SPLIT_WORDS_BY = ['@', '/']
-FLAGGED_WORDS = []
+FLAGGED_WORDS = []  # For debugging, log extra info when one of these is encountered
 
 
 @dataclass

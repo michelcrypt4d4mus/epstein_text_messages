@@ -1,3 +1,6 @@
+"""
+Helpers for dealing with various kinds of data.
+"""
 import itertools
 import re
 import time
@@ -7,6 +10,7 @@ from dateutil import tz
 from typing import TypeVar
 
 from dateutil.parser import parse
+from rich.text import Text
 
 from epstein_files.util.constant import names
 from epstein_files.util.env import args, logger
@@ -24,6 +28,10 @@ TIMEZONE_INFO = {"PST": PACIFIC_TZ, "PDT": PACIFIC_TZ}  # Suppresses annoying wa
 
 def collapse_newlines(text: str) -> str:
     return MULTINEWLINE_REGEX.sub('\n\n', text)
+
+
+def date_str(timestamp: datetime | None) -> str | None:
+    return timestamp.isoformat()[0:10] if timestamp else None
 
 
 def dict_sets_to_lists(d: dict[str, set]) -> dict[str, list]:
@@ -46,16 +54,22 @@ def extract_datetime(s: str) -> datetime | None:
     return parse(date_str, tzinfos=TIMEZONE_INFO)
 
 
-def date_str(timestamp: datetime | None) -> str | None:
-    return timestamp.isoformat()[0:10] if timestamp else None
-
-
 def flatten(_list: list[list[T]]) -> list[T]:
     return list(itertools.chain.from_iterable(_list))
 
 
 def iso_timestamp(dt: datetime) -> str:
     return dt.isoformat().replace('T', ' ')
+
+
+def listify(listlike: list | str | Text | None) -> list:
+    """Create a list of 'listlike'. Returns empty list if 'listlike' is None or empty string."""
+    if isinstance(listlike, list):
+        return listlike
+    elif listlike:
+        return [listlike]
+    else:
+        return []
 
 
 def ordinal_str(n: int) -> str:
