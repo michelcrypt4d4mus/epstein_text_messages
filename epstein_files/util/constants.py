@@ -11,6 +11,7 @@ from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_PREFIX, REDACTED
 
 # Misc
 FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
+RESUME_OF = 'professional resumé of'
 SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
 
 # Email reply regexes (has to be here for circular dependencies reasons)
@@ -764,7 +765,8 @@ EMAILED_ARTICLE_IDS = [
 ]
 
 # Descriptions of non-email, non-text message files
-BOFA_MERRILL = 'BofA / Merrill Lynch'
+ARTICLE_DRAFT = 'draft of an article about'
+BOFA_MERRILL = 'BofA / Merrill Lynch Report'
 CHALLENGES_OF_AI = f'ASU Origins Project ({LAWRENCE_KRAUSS}) report "Challenges of AI: Envisioning and Addressing Adverse Outcomes"'
 CHINA_DAILY = "China Daily article about"
 CNN = 'CNN'
@@ -798,16 +800,18 @@ KEN_STARR_LETTER = f"letter from {KEN_STARR} to judge overseeing Epstein's crimi
 MERCURY_FILMS_PROFILES = f'Mercury Films partner profiles of Jennifer Baichwal, Nicholas de Pencier, Kermit Blackwood, Travis Rummel ca. 2010-02-01'
 MIAMI_HERALD = 'Miami Herald'
 MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
+NATIONAL_ENQUIRER_FILING = f"National Enquirer / Radar Online v. FBI FOIA lawsuit court filing"
 NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight" by {EHUD_BARAK}?'
 NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
 NYT_ARTICLE = 'NYT article about'
-NYT_COLUMN =  'NYT column about'
-OBAMA_JOKE = f'joke about Obama'
+NYT_COLUMN = 'NYT column about'
+OBAMA_JOKE = 'joke about Obama'
 OSBORNE_LLP = f"{IAN_OSBORNE} & Partners LLP"
-PALM_BEACH_CODE_ENFORCEMENT = 'Palm Beach code enforcement board minutes'
-PALM_BEACH_DAILY_ARTICLE = 'Palm Beach Daily News article about'
-PALM_BEACH_POST_ARTICLE = 'Palm Beach Post article about'
-PALM_BEACH_TSV = 'TSV of Palm Beach property'
+PALM_BEACH = 'Palm Beach'
+PALM_BEACH_CODE_ENFORCEMENT = f'{PALM_BEACH} code enforcement board minutes'
+PALM_BEACH_DAILY_ARTICLE = f'{PALM_BEACH} Daily News article about'
+PALM_BEACH_POST_ARTICLE = f'{PALM_BEACH} Post article about'
+PALM_BEACH_TSV = f"TSV of {PALM_BEACH} property"
 PATTERSON_BOOK_SCANS = f'pages of "Filthy Rich: The Shocking True Story of Jeffrey Epstein" by James Patterson 2016-10-10'
 REPUTATION_MGMT = 'reputation management:'
 SAUDI_JASTA_LAWSUIT = f"JASTA lawsuit against Saudi Arabia by 9/11 victims"
@@ -928,11 +932,11 @@ FILE_DESCRIPTIONS = {
     '031186': f'{DAILY_MAIL_ARTICLE} rape of 13 year old accusations against Trump 2016-11-02',
     '013437': f"{DAILY_TELEGRAPH_ARTICLE} Epstein diary 2011-03-05",
     '023287': f"{DAILY_TELEGRAPH_ARTICLE} play based on the Oslo Accords 2017-09-15",
-    '033468': f'draft of an article about Rod Rosenstein ca. 2018-09-24',
-    '030825': f'draft of an article about Syria',
-    '030258': f'draft of an article about Mueller probe, almost same as 030248',
-    '030248': f'draft of an article about Mueller probe, almost same as 030258',
-    '029165': f'draft of an article about Mueller probe, almost same as 030258',
+    '033468': f'{ARTICLE_DRAFT} Rod Rosenstein ca. 2018-09-24',
+    '030825': f'{ARTICLE_DRAFT} Syria',
+    '030258': f'{ARTICLE_DRAFT} Mueller probe, almost same as 030248',
+    '030248': f'{ARTICLE_DRAFT} Mueller probe, almost same as 030258',
+    '029165': f'{ARTICLE_DRAFT} Mueller probe, almost same as 030258',
     '023567': f"Financial Times article about quantitative easing",
     '026761': f'Forbes article "Swedish American Group Focuses On Cancer" about {BARBRO_EHNBOM}',
     '031716': f'Fortune Magazine article by {TOM_BARRACK} 2016-10-22',
@@ -951,8 +955,8 @@ FILE_DESCRIPTIONS = {
     '013403': f"Lexis Nexis result from The Evening Standard about Bernie Madoff 2009-12-24",
     '023102': f"Litigation Daily article about {REID_WEINGARTEN} 2015-09-04",
     '029340': f'MarketWatch article about estate taxes, particularly Epstein\'s favoured GRATs',
-    '029416': f"National Enquirer / Radar Online v. FBI FOIA lawsuit court filing 2017-05-25",
-    '029405': f"National Enquirer / Radar Online v. FBI FOIA lawsuit court filing 2017-05-25",
+    '029416': f"{NATIONAL_ENQUIRER_FILING} 2017-05-25",
+    '029405': f"{NATIONAL_ENQUIRER_FILING} 2017-05-25",
     '015462': f'Nautilus Education magazine (?) issue',
     '029925': f"New Yorker article about the placebo effect by Michael Specter 2011-12-04",
     '031972': f"{NYT_ARTICLE} #MeToo allegations against {LAWRENCE_KRAUSS} 2018-03-07",
@@ -962,7 +966,7 @@ FILE_DESCRIPTIONS = {
     '033479': f"{NYT_ARTICLE} Rex Tillerson 2010-03-14",
     '028481': f'{NYT_ARTICLE} {STEVE_BANNON} 2018-03-09',
     '033181': f'{NYT_ARTICLE} Trump\'s tax avoidance 2016-10-31',
-    '023097': f'{NYT_COLUMN} The Aristocrats by Frank Rich "The Greatest Dirty Joke Ever Told" ',
+    '023097': f'{NYT_COLUMN} The Aristocrats by Frank Rich "The Greatest Dirty Joke Ever Told"',
     '033365': f'{NYT_COLUMN} trade war with China by Kevin Rudd',
     '019439': f"{NYT_COLUMN} the Clintons and money by Maureen Dowd 2013-08-17",
     '021093': f"page of unknown article about Epstein and Maxwell",
@@ -1016,6 +1020,7 @@ FILE_DESCRIPTIONS = {
     '029315': f"{EPSTEIN_V_ROTHSTEIN_AND_EDWARDS} letter from {JACK_SCAROLA}",
     '012707': f"{EPSTEIN_V_ROTHSTEIN_AND_EDWARDS} letter from {JACK_SCAROLA} with Master Contact List",
     '018872': f"FBI seized property inventory (redacted)",
+    '021569': f"FBI seized property inventory (redacted)",
     '019352': f"FBI report on Epstein investigation (redacted)",
     '021434': f"FBI report on Epstein investigation (redacted)",
     '017824': f"{GIUFFRE_V_DERSHOWITZ} article by Julie K. Brown in Miami Herald",
@@ -1048,10 +1053,10 @@ FILE_DESCRIPTIONS = {
     '019224': KEN_STARR_LETTER,
     '019221': KEN_STARR_LETTER,
     '012130': f"{KEN_STARR_LETTER} 2008-06-19",
+    '019297': f'letter from {ALAN_DERSHOWITZ} lawyer Andrew G. Celli about {GIUFFRE_V_MAXWELL} 2018-02-07',
+    '020662': f"letter from {ALAN_DERSHOWITZ}'s British lawyers Mishcon de Reya to Daily Mail threatening libel suit",
     '012197': f"letter from DOJ to {JAY_LEFKOWITZ} about Epstein's prosecution agreement",
     '010560': f"letter from Gloria Allred to {SCOTT_J_LINK} alleging abuse of a girl from Kansas 2019-06-19",
-    '019297': f'letter from {ALAN_DERSHOWITZ} lawyer Andrew G. Celli about {GIUFFRE_V_MAXWELL} 2018-02-07',
-    '020662': f"letter from {ALAN_DERSHOWITZ}'s British lawyers Mishcon de Reya to Daily Mail threatening libel suiit",
     '031447': f"letter from {MARTIN_WEINBERG} to Melanie Ann Pustay and Sean O'Neill re: an Epstein FOIA request",
     '026793': f"letter from {STEVEN_HOFFENBERG}'s lawyers at Mintz Fraade offering to take over Epstein's business and resolve his legal issues 2018-03-23",
     '017818': f"{MIAMI_HERALD} article about accusations against {ALAN_DERSHOWITZ} by Julie K. Brown 2018-12-27",
@@ -1070,8 +1075,8 @@ FILE_DESCRIPTIONS = {
     # conferences
     '030769': f"2017 Independent Filmmaker Project (IFP) Gotham Awards invitation",
     '014951': f"2017 TED Talks program 2017-04-20",
-    '023069': f'{BOFA_MERRILL} 2016 Future of Financials Conference report',
-    '014315': f'{BOFA_MERRILL} 2016 Future of Financials Conference report',
+    '023069': f'{BOFA_MERRILL} 2016 Future of Financials Conference',
+    '014315': f'{BOFA_MERRILL} 2016 Future of Financials Conference',
     '026825': f"Deutsche Asset & Wealth Management featured speaker bios",
     '017526': f'Intellectual Jazz conference brochure',
     '023120': f"{LAWRENCE_KRAUSS} 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more (old draft)",
@@ -1095,16 +1100,16 @@ FILE_DESCRIPTIONS = {
     '025978': f'{BOFA_MERRILL} "Understanding when risk parity risk Increases" 2016-08-09',
     '014404': f'{BOFA_MERRILL} Japan Investment Strategy Report 2016-11-18',
     '014410': f'{BOFA_MERRILL} Japan Investment Strategy Report 2016-11-18',
-    '014424': f'{BOFA_MERRILL} report "Japan Macro Watch" 2016-11-14',
-    '014731': f'{BOFA_MERRILL} report "Global Rates, FX & EM 2017 Year Ahead" 2016-11-16',
-    '014432': f'{BOFA_MERRILL} report "Global Cross Asset Strategy - Year Ahead The Trump inflection" 2016-11-30',
-    '014460': f'{BOFA_MERRILL} report "European Equity Strategy 2017" 2016-12-01',
-    '014972': f'{BOFA_MERRILL} report "Global Equity Volatility Insights" 2017-06-20',
-    '014622': f'{BOFA_MERRILL} report "Top 10 US Ideas Quarterly" 2017-01-03',
-    '014721': f'{BOFA_MERRILL} report "Cause and Effect Fade the Trump risk premium 2017-02-13',
-    '014887': f'{BOFA_MERRILL} report "Internet / e-Commerce" 2017-04-06',
-    '014873': f'{BOFA_MERRILL} report "Hess Corp" 2017-04-11',
-    '023575': f'{BOFA_MERRILL} report "Global Equity Volatility Insights" 2017-06',
+    '014424': f'{BOFA_MERRILL} "Japan Macro Watch" 2016-11-14',
+    '014731': f'{BOFA_MERRILL} "Global Rates, FX & EM 2017 Year Ahead" 2016-11-16',
+    '014432': f'{BOFA_MERRILL} "Global Cross Asset Strategy - Year Ahead The Trump inflection" 2016-11-30',
+    '014460': f'{BOFA_MERRILL} "European Equity Strategy 2017" 2016-12-01',
+    '014972': f'{BOFA_MERRILL} "Global Equity Volatility Insights" 2017-06-20',
+    '014622': f'{BOFA_MERRILL} "Top 10 US Ideas Quarterly" 2017-01-03',
+    '014721': f'{BOFA_MERRILL} "Cause and Effect Fade the Trump risk premium 2017-02-13',
+    '014887': f'{BOFA_MERRILL} "Internet / e-Commerce" 2017-04-06',
+    '014873': f'{BOFA_MERRILL} "Hess Corp" 2017-04-11',
+    '023575': f'{BOFA_MERRILL} "Global Equity Volatility Insights" 2017-06',
     '014518': f'BofA Wealth Management tax alert 2016-05-02',
     '029438': f'BofA Wealth Management tax report 2018-01-02',
     '024271': f"Blockchain Capital and Brock Pierce pitch deck ca. 2015-10-01",
@@ -1183,7 +1188,9 @@ FILE_DESCRIPTIONS = {
     '016616': f"{PALM_BEACH_CODE_ENFORCEMENT} 2008-07-17",
     '016554': f"{PALM_BEACH_CODE_ENFORCEMENT} 2008-07-17",
     '016574': f"{PALM_BEACH_CODE_ENFORCEMENT} 2008-07-17",
-    '016636': f"Palm Beach Water Committee Meeting on January 29, 2009",
+    '016695': f"{PALM_BEACH} property info (?)",
+    '016697': f"{PALM_BEACH} property tax info (?) that mentions Trump",
+    '016636': f"{PALM_BEACH} Water Committee Meeting on January 29, 2009",
     '022417': f"Park Partners NYC letter to partners in real estate project with architectural plans",
     '018743': f"property listing in Las Vegas",
     '027068': f"{THE_REAL_DEAL_ARTICLE} 2018-10-11",
@@ -1259,10 +1266,10 @@ FILE_DESCRIPTIONS = {
     '029351': f"{OBAMA_JOKE} ca. 2013-07-26",
     '029354': f"{OBAMA_JOKE} ca. 2013-07-26",
     '026851': f"Politifact lying politicians chart 2016-07-26",
-    '022367': f"professional resumé of Jack J Grynberg 2014-07",
-    '029302': f"professional resumé of Michael J. Boccio 2011-08-07",
-    '015671': f"professional resumé of Robin Solomon",
-    '015672': f"professional resumé of Robin Solomon",
+    '022367': f"{RESUME_OF} Jack J Grynberg 2014-07",
+    '029302': f"{RESUME_OF} Michael J. Boccio 2011-08-07",
+    '015671': f"{RESUME_OF} Robin Solomon",
+    '015672': f"{RESUME_OF} Robin Solomon",
     '019448': f"Haitian business investment proposal called Jacmel",
     '029328': f"Rafanelli Events promotional deck",
     '029155': f'response sent to the Gruterites ({GORDON_GETTY} fans) by {ROBERT_TRIVERS} ca. 2018-03-19',
@@ -1331,7 +1338,7 @@ UNINTERESTING_PREFIXES = [
     PALM_BEACH_DAILY_ARTICLE,
     PALM_BEACH_POST_ARTICLE,
     PALM_BEACH_TSV,
-    'Palm Beach Water Committee',
+    f'{PALM_BEACH} Water Committee',
     PATTERSON_BOOK_SCANS,
     PAUL_KRASSNER,
     PEGGY_SIEGAL,

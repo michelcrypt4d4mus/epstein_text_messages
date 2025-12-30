@@ -21,7 +21,6 @@ from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, file_size_str, is_local_extract_file
 from epstein_files.util.rich import SYMBOL_STYLE, console, highlighter, key_value_txt, logger, link_text_obj
 
-TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
 MIN_DOCUMENT_ID = 10477
@@ -294,49 +293,6 @@ class Document:
         id_map = {doc.file_id: doc for doc in documents}
         return [doc for doc in id_map.values()]
 
-
-@dataclass
-class CommunicationDocument(Document):
-    """Superclass for Email and MessengerLog."""
-    author: str | None = None
-    author_str: str = field(init=False)
-    author_style: str = field(init=False)
-    author_txt: Text = field(init=False)
-    timestamp: datetime = FALLBACK_TIMESTAMP  # TODO this sucks
-
-    def __post_init__(self):
-        super().__post_init__()
-        self._extract_author()
-        self.author_txt = Text(self.author_str, style=self.author_style)
-        self.timestamp = self._extract_timestamp()
-
-    def author_or_unknown(self) -> str:
-        return self.author or UNKNOWN
-
-    def description(self) -> Text:
-        """One line summary mostly for logging."""
-        txt = super().description()
-        txt.append(', ').append(key_value_txt('author', Text(self.author_str, style=self.author_style)))
-        return txt.append(CLOSE_PROPERTIES_CHAR)
-
-    def raw_document_link_txt(self, _style: str = '', include_alt_link: bool = True) -> Text:
-        """Overrides super() method to apply author_style."""
-        return super().raw_document_link_txt(self.author_style, include_alt_link=include_alt_link)
-
-    def timestamp_without_seconds(self) -> str:
-        return TIMESTAMP_SECONDS_REGEX.sub('', str(self.timestamp))
-
-    def _extract_author(self) -> None:
-        raise NotImplementedError(f"Should be implemented in subclasses!")
-
-
-@dataclass
-class SearchResult:
-    document: Document
-    lines: list[Text]
-
-    def unprefixed_lines(self) -> list[str]:
-        return [line.plain.split(':', 1)[1] for line in self.lines]
 
 
 def _color_diff_output(diff_result: str) -> list[Text]:

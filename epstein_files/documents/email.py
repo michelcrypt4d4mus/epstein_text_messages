@@ -9,7 +9,8 @@ from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
 
-from epstein_files.documents.document import INFO_INDENT, CommunicationDocument
+from epstein_files.documents.communication_document import CommunicationDocument
+from epstein_files.documents.document import INFO_INDENT
 from epstein_files.documents.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX, FIELD_NAMES,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TIME_REGEX, EmailHeader)
 from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
@@ -398,8 +399,7 @@ class Email(CommunicationDocument):
             authors = self._get_names(self.header.author)
             self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
 
-        self.author_str = self.author or UNKNOWN
-        self.author_style = get_style_for_name(self.author_str)
+        self.author_style = get_style_for_name(self.author_or_unknown())
 
     def _extract_header(self) -> None:
         """Extract an EmailHeader object from the OCR text."""

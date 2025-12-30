@@ -4,17 +4,14 @@ from dataclasses import dataclass
 from datetime import datetime
 
 import datefinder
-from rich.console import Console, ConsoleOptions, Group
 from rich.markup import escape
 from rich.text import Text
 
 from epstein_files.documents.document import WHITESPACE_REGEX, Document
-from epstein_files.util.constant.names import *
-from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import DUPLICATE_FILE_IDS, FILE_DESCRIPTIONS, UNINTERESTING_PREFIXES
 from epstein_files.util.data import escape_single_quotes, extract_datetime, ordinal_str, remove_timezone
 from epstein_files.util.env import args, logger
-from epstein_files.util.rich import console, highlighter, logger
+from epstein_files.util.rich import highlighter, logger
 
 PREVIEW_CHARS = int(520 * (1 if args.all_other_files else 1.5))
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
@@ -28,7 +25,7 @@ MAX_TIMESTAMP = datetime(2022, 12, 31)
 
 @dataclass
 class OtherFile(Document):
-    """Non email/iMessage log files."""
+    """File that is neither an email nor an iMessage log."""
 
     def __post_init__(self):
         super().__post_init__()
