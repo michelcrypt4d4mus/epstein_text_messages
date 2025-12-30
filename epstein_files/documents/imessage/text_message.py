@@ -62,10 +62,11 @@ class TextMessage:
 
     def _message(self) -> Text:
         lines = self.text.split('\n')
-        text = self.text
 
         # Fix multiline links
         if self.text.startswith('http'):
+            text = self.text
+
             if len(lines) > 1 and not lines[0].endswith('html'):
                 if len(lines) > 2 and lines[1].endswith('-'):
                     text = text.replace('\n', '', 2)
