@@ -6,7 +6,7 @@ from rich.console import Console, ConsoleOptions, RenderResult
 from rich.panel import Panel
 from rich.text import Text
 
-from epstein_files.documents.document import CommunicationDocument
+from epstein_files.documents.communication_document import CommunicationDocument
 from epstein_files.documents.imessage.text_message import MSG_DATE_FORMAT, TextMessage
 from epstein_files.util.constants import GUESSED_IMESSAGE_FILE_IDS, KNOWN_IMESSAGE_FILE_IDS
 from epstein_files.util.highlighted_group import get_style_for_name
