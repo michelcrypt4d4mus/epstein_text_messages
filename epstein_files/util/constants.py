@@ -1292,7 +1292,7 @@ FILE_DESCRIPTIONS = {
     '031546': f"tweets by Donald Trump about Russian collusion 2018-01-06",
     '033236': f'tweets about Ivanka Trump in Arabic 2017-05-20',
     '029475': f'Virgin Islands Twin City Mobile Integrated Health Services (TCMIH) proposal/request for donation',
-    '029448': f'weird short essay about Obama',
+    '029448': f'weird short essay "President Obama and Self-Deception"',
 }
 
 UNINTERESTING_PREFIXES = [
