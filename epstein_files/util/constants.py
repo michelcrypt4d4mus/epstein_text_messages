@@ -44,7 +44,7 @@ HEADER_ABBREVIATIONS = {
     'Kwok': "Chinese criminal Miles Kwok AKA Miles Guo AKA Guo Wengui",
     'LSJ': "Epstein's private island holding company",
     'Madars': 'Madars Virza, co-founder of the privacy coin ZCash (ZEC)',
-    'Mapp': f'{KENNETH_E_MAPP} (Governor Virgin Islands)',
+    'Mapp': f'{KENNETH_E_MAPP} (Governor of {VIRGIN_ISLANDS})',
     'Masa': 'Masayoshi Son (Softbank)',
     'MBS': "Mohammed bin Salman Al Saud (Saudi ruler)",
     'MBZ': "Mohamed bin Zayed Al Nahyan (Emirates sheikh)",
@@ -770,24 +770,21 @@ ARTICLE_DRAFT = 'draft of an article about'
 BOFA_MERRILL = 'BofA / Merrill Lynch Report'
 CHALLENGES_OF_AI = f'ASU Origins Project ({LAWRENCE_KRAUSS}) report "Challenges of AI: Envisioning and Addressing Adverse Outcomes"'
 CHINA_DAILY = "China Daily article about"
-CNN = 'CNN'
 CVRA = "Crime Victims' Rights Act [CVRA]"
 DAILY_MAIL_ARTICLE = "Daily Mail article about"
 DAILY_TELEGRAPH_ARTICLE = "Daily Telegraph article about"
 DAVID_BLAINE_VISA_LETTER = f"{DAVID_BLAINE} letter of recommendation for visa for a model by"
 DAVID_SCHOEN_CVRA_LEXIS_SEARCH = f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN} 2019-02-28"
 DEEP_THINKING_HINT = 'book: "Deep Thinking: Twenty-Five Ways of Looking at AI" by John Brockman 2019-02-19'
-DERSH_GIUFFRE_TWEET = f"tweet by {ALAN_DERSHOWITZ} about Virginia Giuffre"
-DEUTSCHE_BANK = 'Deutsche Bank'
+DERSH_GIUFFRE_TWEET = f"tweet by {ALAN_DERSHOWITZ} about {VIRGINIA_GIUFFRE}"
 DEUTSCHE_BANK_TAX_TOPICS = f'{DEUTSCHE_BANK} Wealth Management Tax Topics'
 DIANA_DEGETTES_CAMPAIGN = "Colorado legislator Diana DeGette's campaign"
 EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} and Paul Cassell v. {ALAN_DERSHOWITZ}"
 EPSTEIN_FOUNDATION = 'Jeffrey Epstein VI Foundation'
 EPSTEIN_V_ROTHSTEIN_AND_EDWARDS = f"Epstein v. Scott Rothstein, {BRAD_EDWARDS}, and L.M."
 FLIGHT_LOGS = 'flight logs'
-GIUFFRE_V_DERSHOWITZ = f"Virginia Giuffre v. {ALAN_DERSHOWITZ}"
-GIUFFRE_V_MAXWELL = f"Virginia Giuffre v. {GHISLAINE_MAXWELL}"
-GOLDMAN_SACHS = 'Goldman Sachs'
+GIUFFRE_V_DERSHOWITZ = f"{VIRGINIA_GIUFFRE} v. {ALAN_DERSHOWITZ}"
+GIUFFRE_V_MAXWELL = f"{VIRGINIA_GIUFFRE} v. {GHISLAINE_MAXWELL}"
 GOLDMAN_REPORT = f'{GOLDMAN_SACHS} Investment Management Division report'
 HARVARD_POETRY = f'Harvard poetry stuff from {LISA_NEW}'
 HBS_APPLICATION_NERIO = f"Harvard Business School application letter from Nerio Alessandri (Founder and Chairman Technogym SPA Italy)"
@@ -795,9 +792,9 @@ INSIGHTS_POD = f"{ZUBAIR_KHAN} and Anya Rasulova's InsightsPod"
 JANE_DOE_V_EPSTEIN_TRUMP = f"Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}"
 JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
 JOHN_BOLTON_PRESS_CLIPPING = 'John Bolton press clipping'
-JP_MORGAN = 'JP Morgan'
 JP_MORGAN_EYE_ON_THE_MARKET = f"{JP_MORGAN} Eye On The Market report"
 KEN_STARR_LETTER = f"letter from {KEN_STARR} to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
+LA_TIMES = 'LA Times'
 MERCURY_FILMS_PROFILES = f'Mercury Films partner profiles of Jennifer Baichwal, Nicholas de Pencier, Kermit Blackwood, Travis Rummel ca. 2010-02-01'
 MIAMI_HERALD = 'Miami Herald'
 MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
@@ -818,11 +815,12 @@ REPUTATION_MGMT = 'reputation management:'
 SAUDI_JASTA_LAWSUIT = f"JASTA lawsuit against Saudi Arabia by 9/11 victims"
 SHIMON_POST = 'The Shimon Post selection of articles about the mideast'
 SWEDISH_LIFE_SCIENCES_SUMMIT = f"{BARBRO_EHNBOM}'s Swedish American Life Science Summit"
+TEXT_OF_US_LAW = 'text of U.S. law'
 THE_REAL_DEAL_ARTICLE = 'The Real Deal article by Keith Larsen'
 TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Government Ethics 2017-01-20"
 UBS_CIO_REPORT = 'UBS CIO Monthly Extended report'
-VI_DAILY_NEWS_ARTICLE = 'article in Virgin Islands Daily News'
-VIRGINIA_FILING = f"court filings from Virginia Giuffre's lawsuit against Epstein (and {ALAN_DERSHOWITZ}?)"
+VIRGINIA_FILING = f"court filings from {VIRGINIA_GIUFFRE}'s lawsuit against Epstein (and {ALAN_DERSHOWITZ}?)"
+VI_DAILY_NEWS_ARTICLE = f'{VIRGIN_ISLANDS} Daily News article'
 WAPO = 'WaPo'
 WEINBERG_ABC_LETTER = f"letter from {MARTIN_WEINBERG} to ABC / Good Morning America threatening libel lawsuit"
 
@@ -840,7 +838,7 @@ FILE_DESCRIPTIONS = {
     '017088': f'book: "Taking the Stand: My Life in the Law" by {ALAN_DERSHOWITZ} (draft)',
     '023731': f'book: "Teaching Minds How Cognitive Science Can Save Our Schools" by {ROGER_SCHANK}',
     '013796': f'book: "The 4-Hour Workweek" by Tim Ferriss',
-    '021145': f'book: "The Billionaire\'s Playboy Club" by Virginia Giuffre (draft?)',
+    '021145': f'book: "The Billionaire\'s Playboy Club" by {VIRGINIA_GIUFFRE} (draft?)',
     '013501': f'book: "The Nearness Of Grace: A Personal Science Of Spiritual Transformation" by Arnold J. Mandell ca. 2005-01-01',
     '018438': f'book: "The S&M Feminist" by Clarisse Thorn',
     '018232': f'book: "The Seventh Sense: Power, Fortune & Survival in the Age of Networks" by Joshua Cooper Ramo',
@@ -952,8 +950,8 @@ FILE_DESCRIPTIONS = {
     '033480': f"{JOHN_BOLTON_PRESS_CLIPPING} 2018-04-06",
     '033481': f"{JOHN_BOLTON_PRESS_CLIPPING}",
     '014037': f"Journal of Criminal Law and Criminology article on {CVRA}",
-    '029865': f"LA Times front page article about {DEEPAK_CHOPRA} and young Iranians 2016-11-05",
-    '026598': f"LA Times op-ed about why America needs a Ministry of Culture",
+    '029865': f"{LA_TIMES} front page article about {DEEPAK_CHOPRA} and young Iranians 2016-11-05",
+    '026598': f"{LA_TIMES} op-ed about why America needs a Ministry of Culture",
     '013403': f"Lexis Nexis result from The Evening Standard about Bernie Madoff 2009-12-24",
     '023102': f"Litigation Daily article about {REID_WEINGARTEN} 2015-09-04",
     '029340': f'MarketWatch article about estate taxes, particularly Epstein\'s favoured GRATs',
@@ -1025,7 +1023,8 @@ FILE_DESCRIPTIONS = {
     '021569': f"FBI seized property inventory (redacted)",
     '019352': f"FBI report on Epstein investigation (redacted)",
     '021434': f"FBI report on Epstein investigation (redacted)",
-    '017824': f"{GIUFFRE_V_DERSHOWITZ} article by Julie K. Brown in Miami Herald",
+    '022494': f'Foreign Corrupt Practices Act (FCPA) DOJ Resource Guide ca. 2013-01',
+    '017824': f"{GIUFFRE_V_DERSHOWITZ} article by {JULIE_K_BROWN} in Miami Herald",
     '017935': f"{GIUFFRE_V_DERSHOWITZ} court filing",
     '022237': f"{GIUFFRE_V_DERSHOWITZ} partial court filing with fact checking questions?",
     '017792': f"{GIUFFRE_V_DERSHOWITZ} article about Dershowitz's appearance on Wolf Blitzer",
@@ -1034,7 +1033,7 @@ FILE_DESCRIPTIONS = {
     '014788': f"{GIUFFRE_V_MAXWELL} court filing 2017-03-17",
     '014797': f"{GIUFFRE_V_MAXWELL} court filing 2017-03-17",
     '011304': f"{GIUFFRE_V_MAXWELL} transcript of hearing in 2017-03-17",
-    '016507': f'horrible OCR, may contain text of "Perversion of Justice" by Julie K. Brown',
+    '016507': f'horrible OCR, may contain text of "Perversion of Justice" by {JULIE_K_BROWN}',
     '025939': f'{JANE_DOE_V_EPSTEIN_TRUMP} affidavit of Jane Doe describing being raped by Epstein',
     '025937': f'{JANE_DOE_V_EPSTEIN_TRUMP} affidavit of Tiffany Doe describing Jane Doe being raped by Epstein and Trump',
     '029398': f'{JANE_DOE_V_EPSTEIN_TRUMP} article in Law.com',
@@ -1061,15 +1060,14 @@ FILE_DESCRIPTIONS = {
     '010560': f"letter from Gloria Allred to {SCOTT_J_LINK} alleging abuse of a girl from Kansas 2019-06-19",
     '031447': f"letter from {MARTIN_WEINBERG} to Melanie Ann Pustay and Sean O'Neill re: an Epstein FOIA request",
     '026793': f"letter from {STEVEN_HOFFENBERG}'s lawyers at Mintz Fraade offering to take over Epstein's business and resolve his legal issues 2018-03-23",
-    '017818': f"{MIAMI_HERALD} article about accusations against {ALAN_DERSHOWITZ} by Julie K. Brown 2018-12-27",
-    '017800': f'{MIAMI_HERALD} "Perversion of Justice" by Julie K. Brown',
+    '017818': f"{MIAMI_HERALD} article about accusations against {ALAN_DERSHOWITZ} by {JULIE_K_BROWN} 2018-12-27",
+    '017800': f'{MIAMI_HERALD} "Perversion of Justice" by {JULIE_K_BROWN}',
     '016420': f"New York v. {JEFFREY_EPSTEIN} court filing 2019-01-11",
     '016197': f"response to Florida Bar complaint by {ALAN_DERSHOWITZ} about David Boies from Paul Cassell",
     '023361': f"{SAUDI_JASTA_LAWSUIT} legal text and court documents 2012-01-20",
     '017830': f"{SAUDI_JASTA_LAWSUIT} legal text and court documents",
     '028540': f"Supreme Court decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP",
-    '022277': f"text of U.S. National Labour Relationsh Board (NLRB) law",
-    '022494': f'text of U.S. Foreign Corrupt Practices Act (FCPA) DOJ Resource Guide ca. 2013-01',
+    '022277': f"{TEXT_OF_US_LAW}: National Labour Relations Board (NLRB)",
     '010757': VIRGINIA_FILING,  # TODO: which case are these?
     '015529': VIRGINIA_FILING,  # TODO: which case are these?
     '014118': VIRGINIA_FILING,  # TODO: which case are these?
@@ -1197,7 +1195,7 @@ FILE_DESCRIPTIONS = {
     '018743': f"property listing in Las Vegas",
     '027068': f"{THE_REAL_DEAL_ARTICLE} 2018-10-11",
     '029520': f'{THE_REAL_DEAL_ARTICLE} "Lost Paradise at the Palm House" 2019-06-17',
-    '018727': f"Virgin Islands property deal pitch deck, building will be leased to the U.S. govt GSA ca. 2014-06-01",
+    '018727': f"{VIRGIN_ISLANDS} property deal pitch deck, building will be leased to the U.S. govt GSA ca. 2014-06-01",
     # TSV files
     '016599': f"{PALM_BEACH_TSV} consumption (water?)",
     '016600': f"{PALM_BEACH_TSV} consumption (water?)",
@@ -1290,7 +1288,7 @@ FILE_DESCRIPTIONS = {
     '030884': f"tweet by Ed Krassenstein",
     '031546': f"tweets by Donald Trump about Russian collusion 2018-01-06",
     '033236': f'tweets about Ivanka Trump in Arabic 2017-05-20',
-    '029475': f'Virgin Islands Twin City Mobile Integrated Health Services (TCMIH) proposal/request for donation',
+    '029475': f'{VIRGIN_ISLANDS} Twin City Mobile Integrated Health Services (TCMIH) proposal/request for donation',
     '029448': f'weird short essay titled "President Obama and Self-Deception"',
     '022267': f'Women Empowerment (WE) founder {SVETLANA_POZHIDAEVA} essay about growing her seminar business',
     '022407': f'Women Empowerment (WE) seminar pitch deck, probably from {SVETLANA_POZHIDAEVA}',
@@ -1298,6 +1296,7 @@ FILE_DESCRIPTIONS = {
 
 UNINTERESTING_PREFIXES = [
     'article about',
+    ARTICLE_DRAFT,
     'BBC',
     'Bloomberg',
     'book:',
@@ -1315,7 +1314,6 @@ UNINTERESTING_PREFIXES = [
     DEEP_THINKING_HINT,
     DERSH_GIUFFRE_TWEET,
     DEUTSCHE_BANK_TAX_TOPICS,
-    'draft of an article',
     'fragment',
     GOLDMAN_REPORT,
     GORDON_GETTY,
@@ -1327,7 +1325,7 @@ UNINTERESTING_PREFIXES = [
     'JASTA',
     JOHN_BOLTON_PRESS_CLIPPING,
     JP_MORGAN,
-    'LA Times',
+    LA_TIMES,
     'meme',
     'Morgan Stanley',
     NOBEL_CHARITABLE_TRUST,
@@ -1351,7 +1349,7 @@ UNINTERESTING_PREFIXES = [
     SHIMON_POST,
     'single page',
     STACEY_PLASKETT,
-    'text of U.S.',  # laws
+    TEXT_OF_US_LAW,
     'translation',
     'tweet',
     THE_REAL_DEAL_ARTICLE,
@@ -1359,6 +1357,5 @@ UNINTERESTING_PREFIXES = [
     UBS_CIO_REPORT,
     'Vanity Fair',
     VI_DAILY_NEWS_ARTICLE,
-    'Virgin Islands',
     WAPO,
 ]
