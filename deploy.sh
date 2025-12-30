@@ -5,8 +5,8 @@
 source .env
 set -e
 
-EMAILS_DIR="../epstein_emails_house_oversight"
 DOCS_DIR="docs"
+EMAILS_DIR="../epstein_emails_house_oversight"
 WORD_COUNT_HTML_STEM='epstein_emails_word_count.html'
 INDEX_HTML_PATH="$DOCS_DIR/index.html"
 WORD_COUNT_HTML_PATH="$DOCS_DIR/$WORD_COUNT_HTML_STEM"

@@ -92,7 +92,7 @@ def generate_html() -> None:
     write_html(GH_PAGES_HTML_PATH)
     logger.warning(f"Total time: {timer.seconds_since_start()}")
 
-    # JSON stats
+    # JSON stats (mostly used for building pytest checks)
     if args.json_stats:
         console.line(5)
         print_json_stats(epstein_files)

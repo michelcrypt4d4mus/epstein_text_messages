@@ -5,7 +5,7 @@ import re
 from dotenv import load_dotenv
 load_dotenv()
 
-from epstein_files.documents.document import SearchResult
+from epstein_files.documents.search_result import SearchResult
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.constant.common_words import COMMON_WORDS_LIST
 from epstein_files.util.data import Timer
