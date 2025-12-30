@@ -1,12 +1,7 @@
 import json
 
 from dotenv import load_dotenv
-from rich.align import Align
-from rich.markup import escape
 from rich.panel import Panel
-from rich.table import Table
-from rich.text import Text
-from rich.theme import Theme
 load_dotenv()
 
 from epstein_files.util.file_helper import JSON_DIR

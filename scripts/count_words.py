@@ -5,7 +5,6 @@ import re
 from dotenv import load_dotenv
 load_dotenv()
 
-from epstein_files.documents.search_result import SearchResult
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.constant.common_words import COMMON_WORDS_LIST
 from epstein_files.util.data import Timer
@@ -13,6 +12,7 @@ from epstein_files.util.env import args, logger, specified_names
 from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
 from epstein_files.util.rich import (console, print_centered, print_color_key, print_page_title, print_panel,
      print_starred_header, write_html)
+from epstein_files.util.search_result import SearchResult
 from epstein_files.util.word_count import WordCount
 
 HTML_REGEX = re.compile(r"^http|#yiv")
@@ -20,10 +20,15 @@ HTML_REGEX = re.compile(r"^http|#yiv")
 
 timer = Timer()
 epstein_files = EpsteinFiles.get_files(timer)
-imessage_logs = epstein_files.imessage_logs_for(specified_names) if specified_names else epstein_files.imessage_logs
-emails = epstein_files.valid_emails()
 email_subjects: set[str] = set()
 word_count = WordCount()
+
+# Remove dupes, junk mail, and fwded articles from emails
+emails = [
+    e for e in epstein_files.emails
+    if not (e.is_duplicate or e.is_junk_mail or e.configured_attr('is_fwded_article')) \
+        and (len(specified_names) == 0 or e.author in specified_names)
+]
 
 for email in emails:
     logger.info(f"Counting words in {email}\n  [SUBJECT] {email.subject()}")
@@ -39,6 +44,9 @@ for email in emails:
 
         for word in line.split():
             word_count.count_word(word, SearchResult(email, [line]))
+
+# Add in iMessage conversation words
+imessage_logs = epstein_files.imessage_logs_for(specified_names) if specified_names else epstein_files.imessage_logs
 
 for imessage_log in imessage_logs:
     logger.info(f"Counting words in {imessage_log}")
