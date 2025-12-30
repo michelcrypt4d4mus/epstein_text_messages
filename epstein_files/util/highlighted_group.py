@@ -25,7 +25,7 @@ class HighlightedGroup:
     Attributes:
         category (str): optional string to use as an override for self.label in some contexts
         emailers (dict[str, str | None]): optional names to construct regexes for (values are descriptions)
-        is_multiline (bool): True if this regex is only used by RegexHighlighter and group has no other info
+        is_multiline (bool): True if this pattern is only used by RegexHighlighter and this highlight group has no other info
         label (str): RegexHighlighter match group name, defaults to 1st 'emailers' key if only 1 emailer provided
         pattern (str): optional regex pattern identifying strings matching this group
         regex (re.Pattern): matches self.pattern + all first and last names (and pluralizations) in self.emailers
@@ -44,6 +44,8 @@ class HighlightedGroup:
     def __post_init__(self):
         if not (self.emailers or self.pattern):
             raise ValueError(f"Must provide either 'emailers' or 'pattern' arg.")
+        elif self.is_multiline and self.emailers:
+            raise ValueError(f"'is_multiline' cannot be True when there are 'emailers'.")
         elif not self.label:
             if len(self.emailers) == 1:
                 self.label = [k for k in self.emailers.keys()][0]
