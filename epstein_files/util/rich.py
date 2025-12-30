@@ -20,7 +20,7 @@ from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import FALLBACK_TIMESTAMP, HEADER_ABBREVIATIONS
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import file_size_str
-from epstein_files.util.highlighted_group import COLOR_KEYS, HIGHLIGHTED_GROUPS, InterestingNamesHighlighter
+from epstein_files.util.highlighted_group import HIGHLIGHTED_GROUPS, InterestingNamesHighlighter
 
 GREY_NUMBERS = [grey for grey in reversed([15, 15, 15, 19, 19, 23, 23, 27, 30, 35, 39, 39, 58])]
 DEFAULT_NAME_COLOR = 'gray46'
@@ -36,13 +36,19 @@ NUM_COLOR_KEY_COLS = 4
 NA_TXT = Text(NA, style='dim')
 QUESTION_MARK_TXT = Text('???', style='dim')
 
+COLOR_KEYS = [
+    Text(highlight_group.label.replace('_', ' '), style=highlight_group.style)
+    for highlight_group in sorted(HIGHLIGHTED_GROUPS, key=lambda hg: hg.label)
+    if not highlight_group.is_multiline
+]
+
 THEME_STYLES = {
     DEFAULT: 'wheat4',
     TEXT_LINK: 'deep_sky_blue4 underline',
 }
 
 for highlight_group in HIGHLIGHTED_GROUPS:
-    THEME_STYLES[highlight_group.style_name] = highlight_group.style
+    THEME_STYLES[highlight_group.theme_style_name()] = highlight_group.style
 
 highlighter = InterestingNamesHighlighter()
 
@@ -104,7 +110,7 @@ def print_centered_link(url: str, link_text: str, style: str | None = None) -> N
     print_centered(link_markup(url, link_text, style or ARCHIVE_LINK_COLOR))
 
 
-def print_color_key(key_type: Literal["Groups", "People"] = "Groups") -> None:
+def print_color_key(_key_type: Literal["Groups", "People"] = "Groups") -> None:
     color_table = Table(title=f'Rough Guide to Highlighted Colors', show_header=False)
     num_colors = len(COLOR_KEYS)
     row_number = 0
