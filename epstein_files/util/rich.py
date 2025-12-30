@@ -22,6 +22,11 @@ from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import HIGHLIGHTED_GROUPS, InterestingNamesHighlighter
 
+TITLE_WIDTH = 50
+NUM_COLOR_KEY_COLS = 4
+NA_TXT = Text(NA, style='dim')
+QUESTION_MARK_TXT = Text('???', style='dim')
+
 GREY_NUMBERS = [grey for grey in reversed([15, 15, 15, 19, 19, 23, 23, 27, 30, 35, 39, 39, 58])]
 DEFAULT_NAME_COLOR = 'gray46'
 KEY_STYLE='honeydew2 bold'
@@ -30,11 +35,6 @@ SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 SOCIAL_MEDIA_LINK_STYLE = 'cyan3 bold'
 SYMBOL_STYLE = 'grey70'
 TITLE_STYLE = 'black on bright_white bold'
-
-TITLE_WIDTH = 50
-NUM_COLOR_KEY_COLS = 4
-NA_TXT = Text(NA, style='dim')
-QUESTION_MARK_TXT = Text('???', style='dim')
 
 HIGHLIGHTED_GROUP_COLOR_KEYS = [
     Text(highlight_group.label.replace('_', ' '), style=highlight_group.style)
@@ -45,15 +45,13 @@ HIGHLIGHTED_GROUP_COLOR_KEYS = [
 THEME_STYLES = {
     DEFAULT: 'wheat4',
     TEXT_LINK: 'deep_sky_blue4 underline',
+    **{hg.theme_style_name(): hg.style for hg in HIGHLIGHTED_GROUPS},
 }
-
-THEME_STYLES.update({hg.theme_style_name(): hg.style for hg in HIGHLIGHTED_GROUPS})
-highlighter = InterestingNamesHighlighter()
 
 # Instantiate console object
 CONSOLE_ARGS = {
     'color_system': '256',
-    'highlighter': highlighter,
+    'highlighter': InterestingNamesHighlighter(),
     'record': args.build,
     'safe_box': False,
     'theme': Theme(THEME_STYLES),
@@ -65,6 +63,7 @@ if args.suppress_output:
     CONSOLE_ARGS.update({'file': open(devnull, "wt")})
 
 console = Console(**CONSOLE_ARGS)
+highlighter = CONSOLE_ARGS['highlighter']
 
 
 def key_value_txt(key: str, value: Text | str) -> Text:
