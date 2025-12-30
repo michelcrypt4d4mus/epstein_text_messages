@@ -66,6 +66,20 @@ console = Console(**CONSOLE_ARGS)
 highlighter = CONSOLE_ARGS['highlighter']
 
 
+def join_text(txts: list[Text], join: str = ' ', encloser: str = '') -> Text:
+    if encloser:
+        encloser, enclose_ender = (encloser[0], encloser[1])
+    else:
+        enclose_ender = ''
+
+    txt = Text('')
+
+    for i, link in enumerate(txts):
+        txt.append(join if i >= 1 else '').append(encloser).append(link).append(enclose_ender)
+
+    return txt
+
+
 def key_value_txt(key: str, value: Text | str) -> Text:
     return Text('').append(key, style=KEY_STYLE).append('=', style=SYMBOL_STYLE).append(value)
 
@@ -237,20 +251,6 @@ def print_social_media_links() -> None:
     ]
 
     print_centered(join_text(social_links, join='     ', encloser='[]'))
-
-
-def join_text(txts: list[Text], join: str = ' ', encloser: str = '') -> Text:
-    if encloser:
-        encloser, enclose_ender = (encloser[0], encloser[1])
-    else:
-        enclose_ender = ''
-
-    txt = Text('')
-
-    for i, link in enumerate(txts):
-        txt.append(join if i >= 1 else '').append(encloser).append(link).append(enclose_ender)
-
-    return txt
 
 
 def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, style: str = TITLE_STYLE) -> None:
