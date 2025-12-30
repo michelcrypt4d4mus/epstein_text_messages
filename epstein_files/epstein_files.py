@@ -18,7 +18,6 @@ from epstein_files.documents.email import DETECT_EMAIL_REGEX, JUNK_EMAILERS, KRA
 from epstein_files.documents.email_header import AUTHOR
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.documents.search_result import SearchResult
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url,
      search_jmail_url, search_twitter_url)
@@ -30,6 +29,7 @@ from epstein_files.util.highlighted_group import get_info_for_name, get_style_fo
 from epstein_files.util.rich import (DEFAULT_NAME_COLOR, NA_TXT, QUESTION_MARK_TXT, console, highlighter,
      link_text_obj, link_markup, print_author_header, print_centered, print_other_site_link, print_panel,
      print_section_header, vertically_pad)
+from epstein_files.util.search_result import SearchResult
 
 DEVICE_SIGNATURE = 'Device Signature'
 FIRST_FEW_LINES = 'First Few Lines'
