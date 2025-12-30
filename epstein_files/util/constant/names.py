@@ -55,7 +55,6 @@ DONALD_TRUMP = 'Donald Trump'
 EDUARDO_ROBLES = 'Eduardo Robles'
 EDWARD_EPSTEIN = 'Edward Jay Epstein'
 EHUD_BARAK = 'Ehud Barak'
-ELON_MUSK = 'Elon Musk'
 ERIC_ROTH = 'Eric Roth'
 FAITH_KATES = 'Faith Kates'
 FRED_HADDAD = 'Fred Haddad'
@@ -160,10 +159,14 @@ THORBJORN_JAGLAND = 'Thorbjørn Jagland'
 TOM_BARRACK = 'Tom Barrack'
 TOM_PRITZKER = 'Tom Pritzker'
 TONJA_HADDAD_COLEMAN = 'Tonja Haddad Coleman'
-TULSI_GABBARD = 'Tulsi Gabbard'
 TYLER_SHEARS = 'Tyler Shears'  # Reputation manager, like Al Seckel
 VINIT_SAHNI = 'Vinit Sahni'
 ZUBAIR_KHAN = 'Zubair Khan'
+
+# No communications but name is in the files
+ELON_MUSK = 'Elon Musk'
+KARIM_SADJADPOUR = 'KARIM SADJADPOUR'.title()
+TULSI_GABBARD = 'Tulsi Gabbard'
 
 # Names that should be made part of a highlighting regex
 NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [

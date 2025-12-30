@@ -1,5 +1,4 @@
 import re
-from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
 
@@ -11,13 +10,17 @@ from epstein_files.documents.document import CommunicationDocument
 from epstein_files.util.constant.strings import PHONE_NUMBER_STYLE
 from epstein_files.util.constants import *
 from epstein_files.util.highlighted_group import get_style_for_name
-from epstein_files.util.rich import SYMBOL_STYLE, TEXT_LINK, highlighter, logger
+from epstein_files.util.rich import TEXT_LINK, highlighter, logger
 
+CONFIRMED_MSG = 'Found confirmed counterparty'
+GUESSED_MSG = 'This is probably a conversation with'
 KNOWN_IDS = [id for id in KNOWN_IMESSAGE_FILE_IDS.keys()] + [id for id in GUESSED_IMESSAGE_FILE_IDS.keys()]
+LAST_NAMES_ONLY = [JEFFREY_EPSTEIN, STEVE_BANNON]
+MSG_DATE_FORMAT = r"%m/%d/%y %I:%M:%S %p"
+
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
 REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
-MSG_DATE_FORMAT = r"%m/%d/%y %I:%M:%S %p"
 
 UNKNOWN_TEXTERS = [
     '+16463880059',
@@ -32,14 +35,10 @@ TEXTER_MAPPING = {
     '+13109906526': STEVE_BANNON,
 }
 
-LAST_NAMES_ONLY = [
-    JEFFREY_EPSTEIN,
-    STEVE_BANNON,
-]
-
 
 @dataclass(kw_only=True)
 class TextMessage:
+    """Class representing a single iMessage text message."""
     author: str | None
     author_str: str = field(init=False)
     id_confirmed: bool = False
@@ -101,8 +100,8 @@ class TextMessage:
 
 @dataclass
 class MessengerLog(CommunicationDocument):
+    """Class representing one iMessage log file (one conversation between Epstein and some counterparty)."""
     _messages: list[TextMessage] = field(default_factory=list)
-    _author_counts: dict[str | None, int] = field(default_factory=lambda: defaultdict(int))
 
     def description_panel(self) -> Panel:
         """Panelized description() with info_txt(), used in search results."""
@@ -115,20 +114,18 @@ class MessengerLog(CommunicationDocument):
         if self.file_id not in KNOWN_IDS:
             return None
 
-        if self.file_id in KNOWN_IMESSAGE_FILE_IDS:
-            hint_msg = 'Found confirmed counterparty'
-        else:
-            hint_msg = 'This is probably a conversation with'
-
+        hint_msg = CONFIRMED_MSG if self.file_id in KNOWN_IMESSAGE_FILE_IDS else GUESSED_MSG
         return Text(f"({hint_msg} ", style='dim').append(self.author_txt).append(')')
 
     def last_message_at(self, name: str | None) -> datetime:
         return self.messages_by(name)[-1].timestamp()
 
     def messages_by(self, name: str | None) -> list[TextMessage]:
+        """Return all messages by 'name'."""
         return [m for m in self.messages() if m.author == name]
 
     def messages(self) -> list[TextMessage]:
+        """Lazily evaluated accessor for self._messages."""
         if len(self._messages) == 0:
             self._messages = [
                 TextMessage(
@@ -143,13 +140,14 @@ class MessengerLog(CommunicationDocument):
 
         return self._messages
 
+    def _border_style(self) -> str:
+        return self.author_style.removesuffix(' bold')
+
     def _extract_author(self) -> None:
         self.author = KNOWN_IMESSAGE_FILE_IDS.get(self.file_id, GUESSED_IMESSAGE_FILE_IDS.get(self.file_id))
-        self.author_str = self.author or UNKNOWN
+        self.author_str = self.author_or_unknown()
         self.author_style = get_style_for_name(self.author) + ' bold'
-
-        if self.file_id in GUESSED_IMESSAGE_FILE_IDS:
-            self.author_str += ' (?)'
+        logger.warning(f"set author_str for {self.file_id} to {self.author_str}")
 
     def _extract_timestamp(self) -> datetime:
         for match in MSG_REGEX.finditer(self.text):
@@ -161,9 +159,6 @@ class MessengerLog(CommunicationDocument):
                 logger.info(f"[WARNING] Failed to parse '{timestamp_str}' to datetime! Using next match. Error: {e}'")
 
         raise RuntimeError(f"{self}: No timestamp found!")
-
-    def _border_style(self) -> str:
-        return self.author_style.removesuffix(' bold')
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield self.file_info_panel()

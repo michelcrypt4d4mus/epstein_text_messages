@@ -290,6 +290,7 @@ EMAILERS = [
 
 EMAILER_REGEXES = deepcopy(EMAILER_ID_REGEXES)
 
+# Add simple matching regexes for EMAILERS entries to EMAILER_REGEXES
 for emailer in EMAILERS:
     if emailer in EMAILER_REGEXES:
         raise RuntimeError(f"Can't overwrite emailer regex for '{emailer}'")
@@ -310,31 +311,31 @@ KNOWN_EMAIL_AUTHORS = {
     '026745': BARBRO_EHNBOM,         # Signature
     '031227': BENNET_MOSKOWITZ,
     '031442': CHRISTINA_GALBRAITH,
-    '019446': CHRISTINA_GALBRAITH,  # Not 100% but from "Christina media/PR" which fits
+    '019446': CHRISTINA_GALBRAITH,   # Not 100% but from "Christina media/PR" which fits
     '026625': DARREN_INDYKE,
-    '026624': DARREN_INDYKE,        # weird format (signature on top)
-    '031278': DARREN_INDYKE,        # weird format (signature on top)
-    '026290': DAVID_SCHOEN,         # Signature
-    '031339': DAVID_SCHOEN,         # Signature
-    '031492': DAVID_SCHOEN,         # Signature
-    '031560': DAVID_SCHOEN,         # Signature
-    '026287': DAVID_SCHOEN,         # Signature
-    '033419': DAVID_SCHOEN,         # Sent by AOL
+    '026624': DARREN_INDYKE,         # weird format (signature on top)
+    '031278': DARREN_INDYKE,         # weird format (signature on top)
+    '026290': DAVID_SCHOEN,          # Signature
+    '031339': DAVID_SCHOEN,          # Signature
+    '031492': DAVID_SCHOEN,          # Signature
+    '031560': DAVID_SCHOEN,          # Signature
+    '026287': DAVID_SCHOEN,          # Signature
+    '033419': DAVID_SCHOEN,          # Sent by AOL
     '031460': EDWARD_EPSTEIN,
-    '030578': FAITH_KATES,          # Same as unredacted 030414, same legal signature
-    '030634': FAITH_KATES,          # Same as unredacted 031135, same legal signature
+    '030578': FAITH_KATES,           # Same as unredacted 030414, same legal signature
+    '030634': FAITH_KATES,           # Same as unredacted 031135, same legal signature
     '026547': GERALD_BARTON,
-    '029969': GWENDOLYN_BECK,       # Signature
-    '031120': GWENDOLYN_BECK,       # Signature
-    '029968': GWENDOLYN_BECK,       # Signature
+    '029969': GWENDOLYN_BECK,        # Signature
+    '031120': GWENDOLYN_BECK,        # Signature
+    '029968': GWENDOLYN_BECK,        # Signature
     '029970': GWENDOLYN_BECK,
-    '029960': GWENDOLYN_BECK,       # Reply
-    '029959': GWENDOLYN_BECK,       # "Longevity & Aging"
-    '033360': 'Henry Holt',         # in signature
-    '033384': JACK_GOLDBERGER,    # Might be Paul Prosperi?
+    '029960': GWENDOLYN_BECK,        # Reply
+    '029959': GWENDOLYN_BECK,        # "Longevity & Aging"
+    '033360': 'Henry Holt',          # in signature
+    '033384': JACK_GOLDBERGER,       # Might be Paul Prosperi?
     '026024': JEAN_HUGUEN,
-    '026024': JEAN_HUGUEN,          # Signature
-    '021823': JEAN_LUC_BRUNEL,      # Reply
+    '026024': JEAN_HUGUEN,           # Signature
+    '021823': JEAN_LUC_BRUNEL,       # Reply
     '031826': JEFFREY_EPSTEIN,
     '030997': JEFFREY_EPSTEIN,
     '029779': JEFFREY_EPSTEIN,
