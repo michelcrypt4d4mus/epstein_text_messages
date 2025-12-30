@@ -186,7 +186,7 @@ HIGHLIGHTED_GROUPS = [
             ANDRES_SERRANO: "'Piss Christ' artist",
             'Barry Josephson': 'American film producer and former music manager, editor FamilySecurityMatters.org',
             BILL_SIEGEL: 'documentary film producer and director',
-            DAVID_BLAINE: 'magician',
+            DAVID_BLAINE: 'famous magician',
             'Richard Merkin': 'painter, illustrator and arts educator',
         },
     ),
@@ -217,7 +217,7 @@ HIGHLIGHTED_GROUPS = [
         style='medium_purple3',
         pattern=r'(David\s*)?Boies|dersh|(Gloria\s*)?Allred|(Mi(chael|ke)\s*)?Avenatti',
         emailers = {
-            ALAN_DERSHOWITZ: None,
+            ALAN_DERSHOWITZ: 'Harvard Law School professor and all around (in)famous American lawyer',
             KEN_STARR: 'head of the Monica Lewinsky investigation against Bill Clinton',
         }
     ),
