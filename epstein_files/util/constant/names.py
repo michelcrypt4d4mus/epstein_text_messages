@@ -35,6 +35,7 @@ BRAD_EDWARDS = 'Brad Edwards'
 BRAD_KARP = 'Brad Karp'
 BRAD_WECHSLER = 'Brad Wechsler'
 BORIS_NIKOLIC = 'Boris Nikolic'
+CECILE_DE_JONGH = 'Cecile de Jongh'
 CECILIA_STEEN = 'Cecilia Steen'
 CELINA_DUBIN = 'Celina Dubin'
 CHRISTINA_GALBRAITH = 'Christina Galbraith'  # Works with Tyler Shears on reputation stuff

@@ -2,6 +2,7 @@ import re
 from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
+from typing import Literal
 
 from dateutil.parser import parse
 from rich.console import Console, ConsoleOptions, RenderResult
@@ -254,21 +255,6 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
     'Vahe Stepanian',                        # Random CC
 ]
 
-# Override the ._actual_text() method
-ACTUAL_TEXT = {
-    '032214': 'Agreed',
-    '028770': 'call me now',
-    '026625': 'Hysterical.',
-    '033050': 'schwartman',
-    '029196': 'Talk in 40?',
-    '022938': 'what do you suggest?',
-    '026612': '',
-    '031384': '',
-    '030768': 'ok',
-    '030997': 'call back',
-    '031826': 'I have',
-}
-
 # Emails sent by epstein to himself that are just notes
 NOTES_TO_SELF = [
     '033274',
@@ -284,16 +270,15 @@ class Email(CommunicationDocument):
     header: EmailHeader = field(init=False)
     is_duplicate: bool = False
     is_junk_mail: bool = False
-    recipients: list[str] = field(default_factory=list)
+    recipients: list[str | None] = field(default_factory=list)
     sent_from_device: str | None = None
     signature_substitution_count: dict[str, int] = field(default_factory=lambda: defaultdict(int))
 
     def __post_init__(self):
         super().__post_init__()
 
-        if self.file_id in KNOWN_EMAIL_RECIPIENTS:
-            recipient = KNOWN_EMAIL_RECIPIENTS[self.file_id]
-            self.recipients = recipient if isinstance(recipient, list) else [recipient]
+        if self._get_configured_attr('recipients'):
+            self.recipients = EMAIL_INFO[self.file_id].recipients
         else:
             for recipient in self.header.recipients():
                 self.recipients.extend(self._get_names(recipient))
@@ -326,8 +311,8 @@ class Email(CommunicationDocument):
 
     def _actual_text(self) -> str:
         """The text that comes before likely quoted replies and forwards etc."""
-        if self.file_id in ACTUAL_TEXT:
-            return ACTUAL_TEXT[self.file_id]
+        if self._get_configured_attr('actual_text') is not None:
+            return self._get_configured_attr('actual_text')
         elif self.header.num_header_rows == 0:
             return self.text
 
@@ -393,8 +378,8 @@ class Email(CommunicationDocument):
     def _extract_author(self) -> None:
         self._extract_header()
 
-        if self.file_id in KNOWN_EMAIL_AUTHORS:
-            self.author = KNOWN_EMAIL_AUTHORS[self.file_id]
+        if self._get_configured_attr('author'):
+            self.author = EMAIL_INFO[self.file_id].author
         elif self.header.author:
             authors = self._get_names(self.header.author)
             self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
@@ -411,7 +396,7 @@ class Email(CommunicationDocument):
         else:
             msg = f"No header match found in '{self.filename}'! Top lines:\n\n{self.top_lines()}"
 
-            if self.file_id in KNOWN_EMAIL_AUTHORS or self.file_id in KNOWN_EMAIL_RECIPIENTS:
+            if self.file_id in EMAIL_INFO:
                 logger.info(msg)
             else:
                 logger.warning(msg)
@@ -419,8 +404,8 @@ class Email(CommunicationDocument):
             self.header = EmailHeader(field_names=[])
 
     def _extract_timestamp(self) -> datetime:
-        if self.file_id in EMAIL_TIMESTAMPS:
-            return EMAIL_TIMESTAMPS[self.file_id]
+        if self._get_configured_attr('timestamp'):
+            return EMAIL_INFO[self.file_id].timestamp
         elif self.header.sent_at:
             timestamp = _parse_timestamp(self.header.sent_at)
 
@@ -470,6 +455,11 @@ class Email(CommunicationDocument):
 
         names_found = names_found or [emailer_str]
         return [_reverse_first_and_last_names(name) for name in names_found]
+
+    def _get_configured_attr(self, attr: Literal['actual_text', 'author', 'recipients', 'timestamp']) -> str | datetime | None:
+        """Find the value configured in constants.py for this attribute (if any)."""
+        if self.file_id in EMAIL_INFO:
+            return getattr(EMAIL_INFO[self.file_id], attr)
 
     def _recipients_txt(self) -> Text:
         """Text object with comma separated colored versions of all recipients."""
