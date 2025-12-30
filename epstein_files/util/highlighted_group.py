@@ -478,7 +478,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label=BILL_GATES,
         style='turquoise4',
-        pattern=r'BG|(Bill\s+((and|or)\s+Melinda\s+)?)?Gates|Melinda(\s+Gates)?|Microsoft|MSFT',
+        pattern=r'BG|bg?C3|(Bill\s*((and|or)\s*Melinda\s*)?)?Gates|Melinda(\s*Gates)?|Microsoft|MSFT',
         has_no_category=True,
     ),
     HighlightedGroup(
