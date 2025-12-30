@@ -1,5 +1,4 @@
 import re
-from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
 
@@ -13,13 +12,15 @@ from epstein_files.util.constants import *
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import TEXT_LINK, highlighter, logger
 
+CONFIRMED_MSG = 'Found confirmed counterparty'
+GUESSED_MSG = 'This is probably a conversation with'
 KNOWN_IDS = [id for id in KNOWN_IMESSAGE_FILE_IDS.keys()] + [id for id in GUESSED_IMESSAGE_FILE_IDS.keys()]
+LAST_NAMES_ONLY = [JEFFREY_EPSTEIN, STEVE_BANNON]
+MSG_DATE_FORMAT = r"%m/%d/%y %I:%M:%S %p"
+
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
 REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
-CONFIRMED_COUNTERPARTY_MSG = 'Found confirmed counterparty'
-GUESSED_COUNTERPARTY_MSG = 'This is probably a conversation with'
-MSG_DATE_FORMAT = r"%m/%d/%y %I:%M:%S %p"
 
 UNKNOWN_TEXTERS = [
     '+16463880059',
@@ -33,11 +34,6 @@ TEXTER_MAPPING = {
     '+19174393646': SCARAMUCCI,
     '+13109906526': STEVE_BANNON,
 }
-
-LAST_NAMES_ONLY = [
-    JEFFREY_EPSTEIN,
-    STEVE_BANNON,
-]
 
 
 @dataclass(kw_only=True)
@@ -118,7 +114,7 @@ class MessengerLog(CommunicationDocument):
         if self.file_id not in KNOWN_IDS:
             return None
 
-        hint_msg = CONFIRMED_COUNTERPARTY_MSG if self.file_id in KNOWN_IMESSAGE_FILE_IDS else GUESSED_COUNTERPARTY_MSG
+        hint_msg = CONFIRMED_MSG if self.file_id in KNOWN_IMESSAGE_FILE_IDS else GUESSED_MSG
         return Text(f"({hint_msg} ", style='dim').append(self.author_txt).append(')')
 
     def last_message_at(self, name: str | None) -> datetime:
@@ -149,8 +145,9 @@ class MessengerLog(CommunicationDocument):
 
     def _extract_author(self) -> None:
         self.author = KNOWN_IMESSAGE_FILE_IDS.get(self.file_id, GUESSED_IMESSAGE_FILE_IDS.get(self.file_id))
-        self.author_str = self.author or UNKNOWN
+        self.author_str = self.author_or_unknown()
         self.author_style = get_style_for_name(self.author) + ' bold'
+        logger.warning(f"set author_str for {self.file_id} to {self.author_str}")
 
     def _extract_timestamp(self) -> datetime:
         for match in MSG_REGEX.finditer(self.text):
