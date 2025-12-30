@@ -244,11 +244,11 @@ HIGHLIGHTED_GROUPS = [
         style='deep_pink2',
         pattern=r'Cambridge|(Derek\s*)?Bok|Elisa(\s*New)?|Harvard|(Stephen\s*)?Kosslyn',
         emailers = {
-            LARRY_SUMMERS: 'Obama economic advisor, board of Digital Currency Group (DCG)',
-            'Leah Reis-Dennis': 'producer for Poetry in America',
-            LISA_NEW: 'poetry',
+            LARRY_SUMMERS: 'board of Digital Currency Group (DCG), Harvard president, Obama economic advisor',
+            'Leah Reis-Dennis': 'producer for Lisa New\'s Poetry in America',
+            LISA_NEW: 'professor of poetry',
             'Lisa Randall': 'theoretical physicist',
-            MARTIN_NOWAK: None,
+            MARTIN_NOWAK: 'professor of mathematics and biology',
         }
     ),
     HighlightedGroup(
