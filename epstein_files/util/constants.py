@@ -774,7 +774,7 @@ CNN = 'CNN'
 CVRA = "Crime Victims' Rights Act [CVRA]"
 DAILY_MAIL_ARTICLE = "Daily Mail article about"
 DAILY_TELEGRAPH_ARTICLE = "Daily Telegraph article about"
-DAVID_BLAINE_VISA_LETTER = 'letter of recommendation for visa for a model by David Blaine'
+DAVID_BLAINE_VISA_LETTER = f"{DAVID_BLAINE} letter of recommendation for visa for a model by"
 DAVID_SCHOEN_CVRA_LEXIS_SEARCH = f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN} 2019-02-28"
 DEEP_THINKING_HINT = 'book: "Deep Thinking: Twenty-Five Ways of Looking at AI" by John Brockman 2019-02-19'
 DERSH_GIUFFRE_TWEET = f"tweet by {ALAN_DERSHOWITZ} about Virginia Giuffre"
@@ -1079,7 +1079,7 @@ FILE_DESCRIPTIONS = {
     '023069': f'{BOFA_MERRILL} 2016 Future of Financials Conference',
     '014315': f'{BOFA_MERRILL} 2016 Future of Financials Conference',
     '026825': f"Deutsche Asset & Wealth Management featured speaker bios",
-    '017526': f'Intellectual Jazz conference brochure',
+    '017526': f'Intellectual Jazz conference brochure f. {DAVID_BLAINE}',
     '023120': f"{LAWRENCE_KRAUSS} 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more (old draft)",
     '023121': f"{LAWRENCE_KRAUSS} 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more (old draft)",
     '023123': f"{LAWRENCE_KRAUSS} 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more",
@@ -1226,8 +1226,6 @@ FILE_DESCRIPTIONS = {
     '016699': TRUMP_DISCLOSURES,
     '027009': f"{EHUD_BARAK} speech to AIPAC 2013-03-03",
     '025540': f"Epstein's rough draft of his side of the story?",
-    '022267': f'Women Empowerment (WE) founder {SVETLANA_POZHIDAEVA} essay about growing her seminar business',
-    '022407': f'Women Empowerment (WE) seminar pitch deck, probably from {SVETLANA_POZHIDAEVA}',
     '024117': f"FAQ about anti-money laundering and terrorist financing law in the U.S.",
     '027071': f"Female Health Company (FHX) brochure request donations for female condoms in Uganda",
     '027074': f"Female Health Company (FHX) pitch deck (USAID was a customer)",
@@ -1256,11 +1254,11 @@ FILE_DESCRIPTIONS = {
     '032281': f"{INSIGHTS_POD} forecasting election for Trump ca. 2016-10-25",
     '028988': f"{INSIGHTS_POD} pitch deck 2016-08-20",
     '026627': f"{INSIGHTS_POD} report on the presidential debate",
+    '030142': f"JASTA (Justice Against Sponsors of Terrorism Act) doc that's mostly empty, references suit against Saudi f. {KATHRYN_RUEMMLER} & {KEN_STARR} ca. 2016-09-01",
     '033478': f'meme of Kim Jong Un reading "Fire And Fury" by {MICHAEL_WOLFF}',
     '033177': f'meme of Trump with text "WOULD YOU TRUST THIS MAN WITH YOUR DAUGHTER?"',
     '025205': MERCURY_FILMS_PROFILES,
     '025210': MERCURY_FILMS_PROFILES,
-    '030142': f"JASTA (Justice Against Sponsors of Terrorism Act) doc that's mostly empty, references suit against Saudi f. {KATHRYN_RUEMMLER} & {KEN_STARR} ca. 2016-09-01",
     '029564': f"{OBAMA_JOKE} ca. 2013-07-26",
     '029353': f"{OBAMA_JOKE} ca. 2013-07-26",
     '029352': f"{OBAMA_JOKE} ca. 2013-07-26",
@@ -1292,7 +1290,9 @@ FILE_DESCRIPTIONS = {
     '031546': f"tweets by Donald Trump about Russian collusion 2018-01-06",
     '033236': f'tweets about Ivanka Trump in Arabic 2017-05-20',
     '029475': f'Virgin Islands Twin City Mobile Integrated Health Services (TCMIH) proposal/request for donation',
-    '029448': f'weird short essay "President Obama and Self-Deception"',
+    '029448': f'weird short essay titled "President Obama and Self-Deception"',
+    '022267': f'Women Empowerment (WE) founder {SVETLANA_POZHIDAEVA} essay about growing her seminar business',
+    '022407': f'Women Empowerment (WE) seminar pitch deck, probably from {SVETLANA_POZHIDAEVA}',
 }
 
 UNINTERESTING_PREFIXES = [
