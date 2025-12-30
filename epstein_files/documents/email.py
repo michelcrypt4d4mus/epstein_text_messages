@@ -2,7 +2,6 @@ import re
 from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Literal
 
 from dateutil.parser import parse
 from rich.console import Console, ConsoleOptions, RenderResult
@@ -18,6 +17,7 @@ from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import *
 from epstein_files.util.data import TIMEZONE_INFO, collapse_newlines, escape_single_quotes, remove_timezone, uniquify
+from epstein_files.util.email_info import ConfiguredAttr
 from epstein_files.util.env import logger
 from epstein_files.util.file_helper import is_local_extract_file
 from epstein_files.util.highlighted_group import get_style_for_name
@@ -277,7 +277,7 @@ class Email(CommunicationDocument):
     def __post_init__(self):
         super().__post_init__()
 
-        if self._get_configured_attr('recipients'):
+        if self.configured_attr('recipients'):
             self.recipients = EMAIL_INFO[self.file_id].recipients
         else:
             for recipient in self.header.recipients():
@@ -290,6 +290,11 @@ class Email(CommunicationDocument):
         self.sent_from_device = self._sent_from_device()
         self.is_duplicate = self.file_id in DUPLICATE_FILE_IDS
         self.is_junk_mail = self.author in JUNK_EMAILERS
+
+    def configured_attr(self, attr: ConfiguredAttr) -> bool | datetime | str | None:
+        """Find the value configured in constants.py for the 'attr' attribute of this email (if any)."""
+        if self.file_id in EMAIL_INFO:
+            return getattr(EMAIL_INFO[self.file_id], attr)
 
     def idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES, text: str | None = None) -> int | None:
         """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line."""
@@ -311,8 +316,8 @@ class Email(CommunicationDocument):
 
     def _actual_text(self) -> str:
         """The text that comes before likely quoted replies and forwards etc."""
-        if self._get_configured_attr('actual_text') is not None:
-            return self._get_configured_attr('actual_text')
+        if self.configured_attr('actual_text') is not None:
+            return self.configured_attr('actual_text')
         elif self.header.num_header_rows == 0:
             return self.text
 
@@ -378,7 +383,7 @@ class Email(CommunicationDocument):
     def _extract_author(self) -> None:
         self._extract_header()
 
-        if self._get_configured_attr('author'):
+        if self.configured_attr('author'):
             self.author = EMAIL_INFO[self.file_id].author
         elif self.header.author:
             authors = self._get_names(self.header.author)
@@ -404,7 +409,7 @@ class Email(CommunicationDocument):
             self.header = EmailHeader(field_names=[])
 
     def _extract_timestamp(self) -> datetime:
-        if self._get_configured_attr('timestamp'):
+        if self.configured_attr('timestamp'):
             return EMAIL_INFO[self.file_id].timestamp
         elif self.header.sent_at:
             timestamp = _parse_timestamp(self.header.sent_at)
@@ -455,11 +460,6 @@ class Email(CommunicationDocument):
 
         names_found = names_found or [emailer_str]
         return [_reverse_first_and_last_names(name) for name in names_found]
-
-    def _get_configured_attr(self, attr: Literal['actual_text', 'author', 'recipients', 'timestamp']) -> str | datetime | None:
-        """Find the value configured in constants.py for this attribute (if any)."""
-        if self.file_id in EMAIL_INFO:
-            return getattr(EMAIL_INFO[self.file_id], attr)
 
     def _recipients_txt(self) -> Text:
         """Text object with comma separated colored versions of all recipients."""
@@ -515,7 +515,7 @@ class Email(CommunicationDocument):
             sent_from = sent_from_match.group(0)
             return 'S' + sent_from[1:] if sent_from.startswith('sent') else sent_from
 
-    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
+    def __rich_console__(self, _console: Console, _options: ConsoleOptions) -> RenderResult:
         logger.debug(f"Printing '{self.filename}'...")
 
         if self.file_id in DUPLICATE_FILE_IDS:

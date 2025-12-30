@@ -7,7 +7,6 @@ load_dotenv()
 
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.constant.common_words import COMMON_WORDS_LIST
-from epstein_files.util.constants import EMAILED_ARTICLE_IDS
 from epstein_files.util.data import Timer
 from epstein_files.util.env import args, logger, specified_names
 from epstein_files.util.file_helper import WORD_COUNT_HTML_PATH
@@ -27,7 +26,7 @@ word_count = WordCount()
 # Remove dupes, junk mail, and fwded articles from emails
 emails = [
     e for e in epstein_files.emails
-    if not (e.is_duplicate or e.is_junk_mail or e.file_id in EMAILED_ARTICLE_IDS) \
+    if not (e.is_duplicate or e.is_junk_mail or e.configured_attr('is_fwded_article')) \
         and (len(specified_names) == 0 or e.author in specified_names)
 ]
 
