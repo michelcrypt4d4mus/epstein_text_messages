@@ -330,15 +330,6 @@ class CommunicationDocument(Document):
         raise NotImplementedError(f"Should be implemented in subclasses!")
 
 
-@dataclass
-class SearchResult:
-    document: Document
-    lines: list[Text]
-
-    def unprefixed_lines(self) -> list[str]:
-        return [line.plain.split(':', 1)[1] for line in self.lines]
-
-
 def _color_diff_output(diff_result: str) -> list[Text]:
     txts = [Text('diff output:')]
     style = 'dim'
