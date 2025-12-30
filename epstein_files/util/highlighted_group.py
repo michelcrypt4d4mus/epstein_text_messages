@@ -17,45 +17,54 @@ NO_CATEGORY_LABELS = [BILL_GATES, STEVE_BANNON]
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w ]+$", re.IGNORECASE)
 
 
-@dataclass
+@dataclass(kw_only=True)
 class HighlightedGroup:
-    style: str
+    """
+    Encapsulates info about people, places, and other strings we want to highlight with RegexHighlighter.
+    Constructor must be called with either an 'emailers' arg or a 'pattern' arg (or both).
+
+    Attributes:
+        emailers (dict[str, str | None]): optional names to construct regexes for (values are descriptions)
+        info (str): string to use as an override for self.label in some contexts
+        is_multiline (bool): True if this regex is only used by RegexHighlighter and group has no other info
+        label (str): RegexHighlighter match group name, defaults to 1st 'emailers' key if only 1 emailer provided
+        pattern (str): optional regex pattern identifying strings matching this group
+        style (str): Rich style to apply to text matching this group
+        _regex (re.Pattern): matches self.pattern + all first and last names (and pluralizations) in self.emailers
+    """
+    emailers: dict[str, str | None] = field(default_factory=dict)
+    info: str = ''
+    is_multiline: bool = False
     label: str = ''
     pattern: str = ''
-    emailers: dict[str, str | None] = field(default_factory=dict)
-    has_no_category: bool = False
-    info: str | None = None
-    is_multiline: bool = False
-    regex: re.Pattern = field(init=False)
-    style_name: str = field(init=False)
-    style_suffix: str = field(init=False)
+    style: str
+    _regex: re.Pattern = field(init=False)
+    _style_suffix: str = field(init=False)
 
     def __post_init__(self):
-        if not self.label:
+        if not self.emailers and not self.pattern:
+            raise RuntimeError(f"Must provide either 'emailers' or 'pattern' arg.")
+        elif not self.label:
             if len(self.emailers) == 1:
                 self.label = [k for k in self.emailers.keys()][0]
-                self.has_no_category = True
             else:
                 raise RuntimeError(f"No label provided for {repr(self)}")
 
-        self.style_suffix = self.label.lower().replace(' ', '_').replace('-', '_')
-        self.style_name = f"{REGEX_STYLE_PREFIX}.{self.style_suffix}"
+        self._style_suffix = self.label.lower().replace(' ', '_').replace('-', '_')
+        match_group_var = fr"?P<{self._style_suffix}>"
         patterns = [self._emailer_pattern(e) for e in self.emailers] + ([self.pattern] if self.pattern else [])
         pattern = '|'.join(patterns)
 
         if self.is_multiline:
-            self.regex = re.compile(fr"(?P<{self.style_suffix}>{pattern})", re.IGNORECASE | re.MULTILINE)
-            self.has_no_category = True
+            self._regex = re.compile(fr"({match_group_var}{pattern})", re.IGNORECASE | re.MULTILINE)
         else:
-            self.regex = re.compile(fr"\b(?P<{self.style_suffix}>({pattern})s?)\b", re.IGNORECASE)
-
-    def colored_label(self) -> Text:
-        return Text(self.label.replace('_', ' '), style=self.style)
+            self._regex = re.compile(fr"\b({match_group_var}({pattern})s?)\b", re.IGNORECASE)
 
     def get_info(self, name: str) -> str | None:
+        """Label for people in this group with the additional info for 'name' if 'name' is in self.emailers."""
         info_pieces = []
 
-        if not self.has_no_category:
+        if not len(self.emailers) == 1:
             info_pieces.append(self.info or titleize(self.label))  # TODO: just use .title()?
 
         if self.emailers.get(name) is not None:
@@ -63,6 +72,10 @@ class HighlightedGroup:
 
         if len(info_pieces) > 0:
             return ', '.join(info_pieces)
+
+    def theme_style_name(self) -> str:
+        """Prefixed rich style name used by RegexHighlighter to color matches based on match group variable."""
+        return f"{REGEX_STYLE_PREFIX}.{self._style_suffix}"
 
     # TODO: handle word boundary issue for names that end in symbols
     def _emailer_pattern(self, name: str) -> str:
@@ -156,7 +169,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='Dubin family',
         style='medium_orchid1',
-        pattern='((Celina|Eva( Anderss?on)?|Glenn) )?Dubin',
+        pattern=r'((Celina|Eva( Anderss?on)?|Glenn) )?Dubin',
         emailers = {
             GLENN_DUBIN: "Highbridge Capital Management, married to Epstein's ex-gf Eva",
             EVA: "possibly Epstein's ex-girlfriend (?)",
@@ -165,7 +178,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='employee',
         style='deep_sky_blue4',
-        pattern='Merwin',
+        pattern=r'Merwin',
         emailers = {
             'Alfredo Rodriguez': "Epstein's butler, stole the journal",
             ERIC_ROTH: 'jet decorator',
@@ -191,8 +204,8 @@ HIGHLIGHTED_GROUPS = [
         },
     ),
     HighlightedGroup(
-        label='estate_executor',
         info='lawyer',
+        label='estate_executor',
         style='purple3 bold',
         emailers = {
             DARREN_INDYKE: ESTATE_EXECUTOR,
@@ -212,8 +225,8 @@ HIGHLIGHTED_GROUPS = [
         }
     ),
     HighlightedGroup(
-        label='famous_lawyer',
         info='lawyer',
+        label='famous_lawyer',
         style='medium_purple3',
         pattern=r'(David\s*)?Boies|dersh|(Gloria\s*)?Allred|(Mi(chael|ke)\s*)?Avenatti',
         emailers = {
@@ -274,7 +287,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='japan',
         style='color(168)',
-        pattern='BOJ|japan(ese)?|jpy?(?! Morgan)|SG|Singapore'
+        pattern=r'BOJ|(Bank\s+of\s+)?japan(ese)?|jpy?(?! Morgan)|SG|Singapore'
     ),
     HighlightedGroup(
         label='javanka',
@@ -412,6 +425,14 @@ HIGHLIGHTED_GROUPS = [
         },
     ),
     HighlightedGroup(
+        label='Rothschild family',
+        style='indian_red',
+        emailers={
+            ARIANE_DE_ROTHSCHILD: None,
+            JOHNNY_EL_HACHEM: f'Works with {ARIANE_DE_ROTHSCHILD}',
+        },
+    ),
+    HighlightedGroup(
         label='russia',
         style='red bold',
         pattern=r'Alfa\s*Bank|Anya\s*Rasulova|Chernobyl|Day\s+One\s+Ventures|(Dmitry\s)?(Kiselyov|(Lana\s*)?Pozhidaeva|Medvedev|Rybolo(o?l?ev|vlev))|Dmitry|FSB|GRU|KGB|Kislyak|Kremlin|Lavrov|Lukoil|Moscow|(Oleg\s*)?Deripaska|Oleksandr Vilkul|Rosneft|RT|St.?\s*?Petersburg|Russian?|Sberbank|(Vladimir\s*)?(Putin|Yudashkin)|Xitrans',
@@ -479,21 +500,12 @@ HIGHLIGHTED_GROUPS = [
         label=BILL_GATES,
         style='turquoise4',
         pattern=r'BG|b?g?C3|(Bill\s*((and|or)\s*Melinda\s*)?)?Gates|Melinda(\s*Gates)?|Microsoft|MSFT',
-        has_no_category=True,
     ),
     HighlightedGroup(
-        label='Rothschild family',
-        emailers={
-            ARIANE_DE_ROTHSCHILD: None,
-            JOHNNY_EL_HACHEM: f'Works with {ARIANE_DE_ROTHSCHILD}',
-        },
-        style='indian_red'
-    ),
-    HighlightedGroup(
-        label=STEVE_BANNON,
         info='War Room',
+        label=STEVE_BANNON,
         style='color(58)',
-        pattern=r'((Steve|Sean)\s+)?Bannon?',
+        pattern=r'((Steve|Sean)\s*)?Bannon?',
     ),
     HighlightedGroup(
         emailers={STEVEN_HOFFENBERG: HEADER_ABBREVIATIONS['Hoffenberg']},
@@ -511,7 +523,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(emailers={SOON_YI: "wife of Woody Allen"}, style='hot_pink'),
     HighlightedGroup(emailers={SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of ports in Dubai'}, style='green1'),
 
-    # Highlight regexes for things other than names
+    # Highlight regexes for things other than names, only used by RegexHighlighter pattern matching
     HighlightedGroup(
         label='header_field',
         style='plum4',
@@ -568,17 +580,11 @@ HIGHLIGHTED_GROUPS = [
     ),
 ]
 
-COLOR_KEYS = [
-    highlight_group.colored_label()
-    for highlight_group in sorted(HIGHLIGHTED_GROUPS, key=lambda hg: hg.label)
-    if not highlight_group.is_multiline
-]
-
 
 class InterestingNamesHighlighter(RegexHighlighter):
     """rich.highlighter that finds and colors interesting keywords based on the above config."""
     base_style = f"{REGEX_STYLE_PREFIX}."
-    highlights = [highlight_group.regex for highlight_group in HIGHLIGHTED_GROUPS]
+    highlights = [highlight_group._regex for highlight_group in HIGHLIGHTED_GROUPS]
 
 
 def get_info_for_name(name: str) -> str | None:
@@ -597,10 +603,10 @@ def get_style_for_name(name: str | None, default: str = DEFAULT, allow_bold: boo
 
 def _get_highlight_group_for_name(name: str) -> HighlightedGroup | None:
     for highlight_group in HIGHLIGHTED_GROUPS:
-        if highlight_group.regex.search(name):
+        if highlight_group._regex.search(name):
             return highlight_group
 
 
 if args.deep_debug:
     for hg in HIGHLIGHTED_GROUPS:
-        print(f"{hg.label}: {hg.regex.pattern}\n")
+        print(f"{hg.label}: {hg._regex.pattern}\n")
