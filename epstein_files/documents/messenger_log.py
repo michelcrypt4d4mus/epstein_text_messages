@@ -9,7 +9,6 @@ from rich.text import Text
 from epstein_files.documents.communication_document import CommunicationDocument
 from epstein_files.documents.imessage.text_message import MSG_DATE_FORMAT, TextMessage
 from epstein_files.util.constants import GUESSED_IMESSAGE_FILE_IDS, KNOWN_IMESSAGE_FILE_IDS
-from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import logger
 
 CONFIRMED_MSG = 'Found confirmed counterparty'
@@ -36,7 +35,8 @@ class MessengerLog(CommunicationDocument):
             return None
 
         hint_msg = CONFIRMED_MSG if self.file_id in KNOWN_IMESSAGE_FILE_IDS else GUESSED_MSG
-        return Text(f"({hint_msg} ", style='dim').append(self.author_txt).append(')')
+        author_txt = Text(self.author_or_unknown(), style=self.author_style + ' bold')
+        return Text(f"({hint_msg} ", style='dim').append(author_txt).append(')')
 
     def last_message_at(self, name: str | None) -> datetime:
         return self.messages_by(name)[-1].timestamp()
@@ -62,11 +62,10 @@ class MessengerLog(CommunicationDocument):
         return self._messages
 
     def _border_style(self) -> str:
-        return self.author_style.removesuffix(' bold')
+        return self.author_style
 
     def _extract_author(self) -> None:
         self.author = KNOWN_IMESSAGE_FILE_IDS.get(self.file_id, GUESSED_IMESSAGE_FILE_IDS.get(self.file_id))
-        self.author_style = get_style_for_name(self.author) + ' bold'
 
     def _extract_timestamp(self) -> datetime:
         for match in MSG_REGEX.finditer(self.text):

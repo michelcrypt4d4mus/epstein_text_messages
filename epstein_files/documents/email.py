@@ -399,8 +399,6 @@ class Email(CommunicationDocument):
             authors = self._get_names(self.header.author)
             self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
 
-        self.author_style = get_style_for_name(self.author_or_unknown())
-
     def _extract_header(self) -> None:
         """Extract an EmailHeader object from the OCR text."""
         header_match = EMAIL_SIMPLE_HEADER_REGEX.search(self.text)
@@ -454,6 +452,7 @@ class Email(CommunicationDocument):
         raise RuntimeError(f"No timestamp found in '{self.file_path.name}' top lines:\n{searchable_text}")
 
     def _get_names(self, emailer_str: str) -> list[str]:
+        """Return a list of people's names found in 'emailer_str' (email author or recipients field)."""
         emailer_str = EmailHeader.cleanup_str(emailer_str)
 
         if len(emailer_str) == 0:

@@ -165,9 +165,20 @@ ZUBAIR_KHAN = 'Zubair Khan'
 BILL_GATES = 'Bill Gates'
 ELON_MUSK = 'Elon Musk'
 JARED_KUSHNER = 'Jared Kushner'
+JULIE_K_BROWN = 'Julie K. Brown'
 KARIM_SADJADPOUR = 'KARIM SADJADPOUR'.title()
 RUDY_GIULIANI = 'Rudy Giuliani'
 TULSI_GABBARD = 'Tulsi Gabbard'
+VIRGINIA_GIUFFRE = 'Virginia Giuffre'
+
+# Businesses
+CNN = 'CNN'
+DEUTSCHE_BANK = 'Deutsche Bank'
+GOLDMAN_SACHS = 'Goldman Sachs'
+JP_MORGAN = 'JP Morgan'
+
+# Locations
+VIRGIN_ISLANDS = 'Virgin Islands'
 
 # Names that should be made part of a highlighting regex
 NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
