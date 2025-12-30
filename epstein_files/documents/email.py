@@ -399,8 +399,6 @@ class Email(CommunicationDocument):
             authors = self._get_names(self.header.author)
             self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
 
-        self.author_style = get_style_for_name(self.author_or_unknown())
-
     def _extract_header(self) -> None:
         """Extract an EmailHeader object from the OCR text."""
         header_match = EMAIL_SIMPLE_HEADER_REGEX.search(self.text)
@@ -454,25 +452,27 @@ class Email(CommunicationDocument):
         raise RuntimeError(f"No timestamp found in '{self.file_path.name}' top lines:\n{searchable_text}")
 
     def _get_names(self, emailer_str: str) -> list[str]:
+        """Return a list of people's names found in 'emailer_str' (email author or recipients field)."""
         emailer_str = EmailHeader.cleanup_str(emailer_str)
 
         if len(emailer_str) == 0:
             return []
 
-        names = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
+        names_found = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
 
         if BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
-            if len(names) == 0 and emailer_str not in SUPPRESS_LOGS_FOR_AUTHORS:
+            if len(names_found) == 0 and emailer_str not in SUPPRESS_LOGS_FOR_AUTHORS:
                 logger.warning(f"'{self.filename}': No emailer found in '{escape_single_quotes(emailer_str)}'")
             else:
-                logger.info(f"Extracted {len(names)} names from semi-invalid '{emailer_str}': {names}...")
+                logger.info(f"Extracted {len(names_found)} names from semi-invalid '{emailer_str}': {names_found}...")
 
-            return names
+            return names_found
 
-        names = names or [emailer_str]
-        return [_reverse_first_and_last_names(name) for name in names]
+        names_found = names_found or [emailer_str]
+        return [_reverse_first_and_last_names(name) for name in names_found]
 
     def _recipients_txt(self) -> Text:
+        """Text object with comma separated colored versions of all recipients."""
         recipients = self.recipients if len(self.recipients) > 0 else [UNKNOWN]
         recipients_txt = Text('')
 

@@ -1,14 +1,13 @@
 import re
 from dataclasses import dataclass, field
 
-from inflection import titleize
 from rich.highlighter import RegexHighlighter
-from rich.text import Text
 
 from epstein_files.util.constant.names import *
-from epstein_files.util.constant.strings import DEFAULT, PHONE_NUMBER_STYLE, REDACTED, TIMESTAMP_STYLE
+from epstein_files.util.constant.strings import DEFAULT, REDACTED, TIMESTAMP_STYLE
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
-from epstein_files.util.constants import EMAILER_ID_REGEXES, HEADER_ABBREVIATIONS, OSBORNE_LLP, REPLY_REGEX, SENT_FROM_REGEX
+from epstein_files.util.constants import EMAILER_ID_REGEXES, HEADER_ABBREVIATIONS, OSBORNE_LLP, REPLY_REGEX, SENT_FROM_REGEX, VIRGIN_ISLANDS
+from epstein_files.util.data import listify
 from epstein_files.util.env import args, logger
 
 ESTATE_EXECUTOR = 'Epstein estate executor'
@@ -17,56 +16,69 @@ NO_CATEGORY_LABELS = [BILL_GATES, STEVE_BANNON]
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w ]+$", re.IGNORECASE)
 
 
-@dataclass
+@dataclass(kw_only=True)
 class HighlightedGroup:
-    style: str
+    """
+    Encapsulates info about people, places, and other strings we want to highlight with RegexHighlighter.
+    Constructor must be called with either an 'emailers' arg or a 'pattern' arg (or both).
+
+    Attributes:
+        category (str): optional string to use as an override for self.label in some contexts
+        emailers (dict[str, str | None]): optional names to construct regexes for (values are descriptions)
+        is_multiline (bool): True if this regex is only used by RegexHighlighter and group has no other info
+        label (str): RegexHighlighter match group name, defaults to 1st 'emailers' key if only 1 emailer provided
+        pattern (str): optional regex pattern identifying strings matching this group
+        style (str): Rich style to apply to text matching this group
+        _regex (re.Pattern): matches self.pattern + all first and last names (and pluralizations) in self.emailers
+    """
+    category: str = ''
+    emailers: dict[str, str | None] = field(default_factory=dict)
+    is_multiline: bool = False
     label: str = ''
     pattern: str = ''
-    emailers: dict[str, str | None] = field(default_factory=dict)
-    has_no_category: bool = False
-    info: str | None = None
-    is_multiline: bool = False
+    style: str
+    # Computed fields
     regex: re.Pattern = field(init=False)
-    style_name: str = field(init=False)
-    style_suffix: str = field(init=False)
+    _style_suffix: str = field(init=False)
 
     def __post_init__(self):
-        if not self.label:
+        if not (self.emailers or self.pattern):
+            raise ValueError(f"Must provide either 'emailers' or 'pattern' arg.")
+        elif not self.label:
             if len(self.emailers) == 1:
                 self.label = [k for k in self.emailers.keys()][0]
-                self.has_no_category = True
             else:
-                raise RuntimeError(f"No label provided for {repr(self)}")
+                raise ValueError(f"No label provided for {repr(self)}")
 
-        self.style_suffix = self.label.lower().replace(' ', '_').replace('-', '_')
-        self.style_name = f"{REGEX_STYLE_PREFIX}.{self.style_suffix}"
-        patterns = [self._emailer_pattern(e) for e in self.emailers] + ([self.pattern] if self.pattern else [])
+        self._style_suffix = self.label.lower().replace(' ', '_').replace('-', '_')
+        match_group_var = fr"?P<{self._style_suffix}>"
+        patterns = [self._emailer_pattern(e) for e in self.emailers] + listify(self.pattern)
         pattern = '|'.join(patterns)
 
         if self.is_multiline:
-            self.regex = re.compile(fr"(?P<{self.style_suffix}>{pattern})", re.IGNORECASE | re.MULTILINE)
-            self.has_no_category = True
+            self.regex = re.compile(fr"({match_group_var}{pattern})", re.IGNORECASE | re.MULTILINE)
         else:
-            self.regex = re.compile(fr"\b(?P<{self.style_suffix}>({pattern})s?)\b", re.IGNORECASE)
-
-    def colored_label(self) -> Text:
-        return Text(self.label.replace('_', ' '), style=self.style)
+            self.regex = re.compile(fr"\b({match_group_var}({pattern})s?)\b", re.IGNORECASE)
 
     def get_info(self, name: str) -> str | None:
-        info_pieces = []
+        """Label for people in this group with the additional info for 'name' if 'name' is in self.emailers."""
+        info_pieces = [
+            None if len(self.emailers) == 1 else (self.category or self.label.title()),
+            self.emailers.get(name),
+        ]
 
-        if not self.has_no_category:
-            info_pieces.append(self.info or titleize(self.label))  # TODO: just use .title()?
-
-        if self.emailers.get(name) is not None:
-            info_pieces.append(self.emailers[name])
+        info_pieces = [piece for piece in info_pieces if piece is not None]
 
         if len(info_pieces) > 0:
             return ', '.join(info_pieces)
 
+    def theme_style_name(self) -> str:
+        """Prefixed rich style name used by RegexHighlighter to color matches based on match group variable."""
+        return f"{REGEX_STYLE_PREFIX}.{self._style_suffix}"
+
     # TODO: handle word boundary issue for names that end in symbols
     def _emailer_pattern(self, name: str) -> str:
-        logger.debug(f"emailer_pattern() called for '{name}'")
+        """Pattern matching 'name'. Extends value in EMAILER_ID_REGEXES with last name if it exists."""
         names = name.split()
         last_name = names[-1]
 
@@ -74,7 +86,6 @@ class HighlightedGroup:
             pattern = EMAILER_ID_REGEXES[name].pattern
 
             if SIMPLE_NAME_REGEX.match(last_name) and last_name.lower() not in NAMES_TO_NOT_HIGHLIGHT:
-                logger.debug(f"Adding last name '{last_name}' to existing pattern '{pattern}'")
                 pattern += fr"|{last_name}"  # Include regex for last name
 
             return pattern
@@ -84,10 +95,9 @@ class HighlightedGroup:
         first_name = ' '.join(names[0:-1])
         name_patterns = [name.replace(' ', r"\s+"), first_name, last_name]
         name_regex_parts = [n for n in name_patterns if n.lower() not in NAMES_TO_NOT_HIGHLIGHT]
-        logger.debug(f"name_regex_parts for '{name}': {name_regex_parts}")
 
         if len(names) > 2:
-            logger.debug(f"'{name}' has {len(names)} names (first_name='{first_name}')")
+            logger.info(f"'{name}' has {len(names)} names (first_name='{first_name}')")
 
         return '|'.join(name_regex_parts)
 
@@ -136,6 +146,11 @@ HIGHLIGHTED_GROUPS = [
         }
     ),
     HighlightedGroup(
+        label='cannabis',
+        style='chartreuse2',
+        pattern=r"CBD|cannabis|marijuana|WEED(guide|maps)?[^s]?",
+    ),
+    HighlightedGroup(
         label='china',
         style='bright_red',
         pattern=r"Ali.?baba|Beijing|CCP|Chin(a|e?se)(?! Daily)|DPRK|Gino\s+Yu|Global Times|Guo|Hong|Huaw[ae]i|Kim\s*Jong\s*Un|Kong|Jack\s+Ma|Kwok|Ministry\sof\sState\sSecurity|Mongolian?|MSS|North\s*Korea|Peking|PRC|SCMP|Tai(pei|wan)|Xi(aomi)?",
@@ -151,12 +166,12 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='democrats',
         style='sky_blue1',
-        pattern=r'(Al\s*)?Franken|Biden|((Bill|Hillart?y)\s*)?Clinton|DNC|George\s*Mitchell|(George\s*)?Soros|Hill?ary|Dem(ocrat(ic)?)?|(John\s*)?Kerry|Lisa Monaco|(Matteo\s*)?Salvini|Maxine\s*Waters|(Barac?k )?Obama|(Nancy )?Pelosi|Ron\s*Dellums|Schumer|Vernon\s*Jordan',
+        pattern=r'(Al\s*)?Franken|((Bill|Hillart?y)\s*)?Clinton|DNC|George\s*Mitchell|(George\s*)?Soros|Hill?ary|Dem(ocrat(ic)?)?|(Joe\s*)?Biden|(John\s*)?Kerry|Lisa Monaco|(Matteo\s*)?Salvini|Maxine\s*Waters|(Barac?k )?Obama|(Nancy )?Pelosi|Ron\s*Dellums|Schumer|Vernon\s*Jordan',
     ),
     HighlightedGroup(
         label='Dubin family',
         style='medium_orchid1',
-        pattern='((Celina|Eva( Anderss?on)?|Glenn) )?Dubin',
+        pattern=r'((Celina|Eva( Anderss?on)?|Glenn) )?Dubin',
         emailers = {
             GLENN_DUBIN: "Highbridge Capital Management, married to Epstein's ex-gf Eva",
             EVA: "possibly Epstein's ex-girlfriend (?)",
@@ -165,7 +180,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='employee',
         style='deep_sky_blue4',
-        pattern='Merwin',
+        pattern=r'Merwin',
         emailers = {
             'Alfredo Rodriguez': "Epstein's butler, stole the journal",
             ERIC_ROTH: 'jet decorator',
@@ -186,14 +201,14 @@ HIGHLIGHTED_GROUPS = [
             ANDRES_SERRANO: "'Piss Christ' artist",
             'Barry Josephson': 'American film producer and former music manager, editor FamilySecurityMatters.org',
             BILL_SIEGEL: 'documentary film producer and director',
-            'David Blaine': 'magician',
+            DAVID_BLAINE: 'famous magician',
             'Richard Merkin': 'painter, illustrator and arts educator',
         },
     ),
     HighlightedGroup(
         label='estate_executor',
-        info='lawyer',
         style='purple3 bold',
+        category='lawyer',
         emailers = {
             DARREN_INDYKE: ESTATE_EXECUTOR,
             RICHARD_KAHN: ESTATE_EXECUTOR,
@@ -202,7 +217,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='europe',
         style='light_sky_blue3',
-        pattern=r'(Angela )?Merk(el|le)|Austria|(Benjamin\s*)?Harnwell|Berlin|Brit(ain|ish)|Brussels|Cannes|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|Davos|ECB|Europe(an)?|Geneva|Germany?|Gree(ce|k)|Ital(ian|y)|Jacques|Le\s*Pen|London|Macron|Munich|(Natalia\s*)?Veselnitskaya|Nigel(\s*Farage)?|Oslo|Paris|Polish|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strauss[- ]?Kahn|(Tony\s)?Blair|Ukrain(e|ian)|Vienna|(Vitaly\s*)?Churkin|Zug',
+        pattern=r'(Angela )?Merk(el|le)|Austria|(Benjamin\s*)?Harnwell|Berlin|Brexit(eers?)?|Brit(ain|ish)|Brussels|Cannes|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|Davos|ECB|Europe(an)?|Geneva|Germany?|Gree(ce|k)|Ital(ian|y)|Jacques|Le\s*Pen|London|Macron|Munich|(Natalia\s*)?Veselnitskaya|Nigel(\s*Farage)?|Oslo|Paris|Polish|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strauss[- ]?Kahn|(Tony\s)?Blair|Ukrain(e|ian)|Vienna|(Vitaly\s*)?Churkin|Zug',
         emailers = {
             ANDRZEJ_DUDA: 'former president of Poland',
             MIROSLAV_LAJCAK: 'Russia-friendly Slovakian politician, friend of Steve Bannon',
@@ -213,11 +228,11 @@ HIGHLIGHTED_GROUPS = [
     ),
     HighlightedGroup(
         label='famous_lawyer',
-        info='lawyer',
         style='medium_purple3',
+        category='lawyer',
         pattern=r'(David\s*)?Boies|dersh|(Gloria\s*)?Allred|(Mi(chael|ke)\s*)?Avenatti',
         emailers = {
-            ALAN_DERSHOWITZ: None,
+            ALAN_DERSHOWITZ: 'Harvard Law School professor and all around (in)famous American lawyer',
             KEN_STARR: 'head of the Monica Lewinsky investigation against Bill Clinton',
         }
     ),
@@ -244,11 +259,11 @@ HIGHLIGHTED_GROUPS = [
         style='deep_pink2',
         pattern=r'Cambridge|(Derek\s*)?Bok|Elisa(\s*New)?|Harvard|(Stephen\s*)?Kosslyn',
         emailers = {
-            LARRY_SUMMERS: 'Obama economic advisor, board of Digital Currency Group (DCG)',
-            'Leah Reis-Dennis': 'producer for Poetry in America',
-            LISA_NEW: 'poetry',
+            LARRY_SUMMERS: 'board of Digital Currency Group (DCG), Harvard president, Obama economic advisor',
+            'Leah Reis-Dennis': 'producer for Lisa New\'s Poetry in America',
+            LISA_NEW: 'professor of poetry',
             'Lisa Randall': 'theoretical physicist',
-            MARTIN_NOWAK: None,
+            MARTIN_NOWAK: 'professor of mathematics and biology',
         }
     ),
     HighlightedGroup(
@@ -274,7 +289,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='japan',
         style='color(168)',
-        pattern='BOJ|japan(ese)?|jpy?(?! Morgan)|SG|Singapore'
+        pattern=r'BOJ|(Bank\s+of\s+)?japan(ese)?|jpy?(?! Morgan)|SG|Singapore',
     ),
     HighlightedGroup(
         label='javanka',
@@ -287,7 +302,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='journalist',
         style='bright_yellow',
-        pattern=r'Palm\s*Beach\s*(Daily\s*News|Post)|ABC|Alex\s*Yablon|(Andrew\s*)?Marra|Arianna(\s*Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie\s*Rose|China\s*Daily|CNBC|CNN(politics?)?|Conchita|Sarnoff|(?<!Virgin Islands )Daily\s*(Mail|News|Telegraph)|(David\s*)?Pecker|Ed\s*Krassenstein|(Emily )?Michot|(George\s*)?Stephanopoulus|Globe\s*and\s*Mail|Graydon(\s*Carter)?|Huffington|Ingram, David|(James\s*)?Patterson|Jonathan\s*Karl|(Katie\s*)?Couric|Miami\s*Herald|(Michele\s*)?Dargan|(National\s*)?Enquirer|(The\s*)?N(ew\s*)?Y(ork\s*)?(P(ost)?|T(imes)?)|New\s*Yorker|NYer|PERVERSION\s*OF\s*JUSTICE|Politico|(Sean\s*)?Hannity|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|Viceland|Vick[iy]\s*Ward|(The\s*)?Wa(shington\s*)?Po(st)?|WGBH|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
+        pattern=r'Palm\s*Beach\s*(Daily\s*News|Post)|ABC|Alex\s*Yablon|(Andrew\s*)?Marra|Arianna(\s*Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie\s*Rose|China\s*Daily|CNBC|CNN(politics?)?|Conchita|Sarnoff|(?<!Virgin[-\s]Islands[-\s])Daily\s*(Mail|News|Telegraph)|(David\s*)?Pecker|Ed\s*Krassenstein|(Emily\s*)?Michot|(George\s*)?Stephanopoulus|Globe\s*and\s*Mail|Graydon(\s*Carter)?|Huffington|Ingram, David|(James\s*)?Patterson|Jonathan\s*Karl|Julie\s*(K.?\s*)?Brown|(Katie\s*)?Couric|Miami\s*Herald|(Michele\s*)?Dargan|(National\s*)?Enquirer|(The\s*)?N(ew\s*)?Y(ork\s*)?(P(ost)?|T(imes)?)|New\s*Yorker|NYer|PERVERSION\s*OF\s*JUSTICE|Politico|(Sean\s*)?Hannity|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|Viceland|Vick[iy]\s*Ward|(The\s*)?Wa(shington\s*)?Po(st)?|WGBH|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
         emailers = {
             EDWARD_EPSTEIN: 'no relation to Jeffrey',
             'James Hill': 'ABC',
@@ -364,7 +379,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='mideast',
         style='dark_sea_green4',
-        pattern=r"Abdulmalik Al-Makhlafi|Abdullah|Abu\s+Dhabi|Afghanistan|Al[-\s]?Qaeda|Ahmadinejad|Arab|Aramco|Assad|Bahrain|Basiji?|Benghazi|Cairo|Dj[iu]bo?uti|Doha|Dubai|Egypt(ian)?|Emir(at(es?|i))?|Erdogan|Fashi|Gaddafi|HBJ|Houthi|Imran\s+Khan|Iran(ian)?|Isi[ls]|Islam(ic|ist)?|Istanbul|Kh?ashoggi|kasshohgi|Kaz(akh|ich)stan|Kazakh?|Kh[ao]menei|KSA|Libyan?|Mahmoud|Marra[hk]e[cs]h|MB(N|S|Z)|Mohammed\s+bin\s+Salman|Morocco|Mubarak|Muslim|Nayaf|Pakistani?|Omar|Palestin(e|ian)|Persian?|Riya(dh|nd)|Saddam|Salman|Saudi(\s+Arabian?)?|Shariah?|SHC|sheikh|shia|(Sultan\s*)?Yacoub|Syrian?|(Tarek\s*)?El\s*Sayed|Tehran|Tunisian?|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
+        pattern=r"[-\s]9/11[\s.]|Abdulmalik Al-Makhlafi|Abdullah|Abu\s+Dhabi|Afghanistan|Al[-\s]?Qaeda|Ahmadinejad|Arab|Aramco|Assad|Bahrain|Basiji?|Benghazi|Cairo|Dj[iu]bo?uti|Doha|Dubai|Egypt(ian)?|Emir(at(es?|i))?|Erdogan|Fashi|Gaddafi|HBJ|Houthi|Imran\s+Khan|Iran(ian)?|Isi[ls]|Islam(ic|ist)?|Istanbul|Kh?ashoggi|kasshohgi|Kaz(akh|ich)stan|Kazakh?|Kh[ao]menei|Khalid\s*Sheikh\s*Mohammed|KSA|Libyan?|Mahmoud|Marra[hk]e[cs]h|MB(N|S|Z)|Mohammed\s+bin\s+Salman|Morocco|Mubarak|Muslim|Nayaf|Pakistani?|Omar|Palestin(e|ian)|Persian?|Riya(dh|nd)|Saddam|Salman|Saudi(\s+Arabian?)?|Shariah?|SHC|sheikh|shia|(Sultan\s*)?Yacoub|Syrian?|(Tarek\s*)?El\s*Sayed|Tehran|Tunisian?|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
         emailers = {
             ANAS_ALRASHEED: None,
             AZIZA_ALAHMADI: 'Abu Dhabi Department of Culture & Tourism',
@@ -405,20 +420,28 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='republicans',
         style='bold dark_red',
-        pattern=r'Alberto\sGonzale[sz]|(Alex\s*)?Acosta|(Bill\s*)?Barr|Bill\s*Shine|(Bob\s*)?Corker|(John\s*(R.?\s*)?)Bolton|Broidy|(Chris\s)?Christie|Devin\s*Nunes|(George\s*)?Nader|GOP|Kissinger|Kobach|Kolfage|Kudlow|Lewandowski|(Marco\s)?Rubio|(Mark\s*)Meadows|Mattis|(?<!Merwin Dela )Cruz|(Michael\s)?Hayden|((General|Mike)\s*)?(Flynn|Pence)|(Mitt\s*)?Romney|Mnuchin|Nikki|Haley|(Paul\s+)?Manafort|(Peter\s)?Navarro|Pompeo|Reagan|Republican|(Richard\s*)?Nixon|Sasse|(Rex\s*)?Tillerson',
+        pattern=r'Alberto\sGonzale[sz]|(Alex\s*)?Acosta|(Bill\s*)?Barr|Bill\s*Shine|(Bob\s*)?Corker|(John\s*(R.?\s*)?)Bolton|Broidy|(Chris\s)?Christie|Devin\s*Nunes|(George\s*)?Nader|GOP|Kissinger|Kobach|Kolfage|Kudlow|Lewandowski|(Marco\s)?Rubio|(Mark\s*)Meadows|Mattis|(?<!Merwin Dela )Cruz|(Michael\s)?Hayden|((General|Mike)\s*)?(Flynn|Pence)|(Mitt\s*)?Romney|Mnuchin|Nikki|Haley|(Paul\s+)?Manafort|(Peter\s)?Navarro|Pompeo|Reagan|Republican|(?<!Cynthia )(Richard\s*)?Nixon|Sasse|(Rex\s*)?Tillerson',
         emailers = {
             RUDY_GIULIANI: 'disbarred formed mayor of New York City',
             TULSI_GABBARD: None,
         },
     ),
     HighlightedGroup(
+        label='Rothschild family',
+        style='indian_red',
+        emailers={
+            ARIANE_DE_ROTHSCHILD: None,
+            JOHNNY_EL_HACHEM: f'Works with {ARIANE_DE_ROTHSCHILD}',
+        },
+    ),
+    HighlightedGroup(
         label='russia',
         style='red bold',
-        pattern=r'Alfa\s*Bank|Anya\s*Rasulova|Chernobyl|Day\s+One\s+Ventures|(Dmitry\s)?(Kiselyov|(Lana\s*)?Pozhidaeva|Medvedev|Rybolo(o?l?ev|vlev))|Dmitry|FSB|GRU|KGB|Kislyak|Kremlin|Lavrov|Lukoil|Moscow|(Oleg\s*)?Deripaska|Oleksandr Vilkul|Rosneft|RT|St.?\s*?Petersburg|Russian?|Sberbank|(Vladimir\s*)?(Putin|Yudashkin)|Xitrans',
+        pattern=r'Alfa\s*Bank|Anya\s*Rasulova|Chernobyl|Day\s+One\s+Ventures|(Dmitry\s)?(Kiselyov|(Lana\s*)?Pozhidaeva|Medvedev|Rybolo(o?l?ev|vlev))|Dmitry|FSB|GRU|KGB|Kislyak|Kremlin|Lavrov|Lukoil|Moscow|(Oleg\s*)?Deripaska|Oleksandr Vilkul|Rosneft|RT|St.?\s*?Petersburg|Russian?|Sberbank|Soviet(\s*Union)?|USSR|(Vladimir\s*)?(Putin|Yudashkin)|Xitrans',
         emailers = {
-            MASHA_DROKOVA: 'silicon valley VC',
+            MASHA_DROKOVA: 'silicon valley VC, former Putin Youth',
             RENATA_BOLOTOVA: 'former aspiring model, now fund manager at New York State Insurance Fund',
-            SVETLANA_POZHIDAEVA: 'Epstein\'s Russian who was recommended for a visa by Sergei Belyakov (FSB) and David Blaine',
+            SVETLANA_POZHIDAEVA: f'Epstein\'s Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and {DAVID_BLAINE}',
         }
     ),
     HighlightedGroup(
@@ -443,9 +466,9 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='tech bro',
         style='bright_cyan',
-        pattern=r"AG?I|Chamath|Palihapitiya|Drew\s*Houston|Eric\sSchmidt|(Mark\s*)?Zuckerberg|Masa(yoshi)?(\sSon)?|Najeev|Palantir|(Peter\s)?Th(ie|ei)l|Sergey\s*Brin|Softbank|SpaceX|Tim\s*Ferriss?",
+        pattern=r"AG?I|Chamath|Palihapitiya|Drew\s*Houston|Eric\sSchmidt|(Mark\s*)?Zuckerberg|Masa(yoshi)?(\sSon)?|Najeev|Palantir|(Peter\s)?Th(ie|ei)l|Sergey\s*Brin|Silicon\s*Valley|Softbank|SpaceX|Tim\s*Ferriss?",
         emailers = {
-            ELON_MUSK: None,
+            ELON_MUSK: 'father of Mecha-Hitler',
             PETER_THIEL: 'Paypal mafia member, founder of Palantir, early Facebook investor, reactionary',
             REID_HOFFMAN: 'PayPal mafia member, founder of LinkedIn',
             STEVEN_SINOFSKY: 'ex-Microsoft',
@@ -465,7 +488,7 @@ HIGHLIGHTED_GROUPS = [
         pattern=r'BVI|(Jane|Tiffany)\s*Doe|Katie\s*Johnson|(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts',
     ),
     HighlightedGroup(
-        label='virgin islands',
+        label=VIRGIN_ISLANDS,
         style='sea_green1',
         pattern=r'Bahamas|Cecile de Jongh|Dominican\s*Republic|(Great|Little)\s*St.?\s*James|Haiti(an)?|(Kenneth E\. )?Mapp|Palm\s*Beach(?!\s*Post)|PBI|S(ain)?t.?\s*Thomas|USVI|VI|(The\s*)?Virgin\s*Islands(\s*Daily\s*News)?',  # TODO: VI Daily News should be yellow but it's hard bc Daily News xists
         emailers = {
@@ -479,21 +502,11 @@ HIGHLIGHTED_GROUPS = [
         label=BILL_GATES,
         style='turquoise4',
         pattern=r'BG|b?g?C3|(Bill\s*((and|or)\s*Melinda\s*)?)?Gates|Melinda(\s*Gates)?|Microsoft|MSFT',
-        has_no_category=True,
-    ),
-    HighlightedGroup(
-        label='Rothschild family',
-        emailers={
-            ARIANE_DE_ROTHSCHILD: None,
-            JOHNNY_EL_HACHEM: f'Works with {ARIANE_DE_ROTHSCHILD}',
-        },
-        style='indian_red'
     ),
     HighlightedGroup(
         label=STEVE_BANNON,
-        info='War Room',
         style='color(58)',
-        pattern=r'((Steve|Sean)\s+)?Bannon?',
+        pattern=r'((Steve|Sean)\s*)?Bannon?',
     ),
     HighlightedGroup(
         emailers={STEVEN_HOFFENBERG: HEADER_ABBREVIATIONS['Hoffenberg']},
@@ -511,7 +524,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(emailers={SOON_YI: "wife of Woody Allen"}, style='hot_pink'),
     HighlightedGroup(emailers={SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of ports in Dubai'}, style='green1'),
 
-    # Highlight regexes for things other than names
+    # Highlight regexes for things other than names, only used by RegexHighlighter pattern matching
     HighlightedGroup(
         label='header_field',
         style='plum4',
@@ -526,8 +539,8 @@ HIGHLIGHTED_GROUPS = [
     ),
     HighlightedGroup(
         label='phone_number',
-        style=PHONE_NUMBER_STYLE,
-        pattern=r"\+?(1?\(?\d{3}\)?[- ]\d{3}[- ]\d{4}|\d{2}[- ]\(?0?\)?\d{2}[- ]\d{4}[- ]\d{4})",
+        style='bright_green',
+        pattern=r"\+?(1?\(?\d{3}\)?[- ]\d{3}[- ]\d{4}|\d{2}[- ]\(?0?\)?\d{2}[- ]\d{4}[- ]\d{4})|[\d+]{10,12}",
         is_multiline=True,
     ),
     HighlightedGroup(
@@ -568,12 +581,6 @@ HIGHLIGHTED_GROUPS = [
     ),
 ]
 
-COLOR_KEYS = [
-    highlight_group.colored_label()
-    for highlight_group in sorted(HIGHLIGHTED_GROUPS, key=lambda hg: hg.label)
-    if not highlight_group.is_multiline
-]
-
 
 class InterestingNamesHighlighter(RegexHighlighter):
     """rich.highlighter that finds and colors interesting keywords based on the above config."""
@@ -588,10 +595,10 @@ def get_info_for_name(name: str) -> str | None:
         return highlight_group.get_info(name)
 
 
-def get_style_for_name(name: str | None, default: str = DEFAULT, allow_bold: bool = True) -> str:
+def get_style_for_name(name: str | None, default_style: str = DEFAULT, allow_bold: bool = True) -> str:
     name = name or UNKNOWN
     highlight_group = _get_highlight_group_for_name(name)
-    style = highlight_group.style if highlight_group else default
+    style = highlight_group.style if highlight_group else default_style
     return style if allow_bold else style.replace('bold', '').strip()
 
 

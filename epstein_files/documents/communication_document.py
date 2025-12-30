@@ -5,9 +5,10 @@ from datetime import datetime
 from rich.text import Text
 
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, Document
-from epstein_files.util.constant.names import *
-from epstein_files.util.constant.strings import *
+from epstein_files.util.constant.names import UNKNOWN
+from epstein_files.util.constant.strings import MESSENGER_LOG_CLASS
 from epstein_files.util.constants import FALLBACK_TIMESTAMP
+from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import key_value_txt
 
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
@@ -24,6 +25,7 @@ class CommunicationDocument(Document):
     def __post_init__(self):
         super().__post_init__()
         self._extract_author()
+        self.author_style = get_style_for_name(self.author_or_unknown())
         self.author_txt = Text(self.author_or_unknown(), style=self.author_style)
         self.timestamp = self._extract_timestamp()
 
