@@ -17,7 +17,6 @@ TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 class CommunicationDocument(Document):
     """Superclass for Email and MessengerLog."""
     author: str | None = None
-    author_str: str = field(init=False)
     author_style: str = field(init=False)
     author_txt: Text = field(init=False)
     timestamp: datetime = FALLBACK_TIMESTAMP  # TODO this sucks
@@ -25,7 +24,7 @@ class CommunicationDocument(Document):
     def __post_init__(self):
         super().__post_init__()
         self._extract_author()
-        self.author_txt = Text(self.author_str, style=self.author_style)
+        self.author_txt = Text(self.author_or_unknown(), style=self.author_style)
         self.timestamp = self._extract_timestamp()
 
     def author_or_unknown(self) -> str:
@@ -34,7 +33,7 @@ class CommunicationDocument(Document):
     def description(self) -> Text:
         """One line summary mostly for logging."""
         txt = super().description()
-        txt.append(', ').append(key_value_txt('author', Text(self.author_str, style=self.author_style)))
+        txt.append(', ').append(key_value_txt('author', Text(self.author_or_unknown(), style=self.author_style)))
         return txt.append(CLOSE_PROPERTIES_CHAR)
 
     def raw_document_link_txt(self, _style: str = '', include_alt_link: bool = True) -> Text:
