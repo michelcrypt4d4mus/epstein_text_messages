@@ -12,10 +12,12 @@ from dotenv import load_dotenv
 load_dotenv()
 from rich.padding import Padding
 
+from epstein_files.documents.email import Email
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import EMAIL_CLASS, MESSENGER_LOG_CLASS
+from epstein_files.util.constants import DUPLICATE_FILE_IDS
 from epstein_files.util.data import Timer, dict_sets_to_lists, flatten
 from epstein_files.util.env import specified_names, args
 from epstein_files.util.file_helper import GH_PAGES_HTML_PATH
@@ -105,8 +107,8 @@ def print_emails(epstein_files: EpsteinFiles) -> int:
     epstein_files.print_emailer_counts_table()
     emailers_to_print: list[str | None]
     emailer_tables: list[str | None] = []
+    emails_that_were_printed: list[Email] = []
     num_emails_printed_since_last_color_key = 0
-    num_emails_printed_total = 0
 
     if args.all_emails:
         console.print('Email conversations are sorted chronologically based on time of the first email.')
@@ -130,9 +132,9 @@ def print_emails(epstein_files: EpsteinFiles) -> int:
         print_numbered_list_of_emailers(emailer_tables)
 
     for author in emailers_to_print:
-        emails_printed = epstein_files.print_emails_for(author)
-        num_emails_printed_total += emails_printed
-        num_emails_printed_since_last_color_key += emails_printed
+        newly_printed_emails = epstein_files.print_emails_for(author)
+        emails_that_were_printed.extend(newly_printed_emails)
+        num_emails_printed_since_last_color_key += len(newly_printed_emails)
 
         # Print color key every once in a while
         if num_emails_printed_since_last_color_key > PRINT_COLOR_KEY_EVERY_N_EMAILS:
@@ -146,7 +148,16 @@ def print_emails(epstein_files: EpsteinFiles) -> int:
             epstein_files.print_emails_table_for(name)
 
     epstein_files.print_email_device_info()
-    return num_emails_printed_total
+
+    if args.all_emails:
+        email_ids_that_were_printed = set([email.file_id for email in emails_that_were_printed])
+        logger.warning(f"Printed {len(emails_that_were_printed)} emails of {len(email_ids_that_were_printed)} unique file IDs.")
+
+        for email in epstein_files.emails:
+            if email.file_id not in email_ids_that_were_printed and email.file_id not in DUPLICATE_FILE_IDS:
+                logger.warning(f"Failed to print {email.description()}")
+
+    return len(emails_that_were_printed)
 
 
 def print_text_messages(epstein_files: EpsteinFiles) -> None:
