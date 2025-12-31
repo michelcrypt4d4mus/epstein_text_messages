@@ -374,6 +374,7 @@ HIGHLIGHTED_GROUPS = [
             KATHERINE_KEATING: 'Daughter of former Australian PM',
             MOHAMED_WAHEED_HASSAN: 'former president of the Maldives',
             OLIVIER_COLOM: 'France',
+            'Paul Keating': 'former PM of Australia',
             PUREVSUREN_LUNDEG: 'Mongolian ambassador to the UN',
             'Stanley Rosenberg': 'former President of the Massachusetts Senate',
         }
