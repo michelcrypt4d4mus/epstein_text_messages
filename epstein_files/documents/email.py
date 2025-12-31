@@ -17,7 +17,7 @@ from epstein_files.documents.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPL
 from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import *
-from epstein_files.util.data import TIMEZONE_INFO, collapse_newlines, escape_single_quotes, remove_timezone, uniquify
+from epstein_files.util.data import TIMEZONE_INFO, collapse_newlines, escape_single_quotes, extract_last_name, remove_timezone, uniquify
 from epstein_files.util.email_info import ConfiguredAttr
 from epstein_files.util.env import logger
 from epstein_files.util.file_helper import is_local_extract_file
@@ -474,7 +474,7 @@ class Email(CommunicationDocument):
 
         # Use just the last name for each recipient if there's 3 or more recipients
         return join_texts([
-            Text(r if (' ' not in r or len(recipients) < 3) else r.split()[-1], style=get_style_for_name(r))
+            Text(r if len(recipients) < 3 else extract_last_name(r), style=get_style_for_name(r))
             for r in recipients
         ], join=', ')
 
