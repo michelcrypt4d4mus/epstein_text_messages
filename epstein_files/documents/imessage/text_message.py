@@ -48,7 +48,7 @@ class TextMessage:
         elif self.author in UNKNOWN_TEXTERS:
             logger.warning(f"Bad text from '{self.author}': \"{self.text}\"")
             self.author_str = self.author
-            self.author = None
+            self.author = None  # TODO: this shouldn't be happening; we still know the author...
         elif self.author in DISPLAY_LAST_NAME_ONLY:
             self.author_str = self.author.split()[-1]
         else:
