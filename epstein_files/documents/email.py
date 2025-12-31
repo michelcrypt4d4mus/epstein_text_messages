@@ -1,3 +1,4 @@
+import logging
 import re
 from collections import defaultdict
 from dataclasses import dataclass, field
@@ -492,26 +493,37 @@ class Email(CommunicationDocument):
             for r in recipients
         ], join=', ')
 
+    def _merge_lines(self, idx: int) -> None:
+        """Combine lines numbered 'line_idx' and 'line_idx + 1' into a single line."""
+        if idx == 0:
+            lines = [self.lines[0] + self.lines[1]] + self.lines[2:]
+        else:
+            lines = self.lines[0:idx] + [self.lines[idx] + self.lines[idx + 1]] + self.lines[idx + 2:]
+
+        self._set_computed_fields(lines=lines)
+
     def _repair(self) -> None:
         """Repair particularly janky files."""
         self._set_computed_fields(lines=[line.strip() for line in self.lines if not BAD_LINE_REGEX.match(line)])
+        old_text = self.text
 
         if self.file_id in FILE_IDS_WITH_BAD_FIRST_LINES:
-            text = '\n'.join(self.lines[1:])
+            self.text = '\n'.join(self.lines[1:])
         elif self.file_id == '031442':              # Merge 1st and 2nd rows
-            text = '\n'.join([self.lines[0] + self.lines[1]] + self.lines[2:])
+            self._merge_lines(0)
         elif self.file_id in ['021729', '029282', '030626', '031384', '033512']:  # Merge 3rd and 4th rows
-            text = '\n'.join(self.lines[0:2] + [self.lines[2] + self.lines[3]] + self.lines[4:])
+            self._merge_lines(2)
 
             if self.file_id in ['030626']:  # Merge 6th and 7th (now 5th and 6th) rows
-                self.lines = text.split('\n')
-                text = '\n'.join(self.lines[0:4] + [self.lines[5] + self.lines[6]] + self.lines[7:])
+                self._merge_lines(5)
         elif self.file_id == '029977':
-            text = self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM')
-        else:
-            text = self.text
+            self.text = self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM')
 
-        lines = self.regex_repair_text(OCR_REPAIRS, text).split('\n')
+        if old_text != self.text:
+            logger.warning(f"Modified {self.url_slug} text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n')
+            self.log_top_lines(12, 'Result of modifications', logging.WARNING)
+
+        lines = self.regex_repair_text(OCR_REPAIRS, self.text).split('\n')
         new_lines = []
         i = 0
 
