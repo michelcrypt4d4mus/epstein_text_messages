@@ -26,13 +26,13 @@ TITLE_WIDTH = 50
 NUM_COLOR_KEY_COLS = 4
 NA_TXT = Text(NA, style='dim')
 QUESTION_MARK_TXT = Text('???', style='dim')
+GREY_NUMBERS = [58, 39, 39, 35, 30, 27, 23, 23, 19, 19, 15, 15, 15]
 
-GREY_NUMBERS = [grey for grey in reversed([15, 15, 15, 19, 19, 23, 23, 27, 30, 35, 39, 39, 58])]
-DEFAULT_NAME_COLOR = 'gray46'
+DEFAULT_NAME_STYLE = 'gray46'
 KEY_STYLE='honeydew2 bold'
 SECTION_HEADER_STYLE = 'bold white on blue3'
-SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 SOCIAL_MEDIA_LINK_STYLE = 'cyan3 bold'
+SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 SYMBOL_STYLE = 'grey70'
 TITLE_STYLE = 'black on bright_white bold'
 
@@ -45,7 +45,7 @@ HIGHLIGHTED_GROUP_COLOR_KEYS = [
 THEME_STYLES = {
     DEFAULT: 'wheat4',
     TEXT_LINK: 'deep_sky_blue4 underline',
-    **{hg.theme_style_name(): hg.style for hg in HIGHLIGHTED_GROUPS},
+    **{hg.theme_style_name: hg.style for hg in HIGHLIGHTED_GROUPS},  # Inject style names for HighlightedGroups
 }
 
 # Instantiate console object
@@ -64,6 +64,23 @@ if args.suppress_output:
 
 console = Console(**CONSOLE_ARGS)
 highlighter = CONSOLE_ARGS['highlighter']
+
+
+def join_texts(txts: list[Text], join: str = ' ', encloser: str = '') -> Text:
+    if encloser:
+        if len(encloser) != 2:
+            raise ValueError(f"'encloser' arg is '{encloser}' which is not 2 characters long")
+
+        enclose_start, enclose_end = (encloser[0], encloser[1])
+    else:
+        enclose_start = enclose_end = ''
+
+    txt = Text('')
+
+    for i, link in enumerate(txts):
+        txt.append(join if i >= 1 else '').append(enclose_start).append(link).append(enclose_end)
+
+    return txt
 
 
 def key_value_txt(key: str, value: Text | str) -> Text:
@@ -149,7 +166,7 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
 
 
 def print_numbered_list_of_emailers(_list: list[str | None], epstein_files = None) -> None:
-    """Add the first emailed_at timestamp for this emailer if 'epstein_files' provided."""
+    """Add the first emailed_at timestamp for each emailer if 'epstein_files' provided."""
     current_year = 1990
     current_year_month = current_year * 12
     grey_idx = 0
@@ -157,7 +174,7 @@ def print_numbered_list_of_emailers(_list: list[str | None], epstein_files = Non
 
     for i, name in enumerate(_list):
         indent = '   ' if i < 9 else ('  ' if i < 99 else ' ')
-        txt = Text((indent) + F"   {i + 1}. ", style=DEFAULT_NAME_COLOR)
+        txt = Text((indent) + F"   {i + 1}. ", style=DEFAULT_NAME_STYLE)
 
         if epstein_files:
             earliest_email_date = (epstein_files.earliest_email_at(name) or FALLBACK_TIMESTAMP).date()
@@ -187,7 +204,7 @@ def print_numbered_list_of_emailers(_list: list[str | None], epstein_files = Non
 
 def print_other_site_link(is_header: bool = True) -> None:
     """Print a link to the emails site if we're building text messages site and vice versa."""
-    site_type = EMAIL if args.all_emails else TEXT_MESSAGE
+    site_type: SiteType = EMAIL if args.all_emails else TEXT_MESSAGE
 
     if is_header:
         print_starred_header(f"This is the Epstein {site_type.title()}s site", num_spaces=4, num_stars=14)
@@ -236,21 +253,7 @@ def print_social_media_links() -> None:
         link_text_obj('https://universeodon.com/@cryptadamist/115572634993386057', 'mastodon', style=SOCIAL_MEDIA_LINK_STYLE),
     ]
 
-    print_centered(join_text(social_links, join='     ', encloser='[]'))
-
-
-def join_text(txts: list[Text], join: str = ' ', encloser: str = '') -> Text:
-    if encloser:
-        encloser, enclose_ender = (encloser[0], encloser[1])
-    else:
-        enclose_ender = ''
-
-    txt = Text('')
-
-    for i, link in enumerate(txts):
-        txt.append(join if i >= 1 else '').append(encloser).append(link).append(enclose_ender)
-
-    return txt
+    print_centered(join_texts(social_links, join='     ', encloser='[]'))
 
 
 def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, style: str = TITLE_STYLE) -> None:
@@ -295,8 +298,8 @@ def _print_external_links() -> None:
     console.line()
     print_starred_header('External Links', num_stars=0, num_spaces=20, style=f"italic")
     presser_link = link_text_obj(OVERSIGHT_REPUBLICANS_PRESSER_URL, 'Official Oversight Committee Press Release')
-    raw_docs_link = join_text([link_text_obj(RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL, 'raw files', style=f"{ARCHIVE_LINK_COLOR} dim")], encloser='()')
-    print_centered(join_text([presser_link, raw_docs_link]))
+    raw_docs_link = join_texts([link_text_obj(RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL, 'raw files', style=f"{ARCHIVE_LINK_COLOR} dim")], encloser='()')
+    print_centered(join_texts([presser_link, raw_docs_link]))
     print_centered(link_markup(JMAIL_URL, JMAIL) + " (read His Emails via Gmail interface)")
     print_centered(link_markup(COFFEEZILLA_ARCHIVE_URL, 'Archive Of Epstein Materials') + " (Coffeezilla)")
     print_centered(link_markup(COURIER_NEWSROOM_ARCHIVE_URL, 'Searchable Archive') + " (Courier Newsroom)")
