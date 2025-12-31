@@ -21,7 +21,7 @@ EMAIL_AUTHOR_COUNTS = {
     AZIZA_ALAHMADI: 3,
     BARBRO_EHNBOM: 11,
     "Barnaby Marsh": 1,
-    "Barry J. Cohen": 5,
+    BARRY_J_COHEN: 5,
     "Barry Josephson": 2,
     "Bennet Moskowitz": 2,
     "Bill Siegel": 5,
