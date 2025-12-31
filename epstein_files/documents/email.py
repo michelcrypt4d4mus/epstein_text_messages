@@ -472,20 +472,19 @@ class Email(CommunicationDocument):
     def _repair(self) -> None:
         """Repair particularly janky files."""
         if self.file_id in FILE_IDS_WITH_BAD_FIRST_LINES:
-            self.text = '\n'.join(self.lines[1:])
-        elif self.file_id == '029977':
-            self.text = self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM')
+            text = '\n'.join(self.lines[1:])
         elif self.file_id == '031442':
-            self.lines = [self.lines[0] + self.lines[1]] + self.lines[2:]
-            self.text = '\n'.join(self.lines)
+            text = '\n'.join([self.lines[0] + self.lines[1]] + self.lines[2:])
         elif self.file_id == '029282':
-            self.lines = self.lines[0:2] + [self.lines[2] + self.lines[3]] + self.lines[4:]
-            self.text = '\n'.join(self.lines)
+            text = '\n'.join(self.lines[0:2] + [self.lines[2] + self.lines[3]] + self.lines[4:])
+        elif self.file_id == '029977':
+            text = self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM')
 
-        lines = self.regex_repair_text(OCR_REPAIRS, self.text).split('\n')
+        lines = self.regex_repair_text(OCR_REPAIRS, text).split('\n')
         new_lines = []
         i = 0
 
+        # Fix links (remove spaces, merge multiline links to a single line)
         while i < len(lines):
             line = lines[i]
 
