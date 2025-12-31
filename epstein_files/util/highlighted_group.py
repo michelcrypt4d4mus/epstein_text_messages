@@ -451,7 +451,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='scholar',
         style='light_goldenrod2',
-        pattern=r'Alain Forget|Brotherton|Carl\s*Sagan|Columbia|David Grosof|J(ames|im)\s*Watson|(Lord\s*)?Martin\s*Rees|MIT(\s*Media\s*Lab)?|Media\s*Lab|Minsky|((Noam|Valeria)\s*)?Chomsky|Praluent|Regeneron|(Richard\s*)?Dawkins|Sanofi|Stanford|(Stephen\s*)?Hawking|(Steven?\s*)?Pinker|UCLA',
+        pattern=r'Alain Forget|Brotherton|Carl\s*Sagan|Columbia|David Grosof|J(ames|im)\s*Watson|(Lord\s*)?Martin\s*Rees|Massachusetts\s*Institute\s*of\s*Technology|MIT(\s*Media\s*Lab)?|Media\s*Lab|Minsky|((Noam|Valeria)\s*)?Chomsky|Praluent|Regeneron|(Richard\s*)?Dawkins|Sanofi|Stanford|(Stephen\s*)?Hawking|(Steven?\s*)?Pinker|UCLA',
         emailers = {
             DAVID_HAIG: None,
             JOSCHA_BACH: 'cognitive science / AI research',
