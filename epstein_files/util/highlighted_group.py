@@ -101,7 +101,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='africa',
         style='light_pink4',
-        pattern=r'Econet(\s*Wireless)|Ghana(ian)?|Senegal(ese)?|(South\s*)?African?|(Strive\s*)?Masiyiwa|Ugandan?|Zimbabwe(an)?',
+        pattern=r'Econet(\s*Wireless)|Ghana(ian)?|Johannesburg|Kenya|Senegal(ese)?|Serengeti|(South\s*)?African?|(Strive\s*)?Masiyiwa|Tanzania|Ugandan?|Zimbabwe(an)?',
         emailers={
             'Abdoulaye Wade': 'former president of Senegal, father of Karim Wade',
             'Karim Wade': 'son of the president of Senegal, facing arrest for corruption, email handle is "Afri zp"',
@@ -463,6 +463,11 @@ HIGHLIGHTED_GROUPS = [
             ROBERT_TRIVERS: 'evolutionary biology',
             ROGER_SCHANK: 'Teachers College, Columbia University',
         },
+    ),
+    HighlightedGroup(
+        label='southeast_asia',
+        style='light_salmon3 bold',
+        pattern=r'Bangkok|Burm(a|ese)|Cambodian?|Laos|Myanmar|Thai(land)?|Vietnam(ese)?',
     ),
     HighlightedGroup(
         label='tech bro',
