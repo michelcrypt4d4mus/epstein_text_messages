@@ -606,7 +606,7 @@ class Email(CommunicationDocument):
             # Emails w/configured 'actual_text' are particularly broken; need to shuffle some lines
             if configured_actual_text is not None:
                 num_lines_to_skip += 1
-                lines = [cast(str, configured_actual_text), '\n']
+                lines += [cast(str, configured_actual_text), '\n']
 
             lines += text.split('\n')[num_lines_to_skip:]
             text = self.header.rewrite_header() + '\n' + '\n'.join(lines)
