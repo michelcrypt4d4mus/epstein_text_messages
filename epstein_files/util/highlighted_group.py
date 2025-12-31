@@ -288,7 +288,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='japan',
         style='color(168)',
-        pattern=r'BOJ|(Bank\s+of\s+)?japan(ese)?|jpy?(?! Morgan)|SG|Singapore',
+        pattern=r'BOJ|(Bank\s+of\s+)?japan(ese)?|jpy?(?! Morgan)|SG|Singapore|Toky[op]',
     ),
     HighlightedGroup(
         label='javanka',
