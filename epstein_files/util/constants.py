@@ -1241,8 +1241,9 @@ FILE_DESCRIPTIONS = {
     '016696': f"{PALM_BEACH_TSV} info (water quality?",
     # reputation management
     '026582': f"{REPUTATION_MGMT} Epstein's internet search results at start of reputation repair campaign, maybe from {OSBORNE_LLP}",
-    '030573': f"{REPUTATION_MGMT} Epstein's unflattering Google search results, maybe screenshot by {AL_SECKEL}",
-    '029350': f"{REPUTATION_MGMT} Microsoft Bing search results for Epstein with sex offender at top, maybe from {AL_SECKEL}",
+    '030573': f"{REPUTATION_MGMT} Epstein's unflattering Google search results, maybe screenshot by {AL_SECKEL} or {OSBORNE_LLP}",
+    '026583': f"{REPUTATION_MGMT} Google search results for '{JEFFREY_EPSTEIN}' with analysis ({OSBORNE_LLP}?)",
+    '029350': f"{REPUTATION_MGMT} Microsoft Bing search results for Epstein with sex offender at top, maybe from {TYLER_SHEARS}?",
     '030426': f'{REPUTATION_MGMT} {OSBORNE_LLP} reputation repair proposal (cites Michael Milken) 2011-06-14',
     '030875': f"{REPUTATION_MGMT} {SCREENSHOT} Epstein's Wikipedia page",
     # misc
