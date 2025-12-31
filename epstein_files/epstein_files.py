@@ -35,6 +35,7 @@ from epstein_files.util.search_result import SearchResult
 DEVICE_SIGNATURE = 'Device Signature'
 FIRST_FEW_LINES = 'First Few Lines'
 DEVICE_SIGNATURE_PADDING = (1, 0)
+INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [UNKNOWN, 'ACT for America', 'BS Stern', 'Intelligence Squared']
 NOT_INCLUDED_EMAILERS = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
 
 
@@ -384,11 +385,11 @@ def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str]
 
 def is_ok_for_epstein_web(name: str | None) -> bool:
     """Return True if it's likely that EpsteinWeb has a page for this name."""
-    if name is None:
+    if name is None or ' ' not in name:
         return False
-    if '@' in name or '/' in name or name in JUNK_EMAILERS or name in KRASSNER_RECIPIENTS or name == UNKNOWN:
+    elif '@' in name or '/' in name or '??' in name:
         return False
-    elif name in ['ACT for America'] or ' ' not in name:
+    elif name in INVALID_FOR_EPSTEIN_WEB:
         return False
-    else:
-        return True
+
+    return True
