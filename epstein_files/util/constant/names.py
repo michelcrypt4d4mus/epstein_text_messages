@@ -69,6 +69,7 @@ GHISLAINE_MAXWELL = 'Ghislaine Maxwell'
 GLENN_DUBIN = 'Glenn Dubin'
 GORDON_GETTY = 'Gordon Getty'
 GWENDOLYN_BECK = 'Gwendolyn Beck'         # https://www.lbc.co.uk/article/who-gwendolyn-beck-epstein-andrew-5HjdN66_2/
+HEATHER_MANN = 'Heather Mann'
 IAN_OSBORNE = 'Ian Osborne'
 JABOR_Y = 'Jabor Y'                       # mysterious 'influential man in Qatar"
 JACK_GOLDBERGER = 'Jack Goldberger'
@@ -204,7 +205,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Jack', 'James', 'Jay', 'Jean', 'Jeff', 'Jeffrey', 'Jennifer', 'Jeremy', 'jessica', 'Joel', 'John', 'Jon', 'Jonathan', 'Joseph', 'Jr',
     'Kahn', 'Katherine', 'Ken', 'Kevin',
     'Leon', 'Lesley', 'Linda', 'Link', 'Lisa',
-    'Marc', 'Marie', 'Mark', 'Martin', 'Melanie', 'Michael', 'Mike', 'Miller', 'Mitchell', 'Miles', 'Morris', 'Moskowitz',
+    'Mann', 'Marc', 'Marie', 'Mark', 'Martin', 'Melanie', 'Michael', 'Mike', 'Miller', 'Mitchell', 'Miles', 'Morris', 'Moskowitz',
     'Nancy', 'Neal', 'New',
     'Paul', 'Paula', 'Pen', 'Peter', 'Philip',
     'Randall', 'Reid', 'Richard', 'Robert', 'Rodriguez', 'Roger', 'Rosenberg', 'Ross', 'Roth', 'Rubin',
