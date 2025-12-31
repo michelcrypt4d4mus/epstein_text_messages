@@ -126,15 +126,15 @@ class Document:
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on epsteinify.com."""
-        return link_text_obj(epsteinify_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
+        return link_text_obj(epsteinify_doc_url(self.url_slug), link_txt or self.url_slug, style)
 
     def epstein_media_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on epstein.media."""
-        return link_text_obj(epstein_media_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
+        return link_text_obj(epstein_media_doc_url(self.url_slug), link_txt or self.url_slug, style)
 
     def epstein_web_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on EpsteinWeb."""
-        return link_text_obj(epstein_web_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
+        return link_text_obj(epstein_web_doc_url(self.url_slug), link_txt or self.url_slug, style)
 
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any hints/info about the file."""
