@@ -11,9 +11,9 @@ from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.documents.communication_document import CommunicationDocument
-from epstein_files.documents.document import INFO_INDENT
-from epstein_files.documents.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX, FIELD_NAMES,
-     EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, TIME_REGEX, EmailHeader)
+from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, INFO_INDENT
+from epstein_files.documents.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX,
+     EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, FIELD_NAMES, TIME_REGEX, EmailHeader)
 from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import *
@@ -104,11 +104,6 @@ EMAIL_SIGNATURES = {
     UNKNOWN: re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL),
 }
 
-TRUNCATION_LENGTHS = {
-    '023627': 15_750,  # Micheal Wolff article with brock pierce
-    '030781': 1_700,
-}
-
 # Invalid for links to EpsteinWeb
 JUNK_EMAILERS = [
     'asmallworld@travel.asmallworld.net',
@@ -126,6 +121,11 @@ TRUNCATE_ALL_EMAILS_FROM = JUNK_EMAILERS + [
     'Mitchell Bard',
     'Skip Rimer',
 ]
+
+TRUNCATION_LENGTHS = {
+    '023627': 15_750,  # Micheal Wolff article with brock pierce
+    '030781': 1_700,
+}
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
 TRUNCATE_TERMS = [
@@ -246,7 +246,6 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
     'Oliver Goodenough',                     # Robert Trivers CC
     'Owen Blicksilver',                      # Landon Thomas CC
     'Peter Aldhous',                         # Lawrence Krauss CC
-    ROBERT_D_CRITTON,                        # Random CC
     'Sam Harris',                            # Lawrence Krauss CC
     SAMUEL_LEFF,                             # Random CC
     "Saved by Internet Explorer 11",
@@ -259,10 +258,10 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
 
 # Emails sent by epstein to himself that are just notes
 NOTES_TO_SELF = [
-    '033274',
-    '030238',
-    '029752',
     '026677',
+    '029752',
+    '030238',
+    # '033274',  # TODO: Epstein's note to self doesn't get printed if we don't set the recipients to [None]
 ]
 
 
@@ -270,7 +269,6 @@ NOTES_TO_SELF = [
 class Email(CommunicationDocument):
     actual_text: str = field(init=False)
     header: EmailHeader = field(init=False)
-    is_duplicate: bool = False
     is_junk_mail: bool = False
     recipients: list[str | None] = field(default_factory=list)
     sent_from_device: str | None = None
@@ -278,6 +276,7 @@ class Email(CommunicationDocument):
 
     def __post_init__(self):
         super().__post_init__()
+        self.is_junk_mail = self.author in JUNK_EMAILERS
 
         if self.configured_attr('recipients'):
             self.recipients = cast(list[str | None], EMAIL_INFO[self.file_id].recipients)
@@ -285,18 +284,27 @@ class Email(CommunicationDocument):
             for recipient in self.header.recipients():
                 self.recipients.extend(self._get_names(recipient))
 
-        logger.debug(f"Found recipients: {self.recipients}")
-        self.recipients = list(set([r for r in self.recipients if r != self.author or self.file_id in NOTES_TO_SELF]))  # Remove self CCs
+        recipients = [r for r in self.recipients if r != self.author or self.file_id in NOTES_TO_SELF]  # Remove self CCs
+        self.recipients = list(set(recipients))
         self.text = self._cleaned_up_text()
         self.actual_text = self._actual_text()
         self.sent_from_device = self._sent_from_device()
-        self.is_duplicate = self.file_id in DUPLICATE_FILE_IDS
-        self.is_junk_mail = self.author in JUNK_EMAILERS
+        logger.debug(f"Constructed {self.description()}")
 
     def configured_attr(self, attr: ConfiguredAttr) -> bool | datetime | str | None:
         """Find the value configured in constants.py for the 'attr' attribute of this email (if any)."""
         if self.file_id in EMAIL_INFO:
             return getattr(EMAIL_INFO[self.file_id], attr)
+
+    def description(self) -> Text:
+        """One line summary mostly for logging."""
+        txt = self._description()
+
+        if len(self.recipients) > 0:
+            recipients = [r or UNKNOWN for r in self.recipients]
+            txt.append(', ').append(key_value_txt('recipients', Text("'" + ', '.join(recipients) + "'")))
+
+        return txt.append(CLOSE_PROPERTIES_CHAR)
 
     def idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES, text: str | None = None) -> int | None:
         """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line in self.text."""
@@ -519,7 +527,7 @@ class Email(CommunicationDocument):
     def __rich_console__(self, _console: Console, _options: ConsoleOptions) -> RenderResult:
         logger.debug(f"Printing '{self.filename}'...")
 
-        if self.file_id in DUPLICATE_FILE_IDS:
+        if self.is_duplicate:
             yield self.duplicate_file_txt()
             yield Text('')
             return

@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from subprocess import run
-from typing import ClassVar
+from typing import ClassVar, Sequence, TypeVar, Type
 
 from rich.console import Console, ConsoleOptions, Group, RenderResult
 from rich.padding import Padding
@@ -14,7 +14,7 @@ from rich.text import Text
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, EPSTEINIFY, EPSTEIN_WEB, epsteinify_doc_link_txt, epsteinify_doc_url, epstein_web_doc_url
-from epstein_files.util.constants import DUPLICATE_FILE_IDS, FILE_DESCRIPTIONS, VI_DAILY_NEWS_ARTICLE
+from epstein_files.util.constants import DUPLICATE_FILE_IDS, FALLBACK_TIMESTAMP, FILE_DESCRIPTIONS, VI_DAILY_NEWS_ARTICLE
 from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, listify, patternize
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, file_size_str, is_local_extract_file
@@ -59,6 +59,7 @@ class Document:
     file_path: Path
     file_id: str = field(init=False)
     filename: str = field(init=False)
+    is_duplicate: bool = False
     length: int = field(init=False)
     lines: list[str] = field(init=False)
     num_lines: int = field(init=False)
@@ -72,6 +73,7 @@ class Document:
     def __post_init__(self):
         self.filename = self.file_path.name
         self.file_id = extract_file_id(self.filename)
+        self.is_duplicate = self.file_id in DUPLICATE_FILE_IDS
 
         if is_local_extract_file(self.filename):
             self.url_slug = build_filename_for_id(self.file_id)
@@ -291,11 +293,17 @@ class Document:
             f.unlink()
 
     @staticmethod
-    def uniquify(documents: list['Document']) -> list['Document']:
+    def sort_by_timestamp(docs: Sequence['DocumentType']) -> list['DocumentType']:
+        return sorted(docs, key=lambda doc: [doc.timestamp or FALLBACK_TIMESTAMP, doc.file_id])
+
+    @classmethod
+    def uniquify(cls, documents: Sequence['DocumentType']) -> Sequence['DocumentType']:
         """Uniquify by file_id."""
         id_map = {doc.file_id: doc for doc in documents}
         return [doc for doc in id_map.values()]
 
+
+DocumentType = TypeVar('DocumentType', bound=Document)
 
 
 def _color_diff_output(diff_result: str) -> list[Text]:

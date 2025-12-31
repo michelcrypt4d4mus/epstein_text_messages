@@ -17,7 +17,6 @@ from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import EMAIL_CLASS, MESSENGER_LOG_CLASS
-from epstein_files.util.constants import DUPLICATE_FILE_IDS
 from epstein_files.util.data import Timer, dict_sets_to_lists, flatten
 from epstein_files.util.env import specified_names, args
 from epstein_files.util.file_helper import GH_PAGES_HTML_PATH
@@ -154,7 +153,7 @@ def print_emails(epstein_files: EpsteinFiles) -> int:
         logger.warning(f"Printed {len(emails_that_were_printed)} emails of {len(email_ids_that_were_printed)} unique file IDs.")
 
         for email in epstein_files.emails:
-            if email.file_id not in email_ids_that_were_printed and email.file_id not in DUPLICATE_FILE_IDS:
+            if email.file_id not in email_ids_that_were_printed and not email.is_duplicate:
                 logger.warning(f"Failed to print {email.description()}")
 
     return len(emails_that_were_printed)

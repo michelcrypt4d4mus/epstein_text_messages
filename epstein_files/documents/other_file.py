@@ -8,7 +8,7 @@ from rich.markup import escape
 from rich.text import Text
 
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_REGEX, Document
-from epstein_files.util.constants import DUPLICATE_FILE_IDS, FILE_DESCRIPTIONS, UNINTERESTING_PREFIXES
+from epstein_files.util.constants import FILE_DESCRIPTIONS, UNINTERESTING_PREFIXES
 from epstein_files.util.data import escape_single_quotes, extract_datetime, ordinal_str, remove_timezone
 from epstein_files.util.env import args, logger
 from epstein_files.util.rich import highlighter, logger
@@ -51,7 +51,7 @@ class OtherFile(Document):
 
         if len(hints) == 0:
             return True
-        elif self.file_id in DUPLICATE_FILE_IDS:
+        elif self.is_duplicate:
             return False
 
         for prefix in UNINTERESTING_PREFIXES:
