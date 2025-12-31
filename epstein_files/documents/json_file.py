@@ -1,10 +1,8 @@
-import logging
 import re
 from dataclasses import dataclass
 from datetime import datetime
+from pathlib import Path
 
-from rich.markup import escape
-from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.documents.other_file import OtherFile
@@ -22,6 +20,12 @@ VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IG
 @dataclass
 class JsonFile(OtherFile):
     """File containing JSON data."""
+
+    def __post_init__(self):
+        super().__post_init__()
+
+        if self.url_slug.endswith('.txt'):
+            self.url_slug = Path(self.url_slug).stem
 
     def info_txt(self) -> Text | None:
         return Text(f"JSON data, possibly iMessage or similar app metadata", style='dim italic')
