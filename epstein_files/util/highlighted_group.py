@@ -619,8 +619,3 @@ def _get_highlight_group_for_name(name: str) -> HighlightedGroup | None:
     for highlight_group in HIGHLIGHTED_GROUPS:
         if highlight_group.regex.search(name):
             return highlight_group
-
-
-if args.deep_debug:
-    for hg in HIGHLIGHTED_GROUPS:
-        print(f"{hg.label}: {hg.regex.pattern}\n")
