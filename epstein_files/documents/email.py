@@ -593,8 +593,8 @@ class Email(CommunicationDocument):
         # Truncate long emails but leave a note explaining what happened w/link to source document
         if len(text) > num_chars:
             text = text[0:num_chars]
-            external_link_markup = epstein_media_doc_link_markup(self.url_slug, self.author_style)
-            trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest at {external_link_markup}...>"
+            doc_link_markup = epstein_media_doc_link_markup(self.url_slug, self.author_style)
+            trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest at {doc_link_markup}...>"
             trim_footer_txt = Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
 
         # Rewrite broken headers where the values are on separate lines from the field names
