@@ -98,7 +98,7 @@ class Document:
             txt.append(f"{iso_timestamp(self.timestamp)}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
 
         txt.append(" [").append(key_value_txt('num_lines', Text(f"{self.num_lines}", style='cyan')))
-        txt.append(', ').append(key_value_txt('size', Text(file_size_str(self.file_path), style='aquamarine1')))
+        txt.append(', ').append(key_value_txt('size', Text(self.file_size_str(), style='aquamarine1')))
         return txt
 
     def description_panel(self, include_hints: bool = False) -> Panel:
@@ -138,6 +138,9 @@ class Document:
         panel = Panel(self.raw_document_link_txt(include_alt_link=True), border_style=self._border_style(), expand=False)
         hints = [Padding(hint, INFO_PADDING) for hint in self.hints()]
         return Group(*([panel] + hints))
+
+    def file_size_str(self) -> str:
+        return file_size_str(self.file_path)
 
     def hints(self) -> list[Text]:
         """Additional info about the Document (author, FILE_DESCRIPTIONS value, and so on)."""
