@@ -929,7 +929,7 @@ FILE_DESCRIPTIONS = {
     '023567': f"Financial Times article about quantitative easing",
     '026761': f'Forbes article about {BARBRO_EHNBOM} "Swedish American Group Focuses On Cancer"',
     '031716': f'Fortune Magazine article by {TOM_BARRACK} 2016-10-22',
-    '019233': f'Freedom House: "Breaking Down Democracy: Goals, Strategies, and Methods of Modern Authoritarians" 2017-06',
+    '019233': f'Freedom House: "Breaking Down Democracy: Goals, Strategies, and Methods of Modern Authoritarians" 2017-06-02',
     '019444': f'Frontlines magazine article "Biologists Dig Deeper" ca. 2008-01-01',
     '023720': f'Future Science article: "Is Shame Necessary?" by {JENNIFER_JACQUET}',
     '027051': f"German language article about the 2013 Lifeball / AIDS Gala 2013-01",
