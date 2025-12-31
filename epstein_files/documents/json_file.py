@@ -24,7 +24,7 @@ class JsonFile(OtherFile):
     """File containing JSON data."""
 
     def info_txt(self) -> Text | None:
-        return Text(f"(JSON data, possibly iMessage or similar app metadata)", style='dim')
+        return Text(f"JSON data, possibly iMessage or similar app metadata", style='dim italic')
 
     def is_interesting(self):
         return False

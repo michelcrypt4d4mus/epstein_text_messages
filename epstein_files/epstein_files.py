@@ -28,8 +28,8 @@ from epstein_files.util.data import Timer, dict_sets_to_lists, iso_timestamp, so
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, FILENAME_LENGTH, PICKLED_PATH, file_size_str, move_json_file
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
-from epstein_files.util.rich import (DEFAULT_NAME_STYLE, NA_TXT, QUESTION_MARK_TXT, console, highlighter,
-     link_text_obj, link_markup, print_author_header, print_centered, print_other_site_link, print_panel,
+from epstein_files.util.rich import (DEFAULT_NAME_STYLE, NA_TXT, QUESTION_MARK_TXT, add_cols_to_table, console,
+     highlighter, link_text_obj, link_markup, print_author_header, print_centered, print_other_site_link, print_panel,
      print_section_header, vertically_pad)
 from epstein_files.util.search_result import SearchResult
 
@@ -211,11 +211,7 @@ class EpsteinFiles:
                 dupes[doc.document_type()] += 1
 
         table = Table()
-        table.add_column("File Type", justify='left')
-        table.add_column("Files", justify='center')
-        table.add_column("Author Known", justify='center')
-        table.add_column("Author Unknown", justify='center')
-        table.add_column("Duplicates", justify='center')
+        add_cols_to_table(table, ['File Type', 'Files', 'Author Known', 'Author Unknown', 'Duplicates'])
 
         def add_row(label: str, docs: list, known: int | None = None, dupes: int | None = None):
             table.add_row(
@@ -283,9 +279,7 @@ class EpsteinFiles:
     def print_emailer_counts_table(self) -> None:
         footer = f"Identified authors of {self.attributed_email_count()} emails out of {len(self.emails)} potential email files."
         counts_table = Table(title=f"Email Counts", caption=footer, header_style="bold")
-
-        for i, col in enumerate(['Name', 'Count', 'Sent', "Recv'd", JMAIL, EPSTEIN_WEB, 'Twitter']):
-            counts_table.add_column(col, justify='left' if i == 0 else 'center')
+        add_cols_to_table(counts_table, ['Name', 'Count', 'Sent', "Recv'd", JMAIL, EPSTEIN_WEB, 'Twitter'])
 
         emailer_counts = {
             e: self.email_author_counts[e] + self.email_recipient_counts[e]
