@@ -838,7 +838,8 @@ VI_DAILY_NEWS_ARTICLE = f'{VIRGIN_ISLANDS} Daily News article'
 WAPO = 'WaPo'
 WEINBERG_ABC_LETTER = f"letter from {MARTIN_WEINBERG} to ABC / Good Morning America threatening libel lawsuit"
 
-# If the description ends with an ISO date format string that date will be used as the timestamp for the file
+# If the description ends with an ISO date format string that date will be used as the timestamp for the file.
+# The ISO date at the end along with a preceding "ca." if it exists will be removed when describing the file.
 FILE_DESCRIPTIONS = {
     # books
     '015032': f'{BOOK} "60 Years of Investigative Satire: The Best of {PAUL_KRASSNER}"',
@@ -1283,8 +1284,8 @@ FILE_DESCRIPTIONS = {
     '026851': f"Politifact lying politicians chart 2016-07-26",
     '022367': f"{RESUME_OF} Jack J Grynberg 2014-07",
     '029302': f"{RESUME_OF} Michael J. Boccio 2011-08-07",
-    '015671': f"{RESUME_OF} Robin Solomon",
-    '015672': f"{RESUME_OF} Robin Solomon",
+    '015671': f"{RESUME_OF} Robin Solomon ca. 2015-06-02",  # She left Mount Sinai at some point in 2015
+    '015672': f"{RESUME_OF} Robin Solomon ca. 2015-06-02",  # She left Mount Sinai at some point in 2015
     '019448': f"Haitian business investment proposal called Jacmel",
     '029328': f"Rafanelli Events promotional deck",
     '029155': f'response sent to the Gruterites ({GORDON_GETTY} fans) by {ROBERT_TRIVERS} ca. 2018-03-19',
