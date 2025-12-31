@@ -1367,6 +1367,7 @@ UNINTERESTING_PREFIXES = [
     'Inference',
     'Invesco',
     JASTA,
+    'JetGala',
     JOHN_BOLTON_PRESS_CLIPPING,
     'Journal of Criminal',
     JP_MORGAN,
