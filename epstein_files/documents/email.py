@@ -17,7 +17,7 @@ from epstein_files.documents.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPL
 from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import *
-from epstein_files.util.data import TIMEZONE_INFO, collapse_newlines, escape_single_quotes, remove_timezone, uniquify
+from epstein_files.util.data import TIMEZONE_INFO, collapse_newlines, escape_single_quotes, extract_last_name, remove_timezone, uniquify
 from epstein_files.util.email_info import ConfiguredAttr
 from epstein_files.util.env import logger
 from epstein_files.util.file_helper import is_local_extract_file
@@ -123,8 +123,8 @@ TRUNCATE_ALL_EMAILS_FROM = JUNK_EMAILERS + [
 ]
 
 TRUNCATION_LENGTHS = {
-    '023627': 15_750,  # Micheal Wolff article with brock pierce
-    '030781': 1_700,
+    '023627': 16_800,  # Micheal Wolff article with brock pierce
+    '030781': 1_700,   # Bannon email about crypto coin issues
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
@@ -301,8 +301,7 @@ class Email(CommunicationDocument):
         txt = self._description()
 
         if len(self.recipients) > 0:
-            recipients = [r or UNKNOWN for r in self.recipients]
-            txt.append(', ').append(key_value_txt('recipients', Text("'" + ', '.join(recipients) + "'")))
+            txt.append(', ').append(key_value_txt('recipients', self._recipients_txt()))
 
         return txt.append(CLOSE_PROPERTIES_CHAR)
 
@@ -474,7 +473,7 @@ class Email(CommunicationDocument):
 
         # Use just the last name for each recipient if there's 3 or more recipients
         return join_texts([
-            Text(r if (' ' not in r or len(recipients) < 3) else r.split()[-1], style=get_style_for_name(r))
+            Text(r if len(recipients) < 3 else extract_last_name(r), style=get_style_for_name(r))
             for r in recipients
         ], join=', ')
 

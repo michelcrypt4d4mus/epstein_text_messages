@@ -5,6 +5,7 @@ from datetime import datetime
 from rich.text import Text
 
 from epstein_files.util.constant.names import JEFFREY_EPSTEIN, SCARAMUCCI, STEVE_BANNON, UNKNOWN
+from epstein_files.util.data import extract_last_name
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import TEXT_LINK, highlighter, logger
 
@@ -50,7 +51,7 @@ class TextMessage:
             self.author_str = self.author
             self.author = None  # TODO: this shouldn't be happening; we still know the author...
         elif self.author in DISPLAY_LAST_NAME_ONLY:
-            self.author_str = self.author.split()[-1]
+            self.author_str = extract_last_name(self.author)
         else:
             self.author_str = self.author
 
