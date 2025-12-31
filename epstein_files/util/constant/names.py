@@ -192,7 +192,7 @@ VIRGIN_ISLANDS = 'Virgin Islands'
 
 # First and last names that should be made part of a highlighting regex for emailers
 NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
-    'Al', 'Alfredo', 'Allen', 'Amanda', 'Andres', 'Andrew',
+    'Al', 'Alfredo', 'Allen', 'Alex', 'Alexander', 'Amanda', 'Andres', 'Andrew',
     'Bard', 'Barry', 'Bill', 'Black', 'Brad', 'Bruce',
     'Carolyn', 'Chris', 'Christina',
     'Dan', 'Daniel', 'Danny', 'Darren', 'Dave', 'David',
@@ -204,7 +204,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Jack', 'James', 'Jay', 'Jean', 'Jeff', 'Jeffrey', 'Jennifer', 'Jeremy', 'jessica', 'Joel', 'John', 'Jon', 'Jonathan', 'Joseph', 'Jr',
     'Kahn', 'Katherine', 'Ken', 'Kevin',
     'Leon', 'Lesley', 'Linda', 'Link', 'Lisa',
-    'Marc', 'Marie', 'Mark', 'Martin', 'Melanie', 'Michael', 'Mike', 'Miller', 'Mitchell', 'Morris', 'Moskowitz',
+    'Marc', 'Marie', 'Mark', 'Martin', 'Melanie', 'Michael', 'Mike', 'Miller', 'Mitchell', 'Miles', 'Morris', 'Moskowitz',
     'Nancy', 'Neal', 'New',
     'Paul', 'Paula', 'Pen', 'Peter', 'Philip',
     'Randall', 'Reid', 'Richard', 'Robert', 'Rodriguez', 'Roger', 'Rosenberg', 'Ross', 'Roth', 'Rubin',

@@ -1,3 +1,4 @@
+import logging
 import re
 from collections import defaultdict
 from dataclasses import dataclass, field
@@ -24,7 +25,7 @@ from epstein_files.util.file_helper import is_local_extract_file
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import *
 
-BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|Importance:\s*High|[iI,•]|i (_ )?i|, [-,])$')
+BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,])$')
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
@@ -78,11 +79,15 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     r"as Putin Mayhem Tests President's Grip\non GOP": "as Putin Mayhem Tests President's Grip on GOP",
     r"avoids testimony from alleged\nvictims": "avoids testimony from alleged victims",
     r"but\nwatchdogs say probe is tainted": "watchdogs say probe is tainted",
+    r"COVER UP SEX ABUSE CRIMES\nBY THE WHITE HOUSE": "COVER UP SEX ABUSE CRIMES BY THE WHITE HOUSE",
+    r'Priebus, used\nprivate email accounts for': 'Priebus, used private email accounts for',
     r"War on the Investigations\nEncircling Him": "War on the Investigations Encircling Him",
     re.compile(r"deadline re Mr Bradley Edwards vs Mr\s*Jeffrey Epstein", re.I): "deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
     re.compile(r"Following Plea That Implicated Trump -\s*https://www.npr.org/676040070", re.I): "Following Plea That Implicated Trump - https://www.npr.org/676040070",
     re.compile(r"for Attorney General -\s+Wikisource, the"): r"for Attorney General - Wikisource, the",
+    re.compile(r"JUDGE SWEET\s+ALLOWING\s+STEVEN\s+HOFFENBERG\s+TO\s+TALK\s+WITH\s+THE\s+TOWERS\s+VICTIMS\s+TO\s+EXPLAIN\s+THE\s+VICTIMS\s+SUI\n?T\s+FILING\s+AGAINST\s+JEFF\s+EPSTEIN"): "JUDGE SWEET ALLOWING STEVEN HOFFENBERG TO TALK WITH THE TOWERS VICTIMS TO EXPLAIN THE VICTIMS SUIT FILING AGAINST JEFF EPSTEIN",
     re.compile(r"Lawyer for Susan Rice: Obama administration '?justifiably concerned' about sharing Intel with\s*Trump team -\s*POLITICO", re.I): "Lawyer for Susan Rice: Obama administration 'justifiably concerned' about sharing Intel with Trump team - POLITICO",
+    re.compile(r"PATTERSON NEW\s+BOOK\s+TELLING\s+FEDS\s+COVER\s+UP\s+OF\s+BILLIONAIRE\s+JEFF\s+EPSTEIN\s+CHILD\s+RAPES\s+RELEASE\s+DATE\s+OCT\s+10\s+2016\s+STEVEN\s+HOFFENBERG\s+IS\s+ON\s+THE\s+BOOK\s+WRITING\s+TEAM\s*!!!!"): "PATTERSON NEW BOOK TELLING FEDS COVER UP OF BILLIONAIRE JEFF EPSTEIN CHILD RAPES RELEASE DATE OCT 10 2016 STEVEN HOFFENBERG IS ON THE BOOK WRITING TEAM !!!!",
     re.compile(r"PROCEEDINGS FOR THE ST THOMAS ATTACHMENT OF\s*ALL JEFF EPSTEIN ASSETS"): "PROCEEDINGS FOR THE ST THOMAS ATTACHMENT OF ALL JEFF EPSTEIN ASSETS",
     re.compile(r"Subject:\s*Fwd: Trending Now: Friends for three decades"): "Subject: Fwd: Trending Now: Friends for three decades",
 }
@@ -488,22 +493,40 @@ class Email(CommunicationDocument):
             for r in recipients
         ], join=', ')
 
+    def _merge_lines(self, idx: int) -> None:
+        """Combine lines numbered 'line_idx' and 'line_idx + 1' into a single line."""
+        lines = self.lines[0:idx] + [self.lines[idx] + ' ' + self.lines[idx + 1]] + self.lines[idx + 2:]
+        self._set_computed_fields(lines=lines)
+
     def _repair(self) -> None:
         """Repair particularly janky files."""
         self._set_computed_fields(lines=[line.strip() for line in self.lines if not BAD_LINE_REGEX.match(line)])
+        old_text = self.text
 
         if self.file_id in FILE_IDS_WITH_BAD_FIRST_LINES:
-            text = '\n'.join(self.lines[1:])
-        elif self.file_id == '031442':
-            text = '\n'.join([self.lines[0] + self.lines[1]] + self.lines[2:])
-        elif self.file_id == '029282':
-            text = '\n'.join(self.lines[0:2] + [self.lines[2] + self.lines[3]] + self.lines[4:])
-        elif self.file_id == '029977':
-            text = self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM')
-        else:
-            text = self.text
+            self._set_computed_fields(lines=self.lines[1:])
+        elif self.file_id in ['031442']:
+            self._merge_lines(0)  # Merge 1st and 2nd rows
+        elif self.file_id in '021729 029501 029282 030626 031384 033512'.split():
+            self._merge_lines(2)  # Merge 3rd and 4th rows
 
-        lines = self.regex_repair_text(OCR_REPAIRS, text).split('\n')
+            if self.file_id in ['030626']:  # Merge 6th and 7th (now 5th and 6th) rows
+                self._merge_lines(5)
+        elif self.file_id in ['029976']:
+            self._merge_lines(3)  # Merge 4th and 5th rows
+        elif self.file_id == '029977':
+            self._set_computed_fields(text=self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM'))
+
+            for i in range(4):
+                self._merge_lines(2)
+
+            lines = self.lines[0:2] + [self.lines[2] + self.lines[4]] + [self.lines[3]] + self.lines[5:]
+
+        if old_text != self.text:
+            logger.warning(f"Modified {self.url_slug} text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n')
+            self.log_top_lines(12, 'Result of modifications', logging.WARNING)
+
+        lines = self.regex_repair_text(OCR_REPAIRS, self.text).split('\n')
         new_lines = []
         i = 0
 

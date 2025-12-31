@@ -105,6 +105,7 @@ HIGHLIGHTED_GROUPS = [
         emailers={
             'Abdoulaye Wade': 'former president of Senegal, father of Karim Wade',
             'Karim Wade': 'son of the president of Senegal, facing arrest for corruption, email handle is "Afri zp"',
+            'Miles Alexander': 'Operations Manager Michaelhouse Balgowan KwaZulu-Natal South Africa',  # TODO: what's up with this person?
             'Macky Sall': 'prime minister of Senegal, defeated Abdoulaye Wade',
         },
     ),
@@ -195,7 +196,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='entertainer',
         style='light_steel_blue3',
-        pattern=r'(Art )?Spiegelman|Bobby slayton|bono\s*mick|Errol(\s*Morris)?|Etienne Binant|(Frank\s)?Gehry|Jagger|(Jeffrey\s*)?Katzenberg|(Johnny\s*)?Depp|Kid Rock|Lena\s*Dunham|Madonna|Mark\s*Burnett|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?|Zach Braff',
+        pattern=r'(Art )?Spiegelman|Bobby slayton|bono\s*mick|Errol(\s*Morris)?|Etienne Binant|(Frank\s)?Gehry|Jagger|(Jeffrey\s*)?Katzenberg|(Johnny\s*)?Depp|Kid Rock|Lena\s*Dunham|Madonna|Mark\s*Burnett|Ramsey Elkholy|shirley maclaine|Steven Gaydos?|Woody( Allen)?|Zach Braff',
         emailers={
             ANDRES_SERRANO: "'Piss Christ' artist",
             'Barry Josephson': 'American film producer and former music manager, editor FamilySecurityMatters.org',
@@ -304,7 +305,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='journalist',
         style='bright_yellow',
-        pattern=r'Palm\s*Beach\s*(Daily\s*News|Post)|ABC(\s*News)?|Alex\s*Yablon|(Andrew\s*)?Marra|Arianna(\s*Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie\s*Rose|China\s*Daily|CNBC|CNN(politics?)?|Conchita|Sarnoff|(?<!Virgin[-\s]Islands[-\s])Daily\s*(Mail|News|Telegraph)|(David\s*)?Pecker|David\s*Brooks|Ed\s*Krassenstein|(Emily\s*)?Michot|Ezra\s*Klein|(George\s*)?Stephanopoulus|Globe\s*and\s*Mail|Good\s*Morning\s*America|Graydon(\s*Carter)?|Huffington(\s*Post)?|Ingram, David|(James\s*)?Patterson|Jonathan\s*Karl|Julie\s*(K.?\s*)?Brown|(Katie\s*)?Couric|Keith\s*Larsen|Miami\s*Herald|(Michele\s*)?Dargan|(National\s*)?Enquirer|(The\s*)?N(ew\s*)?Y(ork\s*)?(P(ost)?|T(imes)?)|(The\s*)?New\s*Yorker|NYer|PERVERSION\s*OF\s*JUSTICE|Politico|(Sean\s*)?Hannity|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|(The\s*)?Wa(shington\s*)?Po(st)?|Viceland|Vick[iy]\s*Ward|Vox|WGBH|(The\s*)?Wall\s*Street\s*Journal|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
+        pattern=r'Palm\s*Beach\s*(Daily\s*News|Post)|ABC(\s*News)?|Alex\s*Yablon|(Andrew\s*)?Marra|Arianna(\s*Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie\s*Rose|China\s*Daily|CNBC|CNN(politics?)?|Con[cs]hita|Sarnoff|(?<!Virgin[-\s]Islands[-\s])Daily\s*(Mail|News|Telegraph)|(David\s*)?Pecker|David\s*Brooks|Ed\s*Krassenstein|(Emily\s*)?Michot|Ezra\s*Klein|(George\s*)?Stephanopoulus|Globe\s*and\s*Mail|Good\s*Morning\s*America|Graydon(\s*Carter)?|Huffington(\s*Post)?|Ingram, David|(James\s*)?Patterson|Jonathan\s*Karl|Julie\s*(K.?\s*)?Brown|(Katie\s*)?Couric|Keith\s*Larsen|Miami\s*Herald|(Michele\s*)?Dargan|(National\s*)?Enquirer|(The\s*)?N(ew\s*)?Y(ork\s*)?(P(ost)?|T(imes)?)|(The\s*)?New\s*Yorker|NYer|PERVERSION\s*OF\s*JUSTICE|Politico|(Sean\s*)?Hannity|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|(The\s*)?Wa(shington\s*)?Po(st)?|Viceland|Vick[iy]\s*Ward|Vox|WGBH|(The\s*)?Wall\s*Street\s*Journal|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
         emailers = {
             EDWARD_EPSTEIN: 'no relation to Jeffrey',
             'James Hill': 'ABC News',
@@ -473,7 +474,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='tech bro',
         style='bright_cyan',
-        pattern=r"AG?I|Chamath|Palihapitiya|Drew\s*Houston|Eric\s*Schmidt|Greylock(\s*Partners)?|(?<!(ustin|Moshe)\s)Hoffmand?|LinkedIn|(Mark\s*)?Zuckerberg|Masa(yoshi)?(\sSon)?|Najeev|Nathan\s*Myhrvold|Palantir|(Peter\s)?Th(ie|ei)l|Pierre\s*Omidyar|Sergey\s*Brin|Silicon\s*Valley|Softbank|SpaceX|Tim\s*Ferriss?|WikiLeak(ed|s)",
+        pattern=r"AG?I|Chamath|Palihapitiya|Danny\s*Hillis|Drew\s*Houston|Eric\s*Schmidt|Greylock(\s*Partners)?|(?<!(ustin|Moshe)\s)Hoffmand?|LinkedIn|(Mark\s*)?Zuckerberg|Masa(yoshi)?(\sSon)?|Najeev|Nathan\s*Myhrvold|Palantir|(Peter\s)?Th(ie|ei)l|Pierre\s*Omidyar|Sergey\s*Brin|Silicon\s*Valley|Softbank|SpaceX|Tim\s*Ferriss?|WikiLeak(ed|s)",
         emailers = {
             'Auren Hoffman': 'CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp',
             ELON_MUSK: 'father of Mecha-Hitler',
