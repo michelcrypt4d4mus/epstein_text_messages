@@ -538,7 +538,7 @@ class Email(CommunicationDocument):
             lines = self.lines[0:2] + [self.lines[2] + self.lines[4]] + [self.lines[3]] + self.lines[5:]
 
         if old_text != self.text:
-            logger.warning(f"Modified {self.url_slug} text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n')
+            logger.warning(f"Modified text of '{self.url_slug}', old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n')
             self.log_top_lines(12, 'Result of modifications', logging.WARNING)
             logger.warning('')
 
