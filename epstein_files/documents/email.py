@@ -486,8 +486,17 @@ class Email(CommunicationDocument):
         return [_reverse_first_and_last_names(name) for name in names_found]
 
     def _merge_lines(self, idx: int, idx2: int | None = None) -> None:
-        """Combine lines numbered 'line_idx' and 'line_idx + 1' into a single line."""
-        lines = self.lines[0:idx] + [self.lines[idx] + ' ' + self.lines[idx + 1]] + self.lines[idx + 2:]
+        """Combine lines numbered 'idx' and 'idx2' into a single line (idx2 defaults to idx + 1)."""
+        idx2 = idx2 if idx2 is not None else (idx + 1)
+        lines = self.lines[0:idx]
+
+        if idx2 <= idx:
+            raise RuntimeError(f"idx2 ({idx2}) must be greater than idx ({idx})")
+        elif idx2 == (idx + 1):
+            lines += [self.lines[idx] + ' ' + self.lines[idx + 1]] + self.lines[idx + 2:]
+        else:
+            lines += [self.lines[idx] + ' ' + self.lines[idx2]] + self.lines[idx + 1:idx2] + self.lines[idx2 + 1:]
+
         self._set_computed_fields(lines=lines)
 
     def _recipients_txt(self) -> Text:
@@ -512,7 +521,6 @@ class Email(CommunicationDocument):
         elif self.file_id in '021729 029501 029282 030626 031384 033512'.split():
             self._merge_lines(2)  # Merge 3rd and 4th rows
 
-            # TODO: check this one
             if self.file_id in ['030626']:  # Merge 6th and 7th (now 5th and 6th) rows
                 self._merge_lines(4)
         elif self.file_id in ['029976']:
@@ -531,7 +539,8 @@ class Email(CommunicationDocument):
             for _i in range(4):
                 self._merge_lines(2)
 
-            lines = self.lines[0:2] + [self.lines[2] + self.lines[4]] + [self.lines[3]] + self.lines[5:]
+            self._merge_lines(5)
+            self._merge_lines(2, 5)
 
         if old_text != self.text:
             logger.warning(f"Modified text of '{self.url_slug}', old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n')
