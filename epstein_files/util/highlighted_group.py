@@ -193,6 +193,7 @@ HIGHLIGHTED_GROUPS = [
             'Barry Josephson': 'American film producer and former music manager, editor FamilySecurityMatters.org',
             BILL_SIEGEL: 'documentary film producer and director',
             DAVID_BLAINE: 'famous magician',
+            HENRY_HOLT: f"{MICHAEL_WOLFF}'s book publisher",
             'Richard Merkin': 'painter, illustrator and arts educator',
             STEVEN_PFEIFFER: 'Associate Director at Independent Filmmaker Project (IFP)',
         },
@@ -383,9 +384,9 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='modeling',
         style='pale_violet_red1',
-        pattern=r'\w+@mc2mm.com',
+        pattern=r'\w+@mc2mm.com|(Nicole\s*)?Junkerman',
         emailers = {
-            'Abi Schwinck': 'MC2 Model Management (?)|(Nicole\s*)?Junkerman',
+            'Abi Schwinck': 'MC2 Model Management (?)',
             DANIEL_SIAD: None,
             FAITH_KATES: 'Next Models co-founder',
             'Gianni Serazzi': 'fashion consultant?',
@@ -399,7 +400,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='publicist',
         style='orange_red1',
-        pattern=fr"Henry Holt|(Matt(hew)? )?Hiltzi[gk]|{REPUTATION_MGMT}",
+        pattern=fr"(Matt(hew)? )?Hiltzi[gk]|{REPUTATION_MGMT}",
         emailers = {
             AL_SECKEL: 'husband of Isabel Maxwell, Mindshift conference organizer who fell off a cliff',
             'Barnaby Marsh': 'co-founder of Saint Partners, a philanthropy services company',

@@ -166,6 +166,7 @@ ZUBAIR_KHAN = 'Zubair Khan'
 # No communications but name is in the files
 BILL_GATES = 'Bill Gates'
 ELON_MUSK = 'Elon Musk'
+HENRY_HOLT = 'Henry Holt'  # Actually a company?
 IVANKA = 'Ivanka'
 JARED_KUSHNER = 'Jared Kushner'
 JULIE_K_BROWN = 'Julie K. Brown'
@@ -195,7 +196,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Ed', 'Edward', 'Edwards', 'Epstein', 'Eric', 'Erika', 'Etienne',
     'Faith', 'Fred', 'Frost', 'Fuller',
     'George',
-    'Heather', 'Hill', 'Hoffman',
+    'Heather', 'Henry', 'Hill', 'Hoffman',
     'Ian',
     'Jack', 'James', 'Jay', 'Jean', 'Jeff', 'Jeffrey', 'Jennifer', 'Jeremy', 'jessica', 'Joel', 'John', 'Jon', 'Jonathan', 'Joseph', 'Jr',
     'Kahn', 'Katherine', 'Ken',

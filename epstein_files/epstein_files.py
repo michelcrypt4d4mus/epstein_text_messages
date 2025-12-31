@@ -333,7 +333,7 @@ class EpsteinFiles:
         console.print(f"(Last deploy found 4668 messages in 77 conversations)", style='dim')
 
     def print_other_files_table(self) -> None:
-        interesting_files = [doc for doc in self.other_files if doc.is_interesting() or args.all_other_files]
+        interesting_files = [doc for doc in self.other_files if args.all_other_files or doc.is_interesting()]
         header_pfx = '' if args.all_other_files else 'Selected '
         print_section_header(f"{FIRST_FEW_LINES} of {len(interesting_files)} {header_pfx}Files That Are Neither Emails Nor Text Msgs")
 
@@ -350,20 +350,9 @@ class EpsteinFiles:
 
         for doc in interesting_files:
             link_and_info = [doc.raw_document_link_txt(), *doc.hints()]
-            #console.print(doc.description_panel(), doc.raw_document_link_txt())
+            preview_text = doc.highlighted_preview_text()
             date_str = doc.date_str()
             row_style = ''
-
-            if doc.is_duplicate:
-                preview_text = doc.duplicate_file_txt()
-                row_style = ' dim'
-            else:
-                preview_text = doc.highlighted_preview_text()
-
-            # Temporary way to only show other files without hint info
-            if args.output_unlabeled and doc.hints():
-                logger.warning(f"Skipping {doc.description()} because --output-unlabeled")
-                continue
 
             table.add_row(
                 Group(*link_and_info),
