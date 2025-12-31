@@ -358,15 +358,6 @@ HIGHLIGHTED_GROUPS = [
         }
     ),
     HighlightedGroup(
-        label='victim lawyer',
-        style='dark_magenta bold',
-        pattern=r'(Alan(\s*P.)?|MINTZ)\s*FRAADE|Paul\s*(G.\s*)?Cassell|Rothstein\s*Rosenfeldt\s*Adler|(Scott\s*)?Rothstein|(J\.?\s*)?(Stan(ley)?\s*)?Pottinger',
-        emailers = {
-            BRAD_EDWARDS: 'Rothstein Rosenfeldt Adler (Rothstein was a crook & partner of Roger Stone)',
-            JACK_SCAROLA: 'Searcy Denney Scarola Barnhart & Shipley',
-        }
-    ),
-    HighlightedGroup(
         label='lobbyist',
         style='light_coral',
         pattern=r'[BR]ob Crowe|Stanley Rosenberg',
@@ -496,6 +487,15 @@ HIGHLIGHTED_GROUPS = [
         label='victim',
         style='orchid1',
         pattern=r'BVI|(Jane|Tiffany)\s*Doe|Katie\s*Johnson|(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts',
+    ),
+    HighlightedGroup(
+        label='victim lawyer',
+        style='dark_magenta bold',
+        pattern=r'(Alan(\s*P.)?|MINTZ)\s*FRAADE|Paul\s*(G.\s*)?Cassell|Rothstein\s*Rosenfeldt\s*Adler|(Scott\s*)?Rothstein|(J\.?\s*)?(Stan(ley)?\s*)?Pottinger',
+        emailers = {
+            BRAD_EDWARDS: 'Rothstein Rosenfeldt Adler (Rothstein was a crook & partner of Roger Stone)',
+            JACK_SCAROLA: 'Searcy Denney Scarola Barnhart & Shipley',
+        }
     ),
     HighlightedGroup(
         label=VIRGIN_ISLANDS,
