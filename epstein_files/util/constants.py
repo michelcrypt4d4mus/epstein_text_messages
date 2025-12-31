@@ -770,6 +770,7 @@ DUPLICATE_FILE_IDS = {
     '016574': 'the same as 016554',
     '029405': 'the same as 029416',
     '028965': 'the same as 028928',
+    '032713': 'the same as 033478',
     '029357': 'the same as (?) 028887',
     '029356': 'zoomed in section of 029355',
 }
@@ -1300,6 +1301,7 @@ FILE_DESCRIPTIONS = {
     '026627': f"{INSIGHTS_POD} report on the presidential debate",
     '030142': f"{JASTA} (Justice Against Sponsors of Terrorism Act) doc that's mostly empty, references suit against Saudi f. {KATHRYN_RUEMMLER} & {KEN_STARR} ca. 2016-09-01",
     '033478': f'meme of Kim Jong Un reading {FIRE_AND_FURY}',
+    '032713': f'meme of Kim Jong Un reading {FIRE_AND_FURY}',
     '033177': f'meme of Trump with text "WOULD YOU TRUST THIS MAN WITH YOUR DAUGHTER?"',
     '025205': MERCURY_FILMS_PROFILES,
     '025210': MERCURY_FILMS_PROFILES,
