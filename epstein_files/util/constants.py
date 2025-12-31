@@ -1065,7 +1065,7 @@ FILE_DESCRIPTIONS = {
     '014797': f"{GIUFFRE_V_MAXWELL} Declaration of Laura A. Menninger in Opposition to Plaintiff's Motion 2017-03-17",
     '019297': f'{GIUFFRE_V_MAXWELL} letter from {ALAN_DERSHOWITZ} lawyer Andrew G. Celli 2018-02-07',
     '011463': f"{GIUFFRE_V_MAXWELL} Maxwell Response in Opposition to Plaintiff's Omnibus Motion in Limine 2017-03-17",
-    '014788': f"{GIUFFRE_V_MAXWELL} Maxwell Response in Opposition to Plaintiff's Omnibus Motion in Limine court filing 2017-03-17",
+    '014788': f"{GIUFFRE_V_MAXWELL} Maxwell Response in Opposition to Plaintiff's Omnibus Motion in Limine 2017-03-17",
     '015529': f"{GIUFFRE_V_MAXWELL} defamation complaint 2015-09-21",
     '011304': f"{GIUFFRE_V_MAXWELL} transcript of hearing in 2017-03-17",
     '013489': f'{JANE_DOE_V_EPSTEIN_TRUMP} Affidavit of {BRAD_EDWARDS} 2010-07-20',
