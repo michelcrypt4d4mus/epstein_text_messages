@@ -37,7 +37,7 @@ DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
 TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
-REWRITTEN_HEADER_MSG = "(janky OCR text was prettified, check source if something's sus)"
+REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something's sus)"
 MAX_CHARS_TO_PRINT = 4000
 MAX_QUOTED_REPLIES = 2
 VALID_HEADER_LINES = 14
