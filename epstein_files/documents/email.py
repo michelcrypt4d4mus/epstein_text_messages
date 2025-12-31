@@ -25,7 +25,7 @@ from epstein_files.util.file_helper import is_local_extract_file
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import *
 
-BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|Importance:\s*High|[iI,•]|i (_ )?i|, [-,])$')
+BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,])$')
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
@@ -504,7 +504,7 @@ class Email(CommunicationDocument):
         old_text = self.text
 
         if self.file_id in FILE_IDS_WITH_BAD_FIRST_LINES:
-            self.text = '\n'.join(self.lines[1:])
+            self._set_computed_fields(lines=self.lines[1:])
         elif self.file_id in ['031442']:  # Merge 1st and 2nd rows
             self._merge_lines(0)
         elif self.file_id in ['021729', '029282', '030626', '031384', '033512']:  # Merge 3rd and 4th rows
@@ -514,6 +514,10 @@ class Email(CommunicationDocument):
                 self._merge_lines(5)
         elif self.file_id == '029977':
             self.text = self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM')
+            self._merge_lines(2)
+            self._merge_lines(2)
+            self._merge_lines(2)
+            self._merge_lines(2)
 
         if old_text != self.text:
             logger.warning(f"Modified {self.url_slug} text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n')
