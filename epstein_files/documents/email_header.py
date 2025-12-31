@@ -84,6 +84,9 @@ class EmailHeader:
                     logger.info(f"{log_prefix}, decrementing num_headers and skipping...")
                     num_headers -= 1
                     continue
+                elif value.startswith('http'):
+                    logger.info(f"{log_prefix}, using empty string instead...")
+                    value = ''
 
                 value = [v.strip() for v in value.split(';') if len(v.strip()) > 0]
 

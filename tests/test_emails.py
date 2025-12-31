@@ -10,14 +10,14 @@ EMAIL_AUTHOR_COUNTS = {
     ALAN_DERSHOWITZ: 5,
     "Alan S Halperin": 1,
     "Alex Yablon": 1,
-    "Alireza Ittihadieh": 8,
+    ALIREZA_ITTIHADIEH: 8,
     AMANDA_ENS: 8,
     ANAS_ALRASHEED: 7,
     ANDRES_SERRANO: 3,
     ANIL_AMBANI: 2,
     "Ann Marie Villafana": 1,
     "Anne Boyles": 1,
-    "Ariane de Rothschild": 4,
+    ARIANE_DE_ROTHSCHILD: 4,
     'Audrey/Aubrey Raimbault (???)': 1,
     AZIZA_ALAHMADI: 3,
     BARBRO_EHNBOM: 11,
@@ -521,22 +521,22 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
 
 DEVICE_SIGNATURE_TO_AUTHORS = {
     "Sent from AOL Mobile Mail": [
-        "David Schoen"
+        DAVID_SCHOEN,
     ],
     "Sent from President's iPad": [
         "Mohamed Waheed Hassan"
     ],
     "Sent from ProtonMail": [
-        "Sean Bannon"
+        "Sean Bannon",
     ],
     "Sent from Soon-Yi's iPhone": [
-        "Soon-Yi Previn"
+        SOON_YI,
     ],
     "Sent from Steve Hanson's Blackberry": [
         "Stephen Hanson"
     ],
     "Sent from Yahoo Mail for iPhone": [
-        "Merwin Dela Cruz"
+        MERWIN_DELA_CRUZ,
     ],
     'Sent from iPad': [
         BARBRO_EHNBOM,
@@ -559,14 +559,14 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         "Boris Nikolic"
     ],
     "Sent from my Verizon 4G LTE Droid": [
-        "Darren Indyke"
+        DARREN_INDYKE,
     ],
     "Sent from my Verizon Wireless BlackBerry": [
-        "Alan Dershowitz",
+        ALAN_DERSHOWITZ,
         "Lisa Randall",
     ],
     "Sent from my Windows 10 phone": [
-        "(unknown)"
+        UNKNOWN,
     ],
     "Sent from my Windows Phone": [
         "Boris Nikolic",
@@ -592,10 +592,10 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Stephen Hanson',
     ],
     "Sent from my iPhone": [
-        '(unknown)',
-        'Alan Dershowitz',
-        'Anas Alrasheed',
-        'Aziza Alahmadi',
+        UNKNOWN,
+        ALAN_DERSHOWITZ,
+        ANAS_ALRASHEED,
+        AZIZA_ALAHMADI,
         'Bruce Moskowitz',
         'Darren Indyke',
         'David Schoen',
@@ -642,13 +642,13 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Tyler Shears',
     ],
     "Sent from my iPhone and misspellings courtesy of iPhone.": [
-        "Cecile de Jongh"
+        CECILE_DE_JONGH,
     ],
     "Sent via BlackBerry by AT&T": [
-        "(unknown)",
-        "Peggy Siegal",
-        "Steve Bannon",
-        "Terry Kafka",
+        UNKNOWN,
+        PEGGY_SIEGAL,
+        STEVE_BANNON,
+        TERRY_KAFKA,
     ],
     "Sent via BlackBerry from T-Mobile": [
         "Paula"
@@ -662,7 +662,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
 }
 
 AUTHORS_TO_DEVICE_SIGNATURES = {
-    "(unknown)": [
+    UNKNOWN: [
         "Sent from my Windows 10 phone",
         "Sent from my iPad",
         "Sent from my iPhone",
@@ -672,7 +672,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my Verizon Wireless BlackBerry",
         "Sent from my iPhone"
     ],
-    "Anas Alrasheed": [
+    ANAS_ALRASHEED: [
         "Sent from my iPhone"
     ],
     AZIZA_ALAHMADI: [
@@ -689,7 +689,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPad",
         "Sent from my iPhone"
     ],
-    "Cecile de Jongh": [
+    CECILE_DE_JONGH: [
         "Sent from my iPhone and misspellings courtesy of iPhone."
     ],
     CECILIA_STEEN: [
@@ -749,7 +749,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     "Johnny el Hachem": [
         "Sent from my iPhone"
     ],
-    "Joi Ito": [
+    JOI_ITO: [
         "Sent from my iPad",
         "Sent from my iPhone"
     ],
@@ -763,18 +763,18 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     "Kelly Friendly": [
         "Sent from my iPhone"
     ],
-    "Ken Starr": [
+    KEN_STARR: [
         "Sent from my iPhone"
     ],
-    "Landon Thomas Jr": [
+    LANDON_THOMAS: [
         "Sent from my BlackBerry® wireless device",
         "Sent from my iPhone"
     ],
-    "Larry Summers": [
+    LARRY_SUMMERS: [
         "Sent from my iPad",
         "Sent from my iPhone"
     ],
-    "Lawrance Visoski": [
+    LAWRANCE_VISOSKI: [
         "Sent from my iPad",
         "Sent from my iPhone"
     ],
@@ -870,10 +870,10 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     "Sultan Ahmed Bin Sulayem": [
         "Sent from my iPhone"
     ],
-    "Terje Rød-Larsen": [
+    TERJE_ROD_LARSEN: [
         "Sent from my iPhone"
     ],
-    "Terry Kafka": [
+    TERRY_KAFKA: [
         "Sent from my iPhone",
         "Sent via BlackBerry by AT&T"
     ],
@@ -908,6 +908,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     "Paul Barrett": 10,
     "Peter Mandelson": 10,
     "Richard Kahn": 121,
+    STEVEN_PFEIFFER: 11,
     "Susan Edelman": 9,
     "Terry Kafka": 10,
     "Tonja Haddad Coleman": 9,

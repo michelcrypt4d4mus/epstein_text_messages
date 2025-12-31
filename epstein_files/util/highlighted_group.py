@@ -117,7 +117,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='bro',
         style='tan',
-        pattern=r"Andrew Farkas",
+        pattern=r"Andrew Farkas|Thomas\s*(J\.?\s*)?Barrack(\s*Jr)?",
         emailers = {
             JONATHAN_FARKAS: "heir to the Alexander's department store fortune",
             'Peter Thomas Roth': 'student of Epstein at Dalton, skincare company founder',
@@ -128,7 +128,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='business',
         style='spring_green4',
-        pattern=r'Gruterite|(John\s*)?Kluge|Marc Rich|(Mi(chael|ke)\s*)?Ovitz|(Steve\s+)?Wynn|(Leslie\s+)?Wexner|Valhi|(Yves\s*)?Bouvier',
+        pattern=r'Gruterite|(John\s*)?Kluge|Marc Rich|(Mi(chael|ke)\s*)?Ovitz|(Steve\s+)?Wynn|(Leslie\s+)?Wexner|SALSS|Swedish\s*American\s*Life\s*Science\s*Summit|Valhi|(Yves\s*)?Bouvier',
         emailers = {
             ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
             BARBRO_EHNBOM: 'Swedish pharmaceuticals',
@@ -150,7 +150,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='china',
         style='bright_red',
-        pattern=r"Ali.?baba|Beijing|CCP|Chin(a|e?se)(?! Daily)|DPRK|Gino\s+Yu|Global Times|Guo|Hong|Huaw[ae]i|Kim\s*Jong\s*Un|Kong|Jack\s+Ma|Kwok|Ministry\sof\sState\sSecurity|Mongolian?|MSS|North\s*Korea|Peking|PRC|SCMP|Tai(pei|wan)|Xi(aomi)?",
+        pattern=r"Ali.?baba|Beijing|CCP|Chin(a|e?se)(?! Daily)|DPRK|Gino\s+Yu|Global Times|Guo|Hong|Huaw[ae]i|Kim\s*Jong\s*Un|Kong|Jack\s+Ma|Kwok|Ministry\sof\sState\sSecurity|Mongolian?|MSS|North\s*Korea|Peking|PRC|SCMP|Tai(pei|wan)|Xi(aomi)?|Jinping",
     ),
     HighlightedGroup(
         label='deepak_chopra',
@@ -163,7 +163,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='democrats',
         style='sky_blue1',
-        pattern=r'(Al\s*)?Franken|((Bill|Hillart?y)\s*)?Clinton|DNC|George\s*Mitchell|(George\s*)?Soros|Hill?ary|Dem(ocrat(ic)?)?|(Joe\s*)?Biden|(John\s*)?Kerry|Lisa Monaco|(Matteo\s*)?Salvini|Maxine\s*Waters|(Barac?k )?Obama|(Nancy )?Pelosi|Ron\s*Dellums|Schumer|Vernon\s*Jordan',
+        pattern=r'(Al\s*)?Franken|((Bill|Hillart?y)\s*)?Clinton|DNC|George\s*Mitchell|(George\s*)?Soros|Hill?ary|Dem(ocrat(ic)?)?|(Jo(e|seph)\s*)?Biden|(John\s*)?Kerry|Lisa Monaco|(Matteo\s*)?Salvini|Maxine\s*Waters|(Barac?k )?Obama|(Nancy )?Pelosi|Ron\s*Dellums|Schumer|Vernon\s*Jordan',
     ),
     HighlightedGroup(
         label='Dubin family',
@@ -288,7 +288,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='japan',
         style='color(168)',
-        pattern=r'BOJ|(Bank\s+of\s+)?japan(ese)?|jpy?(?! Morgan)|SG|Singapore',
+        pattern=r'BOJ|(Bank\s+of\s+)?Japan(ese)?|jpy?(?! Morgan)|SG|Singapore|Toky[op]',
     ),
     HighlightedGroup(
         label='javanka',
@@ -316,12 +316,12 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='latin america',
         style='yellow',
-        pattern=r'Argentin(a|ian)|Bolsonar[aio]|Bra[sz]il(ian)?|Bukele|Castro|Colombian?|Cuban?|El\s*Salvador|((Enrique )?Pena )?Nieto|LatAm|Lula|Mexic(an|o)|(Nicolas\s+)?Maduro|Panama( Papers)?|Peru|Venezuelan?',
+        pattern=r'Argentin(a|ian)|Bolsonar[aio]|Bra[sz]il(ian)?|Bukele|Caracas|Castro|Colombian?|Cuban?|El\s*Salvador|((Enrique )?Pena )?Nieto|LatAm|Lula|Mexic(an|o)|(Nicolas\s+)?Maduro|Panama( Papers)?|Peru|Venezuelan?|Zambrano',
     ),
     HighlightedGroup(
         label='law enforcement',
         style='color(24) bold',
-        pattern=r'ag|(Alicia\s*)?Valle|((Bob|Robert)\s*)?Mueller|(Byung\s)?Pak|CFTC|CIA|CVRA|DOJ|FBI|FCPA|FDIC|FinCEN|FINRA|FOIA|FTC|IRS|(James\s*)?Comey|(Jennifer\s*Shasky\s*)?Calvery|(Kirk )?Blouin|NIH|NSA|OCC|(Lann?a\s*)?Belohlavek|(Michael\s*)?Reiter|Police Code Enforcement|SEC|Strzok|TSA|USAID|(William\s*J\.?\s*)?Zloch',
+        pattern=r'ag|(Alicia\s*)?Valle|((Bob|Robert)\s*)?Mueller|(Byung\s)?Pak|CFTC|CIA|CVRA|DOJ|FBI|FCPA|FDIC|Federal\s*Bureau\s*of\s*Investigation|FinCEN|FINRA|FOIA|FTC|IRS|(James\s*)?Comey|(Jennifer\s*Shasky\s*)?Calvery|(Kirk )?Blouin|KYC|NIH|NSA|OCC|(Lann?a\s*)?Belohlavek|(Michael\s*)?Reiter|Police Code Enforcement|SEC|Strzok|TSA|USAID|(William\s*J\.?\s*)?Zloch',
         emailers = {
             ANN_MARIE_VILLAFANA: 'southern district of Florida U.S. Attorney',
             DANNY_FROST: 'Director of Communications at Manhattan DA',
@@ -476,7 +476,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='trump',
         style='red3 bold',
-        pattern=r"@?realDonaldTrump|\bDJ?T\b|(Donald\s+(J\.\s+)?)?Trump(ism)?|Don(ald| *Jr)(?! Rubin)|Ivana|(Madeleine\s*)?Westerhout|Mar[-\s]*a[-\s]*Lago|(Marla\s*)?Maples|(Matt(hew)? )?Calamari|\bMatt C\b|Melania|(Michael (J.? )?)?Boccio|Roger\s+Stone|rona|(Alan\s*)?Weiss?elberg",
+        pattern=r"@?realDonaldTrump|(The\s*)?Art\s*of\s*the\s*Deal|\bDJ?T\b|(Donald\s+(J\.\s+)?)?Trump(ism)?|Don(ald| *Jr)(?! Rubin)|Ivana|(Madeleine\s*)?Westerhout|Mar[-\s]*a[-\s]*Lago|(Marla\s*)?Maples|(Matt(hew)? )?Calamari|\bMatt C\b|Melania|(Michael (J.? )?)?Boccio|Roger\s+Stone|rona|(Alan\s*)?Weiss?elberg",
         emailers = {
             'Bruce Moskowitz': "'Trump's health guy' according to Epstein",
         }
