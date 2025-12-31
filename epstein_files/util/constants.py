@@ -838,7 +838,7 @@ VI_DAILY_NEWS_ARTICLE = f'{VIRGIN_ISLANDS} Daily News article'
 WAPO = 'WaPo'
 WEINBERG_ABC_LETTER = f"letter from {MARTIN_WEINBERG} to ABC / Good Morning America threatening libel lawsuit"
 
-# If last chars are an ISO date that will be interpolated as the timestamp for the file
+# If the description ends with an ISO date format string that date will be used as the timestamp for the file
 FILE_DESCRIPTIONS = {
     # books
     '015032': f'{BOOK} "60 Years of Investigative Satire: The Best of {PAUL_KRASSNER}"',
@@ -918,18 +918,18 @@ FILE_DESCRIPTIONS = {
     '031725': f"article about Gloria Allred and Trump allegations 2016-10-10",
     '031198': f"article about identify of Jane Doe in {JANE_DOE_V_EPSTEIN_TRUMP}",
     '012704': f"article about {JANE_DOE_V_USA} and {CVRA} 2011-04-21",
-    '026648': f'article about lawsuit against Saudi Arabia by 9/11 victims, maybe Russian propaganda 2017-05-13',
-    '032159': f"article about microfinance and cell phones in Zimbabwe, Strive Masiyiwa (Econet Wireless)",
+    '026648': f'article about {JASTA} lawsuit against Saudi Arabia by 9/11 victims (Russian propaganda?) 2017-05-13',
     '031776': f"article about Michael Avenatti by Andrew Strickler",
+    '032159': f"article about microfinance and cell phones in Zimbabwe, Strive Masiyiwa (Econet Wireless)",
     '026584': f'article about tax implications of "disregarded entities" 2009-07-01',
     '024256': f'article by {JOI_ITO}: "Internet & Society: The Technologies and Politics of Control"',
     '027004': f'article by {JOSCHA_BACH}: "The Computational Structure of Mental Representation" 2013-02-26',
+    '015501': f'article by {MOSHE_HOFFMAN}, Erez Yoeli, and Carlos David Navarrete: "Game Theory and Morality"',
     '033468': f'{ARTICLE_DRAFT} Rod Rosenstein ca. 2018-09-24',
     '030825': f'{ARTICLE_DRAFT} Syria',
     '030258': f'{ARTICLE_DRAFT} Mueller probe, almost same as 030248',
     '030248': f'{ARTICLE_DRAFT} Mueller probe, almost same as 030258',
     '029165': f'{ARTICLE_DRAFT} Mueller probe, almost same as 030258',
-    '015501': f'article on "Game Theory and Morality" by Moshe Hoffman, Erez Yoeli, Carlos David Navarrete',
     '030013': f'Aviation International News article 2012-07',
     '033253': f'BBC article about Rohingya in Myanmar by {ROBERT_LAWRENCE_KUHN}',
     '026887': f'BBC "New Tariffs - Trade War" by {ROBERT_LAWRENCE_KUHN}',

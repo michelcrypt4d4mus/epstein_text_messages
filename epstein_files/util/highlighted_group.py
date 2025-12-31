@@ -252,7 +252,7 @@ HIGHLIGHTED_GROUPS = [
         }
     ),
     HighlightedGroup(
-        label='harvard',
+        label=HARVARD.lower(),
         style='deep_pink2',
         pattern=r'Cambridge|(Derek\s*)?Bok|Elisa(\s*New)?|Harvard|(Stephen\s*)?Kosslyn',
         emailers = {
@@ -261,6 +261,7 @@ HIGHLIGHTED_GROUPS = [
             LISA_NEW: 'professor of poetry AKA "Elisa New"',
             'Lisa Randall': 'theoretical physicist',
             MARTIN_NOWAK: 'professor of mathematics and biology',
+            MOSHE_HOFFMAN: 'lecturer and research scholar in behavioral and evolutionary economics',
         }
     ),
     HighlightedGroup(
@@ -444,7 +445,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='scholar',
         style='light_goldenrod2',
-        pattern=r'Alain Forget|Brotherton|Carl\s*Sagan|Columbia|David Grosof|J(ames|im)\s*Watson|(Lord\s*)?Martin\s*Rees|MIT(\s*Media\s*Lab)?|Media\s*Lab|Minsky|Moshe\s*Hoffman|((Noam|Valeria)\s*)?Chomsky|Praluent|Regeneron|(Richard\s*)?Dawkins|Sanofi|Stanford|(Stephen\s*)?Hawking|(Steven?\s*)?Pinker|UCLA',
+        pattern=r'Alain Forget|Brotherton|Carl\s*Sagan|Columbia|David Grosof|J(ames|im)\s*Watson|(Lord\s*)?Martin\s*Rees|MIT(\s*Media\s*Lab)?|Media\s*Lab|Minsky|((Noam|Valeria)\s*)?Chomsky|Praluent|Regeneron|(Richard\s*)?Dawkins|Sanofi|Stanford|(Stephen\s*)?Hawking|(Steven?\s*)?Pinker|UCLA',
         emailers = {
             'Barnaby Marsh': None,
             DAVID_HAIG: None,
