@@ -762,7 +762,6 @@ DUPLICATE_FILE_IDS = {
     '010723': 'redacted version of 025353',
     '012135': 'redacted version of 012130',
     '031415': 'the same as 031396',
-    '029357': 'the same as (?) 028887',
     '025210': 'the same as 025205',
     '019864': 'the same as 019849',
     '033481': 'the same as 033480',
@@ -771,6 +770,7 @@ DUPLICATE_FILE_IDS = {
     '016574': 'the same as 016554',
     '029405': 'the same as 029416',
     '028965': 'the same as 028928',
+    '029357': 'the same as (?) 028887',
     '029356': 'zoomed in section of 029355',
 }
 
@@ -785,6 +785,8 @@ TRANSLATION = 'translation of'
 TWEET = 'tweet'
 
 # Publications
+BBC = 'BBC'
+BLOOMBERG = 'Bloomberg'
 LA_TIMES = 'LA Times'
 MIAMI_HERALD = 'Miami Herald'
 NYT_ARTICLE = 'NYT article about'
@@ -799,6 +801,7 @@ GIUFFRE_V_EPSTEIN = f"{VIRGINIA_GIUFFRE} v. {JEFFREY_EPSTEIN}"
 GIUFFRE_V_MAXWELL = f"{VIRGINIA_GIUFFRE} v. {GHISLAINE_MAXWELL}"
 JANE_DOE_V_EPSTEIN_TRUMP = f"Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}"
 JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
+NEW_YORK_V_EPSTEIN = f"New York v. {JEFFREY_EPSTEIN}"
 
 # Descriptions of non-email, non-text message files
 ARTICLE_DRAFT = 'draft of an article about'
@@ -844,7 +847,8 @@ PALM_BEACH_POST_ARTICLE = f'{PALM_BEACH} Post article about'
 PALM_BEACH_TSV = f"TSV of {PALM_BEACH} property"
 PALM_BEACH_WATER_COMMITTEE = f'{PALM_BEACH} Water Committee'
 PATTERSON_BOOK_SCANS = f'{BOOK} pages of "Filthy Rich: The Shocking True Story of {JEFFREY_EPSTEIN}" by James Patterson 2016-10-10'
-SHIMON_POST = 'The Shimon Post selection of articles about the mideast'
+SHIMON_POST = 'The Shimon Post'
+SHIMON_POST_ARTICLE = f'{SHIMON_POST} selection of articles about the mideast'
 SINGLE_PAGE = 'single page of'
 SWEDISH_LIFE_SCIENCES_SUMMIT = f"{BARBRO_EHNBOM}'s Swedish American Life Science Summit"
 THE_REAL_DEAL_ARTICLE = 'The Real Deal article by Keith Larsen'
@@ -907,10 +911,10 @@ FILE_DESCRIPTIONS = {
     '033468': f'{ARTICLE_DRAFT} Rod Rosenstein ca. 2018-09-24',
     '030825': f'{ARTICLE_DRAFT} Syria',
     '030013': f'Aviation International News article 2012-07',
-    '033253': f'BBC article about Rohingya in Myanmar by {ROBERT_LAWRENCE_KUHN}',
-    '026887': f'BBC "New Tariffs - Trade War" by {ROBERT_LAWRENCE_KUHN}',
-    '013275': f"Bloomberg article on notable 2013 obituaries 2013-12-26",
-    '026543': f"Bloomberg BNA article about taxes",
+    '033253': f'{BBC} article about Rohingya in Myanmar by {ROBERT_LAWRENCE_KUHN}',
+    '026887': f'{BBC} "New Tariffs - Trade War" by {ROBERT_LAWRENCE_KUHN}',
+    '013275': f"{BLOOMBERG} article on notable 2013 obituaries 2013-12-26",
+    '026543': f"{BLOOMBERG} BNA article about taxes",
     '014865': f"Boston Globe article about {ALAN_DERSHOWITZ}",
     '033231': f"Business Standard article about Trump's visit with India's Modi",
     '023572': f"{CHINA_DAILY_ARTICLE} China's Belt & Road Initiative by {ROBERT_LAWRENCE_KUHN}",
@@ -995,27 +999,27 @@ FILE_DESCRIPTIONS = {
     '025143': f'{ROBERT_TRIVERS} essay "Africa, Parasites, Intelligence" ca. 2018-06-25',
     '016996': f'SciencExpress article "Quantitative Analysis of Culture Using Millions of Digitized Books" by Jean-Baptiste Michel',
     '025104': f"SCMP article about China and globalisation",
-    '030030': f'{SHIMON_POST} 2011-03-29',
-    '025610': f'{SHIMON_POST} 2011-04-03',
-    '023458': f'{SHIMON_POST} 2011-04-17',
-    '023487': f'{SHIMON_POST} 2011-04-18',
-    '030531': f'{SHIMON_POST} 2011-04-20',
-    '024958': f'{SHIMON_POST} 2011-05-08',
-    '030060': f'{SHIMON_POST} 2011-05-13',
-    '030531': f'{SHIMON_POST} 2011-05-16',
-    '031834': f'{SHIMON_POST} 2011-05-16',
-    '023517': f'{SHIMON_POST} 2011-05-26',
-    '030268': f'{SHIMON_POST} 2011-05-29',
-    '029628': f'{SHIMON_POST} 2011-06-04',
-    '018085': f'{SHIMON_POST} 2011-06-07',
-    '030156': f'{SHIMON_POST} 2011-06-22',
-    '031876': f'{SHIMON_POST} 2011-06-14',
-    '032171': f'{SHIMON_POST} 2011-06-26',
-    '029932': f'{SHIMON_POST} 2011-07-03',
-    '031913': f'{SHIMON_POST} 2011-08-24',
-    '024592': f'{SHIMON_POST} 2011-08-25',
-    '024997': f'{SHIMON_POST} 2011-09-08',
-    '031941': f'{SHIMON_POST} 2011-11-17',
+    '030030': f'{SHIMON_POST_ARTICLE} 2011-03-29',
+    '025610': f'{SHIMON_POST_ARTICLE} 2011-04-03',
+    '023458': f'{SHIMON_POST_ARTICLE} 2011-04-17',
+    '023487': f'{SHIMON_POST_ARTICLE} 2011-04-18',
+    '030531': f'{SHIMON_POST_ARTICLE} 2011-04-20',
+    '024958': f'{SHIMON_POST_ARTICLE} 2011-05-08',
+    '030060': f'{SHIMON_POST_ARTICLE} 2011-05-13',
+    '030531': f'{SHIMON_POST_ARTICLE} 2011-05-16',
+    '031834': f'{SHIMON_POST_ARTICLE} 2011-05-16',
+    '023517': f'{SHIMON_POST_ARTICLE} 2011-05-26',
+    '030268': f'{SHIMON_POST_ARTICLE} 2011-05-29',
+    '029628': f'{SHIMON_POST_ARTICLE} 2011-06-04',
+    '018085': f'{SHIMON_POST_ARTICLE} 2011-06-07',
+    '030156': f'{SHIMON_POST_ARTICLE} 2011-06-22',
+    '031876': f'{SHIMON_POST_ARTICLE} 2011-06-14',
+    '032171': f'{SHIMON_POST_ARTICLE} 2011-06-26',
+    '029932': f'{SHIMON_POST_ARTICLE} 2011-07-03',
+    '031913': f'{SHIMON_POST_ARTICLE} 2011-08-24',
+    '024592': f'{SHIMON_POST_ARTICLE} 2011-08-25',
+    '024997': f'{SHIMON_POST_ARTICLE} 2011-09-08',
+    '031941': f'{SHIMON_POST_ARTICLE} 2011-11-17',
     '021092': f'{SINGLE_PAGE} Tatler article about {GHISLAINE_MAXWELL} shredding documents 2019-08-15',
     '031191': f"{SINGLE_PAGE} unknown article about Epstein and Trump's relationship in 1997",
     '030829': f'South Florida Sun Sentinel article about {BRAD_EDWARDS} and {JEFFREY_EPSTEIN}',
@@ -1104,7 +1108,7 @@ FILE_DESCRIPTIONS = {
     '010560': f"letter from Gloria Allred to {SCOTT_J_LINK} alleging abuse of a girl from Kansas 2019-06-19",
     '031447': f"letter from {MARTIN_WEINBERG} to Melanie Ann Pustay and Sean O'Neill re: an Epstein FOIA request",
     '026793': f"letter from {STEVEN_HOFFENBERG}'s lawyers at Mintz Fraade offering to take over Epstein's business and resolve his legal issues 2018-03-23",
-    '016420': f"New York v. {JEFFREY_EPSTEIN} court filing 2019-01-11",
+    '016420': f"{NEW_YORK_V_EPSTEIN} New York Post Motion to Unseal Appellate Briefs 2019-01-11",
     '028540': f"SCOTUS decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP",
     '012197': f"SDFL Response to {JAY_LEFKOWITZ} on Epstein Plea Agreement Compliance",
     '022277': f"{TEXT_OF_US_LAW} National Labour Relations Board (NLRB)",
@@ -1207,11 +1211,11 @@ FILE_DESCRIPTIONS = {
     '019476': f"{DAVID_BLAINE_VISA_LETTER} (probably {SVETLANA_POZHIDAEVA}?) 2015-06-01",
     '031670': f"letter from General Mike Flynn's lawyers to senators Mark Warner & Richard Burr about subpoena",
     '026011': f"letter from Gennady Mashtalyar to Epstein about algorithmic trading ca. 2016-06-24",  # date is based on Brexit reference but he could be backtesting
-    '029301': f"letter from Michael J. Boccio, former lawyer at the Trump Organization 2011-08-07",
+    '029301': f"letter from {MICHAEL_J_BOCCIO}, former lawyer at the Trump Organization 2011-08-07",
     '022405': f"letter from {NOAM_CHOMSKY} attesting to Epstein's good character",
     '026248': f'letter from Trump lawyer Don McGahn to Devin Nunes (R-CA) about FISA courts and Trump',
     '026134': f'letter to someone named George about investment opportunities in the Ukraine banking sector',
-    '029304': f"Trump recommendation letter for recently departed Trump Organization lawyer Michael J. Boccio",
+    '029304': f"Trump recommendation letter for recently departed Trump Organization lawyer {MICHAEL_J_BOCCIO}",
     '031278': f"{REDACTED} email, quoted replies are from {STEVEN_HOFFENBERG} about James Patterson's book",  # Quoted replies are in 019109
     '028928': WEINBERG_ABC_LETTER,
     '028965': WEINBERG_ABC_LETTER,
@@ -1253,8 +1257,8 @@ FILE_DESCRIPTIONS = {
     '031743': f'a few pages describing the internet as a "New Nation State" (Network State?)',
     '018703': f"{ANDRES_SERRANO} artist statement about Trump objects",
     '028281': f'art show flier for "The House Of The Nobleman" curated by Wolfe Von Lenkiewicz & Victoria Golembiovskaya',
-    '025147': f'Brockman hot list Frankfurt Book Fair (includes article about Silk Road/Ross Ulbricht) 2016-10-23',
     '023438': f"Brockman announcemeent of auction of 'Noise' by Daniel Kahneman, Olivier Sibony, and Cass Sunstein",
+    '025147': f'Brockman hot list Frankfurt Book Fair (includes article about Silk Road/Ross Ulbricht) 2016-10-23',
     '031425': f'completely redacted email from {SCOTT_J_LINK}',
     '012718': f"{CVRA} congressional record ca. 2011-06-17",
     '018224': f"conversation with {LAWRENCE_KRAUSS}?",
@@ -1266,7 +1270,7 @@ FILE_DESCRIPTIONS = {
     '031184': f"{DIANA_DEGETTES_CAMPAIGN} fundraiser invitation",
     '027009': f"{EHUD_BARAK} speech to AIPAC 2013-03-03",
     '025540': f"Epstein's rough draft of his side of the story?",
-    '024117': f"FAQ about anti-money laundering and terrorist financing law in the U.S.",
+    '024117': f"FAQ about anti-money laundering (AML) and terrorist financing (CFT) laws in the U.S.",
     '027071': f"{FEMALE_HEALTH_COMPANY} brochure request donations for female condoms in Uganda",
     '027074': f"{FEMALE_HEALTH_COMPANY} pitch deck (USAID was a customer)",
     '022780': FLIGHT_LOGS,
@@ -1306,7 +1310,7 @@ FILE_DESCRIPTIONS = {
     '029354': f"{OBAMA_JOKE} ca. 2013-07-26",
     '026851': f"Politifact lying politicians chart 2016-07-26",
     '022367': f"{RESUME_OF} Jack J Grynberg 2014-07",
-    '029302': f"{RESUME_OF} Michael J. Boccio 2011-08-07",
+    '029302': f"{RESUME_OF} {MICHAEL_J_BOCCIO}, former lawyer at the Trump Organization 2011-08-07",
     '015671': f"{RESUME_OF} Robin Solomon ca. 2015-06-02",  # She left Mount Sinai at some point in 2015
     '015672': f"{RESUME_OF} Robin Solomon ca. 2015-06-02",  # She left Mount Sinai at some point in 2015
     '019448': f"Haitian business investment proposal called Jacmel",
@@ -1335,8 +1339,8 @@ UNINTERESTING_PREFIXES = [
     'article about',
     ARTICLE_DRAFT,
     'Aviation International',
-    'BBC',
-    'Bloomberg',
+    BBC,
+    BLOOMBERG,
     BOFA,
     BOFA_MERRILL,
     BOOK,
@@ -1345,6 +1349,7 @@ UNINTERESTING_PREFIXES = [
     CHALLENGES_OF_AI,
     CHINA_DAILY_ARTICLE,
     CNN,
+    'completely redacted',
     CVRA,
     DAILY_MAIL_ARTICLE,
     DAILY_TELEGRAPH_ARTICLE,
@@ -1354,6 +1359,9 @@ UNINTERESTING_PREFIXES = [
     DEUTSCHE_BANK,
     'Forbes',
     'fragment',
+    'Frontlines',
+    'Future Science',
+    'Globe and Mail',
     GOLDMAN_REPORT,
     GORDON_GETTY,
     f"{HARVARD} Econ",
@@ -1361,10 +1369,12 @@ UNINTERESTING_PREFIXES = [
     'Inference',
     'Invesco',
     JASTA,
+    'JetGala',
     JOHN_BOLTON_PRESS_CLIPPING,
     'Journal of Criminal',
     JP_MORGAN,
     LA_TIMES,
+    'Litigation Daily',
     'MarketWatch',
     'meme',
     'Morgan Stanley',
@@ -1390,7 +1400,7 @@ UNINTERESTING_PREFIXES = [
     'S&P',
     'SciencExpress',
     'Scowcroft',
-    SHIMON_POST,
+    SHIMON_POST_ARTICLE,
     SINGLE_PAGE,
     STACEY_PLASKETT,
     TEXT_OF_US_LAW,
