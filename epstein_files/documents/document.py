@@ -119,7 +119,7 @@ class Document:
         reason_msg = ' '.join(supression_reason.split()[0:-1])
         txt = Text(f"Not showing ", style='white dim italic').append(epstein_media_doc_link_txt(self.file_id, style='cyan'))
         txt.append(f" because it's {reason_msg} ")
-        return txt.append(epstein_media_doc_link_txt(supression_reason.split()[-1], style='cyan'))
+        return txt.append(epstein_media_doc_link_txt(supression_reason.split()[-1], style='royal_blue1'))
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on epsteinify.com."""
