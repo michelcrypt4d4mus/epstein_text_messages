@@ -127,7 +127,6 @@ HIGHLIGHTED_GROUPS = [
         emailers = {
             ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
             BARBRO_EHNBOM: 'Swedish pharmaceuticals',
-            BORIS_NIKOLIC: f'Biotech VC, {ESTATE_EXECUTOR}, VC partner of Bill Gates',
             FRED_HADDAD: "co-founder of Heck's in West Virginia",
             GORDON_GETTY: 'heir of oil tycoon J. Paul Getty',
             NICHOLAS_RIBIS: 'Hilton CEO',
@@ -497,6 +496,9 @@ HIGHLIGHTED_GROUPS = [
         label=BILL_GATES,
         style='turquoise4',
         pattern=r'BG|b?g?C3|(Bill\s*((and|or)\s*Melinda\s*)?)?Gates|Melinda(\s*Gates)?|Microsoft|MSFT',
+        emailers = {
+            BORIS_NIKOLIC: f'biotech VC partner of {BILL_GATES}, {ESTATE_EXECUTOR}',
+        },
     ),
     HighlightedGroup(
         label=STEVE_BANNON,
