@@ -4,7 +4,6 @@ from pathlib import Path
 from rich.text import Text
 
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.util.env import args, logger
 
 
 @dataclass
