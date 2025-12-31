@@ -478,6 +478,9 @@ class Email(CommunicationDocument):
         elif self.file_id == '031442':
             self.lines = [self.lines[0] + self.lines[1]] + self.lines[2:]
             self.text = '\n'.join(self.lines)
+        elif self.file_id == '029282':
+            self.lines = self.lines[0:2] + [self.lines[2] + self.lines[3]] + self.lines[4:]
+            self.text = '\n'.join(self.lines)
 
         lines = self.regex_repair_text(OCR_REPAIRS, self.text).split('\n')
         new_lines = []
