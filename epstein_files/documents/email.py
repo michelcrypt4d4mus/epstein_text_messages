@@ -123,8 +123,8 @@ TRUNCATE_ALL_EMAILS_FROM = JUNK_EMAILERS + [
 ]
 
 TRUNCATION_LENGTHS = {
-    '023627': 15_750,  # Micheal Wolff article with brock pierce
-    '030781': 1_700,
+    '023627': 16_800,  # Micheal Wolff article with brock pierce
+    '030781': 1_700,   # Bannon email about crypto coin issues
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
