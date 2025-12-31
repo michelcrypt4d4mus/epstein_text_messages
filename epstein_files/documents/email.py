@@ -329,7 +329,7 @@ class Email(CommunicationDocument):
 
     def subject(self) -> str:
         if len(self.header.subject or '') > 100:
-            logger.warning(f"Long subject for {self.description().plain}\n{self.header.subject}\n")
+            logger.info(f"Long subject for {self.description().plain}\n{self.header.subject}\n")
 
         return self.header.subject or ''
 
