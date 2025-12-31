@@ -97,7 +97,7 @@ class OtherFile(Document):
 
         if len(timestamps) == 0:
             if VAST_HOUSE not in self.text:
-                self.log_top_lines(15, msg=f"{self.file_id}: No timestamps found", level=logging.WARNING)
+                self.log_top_lines(15, msg=f"{self.file_id}: No timestamps found", level=logging.INFO)
 
             return None
         elif len(timestamps) == 1:
