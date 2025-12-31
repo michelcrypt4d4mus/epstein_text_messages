@@ -348,7 +348,7 @@ HIGHLIGHTED_GROUPS = [
         }
     ),
     HighlightedGroup(
-        label='lawyer for victims',
+        label='victim lawyer',
         style='dark_magenta bold',
         pattern=r'(Alan(\s*P.)?|MINTZ)\s*FRAADE|Paul\s*(G.\s*)?Cassell|Rothstein\s*Rosenfeldt\s*Adler|(Scott\s*)?Rothstein',
         emailers = {
