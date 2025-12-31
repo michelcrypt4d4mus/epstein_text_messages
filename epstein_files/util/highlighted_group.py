@@ -502,7 +502,7 @@ HIGHLIGHTED_GROUPS = [
         style='sea_green1',
         pattern=r'Bahamas|Dominican\s*Republic|(Great|Little)\s*St.?\s*James|Haiti(an)?|(John\s*)deJongh(\s*Jr\.?)|(Kenneth E\. )?Mapp|Palm\s*Beach(?!\s*Post)|PBI|S(ain)?t.?\s*Thomas|USVI|VI|(The\s*)?Virgin\s*Islands(\s*Daily\s*News)?',  # TODO: VI Daily News should be yellow but it's hard bc Daily News xists
         emailers = {
-            CECILE_DE_JONGH: f'First lady of the Virgin Islands 2007-2015',
+            CECILE_DE_JONGH: f'First lady 2007-2015',
             STACEY_PLASKETT: 'non-voting member of Congress',
             KENNETH_E_MAPP: 'Governor',
         },
