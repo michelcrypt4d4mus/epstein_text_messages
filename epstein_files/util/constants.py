@@ -167,7 +167,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     DAVID_FISZEL: re.compile(r'David\s*Fis?zel', re.IGNORECASE),
     DAVID_STERN: re.compile(r'David Stern?', re.IGNORECASE),
     EDUARDO_ROBLES: re.compile(r'Ed(uardo)?\s*Robles', re.IGNORECASE),
-    EDWARD_EPSTEIN: re.compile(r'Edward (Jay )?Epstein', re.IGNORECASE),
+    EDWARD_JAY_EPSTEIN: re.compile(r'Edward (Jay )?Epstein', re.IGNORECASE),
     EHUD_BARAK: re.compile(r'(ehud|e?h)\s*barak|\behud', re.IGNORECASE),
     FAITH_KATES: re.compile(r'faith kates?', re.IGNORECASE),
     GERALD_BARTON: re.compile(r'Gerald.*Barton', re.IGNORECASE),
@@ -310,12 +310,14 @@ KRASSNER_033568_RECIPIENTS = ['George Krassner', 'Daniel Dawson', 'Danny Goldber
 FLIGHT_IN_2012_PEOPLE = ['Francis Derby', 'Januiz Banasiak', 'Louella Rabuyo', 'Richard Barnnet']
 
 EMAIL_INFO = {
+    '022187': EmailInfo(author=None, recipients=[JEFFREY_EPSTEIN]),  # bad OCR causes issues
     '032436': EmailInfo(author=ALIREZA_ITTIHADIEH),    # Signature
     '032543': EmailInfo(author=ANAS_ALRASHEED),        # Later reply 033000 has quote
     '026064': EmailInfo(author=ARIANE_DE_ROTHSCHILD),
     '026069': EmailInfo(author=ARIANE_DE_ROTHSCHILD),
     '030741': EmailInfo(author=ARIANE_DE_ROTHSCHILD),
     '026018': EmailInfo(author=ARIANE_DE_ROTHSCHILD),
+    '029504': EmailInfo(author=f'Audrey/Aubrey Raimbault {QUESTION_MARKS}'),  # (based on "GMI" in signature, a company registered by "aubrey raimbault")
     '033316': EmailInfo(author=AZIZA_ALAHMADI),        # "Regards, Aziza" at bottom
     '033328': EmailInfo(author=AZIZA_ALAHMADI),        # "Regards, Aziza" at bottom
     '026659': EmailInfo(author=BARBRO_EHNBOM),         # Reply
@@ -341,7 +343,7 @@ EMAIL_INFO = {
     '026287': EmailInfo(author=DAVID_SCHOEN),          # Signature
     '033419': EmailInfo(author=DAVID_SCHOEN),          # Signature
     '026245': EmailInfo(author=DIANE_ZIMAN, recipients=[JEFFREY_EPSTEIN]),  # TODO: Shouldn't need to be configured
-    '031460': EmailInfo(author=EDWARD_EPSTEIN),
+    '031460': EmailInfo(author=EDWARD_JAY_EPSTEIN),
     '030578': EmailInfo(author=FAITH_KATES),           # Same as unredacted 030414, same legal signature
     '030634': EmailInfo(author=FAITH_KATES),           # Same as unredacted 031135, same legal signature
     '026547': EmailInfo(author=GERALD_BARTON, recipients=[JEFFREY_EPSTEIN]),  # bad OCR
@@ -351,7 +353,7 @@ EMAIL_INFO = {
     '029970': EmailInfo(author=GWENDOLYN_BECK),
     '029960': EmailInfo(author=GWENDOLYN_BECK),        # Reply
     '029959': EmailInfo(author=GWENDOLYN_BECK),        # "Longevity & Aging"
-    '033360': EmailInfo(author=HENRY_HOLT),          # in signature
+    '033360': EmailInfo(author=HENRY_HOLT),            # in signature. Henry Holt is a company not a person.
     '033384': EmailInfo(author=JACK_GOLDBERGER),       # Might be Paul Prosperi?
     '026024': EmailInfo(author=JEAN_HUGUEN),           # Signature
     '021823': EmailInfo(author=JEAN_LUC_BRUNEL),       # Reply
@@ -383,25 +385,22 @@ EMAIL_INFO = {
         recipients=[MIROSLAV_LAJCAK],                   # Quoted reply has signature
         actual_text='Agreed',
     ),
-    '029582': EmailInfo(
-        author=JEFFREY_EPSTEIN,
-        recipients=[RENATA_BOLOTOVA]                     # Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")
-    ),
+    '029582': EmailInfo(author=JEFFREY_EPSTEIN, recipients=[RENATA_BOLOTOVA]),  # Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")
     '030997': EmailInfo(author=JEFFREY_EPSTEIN, actual_text='call back'),
     '028770': EmailInfo(author=JEFFREY_EPSTEIN, actual_text='call me now'),
     '031826': EmailInfo(author=JEFFREY_EPSTEIN, actual_text='I have'),
     '030768': EmailInfo(author=JEFFREY_EPSTEIN, actual_text='ok'),
     '022938': EmailInfo(author=JEFFREY_EPSTEIN, actual_text='what do you suggest?'),  # TODO: this email's header rewrite sucks
     '031791': EmailInfo(author=JESSICA_CADWELL),
-    '028849': EmailInfo(
-        author=JOI_ITO,                                   # Conversation with Joi Ito
-        recipients=[JEFFREY_EPSTEIN],
-        timestamp=datetime.fromisoformat('2014-04-27 06:30:00')
-    ),
     '028851': EmailInfo(
         author=JOI_ITO,
         recipients=[JEFFREY_EPSTEIN],
         timestamp=datetime.fromisoformat('2014-04-27 06:00:00'),
+    ),
+    '028849': EmailInfo(
+        author=JOI_ITO,                                   # Conversation with Joi Ito
+        recipients=[JEFFREY_EPSTEIN],
+        timestamp=datetime.fromisoformat('2014-04-27 06:30:00')
     ),
     '016692': EmailInfo(author=JOHN_PAGE),
     '016693': EmailInfo(author=JOHN_PAGE),
@@ -437,7 +436,7 @@ EMAIL_INFO = {
     '033487': EmailInfo(author=LAWRANCE_VISOSKI, recipients=[JEFFREY_EPSTEIN]),
     '029977': EmailInfo(
         author=LAWRANCE_VISOSKI,                         # Planes discussion signed larry
-        recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, LESLEY_GROFF, RICHARD_KAHN] + FLIGHT_IN_2012_PEOPLE
+        recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, LESLEY_GROFF, RICHARD_KAHN] + FLIGHT_IN_2012_PEOPLE,
     ),
     '033309': EmailInfo(author=LINDA_STONE),             # "Co-authored with iPhone autocorrect"
     '017581': EmailInfo(author='Lisa Randall'),
@@ -493,10 +492,8 @@ EMAIL_INFO = {
     '026014': EmailInfo(
         author=ZUBAIR_KHAN,                              # truncated to only show the quoted reply
         recipients=[JEFFREY_EPSTEIN],
-        timestamp=datetime.fromisoformat('2016-11-04 17:46:00')
+        timestamp=datetime.fromisoformat('2016-11-04 17:46:00'),
     ),
-    '022187': EmailInfo(author=None, recipients=[JEFFREY_EPSTEIN]),  # bad OCR causes issues
-    '029504': EmailInfo(author=f'Audrey/Aubrey Raimbault {QUESTION_MARKS}'),  # (based on "GMI" in signature, a company registered by "aubrey raimbault")
     '030626': EmailInfo(recipients=[ALAN_DERSHOWITZ, DARREN_INDYKE, KATHRYN_RUEMMLER, KEN_STARR, MARTIN_WEINBERG]),
     '028968': EmailInfo(recipients=[ALAN_DERSHOWITZ, JACK_GOLDBERGER, JEFFREY_EPSTEIN]),
     '029835': EmailInfo(recipients=[ALAN_DERSHOWITZ, JACK_GOLDBERGER, JEFFREY_EPSTEIN]),
@@ -507,7 +504,7 @@ EMAIL_INFO = {
     '033583': EmailInfo(recipients=[DARREN_INDYKE, JACK_GOLDBERGER]),  # Bad OCR
     '033144': EmailInfo(recipients=[DARREN_INDYKE, RICHARD_KAHN]),
     '026466': EmailInfo(recipients=[DIANE_ZIMAN]),            # Quoted reply
-    '031607': EmailInfo(recipients=[EDWARD_EPSTEIN]),
+    '031607': EmailInfo(recipients=[EDWARD_JAY_EPSTEIN]),
     '030525': EmailInfo(recipients=[FAITH_KATES]),            # Same as unredacted 030414, same legal signature
     '030575': EmailInfo(recipients=[FAITH_KATES]),            # Same Next Management LLC legal signature
     '030475': EmailInfo(recipients=[FAITH_KATES]),            # Same Next Management LLC legal signature
@@ -873,7 +870,7 @@ FILE_DESCRIPTIONS = {
     '032724': f'{BOOK} cover of {FIRE_AND_FURY}',
     '010912': f'{BOOK} "Free Growth and Other Surprises" by Gordon Getty (draft) 2018-10-18',
     '021247': f'{BOOK} "Invisible Forces And Powerful Beliefs: Gravity, Gods, And Minds" by The Chicago Social Brain Network 2010-10-04',
-    '019477': f'{BOOK} "How America Lost Its Secrets: Edward Snowden, the Man, and the Theft" by {EDWARD_EPSTEIN}',
+    '019477': f'{BOOK} "How America Lost Its Secrets: Edward Snowden, the Man, and the Theft" by {EDWARD_JAY_EPSTEIN}',
     '017088': f'{BOOK} "Taking the Stand: My Life in the Law" by {ALAN_DERSHOWITZ} (draft)',
     '023731': f'{BOOK} "Teaching Minds How Cognitive Science Can Save Our Schools" by {ROGER_SCHANK}',
     '013796': f'{BOOK} "The 4-Hour Workweek" by Tim Ferriss',
@@ -881,7 +878,7 @@ FILE_DESCRIPTIONS = {
     '013501': f'{BOOK} "The Nearness Of Grace: A Personal Science Of Spiritual Transformation" by Arnold J. Mandell ca. 2005-01-01',
     '018438': f'{BOOK} "The S&M Feminist" by Clarisse Thorn',
     '018232': f'{BOOK} "The Seventh Sense: Power, Fortune & Survival in the Age of Networks" by Joshua Cooper Ramo',
-    '020153': f'{BOOK} "The Snowden Affair: A Spy Story In Six Parts" by {EDWARD_EPSTEIN}',
+    '020153': f'{BOOK} "The Snowden Affair: A Spy Story In Six Parts" by {EDWARD_JAY_EPSTEIN}',
     '021120': f'{BOOK} chapter of "Siege: Trump Under Fire" by {MICHAEL_WOLFF}',
     '016221': DEEP_THINKING_HINT,
     '016804': DEEP_THINKING_HINT,
@@ -1041,7 +1038,7 @@ FILE_DESCRIPTIONS = {
     '033379': f'{WAPO} "How Washington Pivoted From Finger-Wagging to Appeasement" about Viktor Orban 2018-05-25',
     '031415': f'{WAPO} "DOJ discipline office with limited reach to probe handling of controversial sex abuse case" 2019-02-06',
     '031396': f'{WAPO} "DOJ discipline office with limited reach to probe handling of controversial sex abuse case" 2019-02-06',
-    '019206': f"WSJ article about Edward Snowden by {EDWARD_EPSTEIN} 2016-12-30",
+    '019206': f"WSJ article about Edward Snowden by {EDWARD_JAY_EPSTEIN} 2016-12-30",
     # court docs
     '017603': DAVID_SCHOEN_CVRA_LEXIS_SEARCH,
     '017635': DAVID_SCHOEN_CVRA_LEXIS_SEARCH,
