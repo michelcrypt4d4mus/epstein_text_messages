@@ -37,7 +37,7 @@ DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
 TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
-REWRITTEN_HEADER_MSG = "(this email's text was prettified for presentation, check source if something's sus)"
+REWRITTEN_HEADER_MSG = "(janky OCR text was prettified, check source if something's sus)"
 MAX_CHARS_TO_PRINT = 4000
 MAX_QUOTED_REPLIES = 2
 VALID_HEADER_LINES = 14
@@ -596,8 +596,8 @@ class Email(CommunicationDocument):
 
         # Rewrite broken headers where the values are on separate lines from the field names
         if should_rewrite_header:
-            num_lines_to_skip = self.header.num_header_rows
             configured_actual_text = self.configured_attr('actual_text')
+            num_lines_to_skip = self.header.num_header_rows
             lines = []
 
             # Emails w/configured 'actual_text' are particularly broken; need to shuffle some lines
@@ -617,7 +617,7 @@ class Email(CommunicationDocument):
             panel_txt.append('\n\n').append(trim_footer_txt) if trim_footer_txt else panel_txt,
             border_style=self._border_style(),
             expand=False,
-            subtitle=REWRITTEN_HEADER_MSG if self.header.was_initially_empty else None,
+            subtitle=REWRITTEN_HEADER_MSG if should_rewrite_header else None,
         )
 
         yield Padding(email_txt_panel, (0, 0, 1, INFO_INDENT))
