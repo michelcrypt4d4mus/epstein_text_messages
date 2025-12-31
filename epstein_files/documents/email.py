@@ -3,7 +3,7 @@ import re
 from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import cast
+from typing import ClassVar, cast
 
 from dateutil.parser import parse
 from rich.console import Console, ConsoleOptions, RenderResult
@@ -27,10 +27,10 @@ from epstein_files.util.rich import *
 
 BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|Classification: External Communication|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,])$')
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
+LINK_LINE_REGEX = re.compile(f"^(> )?htt")
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
 REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + ['********************************']
-LINK_LINE_REGEX = re.compile(f"^(> )?htt")
 
 BAD_TIMEZONE_REGEX = re.compile(fr'\((UTC|GMT\+\d\d:\d\d)\)|{REDACTED}')
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
@@ -288,6 +288,8 @@ class Email(CommunicationDocument):
     sent_from_device: str | None = None
     signature_substitution_count: dict[str, int] = field(default_factory=lambda: defaultdict(int))
 
+    rewritten_header_ids: ClassVar[set[str]] = set([])
+
     def __post_init__(self):
         super().__post_init__()
         self.is_junk_mail = self.author in JUNK_EMAILERS
@@ -359,6 +361,7 @@ class Email(CommunicationDocument):
             logger.info(f"'{self.file_path.stem}': actual_text() reply_text_match is {actual_num_chars:,} chars ({actual_text_pct} of {len(text):,})")
             text = reply_text_match.group(1)
 
+        # If all else fails look for lines like 'From: blah', 'Subject: blah', and split on that.
         for field_name in REPLY_SPLITTERS:
             field_string = f'\n{field_name}'
 
@@ -592,6 +595,19 @@ class Email(CommunicationDocument):
 
         if trim_footer_txt:
             panel_txt.append('\n\n').append(trim_footer_txt)
+
+        if self.header.was_initially_empty:
+            logger.warning(f"[{self.url_slug}] Rewritten header would wipe {self.header.num_header_rows} lines:\n\n{self.header.rewrite_header()}\n")
+            num_lines_to_skip = self.header.num_header_rows
+            next_lines = []
+
+            if self.configured_attr('actual_text') is not None:
+                num_lines_to_skip += 1
+                next_lines = [cast(str, self.configured_attr('actual_text'))]
+
+            next_lines += self.lines[num_lines_to_skip:num_lines_to_skip + 3]
+            logger.warning('\n'.join(next_lines))
+            self.rewritten_header_ids.add(self.file_id)
 
         email_txt_panel = Panel(panel_txt, border_style=self._border_style(), expand=False)
         yield Padding(email_txt_panel, (0, 0, 1, INFO_INDENT))
