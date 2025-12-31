@@ -801,6 +801,7 @@ GIUFFRE_V_EPSTEIN = f"{VIRGINIA_GIUFFRE} v. {JEFFREY_EPSTEIN}"
 GIUFFRE_V_MAXWELL = f"{VIRGINIA_GIUFFRE} v. {GHISLAINE_MAXWELL}"
 JANE_DOE_V_EPSTEIN_TRUMP = f"Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}"
 JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
+NEW_YORK_V_EPSTEIN = f"New York v. {JEFFREY_EPSTEIN}"
 
 # Descriptions of non-email, non-text message files
 ARTICLE_DRAFT = 'draft of an article about'
@@ -1106,7 +1107,7 @@ FILE_DESCRIPTIONS = {
     '010560': f"letter from Gloria Allred to {SCOTT_J_LINK} alleging abuse of a girl from Kansas 2019-06-19",
     '031447': f"letter from {MARTIN_WEINBERG} to Melanie Ann Pustay and Sean O'Neill re: an Epstein FOIA request",
     '026793': f"letter from {STEVEN_HOFFENBERG}'s lawyers at Mintz Fraade offering to take over Epstein's business and resolve his legal issues 2018-03-23",
-    '016420': f"New York v. {JEFFREY_EPSTEIN} court filing 2019-01-11",
+    '016420': f"{NEW_YORK_V_EPSTEIN} New York Post Motion to Unseal Appellate Briefs 2019-01-11",
     '028540': f"SCOTUS decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP",
     '012197': f"SDFL Response to {JAY_LEFKOWITZ} on Epstein Plea Agreement Compliance",
     '022277': f"{TEXT_OF_US_LAW} National Labour Relations Board (NLRB)",
@@ -1356,6 +1357,9 @@ UNINTERESTING_PREFIXES = [
     DEUTSCHE_BANK,
     'Forbes',
     'fragment',
+    'Frontlines',
+    'Future Science',
+    'Globe and Mail',
     GOLDMAN_REPORT,
     GORDON_GETTY,
     f"{HARVARD} Econ",
@@ -1367,6 +1371,7 @@ UNINTERESTING_PREFIXES = [
     'Journal of Criminal',
     JP_MORGAN,
     LA_TIMES,
+    'Litigation Daily',
     'MarketWatch',
     'meme',
     'Morgan Stanley',
