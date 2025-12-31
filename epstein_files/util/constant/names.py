@@ -211,6 +211,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Scott', 'Sean', 'Stanley', 'Stern', 'Stephen', 'Steve', 'Steven', 'Stone', 'Susan',
     'The', 'Thomas', 'Tim', 'Tom', 'Tyler',
     'Victor',
+    'Wade',
     "Y",
 ]]
 
