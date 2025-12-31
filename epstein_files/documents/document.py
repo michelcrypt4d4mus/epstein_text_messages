@@ -99,7 +99,7 @@ class Document:
         txt.append(', ').append(key_value_txt('size', Text(file_size_str(self.file_path), style='aquamarine1')))
         return txt
 
-    def description_panel(self, include_hints: bool = True) -> Panel:
+    def description_panel(self, include_hints: bool = False) -> Panel:
         """Panelized description() with info_txt(), used in search results."""
         hints = [Text('', style='italic').append(h) for h in (self.hints() if include_hints else [])]
         return Panel(Group(*([self.description()] + hints)), border_style=self.document_type_style(), expand=False)
