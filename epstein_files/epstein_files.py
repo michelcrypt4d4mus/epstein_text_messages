@@ -263,7 +263,7 @@ class EpsteinFiles:
         for email in emails:
             table.add_row(
                 email.author_txt,
-                email.epsteinify_link(link_txt=email.timestamp_without_seconds()),
+                email.epstein_media_link(link_txt=email.timestamp_without_seconds()),
                 highlighter(email.subject())
             )
 
