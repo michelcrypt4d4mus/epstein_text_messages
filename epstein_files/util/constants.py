@@ -87,6 +87,16 @@ GUESSED_IMESSAGE_FILE_IDS = {
     '027762': ANDRZEJ_DUDA,
     '027774': ANDRZEJ_DUDA,
     '027221': ANIL_AMBANI,
+    '025436': CELINA_DUBIN,
+    '027576': MELANIE_WALKER,        # https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700
+    '027141': MELANIE_WALKER,
+    '027232': MELANIE_WALKER,
+    '027133': MELANIE_WALKER,
+    '027184': MELANIE_WALKER,
+    '027214': MELANIE_WALKER,
+    '027148': MELANIE_WALKER,
+    '027396': SCARAMUCCI,
+    '031054': SCARAMUCCI,
     '025363': STEVE_BANNON,          # Trump and New York Times coverage
     '025368': STEVE_BANNON,          # Trump and New York Times coverage
     '027585': STEVE_BANNON,          # Tokyo trip
@@ -98,16 +108,6 @@ GUESSED_IMESSAGE_FILE_IDS = {
     '027434': STEVE_BANNON,          # References Maher appearance
     '027764': STEVE_BANNON,
     '027428': STEVE_BANNON,          # References HBJ meeting on 9/28 from other Bannon/Epstein convo
-    '025436': CELINA_DUBIN,
-    '027576': MELANIE_WALKER,        # https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700
-    '027141': MELANIE_WALKER,
-    '027232': MELANIE_WALKER,
-    '027133': MELANIE_WALKER,
-    '027184': MELANIE_WALKER,
-    '027214': MELANIE_WALKER,
-    '027148': MELANIE_WALKER,
-    '027396': SCARAMUCCI,
-    '031054': SCARAMUCCI,
 }
 
 #  of who is the counterparty in each text message file
