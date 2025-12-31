@@ -66,16 +66,19 @@ console = Console(**CONSOLE_ARGS)
 highlighter = CONSOLE_ARGS['highlighter']
 
 
-def join_text(txts: list[Text], join: str = ' ', encloser: str = '') -> Text:
+def join_texts(txts: list[Text], join: str = ' ', encloser: str = '') -> Text:
     if encloser:
-        encloser, enclose_ender = (encloser[0], encloser[1])
+        if len(encloser) != 2:
+            raise ValueError(f"'encloser' arg is '{encloser}' which is not 2 characters long")
+
+        enclose_start, enclose_end = (encloser[0], encloser[1])
     else:
-        enclose_ender = ''
+        enclose_start = enclose_end = ''
 
     txt = Text('')
 
     for i, link in enumerate(txts):
-        txt.append(join if i >= 1 else '').append(encloser).append(link).append(enclose_ender)
+        txt.append(join if i >= 1 else '').append(enclose_start).append(link).append(enclose_end)
 
     return txt
 
@@ -201,7 +204,7 @@ def print_numbered_list_of_emailers(_list: list[str | None], epstein_files = Non
 
 def print_other_site_link(is_header: bool = True) -> None:
     """Print a link to the emails site if we're building text messages site and vice versa."""
-    site_type = EMAIL if args.all_emails else TEXT_MESSAGE
+    site_type: SiteType = EMAIL if args.all_emails else TEXT_MESSAGE
 
     if is_header:
         print_starred_header(f"This is the Epstein {site_type.title()}s site", num_spaces=4, num_stars=14)
@@ -250,7 +253,7 @@ def print_social_media_links() -> None:
         link_text_obj('https://universeodon.com/@cryptadamist/115572634993386057', 'mastodon', style=SOCIAL_MEDIA_LINK_STYLE),
     ]
 
-    print_centered(join_text(social_links, join='     ', encloser='[]'))
+    print_centered(join_texts(social_links, join='     ', encloser='[]'))
 
 
 def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, style: str = TITLE_STYLE) -> None:
@@ -295,8 +298,8 @@ def _print_external_links() -> None:
     console.line()
     print_starred_header('External Links', num_stars=0, num_spaces=20, style=f"italic")
     presser_link = link_text_obj(OVERSIGHT_REPUBLICANS_PRESSER_URL, 'Official Oversight Committee Press Release')
-    raw_docs_link = join_text([link_text_obj(RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL, 'raw files', style=f"{ARCHIVE_LINK_COLOR} dim")], encloser='()')
-    print_centered(join_text([presser_link, raw_docs_link]))
+    raw_docs_link = join_texts([link_text_obj(RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL, 'raw files', style=f"{ARCHIVE_LINK_COLOR} dim")], encloser='()')
+    print_centered(join_texts([presser_link, raw_docs_link]))
     print_centered(link_markup(JMAIL_URL, JMAIL) + " (read His Emails via Gmail interface)")
     print_centered(link_markup(COFFEEZILLA_ARCHIVE_URL, 'Archive Of Epstein Materials') + " (Coffeezilla)")
     print_centered(link_markup(COURIER_NEWSROOM_ARCHIVE_URL, 'Searchable Archive') + " (Courier Newsroom)")
