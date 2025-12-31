@@ -300,7 +300,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='journalist',
         style='bright_yellow',
-        pattern=r'Palm\s*Beach\s*(Daily\s*News|Post)|ABC|Alex\s*Yablon|(Andrew\s*)?Marra|Arianna(\s*Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie\s*Rose|China\s*Daily|CNBC|CNN(politics?)?|Conchita|Sarnoff|(?<!Virgin[-\s]Islands[-\s])Daily\s*(Mail|News|Telegraph)|(David\s*)?Pecker|Ed\s*Krassenstein|(Emily\s*)?Michot|(George\s*)?Stephanopoulus|Globe\s*and\s*Mail|Graydon(\s*Carter)?|Huffington|Ingram, David|(James\s*)?Patterson|Jonathan\s*Karl|Julie\s*(K.?\s*)?Brown|(Katie\s*)?Couric|Miami\s*Herald|(Michele\s*)?Dargan|(National\s*)?Enquirer|(The\s*)?N(ew\s*)?Y(ork\s*)?(P(ost)?|T(imes)?)|New\s*Yorker|NYer|PERVERSION\s*OF\s*JUSTICE|Politico|(Sean\s*)?Hannity|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|Viceland|Vick[iy]\s*Ward|(The\s*)?Wa(shington\s*)?Po(st)?|WGBH|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
+        pattern=r'Palm\s*Beach\s*(Daily\s*News|Post)|ABC|Alex\s*Yablon|(Andrew\s*)?Marra|Arianna(\s*Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie\s*Rose|China\s*Daily|CNBC|CNN(politics?)?|Conchita|Sarnoff|(?<!Virgin[-\s]Islands[-\s])Daily\s*(Mail|News|Telegraph)|(David\s*)?Pecker|Ed\s*Krassenstein|(Emily\s*)?Michot|Ezra\s*Klein|(George\s*)?Stephanopoulus|Globe\s*and\s*Mail|Graydon(\s*Carter)?|Huffington|Ingram, David|(James\s*)?Patterson|Jonathan\s*Karl|Julie\s*(K.?\s*)?Brown|(Katie\s*)?Couric|Miami\s*Herald|(Michele\s*)?Dargan|(National\s*)?Enquirer|(The\s*)?N(ew\s*)?Y(ork\s*)?(P(ost)?|T(imes)?)|(The\s*)?New\s*Yorker|NYer|PERVERSION\s*OF\s*JUSTICE|Politico|(Sean\s*)?Hannity|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|(The\s*)?Wa(shington\s*)?Po(st)?|Viceland|Vick[iy]\s*Ward|Vox|WGBH|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
         emailers = {
             EDWARD_EPSTEIN: 'no relation to Jeffrey',
             'James Hill': 'ABC',
@@ -464,8 +464,9 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='tech bro',
         style='bright_cyan',
-        pattern=r"AG?I|Chamath|Palihapitiya|Drew\s*Houston|Eric\sSchmidt|(Mark\s*)?Zuckerberg|Masa(yoshi)?(\sSon)?|Najeev|Palantir|(Peter\s)?Th(ie|ei)l|Sergey\s*Brin|Silicon\s*Valley|Softbank|SpaceX|Tim\s*Ferriss?",
+        pattern=r"AG?I|Chamath|Palihapitiya|Drew\s*Houston|Eric\sSchmidt|Greylock(\s*Partners)?|LinkedIn|(Mark\s*)?Zuckerberg|Masa(yoshi)?(\sSon)?|Najeev|Palantir|(Peter\s)?Th(ie|ei)l|Sergey\s*Brin|Silicon\s*Valley|Softbank|SpaceX|Tim\s*Ferriss?",
         emailers = {
+            'Auren Hoffman': 'CEO of SafeGraph, a firm that gathers location data from mobile devices',
             ELON_MUSK: 'father of Mecha-Hitler',
             PETER_THIEL: 'Paypal mafia member, founder of Palantir, early Facebook investor, reactionary',
             REID_HOFFMAN: 'PayPal mafia member, founder of LinkedIn',
