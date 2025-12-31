@@ -57,6 +57,7 @@ FILENAME_MATCH_STYLES = [
 
 @dataclass
 class Document:
+    """Base class for all Epstein Files documents."""
     file_path: Path
     file_id: str = field(init=False)
     filename: str = field(init=False)
