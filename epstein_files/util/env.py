@@ -45,6 +45,8 @@ args.output_emails = args.output_emails or args.all_emails
 args.output_other_files = args.output_other_files or args.all_other_files
 args.pickled = args.pickled or is_env_var_set('PICKLED') or args.colors_only
 args.width = args.width if is_html_script else None
+specified_names: list[str | None] = [None if n == 'None' else n for n in (args.names or [])]
+
 
 # Setup logging
 logging.basicConfig(level="NOTSET", format="%(message)s", datefmt="[%X]", handlers=[RichHandler()])
@@ -63,8 +65,8 @@ else:
 datefinder_logger = logging.getLogger('datefinder')  # Suppress annoying output
 datefinder_logger.setLevel(logger.level)
 
-specified_names: list[str | None] = [None if n == 'None' else n for n in (args.names or [])]
 
+# Massage args that depend on other args to the appropriate state
 if not (args.output_texts or args.output_emails or args.output_other_files):
     logger.warning(f"No output section chosen; outputting default of texts, selected emails, and other files...")
     args.output_texts = True
