@@ -156,7 +156,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     ARIANE_DE_ROTHSCHILD: re.compile(r'AdeR|((Ariane|Edmond) de )?Rothschild|Ariane', re.IGNORECASE),
     ANAS_ALRASHEED: re.compile(r'anas\s*al\s*rashee[cd]', re.IGNORECASE),
     BARBRO_EHNBOM: re.compile(r'behnbom@aol.com|(Barbro\s.*)?Ehnbom', re.IGNORECASE),
-    'Barry J. Cohen': re.compile(r'barry\s*((j.?|james)\s*)?cohen?', re.IGNORECASE),
+    BARRY_J_COHEN: re.compile(r'barry\s*((j.?|james)\s*)?cohen?', re.IGNORECASE),
     BENNET_MOSKOWITZ: re.compile(r'Moskowitz.*Bennet|Bennet.*Moskowitz', re.IGNORECASE),
     BORIS_NIKOLIC: re.compile(r'(boris )?nikolic?', re.IGNORECASE),
     BRAD_EDWARDS:  re.compile(r'Brad(ley)?(\s*J(.?|ames))?\s*Edwards', re.IGNORECASE),
@@ -320,7 +320,7 @@ EMAIL_INFO = {
     '033328': EmailInfo(author=AZIZA_ALAHMADI),        # "Regards, Aziza" at bottom
     '026659': EmailInfo(author=BARBRO_EHNBOM),         # Reply
     '026745': EmailInfo(author=BARBRO_EHNBOM),         # Signature
-    '026764': EmailInfo(author='Barry J. Cohen'),
+    '026764': EmailInfo(author=BARRY_J_COHEN),
     '031227': EmailInfo(author=BENNET_MOSKOWITZ),
     '031442': EmailInfo(author=CHRISTINA_GALBRAITH),
     '019446': EmailInfo(author=CHRISTINA_GALBRAITH),   # Not 100% but from "Christina media/PR" which fits
