@@ -1210,6 +1210,7 @@ FILE_DESCRIPTIONS = {
     '019086': f"{DAVID_BLAINE_VISA_LETTER} from Russia 'Svet' ({SVETLANA_POZHIDAEVA}?), names Putin puppet regimes ca. 2015-05-27",  # Date is a guess based on other drafts
     '019474': f"{DAVID_BLAINE_VISA_LETTER} from Russia 'Svetlana' ({SVETLANA_POZHIDAEVA}?) 2015-05-29",
     '019476': f"{DAVID_BLAINE_VISA_LETTER} (probably {SVETLANA_POZHIDAEVA}?) 2015-06-01",
+    '031278': f"heavily redacted email, quoted replies are from {STEVEN_HOFFENBERG} about James Patterson's book",  # Quoted replies are in 019109
     '031670': f"letter from General Mike Flynn's lawyers to senators Mark Warner & Richard Burr about subpoena",
     '026011': f"letter from Gennady Mashtalyar to Epstein about algorithmic trading ca. 2016-06-24",  # date is based on Brexit reference but he could be backtesting
     '029301': f"letter from {MICHAEL_J_BOCCIO}, former lawyer at the Trump Organization 2011-08-07",
@@ -1217,7 +1218,6 @@ FILE_DESCRIPTIONS = {
     '026248': f'letter from Trump lawyer Don McGahn to Devin Nunes (R-CA) about FISA courts and Trump',
     '026134': f'letter to someone named George about investment opportunities in the Ukraine banking sector',
     '029304': f"Trump recommendation letter for recently departed Trump Organization lawyer {MICHAEL_J_BOCCIO}",
-    '031278': f"{REDACTED} email, quoted replies are from {STEVEN_HOFFENBERG} about James Patterson's book",  # Quoted replies are in 019109
     '028928': WEINBERG_ABC_LETTER,
     '028965': WEINBERG_ABC_LETTER,
     # private placement memoranda
