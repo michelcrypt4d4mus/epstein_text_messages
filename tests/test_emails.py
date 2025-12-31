@@ -908,6 +908,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     "Paul Barrett": 10,
     "Peter Mandelson": 10,
     "Richard Kahn": 121,
+    STEVEN_PFEIFFER: 11,
     "Susan Edelman": 9,
     "Terry Kafka": 10,
     "Tonja Haddad Coleman": 9,
