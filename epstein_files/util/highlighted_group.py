@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 from rich.highlighter import RegexHighlighter
 
 from epstein_files.util.constant.names import *
-from epstein_files.util.constant.strings import DEFAULT, REDACTED, TIMESTAMP_STYLE
+from epstein_files.util.constant.strings import DEFAULT, QUESTION_MARKS, REDACTED, TIMESTAMP_STYLE
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
 from epstein_files.util.constants import (EMAILER_ID_REGEXES, HEADER_ABBREVIATIONS, OSBORNE_LLP, REPLY_REGEX,
      REPUTATION_MGMT, SENT_FROM_REGEX, VIRGIN_ISLANDS)
@@ -14,7 +14,7 @@ from epstein_files.util.env import args, logger
 ESTATE_EXECUTOR = 'Epstein estate executor'
 REGEX_STYLE_PREFIX = 'regex'
 NO_CATEGORY_LABELS = [BILL_GATES, STEVE_BANNON]
-QUESTION_MARKS_REGEX = re.compile(r' (\?{3})$')
+QUESTION_MARKS_REGEX = re.compile(fr' {re.escape(QUESTION_MARKS)}$')
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w ]+$", re.IGNORECASE)
 
 
