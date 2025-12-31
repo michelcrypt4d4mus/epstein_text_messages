@@ -232,7 +232,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='finance',
         style='green',
-        pattern=r'Apollo|Ari\s*Glass|(Bernie\s*)?Madoff|Black(rock|stone)|BofA|Boothbay(\sFund\sManagement)?|Chase\s*Bank|Credit\s*Suisse|DB|Deutsche\s*Bank|Electron\s*Capital\s*(Partners)?|Fenner|FRBNY|Goldman(\s*Sachs)|HSBC|(Janet\s*)?Yellen|(Jerome\s*)?Powell(?!M\. Cabot)|(Jimmy\s*)?Cayne|JPMC?|j\.?p\.?\s*morgan(\.?com|\s*Chase)?|Madoff|Merrill(\s*Lynch)?|(Michael\s*)?(Cembalest|Milken)|MLPF&S|(money\s+)?launder(s?|ers?|ing)?(\s+money)?|Morgan Stanley|(Peter L. )?Scher|(Ray\s*)?Dalio|Schwartz?man|Serageldin|UBS|us.gio@jpmorgan.com',
+        pattern=r'Apollo|Ari\s*Glass|(Bernie\s*)?Madoff|Black(rock|stone)|BofA|Boothbay(\sFund\sManagement)?|Chase\s*Bank|Credit\s*Suisse|DB|Deutsche\s*(Asset|Bank)|Electron\s*Capital\s*(Partners)?|Fenner|FRBNY|Goldman(\s*Sachs)|HSBC|Invesco|(Janet\s*)?Yellen|(Jerome\s*)?Powell(?!M\. Cabot)|(Jimmy\s*)?Cayne|JPMC?|j\.?p\.?\s*morgan(\.?com|\s*Chase)?|Madoff|Merrill(\s*Lynch)?|(Michael\s*)?(Cembalest|Milken)|MLPF&S|(money\s+)?launder(s?|ers?|ing)?(\s+money)?|Morgan Stanley|(Peter L. )?Scher|(Ray\s*)?Dalio|Schwartz?man|Serageldin|UBS|us.gio@jpmorgan.com',
         emailers={
             AMANDA_ENS: 'Citigroup',
             DANIEL_SABBA: 'UBS Investment Bank',
@@ -459,7 +459,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='tech bro',
         style='bright_cyan',
-        pattern=r"AG?I|Chamath|Palihapitiya|Drew\s*Houston|Eric\s*Schmidt|Greylock(\s*Partners)?|(?<!Moshe\s)Hoffmand?|LinkedIn|(Mark\s*)?Zuckerberg|Masa(yoshi)?(\sSon)?|Najeev|Nathan\s*Myhrvold|Palantir|(Peter\s)?Th(ie|ei)l|Pierre\s*Omidyar|Sergey\s*Brin|Silicon\s*Valley|Softbank|SpaceX|Tim\s*Ferriss?|WikiLeak(ed|s)",
+        pattern=r"AG?I|Chamath|Palihapitiya|Drew\s*Houston|Eric\s*Schmidt|Greylock(\s*Partners)?|(?<!(Dustin|Moshe)\s)Hoffmand?|LinkedIn|(Mark\s*)?Zuckerberg|Masa(yoshi)?(\sSon)?|Najeev|Nathan\s*Myhrvold|Palantir|(Peter\s)?Th(ie|ei)l|Pierre\s*Omidyar|Sergey\s*Brin|Silicon\s*Valley|Softbank|SpaceX|Tim\s*Ferriss?|WikiLeak(ed|s)",
         emailers = {
             'Auren Hoffman': 'CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp',
             ELON_MUSK: 'father of Mecha-Hitler',

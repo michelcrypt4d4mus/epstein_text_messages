@@ -368,7 +368,7 @@ class EpsteinFiles:
             table.add_row(
                 Group(*link_and_info),
                 Text(date_str, style=TIMESTAMP_DIM) if date_str else QUESTION_MARK_TXT,
-                f"{doc.length:,}",
+                doc.file_size_str(),
                 preview_text,
                 style=row_style
             )
