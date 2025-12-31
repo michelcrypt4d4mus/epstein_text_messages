@@ -13,6 +13,7 @@ from epstein_files.util.env import args, logger
 ESTATE_EXECUTOR = 'Epstein estate executor'
 REGEX_STYLE_PREFIX = 'regex'
 NO_CATEGORY_LABELS = [BILL_GATES, STEVE_BANNON]
+QUESTION_MARKS_REGEX = re.compile(r' (\?{3})$')
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w ]+$", re.IGNORECASE)
 
 
@@ -76,6 +77,7 @@ class HighlightedGroup:
     # TODO: handle word boundary issue for names that end in symbols
     def _emailer_pattern(self, name: str) -> str:
         """Pattern matching 'name'. Extends value in EMAILER_ID_REGEXES with last name if it exists."""
+        name = QUESTION_MARKS_REGEX.sub('', name)
         last_name = extract_last_name(name)
 
         if name in EMAILER_ID_REGEXES:
@@ -450,7 +452,7 @@ HIGHLIGHTED_GROUPS = [
             LAWRENCE_KRAUSS: 'theoretical physicist',
             LINDA_STONE: 'ex-Microsoft, MIT Media Lab',
             MARK_TRAMO: 'professor of neurology at UCLA',
-            NEAL_KASSELL: None,
+            NEAL_KASSELL: 'professor of neurosurgery at University of Virginia',
             PETER_ATTIA: 'longevity medicine',
             ROBERT_TRIVERS: 'evolutionary biology',
             ROGER_SCHANK: 'Teachers College, Columbia University',
