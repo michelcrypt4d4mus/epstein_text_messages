@@ -13,7 +13,7 @@ from rich.text import Text
 
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, EPSTEINIFY, EPSTEIN_WEB, epsteinify_doc_link_txt, epsteinify_doc_url, epstein_web_doc_url
+from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import DUPLICATE_FILE_IDS, FALLBACK_TIMESTAMP, FILE_DESCRIPTIONS, VI_DAILY_NEWS_ARTICLE
 from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, listify, patternize
 from epstein_files.util.env import args, logger
@@ -115,13 +115,17 @@ class Document:
         """If the file is a dupe (exists in DUPLICATE_FILE_IDS) make a nice message."""
         supression_reason = DUPLICATE_FILE_IDS[self.file_id]
         reason_msg = ' '.join(supression_reason.split()[0:-1])
-        txt = Text(f"Not showing ", style='dim').append(epsteinify_doc_link_txt(self.file_id, style='cyan'))
+        txt = Text(f"Not showing ", style='dim').append(epstein_media_doc_link_txt(self.file_id, style='cyan'))
         txt.append(f" because it's {reason_msg} {build_filename_for_id(supression_reason.split()[-1])}")
         return txt
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on epsteinify.com."""
         return link_text_obj(epsteinify_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
+
+    def epstein_media_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
+        """Create a Text obj link to this document on epstein.media."""
+        return link_text_obj(epstein_media_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
 
     def epstein_web_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on EpsteinWeb."""
@@ -184,9 +188,9 @@ class Document:
             txt.append(self.epstein_web_link(style=style))
 
             if include_alt_link:
-                txt.append(' (').append(self.epsteinify_link(style='white dim', link_txt=EPSTEINIFY)).append(')')
+                txt.append(' (').append(self.epstein_media_link(style='white dim', link_txt=EPSTEIN_MEDIA)).append(')')
         else:
-            txt.append(self.epsteinify_link(style=style))
+            txt.append(self.epstein_media_link(style=style))
 
             if include_alt_link:
                 txt.append(' (').append(self.epstein_web_link(style='white dim', link_txt=EPSTEIN_WEB)).append(')')

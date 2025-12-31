@@ -34,6 +34,13 @@ def build_filename_for_id(id: str | int, include_txt_suffix: bool = False) -> st
     return f"{HOUSE_OVERSIGHT_PREFIX}{int(id):06d}" + ('.txt' if include_txt_suffix else '')
 
 
+def build_file_stem(filename_or_id: int | str) -> str:
+    if isinstance(filename_or_id, int) or not filename_or_id.startswith(HOUSE_OVERSIGHT_PREFIX):
+        return build_filename_for_id(filename_or_id)
+    else:
+        return str(filename_or_id)
+
+
 def extract_file_id(filename: str | Path) -> str:
     file_match = FILE_ID_REGEX.match(str(filename))
 
