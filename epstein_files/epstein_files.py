@@ -271,6 +271,9 @@ class EpsteinFiles:
         table.add_column('Subject', justify='left', style='honeydew2', min_width=60)
 
         for email in emails:
+            if email.is_duplicate:
+                continue
+
             table.add_row(
                 email.author_txt,
                 email.epstein_media_link(link_txt=email.timestamp_without_seconds()),
