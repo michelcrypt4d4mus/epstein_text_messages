@@ -23,9 +23,12 @@ class JsonFile(OtherFile):
 
     def __post_init__(self):
         super().__post_init__()
+        logger.warning(f"{self.description().plain}, url_slug='{self.url_slug}'")
 
         if self.url_slug.endswith('.txt'):
             self.url_slug = Path(self.url_slug).stem
+
+        logger.warning(f"{self.description().plain}, AFTER url_slug='{self.url_slug}'")
 
     def info_txt(self) -> Text | None:
         return Text(f"JSON data, possibly iMessage or similar app metadata", style='dim italic')

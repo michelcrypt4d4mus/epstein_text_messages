@@ -350,6 +350,7 @@ class EpsteinFiles:
 
         for doc in interesting_files:
             link_and_info = [doc.raw_document_link_txt(), *doc.hints()]
+            #console.print(doc.description_panel(), doc.raw_document_link_txt())
             date_str = doc.date_str()
             row_style = ''
 

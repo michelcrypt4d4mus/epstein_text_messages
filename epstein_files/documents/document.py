@@ -37,7 +37,7 @@ VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IG
 DOC_TYPE_STYLES = {
     DOCUMENT_CLASS: 'grey69',
     EMAIL_CLASS: 'sea_green2',
-    JSON_FILE_CLASS: 'gold',
+    JSON_FILE_CLASS: 'sandy_brown',
     MESSENGER_LOG_CLASS: 'cyan',
     OTHER_FILE_CLASS: 'grey69',
 }
@@ -80,6 +80,10 @@ class Document:
             self.url_slug = build_filename_for_id(self.file_id)
         else:
             self.url_slug = self.file_path.stem
+
+        # TODO: this shouldn't be necessary, should be hanled in JsonFile class
+        if self.url_slug.endswith('.txt'):
+            self.url_slug = Path(self.url_slug).stem
 
         self._set_computed_fields(text=self.text or self._load_file())
         self._repair()
