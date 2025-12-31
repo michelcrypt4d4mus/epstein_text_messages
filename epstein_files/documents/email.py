@@ -527,7 +527,7 @@ class Email(CommunicationDocument):
             for _i in range(5):
                 self._merge_lines(5)
         elif self.file_id in ['025329']:
-            for _i in range(10):
+            for _i in range(9):
                 self._merge_lines(3)
         elif self.file_id == '029977':
             self._set_computed_fields(text=self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM'))
@@ -539,7 +539,7 @@ class Email(CommunicationDocument):
 
         if old_text != self.text:
             logger.warning(f"Modified {self.url_slug} text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n')
-            self.log_top_lines(12, 'Result of modifications', logging.INFO)
+            self.log_top_lines(12, 'Result of modifications', logging.WARNING)
 
         lines = self.regex_repair_text(OCR_REPAIRS, self.text).split('\n')
         new_lines = []
