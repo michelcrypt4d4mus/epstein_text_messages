@@ -490,7 +490,7 @@ HIGHLIGHTED_GROUPS = [
         pattern=r"@?realDonaldTrump|(Alan\s*)?Weiss?elberg|\bDJ?T\b|Donald J. Tramp|(Donald\s+(J\.\s+)?)?Trump(ism|\s*Properties)?|Don(ald| *Jr)(?! Rubin)|Ivana|(Madeleine\s*)?Westerhout|Mar[-\s]*a[-\s]*Lago|(Marla\s*)?Maples|(Matt(hew)? )?Calamari|\bMatt C\b|Melania|(Michael (J.? )?)?Boccio|Roger\s+Stone|rona|(The\s*)?Art\s*of\s*the\s*Deal",
         emailers = {
             'Bruce Moskowitz': "'Trump's health guy' according to Epstein",
-        }
+        },
     ),
     HighlightedGroup(
         label='victim',
@@ -505,7 +505,7 @@ HIGHLIGHTED_GROUPS = [
             CECILE_DE_JONGH: f'First lady of the Virgin Islands 2007-2015',
             STACEY_PLASKETT: 'non-voting member of Congress',
             KENNETH_E_MAPP: 'Governor',
-        }
+        },
     ),
 
     # Individuals
