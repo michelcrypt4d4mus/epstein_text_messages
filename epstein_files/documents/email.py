@@ -523,10 +523,13 @@ class Email(CommunicationDocument):
             self._merge_lines(3)  # Merge 4th and 5th rows
         elif self.file_id in ['026609', '029402', '032405']:
             self._merge_lines(4)  # Merge 5th and 6th rows
+        elif self.file_id in ['033568']:
+            for _i in range(5):
+                self._merge_lines(5)
         elif self.file_id == '029977':
             self._set_computed_fields(text=self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM'))
 
-            for i in range(4):
+            for _i in range(4):
                 self._merge_lines(2)
 
             lines = self.lines[0:2] + [self.lines[2] + self.lines[4]] + [self.lines[3]] + self.lines[5:]
