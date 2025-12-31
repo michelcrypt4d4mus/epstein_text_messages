@@ -78,8 +78,7 @@ class Document:
         else:
             self.url_slug = self.file_path.stem
 
-        self.text = self.text or self._load_file()
-        self._set_computed_fields()
+        self._set_computed_fields(text=self.text or self._load_file())
         self._repair()
 
     def date_str(self) -> str | None:
@@ -239,9 +238,19 @@ class Document:
         """Can optionally be overloaded in subclasses."""
         pass
 
-    def _set_computed_fields(self) -> None:
+    def _set_computed_fields(self, lines: list[str] | None = None, text: str | None = None) -> None:
+        if (lines and text):
+            raise RuntimeError(f"[{self.filename}] Either 'lines' or 'text' arg must be provided (got both)")
+        elif lines is not None:
+            self.lines = lines
+            self.text = '\n'.join(lines)
+        elif text is not None:
+            self.lines = text.split('\n')
+            self.text = text
+        else:
+            raise RuntimeError(f"[{self.filename}] Either 'lines' or 'text' arg must be provided (neither was)")
+
         self.length = len(self.text)
-        self.lines = self.text.split('\n')
         self.num_lines = len(self.lines)
 
     def __rich_console__(self, _console: Console, _options: ConsoleOptions) -> RenderResult:

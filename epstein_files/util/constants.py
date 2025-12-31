@@ -163,7 +163,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     BRAD_KARP: re.compile(r'Brad (S.? )?Karp|Karp, Brad', re.IGNORECASE),
     'Dangene and Jennie Enterprise': re.compile(r'Dangene and Jennie Enterprise?', re.IGNORECASE),
     DANNY_FROST: re.compile(r'Frost, Danny|frostd@dany.nyc.gov', re.IGNORECASE),
-    DARREN_INDYKE: re.compile(r'darren$|darren [il]n[dq]_?yke?|dkiesq', re.IGNORECASE),
+    DARREN_INDYKE: re.compile(r'darren$|Darren\s*(K\.?\s*)?[il]n[dq]_?yke?|dkiesq', re.IGNORECASE),
     DAVID_FISZEL: re.compile(r'David\s*Fis?zel', re.IGNORECASE),
     DAVID_STERN: re.compile(r'David Stern?', re.IGNORECASE),
     EDUARDO_ROBLES: re.compile(r'Ed(uardo)?\s*Robles', re.IGNORECASE),
@@ -357,25 +357,22 @@ EMAIL_INFO = {
     '021823': EmailInfo(author=JEAN_LUC_BRUNEL),       # Reply
     '022949': EmailInfo(author=JEFFREY_EPSTEIN),
     '031624': EmailInfo(author=JEFFREY_EPSTEIN),
-    '029779': EmailInfo(author=JEFFREY_EPSTEIN, is_fwded_article=True, recipients=[LARRY_SUMMERS]),  # Bad OCR, WaPo article
-    '029692': EmailInfo(author=JEFFREY_EPSTEIN, is_fwded_article=True, recipients=[LARRY_SUMMERS]),  # Bad OCR, WaPo article
+    '031996': EmailInfo(author=JEFFREY_EPSTEIN, recipients=[CHRISTINA_GALBRAITH]),  # bounced
     '028675': EmailInfo(author=JEFFREY_EPSTEIN, recipients=[LARRY_SUMMERS]),  # Bad OCR
     '025041': EmailInfo(author=JEFFREY_EPSTEIN, recipients=[LARRY_SUMMERS]),  # Bad OCR
+    '029779': EmailInfo(author=JEFFREY_EPSTEIN, recipients=[LARRY_SUMMERS], is_fwded_article=True),  # Bad OCR, WaPo article
+    '029692': EmailInfo(author=JEFFREY_EPSTEIN, recipients=[LARRY_SUMMERS], is_fwded_article=True),  # Bad OCR, WaPo article
     '018726': EmailInfo(
         author=JEFFREY_EPSTEIN,                        # Strange fragment only showing what was replied to
-        timestamp=datetime.fromisoformat('2018-06-08 08:36:00')
+        timestamp=datetime.fromisoformat('2018-06-08 08:36:00'),
     ),
     '032283': EmailInfo(
         author=JEFFREY_EPSTEIN,                         # Strange fragment only showing what was replied to
-        timestamp=datetime.fromisoformat('2016-09-14 08:04:00')
+        timestamp=datetime.fromisoformat('2016-09-14 08:04:00'),
     ),
     '026943': EmailInfo(
         author=JEFFREY_EPSTEIN,                         # Strange fragment only showing what was replied to
-        timestamp=datetime.fromisoformat('2019-05-22 05:47:00')
-    ),
-    '031996': EmailInfo(
-        author=JEFFREY_EPSTEIN,                         # bounced
-        recipients=[CHRISTINA_GALBRAITH]
+        timestamp=datetime.fromisoformat('2019-05-22 05:47:00'),
     ),
     '023208': EmailInfo(
         author=JEFFREY_EPSTEIN,                         # Same as 023291
@@ -539,20 +536,19 @@ EMAIL_INFO = {
     '032063': EmailInfo(recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, REID_WEINGARTEN]),
     '033486': EmailInfo(recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, RICHARD_KAHN]),  # Bad OCR
     '033156': EmailInfo(recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, RICHARD_KAHN]),  # Bad OCR
-    '029154': EmailInfo(recipients=[JEFFREY_EPSTEIN, DAVID_HAIG]),         # Bad OCR
+    '029154': EmailInfo(recipients=[JEFFREY_EPSTEIN, DAVID_HAIG]),        # Bad OCR
     '029498': EmailInfo(recipients=[JEFFREY_EPSTEIN, DAVID_HAIG, GORDON_GETTY, 'Norman Finkelstein']),  # Bad OCR
     '029889': EmailInfo(recipients=[JEFFREY_EPSTEIN, 'Connie Zaguirre', JACK_GOLDBERGER, ROBERT_D_CRITTON]),  # Bad OCR
-    '028931': EmailInfo(recipients=[JEFFREY_EPSTEIN, LAWRENCE_KRAUSS]),  # Bad OCR
-    '019407': EmailInfo(recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK]),  # Bad OCR
-    '019409': EmailInfo(recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK]),  # Bad OCR
-    '031980': EmailInfo(recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK]),  # Bad OCR
-    '029163': EmailInfo(recipients=[JEFFREY_EPSTEIN, ROBERT_TRIVERS]),     # Bad OCR
-    '026228': EmailInfo(recipients=[JEFFREY_EPSTEIN, STEVEN_PFEIFFER]),  # Bad OCR
-    '021794': EmailInfo(recipients=[JESSICA_CADWELL, ROBERT_D_CRITTON]),   # Bad OCR
+    '028931': EmailInfo(recipients=[JEFFREY_EPSTEIN, LAWRENCE_KRAUSS]),   # Bad OCR
+    '019407': EmailInfo(recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK]),   # Bad OCR
+    '019409': EmailInfo(recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK]),   # Bad OCR
+    '031980': EmailInfo(recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK]),   # Bad OCR
+    '029163': EmailInfo(recipients=[JEFFREY_EPSTEIN, ROBERT_TRIVERS]),    # Bad OCR
+    '026228': EmailInfo(recipients=[JEFFREY_EPSTEIN, STEVEN_PFEIFFER]),   # Bad OCR
+    '021794': EmailInfo(recipients=[JESSICA_CADWELL, ROBERT_D_CRITTON]),  # Bad OCR
     '033456': EmailInfo(recipients=['Joel']),                    # Reply
     '033460': EmailInfo(recipients=['Joel']),                    # Reply
-    '029282': EmailInfo(recipients=[JOI_ITO, REID_HOFFMAN]),     # Bad OCR
-    '021090': EmailInfo(recipients=[JONATHAN_FARKAS], is_fwded_article=True),           # Reply to a message signed " jonathan" same as other Farkas emails
+    '021090': EmailInfo(recipients=[JONATHAN_FARKAS], is_fwded_article=True),  # Reply to a message signed " jonathan" same as other Farkas emails
     '033073': EmailInfo(recipients=[KATHRYN_RUEMMLER]),          # to "Kathy" about dems, sent from iPad (not 100% confirmed)
     '032939': EmailInfo(recipients=[KATHRYN_RUEMMLER]),          # to "Kathy" about dems, sent from iPad (not 100% confirmed)
     '031428': EmailInfo(recipients=[KEN_STARR, LILLY_SANCHEZ, MARTIN_WEINBERG, REID_WEINGARTEN]),  # Bad OCR
@@ -838,7 +834,8 @@ VI_DAILY_NEWS_ARTICLE = f'{VIRGIN_ISLANDS} Daily News article'
 WAPO = 'WaPo'
 WEINBERG_ABC_LETTER = f"letter from {MARTIN_WEINBERG} to ABC / Good Morning America threatening libel lawsuit"
 
-# If the description ends with an ISO date format string that date will be used as the timestamp for the file
+# If the description ends with an ISO date format string that date will be used as the timestamp for the file.
+# The ISO date at the end along with a preceding "ca." if it exists will be removed when describing the file.
 FILE_DESCRIPTIONS = {
     # books
     '015032': f'{BOOK} "60 Years of Investigative Satire: The Best of {PAUL_KRASSNER}"',
@@ -1283,8 +1280,8 @@ FILE_DESCRIPTIONS = {
     '026851': f"Politifact lying politicians chart 2016-07-26",
     '022367': f"{RESUME_OF} Jack J Grynberg 2014-07",
     '029302': f"{RESUME_OF} Michael J. Boccio 2011-08-07",
-    '015671': f"{RESUME_OF} Robin Solomon",
-    '015672': f"{RESUME_OF} Robin Solomon",
+    '015671': f"{RESUME_OF} Robin Solomon ca. 2015-06-02",  # She left Mount Sinai at some point in 2015
+    '015672': f"{RESUME_OF} Robin Solomon ca. 2015-06-02",  # She left Mount Sinai at some point in 2015
     '019448': f"Haitian business investment proposal called Jacmel",
     '029328': f"Rafanelli Events promotional deck",
     '029155': f'response sent to the Gruterites ({GORDON_GETTY} fans) by {ROBERT_TRIVERS} ca. 2018-03-19',

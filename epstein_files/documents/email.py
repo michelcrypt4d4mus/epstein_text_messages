@@ -2,6 +2,7 @@ import re
 from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
+from typing import cast
 
 from dateutil.parser import parse
 from rich.console import Console, ConsoleOptions, RenderResult
@@ -23,16 +24,16 @@ from epstein_files.util.file_helper import is_local_extract_file
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import *
 
-DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
-BAD_TIMEZONE_REGEX = re.compile(fr'\((UTC|GMT\+\d\d:\d\d)\)|{REDACTED}')
-TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
-
+BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|Importance:( High)?|[iI,•]|i (_ )?i|, [-,])$')
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
-BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|Importance:( High)?|[iI,•]|i (_ )?i|, [-,])$')
 REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + ['********************************']
 LINK_LINE_REGEX = re.compile(f"^(> )?htt")
+
+BAD_TIMEZONE_REGEX = re.compile(fr'\((UTC|GMT\+\d\d:\d\d)\)|{REDACTED}')
+DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
+TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 MAX_CHARS_TO_PRINT = 4000
@@ -93,6 +94,7 @@ EMAIL_SIGNATURES = {
     LARRY_SUMMERS: re.compile(r"Please direct all scheduling.*\nFollow me on twitter.*\nwww.larrysummers.*", re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r"Lawrence (M. )?Krauss\n(Director.*\n)?(Co-director.*\n)?Foundation.*\nSchool.*\n(Co-director.*\n)?(and Director.*\n)?Arizona.*(\nResearch.*\nOri.*\n(krauss.*\n)?origins.*)?", re.IGNORECASE),
     MARTIN_WEINBERG: re.compile(fr"({MARTIN_WEINBERG_SIGNATURE_PATTERN}\n)?This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
+    STEVEN_PFEIFFER: re.compile(r"Steven\nSteven .*\nAssociate.*\nIndependent Filmmaker Project\nMade in NY.*\n30 .*\nBrooklyn.*\n(p:.*\n)?www\.ifp.*", re.IGNORECASE),
     PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
     PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(142 W 57th Street, 11th Floor, New York, NY 10019?[\n\s]+)?(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
     RICHARD_KAHN: re.compile(r'Richard Kahn[\n\s]+HBRK Associates Inc.?[\n\s]+((301 East 66th Street, Suite 1OF|575 Lexington Avenue,? 4th Floor,?)[\n\s]+)?New York, (NY|New York) 100(22|65)([\n\s]+(Tel?|Phone)( I)?[\n\s]+Fa[x"]?[\n\s]+[Ce]el?l?)?', re.IGNORECASE),
@@ -278,7 +280,7 @@ class Email(CommunicationDocument):
         super().__post_init__()
 
         if self.configured_attr('recipients'):
-            self.recipients = EMAIL_INFO[self.file_id].recipients
+            self.recipients = cast(list[str | None], EMAIL_INFO[self.file_id].recipients)
         else:
             for recipient in self.header.recipients():
                 self.recipients.extend(self._get_names(recipient))
@@ -315,7 +317,7 @@ class Email(CommunicationDocument):
     def _actual_text(self) -> str:
         """The text that comes before likely quoted replies and forwards etc."""
         if self.configured_attr('actual_text') is not None:
-            return self.configured_attr('actual_text')
+            return cast(str, self.configured_attr('actual_text'))
         elif self.header.num_header_rows == 0:
             return self.text
 
@@ -362,13 +364,12 @@ class Email(CommunicationDocument):
         return style.replace('bold', '').strip()
 
     def _cleaned_up_text(self) -> str:
-        """Add newline after headers in text if actual header wasn't 'empty', remove bad lines, etc."""
+        """Add newline after headers in text if actual header wasn't empty, remove bad lines, etc."""
         if self.header.was_initially_empty:
             text = self.text
         else:
             text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', self.text).strip()
 
-        text = '\n'.join(['' if BAD_LINE_REGEX.match(line) else line.strip() for line in text.split('\n')])
         text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
 
         for name, signature_regex in EMAIL_SIGNATURES.items():
@@ -408,7 +409,7 @@ class Email(CommunicationDocument):
 
     def _extract_timestamp(self) -> datetime:
         if self.configured_attr('timestamp'):
-            return EMAIL_INFO[self.file_id].timestamp
+            return cast(datetime, EMAIL_INFO[self.file_id].timestamp)
         elif self.header.sent_at:
             timestamp = _parse_timestamp(self.header.sent_at)
 
@@ -471,21 +472,24 @@ class Email(CommunicationDocument):
 
     def _repair(self) -> None:
         """Repair particularly janky files."""
-        if self.file_id in FILE_IDS_WITH_BAD_FIRST_LINES:
-            self.text = '\n'.join(self.lines[1:])
-        elif self.file_id == '029977':
-            self.text = self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM')
-        elif self.file_id == '031442':
-            self.lines = [self.lines[0] + self.lines[1]] + self.lines[2:]
-            self.text = '\n'.join(self.lines)
-        elif self.file_id == '029282':
-            self.lines = self.lines[0:2] + [self.lines[2] + self.lines[3]] + self.lines[4:]
-            self.text = '\n'.join(self.lines)
+        self._set_computed_fields(lines=[line.strip() for line in self.lines if not BAD_LINE_REGEX.match(line)])
 
-        lines = self.regex_repair_text(OCR_REPAIRS, self.text).split('\n')
+        if self.file_id in FILE_IDS_WITH_BAD_FIRST_LINES:
+            text = '\n'.join(self.lines[1:])
+        elif self.file_id == '031442':
+            text = '\n'.join([self.lines[0] + self.lines[1]] + self.lines[2:])
+        elif self.file_id == '029282':
+            text = '\n'.join(self.lines[0:2] + [self.lines[2] + self.lines[3]] + self.lines[4:])
+        elif self.file_id == '029977':
+            text = self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM')
+        else:
+            text = self.text
+
+        lines = self.regex_repair_text(OCR_REPAIRS, text).split('\n')
         new_lines = []
         i = 0
 
+        # Fix links (remove spaces, merge multiline links to a single line)
         while i < len(lines):
             line = lines[i]
 
@@ -502,8 +506,7 @@ class Email(CommunicationDocument):
             new_lines.append(line)
             i += 1
 
-        self.text = '\n'.join(new_lines)
-        self._set_computed_fields()
+        self._set_computed_fields(lines=new_lines)
 
     def _sent_from_device(self) -> str | None:
         """Find any 'Sent from my iPhone' style lines if they exist."""
