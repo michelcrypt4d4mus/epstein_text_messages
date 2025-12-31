@@ -25,7 +25,7 @@ EPSTEIN_WORD_COUNT_HTML_PATH = HTML_DIR.joinpath('epstein_texts_and_emails_word_
 PICKLED_PATH = Path("the_epstein_files.pkl.gz")
 
 FILE_STEM_REGEX = re.compile(fr"{HOUSE_OVERSIGHT_PREFIX}(\d{{6}})")
-FILE_ID_REGEX = re.compile(fr".*{FILE_STEM_REGEX.pattern}(_\d{1,2})?(\.txt)?")
+FILE_ID_REGEX = re.compile(fr".*{FILE_STEM_REGEX.pattern}(_\d{1,2})?(\.txt(\.json)?)?")
 FILENAME_LENGTH = len(HOUSE_OVERSIGHT_PREFIX) + 6
 KB = 1024
 MB = KB * KB
