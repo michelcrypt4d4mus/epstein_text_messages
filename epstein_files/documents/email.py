@@ -25,7 +25,7 @@ from epstein_files.util.file_helper import is_local_extract_file
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import *
 
-BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,])$')
+BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|Classification: External Communication|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,])$')
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
@@ -45,7 +45,7 @@ FILE_IDS_WITH_BAD_FIRST_LINES = [
     '026652',
     '029835',
     '030927',
-    '031189',
+    '031189',  # TODO: we lost the 'LOVE & KISSES' at the top
 ]
 
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
