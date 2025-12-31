@@ -25,7 +25,7 @@ from epstein_files.util.file_helper import is_local_extract_file
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import *
 
-BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,])$')
+BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|Classification: External Communication|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,])$')
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
@@ -45,7 +45,7 @@ FILE_IDS_WITH_BAD_FIRST_LINES = [
     '026652',
     '029835',
     '030927',
-    '031189',
+    '031189',  # TODO: we lost the 'LOVE & KISSES' at the top
 ]
 
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
@@ -138,6 +138,7 @@ TRUNCATION_LENGTHS = {
     '023627': 16_800,  # Micheal Wolff article with brock pierce
     '030245': 7_500,   # Epstein rationalizes his behavior in an open letter to the world
     '030781': 1_700,   # Bannon email about crypto coin issues
+    '032906': 750,     # David Blaine email
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
@@ -510,10 +511,13 @@ class Email(CommunicationDocument):
         elif self.file_id in '021729 029501 029282 030626 031384 033512'.split():
             self._merge_lines(2)  # Merge 3rd and 4th rows
 
+            # TODO: check this one
             if self.file_id in ['030626']:  # Merge 6th and 7th (now 5th and 6th) rows
                 self._merge_lines(5)
         elif self.file_id in ['029976']:
             self._merge_lines(3)  # Merge 4th and 5th rows
+        elif self.file_id in ['026609', '029402', '032405']:
+            self._merge_lines(4)  # Merge 5th and 6th rows
         elif self.file_id == '029977':
             self._set_computed_fields(text=self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM'))
 

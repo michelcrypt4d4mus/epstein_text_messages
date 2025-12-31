@@ -68,7 +68,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Glenn Dubin": 3,
     "Gwendolyn Beck": 6,
     "Harry Fisch": 1,
-    "Heather Mann": 2,
+    HEATHER_MANN: 2,
     HENRY_HOLT: 1,
     "How To Academy": 3,
     IAN_OSBORNE: 2,
@@ -606,7 +606,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Gino Yu',
         'Glenn Dubin',
         'Harry Fisch',
-        'Heather Mann',
+        HEATHER_MANN,
         'Jack Goldberger',
         'Jeffrey Epstein',
         'Jes Staley',
@@ -732,7 +732,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     "Harry Fisch": [
         "Sent from my iPhone"
     ],
-    "Heather Mann": [
+    HEATHER_MANN: [
         "Sent from my iPhone"
     ],
     "Jack Goldberger": [
