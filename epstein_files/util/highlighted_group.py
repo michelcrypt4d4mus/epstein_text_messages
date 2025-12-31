@@ -400,6 +400,7 @@ HIGHLIGHTED_GROUPS = [
             DANIEL_SIAD: None,
             FAITH_KATES: 'Next Models co-founder',
             'Gianni Serazzi': 'fashion consultant?',
+            HEATHER_MANN: 'South African former model, ex-girlfriend of Prince Andrew (?)',
             JEAN_LUC_BRUNEL: 'MC2 Model Management founder, died by suicide in French jail',
             JEFF_FULLER: 'president of MC2 Model Management USA',
             MANUELA_MARTINEZ: 'Mega Partners (Brazilian agency)',
