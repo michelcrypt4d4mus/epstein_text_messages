@@ -521,7 +521,7 @@ class Email(CommunicationDocument):
                 self._merge_lines(4)
         elif self.file_id in ['029976']:
             self._merge_lines(3)  # Merge 4th and 5th rows
-        elif self.file_id in ['026609', '029402', '032405']:
+        elif self.file_id in '026609 029402 032405'.split():
             self._merge_lines(4)  # Merge 5th and 6th rows
         elif self.file_id in ['033568']:
             for _i in range(5):
