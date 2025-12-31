@@ -391,7 +391,7 @@ EMAIL_INFO = {
     '028770': EmailInfo(author=JEFFREY_EPSTEIN, actual_text='call me now'),
     '031826': EmailInfo(author=JEFFREY_EPSTEIN, actual_text='I have'),
     '030768': EmailInfo(author=JEFFREY_EPSTEIN, actual_text='ok'),
-    '022938': EmailInfo(author=JEFFREY_EPSTEIN, actual_text='what do you suggest?'),
+    '022938': EmailInfo(author=JEFFREY_EPSTEIN, actual_text='what do you suggest?'),  # TODO: this email's header rewrite sucks
     '031791': EmailInfo(author=JESSICA_CADWELL),
     '028849': EmailInfo(
         author=JOI_ITO,                                   # Conversation with Joi Ito
@@ -425,7 +425,7 @@ EMAIL_INFO = {
     '032206': EmailInfo(author=LAWRENCE_KRAUSS),         # More of a text convo?
     '032209': EmailInfo(author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
     '032208': EmailInfo(author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
-    '029196': EmailInfo(author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN], actual_text='Talk in 40?'),
+    '029196': EmailInfo(author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN], actual_text='Talk in 40?'),  # TODO: this email's header rewrite sucks
     '028789': EmailInfo(author=LAWRANCE_VISOSKI),
     '027046': EmailInfo(author=LAWRANCE_VISOSKI),
     '033370': EmailInfo(author=LAWRANCE_VISOSKI),        # Planes discussion signed larry

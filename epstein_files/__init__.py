@@ -147,6 +147,7 @@ def print_emails(epstein_files: EpsteinFiles) -> int:
             epstein_files.print_emails_table_for(name)
 
     epstein_files.print_email_device_info()
+    logger.warning(f"Rewrote {len(Email.rewritten_header_ids)} headers of {len(epstein_files.emails)} emails")
 
     if args.all_emails:
         email_ids_that_were_printed = set([email.file_id for email in emails_that_were_printed])
