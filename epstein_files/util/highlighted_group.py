@@ -158,7 +158,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='democrats',
         style='sky_blue1',
-        pattern=r'(Al\s*)?Franken|((Bill|Hillart?y)\s*)?Clinton|((Chuck|Charles)\s*)?Schumer|DNC|(Eliott?\s*)?Spitzer(, Eliot)?|George\s*Mitchell|(George\s*)?Soros|Hill?ary|Dem(ocrat(ic)?)?|(Jo(e|seph)\s*)?Biden|(John\s*)?Kerry|Lisa Monaco|(Matteo\s*)?Salvini|Maxine\s*Waters|(Barac?k )?Obama|(Nancy )?Pelosi|Ron\s*Dellums|Schumer|Vernon\s*Jordan',
+        pattern=r'(Al\s*)?Franken|((Bill|Hillart?y)\s*)?Clinton|((Chuck|Charles)\s*)?Schumer|DNC|(Eliott?\s*)?Spitzer(, Eliot)?|George\s*Mitchell|(George\s*)?Soros|Hill?ary|Dem(ocrat(ic)?)?|(Jo(e|seph)\s*)?Biden|(John\s*)?Kerry|Lisa Monaco|(Matteo\s*)?Salvini|Maxine\s*Waters|(Barac?k )?Obama|(Nancy )?Pelosi|Ron\s*Dellums|Schumer|(Tim\s*)?Geithner|Vernon\s*Jordan',
     ),
     HighlightedGroup(
         label='Dubin family',
@@ -210,7 +210,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='europe',
         style='light_sky_blue3',
-        pattern=r'(Angela )?Merk(el|le)|Austria|(Benjamin\s*)?Harnwell|Berlin|Brexit(eers?)?|Brit(ain|ish)|Brussels|Cannes|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|Davos|ECB|EU|Europe(an)?(\s*Union)?|Geneva|Germany?|Gree(ce|k)|Ital(ian|y)|Jacques|Le\s*Pen|London|Macron|Munich|(Natalia\s*)?Veselnitskaya|Nigel(\s*Farage)?|Oslo|Paris|Polish|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strauss[- ]?Kahn|(Tony\s)?Blair|Ukrain(e|ian)|Vienna|(Vitaly\s*)?Churkin|Zug',
+        pattern=r'(Angela )?Merk(el|le)|Austria|(Benjamin\s*)?Harnwell|Berlin|Brexit(eers?)?|Brit(ain|ish)|Brussels|Cannes|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|Davos|ECB|EU|Europe(an)?(\s*Union)?|Geneva|Germany?|Gree(ce|k)|Ital(ian|y)|Jacques|Le\s*Pen|London|Macron|Munich|(Natalia\s*)?Veselnitskaya|Sarkozy|Nigel(\s*Farage)?|Oslo|Paris|Polish|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strauss[- ]?Kahn|(Tony\s)?Blair|Ukrain(e|ian)|Vienna|(Vitaly\s*)?Churkin|Zug',
         emailers = {
             ANDRZEJ_DUDA: 'former president of Poland',
             MIROSLAV_LAJCAK: 'Russia-friendly Slovakian politician, friend of Steve Bannon',
