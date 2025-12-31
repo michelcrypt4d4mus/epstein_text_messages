@@ -485,6 +485,11 @@ class Email(CommunicationDocument):
         names_found = names_found or [emailer_str]
         return [_reverse_first_and_last_names(name) for name in names_found]
 
+    def _merge_lines(self, idx: int, idx2: int | None = None) -> None:
+        """Combine lines numbered 'line_idx' and 'line_idx + 1' into a single line."""
+        lines = self.lines[0:idx] + [self.lines[idx] + ' ' + self.lines[idx + 1]] + self.lines[idx + 2:]
+        self._set_computed_fields(lines=lines)
+
     def _recipients_txt(self) -> Text:
         """Text object with comma separated colored versions of all recipients."""
         recipients = [r or UNKNOWN for r in self.recipients] if len(self.recipients) > 0 else [UNKNOWN]
@@ -494,11 +499,6 @@ class Email(CommunicationDocument):
             Text(r if len(recipients) < 3 else extract_last_name(r), style=get_style_for_name(r))
             for r in recipients
         ], join=', ')
-
-    def _merge_lines(self, idx: int, idx2: int | None = None) -> None:
-        """Combine lines numbered 'line_idx' and 'line_idx + 1' into a single line."""
-        lines = self.lines[0:idx] + [self.lines[idx] + ' ' + self.lines[idx + 1]] + self.lines[idx + 2:]
-        self._set_computed_fields(lines=lines)
 
     def _repair(self) -> None:
         """Repair particularly janky files."""
