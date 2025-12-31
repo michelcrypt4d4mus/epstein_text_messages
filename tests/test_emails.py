@@ -69,7 +69,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Gwendolyn Beck": 6,
     "Harry Fisch": 1,
     "Heather Mann": 2,
-    "Henry Holt": 1,
+    HENRY_HOLT: 1,
     "How To Academy": 3,
     IAN_OSBORNE: 2,
     "Intelligence Squared": 4,
