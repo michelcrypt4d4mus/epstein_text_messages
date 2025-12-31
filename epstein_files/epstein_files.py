@@ -241,13 +241,18 @@ class EpsteinFiles:
         )
 
         self.print_emails_table_for(_author)
+        last_printed_email_was_duplicate = False
 
         for email in emails:
             if email.is_duplicate:
-                console.print(email.duplicate_file_txt())
-                console.line
+                console.print(Padding(email.duplicate_file_txt().append('...'), (0, 0, 0, 4)))
+                last_printed_email_was_duplicate = True
             else:
+                if last_printed_email_was_duplicate:
+                    console.line()
+
                 console.print(email)
+                last_printed_email_was_duplicate = False
 
         return emails
 

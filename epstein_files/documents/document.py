@@ -117,9 +117,9 @@ class Document:
         """If the file is a dupe (exists in DUPLICATE_FILE_IDS) make a nice message."""
         supression_reason = DUPLICATE_FILE_IDS[self.file_id]
         reason_msg = ' '.join(supression_reason.split()[0:-1])
-        txt = Text(f"Not showing ", style='dim').append(epstein_media_doc_link_txt(self.file_id, style='cyan'))
-        txt.append(f" because it's {reason_msg} {build_filename_for_id(supression_reason.split()[-1])}")
-        return txt
+        txt = Text(f"Not showing ", style='white dim italic').append(epstein_media_doc_link_txt(self.file_id, style='cyan'))
+        txt.append(f" because it's {reason_msg} ")
+        return txt.append(epstein_media_doc_link_txt(supression_reason.split()[-1], style='cyan'))
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on epsteinify.com."""
