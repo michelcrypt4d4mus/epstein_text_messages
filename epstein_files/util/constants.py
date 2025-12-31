@@ -808,7 +808,7 @@ CHINA_DAILY_ARTICLE = "China Daily article about"
 CVRA = "Crime Victims' Rights Act [CVRA]"
 DAILY_MAIL_ARTICLE = "Daily Mail article about"
 DAILY_TELEGRAPH_ARTICLE = "Daily Telegraph article about"
-DAVID_BLAINE_VISA_LETTER = f"{DAVID_BLAINE} letter of recommendation for visa for a model by"
+DAVID_BLAINE_VISA_LETTER = f"{DAVID_BLAINE} letter of recommendation for visa for a model"
 DAVID_SCHOEN_CVRA_LEXIS_SEARCH = f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN} 2019-02-28"
 DEEP_THINKING_HINT = f'{BOOK} "Deep Thinking: Twenty-Five Ways of Looking at AI" by John Brockman 2019-02-19'
 DERSH_GIUFFRE_TWEET = f"{TWEET} by {ALAN_DERSHOWITZ} about {VIRGINIA_GIUFFRE}"
@@ -1140,7 +1140,7 @@ FILE_DESCRIPTIONS = {
     '014460': f'{BOFA_MERRILL} "European Equity Strategy 2017" 2016-12-01',
     '014972': f'{BOFA_MERRILL} "Global Equity Volatility Insights" 2017-06-20',
     '014622': f'{BOFA_MERRILL} "Top 10 US Ideas Quarterly" 2017-01-03',
-    '014721': f'{BOFA_MERRILL} "Cause and Effect Fade the Trump risk premium 2017-02-13',
+    '014721': f'{BOFA_MERRILL} "Cause and Effect Fade the Trump Risk Premium" 2017-02-13',
     '014887': f'{BOFA_MERRILL} "Internet / e-Commerce" 2017-04-06',
     '014873': f'{BOFA_MERRILL} "Hess Corp" 2017-04-11',
     '023575': f'{BOFA_MERRILL} "Global Equity Volatility Insights" 2017-06',
@@ -1167,8 +1167,8 @@ FILE_DESCRIPTIONS = {
     '023096': f'{EPSTEIN_FOUNDATION} blog 2012-11-15',
     '029326': f'{EPSTEIN_FOUNDATION} {PRESS_RELEASE} 2013-02-15',
     '026565': f'{EPSTEIN_FOUNDATION} {PRESS_RELEASE}, maybe a draft of 029326 2013-02-15',
-    '026572': f"{JP_MORGAN} Global Asset Allocation report dated 2012-11-09",
-    '030848': f"{JP_MORGAN} Global Asset Allocation report dated 2013-03-28",
+    '026572': f"{JP_MORGAN} Global Asset Allocation report 2012-11-09",
+    '030848': f"{JP_MORGAN} Global Asset Allocation report 2013-03-28",
     '030840': f"{JP_MORGAN} Market Thoughts 2012-11",
     '022350': f"{JP_MORGAN} report on tax efficiency of Intentionally Defective Grantor Trusts (IDGT)",
     '025242': f"{JP_MORGAN_EYE_ON_THE_MARKET} 2011-04-09",
@@ -1198,9 +1198,9 @@ FILE_DESCRIPTIONS = {
     '020824': f"USA Inc: A Basic Summary of America's Financial Statements compiled by Mary Meeker 2011-02-01",
     # letters
     '017789': f'{ALAN_DERSHOWITZ} letter to {HARVARD} Crimson complaining he was defamed',
-    '019086': f"{DAVID_BLAINE_VISA_LETTER} from Russia 'Svet' ({SVETLANA_POZHIDAEVA}?), names Putin puppet regimes",
-    '019474': f"{DAVID_BLAINE_VISA_LETTER} 2015-05-29",
-    '019476': f"{DAVID_BLAINE_VISA_LETTER} 2015-06-01",
+    '019086': f"{DAVID_BLAINE_VISA_LETTER} from Russia 'Svet' ({SVETLANA_POZHIDAEVA}?), names Putin puppet regimes ca. 2015-05-27",  # Date is a guess based on other drafts
+    '019474': f"{DAVID_BLAINE_VISA_LETTER} from Russia 'Svetlana' ({SVETLANA_POZHIDAEVA}?) 2015-05-29",
+    '019476': f"{DAVID_BLAINE_VISA_LETTER} (probably {SVETLANA_POZHIDAEVA}?) 2015-06-01",
     '031670': f"letter from General Mike Flynn's lawyers to senators Mark Warner & Richard Burr about subpoena",
     '026011': f"letter from Gennady Mashtalyar to Epstein about algorithmic trading ca. 2016-06-24",  # date is based on Brexit reference but he could be backtesting
     '029301': f"letter from Michael J. Boccio, former lawyer at the Trump Organization 2011-08-07",
