@@ -7,7 +7,7 @@ from io import StringIO
 from dateutil.parser import parse
 
 from epstein_files.util.constant.names import *
-from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_PREFIX, REDACTED
+from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_PREFIX, QUESTION_MARKS, REDACTED
 from epstein_files.util.email_info import EmailInfo
 
 # Misc
@@ -496,7 +496,7 @@ EMAIL_INFO = {
         timestamp=datetime.fromisoformat('2016-11-04 17:46:00')
     ),
     '022187': EmailInfo(author=None, recipients=[JEFFREY_EPSTEIN]),  # bad OCR causes issues
-    '029504': EmailInfo(author='Audrey/Aubrey Raimbault (???)'),  # (based on "GMI" in signature, a company registered by "aubrey raimbault")
+    '029504': EmailInfo(author=f'Audrey/Aubrey Raimbault {QUESTION_MARKS}'),  # (based on "GMI" in signature, a company registered by "aubrey raimbault")
     '030626': EmailInfo(recipients=[ALAN_DERSHOWITZ, DARREN_INDYKE, KATHRYN_RUEMMLER, KEN_STARR, MARTIN_WEINBERG]),
     '028968': EmailInfo(recipients=[ALAN_DERSHOWITZ, JACK_GOLDBERGER, JEFFREY_EPSTEIN]),
     '029835': EmailInfo(recipients=[ALAN_DERSHOWITZ, JACK_GOLDBERGER, JEFFREY_EPSTEIN]),
@@ -1276,8 +1276,8 @@ FILE_DESCRIPTIONS = {
     '027074': f"{FEMALE_HEALTH_COMPANY} pitch deck (USAID was a customer)",
     '022780': FLIGHT_LOGS,
     '022816': FLIGHT_LOGS,
-    '026678': f"fragment of image metadata (???) 2017-06-29",
-    '022986': f"fragment of a screenshot (???)",
+    '026678': f"fragment of image metadata {QUESTION_MARKS} 2017-06-29",
+    '022986': f"fragment of a screenshot {QUESTION_MARKS}",
     '026521': f"game theory paper by {MARTIN_NOWAK}, Erez Yoeli, and Moshe Hoffman",
     '032735': f"{GORDON_GETTY} on Trump ca. 2018-03-20",  # Dated based on concurrent emails from Getty
     '019396': f'{HARVARD} Economics 1545 Professor Kenneth Rogoff syllabus',

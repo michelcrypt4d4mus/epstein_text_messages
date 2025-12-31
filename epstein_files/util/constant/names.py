@@ -1,3 +1,6 @@
+from epstein_files.util.constant.strings import QUESTION_MARKS
+
+
 UNKNOWN = '(unknown)'
 
 # Texting Names
@@ -128,7 +131,7 @@ PAUL_BARRETT = 'Paul Barrett'
 PAUL_KRASSNER = 'Paul Krassner'
 PAUL_MORRIS = 'Paul Morris'
 PAUL_PROSPERI = 'Paul Prosperi'
-PAULA = f"Paula Heil Fisher (???)"  # the last email about opera lines up but if Fisher was supposedly w/Epstein at Bear Stearns the timeline is a bit weird for her to call him "Unc"
+PAULA = f"Paula Heil Fisher {QUESTION_MARKS}"  # the last email about opera lines up but if Fisher was supposedly w/Epstein at Bear Stearns the timeline is a bit weird for her to call him "Unc"
 PEGGY_SIEGAL = 'Peggy Siegal'
 PETER_ATTIA = 'Peter Attia'
 PETER_MANDELSON = 'Peter Mandelson'
@@ -148,7 +151,7 @@ ROSS_GOW = 'Ross Gow'
 SAMUEL_LEFF = 'Samuel Leff'
 SCOTT_J_LINK = 'Scott J. Link'
 SEAN_BANNON = 'Sean Bannon'
-SHAHER_ABDULHAK_BESHER = 'Shaher Abdulhak Besher (???)'
+SHAHER_ABDULHAK_BESHER = f'Shaher Abdulhak Besher {QUESTION_MARKS}'
 STEPHEN_HANSON = 'Stephen Hanson'
 STEVEN_HOFFENBERG = 'Steven Hoffenberg'
 STEVEN_PFEIFFER = 'Steven Pfeiffer'
