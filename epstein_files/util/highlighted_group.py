@@ -195,7 +195,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='entertainer',
         style='light_steel_blue3',
-        pattern=r'(Art )?Spiegelman|Bobby slayton|bono\s*mick|Errol(\s*Morris)?|Etienne Binant|(Frank\s)?Gehry|Jagger|(Jeffrey\s*)?Katzenberg|(Johnny\s*)?Depp|Kid Rock|Lena\s*Dunham|Madonna|Mark\s*Burnett|Ramsey Elkholy|Steven Gaydos?|Woody( Allen)?|Zach Braff',
+        pattern=r'(Art )?Spiegelman|Bobby slayton|bono\s*mick|Errol(\s*Morris)?|Etienne Binant|(Frank\s)?Gehry|Jagger|(Jeffrey\s*)?Katzenberg|(Johnny\s*)?Depp|Kid Rock|Lena\s*Dunham|Madonna|Mark\s*Burnett|Ramsey Elkholy|shirley maclaine|Steven Gaydos?|Woody( Allen)?|Zach Braff',
         emailers={
             ANDRES_SERRANO: "'Piss Christ' artist",
             'Barry Josephson': 'American film producer and former music manager, editor FamilySecurityMatters.org',

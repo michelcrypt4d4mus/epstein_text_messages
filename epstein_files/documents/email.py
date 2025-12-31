@@ -78,11 +78,15 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     r"as Putin Mayhem Tests President's Grip\non GOP": "as Putin Mayhem Tests President's Grip on GOP",
     r"avoids testimony from alleged\nvictims": "avoids testimony from alleged victims",
     r"but\nwatchdogs say probe is tainted": "watchdogs say probe is tainted",
+    r"COVER UP SEX ABUSE CRIMES\nBY THE WHITE HOUSE": "COVER UP SEX ABUSE CRIMES BY THE WHITE HOUSE",
+    r'Priebus, used\nprivate email accounts for': 'Priebus, used private email accounts for',
+    r"TOWERS VICTIMS TO EXPLAIN THE\nVICTIMS SUIT FILING AGAINST JEFF EPSTEIN": "TOWERS VICTIMS TO EXPLAIN THE VICTIMS SUIT FILING AGAINST JEFF EPSTEIN",
     r"War on the Investigations\nEncircling Him": "War on the Investigations Encircling Him",
     re.compile(r"deadline re Mr Bradley Edwards vs Mr\s*Jeffrey Epstein", re.I): "deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
     re.compile(r"Following Plea That Implicated Trump -\s*https://www.npr.org/676040070", re.I): "Following Plea That Implicated Trump - https://www.npr.org/676040070",
     re.compile(r"for Attorney General -\s+Wikisource, the"): r"for Attorney General - Wikisource, the",
     re.compile(r"Lawyer for Susan Rice: Obama administration '?justifiably concerned' about sharing Intel with\s*Trump team -\s*POLITICO", re.I): "Lawyer for Susan Rice: Obama administration 'justifiably concerned' about sharing Intel with Trump team - POLITICO",
+    re.compile(r"PATTERSON NEW\s+BOOK\s+TELLING\s+FEDS\s+COVER\s+UP\s+OF\s+BILLIONAIRE\s+JEFF\s+EPSTEIN\s+CHILD\s+RAPES\s+RELEASE\s+DATE\s+OCT\s+10\s+2016\s+STEVEN\s+HOFFENBERG\s+IS\s+ON\s+THE\s+BOOK\s+WRITING\s+TEAM\s*!!!!"): "PATTERSON NEW BOOK TELLING FEDS COVER UP OF BILLIONAIRE JEFF EPSTEIN CHILD RAPES RELEASE DATE OCT 10 2016 STEVEN HOFFENBERG IS ON THE BOOK WRITING TEAM !!!!",
     re.compile(r"PROCEEDINGS FOR THE ST THOMAS ATTACHMENT OF\s*ALL JEFF EPSTEIN ASSETS"): "PROCEEDINGS FOR THE ST THOMAS ATTACHMENT OF ALL JEFF EPSTEIN ASSETS",
     re.compile(r"Subject:\s*Fwd: Trending Now: Friends for three decades"): "Subject: Fwd: Trending Now: Friends for three decades",
 }
@@ -494,9 +498,9 @@ class Email(CommunicationDocument):
 
         if self.file_id in FILE_IDS_WITH_BAD_FIRST_LINES:
             text = '\n'.join(self.lines[1:])
-        elif self.file_id == '031442':
+        elif self.file_id == '031442':              # Merge 1st and 2nd rows
             text = '\n'.join([self.lines[0] + self.lines[1]] + self.lines[2:])
-        elif self.file_id == '029282':
+        elif self.file_id in ['021729', '029282', '030626', '031384', '033512']:  # Merge 3rd and 4th rows
             text = '\n'.join(self.lines[0:2] + [self.lines[2] + self.lines[3]] + self.lines[4:])
         elif self.file_id == '029977':
             text = self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM')
