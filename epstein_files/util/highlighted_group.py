@@ -139,7 +139,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='cannabis',
         style='chartreuse2',
-        pattern=r"CBD|cannabis|marijuana|WEED(guide|maps)?[^s]?",
+        pattern=r"CBD|cannabis|marijuana|THC|WEED(guide|maps)?[^s]?",
     ),
     HighlightedGroup(
         label='china',
