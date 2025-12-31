@@ -3,7 +3,7 @@ import re
 from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import cast
+from typing import ClassVar, cast
 
 from dateutil.parser import parse
 from rich.console import Console, ConsoleOptions, RenderResult
@@ -27,16 +27,17 @@ from epstein_files.util.rich import *
 
 BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|Classification: External Communication|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,])$')
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
+LINK_LINE_REGEX = re.compile(f"^(> )?htt")
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
 REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + ['********************************']
-LINK_LINE_REGEX = re.compile(f"^(> )?htt")
 
 BAD_TIMEZONE_REGEX = re.compile(fr'\((UTC|GMT\+\d\d:\d\d)\)|{REDACTED}')
 DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
 TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
+REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something's sus)"
 MAX_CHARS_TO_PRINT = 4000
 MAX_QUOTED_REPLIES = 2
 VALID_HEADER_LINES = 14
@@ -288,6 +289,9 @@ class Email(CommunicationDocument):
     sent_from_device: str | None = None
     signature_substitution_count: dict[str, int] = field(default_factory=lambda: defaultdict(int))
 
+    # Just for logging how many headers we rewrote
+    rewritten_header_ids: ClassVar[set[str]] = set([])
+
     def __post_init__(self):
         super().__post_init__()
         self.is_junk_mail = self.author in JUNK_EMAILERS
@@ -359,6 +363,7 @@ class Email(CommunicationDocument):
             logger.info(f"'{self.file_path.stem}': actual_text() reply_text_match is {actual_num_chars:,} chars ({actual_text_pct} of {len(text):,})")
             text = reply_text_match.group(1)
 
+        # If all else fails look for lines like 'From: blah', 'Subject: blah', and split on that.
         for field_name in REPLY_SPLITTERS:
             field_string = f'\n{field_name}'
 
@@ -570,6 +575,7 @@ class Email(CommunicationDocument):
         logger.debug(f"Printing '{self.filename}'...")
         yield self.file_info_panel()
         text = self.text
+        should_rewrite_header = self.header.was_initially_empty and self.header.num_header_rows > 0
         quote_cutoff = self.idx_of_nth_quoted_reply(text=text)  # Trim if there's many quoted replies
         num_chars = MAX_CHARS_TO_PRINT
         trim_footer_txt = None
@@ -588,13 +594,36 @@ class Email(CommunicationDocument):
             trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest at {external_link_markup}...>"
             trim_footer_txt = Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
 
+        # Rewrite broken headers where the values are on separate lines from the field names
+        if should_rewrite_header:
+            configured_actual_text = self.configured_attr('actual_text')
+            num_lines_to_skip = self.header.num_header_rows
+            lines = []
+
+            # Emails w/configured 'actual_text' are particularly broken; need to shuffle some lines
+            if configured_actual_text is not None:
+                num_lines_to_skip += 1
+                lines = [cast(str, configured_actual_text), '\n']
+
+            lines += text.split('\n')[num_lines_to_skip:]
+            text = self.header.rewrite_header() + '\n' + '\n'.join(lines)
+            # This was skipped earlier when _cleaned_up_text() was called w/a broken header so we do it now
+            text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', text).strip()
+            self.rewritten_header_ids.add(self.file_id)
+
         panel_txt = highlighter(text)
 
-        if trim_footer_txt:
-            panel_txt.append('\n\n').append(trim_footer_txt)
+        email_txt_panel = Panel(
+            panel_txt.append('\n\n').append(trim_footer_txt) if trim_footer_txt else panel_txt,
+            border_style=self._border_style(),
+            expand=False,
+            subtitle=REWRITTEN_HEADER_MSG if should_rewrite_header else None,
+        )
 
-        email_txt_panel = Panel(panel_txt, border_style=self._border_style(), expand=False)
         yield Padding(email_txt_panel, (0, 0, 1, INFO_INDENT))
+
+        if should_rewrite_header:
+            self.log_top_lines(self.header.num_header_rows + 4, f'Original header:', logging.WARNING)
 
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:

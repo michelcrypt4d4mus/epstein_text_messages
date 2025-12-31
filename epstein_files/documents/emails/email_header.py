@@ -3,6 +3,7 @@ import re
 from dataclasses import asdict, dataclass, field
 
 from epstein_files.util.constant.strings import AUTHOR, REDACTED
+from epstein_files.util.constants import EMAIL_INFO
 from epstein_files.util.env import logger
 from epstein_files.util.rich import UNKNOWN
 
@@ -21,6 +22,12 @@ ON_BEHALF_OF = 'on behalf of'
 TO_FIELDS = ['bcc', 'cc', 'to']
 EMAILER_FIELDS = [AUTHOR] + TO_FIELDS
 NON_HEADER_FIELDS = ['field_names', 'num_header_rows', 'was_initially_empty']
+
+CONFIGURED_ACTUAL_TEXTS = [
+    email_info.actual_text
+    for email_info in EMAIL_INFO.values()
+    if email_info.actual_text is not None
+]
 
 
 @dataclass(kw_only=True)
@@ -94,6 +101,24 @@ class EmailHeader:
 
         self.num_header_rows = len(self.field_names) + num_headers
         logger.debug(f"Corrected empty header using {self.num_header_rows} lines to:\n%s\n\nTop lines:\n\n%s", self, '\n'.join(email_lines[0:(num_headers + 1) * 2]))
+
+    def rewrite_header(self) -> str:
+        header_fields = {}
+
+        for field_name in self.field_names:
+            if field_name == AUTHOR:
+                header_fields['From'] = self.author or ''
+            elif field_name == 'sent_at':
+                if self.sent_at in CONFIGURED_ACTUAL_TEXTS:
+                    header_fields['Date'] = ''
+                else:
+                    header_fields['Date'] = self.sent_at or ''
+            elif field_name in TO_FIELDS:
+                header_fields[field_name.title()] = '; '.join(getattr(self, field_name) or [])
+            else:
+                header_fields[field_name.title()] = getattr(self, field_name) or ''
+
+        return '\n'.join([f"{k}: {v}" for k, v in header_fields.items()])
 
     def __str__(self) -> str:
         return json.dumps(self.as_dict(), sort_keys=True, indent=4)
