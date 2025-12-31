@@ -785,6 +785,8 @@ TRANSLATION = 'translation of'
 TWEET = 'tweet'
 
 # Publications
+BBC = 'BBC'
+BLOOMBERG = 'Bloomberg'
 LA_TIMES = 'LA Times'
 MIAMI_HERALD = 'Miami Herald'
 NYT_ARTICLE = 'NYT article about'
@@ -907,10 +909,10 @@ FILE_DESCRIPTIONS = {
     '033468': f'{ARTICLE_DRAFT} Rod Rosenstein ca. 2018-09-24',
     '030825': f'{ARTICLE_DRAFT} Syria',
     '030013': f'Aviation International News article 2012-07',
-    '033253': f'BBC article about Rohingya in Myanmar by {ROBERT_LAWRENCE_KUHN}',
-    '026887': f'BBC "New Tariffs - Trade War" by {ROBERT_LAWRENCE_KUHN}',
-    '013275': f"Bloomberg article on notable 2013 obituaries 2013-12-26",
-    '026543': f"Bloomberg BNA article about taxes",
+    '033253': f'{BBC} article about Rohingya in Myanmar by {ROBERT_LAWRENCE_KUHN}',
+    '026887': f'{BBC} "New Tariffs - Trade War" by {ROBERT_LAWRENCE_KUHN}',
+    '013275': f"{BLOOMBERG} article on notable 2013 obituaries 2013-12-26",
+    '026543': f"{BLOOMBERG} BNA article about taxes",
     '014865': f"Boston Globe article about {ALAN_DERSHOWITZ}",
     '033231': f"Business Standard article about Trump's visit with India's Modi",
     '023572': f"{CHINA_DAILY_ARTICLE} China's Belt & Road Initiative by {ROBERT_LAWRENCE_KUHN}",
@@ -1335,8 +1337,8 @@ UNINTERESTING_PREFIXES = [
     'article about',
     ARTICLE_DRAFT,
     'Aviation International',
-    'BBC',
-    'Bloomberg',
+    BBC,
+    BLOOMBERG,
     BOFA,
     BOFA_MERRILL,
     BOOK,
