@@ -502,6 +502,10 @@ class Email(CommunicationDocument):
             text = '\n'.join([self.lines[0] + self.lines[1]] + self.lines[2:])
         elif self.file_id in ['021729', '029282', '030626', '031384', '033512']:  # Merge 3rd and 4th rows
             text = '\n'.join(self.lines[0:2] + [self.lines[2] + self.lines[3]] + self.lines[4:])
+
+            if self.file_id in ['030626']:  # Merge 6th and 7th (now 5th and 6th) rows
+                self.lines = text.split('\n')
+                text = '\n'.join(self.lines[0:4] + [self.lines[5] + self.lines[6]] + self.lines[7:])
         elif self.file_id == '029977':
             text = self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM')
         else:
