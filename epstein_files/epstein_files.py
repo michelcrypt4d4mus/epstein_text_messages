@@ -17,6 +17,7 @@ from epstein_files.documents.communication_document import CommunicationDocument
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import DETECT_EMAIL_REGEX, JUNK_EMAILERS, KRASSNER_RECIPIENTS, USELESS_EMAILERS, Email
 from epstein_files.documents.email_header import AUTHOR
+from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.strings import *
@@ -43,6 +44,7 @@ class EpsteinFiles:
     all_files: list[Path] = field(init=False)
     emails: list[Email] = field(default_factory=list)
     imessage_logs: list[MessengerLog] = field(default_factory=list)
+    json_files: list[JsonFile] = field(default_factory=list)
     other_files: list[OtherFile] = field(default_factory=list)
     # Analytics / calculations
     email_author_counts: dict[str | None, int] = field(default_factory=lambda: defaultdict(int))
@@ -60,14 +62,14 @@ class EpsteinFiles:
 
             if document.length == 0:
                 logger.info(f"Skipping empty file {document.description().plain}")
-            elif document.text[0] == '{':  # Check for JSON
-                move_json_file(file_arg)
-            elif MSG_REGEX.search(document.text):     # Handle iMessage log files
-                messenger_log = MessengerLog(file_arg)
-                logger.info(messenger_log.description().plain)
-                self.imessage_logs.append(messenger_log)
-            elif DETECT_EMAIL_REGEX.match(document.text) or document.file_id in EMAIL_INFO:  # Handle emails
-                email = Email(file_arg, text=document.text)  # Avoid reloads
+            elif document.text[0] == '{':
+                self.json_files.append(JsonFile(file_arg))   # Handle JSON files
+                logger.warning(self.json_files[-1].description().plain)
+            elif MSG_REGEX.search(document.text):
+                self.imessage_logs.append(MessengerLog(file_arg))  # Handle iMessage log files
+                logger.info(self.imessage_logs[-1].description().plain)
+            elif DETECT_EMAIL_REGEX.match(document.text) or document.file_id in EMAIL_INFO:
+                email = Email(file_arg, text=document.text)  # Handle emails
                 logger.info(email.description().plain)
                 self.emails.append(email)
                 self.email_author_counts[email.author] += 1
@@ -84,7 +86,7 @@ class EpsteinFiles:
                     self.email_device_signatures_to_authors[email.sent_from_device].add(email.author_or_unknown())
             else:
                 logger.info(f"Unknown file type: {document.description().plain}")
-                self.other_files.append(OtherFile(file_arg))
+                self.other_files.append(OtherFile(file_arg))  # Handle OtherFiles
 
         self.emails = Document.sort_by_timestamp(self.emails)
         self.imessage_logs = Document.sort_by_timestamp(self.imessage_logs)
