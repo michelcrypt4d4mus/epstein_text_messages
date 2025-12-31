@@ -771,6 +771,7 @@ DUPLICATE_FILE_IDS = {
 BOOK = 'book:'
 FBI = 'FBI'
 FLIGHT_LOGS = 'flight logs'
+PRESS_RELEASE = 'press release'
 REPUTATION_MGMT = 'reputation management:'
 SCREENSHOT = 'screenshot of'
 TRANSLATION = 'translation of'
@@ -1157,8 +1158,8 @@ FILE_DESCRIPTIONS = {
     '026944': f'{GOLDMAN_REPORT} "Risk of a US-Iran Military Conflict" 2019-05-23',
     '026679': f'Invesco report: "Global Sovereign Asset Management Study 2017"',
     '023096': f'{EPSTEIN_FOUNDATION} blog 2012-11-15',
-    '029326': f'{EPSTEIN_FOUNDATION} press release 2013-02-15',
-    '026565': f'{EPSTEIN_FOUNDATION} press release, maybe a draft of 029326 2013-02-15',
+    '029326': f'{EPSTEIN_FOUNDATION} {PRESS_RELEASE} 2013-02-15',
+    '026565': f'{EPSTEIN_FOUNDATION} {PRESS_RELEASE}, maybe a draft of 029326 2013-02-15',
     '026572': f"{JP_MORGAN} Global Asset Allocation report dated 2012-11-09",
     '030848': f"{JP_MORGAN} Global Asset Allocation report dated 2013-03-28",
     '030840': f"{JP_MORGAN} Market Thoughts 2012-11",
@@ -1174,9 +1175,9 @@ FILE_DESCRIPTIONS = {
     '024194': f"{JP_MORGAN_EYE_ON_THE_MARKET} 2012-10-22",
     '025296': f'Laffer Associates report predicting Trump win 2016-07',
     '025551': f'Morgan Stanley report about alternative asset managers 2018-01-30',
-    '026759': f'press release by Ritz-Carlton club about damage from Hurricane Irma 2017-09-13',
-    '033338': f"press release announcing Donald Trump & {NICHOLAS_RIBIS} ended their working relationship at Trump's casino 2000-06-07",
-    '012048': f'press release "Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm" and other articles',
+    '026759': f'{PRESS_RELEASE} by Ritz-Carlton club about damage from Hurricane Irma 2017-09-13',
+    '033338': f"{PRESS_RELEASE} announcing Donald Trump & {NICHOLAS_RIBIS} ended their working relationship at Trump's casino 2000-06-07",
+    '012048': f'{PRESS_RELEASE} "Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm" and other articles',
     '020447': f'Promoting Constructive Vigilance: Report of the Working Group on Chinese Influence Activities in the U.S. (Hoover Group/Stanford 2018)',
     '025763': f'S&P Economic Research: "How Increasing Income Inequality Is Dampening U.S. Growth" 2014-08-05',
     '019856': f"Sadis Goldberg LLP report on SCOTUS ruling about insider trading",
@@ -1194,10 +1195,10 @@ FILE_DESCRIPTIONS = {
     '019474': f"{DAVID_BLAINE_VISA_LETTER} 2015-05-29",
     '019476': f"{DAVID_BLAINE_VISA_LETTER} 2015-06-01",
     '031670': f"letter from General Mike Flynn's lawyers to senators Mark Warner & Richard Burr about subpoena",
+    '026011': f"letter from Gennady Mashtalyar to Epstein about algorithmic trading ca. 2016-06-24",  # date is based on Brexit reference but he could be backtesting
     '029301': f"letter from Michael J. Boccio, former lawyer at the Trump Organization 2011-08-07",
     '022405': f"letter from {NOAM_CHOMSKY} attesting to Epstein's good character",
     '026248': f'letter from Trump lawyer Don McGahn to Devin Nunes (R-CA) about FISA courts and Trump',
-    '026011': f"letter to Epstein about algorithmic trading by Gennady Mashtalyar ca. 2016-06-24",  # date is based on Brexit reference but he could be backtesting
     '026134': f'letter to someone named George about investment opportunities in the Ukraine banking sector',
     '029304': f"Trump recommendation letter for recently departed Trump Organization lawyer Michael J. Boccio",
     '031278': f"{REDACTED} email, quoted replies are from {STEVEN_HOFFENBERG} about James Patterson's book",  # Quoted replies are in 019109
@@ -1209,6 +1210,7 @@ FILE_DESCRIPTIONS = {
     '024003': f"New Leaf Ventures private placement memorandum",
     # property
     '018804': f"appraisal of going concern for IGY American Yacht Harbor Marina in {VIRGIN_ISLANDS}",
+    '018743': f"Las Vegas property listing",
     '016597': f'letter from Trump Properties LLC appealing some decision about Mar-a-Lago by {PALM_BEACH} authorities',
     '016602': f"{PALM_BEACH_CODE_ENFORCEMENT} 2008-04-17",
     '016616': f"{PALM_BEACH_CODE_ENFORCEMENT} 2008-07-17",
@@ -1218,7 +1220,6 @@ FILE_DESCRIPTIONS = {
     '016697': f"{PALM_BEACH} property tax info (?) that mentions Trump",
     '016636': f"{PALM_BEACH_WATER_COMMITTEE} Meeting on January 29, 2009",
     '022417': f"Park Partners NYC letter to partners in real estate project with architectural plans",
-    '018743': f"Las Vegas property listing",
     '027068': f"{THE_REAL_DEAL_ARTICLE} 2018-10-11",
     '029520': f'{THE_REAL_DEAL_ARTICLE} "Lost Paradise at the Palm House" 2019-06-17',
     '018727': f"{VIRGIN_ISLANDS} property deal pitch deck, building will be leased to the U.S. govt GSA ca. 2014-06-01",
@@ -1369,7 +1370,9 @@ UNINTERESTING_PREFIXES = [
     ROBERT_LAWRENCE_KUHN,
     ROBERT_TRIVERS,
     'S&P',
+    'Scowcroft',
     SHIMON_POST,
+    'short economic',
     SINGLE_PAGE,
     STACEY_PLASKETT,
     TEXT_OF_US_LAW,
@@ -1378,6 +1381,8 @@ UNINTERESTING_PREFIXES = [
     THE_REAL_DEAL_ARTICLE,
     TRUMP_DISCLOSURES,
     UBS_CIO_REPORT,
+    'US Office',
+    'USA Inc',
     'Vanity Fair',
     VI_DAILY_NEWS_ARTICLE,
     WAPO,
