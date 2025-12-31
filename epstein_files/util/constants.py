@@ -209,7 +209,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     MOHAMED_WAHEED_HASSAN: re.compile(r'Mohamed Waheed(\s+Hassan)?', re.IGNORECASE),
     NADIA_MARCINKO: re.compile(r"Na[dď]i?a\s+Marcinko(v[aá])?", re.IGNORECASE),
     NEAL_KASSELL: re.compile(r'Neal Kassel', re.IGNORECASE),
-    NICHOLAS_RIBIS: re.compile(r'Nicholas[ ._]Ribi?s?', re.IGNORECASE),
+    NICHOLAS_RIBIS: re.compile(r'Nic(holas|k)[\s._]Ribi?s?|Ribis', re.IGNORECASE),
     OLIVIER_COLOM: re.compile(fr'Colom, Olivier|{OLIVIER_COLOM}', re.IGNORECASE),
     PAUL_BARRETT: re.compile(r'Paul Barre(d|tt)', re.IGNORECASE),
     PAUL_KRASSNER: re.compile(r'Pa\s?ul Krassner', re.IGNORECASE),

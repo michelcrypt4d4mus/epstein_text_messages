@@ -138,7 +138,7 @@ EMAIL_AUTHOR_COUNTS = {
     MOSHE_HOFFMAN: 1,
     "Nadia Marcinko": 8,
     "Neal Kassell": 2,
-    "Nicholas Ribis": 53,
+    NICHOLAS_RIBIS: 53,
     "Noam Chomsky": 4,
     "Norman D. Rau": 2,
     "Olivier Colom": 1,
@@ -364,7 +364,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Nate White": 1,
     "Neal Kassell": 1,
     "Neil Anderson": 1,
-    "Nicholas Ribis": 10,
+    NICHOLAS_RIBIS: 10,
     'Nick Kazan': 1,
     "Nili Priell Barak": 1,
     "Noam Chomsky": 2,
@@ -545,7 +545,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         "Michael Miller"
     ],
     "Sent from my BlackBerry 10 smartphone.": [
-        "Nicholas Ribis",
+        NICHOLAS_RIBIS,
         "Reid Weingarten",
     ],
     "Sent from my BlackBerry® wireless device": [
@@ -627,7 +627,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Matthew Hiltzik',
         'Mohamed Waheed Hassan',
         'Neal Kassell',
-        'Nicholas Ribis',
+        NICHOLAS_RIBIS,
         'Richard Kahn',
         'Richard Merkin',
         'Robert Lawrence Kuhn',
@@ -816,7 +816,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPad",
         "Sent from my iPhone"
     ],
-    "Nicholas Ribis": [
+    NICHOLAS_RIBIS: [
         "Sent from my BlackBerry 10 smartphone.",
         "Sent from my iPhone"
     ],
