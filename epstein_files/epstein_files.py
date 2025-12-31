@@ -5,7 +5,7 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
-from typing import Literal
+from typing import Literal, Sequence
 
 from rich.align import Align
 from rich.console import Group
@@ -13,6 +13,7 @@ from rich.padding import Padding
 from rich.table import Table
 from rich.text import Text
 
+from epstein_files.documents.communication_document import CommunicationDocument, CommunicationDocumentType
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import DETECT_EMAIL_REGEX, JUNK_EMAILERS, KRASSNER_RECIPIENTS, USELESS_EMAILERS, Email
 from epstein_files.documents.email_header import AUTHOR
@@ -85,9 +86,9 @@ class EpsteinFiles:
                 logger.info(f"Unknown file type: {document.description().plain}")
                 self.other_files.append(OtherFile(file_arg))
 
-        self.emails = sorted(self.emails, key=lambda f: f.timestamp)
-        self.imessage_logs = sorted(self.imessage_logs, key=lambda f: f.timestamp)
-        self.other_files = sorted(self.other_files, key=lambda f: [f.timestamp or FALLBACK_TIMESTAMP, f.file_id])
+        self.emails = Document.sort_by_timestamp(self.emails)
+        self.imessage_logs = Document.sort_by_timestamp(self.imessage_logs)
+        self.other_files = Document.sort_by_timestamp(self.other_files)
         self.identified_imessage_log_count = len([log for log in self.imessage_logs if log.author])
 
     @classmethod
@@ -111,7 +112,7 @@ class EpsteinFiles:
         timer.print_at_checkpoint(f'Processed {len(epstein_files.all_files):,} documents')
         return epstein_files
 
-    def all_documents(self) -> list[Document]:
+    def all_documents(self) -> Sequence[Document]:
         return self.imessage_logs + self.emails + self.other_files
 
     def all_emailers(self, include_useless: bool = False) -> list[str | None]:
@@ -175,7 +176,7 @@ class EpsteinFiles:
         if len(emails) == 0:
             raise RuntimeError(f"No emails found for '{author}'")
 
-        return EpsteinFiles.sort_emails(Document.uniquify(emails))
+        return Document.sort_by_timestamp(Document.uniquify(emails))
 
     def emails_to(self, author: str | None) -> list[Email]:
         if author is None:
@@ -183,7 +184,7 @@ class EpsteinFiles:
         else:
             return [e for e in self.emails if author in e.recipients]
 
-    def imessage_logs_for(self, author: str | None | list[str | None]) -> list[MessengerLog]:
+    def imessage_logs_for(self, author: str | None | list[str | None]) -> Sequence[MessengerLog]:
         if author in [EVERYONE, JEFFREY_EPSTEIN]:
             return self.imessage_logs
 
@@ -203,7 +204,7 @@ class EpsteinFiles:
         dupes = defaultdict(int)
 
         for doc in self.all_documents():
-            if doc.file_id in DUPLICATE_FILE_IDS:
+            if doc.is_duplicate:
                 dupes[doc.document_type()] += 1
 
         table = Table()
@@ -228,8 +229,8 @@ class EpsteinFiles:
         console.print(Align.center(table))
         console.line()
 
-    def print_emails_for(self, _author: str | None) -> int:
-        """Print complete emails to or from a particular 'author'. Returns number of emails printed."""
+    def print_emails_for(self, _author: str | None) -> list[Email]:
+        """Print complete emails to or from a particular 'author'. Returns the Emails that were printed."""
         conversation_length = self.email_conversation_length_in_days(_author)
         emails = self.emails_for(_author)
         author = _author or UNKNOWN
@@ -245,7 +246,7 @@ class EpsteinFiles:
         for email in emails:
             console.print(email)
 
-        return len(emails)
+        return emails
 
     def print_emails_table_for(self, _author: str | None) -> None:
         emails = self.emails_for(_author)
@@ -356,7 +357,7 @@ class EpsteinFiles:
             date_str = doc.date_str()
             row_style = ''
 
-            if doc.file_id in DUPLICATE_FILE_IDS:
+            if doc.is_duplicate:
                 preview_text = doc.duplicate_file_txt()
                 row_style = ' dim'
             else:
@@ -378,10 +379,6 @@ class EpsteinFiles:
         console.print(table)
         num_skipped = len(self.other_files) - len(interesting_files)
         logger.warning(f"Skipped {num_skipped} uninteresting files...")
-
-    @staticmethod
-    def sort_emails(emails: list[Email]) -> list[Email]:
-        return sorted(emails, key=lambda email: email.timestamp)
 
 
 def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Padding:

@@ -545,7 +545,8 @@ EMAIL_INFO = {
     '031980': EmailInfo(recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK]),   # Bad OCR
     '029163': EmailInfo(recipients=[JEFFREY_EPSTEIN, ROBERT_TRIVERS]),    # Bad OCR
     '026228': EmailInfo(recipients=[JEFFREY_EPSTEIN, STEVEN_PFEIFFER]),   # Bad OCR
-    '021794': EmailInfo(recipients=[JESSICA_CADWELL, ROBERT_D_CRITTON]),  # Bad OCR
+    '021794': EmailInfo(recipients=[JESSICA_CADWELL, ROBERT_D_CRITTON]),  # Bad OCR, same as 030299
+    '030299': EmailInfo(recipients=[JESSICA_CADWELL, ROBERT_D_CRITTON]),  # Bad OCR
     '033456': EmailInfo(recipients=['Joel']),                    # Reply
     '033460': EmailInfo(recipients=['Joel']),                    # Reply
     '021090': EmailInfo(recipients=[JONATHAN_FARKAS], is_fwded_article=True),  # Reply to a message signed " jonathan" same as other Farkas emails

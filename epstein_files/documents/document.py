@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from subprocess import run
-from typing import ClassVar
+from typing import ClassVar, Sequence, TypeVar, Type
 
 from rich.console import Console, ConsoleOptions, Group, RenderResult
 from rich.padding import Padding
@@ -13,8 +13,8 @@ from rich.text import Text
 
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, EPSTEINIFY, EPSTEIN_WEB, epsteinify_doc_link_txt, epsteinify_doc_url, epstein_web_doc_url
-from epstein_files.util.constants import DUPLICATE_FILE_IDS, FILE_DESCRIPTIONS, VI_DAILY_NEWS_ARTICLE
+from epstein_files.util.constant.urls import *
+from epstein_files.util.constants import DUPLICATE_FILE_IDS, FALLBACK_TIMESTAMP, FILE_DESCRIPTIONS, VI_DAILY_NEWS_ARTICLE
 from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, listify, patternize
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, file_size_str, is_local_extract_file
@@ -59,6 +59,7 @@ class Document:
     file_path: Path
     file_id: str = field(init=False)
     filename: str = field(init=False)
+    is_duplicate: bool = False
     length: int = field(init=False)
     lines: list[str] = field(init=False)
     num_lines: int = field(init=False)
@@ -72,6 +73,7 @@ class Document:
     def __post_init__(self):
         self.filename = self.file_path.name
         self.file_id = extract_file_id(self.filename)
+        self.is_duplicate = self.file_id in DUPLICATE_FILE_IDS
 
         if is_local_extract_file(self.filename):
             self.url_slug = build_filename_for_id(self.file_id)
@@ -113,13 +115,17 @@ class Document:
         """If the file is a dupe (exists in DUPLICATE_FILE_IDS) make a nice message."""
         supression_reason = DUPLICATE_FILE_IDS[self.file_id]
         reason_msg = ' '.join(supression_reason.split()[0:-1])
-        txt = Text(f"Not showing ", style='dim').append(epsteinify_doc_link_txt(self.file_id, style='cyan'))
+        txt = Text(f"Not showing ", style='dim').append(epstein_media_doc_link_txt(self.file_id, style='cyan'))
         txt.append(f" because it's {reason_msg} {build_filename_for_id(supression_reason.split()[-1])}")
         return txt
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on epsteinify.com."""
         return link_text_obj(epsteinify_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
+
+    def epstein_media_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
+        """Create a Text obj link to this document on epstein.media."""
+        return link_text_obj(epstein_media_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
 
     def epstein_web_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on EpsteinWeb."""
@@ -182,9 +188,9 @@ class Document:
             txt.append(self.epstein_web_link(style=style))
 
             if include_alt_link:
-                txt.append(' (').append(self.epsteinify_link(style='white dim', link_txt=EPSTEINIFY)).append(')')
+                txt.append(' (').append(self.epstein_media_link(style='white dim', link_txt=EPSTEIN_MEDIA)).append(')')
         else:
-            txt.append(self.epsteinify_link(style=style))
+            txt.append(self.epstein_media_link(style=style))
 
             if include_alt_link:
                 txt.append(' (').append(self.epstein_web_link(style='white dim', link_txt=EPSTEIN_WEB)).append(')')
@@ -291,11 +297,17 @@ class Document:
             f.unlink()
 
     @staticmethod
-    def uniquify(documents: list['Document']) -> list['Document']:
+    def sort_by_timestamp(docs: Sequence['DocumentType']) -> list['DocumentType']:
+        return sorted(docs, key=lambda doc: [doc.timestamp or FALLBACK_TIMESTAMP, doc.file_id])
+
+    @classmethod
+    def uniquify(cls, documents: Sequence['DocumentType']) -> Sequence['DocumentType']:
         """Uniquify by file_id."""
         id_map = {doc.file_id: doc for doc in documents}
         return [doc for doc in id_map.values()]
 
+
+DocumentType = TypeVar('DocumentType', bound=Document)
 
 
 def _color_diff_output(diff_result: str) -> list[Text]:
