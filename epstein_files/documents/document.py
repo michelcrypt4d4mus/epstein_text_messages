@@ -37,6 +37,7 @@ VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IG
 DOC_TYPE_STYLES = {
     DOCUMENT_CLASS: 'grey69',
     EMAIL_CLASS: 'sea_green2',
+    JSON_FILE_CLASS: 'gold',
     MESSENGER_LOG_CLASS: 'cyan',
     OTHER_FILE_CLASS: 'grey69',
 }
@@ -139,8 +140,7 @@ class Document:
 
     def hints(self) -> list[Text]:
         """Additional info about the Document (author, FILE_DESCRIPTIONS value, and so on)."""
-        file_info = self.info_txt()
-        hints = listify(file_info)
+        hints = listify(self.info_txt())
         hint_msg = FILE_DESCRIPTIONS.get(self.file_id)
 
         if self.document_type() == OTHER_FILE_CLASS:
