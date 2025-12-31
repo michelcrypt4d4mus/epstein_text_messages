@@ -623,7 +623,7 @@ class Email(CommunicationDocument):
         yield Padding(email_txt_panel, (0, 0, 1, INFO_INDENT))
 
         if should_rewrite_header:
-            self.log_top_lines(self.header.num_header_rows + 4, f'Original header:', logging.WARNING)
+            self.log_top_lines(self.header.num_header_rows + 4, f'Original header:', logging.INFO)
 
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:
