@@ -7,7 +7,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import DEFAULT, REDACTED, TIMESTAMP_STYLE
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
 from epstein_files.util.constants import EMAILER_ID_REGEXES, HEADER_ABBREVIATIONS, OSBORNE_LLP, REPLY_REGEX, SENT_FROM_REGEX, VIRGIN_ISLANDS
-from epstein_files.util.data import listify
+from epstein_files.util.data import extract_last_name, listify
 from epstein_files.util.env import args, logger
 
 ESTATE_EXECUTOR = 'Epstein estate executor'
@@ -76,8 +76,7 @@ class HighlightedGroup:
     # TODO: handle word boundary issue for names that end in symbols
     def _emailer_pattern(self, name: str) -> str:
         """Pattern matching 'name'. Extends value in EMAILER_ID_REGEXES with last name if it exists."""
-        names = name.split()
-        last_name = names[-1]
+        last_name = extract_last_name(name)
 
         if name in EMAILER_ID_REGEXES:
             pattern = EMAILER_ID_REGEXES[name].pattern
@@ -89,13 +88,9 @@ class HighlightedGroup:
         elif ' ' not in name:
             return name
 
-        first_name = ' '.join(names[0:-1])
-        name_patterns = [name.replace(' ', r"\s+"), first_name, last_name]
+        first_name = name.removesuffix(f" {last_name}")
+        name_patterns = [name.replace(' ', r"\s+"), first_name.replace(' ', r"\s+"), last_name.replace(' ', r"\s+")]
         name_regex_parts = [n for n in name_patterns if n.lower() not in NAMES_TO_NOT_HIGHLIGHT]
-
-        if len(names) > 2:
-            logger.info(f"'{name}' has {len(names)} names (first_name='{first_name}')")
-
         return '|'.join(name_regex_parts)
 
 
@@ -301,7 +296,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='journalist',
         style='bright_yellow',
-        pattern=r'Palm\s*Beach\s*(Daily\s*News|Post)|ABC|Alex\s*Yablon|(Andrew\s*)?Marra|Arianna(\s*Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie\s*Rose|China\s*Daily|CNBC|CNN(politics?)?|Conchita|Sarnoff|(?<!Virgin[-\s]Islands[-\s])Daily\s*(Mail|News|Telegraph)|(David\s*)?Pecker|Ed\s*Krassenstein|(Emily\s*)?Michot|Ezra\s*Klein|(George\s*)?Stephanopoulus|Globe\s*and\s*Mail|Graydon(\s*Carter)?|Huffington|Ingram, David|(James\s*)?Patterson|Jonathan\s*Karl|Julie\s*(K.?\s*)?Brown|(Katie\s*)?Couric|Miami\s*Herald|(Michele\s*)?Dargan|(National\s*)?Enquirer|(The\s*)?N(ew\s*)?Y(ork\s*)?(P(ost)?|T(imes)?)|(The\s*)?New\s*Yorker|NYer|PERVERSION\s*OF\s*JUSTICE|Politico|(Sean\s*)?Hannity|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|(The\s*)?Wa(shington\s*)?Po(st)?|Viceland|Vick[iy]\s*Ward|Vox|WGBH|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
+        pattern=r'Palm\s*Beach\s*(Daily\s*News|Post)|ABC|Alex\s*Yablon|(Andrew\s*)?Marra|Arianna(\s*Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie\s*Rose|China\s*Daily|CNBC|CNN(politics?)?|Conchita|Sarnoff|(?<!Virgin[-\s]Islands[-\s])Daily\s*(Mail|News|Telegraph)|(David\s*)?Pecker|Ed\s*Krassenstein|(Emily\s*)?Michot|Ezra\s*Klein|(George\s*)?Stephanopoulus|Globe\s*and\s*Mail|Graydon(\s*Carter)?|Huffington(\s*Post)?|Ingram, David|(James\s*)?Patterson|Jonathan\s*Karl|Julie\s*(K.?\s*)?Brown|(Katie\s*)?Couric|Miami\s*Herald|(Michele\s*)?Dargan|(National\s*)?Enquirer|(The\s*)?N(ew\s*)?Y(ork\s*)?(P(ost)?|T(imes)?)|(The\s*)?New\s*Yorker|NYer|PERVERSION\s*OF\s*JUSTICE|Politico|(Sean\s*)?Hannity|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|(The\s*)?Wa(shington\s*)?Po(st)?|Viceland|Vick[iy]\s*Ward|Vox|WGBH|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
         emailers = {
             EDWARD_EPSTEIN: 'no relation to Jeffrey',
             'James Hill': 'ABC',
@@ -407,7 +402,7 @@ HIGHLIGHTED_GROUPS = [
         style='orange_red1',
         pattern=r"Henry Holt|(Matt(hew)? )?Hiltzi[gk]",
         emailers = {
-            AL_SECKEL: 'husband of Isabel Maxwell and Mindshift conference organizer who fell off a cliff',
+            AL_SECKEL: 'husband of Isabel Maxwell, Mindshift conference organizer who fell off a cliff',
             'Barnaby Marsh': 'co-founder of Saint Partners, a philanthropy services company',
             CHRISTINA_GALBRAITH: None,
             IAN_OSBORNE: f"{OSBORNE_LLP} reputation repairer possibly hired by Epstein ca. 2011-06",
