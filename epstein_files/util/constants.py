@@ -213,7 +213,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     OLIVIER_COLOM: re.compile(fr'Colom, Olivier|{OLIVIER_COLOM}', re.IGNORECASE),
     PAUL_BARRETT: re.compile(r'Paul Barre(d|tt)', re.IGNORECASE),
     PAUL_KRASSNER: re.compile(r'Pa\s?ul Krassner', re.IGNORECASE),
-    PAULA: re.compile(r'^Paula$', re.IGNORECASE),
+    PAULA: re.compile(r'^Paula( Heil Fisher)?$', re.IGNORECASE),
     PAUL_MORRIS: re.compile(r'morris, paul|Paul Morris', re.IGNORECASE),
     PEGGY_SIEGAL:  re.compile(r'Peggy Siegal?', re.IGNORECASE),
     PETER_ATTIA: re.compile(r'Peter Attia?', re.IGNORECASE),
