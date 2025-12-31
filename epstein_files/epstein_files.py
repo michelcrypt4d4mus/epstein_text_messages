@@ -64,6 +64,7 @@ class EpsteinFiles:
                 logger.info(f"Skipping empty file {document.description().plain}")
             elif document.text[0] == '{':
                 self.json_files.append(JsonFile(file_arg))   # Handle JSON files
+                self.other_files.append(self.json_files[-1])
                 logger.warning(self.json_files[-1].description().plain)
             elif MSG_REGEX.search(document.text):
                 self.imessage_logs.append(MessengerLog(file_arg))  # Handle iMessage log files
@@ -227,6 +228,7 @@ class EpsteinFiles:
 
         add_row('iMessage Logs', self.imessage_logs, self.identified_imessage_log_count)
         add_row('Emails', self.emails, len([e for e in self.emails if e.author]), dupes[EMAIL_CLASS])
+        add_row('JSON Data', self.json_files, dupes=0)
         add_row('Other', self.other_files, dupes=dupes[OTHER_FILE_CLASS])
         console.print(Align.center(table))
         console.line()
