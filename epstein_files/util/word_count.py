@@ -8,7 +8,7 @@ from rich.console import Console, ConsoleOptions, RenderResult
 from rich.padding import Padding
 from rich.text import Text
 
-from epstein_files.documents.email_header import EmailHeader
+from epstein_files.documents.emails.email_header import EmailHeader
 from epstein_files.util.constant.common_words import COMMON_WORDS, UNSINGULARIZABLE_WORDS
 from epstein_files.util.constant.names import OTHER_NAMES
 from epstein_files.util.data import ALL_NAMES, flatten, sort_dict

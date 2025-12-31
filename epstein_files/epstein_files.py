@@ -13,10 +13,9 @@ from rich.padding import Padding
 from rich.table import Table
 from rich.text import Text
 
-from epstein_files.documents.communication_document import CommunicationDocument, CommunicationDocumentType
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import DETECT_EMAIL_REGEX, JUNK_EMAILERS, KRASSNER_RECIPIENTS, USELESS_EMAILERS, Email
-from epstein_files.documents.email_header import AUTHOR
+from epstein_files.documents.emails.email_header import AUTHOR
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
@@ -64,8 +63,7 @@ class EpsteinFiles:
                 logger.info(f"Skipping empty file {document.description().plain}")
             elif document.text[0] == '{':
                 self.json_files.append(JsonFile(file_arg))   # Handle JSON files
-                self.other_files.append(self.json_files[-1])
-                logger.warning(self.json_files[-1].description().plain)
+                logger.info(self.json_files[-1].description().plain)
             elif MSG_REGEX.search(document.text):
                 self.imessage_logs.append(MessengerLog(file_arg))  # Handle iMessage log files
                 logger.info(self.imessage_logs[-1].description().plain)
@@ -91,7 +89,7 @@ class EpsteinFiles:
 
         self.emails = Document.sort_by_timestamp(self.emails)
         self.imessage_logs = Document.sort_by_timestamp(self.imessage_logs)
-        self.other_files = Document.sort_by_timestamp(self.other_files)
+        self.other_files = Document.sort_by_timestamp(self.other_files + self.json_files)
         self.identified_imessage_log_count = len([log for log in self.imessage_logs if log.author])
 
     @classmethod
