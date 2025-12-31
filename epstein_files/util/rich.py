@@ -15,7 +15,7 @@ from rich.theme import Theme
 
 from epstein_files.util.constant.html import CONSOLE_HTML_FORMAT, HTML_TERMINAL_THEME, PAGE_TITLE
 from epstein_files.util.constant.names import UNKNOWN
-from epstein_files.util.constant.strings import DEFAULT, EMAIL, NA, OTHER_SITE_LINK_STYLE, SiteType
+from epstein_files.util.constant.strings import DEFAULT, EMAIL, NA, OTHER_SITE_LINK_STYLE, QUESTION_MARKS, SiteType
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import FALLBACK_TIMESTAMP, HEADER_ABBREVIATIONS
 from epstein_files.util.env import args, logger
@@ -25,7 +25,7 @@ from epstein_files.util.highlighted_group import HIGHLIGHTED_GROUPS, Interesting
 TITLE_WIDTH = 50
 NUM_COLOR_KEY_COLS = 4
 NA_TXT = Text(NA, style='dim')
-QUESTION_MARK_TXT = Text('???', style='dim')
+QUESTION_MARK_TXT = Text(QUESTION_MARKS, style='dim')
 GREY_NUMBERS = [58, 39, 39, 35, 30, 27, 23, 23, 19, 19, 15, 15, 15]
 
 DEFAULT_NAME_STYLE = 'gray46'
