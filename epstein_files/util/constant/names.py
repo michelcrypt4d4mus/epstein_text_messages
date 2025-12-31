@@ -202,7 +202,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Heather', 'Henry', 'Hill', 'Hoffman',
     'Ian',
     'Jack', 'James', 'Jay', 'Jean', 'Jeff', 'Jeffrey', 'Jennifer', 'Jeremy', 'jessica', 'Joel', 'John', 'Jon', 'Jonathan', 'Joseph', 'Jr',
-    'Kahn', 'Katherine', 'Ken',
+    'Kahn', 'Katherine', 'Ken', 'Kevin',
     'Leon', 'Lesley', 'Linda', 'Link', 'Lisa',
     'Marc', 'Marie', 'Mark', 'Martin', 'Melanie', 'Michael', 'Mike', 'Miller', 'Mitchell', 'Morris', 'Moskowitz',
     'Nancy', 'Neal', 'New',
@@ -211,6 +211,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Scott', 'Sean', 'Stanley', 'Stern', 'Stephen', 'Steve', 'Steven', 'Stone', 'Susan',
     'The', 'Thomas', 'Tim', 'Tom', 'Tyler',
     'Victor',
+    'Wade',
     "Y",
 ]]
 
