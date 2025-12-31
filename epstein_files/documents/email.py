@@ -127,6 +127,7 @@ TRUNCATE_ALL_EMAILS_FROM = JUNK_EMAILERS + [
 
 TRUNCATION_LENGTHS = {
     '023627': 16_800,  # Micheal Wolff article with brock pierce
+    '030245': 7_500,   # Epstein rationalizes his behavior in an open letter to the world
     '030781': 1_700,   # Bannon email about crypto coin issues
 }
 
