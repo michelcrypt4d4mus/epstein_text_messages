@@ -124,7 +124,6 @@ JUNK_EMAILERS = [
 
 TRUNCATE_ALL_EMAILS_FROM = JUNK_EMAILERS + [
     'Alan S Halperin',
-    'Lvjet',
     'middle.east.update@hotmail.com',
     'Mitchell Bard',
     'Skip Rimer',

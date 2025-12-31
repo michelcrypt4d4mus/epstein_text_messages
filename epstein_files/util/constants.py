@@ -188,7 +188,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     KEN_STARR: re.compile(r'starr, ken|Ken(neth W.)?\s+starr?|starr', re.IGNORECASE),
     LANDON_THOMAS: re.compile(r'lando[nr] thomas( jr)?|thomas jr.?, lando[nr]', re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r'(La(wrence|rry).{1,5})?Summers?|^LH$|LHS|Ihsofficel', re.IGNORECASE),
-    LAWRANCE_VISOSKI: re.compile(r'La(rry|wrance) Visoski?', re.IGNORECASE),
+    LAWRANCE_VISOSKI: re.compile(r'La(rry|wrance) Visoski?|Lvjet', re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus|lawkrauss', re.IGNORECASE),
     LEON_BLACK: re.compile(r'Leon Black?', re.IGNORECASE),
     MANUELA_MARTINEZ: re.compile(fr'Manuela (- Mega Partners|Martinez)', re.IGNORECASE),
