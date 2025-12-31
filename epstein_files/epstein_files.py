@@ -228,8 +228,8 @@ class EpsteinFiles:
         console.print(Align.center(table))
         console.line()
 
-    def print_emails_for(self, _author: str | None) -> int:
-        """Print complete emails to or from a particular 'author'. Returns number of emails printed."""
+    def print_emails_for(self, _author: str | None) -> list[Email]:
+        """Print complete emails to or from a particular 'author'. Returns the Emails that were printed."""
         conversation_length = self.email_conversation_length_in_days(_author)
         emails = self.emails_for(_author)
         author = _author or UNKNOWN
@@ -245,7 +245,7 @@ class EpsteinFiles:
         for email in emails:
             console.print(email)
 
-        return len(emails)
+        return emails
 
     def print_emails_table_for(self, _author: str | None) -> None:
         emails = self.emails_for(_author)
