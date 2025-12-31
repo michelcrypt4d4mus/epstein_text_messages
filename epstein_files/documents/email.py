@@ -596,12 +596,13 @@ class Email(CommunicationDocument):
         # Rewrite broken headers where the values are on separate lines from the field names
         if self.header.was_initially_empty:
             num_lines_to_skip = self.header.num_header_rows
+            configured_actual_text = self.configured_attr('actual_text')
             lines = []
 
             # Emails w/configured 'actual_text' are particularly broken; need to shuffle some lines
-            if self.configured_attr('actual_text') is not None:
+            if configured_actual_text is not None:
                 num_lines_to_skip += 1
-                lines = [cast(str, self.configured_attr('actual_text'))]
+                lines = [cast(str, configured_actual_text), '\n']
 
             lines += text.split('\n')[num_lines_to_skip:]
             text = self.header.rewrite_header() + '\n' + '\n'.join(lines)
@@ -621,7 +622,7 @@ class Email(CommunicationDocument):
         yield Padding(email_txt_panel, (0, 0, 1, INFO_INDENT))
 
         if self.header.was_initially_empty:
-            self.log_top_lines(num_lines_to_skip + 4, f'[{self.url_slug}] Original header:', logging.WARNING)
+            self.log_top_lines(num_lines_to_skip + 4, f'Original header:', logging.WARNING)
 
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:
