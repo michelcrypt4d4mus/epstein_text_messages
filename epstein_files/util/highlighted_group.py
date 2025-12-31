@@ -200,6 +200,7 @@ HIGHLIGHTED_GROUPS = [
             BILL_SIEGEL: 'documentary film producer and director',
             DAVID_BLAINE: 'famous magician',
             'Richard Merkin': 'painter, illustrator and arts educator',
+            STEVEN_PFEIFFER: 'Associate Director at Independent Filmmaker Project (IFP)',
         },
     ),
     HighlightedGroup(
@@ -458,13 +459,12 @@ HIGHLIGHTED_GROUPS = [
             PETER_ATTIA: 'longevity medicine',
             ROBERT_TRIVERS: 'evolutionary biology',
             ROGER_SCHANK: 'Teachers College, Columbia University',
-            STEVEN_PFEIFFER: None,
         },
     ),
     HighlightedGroup(
         label='tech bro',
         style='bright_cyan',
-        pattern=r"AG?I|Chamath|Palihapitiya|Drew\s*Houston|Eric\sSchmidt|Greylock(\s*Partners)?|LinkedIn|(Mark\s*)?Zuckerberg|Masa(yoshi)?(\sSon)?|Najeev|Palantir|(Peter\s)?Th(ie|ei)l|Sergey\s*Brin|Silicon\s*Valley|Softbank|SpaceX|Tim\s*Ferriss?",
+        pattern=r"AG?I|Chamath|Palihapitiya|Drew\s*Houston|Eric\s*Schmidt|Greylock(\s*Partners)?|(?<!Moshe\s)Hoffmand?|LinkedIn|(Mark\s*)?Zuckerberg|Masa(yoshi)?(\sSon)?|Najeev|Palantir|(Peter\s)?Th(ie|ei)l|Sergey\s*Brin|Silicon\s*Valley|Softbank|SpaceX|Tim\s*Ferriss?",
         emailers = {
             'Auren Hoffman': 'CEO of SafeGraph, a firm that gathers location data from mobile devices',
             ELON_MUSK: 'father of Mecha-Hitler',
@@ -476,7 +476,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='trump',
         style='red3 bold',
-        pattern=r"@?realDonaldTrump|\bDJ?T\b|(Donald\s+(J\.\s+)?)?Trump(ism)?|Don(ald| *Jr)(?! Rubin)|(Madeleine\s*)?Westerhout|Mar[-\s]*a[-\s]*Lago|(Marla\s*)?Maples|(Matt(hew)? )?Calamari|\bMatt C\b|Melania|(Michael (J.? )?)?Boccio|Roger\s+Stone|rona|(Alan\s*)?Weiss?elberg",
+        pattern=r"@?realDonaldTrump|\bDJ?T\b|(Donald\s+(J\.\s+)?)?Trump(ism)?|Don(ald| *Jr)(?! Rubin)|Ivana|(Madeleine\s*)?Westerhout|Mar[-\s]*a[-\s]*Lago|(Marla\s*)?Maples|(Matt(hew)? )?Calamari|\bMatt C\b|Melania|(Michael (J.? )?)?Boccio|Roger\s+Stone|rona|(Alan\s*)?Weiss?elberg",
         emailers = {
             'Bruce Moskowitz': "'Trump's health guy' according to Epstein",
         }
