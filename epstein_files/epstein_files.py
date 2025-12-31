@@ -26,7 +26,7 @@ from epstein_files.util.data import Timer, dict_sets_to_lists, iso_timestamp, so
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, FILENAME_LENGTH, PICKLED_PATH, file_size_str, move_json_file
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
-from epstein_files.util.rich import (DEFAULT_NAME_COLOR, NA_TXT, QUESTION_MARK_TXT, console, highlighter,
+from epstein_files.util.rich import (DEFAULT_NAME_STYLE, NA_TXT, QUESTION_MARK_TXT, console, highlighter,
      link_text_obj, link_markup, print_author_header, print_centered, print_other_site_link, print_panel,
      print_section_header, vertically_pad)
 from epstein_files.util.search_result import SearchResult
@@ -288,7 +288,7 @@ class EpsteinFiles:
         }
 
         for p, count in sort_dict(emailer_counts):
-            style = get_style_for_name(p, default_style=DEFAULT_NAME_COLOR)
+            style = get_style_for_name(p, default_style=DEFAULT_NAME_STYLE)
 
             counts_table.add_row(
                 Text.from_markup(link_markup(epsteinify_name_url(p or UNKNOWN), p or UNKNOWN, style)),

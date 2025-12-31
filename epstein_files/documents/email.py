@@ -461,16 +461,13 @@ class Email(CommunicationDocument):
 
     def _recipients_txt(self) -> Text:
         """Text object with comma separated colored versions of all recipients."""
-        recipients = self.recipients if len(self.recipients) > 0 else [UNKNOWN]
-        recipients_txt = Text('')
+        recipients = [r or UNKNOWN for r in self.recipients] if len(self.recipients) > 0 else [UNKNOWN]
 
-        for i, recipient in enumerate(recipients):
-            recipient = recipient or UNKNOWN
-            recipient_str = recipient if (' ' not in recipient or len(recipients) < 3) else recipient.split()[-1]
-            recipients_txt.append(', ' if i > 0 else '')
-            recipients_txt.append(recipient_str, style=get_style_for_name(recipient))
-
-        return recipients_txt
+        # Use just the last name for each recipient if there's 3 or more recipients
+        return join_texts([
+            Text(r if (' ' not in r or len(recipients) < 3) else r.split()[-1], style=get_style_for_name(r))
+            for r in recipients
+        ], join=', ')
 
     def _repair(self) -> None:
         """Repair particularly janky files."""
@@ -480,6 +477,9 @@ class Email(CommunicationDocument):
             self.text = self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM')
         elif self.file_id == '031442':
             self.lines = [self.lines[0] + self.lines[1]] + self.lines[2:]
+            self.text = '\n'.join(self.lines)
+        elif self.file_id == '029282':
+            self.lines = self.lines[0:2] + [self.lines[2] + self.lines[3]] + self.lines[4:]
             self.text = '\n'.join(self.lines)
 
         lines = self.regex_repair_text(OCR_REPAIRS, self.text).split('\n')

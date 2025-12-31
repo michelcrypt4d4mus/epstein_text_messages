@@ -116,6 +116,7 @@ MICHAEL_SITRICK = 'Michael Sitrick'
 MICHAEL_WOLFF = "Michael Wolff"
 MOHAMED_WAHEED_HASSAN = 'Mohamed Waheed Hassan'
 MORTIMER_ZUCKERMAN = 'Mortimer Zuckerman'
+MOSHE_HOFFMAN = 'Moshe Hoffman'
 NADIA_MARCINKO = 'Nadia Marcinko'
 NEAL_KASSELL = 'Neal Kassell'
 NICHOLAS_RIBIS = 'Nicholas Ribis'
@@ -182,7 +183,7 @@ JP_MORGAN = 'JP Morgan'
 # Locations
 VIRGIN_ISLANDS = 'Virgin Islands'
 
-# Names that should be made part of a highlighting regex
+# First and last names that should be made part of a highlighting regex for emailers
 NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Al', 'Alfredo', 'Allen', 'Amanda', 'Andres', 'Andrew',
     'Barry', 'Bill', 'Black', 'Brad',
@@ -191,9 +192,9 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Ed', 'Edward', 'Edwards', 'Epstein', 'Eric', 'Erika', 'Etienne',
     'Faith', 'Fred', 'Frost', 'Fuller',
     'George',
-    'Heather', 'Hill',
+    'Heather', 'Hill', 'Hoffman',
     'Ian',
-    'Jack', 'James', 'Jay', 'Jean', 'Jeff', 'jeffrey', 'Jeremy', 'jessica', 'John', 'Jon', 'Jonathan', 'Joseph', 'Jr',
+    'Jack', 'James', 'Jay', 'Jean', 'Jeff', 'jeffrey', 'Jeremy', 'jessica', 'Joel', 'John', 'Jon', 'Jonathan', 'Joseph', 'Jr',
     'Kahn', 'Katherine', 'Ken',
     'Leon', 'Lesley', 'Linda', 'Link', 'Lisa',
     'Marc', 'Marie', 'Mark', 'Martin', 'Melanie', 'Michael', 'Mike', 'Miller', 'Mitchell', 'Morris', 'Moskowitz',

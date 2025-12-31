@@ -25,11 +25,12 @@ class HighlightedGroup:
     Attributes:
         category (str): optional string to use as an override for self.label in some contexts
         emailers (dict[str, str | None]): optional names to construct regexes for (values are descriptions)
-        is_multiline (bool): True if this regex is only used by RegexHighlighter and group has no other info
+        is_multiline (bool): True if this pattern is only used by RegexHighlighter and this highlight group has no other info
         label (str): RegexHighlighter match group name, defaults to 1st 'emailers' key if only 1 emailer provided
         pattern (str): optional regex pattern identifying strings matching this group
+        regex (re.Pattern): matches self.pattern + all first and last names (and pluralizations) in self.emailers
         style (str): Rich style to apply to text matching this group
-        _regex (re.Pattern): matches self.pattern + all first and last names (and pluralizations) in self.emailers
+        _capture_group_label (str): regex capture group variable name for matches of this HighlightedGroup's 'regex'
     """
     category: str = ''
     emailers: dict[str, str | None] = field(default_factory=dict)
@@ -39,21 +40,23 @@ class HighlightedGroup:
     style: str
     # Computed fields
     regex: re.Pattern = field(init=False)
-    _style_suffix: str = field(init=False)
+    _capture_group_label: str = field(init=False)
 
     def __post_init__(self):
         if not (self.emailers or self.pattern):
             raise ValueError(f"Must provide either 'emailers' or 'pattern' arg.")
+        elif self.is_multiline and self.emailers:
+            raise ValueError(f"'is_multiline' cannot be True when there are 'emailers'.")
         elif not self.label:
             if len(self.emailers) == 1:
                 self.label = [k for k in self.emailers.keys()][0]
             else:
                 raise ValueError(f"No label provided for {repr(self)}")
 
-        self._style_suffix = self.label.lower().replace(' ', '_').replace('-', '_')
-        match_group_var = fr"?P<{self._style_suffix}>"
-        patterns = [self._emailer_pattern(e) for e in self.emailers] + listify(self.pattern)
-        pattern = '|'.join(patterns)
+        pattern = '|'.join([self._emailer_pattern(e) for e in self.emailers] + listify(self.pattern))
+        self._capture_group_label = self.label.lower().replace(' ', '_').replace('-', '_')
+        self.theme_style_name = f"{REGEX_STYLE_PREFIX}.{self._capture_group_label}"
+        match_group_var = fr"?P<{self._capture_group_label}>"
 
         if self.is_multiline:
             self.regex = re.compile(fr"({match_group_var}{pattern})", re.IGNORECASE | re.MULTILINE)
@@ -67,14 +70,8 @@ class HighlightedGroup:
             self.emailers.get(name),
         ]
 
-        info_pieces = [piece for piece in info_pieces if piece is not None]
-
-        if len(info_pieces) > 0:
-            return ', '.join(info_pieces)
-
-    def theme_style_name(self) -> str:
-        """Prefixed rich style name used by RegexHighlighter to color matches based on match group variable."""
-        return f"{REGEX_STYLE_PREFIX}.{self._style_suffix}"
+        info_pieces = [p for p in info_pieces if p is not None]
+        return ', '.join(info_pieces) if info_pieces else None
 
     # TODO: handle word boundary issue for names that end in symbols
     def _emailer_pattern(self, name: str) -> str:
@@ -203,6 +200,7 @@ HIGHLIGHTED_GROUPS = [
             BILL_SIEGEL: 'documentary film producer and director',
             DAVID_BLAINE: 'famous magician',
             'Richard Merkin': 'painter, illustrator and arts educator',
+            STEVEN_PFEIFFER: 'Associate Director at Independent Filmmaker Project (IFP)',
         },
     ),
     HighlightedGroup(
@@ -255,7 +253,7 @@ HIGHLIGHTED_GROUPS = [
         }
     ),
     HighlightedGroup(
-        label='harvard',
+        label=HARVARD.lower(),
         style='deep_pink2',
         pattern=r'Cambridge|(Derek\s*)?Bok|Elisa(\s*New)?|Harvard|(Stephen\s*)?Kosslyn',
         emailers = {
@@ -264,6 +262,7 @@ HIGHLIGHTED_GROUPS = [
             LISA_NEW: 'professor of poetry AKA "Elisa New"',
             'Lisa Randall': 'theoretical physicist',
             MARTIN_NOWAK: 'professor of mathematics and biology',
+            MOSHE_HOFFMAN: 'lecturer and research scholar in behavioral and evolutionary economics',
         }
     ),
     HighlightedGroup(
@@ -302,7 +301,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='journalist',
         style='bright_yellow',
-        pattern=r'Palm\s*Beach\s*(Daily\s*News|Post)|ABC|Alex\s*Yablon|(Andrew\s*)?Marra|Arianna(\s*Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie\s*Rose|China\s*Daily|CNBC|CNN(politics?)?|Conchita|Sarnoff|(?<!Virgin[-\s]Islands[-\s])Daily\s*(Mail|News|Telegraph)|(David\s*)?Pecker|Ed\s*Krassenstein|(Emily\s*)?Michot|(George\s*)?Stephanopoulus|Globe\s*and\s*Mail|Graydon(\s*Carter)?|Huffington|Ingram, David|(James\s*)?Patterson|Jonathan\s*Karl|Julie\s*(K.?\s*)?Brown|(Katie\s*)?Couric|Miami\s*Herald|(Michele\s*)?Dargan|(National\s*)?Enquirer|(The\s*)?N(ew\s*)?Y(ork\s*)?(P(ost)?|T(imes)?)|New\s*Yorker|NYer|PERVERSION\s*OF\s*JUSTICE|Politico|(Sean\s*)?Hannity|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|Viceland|Vick[iy]\s*Ward|(The\s*)?Wa(shington\s*)?Po(st)?|WGBH|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
+        pattern=r'Palm\s*Beach\s*(Daily\s*News|Post)|ABC|Alex\s*Yablon|(Andrew\s*)?Marra|Arianna(\s*Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie\s*Rose|China\s*Daily|CNBC|CNN(politics?)?|Conchita|Sarnoff|(?<!Virgin[-\s]Islands[-\s])Daily\s*(Mail|News|Telegraph)|(David\s*)?Pecker|Ed\s*Krassenstein|(Emily\s*)?Michot|Ezra\s*Klein|(George\s*)?Stephanopoulus|Globe\s*and\s*Mail|Graydon(\s*Carter)?|Huffington|Ingram, David|(James\s*)?Patterson|Jonathan\s*Karl|Julie\s*(K.?\s*)?Brown|(Katie\s*)?Couric|Miami\s*Herald|(Michele\s*)?Dargan|(National\s*)?Enquirer|(The\s*)?N(ew\s*)?Y(ork\s*)?(P(ost)?|T(imes)?)|(The\s*)?New\s*Yorker|NYer|PERVERSION\s*OF\s*JUSTICE|Politico|(Sean\s*)?Hannity|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|(The\s*)?Wa(shington\s*)?Po(st)?|Viceland|Vick[iy]\s*Ward|Vox|WGBH|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
         emailers = {
             EDWARD_EPSTEIN: 'no relation to Jeffrey',
             'James Hill': 'ABC',
@@ -409,6 +408,7 @@ HIGHLIGHTED_GROUPS = [
         pattern=r"Henry Holt|(Matt(hew)? )?Hiltzi[gk]",
         emailers = {
             AL_SECKEL: 'husband of Isabel Maxwell and Mindshift conference organizer who fell off a cliff',
+            'Barnaby Marsh': 'co-founder of Saint Partners, a philanthropy services company',
             CHRISTINA_GALBRAITH: None,
             IAN_OSBORNE: f"{OSBORNE_LLP} reputation repairer possibly hired by Epstein ca. 2011-06",
             MICHAEL_SITRICK: None,
@@ -447,9 +447,8 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='scholar',
         style='light_goldenrod2',
-        pattern=r'Alain Forget|Brotherton|Carl\s*Sagan|Columbia|David Grosof|J(ames|im)\s*Watson|(Lord\s*)?Martin\s*Rees|MIT(\s*Media\s*Lab)?|Media\s*Lab|Minsky|Moshe\s*Hoffman|((Noam|Valeria)\s*)?Chomsky|Praluent|Regeneron|(Richard\s*)?Dawkins|Sanofi|Stanford|(Stephen\s*)?Hawking|(Steven?\s*)?Pinker|UCLA',
+        pattern=r'Alain Forget|Brotherton|Carl\s*Sagan|Columbia|David Grosof|J(ames|im)\s*Watson|(Lord\s*)?Martin\s*Rees|MIT(\s*Media\s*Lab)?|Media\s*Lab|Minsky|((Noam|Valeria)\s*)?Chomsky|Praluent|Regeneron|(Richard\s*)?Dawkins|Sanofi|Stanford|(Stephen\s*)?Hawking|(Steven?\s*)?Pinker|UCLA',
         emailers = {
-            'Barnaby Marsh': None,
             DAVID_HAIG: None,
             JOSCHA_BACH: 'cognitive science / AI research',
             'Daniel Kahneman': 'Nobel economic sciences laureate and cognitivie psychologist (?)',
@@ -460,14 +459,14 @@ HIGHLIGHTED_GROUPS = [
             PETER_ATTIA: 'longevity medicine',
             ROBERT_TRIVERS: 'evolutionary biology',
             ROGER_SCHANK: 'Teachers College, Columbia University',
-            STEVEN_PFEIFFER: None,
         },
     ),
     HighlightedGroup(
         label='tech bro',
         style='bright_cyan',
-        pattern=r"AG?I|Chamath|Palihapitiya|Drew\s*Houston|Eric\sSchmidt|(Mark\s*)?Zuckerberg|Masa(yoshi)?(\sSon)?|Najeev|Palantir|(Peter\s)?Th(ie|ei)l|Sergey\s*Brin|Silicon\s*Valley|Softbank|SpaceX|Tim\s*Ferriss?",
+        pattern=r"AG?I|Chamath|Palihapitiya|Drew\s*Houston|Eric\s*Schmidt|Greylock(\s*Partners)?|(?<!Moshe\s)Hoffmand?|LinkedIn|(Mark\s*)?Zuckerberg|Masa(yoshi)?(\sSon)?|Najeev|Palantir|(Peter\s)?Th(ie|ei)l|Sergey\s*Brin|Silicon\s*Valley|Softbank|SpaceX|Tim\s*Ferriss?",
         emailers = {
+            'Auren Hoffman': 'CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp',
             ELON_MUSK: 'father of Mecha-Hitler',
             PETER_THIEL: 'Paypal mafia member, founder of Palantir, early Facebook investor, reactionary',
             REID_HOFFMAN: 'PayPal mafia member, founder of LinkedIn',
@@ -477,7 +476,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='trump',
         style='red3 bold',
-        pattern=r"@?realDonaldTrump|\bDJ?T\b|(Donald\s+(J\.\s+)?)?Trump(ism)?|Don(ald| *Jr)(?! Rubin)|(Madeleine\s*)?Westerhout|Mar[-\s]*a[-\s]*Lago|(Marla\s*)?Maples|(Matt(hew)? )?Calamari|\bMatt C\b|Melania|(Michael (J.? )?)?Boccio|Roger\s+Stone|rona|(Alan\s*)?Weiss?elberg",
+        pattern=r"@?realDonaldTrump|\bDJ?T\b|(Donald\s+(J\.\s+)?)?Trump(ism)?|Don(ald| *Jr)(?! Rubin)|Ivana|(Madeleine\s*)?Westerhout|Mar[-\s]*a[-\s]*Lago|(Marla\s*)?Maples|(Matt(hew)? )?Calamari|\bMatt C\b|Melania|(Michael (J.? )?)?Boccio|Roger\s+Stone|rona|(Alan\s*)?Weiss?elberg",
         emailers = {
             'Bruce Moskowitz': "'Trump's health guy' according to Epstein",
         }
@@ -490,7 +489,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label=VIRGIN_ISLANDS,
         style='sea_green1',
-        pattern=r'Bahamas|Dominican\s*Republic|(Great|Little)\s*St.?\s*James|Haiti(an)?|(Kenneth E\. )?Mapp|Palm\s*Beach(?!\s*Post)|PBI|S(ain)?t.?\s*Thomas|USVI|VI|(The\s*)?Virgin\s*Islands(\s*Daily\s*News)?',  # TODO: VI Daily News should be yellow but it's hard bc Daily News xists
+        pattern=r'Bahamas|Dominican\s*Republic|(Great|Little)\s*St.?\s*James|Haiti(an)?|(John\s*)deJongh(\s*Jr\.?)|(Kenneth E\. )?Mapp|Palm\s*Beach(?!\s*Post)|PBI|S(ain)?t.?\s*Thomas|USVI|VI|(The\s*)?Virgin\s*Islands(\s*Daily\s*News)?',  # TODO: VI Daily News should be yellow but it's hard bc Daily News xists
         emailers = {
             CECILE_DE_JONGH: f'First lady of the Virgin Islands 2007-2015',
             STACEY_PLASKETT: 'non-voting member of Congress',
