@@ -466,7 +466,7 @@ HIGHLIGHTED_GROUPS = [
         style='bright_cyan',
         pattern=r"AG?I|Chamath|Palihapitiya|Drew\s*Houston|Eric\s*Schmidt|Greylock(\s*Partners)?|(?<!Moshe\s)Hoffmand?|LinkedIn|(Mark\s*)?Zuckerberg|Masa(yoshi)?(\sSon)?|Najeev|Palantir|(Peter\s)?Th(ie|ei)l|Sergey\s*Brin|Silicon\s*Valley|Softbank|SpaceX|Tim\s*Ferriss?",
         emailers = {
-            'Auren Hoffman': 'CEO of SafeGraph, a firm that gathers location data from mobile devices',
+            'Auren Hoffman': 'CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp',
             ELON_MUSK: 'father of Mecha-Hitler',
             PETER_THIEL: 'Paypal mafia member, founder of Palantir, early Facebook investor, reactionary',
             REID_HOFFMAN: 'PayPal mafia member, founder of LinkedIn',
@@ -489,7 +489,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label=VIRGIN_ISLANDS,
         style='sea_green1',
-        pattern=r'Bahamas|Dominican\s*Republic|(Great|Little)\s*St.?\s*James|Haiti(an)?|(Kenneth E\. )?Mapp|Palm\s*Beach(?!\s*Post)|PBI|S(ain)?t.?\s*Thomas|USVI|VI|(The\s*)?Virgin\s*Islands(\s*Daily\s*News)?',  # TODO: VI Daily News should be yellow but it's hard bc Daily News xists
+        pattern=r'Bahamas|Dominican\s*Republic|(Great|Little)\s*St.?\s*James|Haiti(an)?|(John\s*)deJongh(\s*Jr\.?)|(Kenneth E\. )?Mapp|Palm\s*Beach(?!\s*Post)|PBI|S(ain)?t.?\s*Thomas|USVI|VI|(The\s*)?Virgin\s*Islands(\s*Daily\s*News)?',  # TODO: VI Daily News should be yellow but it's hard bc Daily News xists
         emailers = {
             CECILE_DE_JONGH: f'First lady of the Virgin Islands 2007-2015',
             STACEY_PLASKETT: 'non-voting member of Congress',
