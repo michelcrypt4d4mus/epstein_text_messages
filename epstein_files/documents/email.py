@@ -461,16 +461,13 @@ class Email(CommunicationDocument):
 
     def _recipients_txt(self) -> Text:
         """Text object with comma separated colored versions of all recipients."""
-        recipients = self.recipients if len(self.recipients) > 0 else [UNKNOWN]
-        recipients_txt = Text('')
+        recipients = [r or UNKNOWN for r in self.recipients] if len(self.recipients) > 0 else [UNKNOWN]
 
-        for i, recipient in enumerate(recipients):
-            recipient = recipient or UNKNOWN
-            recipient_str = recipient if (' ' not in recipient or len(recipients) < 3) else recipient.split()[-1]
-            recipients_txt.append(', ' if i > 0 else '')
-            recipients_txt.append(recipient_str, style=get_style_for_name(recipient))
-
-        return recipients_txt
+        # Use just the last name for each recipient if there's 3 or more recipients
+        return join_texts([
+            Text(r if (' ' not in r or len(recipients) < 3) else r.split()[-1], style=get_style_for_name(r))
+            for r in recipients
+        ], join=', ')
 
     def _repair(self) -> None:
         """Repair particularly janky files."""
