@@ -394,11 +394,7 @@ class Email(CommunicationDocument):
 
     def _cleaned_up_text(self) -> str:
         """Add newline after headers in text if actual header wasn't empty, remove bad lines, etc."""
-        if self.header.was_initially_empty:
-            text = self.text
-        else:
-            text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', self.text).strip()
-
+        text = self.text if self.header.was_initially_empty else _add_line_breaks(self.text)
         text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
 
         for name, signature_regex in EMAIL_SIGNATURES.items():
@@ -499,7 +495,7 @@ class Email(CommunicationDocument):
             for r in recipients
         ], join=', ')
 
-    def _merge_lines(self, idx: int) -> None:
+    def _merge_lines(self, idx: int, idx2: int | None = None) -> None:
         """Combine lines numbered 'line_idx' and 'line_idx + 1' into a single line."""
         lines = self.lines[0:idx] + [self.lines[idx] + ' ' + self.lines[idx + 1]] + self.lines[idx + 2:]
         self._set_computed_fields(lines=lines)
@@ -614,8 +610,7 @@ class Email(CommunicationDocument):
 
             lines += text.split('\n')[num_lines_to_skip:]
             text = self.header.rewrite_header() + '\n' + '\n'.join(lines)
-            # This was skipped earlier when _cleaned_up_text() was called w/a broken header so we do it now
-            text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', text).strip()
+            text = _add_line_breaks(text)  # This was skipped when _cleaned_up_text() w/a broken header so we do it now
             self.rewritten_header_ids.add(self.file_id)
 
         panel_txt = highlighter(text)
@@ -631,6 +626,10 @@ class Email(CommunicationDocument):
 
         if should_rewrite_header:
             self.log_top_lines(self.header.num_header_rows + 4, f'Original header:', logging.INFO)
+
+
+def _add_line_breaks(email_text: str) -> str:
+    return EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', email_text).strip()
 
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:
