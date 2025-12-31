@@ -495,11 +495,7 @@ class Email(CommunicationDocument):
 
     def _merge_lines(self, idx: int) -> None:
         """Combine lines numbered 'line_idx' and 'line_idx + 1' into a single line."""
-        if idx == 0:
-            lines = [self.lines[0] + self.lines[1]] + self.lines[2:]
-        else:
-            lines = self.lines[0:idx] + [self.lines[idx] + self.lines[idx + 1]] + self.lines[idx + 2:]
-
+        lines = self.lines[0:idx] + [self.lines[idx] + self.lines[idx + 1]] + self.lines[idx + 2:]
         self._set_computed_fields(lines=lines)
 
     def _repair(self) -> None:
@@ -509,7 +505,7 @@ class Email(CommunicationDocument):
 
         if self.file_id in FILE_IDS_WITH_BAD_FIRST_LINES:
             self.text = '\n'.join(self.lines[1:])
-        elif self.file_id == '031442':              # Merge 1st and 2nd rows
+        elif self.file_id in ['031442']:  # Merge 1st and 2nd rows
             self._merge_lines(0)
         elif self.file_id in ['021729', '029282', '030626', '031384', '033512']:  # Merge 3rd and 4th rows
             self._merge_lines(2)
