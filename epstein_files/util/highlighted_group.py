@@ -467,7 +467,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='southeast_asia',
         style='light_salmon3 bold',
-        pattern=r'Bangkok|Burm(a|ese)|Cambodian?|Laos|Myanmar|Thai(land)?|Vietnam(ese)?',
+        pattern=r'Bangkok|Burm(a|ese)|Cambodian?|Laos|Myan?mar|Thai(land)?|Vietnam(ese)?',
     ),
     HighlightedGroup(
         label='tech bro',
