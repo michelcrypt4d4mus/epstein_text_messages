@@ -762,7 +762,6 @@ DUPLICATE_FILE_IDS = {
     '010723': 'redacted version of 025353',
     '012135': 'redacted version of 012130',
     '031415': 'the same as 031396',
-    '029357': 'the same as (?) 028887',
     '025210': 'the same as 025205',
     '019864': 'the same as 019849',
     '033481': 'the same as 033480',
@@ -771,6 +770,7 @@ DUPLICATE_FILE_IDS = {
     '016574': 'the same as 016554',
     '029405': 'the same as 029416',
     '028965': 'the same as 028928',
+    '029357': 'the same as (?) 028887',
     '029356': 'zoomed in section of 029355',
 }
 
@@ -1210,11 +1210,11 @@ FILE_DESCRIPTIONS = {
     '019476': f"{DAVID_BLAINE_VISA_LETTER} (probably {SVETLANA_POZHIDAEVA}?) 2015-06-01",
     '031670': f"letter from General Mike Flynn's lawyers to senators Mark Warner & Richard Burr about subpoena",
     '026011': f"letter from Gennady Mashtalyar to Epstein about algorithmic trading ca. 2016-06-24",  # date is based on Brexit reference but he could be backtesting
-    '029301': f"letter from Michael J. Boccio, former lawyer at the Trump Organization 2011-08-07",
+    '029301': f"letter from {MICHAEL_J_BOCCIO}, former lawyer at the Trump Organization 2011-08-07",
     '022405': f"letter from {NOAM_CHOMSKY} attesting to Epstein's good character",
     '026248': f'letter from Trump lawyer Don McGahn to Devin Nunes (R-CA) about FISA courts and Trump',
     '026134': f'letter to someone named George about investment opportunities in the Ukraine banking sector',
-    '029304': f"Trump recommendation letter for recently departed Trump Organization lawyer Michael J. Boccio",
+    '029304': f"Trump recommendation letter for recently departed Trump Organization lawyer {MICHAEL_J_BOCCIO}",
     '031278': f"{REDACTED} email, quoted replies are from {STEVEN_HOFFENBERG} about James Patterson's book",  # Quoted replies are in 019109
     '028928': WEINBERG_ABC_LETTER,
     '028965': WEINBERG_ABC_LETTER,
@@ -1256,8 +1256,8 @@ FILE_DESCRIPTIONS = {
     '031743': f'a few pages describing the internet as a "New Nation State" (Network State?)',
     '018703': f"{ANDRES_SERRANO} artist statement about Trump objects",
     '028281': f'art show flier for "The House Of The Nobleman" curated by Wolfe Von Lenkiewicz & Victoria Golembiovskaya',
-    '025147': f'Brockman hot list Frankfurt Book Fair (includes article about Silk Road/Ross Ulbricht) 2016-10-23',
     '023438': f"Brockman announcemeent of auction of 'Noise' by Daniel Kahneman, Olivier Sibony, and Cass Sunstein",
+    '025147': f'Brockman hot list Frankfurt Book Fair (includes article about Silk Road/Ross Ulbricht) 2016-10-23',
     '031425': f'completely redacted email from {SCOTT_J_LINK}',
     '012718': f"{CVRA} congressional record ca. 2011-06-17",
     '018224': f"conversation with {LAWRENCE_KRAUSS}?",
@@ -1269,7 +1269,7 @@ FILE_DESCRIPTIONS = {
     '031184': f"{DIANA_DEGETTES_CAMPAIGN} fundraiser invitation",
     '027009': f"{EHUD_BARAK} speech to AIPAC 2013-03-03",
     '025540': f"Epstein's rough draft of his side of the story?",
-    '024117': f"FAQ about anti-money laundering and terrorist financing law in the U.S.",
+    '024117': f"FAQ about anti-money laundering (AML) and terrorist financing (CFT) laws in the U.S.",
     '027071': f"{FEMALE_HEALTH_COMPANY} brochure request donations for female condoms in Uganda",
     '027074': f"{FEMALE_HEALTH_COMPANY} pitch deck (USAID was a customer)",
     '022780': FLIGHT_LOGS,
@@ -1309,7 +1309,7 @@ FILE_DESCRIPTIONS = {
     '029354': f"{OBAMA_JOKE} ca. 2013-07-26",
     '026851': f"Politifact lying politicians chart 2016-07-26",
     '022367': f"{RESUME_OF} Jack J Grynberg 2014-07",
-    '029302': f"{RESUME_OF} Michael J. Boccio 2011-08-07",
+    '029302': f"{RESUME_OF} {MICHAEL_J_BOCCIO}, former lawyer at the Trump Organization 2011-08-07",
     '015671': f"{RESUME_OF} Robin Solomon ca. 2015-06-02",  # She left Mount Sinai at some point in 2015
     '015672': f"{RESUME_OF} Robin Solomon ca. 2015-06-02",  # She left Mount Sinai at some point in 2015
     '019448': f"Haitian business investment proposal called Jacmel",
@@ -1348,6 +1348,7 @@ UNINTERESTING_PREFIXES = [
     CHALLENGES_OF_AI,
     CHINA_DAILY_ARTICLE,
     CNN,
+    'completely redacted',
     CVRA,
     DAILY_MAIL_ARTICLE,
     DAILY_TELEGRAPH_ARTICLE,
