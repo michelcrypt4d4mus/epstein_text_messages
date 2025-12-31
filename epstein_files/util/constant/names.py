@@ -186,7 +186,7 @@ VIRGIN_ISLANDS = 'Virgin Islands'
 # First and last names that should be made part of a highlighting regex for emailers
 NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Al', 'Alfredo', 'Allen', 'Amanda', 'Andres', 'Andrew',
-    'Barry', 'Bill', 'Black', 'Brad', 'Bruce',
+    'Bard', 'Barry', 'Bill', 'Black', 'Brad', 'Bruce',
     'Carolyn', 'Chris', 'Christina',
     'Dan', 'Daniel', 'Danny', 'Darren', 'Dave', 'David',
     'Ed', 'Edward', 'Edwards', 'Epstein', 'Eric', 'Erika', 'Etienne',

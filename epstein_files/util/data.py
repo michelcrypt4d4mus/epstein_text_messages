@@ -54,6 +54,18 @@ def extract_datetime(s: str) -> datetime | None:
     return parse(date_str, tzinfos=TIMEZONE_INFO)
 
 
+def extract_last_name(name: str) -> str:
+    if ' ' not in name:
+        return name
+
+    names = name.split()
+
+    if names[-1].startswith('Jr') and len(names[-1]) <= 3:
+        return ' '.join(names[-2:])
+    else:
+        return names[-1]
+
+
 def flatten(_list: list[list[T]]) -> list[T]:
     return list(itertools.chain.from_iterable(_list))
 

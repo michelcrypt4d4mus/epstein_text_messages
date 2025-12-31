@@ -5,6 +5,7 @@ from datetime import datetime
 
 import datefinder
 from rich.markup import escape
+from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_REGEX, Document
@@ -34,6 +35,10 @@ class OtherFile(Document):
     def description(self) -> Text:
         """One line summary mostly for logging."""
         return super().description().append(CLOSE_PROPERTIES_CHAR)
+
+    def description_panel(self) -> Panel:
+        """Panelized description() with info_txt(), used in search results."""
+        return super().description_panel(include_hints=True)
 
     def highlighted_preview_text(self) -> Text:
         try:

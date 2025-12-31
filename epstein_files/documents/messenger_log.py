@@ -23,10 +23,6 @@ class MessengerLog(CommunicationDocument):
     """Class representing one iMessage log file (one conversation between Epstein and some counterparty)."""
     _messages: list[TextMessage] = field(default_factory=list)
 
-    def description_panel(self) -> Panel:
-        """Panelized description() with info_txt(), used in search results."""
-        return super().description_panel(include_hints=False)
-
     def first_message_at(self, name: str | None) -> datetime:
         return self.messages_by(name)[0].timestamp()
 
