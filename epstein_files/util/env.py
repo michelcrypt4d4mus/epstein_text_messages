@@ -20,7 +20,6 @@ parser.add_argument('--name', '-n', action='append', dest='names', help='specify
 parser.add_argument('--output-emails', '-oe', action='store_true', help='generate other files section')
 parser.add_argument('--output-other-files', '-oo', action='store_true', help='generate other files section')
 parser.add_argument('--output-texts', '-ot', action='store_true', help='generate other files section')
-parser.add_argument('--output-unlabeled', '-ou', action='store_true', help='only show unlabeled other files (for debugging)')
 parser.add_argument('--pickled', '-p', action='store_true', help='use pickled EpsteinFiles object')
 parser.add_argument('--overwrite-pickle', '-op', action='store_true', help='generate new pickled EpsteinFiles object')
 parser.add_argument('--sort-alphabetical', '-alpha', action='store_true', help='sort emailers alphabetically in counts table')
@@ -64,7 +63,6 @@ else:
 datefinder_logger = logging.getLogger('datefinder')  # Suppress annoying output
 datefinder_logger.setLevel(logger.level)
 
-args.output_other_files = args.output_other_files or args.output_unlabeled
 specified_names: list[str | None] = [None if n == 'None' else n for n in (args.names or [])]
 
 if not (args.output_texts or args.output_emails or args.output_other_files):
