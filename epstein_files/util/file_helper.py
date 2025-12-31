@@ -24,7 +24,8 @@ WORD_COUNT_HTML_PATH = HTML_DIR.joinpath('epstein_emails_word_count.html')
 EPSTEIN_WORD_COUNT_HTML_PATH = HTML_DIR.joinpath('epstein_texts_and_emails_word_count.html')
 PICKLED_PATH = Path("the_epstein_files.pkl.gz")
 
-FILE_ID_REGEX = re.compile(fr".*{HOUSE_OVERSIGHT_PREFIX}(\d+)(_\d+)?(\.txt)?")
+FILE_STEM_REGEX = re.compile(fr"{HOUSE_OVERSIGHT_PREFIX}(\d{{6}})")
+FILE_ID_REGEX = re.compile(fr".*{FILE_STEM_REGEX.pattern}(_\d{1,2})?(\.txt)?")
 FILENAME_LENGTH = len(HOUSE_OVERSIGHT_PREFIX) + 6
 KB = 1024
 MB = KB * KB
@@ -32,6 +33,18 @@ MB = KB * KB
 
 def build_filename_for_id(id: str | int, include_txt_suffix: bool = False) -> str:
     return f"{HOUSE_OVERSIGHT_PREFIX}{int(id):06d}" + ('.txt' if include_txt_suffix else '')
+
+
+def build_file_stem(filename_or_id: int | str) -> str:
+    if isinstance(filename_or_id, str) and filename_or_id.startswith(HOUSE_OVERSIGHT_PREFIX):
+        file_stem = str(filename_or_id)
+    else:
+        file_stem = build_filename_for_id(filename_or_id)
+
+    if not FILE_STEM_REGEX.match(file_stem):
+        raise RuntimeError(f"Built invalid file stem '{file_stem}' from filename_or_id={filename_or_id} (pattern='{FILE_STEM_REGEX.pattern}')")
+
+    return file_stem
 
 
 def extract_file_id(filename: str | Path) -> str:

@@ -1,18 +1,22 @@
 import re
 import urllib.parse
+from typing import Literal
 
 from inflection import parameterize
 from rich.text import Text
 
-from epstein_files.util.constant.strings import EMAIL, HOUSE_OVERSIGHT_PREFIX, TEXT_MESSAGE, SiteType
-from epstein_files.util.file_helper import build_filename_for_id
+from epstein_files.util.constant.strings import EMAIL, TEXT_MESSAGE, SiteType
+from epstein_files.util.file_helper import build_file_stem, build_filename_for_id
 
 # Style stuff
 ARCHIVE_LINK_COLOR = 'slate_blue3'
 TEXT_LINK = 'text_link'
 
 # External site names
-EPSTEIN_WEB = 'EpsteinWeb'.lower()
+ExternalSite = Literal['epstein.media', 'epsteinify', 'EpsteinWeb']
+
+EPSTEIN_MEDIA = 'epstein.media'
+EPSTEIN_WEB = 'EpsteinWeb'
 EPSTEINIFY = 'epsteinify'
 JMAIL = 'Jmail'
 
@@ -21,8 +25,8 @@ ATTRIBUTIONS_URL = 'https://github.com/michelcrypt4d4mus/epstein_text_messages/b
 COFFEEZILLA_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=061ce61c9e70bdfd'
 COURIER_NEWSROOM_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
 EPSTEINIFY_URL = 'https://epsteinify.com'
+EPSTEIN_MEDIA_URL = 'https://www.epstein.media'
 EPSTEIN_WEB_URL = 'https://epsteinweb.org'
-EPSTEIN_WEB_DOC_URL = f'{EPSTEIN_WEB_URL}/wp-content/uploads/epstein_evidence/images'
 JMAIL_URL = 'https://jmail.world'
 OVERSIGHT_REPUBLICANS_PRESSER_URL = 'https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/'
 RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_'
@@ -34,12 +38,25 @@ SITE_URLS: dict[SiteType, str] = {
     TEXT_MESSAGE: 'https://michelcrypt4d4mus.github.io/epstein_text_messages/',
 }
 
+DOC_LINK_BASE_URLS: dict[ExternalSite, str] = {
+    EPSTEIN_MEDIA: f"{EPSTEIN_MEDIA_URL}/files",
+    EPSTEIN_WEB: f'{EPSTEIN_WEB_URL}/wp-content/uploads/epstein_evidence/images',
+    EPSTEINIFY: f"{EPSTEINIFY_URL}/document",
+}
 
+
+# TODO: epsteinify.com seems to be down as of 2025-12-30, switched to epstein.web for links
 epsteinify_api_url = lambda file_id: f"{EPSTEINIFY_URL}/api/documents/HOUSE_OVERSIGHT_{file_id}"
-epsteinify_doc_url = lambda file_stem: f"{EPSTEINIFY_URL}/document/{file_stem}"
+epsteinify_doc_link_markup = lambda filename_or_id, style = TEXT_LINK: external_doc_link_markup(EPSTEINIFY, filename_or_id, style)
+epsteinify_doc_link_txt = lambda filename_or_id, style = TEXT_LINK: Text.from_markup(external_doc_link_markup(filename_or_id, style))
+epsteinify_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[EPSTEINIFY], file_stem)
 epsteinify_name_url = lambda name: f"{EPSTEINIFY_URL}/?name={urllib.parse.quote(name)}"
 
-epstein_web_doc_url = lambda file_stem: f"{EPSTEIN_WEB_DOC_URL}/{file_stem}.jpg"
+epstein_media_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[EPSTEIN_MEDIA], file_stem)
+epstein_media_doc_link_markup = lambda filename_or_id, style = TEXT_LINK: external_doc_link_markup(EPSTEIN_MEDIA, filename_or_id, style)
+epstein_media_doc_link_txt = lambda filename_or_id, style = TEXT_LINK: Text.from_markup(epstein_media_doc_link_markup(filename_or_id, style))
+
+epstein_web_doc_url = lambda file_stem: f"{DOC_LINK_BASE_URLS[EPSTEIN_WEB]}/{file_stem}.jpg"
 epstein_web_person_url = lambda person: f"{EPSTEIN_WEB_URL}/{parameterize(person)}"
 epstein_web_search_url = lambda s: f"{EPSTEIN_WEB_URL}/?ewmfileq={urllib.parse.quote(s)}&ewmfilepp=20"
 
@@ -49,25 +66,25 @@ search_jmail_url = lambda txt: f"{JMAIL_URL}/search?q={urllib.parse.quote(txt)}"
 search_twitter_url = lambda txt: f"https://x.com/search?q={urllib.parse.quote(txt)}&src=typed_query&f=live"
 
 
-def epsteinify_doc_link_markup(filename_or_id: int | str, style: str = TEXT_LINK) -> str:
-    if isinstance(filename_or_id, int) or not filename_or_id.startswith(HOUSE_OVERSIGHT_PREFIX):
-        file_stem = build_filename_for_id(filename_or_id)
-    else:
-        file_stem = str(filename_or_id)
-
-    return link_markup(epsteinify_doc_url(file_stem), file_stem, style)
+def build_doc_url(base_url: str, filename_or_id: int | str) -> str:
+    return f"{base_url}/{build_file_stem(filename_or_id)}"
 
 
-def epsteinify_doc_link_txt(filename_or_id: int | str, style: str = TEXT_LINK) -> Text:
-    return Text.from_markup(epsteinify_doc_link_markup(filename_or_id, style))
+def external_doc_link_markup(site: ExternalSite, filename_or_id: int | str, style: str = TEXT_LINK) -> str:
+    url = build_doc_url(DOC_LINK_BASE_URLS[site], filename_or_id)
+    return link_markup(url, build_file_stem(filename_or_id), style)
+
+
+def external_doc_link_txt(site: ExternalSite, filename_or_id: int | str, style: str = TEXT_LINK) -> Text:
+    return Text.from_markup(external_doc_link_markup(site, filename_or_id, style))
 
 
 def link_markup(
-        url: str,
-        link_text: str | None = None,
-        style: str | None = ARCHIVE_LINK_COLOR,
-        underline: bool = True
-    ) -> str:
+    url: str,
+    link_text: str | None = None,
+    style: str | None = ARCHIVE_LINK_COLOR,
+    underline: bool = True
+) -> str:
     link_text = link_text or url.removeprefix('https://')
     style = ((style or '') + (' underline' if underline else '')).strip()
     return (f"[{style}][link={url}]{link_text}[/link][/{style}]")

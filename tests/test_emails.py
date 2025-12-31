@@ -1,4 +1,3 @@
-from epstein_files.documents.email import Email
 from epstein_files.util.constant.names import *
 from epstein_files.util.data import dict_sets_to_lists
 
@@ -86,7 +85,7 @@ EMAIL_AUTHOR_COUNTS = {
     JENNIFER_JACQUET: 1,
     "Jeremy Rubin": 3,
     JES_STALEY: 2,
-    "Jessica Cadwell": 7,
+    JESSICA_CADWELL: 7,
     JIDE_ZEITLIN: 3,
     JOHN_BROCKMAN: 3,
     JOHN_PAGE: 2,
@@ -209,7 +208,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 71,
+    None: 72,
     "ACT for America": 1,
     "Alan Dershowitz": 15,
     'Alan Dlugash': 1,
@@ -294,9 +293,9 @@ EMAIL_RECIPIENT_COUNTS = {
     JEAN_HUGUEN: 1,
     JEAN_LUC_BRUNEL: 10,
     JEFF_FULLER: 2,
-    JEFFREY_EPSTEIN: 1547,
+    JEFFREY_EPSTEIN: 1546,
     JES_STALEY: 7,
-    "Jessica Cadwell": 5,
+    JESSICA_CADWELL: 6,
     "Joel": 2,
     "Joel Dunn": 1,
     "John Page": 2,
@@ -514,6 +513,7 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     "033027",
     "033205",
     "033242",
+    '033274',
     "033345",
     "033428",
     "033458",
@@ -900,7 +900,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     "David Ingram": 9,
     "Deepak Chopra": 19,
     "Jeffrey Epstein": 3374,
-    "Jessica Cadwell": 57,
+    JESSICA_CADWELL: 57,
     KEN_JENNE: 1,
     LARRY_SUMMERS: 232,
     "Lawrence Krauss": 78,
