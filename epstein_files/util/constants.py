@@ -769,6 +769,7 @@ DUPLICATE_FILE_IDS = {
     '016616': 'the same as 016554',
     '016574': 'the same as 016554',
     '029405': 'the same as 029416',
+    '028965': 'the same as 028928',
     '029356': 'zoomed in section of 029355',
 }
 
