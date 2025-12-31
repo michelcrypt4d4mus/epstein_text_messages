@@ -459,7 +459,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='tech bro',
         style='bright_cyan',
-        pattern=r"AG?I|Chamath|Palihapitiya|Drew\s*Houston|Eric\s*Schmidt|Greylock(\s*Partners)?|(?<!(Dustin|Moshe)\s)Hoffmand?|LinkedIn|(Mark\s*)?Zuckerberg|Masa(yoshi)?(\sSon)?|Najeev|Nathan\s*Myhrvold|Palantir|(Peter\s)?Th(ie|ei)l|Pierre\s*Omidyar|Sergey\s*Brin|Silicon\s*Valley|Softbank|SpaceX|Tim\s*Ferriss?|WikiLeak(ed|s)",
+        pattern=r"AG?I|Chamath|Palihapitiya|Drew\s*Houston|Eric\s*Schmidt|Greylock(\s*Partners)?|(?<!(ustin|Moshe)\s)Hoffmand?|LinkedIn|(Mark\s*)?Zuckerberg|Masa(yoshi)?(\sSon)?|Najeev|Nathan\s*Myhrvold|Palantir|(Peter\s)?Th(ie|ei)l|Pierre\s*Omidyar|Sergey\s*Brin|Silicon\s*Valley|Softbank|SpaceX|Tim\s*Ferriss?|WikiLeak(ed|s)",
         emailers = {
             'Auren Hoffman': 'CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp',
             ELON_MUSK: 'father of Mecha-Hitler',
