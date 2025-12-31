@@ -35,6 +35,7 @@ from epstein_files.util.search_result import SearchResult
 DEVICE_SIGNATURE = 'Device Signature'
 FIRST_FEW_LINES = 'First Few Lines'
 DEVICE_SIGNATURE_PADDING = (1, 0)
+INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [UNKNOWN, 'ACT for America', 'BS Stern', 'Intelligence Squared']
 NOT_INCLUDED_EMAILERS = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
 
 
@@ -242,7 +243,11 @@ class EpsteinFiles:
         self.print_emails_table_for(_author)
 
         for email in emails:
-            console.print(email)
+            if email.is_duplicate:
+                console.print(email.duplicate_file_txt())
+                console.line
+            else:
+                console.print(email)
 
         return emails
 
@@ -332,7 +337,8 @@ class EpsteinFiles:
         console.print(f"Found {imessage_msg_count} total text messages in {len(self.imessage_logs)} conversations.")
         console.print(f"(Last deploy found 4668 messages in 77 conversations)", style='dim')
 
-    def print_other_files_table(self) -> None:
+    def print_other_files_table(self) -> list[OtherFile]:
+        """Returns the OtherFiles that were interesting enough to print."""
         interesting_files = [doc for doc in self.other_files if args.all_other_files or doc.is_interesting()]
         header_pfx = '' if args.all_other_files else 'Selected '
         print_section_header(f"{FIRST_FEW_LINES} of {len(interesting_files)} {header_pfx}Files That Are Neither Emails Nor Text Msgs")
@@ -350,9 +356,14 @@ class EpsteinFiles:
 
         for doc in interesting_files:
             link_and_info = [doc.raw_document_link_txt(), *doc.hints()]
-            preview_text = doc.highlighted_preview_text()
             date_str = doc.date_str()
-            row_style = ''
+
+            if doc.is_duplicate:
+                preview_text = doc.duplicate_file_txt()
+                row_style = ' dim'
+            else:
+                preview_text = doc.highlighted_preview_text()
+                row_style = ''
 
             table.add_row(
                 Group(*link_and_info),
@@ -363,8 +374,8 @@ class EpsteinFiles:
             )
 
         console.print(table)
-        num_skipped = len(self.other_files) - len(interesting_files)
-        logger.warning(f"Skipped {num_skipped} uninteresting files...")
+        logger.warning(f"Skipped {len(self.other_files) - len(interesting_files)} uninteresting files...")
+        return interesting_files
 
 
 def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Padding:
@@ -384,11 +395,11 @@ def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str]
 
 def is_ok_for_epstein_web(name: str | None) -> bool:
     """Return True if it's likely that EpsteinWeb has a page for this name."""
-    if name is None:
+    if name is None or ' ' not in name:
         return False
-    if '@' in name or '/' in name or name in JUNK_EMAILERS or name in KRASSNER_RECIPIENTS or name == UNKNOWN:
+    elif '@' in name or '/' in name or '??' in name:
         return False
-    elif name in ['ACT for America'] or ' ' not in name:
+    elif name in INVALID_FOR_EPSTEIN_WEB:
         return False
-    else:
-        return True
+
+    return True
