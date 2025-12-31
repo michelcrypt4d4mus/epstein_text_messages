@@ -495,7 +495,7 @@ class Email(CommunicationDocument):
 
     def _merge_lines(self, idx: int) -> None:
         """Combine lines numbered 'line_idx' and 'line_idx + 1' into a single line."""
-        lines = self.lines[0:idx] + [self.lines[idx] + self.lines[idx + 1]] + self.lines[idx + 2:]
+        lines = self.lines[0:idx] + [self.lines[idx] + ' ' + self.lines[idx + 1]] + self.lines[idx + 2:]
         self._set_computed_fields(lines=lines)
 
     def _repair(self) -> None:
