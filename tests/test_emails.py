@@ -146,7 +146,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Paul Krassner": 29,
     "Paul Morris": 6,
     "Paul Prosperi": 3,
-    "Paula": 2,
+    PAULA: 2,
     "Peggy Siegal": 8,
     PETER_ATTIA: 2,
     "Peter Green": 1,
@@ -374,7 +374,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Paul Barrett": 1,
     "Paul Krassner": 7,
     "Paul Morris": 1,
-    "Paula": 4,
+    PAULA: 4,
     "Peggy Siegal": 18,
     "Peter Aldhous": 2,
     "Peter Mandelson": 4,
@@ -651,7 +651,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         TERRY_KAFKA,
     ],
     "Sent via BlackBerry from T-Mobile": [
-        "Paula"
+        PAULA
     ],
     "Sent via tin can and string.": [
         "Mark Epstein"
@@ -820,7 +820,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my BlackBerry 10 smartphone.",
         "Sent from my iPhone"
     ],
-    "Paula": [
+    PAULA: [
         "Sent via BlackBerry from T-Mobile"
     ],
     "Peggy Siegal": [
