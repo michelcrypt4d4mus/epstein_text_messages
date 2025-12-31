@@ -1072,7 +1072,7 @@ FILE_DESCRIPTIONS = {
     '025939': f'{JANE_DOE_V_EPSTEIN_TRUMP} Affidavit of Jane Doe describing being raped by Epstein 2016-06-20',
     '025937': f'{JANE_DOE_V_EPSTEIN_TRUMP} Affidavit of Tiffany Doe describing Jane Doe being raped by Epstein and Trump 2016-06-20',
     '029398': f'{JANE_DOE_V_EPSTEIN_TRUMP} article in Law.com',
-    '026854': f"{JANE_DOE_V_EPSTEIN_TRUMP} civil docket",
+    '026854': f"{JANE_DOE_V_EPSTEIN_TRUMP} Civil Docket",
     '026384': f"{JANE_DOE_V_EPSTEIN_TRUMP} Complaint for rape and sexual abuse 2016-06-20",
     '013463': f'{JANE_DOE_V_EPSTEIN_TRUMP} Deposition of Scott Rothstein filed by {BRAD_EDWARDS} 2010-03-23',
     '029257': f'{JANE_DOE_V_EPSTEIN_TRUMP} factual allegations and identity of plaintiff Katie Johnson 2016-04-26',
