@@ -188,7 +188,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     KEN_STARR: re.compile(r'starr, ken|Ken(neth W.)?\s+starr?|starr', re.IGNORECASE),
     LANDON_THOMAS: re.compile(r'lando[nr] thomas( jr)?|thomas jr.?, lando[nr]', re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r'(La(wrence|rry).{1,5})?Summers?|^LH$|LHS|Ihsofficel', re.IGNORECASE),
-    LAWRANCE_VISOSKI: re.compile(r'La(rry|wrance) Visoski?', re.IGNORECASE),
+    LAWRANCE_VISOSKI: re.compile(r'La(rry|wrance) Visoski?|Lvjet', re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus|lawkrauss', re.IGNORECASE),
     LEON_BLACK: re.compile(r'Leon Black?', re.IGNORECASE),
     MANUELA_MARTINEZ: re.compile(fr'Manuela (- Mega Partners|Martinez)', re.IGNORECASE),
@@ -586,7 +586,7 @@ EMAIL_INFO = {
     '026298': EmailInfo(is_fwded_article=True),               # Written by someone else?
     '026755': EmailInfo(is_fwded_article=True),               # HuffPo
     '023627': EmailInfo(is_fwded_article=True),               # Wolff article about epstein
-    '030528': EmailInfo(is_fwded_article=True),               # Vicky Ward
+    '030528': EmailInfo(is_fwded_article=True),               # Vicky Ward article
     '018197': EmailInfo(is_fwded_article=True),               # Ray Takeyh article fwd
     '028648': EmailInfo(is_fwded_article=True),               # Ray Takeyh article fwd
     '028728': EmailInfo(is_fwded_article=True),               # WSJ forward to Larry Summers
@@ -594,7 +594,7 @@ EMAIL_INFO = {
     '028508': EmailInfo(is_fwded_article=True),               # nanosatellites article
     '013460': EmailInfo(is_fwded_article=True),               # Atlantic on Jim Yong Kim, Obama's World Bank Pick
     '028781': EmailInfo(is_fwded_article=True),               # Atlantic on Jim Yong Kim, Obama's World Bank Pick
-    '019845': EmailInfo(is_fwded_article=True),               # article on Preet Bharara
+    '019845': EmailInfo(is_fwded_article=True),               # Pro Publica article on Preet Bharara
     '029021': EmailInfo(is_fwded_article=True),               # article about bannon sent by Alain Forget
     '031688': EmailInfo(is_fwded_article=True),               # Bill Siegel fwd of email about hamas
     '026551': EmailInfo(is_fwded_article=True),               # Sultan bin Sulayem Ayatollah between the sheets

@@ -218,7 +218,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='europe',
         style='light_sky_blue3',
-        pattern=r'(Angela )?Merk(el|le)|Austria|(Benjamin\s*)?Harnwell|Berlin|Brexit(eers?)?|Brit(ain|ish)|Brussels|Cannes|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|Davos|ECB|EU|Europe(an)?(\s*Union)?|Geneva|Germany?|Gillard|Gree(ce|k)|Ital(ian|y)|Jacques|(Kevin\s*)?Rudd|Le\s*Pen|London|Macron|Melusine|Munich|(Natalia\s*)?Veselnitskaya|(Nicholas\s*)?Sarkozy|Nigel(\s*Farage)?|Oslo|Paris|Polish|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strauss[- ]?Kahn|Swed(en|ish)(?![-\s]+America)|Switzerland|(Tony\s)?Blair|Ukrain(e|ian)|Vienna|(Vitaly\s*)?Churkin|Zug',
+        pattern=r'(Angela )?Merk(el|le)|Austria|(Benjamin\s*)?Harnwell|Berlin|Brexit(eers?)?|Brit(ain|ish)|Brussels|Cannes|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|Davos|ECB|EU|Europe(an)?(\s*Union)?|Geneva|Germany?|Gillard|Gree(ce|k)|Ital(ian|y)|Jacques|(Kevin\s*)?Rudd|Le\s*Pen|London|Macron|Melusine|Munich|(Natalia\s*)?Veselnitskaya|(Nicholas\s*)?Sarkozy|Nigel(\s*Farage)?|Oslo|Paris|Polish|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strasbourg|Strauss[- ]?Kahn|Swed(en|ish)(?![-\s]+America)|Switzerland|(Tony\s)?Blair|Ukrain(e|ian)|Vienna|(Vitaly\s*)?Churkin|Zug',
         emailers = {
             ANDRZEJ_DUDA: 'former president of Poland',
             MIROSLAV_LAJCAK: 'Russia-friendly Slovakian politician, friend of Steve Bannon',
@@ -324,7 +324,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='law enforcement',
         style='color(24) bold',
-        pattern=r'ag|(Alicia\s*)?Valle|((Bob|Robert)\s*)?Mueller|(Byung\s)?Pak|CFTC|CIA|CIS|CVRA|Dep(artmen)?t\.?\s*of\s*(the\s*)?(Justice|Treasury)|DHS|DOJ|FBI|FCPA|FDIC|Federal\s*Bureau\s*of\s*Investigation|FinCEN|FINRA|FOIA|FTC|IRS|(James\s*)?Comey|(Jennifer\s*Shasky\s*)?Calvery|((Judge|Mark)\s*)?(Carney|Filip)|(Kirk )?Blouin|KYC|NIH|NS(A|C)|OCC|OFAC|(Lann?a\s*)?Belohlavek|(Michael\s*)?Reiter|OGE|Office\s*of\s*Government\s*Ethics|Police Code Enforcement|SCOTUS|SD(FL|NY)|Southern\s*District\s*of\s*(Florida|New\s*York)|SEC|Securities\s*and\s*Exchange\s*Commission|State\s*Dep(artmen)?t|Strzok|Supreme\s*Court|Treasury\s*(Dep(artmen)?t|Secretary)|TSA|USAID|(William\s*J\.?\s*)?Zloch',
+        pattern=r'ag|(Alicia\s*)?Valle|((Bob|Robert)\s*)?Mueller|(Byung\s)?Pak|CFTC|CIA|CIS|CVRA|Dep(artmen)?t\.?\s*of\s*(the\s*)?(Justice|Treasury)|DHS|DOJ|FBI|FCPA|FDIC|Federal\s*Bureau\s*of\s*Investigation|FinCEN|FINRA|FOIA|FTC|IRS|(James\s*)?Comey|(Jennifer\s*Shasky\s*)?Calvery|((Judge|Mark)\s*)?(Carney|Filip)|(Kirk )?Blouin|KYC|NIH|NS(A|C)|OCC|OFAC|(Lann?a\s*)?Belohlavek|(Michael\s*)?Reiter|OGE|Office\s*of\s*Government\s*Ethics|Police Code Enforcement|(Preet\s*)?Bharara|SCOTUS|SD(FL|NY)|Southern\s*District\s*of\s*(Florida|New\s*York)|SEC|Securities\s*and\s*Exchange\s*Commission|State\s*Dep(artmen)?t|Strzok|Supreme\s*Court|Treasury\s*(Dep(artmen)?t|Secretary)|TSA|USAID|(William\s*J\.?\s*)?Zloch',
         emailers = {
             ANN_MARIE_VILLAFANA: 'southern district of Florida U.S. Attorney',
             DANNY_FROST: 'Director of Communications at Manhattan DA',
@@ -374,6 +374,7 @@ HIGHLIGHTED_GROUPS = [
             KATHERINE_KEATING: 'Daughter of former Australian PM',
             MOHAMED_WAHEED_HASSAN: 'former president of the Maldives',
             OLIVIER_COLOM: 'France',
+            'Paul Keating': 'former PM of Australia',
             PUREVSUREN_LUNDEG: 'Mongolian ambassador to the UN',
             'Stanley Rosenberg': 'former President of the Massachusetts Senate',
         }
@@ -450,7 +451,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='scholar',
         style='light_goldenrod2',
-        pattern=r'Alain Forget|Brotherton|Carl\s*Sagan|Columbia|David Grosof|J(ames|im)\s*Watson|(Lord\s*)?Martin\s*Rees|MIT(\s*Media\s*Lab)?|Media\s*Lab|Minsky|((Noam|Valeria)\s*)?Chomsky|Praluent|Regeneron|(Richard\s*)?Dawkins|Sanofi|Stanford|(Stephen\s*)?Hawking|(Steven?\s*)?Pinker|UCLA',
+        pattern=r'Alain Forget|Brotherton|Carl\s*Sagan|Columbia|David Grosof|J(ames|im)\s*Watson|(Lord\s*)?Martin\s*Rees|Massachusetts\s*Institute\s*of\s*Technology|MIT(\s*Media\s*Lab)?|Media\s*Lab|Minsky|((Noam|Valeria)\s*)?Chomsky|Praluent|Regeneron|(Richard\s*)?Dawkins|Sanofi|Stanford|(Stephen\s*)?Hawking|(Steven?\s*)?Pinker|UCLA',
         emailers = {
             DAVID_HAIG: None,
             JOSCHA_BACH: 'cognitive science / AI research',

@@ -75,6 +75,10 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'Imps ://': 'https://',
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
     # Subject lines
+    r"as Putin Mayhem Tests President's Grip\non GOP": "as Putin Mayhem Tests President's Grip on GOP",
+    r"avoids testimony from alleged\nvictims": "avoids testimony from alleged victims",
+    r"but\nwatchdogs say probe is tainted": "watchdogs say probe is tainted",
+    r"War on the Investigations\nEncircling Him": "War on the Investigations Encircling Him",
     re.compile(r"deadline re Mr Bradley Edwards vs Mr\s*Jeffrey Epstein", re.I): "deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
     re.compile(r"Following Plea That Implicated Trump -\s*https://www.npr.org/676040070", re.I): "Following Plea That Implicated Trump - https://www.npr.org/676040070",
     re.compile(r"for Attorney General -\s+Wikisource, the"): r"for Attorney General - Wikisource, the",
@@ -120,7 +124,6 @@ JUNK_EMAILERS = [
 
 TRUNCATE_ALL_EMAILS_FROM = JUNK_EMAILERS + [
     'Alan S Halperin',
-    'Lvjet',
     'middle.east.update@hotmail.com',
     'Mitchell Bard',
     'Skip Rimer',
@@ -324,6 +327,9 @@ class Email(CommunicationDocument):
         return is_local_extract_file(self.filename)
 
     def subject(self) -> str:
+        if len(self.header.subject or '') > 100:
+            logger.info(f"Long subject for {self.description().plain}\n{self.header.subject}\n")
+
         return self.header.subject or ''
 
     def _actual_text(self) -> str:
