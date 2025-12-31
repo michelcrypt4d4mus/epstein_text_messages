@@ -23,15 +23,15 @@ class JsonFile(OtherFile):
 
     def __post_init__(self):
         super().__post_init__()
-        logger.warning(f"{self.description().plain}, url_slug='{self.url_slug}'")
+        old_url_slug = self.url_slug
 
         if self.url_slug.endswith('.txt'):
             self.url_slug = Path(self.url_slug).stem
 
-        logger.warning(f"{self.description().plain}, AFTER url_slug='{self.url_slug}'")
+        logger.warning(f"{self.description().plain}, OLD_url_slug='{old_url_slug}', NEW_url_slug='{self.url_slug}'")
 
     def info_txt(self) -> Text | None:
-        return Text(f"JSON data, possibly iMessage or similar app metadata", style='dim italic')
+        return Text(f"JSON data, possibly iMessage or similar app metadata", style='white dim italic')
 
     def is_interesting(self):
         return False
