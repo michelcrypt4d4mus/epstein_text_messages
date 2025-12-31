@@ -504,7 +504,7 @@ class Email(CommunicationDocument):
                 if 'htm' not in line \
                          and i < (len(lines) - 1) \
                          and (lines[i + 1].endswith('/') or any(s in lines[i + 1] for s in URL_SIGNIFIERS)):
-                    logger.info(f"{self.filename}: Joining lines\n   1. {line}\n   2. {lines[i + 1]}\n")
+                    logger.debug(f"{self.filename}: Joining link lines\n   1. {line}\n   2. {lines[i + 1]}\n")
                     line += lines[i + 1]
                     i += 1
 
@@ -530,12 +530,6 @@ class Email(CommunicationDocument):
 
     def __rich_console__(self, _console: Console, _options: ConsoleOptions) -> RenderResult:
         logger.debug(f"Printing '{self.filename}'...")
-
-        if self.is_duplicate:
-            yield self.duplicate_file_txt()
-            yield Text('')
-            return
-
         yield self.file_info_panel()
         text = self.text
         quote_cutoff = self.idx_of_nth_quoted_reply(text=text)  # Trim if there's many quoted replies
@@ -549,10 +543,11 @@ class Email(CommunicationDocument):
         elif quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
             num_chars = quote_cutoff
 
+        # Truncate long emails but leave a note explaining what happened w/link to source document
         if len(text) > num_chars:
             text = text[0:num_chars]
-            epsteinify_link_markup = epstein_media_doc_link_markup(self.url_slug, self.author_style)
-            trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest at {epsteinify_link_markup}...>"
+            external_link_markup = epstein_media_doc_link_markup(self.url_slug, self.author_style)
+            trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest at {external_link_markup}...>"
             trim_footer_txt = Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
 
         panel_txt = highlighter(text)
