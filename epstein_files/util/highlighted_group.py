@@ -408,6 +408,7 @@ HIGHLIGHTED_GROUPS = [
         pattern=r"Henry Holt|(Matt(hew)? )?Hiltzi[gk]",
         emailers = {
             AL_SECKEL: 'husband of Isabel Maxwell and Mindshift conference organizer who fell off a cliff',
+            'Barnaby Marsh': 'co-founder of Saint Partners, a philanthropy services company',
             CHRISTINA_GALBRAITH: None,
             IAN_OSBORNE: f"{OSBORNE_LLP} reputation repairer possibly hired by Epstein ca. 2011-06",
             MICHAEL_SITRICK: None,
@@ -448,7 +449,6 @@ HIGHLIGHTED_GROUPS = [
         style='light_goldenrod2',
         pattern=r'Alain Forget|Brotherton|Carl\s*Sagan|Columbia|David Grosof|J(ames|im)\s*Watson|(Lord\s*)?Martin\s*Rees|MIT(\s*Media\s*Lab)?|Media\s*Lab|Minsky|((Noam|Valeria)\s*)?Chomsky|Praluent|Regeneron|(Richard\s*)?Dawkins|Sanofi|Stanford|(Stephen\s*)?Hawking|(Steven?\s*)?Pinker|UCLA',
         emailers = {
-            'Barnaby Marsh': None,
             DAVID_HAIG: None,
             JOSCHA_BACH: 'cognitive science / AI research',
             'Daniel Kahneman': 'Nobel economic sciences laureate and cognitivie psychologist (?)',
