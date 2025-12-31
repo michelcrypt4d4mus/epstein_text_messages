@@ -4,6 +4,7 @@ from typing import Literal
 # Document subclass names (this sucks)
 DOCUMENT_CLASS = 'Document'
 EMAIL_CLASS = 'Email'
+JSON_FILE_CLASS = 'JsonFile'
 MESSENGER_LOG_CLASS = 'MessengerLog'
 OTHER_FILE_CLASS = 'OtherFile'
 

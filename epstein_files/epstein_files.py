@@ -13,10 +13,10 @@ from rich.padding import Padding
 from rich.table import Table
 from rich.text import Text
 
-from epstein_files.documents.communication_document import CommunicationDocument, CommunicationDocumentType
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import DETECT_EMAIL_REGEX, JUNK_EMAILERS, KRASSNER_RECIPIENTS, USELESS_EMAILERS, Email
-from epstein_files.documents.email_header import AUTHOR
+from epstein_files.documents.emails.email_header import AUTHOR
+from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.strings import *
@@ -25,10 +25,10 @@ from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_nam
 from epstein_files.util.constants import *
 from epstein_files.util.data import Timer, dict_sets_to_lists, iso_timestamp, sort_dict
 from epstein_files.util.env import args, logger
-from epstein_files.util.file_helper import DOCS_DIR, FILENAME_LENGTH, PICKLED_PATH, file_size_str, move_json_file
+from epstein_files.util.file_helper import DOCS_DIR, FILENAME_LENGTH, PICKLED_PATH, file_size_str
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
-from epstein_files.util.rich import (DEFAULT_NAME_STYLE, NA_TXT, QUESTION_MARK_TXT, console, highlighter,
-     link_text_obj, link_markup, print_author_header, print_centered, print_other_site_link, print_panel,
+from epstein_files.util.rich import (DEFAULT_NAME_STYLE, NA_TXT, QUESTION_MARK_TXT, add_cols_to_table, console,
+     highlighter, link_text_obj, link_markup, print_author_header, print_centered, print_other_site_link, print_panel,
      print_section_header, vertically_pad)
 from epstein_files.util.search_result import SearchResult
 
@@ -43,6 +43,7 @@ class EpsteinFiles:
     all_files: list[Path] = field(init=False)
     emails: list[Email] = field(default_factory=list)
     imessage_logs: list[MessengerLog] = field(default_factory=list)
+    json_files: list[JsonFile] = field(default_factory=list)
     other_files: list[OtherFile] = field(default_factory=list)
     # Analytics / calculations
     email_author_counts: dict[str | None, int] = field(default_factory=lambda: defaultdict(int))
@@ -60,14 +61,14 @@ class EpsteinFiles:
 
             if document.length == 0:
                 logger.info(f"Skipping empty file {document.description().plain}")
-            elif document.text[0] == '{':  # Check for JSON
-                move_json_file(file_arg)
-            elif MSG_REGEX.search(document.text):     # Handle iMessage log files
-                messenger_log = MessengerLog(file_arg)
-                logger.info(messenger_log.description().plain)
-                self.imessage_logs.append(messenger_log)
-            elif DETECT_EMAIL_REGEX.match(document.text) or document.file_id in EMAIL_INFO:  # Handle emails
-                email = Email(file_arg, text=document.text)  # Avoid reloads
+            elif document.text[0] == '{':
+                self.json_files.append(JsonFile(file_arg))   # Handle JSON files
+                logger.info(self.json_files[-1].description().plain)
+            elif MSG_REGEX.search(document.text):
+                self.imessage_logs.append(MessengerLog(file_arg))  # Handle iMessage log files
+                logger.info(self.imessage_logs[-1].description().plain)
+            elif DETECT_EMAIL_REGEX.match(document.text) or document.file_id in EMAIL_INFO:
+                email = Email(file_arg, text=document.text)  # Handle emails
                 logger.info(email.description().plain)
                 self.emails.append(email)
                 self.email_author_counts[email.author] += 1
@@ -84,11 +85,11 @@ class EpsteinFiles:
                     self.email_device_signatures_to_authors[email.sent_from_device].add(email.author_or_unknown())
             else:
                 logger.info(f"Unknown file type: {document.description().plain}")
-                self.other_files.append(OtherFile(file_arg))
+                self.other_files.append(OtherFile(file_arg))  # Handle OtherFiles
 
         self.emails = Document.sort_by_timestamp(self.emails)
         self.imessage_logs = Document.sort_by_timestamp(self.imessage_logs)
-        self.other_files = Document.sort_by_timestamp(self.other_files)
+        self.other_files = Document.sort_by_timestamp(self.other_files + self.json_files)
         self.identified_imessage_log_count = len([log for log in self.imessage_logs if log.author])
 
     @classmethod
@@ -208,11 +209,7 @@ class EpsteinFiles:
                 dupes[doc.document_type()] += 1
 
         table = Table()
-        table.add_column("File Type", justify='left')
-        table.add_column("Files", justify='center')
-        table.add_column("Author Known", justify='center')
-        table.add_column("Author Unknown", justify='center')
-        table.add_column("Duplicates", justify='center')
+        add_cols_to_table(table, ['File Type', 'Files', 'Author Known', 'Author Unknown', 'Duplicates'])
 
         def add_row(label: str, docs: list, known: int | None = None, dupes: int | None = None):
             table.add_row(
@@ -225,6 +222,7 @@ class EpsteinFiles:
 
         add_row('iMessage Logs', self.imessage_logs, self.identified_imessage_log_count)
         add_row('Emails', self.emails, len([e for e in self.emails if e.author]), dupes[EMAIL_CLASS])
+        add_row('JSON Data', self.json_files, dupes=0)
         add_row('Other', self.other_files, dupes=dupes[OTHER_FILE_CLASS])
         console.print(Align.center(table))
         console.line()
@@ -279,9 +277,7 @@ class EpsteinFiles:
     def print_emailer_counts_table(self) -> None:
         footer = f"Identified authors of {self.attributed_email_count()} emails out of {len(self.emails)} potential email files."
         counts_table = Table(title=f"Email Counts", caption=footer, header_style="bold")
-
-        for i, col in enumerate(['Name', 'Count', 'Sent', "Recv'd", JMAIL, EPSTEIN_WEB, 'Twitter']):
-            counts_table.add_column(col, justify='left' if i == 0 else 'center')
+        add_cols_to_table(counts_table, ['Name', 'Count', 'Sent', "Recv'd", JMAIL, EPSTEIN_WEB, 'Twitter'])
 
         emailer_counts = {
             e: self.email_author_counts[e] + self.email_recipient_counts[e]
@@ -354,6 +350,7 @@ class EpsteinFiles:
 
         for doc in interesting_files:
             link_and_info = [doc.raw_document_link_txt(), *doc.hints()]
+            #console.print(doc.description_panel(), doc.raw_document_link_txt())
             date_str = doc.date_str()
             row_style = ''
 

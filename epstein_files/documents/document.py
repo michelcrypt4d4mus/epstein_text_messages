@@ -37,6 +37,7 @@ VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IG
 DOC_TYPE_STYLES = {
     DOCUMENT_CLASS: 'grey69',
     EMAIL_CLASS: 'sea_green2',
+    JSON_FILE_CLASS: 'sandy_brown',
     MESSENGER_LOG_CLASS: 'cyan',
     OTHER_FILE_CLASS: 'grey69',
 }
@@ -56,6 +57,7 @@ FILENAME_MATCH_STYLES = [
 
 @dataclass
 class Document:
+    """Base class for all Epstein Files documents."""
     file_path: Path
     file_id: str = field(init=False)
     filename: str = field(init=False)
@@ -121,15 +123,15 @@ class Document:
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on epsteinify.com."""
-        return link_text_obj(epsteinify_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
+        return link_text_obj(epsteinify_doc_url(self.url_slug), link_txt or self.url_slug, style)
 
     def epstein_media_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on epstein.media."""
-        return link_text_obj(epstein_media_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
+        return link_text_obj(epstein_media_doc_url(self.url_slug), link_txt or self.url_slug, style)
 
     def epstein_web_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on EpsteinWeb."""
-        return link_text_obj(epstein_web_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
+        return link_text_obj(epstein_web_doc_url(self.url_slug), link_txt or self.url_slug, style)
 
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any hints/info about the file."""
@@ -139,8 +141,7 @@ class Document:
 
     def hints(self) -> list[Text]:
         """Additional info about the Document (author, FILE_DESCRIPTIONS value, and so on)."""
-        file_info = self.info_txt()
-        hints = listify(file_info)
+        hints = listify(self.info_txt())
         hint_msg = FILE_DESCRIPTIONS.get(self.file_id)
 
         if self.document_type() == OTHER_FILE_CLASS:

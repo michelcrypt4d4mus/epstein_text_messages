@@ -66,6 +66,11 @@ console = Console(**CONSOLE_ARGS)
 highlighter = CONSOLE_ARGS['highlighter']
 
 
+def add_cols_to_table(table: Table, col_names: list[str]) -> None:
+    for i, col in enumerate(col_names):
+        table.add_column(col, justify='left' if i == 0 else 'center')
+
+
 def join_texts(txts: list[Text], join: str = ' ', encloser: str = '') -> Text:
     if encloser:
         if len(encloser) != 2:

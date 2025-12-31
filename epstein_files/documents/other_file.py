@@ -26,7 +26,7 @@ VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IG
 
 @dataclass
 class OtherFile(Document):
-    """File that is neither an email nor an iMessage log."""
+    """File that is not an email, an iMessage log, or JSON data."""
 
     def __post_init__(self):
         super().__post_init__()
@@ -36,9 +36,9 @@ class OtherFile(Document):
         """One line summary mostly for logging."""
         return super().description().append(CLOSE_PROPERTIES_CHAR)
 
-    def description_panel(self) -> Panel:
+    def description_panel(self, include_hints=True) -> Panel:
         """Panelized description() with info_txt(), used in search results."""
-        return super().description_panel(include_hints=True)
+        return super().description_panel(include_hints=include_hints)
 
     def highlighted_preview_text(self) -> Text:
         try:
