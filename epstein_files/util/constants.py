@@ -1359,6 +1359,7 @@ UNINTERESTING_PREFIXES = [
     JOHN_BOLTON_PRESS_CLIPPING,
     JP_MORGAN,
     LA_TIMES,
+    'MarketWatch',
     'meme',
     'Morgan Stanley',
     NOBEL_CHARITABLE_TRUST,
