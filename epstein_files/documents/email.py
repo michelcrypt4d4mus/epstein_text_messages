@@ -511,6 +511,11 @@ class Email(CommunicationDocument):
                 line = line.replace(' ', '')
 
             new_lines.append(line)
+
+            # TODO: hacky workaround to get a working link for HOUSE_OVERSIGHT_032564
+            if line == 'http://m.huffpost.com/us/entry/us_599f532ae4b0dOef9f1c129d':
+                new_lines.append('https://archive.is/hJxT3 (archived article)')
+
             i += 1
 
         self._set_computed_fields(lines=new_lines)
