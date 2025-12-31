@@ -129,7 +129,7 @@ HIGHLIGHTED_GROUPS = [
             BARBRO_EHNBOM: 'Swedish pharmaceuticals',
             FRED_HADDAD: "co-founder of Heck's in West Virginia",
             GORDON_GETTY: 'heir of oil tycoon J. Paul Getty',
-            NICHOLAS_RIBIS: 'Hilton CEO',
+            NICHOLAS_RIBIS: 'Hilton CEO, former president of Trump Organization',
             'Philip Kafka': 'president of Prince Concepts (and son of Terry Kafka?)',
             ROBERT_LAWRENCE_KUHN: "investment banker, China expert",
             TERRY_KAFKA: 'CEO of Impact Outdoor (highway billboards)',
