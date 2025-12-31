@@ -505,13 +505,15 @@ class Email(CommunicationDocument):
 
         if self.file_id in FILE_IDS_WITH_BAD_FIRST_LINES:
             self._set_computed_fields(lines=self.lines[1:])
-        elif self.file_id in ['031442']:  # Merge 1st and 2nd rows
-            self._merge_lines(0)
-        elif self.file_id in ['021729', '029282', '030626', '031384', '033512']:  # Merge 3rd and 4th rows
-            self._merge_lines(2)
+        elif self.file_id in ['031442']:
+            self._merge_lines(0)  # Merge 1st and 2nd rows
+        elif self.file_id in '021729 029501 029282 030626 031384 033512'.split():
+            self._merge_lines(2)  # Merge 3rd and 4th rows
 
             if self.file_id in ['030626']:  # Merge 6th and 7th (now 5th and 6th) rows
                 self._merge_lines(5)
+        elif self.file_id in ['029976']:
+            self._merge_lines(3)  # Merge 4th and 5th rows
         elif self.file_id == '029977':
             self._set_computed_fields(text=self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM'))
 
