@@ -3,7 +3,6 @@ from dataclasses import dataclass, field
 from datetime import datetime
 
 from rich.console import Console, ConsoleOptions, RenderResult
-from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.documents.communication_document import CommunicationDocument
