@@ -517,7 +517,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(emailers={JOI_ITO: 'former head of MIT Media Lab'}, style='gold1'),
     HighlightedGroup(emailers={KATHRYN_RUEMMLER: 'former Obama legal counsel'}, style='magenta2'),
     HighlightedGroup(emailers={MELANIE_WALKER: 'doctor'}, style='pale_violet_red1'),
-    HighlightedGroup(emailers={PAULA: 'maybe Epstein\'s niece?'}, style='pink1'),
+    HighlightedGroup(emailers={PAULA: "Epstein's ex-girlfriend who is now in the opera"}, label='paula_heil_fisher', style='pink1'),
     HighlightedGroup(emailers={PRINCE_ANDREW: 'British royal family'}, style='dodger_blue1'),
     HighlightedGroup(emailers={SOON_YI: "wife of Woody Allen"}, style='hot_pink'),
     HighlightedGroup(emailers={SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of ports in Dubai'}, style='green1'),

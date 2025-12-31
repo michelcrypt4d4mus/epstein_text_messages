@@ -458,7 +458,7 @@ EMAIL_INFO = {
     '028487': EmailInfo(author=NORMAN_D_RAU),            # Fwded from "to" address
     '024923': EmailInfo(author=PAUL_KRASSNER, recipients=KRASSNER_024923_RECIPIENTS),
     '032457': EmailInfo(author=PAUL_KRASSNER),
-    '029981': EmailInfo(author=PAULA),                   # Reply
+    '029981': EmailInfo(author=PAULA),                   # Name in reply + opera reference (Fisher now works in opera)
     '030482': EmailInfo(author=PAULA),                   # "Sent via BlackBerry from T-Mobile" only other person is confirmed "Paula"
     '033157': EmailInfo(author=PAUL_PROSPERI),           # Fwded from "to" address
     '033383': EmailInfo(author=PAUL_PROSPERI),           # Reply
