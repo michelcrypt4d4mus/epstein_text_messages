@@ -37,6 +37,7 @@ DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
 TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
+REWRITTEN_HEADER_MSG = "(note: broken email header data was rewritten, check the source if something's sus)"
 MAX_CHARS_TO_PRINT = 4000
 MAX_QUOTED_REPLIES = 2
 VALID_HEADER_LINES = 14
@@ -288,6 +289,7 @@ class Email(CommunicationDocument):
     sent_from_device: str | None = None
     signature_substitution_count: dict[str, int] = field(default_factory=lambda: defaultdict(int))
 
+    # Just for logging how many headers we rewrote
     rewritten_header_ids: ClassVar[set[str]] = set([])
 
     def __post_init__(self):
@@ -591,26 +593,35 @@ class Email(CommunicationDocument):
             trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest at {external_link_markup}...>"
             trim_footer_txt = Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
 
-        panel_txt = highlighter(text)
-
-        if trim_footer_txt:
-            panel_txt.append('\n\n').append(trim_footer_txt)
-
+        # Rewrite broken headers where the values are on separate lines from the field names
         if self.header.was_initially_empty:
-            logger.warning(f"[{self.url_slug}] Rewritten header would wipe {self.header.num_header_rows} lines:\n\n{self.header.rewrite_header()}\n")
             num_lines_to_skip = self.header.num_header_rows
-            next_lines = []
+            lines = []
 
+            # Emails w/configured 'actual_text' are particularly broken; need to shuffle some lines
             if self.configured_attr('actual_text') is not None:
                 num_lines_to_skip += 1
-                next_lines = [cast(str, self.configured_attr('actual_text'))]
+                lines = [cast(str, self.configured_attr('actual_text'))]
 
-            next_lines += self.lines[num_lines_to_skip:num_lines_to_skip + 3]
-            logger.warning('\n'.join(next_lines))
+            lines += text.split('\n')[num_lines_to_skip:]
+            text = self.header.rewrite_header() + '\n' + '\n'.join(lines)
+            # This was skipped earlier when _cleaned_up_text() was called w/a broken header so we do it now
+            text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', text).strip()
             self.rewritten_header_ids.add(self.file_id)
 
-        email_txt_panel = Panel(panel_txt, border_style=self._border_style(), expand=False)
+        panel_txt = highlighter(text)
+
+        email_txt_panel = Panel(
+            panel_txt.append('\n\n').append(trim_footer_txt) if trim_footer_txt else panel_txt,
+            border_style=self._border_style(),
+            expand=False,
+            subtitle=REWRITTEN_HEADER_MSG if self.header.was_initially_empty else None,
+        )
+
         yield Padding(email_txt_panel, (0, 0, 1, INFO_INDENT))
+
+        if self.header.was_initially_empty:
+            self.log_top_lines(num_lines_to_skip + 4, f'[{self.url_slug}] Original header:', logging.WARNING)
 
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:
