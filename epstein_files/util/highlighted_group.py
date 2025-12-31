@@ -321,7 +321,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='law enforcement',
         style='color(24) bold',
-        pattern=r'ag|(Alicia\s*)?Valle|((Bob|Robert)\s*)?Mueller|(Byung\s)?Pak|CFTC|CIA|CVRA|DOJ|FBI|FCPA|FDIC|FinCEN|FINRA|FOIA|FTC|IRS|(James\s*)?Comey|(Jennifer\s*Shasky\s*)?Calvery|(Kirk )?Blouin|NIH|NSA|OCC|(Lann?a\s*)?Belohlavek|(Michael\s*)?Reiter|Police Code Enforcement|SEC|Strzok|TSA|USAID|(William\s*J\.?\s*)?Zloch',
+        pattern=r'ag|(Alicia\s*)?Valle|((Bob|Robert)\s*)?Mueller|(Byung\s)?Pak|CFTC|CIA|CVRA|DOJ|FBI|FCPA|FDIC|FinCEN|FINRA|FOIA|FTC|IRS|(James\s*)?Comey|(Jennifer\s*Shasky\s*)?Calvery|(Kirk )?Blouin|KYC|NIH|NSA|OCC|(Lann?a\s*)?Belohlavek|(Michael\s*)?Reiter|Police Code Enforcement|SEC|Strzok|TSA|USAID|(William\s*J\.?\s*)?Zloch',
         emailers = {
             ANN_MARIE_VILLAFANA: 'southern district of Florida U.S. Attorney',
             DANNY_FROST: 'Director of Communications at Manhattan DA',

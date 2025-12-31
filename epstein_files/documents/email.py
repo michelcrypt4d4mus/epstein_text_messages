@@ -24,16 +24,16 @@ from epstein_files.util.file_helper import is_local_extract_file
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import *
 
-DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
-BAD_TIMEZONE_REGEX = re.compile(fr'\((UTC|GMT\+\d\d:\d\d)\)|{REDACTED}')
-TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
-
+BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|Importance:( High)?|[iI,•]|i (_ )?i|, [-,])$')
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
-BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|Importance:( High)?|[iI,•]|i (_ )?i|, [-,])$')
 REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + ['********************************']
 LINK_LINE_REGEX = re.compile(f"^(> )?htt")
+
+BAD_TIMEZONE_REGEX = re.compile(fr'\((UTC|GMT\+\d\d:\d\d)\)|{REDACTED}')
+DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
+TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 MAX_CHARS_TO_PRINT = 4000
@@ -370,7 +370,6 @@ class Email(CommunicationDocument):
         else:
             text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', self.text).strip()
 
-        text = '\n'.join(['' if BAD_LINE_REGEX.match(line) else line.strip() for line in text.split('\n')])
         text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
 
         for name, signature_regex in EMAIL_SIGNATURES.items():
@@ -473,6 +472,8 @@ class Email(CommunicationDocument):
 
     def _repair(self) -> None:
         """Repair particularly janky files."""
+        self._set_computed_fields(lines=[line.strip() for line in self.lines if not BAD_LINE_REGEX.match(line)])
+
         if self.file_id in FILE_IDS_WITH_BAD_FIRST_LINES:
             text = '\n'.join(self.lines[1:])
         elif self.file_id == '031442':
@@ -505,8 +506,7 @@ class Email(CommunicationDocument):
             new_lines.append(line)
             i += 1
 
-        self.text = '\n'.join(new_lines)
-        self._set_computed_fields()
+        self._set_computed_fields(lines=new_lines)
 
     def _sent_from_device(self) -> str | None:
         """Find any 'Sent from my iPhone' style lines if they exist."""

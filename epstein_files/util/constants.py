@@ -357,25 +357,22 @@ EMAIL_INFO = {
     '021823': EmailInfo(author=JEAN_LUC_BRUNEL),       # Reply
     '022949': EmailInfo(author=JEFFREY_EPSTEIN),
     '031624': EmailInfo(author=JEFFREY_EPSTEIN),
-    '029779': EmailInfo(author=JEFFREY_EPSTEIN, is_fwded_article=True, recipients=[LARRY_SUMMERS]),  # Bad OCR, WaPo article
-    '029692': EmailInfo(author=JEFFREY_EPSTEIN, is_fwded_article=True, recipients=[LARRY_SUMMERS]),  # Bad OCR, WaPo article
+    '031996': EmailInfo(author=JEFFREY_EPSTEIN, recipients=[CHRISTINA_GALBRAITH]),  # bounced
     '028675': EmailInfo(author=JEFFREY_EPSTEIN, recipients=[LARRY_SUMMERS]),  # Bad OCR
     '025041': EmailInfo(author=JEFFREY_EPSTEIN, recipients=[LARRY_SUMMERS]),  # Bad OCR
+    '029779': EmailInfo(author=JEFFREY_EPSTEIN, recipients=[LARRY_SUMMERS], is_fwded_article=True),  # Bad OCR, WaPo article
+    '029692': EmailInfo(author=JEFFREY_EPSTEIN, recipients=[LARRY_SUMMERS], is_fwded_article=True),  # Bad OCR, WaPo article
     '018726': EmailInfo(
         author=JEFFREY_EPSTEIN,                        # Strange fragment only showing what was replied to
-        timestamp=datetime.fromisoformat('2018-06-08 08:36:00')
+        timestamp=datetime.fromisoformat('2018-06-08 08:36:00'),
     ),
     '032283': EmailInfo(
         author=JEFFREY_EPSTEIN,                         # Strange fragment only showing what was replied to
-        timestamp=datetime.fromisoformat('2016-09-14 08:04:00')
+        timestamp=datetime.fromisoformat('2016-09-14 08:04:00'),
     ),
     '026943': EmailInfo(
         author=JEFFREY_EPSTEIN,                         # Strange fragment only showing what was replied to
-        timestamp=datetime.fromisoformat('2019-05-22 05:47:00')
-    ),
-    '031996': EmailInfo(
-        author=JEFFREY_EPSTEIN,                         # bounced
-        recipients=[CHRISTINA_GALBRAITH]
+        timestamp=datetime.fromisoformat('2019-05-22 05:47:00'),
     ),
     '023208': EmailInfo(
         author=JEFFREY_EPSTEIN,                         # Same as 023291
