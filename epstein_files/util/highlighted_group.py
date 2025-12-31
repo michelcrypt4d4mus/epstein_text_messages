@@ -273,7 +273,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='israel',
         style='dodger_blue2',
-        pattern=r"Bibi|(eh|(Ehud|Nili Priell) )?barak|Israeli?|Jerusalem|Mossad|Netanyahu|(Sheldon\s*)?Adelson|Tel\s*Aviv|Yitzhak|Rabin|YIVO|zionist",
+        pattern=r"AIPAC|Bibi|(eh|(Ehud|Nili Priell) )?barak|Israeli?|Jerusalem|J\s*Street|Mossad|Netanyahu|(Sheldon\s*)?Adelson|Tel\s*Aviv|Yitzhak|Rabin|YIVO|zionist",
         emailers={
             EHUD_BARAK: 'former primer minister',
             'Mitchell Bard': 'director of the American-Israeli Cooperative Enterprise (AICE)',
