@@ -536,7 +536,7 @@ class Email(CommunicationDocument):
 
         if old_text != self.text:
             logger.warning(f"Modified {self.url_slug} text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n')
-            self.log_top_lines(12, 'Result of modifications', logging.WARNING)
+            self.log_top_lines(12, 'Result of modifications', logging.INFO)
 
         lines = self.regex_repair_text(OCR_REPAIRS, self.text).split('\n')
         new_lines = []
