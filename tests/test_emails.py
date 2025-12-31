@@ -1,4 +1,3 @@
-from epstein_files.documents.email import Email
 from epstein_files.util.constant.names import *
 from epstein_files.util.data import dict_sets_to_lists
 
