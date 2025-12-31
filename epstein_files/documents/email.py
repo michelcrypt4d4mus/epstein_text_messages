@@ -138,6 +138,7 @@ TRUNCATION_LENGTHS = {
     '023627': 16_800,  # Micheal Wolff article with brock pierce
     '030245': 7_500,   # Epstein rationalizes his behavior in an open letter to the world
     '030781': 1_700,   # Bannon email about crypto coin issues
+    '032906': 750,     # David Blaine email
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
@@ -510,11 +511,12 @@ class Email(CommunicationDocument):
         elif self.file_id in '021729 029501 029282 030626 031384 033512'.split():
             self._merge_lines(2)  # Merge 3rd and 4th rows
 
+            # TODO: check this one
             if self.file_id in ['030626']:  # Merge 6th and 7th (now 5th and 6th) rows
                 self._merge_lines(5)
         elif self.file_id in ['029976']:
             self._merge_lines(3)  # Merge 4th and 5th rows
-        elif self.file_id in ['026609']:
+        elif self.file_id in ['026609', '029402', '032405']:
             self._merge_lines(4)  # Merge 5th and 6th rows
         elif self.file_id == '029977':
             self._set_computed_fields(text=self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM'))
