@@ -250,7 +250,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label=HARVARD.lower(),
         style='deep_pink2',
-        pattern=r'Cambridge|(Derek\s*)?Bok|Elisa(\s*New)?|Harvard|(Stephen\s*)?Kosslyn',
+        pattern=r'Cambridge|(Derek\s*)?Bok|Elisa(\s*New)?|Harvard(\s*(Business|Law)(\s*School)?)?|(Stephen\s*)?Kosslyn',
         emailers = {
             LARRY_SUMMERS: 'board of Digital Currency Group (DCG), Harvard president, Obama economic advisor',
             'Leah Reis-Dennis': 'producer for Lisa New\'s Poetry in America',
