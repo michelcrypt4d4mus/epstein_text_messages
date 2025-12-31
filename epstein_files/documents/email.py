@@ -301,8 +301,7 @@ class Email(CommunicationDocument):
         txt = self._description()
 
         if len(self.recipients) > 0:
-            recipients = [r or UNKNOWN for r in self.recipients]
-            txt.append(', ').append(key_value_txt('recipients', Text("'" + ', '.join(recipients) + "'")))
+            txt.append(', ').append(key_value_txt('recipients', self._recipients_txt()))
 
         return txt.append(CLOSE_PROPERTIES_CHAR)
 
