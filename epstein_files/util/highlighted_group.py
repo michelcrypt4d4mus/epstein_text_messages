@@ -312,8 +312,8 @@ HIGHLIGHTED_GROUPS = [
             JENNIFER_JACQUET: 'Future Science',
             JOHN_BROCKMAN: 'literary agent and author specializing in scientific literature',
             LANDON_THOMAS: 'New York Times',
-            MICHAEL_WOLFF: "Author or 'Fire and Fury: Inside the Trump White House'",
-            PAUL_KRASSNER: '60s guy',
+            MICHAEL_WOLFF: 'Author of "Fire and Fury: Inside the Trump White House"',
+            PAUL_KRASSNER: '60s counterculture guy',
             'Tim Zagat': 'Zagat restaurant guide CEO',
         }
     ),
