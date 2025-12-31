@@ -1334,6 +1334,7 @@ FILE_DESCRIPTIONS = {
 UNINTERESTING_PREFIXES = [
     'article about',
     ARTICLE_DRAFT,
+    'Aviation International',
     'BBC',
     'Bloomberg',
     BOFA,
@@ -1387,6 +1388,7 @@ UNINTERESTING_PREFIXES = [
     ROBERT_LAWRENCE_KUHN,
     ROBERT_TRIVERS,
     'S&P',
+    'SciencExpress',
     'Scowcroft',
     SHIMON_POST,
     SINGLE_PAGE,
