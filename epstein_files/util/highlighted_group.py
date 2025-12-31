@@ -6,7 +6,7 @@ from rich.highlighter import RegexHighlighter
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import DEFAULT, REDACTED, TIMESTAMP_STYLE
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
-from epstein_files.util.constants import EMAILER_ID_REGEXES, HEADER_ABBREVIATIONS, OSBORNE_LLP, REPLY_REGEX, SENT_FROM_REGEX, VIRGIN_ISLANDS
+from epstein_files.util.constants import EMAILER_ID_REGEXES, HEADER_ABBREVIATIONS, OSBORNE_LLP, REPLY_REGEX, REPUTATION_MGMT, SENT_FROM_REGEX, VIRGIN_ISLANDS
 from epstein_files.util.data import extract_last_name, listify
 from epstein_files.util.env import args, logger
 
@@ -399,7 +399,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='publicist',
         style='orange_red1',
-        pattern=r"Henry Holt|(Matt(hew)? )?Hiltzi[gk]",
+        pattern=fr"Henry Holt|(Matt(hew)? )?Hiltzi[gk]|{REPUTATION_MGMT}",
         emailers = {
             AL_SECKEL: 'husband of Isabel Maxwell, Mindshift conference organizer who fell off a cliff',
             'Barnaby Marsh': 'co-founder of Saint Partners, a philanthropy services company',
