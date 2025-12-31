@@ -784,6 +784,15 @@ NYT_ARTICLE = 'NYT article about'
 NYT_COLUMN = 'NYT column about'
 TEXT_OF_US_LAW = 'text of U.S. law:'
 
+# Court cases
+EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} and {PAUL_G_CASSELL} v. {ALAN_DERSHOWITZ}"
+EPSTEIN_V_ROTHSTEIN_AND_EDWARDS = f"Epstein v. Scott Rothstein, {BRAD_EDWARDS}, and L.M."
+GIUFFRE_V_DERSHOWITZ = f"{VIRGINIA_GIUFFRE} v. {ALAN_DERSHOWITZ}"
+GIUFFRE_V_EPSTEIN = f"{VIRGINIA_GIUFFRE} v. {JEFFREY_EPSTEIN}"
+GIUFFRE_V_MAXWELL = f"{VIRGINIA_GIUFFRE} v. {GHISLAINE_MAXWELL}"
+JANE_DOE_V_EPSTEIN_TRUMP = f"Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}"
+JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
+
 # Descriptions of non-email, non-text message files
 ARTICLE_DRAFT = 'draft of an article about'
 BOFA = 'BofA'
@@ -800,22 +809,15 @@ DEEP_THINKING_HINT = f'{BOOK} "Deep Thinking: Twenty-Five Ways of Looking at AI"
 DERSH_GIUFFRE_TWEET = f"{TWEET} by {ALAN_DERSHOWITZ} about {VIRGINIA_GIUFFRE}"
 DEUTSCHE_BANK_TAX_TOPICS = f'{DEUTSCHE_BANK} Wealth Management Tax Topics'
 DIANA_DEGETTES_CAMPAIGN = "Colorado legislator Diana DeGette's campaign"
-EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} and {PAUL_G_CASSELL} v. {ALAN_DERSHOWITZ}"
 EPSTEIN_FOUNDATION = 'Jeffrey Epstein VI Foundation'
-EPSTEIN_V_ROTHSTEIN_AND_EDWARDS = f"Epstein v. Scott Rothstein, {BRAD_EDWARDS}, and L.M."
 FBI_REPORT = f"{FBI} report on Epstein investigation (redacted)"
 FBI_SEIZED_PROPERTY = f"{FBI} seized property inventory (redacted)"
 FEMALE_HEALTH_COMPANY = 'Female Health Company (FHX)'
 FIRE_AND_FURY = f'"Fire And Fury" by {MICHAEL_WOLFF} 2018-01-05'
-GIUFFRE_V_DERSHOWITZ = f"{VIRGINIA_GIUFFRE} v. {ALAN_DERSHOWITZ}"
-GIUFFRE_V_EPSTEIN = f"{VIRGINIA_GIUFFRE} v. {JEFFREY_EPSTEIN}"
-GIUFFRE_V_MAXWELL = f"{VIRGINIA_GIUFFRE} v. {GHISLAINE_MAXWELL}"
 GOLDMAN_REPORT = f'{GOLDMAN_SACHS} Investment Management Division report'
 HARVARD_POETRY = f'{HARVARD} poetry stuff from {LISA_NEW}'
 HBS_APPLICATION_NERIO = f"{HARVARD} Business School application letter from Nerio Alessandri (Founder and Chairman Technogym SPA Italy)"
 INSIGHTS_POD = f"{ZUBAIR_KHAN} and Anya Rasulova's InsightsPod"
-JANE_DOE_V_EPSTEIN_TRUMP = f"Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}"
-JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
 JASTA = 'JASTA'
 JASTA_SAUDI_LAWSUIT = f"{JASTA} lawsuit against Saudi Arabia by 9/11 victims"
 JOHN_BOLTON_PRESS_CLIPPING = 'John Bolton press clipping'
@@ -881,50 +883,7 @@ FILE_DESCRIPTIONS = {
     '022118': PATTERSON_BOOK_SCANS,
     '019111': PATTERSON_BOOK_SCANS,
     # articles
-    '022707': MICHAEL_WOLFF_ARTICLE_HINT,
-    '022727': MICHAEL_WOLFF_ARTICLE_HINT,
-    '022746': MICHAEL_WOLFF_ARTICLE_HINT,
-    '022844': MICHAEL_WOLFF_ARTICLE_HINT,
-    '022863': MICHAEL_WOLFF_ARTICLE_HINT,
-    '022894': MICHAEL_WOLFF_ARTICLE_HINT,
-    '022952': MICHAEL_WOLFF_ARTICLE_HINT,
-    '023627': MICHAEL_WOLFF_ARTICLE_HINT,
-    '024229': MICHAEL_WOLFF_ARTICLE_HINT,
-    '012740': f"{PEGGY_SIEGAL} article about Venice Film Festival ca. 2011-09-06",
-    '013442': f"{PEGGY_SIEGAL} draft about Oscars ca. 2011-02-27",
-    '012700': f"{PEGGY_SIEGAL} film events diary 2011-02-27",
-    '012690': f"{PEGGY_SIEGAL} film events diary early draft of 012700 2011-02-27",
-    '013450': f"{PEGGY_SIEGAL} Oscar Diary in Avenue Magazine 2011-02-27",
-    '010715': f"{PEGGY_SIEGAL} Oscar Diary April 2012-02-27",
-    '019864': f"{PEGGY_SIEGAL} Oscar Diary April 2017-02-27",
-    '019849': f"{PEGGY_SIEGAL} Oscar Diary April 2017-02-27",
-    '030030': f'{SHIMON_POST} 2011-03-29',
-    '025610': f'{SHIMON_POST} 2011-04-03',
-    '023458': f'{SHIMON_POST} 2011-04-17',
-    '023487': f'{SHIMON_POST} 2011-04-18',
-    '030531': f'{SHIMON_POST} 2011-04-20',
-    '024958': f'{SHIMON_POST} 2011-05-08',
-    '030060': f'{SHIMON_POST} 2011-05-13',
-    '030531': f'{SHIMON_POST} 2011-05-16',
-    '031834': f'{SHIMON_POST} 2011-05-16',
-    '023517': f'{SHIMON_POST} 2011-05-26',
-    '030268': f'{SHIMON_POST} 2011-05-29',
-    '029628': f'{SHIMON_POST} 2011-06-04',
-    '018085': f'{SHIMON_POST} 2011-06-07',
-    '030156': f'{SHIMON_POST} 2011-06-22',
-    '031876': f'{SHIMON_POST} 2011-06-14',
-    '032171': f'{SHIMON_POST} 2011-06-26',
-    '029932': f'{SHIMON_POST} 2011-07-03',
-    '031913': f'{SHIMON_POST} 2011-08-24',
-    '024592': f'{SHIMON_POST} 2011-08-25',
-    '024997': f'{SHIMON_POST} 2011-09-08',
-    '031941': f'{SHIMON_POST} 2011-11-17',
-    '031753': f'{PAUL_KRASSNER} essay for Playboy in the 1980s 1985-01-01',
-    '023638': f'{PAUL_KRASSNER} magazine interview',
-    '024374': f'{PAUL_KRASSNER} "Remembering Cavalier Magazine"',
-    '030187': f'{PAUL_KRASSNER} "Remembering Lenny Bruce While We\'re Thinking About Trump" (draft?)',
-    '019088': f'{PAUL_KRASSNER} "Are Rape Jokes Funny? (draft) 2012-07-28',
-    '030199': f'article about allegations Trump raped a 13 year old girl 2017-11-16',
+    '030199': f'article about allegations Trump raped a 13 year old girl {JANE_DOE_V_EPSTEIN_TRUMP} 2017-11-16',
     '031725': f"article about Gloria Allred and Trump allegations 2016-10-10",
     '031198': f"article about identify of Jane Doe in {JANE_DOE_V_EPSTEIN_TRUMP}",
     '012704': f"article about {JANE_DOE_V_USA} and {CVRA} 2011-04-21",
@@ -935,11 +894,11 @@ FILE_DESCRIPTIONS = {
     '024256': f'article by {JOI_ITO}: "Internet & Society: The Technologies and Politics of Control"',
     '027004': f'article by {JOSCHA_BACH}: "The Computational Structure of Mental Representation" 2013-02-26',
     '015501': f'article by {MOSHE_HOFFMAN}, Erez Yoeli, and Carlos David Navarrete: "Game Theory and Morality"',
-    '033468': f'{ARTICLE_DRAFT} Rod Rosenstein ca. 2018-09-24',
-    '030825': f'{ARTICLE_DRAFT} Syria',
     '030258': f'{ARTICLE_DRAFT} Mueller probe, almost same as 030248',
     '030248': f'{ARTICLE_DRAFT} Mueller probe, almost same as 030258',
     '029165': f'{ARTICLE_DRAFT} Mueller probe, almost same as 030258',
+    '033468': f'{ARTICLE_DRAFT} Rod Rosenstein ca. 2018-09-24',
+    '030825': f'{ARTICLE_DRAFT} Syria',
     '030013': f'Aviation International News article 2012-07',
     '033253': f'BBC article about Rohingya in Myanmar by {ROBERT_LAWRENCE_KUHN}',
     '026887': f'BBC "New Tariffs - Trade War" by {ROBERT_LAWRENCE_KUHN}',
@@ -966,7 +925,6 @@ FILE_DESCRIPTIONS = {
     '026761': f'Forbes article "Swedish American Group Focuses On Cancer" about {BARBRO_EHNBOM}',
     '031716': f'Fortune Magazine article by {TOM_BARRACK} 2016-10-22',
     '019233': f'Freedom House: "Breaking Down Democracy: Goals, Strategies, and Methods of Modern Authoritarians" 2017-06',
-    '031794': f"very short French magazine clipping",
     '019444': f'Frontlines magazine article "Biologists Dig Deeper" ca. 2008-01-01',
     '023720': f'Future Science article: "Is Shame Necessary?" by {JENNIFER_JACQUET}',
     '027051': f"German language article about the 2013 Lifeball / AIDS Gala 2013-01",
@@ -980,6 +938,15 @@ FILE_DESCRIPTIONS = {
     '013403': f"Lexis Nexis result from The Evening Standard about Bernie Madoff 2009-12-24",
     '023102': f"Litigation Daily article about {REID_WEINGARTEN} 2015-09-04",
     '029340': f'MarketWatch article about estate taxes, particularly Epstein\'s favoured GRATs',
+    '022707': MICHAEL_WOLFF_ARTICLE_HINT,
+    '022727': MICHAEL_WOLFF_ARTICLE_HINT,
+    '022746': MICHAEL_WOLFF_ARTICLE_HINT,
+    '022844': MICHAEL_WOLFF_ARTICLE_HINT,
+    '022863': MICHAEL_WOLFF_ARTICLE_HINT,
+    '022894': MICHAEL_WOLFF_ARTICLE_HINT,
+    '022952': MICHAEL_WOLFF_ARTICLE_HINT,
+    '023627': MICHAEL_WOLFF_ARTICLE_HINT,
+    '024229': MICHAEL_WOLFF_ARTICLE_HINT,
     '029416': f"{NATIONAL_ENQUIRER_FILING} 2017-05-25",
     '029405': f"{NATIONAL_ENQUIRER_FILING} 2017-05-25",
     '015462': f'Nautilus Education magazine (?) issue',
@@ -1003,10 +970,44 @@ FILE_DESCRIPTIONS = {
     '022987': f"{PALM_BEACH_POST_ARTICLE} just a headline on Trump and Epstein",
     '015028': f"{PALM_BEACH_POST_ARTICLE} reopening Epstein's criminal case",
     '022990': f"{PALM_BEACH_POST_ARTICLE} Trump and Epstein",
+    '031753': f'{PAUL_KRASSNER} essay for Playboy in the 1980s 1985-01-01',
+    '023638': f'{PAUL_KRASSNER} magazine interview',
+    '024374': f'{PAUL_KRASSNER} "Remembering Cavalier Magazine"',
+    '030187': f'{PAUL_KRASSNER} "Remembering Lenny Bruce While We\'re Thinking About Trump" (draft?)',
+    '019088': f'{PAUL_KRASSNER} "Are Rape Jokes Funny? (draft) 2012-07-28',
+    '012740': f"{PEGGY_SIEGAL} article about Venice Film Festival ca. 2011-09-06",
+    '013442': f"{PEGGY_SIEGAL} draft about Oscars ca. 2011-02-27",
+    '012700': f"{PEGGY_SIEGAL} film events diary 2011-02-27",
+    '012690': f"{PEGGY_SIEGAL} film events diary early draft of 012700 2011-02-27",
+    '013450': f"{PEGGY_SIEGAL} Oscar Diary in Avenue Magazine 2011-02-27",
+    '010715': f"{PEGGY_SIEGAL} Oscar Diary April 2012-02-27",
+    '019864': f"{PEGGY_SIEGAL} Oscar Diary April 2017-02-27",
+    '019849': f"{PEGGY_SIEGAL} Oscar Diary April 2017-02-27",
     '033323': f'{ROBERT_TRIVERS} and Nathan H. Lents "Does Trump Fit the Evolutionary Role of Narcissistic Sociopath?" (draft) 2018-12-07',
     '025143': f'{ROBERT_TRIVERS} essay "Africa, Parasites, Intelligence" ca. 2018-06-25',
     '016996': f'SciencExpress article "Quantitative Analysis of Culture Using Millions of Digitized Books" by Jean-Baptiste Michel',
     '025104': f"SCMP article about China and globalisation",
+    '030030': f'{SHIMON_POST} 2011-03-29',
+    '025610': f'{SHIMON_POST} 2011-04-03',
+    '023458': f'{SHIMON_POST} 2011-04-17',
+    '023487': f'{SHIMON_POST} 2011-04-18',
+    '030531': f'{SHIMON_POST} 2011-04-20',
+    '024958': f'{SHIMON_POST} 2011-05-08',
+    '030060': f'{SHIMON_POST} 2011-05-13',
+    '030531': f'{SHIMON_POST} 2011-05-16',
+    '031834': f'{SHIMON_POST} 2011-05-16',
+    '023517': f'{SHIMON_POST} 2011-05-26',
+    '030268': f'{SHIMON_POST} 2011-05-29',
+    '029628': f'{SHIMON_POST} 2011-06-04',
+    '018085': f'{SHIMON_POST} 2011-06-07',
+    '030156': f'{SHIMON_POST} 2011-06-22',
+    '031876': f'{SHIMON_POST} 2011-06-14',
+    '032171': f'{SHIMON_POST} 2011-06-26',
+    '029932': f'{SHIMON_POST} 2011-07-03',
+    '031913': f'{SHIMON_POST} 2011-08-24',
+    '024592': f'{SHIMON_POST} 2011-08-25',
+    '024997': f'{SHIMON_POST} 2011-09-08',
+    '031941': f'{SHIMON_POST} 2011-11-17',
     '021092': f'{SINGLE_PAGE} Tatler article about {GHISLAINE_MAXWELL} shredding documents 2019-08-15',
     '031191': f"{SINGLE_PAGE} unknown article about Epstein and Trump's relationship in 1997",
     '030829': f'South Florida Sun Sentinel article about {BRAD_EDWARDS} and {JEFFREY_EPSTEIN}',
@@ -1015,6 +1016,7 @@ FILE_DESCRIPTIONS = {
     '031736': f'{TRANSLATION} Arabic article by Abdulnaser Salamah "Trump; Prince of Believers (Caliph)!" 2017-05-13',
     '025094': f'{TRANSLATION} Spanish article about Cuba 2015-11-08',
     '010754': f"U.S. News article about Yitzhak Rabin 2015-11-04",
+    '031794': f"very short French magazine clipping",
     '014498': f"{VI_DAILY_NEWS_ARTICLE} 2016-12-13",
     '031171': f"{VI_DAILY_NEWS_ARTICLE} 2019-02-06",
     '023048': f"{VI_DAILY_NEWS_ARTICLE} 2019-02-27",
