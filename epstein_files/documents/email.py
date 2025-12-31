@@ -37,7 +37,7 @@ DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
 TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
-REWRITTEN_HEADER_MSG = "(this email's broken OCR header data was prettified, check source if something's sus)"
+REWRITTEN_HEADER_MSG = "(this email's text was prettified for presentation, check source if something's sus)"
 MAX_CHARS_TO_PRINT = 4000
 MAX_QUOTED_REPLIES = 2
 VALID_HEADER_LINES = 14
@@ -575,6 +575,7 @@ class Email(CommunicationDocument):
         logger.debug(f"Printing '{self.filename}'...")
         yield self.file_info_panel()
         text = self.text
+        should_rewrite_header = self.header.was_initially_empty and self.header.num_header_rows > 0
         quote_cutoff = self.idx_of_nth_quoted_reply(text=text)  # Trim if there's many quoted replies
         num_chars = MAX_CHARS_TO_PRINT
         trim_footer_txt = None
@@ -594,7 +595,7 @@ class Email(CommunicationDocument):
             trim_footer_txt = Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
 
         # Rewrite broken headers where the values are on separate lines from the field names
-        if self.header.was_initially_empty:
+        if should_rewrite_header:
             num_lines_to_skip = self.header.num_header_rows
             configured_actual_text = self.configured_attr('actual_text')
             lines = []
@@ -621,8 +622,8 @@ class Email(CommunicationDocument):
 
         yield Padding(email_txt_panel, (0, 0, 1, INFO_INDENT))
 
-        if self.header.was_initially_empty:
-            self.log_top_lines(num_lines_to_skip + 4, f'Original header:', logging.WARNING)
+        if should_rewrite_header:
+            self.log_top_lines(self.header.num_header_rows + 4, f'Original header:', logging.WARNING)
 
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:
