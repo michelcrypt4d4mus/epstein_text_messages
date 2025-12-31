@@ -539,11 +539,8 @@ class Email(CommunicationDocument):
             for _i in range(4):
                 self._merge_lines(2)
 
-            logger.warning(f"After step 1 (4 merges):\n\n" + '\n'.join(self.lines[0:12]) + '\n')
             self._merge_lines(4)
-            logger.warning(f"After step 2 (merge line idx 5):\n\n" + '\n'.join(self.lines[0:12]) + '\n')
             self._merge_lines(2, 4)
-            logger.warning(f"After step 3 (add line idx 5 to line idx 2):\n\n" + '\n'.join(self.lines[0:12]) + '\n')
 
         if old_text != self.text:
             logger.warning(f"Modified text of '{self.url_slug}', old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n')
