@@ -596,8 +596,7 @@ def get_info_for_name(name: str) -> str | None:
 
 
 def get_style_for_name(name: str | None, default_style: str = DEFAULT, allow_bold: bool = True) -> str:
-    name = name or UNKNOWN
-    highlight_group = _get_highlight_group_for_name(name)
+    highlight_group = _get_highlight_group_for_name(name or UNKNOWN)
     style = highlight_group.style if highlight_group else default_style
     return style if allow_bold else style.replace('bold', '').strip()
 
