@@ -101,7 +101,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='africa',
         style='light_pink4',
-        pattern=r'Econet(\s*Wireless)|Ghana(ian)?|Senegal|(South\s*)?African?|(Strive\s*)?Masiyiwa|Ugandan?|Zimbabwe(an)?',
+        pattern=r'Econet(\s*Wireless)|Ghana(ian)?|Senegal(ese)?|(South\s*)?African?|(Strive\s*)?Masiyiwa|Ugandan?|Zimbabwe(an)?',
         emailers={
             'Abdoulaye Wade': 'former president of Senegal, father of Karim Wade',
             'Karim Wade': 'son of the president of Senegal, facing arrest for corruption, email handle is "Afri zp"',
