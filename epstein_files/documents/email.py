@@ -2,6 +2,7 @@ import re
 from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
+from typing import cast
 
 from dateutil.parser import parse
 from rich.console import Console, ConsoleOptions, RenderResult
@@ -278,7 +279,7 @@ class Email(CommunicationDocument):
         super().__post_init__()
 
         if self.configured_attr('recipients'):
-            self.recipients = EMAIL_INFO[self.file_id].recipients
+            self.recipients = cast(list[str | None], EMAIL_INFO[self.file_id].recipients)
         else:
             for recipient in self.header.recipients():
                 self.recipients.extend(self._get_names(recipient))
@@ -315,7 +316,7 @@ class Email(CommunicationDocument):
     def _actual_text(self) -> str:
         """The text that comes before likely quoted replies and forwards etc."""
         if self.configured_attr('actual_text') is not None:
-            return self.configured_attr('actual_text')
+            return cast(str, self.configured_attr('actual_text'))
         elif self.header.num_header_rows == 0:
             return self.text
 
@@ -408,7 +409,7 @@ class Email(CommunicationDocument):
 
     def _extract_timestamp(self) -> datetime:
         if self.configured_attr('timestamp'):
-            return EMAIL_INFO[self.file_id].timestamp
+            return cast(datetime, EMAIL_INFO[self.file_id].timestamp)
         elif self.header.sent_at:
             timestamp = _parse_timestamp(self.header.sent_at)
 
