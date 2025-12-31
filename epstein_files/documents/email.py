@@ -518,7 +518,7 @@ class Email(CommunicationDocument):
 
             # TODO: check this one
             if self.file_id in ['030626']:  # Merge 6th and 7th (now 5th and 6th) rows
-                self._merge_lines(5)
+                self._merge_lines(4)
         elif self.file_id in ['029976']:
             self._merge_lines(3)  # Merge 4th and 5th rows
         elif self.file_id in ['026609', '029402', '032405']:
