@@ -3,17 +3,32 @@ from datetime import datetime
 from typing import Literal
 
 ConfiguredAttr = Literal['actual_text', 'author', 'is_fwded_article', 'recipients', 'timestamp']
-
+DuplicateType = Literal['same as', 'quoted in', 'redacted version of']
 
 @dataclass(kw_only=True)
 class FileConfig:
     file_id: str | None = None
     duplicate_of_file_id: str | None = None
-    duplicate_type: Literal['same', 'redacted version'] | None = None
+    duplicate_type: DuplicateType | None = None
 
     def __post_init__(self):
         if self.duplicate_of_file_id:
-            self.duplicate_type = self.duplicate_type or 'same'
+            self.duplicate_type = self.duplicate_type or 'same as'
+
+    def _props_strs(self) -> list[str]:
+        props = []
+
+        if self.file_id:
+            props.append(f"file_id='{self.file_id}'")
+        if self.duplicate_of_file_id:
+            props.append(f"duplicate_of_file_id='{self.duplicate_of_file_id}'")
+        if self.duplicate_type:
+            props.append(f"duplicate_type='{self.duplicate_type}'")
+
+        return props
+
+    def __repr__(self) -> str:
+        return f"{type(self).__name__}(\n    " + ',\n    '.join(self._props_strs()) + '\n)'
 
 
 @dataclass(kw_only=True)
@@ -26,7 +41,7 @@ class EmailConfig(FileConfig):
     timestamp: datetime | None = None
 
     def __repr__(self) -> str:
-        props = []
+        props = self._props_strs()
 
         if self.author:
             props.append(f"author='{self.author}'")
@@ -39,4 +54,4 @@ class EmailConfig(FileConfig):
         if self.actual_text:
             props.append(f"actual_text='{self.actual_text}'")
 
-        return f"{type(self).__name__}({', '.join(props)})"
+        return f"{type(self).__name__}(\n    " + ',\n    '.join(self._props_strs()) + '\n)'
