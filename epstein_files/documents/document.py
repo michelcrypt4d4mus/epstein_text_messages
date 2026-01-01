@@ -93,7 +93,7 @@ class Document:
 
     def description(self) -> Text:
         """Mostly for logging. Brackets are left open for subclasses to add stuff."""
-        txt = Text('').append(self.file_path.stem, style='magenta')
+        txt = Text('').append(self.url_slug, style='magenta')
         txt.append(f' {self.document_type()}', style=self.document_type_style())
 
         if self.timestamp:

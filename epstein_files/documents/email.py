@@ -359,7 +359,7 @@ class Email(CommunicationDocument):
         if reply_text_match:
             actual_num_chars = len(reply_text_match.group(1))
             actual_text_pct = f"{(100 * float(actual_num_chars) / len(text)):.1f}%"
-            logger.info(f"'{self.file_path.stem}': actual_text() reply_text_match is {actual_num_chars:,} chars ({actual_text_pct} of {len(text):,})")
+            logger.info(f"'{self.url_slug}': actual_text() reply_text_match is {actual_num_chars:,} chars ({actual_text_pct} of {len(text):,})")
             text = reply_text_match.group(1)
 
         # If all else fails look for lines like 'From: blah', 'Subject: blah', and split on that.
@@ -369,11 +369,11 @@ class Email(CommunicationDocument):
             if field_string not in text:
                 continue
 
-            logger.debug(f"'{self.file_path.stem}': Splitting based on '{field_string.strip()}'")
+            logger.debug(f"'{self.url_slug}': Splitting based on '{field_string.strip()}'")
             pre_from_text = text.split(field_string)[0]
             actual_num_chars = len(pre_from_text)
             actual_text_pct = f"{(100 * float(actual_num_chars) / len(text)):.1f}%"
-            logger.info(f"'{self.file_path.stem}': actual_text() fwd_text_match is {actual_num_chars:,} chars ({actual_text_pct} of {len(text):,})")
+            logger.info(f"'{self.url_slug}': actual_text() fwd_text_match is {actual_num_chars:,} chars ({actual_text_pct} of {len(text):,})")
             text = pre_from_text
             break
 
