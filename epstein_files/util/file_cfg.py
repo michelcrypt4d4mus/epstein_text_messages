@@ -50,21 +50,27 @@ class FileCfg:
         def add_prop(f: Field, value: str):
             props.append(f"{f.name}={value}")
 
-        for _field in sorted(fields(self), key=lambda f: f.name):
+        for _field in sorted(fields(self), key=lambda f: 'a' if f.name == 'id' else (f.name if not f.name.startswith('attrib') else 'zz')):
             value = getattr(self, _field.name)
 
             if value is None or (isinstance(value, list) and len(value) == 0):
                 continue
+            elif isinstance(value, bool) and not value:
+                continue
             elif _field.name == AUTHOR:
                 add_prop(_field, constantize_name(str(value)) if CONSTANTIZE_NAMES else f"'{value}'")
             elif _field.name == 'recipients' and isinstance(value, list):
-                recipients = [constantize_name(r) if (CONSTANTIZE_NAMES and r) else r for r in value]
-                recipients_str = f"recipients={recipients}"
+                recipients_str = str([constantize_name(r) if (CONSTANTIZE_NAMES and r) else r for r in value])
                 add_prop(_field, recipients_str.replace("'", '') if CONSTANTIZE_NAMES else recipients_str)
-            elif isinstance(value, str):
-                add_prop(_field, f"'{value}'")
             elif isinstance(value, datetime):
                 add_prop(_field, f"parse('{value}')" if CONSTANTIZE_NAMES else f"'{value}'")
+            elif isinstance(value, str):
+                if "'" in value:
+                    value = '"' + value.replace('"', r'\"') + '"'
+                else:
+                    value = "'" + value.replace("'", r'\'') + "'"
+
+                add_prop(_field, value)
             else:
                 add_prop(_field, str(value))
 
@@ -78,12 +84,14 @@ class FileCfg:
         if len(single_line_repr) < 100:
             repr_str = single_line_repr
         else:
-            repr_str = f"{type_str}{INDENT_NEWLINE}" + INDENTED_JOIN.join(props) + f'\n)'
+            repr_str = f"{type_str}{INDENT_NEWLINE}" + INDENTED_JOIN.join(props)
+            repr_str += ',' if props else ''
+            repr_str += '\n)'
 
         if CONSTANTIZE_NAMES:
             repr_str = INDENT + INDENT_NEWLINE.join(repr_str.split('\n'))
 
-        return repr_str
+        return repr_str.lstrip()
 
 
 @dataclass(kw_only=True)
