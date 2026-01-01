@@ -602,889 +602,371 @@ EMAIL_INFO = {
 
 
 DUPE_FILE_CFGS = [
-    EmailConfig(
-        file_id='026563',
-        duplicate_of_file_id='028768',
-        duplicate_type='redacted version of'
-    ),
-    EmailConfig(
-        file_id='028762',
-        duplicate_of_file_id='027056',
-        duplicate_type='redacted version of'
-    ),
-    EmailConfig(
-        file_id='032246',
-        duplicate_of_file_id='032248',
-        duplicate_type='redacted version of'
-    ),
-    EmailConfig(
-        file_id='023065',
-        duplicate_of_file_id='030628',
-        duplicate_type='redacted version of'
-    ),
-    EmailConfig(
-        file_id='031226',
-        duplicate_of_file_id='017523',
-        duplicate_type='redacted version of'
-    ),
-    EmailConfig(
-        file_id='031008',
-        duplicate_of_file_id='031099',
-        duplicate_type='redacted version of'
-    ),
-    EmailConfig(
-        file_id='033463',
-        duplicate_of_file_id='033596',
-        duplicate_type='redacted version of'
-    ),
-    EmailConfig(
-        file_id='023018',
-        duplicate_of_file_id='030624',
-        duplicate_type='redacted version of'
-    ),
-    EmailConfig(
-        file_id='030596',
-        duplicate_of_file_id='030335',
-        duplicate_type='redacted version of'
-    ),
-    EmailConfig(
-        file_id='012711',
-        duplicate_of_file_id='029841',
-        duplicate_type='redacted version of'
-    ),
-    EmailConfig(
-        file_id='033517',
-        duplicate_of_file_id='033528',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='032012',
-        duplicate_of_file_id='032023',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='026499',
-        duplicate_of_file_id='026298',
-        duplicate_type='quoted in'
-    ),
-    EmailConfig(
-        file_id='028529',
-        duplicate_of_file_id='022344',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='028621',
-        duplicate_of_file_id='019412',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='028765',
-        duplicate_of_file_id='027053',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='028773',
-        duplicate_of_file_id='027049',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='033207',
-        duplicate_of_file_id='033580',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='025547',
-        duplicate_of_file_id='028506',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='026549',
-        duplicate_of_file_id='028784',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='033599',
-        duplicate_of_file_id='033386',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='030622',
-        duplicate_of_file_id='023024',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='023026',
-        duplicate_of_file_id='030618',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='012898',
-        duplicate_of_file_id='033575',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='026834',
-        duplicate_of_file_id='028780',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='026835',
-        duplicate_of_file_id='028775',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='033489',
-        duplicate_of_file_id='033251',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='019465',
-        duplicate_of_file_id='031118',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='032158',
-        duplicate_of_file_id='031912',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='030514',
-        duplicate_of_file_id='030587',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='012685',
-        duplicate_of_file_id='029773',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='033482',
-        duplicate_of_file_id='029849',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='033586',
-        duplicate_of_file_id='033297',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='018084',
-        duplicate_of_file_id='031089',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='030885',
-        duplicate_of_file_id='031088',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='031130',
-        duplicate_of_file_id='030238',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='031067',
-        duplicate_of_file_id='030859',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='028791',
-        duplicate_of_file_id='031136',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='031134',
-        duplicate_of_file_id='030635',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='026234',
-        duplicate_of_file_id='028494',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='021790',
-        duplicate_of_file_id='030311',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='029880',
-        duplicate_of_file_id='033508',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='030612',
-        duplicate_of_file_id='030493',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='031771',
-        duplicate_of_file_id='032051',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='021761',
-        duplicate_of_file_id='031217',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='031426',
-        duplicate_of_file_id='031346',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='031427',
-        duplicate_of_file_id='031345',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='031432',
-        duplicate_of_file_id='031343',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='031084',
-        duplicate_of_file_id='031020',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='033485',
-        duplicate_of_file_id='033354',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='021241',
-        duplicate_of_file_id='031999',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='030602',
-        duplicate_of_file_id='030502',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='030617',
-        duplicate_of_file_id='030574',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='025226',
-        duplicate_of_file_id='031156',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='031086',
-        duplicate_of_file_id='031018',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='031079',
-        duplicate_of_file_id='031026',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='031787',
-        duplicate_of_file_id='032011',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='030498',
-        duplicate_of_file_id='030606',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='021235',
-        duplicate_of_file_id='032005',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='026160',
-        duplicate_of_file_id='028505',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='030837',
-        duplicate_of_file_id='031126',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='029778',
-        duplicate_of_file_id='029624',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='031973',
-        duplicate_of_file_id='024923',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='031422',
-        duplicate_of_file_id='031338',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='033289',
-        duplicate_of_file_id='033587',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='012722',
-        duplicate_of_file_id='032107',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='031114',
-        duplicate_of_file_id='030844',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='031074',
-        duplicate_of_file_id='031031',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='028531',
-        duplicate_of_file_id='027032',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='028493',
-        duplicate_of_file_id='026777',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='029255',
-        duplicate_of_file_id='029837',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='025361',
-        duplicate_of_file_id='031423',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='033594',
-        duplicate_of_file_id='029299',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='031069',
-        duplicate_of_file_id='030904',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='031165',
-        duplicate_of_file_id='030006',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='031159',
-        duplicate_of_file_id='025215',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='031090',
-        duplicate_of_file_id='031011',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='018158',
-        duplicate_of_file_id='032068',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='031221',
-        duplicate_of_file_id='031213',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='016690',
-        duplicate_of_file_id='016595',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='028970',
-        duplicate_of_file_id='029833',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='028958',
-        duplicate_of_file_id='029839',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='033503',
-        duplicate_of_file_id='029893',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='028486',
-        duplicate_of_file_id='025878',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='033565',
-        duplicate_of_file_id='032764',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='028485',
-        duplicate_of_file_id='026618',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='030495',
-        duplicate_of_file_id='030609',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='033361',
-        duplicate_of_file_id='033512',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='028972',
-        duplicate_of_file_id='029831',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='030616',
-        duplicate_of_file_id='021758',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='029884',
-        duplicate_of_file_id='033498',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='027094',
-        duplicate_of_file_id='028620',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='033579',
-        duplicate_of_file_id='032456',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='030255',
-        duplicate_of_file_id='030315',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='030876',
-        duplicate_of_file_id='031112',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='030491',
-        duplicate_of_file_id='030614',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='032279',
-        duplicate_of_file_id='033585',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='031994',
-        duplicate_of_file_id='025790',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='031189',
-        duplicate_of_file_id='031220',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='033563',
-        duplicate_of_file_id='032779',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='033577',
-        duplicate_of_file_id='033230',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='023971',
-        duplicate_of_file_id='032125',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='031203',
-        duplicate_of_file_id='031230',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='026569',
-        duplicate_of_file_id='028752',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='032050',
-        duplicate_of_file_id='031773',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='031983',
-        duplicate_of_file_id='021400',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='030581',
-        duplicate_of_file_id='030525',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='033491',
-        duplicate_of_file_id='026548',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='023550',
-        duplicate_of_file_id='029752',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='030592',
-        duplicate_of_file_id='030339',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='033589',
-        duplicate_of_file_id='032250',
-        duplicate_type='same as'
-    ),
-    EmailConfig(
-        file_id='011463',
-        duplicate_of_file_id='014788',
-        duplicate_type='same as'
-    ),
-    FileConfig(
-        file_id='023121',
-        duplicate_of_file_id='023123',
-        duplicate_type='same as'
-    ),
-    FileConfig(
-        file_id='010732',
-        duplicate_of_file_id='025704',
-        duplicate_type='redacted version of'
-    ),
-    FileConfig(
-        file_id='019221',
-        duplicate_of_file_id='025704',
-        duplicate_type='redacted version of'
-    ),
-    FileConfig(
-        file_id='019224',
-        duplicate_of_file_id='025353',
-        duplicate_type='redacted version of'
-    ),
-    FileConfig(
-        file_id='010723',
-        duplicate_of_file_id='025353',
-        duplicate_type='redacted version of'
-    ),
-    FileConfig(
-        file_id='012135',
-        duplicate_of_file_id='012130',
-        duplicate_type='redacted version of'
-    ),
-    FileConfig(
-        file_id='031415',
-        duplicate_of_file_id='031396',
-        duplicate_type='same as'
-    ),
-    FileConfig(
-        file_id='025210',
-        duplicate_of_file_id='025205',
-        duplicate_type='same as'
-    ),
-    FileConfig(
-        file_id='019864',
-        duplicate_of_file_id='019849',
-        duplicate_type='same as'
-    ),
-    FileConfig(
-        file_id='033481',
-        duplicate_of_file_id='033480',
-        duplicate_type='same as'
-    ),
-    FileConfig(
-        file_id='014697',
-        duplicate_of_file_id='011284',
-        duplicate_type='same as'
-    ),
-    FileConfig(
-        file_id='016616',
-        duplicate_of_file_id='016554',
-        duplicate_type='same as'
-    ),
-    FileConfig(
-        file_id='016574',
-        duplicate_of_file_id='016554',
-        duplicate_type='same as'
-    ),
-    FileConfig(
-        file_id='029405',
-        duplicate_of_file_id='029416',
-        duplicate_type='same as'
-    ),
-    FileConfig(
-        file_id='028965',
-        duplicate_of_file_id='028928',
-        duplicate_type='same as'
-    ),
-    FileConfig(
-        file_id='032713',
-        duplicate_of_file_id='033478',
-        duplicate_type='same as'
-    ),
-    FileConfig(
-        file_id='029357',
-        duplicate_of_file_id='028887',
-        duplicate_type='same as'
-    ),
-    FileConfig(
-        file_id='029356',
-        duplicate_of_file_id='029355',
-        duplicate_type='same as'
-    ),
+    EmailConfig(file_id='026563', duplicate_of_id='028768', duplicate_type='redacted version of'),
+    EmailConfig(file_id='028762', duplicate_of_id='027056', duplicate_type='redacted version of'),
+    EmailConfig(file_id='032246', duplicate_of_id='032248', duplicate_type='redacted version of'),
+    EmailConfig(file_id='023065', duplicate_of_id='030628', duplicate_type='redacted version of'),
+    EmailConfig(file_id='031226', duplicate_of_id='017523', duplicate_type='redacted version of'),
+    EmailConfig(file_id='031008', duplicate_of_id='031099', duplicate_type='redacted version of'),
+    EmailConfig(file_id='033463', duplicate_of_id='033596', duplicate_type='redacted version of'),
+    EmailConfig(file_id='023018', duplicate_of_id='030624', duplicate_type='redacted version of'),
+    EmailConfig(file_id='030596', duplicate_of_id='030335', duplicate_type='redacted version of'),
+    EmailConfig(file_id='012711', duplicate_of_id='029841', duplicate_type='redacted version of'),
+    EmailConfig(file_id='033517', duplicate_of_id='033528', duplicate_type='same as'),
+    EmailConfig(file_id='032012', duplicate_of_id='032023', duplicate_type='same as'),
+    EmailConfig(file_id='026499', duplicate_of_id='026298', duplicate_type='quoted in'),
+    EmailConfig(file_id='028529', duplicate_of_id='022344', duplicate_type='same as'),
+    EmailConfig(file_id='028621', duplicate_of_id='019412', duplicate_type='same as'),
+    EmailConfig(file_id='028765', duplicate_of_id='027053', duplicate_type='same as'),
+    EmailConfig(file_id='028773', duplicate_of_id='027049', duplicate_type='same as'),
+    EmailConfig(file_id='033207', duplicate_of_id='033580', duplicate_type='same as'),
+    EmailConfig(file_id='025547', duplicate_of_id='028506', duplicate_type='same as'),
+    EmailConfig(file_id='026549', duplicate_of_id='028784', duplicate_type='same as'),
+    EmailConfig(file_id='033599', duplicate_of_id='033386', duplicate_type='same as'),
+    EmailConfig(file_id='030622', duplicate_of_id='023024', duplicate_type='same as'),
+    EmailConfig(file_id='023026', duplicate_of_id='030618', duplicate_type='same as'),
+    EmailConfig(file_id='012898', duplicate_of_id='033575', duplicate_type='same as'),
+    EmailConfig(file_id='026834', duplicate_of_id='028780', duplicate_type='same as'),
+    EmailConfig(file_id='026835', duplicate_of_id='028775', duplicate_type='same as'),
+    EmailConfig(file_id='033489', duplicate_of_id='033251', duplicate_type='same as'),
+    EmailConfig(file_id='019465', duplicate_of_id='031118', duplicate_type='same as'),
+    EmailConfig(file_id='032158', duplicate_of_id='031912', duplicate_type='same as'),
+    EmailConfig(file_id='030514', duplicate_of_id='030587', duplicate_type='same as'),
+    EmailConfig(file_id='012685', duplicate_of_id='029773', duplicate_type='same as'),
+    EmailConfig(file_id='033482', duplicate_of_id='029849', duplicate_type='same as'),
+    EmailConfig(file_id='033586', duplicate_of_id='033297', duplicate_type='same as'),
+    EmailConfig(file_id='018084', duplicate_of_id='031089', duplicate_type='same as'),
+    EmailConfig(file_id='030885', duplicate_of_id='031088', duplicate_type='same as'),
+    EmailConfig(file_id='031130', duplicate_of_id='030238', duplicate_type='same as'),
+    EmailConfig(file_id='031067', duplicate_of_id='030859', duplicate_type='same as'),
+    EmailConfig(file_id='028791', duplicate_of_id='031136', duplicate_type='same as'),
+    EmailConfig(file_id='031134', duplicate_of_id='030635', duplicate_type='same as'),
+    EmailConfig(file_id='026234', duplicate_of_id='028494', duplicate_type='same as'),
+    EmailConfig(file_id='021790', duplicate_of_id='030311', duplicate_type='same as'),
+    EmailConfig(file_id='029880', duplicate_of_id='033508', duplicate_type='same as'),
+    EmailConfig(file_id='030612', duplicate_of_id='030493', duplicate_type='same as'),
+    EmailConfig(file_id='031771', duplicate_of_id='032051', duplicate_type='same as'),
+    EmailConfig(file_id='021761', duplicate_of_id='031217', duplicate_type='same as'),
+    EmailConfig(file_id='031426', duplicate_of_id='031346', duplicate_type='same as'),
+    EmailConfig(file_id='031427', duplicate_of_id='031345', duplicate_type='same as'),
+    EmailConfig(file_id='031432', duplicate_of_id='031343', duplicate_type='same as'),
+    EmailConfig(file_id='031084', duplicate_of_id='031020', duplicate_type='same as'),
+    EmailConfig(file_id='033485', duplicate_of_id='033354', duplicate_type='same as'),
+    EmailConfig(file_id='021241', duplicate_of_id='031999', duplicate_type='same as'),
+    EmailConfig(file_id='030602', duplicate_of_id='030502', duplicate_type='same as'),
+    EmailConfig(file_id='030617', duplicate_of_id='030574', duplicate_type='same as'),
+    EmailConfig(file_id='025226', duplicate_of_id='031156', duplicate_type='same as'),
+    EmailConfig(file_id='031086', duplicate_of_id='031018', duplicate_type='same as'),
+    EmailConfig(file_id='031079', duplicate_of_id='031026', duplicate_type='same as'),
+    EmailConfig(file_id='031787', duplicate_of_id='032011', duplicate_type='same as'),
+    EmailConfig(file_id='030498', duplicate_of_id='030606', duplicate_type='same as'),
+    EmailConfig(file_id='021235', duplicate_of_id='032005', duplicate_type='same as'),
+    EmailConfig(file_id='026160', duplicate_of_id='028505', duplicate_type='same as'),
+    EmailConfig(file_id='030837', duplicate_of_id='031126', duplicate_type='same as'),
+    EmailConfig(file_id='029778', duplicate_of_id='029624', duplicate_type='same as'),
+    EmailConfig(file_id='031973', duplicate_of_id='024923', duplicate_type='same as'),
+    EmailConfig(file_id='031422', duplicate_of_id='031338', duplicate_type='same as'),
+    EmailConfig(file_id='033289', duplicate_of_id='033587', duplicate_type='same as'),
+    EmailConfig(file_id='012722', duplicate_of_id='032107', duplicate_type='same as'),
+    EmailConfig(file_id='031114', duplicate_of_id='030844', duplicate_type='same as'),
+    EmailConfig(file_id='031074', duplicate_of_id='031031', duplicate_type='same as'),
+    EmailConfig(file_id='028531', duplicate_of_id='027032', duplicate_type='same as'),
+    EmailConfig(file_id='028493', duplicate_of_id='026777', duplicate_type='same as'),
+    EmailConfig(file_id='029255', duplicate_of_id='029837', duplicate_type='same as'),
+    EmailConfig(file_id='025361', duplicate_of_id='031423', duplicate_type='same as'),
+    EmailConfig(file_id='033594', duplicate_of_id='029299', duplicate_type='same as'),
+    EmailConfig(file_id='031069', duplicate_of_id='030904', duplicate_type='same as'),
+    EmailConfig(file_id='031165', duplicate_of_id='030006', duplicate_type='same as'),
+    EmailConfig(file_id='031159', duplicate_of_id='025215', duplicate_type='same as'),
+    EmailConfig(file_id='031090', duplicate_of_id='031011', duplicate_type='same as'),
+    EmailConfig(file_id='018158', duplicate_of_id='032068', duplicate_type='same as'),
+    EmailConfig(file_id='031221', duplicate_of_id='031213', duplicate_type='same as'),
+    EmailConfig(file_id='016690', duplicate_of_id='016595', duplicate_type='same as'),
+    EmailConfig(file_id='028970', duplicate_of_id='029833', duplicate_type='same as'),
+    EmailConfig(file_id='028958', duplicate_of_id='029839', duplicate_type='same as'),
+    EmailConfig(file_id='033503', duplicate_of_id='029893', duplicate_type='same as'),
+    EmailConfig(file_id='028486', duplicate_of_id='025878', duplicate_type='same as'),
+    EmailConfig(file_id='033565', duplicate_of_id='032764', duplicate_type='same as'),
+    EmailConfig(file_id='028485', duplicate_of_id='026618', duplicate_type='same as'),
+    EmailConfig(file_id='030495', duplicate_of_id='030609', duplicate_type='same as'),
+    EmailConfig(file_id='033361', duplicate_of_id='033512', duplicate_type='same as'),
+    EmailConfig(file_id='028972', duplicate_of_id='029831', duplicate_type='same as'),
+    EmailConfig(file_id='030616', duplicate_of_id='021758', duplicate_type='same as'),
+    EmailConfig(file_id='029884', duplicate_of_id='033498', duplicate_type='same as'),
+    EmailConfig(file_id='027094', duplicate_of_id='028620', duplicate_type='same as'),
+    EmailConfig(file_id='033579', duplicate_of_id='032456', duplicate_type='same as'),
+    EmailConfig(file_id='030255', duplicate_of_id='030315', duplicate_type='same as'),
+    EmailConfig(file_id='030876', duplicate_of_id='031112', duplicate_type='same as'),
+    EmailConfig(file_id='030491', duplicate_of_id='030614', duplicate_type='same as'),
+    EmailConfig(file_id='032279', duplicate_of_id='033585', duplicate_type='same as'),
+    EmailConfig(file_id='031994', duplicate_of_id='025790', duplicate_type='same as'),
+    EmailConfig(file_id='031189', duplicate_of_id='031220', duplicate_type='same as'),
+    EmailConfig(file_id='033563', duplicate_of_id='032779', duplicate_type='same as'),
+    EmailConfig(file_id='033577', duplicate_of_id='033230', duplicate_type='same as'),
+    EmailConfig(file_id='023971', duplicate_of_id='032125', duplicate_type='same as'),
+    EmailConfig(file_id='031203', duplicate_of_id='031230', duplicate_type='same as'),
+    EmailConfig(file_id='026569', duplicate_of_id='028752', duplicate_type='same as'),
+    EmailConfig(file_id='032050', duplicate_of_id='031773', duplicate_type='same as'),
+    EmailConfig(file_id='031983', duplicate_of_id='021400', duplicate_type='same as'),
+    EmailConfig(file_id='030581', duplicate_of_id='030525', duplicate_type='same as'),
+    EmailConfig(file_id='033491', duplicate_of_id='026548', duplicate_type='same as'),
+    EmailConfig(file_id='023550', duplicate_of_id='029752', duplicate_type='same as'),
+    EmailConfig(file_id='030592', duplicate_of_id='030339', duplicate_type='same as'),
+    EmailConfig(file_id='033589', duplicate_of_id='032250', duplicate_type='same as'),
+    EmailConfig(file_id='011463', duplicate_of_id='014788', duplicate_type='same as'),
+    FileConfig(file_id='023121', duplicate_of_id='023123', duplicate_type='earlier'),
+    FileConfig(file_id='010732', duplicate_of_id='025704', duplicate_type='redacted version of'),
+    FileConfig(file_id='019221', duplicate_of_id='025704', duplicate_type='redacted version of'),
+    FileConfig(file_id='019224', duplicate_of_id='025353', duplicate_type='redacted version of'),
+    FileConfig(file_id='010723', duplicate_of_id='025353', duplicate_type='redacted version of'),
+    FileConfig(file_id='012135', duplicate_of_id='012130', duplicate_type='redacted version of'),
+    FileConfig(file_id='031415', duplicate_of_id='031396', duplicate_type='same as'),
+    FileConfig(file_id='025210', duplicate_of_id='025205', duplicate_type='same as'),
+    FileConfig(file_id='019864', duplicate_of_id='019849', duplicate_type='same as'),
+    FileConfig(file_id='033481', duplicate_of_id='033480', duplicate_type='same as'),
+    FileConfig(file_id='014697', duplicate_of_id='011284', duplicate_type='same as'),  # Not quite same - Jeremy Gillula name removed
+    FileConfig(file_id='016616', duplicate_of_id='016554', duplicate_type='same as'),
+    FileConfig(file_id='016574', duplicate_of_id='016554', duplicate_type='same as'),
+    FileConfig(file_id='029405', duplicate_of_id='029416', duplicate_type='same as'),
+    FileConfig(file_id='028965', duplicate_of_id='028928', duplicate_type='same as'),
+    FileConfig(file_id='032713', duplicate_of_id='033478', duplicate_type='same as'),
+    FileConfig(file_id='029357', duplicate_of_id='028887', duplicate_type='same as'),  # TODO: really the same?
+    FileConfig(file_id='029356', duplicate_of_id='029355', duplicate_type='quoted in'),  # Zoomed in section
 
-    UPDATED CFGS
-    -----------
+    # UPDATED CFGS
+    # -----------
 
     EmailConfig(
         file_id='030578',
-        duplicate_of_file_id='030414',
+        duplicate_of_id='030414',
         duplicate_type='redacted version of',
-        author='Faith Kates'
+        author=FAITH_KATES
     ),
     EmailConfig(
         file_id='032048',
-        duplicate_of_file_id='030242',
+        duplicate_of_id='030242',
         duplicate_type='redacted version of',
-        recipients=['Mariana Idźkowska']
+        recipients=[MARIANA_IDZKOWSKA]
     ),
     EmailConfig(
         file_id='030634',
-        duplicate_of_file_id='031135',
+        duplicate_of_id='031135',
         duplicate_type='redacted version of',
-        author='Faith Kates'
+        author=FAITH_KATES
     ),
     EmailConfig(
         file_id='032531',
-        duplicate_of_file_id='033490',
+        duplicate_of_id='033490',
         duplicate_type='redacted version of',
-        author='Jonathan Farkas'
+        author=JONATHAN_FARKAS
     ),
     EmailConfig(
         file_id='030575',
-        duplicate_of_file_id='030475',
+        duplicate_of_id='030475',
         duplicate_type='redacted version of',
-        recipients=['Faith Kates']
+        recipients=[FAITH_KATES]
     ),
     EmailConfig(
         file_id='028781',
-        duplicate_of_file_id='013460',
+        duplicate_of_id='013460',
         duplicate_type='same as',
         is_fwded_article=True
     ),
     EmailConfig(
         file_id='028968',
-        duplicate_of_file_id='029835',
+        duplicate_of_id='029835',
         duplicate_type='same as',
-        recipients=['Alan Dershowitz', 'Jack Goldberger', 'Jeffrey Epstein']
+        recipients=[ALAN_DERSHOWITZ, JACK_GOLDBERGER, JEFFREY_EPSTEIN]
     ),
     EmailConfig(
         file_id='028482',
-        duplicate_of_file_id='026620',
+        duplicate_of_id='026620',
         duplicate_type='same as',
-        author='Terry Kafka'
+        author=TERRY_KAFKA
     ),
     EmailConfig(
         file_id='031388',
-        duplicate_of_file_id='031428',
+        duplicate_of_id='031428',
         duplicate_type='same as',
-        recipients=['Ken Starr', 'Lilly Sanchez', 'Martin Weinberg', 'Reid Weingarten']
+        recipients=[KEN_STARR, LILLY_SANCHEZ, MARTIN_WEINBERG, REID_WEINGARTEN]
     ),
     EmailConfig(
         file_id='033169',
-        duplicate_of_file_id='033584',
+        duplicate_of_id='033584',
         duplicate_type='same as',
-        author='Robert Trivers',
-        recipients=['Jeffrey Epstein']
+        author=ROBERT_TRIVERS,
+        recipients=[JEFFREY_EPSTEIN]
     ),
     EmailConfig(
         file_id='028789',
-        duplicate_of_file_id='027046',
+        duplicate_of_id='027046',
         duplicate_type='same as',
-        author='Lawrance Visoski'
+        author=LAWRANCE_VISOSKI
     ),
     EmailConfig(
         file_id='021794',
-        duplicate_of_file_id='030299',
+        duplicate_of_id='030299',
         duplicate_type='same as',
-        recipients=['Jessica Cadwell', 'Robert D. Critton Jr.']
+        recipients=[JESSICA_CADWELL, ROBERT_D_CRITTON]
     ),
     EmailConfig(
         file_id='033484',
-        duplicate_of_file_id='033282',
+        duplicate_of_id='033282',
         duplicate_type='same as',
-        author='Jonathan Farkas'
+        author=JONATHAN_FARKAS
     ),
     EmailConfig(
         file_id='028675',
-        duplicate_of_file_id='025041',
+        duplicate_of_id='025041',
         duplicate_type='same as',
-        author='Jeffrey Epstein',
-        recipients=['Larry Summers']
+        author=JEFFREY_EPSTEIN,
+        recipients=[LARRY_SUMMERS]
     ),
     EmailConfig(
         file_id='033486',
-        duplicate_of_file_id='033156',
+        duplicate_of_id='033156',
         duplicate_type='same as',
-        recipients=['Jeffrey Epstein', 'Darren Indyke', 'Richard Kahn']
+        recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, RICHARD_KAHN]
     ),
     EmailConfig(
         file_id='032389',
-        duplicate_of_file_id='033582',
+        duplicate_of_id='033582',
         duplicate_type='same as',
-        author='Jonathan Farkas'
+        author=JONATHAN_FARKAS
     ),
     EmailConfig(
         file_id='022202',
-        duplicate_of_file_id='029975',
+        duplicate_of_id='029975',
         duplicate_type='same as',
-        recipients=['Jean Luc Brunel']
+        recipients=[JEAN_LUC_BRUNEL]
     ),
     EmailConfig(
         file_id='029779',
-        duplicate_of_file_id='029692',
+        duplicate_of_id='029692',
         duplicate_type='same as',
-        author='Jeffrey Epstein',
-        is_fwded_article=True,
-        recipients=['Larry Summers']
+        author=JEFFREY_EPSTEIN,
+        recipients=[LARRY_SUMMERS],
+        is_fwded_article=True
     ),
     EmailConfig(
         file_id='033466',
-        duplicate_of_file_id='033591',
+        duplicate_of_id='033591',
         duplicate_type='same as',
-        recipients=['Lawrance Visoski']
+        recipients=[LAWRANCE_VISOSKI]
     ),
     EmailConfig(
         file_id='023067',
-        duplicate_of_file_id='030620',
+        duplicate_of_id='030620',
         duplicate_type='same as',
-        recipients=['Jeffrey Epstein', 'Darren Indyke', 'Debbie Fein', 'Tonja Haddad Coleman']
+        recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN, TONJA_HADDAD_COLEMAN]
     ),
     EmailConfig(
         file_id='026228',
-        duplicate_of_file_id='028497',
+        duplicate_of_id='028497',
         duplicate_type='same as',
-        recipients=['Jeffrey Epstein', 'Steven Pfeiffer']
+        recipients=[JEFFREY_EPSTEIN, STEVEN_PFEIFFER]
     ),
     EmailConfig(
         file_id='031120',
-        duplicate_of_file_id='029968',
+        duplicate_of_id='029968',
         duplicate_type='same as',
-        author='Gwendolyn Beck'
+        author=GWENDOLYN_BECK
     ),
     EmailConfig(
         file_id='018197',
-        duplicate_of_file_id='028648',
+        duplicate_of_id='028648',
         duplicate_type='same as',
         is_fwded_article=True
     ),
     EmailConfig(
         file_id='026612',
-        duplicate_of_file_id='028487',
+        duplicate_of_id='028487',
         duplicate_type='same as',
-        author='Norman D. Rau'
+        author=NORMAN_D_RAU
     ),
     EmailConfig(
         file_id='033154',
-        duplicate_of_file_id='033488',
+        duplicate_of_id='033488',
         duplicate_type='same as',
-        author='Lawrance Visoski'
+        author=LAWRANCE_VISOSKI
     ),
     EmailConfig(
         file_id='031227',
-        duplicate_of_file_id='031206',
+        duplicate_of_id='031206',
         duplicate_type='same as',
-        author='Bennet Moskowitz'
+        author=BENNET_MOSKOWITZ
     ),
     EmailConfig(
         file_id='033581',
-        duplicate_of_file_id='033203',
+        duplicate_of_id='033203',
         duplicate_type='same as',
-        author='Jonathan Farkas'
+        author=JONATHAN_FARKAS
     ),
     EmailConfig(
         file_id='028728',
-        duplicate_of_file_id='027102',
+        duplicate_of_id='027102',
         duplicate_type='same as',
         is_fwded_article=True
     ),
     EmailConfig(
         file_id='032052',
-        duplicate_of_file_id='031732',
+        duplicate_of_id='031732',
         duplicate_type='same as',
-        author='Jonathan Farkas'
+        author=JONATHAN_FARKAS
     ),
     EmailConfig(
         file_id='028787',
-        duplicate_of_file_id='027097',
+        duplicate_of_id='027097',
         duplicate_type='same as',
-        recipients=['Lawrance Visoski']
+        recipients=[LAWRANCE_VISOSKI]
     ),
     EmailConfig(
         file_id='019409',
-        duplicate_of_file_id='031980',
+        duplicate_of_id='031980',
         duplicate_type='same as',
-        recipients=['Jeffrey Epstein', 'Michael Sitrick']
+        recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK]
     ),
     EmailConfig(
         file_id='031442',
-        duplicate_of_file_id='031996',
+        duplicate_of_id='031996',
         duplicate_type='same as',
-        author='Christina Galbraith'
+        author=CHRISTINA_GALBRAITH
     ),
     EmailConfig(
         file_id='031129',
-        duplicate_of_file_id='029977',
+        duplicate_of_id='029977',
         duplicate_type='same as',
-        author='Lawrance Visoski'
+        author=LAWRANCE_VISOSKI
     ),
     EmailConfig(
         file_id='033561',
-        duplicate_of_file_id='033157',
+        duplicate_of_id='033157',
         duplicate_type='same as',
-        author='Paul Prosperi'
+        author=PAUL_PROSPERI
     ),
     EmailConfig(
         file_id='026624',
-        duplicate_of_file_id='031708',
+        duplicate_of_id='031708',
         duplicate_type='same as',
-        author='Darren Indyke',
-        recipients=['Jeffrey Epstein'],
-        timestamp='2016-10-01 16:40:00'
+        author=DARREN_INDYKE,
+        recipients=[JEFFREY_EPSTEIN],
+        timestamp=parse('2016-10-01 16:40:00')
     ),
     EmailConfig(
         file_id='023291',
-        duplicate_of_file_id='023208',
+        duplicate_of_id='023208',  # TODO: Is it really the same?
         duplicate_type='same as',
-        recipients=['Melanie Spinella', 'Brad Wechsler']
+        recipients=[MELANIE_SPINELLA, BRAD_WECHSLER]
     ),
     EmailConfig(
         file_id='026745',
-        duplicate_of_file_id='031215',
+        duplicate_of_id='031215',  # the same except for 'your Anna!'
         duplicate_type='same as',
-        author='Barbro C. Ehnbom'
+        author=BARBRO_EHNBOM       # name in signature
     ),
 ]
+
+DUPLICATE_FILE_IDS = {cfg.file_id: cfg for cfg in DUPE_FILE_CFGS}
 
 # Reason string should end in a file ID
 DUPLICATE_FILE_IDS = {
@@ -1682,7 +1164,7 @@ for id, reason in DUPLICATE_FILE_IDS.items():
         file_config = EMAIL_INFO[id]
         # print(f"Updating existing {id}:\n\n{file_config}\n")
         file_config.file_id = id
-        file_config.duplicate_of_file_id = reason.split()[-1]
+        file_config.duplicate_of_id = reason.split()[-1]
         file_config.duplicate_type = dupe_type
         updated_configs.append(file_config)
     else:
@@ -1690,13 +1172,13 @@ for id, reason in DUPLICATE_FILE_IDS.items():
 
         file_config = cfg_type(
             file_id=id,
-            duplicate_of_file_id=reason.split()[-1],
+            duplicate_of_id=reason.split()[-1],
             duplicate_type=dupe_type
         )
 
         print(repr(file_config) + ',')
 
-print("\nUPDATED CFGS\n-----------\n")
+print("\n# UPDATED CFGS\n# -----------\n")
 
 for cfg in updated_configs:
     print(repr(cfg) + ',')

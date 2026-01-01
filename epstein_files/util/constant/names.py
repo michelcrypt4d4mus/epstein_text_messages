@@ -241,3 +241,7 @@ OTHER_NAMES = """
     walter warren weinstein weiss william
     zach zack
 """.strip().split()
+
+
+def constantize_name(name: str) -> str:
+    return name.upper().replace('-', '_').replace(' ', '_').replace('.', '')
