@@ -81,8 +81,11 @@ class Document:
         self.cfg_type = type(self.config).__name__ if self.config else None   # TODO: remove eventually, unecessary
         self.is_duplicate = bool(self.config.duplicate_of_id) if self.config else False
 
-        if is_local_extract_file(self.filename):
+        if self.is_local_extract_file():
             self.url_slug = build_filename_for_id(self.file_id)
+
+            if self.document_type() == EMAIL_CLASS and self.config and self.cfg_type != 'EmailCfg':
+                self.config = EmailCfg.from_file_cfg(self.config)
         else:
             self.url_slug = self.file_path.stem
 
@@ -167,6 +170,10 @@ class Document:
     def info_txt(self) -> Text | None:
         """Secondary info about this file (recipients, level of certainty, etc). Overload in subclasses."""
         return None
+
+    def is_local_extract_file(self) -> bool:
+        """True if file created by extracting text from a court doc (identifiable from filename e.g. HOUSE_OVERSIGHT_012345_1.txt)."""
+        return is_local_extract_file(self.filename)
 
     def lines_matching_txt(self, _pattern: re.Pattern | str) -> list[Text]:
         pattern = patternize(_pattern)
