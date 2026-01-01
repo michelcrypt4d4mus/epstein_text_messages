@@ -70,6 +70,7 @@ class OtherFile(Document):
 
     def _extract_timestamp(self) -> datetime | None:
         """Return ISO date at end of configured description entry or value extracted by datefinder.find_dates()."""
+        log_level = logging.DEBUG if VAST_HOUSE in self.text else logging.INFO
         timestamps: list[datetime] = []
 
         # Check for configured values
@@ -101,9 +102,7 @@ class OtherFile(Document):
             logger.warning(f"Error while iterating through datefinder.find_dates(): {e}")
 
         if len(timestamps) == 0:
-            if VAST_HOUSE not in self.text:
-                self.log_top_lines(15, msg=f"{self.file_id}: No timestamps found", level=logging.INFO)
-
+            self.log_top_lines(15, msg=f"{self.file_id}: No timestamps found", level=log_level)
             return None
         elif len(timestamps) == 1:
             return timestamps[0]
@@ -115,6 +114,7 @@ class OtherFile(Document):
         if num_days_spanned > MAX_DAYS_SPANNED_TO_BE_VALID and VAST_HOUSE not in self.text:
             msg = f"{self.file_id}: Found {len(timestamps)} timestamps spanning {num_days_spanned} days\n     "
             msg += '\n     '.join(timestamp_strs)
-            self.log_top_lines(15, msg=msg, level=logging.INFO)
+            self.log_top_lines(15, msg=msg, level=log_level)
 
-        return timestamps[0]  # Most recent timestamp in text should be closest
+        # Most recent timestamp in text should be closest to accurate bc doc should only have dates of things that already happened
+        return timestamps[0]

@@ -300,12 +300,12 @@ class Email(CommunicationDocument):
         super().__post_init__()
         self.is_junk_mail = self.author in JUNK_EMAILERS
 
-        if self.config and type(self.config).__name__ != 'EmailCfg':
+        if self.config and self.cfg_type != 'EmailCfg':
             if self.is_local_extract_file():  # Emails extracted from court filings will have FileCfg not EmailCfg:
                 self.config = EmailCfg.from_file_cfg(self.config)
                 logger.warning(f"Replaced FileCfg with EmailCfg for {self.file_id}:\n\n{self.config}\n")
             else:
-                raise ValueError(f"{self.file_path.name} should have EmailCfg type not {type(self.config).__name__}\n{self.config}")
+                raise ValueError(f"{self.file_path.name} should have EmailCfg type not {self.cfg_type}\n{self.config}")
 
         if self.config and self.config.recipients:
             self.recipients = cast(list[str | None], self.config.recipients)
