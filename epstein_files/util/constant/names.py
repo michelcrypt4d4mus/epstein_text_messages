@@ -244,6 +244,12 @@ OTHER_NAMES = """
 
 
 def constantize_name(name: str) -> str:
-    name = remove_question_marks(name)
-    name = name.removesuffix('.').removesuffix('Jr').replace('ź', 'z').strip()
-    return name.upper().replace('-', '_').replace(' ', '_').replace('.', '')
+    variable_name = remove_question_marks(name)
+    variable_name = variable_name.removesuffix('.').removesuffix('Jr').replace('ź', 'z').strip()
+    variable_name = variable_name.upper().replace('-', '_').replace(' ', '_').replace('.', '')
+
+    if variable_name not in globals():
+        #print(f"  ****ERROR**** {variable_name} is not a name variable!")
+        return f"'{name}'"
+    else:
+        return variable_name
