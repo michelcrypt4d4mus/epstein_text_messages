@@ -59,6 +59,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     # Names / email addresses
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
     'Miroslav Laj6ak': MIROSLAV_LAJCAK,
+    'Ross G°w': ROSS_GOW,
     'Torn Pritzker': TOM_PRITZKER,
     re.compile(r' Banno(r]?|\b)'): ' Bannon',
     re.compile(r'gmax ?[1l] ?[@g]ellmax.c ?om'): 'gmax1@ellmax.com',
