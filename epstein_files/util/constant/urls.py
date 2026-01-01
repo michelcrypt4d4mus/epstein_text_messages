@@ -52,7 +52,7 @@ epsteinify_doc_link_txt = lambda filename_or_id, style = TEXT_LINK: Text.from_ma
 epsteinify_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[EPSTEINIFY], file_stem)
 epsteinify_name_url = lambda name: f"{EPSTEINIFY_URL}/?name={urllib.parse.quote(name)}"
 
-epstein_media_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[EPSTEIN_MEDIA], file_stem)
+epstein_media_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[EPSTEIN_MEDIA], file_stem, True)
 epstein_media_doc_link_markup = lambda filename_or_id, style = TEXT_LINK: external_doc_link_markup(EPSTEIN_MEDIA, filename_or_id, style)
 epstein_media_doc_link_txt = lambda filename_or_id, style = TEXT_LINK: Text.from_markup(epstein_media_doc_link_markup(filename_or_id, style))
 
@@ -66,8 +66,10 @@ search_jmail_url = lambda txt: f"{JMAIL_URL}/search?q={urllib.parse.quote(txt)}"
 search_twitter_url = lambda txt: f"https://x.com/search?q={urllib.parse.quote(txt)}&src=typed_query&f=live"
 
 
-def build_doc_url(base_url: str, filename_or_id: int | str) -> str:
-    return f"{base_url}/{build_file_stem(filename_or_id)}"
+def build_doc_url(base_url: str, filename_or_id: int | str, lowercase: bool = False) -> str:
+    file_stem = build_file_stem(filename_or_id)
+    file_stem = file_stem.lower() if lowercase else file_stem
+    return f"{base_url}/{file_stem}"
 
 
 def external_doc_link_markup(site: ExternalSite, filename_or_id: int | str, style: str = TEXT_LINK) -> str:
