@@ -20,7 +20,7 @@ REASON_MAPPING: dict[DuplicateType, str] = {
 
 
 @dataclass(kw_only=True)
-class FileConfig:
+class FileCfg:
     """Convenience class that encapsulates configuring info about files that need to be manually configured.
 
     Attributes:
@@ -69,7 +69,7 @@ class FileConfig:
 
 
 @dataclass(kw_only=True)
-class EmailConfig(FileConfig):
+class EmailCfg(FileCfg):
     """
     Convenience class to unite various configured properties for a given email ID. Often required
     to handle the terrible OCR text that Congress provided which breaks a lot of the email's header lines.
