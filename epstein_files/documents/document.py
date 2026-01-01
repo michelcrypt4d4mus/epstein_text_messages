@@ -115,11 +115,10 @@ class Document:
 
     def duplicate_file_txt(self) -> Text:
         """If the file is a dupe (exists in DUPLICATE_FILE_IDS) make a nice message."""
-        supression_reason = DUPLICATE_FILE_IDS[self.file_id]
-        reason_msg = ' '.join(supression_reason.split()[0:-1])
+        file_cfg = DUPLICATE_FILE_IDS[self.file_id]
         txt = Text(f"Not showing ", style='white dim italic').append(epstein_media_doc_link_txt(self.file_id, style='cyan'))
-        txt.append(f" because it's {reason_msg} ")
-        return txt.append(epstein_media_doc_link_txt(supression_reason.split()[-1], style='royal_blue1'))
+        txt.append(f" because it's {file_cfg.duplicate_reason()} ")
+        return txt.append(epstein_media_doc_link_txt(file_cfg.duplicate_of_id, style='royal_blue1'))
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on epsteinify.com."""

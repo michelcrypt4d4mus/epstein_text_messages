@@ -19,7 +19,7 @@ EMAIL_AUTHOR_COUNTS = {
     ARIANE_DE_ROTHSCHILD: 4,
     'Audrey/Aubrey Raimbault (???)': 1,
     AZIZA_ALAHMADI: 3,
-    BARBRO_EHNBOM: 11,
+    BARBRO_C_EHNBOM: 11,
     "Barnaby Marsh": 1,
     BARRY_J_COHEN: 5,
     "Barry Josephson": 2,
@@ -538,7 +538,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         MERWIN_DELA_CRUZ,
     ],
     'Sent from iPad': [
-        BARBRO_EHNBOM,
+        BARBRO_C_EHNBOM,
     ],
     "Sent from my BlackBerry - the most secure mobile device": [
         "Michael Miller"
@@ -677,7 +677,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     AZIZA_ALAHMADI: [
         "Sent from my iPhone"
     ],
-    BARBRO_EHNBOM: [
+    BARBRO_C_EHNBOM: [
         'Sent from iPad',
     ],
     BORIS_NIKOLIC: [
@@ -892,7 +892,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
 
 SIGNATURE_SUBSTITUTION_COUNTS = {
     "(unknown)": 2,
-    BARBRO_EHNBOM: 5,
+    BARBRO_C_EHNBOM: 5,
     ARIANE_DE_ROTHSCHILD: 4,
     "Danny Frost": 8,
     "Darren Indyke": 47,

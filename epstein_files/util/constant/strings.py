@@ -1,3 +1,4 @@
+import re
 from typing import Literal
 
 
@@ -27,3 +28,9 @@ SiteType = Literal['email', 'text message']
 OTHER_SITE_LINK_STYLE = 'dark_goldenrod'
 TIMESTAMP_STYLE = 'turquoise4'
 TIMESTAMP_DIM = f"turquoise4 dim"
+
+# Regex
+QUESTION_MARKS_REGEX = re.compile(fr' {re.escape(QUESTION_MARKS)}$')
+
+
+remove_question_marks = lambda name: QUESTION_MARKS_REGEX.sub('', name)
