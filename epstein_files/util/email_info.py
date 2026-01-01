@@ -15,7 +15,7 @@ CONSTANTIZE_NAMES = True
 
 @dataclass(kw_only=True)
 class FileConfig:
-    file_id: str | None = None
+    id: str | None = None
     duplicate_of_id: str | None = None
     duplicate_type: DuplicateType | None = None
 
@@ -29,8 +29,8 @@ class FileConfig:
     def _props_strs(self) -> list[str]:
         props = []
 
-        if self.file_id:
-            props.append(f"file_id='{self.file_id}'")
+        if self.id:
+            props.append(f"file_id='{self.id}'")
         if self.duplicate_of_id:
             props.append(f"duplicate_of_id='{self.duplicate_of_id}'")
         if self.duplicate_type:
