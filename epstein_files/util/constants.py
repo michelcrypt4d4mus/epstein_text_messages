@@ -853,7 +853,6 @@ THE_REAL_DEAL_ARTICLE = 'The Real Deal article by Keith Larsen'
 TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Government Ethics 2017-01-20"
 UBS_CIO_REPORT = 'UBS CIO Monthly Extended report'
 VI_DAILY_NEWS_ARTICLE = f'{VIRGIN_ISLANDS} Daily News article'
-VIRGINIA_FILING = f"court filings from {VIRGINIA_GIUFFRE}'s lawsuit against Epstein (and {ALAN_DERSHOWITZ}?)"
 WAPO = 'WaPo'
 WEINBERG_ABC_LETTER = f"letter from {MARTIN_WEINBERG} to ABC / Good Morning America threatening libel lawsuit"
 WOMEN_EMPOWERMENT = f"Women Empowerment (WE) conference run by {SVETLANA_POZHIDAEVA}"
