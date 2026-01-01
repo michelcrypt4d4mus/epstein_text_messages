@@ -1,4 +1,4 @@
-from epstein_files.util.constant.strings import QUESTION_MARKS
+from epstein_files.util.constant.strings import QUESTION_MARKS, remove_question_marks
 
 
 UNKNOWN = '(unknown)'
@@ -31,7 +31,7 @@ ANAS_ALRASHEED = 'Anas Alrasheed'
 ANTHONY_BARRETT = 'Anthony Barrett'
 ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
 AZIZA_ALAHMADI = 'Aziza Alahmadi'
-BARBRO_EHNBOM = 'Barbro C. Ehnbom'
+BARBRO_C_EHNBOM = 'Barbro C. Ehnbom'
 BARRY_J_COHEN = 'Barry J. Cohen'
 BENNET_MOSKOWITZ = 'Bennet Moskowitz'
 BILL_SIEGEL = 'Bill Siegel'
@@ -244,4 +244,6 @@ OTHER_NAMES = """
 
 
 def constantize_name(name: str) -> str:
+    name = remove_question_marks(name)
+    name = name.removesuffix('.').removesuffix('Jr').replace('ź', 'z').strip()
     return name.upper().replace('-', '_').replace(' ', '_').replace('.', '')
