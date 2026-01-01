@@ -327,13 +327,13 @@ EMAIL_INFO = {
     '031442': EmailConfig(author=CHRISTINA_GALBRAITH),
     '019446': EmailConfig(author=CHRISTINA_GALBRAITH),   # Not 100% but from "Christina media/PR" which fits
     '026625': EmailConfig(author=DARREN_INDYKE, actual_text='Hysterical.'),
-    '026624': EmailConfig(
-        author=DARREN_INDYKE,                          # weird format (signature on top)
+    '026624': EmailConfig(                          # weird format (signature on top)
+        author=DARREN_INDYKE,
         recipients=[JEFFREY_EPSTEIN],
         timestamp=datetime.fromisoformat('2016-10-01 16:40:00')
     ),
-    '031278': EmailConfig(
-        author=DARREN_INDYKE,                          # Quoted replies are in 019109
+    '031278': EmailConfig(                          # Quoted replies are in 019109
+        author=DARREN_INDYKE,
         timestamp=datetime.fromisoformat('2016-08-17 11:26:00')
     ),
     '026290': EmailConfig(author=DAVID_SCHOEN),          # Signature
@@ -344,7 +344,13 @@ EMAIL_INFO = {
     '033419': EmailConfig(author=DAVID_SCHOEN),          # Signature
     '026245': EmailConfig(author=DIANE_ZIMAN, recipients=[JEFFREY_EPSTEIN]),  # TODO: Shouldn't need to be configured
     '031460': EmailConfig(author=EDWARD_JAY_EPSTEIN),
-    '030578': EmailConfig(author=FAITH_KATES),           # Same as unredacted 030414, same legal signature
+    '030578': EmailConfig(
+        id='030578',
+        duplicate_of_id='030414',
+        duplicate_type='redacted',
+        author=FAITH_KATES,
+        attribution_explanation='Same as unredacted 030414, same legal signature',
+    ),
     '030634': EmailConfig(author=FAITH_KATES),           # Same as unredacted 031135, same legal signature
     '026547': EmailConfig(author=GERALD_BARTON, recipients=[JEFFREY_EPSTEIN]),  # bad OCR
     '029969': EmailConfig(author=GWENDOLYN_BECK),        # Signature
@@ -380,9 +386,9 @@ EMAIL_INFO = {
         author=JEFFREY_EPSTEIN,                         # Same as 023291
         recipients=[BRAD_WECHSLER, MELANIE_SPINELLA]
     ),
-    '032214': EmailConfig(
+    '032214': EmailConfig(                   # Quoted reply has signature
         author=JEFFREY_EPSTEIN,
-        recipients=[MIROSLAV_LAJCAK],                   # Quoted reply has signature
+        recipients=[MIROSLAV_LAJCAK],
         actual_text='Agreed',
     ),
     '029582': EmailConfig(author=JEFFREY_EPSTEIN, recipients=[RENATA_BOLOTOVA]),  # Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")
@@ -397,8 +403,8 @@ EMAIL_INFO = {
         recipients=[JEFFREY_EPSTEIN],
         timestamp=datetime.fromisoformat('2014-04-27 06:00:00'),
     ),
-    '028849': EmailConfig(
-        author=JOI_ITO,                                   # Conversation with Joi Ito
+    '028849': EmailConfig(                                # Conversation with Joi Ito
+        author=JOI_ITO,
         recipients=[JEFFREY_EPSTEIN],
         timestamp=datetime.fromisoformat('2014-04-27 06:30:00')
     ),
@@ -434,8 +440,8 @@ EMAIL_INFO = {
     '033488': EmailConfig(author=LAWRANCE_VISOSKI),
     '033593': EmailConfig(author=LAWRANCE_VISOSKI),        # Signature
     '033487': EmailConfig(author=LAWRANCE_VISOSKI, recipients=[JEFFREY_EPSTEIN]),
-    '029977': EmailConfig(
-        author=LAWRANCE_VISOSKI,                         # Planes discussion signed larry
+    '029977': EmailConfig( # Planes discussion signed larry
+        author=LAWRANCE_VISOSKI,
         recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, LESLEY_GROFF, RICHARD_KAHN] + FLIGHT_IN_2012_PEOPLE,
     ),
     '033309': EmailConfig(author=LINDA_STONE),             # "Co-authored with iPhone autocorrect"
@@ -476,13 +482,13 @@ EMAIL_INFO = {
     '029007': EmailConfig(author=SOON_YI),                 # "Sent from Soon-Yi's iPhone"
     '029010': EmailConfig(author=SOON_YI),                 # "Sent from Soon-Yi's iPhone"
     '032296': EmailConfig(author=SOON_YI),                 # "Sent from Soon-Yi's iPhone"
-    '019109': EmailConfig(
-        author=STEVEN_HOFFENBERG,                        # Actually a fwd by Charles Michael but Hofenberg email more intersting
+    '019109': EmailConfig(                           # Actually a fwd by Charles Michael but Hofenberg email more intersting
+        author=STEVEN_HOFFENBERG,
         recipients=['Players2'],
         timestamp=datetime.fromisoformat('2016-08-11 09:36:01')
     ),
-    '026620': EmailConfig(
-        author=TERRY_KAFKA,                              # "Respectfully, terry"
+    '026620': EmailConfig(  # "Respectfully, terry"
+        author=TERRY_KAFKA,
         recipients=[JEFFREY_EPSTEIN, MARK_EPSTEIN, MICHAEL_BUCHHOLTZ] + IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS,
     ),
     '028482': EmailConfig(author=TERRY_KAFKA),             # Signature
@@ -735,7 +741,7 @@ DUPE_FILE_CFGS = [
 
     # UPDATED CFGS
     # -----------
-    EmailConfig(id='030578', duplicate_of_id='030414', duplicate_type='redacted', author=FAITH_KATES),
+
     EmailConfig(
         id='032048',
         duplicate_of_id='030242',
@@ -876,14 +882,11 @@ DUPE_FILE_CFGS = [
 ]
 
 DUPLICATE_FILE_IDS = {cfg.id: cfg for cfg in DUPE_FILE_CFGS}
-print_cfg = False
 
-for cfg in DUPE_FILE_CFGS:
-    if cfg.id == '030578':
-        print_cfg = True
-
-    if print_cfg:
-        print(f'{cfg},')
+# TODO: this is a temporary hack to inject dupes configured in EMAIL_INFO into DUPLICATE_FILE_IDS
+for cfg in EMAIL_INFO.values():
+    if cfg.duplicate_of_id:
+        DUPLICATE_FILE_IDS[cfg.id] = cfg
 
 
 # Categories

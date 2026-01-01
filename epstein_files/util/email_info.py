@@ -21,20 +21,26 @@ REASON_MAPPING: dict[DuplicateType, str] = {
 
 @dataclass(kw_only=True)
 class FileConfig:
-    """Convenience class that encapsulates configuring info about files that need to be manually configured."""
+    """Convenience class that encapsulates configuring info about files that need to be manually configured.
+
+    Attributes:
+        id (str): ID of file
+        duplicate_of_id (str | None): If this is a duplicate of another file, the ID of that file
+        autduplicate_typehor (DuplicateType | None): The type of duplicate this file is
+        timestamp (datetime | None): Time this email was sent, file was created, article published, etc.
+    """
     id: str | None = None
     duplicate_of_id: str | None = None
     duplicate_type: DuplicateType | None = None
+    timestamp: datetime | None = None
 
     def __post_init__(self):
         if self.duplicate_of_id:
             self.duplicate_type = self.duplicate_type or 'same'
 
     def duplicate_reason(self) -> str | None:
-        if self.duplicate_of_id is None or self.duplicate_type is None:
-            return None
-
-        return REASON_MAPPING[self.duplicate_type]
+        if self.duplicate_type is not None:
+            return REASON_MAPPING[self.duplicate_type]
 
     def _props_strs(self) -> list[str]:
         props = []
@@ -45,6 +51,9 @@ class FileConfig:
             props.append(f"duplicate_of_id='{self.duplicate_of_id}'")
         if self.duplicate_type:
             props.append(f"duplicate_type='{self.duplicate_type}'")
+        if self.timestamp:
+            timestamp_str = f"parse('{self.timestamp}')" if CONSTANTIZE_NAMES else f"'{self.timestamp}'"
+            props.append(f"timestamp={timestamp_str}")
 
         return props
 
@@ -61,12 +70,22 @@ class FileConfig:
 
 @dataclass(kw_only=True)
 class EmailConfig(FileConfig):
-    """Convenience class to unite various configured properties for a given email ID."""
+    """
+    Convenience class to unite various configured properties for a given email ID. Often required
+    to handle the terrible OCR text that Congress provided which breaks a lot of the email's header lines.
+
+    Attributes:
+        actual_text (str | None): In dire cases of broken OCR we just configure the body of the email as a string.
+        attribution_explanation (str | None): Optional explanation of why this email was attributed to this author.
+        author (str | None): Author of the email
+        is_fwded_article (bool): True if this is a newspaper article someone fwded. Used to exclude articles from word counting.
+        recipients (list[str | None]): Who received the email
+    """
     actual_text: str | None = None  # Override for the Email._actual_text() method for particularly broken emails
+    attribution_explanation: str | None = None
     author: str | None = None
     is_fwded_article: bool = False
     recipients: list[str | None] | list[str] = field(default_factory=list)
-    timestamp: datetime | None = None
 
     def _props_strs(self) -> list[str]:
         props = super()._props_strs()
@@ -85,9 +104,6 @@ class EmailConfig(FileConfig):
             props.append(recipients_str)
         if self.is_fwded_article:
             props.append(f"is_fwded_article={self.is_fwded_article}")
-        if self.timestamp:
-            timestamp_str = f"parse('{self.timestamp}')" if CONSTANTIZE_NAMES else f"'{self.timestamp}'"
-            props.append(f"timestamp={timestamp_str}")
         if self.actual_text:
             props.append(f"actual_text='{self.actual_text}'")
 
