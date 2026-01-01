@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from subprocess import run
-from typing import ClassVar, Sequence, TypeVar, Type
+from typing import ClassVar, Sequence, TypeVar
 
 from rich.console import Console, ConsoleOptions, Group, RenderResult
 from rich.padding import Padding
@@ -14,7 +14,8 @@ from rich.text import Text
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
-from epstein_files.util.constants import DUPLICATE_FILE_IDS, FALLBACK_TIMESTAMP, FILE_DESCRIPTIONS, VI_DAILY_NEWS_ARTICLE
+from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP, FILE_DESCRIPTIONS, VI_DAILY_NEWS_ARTICLE
+from epstein_files.util.file_cfg import EmailCfg, FileCfg
 from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, listify, patternize
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, file_size_str, is_local_extract_file
@@ -59,6 +60,7 @@ FILENAME_MATCH_STYLES = [
 class Document:
     """Base class for all Epstein Files documents."""
     file_path: Path
+    config: FileCfg | EmailCfg | None = None
     file_id: str = field(init=False)
     filename: str = field(init=False)
     is_duplicate: bool = False
@@ -75,7 +77,8 @@ class Document:
     def __post_init__(self):
         self.filename = self.file_path.name
         self.file_id = extract_file_id(self.filename)
-        self.is_duplicate = self.file_id in DUPLICATE_FILE_IDS
+        self.config = ALL_FILE_CONFIGS.get(self.file_id)
+        self.is_duplicate = bool(self.config.duplicate_of_id) if self.config else False
 
         if is_local_extract_file(self.filename):
             self.url_slug = build_filename_for_id(self.file_id)
@@ -114,11 +117,13 @@ class Document:
         return DOC_TYPE_STYLES[self.document_type()]
 
     def duplicate_file_txt(self) -> Text:
-        """If the file is a dupe (exists in DUPLICATE_FILE_IDS) make a nice message."""
-        file_cfg = DUPLICATE_FILE_IDS[self.file_id]
+        """If the file is a dupe make a nice message to explain what file it's a duplicate of."""
+        if not self.config or not self.config.duplicate_of_id:
+            raise RuntimeError(f"duplicate_file_txt() called on {self.description()} but not a dupe! config:\n\n{self.config}")
+
         txt = Text(f"Not showing ", style='white dim italic').append(epstein_media_doc_link_txt(self.file_id, style='cyan'))
-        txt.append(f" because it's {file_cfg.duplicate_reason()} ")
-        return txt.append(epstein_media_doc_link_txt(file_cfg.duplicate_of_id, style='royal_blue1'))
+        txt.append(f" because it's {self.config.duplicate_reason()} ")
+        return txt.append(epstein_media_doc_link_txt(self.config.duplicate_of_id, style='royal_blue1'))
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on epsteinify.com."""
