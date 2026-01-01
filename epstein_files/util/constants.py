@@ -883,6 +883,21 @@ DUPE_FILE_CFGS = [
 
 DUPLICATE_FILE_IDS = {cfg.id: cfg for cfg in DUPE_FILE_CFGS}
 
+
+from .temp_email_cfg import ATTRIBUTIONS
+
+for id, cfg in EMAIL_INFO.items():
+    if id in DUPLICATE_FILE_IDS:
+        print(f"[{id}] Using cfg obj from DUPLICATE_FILE_IDS...")
+        cfg = DUPLICATE_FILE_IDS[id]
+    else:
+        cfg.id = id
+
+    cfg.attribution_explanation = ATTRIBUTIONS.get(id)
+    print(str(cfg) + ',')
+
+
+
 # TODO: this is a temporary hack to inject dupes configured in EMAIL_INFO into DUPLICATE_FILE_IDS
 for cfg in EMAIL_INFO.values():
     if cfg.duplicate_of_id:
