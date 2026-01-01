@@ -262,7 +262,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Etienne Binant": 1,
     FAITH_KATES: 8,
     "Forrest Miller": 1,
-    "Francis Derby": 1,
+    "Francis Derby": 2,
     "Fred Haddad": 4,
     "Gary Gross": 1,
     "George Krassner": 4,
