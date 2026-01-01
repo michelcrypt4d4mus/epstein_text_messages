@@ -118,7 +118,7 @@ class EmailCfg(FileCfg):
     attribution_explanation: str | None = None
     author: str | None = None
     is_fwded_article: bool = False
-    recipients: list[str | None] | list[str] = field(default_factory=list)
+    recipients: list[str | None] = field(default_factory=list)
 
     def __repr__(self) -> str:
         return super().__repr__()
