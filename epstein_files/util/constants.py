@@ -886,6 +886,9 @@ DUPLICATE_FILE_IDS = {cfg.id: cfg for cfg in DUPE_FILE_CFGS}
 # TODO: this is a temporary hack to inject dupes configured in EMAIL_INFO into DUPLICATE_FILE_IDS
 for cfg in EMAIL_INFO.values():
     if cfg.duplicate_of_id:
+        if cfg.id in DUPLICATE_FILE_IDS:
+            raise RuntimeError(f"{cfg.id} already in DUPLICATE_FILE_IDS, old:\n\n{DUPLICATE_FILE_IDS[cfg.id]}\n\nnew:\n\n{cfg})")
+
         DUPLICATE_FILE_IDS[cfg.id] = cfg
 
 
