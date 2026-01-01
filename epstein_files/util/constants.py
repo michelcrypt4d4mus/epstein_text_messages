@@ -1712,3 +1712,29 @@ UNINTERESTING_PREFIXES = [
     VI_DAILY_NEWS_ARTICLE,
     WAPO,
 ]
+
+print(f"    ### EMAIL_INFO ###\n")
+
+for cfg in EMAIL_INFO.values():
+    if cfg.id in FILE_DESCRIPTIONS:
+        cfg.description = FILE_DESCRIPTIONS[cfg.id]
+
+    print(f"{cfg},")
+
+print(f"\n    ### DUPE_FILE_CFGS ###\n")
+
+for cfg in DUPE_FILE_CFGS:
+    if cfg.id in FILE_DESCRIPTIONS:
+        cfg.description = FILE_DESCRIPTIONS[cfg.id]
+
+    print(f"{cfg},")
+
+
+print(f"\n    ### FILE_DESCRIPTIONS ###\n")
+
+for id, description in FILE_DESCRIPTIONS.items():
+    if id in ALL_FILE_CONFIGS:
+        continue
+
+    cfg = FileCfg(id=id, description=description)
+    print(f"{cfg},")

@@ -39,6 +39,7 @@ class FileCfg:
         timestamp (datetime | None): Time this email was sent, file was created, article published, etc.
     """
     id: str | None = None
+    description: str | None = None
     duplicate_of_id: str | None = None
     duplicate_type: DuplicateType | None = None
     timestamp: datetime | None = None
@@ -98,7 +99,7 @@ class FileCfg:
         if CONSTANTIZE_NAMES:
             repr_str = INDENT + INDENT_NEWLINE.join(repr_str.split('\n'))
 
-        return repr_str.lstrip()
+        return repr_str
 
 
 @dataclass(kw_only=True)
