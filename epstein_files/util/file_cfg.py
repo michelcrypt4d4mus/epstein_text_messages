@@ -50,14 +50,14 @@ class FileCfg:
         def add_prop(f: Field, value: str):
             props.append(f"{f.name}={value}")
 
-        for _field in fields(self):
+        for _field in sorted(fields(self), key=lambda f: f.name):
             value = getattr(self, _field.name)
 
             if value is None or (isinstance(value, list) and len(value) == 0):
                 continue
             elif _field.name == AUTHOR:
-                add_prop(_field, constantize_name(value) if CONSTANTIZE_NAMES else f"'{value}'")
-            elif _field.name == 'recipients':
+                add_prop(_field, constantize_name(str(value)) if CONSTANTIZE_NAMES else f"'{value}'")
+            elif _field.name == 'recipients' and isinstance(value, list):
                 recipients = [constantize_name(r) if (CONSTANTIZE_NAMES and r) else r for r in value]
                 recipients_str = f"recipients={recipients}"
                 add_prop(_field, recipients_str.replace("'", '') if CONSTANTIZE_NAMES else recipients_str)
