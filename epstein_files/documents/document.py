@@ -18,7 +18,7 @@ from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP, V
 from epstein_files.util.file_cfg import EmailCfg, FileCfg
 from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, listify, patternize
 from epstein_files.util.env import args, logger
-from epstein_files.util.file_helper import DOCS_DIR, build_filename_for_id, extract_file_id, file_size_str, is_local_extract_file
+from epstein_files.util.file_helper import DOCS_DIR, build_file_stem_for_id, extract_file_id, file_size_str, is_local_extract_file
 from epstein_files.util.rich import SYMBOL_STYLE, console, highlighter, key_value_txt, logger, link_text_obj
 
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
@@ -81,7 +81,7 @@ class Document:
         self.is_duplicate = bool(self.config.duplicate_of_id) if self.config else False
 
         if self.is_local_extract_file():
-            self.url_slug = build_filename_for_id(self.file_id)
+            self.url_slug = build_file_stem_for_id(self.file_id)
 
             if self.document_type() == EMAIL_CLASS and self.config and self.cfg_type() != 'EmailCfg':
                 self.config = EmailCfg.from_file_cfg(self.config)
