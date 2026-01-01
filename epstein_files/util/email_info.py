@@ -6,7 +6,18 @@ ConfiguredAttr = Literal['actual_text', 'author', 'is_fwded_article', 'recipient
 
 
 @dataclass(kw_only=True)
-class EmailInfo:
+class FileConfig:
+    file_id: str | None = None
+    duplicate_of_file_id: str | None = None
+    duplicate_type: Literal['same', 'redacted version'] | None = None
+
+    def __post_init__(self):
+        if self.duplicate_of_file_id:
+            self.duplicate_type = self.duplicate_type or 'same'
+
+
+@dataclass(kw_only=True)
+class EmailConfig(FileConfig):
     """Convenience class to unite various configured properties for a given email ID."""
     actual_text: str | None = None  # Override for the Email._actual_text() method
     author: str | None = None
