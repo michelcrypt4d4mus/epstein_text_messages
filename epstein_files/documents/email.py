@@ -300,12 +300,6 @@ class Email(CommunicationDocument):
         super().__post_init__()
         self.is_junk_mail = self.author in JUNK_EMAILERS
 
-        if self.config and self.cfg_type != 'EmailCfg':
-            if self.is_local_extract_file():  # Emails extracted from court filings will have FileCfg not EmailCfg:
-                self.config = EmailCfg.from_file_cfg(self.config)
-            else:
-                raise ValueError(f"{self.file_path.name} should have EmailCfg type not {self.cfg_type}\n{self.config}")
-
         if self.config and self.config.recipients:
             self.recipients = cast(list[str | None], self.config.recipients)
         else:
@@ -318,6 +312,9 @@ class Email(CommunicationDocument):
         self.actual_text = self._actual_text()
         self.sent_from_device = self._sent_from_device()
         logger.debug(f"Constructed {self.description()}")
+
+        if self.config and self.cfg_type != 'EmailCfg':
+            raise ValueError(f"{self.file_path.name} should have EmailCfg type not {self.cfg_type}\n{self.config}")
 
     def description(self) -> Text:
         """One line summary mostly for logging."""
@@ -337,9 +334,6 @@ class Email(CommunicationDocument):
     def info_txt(self) -> Text:
         txt = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(' to ')
         return txt.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
-
-    def is_local_extract_file(self) -> bool:
-        return is_local_extract_file(self.filename)
 
     def subject(self) -> str:
         if len(self.header.subject or '') > 100:
