@@ -4,7 +4,7 @@ Reformat Epstein text message files for readability and count email senders.
 For use with iMessage log files from https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_
 
 Install: 'poetry install'
-    Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT/001 ./generate.py'
+    Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT ./generate.py'
 """
 from sys import exit
 
