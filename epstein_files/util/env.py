@@ -6,7 +6,7 @@ from sys import argv
 
 from rich.logging import RichHandler
 
-DEFAULT_WIDTH = 140
+DEFAULT_WIDTH = 154
 HTML_SCRIPTS = ['generate_html.py', 'count_words.py']
 
 
