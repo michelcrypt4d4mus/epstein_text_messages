@@ -9,7 +9,7 @@ from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_REGEX, Document
-from epstein_files.util.constants import FILE_DESCRIPTIONS, UNINTERESTING_PREFIXES
+from epstein_files.util.constants import UNINTERESTING_PREFIXES
 from epstein_files.util.data import escape_single_quotes, extract_datetime, ordinal_str, remove_timezone
 from epstein_files.util.env import args, logger
 from epstein_files.util.rich import highlighter, logger
@@ -69,12 +69,12 @@ class OtherFile(Document):
         return WHITESPACE_REGEX.sub(' ', self.text)[0:PREVIEW_CHARS]
 
     def _extract_timestamp(self) -> datetime | None:
-        """Return ISO date at end of FILE_DESCRIPTIONS entry or value extracted by datefinder.find_dates()."""
+        """Return ISO date at end of configured description entry or value extracted by datefinder.find_dates()."""
         timestamps: list[datetime] = []
 
         # Check for configured values
-        if self.file_id in FILE_DESCRIPTIONS:
-            timestamp = extract_datetime(FILE_DESCRIPTIONS[self.file_id])
+        if self.config and self.config.description:
+            timestamp = extract_datetime(self.config.description)
 
             if timestamp:
                 # Avoid returning hacky '-01' appended strings in case datefinder finds something more accurate
@@ -83,9 +83,9 @@ class OtherFile(Document):
                 else:
                     timestamps.append(timestamp)
 
-        # Avoid scanning large TSVs for dates
-        if self.file_id in FILE_DESCRIPTIONS and FILE_DESCRIPTIONS[self.file_id].startswith('TSV'):
-            return timestamps[0] if timestamps else None
+            # Avoid scanning large TSVs for dates
+            if self.config and self.config.description.startswith('TSV'):
+                return timestamps[0] if timestamps else None
 
         try:
             for i, timestamp in enumerate(datefinder.find_dates(self.text, strict=True)):

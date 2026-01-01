@@ -64,7 +64,7 @@ class EpsteinFiles:
         self.all_files = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
 
         for file_arg in self.all_files:
-            logger.debug(f"\nScanning '{file_arg.name}'...")
+            logger.info(f"Scanning '{file_arg.name}'...")
             document = Document(file_arg)
 
             if document.length == 0:
@@ -76,6 +76,11 @@ class EpsteinFiles:
                 self.imessage_logs.append(MessengerLog(file_arg))  # Handle iMessage log files
                 logger.info(self.imessage_logs[-1].description().plain)
             elif DETECT_EMAIL_REGEX.match(document.text) or isinstance(document.config, EmailCfg):
+                if DETECT_EMAIL_REGEX.match(document.text):
+                    logger.info(f"   -> Email because DETECT_EMAIL_REGEX.match(document.text)")
+                else:
+                    logger.info(f"   -> Email because EmailCfg type")
+
                 email = Email(file_arg, text=document.text)  # Handle emails
                 logger.info(email.description().plain)
                 self.emails.append(email)

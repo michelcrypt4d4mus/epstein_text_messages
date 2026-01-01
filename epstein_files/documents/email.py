@@ -300,6 +300,13 @@ class Email(CommunicationDocument):
         super().__post_init__()
         self.is_junk_mail = self.author in JUNK_EMAILERS
 
+        if self.config and type(self.config).__name__ != 'EmailCfg':
+            if self.is_local_extract_file():  # Emails extracted from court filings will have FileCfg not EmailCfg:
+                self.config = EmailCfg.from_file_cfg(self.config)
+                logger.warning(f"Replaced FileCfg with EmailCfg for {self.file_id}:\n\n{self.config}\n")
+            else:
+                raise ValueError(f"{self.file_path.name} should have EmailCfg type not {type(self.config).__name__}\n{self.config}")
+
         if self.config and self.config.recipients:
             self.recipients = cast(list[str | None], self.config.recipients)
         else:
@@ -359,7 +366,7 @@ class Email(CommunicationDocument):
         if reply_text_match:
             actual_num_chars = len(reply_text_match.group(1))
             actual_text_pct = f"{(100 * float(actual_num_chars) / len(text)):.1f}%"
-            logger.info(f"'{self.url_slug}': actual_text() reply_text_match is {actual_num_chars:,} chars ({actual_text_pct} of {len(text):,})")
+            logger.debug(f"'{self.url_slug}': actual_text() reply_text_match is {actual_num_chars:,} chars ({actual_text_pct} of {len(text):,})")
             text = reply_text_match.group(1)
 
         # If all else fails look for lines like 'From: blah', 'Subject: blah', and split on that.
@@ -373,7 +380,7 @@ class Email(CommunicationDocument):
             pre_from_text = text.split(field_string)[0]
             actual_num_chars = len(pre_from_text)
             actual_text_pct = f"{(100 * float(actual_num_chars) / len(text)):.1f}%"
-            logger.info(f"'{self.url_slug}': actual_text() fwd_text_match is {actual_num_chars:,} chars ({actual_text_pct} of {len(text):,})")
+            logger.debug(f"'{self.url_slug}': actual_text() fwd_text_match is {actual_num_chars:,} chars ({actual_text_pct} of {len(text):,})")
             text = pre_from_text
             break
 
@@ -403,10 +410,27 @@ class Email(CommunicationDocument):
 
         return collapse_newlines(text).strip()
 
+    def _debug_info(self) -> str:
+        info = [
+            f"id={self.file_id}",
+            f"url_slug={self.url_slug}",
+            f"file_path='{self.file_path}'",
+            f"is_local_extract_file={self.is_local_extract_file()}",
+        ]
+
+        return f"     " + "\n     ".join(info)
+
     def _extract_author(self) -> None:
         self._extract_header()
 
-        if self.config and self.config.author:
+        if self.config and self.cfg_type != 'EmailCfg':
+            logger.error(f"{self.url_slug} has config that's not EmailCfg!")
+            console.print(self.description())
+            logger.error(self._debug_info())
+
+            if not self.is_local_extract_file():
+                raise RuntimeError(f"\n\nWARNING: {self.url_slug} has config that's not EmailCfg:\n\n{self.config}\n\n")
+        elif self.config and self.config.author:
             self.author = self.config.author
         elif self.header.author:
             authors = self._get_names(self.header.author)

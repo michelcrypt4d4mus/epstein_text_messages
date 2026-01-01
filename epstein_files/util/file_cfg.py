@@ -1,4 +1,5 @@
-from dataclasses import Field, dataclass, field, fields
+import re
+from dataclasses import Field, asdict, dataclass, field, fields
 from datetime import datetime
 from typing import Literal
 
@@ -52,13 +53,19 @@ class FileCfg:
         if self.duplicate_type is not None:
             return REASON_MAPPING[self.duplicate_type]
 
+    def non_null_field_names(self) -> list[str]:
+        return [f.name for f in self.sorted_fields() if getattr(self, f.name)]
+
+    def sorted_fields(self) -> list[Field]:
+        return sorted(fields(self), key=lambda f: FIELD_SORT_KEY.get(f.name, f.name))
+
     def _props_strs(self) -> list[str]:
         props = []
 
         def add_prop(f: Field, value: str):
             props.append(f"{f.name}={value}")
 
-        for _field in sorted(fields(self), key=lambda f: FIELD_SORT_KEY.get(f.name, f.name)):
+        for _field in self.sorted_fields():
             value = getattr(self, _field.name)
 
             if value is None or (isinstance(value, list) and len(value) == 0):
@@ -71,7 +78,11 @@ class FileCfg:
                 recipients_str = str([constantize_name(r) if (CONSTANTIZE_NAMES and r) else r for r in value])
                 add_prop(_field, recipients_str.replace("'", '') if CONSTANTIZE_NAMES else recipients_str)
             elif isinstance(value, datetime):
-                add_prop(_field, f"parse('{value}')" if CONSTANTIZE_NAMES else f"'{value}'")
+                value_str = re.sub(' 00:00:00', '', str(value))
+                add_prop(_field, f"parse('{value_str}')" if CONSTANTIZE_NAMES else f"'{value}'")
+            elif _field.name == 'description':
+                add_prop(_field, value.strip())
+#                add_prop(_field, value.replace('",', '"').replace("',", "'").strip())
             elif isinstance(value, str):
                 if "'" in value:
                     value = '"' + value.replace('"', r'\"') + '"'
@@ -89,7 +100,7 @@ class FileCfg:
         type_str = f"{type(self).__name__}("
         single_line_repr = type_str + ', '.join(props) + f')'
 
-        if len(single_line_repr) < MAX_LINE_LENGTH:
+        if (len(single_line_repr) < MAX_LINE_LENGTH or self.non_null_field_names() == ['id', 'description']) and '#' not in (self.description or ''):
             repr_str = single_line_repr
         else:
             repr_str = f"{type_str}{INDENT_NEWLINE}" + INDENTED_JOIN.join(props)
@@ -99,7 +110,7 @@ class FileCfg:
         if CONSTANTIZE_NAMES:
             repr_str = INDENT + INDENT_NEWLINE.join(repr_str.split('\n'))
 
-        return repr_str
+        return repr_str.replace(',,', ',').replace(',),', '),').replace(',),', '),')
 
 
 @dataclass(kw_only=True)
@@ -123,3 +134,7 @@ class EmailCfg(FileCfg):
 
     def __repr__(self) -> str:
         return super().__repr__()
+
+    @classmethod
+    def from_file_cfg(cls, cfg: FileCfg) -> 'EmailCfg':
+        return cls(**asdict(cfg))

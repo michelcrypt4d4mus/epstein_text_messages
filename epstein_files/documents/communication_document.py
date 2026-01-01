@@ -18,7 +18,7 @@ TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 class CommunicationDocument(Document):
     """Superclass for Email and MessengerLog."""
     author: str | None = None
-    author_style: str = field(init=False)
+    author_style: str = 'white'
     author_txt: Text = field(init=False)
     timestamp: datetime = FALLBACK_TIMESTAMP  # TODO this default sucks (though it never happens)
 

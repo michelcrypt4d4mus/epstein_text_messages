@@ -78,6 +78,7 @@ class Document:
         self.filename = self.file_path.name
         self.file_id = extract_file_id(self.filename)
         self.config = ALL_FILE_CONFIGS.get(self.file_id)
+        self.cfg_type = type(self.config).__name__ if self.config else None
         self.is_duplicate = bool(self.config.duplicate_of_id) if self.config else False
 
         if is_local_extract_file(self.filename):
