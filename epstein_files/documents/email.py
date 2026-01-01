@@ -313,8 +313,8 @@ class Email(CommunicationDocument):
         self.sent_from_device = self._sent_from_device()
         logger.debug(f"Constructed {self.description()}")
 
-        if self.config and self.cfg_type != 'EmailCfg':
-            raise ValueError(f"{self.file_path.name} should have EmailCfg type not {self.cfg_type}\n{self.config}")
+        if self.config and self.cfg_type() != 'EmailCfg':
+            raise ValueError(f"{self.file_path.name} should have EmailCfg type not {self.cfg_type()}\n{self.config}")
 
     def description(self) -> Text:
         """One line summary mostly for logging."""
