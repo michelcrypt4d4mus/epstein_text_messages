@@ -12,12 +12,19 @@ INDENT = '    '
 INDENT_NEWLINE = f'\n{INDENT}'
 INDENTED_JOIN = f',{INDENT_NEWLINE}'
 CONSTANTIZE_NAMES = True  # A flag set to True that causes repr() of these classes to return strings of usable code
+MAX_LINE_LENGTH = 120
 
 REASON_MAPPING: dict[DuplicateType, str] = {
     'earlier': 'earlier draft of',
     'quoted': 'quoted in full in',
     'redacted': 'redacted version of',
     'same': 'the same as',
+}
+
+FIELD_SORT_KEY = {
+    'id': 'a',
+    'author': 'aa',
+    'attribution_explanation': 'zz',
 }
 
 
@@ -50,7 +57,7 @@ class FileCfg:
         def add_prop(f: Field, value: str):
             props.append(f"{f.name}={value}")
 
-        for _field in sorted(fields(self), key=lambda f: 'a' if f.name == 'id' else (f.name if not f.name.startswith('attrib') else 'zz')):
+        for _field in sorted(fields(self), key=lambda f: FIELD_SORT_KEY.get(f.name, f.name)):
             value = getattr(self, _field.name)
 
             if value is None or (isinstance(value, list) and len(value) == 0):
@@ -81,7 +88,7 @@ class FileCfg:
         type_str = f"{type(self).__name__}("
         single_line_repr = type_str + ', '.join(props) + f')'
 
-        if len(single_line_repr) < 100:
+        if len(single_line_repr) < MAX_LINE_LENGTH:
             repr_str = single_line_repr
         else:
             repr_str = f"{type_str}{INDENT_NEWLINE}" + INDENTED_JOIN.join(props)
