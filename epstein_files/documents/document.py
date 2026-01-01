@@ -78,19 +78,22 @@ class Document:
         self.filename = self.file_path.name
         self.file_id = extract_file_id(self.filename)
         self.config = ALL_FILE_CONFIGS.get(self.file_id)
-        self.cfg_type = type(self.config).__name__ if self.config else None   # TODO: remove eventually, unecessary
         self.is_duplicate = bool(self.config.duplicate_of_id) if self.config else False
 
         if self.is_local_extract_file():
             self.url_slug = build_filename_for_id(self.file_id)
 
-            if self.document_type() == EMAIL_CLASS and self.config and self.cfg_type != 'EmailCfg':
+            if self.document_type() == EMAIL_CLASS and self.config and self.cfg_type() != 'EmailCfg':
                 self.config = EmailCfg.from_file_cfg(self.config)
         else:
             self.url_slug = self.file_path.stem
 
         self._set_computed_fields(text=self.text or self._load_file())
         self._repair()
+
+    # TODO: remove eventually, unecessary
+    def cfg_type(self) -> str | None:
+        return type(self.config).__name__ if self.config else None
 
     def date_str(self) -> str | None:
         return date_str(self.timestamp)
