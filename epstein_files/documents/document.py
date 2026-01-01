@@ -14,7 +14,7 @@ from rich.text import Text
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
-from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP, FILE_DESCRIPTIONS, VI_DAILY_NEWS_ARTICLE
+from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP, VI_DAILY_NEWS_ARTICLE
 from epstein_files.util.file_cfg import EmailCfg, FileCfg
 from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, listify, patternize
 from epstein_files.util.env import args, logger
@@ -78,7 +78,7 @@ class Document:
         self.filename = self.file_path.name
         self.file_id = extract_file_id(self.filename)
         self.config = ALL_FILE_CONFIGS.get(self.file_id)
-        self.cfg_type = type(self.config).__name__ if self.config else None
+        self.cfg_type = type(self.config).__name__ if self.config else None   # TODO: remove eventually, unecessary
         self.is_duplicate = bool(self.config.duplicate_of_id) if self.config else False
 
         if is_local_extract_file(self.filename):
@@ -148,9 +148,9 @@ class Document:
         return file_size_str(self.file_path)
 
     def hints(self) -> list[Text]:
-        """Additional info about the Document (author, FILE_DESCRIPTIONS value, and so on)."""
+        """Additional info about the Document (author, description, and so on) to be desplayed in doc header."""
         hints = listify(self.info_txt())
-        hint_msg = FILE_DESCRIPTIONS.get(self.file_id)
+        hint_msg = self.config.description if self.config else None
 
         if self.document_type() == OTHER_FILE_CLASS:
             if not hint_msg and VI_DAILY_NEWS_REGEX.search(self.text):
