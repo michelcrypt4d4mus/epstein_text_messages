@@ -652,12 +652,12 @@ DUPE_FILE_CFGS = [
         duplicate_of_file_id='029841',
         duplicate_type='redacted version of'
     ),
-    EmailConfig(  # a reminder with same text as 033528
+    EmailConfig(
         file_id='033517',
         duplicate_of_file_id='033528',
         duplicate_type='same as'
     ),
-    EmailConfig(  # a reminder with same text as 032023
+    EmailConfig(
         file_id='032012',
         duplicate_of_file_id='032023',
         duplicate_type='same as'
@@ -1253,6 +1253,237 @@ DUPE_FILE_CFGS = [
         duplicate_type='same as'
     ),
 
+    UPDATED CFGS
+    -----------
+
+    EmailConfig(
+        file_id='030578',
+        duplicate_of_file_id='030414',
+        duplicate_type='redacted version of',
+        author='Faith Kates'
+    ),
+    EmailConfig(
+        file_id='032048',
+        duplicate_of_file_id='030242',
+        duplicate_type='redacted version of',
+        recipients=['Mariana Idźkowska']
+    ),
+    EmailConfig(
+        file_id='030634',
+        duplicate_of_file_id='031135',
+        duplicate_type='redacted version of',
+        author='Faith Kates'
+    ),
+    EmailConfig(
+        file_id='032531',
+        duplicate_of_file_id='033490',
+        duplicate_type='redacted version of',
+        author='Jonathan Farkas'
+    ),
+    EmailConfig(
+        file_id='030575',
+        duplicate_of_file_id='030475',
+        duplicate_type='redacted version of',
+        recipients=['Faith Kates']
+    ),
+    EmailConfig(
+        file_id='028781',
+        duplicate_of_file_id='013460',
+        duplicate_type='same as',
+        is_fwded_article=True
+    ),
+    EmailConfig(
+        file_id='028968',
+        duplicate_of_file_id='029835',
+        duplicate_type='same as',
+        recipients=['Alan Dershowitz', 'Jack Goldberger', 'Jeffrey Epstein']
+    ),
+    EmailConfig(
+        file_id='028482',
+        duplicate_of_file_id='026620',
+        duplicate_type='same as',
+        author='Terry Kafka'
+    ),
+    EmailConfig(
+        file_id='031388',
+        duplicate_of_file_id='031428',
+        duplicate_type='same as',
+        recipients=['Ken Starr', 'Lilly Sanchez', 'Martin Weinberg', 'Reid Weingarten']
+    ),
+    EmailConfig(
+        file_id='033169',
+        duplicate_of_file_id='033584',
+        duplicate_type='same as',
+        author='Robert Trivers',
+        recipients=['Jeffrey Epstein']
+    ),
+    EmailConfig(
+        file_id='028789',
+        duplicate_of_file_id='027046',
+        duplicate_type='same as',
+        author='Lawrance Visoski'
+    ),
+    EmailConfig(
+        file_id='021794',
+        duplicate_of_file_id='030299',
+        duplicate_type='same as',
+        recipients=['Jessica Cadwell', 'Robert D. Critton Jr.']
+    ),
+    EmailConfig(
+        file_id='033484',
+        duplicate_of_file_id='033282',
+        duplicate_type='same as',
+        author='Jonathan Farkas'
+    ),
+    EmailConfig(
+        file_id='028675',
+        duplicate_of_file_id='025041',
+        duplicate_type='same as',
+        author='Jeffrey Epstein',
+        recipients=['Larry Summers']
+    ),
+    EmailConfig(
+        file_id='033486',
+        duplicate_of_file_id='033156',
+        duplicate_type='same as',
+        recipients=['Jeffrey Epstein', 'Darren Indyke', 'Richard Kahn']
+    ),
+    EmailConfig(
+        file_id='032389',
+        duplicate_of_file_id='033582',
+        duplicate_type='same as',
+        author='Jonathan Farkas'
+    ),
+    EmailConfig(
+        file_id='022202',
+        duplicate_of_file_id='029975',
+        duplicate_type='same as',
+        recipients=['Jean Luc Brunel']
+    ),
+    EmailConfig(
+        file_id='029779',
+        duplicate_of_file_id='029692',
+        duplicate_type='same as',
+        author='Jeffrey Epstein',
+        is_fwded_article=True,
+        recipients=['Larry Summers']
+    ),
+    EmailConfig(
+        file_id='033466',
+        duplicate_of_file_id='033591',
+        duplicate_type='same as',
+        recipients=['Lawrance Visoski']
+    ),
+    EmailConfig(
+        file_id='023067',
+        duplicate_of_file_id='030620',
+        duplicate_type='same as',
+        recipients=['Jeffrey Epstein', 'Darren Indyke', 'Debbie Fein', 'Tonja Haddad Coleman']
+    ),
+    EmailConfig(
+        file_id='026228',
+        duplicate_of_file_id='028497',
+        duplicate_type='same as',
+        recipients=['Jeffrey Epstein', 'Steven Pfeiffer']
+    ),
+    EmailConfig(
+        file_id='031120',
+        duplicate_of_file_id='029968',
+        duplicate_type='same as',
+        author='Gwendolyn Beck'
+    ),
+    EmailConfig(
+        file_id='018197',
+        duplicate_of_file_id='028648',
+        duplicate_type='same as',
+        is_fwded_article=True
+    ),
+    EmailConfig(
+        file_id='026612',
+        duplicate_of_file_id='028487',
+        duplicate_type='same as',
+        author='Norman D. Rau'
+    ),
+    EmailConfig(
+        file_id='033154',
+        duplicate_of_file_id='033488',
+        duplicate_type='same as',
+        author='Lawrance Visoski'
+    ),
+    EmailConfig(
+        file_id='031227',
+        duplicate_of_file_id='031206',
+        duplicate_type='same as',
+        author='Bennet Moskowitz'
+    ),
+    EmailConfig(
+        file_id='033581',
+        duplicate_of_file_id='033203',
+        duplicate_type='same as',
+        author='Jonathan Farkas'
+    ),
+    EmailConfig(
+        file_id='028728',
+        duplicate_of_file_id='027102',
+        duplicate_type='same as',
+        is_fwded_article=True
+    ),
+    EmailConfig(
+        file_id='032052',
+        duplicate_of_file_id='031732',
+        duplicate_type='same as',
+        author='Jonathan Farkas'
+    ),
+    EmailConfig(
+        file_id='028787',
+        duplicate_of_file_id='027097',
+        duplicate_type='same as',
+        recipients=['Lawrance Visoski']
+    ),
+    EmailConfig(
+        file_id='019409',
+        duplicate_of_file_id='031980',
+        duplicate_type='same as',
+        recipients=['Jeffrey Epstein', 'Michael Sitrick']
+    ),
+    EmailConfig(
+        file_id='031442',
+        duplicate_of_file_id='031996',
+        duplicate_type='same as',
+        author='Christina Galbraith'
+    ),
+    EmailConfig(
+        file_id='031129',
+        duplicate_of_file_id='029977',
+        duplicate_type='same as',
+        author='Lawrance Visoski'
+    ),
+    EmailConfig(
+        file_id='033561',
+        duplicate_of_file_id='033157',
+        duplicate_type='same as',
+        author='Paul Prosperi'
+    ),
+    EmailConfig(
+        file_id='026624',
+        duplicate_of_file_id='031708',
+        duplicate_type='same as',
+        author='Darren Indyke',
+        recipients=['Jeffrey Epstein'],
+        timestamp='2016-10-01 16:40:00'
+    ),
+    EmailConfig(
+        file_id='023291',
+        duplicate_of_file_id='023208',
+        duplicate_type='same as',
+        recipients=['Melanie Spinella', 'Brad Wechsler']
+    ),
+    EmailConfig(
+        file_id='026745',
+        duplicate_of_file_id='031215',
+        duplicate_type='same as',
+        author='Barbro C. Ehnbom'
+    ),
 ]
 
 # Reason string should end in a file ID
@@ -1449,6 +1680,7 @@ for id, reason in DUPLICATE_FILE_IDS.items():
 
     if id in EMAIL_INFO:
         file_config = EMAIL_INFO[id]
+        # print(f"Updating existing {id}:\n\n{file_config}\n")
         file_config.file_id = id
         file_config.duplicate_of_file_id = reason.split()[-1]
         file_config.duplicate_type = dupe_type
