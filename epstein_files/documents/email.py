@@ -15,8 +15,8 @@ from epstein_files.documents.communication_document import CommunicationDocument
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, INFO_INDENT
 from epstein_files.documents.emails.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, FIELD_NAMES, TIME_REGEX, EmailHeader)
-from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
 from epstein_files.util.constant.names import *
+from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
 from epstein_files.util.constants import *
 from epstein_files.util.data import TIMEZONE_INFO, collapse_newlines, escape_single_quotes, extract_last_name, remove_timezone, uniquify
 from epstein_files.util.email_info import ConfiguredAttr
@@ -394,11 +394,7 @@ class Email(CommunicationDocument):
 
     def _cleaned_up_text(self) -> str:
         """Add newline after headers in text if actual header wasn't empty, remove bad lines, etc."""
-        if self.header.was_initially_empty:
-            text = self.text
-        else:
-            text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', self.text).strip()
-
+        text = self.text if self.header.was_initially_empty else _add_line_breaks(self.text)
         text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
 
         for name, signature_regex in EMAIL_SIGNATURES.items():
@@ -489,6 +485,20 @@ class Email(CommunicationDocument):
         names_found = names_found or [emailer_str]
         return [_reverse_first_and_last_names(name) for name in names_found]
 
+    def _merge_lines(self, idx: int, idx2: int | None = None) -> None:
+        """Combine lines numbered 'idx' and 'idx2' into a single line (idx2 defaults to idx + 1)."""
+        idx2 = idx2 if idx2 is not None else (idx + 1)
+        lines = self.lines[0:idx]
+
+        if idx2 <= idx:
+            raise RuntimeError(f"idx2 ({idx2}) must be greater than idx ({idx})")
+        elif idx2 == (idx + 1):
+            lines += [self.lines[idx] + ' ' + self.lines[idx + 1]] + self.lines[idx + 2:]
+        else:
+            lines += [self.lines[idx] + ' ' + self.lines[idx2]] + self.lines[idx + 1:idx2] + self.lines[idx2 + 1:]
+
+        self._set_computed_fields(lines=lines)
+
     def _recipients_txt(self) -> Text:
         """Text object with comma separated colored versions of all recipients."""
         recipients = [r or UNKNOWN for r in self.recipients] if len(self.recipients) > 0 else [UNKNOWN]
@@ -498,11 +508,6 @@ class Email(CommunicationDocument):
             Text(r if len(recipients) < 3 else extract_last_name(r), style=get_style_for_name(r))
             for r in recipients
         ], join=', ')
-
-    def _merge_lines(self, idx: int) -> None:
-        """Combine lines numbered 'line_idx' and 'line_idx + 1' into a single line."""
-        lines = self.lines[0:idx] + [self.lines[idx] + ' ' + self.lines[idx + 1]] + self.lines[idx + 2:]
-        self._set_computed_fields(lines=lines)
 
     def _repair(self) -> None:
         """Repair particularly janky files."""
@@ -516,24 +521,31 @@ class Email(CommunicationDocument):
         elif self.file_id in '021729 029501 029282 030626 031384 033512'.split():
             self._merge_lines(2)  # Merge 3rd and 4th rows
 
-            # TODO: check this one
             if self.file_id in ['030626']:  # Merge 6th and 7th (now 5th and 6th) rows
-                self._merge_lines(5)
+                self._merge_lines(4)
         elif self.file_id in ['029976']:
             self._merge_lines(3)  # Merge 4th and 5th rows
-        elif self.file_id in ['026609', '029402', '032405']:
+        elif self.file_id in '026609 029402 032405'.split():
             self._merge_lines(4)  # Merge 5th and 6th rows
+        elif self.file_id in ['033568']:
+            for _i in range(5):
+                self._merge_lines(5)
+        elif self.file_id in ['025329']:
+            for _i in range(9):
+                self._merge_lines(2)
         elif self.file_id == '029977':
             self._set_computed_fields(text=self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM'))
 
-            for i in range(4):
+            for _i in range(4):
                 self._merge_lines(2)
 
-            lines = self.lines[0:2] + [self.lines[2] + self.lines[4]] + [self.lines[3]] + self.lines[5:]
+            self._merge_lines(4)
+            self._merge_lines(2, 4)
 
         if old_text != self.text:
-            logger.warning(f"Modified {self.url_slug} text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n')
+            logger.warning(f"Modified text of '{self.url_slug}', old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n')
             self.log_top_lines(12, 'Result of modifications', logging.WARNING)
+            logger.warning('')
 
         lines = self.regex_repair_text(OCR_REPAIRS, self.text).split('\n')
         new_lines = []
@@ -590,8 +602,8 @@ class Email(CommunicationDocument):
         # Truncate long emails but leave a note explaining what happened w/link to source document
         if len(text) > num_chars:
             text = text[0:num_chars]
-            external_link_markup = epstein_media_doc_link_markup(self.url_slug, self.author_style)
-            trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest at {external_link_markup}...>"
+            doc_link_markup = epstein_media_doc_link_markup(self.url_slug, self.author_style)
+            trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest at {doc_link_markup}...>"
             trim_footer_txt = Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
 
         # Rewrite broken headers where the values are on separate lines from the field names
@@ -603,12 +615,11 @@ class Email(CommunicationDocument):
             # Emails w/configured 'actual_text' are particularly broken; need to shuffle some lines
             if configured_actual_text is not None:
                 num_lines_to_skip += 1
-                lines = [cast(str, configured_actual_text), '\n']
+                lines += [cast(str, configured_actual_text), '\n']
 
             lines += text.split('\n')[num_lines_to_skip:]
             text = self.header.rewrite_header() + '\n' + '\n'.join(lines)
-            # This was skipped earlier when _cleaned_up_text() was called w/a broken header so we do it now
-            text = EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', text).strip()
+            text = _add_line_breaks(text)  # This was skipped when _cleaned_up_text() w/a broken header so we do it now
             self.rewritten_header_ids.add(self.file_id)
 
         panel_txt = highlighter(text)
@@ -623,7 +634,11 @@ class Email(CommunicationDocument):
         yield Padding(email_txt_panel, (0, 0, 1, INFO_INDENT))
 
         if should_rewrite_header:
-            self.log_top_lines(self.header.num_header_rows + 4, f'Original header:', logging.WARNING)
+            self.log_top_lines(self.header.num_header_rows + 4, f'Original header:', logging.INFO)
+
+
+def _add_line_breaks(email_text: str) -> str:
+    return EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX.sub(r'\n\1\n', email_text).strip()
 
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:

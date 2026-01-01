@@ -307,13 +307,13 @@ HIGHLIGHTED_GROUPS = [
         style='bright_yellow',
         pattern=r'Palm\s*Beach\s*(Daily\s*News|Post)|ABC(\s*News)?|Alex\s*Yablon|(Andrew\s*)?Marra|Arianna(\s*Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie\s*Rose|China\s*Daily|CNBC|CNN(politics?)?|Con[cs]hita|Sarnoff|(?<!Virgin[-\s]Islands[-\s])Daily\s*(Mail|News|Telegraph)|(David\s*)?Pecker|David\s*Brooks|Ed\s*Krassenstein|(Emily\s*)?Michot|Ezra\s*Klein|(George\s*)?Stephanopoulus|Globe\s*and\s*Mail|Good\s*Morning\s*America|Graydon(\s*Carter)?|Huffington(\s*Post)?|Ingram, David|(James\s*)?Patterson|Jonathan\s*Karl|Julie\s*(K.?\s*)?Brown|(Katie\s*)?Couric|Keith\s*Larsen|Miami\s*Herald|(Michele\s*)?Dargan|(National\s*)?Enquirer|(The\s*)?N(ew\s*)?Y(ork\s*)?(P(ost)?|T(imes)?)|(The\s*)?New\s*Yorker|NYer|PERVERSION\s*OF\s*JUSTICE|Politico|(Sean\s*)?Hannity|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|(The\s*)?Wa(shington\s*)?Po(st)?|Viceland|Vick[iy]\s*Ward|Vox|WGBH|(The\s*)?Wall\s*Street\s*Journal|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
         emailers = {
-            EDWARD_EPSTEIN: 'no relation to Jeffrey',
+            EDWARD_JAY_EPSTEIN: 'reporter who wrote about the kinds of crimes Epstein was involved in, no relation to Jeffrey',
             'James Hill': 'ABC News',
             JENNIFER_JACQUET: 'Future Science',
             JOHN_BROCKMAN: 'literary agent and author specializing in scientific literature',
             LANDON_THOMAS: 'New York Times',
-            MICHAEL_WOLFF: "Author or 'Fire and Fury: Inside the Trump White House'",
-            PAUL_KRASSNER: '60s guy',
+            MICHAEL_WOLFF: 'Author of "Fire and Fury: Inside the Trump White House"',
+            PAUL_KRASSNER: '60s counterculture guy',
             'Tim Zagat': 'Zagat restaurant guide CEO',
         }
     ),
@@ -358,15 +358,6 @@ HIGHLIGHTED_GROUPS = [
         }
     ),
     HighlightedGroup(
-        label='victim lawyer',
-        style='dark_magenta bold',
-        pattern=r'(Alan(\s*P.)?|MINTZ)\s*FRAADE|Paul\s*(G.\s*)?Cassell|Rothstein\s*Rosenfeldt\s*Adler|(Scott\s*)?Rothstein|(J\.?\s*)?(Stan(ley)?\s*)?Pottinger',
-        emailers = {
-            BRAD_EDWARDS: 'Rothstein Rosenfeldt Adler (Rothstein was a crook & partner of Roger Stone)',
-            JACK_SCAROLA: 'Searcy Denney Scarola Barnhart & Shipley',
-        }
-    ),
-    HighlightedGroup(
         label='lobbyist',
         style='light_coral',
         pattern=r'[BR]ob Crowe|Stanley Rosenberg',
@@ -383,7 +374,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='mideast',
         style='dark_sea_green4',
-        pattern=r"[-\s]9/11[\s.]|Abdulmalik Al-Makhlafi|Abdullah|Abu\s+Dhabi|Afghanistan|Al[-\s]?Qa[ei]da|Ahmadinejad|Arab|Aramco|Assad|Bahrain|Basiji?|Benghazi|Cairo|Chagoury|Dj[iu]bo?uti|Doha|Dubai|Egypt(ian)?|Emir(at(es?|i))?|Erdogan|Fashi|Gaddafi|(Hamid\s*)?Karzai|HBJ|Houthi|Imran\s+Khan|Iran(ian)?|Isi[ls]|Islam(abad|ic|ist)?|Istanbul|Kh?ashoggi|(Kairat\s*)?Kelimbetov|kasshohgi|Kaz(akh|ich)stan|Kazakh?|Kh[ao]menei|Khalid\s*Sheikh\s*Mohammed|KSA|Leban(ese|on)|Libyan?|Mahmoud|Marra[hk]e[cs]h|MB(N|S|Z)|Mohammed\s+bin\s+Salman|Morocco|Mubarak|Muslim|Nayaf|Pakistani?|Omar|(Osama\s*)?Bin\s*Laden|Osama(?! al)|Palestin(e|ian)|Persian?|Riya(dh|nd)|Saddam|Salman|Saudi(\s+Arabian?)?|Shariah?|SHC|sheikh|shia|(Sultan\s*)?Yacoub|Syrian?|(Tarek\s*)?El\s*Sayed|Tehran|Tunisian?|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
+        pattern=r"[-\s]9/11[\s.]|Abdulmalik Al-Makhlafi|Abdullah|Abu\s+Dhabi|Afghanistan|Al[-\s]?Qa[ei]da|Ahmadinejad|Arab|Aramco|Assad|Bahrain|Basiji?|Benghazi|Cairo|Chagoury|Dj[iu]bo?uti|Doha|Dubai|Egypt(ian)?|Emir(at(es?|i))?|Erdogan|Fashi|Gaddafi|(Hamid\s*)?Karzai|Hamad\s*bin\s*Jassim|HBJ|Houthi|Imran\s+Khan|Iran(ian)?|Isi[ls]|Islam(abad|ic|ist)?|Istanbul|Kh?ashoggi|(Kairat\s*)?Kelimbetov|kasshohgi|Kaz(akh|ich)stan|Kazakh?|Kh[ao]menei|Khalid\s*Sheikh\s*Mohammed|KSA|Leban(ese|on)|Libyan?|Mahmoud|Marra[hk]e[cs]h|MB(N|S|Z)|Mohammed\s+bin\s+Salman|Morocco|Mubarak|Muslim|Nayaf|Pakistani?|Omar|(Osama\s*)?Bin\s*Laden|Osama(?! al)|Palestin(e|ian)|Persian?|Riya(dh|nd)|Saddam|Salman|Saudi(\s+Arabian?)?|Shariah?|SHC|sheikh|shia|(Sultan\s*)?Yacoub|Syrian?|(Tarek\s*)?El\s*Sayed|Tehran|Tunisian?|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
         emailers = {
             ANAS_ALRASHEED: None,
             AZIZA_ALAHMADI: 'Abu Dhabi Department of Culture & Tourism',
@@ -490,7 +481,7 @@ HIGHLIGHTED_GROUPS = [
         pattern=r"@?realDonaldTrump|(Alan\s*)?Weiss?elberg|\bDJ?T\b|Donald J. Tramp|(Donald\s+(J\.\s+)?)?Trump(ism|\s*Properties)?|Don(ald| *Jr)(?! Rubin)|Ivana|(Madeleine\s*)?Westerhout|Mar[-\s]*a[-\s]*Lago|(Marla\s*)?Maples|(Matt(hew)? )?Calamari|\bMatt C\b|Melania|(Michael (J.? )?)?Boccio|Roger\s+Stone|rona|(The\s*)?Art\s*of\s*the\s*Deal",
         emailers = {
             'Bruce Moskowitz': "'Trump's health guy' according to Epstein",
-        }
+        },
     ),
     HighlightedGroup(
         label='victim',
@@ -498,14 +489,23 @@ HIGHLIGHTED_GROUPS = [
         pattern=r'BVI|(Jane|Tiffany)\s*Doe|Katie\s*Johnson|(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts',
     ),
     HighlightedGroup(
+        label='victim lawyer',
+        style='dark_magenta bold',
+        pattern=r'(Alan(\s*P.)?|MINTZ)\s*FRAADE|Paul\s*(G.\s*)?Cassell|Rothstein\s*Rosenfeldt\s*Adler|(Scott\s*)?Rothstein|(J\.?\s*)?(Stan(ley)?\s*)?Pottinger',
+        emailers = {
+            BRAD_EDWARDS: 'Rothstein Rosenfeldt Adler (Rothstein was a crook & partner of Roger Stone)',
+            JACK_SCAROLA: 'Searcy Denney Scarola Barnhart & Shipley',
+        }
+    ),
+    HighlightedGroup(
         label=VIRGIN_ISLANDS,
         style='sea_green1',
         pattern=r'Bahamas|Dominican\s*Republic|(Great|Little)\s*St.?\s*James|Haiti(an)?|(John\s*)deJongh(\s*Jr\.?)|(Kenneth E\. )?Mapp|Palm\s*Beach(?!\s*Post)|PBI|S(ain)?t.?\s*Thomas|USVI|VI|(The\s*)?Virgin\s*Islands(\s*Daily\s*News)?',  # TODO: VI Daily News should be yellow but it's hard bc Daily News xists
         emailers = {
-            CECILE_DE_JONGH: f'First lady of the Virgin Islands 2007-2015',
+            CECILE_DE_JONGH: f'First lady 2007-2015',
             STACEY_PLASKETT: 'non-voting member of Congress',
             KENNETH_E_MAPP: 'Governor',
-        }
+        },
     ),
 
     # Individuals
@@ -619,8 +619,3 @@ def _get_highlight_group_for_name(name: str) -> HighlightedGroup | None:
     for highlight_group in HIGHLIGHTED_GROUPS:
         if highlight_group.regex.search(name):
             return highlight_group
-
-
-if args.deep_debug:
-    for hg in HIGHLIGHTED_GROUPS:
-        print(f"{hg.label}: {hg.regex.pattern}\n")

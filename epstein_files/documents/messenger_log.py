@@ -3,7 +3,6 @@ from dataclasses import dataclass, field
 from datetime import datetime
 
 from rich.console import Console, ConsoleOptions, RenderResult
-from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.documents.communication_document import CommunicationDocument
@@ -37,10 +36,6 @@ class MessengerLog(CommunicationDocument):
     def last_message_at(self, name: str | None) -> datetime:
         return self.messages_by(name)[-1].timestamp()
 
-    def messages_by(self, name: str | None) -> list[TextMessage]:
-        """Return all messages by 'name'."""
-        return [m for m in self.messages() if m.author == name]
-
     def messages(self) -> list[TextMessage]:
         """Lazily evaluated accessor for self._messages."""
         if len(self._messages) == 0:
@@ -56,6 +51,10 @@ class MessengerLog(CommunicationDocument):
             ]
 
         return self._messages
+
+    def messages_by(self, name: str | None) -> list[TextMessage]:
+        """Return all messages by 'name'."""
+        return [m for m in self.messages() if m.author == name]
 
     def _border_style(self) -> str:
         return self.author_style

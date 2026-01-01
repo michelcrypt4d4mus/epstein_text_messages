@@ -35,8 +35,14 @@ from epstein_files.util.search_result import SearchResult
 DEVICE_SIGNATURE = 'Device Signature'
 FIRST_FEW_LINES = 'First Few Lines'
 DEVICE_SIGNATURE_PADDING = (1, 0)
-INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [UNKNOWN, 'ACT for America', 'BS Stern', 'Intelligence Squared']
 NOT_INCLUDED_EMAILERS = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
+
+INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [
+    'ACT for America',
+    'BS Stern',
+    INTELLIGENCE_SQUARED,
+    UNKNOWN,
+]
 
 
 @dataclass
