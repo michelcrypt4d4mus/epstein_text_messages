@@ -303,7 +303,6 @@ class Email(CommunicationDocument):
         if self.config and self.cfg_type != 'EmailCfg':
             if self.is_local_extract_file():  # Emails extracted from court filings will have FileCfg not EmailCfg:
                 self.config = EmailCfg.from_file_cfg(self.config)
-                logger.warning(f"Replaced FileCfg with EmailCfg for {self.file_id}:\n\n{self.config}\n")
             else:
                 raise ValueError(f"{self.file_path.name} should have EmailCfg type not {self.cfg_type}\n{self.config}")
 
@@ -423,14 +422,7 @@ class Email(CommunicationDocument):
     def _extract_author(self) -> None:
         self._extract_header()
 
-        if self.config and self.cfg_type != 'EmailCfg':
-            logger.error(f"{self.url_slug} has config that's not EmailCfg!")
-            console.print(self.description())
-            logger.error(self._debug_info())
-
-            if not self.is_local_extract_file():
-                raise RuntimeError(f"\n\nWARNING: {self.url_slug} has config that's not EmailCfg:\n\n{self.config}\n\n")
-        elif self.config and self.config.author:
+        if self.config and self.config.author:
             self.author = self.config.author
         elif self.header.author:
             authors = self._get_names(self.header.author)
