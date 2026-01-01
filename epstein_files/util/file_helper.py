@@ -31,15 +31,15 @@ KB = 1024
 MB = KB * KB
 
 
-def build_filename_for_id(id: str | int, include_txt_suffix: bool = False) -> str:
-    return f"{HOUSE_OVERSIGHT_PREFIX}{int(id):06d}" + ('.txt' if include_txt_suffix else '')
+build_file_stem_for_id = lambda id: f"{HOUSE_OVERSIGHT_PREFIX}{int(id):06d}"
+build_filename_for_id = lambda id: build_file_stem_for_id(id) + '.txt'
 
 
 def build_file_stem(filename_or_id: int | str) -> str:
     if isinstance(filename_or_id, str) and filename_or_id.startswith(HOUSE_OVERSIGHT_PREFIX):
         file_stem = str(filename_or_id)
     else:
-        file_stem = build_filename_for_id(filename_or_id)
+        file_stem = build_file_stem_for_id(filename_or_id)
 
     if not FILE_STEM_REGEX.match(file_stem):
         raise RuntimeError(f"Built invalid file stem '{file_stem}' from filename_or_id={filename_or_id} (pattern='{FILE_STEM_REGEX.pattern}')")
