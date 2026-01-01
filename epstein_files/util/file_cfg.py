@@ -1,14 +1,16 @@
-from dataclasses import dataclass, field
+from dataclasses import Field, dataclass, field, fields
 from datetime import datetime
 from typing import Literal
 
 from epstein_files.util.constant.names import constantize_name
+from epstein_files.util.constant.strings import AUTHOR
 
 ConfiguredAttr = Literal['actual_text', 'author', 'is_fwded_article', 'recipients', 'timestamp']
 DuplicateType = Literal['same', 'earlier', 'quoted', 'redacted']
 
-INDENT = '\n    '
-INDENTED_JOIN = f',{INDENT}'
+INDENT = '    '
+INDENT_NEWLINE = f'\n{INDENT}'
+INDENTED_JOIN = f',{INDENT_NEWLINE}'
 CONSTANTIZE_NAMES = True  # A flag set to True that causes repr() of these classes to return strings of usable code
 
 REASON_MAPPING: dict[DuplicateType, str] = {
@@ -45,15 +47,26 @@ class FileCfg:
     def _props_strs(self) -> list[str]:
         props = []
 
-        if self.id:
-            props.append(f"id='{self.id}'")
-        if self.duplicate_of_id:
-            props.append(f"duplicate_of_id='{self.duplicate_of_id}'")
-        if self.duplicate_type:
-            props.append(f"duplicate_type='{self.duplicate_type}'")
-        if self.timestamp:
-            timestamp_str = f"parse('{self.timestamp}')" if CONSTANTIZE_NAMES else f"'{self.timestamp}'"
-            props.append(f"timestamp={timestamp_str}")
+        def add_prop(f: Field, value: str):
+            props.append(f"{f.name}={value}")
+
+        for _field in fields(self):
+            value = getattr(self, _field.name)
+
+            if value is None or (isinstance(value, list) and len(value) == 0):
+                continue
+            elif _field.name == AUTHOR:
+                add_prop(_field, constantize_name(value) if CONSTANTIZE_NAMES else f"'{value}'")
+            elif _field.name == 'recipients':
+                recipients = [constantize_name(r) if (CONSTANTIZE_NAMES and r) else r for r in value]
+                recipients_str = f"recipients={recipients}"
+                add_prop(_field, recipients_str.replace("'", '') if CONSTANTIZE_NAMES else recipients_str)
+            elif isinstance(value, str):
+                add_prop(_field, f"'{value}'")
+            elif isinstance(value, datetime):
+                add_prop(_field, f"parse('{value}')" if CONSTANTIZE_NAMES else f"'{value}'")
+            else:
+                add_prop(_field, str(value))
 
         return props
 
@@ -63,9 +76,14 @@ class FileCfg:
         single_line_repr = type_str + ', '.join(props) + f')'
 
         if len(single_line_repr) < 100:
-            return single_line_repr
+            repr_str = single_line_repr
         else:
-            return f"{type_str}{INDENT}" + INDENTED_JOIN.join(props) + f'\n)'
+            repr_str = f"{type_str}{INDENT_NEWLINE}" + INDENTED_JOIN.join(props) + f'\n)'
+
+        if CONSTANTIZE_NAMES:
+            repr_str = INDENT + INDENT_NEWLINE.join(repr_str.split('\n'))
+
+        return repr_str
 
 
 @dataclass(kw_only=True)
@@ -86,28 +104,6 @@ class EmailCfg(FileCfg):
     author: str | None = None
     is_fwded_article: bool = False
     recipients: list[str | None] | list[str] = field(default_factory=list)
-
-    def _props_strs(self) -> list[str]:
-        props = super()._props_strs()
-
-        if self.author:
-            author = constantize_name(self.author) if CONSTANTIZE_NAMES else self.author
-            author = author if CONSTANTIZE_NAMES else f"'{author}'"
-            props.append(f"author={author}")
-        if self.recipients:
-            recipients = [constantize_name(r) if (CONSTANTIZE_NAMES and r) else r for r in self.recipients]
-            recipients_str = f"recipients={recipients}"
-
-            if CONSTANTIZE_NAMES:
-                recipients_str = recipients_str.replace("'", '')
-
-            props.append(recipients_str)
-        if self.is_fwded_article:
-            props.append(f"is_fwded_article={self.is_fwded_article}")
-        if self.actual_text:
-            props.append(f"actual_text='{self.actual_text}'")
-
-        return props
 
     def __repr__(self) -> str:
         return super().__repr__()
