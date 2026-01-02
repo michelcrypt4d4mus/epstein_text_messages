@@ -68,8 +68,7 @@ def file_size_str(file_path: str | Path) -> str:
         size_num = file_size / KB
         size_str = 'kb'
     else:
-        size_num = file_size
-        size_str = 'bytes'
+        return f"{file_size} b"
 
     return f"{size_num:,.2f} {size_str}"
 
