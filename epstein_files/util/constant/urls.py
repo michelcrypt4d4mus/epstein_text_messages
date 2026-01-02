@@ -6,7 +6,7 @@ from inflection import parameterize
 from rich.text import Text
 
 from epstein_files.util.constant.strings import EMAIL, TEXT_MESSAGE, SiteType
-from epstein_files.util.file_helper import build_file_stem, build_filename_for_id
+from epstein_files.util.file_helper import coerce_file_stem, filename_for_id
 
 # Style stuff
 ARCHIVE_LINK_COLOR = 'slate_blue3'
@@ -67,14 +67,14 @@ search_twitter_url = lambda txt: f"https://x.com/search?q={urllib.parse.quote(tx
 
 
 def build_doc_url(base_url: str, filename_or_id: int | str, lowercase: bool = False) -> str:
-    file_stem = build_file_stem(filename_or_id)
+    file_stem = coerce_file_stem(filename_or_id)
     file_stem = file_stem.lower() if lowercase else file_stem
     return f"{base_url}/{file_stem}"
 
 
 def external_doc_link_markup(site: ExternalSite, filename_or_id: int | str, style: str = TEXT_LINK) -> str:
     url = build_doc_url(DOC_LINK_BASE_URLS[site], filename_or_id)
-    return link_markup(url, build_file_stem(filename_or_id), style)
+    return link_markup(url, coerce_file_stem(filename_or_id), style)
 
 
 def external_doc_link_txt(site: ExternalSite, filename_or_id: int | str, style: str = TEXT_LINK) -> Text:

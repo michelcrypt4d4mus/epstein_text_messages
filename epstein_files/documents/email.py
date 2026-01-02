@@ -11,7 +11,7 @@ from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
 
-from epstein_files.documents.communication_document import CommunicationDocument
+from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, INFO_INDENT
 from epstein_files.documents.emails.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, FIELD_NAMES, TIME_REGEX, EmailHeader)
@@ -19,12 +19,13 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
 from epstein_files.util.constants import *
 from epstein_files.util.data import TIMEZONE_INFO, collapse_newlines, escape_single_quotes, extract_last_name, remove_timezone, uniquify
-from epstein_files.util.email_info import ConfiguredAttr
 from epstein_files.util.env import logger
+from epstein_files.util.file_cfg import MessageCfg
 from epstein_files.util.file_helper import is_local_extract_file
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import *
 
+BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|L\._|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
 BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|Classification: External Communication|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,])$')
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 LINK_LINE_REGEX = re.compile(f"^(> )?htt")
@@ -37,17 +38,10 @@ DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
 TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
-REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something's sus)"
+REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
 MAX_CHARS_TO_PRINT = 4000
 MAX_QUOTED_REPLIES = 2
 VALID_HEADER_LINES = 14
-
-FILE_IDS_WITH_BAD_FIRST_LINES = [
-    '026652',
-    '029835',
-    '030927',
-    '031189',  # TODO: we lost the 'LOVE & KISSES' at the top
-]
 
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r'grnail\.com'): 'gmail.com',
@@ -59,6 +53,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     # Names / email addresses
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
     'Miroslav Laj6ak': MIROSLAV_LAJCAK,
+    'Ross G°w': ROSS_GOW,
     'Torn Pritzker': TOM_PRITZKER,
     re.compile(r' Banno(r]?|\b)'): ' Bannon',
     re.compile(r'gmax ?[1l] ?[@g]ellmax.c ?om'): 'gmax1@ellmax.com',
@@ -91,13 +86,15 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"PATTERSON NEW\s+BOOK\s+TELLING\s+FEDS\s+COVER\s+UP\s+OF\s+BILLIONAIRE\s+JEFF\s+EPSTEIN\s+CHILD\s+RAPES\s+RELEASE\s+DATE\s+OCT\s+10\s+2016\s+STEVEN\s+HOFFENBERG\s+IS\s+ON\s+THE\s+BOOK\s+WRITING\s+TEAM\s*!!!!"): "PATTERSON NEW BOOK TELLING FEDS COVER UP OF BILLIONAIRE JEFF EPSTEIN CHILD RAPES RELEASE DATE OCT 10 2016 STEVEN HOFFENBERG IS ON THE BOOK WRITING TEAM !!!!",
     re.compile(r"PROCEEDINGS FOR THE ST THOMAS ATTACHMENT OF\s*ALL JEFF EPSTEIN ASSETS"): "PROCEEDINGS FOR THE ST THOMAS ATTACHMENT OF ALL JEFF EPSTEIN ASSETS",
     re.compile(r"Subject:\s*Fwd: Trending Now: Friends for three decades"): "Subject: Fwd: Trending Now: Friends for three decades",
+    # Misc
+    'AVG°': 'AVGO',
 }
 
 MARTIN_WEINBERG_SIGNATURE_PATTERN = r"Martin G. Weinberg, Esq.\n20 Park Plaza((, )|\n)Suite 1000\nBoston, MA 02116(\n61.*)?(\n.*([cC]ell|Office))*"
 
 EMAIL_SIGNATURES = {
     ARIANE_DE_ROTHSCHILD: re.compile(r"Ensemble.*\nCe.*\ndestinataires.*\nremercions.*\nautorisee.*\nd.*\nLe.*\ncontenues.*\nEdmond.*\nRoth.*\nlo.*\nRoth.*\ninfo.*\nFranc.*\n.2.*", re.I),
-    BARBRO_EHNBOM: re.compile(r"Barbro C.? Ehn.*\nChairman, Swedish-American.*\n((Office|Cell|Sweden):.*\n)*(360.*\nNew York.*)?"),
+    BARBRO_C_EHNBOM: re.compile(r"Barbro C.? Ehn.*\nChairman, Swedish-American.*\n((Office|Cell|Sweden):.*\n)*(360.*\nNew York.*)?"),
     DANNY_FROST: re.compile(r"Danny Frost\nDirector.*\nManhattan District.*\n212.*", re.IGNORECASE),
     DARREN_INDYKE: re.compile(r"DARREN K. INDYKE.*?\**\nThe information contained in this communication.*?Darren K.[\n\s]+?[Il]ndyke(, PLLC)? — All rights reserved\.? ?\n\*{50,120}(\n\**)?", re.DOTALL),
     DAVID_INGRAM: re.compile(r"Thank you in advance.*\nDavid Ingram.*\nCorrespondent\nReuters.*\nThomson.*(\n(Office|Mobile|Reuters.com).*)*"),
@@ -281,13 +278,14 @@ NOTES_TO_SELF = [
 
 
 @dataclass
-class Email(CommunicationDocument):
+class Email(Communication):
     actual_text: str = field(init=False)
+    config: MessageCfg | None = None
     header: EmailHeader = field(init=False)
     is_junk_mail: bool = False
     recipients: list[str | None] = field(default_factory=list)
     sent_from_device: str | None = None
-    signature_substitution_count: dict[str, int] = field(default_factory=lambda: defaultdict(int))
+    signature_substitution_counts: dict[str, int] = field(default_factory=lambda: defaultdict(int))
 
     # Just for logging how many headers we rewrote
     rewritten_header_ids: ClassVar[set[str]] = set([])
@@ -296,8 +294,8 @@ class Email(CommunicationDocument):
         super().__post_init__()
         self.is_junk_mail = self.author in JUNK_EMAILERS
 
-        if self.configured_attr('recipients'):
-            self.recipients = cast(list[str | None], EMAIL_INFO[self.file_id].recipients)
+        if self.config and self.config.recipients:
+            self.recipients = cast(list[str | None], self.config.recipients)
         else:
             for recipient in self.header.recipients():
                 self.recipients.extend(self._get_names(recipient))
@@ -308,11 +306,6 @@ class Email(CommunicationDocument):
         self.actual_text = self._actual_text()
         self.sent_from_device = self._sent_from_device()
         logger.debug(f"Constructed {self.description()}")
-
-    def configured_attr(self, attr: ConfiguredAttr) -> bool | datetime | str | None:
-        """Find the value configured in constants.py for the 'attr' attribute of this email (if any)."""
-        if self.file_id in EMAIL_INFO:
-            return getattr(EMAIL_INFO[self.file_id], attr)
 
     def description(self) -> Text:
         """One line summary mostly for logging."""
@@ -333,19 +326,13 @@ class Email(CommunicationDocument):
         txt = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(' to ')
         return txt.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
 
-    def is_local_extract_file(self) -> bool:
-        return is_local_extract_file(self.filename)
-
     def subject(self) -> str:
-        if len(self.header.subject or '') > 100:
-            logger.info(f"Long subject for {self.description().plain}\n{self.header.subject}\n")
-
         return self.header.subject or ''
 
     def _actual_text(self) -> str:
         """The text that comes before likely quoted replies and forwards etc."""
-        if self.configured_attr('actual_text') is not None:
-            return cast(str, self.configured_attr('actual_text'))
+        if self.config and self.config.actual_text is not None:
+            return self.config.actual_text
         elif self.header.num_header_rows == 0:
             return self.text
 
@@ -360,7 +347,7 @@ class Email(CommunicationDocument):
         if reply_text_match:
             actual_num_chars = len(reply_text_match.group(1))
             actual_text_pct = f"{(100 * float(actual_num_chars) / len(text)):.1f}%"
-            logger.info(f"'{self.file_path.stem}': actual_text() reply_text_match is {actual_num_chars:,} chars ({actual_text_pct} of {len(text):,})")
+            logger.debug(f"'{self.url_slug}': actual_text() reply_text_match is {actual_num_chars:,} chars ({actual_text_pct} of {len(text):,})")
             text = reply_text_match.group(1)
 
         # If all else fails look for lines like 'From: blah', 'Subject: blah', and split on that.
@@ -370,11 +357,11 @@ class Email(CommunicationDocument):
             if field_string not in text:
                 continue
 
-            logger.debug(f"'{self.file_path.stem}': Splitting based on '{field_string.strip()}'")
+            logger.debug(f"'{self.url_slug}': Splitting based on '{field_string.strip()}'")
             pre_from_text = text.split(field_string)[0]
             actual_num_chars = len(pre_from_text)
             actual_text_pct = f"{(100 * float(actual_num_chars) / len(text)):.1f}%"
-            logger.info(f"'{self.file_path.stem}': actual_text() fwd_text_match is {actual_num_chars:,} chars ({actual_text_pct} of {len(text):,})")
+            logger.debug(f"'{self.url_slug}': actual_text() fwd_text_match is {actual_num_chars:,} chars ({actual_text_pct} of {len(text):,})")
             text = pre_from_text
             break
 
@@ -394,22 +381,32 @@ class Email(CommunicationDocument):
 
     def _cleaned_up_text(self) -> str:
         """Add newline after headers in text if actual header wasn't empty, remove bad lines, etc."""
+        # Insert line breaks now unless header is broken, in which case we'll do it later after fixing header
         text = self.text if self.header.was_initially_empty else _add_line_breaks(self.text)
         text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
 
         for name, signature_regex in EMAIL_SIGNATURES.items():
             signature_replacement = f'<...snipped {name.lower()} legal signature...>'
             text, num_replaced = signature_regex.subn(signature_replacement, text)
-            self.signature_substitution_count[name] += num_replaced
+            self.signature_substitution_counts[name] += num_replaced
 
         return collapse_newlines(text).strip()
 
+    def _debug_info(self) -> str:
+        info = [
+            f"id={self.file_id}",
+            f"url_slug={self.url_slug}",
+            f"file_path='{self.file_path}'",
+            f"is_local_extract_file={self.is_local_extract_file()}",
+        ]
+
+        return f"     " + "\n     ".join(info)
+
     def _extract_author(self) -> None:
         self._extract_header()
+        super()._extract_author()
 
-        if self.configured_attr('author'):
-            self.author = EMAIL_INFO[self.file_id].author
-        elif self.header.author:
+        if not self.author and self.header.author:
             authors = self._get_names(self.header.author)
             self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
 
@@ -424,17 +421,13 @@ class Email(CommunicationDocument):
                 self.header.repair_empty_header(self.lines)
         else:
             msg = f"No header match found in '{self.filename}'! Top lines:\n\n{self.top_lines()}"
-
-            if self.file_id in EMAIL_INFO:
-                logger.info(msg)
-            else:
-                logger.warning(msg)
-
+            log_fxn = logger.info if self.config else logger.warning
+            log_fxn(msg)
             self.header = EmailHeader(field_names=[])
 
     def _extract_timestamp(self) -> datetime:
-        if self.configured_attr('timestamp'):
-            return cast(datetime, EMAIL_INFO[self.file_id].timestamp)
+        if self.config and self.config.timestamp:
+            return self.config.timestamp
         elif self.header.sent_at:
             timestamp = _parse_timestamp(self.header.sent_at)
 
@@ -511,12 +504,13 @@ class Email(CommunicationDocument):
 
     def _repair(self) -> None:
         """Repair particularly janky files."""
-        self._set_computed_fields(lines=[line.strip() for line in self.lines if not BAD_LINE_REGEX.match(line)])
+        if BAD_FIRST_LINE_REGEX.match(self.lines[0]):
+            self._set_computed_fields(lines=self.lines[1:])
+
+        self._set_computed_fields(lines=[line for line in self.lines if not BAD_LINE_REGEX.match(line)])
         old_text = self.text
 
-        if self.file_id in FILE_IDS_WITH_BAD_FIRST_LINES:
-            self._set_computed_fields(lines=self.lines[1:])
-        elif self.file_id in ['031442']:
+        if self.file_id in ['031442']:
             self._merge_lines(0)  # Merge 1st and 2nd rows
         elif self.file_id in '021729 029501 029282 030626 031384 033512'.split():
             self._merge_lines(2)  # Merge 3rd and 4th rows
@@ -543,9 +537,9 @@ class Email(CommunicationDocument):
             self._merge_lines(2, 4)
 
         if old_text != self.text:
-            logger.warning(f"Modified text of '{self.url_slug}', old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n')
-            self.log_top_lines(12, 'Result of modifications', logging.WARNING)
-            logger.warning('')
+            self.log(f"Modified text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n', logging.INFO)
+            self.log_top_lines(12, 'Result of modifications', logging.INFO)
+            self.log('', logging.INFO)
 
         lines = self.regex_repair_text(OCR_REPAIRS, self.text).split('\n')
         new_lines = []
@@ -568,7 +562,7 @@ class Email(CommunicationDocument):
             new_lines.append(line)
 
             # TODO: hacky workaround to get a working link for HOUSE_OVERSIGHT_032564
-            if line == 'http://m.huffpost.com/us/entry/us_599f532ae4b0dOef9f1c129d':
+            if self.file_id == '032564' and line == 'http://m.huffpost.com/us/entry/us_599f532ae4b0dOef9f1c129d':
                 new_lines.append('(ed. note: an archived version of the above link is here: https://archive.is/hJxT3 )')
 
             i += 1
@@ -608,7 +602,7 @@ class Email(CommunicationDocument):
 
         # Rewrite broken headers where the values are on separate lines from the field names
         if should_rewrite_header:
-            configured_actual_text = self.configured_attr('actual_text')
+            configured_actual_text = self.config.actual_text if self.config and self.config.actual_text else None
             num_lines_to_skip = self.header.num_header_rows
             lines = []
 

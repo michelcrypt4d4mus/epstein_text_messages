@@ -1,4 +1,4 @@
-from epstein_files.util.constant.strings import QUESTION_MARKS
+from epstein_files.util.constant.strings import QUESTION_MARKS, remove_question_marks
 
 
 UNKNOWN = '(unknown)'
@@ -6,7 +6,7 @@ UNKNOWN = '(unknown)'
 # Texting Names
 ANDRZEJ_DUDA = 'Andrzej Duda or entourage'
 ANIL_AMBANI = "Anil Ambani"
-ARDA_BESKARES = 'Arda Beskardes'
+ARDA_BESKARDES = 'Arda Beskardes'
 EVA = 'Eva (Dubin?)'
 JEFFREY_EPSTEIN = 'Jeffrey Epstein'
 JOI_ITO = 'Joi Ito'
@@ -15,7 +15,7 @@ MELANIE_WALKER = 'Melanie Walker'
 MIROSLAV_LAJCAK = 'Miroslav Lajčák'
 STACEY_PLASKETT = 'Stacey Plaskett'
 SCARAMUCCI = "Anthony Scaramucci"
-SOON_YI = 'Soon-Yi Previn'
+SOON_YI_PREVIN = 'Soon-Yi Previn'
 STEVE_BANNON = 'Steve Bannon'
 STEVEN_SINOFSKY = 'Steven Sinofsky'
 TERJE_ROD_LARSEN = 'Terje Rød-Larsen'
@@ -31,7 +31,7 @@ ANAS_ALRASHEED = 'Anas Alrasheed'
 ANTHONY_BARRETT = 'Anthony Barrett'
 ARIANE_DE_ROTHSCHILD = 'Ariane de Rothschild'
 AZIZA_ALAHMADI = 'Aziza Alahmadi'
-BARBRO_EHNBOM = 'Barbro C. Ehnbom'
+BARBRO_C_EHNBOM = 'Barbro C. Ehnbom'
 BARRY_J_COHEN = 'Barry J. Cohen'
 BENNET_MOSKOWITZ = 'Bennet Moskowitz'
 BILL_SIEGEL = 'Bill Siegel'
@@ -173,6 +173,7 @@ BILL_GATES = 'Bill Gates'
 ELON_MUSK = 'Elon Musk'
 HENRY_HOLT = 'Henry Holt'  # Actually a company?
 IVANKA = 'Ivanka'
+JAMES_PATTERSON = 'James Patterson'
 JARED_KUSHNER = 'Jared Kushner'
 JULIE_K_BROWN = 'Julie K. Brown'
 KARIM_SADJADPOUR = 'KARIM SADJADPOUR'.title()
@@ -241,3 +242,20 @@ OTHER_NAMES = """
     walter warren weinstein weiss william
     zach zack
 """.strip().split()
+
+
+def constantize_name(name: str) -> str:
+    if name == SCARAMUCCI:
+        return 'SCARAMUCCI'
+    elif name == 'Andrzej Duda or entourage':
+        return 'ANDRZEJ_DUDA'
+
+    variable_name = remove_question_marks(name)
+    variable_name = variable_name.removesuffix('.').removesuffix('Jr').replace('ź', 'z').replace('ø', 'o').strip()
+    variable_name = variable_name.upper().replace('-', '_').replace(' ', '_').replace('.', '')
+
+    if variable_name not in globals():
+        #print(f"  ****ERROR**** {variable_name} is not a name variable!")
+        return f"'{name}'"
+    else:
+        return variable_name

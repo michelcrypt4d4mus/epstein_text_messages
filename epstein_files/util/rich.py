@@ -161,8 +161,12 @@ def print_header(epstein_files: 'EpsteinFiles') -> None:
 
 
 def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
-    if isinstance(obj, dict) and skip_falsey:
-        obj = {k: v for k, v in obj.items() if v}
+    if isinstance(obj, dict):
+        if skip_falsey:
+            obj = {k: v for k, v in obj.items() if v}
+
+        if None in obj:
+            obj = {k or UNKNOWN: v for k, v in obj.items()}
 
     console.line()
     console.print(Panel(label, expand=False))
