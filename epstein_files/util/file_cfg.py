@@ -42,17 +42,17 @@ class FileCfg:
     id: str | None = None
     author: str | None = None
     description: str | None = None
-    duplicate_of_id: str | None = None
-    duplicate_type: DuplicateType | None = None
+    dupe_of_id: str | None = None
+    dupe_type: DuplicateType | None = None
     timestamp: datetime | None = None
 
     def __post_init__(self):
-        if self.duplicate_of_id:
-            self.duplicate_type = self.duplicate_type or 'same'
+        if self.dupe_of_id:
+            self.dupe_type = self.dupe_type or 'same'
 
     def duplicate_reason(self) -> str | None:
-        if self.duplicate_type is not None:
-            return REASON_MAPPING[self.duplicate_type]
+        if self.dupe_type is not None:
+            return REASON_MAPPING[self.dupe_type]
 
     def non_null_field_names(self) -> list[str]:
         return [f.name for f in self.sorted_fields() if getattr(self, f.name)]

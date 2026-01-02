@@ -80,7 +80,7 @@ class Document:
         self.filename = self.file_path.name
         self.file_id = extract_file_id(self.filename)
         self.config = ALL_FILE_CONFIGS.get(self.file_id)
-        self.is_duplicate = bool(self.config.duplicate_of_id) if self.config else False
+        self.is_duplicate = bool(self.config.dupe_of_id) if self.config else False
 
         if self.is_local_extract_file():
             self.url_slug = file_stem_for_id(self.file_id)
@@ -129,12 +129,12 @@ class Document:
 
     def duplicate_file_txt(self) -> Text:
         """If the file is a dupe make a nice message to explain what file it's a duplicate of."""
-        if not self.config or not self.config.duplicate_of_id:
+        if not self.config or not self.config.dupe_of_id:
             raise RuntimeError(f"duplicate_file_txt() called on {self.description()} but not a dupe! config:\n\n{self.config}")
 
         txt = Text(f"Not showing ", style='white dim italic').append(epstein_media_doc_link_txt(self.file_id, style='cyan'))
         txt.append(f" because it's {self.config.duplicate_reason()} ")
-        return txt.append(epstein_media_doc_link_txt(self.config.duplicate_of_id, style='royal_blue1'))
+        return txt.append(epstein_media_doc_link_txt(self.config.dupe_of_id, style='royal_blue1'))
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on epsteinify.com."""
