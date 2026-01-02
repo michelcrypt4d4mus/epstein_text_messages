@@ -63,6 +63,7 @@ class EpsteinFiles:
     def __post_init__(self):
         self.all_files = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
 
+        # Read through and classify all the files
         for file_arg in self.all_files:
             logger.info(f"Scanning '{file_arg.name}'...")
             document = Document(file_arg)
