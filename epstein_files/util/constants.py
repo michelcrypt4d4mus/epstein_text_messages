@@ -303,6 +303,9 @@ WAPO = 'WaPo'
 WEINBERG_ABC_LETTER = f"letter from {MARTIN_WEINBERG} to ABC / Good Morning America threatening libel lawsuit"
 WOMEN_EMPOWERMENT = f"Women Empowerment (WE) conference run by {SVETLANA_POZHIDAEVA}"
 
+# Atribution reasons
+BOLOTOVA_REASON = 'Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")'
+
 UNINTERESTING_PREFIXES = [
     'article about',
     ARTICLE_DRAFT,
@@ -548,9 +551,8 @@ ALL_CONFIGS = [
     MessageCfg(
         id='029692',
         author=JEFFREY_EPSTEIN,
-        is_fwded_article=True,
+        is_fwded_article=True,  # Bad OCR, WaPo article
         recipients=[LARRY_SUMMERS],
-        attribution_reason='Bad OCR, WaPo article',
         duplicate_ids=['029779'],
     ),
     MessageCfg(id='018726', author=JEFFREY_EPSTEIN, timestamp=parse('2018-06-08 08:36:00')),
@@ -564,12 +566,7 @@ ALL_CONFIGS = [
         recipients=["Miroslav Lajčák"],
         attribution_reason='Quoted reply has signature',
     ),
-    MessageCfg(
-        id='029582',
-        author=JEFFREY_EPSTEIN,
-        recipients=[RENATA_BOLOTOVA],
-        attribution_reason='Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")',
-    ),
+    MessageCfg(id='029582', author=JEFFREY_EPSTEIN, recipients=[RENATA_BOLOTOVA], attribution_reason=BOLOTOVA_REASON),
     MessageCfg(id='030997', author=JEFFREY_EPSTEIN, actual_text='call back'),
     MessageCfg(id='028770', author=JEFFREY_EPSTEIN, actual_text='call me now'),
     MessageCfg(id='031826', author=JEFFREY_EPSTEIN, actual_text='I have'),
@@ -616,13 +613,7 @@ ALL_CONFIGS = [
     MessageCfg(id='032206', author=LAWRENCE_KRAUSS, ),  # More of a text convo?
     MessageCfg(id='032208', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN], ),  # More of a text convo?
     MessageCfg(id='032209', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN], ),  # More of a text convo?
-    MessageCfg(
-        id='029196',
-        author=LAWRENCE_KRAUSS,
-        actual_text='Talk in 40?',
-        recipients=[JEFFREY_EPSTEIN],
-        attribution_reason="TODO: this email's header rewrite sucks",
-    ),
+    MessageCfg(id='029196', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN], actual_text='Talk in 40?'),  # TODO: this email's header rewrite sucks
     MessageCfg(id='027046', author=LAWRANCE_VISOSKI, duplicate_ids=['028789']),
     MessageCfg(id='033370', author=LAWRANCE_VISOSKI, attribution_reason='Planes discussion signed larry'),
     MessageCfg(id='033495', author=LAWRANCE_VISOSKI, attribution_reason='Planes discussion signed larry'),
@@ -639,7 +630,7 @@ ALL_CONFIGS = [
     MessageCfg(id='033309', author=LINDA_STONE, attribution_reason='"Co-authored with iPhone autocorrect"'),
     MessageCfg(id='017581', author='Lisa Randall'),
     MessageCfg(id='026609', author='Mark Green', attribution_reason='Actually a fwd'),
-    MessageCfg(id='030472', author=MARTIN_WEINBERG, attribution_reason='Maybe. in reply'),
+    MessageCfg(id='030472', author=MARTIN_WEINBERG, attribution_reason='Maybe. in reply', is_author_uncertain=True),
     MessageCfg(id='030235', author=MELANIE_WALKER, attribution_reason='In fwd'),
     MessageCfg(id='032343', author=MELANIE_WALKER, attribution_reason='In later reply 032346'),
     MessageCfg(id='032212', author=MIROSLAV_LAJCAK),
@@ -660,22 +651,14 @@ ALL_CONFIGS = [
     MessageCfg(
         id='033561',
         author=PAUL_PROSPERI,
-        attribution_reason='Fwded mail sent to Prosperi. Might be Subotnick Stuart ?',
+        attribution_reason='Fwded mail sent to Prosperi. Might be Subotnick Stuart?',
         duplicate_ids=['033157'],
     ),
     MessageCfg(id='031694', author=PEGGY_SIEGAL),
     MessageCfg(id='032219', author=PEGGY_SIEGAL, attribution_reason='Signed "Peggy"'),
     MessageCfg(id='029020', author=RENATA_BOLOTOVA, attribution_reason='Signature'),
-    MessageCfg(
-        id='029605',
-        author=RENATA_BOLOTOVA,
-        attribution_reason='Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")',
-    ),
-    MessageCfg(
-        id='029606',
-        author=RENATA_BOLOTOVA,
-        attribution_reason='Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")',
-    ),
+    MessageCfg(id='029605', author=RENATA_BOLOTOVA, attribution_reason=BOLOTOVA_REASON),
+    MessageCfg(id='029606', author=RENATA_BOLOTOVA, attribution_reason=BOLOTOVA_REASON),
     MessageCfg(id='029604', author=RENATA_BOLOTOVA, attribution_reason='Continued in 239606 etc'),
     MessageCfg(id='033584', author=ROBERT_TRIVERS, recipients=[JEFFREY_EPSTEIN], attribution_reason='Refs paper', duplicate_ids=['033169']),
     MessageCfg(
@@ -748,16 +731,8 @@ ALL_CONFIGS = [
     MessageCfg(id='032063', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, REID_WEINGARTEN]),
     MessageCfg(id='033486', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, RICHARD_KAHN], duplicate_ids=['033156']),  # Bad OCR
     MessageCfg(id='029154', recipients=[JEFFREY_EPSTEIN, DAVID_HAIG]),  # Bad OCR
-    MessageCfg(
-        id='029498',
-        recipients=[JEFFREY_EPSTEIN, DAVID_HAIG, GORDON_GETTY, "Norman Finkelstein"],
-        attribution_reason='Bad OCR',
-    ),
-    MessageCfg(
-        id='029889',
-        recipients=[JEFFREY_EPSTEIN, "Connie Zaguirre", JACK_GOLDBERGER, ROBERT_D_CRITTON],
-        attribution_reason='Bad OCR',
-    ),
+    MessageCfg(id='029498', recipients=[JEFFREY_EPSTEIN, DAVID_HAIG, GORDON_GETTY, "Norman Finkelstein"]),  # Bad OCR
+    MessageCfg(id='029889', recipients=[JEFFREY_EPSTEIN, "Connie Zaguirre", JACK_GOLDBERGER, ROBERT_D_CRITTON]),  # Bad OCR
     MessageCfg(id='028931', recipients=[JEFFREY_EPSTEIN, LAWRENCE_KRAUSS]),  # Bad OCR
     MessageCfg(id='019407', recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK]),  # Bad OCR
     MessageCfg(id='031980', recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK], duplicate_ids=['019409']),  # Bad OCR
@@ -810,11 +785,7 @@ ALL_CONFIGS = [
     MessageCfg(id='030509', recipients=[PAULA], attribution_reason='"Sent via BlackBerry from T-Mobile"', is_author_uncertain=True),
     MessageCfg(id='030096', recipients=[PETER_MANDELSON]),
     MessageCfg(id='032951', recipients=[RAAFAT_ALSABBAGH, None], attribution_reason='Redacted'),
-    MessageCfg(
-        id='029581',
-        recipients=[RENATA_BOLOTOVA],
-        attribution_reason='Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")',
-    ),
+    MessageCfg(id='029581', recipients=[RENATA_BOLOTOVA], attribution_reason=BOLOTOVA_REASON),
     MessageCfg(id='030384', recipients=[RICHARD_KAHN, "Alan Dlugash"]),
     MessageCfg(id='019334', recipients=[STEVE_BANNON]),
     MessageCfg(id='021106', recipients=[STEVE_BANNON], attribution_reason='Reply'),
