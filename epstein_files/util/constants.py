@@ -279,7 +279,6 @@ JP_MORGAN_EYE_ON_THE_MARKET = f"{JP_MORGAN} Eye On The Market report"
 KEN_STARR_LETTER = f"letter from {KEN_STARR} to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
 MERCURY_FILMS_PROFILES = f'Mercury Films partner profiles of Jennifer Baichwal, Nicholas de Pencier, Kermit Blackwood, Travis Rummel'
 MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
-NATIONAL_ENQUIRER_FILING = f"National Enquirer / Radar Online v. FBI FOIA lawsuit court filing"
 NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight"'
 NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
 OBAMA_JOKE = 'joke about Obama'
@@ -855,18 +854,13 @@ ALL_CONFIGS = [
     FileCfg(id='023731', description=f'{BOOK} "Teaching Minds How Cognitive Science Can Save Our Schools" by {ROGER_SCHANK}'),
     FileCfg(id='013796', description=f'{BOOK} "The 4-Hour Workweek" by Tim Ferriss'),
     FileCfg(id='021145', description=f'{BOOK} "The Billionaire\'s Playboy Club" by {VIRGINIA_GIUFFRE} (draft?)'),
-    FileCfg(
-        id='013501',
-        description=f'{BOOK} "The Nearness Of Grace: A Personal Science Of Spiritual Transformation" by Arnold J. Mandell',
-        date='2005-01-01',
-    ),
+    FileCfg(id='013501', description=f'{BOOK} "The Nearness Of Grace: A Personal Science Of Spiritual Transformation" by Arnold J. Mandell', date='2005-01-01'),
     FileCfg(id='018438', description=f'{BOOK} "The S&M Feminist" by Clarisse Thorn'),
     FileCfg(id='018232', description=f'{BOOK} "The Seventh Sense: Power, Fortune & Survival in the Age of Networks" by Joshua Cooper Ramo'),
     FileCfg(id='020153', description=f'{BOOK} "The Snowden Affair: A Spy Story In Six Parts" by {EDWARD_JAY_EPSTEIN}'),
     FileCfg(id='021120', description=f'{BOOK} chapter of "Siege: Trump Under Fire" by {MICHAEL_WOLFF}'),
     FileCfg(id='016221', description=DEEP_THINKING_HINT, date='2019-02-19'),
     FileCfg(id='016804', description=DEEP_THINKING_HINT, date='2019-02-19'),
-    FileCfg(id='031533', description=f'few pages from a book about the Baylor University sexual assault scandal and Sam Ukwuachu'),
     FileCfg(id='011472', author=EHUD_BARAK, description=NIGHT_FLIGHT_HINT,),
     FileCfg(id='027849', author=EHUD_BARAK, description=NIGHT_FLIGHT_HINT,),
     FileCfg(id='010477', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
@@ -875,6 +869,7 @@ ALL_CONFIGS = [
     FileCfg(id='022058', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
     FileCfg(id='022118', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
     FileCfg(id='019111', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
+    FileCfg(id='031533', description=f'pages from a book about the Baylor University sexual assault scandal and Sam Ukwuachu'),
 
     # articles
     FileCfg(id='019206', author=EDWARD_JAY_EPSTEIN, description=f"WSJ article about Edward Snowden", date='2016-12-30'),
@@ -924,11 +919,7 @@ ALL_CONFIGS = [
     FileCfg(id='031725', description=f"article about Gloria Allred and Trump allegations", date='2016-10-10'),
     FileCfg(id='031198', description=f"article about identify of Jane Doe in {JANE_DOE_V_EPSTEIN_TRUMP}"),
     FileCfg(id='012704', description=f"article about {JANE_DOE_V_USA} and {CVRA}", date='2011-04-21'),
-    FileCfg(
-        id='026648',
-        description=f'article about {JASTA} lawsuit against Saudi Arabia by 9/11 victims (Russian propaganda?)',
-        date='2017-05-13',
-    ),
+    FileCfg(id='026648', description=f'article about {JASTA} lawsuit against Saudi Arabia by 9/11 victims (Russian propaganda?)', date='2017-05-13'),
     FileCfg(id='031776', description=f"article about Michael Avenatti by Andrew Strickler"),
     FileCfg(id='032159', description=f"article about microfinance and cell phones in Zimbabwe, Strive Masiyiwa (Econet Wireless)"),
     FileCfg(id='026584', description=f"article about tax implications of 'disregarded entities'", date='2009-07-01'),
@@ -974,7 +965,12 @@ ALL_CONFIGS = [
     FileCfg(id='013403', description=f"Lexis Nexis result from The Evening Standard about Bernie Madoff", date='2009-12-24'),
     FileCfg(id='023102', description=f"Litigation Daily article about {REID_WEINGARTEN}", date='2015-09-04'),
     FileCfg(id='029340', description=f'MarketWatch article about estate taxes, particularly Epstein\'s favoured GRATs'),
-    FileCfg(id='029416', description=NATIONAL_ENQUIRER_FILING, date='2017-05-25', duplicate_ids=['029405']),
+    FileCfg(
+        id='029416',
+        description=f"National Enquirer / Radar Online v. FBI FOIA lawsuit court filing",
+        date='2017-05-25',
+        duplicate_ids=['029405']
+    ),
     FileCfg(id='015462', description=f'Nautilus Education magazine (?) issue'),
     FileCfg(id='029925', description=f"New Yorker article about the placebo effect by Michael Specter", date='2011-12-04'),
     FileCfg(id='031972', description=f"{NYT_ARTICLE} #MeToo allegations against {LAWRENCE_KRAUSS}", date='2018-03-07'),
@@ -1001,7 +997,7 @@ ALL_CONFIGS = [
         description=f'{ROBERT_TRIVERS} and Nathan H. Lents "Does Trump Fit the Evolutionary Role of Narcissistic Sociopath?" (draft)',
         date='2018-12-07',
     ),
-    FileCfg(id='025143', description=f"{ROBERT_TRIVERS}: 'Africa, Parasites, Intelligence'", date='2018-06-25'),
+    FileCfg(id='025143', author=ROBERT_TRIVERS, description=f"'Africa, Parasites, Intelligence'", date='2018-06-25'),
     FileCfg(id='016996', description=f'SciencExpress article "Quantitative Analysis of Culture Using Millions of Digitized Books" by Jean-Baptiste Michel'),
     FileCfg(id='030030', description=SHIMON_POST_ARTICLE, date='2011-03-29'),
     FileCfg(id='025610', description=SHIMON_POST_ARTICLE, date='2011-04-03'),
@@ -1081,7 +1077,6 @@ ALL_CONFIGS = [
     FileCfg(id='021434', description=FBI_REPORT,),
     FileCfg(id='018872', description=FBI_SEIZED_PROPERTY,),
     FileCfg(id='021569', description=FBI_SEIZED_PROPERTY,),
-    FileCfg(id='022494', description=f'Foreign Corrupt Practices Act (FCPA) DOJ Resource Guide', date='2013-01-01'),
     FileCfg(id='017792', description=f"{GIUFFRE_V_DERSHOWITZ} article about {ALAN_DERSHOWITZ}'s appearance on Wolf Blitzer"),
     FileCfg(id='017767', description=f"{GIUFFRE_V_DERSHOWITZ} article about {ALAN_DERSHOWITZ} working with {JEFFREY_EPSTEIN}"),
     FileCfg(id='017796', description=f"{GIUFFRE_V_DERSHOWITZ} article about {ALAN_DERSHOWITZ}"),
@@ -1097,24 +1092,24 @@ ALL_CONFIGS = [
     FileCfg(id='016197', description=f"{GIUFFRE_V_DERSHOWITZ} response to Florida Bar complaint by {ALAN_DERSHOWITZ} about David Boies from {PAUL_G_CASSELL}"),
     FileCfg(id='017771', description=f'{GIUFFRE_V_DERSHOWITZ} Vanity Fair article "The Talented Mr. Epstein" by Vicky Ward', date='2011-06-27'),
     FileCfg(id='014652', description=f"{GIUFFRE_V_MAXWELL} Complaint", date='2015-04-22'),
-    FileCfg(id='014797', description=f"{GIUFFRE_V_MAXWELL} Declaration of Laura A. Menninger in Opposition to Plaintiff's Motion", date='2017-03-17'),
+    FileCfg(id='015529', description=f"{GIUFFRE_V_MAXWELL} Defamation Complaint", date='2015-09-21'),
     FileCfg(id='014118', description=f"{GIUFFRE_V_EPSTEIN} Declaration in Support of Motion to Compel Production of Documents", date='2016-10-21'),
-    FileCfg(id='015529', description=f"{GIUFFRE_V_MAXWELL} defamation complaint", date='2015-09-21'),
-    FileCfg(id='019297', description=f'{GIUFFRE_V_MAXWELL} letter from {ALAN_DERSHOWITZ} lawyer Andrew G. Celli', date='2018-02-07'),
+    FileCfg(id='014797', description=f"{GIUFFRE_V_MAXWELL} Declaration of Laura A. Menninger in Opposition to Plaintiff's Motion", date='2017-03-17'),
+    FileCfg(id='011304', description=f"{GIUFFRE_V_MAXWELL} Oral Argument Transcript", date='2017-03-17'),
     FileCfg(
         id='014788',
         description=f"{GIUFFRE_V_MAXWELL} Maxwell Response to Plaintiff's Omnibus Motion in Limine",
         date='2017-03-17',
         duplicate_ids=['011463'],
     ),
-    FileCfg(id='011304', description=f"{GIUFFRE_V_MAXWELL} Oral Argument Transcript", date='2017-03-17'),
-    FileCfg(id='013489', description=f'{JANE_DOE_V_EPSTEIN_TRUMP} Affidavit of {BRAD_EDWARDS}', date='2010-07-20'),
-    FileCfg(id='025939', description=f'{JANE_DOE_V_EPSTEIN_TRUMP} Affidavit of Jane Doe describing being raped by Epstein', date='2016-06-20'),
+    FileCfg(id='019297', description=f'{GIUFFRE_V_MAXWELL} letter from {ALAN_DERSHOWITZ} lawyer Andrew G. Celli', date='2018-02-07'),
     FileCfg(
         id='025937',
         description=f'{JANE_DOE_V_EPSTEIN_TRUMP} Affidavit of Tiffany Doe describing Jane Doe being raped by Epstein and Trump',
         date='2016-06-20',
     ),
+    FileCfg(id='025939', description=f'{JANE_DOE_V_EPSTEIN_TRUMP} Affidavit of Jane Doe describing being raped by Epstein', date='2016-06-20'),
+    FileCfg(id='013489', description=f'{JANE_DOE_V_EPSTEIN_TRUMP} Affidavit of {BRAD_EDWARDS}', date='2010-07-20'),
     FileCfg(id='029398', description=f'{JANE_DOE_V_EPSTEIN_TRUMP} article in Law.com'),
     FileCfg(id='026854', description=f"{JANE_DOE_V_EPSTEIN_TRUMP} Civil Docket"),
     FileCfg(id='026384', description=f"{JANE_DOE_V_EPSTEIN_TRUMP} Complaint for rape and sexual abuse", date='2016-06-20'),
@@ -1377,6 +1372,7 @@ ALL_CONFIGS = [
     FileCfg(id='027074', description=f"{FEMALE_HEALTH_COMPANY} pitch deck (USAID was a customer)"),
     FileCfg(id='022780', description=FLIGHT_LOGS,),
     FileCfg(id='022816', description=FLIGHT_LOGS,),
+    FileCfg(id='022494', description=f'Foreign Corrupt Practices Act (FCPA) DOJ Resource Guide', date='2013-01-01'),
     FileCfg(id='026678', description=f"fragment of image metadata {QUESTION_MARKS}", date='2017-06-29'),
     FileCfg(id='022986', description=f"fragment of a screenshot {QUESTION_MARKS}"),
     FileCfg(id='026521', description=f"game theory paper by {MARTIN_NOWAK}, Erez Yoeli, and Moshe Hoffman"),
