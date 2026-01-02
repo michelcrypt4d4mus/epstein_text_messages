@@ -21,6 +21,7 @@ MIN_TIMESTAMP = datetime(1991, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
 MAX_TIMESTAMP = datetime(2022, 12, 31)
 PREVIEW_CHARS = int(580 * (1 if args.all_other_files else 1.5))
+TIMESTAMP_LOG_INDENT = '\n             '
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
@@ -118,8 +119,8 @@ class OtherFile(Document):
         timestamps = sorted(uniquify(timestamps), reverse=True)
         timestamp_strs = [str(dt) for dt in timestamps]
         num_days_spanned = (timestamps[0] - timestamps[-1]).days
-        timestamps_log_msg = f"Extracted {len(timestamps)} timestamps spanning {num_days_spanned} days\n     "
-        timestamps_log_msg += '\n     '.join(timestamp_strs)
+        timestamps_log_msg = f"Extracted {len(timestamps)} timestamps spanning {num_days_spanned} days{TIMESTAMP_LOG_INDENT}"
+        timestamps_log_msg += TIMESTAMP_LOG_INDENT.join(timestamp_strs)
 
         if num_days_spanned > MAX_DAYS_SPANNED_TO_BE_VALID and VAST_HOUSE not in self.text:
             self.log_top_lines(15, msg=timestamps_log_msg, level=log_level)
