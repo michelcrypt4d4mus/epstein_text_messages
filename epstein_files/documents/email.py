@@ -11,7 +11,7 @@ from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
 
-from epstein_files.documents.communication_document import CommunicationDocument
+from epstein_files.documents.communication_document import Communication
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, INFO_INDENT
 from epstein_files.documents.emails.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, FIELD_NAMES, TIME_REGEX, EmailHeader)
@@ -20,7 +20,7 @@ from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
 from epstein_files.util.constants import *
 from epstein_files.util.data import TIMEZONE_INFO, collapse_newlines, escape_single_quotes, extract_last_name, remove_timezone, uniquify
 from epstein_files.util.env import logger
-from epstein_files.util.file_cfg import EmailCfg
+from epstein_files.util.file_cfg import MessageCfg
 from epstein_files.util.file_helper import is_local_extract_file
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import *
@@ -278,9 +278,9 @@ NOTES_TO_SELF = [
 
 
 @dataclass
-class Email(CommunicationDocument):
+class Email(Communication):
     actual_text: str = field(init=False)
-    config: EmailCfg | None = None
+    config: MessageCfg | None = None
     header: EmailHeader = field(init=False)
     is_junk_mail: bool = False
     recipients: list[str | None] = field(default_factory=list)

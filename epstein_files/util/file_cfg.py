@@ -34,6 +34,7 @@ class FileCfg:
 
     Attributes:
         id (str): ID of file
+        author (str | None): Author of the document (if any)
         duplicate_of_id (str | None): If this is a duplicate of another file, the ID of that file
         autduplicate_typehor (DuplicateType | None): The type of duplicate this file is
         timestamp (datetime | None): Time this email was sent, file was created, article published, etc.
@@ -114,15 +115,15 @@ class FileCfg:
 
 
 @dataclass(kw_only=True)
-class EmailCfg(FileCfg):
+class MessageCfg(FileCfg):
     """
-    Convenience class to unite various configured properties for a given email ID. Often required
-    to handle the terrible OCR text that Congress provided which breaks a lot of the email's header lines.
+    Convenience class to unite various configured properties for a given Communication file.
+    Manual config is always required for MessengerLog author attribution. It's also often needed for Email
+    files to handle the terrible OCR text that Congress provided which messes up a lot of the email headers.
 
     Attributes:
         actual_text (str | None): In dire cases of broken OCR we just configure the body of the email as a string.
         attribution_reason (str | None): Optional explanation of why this email was attributed to this author.
-        author (str | None): Author of the email
         is_attribution_uncertain (bool): True if we have a good idea of who the author is but are not 100% certain
         is_fwded_article (bool): True if this is a newspaper article someone fwded. Used to exclude articles from word counting.
         recipients (list[str | None]): Who received the email
@@ -137,5 +138,5 @@ class EmailCfg(FileCfg):
         return super().__repr__()
 
     @classmethod
-    def from_file_cfg(cls, cfg: FileCfg) -> 'EmailCfg':
+    def from_file_cfg(cls, cfg: FileCfg) -> 'MessageCfg':
         return cls(**asdict(cfg))
