@@ -693,8 +693,6 @@ ALL_CONFIGS = [
     MessageCfg(id='030384', recipients=[RICHARD_KAHN, "Alan Dlugash"]),
     MessageCfg(id='019334', recipients=[STEVE_BANNON]),
     MessageCfg(id='021106', recipients=[STEVE_BANNON], attribution_reason='Reply'),
-    MessageCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
-    MessageCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
     MessageCfg(id='033050', actual_text='schwartman'),
     MessageCfg(id='026298', is_fwded_article=True, duplicate_ids=['026499']),  # Written by someone else?
     MessageCfg(id='026755', is_fwded_article=True),  # HuffPo
@@ -709,6 +707,8 @@ ALL_CONFIGS = [
     MessageCfg(id='026551', is_fwded_article=True),  # Sultan bin Sulayem "Ayatollah between the sheets"
     MessageCfg(id='031768', is_fwded_article=True),  # Sultan bin Sulayem 'Horseface'
     MessageCfg(id='031569', is_fwded_article=True),  # Article by Kathryn Alexeeff fwded to Peter Thiel
+    MessageCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
+    MessageCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
     MessageCfg(id='023627', description=MICHAEL_WOLFF_ARTICLE_HINT, is_fwded_article=True),
 
 
