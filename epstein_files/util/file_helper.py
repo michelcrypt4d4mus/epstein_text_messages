@@ -31,7 +31,7 @@ KB = 1024
 MB = KB * KB
 
 
-# Handles both string and int 'id' values.
+# Handles both string and int 'id' args.
 file_stem_for_id = lambda id: f"{HOUSE_OVERSIGHT_PREFIX}{int(id):06d}"
 filename_for_id = lambda id: file_stem_for_id(id) + '.txt'
 
@@ -44,7 +44,7 @@ def coerce_file_stem(filename_or_id: int | str) -> str:
         file_stem = file_stem_for_id(filename_or_id)
 
     if not FILE_STEM_REGEX.match(file_stem):
-        raise RuntimeError(f"Built invalid file stem '{file_stem}' from filename_or_id={filename_or_id} (pattern='{FILE_STEM_REGEX.pattern}')")
+        raise RuntimeError(f"Invalid stem '{file_stem}' from '{filename_or_id}'")
 
     return file_stem
 
@@ -52,10 +52,10 @@ def coerce_file_stem(filename_or_id: int | str) -> str:
 def extract_file_id(filename: str | Path) -> str:
     file_match = FILE_ID_REGEX.match(str(filename))
 
-    if file_match:
-        return file_match.group(1)
-    else:
+    if not file_match:
         raise RuntimeError(f"Failed to extract file ID from {filename}")
+
+    return file_match.group(1)
 
 
 def file_size_str(file_path: str | Path) -> str:
