@@ -128,8 +128,11 @@ class OtherFile(Document):
                 self.log(f"Configured and found timestamp have same date '{configured_timestamp.date()}'")
             else:
                 days_diff = (configured_timestamp - last_timestamp).days
-                msg = ("\n".join([hint.plain for hint in self.hints()]) + '\n') if self.hints() else ''
-                msg += f"\nConfigured '{configured_timestamp.date()}' and last found '{last_timestamp.date()}' differ by {days_diff} days"
+
+                if self.hints():
+                    self.log("\n".join([hint.plain for hint in self.hints()]))
+
+                msg = f"Configured '{configured_timestamp.date()}' and last found '{last_timestamp.date()}' differ by {days_diff} days"
                 msg += f"\n  {timestamps_log_msg}\n"
                 self.log(msg)
 
