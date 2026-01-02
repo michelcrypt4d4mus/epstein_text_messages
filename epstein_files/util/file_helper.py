@@ -25,24 +25,26 @@ EPSTEIN_WORD_COUNT_HTML_PATH = HTML_DIR.joinpath('epstein_texts_and_emails_word_
 PICKLED_PATH = Path("the_epstein_files.pkl.gz")
 
 FILE_STEM_REGEX = re.compile(fr"{HOUSE_OVERSIGHT_PREFIX}(\d{{6}})")
-FILE_ID_REGEX = re.compile(fr".*{FILE_STEM_REGEX.pattern}(_\d{1,2})?(\.txt(\.json)?)?")
+FILE_ID_REGEX = re.compile(fr".*{FILE_STEM_REGEX.pattern}(_\d{{1,2}})?(\.txt(\.json)?)?")
 FILENAME_LENGTH = len(HOUSE_OVERSIGHT_PREFIX) + 6
 KB = 1024
 MB = KB * KB
 
 
-def build_filename_for_id(id: str | int, include_txt_suffix: bool = False) -> str:
-    return f"{HOUSE_OVERSIGHT_PREFIX}{int(id):06d}" + ('.txt' if include_txt_suffix else '')
+# Handles both string and int 'id' args.
+file_stem_for_id = lambda id: f"{HOUSE_OVERSIGHT_PREFIX}{int(id):06d}"
+filename_for_id = lambda id: file_stem_for_id(id) + '.txt'
 
 
-def build_file_stem(filename_or_id: int | str) -> str:
+def coerce_file_stem(filename_or_id: int | str) -> str:
+    """Generate a valid file_stem no matter what form the argument comes in."""
     if isinstance(filename_or_id, str) and filename_or_id.startswith(HOUSE_OVERSIGHT_PREFIX):
-        file_stem = str(filename_or_id)
+        file_stem = file_stem_for_id(extract_file_id(filename_or_id))
     else:
-        file_stem = build_filename_for_id(filename_or_id)
+        file_stem = file_stem_for_id(filename_or_id)
 
     if not FILE_STEM_REGEX.match(file_stem):
-        raise RuntimeError(f"Built invalid file stem '{file_stem}' from filename_or_id={filename_or_id} (pattern='{FILE_STEM_REGEX.pattern}')")
+        raise RuntimeError(f"Invalid stem '{file_stem}' from '{filename_or_id}'")
 
     return file_stem
 
@@ -50,14 +52,15 @@ def build_file_stem(filename_or_id: int | str) -> str:
 def extract_file_id(filename: str | Path) -> str:
     file_match = FILE_ID_REGEX.match(str(filename))
 
-    if file_match:
-        return file_match.group(1)
-    else:
+    if not file_match:
         raise RuntimeError(f"Failed to extract file ID from {filename}")
+
+    return file_match.group(1)
 
 
 def file_size_str(file_path: str | Path) -> str:
     file_size = float(Path(file_path).stat().st_size)
+    digits = 2
 
     if file_size > MB:
         size_num = file_size / MB
@@ -65,20 +68,14 @@ def file_size_str(file_path: str | Path) -> str:
     elif file_size > KB:
         size_num = file_size / KB
         size_str = 'kb'
+        digits = 1
     else:
-        size_num = file_size
-        size_str = 'bytes'
+        return f"{int(file_size)} b"
 
-    return f"{size_num:,.2f} {size_str}"
+    return f"{size_num:,.{digits}f} {size_str}"
 
 
 def is_local_extract_file(filename) -> bool:
     """Return true if filename is of form 'HOUSE_OVERSIGHT_029835_1.txt'."""
     file_match = FILE_ID_REGEX.match(str(filename))
     return True if file_match and file_match.group(2) else False
-
-
-def move_json_file(file_arg: Path):
-    json_subdir_path = JSON_DIR.joinpath(file_arg.name + '.json')
-    print(f"'{file_arg}' looks like JSON, moving to '{json_subdir_path}'\n")
-    file_arg.rename(json_subdir_path)

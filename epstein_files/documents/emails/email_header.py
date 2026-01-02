@@ -3,7 +3,7 @@ import re
 from dataclasses import asdict, dataclass, field
 
 from epstein_files.util.constant.strings import AUTHOR, REDACTED
-from epstein_files.util.constants import EMAIL_INFO
+from epstein_files.util.constants import EMAIL_CONFIGS
 from epstein_files.util.env import logger
 from epstein_files.util.rich import UNKNOWN
 
@@ -24,9 +24,9 @@ EMAILER_FIELDS = [AUTHOR] + TO_FIELDS
 NON_HEADER_FIELDS = ['field_names', 'num_header_rows', 'was_initially_empty']
 
 CONFIGURED_ACTUAL_TEXTS = [
-    email_info.actual_text
-    for email_info in EMAIL_INFO.values()
-    if email_info.actual_text is not None
+    email_cfg.actual_text
+    for email_cfg in EMAIL_CONFIGS.values()
+    if email_cfg.actual_text is not None
 ]
 
 

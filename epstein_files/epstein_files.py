@@ -25,6 +25,7 @@ from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_nam
 from epstein_files.util.constants import *
 from epstein_files.util.data import Timer, dict_sets_to_lists, iso_timestamp, sort_dict
 from epstein_files.util.env import args, logger
+from epstein_files.util.file_cfg import MessageCfg
 from epstein_files.util.file_helper import DOCS_DIR, FILENAME_LENGTH, PICKLED_PATH, file_size_str
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_STYLE, NA_TXT, QUESTION_MARK_TXT, add_cols_to_table, console,
@@ -63,7 +64,7 @@ class EpsteinFiles:
         self.all_files = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
 
         for file_arg in self.all_files:
-            logger.debug(f"\nScanning '{file_arg.name}'...")
+            logger.info(f"Scanning '{file_arg.name}'...")
             document = Document(file_arg)
 
             if document.length == 0:
@@ -74,7 +75,7 @@ class EpsteinFiles:
             elif MSG_REGEX.search(document.text):
                 self.imessage_logs.append(MessengerLog(file_arg))  # Handle iMessage log files
                 logger.info(self.imessage_logs[-1].description().plain)
-            elif DETECT_EMAIL_REGEX.match(document.text) or document.file_id in EMAIL_INFO:
+            elif DETECT_EMAIL_REGEX.match(document.text) or isinstance(document.config, MessageCfg):
                 email = Email(file_arg, text=document.text)  # Handle emails
                 logger.info(email.description().plain)
                 self.emails.append(email)
@@ -162,11 +163,11 @@ class EpsteinFiles:
         return (self.last_email_at(author) - self.earliest_email_at(author)).days + 1
 
     def email_signature_substitution_counts(self) -> dict[str, int]:
-        """Return the number of times an email signature was replaced with "...snipped..." for each author."""
+        """Return the number of times an email signature was replaced with "<...snipped...>" for each author."""
         substitution_counts = defaultdict(int)
 
         for email in self.emails:
-            for name, num_replaced in email.signature_substitution_count.items():
+            for name, num_replaced in email.signature_substitution_counts.items():
                 substitution_counts[name] += num_replaced
 
         return substitution_counts
@@ -414,3 +415,15 @@ def is_ok_for_epstein_web(name: str | None) -> bool:
         return False
 
     return True
+
+
+def count_by_month(docs: Sequence[Document]) -> dict[str | None, int]:
+    counts: dict[str | None, int] = defaultdict(int)
+
+    for doc in docs:
+        if doc.timestamp:
+            counts[doc.timestamp.date().isoformat()[0:7]] += 1
+        else:
+            counts[None] += 1
+
+    return counts

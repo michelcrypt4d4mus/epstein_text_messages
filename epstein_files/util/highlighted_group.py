@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 from rich.highlighter import RegexHighlighter
 
 from epstein_files.util.constant.names import *
-from epstein_files.util.constant.strings import DEFAULT, QUESTION_MARKS, REDACTED, TIMESTAMP_STYLE
+from epstein_files.util.constant.strings import DEFAULT, REDACTED, TIMESTAMP_STYLE, remove_question_marks
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
 from epstein_files.util.constants import (EMAILER_ID_REGEXES, HEADER_ABBREVIATIONS, OSBORNE_LLP, REPLY_REGEX,
      REPUTATION_MGMT, SENT_FROM_REGEX, VIRGIN_ISLANDS)
@@ -14,7 +14,6 @@ from epstein_files.util.env import args, logger
 ESTATE_EXECUTOR = 'Epstein estate executor'
 REGEX_STYLE_PREFIX = 'regex'
 NO_CATEGORY_LABELS = [BILL_GATES, STEVE_BANNON]
-QUESTION_MARKS_REGEX = re.compile(fr' {re.escape(QUESTION_MARKS)}$')
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w ]+$", re.IGNORECASE)
 
 
@@ -78,7 +77,7 @@ class HighlightedGroup:
     # TODO: handle word boundary issue for names that end in symbols
     def _emailer_pattern(self, name: str) -> str:
         """Pattern matching 'name'. Extends value in EMAILER_ID_REGEXES with last name if it exists."""
-        name = QUESTION_MARKS_REGEX.sub('', name)
+        name = remove_question_marks(name)
         last_name = extract_last_name(name)
 
         if name in EMAILER_ID_REGEXES:
@@ -135,7 +134,7 @@ HIGHLIGHTED_GROUPS = [
         pattern=r'Gruterite|(John\s*)?Kluge|Marc Rich|(Mi(chael|ke)\s*)?Ovitz|(Steve\s+)?Wynn|(Leslie\s+)?Wexner|SALSS|Swedish[-\s]*American\s*Life\s*Science\s*Summit|Valhi|(Yves\s*)?Bouvier',
         emailers = {
             ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
-            BARBRO_EHNBOM: 'Swedish pharmaceuticals',
+            BARBRO_C_EHNBOM: 'Swedish pharmaceuticals',
             FRED_HADDAD: "co-founder of Heck's in West Virginia",
             GORDON_GETTY: 'heir of oil tycoon J. Paul Getty',
             NICHOLAS_RIBIS: 'Hilton CEO, former president of Trump Organization',
@@ -336,7 +335,7 @@ HIGHLIGHTED_GROUPS = [
         style='purple',
         pattern=r'(Barry (E. )?)?Krischer|Kate Kelly|Kirkland\s*&\s*Ellis|(Leon\s*)?Jaworski|Michael J. Pike|Paul,?\s*Weiss|Steptoe|Wein(berg|garten)',
         emailers = {
-            ARDA_BESKARES: 'NYC immigration attorney allegedly involved in sex-trafficking operations',
+            ARDA_BESKARDES: 'NYC immigration attorney allegedly involved in sex-trafficking operations',
             BENNET_MOSKOWITZ: None,
             BRAD_KARP: 'head of the law firm Paul Weiss',
             DAVID_STERN: None,
@@ -535,7 +534,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(emailers={MELANIE_WALKER: 'doctor'}, style='pale_violet_red1'),
     HighlightedGroup(emailers={PAULA: "Epstein's ex-girlfriend who is now in the opera"}, label='paula_heil_fisher', style='pink1'),
     HighlightedGroup(emailers={PRINCE_ANDREW: 'British royal family'}, style='dodger_blue1'),
-    HighlightedGroup(emailers={SOON_YI: "wife of Woody Allen"}, style='hot_pink'),
+    HighlightedGroup(emailers={SOON_YI_PREVIN: "wife of Woody Allen"}, style='hot_pink'),
     HighlightedGroup(emailers={SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of ports in Dubai'}, style='green1'),
 
     # Highlight regexes for things other than names, only used by RegexHighlighter pattern matching
