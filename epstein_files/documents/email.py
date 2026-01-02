@@ -20,11 +20,12 @@ from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
 from epstein_files.util.constants import *
 from epstein_files.util.data import TIMEZONE_INFO, collapse_newlines, escape_single_quotes, extract_last_name, remove_timezone, uniquify
 from epstein_files.util.env import logger
-from epstein_files.util.file_cfg import ConfiguredAttr, EmailCfg
+from epstein_files.util.file_cfg import EmailCfg
 from epstein_files.util.file_helper import is_local_extract_file
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import *
 
+BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|L\._|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
 BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|Classification: External Communication|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,])$')
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 LINK_LINE_REGEX = re.compile(f"^(> )?htt")
@@ -266,8 +267,6 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
     'Travis Pangburn',                       # Random CC
     'Vahe Stepanian',                        # Random CC
 ]
-
-BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|L\._|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
 
 # Emails sent by epstein to himself that are just notes
 NOTES_TO_SELF = [
