@@ -619,25 +619,10 @@ ALL_CONFIGS = [
     MessageCfg(id='033484', author=JONATHAN_FARKAS, duplicate_of_id='033282', duplicate_type='same'),
     MessageCfg(id='033282', author=JONATHAN_FARKAS),
     MessageCfg(id='033582', author=JONATHAN_FARKAS, attribution_reason='Reply'),
-    MessageCfg(
-        id='032389',
-        author=JONATHAN_FARKAS,
-        duplicate_of_id='033582',
-        attribution_reason='Reply',
-    ),
-    MessageCfg(
-        id='033581',
-        author=JONATHAN_FARKAS,
-        duplicate_of_id='033203',
-        attribution_reason='Reply',
-    ),
+    MessageCfg(id='032389', author=JONATHAN_FARKAS, duplicate_of_id='033582', attribution_reason='Reply'),
+    MessageCfg(id='033581', author=JONATHAN_FARKAS, duplicate_of_id='033203', attribution_reason='Reply'),
     MessageCfg(id='033203', author=JONATHAN_FARKAS, attribution_reason='Reply'),
-    MessageCfg(
-        id='032052',
-        author=JONATHAN_FARKAS,
-        duplicate_of_id='031732',
-        attribution_reason='Reply',
-    ),
+    MessageCfg(id='032052', author=JONATHAN_FARKAS, duplicate_of_id='031732', attribution_reason='Reply'),
     MessageCfg(id='033490', author=JONATHAN_FARKAS, attribution_reason='Signature'),
     MessageCfg(
         id='032531',
