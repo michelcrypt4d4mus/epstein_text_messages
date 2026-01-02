@@ -53,6 +53,7 @@ class EpsteinFiles:
     imessage_logs: list[MessengerLog] = field(default_factory=list)
     json_files: list[JsonFile] = field(default_factory=list)
     other_files: list[OtherFile] = field(default_factory=list)
+
     # Analytics / calculations
     email_author_counts: dict[str | None, int] = field(default_factory=lambda: defaultdict(int))
     email_authors_to_device_signatures: dict[str, set] = field(default_factory=lambda: defaultdict(set))
