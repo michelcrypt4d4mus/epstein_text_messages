@@ -595,22 +595,11 @@ ALL_CONFIGS = [
     MessageCfg(id='016692', author=JOHN_PAGE),
     MessageCfg(id='016693', author=JOHN_PAGE),
     MessageCfg(id='028507', author=JONATHAN_FARKAS),
-    MessageCfg(id='031732', author=JONATHAN_FARKAS),
-    MessageCfg(id='033484', author=JONATHAN_FARKAS, dupe_of_id='033282', dupe_type='same'),
-    MessageCfg(id='033282', author=JONATHAN_FARKAS),
-    MessageCfg(id='033582', author=JONATHAN_FARKAS, attribution_reason='Reply'),
-    MessageCfg(id='032389', author=JONATHAN_FARKAS, dupe_of_id='033582', attribution_reason='Reply'),
-    MessageCfg(id='033581', author=JONATHAN_FARKAS, dupe_of_id='033203', attribution_reason='Reply'),
-    MessageCfg(id='033203', author=JONATHAN_FARKAS, attribution_reason='Reply'),
-    MessageCfg(id='032052', author=JONATHAN_FARKAS, dupe_of_id='031732', attribution_reason='Reply'),
-    MessageCfg(id='033490', author=JONATHAN_FARKAS, attribution_reason='Signature'),
-    MessageCfg(
-        id='032531',
-        author=JONATHAN_FARKAS,
-        dupe_of_id='033490',
-        dupe_type='redacted',
-        attribution_reason='Signature',
-    ),
+    MessageCfg(id='033282', author=JONATHAN_FARKAS, duplicate_ids=['033484']),
+    MessageCfg(id='033582', author=JONATHAN_FARKAS, attribution_reason='Reply', duplicate_ids=['032389']),
+    MessageCfg(id='033203', author=JONATHAN_FARKAS, attribution_reason='Reply', duplicate_ids=['033581']),
+    MessageCfg(id='032052', author=JONATHAN_FARKAS, attribution_reason='Reply', duplicate_ids=['031732']),
+    MessageCfg(id='033490', author=JONATHAN_FARKAS, attribution_reason='Signature', duplicate_ids=['032531']),
     MessageCfg(id='026652', author=KATHRYN_RUEMMLER, attribution_reason='bad OCR'),
     MessageCfg(id='032224', author=KATHRYN_RUEMMLER, recipients=[JEFFREY_EPSTEIN], attribution_reason='Reply'),
     MessageCfg(id='032386', author=KATHRYN_RUEMMLER, attribution_reason='from "Kathy" about dems, sent from iPad (not 100% confirmed)'),
@@ -627,8 +616,7 @@ ALL_CONFIGS = [
         recipients=[JEFFREY_EPSTEIN],
         attribution_reason="TODO: this email's header rewrite sucks",
     ),
-    MessageCfg(id='028789', author=LAWRANCE_VISOSKI, dupe_of_id='027046', dupe_type='same'),
-    MessageCfg(id='027046', author=LAWRANCE_VISOSKI),
+    MessageCfg(id='027046', author=LAWRANCE_VISOSKI, duplicate_ids=['028789']),
     MessageCfg(id='033370', author=LAWRANCE_VISOSKI, attribution_reason='Planes discussion signed larry'),
     MessageCfg(
         id='031129',
@@ -2019,22 +2007,23 @@ for cfg in ALL_FILE_CONFIGS.values():
 
     if cfg.dupe_of_id in ALL_FILE_CONFIGS:
         dupe_of_cfg = ALL_FILE_CONFIGS[cfg.dupe_of_id]
+        pfx = f"{dupe_of_cfg.id} is duplicated by {cfg.id}"
         print('\n')
 
         if cfg.non_null_field_names() == ['id', 'dupe_of_id', 'dupe_type']:
-            print(f"{dupe_of_cfg.id} is duplicated by {cfg.id}, configurations of {cfg.id} is only dupe fields...")
+            print(f"{pfx}, configurations of {cfg.id} is only dupe fields...")
         elif dupe_of_cfg == cfg:
-            print(f"{dupe_of_cfg.id} is duplicated by {cfg.id} duplicates and configurations are the same\n    {cfg}")
+            print(f"{pfx}, configurations are the same\n    {cfg}")
         else:
-            print(f"    Dupe configs. Valid file's cfg:\n        {dupe_of_cfg}")
-            print(f"    Duplicate's cfg:\n        {cfg}")
-            # print(f"are equals? {dupe_of_cfg == cfg} ({type(cfg).__name__} vs. {type(dupe_of_cfg).__name__})\n")
+            print(f"{pfx} but configs differ...")
+            print(f"    {dupe_of_cfg.id}: {dupe_of_cfg}")
+            print(f"    {cfg.id}: {cfg}")
 
 
 # Error checking.
 encountered_file_ids = set()
 
-for cfg in ALL_FILE_CONFIGS.values():
+for cfg in ALL_CONFIGS:
     if cfg.dupe_of_id and cfg.dupe_of_id == cfg.id:
         raise ValueError(f"Invalid config!\n\n{cfg}\n")
     elif cfg.id in encountered_file_ids:
