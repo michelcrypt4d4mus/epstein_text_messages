@@ -2,7 +2,7 @@
 import json
 from os import devnull
 from pathlib import Path
-from typing import Literal, Tuple
+from typing import Literal
 
 from rich.align import Align
 from rich.console import Console, RenderableType
@@ -67,11 +67,13 @@ highlighter = CONSOLE_ARGS['highlighter']
 
 
 def add_cols_to_table(table: Table, col_names: list[str]) -> None:
+    """Left most col will be left justified, rest are center justified."""
     for i, col in enumerate(col_names):
         table.add_column(col, justify='left' if i == 0 else 'center')
 
 
 def join_texts(txts: list[Text], join: str = ' ', encloser: str = '') -> Text:
+    """Join rich.Text objs into one."""
     if encloser:
         if len(encloser) != 2:
             raise ValueError(f"'encloser' arg is '{encloser}' which is not 2 characters long")
@@ -89,23 +91,13 @@ def join_texts(txts: list[Text], join: str = ' ', encloser: str = '') -> Text:
 
 
 def key_value_txt(key: str, value: Text | str) -> Text:
+    """Generate a Text obj for 'key=value'."""
     return Text('').append(key, style=KEY_STYLE).append('=', style=SYMBOL_STYLE).append(value)
 
 
 def parenthesize(msg: str | Text, style: str = '') -> Text:
     txt = Text(msg) if isinstance(msg, str) else msg
     return Text('(', style=style).append(txt).append(')')
-
-
-def print_abbreviations_table() -> None:
-    table = Table(title="Abbreviations Used Frequently In These Conversations", header_style="bold", show_header=False)
-    table.add_column("Abbreviation", justify="center", style='bold')
-    table.add_column("Translation", style="white", justify="center")
-
-    for k, v in HEADER_ABBREVIATIONS.items():
-        table.add_row(highlighter(k), v)
-
-    console.print(Align.center(vertically_pad(table)))
 
 
 def print_author_header(msg: str, color: str | None, footer: str | None = None) -> None:
@@ -151,7 +143,7 @@ def print_header(epstein_files: 'EpsteinFiles') -> None:
     print_other_site_link()
     _print_external_links()
     console.line()
-    print_abbreviations_table()
+    _print_abbreviations_table()
     epstein_files.print_files_summary()
     print_color_key()
     print_centered(f"if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {CRYPTADAMUS_TWITTER}", 'grey46')
@@ -167,6 +159,7 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
 
         if None in obj:
             obj = {k or UNKNOWN: v for k, v in obj.items()}
+
 
     console.line()
     console.print(Panel(label, expand=False))
@@ -301,6 +294,17 @@ def write_html(output_path: Path) -> None:
 
     console.save_html(output_path, code_format=CONSOLE_HTML_FORMAT, theme=HTML_TERMINAL_THEME)
     logger.warning(f"Wrote {file_size_str(output_path)} to '{output_path}'")
+
+
+def _print_abbreviations_table() -> None:
+    table = Table(title="Abbreviations Used Frequently In These Conversations", header_style="bold", show_header=False)
+    table.add_column("Abbreviation", justify="center", style='bold')
+    table.add_column("Translation", style="white", justify="center")
+
+    for k, v in HEADER_ABBREVIATIONS.items():
+        table.add_row(highlighter(k), v)
+
+    console.print(Align.center(vertically_pad(table)))
 
 
 def _print_external_links() -> None:
