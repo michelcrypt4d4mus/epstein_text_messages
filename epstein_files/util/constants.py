@@ -277,7 +277,6 @@ JASTA_SAUDI_LAWSUIT = f"{JASTA} lawsuit against Saudi Arabia by 9/11 victims"
 JOHN_BOLTON_PRESS_CLIPPING = 'John Bolton press clipping'
 JP_MORGAN_EYE_ON_THE_MARKET = f"{JP_MORGAN} Eye On The Market report"
 KEN_STARR_LETTER = f"letter from {KEN_STARR} to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
-MERCURY_FILMS_PROFILES = f'Mercury Films partner profiles of Jennifer Baichwal, Nicholas de Pencier, Kermit Blackwood, Travis Rummel'
 MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
 NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight"'
 NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
@@ -782,6 +781,7 @@ ALL_CONFIGS = [
     FileCfg(id='023707', author=ROBERT_LAWRENCE_KUHN, description=f'{CNN} "Quest Means Business U.S. and China Agree to Pause Trade War"', date='2018-12-03'),
     FileCfg(id='029176', author=ROBERT_LAWRENCE_KUHN, description=f'{CNN} "U.S. China Tariffs - Trade War"'),
     FileCfg(id='032638', author=ROBERT_LAWRENCE_KUHN, description=f'{CNN} "Xi Jinping and the New Politburo Committee"'),
+    FileCfg(id='023666', author=ROBERT_LAWRENCE_KUHN, description=f"sizzle reel / television appearances"),
     FileCfg(id='025104', author='SCMP', description=f"article about China and globalisation"),
     FileCfg(id='033379', author=WAPO, description=f'How Washington Pivoted From Finger-Wagging to Appeasement (about Viktor Orban)', date='2018-05-25'),
     FileCfg(
@@ -1227,7 +1227,6 @@ ALL_CONFIGS = [
     FileCfg(id='029918', description=f"{DIANA_DEGETTES_CAMPAIGN} campaign bio", date='2012-01-01'),
     FileCfg(id='031184', description=f"{DIANA_DEGETTES_CAMPAIGN} fundraiser invitation"),
     FileCfg(id='027009', description=f"{EHUD_BARAK} speech to AIPAC", date='2013-03-03'),
-    FileCfg(id='022445', description=f"Inference: International Review of Science Feedback & Comments", date='2018-11-01'),
     FileCfg(id='026851', description=f"Politifact lying politicians chart", date='2016-07-26'),
     FileCfg(
         id='023133',
@@ -1249,6 +1248,7 @@ ALL_CONFIGS = [
     FileCfg(id='029298', description=HARVARD_POETRY),
     FileCfg(id='029592', description=HARVARD_POETRY),
     FileCfg(id='019396', description=f'{HARVARD} Economics 1545 Professor Kenneth Rogoff syllabus'),
+    FileCfg(id='022445', description=f"Inference: International Review of Science Feedback & Comments", date='2018-11-01'),
 
     # resumes and application letters
     FileCfg(id='029102', description=HBS_APPLICATION_NERIO),
@@ -1263,10 +1263,19 @@ ALL_CONFIGS = [
     FileCfg(id='015672', description=f"{RESUME_OF} Robin Solomon", date='2015-06-02'),  # She left Mount Sinai at some point in 2015,
     FileCfg(id='029623', description=f'short bio of Kathleen Harrington, Founding Partner, C/H Global Strategies'),
 
-    # misc
+    # arts
     FileCfg(id='018703', author=ANDRES_SERRANO, description=f"artist statement about Trump objects"),
-    FileCfg(id='031743', description=f'a few pages describing the internet as a "New Nation State" (Network State?)'),
     FileCfg(id='028281', description=f'art show flier for "The House Of The Nobleman" curated by Wolfe Von Lenkiewicz & Victoria Golembiovskaya'),
+    FileCfg(
+        id='025205',
+        description=f'Mercury Films partner profiles of Jennifer Baichwal, Nicholas de Pencier, Kermit Blackwood, Travis Rummel',
+        date='2010-02-01',
+        duplicate_ids=['025210']
+    ),
+
+    # misc
+    FileCfg(id='029155', author=ROBERT_TRIVERS, description=f'response sent to the Gruterites ({GORDON_GETTY} fans)', date='2018-03-19'),
+    FileCfg(id='031743', description=f'a few pages describing the internet as a "New Nation State" (Network State?)'),
     FileCfg(id='023438', description=f"Brockman announcemeent of auction of 'Noise' by Daniel Kahneman, Olivier Sibony, and Cass Sunstein"),
     FileCfg(
         id='025147',
@@ -1291,11 +1300,8 @@ ALL_CONFIGS = [
         description=f"{JASTA} (Justice Against Sponsors of Terrorism Act) doc that's mostly empty, references suit against Saudi f. {KATHRYN_RUEMMLER} & {KEN_STARR}",
         date='2016-09-01',
     ),
-    FileCfg(id='025205', description=MERCURY_FILMS_PROFILES, date='2010-02-01', duplicate_ids=['025210']),
     FileCfg(id='019448', description=f"Haitian business investment proposal called Jacmel"),
     FileCfg(id='029328', description=f"Rafanelli Events promotional deck"),
-    FileCfg(id='029155', description=f'response sent to the Gruterites ({GORDON_GETTY} fans) by {ROBERT_TRIVERS}', date='2018-03-19'),
-    FileCfg(id='023666', description=f"{ROBERT_LAWRENCE_KUHN} sizzle reel / television appearances"),
     FileCfg(id='033434', description=f"{SCREENSHOT} iPhone chat labeled 'Edwards' at the top"),
     FileCfg(id='026634', description=f"some short comments about an Apollo linked hedge fund 'DE Fund VIII'"),
     FileCfg(id='023644', description=f"transcription of an interview with MBS from Saudi", date='2016-04-25'),
