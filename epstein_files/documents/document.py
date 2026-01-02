@@ -49,6 +49,13 @@ OCR_REPAIRS = {
     'Nil Priell': 'Nili Priell',
 }
 
+FILE_IDS_WITH_BAD_FIRST_LINES = [
+    '026652',
+    '029835',
+    '030927',
+    '031189',  # TODO: we lost the 'LOVE & KISSES' at the top
+]
+
 FILENAME_MATCH_STYLES = [
     'dark_green',
     'green',
@@ -90,8 +97,8 @@ class Document:
             self.url_slug = self.file_path.stem
 
         self._set_computed_fields(text=self.text or self._load_file())
-        self._extract_author()
         self._repair()
+        self._extract_author()
 
     # TODO: remove eventually, unecessary
     def cfg_type(self) -> str | None:
@@ -267,7 +274,8 @@ class Document:
 
     def _repair(self) -> None:
         """Can optionally be overloaded in subclasses."""
-        pass
+        if self.file_id in FILE_IDS_WITH_BAD_FIRST_LINES:
+            self._set_computed_fields(lines=self.lines[1:])
 
     def _set_computed_fields(self, lines: list[str] | None = None, text: str | None = None) -> None:
         if (lines and text):

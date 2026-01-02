@@ -42,12 +42,6 @@ MAX_CHARS_TO_PRINT = 4000
 MAX_QUOTED_REPLIES = 2
 VALID_HEADER_LINES = 14
 
-FILE_IDS_WITH_BAD_FIRST_LINES = [
-    '026652',
-    '029835',
-    '030927',
-    '031189',  # TODO: we lost the 'LOVE & KISSES' at the top
-]
 
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r'grnail\.com'): 'gmail.com',
@@ -515,12 +509,11 @@ class Email(CommunicationDocument):
 
     def _repair(self) -> None:
         """Repair particularly janky files."""
+        super()._repair()
         self._set_computed_fields(lines=[line.strip() for line in self.lines if not BAD_LINE_REGEX.match(line)])
         old_text = self.text
 
-        if self.file_id in FILE_IDS_WITH_BAD_FIRST_LINES:
-            self._set_computed_fields(lines=self.lines[1:])
-        elif self.file_id in ['031442']:
+        if self.file_id in ['031442']:
             self._merge_lines(0)  # Merge 1st and 2nd rows
         elif self.file_id in '021729 029501 029282 030626 031384 033512'.split():
             self._merge_lines(2)  # Merge 3rd and 4th rows
