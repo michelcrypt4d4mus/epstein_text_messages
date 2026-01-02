@@ -702,9 +702,9 @@ ALL_CONFIGS = [
     MessageCfg(id='026551', is_fwded_article=True),  # Sultan bin Sulayem "Ayatollah between the sheets"
     MessageCfg(id='031768', is_fwded_article=True),  # Sultan bin Sulayem 'Horseface'
     MessageCfg(id='031569', is_fwded_article=True),  # Article by Kathryn Alexeeff fwded to Peter Thiel
+    MessageCfg(id='023627', is_fwded_article=True, description=MICHAEL_WOLFF_ARTICLE_HINT),
     MessageCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     MessageCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
-    MessageCfg(id='023627', description=MICHAEL_WOLFF_ARTICLE_HINT, is_fwded_article=True),
 
 
     ################################################################################################
