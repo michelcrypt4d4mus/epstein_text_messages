@@ -1052,7 +1052,6 @@ ALL_CONFIGS = [
     FileCfg(id='025797', description=f'someone\'s notes from Aspen Strategy Group', date='2013-05-29'),
     FileCfg(id='017524', description=f"{SWEDISH_LIFE_SCIENCES_SUMMIT} 2012 program", date='2012-08-22'),
     FileCfg(id='026747', description=f"{SWEDISH_LIFE_SCIENCES_SUMMIT} 2017 program", date='2017-08-23'),
-    FileCfg(id='026731', description=f"text of speech by Lord Martin Rees at first inaugural Carl Sagan Lecture at Cornell"),
     FileCfg(id='019300', description=f'{WOMEN_EMPOWERMENT} f. {KATHRYN_RUEMMLER}', date='2019-04-05'),
     FileCfg(id='022267', description=f'{WOMEN_EMPOWERMENT} founder essay about growing the seminar business'),
     FileCfg(id='022407', description=f'{WOMEN_EMPOWERMENT} seminar pitch deck'),
@@ -1245,6 +1244,8 @@ ALL_CONFIGS = [
         date='2015-01-15',  # TODO: this is just a guess
         duplicate_ids=['028887'],
     ),
+    FileCfg(id='010617', description=TRUMP_DISCLOSURES, date='2017-01-20'),
+    FileCfg(id='016699', description=TRUMP_DISCLOSURES, date='2017-01-20'),
 
     # academia
     FileCfg(id='014697', description=CHALLENGES_OF_AI, duplicate_ids=['011284']),
@@ -1262,6 +1263,7 @@ ALL_CONFIGS = [
     FileCfg(id='019396', description=f'{HARVARD} Economics 1545 Professor Kenneth Rogoff syllabus'),
     FileCfg(id='022445', description=f"Inference: International Review of Science Feedback & Comments", date='2018-11-01'),
     FileCfg(id='029355', description=f'{SCREENSHOT} quote in book about {LARRY_SUMMERS}', duplicate_ids=['029356'], dupe_type='quoted'),  # 029356 is zoomed in corner
+    FileCfg(id='026731', description=f"text of speech by Lord Martin Rees at first inaugural Carl Sagan Lecture at Cornell"),
 
     # resumes and application letters
     FileCfg(id='029102', description=HBS_APPLICATION_NERIO),
@@ -1305,8 +1307,6 @@ ALL_CONFIGS = [
     FileCfg(id='022780', description=FLIGHT_LOGS,),
     FileCfg(id='022816', description=FLIGHT_LOGS,),
     FileCfg(id='022494', description=f'Foreign Corrupt Practices Act (FCPA) DOJ Resource Guide', date='2013-01-01'),
-    FileCfg(id='026678', description=f"fragment of image metadata {QUESTION_MARKS}", date='2017-06-29'),
-    FileCfg(id='022986', description=f"fragment of a screenshot {QUESTION_MARKS}"),
     FileCfg(id='032735', description=f"{GORDON_GETTY} on Trump", date='2018-03-20'),  # Dated based on concurrent emails from Getty
     FileCfg(
         id='030142',
@@ -1318,12 +1318,12 @@ ALL_CONFIGS = [
     FileCfg(id='033434', description=f"{SCREENSHOT} iPhone chat labeled 'Edwards' at the top"),
     FileCfg(id='026634', description=f"some short comments about an Apollo linked hedge fund 'DE Fund VIII'"),
     FileCfg(id='023644', description=f"transcription of an interview with MBS from Saudi", date='2016-04-25'),
-    FileCfg(id='010617', description=TRUMP_DISCLOSURES, date='2017-01-20'),
-    FileCfg(id='016699', description=TRUMP_DISCLOSURES, date='2017-01-20'),
     FileCfg(id='029475', description=f'{VIRGIN_ISLANDS} Twin City Mobile Integrated Health Services (TCMIH) proposal/request for donation'),
     FileCfg(id='029448', description=f"weird short essay titled 'President Obama and Self-Deception'"),
 
     # junk
+    FileCfg(id='026678', description=f"fragment of image metadata {QUESTION_MARKS}", date='2017-06-29'),
+    FileCfg(id='022986', description=f"fragment of a screenshot {QUESTION_MARKS}"),
     FileCfg(id='033478', description=f'{MEME} Kim Jong Un reading {FIRE_AND_FURY}', date='2018-01-05', duplicate_ids=['032713']),
     FileCfg(id='033177', description=f"{MEME} Trump with text 'WOULD YOU TRUST THIS MAN WITH YOUR DAUGHTER?'"),
     FileCfg(id='029564', description=OBAMA_JOKE, date='2013-07-26'),
