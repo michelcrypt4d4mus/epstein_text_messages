@@ -537,9 +537,9 @@ class Email(Communication):
             self._merge_lines(2, 4)
 
         if old_text != self.text:
-            logger.warning(f"Modified text of '{self.url_slug}', old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n')
-            self.log_top_lines(12, 'Result of modifications', logging.WARNING)
-            logger.warning('')
+            self.log(f"Modified text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n', logging.INFO)
+            self.log_top_lines(12, 'Result of modifications', logging.INFO)
+            self.log('', logging.INFO)
 
         lines = self.regex_repair_text(OCR_REPAIRS, self.text).split('\n')
         new_lines = []
