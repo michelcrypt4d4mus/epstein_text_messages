@@ -130,7 +130,7 @@ class OtherFile(Document):
                 days_diff = (configured_timestamp - last_timestamp).days
                 msg = ("\n".join([hint.plain for hint in self.hints()]) + '\n') if self.hints() else ''
                 msg += f"\nConfigured '{configured_timestamp.date()}' and last found '{last_timestamp.date()}' differ by {days_diff} days"
-                msg += f"\n -> {timestamps_log_msg}\n"
+                msg += f"\n  {timestamps_log_msg}\n"
                 self.log(msg)
 
             return configured_timestamp
