@@ -1,8 +1,5 @@
-import csv
 import re
 from copy import deepcopy
-from datetime import datetime
-from io import StringIO
 
 from dateutil.parser import parse
 
@@ -23,6 +20,7 @@ REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"On \d+/\d+/\d+[, ].*{REPLY_LINE_ENDING_P
 REPLY_LINE_ON_DATE_PATTERN = fr"^On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*)[, ].*{REPLY_LINE_ENDING_PATTERN}"
 REPLY_LINE_PATTERN = rf"({REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
+
 
 HEADER_ABBREVIATIONS = {
     "AD": "Abu Dhabi",
@@ -57,95 +55,10 @@ HEADER_ABBREVIATIONS = {
     "Zug": "City in Switzerland (crypto hub)",
 }
 
-KNOWN_IMESSAGE_FILE_IDS = {
-    '031042': ANIL_AMBANI,       # Participants: field
-    '027225': ANIL_AMBANI,       # Birthday
-    '031173': ARDA_BESKARDES,     # Participants: field
-    '027401': EVA,               # Participants: field
-    '027650': JOI_ITO,           # Participants: field
-    '027777': LARRY_SUMMERS,     # Participants: field
-    '027515': MIROSLAV_LAJCAK,   # https://x.com/ImDrinknWyn/status/1990210266114789713
-    '027165': MELANIE_WALKER,    # https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/
-    '027248': MELANIE_WALKER,    # Says "we met through trump" which is confirmed by Melanie in 032803
-    '025429': STACEY_PLASKETT,
-    '027333': SCARAMUCCI,        # unredacted phone number in one of the messages
-    '027128': SOON_YI_PREVIN,           # https://x.com/ImDrinknWyn/status/1990227281101434923
-    '027217': SOON_YI_PREVIN,           # refs marriage to woody allen
-    '027244': SOON_YI_PREVIN,           # refs Woody
-    '027257': SOON_YI_PREVIN,           # 'Woody Allen' in Participants: field
-    '027460': STEVE_BANNON,      # Discusses leaving scotland when Bannon was confirmed in Scotland, also NYT
-    '025707': STEVE_BANNON,
-    '025734': STEVE_BANNON,
-    '025452': STEVE_BANNON,
-    '025408': STEVE_BANNON,
-    '027307': STEVE_BANNON,
-    '027278': TERJE_ROD_LARSEN,
-    '027255': TERJE_ROD_LARSEN,
-}
 
-GUESSED_IMESSAGE_FILE_IDS = {
-    '027762': ANDRZEJ_DUDA,
-    '027774': ANDRZEJ_DUDA,
-    '027221': ANIL_AMBANI,
-    '025436': CELINA_DUBIN,
-    '027576': MELANIE_WALKER,        # https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700
-    '027141': MELANIE_WALKER,
-    '027232': MELANIE_WALKER,
-    '027133': MELANIE_WALKER,
-    '027184': MELANIE_WALKER,
-    '027214': MELANIE_WALKER,
-    '027148': MELANIE_WALKER,
-    '027396': SCARAMUCCI,
-    '031054': SCARAMUCCI,
-    '025363': STEVE_BANNON,          # Trump and New York Times coverage
-    '025368': STEVE_BANNON,          # Trump and New York Times coverage
-    '027585': STEVE_BANNON,          # Tokyo trip
-    '027568': STEVE_BANNON,
-    '027695': STEVE_BANNON,
-    '027594': STEVE_BANNON,
-    '027720': STEVE_BANNON,          # first 3 lines of 027722
-    '027549': STEVE_BANNON,
-    '027434': STEVE_BANNON,          # References Maher appearance
-    '027764': STEVE_BANNON,
-    '027428': STEVE_BANNON,          # References HBJ meeting on 9/28 from other Bannon/Epstein convo
-}
-
-#  of who is the counterparty in each text message file
-AI_COUNTERPARTY_DETERMINATION_TSV = StringIO("""filename	counterparty	source
-HOUSE_OVERSIGHT_025400.txt	Steve Bannon (likely)	Trump NYT article criticism; Hannity media strategy
-HOUSE_OVERSIGHT_025408.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_025452.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_025479.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_025707.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_025734.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027260.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027281.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027346.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027365.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027374.txt	Steve Bannon	China strategy and geopolitics
-HOUSE_OVERSIGHT_027406.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027440.txt	Michael Wolff	Trump book/journalism project
-HOUSE_OVERSIGHT_027445.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027455.txt	Steve Bannon (likely)	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027536.txt	Steve Bannon	China strategy and geopolitics; Trump discussions
-HOUSE_OVERSIGHT_027655.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027707.txt	Steve Bannon	Italian politics; Trump discussions
-HOUSE_OVERSIGHT_027722.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027735.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_027794.txt	Steve Bannon	Trump and New York Times coverage
-HOUSE_OVERSIGHT_029744.txt	Steve Bannon (likely)	Trump and New York Times coverage
-HOUSE_OVERSIGHT_031045.txt	Steve Bannon (likely)	Trump and New York Times coverage""")
-
-for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
-    file_id = row['filename'].strip().replace(HOUSE_OVERSIGHT_PREFIX, '').replace('.txt', '')
-    counterparty = row['counterparty'].strip()
-
-    if file_id in GUESSED_IMESSAGE_FILE_IDS:
-        raise RuntimeError(f"Can't overwrite attribution of {file_id} to {GUESSED_IMESSAGE_FILE_IDS[file_id]} with {counterparty}")
-
-    GUESSED_IMESSAGE_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
-    print(f"'{file_id}': BLAH BLAH  # {row['source'].strip()}")
-
+#######################
+# Emails Config Stuff #
+#######################
 
 # Emailers
 EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
@@ -301,11 +214,6 @@ for emailer in EMAILERS:
         raise RuntimeError(f"Can't overwrite emailer regex for '{emailer}'")
 
     EMAILER_REGEXES[emailer] = re.compile(emailer, re.IGNORECASE)
-
-
-#######################
-# Emails Config Stuff #
-#######################
 
 # Some emails have a lot of uninteresting CCs
 IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS: list[str | None] = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
@@ -479,9 +387,10 @@ UNINTERESTING_PREFIXES = [
 
 # List containing anything manually configured about any of the files.
 ALL_CONFIGS = [
-    ####################################
-    ############ TEXTS CONFIG ##########
-    ####################################
+
+        ####################################
+        ############ TEXTS CONFIG ##########
+        ####################################
 
     EmailCfg(id='031042', author=ANIL_AMBANI, attribution_explanation='Participants: field'),
     EmailCfg(id='027225', author=ANIL_AMBANI, attribution_explanation='Birthday'),
@@ -555,9 +464,9 @@ ALL_CONFIGS = [
     EmailCfg(id='031045', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_explanation='AI says Trump and New York Times coverage'),
 
 
-    ####################################
-    ############ EMAIL_INFO ############
-    ####################################
+        ####################################
+        ############ EMAIL_INFO ############
+        ####################################
 
     EmailCfg(id='022187', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='032436', author=ALIREZA_ITTIHADIEH, attribution_explanation='Signature'),
@@ -1144,9 +1053,9 @@ ALL_CONFIGS = [
     ),
 
 
-    ####################################
-    ######### DUPE_FILE_CFGS ###########
-    ####################################
+        ####################################
+        ######### DUPE_FILE_CFGS ###########
+        ####################################
 
     EmailCfg(id='026563', duplicate_of_id='028768', duplicate_type='redacted'),
     EmailCfg(id='028762', duplicate_of_id='027056', duplicate_type='redacted'),
@@ -1355,9 +1264,9 @@ ALL_CONFIGS = [
     ),
 
 
-    ####################################
-    ######### FILE_DESCRIPTIONS ########
-    ####################################
+        ####################################
+        ######### FILE_DESCRIPTIONS ########
+        ####################################
 
     # books
     FileCfg(id='015032', description=f'{BOOK} "60 Years of Investigative Satire: The Best of {PAUL_KRASSNER}"'),
@@ -1535,16 +1444,8 @@ ALL_CONFIGS = [
     FileCfg(id='024229', description=MICHAEL_WOLFF_ARTICLE_HINT,),
     FileCfg(id='029416', description=f"{NATIONAL_ENQUIRER_FILING}", timestamp=parse('2017-05-25')),
     FileCfg(id='015462', description=f'Nautilus Education magazine (?) issue'),
-    FileCfg(
-        id='029925',
-        description=f"New Yorker article about the placebo effect by Michael Specter",
-        timestamp=parse('2011-12-04'),
-    ),
-    FileCfg(
-        id='031972',
-        description=f"{NYT_ARTICLE} #MeToo allegations against {LAWRENCE_KRAUSS}",
-        timestamp=parse('2018-03-07'),
-    ),
+    FileCfg(id='029925', description=f"New Yorker article about the placebo effect by Michael Specter", timestamp=parse('2011-12-04')),
+    FileCfg(id='031972', description=f"{NYT_ARTICLE} #MeToo allegations against {LAWRENCE_KRAUSS}", timestamp=parse('2018-03-07')),
     FileCfg(id='032435', description=f'{NYT_ARTICLE} Chinese butlers'),
     FileCfg(id='029452', description=f"{NYT_ARTICLE} {PETER_THIEL}"),
     FileCfg(id='025328', description=f"{NYT_ARTICLE} radio host Bob Fass and Robert Durst"),
@@ -1553,11 +1454,7 @@ ALL_CONFIGS = [
     FileCfg(id='033181', description=f'{NYT_ARTICLE} Trump\'s tax avoidance', timestamp=parse('2016-10-31')),
     FileCfg(id='023097', description=f'{NYT_COLUMN} The Aristocrats by Frank Rich "The Greatest Dirty Joke Ever Told"'),
     FileCfg(id='033365', description=f'{NYT_COLUMN} trade war with China by Kevin Rudd'),
-    FileCfg(
-        id='019439',
-        description=f"{NYT_COLUMN} the Clintons and money by Maureen Dowd",
-        timestamp=parse('2013-08-17'),
-    ),
+    FileCfg(id='019439', description=f"{NYT_COLUMN} the Clintons and money by Maureen Dowd", timestamp=parse('2013-08-17')),
     FileCfg(id='021093', description=f"page of unknown article about Epstein and Maxwell"),
     FileCfg(id='013435', description=f"{PALM_BEACH_DAILY_ARTICLE} Epstein's address book", timestamp=parse('2011-03-11')),
     FileCfg(id='013440', description=f"{PALM_BEACH_DAILY_ARTICLE} Epstein's gag order", timestamp=parse('2011-07-13')),
@@ -1575,11 +1472,7 @@ ALL_CONFIGS = [
     FileCfg(id='012740', description=f"{PEGGY_SIEGAL} article about Venice Film Festival", timestamp=parse('2011-09-06')),
     FileCfg(id='013442', description=f"{PEGGY_SIEGAL} draft about Oscars", timestamp=parse('2011-02-27')),
     FileCfg(id='012700', description=f"{PEGGY_SIEGAL} film events diary", timestamp=parse('2011-02-27')),
-    FileCfg(
-        id='012690',
-        description=f"{PEGGY_SIEGAL} film events diary early draft of 012700",
-        timestamp=parse('2011-02-27'),
-    ),
+    FileCfg(id='012690', description=f"{PEGGY_SIEGAL} film events diary early draft of 012700", timestamp=parse('2011-02-27')),
     FileCfg(id='013450', description=f"{PEGGY_SIEGAL} Oscar Diary in Avenue Magazine", timestamp=parse('2011-02-27')),
     FileCfg(id='010715', description=f"{PEGGY_SIEGAL} Oscar Diary April", timestamp=parse('2012-02-27')),
     FileCfg(id='019849', description=f"{PEGGY_SIEGAL} Oscar Diary April", timestamp=parse('2017-02-27')),
@@ -1615,18 +1508,10 @@ ALL_CONFIGS = [
     FileCfg(id='024592', description=f'{SHIMON_POST_ARTICLE}', timestamp=parse('2011-08-25')),
     FileCfg(id='024997', description=f'{SHIMON_POST_ARTICLE}', timestamp=parse('2011-09-08')),
     FileCfg(id='031941', description=f'{SHIMON_POST_ARTICLE}', timestamp=parse('2011-11-17')),
-    FileCfg(
-        id='021092',
-        description=f'{SINGLE_PAGE} Tatler article about {GHISLAINE_MAXWELL} shredding documents',
-        timestamp=parse('2019-08-15'),
-    ),
+    FileCfg(id='021092', description=f'{SINGLE_PAGE} Tatler article about {GHISLAINE_MAXWELL} shredding documents', timestamp=parse('2019-08-15')),
     FileCfg(id='031191', description=f"{SINGLE_PAGE} unknown article about Epstein and Trump's relationship in 1997"),
     FileCfg(id='030829', description=f'South Florida Sun Sentinel article about {BRAD_EDWARDS} and {JEFFREY_EPSTEIN}'),
-    FileCfg(
-        id='026520',
-        description=f'Spanish language article about {SULTAN_BIN_SULAYEM}',
-        timestamp=parse('2013-09-27'),
-    ),
+    FileCfg(id='026520', description=f'Spanish language article about {SULTAN_BIN_SULAYEM}', timestamp=parse('2013-09-27')),
     FileCfg(id='030333', description=f'The Independent article about Prince Andrew, Epstein, and Epstein\'s butler who stole his address book'),
     FileCfg(
         id='031736',
@@ -1642,11 +1527,7 @@ ALL_CONFIGS = [
     FileCfg(id='023046', description=f"{VI_DAILY_NEWS_ARTICLE}", timestamp=parse('2019-02-27')),
     FileCfg(id='031170', description=f"{VI_DAILY_NEWS_ARTICLE}", timestamp=parse('2019-03-06')),
     FileCfg(id='016506', description=f"{VI_DAILY_NEWS_ARTICLE}", timestamp=parse('2019-02-28')),
-    FileCfg(
-        id='016507',
-        description=f'{VI_DAILY_NEWS_ARTICLE} "Perversion of Justice" by {JULIE_K_BROWN}',
-        timestamp=parse('2018-12-19'),
-    ),
+    FileCfg(id='016507', description=f'{VI_DAILY_NEWS_ARTICLE} "Perversion of Justice" by {JULIE_K_BROWN}', timestamp=parse('2018-12-19')),
     FileCfg(id='019212', description=f'{WAPO} and Times Tribune articles about Bannon, Trump, and healthcare execs'),
     FileCfg(
         id='033379',
@@ -1723,11 +1604,7 @@ ALL_CONFIGS = [
     FileCfg(id='021434', description=FBI_REPORT,),
     FileCfg(id='018872', description=FBI_SEIZED_PROPERTY,),
     FileCfg(id='021569', description=FBI_SEIZED_PROPERTY,),
-    FileCfg(
-        id='022494',
-        description=f'Foreign Corrupt Practices Act (FCPA) DOJ Resource Guide',
-        timestamp=parse('2013-01-01'),
-    ),
+    FileCfg(id='022494', description=f'Foreign Corrupt Practices Act (FCPA) DOJ Resource Guide', timestamp=parse('2013-01-01')),
     FileCfg(id='017792', description=f"{GIUFFRE_V_DERSHOWITZ} article about Dershowitz's appearance on Wolf Blitzer"),
     FileCfg(id='017767', description=f"{GIUFFRE_V_DERSHOWITZ} article about {ALAN_DERSHOWITZ} working with {JEFFREY_EPSTEIN}"),
     FileCfg(id='017796', description=f"{GIUFFRE_V_DERSHOWITZ} article about {ALAN_DERSHOWITZ}"),
@@ -2220,17 +2097,6 @@ ALL_CONFIGS = [
 
 ALL_FILE_CONFIGS = {cfg.id: cfg for cfg in ALL_CONFIGS}
 EMAIL_CONFIGS = {id: cfg for id, cfg in ALL_FILE_CONFIGS.items() if isinstance(cfg, EmailCfg)}
-
-KNOWN_IDS = [id for id in KNOWN_IMESSAGE_FILE_IDS.keys()] + [id for id in GUESSED_IMESSAGE_FILE_IDS.keys()]
-from .temp_email_cfg import TEXT_ATTRIBUTIONS
-
-for id, author in KNOWN_IMESSAGE_FILE_IDS.items():
-    cfg = EmailCfg(id=id, author=author, attribution_explanation=TEXT_ATTRIBUTIONS.get(id))
-    print(f"{cfg},")
-
-for id, author in GUESSED_IMESSAGE_FILE_IDS.items():
-    cfg = EmailCfg(id=id, author=author, is_attribution_uncertain=True, attribution_explanation=TEXT_ATTRIBUTIONS.get(id))
-    print(f"{cfg},")
 
 
 # Error checking.

@@ -60,6 +60,7 @@ FILENAME_MATCH_STYLES = [
 class Document:
     """Base class for all Epstein Files documents."""
     file_path: Path
+    author: str | None = None
     config: FileCfg | EmailCfg | None = None
     file_id: str = field(init=False)
     filename: str = field(init=False)
@@ -89,6 +90,7 @@ class Document:
             self.url_slug = self.file_path.stem
 
         self._set_computed_fields(text=self.text or self._load_file())
+        self._extract_author()
         self._repair()
 
     # TODO: remove eventually, unecessary
@@ -245,6 +247,10 @@ class Document:
     def _border_style(self) -> str:
         """Should be overloaded in subclasses."""
         return 'white'
+
+    def _extract_author(self) -> None:
+        if self.config and self.config.author:
+            self.author = self.config.author
 
     def _extract_timestamp(self) -> datetime:
         raise NotImplementedError(f"Should be implemented in subclasses!")
