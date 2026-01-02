@@ -285,7 +285,7 @@ class Email(Communication):
     is_junk_mail: bool = False
     recipients: list[str | None] = field(default_factory=list)
     sent_from_device: str | None = None
-    signature_substitution_count: dict[str, int] = field(default_factory=lambda: defaultdict(int))
+    signature_substitution_counts: dict[str, int] = field(default_factory=lambda: defaultdict(int))
 
     # Just for logging how many headers we rewrote
     rewritten_header_ids: ClassVar[set[str]] = set([])
@@ -330,9 +330,6 @@ class Email(Communication):
         return txt.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
 
     def subject(self) -> str:
-        if len(self.header.subject or '') > 100:
-            logger.info(f"Long subject for {self.description().plain}\n{self.header.subject}\n")
-
         return self.header.subject or ''
 
     def _actual_text(self) -> str:
@@ -387,13 +384,14 @@ class Email(Communication):
 
     def _cleaned_up_text(self) -> str:
         """Add newline after headers in text if actual header wasn't empty, remove bad lines, etc."""
+        # Insert line breaks now unless header is broken, in which case we'll do it later after fixing header
         text = self.text if self.header.was_initially_empty else _add_line_breaks(self.text)
         text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
 
         for name, signature_regex in EMAIL_SIGNATURES.items():
             signature_replacement = f'<...snipped {name.lower()} legal signature...>'
             text, num_replaced = signature_regex.subn(signature_replacement, text)
-            self.signature_substitution_count[name] += num_replaced
+            self.signature_substitution_counts[name] += num_replaced
 
         return collapse_newlines(text).strip()
 

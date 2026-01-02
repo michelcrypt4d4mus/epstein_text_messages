@@ -181,7 +181,7 @@ def print_json_stats(epstein_files: EpsteinFiles) -> None:
     print_json(f"{MESSENGER_LOG_CLASS} Sender Counts", epstein_files.imessage_sender_counts(), skip_falsey=True)
     print_json(f"{EMAIL_CLASS} Author Counts", epstein_files.email_author_counts, skip_falsey=True)
     print_json(f"{EMAIL_CLASS} Recipient Counts", epstein_files.email_recipient_counts, skip_falsey=True)
-    print_json("Email signature_substitution_counts", epstein_files.email_signature_substitution_counts(), skip_falsey=True)
+    print_json("Email signature_substitution_countss", epstein_files.email_signature_substitution_counts(), skip_falsey=True)
     print_json("email_author_device_signatures", dict_sets_to_lists(epstein_files.email_authors_to_device_signatures))
     print_json("email_sent_from_devices", dict_sets_to_lists(epstein_files.email_device_signatures_to_authors))
     print_json("email_unknown_recipient_file_ids", epstein_files.email_unknown_recipient_file_ids())
