@@ -5,9 +5,9 @@ from datetime import datetime
 from rich.console import Console, ConsoleOptions, RenderResult
 from rich.text import Text
 
-from epstein_files.documents.communication_document import CommunicationDocument
+from epstein_files.documents.communication_document import Communication
 from epstein_files.documents.imessage.text_message import MSG_DATE_FORMAT, TextMessage
-from epstein_files.util.file_cfg import EmailCfg
+from epstein_files.util.file_cfg import MessageCfg
 from epstein_files.util.rich import logger
 
 CONFIRMED_MSG = 'Found confirmed counterparty'
@@ -17,9 +17,9 @@ REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
 
 
 @dataclass
-class MessengerLog(CommunicationDocument):
+class MessengerLog(Communication):
     """Class representing one iMessage log file (one conversation between Epstein and some counterparty)."""
-    config: EmailCfg | None = None
+    config: MessageCfg | None = None
     _messages: list[TextMessage] = field(default_factory=list)
 
     def __post_init__(self):

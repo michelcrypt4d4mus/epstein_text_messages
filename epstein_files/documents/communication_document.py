@@ -15,7 +15,7 @@ TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 
 
 @dataclass
-class CommunicationDocument(Document):
+class Communication(Document):
     """Superclass for Email and MessengerLog."""
     author_style: str = 'white'
     author_txt: Text = field(init=False)
@@ -46,4 +46,4 @@ class CommunicationDocument(Document):
         return txt.append(key_value_txt('author', Text(f"'{self.author_or_unknown()}'", style=self.author_style)))
 
 
-CommunicationDocumentType = TypeVar('CommunicationDocumentType', bound=Document)
+CommunicationType = TypeVar('CommunicationType', bound=Document)
