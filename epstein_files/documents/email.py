@@ -433,12 +433,8 @@ class Email(CommunicationDocument):
                 self.header.repair_empty_header(self.lines)
         else:
             msg = f"No header match found in '{self.filename}'! Top lines:\n\n{self.top_lines()}"
-
-            if self.file_id in EMAIL_INFO:
-                logger.info(msg)
-            else:
-                logger.warning(msg)
-
+            log_fxn = logger.info if self.config else logger.warning
+            log_fxn(msg)
             self.header = EmailHeader(field_names=[])
 
     def _extract_timestamp(self) -> datetime:
