@@ -1,5 +1,6 @@
 import logging
 import re
+import warnings
 from dataclasses import dataclass
 from datetime import datetime
 
@@ -22,6 +23,7 @@ MAX_TIMESTAMP = datetime(2022, 12, 31)
 PREVIEW_CHARS = int(580 * (1 if args.all_other_files else 1.5))
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
+
 
 
 @dataclass
@@ -75,32 +77,35 @@ class OtherFile(Document):
         configured_timestamp = None
 
         # Check for configured values
-        if self.config and self.config.description:
-            timestamp = extract_datetime(self.config.description)
+        if self.config and self.config.timestamp:
+            timestamp = self.config.timestamp
 
             if timestamp:
                 # Avoid returning hacky '-01' appended strings in case datefinder finds something more accurate
                 if timestamp.date != 1:
-                    # return timestamp
+                    # return timestamp  # TODO: reenable, this is just so we can log what's being found
                     configured_timestamp = timestamp
                     timestamps.append(timestamp)
                 else:
                     timestamps.append(timestamp)
 
             # Avoid scanning large TSVs for dates
-            if self.config and self.config.description.startswith('TSV'):
+            if self.config and self.config.description and self.config.description.startswith('TSV'):
                 return timestamps[0] if timestamps else None
 
         try:
-            for i, timestamp in enumerate(datefinder.find_dates(self.text, strict=True)):
-                logger.debug(f"{self.file_id}: Found {ordinal_str(i + 1)} timestamp '{timestamp}'...")
-                timestamp = remove_timezone(timestamp)
+            with warnings.catch_warnings():
+                warnings.filterwarnings("ignore", module="datefinder")
 
-                if MIN_TIMESTAMP < timestamp < MAX_TIMESTAMP:
-                    timestamps.append(timestamp)
+                for i, timestamp in enumerate(datefinder.find_dates(self.text, strict=True)):
+                    logger.debug(f"{self.file_id}: Found {ordinal_str(i + 1)} timestamp '{timestamp}'...")
+                    timestamp = remove_timezone(timestamp)
 
-                if len(timestamps) == MAX_EXTRACTED_TIMESTAMPS:
-                    break
+                    if MIN_TIMESTAMP < timestamp < MAX_TIMESTAMP:
+                        timestamps.append(timestamp)
+
+                    if len(timestamps) == MAX_EXTRACTED_TIMESTAMPS:
+                        break
         except ValueError as e:
             logger.warning(f"Error while iterating through datefinder.find_dates(): {e}")
 
@@ -109,7 +114,6 @@ class OtherFile(Document):
             return None
         elif len(timestamps) == 1:
             return timestamps[0]
-
 
         timestamps = sorted(uniquify(timestamps), reverse=True)
         timestamp_strs = [str(dt) for dt in timestamps]
@@ -133,7 +137,7 @@ class OtherFile(Document):
                     self.log("\n".join([hint.plain for hint in self.hints()]))
 
                 msg = f"Configured '{configured_timestamp.date()}' and last found '{last_timestamp.date()}' differ by {days_diff} days"
-                msg += f"\n  {timestamps_log_msg}\n"
+                msg += f"\n          {timestamps_log_msg}\n"
                 self.log(msg)
 
             return configured_timestamp
