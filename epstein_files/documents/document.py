@@ -84,9 +84,10 @@ class Document:
 
         if self.is_local_extract_file():
             self.url_slug = file_stem_for_id(self.file_id)
+            cfg_type = type(self.config).__name__ if self.config else None
 
             # Coerce FileConfig for court docs etc. to MessageCfg for email files extracted from that document
-            if self.document_type() == EMAIL_CLASS and self.config and self.cfg_type() != MessageCfg.__name__:
+            if self.document_type() == EMAIL_CLASS and self.config and cfg_type != MessageCfg.__name__:
                 self.config = MessageCfg.from_file_cfg(self.config)
         else:
             self.url_slug = self.file_path.stem
@@ -94,10 +95,7 @@ class Document:
         self._set_computed_fields(text=self.text or self._load_file())
         self._repair()
         self._extract_author()
-
-    # TODO: remove eventually, unecessary
-    def cfg_type(self) -> str | None:
-        return type(self.config).__name__ if self.config else None
+        self.timestamp = self._extract_timestamp()
 
     def configured_description(self) -> str | None:
         return self.config.description if self.config else None
@@ -186,6 +184,7 @@ class Document:
         return is_local_extract_file(self.filename)
 
     def lines_matching_txt(self, _pattern: re.Pattern | str) -> list[Text]:
+        """Return lines matching a regex as colored list[Text]."""
         pattern = patternize(_pattern)
         matched_lines = [line for line in self.lines if pattern.search(line)]
 
@@ -211,7 +210,7 @@ class Document:
         logger.log(level, f"{msg}\n\n{self.top_lines(n)}\n")
 
     def raw_document_link_txt(self, style: str = '', include_alt_link: bool = False) -> Text:
-        """Returns colored links to epsteinify and and epsteinweb in a Text object."""
+        """Returns colored links to epstein.media and and epsteinweb in a Text object."""
         txt = Text('', style='white' if include_alt_link else ARCHIVE_LINK_COLOR)
 
         if args.use_epstein_web_links:
@@ -227,7 +226,7 @@ class Document:
 
         return txt
 
-    def regex_repair_text(self, repairs: dict[str | re.Pattern, str], text: str) -> str:
+    def repair_ocr_text(self, repairs: dict[str | re.Pattern, str], text: str) -> str:
         """Apply a dict of repairs (key is pattern or string, value is replacement string) to text."""
         for k, v in repairs.items():
             if isinstance(k, re.Pattern):
@@ -240,36 +239,25 @@ class Document:
     def top_lines(self, n: int = 10) -> str:
         return '\n'.join(self.lines[0:n])
 
-    def write_clean_text(self, output_path: Path) -> None:
-        """Write self.text to 'output_path'."""
-        if output_path.exists():
-            if str(output_path.name).startswith(HOUSE_OVERSIGHT_PREFIX):
-                raise RuntimeError(f"'{output_path}' already exists! Not overwriting.")
-            else:
-                logger.warning(f"Overwriting '{output_path}'...")
-
-        with open(output_path, 'w') as f:
-            f.write(self.text)
-
-        logger.warning(f"Wrote {self.length} chars of cleaned {self.filename} to {output_path}.")
-
     def _border_style(self) -> str:
         """Should be overloaded in subclasses."""
         return 'white'
 
     def _extract_author(self) -> None:
+        """Get author from config. Extended in Email subclass to also check headers."""
         if self.config and self.config.author:
             self.author = self.config.author
 
-    def _extract_timestamp(self) -> datetime:
-        raise NotImplementedError(f"Should be implemented in subclasses!")
+    def _extract_timestamp(self) -> datetime | None:
+        """Should be implemented in subclasses."""
+        pass
 
     def _load_file(self):
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
         with open(self.file_path) as f:
             text = f.read()
             text = text[1:] if (len(text) > 0 and text[0] == '\ufeff') else text  # remove BOM
-            text = self.regex_repair_text(OCR_REPAIRS, text.strip())
+            text = self.repair_ocr_text(OCR_REPAIRS, text.strip())
             lines = [l.strip() for l in text.split('\n') if not l.startswith(HOUSE_OVERSIGHT)]
             lines = lines[1:] if (len(lines) > 1 and lines[0] == '>>') else lines
             return collapse_newlines('\n'.join(lines))
@@ -292,6 +280,19 @@ class Document:
         self.lines = [line.strip() for line in self.text.split('\n')]
         self.num_lines = len(self.lines)
 
+    def _write_clean_text(self, output_path: Path) -> None:
+        """Write self.text to 'output_path'. Used only for diffing files."""
+        if output_path.exists():
+            if str(output_path.name).startswith(HOUSE_OVERSIGHT_PREFIX):
+                raise RuntimeError(f"'{output_path}' already exists! Not overwriting.")
+            else:
+                logger.warning(f"Overwriting '{output_path}'...")
+
+        with open(output_path, 'w') as f:
+            f.write(self.text)
+
+        logger.warning(f"Wrote {self.length} chars of cleaned {self.filename} to {output_path}.")
+
     def __rich_console__(self, _console: Console, _options: ConsoleOptions) -> RenderResult:
         yield self.file_info_panel()
         text_panel = Panel(highlighter(self.text), border_style=self._border_style(), expand=False)
@@ -313,7 +314,7 @@ class Document:
         docs = [Document(DOCS_DIR.joinpath(f)) for f in files]
 
         for i, doc in enumerate(docs):
-            doc.write_clean_text(tmpfiles[i])
+            doc._write_clean_text(tmpfiles[i])
 
         cmd = f"diff {tmpfiles[0]} {tmpfiles[1]}"
         console.print(f"Running '{cmd}'...")

@@ -280,7 +280,6 @@ NOTES_TO_SELF = [
 @dataclass
 class Email(Communication):
     actual_text: str = field(init=False)
-    config: MessageCfg | None = None
     header: EmailHeader = field(init=False)
     is_junk_mail: bool = False
     recipients: list[str | None] = field(default_factory=list)
@@ -541,7 +540,7 @@ class Email(Communication):
             self.log_top_lines(12, 'Result of modifications', logging.INFO)
             self.log('', logging.INFO)
 
-        lines = self.regex_repair_text(OCR_REPAIRS, self.text).split('\n')
+        lines = self.repair_ocr_text(OCR_REPAIRS, self.text).split('\n')
         new_lines = []
         i = 0
 

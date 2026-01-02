@@ -4,7 +4,7 @@ from datetime import datetime
 
 from rich.text import Text
 
-from epstein_files.util.constant.names import JEFFREY_EPSTEIN, SCARAMUCCI, STEVE_BANNON, UNKNOWN
+from epstein_files.util.constant.names import JEFFREY_EPSTEIN, ANTHONY_SCARAMUCCI, STEVE_BANNON, UNKNOWN
 from epstein_files.util.data import extract_last_name
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import TEXT_LINK, highlighter, logger
@@ -27,7 +27,7 @@ UNKNOWN_TEXTERS = [
 TEXTER_MAPPING = {
     'e:': JEFFREY_EPSTEIN,
     'e:jeeitunes@gmail.com': JEFFREY_EPSTEIN,
-    '+19174393646': SCARAMUCCI,
+    '+19174393646': ANTHONY_SCARAMUCCI,
     '+13109906526': STEVE_BANNON,
 }
 

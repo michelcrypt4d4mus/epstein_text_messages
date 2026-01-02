@@ -19,7 +19,6 @@ REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
 @dataclass
 class MessengerLog(Communication):
     """Class representing one iMessage log file (one conversation between Epstein and some counterparty)."""
-    config: MessageCfg | None = None
     _messages: list[TextMessage] = field(default_factory=list)
 
     def __post_init__(self):

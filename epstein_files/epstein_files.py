@@ -53,6 +53,7 @@ class EpsteinFiles:
     imessage_logs: list[MessengerLog] = field(default_factory=list)
     json_files: list[JsonFile] = field(default_factory=list)
     other_files: list[OtherFile] = field(default_factory=list)
+
     # Analytics / calculations
     email_author_counts: dict[str | None, int] = field(default_factory=lambda: defaultdict(int))
     email_authors_to_device_signatures: dict[str, set] = field(default_factory=lambda: defaultdict(set))
@@ -63,6 +64,7 @@ class EpsteinFiles:
     def __post_init__(self):
         self.all_files = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
 
+        # Read through and classify all the files
         for file_arg in self.all_files:
             logger.info(f"Scanning '{file_arg.name}'...")
             document = Document(file_arg)
@@ -70,13 +72,16 @@ class EpsteinFiles:
             if document.length == 0:
                 logger.info(f"Skipping empty file {document.description().plain}")
             elif document.text[0] == '{':
-                self.json_files.append(JsonFile(file_arg))   # Handle JSON files
+                # Handle JSON files
+                self.json_files.append(JsonFile(file_arg, text=document.text))
                 logger.info(self.json_files[-1].description().plain)
             elif MSG_REGEX.search(document.text):
-                self.imessage_logs.append(MessengerLog(file_arg))  # Handle iMessage log files
+                # Handle iMessage log files
+                self.imessage_logs.append(MessengerLog(file_arg, text=document.text))
                 logger.info(self.imessage_logs[-1].description().plain)
             elif DETECT_EMAIL_REGEX.match(document.text) or isinstance(document.config, MessageCfg):
-                email = Email(file_arg, text=document.text)  # Handle emails
+                # Handle emails
+                email = Email(file_arg, text=document.text)
                 logger.info(email.description().plain)
                 self.emails.append(email)
                 self.email_author_counts[email.author] += 1
@@ -92,13 +97,13 @@ class EpsteinFiles:
                     self.email_authors_to_device_signatures[email.author_or_unknown()].add(email.sent_from_device)
                     self.email_device_signatures_to_authors[email.sent_from_device].add(email.author_or_unknown())
             else:
-                logger.info(f"Unknown file type: {document.description().plain}")
-                self.other_files.append(OtherFile(file_arg))  # Handle OtherFiles
+                # Handle OtherFiles
+                self.other_files.append(OtherFile(file_arg, text=document.text))
+                logger.info(self.other_files[-1].description().plain)
 
         self.emails = Document.sort_by_timestamp(self.emails)
         self.imessage_logs = Document.sort_by_timestamp(self.imessage_logs)
         self.other_files = Document.sort_by_timestamp(self.other_files + self.json_files)
-        self.identified_imessage_log_count = len([log for log in self.imessage_logs if log.author])
 
     @classmethod
     def get_files(cls, timer: Timer | None = None) -> 'EpsteinFiles':
@@ -200,6 +205,9 @@ class EpsteinFiles:
         authors = author if isinstance(author, list) else [author]
         return [log for log in self.imessage_logs if log.author in authors]
 
+    def identified_imessage_log_count(self) -> int:
+        return len([log for log in self.imessage_logs if log.author])
+
     def imessage_sender_counts(self) -> dict[str | None, int]:
         sender_counts: dict[str | None, int] = defaultdict(int)
 
@@ -228,7 +236,7 @@ class EpsteinFiles:
                 f"{dupes:,}" if dupes else NA_TXT,
             )
 
-        add_row('iMessage Logs', self.imessage_logs, self.identified_imessage_log_count)
+        add_row('iMessage Logs', self.imessage_logs, self.identified_imessage_log_count())
         add_row('Emails', self.emails, len([e for e in self.emails if e.author]), dupes[EMAIL_CLASS])
         add_row('JSON Data', self.json_files, dupes=0)
         add_row('Other', self.other_files, dupes=dupes[OTHER_FILE_CLASS])
@@ -342,7 +350,7 @@ class EpsteinFiles:
                 )
 
         console.print(counts_table)
-        text_summary_msg = f"\nDeanonymized {self.identified_imessage_log_count} of "
+        text_summary_msg = f"\nDeanonymized {self.identified_imessage_log_count()} of "
         text_summary_msg += f"{len(self.imessage_logs)} {TEXT_MESSAGE} logs found in {len(self.all_files)} files."
         console.print(text_summary_msg)
         imessage_msg_count = sum([len(log.messages()) for log in self.imessage_logs])
