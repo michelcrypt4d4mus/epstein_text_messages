@@ -24,7 +24,7 @@ REASON_MAPPING: dict[DuplicateType, str] = {
 FIELD_SORT_KEY = {
     'id': 'a',
     'author': 'aa',
-    'attribution_explanation': 'zz',
+    'attribution_reason': 'zz',
 }
 
 
@@ -121,13 +121,14 @@ class EmailCfg(FileCfg):
 
     Attributes:
         actual_text (str | None): In dire cases of broken OCR we just configure the body of the email as a string.
-        attribution_explanation (str | None): Optional explanation of why this email was attributed to this author.
+        attribution_reason (str | None): Optional explanation of why this email was attributed to this author.
         author (str | None): Author of the email
+        is_attribution_uncertain (bool): True if we have a good idea of who the author is but are not 100% certain
         is_fwded_article (bool): True if this is a newspaper article someone fwded. Used to exclude articles from word counting.
         recipients (list[str | None]): Who received the email
     """
     actual_text: str | None = None  # Override for the Email._actual_text() method for particularly broken emails
-    attribution_explanation: str | None = None
+    attribution_reason: str | None = None
     is_attribution_uncertain: bool = False
     is_fwded_article: bool = False
     recipients: list[str | None] = field(default_factory=list)
