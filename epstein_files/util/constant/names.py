@@ -6,6 +6,7 @@ UNKNOWN = '(unknown)'
 # Texting Names
 ANDRZEJ_DUDA = 'Andrzej Duda or entourage'
 ANIL_AMBANI = "Anil Ambani"
+ANTHONY_SCARAMUCCI = "Anthony Scaramucci"
 ARDA_BESKARDES = 'Arda Beskardes'
 EVA = 'Eva (Dubin?)'
 JEFFREY_EPSTEIN = 'Jeffrey Epstein'
@@ -14,7 +15,6 @@ LARRY_SUMMERS = 'Larry Summers'
 MELANIE_WALKER = 'Melanie Walker'
 MIROSLAV_LAJCAK = 'Miroslav Lajčák'
 STACEY_PLASKETT = 'Stacey Plaskett'
-SCARAMUCCI = "Anthony Scaramucci"
 SOON_YI_PREVIN = 'Soon-Yi Previn'
 STEVE_BANNON = 'Steve Bannon'
 STEVEN_SINOFSKY = 'Steven Sinofsky'
@@ -247,9 +247,7 @@ OTHER_NAMES = """
 
 
 def constantize_name(name: str) -> str:
-    if name == SCARAMUCCI:
-        return 'SCARAMUCCI'
-    elif name == 'Andrzej Duda or entourage':
+    if name == 'Andrzej Duda or entourage':
         return 'ANDRZEJ_DUDA'
 
     variable_name = remove_question_marks(name)
