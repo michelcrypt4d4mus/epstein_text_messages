@@ -11,7 +11,7 @@ DuplicateType = Literal['same', 'earlier', 'quoted', 'redacted']
 INDENT = '    '
 INDENT_NEWLINE = f'\n{INDENT}'
 INDENTED_JOIN = f',{INDENT_NEWLINE}'
-CONSTANTIZE_NAMES = True  # A flag set to True that causes repr() of these classes to return strings of usable code
+CONSTANTIZE_NAMES = False  # A flag set to True that causes repr() of these classes to return strings of usable code
 MAX_LINE_LENGTH = 250
 
 REASON_MAPPING: dict[DuplicateType, str] = {
@@ -62,16 +62,12 @@ class FileCfg:
 
     def _props_strs(self) -> list[str]:
         props = []
-
-        def add_prop(f: Field, value: str):
-            props.append(f"{f.name}={value}")
+        add_prop = lambda f, value: props.append(f"{f.name}={value}")
 
         for _field in self.sorted_fields():
             value = getattr(self, _field.name)
 
-            if value is None or (isinstance(value, list) and len(value) == 0):
-                continue
-            elif isinstance(value, bool) and not value:
+            if value is None or value is False or (isinstance(value, list) and len(value) == 0):
                 continue
             elif _field.name == AUTHOR:
                 add_prop(_field, constantize_name(str(value)) if CONSTANTIZE_NAMES else f"'{value}'")
@@ -83,7 +79,6 @@ class FileCfg:
                 add_prop(_field, f"parse('{value_str}')" if CONSTANTIZE_NAMES else f"'{value}'")
             elif _field.name == 'description':
                 add_prop(_field, value.strip())
-#                add_prop(_field, value.replace('",', '"').replace("',", "'").strip())
             elif isinstance(value, str):
                 if "'" in value:
                     value = '"' + value.replace('"', r'\"') + '"'
@@ -95,6 +90,25 @@ class FileCfg:
                 add_prop(_field, str(value))
 
         return props
+
+    def __eq__(self, other: 'FileCfg') -> bool:
+        """Return True if everything matches other than the duplicate fields."""
+        pfx = f"{self.id} vs. {other.id}"
+
+        for _field in self.sorted_fields():
+            this_val = getattr(self, _field.name)
+            other_val = getattr(other, _field.name)
+
+            if _field.name == 'id' or _field.name.startswith('dup'):
+                print(f"{pfx}: skipping field {_field.name}...")
+                continue
+            elif this_val != other_val:
+                print(f"{pfx}: mismatch of {_field.name} ('{this_val}' vs. '{other_val})")
+                return False
+            else:
+                print(f"{pfx}: MATCH of {_field.name} ('{this_val}' vs. '{other_val})")
+
+        return True
 
     def __repr__(self) -> str:
         props = self._props_strs()
@@ -110,8 +124,9 @@ class FileCfg:
 
         if CONSTANTIZE_NAMES:
             repr_str = INDENT + INDENT_NEWLINE.join(repr_str.split('\n'))
-
-        return repr_str.replace(',,', ',').replace(',),', '),').replace(',),', '),')
+            return repr_str.replace(',,', ',').replace(',),', '),').replace(',),', '),')
+        else:
+            return repr_str
 
 
 @dataclass(kw_only=True)
@@ -133,6 +148,9 @@ class MessageCfg(FileCfg):
     is_author_uncertain: bool = False
     is_fwded_article: bool = False
     recipients: list[str | None] = field(default_factory=list)
+
+    def __eq__(self, other: 'FileCfg') -> bool:
+        return super().__eq__(other)
 
     def __repr__(self) -> str:
         return super().__repr__()
