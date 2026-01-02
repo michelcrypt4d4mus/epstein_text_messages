@@ -17,14 +17,12 @@ TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 @dataclass
 class CommunicationDocument(Document):
     """Superclass for Email and MessengerLog."""
-    author: str | None = None
     author_style: str = 'white'
     author_txt: Text = field(init=False)
     timestamp: datetime = FALLBACK_TIMESTAMP  # TODO this default sucks (though it never happens)
 
     def __post_init__(self):
         super().__post_init__()
-        self._extract_author()
         self.author_style = get_style_for_name(self.author_or_unknown())
         self.author_txt = Text(self.author_or_unknown(), style=self.author_style)
         self.timestamp = self._extract_timestamp()
@@ -46,9 +44,6 @@ class CommunicationDocument(Document):
         """One line summary mostly for logging."""
         txt = super().description().append(', ')
         return txt.append(key_value_txt('author', Text(f"'{self.author_or_unknown()}'", style=self.author_style)))
-
-    def _extract_author(self) -> None:
-        raise NotImplementedError(f"Should be implemented in subclasses!")
 
 
 CommunicationDocumentType = TypeVar('CommunicationDocumentType', bound=Document)

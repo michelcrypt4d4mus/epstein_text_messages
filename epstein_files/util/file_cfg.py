@@ -40,6 +40,7 @@ class FileCfg:
         timestamp (datetime | None): Time this email was sent, file was created, article published, etc.
     """
     id: str | None = None
+    author: str | None = None
     description: str | None = None
     duplicate_of_id: str | None = None
     duplicate_type: DuplicateType | None = None
@@ -128,7 +129,6 @@ class EmailCfg(FileCfg):
     """
     actual_text: str | None = None  # Override for the Email._actual_text() method for particularly broken emails
     attribution_explanation: str | None = None
-    author: str | None = None
     is_attribution_uncertain: bool = False
     is_fwded_article: bool = False
     recipients: list[str | None] = field(default_factory=list)

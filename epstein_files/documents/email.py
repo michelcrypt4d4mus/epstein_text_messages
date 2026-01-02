@@ -415,10 +415,9 @@ class Email(CommunicationDocument):
 
     def _extract_author(self) -> None:
         self._extract_header()
+        super()._extract_author()
 
-        if self.config and self.config.author:
-            self.author = self.config.author
-        elif self.header.author:
+        if not self.author and self.header.author:
             authors = self._get_names(self.header.author)
             self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
 
