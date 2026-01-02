@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from datetime import datetime
 
 import datefinder
+import dateutil
 from rich.markup import escape
 from rich.panel import Panel
 from rich.text import Text
@@ -21,7 +22,8 @@ MIN_TIMESTAMP = datetime(1991, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
 MAX_TIMESTAMP = datetime(2022, 12, 31)
 PREVIEW_CHARS = int(580 * (1 if args.all_other_files else 1.5))
-TIMESTAMP_LOG_INDENT = '\n             '
+LOG_INDENT = '\n         '
+TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
@@ -97,6 +99,7 @@ class OtherFile(Document):
         try:
             with warnings.catch_warnings():
                 warnings.filterwarnings("ignore", module="datefinder")
+                warnings.filterwarnings("ignore", module="dateutil")
 
                 for i, timestamp in enumerate(datefinder.find_dates(self.text, strict=True)):
                     logger.debug(f"{self.file_id}: Found {ordinal_str(i + 1)} timestamp '{timestamp}'...")
@@ -133,12 +136,13 @@ class OtherFile(Document):
                 self.log(f"Configured and found timestamp have same date '{configured_timestamp.date()}'")
             else:
                 days_diff = (configured_timestamp - last_timestamp).days
+                msg = ''
 
                 if self.hints():
-                    self.log("\n".join([hint.plain for hint in self.hints()]))
+                    msg = "\n".join([hint.plain for hint in self.hints()]) + LOG_INDENT
 
                 msg = f"Configured '{configured_timestamp.date()}' and last found '{last_timestamp.date()}' differ by {days_diff} days"
-                msg += f"\n         {timestamps_log_msg}\n"
+                msg += f"{LOG_INDENT}{timestamps_log_msg}\n"
                 self.log(msg)
 
             return configured_timestamp
