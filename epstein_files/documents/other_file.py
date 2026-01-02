@@ -94,13 +94,13 @@ class OtherFile(Document):
             warnings.filterwarnings("ignore", module="dateutil")
 
             try:
-                for i, timestamp in enumerate(datefinder.find_dates(self.text, strict=True)):
+                for timestamp in datefinder.find_dates(self.text, strict=True):
                     timestamp = remove_timezone(timestamp)
 
                     if MIN_TIMESTAMP < timestamp < MAX_TIMESTAMP:
                         timestamps.append(timestamp)
 
-                    if i >= MAX_EXTRACTED_TIMESTAMPS:
+                    if len(timestamps) >= MAX_EXTRACTED_TIMESTAMPS:
                         break
             except ValueError as e:
                 logger.warning(f"Error while iterating through datefinder.find_dates(): {e}")
