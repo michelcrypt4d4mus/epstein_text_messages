@@ -487,7 +487,7 @@ ALL_CONFIGS = [
     MessageCfg(id='033328', author=AZIZA_ALAHMADI, attribution_reason='"Regards, Aziza" at bottom'),
     MessageCfg(id='026659', author=BARBRO_C_EHNBOM, attribution_reason='Reply'),
     MessageCfg(id='026764', author=BARRY_J_COHEN),
-    MessageCfg(id='031227', author=BENNET_MOSKOWITZ, dupe_of_id='031206'),
+    MessageCfg(id='031206', author=BENNET_MOSKOWITZ, duplicate_ids=['031227']),
     MessageCfg(id='031442', author=CHRISTINA_GALBRAITH, duplicate_ids=['031996']),
     MessageCfg(
         id='019446',
@@ -518,11 +518,11 @@ ALL_CONFIGS = [
     MessageCfg(id='033419', author=DAVID_SCHOEN, attribution_reason='Signature'),
     #MessageCfg(id='026245', author=DIANE_ZIMAN, recipients=[JEFFREY_EPSTEIN]),  # TODO: Shouldn't need to be configured
     MessageCfg(id='031460', author=EDWARD_JAY_EPSTEIN),
-    MessageCfg(id='030578', author=FAITH_KATES, dupe_of_id='030414', dupe_type='redacted'),
+    MessageCfg(id='030414', author=FAITH_KATES, duplicate_ids=['030578'], dupe_type='redacted'),
     MessageCfg(
-        id='030634',
+        id='031135',
         author=FAITH_KATES,
-        dupe_of_id='031135',
+        duplicate_ids=['030634'],
         dupe_type='redacted',
         attribution_reason='Same as unredacted 031135, same legal signature',
     ),
@@ -787,27 +787,11 @@ ALL_CONFIGS = [
     MessageCfg(id='033050', actual_text='schwartman'),
     MessageCfg(id='026298', is_fwded_article=True, duplicate_ids=['026499']),  # Written by someone else?
     MessageCfg(id='026755', is_fwded_article=True),  # HuffPo
-    MessageCfg(
-        id='023627',
-        description=MICHAEL_WOLFF_ARTICLE_HINT,
-        is_fwded_article=True,
-        attribution_reason='Wolff article about epstein',
-    ),
     MessageCfg(id='030528', is_fwded_article=True),  # Vicky Ward article
-    MessageCfg(id='018197', is_fwded_article=True, duplicate_ids=['028648']),   # Ray Takeyh article fwd
-    MessageCfg(
-        id='028728',
-        is_fwded_article=True,
-        attribution_reason='WSJ forward to Larry Summers',
-        duplicate_ids=['027102'],
-    ),
+    MessageCfg(id='018197', is_fwded_article=True, duplicate_ids=['028648']),  # Ray Takeyh article fwd
+    MessageCfg(id='028728', is_fwded_article=True, duplicate_ids=['027102']),  # WSJ forward to Larry Summers
     MessageCfg(id='028508', is_fwded_article=True),  # nanosatellites article
-    MessageCfg(
-        id='028781',
-        is_fwded_article=True,
-        attribution_reason="Atlantic on Jim Yong Kim, Obama's World Bank Pick",
-        duplicate_ids=['013460']
-    ),
+    MessageCfg(id='028781', is_fwded_article=True, duplicate_ids=['013460']),  # Atlantic on Jim Yong Kim, Obama's World Bank Pick
     MessageCfg(id='019845', is_fwded_article=True),  # Pro Publica article on Preet Bharara
     MessageCfg(id='029021', is_fwded_article=True),  # article about bannon sent by Alain Forget
     MessageCfg(id='031688', is_fwded_article=True),  # Bill Siegel fwd of email about hamas
@@ -821,16 +805,16 @@ ALL_CONFIGS = [
     ############################################################################################################
 
     MessageCfg(id='031215', duplicate_ids=['026745'], dupe_type='redacted'),
-    MessageCfg(id='026563', dupe_of_id='028768', dupe_type='redacted'),
-    MessageCfg(id='028762', dupe_of_id='027056', dupe_type='redacted'),
-    MessageCfg(id='032246', dupe_of_id='032248', dupe_type='redacted'),
-    MessageCfg(id='023065', dupe_of_id='030628', dupe_type='redacted'),
-    MessageCfg(id='031226', dupe_of_id='017523', dupe_type='redacted'),
-    MessageCfg(id='031008', dupe_of_id='031099', dupe_type='redacted'),
-    MessageCfg(id='033463', dupe_of_id='033596', dupe_type='redacted'),
-    MessageCfg(id='023018', dupe_of_id='030624', dupe_type='redacted'),
-    MessageCfg(id='030596', dupe_of_id='030335', dupe_type='redacted'),
-    MessageCfg(id='012711', dupe_of_id='029841', dupe_type='redacted'),
+    MessageCfg(id='028768', duplicate_ids=['026563'], dupe_type='redacted'),
+    MessageCfg(id='027056', duplicate_ids=['028762'], dupe_type='redacted'),
+    MessageCfg(id='032248', duplicate_ids=['032246'], dupe_type='redacted'),
+    MessageCfg(id='030628', duplicate_ids=['023065'], dupe_type='redacted'),
+    MessageCfg(id='017523', duplicate_ids=['031226'], dupe_type='redacted'),
+    MessageCfg(id='031099', duplicate_ids=['031008'], dupe_type='redacted'),
+    MessageCfg(id='033596', duplicate_ids=['033463'], dupe_type='redacted'),
+    MessageCfg(id='030624', duplicate_ids=['023018'], dupe_type='redacted'),
+    MessageCfg(id='030335', duplicate_ids=['030596'], dupe_type='redacted'),
+    MessageCfg(id='029841', duplicate_ids=['012711'], dupe_type='redacted'),
     MessageCfg(id='033528', duplicate_ids=['033517']),
     MessageCfg(id='032023', duplicate_ids=['032012']),
     MessageCfg(id='019412', duplicate_ids=['028621']),
@@ -925,25 +909,15 @@ ALL_CONFIGS = [
     MessageCfg(id='029752', duplicate_ids=['023550']),
     MessageCfg(id='030339', duplicate_ids=['030592']),
     MessageCfg(id='032250', duplicate_ids=['033589']),
-    FileCfg(
-        id='019224',
-        description=f"{KEN_STARR_LETTER} 2008-05-19",
-        dupe_of_id='025353',
-        dupe_type='redacted',
-    ),
     FileCfg(id='014697', description=CHALLENGES_OF_AI, duplicate_ids=['011284']),
     FileCfg(id='028965', description=WEINBERG_ABC_LETTER, duplicate_ids=['028928']),
     FileCfg(id='033478', description=f'{MEME} Kim Jong Un reading {FIRE_AND_FURY}', timestamp=parse('2018-01-05'), duplicate_ids=['032713']),
     FileCfg(
         id='029357',
         description=f"some text about Israel's challenges going into 2015, feels like it was extracted from a book 2015-01",
-        dupe_of_id='028887',
+        duplicate_ids=['028887'],
     ),
-    FileCfg(
-        id='029356',
-        description=f'{SCREENSHOT} quote in book about {LARRY_SUMMERS} (zoomed in corner of 029355)',
-        duplicate_ids=['029355'],
-    ),
+    FileCfg(id='029355', description=f'{SCREENSHOT} quote in book about {LARRY_SUMMERS}', duplicate_ids=['029356'], dupe_type='quoted'),  # 029356 is zoomed in corner
 
 
     ############################################################################################################
@@ -1116,14 +1090,15 @@ ALL_CONFIGS = [
     ),
     FileCfg(id='023102', description=f"Litigation Daily article about {REID_WEINGARTEN}", timestamp=parse('2015-09-04')),
     FileCfg(id='029340', description=f'MarketWatch article about estate taxes, particularly Epstein\'s favoured GRATs'),
-    FileCfg(id='022707', description=MICHAEL_WOLFF_ARTICLE_HINT,),
-    FileCfg(id='022727', description=MICHAEL_WOLFF_ARTICLE_HINT,),
-    FileCfg(id='022746', description=MICHAEL_WOLFF_ARTICLE_HINT,),
-    FileCfg(id='022844', description=MICHAEL_WOLFF_ARTICLE_HINT,),
-    FileCfg(id='022863', description=MICHAEL_WOLFF_ARTICLE_HINT,),
-    FileCfg(id='022894', description=MICHAEL_WOLFF_ARTICLE_HINT,),
-    FileCfg(id='022952', description=MICHAEL_WOLFF_ARTICLE_HINT,),
-    FileCfg(id='024229', description=MICHAEL_WOLFF_ARTICLE_HINT,),
+    FileCfg(id='022707', description=MICHAEL_WOLFF_ARTICLE_HINT),
+    FileCfg(id='022727', description=MICHAEL_WOLFF_ARTICLE_HINT),
+    FileCfg(id='022746', description=MICHAEL_WOLFF_ARTICLE_HINT),
+    FileCfg(id='022844', description=MICHAEL_WOLFF_ARTICLE_HINT),
+    FileCfg(id='022863', description=MICHAEL_WOLFF_ARTICLE_HINT),
+    FileCfg(id='022894', description=MICHAEL_WOLFF_ARTICLE_HINT),
+    FileCfg(id='022952', description=MICHAEL_WOLFF_ARTICLE_HINT),
+    FileCfg(id='024229', description=MICHAEL_WOLFF_ARTICLE_HINT),
+    MessageCfg(id='023627', description=MICHAEL_WOLFF_ARTICLE_HINT, is_fwded_article=True),
     FileCfg(id='029416', description=NATIONAL_ENQUIRER_FILING, timestamp=parse('2017-05-25'), duplicate_ids=['029405']),
     FileCfg(id='015462', description=f'Nautilus Education magazine (?) issue'),
     FileCfg(id='029925', description=f"New Yorker article about the placebo effect by Michael Specter", timestamp=parse('2011-12-04')),
@@ -1163,11 +1138,7 @@ ALL_CONFIGS = [
         description=f'{ROBERT_TRIVERS} and Nathan H. Lents "Does Trump Fit the Evolutionary Role of Narcissistic Sociopath?" (draft)',
         timestamp=parse('2018-12-07'),
     ),
-    FileCfg(
-        id='025143',
-        description=f'{ROBERT_TRIVERS} essay "Africa, Parasites, Intelligence"',
-        timestamp=parse('2018-06-25'),
-    ),
+    FileCfg(id='025143', description=f'{ROBERT_TRIVERS}: "Africa, Parasites, Intelligence"', timestamp=parse('2018-06-25')),
     FileCfg(id='016996', description=f'SciencExpress article "Quantitative Analysis of Culture Using Millions of Digitized Books" by Jean-Baptiste Michel'),
     FileCfg(id='025104', description=f"SCMP article about China and globalisation"),
     FileCfg(id='030030', description=f'{SHIMON_POST_ARTICLE}', timestamp=parse('2011-03-29')),
@@ -1757,41 +1728,13 @@ for cfg in ALL_CONFIGS:
 EMAIL_CONFIGS = {id: cfg for id, cfg in ALL_FILE_CONFIGS.items() if isinstance(cfg, MessageCfg)}
 
 
-# TODO: Dupe scanning should be removed evenutally
-for cfg in ALL_FILE_CONFIGS.values():
-    if not cfg.dupe_of_id:
-        continue
-
-    if cfg.dupe_of_id in ALL_FILE_CONFIGS:
-        dupe_of_cfg = ALL_FILE_CONFIGS[cfg.dupe_of_id]
-        pfx = f"{dupe_of_cfg.id} is duplicated by {cfg.id}"
-
-        if cfg.was_generated:
-            # print(f"{pfx}, duplicate config was generated...")
-            continue
-        elif dupe_of_cfg == cfg:
-            print(f"\n{pfx}, configurations are the same\n")
-        else:
-            print(f"\n{pfx} but configs differ...")
-            print(f"    {dupe_of_cfg.id}: {dupe_of_cfg}")
-            print(f"    {cfg.id}: {cfg}")
-            print(f"\n        Fix in {dupe_of_cfg.id}:   \", duplicate_ids=['{cfg.id}']\"")
-
-        fix = f"\", duplicate_ids=['{dupe_of_cfg.id}']"
-
-        if cfg.dupe_type != 'same':
-            fix += f", dupe_type='{cfg.dupe_type}'"
-
-        print(f"        Fix in {cfg.id}:   {fix}\"\n")
-
-
 # Error checking.
 encountered_file_ids = set()
 
 for cfg in ALL_CONFIGS:
-    if cfg.dupe_of_id and cfg.dupe_of_id == cfg.id:
-        raise ValueError(f"Invalid config!\n\n{cfg}\n")
-    elif cfg.id in encountered_file_ids:
+    if cfg.id in encountered_file_ids:
         raise ValueError(f"{cfg.id} configured twice!\n\n{cfg}\n")
+    elif cfg.dupe_of_id and cfg.dupe_of_id == cfg.id:
+        raise ValueError(f"Invalid config!\n\n{cfg}\n")
 
     encountered_file_ids.add(cfg.id)
