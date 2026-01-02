@@ -129,10 +129,9 @@ class OtherFile(Document):
 
         timestamps = sorted(uniquify(timestamps), reverse=True)
         last_timestamp = timestamps[0]
-        timestamp_strs = [str(dt) for dt in timestamps]
         num_days_spanned = (last_timestamp - timestamps[-1]).days
         timestamps_log_msg = f"Extracted {len(timestamps)} timestamps spanning {num_days_spanned} days{TIMESTAMP_LOG_INDENT}"
-        timestamps_log_msg += TIMESTAMP_LOG_INDENT.join(timestamp_strs)
+        timestamps_log_msg += TIMESTAMP_LOG_INDENT.join([str(dt) for dt in timestamps])
 
         if num_days_spanned > MAX_DAYS_SPANNED_TO_BE_VALID and VAST_HOUSE not in self.text:
             self.log_top_lines(15, msg=timestamps_log_msg, level=log_level)

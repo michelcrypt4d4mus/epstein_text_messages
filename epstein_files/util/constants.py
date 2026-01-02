@@ -239,7 +239,7 @@ TEXT_OF_US_LAW = 'text of U.S. law:'
 
 # Court cases
 EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} and {PAUL_G_CASSELL} v. {ALAN_DERSHOWITZ}"
-EPSTEIN_V_ROTHSTEIN_AND_EDWARDS = f"Epstein v. Scott Rothstein, {BRAD_EDWARDS}, and L.M."
+EPSTEIN_V_ROTHSTEIN_EDWARDS = f"Epstein v. Scott Rothstein, {BRAD_EDWARDS}, and L.M."
 GIUFFRE_V_DERSHOWITZ = f"{VIRGINIA_GIUFFRE} v. {ALAN_DERSHOWITZ}"
 GIUFFRE_V_EPSTEIN = f"{VIRGINIA_GIUFFRE} v. {JEFFREY_EPSTEIN}"
 GIUFFRE_V_MAXWELL = f"{VIRGINIA_GIUFFRE} v. {GHISLAINE_MAXWELL}"
@@ -1080,36 +1080,12 @@ ALL_CONFIGS = [
         description=f"{EDWARDS_V_DERSHOWITZ} Giuffre Response to Dershowitz Motion for Clarification of Confidentiality Order",
         date='2016-02-08',
     ),
-    FileCfg(
-        id='010566',
-        description=f"{EPSTEIN_V_ROTHSTEIN_AND_EDWARDS} Statement of Undisputed Facts",
-        date='2010-11-04',
-    ),
-    FileCfg(
-        id='012707',
-        description=f"{EPSTEIN_V_ROTHSTEIN_AND_EDWARDS} Master Contact List - Privilege Log",
-        date='2011-03-22',
-    ),
-    FileCfg(
-        id='012103',
-        description=f"{EPSTEIN_V_ROTHSTEIN_AND_EDWARDS} Telephone Interview with {VIRGINIA_GIUFFRE}",
-        date='2011-05-17',
-    ),
-    FileCfg(
-        id='017488',
-        description=f"{EPSTEIN_V_ROTHSTEIN_AND_EDWARDS} Deposition of Scott Rothstein",
-        date='2012-06-22',
-    ),
-    FileCfg(
-        id='029315',
-        description=f"{EPSTEIN_V_ROTHSTEIN_AND_EDWARDS} Plaintiff Motion for Summary Judgment by {JACK_SCAROLA}",
-        date='2013-09-13',
-    ),
-    FileCfg(
-        id='013304',
-        description=f"{EPSTEIN_V_ROTHSTEIN_AND_EDWARDS} Plaintiff Response to Epstein's Motion for Summary Judgment",
-        date='2014-04-17',
-    ),
+    FileCfg(id='010566', description=f"{EPSTEIN_V_ROTHSTEIN_EDWARDS} Statement of Undisputed Facts", date='2010-11-04'),
+    FileCfg(id='012707', description=f"{EPSTEIN_V_ROTHSTEIN_EDWARDS} Master Contact List - Privilege Log", date='2011-03-22'),
+    FileCfg(id='012103', description=f"{EPSTEIN_V_ROTHSTEIN_EDWARDS} Telephone Interview with {VIRGINIA_GIUFFRE}", date='2011-05-17'),
+    FileCfg(id='017488', description=f"{EPSTEIN_V_ROTHSTEIN_EDWARDS} Deposition of Scott Rothstein", date='2012-06-22'),
+    FileCfg(id='029315', description=f"{EPSTEIN_V_ROTHSTEIN_EDWARDS} Plaintiff Motion for Summary Judgment by {JACK_SCAROLA}", date='2013-09-13'),
+    FileCfg(id='013304', description=f"{EPSTEIN_V_ROTHSTEIN_EDWARDS} Plaintiff Response to Epstein's Motion for Summary Judgment", date='2014-04-17'),
     FileCfg(id='019352', description=FBI_REPORT,),
     FileCfg(id='021434', description=FBI_REPORT,),
     FileCfg(id='018872', description=FBI_SEIZED_PROPERTY,),
@@ -1130,22 +1106,10 @@ ALL_CONFIGS = [
     FileCfg(id='016197', description=f"{GIUFFRE_V_DERSHOWITZ} response to Florida Bar complaint by {ALAN_DERSHOWITZ} about David Boies from {PAUL_G_CASSELL}"),
     FileCfg(id='017771', description=f'{GIUFFRE_V_DERSHOWITZ} Vanity Fair article "The Talented Mr. Epstein" by Vicky Ward', date='2011-06-27'),
     FileCfg(id='014652', description=f"{GIUFFRE_V_MAXWELL} Complaint", date='2015-04-22'),
-    FileCfg(
-        id='014797',
-        description=f"{GIUFFRE_V_MAXWELL} Declaration of Laura A. Menninger in Opposition to Plaintiff's Motion",
-        date='2017-03-17',
-    ),
-    FileCfg(
-        id='014118',
-        description=f"{GIUFFRE_V_EPSTEIN} Declaration in Support of Motion to Compel Production of Documents",
-        date='2016-10-21',
-    ),
+    FileCfg(id='014797', description=f"{GIUFFRE_V_MAXWELL} Declaration of Laura A. Menninger in Opposition to Plaintiff's Motion", date='2017-03-17'),
+    FileCfg(id='014118', description=f"{GIUFFRE_V_EPSTEIN} Declaration in Support of Motion to Compel Production of Documents", date='2016-10-21'),
     FileCfg(id='015529', description=f"{GIUFFRE_V_MAXWELL} defamation complaint", date='2015-09-21'),
-    FileCfg(
-        id='019297',
-        description=f'{GIUFFRE_V_MAXWELL} letter from {ALAN_DERSHOWITZ} lawyer Andrew G. Celli',
-        date='2018-02-07',
-    ),
+    FileCfg(id='019297', description=f'{GIUFFRE_V_MAXWELL} letter from {ALAN_DERSHOWITZ} lawyer Andrew G. Celli', date='2018-02-07'),
     FileCfg(
         id='014788',
         description=f"{GIUFFRE_V_MAXWELL} Maxwell Response to Plaintiff's Omnibus Motion in Limine",
@@ -1153,16 +1117,8 @@ ALL_CONFIGS = [
         duplicate_ids=['011463'],
     ),
     FileCfg(id='011304', description=f"{GIUFFRE_V_MAXWELL} Oral Argument Transcript", date='2017-03-17'),
-    FileCfg(
-        id='013489',
-        description=f'{JANE_DOE_V_EPSTEIN_TRUMP} Affidavit of {BRAD_EDWARDS}',
-        date='2010-07-20',
-    ),
-    FileCfg(
-        id='025939',
-        description=f'{JANE_DOE_V_EPSTEIN_TRUMP} Affidavit of Jane Doe describing being raped by Epstein',
-        date='2016-06-20',
-    ),
+    FileCfg(id='013489', description=f'{JANE_DOE_V_EPSTEIN_TRUMP} Affidavit of {BRAD_EDWARDS}', date='2010-07-20'),
+    FileCfg(id='025939', description=f'{JANE_DOE_V_EPSTEIN_TRUMP} Affidavit of Jane Doe describing being raped by Epstein', date='2016-06-20'),
     FileCfg(
         id='025937',
         description=f'{JANE_DOE_V_EPSTEIN_TRUMP} Affidavit of Tiffany Doe describing Jane Doe being raped by Epstein and Trump',
@@ -1170,31 +1126,11 @@ ALL_CONFIGS = [
     ),
     FileCfg(id='029398', description=f'{JANE_DOE_V_EPSTEIN_TRUMP} article in Law.com'),
     FileCfg(id='026854', description=f"{JANE_DOE_V_EPSTEIN_TRUMP} Civil Docket"),
-    FileCfg(
-        id='026384',
-        description=f"{JANE_DOE_V_EPSTEIN_TRUMP} Complaint for rape and sexual abuse",
-        date='2016-06-20',
-    ),
-    FileCfg(
-        id='013463',
-        description=f'{JANE_DOE_V_EPSTEIN_TRUMP} Deposition of Scott Rothstein filed by {BRAD_EDWARDS}',
-        date='2010-03-23',
-    ),
-    FileCfg(
-        id='029257',
-        description=f'{JANE_DOE_V_EPSTEIN_TRUMP} factual allegations and identity of plaintiff Katie Johnson',
-        date='2016-04-26',
-    ),
-    FileCfg(
-        id='032321',
-        description=f"{JANE_DOE_V_EPSTEIN_TRUMP} Notice of Initial Conference",
-        date='2016-10-04',
-    ),
-    FileCfg(
-        id='010735',
-        description=f"{JANE_DOE_V_USA} Dershowitz Reply in Support of Motion for Limited Intervention",
-        date='2015-02-02',
-    ),
+    FileCfg(id='026384', description=f"{JANE_DOE_V_EPSTEIN_TRUMP} Complaint for rape and sexual abuse", date='2016-06-20'),
+    FileCfg(id='013463', description=f'{JANE_DOE_V_EPSTEIN_TRUMP} Deposition of Scott Rothstein', date='2010-03-23'),
+    FileCfg(id='029257', description=f'{JANE_DOE_V_EPSTEIN_TRUMP} allegations and identity of plaintiff Katie Johnson', date='2016-04-26'),
+    FileCfg(id='032321', description=f"{JANE_DOE_V_EPSTEIN_TRUMP} Notice of Initial Conference", date='2016-10-04'),
+    FileCfg(id='010735', description=f"{JANE_DOE_V_USA} Dershowitz Reply in Support of Motion for Limited Intervention", date='2015-02-02'),
     FileCfg(
         id='014084',
         description=f"{JANE_DOE_V_USA} Jane Doe Response to Dershowitz's Motion for Limited Intervention",
