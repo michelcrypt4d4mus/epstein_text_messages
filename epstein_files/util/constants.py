@@ -862,10 +862,8 @@ ALL_CONFIGS = [
     FileCfg(id='013437', author=DAILY_TELEGRAPH, description=f"article about Epstein's diary", date='2011-03-05'),
     FileCfg(id='023287', author=DAILY_TELEGRAPH, description=f"article about a play based on the Oslo Accords", date='2017-09-15'),
     FileCfg(id='019206', author=EDWARD_JAY_EPSTEIN, description=f"WSJ article about Edward Snowden", date='2016-12-30'),
-    FileCfg(id='029539', author=LA_TIMES, description=f"Alan Trounson interview on California stem cell research and CIRM"),
     FileCfg(id='029865', author=LA_TIMES, description=f"front page article about {DEEPAK_CHOPRA} and young Iranians", date='2016-11-05'),
     FileCfg(id='026598', author=LA_TIMES, description=f"op-ed about why America needs a Ministry of Culture"),
-    FileCfg(id='027024', author=LA_TIMES, description=f"'Scientists Create Human Embryos to Make Stem Cells'", date='2013-05-15'),
     FileCfg(id='022707', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
     FileCfg(id='022727', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
     FileCfg(id='022746', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
@@ -874,8 +872,6 @@ ALL_CONFIGS = [
     FileCfg(id='022894', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
     FileCfg(id='022952', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
     FileCfg(id='024229', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
-    FileCfg(id='024256', author=JOI_ITO, description=f"article 'Internet & Society: The Technologies and Politics of Control'"),
-    FileCfg(id='027004', author=JOSCHA_BACH, description=f"article 'The Computational Structure of Mental Representation'", date='2013-02-26'),
     FileCfg(id='031753', author=PAUL_KRASSNER, description=f'essay for Playboy in the 1980s', date='1985-01-01'),
     FileCfg(id='023638', author=PAUL_KRASSNER, description=f'magazine interview'),
     FileCfg(id='024374', author=PAUL_KRASSNER, description=f"'Remembering Cavalier Magazine'"),
@@ -917,7 +913,6 @@ ALL_CONFIGS = [
     FileCfg(id='031776', description=f"article about Michael Avenatti by Andrew Strickler"),
     FileCfg(id='032159', description=f"article about microfinance and cell phones in Zimbabwe, Strive Masiyiwa (Econet Wireless)"),
     FileCfg(id='026584', description=f"article about tax implications of 'disregarded entities'", date='2009-07-01'),
-    FileCfg(id='015501', description=f"article by {MOSHE_HOFFMAN}, Erez Yoeli, and Carlos David Navarrete: 'Game Theory and Morality'"),
     FileCfg(id='030258', description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030248'),
     FileCfg(id='030248', description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030258'),
     FileCfg(id='029165', description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030258'),
@@ -970,12 +965,6 @@ ALL_CONFIGS = [
     FileCfg(id='022987', description=f"{PALM_BEACH_POST_ARTICLE} just a headline on Trump and Epstein"),
     FileCfg(id='015028', description=f"{PALM_BEACH_POST_ARTICLE} reopening Epstein's criminal case"),
     FileCfg(id='022990', description=f"{PALM_BEACH_POST_ARTICLE} Trump and Epstein"),
-    FileCfg(
-        id='033323',
-        description=f'{ROBERT_TRIVERS} and Nathan H. Lents "Does Trump Fit the Evolutionary Role of Narcissistic Sociopath?" (draft)',
-        date='2018-12-07',
-    ),
-    FileCfg(id='025143', author=ROBERT_TRIVERS, description=f"'Africa, Parasites, Intelligence'", date='2018-06-25'),
     FileCfg(id='016996', description=f'SciencExpress article "Quantitative Analysis of Culture Using Millions of Digitized Books" by Jean-Baptiste Michel'),
     FileCfg(id='030030', description=SHIMON_POST_ARTICLE, date='2011-03-29'),
     FileCfg(id='025610', description=SHIMON_POST_ARTICLE, date='2011-04-03'),
@@ -1353,6 +1342,19 @@ ALL_CONFIGS = [
     FileCfg(id='016699', description=TRUMP_DISCLOSURES, date='2017-01-20'),
 
     # academia
+    FileCfg(id='024256', author=JOI_ITO, description=f"article 'Internet & Society: The Technologies and Politics of Control'"),
+    FileCfg(id='027004', author=JOSCHA_BACH, description=f"article 'The Computational Structure of Mental Representation'", date='2013-02-26'),
+    FileCfg(id='029539', author=LA_TIMES, description=f"Alan Trounson interview on California stem cell research and CIRM"),
+    FileCfg(id='027024', author=LA_TIMES, description=f"'Scientists Create Human Embryos to Make Stem Cells'", date='2013-05-15'),
+    FileCfg(id='015501', author=f"{MOSHE_HOFFMAN}, Erez Yoeli, and Carlos David Navarrete", description=f"'Game Theory and Morality'"),
+    FileCfg(id='025143', author=ROBERT_TRIVERS, description=f"'Africa, Parasites, Intelligence'", date='2018-06-25'),
+    FileCfg(id='029155', author=ROBERT_TRIVERS, description=f'response sent to the Gruterites ({GORDON_GETTY} fans)', date='2018-03-19'),
+    FileCfg(
+        id='033323',
+        author=f"{ROBERT_TRIVERS} and Nathan H. Lents",
+        description=f"draft of 'Does Trump Fit the Evolutionary Role of Narcissistic Sociopath?",
+        date='2018-12-07',
+    ),
     FileCfg(id='014697', description=CHALLENGES_OF_AI, duplicate_ids=['011284']),
     FileCfg(id='026521', description=f"game theory paper by {MARTIN_NOWAK}, Erez Yoeli, and Moshe Hoffman"),
     FileCfg(id='023416', description=HARVARD_POETRY),
@@ -1394,7 +1396,6 @@ ALL_CONFIGS = [
     ),
 
     # misc
-    FileCfg(id='029155', author=ROBERT_TRIVERS, description=f'response sent to the Gruterites ({GORDON_GETTY} fans)', date='2018-03-19'),
     FileCfg(id='031743', description=f'a few pages describing the internet as a "New Nation State" (Network State?)'),
     FileCfg(id='023438', description=f"Brockman announcemeent of auction of 'Noise' by Daniel Kahneman, Olivier Sibony, and Cass Sunstein"),
     FileCfg(
