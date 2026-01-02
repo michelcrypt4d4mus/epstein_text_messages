@@ -867,6 +867,29 @@ TEXTS = """
     '027434': STEVE_BANNON,          # References Maher appearance
     '027764': STEVE_BANNON,
     '027428': STEVE_BANNON,          # References HBJ meeting on 9/28 from other Bannon/Epstein convo
+    '025400': BLAH BLAH  # AI says Trump NYT article criticism; Hannity media strategy
+    '025408': BLAH BLAH  # AI says Trump and New York Times coverage
+    '025452': BLAH BLAH  # AI says Trump and New York Times coverage
+    '025479': BLAH BLAH  # AI says China strategy and geopolitics; Trump discussions
+    '025707': BLAH BLAH  # AI says Trump and New York Times coverage
+    '025734': BLAH BLAH  # AI says China strategy and geopolitics; Trump discussions
+    '027260': BLAH BLAH  # AI says Trump and New York Times coverage
+    '027281': BLAH BLAH  # AI says Trump and New York Times coverage
+    '027346': BLAH BLAH  # AI says Trump and New York Times coverage
+    '027365': BLAH BLAH  # AI says Trump and New York Times coverage
+    '027374': BLAH BLAH  # AI says China strategy and geopolitics
+    '027406': BLAH BLAH  # AI says Trump and New York Times coverage
+    '027440': BLAH BLAH  # AI says Trump book/journalism project
+    '027445': BLAH BLAH  # AI says China strategy and geopolitics; Trump discussions
+    '027455': BLAH BLAH  # AI says China strategy and geopolitics; Trump discussions
+    '027536': BLAH BLAH  # AI says China strategy and geopolitics; Trump discussions
+    '027655': BLAH BLAH  # AI says Trump and New York Times coverage
+    '027707': BLAH BLAH  # AI says Italian politics; Trump discussions
+    '027722': BLAH BLAH  # AI says Trump and New York Times coverage
+    '027735': BLAH BLAH  # AI says Trump and New York Times coverage
+    '027794': BLAH BLAH  # AI says Trump and New York Times coverage
+    '029744': BLAH BLAH  # AI says Trump and New York Times coverage
+    '031045': BLAH BLAH  # AI says Trump and New York Times coverage
 """.strip()
 
 
