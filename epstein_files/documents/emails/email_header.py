@@ -17,12 +17,11 @@ EMAILER_FIELDS = [AUTHOR] + TO_FIELDS
 HEADER_REGEX_STR = r'(((?:(?:Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):|on behalf of ?)(?! +(by |from my|via )).*\n){3,})'
 EMAIL_SIMPLE_HEADER_REGEX = re.compile(rf'^{HEADER_REGEX_STR}')
 EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX = re.compile(HEADER_REGEX_STR)
-EMAIL_PRE_FORWARD_REGEX = re.compile(r"(.{3,2000}?)" + HEADER_REGEX_STR, re.DOTALL)
+EMAIL_PRE_FORWARD_REGEX = re.compile(r"(.{3,2000}?)" + HEADER_REGEX_STR, re.DOTALL)  # Match up to the next email header section
 TIME_REGEX = re.compile(r'^(\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday).*')
 
 BAD_NAME_CHARS_REGEX = re.compile(r"[\"'\[\]*><•]")
 BAD_EMAILER_REGEX = re.compile(r'^(>|11111111)|agreed|ok|sexy|rt|re:|fwd:|Multiple Senders|((sent|attachments|subject|importance).*|.*(january|201\d|hysterical|i have|image0|so that people|article 1.?|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
-SKIP_HEADER_ROW_REGEX = re.compile(r"^(agreed|call (back|me( now)?)|Hysterical\.|I have|ok|schwartman|)$")  # Known bad rows in bad OCR
 
 CONFIGURED_ACTUAL_TEXTS = [
     cfg.actual_text for cfg in ALL_CONFIGS
@@ -74,7 +73,7 @@ class EmailHeader:
             log_prefix = f"Looks like '{value}' is a mismatch for '{field_name}', "
 
             if field_name == AUTHOR:
-                if SKIP_HEADER_ROW_REGEX.match(value):
+                if value in CONFIGURED_ACTUAL_TEXTS:
                     logger.info(f"{log_prefix}, trying the next line...")
                     num_headers += 1
                     value = email_lines[i + num_headers]
