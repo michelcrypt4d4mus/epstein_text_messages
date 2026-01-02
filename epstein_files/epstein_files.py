@@ -163,11 +163,11 @@ class EpsteinFiles:
         return (self.last_email_at(author) - self.earliest_email_at(author)).days + 1
 
     def email_signature_substitution_counts(self) -> dict[str, int]:
-        """Return the number of times an email signature was replaced with "...snipped..." for each author."""
+        """Return the number of times an email signature was replaced with "<...snipped...>" for each author."""
         substitution_counts = defaultdict(int)
 
         for email in self.emails:
-            for name, num_replaced in email.signature_substitution_count.items():
+            for name, num_replaced in email.signature_substitution_counts.items():
                 substitution_counts[name] += num_replaced
 
         return substitution_counts
