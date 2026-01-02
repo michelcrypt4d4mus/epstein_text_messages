@@ -20,6 +20,7 @@ MIAMI_HERALD = 'Miami Herald'
 NYT_ARTICLE = 'NYT article about'
 NYT_COLUMN = 'NYT column about'
 THE_REAL_DEAL = 'The Real Deal'
+WAPO = 'WaPo'
 
 # Site types
 EMAIL = 'email'
