@@ -18,15 +18,15 @@ from epstein_files.util.rich import highlighter, logger
 
 MAX_EXTRACTED_TIMESTAMPS = 100
 MAX_DAYS_SPANNED_TO_BE_VALID = 10
-MIN_TIMESTAMP = datetime(1991, 1, 1)
+MIN_TIMESTAMP = datetime(2000, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
 MAX_TIMESTAMP = datetime(2022, 12, 31)
 PREVIEW_CHARS = int(580 * (1 if args.all_other_files else 1.5))
 LOG_INDENT = '\n         '
 TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
+
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
-
 
 
 @dataclass
@@ -92,23 +92,19 @@ class OtherFile(Document):
             timestamp = self.config.timestamp
 
             if timestamp:
-                # Avoid returning hacky '-01' appended strings in case datefinder finds something more accurate
-                if timestamp.date != 1:
-                    # return timestamp  # TODO: reenable, this is just so we can log what's being found
-                    configured_timestamp = timestamp
-                    timestamps.append(timestamp)
-                else:
-                    timestamps.append(timestamp)
+                # return timestamp  # TODO: reenable, this is just so we can log what's being found
+                configured_timestamp = timestamp
+                timestamps.append(timestamp)
 
             # Avoid scanning large TSVs for dates
             if self.config and self.config.description and self.config.description.startswith('TSV'):
                 return timestamps[0] if timestamps else None
 
-        try:
-            with warnings.catch_warnings():
-                warnings.filterwarnings("ignore", module="datefinder")
-                warnings.filterwarnings("ignore", module="dateutil")
+        with warnings.catch_warnings():
+            warnings.filterwarnings("ignore", module="datefinder")
+            warnings.filterwarnings("ignore", module="dateutil")
 
+            try:
                 for i, timestamp in enumerate(datefinder.find_dates(self.text, strict=True)):
                     logger.debug(f"{self.file_id}: Found {ordinal_str(i + 1)} timestamp '{timestamp}'...")
                     timestamp = remove_timezone(timestamp)
@@ -116,10 +112,10 @@ class OtherFile(Document):
                     if MIN_TIMESTAMP < timestamp < MAX_TIMESTAMP:
                         timestamps.append(timestamp)
 
-                    if len(timestamps) == MAX_EXTRACTED_TIMESTAMPS:
+                    if len(timestamps) >= MAX_EXTRACTED_TIMESTAMPS:
                         break
-        except ValueError as e:
-            logger.warning(f"Error while iterating through datefinder.find_dates(): {e}")
+            except ValueError as e:
+                logger.warning(f"Error while iterating through datefinder.find_dates(): {e}")
 
         if len(timestamps) == 0:
             self.log_top_lines(15, msg=f"{self.file_id}: No timestamps found", level=log_level)
@@ -140,7 +136,7 @@ class OtherFile(Document):
         if num_days_spanned > MAX_DAYS_SPANNED_TO_BE_VALID and VAST_HOUSE not in self.text:
             self.log_top_lines(15, msg=timestamps_log_msg, level=log_level)
 
-        # Most recent timestamp in text should be closest to accurate bc articles eetc. should only have dates of things that already happened
+        # Most recent timestamp in text should be closest to accurate bc articles etc. should only have dates of things that already happened
         last_timestamp = timestamps[0]
 
         if configured_timestamp:
@@ -154,8 +150,7 @@ class OtherFile(Document):
                     msg += LOG_INDENT.join([f'"{hint.plain}"' for hint in self.hints()]) + LOG_INDENT
 
                 msg += f"Configured '{configured_timestamp.date()}' and last found '{last_timestamp.date()}' differ by {days_diff} days"
-                msg += f"{LOG_INDENT}{timestamps_log_msg}\n"
-                self.log(msg)
+                self.log(f"{msg}{LOG_INDENT}{timestamps_log_msg}\n")
 
             return configured_timestamp
 
