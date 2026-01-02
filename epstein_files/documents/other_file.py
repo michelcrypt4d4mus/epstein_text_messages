@@ -151,7 +151,7 @@ class OtherFile(Document):
                 msg = f'{self.url_slug}: '
 
                 if self.hints():
-                    msg += "\n".join([hint.plain for hint in self.hints()]) + LOG_INDENT
+                    msg += LOG_INDENT.join([f'"{hint.plain}"' for hint in self.hints()]) + LOG_INDENT
 
                 msg += f"Configured '{configured_timestamp.date()}' and last found '{last_timestamp.date()}' differ by {days_diff} days"
                 msg += f"{LOG_INDENT}{timestamps_log_msg}\n"
