@@ -13,7 +13,7 @@ INDENT = '    '
 INDENT_NEWLINE = f'\n{INDENT}'
 INDENTED_JOIN = f',{INDENT_NEWLINE}'
 CONSTANTIZE_NAMES = True  # A flag set to True that causes repr() of these classes to return strings of usable code
-MAX_LINE_LENGTH = 120
+MAX_LINE_LENGTH = 250
 
 REASON_MAPPING: dict[DuplicateType, str] = {
     'earlier': 'earlier draft of',
