@@ -415,3 +415,15 @@ def is_ok_for_epstein_web(name: str | None) -> bool:
         return False
 
     return True
+
+
+def count_by_month(docs: Sequence[Document]) -> dict[str | None, int]:
+    counts: dict[str | None, int] = defaultdict(int)
+
+    for doc in docs:
+        if doc.timestamp:
+            counts[doc.timestamp.date().isoformat()[0:7]] += 1
+        else:
+            counts[None] += 1
+
+    return counts
