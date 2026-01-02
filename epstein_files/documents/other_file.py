@@ -87,20 +87,12 @@ class OtherFile(Document):
         return WHITESPACE_REGEX.sub(' ', self.text)[0:PREVIEW_CHARS]
 
     def _extract_timestamp(self) -> datetime | None:
-        """Return ISO date at end of configured description entry or value extracted by datefinder.find_dates()."""
+        """Return configured timestamp or value extracted by scanning text with datefinder."""
+        if self.config and self.config.timestamp:
+            return self.config.timestamp
+
         log_level = logging.DEBUG if VAST_HOUSE in self.text else logging.INFO
         timestamps: list[datetime] = []
-        configured_timestamp = None
-
-        # Check for configured values
-        if self.config and self.config.timestamp:
-            configured_timestamp = self.config.timestamp
-            timestamps.append(self.config.timestamp)
-            # return timestamp  # TODO: reenable, this is just so we can log what's being found
-
-            # Avoid scanning large TSVs for dates
-            if self.config.description and any(word in self.config.description for word in SKIP_EXTRACTING_TIMESTAMPS):
-                return configured_timestamp
 
         with warnings.catch_warnings():
             warnings.filterwarnings("ignore", module="datefinder")
@@ -125,10 +117,6 @@ class OtherFile(Document):
         elif len(timestamps) == 1:
             return timestamps[0]
 
-        # TODO: temporarily remove configured value so we can compare configured vs. extracted
-        if configured_timestamp:
-            timestamps = timestamps[1:]
-
         timestamps = sorted(uniquify(timestamps), reverse=True)
         last_timestamp = timestamps[0]
         num_days_spanned = (last_timestamp - timestamps[-1]).days
@@ -138,20 +126,4 @@ class OtherFile(Document):
         if num_days_spanned > MAX_DAYS_SPANNED_TO_BE_VALID and VAST_HOUSE not in self.text:
             self.log_top_lines(15, msg=timestamps_log_msg, level=log_level)
 
-        if configured_timestamp:
-            if configured_timestamp.date() == last_timestamp.date():
-                self.log(f"Configured and found timestamp have same date '{configured_timestamp.date()}'", logging.INFO)
-            else:
-                days_diff = (last_timestamp - configured_timestamp).days
-                msg = f'{self.url_slug}: '
-
-                if self.hints():
-                    msg += LOG_INDENT.join([f'"{hint.plain}"' for hint in self.hints()]) + LOG_INDENT
-
-                msg += f"Configured '{configured_timestamp.date()}' and last found '{last_timestamp.date()}' differ by {days_diff} days"
-                self.log(f"{msg}{LOG_INDENT}{timestamps_log_msg}\n")
-
-            return configured_timestamp
-
-        # Most recent timestamp in text should be closest to accurate bc articles etc. should only have dates of things that already happened
-        return last_timestamp
+        return last_timestamp  # Most recent timestamp appearing in text is usually the closest
