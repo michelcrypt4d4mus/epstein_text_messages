@@ -295,9 +295,10 @@ SHIMON_POST = 'The Shimon Post'
 SHIMON_POST_ARTICLE = f'{SHIMON_POST} selection of articles about the mideast'
 SINGLE_PAGE = 'single page of'
 SWEDISH_LIFE_SCIENCES_SUMMIT = f"{BARBRO_C_EHNBOM}'s Swedish American Life Science Summit"
-THE_REAL_DEAL_ARTICLE = 'The Real Deal article by Keith Larsen'
+THE_REAL_DEAL_ARTICLE = 'article by Keith Larsen'
 TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Government Ethics 2017-01-20"
-UBS_CIO_REPORT = 'UBS CIO Monthly Extended report'
+UBS = 'UBS'
+UBS_CIO_REPORT = 'CIO Monthly Extended report'
 VI_DAILY_NEWS_ARTICLE = f'{VIRGIN_ISLANDS} Daily News article'
 WAPO = 'WaPo'
 WEINBERG_ABC_LETTER = f"letter from {MARTIN_WEINBERG} to ABC / Good Morning America threatening libel lawsuit"
@@ -1441,8 +1442,8 @@ ALL_CONFIGS = [
         description=f'"The Search for Peace in the Arab-Israeli Conflict" edited by {TERJE_ROD_LARSEN}, Nur Laiq, Fabrice Aidan',
         date='2019-12-09',
     ),
-    FileCfg(id='024135', description=f'{UBS_CIO_REPORT}', date='2012-06-29'),
-    FileCfg(id='025247', description=f'{UBS_CIO_REPORT}', date='2012-10-25'),
+    FileCfg(id='024135', author=UBS, description=UBS_CIO_REPORT, date='2012-06-29'),
+    FileCfg(id='025247', author=UBS, description=UBS_CIO_REPORT, date='2012-10-25'),
     FileCfg(id='025849', description=f'US Office of Government Information Services report: "Building a Bridge Between FOIA Requesters & Agencies"'),
     FileCfg(id='020824', description=f"USA Inc: A Basic Summary of America's Financial Statements compiled by Mary Meeker", date='2011-02-01'),
     FileCfg(id='017789', description=f'{ALAN_DERSHOWITZ} letter to {HARVARD} Crimson complaining he was defamed'),
@@ -1491,12 +1492,8 @@ ALL_CONFIGS = [
     FileCfg(id='016697', description=f"{PALM_BEACH} property tax info (?) that mentions Trump"),
     FileCfg(id='016636', description=f"{PALM_BEACH_WATER_COMMITTEE} Meeting on January 29, 2009"),
     FileCfg(id='022417', description=f"Park Partners NYC letter to partners in real estate project with architectural plans"),
-    FileCfg(id='027068', description=f"{THE_REAL_DEAL_ARTICLE}", date='2018-10-11'),
-    FileCfg(
-        id='029520',
-        description=f'{THE_REAL_DEAL_ARTICLE} "Lost Paradise at the Palm House"',
-        date='2019-06-17',
-    ),
+    FileCfg(id='027068', author=THE_REAL_DEAL, description=THE_REAL_DEAL_ARTICLE, date='2018-10-11'),
+    FileCfg(id='029520', author=THE_REAL_DEAL, description=f'{THE_REAL_DEAL_ARTICLE} "Lost Paradise at the Palm House"', date='2019-06-17'),
     FileCfg(
         id='018727',
         description=f"{VIRGIN_ISLANDS} property deal pitch deck, building will be leased to the U.S. govt GSA",
