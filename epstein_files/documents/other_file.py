@@ -91,7 +91,6 @@ class OtherFile(Document):
         if self.config and self.config.timestamp:
             return self.config.timestamp
 
-        log_level = logging.DEBUG if VAST_HOUSE in self.text else logging.INFO
         timestamps: list[datetime] = []
 
         with warnings.catch_warnings():
@@ -116,14 +115,16 @@ class OtherFile(Document):
             return None
         elif len(timestamps) == 1:
             return timestamps[0]
+        else:
+            timestamps = sorted(uniquify(timestamps), reverse=True)
+            self._log_extracted_timestamps_info(timestamps)
+            return timestamps[0]  # Most recent timestamp appearing in text is usually the closest
 
-        timestamps = sorted(uniquify(timestamps), reverse=True)
-        last_timestamp = timestamps[0]
-        num_days_spanned = (last_timestamp - timestamps[-1]).days
+    def _log_extracted_timestamps_info(self, timestamps: list[datetime]) -> None:
+        num_days_spanned = (timestamps[0] - timestamps[-1]).days
         timestamps_log_msg = f"Extracted {len(timestamps)} timestamps spanning {num_days_spanned} days{TIMESTAMP_LOG_INDENT}"
         timestamps_log_msg += TIMESTAMP_LOG_INDENT.join([str(dt) for dt in timestamps])
 
         if num_days_spanned > MAX_DAYS_SPANNED_TO_BE_VALID and VAST_HOUSE not in self.text:
+            log_level = logging.DEBUG if VAST_HOUSE in self.text else logging.INFO
             self.log_top_lines(15, msg=timestamps_log_msg, level=log_level)
-
-        return last_timestamp  # Most recent timestamp appearing in text is usually the closest
