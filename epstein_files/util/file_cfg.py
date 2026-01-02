@@ -111,7 +111,7 @@ class FileCfg:
             this_val = getattr(self, _field.name)
             other_val = getattr(other, _field.name)
 
-            if _field.name == 'id' or _field.name.startswith('dup'):
+            if _field.name == 'id' or _field.name.startswith('dupe'):
                 continue
             elif this_val != other_val:
                 return False
