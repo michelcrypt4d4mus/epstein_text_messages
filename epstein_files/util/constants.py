@@ -271,7 +271,7 @@ FIRE_AND_FURY = f'"Fire And Fury" by {MICHAEL_WOLFF} 2018-01-05'
 GOLDMAN_REPORT = f'{GOLDMAN_SACHS} Investment Management Division report'
 HARVARD_POETRY = f'{HARVARD} poetry stuff from {LISA_NEW}'
 HBS_APPLICATION_NERIO = f"{HARVARD} Business School application letter from Nerio Alessandri (Founder and Chairman Technogym SPA Italy)"
-INSIGHTS_POD = f"{ZUBAIR_KHAN} and Anya Rasulova's InsightsPod"
+INSIGHTS_POD = f"InsightsPod"
 JASTA = 'JASTA'
 JASTA_SAUDI_LAWSUIT = f"{JASTA} lawsuit against Saudi Arabia by 9/11 victims"
 JOHN_BOLTON_PRESS_CLIPPING = 'John Bolton press clipping'
@@ -303,93 +303,11 @@ VI_DAILY_NEWS_ARTICLE = f'{VIRGIN_ISLANDS} Daily News article'
 WAPO = 'WaPo'
 WEINBERG_ABC_LETTER = f"letter from {MARTIN_WEINBERG} to ABC / Good Morning America threatening libel lawsuit"
 WOMEN_EMPOWERMENT = f"Women Empowerment (WE) conference run by {SVETLANA_POZHIDAEVA}"
+ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
 
 # Atribution reasons
 BOLOTOVA_REASON = 'Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")'
 PAULA_REASON = 'Signature of "Sent via BlackBerry from T-Mobile"'
-
-UNINTERESTING_PREFIXES = [
-    'article about',
-    ARTICLE_DRAFT,
-    'Aviation International',
-    BBC,
-    BLOOMBERG,
-    BOFA,
-    BOFA_MERRILL,
-    BOOK,
-    'Boston Globe',
-    'Brockman',
-    CHALLENGES_OF_AI,
-    CHINA_DAILY_ARTICLE,
-    CNN,
-    'completely redacted',
-    CVRA,
-    DAILY_MAIL_ARTICLE,
-    DAILY_TELEGRAPH_ARTICLE,
-    DAVID_SCHOEN_CVRA_LEXIS_SEARCH[0:-12],  # Because date at end :(
-    DEEP_THINKING_HINT,
-    DERSH_GIUFFRE_TWEET,
-    DEUTSCHE_BANK,
-    'Forbes',
-    'fragment',
-    'Frontlines',
-    'Future Science',
-    'Globe and Mail',
-    GOLDMAN_REPORT,
-    GORDON_GETTY,
-    f"{HARVARD} Econ",
-    HARVARD_POETRY,
-    'Inference',
-    'Invesco',
-    JAMES_PATTERSON,
-    JASTA,
-    'JetGala',
-    JOHN_BOLTON_PRESS_CLIPPING,
-    'Journal of Criminal',
-    JP_MORGAN,
-    LA_TIMES,
-    'Litigation Daily',
-    'MarketWatch',
-    MEME,
-    'Morgan Stanley',
-    NOBEL_CHARITABLE_TRUST,
-    'Nautilus',
-    'New Yorker',
-    NIGHT_FLIGHT_HINT,
-    NYT_ARTICLE,
-    NYT_COLUMN,
-    OBAMA_JOKE,
-    PALM_BEACH_CODE_ENFORCEMENT,
-    PALM_BEACH_DAILY_ARTICLE,
-    PALM_BEACH_POST_ARTICLE,
-    PALM_BEACH_TSV,
-    PALM_BEACH_WATER_COMMITTEE,
-    PAUL_KRASSNER,
-    PEGGY_SIEGAL,
-    'Politifact',
-    'Rafanelli',
-    REDACTED,
-    ROBERT_LAWRENCE_KUHN,
-    ROBERT_TRIVERS,
-    'S&P',
-    'SciencExpress',
-    'Scowcroft',
-    SHIMON_POST_ARTICLE,
-    SINGLE_PAGE,
-    STACEY_PLASKETT,
-    TEXT_OF_US_LAW,
-    TRANSLATION,
-    TWEET,
-    THE_REAL_DEAL_ARTICLE,
-    TRUMP_DISCLOSURES,
-    UBS_CIO_REPORT,
-    'U.S. News',
-    'US Office',
-    'USA Inc',
-    'Vanity Fair',
-    VI_DAILY_NEWS_ARTICLE,
-    WAPO,
-]
 
 
 # List containing anything manually configured about any of the files.
@@ -933,11 +851,7 @@ ALL_CONFIGS = [
     FileCfg(id='012747', description=f'{BOOK} "Evilicious: Explaining Our Taste For Excessive Harm" by Marc D. Hauser'),
     FileCfg(id='019874', description=f'{BOOK} {FIRE_AND_FURY}', date='2018-01-05'),
     FileCfg(id='032724', description=f'{BOOK} cover of {FIRE_AND_FURY}', date='2018-01-05'),
-    FileCfg(
-        id='010912',
-        description=f'{BOOK} "Free Growth and Other Surprises" by Gordon Getty (draft)',
-        date='2018-10-18',
-    ),
+    FileCfg(id='010912', description=f'{BOOK} "Free Growth and Other Surprises" by Gordon Getty (draft)', date='2018-10-18'),
     FileCfg(
         id='021247',
         description=f'{BOOK} "Invisible Forces And Powerful Beliefs: Gravity, Gods, And Minds" by The Chicago Social Brain Network',
@@ -968,12 +882,13 @@ ALL_CONFIGS = [
     FileCfg(id='022058', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
     FileCfg(id='022118', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
     FileCfg(id='019111', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
+
+    # articles
     FileCfg(
         id='030199',
         description=f'article about allegations Trump raped a 13 year old girl {JANE_DOE_V_EPSTEIN_TRUMP}',
         date='2017-11-16',
     ),
-    # articles
     FileCfg(id='031725', description=f"article about Gloria Allred and Trump allegations", date='2016-10-10'),
     FileCfg(id='031198', description=f"article about identify of Jane Doe in {JANE_DOE_V_EPSTEIN_TRUMP}"),
     FileCfg(id='012704', description=f"article about {JANE_DOE_V_USA} and {CVRA}", date='2011-04-21'),
@@ -1136,20 +1051,18 @@ ALL_CONFIGS = [
     FileCfg(id='016506', description=f"{VI_DAILY_NEWS_ARTICLE}", date='2019-02-28'),
     FileCfg(id='016507', description=f"{VI_DAILY_NEWS_ARTICLE} 'Perversion of Justice' by {JULIE_K_BROWN}", date='2018-12-19'),
     FileCfg(id='019212', description=f'{WAPO} and Times Tribune articles about Bannon, Trump, and healthcare execs'),
-    FileCfg(
-        id='033379',
-        description=f'{WAPO} "How Washington Pivoted From Finger-Wagging to Appeasement" about Viktor Orban',
-        date='2018-05-25',
-    ),
+    FileCfg(id='033379', author=WAPO, description=f'How Washington Pivoted From Finger-Wagging to Appeasement (about Viktor Orban)', date='2018-05-25'),
     FileCfg(
         id='031396',
-        description=f"{WAPO} 'DOJ discipline office with limited reach to probe handling of controversial sex abuse case'",
+        author=WAPO,
+        description=f"DOJ discipline office with limited reach to probe handling of controversial sex abuse case",
         date='2019-02-06',
         duplicate_ids=['031415'],
     ),
     FileCfg(id='019206', description=f"WSJ article about Edward Snowden by {EDWARD_JAY_EPSTEIN}", date='2016-12-30'),
-    FileCfg(id='017603', description=DAVID_SCHOEN_CVRA_LEXIS_SEARCH, date='2019-02-28'),
+
     # court docs
+    FileCfg(id='017603', description=DAVID_SCHOEN_CVRA_LEXIS_SEARCH, date='2019-02-28'),
     FileCfg(id='017635', description=DAVID_SCHOEN_CVRA_LEXIS_SEARCH, date='2019-02-28'),
     FileCfg(id='016509', description=DAVID_SCHOEN_CVRA_LEXIS_SEARCH, date='2019-02-28'),
     FileCfg(id='017714', description=DAVID_SCHOEN_CVRA_LEXIS_SEARCH, date='2019-02-28'),
@@ -1294,11 +1207,7 @@ ALL_CONFIGS = [
         description=f"{JANE_DOE_V_USA} Jane Doe Response to Dershowitz's Motion for Limited Intervention",
         date='2015-03-24',
     ),
-    FileCfg(
-        id='023361',
-        description=f"{JASTA_SAUDI_LAWSUIT} legal text and court documents",
-        date='2012-01-20',
-    ),
+    FileCfg(id='023361', description=f"{JASTA_SAUDI_LAWSUIT} legal text and court documents", date='2012-01-20'),
     FileCfg(id='017830', description=f"{JASTA_SAUDI_LAWSUIT} legal text and court documents"),
     FileCfg(id='017904', description=f"{JASTA_SAUDI_LAWSUIT} Westlaw search results", date='2019-01-01'),
     FileCfg(id='011908', description=f"{JEAN_LUC_BRUNEL} v. {JEFFREY_EPSTEIN} and Tyler McDonald d/b/a YI.org court filing"),
@@ -1326,12 +1235,13 @@ ALL_CONFIGS = [
     FileCfg(id='028540', description=f"SCOTUS decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP"),
     FileCfg(id='012197', description=f"SDFL Response to {JAY_LEFKOWITZ} on Epstein Plea Agreement Compliance"),
     FileCfg(id='022277', description=f"{TEXT_OF_US_LAW} National Labour Relations Board (NLRB)"),
-    FileCfg(id='030769', description=f"2017 Independent Filmmaker Project (IFP) Gotham Awards invitation"),
+
     # conferences
+    FileCfg(id='030769', description=f"2017 Independent Filmmaker Project (IFP) Gotham Awards invitation"),
     FileCfg(id='014951', description=f"2017 TED Talks program", date='2017-04-20'),
     FileCfg(id='023069', description=f'{BOFA_MERRILL} 2016 Future of Financials Conference'),
     FileCfg(id='014315', description=f'{BOFA_MERRILL} 2016 Future of Financials Conference'),
-    FileCfg(id='026825', description=f"Deutsche Asset & Wealth Management featured speaker bios"),
+    FileCfg(id='026825', description=f"{DEUTSCHE_BANK} Asset & Wealth Management featured speaker bios"),  # Really "Deutsche Asset" which may not be Deutsche Bank?
     FileCfg(id='017526', description=f'Intellectual Jazz conference brochure f. {DAVID_BLAINE}'),
     FileCfg(id='023120', description=f"{LAWRENCE_KRAUSS} 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more (old draft)"),
     FileCfg(id='023123', description=f"{LAWRENCE_KRAUSS} 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more", duplicate_ids=['023121'], dupe_type='earlier'),
@@ -1412,16 +1322,8 @@ ALL_CONFIGS = [
     FileCfg(id='024132', description=JP_MORGAN_EYE_ON_THE_MARKET, date='2012-03-15'),
     FileCfg(id='024194', description=JP_MORGAN_EYE_ON_THE_MARKET, date='2012-10-22'),
     FileCfg(id='025296', description=f'Laffer Associates report predicting Trump win', date='2016-07-06'),
-    FileCfg(
-        id='025551',
-        description=f'Morgan Stanley report about alternative asset managers',
-        date='2018-01-30',
-    ),
-    FileCfg(
-        id='026759',
-        description=f'{PRESS_RELEASE} by Ritz-Carlton club about damage from Hurricane Irma',
-        date='2017-09-13',
-    ),
+    FileCfg(id='025551', description=f'Morgan Stanley report about alternative asset managers', date='2018-01-30'),
+    FileCfg(id='026759', description=f'{PRESS_RELEASE} by Ritz-Carlton club about damage from Hurricane Irma', date='2017-09-13'),
     FileCfg(
         id='033338',
         description=f"{PRESS_RELEASE} announcing Donald Trump & {NICHOLAS_RIBIS} ended their working relationship at Trump's casino",
@@ -1443,8 +1345,9 @@ ALL_CONFIGS = [
     FileCfg(id='025247', author=UBS, description=UBS_CIO_REPORT, date='2012-10-25'),
     FileCfg(id='025849', description=f"US Office of Government Information Services report: 'Building a Bridge Between FOIA Requesters & Agencies'"),
     FileCfg(id='020824', description=f"USA Inc: A Basic Summary of America's Financial Statements compiled by Mary Meeker", date='2011-02-01'),
-    FileCfg(id='017789', description=f'{ALAN_DERSHOWITZ} letter to {HARVARD} Crimson complaining he was defamed'),
+
     # letters
+    FileCfg(id='017789', author=ALAN_DERSHOWITZ, description=f'letter to {HARVARD} Crimson complaining he was defamed'),
     FileCfg(
         id='019086',
         author=DAVID_BLAINE,
@@ -1469,20 +1372,18 @@ ALL_CONFIGS = [
         description=f"letter from Gennady Mashtalyar to Epstein about algorithmic trading",  # date is based on Brexit reference but he could be backtesting,
         date='2016-06-24',
     ),
-    FileCfg(
-        id='029301',
-        description=f"letter from {MICHAEL_J_BOCCIO}, former lawyer at the Trump Organization",
-        date='2011-08-07',
-    ),
-    FileCfg(id='022405', description=f"letter from {NOAM_CHOMSKY} attesting to Epstein's good character"),
+    FileCfg(id='029301', author=MICHAEL_J_BOCCIO, description=f"letter from former lawyer at the Trump Organization", date='2011-08-07'),
+    FileCfg(id='022405', author=NOAM_CHOMSKY, description=f"letter attesting to Epstein's good character"),
     FileCfg(id='026248', description=f'letter from Trump lawyer Don McGahn to Devin Nunes (R-CA) about FISA courts and Trump'),
     FileCfg(id='026134', description=f'letter to someone named George about investment opportunities in the Ukraine banking sector'),
     FileCfg(id='029304', description=f"Trump recommendation letter for recently departed Trump Organization lawyer {MICHAEL_J_BOCCIO}"),
     FileCfg(id='026668', description=f"Boothbay Fund Management 2016-Q4 earnings report signed by Ari Glass"),
+
     # private placement memoranda
     FileCfg(id='024432', description=f"Michael Milken's Knowledge Universe Education (KUE) $1,000,000 corporate share placement notice (SEC filing?)"),
     FileCfg(id='024003', description=f"New Leaf Ventures private placement memorandum"),
     FileCfg(id='018804', description=f"appraisal of going concern for IGY American Yacht Harbor Marina in {VIRGIN_ISLANDS}"),
+
     # property
     FileCfg(id='018743', description=f"Las Vegas property listing"),
     FileCfg(id='016597', description=f'letter from Trump Properties LLC appealing some decision about Mar-a-Lago by {PALM_BEACH} authorities'),
@@ -1499,17 +1400,20 @@ ALL_CONFIGS = [
         description=f"{VIRGIN_ISLANDS} property deal pitch deck, building will be leased to the U.S. govt GSA",
         date='2014-06-01',
     ),
-    FileCfg(id='016599', description=f"{PALM_BEACH_TSV} consumption (water?)"),
+
     # TSV files
+    FileCfg(id='016599', description=f"{PALM_BEACH_TSV} consumption (water?)"),
     FileCfg(id='016600', description=f"{PALM_BEACH_TSV} consumption (water?)"),
     FileCfg(id='016601', description=f"{PALM_BEACH_TSV} consumption (water?)"),
     FileCfg(id='016694', description=f"{PALM_BEACH_TSV} consumption (water?)"),
     FileCfg(id='016552', description=f"{PALM_BEACH_TSV} info"),
     FileCfg(id='016698', description=f"{PALM_BEACH_TSV} info (broken?)"),
     FileCfg(id='016696', description=f"{PALM_BEACH_TSV} info (water quality?"),
-    FileCfg(id='026582', description=f"{REPUTATION_MGMT} Epstein's internet search results at start of reputation repair campaign, maybe from {OSBORNE_LLP}"),
+
     # reputation management
+    FileCfg(id='026582', description=f"{REPUTATION_MGMT} Epstein's internet search results at start of reputation repair campaign, maybe from {OSBORNE_LLP}"),
     FileCfg(id='030573', description=f"{REPUTATION_MGMT} Epstein's unflattering Google search results, maybe screenshot by {AL_SECKEL} or {OSBORNE_LLP}"),
+    FileCfg(id='030875', description=f"{REPUTATION_MGMT} Epstein's Wikipedia page"),
     FileCfg(id='026583', description=f"{REPUTATION_MGMT} Google search results for '{JEFFREY_EPSTEIN}' with analysis ({OSBORNE_LLP}?)"),
     FileCfg(id='029350', description=f"{REPUTATION_MGMT} Microsoft Bing search results for Epstein with sex offender at top, maybe from {TYLER_SHEARS}?"),
     FileCfg(
@@ -1517,10 +1421,10 @@ ALL_CONFIGS = [
         description=f'{REPUTATION_MGMT} {OSBORNE_LLP} reputation repair proposal (cites Michael Milken)',
         date='2011-06-14',
     ),
-    FileCfg(id='030875', description=f"{REPUTATION_MGMT} {SCREENSHOT} Epstein's Wikipedia page"),
-    FileCfg(id='031743', description=f'a few pages describing the internet as a "New Nation State" (Network State?)'),
+
     # misc
-    FileCfg(id='018703', description=f"{ANDRES_SERRANO} artist statement about Trump objects"),
+    FileCfg(id='018703', author=ANDRES_SERRANO, description=f"artist statement about Trump objects"),
+    FileCfg(id='031743', description=f'a few pages describing the internet as a "New Nation State" (Network State?)'),
     FileCfg(id='028281', description=f'art show flier for "The House Of The Nobleman" curated by Wolfe Von Lenkiewicz & Victoria Golembiovskaya'),
     FileCfg(id='023438', description=f"Brockman announcemeent of auction of 'Noise' by Daniel Kahneman, Olivier Sibony, and Cass Sunstein"),
     FileCfg(
@@ -1547,11 +1451,7 @@ ALL_CONFIGS = [
     FileCfg(id='026678', description=f"fragment of image metadata {QUESTION_MARKS}", date='2017-06-29'),
     FileCfg(id='022986', description=f"fragment of a screenshot {QUESTION_MARKS}"),
     FileCfg(id='026521', description=f"game theory paper by {MARTIN_NOWAK}, Erez Yoeli, and Moshe Hoffman"),
-    FileCfg(
-        id='032735',
-        description=f"{GORDON_GETTY} on Trump",  # Dated based on concurrent emails from Getty,
-        date='2018-03-20',
-    ),
+    FileCfg(id='032735', description=f"{GORDON_GETTY} on Trump", date='2018-03-20'),  # Dated based on concurrent emails from Getty
     FileCfg(id='019396', description=f'{HARVARD} Economics 1545 Professor Kenneth Rogoff syllabus'),
     FileCfg(id='023416', description=HARVARD_POETRY,),
     FileCfg(id='023435', description=HARVARD_POETRY,),
@@ -1565,25 +1465,13 @@ ALL_CONFIGS = [
     FileCfg(id='029592', description=HARVARD_POETRY,),
     FileCfg(id='029102', description=HBS_APPLICATION_NERIO,),
     FileCfg(id='029104', description=HBS_APPLICATION_NERIO,),
-    FileCfg(
-        id='022445',
-        description=f"Inference: International Review of Science Feedback & Comments",
-        date='2018-11-01',
-    ),
-    FileCfg(id='028815', description=f"{INSIGHTS_POD} business plan", date='2016-08-20'),
-    FileCfg(
-        id='011170',
-        description=f'{INSIGHTS_POD} collected tweets about #Brexit',
-        date='2016-06-23',
-    ),
-    FileCfg(
-        id='032324',
-        description=f"{INSIGHTS_POD} election social media trend analysis",
-        date='2016-11-05',
-    ),
-    FileCfg(id='032281', description=f"{INSIGHTS_POD} forecasting election for Trump", date='2016-10-25'),
-    FileCfg(id='028988', description=f"{INSIGHTS_POD} pitch deck", date='2016-08-20'),
-    FileCfg(id='026627', description=f"{INSIGHTS_POD} report on the presidential debate"),
+    FileCfg(id='022445', description=f"Inference: International Review of Science Feedback & Comments", date='2018-11-01'),
+    FileCfg(id='028815', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} business plan", date='2016-08-20'),
+    FileCfg(id='011170', author=ZUBAIR_AND_ANYA, description=f'{INSIGHTS_POD} collected tweets about #Brexit', date='2016-06-23'),
+    FileCfg(id='032324', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} election social media trend analysis", date='2016-11-05'),
+    FileCfg(id='032281', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} forecasting election for Trump", date='2016-10-25'),
+    FileCfg(id='028988', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} pitch deck", date='2016-08-20'),
+    FileCfg(id='026627', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} report on the presidential debate"),
     FileCfg(
         id='030142',
         description=f"{JASTA} (Justice Against Sponsors of Terrorism Act) doc that's mostly empty, references suit against Saudi f. {KATHRYN_RUEMMLER} & {KEN_STARR}",
@@ -1603,16 +1491,8 @@ ALL_CONFIGS = [
         description=f"{RESUME_OF} {MICHAEL_J_BOCCIO}, former lawyer at the Trump Organization",
         date='2011-08-07',
     ),
-    FileCfg(
-        id='015671',
-        description=f"{RESUME_OF} Robin Solomon",  # She left Mount Sinai at some point in 2015,
-        date='2015-06-02',
-    ),
-    FileCfg(
-        id='015672',
-        description=f"{RESUME_OF} Robin Solomon",  # She left Mount Sinai at some point in 2015,
-        date='2015-06-02',
-    ),
+    FileCfg(id='015671', description=f"{RESUME_OF} Robin Solomon", date='2015-06-02'),  # She left Mount Sinai at some point in 2015,
+    FileCfg(id='015672', description=f"{RESUME_OF} Robin Solomon", date='2015-06-02'),  # She left Mount Sinai at some point in 2015,
     FileCfg(id='019448', description=f"Haitian business investment proposal called Jacmel"),
     FileCfg(id='029328', description=f"Rafanelli Events promotional deck"),
     FileCfg(id='029155', description=f'response sent to the Gruterites ({GORDON_GETTY} fans) by {ROBERT_TRIVERS}', date='2018-03-19'),
@@ -1643,6 +1523,91 @@ for cfg in ALL_CONFIGS:
         ALL_FILE_CONFIGS[dupe_cfg.id] = dupe_cfg
 
 EMAIL_CONFIGS = {id: cfg for id, cfg in ALL_FILE_CONFIGS.items() if isinstance(cfg, MessageCfg)}
+
+
+# OtherFiles whose description/hints match these prefixes are not displayed unless --all-other-files is used
+UNINTERESTING_PREFIXES = [
+    'article about',
+    ARTICLE_DRAFT,
+    'Aviation International',
+    BBC,
+    BLOOMBERG,
+    BOFA,
+    BOFA_MERRILL,
+    BOOK,
+    'Boston Globe',
+    'Brockman',
+    CHALLENGES_OF_AI,
+    CHINA_DAILY_ARTICLE,
+    CNN,
+    'completely redacted',
+    CVRA,
+    DAILY_MAIL_ARTICLE,
+    DAILY_TELEGRAPH_ARTICLE,
+    DAVID_SCHOEN_CVRA_LEXIS_SEARCH[0:-12],  # Because date at end :(
+    DEEP_THINKING_HINT,
+    DERSH_GIUFFRE_TWEET,
+    DEUTSCHE_BANK,
+    'Forbes',
+    'fragment',
+    'Frontlines',
+    'Future Science',
+    'Globe and Mail',
+    GOLDMAN_REPORT,
+    GORDON_GETTY,
+    f"{HARVARD} Econ",
+    HARVARD_POETRY,
+    'Inference',
+    'Invesco',
+    JAMES_PATTERSON,
+    JASTA,
+    'JetGala',
+    JOHN_BOLTON_PRESS_CLIPPING,
+    'Journal of Criminal',
+    JP_MORGAN,
+    LA_TIMES,
+    'Litigation Daily',
+    'MarketWatch',
+    MEME,
+    'Morgan Stanley',
+    NOBEL_CHARITABLE_TRUST,
+    'Nautilus',
+    'New Yorker',
+    NIGHT_FLIGHT_HINT,
+    NYT_ARTICLE,
+    NYT_COLUMN,
+    OBAMA_JOKE,
+    PALM_BEACH_CODE_ENFORCEMENT,
+    PALM_BEACH_DAILY_ARTICLE,
+    PALM_BEACH_POST_ARTICLE,
+    PALM_BEACH_TSV,
+    PALM_BEACH_WATER_COMMITTEE,
+    PAUL_KRASSNER,
+    PEGGY_SIEGAL,
+    'Politifact',
+    'Rafanelli',
+    REDACTED,
+    ROBERT_LAWRENCE_KUHN,
+    ROBERT_TRIVERS,
+    'S&P',
+    'SciencExpress',
+    'Scowcroft',
+    SHIMON_POST_ARTICLE,
+    SINGLE_PAGE,
+    STACEY_PLASKETT,
+    TEXT_OF_US_LAW,
+    TRANSLATION,
+    TWEET,
+    THE_REAL_DEAL_ARTICLE,
+    TRUMP_DISCLOSURES,
+    UBS_CIO_REPORT,
+    'U.S. News',
+    'US Office',
+    'USA Inc',
+    'Vanity Fair',
+    VI_DAILY_NEWS_ARTICLE,
+    WAPO,
+]
 
 
 # Error checking.
