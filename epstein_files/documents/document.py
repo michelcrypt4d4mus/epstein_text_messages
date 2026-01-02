@@ -242,19 +242,6 @@ class Document:
     def top_lines(self, n: int = 10) -> str:
         return '\n'.join(self.lines[0:n])
 
-    def write_clean_text(self, output_path: Path) -> None:
-        """Write self.text to 'output_path'."""
-        if output_path.exists():
-            if str(output_path.name).startswith(HOUSE_OVERSIGHT_PREFIX):
-                raise RuntimeError(f"'{output_path}' already exists! Not overwriting.")
-            else:
-                logger.warning(f"Overwriting '{output_path}'...")
-
-        with open(output_path, 'w') as f:
-            f.write(self.text)
-
-        logger.warning(f"Wrote {self.length} chars of cleaned {self.filename} to {output_path}.")
-
     def _border_style(self) -> str:
         """Should be overloaded in subclasses."""
         return 'white'
@@ -295,6 +282,19 @@ class Document:
         self.lines = [line.strip() for line in self.text.split('\n')]
         self.num_lines = len(self.lines)
 
+    def _write_clean_text(self, output_path: Path) -> None:
+        """Write self.text to 'output_path'. Used only for diffing files."""
+        if output_path.exists():
+            if str(output_path.name).startswith(HOUSE_OVERSIGHT_PREFIX):
+                raise RuntimeError(f"'{output_path}' already exists! Not overwriting.")
+            else:
+                logger.warning(f"Overwriting '{output_path}'...")
+
+        with open(output_path, 'w') as f:
+            f.write(self.text)
+
+        logger.warning(f"Wrote {self.length} chars of cleaned {self.filename} to {output_path}.")
+
     def __rich_console__(self, _console: Console, _options: ConsoleOptions) -> RenderResult:
         yield self.file_info_panel()
         text_panel = Panel(highlighter(self.text), border_style=self._border_style(), expand=False)
@@ -316,7 +316,7 @@ class Document:
         docs = [Document(DOCS_DIR.joinpath(f)) for f in files]
 
         for i, doc in enumerate(docs):
-            doc.write_clean_text(tmpfiles[i])
+            doc._write_clean_text(tmpfiles[i])
 
         cmd = f"diff {tmpfiles[0]} {tmpfiles[1]}"
         console.print(f"Running '{cmd}'...")
