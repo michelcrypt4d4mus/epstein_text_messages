@@ -141,7 +141,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     ROBERT_TRIVERS: re.compile(r'tri[vy]ersr@gmail|Robert\s*Trivers?', re.IGNORECASE),
     ROSS_GOW: re.compile(fr"{ROSS_GOW}|ross@acuityreputation.com", re.IGNORECASE),
     SAMUEL_LEFF: re.compile(r"Sam(uel)?(/Walli)? Leff", re.IGNORECASE),
-    SCARAMUCCI: re.compile(r"mooch|(Anthony ('The Mooch' )?)?Scaramucci", re.IGNORECASE),
+    ANTHONY_SCARAMUCCI: re.compile(r"mooch|(Anthony ('The Mooch' )?)?Scaramucci", re.IGNORECASE),
     SCOTT_J_LINK: re.compile(r'scott j. link?', re.IGNORECASE),
     SEAN_BANNON: re.compile(r'sean bannon?', re.IGNORECASE),
     SHAHER_ABDULHAK_BESHER: re.compile(r'\bShaher( Abdulhak Besher)?\b', re.IGNORECASE),
@@ -304,14 +304,12 @@ LARRY_REASON = 'Planes discussion signed "Larry"'
 PAULA_REASON = 'Signature of "Sent via BlackBerry from T-Mobile"'
 
 
-# List containing anything manually configured about any of the files.
-ALL_CONFIGS = [
+################################################################################################
+############################################ TEXTS #############################################
+################################################################################################
 
-    ################################################################################################
-    ############################################ TEXTS #############################################
-    ################################################################################################
-
-    ### Confirmed text attributions ###
+TEXTS_CONFIG = [
+    # Confirmed text attributions
     MessageCfg(id='031042', author=ANIL_AMBANI, attribution_reason='Participants: field'),
     MessageCfg(id='027225', author=ANIL_AMBANI, attribution_reason='Birthday mentioned and confirmed as Ambani\'s'),
     MessageCfg(id='031173', author=ARDA_BESKARDES, attribution_reason='Participants: field'),
@@ -322,7 +320,7 @@ ALL_CONFIGS = [
     MessageCfg(id='027165', author=MELANIE_WALKER, attribution_reason='https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/'),
     MessageCfg(id='027248', author=MELANIE_WALKER, attribution_reason='Says "we met through trump" which is confirmed by Melanie in 032803'),
     MessageCfg(id='025429', author=STACEY_PLASKETT),
-    MessageCfg(id='027333', author=SCARAMUCCI, attribution_reason='unredacted phone number in one of the messages belongs to Scaramucci'),
+    MessageCfg(id='027333', author=ANTHONY_SCARAMUCCI, attribution_reason='unredacted phone number in one of the messages belongs to Scaramucci'),
     MessageCfg(id='027128', author=SOON_YI_PREVIN, attribution_reason='https://x.com/ImDrinknWyn/status/1990227281101434923'),
     MessageCfg(id='027217', author=SOON_YI_PREVIN, attribution_reason='refs marriage to woody allen'),
     MessageCfg(id='027244', author=SOON_YI_PREVIN, attribution_reason='refs Woody'),
@@ -331,7 +329,7 @@ ALL_CONFIGS = [
     MessageCfg(id='027307', author=STEVE_BANNON),
     MessageCfg(id='027278', author=TERJE_ROD_LARSEN),
     MessageCfg(id='027255', author=TERJE_ROD_LARSEN),
-    ### Uncertain text attributions ###
+    # Uncertain text attributions
     MessageCfg(id='027762', author=ANDRZEJ_DUDA, is_attribution_uncertain=True),
     MessageCfg(id='027774', author=ANDRZEJ_DUDA, is_attribution_uncertain=True),
     MessageCfg(id='027221', author=ANIL_AMBANI, is_attribution_uncertain=True),
@@ -344,8 +342,8 @@ ALL_CONFIGS = [
     MessageCfg(id='027214', author=MELANIE_WALKER, is_attribution_uncertain=True),
     MessageCfg(id='027148', author=MELANIE_WALKER, is_attribution_uncertain=True),
     MessageCfg(id='027440', author=MICHAEL_WOLFF, is_attribution_uncertain=True, attribution_reason='AI says Trump book/journalism project'),
-    MessageCfg(id='027396', author=SCARAMUCCI, is_attribution_uncertain=True),
-    MessageCfg(id='031054', author=SCARAMUCCI, is_attribution_uncertain=True),
+    MessageCfg(id='027396', author=ANTHONY_SCARAMUCCI, is_attribution_uncertain=True),
+    MessageCfg(id='031054', author=ANTHONY_SCARAMUCCI, is_attribution_uncertain=True),
     MessageCfg(id='025363', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='Trump and New York Times coverage'),
     MessageCfg(id='025368', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='Trump and New York Times coverage'),
     MessageCfg(id='027585', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='Tokyo trip'),
@@ -379,12 +377,14 @@ ALL_CONFIGS = [
     MessageCfg(id='027794', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
     MessageCfg(id='029744', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
     MessageCfg(id='031045', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
+]
 
 
-    ############################################################################################################
-    ################################################ EMAIL_INFO ################################################
-    ############################################################################################################
+############################################################################################################
+################################################ EMAIL_INFO ################################################
+############################################################################################################
 
+EMAILS_CONFIG = [
     MessageCfg(id='032436', author=ALIREZA_ITTIHADIEH, attribution_reason='Signature'),
     MessageCfg(id='032543', author=ANAS_ALRASHEED, attribution_reason='Later reply 033000 has quote'),
     MessageCfg(id='026064', author=ARIANE_DE_ROTHSCHILD),
@@ -808,12 +808,14 @@ ALL_CONFIGS = [
     MessageCfg(id='029752', duplicate_ids=['023550']),
     MessageCfg(id='030339', duplicate_ids=['030592']),
     MessageCfg(id='032250', duplicate_ids=['033589']),
+]
 
 
-    ################################################################################################
-    ####################################### OTHER FILES ############################################
-    ################################################################################################
+################################################################################################
+####################################### OTHER FILES ############################################
+################################################################################################
 
+OTHER_FILES_CONFIG = [
     # books
     FileCfg(id='015032', description=f"{BOOK} '60 Years of Investigative Satire: The Best of {PAUL_KRASSNER}'"),
     FileCfg(id='015675', description=f'{BOOK} "Are the Androids Dreaming Yet? Amazing Brain Human Communication, Creativity & Free Will" by James Tagg'),
@@ -862,10 +864,8 @@ ALL_CONFIGS = [
     FileCfg(id='013437', author=DAILY_TELEGRAPH, description=f"article about Epstein's diary", date='2011-03-05'),
     FileCfg(id='023287', author=DAILY_TELEGRAPH, description=f"article about a play based on the Oslo Accords", date='2017-09-15'),
     FileCfg(id='019206', author=EDWARD_JAY_EPSTEIN, description=f"WSJ article about Edward Snowden", date='2016-12-30'),
-    FileCfg(id='029539', author=LA_TIMES, description=f"Alan Trounson interview on California stem cell research and CIRM"),
     FileCfg(id='029865', author=LA_TIMES, description=f"front page article about {DEEPAK_CHOPRA} and young Iranians", date='2016-11-05'),
     FileCfg(id='026598', author=LA_TIMES, description=f"op-ed about why America needs a Ministry of Culture"),
-    FileCfg(id='027024', author=LA_TIMES, description=f"'Scientists Create Human Embryos to Make Stem Cells'", date='2013-05-15'),
     FileCfg(id='022707', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
     FileCfg(id='022727', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
     FileCfg(id='022746', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
@@ -874,14 +874,12 @@ ALL_CONFIGS = [
     FileCfg(id='022894', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
     FileCfg(id='022952', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
     FileCfg(id='024229', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
-    FileCfg(id='024256', author=JOI_ITO, description=f"article 'Internet & Society: The Technologies and Politics of Control'"),
-    FileCfg(id='027004', author=JOSCHA_BACH, description=f"article 'The Computational Structure of Mental Representation'", date='2013-02-26'),
     FileCfg(id='031753', author=PAUL_KRASSNER, description=f'essay for Playboy in the 1980s', date='1985-01-01'),
     FileCfg(id='023638', author=PAUL_KRASSNER, description=f'magazine interview'),
     FileCfg(id='024374', author=PAUL_KRASSNER, description=f"'Remembering Cavalier Magazine'"),
     FileCfg(id='030187', author=PAUL_KRASSNER, description=f'"Remembering Lenny Bruce While We\'re Thinking About Trump" (draft?)'),
     FileCfg(id='019088', author=PAUL_KRASSNER, description=f'"Are Rape Jokes Funny? (draft)', date='2012-07-28'),
-    FileCfg(id='012740', author=PEGGY_SIEGAL, description=f"article about Venice Film Festival", date='2011-09-06'),
+    FileCfg(id='012740', author=PEGGY_SIEGAL, description=f"article about Venice Film Festival"),
     FileCfg(id='013442', author=PEGGY_SIEGAL, description=f"draft about Oscars", date='2011-02-27'),
     FileCfg(id='012700', author=PEGGY_SIEGAL, description=f"film events diary", date='2011-02-27'),
     FileCfg(id='012690', author=PEGGY_SIEGAL, description=f"film events diary early draft of 012700", date='2011-02-27'),
@@ -917,7 +915,6 @@ ALL_CONFIGS = [
     FileCfg(id='031776', description=f"article about Michael Avenatti by Andrew Strickler"),
     FileCfg(id='032159', description=f"article about microfinance and cell phones in Zimbabwe, Strive Masiyiwa (Econet Wireless)"),
     FileCfg(id='026584', description=f"article about tax implications of 'disregarded entities'", date='2009-07-01'),
-    FileCfg(id='015501', description=f"article by {MOSHE_HOFFMAN}, Erez Yoeli, and Carlos David Navarrete: 'Game Theory and Morality'"),
     FileCfg(id='030258', description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030248'),
     FileCfg(id='030248', description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030258'),
     FileCfg(id='029165', description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030258'),
@@ -937,7 +934,7 @@ ALL_CONFIGS = [
     FileCfg(id='019444', description=f"Frontlines magazine article 'Biologists Dig Deeper'", date='2008-01-01'),
     FileCfg(id='023720', description=f'Future Science article: "Is Shame Necessary?" by {JENNIFER_JACQUET}'),
     FileCfg(id='027051', description=f"German language article about the 2013 Lifeball / AIDS Gala", date='2013-01-01'),
-    FileCfg(id='021094', description=f"Globe and Mail article about Gerd Heinrich", date='2007-06-12'),
+    FileCfg(id='021094', description=f"Globe and Mail article about Gerd Heinrich"),
     FileCfg(id='013268', description=f"JetGala article about airplane interior designer {ERIC_ROTH}"),
     FileCfg(id='033480', description=f"{JOHN_BOLTON_PRESS_CLIPPING}", date='2018-04-06', duplicate_ids=['033481']),
     FileCfg(id='013403', description=f"Lexis Nexis result from The Evening Standard about Bernie Madoff", date='2009-12-24'),
@@ -950,7 +947,7 @@ ALL_CONFIGS = [
         duplicate_ids=['029405']
     ),
     FileCfg(id='015462', description=f'Nautilus Education magazine (?) issue'),
-    FileCfg(id='029925', description=f"New Yorker article about the placebo effect by Michael Specter", date='2011-12-04'),
+    FileCfg(id='029925', description=f"New Yorker article about the placebo effect by Michael Specter"),
     FileCfg(id='031972', description=f"{NYT_ARTICLE} #MeToo allegations against {LAWRENCE_KRAUSS}", date='2018-03-07'),
     FileCfg(id='032435', description=f'{NYT_ARTICLE} Chinese butlers'),
     FileCfg(id='029452', description=f"{NYT_ARTICLE} {PETER_THIEL}"),
@@ -970,12 +967,6 @@ ALL_CONFIGS = [
     FileCfg(id='022987', description=f"{PALM_BEACH_POST_ARTICLE} just a headline on Trump and Epstein"),
     FileCfg(id='015028', description=f"{PALM_BEACH_POST_ARTICLE} reopening Epstein's criminal case"),
     FileCfg(id='022990', description=f"{PALM_BEACH_POST_ARTICLE} Trump and Epstein"),
-    FileCfg(
-        id='033323',
-        description=f'{ROBERT_TRIVERS} and Nathan H. Lents "Does Trump Fit the Evolutionary Role of Narcissistic Sociopath?" (draft)',
-        date='2018-12-07',
-    ),
-    FileCfg(id='025143', author=ROBERT_TRIVERS, description=f"'Africa, Parasites, Intelligence'", date='2018-06-25'),
     FileCfg(id='016996', description=f'SciencExpress article "Quantitative Analysis of Culture Using Millions of Digitized Books" by Jean-Baptiste Michel'),
     FileCfg(id='030030', description=SHIMON_POST_ARTICLE, date='2011-03-29'),
     FileCfg(id='025610', description=SHIMON_POST_ARTICLE, date='2011-04-03'),
@@ -1008,7 +999,7 @@ ALL_CONFIGS = [
         date='2017-05-13',
     ),
     FileCfg(id='025094', description=f'{TRANSLATION} Spanish article about Cuba', date='2015-11-08'),
-    FileCfg(id='010754', description=f"U.S. News article about Yitzhak Rabin", date='2015-11-04'),
+    FileCfg(id='010754', description=f"U.S. News article about Yitzhak Rabin"),
     FileCfg(id='031794', description=f"very short French magazine clipping"),
     FileCfg(id='014498', description=VI_DAILY_NEWS_ARTICLE, date='2016-12-13'),
     FileCfg(id='031171', description=VI_DAILY_NEWS_ARTICLE, date='2019-02-06'),
@@ -1155,7 +1146,7 @@ ALL_CONFIGS = [
         date='2012-09-21',
     ),
     FileCfg(id='025797', description=f'someone\'s notes from Aspen Strategy Group', date='2013-05-29'),
-    FileCfg(id='017524', description=f"{SWEDISH_LIFE_SCIENCES_SUMMIT} 2012 program", date='2012-08-22'),
+    FileCfg(id='017524', description=f"{SWEDISH_LIFE_SCIENCES_SUMMIT} 2012 program"),
     FileCfg(id='026747', description=f"{SWEDISH_LIFE_SCIENCES_SUMMIT} 2017 program", date='2017-08-23'),
     FileCfg(id='019300', description=f'{WOMEN_EMPOWERMENT} f. {KATHRYN_RUEMMLER}', date='2019-04-05'),
     FileCfg(id='022267', description=f'{WOMEN_EMPOWERMENT} founder essay about growing the seminar business'),
@@ -1200,7 +1191,7 @@ ALL_CONFIGS = [
     FileCfg(
         id='025663',
         description=f"{GOLDMAN_REPORT} 'An Overview of the Current State of Cryptocurrencies and Blockchain'",
-        date='2017-11-01',
+        date='2017-11-15',
     ),
     FileCfg(id='014532', description=f"{GOLDMAN_REPORT} 'Outlook - Half Full'", date='2017-01-01'),
     FileCfg(id='026909', description=f"{GOLDMAN_REPORT} 'The Unsteady Undertow Commands the Seas (Temporarily)'", date='2018-10-14'),
@@ -1296,7 +1287,7 @@ ALL_CONFIGS = [
     FileCfg(id='016696', description=f"{PALM_BEACH_TSV} info (water quality?"),
     FileCfg(id='016636', description=f"{PALM_BEACH_WATER_COMMITTEE} Meeting on January 29, 2009"),
     FileCfg(id='022417', description=f"Park Partners NYC letter to partners in real estate project with architectural plans"),
-    FileCfg(id='027068', author=THE_REAL_DEAL, description=THE_REAL_DEAL_ARTICLE, date='2018-10-11'),
+    FileCfg(id='027068', author=THE_REAL_DEAL, description=THE_REAL_DEAL_ARTICLE),
     FileCfg(id='029520', author=THE_REAL_DEAL, description=f"{THE_REAL_DEAL_ARTICLE} 'Lost Paradise at the Palm House'", date='2019-06-17'),
     FileCfg(
         id='018727',
@@ -1353,6 +1344,19 @@ ALL_CONFIGS = [
     FileCfg(id='016699', description=TRUMP_DISCLOSURES, date='2017-01-20'),
 
     # academia
+    FileCfg(id='024256', author=JOI_ITO, description=f"article 'Internet & Society: The Technologies and Politics of Control'"),
+    FileCfg(id='027004', author=JOSCHA_BACH, description=f"article 'The Computational Structure of Mental Representation'", date='2013-02-26'),
+    FileCfg(id='029539', author=LA_TIMES, description=f"Alan Trounson interview on California stem cell research and CIRM"),
+    FileCfg(id='027024', author=LA_TIMES, description=f"'Scientists Create Human Embryos to Make Stem Cells'", date='2013-05-15'),
+    FileCfg(id='015501', author=f"{MOSHE_HOFFMAN}, Erez Yoeli, and Carlos David Navarrete", description=f"'Game Theory and Morality'"),
+    FileCfg(id='025143', author=ROBERT_TRIVERS, description=f"'Africa, Parasites, Intelligence'", date='2018-06-25'),
+    FileCfg(id='029155', author=ROBERT_TRIVERS, description=f'response sent to the Gruterites ({GORDON_GETTY} fans)', date='2018-03-19'),
+    FileCfg(
+        id='033323',
+        author=f"{ROBERT_TRIVERS} and Nathan H. Lents",
+        description=f"draft of 'Does Trump Fit the Evolutionary Role of Narcissistic Sociopath?",
+        date='2018-12-07',
+    ),
     FileCfg(id='014697', description=CHALLENGES_OF_AI, duplicate_ids=['011284']),
     FileCfg(id='026521', description=f"game theory paper by {MARTIN_NOWAK}, Erez Yoeli, and Moshe Hoffman"),
     FileCfg(id='023416', description=HARVARD_POETRY),
@@ -1394,7 +1398,6 @@ ALL_CONFIGS = [
     ),
 
     # misc
-    FileCfg(id='029155', author=ROBERT_TRIVERS, description=f'response sent to the Gruterites ({GORDON_GETTY} fans)', date='2018-03-19'),
     FileCfg(id='031743', description=f'a few pages describing the internet as a "New Nation State" (Network State?)'),
     FileCfg(id='023438', description=f"Brockman announcemeent of auction of 'Noise' by Daniel Kahneman, Olivier Sibony, and Cass Sunstein"),
     FileCfg(
@@ -1411,7 +1414,7 @@ ALL_CONFIGS = [
     FileCfg(id='027074', description=f"{FEMALE_HEALTH_COMPANY} pitch deck (USAID was a customer)"),
     FileCfg(id='022780', description=FLIGHT_LOGS,),
     FileCfg(id='022816', description=FLIGHT_LOGS,),
-    FileCfg(id='022494', description=f'Foreign Corrupt Practices Act (FCPA) DOJ Resource Guide', date='2013-01-01'),
+    FileCfg(id='022494', description=f'Foreign Corrupt Practices Act (FCPA) DOJ Resource Guide'),
     FileCfg(id='032735', description=f"{GORDON_GETTY} on Trump", date='2018-03-20'),  # Dated based on concurrent emails from Getty
     FileCfg(
         id='030142',
@@ -1439,6 +1442,7 @@ ALL_CONFIGS = [
 ]
 
 # Create a dict keyed by file_id
+ALL_CONFIGS = TEXTS_CONFIG + EMAILS_CONFIG + OTHER_FILES_CONFIG
 ALL_FILE_CONFIGS: dict[str, FileCfg] = {}
 
 # Add extra config objects for duplicate files that match the config of file they are duplicating
@@ -1447,8 +1451,6 @@ for cfg in ALL_CONFIGS:
 
     for dupe_cfg in cfg.duplicate_cfgs():
         ALL_FILE_CONFIGS[dupe_cfg.id] = dupe_cfg
-
-EMAIL_CONFIGS = {id: cfg for id, cfg in ALL_FILE_CONFIGS.items() if isinstance(cfg, MessageCfg)}
 
 
 # OtherFiles whose description/hints match these prefixes are not displayed unless --all-other-files is used
