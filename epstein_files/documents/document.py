@@ -60,6 +60,7 @@ FILENAME_MATCH_STYLES = [
 class Document:
     """Base class for all Epstein Files documents."""
     file_path: Path
+    # Optional fields
     author: str | None = None
     config: FileCfg | MessageCfg | None = None
     file_id: str = field(init=False)
@@ -84,6 +85,7 @@ class Document:
         if self.is_local_extract_file():
             self.url_slug = file_stem_for_id(self.file_id)
 
+            # Coerce FileConfig for court docs etc. to MessageCfg for email files extracted from that document
             if self.document_type() == EMAIL_CLASS and self.config and self.cfg_type() != MessageCfg.__name__:
                 self.config = MessageCfg.from_file_cfg(self.config)
         else:
