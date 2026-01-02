@@ -484,7 +484,6 @@ ALL_CONFIGS = [
     MessageCfg(id='033316', author=AZIZA_ALAHMADI, attribution_reason='"Regards, Aziza" at bottom'),
     MessageCfg(id='033328', author=AZIZA_ALAHMADI, attribution_reason='"Regards, Aziza" at bottom'),
     MessageCfg(id='026659', author=BARBRO_C_EHNBOM, attribution_reason='Reply'),
-    MessageCfg(id='026745', author=BARBRO_C_EHNBOM, dupe_of_id='031215', attribution_reason='Signature'),
     MessageCfg(id='026764', author=BARRY_J_COHEN),
     MessageCfg(id='031227', author=BENNET_MOSKOWITZ, dupe_of_id='031206'),
     MessageCfg(id='031442', author=CHRISTINA_GALBRAITH, duplicate_ids=['031996']),
@@ -515,7 +514,7 @@ ALL_CONFIGS = [
     MessageCfg(id='031560', author=DAVID_SCHOEN, attribution_reason='Signature'),
     MessageCfg(id='026287', author=DAVID_SCHOEN, attribution_reason='Signature'),
     MessageCfg(id='033419', author=DAVID_SCHOEN, attribution_reason='Signature'),
-    MessageCfg(id='026245', author=DIANE_ZIMAN, recipients=[JEFFREY_EPSTEIN]),  # TODO: Shouldn't need to be configured
+    #MessageCfg(id='026245', author=DIANE_ZIMAN, recipients=[JEFFREY_EPSTEIN]),  # TODO: Shouldn't need to be configured
     MessageCfg(id='031460', author=EDWARD_JAY_EPSTEIN),
     MessageCfg(id='030578', author=FAITH_KATES, dupe_of_id='030414', dupe_type='redacted'),
     MessageCfg(
@@ -817,17 +816,14 @@ ALL_CONFIGS = [
     MessageCfg(id='031688', is_fwded_article=True),  # Bill Siegel fwd of email about hamas
     MessageCfg(id='026551', is_fwded_article=True),  # Sultan bin Sulayem "Ayatollah between the sheets"
     MessageCfg(id='031768', is_fwded_article=True),  # Sultan bin Sulayem 'Horseface'
-    MessageCfg(
-        id='031569',
-        is_fwded_article=True,
-        attribution_reason='Article by Kathryn Alexeeff fwded to Peter Thiel',
-    ),
+    MessageCfg(id='031569', is_fwded_article=True),  # Article by Kathryn Alexeeff fwded to Peter Thiel
 
 
         ####################################
         ######### DUPE_FILE_CFGS ###########
         ####################################
 
+    MessageCfg(id='031215', duplicate_ids=['026745'], dupe_type='redacted'),
     MessageCfg(id='026563', dupe_of_id='028768', dupe_type='redacted'),
     MessageCfg(id='028762', dupe_of_id='027056', dupe_type='redacted'),
     MessageCfg(id='032246', dupe_of_id='032248', dupe_type='redacted'),
@@ -1830,6 +1826,3 @@ for cfg in ALL_CONFIGS:
         raise ValueError(f"{cfg.id} configured twice!\n\n{cfg}\n")
 
     encountered_file_ids.add(cfg.id)
-
-import sys
-sys.exit()
