@@ -107,7 +107,7 @@ class OtherFile(Document):
                 logger.warning(f"Error while iterating through datefinder.find_dates(): {e}")
 
         if len(timestamps) == 0:
-            self.log_top_lines(15, msg=f"{self.file_id}: No timestamps found", level=logging.DEBUG)
+            self.log_top_lines(15, msg=f"{self.file_id}: No timestamps found", level=logging.INFO)
             return None
         elif len(timestamps) == 1:
             return timestamps[0]
