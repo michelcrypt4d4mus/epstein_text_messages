@@ -1240,7 +1240,7 @@ ALL_CONFIGS = [
     FileCfg(id='024294', description=f"{STACEY_PLASKETT} campaign flier", date='2016-10-01'),
     FileCfg(
         id='029357',
-        description=f" ext about Israel's challenges going into 2015, feels like it was extracted from a book",
+        description=f"text about Israel's challenges going into 2015, feels like it was extracted from a book",
         date='2015-01-15',  # TODO: this is just a guess
         duplicate_ids=['028887'],
     ),
