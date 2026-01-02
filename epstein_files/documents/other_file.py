@@ -18,15 +18,15 @@ from epstein_files.util.rich import highlighter, logger
 
 MAX_EXTRACTED_TIMESTAMPS = 100
 MAX_DAYS_SPANNED_TO_BE_VALID = 10
-MIN_TIMESTAMP = datetime(1991, 1, 1)
+MIN_TIMESTAMP = datetime(2000, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
 MAX_TIMESTAMP = datetime(2022, 12, 31)
 PREVIEW_CHARS = int(580 * (1 if args.all_other_files else 1.5))
 LOG_INDENT = '\n         '
 TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
+
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
-
 
 
 @dataclass
@@ -136,7 +136,7 @@ class OtherFile(Document):
         if num_days_spanned > MAX_DAYS_SPANNED_TO_BE_VALID and VAST_HOUSE not in self.text:
             self.log_top_lines(15, msg=timestamps_log_msg, level=log_level)
 
-        # Most recent timestamp in text should be closest to accurate bc articles eetc. should only have dates of things that already happened
+        # Most recent timestamp in text should be closest to accurate bc articles etc. should only have dates of things that already happened
         last_timestamp = timestamps[0]
 
         if configured_timestamp:
@@ -150,8 +150,7 @@ class OtherFile(Document):
                     msg += LOG_INDENT.join([f'"{hint.plain}"' for hint in self.hints()]) + LOG_INDENT
 
                 msg += f"Configured '{configured_timestamp.date()}' and last found '{last_timestamp.date()}' differ by {days_diff} days"
-                msg += f"{LOG_INDENT}{timestamps_log_msg}\n"
-                self.log(msg)
+                self.log(f"{msg}{LOG_INDENT}{timestamps_log_msg}\n")
 
             return configured_timestamp
 
