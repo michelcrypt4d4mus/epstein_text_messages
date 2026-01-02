@@ -253,10 +253,7 @@ BOFA = 'BofA'
 BOFA_MERRILL = f'{BOFA} / Merrill Lynch Report'
 BOFA_WEALTH_MGMT = f'{BOFA} Wealth Management'
 CHALLENGES_OF_AI = f'ASU Origins Project ({LAWRENCE_KRAUSS}) report "Challenges of AI: Envisioning and Addressing Adverse Outcomes"'
-CHINA_DAILY_ARTICLE = "China Daily article about"
 CVRA = "Crime Victims' Rights Act [CVRA]"
-DAILY_MAIL_ARTICLE = "Daily Mail article about"
-DAILY_TELEGRAPH_ARTICLE = "Daily Telegraph article about"
 DAVID_BLAINE_VISA_LETTER = f"letter of recommendation for visa for a model"
 DAVID_SCHOEN_CVRA_LEXIS_SEARCH = f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN}"
 DEEP_THINKING_HINT = f'{BOOK} "Deep Thinking: Twenty-Five Ways of Looking at AI" by John Brockman'
@@ -751,7 +748,23 @@ ALL_CONFIGS = [
     FileCfg(id='031533', description=f'pages from a book about the Baylor University sexual assault scandal and Sam Ukwuachu'),
 
     # articles
+    FileCfg(id='013275', author=BLOOMBERG, description=f"article on notable 2013 obituaries", date='2013-12-26'),
+    FileCfg(id='026543', author=BLOOMBERG, description=f"BNA article about taxes"),
+    FileCfg(id='023572', author=CHINA_DAILY, description=f"article on China's Belt & Road Initiative"),
+    FileCfg(id='023571', author=CHINA_DAILY, description=f"article on terrorism, Macau, trade initiatives", date='2016-09-18'),
+    FileCfg(id='023570', author=CHINA_DAILY, description=f"article on Belt & Road in Central/South America, Xi philosophy", date='2017-05-14'),
+    FileCfg(id='025115', author=CHINA_DAILY, description=f"article on China and the US working together", date='2017-05-14'),
+    FileCfg(id='025292', author=DAILY_MAIL, description=f"article on Bill Clinton being named in a lawsuit"),
+    FileCfg(id='019468', author=DAILY_MAIL, description=f"article on Epstein and Clinton"),
+    FileCfg(id='022970', author=DAILY_MAIL, description=f"article on Epstein and Prince Andrew"),
+    FileCfg(id='031186', author=DAILY_MAIL, description=f'article on allegations of rape of 13 year old against Trump', date='2016-11-02'),
+    FileCfg(id='013437', author=DAILY_TELEGRAPH, description=f"article about Epstein's diary", date='2011-03-05'),
+    FileCfg(id='023287', author=DAILY_TELEGRAPH, description=f"article about a play based on the Oslo Accords", date='2017-09-15'),
     FileCfg(id='019206', author=EDWARD_JAY_EPSTEIN, description=f"WSJ article about Edward Snowden", date='2016-12-30'),
+    FileCfg(id='029539', author=LA_TIMES, description=f"Alan Trounson interview on California stem cell research and CIRM"),
+    FileCfg(id='029865', author=LA_TIMES, description=f"front page article about {DEEPAK_CHOPRA} and young Iranians", date='2016-11-05'),
+    FileCfg(id='026598', author=LA_TIMES, description=f"op-ed about why America needs a Ministry of Culture"),
+    FileCfg(id='027024', author=LA_TIMES, description=f"'Scientists Create Human Embryos to Make Stem Cells'", date='2013-05-15'),
     FileCfg(id='022707', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
     FileCfg(id='022727', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
     FileCfg(id='022746', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
@@ -810,20 +823,8 @@ ALL_CONFIGS = [
     FileCfg(id='033468', description=f'{ARTICLE_DRAFT} Rod Rosenstein', date='2018-09-24'),
     FileCfg(id='030825', description=f'{ARTICLE_DRAFT} Syria'),
     FileCfg(id='030013', description=f'Aviation International News article', date='2012-07-01'),
-    FileCfg(id='013275', description=f"{BLOOMBERG} article on notable 2013 obituaries", date='2013-12-26'),
-    FileCfg(id='026543', description=f"{BLOOMBERG} BNA article about taxes"),
     FileCfg(id='014865', description=f"Boston Globe article about {ALAN_DERSHOWITZ}"),
     FileCfg(id='033231', description=f"Business Standard article about Trump's visit with India's Modi"),
-    FileCfg(id='023572', description=f"{CHINA_DAILY_ARTICLE} China's Belt & Road Initiative"),
-    FileCfg(id='023571', description=f'{CHINA_DAILY_ARTICLE} terrorism, Macau, trade initiatives', date='2016-09-18'),
-    FileCfg(id='023570', description=f'{CHINA_DAILY_ARTICLE} Belt & Road in Central/South America, Xi philosophy', date='2017-05-14'),
-    FileCfg(id='025115', description=f'{CHINA_DAILY_ARTICLE} China and the US working together', date='2017-05-14'),
-    FileCfg(id='025292', description=f"{DAILY_MAIL_ARTICLE} Bill Clinton being named in a lawsuit"),
-    FileCfg(id='019468', description=f"{DAILY_MAIL_ARTICLE} Epstein and Clinton"),
-    FileCfg(id='022970', description=f"{DAILY_MAIL_ARTICLE} Epstein and Prince Andrew"),
-    FileCfg(id='031186', description=f'{DAILY_MAIL_ARTICLE} rape of 13 year old accusations against Trump', date='2016-11-02'),
-    FileCfg(id='013437', description=f"{DAILY_TELEGRAPH_ARTICLE} Epstein diary", date='2011-03-05'),
-    FileCfg(id='023287', description=f"{DAILY_TELEGRAPH_ARTICLE} play based on the Oslo Accords", date='2017-09-15'),
     FileCfg(id='023567', description=f"Financial Times article about quantitative easing"),
     FileCfg(id='026761', description=f"Forbes article about {BARBRO_C_EHNBOM} 'Swedish American Group Focuses On Cancer'"),
     FileCfg(id='031716', description=f'Fortune Magazine article by {TOM_BARRACK}', date='2016-10-22'),
@@ -838,10 +839,6 @@ ALL_CONFIGS = [
     FileCfg(id='021094', description=f"Globe and Mail article about Gerd Heinrich", date='2007-06-12'),
     FileCfg(id='013268', description=f"JetGala article about airplane interior designer {ERIC_ROTH}"),
     FileCfg(id='033480', description=f"{JOHN_BOLTON_PRESS_CLIPPING}", date='2018-04-06', duplicate_ids=['033481']),
-    FileCfg(id='029539', description=f"{LA_TIMES} Alan Trounson interview on California stem cell research and CIRM"),
-    FileCfg(id='029865', description=f"{LA_TIMES} front page article about {DEEPAK_CHOPRA} and young Iranians", date='2016-11-05'),
-    FileCfg(id='026598', description=f"{LA_TIMES} op-ed about why America needs a Ministry of Culture"),
-    FileCfg(id='027024', description=f"{LA_TIMES} 'Scientists Create Human Embryos to Make Stem Cells'", date='2013-05-15'),
     FileCfg(id='013403', description=f"Lexis Nexis result from The Evening Standard about Bernie Madoff", date='2009-12-24'),
     FileCfg(id='023102', description=f"Litigation Daily article about {REID_WEINGARTEN}", date='2015-09-04'),
     FileCfg(id='029340', description=f'MarketWatch article about estate taxes, particularly Epstein\'s favoured GRATs'),
@@ -1466,12 +1463,12 @@ UNINTERESTING_PREFIXES = [
     'Boston Globe',
     'Brockman',
     CHALLENGES_OF_AI,
-    CHINA_DAILY_ARTICLE,
+    CHINA_DAILY,
     CNN,
     'completely redacted',
     CVRA,
-    DAILY_MAIL_ARTICLE,
-    DAILY_TELEGRAPH_ARTICLE,
+    DAILY_MAIL,
+    DAILY_TELEGRAPH,
     DAVID_SCHOEN_CVRA_LEXIS_SEARCH[0:-12],  # Because date at end :(
     DEEP_THINKING_HINT,
     DERSH_GIUFFRE_TWEET,
