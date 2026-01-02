@@ -144,6 +144,7 @@ for row in csv.DictReader(AI_COUNTERPARTY_DETERMINATION_TSV, delimiter='\t'):
         raise RuntimeError(f"Can't overwrite attribution of {file_id} to {GUESSED_IMESSAGE_FILE_IDS[file_id]} with {counterparty}")
 
     GUESSED_IMESSAGE_FILE_IDS[file_id] = counterparty.replace(' (likely)', '').strip()
+    print(f"'{file_id}': BLAH BLAH  # {row['source'].strip()}")
 
 
 # Emailers
