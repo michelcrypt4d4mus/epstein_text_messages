@@ -238,6 +238,7 @@ TWEET = 'tweet'
 TEXT_OF_US_LAW = 'text of U.S. law:'
 
 # Court cases
+BRUNEL_V_EPSTEIN = f"{JEAN_LUC_BRUNEL} v. {JEFFREY_EPSTEIN}"
 EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} & {PAUL_G_CASSELL} v. {ALAN_DERSHOWITZ}:"
 EPSTEIN_V_ROTHSTEIN_EDWARDS = f"Epstein v. Scott Rothstein, {BRAD_EDWARDS}, and L.M.:"
 GIUFFRE_V_DERSHOWITZ = f"{VIRGINIA_GIUFFRE} v. {ALAN_DERSHOWITZ}:"
@@ -268,17 +269,15 @@ FIRE_AND_FURY = f"'Fire And Fury' by {MICHAEL_WOLFF}"
 GOLDMAN_REPORT = f'{GOLDMAN_SACHS} Investment Management Division report'
 HARVARD_POETRY = f'{HARVARD} poetry stuff from {LISA_NEW}'
 HBS_APPLICATION_NERIO = f"{HARVARD} Business School application letter from Nerio Alessandri (Founder and Chairman Technogym SPA Italy)"
-INSIGHTS_POD = f"InsightsPod"
 JASTA = 'JASTA'
 JASTA_SAUDI_LAWSUIT = f"{JASTA} lawsuit against Saudi Arabia by 9/11 victims"
 JOHN_BOLTON_PRESS_CLIPPING = 'John Bolton press clipping'
 JP_MORGAN_EYE_ON_THE_MARKET = f"{JP_MORGAN} Eye On The Market report"
-KEN_STARR_LETTER = f"letter from {KEN_STARR} to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
+KEN_STARR_LETTER = f"letter to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
 MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
 NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight"'
 NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
 OBAMA_JOKE = 'joke about Obama'
-OSBORNE_LLP = f"{IAN_OSBORNE} & Partners LLP"
 PALM_BEACH = 'Palm Beach'
 PALM_BEACH_CODE_ENFORCEMENT = f'{PALM_BEACH} code enforcement board minutes'
 PALM_BEACH_DAILY_ARTICLE = f'{PALM_BEACH} Daily News article about'
@@ -295,7 +294,6 @@ TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Gov
 UBS = 'UBS'
 UBS_CIO_REPORT = 'CIO Monthly Extended report'
 VI_DAILY_NEWS_ARTICLE = f'{VIRGIN_ISLANDS} Daily News article'
-WAPO = 'WaPo'
 WOMEN_EMPOWERMENT = f"Women Empowerment (WE) conference run by {SVETLANA_POZHIDAEVA}"
 ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
 
@@ -734,8 +732,7 @@ ALL_CONFIGS = [
     FileCfg(id='018232', description=f'{BOOK} "The Seventh Sense: Power, Fortune & Survival in the Age of Networks" by Joshua Cooper Ramo'),
     FileCfg(id='020153', description=f'{BOOK} "The Snowden Affair: A Spy Story In Six Parts" by {EDWARD_JAY_EPSTEIN}'),
     FileCfg(id='021120', description=f'{BOOK} chapter of "Siege: Trump Under Fire" by {MICHAEL_WOLFF}'),
-    FileCfg(id='016221', description=DEEP_THINKING_HINT, date='2019-02-19'),
-    FileCfg(id='016804', description=DEEP_THINKING_HINT, date='2019-02-19'),
+    FileCfg(id='016804', description=DEEP_THINKING_HINT, date='2019-02-19', duplicate_ids=['016221']),
     FileCfg(id='011472', author=EHUD_BARAK, description=NIGHT_FLIGHT_HINT,),
     FileCfg(id='027849', author=EHUD_BARAK, description=NIGHT_FLIGHT_HINT,),
     FileCfg(id='010477', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
@@ -918,6 +915,10 @@ ALL_CONFIGS = [
     FileCfg(id='019212', description=f'{WAPO} and Times Tribune articles about Bannon, Trump, and healthcare execs'),
 
     # court docs
+    FileCfg(id='025353', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-05-19', duplicate_ids=['010723', '019224'], dupe_type='redacted'),
+    FileCfg(id='025704', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-05-27', duplicate_ids=['010732', '019221'], dupe_type='redacted'),
+    FileCfg(id='012130', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-06-19', duplicate_ids=['012135']),
+    FileCfg(id='011908', description=f"{BRUNEL_V_EPSTEIN} and Tyler McDonald d/b/a YI.org court filing"),
     FileCfg(id='017603', description=DAVID_SCHOEN_CVRA_LEXIS_SEARCH, date='2019-02-28'),
     FileCfg(id='017635', description=DAVID_SCHOEN_CVRA_LEXIS_SEARCH, date='2019-02-28'),
     FileCfg(id='016509', description=DAVID_SCHOEN_CVRA_LEXIS_SEARCH, date='2019-02-28'),
@@ -967,9 +968,9 @@ ALL_CONFIGS = [
     FileCfg(id='022237', description=f"{GIUFFRE_V_DERSHOWITZ} partial court filing with fact checking questions?"),
     FileCfg(id='016197', description=f"{GIUFFRE_V_DERSHOWITZ} response to Florida Bar complaint by {ALAN_DERSHOWITZ} about David Boies from {PAUL_G_CASSELL}"),
     FileCfg(id='017771', description=f'{GIUFFRE_V_DERSHOWITZ} Vanity Fair article "The Talented Mr. Epstein" by Vicky Ward', date='2011-06-27'),
+    FileCfg(id='014118', description=f"{GIUFFRE_V_EPSTEIN} Declaration in Support of Motion to Compel Production of Documents", date='2016-10-21'),
     FileCfg(id='014652', description=f"{GIUFFRE_V_MAXWELL} Complaint", date='2015-04-22'),
     FileCfg(id='015529', description=f"{GIUFFRE_V_MAXWELL} Defamation Complaint", date='2015-09-21'),
-    FileCfg(id='014118', description=f"{GIUFFRE_V_EPSTEIN} Declaration in Support of Motion to Compel Production of Documents", date='2016-10-21'),
     FileCfg(id='014797', description=f"{GIUFFRE_V_MAXWELL} Declaration of Laura A. Menninger in Opposition to Plaintiff's Motion", date='2017-03-17'),
     FileCfg(id='011304', description=f"{GIUFFRE_V_MAXWELL} Oral Argument Transcript", date='2017-03-17'),
     FileCfg(
@@ -978,7 +979,11 @@ ALL_CONFIGS = [
         date='2017-03-17',
         duplicate_ids=['011463'],
     ),
-    FileCfg(id='019297', description=f'{GIUFFRE_V_MAXWELL} letter from {ALAN_DERSHOWITZ} lawyer Andrew G. Celli', date='2018-02-07'),
+    FileCfg(
+        id='019297',
+        description=f'{GIUFFRE_V_MAXWELL} letter from {ALAN_DERSHOWITZ} lawyer Andrew G. Celli',
+        date='2018-02-07'
+    ),
     FileCfg(
         id='025937',
         description=f'{JANE_DOE_V_EPSTEIN_TRUMP} Affidavit of Tiffany Doe describing Jane Doe being raped by Epstein and Trump',
@@ -997,11 +1002,7 @@ ALL_CONFIGS = [
     FileCfg(id='023361', description=f"{JASTA_SAUDI_LAWSUIT} legal text and court documents", date='2012-01-20'),
     FileCfg(id='017830', description=f"{JASTA_SAUDI_LAWSUIT} legal text and court documents"),
     FileCfg(id='017904', description=f"{JASTA_SAUDI_LAWSUIT} Westlaw search results", date='2019-01-01'),
-    FileCfg(id='011908', description=f"{JEAN_LUC_BRUNEL} v. {JEFFREY_EPSTEIN} and Tyler McDonald d/b/a YI.org court filing"),
     FileCfg(id='014037', description=f"Journal of Criminal Law and Criminology article on {CVRA}"),
-    FileCfg(id='025353', description=f"{KEN_STARR_LETTER}", date='2008-05-19', duplicate_ids=['010723', '019224'], dupe_type='redacted'),
-    FileCfg(id='025704', description=f"{KEN_STARR_LETTER}", date='2008-05-27', duplicate_ids=['010732', '019221'], dupe_type='redacted'),
-    FileCfg(id='012130', description=f"{KEN_STARR_LETTER}", date='2008-06-19', duplicate_ids=['012135']),
     FileCfg(id='020662', description=f"letter from {ALAN_DERSHOWITZ}'s British lawyers Mishcon de Reya to Daily Mail threatening libel suit"),
     FileCfg(
         id='010560',
