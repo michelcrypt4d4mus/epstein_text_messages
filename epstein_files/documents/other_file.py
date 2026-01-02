@@ -114,7 +114,7 @@ class OtherFile(Document):
                     if MIN_TIMESTAMP < timestamp < MAX_TIMESTAMP:
                         timestamps.append(timestamp)
 
-                    if len(timestamps) >= MAX_EXTRACTED_TIMESTAMPS:
+                    if i >= MAX_EXTRACTED_TIMESTAMPS:
                         break
             except ValueError as e:
                 logger.warning(f"Error while iterating through datefinder.find_dates(): {e}")
