@@ -12,8 +12,13 @@ def epstein_files() -> EpsteinFiles:
 
 
 @pytest.fixture
-def file_stem() -> str:
-    return file_stem_for_id(12345)
+def file_id() -> int:
+    return 12345
+
+
+@pytest.fixture
+def file_stem(file_id) -> str:
+    return file_stem_for_id(file_id)
 
 
 @pytest.fixture
