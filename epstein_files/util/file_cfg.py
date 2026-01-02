@@ -6,7 +6,6 @@ from typing import Literal
 from epstein_files.util.constant.names import constantize_name
 from epstein_files.util.constant.strings import AUTHOR
 
-ConfiguredAttr = Literal['actual_text', 'author', 'is_fwded_article', 'recipients', 'timestamp']
 DuplicateType = Literal['same', 'earlier', 'quoted', 'redacted']
 
 INDENT = '    '
