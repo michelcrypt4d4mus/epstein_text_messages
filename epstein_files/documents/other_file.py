@@ -89,12 +89,16 @@ class OtherFile(Document):
 
         # Check for configured values
         if self.config and self.config.timestamp:
-            if self.config.description and self.config.description.startswith('TSV'):  # Avoid scanning large TSVs for dates
-                return self.config.timestamp
+            timestamp = self.config.timestamp
 
-            configured_timestamp = self.config.timestamp
-            timestamps.append(configured_timestamp)
-            # return timestamp  # TODO: reenable, this is just so we can log what's being found
+            if timestamp:
+                # return timestamp  # TODO: reenable, this is just so we can log what's being found
+                configured_timestamp = timestamp
+                timestamps.append(timestamp)
+
+            # Avoid scanning large TSVs for dates
+            if self.config and self.config.description and self.config.description.startswith('TSV'):
+                return timestamps[0] if timestamps else None
 
         with warnings.catch_warnings():
             warnings.filterwarnings("ignore", module="datefinder")
