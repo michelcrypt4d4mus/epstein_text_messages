@@ -2020,3 +2020,6 @@ for cfg in ALL_CONFIGS:
         raise ValueError(f"{cfg.id} configured twice!\n\n{cfg}\n")
 
     encountered_file_ids.add(cfg.id)
+
+import sys
+sys.exit()
