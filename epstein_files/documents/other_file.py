@@ -114,7 +114,7 @@ class OtherFile(Document):
         timestamps = sorted(uniquify(timestamps), reverse=True)
         timestamp_strs = [str(dt) for dt in timestamps]
         num_days_spanned = (timestamps[0] - timestamps[-1]).days
-        timestamps_log_msg = f"Found {len(timestamps)} timestamps spanning {num_days_spanned} days\n     "
+        timestamps_log_msg = f"Extracted {len(timestamps)} timestamps spanning {num_days_spanned} days\n     "
         timestamps_log_msg += '\n     '.join(timestamp_strs)
 
         if num_days_spanned > MAX_DAYS_SPANNED_TO_BE_VALID and VAST_HOUSE not in self.text:
@@ -129,8 +129,8 @@ class OtherFile(Document):
             else:
                 days_diff = (configured_timestamp - last_timestamp).days
                 msg = ("\n".join([hint.plain for hint in self.hints()]) + '\n') if self.hints() else ''
-                msg += f"    Configured '{configured_timestamp.date()}' and last found '{last_timestamp.date()}' differ by {days_diff} days"
-                msg += f"\n\n    {timestamps_log_msg}\n"
+                msg += f"\nConfigured '{configured_timestamp.date()}' and last found '{last_timestamp.date()}' differ by {days_diff} days"
+                msg += f"\n -> {timestamps_log_msg}\n"
                 self.log(msg)
 
             return configured_timestamp
