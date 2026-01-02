@@ -1,5 +1,4 @@
 import re
-from copy import deepcopy
 from dataclasses import dataclass, field
 from datetime import datetime
 
@@ -15,7 +14,6 @@ CONFIRMED_MSG = 'Found confirmed counterparty'
 GUESSED_MSG = 'This is probably a conversation with'
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
-DUMMY_CFG = EmailCfg(id='123456')
 
 
 @dataclass
@@ -78,7 +76,7 @@ class MessengerLog(CommunicationDocument):
 
     def __rich_console__(self, _console: Console, _options: ConsoleOptions) -> RenderResult:
         yield self.file_info_panel()
-        yield(Text(''))
+        yield Text('')
 
         for message in self.messages():
             yield message
