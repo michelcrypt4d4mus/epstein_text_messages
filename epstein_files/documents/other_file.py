@@ -95,7 +95,6 @@ class OtherFile(Document):
 
             try:
                 for i, timestamp in enumerate(datefinder.find_dates(self.text, strict=True)):
-                    logger.debug(f"{self.file_id}: Found {ordinal_str(i + 1)} timestamp '{timestamp}'...")
                     timestamp = remove_timezone(timestamp)
 
                     if MIN_TIMESTAMP < timestamp < MAX_TIMESTAMP:
