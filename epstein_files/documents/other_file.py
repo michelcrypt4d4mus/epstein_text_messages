@@ -19,7 +19,7 @@ MAX_DAYS_SPANNED_TO_BE_VALID = 10
 MIN_TIMESTAMP = datetime(1991, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
 MAX_TIMESTAMP = datetime(2022, 12, 31)
-PREVIEW_CHARS = int(520 * (1 if args.all_other_files else 1.5))
+PREVIEW_CHARS = int(580 * (1 if args.all_other_files else 1.5))
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
