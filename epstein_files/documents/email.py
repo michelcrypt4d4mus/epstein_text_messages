@@ -268,6 +268,13 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
     'Vahe Stepanian',                        # Random CC
 ]
 
+FILE_IDS_WITH_BAD_FIRST_LINES = [
+    '026652',
+    '029835',
+    '030927',
+    '031189',  # TODO: we lost the 'LOVE & KISSES' at the top
+]
+
 # Emails sent by epstein to himself that are just notes
 NOTES_TO_SELF = [
     '026677',
@@ -509,9 +516,11 @@ class Email(CommunicationDocument):
 
     def _repair(self) -> None:
         """Repair particularly janky files."""
-        super()._repair()
         self._set_computed_fields(lines=[line.strip() for line in self.lines if not BAD_LINE_REGEX.match(line)])
         old_text = self.text
+
+        if self.file_id in FILE_IDS_WITH_BAD_FIRST_LINES:
+            self._set_computed_fields(lines=self.lines[1:])
 
         if self.file_id in ['031442']:
             self._merge_lines(0)  # Merge 1st and 2nd rows
