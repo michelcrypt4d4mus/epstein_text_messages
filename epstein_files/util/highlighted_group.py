@@ -230,7 +230,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='famous_lawyer',
         style='medium_purple3',
-        category='lawyer',
+        category='famous_lawyer',
         pattern=r'(David\s*)?Bo[il]es|dersh|(Gloria\s*)?Allred|(Mi(chael|ke)\s*)?Avenatti',
         emailers = {
             ALAN_DERSHOWITZ: 'Harvard Law School professor and all around (in)famous American lawyer',
@@ -271,7 +271,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='india',
         style='bright_green',
-        pattern=r'Anna\s*Hazare|(Arvind\s*)?Kejriwal|Hardeep( Pur[ei]e)?|Indian?|InsightsPod|Modi|Mumbai|Tranchulas',
+        pattern=r'Abraaj|Anna\s*Hazare|(Arif\s*)?Naqvi|(Arvind\s*)?Kejriwal|Hardeep( Pur[ei]e)?|Indian?|InsightsPod|Modi|Mumbai|Tranchulas',
         emailers = {
             ANIL_AMBANI: 'chairman of Reliance Group',
             VINIT_SAHNI: None,
@@ -304,7 +304,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='journalist',
         style='bright_yellow',
-        pattern=r'Palm\s*Beach\s*(Daily\s*News|Post)|ABC(\s*News)?|Alex\s*Yablon|(Andrew\s*)?Marra|Arianna(\s*Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie\s*Rose|China\s*Daily|CNBC|CNN(politics?)?|Con[cs]hita|Sarnoff|(?<!Virgin[-\s]Islands[-\s])Daily\s*(Beast|Mail|News|Telegraph)|(David\s*)?Pecker|David\s*Brooks|Ed\s*Krassenstein|(Emily\s*)?Michot|Ezra\s*Klein|(George\s*)?Stephanopoulus|Globe\s*and\s*Mail|Good\s*Morning\s*America|Graydon(\s*Carter)?|Huffington(\s*Post)?|Ingram, David|(James\s*)?Patterson|Jonathan\s*Karl|Julie\s*(K.?\s*)?Brown|(Katie\s*)?Couric|Keith\s*Larsen|Miami\s*Herald|(Michele\s*)?Dargan|(National\s*)?Enquirer|(The\s*)?N(ew\s*)?Y(ork\s*)?(P(ost)?|T(imes)?)|(The\s*)?New\s*Yorker|NYer|PERVERSION\s*OF\s*JUSTICE|Politico|(Sean\s*)?Hannity|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|(The\s*)?Wa(shington\s*)?Po(st)?|Viceland|Vick[iy]\s*Ward|Vox|WGBH|(The\s*)?Wall\s*Street\s*Journal|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
+        pattern=r'Palm\s*Beach\s*(Daily\s*News|Post)|ABC(\s*News)?|Alex\s*Yablon|(Andrew\s*)?Marra|Arianna(\s*Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie\s*Rose|China\s*Daily|CNBC|CNN(politics?)?|Con[cs]hita|Sarnoff|(?<!Virgin[-\s]Islands[-\s])Daily\s*(Beast|Mail|News|Telegraph)|(David\s*)?Pecker|David\s*Brooks|Ed\s*Krassenstein|(Emily\s*)?Michot|Ezra\s*Klein|(George\s*)?Stephanopoulus|Globe\s*and\s*Mail|Good\s*Morning\s*America|Graydon(\s*Carter)?|Huffington(\s*Post)?|Ingram, David|(James\s*)?Patterson|Jonathan\s*Karl|Julie\s*(K.?\s*)?Brown|(Katie\s*)?Couric|Keith\s*Larsen|Miami\s*Herald|(Michele\s*)?Dargan|(National\s*)?Enquirer|(The\s*)?N(ew\s*)?Y(ork\s*)?(P(ost)?|T(imes)?)|(The\s*)?New\s*Yorker|NYer|PERVERSION\s*OF\s*JUSTICE|Politico|Pro\s*Publica|(Sean\s*)?Hannity|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|(The\s*)?Wa(shington\s*)?Po(st)?|Viceland|Vick[iy]\s*Ward|Vox|WGBH|(The\s*)?Wall\s*Street\s*Journal|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
         emailers = {
             EDWARD_JAY_EPSTEIN: 'reporter who wrote about the kinds of crimes Epstein was involved in, no relation to Jeffrey',
             'James Hill': 'ABC News',
@@ -331,7 +331,7 @@ HIGHLIGHTED_GROUPS = [
         }
     ),
     HighlightedGroup(
-        label='lawyer',
+        label='epstein lawyer',
         style='purple',
         pattern=r'(Barry (E. )?)?Krischer|Kate Kelly|Kirkland\s*&\s*Ellis|(Leon\s*)?Jaworski|Michael J. Pike|Paul,?\s*Weiss|Steptoe|Wein(berg|garten)',
         emailers = {
