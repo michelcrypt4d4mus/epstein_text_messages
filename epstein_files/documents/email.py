@@ -574,7 +574,7 @@ class Email(CommunicationDocument):
             new_lines.append(line)
 
             # TODO: hacky workaround to get a working link for HOUSE_OVERSIGHT_032564
-            if line == 'http://m.huffpost.com/us/entry/us_599f532ae4b0dOef9f1c129d':
+            if self.file_id == '032564' and line == 'http://m.huffpost.com/us/entry/us_599f532ae4b0dOef9f1c129d':
                 new_lines.append('(ed. note: an archived version of the above link is here: https://archive.is/hJxT3 )')
 
             i += 1
