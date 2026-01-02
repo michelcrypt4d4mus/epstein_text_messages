@@ -484,12 +484,7 @@ ALL_CONFIGS = [
     MessageCfg(id='033316', author=AZIZA_ALAHMADI, attribution_reason='"Regards, Aziza" at bottom'),
     MessageCfg(id='033328', author=AZIZA_ALAHMADI, attribution_reason='"Regards, Aziza" at bottom'),
     MessageCfg(id='026659', author=BARBRO_C_EHNBOM, attribution_reason='Reply'),
-    MessageCfg(
-        id='026745',
-        author=BARBRO_C_EHNBOM,
-        dupe_of_id='031215',
-        attribution_reason='Signature',
-    ),
+    MessageCfg(id='026745', author=BARBRO_C_EHNBOM, dupe_of_id='031215', attribution_reason='Signature'),
     MessageCfg(id='026764', author=BARRY_J_COHEN),
     MessageCfg(id='031227', author=BENNET_MOSKOWITZ, dupe_of_id='031206'),
     MessageCfg(id='031442', author=CHRISTINA_GALBRAITH, duplicate_ids=['031996']),
@@ -497,15 +492,15 @@ ALL_CONFIGS = [
         id='019446',
         author=CHRISTINA_GALBRAITH,
         attribution_reason='Not 100% but from "Christina media/PR" which fits',
+        is_author_uncertain=True,
     ),
     MessageCfg(id='026625', author=DARREN_INDYKE, actual_text='Hysterical.'),
     MessageCfg(
         id='026624',
         author=DARREN_INDYKE,
-        dupe_of_id='031708',
         recipients=[JEFFREY_EPSTEIN],
         timestamp=parse('2016-10-01 16:40:00'),
-        attribution_reason='weird format (signature on top)',
+        duplicate_ids=['031708'],
     ),
     MessageCfg(
         id='031278',
@@ -520,12 +515,7 @@ ALL_CONFIGS = [
     MessageCfg(id='031560', author=DAVID_SCHOEN, attribution_reason='Signature'),
     MessageCfg(id='026287', author=DAVID_SCHOEN, attribution_reason='Signature'),
     MessageCfg(id='033419', author=DAVID_SCHOEN, attribution_reason='Signature'),
-    MessageCfg(
-        id='026245',
-        author=DIANE_ZIMAN,
-        recipients=[JEFFREY_EPSTEIN],
-        attribution_reason="TODO: Shouldn't need to be configured",
-    ),
+    MessageCfg(id='026245', author=DIANE_ZIMAN, recipients=[JEFFREY_EPSTEIN]),  # TODO: Shouldn't need to be configured
     MessageCfg(id='031460', author=EDWARD_JAY_EPSTEIN),
     MessageCfg(id='030578', author=FAITH_KATES, dupe_of_id='030414', dupe_type='redacted'),
     MessageCfg(
