@@ -31,7 +31,7 @@ CLOSE_PROPERTIES_CHAR = ']'
 MAX_EXTRACTED_TIMESTAMPS = 6
 MIN_TIMESTAMP = datetime(1991, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
-MAX_TIMESTAMP = datetime(2022, 12, 31)
+MAX_TIMESTAMP = datetime(2020, 1, 1)
 TRAILING_DATE_REGEX = re.compile(r' ((around|ca\.|roughly) )?\d{4}-\d{2}(-\d{2})?$')
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 

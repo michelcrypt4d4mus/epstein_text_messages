@@ -1403,7 +1403,7 @@ ALL_CONFIGS = [
     FileCfg(id='026565', description=f'{EPSTEIN_FOUNDATION} {PRESS_RELEASE}, maybe a draft of 029326', date='2013-02-15'),
     FileCfg(id='026572', description=f"{JP_MORGAN} Global Asset Allocation report", date='2012-11-09'),
     FileCfg(id='030848', description=f"{JP_MORGAN} Global Asset Allocation report", date='2013-03-28'),
-    FileCfg(id='030840', description=f"{JP_MORGAN} Market Thoughts", date='2012-11-01'),
+    FileCfg(id='030840', description=f"{JP_MORGAN} Market Thoughts"),
     FileCfg(id='022350', description=f"{JP_MORGAN} report on tax efficiency of Intentionally Defective Grantor Trusts (IDGT)"),
     FileCfg(id='025242', description=f"{JP_MORGAN_EYE_ON_THE_MARKET}", date='2012-04-09'),
     FileCfg(id='030010', description=f"{JP_MORGAN_EYE_ON_THE_MARKET}", date='2011-06-14'),
@@ -1413,7 +1413,7 @@ ALL_CONFIGS = [
     FileCfg(id='030814', description=f"{JP_MORGAN_EYE_ON_THE_MARKET}", date='2011-11-21'),
     FileCfg(id='024132', description=f"{JP_MORGAN_EYE_ON_THE_MARKET}", date='2012-03-15'),
     FileCfg(id='024194', description=f"{JP_MORGAN_EYE_ON_THE_MARKET}", date='2012-10-22'),
-    FileCfg(id='025296', description=f'Laffer Associates report predicting Trump win', date='2016-07-01'),
+    FileCfg(id='025296', description=f'Laffer Associates report predicting Trump win', date='2016-07-06'),
     FileCfg(
         id='025551',
         description=f'Morgan Stanley report about alternative asset managers',
