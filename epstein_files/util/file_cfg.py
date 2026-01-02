@@ -104,16 +104,11 @@ class FileCfg:
         return props
 
     def __eq__(self, other: 'FileCfg') -> bool:
-        """Return True if everything matches other than the duplicate fields."""
-        pfx = f"{self.id} vs. {other.id}"
-
+        """Return True if everything matches other than the two 'dupe_' fields ('duplicate_ids' is compared)."""
         for _field in self.sorted_fields():
-            this_val = getattr(self, _field.name)
-            other_val = getattr(other, _field.name)
-
             if _field.name == 'id' or _field.name.startswith('dupe'):
                 continue
-            elif this_val != other_val:
+            elif getattr(self, _field.name) != getattr(other, _field.name):
                 return False
 
         return True
