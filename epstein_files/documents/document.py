@@ -43,17 +43,17 @@ DOC_TYPE_STYLES = {
     OTHER_FILE_CLASS: 'grey69',
 }
 
-OCR_REPAIRS = {
-    re.compile(r'\.corn\b'): '.com',
-    re.compile('ln(adequate|dyke)'): r'In\1',
-    'Nil Priell': 'Nili Priell',
-}
-
 FILENAME_MATCH_STYLES = [
     'dark_green',
     'green',
     'spring_green4',
 ]
+
+OCR_REPAIRS = {
+    re.compile(r'\.corn\b'): '.com',
+    re.compile('ln(adequate|dyke)'): r'In\1',
+    'Nil Priell': 'Nili Priell',
+}
 
 
 @dataclass
