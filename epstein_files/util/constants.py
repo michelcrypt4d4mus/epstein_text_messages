@@ -804,7 +804,7 @@ ALL_CONFIGS = [
     ############################################# DUPE_FILE_CFGS ###############################################
     ############################################################################################################
 
-    MessageCfg(id='031215', duplicate_ids=['026745'], dupe_type='redacted'),
+    MessageCfg(id='031215', author=BARBRO_C_EHNBOM, duplicate_ids=['026745'], dupe_type='redacted'),  # the same except for 'your Anna!'. author must be specified because email address is redacted in 026745 so it needs the config
     MessageCfg(id='028768', duplicate_ids=['026563'], dupe_type='redacted'),
     MessageCfg(id='027056', duplicate_ids=['028762'], dupe_type='redacted'),
     MessageCfg(id='032248', duplicate_ids=['032246'], dupe_type='redacted'),
@@ -1439,11 +1439,7 @@ ALL_CONFIGS = [
     FileCfg(id='022325', description=f'{DEUTSCHE_BANK_TAX_TOPICS}', timestamp=parse('2013-12-20')),
     FileCfg(id='022330', description=f'{DEUTSCHE_BANK_TAX_TOPICS} table of contents', timestamp=parse('2013-12-20')),
     FileCfg(id='019440', description=f'{DEUTSCHE_BANK_TAX_TOPICS}', timestamp=parse('2014-01-29')),
-    FileCfg(
-        id='024202',
-        description=f'Electron Capital Partners LLC "Global Utility White Paper"',
-        timestamp=parse('2013-03-08'),
-    ),
+    FileCfg(id='024202', description=f'Electron Capital Partners LLC "Global Utility White Paper"', timestamp=parse('2013-03-08')),
     FileCfg(id='022372', description=f'Ernst & Young 2016 election report'),
     FileCfg(
         id='025663',
@@ -1456,19 +1452,11 @@ ALL_CONFIGS = [
         description=f'{GOLDMAN_REPORT} "The Unsteady Undertow Commands the Seas (Temporarily)"',
         timestamp=parse('2018-10-14'),
     ),
-    FileCfg(
-        id='026944',
-        description=f'{GOLDMAN_REPORT} "Risk of a US-Iran Military Conflict"',
-        timestamp=parse('2019-05-23'),
-    ),
+    FileCfg(id='026944', description=f'{GOLDMAN_REPORT} "Risk of a US-Iran Military Conflict"', timestamp=parse('2019-05-23')),
     FileCfg(id='026679', description=f'Invesco report: "Global Sovereign Asset Management Study 2017"'),
     FileCfg(id='023096', description=f'{EPSTEIN_FOUNDATION} blog', timestamp=parse('2012-11-15')),
     FileCfg(id='029326', description=f'{EPSTEIN_FOUNDATION} {PRESS_RELEASE}', timestamp=parse('2013-02-15')),
-    FileCfg(
-        id='026565',
-        description=f'{EPSTEIN_FOUNDATION} {PRESS_RELEASE}, maybe a draft of 029326',
-        timestamp=parse('2013-02-15'),
-    ),
+    FileCfg(id='026565', description=f'{EPSTEIN_FOUNDATION} {PRESS_RELEASE}, maybe a draft of 029326', timestamp=parse('2013-02-15')),
     FileCfg(id='026572', description=f"{JP_MORGAN} Global Asset Allocation report", timestamp=parse('2012-11-09')),
     FileCfg(id='030848', description=f"{JP_MORGAN} Global Asset Allocation report", timestamp=parse('2013-03-28')),
     FileCfg(id='030840', description=f"{JP_MORGAN} Market Thoughts", timestamp=parse('2012-11-01')),
@@ -1499,19 +1487,11 @@ ALL_CONFIGS = [
     ),
     FileCfg(id='012048', description=f'{PRESS_RELEASE} "Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm" and other articles'),
     FileCfg(id='020447', description=f'Promoting Constructive Vigilance: Report of the Working Group on Chinese Influence Activities in the U.S. (Hoover Group/Stanford 2018)'),
-    FileCfg(
-        id='025763',
-        description=f'S&P Economic Research: "How Increasing Income Inequality Is Dampening U.S. Growth"',
-        timestamp=parse('2014-08-05'),
-    ),
+    FileCfg(id='025763', description=f'S&P Economic Research: "How Increasing Income Inequality Is Dampening U.S. Growth"', timestamp=parse('2014-08-05')),
     FileCfg(id='019856', description=f"Sadis Goldberg LLP report on SCOTUS ruling about insider trading"),
     FileCfg(id='026827', description=f'Scowcroft Group report on ISIS', timestamp=parse('2015-11-14')),
     FileCfg(id='033220', description=f"short economic report on defense spending under Trump by Joseph G. Carson"),
-    FileCfg(
-        id='026856',
-        description=f'speech by former Australian PM Kevin Rudd "Xi Jinping, China And The Global Order"',
-        timestamp=parse('2018-06-26'),
-    ),
+    FileCfg(id='026856', description=f'speech by former Australian PM Kevin Rudd "Xi Jinping, China And The Global Order"', timestamp=parse('2018-06-26')),
     FileCfg(
         id='023133',
         description=f'"The Search for Peace in the Arab-Israeli Conflict" edited by {TERJE_ROD_LARSEN}, Nur Laiq, Fabrice Aidan',
@@ -1520,11 +1500,7 @@ ALL_CONFIGS = [
     FileCfg(id='024135', description=f'{UBS_CIO_REPORT}', timestamp=parse('2012-06-29')),
     FileCfg(id='025247', description=f'{UBS_CIO_REPORT}', timestamp=parse('2012-10-25')),
     FileCfg(id='025849', description=f'US Office of Government Information Services report: "Building a Bridge Between FOIA Requesters & Agencies"'),
-    FileCfg(
-        id='020824',
-        description=f"USA Inc: A Basic Summary of America's Financial Statements compiled by Mary Meeker",
-        timestamp=parse('2011-02-01'),
-    ),
+    FileCfg(id='020824', description=f"USA Inc: A Basic Summary of America's Financial Statements compiled by Mary Meeker", timestamp=parse('2011-02-01')),
     FileCfg(id='017789', description=f'{ALAN_DERSHOWITZ} letter to {HARVARD} Crimson complaining he was defamed'),
     # letters
     FileCfg(
