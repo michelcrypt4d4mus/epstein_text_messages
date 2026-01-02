@@ -536,8 +536,7 @@ ALL_CONFIGS = [
     ),
     MessageCfg(id='026547', author=GERALD_BARTON, recipients=[JEFFREY_EPSTEIN], attribution_reason='bad OCR'),
     MessageCfg(id='029969', author=GWENDOLYN_BECK, attribution_reason='Signature'),
-    MessageCfg(id='029968', author=GWENDOLYN_BECK, attribution_reason='Signature'),
-        MessageCfg(id='031120', dupe_of_id='029968'),
+    MessageCfg(id='029968', author=GWENDOLYN_BECK, attribution_reason='Signature', duplicate_ids=['031120']),
     MessageCfg(id='029970', author=GWENDOLYN_BECK),
     MessageCfg(id='029960', author=GWENDOLYN_BECK, attribution_reason='Reply'),
     MessageCfg(id='029959', author=GWENDOLYN_BECK, attribution_reason='"Longevity & Aging"'),
@@ -548,16 +547,15 @@ ALL_CONFIGS = [
     MessageCfg(id='022949', author=JEFFREY_EPSTEIN),
     MessageCfg(id='031624', author=JEFFREY_EPSTEIN),
     MessageCfg(id='031996', author=JEFFREY_EPSTEIN, recipients=[CHRISTINA_GALBRAITH], attribution_reason='bounced'),
-    MessageCfg(id='025041', author=JEFFREY_EPSTEIN, recipients=[LARRY_SUMMERS], attribution_reason='Bad OCR'),
-        MessageCfg(id='028675', dupe_of_id='025041'),
+    MessageCfg(id='025041', author=JEFFREY_EPSTEIN, recipients=[LARRY_SUMMERS], attribution_reason='Bad OCR', duplicate_ids=['028675']),
     MessageCfg(
         id='029692',
         author=JEFFREY_EPSTEIN,
         is_fwded_article=True,
         recipients=[LARRY_SUMMERS],
         attribution_reason='Bad OCR, WaPo article',
+        duplicate_ids=['029779'],
     ),
-        MessageCfg(id='029779', dupe_of_id='029692'),
     MessageCfg(id='018726', author=JEFFREY_EPSTEIN, timestamp=parse('2018-06-08 08:36:00')),
     MessageCfg(id='032283', author=JEFFREY_EPSTEIN, timestamp=parse('2016-09-14 08:04:00')),
     MessageCfg(id='026943', author=JEFFREY_EPSTEIN, timestamp=parse('2019-05-22 05:47:00')),
@@ -2003,7 +2001,15 @@ ALL_CONFIGS = [
     FileCfg(id='029448', description=f'weird short essay titled "President Obama and Self-Deception"'),
 ]
 
-ALL_FILE_CONFIGS = {cfg.id: cfg for cfg in ALL_CONFIGS}
+ALL_FILE_CONFIGS: dict[str, FileCfg] = {}
+
+for cfg in ALL_CONFIGS:
+    ALL_FILE_CONFIGS[cfg.id] = cfg
+
+    for duplicate_id in cfg.duplicate_ids:
+        print(f"Adding dupe id '{duplicate_id}' to ALL_FILE_CONFIGS pointing to '{cfg.id}'...")
+        ALL_FILE_CONFIGS[duplicate_id] = cfg
+
 EMAIL_CONFIGS = {id: cfg for id, cfg in ALL_FILE_CONFIGS.items() if isinstance(cfg, MessageCfg)}
 
 

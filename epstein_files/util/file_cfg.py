@@ -39,11 +39,12 @@ class FileCfg:
         autduplicate_typehor (DuplicateType | None): The type of duplicate this file is
         timestamp (datetime | None): Time this email was sent, file was created, article published, etc.
     """
-    id: str | None = None
+    id: str
     author: str | None = None
     description: str | None = None
     dupe_of_id: str | None = None
     dupe_type: DuplicateType | None = None
+    duplicate_ids: list[str] = field(default_factory=list)
     timestamp: datetime | None = None
 
     def __post_init__(self):
