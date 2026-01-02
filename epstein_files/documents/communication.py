@@ -8,6 +8,7 @@ from rich.text import Text
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, Document
 from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constants import FALLBACK_TIMESTAMP
+from epstein_files.util.file_cfg import MessageCfg
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import key_value_txt
 
@@ -19,13 +20,13 @@ class Communication(Document):
     """Superclass for Email and MessengerLog."""
     author_style: str = 'white'
     author_txt: Text = field(init=False)
+    config: MessageCfg | None = None
     timestamp: datetime = FALLBACK_TIMESTAMP  # TODO this default sucks (though it never happens)
 
     def __post_init__(self):
         super().__post_init__()
         self.author_style = get_style_for_name(self.author_or_unknown())
         self.author_txt = Text(self.author_or_unknown(), style=self.author_style)
-        self.timestamp = self._extract_timestamp()
 
     def author_or_unknown(self) -> str:
         return self.author or UNKNOWN

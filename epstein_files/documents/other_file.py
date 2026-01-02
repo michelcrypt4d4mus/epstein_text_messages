@@ -38,10 +38,6 @@ SKIP_EXTRACTING_TIMESTAMPS = [
 class OtherFile(Document):
     """File that is not an email, an iMessage log, or JSON data."""
 
-    def __post_init__(self):
-        super().__post_init__()
-        self.timestamp = self._extract_timestamp()
-
     def configured_description(self) -> str | None:
         """Overloads superclass method."""
         if self.config is None:
@@ -111,7 +107,7 @@ class OtherFile(Document):
                 logger.warning(f"Error while iterating through datefinder.find_dates(): {e}")
 
         if len(timestamps) == 0:
-            self.log_top_lines(15, msg=f"{self.file_id}: No timestamps found", level=log_level)
+            self.log_top_lines(15, msg=f"{self.file_id}: No timestamps found", level=logging.DEBUG)
             return None
         elif len(timestamps) == 1:
             return timestamps[0]

@@ -280,7 +280,6 @@ NOTES_TO_SELF = [
 @dataclass
 class Email(Communication):
     actual_text: str = field(init=False)
-    config: MessageCfg | None = None
     header: EmailHeader = field(init=False)
     is_junk_mail: bool = False
     recipients: list[str | None] = field(default_factory=list)

@@ -94,6 +94,7 @@ class Document:
         self._set_computed_fields(text=self.text or self._load_file())
         self._repair()
         self._extract_author()
+        self.timestamp = self._extract_timestamp()
 
     # TODO: remove eventually, unecessary
     def cfg_type(self) -> str | None:
@@ -261,8 +262,9 @@ class Document:
         if self.config and self.config.author:
             self.author = self.config.author
 
-    def _extract_timestamp(self) -> datetime:
-        raise NotImplementedError(f"Should be implemented in subclasses!")
+    def _extract_timestamp(self) -> datetime | None:
+        """Should be implemented in subclasses."""
+        pass
 
     def _load_file(self):
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
