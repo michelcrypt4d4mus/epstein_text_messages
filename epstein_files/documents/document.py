@@ -15,7 +15,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP, VI_DAILY_NEWS_ARTICLE
-from epstein_files.util.file_cfg import MessageCfg, FileCfg
+from epstein_files.util.file_cfg import FileCfg, MessageCfg
 from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, listify, patternize
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, file_stem_for_id, extract_file_id, file_size_str, is_local_extract_file
@@ -84,7 +84,7 @@ class Document:
         if self.is_local_extract_file():
             self.url_slug = file_stem_for_id(self.file_id)
 
-            if self.document_type() == EMAIL_CLASS and self.config and self.cfg_type() != 'EmailCfg':
+            if self.document_type() == EMAIL_CLASS and self.config and self.cfg_type() != MessageCfg.__name__:
                 self.config = MessageCfg.from_file_cfg(self.config)
         else:
             self.url_slug = self.file_path.stem

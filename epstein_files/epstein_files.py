@@ -76,11 +76,6 @@ class EpsteinFiles:
                 self.imessage_logs.append(MessengerLog(file_arg))  # Handle iMessage log files
                 logger.info(self.imessage_logs[-1].description().plain)
             elif DETECT_EMAIL_REGEX.match(document.text) or isinstance(document.config, MessageCfg):
-                if DETECT_EMAIL_REGEX.match(document.text):
-                    logger.info(f"   -> Email because DETECT_EMAIL_REGEX.match(document.text)")
-                else:
-                    logger.info(f"   -> Email because EmailCfg type")
-
                 email = Email(file_arg, text=document.text)  # Handle emails
                 logger.info(email.description().plain)
                 self.emails.append(email)
