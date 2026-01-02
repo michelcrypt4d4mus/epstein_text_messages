@@ -12,11 +12,15 @@ OTHER_FILE_CLASS = 'OtherFile'
 # Publications
 BBC = 'BBC'
 BLOOMBERG = 'Bloomberg'
+CHINA_DAILY = "China Daily"
+DAILY_MAIL = 'Daily Mail'
+DAILY_TELEGRAPH = "Daily Telegraph"
 LA_TIMES = 'LA Times'
 MIAMI_HERALD = 'Miami Herald'
 NYT_ARTICLE = 'NYT article about'
 NYT_COLUMN = 'NYT column about'
 THE_REAL_DEAL = 'The Real Deal'
+WAPO = 'WaPo'
 
 # Site types
 EMAIL = 'email'

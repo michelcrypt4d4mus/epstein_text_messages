@@ -151,13 +151,13 @@ class MessageCfg(FileCfg):
     Attributes:
         actual_text (str | None): In dire cases of broken OCR we just configure the body of the email as a string.
         attribution_reason (str | None): Optional explanation of why this email was attributed to this author.
-        is_author_uncertain (bool): True if we have a good idea of who the author is but are not 100% certain
+        is_attribution_uncertain (bool): True if we have a good idea of who the author is but are not 100% certain
         is_fwded_article (bool): True if this is a newspaper article someone fwded. Used to exclude articles from word counting.
         recipients (list[str | None]): Who received the email
     """
     actual_text: str | None = None  # Override for the Email._actual_text() method for particularly broken emails
     attribution_reason: str | None = None
-    is_author_uncertain: bool = False
+    is_attribution_uncertain: bool = False
     is_fwded_article: bool = False
     recipients: list[str | None] = field(default_factory=list)
 
