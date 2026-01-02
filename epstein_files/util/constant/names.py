@@ -6,7 +6,7 @@ UNKNOWN = '(unknown)'
 # Texting Names
 ANDRZEJ_DUDA = 'Andrzej Duda or entourage'
 ANIL_AMBANI = "Anil Ambani"
-ARDA_BESKARES = 'Arda Beskardes'
+ARDA_BESKARDES = 'Arda Beskardes'
 EVA = 'Eva (Dubin?)'
 JEFFREY_EPSTEIN = 'Jeffrey Epstein'
 JOI_ITO = 'Joi Ito'
@@ -15,7 +15,7 @@ MELANIE_WALKER = 'Melanie Walker'
 MIROSLAV_LAJCAK = 'Miroslav Lajčák'
 STACEY_PLASKETT = 'Stacey Plaskett'
 SCARAMUCCI = "Anthony Scaramucci"
-SOON_YI = 'Soon-Yi Previn'
+SOON_YI_PREVIN = 'Soon-Yi Previn'
 STEVE_BANNON = 'Steve Bannon'
 STEVEN_SINOFSKY = 'Steven Sinofsky'
 TERJE_ROD_LARSEN = 'Terje Rød-Larsen'
@@ -244,8 +244,13 @@ OTHER_NAMES = """
 
 
 def constantize_name(name: str) -> str:
+    if name == SCARAMUCCI:
+        return 'SCARAMUCCI'
+    elif name == 'Andrzej Duda or entourage':
+        return 'ANDRZEJ_DUDA'
+
     variable_name = remove_question_marks(name)
-    variable_name = variable_name.removesuffix('.').removesuffix('Jr').replace('ź', 'z').strip()
+    variable_name = variable_name.removesuffix('.').removesuffix('Jr').replace('ź', 'z').replace('ø', 'o').strip()
     variable_name = variable_name.upper().replace('-', '_').replace(' ', '_').replace('.', '')
 
     if variable_name not in globals():

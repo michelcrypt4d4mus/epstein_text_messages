@@ -9,15 +9,13 @@ JSON_FILE_CLASS = 'JsonFile'
 MESSENGER_LOG_CLASS = 'MessengerLog'
 OTHER_FILE_CLASS = 'OtherFile'
 
-# Misc
-AUTHOR = 'author'
-DEFAULT = 'default'
-EVERYONE = 'everyone'
-HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
-NA = 'n/a'
-QUESTION_MARKS = '(???)'
-REDACTED = '<REDACTED>'
-URL_SIGNIFIERS = ['gclid', 'htm', 'ref=', 'utm']
+# Publications
+BBC = 'BBC'
+BLOOMBERG = 'Bloomberg'
+LA_TIMES = 'LA Times'
+MIAMI_HERALD = 'Miami Herald'
+NYT_ARTICLE = 'NYT article about'
+NYT_COLUMN = 'NYT column about'
 
 # Site types
 EMAIL = 'email'
@@ -29,7 +27,15 @@ OTHER_SITE_LINK_STYLE = 'dark_goldenrod'
 TIMESTAMP_STYLE = 'turquoise4'
 TIMESTAMP_DIM = f"turquoise4 dim"
 
-# Regex
+# Misc
+AUTHOR = 'author'
+DEFAULT = 'default'
+EVERYONE = 'everyone'
+HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
+NA = 'n/a'
+REDACTED = '<REDACTED>'
+URL_SIGNIFIERS = ['gclid', 'htm', 'ref=', 'utm']
+QUESTION_MARKS = '(???)'
 QUESTION_MARKS_REGEX = re.compile(fr' {re.escape(QUESTION_MARKS)}$')
 
 
