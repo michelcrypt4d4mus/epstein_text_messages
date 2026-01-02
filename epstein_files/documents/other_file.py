@@ -72,6 +72,7 @@ class OtherFile(Document):
         """Return ISO date at end of configured description entry or value extracted by datefinder.find_dates()."""
         log_level = logging.DEBUG if VAST_HOUSE in self.text else logging.INFO
         timestamps: list[datetime] = []
+        configured_timestamp = None
 
         # Check for configured values
         if self.config and self.config.description:
@@ -80,7 +81,9 @@ class OtherFile(Document):
             if timestamp:
                 # Avoid returning hacky '-01' appended strings in case datefinder finds something more accurate
                 if timestamp.date != 1:
-                    return timestamp
+                    # return timestamp
+                    configured_timestamp = timestamp
+                    timestamps.append(timestamp)
                 else:
                     timestamps.append(timestamp)
 
@@ -110,11 +113,23 @@ class OtherFile(Document):
         timestamps = sorted(timestamps, reverse=True)
         timestamp_strs = [str(dt) for dt in timestamps]
         num_days_spanned = (timestamps[0] - timestamps[-1]).days
+        timestamps_log_msg = f"Found {len(timestamps)} timestamps spanning {num_days_spanned} days\n     "
+        timestamps_log_msg += '\n     '.join(timestamp_strs)
 
         if num_days_spanned > MAX_DAYS_SPANNED_TO_BE_VALID and VAST_HOUSE not in self.text:
-            msg = f"{self.file_id}: Found {len(timestamps)} timestamps spanning {num_days_spanned} days\n     "
-            msg += '\n     '.join(timestamp_strs)
-            self.log_top_lines(15, msg=msg, level=log_level)
+            self.log_top_lines(15, msg=timestamps_log_msg, level=log_level)
 
         # Most recent timestamp in text should be closest to accurate bc doc should only have dates of things that already happened
-        return timestamps[0]
+        last_timestamp = timestamps[0]
+
+        if configured_timestamp:
+            if configured_timestamp.date() == last_timestamp.date():
+                self.log(f"Configured and found timestamp have same date '{configured_timestamp.date()}'")
+            else:
+                days_diff = (configured_timestamp - last_timestamp).days
+                self.log(f"Found {len(timestamps)} timestamps, config '{configured_timestamp.date()}' and last found '{last_timestamp.date()}' differ by {days_diff} days")
+                self.log(timestamps_log_msg + '\n')
+
+            return configured_timestamp
+
+        return last_timestamp
