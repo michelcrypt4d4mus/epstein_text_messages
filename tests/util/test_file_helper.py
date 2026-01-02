@@ -7,4 +7,4 @@ def test_is_local_file_extract(local_extract_file_name):
 
 
 def test_build_filename_for_id():
-    assert build_filename_for_id(123) == 'HOUSE_OVERSIGHT_000123.txt'
+    assert filename_for_id(123) == 'HOUSE_OVERSIGHT_000123.txt'
