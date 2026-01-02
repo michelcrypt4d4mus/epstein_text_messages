@@ -187,6 +187,7 @@ class Document:
         return is_local_extract_file(self.filename)
 
     def lines_matching_txt(self, _pattern: re.Pattern | str) -> list[Text]:
+        """Return lines matching a regex as colored list[Text]."""
         pattern = patternize(_pattern)
         matched_lines = [line for line in self.lines if pattern.search(line)]
 
