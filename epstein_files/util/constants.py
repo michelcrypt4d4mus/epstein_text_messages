@@ -1023,7 +1023,6 @@ ALL_CONFIGS = [
         description=f"letter from {STEVEN_HOFFENBERG}'s lawyers at Mintz Fraade offering to take over Epstein's business and resolve his legal issues",
         date='2018-03-23',
     ),
-
     FileCfg(
         id='016420',
         description=f"{NEW_YORK_V_EPSTEIN} New York Post Motion to Unseal Appellate Briefs",
@@ -1036,7 +1035,6 @@ ALL_CONFIGS = [
     # conferences
     FileCfg(id='030769', description=f"2017 Independent Filmmaker Project (IFP) Gotham Awards invitation"),
     FileCfg(id='014951', description=f"2017 TED Talks program", date='2017-04-20'),
-    FileCfg(id='023069', description=f'{BOFA_MERRILL} 2016 Future of Financials Conference'),
     FileCfg(id='014315', description=f'{BOFA_MERRILL} 2016 Future of Financials Conference'),
     FileCfg(id='026825', description=f"{DEUTSCHE_BANK} Asset & Wealth Management featured speaker bios"),  # Really "Deutsche Asset" which may not be Deutsche Bank?
     FileCfg(id='017526', description=f'Intellectual Jazz conference brochure f. {DAVID_BLAINE}'),
@@ -1077,6 +1075,7 @@ ALL_CONFIGS = [
     FileCfg(id='014460', description=f"{BOFA_MERRILL} 'European Equity Strategy 2017'", date='2016-12-01'),
     FileCfg(id='014972', description=f"{BOFA_MERRILL} 'Global Equity Volatility Insights'", date='2017-06-20'),
     FileCfg(id='014622', description=f"{BOFA_MERRILL} 'Top 10 US Ideas Quarterly'", date='2017-01-03'),
+    FileCfg(id='023069', description=f'{BOFA_MERRILL} Equity Strategy Focus Point Death and Taxes', date='2017-01-29'),
     FileCfg(id='014721', description=f"{BOFA_MERRILL} 'Cause and Effect Fade the Trump Risk Premium'", date='2017-02-13'),
     FileCfg(id='014887', description=f"{BOFA_MERRILL} 'Internet / e-Commerce'", date='2017-04-06'),
     FileCfg(id='014873', description=f"{BOFA_MERRILL} 'Hess Corp'", date='2017-04-11'),
