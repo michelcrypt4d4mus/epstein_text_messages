@@ -40,7 +40,7 @@ EMAIL_CODE = """
         duplicate_of_id='030414',
         duplicate_type='redacted',
         author=FAITH_KATES,
-        attribution_explanation='Same as unredacted 030414, same legal signature',
+        attribution_reason='Same as unredacted 030414, same legal signature',
     ),
     '030634': EmailConfig(author=FAITH_KATES),           # Same as unredacted 031135, same legal signature
     '026547': EmailConfig(author=GERALD_BARTON, recipients=[JEFFREY_EPSTEIN]),  # bad OCR
