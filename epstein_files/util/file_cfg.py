@@ -100,13 +100,10 @@ class FileCfg:
             other_val = getattr(other, _field.name)
 
             if _field.name == 'id' or _field.name.startswith('dup'):
-                print(f"{pfx}: skipping field {_field.name}...")
                 continue
             elif this_val != other_val:
-                print(f"{pfx}: mismatch of {_field.name} ('{this_val}' vs. '{other_val})")
+                print(f"{pfx}: mismatch of \"{_field.name}\" ('{this_val}' vs. '{other_val}')")
                 return False
-            else:
-                print(f"{pfx}: MATCH of {_field.name} ('{this_val}' vs. '{other_val})")
 
         return True
 

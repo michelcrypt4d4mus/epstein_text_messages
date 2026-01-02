@@ -536,13 +536,8 @@ ALL_CONFIGS = [
     ),
     MessageCfg(id='026547', author=GERALD_BARTON, recipients=[JEFFREY_EPSTEIN], attribution_reason='bad OCR'),
     MessageCfg(id='029969', author=GWENDOLYN_BECK, attribution_reason='Signature'),
-    MessageCfg(
-        id='031120',
-        author=GWENDOLYN_BECK,
-        dupe_of_id='029968',
-        attribution_reason='Signature',
-    ),
     MessageCfg(id='029968', author=GWENDOLYN_BECK, attribution_reason='Signature'),
+        MessageCfg(id='031120', dupe_of_id='029968'),
     MessageCfg(id='029970', author=GWENDOLYN_BECK),
     MessageCfg(id='029960', author=GWENDOLYN_BECK, attribution_reason='Reply'),
     MessageCfg(id='029959', author=GWENDOLYN_BECK, attribution_reason='"Longevity & Aging"'),
@@ -553,22 +548,8 @@ ALL_CONFIGS = [
     MessageCfg(id='022949', author=JEFFREY_EPSTEIN),
     MessageCfg(id='031624', author=JEFFREY_EPSTEIN),
     MessageCfg(id='031996', author=JEFFREY_EPSTEIN, recipients=[CHRISTINA_GALBRAITH], attribution_reason='bounced'),
-    MessageCfg(
-        id='028675',
-        author=JEFFREY_EPSTEIN,
-        dupe_of_id='025041',
-        recipients=[LARRY_SUMMERS],
-        attribution_reason='Bad OCR',
-    ),
     MessageCfg(id='025041', author=JEFFREY_EPSTEIN, recipients=[LARRY_SUMMERS], attribution_reason='Bad OCR'),
-    MessageCfg(
-        id='029779',
-        author=JEFFREY_EPSTEIN,
-        dupe_of_id='029692',
-        is_fwded_article=True,
-        recipients=[LARRY_SUMMERS],
-        attribution_reason='Bad OCR, WaPo article',
-    ),
+        MessageCfg(id='028675', dupe_of_id='025041'),
     MessageCfg(
         id='029692',
         author=JEFFREY_EPSTEIN,
@@ -576,6 +557,7 @@ ALL_CONFIGS = [
         recipients=[LARRY_SUMMERS],
         attribution_reason='Bad OCR, WaPo article',
     ),
+        MessageCfg(id='029779', dupe_of_id='029692'),
     MessageCfg(id='018726', author=JEFFREY_EPSTEIN, timestamp=parse('2018-06-08 08:36:00')),
     MessageCfg(id='032283', author=JEFFREY_EPSTEIN, timestamp=parse('2016-09-14 08:04:00')),
     MessageCfg(id='026943', author=JEFFREY_EPSTEIN, timestamp=parse('2019-05-22 05:47:00')),
@@ -2031,13 +2013,16 @@ for cfg in ALL_FILE_CONFIGS.values():
 
     if cfg.dupe_of_id in ALL_FILE_CONFIGS:
         dupe_of_cfg = ALL_FILE_CONFIGS[cfg.dupe_of_id]
+        print('\n')
 
-        if dupe_of_cfg == cfg:
-            print(f"{cfg.id} duplicates {dupe_of_cfg.id} and configurations are the same...")
+        if cfg.non_null_field_names() == ['id', 'dupe_of_id', 'dupe_type']:
+            print(f"{dupe_of_cfg.id} is duplicated by {cfg.id}, configurations of {cfg.id} is only dupe fields...")
+        elif dupe_of_cfg == cfg:
+            print(f"{dupe_of_cfg.id} is duplicated by {cfg.id} duplicates and configurations are the same\n    {cfg}")
         else:
-            print(f"\nDupe configs. Valid file's cfg:\n    {dupe_of_cfg}")
-            print(f"Duplicate's cfg:\n    {cfg}")
-            print(f"are equals? {dupe_of_cfg == cfg} ({type(cfg).__name__} vs. {type(dupe_of_cfg).__name__})\n")
+            print(f"    Dupe configs. Valid file's cfg:\n        {dupe_of_cfg}")
+            print(f"    Duplicate's cfg:\n        {cfg}")
+            # print(f"are equals? {dupe_of_cfg == cfg} ({type(cfg).__name__} vs. {type(dupe_of_cfg).__name__})\n")
 
 
 # Error checking.
