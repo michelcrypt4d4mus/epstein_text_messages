@@ -188,7 +188,9 @@ CNN = 'CNN'
 DEUTSCHE_BANK = 'Deutsche Bank'
 GOLDMAN_SACHS = 'Goldman Sachs'
 HARVARD = 'Harvard'
+INSIGHTS_POD = f"InsightsPod"  # Zubair bots
 JP_MORGAN = 'JP Morgan'
+OSBORNE_LLP = f"{IAN_OSBORNE} & Partners LLP"  # Ian Osborne's PR firm
 
 # Locations
 VIRGIN_ISLANDS = 'Virgin Islands'

@@ -28,6 +28,11 @@ TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
+SKIP_EXTRACTING_TIMESTAMPS = [
+    'Government Ethics',
+    'TSV',
+]
+
 
 @dataclass
 class OtherFile(Document):
@@ -89,16 +94,13 @@ class OtherFile(Document):
 
         # Check for configured values
         if self.config and self.config.timestamp:
-            timestamp = self.config.timestamp
-
-            if timestamp:
-                # return timestamp  # TODO: reenable, this is just so we can log what's being found
-                configured_timestamp = timestamp
-                timestamps.append(timestamp)
+            configured_timestamp = self.config.timestamp
+            timestamps.append(self.config.timestamp)
+            # return timestamp  # TODO: reenable, this is just so we can log what's being found
 
             # Avoid scanning large TSVs for dates
-            if self.config and self.config.description and self.config.description.startswith('TSV'):
-                return timestamps[0] if timestamps else None
+            if self.config.description and any(word in self.config.description for word in SKIP_EXTRACTING_TIMESTAMPS):
+                return configured_timestamp
 
         with warnings.catch_warnings():
             warnings.filterwarnings("ignore", module="datefinder")
@@ -112,7 +114,7 @@ class OtherFile(Document):
                     if MIN_TIMESTAMP < timestamp < MAX_TIMESTAMP:
                         timestamps.append(timestamp)
 
-                    if len(timestamps) >= MAX_EXTRACTED_TIMESTAMPS:
+                    if i >= MAX_EXTRACTED_TIMESTAMPS:
                         break
             except ValueError as e:
                 logger.warning(f"Error while iterating through datefinder.find_dates(): {e}")
