@@ -119,6 +119,10 @@ class OtherFile(Document):
         elif len(timestamps) == 1:
             return timestamps[0]
 
+        # TODO: temporarily remove configured value
+        if configured_timestamp:
+            timestamps = timestamps[1:]
+
         timestamps = sorted(uniquify(timestamps), reverse=True)
         timestamp_strs = [str(dt) for dt in timestamps]
         num_days_spanned = (timestamps[0] - timestamps[-1]).days
@@ -133,9 +137,9 @@ class OtherFile(Document):
 
         if configured_timestamp:
             if configured_timestamp.date() == last_timestamp.date():
-                self.log(f"Configured and found timestamp have same date '{configured_timestamp.date()}'")
+                self.log(f"Configured and found timestamp have same date '{configured_timestamp.date()}'", logging.INFO)
             else:
-                days_diff = (configured_timestamp - last_timestamp).days
+                days_diff = (last_timestamp - configured_timestamp).days
                 msg = ''
 
                 if self.hints():
