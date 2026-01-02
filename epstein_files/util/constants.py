@@ -229,6 +229,7 @@ FLIGHT_IN_2012_PEOPLE: list[str | None] = ['Francis Derby', 'Januiz Banasiak', '
 BOOK = 'book:'
 FBI = 'FBI'
 FLIGHT_LOGS = 'flight logs'
+MEME = 'meme of'
 PRESS_RELEASE = 'press release'
 REPUTATION_MGMT = 'reputation management:'
 SCREENSHOT = 'screenshot of'
@@ -343,7 +344,7 @@ UNINTERESTING_PREFIXES = [
     LA_TIMES,
     'Litigation Daily',
     'MarketWatch',
-    'meme',
+    MEME,
     'Morgan Stanley',
     NOBEL_CHARITABLE_TRUST,
     'Nautilus',
@@ -640,13 +641,7 @@ ALL_CONFIGS = [
     MessageCfg(id='021818', author=NADIA_MARCINKO),
     MessageCfg(id='022197', author=NADIA_MARCINKO),
     MessageCfg(id='021811', author=NADIA_MARCINKO, attribution_reason='Signature and email address in the message'),
-    MessageCfg(
-        id='026612',
-        author=NORMAN_D_RAU,
-        dupe_of_id='028487',
-        attribution_reason='Fwded from "to" address',
-    ),
-    MessageCfg(id='028487', author=NORMAN_D_RAU, attribution_reason='Fwded from "to" address'),
+    MessageCfg(id='028487', author=NORMAN_D_RAU, attribution_reason='Fwded from "to" address', duplicate_ids=['026612']),
     MessageCfg(id='024923', author=PAUL_KRASSNER, recipients=KRASSNER_024923_RECIPIENTS),
     MessageCfg(id='032457', author=PAUL_KRASSNER),
     MessageCfg(id='029981', author=PAULA, attribution_reason='Name in reply + opera reference (Fisher now works in opera)'),
@@ -673,14 +668,7 @@ ALL_CONFIGS = [
         attribution_reason='Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")',
     ),
     MessageCfg(id='029604', author=RENATA_BOLOTOVA, attribution_reason='Continued in 239606 etc'),
-    MessageCfg(
-        id='033169',
-        author=ROBERT_TRIVERS,
-        dupe_of_id='033584',
-        recipients=[JEFFREY_EPSTEIN],
-        attribution_reason='Refs paper',
-    ),
-    MessageCfg(id='033584', author=ROBERT_TRIVERS, recipients=[JEFFREY_EPSTEIN], attribution_reason='Refs paper'),
+    MessageCfg(id='033584', author=ROBERT_TRIVERS, recipients=[JEFFREY_EPSTEIN], attribution_reason='Refs paper', duplicate_ids=['033169']),
     MessageCfg(
         id='026320',
         author=SEAN_BANNON,
@@ -715,12 +703,7 @@ ALL_CONFIGS = [
     MessageCfg(id='020666', author=TERRY_KAFKA, attribution_reason="Ends with 'Terry'"),
     MessageCfg(id='026014', author=ZUBAIR_KHAN, recipients=[JEFFREY_EPSTEIN], timestamp=parse('2016-11-04 17:46:00')),
     MessageCfg(id='030626', recipients=[ALAN_DERSHOWITZ, DARREN_INDYKE, KATHRYN_RUEMMLER, KEN_STARR, MARTIN_WEINBERG]),
-    MessageCfg(
-        id='028968',
-        dupe_of_id='029835',
-        recipients=[ALAN_DERSHOWITZ, JACK_GOLDBERGER, JEFFREY_EPSTEIN],
-    ),
-    MessageCfg(id='029835', recipients=[ALAN_DERSHOWITZ, JACK_GOLDBERGER, JEFFREY_EPSTEIN]),
+    MessageCfg(id='029835', recipients=[ALAN_DERSHOWITZ, JACK_GOLDBERGER, JEFFREY_EPSTEIN], duplicate_ids=['028968']),
     MessageCfg(id='027063', recipients=[ANTHONY_BARRETT]),
     MessageCfg(id='030764', recipients=[ARIANE_DE_ROTHSCHILD], attribution_reason='Reply'),
     MessageCfg(id='026431', recipients=[ARIANE_DE_ROTHSCHILD], attribution_reason='Reply'),
@@ -734,14 +717,7 @@ ALL_CONFIGS = [
         recipients=[FAITH_KATES],
         attribution_reason='Same as unredacted 030414, same legal signature',
     ),
-    MessageCfg(
-        id='030575',
-        dupe_of_id='030475',
-        dupe_type='redacted',
-        recipients=[FAITH_KATES],
-        attribution_reason='Same Next Management LLC legal signature',
-    ),
-    MessageCfg(id='030475', recipients=[FAITH_KATES], attribution_reason='Same Next Management LLC legal signature'),
+    MessageCfg(id='030475', recipients=[FAITH_KATES], attribution_reason='Same Next Management LLC legal signature', duplicate_ids=['030575'], dupe_type='redacted'),
     MessageCfg(id='030999', recipients=[JACK_GOLDBERGER, ROBERT_D_CRITTON]),
     MessageCfg(id='026426', recipients=[JEAN_HUGUEN], attribution_reason='Reply'),
     MessageCfg(id='029975', recipients=[JEAN_LUC_BRUNEL], attribution_reason='Same as another file'),
@@ -1056,7 +1032,6 @@ ALL_CONFIGS = [
         id='011463',
         description=f"{GIUFFRE_V_MAXWELL} Maxwell Response to Plaintiff's Omnibus Motion in Limine 2017-03-17",
         dupe_of_id='014788',
-        dupe_type='same',
     ),
     FileCfg(
         id='023121',
@@ -1098,53 +1073,26 @@ ALL_CONFIGS = [
         id='031415',
         description=f'{WAPO} "DOJ discipline office with limited reach to probe handling of controversial sex abuse case" 2019-02-06',
         dupe_of_id='031396',
-        dupe_type='same',
     ),
     FileCfg(id='025210', description=MERCURY_FILMS_PROFILES, dupe_of_id='025205'),
     FileCfg(
         id='019864',
         description=f"{PEGGY_SIEGAL} Oscar Diary April 2017-02-27",
         dupe_of_id='019849',
-        dupe_type='same',
     ),
     FileCfg(id='033481', description=f"{JOHN_BOLTON_PRESS_CLIPPING}", dupe_of_id='033480'),
     FileCfg(id='014697', description=CHALLENGES_OF_AI, dupe_of_id='011284'),
-    FileCfg(
-        id='016616',
-        description=f"{PALM_BEACH_CODE_ENFORCEMENT} 2008-07-17",
-        dupe_of_id='016554',
-        dupe_type='same',
-    ),
-    FileCfg(
-        id='016574',
-        description=f"{PALM_BEACH_CODE_ENFORCEMENT} 2008-07-17",
-        dupe_of_id='016554',
-        dupe_type='same',
-    ),
-    FileCfg(
-        id='029405',
-        description=f"{NATIONAL_ENQUIRER_FILING} 2017-05-25",
-        dupe_of_id='029416',
-        dupe_type='same',
-    ),
-    FileCfg(id='028965', description=WEINBERG_ABC_LETTER, dupe_of_id='028928'),
-    FileCfg(
-        id='032713',
-        description=f'meme of Kim Jong Un reading {FIRE_AND_FURY}',
-        dupe_of_id='033478',
-        dupe_type='same',
-    ),
+    FileCfg(id='028965', description=WEINBERG_ABC_LETTER, duplicate_ids=['028928']),
+    FileCfg(id='033478', description=f'{MEME} Kim Jong Un reading {FIRE_AND_FURY}', timestamp=parse('2018-01-05'), duplicate_ids=['032713']),
     FileCfg(
         id='029357',
         description=f"some text about Israel's challenges going into 2015, feels like it was extracted from a book 2015-01",
         dupe_of_id='028887',
-        dupe_type='same',
     ),
     FileCfg(
         id='029356',
         description=f'{SCREENSHOT} quote in book about {LARRY_SUMMERS} (zoomed in corner of 029355)',
-        dupe_of_id='029355',
-        dupe_type='quoted',
+        duplicate_ids=['029355'],
     ),
 
 
@@ -1326,7 +1274,7 @@ ALL_CONFIGS = [
     FileCfg(id='022894', description=MICHAEL_WOLFF_ARTICLE_HINT,),
     FileCfg(id='022952', description=MICHAEL_WOLFF_ARTICLE_HINT,),
     FileCfg(id='024229', description=MICHAEL_WOLFF_ARTICLE_HINT,),
-    FileCfg(id='029416', description=f"{NATIONAL_ENQUIRER_FILING}", timestamp=parse('2017-05-25')),
+    FileCfg(id='029416', description=NATIONAL_ENQUIRER_FILING, timestamp=parse('2017-05-25'), duplicate_ids=['029405']),
     FileCfg(id='015462', description=f'Nautilus Education magazine (?) issue'),
     FileCfg(id='029925', description=f"New Yorker article about the placebo effect by Michael Specter", timestamp=parse('2011-12-04')),
     FileCfg(id='031972', description=f"{NYT_ARTICLE} #MeToo allegations against {LAWRENCE_KRAUSS}", timestamp=parse('2018-03-07')),
@@ -1814,7 +1762,6 @@ ALL_CONFIGS = [
     FileCfg(id='026248', description=f'letter from Trump lawyer Don McGahn to Devin Nunes (R-CA) about FISA courts and Trump'),
     FileCfg(id='026134', description=f'letter to someone named George about investment opportunities in the Ukraine banking sector'),
     FileCfg(id='029304', description=f"Trump recommendation letter for recently departed Trump Organization lawyer {MICHAEL_J_BOCCIO}"),
-    FileCfg(id='028928', description=WEINBERG_ABC_LETTER,),
     FileCfg(id='026668', description=f"Boothbay Fund Management 2016-Q4 earnings report signed by Ari Glass"),
     # private placement memoranda
     FileCfg(id='024432', description=f"Michael Milken's Knowledge Universe Education (KUE) $1,000,000 corporate share placement notice (SEC filing?)"),
@@ -1824,7 +1771,7 @@ ALL_CONFIGS = [
     FileCfg(id='018743', description=f"Las Vegas property listing"),
     FileCfg(id='016597', description=f'letter from Trump Properties LLC appealing some decision about Mar-a-Lago by {PALM_BEACH} authorities'),
     FileCfg(id='016602', description=PALM_BEACH_CODE_ENFORCEMENT, timestamp=parse('2008-04-17')),
-    FileCfg(id='016554', description=PALM_BEACH_CODE_ENFORCEMENT, timestamp=parse('2008-07-17')),
+    FileCfg(id='016554', description=PALM_BEACH_CODE_ENFORCEMENT, timestamp=parse('2008-07-17'), duplicate_ids=['016616', '016574']),
     FileCfg(id='016695', description=f"{PALM_BEACH} property info (?)"),
     FileCfg(id='016697', description=f"{PALM_BEACH} property tax info (?) that mentions Trump"),
     FileCfg(id='016636', description=f"{PALM_BEACH_WATER_COMMITTEE} Meeting on January 29, 2009"),
@@ -1930,8 +1877,7 @@ ALL_CONFIGS = [
         description=f"{JASTA} (Justice Against Sponsors of Terrorism Act) doc that's mostly empty, references suit against Saudi f. {KATHRYN_RUEMMLER} & {KEN_STARR}",
         timestamp=parse('2016-09-01'),
     ),
-    FileCfg(id='033478', description=f'meme of Kim Jong Un reading {FIRE_AND_FURY}', timestamp=parse('2018-01-05')),
-    FileCfg(id='033177', description=f'meme of Trump with text "WOULD YOU TRUST THIS MAN WITH YOUR DAUGHTER?"'),
+    FileCfg(id='033177', description=f'{MEME} Trump with text "WOULD YOU TRUST THIS MAN WITH YOUR DAUGHTER?"'),
     FileCfg(id='025205', description=MERCURY_FILMS_PROFILES, timestamp=parse('2010-02-01')),
     FileCfg(id='029564', description=f"{OBAMA_JOKE}", timestamp=parse('2013-07-26')),
     FileCfg(id='029353', description=f"{OBAMA_JOKE}", timestamp=parse('2013-07-26')),
@@ -1965,7 +1911,6 @@ ALL_CONFIGS = [
     FileCfg(id='023666', description=f"{ROBERT_LAWRENCE_KUHN} sizzle reel / television appearances"),
     FileCfg(id='022213', description=f"{SCREENSHOT} Facebook group called 'Shit Pilots Say' disparaging a 'global girl'"),
     FileCfg(id='033434', description=f"{SCREENSHOT} iPhone chat labeled 'Edwards' at the top"),
-    FileCfg(id='029355', description=f'{SCREENSHOT} two pages of a book in which {LARRY_SUMMERS} is mentioned'),
     FileCfg(id='029623', description=f'short bio of Kathleen Harrington, Founding Partner, C/H Global Strategies'),
     FileCfg(id='026634', description=f"some short comments about an Apollo linked hedge fund 'DE Fund VIII'"),
     FileCfg(id='024294', description=f"{STACEY_PLASKETT} campaign flier", timestamp=parse('2016-10-01')),
@@ -1984,9 +1929,9 @@ ALL_FILE_CONFIGS: dict[str, FileCfg] = {}
 for cfg in ALL_CONFIGS:
     ALL_FILE_CONFIGS[cfg.id] = cfg
 
-    for duplicate_id in cfg.duplicate_ids:
-        print(f"Adding dupe id '{duplicate_id}' to ALL_FILE_CONFIGS pointing to '{cfg.id}'...")
-        ALL_FILE_CONFIGS[duplicate_id] = cfg
+    for dupe_cfg in cfg.duplicate_cfgs():
+        print(f"Adding dupe id '{dupe_cfg.id}' to ALL_FILE_CONFIGS pointing to '{cfg.id}'...")
+        ALL_FILE_CONFIGS[dupe_cfg.id] = dupe_cfg
 
 EMAIL_CONFIGS = {id: cfg for id, cfg in ALL_FILE_CONFIGS.items() if isinstance(cfg, MessageCfg)}
 
@@ -1998,17 +1943,19 @@ for cfg in ALL_FILE_CONFIGS.values():
     if cfg.dupe_of_id in ALL_FILE_CONFIGS:
         dupe_of_cfg = ALL_FILE_CONFIGS[cfg.dupe_of_id]
         pfx = f"{dupe_of_cfg.id} is duplicated by {cfg.id}"
-        print('\n')
 
-        if cfg.non_null_field_names() == ['id', 'dupe_of_id', 'dupe_type']:
-            print(f"{pfx}, configurations of {cfg.id} is only dupe fields...")
+        if cfg.was_generated:
+            # print(f"{pfx}, duplicate config was generated...")
+            continue
         elif dupe_of_cfg == cfg:
-            print(f"{pfx}, configurations are the same\n    {cfg}")
+            print(f"\n{pfx}, configurations are the same\n")
         else:
-            print(f"{pfx} but configs differ...")
+            print(f"\n{pfx} but configs differ...")
             print(f"    {dupe_of_cfg.id}: {dupe_of_cfg}")
             print(f"    {cfg.id}: {cfg}")
+            print(f"\n        Fix in {dupe_of_cfg.id}:   \", duplicate_ids=['{cfg.id}']\"")
 
+        print(f"        Fix in {cfg.id}:   \", duplicate_ids=['{dupe_of_cfg.id}']\"\n")
 
 # Error checking.
 encountered_file_ids = set()
