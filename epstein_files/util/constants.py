@@ -397,6 +397,7 @@ ALL_CONFIGS = [
         ############ TEXTS CONFIG ##########
         ####################################
 
+    ### Confirmed text attributions ###
     MessageCfg(id='031042', author=ANIL_AMBANI, attribution_reason='Participants: field'),
     MessageCfg(id='027225', author=ANIL_AMBANI, attribution_reason='Birthday mentioned and confirmed as Ambani\'s'),
     MessageCfg(id='031173', author=ARDA_BESKARDES, attribution_reason='Participants: field'),
@@ -416,6 +417,7 @@ ALL_CONFIGS = [
     MessageCfg(id='027307', author=STEVE_BANNON),
     MessageCfg(id='027278', author=TERJE_ROD_LARSEN),
     MessageCfg(id='027255', author=TERJE_ROD_LARSEN),
+    ### Uncertain text attributions ###
     MessageCfg(id='027762', author=ANDRZEJ_DUDA, is_author_uncertain=True),
     MessageCfg(id='027774', author=ANDRZEJ_DUDA, is_author_uncertain=True),
     MessageCfg(id='027221', author=ANIL_AMBANI, is_author_uncertain=True),
@@ -452,7 +454,6 @@ ALL_CONFIGS = [
     MessageCfg(id='027365', author=STEVE_BANNON, is_author_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
     MessageCfg(id='027374', author=STEVE_BANNON, is_author_uncertain=True, attribution_reason='AI says China strategy and geopolitics'),
     MessageCfg(id='027406', author=STEVE_BANNON, is_author_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
-    MessageCfg(id='027440', author=MICHAEL_WOLFF, is_author_uncertain=True, attribution_reason='AI says Trump book/journalism project'),
     MessageCfg(id='027445', author=STEVE_BANNON, is_author_uncertain=True, attribution_reason='AI says China strategy and geopolitics; Trump discussions'),
     MessageCfg(id='027455', author=STEVE_BANNON, is_author_uncertain=True, attribution_reason='AI says China strategy and geopolitics; Trump discussions'),
     MessageCfg(id='027536', author=STEVE_BANNON, is_author_uncertain=True, attribution_reason='AI says China strategy and geopolitics; Trump discussions'),
@@ -463,6 +464,7 @@ ALL_CONFIGS = [
     MessageCfg(id='027794', author=STEVE_BANNON, is_author_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
     MessageCfg(id='029744', author=STEVE_BANNON, is_author_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
     MessageCfg(id='031045', author=STEVE_BANNON, is_author_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
+    MessageCfg(id='027440', author=MICHAEL_WOLFF, is_author_uncertain=True, attribution_reason='AI says Trump book/journalism project'),
 
 
         ####################################
@@ -479,7 +481,7 @@ ALL_CONFIGS = [
     MessageCfg(
         id='029504',
         author='Audrey/Aubrey Raimbault (???)',
-        attribution_reason='(based on "GMI" in signature, a company registered by "aubrey raimbault")',
+        attribution_reason='based on "GMI" in signature, a company registered by "aubrey raimbault"',
     ),
     MessageCfg(id='033316', author=AZIZA_ALAHMADI, attribution_reason='"Regards, Aziza" at bottom'),
     MessageCfg(id='033328', author=AZIZA_ALAHMADI, attribution_reason='"Regards, Aziza" at bottom'),
@@ -698,7 +700,7 @@ ALL_CONFIGS = [
     MessageCfg(
         id='030475',
         recipients=[FAITH_KATES],
-        attribution_reason='Same Next Management LLC legal signature',
+        attribution_reason='Next Management LLC legal signature',
         duplicate_ids=['030575'],
         dupe_type='redacted'
     ),

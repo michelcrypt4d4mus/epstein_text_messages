@@ -207,7 +207,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 72,
+    None: 71,
     "ACT for America": 2,
     "Alan Dershowitz": 15,
     'Alan Dlugash': 1,
@@ -299,7 +299,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Joel Dunn": 2,
     "John Page": 2,
     "John Zouzelka": 2,
-    "Joi Ito": 11,
+    JOI_ITO: 11,
     "Jojo Fontanilla": 1,
     'Jokeland': 1,
     "Jonathan Farkas": 9,
@@ -315,8 +315,8 @@ EMAIL_RECIPIENT_COUNTS = {
     'Lanny Swerdlow': 1,
     "Larry Cohen": 1,
     'Larry Sloman': 1,
-    "Larry Summers": 42,
-    "Lawrance Visoski": 11,
+    LARRY_SUMMERS: 42,
+    LAWRANCE_VISOSKI: 11,
     "Lawrence Krauss": 13,
     "Leah Reis-Dennis": 1,
     'Lee Quarnstrom': 2,
