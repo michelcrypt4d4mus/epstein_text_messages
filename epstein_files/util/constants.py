@@ -1778,18 +1778,20 @@ ALL_CONFIGS = [
     FileCfg(id='029448', description=f'weird short essay titled "President Obama and Self-Deception"'),
 ]
 
+# Create a dict keyed by file_id
 ALL_FILE_CONFIGS: dict[str, FileCfg] = {}
 
+# Add extra config objects for duplicate files that match the config of file they are duplicating
 for cfg in ALL_CONFIGS:
     ALL_FILE_CONFIGS[cfg.id] = cfg
 
     for dupe_cfg in cfg.duplicate_cfgs():
-        print(f"Adding dupe id '{dupe_cfg.id}' to ALL_FILE_CONFIGS pointing to '{cfg.id}'...")
         ALL_FILE_CONFIGS[dupe_cfg.id] = dupe_cfg
 
 EMAIL_CONFIGS = {id: cfg for id, cfg in ALL_FILE_CONFIGS.items() if isinstance(cfg, MessageCfg)}
 
 
+# TODO: Dupe scanning should be removed evenutally
 for cfg in ALL_FILE_CONFIGS.values():
     if not cfg.dupe_of_id:
         continue
@@ -1815,6 +1817,7 @@ for cfg in ALL_FILE_CONFIGS.values():
             fix += f", dupe_type='{cfg.dupe_type}'"
 
         print(f"        Fix in {cfg.id}:   {fix}\"\n")
+
 
 # Error checking.
 encountered_file_ids = set()
