@@ -119,7 +119,7 @@ class OtherFile(Document):
         elif len(timestamps) == 1:
             return timestamps[0]
 
-        # TODO: temporarily remove configured value
+        # TODO: temporarily remove configured value so we can compare configured vs. extracted
         if configured_timestamp:
             timestamps = timestamps[1:]
 
@@ -145,7 +145,7 @@ class OtherFile(Document):
                 if self.hints():
                     msg = "\n".join([hint.plain for hint in self.hints()]) + LOG_INDENT
 
-                msg = f"Configured '{configured_timestamp.date()}' and last found '{last_timestamp.date()}' differ by {days_diff} days"
+                msg += f"Configured '{configured_timestamp.date()}' and last found '{last_timestamp.date()}' differ by {days_diff} days"
                 msg += f"{LOG_INDENT}{timestamps_log_msg}\n"
                 self.log(msg)
 
