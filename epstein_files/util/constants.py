@@ -258,8 +258,8 @@ CVRA = "Crime Victims' Rights Act [CVRA]"
 DAILY_MAIL_ARTICLE = "Daily Mail article about"
 DAILY_TELEGRAPH_ARTICLE = "Daily Telegraph article about"
 DAVID_BLAINE_VISA_LETTER = f"letter of recommendation for visa for a model"
-DAVID_SCHOEN_CVRA_LEXIS_SEARCH = f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN} 2019-02-28"
-DEEP_THINKING_HINT = f'{BOOK} "Deep Thinking: Twenty-Five Ways of Looking at AI" by John Brockman 2019-02-19'
+DAVID_SCHOEN_CVRA_LEXIS_SEARCH = f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN}"
+DEEP_THINKING_HINT = f'{BOOK} "Deep Thinking: Twenty-Five Ways of Looking at AI" by John Brockman'
 DERSH_GIUFFRE_TWEET = f"{TWEET} by {ALAN_DERSHOWITZ} about {VIRGINIA_GIUFFRE}"
 DEUTSCHE_BANK_TAX_TOPICS = f'{DEUTSCHE_BANK} Wealth Management Tax Topics'
 DIANA_DEGETTES_CAMPAIGN = "Colorado legislator Diana DeGette's campaign"
@@ -267,7 +267,7 @@ EPSTEIN_FOUNDATION = 'Jeffrey Epstein VI Foundation'
 FBI_REPORT = f"{FBI} report on Epstein investigation (redacted)"
 FBI_SEIZED_PROPERTY = f"{FBI} seized property inventory (redacted)"
 FEMALE_HEALTH_COMPANY = 'Female Health Company (FHX)'
-FIRE_AND_FURY = f'"Fire And Fury" by {MICHAEL_WOLFF} 2018-01-05'
+FIRE_AND_FURY = f"'Fire And Fury' by {MICHAEL_WOLFF}"
 GOLDMAN_REPORT = f'{GOLDMAN_SACHS} Investment Management Division report'
 HARVARD_POETRY = f'{HARVARD} poetry stuff from {LISA_NEW}'
 HBS_APPLICATION_NERIO = f"{HARVARD} Business School application letter from Nerio Alessandri (Founder and Chairman Technogym SPA Italy)"
@@ -851,7 +851,7 @@ ALL_CONFIGS = [
     FileCfg(id='012747', description=f'{BOOK} "Evilicious: Explaining Our Taste For Excessive Harm" by Marc D. Hauser'),
     FileCfg(id='019874', description=f'{BOOK} {FIRE_AND_FURY}', date='2018-01-05'),
     FileCfg(id='032724', description=f'{BOOK} cover of {FIRE_AND_FURY}', date='2018-01-05'),
-    FileCfg(id='010912', description=f'{BOOK} "Free Growth and Other Surprises" by Gordon Getty (draft)', date='2018-10-18'),
+    FileCfg(id='010912', description=f"{BOOK} 'Free Growth and Other Surprises' by Gordon Getty (draft)", date='2018-10-18'),
     FileCfg(
         id='021247',
         description=f'{BOOK} "Invisible Forces And Powerful Beliefs: Gravity, Gods, And Minds" by The Chicago Social Brain Network',
