@@ -296,7 +296,7 @@ SHIMON_POST_ARTICLE = f'{SHIMON_POST} selection of articles about the mideast'
 SINGLE_PAGE = 'single page of'
 SWEDISH_LIFE_SCIENCES_SUMMIT = f"{BARBRO_C_EHNBOM}'s Swedish American Life Science Summit"
 THE_REAL_DEAL_ARTICLE = 'article by Keith Larsen'
-TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Government Ethics 2017-01-20"
+TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Government Ethics"
 UBS = 'UBS'
 UBS_CIO_REPORT = 'CIO Monthly Extended report'
 VI_DAILY_NEWS_ARTICLE = f'{VIRGIN_ISLANDS} Daily News article'
@@ -534,10 +534,10 @@ ALL_CONFIGS = [
     MessageCfg(id='022193', author=NADIA_MARCINKO),
     MessageCfg(id='021814', author=NADIA_MARCINKO),
     MessageCfg(id='021808', author=NADIA_MARCINKO),
-    MessageCfg(id='022214', author=NADIA_MARCINKO, attribution_reason='Reply header'),
     MessageCfg(id='022190', author=NADIA_MARCINKO),
     MessageCfg(id='021818', author=NADIA_MARCINKO),
     MessageCfg(id='022197', author=NADIA_MARCINKO),
+    MessageCfg(id='022214', author=NADIA_MARCINKO, attribution_reason='Reply header'),
     MessageCfg(id='021811', author=NADIA_MARCINKO, attribution_reason='Signature and email address in the message'),
     MessageCfg(id='028487', author=NORMAN_D_RAU, attribution_reason='Fwded from "to" address', duplicate_ids=['026612']),
     MessageCfg(id='024923', author=PAUL_KRASSNER, recipients=KRASSNER_024923_RECIPIENTS, duplicate_ids=['031973']),
@@ -561,7 +561,8 @@ ALL_CONFIGS = [
         id='033584',
         author=ROBERT_TRIVERS,
         recipients=[JEFFREY_EPSTEIN],
-        attribution_reason='Refs paper by Trivers', duplicate_ids=['033169']
+        attribution_reason='Refs paper by Trivers',
+        duplicate_ids=['033169'],
     ),
     MessageCfg(
         id='026320',
@@ -823,7 +824,6 @@ ALL_CONFIGS = [
     MessageCfg(id='032250', duplicate_ids=['033589']),
     FileCfg(id='014697', description=CHALLENGES_OF_AI, duplicate_ids=['011284']),
     FileCfg(id='028965', description=WEINBERG_ABC_LETTER, duplicate_ids=['028928']),
-    FileCfg(id='033478', description=f'{MEME} Kim Jong Un reading {FIRE_AND_FURY}', date='2018-01-05', duplicate_ids=['032713']),
     FileCfg(
         id='029357',
         description=f"some text about Israel's challenges going into 2015, feels like it was extracted from a book",
@@ -888,6 +888,18 @@ ALL_CONFIGS = [
     FileCfg(id='024229', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
     FileCfg(id='024256', author=JOI_ITO, description=f"article 'Internet & Society: The Technologies and Politics of Control'"),
     FileCfg(id='027004', author=JOSCHA_BACH, description=f"article 'The Computational Structure of Mental Representation'", date='2013-02-26'),
+    FileCfg(id='031753', author=PAUL_KRASSNER, description=f'essay for Playboy in the 1980s', date='1985-01-01'),
+    FileCfg(id='023638', author=PAUL_KRASSNER, description=f'magazine interview'),
+    FileCfg(id='024374', author=PAUL_KRASSNER, description=f"'Remembering Cavalier Magazine'"),
+    FileCfg(id='030187', author=PAUL_KRASSNER, description=f'"Remembering Lenny Bruce While We\'re Thinking About Trump" (draft?)'),
+    FileCfg(id='019088', author=PAUL_KRASSNER, description=f'"Are Rape Jokes Funny? (draft)', date='2012-07-28'),
+    FileCfg(id='012740', author=PEGGY_SIEGAL, description=f"article about Venice Film Festival", date='2011-09-06'),
+    FileCfg(id='013442', author=PEGGY_SIEGAL, description=f"draft about Oscars", date='2011-02-27'),
+    FileCfg(id='012700', author=PEGGY_SIEGAL, description=f"film events diary", date='2011-02-27'),
+    FileCfg(id='012690', author=PEGGY_SIEGAL, description=f"film events diary early draft of 012700", date='2011-02-27'),
+    FileCfg(id='013450', author=PEGGY_SIEGAL, description=f"Oscar Diary in Avenue Magazine", date='2011-02-27'),
+    FileCfg(id='010715', author=PEGGY_SIEGAL, description=f"Oscar Diary April", date='2012-02-27'),
+    FileCfg(id='019849', author=PEGGY_SIEGAL, description=f"Oscar Diary April", date='2017-02-27', duplicate_ids=['019864']),
     FileCfg(id='033253', author=ROBERT_LAWRENCE_KUHN, description=f'{BBC} article about Rohingya in Myanmar'),
     FileCfg(id='026887', author=ROBERT_LAWRENCE_KUHN, description=f'{BBC} "New Tariffs - Trade War"'),
     FileCfg(id='026877', author=ROBERT_LAWRENCE_KUHN, description=f'{CNN} "New Tariffs - Trade War"'),
@@ -984,18 +996,6 @@ ALL_CONFIGS = [
     FileCfg(id='022987', description=f"{PALM_BEACH_POST_ARTICLE} just a headline on Trump and Epstein"),
     FileCfg(id='015028', description=f"{PALM_BEACH_POST_ARTICLE} reopening Epstein's criminal case"),
     FileCfg(id='022990', description=f"{PALM_BEACH_POST_ARTICLE} Trump and Epstein"),
-    FileCfg(id='031753', description=f'{PAUL_KRASSNER} essay for Playboy in the 1980s', date='1985-01-01'),
-    FileCfg(id='023638', description=f'{PAUL_KRASSNER} magazine interview'),
-    FileCfg(id='024374', description=f"{PAUL_KRASSNER} 'Remembering Cavalier Magazine'"),
-    FileCfg(id='030187', description=f'{PAUL_KRASSNER} "Remembering Lenny Bruce While We\'re Thinking About Trump" (draft?)'),
-    FileCfg(id='019088', description=f'{PAUL_KRASSNER} "Are Rape Jokes Funny? (draft)', date='2012-07-28'),
-    FileCfg(id='012740', description=f"{PEGGY_SIEGAL} article about Venice Film Festival", date='2011-09-06'),
-    FileCfg(id='013442', description=f"{PEGGY_SIEGAL} draft about Oscars", date='2011-02-27'),
-    FileCfg(id='012700', description=f"{PEGGY_SIEGAL} film events diary", date='2011-02-27'),
-    FileCfg(id='012690', description=f"{PEGGY_SIEGAL} film events diary early draft of 012700", date='2011-02-27'),
-    FileCfg(id='013450', description=f"{PEGGY_SIEGAL} Oscar Diary in Avenue Magazine", date='2011-02-27'),
-    FileCfg(id='010715', description=f"{PEGGY_SIEGAL} Oscar Diary April", date='2012-02-27'),
-    FileCfg(id='019849', description=f"{PEGGY_SIEGAL} Oscar Diary April", date='2017-02-27', duplicate_ids=['019864']),
     FileCfg(
         id='033323',
         description=f'{ROBERT_TRIVERS} and Nathan H. Lents "Does Trump Fit the Evolutionary Role of Narcissistic Sociopath?" (draft)',
@@ -1395,12 +1395,12 @@ ALL_CONFIGS = [
     FileCfg(id='029102', description=HBS_APPLICATION_NERIO,),
     FileCfg(id='029104', description=HBS_APPLICATION_NERIO,),
     FileCfg(id='022445', description=f"Inference: International Review of Science Feedback & Comments", date='2018-11-01'),
-
     FileCfg(
         id='030142',
         description=f"{JASTA} (Justice Against Sponsors of Terrorism Act) doc that's mostly empty, references suit against Saudi f. {KATHRYN_RUEMMLER} & {KEN_STARR}",
         date='2016-09-01',
     ),
+    FileCfg(id='033478', description=f'{MEME} Kim Jong Un reading {FIRE_AND_FURY}', date='2018-01-05', duplicate_ids=['032713']),
     FileCfg(id='033177', description=f"{MEME} Trump with text 'WOULD YOU TRUST THIS MAN WITH YOUR DAUGHTER?'"),
     FileCfg(id='025205', description=MERCURY_FILMS_PROFILES, date='2010-02-01', duplicate_ids=['025210']),
     FileCfg(id='029564', description=OBAMA_JOKE, date='2013-07-26'),
