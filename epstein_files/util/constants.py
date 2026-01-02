@@ -412,7 +412,7 @@ ALL_CONFIGS = [
     MessageCfg(
         id='019446',
         author=CHRISTINA_GALBRAITH,
-        attribution_reason='Not 100% but from "Christina media/PR" which fits',
+        attribution_reason='shows from "Christina media/PR" which fits',
         is_author_uncertain=True,
     ),
     MessageCfg(id='026625', author=DARREN_INDYKE, actual_text='Hysterical.'),
@@ -1512,6 +1512,7 @@ UNINTERESTING_PREFIXES = [
     ROBERT_LAWRENCE_KUHN,
     ROBERT_TRIVERS,
     'S&P',
+    'Sadis',
     'SCMP',
     'SciencExpress',
     'Scowcroft',
