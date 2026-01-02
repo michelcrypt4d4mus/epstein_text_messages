@@ -305,6 +305,7 @@ WOMEN_EMPOWERMENT = f"Women Empowerment (WE) conference run by {SVETLANA_POZHIDA
 
 # Atribution reasons
 BOLOTOVA_REASON = 'Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")'
+PAULA_REASON = 'Signature of "Sent via BlackBerry from T-Mobile"'
 
 UNINTERESTING_PREFIXES = [
     'article about',
@@ -563,7 +564,7 @@ ALL_CONFIGS = [
         id='032214',
         author=JEFFREY_EPSTEIN,
         actual_text='Agreed',
-        recipients=["Miroslav Lajčák"],
+        recipients=[MIROSLAV_LAJCAK],
         attribution_reason='Quoted reply has signature',
     ),
     MessageCfg(id='029582', author=JEFFREY_EPSTEIN, recipients=[RENATA_BOLOTOVA], attribution_reason=BOLOTOVA_REASON),
@@ -571,12 +572,7 @@ ALL_CONFIGS = [
     MessageCfg(id='028770', author=JEFFREY_EPSTEIN, actual_text='call me now'),
     MessageCfg(id='031826', author=JEFFREY_EPSTEIN, actual_text='I have'),
     MessageCfg(id='030768', author=JEFFREY_EPSTEIN, actual_text='ok'),
-    MessageCfg(
-        id='022938',
-        author=JEFFREY_EPSTEIN,
-        actual_text='what do you suggest?',
-        attribution_reason="TODO: this email's header rewrite sucks",
-    ),
+    MessageCfg(id='022938', author=JEFFREY_EPSTEIN, actual_text='what do you suggest?'),  # TODO: this email's header rewrite sucks
     MessageCfg(id='031791', author=JESSICA_CADWELL),
     MessageCfg(id='028851', author=JOI_ITO, recipients=[JEFFREY_EPSTEIN], timestamp=parse('2014-04-27 06:00:00')),
     MessageCfg(
@@ -632,7 +628,7 @@ ALL_CONFIGS = [
     MessageCfg(id='026609', author='Mark Green', attribution_reason='Actually a fwd'),
     MessageCfg(id='030472', author=MARTIN_WEINBERG, attribution_reason='Maybe. in reply', is_author_uncertain=True),
     MessageCfg(id='030235', author=MELANIE_WALKER, attribution_reason='In fwd'),
-    MessageCfg(id='032343', author=MELANIE_WALKER, attribution_reason='In later reply 032346'),
+    MessageCfg(id='032343', author=MELANIE_WALKER, attribution_reason='Name seen in later reply 032346'),
     MessageCfg(id='032212', author=MIROSLAV_LAJCAK),
     MessageCfg(id='022193', author=NADIA_MARCINKO),
     MessageCfg(id='021814', author=NADIA_MARCINKO),
@@ -646,7 +642,7 @@ ALL_CONFIGS = [
     MessageCfg(id='024923', author=PAUL_KRASSNER, recipients=KRASSNER_024923_RECIPIENTS, duplicate_ids=['031973']),
     MessageCfg(id='032457', author=PAUL_KRASSNER),
     MessageCfg(id='029981', author=PAULA, attribution_reason='Name in reply + opera reference (Fisher now works in opera)'),
-    MessageCfg(id='030482', author=PAULA, attribution_reason='"Sent via BlackBerry from T-Mobile"'),
+    MessageCfg(id='030482', author=PAULA, attribution_reason=PAULA_REASON),
     MessageCfg(id='033383', author=PAUL_PROSPERI, attribution_reason='Reply'),
     MessageCfg(
         id='033561',
@@ -676,7 +672,7 @@ ALL_CONFIGS = [
         author=STEVEN_HOFFENBERG,
         recipients=["Players2"],
         timestamp=parse('2016-08-11 09:36:01'),
-        attribution_reason='Actually a fwd by Charles Michael but Hofenberg email more intersting',
+        attribution_reason='Actually a fwd by Charles Michael but Hofenberg email more interesting',
     ),
     MessageCfg(
         id='026620',
@@ -705,7 +701,13 @@ ALL_CONFIGS = [
         attribution_reason='Same as unredacted 030414, same legal signature',
         duplicate_ids=['030581'],
     ),
-    MessageCfg(id='030475', recipients=[FAITH_KATES], attribution_reason='Same Next Management LLC legal signature', duplicate_ids=['030575'], dupe_type='redacted'),
+    MessageCfg(
+        id='030475',
+        recipients=[FAITH_KATES],
+        attribution_reason='Same Next Management LLC legal signature',
+        duplicate_ids=['030575'],
+        dupe_type='redacted'
+    ),
     MessageCfg(id='030999', recipients=[JACK_GOLDBERGER, ROBERT_D_CRITTON]),
     MessageCfg(id='026426', recipients=[JEAN_HUGUEN], attribution_reason='Reply'),
     MessageCfg(id='022202', recipients=[JEAN_LUC_BRUNEL], attribution_reason='Follow up / reply', duplicate_ids=['029975']),
@@ -714,7 +716,7 @@ ALL_CONFIGS = [
     MessageCfg(id='022344', recipients=[JEFFREY_EPSTEIN], duplicate_ids=['028529']),  # Bad OCR
     MessageCfg(id='030347', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
     MessageCfg(id='030367', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
-    MessageCfg(id='033274', recipients=[JEFFREY_EPSTEIN], attribution_reason='this is a note sent to self'),
+    MessageCfg(id='033274', recipients=[JEFFREY_EPSTEIN]),  # this is a note sent to self'
     MessageCfg(id='032780', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
     MessageCfg(id='025233', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
     MessageCfg(id='029324', recipients=[JEFFREY_EPSTEIN, "Jojo Fontanilla", "Lyn Fontanilla"]),
@@ -745,7 +747,7 @@ ALL_CONFIGS = [
         id='021090',
         is_fwded_article=True,
         recipients=[JONATHAN_FARKAS],
-        attribution_reason='Reply to a message signed " jonathan" same as other Farkas emails',
+        attribution_reason='Reply to a message signed "jonathan" same as other Farkas emails',
     ),
     MessageCfg(
         id='033073',
@@ -779,10 +781,10 @@ ALL_CONFIGS = [
     MessageCfg(id='030371', recipients=[MELANIE_SPINELLA], attribution_reason='Actually a self fwd from jeffrey to jeffrey'),
     MessageCfg(id='022258', recipients=[NADIA_MARCINKO], attribution_reason='Reply header'),
     MessageCfg(id='033097', recipients=[PAUL_BARRETT, RICHARD_KAHN]),  # Bad OCR
-    MessageCfg(id='030506', recipients=[PAULA], attribution_reason='"Sent via BlackBerry from T-Mobile"', is_author_uncertain=True),
-    MessageCfg(id='030507', recipients=[PAULA], attribution_reason='"Sent via BlackBerry from T-Mobile"', is_author_uncertain=True),
-    MessageCfg(id='030508', recipients=[PAULA], attribution_reason='"Sent via BlackBerry from T-Mobile"', is_author_uncertain=True),
-    MessageCfg(id='030509', recipients=[PAULA], attribution_reason='"Sent via BlackBerry from T-Mobile"', is_author_uncertain=True),
+    MessageCfg(id='030506', recipients=[PAULA], attribution_reason=PAULA_REASON, is_author_uncertain=True),
+    MessageCfg(id='030507', recipients=[PAULA], attribution_reason=PAULA_REASON, is_author_uncertain=True),
+    MessageCfg(id='030508', recipients=[PAULA], attribution_reason=PAULA_REASON, is_author_uncertain=True),
+    MessageCfg(id='030509', recipients=[PAULA], attribution_reason=PAULA_REASON, is_author_uncertain=True),
     MessageCfg(id='030096', recipients=[PETER_MANDELSON]),
     MessageCfg(id='032951', recipients=[RAAFAT_ALSABBAGH, None], attribution_reason='Redacted'),
     MessageCfg(id='029581', recipients=[RENATA_BOLOTOVA], attribution_reason=BOLOTOVA_REASON),
@@ -808,18 +810,18 @@ ALL_CONFIGS = [
         attribution_reason='WSJ forward to Larry Summers',
         duplicate_ids=['027102'],
     ),
-    MessageCfg(id='028508', is_fwded_article=True, attribution_reason='nanosatellites article'),
+    MessageCfg(id='028508', is_fwded_article=True),  # nanosatellites article
     MessageCfg(
         id='028781',
         is_fwded_article=True,
         attribution_reason="Atlantic on Jim Yong Kim, Obama's World Bank Pick",
         duplicate_ids=['013460']
     ),
-    MessageCfg(id='019845', is_fwded_article=True, attribution_reason='Pro Publica article on Preet Bharara'),
-    MessageCfg(id='029021', is_fwded_article=True, attribution_reason='article about bannon sent by Alain Forget'),
-    MessageCfg(id='031688', is_fwded_article=True, attribution_reason='Bill Siegel fwd of email about hamas'),
-    MessageCfg(id='026551', is_fwded_article=True, attribution_reason='Sultan bin Sulayem Ayatollah between the sheets'),
-    MessageCfg(id='031768', is_fwded_article=True, attribution_reason="Sultan bin Sulayem 'Horseface'"),
+    MessageCfg(id='019845', is_fwded_article=True),  # Pro Publica article on Preet Bharara
+    MessageCfg(id='029021', is_fwded_article=True),  # article about bannon sent by Alain Forget
+    MessageCfg(id='031688', is_fwded_article=True),  # Bill Siegel fwd of email about hamas
+    MessageCfg(id='026551', is_fwded_article=True),  # Sultan bin Sulayem "Ayatollah between the sheets"
+    MessageCfg(id='031768', is_fwded_article=True),  # Sultan bin Sulayem 'Horseface'
     MessageCfg(
         id='031569',
         is_fwded_article=True,
