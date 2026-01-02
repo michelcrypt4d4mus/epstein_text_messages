@@ -307,6 +307,8 @@ ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
 
 # Atribution reasons
 BOLOTOVA_REASON = 'Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")'
+KATHY_REASON = 'from "Kathy" about dems, sent from iPad'
+LARRY_REASON = 'Planes discussion signed "Larry"'
 PAULA_REASON = 'Signature of "Sent via BlackBerry from T-Mobile"'
 
 
@@ -503,35 +505,25 @@ ALL_CONFIGS = [
     MessageCfg(id='033490', author=JONATHAN_FARKAS, attribution_reason='Signature', duplicate_ids=['032531']),
     MessageCfg(id='026652', author=KATHRYN_RUEMMLER),  # Bad OCR
     MessageCfg(id='032224', author=KATHRYN_RUEMMLER, recipients=[JEFFREY_EPSTEIN], attribution_reason='Reply'),
-    MessageCfg(
-        id='032386',
-        author=KATHRYN_RUEMMLER,
-        attribution_reason='from "Kathy" about dems, sent from iPad',
-        is_author_uncertain=True
-    ),
-    MessageCfg(
-        id='032727',
-        author=KATHRYN_RUEMMLER,
-        attribution_reason='from "Kathy" about dems, sent from iPad',
-        is_author_uncertain=True
-    ),
+    MessageCfg(id='032386', author=KATHRYN_RUEMMLER, attribution_reason=KATHY_REASON, is_author_uncertain=True),
+    MessageCfg(id='032727', author=KATHRYN_RUEMMLER, attribution_reason=KATHY_REASON, is_author_uncertain=True),
     MessageCfg(id='030478', author=LANDON_THOMAS),
     MessageCfg(id='029013', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),
-    MessageCfg(id='032206', author=LAWRENCE_KRAUSS, ),  # More of a text convo?
-    MessageCfg(id='032208', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN], ),  # More of a text convo?
-    MessageCfg(id='032209', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN], ),  # More of a text convo?
+    MessageCfg(id='032206', author=LAWRENCE_KRAUSS),  # More of a text convo?
+    MessageCfg(id='032208', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
+    MessageCfg(id='032209', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
     MessageCfg(id='029196', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN], actual_text='Talk in 40?'),  # TODO: this email's header rewrite sucks
     MessageCfg(id='027046', author=LAWRANCE_VISOSKI, duplicate_ids=['028789']),
-    MessageCfg(id='033370', author=LAWRANCE_VISOSKI, attribution_reason='Planes discussion signed larry'),
-    MessageCfg(id='033495', author=LAWRANCE_VISOSKI, attribution_reason='Planes discussion signed larry'),
     MessageCfg(id='033488', author=LAWRANCE_VISOSKI, duplicate_ids=['033154']),
     MessageCfg(id='033593', author=LAWRANCE_VISOSKI, attribution_reason='Signature'),
     MessageCfg(id='033487', author=LAWRANCE_VISOSKI, recipients=[JEFFREY_EPSTEIN]),
+    MessageCfg(id='033370', author=LAWRANCE_VISOSKI, attribution_reason=LARRY_REASON),
+    MessageCfg(id='033495', author=LAWRANCE_VISOSKI, attribution_reason=LARRY_REASON),
     MessageCfg(
         id='029977',
         author=LAWRANCE_VISOSKI,
         recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, LESLEY_GROFF, RICHARD_KAHN] + FLIGHT_IN_2012_PEOPLE,
-        attribution_reason='Planes discussion signed "Larry"',
+        attribution_reason=LARRY_REASON,
         duplicate_ids=['031129'],
     ),
     MessageCfg(id='033309', author=LINDA_STONE, attribution_reason='"Co-authored with iPhone autocorrect"'),
@@ -628,13 +620,13 @@ ALL_CONFIGS = [
     MessageCfg(id='026426', recipients=[JEAN_HUGUEN], attribution_reason='Reply'),
     MessageCfg(id='022202', recipients=[JEAN_LUC_BRUNEL], attribution_reason='Follow up / reply', duplicate_ids=['029975']),
     MessageCfg(id='031489', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
-    MessageCfg(id='032210', recipients=[JEFFREY_EPSTEIN], ),  # More of a text convo?
-    MessageCfg(id='022344', recipients=[JEFFREY_EPSTEIN], duplicate_ids=['028529']),  # Bad OCR
+    MessageCfg(id='032210', recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
     MessageCfg(id='030347', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
     MessageCfg(id='030367', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
     MessageCfg(id='033274', recipients=[JEFFREY_EPSTEIN]),  # this is a note sent to self'
     MessageCfg(id='032780', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
     MessageCfg(id='025233', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
+    MessageCfg(id='022344', recipients=[JEFFREY_EPSTEIN], duplicate_ids=['028529']),  # Bad OCR
     MessageCfg(id='029324', recipients=[JEFFREY_EPSTEIN, "Jojo Fontanilla", "Lyn Fontanilla"]),
     MessageCfg(id='033575', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN], duplicate_ids=['012898']),
     MessageCfg(id='023067', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN, TONJA_HADDAD_COLEMAN]),  # Bad OCR
@@ -1352,6 +1344,14 @@ ALL_CONFIGS = [
         date='2011-06-14',
     ),
 
+    # social media / InsightsPod
+    FileCfg(id='028815', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} business plan", date='2016-08-20'),
+    FileCfg(id='011170', author=ZUBAIR_AND_ANYA, description=f'{INSIGHTS_POD} collected tweets about #Brexit', date='2016-06-23'),
+    FileCfg(id='032324', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} election social media trend analysis", date='2016-11-05'),
+    FileCfg(id='032281', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} forecasting election for Trump", date='2016-10-25'),
+    FileCfg(id='028988', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} pitch deck", date='2016-08-20'),
+    FileCfg(id='026627', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} report on the presidential debate"),
+
     # misc
     FileCfg(id='018703', author=ANDRES_SERRANO, description=f"artist statement about Trump objects"),
     FileCfg(id='031743', description=f'a few pages describing the internet as a "New Nation State" (Network State?)'),
@@ -1396,12 +1396,7 @@ ALL_CONFIGS = [
     FileCfg(id='029102', description=HBS_APPLICATION_NERIO,),
     FileCfg(id='029104', description=HBS_APPLICATION_NERIO,),
     FileCfg(id='022445', description=f"Inference: International Review of Science Feedback & Comments", date='2018-11-01'),
-    FileCfg(id='028815', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} business plan", date='2016-08-20'),
-    FileCfg(id='011170', author=ZUBAIR_AND_ANYA, description=f'{INSIGHTS_POD} collected tweets about #Brexit', date='2016-06-23'),
-    FileCfg(id='032324', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} election social media trend analysis", date='2016-11-05'),
-    FileCfg(id='032281', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} forecasting election for Trump", date='2016-10-25'),
-    FileCfg(id='028988', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} pitch deck", date='2016-08-20'),
-    FileCfg(id='026627', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} report on the presidential debate"),
+
     FileCfg(
         id='030142',
         description=f"{JASTA} (Justice Against Sponsors of Terrorism Act) doc that's mostly empty, references suit against Saudi f. {KATHRYN_RUEMMLER} & {KEN_STARR}",
