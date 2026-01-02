@@ -718,6 +718,7 @@ ALL_CONFIGS = [
     MessageCfg(id='026551', is_fwded_article=True),  # Sultan bin Sulayem "Ayatollah between the sheets"
     MessageCfg(id='031768', is_fwded_article=True),  # Sultan bin Sulayem 'Horseface'
     MessageCfg(id='031569', is_fwded_article=True),  # Article by Kathryn Alexeeff fwded to Peter Thiel
+    MessageCfg(id='023627', description=MICHAEL_WOLFF_ARTICLE_HINT, is_fwded_article=True),
 
 
     ############################################################################################################
@@ -834,7 +835,8 @@ ALL_CONFIGS = [
     FileCfg(id='033478', description=f'{MEME} Kim Jong Un reading {FIRE_AND_FURY}', date='2018-01-05', duplicate_ids=['032713']),
     FileCfg(
         id='029357',
-        description=f"some text about Israel's challenges going into 2015, feels like it was extracted from a book 2015-01",
+        description=f"some text about Israel's challenges going into 2015, feels like it was extracted from a book",
+        date='2015-01-15',  # TODO: this is just a guess
         duplicate_ids=['028887'],
     ),
     FileCfg(id='029355', description=f'{SCREENSHOT} quote in book about {LARRY_SUMMERS}', duplicate_ids=['029356'], dupe_type='quoted'),  # 029356 is zoomed in corner
@@ -959,15 +961,14 @@ ALL_CONFIGS = [
     FileCfg(id='013403', description=f"Lexis Nexis result from The Evening Standard about Bernie Madoff", date='2009-12-24'),
     FileCfg(id='023102', description=f"Litigation Daily article about {REID_WEINGARTEN}", date='2015-09-04'),
     FileCfg(id='029340', description=f'MarketWatch article about estate taxes, particularly Epstein\'s favoured GRATs'),
-    FileCfg(id='022707', description=MICHAEL_WOLFF_ARTICLE_HINT),
-    FileCfg(id='022727', description=MICHAEL_WOLFF_ARTICLE_HINT),
-    FileCfg(id='022746', description=MICHAEL_WOLFF_ARTICLE_HINT),
-    FileCfg(id='022844', description=MICHAEL_WOLFF_ARTICLE_HINT),
-    FileCfg(id='022863', description=MICHAEL_WOLFF_ARTICLE_HINT),
-    FileCfg(id='022894', description=MICHAEL_WOLFF_ARTICLE_HINT),
-    FileCfg(id='022952', description=MICHAEL_WOLFF_ARTICLE_HINT),
-    FileCfg(id='024229', description=MICHAEL_WOLFF_ARTICLE_HINT),
-    MessageCfg(id='023627', description=MICHAEL_WOLFF_ARTICLE_HINT, is_fwded_article=True),
+    FileCfg(id='022707', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
+    FileCfg(id='022727', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
+    FileCfg(id='022746', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
+    FileCfg(id='022844', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
+    FileCfg(id='022863', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
+    FileCfg(id='022894', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
+    FileCfg(id='022952', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
+    FileCfg(id='024229', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
     FileCfg(id='029416', description=NATIONAL_ENQUIRER_FILING, date='2017-05-25', duplicate_ids=['029405']),
     FileCfg(id='015462', description=f'Nautilus Education magazine (?) issue'),
     FileCfg(id='029925', description=f"New Yorker article about the placebo effect by Michael Specter", date='2011-12-04'),
