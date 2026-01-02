@@ -609,7 +609,7 @@ ALL_CONFIGS = [
         id='029977',
         author=LAWRANCE_VISOSKI,
         recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, LESLEY_GROFF, RICHARD_KAHN] + FLIGHT_IN_2012_PEOPLE,
-        attribution_reason='Planes discussion signed larry',
+        attribution_reason='Planes discussion signed "Larry"',
         duplicate_ids=['031129'],
     ),
     MessageCfg(id='033309', author=LINDA_STONE, attribution_reason='"Co-authored with iPhone autocorrect"'),
@@ -666,7 +666,7 @@ ALL_CONFIGS = [
         author=STEVEN_HOFFENBERG,
         recipients=["Players2"],
         timestamp=parse('2016-08-11 09:36:01'),
-        attribution_reason='Actually a fwd by Charles Michael but Hofenberg email more interesting',
+        attribution_reason='Actually a fwd by Charles Michael but Hoffenberg email more interesting',
     ),
     MessageCfg(
         id='026620',
@@ -745,31 +745,26 @@ ALL_CONFIGS = [
     ),
     MessageCfg(
         id='033073',
-        is_author_uncertain=True,
         recipients=[KATHRYN_RUEMMLER],
         attribution_reason='to "Kathy" about dems, sent from iPad',
+        is_author_uncertain=True,  # Actually recipient is uncertain
     ),
     MessageCfg(
         id='032939',
         recipients=[KATHRYN_RUEMMLER],
-        is_author_uncertain=True,
         attribution_reason='to "Kathy" about dems, sent from iPad',
+        is_author_uncertain=True,  # Actually recipient is uncertain
     ),
     MessageCfg(id='031428', recipients=[KEN_STARR, LILLY_SANCHEZ, MARTIN_WEINBERG, REID_WEINGARTEN], duplicate_ids=['031388']), # Bad OCR
     MessageCfg(id='025329', recipients=KRASSNER_MANSON_RECIPIENTS),
     MessageCfg(id='033568', recipients=KRASSNER_033568_RECIPIENTS),
-    MessageCfg(id='030522', is_fwded_article=True, recipients=[LANDON_THOMAS]),  # Vicky Ward article
+    MessageCfg(id='030522', recipients=[LANDON_THOMAS], is_fwded_article=True),  # Vicky Ward article
     MessageCfg(id='031413', recipients=[LANDON_THOMAS]),
     MessageCfg(id='033591', recipients=[LAWRANCE_VISOSKI], attribution_reason='Reply signature', duplicate_ids=['033591']),
     MessageCfg(id='027097', recipients=[LAWRANCE_VISOSKI], attribution_reason='Reply signature', duplicate_ids=['028787']),
+    MessageCfg(id='033466', recipients=[LAWRANCE_VISOSKI], attribution_reason='Reply signature'),
     MessageCfg(id='022250', recipients=[LESLEY_GROFF], attribution_reason='Reply'),
-    MessageCfg(
-        id='032048',
-        dupe_of_id='030242',
-        dupe_type='redacted',
-        recipients=[MARIANA_IDZKOWSKA],
-        attribution_reason='Redacted here, visisble in 030242',
-    ),
+    MessageCfg(id='030242', recipients=[MARIANA_IDZKOWSKA], duplicate_ids=['032048'], dupe_type='redacted'),
     MessageCfg(id='030368', recipients=[MELANIE_SPINELLA], attribution_reason='Actually a self fwd from jeffrey to jeffrey'),
     MessageCfg(id='030369', recipients=[MELANIE_SPINELLA], attribution_reason='Actually a self fwd from jeffrey to jeffrey'),
     MessageCfg(id='030371', recipients=[MELANIE_SPINELLA], attribution_reason='Actually a self fwd from jeffrey to jeffrey'),
