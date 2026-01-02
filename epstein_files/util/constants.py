@@ -393,7 +393,6 @@ ALL_CONFIGS = [
     ################################################ EMAIL_INFO ################################################
     ############################################################################################################
 
-    MessageCfg(id='022187', recipients=[JEFFREY_EPSTEIN]),
     MessageCfg(id='032436', author=ALIREZA_ITTIHADIEH, attribution_reason='Signature'),
     MessageCfg(id='032543', author=ANAS_ALRASHEED, attribution_reason='Later reply 033000 has quote'),
     MessageCfg(id='026064', author=ARIANE_DE_ROTHSCHILD),
@@ -438,7 +437,6 @@ ALL_CONFIGS = [
     MessageCfg(id='031560', author=DAVID_SCHOEN, attribution_reason='Signature'),
     MessageCfg(id='026287', author=DAVID_SCHOEN, attribution_reason='Signature'),
     MessageCfg(id='033419', author=DAVID_SCHOEN, attribution_reason='Signature'),
-    #MessageCfg(id='026245', author=DIANE_ZIMAN, recipients=[JEFFREY_EPSTEIN]),  # TODO: Shouldn't need to be configured
     MessageCfg(id='031460', author=EDWARD_JAY_EPSTEIN),
     MessageCfg(id='030414', author=FAITH_KATES, duplicate_ids=['030578'], dupe_type='redacted'),
     MessageCfg(
@@ -619,6 +617,7 @@ ALL_CONFIGS = [
     MessageCfg(id='030999', recipients=[JACK_GOLDBERGER, ROBERT_D_CRITTON]),
     MessageCfg(id='026426', recipients=[JEAN_HUGUEN], attribution_reason='Reply'),
     MessageCfg(id='022202', recipients=[JEAN_LUC_BRUNEL], attribution_reason='Follow up / reply', duplicate_ids=['029975']),
+    MessageCfg(id='022187', recipients=[JEFFREY_EPSTEIN]),
     MessageCfg(id='031489', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
     MessageCfg(id='032210', recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
     MessageCfg(id='030347', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
