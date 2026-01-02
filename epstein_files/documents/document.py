@@ -197,6 +197,10 @@ class Document:
             for line in matched_lines
         ]
 
+    def log(self, msg: str, level: int = logging.WARNING):
+        """Log with [file_id] as a prefix."""
+        logger.log(level, f"[{self.file_id}] {msg}")
+
     def log_top_lines(self, n: int = 10, msg: str = '', level: int = logging.INFO) -> None:
         """Log first 'n' lines of self.text at 'level'. 'msg' can be optionally provided."""
         separator = '\n\n' if '\n' in msg else '. '
