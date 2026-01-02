@@ -60,6 +60,7 @@ def extract_file_id(filename: str | Path) -> str:
 
 def file_size_str(file_path: str | Path) -> str:
     file_size = float(Path(file_path).stat().st_size)
+    digits = 2
 
     if file_size > MB:
         size_num = file_size / MB
@@ -67,10 +68,11 @@ def file_size_str(file_path: str | Path) -> str:
     elif file_size > KB:
         size_num = file_size / KB
         size_str = 'kb'
+        digits = 1
     else:
-        return f"{file_size} b"
+        return f"{int(file_size)} b"
 
-    return f"{size_num:,.2f} {size_str}"
+    return f"{size_num:,.{digits}f} {size_str}"
 
 
 def is_local_extract_file(filename) -> bool:
