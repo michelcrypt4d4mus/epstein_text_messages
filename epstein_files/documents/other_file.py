@@ -12,7 +12,7 @@ from rich.text import Text
 
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_REGEX, Document
 from epstein_files.util.constants import UNINTERESTING_PREFIXES
-from epstein_files.util.data import escape_single_quotes, extract_datetime, ordinal_str, remove_timezone, uniquify
+from epstein_files.util.data import escape_single_quotes, remove_timezone, uniquify
 from epstein_files.util.env import args, logger
 from epstein_files.util.rich import highlighter, logger
 
@@ -24,14 +24,7 @@ MAX_TIMESTAMP = datetime(2022, 12, 31)
 PREVIEW_CHARS = int(580 * (1 if args.all_other_files else 1.5))
 LOG_INDENT = '\n         '
 TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
-
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
-VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
-
-SKIP_EXTRACTING_TIMESTAMPS = [
-    'Government Ethics',
-    'TSV',
-]
 
 
 @dataclass
