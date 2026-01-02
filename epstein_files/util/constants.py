@@ -280,7 +280,7 @@ KEN_STARR_LETTER = f"letter from {KEN_STARR} to judge overseeing Epstein's crimi
 MERCURY_FILMS_PROFILES = f'Mercury Films partner profiles of Jennifer Baichwal, Nicholas de Pencier, Kermit Blackwood, Travis Rummel'
 MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
 NATIONAL_ENQUIRER_FILING = f"National Enquirer / Radar Online v. FBI FOIA lawsuit court filing"
-NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight" by {EHUD_BARAK}?'
+NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight"'
 NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
 OBAMA_JOKE = 'joke about Obama'
 OSBORNE_LLP = f"{IAN_OSBORNE} & Partners LLP"
@@ -290,7 +290,7 @@ PALM_BEACH_DAILY_ARTICLE = f'{PALM_BEACH} Daily News article about'
 PALM_BEACH_POST_ARTICLE = f'{PALM_BEACH} Post article about'
 PALM_BEACH_TSV = f"TSV of {PALM_BEACH} property"
 PALM_BEACH_WATER_COMMITTEE = f'{PALM_BEACH} Water Committee'
-PATTERSON_BOOK_SCANS = f'{BOOK} pages of "Filthy Rich: The Shocking True Story of {JEFFREY_EPSTEIN}" by James Patterson 2016-10-10'
+PATTERSON_BOOK_SCANS = f"pages of 'Filthy Rich: The Shocking True Story of {JEFFREY_EPSTEIN}'"
 SHIMON_POST = 'The Shimon Post'
 SHIMON_POST_ARTICLE = f'{SHIMON_POST} selection of articles about the mideast'
 SINGLE_PAGE = 'single page of'
@@ -341,6 +341,7 @@ UNINTERESTING_PREFIXES = [
     HARVARD_POETRY,
     'Inference',
     'Invesco',
+    JAMES_PATTERSON,
     JASTA,
     'JetGala',
     JOHN_BOLTON_PRESS_CLIPPING,
@@ -959,14 +960,14 @@ ALL_CONFIGS = [
     FileCfg(id='016221', description=DEEP_THINKING_HINT, date='2019-02-19'),
     FileCfg(id='016804', description=DEEP_THINKING_HINT, date='2019-02-19'),
     FileCfg(id='031533', description=f'few pages from a book about the Baylor University sexual assault scandal and Sam Ukwuachu'),
-    FileCfg(id='011472', description=NIGHT_FLIGHT_HINT,),
-    FileCfg(id='027849', description=NIGHT_FLIGHT_HINT,),
-    FileCfg(id='010477', description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
-    FileCfg(id='010486', description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
-    FileCfg(id='021958', description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
-    FileCfg(id='022058', description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
-    FileCfg(id='022118', description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
-    FileCfg(id='019111', description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
+    FileCfg(id='011472', author=EHUD_BARAK, description=NIGHT_FLIGHT_HINT,),
+    FileCfg(id='027849', author=EHUD_BARAK, description=NIGHT_FLIGHT_HINT,),
+    FileCfg(id='010477', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
+    FileCfg(id='010486', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
+    FileCfg(id='021958', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
+    FileCfg(id='022058', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
+    FileCfg(id='022118', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
+    FileCfg(id='019111', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
     FileCfg(
         id='030199',
         description=f'article about allegations Trump raped a 13 year old girl {JANE_DOE_V_EPSTEIN_TRUMP}',
@@ -1133,7 +1134,7 @@ ALL_CONFIGS = [
     FileCfg(id='023046', description=f"{VI_DAILY_NEWS_ARTICLE}", date='2019-02-27'),
     FileCfg(id='031170', description=f"{VI_DAILY_NEWS_ARTICLE}", date='2019-03-06'),
     FileCfg(id='016506', description=f"{VI_DAILY_NEWS_ARTICLE}", date='2019-02-28'),
-    FileCfg(id='016507', description=f'{VI_DAILY_NEWS_ARTICLE} "Perversion of Justice" by {JULIE_K_BROWN}', date='2018-12-19'),
+    FileCfg(id='016507', description=f"{VI_DAILY_NEWS_ARTICLE} 'Perversion of Justice' by {JULIE_K_BROWN}", date='2018-12-19'),
     FileCfg(id='019212', description=f'{WAPO} and Times Tribune articles about Bannon, Trump, and healthcare execs'),
     FileCfg(
         id='033379',

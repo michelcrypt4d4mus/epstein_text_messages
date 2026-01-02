@@ -173,6 +173,7 @@ BILL_GATES = 'Bill Gates'
 ELON_MUSK = 'Elon Musk'
 HENRY_HOLT = 'Henry Holt'  # Actually a company?
 IVANKA = 'Ivanka'
+JAMES_PATTERSON = 'James Patterson'
 JARED_KUSHNER = 'Jared Kushner'
 JULIE_K_BROWN = 'Julie K. Brown'
 KARIM_SADJADPOUR = 'KARIM SADJADPOUR'.title()
