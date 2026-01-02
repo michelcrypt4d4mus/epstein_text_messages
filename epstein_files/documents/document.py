@@ -84,9 +84,10 @@ class Document:
 
         if self.is_local_extract_file():
             self.url_slug = file_stem_for_id(self.file_id)
+            cfg_type = type(self.config).__name__ if self.config else None
 
             # Coerce FileConfig for court docs etc. to MessageCfg for email files extracted from that document
-            if self.document_type() == EMAIL_CLASS and self.config and self.cfg_type() != MessageCfg.__name__:
+            if self.document_type() == EMAIL_CLASS and self.config and cfg_type != MessageCfg.__name__:
                 self.config = MessageCfg.from_file_cfg(self.config)
         else:
             self.url_slug = self.file_path.stem
@@ -95,10 +96,6 @@ class Document:
         self._repair()
         self._extract_author()
         self.timestamp = self._extract_timestamp()
-
-    # TODO: remove eventually, unecessary
-    def cfg_type(self) -> str | None:
-        return type(self.config).__name__ if self.config else None
 
     def configured_description(self) -> str | None:
         return self.config.description if self.config else None
@@ -247,6 +244,7 @@ class Document:
         return 'white'
 
     def _extract_author(self) -> None:
+        """Get author from config. Extended in Email subclass to also check headers."""
         if self.config and self.config.author:
             self.author = self.config.author
 
