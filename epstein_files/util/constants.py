@@ -309,9 +309,9 @@ PAULA_REASON = 'Signature of "Sent via BlackBerry from T-Mobile"'
 # List containing anything manually configured about any of the files.
 ALL_CONFIGS = [
 
-    ############################################################################################################
-    ################################################ TEXTS CONFIG ##############################################
-    ############################################################################################################
+    ################################################################################################
+    ############################################ TEXTS #############################################
+    ################################################################################################
 
     ### Confirmed text attributions ###
     MessageCfg(id='031042', author=ANIL_AMBANI, attribution_reason='Participants: field'),
@@ -505,12 +505,10 @@ ALL_CONFIGS = [
     MessageCfg(id='032208', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
     MessageCfg(id='032209', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
     MessageCfg(id='029196', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN], actual_text='Talk in 40?'),  # TODO: this email's header rewrite sucks
-    MessageCfg(id='027046', author=LAWRANCE_VISOSKI, duplicate_ids=['028789']),
-    MessageCfg(id='033488', author=LAWRANCE_VISOSKI, duplicate_ids=['033154']),
     MessageCfg(id='033593', author=LAWRANCE_VISOSKI, attribution_reason='Signature'),
-    MessageCfg(id='033487', author=LAWRANCE_VISOSKI, recipients=[JEFFREY_EPSTEIN]),
     MessageCfg(id='033370', author=LAWRANCE_VISOSKI, attribution_reason=LARRY_REASON),
     MessageCfg(id='033495', author=LAWRANCE_VISOSKI, attribution_reason=LARRY_REASON),
+    MessageCfg(id='033487', author=LAWRANCE_VISOSKI, recipients=[JEFFREY_EPSTEIN]),
     MessageCfg(
         id='029977',
         author=LAWRANCE_VISOSKI,
@@ -518,6 +516,8 @@ ALL_CONFIGS = [
         attribution_reason=LARRY_REASON,
         duplicate_ids=['031129'],
     ),
+    MessageCfg(id='027046', author=LAWRANCE_VISOSKI, duplicate_ids=['028789']),
+    MessageCfg(id='033488', author=LAWRANCE_VISOSKI, duplicate_ids=['033154']),
     MessageCfg(id='033309', author=LINDA_STONE, attribution_reason='"Co-authored with iPhone autocorrect"'),
     MessageCfg(id='017581', author='Lisa Randall'),
     MessageCfg(id='026609', author='Mark Green', attribution_reason='Actually a fwd'),
@@ -655,13 +655,13 @@ ALL_CONFIGS = [
         id='033073',
         recipients=[KATHRYN_RUEMMLER],
         attribution_reason='to "Kathy" about dems, sent from iPad',
-        is_author_uncertain=True,  # Actually recipient is uncertain
+        is_author_uncertain=True,
     ),
     MessageCfg(
         id='032939',
         recipients=[KATHRYN_RUEMMLER],
         attribution_reason='to "Kathy" about dems, sent from iPad',
-        is_author_uncertain=True,  # Actually recipient is uncertain
+        is_author_uncertain=True,
     ),
     MessageCfg(id='031428', recipients=[KEN_STARR, LILLY_SANCHEZ, MARTIN_WEINBERG, REID_WEINGARTEN], duplicate_ids=['031388']), # Bad OCR
     MessageCfg(id='025329', recipients=KRASSNER_MANSON_RECIPIENTS),
