@@ -31,15 +31,17 @@ KB = 1024
 MB = KB * KB
 
 
-build_file_stem_for_id = lambda id: f"{HOUSE_OVERSIGHT_PREFIX}{int(id):06d}"
-build_filename_for_id = lambda id: build_file_stem_for_id(id) + '.txt'
+# Handles both string and int 'id' values.
+file_stem_for_id = lambda id: f"{HOUSE_OVERSIGHT_PREFIX}{int(id):06d}"
+filename_for_id = lambda id: file_stem_for_id(id) + '.txt'
 
 
-def build_file_stem(filename_or_id: int | str) -> str:
+def coerce_file_stem(filename_or_id: int | str) -> str:
+    """Generate a valid file_stem no matter what form the argument comes in."""
     if isinstance(filename_or_id, str) and filename_or_id.startswith(HOUSE_OVERSIGHT_PREFIX):
         file_stem = str(filename_or_id)
     else:
-        file_stem = build_file_stem_for_id(filename_or_id)
+        file_stem = file_stem_for_id(filename_or_id)
 
     if not FILE_STEM_REGEX.match(file_stem):
         raise RuntimeError(f"Built invalid file stem '{file_stem}' from filename_or_id={filename_or_id} (pattern='{FILE_STEM_REGEX.pattern}')")
@@ -76,9 +78,3 @@ def is_local_extract_file(filename) -> bool:
     """Return true if filename is of form 'HOUSE_OVERSIGHT_029835_1.txt'."""
     file_match = FILE_ID_REGEX.match(str(filename))
     return True if file_match and file_match.group(2) else False
-
-
-def move_json_file(file_arg: Path):
-    json_subdir_path = JSON_DIR.joinpath(file_arg.name + '.json')
-    print(f"'{file_arg}' looks like JSON, moving to '{json_subdir_path}'\n")
-    file_arg.rename(json_subdir_path)
