@@ -1865,8 +1865,8 @@ ALL_CONFIGS = [
     # property
     FileCfg(id='018743', description=f"Las Vegas property listing"),
     FileCfg(id='016597', description=f'letter from Trump Properties LLC appealing some decision about Mar-a-Lago by {PALM_BEACH} authorities'),
-    FileCfg(id='016602', description=f"{PALM_BEACH_CODE_ENFORCEMENT}", timestamp=parse('2008-04-17')),
-    FileCfg(id='016554', description=f"{PALM_BEACH_CODE_ENFORCEMENT}", timestamp=parse('2008-07-17')),
+    FileCfg(id='016602', description=PALM_BEACH_CODE_ENFORCEMENT, timestamp=parse('2008-04-17')),
+    FileCfg(id='016554', description=PALM_BEACH_CODE_ENFORCEMENT, timestamp=parse('2008-07-17')),
     FileCfg(id='016695', description=f"{PALM_BEACH} property info (?)"),
     FileCfg(id='016697', description=f"{PALM_BEACH} property tax info (?) that mentions Trump"),
     FileCfg(id='016636', description=f"{PALM_BEACH_WATER_COMMITTEE} Meeting on January 29, 2009"),
@@ -2023,6 +2023,21 @@ ALL_CONFIGS = [
 
 ALL_FILE_CONFIGS = {cfg.id: cfg for cfg in ALL_CONFIGS}
 EMAIL_CONFIGS = {id: cfg for id, cfg in ALL_FILE_CONFIGS.items() if isinstance(cfg, MessageCfg)}
+
+
+for cfg in ALL_FILE_CONFIGS.values():
+    if not cfg.dupe_of_id:
+        continue
+
+    if cfg.dupe_of_id in ALL_FILE_CONFIGS:
+        dupe_of_cfg = ALL_FILE_CONFIGS[cfg.dupe_of_id]
+
+        if dupe_of_cfg == cfg:
+            print(f"{cfg.id} duplicates {dupe_of_cfg.id} and configurations are the same...")
+        else:
+            print(f"\nDupe configs. Valid file's cfg:\n    {dupe_of_cfg}")
+            print(f"Duplicate's cfg:\n    {cfg}")
+            print(f"are equals? {dupe_of_cfg == cfg} ({type(cfg).__name__} vs. {type(dupe_of_cfg).__name__})\n")
 
 
 # Error checking.
