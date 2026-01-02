@@ -814,5 +814,71 @@ for i, line in enumerate(DESCRIPTIONS_CODE.split('\n')):
             COMMENTS[id] = next_comment
             comment_swap_next = False
 
-import json
-print(f"COMMENTS:\n\n{json.dumps(COMMENTS)}\n")
+# import json
+# print(f"COMMENTS:\n\n{json.dumps(COMMENTS)}\n")
+
+
+
+TEXTS = """
+    '031042': ANIL_AMBANI,       # Participants: field
+    '027225': ANIL_AMBANI,       # Birthday
+    '031173': ARDA_BESKARDES,     # Participants: field
+    '027401': EVA,               # Participants: field
+    '027650': JOI_ITO,           # Participants: field
+    '027777': LARRY_SUMMERS,     # Participants: field
+    '027515': MIROSLAV_LAJCAK,   # https://x.com/ImDrinknWyn/status/1990210266114789713
+    '027165': MELANIE_WALKER,    # https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/
+    '027248': MELANIE_WALKER,    # Says "we met through trump" which is confirmed by Melanie in 032803
+    '025429': STACEY_PLASKETT,
+    '027333': SCARAMUCCI,        # unredacted phone number in one of the messages
+    '027128': SOON_YI_PREVIN,           # https://x.com/ImDrinknWyn/status/1990227281101434923
+    '027217': SOON_YI_PREVIN,           # refs marriage to woody allen
+    '027244': SOON_YI_PREVIN,           # refs Woody
+    '027257': SOON_YI_PREVIN,           # 'Woody Allen' in Participants: field
+    '027460': STEVE_BANNON,      # Discusses leaving scotland when Bannon was confirmed in Scotland, also NYT
+    '025707': STEVE_BANNON,
+    '025734': STEVE_BANNON,
+    '025452': STEVE_BANNON,
+    '025408': STEVE_BANNON,
+    '027307': STEVE_BANNON,
+    '027278': TERJE_ROD_LARSEN,
+    '027255': TERJE_ROD_LARSEN,
+    '027762': ANDRZEJ_DUDA,
+    '027774': ANDRZEJ_DUDA,
+    '027221': ANIL_AMBANI,
+    '025436': CELINA_DUBIN,
+    '027576': MELANIE_WALKER,        # https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700
+    '027141': MELANIE_WALKER,
+    '027232': MELANIE_WALKER,
+    '027133': MELANIE_WALKER,
+    '027184': MELANIE_WALKER,
+    '027214': MELANIE_WALKER,
+    '027148': MELANIE_WALKER,
+    '027396': SCARAMUCCI,
+    '031054': SCARAMUCCI,
+    '025363': STEVE_BANNON,          # Trump and New York Times coverage
+    '025368': STEVE_BANNON,          # Trump and New York Times coverage
+    '027585': STEVE_BANNON,          # Tokyo trip
+    '027568': STEVE_BANNON,
+    '027695': STEVE_BANNON,
+    '027594': STEVE_BANNON,
+    '027720': STEVE_BANNON,          # first 3 lines of 027722
+    '027549': STEVE_BANNON,
+    '027434': STEVE_BANNON,          # References Maher appearance
+    '027764': STEVE_BANNON,
+    '027428': STEVE_BANNON,          # References HBJ meeting on 9/28 from other Bannon/Epstein convo
+""".strip()
+
+
+TEXT_ATTRIBUTIONS: dict[str, str] = {}
+LINE_REGEX = re.compile(r"'(\d+)':.*# (.*)")
+
+for i, line in enumerate(TEXTS.split('\n')):
+    line = line.strip()
+    match = LINE_REGEX.match(line)
+
+    if '#' not in line:
+        continue
+
+    id = match.group(1)
+    TEXT_ATTRIBUTIONS[id] = match.group(2)

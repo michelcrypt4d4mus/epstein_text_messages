@@ -404,7 +404,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Scott J. Link": 1,
     "Sean Bannon": 1,
     "Sean T Lehane": 1,
-    SOON_YI: 4,
+    SOON_YI_PREVIN: 4,
     "Stanley Rosenberg": 1,
     "Stephen Hanson": 3,
     "Stephen Rubin": 1,
@@ -529,7 +529,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         "Sean Bannon",
     ],
     "Sent from Soon-Yi's iPhone": [
-        SOON_YI,
+        SOON_YI_PREVIN,
     ],
     "Sent from Steve Hanson's Blackberry": [
         "Stephen Hanson"

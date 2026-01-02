@@ -7,10 +7,8 @@ from io import StringIO
 from dateutil.parser import parse
 
 from epstein_files.util.constant.names import *
-from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_PREFIX, QUESTION_MARKS, REDACTED
+from epstein_files.util.constant.strings import *
 from epstein_files.util.file_cfg import EmailCfg, FileCfg
-
-from epstein_files.util.data import escape_single_quotes, extract_datetime
 
 # Misc
 FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
@@ -62,7 +60,7 @@ HEADER_ABBREVIATIONS = {
 KNOWN_IMESSAGE_FILE_IDS = {
     '031042': ANIL_AMBANI,       # Participants: field
     '027225': ANIL_AMBANI,       # Birthday
-    '031173': ARDA_BESKARES,     # Participants: field
+    '031173': ARDA_BESKARDES,     # Participants: field
     '027401': EVA,               # Participants: field
     '027650': JOI_ITO,           # Participants: field
     '027777': LARRY_SUMMERS,     # Participants: field
@@ -71,10 +69,10 @@ KNOWN_IMESSAGE_FILE_IDS = {
     '027248': MELANIE_WALKER,    # Says "we met through trump" which is confirmed by Melanie in 032803
     '025429': STACEY_PLASKETT,
     '027333': SCARAMUCCI,        # unredacted phone number in one of the messages
-    '027128': SOON_YI,           # https://x.com/ImDrinknWyn/status/1990227281101434923
-    '027217': SOON_YI,           # refs marriage to woody allen
-    '027244': SOON_YI,           # refs Woody
-    '027257': SOON_YI,           # 'Woody Allen' in Participants: field
+    '027128': SOON_YI_PREVIN,           # https://x.com/ImDrinknWyn/status/1990227281101434923
+    '027217': SOON_YI_PREVIN,           # refs marriage to woody allen
+    '027244': SOON_YI_PREVIN,           # refs Woody
+    '027257': SOON_YI_PREVIN,           # 'Woody Allen' in Participants: field
     '027460': STEVE_BANNON,      # Discusses leaving scotland when Bannon was confirmed in Scotland, also NYT
     '025707': STEVE_BANNON,
     '025734': STEVE_BANNON,
@@ -233,7 +231,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     SCOTT_J_LINK: re.compile(r'scott j. link?', re.IGNORECASE),
     SEAN_BANNON: re.compile(r'sean bannon?', re.IGNORECASE),
     SHAHER_ABDULHAK_BESHER: re.compile(r'\bShaher( Abdulhak Besher)?\b', re.IGNORECASE),
-    SOON_YI: re.compile(r'Soon[- ]Yi Previn?', re.IGNORECASE),
+    SOON_YI_PREVIN: re.compile(r'Soon[- ]Yi Previn?', re.IGNORECASE),
     STEPHEN_HANSON: re.compile(r'ste(phen|ve) hanson?|Shanson900', re.IGNORECASE),
     STEVE_BANNON: re.compile(r'steve banno[nr]?', re.IGNORECASE),
     STEVEN_SINOFSKY: re.compile(r'Steven Sinofsky?', re.IGNORECASE),
@@ -304,6 +302,10 @@ for emailer in EMAILERS:
     EMAILER_REGEXES[emailer] = re.compile(emailer, re.IGNORECASE)
 
 
+#######################
+# Emails Config Stuff #
+#######################
+
 # Some emails have a lot of uninteresting CCs
 IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS: list[str | None] = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
 KRASSNER_MANSON_RECIPIENTS: list[str | None] = ['Nancy Cain', 'Tom', 'Marie Moneysmith', 'Steven Gaydos', 'George Krassner', 'Linda W. Grossman', 'Holly Krassner Dawson', 'Daniel Dawson', 'Danny Goldberg', 'Caryl Ratner', 'Kevin Bright', 'Michael Simmons', SAMUEL_LEFF, 'Bob Fass', 'Lynnie Tofte Fass', 'Barb Cowles', 'Lee Quarnstrom']
@@ -312,7 +314,9 @@ KRASSNER_033568_RECIPIENTS: list[str | None] = ['George Krassner', 'Daniel Dawso
 FLIGHT_IN_2012_PEOPLE: list[str | None] = ['Francis Derby', 'Januiz Banasiak', 'Louella Rabuyo', 'Richard Barnnet']
 
 
-# OtherFile Categories
+##########################
+# OtherFile Config Stuff #
+##########################
 BOOK = 'book:'
 FBI = 'FBI'
 FLIGHT_LOGS = 'flight logs'
@@ -321,14 +325,6 @@ REPUTATION_MGMT = 'reputation management:'
 SCREENSHOT = 'screenshot of'
 TRANSLATION = 'translation of'
 TWEET = 'tweet'
-
-# Publications
-BBC = 'BBC'
-BLOOMBERG = 'Bloomberg'
-LA_TIMES = 'LA Times'
-MIAMI_HERALD = 'Miami Herald'
-NYT_ARTICLE = 'NYT article about'
-NYT_COLUMN = 'NYT column about'
 TEXT_OF_US_LAW = 'text of U.S. law:'
 
 # Court cases
@@ -480,8 +476,136 @@ UNINTERESTING_PREFIXES = [
 ]
 
 
+# List containing anything manually configured about any of the files.
 ALL_CONFIGS = [
+    ####################################
+    ############ TEXTS CONFIG ##########
+    ####################################
+    EmailCfg(id='031042', author=ANIL_AMBANI, attribution_explanation='Participants: field'),
+    EmailCfg(id='027225', author=ANIL_AMBANI, attribution_explanation='Birthday'),
+    EmailCfg(id='031173', author=ARDA_BESKARDES, attribution_explanation='Participants: field'),
+    EmailCfg(id='027401', author='Eva (Dubin?)', attribution_explanation='Participants: field'),
+    EmailCfg(id='027650', author=JOI_ITO, attribution_explanation='Participants: field'),
+    EmailCfg(id='027777', author=LARRY_SUMMERS, attribution_explanation='Participants: field'),
+    EmailCfg(
+        id='027515',
+        author='Miroslav Lajčák',
+        attribution_explanation='https://x.com/ImDrinknWyn/status/1990210266114789713',
+    ),
+    EmailCfg(
+        id='027165',
+        author=MELANIE_WALKER,
+        attribution_explanation='https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/',
+    ),
+    EmailCfg(
+        id='027248',
+        author=MELANIE_WALKER,
+        attribution_explanation='Says "we met through trump" which is confirmed by Melanie in 032803',
+    ),
+    EmailCfg(id='025429', author=STACEY_PLASKETT),
+    EmailCfg(id='027333', author=SCARAMUCCI, attribution_explanation='unredacted phone number in one of the messages'),
+    EmailCfg(
+        id='027128',
+        author=SOON_YI_PREVIN,
+        attribution_explanation='https://x.com/ImDrinknWyn/status/1990227281101434923',
+    ),
+    EmailCfg(id='027217', author=SOON_YI_PREVIN, attribution_explanation='refs marriage to woody allen'),
+    EmailCfg(id='027244', author=SOON_YI_PREVIN, attribution_explanation='refs Woody'),
+    EmailCfg(id='027257', author=SOON_YI_PREVIN, attribution_explanation="'Woody Allen' in Participants: field"),
+    EmailCfg(
+        id='027460',
+        author=STEVE_BANNON,
+        attribution_explanation='Discusses leaving scotland when Bannon was confirmed in Scotland, also NYT',
+    ),
+    EmailCfg(id='025707', author=STEVE_BANNON),
+    EmailCfg(id='025734', author=STEVE_BANNON),
+    EmailCfg(id='025452', author=STEVE_BANNON),
+    EmailCfg(id='025408', author=STEVE_BANNON),
+    EmailCfg(id='027307', author=STEVE_BANNON),
+    EmailCfg(id='027278', author=TERJE_ROD_LARSEN),
+    EmailCfg(id='027255', author=TERJE_ROD_LARSEN),
+    EmailCfg(id='027762', author=ANDRZEJ_DUDA, is_attribution_uncertain=True),
+    EmailCfg(id='027774', author=ANDRZEJ_DUDA, is_attribution_uncertain=True),
+    EmailCfg(id='027221', author=ANIL_AMBANI, is_attribution_uncertain=True),
+    EmailCfg(id='025436', author=CELINA_DUBIN, is_attribution_uncertain=True),
+    EmailCfg(
+        id='027576',
+        author=MELANIE_WALKER,
+        is_attribution_uncertain=True,
+        attribution_explanation='https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700',
+    ),
+    EmailCfg(id='027141', author=MELANIE_WALKER, is_attribution_uncertain=True),
+    EmailCfg(id='027232', author=MELANIE_WALKER, is_attribution_uncertain=True),
+    EmailCfg(id='027133', author=MELANIE_WALKER, is_attribution_uncertain=True),
+    EmailCfg(id='027184', author=MELANIE_WALKER, is_attribution_uncertain=True),
+    EmailCfg(id='027214', author=MELANIE_WALKER, is_attribution_uncertain=True),
+    EmailCfg(id='027148', author=MELANIE_WALKER, is_attribution_uncertain=True),
+    EmailCfg(id='027396', author=SCARAMUCCI, is_attribution_uncertain=True),
+    EmailCfg(id='031054', author=SCARAMUCCI, is_attribution_uncertain=True),
+    EmailCfg(
+        id='025363',
+        author=STEVE_BANNON,
+        is_attribution_uncertain=True,
+        attribution_explanation='Trump and New York Times coverage',
+    ),
+    EmailCfg(
+        id='025368',
+        author=STEVE_BANNON,
+        is_attribution_uncertain=True,
+        attribution_explanation='Trump and New York Times coverage',
+    ),
+    EmailCfg(id='027585', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_explanation='Tokyo trip'),
+    EmailCfg(id='027568', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(id='027695', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(id='027594', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(
+        id='027720',
+        author=STEVE_BANNON,
+        is_attribution_uncertain=True,
+        attribution_explanation='first 3 lines of 027722',
+    ),
+    EmailCfg(id='027549', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(
+        id='027434',
+        author=STEVE_BANNON,
+        is_attribution_uncertain=True,
+        attribution_explanation='References Maher appearance',
+    ),
+    EmailCfg(id='027764', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(
+        id='027428',
+        author=STEVE_BANNON,
+        is_attribution_uncertain=True,
+        attribution_explanation='References HBJ meeting on 9/28 from other Bannon/Epstein convo',
+    ),
+    EmailCfg(id='025400', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(id='025408', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(id='025452', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(id='025479', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(id='025707', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(id='025734', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(id='027260', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(id='027281', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(id='027346', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(id='027365', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(id='027374', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(id='027406', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(id='027440', author=MICHAEL_WOLFF, is_attribution_uncertain=True),
+    EmailCfg(id='027445', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(id='027455', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(id='027536', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(id='027655', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(id='027707', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(id='027722', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(id='027735', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(id='027794', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(id='029744', author=STEVE_BANNON, is_attribution_uncertain=True),
+    EmailCfg(id='031045', author=STEVE_BANNON, is_attribution_uncertain=True),
+
+
+    ####################################
     ############ EMAIL_INFO ############
+    ####################################
     EmailCfg(id='022187', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='032436', author=ALIREZA_ITTIHADIEH, attribution_explanation='Signature'),
     EmailCfg(id='032543', author=ANAS_ALRASHEED, attribution_explanation='Later reply 033000 has quote'),
@@ -1066,7 +1190,11 @@ ALL_CONFIGS = [
         attribution_explanation='Article by Kathryn Alexeeff fwded to Peter Thiel',
     ),
 
-    ############ DUPE_FILE_CFGS #########
+
+    ####################################
+    ######### DUPE_FILE_CFGS ###########
+    ####################################
+
     EmailCfg(id='026563', duplicate_of_id='028768', duplicate_type='redacted'),
     EmailCfg(id='028762', duplicate_of_id='027056', duplicate_type='redacted'),
     EmailCfg(id='032246', duplicate_of_id='032248', duplicate_type='redacted'),
@@ -1273,7 +1401,10 @@ ALL_CONFIGS = [
         duplicate_type='quoted',
     ),
 
-    ######### FILE_DESCRIPTIONS #########
+
+    ####################################
+    ######### FILE_DESCRIPTIONS ########
+    ####################################
 
     # books
     FileCfg(id='015032', description=f'{BOOK} "60 Years of Investigative Satire: The Best of {PAUL_KRASSNER}"'),
@@ -2136,3 +2267,26 @@ ALL_CONFIGS = [
 
 ALL_FILE_CONFIGS = {cfg.id: cfg for cfg in ALL_CONFIGS}
 EMAIL_CONFIGS = {id: cfg for id, cfg in ALL_FILE_CONFIGS.items() if isinstance(cfg, EmailCfg)}
+
+KNOWN_IDS = [id for id in KNOWN_IMESSAGE_FILE_IDS.keys()] + [id for id in GUESSED_IMESSAGE_FILE_IDS.keys()]
+from .temp_email_cfg import TEXT_ATTRIBUTIONS
+
+for id, author in KNOWN_IMESSAGE_FILE_IDS.items():
+    cfg = EmailCfg(id=id, author=author, attribution_explanation=TEXT_ATTRIBUTIONS.get(id))
+    print(f"{cfg},")
+
+for id, author in GUESSED_IMESSAGE_FILE_IDS.items():
+    cfg = EmailCfg(id=id, author=author, is_attribution_uncertain=True, attribution_explanation=TEXT_ATTRIBUTIONS.get(id))
+    print(f"{cfg},")
+
+
+# Error checking.
+encountered_file_ids = set()
+
+for cfg in ALL_FILE_CONFIGS.values():
+    if cfg.duplicate_of_id and cfg.duplicate_of_id == cfg.id:
+        raise ValueError(f"Invalid config!\n\n{cfg}\n")
+    elif cfg.id in encountered_file_ids:
+        raise ValueError(f"{cfg.id} configured twice!\n\n{cfg}\n")
+
+    encountered_file_ids.add(cfg.id)
