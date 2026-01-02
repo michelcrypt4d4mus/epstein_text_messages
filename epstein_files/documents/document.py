@@ -213,7 +213,7 @@ class Document:
         logger.log(level, f"{msg}\n\n{self.top_lines(n)}\n")
 
     def raw_document_link_txt(self, style: str = '', include_alt_link: bool = False) -> Text:
-        """Returns colored links to epsteinify and and epsteinweb in a Text object."""
+        """Returns colored links to epstein.media and and epsteinweb in a Text object."""
         txt = Text('', style='white' if include_alt_link else ARCHIVE_LINK_COLOR)
 
         if args.use_epstein_web_links:
