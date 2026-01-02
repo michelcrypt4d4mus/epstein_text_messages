@@ -296,7 +296,6 @@ UBS = 'UBS'
 UBS_CIO_REPORT = 'CIO Monthly Extended report'
 VI_DAILY_NEWS_ARTICLE = f'{VIRGIN_ISLANDS} Daily News article'
 WAPO = 'WaPo'
-WEINBERG_ABC_LETTER = f"letter from {MARTIN_WEINBERG} to ABC / Good Morning America threatening libel lawsuit"
 WOMEN_EMPOWERMENT = f"Women Empowerment (WE) conference run by {SVETLANA_POZHIDAEVA}"
 ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
 
@@ -1009,12 +1008,21 @@ ALL_CONFIGS = [
         description=f"letter from Gloria Allred to {SCOTT_J_LINK} alleging abuse of a girl from Kansas",
         date='2019-06-19',
     ),
-    FileCfg(id='031447', description=f"letter from {MARTIN_WEINBERG} to Melanie Ann Pustay and Sean O'Neill re: an Epstein FOIA request"),
+    FileCfg(
+        id='031447',
+        description=f"letter from {MARTIN_WEINBERG} to Melanie Ann Pustay and Sean O'Neill re: an Epstein FOIA request"
+    ),
+    FileCfg(
+        id='028965',
+        description=f"letter from {MARTIN_WEINBERG} to ABC / Good Morning America threatening libel lawsuit",
+        duplicate_ids=['028928']
+    ),
     FileCfg(
         id='026793',
         description=f"letter from {STEVEN_HOFFENBERG}'s lawyers at Mintz Fraade offering to take over Epstein's business and resolve his legal issues",
         date='2018-03-23',
     ),
+
     FileCfg(
         id='016420',
         description=f"{NEW_YORK_V_EPSTEIN} New York Post Motion to Unseal Appellate Briefs",
@@ -1231,8 +1239,15 @@ ALL_CONFIGS = [
         date='2019-12-09',
     ),
     FileCfg(id='024294', description=f"{STACEY_PLASKETT} campaign flier", date='2016-10-01'),
+    FileCfg(
+        id='029357',
+        description=f" ext about Israel's challenges going into 2015, feels like it was extracted from a book",
+        date='2015-01-15',  # TODO: this is just a guess
+        duplicate_ids=['028887'],
+    ),
 
     # academia
+    FileCfg(id='014697', description=CHALLENGES_OF_AI, duplicate_ids=['011284']),
     FileCfg(id='026521', description=f"game theory paper by {MARTIN_NOWAK}, Erez Yoeli, and Moshe Hoffman"),
     FileCfg(id='023416', description=HARVARD_POETRY),
     FileCfg(id='023435', description=HARVARD_POETRY),
@@ -1246,6 +1261,7 @@ ALL_CONFIGS = [
     FileCfg(id='029592', description=HARVARD_POETRY),
     FileCfg(id='019396', description=f'{HARVARD} Economics 1545 Professor Kenneth Rogoff syllabus'),
     FileCfg(id='022445', description=f"Inference: International Review of Science Feedback & Comments", date='2018-11-01'),
+    FileCfg(id='029355', description=f'{SCREENSHOT} quote in book about {LARRY_SUMMERS}', duplicate_ids=['029356'], dupe_type='quoted'),  # 029356 is zoomed in corner
 
     # resumes and application letters
     FileCfg(id='029102', description=HBS_APPLICATION_NERIO),
@@ -1321,6 +1337,7 @@ ALL_CONFIGS = [
     ############################################# DUPE_FILE_CFGS ###############################################
     ############################################################################################################
 
+    # duplicate emails
     MessageCfg(id='031215', author=BARBRO_C_EHNBOM, duplicate_ids=['026745'], dupe_type='redacted'),  # the same except for 'your Anna!'. author must be specified because email address is redacted in 026745 so it needs the config
     MessageCfg(id='028768', duplicate_ids=['026563'], dupe_type='redacted'),
     MessageCfg(id='027056', duplicate_ids=['028762'], dupe_type='redacted'),
@@ -1426,15 +1443,6 @@ ALL_CONFIGS = [
     MessageCfg(id='029752', duplicate_ids=['023550']),
     MessageCfg(id='030339', duplicate_ids=['030592']),
     MessageCfg(id='032250', duplicate_ids=['033589']),
-    FileCfg(id='014697', description=CHALLENGES_OF_AI, duplicate_ids=['011284']),
-    FileCfg(id='028965', description=WEINBERG_ABC_LETTER, duplicate_ids=['028928']),
-    FileCfg(
-        id='029357',
-        description=f"some text about Israel's challenges going into 2015, feels like it was extracted from a book",
-        date='2015-01-15',  # TODO: this is just a guess
-        duplicate_ids=['028887'],
-    ),
-    FileCfg(id='029355', description=f'{SCREENSHOT} quote in book about {LARRY_SUMMERS}', duplicate_ids=['029356'], dupe_type='quoted'),  # 029356 is zoomed in corner
 ]
 
 # Create a dict keyed by file_id
