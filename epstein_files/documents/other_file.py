@@ -10,7 +10,7 @@ from rich.text import Text
 
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_REGEX, Document
 from epstein_files.util.constants import UNINTERESTING_PREFIXES
-from epstein_files.util.data import escape_single_quotes, extract_datetime, ordinal_str, remove_timezone
+from epstein_files.util.data import escape_single_quotes, extract_datetime, ordinal_str, remove_timezone, uniquify
 from epstein_files.util.env import args, logger
 from epstein_files.util.rich import highlighter, logger
 
@@ -54,10 +54,10 @@ class OtherFile(Document):
         """False for lame prefixes and duplicates."""
         hints = self.hints()
 
-        if len(hints) == 0:
-            return True
-        elif self.is_duplicate:
+        if self.is_duplicate:
             return False
+        elif len(hints) == 0:
+            return True
 
         for prefix in UNINTERESTING_PREFIXES:
             if hints[0].plain.startswith(prefix):
@@ -110,7 +110,8 @@ class OtherFile(Document):
         elif len(timestamps) == 1:
             return timestamps[0]
 
-        timestamps = sorted(timestamps, reverse=True)
+
+        timestamps = sorted(uniquify(timestamps), reverse=True)
         timestamp_strs = [str(dt) for dt in timestamps]
         num_days_spanned = (timestamps[0] - timestamps[-1]).days
         timestamps_log_msg = f"Found {len(timestamps)} timestamps spanning {num_days_spanned} days\n     "
@@ -119,7 +120,7 @@ class OtherFile(Document):
         if num_days_spanned > MAX_DAYS_SPANNED_TO_BE_VALID and VAST_HOUSE not in self.text:
             self.log_top_lines(15, msg=timestamps_log_msg, level=log_level)
 
-        # Most recent timestamp in text should be closest to accurate bc doc should only have dates of things that already happened
+        # Most recent timestamp in text should be closest to accurate bc articles eetc. should only have dates of things that already happened
         last_timestamp = timestamps[0]
 
         if configured_timestamp:
@@ -127,8 +128,10 @@ class OtherFile(Document):
                 self.log(f"Configured and found timestamp have same date '{configured_timestamp.date()}'")
             else:
                 days_diff = (configured_timestamp - last_timestamp).days
-                self.log(f"Found {len(timestamps)} timestamps, config '{configured_timestamp.date()}' and last found '{last_timestamp.date()}' differ by {days_diff} days")
-                self.log(timestamps_log_msg + '\n')
+                msg = ("\n".join([hint.plain for hint in self.hints()]) + '\n') if self.hints() else ''
+                msg += f"    Configured '{configured_timestamp.date()}' and last found '{last_timestamp.date()}' differ by {days_diff} days"
+                msg += f"\n\n    {timestamps_log_msg}\n"
+                self.log(msg)
 
             return configured_timestamp
 
