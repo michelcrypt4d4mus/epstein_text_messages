@@ -540,7 +540,7 @@ class Email(Communication):
             self.log_top_lines(12, 'Result of modifications', logging.INFO)
             self.log('', logging.INFO)
 
-        lines = self.regex_repair_text(OCR_REPAIRS, self.text).split('\n')
+        lines = self.repair_ocr_text(OCR_REPAIRS, self.text).split('\n')
         new_lines = []
         i = 0
 

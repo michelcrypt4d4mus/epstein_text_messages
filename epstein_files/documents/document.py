@@ -229,7 +229,7 @@ class Document:
 
         return txt
 
-    def regex_repair_text(self, repairs: dict[str | re.Pattern, str], text: str) -> str:
+    def repair_ocr_text(self, repairs: dict[str | re.Pattern, str], text: str) -> str:
         """Apply a dict of repairs (key is pattern or string, value is replacement string) to text."""
         for k, v in repairs.items():
             if isinstance(k, re.Pattern):
@@ -272,7 +272,7 @@ class Document:
         with open(self.file_path) as f:
             text = f.read()
             text = text[1:] if (len(text) > 0 and text[0] == '\ufeff') else text  # remove BOM
-            text = self.regex_repair_text(OCR_REPAIRS, text.strip())
+            text = self.repair_ocr_text(OCR_REPAIRS, text.strip())
             lines = [l.strip() for l in text.split('\n') if not l.startswith(HOUSE_OVERSIGHT)]
             lines = lines[1:] if (len(lines) > 1 and lines[0] == '>>') else lines
             return collapse_newlines('\n'.join(lines))
