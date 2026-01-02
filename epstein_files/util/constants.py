@@ -351,6 +351,7 @@ ALL_CONFIGS = [
     MessageCfg(id='027184', author=MELANIE_WALKER, is_author_uncertain=True),
     MessageCfg(id='027214', author=MELANIE_WALKER, is_author_uncertain=True),
     MessageCfg(id='027148', author=MELANIE_WALKER, is_author_uncertain=True),
+    MessageCfg(id='027440', author=MICHAEL_WOLFF, is_author_uncertain=True, attribution_reason='AI says Trump book/journalism project'),
     MessageCfg(id='027396', author=SCARAMUCCI, is_author_uncertain=True),
     MessageCfg(id='031054', author=SCARAMUCCI, is_author_uncertain=True),
     MessageCfg(id='025363', author=STEVE_BANNON, is_author_uncertain=True, attribution_reason='Trump and New York Times coverage'),
@@ -386,7 +387,6 @@ ALL_CONFIGS = [
     MessageCfg(id='027794', author=STEVE_BANNON, is_author_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
     MessageCfg(id='029744', author=STEVE_BANNON, is_author_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
     MessageCfg(id='031045', author=STEVE_BANNON, is_author_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
-    MessageCfg(id='027440', author=MICHAEL_WOLFF, is_author_uncertain=True, attribution_reason='AI says Trump book/journalism project'),
 
 
     ############################################################################################################
