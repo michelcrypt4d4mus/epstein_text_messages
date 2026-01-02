@@ -37,6 +37,14 @@ class OtherFile(Document):
         super().__post_init__()
         self.timestamp = self._extract_timestamp()
 
+    def configured_description(self) -> str | None:
+        """Overloads Document method."""
+        if self.config is None:
+            return None
+
+        pieces = [p for p in [self.config.author, self.config.description] if p]
+        return ' '.join(pieces) if pieces else None
+
     def description(self) -> Text:
         """One line summary mostly for logging."""
         return super().description().append(CLOSE_PROPERTIES_CHAR)
@@ -140,10 +148,10 @@ class OtherFile(Document):
                 self.log(f"Configured and found timestamp have same date '{configured_timestamp.date()}'", logging.INFO)
             else:
                 days_diff = (last_timestamp - configured_timestamp).days
-                msg = ''
+                msg = f'{self.url_slug}: '
 
                 if self.hints():
-                    msg = "\n".join([hint.plain for hint in self.hints()]) + LOG_INDENT
+                    msg += "\n".join([hint.plain for hint in self.hints()]) + LOG_INDENT
 
                 msg += f"Configured '{configured_timestamp.date()}' and last found '{last_timestamp.date()}' differ by {days_diff} days"
                 msg += f"{LOG_INDENT}{timestamps_log_msg}\n"

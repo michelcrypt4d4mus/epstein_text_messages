@@ -99,6 +99,9 @@ class Document:
     def cfg_type(self) -> str | None:
         return type(self.config).__name__ if self.config else None
 
+    def configured_description(self) -> str | None:
+        return self.config.description if self.config else None
+
     def date_str(self) -> str | None:
         return date_str(self.timestamp)
 
@@ -160,7 +163,7 @@ class Document:
     def hints(self) -> list[Text]:
         """Additional info about the Document (author, description, and so on) to be desplayed in doc header."""
         hints = listify(self.info_txt())
-        hint_msg = self.config.description if self.config else None
+        hint_msg = self.configured_description()
 
         if self.document_type() == OTHER_FILE_CLASS:
             if not hint_msg and VI_DAILY_NEWS_REGEX.search(self.text):
