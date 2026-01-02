@@ -3,11 +3,17 @@ import re
 from dataclasses import asdict, dataclass, field
 
 from epstein_files.util.constant.strings import AUTHOR, REDACTED
-from epstein_files.util.constants import EMAIL_CONFIGS
+from epstein_files.util.constants import ALL_CONFIGS
 from epstein_files.util.env import logger
+from epstein_files.util.file_cfg import MessageCfg
 from epstein_files.util.rich import UNKNOWN
 
 FIELD_NAMES = ['From', 'Date', 'Sent', 'Subject']
+NON_HEADER_FIELDS = ['field_names', 'num_header_rows', 'was_initially_empty']
+ON_BEHALF_OF = 'on behalf of'
+TO_FIELDS = ['bcc', 'cc', 'to']
+EMAILER_FIELDS = [AUTHOR] + TO_FIELDS
+
 HEADER_REGEX_STR = r'(((?:(?:Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):|on behalf of ?)(?! +(by |from my|via )).*\n){3,})'
 EMAIL_SIMPLE_HEADER_REGEX = re.compile(rf'^{HEADER_REGEX_STR}')
 EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX = re.compile(HEADER_REGEX_STR)
@@ -18,15 +24,9 @@ BAD_NAME_CHARS_REGEX = re.compile(r"[\"'\[\]*><•]")
 BAD_EMAILER_REGEX = re.compile(r'^(>|11111111)|agreed|ok|sexy|rt|re:|fwd:|Multiple Senders|((sent|attachments|subject|importance).*|.*(january|201\d|hysterical|i have|image0|so that people|article 1.?|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 SKIP_HEADER_ROW_REGEX = re.compile(r"^(agreed|call (back|me( now)?)|Hysterical\.|I have|ok|schwartman|)$")  # Known bad rows in bad OCR
 
-ON_BEHALF_OF = 'on behalf of'
-TO_FIELDS = ['bcc', 'cc', 'to']
-EMAILER_FIELDS = [AUTHOR] + TO_FIELDS
-NON_HEADER_FIELDS = ['field_names', 'num_header_rows', 'was_initially_empty']
-
 CONFIGURED_ACTUAL_TEXTS = [
-    email_cfg.actual_text
-    for email_cfg in EMAIL_CONFIGS.values()
-    if email_cfg.actual_text is not None
+    cfg.actual_text for cfg in ALL_CONFIGS
+    if isinstance(cfg, MessageCfg) and cfg.actual_text is not None
 ]
 
 

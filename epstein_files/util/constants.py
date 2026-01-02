@@ -304,14 +304,12 @@ LARRY_REASON = 'Planes discussion signed "Larry"'
 PAULA_REASON = 'Signature of "Sent via BlackBerry from T-Mobile"'
 
 
-# List containing anything manually configured about any of the files.
-ALL_CONFIGS = [
+################################################################################################
+############################################ TEXTS #############################################
+################################################################################################
 
-    ################################################################################################
-    ############################################ TEXTS #############################################
-    ################################################################################################
-
-    ### Confirmed text attributions ###
+TEXTS_CONFIG = [
+    # Confirmed text attributions
     MessageCfg(id='031042', author=ANIL_AMBANI, attribution_reason='Participants: field'),
     MessageCfg(id='027225', author=ANIL_AMBANI, attribution_reason='Birthday mentioned and confirmed as Ambani\'s'),
     MessageCfg(id='031173', author=ARDA_BESKARDES, attribution_reason='Participants: field'),
@@ -331,7 +329,7 @@ ALL_CONFIGS = [
     MessageCfg(id='027307', author=STEVE_BANNON),
     MessageCfg(id='027278', author=TERJE_ROD_LARSEN),
     MessageCfg(id='027255', author=TERJE_ROD_LARSEN),
-    ### Uncertain text attributions ###
+    # Uncertain text attributions
     MessageCfg(id='027762', author=ANDRZEJ_DUDA, is_attribution_uncertain=True),
     MessageCfg(id='027774', author=ANDRZEJ_DUDA, is_attribution_uncertain=True),
     MessageCfg(id='027221', author=ANIL_AMBANI, is_attribution_uncertain=True),
@@ -379,12 +377,14 @@ ALL_CONFIGS = [
     MessageCfg(id='027794', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
     MessageCfg(id='029744', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
     MessageCfg(id='031045', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
+]
 
 
-    ############################################################################################################
-    ################################################ EMAIL_INFO ################################################
-    ############################################################################################################
+############################################################################################################
+################################################ EMAIL_INFO ################################################
+############################################################################################################
 
+EMAILS_CONFIG = [
     MessageCfg(id='032436', author=ALIREZA_ITTIHADIEH, attribution_reason='Signature'),
     MessageCfg(id='032543', author=ANAS_ALRASHEED, attribution_reason='Later reply 033000 has quote'),
     MessageCfg(id='026064', author=ARIANE_DE_ROTHSCHILD),
@@ -808,12 +808,14 @@ ALL_CONFIGS = [
     MessageCfg(id='029752', duplicate_ids=['023550']),
     MessageCfg(id='030339', duplicate_ids=['030592']),
     MessageCfg(id='032250', duplicate_ids=['033589']),
+]
 
 
-    ################################################################################################
-    ####################################### OTHER FILES ############################################
-    ################################################################################################
+################################################################################################
+####################################### OTHER FILES ############################################
+################################################################################################
 
+OTHER_FILES_CONFIG = [
     # books
     FileCfg(id='015032', description=f"{BOOK} '60 Years of Investigative Satire: The Best of {PAUL_KRASSNER}'"),
     FileCfg(id='015675', description=f'{BOOK} "Are the Androids Dreaming Yet? Amazing Brain Human Communication, Creativity & Free Will" by James Tagg'),
@@ -1440,6 +1442,7 @@ ALL_CONFIGS = [
 ]
 
 # Create a dict keyed by file_id
+ALL_CONFIGS = TEXTS_CONFIG + EMAILS_CONFIG + OTHER_FILES_CONFIG
 ALL_FILE_CONFIGS: dict[str, FileCfg] = {}
 
 # Add extra config objects for duplicate files that match the config of file they are duplicating
@@ -1448,8 +1451,6 @@ for cfg in ALL_CONFIGS:
 
     for dupe_cfg in cfg.duplicate_cfgs():
         ALL_FILE_CONFIGS[dupe_cfg.id] = dupe_cfg
-
-EMAIL_CONFIGS = {id: cfg for id, cfg in ALL_FILE_CONFIGS.items() if isinstance(cfg, MessageCfg)}
 
 
 # OtherFiles whose description/hints match these prefixes are not displayed unless --all-other-files is used
