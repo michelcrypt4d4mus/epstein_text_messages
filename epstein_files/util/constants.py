@@ -398,7 +398,7 @@ ALL_CONFIGS = [
         ####################################
 
     MessageCfg(id='031042', author=ANIL_AMBANI, attribution_reason='Participants: field'),
-    MessageCfg(id='027225', author=ANIL_AMBANI, attribution_reason='Birthday'),
+    MessageCfg(id='027225', author=ANIL_AMBANI, attribution_reason='Birthday mentioned and confirmed as Ambani\'s'),
     MessageCfg(id='031173', author=ARDA_BESKARDES, attribution_reason='Participants: field'),
     MessageCfg(id='027401', author='Eva (Dubin?)', attribution_reason='Participants: field'),
     MessageCfg(id='027650', author=JOI_ITO, attribution_reason='Participants: field'),
@@ -407,7 +407,7 @@ ALL_CONFIGS = [
     MessageCfg(id='027165', author=MELANIE_WALKER, attribution_reason='https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/'),
     MessageCfg(id='027248', author=MELANIE_WALKER, attribution_reason='Says "we met through trump" which is confirmed by Melanie in 032803'),
     MessageCfg(id='025429', author=STACEY_PLASKETT),
-    MessageCfg(id='027333', author=SCARAMUCCI, attribution_reason='unredacted phone number in one of the messages'),
+    MessageCfg(id='027333', author=SCARAMUCCI, attribution_reason='unredacted phone number in one of the messages belongs to Scaramucci'),
     MessageCfg(id='027128', author=SOON_YI_PREVIN, attribution_reason='https://x.com/ImDrinknWyn/status/1990227281101434923'),
     MessageCfg(id='027217', author=SOON_YI_PREVIN, attribution_reason='refs marriage to woody allen'),
     MessageCfg(id='027244', author=SOON_YI_PREVIN, attribution_reason='refs Woody'),
@@ -541,7 +541,7 @@ ALL_CONFIGS = [
     MessageCfg(id='029970', author=GWENDOLYN_BECK),
     MessageCfg(id='029960', author=GWENDOLYN_BECK, attribution_reason='Reply'),
     MessageCfg(id='029959', author=GWENDOLYN_BECK, attribution_reason='"Longevity & Aging"'),
-    MessageCfg(id='033360', author=HENRY_HOLT, attribution_reason='in signature. Henry Holt is a company not a person.'),
+    MessageCfg(id='033360', author=HENRY_HOLT, attribution_reason='in signature'),  # Henry Holt is a company not a person
     MessageCfg(id='033384', author=JACK_GOLDBERGER, attribution_reason='Might be Paul Prosperi?'),
     MessageCfg(id='026024', author=JEAN_HUGUEN, attribution_reason='Signature'),
     MessageCfg(id='021823', author=JEAN_LUC_BRUNEL, attribution_reason='Reply'),
@@ -656,7 +656,12 @@ ALL_CONFIGS = [
     MessageCfg(id='029605', author=RENATA_BOLOTOVA, attribution_reason=BOLOTOVA_REASON),
     MessageCfg(id='029606', author=RENATA_BOLOTOVA, attribution_reason=BOLOTOVA_REASON),
     MessageCfg(id='029604', author=RENATA_BOLOTOVA, attribution_reason='Continued in 239606 etc'),
-    MessageCfg(id='033584', author=ROBERT_TRIVERS, recipients=[JEFFREY_EPSTEIN], attribution_reason='Refs paper', duplicate_ids=['033169']),
+    MessageCfg(
+        id='033584',
+        author=ROBERT_TRIVERS,
+        recipients=[JEFFREY_EPSTEIN],
+        attribution_reason='Refs paper by Trivers', duplicate_ids=['033169']
+    ),
     MessageCfg(
         id='026320',
         author=SEAN_BANNON,
