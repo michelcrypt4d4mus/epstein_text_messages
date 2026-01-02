@@ -43,7 +43,7 @@ class OtherFile(Document):
         self.timestamp = self._extract_timestamp()
 
     def configured_description(self) -> str | None:
-        """Overloads Document method."""
+        """Overloads superclass method."""
         if self.config is None:
             return None
 
