@@ -225,11 +225,13 @@ FLIGHT_IN_2012_PEOPLE: list[str | None] = ['Francis Derby', 'Januiz Banasiak', '
 ##########################
 
 # categories
+ACADEMIA = 'academia'
 ARTS = 'arts'
 ARTICLE = 'article'
 BOOK = 'book'
 FINANCE = 'finance'
 JUNK = 'junk'
+REPUTATION = 'reputation'
 SPEECH = 'speech'
 
 # strings
@@ -237,7 +239,7 @@ FBI = 'FBI'
 FLIGHT_LOGS = 'flight logs'
 MEME = 'meme of'
 PRESS_RELEASE = 'press release'
-REPUTATION_MGMT = 'reputation management:'
+REPUTATION_MGMT = f'{REPUTATION} management'
 SCREENSHOT = 'screenshot of'
 TRANSLATION = 'translation of'
 TWEET = 'tweet'
@@ -260,7 +262,6 @@ BOFA = 'BofA'
 BOFA_MERRILL = f'{BOFA} / Merrill Lynch Report'
 BOFA_WEALTH_MGMT = f'{BOFA} Wealth Management'
 BROCKMAN_INC = 'Brockman, Inc.'
-CHALLENGES_OF_AI = f'ASU Origins Project ({LAWRENCE_KRAUSS}) report "Challenges of AI: Envisioning and Addressing Adverse Outcomes"'
 CVRA = "Crime Victims' Rights Act [CVRA]"
 DAVID_BLAINE_VISA_LETTER = f"letter of recommendation for visa for a model"
 DAVID_SCHOEN_CVRA_LEXIS_SEARCH = f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN}"
@@ -272,9 +273,9 @@ FBI_REPORT = f"{FBI} report on Epstein investigation (redacted)"
 FBI_SEIZED_PROPERTY = f"{FBI} seized property inventory (redacted)"
 FEMALE_HEALTH_COMPANY = 'Female Health Company (FHX)'
 FIRE_AND_FURY = f"Fire And Fury"
-GOLDMAN_INVESTMENT_MGMT = f'Investment Management Division report'
+GOLDMAN_INVESTMENT_MGMT = f'{GOLDMAN_SACHS} Investment Management Division'
 HARVARD_POETRY = f'{HARVARD} poetry stuff from {LISA_NEW}'
-HBS_APPLICATION_NERIO = f"{HARVARD} Business School application letter from Nerio Alessandri (Founder and Chairman Technogym SPA Italy)"
+HBS_APPLICATION_NERIO = f"{HARVARD} Business School application letter from Nerio Alessandri (Founder and Chairman of Technogym S.p.A. Italy)"
 JASTA = 'JASTA'
 JASTA_SAUDI_LAWSUIT = f"{JASTA} lawsuit against Saudi Arabia by 9/11 victims"
 JOHN_BOLTON_PRESS_CLIPPING = 'John Bolton press clipping'
@@ -876,8 +877,10 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='013437', author=DAILY_TELEGRAPH, description=f"article about Epstein's diary", date='2011-03-05'),
     DocCfg(id='023287', author=DAILY_TELEGRAPH, description=f"article about a play based on the Oslo Accords", date='2017-09-15'),
     DocCfg(id='019206', author=EDWARD_JAY_EPSTEIN, description=f"WSJ article about Edward Snowden", date='2016-12-30'),
+    DocCfg(id='029539', author=LA_TIMES, description=f"Alan Trounson interview on California stem cell research and CIRM"),
     DocCfg(id='029865', author=LA_TIMES, description=f"front page article about {DEEPAK_CHOPRA} and young Iranians", date='2016-11-05'),
     DocCfg(id='026598', author=LA_TIMES, description=f"op-ed about why America needs a Ministry of Culture"),
+    DocCfg(id='027024', author=LA_TIMES, description=f"'Scientists Create Human Embryos to Make Stem Cells'", date='2013-05-15'),
     DocCfg(id='022707', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
     DocCfg(id='022727', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
     DocCfg(id='022746', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
@@ -1203,14 +1206,14 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='022372', author='Ernst & Young', description=f'2016 election report'),
     DocCfg(
         id='025663',
-        author=GOLDMAN_SACHS,
-        description=f"{GOLDMAN_INVESTMENT_MGMT} 'An Overview of the Current State of Cryptocurrencies and Blockchain'",
+        author=GOLDMAN_INVESTMENT_MGMT,
+        description=f"An Overview of the Current State of Cryptocurrencies and Blockchain",
         date='2017-11-15',
         is_interesting=True,
     ),
-    DocCfg(id='014532', author=GOLDMAN_SACHS, description=f"{GOLDMAN_INVESTMENT_MGMT} 'Outlook - Half Full'", date='2017-01-01'),
-    DocCfg(id='026909', author=GOLDMAN_SACHS, description=f"{GOLDMAN_INVESTMENT_MGMT} 'The Unsteady Undertow Commands the Seas (Temporarily)'", date='2018-10-14'),
-    DocCfg(id='026944', author=GOLDMAN_SACHS, description=f"{GOLDMAN_INVESTMENT_MGMT} 'Risk of a US-Iran Military Conflict'", date='2019-05-23'),
+    DocCfg(id='014532', author=GOLDMAN_INVESTMENT_MGMT, description=f"Outlook - Half Full", date='2017-01-01'),
+    DocCfg(id='026909', author=GOLDMAN_INVESTMENT_MGMT, description=f"The Unsteady Undertow Commands the Seas (Temporarily)", date='2018-10-14'),
+    DocCfg(id='026944', author=GOLDMAN_INVESTMENT_MGMT, description=f"Risk of a US-Iran Military Conflict", date='2019-05-23'),
     DocCfg(id='018804', author='Integra Realty Resources', description=f"appraisal of going concern for IGY American Yacht Harbor Marina in {VIRGIN_ISLANDS}"),
     DocCfg(id='026679', author='Invesco', description=f"report: 'Global Sovereign Asset Management Study 2017'"),
     DocCfg(id='033220', author='Joseph G. Carson', description=f"short economic report on defense spending under Trump"),
@@ -1233,7 +1236,6 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='024135', author=UBS, description=UBS_CIO_REPORT, date='2012-06-29'),
     DocCfg(id='025247', author=UBS, description=UBS_CIO_REPORT, date='2012-10-25'),
     DocCfg(id='025849', author='US Office of Government Information Services', description=f"'Building a Bridge Between FOIA Requesters & Agencies'"),
-    DocCfg(id='020447', author='Working Group on Chinese Influence Activities in the U.S.', description=f'Promoting Constructive Vigilance'),
     DocCfg(id='024631', description=f"Ackrell Capital report: Cannabis Investment Report 2018"),
     DocCfg(id='024271', description=f"Blockchain Capital and Brock Pierce pitch deck", date='2015-10-01'),
     DocCfg(id='024817', description=f"Cowen's Collective View of CBD / Cannabis report"),
@@ -1281,6 +1283,9 @@ OTHER_FILES_LETTERS = [
 ]
 
 OTHER_FILES_PROPERTY = [
+    DocCfg(id='026759', author='Great Bay Condominium Owners Association', description=f'{PRESS_RELEASE} by about Hurricane Irma damage', date='2017-09-13'),
+    DocCfg(id='027068', author=THE_REAL_DEAL, description=f"{THE_REAL_DEAL_ARTICLE} Palm House Hotel Bankruptcy and EB-5 Visa Fraud Allegations"),
+    DocCfg(id='029520', author=THE_REAL_DEAL, description=f"{THE_REAL_DEAL_ARTICLE} 'Lost Paradise at the Palm House'", date='2019-06-17'),
     DocCfg(id='018743', description=f"Las Vegas property listing"),
     DocCfg(id='016597', description=f'letter from Trump Properties LLC appealing some decision about Mar-a-Lago by {PALM_BEACH} authorities'),
     DocCfg(id='016602', description=PALM_BEACH_CODE_ENFORCEMENT, date='2008-04-17'),
@@ -1296,8 +1301,6 @@ OTHER_FILES_PROPERTY = [
     DocCfg(id='016696', description=f"{PALM_BEACH_TSV} info (water quality?"),
     DocCfg(id='016636', description=f"{PALM_BEACH_WATER_COMMITTEE} Meeting on January 29, 2009"),
     DocCfg(id='022417', description=f"Park Partners NYC letter to partners in real estate project with architectural plans"),
-    DocCfg(id='027068', author=THE_REAL_DEAL, description=THE_REAL_DEAL_ARTICLE),
-    DocCfg(id='029520', author=THE_REAL_DEAL, description=f"{THE_REAL_DEAL_ARTICLE} 'Lost Paradise at the Palm House'", date='2019-06-17'),
     DocCfg(
         id='018727',
         description=f"{VIRGIN_ISLANDS} property deal pitch deck, building will be leased to the U.S. govt GSA",
@@ -1306,16 +1309,12 @@ OTHER_FILES_PROPERTY = [
 ]
 
 OTHER_FILES_REPUTATION = [
-    DocCfg(id='026582', description=f"{REPUTATION_MGMT} Epstein's internet search results at start of reputation repair campaign, maybe from {OSBORNE_LLP}"),
-    DocCfg(id='030573', description=f"{REPUTATION_MGMT} Epstein's unflattering Google search results, maybe screenshot by {AL_SECKEL} or {OSBORNE_LLP}"),
-    DocCfg(id='030875', description=f"{REPUTATION_MGMT} Epstein's Wikipedia page"),
-    DocCfg(id='026583', description=f"{REPUTATION_MGMT} Google search results for '{JEFFREY_EPSTEIN}' with analysis ({OSBORNE_LLP}?)"),
-    DocCfg(id='029350', description=f"{REPUTATION_MGMT} Microsoft Bing search results for Epstein with sex offender at top, maybe from {TYLER_SHEARS}?"),
-    DocCfg(
-        id='030426',
-        description=f'{REPUTATION_MGMT} {OSBORNE_LLP} reputation repair proposal (cites Michael Milken)',
-        date='2011-06-14',
-    ),
+    DocCfg(id='026582', description=f"Epstein's internet search results at start of reputation repair campaign, maybe from {OSBORNE_LLP}"),
+    DocCfg(id='030573', description=f"Epstein's unflattering Google search results, maybe screenshot by {AL_SECKEL} or {OSBORNE_LLP}"),
+    DocCfg(id='030875', description=f"Epstein's Wikipedia page"),
+    DocCfg(id='026583', description=f"Google search results for '{JEFFREY_EPSTEIN}' with analysis ({OSBORNE_LLP}?)"),
+    DocCfg(id='029350', description=f"Microsoft Bing search results for Epstein with sex offender at top, maybe from {TYLER_SHEARS}?"),
+    DocCfg(id='030426', description=f"{OSBORNE_LLP} reputation repair proposal (cites Michael Milken)", date='2011-06-14'),
 ]
 
 # social media / InsightsPod
@@ -1359,21 +1358,28 @@ OTHER_FILES_POLITICS = [
 ]
 
 OTHER_FILES_ACADEMIA = [
+    DocCfg(
+        id='014697',
+        author=f"{LAWRENCE_KRAUSS}'s ASU Origins Project",
+        description=f'report: "Challenges of AI: Envisioning and Addressing Adverse Outcomes"',
+        duplicate_ids=['011284']
+    ),
     DocCfg(id='024256', author=JOI_ITO, description=f"article 'Internet & Society: The Technologies and Politics of Control'"),
     DocCfg(id='027004', author=JOSCHA_BACH, description=f"article 'The Computational Structure of Mental Representation'", date='2013-02-26'),
-    DocCfg(id='029539', author=LA_TIMES, description=f"Alan Trounson interview on California stem cell research and CIRM"),
-    DocCfg(id='027024', author=LA_TIMES, description=f"'Scientists Create Human Embryos to Make Stem Cells'", date='2013-05-15'),
-    DocCfg(id='015501', author=f"{MOSHE_HOFFMAN}, Erez Yoeli, and Carlos David Navarrete", description=f"'Game Theory and Morality'"),
-    DocCfg(id='025143', author=ROBERT_TRIVERS, description=f"'Africa, Parasites, Intelligence'", date='2018-06-25'),
+    DocCfg(id='015501', author=f"{MOSHE_HOFFMAN}, Erez Yoeli, and Carlos David Navarrete", description=f"Game Theory and Morality"),
+    DocCfg(id='025143', author=ROBERT_TRIVERS, description=f"Africa, Parasites, Intelligence", date='2018-06-25'),
     DocCfg(id='029155', author=ROBERT_TRIVERS, description=f'response sent to the Gruterites ({GORDON_GETTY} fans)', date='2018-03-19'),
     DocCfg(
         id='033323',
         author=f"{ROBERT_TRIVERS} and Nathan H. Lents",
-        description=f"draft of 'Does Trump Fit the Evolutionary Role of Narcissistic Sociopath?",
+        description=f"'Does Trump Fit the Evolutionary Role of Narcissistic Sociopath?' (draft)",
         date='2018-12-07',
     ),
-    DocCfg(id='014697', description=CHALLENGES_OF_AI, duplicate_ids=['011284']),
-    DocCfg(id='026521', description=f"game theory paper by {MARTIN_NOWAK}, Erez Yoeli, and Moshe Hoffman"),
+    DocCfg(
+        id='026521',
+        author=f"{MARTIN_NOWAK}, Erez Yoeli, and {MOSHE_HOFFMAN}",
+        description=f"Cooperating Without Looking: Game Theory Model of Trust and Reciprocal Cooperation"
+    ),
     DocCfg(id='023416', description=HARVARD_POETRY),
     DocCfg(id='023435', description=HARVARD_POETRY),
     DocCfg(id='023450', description=HARVARD_POETRY),
@@ -1434,6 +1440,7 @@ OTHER_FILES_MISC = [
     DocCfg(id='029326', author=EPSTEIN_FOUNDATION, description=f'{PRESS_RELEASE}', date='2013-02-15'),
     DocCfg(id='026565', author=EPSTEIN_FOUNDATION, description=f'{PRESS_RELEASE}, maybe a draft of 029326', date='2013-02-15'),
     DocCfg(id='026634', author='Michael Carrier', description=f"comments about an Apollo linked hedge fund 'DE Fund VIII'"),
+    DocCfg(id='020447', author='Working Group on Chinese Influence Activities in the U.S.', description=f'Promoting Constructive Vigilance'),
     DocCfg(id='031743', description=f'a few pages describing the internet as a "New Nation State" (Network State?)'),
     DocCfg(id='031425', description=f'completely redacted email from {SCOTT_J_LINK}'),
     DocCfg(id='018224', description=f"conversation with {LAWRENCE_KRAUSS}?"),
@@ -1458,7 +1465,6 @@ OTHER_FILES_MISC = [
         description=f"{PRESS_RELEASE} announcing Donald Trump & {NICHOLAS_RIBIS} ended their working relationship at Trump's casino",
         date='2000-06-07',
     ),
-    DocCfg(id='026759', description=f'{PRESS_RELEASE} by Ritz-Carlton club about damage from Hurricane Irma', date='2017-09-13'),
     DocCfg(id='029328', description=f"Rafanelli Events promotional deck"),
     DocCfg(id='033434', description=f"{SCREENSHOT} iPhone chat labeled 'Edwards' at the top"),
     DocCfg(id='029475', description=f'{VIRGIN_ISLANDS} Twin City Mobile Integrated Health Services (TCMIH) proposal/request for donation'),
@@ -1478,18 +1484,18 @@ OTHER_FILES_JUNK = [
 ]
 
 OTHER_FILES_CATEGORIES = [
-    'ACADEMIA',
+    ACADEMIA,
     f"{ARTICLE}s",
     ARTS,
-    'BOOKS',
+    f"{BOOK}s",
     'CONFERENCES',
-    'FINANCE',
+    FINANCE,
     JUNK,
     'LEGAL',
     'LETTERS',
     'MISC',
     'PROPERTY',
-    'REPUTATION',
+    REPUTATION,
     'SOCIAL',
     SPEECH,
     'POLITICS',
