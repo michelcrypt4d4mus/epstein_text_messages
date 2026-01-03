@@ -818,8 +818,7 @@ EMAILS_CONFIG = [
 ####################################### OTHER FILES ############################################
 ################################################################################################
 
-OTHER_FILES_CONFIG = [
-    # books
+OTHER_FILES_BOOKS = [
     DocCfg(id='015032', description=f"{BOOK} '60 Years of Investigative Satire: The Best of {PAUL_KRASSNER}'"),
     DocCfg(id='015675', description=f'{BOOK} "Are the Androids Dreaming Yet? Amazing Brain Human Communication, Creativity & Free Will" by James Tagg'),
     DocCfg(id='012899', description=f'{BOOK} "Engineering General Intelligence: A Path to Advanced AGI Via Embodied Learning and Cognitive Synergy" by Ben Goertzel'),
@@ -852,8 +851,9 @@ OTHER_FILES_CONFIG = [
     DocCfg(id='022118', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
     DocCfg(id='019111', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
     DocCfg(id='031533', description=f'pages from a book about the Baylor University sexual assault scandal and Sam Ukwuachu'),
+]
 
-    # articles
+OTHER_FILES_ARTICLES = [
     DocCfg(id='013275', author=BLOOMBERG, description=f"article on notable 2013 obituaries", date='2013-12-26'),
     DocCfg(id='026543', author=BLOOMBERG, description=f"BNA article about taxes"),
     DocCfg(id='023572', author=CHINA_DAILY, description=f"article on China's Belt & Road Initiative"),
@@ -1012,8 +1012,9 @@ OTHER_FILES_CONFIG = [
     DocCfg(id='016506', description=VI_DAILY_NEWS_ARTICLE, date='2019-02-28'),
     DocCfg(id='016507', description=f"{VI_DAILY_NEWS_ARTICLE} 'Perversion of Justice' by {JULIE_K_BROWN}", date='2018-12-19'),
     DocCfg(id='019212', description=f'{WAPO} and Times Tribune articles about Bannon, Trump, and healthcare execs'),
+]
 
-    # court docs
+OTHER_FILES_COURT_DOCS = [
     DocCfg(id='025353', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-05-19', duplicate_ids=['010723', '019224'], dupe_type='redacted'),
     DocCfg(id='025704', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-05-27', duplicate_ids=['010732', '019221'], dupe_type='redacted'),
     DocCfg(id='012130', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-06-19', duplicate_ids=['012135']),
@@ -1130,8 +1131,9 @@ OTHER_FILES_CONFIG = [
     DocCfg(id='028540', description=f"SCOTUS decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP"),
     DocCfg(id='012197', description=f"SDFL Response to {JAY_LEFKOWITZ} on Epstein Plea Agreement Compliance"),
     DocCfg(id='022277', description=f"{TEXT_OF_US_LAW} National Labour Relations Board (NLRB)"),
+]
 
-    # conferences
+OTHER_FILES_CONFERENCES = [
     DocCfg(id='030769', description=f"2017 Independent Filmmaker Project (IFP) Gotham Awards invitation"),
     DocCfg(id='014951', description=f"2017 TED Talks program", date='2017-04-20'),
     DocCfg(id='014315', description=f'{BOFA_MERRILL} 2016 Future of Financials Conference'),
@@ -1159,8 +1161,9 @@ OTHER_FILES_CONFIG = [
         description=f'World Economic Forum (WEF) Annual Meeting 2011 List of Participants',
         date='2011-01-18',
     ),
+]
 
-    # press releases, reports, etc.
+OTHER_FILES_REPORTS = [
     DocCfg(id='024631', description=f"Ackrell Capital Cannabis Investment Report 2018"),
     DocCfg(id='016111', description=f"{BOFA_MERRILL} 'GEMs Paper #26 Saudi Arabia: beyond oil but not so fast'", date='2016-06-30'),
     DocCfg(id='010609', description=f"{BOFA_MERRILL} 'Liquid Insight Trump\'s effect on MXN'", date='2016-09-22'),
@@ -1218,11 +1221,6 @@ OTHER_FILES_CONFIG = [
     DocCfg(id='025296', description=f'Laffer Associates report predicting Trump win', date='2016-07-06'),
     DocCfg(id='025551', description=f'Morgan Stanley report about alternative asset managers', date='2018-01-30'),
     DocCfg(id='026759', description=f'{PRESS_RELEASE} by Ritz-Carlton club about damage from Hurricane Irma', date='2017-09-13'),
-    DocCfg(
-        id='033338',
-        description=f"{PRESS_RELEASE} announcing Donald Trump & {NICHOLAS_RIBIS} ended their working relationship at Trump's casino",
-        date='2000-06-07',
-    ),
     DocCfg(id='012048', description=f"{PRESS_RELEASE} 'Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm' and other articles"),
     DocCfg(id='020447', description=f'Promoting Constructive Vigilance: Report of the Working Group on Chinese Influence Activities in the U.S. (Hoover Group/Stanford 2018)'),
     DocCfg(id='025763', description=f"S&P Economic Research: 'How Increasing Income Inequality Is Dampening U.S. Growth'", date='2014-08-05'),
@@ -1234,8 +1232,9 @@ OTHER_FILES_CONFIG = [
     DocCfg(id='025247', author=UBS, description=UBS_CIO_REPORT, date='2012-10-25'),
     DocCfg(id='025849', description=f"US Office of Government Information Services report: 'Building a Bridge Between FOIA Requesters & Agencies'"),
     DocCfg(id='020824', description=f"USA Inc: A Basic Summary of America's Financial Statements compiled by Mary Meeker", date='2011-02-01'),
+]
 
-    # letters
+OTHER_FILES_LETTERS = [
     DocCfg(id='017789', author=ALAN_DERSHOWITZ, description=f'letter to {HARVARD} Crimson complaining he was defamed'),
     DocCfg(
         id='019086',
@@ -1268,13 +1267,16 @@ OTHER_FILES_CONFIG = [
     DocCfg(id='026134', description=f'letter to someone named George about investment opportunities in the Ukraine banking sector'),
     DocCfg(id='029304', description=f"Trump recommendation letter for recently departed Trump Organization lawyer {MICHAEL_J_BOCCIO}"),
     DocCfg(id='026668', description=f"Boothbay Fund Management 2016-Q4 earnings report signed by Ari Glass"),
+]
 
-    # private placement memoranda
+# private placement memoranda
+OTHER_FILES_PRIVATE_PLACEMENT_MEMOS =[
     DocCfg(id='024432', description=f"Michael Milken's Knowledge Universe Education (KUE) $1,000,000 corporate share placement notice (SEC filing?)"),
     DocCfg(id='024003', description=f"New Leaf Ventures private placement memorandum"),
     DocCfg(id='018804', description=f"appraisal of going concern for IGY American Yacht Harbor Marina in {VIRGIN_ISLANDS}"),
+]
 
-    # property
+OTHER_FILES_PROPERTY = [
     DocCfg(id='018743', description=f"Las Vegas property listing"),
     DocCfg(id='016597', description=f'letter from Trump Properties LLC appealing some decision about Mar-a-Lago by {PALM_BEACH} authorities'),
     DocCfg(id='016602', description=PALM_BEACH_CODE_ENFORCEMENT, date='2008-04-17'),
@@ -1297,8 +1299,9 @@ OTHER_FILES_CONFIG = [
         description=f"{VIRGIN_ISLANDS} property deal pitch deck, building will be leased to the U.S. govt GSA",
         date='2014-06-01',
     ),
+]
 
-    # reputation management
+OTHER_FILES_REPUTATION_MGMT = [
     DocCfg(id='026582', description=f"{REPUTATION_MGMT} Epstein's internet search results at start of reputation repair campaign, maybe from {OSBORNE_LLP}"),
     DocCfg(id='030573', description=f"{REPUTATION_MGMT} Epstein's unflattering Google search results, maybe screenshot by {AL_SECKEL} or {OSBORNE_LLP}"),
     DocCfg(id='030875', description=f"{REPUTATION_MGMT} Epstein's Wikipedia page"),
@@ -1309,8 +1312,9 @@ OTHER_FILES_CONFIG = [
         description=f'{REPUTATION_MGMT} {OSBORNE_LLP} reputation repair proposal (cites Michael Milken)',
         date='2011-06-14',
     ),
+]
 
-    # social media / InsightsPod
+OTHER_FILES_SOCIAL_MEDIA = [    # social media / InsightsPod
     DocCfg(id='028815', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} business plan", date='2016-08-20'),
     DocCfg(id='011170', author=ZUBAIR_AND_ANYA, description=f'{INSIGHTS_POD} collected tweets about #Brexit', date='2016-06-23'),
     DocCfg(id='032324', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} election social media trend analysis", date='2016-11-05'),
@@ -1325,8 +1329,9 @@ OTHER_FILES_CONFIG = [
     DocCfg(id='030884', description=f"{TWEET} by Ed Krassenstein"),
     DocCfg(id='031546', description=f"{TWEET}s by Donald Trump about Russian collusion", date='2018-01-06'),
     DocCfg(id='033236', description=f'{TWEET}s about Ivanka Trump in Arabic', date='2017-05-20'),
+]
 
-    # politics
+OTHER_FILES_POLITICS = [
     DocCfg(id='029918', description=f"{DIANA_DEGETTES_CAMPAIGN} campaign bio", date='2012-01-01'),
     DocCfg(id='031184', description=f"{DIANA_DEGETTES_CAMPAIGN} fundraiser invitation"),
     DocCfg(id='027009', description=f"{EHUD_BARAK} speech to AIPAC", date='2013-03-03'),
@@ -1345,8 +1350,9 @@ OTHER_FILES_CONFIG = [
     ),
     DocCfg(id='010617', description=TRUMP_DISCLOSURES, date='2017-01-20'),
     DocCfg(id='016699', description=TRUMP_DISCLOSURES, date='2017-01-20'),
+]
 
-    # academia
+OTHER_FILES_ACADEMIA = [
     DocCfg(id='024256', author=JOI_ITO, description=f"article 'Internet & Society: The Technologies and Politics of Control'"),
     DocCfg(id='027004', author=JOSCHA_BACH, description=f"article 'The Computational Structure of Mental Representation'", date='2013-02-26'),
     DocCfg(id='029539', author=LA_TIMES, description=f"Alan Trounson interview on California stem cell research and CIRM"),
@@ -1377,8 +1383,10 @@ OTHER_FILES_CONFIG = [
     DocCfg(id='022445', description=f"Inference: International Review of Science Feedback & Comments", date='2018-11-01'),
     DocCfg(id='029355', description=f'{SCREENSHOT} quote in book about {LARRY_SUMMERS}', duplicate_ids=['029356'], dupe_type='quoted'),  # 029356 is zoomed in corner
     DocCfg(id='026731', description=f"text of speech by Lord Martin Rees at first inaugural Carl Sagan Lecture at Cornell"),
+]
 
-    # resumes and application letters
+# resumes and application letters
+OTHER_FILES_RESUMES = [
     DocCfg(id='029102', description=HBS_APPLICATION_NERIO),
     DocCfg(id='029104', description=HBS_APPLICATION_NERIO),
     DocCfg(id='022367', description=f"{RESUME_OF} Jack J Grynberg", date='2014-07-01'),
@@ -1390,8 +1398,9 @@ OTHER_FILES_CONFIG = [
     DocCfg(id='015671', description=f"{RESUME_OF} Robin Solomon", date='2015-06-02'),  # She left Mount Sinai at some point in 2015,
     DocCfg(id='015672', description=f"{RESUME_OF} Robin Solomon", date='2015-06-02'),  # She left Mount Sinai at some point in 2015,
     DocCfg(id='029623', description=f'short bio of Kathleen Harrington, Founding Partner, C/H Global Strategies'),
+]
 
-    # arts
+OTHER_FILES_ARTS = [
     DocCfg(id='018703', author=ANDRES_SERRANO, description=f"artist statement about Trump objects"),
     DocCfg(id='028281', description=f'art show flier for "The House Of The Nobleman" curated by Wolfe Von Lenkiewicz & Victoria Golembiovskaya'),
     DocCfg(
@@ -1400,8 +1409,9 @@ OTHER_FILES_CONFIG = [
         date='2010-02-01',
         duplicate_ids=['025210']
     ),
+]
 
-    # misc
+OTHER_FILES_MISC = [
     DocCfg(id='031743', description=f'a few pages describing the internet as a "New Nation State" (Network State?)'),
     DocCfg(id='023438', description=f"Brockman announcemeent of auction of 'Noise' by Daniel Kahneman, Olivier Sibony, and Cass Sunstein"),
     DocCfg(
@@ -1426,13 +1436,19 @@ OTHER_FILES_CONFIG = [
         date='2016-09-01',
     ),
     DocCfg(id='019448', description=f"Haitian business investment proposal called Jacmel"),
+    DocCfg(
+        id='033338',
+        description=f"{PRESS_RELEASE} announcing Donald Trump & {NICHOLAS_RIBIS} ended their working relationship at Trump's casino",
+        date='2000-06-07',
+    ),
     DocCfg(id='029328', description=f"Rafanelli Events promotional deck"),
     DocCfg(id='033434', description=f"{SCREENSHOT} iPhone chat labeled 'Edwards' at the top"),
     DocCfg(id='023644', description=f"transcription of an interview with MBS from Saudi", date='2016-04-25'),
     DocCfg(id='029475', description=f'{VIRGIN_ISLANDS} Twin City Mobile Integrated Health Services (TCMIH) proposal/request for donation'),
     DocCfg(id='029448', description=f"weird short essay titled 'President Obama and Self-Deception'"),
+]
 
-    # junk
+OTHER_FILES_JUNK = [
     DocCfg(id='026678', description=f"fragment of image metadata {QUESTION_MARKS}", date='2017-06-29'),
     DocCfg(id='022986', description=f"fragment of a screenshot {QUESTION_MARKS}"),
     DocCfg(id='033478', description=f'{MEME} Kim Jong Un reading {FIRE_AND_FURY}', date='2018-01-05', duplicate_ids=['032713']),
@@ -1444,14 +1460,46 @@ OTHER_FILES_CONFIG = [
     DocCfg(id='029354', description=OBAMA_JOKE, date='2013-07-26'),
 ]
 
-# Create a dict keyed by file_id
+OTHER_FILES_CATEGORIES = [
+    'BOOKS',
+    'ARTICLES',
+    'COURT_DOCS',
+    'CONFERENCES',
+    'REPORTS',
+    'LETTERS',
+    'PRIVATE_PLACEMENT_MEMOS',
+    'PROPERTY',
+    'REPUTATION_MGMT',
+    'SOCIAL_MEDIA',
+    'POLITICS',
+    'ACADEMIA',
+    'RESUMES',
+    'ARTS',
+    'MISC',
+    'JUNK',
+]
+
+OTHER_FILES_CONFIG = []
+dict_keys = lambda d: '  ' + '\n  '.join(sorted([k for k in d.keys()]))
+
+for category in OTHER_FILES_CATEGORIES:
+    # print(f"**LOCALS**\n{dict_keys(locals())}")
+    configs = locals()[f"OTHER_FILES_{category}"]
+    OTHER_FILES_CONFIG += configs
+
+    for cfg in configs:
+        cfg.category = category.lower()
+
+print(f"len(OTHER_FILES_CONFIG) = {len(OTHER_FILES_CONFIG)}")
+
 ALL_CONFIGS = TEXTS_CONFIG + EMAILS_CONFIG + OTHER_FILES_CONFIG
 ALL_FILE_CONFIGS: dict[str, DocCfg] = {}
 
-# Add extra config objects for duplicate files that match the config of file they are duplicating
+# Create a dict keyed by file_id
 for cfg in ALL_CONFIGS:
     ALL_FILE_CONFIGS[cfg.id] = cfg
 
+    # Add extra config objects for duplicate files that match the config of file they are duplicating
     for dupe_cfg in cfg.duplicate_cfgs():
         ALL_FILE_CONFIGS[dupe_cfg.id] = dupe_cfg
 
