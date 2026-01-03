@@ -13,7 +13,6 @@ from epstein_files.util.env import args, logger
 
 ESTATE_EXECUTOR = 'Epstein estate executor'
 REGEX_STYLE_PREFIX = 'regex'
-NO_CATEGORY_LABELS = [BILL_GATES, STEVE_BANNON]
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w ]+$", re.IGNORECASE)
 
 
@@ -79,21 +78,25 @@ class HighlightedGroup:
         """Pattern matching 'name'. Extends value in EMAILER_ID_REGEXES with last name if it exists."""
         name = remove_question_marks(name)
         last_name = extract_last_name(name)
+        first_name = name.removesuffix(f" {last_name}")
 
         if name in EMAILER_ID_REGEXES:
             pattern = EMAILER_ID_REGEXES[name].pattern
 
+            # Include regex for last name
             if SIMPLE_NAME_REGEX.match(last_name) and last_name.lower() not in NAMES_TO_NOT_HIGHLIGHT:
-                pattern += fr"|{last_name}"  # Include regex for last name
+                pattern += fr"|{last_name}"
 
             return pattern
         elif ' ' not in name:
             return name
 
-        first_name = name.removesuffix(f" {last_name}")
-        name_patterns = [name.replace(' ', r"\s+"), first_name.replace(' ', r"\s+"), last_name.replace(' ', r"\s+")]
-        name_regex_parts = [n for n in name_patterns if n.lower() not in NAMES_TO_NOT_HIGHLIGHT]
-        return '|'.join(name_regex_parts)
+        name_patterns = [
+            n.replace(' ', r"\s+") for n in [name, first_name, last_name]
+            if n.lower() not in NAMES_TO_NOT_HIGHLIGHT
+        ]
+
+        return '|'.join(name_patterns)
 
 
 HIGHLIGHTED_GROUPS = [
