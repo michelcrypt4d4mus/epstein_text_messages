@@ -33,9 +33,8 @@ if len(args.positional_args) == 0:
 epstein_files = EpsteinFiles.get_files()
 
 for search_term in args.positional_args:
-    search_type = 'other' if args.search_other else 'all'
     temp_highlighter = build_highlighter(search_term)
-    search_results = epstein_files.docs_matching(search_term, search_type, specified_names)
+    search_results = epstein_files.docs_matching(search_term, specified_names)
     console.line(2)
     print_panel(f"Found {len(search_results)} documents matching '{search_term}'", centered=True)
 

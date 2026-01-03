@@ -15,7 +15,7 @@ from epstein_files.util.rich import console, print_panel, print_section_header
 
 epstein_files = EpsteinFiles.get_files()
 ids = [id_str(arg) if len(arg) <= 6 else extract_file_id(arg) for arg in args.positional_args]
-docs = epstein_files.get_documents_with_ids(ids)
+docs = epstein_files.get_documents_by_id(ids)
 console.line()
 
 for doc in docs:
