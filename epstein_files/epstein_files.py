@@ -120,13 +120,12 @@ class EpsteinFiles:
     def docs_matching(
             self,
             pattern: re.Pattern | str,
-            file_type: Literal['all', 'other'] = 'all',
             names: list[str | None] | None = None
         ) -> list[SearchResult]:
         """Find documents whose text matches a pattern (file_type and names args limit the documents searched)."""
         results: list[SearchResult] = []
 
-        for doc in (self.all_documents() if file_type == 'all' else self.other_files):
+        for doc in self.all_documents():
             lines = doc.lines_matching_txt(pattern)
 
             if names and ((not isinstance(doc, (Email, MessengerLog))) or doc.author not in names):
@@ -177,7 +176,7 @@ class EpsteinFiles:
         else:
             return [e for e in self.emails if author in e.recipients]
 
-    def get_documents_with_ids(self, file_ids: list[str]) -> list[Document]:
+    def get_documents_by_id(self, file_ids: list[str]) -> list[Document]:
         docs = [doc for doc in self.all_documents() if doc.file_id in file_ids]
 
         if len(docs) != len(file_ids):
