@@ -1,17 +1,15 @@
 #!/usr/bin/env python
 # Search the document text AFTER all OCR fixes have been applied.
 import re
-from os import environ
 from sys import exit
 
 from dotenv import load_dotenv
 from rich.highlighter import RegexHighlighter
 from rich.padding import Padding
 load_dotenv()
-environ.setdefault('PICKLED', 'true')
 
+from scripts.use_pickled import epstein_files
 from epstein_files.documents.document import INFO_PADDING
-from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.env import args, specified_names
 from epstein_files.util.highlighted_group import REGEX_STYLE_PREFIX
 from epstein_files.util.rich import console, print_panel
@@ -29,8 +27,6 @@ def build_highlighter(pattern: str) -> RegexHighlighter:
 if len(args.positional_args) == 0:
     console.print(f"Must provide an argument to search for.", style='bright_red')
     exit()
-
-epstein_files = EpsteinFiles.get_files()
 
 for search_term in args.positional_args:
     temp_highlighter = build_highlighter(search_term)
