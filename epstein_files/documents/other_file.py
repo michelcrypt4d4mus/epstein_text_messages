@@ -70,10 +70,6 @@ class OtherFile(Document):
         pieces = without_nones([self.config.author, self.config.description])
         return ' '.join(pieces) if pieces else None
 
-    def summary(self) -> Text:
-        """One line summary mostly for logging."""
-        return super().summary().append(CLOSE_PROPERTIES_CHAR)
-
     def description_panel(self, include_hints=True) -> Panel:
         """Panelized description() with info_txt(), used in search results."""
         return super().description_panel(include_hints=include_hints)
@@ -114,6 +110,10 @@ class OtherFile(Document):
 
     def preview_text(self) -> str:
         return WHITESPACE_REGEX.sub(' ', self.text)[0:PREVIEW_CHARS]
+
+    def summary(self) -> Text:
+        """One line summary mostly for logging."""
+        return super().summary().append(CLOSE_PROPERTIES_CHAR)
 
     def _extract_timestamp(self) -> datetime | None:
         """Return configured timestamp or value extracted by scanning text with datefinder."""
