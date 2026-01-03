@@ -33,7 +33,7 @@ FIELD_SORT_KEY = {
 
 
 @dataclass(kw_only=True)
-class FileCfg:
+class DocCfg:
     """Convenience class that encapsulates configuring info about files that need to be manually configured.
 
     Attributes:
@@ -69,7 +69,7 @@ class FileCfg:
         if self.dupe_type is not None:
             return REASON_MAPPING[self.dupe_type]
 
-    def duplicate_cfgs(self) -> Generator['FileCfg', None, None]:
+    def duplicate_cfgs(self) -> Generator['DocCfg', None, None]:
         for id in self.duplicate_ids:
             dupe_cfg = deepcopy(self)
             dupe_cfg.id = id
@@ -115,7 +115,7 @@ class FileCfg:
 
         return props
 
-    def __eq__(self, other: 'FileCfg') -> bool:
+    def __eq__(self, other: 'DocCfg') -> bool:
         """Return True if everything matches other than the two 'dupe_' fields ('duplicate_ids' is compared)."""
         for _field in self.sorted_fields():
             if _field.name == 'id' or _field.name.startswith('dupe'):
@@ -145,7 +145,7 @@ class FileCfg:
 
 
 @dataclass(kw_only=True)
-class CommunicationCfg(FileCfg):
+class CommunicationCfg(DocCfg):
     """
     Convenience class to unite various configured properties for a given Communication file.
     Manual config is always required for MessengerLog author attribution. It's also often needed for Email
@@ -172,7 +172,7 @@ class EmailCfg(CommunicationCfg):
     recipients: list[str | None] = field(default_factory=list)
 
     @classmethod
-    def from_file_cfg(cls, cfg: FileCfg) -> 'CommunicationCfg':
+    def from_file_cfg(cls, cfg: DocCfg) -> 'CommunicationCfg':
         return cls(**asdict(cfg))
 
 
