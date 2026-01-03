@@ -19,7 +19,7 @@ MAX_LINE_LENGTH = 250
 SAME = 'same'
 
 REASON_MAPPING: dict[DuplicateType, str] = {
-    'earlier': 'earlier draft of',
+    'earlier': 'an earlier draft of',
     'quoted': 'quoted in full in',
     'redacted': 'redacted version of',
     SAME: 'the same as',
