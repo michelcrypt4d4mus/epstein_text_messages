@@ -70,19 +70,19 @@ class EpsteinFiles:
             document = Document(file_arg)
 
             if document.length == 0:
-                logger.info(f"Skipping empty file {document.description().plain}")
+                logger.info(f"Skipping empty file {document}")
             elif document.text[0] == '{':
                 # Handle JSON files
                 self.json_files.append(JsonFile(file_arg, text=document.text))
-                logger.info(self.json_files[-1].description().plain)
+                logger.info(str(self.json_files[-1]))
             elif MSG_REGEX.search(document.text):
                 # Handle iMessage log files
                 self.imessage_logs.append(MessengerLog(file_arg, text=document.text))
-                logger.info(self.imessage_logs[-1].description().plain)
+                logger.info(str(self.imessage_logs[-1]))
             elif DETECT_EMAIL_REGEX.match(document.text) or isinstance(document.config, EmailCfg):
                 # Handle emails
                 email = Email(file_arg, text=document.text)
-                logger.info(email.description().plain)
+                logger.info(str(email))
                 self.emails.append(email)
                 self.email_author_counts[email.author] += 1
 
@@ -99,7 +99,7 @@ class EpsteinFiles:
             else:
                 # Handle OtherFiles
                 self.other_files.append(OtherFile(file_arg, text=document.text))
-                logger.info(self.other_files[-1].description().plain)
+                logger.info(str(self.other_files[-1]))
 
         self.emails = Document.sort_by_timestamp(self.emails)
         self.imessage_logs = Document.sort_by_timestamp(self.imessage_logs)

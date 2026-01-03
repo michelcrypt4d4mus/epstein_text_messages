@@ -161,7 +161,7 @@ def print_emails(epstein_files: EpsteinFiles) -> int:
 
         for email in epstein_files.emails:
             if email.file_id not in email_ids_that_were_printed and not email.is_duplicate:
-                logger.warning(f"Failed to print {email.description()}")
+                logger.warning(f"Failed to print {email.summary()}")
 
     return len(emails_that_were_printed)
 

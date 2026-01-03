@@ -5,6 +5,7 @@ from os import environ
 from dotenv import load_dotenv
 load_dotenv()
 environ.setdefault('PICKLED', 'true')
+from rich.panel import Panel
 
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.env import args
@@ -20,3 +21,6 @@ console.line()
 for doc in docs:
     console.line()
     console.print(doc)
+    console.line()
+    console.print(Panel(f"*** RAW {doc.url_slug} ***", expand=False))
+    console.print(doc.raw_text())

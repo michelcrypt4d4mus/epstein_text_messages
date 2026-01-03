@@ -31,7 +31,7 @@ class Communication(Document):
     def author_or_unknown(self) -> str:
         return self.author or UNKNOWN
 
-    def description(self) -> Text:
+    def summary(self) -> Text:
         return self._description().append(CLOSE_PROPERTIES_CHAR)
 
     def is_attribution_uncertain(self) -> bool | None:
@@ -46,7 +46,7 @@ class Communication(Document):
 
     def _description(self) -> Text:
         """One line summary mostly for logging."""
-        txt = super().description().append(', ')
+        txt = super().summary().append(', ')
         return txt.append(key_value_txt('author', Text(f"'{self.author_or_unknown()}'", style=self.author_style)))
 
 
