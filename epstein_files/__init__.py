@@ -26,7 +26,7 @@ from epstein_files.util.rich import *
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
 
 # Order matters. Default names to print emails for.
-INTERESTING_EMAILERS = [
+DEFAULT_EMAILERS = [
     JEREMY_RUBIN,
     AL_SECKEL,
     JOI_ITO,
@@ -51,7 +51,7 @@ INTERESTING_EMAILERS = [
 ]
 
 # Order matters. Default names to print tables w/email subject, timestamp, etc for.
-PRINT_EMAIL_TABLES_FOR: list[str | None] = [
+DEFAULT_EMAILER_TABLES: list[str | None] = [
     GHISLAINE_MAXWELL,
     LEON_BLACK,
     LANDON_THOMAS,
@@ -65,7 +65,7 @@ PRINT_EMAIL_TABLES_FOR: list[str | None] = [
     TOM_PRITZKER,
 ]
 
-if len(set(INTERESTING_EMAILERS).intersection(set(PRINT_EMAIL_TABLES_FOR))) > 0:
+if len(set(DEFAULT_EMAILERS).intersection(set(DEFAULT_EMAILER_TABLES))) > 0:
     raise RuntimeError(f"Some names appear in both PRINT_EMAILS_FOR and PRINT_EMAILS_FOR")
 
 
@@ -117,13 +117,13 @@ def _print_emails(epstein_files: EpsteinFiles) -> int:
         emailers_to_print = sorted(epstein_files.all_emailers(), key=lambda e: epstein_files.earliest_email_at(e))
         print_numbered_list_of_emailers(emailers_to_print, epstein_files)
     else:
-        emailers_to_print = specified_names if specified_names else INTERESTING_EMAILERS
+        emailers_to_print = specified_names if specified_names else DEFAULT_EMAILERS
         console.print('Email conversations grouped by counterparty can be found in the order listed below.')
         print_numbered_list_of_emailers(emailers_to_print)
         console.print("\nAfter that there's tables linking to (but not displaying) all known emails for each of these people:")
 
         if len(specified_names) > 0:
-            print_numbered_list_of_emailers(PRINT_EMAIL_TABLES_FOR)
+            print_numbered_list_of_emailers(DEFAULT_EMAILER_TABLES)
 
     for author in emailers_to_print:
         newly_printed_emails = epstein_files.print_emails_for(author)
@@ -139,7 +139,7 @@ def _print_emails(epstein_files: EpsteinFiles) -> int:
         if not args.all_emails:
             print_author_header(f"Email Tables for {len(emailer_tables)} Other People", 'white')
 
-            for name in PRINT_EMAIL_TABLES_FOR:
+            for name in DEFAULT_EMAILER_TABLES:
                 epstein_files.print_emails_table_for(name)
 
         epstein_files.print_email_device_info()
