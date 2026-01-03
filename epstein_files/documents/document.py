@@ -241,6 +241,16 @@ class Document:
         """Should be overloaded in subclasses."""
         return 'white'
 
+    def _debug_info(self) -> str:
+        info = [
+            f"id={self.file_id}",
+            f"url_slug={self.url_slug}",
+            f"file_path='{self.file_path}'",
+            f"is_local_extract_file={self.is_local_extract_file()}",
+        ]
+
+        return f"     " + "\n     ".join(info)
+
     def _extract_author(self) -> None:
         """Get author from config. Extended in Email subclass to also check headers."""
         if self.config and self.config.author:
