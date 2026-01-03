@@ -546,6 +546,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(emailers={PRINCE_ANDREW: 'British royal family'}, style='dodger_blue1'),
     HighlightedNames(emailers={SOON_YI_PREVIN: "wife of Woody Allen"}, style='hot_pink'),
     HighlightedNames(emailers={SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of ports in Dubai'}, style='green1'),
+    HighlightedNames(label='unknown', style='cyan', pattern=r'\(unknown\)'),
 ]
 
 # Highlight regexes for things other than names, only used by RegexHighlighter pattern matching
@@ -589,11 +590,6 @@ HIGHLIGHTED_TEXTS = [
         label='timestamp_2',
         style=TIMESTAMP_STYLE,
         pattern=r"\d{1,4}[-/]\d{1,2}[-/]\d{2,4} \d{1,2}:\d{2}:\d{2}( [AP]M)?",
-    ),
-    HighlightedText(
-        label='unknown',
-        style='cyan',
-        pattern=r'\(unknown\)',
     ),
 ]
 
