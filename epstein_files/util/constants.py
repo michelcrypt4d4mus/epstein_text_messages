@@ -226,6 +226,7 @@ FLIGHT_IN_2012_PEOPLE: list[str | None] = ['Francis Derby', 'Januiz Banasiak', '
 
 # categories
 ARTS = 'arts'
+ARTICLE = 'article'
 BOOK = 'book'
 FINANCE = 'finance'
 JUNK = 'junk'
@@ -1478,7 +1479,7 @@ OTHER_FILES_JUNK = [
 
 OTHER_FILES_CATEGORIES = [
     'ACADEMIA',
-    'ARTICLES',
+    f"{ARTICLE}s",
     ARTS,
     'BOOKS',
     'CONFERENCES',

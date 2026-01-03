@@ -1,3 +1,4 @@
+import re
 import logging
 import warnings
 from dataclasses import dataclass
@@ -13,8 +14,9 @@ from rich.text import Text
 
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_REGEX, Document
 from epstein_files.util.constant.strings import FIRST_FEW_LINES, TIMESTAMP_DIM
-from epstein_files.util.constants import ARTS, BOOK, FINANCE, JUNK, SPEECH, UNINTERESTING_PREFIXES
-from epstein_files.util.data import escape_single_quotes, remove_timezone, uniquify
+from epstein_files.util.constants import ARTICLE, ARTS, BOOK, FINANCE, JUNK, SPEECH, UNINTERESTING_PREFIXES, VI_DAILY_NEWS_ARTICLE
+from epstein_files.util.doc_cfg import DocCfg
+from epstein_files.util.data import escape_single_quotes, remove_timezone, uniquify, without_nones
 from epstein_files.util.file_helper import FILENAME_LENGTH
 from epstein_files.util.env import args, logger
 from epstein_files.util.rich import QUESTION_MARK_TXT, highlighter, logger
@@ -28,6 +30,7 @@ PREVIEW_CHARS = int(580 * (1 if args.all_other_files else 1.5))
 LOG_INDENT = '\n         '
 TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
+VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
 UNINTERESTING_CATEGORES = [
     ARTS,
@@ -41,6 +44,13 @@ UNINTERESTING_CATEGORES = [
 class OtherFile(Document):
     """File that is not an email, an iMessage log, or JSON data."""
 
+    def __post_init__(self):
+        super().__post_init__()
+
+        if self.config is None and VI_DAILY_NEWS_REGEX.search(self.text):
+            logger.warning(f"Creating synthetic config for VI Daily News article...")
+            self.config = DocCfg(id=self.file_id, description=VI_DAILY_NEWS_ARTICLE, category=ARTICLE)
+
     def category(self) -> str | None:
         return self.config and self.config.category
 
@@ -53,7 +63,7 @@ class OtherFile(Document):
             title = self.config.description if '"' in self.config.description else f'"{self.config.description}"'
             return f"{BOOK}: {title} by {self.config.author}"
 
-        pieces = [p for p in [self.config.author, self.config.description] if p]
+        pieces = without_nones([self.config.author, self.config.description])
         return ' '.join(pieces) if pieces else None
 
     def summary(self) -> Text:
