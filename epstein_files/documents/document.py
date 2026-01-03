@@ -86,7 +86,7 @@ class Document:
             cfg_type = type(self.config).__name__ if self.config else None
 
             # Coerce FileConfig for court docs etc. to MessageCfg for email files extracted from that document
-            if self.document_type() == EMAIL_CLASS and self.config and cfg_type != EmailCfg.__name__:
+            if self.class_name() == EMAIL_CLASS and self.config and cfg_type != EmailCfg.__name__:
                 self.config = EmailCfg.from_doc_cfg(self.config)
         else:
             self.url_slug = self.file_path.stem
@@ -95,6 +95,10 @@ class Document:
         self._repair()
         self._extract_author()
         self.timestamp = self._extract_timestamp()
+
+    def class_name(self) -> str:
+        """Annoying workaround for circular import issues and isinstance()."""
+        return str(type(self).__name__)
 
     def configured_description(self) -> str | None:
         return self.config.description if self.config else None
@@ -107,12 +111,8 @@ class Document:
         hints = [Text('', style='italic').append(h) for h in (self.hints() if include_hints else [])]
         return Panel(Group(*([self.summary()] + hints)), border_style=self.document_type_style(), expand=False)
 
-    def document_type(self) -> str:
-        """Annoying workaround for circular import issues and isinstance()."""
-        return str(type(self).__name__)
-
     def document_type_style(self) -> str:
-        return DOC_TYPE_STYLES[self.document_type()]
+        return DOC_TYPE_STYLES[self.class_name()]
 
     def duplicate_file_txt(self) -> Text:
         """If the file is a dupe make a nice message to explain what file it's a duplicate of."""
@@ -149,7 +149,7 @@ class Document:
         hints = listify(self.info_txt())
         hint_msg = self.configured_description()
 
-        if self.document_type() == OTHER_FILE_CLASS:
+        if self.class_name() == OTHER_FILE_CLASS:
             if not hint_msg and VI_DAILY_NEWS_REGEX.search(self.text):
                 hint_msg = VI_DAILY_NEWS_ARTICLE
         elif hint_msg:
@@ -228,7 +228,7 @@ class Document:
     def summary(self) -> Text:
         """Summary of this file for logging. Brackets are left open for subclasses to add stuff."""
         txt = Text('').append(self.url_slug, style='magenta')
-        txt.append(f' {self.document_type()}', style=self.document_type_style())
+        txt.append(f' {self.class_name()}', style=self.document_type_style())
 
         if self.timestamp:
             txt.append(' (', style=SYMBOL_STYLE)

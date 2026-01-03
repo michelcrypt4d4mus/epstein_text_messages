@@ -230,7 +230,7 @@ class EpsteinFiles:
 
         for doc in self.all_documents():
             if doc.is_duplicate:
-                dupes[doc.document_type()] += 1
+                dupes[doc.class_name()] += 1
 
         table = Table()
         add_cols_to_table(table, ['File Type', 'Files', 'Author Known', 'Author Unknown', 'Duplicates'])
