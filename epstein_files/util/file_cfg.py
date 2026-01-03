@@ -7,7 +7,7 @@ from typing import Generator, Literal
 from dateutil.parser import parse
 
 from epstein_files.util.constant.names import constantize_name
-from epstein_files.util.constant.strings import AUTHOR
+from epstein_files.util.constant.strings import AUTHOR, EMAIL, TEXT_MESSAGE
 
 DuplicateType = Literal['earlier', 'quoted', 'redacted', 'same']
 
@@ -34,7 +34,8 @@ FIELD_SORT_KEY = {
 
 @dataclass(kw_only=True)
 class DocCfg:
-    """Convenience class that encapsulates configuring info about files that need to be manually configured.
+    """
+    Encapsulates info about files that needs to be manually configured because it cannot be programmatically inferred.
 
     Attributes:
         id (str): ID of file
@@ -130,7 +131,7 @@ class DocCfg:
         type_str = f"{type(self).__name__}("
         single_line_repr = type_str + ', '.join(props) + f')'
 
-        if (len(single_line_repr) < MAX_LINE_LENGTH or self.non_null_field_names() == ['id', 'description']) and '#' not in (self.description or ''):
+        if len(single_line_repr) < MAX_LINE_LENGTH:
             repr_str = single_line_repr
         else:
             repr_str = f"{type_str}{INDENT_NEWLINE}" + INDENTED_JOIN.join(props)
@@ -171,6 +172,10 @@ class EmailCfg(CommunicationCfg):
     is_fwded_article: bool = False
     recipients: list[str | None] = field(default_factory=list)
 
+    def __post_init__(self):
+        super().__post_init__()
+        self.category = EMAIL
+
     @classmethod
     def from_file_cfg(cls, cfg: DocCfg) -> 'CommunicationCfg':
         return cls(**asdict(cfg))
@@ -178,4 +183,6 @@ class EmailCfg(CommunicationCfg):
 
 @dataclass(kw_only=True)
 class TextCfg(CommunicationCfg):
-    pass
+    def __post_init__(self):
+        super().__post_init__()
+        self.category = TEXT_MESSAGE
