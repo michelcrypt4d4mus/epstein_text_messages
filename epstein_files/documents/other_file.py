@@ -67,6 +67,11 @@ class OtherFile(Document):
             return False
         elif len(hints) == 0:
             return True
+        elif self.config:
+            if self.config.is_interesting:
+                return True
+            elif self.config.category == 'finance' and self.config.author is not None:
+                return False
 
         for prefix in UNINTERESTING_PREFIXES:
             if hints[0].plain.startswith(prefix):
