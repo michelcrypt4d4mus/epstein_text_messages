@@ -7,7 +7,6 @@ from rich.text import Text
 
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.imessage.text_message import MSG_DATE_FORMAT, TextMessage
-from epstein_files.util.file_cfg import MessageCfg
 from epstein_files.util.rich import logger
 
 CONFIRMED_MSG = 'Found confirmed counterparty'
@@ -28,10 +27,6 @@ class MessengerLog(Communication):
         hint_msg = GUESSED_MSG if self.is_attribution_uncertain() else CONFIRMED_MSG
         author_txt = Text(self.author_or_unknown(), style=self.author_style + ' bold')
         return Text(f"({hint_msg} ", style='dim').append(author_txt).append(')')
-
-    def is_attribution_uncertain(self) -> bool | None:
-        if self.config:
-            return self.config.is_attribution_uncertain
 
     def last_message_at(self, name: str | None) -> datetime:
         return self.messages_by(name)[-1].timestamp()

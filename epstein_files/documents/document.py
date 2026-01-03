@@ -32,7 +32,6 @@ MAX_EXTRACTED_TIMESTAMPS = 6
 MIN_TIMESTAMP = datetime(1991, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
 MAX_TIMESTAMP = datetime(2020, 1, 1)
-TRAILING_DATE_REGEX = re.compile(r' ((around|ca\.|roughly) )?\d{4}-\d{2}(-\d{2})?$')
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
 DOC_TYPE_STYLES = {
@@ -170,7 +169,6 @@ class Document:
             hint_msg = f"({hint_msg})"
 
         if hint_msg:
-            hint_msg = TRAILING_DATE_REGEX.sub('', hint_msg)  # a lot of configured file infos have trailing ISO date
             hints.append(highlighter(Text(hint_msg, style='white dim italic')))
 
         return hints
