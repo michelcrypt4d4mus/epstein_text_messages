@@ -217,9 +217,6 @@ for emailer in EMAILERS:
 
 # Some emails have a lot of uninteresting CCs
 IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS: list[str | None] = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
-KRASSNER_MANSON_RECIPIENTS: list[str | None] = ['Nancy Cain', 'Tom', 'Marie Moneysmith', 'Steven Gaydos', 'George Krassner', 'Linda W. Grossman', 'Holly Krassner Dawson', 'Daniel Dawson', 'Danny Goldberg', 'Caryl Ratner', 'Kevin Bright', 'Michael Simmons', SAMUEL_LEFF, 'Bob Fass', 'Lynnie Tofte Fass', 'Barb Cowles', 'Lee Quarnstrom']
-KRASSNER_024923_RECIPIENTS: list[str | None] = ['George Krassner', 'Nick Kazan', 'Mrisman02', 'Rebecca Risman', 'Linda W. Grossman']
-KRASSNER_033568_RECIPIENTS: list[str | None] = ['George Krassner', 'Daniel Dawson', 'Danny Goldberg', 'Tom', 'Kevin Bright', 'Walli Leff', 'Michael Simmons', 'Lee Quarnstrom', 'Lanny Swerdlow', 'Larry Sloman', 'W&K', 'Harry Shearer', 'Jay Levin']
 FLIGHT_IN_2012_PEOPLE: list[str | None] = ['Francis Derby', 'Januiz Banasiak', 'Louella Rabuyo', 'Richard Barnnet']
 
 
@@ -533,7 +530,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='022214', author=NADIA_MARCINKO, attribution_reason='Reply header'),
     EmailCfg(id='021811', author=NADIA_MARCINKO, attribution_reason='Signature and email address in the message'),
     EmailCfg(id='028487', author=NORMAN_D_RAU, attribution_reason='Fwded from "to" address', duplicate_ids=['026612']),
-    EmailCfg(id='024923', author=PAUL_KRASSNER, recipients=KRASSNER_024923_RECIPIENTS, duplicate_ids=['031973']),
+    EmailCfg(
+        id='024923',
+        author=PAUL_KRASSNER,
+        recipients=['George Krassner', 'Nick Kazan', 'Mrisman02', 'Rebecca Risman', 'Linda W. Grossman'],
+        duplicate_ids=['031973']
+    ),
     EmailCfg(id='032457', author=PAUL_KRASSNER),
     EmailCfg(id='029981', author=PAULA, attribution_reason='Name in reply + opera reference (Fisher now works in opera)'),
     EmailCfg(id='030482', author=PAULA, attribution_reason=PAULA_REASON),
@@ -662,8 +664,8 @@ EMAILS_CONFIG = [
         is_attribution_uncertain=True,  # It's actually Kathy R. as t eh recipient that's the uncertain part
     ),
     EmailCfg(id='031428', recipients=[KEN_STARR, LILLY_SANCHEZ, MARTIN_WEINBERG, REID_WEINGARTEN], duplicate_ids=['031388']), # Bad OCR
-    EmailCfg(id='025329', recipients=KRASSNER_MANSON_RECIPIENTS),
-    EmailCfg(id='033568', recipients=KRASSNER_033568_RECIPIENTS),
+    EmailCfg(id='025329', recipients=['Nancy Cain', 'Tom', 'Marie Moneysmith', 'Steven Gaydos', 'George Krassner', 'Linda W. Grossman', 'Holly Krassner Dawson', 'Daniel Dawson', 'Danny Goldberg', 'Caryl Ratner', 'Kevin Bright', 'Michael Simmons', SAMUEL_LEFF, 'Bob Fass', 'Lynnie Tofte Fass', 'Barb Cowles', 'Lee Quarnstrom']),
+    EmailCfg(id='033568', recipients=['George Krassner', 'Daniel Dawson', 'Danny Goldberg', 'Tom', 'Kevin Bright', 'Walli Leff', 'Michael Simmons', 'Lee Quarnstrom', 'Lanny Swerdlow', 'Larry Sloman', 'W&K', 'Harry Shearer', 'Jay Levin']),
     EmailCfg(id='030522', recipients=[LANDON_THOMAS], is_fwded_article=True),  # Vicky Ward article
     EmailCfg(id='031413', recipients=[LANDON_THOMAS]),
     EmailCfg(id='033591', recipients=[LAWRANCE_VISOSKI], attribution_reason='Reply signature', duplicate_ids=['033591']),
@@ -687,6 +689,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='019334', recipients=[STEVE_BANNON]),
     EmailCfg(id='021106', recipients=[STEVE_BANNON], attribution_reason='Reply'),
     EmailCfg(id='033050', actual_text='schwartman'),
+    EmailCfg(id='023627', description=MICHAEL_WOLFF_ARTICLE_HINT, is_fwded_article=True),
     EmailCfg(id='026298', is_fwded_article=True, duplicate_ids=['026499']),  # Written by someone else?
     EmailCfg(id='026755', is_fwded_article=True),  # HuffPo
     EmailCfg(id='030528', is_fwded_article=True),  # Vicky Ward article
@@ -700,7 +703,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='026551', is_fwded_article=True),  # Sultan bin Sulayem "Ayatollah between the sheets"
     EmailCfg(id='031768', is_fwded_article=True),  # Sultan bin Sulayem 'Horseface'
     EmailCfg(id='031569', is_fwded_article=True),  # Article by Kathryn Alexeeff fwded to Peter Thiel
-    EmailCfg(id='023627', is_fwded_article=True, description=MICHAEL_WOLFF_ARTICLE_HINT),
     EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
 

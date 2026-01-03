@@ -19,7 +19,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
 from epstein_files.util.constants import *
 from epstein_files.util.data import (TIMEZONE_INFO, collapse_newlines, escape_single_quotes, extract_last_name,
-     remove_timezone, uniquify)
+     flatten, remove_timezone, uniquify)
 from epstein_files.util.env import logger
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import *
@@ -231,7 +231,8 @@ TRUNCATE_TERMS = [
     'The raw materials for that period include interviews',
 ]
 
-KRASSNER_RECIPIENTS = uniquify(KRASSNER_MANSON_RECIPIENTS + KRASSNER_024923_RECIPIENTS + KRASSNER_033568_RECIPIENTS)
+# Some Paul Krassner emails have a ton of CCed parties we don't care about
+KRASSNER_RECIPIENTS = uniquify(flatten(ALL_FILE_CONFIGS[id].recipients for id in ['025329', '024923', '033568']))
 
 # No point in ever displaying these; their emails show up elsewhere because they're mostly CC recipients
 USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
