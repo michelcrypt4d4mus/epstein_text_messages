@@ -5,7 +5,7 @@ from dateutil.parser import parse
 
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.file_cfg import MessageCfg, FileCfg
+from epstein_files.util.file_cfg import EmailCfg, FileCfg, TextCfg
 
 # Misc
 FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
@@ -224,7 +224,7 @@ FLIGHT_IN_2012_PEOPLE: list[str | None] = ['Francis Derby', 'Januiz Banasiak', '
 
 
 ##########################
-# OtherFile Config Stuff #
+# OtherFile config stuff #
 ##########################
 BOOK = 'book:'
 FBI = 'FBI'
@@ -308,76 +308,82 @@ PAULA_REASON = 'Signature of "Sent via BlackBerry from T-Mobile"'
 ############################################ TEXTS #############################################
 ################################################################################################
 
-TEXTS_CONFIG = [
-    # Confirmed text attributions
-    MessageCfg(id='031042', author=ANIL_AMBANI, attribution_reason='Participants: field'),
-    MessageCfg(id='027225', author=ANIL_AMBANI, attribution_reason='Birthday mentioned and confirmed as Ambani\'s'),
-    MessageCfg(id='031173', author=ARDA_BESKARDES, attribution_reason='Participants: field'),
-    MessageCfg(id='027401', author='Eva (Dubin?)', attribution_reason='Participants: field'),
-    MessageCfg(id='027650', author=JOI_ITO, attribution_reason='Participants: field'),
-    MessageCfg(id='027777', author=LARRY_SUMMERS, attribution_reason='Participants: field'),
-    MessageCfg(id='027515', author=MIROSLAV_LAJCAK, attribution_reason='https://x.com/ImDrinknWyn/status/1990210266114789713'),
-    MessageCfg(id='027165', author=MELANIE_WALKER, attribution_reason='https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/'),
-    MessageCfg(id='027248', author=MELANIE_WALKER, attribution_reason='Says "we met through trump" which is confirmed by Melanie in 032803'),
-    MessageCfg(id='025429', author=STACEY_PLASKETT),
-    MessageCfg(id='027333', author=ANTHONY_SCARAMUCCI, attribution_reason='unredacted phone number in one of the messages belongs to Scaramucci'),
-    MessageCfg(id='027128', author=SOON_YI_PREVIN, attribution_reason='https://x.com/ImDrinknWyn/status/1990227281101434923'),
-    MessageCfg(id='027217', author=SOON_YI_PREVIN, attribution_reason='refs marriage to woody allen'),
-    MessageCfg(id='027244', author=SOON_YI_PREVIN, attribution_reason='refs Woody'),
-    MessageCfg(id='027257', author=SOON_YI_PREVIN, attribution_reason="'Woody Allen' in Participants: field"),
-    MessageCfg(id='027460', author=STEVE_BANNON, attribution_reason='Discusses leaving scotland when Bannon was confirmed in Scotland, also NYT'),
-    MessageCfg(id='027307', author=STEVE_BANNON),
-    MessageCfg(id='027278', author=TERJE_ROD_LARSEN),
-    MessageCfg(id='027255', author=TERJE_ROD_LARSEN),
-    # Uncertain text attributions
-    MessageCfg(id='027762', author=ANDRZEJ_DUDA, is_attribution_uncertain=True),
-    MessageCfg(id='027774', author=ANDRZEJ_DUDA, is_attribution_uncertain=True),
-    MessageCfg(id='027221', author=ANIL_AMBANI, is_attribution_uncertain=True),
-    MessageCfg(id='025436', author=CELINA_DUBIN, is_attribution_uncertain=True),
-    MessageCfg(id='027576', author=MELANIE_WALKER, is_attribution_uncertain=True, attribution_reason='https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700'),
-    MessageCfg(id='027141', author=MELANIE_WALKER, is_attribution_uncertain=True),
-    MessageCfg(id='027232', author=MELANIE_WALKER, is_attribution_uncertain=True),
-    MessageCfg(id='027133', author=MELANIE_WALKER, is_attribution_uncertain=True),
-    MessageCfg(id='027184', author=MELANIE_WALKER, is_attribution_uncertain=True),
-    MessageCfg(id='027214', author=MELANIE_WALKER, is_attribution_uncertain=True),
-    MessageCfg(id='027148', author=MELANIE_WALKER, is_attribution_uncertain=True),
-    MessageCfg(id='027440', author=MICHAEL_WOLFF, is_attribution_uncertain=True, attribution_reason='AI says Trump book/journalism project'),
-    MessageCfg(id='027396', author=ANTHONY_SCARAMUCCI, is_attribution_uncertain=True),
-    MessageCfg(id='031054', author=ANTHONY_SCARAMUCCI, is_attribution_uncertain=True),
-    MessageCfg(id='025363', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='Trump and New York Times coverage'),
-    MessageCfg(id='025368', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='Trump and New York Times coverage'),
-    MessageCfg(id='027585', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='Tokyo trip'),
-    MessageCfg(id='027568', author=STEVE_BANNON, is_attribution_uncertain=True),
-    MessageCfg(id='027695', author=STEVE_BANNON, is_attribution_uncertain=True),
-    MessageCfg(id='027594', author=STEVE_BANNON, is_attribution_uncertain=True),
-    MessageCfg(id='027720', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='first 3 lines of 027722'),
-    MessageCfg(id='027549', author=STEVE_BANNON, is_attribution_uncertain=True),
-    MessageCfg(id='027434', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='References Maher appearance'),
-    MessageCfg(id='027764', author=STEVE_BANNON, is_attribution_uncertain=True),
-    MessageCfg(id='027428', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='References HBJ meeting on 9/28 from other Bannon/Epstein convo'),
-    MessageCfg(id='025400', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says Trump NYT article criticism; Hannity media strategy'),
-    MessageCfg(id='025408', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
-    MessageCfg(id='025452', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
-    MessageCfg(id='025479', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says China strategy and geopolitics; Trump discussions'),
-    MessageCfg(id='025707', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
-    MessageCfg(id='025734', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says China strategy and geopolitics; Trump discussions'),
-    MessageCfg(id='027260', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
-    MessageCfg(id='027281', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
-    MessageCfg(id='027346', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
-    MessageCfg(id='027365', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
-    MessageCfg(id='027374', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says China strategy and geopolitics'),
-    MessageCfg(id='027406', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
-    MessageCfg(id='027445', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says China strategy and geopolitics; Trump discussions'),
-    MessageCfg(id='027455', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says China strategy and geopolitics; Trump discussions'),
-    MessageCfg(id='027536', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says China strategy and geopolitics; Trump discussions'),
-    MessageCfg(id='027655', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
-    MessageCfg(id='027707', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says Italian politics; Trump discussions'),
-    MessageCfg(id='027722', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
-    MessageCfg(id='027735', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
-    MessageCfg(id='027794', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
-    MessageCfg(id='029744', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
-    MessageCfg(id='031045', author=STEVE_BANNON, is_attribution_uncertain=True, attribution_reason='AI says Trump and New York Times coverage'),
+CONFIRMED_TEXTS_CONFIG = [
+    TextCfg(id='031042', author=ANIL_AMBANI, attribution_reason='Participants: field'),
+    TextCfg(id='027225', author=ANIL_AMBANI, attribution_reason='Birthday mentioned and confirmed as Ambani\'s'),
+    TextCfg(id='031173', author=ARDA_BESKARDES, attribution_reason='Participants: field'),
+    TextCfg(id='027401', author='Eva (Dubin?)', attribution_reason='Participants: field'),
+    TextCfg(id='027650', author=JOI_ITO, attribution_reason='Participants: field'),
+    TextCfg(id='027777', author=LARRY_SUMMERS, attribution_reason='Participants: field'),
+    TextCfg(id='027515', author=MIROSLAV_LAJCAK, attribution_reason='https://x.com/ImDrinknWyn/status/1990210266114789713'),
+    TextCfg(id='027165', author=MELANIE_WALKER, attribution_reason='https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/'),
+    TextCfg(id='027248', author=MELANIE_WALKER, attribution_reason='Says "we met through trump" which is confirmed by Melanie in 032803'),
+    TextCfg(id='025429', author=STACEY_PLASKETT, attribution_reason='widely reported'),
+    TextCfg(id='027333', author=ANTHONY_SCARAMUCCI, attribution_reason='unredacted phone number in one of the messages belongs to Scaramucci'),
+    TextCfg(id='027128', author=SOON_YI_PREVIN, attribution_reason='https://x.com/ImDrinknWyn/status/1990227281101434923'),
+    TextCfg(id='027217', author=SOON_YI_PREVIN, attribution_reason='refs marriage to Woody Allen'),
+    TextCfg(id='027244', author=SOON_YI_PREVIN, attribution_reason='refs Woody'),
+    TextCfg(id='027257', author=SOON_YI_PREVIN, attribution_reason="'Woody Allen' in Participants: field"),
+    TextCfg(id='027460', author=STEVE_BANNON, attribution_reason='Discusses leaving scotland when Bannon was confirmed in Scotland, also NYT'),
+    TextCfg(id='027307', author=STEVE_BANNON),
+    TextCfg(id='027278', author=TERJE_ROD_LARSEN),
+    TextCfg(id='027255', author=TERJE_ROD_LARSEN),
 ]
+
+UNCONFIRMED_TEXTS_CONFIG = [
+    TextCfg(id='027762', author=ANDRZEJ_DUDA),
+    TextCfg(id='027774', author=ANDRZEJ_DUDA),
+    TextCfg(id='027221', author=ANIL_AMBANI),
+    TextCfg(id='025436', author=CELINA_DUBIN),
+    TextCfg(id='027576', author=MELANIE_WALKER, attribution_reason='https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700'),
+    TextCfg(id='027141', author=MELANIE_WALKER),
+    TextCfg(id='027232', author=MELANIE_WALKER),
+    TextCfg(id='027133', author=MELANIE_WALKER),
+    TextCfg(id='027184', author=MELANIE_WALKER),
+    TextCfg(id='027214', author=MELANIE_WALKER),
+    TextCfg(id='027148', author=MELANIE_WALKER),
+    TextCfg(id='027440', author=MICHAEL_WOLFF, attribution_reason='AI says Trump book/journalism project'),
+    TextCfg(id='027396', author=ANTHONY_SCARAMUCCI),
+    TextCfg(id='031054', author=ANTHONY_SCARAMUCCI),
+    TextCfg(id='025363', author=STEVE_BANNON, attribution_reason='Trump and New York Times coverage'),
+    TextCfg(id='025368', author=STEVE_BANNON, attribution_reason='Trump and New York Times coverage'),
+    TextCfg(id='027585', author=STEVE_BANNON, attribution_reason='references Tokyo trip'),
+    TextCfg(id='027568', author=STEVE_BANNON),
+    TextCfg(id='027695', author=STEVE_BANNON),
+    TextCfg(id='027594', author=STEVE_BANNON),
+    TextCfg(id='027720', author=STEVE_BANNON, attribution_reason='first 3 lines of 027722'),
+    TextCfg(id='027549', author=STEVE_BANNON),
+    TextCfg(id='027434', author=STEVE_BANNON, attribution_reason='references Maher appearance'),
+    TextCfg(id='027764', author=STEVE_BANNON),
+    TextCfg(id='027428', author=STEVE_BANNON, attribution_reason='references HBJ meeting on 9/28 from other Bannon/Epstein convo'),
+    TextCfg(id='025400', author=STEVE_BANNON, attribution_reason='AI says Trump NYT article criticism; Hannity media strategy'),
+    TextCfg(id='025408', author=STEVE_BANNON, attribution_reason='AI says Trump and New York Times coverage'),
+    TextCfg(id='025452', author=STEVE_BANNON, attribution_reason='AI says Trump and New York Times coverage'),
+    TextCfg(id='025479', author=STEVE_BANNON, attribution_reason='AI says China strategy and geopolitics; Trump discussions'),
+    TextCfg(id='025707', author=STEVE_BANNON, attribution_reason='AI says Trump and New York Times coverage'),
+    TextCfg(id='025734', author=STEVE_BANNON, attribution_reason='AI says China strategy and geopolitics; Trump discussions'),
+    TextCfg(id='027260', author=STEVE_BANNON, attribution_reason='AI says Trump and New York Times coverage'),
+    TextCfg(id='027281', author=STEVE_BANNON, attribution_reason='AI says Trump and New York Times coverage'),
+    TextCfg(id='027346', author=STEVE_BANNON, attribution_reason='AI says Trump and New York Times coverage'),
+    TextCfg(id='027365', author=STEVE_BANNON, attribution_reason='AI says Trump and New York Times coverage'),
+    TextCfg(id='027374', author=STEVE_BANNON, attribution_reason='AI says China strategy and geopolitics'),
+    TextCfg(id='027406', author=STEVE_BANNON, attribution_reason='AI says Trump and New York Times coverage'),
+    TextCfg(id='027445', author=STEVE_BANNON, attribution_reason='AI says China strategy and geopolitics; Trump discussions'),
+    TextCfg(id='027455', author=STEVE_BANNON, attribution_reason='AI says China strategy and geopolitics; Trump discussions'),
+    TextCfg(id='027536', author=STEVE_BANNON, attribution_reason='AI says China strategy and geopolitics; Trump discussions'),
+    TextCfg(id='027655', author=STEVE_BANNON, attribution_reason='AI says Trump and New York Times coverage'),
+    TextCfg(id='027707', author=STEVE_BANNON, attribution_reason='AI says Italian politics; Trump discussions'),
+    TextCfg(id='027722', author=STEVE_BANNON, attribution_reason='AI says Trump and New York Times coverage'),
+    TextCfg(id='027735', author=STEVE_BANNON, attribution_reason='AI says Trump and New York Times coverage'),
+    TextCfg(id='027794', author=STEVE_BANNON, attribution_reason='AI says Trump and New York Times coverage'),
+    TextCfg(id='029744', author=STEVE_BANNON, attribution_reason='AI says Trump and New York Times coverage'),
+    TextCfg(id='031045', author=STEVE_BANNON, attribution_reason='AI says Trump and New York Times coverage'),
+]
+
+for cfg in UNCONFIRMED_TEXTS_CONFIG:
+    cfg.is_attribution_uncertain = True
+
+TEXTS_CONFIG = CONFIRMED_TEXTS_CONFIG + UNCONFIRMED_TEXTS_CONFIG
 
 
 ############################################################################################################
@@ -385,429 +391,423 @@ TEXTS_CONFIG = [
 ############################################################################################################
 
 EMAILS_CONFIG = [
-    MessageCfg(id='032436', author=ALIREZA_ITTIHADIEH, attribution_reason='Signature'),
-    MessageCfg(id='032543', author=ANAS_ALRASHEED, attribution_reason='Later reply 033000 has quote'),
-    MessageCfg(id='026064', author=ARIANE_DE_ROTHSCHILD),
-    MessageCfg(id='026069', author=ARIANE_DE_ROTHSCHILD),
-    MessageCfg(id='030741', author=ARIANE_DE_ROTHSCHILD),
-    MessageCfg(id='026018', author=ARIANE_DE_ROTHSCHILD),
-    MessageCfg(
+    EmailCfg(id='032436', author=ALIREZA_ITTIHADIEH, attribution_reason='Signature'),
+    EmailCfg(id='032543', author=ANAS_ALRASHEED, attribution_reason='Later reply 033000 has quote'),
+    EmailCfg(id='026064', author=ARIANE_DE_ROTHSCHILD),
+    EmailCfg(id='026069', author=ARIANE_DE_ROTHSCHILD),
+    EmailCfg(id='030741', author=ARIANE_DE_ROTHSCHILD),
+    EmailCfg(id='026018', author=ARIANE_DE_ROTHSCHILD),
+    EmailCfg(
         id='029504',
         author='Audrey/Aubrey Raimbault (???)',
         attribution_reason='based on "GMI" in signature, a company registered by "aubrey raimbault"',
     ),
-    MessageCfg(id='033316', author=AZIZA_ALAHMADI, attribution_reason='"Regards, Aziza" at bottom'),
-    MessageCfg(id='033328', author=AZIZA_ALAHMADI, attribution_reason='"Regards, Aziza" at bottom'),
-    MessageCfg(id='026659', author=BARBRO_C_EHNBOM, attribution_reason='Reply'),
-    MessageCfg(id='031215', author=BARBRO_C_EHNBOM, duplicate_ids=['026745'], dupe_type='redacted'),  # the same except for 'your Anna!'. author must be specified because email address is redacted in 026745 so it needs the config
-    MessageCfg(id='026764', author=BARRY_J_COHEN),
-    MessageCfg(id='031206', author=BENNET_MOSKOWITZ, duplicate_ids=['031227']),
-    MessageCfg(id='031442', author=CHRISTINA_GALBRAITH, duplicate_ids=['031996']),
-    MessageCfg(
+    EmailCfg(id='033316', author=AZIZA_ALAHMADI, attribution_reason='"Regards, Aziza" at bottom'),
+    EmailCfg(id='033328', author=AZIZA_ALAHMADI, attribution_reason='"Regards, Aziza" at bottom'),
+    EmailCfg(id='026659', author=BARBRO_C_EHNBOM, attribution_reason='Reply'),
+    EmailCfg(id='031215', author=BARBRO_C_EHNBOM, duplicate_ids=['026745'], dupe_type='redacted'),  # the same except for 'your Anna!'. author must be specified because email address is redacted in 026745 so it needs the config
+    EmailCfg(id='026764', author=BARRY_J_COHEN),
+    EmailCfg(id='031206', author=BENNET_MOSKOWITZ, duplicate_ids=['031227']),
+    EmailCfg(id='031442', author=CHRISTINA_GALBRAITH, duplicate_ids=['031996']),
+    EmailCfg(
         id='019446',
         author=CHRISTINA_GALBRAITH,
         attribution_reason='shows from "Christina media/PR" which fits',
         is_attribution_uncertain=True,
     ),
-    MessageCfg(id='026625', author=DARREN_INDYKE, actual_text='Hysterical.'),
-    MessageCfg(
+    EmailCfg(id='026625', author=DARREN_INDYKE, actual_text='Hysterical.'),
+    EmailCfg(
         id='026624',
         author=DARREN_INDYKE,
         recipients=[JEFFREY_EPSTEIN],
         timestamp=parse('2016-10-01 16:40:00'),
         duplicate_ids=['031708'],
     ),
-    MessageCfg(
+    EmailCfg(
         id='031278',
         author=DARREN_INDYKE,
-        description=f"heavily redacted email, quoted replies are from {STEVEN_HOFFENBERG} about James Patterson's book",  # Quoted replies are in 019109,
+        description=f"heavily redacted email, quoted replies are from {STEVEN_HOFFENBERG} about James Patterson's book",
         timestamp=parse('2016-08-17 11:26:00'),
         attribution_reason='Quoted replies are in 019109',
     ),
-    MessageCfg(id='026290', author=DAVID_SCHOEN, attribution_reason='Signature'),
-    MessageCfg(id='031339', author=DAVID_SCHOEN, attribution_reason='Signature'),
-    MessageCfg(id='031492', author=DAVID_SCHOEN, attribution_reason='Signature'),
-    MessageCfg(id='031560', author=DAVID_SCHOEN, attribution_reason='Signature'),
-    MessageCfg(id='026287', author=DAVID_SCHOEN, attribution_reason='Signature'),
-    MessageCfg(id='033419', author=DAVID_SCHOEN, attribution_reason='Signature'),
-    MessageCfg(id='031460', author=EDWARD_JAY_EPSTEIN),
-    MessageCfg(id='030414', author=FAITH_KATES, duplicate_ids=['030578'], dupe_type='redacted'),
-    MessageCfg(
-        id='031135',
-        author=FAITH_KATES,
-        duplicate_ids=['030634'],
-        dupe_type='redacted',
-        attribution_reason='Same as unredacted 031135, same legal signature',
-    ),
-    MessageCfg(id='026547', author=GERALD_BARTON, recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
-    MessageCfg(id='029969', author=GWENDOLYN_BECK, attribution_reason='Signature'),
-    MessageCfg(id='029968', author=GWENDOLYN_BECK, attribution_reason='Signature', duplicate_ids=['031120']),
-    MessageCfg(id='029970', author=GWENDOLYN_BECK),
-    MessageCfg(id='029960', author=GWENDOLYN_BECK, attribution_reason='Reply'),
-    MessageCfg(id='029959', author=GWENDOLYN_BECK, attribution_reason='"Longevity & Aging"'),
-    MessageCfg(id='033360', author=HENRY_HOLT, attribution_reason='in signature'),  # Henry Holt is a company not a person
-    MessageCfg(id='033384', author=JACK_GOLDBERGER, attribution_reason='Might be Paul Prosperi?'),
-    MessageCfg(id='026024', author=JEAN_HUGUEN, attribution_reason='Signature'),
-    MessageCfg(id='021823', author=JEAN_LUC_BRUNEL, attribution_reason='Reply'),
-    MessageCfg(id='022949', author=JEFFREY_EPSTEIN),
-    MessageCfg(id='031624', author=JEFFREY_EPSTEIN),
-    MessageCfg(id='031996', author=JEFFREY_EPSTEIN, recipients=[CHRISTINA_GALBRAITH], attribution_reason='bounced', duplicate_ids=['031442']),
-    MessageCfg(id='025041', author=JEFFREY_EPSTEIN, recipients=[LARRY_SUMMERS], duplicate_ids=['028675']),  # Bad OCR
-    MessageCfg(
-        id='029692',
+    EmailCfg(id='026290', author=DAVID_SCHOEN, attribution_reason='Signature'),
+    EmailCfg(id='031339', author=DAVID_SCHOEN, attribution_reason='Signature'),
+    EmailCfg(id='031492', author=DAVID_SCHOEN, attribution_reason='Signature'),
+    EmailCfg(id='031560', author=DAVID_SCHOEN, attribution_reason='Signature'),
+    EmailCfg(id='026287', author=DAVID_SCHOEN, attribution_reason='Signature'),
+    EmailCfg(id='033419', author=DAVID_SCHOEN, attribution_reason='Signature'),
+    EmailCfg(id='031460', author=EDWARD_JAY_EPSTEIN),
+    EmailCfg(id='030414', author=FAITH_KATES, duplicate_ids=['030578'], dupe_type='redacted'),
+    EmailCfg(id='031135', author=FAITH_KATES, duplicate_ids=['030634'], dupe_type='redacted'),
+    EmailCfg(id='026547', author=GERALD_BARTON, recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
+    EmailCfg(id='029969', author=GWENDOLYN_BECK, attribution_reason='Signature'),
+    EmailCfg(id='029968', author=GWENDOLYN_BECK, attribution_reason='Signature', duplicate_ids=['031120']),
+    EmailCfg(id='029970', author=GWENDOLYN_BECK),
+    EmailCfg(id='029960', author=GWENDOLYN_BECK, attribution_reason='Reply'),
+    EmailCfg(id='029959', author=GWENDOLYN_BECK, attribution_reason='"Longevity & Aging"'),
+    EmailCfg(id='033360', author=HENRY_HOLT, attribution_reason='in signature'),  # Henry Holt is a company not a person
+    EmailCfg(id='033384', author=JACK_GOLDBERGER, attribution_reason='Might be Paul Prosperi?', is_attribution_uncertain=True),
+    EmailCfg(id='026024', author=JEAN_HUGUEN, attribution_reason='Signature'),
+    EmailCfg(id='021823', author=JEAN_LUC_BRUNEL, attribution_reason='Reply'),
+    EmailCfg(id='022949', author=JEFFREY_EPSTEIN),
+    EmailCfg(id='031624', author=JEFFREY_EPSTEIN),
+    EmailCfg(id='031996', author=JEFFREY_EPSTEIN, recipients=[CHRISTINA_GALBRAITH], attribution_reason='bounced', duplicate_ids=['031442']),
+    EmailCfg(id='025041', author=JEFFREY_EPSTEIN, recipients=[LARRY_SUMMERS], duplicate_ids=['028675']),  # Bad OCR
+    EmailCfg(
+        id='029692',  # TODO: this file's header is jankily prettified
         author=JEFFREY_EPSTEIN,
         is_fwded_article=True,  # Bad OCR, WaPo article
         recipients=[LARRY_SUMMERS],
         duplicate_ids=['029779'],
     ),
-    MessageCfg(id='018726', author=JEFFREY_EPSTEIN, timestamp=parse('2018-06-08 08:36:00')),
-    MessageCfg(id='032283', author=JEFFREY_EPSTEIN, timestamp=parse('2016-09-14 08:04:00')),
-    MessageCfg(id='026943', author=JEFFREY_EPSTEIN, timestamp=parse('2019-05-22 05:47:00')),
-    MessageCfg(id='023208', author=JEFFREY_EPSTEIN, recipients=[BRAD_WECHSLER, MELANIE_SPINELLA], duplicate_ids=['023291']),
-    MessageCfg(
+    EmailCfg(id='018726', author=JEFFREY_EPSTEIN, timestamp=parse('2018-06-08 08:36:00')),
+    EmailCfg(id='032283', author=JEFFREY_EPSTEIN, timestamp=parse('2016-09-14 08:04:00')),
+    EmailCfg(id='026943', author=JEFFREY_EPSTEIN, timestamp=parse('2019-05-22 05:47:00')),
+    EmailCfg(id='023208', author=JEFFREY_EPSTEIN, recipients=[BRAD_WECHSLER, MELANIE_SPINELLA], duplicate_ids=['023291']),
+    EmailCfg(
         id='032214',
         author=JEFFREY_EPSTEIN,
         actual_text='Agreed',
         recipients=[MIROSLAV_LAJCAK],
         attribution_reason='Quoted reply has signature',
     ),
-    MessageCfg(id='029582', author=JEFFREY_EPSTEIN, recipients=[RENATA_BOLOTOVA], attribution_reason=BOLOTOVA_REASON),
-    MessageCfg(id='030997', author=JEFFREY_EPSTEIN, actual_text='call back'),
-    MessageCfg(id='028770', author=JEFFREY_EPSTEIN, actual_text='call me now'),
-    MessageCfg(id='031826', author=JEFFREY_EPSTEIN, actual_text='I have'),
-    MessageCfg(id='030768', author=JEFFREY_EPSTEIN, actual_text='ok'),
-    MessageCfg(id='022938', author=JEFFREY_EPSTEIN, actual_text='what do you suggest?'),  # TODO: this email's header rewrite sucks
-    MessageCfg(id='031791', author=JESSICA_CADWELL),
-    MessageCfg(id='028851', author=JOI_ITO, recipients=[JEFFREY_EPSTEIN], timestamp=parse('2014-04-27 06:00:00')),
-    MessageCfg(
+    EmailCfg(id='029582', author=JEFFREY_EPSTEIN, recipients=[RENATA_BOLOTOVA], attribution_reason=BOLOTOVA_REASON),
+    EmailCfg(id='030997', author=JEFFREY_EPSTEIN, actual_text='call back'),
+    EmailCfg(id='028770', author=JEFFREY_EPSTEIN, actual_text='call me now'),
+    EmailCfg(id='031826', author=JEFFREY_EPSTEIN, actual_text='I have'),
+    EmailCfg(id='030768', author=JEFFREY_EPSTEIN, actual_text='ok'),
+    EmailCfg(id='022938', author=JEFFREY_EPSTEIN, actual_text='what do you suggest?'),  # TODO: this email's header rewrite sucks
+    EmailCfg(id='031791', author=JESSICA_CADWELL),
+    EmailCfg(id='028851', author=JOI_ITO, recipients=[JEFFREY_EPSTEIN], timestamp=parse('2014-04-27 06:00:00')),
+    EmailCfg(
         id='028849',
         author=JOI_ITO,
         recipients=[JEFFREY_EPSTEIN],
         timestamp=parse('2014-04-27 06:30:00'),
         attribution_reason='Conversation with Joi Ito',
     ),
-    MessageCfg(id='016692', author=JOHN_PAGE),
-    MessageCfg(id='016693', author=JOHN_PAGE),
-    MessageCfg(id='028507', author=JONATHAN_FARKAS),
-    MessageCfg(id='033282', author=JONATHAN_FARKAS, duplicate_ids=['033484']),
-    MessageCfg(id='033582', author=JONATHAN_FARKAS, attribution_reason='Reply', duplicate_ids=['032389']),
-    MessageCfg(id='033203', author=JONATHAN_FARKAS, attribution_reason='Reply', duplicate_ids=['033581']),
-    MessageCfg(id='032052', author=JONATHAN_FARKAS, attribution_reason='Reply', duplicate_ids=['031732']),
-    MessageCfg(id='033490', author=JONATHAN_FARKAS, attribution_reason='Signature', duplicate_ids=['032531']),
-    MessageCfg(id='026652', author=KATHRYN_RUEMMLER),  # Bad OCR
-    MessageCfg(id='032224', author=KATHRYN_RUEMMLER, recipients=[JEFFREY_EPSTEIN], attribution_reason='Reply'),
-    MessageCfg(id='032386', author=KATHRYN_RUEMMLER, attribution_reason=KATHY_REASON, is_attribution_uncertain=True),
-    MessageCfg(id='032727', author=KATHRYN_RUEMMLER, attribution_reason=KATHY_REASON, is_attribution_uncertain=True),
-    MessageCfg(id='030478', author=LANDON_THOMAS),
-    MessageCfg(id='029013', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),
-    MessageCfg(id='032206', author=LAWRENCE_KRAUSS),  # More of a text convo?
-    MessageCfg(id='032208', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
-    MessageCfg(id='032209', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
-    MessageCfg(id='029196', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN], actual_text='Talk in 40?'),  # TODO: this email's header rewrite sucks
-    MessageCfg(id='033593', author=LAWRANCE_VISOSKI, attribution_reason='Signature'),
-    MessageCfg(id='033370', author=LAWRANCE_VISOSKI, attribution_reason=LARRY_REASON),
-    MessageCfg(id='033495', author=LAWRANCE_VISOSKI, attribution_reason=LARRY_REASON),
-    MessageCfg(id='033487', author=LAWRANCE_VISOSKI, recipients=[JEFFREY_EPSTEIN]),
-    MessageCfg(
+    EmailCfg(id='016692', author=JOHN_PAGE),
+    EmailCfg(id='016693', author=JOHN_PAGE),
+    EmailCfg(id='028507', author=JONATHAN_FARKAS),
+    EmailCfg(id='033282', author=JONATHAN_FARKAS, duplicate_ids=['033484']),
+    EmailCfg(id='033582', author=JONATHAN_FARKAS, attribution_reason='Reply', duplicate_ids=['032389']),
+    EmailCfg(id='033203', author=JONATHAN_FARKAS, attribution_reason='Reply', duplicate_ids=['033581']),
+    EmailCfg(id='032052', author=JONATHAN_FARKAS, attribution_reason='Reply', duplicate_ids=['031732']),
+    EmailCfg(id='033490', author=JONATHAN_FARKAS, attribution_reason='Signature', duplicate_ids=['032531']),
+    EmailCfg(id='026652', author=KATHRYN_RUEMMLER),  # Bad OCR
+    EmailCfg(id='032224', author=KATHRYN_RUEMMLER, recipients=[JEFFREY_EPSTEIN], attribution_reason='Reply'),
+    EmailCfg(id='032386', author=KATHRYN_RUEMMLER, attribution_reason=KATHY_REASON, is_attribution_uncertain=True),
+    EmailCfg(id='032727', author=KATHRYN_RUEMMLER, attribution_reason=KATHY_REASON, is_attribution_uncertain=True),
+    EmailCfg(id='030478', author=LANDON_THOMAS),
+    EmailCfg(id='029013', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),
+    EmailCfg(id='032206', author=LAWRENCE_KRAUSS),  # More of a text convo?
+    EmailCfg(id='032208', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
+    EmailCfg(id='032209', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
+    EmailCfg(id='029196', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN], actual_text='Talk in 40?'),  # TODO: this email's header rewrite sucks
+    EmailCfg(id='033593', author=LAWRANCE_VISOSKI, attribution_reason='Signature'),
+    EmailCfg(id='033370', author=LAWRANCE_VISOSKI, attribution_reason=LARRY_REASON),
+    EmailCfg(id='033495', author=LAWRANCE_VISOSKI, attribution_reason=LARRY_REASON),
+    EmailCfg(id='033487', author=LAWRANCE_VISOSKI, recipients=[JEFFREY_EPSTEIN]),
+    EmailCfg(
         id='029977',
         author=LAWRANCE_VISOSKI,
         recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, LESLEY_GROFF, RICHARD_KAHN] + FLIGHT_IN_2012_PEOPLE,
         attribution_reason=LARRY_REASON,
         duplicate_ids=['031129'],
     ),
-    MessageCfg(id='027046', author=LAWRANCE_VISOSKI, duplicate_ids=['028789']),
-    MessageCfg(id='033488', author=LAWRANCE_VISOSKI, duplicate_ids=['033154']),
-    MessageCfg(id='033309', author=LINDA_STONE, attribution_reason='"Co-authored with iPhone autocorrect"'),
-    MessageCfg(id='017581', author='Lisa Randall'),
-    MessageCfg(id='026609', author='Mark Green', attribution_reason='Actually a fwd'),
-    MessageCfg(id='030472', author=MARTIN_WEINBERG, attribution_reason='Maybe. in reply', is_attribution_uncertain=True),
-    MessageCfg(id='030235', author=MELANIE_WALKER, attribution_reason='In fwd'),
-    MessageCfg(id='032343', author=MELANIE_WALKER, attribution_reason='Name seen in later reply 032346'),
-    MessageCfg(id='032212', author=MIROSLAV_LAJCAK),
-    MessageCfg(id='022193', author=NADIA_MARCINKO),
-    MessageCfg(id='021814', author=NADIA_MARCINKO),
-    MessageCfg(id='021808', author=NADIA_MARCINKO),
-    MessageCfg(id='022190', author=NADIA_MARCINKO),
-    MessageCfg(id='021818', author=NADIA_MARCINKO),
-    MessageCfg(id='022197', author=NADIA_MARCINKO),
-    MessageCfg(id='022214', author=NADIA_MARCINKO, attribution_reason='Reply header'),
-    MessageCfg(id='021811', author=NADIA_MARCINKO, attribution_reason='Signature and email address in the message'),
-    MessageCfg(id='028487', author=NORMAN_D_RAU, attribution_reason='Fwded from "to" address', duplicate_ids=['026612']),
-    MessageCfg(id='024923', author=PAUL_KRASSNER, recipients=KRASSNER_024923_RECIPIENTS, duplicate_ids=['031973']),
-    MessageCfg(id='032457', author=PAUL_KRASSNER),
-    MessageCfg(id='029981', author=PAULA, attribution_reason='Name in reply + opera reference (Fisher now works in opera)'),
-    MessageCfg(id='030482', author=PAULA, attribution_reason=PAULA_REASON),
-    MessageCfg(id='033383', author=PAUL_PROSPERI, attribution_reason='Reply'),
-    MessageCfg(
+    EmailCfg(id='027046', author=LAWRANCE_VISOSKI, duplicate_ids=['028789']),
+    EmailCfg(id='033488', author=LAWRANCE_VISOSKI, duplicate_ids=['033154']),
+    EmailCfg(id='033309', author=LINDA_STONE, attribution_reason='"Co-authored with iPhone autocorrect"'),
+    EmailCfg(id='017581', author='Lisa Randall'),
+    EmailCfg(id='026609', author='Mark Green', attribution_reason='Actually a fwd'),
+    EmailCfg(id='030472', author=MARTIN_WEINBERG, attribution_reason='Maybe. in reply', is_attribution_uncertain=True),
+    EmailCfg(id='030235', author=MELANIE_WALKER, attribution_reason='In fwd'),
+    EmailCfg(id='032343', author=MELANIE_WALKER, attribution_reason='Name seen in later reply 032346'),
+    EmailCfg(id='032212', author=MIROSLAV_LAJCAK),
+    EmailCfg(id='022193', author=NADIA_MARCINKO),
+    EmailCfg(id='021814', author=NADIA_MARCINKO),
+    EmailCfg(id='021808', author=NADIA_MARCINKO),
+    EmailCfg(id='022190', author=NADIA_MARCINKO),
+    EmailCfg(id='021818', author=NADIA_MARCINKO),
+    EmailCfg(id='022197', author=NADIA_MARCINKO),
+    EmailCfg(id='022214', author=NADIA_MARCINKO, attribution_reason='Reply header'),
+    EmailCfg(id='021811', author=NADIA_MARCINKO, attribution_reason='Signature and email address in the message'),
+    EmailCfg(id='028487', author=NORMAN_D_RAU, attribution_reason='Fwded from "to" address', duplicate_ids=['026612']),
+    EmailCfg(id='024923', author=PAUL_KRASSNER, recipients=KRASSNER_024923_RECIPIENTS, duplicate_ids=['031973']),
+    EmailCfg(id='032457', author=PAUL_KRASSNER),
+    EmailCfg(id='029981', author=PAULA, attribution_reason='Name in reply + opera reference (Fisher now works in opera)'),
+    EmailCfg(id='030482', author=PAULA, attribution_reason=PAULA_REASON),
+    EmailCfg(id='033383', author=PAUL_PROSPERI, attribution_reason='Reply'),
+    EmailCfg(
         id='033561',
         author=PAUL_PROSPERI,
         attribution_reason='Fwded mail sent to Prosperi. Might be Subotnick Stuart?',
         duplicate_ids=['033157'],
     ),
-    MessageCfg(id='031694', author=PEGGY_SIEGAL),
-    MessageCfg(id='032219', author=PEGGY_SIEGAL, attribution_reason='Signed "Peggy"'),
-    MessageCfg(id='029020', author=RENATA_BOLOTOVA, attribution_reason='Signature'),
-    MessageCfg(id='029605', author=RENATA_BOLOTOVA, attribution_reason=BOLOTOVA_REASON),
-    MessageCfg(id='029606', author=RENATA_BOLOTOVA, attribution_reason=BOLOTOVA_REASON),
-    MessageCfg(id='029604', author=RENATA_BOLOTOVA, attribution_reason='Continued in 239606 etc'),
-    MessageCfg(
+    EmailCfg(id='031694', author=PEGGY_SIEGAL),
+    EmailCfg(id='032219', author=PEGGY_SIEGAL, attribution_reason='Signed "Peggy"'),
+    EmailCfg(id='029020', author=RENATA_BOLOTOVA, attribution_reason='Signature'),
+    EmailCfg(id='029605', author=RENATA_BOLOTOVA, attribution_reason=BOLOTOVA_REASON),
+    EmailCfg(id='029606', author=RENATA_BOLOTOVA, attribution_reason=BOLOTOVA_REASON),
+    EmailCfg(id='029604', author=RENATA_BOLOTOVA, attribution_reason='Continued in 239606 etc'),
+    EmailCfg(
         id='033584',
         author=ROBERT_TRIVERS,
         recipients=[JEFFREY_EPSTEIN],
         attribution_reason='Refs paper by Trivers',
         duplicate_ids=['033169'],
     ),
-    MessageCfg(
+    EmailCfg(
         id='026320',
         author=SEAN_BANNON,
         attribution_reason="From protonmail, Bannon wrote 'just sent from my protonmail' in 027067",
     ),
-    MessageCfg(id='029003', author=SOON_YI_PREVIN, attribution_reason="\"Sent from Soon-Yi's iPhone\""),
-    MessageCfg(id='029005', author=SOON_YI_PREVIN, attribution_reason="\"Sent from Soon-Yi's iPhone\""),
-    MessageCfg(id='029007', author=SOON_YI_PREVIN, attribution_reason="\"Sent from Soon-Yi's iPhone\""),
-    MessageCfg(id='029010', author=SOON_YI_PREVIN, attribution_reason="\"Sent from Soon-Yi's iPhone\""),
-    MessageCfg(id='032296', author=SOON_YI_PREVIN, attribution_reason="\"Sent from Soon-Yi's iPhone\""),
-    MessageCfg(
+    EmailCfg(id='029003', author=SOON_YI_PREVIN, attribution_reason="\"Sent from Soon-Yi's iPhone\""),
+    EmailCfg(id='029005', author=SOON_YI_PREVIN, attribution_reason="\"Sent from Soon-Yi's iPhone\""),
+    EmailCfg(id='029007', author=SOON_YI_PREVIN, attribution_reason="\"Sent from Soon-Yi's iPhone\""),
+    EmailCfg(id='029010', author=SOON_YI_PREVIN, attribution_reason="\"Sent from Soon-Yi's iPhone\""),
+    EmailCfg(id='032296', author=SOON_YI_PREVIN, attribution_reason="\"Sent from Soon-Yi's iPhone\""),
+    EmailCfg(
         id='019109',
         author=STEVEN_HOFFENBERG,
         recipients=["Players2"],
         timestamp=parse('2016-08-11 09:36:01'),
         attribution_reason='Actually a fwd by Charles Michael but Hoffenberg email more interesting',
     ),
-    MessageCfg(
+    EmailCfg(
         id='026620',
         author=TERRY_KAFKA,
         recipients=[JEFFREY_EPSTEIN, MARK_EPSTEIN, MICHAEL_BUCHHOLTZ] + IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS,
         attribution_reason='"Respectfully, terry"',
         duplicate_ids=['028482'],
     ),
-    MessageCfg(id='029992', author=TERRY_KAFKA, attribution_reason='Quoted reply'),
-    MessageCfg(id='029985', author=TERRY_KAFKA, attribution_reason='Quoted reply in 029992'),
-    MessageCfg(id='020666', author=TERRY_KAFKA, attribution_reason="Ends with 'Terry'"),
-    MessageCfg(id='026014', author=ZUBAIR_KHAN, recipients=[JEFFREY_EPSTEIN], timestamp=parse('2016-11-04 17:46:00')),
-    MessageCfg(id='030626', recipients=[ALAN_DERSHOWITZ, DARREN_INDYKE, KATHRYN_RUEMMLER, KEN_STARR, MARTIN_WEINBERG]),
-    MessageCfg(id='029835', recipients=[ALAN_DERSHOWITZ, JACK_GOLDBERGER, JEFFREY_EPSTEIN], duplicate_ids=['028968']),
-    MessageCfg(id='027063', recipients=[ANTHONY_BARRETT]),
-    MessageCfg(id='030764', recipients=[ARIANE_DE_ROTHSCHILD], attribution_reason='Reply'),
-    MessageCfg(id='026431', recipients=[ARIANE_DE_ROTHSCHILD], attribution_reason='Reply'),
-    MessageCfg(id='032876', recipients=[CECILIA_STEEN]),
-    MessageCfg(id='033583', recipients=[DARREN_INDYKE, JACK_GOLDBERGER]),  # Bad OCR
-    MessageCfg(id='033144', recipients=[DARREN_INDYKE, RICHARD_KAHN]),
-    MessageCfg(id='026466', recipients=[DIANE_ZIMAN], attribution_reason='Quoted reply'),
-    MessageCfg(id='031607', recipients=[EDWARD_JAY_EPSTEIN]),
-    MessageCfg(
+    EmailCfg(id='029992', author=TERRY_KAFKA, attribution_reason='Quoted reply'),
+    EmailCfg(id='029985', author=TERRY_KAFKA, attribution_reason='Quoted reply in 029992'),
+    EmailCfg(id='020666', author=TERRY_KAFKA, attribution_reason="Ends with 'Terry'"),
+    EmailCfg(id='026014', author=ZUBAIR_KHAN, recipients=[JEFFREY_EPSTEIN], timestamp=parse('2016-11-04 17:46:00')),
+    EmailCfg(id='030626', recipients=[ALAN_DERSHOWITZ, DARREN_INDYKE, KATHRYN_RUEMMLER, KEN_STARR, MARTIN_WEINBERG]),
+    EmailCfg(id='029835', recipients=[ALAN_DERSHOWITZ, JACK_GOLDBERGER, JEFFREY_EPSTEIN], duplicate_ids=['028968']),
+    EmailCfg(id='027063', recipients=[ANTHONY_BARRETT]),
+    EmailCfg(id='030764', recipients=[ARIANE_DE_ROTHSCHILD], attribution_reason='Reply'),
+    EmailCfg(id='026431', recipients=[ARIANE_DE_ROTHSCHILD], attribution_reason='Reply'),
+    EmailCfg(id='032876', recipients=[CECILIA_STEEN]),
+    EmailCfg(id='033583', recipients=[DARREN_INDYKE, JACK_GOLDBERGER]),  # Bad OCR
+    EmailCfg(id='033144', recipients=[DARREN_INDYKE, RICHARD_KAHN]),
+    EmailCfg(id='026466', recipients=[DIANE_ZIMAN], attribution_reason='Quoted reply'),
+    EmailCfg(id='031607', recipients=[EDWARD_JAY_EPSTEIN]),
+    EmailCfg(
         id='030525',
         recipients=[FAITH_KATES],
         attribution_reason='Same as unredacted 030414, same legal signature',
         duplicate_ids=['030581'],
     ),
-    MessageCfg(
+    EmailCfg(
         id='030475',
         recipients=[FAITH_KATES],
         attribution_reason='Next Management LLC legal signature',
         duplicate_ids=['030575'],
         dupe_type='redacted'
     ),
-    MessageCfg(id='030999', recipients=[JACK_GOLDBERGER, ROBERT_D_CRITTON]),
-    MessageCfg(id='026426', recipients=[JEAN_HUGUEN], attribution_reason='Reply'),
-    MessageCfg(id='022202', recipients=[JEAN_LUC_BRUNEL], attribution_reason='Follow up / reply', duplicate_ids=['029975']),
-    MessageCfg(id='022187', recipients=[JEFFREY_EPSTEIN]),
-    MessageCfg(id='031489', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
-    MessageCfg(id='032210', recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
-    MessageCfg(id='030347', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
-    MessageCfg(id='030367', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
-    MessageCfg(id='033274', recipients=[JEFFREY_EPSTEIN]),  # this is a note sent to self
-    MessageCfg(id='032780', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
-    MessageCfg(id='025233', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
-    MessageCfg(id='022344', recipients=[JEFFREY_EPSTEIN], duplicate_ids=['028529']),  # Bad OCR
-    MessageCfg(id='029324', recipients=[JEFFREY_EPSTEIN, "Jojo Fontanilla", "Lyn Fontanilla"]),
-    MessageCfg(id='033575', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN], duplicate_ids=['012898']),
-    MessageCfg(id='023067', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN, TONJA_HADDAD_COLEMAN]),  # Bad OCR
-    MessageCfg(id='033228', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, FRED_HADDAD]),  # Bad OCR
-    MessageCfg(id='025790', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, JACK_GOLDBERGER], duplicate_ids=['031994']),  # Bad OCR
-    MessageCfg(
+    EmailCfg(id='030999', recipients=[JACK_GOLDBERGER, ROBERT_D_CRITTON]),
+    EmailCfg(id='026426', recipients=[JEAN_HUGUEN], attribution_reason='Reply'),
+    EmailCfg(id='022202', recipients=[JEAN_LUC_BRUNEL], attribution_reason='Follow up / reply', duplicate_ids=['029975']),
+    EmailCfg(id='022187', recipients=[JEFFREY_EPSTEIN]),
+    EmailCfg(id='031489', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
+    EmailCfg(id='032210', recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
+    EmailCfg(id='030347', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
+    EmailCfg(id='030367', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
+    EmailCfg(id='033274', recipients=[JEFFREY_EPSTEIN]),  # this is a note sent to self
+    EmailCfg(id='032780', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
+    EmailCfg(id='025233', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
+    EmailCfg(id='022344', recipients=[JEFFREY_EPSTEIN], duplicate_ids=['028529']),  # Bad OCR
+    EmailCfg(id='029324', recipients=[JEFFREY_EPSTEIN, "Jojo Fontanilla", "Lyn Fontanilla"]),
+    EmailCfg(id='033575', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN], duplicate_ids=['012898']),
+    EmailCfg(id='023067', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN, TONJA_HADDAD_COLEMAN]),  # Bad OCR
+    EmailCfg(id='033228', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, FRED_HADDAD]),  # Bad OCR
+    EmailCfg(id='025790', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, JACK_GOLDBERGER], duplicate_ids=['031994']),  # Bad OCR
+    EmailCfg(
         id='031384',
         actual_text='',
         recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, JACK_GOLDBERGER, MARTIN_WEINBERG, SCOTT_J_LINK],
     ),
-    MessageCfg(id='033512', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, JACKIE_PERCZEK, MARTIN_WEINBERG], duplicate_ids=['033361']),
-    MessageCfg(id='032063', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, REID_WEINGARTEN]),
-    MessageCfg(id='033486', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, RICHARD_KAHN], duplicate_ids=['033156']),  # Bad OCR
-    MessageCfg(id='029154', recipients=[JEFFREY_EPSTEIN, DAVID_HAIG]),  # Bad OCR
-    MessageCfg(id='029498', recipients=[JEFFREY_EPSTEIN, DAVID_HAIG, GORDON_GETTY, "Norman Finkelstein"]),  # Bad OCR
-    MessageCfg(id='029889', recipients=[JEFFREY_EPSTEIN, "Connie Zaguirre", JACK_GOLDBERGER, ROBERT_D_CRITTON]),  # Bad OCR
-    MessageCfg(id='028931', recipients=[JEFFREY_EPSTEIN, LAWRENCE_KRAUSS]),  # Bad OCR
-    MessageCfg(id='019407', recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK]),  # Bad OCR
-    MessageCfg(id='031980', recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK], duplicate_ids=['019409']),  # Bad OCR
-    MessageCfg(id='029163', recipients=[JEFFREY_EPSTEIN, ROBERT_TRIVERS]),   # Bad OCR
-    MessageCfg(id='026228', recipients=[JEFFREY_EPSTEIN, STEVEN_PFEIFFER]),  # Bad OCR
-    MessageCfg(id='030299', recipients=[JESSICA_CADWELL, ROBERT_D_CRITTON], duplicate_ids=['021794']),  # Bad OCR
-    MessageCfg(id='033456', recipients=["Joel"], attribution_reason='Reply'),
-    MessageCfg(id='033460', recipients=["Joel"], attribution_reason='Reply'),
-    MessageCfg(
+    EmailCfg(id='033512', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, JACKIE_PERCZEK, MARTIN_WEINBERG], duplicate_ids=['033361']),
+    EmailCfg(id='032063', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, REID_WEINGARTEN]),
+    EmailCfg(id='033486', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, RICHARD_KAHN], duplicate_ids=['033156']),  # Bad OCR
+    EmailCfg(id='029154', recipients=[JEFFREY_EPSTEIN, DAVID_HAIG]),  # Bad OCR
+    EmailCfg(id='029498', recipients=[JEFFREY_EPSTEIN, DAVID_HAIG, GORDON_GETTY, "Norman Finkelstein"]),  # Bad OCR
+    EmailCfg(id='029889', recipients=[JEFFREY_EPSTEIN, "Connie Zaguirre", JACK_GOLDBERGER, ROBERT_D_CRITTON]),  # Bad OCR
+    EmailCfg(id='028931', recipients=[JEFFREY_EPSTEIN, LAWRENCE_KRAUSS]),  # Bad OCR
+    EmailCfg(id='019407', recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK]),  # Bad OCR
+    EmailCfg(id='031980', recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK], duplicate_ids=['019409']),  # Bad OCR
+    EmailCfg(id='029163', recipients=[JEFFREY_EPSTEIN, ROBERT_TRIVERS]),   # Bad OCR
+    EmailCfg(id='026228', recipients=[JEFFREY_EPSTEIN, STEVEN_PFEIFFER]),  # Bad OCR
+    EmailCfg(id='030299', recipients=[JESSICA_CADWELL, ROBERT_D_CRITTON], duplicate_ids=['021794']),  # Bad OCR
+    EmailCfg(id='033456', recipients=["Joel"], attribution_reason='Reply'),
+    EmailCfg(id='033460', recipients=["Joel"], attribution_reason='Reply'),
+    EmailCfg(
         id='021090',
         is_fwded_article=True,
         recipients=[JONATHAN_FARKAS],
         attribution_reason='Reply to a message signed "jonathan" same as other Farkas emails',
     ),
-    MessageCfg(
+    EmailCfg(
         id='033073',
         recipients=[KATHRYN_RUEMMLER],
         attribution_reason='to "Kathy" about dems, sent from iPad',
         is_attribution_uncertain=True,  # It's actually Kathy R. as t eh recipient that's the uncertain part
     ),
-    MessageCfg(
+    EmailCfg(
         id='032939',
         recipients=[KATHRYN_RUEMMLER],
         attribution_reason='to "Kathy" about dems, sent from iPad',
         is_attribution_uncertain=True,  # It's actually Kathy R. as t eh recipient that's the uncertain part
     ),
-    MessageCfg(id='031428', recipients=[KEN_STARR, LILLY_SANCHEZ, MARTIN_WEINBERG, REID_WEINGARTEN], duplicate_ids=['031388']), # Bad OCR
-    MessageCfg(id='025329', recipients=KRASSNER_MANSON_RECIPIENTS),
-    MessageCfg(id='033568', recipients=KRASSNER_033568_RECIPIENTS),
-    MessageCfg(id='030522', recipients=[LANDON_THOMAS], is_fwded_article=True),  # Vicky Ward article
-    MessageCfg(id='031413', recipients=[LANDON_THOMAS]),
-    MessageCfg(id='033591', recipients=[LAWRANCE_VISOSKI], attribution_reason='Reply signature', duplicate_ids=['033591']),
-    MessageCfg(id='027097', recipients=[LAWRANCE_VISOSKI], attribution_reason='Reply signature', duplicate_ids=['028787']),
-    MessageCfg(id='033466', recipients=[LAWRANCE_VISOSKI], attribution_reason='Reply signature'),
-    MessageCfg(id='022250', recipients=[LESLEY_GROFF], attribution_reason='Reply'),
-    MessageCfg(id='030242', recipients=[MARIANA_IDZKOWSKA], duplicate_ids=['032048'], dupe_type='redacted'),
-    MessageCfg(id='030368', recipients=[MELANIE_SPINELLA], attribution_reason='Actually a self fwd from jeffrey to jeffrey'),
-    MessageCfg(id='030369', recipients=[MELANIE_SPINELLA], attribution_reason='Actually a self fwd from jeffrey to jeffrey'),
-    MessageCfg(id='030371', recipients=[MELANIE_SPINELLA], attribution_reason='Actually a self fwd from jeffrey to jeffrey'),
-    MessageCfg(id='022258', recipients=[NADIA_MARCINKO], attribution_reason='Reply header'),
-    MessageCfg(id='033097', recipients=[PAUL_BARRETT, RICHARD_KAHN]),  # Bad OCR
-    MessageCfg(id='030506', recipients=[PAULA], attribution_reason=PAULA_REASON, is_attribution_uncertain=True),
-    MessageCfg(id='030507', recipients=[PAULA], attribution_reason=PAULA_REASON, is_attribution_uncertain=True),
-    MessageCfg(id='030508', recipients=[PAULA], attribution_reason=PAULA_REASON, is_attribution_uncertain=True),
-    MessageCfg(id='030509', recipients=[PAULA], attribution_reason=PAULA_REASON, is_attribution_uncertain=True),
-    MessageCfg(id='030096', recipients=[PETER_MANDELSON]),
-    MessageCfg(id='032951', recipients=[RAAFAT_ALSABBAGH, None], attribution_reason='Redacted'),
-    MessageCfg(id='029581', recipients=[RENATA_BOLOTOVA], attribution_reason=BOLOTOVA_REASON),
-    MessageCfg(id='030384', recipients=[RICHARD_KAHN, "Alan Dlugash"]),
-    MessageCfg(id='019334', recipients=[STEVE_BANNON]),
-    MessageCfg(id='021106', recipients=[STEVE_BANNON], attribution_reason='Reply'),
-    MessageCfg(id='033050', actual_text='schwartman'),
-    MessageCfg(id='026298', is_fwded_article=True, duplicate_ids=['026499']),  # Written by someone else?
-    MessageCfg(id='026755', is_fwded_article=True),  # HuffPo
-    MessageCfg(id='030528', is_fwded_article=True),  # Vicky Ward article
-    MessageCfg(id='018197', is_fwded_article=True, duplicate_ids=['028648']),  # Ray Takeyh article fwd
-    MessageCfg(id='028728', is_fwded_article=True, duplicate_ids=['027102']),  # WSJ forward to Larry Summers
-    MessageCfg(id='028508', is_fwded_article=True),  # nanosatellites article
-    MessageCfg(id='028781', is_fwded_article=True, duplicate_ids=['013460']),  # Atlantic on Jim Yong Kim, Obama's World Bank Pick
-    MessageCfg(id='019845', is_fwded_article=True),  # Pro Publica article on Preet Bharara
-    MessageCfg(id='029021', is_fwded_article=True),  # article about bannon sent by Alain Forget
-    MessageCfg(id='031688', is_fwded_article=True),  # Bill Siegel fwd of email about hamas
-    MessageCfg(id='026551', is_fwded_article=True),  # Sultan bin Sulayem "Ayatollah between the sheets"
-    MessageCfg(id='031768', is_fwded_article=True),  # Sultan bin Sulayem 'Horseface'
-    MessageCfg(id='031569', is_fwded_article=True),  # Article by Kathryn Alexeeff fwded to Peter Thiel
-    MessageCfg(id='023627', is_fwded_article=True, description=MICHAEL_WOLFF_ARTICLE_HINT),
-    MessageCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
-    MessageCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
-    MessageCfg(id='028768', duplicate_ids=['026563'], dupe_type='redacted'),
-    MessageCfg(id='027056', duplicate_ids=['028762'], dupe_type='redacted'),
-    MessageCfg(id='032248', duplicate_ids=['032246'], dupe_type='redacted'),
-    MessageCfg(id='030628', duplicate_ids=['023065'], dupe_type='redacted'),
-    MessageCfg(id='017523', duplicate_ids=['031226'], dupe_type='redacted'),
-    MessageCfg(id='031099', duplicate_ids=['031008'], dupe_type='redacted'),
-    MessageCfg(id='033596', duplicate_ids=['033463'], dupe_type='redacted'),
-    MessageCfg(id='030624', duplicate_ids=['023018'], dupe_type='redacted'),
-    MessageCfg(id='030335', duplicate_ids=['030596'], dupe_type='redacted'),
-    MessageCfg(id='029841', duplicate_ids=['012711'], dupe_type='redacted'),
-    MessageCfg(id='033528', duplicate_ids=['033517']),
-    MessageCfg(id='032023', duplicate_ids=['032012']),
-    MessageCfg(id='019412', duplicate_ids=['028621']),
-    MessageCfg(id='027053', duplicate_ids=['028765']),
-    MessageCfg(id='027049', duplicate_ids=['028773']),
-    MessageCfg(id='033580', duplicate_ids=['033207']),
-    MessageCfg(id='028506', duplicate_ids=['025547']),
-    MessageCfg(id='028784', duplicate_ids=['026549']),
-    MessageCfg(id='033386', duplicate_ids=['033599']),
-    MessageCfg(id='023024', duplicate_ids=['030622']),
-    MessageCfg(id='030618', duplicate_ids=['023026']),
-    MessageCfg(id='028780', duplicate_ids=['026834']),
-    MessageCfg(id='028775', duplicate_ids=['026835']),
-    MessageCfg(id='033251', duplicate_ids=['033489']),
-    MessageCfg(id='031118', duplicate_ids=['019465']),
-    MessageCfg(id='031912', duplicate_ids=['032158']),
-    MessageCfg(id='030587', duplicate_ids=['030514']),
-    MessageCfg(id='029773', duplicate_ids=['012685']),
-    MessageCfg(id='029849', duplicate_ids=['033482']),
-    MessageCfg(id='033297', duplicate_ids=['033586']),
-    MessageCfg(id='031089', duplicate_ids=['018084']),
-    MessageCfg(id='031088', duplicate_ids=['030885']),
-    MessageCfg(id='030238', duplicate_ids=['031130']),
-    MessageCfg(id='030859', duplicate_ids=['031067']),
-    MessageCfg(id='031136', duplicate_ids=['028791']),
-    MessageCfg(id='030635', duplicate_ids=['031134']),
-    MessageCfg(id='028494', duplicate_ids=['026234']),
-    MessageCfg(id='030311', duplicate_ids=['021790']),
-    MessageCfg(id='033508', duplicate_ids=['029880']),
-    MessageCfg(id='030493', duplicate_ids=['030612']),
-    MessageCfg(id='032051', duplicate_ids=['031771']),
-    MessageCfg(id='031217', duplicate_ids=['021761']),
-    MessageCfg(id='031346', duplicate_ids=['031426']),
-    MessageCfg(id='031345', duplicate_ids=['031427']),
-    MessageCfg(id='031343', duplicate_ids=['031432']),
-    MessageCfg(id='031020', duplicate_ids=['031084']),
-    MessageCfg(id='033354', duplicate_ids=['033485']),
-    MessageCfg(id='031999', duplicate_ids=['021241']),
-    MessageCfg(id='030502', duplicate_ids=['030602']),
-    MessageCfg(id='030574', duplicate_ids=['030617']),
-    MessageCfg(id='031156', duplicate_ids=['025226']),
-    MessageCfg(id='031018', duplicate_ids=['031086']),
-    MessageCfg(id='031026', duplicate_ids=['031079']),
-    MessageCfg(id='032011', duplicate_ids=['031787']),
-    MessageCfg(id='030606', duplicate_ids=['030498']),
-    MessageCfg(id='032005', duplicate_ids=['021235']),
-    MessageCfg(id='028505', duplicate_ids=['026160']),
-    MessageCfg(id='031126', duplicate_ids=['030837']),
-    MessageCfg(id='029624', duplicate_ids=['029778']),
-    MessageCfg(id='031338', duplicate_ids=['031422']),
-    MessageCfg(id='033587', duplicate_ids=['033289']),
-    MessageCfg(id='032107', duplicate_ids=['012722']),
-    MessageCfg(id='030844', duplicate_ids=['031114']),
-    MessageCfg(id='031031', duplicate_ids=['031074']),
-    MessageCfg(id='027032', duplicate_ids=['028531']),
-    MessageCfg(id='026777', duplicate_ids=['028493']),
-    MessageCfg(id='029837', duplicate_ids=['029255']),
-    MessageCfg(id='031423', duplicate_ids=['025361']),
-    MessageCfg(id='029299', duplicate_ids=['033594']),
-    MessageCfg(id='030904', duplicate_ids=['031069']),
-    MessageCfg(id='030006', duplicate_ids=['031165']),
-    MessageCfg(id='025215', duplicate_ids=['031159']),
-    MessageCfg(id='031011', duplicate_ids=['031090']),
-    MessageCfg(id='032068', duplicate_ids=['018158']),
-    MessageCfg(id='031213', duplicate_ids=['031221']),
-    MessageCfg(id='016595', duplicate_ids=['016690']),
-    MessageCfg(id='029833', duplicate_ids=['028970']),
-    MessageCfg(id='029839', duplicate_ids=['028958']),
-    MessageCfg(id='029893', duplicate_ids=['033503']),
-    MessageCfg(id='025878', duplicate_ids=['028486']),
-    MessageCfg(id='032764', duplicate_ids=['033565']),
-    MessageCfg(id='026618', duplicate_ids=['028485']),
-    MessageCfg(id='030609', duplicate_ids=['030495']),
-    MessageCfg(id='029831', duplicate_ids=['028972']),
-    MessageCfg(id='021758', duplicate_ids=['030616']),
-    MessageCfg(id='033498', duplicate_ids=['029884']),
-    MessageCfg(id='028620', duplicate_ids=['027094']),
-    MessageCfg(id='032456', duplicate_ids=['033579']),
-    MessageCfg(id='030315', duplicate_ids=['030255']),
-    MessageCfg(id='031112', duplicate_ids=['030876']),
-    MessageCfg(id='030614', duplicate_ids=['030491']),
-    MessageCfg(id='033585', duplicate_ids=['032279']),
-    MessageCfg(id='031220', duplicate_ids=['031189']),
-    MessageCfg(id='032779', duplicate_ids=['033563']),
-    MessageCfg(id='033230', duplicate_ids=['033577']),
-    MessageCfg(id='032125', duplicate_ids=['023971']),
-    MessageCfg(id='031230', duplicate_ids=['031203']),
-    MessageCfg(id='028752', duplicate_ids=['026569']),
-    MessageCfg(id='031773', duplicate_ids=['032050']),
-    MessageCfg(id='021400', duplicate_ids=['031983']),
-    MessageCfg(id='026548', duplicate_ids=['033491']),
-    MessageCfg(id='029752', duplicate_ids=['023550']),
-    MessageCfg(id='030339', duplicate_ids=['030592']),
-    MessageCfg(id='032250', duplicate_ids=['033589']),
+    EmailCfg(id='031428', recipients=[KEN_STARR, LILLY_SANCHEZ, MARTIN_WEINBERG, REID_WEINGARTEN], duplicate_ids=['031388']), # Bad OCR
+    EmailCfg(id='025329', recipients=KRASSNER_MANSON_RECIPIENTS),
+    EmailCfg(id='033568', recipients=KRASSNER_033568_RECIPIENTS),
+    EmailCfg(id='030522', recipients=[LANDON_THOMAS], is_fwded_article=True),  # Vicky Ward article
+    EmailCfg(id='031413', recipients=[LANDON_THOMAS]),
+    EmailCfg(id='033591', recipients=[LAWRANCE_VISOSKI], attribution_reason='Reply signature', duplicate_ids=['033591']),
+    EmailCfg(id='027097', recipients=[LAWRANCE_VISOSKI], attribution_reason='Reply signature', duplicate_ids=['028787']),
+    EmailCfg(id='033466', recipients=[LAWRANCE_VISOSKI], attribution_reason='Reply signature'),
+    EmailCfg(id='022250', recipients=[LESLEY_GROFF], attribution_reason='Reply'),
+    EmailCfg(id='030242', recipients=[MARIANA_IDZKOWSKA], duplicate_ids=['032048'], dupe_type='redacted'),
+    EmailCfg(id='030368', recipients=[MELANIE_SPINELLA], attribution_reason='Actually a self fwd from jeffrey to jeffrey'),
+    EmailCfg(id='030369', recipients=[MELANIE_SPINELLA], attribution_reason='Actually a self fwd from jeffrey to jeffrey'),
+    EmailCfg(id='030371', recipients=[MELANIE_SPINELLA], attribution_reason='Actually a self fwd from jeffrey to jeffrey'),
+    EmailCfg(id='022258', recipients=[NADIA_MARCINKO], attribution_reason='Reply header'),
+    EmailCfg(id='033097', recipients=[PAUL_BARRETT, RICHARD_KAHN]),  # Bad OCR
+    EmailCfg(id='030506', recipients=[PAULA], attribution_reason=PAULA_REASON, is_attribution_uncertain=True),
+    EmailCfg(id='030507', recipients=[PAULA], attribution_reason=PAULA_REASON, is_attribution_uncertain=True),
+    EmailCfg(id='030508', recipients=[PAULA], attribution_reason=PAULA_REASON, is_attribution_uncertain=True),
+    EmailCfg(id='030509', recipients=[PAULA], attribution_reason=PAULA_REASON, is_attribution_uncertain=True),
+    EmailCfg(id='030096', recipients=[PETER_MANDELSON]),
+    EmailCfg(id='032951', recipients=[RAAFAT_ALSABBAGH, None], attribution_reason='Redacted'),
+    EmailCfg(id='029581', recipients=[RENATA_BOLOTOVA], attribution_reason=BOLOTOVA_REASON),
+    EmailCfg(id='030384', recipients=[RICHARD_KAHN, "Alan Dlugash"]),
+    EmailCfg(id='019334', recipients=[STEVE_BANNON]),
+    EmailCfg(id='021106', recipients=[STEVE_BANNON], attribution_reason='Reply'),
+    EmailCfg(id='033050', actual_text='schwartman'),
+    EmailCfg(id='026298', is_fwded_article=True, duplicate_ids=['026499']),  # Written by someone else?
+    EmailCfg(id='026755', is_fwded_article=True),  # HuffPo
+    EmailCfg(id='030528', is_fwded_article=True),  # Vicky Ward article
+    EmailCfg(id='018197', is_fwded_article=True, duplicate_ids=['028648']),  # Ray Takeyh article fwd
+    EmailCfg(id='028728', is_fwded_article=True, duplicate_ids=['027102']),  # WSJ forward to Larry Summers
+    EmailCfg(id='028508', is_fwded_article=True),  # nanosatellites article
+    EmailCfg(id='028781', is_fwded_article=True, duplicate_ids=['013460']),  # Atlantic on Jim Yong Kim, Obama's World Bank Pick
+    EmailCfg(id='019845', is_fwded_article=True),  # Pro Publica article on Preet Bharara
+    EmailCfg(id='029021', is_fwded_article=True),  # article about bannon sent by Alain Forget
+    EmailCfg(id='031688', is_fwded_article=True),  # Bill Siegel fwd of email about hamas
+    EmailCfg(id='026551', is_fwded_article=True),  # Sultan bin Sulayem "Ayatollah between the sheets"
+    EmailCfg(id='031768', is_fwded_article=True),  # Sultan bin Sulayem 'Horseface'
+    EmailCfg(id='031569', is_fwded_article=True),  # Article by Kathryn Alexeeff fwded to Peter Thiel
+    EmailCfg(id='023627', is_fwded_article=True, description=MICHAEL_WOLFF_ARTICLE_HINT),
+    EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
+    EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
+    EmailCfg(id='028768', duplicate_ids=['026563'], dupe_type='redacted'),
+    EmailCfg(id='027056', duplicate_ids=['028762'], dupe_type='redacted'),
+    EmailCfg(id='032248', duplicate_ids=['032246'], dupe_type='redacted'),
+    EmailCfg(id='030628', duplicate_ids=['023065'], dupe_type='redacted'),
+    EmailCfg(id='017523', duplicate_ids=['031226'], dupe_type='redacted'),
+    EmailCfg(id='031099', duplicate_ids=['031008'], dupe_type='redacted'),
+    EmailCfg(id='033596', duplicate_ids=['033463'], dupe_type='redacted'),
+    EmailCfg(id='030624', duplicate_ids=['023018'], dupe_type='redacted'),
+    EmailCfg(id='030335', duplicate_ids=['030596'], dupe_type='redacted'),
+    EmailCfg(id='029841', duplicate_ids=['012711'], dupe_type='redacted'),
+    EmailCfg(id='033528', duplicate_ids=['033517']),
+    EmailCfg(id='032023', duplicate_ids=['032012']),
+    EmailCfg(id='019412', duplicate_ids=['028621']),
+    EmailCfg(id='027053', duplicate_ids=['028765']),
+    EmailCfg(id='027049', duplicate_ids=['028773']),
+    EmailCfg(id='033580', duplicate_ids=['033207']),
+    EmailCfg(id='028506', duplicate_ids=['025547']),
+    EmailCfg(id='028784', duplicate_ids=['026549']),
+    EmailCfg(id='033386', duplicate_ids=['033599']),
+    EmailCfg(id='023024', duplicate_ids=['030622']),
+    EmailCfg(id='030618', duplicate_ids=['023026']),
+    EmailCfg(id='028780', duplicate_ids=['026834']),
+    EmailCfg(id='028775', duplicate_ids=['026835']),
+    EmailCfg(id='033251', duplicate_ids=['033489']),
+    EmailCfg(id='031118', duplicate_ids=['019465']),
+    EmailCfg(id='031912', duplicate_ids=['032158']),
+    EmailCfg(id='030587', duplicate_ids=['030514']),
+    EmailCfg(id='029773', duplicate_ids=['012685']),
+    EmailCfg(id='029849', duplicate_ids=['033482']),
+    EmailCfg(id='033297', duplicate_ids=['033586']),
+    EmailCfg(id='031089', duplicate_ids=['018084']),
+    EmailCfg(id='031088', duplicate_ids=['030885']),
+    EmailCfg(id='030238', duplicate_ids=['031130']),
+    EmailCfg(id='030859', duplicate_ids=['031067']),
+    EmailCfg(id='031136', duplicate_ids=['028791']),
+    EmailCfg(id='030635', duplicate_ids=['031134']),
+    EmailCfg(id='028494', duplicate_ids=['026234']),
+    EmailCfg(id='030311', duplicate_ids=['021790']),
+    EmailCfg(id='033508', duplicate_ids=['029880']),
+    EmailCfg(id='030493', duplicate_ids=['030612']),
+    EmailCfg(id='032051', duplicate_ids=['031771']),
+    EmailCfg(id='031217', duplicate_ids=['021761']),
+    EmailCfg(id='031346', duplicate_ids=['031426']),
+    EmailCfg(id='031345', duplicate_ids=['031427']),
+    EmailCfg(id='031343', duplicate_ids=['031432']),
+    EmailCfg(id='031020', duplicate_ids=['031084']),
+    EmailCfg(id='033354', duplicate_ids=['033485']),
+    EmailCfg(id='031999', duplicate_ids=['021241']),
+    EmailCfg(id='030502', duplicate_ids=['030602']),
+    EmailCfg(id='030574', duplicate_ids=['030617']),
+    EmailCfg(id='031156', duplicate_ids=['025226']),
+    EmailCfg(id='031018', duplicate_ids=['031086']),
+    EmailCfg(id='031026', duplicate_ids=['031079']),
+    EmailCfg(id='032011', duplicate_ids=['031787']),
+    EmailCfg(id='030606', duplicate_ids=['030498']),
+    EmailCfg(id='032005', duplicate_ids=['021235']),
+    EmailCfg(id='028505', duplicate_ids=['026160']),
+    EmailCfg(id='031126', duplicate_ids=['030837']),
+    EmailCfg(id='029624', duplicate_ids=['029778']),
+    EmailCfg(id='031338', duplicate_ids=['031422']),
+    EmailCfg(id='033587', duplicate_ids=['033289']),
+    EmailCfg(id='032107', duplicate_ids=['012722']),
+    EmailCfg(id='030844', duplicate_ids=['031114']),
+    EmailCfg(id='031031', duplicate_ids=['031074']),
+    EmailCfg(id='027032', duplicate_ids=['028531']),
+    EmailCfg(id='026777', duplicate_ids=['028493']),
+    EmailCfg(id='029837', duplicate_ids=['029255']),
+    EmailCfg(id='031423', duplicate_ids=['025361']),
+    EmailCfg(id='029299', duplicate_ids=['033594']),
+    EmailCfg(id='030904', duplicate_ids=['031069']),
+    EmailCfg(id='030006', duplicate_ids=['031165']),
+    EmailCfg(id='025215', duplicate_ids=['031159']),
+    EmailCfg(id='031011', duplicate_ids=['031090']),
+    EmailCfg(id='032068', duplicate_ids=['018158']),
+    EmailCfg(id='031213', duplicate_ids=['031221']),
+    EmailCfg(id='016595', duplicate_ids=['016690']),
+    EmailCfg(id='029833', duplicate_ids=['028970']),
+    EmailCfg(id='029839', duplicate_ids=['028958']),
+    EmailCfg(id='029893', duplicate_ids=['033503']),
+    EmailCfg(id='025878', duplicate_ids=['028486']),
+    EmailCfg(id='032764', duplicate_ids=['033565']),
+    EmailCfg(id='026618', duplicate_ids=['028485']),
+    EmailCfg(id='030609', duplicate_ids=['030495']),
+    EmailCfg(id='029831', duplicate_ids=['028972']),
+    EmailCfg(id='021758', duplicate_ids=['030616']),
+    EmailCfg(id='033498', duplicate_ids=['029884']),
+    EmailCfg(id='028620', duplicate_ids=['027094']),
+    EmailCfg(id='032456', duplicate_ids=['033579']),
+    EmailCfg(id='030315', duplicate_ids=['030255']),
+    EmailCfg(id='031112', duplicate_ids=['030876']),
+    EmailCfg(id='030614', duplicate_ids=['030491']),
+    EmailCfg(id='033585', duplicate_ids=['032279']),
+    EmailCfg(id='031220', duplicate_ids=['031189']),
+    EmailCfg(id='032779', duplicate_ids=['033563']),
+    EmailCfg(id='033230', duplicate_ids=['033577']),
+    EmailCfg(id='032125', duplicate_ids=['023971']),
+    EmailCfg(id='031230', duplicate_ids=['031203']),
+    EmailCfg(id='028752', duplicate_ids=['026569']),
+    EmailCfg(id='031773', duplicate_ids=['032050']),
+    EmailCfg(id='021400', duplicate_ids=['031983']),
+    EmailCfg(id='026548', duplicate_ids=['033491']),
+    EmailCfg(id='029752', duplicate_ids=['023550']),
+    EmailCfg(id='030339', duplicate_ids=['030592']),
+    EmailCfg(id='032250', duplicate_ids=['033589']),
 ]
 
 
