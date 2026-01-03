@@ -142,31 +142,37 @@ class FileCfg:
 
 
 @dataclass(kw_only=True)
-class MessageCfg(FileCfg):
+class CommunicationCfg(FileCfg):
     """
     Convenience class to unite various configured properties for a given Communication file.
     Manual config is always required for MessengerLog author attribution. It's also often needed for Email
     files to handle the terrible OCR text that Congress provided which messes up a lot of the email headers.
 
     Attributes:
-        actual_text (str | None): In dire cases of broken OCR we just configure the body of the email as a string.
         attribution_reason (str | None): Optional explanation of why this email was attributed to this author.
         is_attribution_uncertain (bool): True if we have a good idea of who the author is but are not 100% certain
+    """
+    attribution_reason: str | None = None
+    is_attribution_uncertain: bool = False
+
+
+@dataclass(kw_only=True)
+class EmailCfg(CommunicationCfg):
+    """
+    Attributes:
+        actual_text (str | None): In dire cases of broken OCR we just configure the body of the email as a string.
         is_fwded_article (bool): True if this is a newspaper article someone fwded. Used to exclude articles from word counting.
         recipients (list[str | None]): Who received the email
     """
     actual_text: str | None = None  # Override for the Email._actual_text() method for particularly broken emails
-    attribution_reason: str | None = None
-    is_attribution_uncertain: bool = False
     is_fwded_article: bool = False
     recipients: list[str | None] = field(default_factory=list)
 
-    def __eq__(self, other: 'FileCfg') -> bool:
-        return super().__eq__(other)
-
-    def __repr__(self) -> str:
-        return super().__repr__()
-
     @classmethod
-    def from_file_cfg(cls, cfg: FileCfg) -> 'MessageCfg':
+    def from_file_cfg(cls, cfg: FileCfg) -> 'CommunicationCfg':
         return cls(**asdict(cfg))
+
+
+@dataclass(kw_only=True)
+class TextCfg(CommunicationCfg):
+    pass

@@ -25,7 +25,7 @@ from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_nam
 from epstein_files.util.constants import *
 from epstein_files.util.data import Timer, dict_sets_to_lists, iso_timestamp, sort_dict
 from epstein_files.util.env import args, logger
-from epstein_files.util.file_cfg import MessageCfg
+from epstein_files.util.file_cfg import EmailCfg
 from epstein_files.util.file_helper import DOCS_DIR, FILENAME_LENGTH, PICKLED_PATH, file_size_str
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_STYLE, NA_TXT, QUESTION_MARK_TXT, add_cols_to_table, console,
@@ -79,7 +79,7 @@ class EpsteinFiles:
                 # Handle iMessage log files
                 self.imessage_logs.append(MessengerLog(file_arg, text=document.text))
                 logger.info(self.imessage_logs[-1].description().plain)
-            elif DETECT_EMAIL_REGEX.match(document.text) or isinstance(document.config, MessageCfg):
+            elif DETECT_EMAIL_REGEX.match(document.text) or isinstance(document.config, EmailCfg):
                 # Handle emails
                 email = Email(file_arg, text=document.text)
                 logger.info(email.description().plain)
