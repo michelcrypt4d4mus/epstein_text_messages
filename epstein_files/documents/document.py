@@ -271,7 +271,7 @@ class Document:
             return collapse_newlines('\n'.join(lines))
 
     def _repair(self) -> None:
-        """Can optionally be overloaded in subclasses."""
+        """Can optionally be overloaded in subclasses to further improve self.text."""
         pass
 
     def _set_computed_fields(self, lines: list[str] | None = None, text: str | None = None) -> None:
