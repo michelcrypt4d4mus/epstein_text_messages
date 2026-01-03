@@ -33,7 +33,7 @@ REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + ['*******************
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
 
 BAD_TIMEZONE_REGEX = re.compile(fr'\((UTC|GMT\+\d\d:\d\d)\)|{REDACTED}')
-DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
+DATE_HEADER_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
 TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
@@ -434,7 +434,7 @@ class Email(Communication):
 
         searchable_lines = self.lines[0:VALID_HEADER_LINES]
         searchable_text = '\n'.join(searchable_lines)
-        date_match = DATE_REGEX.search(searchable_text)
+        date_match = DATE_HEADER_REGEX.search(searchable_text)
 
         if date_match:
             timestamp = _parse_timestamp(date_match.group(1))
