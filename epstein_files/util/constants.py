@@ -640,7 +640,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='019407', recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK]),  # Bad OCR
     EmailCfg(id='031980', recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK], duplicate_ids=['019409']),  # Bad OCR
     EmailCfg(id='029163', recipients=[JEFFREY_EPSTEIN, ROBERT_TRIVERS]),   # Bad OCR
-    EmailCfg(id='026228', recipients=[JEFFREY_EPSTEIN, STEVEN_PFEIFFER]),  # Bad OCR
     EmailCfg(id='030299', recipients=[JESSICA_CADWELL, ROBERT_D_CRITTON], duplicate_ids=['021794']),  # Bad OCR
     EmailCfg(id='033456', recipients=["Joel"], attribution_reason='Reply'),
     EmailCfg(id='033460', recipients=["Joel"], attribution_reason='Reply'),
@@ -704,6 +703,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='023627', is_fwded_article=True, description=MICHAEL_WOLFF_ARTICLE_HINT),
     EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
+
+    # Configure duplicates
     EmailCfg(id='028768', duplicate_ids=['026563'], dupe_type='redacted'),
     EmailCfg(id='027056', duplicate_ids=['028762'], dupe_type='redacted'),
     EmailCfg(id='032248', duplicate_ids=['032246'], dupe_type='redacted'),
@@ -714,6 +715,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='030624', duplicate_ids=['023018'], dupe_type='redacted'),
     EmailCfg(id='030335', duplicate_ids=['030596'], dupe_type='redacted'),
     EmailCfg(id='029841', duplicate_ids=['012711'], dupe_type='redacted'),
+    EmailCfg(id='028497', duplicate_ids=['026228']),
     EmailCfg(id='033528', duplicate_ids=['033517']),
     EmailCfg(id='032023', duplicate_ids=['032012']),
     EmailCfg(id='019412', duplicate_ids=['028621']),
