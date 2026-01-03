@@ -1014,7 +1014,7 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='019212', description=f'{WAPO} and Times Tribune articles about Bannon, Trump, and healthcare execs'),
 ]
 
-OTHER_FILES_COURT_DOCS = [
+OTHER_FILES_LEGAL = [
     DocCfg(id='025353', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-05-19', duplicate_ids=['010723', '019224'], dupe_type='redacted'),
     DocCfg(id='025704', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-05-27', duplicate_ids=['010732', '019221'], dupe_type='redacted'),
     DocCfg(id='012130', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-06-19', duplicate_ids=['012135']),
@@ -1311,7 +1311,7 @@ OTHER_FILES_REPUTATION = [
 ]
 
 # social media / InsightsPod
-OTHER_FILES_SOCIAL_MEDIA = [
+OTHER_FILES_SOCIAL = [
     DocCfg(id='028815', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} business plan", date='2016-08-20'),
     DocCfg(id='011170', author=ZUBAIR_AND_ANYA, description=f'{INSIGHTS_POD} collected tweets about #Brexit', date='2016-06-23'),
     DocCfg(id='032324', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} election social media trend analysis", date='2016-11-05'),
@@ -1463,21 +1463,21 @@ OTHER_FILES_JUNK = [
 ]
 
 OTHER_FILES_CATEGORIES = [
-    'BOOKS',
+    'ACADEMIA',
     'ARTICLES',
-    'COURT_DOCS',
+    'ARTS',
+    'BOOKS',
     'CONFERENCES',
     'FINANCE',
+    'JUNK',
+    'LEGAL',
     'LETTERS',
+    'MISC',
     'PROPERTY',
     'REPUTATION',
-    'SOCIAL_MEDIA',
+    'SOCIAL',
     'POLITICS',
-    'ACADEMIA',
     'RESUMES',
-    'ARTS',
-    'MISC',
-    'JUNK',
 ]
 
 OTHER_FILES_CONFIG = []
