@@ -268,7 +268,7 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
 ]
 
 # Emails sent by epstein to himself that are just notes
-NOTES_TO_SELF = [
+SELF_EMAILS_FILE_IDS = [
     '026677',
     '029752',
     '030238',
@@ -299,7 +299,7 @@ class Email(Communication):
             for recipient in self.header.recipients():
                 self.recipients.extend(self._get_names(recipient))
 
-        recipients = [r for r in self.recipients if r != self.author or self.file_id in NOTES_TO_SELF]  # Remove self CCs
+        recipients = [r for r in self.recipients if r != self.author or self.file_id in SELF_EMAILS_FILE_IDS]  # Remove self CCs
         self.recipients = list(set(recipients))
         self.text = self._cleaned_up_text()
         self.actual_text = self._actual_text()
