@@ -101,6 +101,7 @@ class Document:
         return str(type(self).__name__)
 
     def configured_description(self) -> str | None:
+        """Overloaded in OtherFile."""
         if self.config and self.config.description:
             return f"({self.config.description})"
 
