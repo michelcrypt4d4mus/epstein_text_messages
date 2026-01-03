@@ -22,7 +22,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url,
      search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
-from epstein_files.util.data import Timer, dict_sets_to_lists, iso_timestamp, sort_dict
+from epstein_files.util.data import Timer, dict_sets_to_lists, listify, sort_dict
 from epstein_files.util.doc_cfg import EmailCfg
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, PICKLED_PATH, file_size_str
@@ -186,23 +186,10 @@ class EpsteinFiles:
         return docs
 
     def imessage_logs_for(self, author: str | None | list[str | None]) -> Sequence[MessengerLog]:
-        if author in [EVERYONE, JEFFREY_EPSTEIN]:
-            return self.imessage_logs
-
-        authors = author if isinstance(author, list) else [author]
-        return [log for log in self.imessage_logs if log.author in authors]
+        return MessengerLog.logs_for(author, self.imessage_logs)
 
     def identified_imessage_log_count(self) -> int:
         return len([log for log in self.imessage_logs if log.author])
-
-    def imessage_sender_counts(self) -> dict[str | None, int]:
-        sender_counts: dict[str | None, int] = defaultdict(int)
-
-        for message_log in self.imessage_logs:
-            for message in message_log.messages():
-                sender_counts[message.author] += 1
-
-        return sender_counts
 
     def print_files_summary(self) -> None:
         dupes = defaultdict(int)
@@ -258,28 +245,9 @@ class EpsteinFiles:
 
         return emails
 
-    def print_emails_table_for(self, _author: str | None) -> None:
-        emails = [email for email in self.emails_for(_author) if not email.is_duplicate]  # Remove dupes
-        author = _author or UNKNOWN
-
-        table = Table(
-            title=f"Emails to/from {author} starting {emails[0].timestamp.date()}",
-            border_style=get_style_for_name(author, allow_bold=False),
-            header_style="bold"
-        )
-
-        table.add_column('From', justify='left')
-        table.add_column('Timestamp', justify='center')
-        table.add_column('Subject', justify='left', style='honeydew2', min_width=60)
-
-        for email in emails:
-            table.add_row(
-                email.author_txt,
-                email.epstein_media_link(link_txt=email.timestamp_without_seconds()),
-                highlighter(email.subject())
-            )
-
-        console.print(Align.center(table), '\n')
+    def print_emails_table_for(self, author: str | None) -> None:
+        emails = [email for email in self.emails_for(author) if not email.is_duplicate]  # Remove dupes
+        console.print(Align.center(Email.build_table(emails, author)), '\n')
 
     def print_email_device_info(self) -> None:
         print_panel(f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown", padding=(4, 0, 0, 0), centered=True)
@@ -313,30 +281,7 @@ class EpsteinFiles:
 
     def print_imessage_summary(self) -> None:
         """Print summary table and stats for text messages."""
-        counts_table = Table(title="Text Message Counts By Author", header_style="bold")
-        counts_table.add_column(AUTHOR.title(), justify='left', style="steel_blue bold", width=30)
-        counts_table.add_column('Files', justify='right', style='white')
-        counts_table.add_column("Msgs", justify='right')
-        counts_table.add_column('First Sent At', justify='center', highlight=True, width=21)
-        counts_table.add_column('Last Sent At', justify='center', style='wheat4', width=21)
-        counts_table.add_column('Days', justify='right', style='dim')
-
-        for name, count in sort_dict(self.imessage_sender_counts()):
-            logs = self.imessage_logs_for(name)
-            first_at = logs[0].first_message_at(name)
-            last_at = logs[-1].first_message_at(name)
-
-            counts_table.add_row(
-                Text(name or UNKNOWN,
-                    get_style_for_name(name)),
-                    str(len(logs)),
-                    f"{count:,}",
-                    iso_timestamp(first_at),
-                    iso_timestamp(last_at),
-                    str((last_at - first_at).days + 1),
-                )
-
-        console.print(counts_table)
+        console.print(MessengerLog.summary_table(self.imessage_logs))
         text_summary_msg = f"\nDeanonymized {self.identified_imessage_log_count()} of "
         text_summary_msg += f"{len(self.imessage_logs)} {TEXT_MESSAGE} logs found in {len(self.all_files)} files."
         console.print(text_summary_msg)

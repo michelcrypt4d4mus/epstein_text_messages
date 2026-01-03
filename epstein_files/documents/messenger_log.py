@@ -1,13 +1,19 @@
 import re
+from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
 
 from rich.console import Console, ConsoleOptions, RenderResult
+from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.imessage.text_message import MSG_DATE_FORMAT, TextMessage
+from epstein_files.util.constant.names import JEFFREY_EPSTEIN, UNKNOWN
+from epstein_files.util.constant.strings import AUTHOR
+from epstein_files.util.data import iso_timestamp, listify, sort_dict
 from epstein_files.util.doc_cfg import TextCfg
+from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import logger
 
 CONFIRMED_MSG = 'Found confirmed counterparty'
@@ -67,9 +73,56 @@ class MessengerLog(Communication):
 
         raise RuntimeError(f"{self}: No timestamp found!")
 
-    def __rich_console__(self, _console: Console, _options: ConsoleOptions) -> RenderResult:
+    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield self.file_info_panel()
         yield Text('')
 
         for message in self.messages():
             yield message
+
+    @classmethod
+    def count_authors(cls, imessage_logs: list['MessengerLog']) -> dict[str | None, int]:
+        """Count up how many texts were sent by each author."""
+        sender_counts: dict[str | None, int] = defaultdict(int)
+
+        for message_log in imessage_logs:
+            for message in message_log.messages():
+                sender_counts[message.author] += 1
+
+        return sender_counts
+
+    @classmethod
+    def logs_for(cls, author: str | None | list[str | None], logs: list['MessengerLog']) -> list['MessengerLog']:
+        authors = listify(author)
+        return logs if JEFFREY_EPSTEIN in authors else [log for log in logs if log.author in authors]
+
+    @classmethod
+    def summary_table(cls, imessage_logs: list['MessengerLog']) -> Table:
+        """Build a table summarizing the text messages in 'imessage_logs'."""
+        counts_table = Table(title="Text Message Counts By Author", header_style="bold")
+        counts_table.add_column(AUTHOR.title(), justify='left', style="steel_blue bold", width=30)
+        counts_table.add_column('Files', justify='right', style='white')
+        counts_table.add_column("Msgs", justify='right')
+        counts_table.add_column('First Sent At', justify='center', highlight=True, width=21)
+        counts_table.add_column('Last Sent At', justify='center', style='wheat4', width=21)
+        counts_table.add_column('Days', justify='right', style='dim')
+
+        for name, count in sort_dict(cls.count_authors(imessage_logs)):
+            logs = cls.logs_for(name, imessage_logs)
+
+            if not logs:
+                raise RuntimeError(f"No logs found for '{name}'")
+
+            first_at = logs[0].first_message_at(name)
+            last_at = logs[-1].first_message_at(name)
+
+            counts_table.add_row(
+                Text(name or UNKNOWN, get_style_for_name(name)),
+                str(len(logs)),
+                f"{count:,}",
+                iso_timestamp(first_at),
+                iso_timestamp(last_at),
+                str((last_at - first_at).days + 1),
+            )
+
+        return counts_table

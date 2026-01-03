@@ -39,6 +39,10 @@ UNINTERESTING_CATEGORES = [
     SPEECH,
 ]
 
+UNINTERESTING_IDS = [
+    '031794',
+]
+
 
 @dataclass
 class OtherFile(Document):
@@ -85,13 +89,15 @@ class OtherFile(Document):
             return Text(escape(self.preview_text()))
 
     def is_interesting(self):
-        """False for lame prefixes and duplicates."""
+        """False for lame prefixes, duplicates, and other boring files."""
         hints = self.hints()
 
         if self.is_duplicate:
             return False
         elif len(hints) == 0:
             return True
+        elif self.file_id in UNINTERESTING_IDS:
+            return False
         elif self.config:
             if self.config.is_interesting:
                 return True
