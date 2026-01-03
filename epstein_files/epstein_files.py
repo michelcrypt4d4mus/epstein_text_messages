@@ -259,8 +259,8 @@ class EpsteinFiles:
         add_cols_to_table(counts_table, ['Name', 'Count', 'Sent', "Recv'd", JMAIL, EPSTEIN_WEB, 'Twitter'])
 
         emailer_counts = {
-            e: self.email_author_counts[e] + self.email_recipient_counts[e]
-            for e in self.all_emailers(True)
+            emailer: self.email_author_counts[emailer] + self.email_recipient_counts[emailer]
+            for emailer in self.all_emailers(True)
         }
 
         for p, count in sort_dict(emailer_counts):
