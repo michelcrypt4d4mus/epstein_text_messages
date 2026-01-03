@@ -309,7 +309,7 @@ class Email(Communication):
 
     def summary(self) -> Text:
         """One line summary mostly for logging."""
-        txt = self._description()
+        txt = self._summary()
 
         if len(self.recipients) > 0:
             txt.append(', ').append(key_value_txt('recipients', self._recipients_txt()))
