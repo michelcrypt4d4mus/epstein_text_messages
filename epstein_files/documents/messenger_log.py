@@ -7,6 +7,7 @@ from rich.text import Text
 
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.imessage.text_message import MSG_DATE_FORMAT, TextMessage
+from epstein_files.util.doc_cfg import TextCfg
 from epstein_files.util.rich import logger
 
 CONFIRMED_MSG = 'Found confirmed counterparty'
@@ -18,6 +19,7 @@ REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
 @dataclass
 class MessengerLog(Communication):
     """Class representing one iMessage log file (one conversation between Epstein and some counterparty)."""
+    config: TextCfg | None = None
     _messages: list[TextMessage] = field(default_factory=list)
 
     def first_message_at(self, name: str | None) -> datetime:
