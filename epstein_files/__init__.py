@@ -26,7 +26,7 @@ from epstein_files.util.rich import *
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
 
 # Default list names to print emails for. Order matters (will be order of output)
-PRINT_EMAILS_FOR: set[str | None] = set([
+PRINT_EMAILS_FOR = [
     JEREMY_RUBIN,
     AL_SECKEL,
     JOI_ITO,
@@ -48,10 +48,10 @@ PRINT_EMAILS_FOR: set[str | None] = set([
     MOHAMED_WAHEED_HASSAN,
     JENNIFER_JACQUET,
     None,
-])
+]
 
 # Default list names to print only tables of emails for. Order matters (will be order of output)
-PRINT_EMAIL_TABLES_FOR: set[str | None] = set([
+PRINT_EMAIL_TABLES_FOR: list[str | None] = [
     GHISLAINE_MAXWELL,
     LEON_BLACK,
     LANDON_THOMAS,
@@ -63,9 +63,9 @@ PRINT_EMAIL_TABLES_FOR: set[str | None] = set([
     DEEPAK_CHOPRA,
     ARIANE_DE_ROTHSCHILD,
     TOM_PRITZKER,
-])
+]
 
-if len(PRINT_EMAILS_FOR.intersection(PRINT_EMAIL_TABLES_FOR)) > 0:
+if len(set(PRINT_EMAILS_FOR).intersection(set(PRINT_EMAIL_TABLES_FOR))) > 0:
     raise RuntimeError(f"Some names appear in both PRINT_EMAILS_FOR and PRINT_EMAILS_FOR")
 
 
@@ -121,18 +121,13 @@ def print_emails(epstein_files: EpsteinFiles) -> int:
         emailers_to_print = sorted(epstein_files.all_emailers(), key=lambda e: epstein_files.earliest_email_at(e))
         print_numbered_list_of_emailers(emailers_to_print, epstein_files)
     else:
-        emailers_to_print = specified_names if specified_names else list(PRINT_EMAILS_FOR)
+        emailers_to_print = specified_names if specified_names else PRINT_EMAILS_FOR
         console.print('Email conversations grouped by counterparty can be found in the order listed below.')
         print_numbered_list_of_emailers(emailers_to_print)
         console.print("\nAfter that there's tables linking to (but not displaying) all known emails for each of these people:")
 
         if len(specified_names) > 0:
-            if args.all_email_tables:
-                emailer_tables = sorted(epstein_files.all_emailers(), key=lambda e: epstein_files.earliest_email_at(e))
-            else:
-                emailer_tables = list(PRINT_EMAIL_TABLES_FOR)
-
-            print_numbered_list_of_emailers(emailer_tables)
+            print_numbered_list_of_emailers(PRINT_EMAIL_TABLES_FOR)
 
     for author in emailers_to_print:
         newly_printed_emails = epstein_files.print_emails_for(author)
@@ -144,10 +139,10 @@ def print_emails(epstein_files: EpsteinFiles) -> int:
             print_color_key()
             num_emails_printed_since_last_color_key = 0
 
-    if len(emailer_tables) > 0 and len(specified_names) == 0:
+    if not args.all_emails and len(specified_names) == 0:
         print_author_header(f"Email Tables for {len(emailer_tables)} Other People", 'white')
 
-        for name in emailer_tables:
+        for name in PRINT_EMAIL_TABLES_FOR:
             epstein_files.print_emails_table_for(name)
 
     if len(specified_names) == 0:
