@@ -94,10 +94,10 @@ class OtherFile(Document):
 
         if self.is_duplicate:
             return False
-        elif len(hints) == 0:
-            return True
         elif self.file_id in UNINTERESTING_IDS:
             return False
+        elif len(hints) == 0:
+            return True
         elif self.config:
             if self.config.is_interesting:
                 return True
