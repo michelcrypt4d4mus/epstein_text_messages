@@ -32,10 +32,10 @@ class Communication(Document):
         return self.author or UNKNOWN
 
     def summary(self) -> Text:
-        return self._description().append(CLOSE_PROPERTIES_CHAR)
+        return self._summary().append(CLOSE_PROPERTIES_CHAR)
 
-    def is_attribution_uncertain(self) -> bool | None:
-        return self.config and self.config.is_attribution_uncertain
+    def is_attribution_uncertain(self) -> bool:
+        return bool(self.config and self.config.is_attribution_uncertain)
 
     def raw_document_link_txt(self, _style: str = '', include_alt_link: bool = True) -> Text:
         """Overrides super() method to apply self.author_style."""
@@ -44,7 +44,7 @@ class Communication(Document):
     def timestamp_without_seconds(self) -> str:
         return TIMESTAMP_SECONDS_REGEX.sub('', str(self.timestamp))
 
-    def _description(self) -> Text:
+    def _summary(self) -> Text:
         """One line summary mostly for logging."""
         txt = super().summary().append(', ')
         return txt.append(key_value_txt('author', Text(f"'{self.author_or_unknown()}'", style=self.author_style)))
