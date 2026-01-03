@@ -411,7 +411,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='publicist',
         style='orange_red1',
-        pattern=fr"(Matt(hew)? )?Hiltzi[gk]|{REPUTATION_MGMT.rstrip(':')}",
+        pattern=fr"(Matt(hew)? )?Hiltzi[gk]|{REPUTATION_MGMT}",
         emailers = {
             AL_SECKEL: 'husband of Isabel Maxwell, Mindshift conference organizer who fell off a cliff',
             'Barnaby Marsh': 'co-founder of Saint Partners, a philanthropy services company',
