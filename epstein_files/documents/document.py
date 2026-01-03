@@ -275,6 +275,7 @@ class Document:
         pass
 
     def _set_computed_fields(self, lines: list[str] | None = None, text: str | None = None) -> None:
+        """Sets all fields derived from self.text based on either 'lines' or 'text' arg."""
         if (lines and text):
             raise RuntimeError(f"[{self.filename}] Either 'lines' or 'text' arg must be provided (got both)")
         elif lines is not None:
