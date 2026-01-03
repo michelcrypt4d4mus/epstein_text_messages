@@ -544,7 +544,7 @@ HIGHLIGHTED_GROUPS = [
     HighlightedGroup(
         label='header_field',
         style='plum4',
-        pattern='^(Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):',
+        pattern=r'^(Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):',
         is_multiline=True,
     ),
     HighlightedGroup(
