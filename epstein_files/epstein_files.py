@@ -24,8 +24,8 @@ from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_nam
      search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
 from epstein_files.util.data import Timer, dict_sets_to_lists, iso_timestamp, sort_dict
+from epstein_files.util.doc_cfg import EmailCfg
 from epstein_files.util.env import args, logger
-from epstein_files.util.file_cfg import EmailCfg
 from epstein_files.util.file_helper import DOCS_DIR, FILENAME_LENGTH, PICKLED_PATH, file_size_str
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_STYLE, NA_TXT, QUESTION_MARK_TXT, add_cols_to_table, console,

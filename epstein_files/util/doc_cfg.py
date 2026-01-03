@@ -177,7 +177,7 @@ class EmailCfg(CommunicationCfg):
         self.category = EMAIL
 
     @classmethod
-    def from_file_cfg(cls, cfg: DocCfg) -> 'CommunicationCfg':
+    def from_doc_cfg(cls, cfg: DocCfg) -> 'EmailCfg':
         return cls(**asdict(cfg))
 
 

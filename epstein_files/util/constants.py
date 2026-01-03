@@ -5,7 +5,7 @@ from dateutil.parser import parse
 
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.file_cfg import EmailCfg, DocCfg, TextCfg
+from epstein_files.util.doc_cfg import EmailCfg, DocCfg, TextCfg
 
 # Misc
 FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
