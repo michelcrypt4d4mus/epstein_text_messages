@@ -14,7 +14,7 @@ from rich.text import Text
 
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_REGEX, Document
 from epstein_files.util.constant.strings import FIRST_FEW_LINES, TIMESTAMP_DIM
-from epstein_files.util.constants import ARTICLE, ARTS, BOOK, FINANCE, JUNK, SPEECH, UNINTERESTING_PREFIXES, VI_DAILY_NEWS_ARTICLE
+from epstein_files.util.constants import *
 from epstein_files.util.doc_cfg import DocCfg
 from epstein_files.util.data import escape_single_quotes, remove_timezone, uniquify, without_nones
 from epstein_files.util.file_helper import FILENAME_LENGTH
@@ -41,6 +41,77 @@ UNINTERESTING_CATEGORES = [
 
 UNINTERESTING_IDS = [
     '031794',
+]
+
+# OtherFiles whose description/hints match these prefixes are not displayed unless --all-other-files is used
+UNINTERESTING_PREFIXES = [
+    'article about',
+    ARTICLE_DRAFT,
+    'Aviation International',
+    BBC,
+    BLOOMBERG,
+    'Boston Globe',
+    'Brockman',
+    CHALLENGES_OF_AI,
+    CHINA_DAILY,
+    CNN,
+    'completely redacted',
+    CVRA,
+    DAILY_MAIL,
+    DAILY_TELEGRAPH,
+    DAVID_SCHOEN_CVRA_LEXIS_SEARCH[0:-12],  # Because date at end :(
+    DERSH_GIUFFRE_TWEET,
+    'Financial Times',
+    'Forbes',
+    'Frontlines',
+    'Future Science',
+    'Globe and Mail',
+    GORDON_GETTY,
+    f"{HARVARD} Econ",
+    HARVARD_POETRY,
+    'Inference',
+    JASTA,
+    'JetGala',
+    JOHN_BOLTON_PRESS_CLIPPING,
+    'Journal of Criminal',
+    LA_TIMES,
+    'Litigation Daily',
+    'MarketWatch',
+    NOBEL_CHARITABLE_TRUST,
+    'Nautilus',
+    'New Yorker',
+    NYT_ARTICLE,
+    NYT_COLUMN,
+    PALM_BEACH_CODE_ENFORCEMENT,
+    PALM_BEACH_DAILY_ARTICLE,
+    PALM_BEACH_POST_ARTICLE,
+    PALM_BEACH_TSV,
+    PALM_BEACH_WATER_COMMITTEE,
+    PAUL_KRASSNER,
+    PEGGY_SIEGAL,
+    'Politifact',
+    'Rafanelli',
+    ROBERT_LAWRENCE_KUHN,
+    ROBERT_TRIVERS,
+    'SCMP',
+    'SciencExpress',
+    'Scowcroft',
+    SHIMON_POST_ARTICLE,
+    SINGLE_PAGE,
+    STACEY_PLASKETT,
+    TERJE_ROD_LARSEN,
+    TEXT_OF_US_LAW,
+    TRANSLATION,
+    TWEET,
+    THE_REAL_DEAL_ARTICLE,
+    TRUMP_DISCLOSURES,
+    UBS_CIO_REPORT,
+    UN_GENERAL_ASSEMBLY,
+    'U.S. News',
+    'US Office',
+    'Vanity Fair',
+    VI_DAILY_NEWS_ARTICLE,
+    WAPO,
 ]
 
 
