@@ -312,6 +312,7 @@ class Document:
 
     @staticmethod
     def diff_files(files: list[str]) -> None:
+        """Diff the contents of two Documents after all cleanup, BOM removal, etc."""
         if len(files) != 2:
             raise RuntimeError('Need 2 files')
         elif files[0] == files[1]:
