@@ -59,7 +59,6 @@ OTHER_COMMON_WORDS = """
 """.strip().split()
 
 COMMON_WORDS = {line.lower(): True for line in (MOST_COMMON_WORDS + OTHER_COMMON_WORDS)}
-# COMMON_WORDS = {line.lower(): True for line in (OTHER_COMMON_WORDS)}
 COMMON_WORDS_LIST = sorted([word for word in COMMON_WORDS.keys()])
 
 UNSINGULARIZABLE_WORDS = """

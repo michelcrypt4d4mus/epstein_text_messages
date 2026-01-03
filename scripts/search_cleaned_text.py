@@ -14,7 +14,7 @@ from epstein_files.documents.document import INFO_PADDING
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.env import args, specified_names
 from epstein_files.util.highlighted_group import REGEX_STYLE_PREFIX
-from epstein_files.util.rich import console, print_panel, print_section_header
+from epstein_files.util.rich import console, print_panel
 
 
 def build_highlighter(pattern: str) -> RegexHighlighter:

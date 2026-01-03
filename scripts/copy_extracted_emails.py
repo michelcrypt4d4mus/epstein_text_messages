@@ -15,6 +15,6 @@ from epstein_files.util.rich import console
 for email in EpsteinFiles.get_files().emails:
     if email.is_local_extract_file():
         new_path = EXTRACTED_EMAILS_DIR.joinpath(email.filename)
-        console.print(email.description())
+        console.print(email.summary())
         console.print(f'   Copying to "{new_path}"\n')
         shutil.copy2(email.file_path, new_path)

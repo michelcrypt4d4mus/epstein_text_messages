@@ -18,10 +18,10 @@ from epstein_files.documents.emails.email_header import (BAD_EMAILER_REGEX, EMAI
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
 from epstein_files.util.constants import *
-from epstein_files.util.data import TIMEZONE_INFO, collapse_newlines, escape_single_quotes, extract_last_name, remove_timezone, uniquify
+from epstein_files.util.data import (TIMEZONE_INFO, collapse_newlines, escape_single_quotes, extract_last_name,
+     flatten, remove_timezone, uniquify)
+from epstein_files.util.doc_cfg import EmailCfg
 from epstein_files.util.env import logger
-from epstein_files.util.file_cfg import MessageCfg
-from epstein_files.util.file_helper import is_local_extract_file
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.rich import *
 
@@ -30,18 +30,18 @@ BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|Classification: External Communicati
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 LINK_LINE_REGEX = re.compile(f"^(> )?htt")
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
-REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
 REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + ['********************************']
+REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
 
 BAD_TIMEZONE_REGEX = re.compile(fr'\((UTC|GMT\+\d\d:\d\d)\)|{REDACTED}')
-DATE_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
+DATE_HEADER_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
 TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
 MAX_CHARS_TO_PRINT = 4000
+MAX_NUM_HEADER_LINES = 14
 MAX_QUOTED_REPLIES = 2
-VALID_HEADER_LINES = 14
 
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r'grnail\.com'): 'gmail.com',
@@ -72,12 +72,13 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'Imps ://': 'https://',
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
     # Subject lines
-    r"as Putin Mayhem Tests President's Grip\non GOP": "as Putin Mayhem Tests President's Grip on GOP",
-    r"avoids testimony from alleged\nvictims": "avoids testimony from alleged victims",
-    r"but\nwatchdogs say probe is tainted": "watchdogs say probe is tainted",
-    r"COVER UP SEX ABUSE CRIMES\nBY THE WHITE HOUSE": "COVER UP SEX ABUSE CRIMES BY THE WHITE HOUSE",
-    r'Priebus, used\nprivate email accounts for': 'Priebus, used private email accounts for',
-    r"War on the Investigations\nEncircling Him": "War on the Investigations Encircling Him",
+    "Arrested in\nInauguration Day Riot": "Arrested in Inauguration Day Riot",
+    "as Putin Mayhem Tests President's Grip\non GOP": "as Putin Mayhem Tests President's Grip on GOP",
+    "avoids testimony from alleged\nvictims": "avoids testimony from alleged victims",
+    "but\nwatchdogs say probe is tainted": "watchdogs say probe is tainted",
+    "COVER UP SEX ABUSE CRIMES\nBY THE WHITE HOUSE": "COVER UP SEX ABUSE CRIMES BY THE WHITE HOUSE",
+    'Priebus, used\nprivate email accounts for': 'Priebus, used private email accounts for',
+    "War on the Investigations\nEncircling Him": "War on the Investigations Encircling Him",
     re.compile(r"deadline re Mr Bradley Edwards vs Mr\s*Jeffrey Epstein", re.I): "deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
     re.compile(r"Following Plea That Implicated Trump -\s*https://www.npr.org/676040070", re.I): "Following Plea That Implicated Trump - https://www.npr.org/676040070",
     re.compile(r"for Attorney General -\s+Wikisource, the"): r"for Attorney General - Wikisource, the",
@@ -90,9 +91,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'AVG°': 'AVGO',
 }
 
-MARTIN_WEINBERG_SIGNATURE_PATTERN = r"Martin G. Weinberg, Esq.\n20 Park Plaza((, )|\n)Suite 1000\nBoston, MA 02116(\n61.*)?(\n.*([cC]ell|Office))*"
-
-EMAIL_SIGNATURES = {
+EMAIL_SIGNATURE_REGEXES = {
     ARIANE_DE_ROTHSCHILD: re.compile(r"Ensemble.*\nCe.*\ndestinataires.*\nremercions.*\nautorisee.*\nd.*\nLe.*\ncontenues.*\nEdmond.*\nRoth.*\nlo.*\nRoth.*\ninfo.*\nFranc.*\n.2.*", re.I),
     BARBRO_C_EHNBOM: re.compile(r"Barbro C.? Ehn.*\nChairman, Swedish-American.*\n((Office|Cell|Sweden):.*\n)*(360.*\nNew York.*)?"),
     DANNY_FROST: re.compile(r"Danny Frost\nDirector.*\nManhattan District.*\n212.*", re.IGNORECASE),
@@ -104,7 +103,7 @@ EMAIL_SIGNATURES = {
     KEN_JENNE: re.compile(r"Ken Jenne\nRothstein.*\n401 E.*\nFort Lauderdale.*", re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r"Please direct all scheduling.*\nFollow me on twitter.*\nwww.larrysummers.*", re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r"Lawrence (M. )?Krauss\n(Director.*\n)?(Co-director.*\n)?Foundation.*\nSchool.*\n(Co-director.*\n)?(and Director.*\n)?Arizona.*(\nResearch.*\nOri.*\n(krauss.*\n)?origins.*)?", re.IGNORECASE),
-    MARTIN_WEINBERG: re.compile(fr"({MARTIN_WEINBERG_SIGNATURE_PATTERN}\n)?This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
+    MARTIN_WEINBERG: re.compile(r"(Martin G. Weinberg, Esq.\n20 Park Plaza((, )|\n)Suite 1000\nBoston, MA 02116(\n61.*)?(\n.*([cC]ell|Office))*\n)?This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
     STEVEN_PFEIFFER: re.compile(r"Steven\nSteven .*\nAssociate.*\nIndependent Filmmaker Project\nMade in NY.*\n30 .*\nBrooklyn.*\n(p:.*\n)?www\.ifp.*", re.IGNORECASE),
     PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
     PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(142 W 57th Street, 11th Floor, New York, NY 10019?[\n\s]+)?(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
@@ -232,7 +231,8 @@ TRUNCATE_TERMS = [
     'The raw materials for that period include interviews',
 ]
 
-KRASSNER_RECIPIENTS = uniquify(KRASSNER_MANSON_RECIPIENTS + KRASSNER_024923_RECIPIENTS + KRASSNER_033568_RECIPIENTS)
+# Some Paul Krassner emails have a ton of CCed parties we don't care about
+KRASSNER_RECIPIENTS = uniquify(flatten(ALL_FILE_CONFIGS[id].recipients for id in ['025329', '024923', '033568']))
 
 # No point in ever displaying these; their emails show up elsewhere because they're mostly CC recipients
 USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
@@ -269,7 +269,7 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
 ]
 
 # Emails sent by epstein to himself that are just notes
-NOTES_TO_SELF = [
+SELF_EMAILS_FILE_IDS = [
     '026677',
     '029752',
     '030238',
@@ -280,6 +280,7 @@ NOTES_TO_SELF = [
 @dataclass
 class Email(Communication):
     actual_text: str = field(init=False)
+    config: EmailCfg | None = None
     header: EmailHeader = field(init=False)
     is_junk_mail: bool = False
     recipients: list[str | None] = field(default_factory=list)
@@ -299,16 +300,16 @@ class Email(Communication):
             for recipient in self.header.recipients():
                 self.recipients.extend(self._get_names(recipient))
 
-        recipients = [r for r in self.recipients if r != self.author or self.file_id in NOTES_TO_SELF]  # Remove self CCs
+        recipients = [r for r in self.recipients if r != self.author or self.file_id in SELF_EMAILS_FILE_IDS]  # Remove self CCs
         self.recipients = list(set(recipients))
         self.text = self._cleaned_up_text()
         self.actual_text = self._actual_text()
         self.sent_from_device = self._sent_from_device()
-        logger.debug(f"Constructed {self.description()}")
+        logger.debug(f"Constructed {self.summary()}")
 
-    def description(self) -> Text:
+    def summary(self) -> Text:
         """One line summary mostly for logging."""
-        txt = self._description()
+        txt = self._summary()
 
         if len(self.recipients) > 0:
             txt.append(', ').append(key_value_txt('recipients', self._recipients_txt()))
@@ -384,22 +385,12 @@ class Email(Communication):
         text = self.text if self.header.was_initially_empty else _add_line_breaks(self.text)
         text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
 
-        for name, signature_regex in EMAIL_SIGNATURES.items():
+        for name, signature_regex in EMAIL_SIGNATURE_REGEXES.items():
             signature_replacement = f'<...snipped {name.lower()} legal signature...>'
             text, num_replaced = signature_regex.subn(signature_replacement, text)
             self.signature_substitution_counts[name] += num_replaced
 
         return collapse_newlines(text).strip()
-
-    def _debug_info(self) -> str:
-        info = [
-            f"id={self.file_id}",
-            f"url_slug={self.url_slug}",
-            f"file_path='{self.file_path}'",
-            f"is_local_extract_file={self.is_local_extract_file()}",
-        ]
-
-        return f"     " + "\n     ".join(info)
 
     def _extract_author(self) -> None:
         self._extract_header()
@@ -433,9 +424,9 @@ class Email(Communication):
             if timestamp:
                 return timestamp
 
-        searchable_lines = self.lines[0:VALID_HEADER_LINES]
+        searchable_lines = self.lines[0:MAX_NUM_HEADER_LINES]
         searchable_text = '\n'.join(searchable_lines)
-        date_match = DATE_REGEX.search(searchable_text)
+        date_match = DATE_HEADER_REGEX.search(searchable_text)
 
         if date_match:
             timestamp = _parse_timestamp(date_match.group(1))
@@ -443,7 +434,7 @@ class Email(Communication):
             if timestamp:
                 return timestamp
 
-        logger.debug(f"Failed to find timestamp, falling back to parsing {VALID_HEADER_LINES} lines...")
+        logger.debug(f"Failed to find timestamp, falling back to parsing {MAX_NUM_HEADER_LINES} lines...")
 
         for line in searchable_lines:
             if not TIMESTAMP_LINE_REGEX.search(line):

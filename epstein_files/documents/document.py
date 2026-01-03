@@ -15,8 +15,8 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP, VI_DAILY_NEWS_ARTICLE
-from epstein_files.util.file_cfg import FileCfg, MessageCfg
 from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, listify, patternize
+from epstein_files.util.doc_cfg import EmailCfg, DocCfg, TextCfg
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, file_stem_for_id, extract_file_id, file_size_str, is_local_extract_file
 from epstein_files.util.rich import SYMBOL_STYLE, console, highlighter, key_value_txt, logger, link_text_obj
@@ -32,7 +32,6 @@ MAX_EXTRACTED_TIMESTAMPS = 6
 MIN_TIMESTAMP = datetime(1991, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
 MAX_TIMESTAMP = datetime(2020, 1, 1)
-TRAILING_DATE_REGEX = re.compile(r' ((around|ca\.|roughly) )?\d{4}-\d{2}(-\d{2})?$')
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
 DOC_TYPE_STYLES = {
@@ -62,7 +61,7 @@ class Document:
     file_path: Path
     # Optional fields
     author: str | None = None
-    config: FileCfg | MessageCfg | None = None
+    config: EmailCfg | DocCfg | TextCfg | None = None
     file_id: str = field(init=False)
     filename: str = field(init=False)
     is_duplicate: bool = False
@@ -87,8 +86,8 @@ class Document:
             cfg_type = type(self.config).__name__ if self.config else None
 
             # Coerce FileConfig for court docs etc. to MessageCfg for email files extracted from that document
-            if self.document_type() == EMAIL_CLASS and self.config and cfg_type != MessageCfg.__name__:
-                self.config = MessageCfg.from_file_cfg(self.config)
+            if self.class_name() == EMAIL_CLASS and self.config and cfg_type != EmailCfg.__name__:
+                self.config = EmailCfg.from_doc_cfg(self.config)
         else:
             self.url_slug = self.file_path.stem
 
@@ -97,41 +96,28 @@ class Document:
         self._extract_author()
         self.timestamp = self._extract_timestamp()
 
+    def class_name(self) -> str:
+        """Annoying workaround for circular import issues and isinstance()."""
+        return str(type(self).__name__)
+
     def configured_description(self) -> str | None:
         return self.config.description if self.config else None
 
     def date_str(self) -> str | None:
         return date_str(self.timestamp)
 
-    def description(self) -> Text:
-        """Mostly for logging. Brackets are left open for subclasses to add stuff."""
-        txt = Text('').append(self.url_slug, style='magenta')
-        txt.append(f' {self.document_type()}', style=self.document_type_style())
-
-        if self.timestamp:
-            txt.append(' (', style=SYMBOL_STYLE)
-            txt.append(f"{iso_timestamp(self.timestamp)}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
-
-        txt.append(" [").append(key_value_txt('num_lines', Text(f"{self.num_lines}", style='cyan')))
-        txt.append(', ').append(key_value_txt('size', Text(self.file_size_str(), style='aquamarine1')))
-        return txt
-
     def description_panel(self, include_hints: bool = False) -> Panel:
         """Panelized description() with info_txt(), used in search results."""
         hints = [Text('', style='italic').append(h) for h in (self.hints() if include_hints else [])]
-        return Panel(Group(*([self.description()] + hints)), border_style=self.document_type_style(), expand=False)
-
-    def document_type(self) -> str:
-        """Annoying workaround for circular import issues and isinstance()."""
-        return str(type(self).__name__)
+        return Panel(Group(*([self.summary()] + hints)), border_style=self.document_type_style(), expand=False)
 
     def document_type_style(self) -> str:
-        return DOC_TYPE_STYLES[self.document_type()]
+        return DOC_TYPE_STYLES[self.class_name()]
 
     def duplicate_file_txt(self) -> Text:
         """If the file is a dupe make a nice message to explain what file it's a duplicate of."""
         if not self.config or not self.config.dupe_of_id:
-            raise RuntimeError(f"duplicate_file_txt() called on {self.description()} but not a dupe! config:\n\n{self.config}")
+            raise RuntimeError(f"duplicate_file_txt() called on {self.summary()} but not a dupe! config:\n\n{self.config}")
 
         txt = Text(f"Not showing ", style='white dim italic').append(epstein_media_doc_link_txt(self.file_id, style='cyan'))
         txt.append(f" because it's {self.config.duplicate_reason()} ")
@@ -163,14 +149,13 @@ class Document:
         hints = listify(self.info_txt())
         hint_msg = self.configured_description()
 
-        if self.document_type() == OTHER_FILE_CLASS:
+        if self.class_name() == OTHER_FILE_CLASS:
             if not hint_msg and VI_DAILY_NEWS_REGEX.search(self.text):
                 hint_msg = VI_DAILY_NEWS_ARTICLE
         elif hint_msg:
             hint_msg = f"({hint_msg})"
 
         if hint_msg:
-            hint_msg = TRAILING_DATE_REGEX.sub('', hint_msg)  # a lot of configured file infos have trailing ISO date
             hints.append(highlighter(Text(hint_msg, style='white dim italic')))
 
         return hints
@@ -209,6 +194,10 @@ class Document:
         msg = f"{msg + separator if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"
         logger.log(level, f"{msg}\n\n{self.top_lines(n)}\n")
 
+    def raw_text(self) -> str:
+        with open(self.file_path) as f:
+            return f.read()
+
     def raw_document_link_txt(self, style: str = '', include_alt_link: bool = False) -> Text:
         """Returns colored links to epstein.media and and epsteinweb in a Text object."""
         txt = Text('', style='white' if include_alt_link else ARCHIVE_LINK_COLOR)
@@ -217,11 +206,13 @@ class Document:
             txt.append(self.epstein_web_link(style=style))
 
             if include_alt_link:
+                txt.append(' (').append(self.epsteinify_link(style='white dim', link_txt=EPSTEINIFY)).append(')')
                 txt.append(' (').append(self.epstein_media_link(style='white dim', link_txt=EPSTEIN_MEDIA)).append(')')
         else:
             txt.append(self.epstein_media_link(style=style))
 
             if include_alt_link:
+                txt.append(' (').append(self.epsteinify_link(style='white dim', link_txt=EPSTEINIFY)).append(')')
                 txt.append(' (').append(self.epstein_web_link(style='white dim', link_txt=EPSTEIN_WEB)).append(')')
 
         return txt
@@ -236,12 +227,35 @@ class Document:
 
         return text
 
+    def summary(self) -> Text:
+        """Summary of this file for logging. Brackets are left open for subclasses to add stuff."""
+        txt = Text('').append(self.url_slug, style='magenta')
+        txt.append(f' {self.class_name()}', style=self.document_type_style())
+
+        if self.timestamp:
+            txt.append(' (', style=SYMBOL_STYLE)
+            txt.append(f"{iso_timestamp(self.timestamp)}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
+
+        txt.append(" [").append(key_value_txt('num_lines', Text(f"{self.num_lines}", style='cyan')))
+        txt.append(', ').append(key_value_txt('size', Text(self.file_size_str(), style='aquamarine1')))
+        return txt
+
     def top_lines(self, n: int = 10) -> str:
         return '\n'.join(self.lines[0:n])
 
     def _border_style(self) -> str:
         """Should be overloaded in subclasses."""
         return 'white'
+
+    def _debug_info(self) -> str:
+        info = [
+            f"id={self.file_id}",
+            f"url_slug={self.url_slug}",
+            f"file_path='{self.file_path}'",
+            f"is_local_extract_file={self.is_local_extract_file()}",
+        ]
+
+        return f"     " + "\n     ".join(info)
 
     def _extract_author(self) -> None:
         """Get author from config. Extended in Email subclass to also check headers."""
@@ -252,21 +266,21 @@ class Document:
         """Should be implemented in subclasses."""
         pass
 
-    def _load_file(self):
+    def _load_file(self) -> str:
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
-        with open(self.file_path) as f:
-            text = f.read()
-            text = text[1:] if (len(text) > 0 and text[0] == '\ufeff') else text  # remove BOM
-            text = self.repair_ocr_text(OCR_REPAIRS, text.strip())
-            lines = [l.strip() for l in text.split('\n') if not l.startswith(HOUSE_OVERSIGHT)]
-            lines = lines[1:] if (len(lines) > 1 and lines[0] == '>>') else lines
-            return collapse_newlines('\n'.join(lines))
+        text = self.raw_text()
+        text = text[1:] if (len(text) > 0 and text[0] == '\ufeff') else text  # remove BOM
+        text = self.repair_ocr_text(OCR_REPAIRS, text.strip())
+        lines = [l.strip() for l in text.split('\n') if not l.startswith(HOUSE_OVERSIGHT)]
+        lines = lines[1:] if (len(lines) > 1 and lines[0] == '>>') else lines
+        return collapse_newlines('\n'.join(lines))
 
     def _repair(self) -> None:
-        """Can optionally be overloaded in subclasses."""
+        """Can optionally be overloaded in subclasses to further improve self.text."""
         pass
 
     def _set_computed_fields(self, lines: list[str] | None = None, text: str | None = None) -> None:
+        """Sets all fields derived from self.text based on either 'lines' or 'text' arg."""
         if (lines and text):
             raise RuntimeError(f"[{self.filename}] Either 'lines' or 'text' arg must be provided (got both)")
         elif lines is not None:
@@ -299,10 +313,11 @@ class Document:
         yield Padding(text_panel, (0, 0, 1, INFO_INDENT))
 
     def __str__(self) -> str:
-        return self.description().plain
+        return self.summary().plain
 
     @staticmethod
     def diff_files(files: list[str]) -> None:
+        """Diff the contents of two Documents after all cleanup, BOM removal, etc."""
         if len(files) != 2:
             raise RuntimeError('Need 2 files')
         elif files[0] == files[1]:

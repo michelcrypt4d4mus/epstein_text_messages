@@ -68,7 +68,9 @@ datefinder_logger.setLevel(logger.level)
 
 # Massage args that depend on other args to the appropriate state
 if not (args.output_texts or args.output_emails or args.output_other_files):
-    logger.warning(f"No output section chosen; outputting default of texts, selected emails, and other files...")
+    if is_html_script:
+        logger.warning(f"No output section chosen; outputting default of texts, selected emails, and other files...")
+
     args.output_texts = True
     args.output_emails = True
     args.output_other_files = True

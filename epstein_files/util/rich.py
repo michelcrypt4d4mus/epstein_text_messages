@@ -20,7 +20,7 @@ from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import FALLBACK_TIMESTAMP, HEADER_ABBREVIATIONS
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import file_size_str
-from epstein_files.util.highlighted_group import HIGHLIGHTED_GROUPS, InterestingNamesHighlighter
+from epstein_files.util.highlighted_group import ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES, EpsteinHighlighter
 
 TITLE_WIDTH = 50
 NUM_COLOR_KEY_COLS = 4
@@ -38,20 +38,19 @@ TITLE_STYLE = 'black on bright_white bold'
 
 HIGHLIGHTED_GROUP_COLOR_KEYS = [
     Text(highlight_group.label.replace('_', ' '), style=highlight_group.style)
-    for highlight_group in sorted(HIGHLIGHTED_GROUPS, key=lambda hg: hg.label)
-    if not highlight_group.is_multiline
+    for highlight_group in sorted(HIGHLIGHTED_NAMES, key=lambda hg: hg.label)
 ]
 
 THEME_STYLES = {
     DEFAULT: 'wheat4',
     TEXT_LINK: 'deep_sky_blue4 underline',
-    **{hg.theme_style_name: hg.style for hg in HIGHLIGHTED_GROUPS},  # Inject style names for HighlightedGroups
+    **{hg.theme_style_name: hg.style for hg in ALL_HIGHLIGHTS},
 }
 
 # Instantiate console object
 CONSOLE_ARGS = {
     'color_system': '256',
-    'highlighter': InterestingNamesHighlighter(),
+    'highlighter': EpsteinHighlighter(),
     'record': args.build,
     'safe_box': False,
     'theme': Theme(THEME_STYLES),

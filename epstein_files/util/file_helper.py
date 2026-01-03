@@ -32,7 +32,8 @@ MB = KB * KB
 
 
 # Handles both string and int 'id' args.
-file_stem_for_id = lambda id: f"{HOUSE_OVERSIGHT_PREFIX}{int(id):06d}"
+id_str = lambda id: f"{int(id):06d}"
+file_stem_for_id = lambda id: f"{HOUSE_OVERSIGHT_PREFIX}{id_str(id)}"
 filename_for_id = lambda id: file_stem_for_id(id) + '.txt'
 
 
