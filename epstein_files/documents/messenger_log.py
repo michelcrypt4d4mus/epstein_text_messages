@@ -7,7 +7,7 @@ from rich.text import Text
 
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.imessage.text_message import MSG_DATE_FORMAT, TextMessage
-from epstein_files.util.file_cfg import MessageCfg
+from epstein_files.util.doc_cfg import TextCfg
 from epstein_files.util.rich import logger
 
 CONFIRMED_MSG = 'Found confirmed counterparty'
@@ -19,10 +19,8 @@ REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
 @dataclass
 class MessengerLog(Communication):
     """Class representing one iMessage log file (one conversation between Epstein and some counterparty)."""
+    config: TextCfg | None = None
     _messages: list[TextMessage] = field(default_factory=list)
-
-    def __post_init__(self):
-        super().__post_init__()
 
     def first_message_at(self, name: str | None) -> datetime:
         return self.messages_by(name)[0].timestamp()
@@ -31,10 +29,6 @@ class MessengerLog(Communication):
         hint_msg = GUESSED_MSG if self.is_attribution_uncertain() else CONFIRMED_MSG
         author_txt = Text(self.author_or_unknown(), style=self.author_style + ' bold')
         return Text(f"({hint_msg} ", style='dim').append(author_txt).append(')')
-
-    def is_attribution_uncertain(self) -> bool | None:
-        if self.config:
-            return self.config.is_attribution_uncertain
 
     def last_message_at(self, name: str | None) -> datetime:
         return self.messages_by(name)[-1].timestamp()

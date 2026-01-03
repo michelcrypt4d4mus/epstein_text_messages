@@ -10,7 +10,7 @@ from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_REGEX, Document
-from epstein_files.util.constants import UNINTERESTING_PREFIXES
+from epstein_files.util.constants import ARTS, BOOK, FINANCE, JUNK, SPEECH, UNINTERESTING_PREFIXES
 from epstein_files.util.data import escape_single_quotes, remove_timezone, uniquify
 from epstein_files.util.env import args, logger
 from epstein_files.util.rich import highlighter, logger
@@ -25,22 +25,36 @@ LOG_INDENT = '\n         '
 TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
 
+UNINTERESTING_CATEGORES = [
+    ARTS,
+    BOOK,
+    JUNK,
+    SPEECH,
+]
+
 
 @dataclass
 class OtherFile(Document):
     """File that is not an email, an iMessage log, or JSON data."""
+
+    def category(self) -> str | None:
+        return self.config and self.config.category
 
     def configured_description(self) -> str | None:
         """Overloads superclass method."""
         if self.config is None:
             return None
 
+        if self.category() == BOOK and self.config.author and self.config.description:
+            title = self.config.description if '"' in self.config.description else f'"{self.config.description}"'
+            return f"{BOOK}: {title} by {self.config.author}"
+
         pieces = [p for p in [self.config.author, self.config.description] if p]
         return ' '.join(pieces) if pieces else None
 
-    def description(self) -> Text:
+    def summary(self) -> Text:
         """One line summary mostly for logging."""
-        return super().description().append(CLOSE_PROPERTIES_CHAR)
+        return super().summary().append(CLOSE_PROPERTIES_CHAR)
 
     def description_panel(self, include_hints=True) -> Panel:
         """Panelized description() with info_txt(), used in search results."""
@@ -64,6 +78,13 @@ class OtherFile(Document):
             return False
         elif len(hints) == 0:
             return True
+        elif self.config:
+            if self.config.is_interesting:
+                return True
+            elif self.config.category == FINANCE and self.config.author is not None:
+                return False
+            elif self.config.category in UNINTERESTING_CATEGORES:
+                return False
 
         for prefix in UNINTERESTING_PREFIXES:
             if hints[0].plain.startswith(prefix):

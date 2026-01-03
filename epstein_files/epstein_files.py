@@ -24,8 +24,8 @@ from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_nam
      search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
 from epstein_files.util.data import Timer, dict_sets_to_lists, iso_timestamp, sort_dict
+from epstein_files.util.doc_cfg import EmailCfg
 from epstein_files.util.env import args, logger
-from epstein_files.util.file_cfg import MessageCfg
 from epstein_files.util.file_helper import DOCS_DIR, FILENAME_LENGTH, PICKLED_PATH, file_size_str
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_STYLE, NA_TXT, QUESTION_MARK_TXT, add_cols_to_table, console,
@@ -70,19 +70,19 @@ class EpsteinFiles:
             document = Document(file_arg)
 
             if document.length == 0:
-                logger.info(f"Skipping empty file {document.description().plain}")
+                logger.info(f"Skipping empty file {document}")
             elif document.text[0] == '{':
                 # Handle JSON files
                 self.json_files.append(JsonFile(file_arg, text=document.text))
-                logger.info(self.json_files[-1].description().plain)
+                logger.info(str(self.json_files[-1]))
             elif MSG_REGEX.search(document.text):
                 # Handle iMessage log files
                 self.imessage_logs.append(MessengerLog(file_arg, text=document.text))
-                logger.info(self.imessage_logs[-1].description().plain)
-            elif DETECT_EMAIL_REGEX.match(document.text) or isinstance(document.config, MessageCfg):
+                logger.info(str(self.imessage_logs[-1]))
+            elif DETECT_EMAIL_REGEX.match(document.text) or isinstance(document.config, EmailCfg):
                 # Handle emails
                 email = Email(file_arg, text=document.text)
-                logger.info(email.description().plain)
+                logger.info(str(email))
                 self.emails.append(email)
                 self.email_author_counts[email.author] += 1
 
@@ -99,7 +99,7 @@ class EpsteinFiles:
             else:
                 # Handle OtherFiles
                 self.other_files.append(OtherFile(file_arg, text=document.text))
-                logger.info(self.other_files[-1].description().plain)
+                logger.info(str(self.other_files[-1]))
 
         self.emails = Document.sort_by_timestamp(self.emails)
         self.imessage_logs = Document.sort_by_timestamp(self.imessage_logs)
@@ -198,6 +198,14 @@ class EpsteinFiles:
         else:
             return [e for e in self.emails if author in e.recipients]
 
+    def get_documents_with_ids(self, file_ids: list[str]) -> list[Document]:
+        docs = [doc for doc in self.all_documents() if doc.file_id in file_ids]
+
+        if len(docs) != len(file_ids):
+            logger.warning(f"{len(file_ids)} file IDs provided but only {len(docs)} Epstein files found!")
+
+        return docs
+
     def imessage_logs_for(self, author: str | None | list[str | None]) -> Sequence[MessengerLog]:
         if author in [EVERYONE, JEFFREY_EPSTEIN]:
             return self.imessage_logs
@@ -222,7 +230,7 @@ class EpsteinFiles:
 
         for doc in self.all_documents():
             if doc.is_duplicate:
-                dupes[doc.document_type()] += 1
+                dupes[doc.class_name()] += 1
 
         table = Table()
         add_cols_to_table(table, ['File Type', 'Files', 'Author Known', 'Author Unknown', 'Duplicates'])
@@ -371,7 +379,8 @@ class EpsteinFiles:
         table = Table(header_style='bold', show_lines=True)
         table.add_column('File', justify='center', width=FILENAME_LENGTH)
         table.add_column('Date', justify='center')
-        table.add_column('Length', justify='center')
+        table.add_column('Size', justify='center')
+        table.add_column('Type', justify='center')
         table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
 
         for doc in interesting_files:
@@ -389,6 +398,7 @@ class EpsteinFiles:
                 Group(*link_and_info),
                 Text(date_str, style=TIMESTAMP_DIM) if date_str else QUESTION_MARK_TXT,
                 doc.file_size_str(),
+                doc.category(),
                 preview_text,
                 style=row_style
             )

@@ -4,8 +4,8 @@ from dataclasses import asdict, dataclass, field
 
 from epstein_files.util.constant.strings import AUTHOR, REDACTED
 from epstein_files.util.constants import ALL_CONFIGS
+from epstein_files.util.doc_cfg import EmailCfg
 from epstein_files.util.env import logger
-from epstein_files.util.file_cfg import MessageCfg
 from epstein_files.util.rich import UNKNOWN
 
 FIELD_NAMES = ['From', 'Date', 'Sent', 'Subject']
@@ -25,7 +25,7 @@ BAD_EMAILER_REGEX = re.compile(r'^(>|11111111)|agreed|ok|sexy|rt|re:|fwd:|Multip
 
 CONFIGURED_ACTUAL_TEXTS = [
     cfg.actual_text for cfg in ALL_CONFIGS
-    if isinstance(cfg, MessageCfg) and cfg.actual_text is not None
+    if isinstance(cfg, EmailCfg) and cfg.actual_text is not None
 ]
 
 

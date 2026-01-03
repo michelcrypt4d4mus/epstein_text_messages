@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "epstein-files"
-version = "1.0.0"
+version = "1.0.1"
 description = "Tools for working with the Jeffrey Epstein documents released in November 2025."
 authors = ["Michel de Cryptadamus"]
 readme = "README.md"
@@ -8,12 +8,12 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+datefinder = "^0.7.3"
 inflection = "^0.5.1"
 python-dateutil = "^2.9.0.post0"
 python-dotenv = "^1.2.1"
-rich = "^14.2.0"
 requests = "^2.32.5"
-datefinder = "^0.7.3"
+rich = "^14.2.0"
 
 
 [tool.poetry.group.dev.dependencies]
