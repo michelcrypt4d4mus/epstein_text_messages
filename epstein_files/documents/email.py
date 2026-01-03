@@ -391,16 +391,6 @@ class Email(Communication):
 
         return collapse_newlines(text).strip()
 
-    def _debug_info(self) -> str:
-        info = [
-            f"id={self.file_id}",
-            f"url_slug={self.url_slug}",
-            f"file_path='{self.file_path}'",
-            f"is_local_extract_file={self.is_local_extract_file()}",
-        ]
-
-        return f"     " + "\n     ".join(info)
-
     def _extract_author(self) -> None:
         self._extract_header()
         super()._extract_author()
