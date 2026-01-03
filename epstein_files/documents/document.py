@@ -102,23 +102,10 @@ class Document:
     def date_str(self) -> str | None:
         return date_str(self.timestamp)
 
-    def description(self) -> Text:
-        """Mostly for logging. Brackets are left open for subclasses to add stuff."""
-        txt = Text('').append(self.url_slug, style='magenta')
-        txt.append(f' {self.document_type()}', style=self.document_type_style())
-
-        if self.timestamp:
-            txt.append(' (', style=SYMBOL_STYLE)
-            txt.append(f"{iso_timestamp(self.timestamp)}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
-
-        txt.append(" [").append(key_value_txt('num_lines', Text(f"{self.num_lines}", style='cyan')))
-        txt.append(', ').append(key_value_txt('size', Text(self.file_size_str(), style='aquamarine1')))
-        return txt
-
     def description_panel(self, include_hints: bool = False) -> Panel:
         """Panelized description() with info_txt(), used in search results."""
         hints = [Text('', style='italic').append(h) for h in (self.hints() if include_hints else [])]
-        return Panel(Group(*([self.description()] + hints)), border_style=self.document_type_style(), expand=False)
+        return Panel(Group(*([self.summary()] + hints)), border_style=self.document_type_style(), expand=False)
 
     def document_type(self) -> str:
         """Annoying workaround for circular import issues and isinstance()."""
@@ -130,7 +117,7 @@ class Document:
     def duplicate_file_txt(self) -> Text:
         """If the file is a dupe make a nice message to explain what file it's a duplicate of."""
         if not self.config or not self.config.dupe_of_id:
-            raise RuntimeError(f"duplicate_file_txt() called on {self.description()} but not a dupe! config:\n\n{self.config}")
+            raise RuntimeError(f"duplicate_file_txt() called on {self.summary()} but not a dupe! config:\n\n{self.config}")
 
         txt = Text(f"Not showing ", style='white dim italic').append(epstein_media_doc_link_txt(self.file_id, style='cyan'))
         txt.append(f" because it's {self.config.duplicate_reason()} ")
@@ -207,6 +194,10 @@ class Document:
         msg = f"{msg + separator if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"
         logger.log(level, f"{msg}\n\n{self.top_lines(n)}\n")
 
+    def raw_text(self) -> str:
+        with open(self.file_path) as f:
+            return f.read()
+
     def raw_document_link_txt(self, style: str = '', include_alt_link: bool = False) -> Text:
         """Returns colored links to epstein.media and and epsteinweb in a Text object."""
         txt = Text('', style='white' if include_alt_link else ARCHIVE_LINK_COLOR)
@@ -234,6 +225,19 @@ class Document:
 
         return text
 
+    def summary(self) -> Text:
+        """Summary of this file for logging. Brackets are left open for subclasses to add stuff."""
+        txt = Text('').append(self.url_slug, style='magenta')
+        txt.append(f' {self.document_type()}', style=self.document_type_style())
+
+        if self.timestamp:
+            txt.append(' (', style=SYMBOL_STYLE)
+            txt.append(f"{iso_timestamp(self.timestamp)}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
+
+        txt.append(" [").append(key_value_txt('num_lines', Text(f"{self.num_lines}", style='cyan')))
+        txt.append(', ').append(key_value_txt('size', Text(self.file_size_str(), style='aquamarine1')))
+        return txt
+
     def top_lines(self, n: int = 10) -> str:
         return '\n'.join(self.lines[0:n])
 
@@ -260,15 +264,14 @@ class Document:
         """Should be implemented in subclasses."""
         pass
 
-    def _load_file(self):
+    def _load_file(self) -> str:
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
-        with open(self.file_path) as f:
-            text = f.read()
-            text = text[1:] if (len(text) > 0 and text[0] == '\ufeff') else text  # remove BOM
-            text = self.repair_ocr_text(OCR_REPAIRS, text.strip())
-            lines = [l.strip() for l in text.split('\n') if not l.startswith(HOUSE_OVERSIGHT)]
-            lines = lines[1:] if (len(lines) > 1 and lines[0] == '>>') else lines
-            return collapse_newlines('\n'.join(lines))
+        text = self.raw_text()
+        text = text[1:] if (len(text) > 0 and text[0] == '\ufeff') else text  # remove BOM
+        text = self.repair_ocr_text(OCR_REPAIRS, text.strip())
+        lines = [l.strip() for l in text.split('\n') if not l.startswith(HOUSE_OVERSIGHT)]
+        lines = lines[1:] if (len(lines) > 1 and lines[0] == '>>') else lines
+        return collapse_newlines('\n'.join(lines))
 
     def _repair(self) -> None:
         """Can optionally be overloaded in subclasses to further improve self.text."""
@@ -308,7 +311,7 @@ class Document:
         yield Padding(text_panel, (0, 0, 1, INFO_INDENT))
 
     def __str__(self) -> str:
-        return self.description().plain
+        return self.summary().plain
 
     @staticmethod
     def diff_files(files: list[str]) -> None:

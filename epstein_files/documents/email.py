@@ -72,12 +72,13 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'Imps ://': 'https://',
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
     # Subject lines
-    r"as Putin Mayhem Tests President's Grip\non GOP": "as Putin Mayhem Tests President's Grip on GOP",
-    r"avoids testimony from alleged\nvictims": "avoids testimony from alleged victims",
-    r"but\nwatchdogs say probe is tainted": "watchdogs say probe is tainted",
-    r"COVER UP SEX ABUSE CRIMES\nBY THE WHITE HOUSE": "COVER UP SEX ABUSE CRIMES BY THE WHITE HOUSE",
-    r'Priebus, used\nprivate email accounts for': 'Priebus, used private email accounts for',
-    r"War on the Investigations\nEncircling Him": "War on the Investigations Encircling Him",
+    "Arrested in\nInauguration Day Riot": "Arrested in Inauguration Day Riot",
+    "as Putin Mayhem Tests President's Grip\non GOP": "as Putin Mayhem Tests President's Grip on GOP",
+    "avoids testimony from alleged\nvictims": "avoids testimony from alleged victims",
+    "but\nwatchdogs say probe is tainted": "watchdogs say probe is tainted",
+    "COVER UP SEX ABUSE CRIMES\nBY THE WHITE HOUSE": "COVER UP SEX ABUSE CRIMES BY THE WHITE HOUSE",
+    'Priebus, used\nprivate email accounts for': 'Priebus, used private email accounts for',
+    "War on the Investigations\nEncircling Him": "War on the Investigations Encircling Him",
     re.compile(r"deadline re Mr Bradley Edwards vs Mr\s*Jeffrey Epstein", re.I): "deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
     re.compile(r"Following Plea That Implicated Trump -\s*https://www.npr.org/676040070", re.I): "Following Plea That Implicated Trump - https://www.npr.org/676040070",
     re.compile(r"for Attorney General -\s+Wikisource, the"): r"for Attorney General - Wikisource, the",
@@ -304,9 +305,9 @@ class Email(Communication):
         self.text = self._cleaned_up_text()
         self.actual_text = self._actual_text()
         self.sent_from_device = self._sent_from_device()
-        logger.debug(f"Constructed {self.description()}")
+        logger.debug(f"Constructed {self.summary()}")
 
-    def description(self) -> Text:
+    def summary(self) -> Text:
         """One line summary mostly for logging."""
         txt = self._description()
 

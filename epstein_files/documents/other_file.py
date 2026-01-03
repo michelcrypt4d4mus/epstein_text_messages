@@ -38,9 +38,9 @@ class OtherFile(Document):
         pieces = [p for p in [self.config.author, self.config.description] if p]
         return ' '.join(pieces) if pieces else None
 
-    def description(self) -> Text:
+    def summary(self) -> Text:
         """One line summary mostly for logging."""
-        return super().description().append(CLOSE_PROPERTIES_CHAR)
+        return super().summary().append(CLOSE_PROPERTIES_CHAR)
 
     def description_panel(self, include_hints=True) -> Panel:
         """Panelized description() with info_txt(), used in search results."""
