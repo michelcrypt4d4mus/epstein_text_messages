@@ -379,7 +379,8 @@ class EpsteinFiles:
         table = Table(header_style='bold', show_lines=True)
         table.add_column('File', justify='center', width=FILENAME_LENGTH)
         table.add_column('Date', justify='center')
-        table.add_column('Length', justify='center')
+        table.add_column('Size', justify='center')
+        table.add_column('Type', justify='center')
         table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
 
         for doc in interesting_files:
@@ -397,6 +398,7 @@ class EpsteinFiles:
                 Group(*link_and_info),
                 Text(date_str, style=TIMESTAMP_DIM) if date_str else QUESTION_MARK_TXT,
                 doc.file_size_str(),
+                doc.category(),
                 preview_text,
                 style=row_style
             )

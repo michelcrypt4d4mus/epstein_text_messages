@@ -1480,17 +1480,15 @@ OTHER_FILES_CATEGORIES = [
 ]
 
 OTHER_FILES_CONFIG = []
-dict_keys = lambda d: '  ' + '\n  '.join(sorted([k for k in d.keys()]))
 
+# Collect all OTHER_FILES_ configs into OTHER_FILES_CONFIG
 for category in OTHER_FILES_CATEGORIES:
-    # print(f"**LOCALS**\n{dict_keys(locals())}")
     configs = locals()[f"OTHER_FILES_{category}"]
-    OTHER_FILES_CONFIG += configs
+    OTHER_FILES_CONFIG.extend(configs)
 
+    # Inject category field
     for cfg in configs:
         cfg.category = category.lower()
-
-print(f"len(OTHER_FILES_CONFIG) = {len(OTHER_FILES_CONFIG)}")
 
 ALL_CONFIGS = TEXTS_CONFIG + EMAILS_CONFIG + OTHER_FILES_CONFIG
 ALL_FILE_CONFIGS: dict[str, DocCfg] = {}
@@ -1592,6 +1590,7 @@ UNINTERESTING_PREFIXES = [
 
 
 # Error checking.
+assert len(OTHER_FILES_CONFIG) == 438
 encountered_file_ids = set()
 
 for cfg in ALL_CONFIGS:

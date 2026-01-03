@@ -30,6 +30,9 @@ VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
 class OtherFile(Document):
     """File that is not an email, an iMessage log, or JSON data."""
 
+    def category(self) -> str | None:
+        return self.config and self.config.category
+
     def configured_description(self) -> str | None:
         """Overloads superclass method."""
         if self.config is None:
