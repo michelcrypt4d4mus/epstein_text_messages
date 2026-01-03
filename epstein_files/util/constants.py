@@ -223,7 +223,15 @@ FLIGHT_IN_2012_PEOPLE: list[str | None] = ['Francis Derby', 'Januiz Banasiak', '
 ##########################
 # OtherFile config stuff #
 ##########################
-BOOK = 'book:'
+
+# categories
+ARTS = 'arts'
+BOOK = 'book'
+FINANCE = 'finance'
+JUNK = 'junk'
+SPEECH = 'speech'
+
+# strings
 FBI = 'FBI'
 FLIGHT_LOGS = 'flight logs'
 MEME = 'meme of'
@@ -245,12 +253,6 @@ JANE_DOE_V_EPSTEIN_TRUMP = f"Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}:"
 JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States:'
 NEW_YORK_V_EPSTEIN = f"New York v. {JEFFREY_EPSTEIN}:"
 
-# Other file categories
-ARTS = 'arts'
-FINANCE = 'finance'
-JUNK = 'junk'
-SPEECH = 'speech'
-
 # Descriptions of non-email, non-text message files
 ARTICLE_DRAFT = 'draft of an article about'
 BOFA = 'BofA'
@@ -261,7 +263,6 @@ CHALLENGES_OF_AI = f'ASU Origins Project ({LAWRENCE_KRAUSS}) report "Challenges 
 CVRA = "Crime Victims' Rights Act [CVRA]"
 DAVID_BLAINE_VISA_LETTER = f"letter of recommendation for visa for a model"
 DAVID_SCHOEN_CVRA_LEXIS_SEARCH = f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN}"
-DEEP_THINKING_HINT = f'{BOOK} "Deep Thinking: Twenty-Five Ways of Looking at AI" by John Brockman'
 DERSH_GIUFFRE_TWEET = f"{TWEET} by {ALAN_DERSHOWITZ} about {VIRGINIA_GIUFFRE}"
 DEUTSCHE_BANK_TAX_TOPICS = f'{DEUTSCHE_BANK} Wealth Management Tax Topics'
 DIANA_DEGETTES_CAMPAIGN = "Colorado legislator Diana DeGette's campaign"
@@ -269,7 +270,7 @@ EPSTEIN_FOUNDATION = 'Jeffrey Epstein VI Foundation'
 FBI_REPORT = f"{FBI} report on Epstein investigation (redacted)"
 FBI_SEIZED_PROPERTY = f"{FBI} seized property inventory (redacted)"
 FEMALE_HEALTH_COMPANY = 'Female Health Company (FHX)'
-FIRE_AND_FURY = f"'Fire And Fury' by {MICHAEL_WOLFF}"
+FIRE_AND_FURY = f"Fire And Fury"
 GOLDMAN_INVESTMENT_MGMT = f'Investment Management Division report'
 HARVARD_POETRY = f'{HARVARD} poetry stuff from {LISA_NEW}'
 HBS_APPLICATION_NERIO = f"{HARVARD} Business School application letter from Nerio Alessandri (Founder and Chairman Technogym SPA Italy)"
@@ -279,7 +280,7 @@ JOHN_BOLTON_PRESS_CLIPPING = 'John Bolton press clipping'
 JP_MORGAN_EYE_ON_THE_MARKET = f"Eye On The Market report"
 KEN_STARR_LETTER = f"letter to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
 MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
-NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight"'
+NIGHT_FLIGHT_BOOK = f'"Night Flight" (draft)'
 NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
 OBAMA_JOKE = 'joke about Obama'
 PALM_BEACH = 'Palm Beach'
@@ -288,7 +289,7 @@ PALM_BEACH_DAILY_ARTICLE = f'{PALM_BEACH} Daily News article about'
 PALM_BEACH_POST_ARTICLE = f'{PALM_BEACH} Post article about'
 PALM_BEACH_TSV = f"TSV of {PALM_BEACH} property"
 PALM_BEACH_WATER_COMMITTEE = f'{PALM_BEACH} Water Committee'
-PATTERSON_BOOK_SCANS = f"pages of 'Filthy Rich: The Shocking True Story of {JEFFREY_EPSTEIN}'"
+PATTERSON_BOOK_SCANS = f'pages of "Filthy Rich: The Shocking True Story of {JEFFREY_EPSTEIN}"'
 SHIMON_POST = 'The Shimon Post'
 SHIMON_POST_ARTICLE = f'{SHIMON_POST} selection of articles about the mideast'
 SINGLE_PAGE = 'single page of'
@@ -297,6 +298,7 @@ THE_REAL_DEAL_ARTICLE = 'article by Keith Larsen'
 TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Government Ethics"
 UBS = 'UBS'
 UBS_CIO_REPORT = 'CIO Monthly Extended report'
+UN_GENERAL_ASSEMBLY = '67th U.N. General Assembly'
 VI_DAILY_NEWS_ARTICLE = f'{VIRGIN_ISLANDS} Daily News article'
 WOMEN_EMPOWERMENT = f"Women Empowerment (WE) conference run by {SVETLANA_POZHIDAEVA}"
 ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
@@ -709,6 +711,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='026551', is_fwded_article=True),  # Sultan bin Sulayem "Ayatollah between the sheets"
     EmailCfg(id='031768', is_fwded_article=True),  # Sultan bin Sulayem 'Horseface'
     EmailCfg(id='031569', is_fwded_article=True),  # Article by Kathryn Alexeeff fwded to Peter Thiel
+    EmailCfg(id='029689', is_fwded_article=True),  # Tunisia article to Larry Summers
     EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
 
@@ -826,37 +829,33 @@ EMAILS_CONFIG = [
 ################################################################################################
 
 OTHER_FILES_BOOKS = [
-    DocCfg(id='015032', description=f"{BOOK} '60 Years of Investigative Satire: The Best of {PAUL_KRASSNER}'"),
-    DocCfg(id='015675', description=f'{BOOK} "Are the Androids Dreaming Yet? Amazing Brain Human Communication, Creativity & Free Will" by James Tagg'),
-    DocCfg(id='012899', description=f'{BOOK} "Engineering General Intelligence: A Path to Advanced AGI Via Embodied Learning and Cognitive Synergy" by Ben Goertzel'),
-    DocCfg(id='012747', description=f'{BOOK} "Evilicious: Explaining Our Taste For Excessive Harm" by Marc D. Hauser'),
-    DocCfg(id='019874', description=f'{BOOK} {FIRE_AND_FURY}', date='2018-01-05'),
-    DocCfg(id='032724', description=f'{BOOK} cover of {FIRE_AND_FURY}', date='2018-01-05'),
-    DocCfg(id='010912', description=f"{BOOK} 'Free Growth and Other Surprises' by Gordon Getty (draft)", date='2018-10-18'),
-    DocCfg(
-        id='021247',
-        description=f'{BOOK} "Invisible Forces And Powerful Beliefs: Gravity, Gods, And Minds" by The Chicago Social Brain Network',
-        date='2010-10-04',
-    ),
-    DocCfg(id='019477', description=f'{BOOK} "How America Lost Its Secrets: Edward Snowden, the Man, and the Theft" by {EDWARD_JAY_EPSTEIN}'),
-    DocCfg(id='017088', description=f'{BOOK} "Taking the Stand: My Life in the Law" by {ALAN_DERSHOWITZ} (draft)'),
-    DocCfg(id='023731', description=f'{BOOK} "Teaching Minds How Cognitive Science Can Save Our Schools" by {ROGER_SCHANK}'),
-    DocCfg(id='013796', description=f'{BOOK} "The 4-Hour Workweek" by Tim Ferriss'),
-    DocCfg(id='021145', description=f'{BOOK} "The Billionaire\'s Playboy Club" by {VIRGINIA_GIUFFRE} (draft?)'),
-    DocCfg(id='013501', description=f'{BOOK} "The Nearness Of Grace: A Personal Science Of Spiritual Transformation" by Arnold J. Mandell', date='2005-01-01'),
-    DocCfg(id='018438', description=f'{BOOK} "The S&M Feminist" by Clarisse Thorn'),
-    DocCfg(id='018232', description=f'{BOOK} "The Seventh Sense: Power, Fortune & Survival in the Age of Networks" by Joshua Cooper Ramo'),
-    DocCfg(id='020153', description=f'{BOOK} "The Snowden Affair: A Spy Story In Six Parts" by {EDWARD_JAY_EPSTEIN}'),
-    DocCfg(id='021120', description=f'{BOOK} chapter of "Siege: Trump Under Fire" by {MICHAEL_WOLFF}'),
-    DocCfg(id='016804', description=DEEP_THINKING_HINT, date='2019-02-19', duplicate_ids=['016221']),
-    DocCfg(id='011472', author=EHUD_BARAK, description=NIGHT_FLIGHT_HINT,),
-    DocCfg(id='027849', author=EHUD_BARAK, description=NIGHT_FLIGHT_HINT,),
+    DocCfg(id='017088', author=ALAN_DERSHOWITZ,  description=f'"Taking the Stand: My Life in the Law" (draft)'),
+    DocCfg(id='013501', author='Arnold J. Mandell', description=f'The Nearness Of Grace: A Personal Science Of Spiritual Transformation', date='2005-01-01'),
+    DocCfg(id='012899', author='Ben Goertzel', description=f'Engineering General Intelligence: A Path to Advanced AGI Via Embodied Learning and Cognitive Synergy'),
+    DocCfg(id='018438', author='Clarisse Thorn', description=f'The S&M Feminist'),
+    DocCfg(id='019477', author=EDWARD_JAY_EPSTEIN, description=f'How America Lost Its Secrets: Edward Snowden, the Man, and the Theft'),
+    DocCfg(id='020153', author=EDWARD_JAY_EPSTEIN, description=f'"The Snowden Affair: A Spy Story In Six Parts"'),
+    DocCfg(id='011472', author=EHUD_BARAK, description=NIGHT_FLIGHT_BOOK),
+    DocCfg(id='027849', author=EHUD_BARAK, description=NIGHT_FLIGHT_BOOK),
+    DocCfg(id='010912', author=GORDON_GETTY, description=f'"Free Growth and Other Surprises" (draft)', date='2018-10-18'),
     DocCfg(id='010477', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
     DocCfg(id='010486', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
     DocCfg(id='021958', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
     DocCfg(id='022058', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
     DocCfg(id='022118', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
     DocCfg(id='019111', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
+    DocCfg(id='015675', author='James Tagg', description=f'Are the Androids Dreaming Yet? Amazing Brain Human Communication, Creativity & Free Will'),
+    DocCfg(id='016804', author='John Brockman', description='Deep Thinking: Twenty-Five Ways of Looking at AI', date='2019-02-19', duplicate_ids=['016221']),
+    DocCfg(id='018232', author='Joshua Cooper Ramo', description=f'The Seventh Sense: Power, Fortune & Survival in the Age of Networks'),
+    DocCfg(id='012747', author='Marc D. Hauser', description=f'Evilicious: Explaining Our Taste For Excessive Harm'),
+    DocCfg(id='032724', author=MICHAEL_WOLFF, description=f'cover of "{FIRE_AND_FURY}"', date='2018-01-05'),
+    DocCfg(id='021120', author=MICHAEL_WOLFF, description=f'chapter of "Siege: Trump Under Fire"'),
+    DocCfg(id='019874', author=MICHAEL_WOLFF, description=FIRE_AND_FURY, date='2018-01-05'),
+    DocCfg(id='015032', author=PAUL_KRASSNER, description=f"60 Years of Investigative Satire: The Best of {PAUL_KRASSNER}"),
+    DocCfg(id='023731', author=ROGER_SCHANK, description=f'Teaching Minds How Cognitive Science Can Save Our Schools'),
+    DocCfg(id='021247', author='The Chicago Social Brain Network', description=f'Invisible Forces And Powerful Beliefs: Gravity, Gods, And Minds', date='2010-10-04'),
+    DocCfg(id='013796', author='Tim Ferriss', description=f'The 4-Hour Workweek'),
+    DocCfg(id='021145', author=VIRGINIA_GIUFFRE, description=f'"The Billionaire\'s Playboy Club" (draft?)'),
     DocCfg(id='031533', description=f'pages from a book about the Baylor University sexual assault scandal and Sam Ukwuachu'),
 ]
 
@@ -1142,6 +1141,13 @@ OTHER_FILES_LEGAL = [
 
 OTHER_FILES_CONFERENCES = [
     DocCfg(id='014315', author=BOFA_MERRILL, description=f'2016 Future of Financials Conference'),
+    DocCfg(id='024179', author=UN_GENERAL_ASSEMBLY, description=f'president and first lady schedule', date='2012-09-21'),
+    DocCfg(
+        id='024185',
+        author=UN_GENERAL_ASSEMBLY,
+        description=f'schedule including "Presidents Private Dinner - Jeffrey Epstine (sic)"',
+        date='2012-09-21',
+    ),
     DocCfg(id='030769', description=f"2017 Independent Filmmaker Project (IFP) Gotham Awards invitation"),
     DocCfg(id='014951', description=f"2017 TED Talks program", date='2017-04-20'),
     DocCfg(id='026825', description=f"{DEUTSCHE_BANK} Asset & Wealth Management featured speaker bios"),  # Really "Deutsche Asset" which may not be Deutsche Bank?
@@ -1150,13 +1156,7 @@ OTHER_FILES_CONFERENCES = [
     DocCfg(id='023123', description=f"{LAWRENCE_KRAUSS} 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more", duplicate_ids=['023121'], dupe_type='earlier'),
     DocCfg(id='031359', description=f"{NOBEL_CHARITABLE_TRUST} Earth Environment Convention about ESG investing"),
     DocCfg(id='031354', description=f'{NOBEL_CHARITABLE_TRUST} "Thinking About the Environment and Technology" report 2011'),
-    DocCfg(id='024179', description=f'president and first lady schedule at 67th U.N. General Assembly', date='2012-09-21'),
     DocCfg(id='029427', description=f"seems related to an IRL meeting about concerns China will attempt to absorb Mongolia"),
-    DocCfg(
-        id='024185',
-        description=f'schedule of 67th U.N. General Assembly w/"Presidents Private Dinner - Jeffrey Epstine (sic)"',
-        date='2012-09-21',
-    ),
     DocCfg(id='025797', description=f'someone\'s notes from Aspen Strategy Group', date='2013-05-29'),
     DocCfg(id='017524', description=f"{SWEDISH_LIFE_SCIENCES_SUMMIT} 2012 program"),
     DocCfg(id='026747', description=f"{SWEDISH_LIFE_SCIENCES_SUMMIT} 2017 program", date='2017-08-23'),
@@ -1525,7 +1525,6 @@ UNINTERESTING_PREFIXES = [
     'Aviation International',
     BBC,
     BLOOMBERG,
-    BOOK,
     'Boston Globe',
     'Brockman',
     CHALLENGES_OF_AI,
@@ -1536,7 +1535,6 @@ UNINTERESTING_PREFIXES = [
     DAILY_MAIL,
     DAILY_TELEGRAPH,
     DAVID_SCHOEN_CVRA_LEXIS_SEARCH[0:-12],  # Because date at end :(
-    DEEP_THINKING_HINT,
     DERSH_GIUFFRE_TWEET,
     'Forbes',
     'Frontlines',
@@ -1546,7 +1544,6 @@ UNINTERESTING_PREFIXES = [
     f"{HARVARD} Econ",
     HARVARD_POETRY,
     'Inference',
-    JAMES_PATTERSON,
     JASTA,
     'JetGala',
     JOHN_BOLTON_PRESS_CLIPPING,
@@ -1557,7 +1554,6 @@ UNINTERESTING_PREFIXES = [
     NOBEL_CHARITABLE_TRUST,
     'Nautilus',
     'New Yorker',
-    NIGHT_FLIGHT_HINT,
     NYT_ARTICLE,
     NYT_COLUMN,
     PALM_BEACH_CODE_ENFORCEMENT,
@@ -1584,6 +1580,7 @@ UNINTERESTING_PREFIXES = [
     THE_REAL_DEAL_ARTICLE,
     TRUMP_DISCLOSURES,
     UBS_CIO_REPORT,
+    UN_GENERAL_ASSEMBLY,
     'U.S. News',
     'US Office',
     'Vanity Fair',
