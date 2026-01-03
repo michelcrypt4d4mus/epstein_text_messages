@@ -40,8 +40,8 @@ TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
 MAX_CHARS_TO_PRINT = 4000
+MAX_NUM_HEADER_LINES = 14
 MAX_QUOTED_REPLIES = 2
-VALID_HEADER_LINES = 14
 
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r'grnail\.com'): 'gmail.com',
@@ -435,7 +435,7 @@ class Email(Communication):
             if timestamp:
                 return timestamp
 
-        searchable_lines = self.lines[0:VALID_HEADER_LINES]
+        searchable_lines = self.lines[0:MAX_NUM_HEADER_LINES]
         searchable_text = '\n'.join(searchable_lines)
         date_match = DATE_HEADER_REGEX.search(searchable_text)
 
@@ -445,7 +445,7 @@ class Email(Communication):
             if timestamp:
                 return timestamp
 
-        logger.debug(f"Failed to find timestamp, falling back to parsing {VALID_HEADER_LINES} lines...")
+        logger.debug(f"Failed to find timestamp, falling back to parsing {MAX_NUM_HEADER_LINES} lines...")
 
         for line in searchable_lines:
             if not TIMESTAMP_LINE_REGEX.search(line):
