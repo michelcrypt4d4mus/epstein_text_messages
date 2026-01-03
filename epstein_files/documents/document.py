@@ -206,11 +206,13 @@ class Document:
             txt.append(self.epstein_web_link(style=style))
 
             if include_alt_link:
+                txt.append(' (').append(self.epsteinify_link(style='white dim', link_txt=EPSTEINIFY)).append(')')
                 txt.append(' (').append(self.epstein_media_link(style='white dim', link_txt=EPSTEIN_MEDIA)).append(')')
         else:
             txt.append(self.epstein_media_link(style=style))
 
             if include_alt_link:
+                txt.append(' (').append(self.epsteinify_link(style='white dim', link_txt=EPSTEINIFY)).append(')')
                 txt.append(' (').append(self.epstein_web_link(style='white dim', link_txt=EPSTEIN_WEB)).append(')')
 
         return txt
