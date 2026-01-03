@@ -269,7 +269,7 @@ HBS_APPLICATION_NERIO = f"{HARVARD} Business School application letter from Neri
 JASTA = 'JASTA'
 JASTA_SAUDI_LAWSUIT = f"{JASTA} lawsuit against Saudi Arabia by 9/11 victims"
 JOHN_BOLTON_PRESS_CLIPPING = 'John Bolton press clipping'
-JP_MORGAN_EYE_ON_THE_MARKET = f"{JP_MORGAN} Eye On The Market report"
+JP_MORGAN_EYE_ON_THE_MARKET = f"Eye On The Market report"
 KEN_STARR_LETTER = f"letter to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
 MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
 NIGHT_FLIGHT_HINT = f'draft of book named "Night Flight"'
@@ -1134,9 +1134,9 @@ OTHER_FILES_COURT_DOCS = [
 ]
 
 OTHER_FILES_CONFERENCES = [
+    DocCfg(id='014315', author=BOFA_MERRILL, description=f'2016 Future of Financials Conference'),
     DocCfg(id='030769', description=f"2017 Independent Filmmaker Project (IFP) Gotham Awards invitation"),
     DocCfg(id='014951', description=f"2017 TED Talks program", date='2017-04-20'),
-    DocCfg(id='014315', description=f'{BOFA_MERRILL} 2016 Future of Financials Conference'),
     DocCfg(id='026825', description=f"{DEUTSCHE_BANK} Asset & Wealth Management featured speaker bios"),  # Really "Deutsche Asset" which may not be Deutsche Bank?
     DocCfg(id='017526', description=f'Intellectual Jazz conference brochure f. {DAVID_BLAINE}'),
     DocCfg(id='023120', description=f"{LAWRENCE_KRAUSS} 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more (old draft)"),
@@ -1164,34 +1164,34 @@ OTHER_FILES_CONFERENCES = [
 ]
 
 OTHER_FILES_FINANCE = [
-    DocCfg(id='024631', description=f"Ackrell Capital Cannabis Investment Report 2018"),
-    DocCfg(id='016111', description=f"{BOFA_MERRILL} 'GEMs Paper #26 Saudi Arabia: beyond oil but not so fast'", date='2016-06-30'),
-    DocCfg(id='010609', description=f"{BOFA_MERRILL} 'Liquid Insight Trump\'s effect on MXN'", date='2016-09-22'),
-    DocCfg(id='025978', description=f"{BOFA_MERRILL} 'Understanding when risk parity risk Increases'", date='2016-08-09'),
-    DocCfg(id='014404', description=f'{BOFA_MERRILL} Japan Investment Strategy Report', date='2016-11-18'),
-    DocCfg(id='014410', description=f'{BOFA_MERRILL} Japan Investment Strategy Report', date='2016-11-18'),
-    DocCfg(id='014424', description=f"{BOFA_MERRILL} 'Japan Macro Watch'", date='2016-11-14'),
-    DocCfg(id='014731', description=f"{BOFA_MERRILL} 'Global Rates, FX & EM 2017 Year Ahead'", date='2016-11-16'),
-    DocCfg(id='014432', description=f"{BOFA_MERRILL} 'Global Cross Asset Strategy - Year Ahead The Trump inflection'", date='2016-11-30'),
-    DocCfg(id='014460', description=f"{BOFA_MERRILL} 'European Equity Strategy 2017'", date='2016-12-01'),
-    DocCfg(id='014972', description=f"{BOFA_MERRILL} 'Global Equity Volatility Insights'", date='2017-06-20'),
-    DocCfg(id='014622', description=f"{BOFA_MERRILL} 'Top 10 US Ideas Quarterly'", date='2017-01-03'),
-    DocCfg(id='023069', description=f"{BOFA_MERRILL} 'Equity Strategy Focus Point Death and Taxes'", date='2017-01-29'),
-    DocCfg(id='014721', description=f"{BOFA_MERRILL} 'Cause and Effect Fade the Trump Risk Premium'", date='2017-02-13'),
-    DocCfg(id='014887', description=f"{BOFA_MERRILL} 'Internet / e-Commerce'", date='2017-04-06'),
-    DocCfg(id='014873', description=f"{BOFA_MERRILL} 'Hess Corp'", date='2017-04-11'),
-    DocCfg(id='023575', description=f"{BOFA_MERRILL} 'Global Equity Volatility Insights'", date='2017-06-01'),
-    DocCfg(id='014518', description=f'{BOFA_WEALTH_MGMT} tax alert', date='2016-05-02'),
-    DocCfg(id='029438', description=f'{BOFA_WEALTH_MGMT} tax report', date='2018-01-02'),
+    DocCfg(id='024631', author='Ackrell Capital', description=f"Cannabis Investment Report 2018"),
+    DocCfg(id='016111', author=BOFA_MERRILL, description=f"'GEMs Paper #26 Saudi Arabia: beyond oil but not so fast'", date='2016-06-30'),
+    DocCfg(id='010609', author=BOFA_MERRILL, description=f"'Liquid Insight Trump\'s effect on MXN'", date='2016-09-22'),
+    DocCfg(id='025978', author=BOFA_MERRILL, description=f"'Understanding when risk parity risk Increases'", date='2016-08-09'),
+    DocCfg(id='014404', author=BOFA_MERRILL, description=f'Japan Investment Strategy Report', date='2016-11-18'),
+    DocCfg(id='014410', author=BOFA_MERRILL, description=f'Japan Investment Strategy Report', date='2016-11-18'),
+    DocCfg(id='014424', author=BOFA_MERRILL, description=f"'Japan Macro Watch'", date='2016-11-14'),
+    DocCfg(id='014731', author=BOFA_MERRILL, description=f"'Global Rates, FX & EM 2017 Year Ahead'", date='2016-11-16'),
+    DocCfg(id='014432', author=BOFA_MERRILL, description=f"'Global Cross Asset Strategy - Year Ahead The Trump inflection'", date='2016-11-30'),
+    DocCfg(id='014460', author=BOFA_MERRILL, description=f"'European Equity Strategy 2017'", date='2016-12-01'),
+    DocCfg(id='014972', author=BOFA_MERRILL, description=f"'Global Equity Volatility Insights'", date='2017-06-20'),
+    DocCfg(id='014622', author=BOFA_MERRILL, description=f"'Top 10 US Ideas Quarterly'", date='2017-01-03'),
+    DocCfg(id='023069', author=BOFA_MERRILL, description=f"'Equity Strategy Focus Point Death and Taxes'", date='2017-01-29'),
+    DocCfg(id='014721', author=BOFA_MERRILL, description=f"'Cause and Effect Fade the Trump Risk Premium'", date='2017-02-13'),
+    DocCfg(id='014887', author=BOFA_MERRILL, description=f"'Internet / e-Commerce'", date='2017-04-06'),
+    DocCfg(id='014873', author=BOFA_MERRILL, description=f"'Hess Corp'", date='2017-04-11'),
+    DocCfg(id='023575', author=BOFA_MERRILL, description=f"'Global Equity Volatility Insights'", date='2017-06-01'),
+    DocCfg(id='014518', author=BOFA_WEALTH_MGMT, description=f'tax alert', date='2016-05-02'),
+    DocCfg(id='029438', author=BOFA_WEALTH_MGMT, description=f'tax report', date='2018-01-02'),
+    DocCfg(id='026794', author=DEUTSCHE_BANK, description=f"'Global Political and Regulatory Risk in 2015/2016'"),
+    DocCfg(id='022361', author=DEUTSCHE_BANK_TAX_TOPICS, date='2013-05-01'),
+    DocCfg(id='022325', author=DEUTSCHE_BANK_TAX_TOPICS, date='2013-12-20'),
+    DocCfg(id='022330', author=DEUTSCHE_BANK_TAX_TOPICS, date='2013-12-20', description='table of contents'),
+    DocCfg(id='019440', author=DEUTSCHE_BANK_TAX_TOPICS, date='2014-01-29'),
     DocCfg(id='024271', description=f"Blockchain Capital and Brock Pierce pitch deck", date='2015-10-01'),
     DocCfg(id='024302', description=f"Carvana form 14A SEC filing proxy statement", date='2019-04-23'),
     DocCfg(id='029305', description=f"CCH Tax Briefing on end of Defense of Marriage Act", date='2013-06-27'),
     DocCfg(id='024817', description=f"Cowen's Collective View of CBD / Cannabis report"),
-    DocCfg(id='026794', description=f"{DEUTSCHE_BANK} Global Public Affairs report: 'Global Political and Regulatory Risk in 2015/2016'"),
-    DocCfg(id='022361', description=DEUTSCHE_BANK_TAX_TOPICS, date='2013-05-01'),
-    DocCfg(id='022325', description=DEUTSCHE_BANK_TAX_TOPICS, date='2013-12-20'),
-    DocCfg(id='022330', description=f'{DEUTSCHE_BANK_TAX_TOPICS} table of contents', date='2013-12-20'),
-    DocCfg(id='019440', description=DEUTSCHE_BANK_TAX_TOPICS, date='2014-01-29'),
     DocCfg(id='024202', description=f"Electron Capital Partners LLC 'Global Utility White Paper'", date='2013-03-08'),
     DocCfg(id='022372', description=f'Ernst & Young 2016 election report'),
     DocCfg(
@@ -1203,18 +1203,18 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='026909', description=f"{GOLDMAN_REPORT} 'The Unsteady Undertow Commands the Seas (Temporarily)'", date='2018-10-14'),
     DocCfg(id='026944', description=f"{GOLDMAN_REPORT} 'Risk of a US-Iran Military Conflict'", date='2019-05-23'),
     DocCfg(id='026679', description=f"Invesco report: 'Global Sovereign Asset Management Study 2017'"),
-    DocCfg(id='026572', description=f"{JP_MORGAN} Global Asset Allocation report", date='2012-11-09'),
-    DocCfg(id='030848', description=f"{JP_MORGAN} Global Asset Allocation report", date='2013-03-28'),
-    DocCfg(id='030840', description=f"{JP_MORGAN} Market Thoughts"),
-    DocCfg(id='022350', description=f"{JP_MORGAN} report on tax efficiency of Intentionally Defective Grantor Trusts (IDGT)"),
-    DocCfg(id='025242', description=JP_MORGAN_EYE_ON_THE_MARKET, date='2012-04-09'),
-    DocCfg(id='030010', description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-06-14'),
-    DocCfg(id='030808', description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-07-11'),
-    DocCfg(id='025221', description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-07-25'),
-    DocCfg(id='025229', description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-08-04'),
-    DocCfg(id='030814', description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-11-21'),
-    DocCfg(id='024132', description=JP_MORGAN_EYE_ON_THE_MARKET, date='2012-03-15'),
-    DocCfg(id='024194', description=JP_MORGAN_EYE_ON_THE_MARKET, date='2012-10-22'),
+    DocCfg(id='026572', author=JP_MORGAN, description=f"Global Asset Allocation report", date='2012-11-09'),
+    DocCfg(id='030848', author=JP_MORGAN, description=f"Global Asset Allocation report", date='2013-03-28'),
+    DocCfg(id='030840', author=JP_MORGAN, description=f"Market Thoughts"),
+    DocCfg(id='022350', author=JP_MORGAN, description=f"report on tax efficiency of Intentionally Defective Grantor Trusts (IDGT)"),
+    DocCfg(id='025242', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2012-04-09'),
+    DocCfg(id='030010', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-06-14'),
+    DocCfg(id='030808', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-07-11'),
+    DocCfg(id='025221', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-07-25'),
+    DocCfg(id='025229', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-08-04'),
+    DocCfg(id='030814', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-11-21'),
+    DocCfg(id='024132', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2012-03-15'),
+    DocCfg(id='024194', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2012-10-22'),
     DocCfg(id='025296', description=f'Laffer Associates report predicting Trump win', date='2016-07-06'),
     DocCfg(id='025551', description=f'Morgan Stanley report about alternative asset managers', date='2018-01-30'),
     DocCfg(id='026759', description=f'{PRESS_RELEASE} by Ritz-Carlton club about damage from Hurricane Irma', date='2017-09-13'),
@@ -1270,7 +1270,6 @@ OTHER_FILES_LETTERS = [
     DocCfg(id='029304', description=f"Trump recommendation letter for recently departed Trump Organization lawyer {MICHAEL_J_BOCCIO}"),
     DocCfg(id='026668', description=f"Boothbay Fund Management 2016-Q4 earnings report signed by Ari Glass"),
 ]
-
 
 OTHER_FILES_PROPERTY = [
     DocCfg(id='018743', description=f"Las Vegas property listing"),
@@ -1509,7 +1508,6 @@ UNINTERESTING_PREFIXES = [
     BBC,
     BLOOMBERG,
     BOFA,
-    BOFA_MERRILL,
     BOOK,
     'Boston Globe',
     'Brockman',
