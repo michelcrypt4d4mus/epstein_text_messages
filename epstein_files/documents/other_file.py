@@ -52,7 +52,7 @@ class OtherFile(Document):
         super().__post_init__()
 
         if self.config is None and VI_DAILY_NEWS_REGEX.search(self.text):
-            logger.warning(f"Creating synthetic config for VI Daily News article...")
+            logger.info(f"Creating synthetic config for VI Daily News article...")
             self.config = DocCfg(id=self.file_id, description=VI_DAILY_NEWS_ARTICLE, category=ARTICLE)
 
     def category(self) -> str | None:
