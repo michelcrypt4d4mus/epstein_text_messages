@@ -588,7 +588,7 @@ EMAILS_CONFIG = [
         id='026620',
         author=TERRY_KAFKA,
         recipients=[JEFFREY_EPSTEIN, MARK_EPSTEIN, MICHAEL_BUCHHOLTZ] + IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS,
-        attribution_reason='"Respectfully, terry"',
+        attribution_reason='ends with "Respectfully, terry"',
         duplicate_ids=['028482'],
     ),
     EmailCfg(id='029992', author=TERRY_KAFKA, attribution_reason='Quoted reply'),
@@ -608,7 +608,7 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='030525',
         recipients=[FAITH_KATES],
-        attribution_reason='Same as unredacted 030414, same legal signature',
+        attribution_reason='Reply in 030414 has Next Management LLC legal signature',
         duplicate_ids=['030581'],
     ),
     EmailCfg(
@@ -630,7 +630,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='032780', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
     EmailCfg(id='025233', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
     EmailCfg(id='022344', recipients=[JEFFREY_EPSTEIN], duplicate_ids=['028529']),  # Bad OCR
-    EmailCfg(id='029324', recipients=[JEFFREY_EPSTEIN, "Jojo Fontanilla", "Lyn Fontanilla"]),
+    EmailCfg(id='029889', recipients=[JEFFREY_EPSTEIN, "Connie Zaguirre", JACK_GOLDBERGER, ROBERT_D_CRITTON]),  # Bad OCR
     EmailCfg(id='033575', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN], duplicate_ids=['012898']),
     EmailCfg(id='023067', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN, TONJA_HADDAD_COLEMAN]),  # Bad OCR
     EmailCfg(id='033228', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, FRED_HADDAD]),  # Bad OCR
@@ -645,7 +645,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='033486', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, RICHARD_KAHN], duplicate_ids=['033156']),  # Bad OCR
     EmailCfg(id='029154', recipients=[JEFFREY_EPSTEIN, DAVID_HAIG]),  # Bad OCR
     EmailCfg(id='029498', recipients=[JEFFREY_EPSTEIN, DAVID_HAIG, GORDON_GETTY, "Norman Finkelstein"]),  # Bad OCR
-    EmailCfg(id='029889', recipients=[JEFFREY_EPSTEIN, "Connie Zaguirre", JACK_GOLDBERGER, ROBERT_D_CRITTON]),  # Bad OCR
+    EmailCfg(id='029324', recipients=[JEFFREY_EPSTEIN, "Jojo Fontanilla", "Lyn Fontanilla"]),
     EmailCfg(id='028931', recipients=[JEFFREY_EPSTEIN, LAWRENCE_KRAUSS]),  # Bad OCR
     EmailCfg(id='019407', recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK]),  # Bad OCR
     EmailCfg(id='031980', recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK], duplicate_ids=['019409']),  # Bad OCR
@@ -663,13 +663,13 @@ EMAILS_CONFIG = [
         id='033073',
         recipients=[KATHRYN_RUEMMLER],
         attribution_reason='to "Kathy" about dems, sent from iPad',
-        is_attribution_uncertain=True,  # It's actually Kathy R. as t eh recipient that's the uncertain part
+        is_attribution_uncertain=True,  # It's actually Kathy R. as the recipient that's the uncertain part
     ),
     EmailCfg(
         id='032939',
         recipients=[KATHRYN_RUEMMLER],
         attribution_reason='to "Kathy" about dems, sent from iPad',
-        is_attribution_uncertain=True,  # It's actually Kathy R. as t eh recipient that's the uncertain part
+        is_attribution_uncertain=True,  # It's actually Kathy R. as the recipient that's the uncertain part
     ),
     EmailCfg(id='031428', recipients=[KEN_STARR, LILLY_SANCHEZ, MARTIN_WEINBERG, REID_WEINGARTEN], duplicate_ids=['031388']), # Bad OCR
     EmailCfg(id='025329', recipients=['Nancy Cain', 'Tom', 'Marie Moneysmith', 'Steven Gaydos', 'George Krassner', 'Linda W. Grossman', 'Holly Krassner Dawson', 'Daniel Dawson', 'Danny Goldberg', 'Caryl Ratner', 'Kevin Bright', 'Michael Simmons', SAMUEL_LEFF, 'Bob Fass', 'Lynnie Tofte Fass', 'Barb Cowles', 'Lee Quarnstrom']),
@@ -696,6 +696,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='030384', recipients=[RICHARD_KAHN, "Alan Dlugash"]),
     EmailCfg(id='019334', recipients=[STEVE_BANNON]),
     EmailCfg(id='021106', recipients=[STEVE_BANNON], attribution_reason='Reply'),
+
+    # Misc configs
     EmailCfg(id='033050', actual_text='schwartman'),
     EmailCfg(id='023627', description=MICHAEL_WOLFF_ARTICLE_HINT, is_fwded_article=True),
     EmailCfg(id='026298', is_fwded_article=True, duplicate_ids=['026499']),  # Written by someone else?
