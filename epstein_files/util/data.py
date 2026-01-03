@@ -78,6 +78,8 @@ def listify(listlike: list | str | Text | None) -> list:
     """Create a list of 'listlike'. Returns empty list if 'listlike' is None or empty string."""
     if isinstance(listlike, list):
         return listlike
+    elif listlike is None:
+        return [None]
     elif listlike:
         return [listlike]
     else:

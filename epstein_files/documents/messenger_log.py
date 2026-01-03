@@ -109,10 +109,6 @@ class MessengerLog(Communication):
 
         for name, count in sort_dict(cls.count_authors(imessage_logs)):
             logs = cls.logs_for(name, imessage_logs)
-
-            if not logs:
-                raise RuntimeError(f"No logs found for '{name}'")
-
             first_at = logs[0].first_message_at(name)
             last_at = logs[-1].first_message_at(name)
 
