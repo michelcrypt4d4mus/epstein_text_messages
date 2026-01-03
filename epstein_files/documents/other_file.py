@@ -5,15 +5,19 @@ from datetime import datetime
 
 import datefinder
 import dateutil
+from rich.console import Group
 from rich.markup import escape
 from rich.panel import Panel
+from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_REGEX, Document
+from epstein_files.util.constant.strings import FIRST_FEW_LINES, TIMESTAMP_DIM
 from epstein_files.util.constants import ARTS, BOOK, FINANCE, JUNK, SPEECH, UNINTERESTING_PREFIXES
 from epstein_files.util.data import escape_single_quotes, remove_timezone, uniquify
+from epstein_files.util.file_helper import FILENAME_LENGTH
 from epstein_files.util.env import args, logger
-from epstein_files.util.rich import highlighter, logger
+from epstein_files.util.rich import QUESTION_MARK_TXT, highlighter, logger
 
 MAX_EXTRACTED_TIMESTAMPS = 100
 MAX_DAYS_SPANNED_TO_BE_VALID = 10
@@ -136,3 +140,35 @@ class OtherFile(Document):
         if num_days_spanned > MAX_DAYS_SPANNED_TO_BE_VALID and VAST_HOUSE not in self.text:
             log_level = logging.DEBUG if VAST_HOUSE in self.text else logging.INFO
             self.log_top_lines(15, msg=timestamps_log_msg, level=log_level)
+
+    @staticmethod
+    def build_table(docs: list['OtherFile']) -> Table:
+        """Build a table of OtherFile documents."""
+        table = Table(header_style='bold', show_lines=True)
+        table.add_column('File', justify='center', width=FILENAME_LENGTH)
+        table.add_column('Date', justify='center')
+        table.add_column('Size', justify='center')
+        table.add_column('Type', justify='center')
+        table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
+
+        for doc in docs:
+            link_and_info = [doc.raw_document_link_txt(), *doc.hints()]
+            date_str = doc.date_str()
+
+            if doc.is_duplicate:
+                preview_text = doc.duplicate_file_txt()
+                row_style = ' dim'
+            else:
+                preview_text = doc.highlighted_preview_text()
+                row_style = ''
+
+            table.add_row(
+                Group(*link_and_info),
+                Text(date_str, style=TIMESTAMP_DIM) if date_str else QUESTION_MARK_TXT,
+                doc.file_size_str(),
+                doc.category(),
+                preview_text,
+                style=row_style
+            )
+
+        return table

@@ -8,7 +8,6 @@ from pathlib import Path
 from typing import Literal, Sequence
 
 from rich.align import Align
-from rich.console import Group
 from rich.padding import Padding
 from rich.table import Table
 from rich.text import Text
@@ -26,15 +25,14 @@ from epstein_files.util.constants import *
 from epstein_files.util.data import Timer, dict_sets_to_lists, iso_timestamp, sort_dict
 from epstein_files.util.doc_cfg import EmailCfg
 from epstein_files.util.env import args, logger
-from epstein_files.util.file_helper import DOCS_DIR, FILENAME_LENGTH, PICKLED_PATH, file_size_str
+from epstein_files.util.file_helper import DOCS_DIR, PICKLED_PATH, file_size_str
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
-from epstein_files.util.rich import (DEFAULT_NAME_STYLE, NA_TXT, QUESTION_MARK_TXT, add_cols_to_table, console,
-     highlighter, link_text_obj, link_markup, print_author_header, print_centered, print_other_site_link, print_panel,
+from epstein_files.util.rich import (DEFAULT_NAME_STYLE, NA_TXT, add_cols_to_table, console, highlighter,
+     link_text_obj, link_markup, print_author_header, print_centered, print_other_site_link, print_panel,
      print_section_header, vertically_pad)
 from epstein_files.util.search_result import SearchResult
 
 DEVICE_SIGNATURE = 'Device Signature'
-FIRST_FEW_LINES = 'First Few Lines'
 DEVICE_SIGNATURE_PADDING = (1, 0)
 NOT_INCLUDED_EMAILERS = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
 
@@ -366,44 +364,17 @@ class EpsteinFiles:
         console.print(f"(Last deploy found 4668 messages in 77 conversations)", style='dim')
 
     def print_other_files_table(self) -> list[OtherFile]:
-        """Returns the OtherFiles that were interesting enough to print."""
+        """Returns the OtherFile objects that were interesting enough to print."""
         interesting_files = [doc for doc in self.other_files if args.all_other_files or doc.is_interesting()]
         header_pfx = '' if args.all_other_files else 'Selected '
         print_section_header(f"{FIRST_FEW_LINES} of {len(interesting_files)} {header_pfx}Files That Are Neither Emails Nor Text Msgs")
 
         if not args.all_other_files:
-            print_centered(f"(the other site is uncurated and has all {len(self.other_files)} unclassifiable files and all {len(self.emails):,} emails)", style='dim')
+            print_centered(f"(the other site is uncurated and has all {len(self.other_files)} unclassifiable files and {len(self.emails):,} emails)", style='dim')
             print_other_site_link(False)
             console.line(2)
 
-        table = Table(header_style='bold', show_lines=True)
-        table.add_column('File', justify='center', width=FILENAME_LENGTH)
-        table.add_column('Date', justify='center')
-        table.add_column('Size', justify='center')
-        table.add_column('Type', justify='center')
-        table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
-
-        for doc in interesting_files:
-            link_and_info = [doc.raw_document_link_txt(), *doc.hints()]
-            date_str = doc.date_str()
-
-            if doc.is_duplicate:
-                preview_text = doc.duplicate_file_txt()
-                row_style = ' dim'
-            else:
-                preview_text = doc.highlighted_preview_text()
-                row_style = ''
-
-            table.add_row(
-                Group(*link_and_info),
-                Text(date_str, style=TIMESTAMP_DIM) if date_str else QUESTION_MARK_TXT,
-                doc.file_size_str(),
-                doc.category(),
-                preview_text,
-                style=row_style
-            )
-
-        console.print(table)
+        console.print(OtherFile.build_table(interesting_files))
         logger.warning(f"Skipped {len(self.other_files) - len(interesting_files)} uninteresting files...")
         return interesting_files
 
