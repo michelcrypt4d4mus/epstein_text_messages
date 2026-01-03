@@ -16,6 +16,9 @@ class JsonFile(OtherFile):
         if self.url_slug.endswith('.txt') or self.url_slug.endswith('.json'):
             self.url_slug = Path(self.url_slug).stem
 
+    def category(self) -> str:
+        return 'json'
+
     def info_txt(self) -> Text | None:
         return Text(f"JSON file, possibly iMessage or similar app metadata", style='white dim italic')
 

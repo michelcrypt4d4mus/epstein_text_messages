@@ -1163,7 +1163,7 @@ OTHER_FILES_CONFERENCES = [
     ),
 ]
 
-OTHER_FILES_REPORTS = [
+OTHER_FILES_FINANCE = [
     DocCfg(id='024631', description=f"Ackrell Capital Cannabis Investment Report 2018"),
     DocCfg(id='016111', description=f"{BOFA_MERRILL} 'GEMs Paper #26 Saudi Arabia: beyond oil but not so fast'", date='2016-06-30'),
     DocCfg(id='010609', description=f"{BOFA_MERRILL} 'Liquid Insight Trump\'s effect on MXN'", date='2016-09-22'),
@@ -1203,9 +1203,6 @@ OTHER_FILES_REPORTS = [
     DocCfg(id='026909', description=f"{GOLDMAN_REPORT} 'The Unsteady Undertow Commands the Seas (Temporarily)'", date='2018-10-14'),
     DocCfg(id='026944', description=f"{GOLDMAN_REPORT} 'Risk of a US-Iran Military Conflict'", date='2019-05-23'),
     DocCfg(id='026679', description=f"Invesco report: 'Global Sovereign Asset Management Study 2017'"),
-    DocCfg(id='023096', description=f'{EPSTEIN_FOUNDATION} blog', date='2012-11-15'),
-    DocCfg(id='029326', description=f'{EPSTEIN_FOUNDATION} {PRESS_RELEASE}', date='2013-02-15'),
-    DocCfg(id='026565', description=f'{EPSTEIN_FOUNDATION} {PRESS_RELEASE}, maybe a draft of 029326', date='2013-02-15'),
     DocCfg(id='026572', description=f"{JP_MORGAN} Global Asset Allocation report", date='2012-11-09'),
     DocCfg(id='030848', description=f"{JP_MORGAN} Global Asset Allocation report", date='2013-03-28'),
     DocCfg(id='030840', description=f"{JP_MORGAN} Market Thoughts"),
@@ -1232,6 +1229,11 @@ OTHER_FILES_REPORTS = [
     DocCfg(id='025247', author=UBS, description=UBS_CIO_REPORT, date='2012-10-25'),
     DocCfg(id='025849', description=f"US Office of Government Information Services report: 'Building a Bridge Between FOIA Requesters & Agencies'"),
     DocCfg(id='020824', description=f"USA Inc: A Basic Summary of America's Financial Statements compiled by Mary Meeker", date='2011-02-01'),
+
+    # private placement memoranda
+    DocCfg(id='018804', description=f"appraisal of going concern for IGY American Yacht Harbor Marina in {VIRGIN_ISLANDS}"),
+    DocCfg(id='024432', description=f"Michael Milken's Knowledge Universe Education (KUE) $1,000,000 corporate share placement notice (SEC filing?)"),
+    DocCfg(id='024003', description=f"New Leaf Ventures private placement memorandum"),
 ]
 
 OTHER_FILES_LETTERS = [
@@ -1269,12 +1271,6 @@ OTHER_FILES_LETTERS = [
     DocCfg(id='026668', description=f"Boothbay Fund Management 2016-Q4 earnings report signed by Ari Glass"),
 ]
 
-# private placement memoranda
-OTHER_FILES_PRIVATE_PLACEMENT_MEMOS =[
-    DocCfg(id='024432', description=f"Michael Milken's Knowledge Universe Education (KUE) $1,000,000 corporate share placement notice (SEC filing?)"),
-    DocCfg(id='024003', description=f"New Leaf Ventures private placement memorandum"),
-    DocCfg(id='018804', description=f"appraisal of going concern for IGY American Yacht Harbor Marina in {VIRGIN_ISLANDS}"),
-]
 
 OTHER_FILES_PROPERTY = [
     DocCfg(id='018743', description=f"Las Vegas property listing"),
@@ -1301,7 +1297,7 @@ OTHER_FILES_PROPERTY = [
     ),
 ]
 
-OTHER_FILES_REPUTATION_MGMT = [
+OTHER_FILES_REPUTATION = [
     DocCfg(id='026582', description=f"{REPUTATION_MGMT} Epstein's internet search results at start of reputation repair campaign, maybe from {OSBORNE_LLP}"),
     DocCfg(id='030573', description=f"{REPUTATION_MGMT} Epstein's unflattering Google search results, maybe screenshot by {AL_SECKEL} or {OSBORNE_LLP}"),
     DocCfg(id='030875', description=f"{REPUTATION_MGMT} Epstein's Wikipedia page"),
@@ -1314,7 +1310,8 @@ OTHER_FILES_REPUTATION_MGMT = [
     ),
 ]
 
-OTHER_FILES_SOCIAL_MEDIA = [    # social media / InsightsPod
+# social media / InsightsPod
+OTHER_FILES_SOCIAL_MEDIA = [
     DocCfg(id='028815', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} business plan", date='2016-08-20'),
     DocCfg(id='011170', author=ZUBAIR_AND_ANYA, description=f'{INSIGHTS_POD} collected tweets about #Brexit', date='2016-06-23'),
     DocCfg(id='032324', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} election social media trend analysis", date='2016-11-05'),
@@ -1430,12 +1427,15 @@ OTHER_FILES_MISC = [
     DocCfg(id='022816', description=FLIGHT_LOGS,),
     DocCfg(id='022494', description=f'Foreign Corrupt Practices Act (FCPA) DOJ Resource Guide'),
     DocCfg(id='032735', description=f"{GORDON_GETTY} on Trump", date='2018-03-20'),  # Dated based on concurrent emails from Getty
+    DocCfg(id='019448', description=f"Haitian business investment proposal called Jacmel"),
     DocCfg(
         id='030142',
         description=f"{JASTA} (Justice Against Sponsors of Terrorism Act) doc that's mostly empty, references suit against Saudi f. {KATHRYN_RUEMMLER} & {KEN_STARR}",
         date='2016-09-01',
     ),
-    DocCfg(id='019448', description=f"Haitian business investment proposal called Jacmel"),
+    DocCfg(id='023096', description=f'{EPSTEIN_FOUNDATION} blog', date='2012-11-15'),
+    DocCfg(id='029326', description=f'{EPSTEIN_FOUNDATION} {PRESS_RELEASE}', date='2013-02-15'),
+    DocCfg(id='026565', description=f'{EPSTEIN_FOUNDATION} {PRESS_RELEASE}, maybe a draft of 029326', date='2013-02-15'),
     DocCfg(
         id='033338',
         description=f"{PRESS_RELEASE} announcing Donald Trump & {NICHOLAS_RIBIS} ended their working relationship at Trump's casino",
@@ -1465,11 +1465,10 @@ OTHER_FILES_CATEGORIES = [
     'ARTICLES',
     'COURT_DOCS',
     'CONFERENCES',
-    'REPORTS',
+    'FINANCE',
     'LETTERS',
-    'PRIVATE_PLACEMENT_MEMOS',
     'PROPERTY',
-    'REPUTATION_MGMT',
+    'REPUTATION',
     'SOCIAL_MEDIA',
     'POLITICS',
     'ACADEMIA',
@@ -1488,7 +1487,7 @@ for category in OTHER_FILES_CATEGORIES:
 
     # Inject category field
     for cfg in configs:
-        cfg.category = category.lower()
+        cfg.category = category.lower().removesuffix('s')
 
 ALL_CONFIGS = TEXTS_CONFIG + EMAILS_CONFIG + OTHER_FILES_CONFIG
 ALL_FILE_CONFIGS: dict[str, DocCfg] = {}
