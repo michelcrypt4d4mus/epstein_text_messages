@@ -234,7 +234,7 @@ TRANSLATION = 'translation of'
 TWEET = 'tweet'
 TEXT_OF_US_LAW = 'text of U.S. law:'
 
-# Court cases
+# Legal cases
 BRUNEL_V_EPSTEIN = f"{JEAN_LUC_BRUNEL} v. {JEFFREY_EPSTEIN}"
 EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} & {PAUL_G_CASSELL} v. {ALAN_DERSHOWITZ}:"
 EPSTEIN_V_ROTHSTEIN_EDWARDS = f"Epstein v. Scott Rothstein, {BRAD_EDWARDS}, and L.M.:"
@@ -245,11 +245,18 @@ JANE_DOE_V_EPSTEIN_TRUMP = f"Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}:"
 JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States:'
 NEW_YORK_V_EPSTEIN = f"New York v. {JEFFREY_EPSTEIN}:"
 
+# Other file categories
+ARTS = 'arts'
+FINANCE = 'finance'
+JUNK = 'junk'
+SPEECH = 'speech'
+
 # Descriptions of non-email, non-text message files
 ARTICLE_DRAFT = 'draft of an article about'
 BOFA = 'BofA'
 BOFA_MERRILL = f'{BOFA} / Merrill Lynch Report'
 BOFA_WEALTH_MGMT = f'{BOFA} Wealth Management'
+BROCKMAN_INC = 'Brockman, Inc.'
 CHALLENGES_OF_AI = f'ASU Origins Project ({LAWRENCE_KRAUSS}) report "Challenges of AI: Envisioning and Addressing Adverse Outcomes"'
 CVRA = "Crime Victims' Rights Act [CVRA]"
 DAVID_BLAINE_VISA_LETTER = f"letter of recommendation for visa for a model"
@@ -1216,7 +1223,6 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='030814', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-11-21'),
     DocCfg(id='024132', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2012-03-15'),
     DocCfg(id='024194', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2012-10-22'),
-    DocCfg(id='026856', author='Kevin Rudd', description=f"speech 'Xi Jinping, China And The Global Order'", date='2018-06-26'),
     DocCfg(id='025296', author='Laffer Associates', description=f'report predicting Trump win', date='2016-07-06'),
     DocCfg(id='020824', author='Mary Meeker', description=f"USA Inc: A Basic Summary of America's Financial Statements compiled", date='2011-02-01'),
     DocCfg(id='025551', author='Morgan Stanley', description=f'report about alternative asset managers', date='2018-01-30'),
@@ -1330,15 +1336,15 @@ OTHER_FILES_SOCIAL = [
 
 OTHER_FILES_POLITICS = [
     DocCfg(id='026827', author='Scowcroft Group', description=f'report on ISIS', date='2015-11-14'),
-    DocCfg(id='029918', description=f"{DIANA_DEGETTES_CAMPAIGN} campaign bio", date='2012-01-01'),
-    DocCfg(id='031184', description=f"{DIANA_DEGETTES_CAMPAIGN} fundraiser invitation"),
-    DocCfg(id='027009', description=f"{EHUD_BARAK} speech to AIPAC", date='2013-03-03'),
-    DocCfg(id='026851', description=f"Politifact lying politicians chart", date='2016-07-26'),
+    DocCfg(id='026851', author='Politifact', description=f"lying politicians chart", date='2016-07-26'),
     DocCfg(
         id='023133',
-        description=f'"The Search for Peace in the Arab-Israeli Conflict" edited by {TERJE_ROD_LARSEN}, Nur Laiq, Fabrice Aidan',
+        author=f"{TERJE_ROD_LARSEN}, Nur Laiq, Fabrice Aidan",
+        description=f'"The Search for Peace in the Arab-Israeli Conflict"',
         date='2019-12-09',
     ),
+    DocCfg(id='029918', description=f"{DIANA_DEGETTES_CAMPAIGN} campaign bio", date='2012-01-01'),
+    DocCfg(id='031184', description=f"{DIANA_DEGETTES_CAMPAIGN} fundraiser invitation"),
     DocCfg(id='024294', description=f"{STACEY_PLASKETT} campaign flier", date='2016-10-01'),
     DocCfg(
         id='029357',
@@ -1380,7 +1386,12 @@ OTHER_FILES_ACADEMIA = [
     DocCfg(id='019396', description=f'{HARVARD} Economics 1545 Professor Kenneth Rogoff syllabus'),
     DocCfg(id='022445', description=f"Inference: International Review of Science Feedback & Comments", date='2018-11-01'),
     DocCfg(id='029355', description=f'{SCREENSHOT} quote in book about {LARRY_SUMMERS}', duplicate_ids=['029356'], dupe_type='quoted'),  # 029356 is zoomed in corner
-    DocCfg(id='026731', description=f"text of speech by Lord Martin Rees at first inaugural Carl Sagan Lecture at Cornell"),
+]
+
+OTHER_FILES_SPEECH = [
+    DocCfg(id='027009', author=EHUD_BARAK, description=f"speech to AIPAC", date='2013-03-03'),
+    DocCfg(id='026856', author='Kevin Rudd', description=f"speech 'Xi Jinping, China And The Global Order'", date='2018-06-26'),
+    DocCfg(id='026731', description=f"speech by Lord Martin Rees at first inaugural Carl Sagan Lecture at Cornell"),
 ]
 
 # resumes and application letters
@@ -1410,13 +1421,17 @@ OTHER_FILES_ARTS = [
 ]
 
 OTHER_FILES_MISC = [
-    DocCfg(id='031743', description=f'a few pages describing the internet as a "New Nation State" (Network State?)'),
-    DocCfg(id='023438', description=f"Brockman announcemeent of auction of 'Noise' by Daniel Kahneman, Olivier Sibony, and Cass Sunstein"),
+    DocCfg(id='023096', author=EPSTEIN_FOUNDATION, description=f'blog post', date='2012-11-15'),
+    DocCfg(id='029326', author=EPSTEIN_FOUNDATION, description=f'{PRESS_RELEASE}', date='2013-02-15'),
+    DocCfg(id='026565', author=EPSTEIN_FOUNDATION, description=f'{PRESS_RELEASE}, maybe a draft of 029326', date='2013-02-15'),
+    DocCfg(id='023438', author=BROCKMAN_INC, description=f"announcement of auction of 'Noise' by Daniel Kahneman, Olivier Sibony, and Cass Sunstein"),
     DocCfg(
         id='025147',
-        description=f'Brockman hot list Frankfurt Book Fair (includes article about Silk Road/Ross Ulbricht)',
+        author=BROCKMAN_INC,
+        description=f'hot list Frankfurt Book Fair (includes article about Silk Road/Ross Ulbricht)',
         date='2016-10-23',
     ),
+    DocCfg(id='031743', description=f'a few pages describing the internet as a "New Nation State" (Network State?)'),
     DocCfg(id='031425', description=f'completely redacted email from {SCOTT_J_LINK}'),
     DocCfg(id='018224', description=f"conversation with {LAWRENCE_KRAUSS}?"),
     DocCfg(id='012718', description=f"{CVRA} congressional record", date='2011-06-17'),
@@ -1429,14 +1444,12 @@ OTHER_FILES_MISC = [
     DocCfg(id='022494', description=f'Foreign Corrupt Practices Act (FCPA) DOJ Resource Guide'),
     DocCfg(id='032735', description=f"{GORDON_GETTY} on Trump", date='2018-03-20'),  # Dated based on concurrent emails from Getty
     DocCfg(id='019448', description=f"Haitian business investment proposal called Jacmel"),
+    DocCfg(id='023644', description=f"interview with Mohammed bin Salman", date='2016-04-25'),
     DocCfg(
         id='030142',
         description=f"{JASTA} (Justice Against Sponsors of Terrorism Act) doc that's mostly empty, references suit against Saudi f. {KATHRYN_RUEMMLER} & {KEN_STARR}",
         date='2016-09-01',
     ),
-    DocCfg(id='023096', description=f'{EPSTEIN_FOUNDATION} blog', date='2012-11-15'),
-    DocCfg(id='029326', description=f'{EPSTEIN_FOUNDATION} {PRESS_RELEASE}', date='2013-02-15'),
-    DocCfg(id='026565', description=f'{EPSTEIN_FOUNDATION} {PRESS_RELEASE}, maybe a draft of 029326', date='2013-02-15'),
     DocCfg(
         id='033338',
         description=f"{PRESS_RELEASE} announcing Donald Trump & {NICHOLAS_RIBIS} ended their working relationship at Trump's casino",
@@ -1445,7 +1458,6 @@ OTHER_FILES_MISC = [
     DocCfg(id='026759', description=f'{PRESS_RELEASE} by Ritz-Carlton club about damage from Hurricane Irma', date='2017-09-13'),
     DocCfg(id='029328', description=f"Rafanelli Events promotional deck"),
     DocCfg(id='033434', description=f"{SCREENSHOT} iPhone chat labeled 'Edwards' at the top"),
-    DocCfg(id='023644', description=f"transcription of an interview with MBS from Saudi", date='2016-04-25'),
     DocCfg(id='029475', description=f'{VIRGIN_ISLANDS} Twin City Mobile Integrated Health Services (TCMIH) proposal/request for donation'),
     DocCfg(id='029448', description=f"weird short essay titled 'President Obama and Self-Deception'"),
 ]
@@ -1465,17 +1477,18 @@ OTHER_FILES_JUNK = [
 OTHER_FILES_CATEGORIES = [
     'ACADEMIA',
     'ARTICLES',
-    'ARTS',
+    ARTS,
     'BOOKS',
     'CONFERENCES',
     'FINANCE',
-    'JUNK',
+    JUNK,
     'LEGAL',
     'LETTERS',
     'MISC',
     'PROPERTY',
     'REPUTATION',
     'SOCIAL',
+    SPEECH,
     'POLITICS',
     'RESUMES',
 ]
@@ -1484,12 +1497,14 @@ OTHER_FILES_CONFIG = []
 
 # Collect all OTHER_FILES_ configs into OTHER_FILES_CONFIG
 for category in OTHER_FILES_CATEGORIES:
-    configs = locals()[f"OTHER_FILES_{category}"]
+    configs = locals()[f"OTHER_FILES_{category.upper()}"]
     OTHER_FILES_CONFIG.extend(configs)
+    category = category.lower()
+    category = category.removesuffix('s') if category != ARTS else category
 
     # Inject category field
     for cfg in configs:
-        cfg.category = category.lower().removesuffix('s')
+        cfg.category = category
 
 ALL_CONFIGS = TEXTS_CONFIG + EMAILS_CONFIG + OTHER_FILES_CONFIG
 ALL_FILE_CONFIGS: dict[str, DocCfg] = {}
@@ -1524,7 +1539,6 @@ UNINTERESTING_PREFIXES = [
     DEEP_THINKING_HINT,
     DERSH_GIUFFRE_TWEET,
     'Forbes',
-    'fragment',
     'Frontlines',
     'Future Science',
     'Globe and Mail',
@@ -1540,14 +1554,12 @@ UNINTERESTING_PREFIXES = [
     LA_TIMES,
     'Litigation Daily',
     'MarketWatch',
-    MEME,
     NOBEL_CHARITABLE_TRUST,
     'Nautilus',
     'New Yorker',
     NIGHT_FLIGHT_HINT,
     NYT_ARTICLE,
     NYT_COLUMN,
-    OBAMA_JOKE,
     PALM_BEACH_CODE_ENFORCEMENT,
     PALM_BEACH_DAILY_ARTICLE,
     PALM_BEACH_POST_ARTICLE,
@@ -1565,6 +1577,7 @@ UNINTERESTING_PREFIXES = [
     SHIMON_POST_ARTICLE,
     SINGLE_PAGE,
     STACEY_PLASKETT,
+    TERJE_ROD_LARSEN,
     TEXT_OF_US_LAW,
     TRANSLATION,
     TWEET,

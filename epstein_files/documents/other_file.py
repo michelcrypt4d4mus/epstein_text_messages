@@ -10,7 +10,7 @@ from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_REGEX, Document
-from epstein_files.util.constants import UNINTERESTING_PREFIXES
+from epstein_files.util.constants import ARTS, FINANCE, JUNK, SPEECH, UNINTERESTING_PREFIXES
 from epstein_files.util.data import escape_single_quotes, remove_timezone, uniquify
 from epstein_files.util.env import args, logger
 from epstein_files.util.rich import highlighter, logger
@@ -23,6 +23,7 @@ MAX_TIMESTAMP = datetime(2022, 12, 31)
 PREVIEW_CHARS = int(580 * (1 if args.all_other_files else 1.5))
 LOG_INDENT = '\n         '
 TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
+UNINTERESTING_CATEGORES = [ARTS, JUNK, SPEECH]
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
 
 
@@ -70,7 +71,9 @@ class OtherFile(Document):
         elif self.config:
             if self.config.is_interesting:
                 return True
-            elif self.config.category == 'finance' and self.config.author is not None:
+            elif self.config.category == FINANCE and self.config.author is not None:
+                return False
+            elif self.config.category in UNINTERESTING_CATEGORES:
                 return False
 
         for prefix in UNINTERESTING_PREFIXES:
