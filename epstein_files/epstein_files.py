@@ -5,7 +5,7 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
-from typing import Literal, Sequence
+from typing import Literal, Sequence, Type
 
 from rich.align import Align
 from rich.padding import Padding
@@ -60,48 +60,29 @@ class EpsteinFiles:
     _email_unknown_recipient_file_ids: set[str] = field(default_factory=set)
 
     def __post_init__(self):
+        """Iterate through files and build appropriate objects."""
         self.all_files = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
+        documents = []
 
         # Read through and classify all the files
         for file_arg in self.all_files:
             logger.info(f"Scanning '{file_arg.name}'...")
-            document = Document(file_arg)
+            #doc_timer = Timer(decimals=4)
+            doc = Document(file_arg)
 
-            if document.length == 0:
-                logger.info(f"Skipping empty file {document}")
-            elif document.text[0] == '{':
-                # Handle JSON files
-                self.json_files.append(JsonFile(file_arg, text=document.text))
-                logger.info(str(self.json_files[-1]))
-            elif MSG_REGEX.search(document.text):
-                # Handle iMessage log files
-                self.imessage_logs.append(MessengerLog(file_arg, text=document.text))
-                logger.info(str(self.imessage_logs[-1]))
-            elif DETECT_EMAIL_REGEX.match(document.text) or isinstance(document.config, EmailCfg):
-                # Handle emails
-                email = Email(file_arg, text=document.text)
-                logger.info(str(email))
-                self.emails.append(email)
-                self.email_author_counts[email.author] += 1
+            if doc.length == 0:
+                logger.warning(f"Skipping empty file: {doc}")
+                continue
 
-                if len(email.recipients) == 0:
-                    self._email_unknown_recipient_file_ids.add(email.file_id)
-                    self.email_recipient_counts[None] += 1
-                else:
-                    for recipient in email.recipients:
-                        self.email_recipient_counts[recipient] += 1
+            document = document_cls(doc)(file_arg, text=doc.text)
+            documents.append(document)
+            logger.info(str(document))
+            #doc_timer.print_at_checkpoint(f"Processed {document}")
 
-                if email.sent_from_device:
-                    self.email_authors_to_device_signatures[email.author_or_unknown()].add(email.sent_from_device)
-                    self.email_device_signatures_to_authors[email.sent_from_device].add(email.author_or_unknown())
-            else:
-                # Handle OtherFiles
-                self.other_files.append(OtherFile(file_arg, text=document.text))
-                logger.info(str(self.other_files[-1]))
-
-        self.emails = Document.sort_by_timestamp(self.emails)
-        self.imessage_logs = Document.sort_by_timestamp(self.imessage_logs)
-        self.other_files = Document.sort_by_timestamp(self.other_files + self.json_files)
+        self.emails = Document.sort_by_timestamp([d for d in documents if isinstance(d, Email)])
+        self.imessage_logs = Document.sort_by_timestamp([d for d in documents if isinstance(d, MessengerLog)])
+        self.other_files = Document.sort_by_timestamp([d for d in documents if isinstance(d, (JsonFile, OtherFile))])
+        self._tally_email_data()
 
     @classmethod
     def get_files(cls, timer: Timer | None = None) -> 'EpsteinFiles':
@@ -378,6 +359,22 @@ class EpsteinFiles:
         logger.warning(f"Skipped {len(self.other_files) - len(interesting_files)} uninteresting files...")
         return interesting_files
 
+    def _tally_email_data(self) -> None:
+        """Tally up summary info about Email objects."""
+        for email in self.emails:
+            self.email_author_counts[email.author] += 1
+
+            if len(email.recipients) == 0:
+                self._email_unknown_recipient_file_ids.add(email.file_id)
+                self.email_recipient_counts[None] += 1
+            else:
+                for recipient in email.recipients:
+                    self.email_recipient_counts[recipient] += 1
+
+            if email.sent_from_device:
+                self.email_authors_to_device_signatures[email.author_or_unknown()].add(email.sent_from_device)
+                self.email_device_signatures_to_authors[email.sent_from_device].add(email.author_or_unknown())
+
 
 def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Padding:
     title = 'Signatures Used By Authors' if cols[0] == AUTHOR else 'Authors Seen Using Signatures'
@@ -392,6 +389,17 @@ def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str]
         table.add_row(highlighter(k or UNKNOWN), highlighter(join_char.join(sorted(new_dict[k]))))
 
     return Padding(table, DEVICE_SIGNATURE_PADDING)
+
+
+def document_cls(document: Document) -> Type[Document]:
+    if document.text[0] == '{':
+        return JsonFile
+    elif MSG_REGEX.search(document.text):
+        return MessengerLog
+    elif DETECT_EMAIL_REGEX.match(document.text) or isinstance(document.config, EmailCfg):
+        return Email
+    else:
+        return OtherFile
 
 
 def is_ok_for_epstein_web(name: str | None) -> bool:

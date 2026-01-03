@@ -114,18 +114,20 @@ def sort_dict(d: dict[str | None, int] | dict[str, int]) -> list[tuple[str | Non
 class Timer:
     started_at: float = field(default_factory=lambda: time.perf_counter())
     checkpoint_at: float = field(default_factory=lambda: time.perf_counter())
+    decimals: int = 2
 
     def print_at_checkpoint(self, msg: str) -> None:
         logger.warning(f"{msg} in {self.seconds_since_checkpoint()}")
         self.checkpoint_at = time.perf_counter()
 
     def seconds_since_checkpoint(self) -> str:
-        return f"{(time.perf_counter() - self.checkpoint_at):.2f} seconds"
+        return f"{(time.perf_counter() - self.checkpoint_at):.{self.decimals}f} seconds"
 
     def seconds_since_start(self) -> str:
-        return f"{(time.perf_counter() - self.started_at):.2f} seconds"
+        return f"{(time.perf_counter() - self.started_at):.{self.decimals}f} seconds"
 
 
 escape_double_quotes = lambda text: text.replace('"', r'\"')
 escape_single_quotes = lambda text: text.replace("'", r"\'")
 uniquify = lambda _list: list(set(_list))
+without_nones = lambda _list: [e for e in _list if e]
