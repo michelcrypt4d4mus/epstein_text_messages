@@ -199,7 +199,12 @@ class EpsteinFiles:
             return [e for e in self.emails if author in e.recipients]
 
     def get_documents_with_ids(self, file_ids: list[str]) -> list[Document]:
-        return [doc for doc in self.all_documents() if doc.file_id in file_ids]
+        docs = [doc for doc in self.all_documents() if doc.file_id in file_ids]
+
+        if len(docs) != len(file_ids):
+            logger.warning(f"{len(file_ids)} file IDs provided but only {len(docs)} Epstein files found!")
+
+        return docs
 
     def imessage_logs_for(self, author: str | None | list[str | None]) -> Sequence[MessengerLog]:
         if author in [EVERYONE, JEFFREY_EPSTEIN]:
