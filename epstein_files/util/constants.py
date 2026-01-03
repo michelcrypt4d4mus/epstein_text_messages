@@ -1151,7 +1151,6 @@ OTHER_FILES_CONFERENCES = [
         description=f'schedule including "Presidents Private Dinner - Jeffrey Epstine (sic)"',
         date='2012-09-21',
     ),
-    DocCfg(id='030769', description=f"2017 Independent Filmmaker Project (IFP) Gotham Awards invitation"),
     DocCfg(id='014951', description=f"2017 TED Talks program", date='2017-04-20'),
     DocCfg(id='026825', description=f"{DEUTSCHE_BANK} Asset & Wealth Management featured speaker bios"),  # Really "Deutsche Asset" which may not be Deutsche Bank?
     DocCfg(id='017526', description=f'Intellectual Jazz conference brochure f. {DAVID_BLAINE}'),
@@ -1212,6 +1211,7 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='014532', author=GOLDMAN_SACHS, description=f"{GOLDMAN_INVESTMENT_MGMT} 'Outlook - Half Full'", date='2017-01-01'),
     DocCfg(id='026909', author=GOLDMAN_SACHS, description=f"{GOLDMAN_INVESTMENT_MGMT} 'The Unsteady Undertow Commands the Seas (Temporarily)'", date='2018-10-14'),
     DocCfg(id='026944', author=GOLDMAN_SACHS, description=f"{GOLDMAN_INVESTMENT_MGMT} 'Risk of a US-Iran Military Conflict'", date='2019-05-23'),
+    DocCfg(id='018804', author='Integra Realty Resources', description=f"appraisal of going concern for IGY American Yacht Harbor Marina in {VIRGIN_ISLANDS}"),
     DocCfg(id='026679', author='Invesco', description=f"report: 'Global Sovereign Asset Management Study 2017'"),
     DocCfg(id='033220', author='Joseph G. Carson', description=f"short economic report on defense spending under Trump"),
     DocCfg(id='026572', author=JP_MORGAN, description=f"Global Asset Allocation report", date='2012-11-09'),
@@ -1241,7 +1241,6 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='019856', description=f"Sadis Goldberg LLP report on SCOTUS ruling about insider trading"),
 
     # private placement memoranda
-    DocCfg(id='018804', description=f"appraisal of going concern for IGY American Yacht Harbor Marina in {VIRGIN_ISLANDS}"),
     DocCfg(id='024432', description=f"Michael Milken's Knowledge Universe Education (KUE) $1,000,000 corporate share placement notice (SEC filing?)"),
     DocCfg(id='024003', description=f"New Leaf Ventures private placement memorandum"),
 ]
@@ -1364,7 +1363,6 @@ OTHER_FILES_ACADEMIA = [
     DocCfg(id='027004', author=JOSCHA_BACH, description=f"article 'The Computational Structure of Mental Representation'", date='2013-02-26'),
     DocCfg(id='029539', author=LA_TIMES, description=f"Alan Trounson interview on California stem cell research and CIRM"),
     DocCfg(id='027024', author=LA_TIMES, description=f"'Scientists Create Human Embryos to Make Stem Cells'", date='2013-05-15'),
-    DocCfg(id='026634', author='Michael Carrier', description=f"comments about an Apollo linked hedge fund 'DE Fund VIII'"),
     DocCfg(id='015501', author=f"{MOSHE_HOFFMAN}, Erez Yoeli, and Carlos David Navarrete", description=f"'Game Theory and Morality'"),
     DocCfg(id='025143', author=ROBERT_TRIVERS, description=f"'Africa, Parasites, Intelligence'", date='2018-06-25'),
     DocCfg(id='029155', author=ROBERT_TRIVERS, description=f'response sent to the Gruterites ({GORDON_GETTY} fans)', date='2018-03-19'),
@@ -1414,6 +1412,8 @@ OTHER_FILES_RESUMES = [
 
 OTHER_FILES_ARTS = [
     DocCfg(id='018703', author=ANDRES_SERRANO, description=f"artist statement about Trump objects"),
+    DocCfg(id='023438', author=BROCKMAN_INC, description=f"announcement of auction of 'Noise' by Daniel Kahneman, Olivier Sibony, and Cass Sunstein"),
+    DocCfg(id='030769', description=f"2017 Independent Filmmaker Project (IFP) Gotham Awards invitation"),
     DocCfg(id='028281', description=f'art show flier for "The House Of The Nobleman" curated by Wolfe Von Lenkiewicz & Victoria Golembiovskaya'),
     DocCfg(
         id='025205',
@@ -1424,26 +1424,26 @@ OTHER_FILES_ARTS = [
 ]
 
 OTHER_FILES_MISC = [
-    DocCfg(id='023096', author=EPSTEIN_FOUNDATION, description=f'blog post', date='2012-11-15'),
-    DocCfg(id='029326', author=EPSTEIN_FOUNDATION, description=f'{PRESS_RELEASE}', date='2013-02-15'),
-    DocCfg(id='026565', author=EPSTEIN_FOUNDATION, description=f'{PRESS_RELEASE}, maybe a draft of 029326', date='2013-02-15'),
-    DocCfg(id='023438', author=BROCKMAN_INC, description=f"announcement of auction of 'Noise' by Daniel Kahneman, Olivier Sibony, and Cass Sunstein"),
     DocCfg(
         id='025147',
         author=BROCKMAN_INC,
         description=f'hot list Frankfurt Book Fair (includes article about Silk Road/Ross Ulbricht)',
         date='2016-10-23',
     ),
+    DocCfg(id='023096', author=EPSTEIN_FOUNDATION, description=f'blog post', date='2012-11-15'),
+    DocCfg(id='029326', author=EPSTEIN_FOUNDATION, description=f'{PRESS_RELEASE}', date='2013-02-15'),
+    DocCfg(id='026565', author=EPSTEIN_FOUNDATION, description=f'{PRESS_RELEASE}, maybe a draft of 029326', date='2013-02-15'),
+    DocCfg(id='026634', author='Michael Carrier', description=f"comments about an Apollo linked hedge fund 'DE Fund VIII'"),
     DocCfg(id='031743', description=f'a few pages describing the internet as a "New Nation State" (Network State?)'),
     DocCfg(id='031425', description=f'completely redacted email from {SCOTT_J_LINK}'),
     DocCfg(id='018224', description=f"conversation with {LAWRENCE_KRAUSS}?"),
     DocCfg(id='012718', description=f"{CVRA} congressional record", date='2011-06-17'),
     DocCfg(id='025540', description=f"Epstein's rough draft of his side of the story?"),
-    DocCfg(id='024117', description=f"FAQ about anti-money laundering (AML) and terrorist financing (CFT) laws in the U.S."),
+    DocCfg(id='024117', description=f"FAQ about anti-money laundering (AML) and terrorist financing (CFT) law in the U.S."),
     DocCfg(id='027071', description=f"{FEMALE_HEALTH_COMPANY} brochure request donations for female condoms in Uganda"),
     DocCfg(id='027074', description=f"{FEMALE_HEALTH_COMPANY} pitch deck (USAID was a customer)"),
-    DocCfg(id='022780', description=FLIGHT_LOGS,),
-    DocCfg(id='022816', description=FLIGHT_LOGS,),
+    DocCfg(id='022780', description=FLIGHT_LOGS),
+    DocCfg(id='022816', description=FLIGHT_LOGS),
     DocCfg(id='022494', description=f'Foreign Corrupt Practices Act (FCPA) DOJ Resource Guide'),
     DocCfg(id='032735', description=f"{GORDON_GETTY} on Trump", date='2018-03-20'),  # Dated based on concurrent emails from Getty
     DocCfg(id='019448', description=f"Haitian business investment proposal called Jacmel"),
@@ -1539,6 +1539,7 @@ UNINTERESTING_PREFIXES = [
     DAILY_TELEGRAPH,
     DAVID_SCHOEN_CVRA_LEXIS_SEARCH[0:-12],  # Because date at end :(
     DERSH_GIUFFRE_TWEET,
+    'Financial Times',
     'Forbes',
     'Frontlines',
     'Future Science',

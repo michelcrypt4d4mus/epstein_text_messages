@@ -1,4 +1,5 @@
 from epstein_files.util.constant.names import *
+from epstein_files.documents.messenger_log import MessengerLog
 
 MESSENGER_LOG_AUTHOR_COUNTS = {
     None: 59,
@@ -23,4 +24,4 @@ MESSENGER_LOG_AUTHOR_COUNTS = {
 
 def test_message_counts(epstein_files):
     assert len(epstein_files.imessage_logs) == 77
-    assert epstein_files.imessage_sender_counts() == MESSENGER_LOG_AUTHOR_COUNTS
+    assert MessengerLog.count_authors(epstein_files.imessage_logs) == MESSENGER_LOG_AUTHOR_COUNTS

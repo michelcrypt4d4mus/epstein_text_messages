@@ -269,7 +269,7 @@ class Document:
         if len(text) < MAX_SIZE_TO_REPAIR:
             text = self.repair_ocr_text(OCR_REPAIRS, text.strip())
         else:
-            logger.warning(f"Not repairing large file: {self}")
+            logger.warning(f"Not repairing large file: {self.url_slug} ({self.file_size_str()})")
 
         lines = [l.strip() for l in text.split('\n') if not l.startswith(HOUSE_OVERSIGHT)]
         lines = lines[1:] if (len(lines) > 1 and lines[0] == '>>') else lines
@@ -307,7 +307,7 @@ class Document:
 
         logger.warning(f"Wrote {self.length} chars of cleaned {self.filename} to {output_path}.")
 
-    def __rich_console__(self, _console: Console, _options: ConsoleOptions) -> RenderResult:
+    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield self.file_info_panel()
         text_panel = Panel(highlighter(self.text), border_style=self._border_style(), expand=False)
         yield Padding(text_panel, (0, 0, 1, INFO_INDENT))
