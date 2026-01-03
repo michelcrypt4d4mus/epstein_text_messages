@@ -1170,7 +1170,7 @@ OTHER_FILES_CONFIG = [
     FileCfg(id='014460', description=f"{BOFA_MERRILL} 'European Equity Strategy 2017'", date='2016-12-01'),
     FileCfg(id='014972', description=f"{BOFA_MERRILL} 'Global Equity Volatility Insights'", date='2017-06-20'),
     FileCfg(id='014622', description=f"{BOFA_MERRILL} 'Top 10 US Ideas Quarterly'", date='2017-01-03'),
-    FileCfg(id='023069', description=f'{BOFA_MERRILL} Equity Strategy Focus Point Death and Taxes', date='2017-01-29'),
+    FileCfg(id='023069', description=f"{BOFA_MERRILL} 'Equity Strategy Focus Point Death and Taxes'", date='2017-01-29'),
     FileCfg(id='014721', description=f"{BOFA_MERRILL} 'Cause and Effect Fade the Trump Risk Premium'", date='2017-02-13'),
     FileCfg(id='014887', description=f"{BOFA_MERRILL} 'Internet / e-Commerce'", date='2017-04-06'),
     FileCfg(id='014873', description=f"{BOFA_MERRILL} 'Hess Corp'", date='2017-04-11'),
