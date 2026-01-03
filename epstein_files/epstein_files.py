@@ -198,6 +198,9 @@ class EpsteinFiles:
         else:
             return [e for e in self.emails if author in e.recipients]
 
+    def get_documents_with_ids(self, file_ids: list[str]) -> list[Document]:
+        return [doc for doc in self.all_documents() if doc.file_id in file_ids]
+
     def imessage_logs_for(self, author: str | None | list[str | None]) -> Sequence[MessengerLog]:
         if author in [EVERYONE, JEFFREY_EPSTEIN]:
             return self.imessage_logs
