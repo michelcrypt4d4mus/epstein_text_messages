@@ -422,7 +422,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='026287', author=DAVID_SCHOEN, attribution_reason='Signature'),
     EmailCfg(id='033419', author=DAVID_SCHOEN, attribution_reason='Signature'),
     EmailCfg(id='031460', author=EDWARD_JAY_EPSTEIN, attribution_reason=f"quoted reply has edwardjayepstein.com"),
-    EmailCfg(id='026547', author=GERALD_BARTON, recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
+    EmailCfg(id='026547', author=GERALD_BARTON, recipients=[JEFFREY_EPSTEIN]),  # Bad OCR # TODO: email header is really jacked up
     EmailCfg(id='029969', author=GWENDOLYN_BECK, attribution_reason='Signature'),
     EmailCfg(id='029968', author=GWENDOLYN_BECK, attribution_reason='Signature', duplicate_ids=['031120']),
     EmailCfg(id='029970', author=GWENDOLYN_BECK, attribution_reason='signed "Longevity & Successful Agin"'),
