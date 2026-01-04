@@ -22,7 +22,6 @@ class JsonFile(OtherFile):
             self.url_slug = Path(self.url_slug).stem
 
         self._set_computed_fields(text=self.formatted_json())
-        self.log_top_lines(20, msg=f"{self.summary()}", level=logging.WARNING)
 
     def category(self) -> str:
         return 'json'

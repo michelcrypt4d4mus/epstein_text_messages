@@ -163,9 +163,9 @@ class OtherFile(Document):
         elif self.config:
             if self.config.is_interesting:
                 return True
-            elif self.config.category == FINANCE and self.author is not None:
+            elif self.category() == FINANCE and self.author is not None:
                 return False
-            elif self.config.category in UNINTERESTING_CATEGORES:
+            elif self.category() in UNINTERESTING_CATEGORES:
                 return False
 
         for prefix in UNINTERESTING_PREFIXES:
