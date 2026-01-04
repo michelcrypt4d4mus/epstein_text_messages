@@ -11,6 +11,7 @@ from epstein_files.util.constant.strings import AUTHOR, EMAIL, TEXT_MESSAGE
 from epstein_files.util.data import without_nones
 
 DuplicateType = Literal['earlier', 'quoted', 'redacted', 'same']
+Metadata = dict[str, bool | datetime | int | str | list[str | None]]
 
 # categories
 ACADEMIA = 'academia'
@@ -55,6 +56,14 @@ FINANCIAL_REPORTS_AUTHORS = [
     JP_MORGAN,
     'Morgan Stanley',
     'S&P',
+]
+
+# Fields like timestamp and author are better added from the Document object
+INVALID_FOR_METADATA = [
+    'actual_text',
+    'date',
+    'id',
+    'timestamp',
 ]
 
 
@@ -122,6 +131,14 @@ class DocCfg:
 
         pieces = without_nones([self.author, self.description])
         return ' '.join(pieces) if pieces else None
+
+    def metadata(self) -> Metadata:
+        non_null_fields = {k: v for k, v in asdict(self).items() if v and k not in INVALID_FOR_METADATA}
+
+        if self.category in [EMAIL, TEXT_MESSAGE]:
+            del non_null_fields['category']
+
+        return non_null_fields
 
     def non_null_field_names(self) -> list[str]:
         return [f.name for f in self.sorted_fields() if getattr(self, f.name)]

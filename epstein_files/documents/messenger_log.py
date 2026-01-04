@@ -12,7 +12,7 @@ from epstein_files.documents.imessage.text_message import MSG_DATE_FORMAT, TextM
 from epstein_files.util.constant.names import JEFFREY_EPSTEIN, UNKNOWN
 from epstein_files.util.constant.strings import AUTHOR
 from epstein_files.util.data import iso_timestamp, listify, sort_dict
-from epstein_files.util.doc_cfg import TextCfg
+from epstein_files.util.doc_cfg import Metadata, TextCfg
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.logging import logger
 
@@ -61,6 +61,11 @@ class MessengerLog(Communication):
     def messages_by(self, name: str | None) -> list[TextMessage]:
         """Return all messages by 'name'."""
         return [m for m in self.messages() if m.author == name]
+
+    def metadata(self) -> Metadata:
+        metadata = super().metadata()
+        metadata.update({'num_messages': len(self.messages())})
+        return metadata
 
     def _border_style(self) -> str:
         return self.author_style

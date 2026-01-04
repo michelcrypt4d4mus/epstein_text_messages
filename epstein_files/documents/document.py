@@ -1,6 +1,6 @@
 import logging
 import re
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
 from subprocess import run
@@ -16,7 +16,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP
 from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, listify, patternize, without_nones
-from epstein_files.util.doc_cfg import EmailCfg, DocCfg, TextCfg
+from epstein_files.util.doc_cfg import EmailCfg, DocCfg, Metadata, TextCfg
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import (DOCS_DIR, file_stem_for_id, extract_file_id, file_size,
      file_size_str, is_local_extract_file)
@@ -30,6 +30,7 @@ MIN_DOCUMENT_ID = 10477
 INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
 MAX_TOP_LINES_LEN = 4000  # Only for logging
+METADATA_FIELDS = ['author', 'filename', 'num_lines', 'timestamp']
 
 CLOSE_PROPERTIES_CHAR = ']'
 MIN_TIMESTAMP = datetime(1991, 1, 1)
@@ -177,6 +178,13 @@ class Document:
         pattern = patternize(_pattern)
         return [MatchedLine(line, i) for i, line in enumerate(self.lines) if pattern.search(line)]
 
+    def metadata(self) -> Metadata:
+        metadata = self.config.metadata() if self.config else {}
+        metadata.update({k: v for k, v in asdict(self).items() if k in METADATA_FIELDS and v is not None})
+        metadata['bytes'] = self.file_size()
+        metadata['type'] = self.class_name()
+        return metadata
+
     def raw_text(self) -> str:
         with open(self.file_path) as f:
             return f.read()
@@ -240,16 +248,6 @@ class Document:
     def _border_style(self) -> str:
         """Should be overloaded in subclasses."""
         return 'white'
-
-    def _debug_info(self) -> str:
-        info = [
-            f"id={self.file_id}",
-            f"url_slug={self.url_slug}",
-            f"file_path='{self.file_path}'",
-            f"is_local_extract_file={self.is_local_extract_file()}",
-        ]
-
-        return f"     " + "\n     ".join(info)
 
     def _extract_author(self) -> None:
         """Get author from config. Extended in Email subclass to also check headers."""

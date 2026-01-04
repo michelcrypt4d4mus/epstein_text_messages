@@ -11,8 +11,10 @@ epstein_files = EpsteinFiles.get_files()
 max_file_sizes = defaultdict(int)
 
 for doc in sorted(epstein_files.all_documents(), key=lambda e: e.file_id):
-    console.print(doc.summary())
     max_file_sizes[doc.class_name()] = max(max_file_sizes[doc.class_name()], doc.file_size())
+    console.print(doc.summary())
+    print_json('metadata', doc.metadata())
+
 
 console.line(2)
 print_json(f"Largest files found", max_file_sizes)

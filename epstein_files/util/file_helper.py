@@ -19,6 +19,7 @@ elif not DOCS_DIR.exists():
 HTML_DIR = Path('docs')
 EXTRACTED_EMAILS_DIR = Path('emails_extracted_from_legal_filings')
 GH_PAGES_HTML_PATH = HTML_DIR.joinpath('index.html')
+JSON_METADATA_PATH = HTML_DIR.joinpath('epstein_files_202411_cryptadamus_metadata.json')
 WORD_COUNT_HTML_PATH = HTML_DIR.joinpath('epstein_emails_word_count.html')
 EPSTEIN_WORD_COUNT_HTML_PATH = HTML_DIR.joinpath('epstein_texts_and_emails_word_count.html')
 PICKLED_PATH = Path("the_epstein_files.pkl.gz")
