@@ -121,7 +121,7 @@ def print_centered_link(url: str, link_text: str, style: str | None = None) -> N
     print_centered(link_markup(url, link_text, style or ARCHIVE_LINK_COLOR))
 
 
-def print_color_key(_key_type: Literal["Groups", "People"] = "Groups") -> None:
+def print_color_key() -> None:
     color_table = Table(title=f'Rough Guide to Highlighted Colors', show_header=False)
     num_colors = len(HIGHLIGHTED_GROUP_COLOR_KEYS)
     row_number = 0
