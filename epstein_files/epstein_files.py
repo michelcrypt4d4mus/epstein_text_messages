@@ -5,7 +5,7 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
-from typing import Literal, Sequence, Type
+from typing import Sequence
 
 from rich.align import Align
 from rich.padding import Padding
@@ -22,7 +22,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url,
      search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
-from epstein_files.util.data import Timer, dict_sets_to_lists, listify, sort_dict
+from epstein_files.util.data import Timer, dict_sets_to_lists, sort_dict
 from epstein_files.util.doc_cfg import EmailCfg
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, PICKLED_PATH, file_size_str
@@ -35,7 +35,7 @@ from epstein_files.util.search_result import SearchResult
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (1, 0)
 NOT_INCLUDED_EMAILERS = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
-SLOW_FILE_SECONDS = 0.5
+SLOW_FILE_SECONDS = 0.4
 
 INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [
     'ACT for America',
@@ -88,7 +88,7 @@ class EpsteinFiles:
             logger.info(str(documents[-1]))
 
             if doc_timer.seconds_since_start() > SLOW_FILE_SECONDS:
-                doc_timer.print_at_checkpoint(f"Slow file - processed {documents[-1]}")
+                doc_timer.print_at_checkpoint(f"Slow file: {documents[-1]} processed")
 
         self.emails = Document.sort_by_timestamp([d for d in documents if isinstance(d, Email)])
         self.imessage_logs = Document.sort_by_timestamp([d for d in documents if isinstance(d, MessengerLog)])

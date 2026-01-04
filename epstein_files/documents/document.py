@@ -223,11 +223,12 @@ class Document:
         txt.append(f' {self.class_name()}', style=self.document_type_style())
 
         if self.timestamp:
+            timestamp_str = iso_timestamp(self.timestamp).removesuffix(' 00:00:00')
             txt.append(' (', style=SYMBOL_STYLE)
-            txt.append(f"{iso_timestamp(self.timestamp)}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
+            txt.append(f"{timestamp_str}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
 
-        txt.append(" [").append(key_value_txt('num_lines', Text(f"{self.num_lines}", style='cyan')))
-        txt.append(', ').append(key_value_txt('size', Text(self.file_size_str(), style='aquamarine1')))
+        txt.append(' [').append(key_value_txt('size', Text(self.file_size_str(), style='aquamarine1')))
+        txt.append(", ").append(key_value_txt('lines', Text(f"{self.num_lines}", style='cyan')))
         return txt
 
     def top_lines(self, n: int = 10) -> str:
