@@ -1,6 +1,5 @@
 import logging
 import re
-from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
 from typing import ClassVar, cast
@@ -291,8 +290,6 @@ METADATA_FIELDS = [
 @dataclass
 class Email(Communication):
     """
-    An email.
-
     Attributes:
         actual_text (str) - best effort at the text actually sent in this email, excluding quoted replies and forwards
         config (EmailCfg | None) - manual config for this email (if it exists)
@@ -548,7 +545,7 @@ class Email(Communication):
                 self._merge_lines(2, 4)
         elif self.file_id in ['029976', '023067']:
             self._merge_lines(3)  # Merge 4th and 5th rows
-        elif self.file_id in '026609 029402 032405'.split():
+        elif self.file_id in '026609 029402 032405 022695'.split():
             self._merge_lines(4)  # Merge 5th and 6th rows
         elif self.file_id in ['019407', '031980', '030384', '033144', '030999', '033575', '029835', '030381']:
             self._merge_lines(2, 4)
@@ -616,7 +613,7 @@ class Email(Communication):
         self._set_computed_fields(lines=new_lines)
 
     def _sent_from_device(self) -> str | None:
-        """Find any 'Sent from my iPhone' style lines if they exist."""
+        """Find any 'Sent from my iPhone' style signature line if it exist in the 'actual_text'."""
         sent_from_match = SENT_FROM_REGEX.search(self.actual_text)
 
         if sent_from_match:
@@ -626,11 +623,11 @@ class Email(Communication):
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         logger.debug(f"Printing '{self.filename}'...")
         yield self.file_info_panel()
-        text = self.text
         should_rewrite_header = self.header.was_initially_empty and self.header.num_header_rows > 0
-        quote_cutoff = self._idx_of_nth_quoted_reply(text=text)  # Trim if there's many quoted replies
+        quote_cutoff = self._idx_of_nth_quoted_reply(text=self.text)  # Trim if there's many quoted replies
         num_chars = MAX_CHARS_TO_PRINT
         trim_footer_txt = None
+        text = self.text
 
         if self.file_id in TRUNCATION_LENGTHS:
             num_chars = TRUNCATION_LENGTHS[self.file_id]

@@ -4,7 +4,7 @@ from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
 from subprocess import run
-from typing import ClassVar, Sequence, Tuple, TypeVar
+from typing import ClassVar, Sequence, TypeVar
 
 from rich.console import Console, ConsoleOptions, Group, RenderResult
 from rich.padding import Padding
@@ -24,14 +24,14 @@ from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 from epstein_files.util.rich import SYMBOL_STYLE, console, highlighter, key_value_txt, link_text_obj
 from epstein_files.util.search_result import MatchedLine
 
-WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
+CLOSE_PROPERTIES_CHAR = ']'
 HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
-MIN_DOCUMENT_ID = 10477
 INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
 MAX_TOP_LINES_LEN = 4000  # Only for logging
+MIN_DOCUMENT_ID = 10477
+WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
-CLOSE_PROPERTIES_CHAR = ']'
 MIN_TIMESTAMP = datetime(1991, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
 MAX_TIMESTAMP = datetime(2020, 1, 1)
@@ -279,7 +279,6 @@ class Document:
         text = text[1:] if (len(text) > 0 and text[0] == '\ufeff') else text  # remove BOM
         text = self.repair_ocr_text(OCR_REPAIRS, text.strip())
         lines = [l.strip() for l in text.split('\n') if not l.startswith(HOUSE_OVERSIGHT)]
-        # lines = lines[1:] if (len(lines) > 1 and lines[0] == '>>') else lines
         return collapse_newlines('\n'.join(lines))
 
     def _repair(self) -> None:
