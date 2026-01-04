@@ -350,8 +350,8 @@ class Email(Communication):
         # logger.info(f"Raw text:\n" + self.top_lines(20) + '\n\n')
         # logger.info(f"With header removed:\n" + text[0:500] + '\n\n')
 
-        if self.file_id in ['024624']:
-            return text
+        if self.file_id in ['024624']:  # This email starts with "On September 14th"
+            return text.split('On Tue, May 14')[0].strip()
 
         if reply_text_match:
             actual_num_chars = len(reply_text_match.group(1))
@@ -366,7 +366,6 @@ class Email(Communication):
             if field_string not in text:
                 continue
 
-            logger.debug(f"'{self.url_slug}': Splitting based on '{field_string.strip()}'")
             pre_from_text = text.split(field_string)[0]
             actual_num_chars = len(pre_from_text)
             actual_text_pct = f"{(100 * float(actual_num_chars) / len(text)):.1f}%"
@@ -507,6 +506,7 @@ class Email(Communication):
         ], join=', ')
 
     def _remove_line(self, idx: int) -> None:
+        """Remove a line from self.lines."""
         del self.lines[idx]
         self._set_computed_fields(lines=self.lines)
 
