@@ -5,22 +5,9 @@ from dateutil.parser import parse
 
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.doc_cfg import EmailCfg, DocCfg, TextCfg
+from epstein_files.util.doc_cfg import *
 
-# Misc
 FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
-RESUME_OF = 'professional resumé of'
-SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
-
-# Email reply regexes (has to be here for circular dependencies reasons)
-FORWARDED_LINE_PATTERN = r"-+ ?(Forwarded|Original)\s*Message ?-*|Begin forwarded message:?"
-REPLY_LINE_IN_A_MSG_PATTERN = r"In a message dated \d+/\d+/\d+.*writes:"
-REPLY_LINE_ENDING_PATTERN = r"[_ \n](AM|PM|[<_]|wrote:?)"
-REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"On \d+/\d+/\d+[, ].*{REPLY_LINE_ENDING_PATTERN}"
-REPLY_LINE_ON_DATE_PATTERN = fr"^On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*)[, ].*{REPLY_LINE_ENDING_PATTERN}"
-REPLY_LINE_PATTERN = rf"({REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
-REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
-
 
 HEADER_ABBREVIATIONS = {
     "AD": "Abu Dhabi",
@@ -215,28 +202,16 @@ for emailer in EMAILERS:
 
     EMAILER_REGEXES[emailer] = re.compile(emailer, re.IGNORECASE)
 
-# Some emails have a lot of uninteresting CCs
-IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS: list[str | None] = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
-FLIGHT_IN_2012_PEOPLE: list[str | None] = ['Francis Derby', 'Januiz Banasiak', 'Louella Rabuyo', 'Richard Barnnet']
-
 
 ##########################
 # OtherFile config stuff #
 ##########################
 
-# categories
-ARTS = 'arts'
-BOOK = 'book'
-FINANCE = 'finance'
-JUNK = 'junk'
-SPEECH = 'speech'
-
 # strings
 FBI = 'FBI'
-FLIGHT_LOGS = 'flight logs'
 MEME = 'meme of'
 PRESS_RELEASE = 'press release'
-REPUTATION_MGMT = 'reputation management:'
+RESUME_OF = 'professional resumé of'
 SCREENSHOT = 'screenshot of'
 TRANSLATION = 'translation of'
 TWEET = 'tweet'
@@ -259,7 +234,6 @@ BOFA = 'BofA'
 BOFA_MERRILL = f'{BOFA} / Merrill Lynch Report'
 BOFA_WEALTH_MGMT = f'{BOFA} Wealth Management'
 BROCKMAN_INC = 'Brockman, Inc.'
-CHALLENGES_OF_AI = f'ASU Origins Project ({LAWRENCE_KRAUSS}) report "Challenges of AI: Envisioning and Addressing Adverse Outcomes"'
 CVRA = "Crime Victims' Rights Act [CVRA]"
 DAVID_BLAINE_VISA_LETTER = f"letter of recommendation for visa for a model"
 DAVID_SCHOEN_CVRA_LEXIS_SEARCH = f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN}"
@@ -271,9 +245,9 @@ FBI_REPORT = f"{FBI} report on Epstein investigation (redacted)"
 FBI_SEIZED_PROPERTY = f"{FBI} seized property inventory (redacted)"
 FEMALE_HEALTH_COMPANY = 'Female Health Company (FHX)'
 FIRE_AND_FURY = f"Fire And Fury"
-GOLDMAN_INVESTMENT_MGMT = f'Investment Management Division report'
+GOLDMAN_INVESTMENT_MGMT = f'{GOLDMAN_SACHS} Investment Management Division'
 HARVARD_POETRY = f'{HARVARD} poetry stuff from {LISA_NEW}'
-HBS_APPLICATION_NERIO = f"{HARVARD} Business School application letter from Nerio Alessandri (Founder and Chairman Technogym SPA Italy)"
+HBS_APPLICATION_NERIO = f"{HARVARD} Business School application letter from Nerio Alessandri (Founder and Chairman of Technogym S.p.A. Italy)"
 JASTA = 'JASTA'
 JASTA_SAUDI_LAWSUIT = f"{JASTA} lawsuit against Saudi Arabia by 9/11 victims"
 JOHN_BOLTON_PRESS_CLIPPING = 'John Bolton press clipping'
@@ -307,6 +281,7 @@ ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
 BOLOTOVA_REASON = 'Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")'
 KATHY_REASON = 'from "Kathy" about dems, sent from iPad'
 LARRY_REASON = 'Planes discussion signed "Larry"'
+PARTICIPANTS_FIELD = 'Participants: field'
 PAULA_REASON = 'Signature of "Sent via BlackBerry from T-Mobile"'
 
 
@@ -315,31 +290,33 @@ PAULA_REASON = 'Signature of "Sent via BlackBerry from T-Mobile"'
 ################################################################################################
 
 CONFIRMED_TEXTS_CONFIG = [
-    TextCfg(id='031042', author=ANIL_AMBANI, attribution_reason='Participants: field'),
-    TextCfg(id='027225', author=ANIL_AMBANI, attribution_reason='Birthday mentioned and confirmed as Ambani\'s'),
-    TextCfg(id='031173', author=ARDA_BESKARDES, attribution_reason='Participants: field'),
-    TextCfg(id='027401', author='Eva (Dubin?)', attribution_reason='Participants: field'),
-    TextCfg(id='027650', author=JOI_ITO, attribution_reason='Participants: field'),
-    TextCfg(id='027777', author=LARRY_SUMMERS, attribution_reason='Participants: field'),
+    TextCfg(id='031042', author=ANIL_AMBANI, attribution_reason=PARTICIPANTS_FIELD),
+    TextCfg(id='027225', author=ANIL_AMBANI, attribution_reason="birthday mentioned in texts is confirmed as Ambani's"),
+    TextCfg(id='031054', author=ANTHONY_SCARAMUCCI, attribution_reason="Scaramucci's phone number is at top of raw file"),
+    TextCfg(id='027333', author=ANTHONY_SCARAMUCCI, attribution_reason="Scaramucci's phone number is in one of the messages"),
+    TextCfg(id='031173', author=ARDA_BESKARDES, attribution_reason=PARTICIPANTS_FIELD),
+    TextCfg(id='027401', author='Eva (Dubin?)', attribution_reason=PARTICIPANTS_FIELD),
+    TextCfg(id='027650', author=JOI_ITO, attribution_reason=PARTICIPANTS_FIELD),
+    TextCfg(id='027777', author=LARRY_SUMMERS, attribution_reason=PARTICIPANTS_FIELD),
     TextCfg(id='027515', author=MIROSLAV_LAJCAK, attribution_reason='https://x.com/ImDrinknWyn/status/1990210266114789713'),
     TextCfg(id='027165', author=MELANIE_WALKER, attribution_reason='https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/'),
-    TextCfg(id='027248', author=MELANIE_WALKER, attribution_reason='Says "we met through trump" which is confirmed by Melanie in 032803'),
+    TextCfg(id='027248', author=MELANIE_WALKER, attribution_reason='says "we met through Trump" which is confirmed by Melanie in 032803'),
     TextCfg(id='025429', author=STACEY_PLASKETT, attribution_reason='widely reported'),
-    TextCfg(id='027333', author=ANTHONY_SCARAMUCCI, attribution_reason='unredacted phone number in one of the messages belongs to Scaramucci'),
     TextCfg(id='027128', author=SOON_YI_PREVIN, attribution_reason='https://x.com/ImDrinknWyn/status/1990227281101434923'),
     TextCfg(id='027217', author=SOON_YI_PREVIN, attribution_reason='refs marriage to Woody Allen'),
-    TextCfg(id='027244', author=SOON_YI_PREVIN, attribution_reason='refs Woody'),
-    TextCfg(id='027257', author=SOON_YI_PREVIN, attribution_reason="'Woody Allen' in Participants: field"),
+    TextCfg(id='027244', author=SOON_YI_PREVIN, attribution_reason='refs Woody Allen'),
+    TextCfg(id='027257', author=SOON_YI_PREVIN, attribution_reason=f"Woody Allen in {PARTICIPANTS_FIELD}"),
     TextCfg(id='027460', author=STEVE_BANNON, attribution_reason='Discusses leaving scotland when Bannon was confirmed in Scotland, also NYT'),
-    TextCfg(id='027307', author=STEVE_BANNON),
-    TextCfg(id='027278', author=TERJE_ROD_LARSEN),
-    TextCfg(id='027255', author=TERJE_ROD_LARSEN),
+    TextCfg(id='027307', author=STEVE_BANNON, attribution_reason='texts mention "Epstein Bannon Kurz"'),
+    TextCfg(id='027278', author=TERJE_ROD_LARSEN, attribution_reason=PARTICIPANTS_FIELD),
+    TextCfg(id='027255', author=TERJE_ROD_LARSEN, attribution_reason=PARTICIPANTS_FIELD),
 ]
 
 UNCONFIRMED_TEXTS_CONFIG = [
-    TextCfg(id='027762', author=ANDRZEJ_DUDA),
-    TextCfg(id='027774', author=ANDRZEJ_DUDA),
+    TextCfg(id='027762', author=ANDRZEJ_DUDA, attribution_reason=f"Duda in NY at that time, took train"),
+    TextCfg(id='027774', author=ANDRZEJ_DUDA, attribution_reason=f"Duda in NY at that time, took train"),
     TextCfg(id='027221', author=ANIL_AMBANI),
+    TextCfg(id='027396', author=ANTHONY_SCARAMUCCI, attribution_reason='says "I need to make peace with Bannon"'),
     TextCfg(id='025436', author=CELINA_DUBIN),
     TextCfg(id='027576', author=MELANIE_WALKER, attribution_reason='https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700'),
     TextCfg(id='027141', author=MELANIE_WALKER),
@@ -349,8 +326,6 @@ UNCONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='027214', author=MELANIE_WALKER),
     TextCfg(id='027148', author=MELANIE_WALKER),
     TextCfg(id='027440', author=MICHAEL_WOLFF, attribution_reason='AI says Trump book/journalism project'),
-    TextCfg(id='027396', author=ANTHONY_SCARAMUCCI),
-    TextCfg(id='031054', author=ANTHONY_SCARAMUCCI),
     TextCfg(id='025363', author=STEVE_BANNON, attribution_reason='Trump and New York Times coverage'),
     TextCfg(id='025368', author=STEVE_BANNON, attribution_reason='Trump and New York Times coverage'),
     TextCfg(id='027585', author=STEVE_BANNON, attribution_reason='references Tokyo trip'),
@@ -395,6 +370,10 @@ TEXTS_CONFIG = CONFIRMED_TEXTS_CONFIG + UNCONFIRMED_TEXTS_CONFIG
 ########################################################################################################
 ################################################ EMAILS ################################################
 ########################################################################################################
+
+# Some emails have a lot of uninteresting CCs
+IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS: list[str | None] = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
+FLIGHT_IN_2012_PEOPLE: list[str | None] = ['Francis Derby', 'Januiz Banasiak', 'Louella Rabuyo', 'Richard Barnnet']
 
 EMAILS_CONFIG = [
     EmailCfg(id='032436', author=ALIREZA_ITTIHADIEH, attribution_reason='Signature'),
@@ -847,7 +826,7 @@ OTHER_FILES_BOOKS = [
     DocCfg(id='022118', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
     DocCfg(id='019111', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
     DocCfg(id='015675', author='James Tagg', description=f'Are the Androids Dreaming Yet? Amazing Brain Human Communication, Creativity & Free Will'),
-    DocCfg(id='016804', author='John Brockman', description='Deep Thinking: Twenty-Five Ways of Looking at AI', date='2019-02-19', duplicate_ids=['016221']),
+    DocCfg(id='016804', author=JOHN_BROCKMAN, description='Deep Thinking: Twenty-Five Ways of Looking at AI', date='2019-02-19', duplicate_ids=['016221']),
     DocCfg(id='018232', author='Joshua Cooper Ramo', description=f'The Seventh Sense: Power, Fortune & Survival in the Age of Networks'),
     DocCfg(id='012747', author='Marc D. Hauser', description=f'Evilicious: Explaining Our Taste For Excessive Harm'),
     DocCfg(id='032724', author=MICHAEL_WOLFF, description=f'cover of "{FIRE_AND_FURY}"', date='2018-01-05'),
@@ -875,8 +854,10 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='013437', author=DAILY_TELEGRAPH, description=f"article about Epstein's diary", date='2011-03-05'),
     DocCfg(id='023287', author=DAILY_TELEGRAPH, description=f"article about a play based on the Oslo Accords", date='2017-09-15'),
     DocCfg(id='019206', author=EDWARD_JAY_EPSTEIN, description=f"WSJ article about Edward Snowden", date='2016-12-30'),
+    DocCfg(id='029539', author=LA_TIMES, description=f"Alan Trounson interview on California stem cell research and CIRM"),
     DocCfg(id='029865', author=LA_TIMES, description=f"front page article about {DEEPAK_CHOPRA} and young Iranians", date='2016-11-05'),
     DocCfg(id='026598', author=LA_TIMES, description=f"op-ed about why America needs a Ministry of Culture"),
+    DocCfg(id='027024', author=LA_TIMES, description=f"'Scientists Create Human Embryos to Make Stem Cells'", date='2013-05-15'),
     DocCfg(id='022707', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
     DocCfg(id='022727', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
     DocCfg(id='022746', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
@@ -1150,7 +1131,6 @@ OTHER_FILES_CONFERENCES = [
         description=f'schedule including "Presidents Private Dinner - Jeffrey Epstine (sic)"',
         date='2012-09-21',
     ),
-    DocCfg(id='030769', description=f"2017 Independent Filmmaker Project (IFP) Gotham Awards invitation"),
     DocCfg(id='014951', description=f"2017 TED Talks program", date='2017-04-20'),
     DocCfg(id='026825', description=f"{DEUTSCHE_BANK} Asset & Wealth Management featured speaker bios"),  # Really "Deutsche Asset" which may not be Deutsche Bank?
     DocCfg(id='017526', description=f'Intellectual Jazz conference brochure f. {DAVID_BLAINE}'),
@@ -1203,14 +1183,15 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='022372', author='Ernst & Young', description=f'2016 election report'),
     DocCfg(
         id='025663',
-        author=GOLDMAN_SACHS,
-        description=f"{GOLDMAN_INVESTMENT_MGMT} 'An Overview of the Current State of Cryptocurrencies and Blockchain'",
+        author=GOLDMAN_INVESTMENT_MGMT,
+        description=f"An Overview of the Current State of Cryptocurrencies and Blockchain",
         date='2017-11-15',
         is_interesting=True,
     ),
-    DocCfg(id='014532', author=GOLDMAN_SACHS, description=f"{GOLDMAN_INVESTMENT_MGMT} 'Outlook - Half Full'", date='2017-01-01'),
-    DocCfg(id='026909', author=GOLDMAN_SACHS, description=f"{GOLDMAN_INVESTMENT_MGMT} 'The Unsteady Undertow Commands the Seas (Temporarily)'", date='2018-10-14'),
-    DocCfg(id='026944', author=GOLDMAN_SACHS, description=f"{GOLDMAN_INVESTMENT_MGMT} 'Risk of a US-Iran Military Conflict'", date='2019-05-23'),
+    DocCfg(id='014532', author=GOLDMAN_INVESTMENT_MGMT, description=f"Outlook - Half Full", date='2017-01-01'),
+    DocCfg(id='026909', author=GOLDMAN_INVESTMENT_MGMT, description=f"The Unsteady Undertow Commands the Seas (Temporarily)", date='2018-10-14'),
+    DocCfg(id='026944', author=GOLDMAN_INVESTMENT_MGMT, description=f"Risk of a US-Iran Military Conflict", date='2019-05-23'),
+    DocCfg(id='018804', author='Integra Realty Resources', description=f"appraisal of going concern for IGY American Yacht Harbor Marina in {VIRGIN_ISLANDS}"),
     DocCfg(id='026679', author='Invesco', description=f"report: 'Global Sovereign Asset Management Study 2017'"),
     DocCfg(id='033220', author='Joseph G. Carson', description=f"short economic report on defense spending under Trump"),
     DocCfg(id='026572', author=JP_MORGAN, description=f"Global Asset Allocation report", date='2012-11-09'),
@@ -1232,7 +1213,6 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='024135', author=UBS, description=UBS_CIO_REPORT, date='2012-06-29'),
     DocCfg(id='025247', author=UBS, description=UBS_CIO_REPORT, date='2012-10-25'),
     DocCfg(id='025849', author='US Office of Government Information Services', description=f"'Building a Bridge Between FOIA Requesters & Agencies'"),
-    DocCfg(id='020447', author='Working Group on Chinese Influence Activities in the U.S.', description=f'Promoting Constructive Vigilance'),
     DocCfg(id='024631', description=f"Ackrell Capital report: Cannabis Investment Report 2018"),
     DocCfg(id='024271', description=f"Blockchain Capital and Brock Pierce pitch deck", date='2015-10-01'),
     DocCfg(id='024817', description=f"Cowen's Collective View of CBD / Cannabis report"),
@@ -1240,7 +1220,6 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='019856', description=f"Sadis Goldberg LLP report on SCOTUS ruling about insider trading"),
 
     # private placement memoranda
-    DocCfg(id='018804', description=f"appraisal of going concern for IGY American Yacht Harbor Marina in {VIRGIN_ISLANDS}"),
     DocCfg(id='024432', description=f"Michael Milken's Knowledge Universe Education (KUE) $1,000,000 corporate share placement notice (SEC filing?)"),
     DocCfg(id='024003', description=f"New Leaf Ventures private placement memorandum"),
 ]
@@ -1281,6 +1260,9 @@ OTHER_FILES_LETTERS = [
 ]
 
 OTHER_FILES_PROPERTY = [
+    DocCfg(id='026759', author='Great Bay Condominium Owners Association', description=f'{PRESS_RELEASE} by about Hurricane Irma damage', date='2017-09-13'),
+    DocCfg(id='027068', author=THE_REAL_DEAL, description=f"{THE_REAL_DEAL_ARTICLE} Palm House Hotel Bankruptcy and EB-5 Visa Fraud Allegations"),
+    DocCfg(id='029520', author=THE_REAL_DEAL, description=f"{THE_REAL_DEAL_ARTICLE} 'Lost Paradise at the Palm House'", date='2019-06-17'),
     DocCfg(id='018743', description=f"Las Vegas property listing"),
     DocCfg(id='016597', description=f'letter from Trump Properties LLC appealing some decision about Mar-a-Lago by {PALM_BEACH} authorities'),
     DocCfg(id='016602', description=PALM_BEACH_CODE_ENFORCEMENT, date='2008-04-17'),
@@ -1296,8 +1278,6 @@ OTHER_FILES_PROPERTY = [
     DocCfg(id='016696', description=f"{PALM_BEACH_TSV} info (water quality?"),
     DocCfg(id='016636', description=f"{PALM_BEACH_WATER_COMMITTEE} Meeting on January 29, 2009"),
     DocCfg(id='022417', description=f"Park Partners NYC letter to partners in real estate project with architectural plans"),
-    DocCfg(id='027068', author=THE_REAL_DEAL, description=THE_REAL_DEAL_ARTICLE),
-    DocCfg(id='029520', author=THE_REAL_DEAL, description=f"{THE_REAL_DEAL_ARTICLE} 'Lost Paradise at the Palm House'", date='2019-06-17'),
     DocCfg(
         id='018727',
         description=f"{VIRGIN_ISLANDS} property deal pitch deck, building will be leased to the U.S. govt GSA",
@@ -1306,16 +1286,12 @@ OTHER_FILES_PROPERTY = [
 ]
 
 OTHER_FILES_REPUTATION = [
-    DocCfg(id='026582', description=f"{REPUTATION_MGMT} Epstein's internet search results at start of reputation repair campaign, maybe from {OSBORNE_LLP}"),
-    DocCfg(id='030573', description=f"{REPUTATION_MGMT} Epstein's unflattering Google search results, maybe screenshot by {AL_SECKEL} or {OSBORNE_LLP}"),
-    DocCfg(id='030875', description=f"{REPUTATION_MGMT} Epstein's Wikipedia page"),
-    DocCfg(id='026583', description=f"{REPUTATION_MGMT} Google search results for '{JEFFREY_EPSTEIN}' with analysis ({OSBORNE_LLP}?)"),
-    DocCfg(id='029350', description=f"{REPUTATION_MGMT} Microsoft Bing search results for Epstein with sex offender at top, maybe from {TYLER_SHEARS}?"),
-    DocCfg(
-        id='030426',
-        description=f'{REPUTATION_MGMT} {OSBORNE_LLP} reputation repair proposal (cites Michael Milken)',
-        date='2011-06-14',
-    ),
+    DocCfg(id='026582', description=f"Epstein's internet search results at start of reputation repair campaign, maybe from {OSBORNE_LLP}"),
+    DocCfg(id='030573', description=f"Epstein's unflattering Google search results, maybe screenshot by {AL_SECKEL} or {OSBORNE_LLP}"),
+    DocCfg(id='030875', description=f"Epstein's Wikipedia page"),
+    DocCfg(id='026583', description=f"Google search results for '{JEFFREY_EPSTEIN}' with analysis ({OSBORNE_LLP}?)"),
+    DocCfg(id='029350', description=f"Microsoft Bing search results for Epstein with sex offender at top, maybe from {TYLER_SHEARS}?"),
+    DocCfg(id='030426', description=f"{OSBORNE_LLP} reputation repair proposal (cites Michael Milken)", date='2011-06-14'),
 ]
 
 # social media / InsightsPod
@@ -1359,22 +1335,28 @@ OTHER_FILES_POLITICS = [
 ]
 
 OTHER_FILES_ACADEMIA = [
+    DocCfg(
+        id='014697',
+        author=f"{LAWRENCE_KRAUSS}'s ASU Origins Project",
+        description=f'report: "Challenges of AI: Envisioning and Addressing Adverse Outcomes"',
+        duplicate_ids=['011284']
+    ),
     DocCfg(id='024256', author=JOI_ITO, description=f"article 'Internet & Society: The Technologies and Politics of Control'"),
     DocCfg(id='027004', author=JOSCHA_BACH, description=f"article 'The Computational Structure of Mental Representation'", date='2013-02-26'),
-    DocCfg(id='029539', author=LA_TIMES, description=f"Alan Trounson interview on California stem cell research and CIRM"),
-    DocCfg(id='027024', author=LA_TIMES, description=f"'Scientists Create Human Embryos to Make Stem Cells'", date='2013-05-15'),
-    DocCfg(id='026634', author='Michael Carrier', description=f"comments about an Apollo linked hedge fund 'DE Fund VIII'"),
-    DocCfg(id='015501', author=f"{MOSHE_HOFFMAN}, Erez Yoeli, and Carlos David Navarrete", description=f"'Game Theory and Morality'"),
-    DocCfg(id='025143', author=ROBERT_TRIVERS, description=f"'Africa, Parasites, Intelligence'", date='2018-06-25'),
+    DocCfg(id='015501', author=f"{MOSHE_HOFFMAN}, Erez Yoeli, and Carlos David Navarrete", description=f"Game Theory and Morality"),
+    DocCfg(id='025143', author=ROBERT_TRIVERS, description=f"Africa, Parasites, Intelligence", date='2018-06-25'),
     DocCfg(id='029155', author=ROBERT_TRIVERS, description=f'response sent to the Gruterites ({GORDON_GETTY} fans)', date='2018-03-19'),
     DocCfg(
         id='033323',
         author=f"{ROBERT_TRIVERS} and Nathan H. Lents",
-        description=f"draft of 'Does Trump Fit the Evolutionary Role of Narcissistic Sociopath?",
+        description=f"'Does Trump Fit the Evolutionary Role of Narcissistic Sociopath?' (draft)",
         date='2018-12-07',
     ),
-    DocCfg(id='014697', description=CHALLENGES_OF_AI, duplicate_ids=['011284']),
-    DocCfg(id='026521', description=f"game theory paper by {MARTIN_NOWAK}, Erez Yoeli, and Moshe Hoffman"),
+    DocCfg(
+        id='026521',
+        author=f"{MARTIN_NOWAK}, Erez Yoeli, and {MOSHE_HOFFMAN}",
+        description=f"Cooperating Without Looking: Game Theory Model of Trust and Reciprocal Cooperation"
+    ),
     DocCfg(id='023416', description=HARVARD_POETRY),
     DocCfg(id='023435', description=HARVARD_POETRY),
     DocCfg(id='023450', description=HARVARD_POETRY),
@@ -1413,6 +1395,8 @@ OTHER_FILES_RESUMES = [
 
 OTHER_FILES_ARTS = [
     DocCfg(id='018703', author=ANDRES_SERRANO, description=f"artist statement about Trump objects"),
+    DocCfg(id='023438', author=BROCKMAN_INC, description=f"announcement of auction of 'Noise' by Daniel Kahneman, Olivier Sibony, and Cass Sunstein"),
+    DocCfg(id='030769', description=f"2017 Independent Filmmaker Project (IFP) Gotham Awards invitation"),
     DocCfg(id='028281', description=f'art show flier for "The House Of The Nobleman" curated by Wolfe Von Lenkiewicz & Victoria Golembiovskaya'),
     DocCfg(
         id='025205',
@@ -1423,26 +1407,27 @@ OTHER_FILES_ARTS = [
 ]
 
 OTHER_FILES_MISC = [
-    DocCfg(id='023096', author=EPSTEIN_FOUNDATION, description=f'blog post', date='2012-11-15'),
-    DocCfg(id='029326', author=EPSTEIN_FOUNDATION, description=f'{PRESS_RELEASE}', date='2013-02-15'),
-    DocCfg(id='026565', author=EPSTEIN_FOUNDATION, description=f'{PRESS_RELEASE}, maybe a draft of 029326', date='2013-02-15'),
-    DocCfg(id='023438', author=BROCKMAN_INC, description=f"announcement of auction of 'Noise' by Daniel Kahneman, Olivier Sibony, and Cass Sunstein"),
+    DocCfg(id='022780', category=FLIGHT_LOGS),
+    DocCfg(id='022816', category=FLIGHT_LOGS),
     DocCfg(
         id='025147',
         author=BROCKMAN_INC,
         description=f'hot list Frankfurt Book Fair (includes article about Silk Road/Ross Ulbricht)',
         date='2016-10-23',
     ),
+    DocCfg(id='023096', author=EPSTEIN_FOUNDATION, description=f'blog post', date='2012-11-15'),
+    DocCfg(id='029326', author=EPSTEIN_FOUNDATION, description=f'{PRESS_RELEASE}', date='2013-02-15'),
+    DocCfg(id='026565', author=EPSTEIN_FOUNDATION, description=f'{PRESS_RELEASE}, maybe a draft of 029326', date='2013-02-15'),
+    DocCfg(id='026634', author='Michael Carrier', description=f"comments about an Apollo linked hedge fund 'DE Fund VIII'"),
+    DocCfg(id='020447', author='Working Group on Chinese Influence Activities in the U.S.', description=f'Promoting Constructive Vigilance'),
     DocCfg(id='031743', description=f'a few pages describing the internet as a "New Nation State" (Network State?)'),
     DocCfg(id='031425', description=f'completely redacted email from {SCOTT_J_LINK}'),
     DocCfg(id='018224', description=f"conversation with {LAWRENCE_KRAUSS}?"),
     DocCfg(id='012718', description=f"{CVRA} congressional record", date='2011-06-17'),
     DocCfg(id='025540', description=f"Epstein's rough draft of his side of the story?"),
-    DocCfg(id='024117', description=f"FAQ about anti-money laundering (AML) and terrorist financing (CFT) laws in the U.S."),
+    DocCfg(id='024117', description=f"FAQ about anti-money laundering (AML) and terrorist financing (CFT) law in the U.S."),
     DocCfg(id='027071', description=f"{FEMALE_HEALTH_COMPANY} brochure request donations for female condoms in Uganda"),
     DocCfg(id='027074', description=f"{FEMALE_HEALTH_COMPANY} pitch deck (USAID was a customer)"),
-    DocCfg(id='022780', description=FLIGHT_LOGS,),
-    DocCfg(id='022816', description=FLIGHT_LOGS,),
     DocCfg(id='022494', description=f'Foreign Corrupt Practices Act (FCPA) DOJ Resource Guide'),
     DocCfg(id='032735', description=f"{GORDON_GETTY} on Trump", date='2018-03-20'),  # Dated based on concurrent emails from Getty
     DocCfg(id='019448', description=f"Haitian business investment proposal called Jacmel"),
@@ -1457,7 +1442,6 @@ OTHER_FILES_MISC = [
         description=f"{PRESS_RELEASE} announcing Donald Trump & {NICHOLAS_RIBIS} ended their working relationship at Trump's casino",
         date='2000-06-07',
     ),
-    DocCfg(id='026759', description=f'{PRESS_RELEASE} by Ritz-Carlton club about damage from Hurricane Irma', date='2017-09-13'),
     DocCfg(id='029328', description=f"Rafanelli Events promotional deck"),
     DocCfg(id='033434', description=f"{SCREENSHOT} iPhone chat labeled 'Edwards' at the top"),
     DocCfg(id='029475', description=f'{VIRGIN_ISLANDS} Twin City Mobile Integrated Health Services (TCMIH) proposal/request for donation'),
@@ -1477,18 +1461,18 @@ OTHER_FILES_JUNK = [
 ]
 
 OTHER_FILES_CATEGORIES = [
-    'ACADEMIA',
-    'ARTICLES',
+    ACADEMIA,
+    f"{ARTICLE}s",
     ARTS,
-    'BOOKS',
+    f"{BOOK}s",
     'CONFERENCES',
-    'FINANCE',
+    FINANCE,
     JUNK,
     'LEGAL',
     'LETTERS',
     'MISC',
     'PROPERTY',
-    'REPUTATION',
+    REPUTATION,
     'SOCIAL',
     SPEECH,
     'POLITICS',
@@ -1506,7 +1490,7 @@ for category in OTHER_FILES_CATEGORIES:
 
     # Inject category field
     for cfg in configs:
-        cfg.category = category
+        cfg.category = cfg.category or category
 
 ALL_CONFIGS = TEXTS_CONFIG + EMAILS_CONFIG + OTHER_FILES_CONFIG
 ALL_FILE_CONFIGS: dict[str, DocCfg] = {}
@@ -1520,75 +1504,15 @@ for cfg in ALL_CONFIGS:
         ALL_FILE_CONFIGS[dupe_cfg.id] = dupe_cfg
 
 
-# OtherFiles whose description/hints match these prefixes are not displayed unless --all-other-files is used
-UNINTERESTING_PREFIXES = [
-    'article about',
-    ARTICLE_DRAFT,
-    'Aviation International',
-    BBC,
-    BLOOMBERG,
-    'Boston Globe',
-    'Brockman',
-    CHALLENGES_OF_AI,
-    CHINA_DAILY,
-    CNN,
-    'completely redacted',
-    CVRA,
-    DAILY_MAIL,
-    DAILY_TELEGRAPH,
-    DAVID_SCHOEN_CVRA_LEXIS_SEARCH[0:-12],  # Because date at end :(
-    DERSH_GIUFFRE_TWEET,
-    'Forbes',
-    'Frontlines',
-    'Future Science',
-    'Globe and Mail',
-    GORDON_GETTY,
-    f"{HARVARD} Econ",
-    HARVARD_POETRY,
-    'Inference',
-    JASTA,
-    'JetGala',
-    JOHN_BOLTON_PRESS_CLIPPING,
-    'Journal of Criminal',
-    LA_TIMES,
-    'Litigation Daily',
-    'MarketWatch',
-    NOBEL_CHARITABLE_TRUST,
-    'Nautilus',
-    'New Yorker',
-    NYT_ARTICLE,
-    NYT_COLUMN,
-    PALM_BEACH_CODE_ENFORCEMENT,
-    PALM_BEACH_DAILY_ARTICLE,
-    PALM_BEACH_POST_ARTICLE,
-    PALM_BEACH_TSV,
-    PALM_BEACH_WATER_COMMITTEE,
-    PAUL_KRASSNER,
-    PEGGY_SIEGAL,
-    'Politifact',
-    'Rafanelli',
-    ROBERT_LAWRENCE_KUHN,
-    ROBERT_TRIVERS,
-    'SCMP',
-    'SciencExpress',
-    'Scowcroft',
-    SHIMON_POST_ARTICLE,
-    SINGLE_PAGE,
-    STACEY_PLASKETT,
-    TERJE_ROD_LARSEN,
-    TEXT_OF_US_LAW,
-    TRANSLATION,
-    TWEET,
-    THE_REAL_DEAL_ARTICLE,
-    TRUMP_DISCLOSURES,
-    UBS_CIO_REPORT,
-    UN_GENERAL_ASSEMBLY,
-    'U.S. News',
-    'US Office',
-    'Vanity Fair',
-    VI_DAILY_NEWS_ARTICLE,
-    WAPO,
-]
+# Email related regexes (have to be here for circular dependencies reasons)
+FORWARDED_LINE_PATTERN = r"-+ ?(Forwarded|Original)\s*Message ?-*|Begin forwarded message:?"
+REPLY_LINE_IN_A_MSG_PATTERN = r"In a message dated \d+/\d+/\d+.*writes:"
+REPLY_LINE_ENDING_PATTERN = r"[_ \n](AM|PM|[<_]|wrote:?)"
+REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"On \d+/\d+/\d+[, ].*{REPLY_LINE_ENDING_PATTERN}"
+REPLY_LINE_ON_DATE_PATTERN = fr"^On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*)[, ].*{REPLY_LINE_ENDING_PATTERN}"
+REPLY_LINE_PATTERN = rf"({REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
+REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
+SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
 
 
 # Error checking.

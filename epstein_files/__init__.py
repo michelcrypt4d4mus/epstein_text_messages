@@ -13,19 +13,20 @@ load_dotenv()
 from rich.padding import Padding
 
 from epstein_files.documents.email import Email
+from epstein_files.documents.messenger_log import  MessengerLog
 from epstein_files.epstein_files import EpsteinFiles, count_by_month
 from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import EMAIL_CLASS, MESSENGER_LOG_CLASS
-from epstein_files.util.data import Timer, dict_sets_to_lists, flatten
+from epstein_files.util.data import Timer, dict_sets_to_lists
 from epstein_files.util.env import specified_names, args
-from epstein_files.util.file_helper import GH_PAGES_HTML_PATH, id_str
+from epstein_files.util.file_helper import GH_PAGES_HTML_PATH
 from epstein_files.util.rich import *
 
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
 
-# Order matters (will be order of output)
-PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED: list[str | None] = [
+# Order matters. Default names to print emails for.
+DEFAULT_EMAILERS = [
     JEREMY_RUBIN,
     AL_SECKEL,
     JOI_ITO,
@@ -49,8 +50,8 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED: list[str | None] = [
     None,
 ]
 
-# Order matters (will be order of output)
-PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES: list[str | None] = [
+# Order matters. Default names to print tables w/email subject, timestamp, etc for.
+DEFAULT_EMAILER_TABLES: list[str | None] = [
     GHISLAINE_MAXWELL,
     LEON_BLACK,
     LANDON_THOMAS,
@@ -64,6 +65,9 @@ PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES: list[str | None] = [
     TOM_PRITZKER,
 ]
 
+if len(set(DEFAULT_EMAILERS).intersection(set(DEFAULT_EMAILER_TABLES))) > 0:
+    raise RuntimeError(f"Some names appear in both PRINT_EMAILS_FOR and PRINT_EMAILS_FOR")
+
 
 def generate_html() -> None:
     timer = Timer()
@@ -73,21 +77,17 @@ def generate_html() -> None:
     if args.colors_only:
         exit()
 
-    # Text messages section
     if args.output_texts:
-        print_text_messages(epstein_files)
-        timer.print_at_checkpoint(f'Printed {len(epstein_files.imessage_logs):,} text message logs')
+        _print_text_messages(epstein_files)
+        timer.print_at_checkpoint(f'Printed {len(epstein_files.imessage_logs)} text message logs')
 
-    # Emails section
     if args.output_emails:
-        emails_printed = print_emails(epstein_files)
+        emails_printed = _print_emails(epstein_files)
         timer.print_at_checkpoint(f"Printed {emails_printed:,} emails")
 
     if args.output_other_files:
-        epstein_files.print_other_files_table()
-        timer.print_at_checkpoint(f"Printed {len(epstein_files.other_files):,} other files")
-    else:
-        logger.warning(f"Skipping other files section...")
+        files_printed = epstein_files.print_other_files_table()
+        timer.print_at_checkpoint(f"Printed {len(files_printed)} other files")
 
     # Save output
     write_html(GH_PAGES_HTML_PATH)
@@ -96,10 +96,10 @@ def generate_html() -> None:
     # JSON stats (mostly used for building pytest checks)
     if args.json_stats:
         console.line(5)
-        print_json_stats(epstein_files)
+        _print_json_stats(epstein_files)
 
 
-def print_emails(epstein_files: EpsteinFiles) -> int:
+def _print_emails(epstein_files: EpsteinFiles) -> int:
     """Returns number of emails printed."""
     print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
     print_other_site_link(is_header=False)
@@ -109,7 +109,7 @@ def print_emails(epstein_files: EpsteinFiles) -> int:
 
     emailers_to_print: list[str | None]
     emailer_tables: list[str | None] = []
-    emails_that_were_printed: list[Email] = []
+    already_printed_emails: list[Email] = []
     num_emails_printed_since_last_color_key = 0
 
     if args.all_emails:
@@ -117,26 +117,17 @@ def print_emails(epstein_files: EpsteinFiles) -> int:
         emailers_to_print = sorted(epstein_files.all_emailers(), key=lambda e: epstein_files.earliest_email_at(e))
         print_numbered_list_of_emailers(emailers_to_print, epstein_files)
     else:
-        if len(specified_names) > 0:
-            emailers_to_print = specified_names
-        else:
-            emailers_to_print = PEOPLE_WHOSE_EMAILS_SHOULD_BE_PRINTED
-
+        emailers_to_print = specified_names if specified_names else DEFAULT_EMAILERS
         console.print('Email conversations grouped by counterparty can be found in the order listed below.')
         print_numbered_list_of_emailers(emailers_to_print)
         console.print("\nAfter that there's tables linking to (but not displaying) all known emails for each of these people:")
 
         if len(specified_names) > 0:
-            if args.all_email_tables:
-                emailer_tables = sorted(epstein_files.all_emailers(), key=lambda e: epstein_files.earliest_email_at(e))
-            else:
-                emailer_tables = PEOPLE_WHOSE_EMAILS_SHOULD_BE_TABLES
-
-            print_numbered_list_of_emailers(emailer_tables)
+            print_numbered_list_of_emailers(DEFAULT_EMAILER_TABLES)
 
     for author in emailers_to_print:
         newly_printed_emails = epstein_files.print_emails_for(author)
-        emails_that_were_printed.extend(newly_printed_emails)
+        already_printed_emails.extend(newly_printed_emails)
         num_emails_printed_since_last_color_key += len(newly_printed_emails)
 
         # Print color key every once in a while
@@ -144,36 +135,33 @@ def print_emails(epstein_files: EpsteinFiles) -> int:
             print_color_key()
             num_emails_printed_since_last_color_key = 0
 
-    if len(emailer_tables) > 0 and len(specified_names) == 0:
-        print_author_header(f"Email Tables for {len(emailer_tables)} Other People", 'white')
+    if not specified_names:
+        if not args.all_emails:
+            print_author_header(f"Email Tables for {len(emailer_tables)} Other People", 'white')
 
-        for name in emailer_tables:
-            epstein_files.print_emails_table_for(name)
+            for name in DEFAULT_EMAILER_TABLES:
+                epstein_files.print_emails_table_for(name)
 
-    if len(specified_names) == 0:
         epstein_files.print_email_device_info()
 
-    logger.warning(f"Rewrote {len(Email.rewritten_header_ids)} headers of {len(epstein_files.emails)} emails")
-
+    # Check that all emails were actually printed
     if args.all_emails:
-        email_ids_that_were_printed = set([email.file_id for email in emails_that_were_printed])
-        logger.warning(f"Printed {len(emails_that_were_printed)} emails of {len(email_ids_that_were_printed)} unique file IDs.")
+        email_ids_that_were_printed = set([email.file_id for email in already_printed_emails])
+        logger.warning(f"Printed {len(already_printed_emails)} emails of {len(email_ids_that_were_printed)} unique file IDs.")
 
         for email in epstein_files.emails:
             if email.file_id not in email_ids_that_were_printed and not email.is_duplicate:
                 logger.warning(f"Failed to print {email.summary()}")
 
-    return len(emails_that_were_printed)
+    logger.warning(f"Rewrote {len(Email.rewritten_header_ids)} headers of {len(epstein_files.emails)} emails")
+    return len(already_printed_emails)
 
 
-def print_text_messages(epstein_files: EpsteinFiles) -> None:
+def _print_text_messages(epstein_files: EpsteinFiles) -> None:
     print_section_header('Text Messages')
     print_centered("(conversations are sorted chronologically based on timestamp of first message)\n", style='gray30')
-
-    if len(specified_names) == 0:
-        log_files = epstein_files.imessage_logs
-    else:
-        log_files = flatten([epstein_files.imessage_logs_for(name) for name in specified_names])
+    authors: list[str | None] = specified_names if specified_names else [JEFFREY_EPSTEIN]
+    log_files = epstein_files.imessage_logs_for(authors)
 
     for log_file in log_files:
         console.print(Padding(log_file))
@@ -182,9 +170,9 @@ def print_text_messages(epstein_files: EpsteinFiles) -> None:
     epstein_files.print_imessage_summary()
 
 
-def print_json_stats(epstein_files: EpsteinFiles) -> None:
+def _print_json_stats(epstein_files: EpsteinFiles) -> None:
     console.print(Panel('JSON Stats Dump', expand=True, style='reverse bold'), '\n')
-    print_json(f"{MESSENGER_LOG_CLASS} Sender Counts", epstein_files.imessage_sender_counts(), skip_falsey=True)
+    print_json(f"{MESSENGER_LOG_CLASS} Sender Counts", MessengerLog.count_authors(epstein_files.imessage_logs), skip_falsey=True)
     print_json(f"{EMAIL_CLASS} Author Counts", epstein_files.email_author_counts, skip_falsey=True)
     print_json(f"{EMAIL_CLASS} Recipient Counts", epstein_files.email_recipient_counts, skip_falsey=True)
     print_json("Email signature_substitution_countss", epstein_files.email_signature_substitution_counts(), skip_falsey=True)

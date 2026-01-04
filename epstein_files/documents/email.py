@@ -9,6 +9,7 @@ from dateutil.parser import parse
 from rich.console import Console, ConsoleOptions, RenderResult
 from rich.padding import Padding
 from rich.panel import Panel
+from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.communication import Communication
@@ -567,7 +568,7 @@ class Email(Communication):
             sent_from = sent_from_match.group(0)
             return 'S' + sent_from[1:] if sent_from.startswith('sent') else sent_from
 
-    def __rich_console__(self, _console: Console, _options: ConsoleOptions) -> RenderResult:
+    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         logger.debug(f"Printing '{self.filename}'...")
         yield self.file_info_panel()
         text = self.text
@@ -619,6 +620,30 @@ class Email(Communication):
 
         if should_rewrite_header:
             self.log_top_lines(self.header.num_header_rows + 4, f'Original header:', logging.INFO)
+
+    @staticmethod
+    def build_table(emails: list['Email'], _author: str | None) -> Table:
+        """Turn a set of Email objects into a Table."""
+        author = _author or UNKNOWN
+
+        table = Table(
+            title=f"Emails to/from {author} starting {emails[0].timestamp.date()}",
+            border_style=get_style_for_name(author, allow_bold=False),
+            header_style="bold"
+        )
+
+        table.add_column('From', justify='left')
+        table.add_column('Timestamp', justify='center')
+        table.add_column('Subject', justify='left', style='honeydew2', min_width=60)
+
+        for email in emails:
+            table.add_row(
+                email.author_txt,
+                email.epstein_media_link(link_txt=email.timestamp_without_seconds()),
+                highlighter(email.subject())
+            )
+
+        return table
 
 
 def _add_line_breaks(email_text: str) -> str:

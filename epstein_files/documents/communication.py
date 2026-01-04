@@ -31,15 +31,15 @@ class Communication(Document):
     def author_or_unknown(self) -> str:
         return self.author or UNKNOWN
 
-    def summary(self) -> Text:
-        return self._summary().append(CLOSE_PROPERTIES_CHAR)
-
     def is_attribution_uncertain(self) -> bool:
         return bool(self.config and self.config.is_attribution_uncertain)
 
     def raw_document_link_txt(self, _style: str = '', include_alt_link: bool = True) -> Text:
         """Overrides super() method to apply self.author_style."""
         return super().raw_document_link_txt(self.author_style, include_alt_link=include_alt_link)
+
+    def summary(self) -> Text:
+        return self._summary().append(CLOSE_PROPERTIES_CHAR)
 
     def timestamp_without_seconds(self) -> str:
         return TIMESTAMP_SECONDS_REGEX.sub('', str(self.timestamp))
