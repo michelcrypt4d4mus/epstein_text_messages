@@ -28,8 +28,6 @@ INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
 
 CLOSE_PROPERTIES_CHAR = ']'
-MAX_EXTRACTED_TIMESTAMPS = 6
-MAX_SIZE_TO_REPAIR = 300_000  # Largest email found was 297,322 bytes
 MIN_TIMESTAMP = datetime(1991, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
 MAX_TIMESTAMP = datetime(2020, 1, 1)
@@ -269,14 +267,9 @@ class Document:
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
         text = self.raw_text()
         text = text[1:] if (len(text) > 0 and text[0] == '\ufeff') else text  # remove BOM
-
-        if len(text) < MAX_SIZE_TO_REPAIR:
-            text = self.repair_ocr_text(OCR_REPAIRS, text.strip())
-        else:
-            logger.warning(f"Not repairing large file: {self.url_slug} ({self.file_size_str()})")
-
+        text = self.repair_ocr_text(OCR_REPAIRS, text.strip())
         lines = [l.strip() for l in text.split('\n') if not l.startswith(HOUSE_OVERSIGHT)]
-        lines = lines[1:] if (len(lines) > 1 and lines[0] == '>>') else lines
+        # lines = lines[1:] if (len(lines) > 1 and lines[0] == '>>') else lines
         return collapse_newlines('\n'.join(lines))
 
     def _repair(self) -> None:

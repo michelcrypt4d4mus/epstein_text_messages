@@ -21,8 +21,8 @@ from epstein_files.util.file_helper import FILENAME_LENGTH
 from epstein_files.util.env import args, logger
 from epstein_files.util.rich import QUESTION_MARK_TXT, highlighter, logger
 
-MAX_EXTRACTED_TIMESTAMPS = 100
 MAX_DAYS_SPANNED_TO_BE_VALID = 10
+MAX_EXTRACTED_TIMESTAMPS = 100
 MIN_TIMESTAMP = datetime(2000, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
 MAX_TIMESTAMP = datetime(2022, 12, 31)
@@ -247,8 +247,7 @@ class OtherFile(Document):
         timestamps_log_msg += TIMESTAMP_LOG_INDENT.join([str(dt) for dt in timestamps])
 
         if num_days_spanned > MAX_DAYS_SPANNED_TO_BE_VALID and VAST_HOUSE not in self.text:
-            log_level = logging.DEBUG if VAST_HOUSE in self.text else logging.INFO
-            self.log_top_lines(15, msg=timestamps_log_msg, level=log_level)
+            self.log_top_lines(15, msg=timestamps_log_msg, level=logging.INFO)
 
     @staticmethod
     def build_table(docs: list['OtherFile']) -> Table:
