@@ -247,7 +247,7 @@ class OtherFile(Document):
         timestamps_log_msg += TIMESTAMP_LOG_INDENT.join([str(dt) for dt in timestamps])
 
         if num_days_spanned > MAX_DAYS_SPANNED_TO_BE_VALID and VAST_HOUSE not in self.text:
-            self.log_top_lines(15, msg=timestamps_log_msg, level=logging.INFO)
+            self.log_top_lines(15, msg=timestamps_log_msg, level=logging.DEBUG)
 
     @staticmethod
     def build_table(docs: list['OtherFile']) -> Table:
