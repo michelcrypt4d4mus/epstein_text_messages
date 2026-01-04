@@ -59,21 +59,21 @@ git push origin master --quiet
 git checkout gh_pages
 git merge --no-edit master --quiet
 
-print_msg "Building" "text messages page"
+print_msg "Building text messages page"
 echo -e "  -> using $PICKLE_ARG"
 epstein_generate --build --suppress-output $PICKLE_ARG
 echo -e ""
-print_msg "Building" "word counts page"
+print_msg "Building word counts page"
 ./scripts/count_words.py --build --pickled --suppress-output --width 105
 echo -e ""
-print_msg "Building" "JSON metadata page"
+print_msg "Building JSON metadata page"
 epstein_generate --build --json-metadata --pickled
 
 
 if [ -n "$ONLY_TEXTS" ]; then
     print_msg "Skipping build of emails page"
 else
-    print_msg "Building" "all emails page"
+    print_msg "Building all emails page"
     epstein_generate --build --all-emails --all-other-files --pickled --suppress-output
 fi
 
