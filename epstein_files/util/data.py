@@ -65,7 +65,7 @@ def flatten(_list: list[list[T]]) -> list[T]:
 
 def json_safe(d: dict) -> dict:
     return {
-        k: v.isoformat() if isinstance(v, datetime) else v
+        'None' if k is None else k: v.isoformat() if isinstance(v, datetime) else v
         for k,v in d.items()
     }
 

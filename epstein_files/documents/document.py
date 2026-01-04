@@ -16,7 +16,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP
 from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, listify, patternize, without_nones
-from epstein_files.util.doc_cfg import EmailCfg, DocCfg, TextCfg
+from epstein_files.util.doc_cfg import EmailCfg, DocCfg, Metadata, TextCfg
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import (DOCS_DIR, file_stem_for_id, extract_file_id, file_size,
      file_size_str, is_local_extract_file)
@@ -178,14 +178,12 @@ class Document:
         pattern = patternize(_pattern)
         return [MatchedLine(line, i) for i, line in enumerate(self.lines) if pattern.search(line)]
 
-    def metadata(self) -> dict[str, datetime | int | str]:
+    def metadata(self) -> Metadata:
         metadata = self.config.metadata() if self.config else {}
-        print(f"doc metadata raw print:")
-        print(repr(self))
-        print(f"doc metadata asdict:")
-        print(asdict(self))
         metadata.update({k: v for k, v in asdict(self).items() if k in METADATA_FIELDS and v is not None})
         metadata['bytes'] = self.file_size()
+        metadata['type'] = self.class_name()
+        metadata[None] = 'foo'
         return metadata
 
     def raw_text(self) -> str:

@@ -11,6 +11,7 @@ from epstein_files.util.constant.strings import AUTHOR, EMAIL, TEXT_MESSAGE
 from epstein_files.util.data import without_nones
 
 DuplicateType = Literal['earlier', 'quoted', 'redacted', 'same']
+Metadata = dict[str, bool | datetime | int | str | list[str | None]]
 
 # categories
 ACADEMIA = 'academia'
@@ -123,7 +124,7 @@ class DocCfg:
         pieces = without_nones([self.author, self.description])
         return ' '.join(pieces) if pieces else None
 
-    def metadata(self) -> dict[str, datetime | int | str]:
+    def metadata(self) -> Metadata:
         non_null_fields = {k: v for k, v in asdict(self).items() if v and k not in ['date', 'id', 'timestamp']}
 
         if self.category in [EMAIL, TEXT_MESSAGE]:
