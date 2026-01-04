@@ -7,8 +7,10 @@ set -e
 
 DOCS_DIR="docs"
 EMAILS_DIR="../epstein_emails_house_oversight"
+JSON_METADATA_STEM="epstein_files_nov_2025_cryptadamus_metadata.json"
 WORD_COUNT_HTML_STEM='epstein_emails_word_count.html'
 INDEX_HTML_PATH="$DOCS_DIR/index.html"
+JSON_METADATA_PATH="$DOCS_DIR/$JSON_METADATA_STEM"
 WORD_COUNT_HTML_PATH="$DOCS_DIR/$WORD_COUNT_HTML_STEM"
 EMAILS_INDEX_HTML_PATH="${EMAILS_DIR}/${INDEX_HTML_PATH}"
 
@@ -51,19 +53,19 @@ any_uncommitted_changes() {
 }
 
 
+# Preparation / checking for issues / cleaning repo
 if [[ $CURRENT_BRANCH != "master" ]]; then
     print_msg "Current branch is not master" "($CURRENT_BRANCH)"
     exit 1
 fi
 
-# Preparation / checking for issues
 if any_uncommitted_changes; then
     print_msg "Uncommitted changes; halting"
     exit 1
 fi
 
 ./scripts/make_clean.py
-exit
+
 
 # Text messages
 git push origin master --quiet
@@ -74,6 +76,9 @@ print_msg "Building" "$INDEX_HTML_PATH"
 echo -e "  -> using $PICKLE_ARG"
 ./generate_html.py --build --output-emails --output-texts --output-other-files --suppress-output $PICKLE_ARG
 echo -e ""
+print_msg "Building" "$JSON_METADATA_PATH"
+./generate_html.py --build -json-metadata --pickled
+echo -e ""
 print_msg "Building" "$WORD_COUNT_HTML_PATH"
 ./scripts/count_words.py --build --pickled --suppress-output --width 105
 
@@ -82,6 +87,7 @@ git push origin gh_pages --quiet
 git checkout master
 echo -e ""
 print_msg "$TEXT_MSGS_PROJECT_NAME deployed to" "$TEXT_MSGS_URL"
+print_msg "                 json deployed to" "$JSON_METADATA_PATH"
 print_msg "          word counts deployed to" "$WORD_COUNT_URL"
 echo -e "\n\n"
 
