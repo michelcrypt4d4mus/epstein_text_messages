@@ -30,7 +30,6 @@ MIN_DOCUMENT_ID = 10477
 INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
 MAX_TOP_LINES_LEN = 4000  # Only for logging
-METADATA_FIELDS = ['author', 'filename', 'num_lines', 'timestamp']
 
 CLOSE_PROPERTIES_CHAR = ']'
 MIN_TIMESTAMP = datetime(1991, 1, 1)
@@ -41,6 +40,14 @@ FILENAME_MATCH_STYLES = [
     'dark_green',
     'green',
     'spring_green4',
+]
+
+METADATA_FIELDS = [
+    'author',
+    'file_id',
+    'filename',
+    'num_lines',
+    'timestamp'
 ]
 
 OCR_REPAIRS = {
