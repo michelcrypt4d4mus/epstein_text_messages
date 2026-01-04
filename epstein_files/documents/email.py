@@ -291,8 +291,6 @@ METADATA_FIELDS = [
 @dataclass
 class Email(Communication):
     """
-    An email.
-
     Attributes:
         actual_text (str) - best effort at the text actually sent in this email, excluding quoted replies and forwards
         config (EmailCfg | None) - manual config for this email (if it exists)
