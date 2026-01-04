@@ -67,6 +67,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     DANNY_FROST: re.compile(r'Frost, Danny|frostd@dany.nyc.gov', re.IGNORECASE),
     DARREN_INDYKE: re.compile(r'darren$|Darren\s*(K\.?\s*)?[il]n[dq]_?yke?|dkiesq', re.IGNORECASE),
     DAVID_FISZEL: re.compile(r'David\s*Fis?zel', re.IGNORECASE),
+    DAVID_HAIG: re.compile(fr'{DAVID_HAIG}|Haig, David', re.IGNORECASE),
     DAVID_STERN: re.compile(r'David Stern?', re.IGNORECASE),
     EDUARDO_ROBLES: re.compile(r'Ed(uardo)?\s*Robles', re.IGNORECASE),
     EDWARD_JAY_EPSTEIN: re.compile(r'Edward (Jay )?Epstein', re.IGNORECASE),
@@ -83,6 +84,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     JEAN_LUC_BRUNEL: re.compile(r'Jean[- ]Luc Brunel?', re.IGNORECASE),
     JEFF_FULLER: re.compile(r"jeff@mc2mm.com|Jeff Fuller", re.IGNORECASE),
     JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeffrey E((sp|ps)tein?)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!Mark L. )Epstein', re.IGNORECASE),
+    JESSICA_CADWELL: re.compile(r'Jessica Cadwell?', re.IGNORECASE),
     JOHNNY_EL_HACHEM: re.compile(r'el hachem johnny|johnny el hachem', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|(joichi|joi)( Ito)?', re.IGNORECASE),
     JONATHAN_FARKAS: re.compile(r'Jonathan Farka(s|il)', re.IGNORECASE),
@@ -155,6 +157,7 @@ EMAILERS = [
     DANIEL_SABBA,
     'Danny Goldberg',
     DAVID_SCHOEN,
+    DEBBIE_FEIN,
     DEEPAK_CHOPRA,
     GLENN_DUBIN,
     GORDON_GETTY,
@@ -162,7 +165,6 @@ EMAILERS = [
     JACK_SCAROLA,
     JAY_LEFKOWITZ,
     JES_STALEY,
-    JESSICA_CADWELL,
     JOHN_PAGE,
     'Jokeland',
     JOSCHA_BACH,
@@ -389,7 +391,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='033328', author=AZIZA_ALAHMADI, attribution_reason='"Regards, Aziza" at bottom'),
     EmailCfg(id='026659', author=BARBRO_C_EHNBOM, attribution_reason='Reply'),
     EmailCfg(id='031215', author=BARBRO_C_EHNBOM, duplicate_ids=['026745'], dupe_type='redacted'),  # the same except for 'your Anna!'. author must be specified because email address is redacted in 026745 so it needs the config
-    EmailCfg(id='026764', author=BARRY_J_COHEN),
+    EmailCfg(id='026764', author=BARRY_J_COHEN),  # Bad OCR (nofix)
     EmailCfg(id='031206', author=BENNET_MOSKOWITZ, duplicate_ids=['031227']),
     EmailCfg(id='031442', author=CHRISTINA_GALBRAITH, duplicate_ids=['031996']),
     EmailCfg(
@@ -419,32 +421,23 @@ EMAILS_CONFIG = [
     EmailCfg(id='031560', author=DAVID_SCHOEN, attribution_reason='Signature'),
     EmailCfg(id='026287', author=DAVID_SCHOEN, attribution_reason='Signature'),
     EmailCfg(id='033419', author=DAVID_SCHOEN, attribution_reason='Signature'),
-    EmailCfg(id='031460', author=EDWARD_JAY_EPSTEIN),
-    EmailCfg(id='030414', author=FAITH_KATES, duplicate_ids=['030578'], dupe_type='redacted'),
-    EmailCfg(id='031135', author=FAITH_KATES, duplicate_ids=['030634'], dupe_type='redacted'),
+    EmailCfg(id='031460', author=EDWARD_JAY_EPSTEIN, attribution_reason=f"quoted reply has edwardjayepstein.com"),
     EmailCfg(id='026547', author=GERALD_BARTON, recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
     EmailCfg(id='029969', author=GWENDOLYN_BECK, attribution_reason='Signature'),
     EmailCfg(id='029968', author=GWENDOLYN_BECK, attribution_reason='Signature', duplicate_ids=['031120']),
-    EmailCfg(id='029970', author=GWENDOLYN_BECK),
+    EmailCfg(id='029970', author=GWENDOLYN_BECK, attribution_reason='signed "Longevity & Successful Agin"'),
     EmailCfg(id='029960', author=GWENDOLYN_BECK, attribution_reason='Reply'),
     EmailCfg(id='029959', author=GWENDOLYN_BECK, attribution_reason='"Longevity & Aging"'),
     EmailCfg(id='033360', author=HENRY_HOLT, attribution_reason='in signature'),  # Henry Holt is a company not a person
     EmailCfg(id='033384', author=JACK_GOLDBERGER, attribution_reason='Might be Paul Prosperi?', is_attribution_uncertain=True),
     EmailCfg(id='026024', author=JEAN_HUGUEN, attribution_reason='Signature'),
     EmailCfg(id='021823', author=JEAN_LUC_BRUNEL, attribution_reason='Reply'),
-    EmailCfg(id='022949', author=JEFFREY_EPSTEIN),
-    EmailCfg(id='031624', author=JEFFREY_EPSTEIN),
+    EmailCfg(id='022949', author=JEFFREY_EPSTEIN),  # Bad OCR (nofix)
+    EmailCfg(id='031624', author=JEFFREY_EPSTEIN),  # Bad OCR (nofix)
     EmailCfg(id='031996', author=JEFFREY_EPSTEIN, recipients=[CHRISTINA_GALBRAITH], attribution_reason='bounced', duplicate_ids=['031442']),
-    EmailCfg(
-        id='029692',  # TODO: this file's header is jankily prettified
-        author=JEFFREY_EPSTEIN,
-        is_fwded_article=True,  # Bad OCR, WaPo article
-        recipients=[LARRY_SUMMERS],
-        duplicate_ids=['029779'],
-    ),
-    EmailCfg(id='018726', author=JEFFREY_EPSTEIN, timestamp=parse('2018-06-08 08:36:00')),
-    EmailCfg(id='032283', author=JEFFREY_EPSTEIN, timestamp=parse('2016-09-14 08:04:00')),
-    EmailCfg(id='026943', author=JEFFREY_EPSTEIN, timestamp=parse('2019-05-22 05:47:00')),
+    EmailCfg(id='018726', author=JEFFREY_EPSTEIN, timestamp=parse('2018-06-08 08:36:00')),  # nofix
+    EmailCfg(id='032283', author=JEFFREY_EPSTEIN, timestamp=parse('2016-09-14 08:04:00')),  # nofix
+    EmailCfg(id='026943', author=JEFFREY_EPSTEIN, timestamp=parse('2019-05-22 05:47:00')),  # nofix
     EmailCfg(id='023208', author=JEFFREY_EPSTEIN, recipients=[BRAD_WECHSLER, MELANIE_SPINELLA], duplicate_ids=['023291']),
     EmailCfg(
         id='032214',
@@ -458,8 +451,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='028770', author=JEFFREY_EPSTEIN, actual_text='call me now'),
     EmailCfg(id='031826', author=JEFFREY_EPSTEIN, actual_text='I have'),
     EmailCfg(id='030768', author=JEFFREY_EPSTEIN, actual_text='ok'),
-    EmailCfg(id='022938', author=JEFFREY_EPSTEIN, actual_text='what do you suggest?'),  # TODO: this email's header rewrite sucks
-    EmailCfg(id='031791', author=JESSICA_CADWELL),
+    EmailCfg(id='022938', author=JEFFREY_EPSTEIN, actual_text='what do you suggest?'),
+    EmailCfg(id='031791', author=JESSICA_CADWELL, attribution_reason='signature'),
     EmailCfg(id='028851', author=JOI_ITO, recipients=[JEFFREY_EPSTEIN], timestamp=parse('2014-04-27 06:00:00')),
     EmailCfg(
         id='028849',
@@ -468,10 +461,8 @@ EMAILS_CONFIG = [
         timestamp=parse('2014-04-27 06:30:00'),
         attribution_reason='Conversation with Joi Ito',
     ),
-    EmailCfg(id='016692', author=JOHN_PAGE),
-    EmailCfg(id='016693', author=JOHN_PAGE),
-    EmailCfg(id='028507', author=JONATHAN_FARKAS),
-    EmailCfg(id='033282', author=JONATHAN_FARKAS, duplicate_ids=['033484']),
+    EmailCfg(id='028507', author=JONATHAN_FARKAS, attribution_reason='reply signed "best Jonathan"'),
+    EmailCfg(id='033282', author=JONATHAN_FARKAS, attribution_reason='reply signed "thanks Jonathan"', duplicate_ids=['033484']),
     EmailCfg(id='033582', author=JONATHAN_FARKAS, attribution_reason='Reply', duplicate_ids=['032389']),
     EmailCfg(id='033203', author=JONATHAN_FARKAS, attribution_reason='Reply', duplicate_ids=['033581']),
     EmailCfg(id='032052', author=JONATHAN_FARKAS, attribution_reason='Reply', duplicate_ids=['031732']),
@@ -480,11 +471,11 @@ EMAILS_CONFIG = [
     EmailCfg(id='032386', author=KATHRYN_RUEMMLER, attribution_reason=KATHY_REASON, is_attribution_uncertain=True),
     EmailCfg(id='032727', author=KATHRYN_RUEMMLER, attribution_reason=KATHY_REASON, is_attribution_uncertain=True),
     EmailCfg(id='030478', author=LANDON_THOMAS),
-    EmailCfg(id='029013', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),
+    EmailCfg(id='029013', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),    # Bad OCR (nofix)
     EmailCfg(id='032206', author=LAWRENCE_KRAUSS),                                # More of a text convo?
     EmailCfg(id='032208', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
     EmailCfg(id='032209', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
-    EmailCfg(id='029196', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN], actual_text='Talk in 40?'),  # TODO: this email's header rewrite sucks
+    EmailCfg(id='029196', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN], actual_text='Talk in 40?'),
     EmailCfg(id='033593', author=LAWRANCE_VISOSKI, attribution_reason='Signature'),
     EmailCfg(id='033370', author=LAWRANCE_VISOSKI, attribution_reason=LARRY_REASON),
     EmailCfg(id='033495', author=LAWRANCE_VISOSKI, attribution_reason=LARRY_REASON),
@@ -499,18 +490,18 @@ EMAILS_CONFIG = [
     EmailCfg(id='027046', author=LAWRANCE_VISOSKI, duplicate_ids=['028789']),
     EmailCfg(id='033488', author=LAWRANCE_VISOSKI, duplicate_ids=['033154']),
     EmailCfg(id='033309', author=LINDA_STONE, attribution_reason='"Co-authored with iPhone autocorrect"'),
-    EmailCfg(id='017581', author='Lisa Randall'),
+    EmailCfg(id='017581', author='Lisa Randall', attribution_reason='reply header'),
     EmailCfg(id='026609', author='Mark Green', attribution_reason='Actually a fwd'),
     EmailCfg(id='030472', author=MARTIN_WEINBERG, attribution_reason='Maybe. in reply', is_attribution_uncertain=True),
     EmailCfg(id='030235', author=MELANIE_WALKER, attribution_reason='In fwd'),
     EmailCfg(id='032343', author=MELANIE_WALKER, attribution_reason='Name seen in later reply 032346'),
-    EmailCfg(id='032212', author=MIROSLAV_LAJCAK),
-    EmailCfg(id='022193', author=NADIA_MARCINKO),
-    EmailCfg(id='021814', author=NADIA_MARCINKO),
-    EmailCfg(id='021808', author=NADIA_MARCINKO),
-    EmailCfg(id='022190', author=NADIA_MARCINKO),
-    EmailCfg(id='021818', author=NADIA_MARCINKO),
-    EmailCfg(id='022197', author=NADIA_MARCINKO),
+    EmailCfg(id='032212', author=MIROSLAV_LAJCAK, attribution_reason='signature'),
+    EmailCfg(id='022193', author=NADIA_MARCINKO, attribution_reason='reply'),
+    EmailCfg(id='021814', author=NADIA_MARCINKO, attribution_reason='reply'),
+    EmailCfg(id='021808', author=NADIA_MARCINKO, attribution_reason='reply'),
+    EmailCfg(id='022190', author=NADIA_MARCINKO, attribution_reason='reply'),
+    EmailCfg(id='021818', author=NADIA_MARCINKO, attribution_reason='reply'),
+    EmailCfg(id='022197', author=NADIA_MARCINKO, attribution_reason='reply'),
     EmailCfg(id='022214', author=NADIA_MARCINKO, attribution_reason='Reply header'),
     EmailCfg(id='021811', author=NADIA_MARCINKO, attribution_reason='Signature and email address in the message'),
     EmailCfg(id='028487', author=NORMAN_D_RAU, attribution_reason='Fwded from "to" address', duplicate_ids=['026612']),
@@ -520,7 +511,7 @@ EMAILS_CONFIG = [
         recipients=['George Krassner', 'Nick Kazan', 'Mrisman02', 'Rebecca Risman', 'Linda W. Grossman'],
         duplicate_ids=['031973']
     ),
-    EmailCfg(id='032457', author=PAUL_KRASSNER),
+    EmailCfg(id='032457', author=PAUL_KRASSNER),  # Bad OCR (nofix)
     EmailCfg(id='029981', author=PAULA, attribution_reason='Name in reply + opera reference (Fisher now works in opera)'),
     EmailCfg(id='030482', author=PAULA, attribution_reason=PAULA_REASON),
     EmailCfg(id='033383', author=PAUL_PROSPERI, attribution_reason='Reply'),
@@ -530,7 +521,7 @@ EMAILS_CONFIG = [
         attribution_reason='Fwded mail sent to Prosperi. Might be Subotnick Stuart?',
         duplicate_ids=['033157'],
     ),
-    EmailCfg(id='031694', author=PEGGY_SIEGAL),
+    EmailCfg(id='031694', author=PEGGY_SIEGAL, attribution_reason='quoted', is_attribution_uncertain=True),
     EmailCfg(id='032219', author=PEGGY_SIEGAL, attribution_reason='Signed "Peggy"'),
     EmailCfg(id='029020', author=RENATA_BOLOTOVA, attribution_reason='Signature'),
     EmailCfg(id='029605', author=RENATA_BOLOTOVA, attribution_reason=BOLOTOVA_REASON),
@@ -571,69 +562,42 @@ EMAILS_CONFIG = [
     EmailCfg(id='029985', author=TERRY_KAFKA, attribution_reason='Quoted reply in 029992'),
     EmailCfg(id='020666', author=TERRY_KAFKA, attribution_reason="Ends with 'Terry'"),
     EmailCfg(id='026014', author=ZUBAIR_KHAN, recipients=[JEFFREY_EPSTEIN], timestamp=parse('2016-11-04 17:46:00')),
-    EmailCfg(id='030626', recipients=[ALAN_DERSHOWITZ, DARREN_INDYKE, KATHRYN_RUEMMLER, KEN_STARR, MARTIN_WEINBERG]),
-    EmailCfg(id='029835', recipients=[ALAN_DERSHOWITZ, JACK_GOLDBERGER, JEFFREY_EPSTEIN], duplicate_ids=['028968']),
     EmailCfg(id='027063', recipients=[ANTHONY_BARRETT]),
     EmailCfg(id='030764', recipients=[ARIANE_DE_ROTHSCHILD], attribution_reason='Reply'),
     EmailCfg(id='026431', recipients=[ARIANE_DE_ROTHSCHILD], attribution_reason='Reply'),
-    EmailCfg(id='032876', recipients=[CECILIA_STEEN]),
-    EmailCfg(id='033583', recipients=[DARREN_INDYKE, JACK_GOLDBERGER]),  # Bad OCR
-    EmailCfg(id='033144', recipients=[DARREN_INDYKE, RICHARD_KAHN]),
+    EmailCfg(id='032876', recipients=[CECILIA_STEEN], attribution_reason='unredacted in 032267'),
     EmailCfg(id='026466', recipients=[DIANE_ZIMAN], attribution_reason='Quoted reply'),
-    EmailCfg(id='031607', recipients=[EDWARD_JAY_EPSTEIN]),
+    EmailCfg(id='031607', recipients=[EDWARD_JAY_EPSTEIN], attribution_reason=f"quoted reply has edwardjayepstein.com"),
     EmailCfg(
         id='030525',
         recipients=[FAITH_KATES],
-        attribution_reason='Reply in 030414 has Next Management LLC legal signature',
+        attribution_reason=f'Reply in 030414 has {NEXT_MANAGEMENT} legal signature',
         duplicate_ids=['030581'],
     ),
     EmailCfg(
         id='030475',
         recipients=[FAITH_KATES],
-        attribution_reason='Next Management LLC legal signature',
+        attribution_reason=f'{NEXT_MANAGEMENT} legal signature',
         duplicate_ids=['030575'],
         dupe_type='redacted'
     ),
-    EmailCfg(id='030999', recipients=[JACK_GOLDBERGER, ROBERT_D_CRITTON]),
     EmailCfg(id='026426', recipients=[JEAN_HUGUEN], attribution_reason='Reply'),
     EmailCfg(id='022202', recipients=[JEAN_LUC_BRUNEL], attribution_reason='Follow up / reply', duplicate_ids=['029975']),
-    EmailCfg(id='022187', recipients=[JEFFREY_EPSTEIN]),
-    EmailCfg(id='031489', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
+    EmailCfg(id='022187', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
+    EmailCfg(id='031489', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (unfixable)
     EmailCfg(id='032210', recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
-    EmailCfg(id='030347', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
-    EmailCfg(id='030367', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
+    EmailCfg(id='030347', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
+    EmailCfg(id='030367', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
     EmailCfg(id='033274', recipients=[JEFFREY_EPSTEIN]),  # this is a note sent to self
-    EmailCfg(id='032780', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
-    EmailCfg(id='025233', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
-    EmailCfg(id='022344', recipients=[JEFFREY_EPSTEIN], duplicate_ids=['028529']),  # Bad OCR
-    EmailCfg(id='029889', recipients=[JEFFREY_EPSTEIN, "Connie Zaguirre", JACK_GOLDBERGER, ROBERT_D_CRITTON]),  # Bad OCR
-    EmailCfg(id='033575', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN], duplicate_ids=['012898']),
-    EmailCfg(id='023067', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN, TONJA_HADDAD_COLEMAN]),  # Bad OCR
-    EmailCfg(id='033228', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, FRED_HADDAD]),  # Bad OCR
-    EmailCfg(id='025790', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, JACK_GOLDBERGER], duplicate_ids=['031994']),  # Bad OCR
-    EmailCfg(
-        id='031384',
-        actual_text='',
-        recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, JACK_GOLDBERGER, MARTIN_WEINBERG, SCOTT_J_LINK],
-    ),
-    EmailCfg(id='033512', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, JACKIE_PERCZEK, MARTIN_WEINBERG], duplicate_ids=['033361']),
-    EmailCfg(id='032063', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, REID_WEINGARTEN]),
-    EmailCfg(id='033486', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, RICHARD_KAHN], duplicate_ids=['033156']),  # Bad OCR
-    EmailCfg(id='029154', recipients=[JEFFREY_EPSTEIN, DAVID_HAIG]),  # Bad OCR
-    EmailCfg(id='029498', recipients=[JEFFREY_EPSTEIN, DAVID_HAIG, GORDON_GETTY, "Norman Finkelstein"]),  # Bad OCR
-    EmailCfg(id='029324', recipients=[JEFFREY_EPSTEIN, "Jojo Fontanilla", "Lyn Fontanilla"]),
-    EmailCfg(id='028931', recipients=[JEFFREY_EPSTEIN, LAWRENCE_KRAUSS]),  # Bad OCR
-    EmailCfg(id='019407', recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK]),  # Bad OCR
-    EmailCfg(id='031980', recipients=[JEFFREY_EPSTEIN, MICHAEL_SITRICK], duplicate_ids=['019409']),  # Bad OCR
-    EmailCfg(id='029163', recipients=[JEFFREY_EPSTEIN, ROBERT_TRIVERS]),   # Bad OCR
-    EmailCfg(id='030299', recipients=[JESSICA_CADWELL, ROBERT_D_CRITTON], duplicate_ids=['021794']),  # Bad OCR
+    EmailCfg(id='032780', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
+    EmailCfg(id='029324', recipients=[JEFFREY_EPSTEIN, "Jojo Fontanilla", "Lyn Fontanilla"]),  # Bad OCR (nofix)
     EmailCfg(id='033456', recipients=["Joel"], attribution_reason='Reply'),
     EmailCfg(id='033460', recipients=["Joel"], attribution_reason='Reply'),
     EmailCfg(
         id='021090',
-        is_fwded_article=True,
         recipients=[JONATHAN_FARKAS],
         attribution_reason='Reply to a message signed "jonathan" same as other Farkas emails',
+        is_fwded_article=True,
     ),
     EmailCfg(
         id='033073',
@@ -647,11 +611,10 @@ EMAILS_CONFIG = [
         attribution_reason='to "Kathy" about dems, sent from iPad',
         is_attribution_uncertain=True,  # It's actually Kathy R. as the recipient that's the uncertain part
     ),
-    EmailCfg(id='031428', recipients=[KEN_STARR, LILLY_SANCHEZ, MARTIN_WEINBERG, REID_WEINGARTEN], duplicate_ids=['031388']), # Bad OCR
     EmailCfg(id='025329', recipients=['Nancy Cain', 'Tom', 'Marie Moneysmith', 'Steven Gaydos', 'George Krassner', 'Linda W. Grossman', 'Holly Krassner Dawson', 'Daniel Dawson', 'Danny Goldberg', 'Caryl Ratner', 'Kevin Bright', 'Michael Simmons', SAMUEL_LEFF, 'Bob Fass', 'Lynnie Tofte Fass', 'Barb Cowles', 'Lee Quarnstrom']),
     EmailCfg(id='033568', recipients=['George Krassner', 'Daniel Dawson', 'Danny Goldberg', 'Tom', 'Kevin Bright', 'Walli Leff', 'Michael Simmons', 'Lee Quarnstrom', 'Lanny Swerdlow', 'Larry Sloman', 'W&K', 'Harry Shearer', 'Jay Levin']),
-    EmailCfg(id='030522', recipients=[LANDON_THOMAS], is_fwded_article=True),  # Vicky Ward article
-    EmailCfg(id='031413', recipients=[LANDON_THOMAS]),
+    EmailCfg(id='030522', recipients=[LANDON_THOMAS], attribution_reason='reply header', is_fwded_article=True),  # Vicky Ward article
+    EmailCfg(id='031413', recipients=[LANDON_THOMAS], attribution_reason='reply header'),
     EmailCfg(id='033591', recipients=[LAWRANCE_VISOSKI], attribution_reason='Reply signature', duplicate_ids=['033591']),
     EmailCfg(id='027097', recipients=[LAWRANCE_VISOSKI], attribution_reason='Reply signature', duplicate_ids=['028787']),
     EmailCfg(id='033466', recipients=[LAWRANCE_VISOSKI], attribution_reason='Reply signature'),
@@ -661,28 +624,28 @@ EMAILS_CONFIG = [
     EmailCfg(id='030369', recipients=[MELANIE_SPINELLA], attribution_reason='Actually a self fwd from jeffrey to jeffrey'),
     EmailCfg(id='030371', recipients=[MELANIE_SPINELLA], attribution_reason='Actually a self fwd from jeffrey to jeffrey'),
     EmailCfg(id='022258', recipients=[NADIA_MARCINKO], attribution_reason='Reply header'),
-    EmailCfg(id='033097', recipients=[PAUL_BARRETT, RICHARD_KAHN]),  # Bad OCR
     EmailCfg(id='030506', recipients=[PAULA], attribution_reason=PAULA_REASON, is_attribution_uncertain=True),
     EmailCfg(id='030507', recipients=[PAULA], attribution_reason=PAULA_REASON, is_attribution_uncertain=True),
     EmailCfg(id='030508', recipients=[PAULA], attribution_reason=PAULA_REASON, is_attribution_uncertain=True),
     EmailCfg(id='030509', recipients=[PAULA], attribution_reason=PAULA_REASON, is_attribution_uncertain=True),
-    EmailCfg(id='030096', recipients=[PETER_MANDELSON]),
+    EmailCfg(id='030096', recipients=[PETER_MANDELSON], attribution_reason='reply header'),
     EmailCfg(id='032951', recipients=[RAAFAT_ALSABBAGH, None], attribution_reason='Redacted'),
     EmailCfg(id='029581', recipients=[RENATA_BOLOTOVA], attribution_reason=BOLOTOVA_REASON),
-    EmailCfg(id='030384', recipients=[RICHARD_KAHN, "Alan Dlugash"]),
-    EmailCfg(id='019334', recipients=[STEVE_BANNON]),
+    EmailCfg(id='019334', recipients=[STEVE_BANNON], attribution_reason='quoted reply'),
     EmailCfg(id='021106', recipients=[STEVE_BANNON], attribution_reason='Reply'),
 
     # Misc configs
     EmailCfg(id='033050', actual_text='schwartman'),
     EmailCfg(id='023627', description=MICHAEL_WOLFF_ARTICLE_HINT, is_fwded_article=True),
     EmailCfg(id='026298', is_fwded_article=True, duplicate_ids=['026499']),  # Written by someone else?
-    EmailCfg(id='026755', is_fwded_article=True),  # HuffPo
-    EmailCfg(id='030528', is_fwded_article=True),  # Vicky Ward article
+    EmailCfg(id='029692', is_fwded_article=True, duplicate_ids=['029779']),  # WaPo article
+    EmailCfg(id='022344', is_fwded_article=True, duplicate_ids=['028529']),  # Bill Gates is most admired from Nikolic
     EmailCfg(id='018197', is_fwded_article=True, duplicate_ids=['028648']),  # Ray Takeyh article fwd
     EmailCfg(id='028728', is_fwded_article=True, duplicate_ids=['027102']),  # WSJ forward to Larry Summers
-    EmailCfg(id='028508', is_fwded_article=True),  # nanosatellites article
     EmailCfg(id='028781', is_fwded_article=True, duplicate_ids=['013460']),  # Atlantic on Jim Yong Kim, Obama's World Bank Pick
+    EmailCfg(id='026755', is_fwded_article=True),  # HuffPo
+    EmailCfg(id='030528', is_fwded_article=True),  # Vicky Ward article
+    EmailCfg(id='028508', is_fwded_article=True),  # nanosatellites article
     EmailCfg(id='019845', is_fwded_article=True),  # Pro Publica article on Preet Bharara
     EmailCfg(id='029021', is_fwded_article=True),  # article about bannon sent by Alain Forget
     EmailCfg(id='031688', is_fwded_article=True),  # Bill Siegel fwd of email about hamas
@@ -690,6 +653,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='031768', is_fwded_article=True),  # Sultan bin Sulayem 'Horseface'
     EmailCfg(id='031569', is_fwded_article=True),  # Article by Kathryn Alexeeff fwded to Peter Thiel
     EmailCfg(id='029689', is_fwded_article=True),  # Tunisia article to Larry Summers
+    EmailCfg(id='014525', is_fwded_article=True),  # Really more of a mailing list from Paul Morris?
     EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
 
@@ -704,6 +668,16 @@ EMAILS_CONFIG = [
     EmailCfg(id='030624', duplicate_ids=['023018'], dupe_type='redacted'),
     EmailCfg(id='030335', duplicate_ids=['030596'], dupe_type='redacted'),
     EmailCfg(id='029841', duplicate_ids=['012711'], dupe_type='redacted'),
+    EmailCfg(id='030414', duplicate_ids=['030578'], dupe_type='redacted'),
+    EmailCfg(id='031135', duplicate_ids=['030634'], dupe_type='redacted'),
+    EmailCfg(id='029835', duplicate_ids=['028968']),
+    EmailCfg(id='033512', duplicate_ids=['033361']),
+    EmailCfg(id='030299', duplicate_ids=['021794']),
+    EmailCfg(id='033575', duplicate_ids=['012898']),
+    EmailCfg(id='031428', duplicate_ids=['031388']),
+    EmailCfg(id='031980', duplicate_ids=['019409']),
+    EmailCfg(id='033486', duplicate_ids=['033156']),
+    EmailCfg(id='025790', duplicate_ids=['031994']),
     EmailCfg(id='025041', duplicate_ids=['028675']),
     EmailCfg(id='028497', duplicate_ids=['026228']),
     EmailCfg(id='033528', duplicate_ids=['033517']),

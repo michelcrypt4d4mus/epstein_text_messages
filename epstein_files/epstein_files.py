@@ -5,7 +5,7 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
-from typing import Sequence
+from typing import Sequence, Type
 
 from rich.align import Align
 from rich.padding import Padding
@@ -58,7 +58,7 @@ class EpsteinFiles:
     email_authors_to_device_signatures: dict[str, set] = field(default_factory=lambda: defaultdict(set))
     email_device_signatures_to_authors: dict[str, set] = field(default_factory=lambda: defaultdict(set))
     email_recipient_counts: dict[str | None, int] = field(default_factory=lambda: defaultdict(int))
-    _email_unknown_recipient_file_ids: set[str] = field(default_factory=set)
+    unknown_recipient_email_ids: set[str] = field(default_factory=set)
 
     def __post_init__(self):
         """Iterate through files and build appropriate objects."""
@@ -69,21 +69,12 @@ class EpsteinFiles:
         for file_arg in self.all_files:
             doc_timer = Timer(decimals=4)
             document = Document(file_arg)
-            search_area = document.text[0:1200]  # Limit search area to avoid pointless scans of huge files
 
             if document.length == 0:
                 logger.warning(f"Skipping empty file: {document}")
                 continue
 
-            if document.text[0] == '{':
-                cls = JsonFile
-            elif isinstance(document.config, EmailCfg) or DETECT_EMAIL_REGEX.match(search_area):
-                cls = Email
-            elif MSG_REGEX.search(search_area):
-                cls = MessengerLog
-            else:
-                cls = OtherFile
-
+            cls = document_cls(document)
             documents.append(cls(file_arg, text=document.text))
             logger.info(str(documents[-1]))
 
@@ -93,6 +84,7 @@ class EpsteinFiles:
         self.emails = Document.sort_by_timestamp([d for d in documents if isinstance(d, Email)])
         self.imessage_logs = Document.sort_by_timestamp([d for d in documents if isinstance(d, MessengerLog)])
         self.other_files = Document.sort_by_timestamp([d for d in documents if isinstance(d, (JsonFile, OtherFile))])
+        self.json_files = [doc for doc in self.other_files if isinstance(doc, JsonFile)]
         self._tally_email_data()
 
     @classmethod
@@ -167,7 +159,7 @@ class EpsteinFiles:
         return substitution_counts
 
     def email_unknown_recipient_file_ids(self) -> list[str]:
-        return sorted(list(self._email_unknown_recipient_file_ids))
+        return sorted(list(self.unknown_recipient_email_ids))
 
     def emails_by(self, author: str | None) -> list[Email]:
         return [e for e in self.emails if e.author == author]
@@ -202,13 +194,14 @@ class EpsteinFiles:
         return len([log for log in self.imessage_logs if log.author])
 
     def print_files_summary(self) -> None:
+        other_files = [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
         dupes = defaultdict(int)
 
         for doc in self.all_documents():
             if doc.is_duplicate:
                 dupes[doc.class_name()] += 1
 
-        table = Table()
+        table = Table(title='Summary of Document Types')
         add_cols_to_table(table, ['File Type', 'Files', 'Author Known', 'Author Unknown', 'Duplicates'])
 
         def add_row(label: str, docs: list, known: int | None = None, dupes: int | None = None):
@@ -223,7 +216,7 @@ class EpsteinFiles:
         add_row('iMessage Logs', self.imessage_logs, self.identified_imessage_log_count())
         add_row('Emails', self.emails, len([e for e in self.emails if e.author]), dupes[EMAIL_CLASS])
         add_row('JSON Data', self.json_files, dupes=0)
-        add_row('Other', self.other_files, dupes=dupes[OTHER_FILE_CLASS])
+        add_row('Other', other_files, dupes=dupes[OTHER_FILE_CLASS])
         console.print(Align.center(table))
         console.line()
 
@@ -323,7 +316,7 @@ class EpsteinFiles:
             self.email_author_counts[email.author] += 1
 
             if len(email.recipients) == 0:
-                self._email_unknown_recipient_file_ids.add(email.file_id)
+                self.unknown_recipient_email_ids.add(email.file_id)
                 self.email_recipient_counts[None] += 1
             else:
                 for recipient in email.recipients:
@@ -347,6 +340,19 @@ def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str]
         table.add_row(highlighter(k or UNKNOWN), highlighter(join_char.join(sorted(new_dict[k]))))
 
     return Padding(table, DEVICE_SIGNATURE_PADDING)
+
+
+def document_cls(document: Document) -> Type[Document]:
+    search_area = document.text[0:5000]  # Limit search area to avoid pointless scans of huge files
+
+    if document.text[0] == '{':
+        return JsonFile
+    elif isinstance(document.config, EmailCfg) or DETECT_EMAIL_REGEX.match(search_area):
+        return Email
+    elif MSG_REGEX.search(search_area):
+        return MessengerLog
+    else:
+        return OtherFile
 
 
 def is_ok_for_epstein_web(name: str | None) -> bool:
