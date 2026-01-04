@@ -9,6 +9,14 @@ JSON_FILE_CLASS = 'JsonFile'
 MESSENGER_LOG_CLASS = 'MessengerLog'
 OTHER_FILE_CLASS = 'OtherFile'
 
+DOC_TYPE_STYLES = {
+    DOCUMENT_CLASS: 'grey69',
+    EMAIL_CLASS: 'sea_green2',
+    JSON_FILE_CLASS: 'sandy_brown',
+    MESSENGER_LOG_CLASS: 'cyan',
+    OTHER_FILE_CLASS: 'grey69',
+}
+
 # Publications
 BBC = 'BBC'
 BLOOMBERG = 'Bloomberg'

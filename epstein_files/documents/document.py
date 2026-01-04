@@ -32,14 +32,6 @@ MIN_TIMESTAMP = datetime(1991, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
 MAX_TIMESTAMP = datetime(2020, 1, 1)
 
-DOC_TYPE_STYLES = {
-    DOCUMENT_CLASS: 'grey69',
-    EMAIL_CLASS: 'sea_green2',
-    JSON_FILE_CLASS: 'sandy_brown',
-    MESSENGER_LOG_CLASS: 'cyan',
-    OTHER_FILE_CLASS: 'grey69',
-}
-
 FILENAME_MATCH_STYLES = [
     'dark_green',
     'green',
