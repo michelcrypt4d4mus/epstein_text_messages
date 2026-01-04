@@ -229,7 +229,7 @@ def print_other_site_link(is_header: bool = True) -> None:
     print_centered(parenthesize(word_count_link))
 
     if is_header:
-        metadata_link = link_text_obj(JSON_METADATA_URL, 'file metadata containing author attribution explanations', OTHER_SITE_LINK_STYLE)
+        metadata_link = link_text_obj(JSON_METADATA_URL, 'metadata with author attribution explanations', OTHER_SITE_LINK_STYLE)
         print_centered(parenthesize(metadata_link))
 
 

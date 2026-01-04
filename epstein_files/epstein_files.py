@@ -199,9 +199,10 @@ class EpsteinFiles:
 
     def json_metadata(self) -> str:
         metadata = {
-            EMAIL_CLASS: [json_safe(doc.metadata()) for doc in self.emails],
-            MESSENGER_LOG_CLASS: [json_safe(doc.metadata()) for doc in self.imessage_logs],
-            OTHER_FILE_CLASS: [json_safe(doc.metadata()) for doc in self.other_files],
+            EMAIL_CLASS: [json_safe(d.metadata()) for d in self.emails],
+            JSON_FILE_CLASS: [json_safe(d.metadata()) for d in self.json_files],
+            MESSENGER_LOG_CLASS: [json_safe(d.metadata()) for d in self.imessage_logs],
+            OTHER_FILE_CLASS: [json_safe(d.metadata()) for d in self.other_files if not isinstance(d, JsonFile)],
         }
 
         return json.dumps(metadata, indent=4, sort_keys=True)
