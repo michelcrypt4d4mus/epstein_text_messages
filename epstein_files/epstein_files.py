@@ -25,7 +25,7 @@ from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_nam
      search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
 from epstein_files.util.data import dict_sets_to_lists, json_safe, sort_dict
-from epstein_files.util.doc_cfg import EmailCfg
+from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, file_size_str
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
@@ -195,15 +195,13 @@ class EpsteinFiles:
     def imessage_logs_for(self, author: str | None | list[str | None]) -> Sequence[MessengerLog]:
         return MessengerLog.logs_for(author, self.imessage_logs)
 
-    def identified_imessage_log_count(self) -> int:
-        return len([log for log in self.imessage_logs if log.author])
-
     def json_metadata(self) -> str:
+        """Create a JSON string containing metadata for all the files."""
         metadata = {
-            EMAIL_CLASS: [json_safe(d.metadata()) for d in self.emails],
-            JSON_FILE_CLASS: [json_safe(d.metadata()) for d in self.json_files],
-            MESSENGER_LOG_CLASS: [json_safe(d.metadata()) for d in self.imessage_logs],
-            OTHER_FILE_CLASS: [json_safe(d.metadata()) for d in self.other_files if not isinstance(d, JsonFile)],
+            EMAIL_CLASS: _sorted_metadata(self.emails),
+            JSON_FILE_CLASS: _sorted_metadata(self.json_files),
+            MESSENGER_LOG_CLASS: _sorted_metadata(self.imessage_logs),
+            OTHER_FILE_CLASS: _sorted_metadata(self.non_json_other_files()),
         }
 
         return json.dumps(metadata, indent=4, sort_keys=True)
@@ -216,7 +214,7 @@ class EpsteinFiles:
         add_cols_to_table(table, ['File Type', 'Files', 'Author Known', 'Author Unknown', 'Duplicates'])
 
         def add_row(label: str, docs: list):
-            known = None if isinstance(docs[0], JsonFile) else len([d for d in docs if d.author])
+            known = None if isinstance(docs[0], JsonFile) else Document.known_author_count(docs)
 
             table.add_row(
                 label,
@@ -299,7 +297,7 @@ class EpsteinFiles:
     def print_imessage_summary(self) -> None:
         """Print summary table and stats for text messages."""
         console.print(MessengerLog.summary_table(self.imessage_logs))
-        text_summary_msg = f"\nDeanonymized {self.identified_imessage_log_count()} of "
+        text_summary_msg = f"\nDeanonymized {Document.known_author_count(self.imessage_logs)} of "
         text_summary_msg += f"{len(self.imessage_logs)} {TEXT_MESSAGE} logs found in {len(self.all_files):,} files."
         console.print(text_summary_msg)
         imessage_msg_count = sum([len(log.messages()) for log in self.imessage_logs])
@@ -394,3 +392,8 @@ def is_ok_for_epstein_web(name: str | None) -> bool:
         return False
 
     return True
+
+
+def _sorted_metadata(docs: Sequence[Document]) -> list[Metadata]:
+    docs_sorted_by_id = sorted(docs, key=lambda d: d.file_id)
+    return [json_safe(d.metadata()) for d in docs_sorted_by_id]
