@@ -32,11 +32,13 @@ else:
 for doc in docs:
     console.line()
     console.print(doc)
-    console.line()
-    console.print(Panel(f"*** {doc.url_slug} RAW ***", expand=False))
-    console.print(doc.raw_text())
 
-    if isinstance(doc, Email):
+    if args.raw:
         console.line()
-        console.print(Panel(f"*** {doc.url_slug} actual_text ***", expand=False))
-        console.print(doc._actual_text())
+        console.print(Panel(f"*** {doc.url_slug} RAW ***", expand=False))
+        console.print(doc.raw_text())
+
+        if isinstance(doc, Email):
+            console.line()
+            console.print(Panel(f"*** {doc.url_slug} actual_text ***", expand=False))
+            console.print(doc._actual_text())
