@@ -1,6 +1,5 @@
 from epstein_files.util.constant.strings import QUESTION_MARKS, remove_question_marks
 
-
 UNKNOWN = '(unknown)'
 
 # Texting Names
@@ -170,6 +169,7 @@ ZUBAIR_KHAN = 'Zubair Khan'
 
 # No communications but name is in the files
 BILL_GATES = 'Bill Gates'
+DONALD_TRUMP = 'Donald Trump'
 ELON_MUSK = 'Elon Musk'
 HENRY_HOLT = 'Henry Holt'  # Actually a company?
 IVANKA = 'Ivanka'
@@ -195,6 +195,7 @@ INSIGHTS_POD = f"InsightsPod"  # Zubair bots
 NEXT_MANAGEMENT = 'Next Management LLC'
 JP_MORGAN = 'JP Morgan'
 OSBORNE_LLP = f"{IAN_OSBORNE} & Partners LLP"  # Ian Osborne's PR firm
+TRUMP_ORG = 'Trump Organization'
 UBS = 'UBS'
 
 # Locations

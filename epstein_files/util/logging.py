@@ -1,5 +1,6 @@
 import logging
 from os import environ
+from pathlib import Path
 
 from rich.console import Console
 from rich.highlighter import ReprHighlighter
@@ -7,6 +8,7 @@ from rich.logging import RichHandler
 from rich.theme import Theme
 
 from epstein_files.util.constant.strings import *
+from epstein_files.util.file_helper import file_size_str
 
 FILENAME_STYLE = 'gray27'
 
@@ -55,3 +57,7 @@ if env_log_level_str:
     logger.warning(f"Setting log level to {env_log_level} based on {LOG_LEVEL_ENV_VAR} env var...")
     logger.setLevel(env_log_level)
     datefinder_logger.setLevel(env_log_level)
+
+
+def log_file_write(file_path: str | Path) -> None:
+    logger.warning(f"Wrote {file_size_str(file_path)} to '{file_path}'")
