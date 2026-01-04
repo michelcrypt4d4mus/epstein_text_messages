@@ -123,6 +123,14 @@ class DocCfg:
         pieces = without_nones([self.author, self.description])
         return ' '.join(pieces) if pieces else None
 
+    def metadata(self) -> dict[str, datetime | int | str]:
+        non_null_fields = {k: v for k, v in asdict(self).items() if v and k not in ['date', 'id', 'timestamp']}
+
+        if self.category in [EMAIL, TEXT_MESSAGE]:
+            del non_null_fields['category']
+
+        return non_null_fields
+
     def non_null_field_names(self) -> list[str]:
         return [f.name for f in self.sorted_fields() if getattr(self, f.name)]
 

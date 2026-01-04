@@ -1,6 +1,6 @@
 import logging
 import re
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
 from subprocess import run
@@ -30,6 +30,7 @@ MIN_DOCUMENT_ID = 10477
 INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
 MAX_TOP_LINES_LEN = 4000  # Only for logging
+METADATA_FIELDS = ['author', 'filename', 'num_lines', 'timestamp']
 
 CLOSE_PROPERTIES_CHAR = ']'
 MIN_TIMESTAMP = datetime(1991, 1, 1)
@@ -177,6 +178,16 @@ class Document:
         pattern = patternize(_pattern)
         return [MatchedLine(line, i) for i, line in enumerate(self.lines) if pattern.search(line)]
 
+    def metadata(self) -> dict[str, datetime | int | str]:
+        metadata = self.config.metadata() if self.config else {}
+        print(f"doc metadata raw print:")
+        print(repr(self))
+        print(f"doc metadata asdict:")
+        print(asdict(self))
+        metadata.update({k: v for k, v in asdict(self).items() if k in METADATA_FIELDS and v is not None})
+        metadata['bytes'] = self.file_size()
+        return metadata
+
     def raw_text(self) -> str:
         with open(self.file_path) as f:
             return f.read()
@@ -240,16 +251,6 @@ class Document:
     def _border_style(self) -> str:
         """Should be overloaded in subclasses."""
         return 'white'
-
-    def _debug_info(self) -> str:
-        info = [
-            f"id={self.file_id}",
-            f"url_slug={self.url_slug}",
-            f"file_path='{self.file_path}'",
-            f"is_local_extract_file={self.is_local_extract_file()}",
-        ]
-
-        return f"     " + "\n     ".join(info)
 
     def _extract_author(self) -> None:
         """Get author from config. Extended in Email subclass to also check headers."""

@@ -18,6 +18,7 @@ from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constant.strings import DEFAULT, EMAIL, NA, OTHER_SITE_LINK_STYLE, QUESTION_MARKS, SiteType
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import FALLBACK_TIMESTAMP, HEADER_ABBREVIATIONS
+from epstein_files.util.data import json_safe
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES, EpsteinHighlighter
@@ -153,6 +154,8 @@ def print_header(epstein_files: 'EpsteinFiles') -> None:
 
 
 def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
+    print(obj)
+
     if isinstance(obj, dict):
         if skip_falsey:
             obj = {k: v for k, v in obj.items() if v}
@@ -160,6 +163,7 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
         if None in obj:
             obj = {k or UNKNOWN: v for k, v in obj.items()}
 
+        obj = json_safe(obj)
 
     console.line()
     console.print(Panel(label, expand=False))
