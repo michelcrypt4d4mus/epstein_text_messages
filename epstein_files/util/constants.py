@@ -291,7 +291,7 @@ PAULA_REASON = 'Signature of "Sent via BlackBerry from T-Mobile"'
 
 CONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='031042', author=ANIL_AMBANI, attribution_reason=PARTICIPANTS_FIELD),
-    TextCfg(id='027225', author=ANIL_AMBANI, attribution_reason='Birthday mentioned in texts is confirmed as Ambani\'s'),
+    TextCfg(id='027225', author=ANIL_AMBANI, attribution_reason="birthday mentioned in texts is confirmed as Ambani's"),
     TextCfg(id='031054', author=ANTHONY_SCARAMUCCI, attribution_reason="Scaramucci's phone number is at top of raw file"),
     TextCfg(id='027333', author=ANTHONY_SCARAMUCCI, attribution_reason="Scaramucci's phone number is in one of the messages"),
     TextCfg(id='031173', author=ARDA_BESKARDES, attribution_reason=PARTICIPANTS_FIELD),
@@ -300,21 +300,21 @@ CONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='027777', author=LARRY_SUMMERS, attribution_reason=PARTICIPANTS_FIELD),
     TextCfg(id='027515', author=MIROSLAV_LAJCAK, attribution_reason='https://x.com/ImDrinknWyn/status/1990210266114789713'),
     TextCfg(id='027165', author=MELANIE_WALKER, attribution_reason='https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/'),
-    TextCfg(id='027248', author=MELANIE_WALKER, attribution_reason='Says "we met through trump" which is confirmed by Melanie in 032803'),
+    TextCfg(id='027248', author=MELANIE_WALKER, attribution_reason='says "we met through Trump" which is confirmed by Melanie in 032803'),
     TextCfg(id='025429', author=STACEY_PLASKETT, attribution_reason='widely reported'),
     TextCfg(id='027128', author=SOON_YI_PREVIN, attribution_reason='https://x.com/ImDrinknWyn/status/1990227281101434923'),
     TextCfg(id='027217', author=SOON_YI_PREVIN, attribution_reason='refs marriage to Woody Allen'),
     TextCfg(id='027244', author=SOON_YI_PREVIN, attribution_reason='refs Woody Allen'),
-    TextCfg(id='027257', author=SOON_YI_PREVIN, attribution_reason=f"'Woody Allen' in {PARTICIPANTS_FIELD}"),
+    TextCfg(id='027257', author=SOON_YI_PREVIN, attribution_reason=f"Woody Allen in {PARTICIPANTS_FIELD}"),
     TextCfg(id='027460', author=STEVE_BANNON, attribution_reason='Discusses leaving scotland when Bannon was confirmed in Scotland, also NYT'),
-    TextCfg(id='027307', author=STEVE_BANNON, attribution_reason=f'texts mention "Epstein Bannon Kurz"'),
+    TextCfg(id='027307', author=STEVE_BANNON, attribution_reason='texts mention "Epstein Bannon Kurz"'),
     TextCfg(id='027278', author=TERJE_ROD_LARSEN, attribution_reason=PARTICIPANTS_FIELD),
     TextCfg(id='027255', author=TERJE_ROD_LARSEN, attribution_reason=PARTICIPANTS_FIELD),
 ]
 
 UNCONFIRMED_TEXTS_CONFIG = [
-    TextCfg(id='027762', author=ANDRZEJ_DUDA),
-    TextCfg(id='027774', author=ANDRZEJ_DUDA),
+    TextCfg(id='027762', author=ANDRZEJ_DUDA, attribution_reason=f"Duda in NY at that time, took train"),
+    TextCfg(id='027774', author=ANDRZEJ_DUDA, attribution_reason=f"Duda in NY at that time, took train"),
     TextCfg(id='027221', author=ANIL_AMBANI),
     TextCfg(id='027396', author=ANTHONY_SCARAMUCCI, attribution_reason='says "I need to make peace with Bannon"'),
     TextCfg(id='025436', author=CELINA_DUBIN),
