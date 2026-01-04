@@ -616,7 +616,7 @@ class Email(Communication):
         self._set_computed_fields(lines=new_lines)
 
     def _sent_from_device(self) -> str | None:
-        """Find any 'Sent from my iPhone' style lines if they exist."""
+        """Find any 'Sent from my iPhone' style signature line if it exist in the 'actual_text'."""
         sent_from_match = SENT_FROM_REGEX.search(self.actual_text)
 
         if sent_from_match:
