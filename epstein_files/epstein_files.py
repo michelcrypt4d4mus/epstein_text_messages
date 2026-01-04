@@ -23,7 +23,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url,
      search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
-from epstein_files.util.data import Timer, dict_sets_to_lists, json_safe, sort_dict
+from epstein_files.util.data import dict_sets_to_lists, json_safe, sort_dict
 from epstein_files.util.doc_cfg import EmailCfg
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, PICKLED_PATH, file_size_str
@@ -32,6 +32,7 @@ from epstein_files.util.rich import (DEFAULT_NAME_STYLE, NA_TXT, add_cols_to_tab
      link_text_obj, link_markup, print_author_header, print_centered, print_other_site_link, print_panel,
      print_section_header, vertically_pad)
 from epstein_files.util.search_result import SearchResult
+from epstein_files.util.timer import Timer
 
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (1, 0)
