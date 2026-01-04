@@ -2,7 +2,6 @@
 import json
 from os import devnull
 from pathlib import Path
-from typing import Literal
 
 from rich.align import Align
 from rich.console import Console, RenderableType
@@ -20,7 +19,6 @@ from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import FALLBACK_TIMESTAMP, HEADER_ABBREVIATIONS
 from epstein_files.util.data import json_safe
 from epstein_files.util.env import args
-from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES, EpsteinHighlighter
 from epstein_files.util.logging import log_file_write, logger
 
