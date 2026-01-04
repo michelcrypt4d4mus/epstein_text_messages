@@ -64,6 +64,7 @@ INVALID_FOR_METADATA = [
     'date',
     'id',
     'timestamp',
+    'was_generated',
 ]
 
 
@@ -113,6 +114,7 @@ class DocCfg:
             dupe_cfg = deepcopy(self)
             dupe_cfg.id = id
             dupe_cfg.dupe_of_id = self.id
+            dupe_cfg.duplicate_ids = []
             dupe_cfg.dupe_type = self.dupe_type
             dupe_cfg.was_generated = True
             yield dupe_cfg
