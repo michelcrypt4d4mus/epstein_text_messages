@@ -606,8 +606,7 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='033512', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, JACKIE_PERCZEK, MARTIN_WEINBERG], duplicate_ids=['033361']),
     EmailCfg(id='032063', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, REID_WEINGARTEN]),
-    EmailCfg(id='029324', recipients=[JEFFREY_EPSTEIN, "Jojo Fontanilla", "Lyn Fontanilla"]),
-    EmailCfg(id='030299', duplicate_ids=['021794']),  # Bad OCR
+    EmailCfg(id='029324', recipients=[JEFFREY_EPSTEIN, "Jojo Fontanilla", "Lyn Fontanilla"]),  # Bad OCR (nofix)
     EmailCfg(id='033456', recipients=["Joel"], attribution_reason='Reply'),
     EmailCfg(id='033460', recipients=["Joel"], attribution_reason='Reply'),
     EmailCfg(
@@ -686,6 +685,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='030624', duplicate_ids=['023018'], dupe_type='redacted'),
     EmailCfg(id='030335', duplicate_ids=['030596'], dupe_type='redacted'),
     EmailCfg(id='029841', duplicate_ids=['012711'], dupe_type='redacted'),
+    EmailCfg(id='030299', duplicate_ids=['021794']),  # Bad OCR
     EmailCfg(id='031428', duplicate_ids=['031388']),
     EmailCfg(id='031980', duplicate_ids=['019409']),
     EmailCfg(id='033486', duplicate_ids=['033156']),
