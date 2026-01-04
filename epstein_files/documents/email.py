@@ -21,7 +21,7 @@ from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
 from epstein_files.util.constants import *
 from epstein_files.util.data import (TIMEZONE_INFO, collapse_newlines, escape_single_quotes, extract_last_name,
      flatten, remove_timezone, uniquify)
-from epstein_files.util.doc_cfg import EmailCfg
+from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
@@ -301,7 +301,7 @@ class Email(Communication):
     is_junk_mail: bool = False
     recipients: list[str | None] = field(default_factory=list)
     sent_from_device: str | None = None
-    signature_substitution_counts: dict[str, int] = field(default_factory=dict)
+    signature_substitution_counts: dict[str, int] = field(default_factory=dict)  # defaultdict breaks asdict :(
 
     # For logging how many headers we prettified while printing, kind of janky
     rewritten_header_ids: ClassVar[set[str]] = set([])
@@ -327,7 +327,7 @@ class Email(Communication):
         txt = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(' to ')
         return txt.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
 
-    def metadata(self) -> dict[str, datetime | int | str | list[str]]:
+    def metadata(self) -> Metadata:
         metadata = super().metadata()
 
         if self.recipients:

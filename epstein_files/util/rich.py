@@ -160,9 +160,6 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
         if skip_falsey:
             obj = {k: v for k, v in obj.items() if v}
 
-        if None in obj:
-            obj = {k or UNKNOWN: v for k, v in obj.items()}
-
         obj = json_safe(obj)
 
     console.line()

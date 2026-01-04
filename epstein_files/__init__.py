@@ -77,6 +77,11 @@ def generate_html() -> None:
 
     if args.colors_only:
         exit()
+    elif args.json_metadata:
+        for doc in epstein_files.all_documents():
+            console.print(doc.metadata())
+
+        exit()
 
     if args.output_texts:
         _print_text_messages(epstein_files)
