@@ -451,7 +451,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='028770', author=JEFFREY_EPSTEIN, actual_text='call me now'),
     EmailCfg(id='031826', author=JEFFREY_EPSTEIN, actual_text='I have'),
     EmailCfg(id='030768', author=JEFFREY_EPSTEIN, actual_text='ok'),
-    EmailCfg(id='022938', author=JEFFREY_EPSTEIN, actual_text='what do you suggest?'),  # TODO: this email's header rewrite sucks
+    EmailCfg(id='022938', author=JEFFREY_EPSTEIN, actual_text='what do you suggest?'),
     EmailCfg(id='031791', author=JESSICA_CADWELL),
     EmailCfg(id='028851', author=JOI_ITO, recipients=[JEFFREY_EPSTEIN], timestamp=parse('2014-04-27 06:00:00')),
     EmailCfg(
@@ -477,7 +477,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='032206', author=LAWRENCE_KRAUSS),                                # More of a text convo?
     EmailCfg(id='032208', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
     EmailCfg(id='032209', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
-    EmailCfg(id='029196', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN], actual_text='Talk in 40?'),  # TODO: this email's header rewrite sucks
+    EmailCfg(id='029196', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN], actual_text='Talk in 40?'),
     EmailCfg(id='033593', author=LAWRANCE_VISOSKI, attribution_reason='Signature'),
     EmailCfg(id='033370', author=LAWRANCE_VISOSKI, attribution_reason=LARRY_REASON),
     EmailCfg(id='033495', author=LAWRANCE_VISOSKI, attribution_reason=LARRY_REASON),
