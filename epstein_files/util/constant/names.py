@@ -184,9 +184,12 @@ TULSI_GABBARD = 'Tulsi Gabbard'
 VIRGINIA_GIUFFRE = 'Virginia Giuffre'
 
 # Organizations
+BOFA = 'BofA'
 CNN = 'CNN'
 DEUTSCHE_BANK = 'Deutsche Bank'
+ELECTRON_CAPITAL_PARTNERS = 'Electron Capital Partners'
 GOLDMAN_SACHS = 'Goldman Sachs'
+GOLDMAN_INVESTMENT_MGMT = f'{GOLDMAN_SACHS} Investment Management Division'
 HARVARD = 'Harvard'
 INSIGHTS_POD = f"InsightsPod"  # Zubair bots
 JP_MORGAN = 'JP Morgan'

@@ -16,7 +16,6 @@ elif not DOCS_DIR.exists():
     print(f"ERROR: {EPSTEIN_DOCS_DIR_ENV_VAR_NAME}='{DOCS_DIR}' does not exist!")
     exit(1)
 
-JSON_DIR = DOCS_DIR.joinpath('json_files')
 HTML_DIR = Path('docs')
 EXTRACTED_EMAILS_DIR = Path('emails_extracted_from_legal_filings')
 GH_PAGES_HTML_PATH = HTML_DIR.joinpath('index.html')

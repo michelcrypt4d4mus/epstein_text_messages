@@ -137,10 +137,10 @@ class EpsteinFiles:
         results: list[SearchResult] = []
 
         for doc in self.all_documents():
-            lines = doc.lines_matching_txt(pattern)
-
-            if names and ((not isinstance(doc, (Email, MessengerLog))) or doc.author not in names):
+            if names and doc.author not in names:
                 continue
+
+            lines = doc.matching_lines(pattern)
 
             if len(lines) > 0:
                 results.append(SearchResult(doc, lines))

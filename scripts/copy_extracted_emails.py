@@ -2,9 +2,6 @@
 # Copy any emails extracted from legal filings into the repo.
 import shutil
 
-from dotenv import load_dotenv
-load_dotenv()
-
 from scripts.use_pickled import epstein_files
 from epstein_files.util.file_helper import EXTRACTED_EMAILS_DIR
 from epstein_files.util.rich import console

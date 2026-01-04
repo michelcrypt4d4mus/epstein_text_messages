@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # Print email ID + timestamp
 from collections import defaultdict
-from dotenv import load_dotenv
-load_dotenv()
 
 from scripts.use_pickled import *
 from epstein_files.epstein_files import EpsteinFiles
