@@ -42,6 +42,9 @@ NA = 'n/a'
 REDACTED = '<REDACTED>'
 URL_SIGNIFIERS = ['gclid', 'htm', 'ref=', 'utm']
 QUESTION_MARKS = '(???)'
+
+# Regexes
+FILE_STEM_REGEX = re.compile(fr"{HOUSE_OVERSIGHT_PREFIX}(\d{{6}})")
 QUESTION_MARKS_REGEX = re.compile(fr' {re.escape(QUESTION_MARKS)}$')
 
 

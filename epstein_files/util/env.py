@@ -4,12 +4,7 @@ from os import environ
 from pathlib import Path
 from sys import argv
 
-from rich.console import Console
-from rich.highlighter import ReprHighlighter
-from rich.logging import RichHandler
-from rich.theme import Theme
-
-from epstein_files.util.constant.strings import DOCUMENT_CLASS, EMAIL_CLASS, JSON_FILE_CLASS, MESSENGER_LOG_CLASS, OTHER_FILE_CLASS
+from epstein_files.util.logging import datefinder_logger, logger
 
 DEFAULT_WIDTH = 154
 HTML_SCRIPTS = ['generate_html.py', 'count_words.py']
@@ -50,32 +45,6 @@ args.pickled = args.pickled or is_env_var_set('PICKLED') or args.colors_only or 
 args.width = args.width if is_html_script else None
 specified_names: list[str | None] = [None if n == 'None' else n for n in (args.names or [])]
 
-
-# Setup logging
-DOC_TYPE_STYLES = {
-    DOCUMENT_CLASS: 'grey69',
-    EMAIL_CLASS: 'sea_green2',
-    JSON_FILE_CLASS: 'sandy_brown',
-    MESSENGER_LOG_CLASS: 'cyan',
-    OTHER_FILE_CLASS: 'grey69',
-}
-
-LOG_THEME = {
-    f"{ReprHighlighter.base_style}{doc_type}": doc_style
-    for doc_type, doc_style in DOC_TYPE_STYLES.items()
-}
-
-class LogHighlighter(ReprHighlighter):
-    highlights = ReprHighlighter.highlights + [
-        fr"(?P<{doc_type}>{doc_type})" for doc_type in DOC_TYPE_STYLES.keys()
-    ]
-
-
-log_console = Console(color_system='256', theme=Theme(LOG_THEME))
-log_handler = RichHandler(console=log_console, highlighter=LogHighlighter())
-logging.basicConfig(level="NOTSET", format="%(message)s", datefmt="[%X]", handlers=[log_handler])
-logger = logging.getLogger("rich")
-
 if args.deep_debug:
     logger.setLevel(logging.DEBUG)
 elif args.debug:
@@ -85,7 +54,6 @@ elif args.suppress_logs:
 else:
     logger.setLevel(logging.WARNING)
 
-datefinder_logger = logging.getLogger('datefinder')  # Suppress annoying output
 datefinder_logger.setLevel(logger.level)
 
 
