@@ -66,6 +66,11 @@ def generate_html() -> None:
         print_json_stats(epstein_files)
 
 
+def epstein_diff():
+    """Diff the cleaned up text of two files."""
+    Document.diff_files(args.positional_args)
+
+
 def epstein_search():
     """Search the cleaned up text of the files."""
     _assert_positional_args()
