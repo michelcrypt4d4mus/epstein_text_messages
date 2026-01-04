@@ -626,11 +626,11 @@ class Email(Communication):
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         logger.debug(f"Printing '{self.filename}'...")
         yield self.file_info_panel()
-        text = self.text
         should_rewrite_header = self.header.was_initially_empty and self.header.num_header_rows > 0
-        quote_cutoff = self._idx_of_nth_quoted_reply(text=text)  # Trim if there's many quoted replies
+        quote_cutoff = self._idx_of_nth_quoted_reply(text=self.text)  # Trim if there's many quoted replies
         num_chars = MAX_CHARS_TO_PRINT
         trim_footer_txt = None
+        text = self.text
 
         if self.file_id in TRUNCATION_LENGTHS:
             num_chars = TRUNCATION_LENGTHS[self.file_id]
