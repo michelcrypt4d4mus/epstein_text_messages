@@ -279,7 +279,6 @@ class Document:
         text = text[1:] if (len(text) > 0 and text[0] == '\ufeff') else text  # remove BOM
         text = self.repair_ocr_text(OCR_REPAIRS, text.strip())
         lines = [l.strip() for l in text.split('\n') if not l.startswith(HOUSE_OVERSIGHT)]
-        # lines = lines[1:] if (len(lines) > 1 and lines[0] == '>>') else lines
         return collapse_newlines('\n'.join(lines))
 
     def _repair(self) -> None:
