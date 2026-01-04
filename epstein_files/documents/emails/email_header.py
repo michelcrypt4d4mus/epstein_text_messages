@@ -100,7 +100,7 @@ class EmailHeader:
 
         self.num_header_rows = len(self.field_names) + num_headers
         log_msg = f"Corrected empty header using {self.num_header_rows} lines to:\n"
-        logger.info(f"{log_msg}{self}\n\nTop lines:\n\n%s", '\n'.join(email_lines[0:(num_headers + 1) * 2]))
+        logger.debug(f"{log_msg}{self}\n\nTop lines:\n\n%s", '\n'.join(email_lines[0:(num_headers + 1) * 2]))
 
     def rewrite_header(self) -> str:
         header_fields = {}

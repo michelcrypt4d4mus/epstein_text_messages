@@ -8,6 +8,8 @@ from rich.theme import Theme
 
 from epstein_files.util.constant.strings import *
 
+FILENAME_STYLE = 'gray27'
+
 DOC_TYPE_STYLES = {
     DOCUMENT_CLASS: 'grey69',
     EMAIL_CLASS: 'dark_orange3',
@@ -21,7 +23,7 @@ LOG_THEME = {
     for doc_type, doc_style in DOC_TYPE_STYLES.items()
 }
 
-LOG_THEME[f"{ReprHighlighter.base_style}epstein_filename"] = 'gray27'
+LOG_THEME[f"{ReprHighlighter.base_style}epstein_filename"] = FILENAME_STYLE
 LOG_LEVEL_ENV_VAR = 'LOG_LEVEL'
 
 
