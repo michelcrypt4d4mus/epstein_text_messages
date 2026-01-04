@@ -99,8 +99,11 @@ def join_texts(txts: list[Text], join: str = ' ', encloser: str = '') -> Text:
     return txt
 
 
-def key_value_txt(key: str, value: Text | str) -> Text:
+def key_value_txt(key: str, value: Text | int | str) -> Text:
     """Generate a Text obj for 'key=value'."""
+    if isinstance(value, int):
+        value = Text(f"{value}", style='cyan')
+
     return Text('').append(key, style=KEY_STYLE).append('=', style=SYMBOL_STYLE).append(value)
 
 
