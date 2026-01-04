@@ -13,12 +13,13 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_REGEX, Document
-from epstein_files.util.constant.strings import FIRST_FEW_LINES, TIMESTAMP_DIM
+from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
-from epstein_files.util.doc_cfg import ARTS, BOOK, JUNK, SPEECH, DocCfg
+from epstein_files.util.doc_cfg import FINANCIAL_REPORTS_AUTHORS, DocCfg
 from epstein_files.util.data import escape_single_quotes, remove_timezone, uniquify
 from epstein_files.util.file_helper import FILENAME_LENGTH
 from epstein_files.util.env import args
+from epstein_files.util.highlighted_group import get_style_for_category
 from epstein_files.util.rich import QUESTION_MARK_TXT, highlighter
 from epstein_files.util.logging import logger
 
@@ -236,6 +237,7 @@ class OtherFile(Document):
 
         for doc in docs:
             link_and_info = [doc.raw_document_link_txt()]
+            category = doc.category()
             date_str = doc.date_str()
 
             if doc.is_duplicate:
@@ -246,11 +248,16 @@ class OtherFile(Document):
                 preview_text = doc.highlighted_preview_text()
                 row_style = ''
 
+            if category:
+                category_txt = Text(category, get_style_for_category(category) or 'wheat4')
+            else:
+                category_txt = Text('')
+
             table.add_row(
                 Group(*link_and_info),
                 Text(date_str, style=TIMESTAMP_DIM) if date_str else QUESTION_MARK_TXT,
                 doc.file_size_str(),
-                doc.category(),
+                category_txt,
                 preview_text,
                 style=row_style
             )

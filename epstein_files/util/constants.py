@@ -5,7 +5,7 @@ from dateutil.parser import parse
 
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.doc_cfg import *
+from epstein_files.util.doc_cfg import DocCfg, EmailCfg, TextCfg
 
 FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
 
@@ -251,13 +251,12 @@ HBS_APPLICATION_NERIO = f"{HARVARD} Business School application letter from Neri
 JASTA = 'JASTA'
 JASTA_SAUDI_LAWSUIT = f"{JASTA} lawsuit against Saudi Arabia by 9/11 victims"
 JOHN_BOLTON_PRESS_CLIPPING = 'John Bolton press clipping'
-JP_MORGAN_EYE_ON_THE_MARKET = f"Eye On The Market report"
+JP_MORGAN_EYE_ON_THE_MARKET = f"Eye On The Market"
 KEN_STARR_LETTER = f"letter to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
 MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
 NIGHT_FLIGHT_BOOK = f'"Night Flight" (draft)'
 NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
 OBAMA_JOKE = 'joke about Obama'
-PALM_BEACH = 'Palm Beach'
 PALM_BEACH_CODE_ENFORCEMENT = f'{PALM_BEACH} code enforcement board minutes'
 PALM_BEACH_DAILY_ARTICLE = f'{PALM_BEACH} Daily News article about'
 PALM_BEACH_POST_ARTICLE = f'{PALM_BEACH} Post article about'
@@ -270,7 +269,6 @@ SINGLE_PAGE = 'single page of'
 SWEDISH_LIFE_SCIENCES_SUMMIT = f"{BARBRO_C_EHNBOM}'s Swedish American Life Science Summit"
 THE_REAL_DEAL_ARTICLE = 'article by Keith Larsen'
 TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Government Ethics"
-UBS = 'UBS'
 UBS_CIO_REPORT = 'CIO Monthly Extended report'
 UN_GENERAL_ASSEMBLY = '67th U.N. General Assembly'
 VI_DAILY_NEWS_ARTICLE = f'{VIRGIN_ISLANDS} Daily News article'
@@ -1300,7 +1298,7 @@ OTHER_FILES_POLITICS = [
         author='US Office of Government Information Services',
         description=f"Building a Bridge Between FOIA Requesters & Agencies",
     ),
-    DocCfg(id='029918', description=f"{DIANA_DEGETTES_CAMPAIGN} campaign bio", date='2012-01-01'),
+    DocCfg(id='029918', description=f"{DIANA_DEGETTES_CAMPAIGN} bio", date='2012-01-01'),
     DocCfg(id='031184', description=f"{DIANA_DEGETTES_CAMPAIGN} fundraiser invitation"),
     DocCfg(id='024294', description=f"{STACEY_PLASKETT} campaign flier", date='2016-10-01'),
     DocCfg(
@@ -1320,8 +1318,8 @@ OTHER_FILES_ACADEMIA = [
         description=f'report: "Challenges of AI: Envisioning and Addressing Adverse Outcomes"',
         duplicate_ids=['011284']
     ),
-    DocCfg(id='024256', author=JOI_ITO, description=f"article 'Internet & Society: The Technologies and Politics of Control'"),
-    DocCfg(id='027004', author=JOSCHA_BACH, description=f"article 'The Computational Structure of Mental Representation'", date='2013-02-26'),
+    DocCfg(id='024256', author=JOI_ITO, description=f"Internet & Society: The Technologies and Politics of Control"),
+    DocCfg(id='027004', author=JOSCHA_BACH, description=f"The Computational Structure of Mental Representation", date='2013-02-26'),
     DocCfg(id='015501', author=f"{MOSHE_HOFFMAN}, Erez Yoeli, and Carlos David Navarrete", description=f"Game Theory and Morality"),
     DocCfg(id='025143', author=ROBERT_TRIVERS, description=f"Africa, Parasites, Intelligence", date='2018-06-25'),
     DocCfg(id='029155', author=ROBERT_TRIVERS, description=f'response sent to the Gruterites ({GORDON_GETTY} fans)', date='2018-03-19'),
@@ -1405,7 +1403,7 @@ OTHER_FILES_MISC = [
     DocCfg(id='012718', description=f"{CVRA} congressional record", date='2011-06-17'),
     DocCfg(id='025540', description=f"Epstein's rough draft of his side of the story?"),
     DocCfg(id='024117', description=f"FAQ about anti-money laundering (AML) and terrorist financing (CFT) law in the U.S."),
-    DocCfg(id='027071', description=f"{FEMALE_HEALTH_COMPANY} brochure request donations for female condoms in Uganda"),
+    DocCfg(id='027071', description=f"{FEMALE_HEALTH_COMPANY} brochure requesting donations for female condoms in Uganda"),
     DocCfg(id='027074', description=f"{FEMALE_HEALTH_COMPANY} pitch deck (USAID was a customer)"),
     DocCfg(id='022494', description=f'Foreign Corrupt Practices Act (FCPA) DOJ Resource Guide'),
     DocCfg(id='032735', description=f"{GORDON_GETTY} on Trump", date='2018-03-20'),  # Dated based on concurrent emails from Getty
@@ -1444,17 +1442,17 @@ OTHER_FILES_CATEGORIES = [
     f"{ARTICLE}s",
     ARTS,
     f"{BOOK}s",
-    'CONFERENCES',
+    f"{CONFERENCE}s",
     FINANCE,
     JUNK,
-    'LEGAL',
+    LEGAL,
     'LETTERS',
     'MISC',
     POLITICS,
-    'PROPERTY',
+    PROPERTY,
     REPUTATION,
     'RESUMES',
-    'SOCIAL',
+    SOCIAL,
     SPEECH,
 ]
 

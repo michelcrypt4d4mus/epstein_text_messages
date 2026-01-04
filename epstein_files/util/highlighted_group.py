@@ -2,22 +2,35 @@ import re
 from dataclasses import dataclass, field
 
 from rich.highlighter import RegexHighlighter
+from rich.text import Text
 
 from epstein_files.util.constant.names import *
-from epstein_files.util.constant.strings import DEFAULT, REDACTED, TIMESTAMP_STYLE, remove_question_marks
+from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
 from epstein_files.util.constants import (EMAILER_ID_REGEXES, EPSTEIN_V_ROTHSTEIN_EDWARDS, HEADER_ABBREVIATIONS,
-     OSBORNE_LLP, REPLY_REGEX, REPUTATION_MGMT, SENT_FROM_REGEX, VIRGIN_ISLANDS)
+     OSBORNE_LLP, REPLY_REGEX, SENT_FROM_REGEX, VIRGIN_ISLANDS)
+from epstein_files.util.doc_cfg import *
 from epstein_files.util.data import extract_last_name, listify
 
 CIVIL_ATTORNEY = 'civil attorney'
 CRIMINAL_DEFENSE_ATTORNEY = 'criminal defense attorney'
 CRIMINAL_DEFENSE_2008 = f"{CRIMINAL_DEFENSE_ATTORNEY} on 2008 case"
+EPSTEIN_LAWYER = 'epstein_lawyer'
 EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} working on {EPSTEIN_V_ROTHSTEIN_EDWARDS}"
 ESTATE_EXECUTOR = 'estate executor'
 EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
 REGEX_STYLE_PREFIX = 'regex'
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w ]+$", re.IGNORECASE)
+
+CATEGORY_LABEL_MAPPING = {
+    ARTICLE: JOURNALIST,
+    ARTS: ENTERTAINER,
+    BOOK: JOURNALIST,
+    LEGAL: EPSTEIN_LAWYER,
+    POLITICS: LOBBYIST,
+    'property': 'business',
+    REPUTATION: PUBLICIST,
+}
 
 
 @dataclass(kw_only=True)
@@ -121,7 +134,6 @@ class HighlightedNames(HighlightedText):
         return f"{type(self).__name__}(label='{self.label}')"
 
 
-
 HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='africa',
@@ -209,7 +221,7 @@ HIGHLIGHTED_NAMES = [
         }
     ),
     HighlightedNames(
-        label='entertainer',
+        label=ENTERTAINER,
         style='light_steel_blue3',
         pattern=r'(Art )?Spiegelman|Bobby slayton|bono\s*mick|Errol(\s*Morris)?|Etienne Binant|(Frank\s)?Gehry|Jagger|(Jeffrey\s*)?Katzenberg|(Johnny\s*)?Depp|Kid Rock|Lena\s*Dunham|Madonna|Mark\s*Burnett|Ramsey Elkholy|shirley maclaine|Steven Gaydos?|Woody( Allen)?|Zach Braff',
         emailers={
@@ -223,7 +235,7 @@ HIGHLIGHTED_NAMES = [
         },
     ),
     HighlightedNames(
-        label='epstein lawyer',
+        label=EPSTEIN_LAWYER,
         style='purple',
         pattern=r'(Barry (E. )?)?Krischer|Kate Kelly|Kirkland\s*&\s*Ellis|(Leon\s*)?Jaworski|Michael J. Pike|Paul,?\s*Weiss|Steptoe|Wein(berg|garten)',
         emailers = {
@@ -357,9 +369,9 @@ HIGHLIGHTED_NAMES = [
         }
     ),
     HighlightedNames(
-        label='journalist',
+        label=JOURNALIST,
         style='bright_yellow',
-        pattern=r'Palm\s*Beach\s*(Daily\s*News|Post)|ABC(\s*News)?|Alex\s*Yablon|(Andrew\s*)?Marra|Arianna(\s*Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie\s*Rose|China\s*Daily|CNBC|CNN(politics?)?|Con[cs]hita|Sarnoff|(?<!Virgin[-\s]Islands[-\s])Daily\s*(Beast|Mail|News|Telegraph)|(David\s*)?Pecker|David\s*Brooks|Ed\s*Krassenstein|(Emily\s*)?Michot|Ezra\s*Klein|(George\s*)?Stephanopoulus|Globe\s*and\s*Mail|Good\s*Morning\s*America|Graydon(\s*Carter)?|Huffington(\s*Post)?|Ingram, David|(James\s*)?Patterson|Jonathan\s*Karl|Julie\s*(K.?\s*)?Brown|(Katie\s*)?Couric|Keith\s*Larsen|Miami\s*Herald|(Michele\s*)?Dargan|(National\s*)?Enquirer|(The\s*)?N(ew\s*)?Y(ork\s*)?(P(ost)?|T(imes)?)|(The\s*)?New\s*Yorker|NYer|PERVERSION\s*OF\s*JUSTICE|Politico|Pro\s*Publica|(Sean\s*)?Hannity|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|(The\s*)?Wa(shington\s*)?Po(st)?|Viceland|Vick[iy]\s*Ward|Vox|WGBH|(The\s*)?Wall\s*Street\s*Journal|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
+        pattern=r'Palm\s*Beach\s*(Daily\s*News|Post)|ABC(\s*News)?|Alex\s*Yablon|(Andrew\s*)?Marra|Arianna(\s*Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie\s*Rose|China\s*Daily|CNBC|CNN(politics?)?|Con[cs]hita|Sarnoff|(?<!Virgin[-\s]Islands[-\s])Daily\s*(Beast|Mail|News|Telegraph)|(David\s*)?Pecker|David\s*Brooks|Ed\s*Krassenstein|(Emily\s*)?Michot|Ezra\s*Klein|(George\s*)?Stephanopoulus|Globe\s*and\s*Mail|Good\s*Morning\s*America|Graydon(\s*Carter)?|Huffington(\s*Post)?|Ingram, David|(James\s*)?Patterson|Jonathan\s*Karl|Julie\s*(K.?\s*)?Brown|(Katie\s*)?Couric|Keith\s*Larsen|L\.?A\.?\s*Times|Miami\s*Herald|(Michele\s*)?Dargan|(National\s*)?Enquirer|(The\s*)?N(ew\s*)?Y(ork\s*)?(P(ost)?|T(imes)?)|(The\s*)?New\s*Yorker|NYer|PERVERSION\s*OF\s*JUSTICE|Politico|Pro\s*Publica|(Sean\s*)?Hannity|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|(The\s*)?Wa(shington\s*)?Po(st)?|Viceland|Vick[iy]\s*Ward|Vox|WGBH|(The\s*)?Wall\s*Street\s*Journal|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
         emailers = {
             EDWARD_JAY_EPSTEIN: 'reporter who wrote about the kinds of crimes Epstein was involved in, no relation to Jeffrey',
             'James Hill': 'ABC News',
@@ -386,7 +398,7 @@ HIGHLIGHTED_NAMES = [
         }
     ),
     HighlightedNames(
-        label='lobbyist',
+        label=LOBBYIST,
         style='light_coral',
         pattern=r'[BR]ob Crowe|Stanley Rosenberg',
         emailers = {
@@ -429,7 +441,7 @@ HIGHLIGHTED_NAMES = [
         }
     ),
     HighlightedNames(
-        label='publicist',
+        label=PUBLICIST,
         style='orange_red1',
         pattern=fr"(Matt(hew)? )?Hiltzi[gk]|{REPUTATION_MGMT}",
         emailers = {
@@ -471,7 +483,7 @@ HIGHLIGHTED_NAMES = [
         }
     ),
     HighlightedNames(
-        label='scholar',
+        label=ACADEMIA,
         style='light_goldenrod2',
         pattern=r'Alain Forget|Brotherton|Carl\s*Sagan|Columbia|David Grosof|J(ames|im)\s*Watson|(Lord\s*)?Martin\s*Rees|Massachusetts\s*Institute\s*of\s*Technology|MIT(\s*Media\s*Lab)?|Media\s*Lab|Minsky|((Noam|Valeria)\s*)?Chomsky|Praluent|Regeneron|(Richard\s*)?Dawkins|Sanofi|Stanford|(Stephen\s*)?Hawking|(Steven?\s*)?Pinker|UCLA',
         emailers = {
@@ -518,7 +530,7 @@ HIGHLIGHTED_NAMES = [
         pattern=r'BVI|(Jane|Tiffany)\s*Doe|Katie\s*Johnson|(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts',
     ),
     HighlightedNames(
-        label='victim lawyer',
+        label='victim_lawyer',
         style='dark_magenta bold',
         pattern=r'(Alan(\s*P.)?|MINTZ)\s*FRAADE|Paul\s*(G.\s*)?Cassell|Rothstein\s*Rosenfeldt\s*Adler|(Scott\s*)?Rothstein|(J\.?\s*)?(Stan(ley)?\s*)?Pottinger',
         emailers = {
@@ -627,6 +639,25 @@ def get_info_for_name(name: str) -> str | None:
 
     if highlight_group and isinstance(highlight_group, HighlightedNames):
         return highlight_group.get_info(name)
+
+
+def get_style_for_category(category: str) -> str | None:
+    if category in [CONFERENCE, SPEECH]:
+        return f"{get_style_for_category(ACADEMIA)} dim"
+    elif category == JSON:
+        return 'dark_red'
+    elif category == JUNK:
+        return 'grey19'
+    elif category == 'letter':
+        return 'medium_orchid1'
+    elif category == SOCIAL:
+        return f"{get_style_for_category(PUBLICIST)} dim"
+
+    category = CATEGORY_LABEL_MAPPING.get(category, category)
+
+    for highlight_group in HIGHLIGHTED_NAMES:
+        if highlight_group.label == category:
+            return highlight_group.style
 
 
 def get_style_for_name(name: str | None, default_style: str = DEFAULT, allow_bold: bool = True) -> str:
