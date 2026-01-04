@@ -422,6 +422,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='026287', author=DAVID_SCHOEN, attribution_reason='Signature'),
     EmailCfg(id='033419', author=DAVID_SCHOEN, attribution_reason='Signature'),
     EmailCfg(id='031460', author=EDWARD_JAY_EPSTEIN, attribution_reason=f"quoted reply has edwardjayepstein.com"),
+    EmailCfg(
+        id='030475',
+        author=FAITH_KATES,
+        attribution_reason=f'{NEXT_MANAGEMENT} legal signature',
+        duplicate_ids=['030575'],
+        dupe_type='redacted'
+    ),
     EmailCfg(id='026547', author=GERALD_BARTON, recipients=[JEFFREY_EPSTEIN]),  # Bad OCR # TODO: email header is really jacked up
     EmailCfg(id='029969', author=GWENDOLYN_BECK, attribution_reason='Signature'),
     EmailCfg(id='029968', author=GWENDOLYN_BECK, attribution_reason='Signature', duplicate_ids=['031120']),
@@ -574,13 +581,6 @@ EMAILS_CONFIG = [
         recipients=[FAITH_KATES],
         attribution_reason=f'Reply in 030414 has {NEXT_MANAGEMENT} legal signature',
         duplicate_ids=['030581'],
-    ),
-    EmailCfg(
-        id='030475',
-        recipients=[FAITH_KATES],
-        attribution_reason=f'{NEXT_MANAGEMENT} legal signature',
-        duplicate_ids=['030575'],
-        dupe_type='redacted'
     ),
     EmailCfg(id='026426', recipients=[JEAN_HUGUEN], attribution_reason='Reply'),
     EmailCfg(id='022202', recipients=[JEAN_LUC_BRUNEL], attribution_reason='Follow up / reply', duplicate_ids=['029975']),
