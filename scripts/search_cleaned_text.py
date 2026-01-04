@@ -3,10 +3,7 @@
 import re
 from sys import exit
 
-from dotenv import load_dotenv
 from rich.padding import Padding
-from rich.text import Text
-load_dotenv()
 
 from scripts.use_pickled import epstein_files
 from epstein_files.documents.document import INFO_PADDING

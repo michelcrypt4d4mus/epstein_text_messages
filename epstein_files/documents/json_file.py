@@ -1,3 +1,4 @@
+import json
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -19,8 +20,15 @@ class JsonFile(OtherFile):
     def category(self) -> str:
         return 'json'
 
+    def formatted_json(self) -> str:
+        return json.dumps(self.json_data(), indent=4)
+
     def info_txt(self) -> Text | None:
         return Text(f"JSON file, possibly iMessage or similar app metadata", style='white dim italic')
 
     def is_interesting(self):
         return False
+
+    def json_data(self) -> object:
+        with open(self.file_path, encoding='utf-8-sig') as f:
+            return json.load(f)
