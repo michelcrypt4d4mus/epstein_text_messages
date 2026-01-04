@@ -208,8 +208,8 @@ marimo/_lsp/
 __marimo__/
 .env
 # not ignored on gh_pages branch
-docs/index.html
-docs/epstein_emails_word_count.html
+docs/*.html
+docs/*.json
 
 
 tester.py
