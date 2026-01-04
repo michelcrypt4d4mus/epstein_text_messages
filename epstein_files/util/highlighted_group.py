@@ -151,6 +151,7 @@ HIGHLIGHTED_NAMES = [
             ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
             BARBRO_C_EHNBOM: 'Swedish pharmaceuticals',
             FRED_HADDAD: "co-founder of Heck's in West Virginia",
+            GERALD_BARTON: "Maryland property developer, fan of Trump's Irish golf course",
             GORDON_GETTY: 'heir of oil tycoon J. Paul Getty',
             NICHOLAS_RIBIS: 'Hilton CEO, former president of Trump Organization',
             'Philip Kafka': 'president of Prince Concepts (and son of Terry Kafka?)',
@@ -312,6 +313,7 @@ HIGHLIGHTED_NAMES = [
         style='deep_pink2',
         pattern=r'Cambridge|(Derek\s*)?Bok|Elisa(\s*New)?|Harvard(\s*(Business|Law|University)(\s*School)?)?|(Jonathan\s*)?Zittrain|(Stephen\s*)?Kosslyn',
         emailers = {
+            "Kelly Friendly": f"longtime aide and spokesperson of {LARRY_SUMMERS}",
             LARRY_SUMMERS: 'board of Digital Currency Group (DCG), Harvard president, Obama economic advisor',
             'Leah Reis-Dennis': 'producer for Lisa New\'s Poetry in America',
             LISA_NEW: f'professor of poetry, wife of {LARRY_SUMMERS}, AKA "Elisa New"',
@@ -432,12 +434,12 @@ HIGHLIGHTED_NAMES = [
         emailers = {
             AL_SECKEL: 'husband of Isabel Maxwell, Mindshift conference organizer who fell off a cliff',
             'Barnaby Marsh': 'co-founder of Saint Partners, a philanthropy services company',
-            CHRISTINA_GALBRAITH: None,
+            CHRISTINA_GALBRAITH: f"{REPUTATION_MGMT}, worked on Epstein's Google search results with {TYLER_SHEARS}",
             IAN_OSBORNE: f"{OSBORNE_LLP} reputation repairer possibly hired by Epstein ca. 2011-06",
-            MICHAEL_SITRICK: None,
+            MICHAEL_SITRICK: 'crisis PR',
             PEGGY_SIEGAL: 'socialite',
             ROSS_GOW: 'Acuity Reputation Management',
-            TYLER_SHEARS: None,
+            TYLER_SHEARS: f"{REPUTATION_MGMT}, worked on Epstein's Google search results with {CHRISTINA_GALBRAITH}",
         }
     ),
     HighlightedNames(

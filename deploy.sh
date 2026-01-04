@@ -19,9 +19,9 @@ EMAILS_PROJECT_NAME=`basename "$EMAILS_DIR"`
 TEXT_MSGS_PROJECT_NAME=`basename "$PWD"`
 
 EMAILS_URL="$GITHUB_PAGES_BASE_URL/$EMAILS_PROJECT_NAME"
-JSON_METADATA_URL="$TEXT_MSGS_URL/$JSON_METADATA_STEM"
 TEXT_MSGS_URL="$GITHUB_PAGES_BASE_URL/$TEXT_MSGS_PROJECT_NAME"
 WORD_COUNT_URL="$TEXT_MSGS_URL/$WORD_COUNT_HTML_STEM"
+JSON_METADATA_URL="$TEXT_MSGS_URL/$JSON_METADATA_STEM"
 
 CURRENT_BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
 PICKLE_ARG=$([[ $1 == '--pickled' ]] && echo "--pickled" || echo "--overwrite-pickle")
@@ -66,7 +66,7 @@ if any_uncommitted_changes; then
     exit 1
 fi
 
-./scripts/make_clean.py
+./generate_html.py --make-clean
 
 
 # Text messages

@@ -422,7 +422,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='026287', author=DAVID_SCHOEN, attribution_reason='Signature'),
     EmailCfg(id='033419', author=DAVID_SCHOEN, attribution_reason='Signature'),
     EmailCfg(id='031460', author=EDWARD_JAY_EPSTEIN, attribution_reason=f"quoted reply has edwardjayepstein.com"),
-    EmailCfg(id='026547', author=GERALD_BARTON, recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
+    EmailCfg(id='026547', author=GERALD_BARTON, recipients=[JEFFREY_EPSTEIN]),  # Bad OCR # TODO: email header is really jacked up
     EmailCfg(id='029969', author=GWENDOLYN_BECK, attribution_reason='Signature'),
     EmailCfg(id='029968', author=GWENDOLYN_BECK, attribution_reason='Signature', duplicate_ids=['031120']),
     EmailCfg(id='029970', author=GWENDOLYN_BECK, attribution_reason='signed "Longevity & Successful Agin"'),
@@ -456,10 +456,11 @@ EMAILS_CONFIG = [
     EmailCfg(id='028851', author=JOI_ITO, recipients=[JEFFREY_EPSTEIN], timestamp=parse('2014-04-27 06:00:00')),
     EmailCfg(
         id='028849',
-        author=JOI_ITO,
-        recipients=[JEFFREY_EPSTEIN],
-        timestamp=parse('2014-04-27 06:30:00'),
         attribution_reason='Conversation with Joi Ito',
+        author=JOI_ITO,
+        description=f"{JOI_ITO} reaching out to Epstein for an immediate phone call after news about illicit Russian money",
+        recipients=[JEFFREY_EPSTEIN],
+        timestamp=parse('2014-04-27 07:41:00'),  # Filled in from 028847
     ),
     EmailCfg(id='028507', author=JONATHAN_FARKAS, attribution_reason='reply signed "best Jonathan"'),
     EmailCfg(id='033282', author=JONATHAN_FARKAS, attribution_reason='reply signed "thanks Jonathan"', duplicate_ids=['033484']),
