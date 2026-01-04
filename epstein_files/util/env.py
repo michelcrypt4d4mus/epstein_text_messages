@@ -9,7 +9,7 @@ from rich.highlighter import ReprHighlighter
 from rich.logging import RichHandler
 from rich.theme import Theme
 
-from epstein_files.util.constant.strings import DOC_TYPE_STYLES
+from epstein_files.util.constant.strings import DOCUMENT_CLASS, EMAIL_CLASS, JSON_FILE_CLASS, MESSENGER_LOG_CLASS, OTHER_FILE_CLASS
 
 DEFAULT_WIDTH = 154
 HTML_SCRIPTS = ['generate_html.py', 'count_words.py']
@@ -52,6 +52,14 @@ specified_names: list[str | None] = [None if n == 'None' else n for n in (args.n
 
 
 # Setup logging
+DOC_TYPE_STYLES = {
+    DOCUMENT_CLASS: 'grey69',
+    EMAIL_CLASS: 'sea_green2',
+    JSON_FILE_CLASS: 'sandy_brown',
+    MESSENGER_LOG_CLASS: 'cyan',
+    OTHER_FILE_CLASS: 'grey69',
+}
+
 LOG_THEME = {
     f"{ReprHighlighter.base_style}{doc_type}": doc_style
     for doc_type, doc_style in DOC_TYPE_STYLES.items()
@@ -62,15 +70,10 @@ class LogHighlighter(ReprHighlighter):
         fr"(?P<{doc_type}>{doc_type})" for doc_type in DOC_TYPE_STYLES.keys()
     ]
 
-# print(f"RichHandler.KEYWORDS: {RichHandler.KEYWORDS}")
-# print(f"base style: {LogHighlighter.base_style}")
-# print(LogHighlighter.highlights)
-
 
 log_console = Console(color_system='256', theme=Theme(LOG_THEME))
 log_handler = RichHandler(console=log_console, highlighter=LogHighlighter())
 logging.basicConfig(level="NOTSET", format="%(message)s", datefmt="[%X]", handlers=[log_handler])
-# logging.basicConfig(level="DEBUG", handlers=[RichHandler()])
 logger = logging.getLogger("rich")
 
 if args.deep_debug:
