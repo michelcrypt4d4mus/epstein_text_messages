@@ -18,7 +18,8 @@ from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP
 from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, listify, patternize, without_nones
 from epstein_files.util.doc_cfg import EmailCfg, DocCfg, TextCfg
 from epstein_files.util.env import args
-from epstein_files.util.file_helper import DOCS_DIR, file_stem_for_id, extract_file_id, file_size, file_size_str, is_local_extract_file
+from epstein_files.util.file_helper import (DOCS_DIR, file_stem_for_id, extract_file_id, file_size,
+     file_size_str, is_local_extract_file)
 from epstein_files.util.logging import DOC_TYPE_STYLES, logger
 from epstein_files.util.rich import SYMBOL_STYLE, console, highlighter, key_value_txt, link_text_obj
 
@@ -27,6 +28,7 @@ HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
 MIN_DOCUMENT_ID = 10477
 INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
+MAX_TOP_LINES_LEN = 4000  # Only for logging
 
 CLOSE_PROPERTIES_CHAR = ']'
 MIN_TIMESTAMP = datetime(1991, 1, 1)
@@ -181,7 +183,8 @@ class Document:
     def log_top_lines(self, n: int = 10, msg: str = '', level: int = logging.INFO) -> None:
         """Log first 'n' lines of self.text at 'level'. 'msg' can be optionally provided."""
         separator = '\n\n' if '\n' in msg else '. '
-        msg = f"{self.filename}: {(msg + separator) if msg else ''}First {n} lines:"
+        msg = (msg + separator) if msg else ''
+        msg = f"{self.filename}: {msg}First {n} lines:"
         logger.log(level, f"{msg}\n\n{self.top_lines(n)}\n")
 
     def raw_text(self) -> str:
@@ -232,7 +235,7 @@ class Document:
         return txt
 
     def top_lines(self, n: int = 10) -> str:
-        return '\n'.join(self.lines[0:n])[:1000]
+        return '\n'.join(self.lines[0:n])[:MAX_TOP_LINES_LEN]
 
     def _border_style(self) -> str:
         """Should be overloaded in subclasses."""
