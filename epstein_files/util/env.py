@@ -46,20 +46,17 @@ specified_names: list[str | None] = [None if n == 'None' else n for n in (args.n
 
 
 # Log level args
-if not env_log_level:
-    print(f"setting log lvel")
+if args.deep_debug:
+    logger.setLevel(logging.DEBUG)
+elif args.debug:
+    logger.setLevel(logging.INFO)
+elif args.suppress_logs:
+    logger.setLevel(logging.FATAL)
+elif not env_log_level:
+    logger.setLevel(logging.WARNING)
 
-    if args.deep_debug:
-        logger.setLevel(logging.DEBUG)
-    elif args.debug:
-        logger.setLevel(logging.INFO)
-    elif args.suppress_logs:
-        logger.setLevel(logging.FATAL)
-    else:
-        logger.setLevel(logging.WARNING)
-
-    print(f'log level set to {logger.level}')
-    datefinder_logger.setLevel(logger.level)
+logger.info(f'Log level set to {logger.level}...')
+datefinder_logger.setLevel(logger.level)
 
 
 # Massage args that depend on other args to the appropriate state

@@ -87,7 +87,7 @@ class EpsteinFiles:
             logger.info(str(documents[-1]))
 
             if doc_timer.seconds_since_start() > 0.1:
-                doc_timer.print_at_checkpoint(f"Processed {documents[-1]}")
+                doc_timer.print_at_checkpoint(f"Slow file - processed {documents[-1]}")
 
         self.emails = Document.sort_by_timestamp([d for d in documents if isinstance(d, Email)])
         self.imessage_logs = Document.sort_by_timestamp([d for d in documents if isinstance(d, MessengerLog)])
