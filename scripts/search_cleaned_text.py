@@ -11,15 +11,14 @@ load_dotenv()
 from scripts.use_pickled import epstein_files
 from epstein_files.documents.document import INFO_PADDING
 from epstein_files.util.env import args, specified_names
-from epstein_files.util.highlighted_group import REGEX_STYLE_PREFIX
+from epstein_files.util.highlighted_group import EpsteinHighlighter
 from epstein_files.util.rich import console, print_panel
 
 
 def build_highlighter(pattern: str) -> RegexHighlighter:
     class TempHighlighter(RegexHighlighter):
         """rich.highlighter that finds and colors interesting keywords based on the above config."""
-        base_style = f"{REGEX_STYLE_PREFIX}."
-        highlights = [re.compile(fr"(?P<lawyer>{pattern})", re.IGNORECASE)]
+        highlights = EpsteinHighlighter.highlights + [re.compile(fr"(?P<lawyer>{pattern})", re.IGNORECASE)]
 
     return TempHighlighter()
 
