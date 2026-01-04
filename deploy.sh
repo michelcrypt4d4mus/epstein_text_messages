@@ -50,14 +50,6 @@ any_uncommitted_changes() {
     fi
 }
 
-remove_master_branch_file() {
-    local master_file="$1"
-
-    if [ -f "$master_file" ]; then
-        print_msg "Removing master branch version of" "$master_file"
-        rm "$master_file"
-    fi
-}
 
 if [[ $CURRENT_BRANCH != "master" ]]; then
     print_msg "Current branch is not master" "($CURRENT_BRANCH)"
@@ -70,9 +62,8 @@ if any_uncommitted_changes; then
     exit 1
 fi
 
-remove_master_branch_file "$INDEX_HTML_PATH"
-remove_master_branch_file "$WORD_COUNT_HTML_PATH"
-
+./scripts/make_clean.py
+exit
 
 # Text messages
 git push origin master --quiet
