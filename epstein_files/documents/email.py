@@ -243,6 +243,7 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
                    KRASSNER_RECIPIENTS + \
                    FLIGHT_IN_2012_PEOPLE + [
     'Alan Rogers',                           # Random CC
+    'Andrew Friendly',                       # Presumably some relation of Kelly Friendly
     'BS Stern',                              # A random fwd of email we have
     'Cheryl Kleen',                          # Single email from Anne Boyles, displayed under Anne Boyles
     'Connie Zaguirre',                       # Random CC
