@@ -647,7 +647,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='030096', recipients=[PETER_MANDELSON]),
     EmailCfg(id='032951', recipients=[RAAFAT_ALSABBAGH, None], attribution_reason='Redacted'),
     EmailCfg(id='029581', recipients=[RENATA_BOLOTOVA], attribution_reason=BOLOTOVA_REASON),
-    EmailCfg(id='030384', recipients=[RICHARD_KAHN, "Alan Dlugash"]),
+    # EmailCfg(id='030384', recipients=[RICHARD_KAHN, "Alan Dlugash"]),
     EmailCfg(id='019334', recipients=[STEVE_BANNON]),
     EmailCfg(id='021106', recipients=[STEVE_BANNON], attribution_reason='Reply'),
 
