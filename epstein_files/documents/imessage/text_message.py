@@ -55,7 +55,7 @@ class TextMessage:
         else:
             self.author_str = self.author
 
-        if not self.id_confirmed and self.author is not None:
+        if not self.id_confirmed and self.author is not None and self.author != JEFFREY_EPSTEIN:
             self.author_str = self.author + ' (?)'
 
     def timestamp(self) -> datetime:

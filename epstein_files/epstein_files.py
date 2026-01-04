@@ -5,10 +5,9 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
-from typing import Literal, Sequence
+from typing import Literal, Sequence, Type
 
 from rich.align import Align
-from rich.console import Group
 from rich.padding import Padding
 from rich.table import Table
 from rich.text import Text
@@ -23,18 +22,17 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url,
      search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
-from epstein_files.util.data import Timer, dict_sets_to_lists, iso_timestamp, sort_dict
+from epstein_files.util.data import Timer, dict_sets_to_lists, listify, sort_dict
 from epstein_files.util.doc_cfg import EmailCfg
 from epstein_files.util.env import args, logger
-from epstein_files.util.file_helper import DOCS_DIR, FILENAME_LENGTH, PICKLED_PATH, file_size_str
+from epstein_files.util.file_helper import DOCS_DIR, PICKLED_PATH, file_size_str
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
-from epstein_files.util.rich import (DEFAULT_NAME_STYLE, NA_TXT, QUESTION_MARK_TXT, add_cols_to_table, console,
-     highlighter, link_text_obj, link_markup, print_author_header, print_centered, print_other_site_link, print_panel,
+from epstein_files.util.rich import (DEFAULT_NAME_STYLE, NA_TXT, add_cols_to_table, console, highlighter,
+     link_text_obj, link_markup, print_author_header, print_centered, print_other_site_link, print_panel,
      print_section_header, vertically_pad)
 from epstein_files.util.search_result import SearchResult
 
 DEVICE_SIGNATURE = 'Device Signature'
-FIRST_FEW_LINES = 'First Few Lines'
 DEVICE_SIGNATURE_PADDING = (1, 0)
 NOT_INCLUDED_EMAILERS = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
 
@@ -62,48 +60,29 @@ class EpsteinFiles:
     _email_unknown_recipient_file_ids: set[str] = field(default_factory=set)
 
     def __post_init__(self):
+        """Iterate through files and build appropriate objects."""
         self.all_files = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
+        documents = []
 
         # Read through and classify all the files
         for file_arg in self.all_files:
             logger.info(f"Scanning '{file_arg.name}'...")
-            document = Document(file_arg)
+            #doc_timer = Timer(decimals=4)
+            doc = Document(file_arg)
 
-            if document.length == 0:
-                logger.info(f"Skipping empty file {document}")
-            elif document.text[0] == '{':
-                # Handle JSON files
-                self.json_files.append(JsonFile(file_arg, text=document.text))
-                logger.info(str(self.json_files[-1]))
-            elif MSG_REGEX.search(document.text):
-                # Handle iMessage log files
-                self.imessage_logs.append(MessengerLog(file_arg, text=document.text))
-                logger.info(str(self.imessage_logs[-1]))
-            elif DETECT_EMAIL_REGEX.match(document.text) or isinstance(document.config, EmailCfg):
-                # Handle emails
-                email = Email(file_arg, text=document.text)
-                logger.info(str(email))
-                self.emails.append(email)
-                self.email_author_counts[email.author] += 1
+            if doc.length == 0:
+                logger.warning(f"Skipping empty file: {doc}")
+                continue
 
-                if len(email.recipients) == 0:
-                    self._email_unknown_recipient_file_ids.add(email.file_id)
-                    self.email_recipient_counts[None] += 1
-                else:
-                    for recipient in email.recipients:
-                        self.email_recipient_counts[recipient] += 1
+            document = document_cls(doc)(file_arg, text=doc.text)
+            documents.append(document)
+            logger.info(str(document))
+            #doc_timer.print_at_checkpoint(f"Processed {document}")
 
-                if email.sent_from_device:
-                    self.email_authors_to_device_signatures[email.author_or_unknown()].add(email.sent_from_device)
-                    self.email_device_signatures_to_authors[email.sent_from_device].add(email.author_or_unknown())
-            else:
-                # Handle OtherFiles
-                self.other_files.append(OtherFile(file_arg, text=document.text))
-                logger.info(str(self.other_files[-1]))
-
-        self.emails = Document.sort_by_timestamp(self.emails)
-        self.imessage_logs = Document.sort_by_timestamp(self.imessage_logs)
-        self.other_files = Document.sort_by_timestamp(self.other_files + self.json_files)
+        self.emails = Document.sort_by_timestamp([d for d in documents if isinstance(d, Email)])
+        self.imessage_logs = Document.sort_by_timestamp([d for d in documents if isinstance(d, MessengerLog)])
+        self.other_files = Document.sort_by_timestamp([d for d in documents if isinstance(d, (JsonFile, OtherFile))])
+        self._tally_email_data()
 
     @classmethod
     def get_files(cls, timer: Timer | None = None) -> 'EpsteinFiles':
@@ -141,13 +120,12 @@ class EpsteinFiles:
     def docs_matching(
             self,
             pattern: re.Pattern | str,
-            file_type: Literal['all', 'other'] = 'all',
             names: list[str | None] | None = None
         ) -> list[SearchResult]:
         """Find documents whose text matches a pattern (file_type and names args limit the documents searched)."""
         results: list[SearchResult] = []
 
-        for doc in (self.all_documents() if file_type == 'all' else self.other_files):
+        for doc in self.all_documents():
             lines = doc.lines_matching_txt(pattern)
 
             if names and ((not isinstance(doc, (Email, MessengerLog))) or doc.author not in names):
@@ -198,7 +176,7 @@ class EpsteinFiles:
         else:
             return [e for e in self.emails if author in e.recipients]
 
-    def get_documents_with_ids(self, file_ids: list[str]) -> list[Document]:
+    def get_documents_by_id(self, file_ids: list[str]) -> list[Document]:
         docs = [doc for doc in self.all_documents() if doc.file_id in file_ids]
 
         if len(docs) != len(file_ids):
@@ -207,23 +185,10 @@ class EpsteinFiles:
         return docs
 
     def imessage_logs_for(self, author: str | None | list[str | None]) -> Sequence[MessengerLog]:
-        if author in [EVERYONE, JEFFREY_EPSTEIN]:
-            return self.imessage_logs
-
-        authors = author if isinstance(author, list) else [author]
-        return [log for log in self.imessage_logs if log.author in authors]
+        return MessengerLog.logs_for(author, self.imessage_logs)
 
     def identified_imessage_log_count(self) -> int:
         return len([log for log in self.imessage_logs if log.author])
-
-    def imessage_sender_counts(self) -> dict[str | None, int]:
-        sender_counts: dict[str | None, int] = defaultdict(int)
-
-        for message_log in self.imessage_logs:
-            for message in message_log.messages():
-                sender_counts[message.author] += 1
-
-        return sender_counts
 
     def print_files_summary(self) -> None:
         dupes = defaultdict(int)
@@ -279,28 +244,9 @@ class EpsteinFiles:
 
         return emails
 
-    def print_emails_table_for(self, _author: str | None) -> None:
-        emails = [email for email in self.emails_for(_author) if not email.is_duplicate]  # Remove dupes
-        author = _author or UNKNOWN
-
-        table = Table(
-            title=f"Emails to/from {author} starting {emails[0].timestamp.date()}",
-            border_style=get_style_for_name(author, allow_bold=False),
-            header_style="bold"
-        )
-
-        table.add_column('From', justify='left')
-        table.add_column('Timestamp', justify='center')
-        table.add_column('Subject', justify='left', style='honeydew2', min_width=60)
-
-        for email in emails:
-            table.add_row(
-                email.author_txt,
-                email.epstein_media_link(link_txt=email.timestamp_without_seconds()),
-                highlighter(email.subject())
-            )
-
-        console.print(Align.center(table), '\n')
+    def print_emails_table_for(self, author: str | None) -> None:
+        emails = [email for email in self.emails_for(author) if not email.is_duplicate]  # Remove dupes
+        console.print(Align.center(Email.build_table(emails, author)), '\n')
 
     def print_email_device_info(self) -> None:
         print_panel(f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown", padding=(4, 0, 0, 0), centered=True)
@@ -313,8 +259,8 @@ class EpsteinFiles:
         add_cols_to_table(counts_table, ['Name', 'Count', 'Sent', "Recv'd", JMAIL, EPSTEIN_WEB, 'Twitter'])
 
         emailer_counts = {
-            e: self.email_author_counts[e] + self.email_recipient_counts[e]
-            for e in self.all_emailers(True)
+            emailer: self.email_author_counts[emailer] + self.email_recipient_counts[emailer]
+            for emailer in self.all_emailers(True)
         }
 
         for p, count in sort_dict(emailer_counts):
@@ -334,30 +280,7 @@ class EpsteinFiles:
 
     def print_imessage_summary(self) -> None:
         """Print summary table and stats for text messages."""
-        counts_table = Table(title="Text Message Counts By Author", header_style="bold")
-        counts_table.add_column(AUTHOR.title(), justify='left', style="steel_blue bold", width=30)
-        counts_table.add_column('Files', justify='right', style='white')
-        counts_table.add_column("Msgs", justify='right')
-        counts_table.add_column('First Sent At', justify='center', highlight=True, width=21)
-        counts_table.add_column('Last Sent At', justify='center', style='wheat4', width=21)
-        counts_table.add_column('Days', justify='right', style='dim')
-
-        for name, count in sort_dict(self.imessage_sender_counts()):
-            logs = self.imessage_logs_for(name)
-            first_at = logs[0].first_message_at(name)
-            last_at = logs[-1].first_message_at(name)
-
-            counts_table.add_row(
-                Text(name or UNKNOWN,
-                    get_style_for_name(name)),
-                    str(len(logs)),
-                    f"{count:,}",
-                    iso_timestamp(first_at),
-                    iso_timestamp(last_at),
-                    str((last_at - first_at).days + 1),
-                )
-
-        console.print(counts_table)
+        console.print(MessengerLog.summary_table(self.imessage_logs))
         text_summary_msg = f"\nDeanonymized {self.identified_imessage_log_count()} of "
         text_summary_msg += f"{len(self.imessage_logs)} {TEXT_MESSAGE} logs found in {len(self.all_files)} files."
         console.print(text_summary_msg)
@@ -366,46 +289,35 @@ class EpsteinFiles:
         console.print(f"(Last deploy found 4668 messages in 77 conversations)", style='dim')
 
     def print_other_files_table(self) -> list[OtherFile]:
-        """Returns the OtherFiles that were interesting enough to print."""
+        """Returns the OtherFile objects that were interesting enough to print."""
         interesting_files = [doc for doc in self.other_files if args.all_other_files or doc.is_interesting()]
         header_pfx = '' if args.all_other_files else 'Selected '
         print_section_header(f"{FIRST_FEW_LINES} of {len(interesting_files)} {header_pfx}Files That Are Neither Emails Nor Text Msgs")
 
         if not args.all_other_files:
-            print_centered(f"(the other site is uncurated and has all {len(self.other_files)} unclassifiable files and all {len(self.emails):,} emails)", style='dim')
+            print_centered(f"(the other site is uncurated and has all {len(self.other_files)} unclassifiable files and {len(self.emails):,} emails)", style='dim')
             print_other_site_link(False)
             console.line(2)
 
-        table = Table(header_style='bold', show_lines=True)
-        table.add_column('File', justify='center', width=FILENAME_LENGTH)
-        table.add_column('Date', justify='center')
-        table.add_column('Size', justify='center')
-        table.add_column('Type', justify='center')
-        table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
-
-        for doc in interesting_files:
-            link_and_info = [doc.raw_document_link_txt(), *doc.hints()]
-            date_str = doc.date_str()
-
-            if doc.is_duplicate:
-                preview_text = doc.duplicate_file_txt()
-                row_style = ' dim'
-            else:
-                preview_text = doc.highlighted_preview_text()
-                row_style = ''
-
-            table.add_row(
-                Group(*link_and_info),
-                Text(date_str, style=TIMESTAMP_DIM) if date_str else QUESTION_MARK_TXT,
-                doc.file_size_str(),
-                doc.category(),
-                preview_text,
-                style=row_style
-            )
-
-        console.print(table)
+        console.print(OtherFile.build_table(interesting_files))
         logger.warning(f"Skipped {len(self.other_files) - len(interesting_files)} uninteresting files...")
         return interesting_files
+
+    def _tally_email_data(self) -> None:
+        """Tally up summary info about Email objects."""
+        for email in self.emails:
+            self.email_author_counts[email.author] += 1
+
+            if len(email.recipients) == 0:
+                self._email_unknown_recipient_file_ids.add(email.file_id)
+                self.email_recipient_counts[None] += 1
+            else:
+                for recipient in email.recipients:
+                    self.email_recipient_counts[recipient] += 1
+
+            if email.sent_from_device:
+                self.email_authors_to_device_signatures[email.author_or_unknown()].add(email.sent_from_device)
+                self.email_device_signatures_to_authors[email.sent_from_device].add(email.author_or_unknown())
 
 
 def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Padding:
@@ -421,6 +333,17 @@ def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str]
         table.add_row(highlighter(k or UNKNOWN), highlighter(join_char.join(sorted(new_dict[k]))))
 
     return Padding(table, DEVICE_SIGNATURE_PADDING)
+
+
+def document_cls(document: Document) -> Type[Document]:
+    if document.text[0] == '{':
+        return JsonFile
+    elif MSG_REGEX.search(document.text):
+        return MessengerLog
+    elif DETECT_EMAIL_REGEX.match(document.text) or isinstance(document.config, EmailCfg):
+        return Email
+    else:
+        return OtherFile
 
 
 def is_ok_for_epstein_web(name: str | None) -> bool:

@@ -1,3 +1,4 @@
+import re
 import logging
 import warnings
 from dataclasses import dataclass
@@ -5,15 +6,20 @@ from datetime import datetime
 
 import datefinder
 import dateutil
+from rich.console import Group
 from rich.markup import escape
 from rich.panel import Panel
+from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_REGEX, Document
-from epstein_files.util.constants import ARTS, BOOK, FINANCE, JUNK, SPEECH, UNINTERESTING_PREFIXES
-from epstein_files.util.data import escape_single_quotes, remove_timezone, uniquify
+from epstein_files.util.constant.strings import FIRST_FEW_LINES, TIMESTAMP_DIM
+from epstein_files.util.constants import *
+from epstein_files.util.doc_cfg import ARTS, BOOK, JUNK, REPUTATION, REPUTATION_MGMT, SPEECH, DocCfg
+from epstein_files.util.data import escape_single_quotes, remove_timezone, uniquify, without_nones
+from epstein_files.util.file_helper import FILENAME_LENGTH
 from epstein_files.util.env import args, logger
-from epstein_files.util.rich import highlighter, logger
+from epstein_files.util.rich import QUESTION_MARK_TXT, highlighter, logger
 
 MAX_EXTRACTED_TIMESTAMPS = 100
 MAX_DAYS_SPANNED_TO_BE_VALID = 10
@@ -24,6 +30,16 @@ PREVIEW_CHARS = int(580 * (1 if args.all_other_files else 1.5))
 LOG_INDENT = '\n         '
 TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
+VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
+
+FINANCIAL_REPORTS_AUTHORS = [
+    BOFA,
+    DEUTSCHE_BANK,
+    GOLDMAN_INVESTMENT_MGMT,
+    'Invesco',
+    'Morgan Stanley',
+    'S&P',
+]
 
 UNINTERESTING_CATEGORES = [
     ARTS,
@@ -32,10 +48,93 @@ UNINTERESTING_CATEGORES = [
     SPEECH,
 ]
 
+UNINTERESTING_IDS = [
+    '031794',
+]
+
+# OtherFiles whose description/hints match these prefixes are not displayed unless --all-other-files is used
+UNINTERESTING_PREFIXES = FINANCIAL_REPORTS_AUTHORS + [
+    'article about',
+    ARTICLE_DRAFT,
+    'Aviation International',
+    BBC,
+    BLOOMBERG,
+    'Boston Globe',
+    BROCKMAN_INC,
+    CHINA_DAILY,
+    CNN,
+    'completely redacted',
+    CVRA,
+    DAILY_MAIL,
+    DAILY_TELEGRAPH,
+    DAVID_SCHOEN_CVRA_LEXIS_SEARCH[0:-12],  # Because date at end :(
+    DERSH_GIUFFRE_TWEET,
+    'Financial Times',
+    'Forbes',
+    'Frontlines',
+    'Future Science',
+    'Globe and Mail',
+    GORDON_GETTY,
+    f"{HARVARD} Econ",
+    HARVARD_POETRY,
+    'Inference',
+    JASTA,
+    'JetGala',
+    JOHN_BOLTON_PRESS_CLIPPING,
+    'Journal of Criminal',
+    LA_TIMES,
+    'Litigation Daily',
+    LAWRENCE_KRAUSS,
+    'MarketWatch',
+    MARTIN_NOWAK,
+    NOBEL_CHARITABLE_TRUST,
+    'Nautilus',
+    'New Yorker',
+    NYT_ARTICLE,
+    NYT_COLUMN,
+    PALM_BEACH_CODE_ENFORCEMENT,
+    PALM_BEACH_DAILY_ARTICLE,
+    PALM_BEACH_POST_ARTICLE,
+    PALM_BEACH_TSV,
+    PALM_BEACH_WATER_COMMITTEE,
+    PAUL_KRASSNER,
+    PEGGY_SIEGAL,
+    'Politifact',
+    'Rafanelli',
+    ROBERT_LAWRENCE_KUHN,
+    ROBERT_TRIVERS,
+    'SCMP',
+    'SciencExpress',
+    'Scowcroft',
+    SHIMON_POST_ARTICLE,
+    SINGLE_PAGE,
+    STACEY_PLASKETT,
+    TERJE_ROD_LARSEN,
+    TEXT_OF_US_LAW,
+    TRANSLATION,
+    TWEET,
+    THE_REAL_DEAL_ARTICLE,
+    TRUMP_DISCLOSURES,
+    UBS_CIO_REPORT,
+    UN_GENERAL_ASSEMBLY,
+    'U.S. News',
+    'US Office',
+    'Vanity Fair',
+    VI_DAILY_NEWS_ARTICLE,
+    WAPO,
+]
+
 
 @dataclass
 class OtherFile(Document):
     """File that is not an email, an iMessage log, or JSON data."""
+
+    def __post_init__(self):
+        super().__post_init__()
+
+        if self.config is None and VI_DAILY_NEWS_REGEX.search(self.text):
+            logger.info(f"Creating synthetic config for VI Daily News article...")
+            self.config = DocCfg(id=self.file_id, description=VI_DAILY_NEWS_ARTICLE, category=ARTICLE)
 
     def category(self) -> str | None:
         return self.config and self.config.category
@@ -44,17 +143,18 @@ class OtherFile(Document):
         """Overloads superclass method."""
         if self.config is None:
             return None
+        elif self.category() == REPUTATION:
+            return f"{REPUTATION_MGMT}: {self.config.description}"
+        elif self.author and self.config.description:
+            if self.category() == ACADEMIA:
+                return self.title_by_author()
+            elif self.category() == BOOK:
+                return f"{BOOK}: {self.title_by_author()}"
+            elif self.category() == FINANCE and self.author in FINANCIAL_REPORTS_AUTHORS:
+                return f"{self.author} report: '{self.config.description}'"
 
-        if self.category() == BOOK and self.config.author and self.config.description:
-            title = self.config.description if '"' in self.config.description else f'"{self.config.description}"'
-            return f"{BOOK}: {title} by {self.config.author}"
-
-        pieces = [p for p in [self.config.author, self.config.description] if p]
+        pieces = without_nones([self.author, self.config.description])
         return ' '.join(pieces) if pieces else None
-
-    def summary(self) -> Text:
-        """One line summary mostly for logging."""
-        return super().summary().append(CLOSE_PROPERTIES_CHAR)
 
     def description_panel(self, include_hints=True) -> Panel:
         """Panelized description() with info_txt(), used in search results."""
@@ -71,17 +171,19 @@ class OtherFile(Document):
             return Text(escape(self.preview_text()))
 
     def is_interesting(self):
-        """False for lame prefixes and duplicates."""
+        """False for lame prefixes, duplicates, and other boring files."""
         hints = self.hints()
 
         if self.is_duplicate:
+            return False
+        elif self.file_id in UNINTERESTING_IDS:
             return False
         elif len(hints) == 0:
             return True
         elif self.config:
             if self.config.is_interesting:
                 return True
-            elif self.config.category == FINANCE and self.config.author is not None:
+            elif self.config.category == FINANCE and self.author is not None:
                 return False
             elif self.config.category in UNINTERESTING_CATEGORES:
                 return False
@@ -94,6 +196,17 @@ class OtherFile(Document):
 
     def preview_text(self) -> str:
         return WHITESPACE_REGEX.sub(' ', self.text)[0:PREVIEW_CHARS]
+
+    def summary(self) -> Text:
+        """One line summary mostly for logging."""
+        return super().summary().append(CLOSE_PROPERTIES_CHAR)
+
+    def title_by_author(self) -> str:
+        if not self.config or not self.config.description or not self.author:
+            raise RuntimeError(f"Can't call title_by_author() without author and description!")
+
+        title = self.config.description if '"' in self.config.description else f"'{self.config.description}'"
+        return f"{title} by {self.author}"
 
     def _extract_timestamp(self) -> datetime | None:
         """Return configured timestamp or value extracted by scanning text with datefinder."""
@@ -136,3 +249,35 @@ class OtherFile(Document):
         if num_days_spanned > MAX_DAYS_SPANNED_TO_BE_VALID and VAST_HOUSE not in self.text:
             log_level = logging.DEBUG if VAST_HOUSE in self.text else logging.INFO
             self.log_top_lines(15, msg=timestamps_log_msg, level=log_level)
+
+    @staticmethod
+    def build_table(docs: list['OtherFile']) -> Table:
+        """Build a table of OtherFile documents."""
+        table = Table(header_style='bold', show_lines=True)
+        table.add_column('File', justify='center', width=FILENAME_LENGTH)
+        table.add_column('Date', justify='center')
+        table.add_column('Size', justify='center')
+        table.add_column('Type', justify='center')
+        table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
+
+        for doc in docs:
+            link_and_info = [doc.raw_document_link_txt(), *doc.hints()]
+            date_str = doc.date_str()
+
+            if doc.is_duplicate:
+                preview_text = doc.duplicate_file_txt()
+                row_style = ' dim'
+            else:
+                preview_text = doc.highlighted_preview_text()
+                row_style = ''
+
+            table.add_row(
+                Group(*link_and_info),
+                Text(date_str, style=TIMESTAMP_DIM) if date_str else QUESTION_MARK_TXT,
+                doc.file_size_str(),
+                doc.category(),
+                preview_text,
+                style=row_style
+            )
+
+        return table

@@ -14,8 +14,8 @@ from rich.text import Text
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
-from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP, VI_DAILY_NEWS_ARTICLE
-from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, listify, patternize
+from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP
+from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, listify, patternize, without_nones
 from epstein_files.util.doc_cfg import EmailCfg, DocCfg, TextCfg
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, file_stem_for_id, extract_file_id, file_size_str, is_local_extract_file
@@ -29,10 +29,10 @@ INFO_PADDING = (0, 0, 0, INFO_INDENT)
 
 CLOSE_PROPERTIES_CHAR = ']'
 MAX_EXTRACTED_TIMESTAMPS = 6
+MAX_SIZE_TO_REPAIR = 500 * 1024
 MIN_TIMESTAMP = datetime(1991, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
 MAX_TIMESTAMP = datetime(2020, 1, 1)
-VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
 DOC_TYPE_STYLES = {
     DOCUMENT_CLASS: 'grey69',
@@ -101,7 +101,9 @@ class Document:
         return str(type(self).__name__)
 
     def configured_description(self) -> str | None:
-        return self.config.description if self.config else None
+        """Overloaded in OtherFile."""
+        if self.config and self.config.description:
+            return f"({self.config.description})"
 
     def date_str(self) -> str | None:
         return date_str(self.timestamp)
@@ -149,16 +151,10 @@ class Document:
         hints = listify(self.info_txt())
         hint_msg = self.configured_description()
 
-        if self.class_name() == OTHER_FILE_CLASS:
-            if not hint_msg and VI_DAILY_NEWS_REGEX.search(self.text):
-                hint_msg = VI_DAILY_NEWS_ARTICLE
-        elif hint_msg:
-            hint_msg = f"({hint_msg})"
-
         if hint_msg:
             hints.append(highlighter(Text(hint_msg, style='white dim italic')))
 
-        return hints
+        return without_nones(hints)
 
     def info_txt(self) -> Text | None:
         """Secondary info about this file (recipients, level of certainty, etc). Overload in subclasses."""
@@ -270,7 +266,12 @@ class Document:
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
         text = self.raw_text()
         text = text[1:] if (len(text) > 0 and text[0] == '\ufeff') else text  # remove BOM
-        text = self.repair_ocr_text(OCR_REPAIRS, text.strip())
+
+        if len(text) < MAX_SIZE_TO_REPAIR:
+            text = self.repair_ocr_text(OCR_REPAIRS, text.strip())
+        else:
+            logger.warning(f"Not repairing large file: {self.url_slug} ({self.file_size_str()})")
+
         lines = [l.strip() for l in text.split('\n') if not l.startswith(HOUSE_OVERSIGHT)]
         lines = lines[1:] if (len(lines) > 1 and lines[0] == '>>') else lines
         return collapse_newlines('\n'.join(lines))
@@ -307,7 +308,7 @@ class Document:
 
         logger.warning(f"Wrote {self.length} chars of cleaned {self.filename} to {output_path}.")
 
-    def __rich_console__(self, _console: Console, _options: ConsoleOptions) -> RenderResult:
+    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield self.file_info_panel()
         text_panel = Panel(highlighter(self.text), border_style=self._border_style(), expand=False)
         yield Padding(text_panel, (0, 0, 1, INFO_INDENT))
