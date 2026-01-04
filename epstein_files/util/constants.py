@@ -591,17 +591,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='026426', recipients=[JEAN_HUGUEN], attribution_reason='Reply'),
     EmailCfg(id='022202', recipients=[JEAN_LUC_BRUNEL], attribution_reason='Follow up / reply', duplicate_ids=['029975']),
     EmailCfg(id='022187', recipients=[JEFFREY_EPSTEIN]),
-    EmailCfg(id='031489', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
+    EmailCfg(id='031489', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (unfixable)
     EmailCfg(id='032210', recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
-    EmailCfg(id='030347', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
-    EmailCfg(id='030367', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
+    EmailCfg(id='030347', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
+    EmailCfg(id='030367', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
     EmailCfg(id='033274', recipients=[JEFFREY_EPSTEIN]),  # this is a note sent to self
-    EmailCfg(id='032780', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
-    EmailCfg(id='025233', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
-    EmailCfg(id='022344', recipients=[JEFFREY_EPSTEIN], duplicate_ids=['028529']),  # Bad OCR
-    EmailCfg(id='029889', recipients=[JEFFREY_EPSTEIN, "Connie Zaguirre", JACK_GOLDBERGER, ROBERT_D_CRITTON]),  # Bad OCR
+    EmailCfg(id='032780', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
     EmailCfg(id='033575', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN], duplicate_ids=['012898']),
-    EmailCfg(id='023067', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, DEBBIE_FEIN, TONJA_HADDAD_COLEMAN]),  # Bad OCR
     EmailCfg(id='033228', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, FRED_HADDAD]),  # Bad OCR
     EmailCfg(id='025790', recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, JACK_GOLDBERGER], duplicate_ids=['031994']),  # Bad OCR
     EmailCfg(
@@ -670,12 +666,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='023627', description=MICHAEL_WOLFF_ARTICLE_HINT, is_fwded_article=True),
     EmailCfg(id='026298', is_fwded_article=True, duplicate_ids=['026499']),  # Written by someone else?
     EmailCfg(id='029692', is_fwded_article=True, duplicate_ids=['029779']),  # WaPo article
-    EmailCfg(id='026755', is_fwded_article=True),  # HuffPo
-    EmailCfg(id='030528', is_fwded_article=True),  # Vicky Ward article
+    EmailCfg(id='022344', is_fwded_article=True, duplicate_ids=['028529']),  # Bill Gates is most admired from Nikolic
     EmailCfg(id='018197', is_fwded_article=True, duplicate_ids=['028648']),  # Ray Takeyh article fwd
     EmailCfg(id='028728', is_fwded_article=True, duplicate_ids=['027102']),  # WSJ forward to Larry Summers
-    EmailCfg(id='028508', is_fwded_article=True),  # nanosatellites article
     EmailCfg(id='028781', is_fwded_article=True, duplicate_ids=['013460']),  # Atlantic on Jim Yong Kim, Obama's World Bank Pick
+    EmailCfg(id='026755', is_fwded_article=True),  # HuffPo
+    EmailCfg(id='030528', is_fwded_article=True),  # Vicky Ward article
+    EmailCfg(id='028508', is_fwded_article=True),  # nanosatellites article
     EmailCfg(id='019845', is_fwded_article=True),  # Pro Publica article on Preet Bharara
     EmailCfg(id='029021', is_fwded_article=True),  # article about bannon sent by Alain Forget
     EmailCfg(id='031688', is_fwded_article=True),  # Bill Siegel fwd of email about hamas
