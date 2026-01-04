@@ -250,7 +250,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "David Haig": 2,
     "David Schoen": 3,
     "David Stern": 1,
-    "Debbie Fein": 5,
+    "Debbie Fein": 6,
     "Deepak Chopra": 1,
     "Diane Ziman": 1,
     "Ed Boyden": 1,
