@@ -30,6 +30,7 @@ INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
 MAX_TOP_LINES_LEN = 4000  # Only for logging
 MIN_DOCUMENT_ID = 10477
+LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
 MIN_TIMESTAMP = datetime(1991, 1, 1)
@@ -45,7 +46,6 @@ FILENAME_MATCH_STYLES = [
 METADATA_FIELDS = [
     'author',
     'file_id',
-    'filename',
     'num_lines',
     'timestamp'
 ]
@@ -84,7 +84,7 @@ class Document:
         self.is_duplicate = bool(self.config.dupe_of_id) if self.config else False
 
         if self.is_local_extract_file():
-            self.url_slug = file_stem_for_id(self.file_id)
+            self.url_slug = LOCAL_EXTRACT_REGEX.sub('', file_stem_for_id(self.file_id))
             cfg_type = type(self.config).__name__ if self.config else None
 
             # Coerce FileConfig for court docs etc. to MessageCfg for email files extracted from that document
@@ -189,6 +189,7 @@ class Document:
         metadata = self.config.metadata() if self.config else {}
         metadata.update({k: v for k, v in asdict(self).items() if k in METADATA_FIELDS and v is not None})
         metadata['bytes'] = self.file_size()
+        metadata['filename'] = f"{self.url_slug}.txt"
         metadata['type'] = self.class_name()
 
         if self.is_local_extract_file():
