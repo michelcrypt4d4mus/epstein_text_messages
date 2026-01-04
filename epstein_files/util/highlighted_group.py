@@ -28,7 +28,7 @@ CATEGORY_LABEL_MAPPING = {
     BOOK: JOURNALIST,
     LEGAL: EPSTEIN_LAWYER,
     POLITICS: LOBBYIST,
-    'property': 'business',
+    PROPERTY: BUSINESS,
     REPUTATION: PUBLICIST,
 }
 
@@ -156,7 +156,7 @@ HIGHLIGHTED_NAMES = [
         },
     ),
     HighlightedNames(
-        label='business',
+        label=BUSINESS,
         style='spring_green4',
         pattern=r'Gruterite|(John\s*)?Kluge|Marc Rich|(Mi(chael|ke)\s*)?Ovitz|(Steve\s+)?Wynn|(Les(lie)?\s+)?Wexner|SALSS|Swedish[-\s]*American\s*Life\s*Science\s*Summit|Valhi|(Yves\s*)?Bouvier',
         emailers = {
