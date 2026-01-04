@@ -255,7 +255,7 @@ class Document:
             txt.append(f"{timestamp_str}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
 
         txt.append(' [').append(key_value_txt('size', Text(self.file_size_str(), style='aquamarine1')))
-        txt.append(", ").append(key_value_txt('lines', Text(f"{self.num_lines}", style='cyan')))
+        txt.append(", ").append(key_value_txt('lines', self.num_lines))
 
         if self.config and self.config.dupe_of_id:
             txt.append(", ").append(key_value_txt('dupe_of', Text(self.config.dupe_of_id, style='magenta')))
