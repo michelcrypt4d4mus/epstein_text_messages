@@ -99,6 +99,7 @@ class EpsteinFiles:
             with gzip.open(PICKLED_PATH, 'rb') as file:
                 epstein_files = pickle.load(file)
                 timer.print_at_checkpoint(f"Loaded {len(epstein_files.all_files):,} documents from '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})")
+                epstein_files.timer = timer
                 return epstein_files
 
         epstein_files = EpsteinFiles(timer=timer)
