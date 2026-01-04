@@ -524,25 +524,37 @@ class Email(Communication):
 
         if self.file_id in ['031442']:
             self._merge_lines(0)  # Merge 1st and 2nd rows
-        elif self.file_id in '021729 029282 029501 029889 030626 031384 033097 033512 033583'.split():
+        elif self.file_id in '021729 025790 029282 029501 029889 030626 031384 031428 033097 033512 033583 029498'.split():
             self._merge_lines(2)  # Merge 3rd and 4th rows
 
             if self.file_id in ['030626']:  # Merge 6th and 7th (now 5th and 6th) rows
                 self._merge_lines(4)
             elif self.file_id == '029889':
                 self._merge_lines(2, 5)
+            elif self.file_id in ['029498', '031428']:
+                self._merge_lines(2, 4)
         elif self.file_id in ['029976', '023067']:
             self._merge_lines(3)  # Merge 4th and 5th rows
         elif self.file_id in '026609 029402 032405'.split():
             self._merge_lines(4)  # Merge 5th and 6th rows
+        elif self.file_id in ['019407', '031980']:
+            self._merge_lines(2, 4)
+        elif self.file_id in ['029154', '029163']:
+            self._merge_lines(2, 5)
         elif self.file_id == '033228':
             self._merge_lines(3, 5)
+        elif self.file_id == '028931':
+            self._merge_lines(3, 6)
         elif self.file_id in ['033568']:
             for _i in range(5):
                 self._merge_lines(5)
         elif self.file_id in ['025329']:
             for _i in range(9):
                 self._merge_lines(2)
+        elif self.file_id == '033486':
+            self._merge_lines(7, 9)
+        elif self.file_id == '030299':
+            self._merge_lines(7, 10)
         elif self.file_id == '029977':
             self._set_computed_fields(text=self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM'))
 
