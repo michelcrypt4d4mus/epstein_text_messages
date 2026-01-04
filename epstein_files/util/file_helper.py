@@ -46,7 +46,6 @@ def coerce_file_stem(filename_or_id: int | str) -> str:
     """Generate a valid file_stem no matter what form the argument comes in."""
     if isinstance(filename_or_id, str) and filename_or_id.startswith(HOUSE_OVERSIGHT_PREFIX):
         file_id = extract_file_id(filename_or_id)
-        print(f"file_id: {file_id}")
 
         # TODO: this is a hack for local extract files that sucks
         if len(file_id) == 8:
