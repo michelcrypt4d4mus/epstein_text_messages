@@ -661,7 +661,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='030369', recipients=[MELANIE_SPINELLA], attribution_reason='Actually a self fwd from jeffrey to jeffrey'),
     EmailCfg(id='030371', recipients=[MELANIE_SPINELLA], attribution_reason='Actually a self fwd from jeffrey to jeffrey'),
     EmailCfg(id='022258', recipients=[NADIA_MARCINKO], attribution_reason='Reply header'),
-    EmailCfg(id='033097', recipients=[PAUL_BARRETT, RICHARD_KAHN]),  # Bad OCR
     EmailCfg(id='030506', recipients=[PAULA], attribution_reason=PAULA_REASON, is_attribution_uncertain=True),
     EmailCfg(id='030507', recipients=[PAULA], attribution_reason=PAULA_REASON, is_attribution_uncertain=True),
     EmailCfg(id='030508', recipients=[PAULA], attribution_reason=PAULA_REASON, is_attribution_uncertain=True),
@@ -690,6 +689,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='031768', is_fwded_article=True),  # Sultan bin Sulayem 'Horseface'
     EmailCfg(id='031569', is_fwded_article=True),  # Article by Kathryn Alexeeff fwded to Peter Thiel
     EmailCfg(id='029689', is_fwded_article=True),  # Tunisia article to Larry Summers
+    EmailCfg(id='014525', is_fwded_article=True),  # Really more of a mailing list from Paul Morris?
     EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
 
