@@ -235,13 +235,14 @@ class OtherFile(Document):
         table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
 
         for doc in docs:
-            link_and_info = [doc.raw_document_link_txt(), *doc.hints()]
+            link_and_info = [doc.raw_document_link_txt()]
             date_str = doc.date_str()
 
             if doc.is_duplicate:
                 preview_text = doc.duplicate_file_txt()
                 row_style = ' dim'
             else:
+                link_and_info += doc.hints()
                 preview_text = doc.highlighted_preview_text()
                 row_style = ''
 

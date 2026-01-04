@@ -1473,12 +1473,12 @@ OTHER_FILES_CATEGORIES = [
     'LEGAL',
     'LETTERS',
     'MISC',
+    POLITICS,
     'PROPERTY',
     REPUTATION,
+    'RESUMES',
     'SOCIAL',
     SPEECH,
-    'POLITICS',
-    'RESUMES',
 ]
 
 OTHER_FILES_CONFIG = []
@@ -1488,7 +1488,7 @@ for category in OTHER_FILES_CATEGORIES:
     configs = locals()[f"OTHER_FILES_{category.upper()}"]
     OTHER_FILES_CONFIG.extend(configs)
     category = category.lower()
-    category = category.removesuffix('s') if category != ARTS else category
+    category = category if category in [ARTS, POLITICS] else category.removesuffix('s')
 
     # Inject category field
     for cfg in configs:
