@@ -66,7 +66,7 @@ if any_uncommitted_changes; then
     exit 1
 fi
 
-./scripts/make_clean.py
+./generate_html.py --make-clean
 
 
 # Text messages

@@ -20,7 +20,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import EMAIL_CLASS, MESSENGER_LOG_CLASS
 from epstein_files.util.data import Timer, dict_sets_to_lists
 from epstein_files.util.env import args, specified_names
-from epstein_files.util.file_helper import GH_PAGES_HTML_PATH, JSON_METADATA_PATH
+from epstein_files.util.file_helper import GH_PAGES_HTML_PATH, JSON_METADATA_PATH, make_clean
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
 
@@ -71,6 +71,10 @@ if len(set(DEFAULT_EMAILERS).intersection(set(DEFAULT_EMAILER_TABLES))) > 0:
 
 
 def generate_html() -> None:
+    if args.make_clean:
+        make_clean()
+        exit()
+
     timer = Timer()
     epstein_files = EpsteinFiles.get_files(timer)
 
@@ -81,8 +85,7 @@ def generate_html() -> None:
         if args.build:
             with open(JSON_METADATA_PATH, 'w') as f:
                 f.write(json_str)
-
-            timer.print_at_checkpoint(f"Wrote JSON metadata to '{JSON_METADATA_PATH}' ({file_size_str(JSON_METADATA_PATH)})")
+                timer.print_at_checkpoint(f"Wrote JSON metadata to '{JSON_METADATA_PATH}' ({file_size_str(JSON_METADATA_PATH)})")
         else:
             console.print_json(json_str)
 
