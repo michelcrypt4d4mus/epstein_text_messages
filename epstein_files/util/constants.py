@@ -437,7 +437,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='022949', author=JEFFREY_EPSTEIN),
     EmailCfg(id='031624', author=JEFFREY_EPSTEIN),
     EmailCfg(id='031996', author=JEFFREY_EPSTEIN, recipients=[CHRISTINA_GALBRAITH], attribution_reason='bounced', duplicate_ids=['031442']),
-    EmailCfg(id='025041', author=JEFFREY_EPSTEIN, recipients=[LARRY_SUMMERS], duplicate_ids=['028675']),  # Bad OCR
     EmailCfg(
         id='029692',  # TODO: this file's header is jankily prettified
         author=JEFFREY_EPSTEIN,
@@ -707,6 +706,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='030624', duplicate_ids=['023018'], dupe_type='redacted'),
     EmailCfg(id='030335', duplicate_ids=['030596'], dupe_type='redacted'),
     EmailCfg(id='029841', duplicate_ids=['012711'], dupe_type='redacted'),
+    EmailCfg(id='025041', duplicate_ids=['028675']),
     EmailCfg(id='028497', duplicate_ids=['026228']),
     EmailCfg(id='033528', duplicate_ids=['033517']),
     EmailCfg(id='032023', duplicate_ids=['032012']),
