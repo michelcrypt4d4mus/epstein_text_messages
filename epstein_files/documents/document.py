@@ -357,6 +357,11 @@ class Document:
             f.unlink()
 
     @staticmethod
+    def known_author_count(docs: Sequence['Document']) -> int:
+        """Count of how many Document objects have an author attribution."""
+        return len([doc for doc in docs if doc.author])
+
+    @staticmethod
     def sort_by_timestamp(docs: Sequence['DocumentType']) -> list['DocumentType']:
         return sorted(docs, key=lambda doc: doc.sort_key())
 
