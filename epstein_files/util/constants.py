@@ -422,8 +422,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='026287', author=DAVID_SCHOEN, attribution_reason='Signature'),
     EmailCfg(id='033419', author=DAVID_SCHOEN, attribution_reason='Signature'),
     EmailCfg(id='031460', author=EDWARD_JAY_EPSTEIN, attribution_reason=f"quoted reply has edwardjayepstein.com"),
-    EmailCfg(id='030414', author=FAITH_KATES, duplicate_ids=['030578'], dupe_type='redacted'),
-    EmailCfg(id='031135', author=FAITH_KATES, duplicate_ids=['030634'], dupe_type='redacted'),
     EmailCfg(id='026547', author=GERALD_BARTON, recipients=[JEFFREY_EPSTEIN]),  # Bad OCR
     EmailCfg(id='029969', author=GWENDOLYN_BECK, attribution_reason='Signature'),
     EmailCfg(id='029968', author=GWENDOLYN_BECK, attribution_reason='Signature', duplicate_ids=['031120']),
@@ -437,9 +435,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='022949', author=JEFFREY_EPSTEIN),  # Bad OCR (nofix)
     EmailCfg(id='031624', author=JEFFREY_EPSTEIN),  # Bad OCR (nofix)
     EmailCfg(id='031996', author=JEFFREY_EPSTEIN, recipients=[CHRISTINA_GALBRAITH], attribution_reason='bounced', duplicate_ids=['031442']),
-    EmailCfg(id='018726', author=JEFFREY_EPSTEIN, timestamp=parse('2018-06-08 08:36:00')),
-    EmailCfg(id='032283', author=JEFFREY_EPSTEIN, timestamp=parse('2016-09-14 08:04:00')),
-    EmailCfg(id='026943', author=JEFFREY_EPSTEIN, timestamp=parse('2019-05-22 05:47:00')),
+    EmailCfg(id='018726', author=JEFFREY_EPSTEIN, timestamp=parse('2018-06-08 08:36:00')),  # nofix
+    EmailCfg(id='032283', author=JEFFREY_EPSTEIN, timestamp=parse('2016-09-14 08:04:00')),  # nofix
+    EmailCfg(id='026943', author=JEFFREY_EPSTEIN, timestamp=parse('2019-05-22 05:47:00')),  # nofix
     EmailCfg(id='023208', author=JEFFREY_EPSTEIN, recipients=[BRAD_WECHSLER, MELANIE_SPINELLA], duplicate_ids=['023291']),
     EmailCfg(
         id='032214',
@@ -463,8 +461,8 @@ EMAILS_CONFIG = [
         timestamp=parse('2014-04-27 06:30:00'),
         attribution_reason='Conversation with Joi Ito',
     ),
-    EmailCfg(id='028507', author=JONATHAN_FARKAS),
-    EmailCfg(id='033282', author=JONATHAN_FARKAS, duplicate_ids=['033484']),
+    EmailCfg(id='028507', author=JONATHAN_FARKAS, attribution_reason='reply signed "best Jonathan"'),
+    EmailCfg(id='033282', author=JONATHAN_FARKAS, attribution_reason='reply signed "thanks Jonathan"', duplicate_ids=['033484']),
     EmailCfg(id='033582', author=JONATHAN_FARKAS, attribution_reason='Reply', duplicate_ids=['032389']),
     EmailCfg(id='033203', author=JONATHAN_FARKAS, attribution_reason='Reply', duplicate_ids=['033581']),
     EmailCfg(id='032052', author=JONATHAN_FARKAS, attribution_reason='Reply', duplicate_ids=['031732']),
@@ -473,7 +471,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='032386', author=KATHRYN_RUEMMLER, attribution_reason=KATHY_REASON, is_attribution_uncertain=True),
     EmailCfg(id='032727', author=KATHRYN_RUEMMLER, attribution_reason=KATHY_REASON, is_attribution_uncertain=True),
     EmailCfg(id='030478', author=LANDON_THOMAS),
-    EmailCfg(id='029013', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),
+    EmailCfg(id='029013', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),    # Bad OCR (nofix)
     EmailCfg(id='032206', author=LAWRENCE_KRAUSS),                                # More of a text convo?
     EmailCfg(id='032208', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
     EmailCfg(id='032209', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
@@ -564,7 +562,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='029985', author=TERRY_KAFKA, attribution_reason='Quoted reply in 029992'),
     EmailCfg(id='020666', author=TERRY_KAFKA, attribution_reason="Ends with 'Terry'"),
     EmailCfg(id='026014', author=ZUBAIR_KHAN, recipients=[JEFFREY_EPSTEIN], timestamp=parse('2016-11-04 17:46:00')),
-    EmailCfg(id='029835', duplicate_ids=['028968']),
     EmailCfg(id='027063', recipients=[ANTHONY_BARRETT]),
     EmailCfg(id='030764', recipients=[ARIANE_DE_ROTHSCHILD], attribution_reason='Reply'),
     EmailCfg(id='026431', recipients=[ARIANE_DE_ROTHSCHILD], attribution_reason='Reply'),
@@ -598,9 +595,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='033460', recipients=["Joel"], attribution_reason='Reply'),
     EmailCfg(
         id='021090',
-        is_fwded_article=True,
         recipients=[JONATHAN_FARKAS],
         attribution_reason='Reply to a message signed "jonathan" same as other Farkas emails',
+        is_fwded_article=True,
     ),
     EmailCfg(
         id='033073',
@@ -671,6 +668,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='030624', duplicate_ids=['023018'], dupe_type='redacted'),
     EmailCfg(id='030335', duplicate_ids=['030596'], dupe_type='redacted'),
     EmailCfg(id='029841', duplicate_ids=['012711'], dupe_type='redacted'),
+    EmailCfg(id='030414', duplicate_ids=['030578'], dupe_type='redacted'),
+    EmailCfg(id='031135', duplicate_ids=['030634'], dupe_type='redacted'),
+    EmailCfg(id='029835', duplicate_ids=['028968']),
     EmailCfg(id='033512', duplicate_ids=['033361']),
     EmailCfg(id='030299', duplicate_ids=['021794']),
     EmailCfg(id='033575', duplicate_ids=['012898']),
