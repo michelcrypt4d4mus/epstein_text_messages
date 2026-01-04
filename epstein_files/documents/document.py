@@ -19,6 +19,7 @@ from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, 
 from epstein_files.util.doc_cfg import EmailCfg, DocCfg, TextCfg
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, file_stem_for_id, extract_file_id, file_size, file_size_str, is_local_extract_file
+from epstein_files.util.logging import DOC_TYPE_STYLES
 from epstein_files.util.rich import SYMBOL_STYLE, console, highlighter, key_value_txt, logger, link_text_obj
 
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
