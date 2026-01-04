@@ -44,8 +44,8 @@ URL_SIGNIFIERS = ['gclid', 'htm', 'ref=', 'utm']
 QUESTION_MARKS = '(???)'
 
 # Regexes
-FILE_STEM_REGEX = re.compile(fr"{HOUSE_OVERSIGHT_PREFIX}(\d{{6}})")
-FILE_NAME_REGEX = re.compile(fr"{FILE_STEM_REGEX.pattern}(_\d{{1,2}})?(\.txt(\.json)?)?")
+FILE_STEM_REGEX = re.compile(fr"{HOUSE_OVERSIGHT_PREFIX}(\d{{6}}(_\d{{1,2}})?)")
+FILE_NAME_REGEX = re.compile(fr"{FILE_STEM_REGEX.pattern}(\.txt(\.json)?)?")
 QUESTION_MARKS_REGEX = re.compile(fr' {re.escape(QUESTION_MARKS)}$')
 
 

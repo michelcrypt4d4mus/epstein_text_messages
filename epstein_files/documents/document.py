@@ -30,7 +30,6 @@ MIN_DOCUMENT_ID = 10477
 INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
 MAX_TOP_LINES_LEN = 4000  # Only for logging
-METADATA_FIELDS = ['author', 'filename', 'num_lines', 'timestamp']
 
 CLOSE_PROPERTIES_CHAR = ']'
 MIN_TIMESTAMP = datetime(1991, 1, 1)
@@ -41,6 +40,14 @@ FILENAME_MATCH_STYLES = [
     'dark_green',
     'green',
     'spring_green4',
+]
+
+METADATA_FIELDS = [
+    'author',
+    'file_id',
+    'filename',
+    'num_lines',
+    'timestamp'
 ]
 
 OCR_REPAIRS = {
@@ -183,6 +190,14 @@ class Document:
         metadata.update({k: v for k, v in asdict(self).items() if k in METADATA_FIELDS and v is not None})
         metadata['bytes'] = self.file_size()
         metadata['type'] = self.class_name()
+
+        if self.is_local_extract_file():
+            metadata['extracted_file'] = {
+                'explanation': 'This file was extracted from a court filing, not distributed directly. A copy can be found on github.',
+                'extracted_from_file': self.url_slug + '.txt',
+                'extracted_file_url': extracted_file_url(self.filename),
+            }
+
         return metadata
 
     def raw_text(self) -> str:

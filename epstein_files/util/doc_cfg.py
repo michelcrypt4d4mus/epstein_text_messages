@@ -11,7 +11,7 @@ from epstein_files.util.constant.strings import AUTHOR, EMAIL, TEXT_MESSAGE
 from epstein_files.util.data import without_nones
 
 DuplicateType = Literal['earlier', 'quoted', 'redacted', 'same']
-Metadata = dict[str, bool | datetime | int | str | list[str | None]]
+Metadata = dict[str, bool | datetime | int | str | list[str | None] |dict[str, bool | str]]
 
 # categories
 ACADEMIA = 'academia'
@@ -64,6 +64,7 @@ INVALID_FOR_METADATA = [
     'date',
     'id',
     'timestamp',
+    'was_generated',
 ]
 
 
@@ -113,6 +114,7 @@ class DocCfg:
             dupe_cfg = deepcopy(self)
             dupe_cfg.id = id
             dupe_cfg.dupe_of_id = self.id
+            dupe_cfg.duplicate_ids = []
             dupe_cfg.dupe_type = self.dupe_type
             dupe_cfg.was_generated = True
             yield dupe_cfg

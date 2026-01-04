@@ -20,8 +20,25 @@ EPSTEIN_WEB = 'EpsteinWeb'
 EPSTEINIFY = 'epsteinify'
 JMAIL = 'Jmail'
 
-# URLs
-ATTRIBUTIONS_URL = 'https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/epstein_files/util/constants.py'
+# Cryptadamus URLs
+GH_PAGES_BASE_URL = 'https://michelcrypt4d4mus.github.io'
+TEXT_MSGS_BASE_URL = f"{GH_PAGES_BASE_URL}/epstein_text_messages"
+WORD_COUNT_URL = f'{TEXT_MSGS_BASE_URL}/epstein_emails_word_count.html'
+
+SITE_URLS: dict[SiteType, str] = {
+    EMAIL: f'{GH_PAGES_BASE_URL}/epstein_emails_house_oversight/',  # TODO should just be same repo
+    TEXT_MESSAGE: TEXT_MSGS_BASE_URL,
+}
+
+GH_PROJECT_URL = 'https://github.com/michelcrypt4d4mus/epstein_text_messages'
+GH_MASTER_URL = f"{GH_PROJECT_URL}/blob/master"
+ATTRIBUTIONS_URL = f'{GH_MASTER_URL}/epstein_files/util/constants.py'
+EXTRACTS_BASE_URL = f'{GH_MASTER_URL}/emails_extracted_from_legal_filings'
+
+extracted_file_url = lambda f: f"{EXTRACTS_BASE_URL}/{f}"
+
+
+# External URLs
 COFFEEZILLA_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=061ce61c9e70bdfd'
 COURIER_NEWSROOM_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
 EPSTEINIFY_URL = 'https://epsteinify.com'
@@ -31,12 +48,6 @@ JMAIL_URL = 'https://jmail.world'
 OVERSIGHT_REPUBLICANS_PRESSER_URL = 'https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/'
 RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_'
 SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great'
-WORD_COUNT_URL = 'https://michelcrypt4d4mus.github.io/epstein_text_messages/epstein_emails_word_count.html'
-
-SITE_URLS: dict[SiteType, str] = {
-    EMAIL: 'https://michelcrypt4d4mus.github.io/epstein_emails_house_oversight/',
-    TEXT_MESSAGE: 'https://michelcrypt4d4mus.github.io/epstein_text_messages/',
-}
 
 DOC_LINK_BASE_URLS: dict[ExternalSite, str] = {
     EPSTEIN_MEDIA: f"{EPSTEIN_MEDIA_URL}/files",
