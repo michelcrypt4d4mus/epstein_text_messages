@@ -11,11 +11,12 @@ HTML_SCRIPTS = ['epstein_generate', 'generate_html.py', 'count_words.py']
 
 
 parser = ArgumentParser(description="Parse epstein OCR docs and generate HTML page.")
-parser.add_argument('--build', '-b', action='store_true', help='write HTML to docs/index.html')
+parser.add_argument('--build', '-b', action='store_true', help='write output to file')
 parser.add_argument('--all-emails', '-ae', action='store_true', help='all the emails instead of just the interesting ones')
 parser.add_argument('--all-other-files', '-ao', action='store_true', help='all the non-email, non-text msg files instead of just interesting ones')
 parser.add_argument('--colors-only', '-c', action='store_true', help='print header with color key table and links and exit')
 parser.add_argument('--name', '-n', action='append', dest='names', help='specify the name(s) whose communications should be output')
+parser.add_argument('--output-file', '-out', metavar='FILE', default='index.html', help='write output to FILE in docs/ (default=index.html)')
 parser.add_argument('--output-emails', '-oe', action='store_true', help='generate other files section')
 parser.add_argument('--output-other-files', '-oo', action='store_true', help='generate other files section')
 parser.add_argument('--output-texts', '-ot', action='store_true', help='generate other files section')

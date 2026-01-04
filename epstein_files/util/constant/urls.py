@@ -5,8 +5,9 @@ from typing import Literal
 from inflection import parameterize
 from rich.text import Text
 
+from epstein_files.util.constant.output_files import *
 from epstein_files.util.constant.strings import EMAIL, TEXT_MESSAGE, SiteType
-from epstein_files.util.file_helper import JSON_METADATA_PATH, WORD_COUNT_HTML_PATH, coerce_file_stem
+from epstein_files.util.file_helper import coerce_file_stem
 
 # Style stuff
 ARCHIVE_LINK_COLOR = 'slate_blue3'
@@ -21,15 +22,17 @@ EPSTEINIFY = 'epsteinify'
 JMAIL = 'Jmail'
 
 
-# Cryptadamus URLs
+# Deployment URLS
+# NOTE: don't rename these variables without changing deploy.sh!
 GH_PAGES_BASE_URL = 'https://michelcrypt4d4mus.github.io'
-TEXT_MSGS_BASE_URL = f"{GH_PAGES_BASE_URL}/epstein_text_messages"
-JSON_METADATA_URL = f'{TEXT_MSGS_BASE_URL}/{JSON_METADATA_PATH.name}'
-WORD_COUNT_URL = f'{TEXT_MSGS_BASE_URL}/{WORD_COUNT_HTML_PATH.name}'
+TEXT_MSGS_URL = f"{GH_PAGES_BASE_URL}/epstein_text_messages"
+ALL_EMAILS_URL = f'{TEXT_MSGS_URL}/{ALL_EMAILS_PATH.name}'
+JSON_METADATA_URL = f'{TEXT_MSGS_URL}/{JSON_METADATA_PATH.name}'
+WORD_COUNT_URL = f'{TEXT_MSGS_URL}/{WORD_COUNT_HTML_PATH.name}'
 
 SITE_URLS: dict[SiteType, str] = {
-    EMAIL: f'{GH_PAGES_BASE_URL}/epstein_emails_house_oversight/',  # TODO should just be same repo
-    TEXT_MESSAGE: TEXT_MSGS_BASE_URL,
+    EMAIL: ALL_EMAILS_URL,
+    TEXT_MESSAGE: TEXT_MSGS_URL,
 }
 
 GH_PROJECT_URL = 'https://github.com/michelcrypt4d4mus/epstein_text_messages'

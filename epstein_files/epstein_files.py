@@ -19,6 +19,7 @@ from epstein_files.documents.emails.email_header import AUTHOR
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
+from epstein_files.util.constant.output_files import PICKLED_PATH
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url,
      search_jmail_url, search_twitter_url)
@@ -26,7 +27,7 @@ from epstein_files.util.constants import *
 from epstein_files.util.data import dict_sets_to_lists, json_safe, sort_dict
 from epstein_files.util.doc_cfg import EmailCfg
 from epstein_files.util.env import args, logger
-from epstein_files.util.file_helper import DOCS_DIR, PICKLED_PATH, file_size_str
+from epstein_files.util.file_helper import DOCS_DIR, file_size_str
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_STYLE, NA_TXT, add_cols_to_table, console, highlighter,
      link_text_obj, link_markup, print_author_header, print_centered, print_other_site_link, print_panel,

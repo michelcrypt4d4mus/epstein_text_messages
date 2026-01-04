@@ -214,3 +214,4 @@ social_media_post_with_url.txt
 /scripts/epstein_files/**/*
 LICENSE
 the_epstein_files.pkl.gz
+.urls.env

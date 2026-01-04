@@ -20,10 +20,11 @@ from epstein_files.documents.document import INFO_PADDING, Document
 from epstein_files.documents.email import Email
 from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
+from epstein_files.util.constant.output_files import ALL_EMAILS_PATH, TEXT_MSGS_HTML_PATH, make_clean
 from epstein_files.util.env import args, specified_names
-from epstein_files.util.file_helper import GH_PAGES_HTML_PATH, coerce_file_path, extract_file_id, make_clean
+from epstein_files.util.file_helper import coerce_file_path, extract_file_id
 from epstein_files.util.logging import logger
-from epstein_files.util.output import print_emails, print_json_metadata, print_json_stats, print_text_messages
+from epstein_files.util.output import print_emails, print_json_metadata, print_json_stats, print_text_messages, write_urls
 from epstein_files.util.rich import build_highlighter, console, print_header, print_panel, write_html
 from epstein_files.util.timer import Timer
 
@@ -58,7 +59,7 @@ def generate_html() -> None:
         timer.print_at_checkpoint(f"Printed {len(files_printed)} other files")
 
     # Save output
-    write_html(GH_PAGES_HTML_PATH)
+    write_html(ALL_EMAILS_PATH if args.all_emails else TEXT_MSGS_HTML_PATH)
     logger.warning(f"Total time: {timer.seconds_since_start_str()}")
 
     # JSON stats (mostly used for building pytest checks)
@@ -121,6 +122,10 @@ def epstein_show():
                 console.line()
                 console.print(Panel(f"*** {doc.url_slug} actual_text ***", expand=False, style=doc._border_style()))
                 console.print(escape(doc._actual_text()))
+
+
+def epstein_dump_urls() -> None:
+    write_urls()
 
 
 def _assert_positional_args():
