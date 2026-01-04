@@ -435,13 +435,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='022949', author=JEFFREY_EPSTEIN),
     EmailCfg(id='031624', author=JEFFREY_EPSTEIN),
     EmailCfg(id='031996', author=JEFFREY_EPSTEIN, recipients=[CHRISTINA_GALBRAITH], attribution_reason='bounced', duplicate_ids=['031442']),
-    EmailCfg(
-        id='029692',  # TODO: this file's header is jankily prettified
-        author=JEFFREY_EPSTEIN,
-        is_fwded_article=True,  # Bad OCR, WaPo article
-        recipients=[LARRY_SUMMERS],
-        duplicate_ids=['029779'],
-    ),
     EmailCfg(id='018726', author=JEFFREY_EPSTEIN, timestamp=parse('2018-06-08 08:36:00')),
     EmailCfg(id='032283', author=JEFFREY_EPSTEIN, timestamp=parse('2016-09-14 08:04:00')),
     EmailCfg(id='026943', author=JEFFREY_EPSTEIN, timestamp=parse('2019-05-22 05:47:00')),
@@ -676,6 +669,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='033050', actual_text='schwartman'),
     EmailCfg(id='023627', description=MICHAEL_WOLFF_ARTICLE_HINT, is_fwded_article=True),
     EmailCfg(id='026298', is_fwded_article=True, duplicate_ids=['026499']),  # Written by someone else?
+    EmailCfg(id='029692', is_fwded_article=True, duplicate_ids=['029779']),  # WaPo article
     EmailCfg(id='026755', is_fwded_article=True),  # HuffPo
     EmailCfg(id='030528', is_fwded_article=True),  # Vicky Ward article
     EmailCfg(id='018197', is_fwded_article=True, duplicate_ids=['028648']),  # Ray Takeyh article fwd

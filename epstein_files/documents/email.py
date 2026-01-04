@@ -508,8 +508,11 @@ class Email(Communication):
 
     def _remove_line(self, idx: int) -> None:
         """Remove a line from self.lines."""
+        logger.warning(f"Removing line idx {idx} from {self.file_id}...")
+        self.log_top_lines(5, msg='before removal', level=logging.WARNING)
         del self.lines[idx]
         self._set_computed_fields(lines=self.lines)
+        self.log_top_lines(5, msg='after removal', level=logging.WARNING)
 
     def _repair(self) -> None:
         """Repair particularly janky files."""
@@ -549,6 +552,8 @@ class Email(Communication):
         elif self.file_id == '025041':
             self._remove_line(4)
             self._remove_line(4)
+        elif self.file_id == '029692':
+            self._remove_line(3)
 
         if old_text != self.text:
             self.log(f"Modified text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n', logging.INFO)
