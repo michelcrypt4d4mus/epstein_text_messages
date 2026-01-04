@@ -88,7 +88,7 @@ def generate_html() -> None:
                 f.write(json_str)
                 timer.print_at_checkpoint(f"Wrote {file_size_str(JSON_METADATA_PATH)} to '{JSON_METADATA_PATH}'")
         else:
-            console.print_json(json_str)
+            console.print_json(json_str, indent=4, sort_keys=True)
 
         exit()
 
