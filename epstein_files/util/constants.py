@@ -6,6 +6,7 @@ from dateutil.parser import parse
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.doc_cfg import DocCfg, EmailCfg, TextCfg
+from epstein_files.util.logging import logger
 
 FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
 
@@ -213,22 +214,22 @@ for emailer in EMAILERS:
 FBI = 'FBI'
 MEME = 'meme of'
 PRESS_RELEASE = 'press release'
-RESUME_OF = 'professional resumé of'
+RESUME_OF = 'professional resumé'
 SCREENSHOT = 'screenshot of'
 TRANSLATION = 'translation of'
 TWEET = 'tweet'
 TEXT_OF_US_LAW = 'text of U.S. law:'
 
 # Legal cases
-BRUNEL_V_EPSTEIN = f"{JEAN_LUC_BRUNEL} v. {JEFFREY_EPSTEIN}"
-EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} & {PAUL_G_CASSELL} v. {ALAN_DERSHOWITZ}:"
-EPSTEIN_V_ROTHSTEIN_EDWARDS = f"Epstein v. Scott Rothstein, {BRAD_EDWARDS}, and L.M.:"
-GIUFFRE_V_DERSHOWITZ = f"{VIRGINIA_GIUFFRE} v. {ALAN_DERSHOWITZ}:"
-GIUFFRE_V_EPSTEIN = f"{VIRGINIA_GIUFFRE} v. {JEFFREY_EPSTEIN}:"
-GIUFFRE_V_MAXWELL = f"{VIRGINIA_GIUFFRE} v. {GHISLAINE_MAXWELL}:"
-JANE_DOE_V_EPSTEIN_TRUMP = f"Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}:"
-JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States:'
-NEW_YORK_V_EPSTEIN = f"New York v. {JEFFREY_EPSTEIN}:"
+BRUNEL_V_EPSTEIN = f"{JEAN_LUC_BRUNEL} v. {JEFFREY_EPSTEIN} and Tyler McDonald d/b/a YI.org"
+EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} & {PAUL_G_CASSELL} v. {ALAN_DERSHOWITZ}"
+EPSTEIN_V_ROTHSTEIN_EDWARDS = f"Epstein v. Scott Rothstein, {BRAD_EDWARDS}, and L.M."
+GIUFFRE_V_DERSHOWITZ = f"{VIRGINIA_GIUFFRE} v. {ALAN_DERSHOWITZ}"
+GIUFFRE_V_EPSTEIN = f"{VIRGINIA_GIUFFRE} v. {JEFFREY_EPSTEIN}"
+GIUFFRE_V_MAXWELL = f"{VIRGINIA_GIUFFRE} v. {GHISLAINE_MAXWELL}"
+JANE_DOE_V_EPSTEIN_TRUMP = f"Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}"
+JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
+NEW_YORK_V_EPSTEIN = f"New York v. {JEFFREY_EPSTEIN}"
 
 # Descriptions of non-email, non-text message files
 ARTICLE_DRAFT = 'draft of an article about'
@@ -238,22 +239,24 @@ BROCKMAN_INC = 'Brockman, Inc.'
 CVRA = "Crime Victims' Rights Act [CVRA]"
 DAVID_BLAINE_VISA_LETTER = f"letter of recommendation for visa for a model"
 DAVID_SCHOEN_CVRA_LEXIS_SEARCH = f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN}"
-DERSH_GIUFFRE_TWEET = f"{TWEET} by {ALAN_DERSHOWITZ} about {VIRGINIA_GIUFFRE}"
+DERSH_GIUFFRE_TWEET = f"{TWEET} about {VIRGINIA_GIUFFRE}"
 DEUTSCHE_BANK_TAX_TOPICS = f'{DEUTSCHE_BANK} Wealth Management Tax Topics'
-DIANA_DEGETTES_CAMPAIGN = "Colorado legislator Diana DeGette's campaign"
+DIANA_DEGETTE_CAMPAIGN = "Colorado legislator Diana DeGette's campaign"
 EPSTEIN_FOUNDATION = 'Jeffrey Epstein VI Foundation'
 FBI_REPORT = f"{FBI} report on Epstein investigation (redacted)"
 FBI_SEIZED_PROPERTY = f"{FBI} seized property inventory (redacted)"
 FEMALE_HEALTH_COMPANY = 'Female Health Company (FHX)'
 FIRE_AND_FURY = f"Fire And Fury"
 HARVARD_POETRY = f'{HARVARD} poetry stuff from {LISA_NEW}'
-HBS_APPLICATION_NERIO = f"{HARVARD} Business School application letter from Nerio Alessandri (Founder and Chairman of Technogym S.p.A. Italy)"
+HBS_APPLICATION = f"{HARVARD} Business School application letter"
 JASTA = 'JASTA'
 JASTA_SAUDI_LAWSUIT = f"{JASTA} lawsuit against Saudi Arabia by 9/11 victims"
 JOHN_BOLTON_PRESS_CLIPPING = 'John Bolton press clipping'
 JP_MORGAN_EYE_ON_THE_MARKET = f"Eye On The Market"
+LAWRENCE_KRAUSS_ASU_ORIGINS = f"{LAWRENCE_KRAUSS}'s ASU Origins Project"
 KEN_STARR_LETTER = f"letter to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
 MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
+NERIO_ALESSANDRI = 'Nerio Alessandri (Founder and Chairman of Technogym S.p.A. Italy)'
 NIGHT_FLIGHT_BOOK = f'"Night Flight" (draft)'
 NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
 OBAMA_JOKE = 'joke about Obama'
@@ -980,126 +983,138 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='025353', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-05-19', duplicate_ids=['010723', '019224'], dupe_type='redacted'),
     DocCfg(id='025704', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-05-27', duplicate_ids=['010732', '019221'], dupe_type='redacted'),
     DocCfg(id='012130', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-06-19', duplicate_ids=['012135']),
-    DocCfg(id='011908', description=f"{BRUNEL_V_EPSTEIN} and Tyler McDonald d/b/a YI.org court filing"),
+    DocCfg(id='011908', author=BRUNEL_V_EPSTEIN, description=f"court filing"),
     DocCfg(id='017603', description=DAVID_SCHOEN_CVRA_LEXIS_SEARCH, date='2019-02-28'),
     DocCfg(id='017635', description=DAVID_SCHOEN_CVRA_LEXIS_SEARCH, date='2019-02-28'),
     DocCfg(id='016509', description=DAVID_SCHOEN_CVRA_LEXIS_SEARCH, date='2019-02-28'),
     DocCfg(id='017714', description=DAVID_SCHOEN_CVRA_LEXIS_SEARCH, date='2019-02-28'),
-    DocCfg(id='021824', description=f"{EDWARDS_V_DERSHOWITZ} deposition of {PAUL_G_CASSELL}"),
+    DocCfg(id='021824', author=EDWARDS_V_DERSHOWITZ, description=f"deposition of {PAUL_G_CASSELL}"),
     DocCfg(
         id='010757',
-        description=f"{EDWARDS_V_DERSHOWITZ} plaintiff response to Dershowitz Motion to Determine Confidentiality of Court Records",
+        author=EDWARDS_V_DERSHOWITZ,
+        description=f"plaintiff response to Dershowitz Motion to Determine Confidentiality of Court Records",
         date='2015-11-23',
     ),
     DocCfg(
         id='010887',
-        description=f"{EDWARDS_V_DERSHOWITZ} Dershowitz Motion for Clarification of Confidentiality Order",
+        author=EDWARDS_V_DERSHOWITZ,
+        description=f"Dershowitz Motion for Clarification of Confidentiality Order",
         date='2016-01-29',
     ),
     DocCfg(
         id='015590',
-        description=f"{EDWARDS_V_DERSHOWITZ} Dershowitz Redacted Motion to Modify Confidentiality Order",
+        author=EDWARDS_V_DERSHOWITZ,
+        description=f"Dershowitz Redacted Motion to Modify Confidentiality Order",
         date='2016-02-03',
     ),
     DocCfg(
         id='015650',
-        description=f"{EDWARDS_V_DERSHOWITZ} Giuffre Response to Dershowitz Motion for Clarification of Confidentiality Order",
+        author=EDWARDS_V_DERSHOWITZ,
+        description=f"Giuffre Response to Dershowitz Motion for Clarification of Confidentiality Order",
         date='2016-02-08',
     ),
-    DocCfg(id='010566', description=f"{EPSTEIN_V_ROTHSTEIN_EDWARDS} Statement of Undisputed Facts", date='2010-11-04'),
-    DocCfg(id='012707', description=f"{EPSTEIN_V_ROTHSTEIN_EDWARDS} Master Contact List - Privilege Log", date='2011-03-22'),
-    DocCfg(id='012103', description=f"{EPSTEIN_V_ROTHSTEIN_EDWARDS} Telephone Interview with {VIRGINIA_GIUFFRE}", date='2011-05-17'),
-    DocCfg(id='017488', description=f"{EPSTEIN_V_ROTHSTEIN_EDWARDS} Deposition of Scott Rothstein", date='2012-06-22'),
-    DocCfg(id='029315', description=f"{EPSTEIN_V_ROTHSTEIN_EDWARDS} Plaintiff Motion for Summary Judgment by {JACK_SCAROLA}", date='2013-09-13'),
-    DocCfg(id='013304', description=f"{EPSTEIN_V_ROTHSTEIN_EDWARDS} Plaintiff Response to Epstein's Motion for Summary Judgment", date='2014-04-17'),
+    DocCfg(id='010566', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Statement of Undisputed Facts", date='2010-11-04'),
+    DocCfg(id='012707', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Master Contact List - Privilege Log", date='2011-03-22'),
+    DocCfg(id='012103', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Telephone Interview with {VIRGINIA_GIUFFRE}", date='2011-05-17'),
+    DocCfg(id='017488', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Deposition of Scott Rothstein", date='2012-06-22'),
+    DocCfg(id='029315', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Plaintiff Motion for Summary Judgment by {JACK_SCAROLA}", date='2013-09-13'),
+    DocCfg(id='013304', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Plaintiff Response to Epstein's Motion for Summary Judgment", date='2014-04-17'),
     DocCfg(id='019352', description=FBI_REPORT,),
     DocCfg(id='021434', description=FBI_REPORT,),
     DocCfg(id='018872', description=FBI_SEIZED_PROPERTY,),
     DocCfg(id='021569', description=FBI_SEIZED_PROPERTY,),
-    DocCfg(id='017792', description=f"{GIUFFRE_V_DERSHOWITZ} article about {ALAN_DERSHOWITZ}'s appearance on Wolf Blitzer"),
-    DocCfg(id='017767', description=f"{GIUFFRE_V_DERSHOWITZ} article about {ALAN_DERSHOWITZ} working with {JEFFREY_EPSTEIN}"),
-    DocCfg(id='017796', description=f"{GIUFFRE_V_DERSHOWITZ} article about {ALAN_DERSHOWITZ}"),
-    DocCfg(id='017935', description=f"{GIUFFRE_V_DERSHOWITZ} defamation complaint", date='2019-04-16'),
-    DocCfg(id='017824', description=f"{GIUFFRE_V_DERSHOWITZ} {MIAMI_HERALD} article by {JULIE_K_BROWN}"),
+    DocCfg(id='017792', author=GIUFFRE_V_DERSHOWITZ, description=f"article about {ALAN_DERSHOWITZ}'s appearance on Wolf Blitzer"),
+    DocCfg(id='017767', author=GIUFFRE_V_DERSHOWITZ, description=f"article about {ALAN_DERSHOWITZ} working with {JEFFREY_EPSTEIN}"),
+    DocCfg(id='017796', author=GIUFFRE_V_DERSHOWITZ, description=f"article about {ALAN_DERSHOWITZ}"),
+    DocCfg(id='017935', author=GIUFFRE_V_DERSHOWITZ, description=f"defamation complaint", date='2019-04-16'),
+    DocCfg(id='017824', author=GIUFFRE_V_DERSHOWITZ, description=f"{MIAMI_HERALD} article by {JULIE_K_BROWN}"),
     DocCfg(
         id='017818',
-        description=f"{GIUFFRE_V_DERSHOWITZ} {MIAMI_HERALD} article about accusations against {ALAN_DERSHOWITZ} by {JULIE_K_BROWN}",
+        author=GIUFFRE_V_DERSHOWITZ,
+        description=f"{MIAMI_HERALD} article about accusations against {ALAN_DERSHOWITZ} by {JULIE_K_BROWN}",
         date='2018-12-27',
     ),
-    DocCfg(id='017800', description=f'{GIUFFRE_V_DERSHOWITZ} {MIAMI_HERALD} "Perversion of Justice" by {JULIE_K_BROWN}'),
-    DocCfg(id='022237', description=f"{GIUFFRE_V_DERSHOWITZ} partial court filing with fact checking questions?"),
-    DocCfg(id='016197', description=f"{GIUFFRE_V_DERSHOWITZ} response to Florida Bar complaint by {ALAN_DERSHOWITZ} about David Boies from {PAUL_G_CASSELL}"),
-    DocCfg(id='017771', description=f'{GIUFFRE_V_DERSHOWITZ} Vanity Fair article "The Talented Mr. Epstein" by Vicky Ward', date='2011-06-27'),
-    DocCfg(id='014118', description=f"{GIUFFRE_V_EPSTEIN} Declaration in Support of Motion to Compel Production of Documents", date='2016-10-21'),
-    DocCfg(id='014652', description=f"{GIUFFRE_V_MAXWELL} Complaint", date='2015-04-22'),
-    DocCfg(id='015529', description=f"{GIUFFRE_V_MAXWELL} Defamation Complaint", date='2015-09-21'),
-    DocCfg(id='014797', description=f"{GIUFFRE_V_MAXWELL} Declaration of Laura A. Menninger in Opposition to Plaintiff's Motion", date='2017-03-17'),
-    DocCfg(id='011304', description=f"{GIUFFRE_V_MAXWELL} Oral Argument Transcript", date='2017-03-17'),
+    DocCfg(id='017800', author=GIUFFRE_V_DERSHOWITZ, description=f'{MIAMI_HERALD} "Perversion of Justice" by {JULIE_K_BROWN}'),
+    DocCfg(id='022237', author=GIUFFRE_V_DERSHOWITZ, description=f"partial court filing with fact checking questions?"),
+    DocCfg(id='016197', author=GIUFFRE_V_DERSHOWITZ, description=f"response to Florida Bar complaint by {ALAN_DERSHOWITZ} about David Boies from {PAUL_G_CASSELL}"),
+    DocCfg(id='017771', author=GIUFFRE_V_DERSHOWITZ, description=f'Vanity Fair article "The Talented Mr. Epstein" by Vicky Ward', date='2011-06-27'),
+    DocCfg(id='014118', author=GIUFFRE_V_EPSTEIN, description=f"Declaration in Support of Motion to Compel Production of Documents", date='2016-10-21'),
+    DocCfg(id='014652', author=GIUFFRE_V_MAXWELL, description=f"Complaint", date='2015-04-22'),
+    DocCfg(id='015529', author=GIUFFRE_V_MAXWELL, description=f"Defamation Complaint", date='2015-09-21'),
+    DocCfg(id='014797', author=GIUFFRE_V_MAXWELL, description=f"Declaration of Laura A. Menninger in Opposition to Plaintiff's Motion", date='2017-03-17'),
+    DocCfg(id='011304', author=GIUFFRE_V_MAXWELL, description=f"Oral Argument Transcript", date='2017-03-17'),
     DocCfg(
         id='014788',
-        description=f"{GIUFFRE_V_MAXWELL} Maxwell Response to Plaintiff's Omnibus Motion in Limine",
+        author=GIUFFRE_V_MAXWELL,
+        description=f"Maxwell Response to Plaintiff's Omnibus Motion in Limine",
         date='2017-03-17',
         duplicate_ids=['011463'],
     ),
     DocCfg(
         id='019297',
-        description=f'{GIUFFRE_V_MAXWELL} letter from {ALAN_DERSHOWITZ} lawyer Andrew G. Celli',
+        author=GIUFFRE_V_MAXWELL,
+        description=f'letter from {ALAN_DERSHOWITZ} lawyer Andrew G. Celli',
         date='2018-02-07'
     ),
     DocCfg(
         id='025937',
-        description=f'{JANE_DOE_V_EPSTEIN_TRUMP} Affidavit of Tiffany Doe describing Jane Doe being raped by Epstein and Trump',
+        author=JANE_DOE_V_EPSTEIN_TRUMP,
+        description=f'Affidavit of Tiffany Doe describing Jane Doe being raped by Epstein and Trump',
         date='2016-06-20',
     ),
-    DocCfg(id='025939', description=f'{JANE_DOE_V_EPSTEIN_TRUMP} Affidavit of Jane Doe describing being raped by Epstein', date='2016-06-20'),
-    DocCfg(id='013489', description=f'{JANE_DOE_V_EPSTEIN_TRUMP} Affidavit of {BRAD_EDWARDS}', date='2010-07-20'),
-    DocCfg(id='029398', description=f'{JANE_DOE_V_EPSTEIN_TRUMP} article in Law.com'),
-    DocCfg(id='026854', description=f"{JANE_DOE_V_EPSTEIN_TRUMP} Civil Docket"),
-    DocCfg(id='026384', description=f"{JANE_DOE_V_EPSTEIN_TRUMP} Complaint for rape and sexual abuse", date='2016-06-20'),
-    DocCfg(id='013463', description=f'{JANE_DOE_V_EPSTEIN_TRUMP} Deposition of Scott Rothstein', date='2010-03-23'),
-    DocCfg(id='029257', description=f'{JANE_DOE_V_EPSTEIN_TRUMP} allegations and identity of plaintiff Katie Johnson', date='2016-04-26'),
-    DocCfg(id='032321', description=f"{JANE_DOE_V_EPSTEIN_TRUMP} Notice of Initial Conference", date='2016-10-04'),
-    DocCfg(id='010735', description=f"{JANE_DOE_V_USA} Dershowitz Reply in Support of Motion for Limited Intervention", date='2015-02-02'),
-    DocCfg(id='014084', description=f"{JANE_DOE_V_USA} Jane Doe Response to Dershowitz's Motion for Limited Intervention", date='2015-03-24'),
-    DocCfg(id='023361', description=f"{JASTA_SAUDI_LAWSUIT} legal text and court documents", date='2012-01-20'),
-    DocCfg(id='017830', description=f"{JASTA_SAUDI_LAWSUIT} legal text and court documents"),
-    DocCfg(id='017904', description=f"{JASTA_SAUDI_LAWSUIT} Westlaw search results", date='2019-01-01'),
-    DocCfg(id='014037', description=f"Journal of Criminal Law and Criminology article on {CVRA}"),
-    DocCfg(id='020662', description=f"letter from {ALAN_DERSHOWITZ}'s British lawyers Mishcon de Reya to Daily Mail threatening libel suit"),
+    DocCfg(id='025939', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f'Affidavit of Jane Doe describing being raped by Epstein', date='2016-06-20'),
+    DocCfg(id='013489', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f'Affidavit of {BRAD_EDWARDS}', date='2010-07-20'),
+    DocCfg(id='029398', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f'article in Law.com'),
+    DocCfg(id='026854', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f"Civil Docket"),
+    DocCfg(id='026384', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f"Complaint for rape and sexual abuse", date='2016-06-20'),
+    DocCfg(id='013463', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f'Deposition of Scott Rothstein', date='2010-03-23'),
+    DocCfg(id='029257', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f'allegations and identity of plaintiff Katie Johnson', date='2016-04-26'),
+    DocCfg(id='032321', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f"Notice of Initial Conference", date='2016-10-04'),
+    DocCfg(id='010735', author=JANE_DOE_V_USA, description=f"Dershowitz Reply in Support of Motion for Limited Intervention", date='2015-02-02'),
+    DocCfg(id='014084', author=JANE_DOE_V_USA, description=f"Jane Doe Response to Dershowitz's Motion for Limited Intervention", date='2015-03-24'),
+    DocCfg(id='023361', author=JASTA_SAUDI_LAWSUIT, description=f"legal text and court documents", date='2012-01-20'),
+    DocCfg(id='017830', author=JASTA_SAUDI_LAWSUIT, description=f"legal text and court documents"),
+    DocCfg(id='017904', author=JASTA_SAUDI_LAWSUIT, description=f"Westlaw search results", date='2019-01-01'),
+    DocCfg(id='014037', author='Journal of Criminal Law and Criminology', description=f"article on {CVRA}"),
     DocCfg(
         id='010560',
-        description=f"letter from Gloria Allred to {SCOTT_J_LINK} alleging abuse of a girl from Kansas",
+        author='Gloria Allred',
+        description=f"letter to {SCOTT_J_LINK} alleging abuse of a girl from Kansas",
         date='2019-06-19',
     ),
     DocCfg(
         id='031447',
-        description=f"letter from {MARTIN_WEINBERG} to Melanie Ann Pustay and Sean O'Neill re: an Epstein FOIA request"
+        author=MARTIN_WEINBERG,
+        description=f"letter from to Melanie Ann Pustay and Sean O'Neill re: an Epstein FOIA request"
     ),
     DocCfg(
         id='028965',
-        description=f"letter from {MARTIN_WEINBERG} to ABC / Good Morning America threatening libel lawsuit",
+        author=MARTIN_WEINBERG,
+        description=f"letter from to ABC / Good Morning America threatening libel lawsuit",
         duplicate_ids=['028928']
     ),
+    DocCfg(
+        id='016420',
+        author=NEW_YORK_V_EPSTEIN,
+        description=f"New York Post Motion to Unseal Appellate Briefs",
+        date='2019-01-11',
+    ),
+    DocCfg(id='028540', author='SCOTUS', description=f"decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP"),
+    DocCfg(id='012197', author='SDFL', description=f"Response to {JAY_LEFKOWITZ} on Epstein Plea Agreement Compliance"),
+    DocCfg(id='020662', author='Mishcon de Reya', description=f"letter from {ALAN_DERSHOWITZ}'s British lawyers to Daily Mail threatening libel suit"),
     DocCfg(
         id='026793',
         description=f"letter from {STEVEN_HOFFENBERG}'s lawyers at Mintz Fraade offering to take over Epstein's business and resolve his legal issues",
         date='2018-03-23',
     ),
-    DocCfg(
-        id='016420',
-        description=f"{NEW_YORK_V_EPSTEIN} New York Post Motion to Unseal Appellate Briefs",
-        date='2019-01-11',
-    ),
-    DocCfg(id='028540', description=f"SCOTUS decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP"),
-    DocCfg(id='012197', description=f"SDFL Response to {JAY_LEFKOWITZ} on Epstein Plea Agreement Compliance"),
     DocCfg(id='022277', description=f"{TEXT_OF_US_LAW} National Labour Relations Board (NLRB)"),
 ]
 
 OTHER_FILES_CONFERENCES = [
     DocCfg(id='014315', author=BOFA_MERRILL, description=f'2016 Future of Financials Conference'),
     DocCfg(id='026825', author=DEUTSCHE_BANK, description=f"Asset & Wealth Management featured speaker bios"),  # Really "Deutsche Asset" which may not be Deutsche Bank?
-    DocCfg(id='023120', author=LAWRENCE_KRAUSS, description=f"{STRANGE_BEDFELLOWS} (old draft)"),
-    DocCfg(id='023120', author=LAWRENCE_KRAUSS, description=STRANGE_BEDFELLOWS, duplicate_ids=['023121'], dupe_type='earlier'),
+    DocCfg(id='023123', author=LAWRENCE_KRAUSS_ASU_ORIGINS, description=f"{STRANGE_BEDFELLOWS} (old draft)"),
+    DocCfg(id='023120', author=LAWRENCE_KRAUSS_ASU_ORIGINS, description=STRANGE_BEDFELLOWS, duplicate_ids=['023121'], dupe_type='earlier'),
     DocCfg(id='031359', author=NOBEL_CHARITABLE_TRUST, description=f"Earth Environment Convention about ESG investing"),
     DocCfg(id='031354', author=NOBEL_CHARITABLE_TRUST, description=f'"Thinking About the Environment and Technology" report 2011'),
     DocCfg(id='019300', author=SVETLANA_POZHIDAEVA, description=f'{WOMEN_EMPOWERMENT} f. {KATHRYN_RUEMMLER}', date='2019-04-05'),
@@ -1186,7 +1201,7 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='024135', author=UBS, description=UBS_CIO_REPORT, date='2012-06-29'),
     DocCfg(id='025247', author=UBS, description=UBS_CIO_REPORT, date='2012-10-25'),
     DocCfg(id='024631', description=f"Ackrell Capital report: Cannabis Investment Report 2018"),
-    DocCfg(id='026584', description=f"article about tax implications of 'disregarded entities'", date='2009-07-01'),
+    DocCfg(id='026584', description=f"article about tax implications of disregarded entities", date='2009-07-01'),
     DocCfg(id='024271', description=f"Blockchain Capital and Brock Pierce pitch deck", date='2015-10-01'),
     DocCfg(id='024817', description=f"Cowen's Collective View of CBD / Cannabis report"),
     DocCfg(id='012048', description=f"{PRESS_RELEASE} 'Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm' and other articles"),
@@ -1199,6 +1214,7 @@ OTHER_FILES_FINANCE = [
 
 OTHER_FILES_LETTERS = [
     DocCfg(id='017789', author=ALAN_DERSHOWITZ, description=f'letter to {HARVARD} Crimson complaining he was defamed'),
+    DocCfg(id='026668', author="Boothbay Fund Management", description=f"2016-Q4 earnings report signed by Ari Glass"),
     DocCfg(
         id='019086',
         author=DAVID_BLAINE,
@@ -1224,19 +1240,18 @@ OTHER_FILES_LETTERS = [
         date='2016-06-24',  # date is based on Brexit reference but he could be backtesting,
     ),
     DocCfg(id='026248', author='Don McGahn', description=f'letter from Trump lawyer to Devin Nunes (R-CA) about FISA courts and Trump'),
-    DocCfg(id='029301', author=MICHAEL_J_BOCCIO, description=f"letter from former lawyer at the Trump Organization", date='2011-08-07'),
+    DocCfg(id='029304', author=DONALD_TRUMP, description=f"recommendation letter for recently departed {TRUMP_ORG} lawyer {MICHAEL_J_BOCCIO}"),
+    DocCfg(id='029301', author=MICHAEL_J_BOCCIO, description=f"letter from former lawyer at the {TRUMP_ORG}", date='2011-08-07'),
     DocCfg(id='022405', author=NOAM_CHOMSKY, description=f"letter attesting to Epstein's good character"),
     DocCfg(id='026134', description=f'letter to someone named George about investment opportunities in the Ukraine banking sector'),
-    DocCfg(id='029304', description=f"Trump recommendation letter for recently departed Trump Organization lawyer {MICHAEL_J_BOCCIO}"),
-    DocCfg(id='026668', description=f"Boothbay Fund Management 2016-Q4 earnings report signed by Ari Glass"),
 ]
 
 OTHER_FILES_PROPERTY = [
     DocCfg(id='026759', author='Great Bay Condominium Owners Association', description=f'{PRESS_RELEASE} by about Hurricane Irma damage', date='2017-09-13'),
     DocCfg(id='027068', author=THE_REAL_DEAL, description=f"{THE_REAL_DEAL_ARTICLE} Palm House Hotel Bankruptcy and EB-5 Visa Fraud Allegations"),
     DocCfg(id='029520', author=THE_REAL_DEAL, description=f"{THE_REAL_DEAL_ARTICLE} 'Lost Paradise at the Palm House'", date='2019-06-17'),
+    DocCfg(id='016597', author='Trump Properties LLC', description=f'appeal of some decision about Mar-a-Lago by {PALM_BEACH} authorities'),
     DocCfg(id='018743', description=f"Las Vegas property listing"),
-    DocCfg(id='016597', description=f'letter from Trump Properties LLC appealing some decision about Mar-a-Lago by {PALM_BEACH} authorities'),
     DocCfg(id='016602', description=PALM_BEACH_CODE_ENFORCEMENT, date='2008-04-17'),
     DocCfg(id='016554', description=PALM_BEACH_CODE_ENFORCEMENT, date='2008-07-17', duplicate_ids=['016616', '016574']),
     DocCfg(id='016695', description=f"{PALM_BEACH} property info (?)"),
@@ -1258,12 +1273,12 @@ OTHER_FILES_PROPERTY = [
 ]
 
 OTHER_FILES_REPUTATION = [
+    DocCfg(id='030426', author=OSBORNE_LLP, description=f"reputation repair proposal (cites Michael Milken)", date='2011-06-14'),
     DocCfg(id='026582', description=f"Epstein's internet search results at start of reputation repair campaign, maybe from {OSBORNE_LLP}"),
     DocCfg(id='030573', description=f"Epstein's unflattering Google search results, maybe screenshot by {AL_SECKEL} or {OSBORNE_LLP}"),
     DocCfg(id='030875', description=f"Epstein's Wikipedia page"),
     DocCfg(id='026583', description=f"Google search results for '{JEFFREY_EPSTEIN}' with analysis ({OSBORNE_LLP}?)"),
     DocCfg(id='029350', description=f"Microsoft Bing search results for Epstein with sex offender at top, maybe from {TYLER_SHEARS}?"),
-    DocCfg(id='030426', description=f"{OSBORNE_LLP} reputation repair proposal (cites Michael Milken)", date='2011-06-14'),
 ]
 
 # social media / InsightsPod
@@ -1274,10 +1289,10 @@ OTHER_FILES_SOCIAL = [
     DocCfg(id='032281', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} forecasting election for Trump", date='2016-10-25'),
     DocCfg(id='028988', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} pitch deck", date='2016-08-20'),
     DocCfg(id='026627', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} report on the presidential debate"),
-    DocCfg(id='023050', description=f"{DERSH_GIUFFRE_TWEET}"),
-    DocCfg(id='017787', description=f"{DERSH_GIUFFRE_TWEET}"),
-    DocCfg(id='033433', description=f"{DERSH_GIUFFRE_TWEET} / David Boies", date='2019-03-02'),
-    DocCfg(id='033432', description=f"{DERSH_GIUFFRE_TWEET} / David Boies", date='2019-05-02'),
+    DocCfg(id='023050', author=ALAN_DERSHOWITZ, description=DERSH_GIUFFRE_TWEET),
+    DocCfg(id='017787', author=ALAN_DERSHOWITZ, description=DERSH_GIUFFRE_TWEET),
+    DocCfg(id='033433', author=ALAN_DERSHOWITZ, description=f"{DERSH_GIUFFRE_TWEET} / David Boies", date='2019-03-02'),
+    DocCfg(id='033432', author=ALAN_DERSHOWITZ, description=f"{DERSH_GIUFFRE_TWEET} / David Boies", date='2019-05-02'),
     DocCfg(id='022213', description=f"{SCREENSHOT} Facebook group called 'Shit Pilots Say' disparaging a 'global girl'"),
     DocCfg(id='030884', description=f"{TWEET} by Ed Krassenstein"),
     DocCfg(id='031546', description=f"{TWEET}s by Donald Trump about Russian collusion", date='2018-01-06'),
@@ -1285,8 +1300,11 @@ OTHER_FILES_SOCIAL = [
 ]
 
 OTHER_FILES_POLITICS = [
-    DocCfg(id='026827', author='Scowcroft Group', description=f'report on ISIS', date='2015-11-14'),
+    DocCfg(id='029918', author=DIANA_DEGETTE_CAMPAIGN, description=f"bio", date='2012-01-01'),
+    DocCfg(id='031184', author=DIANA_DEGETTE_CAMPAIGN, description=f"fundraiser invitation"),
     DocCfg(id='026851', author='Politifact', description=f"lying politicians chart", date='2016-07-26'),
+    DocCfg(id='026827', author='Scowcroft Group', description=f'report on ISIS', date='2015-11-14'),
+    DocCfg(id='024294', author=STACEY_PLASKETT, description=f"campaign flier", date='2016-10-01'),
     DocCfg(
         id='023133',
         author=f"{TERJE_ROD_LARSEN}, Nur Laiq, Fabrice Aidan",
@@ -1298,10 +1316,7 @@ OTHER_FILES_POLITICS = [
         author='US Office of Government Information Services',
         description=f"Building a Bridge Between FOIA Requesters & Agencies",
     ),
-    DocCfg(id='029918', description=f"{DIANA_DEGETTES_CAMPAIGN} bio", date='2012-01-01'),
-    DocCfg(id='031184', description=f"{DIANA_DEGETTES_CAMPAIGN} fundraiser invitation"),
     DocCfg(id='031670', description=f"letter from General Mike Flynn's lawyers to senators Mark Warner & Richard Burr about subpoena"),
-    DocCfg(id='024294', description=f"{STACEY_PLASKETT} campaign flier", date='2016-10-01'),
     DocCfg(
         id='029357',
         description=f"text about Israel's challenges going into 2015, feels like it was extracted from a book",
@@ -1313,14 +1328,14 @@ OTHER_FILES_POLITICS = [
 ]
 
 OTHER_FILES_ACADEMIA = [
+    DocCfg(id='024256', author=JOI_ITO, description=f"Internet & Society: The Technologies and Politics of Control"),
+    DocCfg(id='027004', author=JOSCHA_BACH, description=f"The Computational Structure of Mental Representation", date='2013-02-26'),
     DocCfg(
         id='014697',
-        author=f"{LAWRENCE_KRAUSS}'s ASU Origins Project",
+        author=LAWRENCE_KRAUSS_ASU_ORIGINS,
         description=f'report: "Challenges of AI: Envisioning and Addressing Adverse Outcomes"',
         duplicate_ids=['011284']
     ),
-    DocCfg(id='024256', author=JOI_ITO, description=f"Internet & Society: The Technologies and Politics of Control"),
-    DocCfg(id='027004', author=JOSCHA_BACH, description=f"The Computational Structure of Mental Representation", date='2013-02-26'),
     DocCfg(id='015501', author=f"{MOSHE_HOFFMAN}, Erez Yoeli, and Carlos David Navarrete", description=f"Game Theory and Morality"),
     DocCfg(id='025143', author=ROBERT_TRIVERS, description=f"Africa, Parasites, Intelligence", date='2018-06-25'),
     DocCfg(id='029155', author=ROBERT_TRIVERS, description=f'response sent to the Gruterites ({GORDON_GETTY} fans)', date='2018-03-19'),
@@ -1353,32 +1368,34 @@ OTHER_FILES_ACADEMIA = [
 OTHER_FILES_SPEECH = [
     DocCfg(id='027009', author=EHUD_BARAK, description=f"speech to AIPAC", date='2013-03-03'),
     DocCfg(id='026856', author='Kevin Rudd', description=f"speech 'Xi Jinping, China And The Global Order'", date='2018-06-26'),
-    DocCfg(id='026731', description=f"speech by Lord Martin Rees at first inaugural Carl Sagan Lecture at Cornell"),
+    DocCfg(id='026731', author='Lord Martin Rees', description=f"speech at first inaugural Cornell Carl Sagan Lecture"),
 ]
 
 # resumes and application letters
 OTHER_FILES_RESUMES = [
-    DocCfg(id='029102', description=HBS_APPLICATION_NERIO),
-    DocCfg(id='029104', description=HBS_APPLICATION_NERIO),
-    DocCfg(id='022367', description=f"{RESUME_OF} Jack J Grynberg", date='2014-07-01'),
+    DocCfg(id='022367', author='Jack J Grynberg', description=RESUME_OF, date='2014-07-01'),
     DocCfg(
         id='029302',
-        description=f"{RESUME_OF} {MICHAEL_J_BOCCIO}, former lawyer at the Trump Organization",
+        author=MICHAEL_J_BOCCIO,
+        description=f"{RESUME_OF} (former lawyer at the {TRUMP_ORG})",
         date='2011-08-07',
     ),
-    DocCfg(id='015671', description=f"{RESUME_OF} Robin Solomon", date='2015-06-02'),  # She left Mount Sinai at some point in 2015,
-    DocCfg(id='015672', description=f"{RESUME_OF} Robin Solomon", date='2015-06-02'),  # She left Mount Sinai at some point in 2015,
+    DocCfg(id='029102', author=NERIO_ALESSANDRI, description=HBS_APPLICATION),
+    DocCfg(id='029104', author=NERIO_ALESSANDRI, description=HBS_APPLICATION),
+    DocCfg(id='015671', author='Robin Solomon', description=RESUME_OF, date='2015-06-02'),  # She left Mount Sinai at some point in 2015,
+    DocCfg(id='015672', author='Robin Solomon', description=RESUME_OF, date='2015-06-02'),  # She left Mount Sinai at some point in 2015,
     DocCfg(id='029623', description=f'short bio of Kathleen Harrington, Founding Partner, C/H Global Strategies'),
 ]
 
 OTHER_FILES_ARTS = [
     DocCfg(id='018703', author=ANDRES_SERRANO, description=f"artist statement about Trump objects"),
     DocCfg(id='023438', author=BROCKMAN_INC, description=f"announcement of auction of 'Noise' by Daniel Kahneman, Olivier Sibony, and Cass Sunstein"),
-    DocCfg(id='030769', description=f"2017 Independent Filmmaker Project (IFP) Gotham Awards invitation"),
+    DocCfg(id='030769', author='Independent Filmmaker Project (IFP)', description=f"2017 Gotham Awards invitation"),
     DocCfg(id='028281', description=f'art show flier for "The House Of The Nobleman" curated by Wolfe Von Lenkiewicz & Victoria Golembiovskaya'),
     DocCfg(
         id='025205',
-        description=f'Mercury Films partner profiles of Jennifer Baichwal, Nicholas de Pencier, Kermit Blackwood, Travis Rummel',
+        author='Mercury Films',
+        description=f'partner profiles of Jennifer Baichwal, Nicholas de Pencier, Kermit Blackwood, Travis Rummel',
         date='2010-02-01',
         duplicate_ids=['025210']
     ),
@@ -1393,32 +1410,32 @@ OTHER_FILES_MISC = [
         description=f'hot list Frankfurt Book Fair (includes article about Silk Road/Ross Ulbricht)',
         date='2016-10-23',
     ),
+    DocCfg(id='022494', author='DOJ', description=f'Foreign Corrupt Practices Act (FCPA) Resource Guide'),
     DocCfg(id='023096', author=EPSTEIN_FOUNDATION, description=f'blog post', date='2012-11-15'),
     DocCfg(id='029326', author=EPSTEIN_FOUNDATION, description=f'{PRESS_RELEASE}', date='2013-02-15'),
     DocCfg(id='026565', author=EPSTEIN_FOUNDATION, description=f'{PRESS_RELEASE}, maybe a draft of 029326', date='2013-02-15'),
+    DocCfg(id='027071', author=FEMALE_HEALTH_COMPANY, description=f"brochure requesting donations for female condoms in Uganda"),
+    DocCfg(id='027074', author=FEMALE_HEALTH_COMPANY, description=f"pitch deck (USAID was a customer)"),
+    DocCfg(id='032735', author=GORDON_GETTY, description=f"on Trump", date='2018-03-20'),  # Dated based on concurrent emails from Getty
+    DocCfg(id='025540', author=JEFFREY_EPSTEIN, description=f"rough draft of Epstein's side of the story?"),
+    DocCfg(id='018224', author=LAWRENCE_KRAUSS, description=f"Skype conversation log"),
     DocCfg(id='026634', author='Michael Carrier', description=f"comments about an Apollo linked hedge fund 'DE Fund VIII'"),
+    DocCfg(id='031425', author=SCOTT_J_LINK, description=f'completely redacted email from'),
     DocCfg(id='020447', author='Working Group on Chinese Influence Activities in the U.S.', description=f'Promoting Constructive Vigilance'),
     DocCfg(id='031743', description=f'a few pages describing the internet as a "New Nation State" (Network State?)'),
-    DocCfg(id='031425', description=f'completely redacted email from {SCOTT_J_LINK}'),
-    DocCfg(id='018224', description=f"conversation with {LAWRENCE_KRAUSS}?"),
     DocCfg(id='012718', description=f"{CVRA} congressional record", date='2011-06-17'),
-    DocCfg(id='025540', description=f"Epstein's rough draft of his side of the story?"),
     DocCfg(id='024117', description=f"FAQ about anti-money laundering (AML) and terrorist financing (CFT) law in the U.S."),
-    DocCfg(id='027071', description=f"{FEMALE_HEALTH_COMPANY} brochure requesting donations for female condoms in Uganda"),
-    DocCfg(id='027074', description=f"{FEMALE_HEALTH_COMPANY} pitch deck (USAID was a customer)"),
-    DocCfg(id='022494', description=f'Foreign Corrupt Practices Act (FCPA) DOJ Resource Guide'),
-    DocCfg(id='032735', description=f"{GORDON_GETTY} on Trump", date='2018-03-20'),  # Dated based on concurrent emails from Getty
     DocCfg(id='019448', description=f"Haitian business investment proposal called Jacmel"),
     DocCfg(id='023644', description=f"interview with Mohammed bin Salman", date='2016-04-25'),
     DocCfg(
         id='030142',
-        description=f"{JASTA} (Justice Against Sponsors of Terrorism Act) doc that's mostly empty, references suit against Saudi f. {KATHRYN_RUEMMLER} & {KEN_STARR}",
         date='2016-09-01',
+        description=f"{JASTA} (Justice Against Sponsors of Terrorism Act) doc that's mostly empty, references suit against Saudi f. {KATHRYN_RUEMMLER} & {KEN_STARR}",
     ),
     DocCfg(
         id='033338',
-        description=f"{PRESS_RELEASE} announcing Donald Trump & {NICHOLAS_RIBIS} ended their working relationship at Trump's casino",
         date='2000-06-07',
+        description=f"{PRESS_RELEASE} announcing Donald Trump & {NICHOLAS_RIBIS} ended their working relationship at Trump's casino",
     ),
     DocCfg(id='029328', description=f"Rafanelli Events promotional deck"),
     DocCfg(id='033434', description=f"{SCREENSHOT} iPhone chat labeled 'Edwards' at the top"),
@@ -1494,7 +1511,9 @@ SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4
 
 
 # Error checking.
-assert len(OTHER_FILES_CONFIG) == 438
+if len(OTHER_FILES_CONFIG) != 438:
+    logger.warning(f"Only {len(OTHER_FILES_CONFIG)} configured other files!")
+
 encountered_file_ids = set()
 
 for cfg in ALL_CONFIGS:

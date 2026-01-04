@@ -80,7 +80,7 @@ def epstein_search():
         temp_highlighter = build_highlighter(search_term)
         search_results = epstein_files.docs_matching(search_term, specified_names)
         console.line(2)
-        print_panel(f"Found {len(search_results)} documents matching '{search_term}'", centered=True)
+        print_panel(f"Found {len(search_results)} documents matching '{search_term}'", padding=(0, 0, 0, 3))
 
         for search_result in search_results:
             console.line()
