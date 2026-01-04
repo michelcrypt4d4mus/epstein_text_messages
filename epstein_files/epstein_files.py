@@ -317,6 +317,9 @@ class EpsteinFiles:
     def _tally_email_data(self) -> None:
         """Tally up summary info about Email objects."""
         for email in self.emails:
+            if email.is_duplicate:
+                continue
+
             self.email_author_counts[email.author] += 1
 
             if len(email.recipients) == 0:
