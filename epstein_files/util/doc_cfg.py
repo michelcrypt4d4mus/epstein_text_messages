@@ -220,7 +220,6 @@ class DocCfg:
 @dataclass(kw_only=True)
 class CommunicationCfg(DocCfg):
     """
-    Convenience class to unite various configured properties for a given Communication file.
     Manual config is always required for MessengerLog author attribution. It's also often needed for Email
     files to handle the terrible OCR text that Congress provided which messes up a lot of the email headers.
 
