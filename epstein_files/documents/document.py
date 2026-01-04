@@ -183,6 +183,14 @@ class Document:
         metadata.update({k: v for k, v in asdict(self).items() if k in METADATA_FIELDS and v is not None})
         metadata['bytes'] = self.file_size()
         metadata['type'] = self.class_name()
+
+        if self.is_local_extract_file():
+            metadata['extracted_file'] = {
+                'explanation': 'This file was extracted from a court filing, not distributed directly. A copy can be found on github.',
+                'extracted_from_file': self.url_slug + '.txt',
+                'extracted_file_url': extracted_file_url(self.filename),
+            }
+
         return metadata
 
     def raw_text(self) -> str:
