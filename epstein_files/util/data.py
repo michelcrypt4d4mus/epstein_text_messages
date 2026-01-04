@@ -75,7 +75,7 @@ def iso_timestamp(dt: datetime) -> str:
     return dt.isoformat().replace('T', ' ')
 
 
-def listify(listlike: list | str | Text | None) -> list:
+def listify(listlike) -> list:
     """Create a list of 'listlike'. Returns empty list if 'listlike' is None or empty string."""
     if isinstance(listlike, list):
         return listlike

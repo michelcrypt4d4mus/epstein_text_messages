@@ -21,7 +21,7 @@ EMAIL_PRE_FORWARD_REGEX = re.compile(r"(.{3,2000}?)" + HEADER_REGEX_STR, re.DOTA
 TIME_REGEX = re.compile(r'^(\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday).*')
 
 BAD_NAME_CHARS_REGEX = re.compile(r"[\"'\[\]*><•]")
-BAD_EMAILER_REGEX = re.compile(r'^(>|11111111)|agreed|ok|sexy|rt|re:|fwd:|Multiple Senders|((sent|attachments|subject|importance).*|.*(january|201\d|hysterical|i have|image0|so that people|article 1.?|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
+BAD_EMAILER_REGEX = re.compile(r'^(>|11111111)|agreed|ok|sexy|re:|fwd:|Multiple Senders|((sent|attachments|subject|importance).*|.*(january|201\d|hysterical|i have|image0|so that people|article 1.?|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 
 CONFIGURED_ACTUAL_TEXTS = [
     cfg.actual_text for cfg in ALL_CONFIGS
