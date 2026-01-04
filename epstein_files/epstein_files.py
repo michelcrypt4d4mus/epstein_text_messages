@@ -1,4 +1,5 @@
 import gzip
+import json
 import pickle
 import re
 from collections import defaultdict
@@ -22,7 +23,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url,
      search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
-from epstein_files.util.data import Timer, dict_sets_to_lists, sort_dict
+from epstein_files.util.data import Timer, dict_sets_to_lists, json_safe, sort_dict
 from epstein_files.util.doc_cfg import EmailCfg
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, PICKLED_PATH, file_size_str
@@ -192,6 +193,15 @@ class EpsteinFiles:
 
     def identified_imessage_log_count(self) -> int:
         return len([log for log in self.imessage_logs if log.author])
+
+    def json_metadata(self) -> str:
+        metadata = {
+            EMAIL_CLASS: [json_safe(doc.metadata()) for doc in self.emails],
+            MESSENGER_LOG_CLASS: [json_safe(doc.metadata()) for doc in self.imessage_logs],
+            OTHER_FILE_CLASS: [json_safe(doc.metadata()) for doc in self.other_files],
+        }
+
+        return json.dumps(metadata, indent=4, sort_keys=True)
 
     def print_files_summary(self) -> None:
         other_files = [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
