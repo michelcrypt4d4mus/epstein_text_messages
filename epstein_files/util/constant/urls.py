@@ -20,6 +20,7 @@ EPSTEIN_WEB = 'EpsteinWeb'
 EPSTEINIFY = 'epsteinify'
 JMAIL = 'Jmail'
 
+
 # Cryptadamus URLs
 GH_PAGES_BASE_URL = 'https://michelcrypt4d4mus.github.io'
 TEXT_MSGS_BASE_URL = f"{GH_PAGES_BASE_URL}/epstein_text_messages"

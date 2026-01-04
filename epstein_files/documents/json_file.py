@@ -7,7 +7,7 @@ from typing import ClassVar
 from rich.text import Text
 
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.util.rich import console
+from epstein_files.util.constant.strings import JSON
 
 
 @dataclass
@@ -24,7 +24,7 @@ class JsonFile(OtherFile):
         self._set_computed_fields(text=self.formatted_json())
 
     def category(self) -> str:
-        return 'json'
+        return JSON
 
     def formatted_json(self) -> str:
         return json.dumps(self.json_data(), indent=4)

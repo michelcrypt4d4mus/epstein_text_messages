@@ -195,8 +195,10 @@ INSIGHTS_POD = f"InsightsPod"  # Zubair bots
 NEXT_MANAGEMENT = 'Next Management LLC'
 JP_MORGAN = 'JP Morgan'
 OSBORNE_LLP = f"{IAN_OSBORNE} & Partners LLP"  # Ian Osborne's PR firm
+UBS = 'UBS'
 
 # Locations
+PALM_BEACH = 'Palm Beach'
 VIRGIN_ISLANDS = 'Virgin Islands'
 
 # First and last names that should be made part of a highlighting regex for emailers
