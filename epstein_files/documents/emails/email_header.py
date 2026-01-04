@@ -70,7 +70,7 @@ class EmailHeader:
                 raise RuntimeError(f"Ran out of header rows to check for '{field_name}'")
 
             value = email_lines[row_number_to_check]
-            log_prefix = f"Looks like '{value}' is a mismatch for '{field_name}', "
+            log_prefix = f"Looks like '{value}' is a mismatch for '{field_name}'"
 
             if field_name == AUTHOR:
                 if value in CONFIGURED_ACTUAL_TEXTS:
@@ -99,7 +99,8 @@ class EmailHeader:
             setattr(self, field_name, value)
 
         self.num_header_rows = len(self.field_names) + num_headers
-        logger.debug(f"Corrected empty header using {self.num_header_rows} lines to:\n%s\n\nTop lines:\n\n%s", self, '\n'.join(email_lines[0:(num_headers + 1) * 2]))
+        log_msg = f"Corrected empty header using {self.num_header_rows} lines to:\n"
+        logger.info(f"{log_msg}{self}\n\nTop lines:\n\n%s", '\n'.join(email_lines[0:(num_headers + 1) * 2]))
 
     def rewrite_header(self) -> str:
         header_fields = {}
