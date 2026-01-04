@@ -580,6 +580,8 @@ EMAILS_CONFIG = [
         attribution_reason=f'Reply in 030414 has {NEXT_MANAGEMENT} legal signature',
         duplicate_ids=['030581'],
     ),
+    EmailCfg(id='025329', recipients=['George Krassner', 'Nancy Cain', 'Tom', 'Marie Moneysmith', 'Steven Gaydos', 'Linda W. Grossman', 'Holly Krassner Dawson', 'Daniel Dawson', 'Danny Goldberg', 'Caryl Ratner', 'Kevin Bright', 'Michael Simmons', SAMUEL_LEFF, 'Bob Fass', 'Lynnie Tofte Fass', 'Barb Cowles', 'Lee Quarnstrom']),
+    EmailCfg(id='033568', recipients=['George Krassner', 'Daniel Dawson', 'Danny Goldberg', 'Tom', 'Kevin Bright', 'Walli Leff', 'Michael Simmons', 'Lee Quarnstrom', 'Lanny Swerdlow', 'Larry Sloman', 'W&K', 'Harry Shearer', 'Jay Levin']),
     EmailCfg(id='026426', recipients=[JEAN_HUGUEN], attribution_reason='Reply'),
     EmailCfg(id='022202', recipients=[JEAN_LUC_BRUNEL], attribution_reason='Follow up / reply', duplicate_ids=['029975']),
     EmailCfg(id='022187', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
@@ -611,8 +613,6 @@ EMAILS_CONFIG = [
         attribution_reason='to "Kathy" about dems, sent from iPad',
         is_attribution_uncertain=True,  # It's actually Kathy R. as the recipient that's the uncertain part
     ),
-    EmailCfg(id='025329', recipients=['Nancy Cain', 'Tom', 'Marie Moneysmith', 'Steven Gaydos', 'George Krassner', 'Linda W. Grossman', 'Holly Krassner Dawson', 'Daniel Dawson', 'Danny Goldberg', 'Caryl Ratner', 'Kevin Bright', 'Michael Simmons', SAMUEL_LEFF, 'Bob Fass', 'Lynnie Tofte Fass', 'Barb Cowles', 'Lee Quarnstrom']),
-    EmailCfg(id='033568', recipients=['George Krassner', 'Daniel Dawson', 'Danny Goldberg', 'Tom', 'Kevin Bright', 'Walli Leff', 'Michael Simmons', 'Lee Quarnstrom', 'Lanny Swerdlow', 'Larry Sloman', 'W&K', 'Harry Shearer', 'Jay Levin']),
     EmailCfg(id='030522', recipients=[LANDON_THOMAS], attribution_reason='reply header', is_fwded_article=True),  # Vicky Ward article
     EmailCfg(id='031413', recipients=[LANDON_THOMAS], attribution_reason='reply header'),
     EmailCfg(id='033591', recipients=[LAWRANCE_VISOSKI], attribution_reason='Reply signature', duplicate_ids=['033591']),
@@ -879,7 +879,6 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='026648', description=f'article about {JASTA} lawsuit against Saudi Arabia by 9/11 victims (Russian propaganda?)', date='2017-05-13'),
     DocCfg(id='031776', description=f"article about Michael Avenatti by Andrew Strickler"),
     DocCfg(id='032159', description=f"article about microfinance and cell phones in Zimbabwe, Strive Masiyiwa (Econet Wireless)"),
-    DocCfg(id='026584', description=f"article about tax implications of 'disregarded entities'", date='2009-07-01'),
     DocCfg(id='030258', description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030248'),
     DocCfg(id='030248', description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030258'),
     DocCfg(id='029165', description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030258'),
@@ -1186,6 +1185,7 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='024135', author=UBS, description=UBS_CIO_REPORT, date='2012-06-29'),
     DocCfg(id='025247', author=UBS, description=UBS_CIO_REPORT, date='2012-10-25'),
     DocCfg(id='024631', description=f"Ackrell Capital report: Cannabis Investment Report 2018"),
+    DocCfg(id='026584', description=f"article about tax implications of 'disregarded entities'", date='2009-07-01'),
     DocCfg(id='024271', description=f"Blockchain Capital and Brock Pierce pitch deck", date='2015-10-01'),
     DocCfg(id='024817', description=f"Cowen's Collective View of CBD / Cannabis report"),
     DocCfg(id='012048', description=f"{PRESS_RELEASE} 'Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm' and other articles"),
