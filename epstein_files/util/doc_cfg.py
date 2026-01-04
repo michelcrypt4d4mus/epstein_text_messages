@@ -58,6 +58,14 @@ FINANCIAL_REPORTS_AUTHORS = [
     'S&P',
 ]
 
+# Fields like timestamp and author are better added from the Document object
+INVALID_FOR_METADATA = [
+    'actual_text',
+    'date',
+    'id',
+    'timestamp',
+]
+
 
 @dataclass(kw_only=True)
 class DocCfg:
@@ -125,7 +133,7 @@ class DocCfg:
         return ' '.join(pieces) if pieces else None
 
     def metadata(self) -> Metadata:
-        non_null_fields = {k: v for k, v in asdict(self).items() if v and k not in ['date', 'id', 'timestamp']}
+        non_null_fields = {k: v for k, v in asdict(self).items() if v and k not in INVALID_FOR_METADATA}
 
         if self.category in [EMAIL, TEXT_MESSAGE]:
             del non_null_fields['category']
