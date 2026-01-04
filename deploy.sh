@@ -77,7 +77,7 @@ echo -e "  -> using $PICKLE_ARG"
 ./generate_html.py --build --output-emails --output-texts --output-other-files --suppress-output $PICKLE_ARG
 echo -e ""
 print_msg "Building" "$JSON_METADATA_PATH"
-./generate_html.py --build -json-metadata --pickled
+./generate_html.py --build --json-metadata --pickled
 echo -e ""
 print_msg "Building" "$WORD_COUNT_HTML_PATH"
 ./scripts/count_words.py --build --pickled --suppress-output --width 105
