@@ -54,6 +54,7 @@ class EpsteinFiles:
     imessage_logs: list[MessengerLog] = field(default_factory=list)
     json_files: list[JsonFile] = field(default_factory=list)
     other_files: list[OtherFile] = field(default_factory=list)
+    timer: Timer = field(default_factory=lambda: Timer())
 
     # Analytics / calculations
     email_author_counts: dict[str | None, int] = field(default_factory=lambda: defaultdict(int))
@@ -90,17 +91,18 @@ class EpsteinFiles:
         self._tally_email_data()
 
     @classmethod
-    def get_files(cls, timer: Timer | None = None) -> 'EpsteinFiles':
+    def get_files(cls, timer: Timer | None = None, use_pickled: bool = False) -> 'EpsteinFiles':
         """Alternate constructor that reads/writes a pickled version of the data ('timer' arg is for logging)."""
         timer = timer or Timer()
 
-        if (args.pickled and PICKLED_PATH.exists()) and not args.overwrite_pickle:
+        if ((args.pickled or use_pickled) and PICKLED_PATH.exists()) and not args.overwrite_pickle:
             with gzip.open(PICKLED_PATH, 'rb') as file:
                 epstein_files = pickle.load(file)
                 timer.print_at_checkpoint(f"Loaded {len(epstein_files.all_files):,} documents from '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})")
+                epstein_files.timer = timer
                 return epstein_files
 
-        epstein_files = EpsteinFiles()
+        epstein_files = EpsteinFiles(timer=timer)
 
         if args.overwrite_pickle or not PICKLED_PATH.exists():
             with gzip.open(PICKLED_PATH, 'wb') as file:
@@ -197,37 +199,36 @@ class EpsteinFiles:
 
     def json_metadata(self) -> str:
         metadata = {
-            EMAIL_CLASS: [json_safe(doc.metadata()) for doc in self.emails],
-            MESSENGER_LOG_CLASS: [json_safe(doc.metadata()) for doc in self.imessage_logs],
-            OTHER_FILE_CLASS: [json_safe(doc.metadata()) for doc in self.other_files],
+            EMAIL_CLASS: [json_safe(d.metadata()) for d in self.emails],
+            JSON_FILE_CLASS: [json_safe(d.metadata()) for d in self.json_files],
+            MESSENGER_LOG_CLASS: [json_safe(d.metadata()) for d in self.imessage_logs],
+            OTHER_FILE_CLASS: [json_safe(d.metadata()) for d in self.other_files if not isinstance(d, JsonFile)],
         }
 
         return json.dumps(metadata, indent=4, sort_keys=True)
 
+    def non_json_other_files(self) -> list[OtherFile]:
+        return [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
+
     def print_files_summary(self) -> None:
-        other_files = [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
-        dupes = defaultdict(int)
-
-        for doc in self.all_documents():
-            if doc.is_duplicate:
-                dupes[doc.class_name()] += 1
-
         table = Table(title='Summary of Document Types')
         add_cols_to_table(table, ['File Type', 'Files', 'Author Known', 'Author Unknown', 'Duplicates'])
 
-        def add_row(label: str, docs: list, known: int | None = None, dupes: int | None = None):
+        def add_row(label: str, docs: list):
+            known = None if isinstance(docs[0], JsonFile) else len([d for d in docs if d.author])
+
             table.add_row(
                 label,
                 f"{len(docs):,}",
-                f"{known:,}" if known else NA_TXT,
-                f"{len(docs) - known:,}" if known else NA_TXT,
-                f"{dupes:,}" if dupes else NA_TXT,
+                f"{known:,}" if known is not None else NA_TXT,
+                f"{len(docs) - known:,}" if known is not None else NA_TXT,
+                f"{len([d for d in docs if d.is_duplicate])}",
             )
 
-        add_row('iMessage Logs', self.imessage_logs, self.identified_imessage_log_count())
-        add_row('Emails', self.emails, len([e for e in self.emails if e.author]), dupes[EMAIL_CLASS])
-        add_row('JSON Data', self.json_files, dupes=0)
-        add_row('Other', other_files, dupes=dupes[OTHER_FILE_CLASS])
+        add_row('iMessage Logs', self.imessage_logs)
+        add_row('Emails', self.emails)
+        add_row('JSON Data', self.json_files)
+        add_row('Other', self.non_json_other_files())
         console.print(Align.center(table))
         console.line()
 
@@ -315,7 +316,11 @@ class EpsteinFiles:
             console.line(2)
 
         console.print(OtherFile.build_table(interesting_files))
-        logger.warning(f"Skipped {len(self.other_files) - len(interesting_files)} uninteresting files...")
+        skipped_file_count = len(self.other_files) - len(interesting_files)
+
+        if skipped_file_count > 0:
+            logger.warning(f"Skipped {skipped_file_count} uninteresting files...")
+
         return interesting_files
 
     def _tally_email_data(self) -> None:
@@ -353,6 +358,18 @@ def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str]
     return Padding(table, DEVICE_SIGNATURE_PADDING)
 
 
+def count_by_month(docs: Sequence[Document]) -> dict[str | None, int]:
+    counts: dict[str | None, int] = defaultdict(int)
+
+    for doc in docs:
+        if doc.timestamp:
+            counts[doc.timestamp.date().isoformat()[0:7]] += 1
+        else:
+            counts[None] += 1
+
+    return counts
+
+
 def document_cls(document: Document) -> Type[Document]:
     search_area = document.text[0:5000]  # Limit search area to avoid pointless scans of huge files
 
@@ -376,15 +393,3 @@ def is_ok_for_epstein_web(name: str | None) -> bool:
         return False
 
     return True
-
-
-def count_by_month(docs: Sequence[Document]) -> dict[str | None, int]:
-    counts: dict[str | None, int] = defaultdict(int)
-
-    for doc in docs:
-        if doc.timestamp:
-            counts[doc.timestamp.date().isoformat()[0:7]] += 1
-        else:
-            counts[None] += 1
-
-    return counts

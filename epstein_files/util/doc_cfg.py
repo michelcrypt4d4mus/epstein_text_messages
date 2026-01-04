@@ -116,6 +116,8 @@ class DocCfg:
                 return self.title_by_author()
             elif self.category == FINANCE and self.author in FINANCIAL_REPORTS_AUTHORS:
                 return f"{self.author} report: '{self.description}'"
+            elif self.category == LEGAL and 'v.' in self.author:
+                return f"{self.author}: '{self.description}'"
         elif self.category and self.author is None and self.description is None:
             return self.category
 
@@ -175,16 +177,6 @@ class DocCfg:
                 add_prop(_field, str(value))
 
         return props
-
-    def __eq__(self, other: 'DocCfg') -> bool:
-        """Return True if everything matches other than the two 'dupe_' fields ('duplicate_ids' is compared)."""
-        for _field in self.sorted_fields():
-            if _field.name == 'id' or _field.name.startswith('dupe'):
-                continue
-            elif getattr(self, _field.name) != getattr(other, _field.name):
-                return False
-
-        return True
 
     def __repr__(self) -> str:
         props = self._props_strs()

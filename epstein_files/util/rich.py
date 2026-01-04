@@ -22,7 +22,7 @@ from epstein_files.util.data import json_safe
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES, EpsteinHighlighter
-from epstein_files.util.logging import logger
+from epstein_files.util.logging import log_file_write, logger
 
 TITLE_WIDTH = 50
 NUM_COLOR_KEY_COLS = 4
@@ -73,6 +73,14 @@ def add_cols_to_table(table: Table, col_names: list[str]) -> None:
         table.add_column(col, justify='left' if i == 0 else 'center')
 
 
+def build_highlighter(pattern: str) -> EpsteinHighlighter:
+    class TempHighlighter(EpsteinHighlighter):
+        """rich.highlighter that finds and colors interesting keywords based on the above config."""
+        highlights = EpsteinHighlighter.highlights + [re.compile(fr"(?P<trump>{pattern})", re.IGNORECASE)]
+
+    return TempHighlighter()
+
+
 def join_texts(txts: list[Text], join: str = ' ', encloser: str = '') -> Text:
     """Join rich.Text objs into one."""
     if encloser:
@@ -91,8 +99,11 @@ def join_texts(txts: list[Text], join: str = ' ', encloser: str = '') -> Text:
     return txt
 
 
-def key_value_txt(key: str, value: Text | str) -> Text:
+def key_value_txt(key: str, value: Text | int | str) -> Text:
     """Generate a Text obj for 'key=value'."""
+    if isinstance(value, int):
+        value = Text(f"{value}", style='cyan')
+
     return Text('').append(key, style=KEY_STYLE).append('=', style=SYMBOL_STYLE).append(value)
 
 
@@ -221,7 +232,7 @@ def print_other_site_link(is_header: bool = True) -> None:
     print_centered(parenthesize(word_count_link))
 
     if is_header:
-        metadata_link = link_text_obj(JSON_METADATA_URL, 'file metadata containing author attribution explanations', OTHER_SITE_LINK_STYLE)
+        metadata_link = link_text_obj(JSON_METADATA_URL, 'metadata with author attribution explanations', OTHER_SITE_LINK_STYLE)
         print_centered(parenthesize(metadata_link))
 
 
@@ -298,7 +309,7 @@ def write_html(output_path: Path) -> None:
         return
 
     console.save_html(str(output_path), code_format=CONSOLE_HTML_FORMAT, theme=HTML_TERMINAL_THEME)
-    logger.warning(f"Wrote {file_size_str(output_path)} to '{output_path}'")
+    log_file_write(output_path)
 
 
 def _print_abbreviations_table() -> None:
