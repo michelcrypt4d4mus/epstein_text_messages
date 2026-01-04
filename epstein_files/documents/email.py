@@ -150,7 +150,6 @@ TRUNCATE_TERMS = [
     'quote from The Colbert Report distinguishes',
     'co-inventor of the GTX Smart Shoe',
     'my latest Washington Post column',
-    'Whether you donated to Poetry in America through',
     'supported my humanities work at Harvard',
     'Calendar of Major Events, Openings, and Fundraisers',
     'Nuclear Operator Raises Alarm on Crisis',
@@ -184,7 +183,6 @@ TRUNCATE_TERMS = [
     'We can also discuss single stock and Topix banks',
     'We are recording unprecedented divergences in falling equity vol',
     'As previously discussed between you and Ariane',
-    'The US trade war against China: The view from Beijing',
     'no evidence you got the latest so i have sent you just the key message',
     # Joscha Bach
     'Cells seem to be mostly indistinguishable (except',
@@ -207,6 +205,8 @@ TRUNCATE_TERMS = [
     'General Election: Trump vs. Clinton LA Times/USC Tracking',
     'Location: Quicken Loans Arena in Cleveland, OH',
     'A friendly discussion about Syria with a former US State Department',
+    # Robert Kuhn
+    'The US trade war against China: The view from Beijing',
     # Tom / Paul Krassner
     'I forgot to post my cartoon from week before last, about Howard Schultz',
     # Bannon
@@ -224,14 +224,15 @@ TRUNCATE_TERMS = [
     'lecture in Heidelberg Oct 14 but they had to cancel',
     # Nikolic
     'people from LifeBall',
-    # Random
-    'Little Hodiaki',
-    "It began with deep worries regarding China's growth path",
-    'https://www.washingtonpost.com/politics/2018/09/04/transcript-phone-call',
     # Epstein
     'David Ben Gurion was asked why he, after 2000',
     # Lisa New
     'The raw materials for that period include interviews',
+    'Whether you donated to Poetry in America through',
+    # Random
+    'Little Hodiaki',
+    "It began with deep worries regarding China's growth path",
+    'https://www.washingtonpost.com/politics/2018/09/04/transcript-phone-call',
 ]
 
 # Some Paul Krassner emails have a ton of CCed parties we don't care about
@@ -525,6 +526,8 @@ class Email(Communication):
 
             if self.file_id in ['030626']:  # Merge 6th and 7th (now 5th and 6th) rows
                 self._merge_lines(4)
+        elif self.file_id in ['033097']:
+            self._merge_lines(2)
         elif self.file_id in ['029976']:
             self._merge_lines(3)  # Merge 4th and 5th rows
         elif self.file_id in '026609 029402 032405'.split():
