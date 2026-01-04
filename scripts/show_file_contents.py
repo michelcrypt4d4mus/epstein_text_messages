@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # Show the contents of filenames or ids passed as positional args
 import sys
-from dotenv import load_dotenv
-load_dotenv()
+
 from rich.panel import Panel
 
 from scripts.use_pickled import epstein_files
