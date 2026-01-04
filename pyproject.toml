@@ -43,7 +43,8 @@ pytest = "^9.0.1"
 
 [tool.poetry.scripts]
 epstein_generate = 'epstein_files:generate_html'
-yaralyzer_show_color_theme = 'yaralyzer.helpers.rich_text_helper:yaralyzer_show_color_theme'
+epstein_search = 'epstein_files:epstein_search'
+epstein_show = 'epstein_files:epstein_show'
 
 
 [tool.poetry.urls]

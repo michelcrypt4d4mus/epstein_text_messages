@@ -73,6 +73,14 @@ def add_cols_to_table(table: Table, col_names: list[str]) -> None:
         table.add_column(col, justify='left' if i == 0 else 'center')
 
 
+def build_highlighter(pattern: str) -> EpsteinHighlighter:
+    class TempHighlighter(EpsteinHighlighter):
+        """rich.highlighter that finds and colors interesting keywords based on the above config."""
+        highlights = EpsteinHighlighter.highlights + [re.compile(fr"(?P<trump>{pattern})", re.IGNORECASE)]
+
+    return TempHighlighter()
+
+
 def join_texts(txts: list[Text], join: str = ' ', encloser: str = '') -> Text:
     """Join rich.Text objs into one."""
     if encloser:

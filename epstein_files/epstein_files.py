@@ -91,11 +91,11 @@ class EpsteinFiles:
         self._tally_email_data()
 
     @classmethod
-    def get_files(cls, timer: Timer | None = None) -> 'EpsteinFiles':
+    def get_files(cls, timer: Timer | None = None, use_pickled: bool = False) -> 'EpsteinFiles':
         """Alternate constructor that reads/writes a pickled version of the data ('timer' arg is for logging)."""
         timer = timer or Timer()
 
-        if (args.pickled and PICKLED_PATH.exists()) and not args.overwrite_pickle:
+        if ((args.pickled or use_pickled) and PICKLED_PATH.exists()) and not args.overwrite_pickle:
             with gzip.open(PICKLED_PATH, 'rb') as file:
                 epstein_files = pickle.load(file)
                 timer.print_at_checkpoint(f"Loaded {len(epstein_files.all_files):,} documents from '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})")
