@@ -33,15 +33,6 @@ TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
-FINANCIAL_REPORTS_AUTHORS = [
-    BOFA,
-    DEUTSCHE_BANK,
-    GOLDMAN_INVESTMENT_MGMT,
-    'Invesco',
-    'Morgan Stanley',
-    'S&P',
-]
-
 UNINTERESTING_CATEGORES = [
     ARTS,
     BOOK,
@@ -142,20 +133,8 @@ class OtherFile(Document):
 
     def configured_description(self) -> str | None:
         """Overloads superclass method."""
-        if self.config is None:
-            return None
-        elif self.category() == REPUTATION:
-            return f"{REPUTATION_MGMT}: {self.config.description}"
-        elif self.author and self.config.description:
-            if self.category() == ACADEMIA:
-                return self.title_by_author()
-            elif self.category() == BOOK:
-                return f"{BOOK}: {self.title_by_author()}"
-            elif self.category() == FINANCE and self.author in FINANCIAL_REPORTS_AUTHORS:
-                return f"{self.author} report: '{self.config.description}'"
-
-        pieces = without_nones([self.author, self.config.description])
-        return ' '.join(pieces) if pieces else None
+        if self.config is not None:
+            return self.config.info_str()
 
     def description_panel(self, include_hints=True) -> Panel:
         """Panelized description() with info_txt(), used in search results."""
@@ -201,13 +180,6 @@ class OtherFile(Document):
     def summary(self) -> Text:
         """One line summary mostly for logging."""
         return super().summary().append(CLOSE_PROPERTIES_CHAR)
-
-    def title_by_author(self) -> str:
-        if not self.config or not self.config.description or not self.author:
-            raise RuntimeError(f"Can't call title_by_author() without author and description!")
-
-        title = self.config.description if '"' in self.config.description else f"'{self.config.description}'"
-        return f"{title} by {self.author}"
 
     def _extract_timestamp(self) -> datetime | None:
         """Return configured timestamp or value extracted by scanning text with datefinder."""

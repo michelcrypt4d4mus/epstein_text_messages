@@ -230,7 +230,6 @@ NEW_YORK_V_EPSTEIN = f"New York v. {JEFFREY_EPSTEIN}:"
 
 # Descriptions of non-email, non-text message files
 ARTICLE_DRAFT = 'draft of an article about'
-BOFA = 'BofA'
 BOFA_MERRILL = f'{BOFA} / Merrill Lynch Report'
 BOFA_WEALTH_MGMT = f'{BOFA} Wealth Management'
 BROCKMAN_INC = 'Brockman, Inc.'
@@ -245,7 +244,6 @@ FBI_REPORT = f"{FBI} report on Epstein investigation (redacted)"
 FBI_SEIZED_PROPERTY = f"{FBI} seized property inventory (redacted)"
 FEMALE_HEALTH_COMPANY = 'Female Health Company (FHX)'
 FIRE_AND_FURY = f"Fire And Fury"
-GOLDMAN_INVESTMENT_MGMT = f'{GOLDMAN_SACHS} Investment Management Division'
 HARVARD_POETRY = f'{HARVARD} poetry stuff from {LISA_NEW}'
 HBS_APPLICATION_NERIO = f"{HARVARD} Business School application letter from Nerio Alessandri (Founder and Chairman of Technogym S.p.A. Italy)"
 JASTA = 'JASTA'
@@ -385,7 +383,7 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='029504',
         author='Audrey/Aubrey Raimbault (???)',
-        attribution_reason='based on "GMI" in signature, a company registered by "aubrey raimbault"',
+        attribution_reason='based on "GMI" in signature, a company registered by "Aubrey Raimbault"',
     ),
     EmailCfg(id='033316', author=AZIZA_ALAHMADI, attribution_reason='"Regards, Aziza" at bottom'),
     EmailCfg(id='033328', author=AZIZA_ALAHMADI, attribution_reason='"Regards, Aziza" at bottom'),
@@ -815,7 +813,7 @@ OTHER_FILES_BOOKS = [
     DocCfg(id='012899', author='Ben Goertzel', description=f'Engineering General Intelligence: A Path to Advanced AGI Via Embodied Learning and Cognitive Synergy'),
     DocCfg(id='018438', author='Clarisse Thorn', description=f'The S&M Feminist'),
     DocCfg(id='019477', author=EDWARD_JAY_EPSTEIN, description=f'How America Lost Its Secrets: Edward Snowden, the Man, and the Theft'),
-    DocCfg(id='020153', author=EDWARD_JAY_EPSTEIN, description=f'"The Snowden Affair: A Spy Story In Six Parts"'),
+    DocCfg(id='020153', author=EDWARD_JAY_EPSTEIN, description=f'The Snowden Affair: A Spy Story In Six Parts'),
     DocCfg(id='011472', author=EHUD_BARAK, description=NIGHT_FLIGHT_BOOK),
     DocCfg(id='027849', author=EHUD_BARAK, description=NIGHT_FLIGHT_BOOK),
     DocCfg(id='010912', author=GORDON_GETTY, description=f'"Free Growth and Other Surprises" (draft)', date='2018-10-18'),
@@ -857,7 +855,7 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='029539', author=LA_TIMES, description=f"Alan Trounson interview on California stem cell research and CIRM"),
     DocCfg(id='029865', author=LA_TIMES, description=f"front page article about {DEEPAK_CHOPRA} and young Iranians", date='2016-11-05'),
     DocCfg(id='026598', author=LA_TIMES, description=f"op-ed about why America needs a Ministry of Culture"),
-    DocCfg(id='027024', author=LA_TIMES, description=f"'Scientists Create Human Embryos to Make Stem Cells'", date='2013-05-15'),
+    DocCfg(id='027024', author=LA_TIMES, description=f"Scientists Create Human Embryos to Make Stem Cells", date='2013-05-15'),
     DocCfg(id='022707', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
     DocCfg(id='022727', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
     DocCfg(id='022746', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
@@ -868,9 +866,9 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='024229', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
     DocCfg(id='031753', author=PAUL_KRASSNER, description=f'essay for Playboy in the 1980s', date='1985-01-01'),
     DocCfg(id='023638', author=PAUL_KRASSNER, description=f'magazine interview'),
-    DocCfg(id='024374', author=PAUL_KRASSNER, description=f"'Remembering Cavalier Magazine'"),
+    DocCfg(id='024374', author=PAUL_KRASSNER, description=f"Remembering Cavalier Magazine"),
     DocCfg(id='030187', author=PAUL_KRASSNER, description=f'"Remembering Lenny Bruce While We\'re Thinking About Trump" (draft?)'),
-    DocCfg(id='019088', author=PAUL_KRASSNER, description=f'"Are Rape Jokes Funny? (draft)', date='2012-07-28'),
+    DocCfg(id='019088', author=PAUL_KRASSNER, description=f'"Are Rape Jokes Funny?" (draft)', date='2012-07-28'),
     DocCfg(id='012740', author=PEGGY_SIEGAL, description=f"article about Venice Film Festival"),
     DocCfg(id='013442', author=PEGGY_SIEGAL, description=f"draft about Oscars", date='2011-02-27'),
     DocCfg(id='012700', author=PEGGY_SIEGAL, description=f"film events diary", date='2011-02-27'),
@@ -1154,32 +1152,32 @@ OTHER_FILES_CONFERENCES = [
 
 # All authors of documents in this category will be marked uninteresting
 OTHER_FILES_FINANCE = [
-    DocCfg(id='016111', author=BOFA_MERRILL, description=f"'GEMs Paper #26 Saudi Arabia: beyond oil but not so fast'", date='2016-06-30'),
-    DocCfg(id='010609', author=BOFA_MERRILL, description=f"'Liquid Insight Trump\'s effect on MXN'", date='2016-09-22'),
-    DocCfg(id='025978', author=BOFA_MERRILL, description=f"'Understanding when risk parity risk Increases'", date='2016-08-09'),
+    DocCfg(id='016111', author=BOFA_MERRILL, description=f"GEMs Paper #26 Saudi Arabia: beyond oil but not so fast", date='2016-06-30'),
+    DocCfg(id='010609', author=BOFA_MERRILL, description=f"Liquid Insight Trump\'s effect on MXN", date='2016-09-22'),
+    DocCfg(id='025978', author=BOFA_MERRILL, description=f"Understanding when risk parity risk Increases", date='2016-08-09'),
     DocCfg(id='014404', author=BOFA_MERRILL, description=f'Japan Investment Strategy Report', date='2016-11-18'),
     DocCfg(id='014410', author=BOFA_MERRILL, description=f'Japan Investment Strategy Report', date='2016-11-18'),
-    DocCfg(id='014424', author=BOFA_MERRILL, description=f"'Japan Macro Watch'", date='2016-11-14'),
-    DocCfg(id='014731', author=BOFA_MERRILL, description=f"'Global Rates, FX & EM 2017 Year Ahead'", date='2016-11-16'),
-    DocCfg(id='014432', author=BOFA_MERRILL, description=f"'Global Cross Asset Strategy - Year Ahead The Trump inflection'", date='2016-11-30'),
-    DocCfg(id='014460', author=BOFA_MERRILL, description=f"'European Equity Strategy 2017'", date='2016-12-01'),
-    DocCfg(id='014972', author=BOFA_MERRILL, description=f"'Global Equity Volatility Insights'", date='2017-06-20'),
-    DocCfg(id='014622', author=BOFA_MERRILL, description=f"'Top 10 US Ideas Quarterly'", date='2017-01-03'),
-    DocCfg(id='023069', author=BOFA_MERRILL, description=f"'Equity Strategy Focus Point Death and Taxes'", date='2017-01-29'),
-    DocCfg(id='014721', author=BOFA_MERRILL, description=f"'Cause and Effect Fade the Trump Risk Premium'", date='2017-02-13'),
-    DocCfg(id='014887', author=BOFA_MERRILL, description=f"'Internet / e-Commerce'", date='2017-04-06'),
-    DocCfg(id='014873', author=BOFA_MERRILL, description=f"'Hess Corp'", date='2017-04-11'),
-    DocCfg(id='023575', author=BOFA_MERRILL, description=f"'Global Equity Volatility Insights'", date='2017-06-01'),
+    DocCfg(id='014424', author=BOFA_MERRILL, description=f"Japan Macro Watch", date='2016-11-14'),
+    DocCfg(id='014731', author=BOFA_MERRILL, description=f"Global Rates, FX & EM 2017 Year Ahead", date='2016-11-16'),
+    DocCfg(id='014432', author=BOFA_MERRILL, description=f"Global Cross Asset Strategy - Year Ahead The Trump inflection", date='2016-11-30'),
+    DocCfg(id='014460', author=BOFA_MERRILL, description=f"European Equity Strategy 2017", date='2016-12-01'),
+    DocCfg(id='014972', author=BOFA_MERRILL, description=f"Global Equity Volatility Insights", date='2017-06-20'),
+    DocCfg(id='014622', author=BOFA_MERRILL, description=f"Top 10 US Ideas Quarterly", date='2017-01-03'),
+    DocCfg(id='023069', author=BOFA_MERRILL, description=f"Equity Strategy Focus Point Death and Taxes", date='2017-01-29'),
+    DocCfg(id='014721', author=BOFA_MERRILL, description=f"Cause and Effect Fade the Trump Risk Premium", date='2017-02-13'),
+    DocCfg(id='014887', author=BOFA_MERRILL, description=f"Internet / e-Commerce", date='2017-04-06'),
+    DocCfg(id='014873', author=BOFA_MERRILL, description=f"Hess Corp", date='2017-04-11'),
+    DocCfg(id='023575', author=BOFA_MERRILL, description=f"Global Equity Volatility Insights", date='2017-06-01'),
     DocCfg(id='014518', author=BOFA_WEALTH_MGMT, description=f'tax alert', date='2016-05-02'),
     DocCfg(id='029438', author=BOFA_WEALTH_MGMT, description=f'tax report', date='2018-01-02'),
     DocCfg(id='024302', author='Carvana', description=f"form 14A SEC filing proxy statement", date='2019-04-23'),
     DocCfg(id='029305', author='CCH Tax', description=f"Briefing on end of Defense of Marriage Act", date='2013-06-27'),
-    DocCfg(id='026794', author=DEUTSCHE_BANK, description=f"'Global Political and Regulatory Risk in 2015/2016'"),
+    DocCfg(id='026794', author=DEUTSCHE_BANK, description=f"Global Political and Regulatory Risk in 2015/2016"),
     DocCfg(id='022361', author=DEUTSCHE_BANK_TAX_TOPICS, date='2013-05-01'),
     DocCfg(id='022325', author=DEUTSCHE_BANK_TAX_TOPICS, date='2013-12-20'),
     DocCfg(id='022330', author=DEUTSCHE_BANK_TAX_TOPICS, date='2013-12-20', description='table of contents'),
     DocCfg(id='019440', author=DEUTSCHE_BANK_TAX_TOPICS, date='2014-01-29'),
-    DocCfg(id='024202', author='Electron Capital Partners LLC', description=f"'Global Utility White Paper'", date='2013-03-08'),
+    DocCfg(id='024202', author=ELECTRON_CAPITAL_PARTNERS, description=f"Global Utility White Paper", date='2013-03-08'),
     DocCfg(id='022372', author='Ernst & Young', description=f'2016 election report'),
     DocCfg(
         id='025663',
@@ -1192,12 +1190,12 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='026909', author=GOLDMAN_INVESTMENT_MGMT, description=f"The Unsteady Undertow Commands the Seas (Temporarily)", date='2018-10-14'),
     DocCfg(id='026944', author=GOLDMAN_INVESTMENT_MGMT, description=f"Risk of a US-Iran Military Conflict", date='2019-05-23'),
     DocCfg(id='018804', author='Integra Realty Resources', description=f"appraisal of going concern for IGY American Yacht Harbor Marina in {VIRGIN_ISLANDS}"),
-    DocCfg(id='026679', author='Invesco', description=f"report: 'Global Sovereign Asset Management Study 2017'"),
+    DocCfg(id='026679', author='Invesco', description=f"Global Sovereign Asset Management Study 2017"),
     DocCfg(id='033220', author='Joseph G. Carson', description=f"short economic report on defense spending under Trump"),
     DocCfg(id='026572', author=JP_MORGAN, description=f"Global Asset Allocation report", date='2012-11-09'),
     DocCfg(id='030848', author=JP_MORGAN, description=f"Global Asset Allocation report", date='2013-03-28'),
     DocCfg(id='030840', author=JP_MORGAN, description=f"Market Thoughts"),
-    DocCfg(id='022350', author=JP_MORGAN, description=f"report on tax efficiency of Intentionally Defective Grantor Trusts (IDGT)"),
+    DocCfg(id='022350', author=JP_MORGAN, description=f"tax efficiency of Intentionally Defective Grantor Trusts (IDGT)"),
     DocCfg(id='025242', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2012-04-09'),
     DocCfg(id='030010', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-06-14'),
     DocCfg(id='030808', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-07-11'),
@@ -1209,10 +1207,9 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='025296', author='Laffer Associates', description=f'report predicting Trump win', date='2016-07-06'),
     DocCfg(id='020824', author='Mary Meeker', description=f"USA Inc: A Basic Summary of America's Financial Statements compiled", date='2011-02-01'),
     DocCfg(id='025551', author='Morgan Stanley', description=f'report about alternative asset managers', date='2018-01-30'),
-    DocCfg(id='025763', author='S&P', description=f"Economic Research: 'How Increasing Income Inequality Is Dampening U.S. Growth'", date='2014-08-05'),
+    DocCfg(id='025763', author='S&P', description=f"Economic Research: How Increasing Income Inequality Is Dampening U.S. Growth", date='2014-08-05'),
     DocCfg(id='024135', author=UBS, description=UBS_CIO_REPORT, date='2012-06-29'),
     DocCfg(id='025247', author=UBS, description=UBS_CIO_REPORT, date='2012-10-25'),
-    DocCfg(id='025849', author='US Office of Government Information Services', description=f"'Building a Bridge Between FOIA Requesters & Agencies'"),
     DocCfg(id='024631', description=f"Ackrell Capital report: Cannabis Investment Report 2018"),
     DocCfg(id='024271', description=f"Blockchain Capital and Brock Pierce pitch deck", date='2015-10-01'),
     DocCfg(id='024817', description=f"Cowen's Collective View of CBD / Cannabis report"),
@@ -1318,8 +1315,13 @@ OTHER_FILES_POLITICS = [
     DocCfg(
         id='023133',
         author=f"{TERJE_ROD_LARSEN}, Nur Laiq, Fabrice Aidan",
-        description=f'"The Search for Peace in the Arab-Israeli Conflict"',
+        description=f'The Search for Peace in the Arab-Israeli Conflict',
         date='2019-12-09',
+    ),
+    DocCfg(
+        id='025849',
+        author='US Office of Government Information Services',
+        description=f"Building a Bridge Between FOIA Requesters & Agencies",
     ),
     DocCfg(id='029918', description=f"{DIANA_DEGETTES_CAMPAIGN} campaign bio", date='2012-01-01'),
     DocCfg(id='031184', description=f"{DIANA_DEGETTES_CAMPAIGN} fundraiser invitation"),
