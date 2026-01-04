@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from subprocess import run
-from typing import ClassVar, Sequence, TypeVar
+from typing import ClassVar, Sequence, Tuple, TypeVar
 
 from rich.console import Console, ConsoleOptions, Group, RenderResult
 from rich.padding import Padding
@@ -210,6 +210,16 @@ class Document:
 
         return text
 
+    def sort_key(self) -> tuple[datetime, str, int]:
+        if self.config and self.config.dupe_of_id:
+            sort_id = self.config.dupe_of_id
+            dupe_idx = 1
+        else:
+            sort_id = self.file_id
+            dupe_idx = 0
+
+        return (self.timestamp or FALLBACK_TIMESTAMP, sort_id, dupe_idx)
+
     def summary(self) -> Text:
         """Summary of this file for logging. Brackets are left open for subclasses to add stuff."""
         txt = Text('').append(self.class_name(), style=self.document_type_style())
@@ -331,7 +341,7 @@ class Document:
 
     @staticmethod
     def sort_by_timestamp(docs: Sequence['DocumentType']) -> list['DocumentType']:
-        return sorted(docs, key=lambda doc: [doc.timestamp or FALLBACK_TIMESTAMP, doc.file_id])
+        return sorted(docs, key=lambda doc: doc.sort_key())
 
     @classmethod
     def uniquify(cls, documents: Sequence['DocumentType']) -> Sequence['DocumentType']:
