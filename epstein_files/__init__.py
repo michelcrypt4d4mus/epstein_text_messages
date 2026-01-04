@@ -80,8 +80,7 @@ def generate_html() -> None:
     epstein_files = EpsteinFiles.get_files(timer)
 
     if args.json_metadata:
-        metadata = [json_safe(doc.metadata()) for doc in epstein_files.all_documents()]
-        json_str = json.dumps(metadata, indent=4, sort_keys=True)
+        json_str = epstein_files.json_metadata()
 
         if args.build:
             with open(JSON_METADATA_PATH, 'w') as f:
