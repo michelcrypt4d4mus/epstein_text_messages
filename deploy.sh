@@ -5,25 +5,9 @@
 source .env
 set -e
 
-DOCS_DIR="docs"
-JSON_METADATA_PATH="$DOCS_DIR/$JSON_METADATA_STEM"
-WORD_COUNT_HTML_PATH="$DOCS_DIR/$WORD_COUNT_HTML_STEM"
-
-GITHUB_PAGES_BASE_URL='https://michelcrypt4d4mus.github.io'
-EMAILS_PROJECT_NAME=`basename "$EMAILS_DIR"`
-TEXT_MSGS_PROJECT_NAME=`basename "$PWD"`
-
-URLS_ENV=.urls.env
-epstein_dump_urls --output-file $URLS_ENV
-source $URLS_ENV
-
-
-echo -e "GH_PAGES_BASE_URL=$GH_PAGES_BASE_URL"
-exit
-
-
 CURRENT_BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
 PICKLE_ARG=$([[ $1 == '--pickled' ]] && echo "--pickled" || echo "--overwrite-pickle")
+URLS_ENV=.urls.env
 
 if [ -n "$BASH_COLORS_PATH" ]; then
     source "$BASH_COLORS_PATH"
@@ -66,9 +50,11 @@ if any_uncommitted_changes; then
 fi
 
 epstein_generate --make-clean
+epstein_dump_urls --output-file $URLS_ENV
+source $URLS_ENV
 
 
-# Text messages
+# Switch to gh_pages branch and build files
 git push origin master --quiet
 git checkout gh_pages
 git merge --no-edit master --quiet
@@ -95,6 +81,7 @@ fi
 git commit -am"Update HTML"
 git push origin gh_pages --quiet
 git checkout master
+
 echo -e ""
 print_msg "             texts page" "$TEXT_MSGS_URL"
 print_msg "            emails page" "$ALL_EMAILS_URL"
