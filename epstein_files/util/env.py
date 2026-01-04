@@ -21,6 +21,7 @@ parser.add_argument('--output-other-files', '-oo', action='store_true', help='ge
 parser.add_argument('--output-texts', '-ot', action='store_true', help='generate other files section')
 parser.add_argument('--pickled', '-p', action='store_true', help='use pickled EpsteinFiles object')
 parser.add_argument('--overwrite-pickle', '-op', action='store_true', help='generate new pickled EpsteinFiles object')
+parser.add_argument('--raw', '-r', action='store_true', help='show raw contents of file (only used by scripts)')
 parser.add_argument('--sort-alphabetical', '-alpha', action='store_true', help='sort emailers alphabetically in counts table')
 parser.add_argument('--suppress-output', '-s', action='store_true', help='no output to terminal (use with --build)')
 parser.add_argument('--use-epstein-web-links', '-use', action='store_true', help='use epsteinweb.org links instead of epstein.media')
