@@ -46,13 +46,7 @@ def coerce_file_stem(filename_or_id: int | str) -> str:
     """Generate a valid file_stem no matter what form the argument comes in."""
     if isinstance(filename_or_id, str) and filename_or_id.startswith(HOUSE_OVERSIGHT_PREFIX):
         file_id = extract_file_id(filename_or_id)
-        print(f"file_id: {file_id}")
-
-        # TODO: this is a hack for local extract files that sucks
-        if len(file_id) == 8:
-            return f"{HOUSE_OVERSIGHT_PREFIX}{file_id}"
-
-        file_stem = file_stem_for_id(extract_file_id(filename_or_id))
+        file_stem = file_stem_for_id(file_id)
     else:
         file_stem = file_stem_for_id(filename_or_id)
 
@@ -119,10 +113,8 @@ def is_local_extract_file(filename) -> bool:
 
 
 def make_clean() -> None:
-    """Delete all build artifact files."""
+    """Delete all build artifacts."""
     for build_file in BUILD_ARTIFACTS:
         if build_file.exists():
             print(f"Removing build file '{build_file}'...")
             build_file.unlink()
-        else:
-            print(f"Build file '{build_file}' does not exist...")

@@ -6,7 +6,7 @@ from inflection import parameterize
 from rich.text import Text
 
 from epstein_files.util.constant.strings import EMAIL, TEXT_MESSAGE, SiteType
-from epstein_files.util.file_helper import coerce_file_stem, filename_for_id
+from epstein_files.util.file_helper import JSON_METADATA_PATH, WORD_COUNT_HTML_PATH, coerce_file_stem
 
 # Style stuff
 ARCHIVE_LINK_COLOR = 'slate_blue3'
@@ -23,7 +23,8 @@ JMAIL = 'Jmail'
 # Cryptadamus URLs
 GH_PAGES_BASE_URL = 'https://michelcrypt4d4mus.github.io'
 TEXT_MSGS_BASE_URL = f"{GH_PAGES_BASE_URL}/epstein_text_messages"
-WORD_COUNT_URL = f'{TEXT_MSGS_BASE_URL}/epstein_emails_word_count.html'
+JSON_METADATA_URL = f'{TEXT_MSGS_BASE_URL}/{JSON_METADATA_PATH.name}'
+WORD_COUNT_URL = f'{TEXT_MSGS_BASE_URL}/{WORD_COUNT_HTML_PATH.name}'
 
 SITE_URLS: dict[SiteType, str] = {
     EMAIL: f'{GH_PAGES_BASE_URL}/epstein_emails_house_oversight/',  # TODO should just be same repo

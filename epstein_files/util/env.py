@@ -29,6 +29,7 @@ parser.add_argument('--width', '-w', type=int, default=DEFAULT_WIDTH, help='scre
 parser.add_argument('--whole-file', '-wf', action='store_true', help='print whole file (only used by search script)')
 parser.add_argument('--debug', '-d', action='store_true', help='set debug level to INFO')
 parser.add_argument('--deep-debug', '-dd', action='store_true', help='set debug level to DEBUG')
+parser.add_argument('--make-clean', '-mc', action='store_true', help='delete all build artifact HTML and JSON files')
 parser.add_argument('--suppress-logs', '-sl', action='store_true', help='set debug level to FATAL')
 parser.add_argument('--json-metadata', '-jm', action='store_true', help='dump JSON metadata for all files')
 parser.add_argument('--json-stats', '-j', action='store_true', help='print JSON formatted stats at the end')
