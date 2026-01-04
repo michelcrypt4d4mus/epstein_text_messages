@@ -118,7 +118,7 @@ def is_local_extract_file(filename) -> bool:
 
 
 def make_clean() -> None:
-    """Delete all build artifact files."""
+    """Delete all build artifacts."""
     for build_file in BUILD_ARTIFACTS:
         if build_file.exists():
             print(f"Removing build file '{build_file}'...")
