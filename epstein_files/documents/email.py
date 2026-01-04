@@ -524,7 +524,7 @@ class Email(Communication):
 
         if self.file_id in ['031442']:
             self._merge_lines(0)  # Merge 1st and 2nd rows
-        elif self.file_id in '021729 025790 029282 029501 029889 030626 031384 031428 033097 033512 033583 029498'.split():
+        elif self.file_id in '021729 025790 029282 029501 029889 030626 031384 031428 033097 033512 033583 029498 033583'.split():
             self._merge_lines(2)  # Merge 3rd and 4th rows
 
             if self.file_id in ['030626']:  # Merge 6th and 7th (now 5th and 6th) rows
@@ -537,11 +537,11 @@ class Email(Communication):
             self._merge_lines(3)  # Merge 4th and 5th rows
         elif self.file_id in '026609 029402 032405'.split():
             self._merge_lines(4)  # Merge 5th and 6th rows
-        elif self.file_id in ['019407', '031980', '030384']:
+        elif self.file_id in ['019407', '031980', '030384', '033144']:
             self._merge_lines(2, 4)
         elif self.file_id in ['029154', '029163']:
             self._merge_lines(2, 5)
-        elif self.file_id == '033228':
+        elif self.file_id in ['033228', '032063']:
             self._merge_lines(3, 5)
         elif self.file_id == '028931':
             self._merge_lines(3, 6)
