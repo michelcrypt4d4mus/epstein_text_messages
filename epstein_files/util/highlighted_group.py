@@ -433,12 +433,12 @@ HIGHLIGHTED_NAMES = [
         emailers = {
             AL_SECKEL: 'husband of Isabel Maxwell, Mindshift conference organizer who fell off a cliff',
             'Barnaby Marsh': 'co-founder of Saint Partners, a philanthropy services company',
-            CHRISTINA_GALBRAITH: None,
+            CHRISTINA_GALBRAITH: f"{REPUTATION_MGMT}, worked on Epstein's Google search results with {TYLER_SHEARS}",
             IAN_OSBORNE: f"{OSBORNE_LLP} reputation repairer possibly hired by Epstein ca. 2011-06",
-            MICHAEL_SITRICK: None,
+            MICHAEL_SITRICK: 'crisis PR',
             PEGGY_SIEGAL: 'socialite',
             ROSS_GOW: 'Acuity Reputation Management',
-            TYLER_SHEARS: None,
+            TYLER_SHEARS: f"{REPUTATION_MGMT}, worked on Epstein's Google search results with {CHRISTINA_GALBRAITH}",
         }
     ),
     HighlightedNames(
