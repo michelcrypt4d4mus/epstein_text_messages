@@ -20,7 +20,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import EMAIL_CLASS, MESSENGER_LOG_CLASS
 from epstein_files.util.data import Timer, dict_sets_to_lists
 from epstein_files.util.env import args, specified_names
-from epstein_files.util.file_helper import GH_PAGES_HTML_PATH
+from epstein_files.util.file_helper import GH_PAGES_HTML_PATH, JSON_METADATA_PATH
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
 
@@ -76,7 +76,16 @@ def generate_html() -> None:
 
     if args.json_metadata:
         metadata = [json_safe(doc.metadata()) for doc in epstein_files.all_documents()]
-        console.print_json(json.dumps(metadata, indent=4, sort_keys=True))
+        json_str = json.dumps(metadata, indent=4, sort_keys=True)
+
+        if args.build:
+            with open(JSON_METADATA_PATH, 'w') as f:
+                f.write(json_str)
+
+            timer.print_at_checkpoint(f"Wrote JSON metadata to '{JSON_METADATA_PATH}' ({file_size_str(JSON_METADATA_PATH)})")
+        else:
+            console.print_json(json_str)
+
         exit()
 
     print_header(epstein_files)
