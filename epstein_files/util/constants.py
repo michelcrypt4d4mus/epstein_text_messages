@@ -456,10 +456,11 @@ EMAILS_CONFIG = [
     EmailCfg(id='028851', author=JOI_ITO, recipients=[JEFFREY_EPSTEIN], timestamp=parse('2014-04-27 06:00:00')),
     EmailCfg(
         id='028849',
+        attribution_reason='Conversation with Joi Ito',
         author=JOI_ITO,
+        description=f"{JOI_ITO} reaching out to Epstein for an immediate phone call after news about illicit Russian money",
         recipients=[JEFFREY_EPSTEIN],
         timestamp=parse('2014-04-27 06:30:00'),
-        attribution_reason='Conversation with Joi Ito',
     ),
     EmailCfg(id='028507', author=JONATHAN_FARKAS, attribution_reason='reply signed "best Jonathan"'),
     EmailCfg(id='033282', author=JONATHAN_FARKAS, attribution_reason='reply signed "thanks Jonathan"', duplicate_ids=['033484']),
