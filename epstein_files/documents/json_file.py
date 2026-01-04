@@ -1,21 +1,28 @@
 import json
+import logging
 from dataclasses import dataclass
 from pathlib import Path
+from typing import ClassVar
 
 from rich.text import Text
 
 from epstein_files.documents.other_file import OtherFile
+from epstein_files.util.rich import console
 
 
 @dataclass
 class JsonFile(OtherFile):
     """File containing JSON data."""
+    strip_whitespace: ClassVar[bool] = False
 
     def __post_init__(self):
         super().__post_init__()
 
         if self.url_slug.endswith('.txt') or self.url_slug.endswith('.json'):
             self.url_slug = Path(self.url_slug).stem
+
+        self._set_computed_fields(text=self.formatted_json())
+        self.log_top_lines(20, msg=f"{self.summary()}", level=logging.WARNING)
 
     def category(self) -> str:
         return 'json'

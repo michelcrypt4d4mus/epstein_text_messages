@@ -66,6 +66,9 @@ class Document:
     timestamp: datetime | None = None
     url_slug: str = field(init=False)  # e.g. 'HOUSE_OVERSIGHT_123456
 
+    # Class variable overridden in JsonFile
+    strip_whitespace: ClassVar[bool] = True
+
     def __post_init__(self):
         self.filename = self.file_path.name
         self.file_id = extract_file_id(self.filename)
@@ -272,7 +275,7 @@ class Document:
             raise RuntimeError(f"[{self.filename}] Either 'lines' or 'text' arg must be provided (neither was)")
 
         self.length = len(self.text)
-        self.lines = [line.strip() for line in self.text.split('\n')]
+        self.lines = [line.strip() if self.strip_whitespace else line for line in self.text.split('\n')]
         self.num_lines = len(self.lines)
 
     def _write_clean_text(self, output_path: Path) -> None:
