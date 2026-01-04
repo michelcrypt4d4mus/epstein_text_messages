@@ -35,6 +35,7 @@ from epstein_files.util.search_result import SearchResult
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (1, 0)
 NOT_INCLUDED_EMAILERS = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
+SLOW_FILE_SECONDS = 0.25
 
 INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [
     'ACT for America',
@@ -86,7 +87,7 @@ class EpsteinFiles:
             documents.append(cls(file_arg, text=document.text))
             logger.info(str(documents[-1]))
 
-            if doc_timer.seconds_since_start() > 0.1:
+            if doc_timer.seconds_since_start() > SLOW_FILE_SECONDS:
                 doc_timer.print_at_checkpoint(f"Slow file - processed {documents[-1]}")
 
         self.emails = Document.sort_by_timestamp([d for d in documents if isinstance(d, Email)])
