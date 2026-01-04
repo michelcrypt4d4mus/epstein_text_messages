@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # Show the contents of filenames or ids passed as positional args
+import sys
 from dotenv import load_dotenv
 load_dotenv()
 from rich.panel import Panel
@@ -9,6 +10,10 @@ from epstein_files.util.env import args
 from epstein_files.util.file_helper import extract_file_id, id_str
 from epstein_files.util.rich import console, print_panel, print_section_header
 
+
+if not args.positional_args:
+    console.print(f"\n  ERROR: No positional args!\n", style='red1')
+    sys.exit()
 
 ids = [id_str(arg) if len(arg) <= 6 else extract_file_id(arg) for arg in args.positional_args]
 docs = epstein_files.get_documents_by_id(ids)

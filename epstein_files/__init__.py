@@ -19,8 +19,9 @@ from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import EMAIL_CLASS, MESSENGER_LOG_CLASS
 from epstein_files.util.data import Timer, dict_sets_to_lists
-from epstein_files.util.env import specified_names, args
+from epstein_files.util.env import args, specified_names
 from epstein_files.util.file_helper import GH_PAGES_HTML_PATH
+from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
 
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
@@ -91,7 +92,7 @@ def generate_html() -> None:
 
     # Save output
     write_html(GH_PAGES_HTML_PATH)
-    logger.warning(f"Total time: {timer.seconds_since_start()}")
+    logger.warning(f"Total time: {timer.seconds_since_start_str()}")
 
     # JSON stats (mostly used for building pytest checks)
     if args.json_stats:

@@ -17,30 +17,23 @@ from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP
 from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, listify, patternize, without_nones
 from epstein_files.util.doc_cfg import EmailCfg, DocCfg, TextCfg
-from epstein_files.util.env import args, logger
-from epstein_files.util.file_helper import DOCS_DIR, file_stem_for_id, extract_file_id, file_size_str, is_local_extract_file
-from epstein_files.util.rich import SYMBOL_STYLE, console, highlighter, key_value_txt, logger, link_text_obj
+from epstein_files.util.env import args
+from epstein_files.util.file_helper import (DOCS_DIR, file_stem_for_id, extract_file_id, file_size,
+     file_size_str, is_local_extract_file)
+from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
+from epstein_files.util.rich import SYMBOL_STYLE, console, highlighter, key_value_txt, link_text_obj
 
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
 MIN_DOCUMENT_ID = 10477
 INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
+MAX_TOP_LINES_LEN = 4000  # Only for logging
 
 CLOSE_PROPERTIES_CHAR = ']'
-MAX_EXTRACTED_TIMESTAMPS = 6
-MAX_SIZE_TO_REPAIR = 500 * 1024
 MIN_TIMESTAMP = datetime(1991, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
 MAX_TIMESTAMP = datetime(2020, 1, 1)
-
-DOC_TYPE_STYLES = {
-    DOCUMENT_CLASS: 'grey69',
-    EMAIL_CLASS: 'sea_green2',
-    JSON_FILE_CLASS: 'sandy_brown',
-    MESSENGER_LOG_CLASS: 'cyan',
-    OTHER_FILE_CLASS: 'grey69',
-}
 
 FILENAME_MATCH_STYLES = [
     'dark_green',
@@ -143,6 +136,9 @@ class Document:
         hints = [Padding(hint, INFO_PADDING) for hint in self.hints()]
         return Group(*([panel] + hints))
 
+    def file_size(self) -> int:
+        return file_size(self.file_path)
+
     def file_size_str(self) -> str:
         return file_size_str(self.file_path)
 
@@ -181,13 +177,14 @@ class Document:
         ]
 
     def log(self, msg: str, level: int = logging.WARNING):
-        """Log with [file_id] as a prefix."""
-        logger.log(level, f"[{self.file_id}] {msg}")
+        """Log with filename as a prefix."""
+        logger.log(level, f"{self.url_slug} {msg}")
 
     def log_top_lines(self, n: int = 10, msg: str = '', level: int = logging.INFO) -> None:
         """Log first 'n' lines of self.text at 'level'. 'msg' can be optionally provided."""
         separator = '\n\n' if '\n' in msg else '. '
-        msg = f"{msg + separator if msg else ''}Top lines of '{self.filename}' ({self.num_lines} lines):"
+        msg = (msg + separator) if msg else ''
+        msg = f"{self.filename}: {msg}First {n} lines:"
         logger.log(level, f"{msg}\n\n{self.top_lines(n)}\n")
 
     def raw_text(self) -> str:
@@ -225,19 +222,20 @@ class Document:
 
     def summary(self) -> Text:
         """Summary of this file for logging. Brackets are left open for subclasses to add stuff."""
-        txt = Text('').append(self.url_slug, style='magenta')
-        txt.append(f' {self.class_name()}', style=self.document_type_style())
+        txt = Text('').append(self.class_name(), style=self.document_type_style())
+        txt.append(f" {self.url_slug}", style=FILENAME_STYLE)
 
         if self.timestamp:
+            timestamp_str = iso_timestamp(self.timestamp).removesuffix(' 00:00:00')
             txt.append(' (', style=SYMBOL_STYLE)
-            txt.append(f"{iso_timestamp(self.timestamp)}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
+            txt.append(f"{timestamp_str}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
 
-        txt.append(" [").append(key_value_txt('num_lines', Text(f"{self.num_lines}", style='cyan')))
-        txt.append(', ').append(key_value_txt('size', Text(self.file_size_str(), style='aquamarine1')))
+        txt.append(' [').append(key_value_txt('size', Text(self.file_size_str(), style='aquamarine1')))
+        txt.append(", ").append(key_value_txt('lines', Text(f"{self.num_lines}", style='cyan')))
         return txt
 
     def top_lines(self, n: int = 10) -> str:
-        return '\n'.join(self.lines[0:n])
+        return '\n'.join(self.lines[0:n])[:MAX_TOP_LINES_LEN]
 
     def _border_style(self) -> str:
         """Should be overloaded in subclasses."""
@@ -266,14 +264,9 @@ class Document:
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
         text = self.raw_text()
         text = text[1:] if (len(text) > 0 and text[0] == '\ufeff') else text  # remove BOM
-
-        if len(text) < MAX_SIZE_TO_REPAIR:
-            text = self.repair_ocr_text(OCR_REPAIRS, text.strip())
-        else:
-            logger.warning(f"Not repairing large file: {self.url_slug} ({self.file_size_str()})")
-
+        text = self.repair_ocr_text(OCR_REPAIRS, text.strip())
         lines = [l.strip() for l in text.split('\n') if not l.startswith(HOUSE_OVERSIGHT)]
-        lines = lines[1:] if (len(lines) > 1 and lines[0] == '>>') else lines
+        # lines = lines[1:] if (len(lines) > 1 and lines[0] == '>>') else lines
         return collapse_newlines('\n'.join(lines))
 
     def _repair(self) -> None:

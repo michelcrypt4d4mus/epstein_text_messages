@@ -20,10 +20,10 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
 from epstein_files.util.constants import *
 from epstein_files.util.data import (TIMEZONE_INFO, collapse_newlines, escape_single_quotes, extract_last_name,
-     flatten, remove_timezone, uniquify)
+     flatten, listify, remove_timezone, uniquify)
 from epstein_files.util.doc_cfg import EmailCfg
-from epstein_files.util.env import logger
 from epstein_files.util.highlighted_group import get_style_for_name
+from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
 
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|L\._|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
@@ -77,6 +77,8 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     "as Putin Mayhem Tests President's Grip\non GOP": "as Putin Mayhem Tests President's Grip on GOP",
     "avoids testimony from alleged\nvictims": "avoids testimony from alleged victims",
     "but\nwatchdogs say probe is tainted": "watchdogs say probe is tainted",
+    "Christmas comes\nearly for most of macro": "Christmas comes early for most of macro",            # 023717
+    "but majority still made good\nmoney because": "but majority still made good money because",      # 023717
     "COVER UP SEX ABUSE CRIMES\nBY THE WHITE HOUSE": "COVER UP SEX ABUSE CRIMES BY THE WHITE HOUSE",
     'Priebus, used\nprivate email accounts for': 'Priebus, used private email accounts for',
     "War on the Investigations\nEncircling Him": "War on the Investigations Encircling Him",
@@ -272,7 +274,7 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
 # Emails sent by epstein to himself that are just notes
 SELF_EMAILS_FILE_IDS = [
     '026677',
-    '029752',
+    '029752',   # TODO: jokeland...
     '030238',
     # '033274',  # TODO: Epstein's note to self doesn't get printed if we don't set the recipients to [None]
 ]
@@ -411,9 +413,8 @@ class Email(Communication):
             if self.header.is_empty():
                 self.header.repair_empty_header(self.lines)
         else:
-            msg = f"No header match found in '{self.filename}'! Top lines:\n\n{self.top_lines()}"
-            log_fxn = logger.info if self.config else logger.warning
-            log_fxn(msg)
+            log_level = logging.INFO if self.config else logging.WARNING
+            self.log_top_lines(msg='No email header match found!', level=log_level)
             self.header = EmailHeader(field_names=[])
 
     def _extract_timestamp(self) -> datetime:
@@ -493,6 +494,10 @@ class Email(Communication):
             for r in recipients
         ], join=', ')
 
+    def _remove_line(self, idx: int) -> None:
+        del self.lines[idx]
+        self._set_computed_fields(lines=self.lines)
+
     def _repair(self) -> None:
         """Repair particularly janky files."""
         if BAD_FIRST_LINE_REGEX.match(self.lines[0]):
@@ -526,6 +531,9 @@ class Email(Communication):
 
             self._merge_lines(4)
             self._merge_lines(2, 4)
+        elif self.file_id == '025041':
+            self._remove_line(4)
+            self._remove_line(4)
 
         if old_text != self.text:
             self.log(f"Modified text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n', logging.INFO)
