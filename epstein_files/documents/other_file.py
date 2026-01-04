@@ -134,7 +134,7 @@ class OtherFile(Document):
         super().__post_init__()
 
         if self.config is None and VI_DAILY_NEWS_REGEX.search(self.text):
-            logger.info(f"Creating synthetic config for VI Daily News article...")
+            self.log(f"Creating synthetic config for VI Daily News article...", logging.INFO)
             self.config = DocCfg(id=self.file_id, description=VI_DAILY_NEWS_ARTICLE, category=ARTICLE)
 
     def category(self) -> str | None:
@@ -233,7 +233,9 @@ class OtherFile(Document):
                 logger.warning(f"Error while iterating through datefinder.find_dates(): {e}")
 
         if len(timestamps) == 0:
-            self.log_top_lines(15, msg=f"No timestamps found", level=logging.INFO)
+            if not self.is_duplicate and VAST_HOUSE not in self.text:
+                self.log_top_lines(15, msg=f"No timestamps found", level=logging.INFO)
+
             return None
         elif len(timestamps) == 1:
             return timestamps[0]
