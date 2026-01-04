@@ -91,7 +91,7 @@ def generate_html() -> None:
 
     # Save output
     write_html(GH_PAGES_HTML_PATH)
-    logger.warning(f"Total time: {timer.seconds_since_start()}")
+    logger.warning(f"Total time: {timer.seconds_since_start_str()}")
 
     # JSON stats (mostly used for building pytest checks)
     if args.json_stats:

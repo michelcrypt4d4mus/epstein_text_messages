@@ -66,18 +66,28 @@ class EpsteinFiles:
 
         # Read through and classify all the files
         for file_arg in self.all_files:
-            logger.info(f"Scanning '{file_arg.name}'...")
-            #doc_timer = Timer(decimals=4)
-            doc = Document(file_arg)
+            doc_timer = Timer(decimals=4)
+            document = Document(file_arg)
+            search_area = document.text[0:1200]  # Limit search area to avoid pointless scans of huge files
 
-            if doc.length == 0:
-                logger.warning(f"Skipping empty file: {doc}")
+            if document.length == 0:
+                logger.warning(f"Skipping empty file: {document}")
                 continue
 
-            document = document_cls(doc)(file_arg, text=doc.text)
-            documents.append(document)
-            logger.info(str(document))
-            #doc_timer.print_at_checkpoint(f"Processed {document}")
+            if document.text[0] == '{':
+                cls = JsonFile
+            elif isinstance(document.config, EmailCfg) or DETECT_EMAIL_REGEX.match(search_area):
+                cls = Email
+            elif MSG_REGEX.search(search_area):
+                cls = MessengerLog
+            else:
+                cls = OtherFile
+
+            documents.append(cls(file_arg, text=document.text))
+            logger.info(str(documents[-1]))
+
+            if doc_timer.seconds_since_start() > 0.1:
+                doc_timer.print_at_checkpoint(f"Processed {document}")
 
         self.emails = Document.sort_by_timestamp([d for d in documents if isinstance(d, Email)])
         self.imessage_logs = Document.sort_by_timestamp([d for d in documents if isinstance(d, MessengerLog)])
@@ -254,7 +264,7 @@ class EpsteinFiles:
         console.print(build_signature_table(self.email_device_signatures_to_authors, (DEVICE_SIGNATURE, AUTHOR), ', '))
 
     def print_emailer_counts_table(self) -> None:
-        footer = f"Identified authors of {self.attributed_email_count()} emails out of {len(self.emails)} potential email files."
+        footer = f"Identified authors of {self.attributed_email_count():,} emails out of {len(self.emails):,}."
         counts_table = Table(title=f"Email Counts", caption=footer, header_style="bold")
         add_cols_to_table(counts_table, ['Name', 'Count', 'Sent', "Recv'd", JMAIL, EPSTEIN_WEB, 'Twitter'])
 
@@ -282,11 +292,10 @@ class EpsteinFiles:
         """Print summary table and stats for text messages."""
         console.print(MessengerLog.summary_table(self.imessage_logs))
         text_summary_msg = f"\nDeanonymized {self.identified_imessage_log_count()} of "
-        text_summary_msg += f"{len(self.imessage_logs)} {TEXT_MESSAGE} logs found in {len(self.all_files)} files."
+        text_summary_msg += f"{len(self.imessage_logs)} {TEXT_MESSAGE} logs found in {len(self.all_files):,} files."
         console.print(text_summary_msg)
         imessage_msg_count = sum([len(log.messages()) for log in self.imessage_logs])
-        console.print(f"Found {imessage_msg_count} total text messages in {len(self.imessage_logs)} conversations.")
-        console.print(f"(Last deploy found 4668 messages in 77 conversations)", style='dim')
+        console.print(f"Found {imessage_msg_count} text messages in {len(self.imessage_logs)} iMessage log files.")
 
     def print_other_files_table(self) -> list[OtherFile]:
         """Returns the OtherFile objects that were interesting enough to print."""
@@ -333,17 +342,6 @@ def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str]
         table.add_row(highlighter(k or UNKNOWN), highlighter(join_char.join(sorted(new_dict[k]))))
 
     return Padding(table, DEVICE_SIGNATURE_PADDING)
-
-
-def document_cls(document: Document) -> Type[Document]:
-    if document.text[0] == '{':
-        return JsonFile
-    elif MSG_REGEX.search(document.text):
-        return MessengerLog
-    elif DETECT_EMAIL_REGEX.match(document.text) or isinstance(document.config, EmailCfg):
-        return Email
-    else:
-        return OtherFile
 
 
 def is_ok_for_epstein_web(name: str | None) -> bool:

@@ -119,14 +119,17 @@ class Timer:
     decimals: int = 2
 
     def print_at_checkpoint(self, msg: str) -> None:
-        logger.warning(f"{msg} in {self.seconds_since_checkpoint()}")
+        logger.warning(f"{msg} in {self.seconds_since_checkpoint_str()}")
         self.checkpoint_at = time.perf_counter()
 
-    def seconds_since_checkpoint(self) -> str:
+    def seconds_since_checkpoint_str(self) -> str:
         return f"{(time.perf_counter() - self.checkpoint_at):.{self.decimals}f} seconds"
 
-    def seconds_since_start(self) -> str:
-        return f"{(time.perf_counter() - self.started_at):.{self.decimals}f} seconds"
+    def seconds_since_start(self) -> float:
+        return time.perf_counter() - self.started_at
+
+    def seconds_since_start_str(self) -> str:
+        return f"{self.seconds_since_start():.{self.decimals}f} seconds"
 
 
 escape_double_quotes = lambda text: text.replace('"', r'\"')
