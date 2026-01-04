@@ -5,22 +5,9 @@ from dateutil.parser import parse
 
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.doc_cfg import EmailCfg, DocCfg, TextCfg
+from epstein_files.util.doc_cfg import *
 
-# Misc
 FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
-RESUME_OF = 'professional resumé of'
-SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
-
-# Email reply regexes (has to be here for circular dependencies reasons)
-FORWARDED_LINE_PATTERN = r"-+ ?(Forwarded|Original)\s*Message ?-*|Begin forwarded message:?"
-REPLY_LINE_IN_A_MSG_PATTERN = r"In a message dated \d+/\d+/\d+.*writes:"
-REPLY_LINE_ENDING_PATTERN = r"[_ \n](AM|PM|[<_]|wrote:?)"
-REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"On \d+/\d+/\d+[, ].*{REPLY_LINE_ENDING_PATTERN}"
-REPLY_LINE_ON_DATE_PATTERN = fr"^On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*)[, ].*{REPLY_LINE_ENDING_PATTERN}"
-REPLY_LINE_PATTERN = rf"({REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
-REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
-
 
 HEADER_ABBREVIATIONS = {
     "AD": "Abu Dhabi",
@@ -215,31 +202,16 @@ for emailer in EMAILERS:
 
     EMAILER_REGEXES[emailer] = re.compile(emailer, re.IGNORECASE)
 
-# Some emails have a lot of uninteresting CCs
-IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS: list[str | None] = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
-FLIGHT_IN_2012_PEOPLE: list[str | None] = ['Francis Derby', 'Januiz Banasiak', 'Louella Rabuyo', 'Richard Barnnet']
-
 
 ##########################
 # OtherFile config stuff #
 ##########################
 
-# categories
-ACADEMIA = 'academia'
-ARTS = 'arts'
-ARTICLE = 'article'
-BOOK = 'book'
-FINANCE = 'finance'
-JUNK = 'junk'
-REPUTATION = 'reputation'
-SPEECH = 'speech'
-
 # strings
 FBI = 'FBI'
-FLIGHT_LOGS = 'flight logs'
 MEME = 'meme of'
 PRESS_RELEASE = 'press release'
-REPUTATION_MGMT = f'{REPUTATION} management'
+RESUME_OF = 'professional resumé of'
 SCREENSHOT = 'screenshot of'
 TRANSLATION = 'translation of'
 TWEET = 'tweet'
@@ -309,6 +281,7 @@ ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
 BOLOTOVA_REASON = 'Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")'
 KATHY_REASON = 'from "Kathy" about dems, sent from iPad'
 LARRY_REASON = 'Planes discussion signed "Larry"'
+PARTICIPANTS_FIELD = 'Participants: field'
 PAULA_REASON = 'Signature of "Sent via BlackBerry from T-Mobile"'
 
 
@@ -317,31 +290,33 @@ PAULA_REASON = 'Signature of "Sent via BlackBerry from T-Mobile"'
 ################################################################################################
 
 CONFIRMED_TEXTS_CONFIG = [
-    TextCfg(id='031042', author=ANIL_AMBANI, attribution_reason='Participants: field'),
-    TextCfg(id='027225', author=ANIL_AMBANI, attribution_reason='Birthday mentioned and confirmed as Ambani\'s'),
-    TextCfg(id='031173', author=ARDA_BESKARDES, attribution_reason='Participants: field'),
-    TextCfg(id='027401', author='Eva (Dubin?)', attribution_reason='Participants: field'),
-    TextCfg(id='027650', author=JOI_ITO, attribution_reason='Participants: field'),
-    TextCfg(id='027777', author=LARRY_SUMMERS, attribution_reason='Participants: field'),
+    TextCfg(id='031042', author=ANIL_AMBANI, attribution_reason=PARTICIPANTS_FIELD),
+    TextCfg(id='027225', author=ANIL_AMBANI, attribution_reason='Birthday mentioned in texts is confirmed as Ambani\'s'),
+    TextCfg(id='031054', author=ANTHONY_SCARAMUCCI, attribution_reason="Scaramucci's phone number is at top of raw file"),
+    TextCfg(id='027333', author=ANTHONY_SCARAMUCCI, attribution_reason="Scaramucci's phone number is in one of the messages"),
+    TextCfg(id='031173', author=ARDA_BESKARDES, attribution_reason=PARTICIPANTS_FIELD),
+    TextCfg(id='027401', author='Eva (Dubin?)', attribution_reason=PARTICIPANTS_FIELD),
+    TextCfg(id='027650', author=JOI_ITO, attribution_reason=PARTICIPANTS_FIELD),
+    TextCfg(id='027777', author=LARRY_SUMMERS, attribution_reason=PARTICIPANTS_FIELD),
     TextCfg(id='027515', author=MIROSLAV_LAJCAK, attribution_reason='https://x.com/ImDrinknWyn/status/1990210266114789713'),
     TextCfg(id='027165', author=MELANIE_WALKER, attribution_reason='https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/'),
     TextCfg(id='027248', author=MELANIE_WALKER, attribution_reason='Says "we met through trump" which is confirmed by Melanie in 032803'),
     TextCfg(id='025429', author=STACEY_PLASKETT, attribution_reason='widely reported'),
-    TextCfg(id='027333', author=ANTHONY_SCARAMUCCI, attribution_reason='unredacted phone number in one of the messages belongs to Scaramucci'),
     TextCfg(id='027128', author=SOON_YI_PREVIN, attribution_reason='https://x.com/ImDrinknWyn/status/1990227281101434923'),
     TextCfg(id='027217', author=SOON_YI_PREVIN, attribution_reason='refs marriage to Woody Allen'),
-    TextCfg(id='027244', author=SOON_YI_PREVIN, attribution_reason='refs Woody'),
-    TextCfg(id='027257', author=SOON_YI_PREVIN, attribution_reason="'Woody Allen' in Participants: field"),
+    TextCfg(id='027244', author=SOON_YI_PREVIN, attribution_reason='refs Woody Allen'),
+    TextCfg(id='027257', author=SOON_YI_PREVIN, attribution_reason=f"'Woody Allen' in {PARTICIPANTS_FIELD}"),
     TextCfg(id='027460', author=STEVE_BANNON, attribution_reason='Discusses leaving scotland when Bannon was confirmed in Scotland, also NYT'),
-    TextCfg(id='027307', author=STEVE_BANNON),
-    TextCfg(id='027278', author=TERJE_ROD_LARSEN),
-    TextCfg(id='027255', author=TERJE_ROD_LARSEN),
+    TextCfg(id='027307', author=STEVE_BANNON, attribution_reason=f'texts mention "Epstein Bannon Kurz"'),
+    TextCfg(id='027278', author=TERJE_ROD_LARSEN, attribution_reason=PARTICIPANTS_FIELD),
+    TextCfg(id='027255', author=TERJE_ROD_LARSEN, attribution_reason=PARTICIPANTS_FIELD),
 ]
 
 UNCONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='027762', author=ANDRZEJ_DUDA),
     TextCfg(id='027774', author=ANDRZEJ_DUDA),
     TextCfg(id='027221', author=ANIL_AMBANI),
+    TextCfg(id='027396', author=ANTHONY_SCARAMUCCI, attribution_reason='says "I need to make peace with Bannon"'),
     TextCfg(id='025436', author=CELINA_DUBIN),
     TextCfg(id='027576', author=MELANIE_WALKER, attribution_reason='https://www.ahajournals.org/doi/full/10.1161/STROKEAHA.118.023700'),
     TextCfg(id='027141', author=MELANIE_WALKER),
@@ -351,8 +326,6 @@ UNCONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='027214', author=MELANIE_WALKER),
     TextCfg(id='027148', author=MELANIE_WALKER),
     TextCfg(id='027440', author=MICHAEL_WOLFF, attribution_reason='AI says Trump book/journalism project'),
-    TextCfg(id='027396', author=ANTHONY_SCARAMUCCI),
-    TextCfg(id='031054', author=ANTHONY_SCARAMUCCI),
     TextCfg(id='025363', author=STEVE_BANNON, attribution_reason='Trump and New York Times coverage'),
     TextCfg(id='025368', author=STEVE_BANNON, attribution_reason='Trump and New York Times coverage'),
     TextCfg(id='027585', author=STEVE_BANNON, attribution_reason='references Tokyo trip'),
@@ -397,6 +370,10 @@ TEXTS_CONFIG = CONFIRMED_TEXTS_CONFIG + UNCONFIRMED_TEXTS_CONFIG
 ########################################################################################################
 ################################################ EMAILS ################################################
 ########################################################################################################
+
+# Some emails have a lot of uninteresting CCs
+IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS: list[str | None] = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
+FLIGHT_IN_2012_PEOPLE: list[str | None] = ['Francis Derby', 'Januiz Banasiak', 'Louella Rabuyo', 'Richard Barnnet']
 
 EMAILS_CONFIG = [
     EmailCfg(id='032436', author=ALIREZA_ITTIHADIEH, attribution_reason='Signature'),
@@ -849,7 +826,7 @@ OTHER_FILES_BOOKS = [
     DocCfg(id='022118', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
     DocCfg(id='019111', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
     DocCfg(id='015675', author='James Tagg', description=f'Are the Androids Dreaming Yet? Amazing Brain Human Communication, Creativity & Free Will'),
-    DocCfg(id='016804', author='John Brockman', description='Deep Thinking: Twenty-Five Ways of Looking at AI', date='2019-02-19', duplicate_ids=['016221']),
+    DocCfg(id='016804', author=JOHN_BROCKMAN, description='Deep Thinking: Twenty-Five Ways of Looking at AI', date='2019-02-19', duplicate_ids=['016221']),
     DocCfg(id='018232', author='Joshua Cooper Ramo', description=f'The Seventh Sense: Power, Fortune & Survival in the Age of Networks'),
     DocCfg(id='012747', author='Marc D. Hauser', description=f'Evilicious: Explaining Our Taste For Excessive Harm'),
     DocCfg(id='032724', author=MICHAEL_WOLFF, description=f'cover of "{FIRE_AND_FURY}"', date='2018-01-05'),
@@ -1430,6 +1407,8 @@ OTHER_FILES_ARTS = [
 ]
 
 OTHER_FILES_MISC = [
+    DocCfg(id='022780', category=FLIGHT_LOGS),
+    DocCfg(id='022816', category=FLIGHT_LOGS),
     DocCfg(
         id='025147',
         author=BROCKMAN_INC,
@@ -1449,8 +1428,6 @@ OTHER_FILES_MISC = [
     DocCfg(id='024117', description=f"FAQ about anti-money laundering (AML) and terrorist financing (CFT) law in the U.S."),
     DocCfg(id='027071', description=f"{FEMALE_HEALTH_COMPANY} brochure request donations for female condoms in Uganda"),
     DocCfg(id='027074', description=f"{FEMALE_HEALTH_COMPANY} pitch deck (USAID was a customer)"),
-    DocCfg(id='022780', description=FLIGHT_LOGS),
-    DocCfg(id='022816', description=FLIGHT_LOGS),
     DocCfg(id='022494', description=f'Foreign Corrupt Practices Act (FCPA) DOJ Resource Guide'),
     DocCfg(id='032735', description=f"{GORDON_GETTY} on Trump", date='2018-03-20'),  # Dated based on concurrent emails from Getty
     DocCfg(id='019448', description=f"Haitian business investment proposal called Jacmel"),
@@ -1513,7 +1490,7 @@ for category in OTHER_FILES_CATEGORIES:
 
     # Inject category field
     for cfg in configs:
-        cfg.category = category
+        cfg.category = cfg.category or category
 
 ALL_CONFIGS = TEXTS_CONFIG + EMAILS_CONFIG + OTHER_FILES_CONFIG
 ALL_FILE_CONFIGS: dict[str, DocCfg] = {}
@@ -1525,6 +1502,17 @@ for cfg in ALL_CONFIGS:
     # Add extra config objects for duplicate files that match the config of file they are duplicating
     for dupe_cfg in cfg.duplicate_cfgs():
         ALL_FILE_CONFIGS[dupe_cfg.id] = dupe_cfg
+
+
+# Email related regexes (have to be here for circular dependencies reasons)
+FORWARDED_LINE_PATTERN = r"-+ ?(Forwarded|Original)\s*Message ?-*|Begin forwarded message:?"
+REPLY_LINE_IN_A_MSG_PATTERN = r"In a message dated \d+/\d+/\d+.*writes:"
+REPLY_LINE_ENDING_PATTERN = r"[_ \n](AM|PM|[<_]|wrote:?)"
+REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"On \d+/\d+/\d+[, ].*{REPLY_LINE_ENDING_PATTERN}"
+REPLY_LINE_ON_DATE_PATTERN = fr"^On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*)[, ].*{REPLY_LINE_ENDING_PATTERN}"
+REPLY_LINE_PATTERN = rf"({REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
+REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
+SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
 
 
 # Error checking.
