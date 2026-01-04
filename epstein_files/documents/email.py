@@ -318,7 +318,7 @@ class Email(Communication):
         # Remove self CCs
         recipients = [r for r in self.recipients if r != self.author or self.file_id in SELF_EMAILS_FILE_IDS]
         self.recipients = list(set(recipients))
-        self.text = self._cleaned_up_text()
+        self.text = self._prettify_text()
         self.actual_text = self._actual_text()
         self.sent_from_device = self._sent_from_device()
 
@@ -387,19 +387,6 @@ class Email(Communication):
             style = self.author_style
 
         return style.replace('bold', '').strip()
-
-    def _cleaned_up_text(self) -> str:
-        """Add newline after headers in text if actual header wasn't empty, remove bad lines, etc."""
-        # Insert line breaks now unless header is broken, in which case we'll do it later after fixing header
-        text = self.text if self.header.was_initially_empty else _add_line_breaks(self.text)
-        text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
-
-        for name, signature_regex in EMAIL_SIGNATURE_REGEXES.items():
-            signature_replacement = f'<...snipped {name.lower()} legal signature...>'
-            text, num_replaced = signature_regex.subn(signature_replacement, text)
-            self.signature_substitution_counts[name] += num_replaced
-
-        return collapse_newlines(text).strip()
 
     def _extract_author(self) -> None:
         self._extract_header()
@@ -495,6 +482,19 @@ class Email(Communication):
             lines += [self.lines[idx] + ' ' + self.lines[idx2]] + self.lines[idx + 1:idx2] + self.lines[idx2 + 1:]
 
         self._set_computed_fields(lines=lines)
+
+    def _prettify_text(self) -> str:
+        """Add newlines before quoted replies and snip signatures."""
+        # Insert line breaks now unless header is broken, in which case we'll do it later after fixing header
+        text = self.text if self.header.was_initially_empty else _add_line_breaks(self.text)
+        text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
+
+        for name, signature_regex in EMAIL_SIGNATURE_REGEXES.items():
+            signature_replacement = f'<...snipped {name.lower()} legal signature...>'
+            text, num_replaced = signature_regex.subn(signature_replacement, text)
+            self.signature_substitution_counts[name] += num_replaced
+
+        return collapse_newlines(text).strip()
 
     def _recipients_txt(self) -> Text:
         """Text object with comma separated colored versions of all recipients."""
@@ -624,7 +624,7 @@ class Email(Communication):
 
             lines += text.split('\n')[num_lines_to_skip:]
             text = self.header.rewrite_header() + '\n' + '\n'.join(lines)
-            text = _add_line_breaks(text)  # This was skipped when _cleaned_up_text() w/a broken header so we do it now
+            text = _add_line_breaks(text)  # This was skipped when _prettify_text() w/a broken header so we do it now
             self.rewritten_header_ids.add(self.file_id)
 
         panel_txt = highlighter(text)
