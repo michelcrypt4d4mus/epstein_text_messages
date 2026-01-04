@@ -73,14 +73,15 @@ if len(set(DEFAULT_EMAILERS).intersection(set(DEFAULT_EMAILER_TABLES))) > 0:
 def generate_html() -> None:
     timer = Timer()
     epstein_files = EpsteinFiles.get_files(timer)
+
+    if args.json_metadata:
+        metadata = [json_safe(doc.metadata()) for doc in epstein_files.all_documents()]
+        console.print_json(json.dumps(metadata, indent=4, sort_keys=True))
+        exit()
+
     print_header(epstein_files)
 
     if args.colors_only:
-        exit()
-    elif args.json_metadata:
-        for doc in epstein_files.all_documents():
-            console.print(doc.metadata())
-
         exit()
 
     if args.output_texts:

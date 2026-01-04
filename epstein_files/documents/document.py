@@ -183,7 +183,6 @@ class Document:
         metadata.update({k: v for k, v in asdict(self).items() if k in METADATA_FIELDS and v is not None})
         metadata['bytes'] = self.file_size()
         metadata['type'] = self.class_name()
-        metadata[None] = 'foo'
         return metadata
 
     def raw_text(self) -> str:

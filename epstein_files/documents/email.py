@@ -280,6 +280,12 @@ SELF_EMAILS_FILE_IDS = [
     # '033274',  # TODO: Epstein's note to self doesn't get printed if we don't set the recipients to [None]
 ]
 
+METADATA_FIELDS = [
+    'is_junk_mail',
+    'recipients',
+    'sent_from_device',
+]
+
 
 @dataclass
 class Email(Communication):
@@ -329,10 +335,7 @@ class Email(Communication):
 
     def metadata(self) -> Metadata:
         metadata = super().metadata()
-
-        if self.recipients:
-            metadata.update({'recipients': self.recipients})
-
+        metadata.update({k: v for k, v in asdict(self).items() if v and k in METADATA_FIELDS})
         return metadata
 
     def subject(self) -> str:
