@@ -15,7 +15,8 @@ CIVIL_ATTORNEY = 'civil attorney'
 CRIMINAL_DEFENSE_ATTORNEY = 'criminal defense attorney'
 CRIMINAL_DEFENSE_2008 = f"{CRIMINAL_DEFENSE_ATTORNEY} on 2008 case"
 EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} working on {EPSTEIN_V_ROTHSTEIN_EDWARDS}"
-ESTATE_EXECUTOR = 'Epstein estate executor'
+ESTATE_EXECUTOR = 'estate executor'
+EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
 REGEX_STYLE_PREFIX = 'regex'
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w ]+$", re.IGNORECASE)
 
@@ -210,12 +211,37 @@ HIGHLIGHTED_NAMES = [
         },
     ),
     HighlightedNames(
-        label='estate_executor',
-        style='purple3 bold',
-        category='lawyer',
+        label='epstein lawyer',
+        style='purple',
+        pattern=r'(Barry (E. )?)?Krischer|Kate Kelly|Kirkland\s*&\s*Ellis|(Leon\s*)?Jaworski|Michael J. Pike|Paul,?\s*Weiss|Steptoe|Wein(berg|garten)',
         emailers = {
-            DARREN_INDYKE: ESTATE_EXECUTOR,
-            RICHARD_KAHN: ESTATE_EXECUTOR,
+            ARDA_BESKARDES: 'NYC immigration attorney allegedly involved in sex-trafficking operations',
+            BENNET_MOSKOWITZ: f'represented the {EPSTEIN_ESTATE_EXECUTOR}s',
+            BRAD_KARP: 'head of the law firm Paul Weiss',
+            DAVID_SCHOEN: f"{CRIMINAL_DEFENSE_ATTORNEY} after 2019 arrest",
+            DEBBIE_FEIN: EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY,
+            'Erika Kellerhals': 'attorney in St. Thomas',
+            GERALD_LEFCOURT: f'friend of {ALAN_DERSHOWITZ}',
+            JACK_GOLDBERGER: CRIMINAL_DEFENSE_2008,
+            JACKIE_PERCZEK: CRIMINAL_DEFENSE_2008,
+            JAY_LEFKOWITZ: f"Kirkland & Ellis partner, {CRIMINAL_DEFENSE_2008}",
+            JESSICA_CADWELL: 'paralegal',  # paralegal, see https://x.com/ImDrinknWyn/status/1993765348898927022
+            LILLY_SANCHEZ: CRIMINAL_DEFENSE_ATTORNEY,
+            MARTIN_WEINBERG: CRIMINAL_DEFENSE_ATTORNEY,
+            MICHAEL_MILLER: 'Steptoe LLP partner',
+            REID_WEINGARTEN: 'Steptoe LLP partner',
+            'Roy Black': CRIMINAL_DEFENSE_2008,
+            SCOTT_J_LINK: None,
+            TONJA_HADDAD_COLEMAN: f'{EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY}, maybe daughter of Fred Haddad?',
+        }
+    ),
+    HighlightedNames(
+        label=ESTATE_EXECUTOR,
+        style='purple3 bold',
+        category='epstein lawyer',
+        emailers = {
+            DARREN_INDYKE: EPSTEIN_ESTATE_EXECUTOR,
+            RICHARD_KAHN: EPSTEIN_ESTATE_EXECUTOR,
         }
     ),
     HighlightedNames(
@@ -343,31 +369,6 @@ HIGHLIGHTED_NAMES = [
         emailers = {
             ANN_MARIE_VILLAFANA: 'southern district of Florida U.S. Attorney',
             DANNY_FROST: 'Director of Communications at Manhattan DA',
-        }
-    ),
-    HighlightedNames(
-        label='epstein lawyer',
-        style='purple',
-        pattern=r'(Barry (E. )?)?Krischer|Kate Kelly|Kirkland\s*&\s*Ellis|(Leon\s*)?Jaworski|Michael J. Pike|Paul,?\s*Weiss|Steptoe|Wein(berg|garten)',
-        emailers = {
-            ARDA_BESKARDES: 'NYC immigration attorney allegedly involved in sex-trafficking operations',
-            BENNET_MOSKOWITZ: f'represented the {ESTATE_EXECUTOR}s',
-            BRAD_KARP: 'head of the law firm Paul Weiss',
-            DAVID_SCHOEN: f"{CRIMINAL_DEFENSE_ATTORNEY} after 2019 arrest",
-            DEBBIE_FEIN: EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY,
-            'Erika Kellerhals': 'attorney in St. Thomas',
-            GERALD_LEFCOURT: f'friend of {ALAN_DERSHOWITZ}',
-            JACK_GOLDBERGER: CRIMINAL_DEFENSE_2008,
-            JACKIE_PERCZEK: CRIMINAL_DEFENSE_2008,
-            JAY_LEFKOWITZ: f"Kirkland & Ellis partner, {CRIMINAL_DEFENSE_2008}",
-            JESSICA_CADWELL: 'paralegal',  # paralegal, see https://x.com/ImDrinknWyn/status/1993765348898927022
-            LILLY_SANCHEZ: CRIMINAL_DEFENSE_ATTORNEY,
-            MARTIN_WEINBERG: CRIMINAL_DEFENSE_ATTORNEY,
-            MICHAEL_MILLER: 'Steptoe LLP partner',
-            REID_WEINGARTEN: 'Steptoe LLP partner',
-            'Roy Black': CRIMINAL_DEFENSE_2008,
-            SCOTT_J_LINK: None,
-            TONJA_HADDAD_COLEMAN: f'{EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY}, maybe daughter of Fred Haddad?',
         }
     ),
     HighlightedNames(
@@ -527,7 +528,7 @@ HIGHLIGHTED_NAMES = [
         style='turquoise4',
         pattern=r'BG|b?g?C3|(Bill\s*((and|or)\s*Melinda\s*)?)?Gates|Melinda(\s*Gates)?|Microsoft|MSFT',
         emailers = {
-            BORIS_NIKOLIC: f'biotech VC partner of {BILL_GATES}, {ESTATE_EXECUTOR}',
+            BORIS_NIKOLIC: f'biotech VC partner of {BILL_GATES}, {EPSTEIN_ESTATE_EXECUTOR}',
         },
     ),
     HighlightedNames(
