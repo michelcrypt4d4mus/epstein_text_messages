@@ -58,7 +58,7 @@ class EpsteinFiles:
     email_authors_to_device_signatures: dict[str, set] = field(default_factory=lambda: defaultdict(set))
     email_device_signatures_to_authors: dict[str, set] = field(default_factory=lambda: defaultdict(set))
     email_recipient_counts: dict[str | None, int] = field(default_factory=lambda: defaultdict(int))
-    _email_unknown_recipient_file_ids: set[str] = field(default_factory=set)
+    unknown_recipient_email_ids: set[str] = field(default_factory=set)
 
     def __post_init__(self):
         """Iterate through files and build appropriate objects."""
@@ -168,7 +168,7 @@ class EpsteinFiles:
         return substitution_counts
 
     def email_unknown_recipient_file_ids(self) -> list[str]:
-        return sorted(list(self._email_unknown_recipient_file_ids))
+        return sorted(list(self.unknown_recipient_email_ids))
 
     def emails_by(self, author: str | None) -> list[Email]:
         return [e for e in self.emails if e.author == author]
@@ -325,7 +325,7 @@ class EpsteinFiles:
             self.email_author_counts[email.author] += 1
 
             if len(email.recipients) == 0:
-                self._email_unknown_recipient_file_ids.add(email.file_id)
+                self.unknown_recipient_email_ids.add(email.file_id)
                 self.email_recipient_counts[None] += 1
             else:
                 for recipient in email.recipients:
