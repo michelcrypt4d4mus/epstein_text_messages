@@ -62,6 +62,11 @@ class MessengerLog(Communication):
         """Return all messages by 'name'."""
         return [m for m in self.messages() if m.author == name]
 
+    def metadata(self) -> dict[str, datetime | int | str]:
+        metadata = super().metadata()
+        metadata.update({'num_messages': len(self.messages())})
+        return metadata
+
     def _border_style(self) -> str:
         return self.author_style
 

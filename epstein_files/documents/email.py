@@ -301,7 +301,7 @@ class Email(Communication):
     is_junk_mail: bool = False
     recipients: list[str | None] = field(default_factory=list)
     sent_from_device: str | None = None
-    signature_substitution_counts: dict[str, int] = field(default_factory=lambda: defaultdict(int))
+    signature_substitution_counts: dict[str, int] = field(default_factory=dict)
 
     # For logging how many headers we prettified while printing, kind of janky
     rewritten_header_ids: ClassVar[set[str]] = set([])
@@ -326,6 +326,14 @@ class Email(Communication):
     def info_txt(self) -> Text:
         txt = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(' to ')
         return txt.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
+
+    def metadata(self) -> dict[str, datetime | int | str | list[str]]:
+        metadata = super().metadata()
+
+        if self.recipients:
+            metadata.update({'recipients': self.recipients})
+
+        return metadata
 
     def subject(self) -> str:
         return self.header.subject or ''
@@ -492,6 +500,7 @@ class Email(Communication):
         for name, signature_regex in EMAIL_SIGNATURE_REGEXES.items():
             signature_replacement = f'<...snipped {name.lower()} legal signature...>'
             text, num_replaced = signature_regex.subn(signature_replacement, text)
+            self.signature_substitution_counts[name] = self.signature_substitution_counts.get(name, 0)
             self.signature_substitution_counts[name] += num_replaced
 
         return collapse_newlines(text).strip()
@@ -509,10 +518,10 @@ class Email(Communication):
     def _remove_line(self, idx: int) -> None:
         """Remove a line from self.lines."""
         num_lines = idx * 2
-        self.log_top_lines(num_lines, msg='before removal of line {idx}', level=logging.WARNING)
+        self.log_top_lines(num_lines, msg=f'before removal of line {idx}')
         del self.lines[idx]
         self._set_computed_fields(lines=self.lines)
-        self.log_top_lines(num_lines, msg='after removal', level=logging.WARNING)
+        self.log_top_lines(num_lines, msg=f'after removal of line {idx}')
 
     def _repair(self) -> None:
         """Repair particularly janky files."""

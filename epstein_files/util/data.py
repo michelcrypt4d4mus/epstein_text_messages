@@ -63,6 +63,13 @@ def flatten(_list: list[list[T]]) -> list[T]:
     return list(itertools.chain.from_iterable(_list))
 
 
+def json_safe(d: dict) -> dict:
+    return {
+        k: v.isoformat() if isinstance(v, datetime) else v
+        for k,v in d.items()
+    }
+
+
 def listify(listlike) -> list:
     """Create a list of 'listlike'. Returns empty list if 'listlike' is None or empty string."""
     if isinstance(listlike, list):
