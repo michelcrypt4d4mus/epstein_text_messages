@@ -4,6 +4,26 @@ version = "1.0.1"
 description = "Tools for working with the Jeffrey Epstein documents released in November 2025."
 authors = ["Michel de Cryptadamus"]
 readme = "README.md"
+license = "GPL-3.0-or-later"
+
+homepage = "https://michelcrypt4d4mus.github.io/epstein_text_messages/"
+
+keywords = [
+    "Epstein",
+    "Jeffrey Epstein",
+]
+
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
 
 
 [tool.poetry.dependencies]
@@ -19,6 +39,19 @@ rich = "^14.2.0"
 [tool.poetry.group.dev.dependencies]
 bpython = "^0.26"
 pytest = "^9.0.1"
+
+
+[tool.poetry.scripts]
+epstein_generate = 'epstein_files:generate_html'
+yaralyzer_show_color_theme = 'yaralyzer.helpers.rich_text_helper:yaralyzer_show_color_theme'
+
+
+[tool.poetry.urls]
+Emails = "https://michelcrypt4d4mus.github.io/epstein_emails_house_oversight/"
+Metadata = "https://michelcrypt4d4mus.github.io/epstein_text_messages/epstein_files_nov_2025_cryptadamus_metadata.json"
+Texts = "https://michelcrypt4d4mus.github.io/epstein_text_messages/"
+WordCount = "https://michelcrypt4d4mus.github.io/epstein_text_messages/epstein_emails_word_count.html"
+
 
 
 [build-system]
