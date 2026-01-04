@@ -378,10 +378,10 @@ FLIGHT_IN_2012_PEOPLE: list[str | None] = ['Francis Derby', 'Januiz Banasiak', '
 EMAILS_CONFIG = [
     EmailCfg(id='032436', author=ALIREZA_ITTIHADIEH, attribution_reason='Signature'),
     EmailCfg(id='032543', author=ANAS_ALRASHEED, attribution_reason='Later reply 033000 has quote'),
-    EmailCfg(id='026064', author=ARIANE_DE_ROTHSCHILD),
-    EmailCfg(id='026069', author=ARIANE_DE_ROTHSCHILD),
-    EmailCfg(id='030741', author=ARIANE_DE_ROTHSCHILD),
-    EmailCfg(id='026018', author=ARIANE_DE_ROTHSCHILD),
+    EmailCfg(id='026064', author=ARIANE_DE_ROTHSCHILD, attribution_reason='signature'),
+    EmailCfg(id='026069', author=ARIANE_DE_ROTHSCHILD, attribution_reason='signature'),
+    EmailCfg(id='030741', author=ARIANE_DE_ROTHSCHILD, attribution_reason='signature'),
+    EmailCfg(id='026018', author=ARIANE_DE_ROTHSCHILD, attribution_reason='signature'),
     EmailCfg(
         id='029504',
         author='Audrey/Aubrey Raimbault (???)',
@@ -593,6 +593,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='032780', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
     EmailCfg(id='029324', recipients=[JEFFREY_EPSTEIN, "Jojo Fontanilla", "Lyn Fontanilla"]),  # Bad OCR (nofix)
     EmailCfg(id='033456', recipients=["Joel"], attribution_reason='Reply'),
+    EmailCfg(id='033458', recipients=["Joel"], attribution_reason='Reply'),
     EmailCfg(id='033460', recipients=["Joel"], attribution_reason='Reply'),
     EmailCfg(
         id='021090',
