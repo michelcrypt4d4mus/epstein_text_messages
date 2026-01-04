@@ -37,23 +37,18 @@ DEFAULT_EMAILERS = [
     DAVID_STERN,
     MOHAMED_WAHEED_HASSAN,
     JENNIFER_JACQUET,
+    TYLER_SHEARS,
+    CHRISTINA_GALBRAITH,
     None,
 ]
 
-# Order matters. Default names to print tables w/email subject, timestamp, etc for.
-# TODO: get rid of this
+# Order matters. Default names to print tables w/email subject, timestamp, etc for. # TODO: get rid of this ?
 DEFAULT_EMAILER_TABLES: list[str | None] = [
     GHISLAINE_MAXWELL,
     LEON_BLACK,
-    LANDON_THOMAS,
-    KATHRYN_RUEMMLER,
-    DARREN_INDYKE,
-    RICHARD_KAHN,
-    TYLER_SHEARS,
     SULTAN_BIN_SULAYEM,
     DEEPAK_CHOPRA,
     ARIANE_DE_ROTHSCHILD,
-    TOM_PRITZKER,
 ]
 
 if len(set(DEFAULT_EMAILERS).intersection(set(DEFAULT_EMAILER_TABLES))) > 0:
@@ -65,54 +60,49 @@ def print_emails(epstein_files: EpsteinFiles) -> int:
     print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
     print_other_site_link(is_header=False)
 
-    if len(specified_names) == 0:
-        epstein_files.print_emailer_counts_table()
-
     emailers_to_print: list[str | None]
     emailer_tables: list[str | None] = []
     already_printed_emails: list[Email] = []
     num_emails_printed_since_last_color_key = 0
 
-    if args.all_emails:
-        console.print('Email conversations are sorted chronologically based on time of the first email.')
-        emailers_to_print = sorted(epstein_files.all_emailers(), key=lambda e: epstein_files.earliest_email_at(e))
-        print_numbered_list_of_emailers(emailers_to_print, epstein_files)
+    if specified_names:
+        emailers_to_print = specified_names
     else:
-        emailers_to_print = specified_names if specified_names else DEFAULT_EMAILERS
-        console.print('Email conversations grouped by counterparty can be found in the order listed below.')
-        print_numbered_list_of_emailers(emailers_to_print)
-        console.print("\nAfter that there's tables linking to (but not displaying) all known emails for each of these people:")
+        epstein_files.print_emailer_counts_table()
 
-        if len(specified_names) > 0:
-            print_numbered_list_of_emailers(DEFAULT_EMAILER_TABLES)
+        if args.all_emails:
+            emailers_to_print = sorted(epstein_files.all_emailers(), key=lambda e: epstein_files.earliest_email_at(e))
+            console.print('Email conversations are sorted chronologically based on time of the first email.')
+            print_numbered_list_of_emailers(emailers_to_print, epstein_files)
+        else:
+            emailers_to_print = DEFAULT_EMAILERS
+            emailer_tables = DEFAULT_EMAILER_TABLES
+            console.print('Email conversations grouped by counterparty can be found in the order listed below.')
+            print_numbered_list_of_emailers(emailers_to_print)
+            console.print("\nAfter that there's tables linking to (but not displaying) all known emails for each of these people:")
+            print_numbered_list_of_emailers(emailer_tables)
 
     for author in emailers_to_print:
-        newly_printed_emails = epstein_files.print_emails_for(author)
-        already_printed_emails.extend(newly_printed_emails)
-        num_emails_printed_since_last_color_key += len(newly_printed_emails)
+        author_emails = epstein_files.print_emails_for(author)
+        already_printed_emails.extend(author_emails)
+        num_emails_printed_since_last_color_key += len(author_emails)
 
         # Print color key every once in a while
         if num_emails_printed_since_last_color_key > PRINT_COLOR_KEY_EVERY_N_EMAILS:
             print_color_key()
             num_emails_printed_since_last_color_key = 0
 
+    if emailer_tables:
+        print_author_header(f"Email Tables for {len(emailer_tables)} Other People", 'white')
+
+        for name in DEFAULT_EMAILER_TABLES:
+            epstein_files.print_emails_table_for(name)
+
     if not specified_names:
-        if not args.all_emails:
-            print_author_header(f"Email Tables for {len(emailer_tables)} Other People", 'white')
-
-            for name in DEFAULT_EMAILER_TABLES:
-                epstein_files.print_emails_table_for(name)
-
         epstein_files.print_email_device_info()
 
-    # Check that all emails were actually printed
     if args.all_emails:
-        email_ids_that_were_printed = set([email.file_id for email in already_printed_emails])
-        logger.warning(f"Printed {len(already_printed_emails)} emails of {len(email_ids_that_were_printed)} unique file IDs.")
-
-        for email in epstein_files.emails:
-            if email.file_id not in email_ids_that_were_printed and not email.is_duplicate:
-                logger.warning(f"Failed to print {email.summary()}")
+        _verify_all_emails_printed(epstein_files, already_printed_emails)
 
     logger.warning(f"Rewrote {len(Email.rewritten_header_ids)} headers of {len(epstein_files.emails)} emails")
     return len(already_printed_emails)
@@ -153,3 +143,13 @@ def print_text_messages(epstein_files: EpsteinFiles) -> None:
         console.line(2)
 
     epstein_files.print_imessage_summary()
+
+
+def _verify_all_emails_printed(epstein_files: EpsteinFiles, already_printed_emails: list[Email]) -> None:
+    """Log warnings if some emails were never printed."""
+    email_ids_that_were_printed = set([email.file_id for email in already_printed_emails])
+    logger.warning(f"Printed {len(already_printed_emails)} emails of {len(email_ids_that_were_printed)} unique file IDs.")
+
+    for email in epstein_files.emails:
+        if email.file_id not in email_ids_that_were_printed and not email.is_duplicate:
+            logger.warning(f"Failed to print {email.summary()}")

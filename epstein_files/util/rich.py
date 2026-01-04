@@ -230,10 +230,8 @@ def print_other_site_link(is_header: bool = True) -> None:
     print_centered(parenthesize(Text.from_markup(markup_msg)), style='bold')
     word_count_link = link_text_obj(WORD_COUNT_URL, 'site showing the most frequently used words in these communiques', OTHER_SITE_LINK_STYLE)
     print_centered(parenthesize(word_count_link))
-
-    if is_header:
-        metadata_link = link_text_obj(JSON_METADATA_URL, 'metadata with author attribution explanations', OTHER_SITE_LINK_STYLE)
-        print_centered(parenthesize(metadata_link))
+    metadata_link = link_text_obj(JSON_METADATA_URL, 'metadata with author attribution explanations', OTHER_SITE_LINK_STYLE)
+    print_centered(parenthesize(metadata_link))
 
 
 def print_page_title(expand: bool = True, width: int | None = None) -> None:
