@@ -266,13 +266,14 @@ PATTERSON_BOOK_SCANS = f'pages of "Filthy Rich: The Shocking True Story of {JEFF
 SHIMON_POST = 'The Shimon Post'
 SHIMON_POST_ARTICLE = f'{SHIMON_POST} selection of articles about the mideast'
 SINGLE_PAGE = 'single page of'
+STRANGE_BEDFELLOWS = "'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more"
 SWEDISH_LIFE_SCIENCES_SUMMIT = f"{BARBRO_C_EHNBOM}'s Swedish American Life Science Summit"
 THE_REAL_DEAL_ARTICLE = 'article by Keith Larsen'
 TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Government Ethics"
 UBS_CIO_REPORT = 'CIO Monthly Extended report'
 UN_GENERAL_ASSEMBLY = '67th U.N. General Assembly'
 VI_DAILY_NEWS_ARTICLE = f'{VIRGIN_ISLANDS} Daily News article'
-WOMEN_EMPOWERMENT = f"Women Empowerment (WE) conference run by {SVETLANA_POZHIDAEVA}"
+WOMEN_EMPOWERMENT = f"Women Empowerment (WE) conference"
 ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
 
 # Atribution reasons
@@ -1096,6 +1097,17 @@ OTHER_FILES_LEGAL = [
 
 OTHER_FILES_CONFERENCES = [
     DocCfg(id='014315', author=BOFA_MERRILL, description=f'2016 Future of Financials Conference'),
+    DocCfg(id='026825', author=DEUTSCHE_BANK, description=f"Asset & Wealth Management featured speaker bios"),  # Really "Deutsche Asset" which may not be Deutsche Bank?
+    DocCfg(id='023120', author=LAWRENCE_KRAUSS, description=f"{STRANGE_BEDFELLOWS} (old draft)"),
+    DocCfg(id='023120', author=LAWRENCE_KRAUSS, description=STRANGE_BEDFELLOWS, duplicate_ids=['023121'], dupe_type='earlier'),
+    DocCfg(id='031359', author=NOBEL_CHARITABLE_TRUST, description=f"Earth Environment Convention about ESG investing"),
+    DocCfg(id='031354', author=NOBEL_CHARITABLE_TRUST, description=f'"Thinking About the Environment and Technology" report 2011'),
+    DocCfg(id='019300', author=SVETLANA_POZHIDAEVA, description=f'{WOMEN_EMPOWERMENT} f. {KATHRYN_RUEMMLER}', date='2019-04-05'),
+    DocCfg(id='022267', author=SVETLANA_POZHIDAEVA, description=f'{WOMEN_EMPOWERMENT} founder essay about growing the seminar business'),
+    DocCfg(id='022407', author=SVETLANA_POZHIDAEVA, description=f'{WOMEN_EMPOWERMENT} seminar pitch deck'),
+    DocCfg(id='017524', author=SWEDISH_LIFE_SCIENCES_SUMMIT, description=f"2012 program"),
+    DocCfg(id='026747', author=SWEDISH_LIFE_SCIENCES_SUMMIT, description=f"2017 program", date='2017-08-23'),
+    DocCfg(id='014951', author='TED Talks', description=f"2017 program", date='2017-04-20'),
     DocCfg(id='024179', author=UN_GENERAL_ASSEMBLY, description=f'president and first lady schedule', date='2012-09-21'),
     DocCfg(
         id='024185',
@@ -1103,20 +1115,9 @@ OTHER_FILES_CONFERENCES = [
         description=f'schedule including "Presidents Private Dinner - Jeffrey Epstine (sic)"',
         date='2012-09-21',
     ),
-    DocCfg(id='014951', description=f"2017 TED Talks program", date='2017-04-20'),
-    DocCfg(id='026825', description=f"{DEUTSCHE_BANK} Asset & Wealth Management featured speaker bios"),  # Really "Deutsche Asset" which may not be Deutsche Bank?
     DocCfg(id='017526', description=f'Intellectual Jazz conference brochure f. {DAVID_BLAINE}'),
-    DocCfg(id='023120', description=f"{LAWRENCE_KRAUSS} 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more (old draft)"),
-    DocCfg(id='023123', description=f"{LAWRENCE_KRAUSS} 'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more", duplicate_ids=['023121'], dupe_type='earlier'),
-    DocCfg(id='031359', description=f"{NOBEL_CHARITABLE_TRUST} Earth Environment Convention about ESG investing"),
-    DocCfg(id='031354', description=f'{NOBEL_CHARITABLE_TRUST} "Thinking About the Environment and Technology" report 2011'),
     DocCfg(id='029427', description=f"seems related to an IRL meeting about concerns China will attempt to absorb Mongolia"),
     DocCfg(id='025797', description=f'someone\'s notes from Aspen Strategy Group', date='2013-05-29'),
-    DocCfg(id='017524', description=f"{SWEDISH_LIFE_SCIENCES_SUMMIT} 2012 program"),
-    DocCfg(id='026747', description=f"{SWEDISH_LIFE_SCIENCES_SUMMIT} 2017 program", date='2017-08-23'),
-    DocCfg(id='019300', description=f'{WOMEN_EMPOWERMENT} f. {KATHRYN_RUEMMLER}', date='2019-04-05'),
-    DocCfg(id='022267', description=f'{WOMEN_EMPOWERMENT} founder essay about growing the seminar business'),
-    DocCfg(id='022407', description=f'{WOMEN_EMPOWERMENT} seminar pitch deck'),
     DocCfg(
         id='017060',
         description=f'World Economic Forum (WEF) Annual Meeting 2011 List of Participants',
@@ -1216,7 +1217,6 @@ OTHER_FILES_LETTERS = [
         description=f"{DAVID_BLAINE_VISA_LETTER} (probably {SVETLANA_POZHIDAEVA}?)",
         date='2015-06-01',
     ),
-    DocCfg(id='031670', description=f"letter from General Mike Flynn's lawyers to senators Mark Warner & Richard Burr about subpoena"),
     DocCfg(
         id='026011',
         author='Gennady Mashtalyar',
@@ -1300,6 +1300,7 @@ OTHER_FILES_POLITICS = [
     ),
     DocCfg(id='029918', description=f"{DIANA_DEGETTES_CAMPAIGN} bio", date='2012-01-01'),
     DocCfg(id='031184', description=f"{DIANA_DEGETTES_CAMPAIGN} fundraiser invitation"),
+    DocCfg(id='031670', description=f"letter from General Mike Flynn's lawyers to senators Mark Warner & Richard Burr about subpoena"),
     DocCfg(id='024294', description=f"{STACEY_PLASKETT} campaign flier", date='2016-10-01'),
     DocCfg(
         id='029357',
