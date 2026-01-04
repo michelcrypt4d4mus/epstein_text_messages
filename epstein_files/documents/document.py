@@ -20,7 +20,7 @@ from epstein_files.util.doc_cfg import EmailCfg, DocCfg, TextCfg
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import (DOCS_DIR, file_stem_for_id, extract_file_id, file_size,
      file_size_str, is_local_extract_file)
-from epstein_files.util.logging import DOC_TYPE_STYLES, logger
+from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 from epstein_files.util.rich import SYMBOL_STYLE, console, highlighter, key_value_txt, link_text_obj
 
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
@@ -222,8 +222,8 @@ class Document:
 
     def summary(self) -> Text:
         """Summary of this file for logging. Brackets are left open for subclasses to add stuff."""
-        txt = Text('').append(self.url_slug, style='magenta')
-        txt.append(f' {self.class_name()}', style=self.document_type_style())
+        txt = Text('').append(self.class_name(), style=self.document_type_style())
+        txt.append(f" {self.url_slug}", style=FILENAME_STYLE)
 
         if self.timestamp:
             timestamp_str = iso_timestamp(self.timestamp).removesuffix(' 00:00:00')

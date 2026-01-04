@@ -72,4 +72,4 @@ if args.use_epstein_web_links:
     logger.warning(f"Using links to epsteinweb.org links instead of epsteinify.com...")
 
 if args.debug:
-    logger.warning(f"is_html_script={is_html_script}, specified_names={specified_names}, args={args}")
+    logger.warning(f"Invocation args:\nis_html_script={is_html_script},\nspecified_names={specified_names},\nargs={args}")
