@@ -460,7 +460,7 @@ EMAILS_CONFIG = [
         author=JOI_ITO,
         description=f"{JOI_ITO} reaching out to Epstein for an immediate phone call after news about illicit Russian money",
         recipients=[JEFFREY_EPSTEIN],
-        timestamp=parse('2014-04-27 06:30:00'),
+        timestamp=parse('2014-04-27 07:41:00'),  # Filled in from 028847
     ),
     EmailCfg(id='028507', author=JONATHAN_FARKAS, attribution_reason='reply signed "best Jonathan"'),
     EmailCfg(id='033282', author=JONATHAN_FARKAS, attribution_reason='reply signed "thanks Jonathan"', duplicate_ids=['033484']),
