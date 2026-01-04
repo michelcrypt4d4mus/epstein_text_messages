@@ -21,7 +21,7 @@ LOG_THEME = {
 }
 
 
-LOG_THEME[f"{ReprHighlighter.base_style}epstein_filename"] = 'wheat4'
+LOG_THEME[f"{ReprHighlighter.base_style}epstein_filename"] = 'gray27'
 
 
 class LogHighlighter(ReprHighlighter):
