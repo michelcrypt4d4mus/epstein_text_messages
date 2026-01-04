@@ -27,14 +27,6 @@ PACIFIC_TZ = tz.gettz("America/Los_Angeles")
 TIMEZONE_INFO = {"PST": PACIFIC_TZ, "PDT": PACIFIC_TZ}  # Suppresses annoying warnings from parse() calls
 
 
-def collapse_newlines(text: str) -> str:
-    return MULTINEWLINE_REGEX.sub('\n\n', text)
-
-
-def date_str(timestamp: datetime | None) -> str | None:
-    return timestamp.isoformat()[0:10] if timestamp else None
-
-
 def dict_sets_to_lists(d: dict[str, set]) -> dict[str, list]:
     return {k: sorted(list(v)) for k, v in d.items()}
 
@@ -69,10 +61,6 @@ def extract_last_name(name: str) -> str:
 
 def flatten(_list: list[list[T]]) -> list[T]:
     return list(itertools.chain.from_iterable(_list))
-
-
-def iso_timestamp(dt: datetime) -> str:
-    return dt.isoformat().replace('T', ' ')
 
 
 def listify(listlike) -> list:
@@ -133,7 +121,10 @@ class Timer:
         return f"{self.seconds_since_start():.{self.decimals}f} seconds"
 
 
+collapse_newlines = lambda text: MULTINEWLINE_REGEX.sub('\n\n', text)
+date_str = lambda dt: dt.isoformat()[0:10] if dt else None
 escape_double_quotes = lambda text: text.replace('"', r'\"')
 escape_single_quotes = lambda text: text.replace("'", r"\'")
+iso_timestamp = lambda dt: dt.isoformat().replace('T', ' ')
 uniquify = lambda _list: list(set(_list))
 without_nones = lambda _list: [e for e in _list if e]
