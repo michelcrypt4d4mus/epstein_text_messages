@@ -3,23 +3,19 @@
 import re
 from sys import exit
 
-from dotenv import load_dotenv
-from rich.highlighter import RegexHighlighter
 from rich.padding import Padding
-load_dotenv()
 
 from scripts.use_pickled import epstein_files
 from epstein_files.documents.document import INFO_PADDING
 from epstein_files.util.env import args, specified_names
-from epstein_files.util.highlighted_group import REGEX_STYLE_PREFIX
+from epstein_files.util.highlighted_group import EpsteinHighlighter
 from epstein_files.util.rich import console, print_panel
 
 
-def build_highlighter(pattern: str) -> RegexHighlighter:
-    class TempHighlighter(RegexHighlighter):
+def build_highlighter(pattern: str) -> EpsteinHighlighter:
+    class TempHighlighter(EpsteinHighlighter):
         """rich.highlighter that finds and colors interesting keywords based on the above config."""
-        base_style = f"{REGEX_STYLE_PREFIX}."
-        highlights = [re.compile(fr"(?P<lawyer>{pattern})", re.IGNORECASE)]
+        highlights = EpsteinHighlighter.highlights + [re.compile(fr"(?P<trump>{pattern})", re.IGNORECASE)]
 
     return TempHighlighter()
 
@@ -42,5 +38,6 @@ for search_term in args.positional_args:
         else:
             console.print(search_result.document.description_panel())
 
-            for line in search_result.unprefixed_lines():
-                console.print(Padding(temp_highlighter(line), INFO_PADDING), style='gray37')
+            for matching_line in search_result.lines:
+                line_txt = matching_line.__rich__()
+                console.print(Padding(temp_highlighter(line_txt), INFO_PADDING), style='gray37')

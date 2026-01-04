@@ -6,8 +6,9 @@ from typing import Generator, Literal
 
 from dateutil.parser import parse
 
-from epstein_files.util.constant.names import constantize_name
+from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import AUTHOR, EMAIL, TEXT_MESSAGE
+from epstein_files.util.data import without_nones
 
 DuplicateType = Literal['earlier', 'quoted', 'redacted', 'same']
 
@@ -19,6 +20,7 @@ BOOK = 'book'
 FINANCE = 'finance'
 FLIGHT_LOGS = 'flight logs'
 JUNK = 'junk'
+POLITICS = 'politics'
 REPUTATION = 'reputation'
 SPEECH = 'speech'
 
@@ -27,14 +29,14 @@ CONSTANTIZE_NAMES = False  # A flag set to True that causes repr() of these clas
 INDENT = '    '
 INDENT_NEWLINE = f'\n{INDENT}'
 INDENTED_JOIN = f',{INDENT_NEWLINE}'
-MAX_LINE_LENGTH = 250
+MAX_LINE_LENGTH = 150
 REPUTATION_MGMT = f'{REPUTATION} management'
 SAME = 'same'
 
-REASON_MAPPING: dict[DuplicateType, str] = {
+DUPE_TYPE_STRS: dict[DuplicateType, str] = {
     'earlier': 'an earlier draft of',
     'quoted': 'quoted in full in',
-    'redacted': 'redacted version of',
+    'redacted': 'a redacted version of',
     SAME: 'the same as',
 }
 
@@ -43,6 +45,17 @@ FIELD_SORT_KEY = {
     'author': 'aa',
     'attribution_reason': 'zz',
 }
+
+FINANCIAL_REPORTS_AUTHORS = [
+    BOFA,
+    DEUTSCHE_BANK,
+    ELECTRON_CAPITAL_PARTNERS,
+    GOLDMAN_INVESTMENT_MGMT,
+    'Invesco',
+    JP_MORGAN,
+    'Morgan Stanley',
+    'S&P',
+]
 
 
 @dataclass(kw_only=True)
@@ -83,7 +96,7 @@ class DocCfg:
 
     def duplicate_reason(self) -> str | None:
         if self.dupe_type is not None:
-            return REASON_MAPPING[self.dupe_type]
+            return DUPE_TYPE_STRS[self.dupe_type]
 
     def duplicate_cfgs(self) -> Generator['DocCfg', None, None]:
         for id in self.duplicate_ids:
@@ -96,16 +109,16 @@ class DocCfg:
 
     def info_str(self) -> str | None:
         if self.category == REPUTATION:
-            return f"{REPUTATION_MGMT}: {self.config.description}"
-        elif self.author and self.config.description:
-            if self.category() == ACADEMIA:
+            return f"{REPUTATION_MGMT}: {self.description}"
+        elif self.author and self.description:
+            if self.category in [ACADEMIA, BOOK]:
                 return self.title_by_author()
-            elif self.category() == BOOK:
-                return f"{BOOK}: {self.title_by_author()}"
-            elif self.category() == FINANCE and self.author in FINANCIAL_REPORTS_AUTHORS:
-                return f"{self.author} report: '{self.config.description}'"
+            elif self.category == FINANCE and self.author in FINANCIAL_REPORTS_AUTHORS:
+                return f"{self.author} report: '{self.description}'"
+        elif self.category and self.author is None and self.description is None:
+            return self.category
 
-        pieces = without_nones([self.author, self.config.description])
+        pieces = without_nones([self.author, self.description])
         return ' '.join(pieces) if pieces else None
 
     def non_null_field_names(self) -> list[str]:
@@ -113,6 +126,13 @@ class DocCfg:
 
     def sorted_fields(self) -> list[Field]:
         return sorted(fields(self), key=lambda f: FIELD_SORT_KEY.get(f.name, f.name))
+
+    def title_by_author(self) -> str:
+        if not (self.author and self.description):
+            raise RuntimeError(f"Can't call title_by_author() without author and description!")
+
+        title = self.description if '"' in self.description else f"'{self.description}'"
+        return f"{title} by {self.author}"
 
     def _props_strs(self) -> list[str]:
         props = []
@@ -125,14 +145,16 @@ class DocCfg:
                 continue
             elif _field.name == AUTHOR:
                 add_prop(_field, constantize_name(str(value)) if CONSTANTIZE_NAMES else f"'{value}'")
+            elif _field.name == 'category' and value in [EMAIL, TEXT_MESSAGE]:
+                continue
             elif _field.name == 'recipients' and isinstance(value, list):
                 recipients_str = str([constantize_name(r) if (CONSTANTIZE_NAMES and r) else r for r in value])
                 add_prop(_field, recipients_str.replace("'", '') if CONSTANTIZE_NAMES else recipients_str)
+            elif _field.name == 'timestamp' and self.date is not None:
+                continue  # Don't print both timestamp and date
             elif isinstance(value, datetime):
                 value_str = re.sub(' 00:00:00', '', str(value))
                 add_prop(_field, f"parse('{value_str}')" if CONSTANTIZE_NAMES else f"'{value}'")
-            elif _field.name == 'description':
-                add_prop(_field, value.strip())
             elif isinstance(value, str):
                 if "'" in value:
                     value = '"' + value.replace('"', r'\"') + '"'
@@ -188,6 +210,9 @@ class CommunicationCfg(DocCfg):
     attribution_reason: str | None = None
     is_attribution_uncertain: bool = False
 
+    def __repr__(self) -> str:
+        return super().__repr__()
+
 
 @dataclass(kw_only=True)
 class EmailCfg(CommunicationCfg):
@@ -209,9 +234,17 @@ class EmailCfg(CommunicationCfg):
     def from_doc_cfg(cls, cfg: DocCfg) -> 'EmailCfg':
         return cls(**asdict(cfg))
 
+    # This is necessary for some dumb reason. @dataclass(repr=False) doesn't cut it
+    def __repr__(self) -> str:
+        return super().__repr__()
+
 
 @dataclass(kw_only=True)
 class TextCfg(CommunicationCfg):
     def __post_init__(self):
         super().__post_init__()
         self.category = TEXT_MESSAGE
+
+    # This is necessary for some dumb reason. @dataclass(repr=False) doesn't cut it
+    def __repr__(self) -> str:
+        return super().__repr__()

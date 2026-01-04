@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from subprocess import run
-from typing import ClassVar, Sequence, TypeVar
+from typing import ClassVar, Sequence, Tuple, TypeVar
 
 from rich.console import Console, ConsoleOptions, Group, RenderResult
 from rich.padding import Padding
@@ -22,6 +22,7 @@ from epstein_files.util.file_helper import (DOCS_DIR, file_stem_for_id, extract_
      file_size_str, is_local_extract_file)
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 from epstein_files.util.rich import SYMBOL_STYLE, console, highlighter, key_value_txt, link_text_obj
+from epstein_files.util.search_result import MatchedLine
 
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
@@ -65,8 +66,8 @@ class Document:
     timestamp: datetime | None = None
     url_slug: str = field(init=False)  # e.g. 'HOUSE_OVERSIGHT_123456
 
-    # Class variable; only used to cycle color of output when using lines_match()
-    file_matching_idx: ClassVar[int] = 0
+    # Class variable overridden in JsonFile
+    strip_whitespace: ClassVar[bool] = True
 
     def __post_init__(self):
         self.filename = self.file_path.name
@@ -160,22 +161,6 @@ class Document:
         """True if file created by extracting text from a court doc (identifiable from filename e.g. HOUSE_OVERSIGHT_012345_1.txt)."""
         return is_local_extract_file(self.filename)
 
-    def lines_matching_txt(self, _pattern: re.Pattern | str) -> list[Text]:
-        """Return lines matching a regex as colored list[Text]."""
-        pattern = patternize(_pattern)
-        matched_lines = [line for line in self.lines if pattern.search(line)]
-
-        if len(matched_lines) == 0:
-            return []
-
-        file_style = FILENAME_MATCH_STYLES[type(self).file_matching_idx % len(FILENAME_MATCH_STYLES)]
-        type(self).file_matching_idx += 1
-
-        return [
-            Text('').append(self.file_path.name, style=file_style).append(':').append(line)
-            for line in matched_lines
-        ]
-
     def log(self, msg: str, level: int = logging.WARNING):
         """Log with filename as a prefix."""
         logger.log(level, f"{self.url_slug} {msg}")
@@ -186,6 +171,11 @@ class Document:
         msg = (msg + separator) if msg else ''
         msg = f"{self.filename}: {msg}First {n} lines:"
         logger.log(level, f"{msg}\n\n{self.top_lines(n)}\n")
+
+    def matching_lines(self, _pattern: re.Pattern | str) -> list[MatchedLine]:
+        """Return lines matching a regex as colored list[Text]."""
+        pattern = patternize(_pattern)
+        return [MatchedLine(line, i) for i, line in enumerate(self.lines) if pattern.search(line)]
 
     def raw_text(self) -> str:
         with open(self.file_path) as f:
@@ -219,6 +209,16 @@ class Document:
                 text = text.replace(k, v)
 
         return text
+
+    def sort_key(self) -> tuple[datetime, str, int]:
+        if self.config and self.config.dupe_of_id:
+            sort_id = self.config.dupe_of_id
+            dupe_idx = 1
+        else:
+            sort_id = self.file_id
+            dupe_idx = 0
+
+        return (self.timestamp or FALLBACK_TIMESTAMP, sort_id, dupe_idx)
 
     def summary(self) -> Text:
         """Summary of this file for logging. Brackets are left open for subclasses to add stuff."""
@@ -285,7 +285,7 @@ class Document:
             raise RuntimeError(f"[{self.filename}] Either 'lines' or 'text' arg must be provided (neither was)")
 
         self.length = len(self.text)
-        self.lines = [line.strip() for line in self.text.split('\n')]
+        self.lines = [line.strip() if self.strip_whitespace else line for line in self.text.split('\n')]
         self.num_lines = len(self.lines)
 
     def _write_clean_text(self, output_path: Path) -> None:
@@ -341,7 +341,7 @@ class Document:
 
     @staticmethod
     def sort_by_timestamp(docs: Sequence['DocumentType']) -> list['DocumentType']:
-        return sorted(docs, key=lambda doc: [doc.timestamp or FALLBACK_TIMESTAMP, doc.file_id])
+        return sorted(docs, key=lambda doc: doc.sort_key())
 
     @classmethod
     def uniquify(cls, documents: Sequence['DocumentType']) -> Sequence['DocumentType']:
