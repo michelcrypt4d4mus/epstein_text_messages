@@ -20,7 +20,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
 from epstein_files.util.constants import *
 from epstein_files.util.data import (TIMEZONE_INFO, collapse_newlines, escape_single_quotes, extract_last_name,
-     flatten, remove_timezone, uniquify)
+     flatten, listify, remove_timezone, uniquify)
 from epstein_files.util.doc_cfg import EmailCfg
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.logging import logger
@@ -492,6 +492,10 @@ class Email(Communication):
             for r in recipients
         ], join=', ')
 
+    def _remove_line(self, idx: int) -> None:
+        del self.lines[idx]
+        self._set_computed_fields(lines=self.lines)
+
     def _repair(self) -> None:
         """Repair particularly janky files."""
         if BAD_FIRST_LINE_REGEX.match(self.lines[0]):
@@ -525,6 +529,9 @@ class Email(Communication):
 
             self._merge_lines(4)
             self._merge_lines(2, 4)
+        elif self.file_id == '025041':
+            self._remove_line(4)
+            self._remove_line(4)
 
         if old_text != self.text:
             self.log(f"Modified text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n', logging.INFO)
