@@ -6,22 +6,21 @@ source .env
 set -e
 
 DOCS_DIR="docs"
-EMAILS_DIR="../epstein_emails_house_oversight"
-JSON_METADATA_STEM="epstein_files_nov_2025_cryptadamus_metadata.json"
-WORD_COUNT_HTML_STEM='epstein_emails_word_count.html'
-INDEX_HTML_PATH="$DOCS_DIR/index.html"
 JSON_METADATA_PATH="$DOCS_DIR/$JSON_METADATA_STEM"
 WORD_COUNT_HTML_PATH="$DOCS_DIR/$WORD_COUNT_HTML_STEM"
-EMAILS_INDEX_HTML_PATH="${EMAILS_DIR}/${INDEX_HTML_PATH}"
 
 GITHUB_PAGES_BASE_URL='https://michelcrypt4d4mus.github.io'
 EMAILS_PROJECT_NAME=`basename "$EMAILS_DIR"`
 TEXT_MSGS_PROJECT_NAME=`basename "$PWD"`
 
-EMAILS_URL="$GITHUB_PAGES_BASE_URL/$EMAILS_PROJECT_NAME"
-TEXT_MSGS_URL="$GITHUB_PAGES_BASE_URL/$TEXT_MSGS_PROJECT_NAME"
-WORD_COUNT_URL="$TEXT_MSGS_URL/$WORD_COUNT_HTML_STEM"
-JSON_METADATA_URL="$TEXT_MSGS_URL/$JSON_METADATA_STEM"
+URLS_ENV=.urls.env
+epstein_dump_urls --output-file $URLS_ENV
+source $URLS_ENV
+
+
+echo -e "GH_PAGES_BASE_URL=$GH_PAGES_BASE_URL"
+exit
+
 
 CURRENT_BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
 PICKLE_ARG=$([[ $1 == '--pickled' ]] && echo "--pickled" || echo "--overwrite-pickle")
@@ -66,7 +65,7 @@ if any_uncommitted_changes; then
     exit 1
 fi
 
-./generate_html.py --make-clean
+epstein_generate --make-clean
 
 
 # Text messages
@@ -74,23 +73,23 @@ git push origin master --quiet
 git checkout gh_pages
 git merge --no-edit master --quiet
 
-print_msg "Building" "$INDEX_HTML_PATH"
+print_msg "Building" "text messages page"
 echo -e "  -> using $PICKLE_ARG"
-./generate_html.py --build --output-emails --output-texts --output-other-files --suppress-output $PICKLE_ARG
+epstein_generate --build --suppress-output $PICKLE_ARG
 echo -e ""
-print_msg "Building" "$JSON_METADATA_PATH"
-./generate_html.py --build --json-metadata --pickled
+print_msg "Building" "JSON metadata page"
+epstein_generate --build --json-metadata --pickled
 echo -e ""
-print_msg "Building" "$WORD_COUNT_HTML_PATH"
+print_msg "Building" "word counts page"
 ./scripts/count_words.py --build --pickled --suppress-output --width 105
 
 git commit -am"Update HTML"
 git push origin gh_pages --quiet
 git checkout master
 echo -e ""
-print_msg "$TEXT_MSGS_PROJECT_NAME deployed to" "$TEXT_MSGS_URL"
-print_msg "                 json deployed to" "$JSON_METADATA_URL"
-print_msg "          word counts deployed to" "$WORD_COUNT_URL"
+print_msg "                   deployed" "$TEXT_MSGS_URL"
+print_msg "     json metadata deployed" "$JSON_METADATA_URL"
+print_msg "       word counts deployed" "$WORD_COUNT_URL"
 echo -e "\n\n"
 
 if [ -n "$ONLY_TEXTS" ]; then
@@ -100,14 +99,8 @@ fi
 
 
 # Deploy all emails
-print_msg "Building all emails version of" "$INDEX_HTML_PATH"
-./generate_html.py --all-emails --all-other-files --build --output-emails --pickled --suppress-output
-print_msg "Copying '$INDEX_HTML_PATH' to '$EMAILS_INDEX_HTML_PATH'"
-mv "$INDEX_HTML_PATH" "$EMAILS_INDEX_HTML_PATH"
-pushd "$EMAILS_DIR" > /dev/null
-git commit -am"Update HTML"
-git push origin main --quiet
-popd > /dev/null
+print_msg "Building" "all emails site"
+epstein_generate --build --all-emails --all-other-files --pickled --suppress-output
 echo -e ""
-print_msg "${EMAILS_PROJECT_NAME} deployed to" "$EMAILS_URL"
+print_msg "Deployed" "$ALL_EMAILS_URL"
 echo -e ""
