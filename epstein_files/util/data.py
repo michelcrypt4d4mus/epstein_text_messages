@@ -10,7 +10,6 @@ from dateutil import tz
 from typing import TypeVar
 
 from dateutil.parser import parse
-from rich.text import Text
 
 from epstein_files.util.constant import names
 from epstein_files.util.env import args
@@ -24,27 +23,11 @@ CONSTANT_VAR_REGEX = re.compile(r"^[A-Z_]+$")
 ALL_NAMES = [v for k, v in vars(names).items() if isinstance(v, str) and CONSTANT_VAR_REGEX.match(k)]
 
 PACIFIC_TZ = tz.gettz("America/Los_Angeles")
-TIMEZONE_INFO = {"PST": PACIFIC_TZ, "PDT": PACIFIC_TZ}  # Suppresses annoying warnings from parse() calls
+TIMEZONE_INFO = {"PDT": PACIFIC_TZ, "PST": PACIFIC_TZ}  # Suppresses annoying warnings from parse() calls
 
 
 def dict_sets_to_lists(d: dict[str, set]) -> dict[str, list]:
     return {k: sorted(list(v)) for k, v in d.items()}
-
-
-def extract_datetime(s: str) -> datetime | None:
-    match = ISO_DATE_REGEX.search(s)
-
-    if not match:
-        return None
-
-    date_str = match.group(0)
-
-    if len(date_str) == 4:
-        date_str += '-01-01'
-    elif len(date_str) == 7:
-        date_str += '-01'
-
-    return parse(date_str, tzinfos=TIMEZONE_INFO)
 
 
 def extract_last_name(name: str) -> str:
