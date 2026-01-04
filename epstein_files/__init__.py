@@ -169,6 +169,17 @@ def _print_emails(epstein_files: EpsteinFiles) -> int:
     return len(already_printed_emails)
 
 
+def _print_json_metadata(epstein_files: EpsteinFiles) -> None:
+    json_str = epstein_files.json_metadata()
+
+    if args.build:
+        with open(JSON_METADATA_PATH, 'w') as f:
+            f.write(json_str)
+            log_file_write(JSON_METADATA_PATH)
+    else:
+        console.print_json(json_str, indent=4, sort_keys=True)
+
+
 def _print_text_messages(epstein_files: EpsteinFiles) -> None:
     print_section_header('Text Messages')
     print_centered("(conversations are sorted chronologically based on timestamp of first message)\n", style='gray30')
@@ -180,18 +191,6 @@ def _print_text_messages(epstein_files: EpsteinFiles) -> None:
         console.line(2)
 
     epstein_files.print_imessage_summary()
-
-
-def _print_json_metadata(epstein_files: EpsteinFiles) -> None:
-    json_str = epstein_files.json_metadata()
-
-    if args.build:
-        with open(JSON_METADATA_PATH, 'w') as f:
-            f.write(json_str)
-            log_file_write(JSON_METADATA_PATH)
-    else:
-        console.print_json(json_str, indent=4, sort_keys=True)
-
 
 
 def _print_json_stats(epstein_files: EpsteinFiles) -> None:
