@@ -52,6 +52,7 @@ DEFAULT_EMAILERS = [
 ]
 
 # Order matters. Default names to print tables w/email subject, timestamp, etc for.
+# TODO: get rid of this
 DEFAULT_EMAILER_TABLES: list[str | None] = [
     GHISLAINE_MAXWELL,
     LEON_BLACK,
@@ -67,7 +68,7 @@ DEFAULT_EMAILER_TABLES: list[str | None] = [
 ]
 
 if len(set(DEFAULT_EMAILERS).intersection(set(DEFAULT_EMAILER_TABLES))) > 0:
-    raise RuntimeError(f"Some names appear in both PRINT_EMAILS_FOR and PRINT_EMAILS_FOR")
+    raise RuntimeError(f"Some names appear in both DEFAULT_EMAILERS and DEFAULT_EMAILER_TABLES")
 
 
 def generate_html() -> None:

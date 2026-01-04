@@ -220,6 +220,10 @@ def print_other_site_link(is_header: bool = True) -> None:
     word_count_link = link_text_obj(WORD_COUNT_URL, 'site showing the most frequently used words in these communiques', OTHER_SITE_LINK_STYLE)
     print_centered(parenthesize(word_count_link))
 
+    if is_header:
+        metadata_link = link_text_obj(JSON_METADATA_URL, 'file metadata containing author attribution explanations', OTHER_SITE_LINK_STYLE)
+        print_centered(parenthesize(metadata_link))
+
 
 def print_page_title(expand: bool = True, width: int | None = None) -> None:
     title_panel = Panel(Text(PAGE_TITLE, justify='center'), expand=expand, style=TITLE_STYLE, width=width)
