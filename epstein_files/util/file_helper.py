@@ -39,17 +39,7 @@ MB = KB * KB
 
 # Handles both string and int 'id' args.
 id_str = lambda id: f"{int(id):06d}"
-file_stem_for_id = lambda id: f"{HOUSE_OVERSIGHT_PREFIX}{id_str(id)}"
 filename_for_id = lambda id: file_stem_for_id(id) + '.txt'
-
-
-def file_stem_for_id(id: int | str) -> str:
-    if isinstance(id, int) or (isinstance(id, str) and len(id) <= 6):
-        return f"{HOUSE_OVERSIGHT_PREFIX}{id_str(id)}"
-    elif len(id) == 8:
-        return f"{HOUSE_OVERSIGHT_PREFIX}{id}"
-    else:
-        raise RuntimeError(f"Unknown kind of file id {id}")
 
 
 def coerce_file_stem(filename_or_id: int | str) -> str:
@@ -111,6 +101,15 @@ def file_size_str(file_path: str | Path) -> str:
         return f"{size} b"
 
     return f"{size_num:,.{digits}f} {size_str}"
+
+
+def file_stem_for_id(id: int | str) -> str:
+    if isinstance(id, int) or (isinstance(id, str) and len(id) <= 6):
+        return f"{HOUSE_OVERSIGHT_PREFIX}{id_str(id)}"
+    elif len(id) == 8:
+        return f"{HOUSE_OVERSIGHT_PREFIX}{id}"
+    else:
+        raise RuntimeError(f"Unknown kind of file id {id}")
 
 
 def is_local_extract_file(filename) -> bool:
