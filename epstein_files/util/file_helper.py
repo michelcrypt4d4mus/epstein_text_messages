@@ -3,7 +3,7 @@ from os import environ
 from pathlib import Path
 from sys import exit
 
-from epstein_files.util.constant.strings import FILE_STEM_REGEX, HOUSE_OVERSIGHT_PREFIX
+from epstein_files.util.constant.strings import FILE_NAME_REGEX, FILE_STEM_REGEX, HOUSE_OVERSIGHT_PREFIX
 
 EPSTEIN_DOCS_DIR_ENV_VAR_NAME = 'EPSTEIN_DOCS_DIR'
 DOCS_DIR_ENV = environ[EPSTEIN_DOCS_DIR_ENV_VAR_NAME]
@@ -24,7 +24,7 @@ WORD_COUNT_HTML_PATH = HTML_DIR.joinpath('epstein_emails_word_count.html')
 EPSTEIN_WORD_COUNT_HTML_PATH = HTML_DIR.joinpath('epstein_texts_and_emails_word_count.html')
 PICKLED_PATH = Path("the_epstein_files.pkl.gz")
 
-FILE_ID_REGEX = re.compile(fr".*{FILE_STEM_REGEX.pattern}(_\d{{1,2}})?(\.txt(\.json)?)?")
+FILE_ID_REGEX = re.compile(fr".*{FILE_NAME_REGEX.pattern}")
 FILENAME_LENGTH = len(HOUSE_OVERSIGHT_PREFIX) + 6
 KB = 1024
 MB = KB * KB

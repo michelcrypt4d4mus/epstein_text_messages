@@ -20,14 +20,13 @@ LOG_THEME = {
     for doc_type, doc_style in DOC_TYPE_STYLES.items()
 }
 
-
 LOG_THEME[f"{ReprHighlighter.base_style}epstein_filename"] = 'gray27'
 
 
 class LogHighlighter(ReprHighlighter):
     highlights = ReprHighlighter.highlights + [
         *[fr"(?P<{doc_type}>{doc_type})" for doc_type in DOC_TYPE_STYLES.keys()],
-        "(?P<epstein_filename>" + FILE_STEM_REGEX.pattern + ')',
+        "(?P<epstein_filename>" + FILE_NAME_REGEX.pattern + ')',
     ]
 
 
