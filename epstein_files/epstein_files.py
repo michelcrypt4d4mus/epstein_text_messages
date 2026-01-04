@@ -207,30 +207,28 @@ class EpsteinFiles:
 
         return json.dumps(metadata, indent=4, sort_keys=True)
 
+    def non_json_other_files(self) -> list[OtherFile]:
+        return [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
+
     def print_files_summary(self) -> None:
-        other_files = [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
-        dupes = defaultdict(int)
-
-        for doc in self.all_documents():
-            if doc.is_duplicate:
-                dupes[doc.class_name()] += 1
-
         table = Table(title='Summary of Document Types')
         add_cols_to_table(table, ['File Type', 'Files', 'Author Known', 'Author Unknown', 'Duplicates'])
 
-        def add_row(label: str, docs: list, known: int | None = None, dupes: int | None = None):
+        def add_row(label: str, docs: list):
+            known = None if isinstance(docs[0], JsonFile) else len([d for d in docs if d.author])
+
             table.add_row(
                 label,
                 f"{len(docs):,}",
-                f"{known:,}" if known else NA_TXT,
-                f"{len(docs) - known:,}" if known else NA_TXT,
-                f"{dupes:,}" if dupes else NA_TXT,
+                f"{known:,}" if known is not None else NA_TXT,
+                f"{len(docs) - known:,}" if known is not None else NA_TXT,
+                f"{len([d for d in docs if d.is_duplicate])}",
             )
 
-        add_row('iMessage Logs', self.imessage_logs, self.identified_imessage_log_count())
-        add_row('Emails', self.emails, len([e for e in self.emails if e.author]), dupes[EMAIL_CLASS])
-        add_row('JSON Data', self.json_files, dupes=0)
-        add_row('Other', other_files, dupes=dupes[OTHER_FILE_CLASS])
+        add_row('iMessage Logs', self.imessage_logs)
+        add_row('Emails', self.emails)
+        add_row('JSON Data', self.json_files)
+        add_row('Other', self.non_json_other_files())
         console.print(Align.center(table))
         console.line()
 
