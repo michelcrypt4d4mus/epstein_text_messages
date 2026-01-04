@@ -6,11 +6,15 @@ from rich.highlighter import RegexHighlighter
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import DEFAULT, REDACTED, TIMESTAMP_STYLE, remove_question_marks
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
-from epstein_files.util.constants import (EMAILER_ID_REGEXES, HEADER_ABBREVIATIONS, OSBORNE_LLP, REPLY_REGEX,
-     REPUTATION_MGMT, SENT_FROM_REGEX, VIRGIN_ISLANDS)
+from epstein_files.util.constants import (EMAILER_ID_REGEXES, EPSTEIN_V_ROTHSTEIN_EDWARDS, HEADER_ABBREVIATIONS,
+     OSBORNE_LLP, REPLY_REGEX, REPUTATION_MGMT, SENT_FROM_REGEX, VIRGIN_ISLANDS)
 from epstein_files.util.data import extract_last_name, listify
 from epstein_files.util.env import args, logger
 
+CIVIL_ATTORNEY = 'civil attorney'
+CRIMINAL_DEFENSE_ATTORNEY = 'criminal defense attorney'
+CRIMINAL_DEFENSE_2008 = f"{CRIMINAL_DEFENSE_ATTORNEY} on 2008 case"
+EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} working on {EPSTEIN_V_ROTHSTEIN_EDWARDS}"
 ESTATE_EXECUTOR = 'Epstein estate executor'
 REGEX_STYLE_PREFIX = 'regex'
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w ]+$", re.IGNORECASE)
@@ -128,17 +132,6 @@ HIGHLIGHTED_NAMES = [
         },
     ),
     HighlightedNames(
-        label='bro',
-        style='tan',
-        pattern=r"Andrew Farkas|Thomas\s*(J\.?\s*)?Barrack(\s*Jr)?",
-        emailers = {
-            JONATHAN_FARKAS: "heir to the Alexander's department store fortune",
-            'Peter Thomas Roth': 'student of Epstein at Dalton, skincare company founder',
-            STEPHEN_HANSON: None,
-            TOM_BARRACK: 'long time friend of Trump',
-        }
-    ),
-    HighlightedNames(
         label='business',
         style='spring_green4',
         pattern=r'Gruterite|(John\s*)?Kluge|Marc Rich|(Mi(chael|ke)\s*)?Ovitz|(Steve\s+)?Wynn|(Leslie\s+)?Wexner|SALSS|Swedish[-\s]*American\s*Life\s*Science\s*Summit|Valhi|(Yves\s*)?Bouvier',
@@ -248,6 +241,18 @@ HIGHLIGHTED_NAMES = [
         }
     ),
     HighlightedNames(
+        label='friend',
+        style='tan',
+        pattern=r"Andrew Farkas|Thomas\s*(J\.?\s*)?Barrack(\s*Jr)?",
+        emailers = {
+            DAVID_STERN: f'emailed Epstein from Moscow, appears to know chairman of {DEUTSCHE_BANK}',
+            JONATHAN_FARKAS: "heir to the Alexander's department store fortune",
+            'Peter Thomas Roth': 'student of Epstein at Dalton, skincare company founder',
+            STEPHEN_HANSON: None,
+            TOM_BARRACK: 'long time friend of Trump',
+        }
+    ),
+    HighlightedNames(
         label='finance',
         style='green',
         pattern=r'Apollo|Ari\s*Glass|(Bernie\s*)?Madoff|Black(rock|stone)|BofA|Boothbay(\sFund\sManagement)?|Chase\s*Bank|Credit\s*Suisse|DB|Deutsche\s*(Asset|Bank)|Electron\s*Capital\s*(Partners)?|Fenner|FRBNY|Goldman(\s*Sachs)|HSBC|Invesco|(Janet\s*)?Yellen|(Jerome\s*)?Powell(?!M\. Cabot)|(Jimmy\s*)?Cayne|JPMC?|j\.?p\.?\s*morgan(\.?com|\s*Chase)?|Madoff|Merrill(\s*Lynch)?|(Michael\s*)?(Cembalest|Milken)|MLPF&S|(money\s+)?launder(s?|ers?|ing)?(\s+money)?|Morgan Stanley|(Peter L. )?Scher|(Ray\s*)?Dalio|Schwartz?man|Serageldin|UBS|us.gio@jpmorgan.com',
@@ -346,24 +351,23 @@ HIGHLIGHTED_NAMES = [
         pattern=r'(Barry (E. )?)?Krischer|Kate Kelly|Kirkland\s*&\s*Ellis|(Leon\s*)?Jaworski|Michael J. Pike|Paul,?\s*Weiss|Steptoe|Wein(berg|garten)',
         emailers = {
             ARDA_BESKARDES: 'NYC immigration attorney allegedly involved in sex-trafficking operations',
-            BENNET_MOSKOWITZ: None,
+            BENNET_MOSKOWITZ: f'represented the {ESTATE_EXECUTOR}s',
             BRAD_KARP: 'head of the law firm Paul Weiss',
-            DAVID_STERN: None,
-            DAVID_SCHOEN: None,
-            DEBBIE_FEIN: None,
+            DAVID_SCHOEN: f"{CRIMINAL_DEFENSE_ATTORNEY} after 2019 arrest",
+            DEBBIE_FEIN: EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY,
             'Erika Kellerhals': 'attorney in St. Thomas',
             GERALD_LEFCOURT: f'friend of {ALAN_DERSHOWITZ}',
-            JACK_GOLDBERGER: None,
-            JACKIE_PERCZEK: None,
-            JAY_LEFKOWITZ: None,
-            JESSICA_CADWELL: 'paralegal (?)',  # paralegal, see https://x.com/ImDrinknWyn/status/1993765348898927022
-            LILLY_SANCHEZ:  'criminal defense attorney',
-            MARTIN_WEINBERG: 'criminal defense attorney',
+            JACK_GOLDBERGER: CRIMINAL_DEFENSE_2008,
+            JACKIE_PERCZEK: CRIMINAL_DEFENSE_2008,
+            JAY_LEFKOWITZ: f"Kirkland & Ellis partner, {CRIMINAL_DEFENSE_2008}",
+            JESSICA_CADWELL: 'paralegal',  # paralegal, see https://x.com/ImDrinknWyn/status/1993765348898927022
+            LILLY_SANCHEZ: CRIMINAL_DEFENSE_ATTORNEY,
+            MARTIN_WEINBERG: CRIMINAL_DEFENSE_ATTORNEY,
             MICHAEL_MILLER: 'Steptoe LLP partner',
             REID_WEINGARTEN: 'Steptoe LLP partner',
-            'Roy Black': 'criminal defense attorney',
+            'Roy Black': CRIMINAL_DEFENSE_2008,
             SCOTT_J_LINK: None,
-            TONJA_HADDAD_COLEMAN: 'maybe daughter of Fred Haddad?',
+            TONJA_HADDAD_COLEMAN: f'{EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY}, maybe daughter of Fred Haddad?',
         }
     ),
     HighlightedNames(
