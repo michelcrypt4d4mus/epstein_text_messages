@@ -93,6 +93,7 @@ class EpsteinFiles:
         self.emails = Document.sort_by_timestamp([d for d in documents if isinstance(d, Email)])
         self.imessage_logs = Document.sort_by_timestamp([d for d in documents if isinstance(d, MessengerLog)])
         self.other_files = Document.sort_by_timestamp([d for d in documents if isinstance(d, (JsonFile, OtherFile))])
+        self.json_files = [doc for doc in self.other_files if isinstance(doc, JsonFile)]
         self._tally_email_data()
 
     @classmethod
@@ -202,13 +203,14 @@ class EpsteinFiles:
         return len([log for log in self.imessage_logs if log.author])
 
     def print_files_summary(self) -> None:
+        other_files = [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
         dupes = defaultdict(int)
 
         for doc in self.all_documents():
             if doc.is_duplicate:
                 dupes[doc.class_name()] += 1
 
-        table = Table()
+        table = Table(title='Summary of Document Types')
         add_cols_to_table(table, ['File Type', 'Files', 'Author Known', 'Author Unknown', 'Duplicates'])
 
         def add_row(label: str, docs: list, known: int | None = None, dupes: int | None = None):
@@ -223,7 +225,7 @@ class EpsteinFiles:
         add_row('iMessage Logs', self.imessage_logs, self.identified_imessage_log_count())
         add_row('Emails', self.emails, len([e for e in self.emails if e.author]), dupes[EMAIL_CLASS])
         add_row('JSON Data', self.json_files, dupes=0)
-        add_row('Other', self.other_files, dupes=dupes[OTHER_FILE_CLASS])
+        add_row('Other', other_files, dupes=dupes[OTHER_FILE_CLASS])
         console.print(Align.center(table))
         console.line()
 
