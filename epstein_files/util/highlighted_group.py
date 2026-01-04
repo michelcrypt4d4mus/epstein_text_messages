@@ -227,6 +227,7 @@ HIGHLIGHTED_NAMES = [
         style='purple',
         pattern=r'(Barry (E. )?)?Krischer|Kate Kelly|Kirkland\s*&\s*Ellis|(Leon\s*)?Jaworski|Michael J. Pike|Paul,?\s*Weiss|Steptoe|Wein(berg|garten)',
         emailers = {
+            'Alan S Halperin': 'parnter at Paul, Weiss',
             ARDA_BESKARDES: 'NYC immigration attorney allegedly involved in sex-trafficking operations',
             BENNET_MOSKOWITZ: f'represented the {EPSTEIN_ESTATE_EXECUTOR}s',
             BRAD_KARP: 'head of the law firm Paul Weiss',

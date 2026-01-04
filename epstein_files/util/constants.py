@@ -637,6 +637,7 @@ EMAILS_CONFIG = [
 
     # Misc configs
     EmailCfg(id='033050', actual_text='schwartman'),
+    EmailCfg(id='029344', actual_text='I thought of you when I read this article. Was this your idea? Alan'),
     EmailCfg(id='023627', description=MICHAEL_WOLFF_ARTICLE_HINT, is_fwded_article=True),
     EmailCfg(id='026298', is_fwded_article=True, duplicate_ids=['026499']),  # Written by someone else?
     EmailCfg(id='029692', is_fwded_article=True, duplicate_ids=['029779']),  # WaPo article
