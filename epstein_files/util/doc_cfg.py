@@ -6,8 +6,9 @@ from typing import Generator, Literal
 
 from dateutil.parser import parse
 
-from epstein_files.util.constant.names import constantize_name
+from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import AUTHOR, EMAIL, TEXT_MESSAGE
+from epstein_files.util.data import without_nones
 
 DuplicateType = Literal['earlier', 'quoted', 'redacted', 'same']
 
@@ -31,17 +32,28 @@ MAX_LINE_LENGTH = 250
 REPUTATION_MGMT = f'{REPUTATION} management'
 SAME = 'same'
 
-REASON_MAPPING: dict[DuplicateType, str] = {
-    'earlier': 'an earlier draft of',
-    'quoted': 'quoted in full in',
-    'redacted': 'redacted version of',
-    SAME: 'the same as',
-}
-
 FIELD_SORT_KEY = {
     'id': 'a',
     'author': 'aa',
     'attribution_reason': 'zz',
+}
+
+FINANCIAL_REPORTS_AUTHORS = [
+    BOFA,
+    DEUTSCHE_BANK,
+    ELECTRON_CAPITAL_PARTNERS,
+    GOLDMAN_INVESTMENT_MGMT,
+    'Invesco',
+    JP_MORGAN,
+    'Morgan Stanley',
+    'S&P',
+]
+
+DUPE_TYPE_STRS: dict[DuplicateType, str] = {
+    'earlier': 'an earlier draft of',
+    'quoted': 'quoted in full in',
+    'redacted': 'redacted version of',
+    SAME: 'the same as',
 }
 
 
@@ -83,7 +95,7 @@ class DocCfg:
 
     def duplicate_reason(self) -> str | None:
         if self.dupe_type is not None:
-            return REASON_MAPPING[self.dupe_type]
+            return DUPE_TYPE_STRS[self.dupe_type]
 
     def duplicate_cfgs(self) -> Generator['DocCfg', None, None]:
         for id in self.duplicate_ids:
@@ -96,16 +108,14 @@ class DocCfg:
 
     def info_str(self) -> str | None:
         if self.category == REPUTATION:
-            return f"{REPUTATION_MGMT}: {self.config.description}"
-        elif self.author and self.config.description:
-            if self.category() == ACADEMIA:
+            return f"{REPUTATION_MGMT}: {self.description}"
+        elif self.author and self.description:
+            if self.category in [ACADEMIA, BOOK]:
                 return self.title_by_author()
-            elif self.category() == BOOK:
-                return f"{BOOK}: {self.title_by_author()}"
-            elif self.category() == FINANCE and self.author in FINANCIAL_REPORTS_AUTHORS:
-                return f"{self.author} report: '{self.config.description}'"
+            elif self.category == FINANCE and self.author in FINANCIAL_REPORTS_AUTHORS:
+                return f"{self.author} report: '{self.description}'"
 
-        pieces = without_nones([self.author, self.config.description])
+        pieces = without_nones([self.author, self.description])
         return ' '.join(pieces) if pieces else None
 
     def non_null_field_names(self) -> list[str]:
@@ -113,6 +123,13 @@ class DocCfg:
 
     def sorted_fields(self) -> list[Field]:
         return sorted(fields(self), key=lambda f: FIELD_SORT_KEY.get(f.name, f.name))
+
+    def title_by_author(self) -> str:
+        if not (self.author and self.description):
+            raise RuntimeError(f"Can't call title_by_author() without author and description!")
+
+        title = self.description if '"' in self.description else f"'{self.description}'"
+        return f"{title} by {self.author}"
 
     def _props_strs(self) -> list[str]:
         props = []
