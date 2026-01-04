@@ -256,6 +256,10 @@ class Document:
 
         txt.append(' [').append(key_value_txt('size', Text(self.file_size_str(), style='aquamarine1')))
         txt.append(", ").append(key_value_txt('lines', Text(f"{self.num_lines}", style='cyan')))
+
+        if self.config and self.config.dupe_of_id:
+            txt.append(", ").append(key_value_txt('dupe_of', Text(self.config.dupe_of_id, style='magenta')))
+
         return txt
 
     def top_lines(self, n: int = 10) -> str:
