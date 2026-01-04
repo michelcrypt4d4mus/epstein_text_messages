@@ -12,7 +12,8 @@ from epstein_files.documents.emails.email_header import EmailHeader
 from epstein_files.util.constant.common_words import COMMON_WORDS, UNSINGULARIZABLE_WORDS
 from epstein_files.util.constant.names import OTHER_NAMES
 from epstein_files.util.data import ALL_NAMES, flatten, sort_dict
-from epstein_files.util.env import args, logger
+from epstein_files.util.env import args
+from epstein_files.util.logging import logger
 from epstein_files.util.rich import highlighter
 from epstein_files.util.search_result import SearchResult
 

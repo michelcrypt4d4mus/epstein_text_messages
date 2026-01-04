@@ -9,7 +9,6 @@ from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
 from epstein_files.util.constants import (EMAILER_ID_REGEXES, EPSTEIN_V_ROTHSTEIN_EDWARDS, HEADER_ABBREVIATIONS,
      OSBORNE_LLP, REPLY_REGEX, REPUTATION_MGMT, SENT_FROM_REGEX, VIRGIN_ISLANDS)
 from epstein_files.util.data import extract_last_name, listify
-from epstein_files.util.env import args, logger
 
 CIVIL_ATTORNEY = 'civil attorney'
 CRIMINAL_DEFENSE_ATTORNEY = 'criminal defense attorney'
@@ -22,7 +21,41 @@ SIMPLE_NAME_REGEX = re.compile(r"^[-\w ]+$", re.IGNORECASE)
 
 
 @dataclass(kw_only=True)
-class HighlightedNames:
+class HighlightedText:
+    """
+    Color highlighting for things other than people's names (e.g. phone numbers, email headers).
+
+    Attributes:
+        label (str): RegexHighlighter match group name, defaults to 1st 'emailers' key if only 1 emailer provided
+        pattern (str): regex pattern identifying strings matching this group
+        regex (re.Pattern): matches self.pattern
+        style (str): Rich style to apply to text matching this group
+        theme_style_name (str): The style name that must be a part of the rich.Console's theme
+    """
+    label: str = ''
+    pattern: str = ''
+    style: str
+    # Computed fields
+    regex: re.Pattern = field(init=False)
+    theme_style_name: str = field(init=False)
+    _capture_group_label: str = field(init=False)
+    _match_group_var: str = field(init=False)
+
+    def __post_init__(self):
+        if not self.label:
+            raise ValueError(f"No label provided for {repr(self)}")
+
+        self._capture_group_label = self.label.lower().replace(' ', '_').replace('-', '_')
+        self._match_group_var = fr"?P<{self._capture_group_label}>"
+        self.theme_style_name = f"{REGEX_STYLE_PREFIX}.{self._capture_group_label}"
+        self.regex = re.compile(fr"({self._match_group_var}{self.pattern})", re.IGNORECASE | re.MULTILINE)
+
+    def __str__(self) -> str:
+        return f"{type(self).__name__}(label='{self.label}')"
+
+
+@dataclass(kw_only=True)
+class HighlightedNames(HighlightedText):
     """
     Encapsulates info about people, places, and other strings we want to highlight with RegexHighlighter.
     Constructor must be called with either an 'emailers' arg or a 'pattern' arg (or both).
@@ -30,22 +63,10 @@ class HighlightedNames:
     Attributes:
         category (str): optional string to use as an override for self.label in some contexts
         emailers (dict[str, str | None]): optional names to construct regexes for (values are descriptions)
-        label (str): RegexHighlighter match group name, defaults to 1st 'emailers' key if only 1 emailer provided
-        pattern (str): optional regex pattern identifying strings matching this group
-        regex (re.Pattern): matches self.pattern + all first and last names (and pluralizations) in self.emailers
-        style (str): Rich style to apply to text matching this group
-        _capture_group_label (str): regex capture group variable name for matches of this HighlightedNames's 'regex'
         _pattern (str): complete regex pattern that combines 'pattern' with 'emailers'
     """
     category: str = ''
     emailers: dict[str, str | None] = field(default_factory=dict)
-    label: str = ''
-    pattern: str = ''
-    style: str
-    # Computed fields
-    regex: re.Pattern = field(init=False)
-    _capture_group_label: str = field(init=False)
-    _match_group_var: str = field(init=False)
     _pattern: str = field(init=False)
 
     def __post_init__(self):
@@ -57,10 +78,8 @@ class HighlightedNames:
             else:
                 raise ValueError(f"No label provided for {repr(self)}")
 
+        super().__post_init__()
         self._pattern = '|'.join([self._emailer_pattern(e) for e in self.emailers] + listify(self.pattern))
-        self._capture_group_label = self.label.lower().replace(' ', '_').replace('-', '_')
-        self.theme_style_name = f"{REGEX_STYLE_PREFIX}.{self._capture_group_label}"
-        self._match_group_var = fr"?P<{self._capture_group_label}>"
         self.regex = re.compile(fr"\b({self._match_group_var}({self._pattern})s?)\b", re.IGNORECASE)
 
     def get_info(self, name: str) -> str | None:
@@ -73,7 +92,6 @@ class HighlightedNames:
         info_pieces = [p for p in info_pieces if p is not None]
         return ', '.join(info_pieces) if info_pieces else None
 
-    # TODO: handle word boundary issue for names that end in symbols
     def _emailer_pattern(self, name: str) -> str:
         """Pattern matching 'name'. Extends value in EMAILER_ID_REGEXES with last name if it exists."""
         name = remove_question_marks(name)
@@ -84,6 +102,7 @@ class HighlightedNames:
             pattern = EMAILER_ID_REGEXES[name].pattern
 
             # Include regex for last name
+            # TODO: handle word boundary issue for names that end in symbols
             if SIMPLE_NAME_REGEX.match(last_name) and last_name.lower() not in NAMES_TO_NOT_HIGHLIGHT:
                 pattern += fr"|{last_name}"
 
@@ -98,17 +117,9 @@ class HighlightedNames:
 
         return '|'.join(name_patterns)
 
+    def __str__(self) -> str:
+        return f"{type(self).__name__}(label='{self.label}')"
 
-class HighlightedText(HighlightedNames):
-    """Color highlighting for things other than people's names and similar."""
-
-    def __post_init__(self):
-        super().__post_init__()
-
-        if self.emailers:
-            raise ValueError(f"'HighlightedText' cannot have 'emailers'.")
-
-        self.regex = re.compile(fr"({self._match_group_var}{self._pattern})", re.IGNORECASE | re.MULTILINE)
 
 
 HIGHLIGHTED_NAMES = [
@@ -388,7 +399,8 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='mideast',
         style='dark_sea_green4',
-        pattern=r"[-\s]9/11[\s.]|Abdulmalik Al-Makhlafi|Abdullah|Abu\s+Dhabi|Afghanistan|Al[-\s]?Qa[ei]da|Ahmadinejad|Arab|Aramco|Assad|Bahrain|Basiji?|Benghazi|Cairo|Chagoury|Dj[iu]bo?uti|Doha|Dubai|Egypt(ian)?|Emir(at(es?|i))?|Erdogan|Fashi|Gaddafi|(Hamid\s*)?Karzai|Hamad\s*bin\s*Jassim|HBJ|Houthi|Imran\s+Khan|Iran(ian)?|Isi[ls]|Islam(abad|ic|ist)?|Istanbul|Kh?ashoggi|(Kairat\s*)?Kelimbetov|kasshohgi|Kaz(akh|ich)stan|Kazakh?|Kh[ao]menei|Khalid\s*Sheikh\s*Mohammed|KSA|Leban(ese|on)|Libyan?|Mahmoud|Marra[hk]e[cs]h|MB(N|S|Z)|Mohammed\s+bin\s+Salman|Morocco|Mubarak|Muslim|Nayaf|Pakistani?|Omar|(Osama\s*)?Bin\s*Laden|Osama(?! al)|Palestin(e|ian)|Persian?|Riya(dh|nd)|Saddam|Salman|Saudi(\s+Arabian?)?|Shariah?|SHC|sheikh|shia|(Sultan\s*)?Yacoub|Syrian?|(Tarek\s*)?El\s*Sayed|Tehran|Tunisian?|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
+        # this won't match ever because of word boundary: [-\s]9/11[\s.]
+        pattern=r"Abdulmalik Al-Makhlafi|Abdullah|Abu\s+Dhabi|Afghanistan|Al[-\s]?Qa[ei]da|Ahmadinejad|Arab|Aramco|Assad|Bahrain|Basiji?|Benghazi|Cairo|Chagoury|Dj[iu]bo?uti|Doha|Dubai|Egypt(ian)?|Emir(at(es?|i))?|Erdogan|Fashi|Gaddafi|(Hamid\s*)?Karzai|Hamad\s*bin\s*Jassim|HBJ|Houthi|Imran\s+Khan|Iran(ian)?|Isi[ls]|Islam(abad|ic|ist)?|Istanbul|Kh?ashoggi|(Kairat\s*)?Kelimbetov|kasshohgi|Kaz(akh|ich)stan|Kazakh?|Kh[ao]menei|Khalid\s*Sheikh\s*Mohammed|KSA|Leban(ese|on)|Libyan?|Mahmoud|Marra[hk]e[cs]h|MB(N|S|Z)|Mohammed\s+bin\s+Salman|Morocco|Mubarak|Muslim|Nayaf|Pakistani?|Omar|(Osama\s*)?Bin\s*Laden|Osama(?! al)|Palestin(e|ian)|Persian?|Riya(dh|nd)|Saddam|Salman|Saudi(\s+Arabian?)?|Shariah?|SHC|sheikh|shia|(Sultan\s*)?Yacoub|Syrian?|(Tarek\s*)?El\s*Sayed|Tehran|Tunisian?|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
         emailers = {
             ANAS_ALRASHEED: f'former information minister of Kuwait {QUESTION_MARKS}',
             AZIZA_ALAHMADI: 'Abu Dhabi Department of Culture & Tourism',
@@ -551,7 +563,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(emailers={PRINCE_ANDREW: 'British royal family'}, style='dodger_blue1'),
     HighlightedNames(emailers={SOON_YI_PREVIN: "wife of Woody Allen"}, style='hot_pink'),
     HighlightedNames(emailers={SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of ports in Dubai'}, style='green1'),
-    HighlightedNames(label='unknown', style='cyan', pattern=r'\(unknown\)'),
+    HighlightedText(label='unknown', style='cyan', pattern=r'\(unknown\)'),  # HighlightedText bc of word boundary issue
 ]
 
 # Highlight regexes for things other than names, only used by RegexHighlighter pattern matching
@@ -610,7 +622,7 @@ class EpsteinHighlighter(RegexHighlighter):
 def get_info_for_name(name: str) -> str | None:
     highlight_group = _get_highlight_group_for_name(name)
 
-    if highlight_group:
+    if highlight_group and isinstance(highlight_group, HighlightedNames):
         return highlight_group.get_info(name)
 
 
