@@ -3,15 +3,15 @@ from rich.padding import Padding
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.epstein_files import EpsteinFiles, count_by_month
+from epstein_files.util.constant.output_files import JSON_METADATA_PATH
+from epstein_files.util.constant import urls
 from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import EMAIL_CLASS, MESSENGER_LOG_CLASS
 from epstein_files.util.data import dict_sets_to_lists
 from epstein_files.util.env import args, specified_names
-from epstein_files.util.file_helper import JSON_METADATA_PATH
 from epstein_files.util.logging import log_file_write, logger
 from epstein_files.util.rich import *
-from epstein_files.util.timer import Timer
 
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
 
@@ -143,6 +143,31 @@ def print_text_messages(epstein_files: EpsteinFiles) -> None:
         console.line(2)
 
     epstein_files.print_imessage_summary()
+
+
+def write_urls() -> None:
+    if args.output_file == 'index.html':
+        logger.warning(f"Can't write env vars to '{args.output_file}', writing to '{URLS_ENV}' instead.\n")
+        args.output_file = URLS_ENV
+
+    url_vars = {
+        k: v for k, v in vars(urls).items()
+        if isinstance(v, str) and \
+            k.split('_')[-1] in ['URL'] and \
+            'michelcrypt4d4mus' in v and \
+            'github.com' not in v and \
+            'BASE' not in v
+    }
+
+    with open(args.output_file, 'w') as f:
+        for var_name, url in url_vars.items():
+            key_value = f"{var_name}='{url}'"
+            console.print(key_value, style='dim')
+            f.write(f"{key_value}\n")
+
+    console.line()
+    logger.warning(f"Wrote {len(url_vars)} URL variables to '{args.output_file}'\n")
+
 
 
 def _verify_all_emails_printed(epstein_files: EpsteinFiles, already_printed_emails: list[Email]) -> None:
