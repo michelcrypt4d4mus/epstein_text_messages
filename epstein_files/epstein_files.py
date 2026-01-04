@@ -35,7 +35,7 @@ from epstein_files.util.search_result import SearchResult
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (1, 0)
 NOT_INCLUDED_EMAILERS = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
-SLOW_FILE_SECONDS = 0.25
+SLOW_FILE_SECONDS = 0.5
 
 INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [
     'ACT for America',
