@@ -5,7 +5,7 @@ from dataclasses import asdict, dataclass, field
 from epstein_files.util.constant.strings import AUTHOR, REDACTED
 from epstein_files.util.constants import ALL_CONFIGS
 from epstein_files.util.doc_cfg import EmailCfg
-from epstein_files.util.env import logger
+from epstein_files.util.logging import logger
 from epstein_files.util.rich import UNKNOWN
 
 FIELD_NAMES = ['From', 'Date', 'Sent', 'Subject']

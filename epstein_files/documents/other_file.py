@@ -18,8 +18,9 @@ from epstein_files.util.constants import *
 from epstein_files.util.doc_cfg import ARTS, BOOK, JUNK, REPUTATION, REPUTATION_MGMT, SPEECH, DocCfg
 from epstein_files.util.data import escape_single_quotes, remove_timezone, uniquify, without_nones
 from epstein_files.util.file_helper import FILENAME_LENGTH
-from epstein_files.util.env import args, logger
-from epstein_files.util.rich import QUESTION_MARK_TXT, highlighter, logger
+from epstein_files.util.env import args
+from epstein_files.util.rich import QUESTION_MARK_TXT, highlighter
+from epstein_files.util.logging import logger
 
 MAX_DAYS_SPANNED_TO_BE_VALID = 10
 MAX_EXTRACTED_TIMESTAMPS = 100

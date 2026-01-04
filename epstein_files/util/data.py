@@ -13,7 +13,8 @@ from dateutil.parser import parse
 from rich.text import Text
 
 from epstein_files.util.constant import names
-from epstein_files.util.env import args, logger
+from epstein_files.util.env import args
+from epstein_files.util.logging import logger
 
 T = TypeVar('T')
 

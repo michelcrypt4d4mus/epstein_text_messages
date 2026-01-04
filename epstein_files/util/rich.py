@@ -6,7 +6,6 @@ from typing import Literal
 
 from rich.align import Align
 from rich.console import Console, RenderableType
-from rich.highlighter import ReprHighlighter
 from rich.markup import escape
 from rich.panel import Panel
 from rich.padding import Padding
@@ -19,9 +18,10 @@ from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constant.strings import DEFAULT, EMAIL, NA, OTHER_SITE_LINK_STYLE, QUESTION_MARKS, SiteType
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import FALLBACK_TIMESTAMP, HEADER_ABBREVIATIONS
-from epstein_files.util.env import args, logger
+from epstein_files.util.env import args
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES, EpsteinHighlighter
+from epstein_files.util.logging import logger
 
 TITLE_WIDTH = 50
 NUM_COLOR_KEY_COLS = 4
