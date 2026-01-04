@@ -50,10 +50,10 @@ epstein_show = 'epstein_files:epstein_show'
 
 
 [tool.poetry.urls]
-Emails = "https://michelcrypt4d4mus.github.io/epstein_emails_house_oversight/"
-Metadata = "https://michelcrypt4d4mus.github.io/epstein_text_messages/epstein_files_nov_2025_cryptadamus_metadata.json"
-Texts = "https://michelcrypt4d4mus.github.io/epstein_text_messages/"
-WordCount = "https://michelcrypt4d4mus.github.io/epstein_text_messages/epstein_emails_word_count.html"
+Emails = "https://michelcrypt4d4mus.github.io/epstein_text_messages/all_emails_epstein_files_nov_2025.html"
+Metadata = "https://michelcrypt4d4mus.github.io/epstein_text_messages/file_metadata_epstein_files_nov_2025.json"
+TextMessages = "https://michelcrypt4d4mus.github.io/epstein_text_messages"
+WordCounts = "https://michelcrypt4d4mus.github.io/epstein_text_messages/communication_word_count_epstein_files_nov_2025.html"
 
 
 
