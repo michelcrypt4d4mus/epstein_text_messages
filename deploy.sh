@@ -17,7 +17,9 @@ EMAILS_INDEX_HTML_PATH="${EMAILS_DIR}/${INDEX_HTML_PATH}"
 GITHUB_PAGES_BASE_URL='https://michelcrypt4d4mus.github.io'
 EMAILS_PROJECT_NAME=`basename "$EMAILS_DIR"`
 TEXT_MSGS_PROJECT_NAME=`basename "$PWD"`
+
 EMAILS_URL="$GITHUB_PAGES_BASE_URL/$EMAILS_PROJECT_NAME"
+JSON_METADATA_URL="$TEXT_MSGS_URL/$JSON_METADATA_STEM"
 TEXT_MSGS_URL="$GITHUB_PAGES_BASE_URL/$TEXT_MSGS_PROJECT_NAME"
 WORD_COUNT_URL="$TEXT_MSGS_URL/$WORD_COUNT_HTML_STEM"
 
@@ -87,7 +89,7 @@ git push origin gh_pages --quiet
 git checkout master
 echo -e ""
 print_msg "$TEXT_MSGS_PROJECT_NAME deployed to" "$TEXT_MSGS_URL"
-print_msg "                 json deployed to" "$JSON_METADATA_PATH"
+print_msg "                 json deployed to" "$JSON_METADATA_URL"
 print_msg "          word counts deployed to" "$WORD_COUNT_URL"
 echo -e "\n\n"
 
