@@ -912,10 +912,6 @@ def test_email_recipient_counts(epstein_files):
     assert epstein_files.email_recipient_counts == EMAIL_RECIPIENT_COUNTS
 
 
-def test_unknown_recipient_file_ids(epstein_files):
-    assert epstein_files.email_unknown_recipient_file_ids() == UNKNOWN_RECIPIENT_FILE_IDS
-
-
 def test_signatures(epstein_files):
     assert dict_sets_to_lists(epstein_files.email_authors_to_device_signatures) == AUTHORS_TO_DEVICE_SIGNATURES
     assert dict_sets_to_lists(epstein_files.email_device_signatures_to_authors) == DEVICE_SIGNATURE_TO_AUTHORS
@@ -923,3 +919,7 @@ def test_signatures(epstein_files):
 
 def test_signature_substitutions(epstein_files):
     assert epstein_files.email_signature_substitution_counts() == SIGNATURE_SUBSTITUTION_COUNTS
+
+
+def test_unknown_recipient_file_ids(epstein_files):
+    assert epstein_files.email_unknown_recipient_file_ids() == UNKNOWN_RECIPIENT_FILE_IDS
