@@ -2,7 +2,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.data import dict_sets_to_lists
 
 EMAIL_AUTHOR_COUNTS = {
-    None: 103,
+    None: 102,
     "Abi Schwinck": 1,
     AL_SECKEL: 7,
     "Alain Forget": 3,
@@ -59,7 +59,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Etienne Binant": 1,
     "Eva Dubin": 2,
     "Fabrice Aidan": 1,
-    FAITH_KATES: 9,
+    FAITH_KATES: 10,
     "Fred Haddad": 2,
     "Gerald Barton": 2,
     GHISLAINE_MAXWELL: 14,
@@ -207,7 +207,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 64,
+    None: 63,
     "ACT for America": 1,
     "Alan Dershowitz": 11,
     'Alan Dlugash': 1,
@@ -231,7 +231,7 @@ EMAIL_RECIPIENT_COUNTS = {
     'Bob Fass': 1,
     BORIS_NIKOLIC: 10,
     "Brad Karp": 5,
-    BRAD_WECHSLER: 1,
+    BRAD_WECHSLER: 2,
     "Caroline Lang": 2,
     'Caryl Ratner': 1,
     "Cecile de Jongh": 2,
@@ -259,7 +259,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Eric Roth": 1,
     "Erika Kellerhals": 2,
     "Etienne Binant": 1,
-    FAITH_KATES: 6,
+    FAITH_KATES: 5,
     "Forrest Miller": 1,
     "Francis Derby": 2,
     "Fred Haddad": 4,
@@ -291,10 +291,10 @@ EMAIL_RECIPIENT_COUNTS = {
     JEAN_HUGUEN: 1,
     JEAN_LUC_BRUNEL: 9,
     JEFF_FULLER: 2,
-    JEFFREY_EPSTEIN: 1454,
+    JEFFREY_EPSTEIN: 1455,
     JES_STALEY: 7,
     JESSICA_CADWELL: 3,
-    "Joel": 2,
+    "Joel": 3,
     "Joel Dunn": 1,
     "John Page": 1,
     "John Zouzelka": 1,
