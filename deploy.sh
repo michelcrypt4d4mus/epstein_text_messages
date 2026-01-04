@@ -77,30 +77,27 @@ print_msg "Building" "text messages page"
 echo -e "  -> using $PICKLE_ARG"
 epstein_generate --build --suppress-output $PICKLE_ARG
 echo -e ""
-print_msg "Building" "JSON metadata page"
-epstein_generate --build --json-metadata --pickled
-echo -e ""
 print_msg "Building" "word counts page"
 ./scripts/count_words.py --build --pickled --suppress-output --width 105
+echo -e ""
+print_msg "Building" "JSON metadata page"
+epstein_generate --build --json-metadata --pickled
+
+
+if [ -n "$ONLY_TEXTS" ]; then
+    print_msg "Skipping build of emails page"
+else
+    print_msg "Building" "all emails page"
+    epstein_generate --build --all-emails --all-other-files --pickled --suppress-output
+fi
+
 
 git commit -am"Update HTML"
 git push origin gh_pages --quiet
 git checkout master
 echo -e ""
-print_msg "                   deployed" "$TEXT_MSGS_URL"
-print_msg "     json metadata deployed" "$JSON_METADATA_URL"
-print_msg "       word counts deployed" "$WORD_COUNT_URL"
+print_msg "             texts page" "$TEXT_MSGS_URL"
+print_msg "            emails page" "$ALL_EMAILS_URL"
+print_msg "       word counts page" "$WORD_COUNT_URL"
+print_msg "     json metadata page" "$JSON_METADATA_URL"
 echo -e "\n\n"
-
-if [ -n "$ONLY_TEXTS" ]; then
-    print_msg "Skipping deployment of emails site"
-    exit
-fi
-
-
-# Deploy all emails
-print_msg "Building" "all emails site"
-epstein_generate --build --all-emails --all-other-files --pickled --suppress-output
-echo -e ""
-print_msg "Deployed" "$ALL_EMAILS_URL"
-echo -e ""
