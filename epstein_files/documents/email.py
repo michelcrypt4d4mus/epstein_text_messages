@@ -77,6 +77,8 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     "as Putin Mayhem Tests President's Grip\non GOP": "as Putin Mayhem Tests President's Grip on GOP",
     "avoids testimony from alleged\nvictims": "avoids testimony from alleged victims",
     "but\nwatchdogs say probe is tainted": "watchdogs say probe is tainted",
+    "Christmas comes\nearly for most of macro": "Christmas comes early for most of macro",            # 023717
+    "but majority still made good\nmoney because": "but majority still made good money because",      # 023717
     "COVER UP SEX ABUSE CRIMES\nBY THE WHITE HOUSE": "COVER UP SEX ABUSE CRIMES BY THE WHITE HOUSE",
     'Priebus, used\nprivate email accounts for': 'Priebus, used private email accounts for',
     "War on the Investigations\nEncircling Him": "War on the Investigations Encircling Him",
