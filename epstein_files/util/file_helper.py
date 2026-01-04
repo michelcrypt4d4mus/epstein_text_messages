@@ -48,11 +48,22 @@ def coerce_file_stem(filename_or_id: int | str) -> str:
     return file_stem
 
 
-def extract_file_id(filename: str | Path) -> str:
-    file_match = FILE_ID_REGEX.match(str(filename))
+def coerce_file_name(filename_or_id: int | str) -> str:
+    return coerce_file_stem(filename_or_id) + '.txt'
+
+
+def coerce_file_path(filename_or_id: int | str) -> Path:
+    return DOCS_DIR.joinpath(coerce_file_name(filename_or_id))
+
+
+def extract_file_id(filename_or_id: int | str | Path) -> str:
+    if isinstance(filename_or_id, int) or (isinstance(filename_or_id, str) and len(filename_or_id) <= 6):
+        return id_str(filename_or_id)
+
+    file_match = FILE_ID_REGEX.match(str(filename_or_id))
 
     if not file_match:
-        raise RuntimeError(f"Failed to extract file ID from {filename}")
+        raise RuntimeError(f"Failed to extract file ID from {filename_or_id}")
 
     return file_match.group(1)
 

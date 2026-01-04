@@ -20,14 +20,14 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
 from epstein_files.util.constants import *
 from epstein_files.util.data import (TIMEZONE_INFO, collapse_newlines, escape_single_quotes, extract_last_name,
-     flatten, listify, remove_timezone, uniquify)
+     flatten, remove_timezone, uniquify)
 from epstein_files.util.doc_cfg import EmailCfg
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
 
-BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|L\._|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
-BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|Classification: External Communication|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,])$')
+BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
+BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|Classification: External Communication|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,]|L\._)$')
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 LINK_LINE_REGEX = re.compile(f"^(> )?htt")
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
@@ -150,7 +150,6 @@ TRUNCATE_TERMS = [
     'quote from The Colbert Report distinguishes',
     'co-inventor of the GTX Smart Shoe',
     'my latest Washington Post column',
-    'Whether you donated to Poetry in America through',
     'supported my humanities work at Harvard',
     'Calendar of Major Events, Openings, and Fundraisers',
     'Nuclear Operator Raises Alarm on Crisis',
@@ -184,7 +183,6 @@ TRUNCATE_TERMS = [
     'We can also discuss single stock and Topix banks',
     'We are recording unprecedented divergences in falling equity vol',
     'As previously discussed between you and Ariane',
-    'The US trade war against China: The view from Beijing',
     'no evidence you got the latest so i have sent you just the key message',
     # Joscha Bach
     'Cells seem to be mostly indistinguishable (except',
@@ -207,6 +205,8 @@ TRUNCATE_TERMS = [
     'General Election: Trump vs. Clinton LA Times/USC Tracking',
     'Location: Quicken Loans Arena in Cleveland, OH',
     'A friendly discussion about Syria with a former US State Department',
+    # Robert Kuhn
+    'The US trade war against China: The view from Beijing',
     # Tom / Paul Krassner
     'I forgot to post my cartoon from week before last, about Howard Schultz',
     # Bannon
@@ -224,14 +224,15 @@ TRUNCATE_TERMS = [
     'lecture in Heidelberg Oct 14 but they had to cancel',
     # Nikolic
     'people from LifeBall',
-    # Random
-    'Little Hodiaki',
-    "It began with deep worries regarding China's growth path",
-    'https://www.washingtonpost.com/politics/2018/09/04/transcript-phone-call',
     # Epstein
     'David Ben Gurion was asked why he, after 2000',
     # Lisa New
     'The raw materials for that period include interviews',
+    'Whether you donated to Poetry in America through',
+    # Random
+    'Little Hodiaki',
+    "It began with deep worries regarding China's growth path",
+    'https://www.washingtonpost.com/politics/2018/09/04/transcript-phone-call',
 ]
 
 # Some Paul Krassner emails have a ton of CCed parties we don't care about
@@ -282,6 +283,18 @@ SELF_EMAILS_FILE_IDS = [
 
 @dataclass
 class Email(Communication):
+    """
+    An email.
+
+    Attributes:
+        actual_text (str) - best effort at the text actually sent in this email, excluding quoted replies and forwards
+        config (EmailCfg | None) - manual config for this email (if it exists)
+        header (EmailHeader) - header data extracted from the text (from/to/sent/subject etc)
+        is_junk_mail (bool) - True if this is junk mail
+        recipients (list[str | None]) - who this email was sent to
+        sent_from_device (str | None) - "Sent from my iPhone" style signature (if it exists)
+        signature_substitution_counts (dict[str, int]) - count of how many times a signature was replaced with <...snipped...> for each participant
+    """
     actual_text: str = field(init=False)
     config: EmailCfg | None = None
     header: EmailHeader = field(init=False)
@@ -290,7 +303,7 @@ class Email(Communication):
     sent_from_device: str | None = None
     signature_substitution_counts: dict[str, int] = field(default_factory=lambda: defaultdict(int))
 
-    # Just for logging how many headers we rewrote
+    # For logging how many headers we prettified while printing, kind of janky
     rewritten_header_ids: ClassVar[set[str]] = set([])
 
     def __post_init__(self):
@@ -303,12 +316,19 @@ class Email(Communication):
             for recipient in self.header.recipients():
                 self.recipients.extend(self._get_names(recipient))
 
-        recipients = [r for r in self.recipients if r != self.author or self.file_id in SELF_EMAILS_FILE_IDS]  # Remove self CCs
+        # Remove self CCs
+        recipients = [r for r in self.recipients if r != self.author or self.file_id in SELF_EMAILS_FILE_IDS]
         self.recipients = list(set(recipients))
-        self.text = self._cleaned_up_text()
+        self.text = self._prettify_text()
         self.actual_text = self._actual_text()
         self.sent_from_device = self._sent_from_device()
-        logger.debug(f"Constructed {self.summary()}")
+
+    def info_txt(self) -> Text:
+        txt = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(' to ')
+        return txt.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
+
+    def subject(self) -> str:
+        return self.header.subject or ''
 
     def summary(self) -> Text:
         """One line summary mostly for logging."""
@@ -318,19 +338,6 @@ class Email(Communication):
             txt.append(', ').append(key_value_txt('recipients', self._recipients_txt()))
 
         return txt.append(CLOSE_PROPERTIES_CHAR)
-
-    def idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES, text: str | None = None) -> int | None:
-        """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line in self.text."""
-        for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text or self.text)):
-            if i >= n:
-                return match.end() - 1
-
-    def info_txt(self) -> Text:
-        txt = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(' to ')
-        return txt.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
-
-    def subject(self) -> str:
-        return self.header.subject or ''
 
     def _actual_text(self) -> str:
         """The text that comes before likely quoted replies and forwards etc."""
@@ -344,8 +351,8 @@ class Email(Communication):
         # logger.info(f"Raw text:\n" + self.top_lines(20) + '\n\n')
         # logger.info(f"With header removed:\n" + text[0:500] + '\n\n')
 
-        if self.file_id in ['024624']:
-            return text
+        if self.file_id in ['024624']:  # This email starts with "On September 14th"
+            return text.split('On Tue, May 14')[0].strip()
 
         if reply_text_match:
             actual_num_chars = len(reply_text_match.group(1))
@@ -360,7 +367,6 @@ class Email(Communication):
             if field_string not in text:
                 continue
 
-            logger.debug(f"'{self.url_slug}': Splitting based on '{field_string.strip()}'")
             pre_from_text = text.split(field_string)[0]
             actual_num_chars = len(pre_from_text)
             actual_text_pct = f"{(100 * float(actual_num_chars) / len(text)):.1f}%"
@@ -381,19 +387,6 @@ class Email(Communication):
             style = self.author_style
 
         return style.replace('bold', '').strip()
-
-    def _cleaned_up_text(self) -> str:
-        """Add newline after headers in text if actual header wasn't empty, remove bad lines, etc."""
-        # Insert line breaks now unless header is broken, in which case we'll do it later after fixing header
-        text = self.text if self.header.was_initially_empty else _add_line_breaks(self.text)
-        text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
-
-        for name, signature_regex in EMAIL_SIGNATURE_REGEXES.items():
-            signature_replacement = f'<...snipped {name.lower()} legal signature...>'
-            text, num_replaced = signature_regex.subn(signature_replacement, text)
-            self.signature_substitution_counts[name] += num_replaced
-
-        return collapse_newlines(text).strip()
 
     def _extract_author(self) -> None:
         self._extract_header()
@@ -470,6 +463,12 @@ class Email(Communication):
         names_found = names_found or [emailer_str]
         return [_reverse_first_and_last_names(name) for name in names_found]
 
+    def _idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES, text: str | None = None) -> int | None:
+        """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line in self.text."""
+        for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text or self.text)):
+            if i >= n:
+                return match.end() - 1
+
     def _merge_lines(self, idx: int, idx2: int | None = None) -> None:
         """Combine lines numbered 'idx' and 'idx2' into a single line (idx2 defaults to idx + 1)."""
         idx2 = idx2 if idx2 is not None else (idx + 1)
@@ -484,6 +483,19 @@ class Email(Communication):
 
         self._set_computed_fields(lines=lines)
 
+    def _prettify_text(self) -> str:
+        """Add newlines before quoted replies and snip signatures."""
+        # Insert line breaks now unless header is broken, in which case we'll do it later after fixing header
+        text = self.text if self.header.was_initially_empty else _add_line_breaks(self.text)
+        text = REPLY_REGEX.sub(r'\n\1', text)  # Newlines between quoted replies
+
+        for name, signature_regex in EMAIL_SIGNATURE_REGEXES.items():
+            signature_replacement = f'<...snipped {name.lower()} legal signature...>'
+            text, num_replaced = signature_regex.subn(signature_replacement, text)
+            self.signature_substitution_counts[name] += num_replaced
+
+        return collapse_newlines(text).strip()
+
     def _recipients_txt(self) -> Text:
         """Text object with comma separated colored versions of all recipients."""
         recipients = [r or UNKNOWN for r in self.recipients] if len(self.recipients) > 0 else [UNKNOWN]
@@ -495,8 +507,12 @@ class Email(Communication):
         ], join=', ')
 
     def _remove_line(self, idx: int) -> None:
+        """Remove a line from self.lines."""
+        num_lines = idx * 2
+        self.log_top_lines(num_lines, msg='before removal of line {idx}', level=logging.WARNING)
         del self.lines[idx]
         self._set_computed_fields(lines=self.lines)
+        self.log_top_lines(num_lines, msg='after removal', level=logging.WARNING)
 
     def _repair(self) -> None:
         """Repair particularly janky files."""
@@ -508,21 +524,37 @@ class Email(Communication):
 
         if self.file_id in ['031442']:
             self._merge_lines(0)  # Merge 1st and 2nd rows
-        elif self.file_id in '021729 029501 029282 030626 031384 033512'.split():
+        elif self.file_id in '021729 025790 029282 029501 029889 030626 031384 031428 033097 033512 033583 029498 033583'.split():
             self._merge_lines(2)  # Merge 3rd and 4th rows
 
             if self.file_id in ['030626']:  # Merge 6th and 7th (now 5th and 6th) rows
                 self._merge_lines(4)
-        elif self.file_id in ['029976']:
+            elif self.file_id == '029889':
+                self._merge_lines(2, 5)
+            elif self.file_id in ['029498', '031428']:
+                self._merge_lines(2, 4)
+        elif self.file_id in ['029976', '023067']:
             self._merge_lines(3)  # Merge 4th and 5th rows
         elif self.file_id in '026609 029402 032405'.split():
             self._merge_lines(4)  # Merge 5th and 6th rows
+        elif self.file_id in ['019407', '031980', '030384', '033144', '030999', '033575', '029835']:
+            self._merge_lines(2, 4)
+        elif self.file_id in ['029154', '029163']:
+            self._merge_lines(2, 5)
+        elif self.file_id in ['033228', '032063']:
+            self._merge_lines(3, 5)
+        elif self.file_id == '028931':
+            self._merge_lines(3, 6)
         elif self.file_id in ['033568']:
             for _i in range(5):
                 self._merge_lines(5)
         elif self.file_id in ['025329']:
             for _i in range(9):
                 self._merge_lines(2)
+        elif self.file_id == '033486':
+            self._merge_lines(7, 9)
+        elif self.file_id == '030299':
+            self._merge_lines(7, 10)
         elif self.file_id == '029977':
             self._set_computed_fields(text=self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM'))
 
@@ -534,6 +566,8 @@ class Email(Communication):
         elif self.file_id == '025041':
             self._remove_line(4)
             self._remove_line(4)
+        elif self.file_id == '029692':
+            self._remove_line(3)
 
         if old_text != self.text:
             self.log(f"Modified text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n', logging.INFO)
@@ -581,7 +615,7 @@ class Email(Communication):
         yield self.file_info_panel()
         text = self.text
         should_rewrite_header = self.header.was_initially_empty and self.header.num_header_rows > 0
-        quote_cutoff = self.idx_of_nth_quoted_reply(text=text)  # Trim if there's many quoted replies
+        quote_cutoff = self._idx_of_nth_quoted_reply(text=text)  # Trim if there's many quoted replies
         num_chars = MAX_CHARS_TO_PRINT
         trim_footer_txt = None
 
@@ -612,7 +646,7 @@ class Email(Communication):
 
             lines += text.split('\n')[num_lines_to_skip:]
             text = self.header.rewrite_header() + '\n' + '\n'.join(lines)
-            text = _add_line_breaks(text)  # This was skipped when _cleaned_up_text() w/a broken header so we do it now
+            text = _add_line_breaks(text)  # This was skipped when _prettify_text() w/a broken header so we do it now
             self.rewritten_header_ids.add(self.file_id)
 
         panel_txt = highlighter(text)

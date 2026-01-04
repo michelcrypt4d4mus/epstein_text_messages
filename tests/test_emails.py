@@ -262,7 +262,7 @@ EMAIL_RECIPIENT_COUNTS = {
     FAITH_KATES: 6,
     "Forrest Miller": 1,
     "Francis Derby": 2,
-    "Fred Haddad": 3,
+    "Fred Haddad": 4,
     "Gary Gross": 1,
     "George Krassner": 3,
     "Gerald Barton": 1,

@@ -15,8 +15,8 @@ from rich.text import Text
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_REGEX, Document
 from epstein_files.util.constant.strings import FIRST_FEW_LINES, TIMESTAMP_DIM
 from epstein_files.util.constants import *
-from epstein_files.util.doc_cfg import ARTS, BOOK, JUNK, REPUTATION, REPUTATION_MGMT, SPEECH, DocCfg
-from epstein_files.util.data import escape_single_quotes, remove_timezone, uniquify, without_nones
+from epstein_files.util.doc_cfg import ARTS, BOOK, JUNK, SPEECH, DocCfg
+from epstein_files.util.data import escape_single_quotes, remove_timezone, uniquify
 from epstein_files.util.file_helper import FILENAME_LENGTH
 from epstein_files.util.env import args
 from epstein_files.util.rich import QUESTION_MARK_TXT, highlighter
