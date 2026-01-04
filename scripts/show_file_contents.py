@@ -35,10 +35,10 @@ for doc in docs:
 
     if args.raw:
         console.line()
-        console.print(Panel(f"*** {doc.url_slug} RAW ***", expand=False))
+        console.print(Panel(f"*** {doc.url_slug} RAW ***", expand=False, style=doc._border_style()))
         console.print(doc.raw_text())
 
         if isinstance(doc, Email):
             console.line()
-            console.print(Panel(f"*** {doc.url_slug} actual_text ***", expand=False))
+            console.print(Panel(f"*** {doc.url_slug} actual_text ***", expand=False, style=doc._border_style()))
             console.print(doc._actual_text())
