@@ -4,7 +4,7 @@ from os import environ
 from pathlib import Path
 from sys import argv
 
-from epstein_files.util.logging import datefinder_logger, logger
+from epstein_files.util.logging import datefinder_logger, env_log_level, logger
 
 DEFAULT_WIDTH = 154
 HTML_SCRIPTS = ['generate_html.py', 'count_words.py']
@@ -33,28 +33,33 @@ parser.add_argument('--json-stats', '-j', action='store_true', help='print JSON 
 parser.add_argument('positional_args', nargs='*', help='Optional args (only used by helper scripts)')
 args = parser.parse_args()
 
-is_env_var_set = lambda s: len(environ.get(s) or '') > 0
 current_script = Path(argv[0]).name
+is_env_var_set = lambda s: len(environ.get(s) or '') > 0
 is_html_script = current_script in HTML_SCRIPTS
 
-args.deep_debug = args.deep_debug or is_env_var_set('DEEP_DEBUG')
-args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
+args.debug = args.deep_debug or args.debug
 args.output_emails = args.output_emails or args.all_emails
 args.output_other_files = args.output_other_files or args.all_other_files
 args.pickled = args.pickled or is_env_var_set('PICKLED') or args.colors_only or len(args.names or []) > 0
 args.width = args.width if is_html_script else None
 specified_names: list[str | None] = [None if n == 'None' else n for n in (args.names or [])]
 
-if args.deep_debug:
-    logger.setLevel(logging.DEBUG)
-elif args.debug:
-    logger.setLevel(logging.INFO)
-elif args.suppress_logs:
-    logger.setLevel(logging.FATAL)
-else:
-    logger.setLevel(logging.WARNING)
 
-datefinder_logger.setLevel(logger.level)
+# Log level args
+if not env_log_level:
+    print(f"setting log lvel")
+
+    if args.deep_debug:
+        logger.setLevel(logging.DEBUG)
+    elif args.debug:
+        logger.setLevel(logging.INFO)
+    elif args.suppress_logs:
+        logger.setLevel(logging.FATAL)
+    else:
+        logger.setLevel(logging.WARNING)
+
+    print(f'log level set to {logger.level}')
+    datefinder_logger.setLevel(logger.level)
 
 
 # Massage args that depend on other args to the appropriate state
