@@ -1,4 +1,5 @@
 import logging
+from os import environ
 
 from rich.console import Console
 from rich.highlighter import ReprHighlighter
@@ -21,6 +22,7 @@ LOG_THEME = {
 }
 
 LOG_THEME[f"{ReprHighlighter.base_style}epstein_filename"] = 'gray27'
+LOG_LEVEL_ENV_VAR = 'LOG_LEVEL'
 
 
 class LogHighlighter(ReprHighlighter):
@@ -35,5 +37,19 @@ log_handler = RichHandler(console=log_console, highlighter=LogHighlighter())
 logging.basicConfig(level="NOTSET", format="%(message)s", datefmt="[%X]", handlers=[log_handler])
 logger = logging.getLogger("rich")
 
-# Suppress annoying output
-datefinder_logger = logging.getLogger('datefinder')
+
+# Log levels
+datefinder_logger = logging.getLogger('datefinder')  # Set log level to suppress annoying output
+env_log_level_str = environ.get(LOG_LEVEL_ENV_VAR) or None
+env_log_level = None
+
+if env_log_level_str:
+    try:
+        env_log_level = getattr(logging, env_log_level_str)
+    except Exception as e:
+        logger.warning(f"{LOG_LEVEL_ENV_VAR}='{env_log_level_str}' does not exist, defaulting to DEBUG")
+        env_log_level = logging.DEBUG
+
+    logger.warning(f"Setting log level to {env_log_level} based on {LOG_LEVEL_ENV_VAR} env var...")
+    logger.setLevel(env_log_level)
+    datefinder_logger.setLevel(env_log_level)
