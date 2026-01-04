@@ -7,7 +7,7 @@ from sys import argv
 from epstein_files.util.logging import datefinder_logger, env_log_level, logger
 
 DEFAULT_WIDTH = 154
-HTML_SCRIPTS = ['generate_html.py', 'count_words.py']
+HTML_SCRIPTS = ['epstein_generate', 'generate_html.py', 'count_words.py']
 
 
 parser = ArgumentParser(description="Parse epstein OCR docs and generate HTML page.")
