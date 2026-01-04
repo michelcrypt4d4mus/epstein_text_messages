@@ -282,6 +282,18 @@ SELF_EMAILS_FILE_IDS = [
 
 @dataclass
 class Email(Communication):
+    """
+    An email.
+
+    Attributes:
+        actual_text (str) - best effort at the text actually sent in this email, excluding quoted replies and forwards
+        config (EmailCfg | None) - manual config for this email (if it exists)
+        header (EmailHeader) - header data extracted from the text (from/to/sent/subject etc)
+        is_junk_mail (bool) - True if this is junk mail
+        recipients (list[str | None]) - who this email was sent to
+        sent_from_device (str | None) - "Sent from my iPhone" style signature (if it exists)
+        signature_substitution_counts (dict[str, int]) - count of how many times a signature was replaced with <...snipped...> for each participant
+    """
     actual_text: str = field(init=False)
     config: EmailCfg | None = None
     header: EmailHeader = field(init=False)
@@ -290,7 +302,7 @@ class Email(Communication):
     sent_from_device: str | None = None
     signature_substitution_counts: dict[str, int] = field(default_factory=lambda: defaultdict(int))
 
-    # Just for logging how many headers we rewrote
+    # For logging how many headers we prettified while printing, kind of janky
     rewritten_header_ids: ClassVar[set[str]] = set([])
 
     def __post_init__(self):
@@ -303,7 +315,8 @@ class Email(Communication):
             for recipient in self.header.recipients():
                 self.recipients.extend(self._get_names(recipient))
 
-        recipients = [r for r in self.recipients if r != self.author or self.file_id in SELF_EMAILS_FILE_IDS]  # Remove self CCs
+        # Remove self CCs
+        recipients = [r for r in self.recipients if r != self.author or self.file_id in SELF_EMAILS_FILE_IDS]
         self.recipients = list(set(recipients))
         self.text = self._cleaned_up_text()
         self.actual_text = self._actual_text()
