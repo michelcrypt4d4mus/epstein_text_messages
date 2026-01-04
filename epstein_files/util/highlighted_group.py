@@ -151,6 +151,7 @@ HIGHLIGHTED_NAMES = [
             ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
             BARBRO_C_EHNBOM: 'Swedish pharmaceuticals',
             FRED_HADDAD: "co-founder of Heck's in West Virginia",
+            GERALD_BARTON: "Maryland property developer, fan of Trump's Irish golf course",
             GORDON_GETTY: 'heir of oil tycoon J. Paul Getty',
             NICHOLAS_RIBIS: 'Hilton CEO, former president of Trump Organization',
             'Philip Kafka': 'president of Prince Concepts (and son of Terry Kafka?)',
