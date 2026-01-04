@@ -591,7 +591,7 @@ HIGHLIGHTED_TEXTS = [
     HighlightedText(
         label='redacted',
         style='grey58',
-        pattern=REDACTED,
+        pattern=fr"{REDACTED}|Privileged - Redacted",
     ),
     HighlightedText(
         label='sent_from',

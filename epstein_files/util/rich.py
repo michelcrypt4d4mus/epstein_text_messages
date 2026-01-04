@@ -320,5 +320,5 @@ def _print_external_links() -> None:
     print_centered(link_markup(EPSTEIN_WEB_URL) + " (character summaries)")
 
 
-if args.deep_debug:
-    print_json('THEME_STYLES', THEME_STYLES)
+# if args.deep_debug:
+#     print_json('THEME_STYLES', THEME_STYLES)
