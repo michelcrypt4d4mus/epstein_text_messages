@@ -5,7 +5,7 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
-from typing import Literal, Sequence, Type
+from typing import Sequence
 
 from rich.align import Align
 from rich.padding import Padding
@@ -22,7 +22,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import (EPSTEIN_WEB, JMAIL, epsteinify_name_url, epstein_web_person_url,
      search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
-from epstein_files.util.data import Timer, dict_sets_to_lists, listify, sort_dict
+from epstein_files.util.data import Timer, dict_sets_to_lists, sort_dict
 from epstein_files.util.doc_cfg import EmailCfg
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, PICKLED_PATH, file_size_str
@@ -35,6 +35,7 @@ from epstein_files.util.search_result import SearchResult
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (1, 0)
 NOT_INCLUDED_EMAILERS = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
+SLOW_FILE_SECONDS = 0.4
 
 INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [
     'ACT for America',
@@ -66,18 +67,28 @@ class EpsteinFiles:
 
         # Read through and classify all the files
         for file_arg in self.all_files:
-            logger.info(f"Scanning '{file_arg.name}'...")
-            #doc_timer = Timer(decimals=4)
-            doc = Document(file_arg)
+            doc_timer = Timer(decimals=4)
+            document = Document(file_arg)
+            search_area = document.text[0:1200]  # Limit search area to avoid pointless scans of huge files
 
-            if doc.length == 0:
-                logger.warning(f"Skipping empty file: {doc}")
+            if document.length == 0:
+                logger.warning(f"Skipping empty file: {document}")
                 continue
 
-            document = document_cls(doc)(file_arg, text=doc.text)
-            documents.append(document)
-            logger.info(str(document))
-            #doc_timer.print_at_checkpoint(f"Processed {document}")
+            if document.text[0] == '{':
+                cls = JsonFile
+            elif isinstance(document.config, EmailCfg) or DETECT_EMAIL_REGEX.match(search_area):
+                cls = Email
+            elif MSG_REGEX.search(search_area):
+                cls = MessengerLog
+            else:
+                cls = OtherFile
+
+            documents.append(cls(file_arg, text=document.text))
+            logger.info(str(documents[-1]))
+
+            if doc_timer.seconds_since_start() > SLOW_FILE_SECONDS:
+                doc_timer.print_at_checkpoint(f"Slow file: {documents[-1]} processed")
 
         self.emails = Document.sort_by_timestamp([d for d in documents if isinstance(d, Email)])
         self.imessage_logs = Document.sort_by_timestamp([d for d in documents if isinstance(d, MessengerLog)])
@@ -220,10 +231,11 @@ class EpsteinFiles:
         """Print complete emails to or from a particular 'author'. Returns the Emails that were printed."""
         conversation_length = self.email_conversation_length_in_days(_author)
         emails = self.emails_for(_author)
+        unique_emails = [email for email in emails if not email.is_duplicate]
         author = _author or UNKNOWN
 
         print_author_header(
-            f"Found {len(emails)} {author} emails starting {emails[0].timestamp.date()} over {conversation_length:,} days",
+            f"Found {len(unique_emails)} {author} emails starting {emails[0].timestamp.date()} over {conversation_length:,} days",
             get_style_for_name(author),
             get_info_for_name(author)
         )
@@ -254,7 +266,7 @@ class EpsteinFiles:
         console.print(build_signature_table(self.email_device_signatures_to_authors, (DEVICE_SIGNATURE, AUTHOR), ', '))
 
     def print_emailer_counts_table(self) -> None:
-        footer = f"Identified authors of {self.attributed_email_count()} emails out of {len(self.emails)} potential email files."
+        footer = f"Identified authors of {self.attributed_email_count():,} emails out of {len(self.emails):,}."
         counts_table = Table(title=f"Email Counts", caption=footer, header_style="bold")
         add_cols_to_table(counts_table, ['Name', 'Count', 'Sent', "Recv'd", JMAIL, EPSTEIN_WEB, 'Twitter'])
 
@@ -282,11 +294,10 @@ class EpsteinFiles:
         """Print summary table and stats for text messages."""
         console.print(MessengerLog.summary_table(self.imessage_logs))
         text_summary_msg = f"\nDeanonymized {self.identified_imessage_log_count()} of "
-        text_summary_msg += f"{len(self.imessage_logs)} {TEXT_MESSAGE} logs found in {len(self.all_files)} files."
+        text_summary_msg += f"{len(self.imessage_logs)} {TEXT_MESSAGE} logs found in {len(self.all_files):,} files."
         console.print(text_summary_msg)
         imessage_msg_count = sum([len(log.messages()) for log in self.imessage_logs])
-        console.print(f"Found {imessage_msg_count} total text messages in {len(self.imessage_logs)} conversations.")
-        console.print(f"(Last deploy found 4668 messages in 77 conversations)", style='dim')
+        console.print(f"Found {imessage_msg_count} text messages in {len(self.imessage_logs)} iMessage log files.")
 
     def print_other_files_table(self) -> list[OtherFile]:
         """Returns the OtherFile objects that were interesting enough to print."""
@@ -306,6 +317,9 @@ class EpsteinFiles:
     def _tally_email_data(self) -> None:
         """Tally up summary info about Email objects."""
         for email in self.emails:
+            if email.is_duplicate:
+                continue
+
             self.email_author_counts[email.author] += 1
 
             if len(email.recipients) == 0:
@@ -333,17 +347,6 @@ def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str]
         table.add_row(highlighter(k or UNKNOWN), highlighter(join_char.join(sorted(new_dict[k]))))
 
     return Padding(table, DEVICE_SIGNATURE_PADDING)
-
-
-def document_cls(document: Document) -> Type[Document]:
-    if document.text[0] == '{':
-        return JsonFile
-    elif MSG_REGEX.search(document.text):
-        return MessengerLog
-    elif DETECT_EMAIL_REGEX.match(document.text) or isinstance(document.config, EmailCfg):
-        return Email
-    else:
-        return OtherFile
 
 
 def is_ok_for_epstein_web(name: str | None) -> bool:

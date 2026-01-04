@@ -5,7 +5,7 @@ from dataclasses import asdict, dataclass, field
 from epstein_files.util.constant.strings import AUTHOR, REDACTED
 from epstein_files.util.constants import ALL_CONFIGS
 from epstein_files.util.doc_cfg import EmailCfg
-from epstein_files.util.env import logger
+from epstein_files.util.logging import logger
 from epstein_files.util.rich import UNKNOWN
 
 FIELD_NAMES = ['From', 'Date', 'Sent', 'Subject']
@@ -21,7 +21,7 @@ EMAIL_PRE_FORWARD_REGEX = re.compile(r"(.{3,2000}?)" + HEADER_REGEX_STR, re.DOTA
 TIME_REGEX = re.compile(r'^(\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday).*')
 
 BAD_NAME_CHARS_REGEX = re.compile(r"[\"'\[\]*><•]")
-BAD_EMAILER_REGEX = re.compile(r'^(>|11111111)|agreed|ok|sexy|rt|re:|fwd:|Multiple Senders|((sent|attachments|subject|importance).*|.*(january|201\d|hysterical|i have|image0|so that people|article 1.?|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
+BAD_EMAILER_REGEX = re.compile(r'^(>|11111111)|agreed|ok|sexy|re:|fwd:|Multiple Senders|((sent|attachments|subject|importance).*|.*(january|201\d|hysterical|i have|image0|so that people|article 1.?|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 
 CONFIGURED_ACTUAL_TEXTS = [
     cfg.actual_text for cfg in ALL_CONFIGS
@@ -70,7 +70,7 @@ class EmailHeader:
                 raise RuntimeError(f"Ran out of header rows to check for '{field_name}'")
 
             value = email_lines[row_number_to_check]
-            log_prefix = f"Looks like '{value}' is a mismatch for '{field_name}', "
+            log_prefix = f"Looks like '{value}' is a mismatch for '{field_name}'"
 
             if field_name == AUTHOR:
                 if value in CONFIGURED_ACTUAL_TEXTS:
@@ -99,7 +99,8 @@ class EmailHeader:
             setattr(self, field_name, value)
 
         self.num_header_rows = len(self.field_names) + num_headers
-        logger.debug(f"Corrected empty header using {self.num_header_rows} lines to:\n%s\n\nTop lines:\n\n%s", self, '\n'.join(email_lines[0:(num_headers + 1) * 2]))
+        log_msg = f"Corrected empty header using {self.num_header_rows} lines to:\n"
+        logger.debug(f"{log_msg}{self}\n\nTop lines:\n\n%s", '\n'.join(email_lines[0:(num_headers + 1) * 2]))
 
     def rewrite_header(self) -> str:
         header_fields = {}

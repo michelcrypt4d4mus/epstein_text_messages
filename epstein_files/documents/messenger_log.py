@@ -14,7 +14,7 @@ from epstein_files.util.constant.strings import AUTHOR
 from epstein_files.util.data import iso_timestamp, listify, sort_dict
 from epstein_files.util.doc_cfg import TextCfg
 from epstein_files.util.highlighted_group import get_style_for_name
-from epstein_files.util.rich import logger
+from epstein_files.util.logging import logger
 
 CONFIRMED_MSG = 'Found confirmed counterparty'
 GUESSED_MSG = 'This is probably a conversation with'
@@ -32,6 +32,9 @@ class MessengerLog(Communication):
         return self.messages_by(name)[0].timestamp()
 
     def info_txt(self) -> Text | None:
+        if self.author is None:
+            return None
+
         hint_msg = GUESSED_MSG if self.is_attribution_uncertain() else CONFIRMED_MSG
         author_txt = Text(self.author_or_unknown(), style=self.author_style + ' bold')
         return Text(f"({hint_msg} ", style='dim').append(author_txt).append(')')
@@ -69,7 +72,7 @@ class MessengerLog(Communication):
             try:
                 return datetime.strptime(timestamp_str, MSG_DATE_FORMAT)
             except ValueError as e:
-                logger.info(f"[WARNING] Failed to parse '{timestamp_str}' to datetime! Using next match. Error: {e}'")
+                logger.info(f"Failed to parse '{timestamp_str}' to datetime! Using next match. Error: {e}'")
 
         raise RuntimeError(f"{self}: No timestamp found!")
 

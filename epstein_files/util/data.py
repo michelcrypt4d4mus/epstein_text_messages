@@ -13,7 +13,8 @@ from dateutil.parser import parse
 from rich.text import Text
 
 from epstein_files.util.constant import names
-from epstein_files.util.env import args, logger
+from epstein_files.util.env import args
+from epstein_files.util.logging import logger
 
 T = TypeVar('T')
 
@@ -24,14 +25,6 @@ ALL_NAMES = [v for k, v in vars(names).items() if isinstance(v, str) and CONSTAN
 
 PACIFIC_TZ = tz.gettz("America/Los_Angeles")
 TIMEZONE_INFO = {"PST": PACIFIC_TZ, "PDT": PACIFIC_TZ}  # Suppresses annoying warnings from parse() calls
-
-
-def collapse_newlines(text: str) -> str:
-    return MULTINEWLINE_REGEX.sub('\n\n', text)
-
-
-def date_str(timestamp: datetime | None) -> str | None:
-    return timestamp.isoformat()[0:10] if timestamp else None
 
 
 def dict_sets_to_lists(d: dict[str, set]) -> dict[str, list]:
@@ -70,11 +63,7 @@ def flatten(_list: list[list[T]]) -> list[T]:
     return list(itertools.chain.from_iterable(_list))
 
 
-def iso_timestamp(dt: datetime) -> str:
-    return dt.isoformat().replace('T', ' ')
-
-
-def listify(listlike: list | str | Text | None) -> list:
+def listify(listlike) -> list:
     """Create a list of 'listlike'. Returns empty list if 'listlike' is None or empty string."""
     if isinstance(listlike, list):
         return listlike
@@ -119,17 +108,23 @@ class Timer:
     decimals: int = 2
 
     def print_at_checkpoint(self, msg: str) -> None:
-        logger.warning(f"{msg} in {self.seconds_since_checkpoint()}")
+        logger.warning(f"{msg} in {self.seconds_since_checkpoint_str()}")
         self.checkpoint_at = time.perf_counter()
 
-    def seconds_since_checkpoint(self) -> str:
+    def seconds_since_checkpoint_str(self) -> str:
         return f"{(time.perf_counter() - self.checkpoint_at):.{self.decimals}f} seconds"
 
-    def seconds_since_start(self) -> str:
-        return f"{(time.perf_counter() - self.started_at):.{self.decimals}f} seconds"
+    def seconds_since_start(self) -> float:
+        return time.perf_counter() - self.started_at
+
+    def seconds_since_start_str(self) -> str:
+        return f"{self.seconds_since_start():.{self.decimals}f} seconds"
 
 
+collapse_newlines = lambda text: MULTINEWLINE_REGEX.sub('\n\n', text)
+date_str = lambda dt: dt.isoformat()[0:10] if dt else None
 escape_double_quotes = lambda text: text.replace('"', r'\"')
 escape_single_quotes = lambda text: text.replace("'", r"\'")
+iso_timestamp = lambda dt: dt.isoformat().replace('T', ' ')
 uniquify = lambda _list: list(set(_list))
 without_nones = lambda _list: [e for e in _list if e]

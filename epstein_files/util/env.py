@@ -4,7 +4,7 @@ from os import environ
 from pathlib import Path
 from sys import argv
 
-from rich.logging import RichHandler
+from epstein_files.util.logging import datefinder_logger, env_log_level, logger
 
 DEFAULT_WIDTH = 154
 HTML_SCRIPTS = ['generate_html.py', 'count_words.py']
@@ -33,11 +33,10 @@ parser.add_argument('--json-stats', '-j', action='store_true', help='print JSON 
 parser.add_argument('positional_args', nargs='*', help='Optional args (only used by helper scripts)')
 args = parser.parse_args()
 
-is_env_var_set = lambda s: len(environ.get(s) or '') > 0
 current_script = Path(argv[0]).name
+is_env_var_set = lambda s: len(environ.get(s) or '') > 0
 is_html_script = current_script in HTML_SCRIPTS
 
-args.deep_debug = args.deep_debug or is_env_var_set('DEEP_DEBUG')
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 args.output_emails = args.output_emails or args.all_emails
 args.output_other_files = args.output_other_files or args.all_other_files
@@ -46,21 +45,17 @@ args.width = args.width if is_html_script else None
 specified_names: list[str | None] = [None if n == 'None' else n for n in (args.names or [])]
 
 
-# Setup logging
-logging.basicConfig(level="NOTSET", format="%(message)s", datefmt="[%X]", handlers=[RichHandler()])
-# logging.basicConfig(level="DEBUG", handlers=[RichHandler()])
-logger = logging.getLogger("rich")
-
+# Log level args
 if args.deep_debug:
     logger.setLevel(logging.DEBUG)
 elif args.debug:
     logger.setLevel(logging.INFO)
 elif args.suppress_logs:
     logger.setLevel(logging.FATAL)
-else:
+elif not env_log_level:
     logger.setLevel(logging.WARNING)
 
-datefinder_logger = logging.getLogger('datefinder')  # Suppress annoying output
+logger.info(f'Log level set to {logger.level}...')
 datefinder_logger.setLevel(logger.level)
 
 
@@ -77,4 +72,4 @@ if args.use_epstein_web_links:
     logger.warning(f"Using links to epsteinweb.org links instead of epsteinify.com...")
 
 if args.debug:
-    logger.warning(f"is_html_script={is_html_script}, specified_names={specified_names}, args={args}")
+    logger.warning(f"Invocation args:\nis_html_script={is_html_script},\nspecified_names={specified_names},\nargs={args}")

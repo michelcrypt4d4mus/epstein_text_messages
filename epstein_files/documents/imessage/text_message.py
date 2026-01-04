@@ -7,7 +7,8 @@ from rich.text import Text
 from epstein_files.util.constant.names import JEFFREY_EPSTEIN, ANTHONY_SCARAMUCCI, STEVE_BANNON, UNKNOWN
 from epstein_files.util.data import extract_last_name
 from epstein_files.util.highlighted_group import get_style_for_name
-from epstein_files.util.rich import TEXT_LINK, highlighter, logger
+from epstein_files.util.logging import logger
+from epstein_files.util.rich import TEXT_LINK, highlighter
 
 MSG_DATE_FORMAT = r"%m/%d/%y %I:%M:%S %p"
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')

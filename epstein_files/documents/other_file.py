@@ -18,11 +18,12 @@ from epstein_files.util.constants import *
 from epstein_files.util.doc_cfg import ARTS, BOOK, JUNK, REPUTATION, REPUTATION_MGMT, SPEECH, DocCfg
 from epstein_files.util.data import escape_single_quotes, remove_timezone, uniquify, without_nones
 from epstein_files.util.file_helper import FILENAME_LENGTH
-from epstein_files.util.env import args, logger
-from epstein_files.util.rich import QUESTION_MARK_TXT, highlighter, logger
+from epstein_files.util.env import args
+from epstein_files.util.rich import QUESTION_MARK_TXT, highlighter
+from epstein_files.util.logging import logger
 
-MAX_EXTRACTED_TIMESTAMPS = 100
 MAX_DAYS_SPANNED_TO_BE_VALID = 10
+MAX_EXTRACTED_TIMESTAMPS = 100
 MIN_TIMESTAMP = datetime(2000, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
 MAX_TIMESTAMP = datetime(2022, 12, 31)
@@ -133,7 +134,7 @@ class OtherFile(Document):
         super().__post_init__()
 
         if self.config is None and VI_DAILY_NEWS_REGEX.search(self.text):
-            logger.info(f"Creating synthetic config for VI Daily News article...")
+            self.log(f"Creating synthetic config for VI Daily News article...", logging.INFO)
             self.config = DocCfg(id=self.file_id, description=VI_DAILY_NEWS_ARTICLE, category=ARTICLE)
 
     def category(self) -> str | None:
@@ -232,7 +233,9 @@ class OtherFile(Document):
                 logger.warning(f"Error while iterating through datefinder.find_dates(): {e}")
 
         if len(timestamps) == 0:
-            self.log_top_lines(15, msg=f"{self.file_id}: No timestamps found", level=logging.INFO)
+            if not self.is_duplicate and VAST_HOUSE not in self.text:
+                self.log_top_lines(15, msg=f"No timestamps found", level=logging.INFO)
+
             return None
         elif len(timestamps) == 1:
             return timestamps[0]
@@ -247,8 +250,7 @@ class OtherFile(Document):
         timestamps_log_msg += TIMESTAMP_LOG_INDENT.join([str(dt) for dt in timestamps])
 
         if num_days_spanned > MAX_DAYS_SPANNED_TO_BE_VALID and VAST_HOUSE not in self.text:
-            log_level = logging.DEBUG if VAST_HOUSE in self.text else logging.INFO
-            self.log_top_lines(15, msg=timestamps_log_msg, level=log_level)
+            self.log_top_lines(15, msg=timestamps_log_msg, level=logging.DEBUG)
 
     @staticmethod
     def build_table(docs: list['OtherFile']) -> Table:
