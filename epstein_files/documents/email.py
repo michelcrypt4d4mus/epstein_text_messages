@@ -321,7 +321,13 @@ class Email(Communication):
         self.text = self._cleaned_up_text()
         self.actual_text = self._actual_text()
         self.sent_from_device = self._sent_from_device()
-        logger.debug(f"Constructed {self.summary()}")
+
+    def info_txt(self) -> Text:
+        txt = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(' to ')
+        return txt.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
+
+    def subject(self) -> str:
+        return self.header.subject or ''
 
     def summary(self) -> Text:
         """One line summary mostly for logging."""
@@ -331,19 +337,6 @@ class Email(Communication):
             txt.append(', ').append(key_value_txt('recipients', self._recipients_txt()))
 
         return txt.append(CLOSE_PROPERTIES_CHAR)
-
-    def idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES, text: str | None = None) -> int | None:
-        """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line in self.text."""
-        for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text or self.text)):
-            if i >= n:
-                return match.end() - 1
-
-    def info_txt(self) -> Text:
-        txt = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(' to ')
-        return txt.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
-
-    def subject(self) -> str:
-        return self.header.subject or ''
 
     def _actual_text(self) -> str:
         """The text that comes before likely quoted replies and forwards etc."""
@@ -483,6 +476,12 @@ class Email(Communication):
         names_found = names_found or [emailer_str]
         return [_reverse_first_and_last_names(name) for name in names_found]
 
+    def _idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES, text: str | None = None) -> int | None:
+        """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line in self.text."""
+        for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text or self.text)):
+            if i >= n:
+                return match.end() - 1
+
     def _merge_lines(self, idx: int, idx2: int | None = None) -> None:
         """Combine lines numbered 'idx' and 'idx2' into a single line (idx2 defaults to idx + 1)."""
         idx2 = idx2 if idx2 is not None else (idx + 1)
@@ -594,7 +593,7 @@ class Email(Communication):
         yield self.file_info_panel()
         text = self.text
         should_rewrite_header = self.header.was_initially_empty and self.header.num_header_rows > 0
-        quote_cutoff = self.idx_of_nth_quoted_reply(text=text)  # Trim if there's many quoted replies
+        quote_cutoff = self._idx_of_nth_quoted_reply(text=text)  # Trim if there's many quoted replies
         num_chars = MAX_CHARS_TO_PRINT
         trim_footer_txt = None
 
