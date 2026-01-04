@@ -5,7 +5,7 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
-from typing import Sequence
+from typing import Sequence, Type
 
 from rich.align import Align
 from rich.padding import Padding
@@ -69,21 +69,12 @@ class EpsteinFiles:
         for file_arg in self.all_files:
             doc_timer = Timer(decimals=4)
             document = Document(file_arg)
-            search_area = document.text[0:1200]  # Limit search area to avoid pointless scans of huge files
 
             if document.length == 0:
                 logger.warning(f"Skipping empty file: {document}")
                 continue
 
-            if document.text[0] == '{':
-                cls = JsonFile
-            elif isinstance(document.config, EmailCfg) or DETECT_EMAIL_REGEX.match(search_area):
-                cls = Email
-            elif MSG_REGEX.search(search_area):
-                cls = MessengerLog
-            else:
-                cls = OtherFile
-
+            cls = document_cls(document)
             documents.append(cls(file_arg, text=document.text))
             logger.info(str(documents[-1]))
 
@@ -349,6 +340,19 @@ def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str]
         table.add_row(highlighter(k or UNKNOWN), highlighter(join_char.join(sorted(new_dict[k]))))
 
     return Padding(table, DEVICE_SIGNATURE_PADDING)
+
+
+def document_cls(document: Document) -> Type[Document]:
+    search_area = document.text[0:5000]  # Limit search area to avoid pointless scans of huge files
+
+    if document.text[0] == '{':
+        return JsonFile
+    elif isinstance(document.config, EmailCfg) or DETECT_EMAIL_REGEX.match(search_area):
+        return Email
+    elif MSG_REGEX.search(search_area):
+        return MessengerLog
+    else:
+        return OtherFile
 
 
 def is_ok_for_epstein_web(name: str | None) -> bool:
