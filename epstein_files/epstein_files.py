@@ -54,6 +54,7 @@ class EpsteinFiles:
     imessage_logs: list[MessengerLog] = field(default_factory=list)
     json_files: list[JsonFile] = field(default_factory=list)
     other_files: list[OtherFile] = field(default_factory=list)
+    timer: Timer = field(default_factory=lambda: Timer())
 
     # Analytics / calculations
     email_author_counts: dict[str | None, int] = field(default_factory=lambda: defaultdict(int))
@@ -100,7 +101,7 @@ class EpsteinFiles:
                 timer.print_at_checkpoint(f"Loaded {len(epstein_files.all_files):,} documents from '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})")
                 return epstein_files
 
-        epstein_files = EpsteinFiles()
+        epstein_files = EpsteinFiles(timer=timer)
 
         if args.overwrite_pickle or not PICKLED_PATH.exists():
             with gzip.open(PICKLED_PATH, 'wb') as file:
@@ -357,6 +358,18 @@ def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str]
     return Padding(table, DEVICE_SIGNATURE_PADDING)
 
 
+def count_by_month(docs: Sequence[Document]) -> dict[str | None, int]:
+    counts: dict[str | None, int] = defaultdict(int)
+
+    for doc in docs:
+        if doc.timestamp:
+            counts[doc.timestamp.date().isoformat()[0:7]] += 1
+        else:
+            counts[None] += 1
+
+    return counts
+
+
 def document_cls(document: Document) -> Type[Document]:
     search_area = document.text[0:5000]  # Limit search area to avoid pointless scans of huge files
 
@@ -380,15 +393,3 @@ def is_ok_for_epstein_web(name: str | None) -> bool:
         return False
 
     return True
-
-
-def count_by_month(docs: Sequence[Document]) -> dict[str | None, int]:
-    counts: dict[str | None, int] = defaultdict(int)
-
-    for doc in docs:
-        if doc.timestamp:
-            counts[doc.timestamp.date().isoformat()[0:7]] += 1
-        else:
-            counts[None] += 1
-
-    return counts
