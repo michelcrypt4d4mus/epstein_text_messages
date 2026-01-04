@@ -83,7 +83,7 @@ class HighlightedNames(HighlightedText):
         self.regex = re.compile(fr"\b({self._match_group_var}({self._pattern})s?)\b", re.IGNORECASE)
 
     def get_info(self, name: str) -> str | None:
-        """Label for people in this group with the additional info for 'name' if 'name' is in self.emailers."""
+        """Label and additional info for 'name' if 'name' is in self.emailers."""
         info_pieces = [
             None if len(self.emailers) == 1 else (self.category or self.label.title()),
             self.emailers.get(name),
