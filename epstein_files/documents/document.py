@@ -177,8 +177,8 @@ class Document:
         ]
 
     def log(self, msg: str, level: int = logging.WARNING):
-        """Log with [file_id] as a prefix."""
-        logger.log(level, f"[{self.file_id}] {msg}")
+        """Log with filename as a prefix."""
+        logger.log(level, f"{self.url_slug} {msg}")
 
     def log_top_lines(self, n: int = 10, msg: str = '', level: int = logging.INFO) -> None:
         """Log first 'n' lines of self.text at 'level'. 'msg' can be optionally provided."""

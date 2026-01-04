@@ -72,7 +72,7 @@ class MessengerLog(Communication):
             try:
                 return datetime.strptime(timestamp_str, MSG_DATE_FORMAT)
             except ValueError as e:
-                logger.info(f"[WARNING] Failed to parse '{timestamp_str}' to datetime! Using next match. Error: {e}'")
+                logger.info(f"Failed to parse '{timestamp_str}' to datetime! Using next match. Error: {e}'")
 
         raise RuntimeError(f"{self}: No timestamp found!")
 

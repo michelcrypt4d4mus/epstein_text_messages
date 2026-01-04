@@ -37,7 +37,7 @@ current_script = Path(argv[0]).name
 is_env_var_set = lambda s: len(environ.get(s) or '') > 0
 is_html_script = current_script in HTML_SCRIPTS
 
-args.debug = args.deep_debug or args.debug
+args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 args.output_emails = args.output_emails or args.all_emails
 args.output_other_files = args.output_other_files or args.all_other_files
 args.pickled = args.pickled or is_env_var_set('PICKLED') or args.colors_only or len(args.names or []) > 0
