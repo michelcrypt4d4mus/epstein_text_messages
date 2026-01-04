@@ -88,26 +88,28 @@ class DocCfg:
     was_generated: bool = False
 
     def __post_init__(self):
-        if self.dupe_of_id:
-            self.dupe_type = self.dupe_type or SAME
-
         if self.date:
             self.timestamp = parse(self.date)
+
+        if self.dupe_of_id or self.duplicate_ids:
+            self.dupe_type = self.dupe_type or SAME
 
     def duplicate_reason(self) -> str | None:
         if self.dupe_type is not None:
             return DUPE_TYPE_STRS[self.dupe_type]
 
     def duplicate_cfgs(self) -> Generator['DocCfg', None, None]:
+        """Create synthetic DocCfg objects that set the 'dupe_of_id' field to point back to this object."""
         for id in self.duplicate_ids:
             dupe_cfg = deepcopy(self)
             dupe_cfg.id = id
             dupe_cfg.dupe_of_id = self.id
-            dupe_cfg.dupe_type = self.dupe_type or SAME
+            dupe_cfg.dupe_type = self.dupe_type
             dupe_cfg.was_generated = True
             yield dupe_cfg
 
     def info_str(self) -> str | None:
+        """String that summarizes what is known about this document."""
         if self.category == REPUTATION:
             return f"{REPUTATION_MGMT}: {self.description}"
         elif self.author and self.description:
