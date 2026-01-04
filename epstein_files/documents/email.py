@@ -21,7 +21,7 @@ from epstein_files.util.constant.strings import REDACTED, URL_SIGNIFIERS
 from epstein_files.util.constants import *
 from epstein_files.util.data import (TIMEZONE_INFO, collapse_newlines, escape_single_quotes, extract_last_name,
      flatten, remove_timezone, uniquify)
-from epstein_files.util.doc_cfg import EmailCfg
+from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
@@ -280,6 +280,12 @@ SELF_EMAILS_FILE_IDS = [
     # '033274',  # TODO: Epstein's note to self doesn't get printed if we don't set the recipients to [None]
 ]
 
+METADATA_FIELDS = [
+    'is_junk_mail',
+    'recipients',
+    'sent_from_device',
+]
+
 
 @dataclass
 class Email(Communication):
@@ -301,7 +307,7 @@ class Email(Communication):
     is_junk_mail: bool = False
     recipients: list[str | None] = field(default_factory=list)
     sent_from_device: str | None = None
-    signature_substitution_counts: dict[str, int] = field(default_factory=lambda: defaultdict(int))
+    signature_substitution_counts: dict[str, int] = field(default_factory=dict)  # defaultdict breaks asdict :(
 
     # For logging how many headers we prettified while printing, kind of janky
     rewritten_header_ids: ClassVar[set[str]] = set([])
@@ -326,6 +332,11 @@ class Email(Communication):
     def info_txt(self) -> Text:
         txt = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(' to ')
         return txt.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
+
+    def metadata(self) -> Metadata:
+        metadata = super().metadata()
+        metadata.update({k: v for k, v in asdict(self).items() if v and k in METADATA_FIELDS})
+        return metadata
 
     def subject(self) -> str:
         return self.header.subject or ''
@@ -492,6 +503,7 @@ class Email(Communication):
         for name, signature_regex in EMAIL_SIGNATURE_REGEXES.items():
             signature_replacement = f'<...snipped {name.lower()} legal signature...>'
             text, num_replaced = signature_regex.subn(signature_replacement, text)
+            self.signature_substitution_counts[name] = self.signature_substitution_counts.get(name, 0)
             self.signature_substitution_counts[name] += num_replaced
 
         return collapse_newlines(text).strip()
@@ -509,10 +521,10 @@ class Email(Communication):
     def _remove_line(self, idx: int) -> None:
         """Remove a line from self.lines."""
         num_lines = idx * 2
-        self.log_top_lines(num_lines, msg='before removal of line {idx}', level=logging.WARNING)
+        self.log_top_lines(num_lines, msg=f'before removal of line {idx}')
         del self.lines[idx]
         self._set_computed_fields(lines=self.lines)
-        self.log_top_lines(num_lines, msg='after removal', level=logging.WARNING)
+        self.log_top_lines(num_lines, msg=f'after removal of line {idx}')
 
     def _repair(self) -> None:
         """Repair particularly janky files."""
