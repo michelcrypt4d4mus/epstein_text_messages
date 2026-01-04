@@ -11,11 +11,24 @@ from epstein_files.util.constant.strings import AUTHOR, EMAIL, TEXT_MESSAGE
 
 DuplicateType = Literal['earlier', 'quoted', 'redacted', 'same']
 
+# categories
+ACADEMIA = 'academia'
+ARTS = 'arts'
+ARTICLE = 'article'
+BOOK = 'book'
+FINANCE = 'finance'
+FLIGHT_LOGS = 'flight logs'
+JUNK = 'junk'
+REPUTATION = 'reputation'
+SPEECH = 'speech'
+
+# Misc
 CONSTANTIZE_NAMES = False  # A flag set to True that causes repr() of these classes to return strings of usable code
 INDENT = '    '
 INDENT_NEWLINE = f'\n{INDENT}'
 INDENTED_JOIN = f',{INDENT_NEWLINE}'
 MAX_LINE_LENGTH = 250
+REPUTATION_MGMT = f'{REPUTATION} management'
 SAME = 'same'
 
 REASON_MAPPING: dict[DuplicateType, str] = {
@@ -80,6 +93,20 @@ class DocCfg:
             dupe_cfg.dupe_type = self.dupe_type or SAME
             dupe_cfg.was_generated = True
             yield dupe_cfg
+
+    def info_str(self) -> str | None:
+        if self.category == REPUTATION:
+            return f"{REPUTATION_MGMT}: {self.config.description}"
+        elif self.author and self.config.description:
+            if self.category() == ACADEMIA:
+                return self.title_by_author()
+            elif self.category() == BOOK:
+                return f"{BOOK}: {self.title_by_author()}"
+            elif self.category() == FINANCE and self.author in FINANCIAL_REPORTS_AUTHORS:
+                return f"{self.author} report: '{self.config.description}'"
+
+        pieces = without_nones([self.author, self.config.description])
+        return ' '.join(pieces) if pieces else None
 
     def non_null_field_names(self) -> list[str]:
         return [f.name for f in self.sorted_fields() if getattr(self, f.name)]
