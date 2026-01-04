@@ -181,7 +181,7 @@ class Document:
     def log_top_lines(self, n: int = 10, msg: str = '', level: int = logging.INFO) -> None:
         """Log first 'n' lines of self.text at 'level'. 'msg' can be optionally provided."""
         separator = '\n\n' if '\n' in msg else '. '
-        msg = f"{msg + separator if msg else ''}First {n} (of {self.num_lines}) lines of '{self.filename}':"
+        msg = f"{self.filename}: {(msg + separator) if msg else ''}First {n} lines:"
         logger.log(level, f"{msg}\n\n{self.top_lines(n)}\n")
 
     def raw_text(self) -> str:
