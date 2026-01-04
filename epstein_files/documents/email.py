@@ -274,7 +274,7 @@ USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
 # Emails sent by epstein to himself that are just notes
 SELF_EMAILS_FILE_IDS = [
     '026677',
-    '029752',
+    '029752',   # TODO: jokeland...
     '030238',
     # '033274',  # TODO: Epstein's note to self doesn't get printed if we don't set the recipients to [None]
 ]
