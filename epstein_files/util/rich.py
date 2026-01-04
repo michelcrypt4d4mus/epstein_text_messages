@@ -22,7 +22,7 @@ from epstein_files.util.data import json_safe
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES, EpsteinHighlighter
-from epstein_files.util.logging import logger
+from epstein_files.util.logging import log_file_write, logger
 
 TITLE_WIDTH = 50
 NUM_COLOR_KEY_COLS = 4
@@ -298,7 +298,7 @@ def write_html(output_path: Path) -> None:
         return
 
     console.save_html(str(output_path), code_format=CONSOLE_HTML_FORMAT, theme=HTML_TERMINAL_THEME)
-    logger.warning(f"Wrote {file_size_str(output_path)} to '{output_path}'")
+    log_file_write(output_path)
 
 
 def _print_abbreviations_table() -> None:

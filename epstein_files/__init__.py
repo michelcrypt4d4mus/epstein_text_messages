@@ -21,7 +21,7 @@ from epstein_files.util.constant.strings import EMAIL_CLASS, MESSENGER_LOG_CLASS
 from epstein_files.util.data import dict_sets_to_lists
 from epstein_files.util.env import args, specified_names
 from epstein_files.util.file_helper import GH_PAGES_HTML_PATH, JSON_METADATA_PATH, make_clean
-from epstein_files.util.logging import logger
+from epstein_files.util.logging import log_file_write, logger
 from epstein_files.util.rich import *
 from epstein_files.util.timer import Timer
 
@@ -81,15 +81,7 @@ def generate_html() -> None:
     epstein_files = EpsteinFiles.get_files(timer)
 
     if args.json_metadata:
-        json_str = epstein_files.json_metadata()
-
-        if args.build:
-            with open(JSON_METADATA_PATH, 'w') as f:
-                f.write(json_str)
-                timer.print_at_checkpoint(f"Wrote {file_size_str(JSON_METADATA_PATH)} to '{JSON_METADATA_PATH}'")
-        else:
-            console.print_json(json_str, indent=4, sort_keys=True)
-
+        _print_json_metadata(epstein_files)
         exit()
 
     print_header(epstein_files)
@@ -188,6 +180,18 @@ def _print_text_messages(epstein_files: EpsteinFiles) -> None:
         console.line(2)
 
     epstein_files.print_imessage_summary()
+
+
+def _print_json_metadata(epstein_files: EpsteinFiles) -> None:
+    json_str = epstein_files.json_metadata()
+
+    if args.build:
+        with open(JSON_METADATA_PATH, 'w') as f:
+            f.write(json_str)
+            log_file_write(JSON_METADATA_PATH)
+    else:
+        console.print_json(json_str, indent=4, sort_keys=True)
+
 
 
 def _print_json_stats(epstein_files: EpsteinFiles) -> None:
