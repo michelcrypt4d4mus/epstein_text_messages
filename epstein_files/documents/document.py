@@ -18,7 +18,7 @@ from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP
 from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, listify, patternize, without_nones
 from epstein_files.util.doc_cfg import EmailCfg, DocCfg, TextCfg
 from epstein_files.util.env import args, logger
-from epstein_files.util.file_helper import DOCS_DIR, file_stem_for_id, extract_file_id, file_size_str, is_local_extract_file
+from epstein_files.util.file_helper import DOCS_DIR, file_stem_for_id, extract_file_id, file_size, file_size_str, is_local_extract_file
 from epstein_files.util.rich import SYMBOL_STYLE, console, highlighter, key_value_txt, logger, link_text_obj
 
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
@@ -29,7 +29,7 @@ INFO_PADDING = (0, 0, 0, INFO_INDENT)
 
 CLOSE_PROPERTIES_CHAR = ']'
 MAX_EXTRACTED_TIMESTAMPS = 6
-MAX_SIZE_TO_REPAIR = 500 * 1024
+MAX_SIZE_TO_REPAIR = 300_000  # Largest email found was 297,322 bytes
 MIN_TIMESTAMP = datetime(1991, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
 MAX_TIMESTAMP = datetime(2020, 1, 1)
@@ -142,6 +142,9 @@ class Document:
         panel = Panel(self.raw_document_link_txt(include_alt_link=True), border_style=self._border_style(), expand=False)
         hints = [Padding(hint, INFO_PADDING) for hint in self.hints()]
         return Group(*([panel] + hints))
+
+    def file_size(self) -> int:
+        return file_size(self.file_path)
 
     def file_size_str(self) -> str:
         return file_size_str(self.file_path)

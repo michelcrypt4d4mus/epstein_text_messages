@@ -59,19 +59,23 @@ def extract_file_id(filename: str | Path) -> str:
     return file_match.group(1)
 
 
+def file_size(file_path: str | Path) -> int:
+    return Path(file_path).stat().st_size
+
+
 def file_size_str(file_path: str | Path) -> str:
-    file_size = float(Path(file_path).stat().st_size)
+    size = file_size(file_path)
     digits = 2
 
-    if file_size > MB:
-        size_num = file_size / MB
+    if size > MB:
+        size_num = float(size) / MB
         size_str = 'MB'
-    elif file_size > KB:
-        size_num = file_size / KB
+    elif size > KB:
+        size_num = float(size) / KB
         size_str = 'kb'
         digits = 1
     else:
-        return f"{int(file_size)} b"
+        return f"{size} b"
 
     return f"{size_num:,.{digits}f} {size_str}"
 
