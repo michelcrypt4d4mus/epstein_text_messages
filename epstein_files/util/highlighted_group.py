@@ -519,7 +519,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='trump',
         style='red3 bold',
-        pattern=r"@?realDonaldTrump|(Alan\s*)?Weiss?elberg|\bDJ?T\b|Donald J. Tramp|(Donald\s+(J\.\s+)?)?Trump(ism|\s*Properties)?|Don(ald| *Jr)(?! Rubin)|Ivana|(Madeleine\s*)?Westerhout|Mar[-\s]*a[-\s]*Lago|(Marla\s*)?Maples|(Matt(hew)? )?Calamari|\bMatt C\b|Melania|(Michael (J.? )?)?Boccio|Roger\s+Stone|rona|(The\s*)?Art\s*of\s*the\s*Deal",
+        pattern=r"@?realDonaldTrump|(Alan\s*)?Weiss?elberg|\bDJ?T\b|Donald J. Tramp|(Donald\s+(J\.\s+)?)?Trump(ism|\s*Properties)?|Don(ald| *Jr)(?! Rubin)|Ivana|(Madeleine\s*)?Westerhout|Mar[-\s]*a[-\s]*Lago|(Marla\s*)?Maples|(Matt(hew)? )?Calamari|\bMatt C\b|Melania|(Michael (J.? )?)?Boccio|Rebekah\s*Mercer|Roger\s+Stone|rona|(The\s*)?Art\s*of\s*the\s*Deal",
         emailers = {
             'Bruce Moskowitz': "'Trump's health guy' according to Epstein",
         },
