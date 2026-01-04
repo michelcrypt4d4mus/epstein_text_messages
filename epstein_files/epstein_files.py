@@ -315,7 +315,11 @@ class EpsteinFiles:
             console.line(2)
 
         console.print(OtherFile.build_table(interesting_files))
-        logger.warning(f"Skipped {len(self.other_files) - len(interesting_files)} uninteresting files...")
+        skipped_file_count = len(self.other_files) - len(interesting_files)
+
+        if skipped_file_count > 0:
+            logger.warning(f"Skipped {skipped_file_count} uninteresting files...")
+
         return interesting_files
 
     def _tally_email_data(self) -> None:
