@@ -19,15 +19,21 @@ max_sizes = defaultdict(int)
 #     print_json('metadata', doc.metadata())
 
 for email in sorted(epstein_files.emails, key=lambda e: -len(e.actual_text)):
-    if email.is_fwded_article() or email.is_junk_mail():
+    console.line(2)
+
+    if email.is_fwded_article() or email.is_junk_mail() or email.is_duplicate:
         continue
 
     if len(email.actual_text) > 100:
         max_sizes[email.file_id] = len(email.actual_text)
 
-    console.print(email.summary())
-    console.print(Panel(f"*** {email.filename} actual_text ***", expand=False, style=email._border_style()))
+    console.print(Panel(email.summary(), expand=False, style=email._border_style()))
     console.print(escape(email._actual_text()))
 
 console.line(2)
-print_json(f"Largest actual_text found", sort_dict(max_sizes))
+
+for id_count in sort_dict(max_sizes):
+    id = id_count[0]
+    count = id_count[1]
+    email = epstein_files.get_documents_by_id([id])[0]
+    console.print(f"{count:6d}: {email.summary().plain}")

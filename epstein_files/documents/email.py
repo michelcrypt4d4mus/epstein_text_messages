@@ -30,7 +30,6 @@ BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|Classification: External Communicati
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 LINK_LINE_REGEX = re.compile(f"^(> )?htt")
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
-REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + ['********************************']
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
 
 BAD_TIMEZONE_REGEX = re.compile(fr'\((UTC|GMT\+\d\d:\d\d)\)|{REDACTED}')
@@ -43,6 +42,34 @@ IS_JUNK_MAIL = 'is_junk_mail'
 MAX_CHARS_TO_PRINT = 4000
 MAX_NUM_HEADER_LINES = 14
 MAX_QUOTED_REPLIES = 2
+
+REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + [
+    '********************************',
+    'Begin forwarded message',
+]
+
+# Some files require customization to separate the actual composed text from the fwd
+ACTUAL_TEXT_SPLITTERS = {
+    '013415': 'Darren K. Indyke',
+    '013405': 'Darren K. Indyke',
+    '024624': 'On Tue, May 14',
+    '029773': 'Omar Quadhafi',
+    '029558': 'Creativity is central',
+    '025888': 'Jul 24, 2015',
+    '033316': 'Transcript: Phone call between President',
+    '016413': 'In a former warehouse',
+    '025548': 'Edward Jay Epstein',
+    '032806': '• Sep 13, 2018',
+    '024251': 'Debate Schedule',
+    '028943': '-Lisa',
+    '029431': 'I am writing now',
+    '020437': 'Will Cohen Cooperate',
+    '026663': 'REGULATORY & COMPLIANCE ALERT',
+    '028921': 'Salacious new chapter',
+    '030324': 'For Federal Programs',
+    '022766': '--- On Wed, 4/22/15',
+    '025606': '> On May 6,',
+}
 
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r'grnail\.com'): 'gmail.com',
@@ -367,10 +394,8 @@ class Email(Communication):
         # logger.info(f"Raw text:\n" + self.top_lines(20) + '\n\n')
         # logger.info(f"With header removed:\n" + text[0:500] + '\n\n')
 
-        if self.file_id in ['024624']:  # This email starts with "On September 14th"
-            return text.split('On Tue, May 14')[0].strip()
-        elif self.file_id == '013415':
-            return text.split('Darren K. Indyke')[0].strip()
+        if self.file_id in ACTUAL_TEXT_SPLITTERS:
+            return text.split(ACTUAL_TEXT_SPLITTERS[self.file_id])[0].strip()
 
         if reply_text_match:
             actual_num_chars = len(reply_text_match.group(1))
