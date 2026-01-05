@@ -6,9 +6,9 @@ from sys import argv
 
 from epstein_files.util.logging import datefinder_logger, env_log_level, logger
 
-COUNT_WORDS_SCRIPT = 'count_words.py'
+COUNT_WORDS_SCRIPT = 'epstein_word_count'
 DEFAULT_WIDTH = 145
-HTML_SCRIPTS = ['epstein_generate', 'generate_html.py', COUNT_WORDS_SCRIPT]
+HTML_SCRIPTS = ['epstein_generate', COUNT_WORDS_SCRIPT]
 
 
 parser = ArgumentParser(description="Parse epstein OCR docs and generate HTML page.")
@@ -19,7 +19,7 @@ output = parser.add_argument_group('OUTPUT')
 output.add_argument('--all-emails', '-ae', action='store_true', help='all the emails instead of just the interesting ones')
 output.add_argument('--all-other-files', '-ao', action='store_true', help='all the non-email, non-text msg files instead of just the interesting ones')
 output.add_argument('--build', '-b', action='store_true', help='write output to HTML file')
-output.add_argument('--make-clean', '-mc', action='store_true', help='delete all build artifact HTML and JSON files')
+output.add_argument('--make-clean', action='store_true', help='delete all HTML build artifact and write latest URLs to .urls.env')
 output.add_argument('--output-emails', '-oe', action='store_true', help='generate other files section')
 output.add_argument('--output-other-files', '-oo', action='store_true', help='generate other files section')
 output.add_argument('--output-texts', '-ot', action='store_true', help='generate other files section')
