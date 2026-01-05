@@ -1,5 +1,6 @@
 import re
 from copy import deepcopy
+from typing import cast
 
 from dateutil.parser import parse
 
@@ -371,8 +372,8 @@ TEXTS_CONFIG = CONFIRMED_TEXTS_CONFIG + UNCONFIRMED_TEXTS_CONFIG
 ########################################################################################################
 
 # Some emails have a lot of uninteresting CCs
-IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS: list[str | None] = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
-FLIGHT_IN_2012_PEOPLE: list[str | None] = ['Francis Derby', 'Januiz Banasiak', 'Louella Rabuyo', 'Richard Barnnet']
+IRAN_DEAL_RECIPIENTS = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
+FLIGHT_IN_2012_PEOPLE = ['Francis Derby', 'Januiz Banasiak', 'Louella Rabuyo', 'Richard Barnnet']
 
 EMAILS_CONFIG = [
     EmailCfg(id='032436', author=ALIREZA_ITTIHADIEH, attribution_reason='Signature'),
@@ -572,7 +573,7 @@ EMAILS_CONFIG = [
         attribution_reason='ends with "Respectfully, terry"',
         author=TERRY_KAFKA,
         fwded_text_after='From: Mike Cohen',
-        recipients=[JEFFREY_EPSTEIN, MARK_EPSTEIN, MICHAEL_BUCHHOLTZ] + IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS,
+        recipients=[JEFFREY_EPSTEIN, MARK_EPSTEIN, MICHAEL_BUCHHOLTZ] + IRAN_DEAL_RECIPIENTS,
         duplicate_ids=['028482'],
     ),
     EmailCfg(id='029992', author=TERRY_KAFKA, attribution_reason='Quoted reply'),
@@ -1322,7 +1323,7 @@ OTHER_FILES_LETTERS = [
 ]
 
 OTHER_FILES_PROPERTY = [
-    DocCfg(id='026759', author='Great Bay Condominium Owners Association', description=f'{PRESS_RELEASE} by about Hurricane Irma damage', date='2017-09-13'),
+    DocCfg(id='026759', author='Great Bay Condominium Owners Association', description=f'{PRESS_RELEASE} about Hurricane Irma damage', date='2017-09-13'),
     DocCfg(id='016602', author=PALM_BEACH_CODE_ENFORCEMENT, description='board minutes', date='2008-04-17'),
     DocCfg(id='016554', author=PALM_BEACH_CODE_ENFORCEMENT, description='board minutes', date='2008-07-17', duplicate_ids=['016616', '016574']),
     DocCfg(id='027068', author=THE_REAL_DEAL, description=f"{THE_REAL_DEAL_ARTICLE} Palm House Hotel Bankruptcy and EB-5 Visa Fraud Allegations"),
@@ -1478,6 +1479,11 @@ OTHER_FILES_ARTS = [
 OTHER_FILES_MISC = [
     DocCfg(id='022780', category=FLIGHT_LOGS),
     DocCfg(id='022816', category=FLIGHT_LOGS),
+    DocCfg(id='032206', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
+    DocCfg(id='032208', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
+    DocCfg(id='032209', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
+    DocCfg(id='018224', category=SKYPE_LOG, author=LAWRENCE_KRAUSS, description=f'conversations with linkspirit (French?) and {LAWRENCE_KRAUSS}'),
+    DocCfg(id='032210', category=SKYPE_LOG, description=f'conversation with linkspirit'),
     DocCfg(
         id='025147',
         author=BROCKMAN_INC,
@@ -1492,11 +1498,6 @@ OTHER_FILES_MISC = [
     DocCfg(id='027074', author=FEMALE_HEALTH_COMPANY, description=f"pitch deck (USAID was a customer)"),
     DocCfg(id='032735', author=GORDON_GETTY, description=f"on Trump", date='2018-03-20'),  # Dated based on concurrent emails from Getty
     DocCfg(id='025540', author=JEFFREY_EPSTEIN, description=f"rough draft of Epstein's side of the story?"),
-    DocCfg(id='032206', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
-    DocCfg(id='032208', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
-    DocCfg(id='032209', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
-    DocCfg(id='018224', category=SKYPE_LOG, author=LAWRENCE_KRAUSS, description=f'conversations with linkspirit (French?) and {LAWRENCE_KRAUSS}'),
-    DocCfg(id='032210', category=SKYPE_LOG, description=f'conversation with linkspirit'),
     DocCfg(id='026634', author='Michael Carrier', description=f"comments about an Apollo linked hedge fund 'DE Fund VIII'"),
     DocCfg(id='031425', author=SCOTT_J_LINK, description=f'completely redacted email from'),
     DocCfg(id='020447', author='Working Group on Chinese Influence Activities in the U.S.', description=f'Promoting Constructive Vigilance'),

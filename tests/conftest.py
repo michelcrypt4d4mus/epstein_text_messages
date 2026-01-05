@@ -1,6 +1,9 @@
+from os import environ
+
+import pytest
 from dotenv import load_dotenv
 load_dotenv()
-import pytest
+environ.setdefault('OVERWRITE_PICKLE', 'True')
 
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.file_helper import *
