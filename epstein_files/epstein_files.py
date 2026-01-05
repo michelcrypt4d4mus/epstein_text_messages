@@ -273,7 +273,7 @@ class EpsteinFiles:
         console.print(_build_signature_table(self.email_device_signatures_to_authors, (DEVICE_SIGNATURE, AUTHOR), ', '))
 
     def print_emailer_counts_table(self) -> None:
-        footer = f"Identified authors of {self.attributed_email_count():,} emails out of {len(self.emails):,}."
+        footer = f"Identified authors of {self.attributed_email_count():,} out of {len(self.emails):,} emails ."
         counts_table = build_table("Email Counts", caption=footer)
         add_cols_to_table(counts_table, ['Name', 'Count', 'Sent', "Recv'd", JMAIL, EPSTEIN_MEDIA, EPSTEIN_WEB, 'Twitter'])
 
@@ -319,7 +319,7 @@ class EpsteinFiles:
             console.line(2)
 
         console.print(OtherFile.build_table(interesting_files))
-        console.print(Padding(OtherFile.count_by_category_table(interesting_files), (2, 0, 2, 30)))
+        console.print(Padding(OtherFile.count_by_category_table(interesting_files), (2, 0, 2, 2)))
         skipped_file_count = len(self.other_files) - len(interesting_files)
 
         if skipped_file_count > 0:
