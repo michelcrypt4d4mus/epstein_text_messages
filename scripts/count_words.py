@@ -44,7 +44,7 @@ for email in emails:
             continue
 
         for word in line.split():
-            word_count.count_word(word, SearchResult(email, [line]))
+            word_count.tally_word(word, SearchResult(email, [line]))
 
 # Add in iMessage conversation words
 imessage_logs = epstein_files.imessage_logs_for(specified_names) if specified_names else epstein_files.imessage_logs
@@ -59,7 +59,7 @@ for imessage_log in imessage_logs:
             continue
 
         for word in msg.text.split():
-            word_count.count_word(word, SearchResult(imessage_log, [msg.text]))
+            word_count.tally_word(word, SearchResult(imessage_log, [msg.text]))
 
 print_page_title(expand=False)
 print_starred_header(f"Most Common Words in {len(emails):,} Emails and {len(imessage_logs)} iMessage Logs")
