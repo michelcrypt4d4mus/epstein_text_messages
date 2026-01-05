@@ -228,25 +228,25 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
 ]]
 
 # Names to color white in the word counts
-OTHER_NAMES = """
-    aaron albert alberto alec alex alexandra alice allen anderson andre andres ann anna anne ariana arthur
-    baldwin barack barbro barry ben benjamin berger bert binant bob bonner boyden brad bradley brady branson bruce bruno burton
-    chapman charles charlie chris christopher clint cohen colin collins conway
-    dave davis dean debra deborah dennis diana diane diaz dickinson dixon dominique don dylan
-    ed edmond elizabeth emily entwistle erik erika etienne evelyn
+OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
+    aaron albert alberto alec alexandra alice anderson andre ann anna anne ariana arthur
+    baldwin barack barbro ben benjamin berger bert binant bob bonner boyden bradley brady branson bruno bryant burton
+    chapman charles charlie christopher clint cohen colin collins conway
+    davis dean debra deborah dennis diana diane diaz dickinson dixon dominique don dylan
+    edmond elizabeth emily entwistle erik evelyn
     ferguson flachsbart francis franco frank
-    gardner gary geoff geoffrey george gilbert goldberg gonzalez gould graham greene guarino gwyneth
+    gardner gary geoff geoffrey gilbert goldberg gonzalez gould graham greene guarino gwyneth
     hancock harold harrison harry helen hirsch hofstadter horowitz hussein
     isaac isaacson
-    jamie james jane janet jason jen jennifer jim joe joel johnson jones julie justin
-    kate kathy kelly kevin kim kruger kyle
+    jamie jane janet jason jen jim joe johnson jones josh julie justin
+    kate kathy kelly kim kruger kyle
     leonard lenny lieberman louis lynch lynn
-    marcus marianne matt matthew melissa michele michelle mike mitchell moore moscowitz
+    marcus marianne matt matthew melissa michele michelle moore moscowitz
     nicole nussbaum
-    paul paula paulson philip philippe
-    rafael ray richardson rob robin rodriguez ron rudolph ryan
-    sara sarah seligman serge sergey silverman sloman smith snowden sorkin stanley steele stevie stewart susan
-    ted theresa thompson tiffany tim timothy tom
+    paulson philippe
+    rafael ray richardson rob robin ron rudolph ryan
+    sara sarah seligman serge sergey silverman sloman smith snowden sorkin steele stevie stewart
+    ted theresa thompson tiffany timothy
     valeria
     walter warren weinstein weiss william
     zach zack
