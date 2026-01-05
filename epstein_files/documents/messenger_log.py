@@ -15,6 +15,7 @@ from epstein_files.util.data import iso_timestamp, listify, sort_dict
 from epstein_files.util.doc_cfg import Metadata, TextCfg
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.logging import logger
+from epstein_files.util.rich import build_table
 
 CONFIRMED_MSG = 'Found confirmed counterparty'
 GUESSED_MSG = 'This is probably a conversation with'
@@ -111,7 +112,7 @@ class MessengerLog(Communication):
     @classmethod
     def summary_table(cls, imessage_logs: list['MessengerLog']) -> Table:
         """Build a table summarizing the text messages in 'imessage_logs'."""
-        counts_table = Table(title="Text Message Counts By Author", header_style="bold")
+        counts_table = build_table("Text Message Counts By Author")
         counts_table.add_column(AUTHOR.title(), justify='left', style="steel_blue bold", width=30)
         counts_table.add_column('Files', justify='right', style='white')
         counts_table.add_column("Msgs", justify='right')

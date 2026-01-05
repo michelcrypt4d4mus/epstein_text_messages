@@ -20,7 +20,7 @@ from epstein_files.util.data import escape_single_quotes, remove_timezone, uniqu
 from epstein_files.util.file_helper import FILENAME_LENGTH
 from epstein_files.util.env import args
 from epstein_files.util.highlighted_group import get_style_for_category
-from epstein_files.util.rich import QUESTION_MARK_TXT, highlighter
+from epstein_files.util.rich import QUESTION_MARK_TXT, build_table, highlighter
 from epstein_files.util.logging import logger
 
 MAX_DAYS_SPANNED_TO_BE_VALID = 10
@@ -233,7 +233,7 @@ class OtherFile(Document):
     @staticmethod
     def build_table(docs: list['OtherFile']) -> Table:
         """Build a table of OtherFile documents."""
-        table = Table(header_style='bold', show_lines=True)
+        table = build_table(None, show_lines=True)
         table.add_column('File', justify='center', width=FILENAME_LENGTH)
         table.add_column('Date', justify='center')
         table.add_column('Size', justify='center')

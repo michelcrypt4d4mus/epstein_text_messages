@@ -14,7 +14,8 @@ from rich.theme import Theme
 
 from epstein_files.util.constant.html import CONSOLE_HTML_FORMAT, HTML_TERMINAL_THEME, PAGE_TITLE
 from epstein_files.util.constant.names import UNKNOWN
-from epstein_files.util.constant.strings import DEFAULT, EMAIL, NA, OTHER_SITE_LINK_STYLE, QUESTION_MARKS, SiteType
+from epstein_files.util.constant.output_files import SITE_URLS
+from epstein_files.util.constant.strings import DEFAULT, EMAIL, NA, QUESTION_MARKS, TEXT_MESSAGE, SiteType
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import FALLBACK_TIMESTAMP, HEADER_ABBREVIATIONS
 from epstein_files.util.data import json_safe
@@ -31,10 +32,21 @@ GREY_NUMBERS = [58, 39, 39, 35, 30, 27, 23, 23, 19, 19, 15, 15, 15]
 DEFAULT_NAME_STYLE = 'gray46'
 KEY_STYLE='honeydew2 bold'
 SECTION_HEADER_STYLE = 'bold white on blue3'
-SOCIAL_MEDIA_LINK_STYLE = 'cyan3 bold'
+SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
 SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 SYMBOL_STYLE = 'grey70'
+TABLE_BORDER_STYLE = 'grey46'
+TABLE_TITLE_STYLE = f"gray85 italic"
 TITLE_STYLE = 'black on bright_white bold'
+
+AUX_SITE_LINK_STYLE = 'dark_orange3'
+OTHER_SITE_LINK_STYLE = 'dark_goldenrod'
+
+DEFAULT_TABLE_KWARGS = {
+    'border_style': TABLE_BORDER_STYLE,
+    'header_style': "bold",
+    'title_style': TABLE_TITLE_STYLE,
+}
 
 HIGHLIGHTED_GROUP_COLOR_KEYS = [
     Text(highlight_group.label.replace('_', ' '), style=highlight_group.style)
@@ -79,7 +91,11 @@ def build_highlighter(pattern: str) -> EpsteinHighlighter:
     return TempHighlighter()
 
 
-def join_texts(txts: list[Text], join: str = ' ', encloser: str = '') -> Text:
+def build_table(title: str | None, **kwargs) -> Table:
+    return Table(title=title, **{**DEFAULT_TABLE_KWARGS, **kwargs})
+
+
+def join_texts(txts: list[Text], join: str = ' ', encloser: str = '', encloser_style: str = 'wheat4') -> Text:
     """Join rich.Text objs into one."""
     if encloser:
         if len(encloser) != 2:
@@ -91,8 +107,9 @@ def join_texts(txts: list[Text], join: str = ' ', encloser: str = '') -> Text:
 
     txt = Text('')
 
-    for i, link in enumerate(txts):
-        txt.append(join if i >= 1 else '').append(enclose_start).append(link).append(enclose_end)
+    for i, _txt in enumerate(txts):
+        txt.append(join if i >= 1 else '').append(enclose_start, style=encloser_style)
+        txt.append(_txt).append(enclose_end, style=encloser_style)
 
     return txt
 
@@ -132,7 +149,7 @@ def print_centered_link(url: str, link_text: str, style: str | None = None) -> N
 
 
 def print_color_key() -> None:
-    color_table = Table(title=f'Rough Guide to Highlighted Colors', show_header=False)
+    color_table = build_table('Rough Guide to Highlighted Colors', show_header=False)
     num_colors = len(HIGHLIGHTED_GROUP_COLOR_KEYS)
     row_number = 0
 
@@ -164,7 +181,7 @@ def print_header(epstein_files: 'EpsteinFiles') -> None:
     print_centered(f"if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {CRYPTADAMUS_TWITTER}", 'grey46')
     print_centered('note this site is based on the OCR text provided by Congress which is not always the greatest', 'grey23')
     print_centered(f"(thanks to {link_markup('https://x.com/ImDrinknWyn', '@ImDrinknWyn', 'dodger_blue3')} + others for help attributing redacted emails)")
-    print_centered_link(ATTRIBUTIONS_URL, "(some explanations of author attributions)", style='magenta')
+    print_centered_link(JSON_METADATA_URL, "(explanations of author attributions)", style='magenta')
 
 
 def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
@@ -233,17 +250,18 @@ def print_other_site_link(is_header: bool = True) -> None:
     print_centered(parenthesize(Text.from_markup(markup_msg)), style='bold')
 
     if is_header:
-        metadata_link = link_text_obj(JSON_METADATA_URL, 'metadata with author attribution explanations', OTHER_SITE_LINK_STYLE)
-        print_centered(parenthesize(metadata_link))
-        word_count_link = link_text_obj(WORD_COUNT_URL, 'most frequently used words', OTHER_SITE_LINK_STYLE)
+        word_count_link = link_text_obj(WORD_COUNT_URL, 'most frequently used words in the emails and texts', AUX_SITE_LINK_STYLE)
         print_centered(parenthesize(word_count_link))
-        print_centered(parenthesize(link_text_obj(GH_PROJECT_URL, '@github', 'dark_orange3 bold')))
+        metadata_link = link_text_obj(JSON_METADATA_URL, 'author attribution explanations', AUX_SITE_LINK_STYLE)
+        print_centered(parenthesize(metadata_link))
+        json_link = link_text_obj(WORD_COUNT_URL, "epstein's json files", AUX_SITE_LINK_STYLE)
+        print_centered(parenthesize(json_link))
 
 
 def print_page_title(expand: bool = True, width: int | None = None) -> None:
     title_panel = Panel(Text(PAGE_TITLE, justify='center'), expand=expand, style=TITLE_STYLE, width=width)
     console.print(Align.center(vertically_pad(title_panel)))
-    print_social_media_links()
+    _print_social_media_links()
     console.line(2)
 
 
@@ -263,19 +281,6 @@ def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centere
     panel = Panel(Text(msg, justify='center'), expand=True, padding=(1, 1), style=style)
     panel = Align.center(panel) if is_centered else panel
     console.print(Padding(panel, (3, 0, 1, 0)))
-
-
-def print_social_media_links() -> None:
-    print_centered_link(SUBSTACK_URL, "I Made Epstein's Text Messages Great Again (And You Should Read Them)", style=f'{SUBSTACK_POST_LINK_STYLE} bold')
-    print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style=f'{SUBSTACK_POST_LINK_STYLE} dim')
-
-    social_links = [
-        link_text_obj('https://x.com/Cryptadamist/status/1990866804630036988', '@cryptadamist', style=SOCIAL_MEDIA_LINK_STYLE),
-        link_text_obj('https://cryptadamus.substack.com/', 'substack', style=SOCIAL_MEDIA_LINK_STYLE),
-        link_text_obj('https://universeodon.com/@cryptadamist/115572634993386057', 'mastodon', style=SOCIAL_MEDIA_LINK_STYLE),
-    ]
-
-    print_centered(join_texts(social_links, join='     ', encloser='[]'))
 
 
 def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, style: str = TITLE_STYLE) -> None:
@@ -317,7 +322,7 @@ def write_html(output_path: Path) -> None:
 
 
 def _print_abbreviations_table() -> None:
-    table = Table(title="Abbreviations Used Frequently In These Conversations", header_style="bold", show_header=False)
+    table = build_table(title="Abbreviations Used Frequently In These Conversations", show_header=False)
     table.add_column("Abbreviation", justify="center", style='bold')
     table.add_column("Translation", style="white", justify="center")
 
@@ -329,7 +334,7 @@ def _print_abbreviations_table() -> None:
 
 def _print_external_links() -> None:
     console.line()
-    print_starred_header('External Links', num_stars=0, num_spaces=20, style=f"italic")
+    print_centered(Text('External Links', style=TABLE_TITLE_STYLE))
     presser_link = link_text_obj(OVERSIGHT_REPUBLICANS_PRESSER_URL, 'Official Oversight Committee Press Release')
     raw_docs_link = join_texts([link_text_obj(RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL, 'raw files', style=f"{ARCHIVE_LINK_COLOR} dim")], encloser='()')
     print_centered(join_texts([presser_link, raw_docs_link]))
@@ -339,6 +344,25 @@ def _print_external_links() -> None:
     print_centered(link_markup(EPSTEINIFY_URL) + " (raw document images)")
     print_centered(link_markup(EPSTEIN_WEB_URL) + " (character summaries)")
     print_centered(link_markup(EPSTEIN_MEDIA_URL) + " (raw document images)")
+
+
+def _print_social_media_links() -> None:
+    print_centered_link(
+        SUBSTACK_URL,
+        "I Made Epstein's Text Messages Great Again (And You Should Read Them)",
+        style=f'{SUBSTACK_POST_LINK_STYLE} bold'
+    )
+
+    print_centered_link(SUBSTACK_URL, SUBSTACK_URL.removeprefix('https://'), style=f'{SUBSTACK_POST_LINK_STYLE} dim')
+
+    social_links = [
+        link_text_obj('https://universeodon.com/@cryptadamist/115572634993386057', '@mastodon', style=SOCIAL_MEDIA_LINK_STYLE),
+        link_text_obj(SUBSTACK_URL, '@substack', style=SOCIAL_MEDIA_LINK_STYLE),
+        link_text_obj('https://x.com/Cryptadamist/status/1990866804630036988', '@twitter', style=SOCIAL_MEDIA_LINK_STYLE),
+        link_text_obj('https://github.com/michelcrypt4d4mus/epstein_text_messages', '@github', style=SOCIAL_MEDIA_LINK_STYLE)
+    ]
+
+    print_centered(join_texts(social_links, join='  /  '))#, encloser='()'))#, encloser='‹›'))
 
 
 # if args.deep_debug:

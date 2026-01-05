@@ -28,9 +28,9 @@ from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.env import args, logger
 from epstein_files.util.file_helper import DOCS_DIR, file_size_str
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
-from epstein_files.util.rich import (DEFAULT_NAME_STYLE, NA_TXT, add_cols_to_table, console, highlighter,
-     link_text_obj, link_markup, print_author_header, print_centered, print_other_site_link, print_panel,
-     print_section_header, vertically_pad)
+from epstein_files.util.rich import (DEFAULT_NAME_STYLE, NA_TXT, TABLE_BORDER_STYLE, add_cols_to_table,
+     build_table, console, highlighter, link_text_obj, link_markup, print_author_header, print_centered,
+     print_other_site_link, print_panel, print_section_header, vertically_pad)
 from epstein_files.util.search_result import SearchResult
 from epstein_files.util.timer import Timer
 
@@ -212,7 +212,7 @@ class EpsteinFiles:
         return [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
 
     def print_files_summary(self) -> None:
-        table = Table(title='Summary of Document Types')
+        table = build_table('Summary of Document Types')
         add_cols_to_table(table, ['File Type', 'Files', 'Author Known', 'Author Unknown', 'Duplicates'])
 
         def add_row(label: str, docs: list):
@@ -268,12 +268,12 @@ class EpsteinFiles:
 
     def print_email_device_info(self) -> None:
         print_panel(f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown", padding=(4, 0, 0, 0), centered=True)
-        console.print(build_signature_table(self.email_authors_to_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
-        console.print(build_signature_table(self.email_device_signatures_to_authors, (DEVICE_SIGNATURE, AUTHOR), ', '))
+        console.print(_build_signature_table(self.email_authors_to_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
+        console.print(_build_signature_table(self.email_device_signatures_to_authors, (DEVICE_SIGNATURE, AUTHOR), ', '))
 
     def print_emailer_counts_table(self) -> None:
         footer = f"Identified authors of {self.attributed_email_count():,} emails out of {len(self.emails):,}."
-        counts_table = Table(title=f"Email Counts", caption=footer, header_style="bold")
+        counts_table = build_table("Email Counts", caption=footer)
         add_cols_to_table(counts_table, ['Name', 'Count', 'Sent', "Recv'd", JMAIL, EPSTEIN_MEDIA, EPSTEIN_WEB, 'Twitter'])
 
         emailer_counts = {
@@ -345,21 +345,6 @@ class EpsteinFiles:
                 self.email_device_signatures_to_authors[email.sent_from_device].add(email.author_or_unknown())
 
 
-def build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Padding:
-    title = 'Signatures Used By Authors' if cols[0] == AUTHOR else 'Authors Seen Using Signatures'
-    table = Table(header_style="bold reverse", show_lines=True, title=title)
-
-    for i, col in enumerate(cols):
-        table.add_column(col.title() + ('s' if i == 1 else ''))
-
-    new_dict = dict_sets_to_lists(keyed_sets)
-
-    for k in sorted(new_dict.keys()):
-        table.add_row(highlighter(k or UNKNOWN), highlighter(join_char.join(sorted(new_dict[k]))))
-
-    return Padding(table, DEVICE_SIGNATURE_PADDING)
-
-
 def count_by_month(docs: Sequence[Document]) -> dict[str | None, int]:
     counts: dict[str | None, int] = defaultdict(int)
 
@@ -395,6 +380,21 @@ def is_ok_for_epstein_web(name: str | None) -> bool:
         return False
 
     return True
+
+
+def _build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Padding:
+    title = 'Signatures Used By Authors' if cols[0] == AUTHOR else 'Authors Seen Using Signatures'
+    table = build_table(title, header_style="bold reverse", show_lines=True)
+
+    for i, col in enumerate(cols):
+        table.add_column(col.title() + ('s' if i == 1 else ''))
+
+    new_dict = dict_sets_to_lists(keyed_sets)
+
+    for k in sorted(new_dict.keys()):
+        table.add_row(highlighter(k or UNKNOWN), highlighter(join_char.join(sorted(new_dict[k]))))
+
+    return Padding(table, DEVICE_SIGNATURE_PADDING)
 
 
 def _sorted_metadata(docs: Sequence[Document]) -> list[Metadata]:
