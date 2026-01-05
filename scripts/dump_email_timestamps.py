@@ -19,12 +19,12 @@ counts = defaultdict(int)
 #     print_json('metadata', doc.metadata())
 
 for email in sorted(epstein_files.emails, key=lambda e: -len(e.actual_text)):
-    if email.is_fwded_article() or email.is_junk_mail() or email.is_duplicate:
+    if email.is_fwded_article() or email.is_junk_mail() or email.is_duplicate():
         if email.is_fwded_article():
             counts['fwd'] += 1
         elif email.is_junk_mail():
             counts['junk'] += 1
-        elif email.is_duplicate:
+        elif email.is_duplicate():
             counts['dupe'] += 1
 
         continue

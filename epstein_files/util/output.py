@@ -190,5 +190,5 @@ def _verify_all_emails_were_printed(epstein_files: EpsteinFiles, already_printed
     logger.warning(f"Printed {len(already_printed_emails)} emails of {len(email_ids_that_were_printed)} unique file IDs.")
 
     for email in epstein_files.emails:
-        if email.file_id not in email_ids_that_were_printed and not email.is_duplicate:
+        if email.file_id not in email_ids_that_were_printed and not email.is_duplicate():
             logger.warning(f"Failed to print {email.summary()}")

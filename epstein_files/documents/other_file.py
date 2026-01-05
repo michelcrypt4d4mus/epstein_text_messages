@@ -1,8 +1,10 @@
 import re
 import logging
 import warnings
+from collections import defaultdict
 from dataclasses import asdict, dataclass
 from datetime import datetime
+from typing import Sequence
 
 import datefinder
 import dateutil
@@ -16,10 +18,10 @@ from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_R
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.doc_cfg import FINANCIAL_REPORTS_AUTHORS, DocCfg, Metadata
-from epstein_files.util.data import escape_single_quotes, remove_timezone, uniquify
-from epstein_files.util.file_helper import FILENAME_LENGTH
+from epstein_files.util.data import escape_single_quotes, remove_timezone, sort_dict, uniquify
+from epstein_files.util.file_helper import FILENAME_LENGTH, file_size_to_str
 from epstein_files.util.env import args
-from epstein_files.util.highlighted_group import get_style_for_category
+from epstein_files.util.highlighted_group import styled_category
 from epstein_files.util.rich import QUESTION_MARK_TXT, build_table, highlighter
 from epstein_files.util.logging import logger
 
@@ -38,11 +40,8 @@ UNINTERESTING_CATEGORES = [
     ARTS,
     BOOK,
     JUNK,
+    SKYPE_LOG,
     SPEECH,
-]
-
-UNINTERESTING_IDS = [
-    '031794',
 ]
 
 # OtherFiles whose description/hints match these prefixes are not displayed unless --all-other-files is used
@@ -60,7 +59,7 @@ UNINTERESTING_PREFIXES = FINANCIAL_REPORTS_AUTHORS + [
     CVRA,
     DAILY_MAIL,
     DAILY_TELEGRAPH,
-    DAVID_SCHOEN_CVRA_LEXIS_SEARCH[0:-12],  # Because date at end :(
+    CVRA_LEXIS_SEARCH[0:-12],  # Because date at end :(
     DERSH_GIUFFRE_TWEET,
     'Financial Times',
     'Forbes',
@@ -78,8 +77,10 @@ UNINTERESTING_PREFIXES = FINANCIAL_REPORTS_AUTHORS + [
     LA_TIMES,
     'Litigation Daily',
     LAWRENCE_KRAUSS,
+    LAWRENCE_KRAUSS_ASU_ORIGINS,
     'MarketWatch',
     MARTIN_NOWAK,
+    'Morning News',
     NOBEL_CHARITABLE_TRUST,
     'Nautilus',
     'New Yorker',
@@ -132,6 +133,9 @@ class OtherFile(Document):
     def category(self) -> str | None:
         return self.config and self.config.category
 
+    def category_txt(self) -> Text | None:
+        return styled_category(self.category() or UNKNOWN)
+
     def configured_description(self) -> str | None:
         """Overloads superclass method."""
         if self.config is not None:
@@ -155,9 +159,7 @@ class OtherFile(Document):
         """False for lame prefixes, duplicates, and other boring files."""
         hints = self.hints()
 
-        if self.is_duplicate:
-            return False
-        elif self.file_id in UNINTERESTING_IDS:
+        if self.is_duplicate():
             return False
         elif len(hints) == 0:
             return True
@@ -195,7 +197,6 @@ class OtherFile(Document):
         timestamps: list[datetime] = []
 
         with warnings.catch_warnings():
-            warnings.filterwarnings("ignore", module="datefinder")
             warnings.filterwarnings("ignore", module="dateutil")
 
             try:
@@ -208,10 +209,10 @@ class OtherFile(Document):
                     if len(timestamps) >= MAX_EXTRACTED_TIMESTAMPS:
                         break
             except ValueError as e:
-                logger.warning(f"Error while iterating through datefinder.find_dates(): {e}")
+                self.log(f"Error while iterating through datefinder.find_dates(): {e}", logging.WARNING)
 
         if len(timestamps) == 0:
-            if not self.is_duplicate and VAST_HOUSE not in self.text:
+            if not (self.is_duplicate() or VAST_HOUSE in self.text):
                 self.log_top_lines(15, msg=f"No timestamps found", level=logging.INFO)
 
             return None
@@ -231,7 +232,7 @@ class OtherFile(Document):
             self.log_top_lines(15, msg=timestamps_log_msg, level=logging.DEBUG)
 
     @staticmethod
-    def build_table(docs: list['OtherFile']) -> Table:
+    def build_table(files: Sequence['OtherFile']) -> Table:
         """Build a table of OtherFile documents."""
         table = build_table(None, show_lines=True)
         table.add_column('File', justify='center', width=FILENAME_LENGTH)
@@ -240,31 +241,58 @@ class OtherFile(Document):
         table.add_column('Type', justify='center')
         table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
 
-        for doc in docs:
-            link_and_info = [doc.raw_document_link_txt()]
-            category = doc.category()
-            date_str = doc.date_str()
+        for file in files:
+            link_and_info = [file.raw_document_link_txt()]
+            date_str = file.date_str()
 
-            if doc.is_duplicate:
-                preview_text = doc.duplicate_file_txt()
+            if file.is_duplicate():
+                preview_text = file.duplicate_file_txt()
                 row_style = ' dim'
             else:
-                link_and_info += doc.hints()
-                preview_text = doc.highlighted_preview_text()
+                link_and_info += file.hints()
+                preview_text = file.highlighted_preview_text()
                 row_style = ''
-
-            if category:
-                category_txt = Text(category, get_style_for_category(category) or 'wheat4')
-            else:
-                category_txt = Text('')
 
             table.add_row(
                 Group(*link_and_info),
                 Text(date_str, style=TIMESTAMP_DIM) if date_str else QUESTION_MARK_TXT,
-                doc.file_size_str(),
-                category_txt,
+                file.file_size_str(),
+                file.category_txt(),
                 preview_text,
                 style=row_style
+            )
+
+        return table
+
+    @staticmethod
+    def count_by_category_table(files: Sequence['OtherFile']) -> Table:
+        counts = defaultdict(int)
+        category_bytes = defaultdict(int)
+
+        for file in files:
+            if file.category() is None:
+                logger.warning(f"file {file.file_id} has no category")
+
+            counts[file.category()] += 1
+            category_bytes[file.category()] += file.length
+
+        table = build_table('Other Files Summary')
+        table.add_column('Category', justify='right')
+        table.add_column('Count', justify='center')
+        table.add_column('Known Author', justify='center')
+        table.add_column('Unknown Author', justify='center')
+        table.add_column('Size', justify='center', style='dim')
+
+        for (category, count) in sort_dict(counts):
+            category_files = [f for f in files if f.category() == category]
+            known_author_count = Document.known_author_count(category_files)
+
+            table.add_row(
+                styled_category(category or UNKNOWN),
+                str(count),
+                str(known_author_count),
+                str(count - known_author_count),
+                file_size_to_str(category_bytes[category]),
             )
 
         return table

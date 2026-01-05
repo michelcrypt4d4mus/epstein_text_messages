@@ -2,6 +2,7 @@ import re
 from dataclasses import dataclass, field
 
 from rich.highlighter import RegexHighlighter
+from rich.text import Text
 
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
@@ -21,7 +22,7 @@ EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
 REGEX_STYLE_PREFIX = 'regex'
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w ]+$", re.IGNORECASE)
 
-CATEGORY_LABEL_MAPPING = {
+CATEGORY_STYLE_MAPPING = {
     ARTICLE: JOURNALIST,
     ARTS: ENTERTAINER,
     BOOK: JOURNALIST,
@@ -29,6 +30,12 @@ CATEGORY_LABEL_MAPPING = {
     POLITICS: LOBBYIST,
     PROPERTY: BUSINESS,
     REPUTATION: PUBLICIST,
+}
+
+CATEGORY_STYLES = {
+    JSON: 'dark_red',
+    JUNK: 'grey19',
+    'letter': 'medium_orchid1'
 }
 
 
@@ -156,7 +163,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label=BUSINESS,
         style='spring_green4',
-        pattern=r'Gruterite|(John\s*)?Kluge|Marc Rich|(Mi(chael|ke)\s*)?Ovitz|(Steve\s+)?Wynn|(Les(lie)?\s+)?Wexner|SALSS|Swedish[-\s]*American\s*Life\s*Science\s*Summit|Valhi|(Yves\s*)?Bouvier',
+        pattern=r'Gruterite|(John\s*)?Kluge|Marc Rich|(Mi(chael|ke)\s*)?Ovitz|(Steve\s+)?Wynn|(Les(lie)?\s+)?Wexner|New Leaf Ventures|Park Partners|SALSS|Swedish[-\s]*American\s*Life\s*Science\s*Summit|Valhi|(Yves\s*)?Bouvier',
         emailers = {
             ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
             BARBRO_C_EHNBOM: 'Swedish pharmaceuticals, SALSS',
@@ -305,7 +312,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='finance',
         style='green',
-        pattern=r'Apollo|Ari\s*Glass|Bank|(Bernie\s*)?Madoff|Black(rock|stone)|B\s*of\s*A|Boothbay(\sFund\sManagement)?|Chase\s*Bank|Credit\s*Suisse|DB|Deutsche\s*(Asset|Bank)|Electron\s*Capital\s*(Partners)?|Fenner|FRBNY|Goldman(\s*Sachs)|HSBC|Invesco|(Janet\s*)?Yellen|(Jerome\s*)?Powell(?!M\. Cabot)|(Jimmy\s*)?Cayne|JPMC?|j\.?p\.?\s*morgan(\.?com|\s*Chase)?|Madoff|Merrill(\s*Lynch)?|(Michael\s*)?(Cembalest|Milken)|Mizrahi\s*Bank|MLPF&S|(money\s+)?launder(s?|ers?|ing)?(\s+money)?|Morgan Stanley|(Peter L. )?Scher|(Ray\s*)?Dalio|Schwartz?man|Serageldin|UBS|us.gio@jpmorgan.com',
+        pattern=r'Apollo|Ari\s*Glass|Bank|(Bernie\s*)?Madoff|Black(rock|stone)|B\s*of\s*A|Boothbay(\sFund\sManagement)?|Chase\s*Bank|Credit\s*Suisse|DB|Deutsche\s*(Asset|Bank)|Electron\s*Capital\s*(Partners)?|Fenner|FRBNY|Goldman(\s*Sachs)|HSBC|Invesco|(Janet\s*)?Yellen|(Jerome\s*)?Powell(?!M\. Cabot)|(Jimmy\s*)?Cayne|JPMC?|j\.?p\.?\s*morgan(\.?com|\s*Chase)?|Madoff|Merrill(\s*Lynch)?|(Michael\s*)?(Cembalest|Milken)|Mizrahi\s*Bank|MLPF&S|((anti.?)?money\s+)?launder(s?|ers?|ing)?(\s+money)?|Morgan Stanley|(Peter L. )?Scher|(Ray\s*)?Dalio|Schwartz?man|Serageldin|UBS|us.gio@jpmorgan.com',
         emailers={
             AMANDA_ENS: 'Citigroup',
             DANIEL_SABBA: 'UBS Investment Bank',
@@ -390,7 +397,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='law enforcement',
         style='color(24) bold',
-        pattern=r'ag|(Alicia\s*)?Valle|attorney|((Bob|Robert)\s*)?Mueller|(Byung\s)?Pak|CFTC|CIA|CIS|CVRA|Dep(artmen)?t\.?\s*of\s*(the\s*)?(Justice|Treasury)|DHS|DOJ|FBI|FCPA|FDIC|Federal\s*Bureau\s*of\s*Investigation|FinCEN|FINRA|FOIA|FTC|IRS|(James\s*)?Comey|(Jennifer\s*Shasky\s*)?Calvery|((Judge|Mark)\s*)?(Carney|Filip)|(Kirk )?Blouin|KYC|NIH|NS(A|C)|OCC|OFAC|(Lann?a\s*)?Belohlavek|lawyer|(Michael\s*)?Reiter|OGE|Office\s*of\s*Government\s*Ethics|Police Code Enforcement|(Preet\s*)?Bharara|SCOTUS|SD(FL|NY)|Southern\s*District\s*of\s*(Florida|New\s*York)|SEC|Secret\s*Service|Securities\s*and\s*Exchange\s*Commission|State\s*Dep(artmen)?t|Strzok|Supreme\s*Court|Treasury\s*(Dep(artmen)?t|Secretary)|TSA|USAID|(William\s*J\.?\s*)?Zloch',
+        pattern=r'ag|(Alicia\s*)?Valle|AML|attorney|((Bob|Robert)\s*)?Mueller|(Byung\s)?Pak|CFTC?|CIA|CIS|CVRA|Dep(artmen)?t\.?\s*of\s*(the\s*)?(Justice|Treasury)|DHS|DOJ|FBI|FCPA|FDIC|Federal\s*Bureau\s*of\s*Investigation|FinCEN|FINRA|FOIA|FTC|IRS|(James\s*)?Comey|(Jennifer\s*Shasky\s*)?Calvery|((Judge|Mark)\s*)?(Carney|Filip)|(Kirk )?Blouin|KYC|NIH|NS(A|C)|OCC|OFAC|(Lann?a\s*)?Belohlavek|lawyer|(Michael\s*)?Reiter|OGE|Office\s*of\s*Government\s*Ethics|Police Code Enforcement|(Preet\s*)?Bharara|SCOTUS|SD(FL|NY)|Southern\s*District\s*of\s*(Florida|New\s*York)|SEC|Secret\s*Service|Securities\s*and\s*Exchange\s*Commission|State\s*Dep(artmen)?t|Strzok|Supreme\s*Court|Treasury\s*(Dep(artmen)?t|Secretary)|TSA|USAID|(William\s*J\.?\s*)?Zloch',
         emailers = {
             ANN_MARIE_VILLAFANA: 'southern district of Florida U.S. Attorney',
             DANNY_FROST: 'Director of Communications at Manhattan DA',
@@ -648,18 +655,14 @@ def get_info_for_name(name: str) -> str | None:
 
 
 def get_style_for_category(category: str) -> str | None:
-    if category in [CONFERENCE, SPEECH]:
+    if category in CATEGORY_STYLES:
+        return CATEGORY_STYLES[category]
+    elif category in [CONFERENCE, SPEECH]:
         return f"{get_style_for_category(ACADEMIA)} dim"
-    elif category == JSON:
-        return 'dark_red'
-    elif category == JUNK:
-        return 'grey19'
-    elif category == 'letter':
-        return 'medium_orchid1'
     elif category == SOCIAL:
-        return f"{get_style_for_category(PUBLICIST)} dim"
+        return f"{get_style_for_category(PUBLICIST)}"
 
-    category = CATEGORY_LABEL_MAPPING.get(category, category)
+    category = CATEGORY_STYLE_MAPPING.get(category, category)
 
     for highlight_group in HIGHLIGHTED_NAMES:
         if highlight_group.label == category:
@@ -670,6 +673,10 @@ def get_style_for_name(name: str | None, default_style: str = DEFAULT, allow_bol
     highlight_group = _get_highlight_group_for_name(name or UNKNOWN)
     style = highlight_group.style if highlight_group else default_style
     return style if allow_bold else style.replace('bold', '').strip()
+
+
+def styled_category(category: str) -> Text:
+    return Text(category, get_style_for_category(category) or 'wheat4')
 
 
 def _get_highlight_group_for_name(name: str) -> HighlightedNames | None:

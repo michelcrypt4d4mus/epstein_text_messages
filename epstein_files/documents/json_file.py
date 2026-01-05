@@ -9,6 +9,15 @@ from rich.text import Text
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.strings import JSON
 
+TEXT_FIELDS = [
+    'caption',
+    'standard',
+    'subtitle',
+    'text',
+    'title',
+    'to',
+]
+
 
 @dataclass
 class JsonFile(OtherFile):
@@ -27,7 +36,7 @@ class JsonFile(OtherFile):
         return JSON
 
     def info_txt(self) -> Text | None:
-        return Text(f"JSON file, possibly iMessage or similar app metadata", style='white dim italic')
+        return Text(f"JSON file, seems to contain link unfurl/embed data for iMessage or similar", style='white dim italic')
 
     def is_interesting(self):
         return False
