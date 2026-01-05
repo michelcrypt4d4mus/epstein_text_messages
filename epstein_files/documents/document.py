@@ -66,7 +66,6 @@ class Document:
     config: EmailCfg | DocCfg | TextCfg | None = None
     file_id: str = field(init=False)
     filename: str = field(init=False)
-    is_duplicate: bool = False
     length: int = field(init=False)
     lines: list[str] = field(init=False)
     num_lines: int = field(init=False)
@@ -81,7 +80,6 @@ class Document:
         self.filename = self.file_path.name
         self.file_id = extract_file_id(self.filename)
         self.config = ALL_FILE_CONFIGS.get(self.file_id)
-        self.is_duplicate = bool(self.config.dupe_of_id) if self.config else False
 
         if self.is_local_extract_file():
             self.url_slug = LOCAL_EXTRACT_REGEX.sub('', file_stem_for_id(self.file_id))
@@ -163,6 +161,9 @@ class Document:
     def info_txt(self) -> Text | None:
         """Secondary info about this file (recipients, level of certainty, etc). Overload in subclasses."""
         return None
+
+    def is_duplicate(self) -> bool:
+        return bool(self.config and self.config.dupe_of_id)
 
     def is_local_extract_file(self) -> bool:
         """True if file created by extracting text from a court doc (identifiable from filename e.g. HOUSE_OVERSIGHT_012345_1.txt)."""

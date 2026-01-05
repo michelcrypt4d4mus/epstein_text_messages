@@ -198,7 +198,7 @@ def write_word_counts_html() -> None:
     word_count = WordCount()
 
     # Remove dupes, junk mail, and fwded articles from emails
-    emails = [e for e in epstein_files.emails if not (e.is_duplicate or e.is_junk_mail() or e.is_fwded_article())]
+    emails = [e for e in epstein_files.emails if not (e.is_duplicate() or e.is_junk_mail() or e.is_fwded_article())]
 
     for email in emails:
         if specified_names and email.author not in specified_names:

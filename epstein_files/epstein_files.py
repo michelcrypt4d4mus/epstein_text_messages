@@ -223,7 +223,7 @@ class EpsteinFiles:
                 f"{len(docs):,}",
                 f"{known:,}" if known is not None else NA_TXT,
                 f"{len(docs) - known:,}" if known is not None else NA_TXT,
-                f"{len([d for d in docs if d.is_duplicate])}",
+                f"{len([d for d in docs if d.is_duplicate()])}",
             )
 
         add_row('iMessage Logs', self.imessage_logs)
@@ -237,7 +237,7 @@ class EpsteinFiles:
         """Print complete emails to or from a particular 'author'. Returns the Emails that were printed."""
         conversation_length = self.email_conversation_length_in_days(_author)
         emails = self.emails_for(_author)
-        unique_emails = [email for email in emails if not email.is_duplicate]
+        unique_emails = [email for email in emails if not email.is_duplicate()]
         author = _author or UNKNOWN
 
         print_author_header(
@@ -250,7 +250,7 @@ class EpsteinFiles:
         last_printed_email_was_duplicate = False
 
         for email in emails:
-            if email.is_duplicate:
+            if email.is_duplicate():
                 console.print(Padding(email.duplicate_file_txt().append('...'), (0, 0, 0, 4)))
                 last_printed_email_was_duplicate = True
             else:
@@ -263,7 +263,7 @@ class EpsteinFiles:
         return emails
 
     def print_emails_table_for(self, author: str | None) -> None:
-        emails = [email for email in self.emails_for(author) if not email.is_duplicate]  # Remove dupes
+        emails = [email for email in self.emails_for(author) if not email.is_duplicate()]  # Remove dupes
         console.print(Align.center(Email.build_table(emails, author)), '\n')
 
     def print_email_device_info(self) -> None:
@@ -329,7 +329,7 @@ class EpsteinFiles:
     def _tally_email_data(self) -> None:
         """Tally up summary info about Email objects."""
         for email in self.emails:
-            if email.is_duplicate:
+            if email.is_duplicate():
                 continue
 
             self.email_author_counts[email.author] += 1
