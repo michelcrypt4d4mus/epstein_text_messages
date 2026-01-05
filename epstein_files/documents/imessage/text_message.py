@@ -4,7 +4,7 @@ from datetime import datetime
 
 from rich.text import Text
 
-from epstein_files.util.constant.names import JEFFREY_EPSTEIN, ANTHONY_SCARAMUCCI, STEVE_BANNON, UNKNOWN
+from epstein_files.util.constant.names import JEFFREY_EPSTEIN, ANTHONY_SCARAMUCCI, CELINA_DUBIN, EVA, STEVE_BANNON, UNKNOWN
 from epstein_files.util.data import extract_last_name
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.logging import logger
@@ -19,17 +19,18 @@ DISPLAY_LAST_NAME_ONLY = [
     STEVE_BANNON,
 ]
 
-UNKNOWN_TEXTERS = [
-    '+16463880059',
-    '+13108737937',
-    '+13108802851',
-]
+PHONE_NUMBER_MAPPING = {
+    '+19174393646': ANTHONY_SCARAMUCCI,
+    '+13109906526': STEVE_BANNON,
+    '+16463880059': EVA,
+    '+13108737937': CELINA_DUBIN,
+    '+13108802851': STEVE_BANNON,
+
+}
 
 TEXTER_MAPPING = {
     'e:': JEFFREY_EPSTEIN,
     'e:jeeitunes@gmail.com': JEFFREY_EPSTEIN,
-    '+19174393646': ANTHONY_SCARAMUCCI,
-    '+13109906526': STEVE_BANNON,
 }
 
 
@@ -37,7 +38,7 @@ TEXTER_MAPPING = {
 class TextMessage:
     """Class representing a single iMessage text message."""
     author: str | None
-    author_str: str = field(init=False)
+    author_str: str | None = None
     id_confirmed: bool = False
     text: str
     timestamp_str: str
@@ -47,10 +48,8 @@ class TextMessage:
 
         if self.author is None:
             self.author_str = UNKNOWN
-        elif self.author in UNKNOWN_TEXTERS:
-            logger.warning(f"Bad text from '{self.author}': \"{self.text}\"")
-            self.author_str = self.author
-            self.author = None  # TODO: this shouldn't be happening; we still know the author...
+        elif self.author_str and self.author:
+            logger.warning(f"Both author_str ('{self.author_str}') and author ('{self.author}')")
         elif self.author in DISPLAY_LAST_NAME_ONLY:
             self.author_str = extract_last_name(self.author)
         else:
