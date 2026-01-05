@@ -191,7 +191,7 @@ class Document:
         """True if file created by extracting text from a court doc (identifiable from filename e.g. HOUSE_OVERSIGHT_012345_1.txt)."""
         return is_local_extract_file(self.filename)
 
-    def log(self, msg: str, level: int = logging.WARNING):
+    def log(self, msg: str, level: int = logging.INFO):
         """Log with filename as a prefix."""
         logger.log(level, f"{self.url_slug} {msg}")
 
@@ -199,8 +199,7 @@ class Document:
         """Log first 'n' lines of self.text at 'level'. 'msg' can be optionally provided."""
         separator = '\n\n' if '\n' in msg else '. '
         msg = (msg + separator) if msg else ''
-        msg = f"{self.filename}: {msg}First {n} lines:"
-        logger.log(level, f"{msg}\n\n{self.top_lines(n)}\n")
+        self.log(f"{msg}First {n} lines:\n\n{self.top_lines(n)}\n", level)
 
     def matching_lines(self, _pattern: re.Pattern | str) -> list[MatchedLine]:
         """Return lines matching a regex as colored list[Text]."""

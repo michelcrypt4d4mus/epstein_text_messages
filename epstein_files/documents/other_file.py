@@ -127,7 +127,7 @@ class OtherFile(Document):
         super().__post_init__()
 
         if self.config is None and VI_DAILY_NEWS_REGEX.search(self.text):
-            self.log(f"Creating synthetic config for VI Daily News article...", logging.INFO)
+            self.log(f"Creating synthetic config for VI Daily News article...")
             self.config = DocCfg(id=self.file_id, author=VI_DAILY_NEWS, category=ARTICLE, description='article')
 
     def category(self) -> str | None:
@@ -213,7 +213,7 @@ class OtherFile(Document):
 
         if len(timestamps) == 0:
             if not (self.is_duplicate() or VAST_HOUSE in self.text):
-                self.log_top_lines(15, msg=f"No timestamps found", level=logging.INFO)
+                self.log_top_lines(15, msg=f"No timestamps found")
 
             return None
         elif len(timestamps) == 1:
