@@ -323,7 +323,7 @@ class EpsteinFiles:
         skipped_file_count = len(self.other_files) - len(interesting_files)
 
         if skipped_file_count > 0:
-            logger.warning(f"Skipped {skipped_file_count} uninteresting files...")
+            logger.warning(f"Skipped {skipped_file_count} uninteresting other files...")
 
         return interesting_files
 
