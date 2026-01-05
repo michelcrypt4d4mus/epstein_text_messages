@@ -8,7 +8,7 @@ from dateutil.parser import parse
 
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.data import without_nones
+from epstein_files.util.data import without_falsey
 
 DuplicateType = Literal['earlier', 'quoted', 'redacted', 'same']
 Metadata = dict[str, bool | datetime | int | str | list[str | None] |dict[str, bool | str]]
@@ -121,7 +121,7 @@ class DocCfg:
         elif self.category and self.author is None and self.description is None:
             return self.category
 
-        pieces = without_nones([self.author, self.description])
+        pieces = without_falsey([self.author, self.description])
         return ' '.join(pieces) if pieces else None
 
     def metadata(self) -> Metadata:

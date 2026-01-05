@@ -198,10 +198,6 @@ OSBORNE_LLP = f"{IAN_OSBORNE} & Partners LLP"  # Ian Osborne's PR firm
 TRUMP_ORG = 'Trump Organization'
 UBS = 'UBS'
 
-# Locations
-PALM_BEACH = 'Palm Beach'
-VIRGIN_ISLANDS = 'Virgin Islands'
-
 # First and last names that should be made part of a highlighting regex for emailers
 NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Al', 'Alan', 'Alfredo', 'Allen', 'Alex', 'Alexander', 'Amanda', 'Andres', 'Andrew',

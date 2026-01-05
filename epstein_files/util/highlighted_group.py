@@ -2,7 +2,6 @@ import re
 from dataclasses import dataclass, field
 
 from rich.highlighter import RegexHighlighter
-from rich.text import Text
 
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
@@ -10,7 +9,7 @@ from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
 from epstein_files.util.constants import (EMAILER_ID_REGEXES, EPSTEIN_V_ROTHSTEIN_EDWARDS, HEADER_ABBREVIATIONS,
      OSBORNE_LLP, REPLY_REGEX, SENT_FROM_REGEX, VIRGIN_ISLANDS)
 from epstein_files.util.doc_cfg import *
-from epstein_files.util.data import extract_last_name, listify
+from epstein_files.util.data import extract_last_name, listify, without_falsey
 
 CIVIL_ATTORNEY = 'civil attorney'
 CRIMINAL_DEFENSE_ATTORNEY = 'criminal defense attorney'
@@ -48,7 +47,6 @@ class HighlightedText:
     label: str = ''
     pattern: str = ''
     style: str
-    # Computed fields
     regex: re.Pattern = field(init=False)
     theme_style_name: str = field(init=False)
     _capture_group_label: str = field(init=False)
@@ -76,7 +74,7 @@ class HighlightedNames(HighlightedText):
     Attributes:
         category (str): optional string to use as an override for self.label in some contexts
         emailers (dict[str, str | None]): optional names to construct regexes for (values are descriptions)
-        _pattern (str): complete regex pattern that combines 'pattern' with 'emailers'
+        _pattern (str): regex pattern combining 'pattern' with first & last names of all 'emailers'
     """
     category: str = ''
     emailers: dict[str, str | None] = field(default_factory=dict)
@@ -102,7 +100,7 @@ class HighlightedNames(HighlightedText):
             self.emailers.get(name),
         ]
 
-        info_pieces = [p for p in info_pieces if p is not None]
+        info_pieces = without_falsey(info_pieces)
         return ', '.join(info_pieces) if info_pieces else None
 
     def _emailer_pattern(self, name: str) -> str:
@@ -163,7 +161,7 @@ HIGHLIGHTED_NAMES = [
             ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
             BARBRO_C_EHNBOM: 'Swedish pharmaceuticals',
             FRED_HADDAD: "co-founder of Heck's in West Virginia",
-            GERALD_BARTON: "Maryland property developer, fan of Trump's Irish golf course",
+            GERALD_BARTON: "Maryland property developer Landmark Land Company, fan of Trump's Irish golf course",
             GORDON_GETTY: 'heir of oil tycoon J. Paul Getty',
             NICHOLAS_RIBIS: 'Hilton CEO, former president of Trump Organization',
             'Philip Kafka': 'president of Prince Concepts (and son of Terry Kafka?)',
@@ -306,7 +304,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='finance',
         style='green',
-        pattern=r'Apollo|Ari\s*Glass|(Bernie\s*)?Madoff|Black(rock|stone)|BofA|Boothbay(\sFund\sManagement)?|Chase\s*Bank|Credit\s*Suisse|DB|Deutsche\s*(Asset|Bank)|Electron\s*Capital\s*(Partners)?|Fenner|FRBNY|Goldman(\s*Sachs)|HSBC|Invesco|(Janet\s*)?Yellen|(Jerome\s*)?Powell(?!M\. Cabot)|(Jimmy\s*)?Cayne|JPMC?|j\.?p\.?\s*morgan(\.?com|\s*Chase)?|Madoff|Merrill(\s*Lynch)?|(Michael\s*)?(Cembalest|Milken)|MLPF&S|(money\s+)?launder(s?|ers?|ing)?(\s+money)?|Morgan Stanley|(Peter L. )?Scher|(Ray\s*)?Dalio|Schwartz?man|Serageldin|UBS|us.gio@jpmorgan.com',
+        pattern=r'Apollo|Ari\s*Glass|(Bernie\s*)?Madoff|Black(rock|stone)|BofA|Boothbay(\sFund\sManagement)?|Chase\s*Bank|Credit\s*Suisse|DB|Deutsche\s*(Asset|Bank)|Electron\s*Capital\s*(Partners)?|Fenner|FRBNY|Goldman(\s*Sachs)|HSBC|Invesco|(Janet\s*)?Yellen|(Jerome\s*)?Powell(?!M\. Cabot)|(Jimmy\s*)?Cayne|JPMC?|j\.?p\.?\s*morgan(\.?com|\s*Chase)?|Madoff|Merrill(\s*Lynch)?|(Michael\s*)?(Cembalest|Milken)|Mizrahi\s*Bank|MLPF&S|(money\s+)?launder(s?|ers?|ing)?(\s+money)?|Morgan Stanley|(Peter L. )?Scher|(Ray\s*)?Dalio|Schwartz?man|Serageldin|UBS|us.gio@jpmorgan.com',
         emailers={
             AMANDA_ENS: 'Citigroup',
             DANIEL_SABBA: 'UBS Investment Bank',
@@ -342,7 +340,7 @@ HIGHLIGHTED_NAMES = [
         emailers = {
             ANIL_AMBANI: 'chairman of Reliance Group',
             VINIT_SAHNI: None,
-            ZUBAIR_KHAN: 'Tranchulas CEO, InsightsPod founder',
+            ZUBAIR_KHAN: 'cybersecurity firm Tranchulas CEO, InsightsPod founder, based in Islamabad and Dubai',
         }
     ),
     HighlightedNames(
@@ -458,7 +456,8 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='republicans',
         style='bold dark_red',
-        pattern=r'Alberto\sGonzale[sz]|(Alex\s*)?Acosta|(Bill\s*)?Barr|Bill\s*Shine|(Bob\s*)?Corker|(John\s*(R.?\s*)?)Bolton|Broidy|(Chris\s)?Christie|Devin\s*Nunes|(Don\s*)?McGa[hn]n|McMaster|(George\s*)?Nader|GOP|(Brett\s*)?Kavanaugh|Kissinger|Kobach|Koch\s*Brothers|Kolfage|Kudlow|Lewandowski|(Marco\s)?Rubio|(Mark\s*)Meadows|Mattis|(?<!Merwin Dela )Cruz|(Michael\s)?Hayden|((General|Mike)\s*)?(Flynn|Pence)|(Mitt\s*)?Romney|Mnuchin|Nikki|Haley|(Paul\s+)?Manafort|(Peter\s)?Navarro|Pompeo|Reagan|Republican|(?<!Cynthia )(Richard\s*)?Nixon|Sasse|(Rex\s*)?Tillerson',
+        pattern=r'Alberto\sGonzale[sz]|(Alex\s*)?Acosta|(Bill\s*)?Barr|Bill\s*Shine|(Bob\s*)?Corker|(John\s*(R.?\s*)?)Bolton|Broidy|(Chris\s)?Christie|Devin\s*Nunes|(Don\s*)?McGa[hn]n|McMaster|(George\s*)?Nader|GOP|(Brett\s*)?Kavanaugh|Kissinger|Kobach|Koch\s*Brothers|Kolfage|Kudlow|Lewandowski|(Marco\s)?Rubio|(Mark\s*)Meadows|Mattis|(?<!Merwin Dela )Cruz|(Michael\s)?Hayden|((General|Mike)\s*)?(Flynn|Pence)|(Mitt\s*)?Romney|Mnuchin|Nikki|Haley|(Paul\s+)?Manafort|(Peter\s)?Navarro|Pompeo|Reagan|Reince|Priebus|Republican|(?<!Cynthia )(Richard\s*)?Nixon|Sasse|(Rex\s*)?Tillerson',
+        # There's no emails from these people, they're just here to automate the regex creation for both first + last names
         emailers = {
             RUDY_GIULIANI: 'disbarred formed mayor of New York City',
             TULSI_GABBARD: None,
@@ -579,7 +578,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(emailers={SOON_YI_PREVIN: "wife of Woody Allen"}, style='hot_pink'),
     HighlightedNames(emailers={SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of ports in Dubai'}, style='green1'),
 
-    # HighlightedText bc of word boundary issue
+    # HighlightedText not HighlightedNames bc of word boundary issue
     HighlightedText(
         label='unknown',
         style='cyan',

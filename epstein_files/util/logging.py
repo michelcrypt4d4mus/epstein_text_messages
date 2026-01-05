@@ -29,6 +29,7 @@ LOG_THEME[f"{ReprHighlighter.base_style}epstein_filename"] = FILENAME_STYLE
 LOG_LEVEL_ENV_VAR = 'LOG_LEVEL'
 
 
+# Augment the standard log highlighter with 'epstein_filename' matcher
 class LogHighlighter(ReprHighlighter):
     highlights = ReprHighlighter.highlights + [
         *[fr"(?P<{doc_type}>{doc_type})" for doc_type in DOC_TYPE_STYLES.keys()],

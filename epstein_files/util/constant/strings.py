@@ -30,6 +30,10 @@ REPUTATION = 'reputation'
 SOCIAL = 'social'
 SPEECH = 'speech'
 
+# Locations
+PALM_BEACH = 'Palm Beach'
+VIRGIN_ISLANDS = 'Virgin Islands'
+
 # Publications
 BBC = 'BBC'
 BLOOMBERG = 'Bloomberg'
@@ -38,10 +42,12 @@ DAILY_MAIL = 'Daily Mail'
 DAILY_TELEGRAPH = "Daily Telegraph"
 LA_TIMES = 'LA Times'
 MIAMI_HERALD = 'Miami Herald'
-NYT_ARTICLE = 'NYT article about'
-NYT_COLUMN = 'NYT column about'
+NYT = "New York Times"
+PALM_BEACH_DAILY_NEWS = f'{PALM_BEACH} Daily News'
+PALM_BEACH_POST = f'{PALM_BEACH} Post'
 THE_REAL_DEAL = 'The Real Deal'
 WAPO = 'WaPo'
+VI_DAILY_NEWS = f'{VIRGIN_ISLANDS} Daily News'
 
 # Site types
 EMAIL = 'email'

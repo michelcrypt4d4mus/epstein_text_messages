@@ -28,7 +28,7 @@ escape_double_quotes = lambda text: text.replace('"', r'\"')
 escape_single_quotes = lambda text: text.replace("'", r"\'")
 iso_timestamp = lambda dt: dt.isoformat().replace('T', ' ')
 uniquify = lambda _list: list(set(_list))
-without_nones = lambda _list: [e for e in _list if e]
+without_falsey = lambda _list: [e for e in _list if e]
 
 
 def dict_sets_to_lists(d: dict[str, set]) -> dict[str, list]:
