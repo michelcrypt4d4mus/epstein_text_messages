@@ -20,6 +20,14 @@ from epstein_files.util.search_result import SearchResult
 FIRST_AND_LAST_NAMES = flatten([n.split() for n in ALL_NAMES])
 FIRST_AND_LAST_NAMES = [n.lower() for n in FIRST_AND_LAST_NAMES] + OTHER_NAMES
 
+HTML_REGEX = re.compile(r"com/|cae-v2w=|content-(transfe|type)|font(/|-(family|size))|http|\.html?\??|margin-bottom|padding-left|quoted-printable|region=|text-decoration|ttps|www|\.(gif|jpe?g|png);?$")
+HYPHENATED_WORD_REGEX = re.compile(r"[a-z]+-[a-z]+", re.IGNORECASE)
+OK_SYMBOL_WORDS = ['mar-a-lago', 'p/e', 's&p', ':)', ':).', ';)', ':-)', ';-)']
+ONLY_SYMBOLS_REGEX = re.compile(r"^[^a-zA-Z0-9]+$")
+SYMBOL_WORD_REGEX = re.compile(r"^[-—–@%/?.,&=]+$")
+SPLIT_WORDS_BY = ['@', '/']
+FLAGGED_WORDS = []  # For debugging, log extra info when one of these is encountered
+
 NON_SINGULARIZABLE = UNSINGULARIZABLE_WORDS + [n for n in FIRST_AND_LAST_NAMES if n.endswith('s')]
 SKIP_WORDS_REGEX = re.compile(r"^(asmallworld@|enwiki|http|imagepng|nymagcomnymetro|addresswww|mailto|www|/font|colordu|classdms|targetdblank|nymagcom|palmbeachdailynews)|jee[vy]acation|fontfamily|(gif|html?|jpe?g|utm)$")
 BAD_CHARS_REGEX = re.compile(r"[-–=+()$€£©°«—^&%!#_`,.;:'‘’\"„“”?\d\\]")
@@ -100,21 +108,13 @@ SINGULARIZATIONS = {
     'twittercom': 'twitter',
 }
 
-HTML_REGEX = re.compile(r"com/|cae-v2w=|content-(transfe|type)|font(/|-(family|size))|http|\.html?\??|margin-bottom|padding-left|quoted-printable|region=|text-decoration|ttps|www|\.(gif|jpe?g|png);?$")
-HYPHENATED_WORD_REGEX = re.compile(r"[a-z]+-[a-z]+", re.IGNORECASE)
-OK_SYMBOL_WORDS = ['mar-a-lago', 'p/e', 's&p', ':)', ':).', ';)', ':-)', ';-)']
-SYMBOL_WORD_REGEX = re.compile(r"^[-—–@%/?.,&=]+$")
-ONLY_SYMBOLS_REGEX = re.compile(r"^[^a-zA-Z0-9]+$")
-SPLIT_WORDS_BY = ['@', '/']
-FLAGGED_WORDS = []  # For debugging, log extra info when one of these is encountered
-
 
 @dataclass
 class WordCount:
     count: dict[str, int] = field(default_factory=lambda: defaultdict(int))
     singularized: dict[str, int] = field(default_factory=lambda: defaultdict(int))
 
-    def count_word(self, word: str, document_line: SearchResult) -> None:
+    def tally_word(self, word: str, document_line: SearchResult) -> None:
         word = EmailHeader.cleanup_str(word).lower().strip()
         raw_word = word
 
@@ -148,7 +148,7 @@ class WordCount:
                 continue
 
             for w in word.split(symbol):
-                self.count_word(w, document_line)
+                self.tally_word(w, document_line)
 
             logger.info(f"  Split word with '{symbol}' in it '{word}'...")
             return
