@@ -48,37 +48,6 @@ REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + [
     'Begin forwarded message',
 ]
 
-# Some files require customization to separate the actual composed text from the fwd
-ACTUAL_TEXT_SPLITTERS = {
-    '013415': 'Darren K. Indyke',
-    '013405': 'Darren K. Indyke',
-    '024624': 'On Tue, May 14',
-    '029773': 'Omar Quadhafi',
-    '029558': 'Creativity is central',
-    '025888': 'Jul 24, 2015',
-    '033316': 'Transcript: Phone call between President',
-    '016413': 'In a former warehouse',
-    '025548': 'Edward Jay Epstein',
-    '032806': '• Sep 13, 2018',
-    '024251': 'Debate Schedule',
-    '028943': '-Lisa',
-    '029431': 'I am writing now',
-    '020437': 'Will Cohen Cooperate',
-    '026663': 'REGULATORY & COMPLIANCE ALERT',
-    '028921': 'Salacious new chapter',
-    '030324': 'For Federal Programs',
-    '022766': '--- On Wed, 4/22/15',
-    '025606': '> On May 6,',
-    '022977': 'Top of Form',
-    '033420': 'Slowing economy could increase pressure on',
-    '019203': 'This end-of-the-year',
-    '022207': 'Web Images Videos Maps',
-    '033210': 'Trump appears with mobster-affiliated',
-    '030989': 'New book paints sordid picture of Trump real estate',
-    # 0 header rows
-    '026620': 'From: Mike Cohen',
-}
-
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r'grnail\.com'): 'gmail.com',
     re.compile(r"^(From|To)(: )?[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",  # Redacted email addresses
@@ -401,8 +370,8 @@ class Email(Communication):
 
         text = '\n'.join(self.text.split('\n')[self.header.num_header_rows:]).strip()
 
-        if self.file_id in ACTUAL_TEXT_SPLITTERS:
-            return text.split(ACTUAL_TEXT_SPLITTERS[self.file_id])[0].strip()
+        if self.config and self.config.fwded_text_after:
+            return text.split(self.config.fwded_text_after)[0].strip()
         elif self.header.num_header_rows == 0:
             return self.text
 
