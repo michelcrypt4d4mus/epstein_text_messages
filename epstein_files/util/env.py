@@ -17,7 +17,7 @@ parser = ArgumentParser(description="Parse epstein OCR docs and generate HTML pa
 parser.add_argument('--name', '-n', action='append', dest='names', help='specify the name(s) whose communications should be output')
 parser.add_argument('--overwrite-pickle', '-op', action='store_true', help='ovewrite cached EpsteinFiles')
 
-output = parser.add_argument_group('OUTPUT')
+output = parser.add_argument_group('OUTPUT', 'Options used by epstein_generate.')
 output.add_argument('--all-emails', '-ae', action='store_true', help='all the emails instead of just the interesting ones')
 output.add_argument('--all-other-files', '-ao', action='store_true', help='all the non-email, non-text msg files instead of just the interesting ones')
 output.add_argument('--build', '-b', action='store_true', help='write output to an HTML file')
@@ -32,7 +32,7 @@ output.add_argument('--suppress-output', action='store_true', help='no output to
 output.add_argument('--width', '-w', type=int, default=DEFAULT_WIDTH, help='screen width to use (in characters)')
 output.add_argument('--use-epstein-web-links', action='store_true', help='use epsteinweb.org links instead of epstein.media')
 
-scripts = parser.add_argument_group('SCRIPTS', 'Arguments used only by epstein_search, epstein_show, epstein_diff')
+scripts = parser.add_argument_group('SCRIPTS', 'Options used by epstein_search, epstein_show, and epstein_diff.')
 scripts.add_argument('positional_args', nargs='*', help='strings to searchs for, file IDs to show or diff, etc.')
 scripts.add_argument('--raw', '-r', action='store_true', help='show raw contents of file (used by epstein_show)')
 scripts.add_argument('--whole-file', '-wf', action='store_true', help='print whole file (used by epstein_search)')
