@@ -7,7 +7,7 @@ from sys import argv
 from epstein_files.util.logging import datefinder_logger, env_log_level, logger
 
 COUNT_WORDS_SCRIPT = 'count_words.py'
-DEFAULT_WIDTH = 154
+DEFAULT_WIDTH = 145
 HTML_SCRIPTS = ['epstein_generate', 'generate_html.py', COUNT_WORDS_SCRIPT]
 
 
