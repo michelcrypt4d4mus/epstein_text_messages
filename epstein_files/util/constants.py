@@ -84,7 +84,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     JAMES_HILL: re.compile(r"hill, james e.|james.e.hill@abc.com", re.IGNORECASE),
     JEAN_LUC_BRUNEL: re.compile(r'Jean[- ]Luc Brunel?', re.IGNORECASE),
     JEFF_FULLER: re.compile(r"jeff@mc2mm.com|Jeff Fuller", re.IGNORECASE),
-    JEFFREY_EPSTEIN: re.compile(r'[djl]ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeffrey E((sp|ps)tein?)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!Mark L. )Epstein', re.IGNORECASE),
+    JEFFREY_EPSTEIN: re.compile(r'[djl]\s?ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeffrey E((sp|ps)tein?)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!Mark L. )Epstein', re.IGNORECASE),
     JESSICA_CADWELL: re.compile(r'Jessica Cadwell?', re.IGNORECASE),
     JOHNNY_EL_HACHEM: re.compile(r'el hachem johnny|johnny el hachem', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|(joichi|joi)( Ito)?', re.IGNORECASE),
@@ -94,7 +94,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     LANDON_THOMAS: re.compile(r'lando[nr] thomas( jr)?|thomas jr.?, lando[nr]', re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r'(La(wrence|rry).{1,5})?Summers?|^LH$|LHS|Ihsofficel', re.IGNORECASE),
     LAWRANCE_VISOSKI: re.compile(r'La(rry|wrance) Visoski?|Lvjet', re.IGNORECASE),
-    LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus|lawkrauss', re.IGNORECASE),
+    LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus|[jl]awkrauss', re.IGNORECASE),
     LEON_BLACK: re.compile(r'Leon Black?', re.IGNORECASE),
     MANUELA_MARTINEZ: re.compile(fr'Manuela (- Mega Partners|Martinez)', re.IGNORECASE),
     MARIANA_IDZKOWSKA: re.compile(r'Mariana [Il]d[źi]kowska?', re.IGNORECASE),
@@ -268,7 +268,7 @@ SHIMON_POST = 'The Shimon Post'
 SHIMON_POST_ARTICLE = f'selection of articles about the mideast'
 SINGLE_PAGE = 'single page of'
 STRANGE_BEDFELLOWS = "'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more"
-SWEDISH_LIFE_SCIENCES_SUMMIT = f"{BARBRO_C_EHNBOM}'s Swedish American Life Science Summit"
+SWEDISH_LIFE_SCIENCES_SUMMIT = f"{BARBRO_C_EHNBOM}'s Swedish American Life Science Summit (SALSS)"
 THE_REAL_DEAL_ARTICLE = 'article by Keith Larsen'
 TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Government Ethics"
 UBS_CIO_REPORT = 'CIO Monthly Extended report'
@@ -298,7 +298,7 @@ CONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='027650', author=JOI_ITO, attribution_reason=PARTICIPANTS_FIELD),
     TextCfg(id='027777', author=LARRY_SUMMERS, attribution_reason=PARTICIPANTS_FIELD),
     TextCfg(id='027515', author=MIROSLAV_LAJCAK, attribution_reason='https://x.com/ImDrinknWyn/status/1990210266114789713'),
-    TextCfg(id='027165', author=MELANIE_WALKER, attribution_reason='https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/'),
+    TextCfg(id='027165', author=MELANIE_WALKER, attribution_reason='says "it\'s Melanie", also https://www.wired.com/story/jeffrey-epstein-claimed-intimate-knowledge-of-donald-trumps-views-in-texts-with-bill-gates-adviser/'),
     TextCfg(id='027248', author=MELANIE_WALKER, attribution_reason='says "we met through Trump" which is confirmed by Melanie in 032803'),
     TextCfg(id='025429', author=STACEY_PLASKETT, attribution_reason='widely reported'),
     TextCfg(id='027128', author=SOON_YI_PREVIN, attribution_reason='https://x.com/ImDrinknWyn/status/1990227281101434923'),
@@ -491,9 +491,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='032727', author=KATHRYN_RUEMMLER, attribution_reason=KATHY_REASON, is_attribution_uncertain=True),
     EmailCfg(id='030478', author=LANDON_THOMAS),
     EmailCfg(id='029013', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),    # Bad OCR (nofix)
-    EmailCfg(id='032206', author=LAWRENCE_KRAUSS),                                # More of a text convo?
-    EmailCfg(id='032208', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
-    EmailCfg(id='032209', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
     EmailCfg(id='029196', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN], actual_text='Talk in 40?'),
     EmailCfg(id='033593', author=LAWRANCE_VISOSKI, attribution_reason='Signature'),
     EmailCfg(id='033370', author=LAWRANCE_VISOSKI, attribution_reason=LARRY_REASON),
@@ -600,7 +597,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='022202', recipients=[JEAN_LUC_BRUNEL], attribution_reason='Follow up / reply', duplicate_ids=['029975']),
     EmailCfg(id='022187', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
     EmailCfg(id='031489', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (unfixable)
-    EmailCfg(id='032210', recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
     EmailCfg(id='030347', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
     EmailCfg(id='030367', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
     EmailCfg(id='033274', recipients=[JEFFREY_EPSTEIN]),  # this is a note sent to self
@@ -751,7 +747,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='031118', duplicate_ids=['019465']),
     EmailCfg(id='031912', duplicate_ids=['032158']),
     EmailCfg(id='030587', duplicate_ids=['030514']),
-    EmailCfg(id='029773', duplicate_ids=['012685']),
+    EmailCfg(id='029773', duplicate_ids=['012685'], fwded_text_after='Omar Quadhafi'),
     EmailCfg(id='033297', duplicate_ids=['033586']),
     EmailCfg(id='031089', duplicate_ids=['018084']),
     EmailCfg(id='031088', duplicate_ids=['030885']),
@@ -1195,7 +1191,7 @@ OTHER_FILES_CONFERENCES = [
     DocCfg(id='019300', author=SVETLANA_POZHIDAEVA, description=f'{WOMEN_EMPOWERMENT} f. {KATHRYN_RUEMMLER}', date='2019-04-05'),
     DocCfg(id='022267', author=SVETLANA_POZHIDAEVA, description=f'{WOMEN_EMPOWERMENT} founder essay about growing the seminar business'),
     DocCfg(id='022407', author=SVETLANA_POZHIDAEVA, description=f'{WOMEN_EMPOWERMENT} seminar pitch deck'),
-    DocCfg(id='017524', author=SWEDISH_LIFE_SCIENCES_SUMMIT, description=f"2012 program"),
+    DocCfg(id='017524', author=SWEDISH_LIFE_SCIENCES_SUMMIT, description=f"2012 program emailed to epstein BY {BARBRO_C_EHNBOM} in 031226", date='2012-08-18'),
     DocCfg(id='026747', author=SWEDISH_LIFE_SCIENCES_SUMMIT, description=f"2017 program", date='2017-08-23'),
     DocCfg(id='014951', author='TED Talks', description=f"2017 program", date='2017-04-20'),
     DocCfg(id='024179', author=UN_GENERAL_ASSEMBLY, description=f'president and first lady schedule', date='2012-09-21'),
@@ -1379,8 +1375,8 @@ OTHER_FILES_SOCIAL = [
 ]
 
 OTHER_FILES_POLITICS = [
-    DocCfg(id='029918', author=DIANA_DEGETTE_CAMPAIGN, description=f"bio", date='2012-01-01'),
-    DocCfg(id='031184', author=DIANA_DEGETTE_CAMPAIGN, description=f"fundraiser invitation"),
+    DocCfg(id='029918', author=DIANA_DEGETTE_CAMPAIGN, description=f"bio", date='2012-09-27'),
+    DocCfg(id='031184', author=DIANA_DEGETTE_CAMPAIGN, description=f"invitation to fundraiser hosted by {BARBRO_C_EHNBOM}", date='2012-09-27'),
     DocCfg(id='026827', author='Scowcroft Group', description=f'report on ISIS', date='2015-11-14'),
     DocCfg(id='024294', author=STACEY_PLASKETT, description=f"campaign flier", date='2016-10-01'),
     DocCfg(
@@ -1496,7 +1492,11 @@ OTHER_FILES_MISC = [
     DocCfg(id='027074', author=FEMALE_HEALTH_COMPANY, description=f"pitch deck (USAID was a customer)"),
     DocCfg(id='032735', author=GORDON_GETTY, description=f"on Trump", date='2018-03-20'),  # Dated based on concurrent emails from Getty
     DocCfg(id='025540', author=JEFFREY_EPSTEIN, description=f"rough draft of Epstein's side of the story?"),
-    DocCfg(id='018224', author=LAWRENCE_KRAUSS, description=f"Skype conversation log"),
+    DocCfg(id='032206', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
+    DocCfg(id='032208', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
+    DocCfg(id='032209', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
+    DocCfg(id='018224', category=SKYPE_LOG, author=LAWRENCE_KRAUSS, description=f'conversations with linkspirit (French?) and {LAWRENCE_KRAUSS}'),
+    DocCfg(id='032210', category=SKYPE_LOG, description=f'conversation with linkspirit'),
     DocCfg(id='026634', author='Michael Carrier', description=f"comments about an Apollo linked hedge fund 'DE Fund VIII'"),
     DocCfg(id='031425', author=SCOTT_J_LINK, description=f'completely redacted email from'),
     DocCfg(id='020447', author='Working Group on Chinese Influence Activities in the U.S.', description=f'Promoting Constructive Vigilance'),
@@ -1589,8 +1589,8 @@ SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4
 
 
 # Error checking.
-if len(OTHER_FILES_CONFIG) != 438:
-    logger.warning(f"Only {len(OTHER_FILES_CONFIG)} configured other files!")
+if len(OTHER_FILES_CONFIG) != 442:
+    logger.warning(f"Found {len(OTHER_FILES_CONFIG)} configured other files!")
 
 encountered_file_ids = set()
 

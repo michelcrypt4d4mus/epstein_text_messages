@@ -1,12 +1,13 @@
 [tool.poetry]
 name = "epstein-files"
-version = "1.0.2"
+version = "1.0.4"
 description = "Tools for working with the Jeffrey Epstein documents released in November 2025."
 authors = ["Michel de Cryptadamus"]
 readme = "README.md"
 license = "GPL-3.0-or-later"
 
 homepage = "https://michelcrypt4d4mus.github.io/epstein_text_messages/"
+repository = "https://github.com/michelcrypt4d4mus/epstein_text_messages"
 
 keywords = [
     "Epstein",
