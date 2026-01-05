@@ -296,6 +296,7 @@ HIGHLIGHTED_NAMES = [
         emailers = {
             DAVID_STERN: f'emailed Epstein from Moscow, appears to know chairman of {DEUTSCHE_BANK}',
             JONATHAN_FARKAS: "heir to the Alexander's department store fortune",
+            'linkspirit': "Skype username of someone Epstein communicated with",
             'Peter Thomas Roth': 'student of Epstein at Dalton, skincare company founder',
             STEPHEN_HANSON: None,
             TOM_BARRACK: 'long time friend of Trump',
