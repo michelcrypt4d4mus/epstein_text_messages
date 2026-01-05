@@ -29780,6 +29780,7 @@
             "bytes": 51084,
             "file_id": "028326",
             "filename": "HOUSE_OVERSIGHT_028326.txt",
+            "is_interesting": false,
             "num_lines": 2217,
             "timestamp": "2018-09-24T14:30:00",
             "type": "JsonFile"
@@ -29788,6 +29789,7 @@
             "bytes": 51587,
             "file_id": "028336",
             "filename": "HOUSE_OVERSIGHT_028336.txt",
+            "is_interesting": false,
             "num_lines": 2571,
             "timestamp": "2018-09-24T00:00:00",
             "type": "JsonFile"
@@ -29796,6 +29798,7 @@
             "bytes": 364367,
             "file_id": "028347",
             "filename": "HOUSE_OVERSIGHT_028347.txt",
+            "is_interesting": false,
             "num_lines": 6859,
             "type": "JsonFile"
         },
@@ -29803,6 +29806,7 @@
             "bytes": 32184,
             "file_id": "028375",
             "filename": "HOUSE_OVERSIGHT_028375.txt",
+            "is_interesting": false,
             "num_lines": 1690,
             "timestamp": "2018-09-24T00:00:00",
             "type": "JsonFile"
@@ -29811,6 +29815,7 @@
             "bytes": 64769,
             "file_id": "028382",
             "filename": "HOUSE_OVERSIGHT_028382.txt",
+            "is_interesting": false,
             "num_lines": 3780,
             "timestamp": "2018-09-24T00:00:00",
             "type": "JsonFile"
@@ -29819,6 +29824,7 @@
             "bytes": 41793,
             "file_id": "028397",
             "filename": "HOUSE_OVERSIGHT_028397.txt",
+            "is_interesting": false,
             "num_lines": 2052,
             "timestamp": "2018-09-24T00:00:00",
             "type": "JsonFile"
@@ -29827,6 +29833,7 @@
             "bytes": 31470,
             "file_id": "028406",
             "filename": "HOUSE_OVERSIGHT_028406.txt",
+            "is_interesting": false,
             "num_lines": 1534,
             "timestamp": "2018-09-24T18:58:00",
             "type": "JsonFile"
@@ -29835,6 +29842,7 @@
             "bytes": 56791,
             "file_id": "028413",
             "filename": "HOUSE_OVERSIGHT_028413.txt",
+            "is_interesting": false,
             "num_lines": 2750,
             "timestamp": "2018-09-24T00:00:00",
             "type": "JsonFile"
@@ -29843,6 +29851,7 @@
             "bytes": 31808,
             "file_id": "028425",
             "filename": "HOUSE_OVERSIGHT_028425.txt",
+            "is_interesting": false,
             "num_lines": 1589,
             "timestamp": "2018-09-23T00:00:00",
             "type": "JsonFile"
@@ -29851,6 +29860,7 @@
             "bytes": 36890,
             "file_id": "028432",
             "filename": "HOUSE_OVERSIGHT_028432.txt",
+            "is_interesting": false,
             "num_lines": 1891,
             "timestamp": "2018-09-24T00:00:00",
             "type": "JsonFile"
@@ -29859,6 +29869,7 @@
             "bytes": 28667,
             "file_id": "028440",
             "filename": "HOUSE_OVERSIGHT_028440.txt",
+            "is_interesting": false,
             "num_lines": 1146,
             "type": "JsonFile"
         },
@@ -29866,6 +29877,7 @@
             "bytes": 33014,
             "file_id": "028446",
             "filename": "HOUSE_OVERSIGHT_028446.txt",
+            "is_interesting": false,
             "num_lines": 1742,
             "timestamp": "2018-09-24T00:00:00",
             "type": "JsonFile"
@@ -29874,6 +29886,7 @@
             "bytes": 66691,
             "file_id": "028453",
             "filename": "HOUSE_OVERSIGHT_028453.txt",
+            "is_interesting": false,
             "num_lines": 3831,
             "timestamp": "2018-09-24T00:00:00",
             "type": "JsonFile"
@@ -29882,6 +29895,7 @@
             "bytes": 67159,
             "file_id": "028467",
             "filename": "HOUSE_OVERSIGHT_028467.txt",
+            "is_interesting": false,
             "num_lines": 3791,
             "timestamp": "2018-09-24T00:00:00",
             "type": "JsonFile"
@@ -29890,6 +29904,7 @@
             "bytes": 53121,
             "file_id": "031059",
             "filename": "HOUSE_OVERSIGHT_031059.txt",
+            "is_interesting": false,
             "num_lines": 1240,
             "timestamp": "2018-09-24T00:00:00",
             "type": "JsonFile"
@@ -29898,6 +29913,7 @@
             "bytes": 19878,
             "file_id": "031178",
             "filename": "HOUSE_OVERSIGHT_031178.txt",
+            "is_interesting": false,
             "num_lines": 881,
             "timestamp": "2019-02-18T00:00:00",
             "type": "JsonFile"
@@ -29906,6 +29922,7 @@
             "bytes": 26708,
             "file_id": "031966",
             "filename": "HOUSE_OVERSIGHT_031966.txt",
+            "is_interesting": false,
             "num_lines": 1087,
             "timestamp": "2018-12-14T00:00:00",
             "type": "JsonFile"
@@ -29914,6 +29931,7 @@
             "bytes": 22954,
             "file_id": "033469",
             "filename": "HOUSE_OVERSIGHT_033469.txt",
+            "is_interesting": false,
             "num_lines": 1173,
             "timestamp": "2018-09-24T20:35:00",
             "type": "JsonFile"
@@ -29922,6 +29940,7 @@
             "bytes": 15390,
             "file_id": "033474",
             "filename": "HOUSE_OVERSIGHT_033474.txt",
+            "is_interesting": false,
             "num_lines": 739,
             "timestamp": "2018-09-24T23:55:00",
             "type": "JsonFile"
@@ -30795,6 +30814,7 @@
             "description": "pages of \"Filthy Rich: The Shocking True Story of Jeffrey Epstein\"",
             "file_id": "010477",
             "filename": "HOUSE_OVERSIGHT_010477.txt",
+            "is_interesting": false,
             "num_lines": 335,
             "timestamp": "2016-10-10T00:00:00",
             "type": "OtherFile"
@@ -30806,6 +30826,7 @@
             "description": "pages of \"Filthy Rich: The Shocking True Story of Jeffrey Epstein\"",
             "file_id": "010486",
             "filename": "HOUSE_OVERSIGHT_010486.txt",
+            "is_interesting": false,
             "num_lines": 3221,
             "timestamp": "2016-10-10T00:00:00",
             "type": "OtherFile"
@@ -30817,6 +30838,7 @@
             "description": "letter to Scott J. Link alleging abuse of a girl from Kansas",
             "file_id": "010560",
             "filename": "HOUSE_OVERSIGHT_010560.txt",
+            "is_interesting": true,
             "num_lines": 204,
             "timestamp": "2019-06-19T00:00:00",
             "type": "OtherFile"
@@ -30828,6 +30850,7 @@
             "description": "Statement of Undisputed Facts",
             "file_id": "010566",
             "filename": "HOUSE_OVERSIGHT_010566.txt",
+            "is_interesting": true,
             "num_lines": 997,
             "timestamp": "2010-11-04T00:00:00",
             "type": "OtherFile"
@@ -30839,6 +30862,7 @@
             "description": "Liquid Insight Trump's effect on MXN",
             "file_id": "010609",
             "filename": "HOUSE_OVERSIGHT_010609.txt",
+            "is_interesting": false,
             "num_lines": 545,
             "timestamp": "2016-09-22T00:00:00",
             "type": "OtherFile"
@@ -30849,6 +30873,7 @@
             "description": "Donald Trump financial disclosures from U.S. Office of Government Ethics",
             "file_id": "010617",
             "filename": "HOUSE_OVERSIGHT_010617.txt",
+            "is_interesting": false,
             "num_lines": 9890,
             "timestamp": "2017-01-20T00:00:00",
             "type": "OtherFile"
@@ -30860,6 +30885,7 @@
             "description": "Oscar Diary April",
             "file_id": "010715",
             "filename": "HOUSE_OVERSIGHT_010715.txt",
+            "is_interesting": false,
             "num_lines": 610,
             "timestamp": "2012-02-27T00:00:00",
             "type": "OtherFile"
@@ -30873,6 +30899,7 @@
             "dupe_type": "redacted",
             "file_id": "010723",
             "filename": "HOUSE_OVERSIGHT_010723.txt",
+            "is_interesting": false,
             "num_lines": 317,
             "timestamp": "2008-05-19T00:00:00",
             "type": "OtherFile"
@@ -30886,6 +30913,7 @@
             "dupe_type": "redacted",
             "file_id": "010732",
             "filename": "HOUSE_OVERSIGHT_010732.txt",
+            "is_interesting": false,
             "num_lines": 117,
             "timestamp": "2008-05-27T00:00:00",
             "type": "OtherFile"
@@ -30897,6 +30925,7 @@
             "description": "Dershowitz Reply in Support of Motion for Limited Intervention",
             "file_id": "010735",
             "filename": "HOUSE_OVERSIGHT_010735.txt",
+            "is_interesting": true,
             "num_lines": 507,
             "timestamp": "2015-02-02T00:00:00",
             "type": "OtherFile"
@@ -30907,6 +30936,7 @@
             "description": "U.S. News article about Yitzhak Rabin",
             "file_id": "010754",
             "filename": "HOUSE_OVERSIGHT_010754.txt",
+            "is_interesting": false,
             "num_lines": 145,
             "timestamp": "2015-11-05T00:00:00",
             "type": "OtherFile"
@@ -30918,6 +30948,7 @@
             "description": "plaintiff response to Dershowitz Motion to Determine Confidentiality of Court Records",
             "file_id": "010757",
             "filename": "HOUSE_OVERSIGHT_010757.txt",
+            "is_interesting": true,
             "num_lines": 7348,
             "timestamp": "2015-11-23T00:00:00",
             "type": "OtherFile"
@@ -30929,6 +30960,7 @@
             "description": "Dershowitz Motion for Clarification of Confidentiality Order",
             "file_id": "010887",
             "filename": "HOUSE_OVERSIGHT_010887.txt",
+            "is_interesting": true,
             "num_lines": 558,
             "timestamp": "2016-01-29T00:00:00",
             "type": "OtherFile"
@@ -30940,6 +30972,7 @@
             "description": "\"Free Growth and Other Surprises\" (draft)",
             "file_id": "010912",
             "filename": "HOUSE_OVERSIGHT_010912.txt",
+            "is_interesting": false,
             "num_lines": 6859,
             "timestamp": "2018-10-18T00:00:00",
             "type": "OtherFile"
@@ -30951,6 +30984,7 @@
             "description": "InsightsPod collected tweets about #Brexit",
             "file_id": "011170",
             "filename": "HOUSE_OVERSIGHT_011170.txt",
+            "is_interesting": true,
             "num_lines": 13903,
             "timestamp": "2016-06-23T00:00:00",
             "type": "OtherFile"
@@ -30964,6 +30998,7 @@
             "dupe_type": "same",
             "file_id": "011284",
             "filename": "HOUSE_OVERSIGHT_011284.txt",
+            "is_interesting": false,
             "num_lines": 727,
             "timestamp": "2017-02-17T00:00:00",
             "type": "OtherFile"
@@ -30975,6 +31010,7 @@
             "description": "Oral Argument Transcript",
             "file_id": "011304",
             "filename": "HOUSE_OVERSIGHT_011304.txt",
+            "is_interesting": true,
             "num_lines": 9187,
             "timestamp": "2017-03-17T00:00:00",
             "type": "OtherFile"
@@ -30988,6 +31024,7 @@
             "dupe_type": "same",
             "file_id": "011463",
             "filename": "HOUSE_OVERSIGHT_011463.txt",
+            "is_interesting": false,
             "num_lines": 176,
             "timestamp": "2017-03-17T00:00:00",
             "type": "OtherFile"
@@ -30999,6 +31036,7 @@
             "description": "\"Night Flight\" (draft)",
             "file_id": "011472",
             "filename": "HOUSE_OVERSIGHT_011472.txt",
+            "is_interesting": false,
             "num_lines": 15224,
             "timestamp": "2006-07-12T00:00:00",
             "type": "OtherFile"
@@ -31010,6 +31048,7 @@
             "description": "court filing",
             "file_id": "011908",
             "filename": "HOUSE_OVERSIGHT_011908.txt",
+            "is_interesting": true,
             "num_lines": 3636,
             "timestamp": "2015-01-26T12:26:55",
             "type": "OtherFile"
@@ -31020,6 +31059,7 @@
             "description": "press release 'Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm' and other articles",
             "file_id": "012048",
             "filename": "HOUSE_OVERSIGHT_012048.txt",
+            "is_interesting": true,
             "num_lines": 2693,
             "timestamp": "2017-11-14T18:15:00",
             "type": "OtherFile"
@@ -31031,6 +31071,7 @@
             "description": "Telephone Interview with Virginia Giuffre",
             "file_id": "012103",
             "filename": "HOUSE_OVERSIGHT_012103.txt",
+            "is_interesting": true,
             "num_lines": 984,
             "timestamp": "2011-05-17T00:00:00",
             "type": "OtherFile"
@@ -31046,6 +31087,7 @@
             ],
             "file_id": "012130",
             "filename": "HOUSE_OVERSIGHT_012130.txt",
+            "is_interesting": true,
             "num_lines": 185,
             "timestamp": "2008-06-19T00:00:00",
             "type": "OtherFile"
@@ -31059,6 +31101,7 @@
             "dupe_type": "same",
             "file_id": "012135",
             "filename": "HOUSE_OVERSIGHT_012135.txt",
+            "is_interesting": false,
             "num_lines": 2208,
             "timestamp": "2008-06-19T00:00:00",
             "type": "OtherFile"
@@ -31070,6 +31113,7 @@
             "description": "Response to Jay Lefkowitz on Epstein Plea Agreement Compliance",
             "file_id": "012197",
             "filename": "HOUSE_OVERSIGHT_012197.txt",
+            "is_interesting": true,
             "num_lines": 16026,
             "timestamp": "2015-07-14T00:00:00",
             "type": "OtherFile"
@@ -31081,6 +31125,7 @@
             "description": "film events diary early draft of 012700",
             "file_id": "012690",
             "filename": "HOUSE_OVERSIGHT_012690.txt",
+            "is_interesting": false,
             "num_lines": 117,
             "timestamp": "2011-02-27T00:00:00",
             "type": "OtherFile"
@@ -31092,6 +31137,7 @@
             "description": "film events diary",
             "file_id": "012700",
             "filename": "HOUSE_OVERSIGHT_012700.txt",
+            "is_interesting": false,
             "num_lines": 548,
             "timestamp": "2011-02-27T00:00:00",
             "type": "OtherFile"
@@ -31102,6 +31148,7 @@
             "description": "article about Jane Doe #1 and Jane Doe #2 v. United States and Crime Victims' Rights Act [CVRA]",
             "file_id": "012704",
             "filename": "HOUSE_OVERSIGHT_012704.txt",
+            "is_interesting": false,
             "num_lines": 98,
             "timestamp": "2011-04-21T00:00:00",
             "type": "OtherFile"
@@ -31113,6 +31160,7 @@
             "description": "Master Contact List - Privilege Log",
             "file_id": "012707",
             "filename": "HOUSE_OVERSIGHT_012707.txt",
+            "is_interesting": true,
             "num_lines": 178,
             "timestamp": "2011-03-22T00:00:00",
             "type": "OtherFile"
@@ -31123,6 +31171,7 @@
             "description": "Crime Victims' Rights Act [CVRA] congressional record",
             "file_id": "012718",
             "filename": "HOUSE_OVERSIGHT_012718.txt",
+            "is_interesting": false,
             "num_lines": 743,
             "timestamp": "2011-06-17T00:00:00",
             "type": "OtherFile"
@@ -31134,6 +31183,7 @@
             "description": "article about Venice Film Festival",
             "file_id": "012740",
             "filename": "HOUSE_OVERSIGHT_012740.txt",
+            "is_interesting": false,
             "num_lines": 147,
             "timestamp": "2011-08-31T00:00:00",
             "type": "OtherFile"
@@ -31145,6 +31195,7 @@
             "description": "Evilicious: Explaining Our Taste For Excessive Harm",
             "file_id": "012747",
             "filename": "HOUSE_OVERSIGHT_012747.txt",
+            "is_interesting": false,
             "num_lines": 5121,
             "timestamp": "2017-03-20T00:00:00",
             "type": "OtherFile"
@@ -31156,6 +31207,7 @@
             "description": "Engineering General Intelligence: A Path to Advanced AGI Via Embodied Learning and Cognitive Synergy",
             "file_id": "012899",
             "filename": "HOUSE_OVERSIGHT_012899.txt",
+            "is_interesting": false,
             "num_lines": 12986,
             "timestamp": "2013-09-19T00:00:00",
             "type": "OtherFile"
@@ -31166,6 +31218,7 @@
             "description": "JetGala article about airplane interior designer Eric Roth",
             "file_id": "013268",
             "filename": "HOUSE_OVERSIGHT_013268.txt",
+            "is_interesting": false,
             "num_lines": 139,
             "timestamp": "2013-11-18T00:00:00",
             "type": "OtherFile"
@@ -31177,6 +31230,7 @@
             "description": "article on notable 2013 obituaries",
             "file_id": "013275",
             "filename": "HOUSE_OVERSIGHT_013275.txt",
+            "is_interesting": false,
             "num_lines": 1771,
             "timestamp": "2013-12-26T00:00:00",
             "type": "OtherFile"
@@ -31188,6 +31242,7 @@
             "description": "Plaintiff Response to Epstein's Motion for Summary Judgment",
             "file_id": "013304",
             "filename": "HOUSE_OVERSIGHT_013304.txt",
+            "is_interesting": true,
             "num_lines": 2218,
             "timestamp": "2014-04-17T00:00:00",
             "type": "OtherFile"
@@ -31198,6 +31253,7 @@
             "description": "Lexis Nexis result from The Evening Standard about Bernie Madoff",
             "file_id": "013403",
             "filename": "HOUSE_OVERSIGHT_013403.txt",
+            "is_interesting": true,
             "num_lines": 61,
             "timestamp": "2009-12-24T00:00:00",
             "type": "OtherFile"
@@ -31208,6 +31264,7 @@
             "description": "Palm Beach Daily News article about Epstein's address book",
             "file_id": "013435",
             "filename": "HOUSE_OVERSIGHT_013435.txt",
+            "is_interesting": false,
             "num_lines": 59,
             "timestamp": "2011-03-11T00:00:00",
             "type": "OtherFile"
@@ -31219,6 +31276,7 @@
             "description": "article about Epstein's diary",
             "file_id": "013437",
             "filename": "HOUSE_OVERSIGHT_013437.txt",
+            "is_interesting": false,
             "num_lines": 54,
             "timestamp": "2011-03-05T00:00:00",
             "type": "OtherFile"
@@ -31229,6 +31287,7 @@
             "description": "Palm Beach Daily News article about Epstein's gag order",
             "file_id": "013440",
             "filename": "HOUSE_OVERSIGHT_013440.txt",
+            "is_interesting": false,
             "num_lines": 48,
             "timestamp": "2011-07-13T00:00:00",
             "type": "OtherFile"
@@ -31240,6 +31299,7 @@
             "description": "draft about Oscars",
             "file_id": "013442",
             "filename": "HOUSE_OVERSIGHT_013442.txt",
+            "is_interesting": false,
             "num_lines": 159,
             "timestamp": "2011-02-27T00:00:00",
             "type": "OtherFile"
@@ -31251,6 +31311,7 @@
             "description": "Oscar Diary in Avenue Magazine",
             "file_id": "013450",
             "filename": "HOUSE_OVERSIGHT_013450.txt",
+            "is_interesting": false,
             "num_lines": 731,
             "timestamp": "2011-02-27T00:00:00",
             "type": "OtherFile"
@@ -31262,6 +31323,7 @@
             "description": "Deposition of Scott Rothstein",
             "file_id": "013463",
             "filename": "HOUSE_OVERSIGHT_013463.txt",
+            "is_interesting": true,
             "num_lines": 633,
             "timestamp": "2010-03-23T00:00:00",
             "type": "OtherFile"
@@ -31273,6 +31335,7 @@
             "description": "Affidavit of Brad Edwards",
             "file_id": "013489",
             "filename": "HOUSE_OVERSIGHT_013489.txt",
+            "is_interesting": true,
             "num_lines": 445,
             "timestamp": "2010-07-20T00:00:00",
             "type": "OtherFile"
@@ -31284,6 +31347,7 @@
             "description": "The Nearness Of Grace: A Personal Science Of Spiritual Transformation",
             "file_id": "013501",
             "filename": "HOUSE_OVERSIGHT_013501.txt",
+            "is_interesting": false,
             "num_lines": 8413,
             "timestamp": "2005-01-01T00:00:00",
             "type": "OtherFile"
@@ -31295,6 +31359,7 @@
             "description": "The 4-Hour Workweek",
             "file_id": "013796",
             "filename": "HOUSE_OVERSIGHT_013796.txt",
+            "is_interesting": false,
             "num_lines": 8095,
             "timestamp": "2008-06-24T00:00:00",
             "type": "OtherFile"
@@ -31306,6 +31371,7 @@
             "description": "article on Crime Victims' Rights Act [CVRA]",
             "file_id": "014037",
             "filename": "HOUSE_OVERSIGHT_014037.txt",
+            "is_interesting": false,
             "num_lines": 1911,
             "timestamp": "2013-12-04T00:00:00",
             "type": "OtherFile"
@@ -31317,6 +31383,7 @@
             "description": "Jane Doe Response to Dershowitz's Motion for Limited Intervention",
             "file_id": "014084",
             "filename": "HOUSE_OVERSIGHT_014084.txt",
+            "is_interesting": true,
             "num_lines": 968,
             "timestamp": "2015-03-24T00:00:00",
             "type": "OtherFile"
@@ -31328,6 +31395,7 @@
             "description": "Declaration in Support of Motion to Compel Production of Documents",
             "file_id": "014118",
             "filename": "HOUSE_OVERSIGHT_014118.txt",
+            "is_interesting": true,
             "num_lines": 15120,
             "timestamp": "2016-10-21T00:00:00",
             "type": "OtherFile"
@@ -31339,6 +31407,7 @@
             "description": "2016 Future of Financials Conference",
             "file_id": "014315",
             "filename": "HOUSE_OVERSIGHT_014315.txt",
+            "is_interesting": false,
             "num_lines": 4787,
             "timestamp": "2016-11-17T23:00:00",
             "type": "OtherFile"
@@ -31350,6 +31419,7 @@
             "description": "Japan Investment Strategy Report",
             "file_id": "014404",
             "filename": "HOUSE_OVERSIGHT_014404.txt",
+            "is_interesting": false,
             "num_lines": 408,
             "timestamp": "2016-11-18T00:00:00",
             "type": "OtherFile"
@@ -31361,6 +31431,7 @@
             "description": "Japan Investment Strategy Report",
             "file_id": "014410",
             "filename": "HOUSE_OVERSIGHT_014410.txt",
+            "is_interesting": false,
             "num_lines": 862,
             "timestamp": "2016-11-18T00:00:00",
             "type": "OtherFile"
@@ -31372,6 +31443,7 @@
             "description": "Japan Macro Watch",
             "file_id": "014424",
             "filename": "HOUSE_OVERSIGHT_014424.txt",
+            "is_interesting": false,
             "num_lines": 407,
             "timestamp": "2016-11-14T00:00:00",
             "type": "OtherFile"
@@ -31383,6 +31455,7 @@
             "description": "Global Cross Asset Strategy - Year Ahead The Trump inflection",
             "file_id": "014432",
             "filename": "HOUSE_OVERSIGHT_014432.txt",
+            "is_interesting": false,
             "num_lines": 1980,
             "timestamp": "2016-11-30T00:00:00",
             "type": "OtherFile"
@@ -31394,6 +31467,7 @@
             "description": "European Equity Strategy 2017",
             "file_id": "014460",
             "filename": "HOUSE_OVERSIGHT_014460.txt",
+            "is_interesting": false,
             "num_lines": 3037,
             "timestamp": "2016-12-01T00:00:00",
             "type": "OtherFile"
@@ -31404,6 +31478,7 @@
             "description": "Virgin Islands Daily News article",
             "file_id": "014498",
             "filename": "HOUSE_OVERSIGHT_014498.txt",
+            "is_interesting": false,
             "num_lines": 2825,
             "timestamp": "2016-12-13T00:00:00",
             "type": "OtherFile"
@@ -31415,6 +31490,7 @@
             "description": "tax alert",
             "file_id": "014518",
             "filename": "HOUSE_OVERSIGHT_014518.txt",
+            "is_interesting": false,
             "num_lines": 246,
             "timestamp": "2016-05-02T00:00:00",
             "type": "OtherFile"
@@ -31426,6 +31502,7 @@
             "description": "Outlook - Half Full",
             "file_id": "014532",
             "filename": "HOUSE_OVERSIGHT_014532.txt",
+            "is_interesting": false,
             "num_lines": 8407,
             "timestamp": "2017-01-01T00:00:00",
             "type": "OtherFile"
@@ -31437,6 +31514,7 @@
             "description": "Top 10 US Ideas Quarterly",
             "file_id": "014622",
             "filename": "HOUSE_OVERSIGHT_014622.txt",
+            "is_interesting": false,
             "num_lines": 1407,
             "timestamp": "2017-01-03T00:00:00",
             "type": "OtherFile"
@@ -31448,6 +31526,7 @@
             "description": "Complaint",
             "file_id": "014652",
             "filename": "HOUSE_OVERSIGHT_014652.txt",
+            "is_interesting": true,
             "num_lines": 704,
             "timestamp": "2015-04-22T00:00:00",
             "type": "OtherFile"
@@ -31463,6 +31542,7 @@
             ],
             "file_id": "014697",
             "filename": "HOUSE_OVERSIGHT_014697.txt",
+            "is_interesting": true,
             "num_lines": 725,
             "timestamp": "2017-02-17T00:00:00",
             "type": "OtherFile"
@@ -31474,6 +31554,7 @@
             "description": "Cause and Effect Fade the Trump Risk Premium",
             "file_id": "014721",
             "filename": "HOUSE_OVERSIGHT_014721.txt",
+            "is_interesting": false,
             "num_lines": 552,
             "timestamp": "2017-02-13T00:00:00",
             "type": "OtherFile"
@@ -31485,6 +31566,7 @@
             "description": "Global Rates, FX & EM 2017 Year Ahead",
             "file_id": "014731",
             "filename": "HOUSE_OVERSIGHT_014731.txt",
+            "is_interesting": false,
             "num_lines": 3765,
             "timestamp": "2016-11-16T00:00:00",
             "type": "OtherFile"
@@ -31500,6 +31582,7 @@
             ],
             "file_id": "014788",
             "filename": "HOUSE_OVERSIGHT_014788.txt",
+            "is_interesting": true,
             "num_lines": 194,
             "timestamp": "2017-03-17T00:00:00",
             "type": "OtherFile"
@@ -31511,6 +31594,7 @@
             "description": "Declaration of Laura A. Menninger in Opposition to Plaintiff's Motion",
             "file_id": "014797",
             "filename": "HOUSE_OVERSIGHT_014797.txt",
+            "is_interesting": true,
             "num_lines": 748,
             "timestamp": "2017-03-17T00:00:00",
             "type": "OtherFile"
@@ -31521,6 +31605,7 @@
             "description": "Boston Globe article about Alan Dershowitz",
             "file_id": "014865",
             "filename": "HOUSE_OVERSIGHT_014865.txt",
+            "is_interesting": false,
             "num_lines": 191,
             "timestamp": "2017-04-07T00:00:00",
             "type": "OtherFile"
@@ -31532,6 +31617,7 @@
             "description": "Hess Corp",
             "file_id": "014873",
             "filename": "HOUSE_OVERSIGHT_014873.txt",
+            "is_interesting": false,
             "num_lines": 811,
             "timestamp": "2017-04-11T00:00:00",
             "type": "OtherFile"
@@ -31543,6 +31629,7 @@
             "description": "Internet / e-Commerce",
             "file_id": "014887",
             "filename": "HOUSE_OVERSIGHT_014887.txt",
+            "is_interesting": false,
             "num_lines": 2955,
             "timestamp": "2017-04-06T00:00:00",
             "type": "OtherFile"
@@ -31554,6 +31641,7 @@
             "description": "2017 program",
             "file_id": "014951",
             "filename": "HOUSE_OVERSIGHT_014951.txt",
+            "is_interesting": true,
             "num_lines": 1174,
             "timestamp": "2017-04-20T00:00:00",
             "type": "OtherFile"
@@ -31565,6 +31653,7 @@
             "description": "Global Equity Volatility Insights",
             "file_id": "014972",
             "filename": "HOUSE_OVERSIGHT_014972.txt",
+            "is_interesting": false,
             "num_lines": 2250,
             "timestamp": "2017-06-20T00:00:00",
             "type": "OtherFile"
@@ -31575,6 +31664,7 @@
             "description": "Palm Beach Post article about reopening Epstein's criminal case",
             "file_id": "015028",
             "filename": "HOUSE_OVERSIGHT_015028.txt",
+            "is_interesting": false,
             "num_lines": 159,
             "timestamp": "2017-08-26T08:00:00",
             "type": "OtherFile"
@@ -31586,6 +31676,7 @@
             "description": "60 Years of Investigative Satire: The Best of Paul Krassner",
             "file_id": "015032",
             "filename": "HOUSE_OVERSIGHT_015032.txt",
+            "is_interesting": false,
             "num_lines": 1918,
             "timestamp": "2016-11-08T00:00:00",
             "type": "OtherFile"
@@ -31596,6 +31687,7 @@
             "description": "Nautilus Education magazine (?) issue",
             "file_id": "015462",
             "filename": "HOUSE_OVERSIGHT_015462.txt",
+            "is_interesting": false,
             "num_lines": 1810,
             "timestamp": "2013-09-13T00:00:00",
             "type": "OtherFile"
@@ -31607,6 +31699,7 @@
             "description": "Game Theory and Morality",
             "file_id": "015501",
             "filename": "HOUSE_OVERSIGHT_015501.txt",
+            "is_interesting": true,
             "num_lines": 1214,
             "timestamp": "2013-08-25T00:00:00",
             "type": "OtherFile"
@@ -31618,6 +31711,7 @@
             "description": "Defamation Complaint",
             "file_id": "015529",
             "filename": "HOUSE_OVERSIGHT_015529.txt",
+            "is_interesting": true,
             "num_lines": 1718,
             "timestamp": "2015-09-21T00:00:00",
             "type": "OtherFile"
@@ -31629,6 +31723,7 @@
             "description": "Dershowitz Redacted Motion to Modify Confidentiality Order",
             "file_id": "015590",
             "filename": "HOUSE_OVERSIGHT_015590.txt",
+            "is_interesting": true,
             "num_lines": 1201,
             "timestamp": "2016-02-03T00:00:00",
             "type": "OtherFile"
@@ -31640,6 +31735,7 @@
             "description": "Giuffre Response to Dershowitz Motion for Clarification of Confidentiality Order",
             "file_id": "015650",
             "filename": "HOUSE_OVERSIGHT_015650.txt",
+            "is_interesting": true,
             "num_lines": 169,
             "timestamp": "2016-02-08T00:00:00",
             "type": "OtherFile"
@@ -31651,6 +31747,7 @@
             "description": "professional resum\u00e9",
             "file_id": "015671",
             "filename": "HOUSE_OVERSIGHT_015671.txt",
+            "is_interesting": true,
             "num_lines": 50,
             "timestamp": "2015-06-02T00:00:00",
             "type": "OtherFile"
@@ -31662,6 +31759,7 @@
             "description": "professional resum\u00e9",
             "file_id": "015672",
             "filename": "HOUSE_OVERSIGHT_015672.txt",
+            "is_interesting": true,
             "num_lines": 128,
             "timestamp": "2015-06-02T00:00:00",
             "type": "OtherFile"
@@ -31673,6 +31771,7 @@
             "description": "Are the Androids Dreaming Yet? Amazing Brain Human Communication, Creativity & Free Will",
             "file_id": "015675",
             "filename": "HOUSE_OVERSIGHT_015675.txt",
+            "is_interesting": false,
             "num_lines": 12455,
             "timestamp": "2014-09-28T00:00:00",
             "type": "OtherFile"
@@ -31684,6 +31783,7 @@
             "description": "GEMs Paper #26 Saudi Arabia: beyond oil but not so fast",
             "file_id": "016111",
             "filename": "HOUSE_OVERSIGHT_016111.txt",
+            "is_interesting": false,
             "num_lines": 5115,
             "timestamp": "2016-06-30T00:00:00",
             "type": "OtherFile"
@@ -31695,6 +31795,7 @@
             "description": "response to Florida Bar complaint by Alan Dershowitz about David Boies from Paul G. Cassell",
             "file_id": "016197",
             "filename": "HOUSE_OVERSIGHT_016197.txt",
+            "is_interesting": true,
             "num_lines": 7,
             "timestamp": "2019-07-03T00:00:00",
             "type": "OtherFile"
@@ -31708,6 +31809,7 @@
             "dupe_type": "same",
             "file_id": "016221",
             "filename": "HOUSE_OVERSIGHT_016221.txt",
+            "is_interesting": false,
             "num_lines": 7499,
             "timestamp": "2019-02-19T00:00:00",
             "type": "OtherFile"
@@ -31719,6 +31821,7 @@
             "description": "New York Post Motion to Unseal Appellate Briefs",
             "file_id": "016420",
             "filename": "HOUSE_OVERSIGHT_016420.txt",
+            "is_interesting": true,
             "num_lines": 1749,
             "timestamp": "2019-01-11T00:00:00",
             "type": "OtherFile"
@@ -31729,6 +31832,7 @@
             "description": "Virgin Islands Daily News article",
             "file_id": "016506",
             "filename": "HOUSE_OVERSIGHT_016506.txt",
+            "is_interesting": false,
             "num_lines": 31,
             "timestamp": "2019-02-28T00:00:00",
             "type": "OtherFile"
@@ -31739,6 +31843,7 @@
             "description": "Virgin Islands Daily News article 'Perversion of Justice' by Julie K. Brown",
             "file_id": "016507",
             "filename": "HOUSE_OVERSIGHT_016507.txt",
+            "is_interesting": false,
             "num_lines": 180,
             "timestamp": "2018-12-19T00:00:00",
             "type": "OtherFile"
@@ -31749,6 +31854,7 @@
             "description": "Virgin Islands Daily News article",
             "file_id": "016508",
             "filename": "HOUSE_OVERSIGHT_016508.txt",
+            "is_interesting": false,
             "num_lines": 244,
             "timestamp": "2019-02-28T00:00:00",
             "type": "OtherFile"
@@ -31759,6 +31865,7 @@
             "description": "Lexis Nexis search for case law around the Crime Victims' Rights Act [CVRA] by David Schoen",
             "file_id": "016509",
             "filename": "HOUSE_OVERSIGHT_016509.txt",
+            "is_interesting": false,
             "num_lines": 2252,
             "timestamp": "2019-02-28T00:00:00",
             "type": "OtherFile"
@@ -31769,6 +31876,7 @@
             "description": "TSV of Palm Beach property info",
             "file_id": "016552",
             "filename": "HOUSE_OVERSIGHT_016552.txt",
+            "is_interesting": false,
             "num_lines": 14273,
             "type": "OtherFile"
         },
@@ -31783,6 +31891,7 @@
             ],
             "file_id": "016554",
             "filename": "HOUSE_OVERSIGHT_016554.txt",
+            "is_interesting": false,
             "num_lines": 415,
             "timestamp": "2008-07-17T00:00:00",
             "type": "OtherFile"
@@ -31795,6 +31904,7 @@
             "dupe_type": "same",
             "file_id": "016574",
             "filename": "HOUSE_OVERSIGHT_016574.txt",
+            "is_interesting": false,
             "num_lines": 415,
             "timestamp": "2008-07-17T00:00:00",
             "type": "OtherFile"
@@ -31806,6 +31916,7 @@
             "description": "appeal of some decision about Mar-a-Lago by Palm Beach authorities",
             "file_id": "016597",
             "filename": "HOUSE_OVERSIGHT_016597.txt",
+            "is_interesting": true,
             "num_lines": 74,
             "timestamp": "2008-07-07T00:00:00",
             "type": "OtherFile"
@@ -31816,6 +31927,7 @@
             "description": "TSV of Palm Beach property consumption (water?)",
             "file_id": "016599",
             "filename": "HOUSE_OVERSIGHT_016599.txt",
+            "is_interesting": false,
             "num_lines": 108,
             "type": "OtherFile"
         },
@@ -31825,6 +31937,7 @@
             "description": "TSV of Palm Beach property consumption (water?)",
             "file_id": "016600",
             "filename": "HOUSE_OVERSIGHT_016600.txt",
+            "is_interesting": false,
             "num_lines": 3380,
             "type": "OtherFile"
         },
@@ -31834,6 +31947,7 @@
             "description": "TSV of Palm Beach property consumption (water?)",
             "file_id": "016601",
             "filename": "HOUSE_OVERSIGHT_016601.txt",
+            "is_interesting": false,
             "num_lines": 108,
             "type": "OtherFile"
         },
@@ -31843,6 +31957,7 @@
             "description": "Palm Beach code enforcement board minutes",
             "file_id": "016602",
             "filename": "HOUSE_OVERSIGHT_016602.txt",
+            "is_interesting": false,
             "num_lines": 363,
             "timestamp": "2008-04-17T00:00:00",
             "type": "OtherFile"
@@ -31855,6 +31970,7 @@
             "dupe_type": "same",
             "file_id": "016616",
             "filename": "HOUSE_OVERSIGHT_016616.txt",
+            "is_interesting": false,
             "num_lines": 415,
             "timestamp": "2008-07-17T00:00:00",
             "type": "OtherFile"
@@ -31865,6 +31981,7 @@
             "description": "Palm Beach Water Committee Meeting on January 29, 2009",
             "file_id": "016636",
             "filename": "HOUSE_OVERSIGHT_016636.txt",
+            "is_interesting": false,
             "num_lines": 1535,
             "timestamp": "2009-01-29T15:00:00",
             "type": "OtherFile"
@@ -31875,6 +31992,7 @@
             "description": "TSV of Palm Beach property consumption (water?)",
             "file_id": "016694",
             "filename": "HOUSE_OVERSIGHT_016694.txt",
+            "is_interesting": false,
             "num_lines": 2894,
             "type": "OtherFile"
         },
@@ -31884,6 +32002,7 @@
             "description": "Palm Beach property info (?)",
             "file_id": "016695",
             "filename": "HOUSE_OVERSIGHT_016695.txt",
+            "is_interesting": true,
             "num_lines": 9570,
             "type": "OtherFile"
         },
@@ -31893,6 +32012,7 @@
             "description": "TSV of Palm Beach property info (water quality?",
             "file_id": "016696",
             "filename": "HOUSE_OVERSIGHT_016696.txt",
+            "is_interesting": false,
             "num_lines": 14273,
             "type": "OtherFile"
         },
@@ -31902,6 +32022,7 @@
             "description": "Palm Beach property tax info (?) that mentions Trump",
             "file_id": "016697",
             "filename": "HOUSE_OVERSIGHT_016697.txt",
+            "is_interesting": true,
             "num_lines": 9611,
             "type": "OtherFile"
         },
@@ -31911,6 +32032,7 @@
             "description": "TSV of Palm Beach property info (broken?)",
             "file_id": "016698",
             "filename": "HOUSE_OVERSIGHT_016698.txt",
+            "is_interesting": false,
             "num_lines": 8740,
             "type": "OtherFile"
         },
@@ -31920,6 +32042,7 @@
             "description": "Donald Trump financial disclosures from U.S. Office of Government Ethics",
             "file_id": "016699",
             "filename": "HOUSE_OVERSIGHT_016699.txt",
+            "is_interesting": false,
             "num_lines": 8319,
             "timestamp": "2017-01-20T00:00:00",
             "type": "OtherFile"
@@ -31935,6 +32058,7 @@
             ],
             "file_id": "016804",
             "filename": "HOUSE_OVERSIGHT_016804.txt",
+            "is_interesting": false,
             "num_lines": 7484,
             "timestamp": "2019-02-19T00:00:00",
             "type": "OtherFile"
@@ -31945,6 +32069,7 @@
             "description": "SciencExpress article \"Quantitative Analysis of Culture Using Millions of Digitized Books\" by Jean-Baptiste Michel",
             "file_id": "016996",
             "filename": "HOUSE_OVERSIGHT_016996.txt",
+            "is_interesting": false,
             "num_lines": 2020,
             "timestamp": "2010-12-16T00:00:00",
             "type": "OtherFile"
@@ -31955,6 +32080,7 @@
             "description": "World Economic Forum (WEF) Annual Meeting 2011 List of Participants",
             "file_id": "017060",
             "filename": "HOUSE_OVERSIGHT_017060.txt",
+            "is_interesting": true,
             "num_lines": 2839,
             "timestamp": "2011-01-18T00:00:00",
             "type": "OtherFile"
@@ -31966,6 +32092,7 @@
             "description": "\"Taking the Stand: My Life in the Law\" (draft)",
             "file_id": "017088",
             "filename": "HOUSE_OVERSIGHT_017088.txt",
+            "is_interesting": false,
             "num_lines": 5170,
             "timestamp": "2012-04-02T00:00:00",
             "type": "OtherFile"
@@ -31977,6 +32104,7 @@
             "description": "Deposition of Scott Rothstein",
             "file_id": "017488",
             "filename": "HOUSE_OVERSIGHT_017488.txt",
+            "is_interesting": true,
             "num_lines": 4376,
             "timestamp": "2012-06-22T00:00:00",
             "type": "OtherFile"
@@ -31988,6 +32116,7 @@
             "description": "2012 program",
             "file_id": "017524",
             "filename": "HOUSE_OVERSIGHT_017524.txt",
+            "is_interesting": true,
             "num_lines": 256,
             "timestamp": "2012-08-24T00:00:00",
             "type": "OtherFile"
@@ -31998,6 +32127,7 @@
             "description": "Intellectual Jazz conference brochure f. David Blaine",
             "file_id": "017526",
             "filename": "HOUSE_OVERSIGHT_017526.txt",
+            "is_interesting": true,
             "num_lines": 4127,
             "timestamp": "2012-02-15T00:00:00",
             "type": "OtherFile"
@@ -32008,6 +32138,7 @@
             "description": "Lexis Nexis search for case law around the Crime Victims' Rights Act [CVRA] by David Schoen",
             "file_id": "017603",
             "filename": "HOUSE_OVERSIGHT_017603.txt",
+            "is_interesting": false,
             "num_lines": 1576,
             "timestamp": "2019-02-28T00:00:00",
             "type": "OtherFile"
@@ -32018,6 +32149,7 @@
             "description": "Lexis Nexis search for case law around the Crime Victims' Rights Act [CVRA] by David Schoen",
             "file_id": "017635",
             "filename": "HOUSE_OVERSIGHT_017635.txt",
+            "is_interesting": false,
             "num_lines": 3933,
             "timestamp": "2019-02-28T00:00:00",
             "type": "OtherFile"
@@ -32028,6 +32160,7 @@
             "description": "Lexis Nexis search for case law around the Crime Victims' Rights Act [CVRA] by David Schoen",
             "file_id": "017714",
             "filename": "HOUSE_OVERSIGHT_017714.txt",
+            "is_interesting": false,
             "num_lines": 2555,
             "timestamp": "2019-02-28T00:00:00",
             "type": "OtherFile"
@@ -32039,6 +32172,7 @@
             "description": "article about Alan Dershowitz working with Jeffrey Epstein",
             "file_id": "017767",
             "filename": "HOUSE_OVERSIGHT_017767.txt",
+            "is_interesting": true,
             "num_lines": 55,
             "timestamp": "2019-04-16T00:00:00",
             "type": "OtherFile"
@@ -32050,6 +32184,7 @@
             "description": "Vanity Fair article \"The Talented Mr. Epstein\" by Vicky Ward",
             "file_id": "017771",
             "filename": "HOUSE_OVERSIGHT_017771.txt",
+            "is_interesting": true,
             "num_lines": 574,
             "timestamp": "2011-06-27T00:00:00",
             "type": "OtherFile"
@@ -32061,6 +32196,7 @@
             "description": "tweet about Virginia Giuffre",
             "file_id": "017787",
             "filename": "HOUSE_OVERSIGHT_017787.txt",
+            "is_interesting": true,
             "num_lines": 4,
             "timestamp": "2019-04-16T00:00:00",
             "type": "OtherFile"
@@ -32072,6 +32208,7 @@
             "description": "letter to Harvard Crimson complaining he was defamed",
             "file_id": "017789",
             "filename": "HOUSE_OVERSIGHT_017789.txt",
+            "is_interesting": true,
             "num_lines": 4,
             "timestamp": "2019-04-16T00:00:00",
             "type": "OtherFile"
@@ -32083,6 +32220,7 @@
             "description": "article about Alan Dershowitz's appearance on Wolf Blitzer",
             "file_id": "017792",
             "filename": "HOUSE_OVERSIGHT_017792.txt",
+            "is_interesting": true,
             "num_lines": 90,
             "timestamp": "2019-04-16T00:00:00",
             "type": "OtherFile"
@@ -32094,6 +32232,7 @@
             "description": "article about Alan Dershowitz",
             "file_id": "017796",
             "filename": "HOUSE_OVERSIGHT_017796.txt",
+            "is_interesting": true,
             "num_lines": 8,
             "timestamp": "2019-04-16T00:00:00",
             "type": "OtherFile"
@@ -32105,6 +32244,7 @@
             "description": "Miami Herald \"Perversion of Justice\" by Julie K. Brown",
             "file_id": "017800",
             "filename": "HOUSE_OVERSIGHT_017800.txt",
+            "is_interesting": true,
             "num_lines": 471,
             "timestamp": "2019-04-16T00:00:00",
             "type": "OtherFile"
@@ -32116,6 +32256,7 @@
             "description": "Miami Herald article about accusations against Alan Dershowitz by Julie K. Brown",
             "file_id": "017818",
             "filename": "HOUSE_OVERSIGHT_017818.txt",
+            "is_interesting": true,
             "num_lines": 153,
             "timestamp": "2018-12-27T00:00:00",
             "type": "OtherFile"
@@ -32127,6 +32268,7 @@
             "description": "Miami Herald article by Julie K. Brown",
             "file_id": "017824",
             "filename": "HOUSE_OVERSIGHT_017824.txt",
+            "is_interesting": true,
             "num_lines": 42,
             "timestamp": "2019-04-16T00:00:00",
             "type": "OtherFile"
@@ -32138,6 +32280,7 @@
             "description": "legal text and court documents",
             "file_id": "017830",
             "filename": "HOUSE_OVERSIGHT_017830.txt",
+            "is_interesting": false,
             "num_lines": 6828,
             "timestamp": "2012-10-03T20:04:00",
             "type": "OtherFile"
@@ -32149,6 +32292,7 @@
             "description": "Westlaw search results",
             "file_id": "017904",
             "filename": "HOUSE_OVERSIGHT_017904.txt",
+            "is_interesting": false,
             "num_lines": 707,
             "timestamp": "2019-01-01T00:00:00",
             "type": "OtherFile"
@@ -32160,6 +32304,7 @@
             "description": "defamation complaint",
             "file_id": "017935",
             "filename": "HOUSE_OVERSIGHT_017935.txt",
+            "is_interesting": true,
             "num_lines": 2262,
             "timestamp": "2019-04-16T00:00:00",
             "type": "OtherFile"
@@ -32170,6 +32315,7 @@
             "description": "The Shimon Post selection of articles about the mideast",
             "file_id": "018085",
             "filename": "HOUSE_OVERSIGHT_018085.txt",
+            "is_interesting": false,
             "num_lines": 268,
             "timestamp": "2011-06-07T00:00:00",
             "type": "OtherFile"
@@ -32181,6 +32327,7 @@
             "description": "Skype conversation log",
             "file_id": "018224",
             "filename": "HOUSE_OVERSIGHT_018224.txt",
+            "is_interesting": false,
             "num_lines": 358,
             "timestamp": "2019-05-31T00:00:00",
             "type": "OtherFile"
@@ -32192,6 +32339,7 @@
             "description": "The Seventh Sense: Power, Fortune & Survival in the Age of Networks",
             "file_id": "018232",
             "filename": "HOUSE_OVERSIGHT_018232.txt",
+            "is_interesting": false,
             "num_lines": 8558,
             "timestamp": "2014-10-01T00:00:00",
             "type": "OtherFile"
@@ -32203,6 +32351,7 @@
             "description": "The S&M Feminist",
             "file_id": "018438",
             "filename": "HOUSE_OVERSIGHT_018438.txt",
+            "is_interesting": false,
             "num_lines": 10444,
             "timestamp": "2012-06-16T00:00:00",
             "type": "OtherFile"
@@ -32214,6 +32363,7 @@
             "description": "artist statement about Trump objects",
             "file_id": "018703",
             "filename": "HOUSE_OVERSIGHT_018703.txt",
+            "is_interesting": false,
             "num_lines": 124,
             "timestamp": "2016-03-14T00:00:00",
             "type": "OtherFile"
@@ -32224,6 +32374,7 @@
             "description": "Virgin Islands property deal pitch deck, building will be leased to the U.S. govt GSA",
             "file_id": "018727",
             "filename": "HOUSE_OVERSIGHT_018727.txt",
+            "is_interesting": true,
             "num_lines": 438,
             "timestamp": "2014-06-01T00:00:00",
             "type": "OtherFile"
@@ -32234,6 +32385,7 @@
             "description": "Las Vegas property listing",
             "file_id": "018743",
             "filename": "HOUSE_OVERSIGHT_018743.txt",
+            "is_interesting": true,
             "num_lines": 1855,
             "timestamp": "2015-05-20T00:00:00",
             "type": "OtherFile"
@@ -32245,6 +32397,7 @@
             "description": "appraisal of going concern for IGY American Yacht Harbor Marina in Virgin Islands",
             "file_id": "018804",
             "filename": "HOUSE_OVERSIGHT_018804.txt",
+            "is_interesting": false,
             "num_lines": 1923,
             "timestamp": "2015-12-15T00:00:00",
             "type": "OtherFile"
@@ -32255,6 +32408,7 @@
             "description": "Virgin Islands Daily News article",
             "file_id": "018862",
             "filename": "HOUSE_OVERSIGHT_018862.txt",
+            "is_interesting": false,
             "num_lines": 2193,
             "timestamp": "2020-10-30T12:00:00",
             "type": "OtherFile"
@@ -32265,6 +32419,7 @@
             "description": "FBI seized property inventory (redacted)",
             "file_id": "018872",
             "filename": "HOUSE_OVERSIGHT_018872.txt",
+            "is_interesting": true,
             "num_lines": 11058,
             "timestamp": "2006-11-14T00:00:00",
             "type": "OtherFile"
@@ -32276,6 +32431,7 @@
             "description": "letter of recommendation for visa for a model from Russia 'Svet' (Svetlana Pozhidaeva?), names Putin puppet regimes",
             "file_id": "019086",
             "filename": "HOUSE_OVERSIGHT_019086.txt",
+            "is_interesting": true,
             "num_lines": 58,
             "timestamp": "2015-05-27T00:00:00",
             "type": "OtherFile"
@@ -32287,6 +32443,7 @@
             "description": "\"Are Rape Jokes Funny?\" (draft)",
             "file_id": "019088",
             "filename": "HOUSE_OVERSIGHT_019088.txt",
+            "is_interesting": false,
             "num_lines": 57,
             "timestamp": "2012-07-28T00:00:00",
             "type": "OtherFile"
@@ -32298,6 +32455,7 @@
             "description": "pages of \"Filthy Rich: The Shocking True Story of Jeffrey Epstein\"",
             "file_id": "019111",
             "filename": "HOUSE_OVERSIGHT_019111.txt",
+            "is_interesting": false,
             "num_lines": 4162,
             "timestamp": "2016-10-10T00:00:00",
             "type": "OtherFile"
@@ -32309,6 +32467,7 @@
             "description": "WSJ article about Edward Snowden",
             "file_id": "019206",
             "filename": "HOUSE_OVERSIGHT_019206.txt",
+            "is_interesting": true,
             "num_lines": 175,
             "timestamp": "2016-12-30T00:00:00",
             "type": "OtherFile"
@@ -32319,6 +32478,7 @@
             "description": "WaPo and Times Tribune articles about Bannon, Trump, and healthcare execs",
             "file_id": "019212",
             "filename": "HOUSE_OVERSIGHT_019212.txt",
+            "is_interesting": false,
             "num_lines": 174,
             "timestamp": "2016-12-28T00:00:00",
             "type": "OtherFile"
@@ -32332,6 +32492,7 @@
             "dupe_type": "redacted",
             "file_id": "019221",
             "filename": "HOUSE_OVERSIGHT_019221.txt",
+            "is_interesting": false,
             "num_lines": 115,
             "timestamp": "2008-05-27T00:00:00",
             "type": "OtherFile"
@@ -32345,6 +32506,7 @@
             "dupe_type": "redacted",
             "file_id": "019224",
             "filename": "HOUSE_OVERSIGHT_019224.txt",
+            "is_interesting": false,
             "num_lines": 319,
             "timestamp": "2008-05-19T00:00:00",
             "type": "OtherFile"
@@ -32355,6 +32517,7 @@
             "description": "Freedom House: 'Breaking Down Democracy: Goals, Strategies, and Methods of Modern Authoritarians'",
             "file_id": "019233",
             "filename": "HOUSE_OVERSIGHT_019233.txt",
+            "is_interesting": true,
             "num_lines": 5259,
             "timestamp": "2017-06-02T00:00:00",
             "type": "OtherFile"
@@ -32366,6 +32529,7 @@
             "description": "letter from Alan Dershowitz lawyer Andrew G. Celli",
             "file_id": "019297",
             "filename": "HOUSE_OVERSIGHT_019297.txt",
+            "is_interesting": true,
             "num_lines": 132,
             "timestamp": "2018-02-07T00:00:00",
             "type": "OtherFile"
@@ -32377,6 +32541,7 @@
             "description": "Women Empowerment (WE) conference f. Kathryn Ruemmler",
             "file_id": "019300",
             "filename": "HOUSE_OVERSIGHT_019300.txt",
+            "is_interesting": true,
             "num_lines": 19,
             "timestamp": "2019-04-05T00:00:00",
             "type": "OtherFile"
@@ -32387,6 +32552,7 @@
             "description": "FBI report on Epstein investigation (redacted)",
             "file_id": "019352",
             "filename": "HOUSE_OVERSIGHT_019352.txt",
+            "is_interesting": true,
             "num_lines": 3017,
             "timestamp": "2007-05-01T00:00:00",
             "type": "OtherFile"
@@ -32397,6 +32563,7 @@
             "description": "Harvard Economics 1545 Professor Kenneth Rogoff syllabus",
             "file_id": "019396",
             "filename": "HOUSE_OVERSIGHT_019396.txt",
+            "is_interesting": false,
             "num_lines": 270,
             "timestamp": "2009-11-09T00:00:00",
             "type": "OtherFile"
@@ -32407,6 +32574,7 @@
             "description": "NYT column about the Clintons and money by Maureen Dowd",
             "file_id": "019439",
             "filename": "HOUSE_OVERSIGHT_019439.txt",
+            "is_interesting": false,
             "num_lines": 169,
             "timestamp": "2013-08-17T00:00:00",
             "type": "OtherFile"
@@ -32417,6 +32585,7 @@
             "category": "finance",
             "file_id": "019440",
             "filename": "HOUSE_OVERSIGHT_019440.txt",
+            "is_interesting": false,
             "num_lines": 161,
             "timestamp": "2014-01-29T00:00:00",
             "type": "OtherFile"
@@ -32427,6 +32596,7 @@
             "description": "Frontlines magazine article 'Biologists Dig Deeper'",
             "file_id": "019444",
             "filename": "HOUSE_OVERSIGHT_019444.txt",
+            "is_interesting": false,
             "num_lines": 276,
             "timestamp": "2008-01-01T00:00:00",
             "type": "OtherFile"
@@ -32437,6 +32607,7 @@
             "description": "Haitian business investment proposal called Jacmel",
             "file_id": "019448",
             "filename": "HOUSE_OVERSIGHT_019448.txt",
+            "is_interesting": true,
             "num_lines": 427,
             "timestamp": "2010-11-08T00:00:00",
             "type": "OtherFile"
@@ -32448,6 +32619,7 @@
             "description": "article on Epstein and Clinton",
             "file_id": "019468",
             "filename": "HOUSE_OVERSIGHT_019468.txt",
+            "is_interesting": false,
             "num_lines": 142,
             "timestamp": "2015-01-13T18:47:00",
             "type": "OtherFile"
@@ -32459,6 +32631,7 @@
             "description": "letter of recommendation for visa for a model from Russia 'Svetlana' (Svetlana Pozhidaeva?)",
             "file_id": "019474",
             "filename": "HOUSE_OVERSIGHT_019474.txt",
+            "is_interesting": true,
             "num_lines": 44,
             "timestamp": "2015-05-29T00:00:00",
             "type": "OtherFile"
@@ -32470,6 +32643,7 @@
             "description": "letter of recommendation for visa for a model (probably Svetlana Pozhidaeva?)",
             "file_id": "019476",
             "filename": "HOUSE_OVERSIGHT_019476.txt",
+            "is_interesting": true,
             "num_lines": 39,
             "timestamp": "2015-06-01T00:00:00",
             "type": "OtherFile"
@@ -32481,6 +32655,7 @@
             "description": "How America Lost Its Secrets: Edward Snowden, the Man, and the Theft",
             "file_id": "019477",
             "filename": "HOUSE_OVERSIGHT_019477.txt",
+            "is_interesting": false,
             "num_lines": 11950,
             "timestamp": "2016-04-01T00:00:00",
             "type": "OtherFile"
@@ -32496,6 +32671,7 @@
             ],
             "file_id": "019849",
             "filename": "HOUSE_OVERSIGHT_019849.txt",
+            "is_interesting": false,
             "num_lines": 122,
             "timestamp": "2017-02-27T00:00:00",
             "type": "OtherFile"
@@ -32506,6 +32682,7 @@
             "description": "Sadis Goldberg LLP report on SCOTUS ruling about insider trading",
             "file_id": "019856",
             "filename": "HOUSE_OVERSIGHT_019856.txt",
+            "is_interesting": true,
             "num_lines": 875,
             "timestamp": "2017-11-08T00:00:00",
             "type": "OtherFile"
@@ -32519,6 +32696,7 @@
             "dupe_type": "same",
             "file_id": "019864",
             "filename": "HOUSE_OVERSIGHT_019864.txt",
+            "is_interesting": false,
             "num_lines": 250,
             "timestamp": "2017-02-27T00:00:00",
             "type": "OtherFile"
@@ -32530,6 +32708,7 @@
             "description": "Fire And Fury",
             "file_id": "019874",
             "filename": "HOUSE_OVERSIGHT_019874.txt",
+            "is_interesting": false,
             "num_lines": 9343,
             "timestamp": "2018-01-05T00:00:00",
             "type": "OtherFile"
@@ -32541,6 +32720,7 @@
             "description": "The Snowden Affair: A Spy Story In Six Parts",
             "file_id": "020153",
             "filename": "HOUSE_OVERSIGHT_020153.txt",
+            "is_interesting": false,
             "num_lines": 2848,
             "timestamp": "2015-02-22T00:00:00",
             "type": "OtherFile"
@@ -32552,6 +32732,7 @@
             "description": "Promoting Constructive Vigilance",
             "file_id": "020447",
             "filename": "HOUSE_OVERSIGHT_020447.txt",
+            "is_interesting": true,
             "num_lines": 7325,
             "timestamp": "2018-10-24T00:00:00",
             "type": "OtherFile"
@@ -32563,6 +32744,7 @@
             "description": "letter from Alan Dershowitz's British lawyers to Daily Mail threatening libel suit",
             "file_id": "020662",
             "filename": "HOUSE_OVERSIGHT_020662.txt",
+            "is_interesting": true,
             "num_lines": 124,
             "timestamp": "2018-12-18T00:00:00",
             "type": "OtherFile"
@@ -32574,6 +32756,7 @@
             "description": "USA Inc: A Basic Summary of America's Financial Statements compiled",
             "file_id": "020824",
             "filename": "HOUSE_OVERSIGHT_020824.txt",
+            "is_interesting": false,
             "num_lines": 12059,
             "timestamp": "2011-02-01T00:00:00",
             "type": "OtherFile"
@@ -32584,6 +32767,7 @@
             "description": "single page of Tatler article about Ghislaine Maxwell shredding documents",
             "file_id": "021092",
             "filename": "HOUSE_OVERSIGHT_021092.txt",
+            "is_interesting": false,
             "num_lines": 77,
             "timestamp": "2019-08-15T00:00:00",
             "type": "OtherFile"
@@ -32594,6 +32778,7 @@
             "description": "page of unknown article about Epstein and Maxwell",
             "file_id": "021093",
             "filename": "HOUSE_OVERSIGHT_021093.txt",
+            "is_interesting": true,
             "num_lines": 96,
             "type": "OtherFile"
         },
@@ -32603,6 +32788,7 @@
             "description": "Globe and Mail article about Gerd Heinrich",
             "file_id": "021094",
             "filename": "HOUSE_OVERSIGHT_021094.txt",
+            "is_interesting": false,
             "num_lines": 79,
             "timestamp": "2007-06-02T00:00:00",
             "type": "OtherFile"
@@ -32614,6 +32800,7 @@
             "description": "chapter of \"Siege: Trump Under Fire\"",
             "file_id": "021120",
             "filename": "HOUSE_OVERSIGHT_021120.txt",
+            "is_interesting": false,
             "num_lines": 1516,
             "timestamp": "2018-02-27T00:00:00",
             "type": "OtherFile"
@@ -32625,6 +32812,7 @@
             "description": "\"The Billionaire's Playboy Club\" (draft?)",
             "file_id": "021145",
             "filename": "HOUSE_OVERSIGHT_021145.txt",
+            "is_interesting": false,
             "num_lines": 6213,
             "type": "OtherFile"
         },
@@ -32635,6 +32823,7 @@
             "description": "Invisible Forces And Powerful Beliefs: Gravity, Gods, And Minds",
             "file_id": "021247",
             "filename": "HOUSE_OVERSIGHT_021247.txt",
+            "is_interesting": false,
             "num_lines": 12534,
             "timestamp": "2010-10-04T00:00:00",
             "type": "OtherFile"
@@ -32645,6 +32834,7 @@
             "description": "FBI report on Epstein investigation (redacted)",
             "file_id": "021434",
             "filename": "HOUSE_OVERSIGHT_021434.txt",
+            "is_interesting": true,
             "num_lines": 5512,
             "timestamp": "2009-08-08T00:00:00",
             "type": "OtherFile"
@@ -32655,6 +32845,7 @@
             "description": "FBI seized property inventory (redacted)",
             "file_id": "021569",
             "filename": "HOUSE_OVERSIGHT_021569.txt",
+            "is_interesting": true,
             "num_lines": 11736,
             "timestamp": "2018-02-03T18:20:48",
             "type": "OtherFile"
@@ -32665,6 +32856,7 @@
             "description": "Virgin Islands Daily News article",
             "file_id": "021718",
             "filename": "HOUSE_OVERSIGHT_021718.txt",
+            "is_interesting": false,
             "num_lines": 1754,
             "timestamp": "2013-08-01T00:00:00",
             "type": "OtherFile"
@@ -32675,6 +32867,7 @@
             "description": "Palm Beach Post article about 'He Was 50. And They Were Girls'",
             "file_id": "021775",
             "filename": "HOUSE_OVERSIGHT_021775.txt",
+            "is_interesting": false,
             "num_lines": 521,
             "timestamp": "2008-07-27T00:00:00",
             "type": "OtherFile"
@@ -32686,6 +32879,7 @@
             "description": "deposition of Paul G. Cassell",
             "file_id": "021824",
             "filename": "HOUSE_OVERSIGHT_021824.txt",
+            "is_interesting": true,
             "num_lines": 6853,
             "timestamp": "2015-10-16T00:00:00",
             "type": "OtherFile"
@@ -32697,6 +32891,7 @@
             "description": "pages of \"Filthy Rich: The Shocking True Story of Jeffrey Epstein\"",
             "file_id": "021958",
             "filename": "HOUSE_OVERSIGHT_021958.txt",
+            "is_interesting": false,
             "num_lines": 4381,
             "timestamp": "2016-10-10T00:00:00",
             "type": "OtherFile"
@@ -32708,6 +32903,7 @@
             "description": "pages of \"Filthy Rich: The Shocking True Story of Jeffrey Epstein\"",
             "file_id": "022058",
             "filename": "HOUSE_OVERSIGHT_022058.txt",
+            "is_interesting": false,
             "num_lines": 2586,
             "timestamp": "2016-10-10T00:00:00",
             "type": "OtherFile"
@@ -32719,6 +32915,7 @@
             "description": "pages of \"Filthy Rich: The Shocking True Story of Jeffrey Epstein\"",
             "file_id": "022118",
             "filename": "HOUSE_OVERSIGHT_022118.txt",
+            "is_interesting": false,
             "num_lines": 3465,
             "timestamp": "2016-10-10T00:00:00",
             "type": "OtherFile"
@@ -32729,6 +32926,7 @@
             "description": "Virgin Islands Daily News article",
             "file_id": "022210",
             "filename": "HOUSE_OVERSIGHT_022210.txt",
+            "is_interesting": false,
             "num_lines": 96,
             "timestamp": "2019-03-01T00:00:00",
             "type": "OtherFile"
@@ -32739,6 +32937,7 @@
             "description": "Virgin Islands Daily News article",
             "file_id": "022211",
             "filename": "HOUSE_OVERSIGHT_022211.txt",
+            "is_interesting": false,
             "num_lines": 126,
             "timestamp": "2019-03-02T00:00:00",
             "type": "OtherFile"
@@ -32749,6 +32948,7 @@
             "description": "Virgin Islands Daily News article",
             "file_id": "022212",
             "filename": "HOUSE_OVERSIGHT_022212.txt",
+            "is_interesting": false,
             "num_lines": 107,
             "timestamp": "2019-03-02T00:00:00",
             "type": "OtherFile"
@@ -32759,6 +32959,7 @@
             "description": "screenshot of Facebook group called 'Shit Pilots Say' disparaging a 'global girl'",
             "file_id": "022213",
             "filename": "HOUSE_OVERSIGHT_022213.txt",
+            "is_interesting": true,
             "num_lines": 29,
             "type": "OtherFile"
         },
@@ -32769,6 +32970,7 @@
             "description": "partial court filing with fact checking questions?",
             "file_id": "022237",
             "filename": "HOUSE_OVERSIGHT_022237.txt",
+            "is_interesting": true,
             "num_lines": 266,
             "type": "OtherFile"
         },
@@ -32779,6 +32981,7 @@
             "description": "Women Empowerment (WE) conference founder essay about growing the seminar business",
             "file_id": "022267",
             "filename": "HOUSE_OVERSIGHT_022267.txt",
+            "is_interesting": true,
             "num_lines": 39,
             "type": "OtherFile"
         },
@@ -32788,6 +32991,7 @@
             "description": "text of U.S. law: National Labour Relations Board (NLRB)",
             "file_id": "022277",
             "filename": "HOUSE_OVERSIGHT_022277.txt",
+            "is_interesting": false,
             "num_lines": 9227,
             "timestamp": "2018-06-07T00:00:00",
             "type": "OtherFile"
@@ -32798,6 +33002,7 @@
             "category": "finance",
             "file_id": "022325",
             "filename": "HOUSE_OVERSIGHT_022325.txt",
+            "is_interesting": false,
             "num_lines": 175,
             "timestamp": "2013-12-20T00:00:00",
             "type": "OtherFile"
@@ -32809,6 +33014,7 @@
             "description": "table of contents",
             "file_id": "022330",
             "filename": "HOUSE_OVERSIGHT_022330.txt",
+            "is_interesting": false,
             "num_lines": 612,
             "timestamp": "2013-12-20T00:00:00",
             "type": "OtherFile"
@@ -32820,6 +33026,7 @@
             "description": "tax efficiency of Intentionally Defective Grantor Trusts (IDGT)",
             "file_id": "022350",
             "filename": "HOUSE_OVERSIGHT_022350.txt",
+            "is_interesting": false,
             "num_lines": 356,
             "timestamp": "2010-12-17T00:00:00",
             "type": "OtherFile"
@@ -32830,6 +33037,7 @@
             "category": "finance",
             "file_id": "022361",
             "filename": "HOUSE_OVERSIGHT_022361.txt",
+            "is_interesting": false,
             "num_lines": 245,
             "timestamp": "2013-05-01T00:00:00",
             "type": "OtherFile"
@@ -32841,6 +33049,7 @@
             "description": "professional resum\u00e9",
             "file_id": "022367",
             "filename": "HOUSE_OVERSIGHT_022367.txt",
+            "is_interesting": true,
             "num_lines": 223,
             "timestamp": "2014-07-01T00:00:00",
             "type": "OtherFile"
@@ -32852,6 +33061,7 @@
             "description": "2016 election report",
             "file_id": "022372",
             "filename": "HOUSE_OVERSIGHT_022372.txt",
+            "is_interesting": false,
             "num_lines": 1589,
             "timestamp": "2021-07-01T00:00:00",
             "type": "OtherFile"
@@ -32863,6 +33073,7 @@
             "description": "letter attesting to Epstein's good character",
             "file_id": "022405",
             "filename": "HOUSE_OVERSIGHT_022405.txt",
+            "is_interesting": true,
             "num_lines": 16,
             "type": "OtherFile"
         },
@@ -32873,6 +33084,7 @@
             "description": "Women Empowerment (WE) conference seminar pitch deck",
             "file_id": "022407",
             "filename": "HOUSE_OVERSIGHT_022407.txt",
+            "is_interesting": true,
             "num_lines": 79,
             "timestamp": "2008-03-04T00:00:00",
             "type": "OtherFile"
@@ -32883,6 +33095,7 @@
             "description": "Park Partners NYC letter to partners in real estate project with architectural plans",
             "file_id": "022417",
             "filename": "HOUSE_OVERSIGHT_022417.txt",
+            "is_interesting": true,
             "num_lines": 1118,
             "timestamp": "2015-11-23T00:00:00",
             "type": "OtherFile"
@@ -32893,6 +33106,7 @@
             "description": "Inference: International Review of Science Feedback & Comments",
             "file_id": "022445",
             "filename": "HOUSE_OVERSIGHT_022445.txt",
+            "is_interesting": false,
             "num_lines": 457,
             "timestamp": "2018-11-01T00:00:00",
             "type": "OtherFile"
@@ -32903,6 +33117,7 @@
             "description": "Virgin Islands Daily News article",
             "file_id": "022463",
             "filename": "HOUSE_OVERSIGHT_022463.txt",
+            "is_interesting": false,
             "num_lines": 62,
             "timestamp": "2018-12-08T00:00:00",
             "type": "OtherFile"
@@ -32914,6 +33129,7 @@
             "description": "Foreign Corrupt Practices Act (FCPA) Resource Guide",
             "file_id": "022494",
             "filename": "HOUSE_OVERSIGHT_022494.txt",
+            "is_interesting": true,
             "num_lines": 8418,
             "timestamp": "2012-11-14T00:00:00",
             "type": "OtherFile"
@@ -32925,6 +33141,7 @@
             "description": "draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015",
             "file_id": "022707",
             "filename": "HOUSE_OVERSIGHT_022707.txt",
+            "is_interesting": true,
             "num_lines": 146,
             "type": "OtherFile"
         },
@@ -32935,6 +33152,7 @@
             "description": "draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015",
             "file_id": "022727",
             "filename": "HOUSE_OVERSIGHT_022727.txt",
+            "is_interesting": true,
             "num_lines": 146,
             "type": "OtherFile"
         },
@@ -32945,6 +33163,7 @@
             "description": "draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015",
             "file_id": "022746",
             "filename": "HOUSE_OVERSIGHT_022746.txt",
+            "is_interesting": true,
             "num_lines": 149,
             "type": "OtherFile"
         },
@@ -32953,6 +33172,7 @@
             "category": "flight logs",
             "file_id": "022780",
             "filename": "HOUSE_OVERSIGHT_022780.txt",
+            "is_interesting": true,
             "num_lines": 421,
             "timestamp": "2003-07-03T00:00:00",
             "type": "OtherFile"
@@ -32962,6 +33182,7 @@
             "category": "flight logs",
             "file_id": "022816",
             "filename": "HOUSE_OVERSIGHT_022816.txt",
+            "is_interesting": true,
             "num_lines": 93,
             "type": "OtherFile"
         },
@@ -32972,6 +33193,7 @@
             "description": "draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015",
             "file_id": "022844",
             "filename": "HOUSE_OVERSIGHT_022844.txt",
+            "is_interesting": true,
             "num_lines": 149,
             "type": "OtherFile"
         },
@@ -32982,6 +33204,7 @@
             "description": "draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015",
             "file_id": "022863",
             "filename": "HOUSE_OVERSIGHT_022863.txt",
+            "is_interesting": true,
             "num_lines": 109,
             "type": "OtherFile"
         },
@@ -32992,6 +33215,7 @@
             "description": "draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015",
             "file_id": "022894",
             "filename": "HOUSE_OVERSIGHT_022894.txt",
+            "is_interesting": true,
             "num_lines": 99,
             "type": "OtherFile"
         },
@@ -33002,6 +33226,7 @@
             "description": "draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015",
             "file_id": "022952",
             "filename": "HOUSE_OVERSIGHT_022952.txt",
+            "is_interesting": true,
             "num_lines": 140,
             "type": "OtherFile"
         },
@@ -33012,6 +33237,7 @@
             "description": "article on Epstein and Prince Andrew",
             "file_id": "022970",
             "filename": "HOUSE_OVERSIGHT_022970.txt",
+            "is_interesting": false,
             "num_lines": 201,
             "timestamp": "2011-03-13T02:26:00",
             "type": "OtherFile"
@@ -33022,6 +33248,7 @@
             "description": "fragment of a screenshot (???)",
             "file_id": "022986",
             "filename": "HOUSE_OVERSIGHT_022986.txt",
+            "is_interesting": false,
             "num_lines": 233,
             "type": "OtherFile"
         },
@@ -33031,6 +33258,7 @@
             "description": "Palm Beach Post article about just a headline on Trump and Epstein",
             "file_id": "022987",
             "filename": "HOUSE_OVERSIGHT_022987.txt",
+            "is_interesting": false,
             "num_lines": 10,
             "timestamp": "2017-05-12T00:00:00",
             "type": "OtherFile"
@@ -33041,6 +33269,7 @@
             "description": "Palm Beach Post article about alleged rape of 13 year old by Trump",
             "file_id": "022989",
             "filename": "HOUSE_OVERSIGHT_022989.txt",
+            "is_interesting": false,
             "num_lines": 25,
             "timestamp": "2017-05-10T00:00:00",
             "type": "OtherFile"
@@ -33051,6 +33280,7 @@
             "description": "Palm Beach Post article about Trump and Epstein",
             "file_id": "022990",
             "filename": "HOUSE_OVERSIGHT_022990.txt",
+            "is_interesting": false,
             "num_lines": 66,
             "timestamp": "2017-05-12T15:43:00",
             "type": "OtherFile"
@@ -33061,6 +33291,7 @@
             "description": "Virgin Islands Daily News article",
             "file_id": "023000",
             "filename": "HOUSE_OVERSIGHT_023000.txt",
+            "is_interesting": false,
             "num_lines": 194,
             "timestamp": "2019-03-04T00:00:00",
             "type": "OtherFile"
@@ -33071,6 +33302,7 @@
             "description": "Virgin Islands Daily News article",
             "file_id": "023046",
             "filename": "HOUSE_OVERSIGHT_023046.txt",
+            "is_interesting": false,
             "num_lines": 44,
             "timestamp": "2019-02-27T00:00:00",
             "type": "OtherFile"
@@ -33081,6 +33313,7 @@
             "description": "Virgin Islands Daily News article",
             "file_id": "023047",
             "filename": "HOUSE_OVERSIGHT_023047.txt",
+            "is_interesting": false,
             "num_lines": 183,
             "timestamp": "2019-02-27T00:00:00",
             "type": "OtherFile"
@@ -33091,6 +33324,7 @@
             "description": "Virgin Islands Daily News article",
             "file_id": "023048",
             "filename": "HOUSE_OVERSIGHT_023048.txt",
+            "is_interesting": false,
             "num_lines": 333,
             "timestamp": "2019-02-27T00:00:00",
             "type": "OtherFile"
@@ -33101,6 +33335,7 @@
             "description": "Virgin Islands Daily News article",
             "file_id": "023049",
             "filename": "HOUSE_OVERSIGHT_023049.txt",
+            "is_interesting": false,
             "num_lines": 209,
             "timestamp": "2019-02-27T00:00:00",
             "type": "OtherFile"
@@ -33112,6 +33347,7 @@
             "description": "tweet about Virginia Giuffre",
             "file_id": "023050",
             "filename": "HOUSE_OVERSIGHT_023050.txt",
+            "is_interesting": true,
             "num_lines": 27,
             "timestamp": "2019-03-02T00:00:00",
             "type": "OtherFile"
@@ -33123,6 +33359,7 @@
             "description": "Equity Strategy Focus Point Death and Taxes",
             "file_id": "023069",
             "filename": "HOUSE_OVERSIGHT_023069.txt",
+            "is_interesting": false,
             "num_lines": 1920,
             "timestamp": "2017-01-29T00:00:00",
             "type": "OtherFile"
@@ -33134,6 +33371,7 @@
             "description": "blog post",
             "file_id": "023096",
             "filename": "HOUSE_OVERSIGHT_023096.txt",
+            "is_interesting": true,
             "num_lines": 19,
             "timestamp": "2012-11-15T00:00:00",
             "type": "OtherFile"
@@ -33144,6 +33382,7 @@
             "description": "NYT column about The Aristocrats by Frank Rich 'The Greatest Dirty Joke Ever Told'",
             "file_id": "023097",
             "filename": "HOUSE_OVERSIGHT_023097.txt",
+            "is_interesting": false,
             "num_lines": 28,
             "timestamp": "2005-03-13T00:00:00",
             "type": "OtherFile"
@@ -33154,6 +33393,7 @@
             "description": "Litigation Daily article about Reid Weingarten",
             "file_id": "023102",
             "filename": "HOUSE_OVERSIGHT_023102.txt",
+            "is_interesting": false,
             "num_lines": 202,
             "timestamp": "2015-09-04T00:00:00",
             "type": "OtherFile"
@@ -33169,6 +33409,7 @@
             ],
             "file_id": "023120",
             "filename": "HOUSE_OVERSIGHT_023120.txt",
+            "is_interesting": false,
             "num_lines": 21,
             "type": "OtherFile"
         },
@@ -33181,6 +33422,7 @@
             "dupe_type": "earlier",
             "file_id": "023121",
             "filename": "HOUSE_OVERSIGHT_023121.txt",
+            "is_interesting": false,
             "num_lines": 32,
             "type": "OtherFile"
         },
@@ -33191,6 +33433,7 @@
             "description": "'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more (old draft)",
             "file_id": "023123",
             "filename": "HOUSE_OVERSIGHT_023123.txt",
+            "is_interesting": false,
             "num_lines": 32,
             "type": "OtherFile"
         },
@@ -33200,6 +33443,7 @@
             "description": "Virgin Islands Daily News article",
             "file_id": "023125",
             "filename": "HOUSE_OVERSIGHT_023125.txt",
+            "is_interesting": false,
             "num_lines": 39,
             "timestamp": "2019-02-16T00:00:00",
             "type": "OtherFile"
@@ -33211,6 +33455,7 @@
             "description": "The Search for Peace in the Arab-Israeli Conflict",
             "file_id": "023133",
             "filename": "HOUSE_OVERSIGHT_023133.txt",
+            "is_interesting": false,
             "num_lines": 3321,
             "timestamp": "2019-12-09T00:00:00",
             "type": "OtherFile"
@@ -33222,6 +33467,7 @@
             "description": "article about a play based on the Oslo Accords",
             "file_id": "023287",
             "filename": "HOUSE_OVERSIGHT_023287.txt",
+            "is_interesting": false,
             "num_lines": 266,
             "timestamp": "2017-09-15T00:00:00",
             "type": "OtherFile"
@@ -33233,6 +33479,7 @@
             "description": "legal text and court documents",
             "file_id": "023361",
             "filename": "HOUSE_OVERSIGHT_023361.txt",
+            "is_interesting": false,
             "num_lines": 1415,
             "timestamp": "2012-01-20T00:00:00",
             "type": "OtherFile"
@@ -33243,6 +33490,7 @@
             "description": "Harvard poetry stuff from Lisa New",
             "file_id": "023416",
             "filename": "HOUSE_OVERSIGHT_023416.txt",
+            "is_interesting": false,
             "num_lines": 26,
             "type": "OtherFile"
         },
@@ -33252,6 +33500,7 @@
             "description": "Harvard poetry stuff from Lisa New",
             "file_id": "023435",
             "filename": "HOUSE_OVERSIGHT_023435.txt",
+            "is_interesting": false,
             "num_lines": 107,
             "type": "OtherFile"
         },
@@ -33262,6 +33511,7 @@
             "description": "announcement of auction of 'Noise' by Daniel Kahneman, Olivier Sibony, and Cass Sunstein",
             "file_id": "023438",
             "filename": "HOUSE_OVERSIGHT_023438.txt",
+            "is_interesting": false,
             "num_lines": 28,
             "timestamp": "2018-03-20T00:00:00",
             "type": "OtherFile"
@@ -33272,6 +33522,7 @@
             "description": "Harvard poetry stuff from Lisa New",
             "file_id": "023450",
             "filename": "HOUSE_OVERSIGHT_023450.txt",
+            "is_interesting": false,
             "num_lines": 27,
             "type": "OtherFile"
         },
@@ -33281,6 +33532,7 @@
             "description": "Harvard poetry stuff from Lisa New",
             "file_id": "023452",
             "filename": "HOUSE_OVERSIGHT_023452.txt",
+            "is_interesting": false,
             "num_lines": 27,
             "type": "OtherFile"
         },
@@ -33290,6 +33542,7 @@
             "description": "The Shimon Post selection of articles about the mideast",
             "file_id": "023458",
             "filename": "HOUSE_OVERSIGHT_023458.txt",
+            "is_interesting": false,
             "num_lines": 265,
             "timestamp": "2011-04-17T00:00:00",
             "type": "OtherFile"
@@ -33300,6 +33553,7 @@
             "description": "The Shimon Post selection of articles about the mideast",
             "file_id": "023487",
             "filename": "HOUSE_OVERSIGHT_023487.txt",
+            "is_interesting": false,
             "num_lines": 247,
             "timestamp": "2011-04-18T00:00:00",
             "type": "OtherFile"
@@ -33310,6 +33564,7 @@
             "description": "The Shimon Post selection of articles about the mideast",
             "file_id": "023517",
             "filename": "HOUSE_OVERSIGHT_023517.txt",
+            "is_interesting": false,
             "num_lines": 280,
             "timestamp": "2011-05-26T00:00:00",
             "type": "OtherFile"
@@ -33320,6 +33575,7 @@
             "description": "Financial Times article about quantitative easing",
             "file_id": "023567",
             "filename": "HOUSE_OVERSIGHT_023567.txt",
+            "is_interesting": false,
             "num_lines": 97,
             "timestamp": "2016-07-22T00:00:00",
             "type": "OtherFile"
@@ -33331,6 +33587,7 @@
             "description": "article on Belt & Road in Central/South America, Xi philosophy",
             "file_id": "023570",
             "filename": "HOUSE_OVERSIGHT_023570.txt",
+            "is_interesting": false,
             "num_lines": 412,
             "timestamp": "2017-05-14T00:00:00",
             "type": "OtherFile"
@@ -33342,6 +33599,7 @@
             "description": "article on terrorism, Macau, trade initiatives",
             "file_id": "023571",
             "filename": "HOUSE_OVERSIGHT_023571.txt",
+            "is_interesting": false,
             "num_lines": 448,
             "timestamp": "2016-09-18T00:00:00",
             "type": "OtherFile"
@@ -33353,6 +33611,7 @@
             "description": "article on China's Belt & Road Initiative",
             "file_id": "023572",
             "filename": "HOUSE_OVERSIGHT_023572.txt",
+            "is_interesting": false,
             "num_lines": 41,
             "timestamp": "2017-05-13T08:55:00",
             "type": "OtherFile"
@@ -33364,6 +33623,7 @@
             "description": "Global Equity Volatility Insights",
             "file_id": "023575",
             "filename": "HOUSE_OVERSIGHT_023575.txt",
+            "is_interesting": false,
             "num_lines": 3092,
             "timestamp": "2017-06-01T00:00:00",
             "type": "OtherFile"
@@ -33375,6 +33635,7 @@
             "description": "magazine interview",
             "file_id": "023638",
             "filename": "HOUSE_OVERSIGHT_023638.txt",
+            "is_interesting": false,
             "num_lines": 788,
             "timestamp": "2017-01-16T00:00:00",
             "type": "OtherFile"
@@ -33385,6 +33646,7 @@
             "description": "interview with Mohammed bin Salman",
             "file_id": "023644",
             "filename": "HOUSE_OVERSIGHT_023644.txt",
+            "is_interesting": true,
             "num_lines": 138,
             "timestamp": "2016-04-25T00:00:00",
             "type": "OtherFile"
@@ -33396,6 +33658,7 @@
             "description": "sizzle reel / television appearances",
             "file_id": "023666",
             "filename": "HOUSE_OVERSIGHT_023666.txt",
+            "is_interesting": false,
             "num_lines": 4828,
             "timestamp": "2021-03-16T20:18:00",
             "type": "OtherFile"
@@ -33407,6 +33670,7 @@
             "description": "CNN \"Quest Means Business U.S. and China Agree to Pause Trade War\"",
             "file_id": "023707",
             "filename": "HOUSE_OVERSIGHT_023707.txt",
+            "is_interesting": false,
             "num_lines": 207,
             "timestamp": "2018-12-03T00:00:00",
             "type": "OtherFile"
@@ -33417,6 +33681,7 @@
             "description": "Future Science article: \"Is Shame Necessary?\" by Jennifer Jacquet",
             "file_id": "023720",
             "filename": "HOUSE_OVERSIGHT_023720.txt",
+            "is_interesting": false,
             "num_lines": 280,
             "timestamp": "2008-02-04T00:00:00",
             "type": "OtherFile"
@@ -33428,6 +33693,7 @@
             "description": "Teaching Minds How Cognitive Science Can Save Our Schools",
             "file_id": "023731",
             "filename": "HOUSE_OVERSIGHT_023731.txt",
+            "is_interesting": false,
             "num_lines": 8219,
             "timestamp": "2007-12-23T00:00:00",
             "type": "OtherFile"
@@ -33438,6 +33704,7 @@
             "description": "New Leaf Ventures private placement memorandum",
             "file_id": "024003",
             "filename": "HOUSE_OVERSIGHT_024003.txt",
+            "is_interesting": true,
             "num_lines": 5090,
             "timestamp": "2017-01-01T00:00:00",
             "type": "OtherFile"
@@ -33448,6 +33715,7 @@
             "description": "FAQ about anti-money laundering (AML) and terrorist financing (CFT) law in the U.S.",
             "file_id": "024117",
             "filename": "HOUSE_OVERSIGHT_024117.txt",
+            "is_interesting": true,
             "num_lines": 751,
             "type": "OtherFile"
         },
@@ -33458,6 +33726,7 @@
             "description": "Eye On The Market",
             "file_id": "024132",
             "filename": "HOUSE_OVERSIGHT_024132.txt",
+            "is_interesting": false,
             "num_lines": 227,
             "timestamp": "2012-03-15T00:00:00",
             "type": "OtherFile"
@@ -33469,6 +33738,7 @@
             "description": "CIO Monthly Extended report",
             "file_id": "024135",
             "filename": "HOUSE_OVERSIGHT_024135.txt",
+            "is_interesting": false,
             "num_lines": 2557,
             "timestamp": "2012-06-29T00:00:00",
             "type": "OtherFile"
@@ -33480,6 +33750,7 @@
             "description": "president and first lady schedule",
             "file_id": "024179",
             "filename": "HOUSE_OVERSIGHT_024179.txt",
+            "is_interesting": false,
             "num_lines": 260,
             "timestamp": "2012-09-21T00:00:00",
             "type": "OtherFile"
@@ -33491,6 +33762,7 @@
             "description": "schedule including \"Presidents Private Dinner - Jeffrey Epstine (sic)\"",
             "file_id": "024185",
             "filename": "HOUSE_OVERSIGHT_024185.txt",
+            "is_interesting": false,
             "num_lines": 655,
             "timestamp": "2012-09-21T00:00:00",
             "type": "OtherFile"
@@ -33502,6 +33774,7 @@
             "description": "Eye On The Market",
             "file_id": "024194",
             "filename": "HOUSE_OVERSIGHT_024194.txt",
+            "is_interesting": false,
             "num_lines": 546,
             "timestamp": "2012-10-22T00:00:00",
             "type": "OtherFile"
@@ -33513,6 +33786,7 @@
             "description": "Global Utility White Paper",
             "file_id": "024202",
             "filename": "HOUSE_OVERSIGHT_024202.txt",
+            "is_interesting": false,
             "num_lines": 1055,
             "timestamp": "2013-03-08T00:00:00",
             "type": "OtherFile"
@@ -33524,6 +33798,7 @@
             "description": "draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015",
             "file_id": "024229",
             "filename": "HOUSE_OVERSIGHT_024229.txt",
+            "is_interesting": true,
             "num_lines": 79,
             "type": "OtherFile"
         },
@@ -33534,6 +33809,7 @@
             "description": "Internet & Society: The Technologies and Politics of Control",
             "file_id": "024256",
             "filename": "HOUSE_OVERSIGHT_024256.txt",
+            "is_interesting": true,
             "num_lines": 498,
             "timestamp": "2016-12-10T00:00:00",
             "type": "OtherFile"
@@ -33544,6 +33820,7 @@
             "description": "Virgin Islands Daily News article",
             "file_id": "024270",
             "filename": "HOUSE_OVERSIGHT_024270.txt",
+            "is_interesting": false,
             "num_lines": 139,
             "timestamp": "2017-06-24T00:00:00",
             "type": "OtherFile"
@@ -33554,6 +33831,7 @@
             "description": "Blockchain Capital and Brock Pierce pitch deck",
             "file_id": "024271",
             "filename": "HOUSE_OVERSIGHT_024271.txt",
+            "is_interesting": true,
             "num_lines": 452,
             "timestamp": "2015-10-01T00:00:00",
             "type": "OtherFile"
@@ -33565,6 +33843,7 @@
             "description": "campaign flier",
             "file_id": "024294",
             "filename": "HOUSE_OVERSIGHT_024294.txt",
+            "is_interesting": false,
             "num_lines": 95,
             "timestamp": "2016-10-01T00:00:00",
             "type": "OtherFile"
@@ -33576,6 +33855,7 @@
             "description": "form 14A SEC filing proxy statement",
             "file_id": "024302",
             "filename": "HOUSE_OVERSIGHT_024302.txt",
+            "is_interesting": false,
             "num_lines": 2010,
             "timestamp": "2019-04-23T00:00:00",
             "type": "OtherFile"
@@ -33587,6 +33867,7 @@
             "description": "Remembering Cavalier Magazine",
             "file_id": "024374",
             "filename": "HOUSE_OVERSIGHT_024374.txt",
+            "is_interesting": false,
             "num_lines": 83,
             "timestamp": "2012-11-17T00:00:00",
             "type": "OtherFile"
@@ -33597,6 +33878,7 @@
             "description": "Michael Milken's Knowledge Universe Education (KUE) $1,000,000 corporate share placement notice (SEC filing?)",
             "file_id": "024432",
             "filename": "HOUSE_OVERSIGHT_024432.txt",
+            "is_interesting": true,
             "num_lines": 6624,
             "timestamp": "2020-06-01T00:00:00",
             "type": "OtherFile"
@@ -33607,6 +33889,7 @@
             "description": "The Shimon Post selection of articles about the mideast",
             "file_id": "024592",
             "filename": "HOUSE_OVERSIGHT_024592.txt",
+            "is_interesting": false,
             "num_lines": 245,
             "timestamp": "2011-08-25T00:00:00",
             "type": "OtherFile"
@@ -33617,6 +33900,7 @@
             "description": "Ackrell Capital report: Cannabis Investment Report 2018",
             "file_id": "024631",
             "filename": "HOUSE_OVERSIGHT_024631.txt",
+            "is_interesting": true,
             "num_lines": 6977,
             "timestamp": "2017-12-28T00:00:00",
             "type": "OtherFile"
@@ -33627,6 +33911,7 @@
             "description": "Cowen's Collective View of CBD / Cannabis report",
             "file_id": "024817",
             "filename": "HOUSE_OVERSIGHT_024817.txt",
+            "is_interesting": true,
             "num_lines": 5317,
             "timestamp": "2019-02-25T11:00:00",
             "type": "OtherFile"
@@ -33637,6 +33922,7 @@
             "description": "The Shimon Post selection of articles about the mideast",
             "file_id": "024958",
             "filename": "HOUSE_OVERSIGHT_024958.txt",
+            "is_interesting": false,
             "num_lines": 273,
             "timestamp": "2011-05-08T00:00:00",
             "type": "OtherFile"
@@ -33647,6 +33933,7 @@
             "description": "The Shimon Post selection of articles about the mideast",
             "file_id": "024997",
             "filename": "HOUSE_OVERSIGHT_024997.txt",
+            "is_interesting": false,
             "num_lines": 347,
             "timestamp": "2011-09-08T00:00:00",
             "type": "OtherFile"
@@ -33657,6 +33944,7 @@
             "description": "translation of Spanish article about Cuba",
             "file_id": "025094",
             "filename": "HOUSE_OVERSIGHT_025094.txt",
+            "is_interesting": false,
             "num_lines": 242,
             "timestamp": "2015-11-08T00:00:00",
             "type": "OtherFile"
@@ -33668,6 +33956,7 @@
             "description": "article about China and globalisation",
             "file_id": "025104",
             "filename": "HOUSE_OVERSIGHT_025104.txt",
+            "is_interesting": false,
             "num_lines": 365,
             "timestamp": "2018-03-14T20:17:00",
             "type": "OtherFile"
@@ -33679,6 +33968,7 @@
             "description": "article on China and the US working together",
             "file_id": "025115",
             "filename": "HOUSE_OVERSIGHT_025115.txt",
+            "is_interesting": false,
             "num_lines": 473,
             "timestamp": "2017-05-14T00:00:00",
             "type": "OtherFile"
@@ -33690,6 +33980,7 @@
             "description": "Africa, Parasites, Intelligence",
             "file_id": "025143",
             "filename": "HOUSE_OVERSIGHT_025143.txt",
+            "is_interesting": true,
             "num_lines": 39,
             "timestamp": "2018-06-25T00:00:00",
             "type": "OtherFile"
@@ -33701,6 +33992,7 @@
             "description": "hot list Frankfurt Book Fair (includes article about Silk Road/Ross Ulbricht)",
             "file_id": "025147",
             "filename": "HOUSE_OVERSIGHT_025147.txt",
+            "is_interesting": false,
             "num_lines": 663,
             "timestamp": "2016-10-23T00:00:00",
             "type": "OtherFile"
@@ -33716,6 +34008,7 @@
             ],
             "file_id": "025205",
             "filename": "HOUSE_OVERSIGHT_025205.txt",
+            "is_interesting": false,
             "num_lines": 149,
             "timestamp": "2010-02-01T00:00:00",
             "type": "OtherFile"
@@ -33729,6 +34022,7 @@
             "dupe_type": "same",
             "file_id": "025210",
             "filename": "HOUSE_OVERSIGHT_025210.txt",
+            "is_interesting": false,
             "num_lines": 149,
             "timestamp": "2010-02-01T00:00:00",
             "type": "OtherFile"
@@ -33740,6 +34034,7 @@
             "description": "Eye On The Market",
             "file_id": "025221",
             "filename": "HOUSE_OVERSIGHT_025221.txt",
+            "is_interesting": false,
             "num_lines": 407,
             "timestamp": "2011-07-25T00:00:00",
             "type": "OtherFile"
@@ -33751,6 +34046,7 @@
             "description": "Eye On The Market",
             "file_id": "025229",
             "filename": "HOUSE_OVERSIGHT_025229.txt",
+            "is_interesting": false,
             "num_lines": 103,
             "timestamp": "2011-08-04T00:00:00",
             "type": "OtherFile"
@@ -33762,6 +34058,7 @@
             "description": "Eye On The Market",
             "file_id": "025242",
             "filename": "HOUSE_OVERSIGHT_025242.txt",
+            "is_interesting": false,
             "num_lines": 436,
             "timestamp": "2012-04-09T00:00:00",
             "type": "OtherFile"
@@ -33773,6 +34070,7 @@
             "description": "CIO Monthly Extended report",
             "file_id": "025247",
             "filename": "HOUSE_OVERSIGHT_025247.txt",
+            "is_interesting": false,
             "num_lines": 2716,
             "timestamp": "2012-10-25T00:00:00",
             "type": "OtherFile"
@@ -33784,6 +34082,7 @@
             "description": "article on Bill Clinton being named in a lawsuit",
             "file_id": "025292",
             "filename": "HOUSE_OVERSIGHT_025292.txt",
+            "is_interesting": false,
             "num_lines": 80,
             "timestamp": "2015-01-06T02:10:00",
             "type": "OtherFile"
@@ -33795,6 +34094,7 @@
             "description": "report predicting Trump win",
             "file_id": "025296",
             "filename": "HOUSE_OVERSIGHT_025296.txt",
+            "is_interesting": false,
             "num_lines": 1003,
             "timestamp": "2016-07-06T00:00:00",
             "type": "OtherFile"
@@ -33805,6 +34105,7 @@
             "description": "NYT article about radio host Bob Fass and Robert Durst",
             "file_id": "025328",
             "filename": "HOUSE_OVERSIGHT_025328.txt",
+            "is_interesting": false,
             "num_lines": 666,
             "timestamp": "2018-04-24T00:00:00",
             "type": "OtherFile"
@@ -33821,6 +34122,7 @@
             ],
             "file_id": "025353",
             "filename": "HOUSE_OVERSIGHT_025353.txt",
+            "is_interesting": true,
             "num_lines": 298,
             "timestamp": "2008-05-19T00:00:00",
             "type": "OtherFile"
@@ -33832,6 +34134,7 @@
             "description": "rough draft of Epstein's side of the story?",
             "file_id": "025540",
             "filename": "HOUSE_OVERSIGHT_025540.txt",
+            "is_interesting": true,
             "num_lines": 36,
             "type": "OtherFile"
         },
@@ -33842,6 +34145,7 @@
             "description": "report about alternative asset managers",
             "file_id": "025551",
             "filename": "HOUSE_OVERSIGHT_025551.txt",
+            "is_interesting": false,
             "num_lines": 2819,
             "timestamp": "2018-01-30T00:00:00",
             "type": "OtherFile"
@@ -33852,6 +34156,7 @@
             "description": "The Shimon Post selection of articles about the mideast",
             "file_id": "025610",
             "filename": "HOUSE_OVERSIGHT_025610.txt",
+            "is_interesting": false,
             "num_lines": 238,
             "timestamp": "2011-04-03T00:00:00",
             "type": "OtherFile"
@@ -33880,6 +34185,7 @@
             ],
             "file_id": "025704",
             "filename": "HOUSE_OVERSIGHT_025704.txt",
+            "is_interesting": true,
             "num_lines": 127,
             "timestamp": "2008-05-27T00:00:00",
             "type": "OtherFile"
@@ -33891,6 +34197,7 @@
             "description": "Economic Research: How Increasing Income Inequality Is Dampening U.S. Growth",
             "file_id": "025763",
             "filename": "HOUSE_OVERSIGHT_025763.txt",
+            "is_interesting": false,
             "num_lines": 743,
             "timestamp": "2014-08-05T00:00:00",
             "type": "OtherFile"
@@ -33901,6 +34208,7 @@
             "description": "someone's notes from Aspen Strategy Group",
             "file_id": "025797",
             "filename": "HOUSE_OVERSIGHT_025797.txt",
+            "is_interesting": true,
             "num_lines": 295,
             "timestamp": "2013-05-29T00:00:00",
             "type": "OtherFile"
@@ -33912,6 +34220,7 @@
             "description": "Building a Bridge Between FOIA Requesters & Agencies",
             "file_id": "025849",
             "filename": "HOUSE_OVERSIGHT_025849.txt",
+            "is_interesting": false,
             "num_lines": 603,
             "timestamp": "2013-03-13T00:00:00",
             "type": "OtherFile"
@@ -33923,6 +34232,7 @@
             "description": "Affidavit of Tiffany Doe describing Jane Doe being raped by Epstein and Trump",
             "file_id": "025937",
             "filename": "HOUSE_OVERSIGHT_025937.txt",
+            "is_interesting": true,
             "num_lines": 54,
             "timestamp": "2016-06-20T00:00:00",
             "type": "OtherFile"
@@ -33934,6 +34244,7 @@
             "description": "Affidavit of Jane Doe describing being raped by Epstein",
             "file_id": "025939",
             "filename": "HOUSE_OVERSIGHT_025939.txt",
+            "is_interesting": true,
             "num_lines": 63,
             "timestamp": "2016-06-20T00:00:00",
             "type": "OtherFile"
@@ -33945,6 +34256,7 @@
             "description": "Understanding when risk parity risk Increases",
             "file_id": "025978",
             "filename": "HOUSE_OVERSIGHT_025978.txt",
+            "is_interesting": false,
             "num_lines": 2069,
             "timestamp": "2016-08-09T00:00:00",
             "type": "OtherFile"
@@ -33956,6 +34268,7 @@
             "description": "letter about algorithmic trading",
             "file_id": "026011",
             "filename": "HOUSE_OVERSIGHT_026011.txt",
+            "is_interesting": true,
             "num_lines": 62,
             "timestamp": "2016-06-24T00:00:00",
             "type": "OtherFile"
@@ -33966,6 +34279,7 @@
             "description": "letter to someone named George about investment opportunities in the Ukraine banking sector",
             "file_id": "026134",
             "filename": "HOUSE_OVERSIGHT_026134.txt",
+            "is_interesting": true,
             "num_lines": 784,
             "timestamp": "2017-06-12T00:00:00",
             "type": "OtherFile"
@@ -33977,6 +34291,7 @@
             "description": "letter from Trump lawyer to Devin Nunes (R-CA) about FISA courts and Trump",
             "file_id": "026248",
             "filename": "HOUSE_OVERSIGHT_026248.txt",
+            "is_interesting": true,
             "num_lines": 187,
             "timestamp": "2018-02-02T00:00:00",
             "type": "OtherFile"
@@ -33988,6 +34303,7 @@
             "description": "Complaint for rape and sexual abuse",
             "file_id": "026384",
             "filename": "HOUSE_OVERSIGHT_026384.txt",
+            "is_interesting": true,
             "num_lines": 226,
             "timestamp": "2016-06-20T00:00:00",
             "type": "OtherFile"
@@ -33998,6 +34314,7 @@
             "description": "Spanish language article about Sultan Ahmed Bin Sulayem",
             "file_id": "026520",
             "filename": "HOUSE_OVERSIGHT_026520.txt",
+            "is_interesting": true,
             "num_lines": 277,
             "timestamp": "2013-09-27T00:00:00",
             "type": "OtherFile"
@@ -34009,6 +34326,7 @@
             "description": "Cooperating Without Looking: Game Theory Model of Trust and Reciprocal Cooperation",
             "file_id": "026521",
             "filename": "HOUSE_OVERSIGHT_026521.txt",
+            "is_interesting": true,
             "num_lines": 561,
             "timestamp": "2013-08-11T00:00:00",
             "type": "OtherFile"
@@ -34020,6 +34338,7 @@
             "description": "BNA article about taxes",
             "file_id": "026543",
             "filename": "HOUSE_OVERSIGHT_026543.txt",
+            "is_interesting": false,
             "num_lines": 143,
             "timestamp": "2014-02-27T00:00:00",
             "type": "OtherFile"
@@ -34031,6 +34350,7 @@
             "description": "press release, maybe a draft of 029326",
             "file_id": "026565",
             "filename": "HOUSE_OVERSIGHT_026565.txt",
+            "is_interesting": true,
             "num_lines": 11,
             "timestamp": "2013-02-15T00:00:00",
             "type": "OtherFile"
@@ -34042,6 +34362,7 @@
             "description": "Global Asset Allocation report",
             "file_id": "026572",
             "filename": "HOUSE_OVERSIGHT_026572.txt",
+            "is_interesting": false,
             "num_lines": 577,
             "timestamp": "2012-11-09T00:00:00",
             "type": "OtherFile"
@@ -34052,6 +34373,7 @@
             "description": "Epstein's internet search results at start of reputation repair campaign, maybe from Ian Osborne & Partners LLP",
             "file_id": "026582",
             "filename": "HOUSE_OVERSIGHT_026582.txt",
+            "is_interesting": true,
             "num_lines": 13,
             "type": "OtherFile"
         },
@@ -34061,6 +34383,7 @@
             "description": "Google search results for 'Jeffrey Epstein' with analysis (Ian Osborne & Partners LLP?)",
             "file_id": "026583",
             "filename": "HOUSE_OVERSIGHT_026583.txt",
+            "is_interesting": true,
             "num_lines": 121,
             "timestamp": "2011-04-01T00:00:00",
             "type": "OtherFile"
@@ -34071,6 +34394,7 @@
             "description": "article about tax implications of disregarded entities",
             "file_id": "026584",
             "filename": "HOUSE_OVERSIGHT_026584.txt",
+            "is_interesting": false,
             "num_lines": 574,
             "timestamp": "2009-07-01T00:00:00",
             "type": "OtherFile"
@@ -34082,6 +34406,7 @@
             "description": "op-ed about why America needs a Ministry of Culture",
             "file_id": "026598",
             "filename": "HOUSE_OVERSIGHT_026598.txt",
+            "is_interesting": false,
             "num_lines": 118,
             "timestamp": "2013-03-27T00:00:00",
             "type": "OtherFile"
@@ -34093,6 +34418,7 @@
             "description": "InsightsPod report on the presidential debate",
             "file_id": "026627",
             "filename": "HOUSE_OVERSIGHT_026627.txt",
+            "is_interesting": true,
             "num_lines": 98,
             "timestamp": "2016-10-19T00:00:00",
             "type": "OtherFile"
@@ -34104,6 +34430,7 @@
             "description": "comments about an Apollo linked hedge fund 'DE Fund VIII'",
             "file_id": "026634",
             "filename": "HOUSE_OVERSIGHT_026634.txt",
+            "is_interesting": true,
             "num_lines": 21,
             "type": "OtherFile"
         },
@@ -34113,6 +34440,7 @@
             "description": "article about JASTA lawsuit against Saudi Arabia by 9/11 victims (Russian propaganda?)",
             "file_id": "026648",
             "filename": "HOUSE_OVERSIGHT_026648.txt",
+            "is_interesting": false,
             "num_lines": 47,
             "timestamp": "2017-05-13T00:00:00",
             "type": "OtherFile"
@@ -34124,6 +34452,7 @@
             "description": "2016-Q4 earnings report signed by Ari Glass",
             "file_id": "026668",
             "filename": "HOUSE_OVERSIGHT_026668.txt",
+            "is_interesting": true,
             "num_lines": 160,
             "timestamp": "2017-02-16T00:00:00",
             "type": "OtherFile"
@@ -34134,6 +34463,7 @@
             "description": "fragment of image metadata (???)",
             "file_id": "026678",
             "filename": "HOUSE_OVERSIGHT_026678.txt",
+            "is_interesting": false,
             "num_lines": 5,
             "timestamp": "2017-06-29T00:00:00",
             "type": "OtherFile"
@@ -34145,6 +34475,7 @@
             "description": "Global Sovereign Asset Management Study 2017",
             "file_id": "026679",
             "filename": "HOUSE_OVERSIGHT_026679.txt",
+            "is_interesting": false,
             "num_lines": 2177,
             "timestamp": "2017-04-17T00:00:00",
             "type": "OtherFile"
@@ -34156,6 +34487,7 @@
             "description": "speech at first inaugural Cornell Carl Sagan Lecture",
             "file_id": "026731",
             "filename": "HOUSE_OVERSIGHT_026731.txt",
+            "is_interesting": false,
             "num_lines": 250,
             "timestamp": "2017-05-08T00:00:00",
             "type": "OtherFile"
@@ -34167,6 +34499,7 @@
             "description": "2017 program",
             "file_id": "026747",
             "filename": "HOUSE_OVERSIGHT_026747.txt",
+            "is_interesting": true,
             "num_lines": 169,
             "timestamp": "2017-08-23T00:00:00",
             "type": "OtherFile"
@@ -34178,6 +34511,7 @@
             "description": "press release by about Hurricane Irma damage",
             "file_id": "026759",
             "filename": "HOUSE_OVERSIGHT_026759.txt",
+            "is_interesting": true,
             "num_lines": 43,
             "timestamp": "2017-09-13T00:00:00",
             "type": "OtherFile"
@@ -34188,6 +34522,7 @@
             "description": "Forbes article about Barbro C. Ehnbom 'Swedish American Group Focuses On Cancer'",
             "file_id": "026761",
             "filename": "HOUSE_OVERSIGHT_026761.txt",
+            "is_interesting": false,
             "num_lines": 112,
             "timestamp": "2017-09-09T00:00:00",
             "type": "OtherFile"
@@ -34198,6 +34533,7 @@
             "description": "letter from Steven Hoffenberg's lawyers at Mintz Fraade offering to take over Epstein's business and resolve his legal issues",
             "file_id": "026793",
             "filename": "HOUSE_OVERSIGHT_026793.txt",
+            "is_interesting": true,
             "num_lines": 39,
             "timestamp": "2018-03-23T00:00:00",
             "type": "OtherFile"
@@ -34209,6 +34545,7 @@
             "description": "Global Political and Regulatory Risk in 2015/2016",
             "file_id": "026794",
             "filename": "HOUSE_OVERSIGHT_026794.txt",
+            "is_interesting": false,
             "num_lines": 673,
             "timestamp": "2015-11-04T00:00:00",
             "type": "OtherFile"
@@ -34220,6 +34557,7 @@
             "description": "Asset & Wealth Management featured speaker bios",
             "file_id": "026825",
             "filename": "HOUSE_OVERSIGHT_026825.txt",
+            "is_interesting": false,
             "num_lines": 81,
             "timestamp": "2014-10-01T00:00:00",
             "type": "OtherFile"
@@ -34231,6 +34569,7 @@
             "description": "report on ISIS",
             "file_id": "026827",
             "filename": "HOUSE_OVERSIGHT_026827.txt",
+            "is_interesting": false,
             "num_lines": 60,
             "timestamp": "2015-11-14T00:00:00",
             "type": "OtherFile"
@@ -34242,6 +34581,7 @@
             "description": "lying politicians chart",
             "file_id": "026851",
             "filename": "HOUSE_OVERSIGHT_026851.txt",
+            "is_interesting": false,
             "num_lines": 29,
             "timestamp": "2016-07-26T00:00:00",
             "type": "OtherFile"
@@ -34253,6 +34593,7 @@
             "description": "Civil Docket",
             "file_id": "026854",
             "filename": "HOUSE_OVERSIGHT_026854.txt",
+            "is_interesting": true,
             "num_lines": 80,
             "timestamp": "2016-09-09T15:15:00",
             "type": "OtherFile"
@@ -34264,6 +34605,7 @@
             "description": "speech 'Xi Jinping, China And The Global Order'",
             "file_id": "026856",
             "filename": "HOUSE_OVERSIGHT_026856.txt",
+            "is_interesting": false,
             "num_lines": 357,
             "timestamp": "2018-06-26T00:00:00",
             "type": "OtherFile"
@@ -34275,6 +34617,7 @@
             "description": "CNN \"Quest Means Business New China Tariffs \u2014 Trade War\"",
             "file_id": "026868",
             "filename": "HOUSE_OVERSIGHT_026868.txt",
+            "is_interesting": false,
             "num_lines": 226,
             "timestamp": "2018-09-18T00:00:00",
             "type": "OtherFile"
@@ -34286,6 +34629,7 @@
             "description": "CNN \"New Tariffs - Trade War\"",
             "file_id": "026877",
             "filename": "HOUSE_OVERSIGHT_026877.txt",
+            "is_interesting": false,
             "num_lines": 216,
             "timestamp": "2018-09-18T00:00:00",
             "type": "OtherFile"
@@ -34297,6 +34641,7 @@
             "description": "BBC \"New Tariffs - Trade War\"",
             "file_id": "026887",
             "filename": "HOUSE_OVERSIGHT_026887.txt",
+            "is_interesting": false,
             "num_lines": 123,
             "timestamp": "2018-09-18T00:00:00",
             "type": "OtherFile"
@@ -34308,6 +34653,7 @@
             "description": "The Unsteady Undertow Commands the Seas (Temporarily)",
             "file_id": "026909",
             "filename": "HOUSE_OVERSIGHT_026909.txt",
+            "is_interesting": false,
             "num_lines": 652,
             "timestamp": "2018-10-14T00:00:00",
             "type": "OtherFile"
@@ -34319,6 +34665,7 @@
             "description": "Risk of a US-Iran Military Conflict",
             "file_id": "026944",
             "filename": "HOUSE_OVERSIGHT_026944.txt",
+            "is_interesting": false,
             "num_lines": 776,
             "timestamp": "2019-05-23T00:00:00",
             "type": "OtherFile"
@@ -34330,6 +34677,7 @@
             "description": "The Computational Structure of Mental Representation",
             "file_id": "027004",
             "filename": "HOUSE_OVERSIGHT_027004.txt",
+            "is_interesting": true,
             "num_lines": 254,
             "timestamp": "2013-02-26T00:00:00",
             "type": "OtherFile"
@@ -34341,6 +34689,7 @@
             "description": "speech to AIPAC",
             "file_id": "027009",
             "filename": "HOUSE_OVERSIGHT_027009.txt",
+            "is_interesting": false,
             "num_lines": 130,
             "timestamp": "2013-03-03T00:00:00",
             "type": "OtherFile"
@@ -34352,6 +34701,7 @@
             "description": "Scientists Create Human Embryos to Make Stem Cells",
             "file_id": "027024",
             "filename": "HOUSE_OVERSIGHT_027024.txt",
+            "is_interesting": false,
             "num_lines": 77,
             "timestamp": "2013-05-15T00:00:00",
             "type": "OtherFile"
@@ -34362,6 +34712,7 @@
             "description": "German language article about the 2013 Lifeball / AIDS Gala",
             "file_id": "027051",
             "filename": "HOUSE_OVERSIGHT_027051.txt",
+            "is_interesting": true,
             "num_lines": 213,
             "timestamp": "2013-01-01T00:00:00",
             "type": "OtherFile"
@@ -34373,6 +34724,7 @@
             "description": "article by Keith Larsen Palm House Hotel Bankruptcy and EB-5 Visa Fraud Allegations",
             "file_id": "027068",
             "filename": "HOUSE_OVERSIGHT_027068.txt",
+            "is_interesting": true,
             "num_lines": 25,
             "timestamp": "2018-11-16T10:00:00",
             "type": "OtherFile"
@@ -34384,6 +34736,7 @@
             "description": "brochure requesting donations for female condoms in Uganda",
             "file_id": "027071",
             "filename": "HOUSE_OVERSIGHT_027071.txt",
+            "is_interesting": true,
             "num_lines": 120,
             "timestamp": "2012-03-26T00:00:00",
             "type": "OtherFile"
@@ -34395,6 +34748,7 @@
             "description": "pitch deck (USAID was a customer)",
             "file_id": "027074",
             "filename": "HOUSE_OVERSIGHT_027074.txt",
+            "is_interesting": true,
             "num_lines": 209,
             "timestamp": "2006-01-01T00:00:00",
             "type": "OtherFile"
@@ -34405,6 +34759,7 @@
             "description": "Virgin Islands Daily News article",
             "file_id": "027096",
             "filename": "HOUSE_OVERSIGHT_027096.txt",
+            "is_interesting": false,
             "num_lines": 27,
             "timestamp": "2019-02-23T00:00:00",
             "type": "OtherFile"
@@ -34416,6 +34771,7 @@
             "description": "\"Night Flight\" (draft)",
             "file_id": "027849",
             "filename": "HOUSE_OVERSIGHT_027849.txt",
+            "is_interesting": false,
             "num_lines": 15224,
             "timestamp": "2006-07-12T00:00:00",
             "type": "OtherFile"
@@ -34426,6 +34782,7 @@
             "description": "art show flier for \"The House Of The Nobleman\" curated by Wolfe Von Lenkiewicz & Victoria Golembiovskaya",
             "file_id": "028281",
             "filename": "HOUSE_OVERSIGHT_028281.txt",
+            "is_interesting": false,
             "num_lines": 1037,
             "timestamp": "2020-10-15T00:00:00",
             "type": "OtherFile"
@@ -34436,6 +34793,7 @@
             "description": "NYT article about Steve Bannon",
             "file_id": "028481",
             "filename": "HOUSE_OVERSIGHT_028481.txt",
+            "is_interesting": false,
             "num_lines": 177,
             "timestamp": "2018-03-09T00:00:00",
             "type": "OtherFile"
@@ -34447,6 +34805,7 @@
             "description": "decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP",
             "file_id": "028540",
             "filename": "HOUSE_OVERSIGHT_028540.txt",
+            "is_interesting": true,
             "num_lines": 1310,
             "timestamp": "2019-02-27T00:00:00",
             "type": "OtherFile"
@@ -34458,6 +34817,7 @@
             "description": "InsightsPod business plan",
             "file_id": "028815",
             "filename": "HOUSE_OVERSIGHT_028815.txt",
+            "is_interesting": true,
             "num_lines": 719,
             "timestamp": "2016-08-20T00:00:00",
             "type": "OtherFile"
@@ -34470,6 +34830,7 @@
             "dupe_type": "same",
             "file_id": "028887",
             "filename": "HOUSE_OVERSIGHT_028887.txt",
+            "is_interesting": false,
             "num_lines": 159,
             "timestamp": "2015-01-15T00:00:00",
             "type": "OtherFile"
@@ -34483,6 +34844,7 @@
             "dupe_type": "same",
             "file_id": "028928",
             "filename": "HOUSE_OVERSIGHT_028928.txt",
+            "is_interesting": false,
             "num_lines": 79,
             "timestamp": "2015-04-24T00:00:00",
             "type": "OtherFile"
@@ -34498,6 +34860,7 @@
             ],
             "file_id": "028965",
             "filename": "HOUSE_OVERSIGHT_028965.txt",
+            "is_interesting": true,
             "num_lines": 79,
             "timestamp": "2015-04-24T00:00:00",
             "type": "OtherFile"
@@ -34509,6 +34872,7 @@
             "description": "InsightsPod pitch deck",
             "file_id": "028988",
             "filename": "HOUSE_OVERSIGHT_028988.txt",
+            "is_interesting": true,
             "num_lines": 152,
             "timestamp": "2016-08-20T00:00:00",
             "type": "OtherFile"
@@ -34520,6 +34884,7 @@
             "description": "Harvard Business School application letter",
             "file_id": "029102",
             "filename": "HOUSE_OVERSIGHT_029102.txt",
+            "is_interesting": true,
             "num_lines": 94,
             "type": "OtherFile"
         },
@@ -34530,6 +34895,7 @@
             "description": "Harvard Business School application letter",
             "file_id": "029104",
             "filename": "HOUSE_OVERSIGHT_029104.txt",
+            "is_interesting": true,
             "num_lines": 94,
             "type": "OtherFile"
         },
@@ -34540,6 +34906,7 @@
             "description": "response sent to the Gruterites (Gordon Getty fans)",
             "file_id": "029155",
             "filename": "HOUSE_OVERSIGHT_029155.txt",
+            "is_interesting": true,
             "num_lines": 115,
             "timestamp": "2018-03-19T00:00:00",
             "type": "OtherFile"
@@ -34550,6 +34917,7 @@
             "description": "draft of an article about Mueller probe, almost same as 030258",
             "file_id": "029165",
             "filename": "HOUSE_OVERSIGHT_029165.txt",
+            "is_interesting": false,
             "num_lines": 52,
             "timestamp": "2018-03-16T00:00:00",
             "type": "OtherFile"
@@ -34561,6 +34929,7 @@
             "description": "CNN \"U.S. China Tariffs - Trade War\"",
             "file_id": "029176",
             "filename": "HOUSE_OVERSIGHT_029176.txt",
+            "is_interesting": false,
             "num_lines": 114,
             "timestamp": "2018-08-02T00:00:00",
             "type": "OtherFile"
@@ -34571,6 +34940,7 @@
             "description": "Palm Beach Daily News article about Epstein's plea deal",
             "file_id": "029238",
             "filename": "HOUSE_OVERSIGHT_029238.txt",
+            "is_interesting": false,
             "num_lines": 60,
             "timestamp": "2016-11-24T07:00:00",
             "type": "OtherFile"
@@ -34582,6 +34952,7 @@
             "description": "allegations and identity of plaintiff Katie Johnson",
             "file_id": "029257",
             "filename": "HOUSE_OVERSIGHT_029257.txt",
+            "is_interesting": true,
             "num_lines": 9,
             "timestamp": "2016-04-26T00:00:00",
             "type": "OtherFile"
@@ -34592,6 +34963,7 @@
             "description": "Harvard poetry stuff from Lisa New",
             "file_id": "029298",
             "filename": "HOUSE_OVERSIGHT_029298.txt",
+            "is_interesting": false,
             "num_lines": 29,
             "timestamp": "2018-11-25T00:00:00",
             "type": "OtherFile"
@@ -34603,6 +34975,7 @@
             "description": "letter from former lawyer at the Trump Organization",
             "file_id": "029301",
             "filename": "HOUSE_OVERSIGHT_029301.txt",
+            "is_interesting": true,
             "num_lines": 25,
             "timestamp": "2011-08-07T00:00:00",
             "type": "OtherFile"
@@ -34614,6 +34987,7 @@
             "description": "professional resum\u00e9 (former lawyer at the Trump Organization)",
             "file_id": "029302",
             "filename": "HOUSE_OVERSIGHT_029302.txt",
+            "is_interesting": true,
             "num_lines": 89,
             "timestamp": "2011-08-07T00:00:00",
             "type": "OtherFile"
@@ -34625,6 +34999,7 @@
             "description": "recommendation letter for recently departed Trump Organization lawyer Michael J. Boccio",
             "file_id": "029304",
             "filename": "HOUSE_OVERSIGHT_029304.txt",
+            "is_interesting": true,
             "num_lines": 17,
             "timestamp": "2011-07-11T00:00:00",
             "type": "OtherFile"
@@ -34636,6 +35011,7 @@
             "description": "Briefing on end of Defense of Marriage Act",
             "file_id": "029305",
             "filename": "HOUSE_OVERSIGHT_029305.txt",
+            "is_interesting": false,
             "num_lines": 1283,
             "timestamp": "2013-06-27T00:00:00",
             "type": "OtherFile"
@@ -34647,6 +35023,7 @@
             "description": "Plaintiff Motion for Summary Judgment by Jack Scarola",
             "file_id": "029315",
             "filename": "HOUSE_OVERSIGHT_029315.txt",
+            "is_interesting": true,
             "num_lines": 381,
             "timestamp": "2013-09-13T00:00:00",
             "type": "OtherFile"
@@ -34658,6 +35035,7 @@
             "description": "press release",
             "file_id": "029326",
             "filename": "HOUSE_OVERSIGHT_029326.txt",
+            "is_interesting": true,
             "num_lines": 12,
             "timestamp": "2013-02-15T00:00:00",
             "type": "OtherFile"
@@ -34668,6 +35046,7 @@
             "description": "Rafanelli Events promotional deck",
             "file_id": "029328",
             "filename": "HOUSE_OVERSIGHT_029328.txt",
+            "is_interesting": false,
             "num_lines": 230,
             "type": "OtherFile"
         },
@@ -34677,6 +35056,7 @@
             "description": "MarketWatch article about estate taxes, particularly Epstein's favoured GRATs",
             "file_id": "029340",
             "filename": "HOUSE_OVERSIGHT_029340.txt",
+            "is_interesting": false,
             "num_lines": 59,
             "timestamp": "2013-04-29T12:09:00",
             "type": "OtherFile"
@@ -34687,6 +35067,7 @@
             "description": "Microsoft Bing search results for Epstein with sex offender at top, maybe from Tyler Shears?",
             "file_id": "029350",
             "filename": "HOUSE_OVERSIGHT_029350.txt",
+            "is_interesting": true,
             "num_lines": 78,
             "timestamp": "2014-07-31T14:32:00",
             "type": "OtherFile"
@@ -34697,6 +35078,7 @@
             "description": "joke about Obama",
             "file_id": "029351",
             "filename": "HOUSE_OVERSIGHT_029351.txt",
+            "is_interesting": false,
             "num_lines": 22,
             "timestamp": "2013-07-26T00:00:00",
             "type": "OtherFile"
@@ -34707,6 +35089,7 @@
             "description": "joke about Obama",
             "file_id": "029352",
             "filename": "HOUSE_OVERSIGHT_029352.txt",
+            "is_interesting": false,
             "num_lines": 25,
             "timestamp": "2013-07-26T00:00:00",
             "type": "OtherFile"
@@ -34717,6 +35100,7 @@
             "description": "joke about Obama",
             "file_id": "029353",
             "filename": "HOUSE_OVERSIGHT_029353.txt",
+            "is_interesting": false,
             "num_lines": 28,
             "timestamp": "2013-07-26T00:00:00",
             "type": "OtherFile"
@@ -34727,6 +35111,7 @@
             "description": "joke about Obama",
             "file_id": "029354",
             "filename": "HOUSE_OVERSIGHT_029354.txt",
+            "is_interesting": false,
             "num_lines": 28,
             "timestamp": "2013-07-26T00:00:00",
             "type": "OtherFile"
@@ -34741,6 +35126,7 @@
             ],
             "file_id": "029355",
             "filename": "HOUSE_OVERSIGHT_029355.txt",
+            "is_interesting": true,
             "num_lines": 73,
             "timestamp": "2013-01-12T00:00:00",
             "type": "OtherFile"
@@ -34753,6 +35139,7 @@
             "dupe_type": "quoted",
             "file_id": "029356",
             "filename": "HOUSE_OVERSIGHT_029356.txt",
+            "is_interesting": false,
             "num_lines": 18,
             "type": "OtherFile"
         },
@@ -34766,6 +35153,7 @@
             ],
             "file_id": "029357",
             "filename": "HOUSE_OVERSIGHT_029357.txt",
+            "is_interesting": true,
             "num_lines": 814,
             "timestamp": "2015-01-15T00:00:00",
             "type": "OtherFile"
@@ -34777,6 +35165,7 @@
             "description": "article in Law.com",
             "file_id": "029398",
             "filename": "HOUSE_OVERSIGHT_029398.txt",
+            "is_interesting": true,
             "num_lines": 95,
             "timestamp": "2016-10-10T00:00:00",
             "type": "OtherFile"
@@ -34789,6 +35178,7 @@
             "dupe_type": "same",
             "file_id": "029405",
             "filename": "HOUSE_OVERSIGHT_029405.txt",
+            "is_interesting": false,
             "num_lines": 264,
             "timestamp": "2017-05-25T00:00:00",
             "type": "OtherFile"
@@ -34803,6 +35193,7 @@
             ],
             "file_id": "029416",
             "filename": "HOUSE_OVERSIGHT_029416.txt",
+            "is_interesting": true,
             "num_lines": 264,
             "timestamp": "2017-05-25T00:00:00",
             "type": "OtherFile"
@@ -34813,6 +35204,7 @@
             "description": "seems related to an IRL meeting about concerns China will attempt to absorb Mongolia",
             "file_id": "029427",
             "filename": "HOUSE_OVERSIGHT_029427.txt",
+            "is_interesting": true,
             "num_lines": 55,
             "timestamp": "2017-06-19T00:00:00",
             "type": "OtherFile"
@@ -34824,6 +35216,7 @@
             "description": "tax report",
             "file_id": "029438",
             "filename": "HOUSE_OVERSIGHT_029438.txt",
+            "is_interesting": false,
             "num_lines": 409,
             "timestamp": "2018-01-02T00:00:00",
             "type": "OtherFile"
@@ -34834,6 +35227,7 @@
             "description": "weird short essay titled 'President Obama and Self-Deception'",
             "file_id": "029448",
             "filename": "HOUSE_OVERSIGHT_029448.txt",
+            "is_interesting": true,
             "num_lines": 25,
             "type": "OtherFile"
         },
@@ -34843,6 +35237,7 @@
             "description": "NYT article about Peter Thiel",
             "file_id": "029452",
             "filename": "HOUSE_OVERSIGHT_029452.txt",
+            "is_interesting": false,
             "num_lines": 149,
             "timestamp": "2018-03-07T00:00:00",
             "type": "OtherFile"
@@ -34853,6 +35248,7 @@
             "description": "Virgin Islands Twin City Mobile Integrated Health Services (TCMIH) proposal/request for donation",
             "file_id": "029475",
             "filename": "HOUSE_OVERSIGHT_029475.txt",
+            "is_interesting": true,
             "num_lines": 729,
             "timestamp": "2018-03-10T00:00:00",
             "type": "OtherFile"
@@ -34863,6 +35259,7 @@
             "description": "Harvard poetry stuff from Lisa New",
             "file_id": "029517",
             "filename": "HOUSE_OVERSIGHT_029517.txt",
+            "is_interesting": false,
             "num_lines": 29,
             "timestamp": "2018-11-25T00:00:00",
             "type": "OtherFile"
@@ -34873,6 +35270,7 @@
             "description": "Virgin Islands Daily News article",
             "file_id": "029518",
             "filename": "HOUSE_OVERSIGHT_029518.txt",
+            "is_interesting": false,
             "num_lines": 110,
             "timestamp": "2018-12-05T00:00:00",
             "type": "OtherFile"
@@ -34884,6 +35282,7 @@
             "description": "article by Keith Larsen 'Lost Paradise at the Palm House'",
             "file_id": "029520",
             "filename": "HOUSE_OVERSIGHT_029520.txt",
+            "is_interesting": true,
             "num_lines": 265,
             "timestamp": "2019-06-17T00:00:00",
             "type": "OtherFile"
@@ -34895,6 +35294,7 @@
             "description": "Alan Trounson interview on California stem cell research and CIRM",
             "file_id": "029539",
             "filename": "HOUSE_OVERSIGHT_029539.txt",
+            "is_interesting": false,
             "num_lines": 137,
             "timestamp": "2013-05-29T00:00:00",
             "type": "OtherFile"
@@ -34905,6 +35305,7 @@
             "description": "Harvard poetry stuff from Lisa New",
             "file_id": "029543",
             "filename": "HOUSE_OVERSIGHT_029543.txt",
+            "is_interesting": false,
             "num_lines": 59,
             "type": "OtherFile"
         },
@@ -34914,6 +35315,7 @@
             "description": "joke about Obama",
             "file_id": "029564",
             "filename": "HOUSE_OVERSIGHT_029564.txt",
+            "is_interesting": false,
             "num_lines": 16,
             "timestamp": "2013-07-26T00:00:00",
             "type": "OtherFile"
@@ -34924,6 +35326,7 @@
             "description": "Harvard poetry stuff from Lisa New",
             "file_id": "029589",
             "filename": "HOUSE_OVERSIGHT_029589.txt",
+            "is_interesting": false,
             "num_lines": 29,
             "timestamp": "2018-11-25T00:00:00",
             "type": "OtherFile"
@@ -34934,6 +35337,7 @@
             "description": "Harvard poetry stuff from Lisa New",
             "file_id": "029592",
             "filename": "HOUSE_OVERSIGHT_029592.txt",
+            "is_interesting": false,
             "num_lines": 30,
             "timestamp": "2018-11-25T00:00:00",
             "type": "OtherFile"
@@ -34944,6 +35348,7 @@
             "description": "Harvard poetry stuff from Lisa New",
             "file_id": "029603",
             "filename": "HOUSE_OVERSIGHT_029603.txt",
+            "is_interesting": false,
             "num_lines": 31,
             "timestamp": "2018-11-25T00:00:00",
             "type": "OtherFile"
@@ -34954,6 +35359,7 @@
             "description": "Virgin Islands Daily News article",
             "file_id": "029608",
             "filename": "HOUSE_OVERSIGHT_029608.txt",
+            "is_interesting": false,
             "num_lines": 76,
             "timestamp": "2019-02-22T00:00:00",
             "type": "OtherFile"
@@ -34964,6 +35370,7 @@
             "description": "bio of Kathleen Harrington, Founding Partner, C/H Global Strategies",
             "file_id": "029623",
             "filename": "HOUSE_OVERSIGHT_029623.txt",
+            "is_interesting": true,
             "num_lines": 11,
             "type": "OtherFile"
         },
@@ -34973,6 +35380,7 @@
             "description": "The Shimon Post selection of articles about the mideast",
             "file_id": "029628",
             "filename": "HOUSE_OVERSIGHT_029628.txt",
+            "is_interesting": false,
             "num_lines": 362,
             "timestamp": "2011-06-04T00:00:00",
             "type": "OtherFile"
@@ -34984,6 +35392,7 @@
             "description": "front page article about Deepak Chopra and young Iranians",
             "file_id": "029865",
             "filename": "HOUSE_OVERSIGHT_029865.txt",
+            "is_interesting": false,
             "num_lines": 111,
             "timestamp": "2016-11-05T00:00:00",
             "type": "OtherFile"
@@ -34995,6 +35404,7 @@
             "description": "bio",
             "file_id": "029918",
             "filename": "HOUSE_OVERSIGHT_029918.txt",
+            "is_interesting": true,
             "num_lines": 29,
             "timestamp": "2012-01-01T00:00:00",
             "type": "OtherFile"
@@ -35005,6 +35415,7 @@
             "description": "New Yorker article about the placebo effect by Michael Specter",
             "file_id": "029925",
             "filename": "HOUSE_OVERSIGHT_029925.txt",
+            "is_interesting": false,
             "num_lines": 1016,
             "timestamp": "2011-12-12T00:00:00",
             "type": "OtherFile"
@@ -35015,6 +35426,7 @@
             "description": "The Shimon Post selection of articles about the mideast",
             "file_id": "029932",
             "filename": "HOUSE_OVERSIGHT_029932.txt",
+            "is_interesting": false,
             "num_lines": 427,
             "timestamp": "2011-07-03T00:00:00",
             "type": "OtherFile"
@@ -35026,6 +35438,7 @@
             "description": "Eye On The Market",
             "file_id": "030010",
             "filename": "HOUSE_OVERSIGHT_030010.txt",
+            "is_interesting": false,
             "num_lines": 161,
             "timestamp": "2011-06-14T00:00:00",
             "type": "OtherFile"
@@ -35036,6 +35449,7 @@
             "description": "Aviation International News article",
             "file_id": "030013",
             "filename": "HOUSE_OVERSIGHT_030013.txt",
+            "is_interesting": false,
             "num_lines": 495,
             "timestamp": "2012-07-01T00:00:00",
             "type": "OtherFile"
@@ -35046,6 +35460,7 @@
             "description": "The Shimon Post selection of articles about the mideast",
             "file_id": "030030",
             "filename": "HOUSE_OVERSIGHT_030030.txt",
+            "is_interesting": false,
             "num_lines": 298,
             "timestamp": "2011-03-29T00:00:00",
             "type": "OtherFile"
@@ -35056,6 +35471,7 @@
             "description": "The Shimon Post selection of articles about the mideast",
             "file_id": "030060",
             "filename": "HOUSE_OVERSIGHT_030060.txt",
+            "is_interesting": false,
             "num_lines": 423,
             "timestamp": "2011-05-13T00:00:00",
             "type": "OtherFile"
@@ -35066,6 +35482,7 @@
             "description": "Virgin Islands Daily News article",
             "file_id": "030094",
             "filename": "HOUSE_OVERSIGHT_030094.txt",
+            "is_interesting": false,
             "num_lines": 107,
             "timestamp": "2019-07-03T00:00:00",
             "type": "OtherFile"
@@ -35076,6 +35493,7 @@
             "description": "JASTA (Justice Against Sponsors of Terrorism Act) doc that's mostly empty, references suit against Saudi f. Kathryn Ruemmler & Ken Starr",
             "file_id": "030142",
             "filename": "HOUSE_OVERSIGHT_030142.txt",
+            "is_interesting": false,
             "num_lines": 43,
             "timestamp": "2016-09-01T00:00:00",
             "type": "OtherFile"
@@ -35086,6 +35504,7 @@
             "description": "The Shimon Post selection of articles about the mideast",
             "file_id": "030156",
             "filename": "HOUSE_OVERSIGHT_030156.txt",
+            "is_interesting": false,
             "num_lines": 349,
             "timestamp": "2011-06-22T00:00:00",
             "type": "OtherFile"
@@ -35097,6 +35516,7 @@
             "description": "\"Remembering Lenny Bruce While We're Thinking About Trump\" (draft?)",
             "file_id": "030187",
             "filename": "HOUSE_OVERSIGHT_030187.txt",
+            "is_interesting": false,
             "num_lines": 51,
             "timestamp": "2016-11-08T00:00:00",
             "type": "OtherFile"
@@ -35107,6 +35527,7 @@
             "description": "article about allegations Trump raped a 13 year old girl Jane Doe v. Donald Trump and Jeffrey Epstein",
             "file_id": "030199",
             "filename": "HOUSE_OVERSIGHT_030199.txt",
+            "is_interesting": false,
             "num_lines": 44,
             "timestamp": "2017-11-16T00:00:00",
             "type": "OtherFile"
@@ -35117,6 +35538,7 @@
             "description": "draft of an article about Mueller probe, almost same as 030258",
             "file_id": "030248",
             "filename": "HOUSE_OVERSIGHT_030248.txt",
+            "is_interesting": false,
             "num_lines": 34,
             "timestamp": "2018-03-16T00:00:00",
             "type": "OtherFile"
@@ -35127,6 +35549,7 @@
             "description": "draft of an article about Mueller probe, almost same as 030248",
             "file_id": "030258",
             "filename": "HOUSE_OVERSIGHT_030258.txt",
+            "is_interesting": false,
             "num_lines": 36,
             "timestamp": "2018-03-16T00:00:00",
             "type": "OtherFile"
@@ -35137,6 +35560,7 @@
             "description": "The Shimon Post selection of articles about the mideast",
             "file_id": "030268",
             "filename": "HOUSE_OVERSIGHT_030268.txt",
+            "is_interesting": false,
             "num_lines": 352,
             "timestamp": "2011-05-29T00:00:00",
             "type": "OtherFile"
@@ -35147,6 +35571,7 @@
             "description": "The Independent article about Prince Andrew, Epstein, and Epstein's butler who stole his address book",
             "file_id": "030333",
             "filename": "HOUSE_OVERSIGHT_030333.txt",
+            "is_interesting": true,
             "num_lines": 40,
             "timestamp": "2015-01-07T00:00:00",
             "type": "OtherFile"
@@ -35158,6 +35583,7 @@
             "description": "reputation repair proposal (cites Michael Milken)",
             "file_id": "030426",
             "filename": "HOUSE_OVERSIGHT_030426.txt",
+            "is_interesting": true,
             "num_lines": 104,
             "timestamp": "2011-06-14T00:00:00",
             "type": "OtherFile"
@@ -35168,6 +35594,7 @@
             "description": "Virgin Islands Daily News article",
             "file_id": "030433",
             "filename": "HOUSE_OVERSIGHT_030433.txt",
+            "is_interesting": false,
             "num_lines": 164,
             "timestamp": "2019-07-06T00:00:00",
             "type": "OtherFile"
@@ -35178,6 +35605,7 @@
             "description": "The Shimon Post selection of articles about the mideast",
             "file_id": "030531",
             "filename": "HOUSE_OVERSIGHT_030531.txt",
+            "is_interesting": false,
             "num_lines": 296,
             "timestamp": "2011-05-16T00:00:00",
             "type": "OtherFile"
@@ -35188,6 +35616,7 @@
             "description": "Epstein's unflattering Google search results, maybe screenshot by Al Seckel or Ian Osborne & Partners LLP",
             "file_id": "030573",
             "filename": "HOUSE_OVERSIGHT_030573.txt",
+            "is_interesting": true,
             "num_lines": 43,
             "timestamp": "2011-02-25T00:00:00",
             "type": "OtherFile"
@@ -35199,6 +35628,7 @@
             "description": "2017 Gotham Awards invitation",
             "file_id": "030769",
             "filename": "HOUSE_OVERSIGHT_030769.txt",
+            "is_interesting": false,
             "num_lines": 36,
             "timestamp": "2017-11-27T18:00:00",
             "type": "OtherFile"
@@ -35210,6 +35640,7 @@
             "description": "Eye On The Market",
             "file_id": "030808",
             "filename": "HOUSE_OVERSIGHT_030808.txt",
+            "is_interesting": false,
             "num_lines": 459,
             "timestamp": "2011-07-11T00:00:00",
             "type": "OtherFile"
@@ -35221,6 +35652,7 @@
             "description": "Eye On The Market",
             "file_id": "030814",
             "filename": "HOUSE_OVERSIGHT_030814.txt",
+            "is_interesting": false,
             "num_lines": 688,
             "timestamp": "2011-11-21T00:00:00",
             "type": "OtherFile"
@@ -35231,6 +35663,7 @@
             "description": "draft of an article about Syria",
             "file_id": "030825",
             "filename": "HOUSE_OVERSIGHT_030825.txt",
+            "is_interesting": false,
             "num_lines": 15,
             "type": "OtherFile"
         },
@@ -35240,6 +35673,7 @@
             "description": "South Florida Sun Sentinel article about Brad Edwards and Jeffrey Epstein",
             "file_id": "030829",
             "filename": "HOUSE_OVERSIGHT_030829.txt",
+            "is_interesting": true,
             "num_lines": 589,
             "timestamp": "2014-04-22T03:25:00",
             "type": "OtherFile"
@@ -35251,6 +35685,7 @@
             "description": "Market Thoughts",
             "file_id": "030840",
             "filename": "HOUSE_OVERSIGHT_030840.txt",
+            "is_interesting": false,
             "num_lines": 332,
             "timestamp": "2012-11-14T00:00:00",
             "type": "OtherFile"
@@ -35262,6 +35697,7 @@
             "description": "Global Asset Allocation report",
             "file_id": "030848",
             "filename": "HOUSE_OVERSIGHT_030848.txt",
+            "is_interesting": false,
             "num_lines": 605,
             "timestamp": "2013-03-28T00:00:00",
             "type": "OtherFile"
@@ -35272,6 +35708,7 @@
             "description": "Epstein's Wikipedia page",
             "file_id": "030875",
             "filename": "HOUSE_OVERSIGHT_030875.txt",
+            "is_interesting": true,
             "num_lines": 22,
             "type": "OtherFile"
         },
@@ -35281,6 +35718,7 @@
             "description": "tweet by Ed Krassenstein",
             "file_id": "030884",
             "filename": "HOUSE_OVERSIGHT_030884.txt",
+            "is_interesting": false,
             "num_lines": 11,
             "type": "OtherFile"
         },
@@ -35290,6 +35728,7 @@
             "description": "Virgin Islands Daily News article",
             "file_id": "031170",
             "filename": "HOUSE_OVERSIGHT_031170.txt",
+            "is_interesting": false,
             "num_lines": 106,
             "timestamp": "2019-03-06T00:00:00",
             "type": "OtherFile"
@@ -35300,6 +35739,7 @@
             "description": "Virgin Islands Daily News article",
             "file_id": "031171",
             "filename": "HOUSE_OVERSIGHT_031171.txt",
+            "is_interesting": false,
             "num_lines": 70,
             "timestamp": "2019-02-06T00:00:00",
             "type": "OtherFile"
@@ -35311,6 +35751,7 @@
             "description": "fundraiser invitation",
             "file_id": "031184",
             "filename": "HOUSE_OVERSIGHT_031184.txt",
+            "is_interesting": true,
             "num_lines": 59,
             "timestamp": "2012-09-27T18:00:00",
             "type": "OtherFile"
@@ -35322,6 +35763,7 @@
             "description": "article on allegations of rape of 13 year old against Trump",
             "file_id": "031186",
             "filename": "HOUSE_OVERSIGHT_031186.txt",
+            "is_interesting": false,
             "num_lines": 49,
             "timestamp": "2016-11-02T00:00:00",
             "type": "OtherFile"
@@ -35332,6 +35774,7 @@
             "description": "single page of unknown article about Epstein and Trump's relationship in 1997",
             "file_id": "031191",
             "filename": "HOUSE_OVERSIGHT_031191.txt",
+            "is_interesting": false,
             "num_lines": 25,
             "type": "OtherFile"
         },
@@ -35341,6 +35784,7 @@
             "description": "article about identify of Jane Doe in Jane Doe v. Donald Trump and Jeffrey Epstein",
             "file_id": "031198",
             "filename": "HOUSE_OVERSIGHT_031198.txt",
+            "is_interesting": false,
             "num_lines": 185,
             "timestamp": "2016-06-24T20:00:00",
             "type": "OtherFile"
@@ -35351,6 +35795,7 @@
             "description": "Virgin Islands Daily News article",
             "file_id": "031209",
             "filename": "HOUSE_OVERSIGHT_031209.txt",
+            "is_interesting": false,
             "num_lines": 154,
             "timestamp": "2017-01-10T00:00:00",
             "type": "OtherFile"
@@ -35359,6 +35804,7 @@
             "bytes": 26,
             "file_id": "031293",
             "filename": "HOUSE_OVERSIGHT_031293.txt",
+            "is_interesting": true,
             "num_lines": 1,
             "type": "OtherFile"
         },
@@ -35369,6 +35815,7 @@
             "description": "\"Thinking About the Environment and Technology\" report 2011",
             "file_id": "031354",
             "filename": "HOUSE_OVERSIGHT_031354.txt",
+            "is_interesting": false,
             "num_lines": 182,
             "type": "OtherFile"
         },
@@ -35379,6 +35826,7 @@
             "description": "Earth Environment Convention about ESG investing",
             "file_id": "031359",
             "filename": "HOUSE_OVERSIGHT_031359.txt",
+            "is_interesting": false,
             "num_lines": 794,
             "timestamp": "2001-03-11T00:00:00",
             "type": "OtherFile"
@@ -35394,6 +35842,7 @@
             ],
             "file_id": "031396",
             "filename": "HOUSE_OVERSIGHT_031396.txt",
+            "is_interesting": false,
             "num_lines": 63,
             "timestamp": "2019-02-06T00:00:00",
             "type": "OtherFile"
@@ -35407,6 +35856,7 @@
             "dupe_type": "same",
             "file_id": "031415",
             "filename": "HOUSE_OVERSIGHT_031415.txt",
+            "is_interesting": false,
             "num_lines": 63,
             "timestamp": "2019-02-06T00:00:00",
             "type": "OtherFile"
@@ -35418,6 +35868,7 @@
             "description": "completely redacted email from",
             "file_id": "031425",
             "filename": "HOUSE_OVERSIGHT_031425.txt",
+            "is_interesting": true,
             "num_lines": 11,
             "type": "OtherFile"
         },
@@ -35428,6 +35879,7 @@
             "description": "letter from to Melanie Ann Pustay and Sean O'Neill re: an Epstein FOIA request",
             "file_id": "031447",
             "filename": "HOUSE_OVERSIGHT_031447.txt",
+            "is_interesting": true,
             "num_lines": 97,
             "timestamp": "2015-08-19T00:00:00",
             "type": "OtherFile"
@@ -35438,6 +35890,7 @@
             "description": "pages from a book about the Baylor University sexual assault scandal and Sam Ukwuachu",
             "file_id": "031533",
             "filename": "HOUSE_OVERSIGHT_031533.txt",
+            "is_interesting": false,
             "num_lines": 67,
             "type": "OtherFile"
         },
@@ -35447,6 +35900,7 @@
             "description": "tweets by Donald Trump about Russian collusion",
             "file_id": "031546",
             "filename": "HOUSE_OVERSIGHT_031546.txt",
+            "is_interesting": false,
             "num_lines": 31,
             "timestamp": "2018-01-06T00:00:00",
             "type": "OtherFile"
@@ -35457,6 +35911,7 @@
             "description": "letter from General Mike Flynn's lawyers to senators Mark Warner & Richard Burr about subpoena",
             "file_id": "031670",
             "filename": "HOUSE_OVERSIGHT_031670.txt",
+            "is_interesting": true,
             "num_lines": 231,
             "timestamp": "2017-05-22T00:00:00",
             "type": "OtherFile"
@@ -35467,6 +35922,7 @@
             "description": "Fortune Magazine article by Tom Barrack",
             "file_id": "031716",
             "filename": "HOUSE_OVERSIGHT_031716.txt",
+            "is_interesting": true,
             "num_lines": 220,
             "timestamp": "2016-10-22T00:00:00",
             "type": "OtherFile"
@@ -35477,6 +35933,7 @@
             "description": "article about Gloria Allred and Trump allegations",
             "file_id": "031725",
             "filename": "HOUSE_OVERSIGHT_031725.txt",
+            "is_interesting": false,
             "num_lines": 49,
             "timestamp": "2016-10-10T00:00:00",
             "type": "OtherFile"
@@ -35487,6 +35944,7 @@
             "description": "translation of Arabic article by Abdulnaser Salamah 'Trump; Prince of Believers (Caliph)!'",
             "file_id": "031736",
             "filename": "HOUSE_OVERSIGHT_031736.txt",
+            "is_interesting": false,
             "num_lines": 21,
             "timestamp": "2017-05-13T00:00:00",
             "type": "OtherFile"
@@ -35497,6 +35955,7 @@
             "description": "a few pages describing the internet as a \"New Nation State\" (Network State?)",
             "file_id": "031743",
             "filename": "HOUSE_OVERSIGHT_031743.txt",
+            "is_interesting": true,
             "num_lines": 71,
             "type": "OtherFile"
         },
@@ -35507,6 +35966,7 @@
             "description": "essay for Playboy in the 1980s",
             "file_id": "031753",
             "filename": "HOUSE_OVERSIGHT_031753.txt",
+            "is_interesting": false,
             "num_lines": 33,
             "timestamp": "1985-01-01T00:00:00",
             "type": "OtherFile"
@@ -35517,6 +35977,7 @@
             "description": "article about Michael Avenatti by Andrew Strickler",
             "file_id": "031776",
             "filename": "HOUSE_OVERSIGHT_031776.txt",
+            "is_interesting": false,
             "num_lines": 55,
             "timestamp": "2019-03-27T01:52:00",
             "type": "OtherFile"
@@ -35527,6 +35988,7 @@
             "description": "very short French magazine clipping",
             "file_id": "031794",
             "filename": "HOUSE_OVERSIGHT_031794.txt",
+            "is_interesting": false,
             "num_lines": 24,
             "type": "OtherFile"
         },
@@ -35536,6 +35998,7 @@
             "description": "The Shimon Post selection of articles about the mideast",
             "file_id": "031834",
             "filename": "HOUSE_OVERSIGHT_031834.txt",
+            "is_interesting": false,
             "num_lines": 322,
             "timestamp": "2011-05-16T00:00:00",
             "type": "OtherFile"
@@ -35546,6 +36009,7 @@
             "description": "The Shimon Post selection of articles about the mideast",
             "file_id": "031876",
             "filename": "HOUSE_OVERSIGHT_031876.txt",
+            "is_interesting": false,
             "num_lines": 376,
             "timestamp": "2011-06-14T00:00:00",
             "type": "OtherFile"
@@ -35556,6 +36020,7 @@
             "description": "The Shimon Post selection of articles about the mideast",
             "file_id": "031913",
             "filename": "HOUSE_OVERSIGHT_031913.txt",
+            "is_interesting": false,
             "num_lines": 300,
             "timestamp": "2011-08-24T00:00:00",
             "type": "OtherFile"
@@ -35566,6 +36031,7 @@
             "description": "The Shimon Post selection of articles about the mideast",
             "file_id": "031941",
             "filename": "HOUSE_OVERSIGHT_031941.txt",
+            "is_interesting": false,
             "num_lines": 177,
             "timestamp": "2011-11-17T00:00:00",
             "type": "OtherFile"
@@ -35576,6 +36042,7 @@
             "description": "NYT article about #MeToo allegations against Lawrence Krauss",
             "file_id": "031972",
             "filename": "HOUSE_OVERSIGHT_031972.txt",
+            "is_interesting": false,
             "num_lines": 310,
             "timestamp": "2018-03-07T00:00:00",
             "type": "OtherFile"
@@ -35586,6 +36053,7 @@
             "description": "article about microfinance and cell phones in Zimbabwe, Strive Masiyiwa (Econet Wireless)",
             "file_id": "032159",
             "filename": "HOUSE_OVERSIGHT_032159.txt",
+            "is_interesting": false,
             "num_lines": 105,
             "timestamp": "2014-08-19T00:00:00",
             "type": "OtherFile"
@@ -35596,6 +36064,7 @@
             "description": "The Shimon Post selection of articles about the mideast",
             "file_id": "032171",
             "filename": "HOUSE_OVERSIGHT_032171.txt",
+            "is_interesting": false,
             "num_lines": 160,
             "timestamp": "2011-06-26T00:00:00",
             "type": "OtherFile"
@@ -35607,6 +36076,7 @@
             "description": "InsightsPod forecasting election for Trump",
             "file_id": "032281",
             "filename": "HOUSE_OVERSIGHT_032281.txt",
+            "is_interesting": true,
             "num_lines": 40,
             "timestamp": "2016-10-25T00:00:00",
             "type": "OtherFile"
@@ -35618,6 +36088,7 @@
             "description": "Notice of Initial Conference",
             "file_id": "032321",
             "filename": "HOUSE_OVERSIGHT_032321.txt",
+            "is_interesting": true,
             "num_lines": 58,
             "timestamp": "2016-10-04T00:00:00",
             "type": "OtherFile"
@@ -35629,6 +36100,7 @@
             "description": "InsightsPod election social media trend analysis",
             "file_id": "032324",
             "filename": "HOUSE_OVERSIGHT_032324.txt",
+            "is_interesting": true,
             "num_lines": 21,
             "timestamp": "2016-11-05T00:00:00",
             "type": "OtherFile"
@@ -35639,6 +36111,7 @@
             "description": "NYT article about Chinese butlers",
             "file_id": "032435",
             "filename": "HOUSE_OVERSIGHT_032435.txt",
+            "is_interesting": false,
             "num_lines": 47,
             "timestamp": "2017-01-15T00:00:00",
             "type": "OtherFile"
@@ -35650,6 +36123,7 @@
             "description": "CNN \"Xi Jinping and the New Politburo Committee\"",
             "file_id": "032638",
             "filename": "HOUSE_OVERSIGHT_032638.txt",
+            "is_interesting": false,
             "num_lines": 135,
             "timestamp": "2017-10-26T00:00:00",
             "type": "OtherFile"
@@ -35662,6 +36136,7 @@
             "dupe_type": "same",
             "file_id": "032713",
             "filename": "HOUSE_OVERSIGHT_032713.txt",
+            "is_interesting": false,
             "num_lines": 6,
             "timestamp": "2018-01-05T00:00:00",
             "type": "OtherFile"
@@ -35673,6 +36148,7 @@
             "description": "cover of \"Fire And Fury\"",
             "file_id": "032724",
             "filename": "HOUSE_OVERSIGHT_032724.txt",
+            "is_interesting": false,
             "num_lines": 7,
             "timestamp": "2018-01-05T00:00:00",
             "type": "OtherFile"
@@ -35684,6 +36160,7 @@
             "description": "on Trump",
             "file_id": "032735",
             "filename": "HOUSE_OVERSIGHT_032735.txt",
+            "is_interesting": false,
             "num_lines": 16,
             "timestamp": "2018-03-20T00:00:00",
             "type": "OtherFile"
@@ -35694,6 +36171,7 @@
             "description": "meme of Trump with text 'WOULD YOU TRUST THIS MAN WITH YOUR DAUGHTER?'",
             "file_id": "033177",
             "filename": "HOUSE_OVERSIGHT_033177.txt",
+            "is_interesting": false,
             "num_lines": 2,
             "type": "OtherFile"
         },
@@ -35703,6 +36181,7 @@
             "description": "NYT article about Trump's tax avoidance",
             "file_id": "033181",
             "filename": "HOUSE_OVERSIGHT_033181.txt",
+            "is_interesting": false,
             "num_lines": 32,
             "timestamp": "2016-10-31T00:00:00",
             "type": "OtherFile"
@@ -35714,6 +36193,7 @@
             "description": "short economic report on defense spending under Trump",
             "file_id": "033220",
             "filename": "HOUSE_OVERSIGHT_033220.txt",
+            "is_interesting": false,
             "num_lines": 212,
             "timestamp": "2016-09-30T00:00:00",
             "type": "OtherFile"
@@ -35724,6 +36204,7 @@
             "description": "Business Standard article about Trump's visit with India's Modi",
             "file_id": "033231",
             "filename": "HOUSE_OVERSIGHT_033231.txt",
+            "is_interesting": true,
             "num_lines": 95,
             "timestamp": "2017-03-30T00:00:00",
             "type": "OtherFile"
@@ -35734,6 +36215,7 @@
             "description": "tweets about Ivanka Trump in Arabic",
             "file_id": "033236",
             "filename": "HOUSE_OVERSIGHT_033236.txt",
+            "is_interesting": false,
             "num_lines": 22,
             "timestamp": "2017-05-20T00:00:00",
             "type": "OtherFile"
@@ -35745,6 +36227,7 @@
             "description": "BBC article about Rohingya in Myanmar",
             "file_id": "033253",
             "filename": "HOUSE_OVERSIGHT_033253.txt",
+            "is_interesting": false,
             "num_lines": 61,
             "timestamp": "2017-09-14T00:00:00",
             "type": "OtherFile"
@@ -35756,6 +36239,7 @@
             "description": "'Does Trump Fit the Evolutionary Role of Narcissistic Sociopath?' (draft)",
             "file_id": "033323",
             "filename": "HOUSE_OVERSIGHT_033323.txt",
+            "is_interesting": true,
             "num_lines": 27,
             "timestamp": "2018-12-07T00:00:00",
             "type": "OtherFile"
@@ -35766,6 +36250,7 @@
             "description": "press release announcing Donald Trump & Nicholas Ribis ended their working relationship at Trump's casino",
             "file_id": "033338",
             "filename": "HOUSE_OVERSIGHT_033338.txt",
+            "is_interesting": true,
             "num_lines": 25,
             "timestamp": "2000-06-07T00:00:00",
             "type": "OtherFile"
@@ -35776,6 +36261,7 @@
             "description": "NYT column about trade war with China by Kevin Rudd",
             "file_id": "033365",
             "filename": "HOUSE_OVERSIGHT_033365.txt",
+            "is_interesting": false,
             "num_lines": 84,
             "timestamp": "2019-05-29T00:00:00",
             "type": "OtherFile"
@@ -35787,6 +36273,7 @@
             "description": "How Washington Pivoted From Finger-Wagging to Appeasement (about Viktor Orban)",
             "file_id": "033379",
             "filename": "HOUSE_OVERSIGHT_033379.txt",
+            "is_interesting": false,
             "num_lines": 5,
             "timestamp": "2018-05-25T00:00:00",
             "type": "OtherFile"
@@ -35798,6 +36285,7 @@
             "description": "tweet about Virginia Giuffre / David Boies",
             "file_id": "033432",
             "filename": "HOUSE_OVERSIGHT_033432.txt",
+            "is_interesting": true,
             "num_lines": 25,
             "timestamp": "2019-05-02T00:00:00",
             "type": "OtherFile"
@@ -35809,6 +36297,7 @@
             "description": "tweet about Virginia Giuffre / David Boies",
             "file_id": "033433",
             "filename": "HOUSE_OVERSIGHT_033433.txt",
+            "is_interesting": true,
             "num_lines": 26,
             "timestamp": "2019-03-02T00:00:00",
             "type": "OtherFile"
@@ -35819,6 +36308,7 @@
             "description": "screenshot of iPhone chat labeled 'Edwards' at the top",
             "file_id": "033434",
             "filename": "HOUSE_OVERSIGHT_033434.txt",
+            "is_interesting": true,
             "num_lines": 20,
             "type": "OtherFile"
         },
@@ -35828,6 +36318,7 @@
             "description": "draft of an article about Rod Rosenstein",
             "file_id": "033468",
             "filename": "HOUSE_OVERSIGHT_033468.txt",
+            "is_interesting": false,
             "num_lines": 17,
             "timestamp": "2018-09-24T00:00:00",
             "type": "OtherFile"
@@ -35842,6 +36333,7 @@
             ],
             "file_id": "033478",
             "filename": "HOUSE_OVERSIGHT_033478.txt",
+            "is_interesting": false,
             "num_lines": 6,
             "timestamp": "2018-01-05T00:00:00",
             "type": "OtherFile"
@@ -35852,6 +36344,7 @@
             "description": "NYT article about Rex Tillerson",
             "file_id": "033479",
             "filename": "HOUSE_OVERSIGHT_033479.txt",
+            "is_interesting": false,
             "num_lines": 83,
             "timestamp": "2010-03-14T00:00:00",
             "type": "OtherFile"
@@ -35866,6 +36359,7 @@
             ],
             "file_id": "033480",
             "filename": "HOUSE_OVERSIGHT_033480.txt",
+            "is_interesting": false,
             "num_lines": 21,
             "timestamp": "2018-04-06T00:00:00",
             "type": "OtherFile"
@@ -35878,6 +36372,7 @@
             "dupe_type": "same",
             "file_id": "033481",
             "filename": "HOUSE_OVERSIGHT_033481.txt",
+            "is_interesting": false,
             "num_lines": 18,
             "timestamp": "2018-04-06T00:00:00",
             "type": "OtherFile"
