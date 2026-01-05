@@ -233,7 +233,7 @@ OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
     ferguson flachsbart francis franco frank
     gardner gary geoff geoffrey gilbert gloria goldberg gonzalez gould graham greene guarino gwyneth
     hancock harold harrison harry helen hirsch hofstadter horowitz hussein
-    isaac isaacson
+    ian isaac isaacson
     jamie jane janet jason jen jim joe johnson jones josh julie justin
     karl kate kathy kelly kim kruger kyle
     leo leonard lenny leslie lieberman louis lynch lynn

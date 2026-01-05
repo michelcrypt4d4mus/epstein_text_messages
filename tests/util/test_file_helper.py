@@ -4,7 +4,6 @@ from epstein_files.util.file_helper import *
 def test_build_filename_for_id():
     assert file_stem_for_id(123) == 'HOUSE_OVERSIGHT_000123'
     assert file_stem_for_id('001234_2') == 'HOUSE_OVERSIGHT_001234_2'
-    assert filename_for_id(123) == 'HOUSE_OVERSIGHT_000123.txt'
 
 
 def test_is_local_file_extract(local_extract_file_name):

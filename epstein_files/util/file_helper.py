@@ -23,9 +23,10 @@ KB = 1024
 MB = KB * KB
 
 
-# Handles both string and int 'id' args.
+# Handle both string and int args.
+coerce_file_name = lambda filename_or_id: coerce_file_stem(filename_or_id) + '.txt'
+coerce_file_path = lambda filename_or_id: DOCS_DIR.joinpath(coerce_file_name(filename_or_id))
 id_str = lambda id: f"{int(id):06d}"
-filename_for_id = lambda id: file_stem_for_id(id) + '.txt'
 
 
 def coerce_file_stem(filename_or_id: int | str) -> str:
@@ -40,14 +41,6 @@ def coerce_file_stem(filename_or_id: int | str) -> str:
         raise RuntimeError(f"Invalid stem '{file_stem}' from '{filename_or_id}'")
 
     return file_stem
-
-
-def coerce_file_name(filename_or_id: int | str) -> str:
-    return coerce_file_stem(filename_or_id) + '.txt'
-
-
-def coerce_file_path(filename_or_id: int | str) -> Path:
-    return DOCS_DIR.joinpath(coerce_file_name(filename_or_id))
 
 
 def extract_file_id(filename_or_id: int | str | Path) -> str:
@@ -67,7 +60,10 @@ def file_size(file_path: str | Path) -> int:
 
 
 def file_size_str(file_path: str | Path) -> str:
-    size = file_size(file_path)
+    return file_size_to_str(file_size(file_path))
+
+
+def file_size_to_str(size: int) -> str:
     digits = 2
 
     if size > MB:
