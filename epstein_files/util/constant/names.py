@@ -240,7 +240,7 @@ OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
     marcus marianne matt matthew melissa michele michelle moore moscowitz
     nicole nussbaum
     paulson philippe
-    rafael ray richardson rob robin ron rudolph ryan
+    rafael ray richardson rob robin ron rubin rudolph ryan
     sara sarah seligman serge sergey silverman sloman smith snowden sorkin steele stevie stewart
     ted theresa thompson tiffany timothy tony
     valeria

@@ -591,6 +591,10 @@ class Email(Communication):
             self._merge_lines(7, 9)
         elif self.file_id == '030299':
             self._merge_lines(7, 10)
+        elif self.file_id == '014860':
+            self._merge_lines(3)
+            self._merge_lines(4)
+            self._merge_lines(4)
         elif self.file_id == '029977':
             self._set_computed_fields(text=self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM'))
 

@@ -332,6 +332,7 @@ HIGHLIGHTED_NAMES = [
         style='deep_pink2',
         pattern=r'Cambridge|(Derek\s*)?Bok|Elisa(\s*New)?|Harvard(\s*(Business|Law|University)(\s*School)?)?|(Jonathan\s*)?Zittrain|(Stephen\s*)?Kosslyn',
         emailers = {
+            "Donald Rubin": f"Professor of Statistics",
             "Kelly Friendly": f"longtime aide and spokesperson of {LARRY_SUMMERS}",
             LARRY_SUMMERS: 'board of Digital Currency Group (DCG), Harvard president, Obama economic advisor',
             'Leah Reis-Dennis': 'producer for Lisa New\'s Poetry in America',
