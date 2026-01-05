@@ -21,13 +21,10 @@ class JsonFile(OtherFile):
         if self.url_slug.endswith('.txt') or self.url_slug.endswith('.json'):
             self.url_slug = Path(self.url_slug).stem
 
-        self._set_computed_fields(text=self.formatted_json())
+        self._set_computed_fields(text=self.json_str())
 
     def category(self) -> str:
         return JSON
-
-    def formatted_json(self) -> str:
-        return json.dumps(self.json_data(), indent=4)
 
     def info_txt(self) -> Text | None:
         return Text(f"JSON file, possibly iMessage or similar app metadata", style='white dim italic')
@@ -38,3 +35,6 @@ class JsonFile(OtherFile):
     def json_data(self) -> object:
         with open(self.file_path, encoding='utf-8-sig') as f:
             return json.load(f)
+
+    def json_str(self) -> str:
+        return json.dumps(self.json_data(), indent=4)

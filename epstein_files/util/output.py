@@ -1,3 +1,5 @@
+import json
+
 from rich.padding import Padding
 
 from epstein_files.documents.email import Email
@@ -105,6 +107,20 @@ def print_emails(epstein_files: EpsteinFiles) -> int:
 
     logger.warning(f"Rewrote {len(Email.rewritten_header_ids)} headers of {len(epstein_files.emails)} emails")
     return len(already_printed_emails)
+
+
+def print_json_files(epstein_files: EpsteinFiles):
+    if args.build:
+        json_data = {json_file.url_slug: json_file.json_data() for json_file in epstein_files.json_files}
+
+        with open(JSON_FILES_JSON_PATH, 'w') as f:
+            f.write(json.dumps(json_data, sort_keys=True))
+            log_file_write(JSON_FILES_JSON_PATH)
+    else:
+        for json_file in epstein_files.json_files:
+            console.line(2)
+            console.print(json_file.description_panel())
+            console.print_json(json_file.json_str(), indent=4, sort_keys=False)
 
 
 def print_json_metadata(epstein_files: EpsteinFiles) -> None:

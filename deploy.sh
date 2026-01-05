@@ -80,8 +80,8 @@ git checkout master
 
 source $URLS_ENV
 echo -e ""
-print_msg "             texts page" "$TEXT_MSGS_URL"
-print_msg "            emails page" "$ALL_EMAILS_URL"
-print_msg "       word counts page" "$WORD_COUNT_URL"
-print_msg "     json metadata page" "$JSON_METADATA_URL"
+print_msg "             texts URL:" "$TEXT_MSGS_URL"
+print_msg "            emails URL:" "$ALL_EMAILS_URL"
+print_msg "       word counts URL:" "$WORD_COUNT_URL"
+print_msg "     json metadata URL:" "$JSON_METADATA_URL"
 echo -e "\n\n"
