@@ -408,7 +408,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Stephen Hanson": 3,
     "Stephen Rubin": 1,
     "Steve Bannon": 31,
-    "Steven Gaydos": 3,
+    "Steven Gaydos": 2,
     "Steven Pfeiffer": 1,
     "Steven Sinofsky": 1,
     "Sultan Ahmed Bin Sulayem": 11,

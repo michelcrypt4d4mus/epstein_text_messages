@@ -148,7 +148,12 @@ def print_color_key() -> None:
 
 
 def print_header(epstein_files: 'EpsteinFiles') -> None:
-    console.print(f"This site isn't optimized for mobile but if you get past the header it should be readable.", style='dim')
+    not_optimized_msg = f"This site isn't optimized for mobile"
+
+    if not args.all_emails:
+        not_optimized_msg += f" but if you get past the header it should be readable"
+
+    console.print(f"{not_optimized_msg}.\n", style='dim')
     print_page_title(width=TITLE_WIDTH)
     print_other_site_link()
     _print_external_links()
