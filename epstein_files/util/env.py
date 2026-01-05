@@ -72,7 +72,7 @@ datefinder_logger.setLevel(logger.level)
 # Massage args that depend on other args to the appropriate state
 if not (args.json_metadata or args.output_texts or args.output_emails or args.output_other_files):
     if is_html_script and current_script != COUNT_WORDS_SCRIPT and not args.make_clean and not args.colors_only:
-        logger.warning(f"No output section chosen; outputting default of texts, selected emails, and other files...")
+        logger.warning(f"No output section chosen; outputting default selection of texts, selected emails, and other files...")
 
     args.output_texts = True
     args.output_emails = True
@@ -82,4 +82,4 @@ if args.use_epstein_web_links:
     logger.warning(f"Using links to epsteinweb.org links instead of epsteinify.com...")
 
 if args.debug:
-    logger.warning(f"Invocation args:\nis_html_script={is_html_script},\nspecified_names={specified_names},\nargs={args}")
+    logger.warning(f"Invocation args:\ncurrent_script={current_script}\nis_html_script={is_html_script},\nspecified_names={specified_names},\nargs={args}")
