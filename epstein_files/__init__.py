@@ -112,8 +112,10 @@ def epstein_show():
     console.line()
 
     for doc in docs:
-        console.line()
-        console.print(doc, '\n')
+        if isinstance(doc, Email):
+            doc.truncation_allowed = False
+
+        console.print('\n', doc, '\n')
 
         if args.raw:
             console.print(Panel(Text("RAW: ").append(doc.summary()), expand=False, style=doc._border_style()))
