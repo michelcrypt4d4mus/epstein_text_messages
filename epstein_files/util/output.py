@@ -169,7 +169,6 @@ def write_urls() -> None:
     logger.warning(f"Wrote {len(url_vars)} URL variables to '{args.output_file}'\n")
 
 
-
 def _verify_all_emails_printed(epstein_files: EpsteinFiles, already_printed_emails: list[Email]) -> None:
     """Log warnings if some emails were never printed."""
     email_ids_that_were_printed = set([email.file_id for email in already_printed_emails])

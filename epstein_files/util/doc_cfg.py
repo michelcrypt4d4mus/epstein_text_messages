@@ -235,7 +235,7 @@ class EmailCfg(CommunicationCfg):
     def from_doc_cfg(cls, cfg: DocCfg) -> 'EmailCfg':
         return cls(**asdict(cfg))
 
-    # This is necessary for some dumb reason. @dataclass(repr=False) doesn't cut it
+    # This is necessary because for some dumb reason @dataclass(repr=False) doesn't cut it
     def __repr__(self) -> str:
         return super().__repr__()
 
@@ -246,6 +246,6 @@ class TextCfg(CommunicationCfg):
         super().__post_init__()
         self.category = TEXT_MESSAGE
 
-    # This is necessary for some dumb reason. @dataclass(repr=False) doesn't cut it
+    # This is necessary because for some dumb reason @dataclass(repr=False) doesn't cut it
     def __repr__(self) -> str:
         return super().__repr__()
