@@ -6,7 +6,7 @@ source .env
 set -e
 
 CURRENT_BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
-PICKLE_ARG=$([[ $1 == '--pickled' ]] && echo "--pickled" || echo "--overwrite-pickle")
+PICKLE_ARG=$([[ $1 == '--pickled' ]] && echo "" || echo "--overwrite-pickle")
 URLS_ENV=.urls.env
 
 if [ -n "$BASH_COLORS_PATH" ]; then
@@ -38,51 +38,48 @@ any_uncommitted_changes() {
 }
 
 
-# Preparation / checking for issues / cleaning repo
+# Preparation (check branch, clean build artifacts, etc.)
 if [[ $CURRENT_BRANCH != "master" ]]; then
-    print_msg "Current branch is not master" "($CURRENT_BRANCH)"
+    clr_red "ERROR: Current branch is not master: ($CURRENT_BRANCH)"
+    exit 1
+elif any_uncommitted_changes; then
+    clr_red "ERROR: Uncommitted changes"
     exit 1
 fi
 
-if any_uncommitted_changes; then
-    print_msg "Uncommitted changes; halting"
-    exit 1
-fi
-
+# Push changes, switch to gh_pages branch
 epstein_generate --make-clean
-epstein_dump_urls --suppress-output
-source $URLS_ENV
-
-
-# Switch to gh_pages branch and build files
 git push origin master --quiet
 git checkout gh_pages
 git merge --no-edit master --quiet
 
+# Build files
 echo -e ""
 print_msg "Building text messages page $PICKLE_ARG"
 epstein_generate --build --suppress-output $PICKLE_ARG
-echo -e ""
-print_msg "Building word counts page..."
-./scripts/count_words.py --build --pickled --suppress-output --width 125
-echo -e ""
-print_msg "Building JSON metadata page..."
-epstein_generate --build --json-metadata --pickled
-
 
 if [ -n "$ONLY_TEXTS" ]; then
     print_msg "Skipping build of emails page..."
 else
     echo -e ""
     print_msg "Building all emails page..."
-    epstein_generate --build --all-emails --all-other-files --pickled --suppress-output
+    epstein_generate --build --all-emails --all-other-files --suppress-output
 fi
 
+echo -e ""
+print_msg "Building word counts page..."
+./scripts/count_words.py --build --suppress-output --width 125
+echo -e ""
+print_msg "Building JSON metadata page..."
+epstein_generate --build --json-metadata
 
+# Commit changes
 git commit -am"Update HTML"
 git push origin gh_pages --quiet
 git checkout master
 
+epstein_dump_urls --suppress-output
+source $URLS_ENV
 echo -e ""
 print_msg "             texts page" "$TEXT_MSGS_URL"
 print_msg "            emails page" "$ALL_EMAILS_URL"

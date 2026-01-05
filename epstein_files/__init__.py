@@ -103,14 +103,9 @@ def epstein_show():
     """Show the color highlighted file. If --raw arg is passed, show the raw text of the file as well."""
     _assert_positional_args()
     ids = [extract_file_id(arg) for arg in args.positional_args]
+    raw_docs = [Document(coerce_file_path(id)) for id in ids]
+    docs = [document_cls(doc)(doc.file_path) for doc in raw_docs]
     console.line()
-
-    if args.pickled:
-        epstein_files = EpsteinFiles.get_files(use_pickled=True)
-        docs = epstein_files.get_documents_by_id(ids)
-    else:
-        raw_docs = [Document(coerce_file_path(id)) for id in ids]
-        docs = [document_cls(doc)(doc.file_path) for doc in raw_docs]
 
     for doc in docs:
         console.line()
@@ -118,12 +113,12 @@ def epstein_show():
 
         if args.raw:
             console.line()
-            console.print(Panel(f"*** {doc.url_slug} RAW ***", expand=False, style=doc._border_style()))
+            console.print(Panel(f"RAW {doc.filename} RAW", expand=False, style=doc._border_style()))
             console.print(escape(doc.raw_text()))
 
             if isinstance(doc, Email):
                 console.line()
-                console.print(Panel(f"*** {doc.url_slug} actual_text ***", expand=False, style=doc._border_style()))
+                console.print(Panel(f"{doc.filename}: actual_text() output", expand=False, style=doc._border_style()))
                 console.print(escape(doc._actual_text()))
 
 

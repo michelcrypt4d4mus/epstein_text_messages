@@ -94,23 +94,23 @@ class EpsteinFiles:
         self._tally_email_data()
 
     @classmethod
-    def get_files(cls, timer: Timer | None = None, use_pickled: bool = False) -> 'EpsteinFiles':
+    def get_files(cls, timer: Timer | None = None) -> 'EpsteinFiles':
         """Alternate constructor that reads/writes a pickled version of the data ('timer' arg is for logging)."""
         timer = timer or Timer()
 
-        if ((args.pickled or use_pickled) and PICKLED_PATH.exists()) and not args.overwrite_pickle:
+        if PICKLED_PATH.exists() and not args.overwrite_pickle:
             with gzip.open(PICKLED_PATH, 'rb') as file:
                 epstein_files = pickle.load(file)
                 timer.print_at_checkpoint(f"Loaded {len(epstein_files.all_files):,} documents from '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})")
                 epstein_files.timer = timer
                 return epstein_files
 
+        logger.warning(f"Building new cache file, this will take a few minutes...")
         epstein_files = EpsteinFiles(timer=timer)
 
-        if args.overwrite_pickle or not PICKLED_PATH.exists():
-            with gzip.open(PICKLED_PATH, 'wb') as file:
-                pickle.dump(epstein_files, file)
-                logger.warning(f"Pickled data to '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})...")
+        with gzip.open(PICKLED_PATH, 'wb') as file:
+            pickle.dump(epstein_files, file)
+            logger.warning(f"Pickled data to '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})...")
 
         timer.print_at_checkpoint(f'Processed {len(epstein_files.all_files):,} documents')
         return epstein_files

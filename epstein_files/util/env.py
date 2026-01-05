@@ -14,7 +14,6 @@ HTML_SCRIPTS = ['epstein_generate', 'generate_html.py', COUNT_WORDS_SCRIPT]
 parser = ArgumentParser(description="Parse epstein OCR docs and generate HTML page.")
 parser.add_argument('--name', '-n', action='append', dest='names', help='specify the name(s) whose communications should be output')
 parser.add_argument('--overwrite-pickle', '-op', action='store_true', help='generate new pickled EpsteinFiles object')
-parser.add_argument('--pickled', '-p', action='store_true', help='use pickled EpsteinFiles object')
 
 output = parser.add_argument_group('OUTPUT')
 output.add_argument('--all-emails', '-ae', action='store_true', help='all the emails instead of just the interesting ones')
@@ -25,7 +24,7 @@ output.add_argument('--output-emails', '-oe', action='store_true', help='generat
 output.add_argument('--output-other-files', '-oo', action='store_true', help='generate other files section')
 output.add_argument('--output-texts', '-ot', action='store_true', help='generate other files section')
 output.add_argument('--suppress-output', action='store_true', help='no output to terminal (use with --build)')
-output.add_argument('--width', '-w', type=int, default=DEFAULT_WIDTH, help='screen width to use')
+output.add_argument('--width', '-w', type=int, default=DEFAULT_WIDTH, help='screen width to use (in characters)')
 output.add_argument('--use-epstein-web-links', action='store_true', help='use epsteinweb.org links instead of epstein.media')
 
 scripts = parser.add_argument_group('SCRIPTS', 'Arguments used only by epstein_search, epstein_show, epstein_diff')
@@ -50,7 +49,7 @@ is_html_script = current_script in HTML_SCRIPTS
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 args.output_emails = args.output_emails or args.all_emails
 args.output_other_files = args.output_other_files or args.all_other_files
-args.pickled = args.pickled or is_env_var_set('PICKLED') or args.colors_only or len(args.names or []) > 0
+args.overwrite_pickle = args.overwrite_pickle or (is_env_var_set('OVERWRITE_PICKLE') and not is_env_var_set('USE_PICKLED'))
 args.width = args.width if is_html_script else None
 specified_names: list[str | None] = [None if n == 'None' else n for n in (args.names or [])]
 
