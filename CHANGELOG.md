@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.0.6
 * Add `epstein_word_count` script
 * Add `--output-json-files` option
 * Deploy the collected JSON files at https://michelcrypt4d4mus.github.io/epstein_text_messages/json_files_from_epstein_files_nov_2025.json
