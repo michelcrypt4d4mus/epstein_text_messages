@@ -19,18 +19,14 @@ from epstein_files.count_words import write_word_counts_html
 from epstein_files.epstein_files import EpsteinFiles, document_cls
 from epstein_files.documents.document import INFO_PADDING, Document
 from epstein_files.documents.email import Email
-from epstein_files.util.constant.html import *
-from epstein_files.util.constant.names import *
 from epstein_files.util.constant.output_files import ALL_EMAILS_PATH, TEXT_MSGS_HTML_PATH, make_clean
 from epstein_files.util.env import args, specified_names
 from epstein_files.util.file_helper import coerce_file_path, extract_file_id
 from epstein_files.util.logging import logger
-from epstein_files.util.output import print_emails, print_json_files, print_json_metadata, print_json_stats, print_text_messages, write_urls
+from epstein_files.util.output import (print_emails, print_json_files, print_json_metadata, print_json_stats,
+     print_text_messages, write_urls)
 from epstein_files.util.rich import build_highlighter, console, print_header, print_panel, write_html
 from epstein_files.util.timer import Timer
-
-timer = Timer()
-epstein_files = EpsteinFiles.get_files(timer)
 
 
 def generate_html() -> None:
@@ -38,7 +34,11 @@ def generate_html() -> None:
         make_clean()
         write_urls()
         exit()
-    elif args.json_metadata:
+
+    timer = Timer()
+    epstein_files = EpsteinFiles.get_files(timer)
+
+    if args.json_metadata:
         print_json_metadata(epstein_files)
         exit()
     elif args.output_json_files:
