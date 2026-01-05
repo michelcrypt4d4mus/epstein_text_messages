@@ -44,7 +44,7 @@ UNINTERESTING_CATEGORES = [
     SPEECH,
 ]
 
-# OtherFiles whose description/hints match these prefixes are not displayed unless --all-other-files is used
+# OtherFiles whose descriptions/info match these prefixes are not displayed unless --all-other-files is used
 UNINTERESTING_PREFIXES = FINANCIAL_REPORTS_AUTHORS + [
     'article about',
     ARTICLE_DRAFT,
@@ -139,11 +139,11 @@ class OtherFile(Document):
     def configured_description(self) -> str | None:
         """Overloads superclass method."""
         if self.config is not None:
-            return self.config.info_str()
+            return self.config.complete_description()
 
-    def description_panel(self, include_hints=True) -> Panel:
+    def description_panel(self, include_info=True) -> Panel:
         """Panelized description() with info_txt(), used in search results."""
-        return super().description_panel(include_hints=include_hints)
+        return super().description_panel(include_info=include_info)
 
     def highlighted_preview_text(self) -> Text:
         try:
@@ -157,11 +157,11 @@ class OtherFile(Document):
 
     def is_interesting(self):
         """False for lame prefixes, duplicates, and other boring files."""
-        hints = self.hints()
+        info_sentences = self.info()
 
         if self.is_duplicate():
             return False
-        elif len(hints) == 0:
+        elif len(info_sentences) == 0:
             return True
         elif self.config:
             if self.config.is_interesting:
@@ -172,7 +172,7 @@ class OtherFile(Document):
                 return False
 
         for prefix in UNINTERESTING_PREFIXES:
-            if hints[0].plain.startswith(prefix):
+            if info_sentences[0].plain.startswith(prefix):
                 return False
 
         return True
@@ -249,7 +249,7 @@ class OtherFile(Document):
                 preview_text = file.duplicate_file_txt()
                 row_style = ' dim'
             else:
-                link_and_info += file.hints()
+                link_and_info += file.info()
                 preview_text = file.highlighted_preview_text()
                 row_style = ''
 
