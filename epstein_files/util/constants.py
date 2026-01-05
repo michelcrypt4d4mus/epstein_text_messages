@@ -1605,18 +1605,3 @@ REPLY_LINE_ON_DATE_PATTERN = fr"^On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sa
 REPLY_LINE_PATTERN = rf"({REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
 SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?(Sent (from|via).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
-
-
-# Error checking.
-if len(OTHER_FILES_CONFIG) != 442:
-    logger.warning(f"Found {len(OTHER_FILES_CONFIG)} configured other files!")
-
-encountered_file_ids = set()
-
-for cfg in ALL_CONFIGS:
-    if cfg.id in encountered_file_ids:
-        raise ValueError(f"{cfg.id} configured twice!\n\n{cfg}\n")
-    elif cfg.dupe_of_id and cfg.dupe_of_id == cfg.id:
-        raise ValueError(f"Invalid config!\n\n{cfg}\n")
-
-    encountered_file_ids.add(cfg.id)
