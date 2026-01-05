@@ -244,8 +244,8 @@ DERSH_GIUFFRE_TWEET = f"{TWEET} about {VIRGINIA_GIUFFRE}"
 DEUTSCHE_BANK_TAX_TOPICS = f'{DEUTSCHE_BANK} Wealth Management Tax Topics'
 DIANA_DEGETTE_CAMPAIGN = "Colorado legislator Diana DeGette's campaign"
 EPSTEIN_FOUNDATION = 'Jeffrey Epstein VI Foundation'
-FBI_REPORT = f"{FBI} report on Epstein investigation (redacted)"
-FBI_SEIZED_PROPERTY = f"{FBI} seized property inventory (redacted)"
+FBI_REPORT = f"report on Epstein investigation (redacted)"
+FBI_SEIZED_PROPERTY = f"seized property inventory (redacted)"
 FEMALE_HEALTH_COMPANY = 'Female Health Company (FHX)'
 FIRE_AND_FURY = f"Fire And Fury"
 HARVARD_POETRY = f'{HARVARD} poetry stuff from {LISA_NEW}'
@@ -1016,22 +1016,12 @@ OTHER_FILES_ARTICLES = [
         date='2019-02-06',
         duplicate_ids=['031415'],
     ),
-
-    DocCfg(
-        id='030199',
-        description=f'article about allegations Trump raped a 13 year old girl {JANE_DOE_V_EPSTEIN_TRUMP}',
-        date='2017-11-16',
-    ),
+    DocCfg(id='030199', description=f'article about Trump rape allegations in {JANE_DOE_V_EPSTEIN_TRUMP}', date='2017-11-16'),
     DocCfg(id='031725', description=f"article about Gloria Allred and Trump allegations", date='2016-10-10'),
     DocCfg(id='026648', description=f'article about {JASTA} lawsuit against Saudi Arabia by 9/11 victims (Russian propaganda?)', date='2017-05-13'),
     DocCfg(id='032159', description=f"article about microfinance and cell phones in Zimbabwe, Strive Masiyiwa (Econet Wireless)"),
     DocCfg(id='033468', description=f'{ARTICLE_DRAFT} Rod Rosenstein', date='2018-09-24'),
     DocCfg(id='030825', description=f'{ARTICLE_DRAFT} Syria'),
-    DocCfg(
-        id='019233',
-        description=f"Freedom House: 'Breaking Down Democracy: Goals, Strategies, and Methods of Modern Authoritarians'",
-        date='2017-06-02',
-    ),
     DocCfg(id='027051', description=f"German language article about the 2013 Lifeball / AIDS Gala", date='2013-01-01'),
     DocCfg(id='033480', description=f"{JOHN_BOLTON_PRESS_CLIPPING}", date='2018-04-06', duplicate_ids=['033481']),
     DocCfg(id='013403', description=f"Lexis Nexis result from The Evening Standard about Bernie Madoff", date='2009-12-24'),
@@ -1045,14 +1035,12 @@ OTHER_FILES_ARTICLES = [
         date='2017-05-13',
     ),
     DocCfg(id='025094', description=f'{TRANSLATION} Spanish article about Cuba', date='2015-11-08'),
-    DocCfg(id='031794', description=f"very short French magazine clipping"),
+    DocCfg(id='031794', description=f"very short French magazine clipping", is_interesting=False),
 ]
 
 OTHER_FILES_LEGAL = [
+    DocCfg(id='017789', author=ALAN_DERSHOWITZ, description=f'letter to {HARVARD} Crimson complaining he was defamed'),
     DocCfg(id='011908', author=BRUNEL_V_EPSTEIN, description=f"court filing"),
-    DocCfg(id='025353', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-05-19', duplicate_ids=['010723', '019224'], dupe_type='redacted'),
-    DocCfg(id='025704', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-05-27', duplicate_ids=['010732', '019221'], dupe_type='redacted'),
-    DocCfg(id='012130', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-06-19', duplicate_ids=['012135']),
     DocCfg(id='021824', author=EDWARDS_V_DERSHOWITZ, description=f"deposition of {PAUL_G_CASSELL}"),
     DocCfg(
         id='010757',
@@ -1084,10 +1072,10 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='017488', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Deposition of Scott Rothstein", date='2012-06-22'),
     DocCfg(id='029315', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Plaintiff Motion for Summary Judgment by {JACK_SCAROLA}", date='2013-09-13'),
     DocCfg(id='013304', author=EPSTEIN_V_ROTHSTEIN_EDWARDS, description=f"Plaintiff Response to Epstein's Motion for Summary Judgment", date='2014-04-17'),
-    DocCfg(id='019352', description=FBI_REPORT,),
-    DocCfg(id='021434', description=FBI_REPORT,),
-    DocCfg(id='018872', description=FBI_SEIZED_PROPERTY,),
-    DocCfg(id='021569', description=FBI_SEIZED_PROPERTY,),
+    DocCfg(id='019352', author=FBI, description=FBI_REPORT,),
+    DocCfg(id='021434', author=FBI, description=FBI_REPORT,),
+    DocCfg(id='018872', author=FBI, description=FBI_SEIZED_PROPERTY,),
+    DocCfg(id='021569', author=FBI, description=FBI_SEIZED_PROPERTY,),
     DocCfg(id='017792', author=GIUFFRE_V_DERSHOWITZ, description=f"article about {ALAN_DERSHOWITZ}'s appearance on Wolf Blitzer"),
     DocCfg(id='017767', author=GIUFFRE_V_DERSHOWITZ, description=f"article about {ALAN_DERSHOWITZ} working with {JEFFREY_EPSTEIN}"),
     DocCfg(id='017796', author=GIUFFRE_V_DERSHOWITZ, description=f"article about {ALAN_DERSHOWITZ}"),
@@ -1147,6 +1135,9 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='017830', author=JASTA_SAUDI_LAWSUIT, description=f"legal text and court documents"),
     DocCfg(id='017904', author=JASTA_SAUDI_LAWSUIT, description=f"Westlaw search results", date='2019-01-01'),
     DocCfg(id='014037', author='Journal of Criminal Law and Criminology', description=f"article on {CVRA}"),
+    DocCfg(id='025353', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-05-19', duplicate_ids=['010723', '019224'], dupe_type='redacted'),
+    DocCfg(id='025704', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-05-27', duplicate_ids=['010732', '019221'], dupe_type='redacted'),
+    DocCfg(id='012130', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-06-19', duplicate_ids=['012135']),
     DocCfg(
         id='031447',
         author=MARTIN_WEINBERG,
@@ -1157,6 +1148,17 @@ OTHER_FILES_LEGAL = [
         author=MARTIN_WEINBERG,
         description=f"letter from to ABC / Good Morning America threatening libel lawsuit",
         duplicate_ids=['028928']
+    ),
+    DocCfg(
+        id='026793',
+        author='Mintz Fraade',
+        description=f"letter from {STEVEN_HOFFENBERG}'s lawyers offering to take over Epstein's business and resolve his legal issues",
+        date='2018-03-23',
+    ),
+    DocCfg(
+        id='020662',
+        author='Mishcon de Reya',
+        description=f"letter from {ALAN_DERSHOWITZ}'s British lawyers to Daily Mail threatening libel suit",
     ),
     DocCfg(
         id='029416',
@@ -1173,12 +1175,6 @@ OTHER_FILES_LEGAL = [
     ),
     DocCfg(id='028540', author='SCOTUS', description=f"decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP"),
     DocCfg(id='012197', author='SDFL', description=f"Response to {JAY_LEFKOWITZ} on Epstein Plea Agreement Compliance"),
-    DocCfg(id='020662', author='Mishcon de Reya', description=f"letter from {ALAN_DERSHOWITZ}'s British lawyers to Daily Mail threatening libel suit"),
-    DocCfg(
-        id='026793',
-        description=f"letter from {STEVEN_HOFFENBERG}'s lawyers at Mintz Fraade offering to take over Epstein's business and resolve his legal issues",
-        date='2018-03-23',
-    ),
     DocCfg(id='022277', description=f"{TEXT_OF_US_LAW} National Labour Relations Board (NLRB)"),
 ]
 
@@ -1218,6 +1214,7 @@ OTHER_FILES_CONFERENCES = [
 
 # All authors of documents in this category will be marked uninteresting
 OTHER_FILES_FINANCE = [
+    DocCfg(id='024631', author='Ackrell Capital', description=f"Cannabis Investment Report 2018", is_interesting=True),
     DocCfg(id='016111', author=BOFA_MERRILL, description=f"GEMs Paper #26 Saudi Arabia: beyond oil but not so fast", date='2016-06-30'),
     DocCfg(id='010609', author=BOFA_MERRILL, description=f"Liquid Insight Trump\'s effect on MXN", date='2016-09-22'),
     DocCfg(id='025978', author=BOFA_MERRILL, description=f"Understanding when risk parity risk Increases", date='2016-08-09'),
@@ -1236,6 +1233,7 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='023575', author=BOFA_MERRILL, description=f"Global Equity Volatility Insights", date='2017-06-01'),
     DocCfg(id='014518', author=BOFA_WEALTH_MGMT, description=f'tax alert', date='2016-05-02'),
     DocCfg(id='029438', author=BOFA_WEALTH_MGMT, description=f'tax report', date='2018-01-02'),
+    DocCfg(id='026668', author="Boothbay Fund Management", description=f"2016-Q4 earnings report signed by Ari Glass"),
     DocCfg(id='024302', author='Carvana', description=f"form 14A SEC filing proxy statement", date='2019-04-23'),
     DocCfg(id='029305', author='CCH Tax', description=f"Briefing on end of Defense of Marriage Act", date='2013-06-27'),
     DocCfg(id='026794', author=DEUTSCHE_BANK, description=f"Global Political and Regulatory Risk in 2015/2016"),
@@ -1273,24 +1271,26 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='025296', author='Laffer Associates', description=f'report predicting Trump win', date='2016-07-06'),
     DocCfg(id='020824', author='Mary Meeker', description=f"USA Inc: A Basic Summary of America's Financial Statements compiled", date='2011-02-01'),
     DocCfg(id='025551', author='Morgan Stanley', description=f'report about alternative asset managers', date='2018-01-30'),
+    DocCfg(id='019856', author='Sadis Goldberg LLP', description=f"report on SCOTUS ruling about insider trading", is_interesting=True),
     DocCfg(id='025763', author='S&P', description=f"Economic Research: How Increasing Income Inequality Is Dampening U.S. Growth", date='2014-08-05'),
     DocCfg(id='024135', author=UBS, description=UBS_CIO_REPORT, date='2012-06-29'),
     DocCfg(id='025247', author=UBS, description=UBS_CIO_REPORT, date='2012-10-25'),
-    DocCfg(id='024631', description=f"Ackrell Capital report: Cannabis Investment Report 2018"),
     DocCfg(id='026584', description=f"article about tax implications of disregarded entities", date='2009-07-01'),
-    DocCfg(id='024271', description=f"Blockchain Capital and Brock Pierce pitch deck", date='2015-10-01'),
+    DocCfg(
+        id='024271',
+        description=f"Blockchain Capital and Brock Pierce pitch deck",
+        date='2015-10-01',
+        is_interesting=True,
+    ),
     DocCfg(id='024817', description=f"Cowen's Collective View of CBD / Cannabis report"),
     DocCfg(id='012048', description=f"{PRESS_RELEASE} 'Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm' and other articles"),
-    DocCfg(id='019856', description=f"Sadis Goldberg LLP report on SCOTUS ruling about insider trading"),
 
     # private placement memoranda
     DocCfg(id='024432', description=f"Michael Milken's Knowledge Universe Education (KUE) $1,000,000 corporate share placement notice (SEC filing?)"),
-    DocCfg(id='024003', description=f"New Leaf Ventures private placement memorandum"),
+    DocCfg(id='024003', description=f"New Leaf Ventures ($375 million biotech fund) private placement memorandum"),
 ]
 
 OTHER_FILES_LETTERS = [
-    DocCfg(id='017789', author=ALAN_DERSHOWITZ, description=f'letter to {HARVARD} Crimson complaining he was defamed'),
-    DocCfg(id='026668', author="Boothbay Fund Management", description=f"2016-Q4 earnings report signed by Ari Glass"),
     DocCfg(
         id='019086',
         author=DAVID_BLAINE,
@@ -1315,17 +1315,23 @@ OTHER_FILES_LETTERS = [
         description=f"letter about algorithmic trading",
         date='2016-06-24',  # date is based on Brexit reference but he could be backtesting,
     ),
-    DocCfg(id='026248', author='Don McGahn', description=f'letter from Trump lawyer to Devin Nunes (R-CA) about FISA courts and Trump'),
     DocCfg(id='029304', author=DONALD_TRUMP, description=f"recommendation letter for recently departed {TRUMP_ORG} lawyer {MICHAEL_J_BOCCIO}"),
     DocCfg(id='029301', author=MICHAEL_J_BOCCIO, description=f"letter from former lawyer at the {TRUMP_ORG}", date='2011-08-07'),
-    DocCfg(id='022405', author=NOAM_CHOMSKY, description=f"letter attesting to Epstein's good character"),
     DocCfg(id='026134', description=f'letter to someone named George about investment opportunities in the Ukraine banking sector'),
 ]
 
 OTHER_FILES_PROPERTY = [
-    DocCfg(id='026759', author='Great Bay Condominium Owners Association', description=f'{PRESS_RELEASE} about Hurricane Irma damage', date='2017-09-13'),
+    DocCfg(
+        id='026759',
+        author='Great Bay Condominium Owners Association',
+        description=f'{PRESS_RELEASE} about Hurricane Irma damage',
+        date='2017-09-13',
+        is_interesting=False,
+    ),
     DocCfg(id='016602', author=PALM_BEACH_CODE_ENFORCEMENT, description='board minutes', date='2008-04-17'),
     DocCfg(id='016554', author=PALM_BEACH_CODE_ENFORCEMENT, description='board minutes', date='2008-07-17', duplicate_ids=['016616', '016574']),
+    DocCfg(id='016636', author=PALM_BEACH_WATER_COMMITTEE, description=f"Meeting on January 29, 2009"),
+    DocCfg(id='022417', author='Park Partners NYC', description=f"letter to partners in real estate project with architectural plans"),
     DocCfg(id='027068', author=THE_REAL_DEAL, description=f"{THE_REAL_DEAL_ARTICLE} Palm House Hotel Bankruptcy and EB-5 Visa Fraud Allegations"),
     DocCfg(id='029520', author=THE_REAL_DEAL, description=f"{THE_REAL_DEAL_ARTICLE} 'Lost Paradise at the Palm House'", date='2019-06-17'),
     DocCfg(id='016597', author='Trump Properties LLC', description=f'appeal of some decision about Mar-a-Lago by {PALM_BEACH} authorities'),
@@ -1339,8 +1345,6 @@ OTHER_FILES_PROPERTY = [
     DocCfg(id='016552', description=f"{PALM_BEACH_TSV} info"),
     DocCfg(id='016698', description=f"{PALM_BEACH_TSV} info (broken?)"),
     DocCfg(id='016696', description=f"{PALM_BEACH_TSV} info (water quality?"),
-    DocCfg(id='016636', description=f"{PALM_BEACH_WATER_COMMITTEE} Meeting on January 29, 2009"),
-    DocCfg(id='022417', description=f"Park Partners NYC letter to partners in real estate project with architectural plans"),
     DocCfg(
         id='018727',
         description=f"{VIRGIN_ISLANDS} property deal pitch deck, building will be leased to the U.S. govt GSA",
@@ -1378,6 +1382,13 @@ OTHER_FILES_SOCIAL = [
 OTHER_FILES_POLITICS = [
     DocCfg(id='029918', author=DIANA_DEGETTE_CAMPAIGN, description=f"bio", date='2012-09-27'),
     DocCfg(id='031184', author=DIANA_DEGETTE_CAMPAIGN, description=f"invitation to fundraiser hosted by {BARBRO_C_EHNBOM}", date='2012-09-27'),
+    DocCfg(id='026248', author='Don McGahn', description=f'letter from Trump lawyer to Devin Nunes (R-CA) about FISA courts and Trump'),
+    DocCfg(
+        id='019233',
+        author='Freedom House',
+        description=f"'Breaking Down Democracy: Goals, Strategies, and Methods of Modern Authoritarians'",
+        date='2017-06-02',
+    ),
     DocCfg(id='026827', author='Scowcroft Group', description=f'report on ISIS', date='2015-11-14'),
     DocCfg(id='024294', author=STACEY_PLASKETT, description=f"campaign flier", date='2016-10-01'),
     DocCfg(
@@ -1417,6 +1428,7 @@ OTHER_FILES_ACADEMIA = [
         author=f"{MOSHE_HOFFMAN}, Erez Yoeli, and {MARTIN_NOWAK}",
         description=f"Cooperating Without Looking: Game Theory Model of Trust and Reciprocal Cooperation"
     ),
+    DocCfg(id='022405', author=NOAM_CHOMSKY, description=f"letter attesting to Epstein's good character"),
     DocCfg(id='025143', author=ROBERT_TRIVERS, description=f"Africa, Parasites, Intelligence", date='2018-06-25'),
     DocCfg(id='029155', author=ROBERT_TRIVERS, description=f'response sent to the Gruterites ({GORDON_GETTY} fans)', date='2018-03-19'),
     DocCfg(
@@ -1482,7 +1494,12 @@ OTHER_FILES_MISC = [
     DocCfg(id='032206', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
     DocCfg(id='032208', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
     DocCfg(id='032209', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
-    DocCfg(id='018224', category=SKYPE_LOG, author=LAWRENCE_KRAUSS, description=f'conversations with linkspirit (French?) and {LAWRENCE_KRAUSS}'),
+    DocCfg(
+        id='018224',
+        category=SKYPE_LOG,
+        description=f'conversations with linkspirit (French?) and {LAWRENCE_KRAUSS}',
+        is_interesting=True,  # Because we don't know who linkspirit is yet
+    ),
     DocCfg(id='032210', category=SKYPE_LOG, description=f'conversation with linkspirit'),
     DocCfg(
         id='025147',
@@ -1532,6 +1549,7 @@ OTHER_FILES_JUNK = [
     DocCfg(id='029352', description=OBAMA_JOKE, date='2013-07-26'),
     DocCfg(id='029351', description=OBAMA_JOKE, date='2013-07-26'),
     DocCfg(id='029354', description=OBAMA_JOKE, date='2013-07-26'),
+    DocCfg(id='031293'),
 ]
 
 OTHER_FILES_CATEGORIES = [

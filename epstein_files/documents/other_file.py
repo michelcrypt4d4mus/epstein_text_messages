@@ -1,8 +1,10 @@
 import re
 import logging
 import warnings
+from collections import defaultdict
 from dataclasses import asdict, dataclass
 from datetime import datetime
+from typing import Sequence
 
 import datefinder
 import dateutil
@@ -16,7 +18,7 @@ from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_R
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.doc_cfg import FINANCIAL_REPORTS_AUTHORS, DocCfg, Metadata
-from epstein_files.util.data import escape_single_quotes, remove_timezone, uniquify
+from epstein_files.util.data import escape_single_quotes, remove_timezone, sort_dict, uniquify
 from epstein_files.util.file_helper import FILENAME_LENGTH
 from epstein_files.util.env import args
 from epstein_files.util.highlighted_group import get_style_for_category
@@ -38,12 +40,10 @@ UNINTERESTING_CATEGORES = [
     ARTS,
     BOOK,
     JUNK,
+    SKYPE_LOG,
     SPEECH,
 ]
 
-UNINTERESTING_IDS = [
-    '031794',
-]
 
 # OtherFiles whose description/hints match these prefixes are not displayed unless --all-other-files is used
 UNINTERESTING_PREFIXES = FINANCIAL_REPORTS_AUTHORS + [
@@ -77,9 +77,10 @@ UNINTERESTING_PREFIXES = FINANCIAL_REPORTS_AUTHORS + [
     'Journal of Criminal',
     LA_TIMES,
     'Litigation Daily',
-    LAWRENCE_KRAUSS,
+    LAWRENCE_KRAUSS_ASU_ORIGINS,
     'MarketWatch',
     MARTIN_NOWAK,
+    'Morning News',
     NOBEL_CHARITABLE_TRUST,
     'Nautilus',
     'New Yorker',
@@ -132,6 +133,10 @@ class OtherFile(Document):
     def category(self) -> str | None:
         return self.config and self.config.category
 
+    def category_txt(self) -> Text | None:
+        category = self.category() or UNKNOWN
+        return Text(category, get_style_for_category(category) or 'wheat4')
+
     def configured_description(self) -> str | None:
         """Overloads superclass method."""
         if self.config is not None:
@@ -156,8 +161,6 @@ class OtherFile(Document):
         hints = self.hints()
 
         if self.is_duplicate:
-            return False
-        elif self.file_id in UNINTERESTING_IDS:
             return False
         elif len(hints) == 0:
             return True
@@ -231,7 +234,7 @@ class OtherFile(Document):
             self.log_top_lines(15, msg=timestamps_log_msg, level=logging.DEBUG)
 
     @staticmethod
-    def build_table(docs: list['OtherFile']) -> Table:
+    def build_table(files: Sequence['OtherFile']) -> Table:
         """Build a table of OtherFile documents."""
         table = build_table(None, show_lines=True)
         table.add_column('File', justify='center', width=FILENAME_LENGTH)
@@ -240,31 +243,45 @@ class OtherFile(Document):
         table.add_column('Type', justify='center')
         table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
 
-        for doc in docs:
-            link_and_info = [doc.raw_document_link_txt()]
-            category = doc.category()
-            date_str = doc.date_str()
+        for file in files:
+            link_and_info = [file.raw_document_link_txt()]
+            date_str = file.date_str()
 
-            if doc.is_duplicate:
-                preview_text = doc.duplicate_file_txt()
+            if file.is_duplicate:
+                preview_text = file.duplicate_file_txt()
                 row_style = ' dim'
             else:
-                link_and_info += doc.hints()
-                preview_text = doc.highlighted_preview_text()
+                link_and_info += file.hints()
+                preview_text = file.highlighted_preview_text()
                 row_style = ''
-
-            if category:
-                category_txt = Text(category, get_style_for_category(category) or 'wheat4')
-            else:
-                category_txt = Text('')
 
             table.add_row(
                 Group(*link_and_info),
                 Text(date_str, style=TIMESTAMP_DIM) if date_str else QUESTION_MARK_TXT,
-                doc.file_size_str(),
-                category_txt,
+                file.file_size_str(),
+                file.category_txt(),
                 preview_text,
                 style=row_style
             )
+
+        return table
+
+    @staticmethod
+    def count_by_category_table(files: Sequence['OtherFile']) -> Table:
+        counts = defaultdict(int)
+
+        for file in files:
+            if file.category() is None:
+                logger.warning(f"file {file.file_id} has no category")
+
+            counts[file.category()] += 1
+
+        table = build_table('File Counts by Category')
+        table.add_column('Category', width=25)
+        table.add_column('Count', justify='center', width=25)
+
+        for (category, count) in sort_dict(counts):
+            category = category or UNKNOWN
+            table.add_row(Text(category, get_style_for_category(category) or 'wheat4'), str(count))
 
         return table
