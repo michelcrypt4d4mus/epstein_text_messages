@@ -21,7 +21,7 @@ max_sizes = defaultdict(int)
 for email in sorted(epstein_files.emails, key=lambda e: -len(e.actual_text)):
     console.line(2)
 
-    if email.is_fwded_article() or email.is_junk_mail() or email.is_duplicate:
+    if email.is_fwded_article() or email.is_junk_mail() or email.is_duplicate or len(email.actual_text) < 200:
         continue
 
     if len(email.actual_text) > 100:

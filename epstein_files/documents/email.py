@@ -71,6 +71,8 @@ ACTUAL_TEXT_SPLITTERS = {
     '025606': '> On May 6,',
     '022977': 'Top of Form',
     '033420': 'Slowing economy could increase pressure on',
+    '019203': 'This end-of-the-year',
+    '022207': 'Web Images Videos Maps',
 }
 
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
