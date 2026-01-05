@@ -2,6 +2,8 @@ import logging
 from os import environ
 from pathlib import Path
 
+import datefinder
+from rich_argparse_plus
 from rich.console import Console
 from rich.highlighter import ReprHighlighter
 from rich.logging import RichHandler
@@ -43,8 +45,9 @@ logging.basicConfig(level="NOTSET", format="%(message)s", datefmt="[%X]", handle
 logger = logging.getLogger("rich")
 
 
-# Log levels
-datefinder_logger = logging.getLogger('datefinder')  # Set log level to suppress annoying output
+# Set log levels to suppress annoying output
+logging.getLogger('datefinder').setLevel(logging.FATAL)
+logging.getLogger('rich_argparse').setLevel(logging.FATAL)
 env_log_level_str = environ.get(LOG_LEVEL_ENV_VAR) or None
 env_log_level = None
 
@@ -57,7 +60,6 @@ if env_log_level_str:
 
     logger.warning(f"Setting log level to {env_log_level} based on {LOG_LEVEL_ENV_VAR} env var...")
     logger.setLevel(env_log_level)
-    datefinder_logger.setLevel(env_log_level)
 
 
 def log_file_write(file_path: str | Path) -> None:

@@ -710,6 +710,24 @@ pygments = ">=2.13.0,<3.0.0"
 jupyter = ["ipywidgets (>=7.5.1,<9)"]
 
 [[package]]
+name = "rich-argparse-plus"
+version = "0.3.1.4"
+description = "A rich text formatter for argparse help with export and default features"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "rich_argparse_plus-0.3.1.4-py3-none-any.whl", hash = "sha256:74772572b852b7fefe28e44c5fe0e6491354b2594dae33ccec3860b349f96b21"},
+    {file = "rich_argparse_plus-0.3.1.4.tar.gz", hash = "sha256:aab9e49b4ba98ff501705678330eda8e9bc07d933edc5cac5f38671ee53f9998"},
+]
+
+[package.dependencies]
+rich = ">=11.0.0"
+
+[package.extras]
+dev = ["flit (>=3.7,<4.0)", "keyring (>=23.9,<24.0)", "pytest", "pytest-cov"]
+optional = ["cairosvg (>=2.5,<3.0)"]
+
+[[package]]
 name = "six"
 version = "1.17.0"
 description = "Python 2 and 3 compatibility utilities"
@@ -751,4 +769,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "2263b0017a8dfb2d8fd15ec7c78eec3bfc772e7dc625b464cb7e4589a64d33fb"
+content-hash = "b1749cc74371a4c1474e74e269b87321592657653657e943e69e0a6d072ad641"
