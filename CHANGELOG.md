@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.0.7
 * Fix image for pypi
 
 ### 1.0.6
