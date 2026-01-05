@@ -159,7 +159,7 @@ class OtherFile(Document):
         """False for lame prefixes, duplicates, and other boring files."""
         hints = self.hints()
 
-        if self.is_duplicate:
+        if self.is_duplicate():
             return False
         elif len(hints) == 0:
             return True
@@ -212,7 +212,7 @@ class OtherFile(Document):
                 self.log(f"Error while iterating through datefinder.find_dates(): {e}", logging.WARNING)
 
         if len(timestamps) == 0:
-            if not self.is_duplicate and VAST_HOUSE not in self.text:
+            if not (self.is_duplicate() or VAST_HOUSE in self.text):
                 self.log_top_lines(15, msg=f"No timestamps found", level=logging.INFO)
 
             return None
@@ -245,7 +245,7 @@ class OtherFile(Document):
             link_and_info = [file.raw_document_link_txt()]
             date_str = file.date_str()
 
-            if file.is_duplicate:
+            if file.is_duplicate():
                 preview_text = file.duplicate_file_txt()
                 row_style = ' dim'
             else:
