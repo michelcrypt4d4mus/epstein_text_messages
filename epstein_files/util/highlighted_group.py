@@ -561,7 +561,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label=STEVE_BANNON,
         style='color(58)',
-        pattern=r'((Steve|Sean)\s*)?Bannon?',
+        pattern=r'((Steve|Sean)\s*)?Bannon?|(American\s*)?Dharma',
     ),
     HighlightedNames(
         emailers={STEVEN_HOFFENBERG: HEADER_ABBREVIATIONS['Hoffenberg']},
