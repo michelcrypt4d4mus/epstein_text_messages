@@ -59,8 +59,8 @@ git push origin master --quiet
 git checkout gh_pages
 git merge --no-edit master --quiet
 
-print_msg "Building text messages page..."
-echo -e "  -> using $PICKLE_ARG"
+echo -e ""
+print_msg "Building text messages page" "$PICKLE_ARG"
 epstein_generate --build --suppress-output $PICKLE_ARG
 echo -e ""
 print_msg "Building word counts page..."

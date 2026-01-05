@@ -6,8 +6,9 @@ from sys import argv
 
 from epstein_files.util.logging import datefinder_logger, env_log_level, logger
 
+COUNT_WORDS_SCRIPT = 'count_words.py'
 DEFAULT_WIDTH = 154
-HTML_SCRIPTS = ['epstein_generate', 'generate_html.py', 'count_words.py']
+HTML_SCRIPTS = ['epstein_generate', 'generate_html.py', COUNT_WORDS_SCRIPT]
 
 
 parser = ArgumentParser(description="Parse epstein OCR docs and generate HTML page.")
@@ -65,7 +66,7 @@ datefinder_logger.setLevel(logger.level)
 
 # Massage args that depend on other args to the appropriate state
 if not (args.json_metadata or args.output_texts or args.output_emails or args.output_other_files):
-    if is_html_script:
+    if is_html_script and current_script != COUNT_WORDS_SCRIPT:
         logger.warning(f"No output section chosen; outputting default of texts, selected emails, and other files...")
 
     args.output_texts = True
