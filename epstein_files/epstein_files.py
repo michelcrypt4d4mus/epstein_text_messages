@@ -200,10 +200,10 @@ class EpsteinFiles:
     def json_metadata(self) -> str:
         """Create a JSON string containing metadata for all the files."""
         metadata = {
-            EMAIL_CLASS: _sorted_metadata(self.emails),
-            JSON_FILE_CLASS: _sorted_metadata(self.json_files),
-            MESSENGER_LOG_CLASS: _sorted_metadata(self.imessage_logs),
-            OTHER_FILE_CLASS: _sorted_metadata(self.non_json_other_files()),
+            Email.__name__: _sorted_metadata(self.emails),
+            JsonFile.__name__: _sorted_metadata(self.json_files),
+            MessengerLog.__name__: _sorted_metadata(self.imessage_logs),
+            OtherFile.__name__: _sorted_metadata(self.non_json_other_files()),
         }
 
         return json.dumps(metadata, indent=4, sort_keys=True)

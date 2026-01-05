@@ -7,7 +7,6 @@ from epstein_files.util.constant.output_files import JSON_METADATA_PATH
 from epstein_files.util.constant import urls
 from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
-from epstein_files.util.constant.strings import EMAIL_CLASS, MESSENGER_LOG_CLASS
 from epstein_files.util.data import dict_sets_to_lists
 from epstein_files.util.env import args, specified_names
 from epstein_files.util.logging import log_file_write, logger
@@ -122,9 +121,9 @@ def print_json_metadata(epstein_files: EpsteinFiles) -> None:
 def print_json_stats(epstein_files: EpsteinFiles) -> None:
     console.line(5)
     console.print(Panel('JSON Stats Dump', expand=True, style='reverse bold'), '\n')
-    print_json(f"{MESSENGER_LOG_CLASS} Sender Counts", MessengerLog.count_authors(epstein_files.imessage_logs), skip_falsey=True)
-    print_json(f"{EMAIL_CLASS} Author Counts", epstein_files.email_author_counts, skip_falsey=True)
-    print_json(f"{EMAIL_CLASS} Recipient Counts", epstein_files.email_recipient_counts, skip_falsey=True)
+    print_json(f"MessengerLog Sender Counts", MessengerLog.count_authors(epstein_files.imessage_logs), skip_falsey=True)
+    print_json(f"Email Author Counts", epstein_files.email_author_counts, skip_falsey=True)
+    print_json(f"Email Recipient Counts", epstein_files.email_recipient_counts, skip_falsey=True)
     print_json("Email signature_substitution_countss", epstein_files.email_signature_substitution_counts(), skip_falsey=True)
     print_json("email_author_device_signatures", dict_sets_to_lists(epstein_files.email_authors_to_device_signatures))
     print_json("email_sent_from_devices", dict_sets_to_lists(epstein_files.email_device_signatures_to_authors))
