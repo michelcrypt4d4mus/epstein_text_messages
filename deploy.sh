@@ -50,7 +50,7 @@ if any_uncommitted_changes; then
 fi
 
 epstein_generate --make-clean
-epstein_dump_urls --suppress-output --output-file $URLS_ENV
+epstein_dump_urls --suppress-output
 source $URLS_ENV
 
 
