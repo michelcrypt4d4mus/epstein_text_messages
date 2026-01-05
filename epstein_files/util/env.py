@@ -21,6 +21,7 @@ output.add_argument('--all-other-files', '-ao', action='store_true', help='all t
 output.add_argument('--build', '-b', action='store_true', help='write output to HTML file')
 output.add_argument('--make-clean', action='store_true', help='delete all HTML build artifact and write latest URLs to .urls.env')
 output.add_argument('--output-emails', '-oe', action='store_true', help='generate other files section')
+output.add_argument('--output-json-files', action='store_true', help='pretty print all the raw JSON data files in the collection')
 output.add_argument('--output-other-files', '-oo', action='store_true', help='generate other files section')
 output.add_argument('--output-texts', '-ot', action='store_true', help='generate other files section')
 output.add_argument('--suppress-output', action='store_true', help='no output to terminal (use with --build)')
