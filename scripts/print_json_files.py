@@ -6,4 +6,4 @@ from epstein_files.documents.json_file import JsonFile
 
 for json_file in [f for f in epstein_files.other_files if isinstance(f, JsonFile)]:
     console.print(json_file.description_panel())
-    console.print_json(json_file.formatted_json())
+    console.print_json(json_file.json_str())
