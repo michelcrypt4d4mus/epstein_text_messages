@@ -223,6 +223,7 @@ class EmailCfg(CommunicationCfg):
         recipients (list[str | None]): Who received the email
     """
     actual_text: str | None = None  # Override for the Email._actual_text() method for particularly broken emails
+    fwded_text_after: str | None = None  # If set, any text after this is a fwd of an article or similar
     is_fwded_article: bool = False
     recipients: list[str | None] = field(default_factory=list)
 

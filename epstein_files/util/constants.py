@@ -389,7 +389,12 @@ EMAILS_CONFIG = [
         author='Audrey/Aubrey Raimbault (???)',
         attribution_reason='based on "GMI" in signature, a company registered by "Aubrey Raimbault"',
     ),
-    EmailCfg(id='033316', author=AZIZA_ALAHMADI, attribution_reason='"Regards, Aziza" at bottom'),
+    EmailCfg(
+        id='033316',
+        author=AZIZA_ALAHMADI,
+        attribution_reason='"Regards, Aziza" at bottom',
+        fwded_text_after='Transcript: Phone call between President',
+    ),
     EmailCfg(id='033328', author=AZIZA_ALAHMADI, attribution_reason='"Regards, Aziza" at bottom'),
     EmailCfg(id='026659', author=BARBRO_C_EHNBOM, attribution_reason='Reply'),
     EmailCfg(id='031215', author=BARBRO_C_EHNBOM, duplicate_ids=['026745'], dupe_type='redacted'),  # the same except for 'your Anna!'. author must be specified because email address is redacted in 026745 so it needs the config
@@ -566,6 +571,7 @@ EMAILS_CONFIG = [
         id='026620',
         attribution_reason='ends with "Respectfully, terry"',
         author=TERRY_KAFKA,
+        fwded_text_after='From: Mike Cohen',
         recipients=[JEFFREY_EPSTEIN, MARK_EPSTEIN, MICHAEL_BUCHHOLTZ] + IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS,
         duplicate_ids=['028482'],
     ),
@@ -810,6 +816,30 @@ EMAILS_CONFIG = [
     EmailCfg(id='029752', duplicate_ids=['023550']),
     EmailCfg(id='030339', duplicate_ids=['030592']),
     EmailCfg(id='032250', duplicate_ids=['033589']),
+
+    # Emails that need a little help determining how to separate the actual text from fwded text
+    EmailCfg(id='013415', fwded_text_after='Darren K. Indyke'),
+    EmailCfg(id='024624', fwded_text_after='On Tue, May 14'),
+    EmailCfg(id='029558', fwded_text_after='Creativity is central'),
+    EmailCfg(id='025888', fwded_text_after='Jul 24, 2015'),
+    EmailCfg(id='016413', fwded_text_after='In a former warehouse'),
+    EmailCfg(id='025548', fwded_text_after='Edward Jay Epstein'),
+    EmailCfg(id='032806', fwded_text_after='• Sep 13, 2018'),
+    EmailCfg(id='024251', fwded_text_after='Debate Schedule'),
+    EmailCfg(id='028943', fwded_text_after='-Lisa'),
+    EmailCfg(id='029431', fwded_text_after='I am writing now'),
+    EmailCfg(id='020437', fwded_text_after='Will Cohen Cooperate'),
+    EmailCfg(id='026663', fwded_text_after='REGULATORY & COMPLIANCE ALERT'),
+    EmailCfg(id='028921', fwded_text_after='Salacious new chapter'),
+    EmailCfg(id='030324', fwded_text_after='For Federal Programs'),
+    EmailCfg(id='022766', fwded_text_after='--- On Wed, 4/22/15'),
+    EmailCfg(id='025606', fwded_text_after='> On May 6,'),
+    EmailCfg(id='022977', fwded_text_after='Top of Form'),
+    EmailCfg(id='033420', fwded_text_after='Slowing economy could increase pressure on'),
+    EmailCfg(id='019203', fwded_text_after='This end-of-the-year'),
+    EmailCfg(id='022207', fwded_text_after='Web Images Videos Maps'),
+    EmailCfg(id='033210', fwded_text_after='Trump appears with mobster-affiliated'),
+    EmailCfg(id='030989', fwded_text_after='New book paints sordid picture of Trump real estate'),
 ]
 
 
