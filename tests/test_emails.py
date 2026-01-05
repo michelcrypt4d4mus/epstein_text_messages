@@ -2,7 +2,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.data import dict_sets_to_lists
 
 EMAIL_AUTHOR_COUNTS = {
-    None: 102,
+    None: 101,
     "Abi Schwinck": 1,
     AL_SECKEL: 7,
     "Alain Forget": 3,
@@ -106,7 +106,7 @@ EMAIL_AUTHOR_COUNTS = {
     LARRY_SUMMERS: 48,
     "Laurie Cameron": 1,
     LAWRANCE_VISOSKI: 40,
-    LAWRENCE_KRAUSS: 36,
+    LAWRENCE_KRAUSS: 33,
     "Leah Reis-Dennis": 1,
     "Leon Black": 1,
     LESLEY_GROFF: 23,
@@ -291,7 +291,7 @@ EMAIL_RECIPIENT_COUNTS = {
     JEAN_HUGUEN: 1,
     JEAN_LUC_BRUNEL: 9,
     JEFF_FULLER: 2,
-    JEFFREY_EPSTEIN: 1455,
+    JEFFREY_EPSTEIN: 1451,
     JES_STALEY: 7,
     JESSICA_CADWELL: 3,
     "Joel": 3,

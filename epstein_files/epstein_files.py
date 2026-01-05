@@ -372,12 +372,12 @@ def count_by_month(docs: Sequence[Document]) -> dict[str | None, int]:
     return counts
 
 
-def document_cls(document: Document) -> Type[Document]:
-    search_area = document.text[0:5000]  # Limit search area to avoid pointless scans of huge files
+def document_cls(doc: Document) -> Type[Document]:
+    search_area = doc.text[0:5000]  # Limit search area to avoid pointless scans of huge files
 
-    if document.text[0] == '{':
+    if doc.text[0] == '{':
         return JsonFile
-    elif isinstance(document.config, EmailCfg) or DETECT_EMAIL_REGEX.match(search_area):
+    elif isinstance(doc.config, EmailCfg) or (DETECT_EMAIL_REGEX.match(search_area) and doc.config is None):
         return Email
     elif MSG_REGEX.search(search_area):
         return MessengerLog

@@ -1,11 +1,11 @@
 from pathlib import Path
 
 PICKLED_PATH = Path("the_epstein_files.pkl.gz")
-
-EPSTEIN_FILES_NOV_2025 = 'epstein_files_nov_2025'
 URLS_ENV = '.urls.env'
 
+# Files output by the code
 HTML_DIR = Path('docs')
+EPSTEIN_FILES_NOV_2025 = 'epstein_files_nov_2025'
 ALL_EMAILS_PATH = HTML_DIR.joinpath(f'all_emails_{EPSTEIN_FILES_NOV_2025}.html')
 JSON_METADATA_PATH = HTML_DIR.joinpath(f'file_metadata_{EPSTEIN_FILES_NOV_2025}.json')
 TEXT_MSGS_HTML_PATH = HTML_DIR.joinpath('index.html')
