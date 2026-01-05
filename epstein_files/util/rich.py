@@ -35,10 +35,18 @@ SECTION_HEADER_STYLE = 'bold white on blue3'
 SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
 SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 SYMBOL_STYLE = 'grey70'
+TABLE_BORDER_STYLE = 'grey46'
+TABLE_TITLE_STYLE = f"gray85 italic"
 TITLE_STYLE = 'black on bright_white bold'
 
 AUX_SITE_LINK_STYLE = 'dark_orange3'
 OTHER_SITE_LINK_STYLE = 'dark_goldenrod'
+
+DEFAULT_TABLE_KWARGS = {
+    'border_style': TABLE_BORDER_STYLE,
+    'header_style': "bold",
+    'title_style': TABLE_TITLE_STYLE,
+}
 
 HIGHLIGHTED_GROUP_COLOR_KEYS = [
     Text(highlight_group.label.replace('_', ' '), style=highlight_group.style)
@@ -81,6 +89,10 @@ def build_highlighter(pattern: str) -> EpsteinHighlighter:
         highlights = EpsteinHighlighter.highlights + [re.compile(fr"(?P<trump>{pattern})", re.IGNORECASE)]
 
     return TempHighlighter()
+
+
+def build_table(title: str | None, **kwargs) -> Table:
+    return Table(title=title, **{**DEFAULT_TABLE_KWARGS, **kwargs})
 
 
 def join_texts(txts: list[Text], join: str = ' ', encloser: str = '', encloser_style: str = 'wheat4') -> Text:
@@ -137,7 +149,7 @@ def print_centered_link(url: str, link_text: str, style: str | None = None) -> N
 
 
 def print_color_key() -> None:
-    color_table = Table(title=f'Rough Guide to Highlighted Colors', show_header=False)
+    color_table = build_table('Rough Guide to Highlighted Colors', show_header=False)
     num_colors = len(HIGHLIGHTED_GROUP_COLOR_KEYS)
     row_number = 0
 
@@ -310,7 +322,7 @@ def write_html(output_path: Path) -> None:
 
 
 def _print_abbreviations_table() -> None:
-    table = Table(title="Abbreviations Used Frequently In These Conversations", header_style="bold", show_header=False)
+    table = build_table(title="Abbreviations Used Frequently In These Conversations", show_header=False)
     table.add_column("Abbreviation", justify="center", style='bold')
     table.add_column("Translation", style="white", justify="center")
 
@@ -322,7 +334,7 @@ def _print_abbreviations_table() -> None:
 
 def _print_external_links() -> None:
     console.line()
-    print_starred_header('External Links', num_stars=0, num_spaces=20, style=f"italic")
+    print_centered(Text('External Links', style=TABLE_TITLE_STYLE))
     presser_link = link_text_obj(OVERSIGHT_REPUBLICANS_PRESSER_URL, 'Official Oversight Committee Press Release')
     raw_docs_link = join_texts([link_text_obj(RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL, 'raw files', style=f"{ARCHIVE_LINK_COLOR} dim")], encloser='()')
     print_centered(join_texts([presser_link, raw_docs_link]))
