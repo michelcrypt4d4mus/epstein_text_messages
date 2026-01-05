@@ -1589,7 +1589,7 @@ SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4
 
 
 # Error checking.
-if len(OTHER_FILES_CONFIG) != 439:
+if len(OTHER_FILES_CONFIG) != 442:
     logger.warning(f"Found {len(OTHER_FILES_CONFIG)} configured other files!")
 
 encountered_file_ids = set()
