@@ -588,7 +588,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedText(
         label='phone_number',
         style='bright_green',
-        pattern=r"\+?(1?\(?\d{3}\)?[- ]\d{3}[- ]\d{4}|\d{2}[- ]\(?0?\)?\d{2}[- ]\d{4}[- ]\d{4})|[\d+]{10,12}",
+        pattern=r"\+?(1?\(?\d{3}\)?[- ]\d{3}[- ]\d{4}|\d{2}[- ]\(?0?\)?\d{2}[- ]\d{4}[- ]\d{4})|\b[\d+]{10,12}\b",
     ),
 ]
 
