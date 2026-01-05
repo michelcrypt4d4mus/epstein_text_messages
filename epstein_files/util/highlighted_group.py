@@ -270,7 +270,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='europe',
         style='light_sky_blue3',
-        pattern=r'(Angela )?Merk(el|le)|Austria|(Benjamin\s*)?Harnwell|Berlin|Borge|Boris\s*Johnson|Brexit(eers?)?|Brit(ain|ish)|Brussels|Cannes|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|Davos|ECB|England|EU|Europe(an)?(\s*Union)?|Fr(ance|ench)|Geneva|Germany?|Gillard|Gree(ce|k)|Ital(ian|y)|Jacques|(Kevin\s*)?Rudd|Le\s*Pen|London|Macron|Melusine|Munich|(Natalia\s*)?Veselnitskaya|(Nicholas\s*)?Sarkozy|Nigel(\s*Farage)?|Norw(ay|egian)|Oslo|Paris|Polish|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strasbourg|Strauss[- ]?Kahn|Swed(en|ish)(?![-\s]+America)|Switzerland|(Tony\s)?Blair|Ukrain(e|ian)|Vienna|(Vitaly\s*)?Churkin|Zug',
+        pattern=r'(Angela )?Merk(el|le)|Austria|(Benjamin\s*)?Harnwell|Berlin|Borge|Boris\s*Johnson|Brexit(eers?)?|Brit(ain|ish)|Brussels|Cannes|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|Davos|ECB|England|EU|Europe(an)?(\s*Union)?|Fr(ance|ench)|Geneva|Germany?|Gillard|Gree(ce|k)|Ital(ian|y)|Jacques|(Kevin\s*)?Rudd|Le\s*Pen|London|Macron|Melusine|Munich|(Natalia\s*)?Veselnitskaya|(Nicholas\s*)?Sarkozy|Nigel(\s*Farage)?|Norw(ay|egian)|Oslo|Paris|Polish|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strasbourg|Strauss[- ]?Kahn|Swed(en|ish)(?![-\s]+America)|Switzerland|(Tony\s)?Blair|U\.?K\.?|Ukrain(e|ian)|Vienna|(Vitaly\s*)?Churkin|Zug',
         emailers = {
             ANDRZEJ_DUDA: 'former president of Poland',
             MIROSLAV_LAJCAK: 'Russia-friendly Slovakian politician, friend of Steve Bannon',
