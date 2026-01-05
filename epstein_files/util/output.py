@@ -5,10 +5,10 @@ from rich.padding import Padding
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.epstein_files import EpsteinFiles, count_by_month
-from epstein_files.util.constant.output_files import JSON_METADATA_PATH
-from epstein_files.util.constant import urls
+from epstein_files.util.constant import output_files
 from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
+from epstein_files.util.constant.output_files import JSON_FILES_JSON_PATH, JSON_METADATA_PATH
 from epstein_files.util.data import dict_sets_to_lists
 from epstein_files.util.env import args, specified_names
 from epstein_files.util.logging import log_file_write, logger
@@ -162,10 +162,10 @@ def print_text_messages(epstein_files: EpsteinFiles) -> None:
 
 def write_urls() -> None:
     """Write _URL style constant variables to a file bash scripts can load as env vars."""
-    url_vars = {
-        k: v for k, v in vars(urls).items()
-        if isinstance(v, str) and k.split('_')[-1] in ['URL'] and 'github.io' in v and 'BASE' not in k
-    }
+    url_vars = {k: v for k, v in vars(output_files).items() if k.endswith('URL') and not k.startswith('GH')}
+
+    if not args.suppress_output:
+        console.line()
 
     with open(URLS_ENV, 'w') as f:
         for var_name, url in url_vars.items():
@@ -176,7 +176,9 @@ def write_urls() -> None:
 
             f.write(f"{key_value}\n")
 
-    console.line()
+    if not args.suppress_output:
+        console.line()
+
     logger.warning(f"Wrote {len(url_vars)} URL variables to '{URLS_ENV}'\n")
 
 
