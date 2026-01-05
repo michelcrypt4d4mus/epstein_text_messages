@@ -272,7 +272,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='europe',
         style='light_sky_blue3',
-        pattern=r'(Angela )?Merk(el|le)|Austria|(Benjamin\s*)?Harnwell|Berlin|Borge|Brexit(eers?)?|Brit(ain|ish)|Brussels|Cannes|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|Davos|ECB|EU|Europe(an)?(\s*Union)?|France|Geneva|Germany?|Gillard|Gree(ce|k)|Ital(ian|y)|Jacques|(Kevin\s*)?Rudd|Le\s*Pen|London|Macron|Melusine|Munich|(Natalia\s*)?Veselnitskaya|(Nicholas\s*)?Sarkozy|Nigel(\s*Farage)?|Oslo|Paris|Polish|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strasbourg|Strauss[- ]?Kahn|Swed(en|ish)(?![-\s]+America)|Switzerland|(Tony\s)?Blair|Ukrain(e|ian)|Vienna|(Vitaly\s*)?Churkin|Zug',
+        pattern=r'(Angela )?Merk(el|le)|Austria|(Benjamin\s*)?Harnwell|Berlin|Borge|Brexit(eers?)?|Brit(ain|ish)|Brussels|Cannes|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|Davos|ECB|EU|Europe(an)?(\s*Union)?|France|Geneva|Germany?|Gillard|Gree(ce|k)|Ital(ian|y)|Jacques|(Kevin\s*)?Rudd|Le\s*Pen|London|Macron|Melusine|Munich|(Natalia\s*)?Veselnitskaya|(Nicholas\s*)?Sarkozy|Nigel(\s*Farage)?|Norw(ay|egian)|Oslo|Paris|Polish|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strasbourg|Strauss[- ]?Kahn|Swed(en|ish)(?![-\s]+America)|Switzerland|(Tony\s)?Blair|Ukrain(e|ian)|Vienna|(Vitaly\s*)?Churkin|Zug',
         emailers = {
             ANDRZEJ_DUDA: 'former president of Poland',
             MIROSLAV_LAJCAK: 'Russia-friendly Slovakian politician, friend of Steve Bannon',
@@ -475,7 +475,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='russia',
         style='red bold',
-        pattern=r'Alfa\s*Bank|Anya\s*Rasulova|Chernobyl|Day\s+One\s+Ventures|(Dmitry\s)?(Kiselyov|(Lana\s*)?Pozhidaeva|Medvedev|Rybolo(o?l?ev|vlev))|Dmitry|FSB|GRU|KGB|Kislyak|Kremlin|Kuznetsova|Lavrov|Lukoil|Moscow|(Oleg\s*)?Deripaska|Oleksandr Vilkul|Rosneft|RT|St.?\s*?Petersburg|Russian?|Sberbank|Soviet(\s*Union)?|USSR|(Vladimir\s*)?(Putin|Yudashkin)|Women\s*Empowerment|Xitrans',
+        pattern=r'Alfa\s*Bank|Anya\s*Rasulova|Chernobyl|Day\s+One\s+Ventures|(Dmitry\s)?(Kiselyov|(Lana\s*)?Pozhidaeva|Medvedev|Rybolo(o?l?ev|vlev))|Dmitry|FSB|GRU|KGB|Kislyak|Kremlin|Kuznetsova|Lavrov|Lukoil|Moscow|(Oleg\s*)?Deripaska|Oleksandr Vilkul|Rosneft|RT|St.?\s*?Petersburg|Russian?|Sberbank|Soviet(\s*Union)?|USSR|Vladimir|(Vladimir\s*)?(Putin|Yudashkin)|Women\s*Empowerment|Xitrans',
         emailers = {
             MASHA_DROKOVA: 'silicon valley VC, former Putin Youth',
             RENATA_BOLOTOVA: 'former aspiring model, now fund manager at New York State Insurance Fund',
