@@ -38,7 +38,6 @@ TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
-IS_JUNK_MAIL = 'is_junk_mail'
 MAX_CHARS_TO_PRINT = 4000
 MAX_NUM_HEADER_LINES = 14
 MAX_QUOTED_REPLIES = 2
@@ -289,9 +288,10 @@ SELF_EMAILS_FILE_IDS = [
 ]
 
 METADATA_FIELDS = [
-    IS_JUNK_MAIL,
+    'is_junk_mail',
     'recipients',
     'sent_from_device',
+    'subject',
 ]
 
 
@@ -352,7 +352,8 @@ class Email(Communication):
 
     def metadata(self) -> Metadata:
         local_metadata = asdict(self)
-        local_metadata[IS_JUNK_MAIL] = self.is_junk_mail()
+        local_metadata['is_junk_mail'] = self.is_junk_mail()
+        local_metadata['subject'] = self.subject() or None
         metadata = super().metadata()
         metadata.update({k: v for k, v in local_metadata.items() if v and k in METADATA_FIELDS})
         return metadata
