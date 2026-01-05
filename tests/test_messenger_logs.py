@@ -2,13 +2,13 @@ from epstein_files.util.constant.names import *
 from epstein_files.documents.messenger_log import MessengerLog
 
 MESSENGER_LOG_AUTHOR_COUNTS = {
-    None: 59,
+    None: 56,
     ANDRZEJ_DUDA: 8,
     ANIL_AMBANI: 24,
     ANTHONY_SCARAMUCCI: 57,
     ARDA_BESKARDES: 2,
-    CELINA_DUBIN: 48,
-    EVA: 12,
+    CELINA_DUBIN: 49,
+    EVA: 13,
     JEFFREY_EPSTEIN: 2561,
     JOI_ITO: 10,
     LARRY_SUMMERS: 31,
@@ -17,7 +17,7 @@ MESSENGER_LOG_AUTHOR_COUNTS = {
     MIROSLAV_LAJCAK: 58,
     SOON_YI_PREVIN: 29,
     STACEY_PLASKETT: 12,
-    STEVE_BANNON: 1352,
+    STEVE_BANNON: 1353,
     TERJE_ROD_LARSEN: 10,
 }
 
