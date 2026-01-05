@@ -65,6 +65,7 @@ def print_emails(epstein_files: EpsteinFiles) -> int:
     emailer_tables: list[str | None] = []
     already_printed_emails: list[Email] = []
     num_emails_printed_since_last_color_key = 0
+    fwded_articles_printed = 0
 
     if specified_names:
         emailers_to_print = specified_names
