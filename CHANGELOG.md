@@ -1,5 +1,6 @@
 # NEXT RELEASE
-* Add `epstein_word_count`
+* Add `epstein_word_count` script
+* Add `--output-json-files` option
 
 ### 1.0.5
 * Remove --pickled argument
