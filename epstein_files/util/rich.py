@@ -30,6 +30,7 @@ QUESTION_MARK_TXT = Text(QUESTION_MARKS, style='dim')
 GREY_NUMBERS = [58, 39, 39, 35, 30, 27, 23, 23, 19, 19, 15, 15, 15]
 
 DEFAULT_NAME_STYLE = 'gray46'
+INFO_STYLE = 'white dim italic'
 KEY_STYLE='honeydew2 bold'
 SECTION_HEADER_STYLE = 'bold white on blue3'
 SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'

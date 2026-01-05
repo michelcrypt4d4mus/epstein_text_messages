@@ -21,7 +21,7 @@ from epstein_files.util.env import args
 from epstein_files.util.file_helper import (DOCS_DIR, file_stem_for_id, extract_file_id, file_size,
      file_size_str, is_local_extract_file)
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
-from epstein_files.util.rich import SYMBOL_STYLE, console, highlighter, key_value_txt, link_text_obj
+from epstein_files.util.rich import INFO_STYLE, SYMBOL_STYLE, console, highlighter, key_value_txt, link_text_obj
 from epstein_files.util.search_result import MatchedLine
 
 CLOSE_PROPERTIES_CHAR = ']'
@@ -121,10 +121,14 @@ class Document:
     def date_str(self) -> str | None:
         return date_str(self.timestamp)
 
-    def description_panel(self, include_hints: bool = False) -> Panel:
+    def description_panel(self, include_info: bool = False) -> Panel:
         """Panelized description() with info_txt(), used in search results."""
-        hints = [Text('', style='italic').append(h) for h in (self.hints() if include_hints else [])]
-        return Panel(Group(*([self.summary()] + hints)), border_style=self.document_type_style(), expand=False)
+        sentences = [self.summary()]
+
+        if include_info:
+            sentences += [Text('', style='italic').append(h) for h in self.info()]
+
+        return Panel(Group(*sentences), border_style=self.document_type_style(), expand=False)
 
     def document_type_style(self) -> str:
         return DOC_TYPE_STYLES[self.class_name()]
@@ -134,7 +138,7 @@ class Document:
         if not self.config or not self.config.dupe_of_id:
             raise RuntimeError(f"duplicate_file_txt() called on {self.summary()} but not a dupe! config:\n\n{self.config}")
 
-        txt = Text(f"Not showing ", style='white dim italic').append(epstein_media_doc_link_txt(self.file_id, style='cyan'))
+        txt = Text(f"Not showing ", style=INFO_STYLE).append(epstein_media_doc_link_txt(self.file_id, style='cyan'))
         txt.append(f" because it's {self.config.duplicate_reason()} ")
         return txt.append(epstein_media_doc_link_txt(self.config.dupe_of_id, style='royal_blue1'))
 
@@ -151,10 +155,10 @@ class Document:
         return link_text_obj(epstein_web_doc_url(self.url_slug), link_txt or self.url_slug, style)
 
     def file_info_panel(self) -> Group:
-        """Panel with filename linking to raw file plus any hints/info about the file."""
+        """Panel with filename linking to raw file plus any additional info about the file."""
         panel = Panel(self.raw_document_link_txt(include_alt_link=True), border_style=self._border_style(), expand=False)
-        hints = [Padding(hint, INFO_PADDING) for hint in self.hints()]
-        return Group(*([panel] + hints))
+        padded_info = [Padding(sentence, INFO_PADDING) for sentence in self.info()]
+        return Group(*([panel] + padded_info))
 
     def file_size(self) -> int:
         return file_size(self.file_path)
@@ -162,15 +166,19 @@ class Document:
     def file_size_str(self) -> str:
         return file_size_str(self.file_path)
 
-    def hints(self) -> list[Text]:
-        """Additional info about the Document (author, description, and so on) to be desplayed in doc header."""
-        hints = listify(self.info_txt())
-        hint_msg = self.configured_description()
+    def info(self) -> list[Text]:
+        """0 to 2 sentences containing the info_txt() as well as any configured description."""
+        sentences = [
+            self.info_txt(),
 
-        if hint_msg:
-            hints.append(highlighter(Text(hint_msg, style='white dim italic')))
+        ]
+        sentences = listify(self.info_txt())
+        description = self.configured_description()
 
-        return without_falsey(hints)
+        if description:
+            sentences.append(highlighter(Text(description, style=INFO_STYLE)))
+
+        return without_falsey(sentences)
 
     def info_txt(self) -> Text | None:
         """Secondary info about this file (recipients, level of certainty, etc). Overload in subclasses."""
