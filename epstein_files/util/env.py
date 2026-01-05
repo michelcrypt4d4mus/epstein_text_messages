@@ -19,7 +19,7 @@ parser.add_argument('--pickled', '-p', action='store_true', help='use pickled Ep
 output = parser.add_argument_group('OUTPUT')
 output.add_argument('--all-emails', '-ae', action='store_true', help='all the emails instead of just the interesting ones')
 output.add_argument('--all-other-files', '-ao', action='store_true', help='all the non-email, non-text msg files instead of just the interesting ones')
-output.add_argument('--build', '-b', action='store_true', help='write output to file')
+output.add_argument('--build', '-b', action='store_true', help='write output to HTML file')
 output.add_argument('--make-clean', '-mc', action='store_true', help='delete all build artifact HTML and JSON files')
 output.add_argument('--output-emails', '-oe', action='store_true', help='generate other files section')
 output.add_argument('--output-other-files', '-oo', action='store_true', help='generate other files section')
