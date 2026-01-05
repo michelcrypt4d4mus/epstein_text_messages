@@ -9,8 +9,7 @@ from rich.text import Text
 
 from epstein_files.util.constants import REPLY_REGEX
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_PREFIX
-from epstein_files.util.env import args
-from epstein_files.util.file_helper import DOCS_DIR
+from epstein_files.util.env import DOCS_DIR, args
 from epstein_files.util.rich import console
 
 FILE_PREFIX_LENGTH = len(HOUSE_OVERSIGHT_PREFIX) + 10

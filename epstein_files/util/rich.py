@@ -20,8 +20,9 @@ from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import FALLBACK_TIMESTAMP, HEADER_ABBREVIATIONS
 from epstein_files.util.data import json_safe
 from epstein_files.util.env import args
+from epstein_files.util.file_helper import log_file_write
 from epstein_files.util.highlighted_group import ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES, EpsteinHighlighter
-from epstein_files.util.logging import log_file_write, logger
+from epstein_files.util.logging import logger
 
 TITLE_WIDTH = 50
 NUM_COLOR_KEY_COLS = 4

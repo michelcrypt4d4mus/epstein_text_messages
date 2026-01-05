@@ -15,10 +15,10 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP
-from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, listify, patternize, without_falsey
+from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, patternize, without_falsey
 from epstein_files.util.doc_cfg import EmailCfg, DocCfg, Metadata, TextCfg
-from epstein_files.util.env import args
-from epstein_files.util.file_helper import (DOCS_DIR, file_stem_for_id, extract_file_id, file_size,
+from epstein_files.util.env import DOCS_DIR, args
+from epstein_files.util.file_helper import (file_stem_for_id, extract_file_id, file_size,
      file_size_str, is_local_extract_file)
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 from epstein_files.util.rich import INFO_STYLE, SYMBOL_STYLE, console, highlighter, key_value_txt, link_text_obj
