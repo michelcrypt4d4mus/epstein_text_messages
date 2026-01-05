@@ -2,13 +2,6 @@ import re
 from typing import Literal
 
 
-# Document subclass names (this sucks)
-DOCUMENT_CLASS = 'Document'
-EMAIL_CLASS = 'Email'
-JSON_FILE_CLASS = 'JsonFile'
-MESSENGER_LOG_CLASS = 'MessengerLog'
-OTHER_FILE_CLASS = 'OtherFile'
-
 # categories
 ACADEMIA = 'academia'
 ARTS = 'arts'
@@ -76,6 +69,13 @@ QUESTION_MARKS = '(???)'
 FILE_STEM_REGEX = re.compile(fr"{HOUSE_OVERSIGHT_PREFIX}(\d{{6}}(_\d{{1,2}})?)")
 FILE_NAME_REGEX = re.compile(fr"{FILE_STEM_REGEX.pattern}(\.txt(\.json)?)?")
 QUESTION_MARKS_REGEX = re.compile(fr' {re.escape(QUESTION_MARKS)}$')
+
+# Document subclass names (this sucks)
+DOCUMENT_CLASS = 'Document'
+EMAIL_CLASS = 'Email'
+JSON_FILE_CLASS = 'JsonFile'
+MESSENGER_LOG_CLASS = 'MessengerLog'
+OTHER_FILE_CLASS = 'OtherFile'
 
 
 remove_question_marks = lambda name: QUESTION_MARKS_REGEX.sub('', name)

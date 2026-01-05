@@ -233,12 +233,11 @@ def print_other_site_link(is_header: bool = True) -> None:
     print_centered(parenthesize(Text.from_markup(markup_msg)), style='bold')
 
     if is_header:
-        word_count_link = link_text_obj(WORD_COUNT_URL, 'site showing the most frequently used words in these communiques', OTHER_SITE_LINK_STYLE)
-        print_centered(parenthesize(word_count_link))
         metadata_link = link_text_obj(JSON_METADATA_URL, 'metadata with author attribution explanations', OTHER_SITE_LINK_STYLE)
         print_centered(parenthesize(metadata_link))
+        word_count_link = link_text_obj(WORD_COUNT_URL, 'most frequently used words', OTHER_SITE_LINK_STYLE)
+        print_centered(parenthesize(word_count_link))
         print_centered(parenthesize(link_text_obj(GH_PROJECT_URL, '@github', 'dark_orange3 bold')))
-
 
 
 def print_page_title(expand: bool = True, width: int | None = None) -> None:
@@ -251,8 +250,8 @@ def print_page_title(expand: bool = True, width: int | None = None) -> None:
 def print_panel(msg: str, style: str = 'black on white', padding: tuple | None = None, centered: bool = False) -> None:
     _padding: list[int] = list(padding or [0, 0, 0, 0])
     _padding[2] += 1  # Bottom pad
-    panel = Panel(Text.from_markup(msg, justify='center'), width=70, style=style)
     actual_padding: tuple[int, int, int, int] = tuple(_padding)
+    panel = Panel(Text.from_markup(msg, justify='center'), width=70, style=style)
 
     if centered:
         console.print(Align.center(Padding(panel, actual_padding)))
@@ -339,6 +338,7 @@ def _print_external_links() -> None:
     print_centered(link_markup(COURIER_NEWSROOM_ARCHIVE_URL, 'Searchable Archive') + " (Courier Newsroom)")
     print_centered(link_markup(EPSTEINIFY_URL) + " (raw document images)")
     print_centered(link_markup(EPSTEIN_WEB_URL) + " (character summaries)")
+    print_centered(link_markup(EPSTEIN_MEDIA_URL) + " (raw document images)")
 
 
 # if args.deep_debug:

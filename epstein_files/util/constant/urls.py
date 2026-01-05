@@ -47,7 +47,7 @@ extracted_file_url = lambda f: f"{EXTRACTS_BASE_URL}/{f}"
 COFFEEZILLA_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=061ce61c9e70bdfd'
 COURIER_NEWSROOM_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
 EPSTEINIFY_URL = 'https://epsteinify.com'
-EPSTEIN_MEDIA_URL = 'https://www.epstein.media'
+EPSTEIN_MEDIA_URL = 'https://epstein.media'
 EPSTEIN_WEB_URL = 'https://epsteinweb.org'
 JMAIL_URL = 'https://jmail.world'
 OVERSIGHT_REPUBLICANS_PRESSER_URL = 'https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/'

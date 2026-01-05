@@ -1,6 +1,5 @@
 from pathlib import Path
 
-PICKLED_PATH = Path("the_epstein_files.pkl.gz")
 URLS_ENV = '.urls.env'
 
 # Files output by the code

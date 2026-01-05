@@ -2,9 +2,8 @@
 # Copy any emails extracted from legal filings into the repo.
 import shutil
 
-from scripts.use_pickled import epstein_files
+from scripts.use_pickled import console, epstein_files
 from epstein_files.util.file_helper import EXTRACTED_EMAILS_DIR
-from epstein_files.util.rich import console
 
 
 for email in epstein_files.emails:

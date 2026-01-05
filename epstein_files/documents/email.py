@@ -245,12 +245,10 @@ TRUNCATE_TERMS = [
 ]
 
 # Some Paul Krassner emails have a ton of CCed parties we don't care about
-KRASSNER_RECIPIENTS = uniquify(flatten(ALL_FILE_CONFIGS[id].recipients for id in ['025329', '024923', '033568']))
+KRASSNER_RECIPIENTS = uniquify(flatten([ALL_FILE_CONFIGS[id].recipients for id in ['025329', '024923', '033568']]))
 
 # No point in ever displaying these; their emails show up elsewhere because they're mostly CC recipients
-USELESS_EMAILERS = IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS + \
-                   KRASSNER_RECIPIENTS + \
-                   FLIGHT_IN_2012_PEOPLE + [
+USELESS_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + KRASSNER_RECIPIENTS + [
     'Alan Rogers',                           # Random CC
     'Andrew Friendly',                       # Presumably some relation of Kelly Friendly
     'BS Stern',                              # A random fwd of email we have

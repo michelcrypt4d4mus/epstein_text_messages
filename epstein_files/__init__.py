@@ -15,6 +15,7 @@ from rich.markup import escape
 from rich.padding import Padding
 from rich.panel import Panel
 
+from epstein_files.count_words import write_word_counts_html
 from epstein_files.epstein_files import EpsteinFiles, document_cls
 from epstein_files.documents.document import INFO_PADDING, Document
 from epstein_files.documents.email import Email
@@ -32,6 +33,7 @@ from epstein_files.util.timer import Timer
 def generate_html() -> None:
     if args.make_clean:
         make_clean()
+        write_urls()
         exit()
 
     timer = Timer()
@@ -75,7 +77,7 @@ def epstein_diff():
 def epstein_search():
     """Search the cleaned up text of the files."""
     _assert_positional_args()
-    epstein_files = EpsteinFiles.get_files(use_pickled=True)
+    epstein_files = EpsteinFiles.get_files()
 
     for search_term in args.positional_args:
         temp_highlighter = build_highlighter(search_term)
@@ -103,14 +105,9 @@ def epstein_show():
     """Show the color highlighted file. If --raw arg is passed, show the raw text of the file as well."""
     _assert_positional_args()
     ids = [extract_file_id(arg) for arg in args.positional_args]
+    raw_docs = [Document(coerce_file_path(id)) for id in ids]
+    docs = [document_cls(doc)(doc.file_path) for doc in raw_docs]
     console.line()
-
-    if args.pickled:
-        epstein_files = EpsteinFiles.get_files(use_pickled=True)
-        docs = epstein_files.get_documents_by_id(ids)
-    else:
-        raw_docs = [Document(coerce_file_path(id)) for id in ids]
-        docs = [document_cls(doc)(doc.file_path) for doc in raw_docs]
 
     for doc in docs:
         console.line()
@@ -118,17 +115,17 @@ def epstein_show():
 
         if args.raw:
             console.line()
-            console.print(Panel(f"*** {doc.url_slug} RAW ***", expand=False, style=doc._border_style()))
+            console.print(Panel(f"RAW {doc.filename} RAW", expand=False, style=doc._border_style()))
             console.print(escape(doc.raw_text()))
 
             if isinstance(doc, Email):
                 console.line()
-                console.print(Panel(f"*** {doc.url_slug} actual_text ***", expand=False, style=doc._border_style()))
+                console.print(Panel(f"{doc.filename}: actual_text() output", expand=False, style=doc._border_style()))
                 console.print(escape(doc._actual_text()))
 
 
-def epstein_dump_urls() -> None:
-    write_urls()
+def epstein_word_count() -> None:
+    write_word_counts_html()
 
 
 def _assert_positional_args():

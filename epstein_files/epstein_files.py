@@ -19,7 +19,6 @@ from epstein_files.documents.emails.email_header import AUTHOR
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.util.constant.output_files import PICKLED_PATH
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import (EPSTEIN_MEDIA, EPSTEIN_WEB, JMAIL, epstein_media_person_url,
      epsteinify_name_url, epstein_web_person_url, search_jmail_url, search_twitter_url)
@@ -35,9 +34,10 @@ from epstein_files.util.rich import (DEFAULT_NAME_STYLE, NA_TXT, add_cols_to_tab
 from epstein_files.util.search_result import SearchResult
 from epstein_files.util.timer import Timer
 
+EXCLUDED_EMAILERS = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
+PICKLED_PATH = Path("the_epstein_files.pkl.gz")
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (1, 0)
-NOT_INCLUDED_EMAILERS = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
 SLOW_FILE_SECONDS = 1.0
 
 INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [
@@ -94,23 +94,23 @@ class EpsteinFiles:
         self._tally_email_data()
 
     @classmethod
-    def get_files(cls, timer: Timer | None = None, use_pickled: bool = False) -> 'EpsteinFiles':
+    def get_files(cls, timer: Timer | None = None) -> 'EpsteinFiles':
         """Alternate constructor that reads/writes a pickled version of the data ('timer' arg is for logging)."""
         timer = timer or Timer()
 
-        if ((args.pickled or use_pickled) and PICKLED_PATH.exists()) and not args.overwrite_pickle:
+        if PICKLED_PATH.exists() and not args.overwrite_pickle:
             with gzip.open(PICKLED_PATH, 'rb') as file:
                 epstein_files = pickle.load(file)
                 timer.print_at_checkpoint(f"Loaded {len(epstein_files.all_files):,} documents from '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})")
                 epstein_files.timer = timer
                 return epstein_files
 
+        logger.warning(f"Building new cache file, this will take a few minutes...")
         epstein_files = EpsteinFiles(timer=timer)
 
-        if args.overwrite_pickle or not PICKLED_PATH.exists():
-            with gzip.open(PICKLED_PATH, 'wb') as file:
-                pickle.dump(epstein_files, file)
-                logger.warning(f"Pickled data to '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})...")
+        with gzip.open(PICKLED_PATH, 'wb') as file:
+            pickle.dump(epstein_files, file)
+            logger.warning(f"Pickled data to '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})...")
 
         timer.print_at_checkpoint(f'Processed {len(epstein_files.all_files):,} documents')
         return epstein_files
@@ -119,9 +119,9 @@ class EpsteinFiles:
         return self.imessage_logs + self.emails + self.other_files
 
     def all_emailers(self, include_useless: bool = False) -> list[str | None]:
-        """Returns all emailers except Epstein and USELESS_EMAILERS, sorted from least frequent to most."""
+        """Returns all emailers except Epstein and EXCLUDED_EMAILERS, sorted from least frequent to most."""
         names = [a for a in self.email_author_counts.keys()] + [r for r in self.email_recipient_counts.keys()]
-        names = names if include_useless else [e for e in names if e is None or e.lower() not in NOT_INCLUDED_EMAILERS]
+        names = names if include_useless else [e for e in names if e is None or e.lower() not in EXCLUDED_EMAILERS]
         return sorted(list(set(names)), key=lambda e: self.email_author_counts[e] + self.email_recipient_counts[e])
 
     def attributed_email_count(self) -> int:
@@ -200,10 +200,10 @@ class EpsteinFiles:
     def json_metadata(self) -> str:
         """Create a JSON string containing metadata for all the files."""
         metadata = {
-            EMAIL_CLASS: _sorted_metadata(self.emails),
-            JSON_FILE_CLASS: _sorted_metadata(self.json_files),
-            MESSENGER_LOG_CLASS: _sorted_metadata(self.imessage_logs),
-            OTHER_FILE_CLASS: _sorted_metadata(self.non_json_other_files()),
+            Email.__name__: _sorted_metadata(self.emails),
+            JsonFile.__name__: _sorted_metadata(self.json_files),
+            MessengerLog.__name__: _sorted_metadata(self.imessage_logs),
+            OtherFile.__name__: _sorted_metadata(self.non_json_other_files()),
         }
 
         return json.dumps(metadata, indent=4, sort_keys=True)

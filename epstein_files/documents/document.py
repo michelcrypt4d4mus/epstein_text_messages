@@ -85,10 +85,9 @@ class Document:
 
         if self.is_local_extract_file():
             self.url_slug = LOCAL_EXTRACT_REGEX.sub('', file_stem_for_id(self.file_id))
-            cfg_type = type(self.config).__name__ if self.config else None
 
             # Coerce FileConfig for court docs etc. to MessageCfg for email files extracted from that document
-            if self.class_name() == EMAIL_CLASS and self.config and cfg_type != EmailCfg.__name__:
+            if self.class_name() == EMAIL_CLASS and self.config and not isinstance(self.config, EmailCfg):
                 self.config = EmailCfg.from_doc_cfg(self.config)
         else:
             self.url_slug = self.file_path.stem

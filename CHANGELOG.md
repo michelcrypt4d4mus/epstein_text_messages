@@ -1,4 +1,8 @@
 # NEXT RELEASE
+* Add `epstein_word_count`
+
+### 1.0.5
+* Remove --pickled argument
 
 ### 1.0.4
 
