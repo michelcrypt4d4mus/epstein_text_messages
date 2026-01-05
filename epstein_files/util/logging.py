@@ -3,7 +3,7 @@ from os import environ
 from pathlib import Path
 
 import datefinder
-from rich_argparse_plus
+import rich_argparse_plus
 from rich.console import Console
 from rich.highlighter import ReprHighlighter
 from rich.logging import RichHandler

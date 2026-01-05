@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Fix import
 
 ### 1.0.8
 * Add `rich-argparse-plus`
