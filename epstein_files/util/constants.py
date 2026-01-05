@@ -412,6 +412,7 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(
         id='031278',
+        actual_text='',
         author=DARREN_INDYKE,
         description=f"heavily redacted email, quoted replies are from {STEVEN_HOFFENBERG} about James Patterson's book",
         timestamp=parse('2016-08-17 11:26:00'),
@@ -563,9 +564,9 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(
         id='026620',
+        attribution_reason='ends with "Respectfully, terry"',
         author=TERRY_KAFKA,
         recipients=[JEFFREY_EPSTEIN, MARK_EPSTEIN, MICHAEL_BUCHHOLTZ] + IRAN_NUCLEAR_DEAL_SPAM_EMAIL_RECIPIENTS,
-        attribution_reason='ends with "Respectfully, terry"',
         duplicate_ids=['028482'],
     ),
     EmailCfg(id='029992', author=TERRY_KAFKA, attribution_reason='Quoted reply'),
@@ -653,7 +654,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='025041', is_fwded_article=True, duplicate_ids=['028675']),  # Obama agenda
     EmailCfg(id='031136', is_fwded_article=True, duplicate_ids=['028791']),  # 'Smart Money is Fleeing US Stocks'
     EmailCfg(id='031779', is_fwded_article=True, duplicate_ids=['026938']),  # Sarah Silverman on AI
+    EmailCfg(id='030868', is_fwded_article=True),  # 'He doesn't like this sh*t': Trump reportedly hates his job and his staff after 1 month
     EmailCfg(id='026755', is_fwded_article=True),  # HuffPo
+    EmailCfg(id='016218', is_fwded_article=True),  # AT&T confirms it paid Trump lawyer Cohen for insights on Trump
     EmailCfg(id='030528', is_fwded_article=True),  # Vicky Ward article
     EmailCfg(id='030460', is_fwded_article=True),  # Vicky Ward article
     EmailCfg(id='028508', is_fwded_article=True),  # nanosatellites article
@@ -687,6 +690,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='031472', is_fwded_article=True),  # WSJ: Lawyers for Imam Wanted by Turkish authorities Fear for Their Client's Life
     EmailCfg(id='012684', is_fwded_article=True),  # Trump in talks to buy socialite Kluge's Charlottesville vineyard
     EmailCfg(id='028536', is_fwded_article=True),  # Palm Beach Post FBI Epstein files say he gave info. Does it explain sweetheart deal?
+    EmailCfg(id='028524', is_fwded_article=True),  # Zach Braff article on Woody Allen in NYT
+
     EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
 
