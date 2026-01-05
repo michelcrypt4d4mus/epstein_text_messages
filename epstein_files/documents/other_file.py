@@ -1,7 +1,7 @@
 import re
 import logging
 import warnings
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from datetime import datetime
 
 import datefinder
@@ -15,7 +15,7 @@ from rich.text import Text
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_REGEX, Document
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
-from epstein_files.util.doc_cfg import FINANCIAL_REPORTS_AUTHORS, DocCfg
+from epstein_files.util.doc_cfg import FINANCIAL_REPORTS_AUTHORS, DocCfg, Metadata
 from epstein_files.util.data import escape_single_quotes, remove_timezone, uniquify
 from epstein_files.util.file_helper import FILENAME_LENGTH
 from epstein_files.util.env import args
@@ -174,6 +174,11 @@ class OtherFile(Document):
                 return False
 
         return True
+
+    def metadata(self) -> Metadata:
+        metadata = super().metadata()
+        metadata['is_interesting'] = self.is_interesting()
+        return metadata
 
     def preview_text(self) -> str:
         return WHITESPACE_REGEX.sub(' ', self.text)[0:PREVIEW_CHARS]
