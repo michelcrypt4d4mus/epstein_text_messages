@@ -1,5 +1,7 @@
 # NEXT RELEASE
 
+### 1.0.10
+
 ### 1.0.9
 * Fix import
 
