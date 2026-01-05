@@ -120,6 +120,7 @@ EMAIL_SIGNATURE_REGEXES = {
 # Invalid for links to EpsteinWeb
 JUNK_EMAILERS = [
     'asmallworld@travel.asmallworld.net',
+    "digest-noreply@quora.com",
     'editorialstaff@flipboard.com',
     'How To Academy',
     'Jokeland',
