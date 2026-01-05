@@ -15,7 +15,6 @@ from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
 
-from epstein_files.count_words import write_word_counts_html
 from epstein_files.epstein_files import EpsteinFiles, document_cls
 from epstein_files.documents.document import INFO_PADDING, Document
 from epstein_files.documents.email import Email
@@ -27,6 +26,7 @@ from epstein_files.util.output import (print_emails, print_json_files, print_jso
      print_text_messages, write_urls)
 from epstein_files.util.rich import build_highlighter, console, print_header, print_panel, write_html
 from epstein_files.util.timer import Timer
+from epstein_files.util.word_count import write_word_counts_html
 
 
 def generate_html() -> None:
