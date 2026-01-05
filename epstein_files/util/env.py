@@ -14,23 +14,23 @@ HTML_SCRIPTS = ['epstein_generate', COUNT_WORDS_SCRIPT]
 
 RichHelpFormatterPlus.choose_theme('morning_glory')
 parser = ArgumentParser(description="Parse epstein OCR docs and generate HTML pages.", formatter_class=RichHelpFormatterPlus)
+parser.add_argument('--make-clean', action='store_true', help='delete all HTML build artifact and write latest URLs to .urls.env')
 parser.add_argument('--name', '-n', action='append', dest='names', help='specify the name(s) whose communications should be output')
-parser.add_argument('--overwrite-pickle', '-op', action='store_true', help='ovewrite cached EpsteinFiles')
+parser.add_argument('--overwrite-pickle', '-op', action='store_true', help='re-parse the files and ovewrite cached data')
 
 output = parser.add_argument_group('OUTPUT', 'Options used by epstein_generate.')
 output.add_argument('--all-emails', '-ae', action='store_true', help='all the emails instead of just the interesting ones')
 output.add_argument('--all-other-files', '-ao', action='store_true', help='all the non-email, non-text msg files instead of just the interesting ones')
-output.add_argument('--build', '-b', action='store_true', help='write output to an HTML file')
-output.add_argument('--json-metadata', '-jm', action='store_true', help='dump JSON metadata for all files and exit')
-output.add_argument('--make-clean', action='store_true', help='delete all HTML build artifact and write latest URLs to .urls.env')
-output.add_argument('--output-emails', '-oe', action='store_true', help='generate other files section')
-output.add_argument('--output-json-files', action='store_true', help='pretty print all the raw JSON data files in the collection and exit')
-output.add_argument('--output-other-files', '-oo', action='store_true', help='generate other files section')
+output.add_argument('--build', '-b', action='store_true', help='write HTML output to a file')
+output.add_argument('--json-files', action='store_true', help='pretty print all the raw JSON data files in the collection and exit')
+output.add_argument('--json-metadata', action='store_true', help='dump JSON metadata for all files and exit')
+output.add_argument('--output-emails', '-oe', action='store_true', help='generate emails section')
+output.add_argument('--output-other', '-oo', action='store_true', help='generate other files section')
 output.add_argument('--output-texts', '-ot', action='store_true', help='generate text messages section')
 output.add_argument('--sort-alphabetical', action='store_true', help='sort emailers alphabetically intead of by email count')
 output.add_argument('--suppress-output', action='store_true', help='no output to terminal (use with --build)')
 output.add_argument('--width', '-w', type=int, default=DEFAULT_WIDTH, help='screen width to use (in characters)')
-output.add_argument('--use-epstein-web-links', action='store_true', help='use epsteinweb.org links instead of epstein.media')
+output.add_argument('--use-epstein-web', action='store_true', help='use epsteinweb.org links instead of epstein.media')
 
 scripts = parser.add_argument_group('SCRIPTS', 'Options used by epstein_search, epstein_show, and epstein_diff.')
 scripts.add_argument('positional_args', nargs='*', help='strings to searchs for, file IDs to show or diff, etc.')
@@ -51,7 +51,7 @@ is_html_script = current_script in HTML_SCRIPTS
 
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 args.output_emails = args.output_emails or args.all_emails
-args.output_other_files = args.output_other_files or args.all_other_files
+args.output_other = args.output_other or args.all_other_files
 args.overwrite_pickle = args.overwrite_pickle or (is_env_var_set('OVERWRITE_PICKLE') and not is_env_var_set('PICKLED'))
 args.width = args.width if is_html_script else None
 is_output_selected = any([arg.startswith('output_') and value for arg, value in vars(args).items()])
@@ -76,9 +76,9 @@ if current_script == 'epstein_generate' and not (is_output_selected or args.make
     logger.warning(f"No output section chosen; outputting default selection of texts, selected emails, and other files...")
     args.output_texts = True
     args.output_emails = True
-    args.output_other_files = True
+    args.output_other = True
 
-if args.use_epstein_web_links:
+if args.use_epstein_web:
     logger.warning(f"Using links to epsteinweb.org links instead of epsteinify.com...")
 
 if args.debug:

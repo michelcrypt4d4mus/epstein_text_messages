@@ -41,7 +41,7 @@ def generate_html() -> None:
     if args.json_metadata:
         print_json_metadata(epstein_files)
         exit()
-    elif args.output_json_files:
+    elif args.json_files:
         print_json_files(epstein_files)
         exit()
 
@@ -58,7 +58,7 @@ def generate_html() -> None:
         emails_printed = print_emails(epstein_files)
         timer.print_at_checkpoint(f"Printed {emails_printed:,} emails")
 
-    if args.output_other_files:
+    if args.output_other:
         files_printed = epstein_files.print_other_files_table()
         timer.print_at_checkpoint(f"Printed {len(files_printed)} other files")
 
