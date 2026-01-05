@@ -329,6 +329,9 @@ class Email(Communication):
         txt = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(' to ')
         return txt.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
 
+    def is_fwded_article(self) -> bool:
+        return bool(self.config and self.config.is_fwded_article)
+
     def is_junk_mail(self) -> bool:
         return self.author in JUNK_EMAILERS
 
@@ -365,6 +368,8 @@ class Email(Communication):
 
         if self.file_id in ['024624']:  # This email starts with "On September 14th"
             return text.split('On Tue, May 14')[0].strip()
+        elif self.file_id == '013415':
+            return text.split('Darren K. Indyke')[0].strip()
 
         if reply_text_match:
             actual_num_chars = len(reply_text_match.group(1))
@@ -558,6 +563,9 @@ class Email(Communication):
             self._merge_lines(3, 5)
         elif self.file_id == '028931':
             self._merge_lines(3, 6)
+        elif self.file_id == '013415':
+            for _i in range(2):
+                self._merge_lines(4)
         elif self.file_id in ['033568']:
             for _i in range(5):
                 self._merge_lines(5)
