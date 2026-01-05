@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.0.8
 * Add `rich-argparse-plus`
 
 ### 1.0.7
