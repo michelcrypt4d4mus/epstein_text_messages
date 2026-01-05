@@ -58,7 +58,6 @@ is_output_selected = any([arg.startswith('output_') and value for arg, value in 
 is_output_selected = is_output_selected or args.json_metadata or args.colors_only
 specified_names: list[str | None] = [None if n == 'None' else n for n in (args.names or [])]
 
-
 # Log level args
 if args.deep_debug:
     logger.setLevel(logging.DEBUG)
@@ -74,9 +73,7 @@ logger.info(f'Log level set to {logger.level}...')
 # Massage args that depend on other args to the appropriate state
 if current_script == 'epstein_generate' and not (is_output_selected or args.make_clean):
     logger.warning(f"No output section chosen; outputting default selection of texts, selected emails, and other files...")
-    args.output_texts = True
-    args.output_emails = True
-    args.output_other = True
+    args.output_texts = args.output_emails = args.output_other = True
 
 if args.use_epstein_web:
     logger.warning(f"Using links to epsteinweb.org links instead of epsteinify.com...")
