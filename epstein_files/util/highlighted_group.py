@@ -270,7 +270,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='europe',
         style='light_sky_blue3',
-        pattern=r'(Angela )?Merk(el|le)|Austria|(Benjamin\s*)?Harnwell|Berlin|Borge|Boris\s*Johnson|Brexit(eers?)?|Brit(ain|ish)|Brussels|Cannes|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|Davos|ECB|England|EU|Europe(an)?(\s*Union)?|Fr(ance|ench)|Geneva|Germany?|Gillard|Gree(ce|k)|Ital(ian|y)|Jacques|(Kevin\s*)?Rudd|Le\s*Pen|London|Macron|Melusine|Munich|(Natalia\s*)?Veselnitskaya|(Nicholas\s*)?Sarkozy|Nigel(\s*Farage)?|Norw(ay|egian)|Oslo|Paris|Polish|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strasbourg|Strauss[- ]?Kahn|Swed(en|ish)(?![-\s]+America)|Switzerland|(Tony\s)?Blair|Ukrain(e|ian)|Vienna|(Vitaly\s*)?Churkin|Zug',
+        pattern=r'(Angela )?Merk(el|le)|Austria|(Benjamin\s*)?Harnwell|Berlin|Borge|Boris\s*Johnson|Brexit(eers?)?|Brit(ain|ish)|Brussels|Cannes|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|Davos|ECB|England|EU|Europe(an)?(\s*Union)?|Fr(ance|ench)|Geneva|Germany?|Gillard|Gree(ce|k)|Ital(ian|y)|Jacques|(Kevin\s*)?Rudd|Le\s*Pen|London|Macron|Melusine|Munich|(Natalia\s*)?Veselnitskaya|(Nicholas\s*)?Sarkozy|Nigel(\s*Farage)?|Norw(ay|egian)|Oslo|Paris|Polish|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strasbourg|Strauss[- ]?Kahn|Swed(en|ish)(?![-\s]+America)|Switzerland|(Tony\s)?Blair|U\.?K\.?|Ukrain(e|ian)|Vienna|(Vitaly\s*)?Churkin|Zug',
         emailers = {
             ANDRZEJ_DUDA: 'former president of Poland',
             MIROSLAV_LAJCAK: 'Russia-friendly Slovakian politician, friend of Steve Bannon',
@@ -390,7 +390,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='law enforcement',
         style='color(24) bold',
-        pattern=r'ag|(Alicia\s*)?Valle|attorney|((Bob|Robert)\s*)?Mueller|(Byung\s)?Pak|CFTC|CIA|CIS|CVRA|Dep(artmen)?t\.?\s*of\s*(the\s*)?(Justice|Treasury)|DHS|DOJ|FBI|FCPA|FDIC|Federal\s*Bureau\s*of\s*Investigation|FinCEN|FINRA|FOIA|FTC|IRS|(James\s*)?Comey|(Jennifer\s*Shasky\s*)?Calvery|((Judge|Mark)\s*)?(Carney|Filip)|(Kirk )?Blouin|KYC|NIH|NS(A|C)|OCC|OFAC|(Lann?a\s*)?Belohlavek|lawyer|(Michael\s*)?Reiter|OGE|Office\s*of\s*Government\s*Ethics|Police Code Enforcement|(Preet\s*)?Bharara|SCOTUS|SD(FL|NY)|Southern\s*District\s*of\s*(Florida|New\s*York)|SEC|Securities\s*and\s*Exchange\s*Commission|State\s*Dep(artmen)?t|Strzok|Supreme\s*Court|Treasury\s*(Dep(artmen)?t|Secretary)|TSA|USAID|(William\s*J\.?\s*)?Zloch',
+        pattern=r'ag|(Alicia\s*)?Valle|attorney|((Bob|Robert)\s*)?Mueller|(Byung\s)?Pak|CFTC|CIA|CIS|CVRA|Dep(artmen)?t\.?\s*of\s*(the\s*)?(Justice|Treasury)|DHS|DOJ|FBI|FCPA|FDIC|Federal\s*Bureau\s*of\s*Investigation|FinCEN|FINRA|FOIA|FTC|IRS|(James\s*)?Comey|(Jennifer\s*Shasky\s*)?Calvery|((Judge|Mark)\s*)?(Carney|Filip)|(Kirk )?Blouin|KYC|NIH|NS(A|C)|OCC|OFAC|(Lann?a\s*)?Belohlavek|lawyer|(Michael\s*)?Reiter|OGE|Office\s*of\s*Government\s*Ethics|Police Code Enforcement|(Preet\s*)?Bharara|SCOTUS|SD(FL|NY)|Southern\s*District\s*of\s*(Florida|New\s*York)|SEC|Secret\s*Service|Securities\s*and\s*Exchange\s*Commission|State\s*Dep(artmen)?t|Strzok|Supreme\s*Court|Treasury\s*(Dep(artmen)?t|Secretary)|TSA|USAID|(William\s*J\.?\s*)?Zloch',
         emailers = {
             ANN_MARIE_VILLAFANA: 'southern district of Florida U.S. Attorney',
             DANNY_FROST: 'Director of Communications at Manhattan DA',
@@ -399,7 +399,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label=LOBBYIST,
         style='light_coral',
-        pattern=r'[BR]ob Crowe|Stanley Rosenberg',
+        pattern=r'[BR]ob Crowe|CSIS|Stanley Rosenberg',
         emailers = {
             'Joshua Cooper Ramo': 'co-CEO of Henry Kissinger Associates',
             KATHERINE_KEATING: 'Daughter of former Australian PM',
@@ -457,7 +457,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='republicans',
         style='bold dark_red',
-        pattern=r'Alberto\sGonzale[sz]|(Alex\s*)?Acosta|(Bill\s*)?Barr|Bill\s*Shine|(Bob\s*)?Corker|(John\s*(R.?\s*)?)Bolton|Broidy|(Chris\s)?Christie|Devin\s*Nunes|(Don\s*)?McGa[hn]n|McMaster|(George\s*)?Nader|GOP|(Brett\s*)?Kavanaugh|Kissinger|Kobach|Koch\s*Brothers|Kolfage|Kudlow|Lewandowski|(Marco\s)?Rubio|(Mark\s*)Meadows|Mattis|(?<!Merwin Dela )Cruz|(Michael\s)?Hayden|((General|Mike)\s*)?(Flynn|Pence)|(Mitt\s*)?Romney|Mnuchin|Nikki|Haley|(Paul\s+)?Manafort|(Peter\s)?Navarro|Pompeo|Reagan|Reince|Priebus|Republican|(?<!Cynthia )(Richard\s*)?Nixon|Sasse|(Rex\s*)?Tillerson',
+        pattern=r'Alberto\sGonzale[sz]|(Alex\s*)?Acosta|(Bill\s*)?Barr|Bill\s*Shine|(Bob\s*)?Corker|(John\s*(R.?\s*)?)Bolton|Broidy|(Chris\s)?Christie|Devin\s*Nunes|(Don\s*)?McGa[hn]n|McMaster|(George\s*)?Nader|GOP|(Brett\s*)?Kavanaugh|Kissinger|Kobach|Koch\s*Brothers|Kolfage|Kudlow|Lewandowski|(Marco\s)?Rubio|(Mark\s*)Meadows|Mattis|McCain|(?<!Merwin Dela )Cruz|(Michael\s)?Hayden|((General|Mike)\s*)?(Flynn|Pence)|(Mitt\s*)?Romney|Mnuchin|Nikki|Haley|(Paul\s+)?(Manafort|Volcker)|(Peter\s)?Navarro|Pompeo|Reagan|Reince|Priebus|Republican|(Rex\s*)?Tillerson|(?<!Cynthia )(Richard\s*)?Nixon|Sasse',
         # There's no emails from these people, they're just here to automate the regex creation for both first + last names
         emailers = {
             RUDY_GIULIANI: 'disbarred formed mayor of New York City',

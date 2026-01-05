@@ -72,6 +72,9 @@ epstein_word_count --build --suppress-output --width 125
 echo -e ""
 print_msg "Building JSON metadata page..."
 epstein_generate --build --json-metadata
+echo -e ""
+print_msg "Building JSON files data..."
+epstein_generate --build --json-files
 
 # Commit changes
 git commit -am"Update HTML"

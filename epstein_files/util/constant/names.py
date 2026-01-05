@@ -235,14 +235,14 @@ OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
     hancock harold harrison harry helen hirsch hofstadter horowitz hussein
     isaac isaacson
     jamie jane janet jason jen jim joe johnson jones josh julie justin
-    kate kathy kelly kim kruger kyle
+    karl kate kathy kelly kim kruger kyle
     leo leonard lenny leslie lieberman louis lynch lynn
     marcus marianne matt matthew melissa michele michelle moore moscowitz
     nicole nussbaum
     paulson philippe
     rafael ray richardson rob robin ron rudolph ryan
     sara sarah seligman serge sergey silverman sloman smith snowden sorkin steele stevie stewart
-    ted theresa thompson tiffany timothy
+    ted theresa thompson tiffany timothy tony
     valeria
     walter warren weinstein weiss william
     zach zack

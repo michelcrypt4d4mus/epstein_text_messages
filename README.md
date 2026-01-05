@@ -67,6 +67,10 @@ for email in epstein_files.emails:
 for imessage_log in epstein_files.imessage_logs:
     do_stuff(imessage_log)
 
+# JSON files
+for json_file in epstein_files.json_files:
+    do_stuff(json_file)
+
 # Other Files
 for file in epstein_files.other_files:
     do_stuff(file)
