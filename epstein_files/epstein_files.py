@@ -318,7 +318,7 @@ class EpsteinFiles:
             console.line(2)
 
         console.print(OtherFile.build_table(interesting_files))
-        print_centered(vertically_pad(OtherFile.count_by_category_table(interesting_files)))
+        console.print(Padding(OtherFile.count_by_category_table(interesting_files), (2, 0, 2, 30)))
         skipped_file_count = len(self.other_files) - len(interesting_files)
 
         if skipped_file_count > 0:
