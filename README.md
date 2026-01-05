@@ -11,7 +11,7 @@
 
 
 ## Usage
-1. Requires you have a local copy of OCR text from the House Oversight document dump in a directory `/path/to/epstein/ocr_txt_files`. You can download them from [the Congressional Google Drive folder](https://drive.google.com/drive/folders/1ldncvdqIf6miiskDp_EDuGSDAaI_fJx8).
+1. Requires you have a local copy of the OCR text files from the House Oversight document release in a directory `/path/to/epstein/ocr_txt_files`. You can download those OCR text files from [the Congressional Google Drive folder](https://drive.google.com/drive/folders/1ldncvdqIf6miiskDp_EDuGSDAaI_fJx8).
 1. Dependencies are in [pyproject.toml](./pyproject.toml). Use `poetry install` for easiest time installing. `pip install epstein-files` should also work, though `pipx install epstein-files` is usually better.
 
 You need to set the `EPSTEIN_DOCS_DIR` environment variable with the path to the folder of files you just downloaded when running. You can either create a `.env` file modeled on [`.env.example`](./.env.example) (which will set it permanently) or you can run with:
@@ -31,7 +31,7 @@ epstein_search Bannon
 # Or a regex:
 epstein_search '\bSteve\s*Bannon\b'
 
-# Show a color highlighted file:
+# Show a file with color highlighting of keywords
 epstein_show 030999
 # Show both the highlighted and raw versions of the file:
 epstein_show --raw 030999
