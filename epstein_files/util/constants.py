@@ -260,14 +260,12 @@ NERIO_ALESSANDRI = 'Nerio Alessandri (Founder and Chairman of Technogym S.p.A. I
 NIGHT_FLIGHT_BOOK = f'"Night Flight" (draft)'
 NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
 OBAMA_JOKE = 'joke about Obama'
-PALM_BEACH_CODE_ENFORCEMENT = f'{PALM_BEACH} code enforcement board minutes'
-PALM_BEACH_DAILY_ARTICLE = f'{PALM_BEACH} Daily News article about'
-PALM_BEACH_POST_ARTICLE = f'{PALM_BEACH} Post article about'
+PALM_BEACH_CODE_ENFORCEMENT = f'{PALM_BEACH} Code Enforcement'
 PALM_BEACH_TSV = f"TSV of {PALM_BEACH} property"
 PALM_BEACH_WATER_COMMITTEE = f'{PALM_BEACH} Water Committee'
 PATTERSON_BOOK_SCANS = f'pages of "Filthy Rich: The Shocking True Story of {JEFFREY_EPSTEIN}"'
 SHIMON_POST = 'The Shimon Post'
-SHIMON_POST_ARTICLE = f'{SHIMON_POST} selection of articles about the mideast'
+SHIMON_POST_ARTICLE = f'selection of articles about the mideast'
 SINGLE_PAGE = 'single page of'
 STRANGE_BEDFELLOWS = "'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more"
 SWEDISH_LIFE_SCIENCES_SUMMIT = f"{BARBRO_C_EHNBOM}'s Swedish American Life Science Summit"
@@ -275,7 +273,6 @@ THE_REAL_DEAL_ARTICLE = 'article by Keith Larsen'
 TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Government Ethics"
 UBS_CIO_REPORT = 'CIO Monthly Extended report'
 UN_GENERAL_ASSEMBLY = '67th U.N. General Assembly'
-VI_DAILY_NEWS_ARTICLE = f'{VIRGIN_ISLANDS} Daily News article'
 WOMEN_EMPOWERMENT = f"Women Empowerment (WE) conference"
 ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
 
@@ -453,7 +450,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='018726', author=JEFFREY_EPSTEIN, timestamp=parse('2018-06-08 08:36:00')),  # nofix
     EmailCfg(id='032283', author=JEFFREY_EPSTEIN, timestamp=parse('2016-09-14 08:04:00')),  # nofix
     EmailCfg(id='026943', author=JEFFREY_EPSTEIN, timestamp=parse('2019-05-22 05:47:00')),  # nofix
-    EmailCfg(id='023208', author=JEFFREY_EPSTEIN, recipients=[BRAD_WECHSLER, MELANIE_SPINELLA], duplicate_ids=['023291']),
+    EmailCfg(
+        id='023208',
+        author=JEFFREY_EPSTEIN,
+        fwded_text_after='Date: Tue, Oct 27',
+        recipients=[BRAD_WECHSLER, MELANIE_SPINELLA],
+        duplicate_ids=['023291'],
+    ),
     EmailCfg(
         id='032214',
         author=JEFFREY_EPSTEIN,
@@ -648,7 +651,8 @@ EMAILS_CONFIG = [
     # Misc configs
     EmailCfg(id='033050', actual_text='schwartman'),
     EmailCfg(id='029344', actual_text='I thought of you when I read this article. Was this your idea? Alan'),
-    EmailCfg(id='023627', description=MICHAEL_WOLFF_ARTICLE_HINT, is_fwded_article=True),
+    EmailCfg(id='022219', description="discussion of attempts to clean up Epstein's Google search results"),
+    EmailCfg(id='023627', is_fwded_article=True, description=MICHAEL_WOLFF_ARTICLE_HINT),
     EmailCfg(id='031333', is_fwded_article=True, description='looks like a Russian disinfo article'),  # Russia Says IMF Chief Jailed For Discovering All US Gold is Gone
     EmailCfg(id='031335', is_fwded_article=True, description='looks like a Russian disinfo article'),  # DOMINQUE STRAUSS-KAHN ARRESTED, NOT BECAUSE HE RAPED A MAID, BUT BECAUSE HE HAD EVIDENCE US HAS NO GOLD IN FORT KNOX.
     EmailCfg(id='026298', is_fwded_article=True, duplicate_ids=['026499']),  # Written by someone else?
@@ -660,6 +664,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='025041', is_fwded_article=True, duplicate_ids=['028675']),  # Obama agenda
     EmailCfg(id='031136', is_fwded_article=True, duplicate_ids=['028791']),  # 'Smart Money is Fleeing US Stocks'
     EmailCfg(id='031779', is_fwded_article=True, duplicate_ids=['026938']),  # Sarah Silverman on AI
+    EmailCfg(id='029849', is_fwded_article=True, duplicate_ids=['033482']), # Fareed Zakaria: Trump sells America short),
+    EmailCfg(id='032023', is_fwded_article=True, duplicate_ids=['032012']), # American-Israeli Cooperative Enterprise Newsletter
     EmailCfg(id='030868', is_fwded_article=True),  # 'He doesn't like this sh*t': Trump reportedly hates his job and his staff after 1 month
     EmailCfg(id='026755', is_fwded_article=True),  # HuffPo
     EmailCfg(id='016218', is_fwded_article=True),  # AT&T confirms it paid Trump lawyer Cohen for insights on Trump
@@ -697,7 +703,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='012684', is_fwded_article=True),  # Trump in talks to buy socialite Kluge's Charlottesville vineyard
     EmailCfg(id='028536', is_fwded_article=True),  # Palm Beach Post FBI Epstein files say he gave info. Does it explain sweetheart deal?
     EmailCfg(id='028524', is_fwded_article=True),  # Zach Braff article on Woody Allen in NYT
-
+    EmailCfg(id='030326', is_fwded_article=True),  # NYP Congressional candidate compares Melania Trump to prostitute
+    EmailCfg(id='030519', is_fwded_article=True),  # Daily Mail on Prince Andrew
+    EmailCfg(id='030878', is_fwded_article=True),  # Steve Bannon almost appeared in Michael Moore's 'Fahrenheit 11/9'
+    EmailCfg(id='024300', is_fwded_article=True),  # Bookstore owner calls police after customer confronted Steve Bannon
+    EmailCfg(id='026924', is_fwded_article=True),  # The Onion
+    EmailCfg(id='033311', is_fwded_article=True),  # 2016 election polls
+    EmailCfg(id='026580', is_fwded_article=True),  # NPR: Antigua: Land Of Sun, Sand, And Super Cheap
     EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
 
@@ -724,7 +736,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='025790', duplicate_ids=['031994']),
     EmailCfg(id='028497', duplicate_ids=['026228']),
     EmailCfg(id='033528', duplicate_ids=['033517']),
-    EmailCfg(id='032023', is_fwded_article=True, duplicate_ids=['032012']), # American-Israeli Cooperative Enterprise Newsletter
     EmailCfg(id='019412', duplicate_ids=['028621']),
     EmailCfg(id='027053', duplicate_ids=['028765']),
     EmailCfg(id='027049', duplicate_ids=['028773']),
@@ -741,7 +752,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='031912', duplicate_ids=['032158']),
     EmailCfg(id='030587', duplicate_ids=['030514']),
     EmailCfg(id='029773', duplicate_ids=['012685']),
-    EmailCfg(id='029849', duplicate_ids=['033482'], is_fwded_article=True),  # Fareed Zakaria: Trump sells America short),
     EmailCfg(id='033297', duplicate_ids=['033586']),
     EmailCfg(id='031089', duplicate_ids=['018084']),
     EmailCfg(id='031088', duplicate_ids=['030885']),
@@ -840,6 +850,11 @@ EMAILS_CONFIG = [
     EmailCfg(id='022207', fwded_text_after='Web Images Videos Maps'),
     EmailCfg(id='033210', fwded_text_after='Trump appears with mobster-affiliated'),
     EmailCfg(id='030989', fwded_text_after='New book paints sordid picture of Trump real estate'),
+    EmailCfg(id='029174', fwded_text_after='The US trade war against China'),
+    EmailCfg(id='030015', fwded_text_after='Bill Clinton reportedly'),
+    EmailCfg(id='026312', fwded_text_after='Steve Bannon trying to get on disgraced'),
+    EmailCfg(id='031742', fwded_text_after="Trump's former campaign manager Paul Manafort"),
+
 ]
 
 
@@ -879,12 +894,19 @@ OTHER_FILES_BOOKS = [
 ]
 
 OTHER_FILES_ARTICLES = [
+    DocCfg(id='030258', author=ALAN_DERSHOWITZ, description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030248'),
+    DocCfg(id='030248', author=ALAN_DERSHOWITZ, description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030258'),
+    DocCfg(id='029165', author=ALAN_DERSHOWITZ, description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030258'),
+    DocCfg(id='030013', author=f'Aviation International News', description=f'article', date='2012-07-01'),
     DocCfg(id='013275', author=BLOOMBERG, description=f"article on notable 2013 obituaries", date='2013-12-26'),
     DocCfg(id='026543', author=BLOOMBERG, description=f"BNA article about taxes"),
+    DocCfg(id='014865', author=f'Boston Globe', description=f"article about {ALAN_DERSHOWITZ}"),
+    DocCfg(id='033231', author=f'Business Standard', description=f"article about Trump's visit with India's Modi"),
     DocCfg(id='023572', author=CHINA_DAILY, description=f"article on China's Belt & Road Initiative"),
     DocCfg(id='023571', author=CHINA_DAILY, description=f"article on terrorism, Macau, trade initiatives", date='2016-09-18'),
     DocCfg(id='023570', author=CHINA_DAILY, description=f"article on Belt & Road in Central/South America, Xi philosophy", date='2017-05-14'),
     DocCfg(id='025115', author=CHINA_DAILY, description=f"article on China and the US working together", date='2017-05-14'),
+    DocCfg(id='012704', author='Daily Business Review', description=f"article about {JANE_DOE_V_USA} and {CVRA}", date='2011-04-21'),
     DocCfg(id='025292', author=DAILY_MAIL, description=f"article on Bill Clinton being named in a lawsuit"),
     DocCfg(id='019468', author=DAILY_MAIL, description=f"article on Epstein and Clinton"),
     DocCfg(id='022970', author=DAILY_MAIL, description=f"article on Epstein and Prince Andrew"),
@@ -892,10 +914,20 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='013437', author=DAILY_TELEGRAPH, description=f"article about Epstein's diary", date='2011-03-05'),
     DocCfg(id='023287', author=DAILY_TELEGRAPH, description=f"article about a play based on the Oslo Accords", date='2017-09-15'),
     DocCfg(id='019206', author=EDWARD_JAY_EPSTEIN, description=f"WSJ article about Edward Snowden", date='2016-12-30'),
+    DocCfg(id='023567', author=f'Financial Times', description=f"article about quantitative easing"),
+    DocCfg(id='026761', author=f'Forbes', description=f"article about {BARBRO_C_EHNBOM} 'Swedish American Group Focuses On Cancer'"),
+    DocCfg(id='031716', author=f'Fortune Magazine', description=f'article by {TOM_BARRACK}', date='2016-10-22'),
+    DocCfg(id='019444', author=f'Frontlines magazine', description=f"article 'Biologists Dig Deeper'", date='2008-01-01'),
+    DocCfg(id='023720', author=f'Future Science', description=f'article: "Is Shame Necessary?" by {JENNIFER_JACQUET}'),
+    DocCfg(id='021094', author=f'Globe and Mail', description=f"article about Gerd Heinrich"),
+    DocCfg(id='013268', author=f'JetGala', description=f"article about airplane interior designer {ERIC_ROTH}"),
     DocCfg(id='029539', author=LA_TIMES, description=f"Alan Trounson interview on California stem cell research and CIRM"),
     DocCfg(id='029865', author=LA_TIMES, description=f"front page article about {DEEPAK_CHOPRA} and young Iranians", date='2016-11-05'),
     DocCfg(id='026598', author=LA_TIMES, description=f"op-ed about why America needs a Ministry of Culture"),
     DocCfg(id='027024', author=LA_TIMES, description=f"Scientists Create Human Embryos to Make Stem Cells", date='2013-05-15'),
+    DocCfg(id='031776', author='Law360', description=f"article about Michael Avenatti by Andrew Strickler"),
+    DocCfg(id='023102', author=f'Litigation Daily', description=f"article about {REID_WEINGARTEN}", date='2015-09-04'),
+    DocCfg(id='029340', author=f'MarketWatch', description=f'article about estate taxes, particularly Epstein\'s favoured GRATs'),
     DocCfg(id='022707', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
     DocCfg(id='022727', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
     DocCfg(id='022746', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
@@ -904,6 +936,26 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='022894', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
     DocCfg(id='022952', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
     DocCfg(id='024229', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
+    DocCfg(id='031198', author='Morning News USA', description=f"article about identify of Jane Doe in {JANE_DOE_V_EPSTEIN_TRUMP}"),
+    DocCfg(id='031972', author=NYT, description=f"article about #MeToo allegations against {LAWRENCE_KRAUSS}", date='2018-03-07'),
+    DocCfg(id='032435', author=NYT, description=f'article about Chinese butlers'),
+    DocCfg(id='029452', author=NYT, description=f"article about {PETER_THIEL}"),
+    DocCfg(id='025328', author=NYT, description=f"article about radio host Bob Fass and Robert Durst"),
+    DocCfg(id='033479', author=NYT, description=f"article about Rex Tillerson", date='2010-03-14'),
+    DocCfg(id='028481', author=NYT, description=f'article about {STEVE_BANNON}', date='2018-03-09'),
+    DocCfg(id='033181', author=NYT, description=f"article about Trump's tax avoidance", date='2016-10-31'),
+    DocCfg(id='023097', author=NYT, description=f"column about The Aristocrats by Frank Rich 'The Greatest Dirty Joke Ever Told'"),
+    DocCfg(id='033365', author=NYT, description=f'column about trade war with China by Kevin Rudd'),
+    DocCfg(id='019439', author=NYT, description=f"column about the Clintons and money by Maureen Dowd", date='2013-08-17'),
+    DocCfg(id='029925', author=f'New Yorker', description=f"article about the placebo effect by Michael Specter"),
+    DocCfg(id='013435', author=PALM_BEACH_DAILY_NEWS, description=f"article about Epstein's address book", date='2011-03-11'),
+    DocCfg(id='013440', author=PALM_BEACH_DAILY_NEWS, description=f"article about Epstein's gag order", date='2011-07-13'),
+    DocCfg(id='029238', author=PALM_BEACH_DAILY_NEWS, description=f"article about Epstein's plea deal"),
+    DocCfg(id='021775', author=PALM_BEACH_POST, description="article about 'He Was 50. And They Were Girls'"),
+    DocCfg(id='022989', author=PALM_BEACH_POST, description="article about alleged rape of 13 year old by Trump"),
+    DocCfg(id='022987', author=PALM_BEACH_POST, description="article about just a headline on Trump and Epstein"),
+    DocCfg(id='015028', author=PALM_BEACH_POST, description="article about reopening Epstein's criminal case"),
+    DocCfg(id='022990', author=PALM_BEACH_POST, description="article about Trump and Epstein"),
     DocCfg(id='031753', author=PAUL_KRASSNER, description=f'essay for Playboy in the 1980s', date='1985-01-01'),
     DocCfg(id='023638', author=PAUL_KRASSNER, description=f'magazine interview'),
     DocCfg(id='024374', author=PAUL_KRASSNER, description=f"Remembering Cavalier Magazine"),
@@ -916,6 +968,7 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='013450', author=PEGGY_SIEGAL, description=f"Oscar Diary in Avenue Magazine", date='2011-02-27'),
     DocCfg(id='010715', author=PEGGY_SIEGAL, description=f"Oscar Diary April", date='2012-02-27'),
     DocCfg(id='019849', author=PEGGY_SIEGAL, description=f"Oscar Diary April", date='2017-02-27', duplicate_ids=['019864']),
+    DocCfg(id='026851', author='Politifact', description=f"lying politicians chart", date='2016-07-26'),
     DocCfg(id='033253', author=ROBERT_LAWRENCE_KUHN, description=f'{BBC} article about Rohingya in Myanmar'),
     DocCfg(id='026887', author=ROBERT_LAWRENCE_KUHN, description=f'{BBC} "New Tariffs - Trade War"'),
     DocCfg(id='026877', author=ROBERT_LAWRENCE_KUHN, description=f'{CNN} "New Tariffs - Trade War"'),
@@ -924,8 +977,41 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='029176', author=ROBERT_LAWRENCE_KUHN, description=f'{CNN} "U.S. China Tariffs - Trade War"'),
     DocCfg(id='032638', author=ROBERT_LAWRENCE_KUHN, description=f'{CNN} "Xi Jinping and the New Politburo Committee"'),
     DocCfg(id='023666', author=ROBERT_LAWRENCE_KUHN, description=f"sizzle reel / television appearances"),
+    DocCfg(id='016996', author=f'SciencExpress', description=f'article "Quantitative Analysis of Culture Using Millions of Digitized Books" by Jean-Baptiste Michel'),
     DocCfg(id='025104', author='SCMP', description=f"article about China and globalisation"),
-    DocCfg(id='033379', author=WAPO, description=f'How Washington Pivoted From Finger-Wagging to Appeasement (about Viktor Orban)', date='2018-05-25'),
+    DocCfg(id='030030', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-03-29'),
+    DocCfg(id='025610', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-04-03'),
+    DocCfg(id='023458', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-04-17'),
+    DocCfg(id='023487', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-04-18'),
+    DocCfg(id='030531', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-05-16'),
+    DocCfg(id='024958', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-05-08'),
+    DocCfg(id='030060', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-05-13'),
+    DocCfg(id='031834', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-05-16'),
+    DocCfg(id='023517', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-05-26'),
+    DocCfg(id='030268', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-05-29'),
+    DocCfg(id='029628', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-06-04'),
+    DocCfg(id='018085', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-06-07'),
+    DocCfg(id='030156', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-06-22'),
+    DocCfg(id='031876', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-06-14'),
+    DocCfg(id='032171', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-06-26'),
+    DocCfg(id='029932', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-07-03'),
+    DocCfg(id='031913', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-08-24'),
+    DocCfg(id='024592', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-08-25'),
+    DocCfg(id='024997', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-09-08'),
+    DocCfg(id='031941', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-11-17'),
+    DocCfg(id='030829', author=f'South Florida Sun Sentinel', description=f'article about {BRAD_EDWARDS} and {JEFFREY_EPSTEIN}'),
+    DocCfg(id='021092', author='Tatler', description=f'{SINGLE_PAGE} of article about {GHISLAINE_MAXWELL} shredding documents', date='2019-08-15'),
+    DocCfg(id='030333', author=f'The Independent', description=f'article about Prince Andrew, Epstein, and Epstein\'s butler who stole his address book'),
+    DocCfg(id='010754', author=f'U.S. News', description=f"article about Yitzhak Rabin"),
+    DocCfg(id='014498', author=VI_DAILY_NEWS, description='article', date='2016-12-13'),
+    DocCfg(id='031171', author=VI_DAILY_NEWS, description='article', date='2019-02-06'),
+    DocCfg(id='023048', author=VI_DAILY_NEWS, description='article', date='2019-02-27'),
+    DocCfg(id='023046', author=VI_DAILY_NEWS, description='article', date='2019-02-27'),
+    DocCfg(id='031170', author=VI_DAILY_NEWS, description='article', date='2019-03-06'),
+    DocCfg(id='016506', author=VI_DAILY_NEWS, description='article', date='2019-02-28'),
+    DocCfg(id='016507', author=VI_DAILY_NEWS, description=f"'Perversion of Justice' by {JULIE_K_BROWN}", date='2018-12-19'),
+    DocCfg(id='019212', author=WAPO, description=f'and Times Tribune articles about Bannon, Trump, and healthcare execs'),
+    DocCfg(id='033379', author=WAPO, description=f'"How Washington Pivoted From Finger-Wagging to Appeasement" (about Viktor Orban)', date='2018-05-25'),
     DocCfg(
         id='031396',
         author=WAPO,
@@ -933,122 +1019,43 @@ OTHER_FILES_ARTICLES = [
         date='2019-02-06',
         duplicate_ids=['031415'],
     ),
+
     DocCfg(
         id='030199',
         description=f'article about allegations Trump raped a 13 year old girl {JANE_DOE_V_EPSTEIN_TRUMP}',
         date='2017-11-16',
     ),
     DocCfg(id='031725', description=f"article about Gloria Allred and Trump allegations", date='2016-10-10'),
-    DocCfg(id='031198', description=f"article about identify of Jane Doe in {JANE_DOE_V_EPSTEIN_TRUMP}"),
-    DocCfg(id='012704', description=f"article about {JANE_DOE_V_USA} and {CVRA}", date='2011-04-21'),
     DocCfg(id='026648', description=f'article about {JASTA} lawsuit against Saudi Arabia by 9/11 victims (Russian propaganda?)', date='2017-05-13'),
-    DocCfg(id='031776', description=f"article about Michael Avenatti by Andrew Strickler"),
     DocCfg(id='032159', description=f"article about microfinance and cell phones in Zimbabwe, Strive Masiyiwa (Econet Wireless)"),
-    DocCfg(id='030258', description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030248'),
-    DocCfg(id='030248', description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030258'),
-    DocCfg(id='029165', description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030258'),
     DocCfg(id='033468', description=f'{ARTICLE_DRAFT} Rod Rosenstein', date='2018-09-24'),
     DocCfg(id='030825', description=f'{ARTICLE_DRAFT} Syria'),
-    DocCfg(id='030013', description=f'Aviation International News article', date='2012-07-01'),
-    DocCfg(id='014865', description=f"Boston Globe article about {ALAN_DERSHOWITZ}"),
-    DocCfg(id='033231', description=f"Business Standard article about Trump's visit with India's Modi"),
-    DocCfg(id='023567', description=f"Financial Times article about quantitative easing"),
-    DocCfg(id='026761', description=f"Forbes article about {BARBRO_C_EHNBOM} 'Swedish American Group Focuses On Cancer'"),
-    DocCfg(id='031716', description=f'Fortune Magazine article by {TOM_BARRACK}', date='2016-10-22'),
     DocCfg(
         id='019233',
         description=f"Freedom House: 'Breaking Down Democracy: Goals, Strategies, and Methods of Modern Authoritarians'",
         date='2017-06-02',
     ),
-    DocCfg(id='019444', description=f"Frontlines magazine article 'Biologists Dig Deeper'", date='2008-01-01'),
-    DocCfg(id='023720', description=f'Future Science article: "Is Shame Necessary?" by {JENNIFER_JACQUET}'),
     DocCfg(id='027051', description=f"German language article about the 2013 Lifeball / AIDS Gala", date='2013-01-01'),
-    DocCfg(id='021094', description=f"Globe and Mail article about Gerd Heinrich"),
-    DocCfg(id='013268', description=f"JetGala article about airplane interior designer {ERIC_ROTH}"),
     DocCfg(id='033480', description=f"{JOHN_BOLTON_PRESS_CLIPPING}", date='2018-04-06', duplicate_ids=['033481']),
     DocCfg(id='013403', description=f"Lexis Nexis result from The Evening Standard about Bernie Madoff", date='2009-12-24'),
-    DocCfg(id='023102', description=f"Litigation Daily article about {REID_WEINGARTEN}", date='2015-09-04'),
-    DocCfg(id='029340', description=f'MarketWatch article about estate taxes, particularly Epstein\'s favoured GRATs'),
-    DocCfg(
-        id='029416',
-        description=f"National Enquirer / Radar Online v. FBI FOIA lawsuit court filing",
-        date='2017-05-25',
-        duplicate_ids=['029405']
-    ),
     DocCfg(id='015462', description=f'Nautilus Education magazine (?) issue'),
-    DocCfg(id='029925', description=f"New Yorker article about the placebo effect by Michael Specter"),
-    DocCfg(id='031972', description=f"{NYT_ARTICLE} #MeToo allegations against {LAWRENCE_KRAUSS}", date='2018-03-07'),
-    DocCfg(id='032435', description=f'{NYT_ARTICLE} Chinese butlers'),
-    DocCfg(id='029452', description=f"{NYT_ARTICLE} {PETER_THIEL}"),
-    DocCfg(id='025328', description=f"{NYT_ARTICLE} radio host Bob Fass and Robert Durst"),
-    DocCfg(id='033479', description=f"{NYT_ARTICLE} Rex Tillerson", date='2010-03-14'),
-    DocCfg(id='028481', description=f'{NYT_ARTICLE} {STEVE_BANNON}', date='2018-03-09'),
-    DocCfg(id='033181', description=f'{NYT_ARTICLE} Trump\'s tax avoidance', date='2016-10-31'),
-    DocCfg(id='023097', description=f"{NYT_COLUMN} The Aristocrats by Frank Rich 'The Greatest Dirty Joke Ever Told'"),
-    DocCfg(id='033365', description=f'{NYT_COLUMN} trade war with China by Kevin Rudd'),
-    DocCfg(id='019439', description=f"{NYT_COLUMN} the Clintons and money by Maureen Dowd", date='2013-08-17'),
     DocCfg(id='021093', description=f"page of unknown article about Epstein and Maxwell"),
-    DocCfg(id='013435', description=f"{PALM_BEACH_DAILY_ARTICLE} Epstein's address book", date='2011-03-11'),
-    DocCfg(id='013440', description=f"{PALM_BEACH_DAILY_ARTICLE} Epstein's gag order", date='2011-07-13'),
-    DocCfg(id='029238', description=f"{PALM_BEACH_DAILY_ARTICLE} Epstein's plea deal"),
-    DocCfg(id='021775', description=f"{PALM_BEACH_POST_ARTICLE} 'He Was 50. And They Were Girls'"),
-    DocCfg(id='022989', description=f"{PALM_BEACH_POST_ARTICLE} alleged rape of 13 year old by Trump"),
-    DocCfg(id='022987', description=f"{PALM_BEACH_POST_ARTICLE} just a headline on Trump and Epstein"),
-    DocCfg(id='015028', description=f"{PALM_BEACH_POST_ARTICLE} reopening Epstein's criminal case"),
-    DocCfg(id='022990', description=f"{PALM_BEACH_POST_ARTICLE} Trump and Epstein"),
-    DocCfg(id='016996', description=f'SciencExpress article "Quantitative Analysis of Culture Using Millions of Digitized Books" by Jean-Baptiste Michel'),
-    DocCfg(id='030030', description=SHIMON_POST_ARTICLE, date='2011-03-29'),
-    DocCfg(id='025610', description=SHIMON_POST_ARTICLE, date='2011-04-03'),
-    DocCfg(id='023458', description=SHIMON_POST_ARTICLE, date='2011-04-17'),
-    DocCfg(id='023487', description=SHIMON_POST_ARTICLE, date='2011-04-18'),
-    DocCfg(id='030531', description=SHIMON_POST_ARTICLE, date='2011-05-16'),
-    DocCfg(id='024958', description=SHIMON_POST_ARTICLE, date='2011-05-08'),
-    DocCfg(id='030060', description=SHIMON_POST_ARTICLE, date='2011-05-13'),
-    DocCfg(id='031834', description=SHIMON_POST_ARTICLE, date='2011-05-16'),
-    DocCfg(id='023517', description=SHIMON_POST_ARTICLE, date='2011-05-26'),
-    DocCfg(id='030268', description=SHIMON_POST_ARTICLE, date='2011-05-29'),
-    DocCfg(id='029628', description=SHIMON_POST_ARTICLE, date='2011-06-04'),
-    DocCfg(id='018085', description=SHIMON_POST_ARTICLE, date='2011-06-07'),
-    DocCfg(id='030156', description=SHIMON_POST_ARTICLE, date='2011-06-22'),
-    DocCfg(id='031876', description=SHIMON_POST_ARTICLE, date='2011-06-14'),
-    DocCfg(id='032171', description=SHIMON_POST_ARTICLE, date='2011-06-26'),
-    DocCfg(id='029932', description=SHIMON_POST_ARTICLE, date='2011-07-03'),
-    DocCfg(id='031913', description=SHIMON_POST_ARTICLE, date='2011-08-24'),
-    DocCfg(id='024592', description=SHIMON_POST_ARTICLE, date='2011-08-25'),
-    DocCfg(id='024997', description=SHIMON_POST_ARTICLE, date='2011-09-08'),
-    DocCfg(id='031941', description=SHIMON_POST_ARTICLE, date='2011-11-17'),
-    DocCfg(id='021092', description=f'{SINGLE_PAGE} Tatler article about {GHISLAINE_MAXWELL} shredding documents', date='2019-08-15'),
     DocCfg(id='031191', description=f"{SINGLE_PAGE} unknown article about Epstein and Trump's relationship in 1997"),
-    DocCfg(id='030829', description=f'South Florida Sun Sentinel article about {BRAD_EDWARDS} and {JEFFREY_EPSTEIN}'),
     DocCfg(id='026520', description=f'Spanish language article about {SULTAN_BIN_SULAYEM}', date='2013-09-27'),
-    DocCfg(id='030333', description=f'The Independent article about Prince Andrew, Epstein, and Epstein\'s butler who stole his address book'),
     DocCfg(
         id='031736',
         description=f"{TRANSLATION} Arabic article by Abdulnaser Salamah 'Trump; Prince of Believers (Caliph)!'",
         date='2017-05-13',
     ),
     DocCfg(id='025094', description=f'{TRANSLATION} Spanish article about Cuba', date='2015-11-08'),
-    DocCfg(id='010754', description=f"U.S. News article about Yitzhak Rabin"),
     DocCfg(id='031794', description=f"very short French magazine clipping"),
-    DocCfg(id='014498', description=VI_DAILY_NEWS_ARTICLE, date='2016-12-13'),
-    DocCfg(id='031171', description=VI_DAILY_NEWS_ARTICLE, date='2019-02-06'),
-    DocCfg(id='023048', description=VI_DAILY_NEWS_ARTICLE, date='2019-02-27'),
-    DocCfg(id='023046', description=VI_DAILY_NEWS_ARTICLE, date='2019-02-27'),
-    DocCfg(id='031170', description=VI_DAILY_NEWS_ARTICLE, date='2019-03-06'),
-    DocCfg(id='016506', description=VI_DAILY_NEWS_ARTICLE, date='2019-02-28'),
-    DocCfg(id='016507', description=f"{VI_DAILY_NEWS_ARTICLE} 'Perversion of Justice' by {JULIE_K_BROWN}", date='2018-12-19'),
-    DocCfg(id='019212', description=f'{WAPO} and Times Tribune articles about Bannon, Trump, and healthcare execs'),
 ]
 
 OTHER_FILES_LEGAL = [
+    DocCfg(id='011908', author=BRUNEL_V_EPSTEIN, description=f"court filing"),
     DocCfg(id='025353', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-05-19', duplicate_ids=['010723', '019224'], dupe_type='redacted'),
     DocCfg(id='025704', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-05-27', duplicate_ids=['010732', '019221'], dupe_type='redacted'),
     DocCfg(id='012130', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-06-19', duplicate_ids=['012135']),
-    DocCfg(id='011908', author=BRUNEL_V_EPSTEIN, description=f"court filing"),
-    DocCfg(id='017603', description=DAVID_SCHOEN_CVRA_LEXIS_SEARCH, date='2019-02-28'),
-    DocCfg(id='017635', description=DAVID_SCHOEN_CVRA_LEXIS_SEARCH, date='2019-02-28'),
-    DocCfg(id='016509', description=DAVID_SCHOEN_CVRA_LEXIS_SEARCH, date='2019-02-28'),
-    DocCfg(id='017714', description=DAVID_SCHOEN_CVRA_LEXIS_SEARCH, date='2019-02-28'),
     DocCfg(id='021824', author=EDWARDS_V_DERSHOWITZ, description=f"deposition of {PAUL_G_CASSELL}"),
     DocCfg(
         id='010757',
@@ -1118,6 +1125,12 @@ OTHER_FILES_LEGAL = [
         date='2018-02-07'
     ),
     DocCfg(
+        id='010560',
+        author='Gloria Allred',
+        description=f"letter to {SCOTT_J_LINK} alleging abuse of a girl from Kansas",
+        date='2019-06-19',
+    ),
+    DocCfg(
         id='025937',
         author=JANE_DOE_V_EPSTEIN_TRUMP,
         description=f'Affidavit of Tiffany Doe describing Jane Doe being raped by Epstein and Trump',
@@ -1138,12 +1151,6 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='017904', author=JASTA_SAUDI_LAWSUIT, description=f"Westlaw search results", date='2019-01-01'),
     DocCfg(id='014037', author='Journal of Criminal Law and Criminology', description=f"article on {CVRA}"),
     DocCfg(
-        id='010560',
-        author='Gloria Allred',
-        description=f"letter to {SCOTT_J_LINK} alleging abuse of a girl from Kansas",
-        date='2019-06-19',
-    ),
-    DocCfg(
         id='031447',
         author=MARTIN_WEINBERG,
         description=f"letter from to Melanie Ann Pustay and Sean O'Neill re: an Epstein FOIA request"
@@ -1153,6 +1160,13 @@ OTHER_FILES_LEGAL = [
         author=MARTIN_WEINBERG,
         description=f"letter from to ABC / Good Morning America threatening libel lawsuit",
         duplicate_ids=['028928']
+    ),
+    DocCfg(
+        id='029416',
+        author="National Enquirer / Radar Online v. FBI",
+        description=f"FOIA lawsuit filing",
+        date='2017-05-25',
+        duplicate_ids=['029405']
     ),
     DocCfg(
         id='016420',
@@ -1191,6 +1205,10 @@ OTHER_FILES_CONFERENCES = [
         description=f'schedule including "Presidents Private Dinner - Jeffrey Epstine (sic)"',
         date='2012-09-21',
     ),
+    DocCfg(id='017603', description=DAVID_SCHOEN_CVRA_LEXIS_SEARCH, date='2019-02-28'),
+    DocCfg(id='017635', description=DAVID_SCHOEN_CVRA_LEXIS_SEARCH, date='2019-02-28'),
+    DocCfg(id='016509', description=DAVID_SCHOEN_CVRA_LEXIS_SEARCH, date='2019-02-28'),
+    DocCfg(id='017714', description=DAVID_SCHOEN_CVRA_LEXIS_SEARCH, date='2019-02-28'),
     DocCfg(id='017526', description=f'Intellectual Jazz conference brochure f. {DAVID_BLAINE}'),
     DocCfg(id='029427', description=f"seems related to an IRL meeting about concerns China will attempt to absorb Mongolia"),
     DocCfg(id='025797', description=f'someone\'s notes from Aspen Strategy Group', date='2013-05-29'),
@@ -1309,12 +1327,12 @@ OTHER_FILES_LETTERS = [
 
 OTHER_FILES_PROPERTY = [
     DocCfg(id='026759', author='Great Bay Condominium Owners Association', description=f'{PRESS_RELEASE} by about Hurricane Irma damage', date='2017-09-13'),
+    DocCfg(id='016602', author=PALM_BEACH_CODE_ENFORCEMENT, description='board minutes', date='2008-04-17'),
+    DocCfg(id='016554', author=PALM_BEACH_CODE_ENFORCEMENT, description='board minutes', date='2008-07-17', duplicate_ids=['016616', '016574']),
     DocCfg(id='027068', author=THE_REAL_DEAL, description=f"{THE_REAL_DEAL_ARTICLE} Palm House Hotel Bankruptcy and EB-5 Visa Fraud Allegations"),
     DocCfg(id='029520', author=THE_REAL_DEAL, description=f"{THE_REAL_DEAL_ARTICLE} 'Lost Paradise at the Palm House'", date='2019-06-17'),
     DocCfg(id='016597', author='Trump Properties LLC', description=f'appeal of some decision about Mar-a-Lago by {PALM_BEACH} authorities'),
     DocCfg(id='018743', description=f"Las Vegas property listing"),
-    DocCfg(id='016602', description=PALM_BEACH_CODE_ENFORCEMENT, date='2008-04-17'),
-    DocCfg(id='016554', description=PALM_BEACH_CODE_ENFORCEMENT, date='2008-07-17', duplicate_ids=['016616', '016574']),
     DocCfg(id='016695', description=f"{PALM_BEACH} property info (?)"),
     DocCfg(id='016697', description=f"{PALM_BEACH} property tax info (?) that mentions Trump"),
     DocCfg(id='016599', description=f"{PALM_BEACH_TSV} consumption (water?)"),
@@ -1344,16 +1362,16 @@ OTHER_FILES_REPUTATION = [
 
 # social media / InsightsPod
 OTHER_FILES_SOCIAL = [
+    DocCfg(id='023050', author=ALAN_DERSHOWITZ, description=DERSH_GIUFFRE_TWEET),
+    DocCfg(id='017787', author=ALAN_DERSHOWITZ, description=DERSH_GIUFFRE_TWEET),
+    DocCfg(id='033433', author=ALAN_DERSHOWITZ, description=f"{DERSH_GIUFFRE_TWEET} / David Boies", date='2019-03-02'),
+    DocCfg(id='033432', author=ALAN_DERSHOWITZ, description=f"{DERSH_GIUFFRE_TWEET} / David Boies", date='2019-05-02'),
     DocCfg(id='028815', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} business plan", date='2016-08-20'),
     DocCfg(id='011170', author=ZUBAIR_AND_ANYA, description=f'{INSIGHTS_POD} collected tweets about #Brexit', date='2016-06-23'),
     DocCfg(id='032324', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} election social media trend analysis", date='2016-11-05'),
     DocCfg(id='032281', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} forecasting election for Trump", date='2016-10-25'),
     DocCfg(id='028988', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} pitch deck", date='2016-08-20'),
     DocCfg(id='026627', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} report on the presidential debate"),
-    DocCfg(id='023050', author=ALAN_DERSHOWITZ, description=DERSH_GIUFFRE_TWEET),
-    DocCfg(id='017787', author=ALAN_DERSHOWITZ, description=DERSH_GIUFFRE_TWEET),
-    DocCfg(id='033433', author=ALAN_DERSHOWITZ, description=f"{DERSH_GIUFFRE_TWEET} / David Boies", date='2019-03-02'),
-    DocCfg(id='033432', author=ALAN_DERSHOWITZ, description=f"{DERSH_GIUFFRE_TWEET} / David Boies", date='2019-05-02'),
     DocCfg(id='022213', description=f"{SCREENSHOT} Facebook group called 'Shit Pilots Say' disparaging a 'global girl'"),
     DocCfg(id='030884', description=f"{TWEET} by Ed Krassenstein"),
     DocCfg(id='031546', description=f"{TWEET}s by Donald Trump about Russian collusion", date='2018-01-06'),
@@ -1363,7 +1381,6 @@ OTHER_FILES_SOCIAL = [
 OTHER_FILES_POLITICS = [
     DocCfg(id='029918', author=DIANA_DEGETTE_CAMPAIGN, description=f"bio", date='2012-01-01'),
     DocCfg(id='031184', author=DIANA_DEGETTE_CAMPAIGN, description=f"fundraiser invitation"),
-    DocCfg(id='026851', author='Politifact', description=f"lying politicians chart", date='2016-07-26'),
     DocCfg(id='026827', author='Scowcroft Group', description=f'report on ISIS', date='2015-11-14'),
     DocCfg(id='024294', author=STACEY_PLASKETT, description=f"campaign flier", date='2016-10-01'),
     DocCfg(
@@ -1398,6 +1415,11 @@ OTHER_FILES_ACADEMIA = [
         duplicate_ids=['011284']
     ),
     DocCfg(id='015501', author=f"{MOSHE_HOFFMAN}, Erez Yoeli, and Carlos David Navarrete", description=f"Game Theory and Morality"),
+    DocCfg(
+        id='026521',
+        author=f"{MOSHE_HOFFMAN}, Erez Yoeli, and {MARTIN_NOWAK}",
+        description=f"Cooperating Without Looking: Game Theory Model of Trust and Reciprocal Cooperation"
+    ),
     DocCfg(id='025143', author=ROBERT_TRIVERS, description=f"Africa, Parasites, Intelligence", date='2018-06-25'),
     DocCfg(id='029155', author=ROBERT_TRIVERS, description=f'response sent to the Gruterites ({GORDON_GETTY} fans)', date='2018-03-19'),
     DocCfg(
@@ -1405,11 +1427,6 @@ OTHER_FILES_ACADEMIA = [
         author=f"{ROBERT_TRIVERS} and Nathan H. Lents",
         description=f"'Does Trump Fit the Evolutionary Role of Narcissistic Sociopath?' (draft)",
         date='2018-12-07',
-    ),
-    DocCfg(
-        id='026521',
-        author=f"{MARTIN_NOWAK}, Erez Yoeli, and {MOSHE_HOFFMAN}",
-        description=f"Cooperating Without Looking: Game Theory Model of Trust and Reciprocal Cooperation"
     ),
     DocCfg(id='023416', description=HARVARD_POETRY),
     DocCfg(id='023435', description=HARVARD_POETRY),
@@ -1452,7 +1469,6 @@ OTHER_FILES_ARTS = [
     DocCfg(id='018703', author=ANDRES_SERRANO, description=f"artist statement about Trump objects"),
     DocCfg(id='023438', author=BROCKMAN_INC, description=f"announcement of auction of 'Noise' by Daniel Kahneman, Olivier Sibony, and Cass Sunstein"),
     DocCfg(id='030769', author='Independent Filmmaker Project (IFP)', description=f"2017 Gotham Awards invitation"),
-    DocCfg(id='028281', description=f'art show flier for "The House Of The Nobleman" curated by Wolfe Von Lenkiewicz & Victoria Golembiovskaya'),
     DocCfg(
         id='025205',
         author='Mercury Films',
@@ -1460,6 +1476,7 @@ OTHER_FILES_ARTS = [
         date='2010-02-01',
         duplicate_ids=['025210']
     ),
+    DocCfg(id='028281', description=f'art show flier for "The House Of The Nobleman" curated by Wolfe Von Lenkiewicz & Victoria Golembiovskaya'),
 ]
 
 OTHER_FILES_MISC = [
