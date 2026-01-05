@@ -24,12 +24,12 @@ output.add_argument('--make-clean', '-mc', action='store_true', help='delete all
 output.add_argument('--output-emails', '-oe', action='store_true', help='generate other files section')
 output.add_argument('--output-other-files', '-oo', action='store_true', help='generate other files section')
 output.add_argument('--output-texts', '-ot', action='store_true', help='generate other files section')
-output.add_argument('--suppress-output', '-s', action='store_true', help='no output to terminal (use with --build)')
+output.add_argument('--suppress-output', action='store_true', help='no output to terminal (use with --build)')
 output.add_argument('--width', '-w', type=int, default=DEFAULT_WIDTH, help='screen width to use')
-output.add_argument('--use-epstein-web-links', '-use', action='store_true', help='use epsteinweb.org links instead of epstein.media')
+output.add_argument('--use-epstein-web-links', action='store_true', help='use epsteinweb.org links instead of epstein.media')
 
 scripts = parser.add_argument_group('SCRIPTS', 'Arguments used only by epstein_search, epstein_show, epstein_diff')
-scripts.add_argument('positional_args', nargs='*', help='only used by epstein_search and epstein_show')
+scripts.add_argument('positional_args', nargs='*', help='strings to searchs for, file IDs to show or diff, etc.')
 scripts.add_argument('--raw', '-r', action='store_true', help='show raw contents of file (only used by scripts)')
 scripts.add_argument('--whole-file', '-wf', action='store_true', help='print whole file (only used by epstein_search)')
 
@@ -39,7 +39,7 @@ debug.add_argument('--debug', '-d', action='store_true', help='set debug level t
 debug.add_argument('--deep-debug', '-dd', action='store_true', help='set debug level to DEBUG')
 debug.add_argument('--json-metadata', '-jm', action='store_true', help='dump JSON metadata for all files')
 debug.add_argument('--json-stats', '-j', action='store_true', help='print JSON formatted stats at the end')
-debug.add_argument('--sort-alphabetical', '-alpha', action='store_true', help='sort emailers alphabetically in counts table')
+debug.add_argument('--sort-alphabetical', action='store_true', help='sort emailers alphabetically in counts table')
 debug.add_argument('--suppress-logs', '-sl', action='store_true', help='set debug level to FATAL')
 args = parser.parse_args()
 
