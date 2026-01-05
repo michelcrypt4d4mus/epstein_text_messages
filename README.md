@@ -8,46 +8,60 @@
 * Configuration variables assigning specific `HOUSE_OVERSIGHT_XXXXXX.txt` file IDs (the `111111` part) as being emails to or from particular people based on various research and contributions can be found in [constants.py](./epstein_files/util/constants.py). Everything in `constants.py` appears in the JSON metadata linked above.
 
 
-### Usage
+## Usage
 1. Requires you have a local copy of OCR text from the House Oversight document dump in a directory `/path/to/epstein/ocr_txt_files`. You can download them from [the Congressional Google Drive folder](https://drive.google.com/drive/folders/1ldncvdqIf6miiskDp_EDuGSDAaI_fJx8).
-1. Dependencies are in [pyproject.toml](./pyproject.toml). Use `poetry install` for easiest time installing. `pip install .` may or may not work.
+1. Dependencies are in [pyproject.toml](./pyproject.toml). Use `poetry install` for easiest time installing. `pip install epstein-files` should also work, though `pipx install epstein-files` is usually better.
 
-You need to set the `DOCS_DIR` environment variable with the path to the folder of files you just downloaded when running. You can either create a `.env` file modeled on [`.env.example`](./.env.example) (which will set it permanently) or you can run with:
+You need to set the `EPSTEIN_DOCS_DIR` environment variable with the path to the folder of files you just downloaded when running. You can either create a `.env` file modeled on [`.env.example`](./.env.example) (which will set it permanently) or you can run with:
+
+```bash
+EPSTEIN_DOCS_DIR=/path/to/epstein/ocr_txt_files epstein_generate --help
+```
+
+All the tools that come with the package require `EPSTEIN_DOCS_DIR` to be set. These are the available tools:
 
 ```bash
 # Generate color highlighted texts/emails/other files
-DOCS_DIR=/path/to/epstein/ocr_txt_files epstein_generate
+epstein_generate
 
-# Search
-DOCS_DIR=/path/to/epstein/ocr_txt_files epstein_search Bannon
+# Search for a string:
+epstein_search Bannon
+# Or a regex:
+epstein_search '\bSteve\s*Bannon\b'
 
-# Show a color highlighted file
-DOCS_DIR=/path/to/epstein/ocr_txt_files epstein_show 030999
-# This also works
-DOCS_DIR=/path/to/epstein/ocr_txt_files epstein_show HOUSE_OVERSIGHT_030999
+# Show a color highlighted file:
+epstein_show 030999
+# Show both the highlighted and raw versions of the file:
+epstein_show --raw 030999
+# This also works:
+epstein_show HOUSE_OVERSIGHT_030999
+
+# Diff two epstein files after all the cleanup (stripping BOMs, matching newline chars, etc):
+epstein_diff 030999 020442
 ```
 
 Run `epstein_generate --help` for command line option assistance.
-The first time you run anything it will take a few minutes to fix all the data, attribute the redacted emails, etc. Once you've run things once you can run the `epstein_generate --pickled` to load the cached fixed up data and things will be quick.
+
+The first time you run anything it will take a few minutes to fix all the data, attribute the redacted emails, etc. Once you've run things once you can run the `epstein_generate --pickled` to load the cached data and things will be very quick.
 
 #### As A Library
 ```python
 from epstein_files.epstein_files import EpsteinFiles
-epstein_files = EpsteinFiles.get_files()
+epstein_files = EpsteinFiles.get_files(use_pickled=True)
 
 # All files
 for document in epstein_files.all_documents():
-    do_stuff()
+    do_stuff(document)
 
 # Emails
 for email in epstein_files.emails:
-    do_stuff()
+    do_stuff(email)
 
 # iMessage Logs
 for imessage_log in epstein_files.imessage_logs:
-    do_stuff()
+    do_stuff(imessage_log)
 
 # Other Files
-for document in epstein_files.other_files:
-    do_stuff()
+for file in epstein_files.other_files:
+    do_stuff(file)
 ```
