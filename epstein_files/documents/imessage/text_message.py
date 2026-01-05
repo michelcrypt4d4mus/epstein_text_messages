@@ -48,12 +48,10 @@ class TextMessage:
 
         if self.author is None:
             self.author_str = UNKNOWN
-        elif self.author_str and self.author:
-            logger.warning(f"Both author_str ('{self.author_str}') and author ('{self.author}')")
         elif self.author in DISPLAY_LAST_NAME_ONLY:
             self.author_str = extract_last_name(self.author)
         else:
-            self.author_str = self.author
+            self.author_str = self.author_str or self.author
 
         if not self.id_confirmed and self.author is not None and self.author != JEFFREY_EPSTEIN:
             self.author_str = self.author + ' (?)'
@@ -86,7 +84,6 @@ class TextMessage:
         return msg_txt
 
     def __rich__(self) -> Text:
-        # TODO: Workaround for phone numbers that sucks
         author_style = get_style_for_name(self.author_str if self.author_str.startswith('+') else self.author)
         author_txt = Text(self.author_str, style=author_style)
         timestamp_txt = Text(f"[{self.timestamp_str}]", style=TIMESTAMP_STYLE).append(' ')
