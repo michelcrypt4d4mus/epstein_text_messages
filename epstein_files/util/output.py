@@ -121,7 +121,7 @@ def print_json_files(epstein_files: EpsteinFiles):
     else:
         for json_file in epstein_files.json_files:
             console.line(2)
-            console.print(json_file.description_panel())
+            console.print(json_file.summary_panel())
             console.print_json(json_file.json_str(), indent=4, sort_keys=False)
 
 

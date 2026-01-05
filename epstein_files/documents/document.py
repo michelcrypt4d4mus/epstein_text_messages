@@ -87,8 +87,9 @@ class Document:
     timestamp: datetime | None = None
     url_slug: str = field(init=False)  # e.g. 'HOUSE_OVERSIGHT_123456
 
-    # Class variable overridden in JsonFile
-    strip_whitespace: ClassVar[bool] = True
+    # Class variables
+    include_description_in_summary_panel: ClassVar[bool] = False
+    strip_whitespace: ClassVar[bool] = True  # Overridden in JsonFile
 
     def __post_init__(self):
         self.filename = self.file_path.name
@@ -113,22 +114,13 @@ class Document:
         """Annoying workaround for circular import issues and isinstance()."""
         return str(type(self).__name__)
 
-    def configured_description(self) -> str | None:
+    def config_description(self) -> str | None:
         """Overloaded in OtherFile."""
         if self.config and self.config.description:
             return f"({self.config.description})"
 
     def date_str(self) -> str | None:
         return date_str(self.timestamp)
-
-    def description_panel(self, include_info: bool = False) -> Panel:
-        """Panelized description() with info_txt(), used in search results."""
-        sentences = [self.summary()]
-
-        if include_info:
-            sentences += [Text('', style='italic').append(h) for h in self.info()]
-
-        return Panel(Group(*sentences), border_style=self.document_type_style(), expand=False)
 
     def document_type_style(self) -> str:
         return DOC_TYPE_STYLES[self.class_name()]
@@ -170,13 +162,8 @@ class Document:
         """0 to 2 sentences containing the info_txt() as well as any configured description."""
         sentences = [
             self.info_txt(),
-
+            highlighter(Text(self.config_description(), style=INFO_STYLE)) if self.config_description() else None
         ]
-        sentences = listify(self.info_txt())
-        description = self.configured_description()
-
-        if description:
-            sentences.append(highlighter(Text(description, style=INFO_STYLE)))
 
         return without_falsey(sentences)
 
@@ -282,6 +269,15 @@ class Document:
             txt.append(", ").append(key_value_txt('dupe_of', Text(self.config.dupe_of_id, style='magenta')))
 
         return txt
+
+    def summary_panel(self) -> Panel:
+        """Panelized description() with info_txt(), used in search results."""
+        sentences = [self.summary()]
+
+        if self.include_description_in_summary_panel:
+            sentences += [Text('', style='italic').append(h) for h in self.info()]
+
+        return Panel(Group(*sentences), border_style=self.document_type_style(), expand=False)
 
     def top_lines(self, n: int = 10) -> str:
         return '\n'.join(self.lines[0:n])[:MAX_TOP_LINES_LEN]

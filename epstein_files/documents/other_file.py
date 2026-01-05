@@ -4,7 +4,7 @@ import warnings
 from collections import defaultdict
 from dataclasses import asdict, dataclass
 from datetime import datetime
-from typing import Sequence
+from typing import ClassVar, Sequence
 
 import datefinder
 import dateutil
@@ -123,6 +123,8 @@ UNINTERESTING_PREFIXES = FINANCIAL_REPORTS_AUTHORS + [
 class OtherFile(Document):
     """File that is not an email, an iMessage log, or JSON data."""
 
+    include_description_in_summary_panel: ClassVar[bool] = True
+
     def __post_init__(self):
         super().__post_init__()
 
@@ -136,14 +138,10 @@ class OtherFile(Document):
     def category_txt(self) -> Text | None:
         return styled_category(self.category() or UNKNOWN)
 
-    def configured_description(self) -> str | None:
+    def config_description(self) -> str | None:
         """Overloads superclass method."""
         if self.config is not None:
             return self.config.complete_description()
-
-    def description_panel(self, include_info=True) -> Panel:
-        """Panelized description() with info_txt(), used in search results."""
-        return super().description_panel(include_info=include_info)
 
     def highlighted_preview_text(self) -> Text:
         try:

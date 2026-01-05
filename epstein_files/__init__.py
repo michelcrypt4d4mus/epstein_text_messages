@@ -96,7 +96,7 @@ def epstein_search():
 
                 console.print(search_result.document)
             else:
-                console.print(search_result.document.description_panel())
+                console.print(search_result.document.summary_panel())
 
                 for matching_line in search_result.lines:
                     line_txt = matching_line.__rich__()
