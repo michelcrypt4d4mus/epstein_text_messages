@@ -75,7 +75,7 @@ def epstein_diff():
 def epstein_search():
     """Search the cleaned up text of the files."""
     _assert_positional_args()
-    epstein_files = EpsteinFiles.get_files(use_pickled=True)
+    epstein_files = EpsteinFiles.get_files()
 
     for search_term in args.positional_args:
         temp_highlighter = build_highlighter(search_term)
