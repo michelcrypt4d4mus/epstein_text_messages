@@ -38,7 +38,7 @@ def generate_html() -> None:
         make_clean()
         write_urls()
         exit()
-    if args.json_metadata:
+    elif args.json_metadata:
         print_json_metadata(epstein_files)
         exit()
     elif args.output_json_files:

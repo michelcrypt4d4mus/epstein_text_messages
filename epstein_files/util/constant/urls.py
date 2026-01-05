@@ -6,7 +6,6 @@ from inflection import parameterize
 from rich.text import Text
 
 from epstein_files.util.constant.output_files import *
-from epstein_files.util.constant.strings import EMAIL, TEXT_MESSAGE, SiteType
 from epstein_files.util.file_helper import coerce_file_stem
 
 # Style stuff
@@ -15,25 +14,10 @@ TEXT_LINK = 'text_link'
 
 # External site names
 ExternalSite = Literal['epstein.media', 'epsteinify', 'EpsteinWeb']
-
 EPSTEIN_MEDIA = 'epstein.media'
 EPSTEIN_WEB = 'EpsteinWeb'
 EPSTEINIFY = 'epsteinify'
 JMAIL = 'Jmail'
-
-# Deployment URLS
-# NOTE: don't rename these variables without changing deploy.sh!
-GH_PAGES_BASE_URL = 'https://michelcrypt4d4mus.github.io'
-TEXT_MSGS_URL = f"{GH_PAGES_BASE_URL}/epstein_text_messages"
-ALL_EMAILS_URL = f"{TEXT_MSGS_URL}/{ALL_EMAILS_PATH.name}"
-JSON_FILES_URL = f"{TEXT_MSGS_URL}/{JSON_FILES_JSON_PATH.name}"
-JSON_METADATA_URL = f"{TEXT_MSGS_URL}/{JSON_METADATA_PATH.name}"
-WORD_COUNT_URL = f"{TEXT_MSGS_URL}/{WORD_COUNT_HTML_PATH.name}"
-
-SITE_URLS: dict[SiteType, str] = {
-    EMAIL: ALL_EMAILS_URL,
-    TEXT_MESSAGE: TEXT_MSGS_URL,
-}
 
 GH_PROJECT_URL = 'https://github.com/michelcrypt4d4mus/epstein_text_messages'
 GH_MASTER_URL = f"{GH_PROJECT_URL}/blob/master"
@@ -46,13 +30,15 @@ extracted_file_url = lambda f: f"{EXTRACTS_BASE_URL}/{f}"
 # External URLs
 COFFEEZILLA_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=061ce61c9e70bdfd'
 COURIER_NEWSROOM_ARCHIVE_URL = 'https://journaliststudio.google.com/pinpoint/search?collection=092314e384a58618'
+OVERSIGHT_REPUBLICANS_PRESSER_URL = 'https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/'
+RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_'
+SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great'
+
+# Document source sites
 EPSTEINIFY_URL = 'https://epsteinify.com'
 EPSTEIN_MEDIA_URL = 'https://epstein.media'
 EPSTEIN_WEB_URL = 'https://epsteinweb.org'
 JMAIL_URL = 'https://jmail.world'
-OVERSIGHT_REPUBLICANS_PRESSER_URL = 'https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/'
-RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_'
-SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great'
 
 DOC_LINK_BASE_URLS: dict[ExternalSite, str] = {
     EPSTEIN_MEDIA: f"{EPSTEIN_MEDIA_URL}/files",
@@ -61,7 +47,6 @@ DOC_LINK_BASE_URLS: dict[ExternalSite, str] = {
 }
 
 
-# TODO: epsteinify.com seems to be down as of 2025-12-30, switched to epstein.web for links
 epsteinify_api_url = lambda file_id: f"{EPSTEINIFY_URL}/api/documents/HOUSE_OVERSIGHT_{file_id}"
 epsteinify_doc_link_markup = lambda filename_or_id, style = TEXT_LINK: external_doc_link_markup(EPSTEINIFY, filename_or_id, style)
 epsteinify_doc_link_txt = lambda filename_or_id, style = TEXT_LINK: Text.from_markup(external_doc_link_markup(filename_or_id, style))
