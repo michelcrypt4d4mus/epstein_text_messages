@@ -87,6 +87,9 @@ def epstein_search():
             console.line()
 
             if args.whole_file:
+                if isinstance(search_result.document, Email):
+                    search_result.document.truncation_allowed = False
+
                 console.print(search_result.document)
             else:
                 console.print(search_result.document.description_panel())
