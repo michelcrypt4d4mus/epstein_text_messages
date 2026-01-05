@@ -233,10 +233,10 @@ def print_other_site_link(is_header: bool = True) -> None:
     print_centered(parenthesize(Text.from_markup(markup_msg)), style='bold')
 
     if is_header:
-        word_count_link = link_text_obj(WORD_COUNT_URL, 'site showing the most frequently used words in these communiques', OTHER_SITE_LINK_STYLE)
-        print_centered(parenthesize(word_count_link))
         metadata_link = link_text_obj(JSON_METADATA_URL, 'metadata with author attribution explanations', OTHER_SITE_LINK_STYLE)
         print_centered(parenthesize(metadata_link))
+        word_count_link = link_text_obj(WORD_COUNT_URL, 'most frequently used words', OTHER_SITE_LINK_STYLE)
+        print_centered(parenthesize(word_count_link))
         print_centered(parenthesize(link_text_obj(GH_PROJECT_URL, '@github', 'dark_orange3 bold')))
 
 
