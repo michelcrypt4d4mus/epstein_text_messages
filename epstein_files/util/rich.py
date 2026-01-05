@@ -240,7 +240,6 @@ def print_other_site_link(is_header: bool = True) -> None:
         print_centered(parenthesize(link_text_obj(GH_PROJECT_URL, '@github', 'dark_orange3 bold')))
 
 
-
 def print_page_title(expand: bool = True, width: int | None = None) -> None:
     title_panel = Panel(Text(PAGE_TITLE, justify='center'), expand=expand, style=TITLE_STYLE, width=width)
     console.print(Align.center(vertically_pad(title_panel)))
