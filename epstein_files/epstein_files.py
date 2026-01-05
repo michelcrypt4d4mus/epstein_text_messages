@@ -68,6 +68,7 @@ class EpsteinFiles:
         """Iterate through files and build appropriate objects."""
         self.all_files = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
         documents = []
+        file_type_count = defaultdict(int)
 
         # Read through and classify all the files
         for file_arg in self.all_files:
@@ -75,12 +76,13 @@ class EpsteinFiles:
             document = Document(file_arg)
 
             if document.length == 0:
-                logger.warning(f"Skipping empty file: {document}")
+                logger.warning(f"Skipping empty file: {document}]")
                 continue
 
             cls = document_cls(document)
             documents.append(cls(file_arg, text=document.text))
             logger.info(str(documents[-1]))
+            file_type_count[cls.__name__] += 1
 
             if doc_timer.seconds_since_start() > SLOW_FILE_SECONDS:
                 doc_timer.print_at_checkpoint(f"Slow file: {documents[-1]} processed")

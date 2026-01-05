@@ -578,7 +578,18 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(emailers={PRINCE_ANDREW: 'British royal family'}, style='dodger_blue1'),
     HighlightedNames(emailers={SOON_YI_PREVIN: "wife of Woody Allen"}, style='hot_pink'),
     HighlightedNames(emailers={SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of ports in Dubai'}, style='green1'),
-    HighlightedText(label='unknown', style='cyan', pattern=r'\(unknown\)'),  # HighlightedText bc of word boundary issue
+
+    # HighlightedText bc of word boundary issue
+    HighlightedText(
+        label='unknown',
+        style='cyan',
+        pattern=r'\(unknown\)'
+    ),
+    HighlightedText(
+        label='phone_number',
+        style='bright_green',
+        pattern=r"\+?(1?\(?\d{3}\)?[- ]\d{3}[- ]\d{4}|\d{2}[- ]\(?0?\)?\d{2}[- ]\d{4}[- ]\d{4})|[\d+]{10,12}",
+    ),
 ]
 
 # Highlight regexes for things other than names, only used by RegexHighlighter pattern matching
@@ -592,11 +603,6 @@ HIGHLIGHTED_TEXTS = [
         label='http_links',
         style=f'{ARCHIVE_LINK_COLOR} underline',
         pattern=r"https?:[^\s]+",
-    ),
-    HighlightedText(
-        label='phone_number',
-        style='bright_green',
-        pattern=r"\+?(1?\(?\d{3}\)?[- ]\d{3}[- ]\d{4}|\d{2}[- ]\(?0?\)?\d{2}[- ]\d{4}[- ]\d{4})|[\d+]{10,12}",
     ),
     HighlightedText(
         label='quoted_reply_line',

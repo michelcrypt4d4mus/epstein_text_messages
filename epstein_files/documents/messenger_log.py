@@ -44,17 +44,8 @@ class MessengerLog(Communication):
 
     def messages(self) -> list[TextMessage]:
         """Lazily evaluated accessor for self._messages."""
-        if len(self._messages) == 0:
-            self._messages = [
-                TextMessage(
-                    # If the Sender: is redacted that means it's from self.author
-                    author=REDACTED_AUTHOR_REGEX.sub('', match.group(1).strip()) or self.author,
-                    id_confirmed=not self.is_attribution_uncertain(),
-                    text=match.group(4).strip(),
-                    timestamp_str=match.group(2).strip(),
-                )
-                for match in MSG_REGEX.finditer(self.text)
-            ]
+        if not self._messages:
+            self._messages = [self._build_message(match) for match in MSG_REGEX.finditer(self.text)]
 
         return self._messages
 
@@ -69,6 +60,19 @@ class MessengerLog(Communication):
 
     def _border_style(self) -> str:
         return self.author_style
+
+    def _build_message(self, match: re.Match) -> TextMessage:
+        """Turn a regex match into a TextMessage."""
+        author_str = REDACTED_AUTHOR_REGEX.sub('', match.group(1).strip())
+
+        # If the Sender: is redacted that means it's from self.author
+        return TextMessage(
+            author=self.author if (author_str.startswith('+') or not author_str) else author_str,
+            author_str=author_str if author_str.startswith('+') else None,  # Preserve phone numbers
+            id_confirmed=not self.is_attribution_uncertain(),
+            text=match.group(4).strip(),
+            timestamp_str=match.group(2).strip(),
+        )
 
     def _extract_timestamp(self) -> datetime:
         for match in MSG_REGEX.finditer(self.text):
