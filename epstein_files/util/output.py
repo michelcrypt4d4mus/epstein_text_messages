@@ -153,11 +153,7 @@ def write_urls() -> None:
 
     url_vars = {
         k: v for k, v in vars(urls).items()
-        if isinstance(v, str) and \
-            k.split('_')[-1] in ['URL'] and \
-            'michelcrypt4d4mus' in v and \
-            'github.com' not in v and \
-            'BASE' not in v
+        if isinstance(v, str) and k.split('_')[-1] in ['URL'] and 'github.io' in v and 'BASE' not in k
     }
 
     with open(args.output_file, 'w') as f:
