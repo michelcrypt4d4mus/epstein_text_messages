@@ -23,6 +23,8 @@ TEXT_FIELDS = [
 @dataclass
 class JsonFile(OtherFile):
     """File containing JSON data."""
+
+    include_description_in_summary_panel: ClassVar[bool] = False
     strip_whitespace: ClassVar[bool] = False
 
     def __post_init__(self):
