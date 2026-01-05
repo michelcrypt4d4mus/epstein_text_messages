@@ -48,7 +48,7 @@ elif any_uncommitted_changes; then
 fi
 
 # Push changes, switch to gh_pages branch
-epstein_generate --make-clean
+epstein_generate --make-clean --suppress-output
 git push origin master --quiet
 git checkout gh_pages
 git merge --no-edit master --quiet
@@ -68,7 +68,7 @@ fi
 
 echo -e ""
 print_msg "Building word counts page..."
-./scripts/count_words.py --build --suppress-output --width 125
+epstein_word_count --build --suppress-output --width 125
 echo -e ""
 print_msg "Building JSON metadata page..."
 epstein_generate --build --json-metadata
@@ -78,7 +78,6 @@ git commit -am"Update HTML"
 git push origin gh_pages --quiet
 git checkout master
 
-epstein_dump_urls --suppress-output
 source $URLS_ENV
 echo -e ""
 print_msg "             texts page" "$TEXT_MSGS_URL"

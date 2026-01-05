@@ -15,6 +15,7 @@ from rich.markup import escape
 from rich.padding import Padding
 from rich.panel import Panel
 
+from epstein_files.count_words import write_word_counts_html
 from epstein_files.epstein_files import EpsteinFiles, document_cls
 from epstein_files.documents.document import INFO_PADDING, Document
 from epstein_files.documents.email import Email
@@ -32,6 +33,7 @@ from epstein_files.util.timer import Timer
 def generate_html() -> None:
     if args.make_clean:
         make_clean()
+        write_urls()
         exit()
 
     timer = Timer()
@@ -122,8 +124,8 @@ def epstein_show():
                 console.print(escape(doc._actual_text()))
 
 
-def epstein_dump_urls() -> None:
-    write_urls()
+def epstein_word_count() -> None:
+    write_word_counts_html()
 
 
 def _assert_positional_args():
