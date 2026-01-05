@@ -49,7 +49,6 @@ TEXT_MESSAGE = 'text message'
 SiteType = Literal['email', 'text message']
 
 # Styles
-OTHER_SITE_LINK_STYLE = 'dark_goldenrod'
 TIMESTAMP_STYLE = 'turquoise4'
 TIMESTAMP_DIM = f"turquoise4 dim"
 
