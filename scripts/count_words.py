@@ -27,7 +27,7 @@ word_count = WordCount()
 # Remove dupes, junk mail, and fwded articles from emails
 emails = [
     e for e in epstein_files.emails
-    if not (e.is_duplicate or e.is_junk_mail or (e.config and e.config.is_fwded_article)) \
+    if not (e.is_duplicate or e.is_junk_mail() or (e.config and e.config.is_fwded_article)) \
         and (len(specified_names) == 0 or e.author in specified_names)
 ]
 

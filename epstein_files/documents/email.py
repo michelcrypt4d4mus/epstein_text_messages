@@ -30,7 +30,6 @@ BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|Classification: External Communicati
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 LINK_LINE_REGEX = re.compile(f"^(> )?htt")
 QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
-REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + ['********************************']
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
 
 BAD_TIMEZONE_REGEX = re.compile(fr'\((UTC|GMT\+\d\d:\d\d)\)|{REDACTED}')
@@ -39,9 +38,42 @@ TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
+IS_JUNK_MAIL = 'is_junk_mail'
 MAX_CHARS_TO_PRINT = 4000
 MAX_NUM_HEADER_LINES = 14
 MAX_QUOTED_REPLIES = 2
+
+REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + [
+    '********************************',
+    'Begin forwarded message',
+]
+
+# Some files require customization to separate the actual composed text from the fwd
+ACTUAL_TEXT_SPLITTERS = {
+    '013415': 'Darren K. Indyke',
+    '013405': 'Darren K. Indyke',
+    '024624': 'On Tue, May 14',
+    '029773': 'Omar Quadhafi',
+    '029558': 'Creativity is central',
+    '025888': 'Jul 24, 2015',
+    '033316': 'Transcript: Phone call between President',
+    '016413': 'In a former warehouse',
+    '025548': 'Edward Jay Epstein',
+    '032806': '• Sep 13, 2018',
+    '024251': 'Debate Schedule',
+    '028943': '-Lisa',
+    '029431': 'I am writing now',
+    '020437': 'Will Cohen Cooperate',
+    '026663': 'REGULATORY & COMPLIANCE ALERT',
+    '028921': 'Salacious new chapter',
+    '030324': 'For Federal Programs',
+    '022766': '--- On Wed, 4/22/15',
+    '025606': '> On May 6,',
+    '022977': 'Top of Form',
+    '033420': 'Slowing economy could increase pressure on',
+    '019203': 'This end-of-the-year',
+    '022207': 'Web Images Videos Maps',
+}
 
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r'grnail\.com'): 'gmail.com',
@@ -119,6 +151,7 @@ EMAIL_SIGNATURE_REGEXES = {
 # Invalid for links to EpsteinWeb
 JUNK_EMAILERS = [
     'asmallworld@travel.asmallworld.net',
+    "digest-noreply@quora.com",
     'editorialstaff@flipboard.com',
     'How To Academy',
     'Jokeland',
@@ -126,9 +159,13 @@ JUNK_EMAILERS = [
     'Saved by Internet Explorer 11',
 ]
 
-TRUNCATE_ALL_EMAILS_FROM = JUNK_EMAILERS + [
-    'Alan S Halperin',
+MAILING_LISTS = [
+    INTELLIGENCE_SQUARED,
     'middle.east.update@hotmail.com',
+]
+
+TRUNCATE_ALL_EMAILS_FROM = JUNK_EMAILERS + MAILING_LISTS + [
+    'Alan S Halperin',
     'Mitchell Bard',
     'Skip Rimer',
 ]
@@ -281,7 +318,7 @@ SELF_EMAILS_FILE_IDS = [
 ]
 
 METADATA_FIELDS = [
-    'is_junk_mail',
+    IS_JUNK_MAIL,
     'recipients',
     'sent_from_device',
 ]
@@ -294,7 +331,6 @@ class Email(Communication):
         actual_text (str) - best effort at the text actually sent in this email, excluding quoted replies and forwards
         config (EmailCfg | None) - manual config for this email (if it exists)
         header (EmailHeader) - header data extracted from the text (from/to/sent/subject etc)
-        is_junk_mail (bool) - True if this is junk mail
         recipients (list[str | None]) - who this email was sent to
         sent_from_device (str | None) - "Sent from my iPhone" style signature (if it exists)
         signature_substitution_counts (dict[str, int]) - count of how many times a signature was replaced with <...snipped...> for each participant
@@ -302,7 +338,6 @@ class Email(Communication):
     actual_text: str = field(init=False)
     config: EmailCfg | None = None
     header: EmailHeader = field(init=False)
-    is_junk_mail: bool = False
     recipients: list[str | None] = field(default_factory=list)
     sent_from_device: str | None = None
     signature_substitution_counts: dict[str, int] = field(default_factory=dict)  # defaultdict breaks asdict :(
@@ -312,7 +347,6 @@ class Email(Communication):
 
     def __post_init__(self):
         super().__post_init__()
-        self.is_junk_mail = self.author in JUNK_EMAILERS
 
         if self.config and self.config.recipients:
             self.recipients = cast(list[str | None], self.config.recipients)
@@ -331,9 +365,17 @@ class Email(Communication):
         txt = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(' to ')
         return txt.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
 
+    def is_fwded_article(self) -> bool:
+        return bool(self.config and self.config.is_fwded_article)
+
+    def is_junk_mail(self) -> bool:
+        return self.author in JUNK_EMAILERS or self.author in MAILING_LISTS
+
     def metadata(self) -> Metadata:
+        local_metadata = asdict(self)
+        local_metadata[IS_JUNK_MAIL] = self.is_junk_mail()
         metadata = super().metadata()
-        metadata.update({k: v for k, v in asdict(self).items() if v and k in METADATA_FIELDS})
+        metadata.update({k: v for k, v in local_metadata.items() if v and k in METADATA_FIELDS})
         return metadata
 
     def subject(self) -> str:
@@ -360,8 +402,8 @@ class Email(Communication):
         # logger.info(f"Raw text:\n" + self.top_lines(20) + '\n\n')
         # logger.info(f"With header removed:\n" + text[0:500] + '\n\n')
 
-        if self.file_id in ['024624']:  # This email starts with "On September 14th"
-            return text.split('On Tue, May 14')[0].strip()
+        if self.file_id in ACTUAL_TEXT_SPLITTERS:
+            return text.split(ACTUAL_TEXT_SPLITTERS[self.file_id])[0].strip()
 
         if reply_text_match:
             actual_num_chars = len(reply_text_match.group(1))
@@ -555,6 +597,9 @@ class Email(Communication):
             self._merge_lines(3, 5)
         elif self.file_id == '028931':
             self._merge_lines(3, 6)
+        elif self.file_id == '013415':
+            for _i in range(2):
+                self._merge_lines(4)
         elif self.file_id in ['033568']:
             for _i in range(5):
                 self._merge_lines(5)

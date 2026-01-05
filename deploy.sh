@@ -59,12 +59,12 @@ git push origin master --quiet
 git checkout gh_pages
 git merge --no-edit master --quiet
 
-print_msg "Building text messages page..."
-echo -e "  -> using $PICKLE_ARG"
+echo -e ""
+print_msg "Building text messages page" "$PICKLE_ARG"
 epstein_generate --build --suppress-output $PICKLE_ARG
 echo -e ""
 print_msg "Building word counts page..."
-./scripts/count_words.py --build --pickled --suppress-output --width 105
+./scripts/count_words.py --build --pickled --suppress-output --width 125
 echo -e ""
 print_msg "Building JSON metadata page..."
 epstein_generate --build --json-metadata --pickled
