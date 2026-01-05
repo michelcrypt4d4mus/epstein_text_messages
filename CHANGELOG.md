@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Fix image for pypi
 
 ### 1.0.6
 * Add `epstein_word_count` script
