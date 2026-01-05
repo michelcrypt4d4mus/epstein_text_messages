@@ -59,7 +59,21 @@ OCR_REPAIRS = {
 
 @dataclass
 class Document:
-    """Base class for all Epstein Files documents."""
+    """
+    Base class for all Epstein Files documents.
+
+    Attributes:
+        file_path (Path): Local path to file
+        author (str | None): Who is responsible for the text in the file
+        config (DocCfg): Information about this fil
+        file_id (str): 6 digit (or 8 digits if it's a local extract file) string ID
+        filename (str): File's basename
+        length (int): Number of characters in the file after all the cleanup
+        lines (str): Number of lines in the file after all the cleanup
+        text (str): Contents of the file
+        timestamp (datetime | None): When the file was originally created
+        url_slug (str): Version of the filename that works in links to epsteinify etc.
+    """
     file_path: Path
     # Optional fields
     author: str | None = None
