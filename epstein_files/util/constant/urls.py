@@ -71,7 +71,7 @@ epsteinify_name_url = lambda name: f"{EPSTEINIFY_URL}/?name={urllib.parse.quote(
 epstein_media_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[EPSTEIN_MEDIA], file_stem, True)
 epstein_media_doc_link_markup = lambda filename_or_id, style = TEXT_LINK: external_doc_link_markup(EPSTEIN_MEDIA, filename_or_id, style)
 epstein_media_doc_link_txt = lambda filename_or_id, style = TEXT_LINK: Text.from_markup(epstein_media_doc_link_markup(filename_or_id, style))
-epstein_media_person_url = lambda person: f"{EPSTEIN_MEDIA}/people/{parameterize(person)}"
+epstein_media_person_url = lambda person: f"{EPSTEIN_MEDIA_URL}/people/{parameterize(person)}"
 
 epstein_web_doc_url = lambda file_stem: f"{DOC_LINK_BASE_URLS[EPSTEIN_WEB]}/{file_stem}.jpg"
 epstein_web_person_url = lambda person: f"{EPSTEIN_WEB_URL}/{parameterize(person)}"
