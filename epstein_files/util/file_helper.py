@@ -60,7 +60,10 @@ def file_size(file_path: str | Path) -> int:
 
 
 def file_size_str(file_path: str | Path) -> str:
-    size = file_size(file_path)
+    return file_size_to_str(file_size(file_path))
+
+
+def file_size_to_str(size: int) -> str:
     digits = 2
 
     if size > MB:

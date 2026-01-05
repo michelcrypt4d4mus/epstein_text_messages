@@ -19,7 +19,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.doc_cfg import FINANCIAL_REPORTS_AUTHORS, DocCfg, Metadata
 from epstein_files.util.data import escape_single_quotes, remove_timezone, sort_dict, uniquify
-from epstein_files.util.file_helper import FILENAME_LENGTH
+from epstein_files.util.file_helper import FILENAME_LENGTH, file_size_to_str
 from epstein_files.util.env import args
 from epstein_files.util.highlighted_group import styled_category
 from epstein_files.util.rich import QUESTION_MARK_TXT, build_table, highlighter
@@ -268,18 +268,32 @@ class OtherFile(Document):
     @staticmethod
     def count_by_category_table(files: Sequence['OtherFile']) -> Table:
         counts = defaultdict(int)
+        category_bytes = defaultdict(int)
 
         for file in files:
             if file.category() is None:
                 logger.warning(f"file {file.file_id} has no category")
 
             counts[file.category()] += 1
+            category_bytes[file.category()] += file.length
 
-        table = build_table('File Counts by Category')
+        table = build_table('Other Files Summary')
         table.add_column('Category', justify='right')
-        table.add_column('Count', justify='center', width=25)
+        table.add_column('Count', justify='center')
+        table.add_column('Known Author', justify='center')
+        table.add_column('Unknown Author', justify='center')
+        table.add_column('Size', justify='center', style='dim')
 
         for (category, count) in sort_dict(counts):
-            table.add_row(styled_category(category or UNKNOWN), str(count))
+            category_files = [f for f in files if f.category() == category]
+            known_author_count = Document.known_author_count(category_files)
+
+            table.add_row(
+                styled_category(category or UNKNOWN),
+                str(count),
+                str(known_author_count),
+                str(count - known_author_count),
+                file_size_to_str(category_bytes[category]),
+            )
 
         return table
