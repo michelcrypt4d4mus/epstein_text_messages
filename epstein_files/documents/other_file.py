@@ -83,11 +83,10 @@ UNINTERESTING_PREFIXES = FINANCIAL_REPORTS_AUTHORS + [
     NOBEL_CHARITABLE_TRUST,
     'Nautilus',
     'New Yorker',
-    NYT_ARTICLE,
-    NYT_COLUMN,
+    NYT,
     PALM_BEACH_CODE_ENFORCEMENT,
-    PALM_BEACH_DAILY_ARTICLE,
-    PALM_BEACH_POST_ARTICLE,
+    PALM_BEACH_DAILY_NEWS,
+    PALM_BEACH_POST,
     PALM_BEACH_TSV,
     PALM_BEACH_WATER_COMMITTEE,
     PAUL_KRASSNER,
@@ -102,6 +101,7 @@ UNINTERESTING_PREFIXES = FINANCIAL_REPORTS_AUTHORS + [
     SHIMON_POST_ARTICLE,
     SINGLE_PAGE,
     STACEY_PLASKETT,
+    'Tatler',
     TERJE_ROD_LARSEN,
     TEXT_OF_US_LAW,
     TRANSLATION,
@@ -113,7 +113,7 @@ UNINTERESTING_PREFIXES = FINANCIAL_REPORTS_AUTHORS + [
     'U.S. News',
     'US Office',
     'Vanity Fair',
-    VI_DAILY_NEWS_ARTICLE,
+    VI_DAILY_NEWS,
     WAPO,
 ]
 
@@ -127,7 +127,7 @@ class OtherFile(Document):
 
         if self.config is None and VI_DAILY_NEWS_REGEX.search(self.text):
             self.log(f"Creating synthetic config for VI Daily News article...", logging.INFO)
-            self.config = DocCfg(id=self.file_id, description=VI_DAILY_NEWS_ARTICLE, category=ARTICLE)
+            self.config = DocCfg(id=self.file_id, author=VI_DAILY_NEWS, category=ARTICLE, description='article')
 
     def category(self) -> str | None:
         return self.config and self.config.category
