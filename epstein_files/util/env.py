@@ -2,7 +2,7 @@ import logging
 from argparse import ArgumentParser
 from os import environ
 from pathlib import Path
-from sys import argv
+from sys import argv, exit
 
 from rich_argparse_plus import RichHelpFormatterPlus
 
@@ -11,6 +11,8 @@ from epstein_files.util.logging import env_log_level, logger
 COUNT_WORDS_SCRIPT = 'epstein_word_count'
 DEFAULT_WIDTH = 145
 HTML_SCRIPTS = ['epstein_generate', COUNT_WORDS_SCRIPT]
+EPSTEIN_DOCS_DIR_ENV_VAR_NAME = 'EPSTEIN_DOCS_DIR'
+
 
 RichHelpFormatterPlus.choose_theme('morning_glory')
 parser = ArgumentParser(description="Parse epstein OCR docs and generate HTML pages.", formatter_class=RichHelpFormatterPlus)
@@ -44,6 +46,18 @@ debug.add_argument('--deep-debug', '-dd', action='store_true', help='set debug l
 debug.add_argument('--json-stats', '-j', action='store_true', help='print JSON formatted stats about the files')
 debug.add_argument('--suppress-logs', '-sl', action='store_true', help='set debug level to FATAL')
 args = parser.parse_args()
+
+
+# Verify Epstein docs can be found
+DOCS_DIR_ENV = environ.get(EPSTEIN_DOCS_DIR_ENV_VAR_NAME)
+DOCS_DIR = Path(DOCS_DIR_ENV or '').resolve()
+
+if not DOCS_DIR_ENV:
+    print(f"\n   ERROR: {EPSTEIN_DOCS_DIR_ENV_VAR_NAME} env var not set!\n")
+    exit(1)
+elif not DOCS_DIR.exists():
+    print(f"\n   ERROR: {EPSTEIN_DOCS_DIR_ENV_VAR_NAME}='{DOCS_DIR}' does not exist!\n")
+    exit(1)
 
 current_script = Path(argv[0]).name
 is_env_var_set = lambda s: len(environ.get(s) or '') > 0

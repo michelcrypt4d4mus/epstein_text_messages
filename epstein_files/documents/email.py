@@ -606,9 +606,8 @@ class Email(Communication):
             self._remove_line(3)
 
         if old_text != self.text:
-            self.log(f"Modified text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n', logging.INFO)
-            self.log_top_lines(12, 'Result of modifications', logging.INFO)
-            self.log('', logging.INFO)
+            self.log(f"Modified text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n')
+            self.log_top_lines(12, 'Result of modifications')
 
         lines = self.repair_ocr_text(OCR_REPAIRS, self.text).split('\n')
         new_lines = []
@@ -697,7 +696,7 @@ class Email(Communication):
         yield Padding(email_txt_panel, (0, 0, 1, INFO_INDENT))
 
         if should_rewrite_header:
-            self.log_top_lines(self.header.num_header_rows + 4, f'Original header:', logging.INFO)
+            self.log_top_lines(self.header.num_header_rows + 4, f'Original header:')
 
     @staticmethod
     def build_table(emails: list['Email'], _author: str | None) -> Table:

@@ -1,20 +1,9 @@
 import re
-from os import environ
 from pathlib import Path
-from sys import exit
 
 from epstein_files.util.constant.strings import FILE_NAME_REGEX, FILE_STEM_REGEX, HOUSE_OVERSIGHT_PREFIX
-
-EPSTEIN_DOCS_DIR_ENV_VAR_NAME = 'EPSTEIN_DOCS_DIR'
-DOCS_DIR_ENV = environ[EPSTEIN_DOCS_DIR_ENV_VAR_NAME]
-DOCS_DIR = Path(DOCS_DIR_ENV or '').resolve()
-
-if not DOCS_DIR_ENV:
-    print(f"ERROR: {EPSTEIN_DOCS_DIR_ENV_VAR_NAME} env var not set!")
-    exit(1)
-elif not DOCS_DIR.exists():
-    print(f"ERROR: {EPSTEIN_DOCS_DIR_ENV_VAR_NAME}='{DOCS_DIR}' does not exist!")
-    exit(1)
+from epstein_files.util.env import DOCS_DIR
+from epstein_files.util.logging import logger
 
 EXTRACTED_EMAILS_DIR = Path('emails_extracted_from_legal_filings')
 FILE_ID_REGEX = re.compile(fr".*{FILE_NAME_REGEX.pattern}")
@@ -23,7 +12,7 @@ KB = 1024
 MB = KB * KB
 
 
-# Handle both string and int args.
+# Coerce methods hands both string and int arguments.
 coerce_file_name = lambda filename_or_id: coerce_file_stem(filename_or_id) + '.txt'
 coerce_file_path = lambda filename_or_id: DOCS_DIR.joinpath(coerce_file_name(filename_or_id))
 id_str = lambda id: f"{int(id):06d}"
@@ -92,3 +81,7 @@ def is_local_extract_file(filename) -> bool:
     """Return true if filename is of form 'HOUSE_OVERSIGHT_029835_1.txt'."""
     file_match = FILE_ID_REGEX.match(str(filename))
     return True if file_match and file_match.group(2) else False
+
+
+def log_file_write(file_path: str | Path) -> None:
+    logger.warning(f"Wrote {file_size_str(file_path)} to '{file_path}'")

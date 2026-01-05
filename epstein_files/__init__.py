@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 """
 Reformat Epstein text message files for readability and count email senders.
-For use with iMessage log files from https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_
 
-Install: 'poetry install'
     Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT epstein_generate'
 """
 from sys import exit
@@ -96,7 +94,7 @@ def epstein_search():
 
                 console.print(search_result.document)
             else:
-                console.print(search_result.document.description_panel())
+                console.print(search_result.document.summary_panel())
 
                 for matching_line in search_result.lines:
                     line_txt = matching_line.__rich__()
