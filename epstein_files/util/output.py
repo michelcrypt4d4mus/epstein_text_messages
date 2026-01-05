@@ -11,7 +11,8 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.output_files import JSON_FILES_JSON_PATH, JSON_METADATA_PATH
 from epstein_files.util.data import dict_sets_to_lists
 from epstein_files.util.env import args, specified_names
-from epstein_files.util.logging import log_file_write, logger
+from epstein_files.util.file_helper import log_file_write
+from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
 
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
