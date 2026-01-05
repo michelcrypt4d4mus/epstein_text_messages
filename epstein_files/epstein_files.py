@@ -272,7 +272,7 @@ class EpsteinFiles:
     def print_emailer_counts_table(self) -> None:
         footer = f"Identified authors of {self.attributed_email_count():,} emails out of {len(self.emails):,}."
         counts_table = Table(title=f"Email Counts", caption=footer, header_style="bold")
-        add_cols_to_table(counts_table, ['Name', 'Count', 'Sent', "Recv'd", JMAIL, EPSTEIN_WEB, EPSTEIN_MEDIA, 'Twitter'])
+        add_cols_to_table(counts_table, ['Name', 'Count', 'Sent', "Recv'd", JMAIL, EPSTEIN_MEDIA, EPSTEIN_WEB, 'Twitter'])
 
         emailer_counts = {
             emailer: self.email_author_counts[emailer] + self.email_recipient_counts[emailer]
@@ -288,9 +288,8 @@ class EpsteinFiles:
                 str(self.email_author_counts[p]),
                 str(self.email_recipient_counts[p]),
                 '' if p is None else link_text_obj(search_jmail_url(p), JMAIL),
-                '' if not is_ok_for_epstein_web(p) else link_text_obj(epstein_media_person_url(p), EPSTEIN_WEB),
-                '' if not is_ok_for_epstein_web(p) else link_text_obj(epstein_web_person_url(p), EPSTEIN_MEDIA.lower()),
-
+                '' if not is_ok_for_epstein_web(p) else link_text_obj(epstein_media_person_url(p), EPSTEIN_MEDIA),
+                '' if not is_ok_for_epstein_web(p) else link_text_obj(epstein_web_person_url(p), EPSTEIN_WEB),
                 '' if p is None else link_text_obj(search_twitter_url(p), 'search X'),
             )
 
