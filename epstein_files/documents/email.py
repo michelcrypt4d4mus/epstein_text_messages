@@ -322,11 +322,18 @@ class Email(Communication):
     def __post_init__(self):
         super().__post_init__()
 
-        if self.config and self.config.recipients:
-            self.recipients = cast(list[str | None], self.config.recipients)
-        else:
-            for recipient in self.header.recipients():
-                self.recipients.extend(self._get_names(recipient))
+        try:
+            if self.config and self.config.recipients:
+                self.recipients = cast(list[str | None], self.config.recipients)
+            else:
+                for recipient in self.header.recipients():
+                    self.recipients.extend(self._get_names(recipient))
+        except Exception as e:
+            console.print_exception()
+            console.line(2)
+            logger.fatal(f"Failed on {self.file_id}")
+            console.line(2)
+            raise e
 
         # Remove self CCs
         recipients = [r for r in self.recipients if r != self.author or self.file_id in SELF_EMAILS_FILE_IDS]
