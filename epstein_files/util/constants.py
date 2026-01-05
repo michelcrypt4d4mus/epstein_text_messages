@@ -491,9 +491,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='032727', author=KATHRYN_RUEMMLER, attribution_reason=KATHY_REASON, is_attribution_uncertain=True),
     EmailCfg(id='030478', author=LANDON_THOMAS),
     EmailCfg(id='029013', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),    # Bad OCR (nofix)
-    EmailCfg(id='032206', author=LAWRENCE_KRAUSS),                                # More of a text convo?
-    EmailCfg(id='032208', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
-    EmailCfg(id='032209', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
     EmailCfg(id='029196', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN], actual_text='Talk in 40?'),
     EmailCfg(id='033593', author=LAWRANCE_VISOSKI, attribution_reason='Signature'),
     EmailCfg(id='033370', author=LAWRANCE_VISOSKI, attribution_reason=LARRY_REASON),
@@ -750,7 +747,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='031118', duplicate_ids=['019465']),
     EmailCfg(id='031912', duplicate_ids=['032158']),
     EmailCfg(id='030587', duplicate_ids=['030514']),
-    EmailCfg(id='029773', duplicate_ids=['012685']),
+    EmailCfg(id='029773', duplicate_ids=['012685'], fwded_text_after='Omar Quadhafi'),
     EmailCfg(id='033297', duplicate_ids=['033586']),
     EmailCfg(id='031089', duplicate_ids=['018084']),
     EmailCfg(id='031088', duplicate_ids=['030885']),
@@ -1495,8 +1492,11 @@ OTHER_FILES_MISC = [
     DocCfg(id='027074', author=FEMALE_HEALTH_COMPANY, description=f"pitch deck (USAID was a customer)"),
     DocCfg(id='032735', author=GORDON_GETTY, description=f"on Trump", date='2018-03-20'),  # Dated based on concurrent emails from Getty
     DocCfg(id='025540', author=JEFFREY_EPSTEIN, description=f"rough draft of Epstein's side of the story?"),
+    DocCfg(id='032206', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
+    DocCfg(id='032208', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
+    DocCfg(id='032209', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
+    DocCfg(id='018224', category=SKYPE_LOG, author=LAWRENCE_KRAUSS, description=f'conversations with linkspirit (French?) and {LAWRENCE_KRAUSS}'),
     DocCfg(id='032210', category=SKYPE_LOG, description=f'conversation with linkspirit'),
-    DocCfg(id='018224', category=SKYPE_LOG, description=f'conversations with linkspirit (French?) and {LAWRENCE_KRAUSS}'),
     DocCfg(id='026634', author='Michael Carrier', description=f"comments about an Apollo linked hedge fund 'DE Fund VIII'"),
     DocCfg(id='031425', author=SCOTT_J_LINK, description=f'completely redacted email from'),
     DocCfg(id='020447', author='Working Group on Chinese Influence Activities in the U.S.', description=f'Promoting Constructive Vigilance'),
