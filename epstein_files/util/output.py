@@ -61,7 +61,6 @@ def print_emails(epstein_files: EpsteinFiles) -> int:
     """Returns number of emails printed."""
     print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
     print_other_site_link(is_header=False)
-
     emailers_to_print: list[str | None]
     emailer_tables: list[str | None] = []
     already_printed_emails: list[Email] = []
@@ -188,8 +187,13 @@ def write_urls() -> None:
 def _verify_all_emails_were_printed(epstein_files: EpsteinFiles, already_printed_emails: list[Email]) -> None:
     """Log warnings if some emails were never printed."""
     email_ids_that_were_printed = set([email.file_id for email in already_printed_emails])
-    logger.warning(f"Printed {len(already_printed_emails)} emails of {len(email_ids_that_were_printed)} unique file IDs.")
+    logger.warning(f"Printed {len(already_printed_emails):,} emails of {len(email_ids_that_were_printed):,} unique file IDs.")
+    missed_an_email = False
 
     for email in epstein_files.emails:
         if email.file_id not in email_ids_that_were_printed and not email.is_duplicate():
             logger.warning(f"Failed to print {email.summary()}")
+            missed_an_email = True
+
+    if not missed_an_email:
+        logger.warning(f"All {len(epstein_files.emails):,} emails printed at least once.")
