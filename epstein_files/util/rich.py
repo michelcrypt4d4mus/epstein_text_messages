@@ -338,6 +338,7 @@ def _print_external_links() -> None:
     print_centered(link_markup(COURIER_NEWSROOM_ARCHIVE_URL, 'Searchable Archive') + " (Courier Newsroom)")
     print_centered(link_markup(EPSTEINIFY_URL) + " (raw document images)")
     print_centered(link_markup(EPSTEIN_WEB_URL) + " (character summaries)")
+    print_centered(link_markup(EPSTEIN_MEDIA_URL) + " (raw document images)")
 
 
 # if args.deep_debug:
