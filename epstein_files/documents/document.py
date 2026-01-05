@@ -208,7 +208,7 @@ class Document:
         """Returns colored links to epstein.media and and epsteinweb in a Text object."""
         txt = Text('', style='white' if include_alt_link else ARCHIVE_LINK_COLOR)
 
-        if args.use_epstein_web_links:
+        if args.use_epstein_web:
             txt.append(self.epstein_web_link(style=style))
 
             if include_alt_link:

@@ -1,5 +1,13 @@
 # NEXT RELEASE
 
+### 1.0.10
+
+### 1.0.9
+* Fix import
+
+### 1.0.8
+* Add `rich-argparse-plus`
+
 ### 1.0.7
 * Fix image for pypi
 
@@ -9,7 +17,7 @@
 * Deploy the collected JSON files at https://michelcrypt4d4mus.github.io/epstein_text_messages/json_files_from_epstein_files_nov_2025.json
 
 ### 1.0.5
-* Remove --pickled argument
+* Remove `--pickled` argument
 
 ### 1.0.4
 
