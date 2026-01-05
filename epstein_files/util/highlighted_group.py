@@ -342,7 +342,7 @@ HIGHLIGHTED_NAMES = [
         emailers = {
             ANIL_AMBANI: 'chairman of Reliance Group',
             VINIT_SAHNI: None,
-            ZUBAIR_KHAN: 'Tranchulas CEO, InsightsPod founder',
+            ZUBAIR_KHAN: 'cybersecurity firm Tranchulas CEO, InsightsPod founder, based in Islamabad and Dubai',
         }
     ),
     HighlightedNames(
