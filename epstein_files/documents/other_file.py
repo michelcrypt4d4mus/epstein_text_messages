@@ -197,7 +197,6 @@ class OtherFile(Document):
         timestamps: list[datetime] = []
 
         with warnings.catch_warnings():
-            warnings.filterwarnings("ignore", module="datefinder")
             warnings.filterwarnings("ignore", module="dateutil")
 
             try:
@@ -210,7 +209,7 @@ class OtherFile(Document):
                     if len(timestamps) >= MAX_EXTRACTED_TIMESTAMPS:
                         break
             except ValueError as e:
-                logger.warning(f"Error while iterating through datefinder.find_dates(): {e}")
+                self.log(f"Error while iterating through datefinder.find_dates(): {e}", logging.WARNING)
 
         if len(timestamps) == 0:
             if not self.is_duplicate and VAST_HOUSE not in self.text:
