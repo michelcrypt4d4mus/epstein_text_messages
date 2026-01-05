@@ -15,7 +15,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP
-from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, listify, patternize, without_nones
+from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, listify, patternize, without_falsey
 from epstein_files.util.doc_cfg import EmailCfg, DocCfg, Metadata, TextCfg
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import (DOCS_DIR, file_stem_for_id, extract_file_id, file_size,
@@ -159,7 +159,7 @@ class Document:
         if hint_msg:
             hints.append(highlighter(Text(hint_msg, style='white dim italic')))
 
-        return without_nones(hints)
+        return without_falsey(hints)
 
     def info_txt(self) -> Text | None:
         """Secondary info about this file (recipients, level of certainty, etc). Overload in subclasses."""
