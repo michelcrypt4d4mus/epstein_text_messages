@@ -423,7 +423,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='031560', author=DAVID_SCHOEN, attribution_reason='Signature'),
     EmailCfg(id='026287', author=DAVID_SCHOEN, attribution_reason='Signature'),
     EmailCfg(id='033419', author=DAVID_SCHOEN, attribution_reason='Signature'),
-    EmailCfg(id='031460', author=EDWARD_JAY_EPSTEIN, attribution_reason=f"quoted reply has edwardjayepstein.com"),
+    EmailCfg(id='031460', author=EDWARD_JAY_EPSTEIN, attribution_reason=f"quoted reply has edwardjayepstein.com", is_fwded_article=True),
     EmailCfg(
         id='030475',
         author=FAITH_KATES,
@@ -642,14 +642,20 @@ EMAILS_CONFIG = [
     EmailCfg(id='033050', actual_text='schwartman'),
     EmailCfg(id='029344', actual_text='I thought of you when I read this article. Was this your idea? Alan'),
     EmailCfg(id='023627', description=MICHAEL_WOLFF_ARTICLE_HINT, is_fwded_article=True),
+    EmailCfg(id='031333', is_fwded_article=True, description='looks like a Russian disinfo article'),  # Russia Says IMF Chief Jailed For Discovering All US Gold is Gone
+    EmailCfg(id='031335', is_fwded_article=True, description='looks like a Russian disinfo article'),  # DOMINQUE STRAUSS-KAHN ARRESTED, NOT BECAUSE HE RAPED A MAID, BUT BECAUSE HE HAD EVIDENCE US HAS NO GOLD IN FORT KNOX.
     EmailCfg(id='026298', is_fwded_article=True, duplicate_ids=['026499']),  # Written by someone else?
     EmailCfg(id='029692', is_fwded_article=True, duplicate_ids=['029779']),  # WaPo article
     EmailCfg(id='022344', is_fwded_article=True, duplicate_ids=['028529']),  # Bill Gates is most admired from Nikolic
     EmailCfg(id='018197', is_fwded_article=True, duplicate_ids=['028648']),  # Ray Takeyh article fwd
     EmailCfg(id='028728', is_fwded_article=True, duplicate_ids=['027102']),  # WSJ forward to Larry Summers
     EmailCfg(id='028781', is_fwded_article=True, duplicate_ids=['013460']),  # Atlantic on Jim Yong Kim, Obama's World Bank Pick
+    EmailCfg(id='025041', is_fwded_article=True, duplicate_ids=['028675']),  # Obama agenda
+    EmailCfg(id='031136', is_fwded_article=True, duplicate_ids=['028791']),  # 'Smart Money is Fleeing US Stocks'
+    EmailCfg(id='031779', is_fwded_article=True, duplicate_ids=['026938']),  # Sarah Silverman on AI
     EmailCfg(id='026755', is_fwded_article=True),  # HuffPo
     EmailCfg(id='030528', is_fwded_article=True),  # Vicky Ward article
+    EmailCfg(id='030460', is_fwded_article=True),  # Vicky Ward article
     EmailCfg(id='028508', is_fwded_article=True),  # nanosatellites article
     EmailCfg(id='019845', is_fwded_article=True),  # Pro Publica article on Preet Bharara
     EmailCfg(id='029021', is_fwded_article=True),  # article about bannon sent by Alain Forget
@@ -660,6 +666,25 @@ EMAILS_CONFIG = [
     EmailCfg(id='029689', is_fwded_article=True),  # Tunisia article to Larry Summers
     EmailCfg(id='014525', is_fwded_article=True),  # Really more of a mailing list from Paul Morris?
     EmailCfg(id='024384', is_fwded_article=True),  # Interview with Bill Siegal re: Islam
+    EmailCfg(id='030200', is_fwded_article=True),  # Lawfare indicting a president
+    EmailCfg(id='029509', is_fwded_article=True),  # Deepak Chopra LSD, Quantum Healing
+    EmailCfg(id='026778', is_fwded_article=True),  # tax alert
+    EmailCfg(id='023001', is_fwded_article=True),  # Miami Herald article timeline of the sex abuse case
+    EmailCfg(id='013405', is_fwded_article=True),  # Articles about epstein case
+    EmailCfg(id='021740', is_fwded_article=True),  # Miami Herald article about Epstein prosecutor
+    EmailCfg(id='023126', is_fwded_article=True),  # Miami Herald on Alex Acosta
+    EmailCfg(id='029625', is_fwded_article=True),  # Conchita Sarnoff Daily Beast Articles - Epstein Sex Trafficking Investigation and Settlement
+    EmailCfg(id='013482', is_fwded_article=True),  # The view from the US: Stem cell therapy steps up a gear with firs
+    EmailCfg(id='029505', is_fwded_article=True),  # Foreign Policy Middle Eastern Monarchs Look at the Trump
+    EmailCfg(id='029859', is_fwded_article=True),  # Palm Beach Post: Epstein paid three women $5.5 million to end lawsuits
+    EmailCfg(id='031988', is_fwded_article=True),  # NYT review of Inside Job
+    EmailCfg(id='029901', is_fwded_article=True),  # THE EDGE question
+    EmailCfg(id='031399', is_fwded_article=True),  # Miami U.S. Attorney's Office recuses itself from Jeffrey Epstein case
+    EmailCfg(id='031705', is_fwded_article=True),  # Thomas Friedman why not in vegas?
+    EmailCfg(id='016801', is_fwded_article=True),  # Capital Market Outlook
+    EmailCfg(id='023564', is_fwded_article=True),  # BBG ;Leon Black's Tax-Overhaul Dilemma Could Alter Wall Street Model
+    EmailCfg(id='025231', is_fwded_article=True),  # Newsmax: Laffer, Laffer: Obama Must Use Reaganomics to Save Economy The only way President Barack Obama can solve
+    # 031779
     EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
 
@@ -684,7 +709,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='031980', duplicate_ids=['019409']),
     EmailCfg(id='033486', duplicate_ids=['033156']),
     EmailCfg(id='025790', duplicate_ids=['031994']),
-    EmailCfg(id='025041', duplicate_ids=['028675']),
     EmailCfg(id='028497', duplicate_ids=['026228']),
     EmailCfg(id='033528', duplicate_ids=['033517']),
     EmailCfg(id='032023', duplicate_ids=['032012']),
@@ -704,13 +728,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='031912', duplicate_ids=['032158']),
     EmailCfg(id='030587', duplicate_ids=['030514']),
     EmailCfg(id='029773', duplicate_ids=['012685']),
-    EmailCfg(id='029849', duplicate_ids=['033482']),
+    EmailCfg(id='029849', duplicate_ids=['033482'], is_fwded_article=True),  # Fareed Zakaria: Trump sells America short),
     EmailCfg(id='033297', duplicate_ids=['033586']),
     EmailCfg(id='031089', duplicate_ids=['018084']),
     EmailCfg(id='031088', duplicate_ids=['030885']),
     EmailCfg(id='030238', duplicate_ids=['031130']),
     EmailCfg(id='030859', duplicate_ids=['031067']),
-    EmailCfg(id='031136', duplicate_ids=['028791']),
     EmailCfg(id='030635', duplicate_ids=['031134']),
     EmailCfg(id='028494', duplicate_ids=['026234']),
     EmailCfg(id='030311', duplicate_ids=['021790']),
