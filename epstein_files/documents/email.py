@@ -73,6 +73,10 @@ ACTUAL_TEXT_SPLITTERS = {
     '033420': 'Slowing economy could increase pressure on',
     '019203': 'This end-of-the-year',
     '022207': 'Web Images Videos Maps',
+    '033210': 'Trump appears with mobster-affiliated',
+    '030989': 'New book paints sordid picture of Trump real estate',
+    # 0 header rows
+    '026620': 'From: Mike Cohen',
 }
 
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
@@ -394,16 +398,17 @@ class Email(Communication):
         """The text that comes before likely quoted replies and forwards etc."""
         if self.config and self.config.actual_text is not None:
             return self.config.actual_text
-        elif self.header.num_header_rows == 0:
-            return self.text
 
         text = '\n'.join(self.text.split('\n')[self.header.num_header_rows:]).strip()
-        reply_text_match = REPLY_TEXT_REGEX.search(text)
-        # logger.info(f"Raw text:\n" + self.top_lines(20) + '\n\n')
-        # logger.info(f"With header removed:\n" + text[0:500] + '\n\n')
 
         if self.file_id in ACTUAL_TEXT_SPLITTERS:
             return text.split(ACTUAL_TEXT_SPLITTERS[self.file_id])[0].strip()
+        elif self.header.num_header_rows == 0:
+            return self.text
+
+        reply_text_match = REPLY_TEXT_REGEX.search(text)
+        # logger.info(f"Raw text:\n" + self.top_lines(20) + '\n\n')
+        # logger.info(f"With header removed:\n" + text[0:500] + '\n\n')
 
         if reply_text_match:
             actual_num_chars = len(reply_text_match.group(1))

@@ -142,7 +142,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Norman D. Rau": 1,
     "Olivier Colom": 1,
     "Paul Barrett": 4,
-    "Paul Krassner": 28,
+    "Paul Krassner": 27,
     "Paul Morris": 6,
     "Paul Prosperi": 2,
     PAULA: 2,
