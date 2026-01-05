@@ -260,7 +260,7 @@ NERIO_ALESSANDRI = 'Nerio Alessandri (Founder and Chairman of Technogym S.p.A. I
 NIGHT_FLIGHT_BOOK = f'"Night Flight" (draft)'
 NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
 OBAMA_JOKE = 'joke about Obama'
-PALM_BEACH_CODE_ENFORCEMENT = f'{PALM_BEACH} code enforcement board minutes'
+PALM_BEACH_CODE_ENFORCEMENT = f'{PALM_BEACH} Code Enforcement'
 PALM_BEACH_TSV = f"TSV of {PALM_BEACH} property"
 PALM_BEACH_WATER_COMMITTEE = f'{PALM_BEACH} Water Committee'
 PATTERSON_BOOK_SCANS = f'pages of "Filthy Rich: The Shocking True Story of {JEFFREY_EPSTEIN}"'
@@ -942,6 +942,7 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='013450', author=PEGGY_SIEGAL, description=f"Oscar Diary in Avenue Magazine", date='2011-02-27'),
     DocCfg(id='010715', author=PEGGY_SIEGAL, description=f"Oscar Diary April", date='2012-02-27'),
     DocCfg(id='019849', author=PEGGY_SIEGAL, description=f"Oscar Diary April", date='2017-02-27', duplicate_ids=['019864']),
+    DocCfg(id='026851', author='Politifact', description=f"lying politicians chart", date='2016-07-26'),
     DocCfg(id='033253', author=ROBERT_LAWRENCE_KUHN, description=f'{BBC} article about Rohingya in Myanmar'),
     DocCfg(id='026887', author=ROBERT_LAWRENCE_KUHN, description=f'{BBC} "New Tariffs - Trade War"'),
     DocCfg(id='026877', author=ROBERT_LAWRENCE_KUHN, description=f'{CNN} "New Tariffs - Trade War"'),
@@ -1308,12 +1309,12 @@ OTHER_FILES_LETTERS = [
 
 OTHER_FILES_PROPERTY = [
     DocCfg(id='026759', author='Great Bay Condominium Owners Association', description=f'{PRESS_RELEASE} by about Hurricane Irma damage', date='2017-09-13'),
+    DocCfg(id='016602', author=PALM_BEACH_CODE_ENFORCEMENT, description='board minutes', date='2008-04-17'),
+    DocCfg(id='016554', author=PALM_BEACH_CODE_ENFORCEMENT, description='board minutes', date='2008-07-17', duplicate_ids=['016616', '016574']),
     DocCfg(id='027068', author=THE_REAL_DEAL, description=f"{THE_REAL_DEAL_ARTICLE} Palm House Hotel Bankruptcy and EB-5 Visa Fraud Allegations"),
     DocCfg(id='029520', author=THE_REAL_DEAL, description=f"{THE_REAL_DEAL_ARTICLE} 'Lost Paradise at the Palm House'", date='2019-06-17'),
     DocCfg(id='016597', author='Trump Properties LLC', description=f'appeal of some decision about Mar-a-Lago by {PALM_BEACH} authorities'),
     DocCfg(id='018743', description=f"Las Vegas property listing"),
-    DocCfg(id='016602', description=PALM_BEACH_CODE_ENFORCEMENT, date='2008-04-17'),
-    DocCfg(id='016554', description=PALM_BEACH_CODE_ENFORCEMENT, date='2008-07-17', duplicate_ids=['016616', '016574']),
     DocCfg(id='016695', description=f"{PALM_BEACH} property info (?)"),
     DocCfg(id='016697', description=f"{PALM_BEACH} property tax info (?) that mentions Trump"),
     DocCfg(id='016599', description=f"{PALM_BEACH_TSV} consumption (water?)"),
@@ -1343,16 +1344,16 @@ OTHER_FILES_REPUTATION = [
 
 # social media / InsightsPod
 OTHER_FILES_SOCIAL = [
+    DocCfg(id='023050', author=ALAN_DERSHOWITZ, description=DERSH_GIUFFRE_TWEET),
+    DocCfg(id='017787', author=ALAN_DERSHOWITZ, description=DERSH_GIUFFRE_TWEET),
+    DocCfg(id='033433', author=ALAN_DERSHOWITZ, description=f"{DERSH_GIUFFRE_TWEET} / David Boies", date='2019-03-02'),
+    DocCfg(id='033432', author=ALAN_DERSHOWITZ, description=f"{DERSH_GIUFFRE_TWEET} / David Boies", date='2019-05-02'),
     DocCfg(id='028815', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} business plan", date='2016-08-20'),
     DocCfg(id='011170', author=ZUBAIR_AND_ANYA, description=f'{INSIGHTS_POD} collected tweets about #Brexit', date='2016-06-23'),
     DocCfg(id='032324', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} election social media trend analysis", date='2016-11-05'),
     DocCfg(id='032281', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} forecasting election for Trump", date='2016-10-25'),
     DocCfg(id='028988', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} pitch deck", date='2016-08-20'),
     DocCfg(id='026627', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} report on the presidential debate"),
-    DocCfg(id='023050', author=ALAN_DERSHOWITZ, description=DERSH_GIUFFRE_TWEET),
-    DocCfg(id='017787', author=ALAN_DERSHOWITZ, description=DERSH_GIUFFRE_TWEET),
-    DocCfg(id='033433', author=ALAN_DERSHOWITZ, description=f"{DERSH_GIUFFRE_TWEET} / David Boies", date='2019-03-02'),
-    DocCfg(id='033432', author=ALAN_DERSHOWITZ, description=f"{DERSH_GIUFFRE_TWEET} / David Boies", date='2019-05-02'),
     DocCfg(id='022213', description=f"{SCREENSHOT} Facebook group called 'Shit Pilots Say' disparaging a 'global girl'"),
     DocCfg(id='030884', description=f"{TWEET} by Ed Krassenstein"),
     DocCfg(id='031546', description=f"{TWEET}s by Donald Trump about Russian collusion", date='2018-01-06'),
@@ -1362,7 +1363,6 @@ OTHER_FILES_SOCIAL = [
 OTHER_FILES_POLITICS = [
     DocCfg(id='029918', author=DIANA_DEGETTE_CAMPAIGN, description=f"bio", date='2012-01-01'),
     DocCfg(id='031184', author=DIANA_DEGETTE_CAMPAIGN, description=f"fundraiser invitation"),
-    DocCfg(id='026851', author='Politifact', description=f"lying politicians chart", date='2016-07-26'),
     DocCfg(id='026827', author='Scowcroft Group', description=f'report on ISIS', date='2015-11-14'),
     DocCfg(id='024294', author=STACEY_PLASKETT, description=f"campaign flier", date='2016-10-01'),
     DocCfg(
@@ -1397,6 +1397,11 @@ OTHER_FILES_ACADEMIA = [
         duplicate_ids=['011284']
     ),
     DocCfg(id='015501', author=f"{MOSHE_HOFFMAN}, Erez Yoeli, and Carlos David Navarrete", description=f"Game Theory and Morality"),
+    DocCfg(
+        id='026521',
+        author=f"{MOSHE_HOFFMAN}, Erez Yoeli, and {MARTIN_NOWAK}",
+        description=f"Cooperating Without Looking: Game Theory Model of Trust and Reciprocal Cooperation"
+    ),
     DocCfg(id='025143', author=ROBERT_TRIVERS, description=f"Africa, Parasites, Intelligence", date='2018-06-25'),
     DocCfg(id='029155', author=ROBERT_TRIVERS, description=f'response sent to the Gruterites ({GORDON_GETTY} fans)', date='2018-03-19'),
     DocCfg(
@@ -1404,11 +1409,6 @@ OTHER_FILES_ACADEMIA = [
         author=f"{ROBERT_TRIVERS} and Nathan H. Lents",
         description=f"'Does Trump Fit the Evolutionary Role of Narcissistic Sociopath?' (draft)",
         date='2018-12-07',
-    ),
-    DocCfg(
-        id='026521',
-        author=f"{MARTIN_NOWAK}, Erez Yoeli, and {MOSHE_HOFFMAN}",
-        description=f"Cooperating Without Looking: Game Theory Model of Trust and Reciprocal Cooperation"
     ),
     DocCfg(id='023416', description=HARVARD_POETRY),
     DocCfg(id='023435', description=HARVARD_POETRY),
@@ -1451,7 +1451,6 @@ OTHER_FILES_ARTS = [
     DocCfg(id='018703', author=ANDRES_SERRANO, description=f"artist statement about Trump objects"),
     DocCfg(id='023438', author=BROCKMAN_INC, description=f"announcement of auction of 'Noise' by Daniel Kahneman, Olivier Sibony, and Cass Sunstein"),
     DocCfg(id='030769', author='Independent Filmmaker Project (IFP)', description=f"2017 Gotham Awards invitation"),
-    DocCfg(id='028281', description=f'art show flier for "The House Of The Nobleman" curated by Wolfe Von Lenkiewicz & Victoria Golembiovskaya'),
     DocCfg(
         id='025205',
         author='Mercury Films',
@@ -1459,6 +1458,7 @@ OTHER_FILES_ARTS = [
         date='2010-02-01',
         duplicate_ids=['025210']
     ),
+    DocCfg(id='028281', description=f'art show flier for "The House Of The Nobleman" curated by Wolfe Von Lenkiewicz & Victoria Golembiovskaya'),
 ]
 
 OTHER_FILES_MISC = [
