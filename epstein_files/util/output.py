@@ -11,7 +11,8 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.output_files import JSON_FILES_JSON_PATH, JSON_METADATA_PATH
 from epstein_files.util.data import dict_sets_to_lists
 from epstein_files.util.env import args, specified_names
-from epstein_files.util.logging import log_file_write, logger
+from epstein_files.util.file_helper import log_file_write
+from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
 
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
@@ -106,8 +107,8 @@ def print_emails(epstein_files: EpsteinFiles) -> int:
         _verify_all_emails_were_printed(epstein_files, already_printed_emails)
 
     fwded_articles = [e for e in already_printed_emails if e.config and e.config.is_fwded_article]
-    logger.warning(f"{len(fwded_articles)} of {len(already_printed_emails)} emails were forwarded articles.")
-    logger.warning(f"Rewrote {len(Email.rewritten_header_ids)} headers of {len(epstein_files.emails)} emails.")
+    log_msg = f"Rewrote {len(Email.rewritten_header_ids)} email headers (out of {len(already_printed_emails)})"
+    logger.warning(f"{log_msg}, {len(fwded_articles)} of the emails were forwarded articles.")
     return len(already_printed_emails)
 
 
@@ -121,7 +122,7 @@ def print_json_files(epstein_files: EpsteinFiles):
     else:
         for json_file in epstein_files.json_files:
             console.line(2)
-            console.print(json_file.description_panel())
+            console.print(json_file.summary_panel())
             console.print_json(json_file.json_str(), indent=4, sort_keys=False)
 
 

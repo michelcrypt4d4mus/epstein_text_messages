@@ -256,7 +256,7 @@ JOHN_BOLTON_PRESS_CLIPPING = 'John Bolton press clipping'
 JP_MORGAN_EYE_ON_THE_MARKET = f"Eye On The Market"
 LAWRENCE_KRAUSS_ASU_ORIGINS = f"{LAWRENCE_KRAUSS}'s ASU Origins Project"
 KEN_STARR_LETTER = f"letter to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
-MICHAEL_WOLFF_ARTICLE_HINT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
+MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
 NERIO_ALESSANDRI = 'Nerio Alessandri (Founder and Chairman of Technogym S.p.A. Italy)'
 NIGHT_FLIGHT_BOOK = f'"Night Flight" (draft)'
 NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
@@ -649,7 +649,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='033050', actual_text='schwartman'),
     EmailCfg(id='029344', actual_text='I thought of you when I read this article. Was this your idea? Alan'),
     EmailCfg(id='022219', description="discussion of attempts to clean up Epstein's Google search results"),
-    EmailCfg(id='023627', is_fwded_article=True, description=MICHAEL_WOLFF_ARTICLE_HINT),
+    EmailCfg(id='023627', is_fwded_article=True, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
     EmailCfg(id='031333', is_fwded_article=True, description='looks like a Russian disinfo article'),  # Russia Says IMF Chief Jailed For Discovering All US Gold is Gone
     EmailCfg(id='031335', is_fwded_article=True, description='looks like a Russian disinfo article'),  # DOMINQUE STRAUSS-KAHN ARRESTED, NOT BECAUSE HE RAPED A MAID, BUT BECAUSE HE HAD EVIDENCE US HAS NO GOLD IN FORT KNOX.
     EmailCfg(id='026298', is_fwded_article=True, duplicate_ids=['026499']),  # Written by someone else?
@@ -925,14 +925,14 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='031776', author='Law360', description=f"article about Michael Avenatti by Andrew Strickler"),
     DocCfg(id='023102', author=f'Litigation Daily', description=f"article about {REID_WEINGARTEN}", date='2015-09-04'),
     DocCfg(id='029340', author=f'MarketWatch', description=f'article about estate taxes, particularly Epstein\'s favoured GRATs'),
-    DocCfg(id='022707', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
-    DocCfg(id='022727', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
-    DocCfg(id='022746', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
-    DocCfg(id='022844', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
-    DocCfg(id='022863', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
-    DocCfg(id='022894', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
-    DocCfg(id='022952', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
-    DocCfg(id='024229', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_ARTICLE_HINT),
+    DocCfg(id='022707', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
+    DocCfg(id='022727', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
+    DocCfg(id='022746', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
+    DocCfg(id='022844', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
+    DocCfg(id='022863', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
+    DocCfg(id='022894', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
+    DocCfg(id='022952', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
+    DocCfg(id='024229', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
     DocCfg(id='031198', author='Morning News USA', description=f"article about identify of Jane Doe in {JANE_DOE_V_EPSTEIN_TRUMP}"),
     DocCfg(id='031972', author=NYT, description=f"article about #MeToo allegations against {LAWRENCE_KRAUSS}", date='2018-03-07'),
     DocCfg(id='032435', author=NYT, description=f'article about Chinese butlers'),

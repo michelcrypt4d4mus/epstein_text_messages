@@ -23,12 +23,12 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import (EPSTEIN_MEDIA, EPSTEIN_WEB, JMAIL, epstein_media_person_url,
      epsteinify_name_url, epstein_web_person_url, search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
-from epstein_files.util.data import dict_sets_to_lists, json_safe, sort_dict
+from epstein_files.util.data import dict_sets_to_lists, json_safe, listify, sort_dict
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
-from epstein_files.util.env import args, logger
-from epstein_files.util.file_helper import DOCS_DIR, file_size_str
+from epstein_files.util.env import DOCS_DIR, args, logger
+from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
-from epstein_files.util.rich import (DEFAULT_NAME_STYLE, NA_TXT, TABLE_BORDER_STYLE, add_cols_to_table,
+from epstein_files.util.rich import (DEFAULT_NAME_STYLE, NA_TXT, add_cols_to_table,
      build_table, console, highlighter, link_text_obj, link_markup, print_author_header, print_centered,
      print_other_site_link, print_panel, print_section_header, vertically_pad)
 from epstein_files.util.search_result import SearchResult
@@ -186,7 +186,8 @@ class EpsteinFiles:
         else:
             return [e for e in self.emails if author in e.recipients]
 
-    def get_documents_by_id(self, file_ids: list[str]) -> list[Document]:
+    def get_documents_by_id(self, file_ids: str | list[str]) -> list[Document]:
+        file_ids = listify(file_ids)
         docs = [doc for doc in self.all_documents() if doc.file_id in file_ids]
 
         if len(docs) != len(file_ids):
@@ -272,7 +273,7 @@ class EpsteinFiles:
         console.print(_build_signature_table(self.email_device_signatures_to_authors, (DEVICE_SIGNATURE, AUTHOR), ', '))
 
     def print_emailer_counts_table(self) -> None:
-        footer = f"Identified authors of {self.attributed_email_count():,} emails out of {len(self.emails):,}."
+        footer = f"Identified authors of {self.attributed_email_count():,} out of {len(self.emails):,} emails ."
         counts_table = build_table("Email Counts", caption=footer)
         add_cols_to_table(counts_table, ['Name', 'Count', 'Sent', "Recv'd", JMAIL, EPSTEIN_MEDIA, EPSTEIN_WEB, 'Twitter'])
 
@@ -318,7 +319,7 @@ class EpsteinFiles:
             console.line(2)
 
         console.print(OtherFile.build_table(interesting_files))
-        console.print(Padding(OtherFile.count_by_category_table(interesting_files), (2, 0, 2, 30)))
+        console.print(Padding(OtherFile.count_by_category_table(interesting_files), (2, 0, 2, 2)))
         skipped_file_count = len(self.other_files) - len(interesting_files)
 
         if skipped_file_count > 0:

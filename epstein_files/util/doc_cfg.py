@@ -92,22 +92,7 @@ class DocCfg:
         if self.dupe_of_id or self.duplicate_ids:
             self.dupe_type = self.dupe_type or SAME
 
-    def duplicate_reason(self) -> str | None:
-        if self.dupe_type is not None:
-            return DUPE_TYPE_STRS[self.dupe_type]
-
-    def duplicate_cfgs(self) -> Generator['DocCfg', None, None]:
-        """Create synthetic DocCfg objects that set the 'dupe_of_id' field to point back to this object."""
-        for id in self.duplicate_ids:
-            dupe_cfg = deepcopy(self)
-            dupe_cfg.id = id
-            dupe_cfg.dupe_of_id = self.id
-            dupe_cfg.duplicate_ids = []
-            dupe_cfg.dupe_type = self.dupe_type
-            dupe_cfg.was_generated = True
-            yield dupe_cfg
-
-    def info_str(self) -> str | None:
+    def complete_description(self) -> str | None:
         """String that summarizes what is known about this document."""
         if self.category and not self.description:
             return self.category
@@ -125,6 +110,21 @@ class DocCfg:
 
         pieces = without_falsey([self.author, self.description])
         return ' '.join(pieces) if pieces else None
+
+    def duplicate_reason(self) -> str | None:
+        if self.dupe_type is not None:
+            return DUPE_TYPE_STRS[self.dupe_type]
+
+    def duplicate_cfgs(self) -> Generator['DocCfg', None, None]:
+        """Create synthetic DocCfg objects that set the 'dupe_of_id' field to point back to this object."""
+        for id in self.duplicate_ids:
+            dupe_cfg = deepcopy(self)
+            dupe_cfg.id = id
+            dupe_cfg.dupe_of_id = self.id
+            dupe_cfg.duplicate_ids = []
+            dupe_cfg.dupe_type = self.dupe_type
+            dupe_cfg.was_generated = True
+            yield dupe_cfg
 
     def metadata(self) -> Metadata:
         non_null_fields = {k: v for k, v in asdict(self).items() if v and k not in INVALID_FOR_METADATA}

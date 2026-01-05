@@ -4,7 +4,7 @@ import warnings
 from collections import defaultdict
 from dataclasses import asdict, dataclass
 from datetime import datetime
-from typing import Sequence
+from typing import ClassVar, Sequence
 
 import datefinder
 import dateutil
@@ -22,7 +22,7 @@ from epstein_files.util.data import escape_single_quotes, remove_timezone, sort_
 from epstein_files.util.file_helper import FILENAME_LENGTH, file_size_to_str
 from epstein_files.util.env import args
 from epstein_files.util.highlighted_group import styled_category
-from epstein_files.util.rich import QUESTION_MARK_TXT, build_table, highlighter
+from epstein_files.util.rich import QUESTION_MARK_TXT, add_cols_to_table, build_table, highlighter
 from epstein_files.util.logging import logger
 
 MAX_DAYS_SPANNED_TO_BE_VALID = 10
@@ -44,7 +44,7 @@ UNINTERESTING_CATEGORES = [
     SPEECH,
 ]
 
-# OtherFiles whose description/hints match these prefixes are not displayed unless --all-other-files is used
+# OtherFiles whose descriptions/info match these prefixes are not displayed unless --all-other-files is used
 UNINTERESTING_PREFIXES = FINANCIAL_REPORTS_AUTHORS + [
     'article about',
     ARTICLE_DRAFT,
@@ -123,11 +123,13 @@ UNINTERESTING_PREFIXES = FINANCIAL_REPORTS_AUTHORS + [
 class OtherFile(Document):
     """File that is not an email, an iMessage log, or JSON data."""
 
+    include_description_in_summary_panel: ClassVar[bool] = True
+
     def __post_init__(self):
         super().__post_init__()
 
         if self.config is None and VI_DAILY_NEWS_REGEX.search(self.text):
-            self.log(f"Creating synthetic config for VI Daily News article...", logging.INFO)
+            self.log(f"Creating synthetic config for VI Daily News article...")
             self.config = DocCfg(id=self.file_id, author=VI_DAILY_NEWS, category=ARTICLE, description='article')
 
     def category(self) -> str | None:
@@ -136,14 +138,10 @@ class OtherFile(Document):
     def category_txt(self) -> Text | None:
         return styled_category(self.category() or UNKNOWN)
 
-    def configured_description(self) -> str | None:
+    def config_description(self) -> str | None:
         """Overloads superclass method."""
         if self.config is not None:
-            return self.config.info_str()
-
-    def description_panel(self, include_hints=True) -> Panel:
-        """Panelized description() with info_txt(), used in search results."""
-        return super().description_panel(include_hints=include_hints)
+            return self.config.complete_description()
 
     def highlighted_preview_text(self) -> Text:
         try:
@@ -157,11 +155,11 @@ class OtherFile(Document):
 
     def is_interesting(self):
         """False for lame prefixes, duplicates, and other boring files."""
-        hints = self.hints()
+        info_sentences = self.info()
 
         if self.is_duplicate():
             return False
-        elif len(hints) == 0:
+        elif len(info_sentences) == 0:
             return True
         elif self.config:
             if self.config.is_interesting:
@@ -172,7 +170,7 @@ class OtherFile(Document):
                 return False
 
         for prefix in UNINTERESTING_PREFIXES:
-            if hints[0].plain.startswith(prefix):
+            if info_sentences[0].plain.startswith(prefix):
                 return False
 
         return True
@@ -213,7 +211,7 @@ class OtherFile(Document):
 
         if len(timestamps) == 0:
             if not (self.is_duplicate() or VAST_HOUSE in self.text):
-                self.log_top_lines(15, msg=f"No timestamps found", level=logging.INFO)
+                self.log_top_lines(15, msg=f"No timestamps found")
 
             return None
         elif len(timestamps) == 1:
@@ -249,7 +247,7 @@ class OtherFile(Document):
                 preview_text = file.duplicate_file_txt()
                 row_style = ' dim'
             else:
-                link_and_info += file.hints()
+                link_and_info += file.info()
                 preview_text = file.highlighted_preview_text()
                 row_style = ''
 
@@ -277,11 +275,8 @@ class OtherFile(Document):
             category_bytes[file.category()] += file.length
 
         table = build_table('Other Files Summary')
-        table.add_column('Category', justify='right')
-        table.add_column('Count', justify='center')
-        table.add_column('Known Author', justify='center')
-        table.add_column('Unknown Author', justify='center')
-        table.add_column('Size', justify='center', style='dim')
+        add_cols_to_table(table, ['Category', 'Count', 'Has Author', 'No Author', 'Size'])
+        table.columns[-1].style = 'dim'
 
         for (category, count) in sort_dict(counts):
             category_files = [f for f in files if f.category() == category]

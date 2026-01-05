@@ -912,6 +912,13 @@ def test_email_recipient_counts(epstein_files):
     assert epstein_files.email_recipient_counts == EMAIL_RECIPIENT_COUNTS
 
 
+def test_info_sentences(epstein_files):
+    email = epstein_files.get_documents_by_id('026290')[0]
+    assert len(email.info()) == 1
+    email_with_description = epstein_files.get_documents_by_id('031278')[0]
+    assert len(email_with_description.info()) == 2
+
+
 def test_signatures(epstein_files):
     assert dict_sets_to_lists(epstein_files.email_authors_to_device_signatures) == AUTHORS_TO_DEVICE_SIGNATURES
     assert dict_sets_to_lists(epstein_files.email_device_signatures_to_authors) == DEVICE_SIGNATURE_TO_AUTHORS

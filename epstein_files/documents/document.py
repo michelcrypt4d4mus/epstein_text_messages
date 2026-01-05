@@ -15,13 +15,13 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP
-from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, listify, patternize, without_falsey
+from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, patternize, without_falsey
 from epstein_files.util.doc_cfg import EmailCfg, DocCfg, Metadata, TextCfg
-from epstein_files.util.env import args
-from epstein_files.util.file_helper import (DOCS_DIR, file_stem_for_id, extract_file_id, file_size,
+from epstein_files.util.env import DOCS_DIR, args
+from epstein_files.util.file_helper import (file_stem_for_id, extract_file_id, file_size,
      file_size_str, is_local_extract_file)
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
-from epstein_files.util.rich import SYMBOL_STYLE, console, highlighter, key_value_txt, link_text_obj
+from epstein_files.util.rich import INFO_STYLE, SYMBOL_STYLE, console, highlighter, key_value_txt, link_text_obj
 from epstein_files.util.search_result import MatchedLine
 
 CLOSE_PROPERTIES_CHAR = ']'
@@ -87,8 +87,9 @@ class Document:
     timestamp: datetime | None = None
     url_slug: str = field(init=False)  # e.g. 'HOUSE_OVERSIGHT_123456
 
-    # Class variable overridden in JsonFile
-    strip_whitespace: ClassVar[bool] = True
+    # Class variables
+    include_description_in_summary_panel: ClassVar[bool] = False
+    strip_whitespace: ClassVar[bool] = True  # Overridden in JsonFile
 
     def __post_init__(self):
         self.filename = self.file_path.name
@@ -113,18 +114,13 @@ class Document:
         """Annoying workaround for circular import issues and isinstance()."""
         return str(type(self).__name__)
 
-    def configured_description(self) -> str | None:
+    def config_description(self) -> str | None:
         """Overloaded in OtherFile."""
         if self.config and self.config.description:
             return f"({self.config.description})"
 
     def date_str(self) -> str | None:
         return date_str(self.timestamp)
-
-    def description_panel(self, include_hints: bool = False) -> Panel:
-        """Panelized description() with info_txt(), used in search results."""
-        hints = [Text('', style='italic').append(h) for h in (self.hints() if include_hints else [])]
-        return Panel(Group(*([self.summary()] + hints)), border_style=self.document_type_style(), expand=False)
 
     def document_type_style(self) -> str:
         return DOC_TYPE_STYLES[self.class_name()]
@@ -134,7 +130,7 @@ class Document:
         if not self.config or not self.config.dupe_of_id:
             raise RuntimeError(f"duplicate_file_txt() called on {self.summary()} but not a dupe! config:\n\n{self.config}")
 
-        txt = Text(f"Not showing ", style='white dim italic').append(epstein_media_doc_link_txt(self.file_id, style='cyan'))
+        txt = Text(f"Not showing ", style=INFO_STYLE).append(epstein_media_doc_link_txt(self.file_id, style='cyan'))
         txt.append(f" because it's {self.config.duplicate_reason()} ")
         return txt.append(epstein_media_doc_link_txt(self.config.dupe_of_id, style='royal_blue1'))
 
@@ -151,10 +147,10 @@ class Document:
         return link_text_obj(epstein_web_doc_url(self.url_slug), link_txt or self.url_slug, style)
 
     def file_info_panel(self) -> Group:
-        """Panel with filename linking to raw file plus any hints/info about the file."""
+        """Panel with filename linking to raw file plus any additional info about the file."""
         panel = Panel(self.raw_document_link_txt(include_alt_link=True), border_style=self._border_style(), expand=False)
-        hints = [Padding(hint, INFO_PADDING) for hint in self.hints()]
-        return Group(*([panel] + hints))
+        padded_info = [Padding(sentence, INFO_PADDING) for sentence in self.info()]
+        return Group(*([panel] + padded_info))
 
     def file_size(self) -> int:
         return file_size(self.file_path)
@@ -162,15 +158,14 @@ class Document:
     def file_size_str(self) -> str:
         return file_size_str(self.file_path)
 
-    def hints(self) -> list[Text]:
-        """Additional info about the Document (author, description, and so on) to be desplayed in doc header."""
-        hints = listify(self.info_txt())
-        hint_msg = self.configured_description()
+    def info(self) -> list[Text]:
+        """0 to 2 sentences containing the info_txt() as well as any configured description."""
+        sentences = [
+            self.info_txt(),
+            highlighter(Text(self.config_description(), style=INFO_STYLE)) if self.config_description() else None
+        ]
 
-        if hint_msg:
-            hints.append(highlighter(Text(hint_msg, style='white dim italic')))
-
-        return without_falsey(hints)
+        return without_falsey(sentences)
 
     def info_txt(self) -> Text | None:
         """Secondary info about this file (recipients, level of certainty, etc). Overload in subclasses."""
@@ -183,7 +178,7 @@ class Document:
         """True if file created by extracting text from a court doc (identifiable from filename e.g. HOUSE_OVERSIGHT_012345_1.txt)."""
         return is_local_extract_file(self.filename)
 
-    def log(self, msg: str, level: int = logging.WARNING):
+    def log(self, msg: str, level: int = logging.INFO):
         """Log with filename as a prefix."""
         logger.log(level, f"{self.url_slug} {msg}")
 
@@ -191,8 +186,7 @@ class Document:
         """Log first 'n' lines of self.text at 'level'. 'msg' can be optionally provided."""
         separator = '\n\n' if '\n' in msg else '. '
         msg = (msg + separator) if msg else ''
-        msg = f"{self.filename}: {msg}First {n} lines:"
-        logger.log(level, f"{msg}\n\n{self.top_lines(n)}\n")
+        self.log(f"{msg}First {n} lines:\n\n{self.top_lines(n)}\n", level)
 
     def matching_lines(self, _pattern: re.Pattern | str) -> list[MatchedLine]:
         """Return lines matching a regex as colored list[Text]."""
@@ -275,6 +269,15 @@ class Document:
             txt.append(", ").append(key_value_txt('dupe_of', Text(self.config.dupe_of_id, style='magenta')))
 
         return txt
+
+    def summary_panel(self) -> Panel:
+        """Panelized description() with info_txt(), used in search results."""
+        sentences = [self.summary()]
+
+        if self.include_description_in_summary_panel:
+            sentences += [Text('', style='italic').append(h) for h in self.info()]
+
+        return Panel(Group(*sentences), border_style=self.document_type_style(), expand=False)
 
     def top_lines(self, n: int = 10) -> str:
         return '\n'.join(self.lines[0:n])[:MAX_TOP_LINES_LEN]

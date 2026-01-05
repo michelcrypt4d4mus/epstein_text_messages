@@ -8,6 +8,7 @@ from rich.text import Text
 
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.strings import JSON
+from epstein_files.util.rich import INFO_STYLE
 
 TEXT_FIELDS = [
     'caption',
@@ -22,6 +23,8 @@ TEXT_FIELDS = [
 @dataclass
 class JsonFile(OtherFile):
     """File containing JSON data."""
+
+    include_description_in_summary_panel: ClassVar[bool] = False
     strip_whitespace: ClassVar[bool] = False
 
     def __post_init__(self):
@@ -36,7 +39,7 @@ class JsonFile(OtherFile):
         return JSON
 
     def info_txt(self) -> Text | None:
-        return Text(f"JSON file, seems to contain link unfurl/embed data for iMessage or similar", style='white dim italic')
+        return Text(f"JSON file, seems to contain link unfurl/embed data for iMessage or similar", style=INFO_STYLE)
 
     def is_interesting(self):
         return False

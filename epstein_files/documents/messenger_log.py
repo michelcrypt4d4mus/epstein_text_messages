@@ -36,9 +36,9 @@ class MessengerLog(Communication):
         if self.author is None:
             return None
 
-        hint_msg = GUESSED_MSG if self.is_attribution_uncertain() else CONFIRMED_MSG
+        info_msg = GUESSED_MSG if self.is_attribution_uncertain() else CONFIRMED_MSG
         author_txt = Text(self.author_or_unknown(), style=self.author_style + ' bold')
-        return Text(f"({hint_msg} ", style='dim').append(author_txt).append(')')
+        return Text(f"({info_msg} ", style='dim').append(author_txt).append(')')
 
     def last_message_at(self, name: str | None) -> datetime:
         return self.messages_by(name)[-1].timestamp()
