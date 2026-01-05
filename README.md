@@ -42,14 +42,14 @@ epstein_show HOUSE_OVERSIGHT_030999
 epstein_diff 030999 020442
 ```
 
+The first time you run anything it will take a few minutes to fix all the data, attribute the redacted emails, etc.
 Run `epstein_generate --help` for command line option assistance.
 
-The first time you run anything it will take a few minutes to fix all the data, attribute the redacted emails, etc. Once you've run things once you can run the `epstein_generate --pickled` to load the cached data and things will be very quick.
 
 #### As A Library
 ```python
 from epstein_files.epstein_files import EpsteinFiles
-epstein_files = EpsteinFiles.get_files(use_pickled=True)
+epstein_files = EpsteinFiles.get_files()
 
 # All files
 for document in epstein_files.all_documents():
