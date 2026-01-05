@@ -21,14 +21,14 @@ EPSTEIN_WEB = 'EpsteinWeb'
 EPSTEINIFY = 'epsteinify'
 JMAIL = 'Jmail'
 
-
 # Deployment URLS
 # NOTE: don't rename these variables without changing deploy.sh!
 GH_PAGES_BASE_URL = 'https://michelcrypt4d4mus.github.io'
 TEXT_MSGS_URL = f"{GH_PAGES_BASE_URL}/epstein_text_messages"
-ALL_EMAILS_URL = f'{TEXT_MSGS_URL}/{ALL_EMAILS_PATH.name}'
-JSON_METADATA_URL = f'{TEXT_MSGS_URL}/{JSON_METADATA_PATH.name}'
-WORD_COUNT_URL = f'{TEXT_MSGS_URL}/{WORD_COUNT_HTML_PATH.name}'
+ALL_EMAILS_URL = f"{TEXT_MSGS_URL}/{ALL_EMAILS_PATH.name}"
+JSON_FILES_URL = f"{TEXT_MSGS_URL}/{JSON_FILES_JSON_PATH.name}"
+JSON_METADATA_URL = f"{TEXT_MSGS_URL}/{JSON_METADATA_PATH.name}"
+WORD_COUNT_URL = f"{TEXT_MSGS_URL}/{WORD_COUNT_HTML_PATH.name}"
 
 SITE_URLS: dict[SiteType, str] = {
     EMAIL: ALL_EMAILS_URL,
