@@ -159,7 +159,7 @@ HIGHLIGHTED_NAMES = [
         pattern=r'Gruterite|(John\s*)?Kluge|Marc Rich|(Mi(chael|ke)\s*)?Ovitz|(Steve\s+)?Wynn|(Les(lie)?\s+)?Wexner|SALSS|Swedish[-\s]*American\s*Life\s*Science\s*Summit|Valhi|(Yves\s*)?Bouvier',
         emailers = {
             ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
-            BARBRO_C_EHNBOM: 'Swedish pharmaceuticals',
+            BARBRO_C_EHNBOM: 'Swedish pharmaceuticals, SALSS',
             FRED_HADDAD: "co-founder of Heck's in West Virginia",
             GERALD_BARTON: "Maryland property developer Landmark Land Company, fan of Trump's Irish golf course",
             GORDON_GETTY: 'heir of oil tycoon J. Paul Getty',
@@ -296,6 +296,7 @@ HIGHLIGHTED_NAMES = [
         emailers = {
             DAVID_STERN: f'emailed Epstein from Moscow, appears to know chairman of {DEUTSCHE_BANK}',
             JONATHAN_FARKAS: "heir to the Alexander's department store fortune",
+            'linkspirit': "Skype username of someone Epstein communicated with",
             'Peter Thomas Roth': 'student of Epstein at Dalton, skincare company founder',
             STEPHEN_HANSON: None,
             TOM_BARRACK: 'long time friend of Trump',
@@ -304,7 +305,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='finance',
         style='green',
-        pattern=r'Apollo|Ari\s*Glass|(Bernie\s*)?Madoff|Black(rock|stone)|BofA|Boothbay(\sFund\sManagement)?|Chase\s*Bank|Credit\s*Suisse|DB|Deutsche\s*(Asset|Bank)|Electron\s*Capital\s*(Partners)?|Fenner|FRBNY|Goldman(\s*Sachs)|HSBC|Invesco|(Janet\s*)?Yellen|(Jerome\s*)?Powell(?!M\. Cabot)|(Jimmy\s*)?Cayne|JPMC?|j\.?p\.?\s*morgan(\.?com|\s*Chase)?|Madoff|Merrill(\s*Lynch)?|(Michael\s*)?(Cembalest|Milken)|Mizrahi\s*Bank|MLPF&S|(money\s+)?launder(s?|ers?|ing)?(\s+money)?|Morgan Stanley|(Peter L. )?Scher|(Ray\s*)?Dalio|Schwartz?man|Serageldin|UBS|us.gio@jpmorgan.com',
+        pattern=r'Apollo|Ari\s*Glass|Bank|(Bernie\s*)?Madoff|Black(rock|stone)|B\s*of\s*A|Boothbay(\sFund\sManagement)?|Chase\s*Bank|Credit\s*Suisse|DB|Deutsche\s*(Asset|Bank)|Electron\s*Capital\s*(Partners)?|Fenner|FRBNY|Goldman(\s*Sachs)|HSBC|Invesco|(Janet\s*)?Yellen|(Jerome\s*)?Powell(?!M\. Cabot)|(Jimmy\s*)?Cayne|JPMC?|j\.?p\.?\s*morgan(\.?com|\s*Chase)?|Madoff|Merrill(\s*Lynch)?|(Michael\s*)?(Cembalest|Milken)|Mizrahi\s*Bank|MLPF&S|(money\s+)?launder(s?|ers?|ing)?(\s+money)?|Morgan Stanley|(Peter L. )?Scher|(Ray\s*)?Dalio|Schwartz?man|Serageldin|UBS|us.gio@jpmorgan.com',
         emailers={
             AMANDA_ENS: 'Citigroup',
             DANIEL_SABBA: 'UBS Investment Bank',
@@ -587,7 +588,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedText(
         label='phone_number',
         style='bright_green',
-        pattern=r"\+?(1?\(?\d{3}\)?[- ]\d{3}[- ]\d{4}|\d{2}[- ]\(?0?\)?\d{2}[- ]\d{4}[- ]\d{4})|[\d+]{10,12}",
+        pattern=r"\+?(1?\(?\d{3}\)?[- ]\d{3}[- ]\d{4}|\d{2}[- ]\(?0?\)?\d{2}[- ]\d{4}[- ]\d{4})|\b[\d+]{10,12}\b",
     ),
 ]
 

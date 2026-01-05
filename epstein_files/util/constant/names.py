@@ -231,12 +231,12 @@ OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
     davis dean debra deborah dennis diana diane diaz dickinson dixon dominique don dylan
     edmond elizabeth emily entwistle erik evelyn
     ferguson flachsbart francis franco frank
-    gardner gary geoff geoffrey gilbert goldberg gonzalez gould graham greene guarino gwyneth
+    gardner gary geoff geoffrey gilbert gloria goldberg gonzalez gould graham greene guarino gwyneth
     hancock harold harrison harry helen hirsch hofstadter horowitz hussein
     isaac isaacson
     jamie jane janet jason jen jim joe johnson jones josh julie justin
     kate kathy kelly kim kruger kyle
-    leonard lenny lieberman louis lynch lynn
+    leo leonard lenny leslie lieberman louis lynch lynn
     marcus marianne matt matthew melissa michele michelle moore moscowitz
     nicole nussbaum
     paulson philippe

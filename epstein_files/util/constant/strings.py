@@ -27,6 +27,7 @@ POLITICS = 'politics'
 PROPERTY = 'property'
 PUBLICIST = 'publicist'
 REPUTATION = 'reputation'
+SKYPE_LOG= 'skype log'
 SOCIAL = 'social'
 SPEECH = 'speech'
 

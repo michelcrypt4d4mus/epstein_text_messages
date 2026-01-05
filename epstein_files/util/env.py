@@ -66,7 +66,7 @@ datefinder_logger.setLevel(logger.level)
 
 # Massage args that depend on other args to the appropriate state
 if not (args.json_metadata or args.output_texts or args.output_emails or args.output_other_files):
-    if is_html_script and current_script != COUNT_WORDS_SCRIPT and not args.make_clean:
+    if is_html_script and current_script != COUNT_WORDS_SCRIPT and not args.make_clean and not args.colors_only:
         logger.warning(f"No output section chosen; outputting default of texts, selected emails, and other files...")
 
     args.output_texts = True

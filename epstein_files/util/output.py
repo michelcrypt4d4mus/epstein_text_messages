@@ -102,7 +102,7 @@ def print_emails(epstein_files: EpsteinFiles) -> int:
         epstein_files.print_email_device_info()
 
     if args.all_emails:
-        _verify_all_emails_printed(epstein_files, already_printed_emails)
+        _verify_all_emails_were_printed(epstein_files, already_printed_emails)
 
     logger.warning(f"Rewrote {len(Email.rewritten_header_ids)} headers of {len(epstein_files.emails)} emails")
     return len(already_printed_emails)
@@ -146,31 +146,30 @@ def print_text_messages(epstein_files: EpsteinFiles) -> None:
 
 
 def write_urls() -> None:
+    """Write _URL style constant variables to a file bash scripts can load as env vars."""
     if args.output_file == 'index.html':
         logger.warning(f"Can't write env vars to '{args.output_file}', writing to '{URLS_ENV}' instead.\n")
         args.output_file = URLS_ENV
 
     url_vars = {
         k: v for k, v in vars(urls).items()
-        if isinstance(v, str) and \
-            k.split('_')[-1] in ['URL'] and \
-            'michelcrypt4d4mus' in v and \
-            'github.com' not in v and \
-            'BASE' not in v
+        if isinstance(v, str) and k.split('_')[-1] in ['URL'] and 'github.io' in v and 'BASE' not in k
     }
 
     with open(args.output_file, 'w') as f:
         for var_name, url in url_vars.items():
             key_value = f"{var_name}='{url}'"
-            console.print(key_value, style='dim')
+
+            if not args.suppress_output:
+                console.print(key_value, style='dim')
+
             f.write(f"{key_value}\n")
 
     console.line()
     logger.warning(f"Wrote {len(url_vars)} URL variables to '{args.output_file}'\n")
 
 
-
-def _verify_all_emails_printed(epstein_files: EpsteinFiles, already_printed_emails: list[Email]) -> None:
+def _verify_all_emails_were_printed(epstein_files: EpsteinFiles, already_printed_emails: list[Email]) -> None:
     """Log warnings if some emails were never printed."""
     email_ids_that_were_printed = set([email.file_id for email in already_printed_emails])
     logger.warning(f"Printed {len(already_printed_emails)} emails of {len(email_ids_that_were_printed)} unique file IDs.")
