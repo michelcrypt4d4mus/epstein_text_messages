@@ -15,11 +15,20 @@
 You need to set the `DOCS_DIR` environment variable with the path to the folder of files you just downloaded when running. You can either create a `.env` file modeled on [`.env.example`](./.env.example) (which will set it permanently) or you can run with:
 
 ```bash
-DOCS_DIR=/path/to/epstein/ocr_txt_files ./generate.py
+# Generate color highlighted texts/emails/other files
+DOCS_DIR=/path/to/epstein/ocr_txt_files epstein_generate
+
+# Search
+DOCS_DIR=/path/to/epstein/ocr_txt_files epstein_search Bannon
+
+# Show a color highlighted file
+DOCS_DIR=/path/to/epstein/ocr_txt_files epstein_show 030999
+# This also works
+DOCS_DIR=/path/to/epstein/ocr_txt_files epstein_show HOUSE_OVERSIGHT_030999
 ```
 
-Run `./generate.py --help` for command line option assistance. Look in the [scripts](./scripts/) folder for various scripts.
-The first time you run anything it will take a few minutes to fix all the data, attribute the redacted emails, etc. Once you've run things once you can run the `./generate.py --pickled` to load the cached fixed up data and things will be quick.
+Run `epstein_generate --help` for command line option assistance.
+The first time you run anything it will take a few minutes to fix all the data, attribute the redacted emails, etc. Once you've run things once you can run the `epstein_generate --pickled` to load the cached fixed up data and things will be quick.
 
 #### As A Library
 ```python
