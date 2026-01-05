@@ -76,7 +76,7 @@ class EpsteinFiles:
             document = Document(file_arg)
 
             if document.length == 0:
-                logger.warning(f"Skipping empty file: {document}")
+                logger.warning(f"Skipping empty file: {document}]")
                 continue
 
             cls = document_cls(document)
