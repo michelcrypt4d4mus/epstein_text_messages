@@ -60,7 +60,7 @@ UNINTERESTING_PREFIXES = FINANCIAL_REPORTS_AUTHORS + [
     CVRA,
     DAILY_MAIL,
     DAILY_TELEGRAPH,
-    DAVID_SCHOEN_CVRA_LEXIS_SEARCH[0:-12],  # Because date at end :(
+    CVRA_LEXIS_SEARCH[0:-12],  # Because date at end :(
     DERSH_GIUFFRE_TWEET,
     'Financial Times',
     'Forbes',

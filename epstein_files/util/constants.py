@@ -238,8 +238,8 @@ BOFA_MERRILL = f'{BOFA} / Merrill Lynch Report'
 BOFA_WEALTH_MGMT = f'{BOFA} Wealth Management'
 BROCKMAN_INC = 'Brockman, Inc.'
 CVRA = "Crime Victims' Rights Act [CVRA]"
+CVRA_LEXIS_SEARCH = f"Lexis Nexis search for case law around the {CVRA}"
 DAVID_BLAINE_VISA_LETTER = f"letter of recommendation for visa for a model"
-DAVID_SCHOEN_CVRA_LEXIS_SEARCH = f"Lexis Nexis search for case law around the {CVRA} by {DAVID_SCHOEN}"
 DERSH_GIUFFRE_TWEET = f"{TWEET} about {VIRGINIA_GIUFFRE}"
 DEUTSCHE_BANK_TAX_TOPICS = f'{DEUTSCHE_BANK} Wealth Management Tax Topics'
 DIANA_DEGETTE_CAMPAIGN = "Colorado legislator Diana DeGette's campaign"
@@ -1041,6 +1041,10 @@ OTHER_FILES_ARTICLES = [
 OTHER_FILES_LEGAL = [
     DocCfg(id='017789', author=ALAN_DERSHOWITZ, description=f'letter to {HARVARD} Crimson complaining he was defamed'),
     DocCfg(id='011908', author=BRUNEL_V_EPSTEIN, description=f"court filing"),
+    DocCfg(id='017603', author=DAVID_SCHOEN, description=CVRA_LEXIS_SEARCH, date='2019-02-28'),
+    DocCfg(id='017635', author=DAVID_SCHOEN, description=CVRA_LEXIS_SEARCH, date='2019-02-28'),
+    DocCfg(id='016509', author=DAVID_SCHOEN, description=CVRA_LEXIS_SEARCH, date='2019-02-28'),
+    DocCfg(id='017714', author=DAVID_SCHOEN, description=CVRA_LEXIS_SEARCH, date='2019-02-28'),
     DocCfg(id='021824', author=EDWARDS_V_DERSHOWITZ, description=f"deposition of {PAUL_G_CASSELL}"),
     DocCfg(
         id='010757',
@@ -1197,11 +1201,7 @@ OTHER_FILES_CONFERENCES = [
         author=UN_GENERAL_ASSEMBLY,
         description=f'schedule including "Presidents Private Dinner - Jeffrey Epstine (sic)"',
         date='2012-09-21',
-    ),
-    DocCfg(id='017603', description=DAVID_SCHOEN_CVRA_LEXIS_SEARCH, date='2019-02-28'),
-    DocCfg(id='017635', description=DAVID_SCHOEN_CVRA_LEXIS_SEARCH, date='2019-02-28'),
-    DocCfg(id='016509', description=DAVID_SCHOEN_CVRA_LEXIS_SEARCH, date='2019-02-28'),
-    DocCfg(id='017714', description=DAVID_SCHOEN_CVRA_LEXIS_SEARCH, date='2019-02-28'),
+    )
     DocCfg(id='017526', description=f'Intellectual Jazz conference brochure f. {DAVID_BLAINE}'),
     DocCfg(id='029427', description=f"seems related to an IRL meeting about concerns China will attempt to absorb Mongolia"),
     DocCfg(id='025797', description=f'someone\'s notes from Aspen Strategy Group', date='2013-05-29'),
