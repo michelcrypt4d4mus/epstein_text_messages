@@ -600,7 +600,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='022202', recipients=[JEAN_LUC_BRUNEL], attribution_reason='Follow up / reply', duplicate_ids=['029975']),
     EmailCfg(id='022187', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
     EmailCfg(id='031489', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (unfixable)
-    EmailCfg(id='032210', recipients=[JEFFREY_EPSTEIN]),  # More of a text convo?
     EmailCfg(id='030347', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
     EmailCfg(id='030367', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
     EmailCfg(id='033274', recipients=[JEFFREY_EPSTEIN]),  # this is a note sent to self
@@ -1496,7 +1495,8 @@ OTHER_FILES_MISC = [
     DocCfg(id='027074', author=FEMALE_HEALTH_COMPANY, description=f"pitch deck (USAID was a customer)"),
     DocCfg(id='032735', author=GORDON_GETTY, description=f"on Trump", date='2018-03-20'),  # Dated based on concurrent emails from Getty
     DocCfg(id='025540', author=JEFFREY_EPSTEIN, description=f"rough draft of Epstein's side of the story?"),
-    DocCfg(id='018224', author=LAWRENCE_KRAUSS, description=f"Skype conversation log"),
+    DocCfg(id='032210', category=SKYPE_LOG, description=f'conversation with linkspirit'),
+    DocCfg(id='018224', category=SKYPE_LOG, description=f'conversations with linkspirit (French?) and {LAWRENCE_KRAUSS}'),
     DocCfg(id='026634', author='Michael Carrier', description=f"comments about an Apollo linked hedge fund 'DE Fund VIII'"),
     DocCfg(id='031425', author=SCOTT_J_LINK, description=f'completely redacted email from'),
     DocCfg(id='020447', author='Working Group on Chinese Influence Activities in the U.S.', description=f'Promoting Constructive Vigilance'),

@@ -109,7 +109,9 @@ class DocCfg:
 
     def info_str(self) -> str | None:
         """String that summarizes what is known about this document."""
-        if self.category == REPUTATION:
+        if self.category and not self.description:
+            return self.category
+        elif self.category == REPUTATION:
             return f"{REPUTATION_MGMT}: {self.description}"
         elif self.author and self.description:
             if self.category in [ACADEMIA, BOOK]:
