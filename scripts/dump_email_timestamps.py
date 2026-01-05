@@ -37,7 +37,10 @@ for email in sorted(epstein_files.emails, key=lambda e: -len(e.actual_text)):
 
 console.line(2)
 
-for id_count in sort_dict(max_sizes):
+for i, id_count in enumerate(sort_dict(max_sizes)):
+    if i > 50:
+        continue
+
     id = id_count[0]
     count = id_count[1]
     email = epstein_files.get_documents_by_id([id])[0]

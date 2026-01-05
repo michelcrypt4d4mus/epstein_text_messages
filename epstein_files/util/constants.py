@@ -56,7 +56,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     AMANDA_ENS: re.compile(r'ens, amanda?|Amanda.Ens', re.IGNORECASE),
     ANAS_ALRASHEED: re.compile(r'anas\s*al\s*rashee[cd]', re.IGNORECASE),
     ANIL_AMBANI: re.compile(r'Anil.Ambani', re.IGNORECASE),
-    ANN_MARIE_VILLAFANA: re.compile(r'Villafana, Ann Marie|(A(\.|nn) Marie )?Villafa(n|ri)a', re.IGNORECASE),
+    ANN_MARIE_VILLAFANA: re.compile(r'Villafana, Ann Marie|(A(\.|nn) Marie )?Villafa(c|n|ri)a', re.IGNORECASE),
     ANTHONY_SCARAMUCCI: re.compile(r"mooch|(Anthony ('The Mooch' )?)?Scaramucci", re.IGNORECASE),
     ARIANE_DE_ROTHSCHILD: re.compile(r'AdeR|((Ariane|Edmond) de )?Rothschild|Ariane', re.IGNORECASE),
     BARBRO_C_EHNBOM: re.compile(r'behnbom@aol.com|(Barbro\s.*)?Ehnbom', re.IGNORECASE),
@@ -646,8 +646,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='021106', recipients=[STEVE_BANNON], attribution_reason='Reply'),
 
     # Misc configs
-    EmailCfg(id='033050', actual_text='schwartman'),
     EmailCfg(id='029344', actual_text='I thought of you when I read this article. Was this your idea? Alan'),
+    EmailCfg(id='032358', actual_text=REDACTED),  # Completely redacted
+    EmailCfg(id='033050', actual_text='schwartman'),
     EmailCfg(id='022219', description="discussion of attempts to clean up Epstein's Google search results"),
     EmailCfg(id='023627', is_fwded_article=True, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
     EmailCfg(id='031333', is_fwded_article=True, description='looks like a Russian disinfo article'),  # Russia Says IMF Chief Jailed For Discovering All US Gold is Gone
@@ -663,6 +664,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='031779', is_fwded_article=True, duplicate_ids=['026938']),  # Sarah Silverman on AI
     EmailCfg(id='029849', is_fwded_article=True, duplicate_ids=['033482']), # Fareed Zakaria: Trump sells America short),
     EmailCfg(id='032023', is_fwded_article=True, duplicate_ids=['032012']), # American-Israeli Cooperative Enterprise Newsletter
+    EmailCfg(id='021758', is_fwded_article=True),  # Radar Online article about Epstein's early prison release
     EmailCfg(id='030868', is_fwded_article=True),  # 'He doesn't like this sh*t': Trump reportedly hates his job and his staff after 1 month
     EmailCfg(id='026755', is_fwded_article=True),  # HuffPo
     EmailCfg(id='016218', is_fwded_article=True),  # AT&T confirms it paid Trump lawyer Cohen for insights on Trump
@@ -707,6 +709,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='026924', is_fwded_article=True),  # The Onion
     EmailCfg(id='033311', is_fwded_article=True),  # 2016 election polls
     EmailCfg(id='026580', is_fwded_article=True),  # NPR: Antigua: Land Of Sun, Sand, And Super Cheap
+    EmailCfg(id='031340', is_fwded_article=True),  # Article about Alex Jones threatening Robert Mueller
+    EmailCfg(id='033297', is_fwded_article=True, duplicate_ids=['033586']),  # Sultan Sulayem fwding article about Trump and Russia
     EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
 
@@ -748,8 +752,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='031118', duplicate_ids=['019465']),
     EmailCfg(id='031912', duplicate_ids=['032158']),
     EmailCfg(id='030587', duplicate_ids=['030514']),
-    EmailCfg(id='029773', duplicate_ids=['012685'], fwded_text_after='Omar Quadhafi'),
-    EmailCfg(id='033297', duplicate_ids=['033586']),
     EmailCfg(id='031089', duplicate_ids=['018084']),
     EmailCfg(id='031088', duplicate_ids=['030885']),
     EmailCfg(id='030238', duplicate_ids=['031130']),
@@ -851,7 +853,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='030015', fwded_text_after='Bill Clinton reportedly'),
     EmailCfg(id='026312', fwded_text_after='Steve Bannon trying to get on disgraced'),
     EmailCfg(id='031742', fwded_text_after="Trump's former campaign manager Paul Manafort"),
-
+    EmailCfg(id='012197', fwded_text_after="Thanks -- Jay"),
+    EmailCfg(id='028925', fwded_text_after='> on Jan 4, 2015'),
+    EmailCfg(id='029773', fwded_text_after='Omar Quadhafi', duplicate_ids=['012685']),
 ]
 
 
