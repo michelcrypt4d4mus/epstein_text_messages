@@ -39,6 +39,7 @@ TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
+IS_JUNK_MAIL = 'is_junk_mail'
 MAX_CHARS_TO_PRINT = 4000
 MAX_NUM_HEADER_LINES = 14
 MAX_QUOTED_REPLIES = 2
@@ -281,7 +282,7 @@ SELF_EMAILS_FILE_IDS = [
 ]
 
 METADATA_FIELDS = [
-    'is_junk_mail',
+    IS_JUNK_MAIL,
     'recipients',
     'sent_from_device',
 ]
@@ -294,7 +295,6 @@ class Email(Communication):
         actual_text (str) - best effort at the text actually sent in this email, excluding quoted replies and forwards
         config (EmailCfg | None) - manual config for this email (if it exists)
         header (EmailHeader) - header data extracted from the text (from/to/sent/subject etc)
-        is_junk_mail (bool) - True if this is junk mail
         recipients (list[str | None]) - who this email was sent to
         sent_from_device (str | None) - "Sent from my iPhone" style signature (if it exists)
         signature_substitution_counts (dict[str, int]) - count of how many times a signature was replaced with <...snipped...> for each participant
@@ -302,7 +302,6 @@ class Email(Communication):
     actual_text: str = field(init=False)
     config: EmailCfg | None = None
     header: EmailHeader = field(init=False)
-    is_junk_mail: bool = False
     recipients: list[str | None] = field(default_factory=list)
     sent_from_device: str | None = None
     signature_substitution_counts: dict[str, int] = field(default_factory=dict)  # defaultdict breaks asdict :(
@@ -312,7 +311,6 @@ class Email(Communication):
 
     def __post_init__(self):
         super().__post_init__()
-        self.is_junk_mail = self.author in JUNK_EMAILERS
 
         if self.config and self.config.recipients:
             self.recipients = cast(list[str | None], self.config.recipients)
@@ -331,9 +329,14 @@ class Email(Communication):
         txt = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(' to ')
         return txt.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
 
+    def is_junk_mail(self) -> bool:
+        return self.author in JUNK_EMAILERS
+
     def metadata(self) -> Metadata:
+        local_metadata = asdict(self)
+        local_metadata[IS_JUNK_MAIL] = self.is_junk_mail()
         metadata = super().metadata()
-        metadata.update({k: v for k, v in asdict(self).items() if v and k in METADATA_FIELDS})
+        metadata.update({k: v for k, v in local_metadata.items() if v and k in METADATA_FIELDS})
         return metadata
 
     def subject(self) -> str:
