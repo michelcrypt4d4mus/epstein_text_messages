@@ -1,4 +1,5 @@
 from epstein_files.util.constants import *
+from epstein_files.util.highlighted_group import CATEGORY_STYLES, HIGHLIGHTED_NAMES
 
 
 def test_other_files_config():
@@ -11,3 +12,10 @@ def test_other_files_config():
 
         assert cfg.id not in encountered_file_ids
         encountered_file_ids.add(cfg.id)
+
+
+def test_category_styles():
+    """Check we didn't configure a style for a label/category twice."""
+    for category in CATEGORY_STYLES:
+        for highlight_group in HIGHLIGHTED_NAMES:
+            assert highlight_group.label != category

@@ -21,7 +21,7 @@ from epstein_files.util.doc_cfg import FINANCIAL_REPORTS_AUTHORS, DocCfg, Metada
 from epstein_files.util.data import escape_single_quotes, remove_timezone, sort_dict, uniquify
 from epstein_files.util.file_helper import FILENAME_LENGTH
 from epstein_files.util.env import args
-from epstein_files.util.highlighted_group import get_style_for_category
+from epstein_files.util.highlighted_group import styled_category
 from epstein_files.util.rich import QUESTION_MARK_TXT, build_table, highlighter
 from epstein_files.util.logging import logger
 
@@ -43,7 +43,6 @@ UNINTERESTING_CATEGORES = [
     SKYPE_LOG,
     SPEECH,
 ]
-
 
 # OtherFiles whose description/hints match these prefixes are not displayed unless --all-other-files is used
 UNINTERESTING_PREFIXES = FINANCIAL_REPORTS_AUTHORS + [
@@ -77,6 +76,7 @@ UNINTERESTING_PREFIXES = FINANCIAL_REPORTS_AUTHORS + [
     'Journal of Criminal',
     LA_TIMES,
     'Litigation Daily',
+    LAWRENCE_KRAUSS,
     LAWRENCE_KRAUSS_ASU_ORIGINS,
     'MarketWatch',
     MARTIN_NOWAK,
@@ -134,8 +134,7 @@ class OtherFile(Document):
         return self.config and self.config.category
 
     def category_txt(self) -> Text | None:
-        category = self.category() or UNKNOWN
-        return Text(category, get_style_for_category(category) or 'wheat4')
+        return styled_category(self.category() or UNKNOWN)
 
     def configured_description(self) -> str | None:
         """Overloads superclass method."""
@@ -277,11 +276,10 @@ class OtherFile(Document):
             counts[file.category()] += 1
 
         table = build_table('File Counts by Category')
-        table.add_column('Category', width=25)
+        table.add_column('Category', justify='right')
         table.add_column('Count', justify='center', width=25)
 
         for (category, count) in sort_dict(counts):
-            category = category or UNKNOWN
-            table.add_row(Text(category, get_style_for_category(category) or 'wheat4'), str(count))
+            table.add_row(styled_category(category or UNKNOWN), str(count))
 
         return table

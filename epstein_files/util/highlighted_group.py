@@ -2,6 +2,7 @@ import re
 from dataclasses import dataclass, field
 
 from rich.highlighter import RegexHighlighter
+from rich.text import Text
 
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
@@ -21,7 +22,7 @@ EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
 REGEX_STYLE_PREFIX = 'regex'
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w ]+$", re.IGNORECASE)
 
-CATEGORY_LABEL_MAPPING = {
+CATEGORY_STYLE_MAPPING = {
     ARTICLE: JOURNALIST,
     ARTS: ENTERTAINER,
     BOOK: JOURNALIST,
@@ -29,6 +30,12 @@ CATEGORY_LABEL_MAPPING = {
     POLITICS: LOBBYIST,
     PROPERTY: BUSINESS,
     REPUTATION: PUBLICIST,
+}
+
+CATEGORY_STYLES = {
+    JSON: 'dark_red',
+    JUNK: 'grey19',
+    'letter': 'medium_orchid1'
 }
 
 
@@ -648,18 +655,14 @@ def get_info_for_name(name: str) -> str | None:
 
 
 def get_style_for_category(category: str) -> str | None:
-    if category in [CONFERENCE, SPEECH]:
+    if category in CATEGORY_STYLES:
+        return CATEGORY_STYLES[category]
+    elif category in [CONFERENCE, SPEECH]:
         return f"{get_style_for_category(ACADEMIA)} dim"
-    elif category == JSON:
-        return 'dark_red'
-    elif category == JUNK:
-        return 'grey19'
-    elif category == 'letter':
-        return 'medium_orchid1'
     elif category == SOCIAL:
-        return f"{get_style_for_category(PUBLICIST)} dim"
+        return f"{get_style_for_category(PUBLICIST)}"
 
-    category = CATEGORY_LABEL_MAPPING.get(category, category)
+    category = CATEGORY_STYLE_MAPPING.get(category, category)
 
     for highlight_group in HIGHLIGHTED_NAMES:
         if highlight_group.label == category:
@@ -670,6 +673,10 @@ def get_style_for_name(name: str | None, default_style: str = DEFAULT, allow_bol
     highlight_group = _get_highlight_group_for_name(name or UNKNOWN)
     style = highlight_group.style if highlight_group else default_style
     return style if allow_bold else style.replace('bold', '').strip()
+
+
+def styled_category(category: str) -> Text:
+    return Text(category, get_style_for_category(category) or 'wheat4')
 
 
 def _get_highlight_group_for_name(name: str) -> HighlightedNames | None:
