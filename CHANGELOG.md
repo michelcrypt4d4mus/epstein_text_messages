@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.0.3
 * Metadata ordering
 
 ##### 1.0.2
