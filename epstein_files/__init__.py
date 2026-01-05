@@ -10,10 +10,10 @@ from sys import exit
 
 from dotenv import load_dotenv
 load_dotenv()
-
 from rich.markup import escape
 from rich.padding import Padding
 from rich.panel import Panel
+from rich.text import Text
 
 from epstein_files.count_words import write_word_counts_html
 from epstein_files.epstein_files import EpsteinFiles, document_cls
@@ -38,7 +38,7 @@ def generate_html() -> None:
         make_clean()
         write_urls()
         exit()
-    if args.json_metadata:
+    elif args.json_metadata:
         print_json_metadata(epstein_files)
         exit()
     elif args.output_json_files:
@@ -112,18 +112,18 @@ def epstein_show():
     console.line()
 
     for doc in docs:
-        console.line()
-        console.print(doc)
+        if isinstance(doc, Email):
+            doc.truncation_allowed = False
+
+        console.print('\n', doc, '\n')
 
         if args.raw:
-            console.line()
-            console.print(Panel(f"RAW {doc.filename} RAW", expand=False, style=doc._border_style()))
-            console.print(escape(doc.raw_text()))
+            console.print(Panel(Text("RAW: ").append(doc.summary()), expand=False, style=doc._border_style()))
+            console.print(escape(doc.raw_text()), '\n')
 
             if isinstance(doc, Email):
-                console.line()
-                console.print(Panel(f"{doc.filename}: actual_text() output", expand=False, style=doc._border_style()))
-                console.print(escape(doc._actual_text()))
+                console.print(Panel(Text("actual_text: ").append(doc.summary()), expand=False, style=doc._border_style()))
+                console.print(escape(doc._actual_text()), '\n')
 
 
 def epstein_word_count() -> None:
