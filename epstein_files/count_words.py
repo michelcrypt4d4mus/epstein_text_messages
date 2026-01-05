@@ -22,13 +22,12 @@ def write_word_counts_html() -> None:
     word_count = WordCount()
 
     # Remove dupes, junk mail, and fwded articles from emails
-    emails = [
-        e for e in epstein_files.emails
-        if not (e.is_duplicate or e.is_junk_mail() or (e.config and e.config.is_fwded_article)) \
-            and (len(specified_names) == 0 or e.author in specified_names)
-    ]
+    emails = [e for e in epstein_files.emails if not (e.is_duplicate or e.is_junk_mail() or e.is_fwded_article())]
 
     for email in emails:
+        if specified_names and email.author not in specified_names:
+            continue
+
         logger.info(f"Counting words in {email}\n  [SUBJECT] {email.subject()}")
         lines = email.actual_text.split('\n')
 
@@ -49,14 +48,14 @@ def write_word_counts_html() -> None:
     for imessage_log in imessage_logs:
         logger.info(f"Counting words in {imessage_log}")
 
-        for msg in imessage_log.messages():
-            if len(specified_names) > 0 and msg.author not in specified_names:
+        for i, msg in enumerate(imessage_log.messages()):
+            if specified_names and msg.author not in specified_names:
                 continue
             elif HTML_REGEX.search(line):
                 continue
 
             for word in msg.text.split():
-                word_count.tally_word(word, SearchResult(imessage_log, [msg.text]))
+                word_count.tally_word(word, SearchResult(imessage_log, [MatchedLine(msg.text, i)]))
 
     print_page_title(expand=False)
     print_starred_header(f"Most Common Words in {len(emails):,} Emails and {len(imessage_logs)} iMessage Logs")
