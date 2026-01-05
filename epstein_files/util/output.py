@@ -159,7 +159,10 @@ def write_urls() -> None:
     with open(args.output_file, 'w') as f:
         for var_name, url in url_vars.items():
             key_value = f"{var_name}='{url}'"
-            console.print(key_value, style='dim')
+
+            if not args.suppress_output:
+                console.print(key_value, style='dim')
+
             f.write(f"{key_value}\n")
 
     console.line()
