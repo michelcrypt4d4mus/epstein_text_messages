@@ -85,8 +85,8 @@
             "filename": "HOUSE_OVERSIGHT_011908.txt",
             "num_lines": 22,
             "recipients": [
-                "Jeff Fuller",
                 "Jean Luc Brunel",
+                "Jeff Fuller",
                 "pink@mc2mm.com"
             ],
             "subject": "FW: Victoria",
@@ -159,9 +159,9 @@
             "filename": "HOUSE_OVERSIGHT_011908.txt",
             "num_lines": 32,
             "recipients": [
+                "pink@mc2mm.com",
                 "Jeff Fuller",
-                "Jean Luc Brunel",
-                "pink@mc2mm.com"
+                "Jean Luc Brunel"
             ],
             "subject": "FW: Press Inquiry from AFP (Agence France Presse)",
             "timestamp": "2010-08-27T20:49:00",
@@ -365,8 +365,8 @@
             "filename": "HOUSE_OVERSIGHT_012898.txt",
             "num_lines": 17,
             "recipients": [
-                "Jeffrey Epstein",
-                "Darren Indyke"
+                "Darren Indyke",
+                "Jeffrey Epstein"
             ],
             "timestamp": "2013-05-13T22:28:30",
             "type": "Email"
@@ -561,12 +561,12 @@
             "filename": "HOUSE_OVERSIGHT_014797.txt",
             "num_lines": 26,
             "recipients": [
-                "p.peachev@independent.co.uk",
-                "martin.robinson@mailonline.co.uk",
-                "david.brown@thetimes.co.uk",
-                "nick.alwav@bbc.co.uk",
+                "io-anne.pugh@bbc.co.uk",
                 "nick.sommerlad@mirror.co.uk",
-                "io-anne.pugh@bbc.co.uk"
+                "martin.robinson@mailonline.co.uk",
+                "p.peachev@independent.co.uk",
+                "nick.alwav@bbc.co.uk",
+                "david.brown@thetimes.co.uk"
             ],
             "sent_from_device": "Sent from my BlackBerry\u00ae wireless device",
             "subject": "Ghislaine Maxwell",
@@ -730,8 +730,8 @@
             "filename": "HOUSE_OVERSIGHT_016595.txt",
             "num_lines": 70,
             "recipients": [
-                "John Page",
-                "Police Code Enforcement"
+                "Police Code Enforcement",
+                "John Page"
             ],
             "subject": "Re: ARCOM",
             "timestamp": "2008-06-26T14:09:06",
@@ -746,8 +746,8 @@
             "filename": "HOUSE_OVERSIGHT_016690.txt",
             "num_lines": 70,
             "recipients": [
-                "John Page",
-                "Police Code Enforcement"
+                "Police Code Enforcement",
+                "John Page"
             ],
             "subject": "Re: ARCOM",
             "timestamp": "2008-06-26T14:09:06",
@@ -1266,8 +1266,8 @@
             "is_attribution_uncertain": true,
             "num_lines": 47,
             "recipients": [
-                "Cecile de Jongh",
-                "Jeffrey Epstein"
+                "Jeffrey Epstein",
+                "Cecile de Jongh"
             ],
             "subject": "From Christina: Fwd: Project in Haiti: CEFOTAJ, SA",
             "timestamp": "2012-06-22T23:08:00",
@@ -1453,8 +1453,8 @@
             "filename": "HOUSE_OVERSIGHT_020822.txt",
             "num_lines": 77,
             "recipients": [
-                "Jeffrey Epstein",
-                "Darren Indyke"
+                "Darren Indyke",
+                "Jeffrey Epstein"
             ],
             "subject": "Fw:",
             "timestamp": "2011-03-07T19:11:08",
@@ -1702,8 +1702,8 @@
             "filename": "HOUSE_OVERSIGHT_021729.txt",
             "num_lines": 228,
             "recipients": [
-                "Martin Weinberg",
-                "Darren Indyke"
+                "Darren Indyke",
+                "Martin Weinberg"
             ],
             "subject": "Fwd: Epstein prosecutor was rebuked for prior child sex case I Miami Herald",
             "timestamp": "2019-03-14T16:48:11",
@@ -2394,8 +2394,8 @@
             "filename": "HOUSE_OVERSIGHT_022624.txt",
             "num_lines": 830,
             "recipients": [
-                "Martin Weinberg",
-                "Jeffrey Epstein"
+                "Jeffrey Epstein",
+                "Martin Weinberg"
             ],
             "sent_from_device": "Sent from my iPhone",
             "subject": "Re: Filing in Epstein case",
@@ -3036,8 +3036,8 @@
             "is_fwded_article": true,
             "num_lines": 263,
             "recipients": [
-                "Martin Weinberg",
-                "Jeffrey Epstein"
+                "Jeffrey Epstein",
+                "Martin Weinberg"
             ],
             "subject": "Privileged and Confidential - Timeline of the Jeffrey Epstein sex abuse case I Miami Herald",
             "timestamp": "2019-05-10T23:06:29",
@@ -3052,9 +3052,9 @@
             "filename": "HOUSE_OVERSIGHT_023018.txt",
             "num_lines": 37,
             "recipients": [
-                "Jeffrey Epstein",
                 "Darren Indyke",
-                "Debbie Fein"
+                "Debbie Fein",
+                "Jeffrey Epstein"
             ],
             "sent_from_device": "Sent from my iPhone",
             "subject": "Fwd: Request for comment from The Mail on Sunday with noon ET Saturday deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
@@ -3100,10 +3100,10 @@
             "filename": "HOUSE_OVERSIGHT_023024.txt",
             "num_lines": 41,
             "recipients": [
-                "Tonja Haddad Coleman",
-                "Jeffrey Epstein",
                 "Darren Indyke",
-                "Debbie Fein"
+                "Debbie Fein",
+                "Jeffrey Epstein",
+                "Tonja Haddad Coleman"
             ],
             "sent_from_device": "Sent from my iPhone",
             "subject": "Re: Request for comment from The Mail on Sunday with noon ET Saturday deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
@@ -3119,10 +3119,10 @@
             "filename": "HOUSE_OVERSIGHT_023026.txt",
             "num_lines": 43,
             "recipients": [
-                "Tonja Haddad Coleman",
                 "Fred Haddad",
+                "Debbie Fein",
                 "Jeffrey Epstein",
-                "Debbie Fein"
+                "Tonja Haddad Coleman"
             ],
             "sent_from_device": "Sent from my iPhone",
             "subject": "Re: Request for comment from The Mail on Sunday with noon ET Saturday deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
@@ -3302,10 +3302,10 @@
             "filename": "HOUSE_OVERSIGHT_023067.txt",
             "num_lines": 59,
             "recipients": [
-                "Tonja Haddad Coleman",
-                "Fred Haddad",
                 "Darren Indyke",
-                "Debbie Fein"
+                "Fred Haddad",
+                "Debbie Fein",
+                "Tonja Haddad Coleman"
             ],
             "subject": "Re: Request for comment from The Mail on Sunday with noon ET Saturday deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
             "timestamp": "2013-10-19T00:30:10",
@@ -3346,8 +3346,8 @@
             "is_fwded_article": true,
             "num_lines": 178,
             "recipients": [
-                "Martin Weinberg",
-                "Jeffrey Epstein"
+                "Jeffrey Epstein",
+                "Martin Weinberg"
             ],
             "subject": "Acosta plea deal in Epstein sex case defended by former aide I Miami Herald",
             "timestamp": "2019-05-10T23:01:49",
@@ -3634,8 +3634,8 @@
             "filename": "HOUSE_OVERSIGHT_023616.txt",
             "num_lines": 147,
             "recipients": [
-                "Andrew Friendly",
-                "Jeffrey Epstein"
+                "Jeffrey Epstein",
+                "Andrew Friendly"
             ],
             "sent_from_device": "Sent from my iPhone",
             "subject": "Re: Larry Summers",
@@ -3841,11 +3841,11 @@
             "filename": "HOUSE_OVERSIGHT_024923.txt",
             "num_lines": 162,
             "recipients": [
-                "Linda W. Grossman",
                 "Rebecca Risman",
-                "Mrisman02",
+                "Linda W. Grossman",
+                "Nick Kazan",
                 "George Krassner",
-                "Nick Kazan"
+                "Mrisman02"
             ],
             "timestamp": "2019-05-15T00:17:32",
             "type": "Email"
@@ -4346,23 +4346,23 @@
             "filename": "HOUSE_OVERSIGHT_025329.txt",
             "num_lines": 72,
             "recipients": [
-                "Tom",
                 "Nancy Cain",
-                "Marie Moneysmith",
-                "Linda W. Grossman",
-                "Steven Gaydos",
-                "Holly Krassner Dawson",
-                "Daniel Dawson",
                 "Kevin Bright",
+                "Samuel Leff",
+                "Bob Fass",
+                "Lee Quarnstrom",
+                "Danny Goldberg",
+                "Tom",
                 "Michael Simmons",
                 "Barb Cowles",
-                "Bob Fass",
-                "Danny Goldberg",
-                "Lynnie Tofte Fass",
-                "Caryl Ratner",
+                "Steven Gaydos",
+                "Linda W. Grossman",
+                "Marie Moneysmith",
+                "Holly Krassner Dawson",
                 "George Krassner",
-                "Samuel Leff",
-                "Lee Quarnstrom"
+                "Lynnie Tofte Fass",
+                "Daniel Dawson",
+                "Caryl Ratner"
             ],
             "subject": "Fwd: Manson Girls / Acid Trip Agreement",
             "timestamp": "2019-01-16T19:50:41",
@@ -4482,8 +4482,8 @@
             "filename": "HOUSE_OVERSIGHT_025524.txt",
             "num_lines": 103,
             "recipients": [
-                "Sean Bannon",
-                "Jeffrey Epstein"
+                "Jeffrey Epstein",
+                "Sean Bannon"
             ],
             "sent_from_device": "Sent via BlackBerry by AT&T",
             "subject": "Re: Filed: German Media Confess to Underestimating Steve Bannon; He Is 'As Dangerous as Ever'",
@@ -4510,8 +4510,8 @@
             "filename": "HOUSE_OVERSIGHT_025533.txt",
             "num_lines": 102,
             "recipients": [
-                "Steve Bannon",
-                "Jeffrey Epstein"
+                "Jeffrey Epstein",
+                "Steve Bannon"
             ],
             "sent_from_device": "Sent from my iPhone",
             "subject": "Re: Filed: German Media Confess to Underestimating Steve Bannon; He Is 'As Dangerous as Ever'",
@@ -4568,11 +4568,11 @@
             "filename": "HOUSE_OVERSIGHT_025589.txt",
             "num_lines": 51,
             "recipients": [
-                "Gordon Getty",
                 "Jeffrey Epstein",
-                "Alan Rogers",
                 "Oliver Goodenough",
-                "Tim Kane"
+                "Alan Rogers",
+                "Tim Kane",
+                "Gordon Getty"
             ],
             "timestamp": "2018-04-14T17:06:12",
             "type": "Email"
@@ -4801,9 +4801,9 @@
             "filename": "HOUSE_OVERSIGHT_025790.txt",
             "num_lines": 37,
             "recipients": [
+                "Darren Indyke",
                 "Jeffrey Epstein",
-                "Jack Goldberger",
-                "Darren Indyke"
+                "Jack Goldberger"
             ],
             "subject": "FW: National Enquirer Comment Request Re: Jeffrey Epstein",
             "timestamp": "2015-01-29T20:33:35",
@@ -4978,9 +4978,9 @@
             "filename": "HOUSE_OVERSIGHT_025879.txt",
             "num_lines": 82,
             "recipients": [
+                "Darren Indyke",
                 "Kathryn Ruemmler",
-                "Jeffrey Epstein",
-                "Darren Indyke"
+                "Jeffrey Epstein"
             ],
             "subject": "Re: ATTORNEY-CLIENT PRIVILEGE",
             "timestamp": "2015-04-23T19:43:47",
@@ -5104,8 +5104,8 @@
             "filename": "HOUSE_OVERSIGHT_025918.txt",
             "num_lines": 311,
             "recipients": [
-                "Terry Kafka",
-                "Jeffrey Epstein"
+                "Jeffrey Epstein",
+                "Terry Kafka"
             ],
             "subject": "Re: Gingrich view of Trump",
             "timestamp": "2016-03-09T22:22:23",
@@ -5526,8 +5526,8 @@
             "filename": "HOUSE_OVERSIGHT_026059.txt",
             "num_lines": 131,
             "recipients": [
-                "Jeffrey Epstein",
-                "Ariane de Rothschild"
+                "Ariane de Rothschild",
+                "Jeffrey Epstein"
             ],
             "sent_from_device": "Sent from my iPhone",
             "subject": "Re: Edmond de Rothschild Infrastructure Expertise",
@@ -7691,35 +7691,35 @@
             "fwded_text_after": "From: Mike Cohen",
             "num_lines": 54,
             "recipients": [
-                "Marshall Funk",
-                "Nate McClain",
                 "Philip Kafka",
-                "Uri Fouzailov",
-                "Rafael Bardaji",
-                "Michael Buchholtz",
-                "Jeffrey Epstein",
-                "Janet Kafka",
-                "Henry Hortenstine",
-                "James Ramsey",
-                "Taal Safdie",
                 "Val Sherman",
-                "Lisa Albert",
-                "Michael Horowitz",
-                "ACT for America",
-                "Nate White",
-                "Joel Dunn",
-                "Marcie Brown",
+                "Henry Hortenstine",
+                "Forrest Miller",
+                "Bennet Greenwald",
+                "Janet Kafka",
+                "Jeffrey Epstein",
                 "Rita Hortenstine",
                 "Bennett Schmidt",
-                "Grant Seeger",
-                "Neil Anderson",
-                "Bennet Greenwald",
-                "Herb Goodman",
-                "Gary Gross",
-                "Allen West",
-                "Forrest Miller",
                 "John Zouzelka",
-                "Mark Epstein"
+                "Nate White",
+                "Allen West",
+                "Herb Goodman",
+                "Neil Anderson",
+                "Marcie Brown",
+                "Michael Horowitz",
+                "Joel Dunn",
+                "James Ramsey",
+                "Grant Seeger",
+                "Michael Buchholtz",
+                "Gary Gross",
+                "Rafael Bardaji",
+                "Mark Epstein",
+                "Nate McClain",
+                "Taal Safdie",
+                "ACT for America",
+                "Marshall Funk",
+                "Uri Fouzailov",
+                "Lisa Albert"
             ],
             "sent_from_device": "Sent via BlackBerry by AT&T",
             "timestamp": "2015-08-04T22:23:22",
@@ -8072,8 +8072,8 @@
             "filename": "HOUSE_OVERSIGHT_026764.txt",
             "num_lines": 118,
             "recipients": [
-                "Joseph Vinciguerra",
-                "Jeffrey Epstein"
+                "Jeffrey Epstein",
+                "Joseph Vinciguerra"
             ],
             "subject": "G650 profit model",
             "timestamp": "2017-10-02T17:20:00",
@@ -8086,8 +8086,8 @@
             "filename": "HOUSE_OVERSIGHT_026768.txt",
             "num_lines": 345,
             "recipients": [
-                "Travis Pangburn",
-                "Sam Harris"
+                "Sam Harris",
+                "Travis Pangburn"
             ],
             "subject": "Re: Sexual harassment and Lawrence Krauss fro",
             "timestamp": "2017-12-11T17:47:53",
@@ -8738,9 +8738,9 @@
             "filename": "HOUSE_OVERSIGHT_027067.txt",
             "num_lines": 9,
             "recipients": [
-                "Dan Fleuette",
+                "Jeffrey Epstein",
                 "Steve Bannon",
-                "Jeffrey Epstein"
+                "Dan Fleuette"
             ],
             "sent_from_device": "Sent from my iPhone",
             "subject": "Re: Trump@War",
@@ -8847,35 +8847,35 @@
             "fwded_text_after": "From: Mike Cohen",
             "num_lines": 59,
             "recipients": [
-                "Marshall Funk",
-                "Nate McClain",
                 "Philip Kafka",
-                "Uri Fouzailov",
-                "Rafael Bardaji",
-                "Michael Buchholtz",
-                "Jeffrey Epstein",
-                "Janet Kafka",
-                "Henry Hortenstine",
-                "James Ramsey",
-                "Taal Safdie",
                 "Val Sherman",
-                "Lisa Albert",
-                "Michael Horowitz",
-                "ACT for America",
-                "Nate White",
-                "Joel Dunn",
-                "Marcie Brown",
+                "Henry Hortenstine",
+                "Forrest Miller",
+                "Bennet Greenwald",
+                "Janet Kafka",
+                "Jeffrey Epstein",
                 "Rita Hortenstine",
                 "Bennett Schmidt",
-                "Grant Seeger",
-                "Neil Anderson",
-                "Bennet Greenwald",
-                "Herb Goodman",
-                "Gary Gross",
-                "Allen West",
-                "Forrest Miller",
                 "John Zouzelka",
-                "Mark Epstein"
+                "Nate White",
+                "Allen West",
+                "Herb Goodman",
+                "Neil Anderson",
+                "Marcie Brown",
+                "Michael Horowitz",
+                "Joel Dunn",
+                "James Ramsey",
+                "Grant Seeger",
+                "Michael Buchholtz",
+                "Gary Gross",
+                "Rafael Bardaji",
+                "Mark Epstein",
+                "Nate McClain",
+                "Taal Safdie",
+                "ACT for America",
+                "Marshall Funk",
+                "Uri Fouzailov",
+                "Lisa Albert"
             ],
             "sent_from_device": "Sent via BlackBerry by AT&T",
             "timestamp": "2015-08-04T22:23:22",
@@ -8975,8 +8975,8 @@
             "filename": "HOUSE_OVERSIGHT_028497.txt",
             "num_lines": 112,
             "recipients": [
-                "Steven Pfeiffer",
-                "Jeffrey Epstein"
+                "Jeffrey Epstein",
+                "Steven Pfeiffer"
             ],
             "subject": "RE: 2017 IFP Gotham Awards",
             "timestamp": "2017-11-20T20:09:46",
@@ -8989,8 +8989,8 @@
             "filename": "HOUSE_OVERSIGHT_028501.txt",
             "num_lines": 99,
             "recipients": [
-                "Jeffrey Epstein",
-                "Peggy Siegal"
+                "Peggy Siegal",
+                "Jeffrey Epstein"
             ],
             "subject": "Re: 2017 IFP Gotham Awards",
             "timestamp": "2017-11-16T21:23:58",
@@ -9806,8 +9806,8 @@
             "filename": "HOUSE_OVERSIGHT_028926.txt",
             "num_lines": 41,
             "recipients": [
-                "Jeffrey Epstein",
-                "Darren Indyke"
+                "Darren Indyke",
+                "Jeffrey Epstein"
             ],
             "subject": "Fw: Fwd: Mr. Clinton and Mr. Epstein",
             "timestamp": "2015-03-19T20:40:59",
@@ -10018,9 +10018,9 @@
             "filename": "HOUSE_OVERSIGHT_028970.txt",
             "num_lines": 60,
             "recipients": [
-                "Jeffrey Epstein",
                 "Jack Goldberger",
-                "Roy Black"
+                "Roy Black",
+                "Jeffrey Epstein"
             ],
             "sent_from_device": "Sent from my iPhone",
             "subject": "Re: Reuters / lawsuit against Jeffrey Epstein",
@@ -10602,8 +10602,8 @@
             "filename": "HOUSE_OVERSIGHT_029163.txt",
             "num_lines": 33,
             "recipients": [
-                "Robert Trivers",
-                "Jeffrey Epstein"
+                "Jeffrey Epstein",
+                "Robert Trivers"
             ],
             "subject": "Re:",
             "timestamp": "2018-03-19T09:10:54",
@@ -11568,9 +11568,9 @@
             "filename": "HOUSE_OVERSIGHT_029549.txt",
             "num_lines": 136,
             "recipients": [
-                "Tyler Shears",
                 "Richard Kahn",
-                "Jeffrey Epstein"
+                "Jeffrey Epstein",
+                "Tyler Shears"
             ],
             "subject": "Re: boosting strategy",
             "timestamp": "2014-02-08T02:07:34",
@@ -12053,8 +12053,8 @@
             "filename": "HOUSE_OVERSIGHT_029766.txt",
             "num_lines": 284,
             "recipients": [
-                "Jeffrey Epstein",
-                "Darren Indyke"
+                "Darren Indyke",
+                "Jeffrey Epstein"
             ],
             "subject": "Fwd: raw text",
             "timestamp": "2011-04-03T14:08:00",
@@ -12136,9 +12136,9 @@
             "filename": "HOUSE_OVERSIGHT_029833.txt",
             "num_lines": 56,
             "recipients": [
-                "Jeffrey Epstein",
                 "Jack Goldberger",
-                "Roy Black"
+                "Roy Black",
+                "Jeffrey Epstein"
             ],
             "sent_from_device": "Sent from my iPhone",
             "subject": "Re: Reuters / lawsuit against Jeffrey Epstein",
@@ -12712,8 +12712,8 @@
             "filename": "HOUSE_OVERSIGHT_029976.txt",
             "num_lines": 14,
             "recipients": [
-                "Francis Derby",
-                "Jeffrey Epstein"
+                "Jeffrey Epstein",
+                "Francis Derby"
             ],
             "subject": "Bobby Slayton",
             "timestamp": "2012-09-10T17:01:27",
@@ -12731,14 +12731,14 @@
             "filename": "HOUSE_OVERSIGHT_029977.txt",
             "num_lines": 28,
             "recipients": [
-                "Richard Kahn",
-                "Francis Derby",
-                "Jeffrey Epstein",
-                "Richard Barnnet",
                 "Lesley Groff",
+                "Jeffrey Epstein",
                 "Januiz Banasiak",
+                "Richard Barnnet",
+                "Darren Indyke",
                 "Louella Rabuyo",
-                "Darren Indyke"
+                "Richard Kahn",
+                "Francis Derby"
             ],
             "subject": "Re: 3:00 Wheels up!!",
             "timestamp": "2012-09-28T14:41:02",
@@ -13330,8 +13330,8 @@
             "filename": "HOUSE_OVERSIGHT_030255.txt",
             "num_lines": 101,
             "recipients": [
-                "Kathryn Ruemmler",
                 "Michael Wolff",
+                "Kathryn Ruemmler",
                 "Jeffrey Epstein"
             ],
             "sent_from_device": "Sent from my iPhone",
@@ -13412,8 +13412,8 @@
             "filename": "HOUSE_OVERSIGHT_030315.txt",
             "num_lines": 101,
             "recipients": [
-                "Kathryn Ruemmler",
                 "Michael Wolff",
+                "Kathryn Ruemmler",
                 "Jeffrey Epstein"
             ],
             "sent_from_device": "Sent from my iPhone",
@@ -13527,8 +13527,8 @@
             "filename": "HOUSE_OVERSIGHT_030335.txt",
             "num_lines": 111,
             "recipients": [
-                "Jeffrey Epstein",
-                "Darren Indyke"
+                "Darren Indyke",
+                "Jeffrey Epstein"
             ],
             "sent_from_device": "Sent from my iPhone",
             "subject": "Fwd: Media Enquiry - The Guardian - Re: Jeffrey Epstein",
@@ -13849,8 +13849,8 @@
             "filename": "HOUSE_OVERSIGHT_030384.txt",
             "num_lines": 32,
             "recipients": [
-                "Alan Dlugash",
-                "Richard Kahn"
+                "Richard Kahn",
+                "Alan Dlugash"
             ],
             "subject": "Fwd:",
             "timestamp": "2016-10-17T14:39:57",
@@ -14889,8 +14889,8 @@
             "filename": "HOUSE_OVERSIGHT_030596.txt",
             "num_lines": 102,
             "recipients": [
-                "Jeffrey Epstein",
-                "Darren Indyke"
+                "Darren Indyke",
+                "Jeffrey Epstein"
             ],
             "sent_from_device": "Sent from my iPhone",
             "subject": "Fwd: Media Enquiry - The Guardian - Re: Jeffrey Epstein",
@@ -15031,10 +15031,10 @@
             "filename": "HOUSE_OVERSIGHT_030618.txt",
             "num_lines": 42,
             "recipients": [
-                "Tonja Haddad Coleman",
                 "Fred Haddad",
+                "Debbie Fein",
                 "Jeffrey Epstein",
-                "Debbie Fein"
+                "Tonja Haddad Coleman"
             ],
             "sent_from_device": "Sent from my iPhone",
             "subject": "Re: Request for comment from The Mail on Sunday with noon ET Saturday deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
@@ -15048,10 +15048,10 @@
             "filename": "HOUSE_OVERSIGHT_030620.txt",
             "num_lines": 57,
             "recipients": [
-                "Tonja Haddad Coleman",
-                "Fred Haddad",
                 "Darren Indyke",
-                "Debbie Fein"
+                "Fred Haddad",
+                "Debbie Fein",
+                "Tonja Haddad Coleman"
             ],
             "sent_from_device": "Sent from my iPhone",
             "subject": "Re: Request for comment from The Mail on Sunday with noon ET Saturday deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
@@ -15067,10 +15067,10 @@
             "filename": "HOUSE_OVERSIGHT_030622.txt",
             "num_lines": 40,
             "recipients": [
-                "Tonja Haddad Coleman",
-                "Jeffrey Epstein",
                 "Darren Indyke",
-                "Debbie Fein"
+                "Debbie Fein",
+                "Jeffrey Epstein",
+                "Tonja Haddad Coleman"
             ],
             "sent_from_device": "Sent from my iPhone",
             "subject": "Re: Request for comment from The Mail on Sunday with noon ET Saturday deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
@@ -15088,9 +15088,9 @@
             "filename": "HOUSE_OVERSIGHT_030624.txt",
             "num_lines": 36,
             "recipients": [
-                "Jeffrey Epstein",
                 "Darren Indyke",
-                "Debbie Fein"
+                "Debbie Fein",
+                "Jeffrey Epstein"
             ],
             "sent_from_device": "Sent from my iPhone",
             "subject": "Fwd: Request for comment from The Mail on Sunday with noon ET Saturday deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
@@ -15104,10 +15104,10 @@
             "filename": "HOUSE_OVERSIGHT_030626.txt",
             "num_lines": 40,
             "recipients": [
-                "Ken Starr",
-                "Kathryn Ruemmler",
                 "Martin Weinberg",
+                "Ken Starr",
                 "Darren Indyke",
+                "Kathryn Ruemmler",
                 "Alan Dershowitz"
             ],
             "subject": "Fwd: FW: Motion to Unseal Epstein Appeal Briefs",
@@ -17637,14 +17637,14 @@
             "filename": "HOUSE_OVERSIGHT_031129.txt",
             "num_lines": 33,
             "recipients": [
-                "Richard Kahn",
-                "Francis Derby",
-                "Jeffrey Epstein",
-                "Richard Barnnet",
                 "Lesley Groff",
+                "Jeffrey Epstein",
                 "Januiz Banasiak",
+                "Richard Barnnet",
+                "Darren Indyke",
                 "Louella Rabuyo",
-                "Darren Indyke"
+                "Richard Kahn",
+                "Francis Derby"
             ],
             "timestamp": "2012-09-28T14:41:02",
             "type": "Email"
@@ -17911,8 +17911,8 @@
             "filename": "HOUSE_OVERSIGHT_031206.txt",
             "num_lines": 94,
             "recipients": [
-                "Jeffrey Epstein",
-                "Darren Indyke"
+                "Darren Indyke",
+                "Jeffrey Epstein"
             ],
             "subject": "RE: JUDGE SWEET ALLOWING STEVEN HOFFENBERG TO TALK WITH THE TOWERS VICTIMS TO EXPLAIN THE VICTIMS SUIT FILING AGAINST JEFF EPSTEIN",
             "timestamp": "2016-07-13T18:02:16",
@@ -18097,8 +18097,8 @@
             "filename": "HOUSE_OVERSIGHT_031255.txt",
             "num_lines": 314,
             "recipients": [
-                "Peter Aldhous",
-                "Matthew Schafer"
+                "Matthew Schafer",
+                "Peter Aldhous"
             ],
             "subject": "Re: URGENT: BuzzFeed News inquiry re allegations of sexual harassment",
             "timestamp": "2017-12-11T17:18:30",
@@ -18561,10 +18561,10 @@
             "filename": "HOUSE_OVERSIGHT_031384.txt",
             "num_lines": 112,
             "recipients": [
+                "Darren Indyke",
                 "Scott J. Link",
                 "Jack Goldberger",
-                "Martin Weinberg",
-                "Darren Indyke"
+                "Martin Weinberg"
             ],
             "subject": "Fwd: Herald",
             "timestamp": "2019-03-05T23:12:41",
@@ -18779,9 +18779,9 @@
             "filename": "HOUSE_OVERSIGHT_031428.txt",
             "num_lines": 112,
             "recipients": [
-                "Ken Starr",
-                "Lilly Sanchez",
                 "Reid Weingarten",
+                "Lilly Sanchez",
+                "Ken Starr",
                 "Martin Weinberg"
             ],
             "subject": "Fwd: Herald",
@@ -20119,8 +20119,8 @@
             "filename": "HOUSE_OVERSIGHT_031699.txt",
             "num_lines": 149,
             "recipients": [
-                "Michael Buchholtz",
                 "Jeffrey Epstein",
+                "Michael Buchholtz",
                 "Mark Epstein"
             ],
             "subject": "FW: Rabbi Steven Pruzansky",
@@ -20242,8 +20242,8 @@
             "filename": "HOUSE_OVERSIGHT_031729.txt",
             "num_lines": 92,
             "recipients": [
-                "Jeffrey Epstein",
-                "Darren Indyke"
+                "Darren Indyke",
+                "Jeffrey Epstein"
             ],
             "subject": "Fwd: epstein",
             "timestamp": "2017-03-13T20:16:55",
@@ -20837,11 +20837,11 @@
             "filename": "HOUSE_OVERSIGHT_031973.txt",
             "num_lines": 161,
             "recipients": [
-                "Linda W. Grossman",
                 "Rebecca Risman",
-                "Mrisman02",
+                "Linda W. Grossman",
+                "Nick Kazan",
                 "George Krassner",
-                "Nick Kazan"
+                "Mrisman02"
             ],
             "timestamp": "2019-05-15T00:17:32",
             "type": "Email"
@@ -20939,9 +20939,9 @@
             "filename": "HOUSE_OVERSIGHT_031994.txt",
             "num_lines": 37,
             "recipients": [
+                "Darren Indyke",
                 "Jeffrey Epstein",
-                "Jack Goldberger",
-                "Darren Indyke"
+                "Jack Goldberger"
             ],
             "subject": "FW: National Enquirer Comment Request Re: Jeffrey Epstein",
             "timestamp": "2015-01-29T20:33:35",
@@ -21213,8 +21213,8 @@
             "filename": "HOUSE_OVERSIGHT_032062.txt",
             "num_lines": 28,
             "recipients": [
-                "Jeffrey Epstein",
-                "Darren Indyke"
+                "Darren Indyke",
+                "Jeffrey Epstein"
             ],
             "subject": "ATTORNEY-CLIENT PRIVILEGE",
             "timestamp": "2016-10-09T02:14:46",
@@ -21227,9 +21227,9 @@
             "filename": "HOUSE_OVERSIGHT_032063.txt",
             "num_lines": 25,
             "recipients": [
+                "Darren Indyke",
                 "Reid Weingarten",
-                "Jeffrey Epstein",
-                "Darren Indyke"
+                "Jeffrey Epstein"
             ],
             "sent_from_device": "Sent from my BlackBerry - the most secure mobile device",
             "subject": "Re: nuts",
@@ -21243,9 +21243,9 @@
             "filename": "HOUSE_OVERSIGHT_032064.txt",
             "num_lines": 17,
             "recipients": [
-                "Martin Weinberg",
+                "Darren Indyke",
                 "Kathryn Ruemmler",
-                "Darren Indyke"
+                "Martin Weinberg"
             ],
             "timestamp": "2016-10-09T01:07:24",
             "type": "Email"
@@ -21257,9 +21257,9 @@
             "filename": "HOUSE_OVERSIGHT_032065.txt",
             "num_lines": 17,
             "recipients": [
-                "Martin Weinberg",
+                "Darren Indyke",
                 "Kathryn Ruemmler",
-                "Darren Indyke"
+                "Martin Weinberg"
             ],
             "timestamp": "2016-04-28T21:10:25",
             "type": "Email"
@@ -21773,9 +21773,9 @@
             "filename": "HOUSE_OVERSIGHT_032250.txt",
             "num_lines": 64,
             "recipients": [
+                "Darren Indyke",
                 "Kathryn Ruemmler",
-                "Jeffrey Epstein",
-                "Darren Indyke"
+                "Jeffrey Epstein"
             ],
             "subject": "ATTORNEY-CLIENT PRIVILEGE",
             "timestamp": "2016-03-18T16:30:13",
@@ -21963,8 +21963,8 @@
             "filename": "HOUSE_OVERSIGHT_032272.txt",
             "num_lines": 35,
             "recipients": [
-                "Jeffrey Epstein",
-                "Darren Indyke"
+                "Darren Indyke",
+                "Jeffrey Epstein"
             ],
             "timestamp": "2016-07-07T13:04:06",
             "type": "Email"
@@ -22662,8 +22662,8 @@
             "filename": "HOUSE_OVERSIGHT_032365.txt",
             "num_lines": 31,
             "recipients": [
-                "Noam Chomsky",
-                "Jeffrey Epstein"
+                "Jeffrey Epstein",
+                "Noam Chomsky"
             ],
             "subject": "Re: trump",
             "timestamp": "2016-11-13T18:37:59",
@@ -22983,8 +22983,8 @@
             "filename": "HOUSE_OVERSIGHT_032398.txt",
             "num_lines": 170,
             "recipients": [
-                "Thanu Boonyawatana",
-                "Jeffrey Epstein"
+                "Jeffrey Epstein",
+                "Thanu Boonyawatana"
             ],
             "subject": "Re:",
             "timestamp": "2016-12-29T11:35:31",
@@ -23333,8 +23333,8 @@
             "filename": "HOUSE_OVERSIGHT_032456.txt",
             "num_lines": 32,
             "recipients": [
-                "Jeffrey Epstein",
-                "Darren Indyke"
+                "Darren Indyke",
+                "Jeffrey Epstein"
             ],
             "sent_from_device": "Sent from my iPhone",
             "subject": "Re: new schedule",
@@ -23375,8 +23375,8 @@
             "filename": "HOUSE_OVERSIGHT_032461.txt",
             "num_lines": 71,
             "recipients": [
-                "Etienne Binant",
-                "Jeffrey Epstein"
+                "Jeffrey Epstein",
+                "Etienne Binant"
             ],
             "subject": "Re: update",
             "timestamp": "2017-02-10T18:37:32",
@@ -25324,8 +25324,8 @@
             "filename": "HOUSE_OVERSIGHT_032764.txt",
             "num_lines": 29,
             "recipients": [
-                "Jeffrey Epstein",
-                "Darren Indyke"
+                "Darren Indyke",
+                "Jeffrey Epstein"
             ],
             "subject": "Re:",
             "timestamp": "2018-04-10T13:20:04",
@@ -25693,8 +25693,8 @@
             "filename": "HOUSE_OVERSIGHT_032803.txt",
             "num_lines": 22,
             "recipients": [
-                "Jeffrey Epstein",
-                "Melanie Walker"
+                "Melanie Walker",
+                "Jeffrey Epstein"
             ],
             "sent_from_device": "Sent from my iPhone",
             "subject": "Re: Introduction",
@@ -28153,8 +28153,8 @@
             "filename": "HOUSE_OVERSIGHT_033144.txt",
             "num_lines": 17,
             "recipients": [
-                "Richard Kahn",
-                "Darren Indyke"
+                "Darren Indyke",
+                "Richard Kahn"
             ],
             "timestamp": "2019-05-13T20:36:29",
             "type": "Email"
@@ -28995,8 +28995,8 @@
             "num_lines": 24,
             "recipients": [
                 "Michael Simmons",
-                "Samuel Leff",
-                "Danny Goldberg"
+                "Danny Goldberg",
+                "Samuel Leff"
             ],
             "subject": "I don't know if they'll publish this:",
             "timestamp": "2017-02-12T00:25:16",
@@ -29035,9 +29035,9 @@
             "filename": "HOUSE_OVERSIGHT_033228.txt",
             "num_lines": 17,
             "recipients": [
-                "Jeffrey Epstein",
+                "Darren Indyke",
                 "Fred Haddad",
-                "Darren Indyke"
+                "Jeffrey Epstein"
             ],
             "subject": "The article",
             "timestamp": "2017-03-14T12:31:06",
@@ -29275,9 +29275,9 @@
             "filename": "HOUSE_OVERSIGHT_033251.txt",
             "num_lines": 34,
             "recipients": [
+                "Darren Indyke",
                 "Richard Kahn",
-                "Jeffrey Epstein",
-                "Darren Indyke"
+                "Jeffrey Epstein"
             ],
             "subject": "Cuba trip",
             "timestamp": "2017-09-16T19:57:47",
@@ -29893,8 +29893,8 @@
             "filename": "HOUSE_OVERSIGHT_033304.txt",
             "num_lines": 6,
             "recipients": [
-                "Jeffrey Epstein",
-                "Darren Indyke"
+                "Darren Indyke",
+                "Jeffrey Epstein"
             ],
             "sent_from_device": "Sent from my iPhone",
             "subject": "Jared Kushner: The Donald Trump I Know I I Observer",
@@ -30132,8 +30132,8 @@
             "filename": "HOUSE_OVERSIGHT_033333.txt",
             "num_lines": 9,
             "recipients": [
-                "Lawrance Visoski",
-                "Jeffrey Epstein"
+                "Jeffrey Epstein",
+                "Lawrance Visoski"
             ],
             "subject": "President Trump's Private Plane Clipped On Ground At LaGuardia Airport",
             "timestamp": "2018-11-29T22:02:09",
@@ -30173,8 +30173,8 @@
             "filename": "HOUSE_OVERSIGHT_033336.txt",
             "num_lines": 11,
             "recipients": [
-                "Jeffrey Epstein",
-                "Darren Indyke"
+                "Darren Indyke",
+                "Jeffrey Epstein"
             ],
             "subject": "Chris Christie says he declined offer to be Trump's next chief of staff",
             "timestamp": "2018-12-14T18:42:54",
@@ -30401,8 +30401,8 @@
             "filename": "HOUSE_OVERSIGHT_033360.txt",
             "num_lines": 21,
             "recipients": [
-                "Jeffrey Epstein",
-                "Stephen Rubin"
+                "Stephen Rubin",
+                "Jeffrey Epstein"
             ],
             "subject": "Michael Wolff Launch Party",
             "timestamp": "2019-05-28T20:51:55",
@@ -30417,8 +30417,8 @@
             "filename": "HOUSE_OVERSIGHT_033361.txt",
             "num_lines": 31,
             "recipients": [
-                "Jeffrey Epstein",
                 "Jackie Perczek",
+                "Jeffrey Epstein",
                 "Martin Weinberg"
             ],
             "timestamp": "2019-05-29T16:57:42",
@@ -31223,9 +31223,9 @@
             "filename": "HOUSE_OVERSIGHT_033486.txt",
             "num_lines": 16,
             "recipients": [
+                "Darren Indyke",
                 "Richard Kahn",
-                "Jeffrey Epstein",
-                "Darren Indyke"
+                "Jeffrey Epstein"
             ],
             "sent_from_device": "Sent via BlackBerry by AT&T",
             "subject": "B727",
@@ -31271,9 +31271,9 @@
             "filename": "HOUSE_OVERSIGHT_033489.txt",
             "num_lines": 34,
             "recipients": [
+                "Darren Indyke",
                 "Richard Kahn",
-                "Jeffrey Epstein",
-                "Darren Indyke"
+                "Jeffrey Epstein"
             ],
             "subject": "Cuba trip",
             "timestamp": "2017-09-16T19:57:47",
@@ -31387,10 +31387,10 @@
             "filename": "HOUSE_OVERSIGHT_033512.txt",
             "num_lines": 30,
             "recipients": [
-                "Jeffrey Epstein",
+                "Darren Indyke",
                 "Jackie Perczek",
-                "Martin Weinberg",
-                "Darren Indyke"
+                "Jeffrey Epstein",
+                "Martin Weinberg"
             ],
             "subject": "FW: epstein",
             "timestamp": "2019-05-29T16:57:42",
@@ -31539,8 +31539,8 @@
             "filename": "HOUSE_OVERSIGHT_033565.txt",
             "num_lines": 29,
             "recipients": [
-                "Jeffrey Epstein",
-                "Darren Indyke"
+                "Darren Indyke",
+                "Jeffrey Epstein"
             ],
             "subject": "Re:",
             "timestamp": "2018-04-10T13:20:04",
@@ -31580,19 +31580,19 @@
             "filename": "HOUSE_OVERSIGHT_033568.txt",
             "num_lines": 66,
             "recipients": [
+                "Walli Leff",
+                "Larry Sloman",
+                "W&K",
+                "Kevin Bright",
+                "Lee Quarnstrom",
+                "Jay Levin",
+                "Danny Goldberg",
                 "Tom",
                 "Michael Simmons",
-                "Kevin Bright",
-                "Daniel Dawson",
                 "Lanny Swerdlow",
-                "W&K",
-                "Walli Leff",
-                "Danny Goldberg",
-                "Harry Shearer",
                 "George Krassner",
-                "Larry Sloman",
-                "Lee Quarnstrom",
-                "Jay Levin"
+                "Harry Shearer",
+                "Daniel Dawson"
             ],
             "timestamp": "2019-02-10T00:09:30",
             "type": "Email"
@@ -31608,9 +31608,9 @@
             "filename": "HOUSE_OVERSIGHT_033575.txt",
             "num_lines": 16,
             "recipients": [
-                "Jeffrey Epstein",
                 "Darren Indyke",
-                "Debbie Fein"
+                "Debbie Fein",
+                "Jeffrey Epstein"
             ],
             "timestamp": "2013-05-13T22:28:30",
             "type": "Email"
@@ -31666,8 +31666,8 @@
             "filename": "HOUSE_OVERSIGHT_033579.txt",
             "num_lines": 32,
             "recipients": [
-                "Jeffrey Epstein",
-                "Darren Indyke"
+                "Darren Indyke",
+                "Jeffrey Epstein"
             ],
             "sent_from_device": "Sent from my iPhone",
             "subject": "Re: new schedule",
@@ -33999,12 +33999,13 @@
             "type": "OtherFile"
         },
         {
+            "author": "David Schoen",
             "bytes": 223241,
-            "category": "conference",
-            "description": "Lexis Nexis search for case law around the Crime Victims' Rights Act [CVRA] by David Schoen",
+            "category": "legal",
+            "description": "Lexis Nexis search for case law around the Crime Victims' Rights Act [CVRA]",
             "file_id": "016509",
             "filename": "HOUSE_OVERSIGHT_016509.txt",
-            "is_interesting": false,
+            "is_interesting": true,
             "num_lines": 2252,
             "timestamp": "2019-02-28T00:00:00",
             "type": "OtherFile"
@@ -34119,9 +34120,10 @@
             "type": "OtherFile"
         },
         {
+            "author": "Palm Beach Water Committee",
             "bytes": 59092,
             "category": "property",
-            "description": "Palm Beach Water Committee Meeting on January 29, 2009",
+            "description": "Meeting on January 29, 2009",
             "file_id": "016636",
             "filename": "HOUSE_OVERSIGHT_016636.txt",
             "is_interesting": false,
@@ -34277,34 +34279,37 @@
             "type": "OtherFile"
         },
         {
+            "author": "David Schoen",
             "bytes": 127133,
-            "category": "conference",
-            "description": "Lexis Nexis search for case law around the Crime Victims' Rights Act [CVRA] by David Schoen",
+            "category": "legal",
+            "description": "Lexis Nexis search for case law around the Crime Victims' Rights Act [CVRA]",
             "file_id": "017603",
             "filename": "HOUSE_OVERSIGHT_017603.txt",
-            "is_interesting": false,
+            "is_interesting": true,
             "num_lines": 1576,
             "timestamp": "2019-02-28T00:00:00",
             "type": "OtherFile"
         },
         {
+            "author": "David Schoen",
             "bytes": 313389,
-            "category": "conference",
-            "description": "Lexis Nexis search for case law around the Crime Victims' Rights Act [CVRA] by David Schoen",
+            "category": "legal",
+            "description": "Lexis Nexis search for case law around the Crime Victims' Rights Act [CVRA]",
             "file_id": "017635",
             "filename": "HOUSE_OVERSIGHT_017635.txt",
-            "is_interesting": false,
+            "is_interesting": true,
             "num_lines": 3933,
             "timestamp": "2019-02-28T00:00:00",
             "type": "OtherFile"
         },
         {
+            "author": "David Schoen",
             "bytes": 206954,
-            "category": "conference",
-            "description": "Lexis Nexis search for case law around the Crime Victims' Rights Act [CVRA] by David Schoen",
+            "category": "legal",
+            "description": "Lexis Nexis search for case law around the Crime Victims' Rights Act [CVRA]",
             "file_id": "017714",
             "filename": "HOUSE_OVERSIGHT_017714.txt",
-            "is_interesting": false,
+            "is_interesting": true,
             "num_lines": 2555,
             "timestamp": "2019-02-28T00:00:00",
             "type": "OtherFile"
@@ -34348,7 +34353,7 @@
         {
             "author": "Alan Dershowitz",
             "bytes": 193,
-            "category": "letter",
+            "category": "legal",
             "description": "letter to Harvard Crimson complaining he was defamed",
             "file_id": "017789",
             "filename": "HOUSE_OVERSIGHT_017789.txt",
@@ -34466,13 +34471,12 @@
             "type": "OtherFile"
         },
         {
-            "author": "Lawrence Krauss",
             "bytes": 32487,
             "category": "skype log",
-            "description": "conversations with linkspirit (French?) and Lawrence Krauss",
+            "description": "Skype conversations with linkspirit (French?) and Lawrence Krauss",
             "file_id": "018224",
             "filename": "HOUSE_OVERSIGHT_018224.txt",
-            "is_interesting": false,
+            "is_interesting": true,
             "num_lines": 358,
             "timestamp": "2019-05-31T00:00:00",
             "type": "OtherFile"
@@ -34560,9 +34564,10 @@
             "type": "OtherFile"
         },
         {
+            "author": "FBI",
             "bytes": 493561,
             "category": "legal",
-            "description": "FBI seized property inventory (redacted)",
+            "description": "seized property inventory (redacted)",
             "file_id": "018872",
             "filename": "HOUSE_OVERSIGHT_018872.txt",
             "is_interesting": true,
@@ -34659,9 +34664,10 @@
             "type": "OtherFile"
         },
         {
+            "author": "Freedom House",
             "bytes": 273463,
-            "category": "article",
-            "description": "Freedom House: 'Breaking Down Democracy: Goals, Strategies, and Methods of Modern Authoritarians'",
+            "category": "politics",
+            "description": "'Breaking Down Democracy: Goals, Strategies, and Methods of Modern Authoritarians'",
             "file_id": "019233",
             "filename": "HOUSE_OVERSIGHT_019233.txt",
             "is_interesting": true,
@@ -34694,9 +34700,10 @@
             "type": "OtherFile"
         },
         {
+            "author": "FBI",
             "bytes": 91810,
             "category": "legal",
-            "description": "FBI report on Epstein investigation (redacted)",
+            "description": "report on Epstein investigation (redacted)",
             "file_id": "019352",
             "filename": "HOUSE_OVERSIGHT_019352.txt",
             "is_interesting": true,
@@ -34826,9 +34833,10 @@
             "type": "OtherFile"
         },
         {
+            "author": "Sadis Goldberg LLP",
             "bytes": 41117,
             "category": "finance",
-            "description": "Sadis Goldberg LLP report on SCOTUS ruling about insider trading",
+            "description": "report on SCOTUS ruling about insider trading",
             "file_id": "019856",
             "filename": "HOUSE_OVERSIGHT_019856.txt",
             "is_interesting": true,
@@ -34980,9 +34988,10 @@
             "type": "OtherFile"
         },
         {
+            "author": "FBI",
             "bytes": 167195,
             "category": "legal",
-            "description": "FBI report on Epstein investigation (redacted)",
+            "description": "report on Epstein investigation (redacted)",
             "file_id": "021434",
             "filename": "HOUSE_OVERSIGHT_021434.txt",
             "is_interesting": true,
@@ -34991,9 +35000,10 @@
             "type": "OtherFile"
         },
         {
+            "author": "FBI",
             "bytes": 375877,
             "category": "legal",
-            "description": "FBI seized property inventory (redacted)",
+            "description": "seized property inventory (redacted)",
             "file_id": "021569",
             "filename": "HOUSE_OVERSIGHT_021569.txt",
             "is_interesting": true,
@@ -35225,7 +35235,7 @@
         {
             "author": "Noam Chomsky",
             "bytes": 4026,
-            "category": "letter",
+            "category": "academia",
             "description": "letter attesting to Epstein's good character",
             "file_id": "022405",
             "filename": "HOUSE_OVERSIGHT_022405.txt",
@@ -35246,9 +35256,10 @@
             "type": "OtherFile"
         },
         {
+            "author": "Park Partners NYC",
             "bytes": 30550,
             "category": "property",
-            "description": "Park Partners NYC letter to partners in real estate project with architectural plans",
+            "description": "letter to partners in real estate project with architectural plans",
             "file_id": "022417",
             "filename": "HOUSE_OVERSIGHT_022417.txt",
             "is_interesting": true,
@@ -35874,7 +35885,7 @@
         {
             "bytes": 360223,
             "category": "finance",
-            "description": "New Leaf Ventures private placement memorandum",
+            "description": "New Leaf Ventures ($375 million biotech fund) private placement memorandum",
             "file_id": "024003",
             "filename": "HOUSE_OVERSIGHT_024003.txt",
             "is_interesting": true,
@@ -36070,9 +36081,10 @@
             "type": "OtherFile"
         },
         {
+            "author": "Ackrell Capital",
             "bytes": 402975,
             "category": "finance",
-            "description": "Ackrell Capital report: Cannabis Investment Report 2018",
+            "description": "Cannabis Investment Report 2018",
             "file_id": "024631",
             "filename": "HOUSE_OVERSIGHT_024631.txt",
             "is_interesting": true,
@@ -36466,7 +36478,7 @@
         {
             "author": "Don McGahn",
             "bytes": 13583,
-            "category": "letter",
+            "category": "politics",
             "description": "letter from Trump lawyer to Devin Nunes (R-CA) about FISA courts and Trump",
             "file_id": "026248",
             "filename": "HOUSE_OVERSIGHT_026248.txt",
@@ -36627,11 +36639,11 @@
         {
             "author": "Boothbay Fund Management",
             "bytes": 13429,
-            "category": "letter",
+            "category": "finance",
             "description": "2016-Q4 earnings report signed by Ari Glass",
             "file_id": "026668",
             "filename": "HOUSE_OVERSIGHT_026668.txt",
-            "is_interesting": true,
+            "is_interesting": false,
             "num_lines": 160,
             "timestamp": "2017-02-16T00:00:00",
             "type": "OtherFile"
@@ -36708,9 +36720,10 @@
             "type": "OtherFile"
         },
         {
+            "author": "Mintz Fraade",
             "bytes": 1763,
             "category": "legal",
-            "description": "letter from Steven Hoffenberg's lawyers at Mintz Fraade offering to take over Epstein's business and resolve his legal issues",
+            "description": "letter from Steven Hoffenberg's lawyers offering to take over Epstein's business and resolve his legal issues",
             "file_id": "026793",
             "filename": "HOUSE_OVERSIGHT_026793.txt",
             "is_interesting": true,
@@ -37722,7 +37735,7 @@
         {
             "bytes": 1725,
             "category": "article",
-            "description": "article about allegations Trump raped a 13 year old girl Jane Doe v. Donald Trump and Jeffrey Epstein",
+            "description": "article about Trump rape allegations in Jane Doe v. Donald Trump and Jeffrey Epstein",
             "file_id": "030199",
             "filename": "HOUSE_OVERSIGHT_030199.txt",
             "is_interesting": false,
@@ -37992,7 +38005,7 @@
             "description": "article about identify of Jane Doe in Jane Doe v. Donald Trump and Jeffrey Epstein",
             "file_id": "031198",
             "filename": "HOUSE_OVERSIGHT_031198.txt",
-            "is_interesting": true,
+            "is_interesting": false,
             "num_lines": 185,
             "timestamp": "2016-06-24T20:00:00",
             "type": "OtherFile"
@@ -38011,9 +38024,10 @@
         },
         {
             "bytes": 26,
+            "category": "junk",
             "file_id": "031293",
             "filename": "HOUSE_OVERSIGHT_031293.txt",
-            "is_interesting": true,
+            "is_interesting": false,
             "num_lines": 1,
             "type": "OtherFile"
         },
@@ -38199,7 +38213,7 @@
             "description": "very short French magazine clipping",
             "file_id": "031794",
             "filename": "HOUSE_OVERSIGHT_031794.txt",
-            "is_interesting": false,
+            "is_interesting": true,
             "num_lines": 24,
             "type": "OtherFile"
         },
@@ -38292,7 +38306,7 @@
             "category": "skype log",
             "file_id": "032206",
             "filename": "HOUSE_OVERSIGHT_032206.txt",
-            "is_interesting": true,
+            "is_interesting": false,
             "num_lines": 41,
             "timestamp": "2017-08-24T19:14:01",
             "type": "OtherFile"
@@ -38303,7 +38317,7 @@
             "category": "skype log",
             "file_id": "032208",
             "filename": "HOUSE_OVERSIGHT_032208.txt",
-            "is_interesting": true,
+            "is_interesting": false,
             "num_lines": 7,
             "timestamp": "2017-07-11T23:42:34",
             "type": "OtherFile"
@@ -38314,7 +38328,7 @@
             "category": "skype log",
             "file_id": "032209",
             "filename": "HOUSE_OVERSIGHT_032209.txt",
-            "is_interesting": true,
+            "is_interesting": false,
             "num_lines": 31,
             "timestamp": "2017-07-05T23:01:43",
             "type": "OtherFile"
@@ -38322,7 +38336,7 @@
         {
             "bytes": 1121,
             "category": "skype log",
-            "description": "conversation with linkspirit",
+            "description": "Skype conversation with linkspirit",
             "file_id": "032210",
             "filename": "HOUSE_OVERSIGHT_032210.txt",
             "is_interesting": true,
