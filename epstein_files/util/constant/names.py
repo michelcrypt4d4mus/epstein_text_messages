@@ -204,8 +204,8 @@ VIRGIN_ISLANDS = 'Virgin Islands'
 
 # First and last names that should be made part of a highlighting regex for emailers
 NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
-    'Al', 'Alfredo', 'Allen', 'Alex', 'Alexander', 'Amanda', 'Andres', 'Andrew',
-    'Bard', 'Barry', 'Bill', 'Black', 'Brad', 'Bruce',
+    'Al', 'Alan', 'Alfredo', 'Allen', 'Alex', 'Alexander', 'Amanda', 'Andres', 'Andrew',
+    'Bard', 'Barry', 'Bill', 'Black', 'Boris', 'Brad', 'Bruce',
     'Carolyn', 'Chris', 'Christina',
     'Dan', 'Daniel', 'Danny', 'Darren', 'Dave', 'David',
     'Ed', 'Edward', 'Edwards', 'Epstein', 'Eric', 'Erika', 'Etienne',
@@ -215,10 +215,10 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Ian',
     'Jack', 'James', 'Jay', 'Jean', 'Jeff', 'Jeffrey', 'Jennifer', 'Jeremy', 'jessica', 'Joel', 'John', 'Jon', 'Jonathan', 'Joseph', 'Jr',
     'Kahn', 'Katherine', 'Ken', 'Kevin',
-    'Leon', 'Lesley', 'Linda', 'Link', 'Lisa',
+    'Larry', 'Leon', 'Lesley', 'Linda', 'Link', 'Lisa',
     'Mann', 'Marc', 'Marie', 'Mark', 'Martin', 'Melanie', 'Michael', 'Mike', 'Miller', 'Mitchell', 'Miles', 'Morris', 'Moskowitz',
     'Nancy', 'Neal', 'New',
-    'Paul', 'Paula', 'Pen', 'Peter', 'Philip',
+    'Paul', 'Paula', 'Pen', 'Peter', 'Philip', 'Prince',
     'Randall', 'Reid', 'Richard', 'Robert', 'Rodriguez', 'Roger', 'Rosenberg', 'Ross', 'Roth', 'Rubin',
     'Scott', 'Sean', 'Stanley', 'Stern', 'Stephen', 'Steve', 'Steven', 'Stone', 'Susan',
     'The', 'Thomas', 'Tim', 'Tom', 'Tyler',
@@ -230,7 +230,7 @@ NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
 # Names to color white in the word counts
 OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
     aaron albert alberto alec alexandra alice anderson andre ann anna anne ariana arthur
-    baldwin barack barbro ben benjamin berger bert binant bob bonner boyden bradley brady branson bruno bryant burton
+    baldwin barack ben benjamin berger bert binant bob bonner boyden bradley brady branson bruno bryant burton
     chapman charles charlie christopher clint cohen colin collins conway
     davis dean debra deborah dennis diana diane diaz dickinson dixon dominique don dylan
     edmond elizabeth emily entwistle erik evelyn
