@@ -117,7 +117,6 @@ class HighlightedNames(HighlightedText):
             # Include regex for first and last names
             for partial_name in [first_name, last_name]:
                 if SIMPLE_NAME_REGEX.match(partial_name) and partial_name.lower() not in NAMES_TO_NOT_HIGHLIGHT:
-                    print(f"Adding name: '{partial_name}'")
                     pattern += fr"|{partial_name}"
 
             return pattern
