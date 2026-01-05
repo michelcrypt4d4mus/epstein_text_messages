@@ -707,6 +707,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='024300', is_fwded_article=True),  # Bookstore owner calls police after customer confronted Steve Bannon
     EmailCfg(id='026924', is_fwded_article=True),  # The Onion
     EmailCfg(id='033311', is_fwded_article=True),  # 2016 election polls
+    EmailCfg(id='026580', is_fwded_article=True),  # NPR: Antigua: Land Of Sun, Sand, And Super Cheap
     EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
 
