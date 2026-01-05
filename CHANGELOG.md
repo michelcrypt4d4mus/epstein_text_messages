@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Remove --pickled argument
 
 ### 1.0.4
 
