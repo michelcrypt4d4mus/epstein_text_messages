@@ -1,3 +1,5 @@
 #!/bin/bash
+set -e
+
 git checkout gh_pages
-git merge master
+git merge --no-edit master --quiet
