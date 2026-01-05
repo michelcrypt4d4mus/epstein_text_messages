@@ -684,7 +684,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='016801', is_fwded_article=True),  # Capital Market Outlook
     EmailCfg(id='023564', is_fwded_article=True),  # BBG ;Leon Black's Tax-Overhaul Dilemma Could Alter Wall Street Model
     EmailCfg(id='025231', is_fwded_article=True),  # Newsmax: Laffer, Laffer: Obama Must Use Reaganomics to Save Economy The only way President Barack Obama can solve
-    # 031779
+    EmailCfg(id='031472', is_fwded_article=True),  # WSJ: Lawyers for Imam Wanted by Turkish authorities Fear for Their Client's Life
+    EmailCfg(id='012684', is_fwded_article=True),  # Trump in talks to buy socialite Kluge's Charlottesville vineyard
+    EmailCfg(id='028536', is_fwded_article=True),  # Palm Beach Post FBI Epstein files say he gave info. Does it explain sweetheart deal?
     EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
 
@@ -711,7 +713,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='025790', duplicate_ids=['031994']),
     EmailCfg(id='028497', duplicate_ids=['026228']),
     EmailCfg(id='033528', duplicate_ids=['033517']),
-    EmailCfg(id='032023', duplicate_ids=['032012']),
+    EmailCfg(id='032023', is_fwded_article=True, duplicate_ids=['032012']), # American-Israeli Cooperative Enterprise Newsletter
     EmailCfg(id='019412', duplicate_ids=['028621']),
     EmailCfg(id='027053', duplicate_ids=['028765']),
     EmailCfg(id='027049', duplicate_ids=['028773']),

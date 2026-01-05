@@ -69,6 +69,8 @@ ACTUAL_TEXT_SPLITTERS = {
     '030324': 'For Federal Programs',
     '022766': '--- On Wed, 4/22/15',
     '025606': '> On May 6,',
+    '022977': 'Top of Form',
+    '033420': 'Slowing economy could increase pressure on',
 }
 
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
@@ -155,9 +157,13 @@ JUNK_EMAILERS = [
     'Saved by Internet Explorer 11',
 ]
 
-TRUNCATE_ALL_EMAILS_FROM = JUNK_EMAILERS + [
-    'Alan S Halperin',
+MAILING_LISTS = [
+    INTELLIGENCE_SQUARED,
     'middle.east.update@hotmail.com',
+]
+
+TRUNCATE_ALL_EMAILS_FROM = JUNK_EMAILERS + MAILING_LISTS + [
+    'Alan S Halperin',
     'Mitchell Bard',
     'Skip Rimer',
 ]
@@ -361,7 +367,7 @@ class Email(Communication):
         return bool(self.config and self.config.is_fwded_article)
 
     def is_junk_mail(self) -> bool:
-        return self.author in JUNK_EMAILERS
+        return self.author in JUNK_EMAILERS or self.author in MAILING_LISTS
 
     def metadata(self) -> Metadata:
         local_metadata = asdict(self)
