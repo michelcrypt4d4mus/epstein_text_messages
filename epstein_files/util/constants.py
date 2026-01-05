@@ -450,7 +450,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='018726', author=JEFFREY_EPSTEIN, timestamp=parse('2018-06-08 08:36:00')),  # nofix
     EmailCfg(id='032283', author=JEFFREY_EPSTEIN, timestamp=parse('2016-09-14 08:04:00')),  # nofix
     EmailCfg(id='026943', author=JEFFREY_EPSTEIN, timestamp=parse('2019-05-22 05:47:00')),  # nofix
-    EmailCfg(id='023208', author=JEFFREY_EPSTEIN, recipients=[BRAD_WECHSLER, MELANIE_SPINELLA], duplicate_ids=['023291']),
+    EmailCfg(
+        id='023208',
+        author=JEFFREY_EPSTEIN,
+        fwded_text_after='Date: Tue, Oct 27',
+        recipients=[BRAD_WECHSLER, MELANIE_SPINELLA],
+        duplicate_ids=['023291'],
+    ),
     EmailCfg(
         id='032214',
         author=JEFFREY_EPSTEIN,
@@ -646,6 +652,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='033050', actual_text='schwartman'),
     EmailCfg(id='029344', actual_text='I thought of you when I read this article. Was this your idea? Alan'),
     EmailCfg(id='023627', description=MICHAEL_WOLFF_ARTICLE_HINT, is_fwded_article=True),
+    EmailCfg(id='022219', description="discussion of attempts to clean up Epstein's Google search results"),
     EmailCfg(id='031333', is_fwded_article=True, description='looks like a Russian disinfo article'),  # Russia Says IMF Chief Jailed For Discovering All US Gold is Gone
     EmailCfg(id='031335', is_fwded_article=True, description='looks like a Russian disinfo article'),  # DOMINQUE STRAUSS-KAHN ARRESTED, NOT BECAUSE HE RAPED A MAID, BUT BECAUSE HE HAD EVIDENCE US HAS NO GOLD IN FORT KNOX.
     EmailCfg(id='026298', is_fwded_article=True, duplicate_ids=['026499']),  # Written by someone else?
@@ -694,7 +701,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='012684', is_fwded_article=True),  # Trump in talks to buy socialite Kluge's Charlottesville vineyard
     EmailCfg(id='028536', is_fwded_article=True),  # Palm Beach Post FBI Epstein files say he gave info. Does it explain sweetheart deal?
     EmailCfg(id='028524', is_fwded_article=True),  # Zach Braff article on Woody Allen in NYT
-
+    EmailCfg(id='030326', is_fwded_article=True),  # NYP Congressional candidate compares Melania Trump to prostitute
+    EmailCfg(id='030519', is_fwded_article=True),  # Daily Mail on Prince Andrew
+    EmailCfg(id='030878', is_fwded_article=True),  # Steve Bannon almost appeared in Michael Moore's 'Fahrenheit 11/9'
+    EmailCfg(id='024300', is_fwded_article=True),  # Bookstore owner calls police after customer confronted Steve Bannon
+    EmailCfg(id='026924', is_fwded_article=True),  # The Onion
+    EmailCfg(id='033311', is_fwded_article=True),  # 2016 election polls
     EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
 
@@ -837,6 +849,11 @@ EMAILS_CONFIG = [
     EmailCfg(id='022207', fwded_text_after='Web Images Videos Maps'),
     EmailCfg(id='033210', fwded_text_after='Trump appears with mobster-affiliated'),
     EmailCfg(id='030989', fwded_text_after='New book paints sordid picture of Trump real estate'),
+    EmailCfg(id='029174', fwded_text_after='The US trade war against China'),
+    EmailCfg(id='030015', fwded_text_after='Bill Clinton reportedly'),
+    EmailCfg(id='026312', fwded_text_after='Steve Bannon trying to get on disgraced'),
+    EmailCfg(id='031742', fwded_text_after="Trump's former campaign manager Paul Manafort"),
+
 ]
 
 
