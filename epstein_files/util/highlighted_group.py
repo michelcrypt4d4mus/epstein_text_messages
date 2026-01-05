@@ -161,7 +161,7 @@ HIGHLIGHTED_NAMES = [
             ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
             BARBRO_C_EHNBOM: 'Swedish pharmaceuticals',
             FRED_HADDAD: "co-founder of Heck's in West Virginia",
-            GERALD_BARTON: "Maryland property developer, fan of Trump's Irish golf course",
+            GERALD_BARTON: "Maryland property developer Landmark Land Company, fan of Trump's Irish golf course",
             GORDON_GETTY: 'heir of oil tycoon J. Paul Getty',
             NICHOLAS_RIBIS: 'Hilton CEO, former president of Trump Organization',
             'Philip Kafka': 'president of Prince Concepts (and son of Terry Kafka?)',
@@ -456,7 +456,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='republicans',
         style='bold dark_red',
-        pattern=r'Alberto\sGonzale[sz]|(Alex\s*)?Acosta|(Bill\s*)?Barr|Bill\s*Shine|(Bob\s*)?Corker|(John\s*(R.?\s*)?)Bolton|Broidy|(Chris\s)?Christie|Devin\s*Nunes|(Don\s*)?McGa[hn]n|McMaster|(George\s*)?Nader|GOP|(Brett\s*)?Kavanaugh|Kissinger|Kobach|Koch\s*Brothers|Kolfage|Kudlow|Lewandowski|(Marco\s)?Rubio|(Mark\s*)Meadows|Mattis|(?<!Merwin Dela )Cruz|(Michael\s)?Hayden|((General|Mike)\s*)?(Flynn|Pence)|(Mitt\s*)?Romney|Mnuchin|Nikki|Haley|(Paul\s+)?Manafort|(Peter\s)?Navarro|Pompeo|Reagan|Republican|(?<!Cynthia )(Richard\s*)?Nixon|Sasse|(Rex\s*)?Tillerson',
+        pattern=r'Alberto\sGonzale[sz]|(Alex\s*)?Acosta|(Bill\s*)?Barr|Bill\s*Shine|(Bob\s*)?Corker|(John\s*(R.?\s*)?)Bolton|Broidy|(Chris\s)?Christie|Devin\s*Nunes|(Don\s*)?McGa[hn]n|McMaster|(George\s*)?Nader|GOP|(Brett\s*)?Kavanaugh|Kissinger|Kobach|Koch\s*Brothers|Kolfage|Kudlow|Lewandowski|(Marco\s)?Rubio|(Mark\s*)Meadows|Mattis|(?<!Merwin Dela )Cruz|(Michael\s)?Hayden|((General|Mike)\s*)?(Flynn|Pence)|(Mitt\s*)?Romney|Mnuchin|Nikki|Haley|(Paul\s+)?Manafort|(Peter\s)?Navarro|Pompeo|Reagan|Reince|Priebus|Republican|(?<!Cynthia )(Richard\s*)?Nixon|Sasse|(Rex\s*)?Tillerson',
         # There's no emails from these people, they're just here to automate the regex creation for both first + last names
         emailers = {
             RUDY_GIULIANI: 'disbarred formed mayor of New York City',

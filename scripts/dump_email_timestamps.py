@@ -24,6 +24,8 @@ for email in sorted(epstein_files.emails, key=lambda e: -len(e.actual_text)):
 
     if len(email.actual_text) > 100:
         max_sizes[email.file_id] = len(email.actual_text)
+    else:
+        break
 
     console.line(2)
     console.print(Panel(email.summary(), expand=False, style=email._border_style()))
