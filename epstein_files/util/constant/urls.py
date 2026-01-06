@@ -13,11 +13,12 @@ ARCHIVE_LINK_COLOR = 'slate_blue3'
 TEXT_LINK = 'text_link'
 
 # External site names
-ExternalSite = Literal['epstein.media', 'epsteinify', 'EpsteinWeb']
+ExternalSite = Literal['epstein.media', 'epsteinify', 'EpsteinWeb', 'RollCall']
 EPSTEIN_MEDIA = 'epstein.media'
 EPSTEIN_WEB = 'EpsteinWeb'
 EPSTEINIFY = 'epsteinify'
 JMAIL = 'Jmail'
+ROLLCALL = 'RollCall'
 
 GH_PROJECT_URL = 'https://github.com/michelcrypt4d4mus/epstein_text_messages'
 GH_MASTER_URL = f"{GH_PROJECT_URL}/blob/master"
@@ -41,9 +42,10 @@ EPSTEIN_WEB_URL = 'https://epsteinweb.org'
 JMAIL_URL = 'https://jmail.world'
 
 DOC_LINK_BASE_URLS: dict[ExternalSite, str] = {
-    EPSTEIN_MEDIA: f"{EPSTEIN_MEDIA_URL}/files",
-    EPSTEIN_WEB: f'{EPSTEIN_WEB_URL}/wp-content/uploads/epstein_evidence/images',
-    EPSTEINIFY: f"{EPSTEINIFY_URL}/document",
+    EPSTEIN_MEDIA: f"{EPSTEIN_MEDIA_URL}/files/",
+    EPSTEIN_WEB: f'{EPSTEIN_WEB_URL}/wp-content/uploads/epstein_evidence/images/',
+    EPSTEINIFY: f"{EPSTEINIFY_URL}/document/",
+    ROLLCALL: f'https://rollcall.com/factbase/epstein/file?id=',
 }
 
 
@@ -53,7 +55,7 @@ epsteinify_doc_link_txt = lambda filename_or_id, style = TEXT_LINK: Text.from_ma
 epsteinify_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[EPSTEINIFY], file_stem)
 epsteinify_name_url = lambda name: f"{EPSTEINIFY_URL}/?name={urllib.parse.quote(name)}"
 
-epstein_media_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[EPSTEIN_MEDIA], file_stem, True)
+epstein_media_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[EPSTEIN_MEDIA], file_stem, 'lower')
 epstein_media_doc_link_markup = lambda filename_or_id, style = TEXT_LINK: external_doc_link_markup(EPSTEIN_MEDIA, filename_or_id, style)
 epstein_media_doc_link_txt = lambda filename_or_id, style = TEXT_LINK: Text.from_markup(epstein_media_doc_link_markup(filename_or_id, style))
 epstein_media_person_url = lambda person: f"{EPSTEIN_MEDIA_URL}/people/{parameterize(person)}"
@@ -62,16 +64,19 @@ epstein_web_doc_url = lambda file_stem: f"{DOC_LINK_BASE_URLS[EPSTEIN_WEB]}/{fil
 epstein_web_person_url = lambda person: f"{EPSTEIN_WEB_URL}/{parameterize(person)}"
 epstein_web_search_url = lambda s: f"{EPSTEIN_WEB_URL}/?ewmfileq={urllib.parse.quote(s)}&ewmfilepp=20"
 
+rollcall_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[ROLLCALL], file_stem, 'title')
+
 search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE_URL}&q={urllib.parse.quote(txt)}&p=1"
 search_coffeezilla_url = lambda txt: f"{COFFEEZILLA_ARCHIVE_URL}&q={urllib.parse.quote(txt)}&p=1"
 search_jmail_url = lambda txt: f"{JMAIL_URL}/search?q={urllib.parse.quote(txt)}"
 search_twitter_url = lambda txt: f"https://x.com/search?q={urllib.parse.quote(txt)}&src=typed_query&f=live"
 
 
-def build_doc_url(base_url: str, filename_or_id: int | str, lowercase: bool = False) -> str:
+def build_doc_url(base_url: str, filename_or_id: int | str, case: Literal['lower', 'title'] | None = None) -> str:
     file_stem = coerce_file_stem(filename_or_id)
-    file_stem = file_stem.lower() if lowercase else file_stem
-    return f"{base_url}/{file_stem}"
+    file_stem = file_stem.lower() if case == 'lower' else file_stem
+    file_stem = file_stem.title() if case == 'title' else file_stem
+    return f"{base_url}{file_stem}"
 
 
 def external_doc_link_markup(site: ExternalSite, filename_or_id: int | str, style: str = TEXT_LINK) -> str:
