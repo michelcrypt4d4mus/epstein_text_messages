@@ -26,7 +26,7 @@ date_str = lambda dt: dt.isoformat()[0:10] if dt else None
 escape_double_quotes = lambda text: text.replace('"', r'\"')
 escape_single_quotes = lambda text: text.replace("'", r"\'")
 iso_timestamp = lambda dt: dt.isoformat().replace('T', ' ')
-remove_time_from_timestamp_str = lambda dt: dt.isoformat().removesuffix('T00:00:00')
+remove_zero_time_from_timestamp_str = lambda dt: dt.isoformat().removesuffix('T00:00:00')
 uniquify = lambda _list: list(set(_list))
 without_falsey = lambda _list: [e for e in _list if e]
 

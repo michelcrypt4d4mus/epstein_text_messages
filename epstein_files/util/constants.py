@@ -930,6 +930,7 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='029865', author=LA_TIMES, description=f"front page article about {DEEPAK_CHOPRA} and young Iranians", date='2016-11-05'),
     DocCfg(id='026598', author=LA_TIMES, description=f"op-ed about why America needs a Ministry of Culture"),
     DocCfg(id='027024', author=LA_TIMES, description=f"Scientists Create Human Embryos to Make Stem Cells", date='2013-05-15'),
+    DocCfg(id='022811', author='Law.com', description='Sarah Ransome Identifies Herself in Epstein Sex Trafficking Case', date='2018-01-09'),
     DocCfg(id='031776', author='Law360', description=f"article about Michael Avenatti by Andrew Strickler"),
     DocCfg(id='023102', author=f'Litigation Daily', description=f"article about {REID_WEINGARTEN}", date='2015-09-04'),
     DocCfg(id='029340', author=f'MarketWatch', description=f'article about estate taxes, particularly Epstein\'s favoured GRATs'),
