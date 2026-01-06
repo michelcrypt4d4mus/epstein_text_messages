@@ -128,9 +128,6 @@ class EpsteinFiles:
         names = names if include_useless else [e for e in names if e is None or e.lower() not in EXCLUDED_EMAILERS]
         return sorted(list(set(names)), key=lambda e: self.email_author_counts[e] + self.email_recipient_counts[e])
 
-    def attributed_email_count(self) -> int:
-        return sum([i for author, i in self.email_author_counts.items() if author != UNKNOWN])
-
     def docs_matching(
             self,
             pattern: re.Pattern | str,
@@ -279,7 +276,8 @@ class EpsteinFiles:
         console.print(_build_signature_table(self.email_device_signatures_to_authors, (DEVICE_SIGNATURE, AUTHOR), ', '))
 
     def print_emailer_counts_table(self) -> None:
-        footer = f"Identified authors of {self.attributed_email_count():,} out of {len(self.emails):,} emails ."
+        attributed_emails = [e for e in self.emails if e.author and not e.is_duplicate()]
+        footer = f"Identified authors of {len(attributed_emails):,} out of {len(self.emails):,} emails."
         counts_table = build_table("Email Counts", caption=footer)
 
         add_cols_to_table(counts_table, [
