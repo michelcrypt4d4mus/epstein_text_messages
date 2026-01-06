@@ -23,7 +23,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import (EPSTEIN_MEDIA, EPSTEIN_WEB, JMAIL, epstein_media_person_url,
      epsteinify_name_url, epstein_web_person_url, search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
-from epstein_files.util.data import dict_sets_to_lists, iso_timestamp, json_safe, listify, sort_dict
+from epstein_files.util.data import days_between, dict_sets_to_lists, json_safe, listify, sort_dict
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.env import DOCS_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
@@ -156,7 +156,7 @@ class EpsteinFiles:
         return self.emails_for(author)[-1].timestamp
 
     def email_conversation_length_in_days(self, author: str | None) -> int:
-        return (self.last_email_at(author) - self.earliest_email_at(author)).days + 1
+        return days_between(self.earliest_email_at(author), self.last_email_at(author))
 
     def email_signature_substitution_counts(self) -> dict[str, int]:
         """Return the number of times an email signature was replaced with "<...snipped...>" for each author."""

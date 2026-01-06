@@ -1,5 +1,5 @@
 #!/bin/bash
-# Open a file in a web browser.
+# Open file ID in a web browser.
 
 BASE_URL="https://epstein.media/files/house_oversight_"
 FILE_URL="$BASE_URL$1"
