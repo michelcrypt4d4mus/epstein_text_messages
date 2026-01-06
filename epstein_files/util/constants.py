@@ -45,9 +45,9 @@ HEADER_ABBREVIATIONS = {
 }
 
 
-#######################
-# Emails Config Stuff #
-#######################
+#########################
+# Emailers Config Stuff #
+#########################
 
 # Emailers
 EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
@@ -220,7 +220,6 @@ RESUME_OF = 'professional resumé'
 SCREENSHOT = 'screenshot of'
 TRANSLATION = 'translation of'
 TWEET = 'tweet'
-TEXT_OF_US_LAW = 'text of U.S. law:'
 
 # Legal cases
 BRUNEL_V_EPSTEIN = f"{JEAN_LUC_BRUNEL} v. {JEFFREY_EPSTEIN} and Tyler McDonald d/b/a YI.org"
@@ -649,9 +648,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='032358', actual_text=REDACTED),  # Completely redacted
     EmailCfg(id='033050', actual_text='schwartman'),
     EmailCfg(id='022219', description="discussion of attempts to clean up Epstein's Google search results"),
-    EmailCfg(id='023627', is_fwded_article=True, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
     EmailCfg(id='031333', is_fwded_article=True, description='looks like a Russian disinfo article'),  # Russia Says IMF Chief Jailed For Discovering All US Gold is Gone
     EmailCfg(id='031335', is_fwded_article=True, description='looks like a Russian disinfo article'),  # DOMINQUE STRAUSS-KAHN ARRESTED, NOT BECAUSE HE RAPED A MAID, BUT BECAUSE HE HAD EVIDENCE US HAS NO GOLD IN FORT KNOX.
+    EmailCfg(id='023627', is_fwded_article=True, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
     EmailCfg(id='026298', is_fwded_article=True, duplicate_ids=['026499']),  # Written by someone else?
     EmailCfg(id='029692', is_fwded_article=True, duplicate_ids=['029779']),  # WaPo article
     EmailCfg(id='022344', is_fwded_article=True, duplicate_ids=['028529']),  # Bill Gates is most admired from Nikolic
@@ -664,6 +663,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='029849', is_fwded_article=True, duplicate_ids=['033482']),  # Fareed Zakaria: Trump sells America short),
     EmailCfg(id='032023', is_fwded_article=True, duplicate_ids=['032012']),  # American-Israeli Cooperative Enterprise Newsletter
     EmailCfg(id='021758', is_fwded_article=True, duplicate_ids=['030616']),  # Radar Online article about Epstein's early prison release
+    EmailCfg(id='033297', is_fwded_article=True, duplicate_ids=['033586']),  # Sultan Sulayem fwding article about Trump and Russia
     EmailCfg(id='031774', is_fwded_article=True),  # Krassner fwd of Palmer Report article
     EmailCfg(id='033345', is_fwded_article=True),  # Krassner fwd of Palmer Report article
     EmailCfg(id='029903', is_fwded_article=True),  # Krassner fwd of Ann Coulter article about Epstein
@@ -715,7 +715,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='031340', is_fwded_article=True),  # Article about Alex Jones threatening Robert Mueller
     EmailCfg(id='030209', is_fwded_article=True),  # Atlantic Council  Syria: Blackberry Diplomacy
     EmailCfg(id='026605', is_fwded_article=True),  # Article about Ruemmler turning down attorney general job by NEDRA PICKLER
-    EmailCfg(id='033297', is_fwded_article=True, duplicate_ids=['033586']),  # Sultan Sulayem fwding article about Trump and Russia
     EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
 
@@ -1188,7 +1187,7 @@ OTHER_FILES_LEGAL = [
     ),
     DocCfg(id='028540', author='SCOTUS', description=f"decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP"),
     DocCfg(id='012197', author='SDFL', description=f"Response to {JAY_LEFKOWITZ} on Epstein Plea Agreement Compliance"),
-    DocCfg(id='022277', description=f"{TEXT_OF_US_LAW} National Labour Relations Board (NLRB)"),
+    DocCfg(id='022277', description=f"text of National Labour Relations Board (NLRB) law", is_interesting=False),
 ]
 
 OTHER_FILES_CONFERENCES = [

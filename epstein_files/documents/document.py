@@ -115,7 +115,7 @@ class Document:
 
     def duplicate_file_txt(self) -> Text:
         """If the file is a dupe make a nice message to explain what file it's a duplicate of."""
-        if not self.config or not self.config.duplicate_of_id or self.config.dupe_type is None:
+        if not self.is_duplicate():
             raise RuntimeError(f"duplicate_file_txt() called on {self.summary()} but not a dupe! config:\n\n{self.config}")
 
         txt = Text(f"Not showing ", style=INFO_STYLE).append(epstein_media_doc_link_txt(self.file_id, style='cyan'))

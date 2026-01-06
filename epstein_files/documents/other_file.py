@@ -106,7 +106,6 @@ UNINTERESTING_PREFIXES = FINANCIAL_REPORTS_AUTHORS + [
     STACEY_PLASKETT,
     'Tatler',
     TERJE_ROD_LARSEN,
-    TEXT_OF_US_LAW,
     TRANSLATION,
     TWEET,
     REAL_DEAL_ARTICLE,
@@ -165,8 +164,8 @@ class OtherFile(Document):
         elif len(info_sentences) == 0:
             return True
         elif self.config:
-            if self.config.is_interesting:
-                return True
+            if self.config.is_interesting is not None:
+                return self.config.is_interesting
             elif self.category() == FINANCE and self.author is not None:
                 return False
             elif self.category() in UNINTERESTING_CATEGORES:
