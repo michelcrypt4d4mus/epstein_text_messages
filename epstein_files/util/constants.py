@@ -714,6 +714,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='026580', is_fwded_article=True),  # NPR: Antigua: Land Of Sun, Sand, And Super Cheap
     EmailCfg(id='031340', is_fwded_article=True),  # Article about Alex Jones threatening Robert Mueller
     EmailCfg(id='030209', is_fwded_article=True),  # Atlantic Council  Syria: Blackberry Diplomacy
+    EmailCfg(id='026605', is_fwded_article=True),  # Article about Ruemmler turning down attorney general job by NEDRA PICKLER
     EmailCfg(id='033297', is_fwded_article=True, duplicate_ids=['033586']),  # Sultan Sulayem fwding article about Trump and Russia
     EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
