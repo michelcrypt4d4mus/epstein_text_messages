@@ -335,7 +335,7 @@ HIGHLIGHTED_NAMES = [
     ),
     HighlightedNames(
         label=HARVARD.lower(),
-        style='deep_pink2',
+        style='light_goldenrod3',
         pattern=r'Cambridge|(Derek\s*)?Bok|Elisa(\s*New)?|Harvard(\s*(Business|Law|University)(\s*School)?)?|(Jonathan\s*)?Zittrain|(Stephen\s*)?Kosslyn',
         emailers = {
             "Donald Rubin": f"Professor of Statistics",
