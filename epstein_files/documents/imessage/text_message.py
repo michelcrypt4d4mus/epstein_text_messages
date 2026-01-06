@@ -29,7 +29,7 @@ TEXTER_MAPPING = {
 class TextMessage:
     """Class representing a single iMessage text message."""
     author: str | None
-    author_str: str | None = None
+    author_str: str = ''
     id_confirmed: bool = False
     text: str
     timestamp_str: str
@@ -37,7 +37,7 @@ class TextMessage:
     def __post_init__(self):
         self.author = TEXTER_MAPPING.get(self.author or UNKNOWN, self.author)
 
-        if self.author is None:
+        if not self.author:
             self.author_str = UNKNOWN
         elif self.author in DISPLAY_LAST_NAME_ONLY and not self.author_str:
             self.author_str = extract_last_name(self.author)

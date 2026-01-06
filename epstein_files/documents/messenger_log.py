@@ -47,9 +47,9 @@ class MessengerLog(Communication):
         txt = Text(f"({info_msg} ", style='dim').append(author_txt)
 
         if self.phone_number:
-            txt.append(f" using the phone number {self.phone_number}")
+            txt.append(highlighter(f" using the phone number {self.phone_number}"))
 
-        return highlighter(txt.append(')'))
+        return txt.append(')')
 
     def last_message_at(self, name: str | None) -> datetime:
         return self.messages_by(name)[-1].timestamp()
@@ -82,7 +82,7 @@ class MessengerLog(Communication):
         # If the Sender: is redacted or if it's an unredacted phone number that means it's from self.author
         return TextMessage(
             author=self.author if (is_phone_number or not author_str) else author_str,
-            author_str=author_str if is_phone_number else None,  # Preserve phone numbers
+            author_str=author_str if is_phone_number else '',  # Preserve phone numbers
             id_confirmed=not self.is_attribution_uncertain(),
             text=match.group(4).strip(),
             timestamp_str=match.group(2).strip(),
