@@ -10,12 +10,12 @@
 
 
 ## Usage
-
 #### Installation
 1. Requires you have a local copy of the OCR text files from the House Oversight document release in a directory `/path/to/epstein/ocr_txt_files`. You can download those OCR text files from [the Congressional Google Drive folder](https://drive.google.com/drive/folders/1ldncvdqIf6miiskDp_EDuGSDAaI_fJx8) (make sure you grab both the `001/` and `002/` folders).
 1. Use `poetry install` for easiest time installing. `pip install epstein-files` should also work, though `pipx install epstein-files` is usually better.
-1.
 
+
+#### Command Line Tools
 You need to set the `EPSTEIN_DOCS_DIR` environment variable with the path to the folder of files you just downloaded when running. You can either create a `.env` file modeled on [`.env.example`](./.env.example) (which will set it permanently) or you can run with:
 
 ```bash
