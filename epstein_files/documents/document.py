@@ -336,19 +336,18 @@ class Document:
             self.warn(f"Creating synthetic config for extracted file")
             self.config = EmailCfg(id=self.file_id)
 
-        if doc_cfg.description:
-            extracted_description = f"{EXTRACTED_FROM} {doc_cfg.complete_description()}"
+        extracted_from_description = doc_cfg.complete_description()
+
+        if extracted_from_description:
+            extracted_description = f"{EXTRACTED_FROM} {extracted_from_description}"
 
             if self.config.description:
                 self.warn(f"About to overwrite local description '{self.config.description}' with extract description '{doc_cfg.description}'")
 
             self.config.description = extracted_description
 
-        if self.config.category and doc_cfg.category:
-            self.warn(f"About to overwrite local category '{self.config.category}' with extract category '{doc_cfg.category}'")
-
-        self.config.category = doc_cfg.category
         self.config.is_interesting = self.config.is_interesting or doc_cfg.is_interesting
+        self.warn(f"Constructed local config\n{self.config}")
 
     def _write_clean_text(self, output_path: Path) -> None:
         """Write self.text to 'output_path'. Used only for diffing files."""
