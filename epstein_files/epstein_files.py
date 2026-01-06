@@ -304,7 +304,7 @@ class EpsteinFiles:
         text_summary_msg = f"\nDeanonymized {Document.known_author_count(self.imessage_logs)} of "
         text_summary_msg += f"{len(self.imessage_logs)} {TEXT_MESSAGE} logs found in {len(self.all_files):,} files."
         console.print(text_summary_msg)
-        imessage_msg_count = sum([len(log.messages()) for log in self.imessage_logs])
+        imessage_msg_count = sum([len(log.messages) for log in self.imessage_logs])
         console.print(f"Found {imessage_msg_count} text messages in {len(self.imessage_logs)} iMessage log files.")
 
     def print_other_files_table(self) -> list[OtherFile]:

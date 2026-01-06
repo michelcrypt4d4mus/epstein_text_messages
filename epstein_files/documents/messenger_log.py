@@ -1,3 +1,4 @@
+import logging
 import re
 from collections import defaultdict
 from dataclasses import dataclass, field
@@ -27,7 +28,12 @@ REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
 class MessengerLog(Communication):
     """Class representing one iMessage log file (one conversation between Epstein and some counterparty)."""
     config: TextCfg | None = None
-    _messages: list[TextMessage] = field(default_factory=list)
+    messages: list[TextMessage] = field(default_factory=list)
+    phone_number: str | None = None
+
+    def __post_init__(self):
+        super().__post_init__()
+        self.messages = [self._build_message(match) for match in MSG_REGEX.finditer(self.text)]
 
     def first_message_at(self, name: str | None) -> datetime:
         return self.messages_by(name)[0].timestamp()
@@ -43,20 +49,17 @@ class MessengerLog(Communication):
     def last_message_at(self, name: str | None) -> datetime:
         return self.messages_by(name)[-1].timestamp()
 
-    def messages(self) -> list[TextMessage]:
-        """Lazily evaluated accessor for self._messages."""
-        if not self._messages:
-            self._messages = [self._build_message(match) for match in MSG_REGEX.finditer(self.text)]
-
-        return self._messages
-
     def messages_by(self, name: str | None) -> list[TextMessage]:
         """Return all messages by 'name'."""
-        return [m for m in self.messages() if m.author == name]
+        return [m for m in self.messages if m.author == name]
 
     def metadata(self) -> Metadata:
         metadata = super().metadata()
-        metadata.update({'num_messages': len(self.messages())})
+        metadata.update({'num_messages': len(self.messages)})
+
+        if self.phone_number:
+            metadata['phone_number'] = self.phone_number
+
         return metadata
 
     def _border_style(self) -> str:
@@ -65,11 +68,16 @@ class MessengerLog(Communication):
     def _build_message(self, match: re.Match) -> TextMessage:
         """Turn a regex match into a TextMessage."""
         author_str = REDACTED_AUTHOR_REGEX.sub('', match.group(1).strip())
+        is_phone_number = author_str.startswith('+')
 
-        # If the Sender: is redacted that means it's from self.author
+        if is_phone_number:
+            self.log(f"Found phone number: {author_str}", logging.WARNING)
+            self.phone_number = author_str
+
+        # If the Sender: is redacted or if it's an unredacted phone number that means it's from self.author
         return TextMessage(
-            author=self.author if (author_str.startswith('+') or not author_str) else author_str,
-            author_str=author_str if author_str.startswith('+') else None,  # Preserve phone numbers
+            author=self.author if (is_phone_number or not author_str) else author_str,
+            author_str=author_str if is_phone_number else None,  # Preserve phone numbers
             id_confirmed=not self.is_attribution_uncertain(),
             text=match.group(4).strip(),
             timestamp_str=match.group(2).strip(),
@@ -90,7 +98,7 @@ class MessengerLog(Communication):
         yield self.file_info_panel()
         yield Text('')
 
-        for message in self.messages():
+        for message in self.messages:
             yield message
 
     @classmethod
@@ -99,7 +107,7 @@ class MessengerLog(Communication):
         sender_counts: dict[str | None, int] = defaultdict(int)
 
         for message_log in imessage_logs:
-            for message in message_log.messages():
+            for message in message_log.messages:
                 sender_counts[message.author] += 1
 
         return sender_counts

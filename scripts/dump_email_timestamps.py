@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # Print email ID + timestamp
+import sys
 from collections import defaultdict
 
 from rich.markup import escape
 from rich.panel import Panel
 
-from scripts.use_pickled import epstein_files
+from scripts.use_pickled import console, epstein_files
 from epstein_files.util.data import sort_dict
 from epstein_files.util.rich import console, print_json
 
@@ -17,6 +18,13 @@ counts = defaultdict(int)
 #     max_file_sizes[doc.class_name()] = max(max_file_sizes[doc.class_name()], doc.file_size())
 #     console.print(doc.summary())
 #     print_json('metadata', doc.metadata())
+
+for log in epstein_files.imessage_logs:
+    if log.phone_number:
+        console.print(f"{log} has phone number {log.phone_number}")
+
+sys.exit()
+
 
 for email in sorted(epstein_files.emails, key=lambda e: -len(e.actual_text)):
     if email.is_fwded_article() or email.is_junk_mail() or email.is_duplicate():
