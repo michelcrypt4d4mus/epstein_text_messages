@@ -11,6 +11,8 @@ FILENAME_LENGTH = len(HOUSE_OVERSIGHT_PREFIX) + 6
 KB = 1024
 MB = KB * KB
 
+file_size = lambda file_path: Path(file_path).stat().st_size
+file_size_str = lambda file_path: file_size_to_str(file_size(file_path))
 
 # Coerce methods handle both string and int arguments.
 coerce_file_name = lambda filename_or_id: coerce_file_stem(filename_or_id) + '.txt'
@@ -42,14 +44,6 @@ def extract_file_id(filename_or_id: int | str | Path) -> str:
         raise RuntimeError(f"Failed to extract file ID from {filename_or_id}")
 
     return file_match.group(1)
-
-
-def file_size(file_path: str | Path) -> int:
-    return Path(file_path).stat().st_size
-
-
-def file_size_str(file_path: str | Path) -> str:
-    return file_size_to_str(file_size(file_path))
 
 
 def file_size_to_str(size: int) -> str:
