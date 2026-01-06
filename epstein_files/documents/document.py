@@ -21,7 +21,7 @@ from epstein_files.util.doc_cfg import DUPE_TYPE_STRS, EmailCfg, DocCfg, Metadat
 from epstein_files.util.env import DOCS_DIR, args
 from epstein_files.util.file_helper import extract_file_id, file_size, file_size_str, is_local_extract_file
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
-from epstein_files.util.rich import INFO_STYLE, SYMBOL_STYLE, console, highlighter, key_value_txt, link_text_obj, parenthesize
+from epstein_files.util.rich import INFO_STYLE, SYMBOL_STYLE, console, highlighter, join_texts, key_value_txt, link_text_obj, parenthesize
 from epstein_files.util.search_result import MatchedLine
 
 ALT_LINK_STYLE = 'white dim'
@@ -138,17 +138,17 @@ class Document:
 
     def external_links_txt(self, style: str = '', include_alt_links: bool = False) -> Text:
         """Returns colored links to epstein.media and alternates in a Text object."""
-        txt = Text('', style='white' if include_alt_links else ARCHIVE_LINK_COLOR)
-        txt.append(self.epstein_media_link(style=style))
+        links = [self.epstein_media_link(style=style)]
 
         if include_alt_links:
-            txt.append(parenthesize(self.epsteinify_link(style=ALT_LINK_STYLE, link_txt=EPSTEINIFY)))
-            txt.append(parenthesize(self.epstein_web_link(style=ALT_LINK_STYLE, link_txt=EPSTEIN_WEB)))
+            links.append(parenthesize(self.epsteinify_link(style=ALT_LINK_STYLE, link_txt=EPSTEINIFY)))
+            links.append(parenthesize(self.epstein_web_link(style=ALT_LINK_STYLE, link_txt=EPSTEIN_WEB)))
 
             if self._class_name() == 'Email':
-                txt.append(parenthesize(self.rollcall_link(style=ALT_LINK_STYLE, link_txt=ROLLCALL)))
+                links.append(parenthesize(self.rollcall_link(style=ALT_LINK_STYLE, link_txt=ROLLCALL)))
 
-        return txt
+        txt = Text('', style='white' if include_alt_links else ARCHIVE_LINK_COLOR)
+        return txt.append(join_texts(links))
 
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any additional info about the file."""
