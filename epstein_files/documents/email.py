@@ -132,7 +132,6 @@ JUNK_EMAILERS = [
     'How To Academy',
     'Jokeland',
     JP_MORGAN_USGIO,
-    'Saved by Internet Explorer 11',
 ]
 
 MAILING_LISTS = [
@@ -278,7 +277,6 @@ USELESS_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + KRASSNER_RECIP
     'Peter Aldhous',                         # Lawrence Krauss CC
     'Sam Harris',                            # Lawrence Krauss CC
     SAMUEL_LEFF,                             # Random CC
-    "Saved by Internet Explorer 11",
     'Sean T Lehane',                         # Random CC
     'Stephen Rubin',                         # Random CC
     'Tim Kane',                              # Random CC
@@ -358,8 +356,12 @@ class Email(Communication):
         self.actual_text = self._actual_text()
         self.sent_from_device = self._sent_from_device()
 
+    def attachments(self) -> list[str]:
+        return (self.header.attachments or '').split(';')
+
     def info_txt(self) -> Text:
-        txt = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(' to ')
+        email_type = 'fwded article' if self.is_fwded_article() else 'email'
+        txt = Text(f"OCR text of {email_type} from ", style='grey46').append(self.author_txt).append(' to ')
         return txt.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
 
     def is_fwded_article(self) -> bool:
@@ -609,6 +611,8 @@ class Email(Communication):
             self._merge_lines(7, 9)
         elif self.file_id == '030299':
             self._merge_lines(7, 10)
+        elif self.file_id in ['022673', '022684']:
+            self._merge_lines(9)
         elif self.file_id == '014860':
             self._merge_lines(3)
             self._merge_lines(4)

@@ -166,7 +166,6 @@ EMAIL_AUTHOR_COUNTS = {
     "Robert Trivers": 15,
     "Ross Gow": 1,
     "Roy Black": 3,
-    "Saved by Internet Explorer 11": 1,
     "Scott J. Link": 2,
     "Sean Bannon": 3,
     "Sean J. Lancaster": 1,
@@ -207,7 +206,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 63,
+    None: 62,
     "ACT for America": 1,
     "Alan Dershowitz": 11,
     'Alan Dlugash': 1,
@@ -451,7 +450,6 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     "019871",
     "022193",
     "022247",
-    "022811",
     "022936",
     "022938",
     "023054",

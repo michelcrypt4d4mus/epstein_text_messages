@@ -6,12 +6,14 @@ from collections import defaultdict
 
 from rich.markup import escape
 from rich.panel import Panel
+from rich.table import Table
 
 from scripts.use_pickled import console, epstein_files
+from epstein_files.documents.document import Document
 from epstein_files.documents.email import USELESS_EMAILERS
 from epstein_files.util.constants import ALL_FILE_CONFIGS
 from epstein_files.util.data import sort_dict
-from epstein_files.util.rich import console, print_json
+from epstein_files.util.rich import console, highlighter, print_json
 
 
 max_sizes = defaultdict(int)
@@ -22,23 +24,51 @@ counts = defaultdict(int)
 #     console.print(doc.summary())
 #     print_json('metadata', doc.metadata())
 
-emailers = sorted(epstein_files.all_emailers(), key=lambda e: epstein_files.earliest_email_at(e))
 
-for emailer in emailers:
-    emails = epstein_files.emails_for(emailer)
-    emails_sent_by = [e for e in emails if e.author == emailer]
-    emailer_str = f"(useless emailer) {emailer}" if emailer in USELESS_EMAILERS else emailer
-
-    if len(emails) == 1:
-        if len(emails_sent_by) == 1:
-            console.print(f"SENT one email: {emailer_str} ({len(emails[0].recipients)} recipients)")
-        else:
-            console.print(f"RECEIVED only one email: {emailer_str} ({len(emails[0].recipients)} recipients)")
-    elif len(emails_sent_by) == 0:
-        console.print(f"{emailer_str} received {len(emails)} emails but sent none.")
+table = Table(header_style='bold', highlight=True)
+table.add_column('id')
+table.add_column('sent at')
+table.add_column('author')
+table.add_column('recipients', max_width=38)
+table.add_column('att')
+# table.add_column('subject')
 
 
+for email in Document.sort_by_timestamp(epstein_files.emails):
+    if email.is_fwded_article() or email.is_junk_mail() or email.is_duplicate():
+        continue
+
+    table.add_row(
+        email.file_id,
+        email.timestamp_without_seconds(),
+        email.author_txt,
+        email._recipients_txt(),
+        ', '.join(email.attachments())
+        # email.subject(),
+    )
+
+console.print(table)
 sys.exit()
+
+def print_potential_useless_emailers():
+    emailers = sorted(epstein_files.all_emailers(), key=lambda e: epstein_files.earliest_email_at(e))
+
+    for emailer in emailers:
+        emails = epstein_files.emails_for(emailer)
+        emails_sent_by = [e for e in emails if e.author == emailer]
+        emailer_str = f"(useless emailer) {emailer}" if emailer in USELESS_EMAILERS else emailer
+
+        if len(emails) == 1:
+            if len(emails_sent_by) == 1:
+                console.print(f"SENT one email: {emailer_str} ({len(emails[0].recipients)} recipients)")
+            else:
+                console.print(f"RECEIVED only one email: {emailer_str} ({len(emails[0].recipients)} recipients)")
+        elif len(emails_sent_by) == 0:
+            console.print(f"{emailer_str} received {len(emails)} emails but sent none.")
+
+
+
+counts = defaultdict(int)
 
 
 for email in sorted(epstein_files.emails, key=lambda e: -len(e.actual_text)):
