@@ -300,22 +300,9 @@ HIGHLIGHTED_NAMES = [
         }
     ),
     HighlightedNames(
-        label='friend',
-        style='tan',
-        pattern=r"Andrew Farkas|Thomas\s*(J\.?\s*)?Barrack(\s*Jr)?",
-        emailers = {
-            DAVID_STERN: f'emailed Epstein from Moscow, appears to know chairman of {DEUTSCHE_BANK}',
-            JONATHAN_FARKAS: "heir to the Alexander's department store fortune",
-            'linkspirit': "Skype username of someone Epstein communicated with",
-            'Peter Thomas Roth': 'student of Epstein at Dalton, skincare company founder',
-            STEPHEN_HANSON: None,
-            TOM_BARRACK: 'long time friend of Trump',
-        }
-    ),
-    HighlightedNames(
         label=FINANCE,
         style='green',
-        pattern=r'Apollo|Ari\s*Glass|Bank|(Bernie\s*)?Madoff|Black(rock|stone)|B\s*of\s*A|Boothbay(\sFund\sManagement)?|Chase\s*Bank|Credit\s*Suisse|DB|Deutsche\s*(Asset|Bank)|Electron\s*Capital\s*(Partners)?|Fenner|FRBNY|Goldman(\s*Sachs)|HSBC|Invesco|(Janet\s*)?Yellen|(Jerome\s*)?Powell(?!M\. Cabot)|(Jimmy\s*)?Cayne|JPMC?|j\.?p\.?\s*morgan(\.?com|\s*Chase)?|Madoff|Merrill(\s*Lynch)?|(Michael\s*)?(Cembalest|Milken)|Mizrahi\s*Bank|MLPF&S|((anti.?)?money\s+)?launder(s?|ers?|ing)?(\s+money)?|Morgan Stanley|(Peter L. )?Scher|(Ray\s*)?Dalio|Schwartz?man|Serageldin|UBS|us.gio@jpmorgan.com',
+        pattern=r'Apollo|Ari\s*Glass|Bank|(Bernie\s*)?Madoff|Black(rock|stone)|B\s*of\s*A|Boothbay(\sFund\sManagement)?|Chase\s*Bank|Credit\s*Suisse|DB|Deutsche\s*(Asset|Bank)|Electron\s*Capital\s*(Partners)?|Fenner|FRBNY|Goldman(\s*Sachs)|HSBC|Invesco|(Janet\s*)?Yellen|(Jerome\s*)?Powell(?!M\. Cabot)|(Jimmy\s*)?Cayne|JPMC?|j\.?p\.?\s*morgan(\.?com|\s*Chase)?|Madoff|Merrill(\s*Lynch)?|(Michael\s*)?(Cembalest|Milken)|Mizrahi\s*Bank|MLPF&S|((anti.?)?money\s+)?launder(s?|ers?|ing)?(\s+money)?|Morgan Stanley|(Peter L. )?Scher|(Ray\s*)?Dalio|(Richard\s*)?LeFrak|Schwartz?man|Serageldin|UBS|us.gio@jpmorgan.com',
         emailers={
             AMANDA_ENS: 'Citigroup',
             BRAD_WECHSLER: f"head of {LEON_BLACK}'s personal investment vehicle according to FT",
@@ -331,6 +318,20 @@ HIGHLIGHTED_NAMES = [
             PAUL_BARRETT: None,
             PAUL_MORRIS: 'Deutsche Bank',
         }
+    ),
+    HighlightedNames(
+        label='friend',
+        style='tan',
+        pattern=r"Andrew Farkas|Thomas\s*(J\.?\s*)?Barrack(\s*Jr)?",
+        emailers = {
+            DANGENE_AND_JENNIE_ENTERPRISE: 'founders of the members-only CORE club',
+            DAVID_STERN: f'emailed Epstein from Moscow, appears to know chairman of {DEUTSCHE_BANK}',
+            JONATHAN_FARKAS: "heir to the Alexander's department store fortune",
+            'linkspirit': "Skype username of someone Epstein communicated with",
+            'Peter Thomas Roth': 'student of Epstein at Dalton, skincare company founder',
+            STEPHEN_HANSON: None,
+            TOM_BARRACK: 'long time friend of Trump',
+        },
     ),
     HighlightedNames(
         label=HARVARD.lower(),
@@ -403,7 +404,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='law enforcement',
         style='color(24) bold',
-        pattern=r'ag|(Alicia\s*)?Valle|AML|attorney|((Bob|Robert)\s*)?Mueller|(Byung\s)?Pak|CFTC?|CIA|CIS|CVRA|Dep(artmen)?t\.?\s*of\s*(the\s*)?(Justice|Treasury)|DHS|DOJ|FBI|FCPA|FDIC|Federal\s*Bureau\s*of\s*Investigation|FinCEN|FINRA|FOIA|FTC|IRS|(James\s*)?Comey|(Jennifer\s*Shasky\s*)?Calvery|((Judge|Mark)\s*)?(Carney|Filip)|(Kirk )?Blouin|KYC|NIH|NS(A|C)|OCC|OFAC|(Lann?a\s*)?Belohlavek|lawyer|(Michael\s*)?Reiter|OGE|Office\s*of\s*Government\s*Ethics|Police Code Enforcement|(Preet\s*)?Bharara|SCOTUS|SD(FL|NY)|Southern\s*District\s*of\s*(Florida|New\s*York)|SEC|Secret\s*Service|Securities\s*and\s*Exchange\s*Commission|State\s*Dep(artmen)?t|Strzok|Supreme\s*Court|Treasury\s*(Dep(artmen)?t|Secretary)|TSA|USAID|(William\s*J\.?\s*)?Zloch',
+        pattern=r'ag|(Alicia\s*)?Valle|AML|(Andrew\s*)?McCabe|attorney|((Bob|Robert)\s*)?Mueller|(Byung\s)?Pak|CFTC?|CIA|CIS|CVRA|Dep(artmen)?t\.?\s*of\s*(the\s*)?(Justice|Treasury)|DHS|DOJ|FBI|FCPA|FDIC|Federal\s*Bureau\s*of\s*Investigation|FinCEN|FINRA|FOIA|FTC|IRS|(James\s*)?Comey|(Jennifer\s*Shasky\s*)?Calvery|((Judge|Mark)\s*)?(Carney|Filip)|(Kirk )?Blouin|KYC|NIH|NS(A|C)|OCC|OFAC|(Lann?a\s*)?Belohlavek|lawyer|(Michael\s*)?Reiter|OGE|Office\s*of\s*Government\s*Ethics|Police Code Enforcement|(Preet\s*)?Bharara|SCOTUS|SD(FL|NY)|Southern\s*District\s*of\s*(Florida|New\s*York)|SEC|Secret\s*Service|Securities\s*and\s*Exchange\s*Commission|State\s*Dep(artmen)?t|Strzok|Supreme\s*Court|Treasury\s*(Dep(artmen)?t|Secretary)|TSA|USAID|(William\s*J\.?\s*)?Zloch',
         emailers = {
             ANN_MARIE_VILLAFANA: 'southern district of Florida U.S. Attorney',
             DANNY_FROST: 'Director of Communications at Manhattan DA',
@@ -462,6 +463,7 @@ HIGHLIGHTED_NAMES = [
             CHRISTINA_GALBRAITH: f"{REPUTATION_MGMT}, worked on Epstein's Google search results with {TYLER_SHEARS}",
             IAN_OSBORNE: f"{OSBORNE_LLP} reputation repairer possibly hired by Epstein ca. 2011-06",
             MICHAEL_SITRICK: 'crisis PR',
+            'Owen Blicksilver': 'OBPR, Inc.',
             PEGGY_SIEGAL: 'socialite',
             'R. Couri Hay': None,
             ROSS_GOW: 'Acuity Reputation Management',
@@ -471,7 +473,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='republicans',
         style='bold dark_red',
-        pattern=r'Alberto\sGonzale[sz]|(Alex\s*)?Acosta|(Bill\s*)?Barr|Bill\s*Shine|(Bob\s*)?Corker|(John\s*(R.?\s*)?)Bolton|Broidy|(Chris\s)?Christie|Devin\s*Nunes|(Don\s*)?McGa[hn]n|McMaster|(George\s*)?Nader|GOP|(Brett\s*)?Kavanaugh|Kissinger|Kobach|Koch\s*Brothers|Kolfage|Kudlow|Lewandowski|(Marco\s)?Rubio|(Mark\s*)Meadows|Mattis|McCain|(?<!Merwin Dela )Cruz|(Michael\s)?Hayden|((General|Mike)\s*)?(Flynn|Pence)|(Mitt\s*)?Romney|Mnuchin|Nikki|Haley|(Paul\s+)?(Manafort|Volcker)|(Peter\s)?Navarro|Pompeo|Reagan|Reince|Priebus|Republican|(Rex\s*)?Tillerson|(?<!Cynthia )(Richard\s*)?Nixon|Sasse',
+        pattern=r'Alberto\sGonzale[sz]|(Alex\s*)?Acosta|(Bill\s*)?Barr|Bill\s*Shine|(Bob\s*)?Corker|(John\s*(R.?\s*)?)Bolton|Broidy|(Chris\s)?Christie|Devin\s*Nunes|(Don\s*)?McGa[hn]n|McMaster|(George\s*)?Nader|GOP|(Brett\s*)?Kavanaugh|Kissinger|Kobach|Koch\s*Brothers|Kolfage|Kudlow|Lewandowski|(Marco\s)?Rubio|(Mark\s*)Meadows|Mattis|McCain|(?<!Merwin Dela )Cruz|(Michael\s)?Hayden|((General|Mike)\s*)?(Flynn|Pence)|(Mitt\s*)?Romney|Mnuchin|Nikki|Haley|(Paul\s+)?(Manafort|Volcker)|(Peter\s)?Navarro|Pompeo|Reagan|Reince|Priebus|Republican|(Rex\s*)?Tillerson|(?<!Cynthia )(Richard\s*)?Nixon|Sasse|Tea\s*Party',
         # There's no emails from these people, they're just here to automate the regex creation for both first + last names
         emailers = {
             RUDY_GIULIANI: 'disbarred formed mayor of New York City',

@@ -35,7 +35,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Cecile de Jongh": 2,
     CECILIA_STEEN: 1,
     CHRISTINA_GALBRAITH: 4,
-    "Dangene and Jennie Enterprise": 4,
+    DANGENE_AND_JENNIE_ENTERPRISE: 4,
     "Daniel Sabba": 3,
     "Daniel Siad": 2,
     "Danny Frost": 1,

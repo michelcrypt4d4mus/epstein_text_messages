@@ -30,8 +30,8 @@ table.add_column('id')
 table.add_column('sent at')
 table.add_column('author')
 table.add_column('recipients', max_width=38)
-table.add_column('att')
-# table.add_column('subject')
+# table.add_column('att')
+table.add_column('subject')
 
 
 for email in Document.sort_by_timestamp(epstein_files.emails):
@@ -43,8 +43,8 @@ for email in Document.sort_by_timestamp(epstein_files.emails):
         email.timestamp_without_seconds(),
         email.author_txt,
         email._recipients_txt(),
-        ', '.join(email.attachments())
-        # email.subject(),
+        # ', '.join(email.attachments())
+        email.subject(),
     )
 
 console.print(table)
