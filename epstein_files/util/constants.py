@@ -1602,6 +1602,9 @@ for cfg in ALL_CONFIGS:
 
     # Add extra config objects for duplicate files that match the config of file they are duplicating
     for dupe_cfg in cfg.duplicate_cfgs():
+        if not isinstance(dupe_cfg, EmailCfg):
+            logger.debug(f"Generated synthetic config for dupe: {dupe_cfg}")
+
         ALL_FILE_CONFIGS[dupe_cfg.id] = dupe_cfg
 
 
