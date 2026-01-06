@@ -1,5 +1,6 @@
 import logging
 import re
+from copy import deepcopy
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
@@ -33,6 +34,7 @@ MIN_DOCUMENT_ID = 10477
 LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
+EXTRACTED_FROM = 'Extracted from'
 MIN_TIMESTAMP = datetime(1991, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
 MAX_TIMESTAMP = datetime(2020, 1, 1)
@@ -94,14 +96,30 @@ class Document:
     def __post_init__(self):
         self.filename = self.file_path.name
         self.file_id = extract_file_id(self.filename)
-        self.config = ALL_FILE_CONFIGS.get(self.file_id)
+        self.config = deepcopy(ALL_FILE_CONFIGS.get(self.file_id))
 
         if self.is_local_extract_file():
             self.url_slug = LOCAL_EXTRACT_REGEX.sub('', file_stem_for_id(self.file_id))
+            doc_id = self.url_slug.split('_')[-1]
+            doc_cfg = ALL_FILE_CONFIGS.get(doc_id)
 
-            # Coerce FileConfig for court docs etc. to MessageCfg for email files extracted from that document
-            if self._class_name() == EMAIL_CLASS and self.config and not isinstance(self.config, EmailCfg):
-                self.config = EmailCfg.from_doc_cfg(self.config)
+            # Copy info from config for file this file was extracted from
+            if doc_cfg and doc_cfg.description:
+                extracted_description = f"{EXTRACTED_FROM} {doc_cfg.complete_description()}"
+
+                if self.config:
+                    self.log(f"Have existing config {self.config}, also found config for {doc_id}: {doc_cfg}", logging.WARNING)
+
+                    if self.config.description:
+                        raise ValueError(f"Can't have a description in both the extract '{self.config.complete_description()}' and the original config '{doc_cfg.complete_description()}'")
+                    elif doc_cfg.description:
+                        self.config.description = extracted_description
+                        self.config.is_interesting = self.config.is_interesting or doc_cfg.is_interesting
+                else:
+                    self.config = EmailCfg(id=self.file_id, description=extracted_description)
+                    self.log(f"Creating synthetic config for extracted file {self.filename}", logging.WARNING)
+
+                self.log(f"Final config: {self.config}", logging.WARNING)
         else:
             self.url_slug = self.file_path.stem
 
@@ -129,15 +147,15 @@ class Document:
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on epsteinify.com."""
-        return link_text_obj(epsteinify_doc_url(self.url_slug), link_txt or self.url_slug, style)
+        return link_text_obj(epsteinify_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
 
     def epstein_media_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on epstein.media."""
-        return link_text_obj(epstein_media_doc_url(self.url_slug), link_txt or self.url_slug, style)
+        return link_text_obj(epstein_media_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
 
     def epstein_web_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         """Create a Text obj link to this document on EpsteinWeb."""
-        return link_text_obj(epstein_web_doc_url(self.url_slug), link_txt or self.url_slug, style)
+        return link_text_obj(epstein_web_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
 
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any additional info about the file."""
@@ -173,7 +191,7 @@ class Document:
 
     def log(self, msg: str, level: int = logging.INFO):
         """Log with filename as a prefix."""
-        logger.log(level, f"{self.url_slug} {msg}")
+        logger.log(level, f"{self.file_path.stem} {msg}")
 
     def log_top_lines(self, n: int = 10, msg: str = '', level: int = logging.INFO) -> None:
         """Log first 'n' lines of self.text at 'level'. 'msg' can be optionally provided."""

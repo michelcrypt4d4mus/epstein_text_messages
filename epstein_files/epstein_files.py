@@ -74,12 +74,14 @@ class EpsteinFiles:
         for file_arg in self.all_files:
             doc_timer = Timer(decimals=4)
             document = Document(file_arg)
+            cls = document_cls(document)
 
             if document.length == 0:
                 logger.warning(f"Skipping empty file: {document}]")
                 continue
+            elif args.skip_other_files and cls == OtherFile and file_type_count[cls.__name__] > 1:
+                continue
 
-            cls = document_cls(document)
             documents.append(cls(file_arg, text=document.text))
             logger.info(str(documents[-1]))
             file_type_count[cls.__name__] += 1

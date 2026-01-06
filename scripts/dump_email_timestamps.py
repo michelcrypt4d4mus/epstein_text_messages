@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # Print email ID + timestamp
+import logging
 import sys
 from collections import defaultdict
 
@@ -7,6 +8,7 @@ from rich.markup import escape
 from rich.panel import Panel
 
 from scripts.use_pickled import console, epstein_files
+from epstein_files.util.constants import ALL_FILE_CONFIGS
 from epstein_files.util.data import sort_dict
 from epstein_files.util.rich import console, print_json
 
@@ -19,9 +21,15 @@ counts = defaultdict(int)
 #     console.print(doc.summary())
 #     print_json('metadata', doc.metadata())
 
-for log in epstein_files.imessage_logs:
-    if log.phone_number:
-        console.print(f"{log} has phone number {log.phone_number} for {log.author}")
+
+for email in epstein_files.emails:
+    if email.is_local_extract_file():
+        email.log(f' is local extract, file_id={email.file_id}, filename={email.filename}, url_slug={email.url_slug}', logging.WARNING)
+
+        if email.url_slug.split('_')[-1] in ALL_FILE_CONFIGS:
+            email.log(f"Found {email.url_slug.split('_')[-1]} in ALL_FILE_CONFIGS, config={email.config}", logging.WARNING)
+            email.log(str(email.config), logging.WARNING)
+
 
 sys.exit()
 
