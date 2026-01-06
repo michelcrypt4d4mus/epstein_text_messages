@@ -1495,13 +1495,13 @@ OTHER_FILES_MISC = [
     DocCfg(id='032206', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
     DocCfg(id='032208', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
     DocCfg(id='032209', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
+    DocCfg(id='032210', category=SKYPE_LOG, author='linkspirit', is_interesting=True),
     DocCfg(
         id='018224',
         category=SKYPE_LOG,
-        description=f'Skype conversations with linkspirit (French?) and {LAWRENCE_KRAUSS}',
+        author=f'linkspirit (French?) and {LAWRENCE_KRAUSS}',
         is_interesting=True,  # we don't know who linkspirit is yet
     ),
-    DocCfg(id='032210', category=SKYPE_LOG, description=f'Skype conversation with linkspirit', is_interesting=True),
     DocCfg(
         id='025147',
         author=BROCKMAN_INC,
