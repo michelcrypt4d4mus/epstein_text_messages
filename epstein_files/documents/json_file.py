@@ -39,7 +39,7 @@ class JsonFile(OtherFile):
         return JSON
 
     def info_txt(self) -> Text | None:
-        return Text(f"JSON file, seems to contain link unfurl/embed data for iMessage or similar", style=INFO_STYLE)
+        return Text(f"JSON file, contains preview data for links sent a messaging app", style=INFO_STYLE)
 
     def is_interesting(self):
         return False
