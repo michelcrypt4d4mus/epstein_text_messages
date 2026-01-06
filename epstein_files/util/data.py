@@ -21,12 +21,12 @@ ALL_NAMES = [v for k, v in vars(names).items() if isinstance(v, str) and CONSTAN
 PACIFIC_TZ = tz.gettz("America/Los_Angeles")
 TIMEZONE_INFO = {"PDT": PACIFIC_TZ, "PST": PACIFIC_TZ}  # Suppresses annoying warnings from parse() calls
 
-
 collapse_newlines = lambda text: MULTINEWLINE_REGEX.sub('\n\n', text)
 date_str = lambda dt: dt.isoformat()[0:10] if dt else None
 escape_double_quotes = lambda text: text.replace('"', r'\"')
 escape_single_quotes = lambda text: text.replace("'", r"\'")
 iso_timestamp = lambda dt: dt.isoformat().replace('T', ' ')
+remove_time_from_timestamp_str = lambda dt: dt.isoformat().removesuffix('T00:00:00')
 uniquify = lambda _list: list(set(_list))
 without_falsey = lambda _list: [e for e in _list if e]
 

@@ -661,7 +661,7 @@ def get_style_for_category(category: str) -> str | None:
     elif category in [CONFERENCE, SPEECH]:
         return f"{get_style_for_category(ACADEMIA)} dim"
     elif category == SOCIAL:
-        return f"{get_style_for_category(PUBLICIST)}"
+        return get_style_for_category(PUBLICIST)
 
     category = CATEGORY_STYLE_MAPPING.get(category, category)
 

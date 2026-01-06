@@ -47,6 +47,8 @@ class TextMessage:
         if not self.id_confirmed and self.author is not None and self.author != JEFFREY_EPSTEIN:
             self.author_str = self.author + ' (?)'
 
+        logger.warning(f"author={self.author}, author_str={self.author_str}")
+
     def timestamp(self) -> datetime:
         return datetime.strptime(self.timestamp_str, MSG_DATE_FORMAT)
 
