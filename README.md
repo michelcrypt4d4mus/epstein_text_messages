@@ -51,6 +51,7 @@ The first time you run anything it will take a few minutes to fix all the janky 
 Run `epstein_generate --help` for command line option assistance.
 
 **Optional:** There are a handful of emails that I extracted from the legal filings they were contained in. If you want to include these files in your local analysis you'll need to copy those files from the repo into your local document directory. Something like:
+
 ```bash
 cp ./emails_extracted_from_legal_filings/*.txt "$EPSTEIN_DOCS_DIR"
 ```
