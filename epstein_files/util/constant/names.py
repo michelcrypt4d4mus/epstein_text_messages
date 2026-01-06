@@ -241,6 +241,7 @@ OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
     laurie leo leonard lenny leslie lieberman louis lynch lynn
     marcus marianne matt matthew melissa michele michelle moore moscowitz
     nancy nicole nussbaum
+    owen
     paulson philippe
     rafael ray richard richardson rob robin ron rubin rudolph ryan
     sara sarah sean seligman serge sergey silverman sloman smith snowden sorkin steele stevie stewart
