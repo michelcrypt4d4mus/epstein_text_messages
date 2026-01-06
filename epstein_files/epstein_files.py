@@ -365,6 +365,8 @@ def count_by_month(docs: Sequence[Document]) -> dict[str | None, int]:
 def document_cls(doc: Document) -> Type[Document]:
     search_area = doc.text[0:5000]  # Limit search area to avoid pointless scans of huge files
 
+    if doc.length == 0:
+        return Document
     if doc.text[0] == '{':
         return JsonFile
     elif isinstance(doc.config, EmailCfg) or (DETECT_EMAIL_REGEX.match(search_area) and doc.config is None):
