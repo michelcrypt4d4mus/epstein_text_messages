@@ -34,7 +34,7 @@ MIN_DOCUMENT_ID = 10477
 LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
-EXTRACTED_FROM = 'Extracted from'
+APPEARS_IN = 'Appears in'
 MIN_TIMESTAMP = datetime(1991, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
 MAX_TIMESTAMP = datetime(2020, 1, 1)
@@ -335,7 +335,7 @@ class Document:
         extracted_from_description = doc_cfg.complete_description()
 
         if extracted_from_description:
-            extracted_description = f"{EXTRACTED_FROM} {extracted_from_description}"
+            extracted_description = f"{APPEARS_IN} {extracted_from_description}"
 
             if self.config.description:
                 self.warn(f"Overwriting description '{self.config.description}' with extract description '{doc_cfg.description}'")
