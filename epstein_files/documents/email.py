@@ -334,7 +334,7 @@ class Email(Communication):
             extracted_from_doc_id = self.url_slug.split('_')[-1]
 
             if extracted_from_doc_id in ALL_FILE_CONFIGS:
-                self._set_config_for_extracted_file()
+                self._set_config_for_extracted_file(ALL_FILE_CONFIGS[extracted_from_doc_id])
 
         super().__post_init__()
 
@@ -667,7 +667,7 @@ class Email(Communication):
             sent_from = sent_from_match.group(0)
             return 'S' + sent_from[1:] if sent_from.startswith('sent') else sent_from
 
-    def _set_config_for_extracted_file(self) -> None:
+    def _set_config_for_extracted_file(self, extracted_from_doc_cfg: DocCfg) -> None:
         """Copy info from original config for file this document was extracted from."""
         if self.file_id in ALL_FILE_CONFIGS:
             self.config = cast(EmailCfg, deepcopy(ALL_FILE_CONFIGS[self.file_id]))
@@ -675,7 +675,7 @@ class Email(Communication):
         else:
             self.config = EmailCfg(id=self.file_id)
 
-        extracted_from_description = self.config.complete_description()
+        extracted_from_description = extracted_from_doc_cfg.complete_description()
 
         if extracted_from_description:
             extracted_description = f"{APPEARS_IN} {extracted_from_description}"
@@ -685,8 +685,8 @@ class Email(Communication):
 
             self.config.description = extracted_description
 
-        self.config.is_interesting = self.config.is_interesting or self.config.is_interesting
-        self.warn(f"Constructed local config\n{self.config}")
+        self.config.is_interesting = self.config.is_interesting or extracted_from_doc_cfg.is_interesting
+        self.warn(f"Constructed synthetic config: {self.config}")
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         logger.debug(f"Printing '{self.filename}'...")
