@@ -248,6 +248,7 @@ KRASSNER_RECIPIENTS = uniquify(flatten([ALL_FILE_CONFIGS[id].recipients for id i
 
 # No point in ever displaying these; their emails show up elsewhere because they're mostly CC recipients
 USELESS_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + KRASSNER_RECIPIENTS + [
+    'Alan Dlugash',                            # CCed with Richard Kahn
     'Alan Rogers',                           # Random CC
     'Andrew Friendly',                       # Presumably some relation of Kelly Friendly
     'BS Stern',                              # A random fwd of email we have
@@ -264,6 +265,8 @@ USELESS_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + KRASSNER_RECIP
     'Lyn Fontanilla',                        # Random CC
     'Mark Albert',                           # Random CC
     'Matthew Schafer',                       # Random CC
+    MICHAEL_BUCHHOLTZ,                       # Terry Kafka CC
+    'Nancy Dahl',                            # covered by Lawrence Krauss (her husband)
     'Michael Simmons',                       # Random CC
     'Nancy Portland',                        # Lawrence Krauss CC
     'Oliver Goodenough',                     # Robert Trivers CC
