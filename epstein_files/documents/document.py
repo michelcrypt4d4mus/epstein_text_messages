@@ -19,12 +19,12 @@ from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP
 from epstein_files.util.data import collapse_newlines, date_str, patternize, remove_zero_time_from_timestamp_str, without_falsey
 from epstein_files.util.doc_cfg import DUPE_TYPE_STRS, EmailCfg, DocCfg, Metadata, TextCfg
 from epstein_files.util.env import DOCS_DIR, args
-from epstein_files.util.file_helper import (file_stem_for_id, extract_file_id, file_size,
-     file_size_str, is_local_extract_file)
+from epstein_files.util.file_helper import extract_file_id, file_size, file_size_str, is_local_extract_file
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
-from epstein_files.util.rich import INFO_STYLE, SYMBOL_STYLE, console, highlighter, key_value_txt, link_text_obj
+from epstein_files.util.rich import INFO_STYLE, SYMBOL_STYLE, console, highlighter, join_texts, key_value_txt, link_text_obj, parenthesize
 from epstein_files.util.search_result import MatchedLine
 
+ALT_LINK_STYLE = 'white dim'
 CLOSE_PROPERTIES_CHAR = ']'
 HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
 INFO_INDENT = 2
@@ -85,7 +85,7 @@ class Document:
     num_lines: int = field(init=False)
     text: str = ''
     timestamp: datetime | None = None
-    url_slug: str = field(init=False)  # e.g. 'HOUSE_OVERSIGHT_123456
+    url_slug: str = ''
 
     # Class variables
     include_description_in_summary_panel: ClassVar[bool] = False
@@ -94,11 +94,9 @@ class Document:
     def __post_init__(self):
         self.filename = self.file_path.name
         self.file_id = extract_file_id(self.filename)
+        # config and url_slug could have been pre-set in Email
         self.config = self.config or deepcopy(ALL_FILE_CONFIGS.get(self.file_id))
-
-        if 'url_slug' not in vars(self):
-            self.url_slug = self.file_path.stem
-
+        self.url_slug = self.url_slug or self.file_path.stem
         self._set_computed_fields(text=self.text or self._load_file())
         self._repair()
         self._extract_author()
@@ -114,51 +112,46 @@ class Document:
 
     def duplicate_file_txt(self) -> Text:
         """If the file is a dupe make a nice message to explain what file it's a duplicate of."""
-        if not self.config or not self.config.dupe_of_id or self.config.dupe_type is None:
+        if not self.config or not self.config.duplicate_of_id or self.config.dupe_type is None:
             raise RuntimeError(f"duplicate_file_txt() called on {self.summary()} but not a dupe! config:\n\n{self.config}")
 
         txt = Text(f"Not showing ", style=INFO_STYLE).append(epstein_media_doc_link_txt(self.file_id, style='cyan'))
         txt.append(f" because it's {DUPE_TYPE_STRS[self.config.dupe_type]} ")
-        return txt.append(epstein_media_doc_link_txt(self.config.dupe_of_id, style='royal_blue1'))
+        return txt.append(epstein_media_doc_link_txt(self.config.duplicate_of_id, style='royal_blue1'))
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return self.external_url(epsteinify_doc_url, style, link_txt)
+        return self.external_link(epsteinify_doc_url, style, link_txt)
 
     def epstein_media_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return self.external_url(epstein_media_doc_url, style, link_txt)
+        return self.external_link(epstein_media_doc_url, style, link_txt)
 
     def epstein_web_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return self.external_url(epstein_web_doc_url, style, link_txt)
+        return self.external_link(epstein_web_doc_url, style, link_txt)
 
     def rollcall_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        return self.external_url(rollcall_doc_url, style, link_txt)
+        return self.external_link(rollcall_doc_url, style, link_txt)
 
-    def external_url(self, fxn: Callable[[str], str], style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
+    def external_link(self, fxn: Callable[[str], str], style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         return link_text_obj(fxn(self.url_slug), link_txt or self.file_path.stem, style)
 
-    def external_links(self, style: str = '', include_alt_link: bool = False) -> Text:
-        """Returns colored links to epstein.media and and epsteinweb in a Text object."""
-        txt = Text('', style='white' if include_alt_link else ARCHIVE_LINK_COLOR)
+    def external_links_txt(self, style: str = '', include_alt_links: bool = False) -> Text:
+        """Returns colored links to epstein.media and alternates in a Text object."""
+        links = [self.epstein_media_link(style=style)]
 
-        if args.use_epstein_web:
-            txt.append(self.epstein_web_link(style=style))
-            alt_link = self.epstein_media_link(style='white dim', link_txt=EPSTEIN_MEDIA)
-        else:
-            txt.append(self.epstein_media_link(style=style))
-            alt_link = self.epstein_web_link(style='white dim', link_txt=EPSTEIN_WEB)
-
-        if include_alt_link:
-            txt.append(' (').append(self.epsteinify_link(style='white dim', link_txt=EPSTEINIFY)).append(')')
-            txt.append(' (').append(alt_link).append(')')
+        if include_alt_links:
+            links.append(self.epsteinify_link(style=ALT_LINK_STYLE, link_txt=EPSTEINIFY))
+            links.append(self.epstein_web_link(style=ALT_LINK_STYLE, link_txt=EPSTEIN_WEB))
 
             if self._class_name() == 'Email':
-                txt.append(' (').append(self.rollcall_link(style='white dim', link_txt=ROLLCALL)).append(')')
+                links.append(self.rollcall_link(style=ALT_LINK_STYLE, link_txt=ROLLCALL))
 
-        return txt
+        links = [links[0]] + [parenthesize(link) for link in links[1:]]
+        base_txt = Text('', style='white' if include_alt_links else ARCHIVE_LINK_COLOR)
+        return base_txt.append(join_texts(links))
 
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any additional info about the file."""
-        panel = Panel(self.external_links(include_alt_link=True), border_style=self._border_style(), expand=False)
+        panel = Panel(self.external_links_txt(include_alt_links=True), border_style=self._border_style(), expand=False)
         padded_info = [Padding(sentence, INFO_PADDING) for sentence in self.info()]
         return Group(*([panel] + padded_info))
 
@@ -180,7 +173,7 @@ class Document:
         return None
 
     def is_duplicate(self) -> bool:
-        return bool(self.config and self.config.dupe_of_id)
+        return bool(self.config and self.config.duplicate_of_id)
 
     def is_local_extract_file(self) -> bool:
         """True if file created by extracting text from a court doc (identifiable from filename e.g. HOUSE_OVERSIGHT_012345_1.txt)."""
@@ -233,7 +226,7 @@ class Document:
 
     def sort_key(self) -> tuple[datetime, str, int]:
         if self.is_duplicate():
-            sort_id = self.config.dupe_of_id
+            sort_id = self.config.duplicate_of_id
             dupe_idx = 1
         else:
             sort_id = self.file_id
@@ -254,8 +247,8 @@ class Document:
         txt.append(' [').append(key_value_txt('size', Text(self.file_size_str(), style='aquamarine1')))
         txt.append(", ").append(key_value_txt('lines', self.num_lines))
 
-        if self.config and self.config.dupe_of_id:
-            txt.append(", ").append(key_value_txt('dupe_of', Text(self.config.dupe_of_id, style='magenta')))
+        if self.config and self.config.duplicate_of_id:
+            txt.append(", ").append(key_value_txt('dupe_of', Text(self.config.duplicate_of_id, style='magenta')))
 
         return txt
 

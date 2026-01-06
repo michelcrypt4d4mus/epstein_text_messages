@@ -18,7 +18,7 @@ from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_R
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.doc_cfg import FINANCIAL_REPORTS_AUTHORS, DocCfg, Metadata
-from epstein_files.util.data import escape_single_quotes, remove_timezone, sort_dict, uniquify
+from epstein_files.util.data import days_between, escape_single_quotes, remove_timezone, sort_dict, uniquify
 from epstein_files.util.file_helper import FILENAME_LENGTH, file_size_to_str
 from epstein_files.util.env import args
 from epstein_files.util.highlighted_group import styled_category
@@ -222,7 +222,7 @@ class OtherFile(Document):
             return timestamps[0]  # Most recent timestamp appearing in text is usually the closest
 
     def _log_extracted_timestamps_info(self, timestamps: list[datetime]) -> None:
-        num_days_spanned = (timestamps[0] - timestamps[-1]).days
+        num_days_spanned = days_between(timestamps[-1], timestamps[0])
         timestamps_log_msg = f"Extracted {len(timestamps)} timestamps spanning {num_days_spanned} days{TIMESTAMP_LOG_INDENT}"
         timestamps_log_msg += TIMESTAMP_LOG_INDENT.join([str(dt) for dt in timestamps])
 
@@ -240,7 +240,7 @@ class OtherFile(Document):
         table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
 
         for file in files:
-            link_and_info = [file.external_links()]
+            link_and_info = [file.external_links_txt()]
             date_str = file.date_str()
 
             if file.is_duplicate():

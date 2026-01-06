@@ -9,17 +9,17 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.communication import Communication
-from epstein_files.documents.imessage.text_message import MSG_DATE_FORMAT, TextMessage
+from epstein_files.documents.imessage.text_message import TextMessage
 from epstein_files.util.constant.names import JEFFREY_EPSTEIN, UNKNOWN
-from epstein_files.util.constant.strings import AUTHOR
-from epstein_files.util.data import iso_timestamp, listify, sort_dict
+from epstein_files.util.constant.strings import AUTHOR, TIMESTAMP_STYLE
+from epstein_files.util.data import date_str, days_between_str, iso_timestamp, listify, sort_dict
 from epstein_files.util.doc_cfg import Metadata, TextCfg
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import LAST_TIMESTAMP_STYLE, build_table, highlighter
 
-CONFIRMED_MSG = 'Found confirmed counterparty'
-GUESSED_MSG = 'This is probably a conversation with'
+CONFIRMED_MSG = 'with confirmed counterparty'
+GUESSED_MSG = 'and is probably with'
 MSG_REGEX = re.compile(r'Sender:(.*?)\nTime:(.*? (AM|PM)).*?Message:(.*?)\s*?((?=(\nSender)|\Z))', re.DOTALL)
 REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
 
@@ -39,17 +39,20 @@ class MessengerLog(Communication):
         return self.messages_by(name)[0].timestamp()
 
     def info_txt(self) -> Text | None:
-        if self.author is None:
-            return None
+        num_days_str = days_between_str(self.timestamp, self.messages[-1].timestamp())
+        txt = Text(f"(Covers {num_days_str} starting ", style='dim')
+        txt.append(self.date_str(), style=TIMESTAMP_STYLE).append(' ')
 
-        info_msg = GUESSED_MSG if self.is_attribution_uncertain() else CONFIRMED_MSG
-        author_txt = Text(self.author, style=self.author_style + ' bold')
-        txt = Text(f"({info_msg} ", style='dim').append(author_txt)
+        if not self.author:
+            txt.append('with unknown counterparty')
+        else:
+            txt.append(GUESSED_MSG if self.is_attribution_uncertain() else CONFIRMED_MSG).append(' ')
+            txt.append(Text(self.author, style=self.author_style + ' bold'))
 
         if self.phone_number:
-            txt.append(f" using the phone number {self.phone_number}")
+            txt.append(highlighter(f" using the phone number {self.phone_number}"))
 
-        return highlighter(txt.append(')'))
+        return txt.append(')')
 
     def last_message_at(self, name: str | None) -> datetime:
         return self.messages_by(name)[-1].timestamp()
@@ -82,7 +85,7 @@ class MessengerLog(Communication):
         # If the Sender: is redacted or if it's an unredacted phone number that means it's from self.author
         return TextMessage(
             author=self.author if (is_phone_number or not author_str) else author_str,
-            author_str=author_str if is_phone_number else None,  # Preserve phone numbers
+            author_str=author_str if is_phone_number else '',  # Preserve phone numbers
             id_confirmed=not self.is_attribution_uncertain(),
             text=match.group(4).strip(),
             timestamp_str=match.group(2).strip(),
@@ -90,12 +93,12 @@ class MessengerLog(Communication):
 
     def _extract_timestamp(self) -> datetime:
         for match in MSG_REGEX.finditer(self.text):
-            timestamp_str = match.group(2).strip()
+            message = self._build_message(match)
 
             try:
-                return datetime.strptime(timestamp_str, MSG_DATE_FORMAT)
+                return message.timestamp()
             except ValueError as e:
-                logger.info(f"Failed to parse '{timestamp_str}' to datetime! Using next match. Error: {e}'")
+                logger.info(f"Failed to parse '{message.timestamp_str}' to datetime! Using next match. Error: {e}'")
 
         raise RuntimeError(f"{self}: No timestamp found!")
 
@@ -144,7 +147,7 @@ class MessengerLog(Communication):
                 f"{count:,}",
                 iso_timestamp(first_at),
                 iso_timestamp(last_at),
-                str((last_at - first_at).days + 1),
+                str(days_between(first_at, last_at)),
             )
 
         return counts_table

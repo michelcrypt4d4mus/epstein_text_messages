@@ -32,7 +32,6 @@ output.add_argument('--output-texts', '-ot', action='store_true', help='generate
 output.add_argument('--sort-alphabetical', action='store_true', help='sort emailers alphabetically intead of by email count')
 output.add_argument('--suppress-output', action='store_true', help='no output to terminal (use with --build)')
 output.add_argument('--width', '-w', type=int, default=DEFAULT_WIDTH, help='screen width to use (in characters)')
-output.add_argument('--use-epstein-web', action='store_true', help='use epsteinweb.org links instead of epstein.media')
 
 scripts = parser.add_argument_group('SCRIPTS', 'Options used by epstein_search, epstein_show, and epstein_diff.')
 scripts.add_argument('positional_args', nargs='*', help='strings to searchs for, file IDs to show or diff, etc.')
@@ -89,9 +88,6 @@ logger.info(f'Log level set to {logger.level}...')
 if current_script == 'epstein_generate' and not (is_output_selected or args.make_clean):
     logger.warning(f"No output section chosen; outputting default selection of texts, selected emails, and other files...")
     args.output_texts = args.output_emails = args.output_other = True
-
-if args.use_epstein_web:
-    logger.warning(f"Using links to epsteinweb.org links instead of epsteinify.com...")
 
 if args.debug:
     logger.warning(f"Invocation args:\ncurrent_script={current_script}\nis_html_script={is_html_script},\nis_output_selected={is_output_selected}\nspecified_names={specified_names},\nargs={args}")
