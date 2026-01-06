@@ -257,7 +257,6 @@ JP_MORGAN_EYE_ON_THE_MARKET = f"Eye On The Market"
 LAWRENCE_KRAUSS_ASU_ORIGINS = f"{LAWRENCE_KRAUSS}'s ASU Origins Project"
 KEN_STARR_LETTER = f"letter to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
 MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
-NERIO_ALESSANDRI = 'Nerio Alessandri (Founder and Chairman of Technogym S.p.A. Italy)'
 NIGHT_FLIGHT_BOOK = f'"Night Flight" (draft)'
 NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
 OBAMA_JOKE = 'joke about Obama'
@@ -265,12 +264,11 @@ PALM_BEACH_CODE_ENFORCEMENT = f'{PALM_BEACH} Code Enforcement'
 PALM_BEACH_TSV = f"TSV of {PALM_BEACH} property"
 PALM_BEACH_WATER_COMMITTEE = f'{PALM_BEACH} Water Committee'
 PATTERSON_BOOK_SCANS = f'pages of "Filthy Rich: The Shocking True Story of {JEFFREY_EPSTEIN}"'
-SHIMON_POST = 'The Shimon Post'
+REAL_DEAL_ARTICLE = 'article by Keith Larsen'
 SHIMON_POST_ARTICLE = f'selection of articles about the mideast'
 SINGLE_PAGE = 'single page of'
 STRANGE_BEDFELLOWS = "'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more"
 SWEDISH_LIFE_SCIENCES_SUMMIT = f"{BARBRO_C_EHNBOM}'s Swedish American Life Science Summit (SALSS)"
-THE_REAL_DEAL_ARTICLE = 'article by Keith Larsen'
 TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Government Ethics"
 UBS_CIO_REPORT = 'CIO Monthly Extended report'
 UN_GENERAL_ASSEMBLY = '67th U.N. General Assembly'
@@ -500,7 +498,7 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='029977',
         author=LAWRANCE_VISOSKI,
-        recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, LESLEY_GROFF, RICHARD_KAHN] + FLIGHT_IN_2012_PEOPLE,
+        recipients=cast(list[str | None], [JEFFREY_EPSTEIN, DARREN_INDYKE, LESLEY_GROFF, RICHARD_KAHN] + FLIGHT_IN_2012_PEOPLE),
         attribution_reason=LARRY_REASON,
         duplicate_ids=['031129'],
     ),
@@ -573,7 +571,7 @@ EMAILS_CONFIG = [
         attribution_reason='ends with "Respectfully, terry"',
         author=TERRY_KAFKA,
         fwded_text_after='From: Mike Cohen',
-        recipients=[JEFFREY_EPSTEIN, MARK_EPSTEIN, MICHAEL_BUCHHOLTZ] + IRAN_DEAL_RECIPIENTS,
+        recipients=cast(list[str | None], [JEFFREY_EPSTEIN, MARK_EPSTEIN, MICHAEL_BUCHHOLTZ] + IRAN_DEAL_RECIPIENTS),
         duplicate_ids=['028482'],
     ),
     EmailCfg(id='029992', author=TERRY_KAFKA, attribution_reason='Quoted reply'),
@@ -852,9 +850,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='030015', fwded_text_after='Bill Clinton reportedly'),
     EmailCfg(id='026312', fwded_text_after='Steve Bannon trying to get on disgraced'),
     EmailCfg(id='031742', fwded_text_after="Trump's former campaign manager Paul Manafort"),
-    EmailCfg(id='012197_4', fwded_text_after="Thanks -- Jay"),
     EmailCfg(id='028925', fwded_text_after='> on Jan 4, 2015'),
     EmailCfg(id='029773', fwded_text_after='Omar Quadhafi', duplicate_ids=['012685']),
+    EmailCfg(id='012197_4', fwded_text_after="Thanks -- Jay"),
 ]
 
 
@@ -1335,8 +1333,8 @@ OTHER_FILES_PROPERTY = [
     DocCfg(id='016554', author=PALM_BEACH_CODE_ENFORCEMENT, description='board minutes', date='2008-07-17', duplicate_ids=['016616', '016574']),
     DocCfg(id='016636', author=PALM_BEACH_WATER_COMMITTEE, description=f"Meeting on January 29, 2009"),
     DocCfg(id='022417', author='Park Partners NYC', description=f"letter to partners in real estate project with architectural plans"),
-    DocCfg(id='027068', author=THE_REAL_DEAL, description=f"{THE_REAL_DEAL_ARTICLE} Palm House Hotel Bankruptcy and EB-5 Visa Fraud Allegations"),
-    DocCfg(id='029520', author=THE_REAL_DEAL, description=f"{THE_REAL_DEAL_ARTICLE} 'Lost Paradise at the Palm House'", date='2019-06-17'),
+    DocCfg(id='027068', author=THE_REAL_DEAL, description=f"{REAL_DEAL_ARTICLE} Palm House Hotel Bankruptcy and EB-5 Visa Fraud Allegations"),
+    DocCfg(id='029520', author=THE_REAL_DEAL, description=f"{REAL_DEAL_ARTICLE} 'Lost Paradise at the Palm House'", date='2019-06-17'),
     DocCfg(id='016597', author='Trump Properties LLC', description=f'appeal of some decision about Mar-a-Lago by {PALM_BEACH} authorities'),
     DocCfg(id='018743', description=f"Las Vegas property listing"),
     DocCfg(id='016695', description=f"{PALM_BEACH} property info (?)"),
@@ -1497,13 +1495,13 @@ OTHER_FILES_MISC = [
     DocCfg(id='032206', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
     DocCfg(id='032208', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
     DocCfg(id='032209', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
+    DocCfg(id='032210', category=SKYPE_LOG, author='linkspirit', is_interesting=True),
     DocCfg(
         id='018224',
         category=SKYPE_LOG,
-        description=f'Skype conversations with linkspirit (French?) and {LAWRENCE_KRAUSS}',
+        author=f'linkspirit (French?) and {LAWRENCE_KRAUSS}',
         is_interesting=True,  # we don't know who linkspirit is yet
     ),
-    DocCfg(id='032210', category=SKYPE_LOG, description=f'Skype conversation with linkspirit', is_interesting=True),
     DocCfg(
         id='025147',
         author=BROCKMAN_INC,
