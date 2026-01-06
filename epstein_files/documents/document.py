@@ -100,24 +100,11 @@ class Document:
 
         if self.is_local_extract_file():
             self.url_slug = LOCAL_EXTRACT_REGEX.sub('', file_stem_for_id(self.file_id))
-            doc_id = self.url_slug.split('_')[-1]
-            doc_cfg = ALL_FILE_CONFIGS.get(doc_id)
+            extracted_from_doc_id = self.url_slug.split('_')[-1]
+            extracted_from_doc_cfg = deepcopy(ALL_FILE_CONFIGS.get(extracted_from_doc_id))
 
-            # Copy info from config for file this file was extracted from
-            if doc_cfg and doc_cfg.description:
-                extracted_description = f"{EXTRACTED_FROM} {doc_cfg.complete_description()}"
-
-                if self.config:
-                    self.log(f"Merging existing config with config for file this was extracted from", logging.WARNING)
-
-                    if self.config.description:
-                        raise ValueError(f"{self.filename} Can't have a description in both the extract cfg and this files cfg!")
-                    elif doc_cfg.description:
-                        self.config.description = extracted_description
-                        self.config.is_interesting = self.config.is_interesting or doc_cfg.is_interesting
-                else:
-                    self.log(f"Creating synthetic config for extracted file {self.filename}", logging.WARNING)
-                    self.config = EmailCfg(id=self.file_id, description=extracted_description, is_interesting=doc_cfg.is_interesting)
+            if extracted_from_doc_cfg:
+                self._set_extract_config(extracted_from_doc_cfg)
         else:
             self.url_slug = self.file_path.stem
 
@@ -291,6 +278,9 @@ class Document:
     def top_lines(self, n: int = 10) -> str:
         return '\n'.join(self.lines[0:n])[:MAX_TOP_LINES_LEN]
 
+    def warn(self, msg: str) -> None:
+        self.log(msg, level=logging.WARNING)
+
     def _border_style(self) -> str:
         """Should be overloaded in subclasses."""
         return 'white'
@@ -337,6 +327,28 @@ class Document:
         self.length = len(self.text)
         self.lines = [line.strip() if self.strip_whitespace else line for line in self.text.split('\n')]
         self.num_lines = len(self.lines)
+
+    def _set_extract_config(self, doc_cfg: DocCfg | EmailCfg) -> None:
+        """Copy info from original config for file this document was extracted from."""
+        if self.config:
+            self.warn(f"Merging existing config with config for file this document was extracted from")
+        else:
+            self.warn(f"Creating synthetic config for extracted file")
+            self.config = EmailCfg(id=self.file_id)
+
+        if doc_cfg.description:
+            extracted_description = f"{EXTRACTED_FROM} {doc_cfg.complete_description()}"
+
+            if self.config.description:
+                self.warn(f"About to overwrite local description '{self.config.description}' with extract description '{doc_cfg.description}'")
+
+            self.config.description = extracted_description
+
+        if self.config.category and doc_cfg.category:
+            self.warn(f"About to overwrite local category '{self.config.category}' with extract category '{doc_cfg.category}'")
+
+        self.config.category = doc_cfg.category
+        self.config.is_interesting = self.config.is_interesting or doc_cfg.is_interesting
 
     def _write_clean_text(self, output_path: Path) -> None:
         """Write self.text to 'output_path'. Used only for diffing files."""
