@@ -223,6 +223,7 @@ HIGHLIGHTED_NAMES = [
             'Linda Pinto': 'interior design at Alberto Pinto Cabinet',
             MERWIN_DELA_CRUZ: None,  # HOUSE_OVERSIGHT_032652 Groff says "Jojo and Merwin both requested off Nov. 25 and 26"
             NADIA_MARCINKO: 'pilot',
+            'Sean J. Lancaster': 'airplane reseller',
         }
     ),
     HighlightedNames(
@@ -260,6 +261,8 @@ HIGHLIGHTED_NAMES = [
             MARTIN_WEINBERG: CRIMINAL_DEFENSE_ATTORNEY,
             MICHAEL_MILLER: 'Steptoe LLP partner',
             REID_WEINGARTEN: 'Steptoe LLP partner',
+            ROBERT_D_CRITTON_JR: 'criminal defense attorney',
+            'Robert Gold': None,
             'Roy Black': CRIMINAL_DEFENSE_2008,
             SCOTT_J_LINK: None,
             TONJA_HADDAD_COLEMAN: f'{EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY}, maybe daughter of Fred Haddad?',
@@ -310,15 +313,17 @@ HIGHLIGHTED_NAMES = [
         }
     ),
     HighlightedNames(
-        label='finance',
+        label=FINANCE,
         style='green',
         pattern=r'Apollo|Ari\s*Glass|Bank|(Bernie\s*)?Madoff|Black(rock|stone)|B\s*of\s*A|Boothbay(\sFund\sManagement)?|Chase\s*Bank|Credit\s*Suisse|DB|Deutsche\s*(Asset|Bank)|Electron\s*Capital\s*(Partners)?|Fenner|FRBNY|Goldman(\s*Sachs)|HSBC|Invesco|(Janet\s*)?Yellen|(Jerome\s*)?Powell(?!M\. Cabot)|(Jimmy\s*)?Cayne|JPMC?|j\.?p\.?\s*morgan(\.?com|\s*Chase)?|Madoff|Merrill(\s*Lynch)?|(Michael\s*)?(Cembalest|Milken)|Mizrahi\s*Bank|MLPF&S|((anti.?)?money\s+)?launder(s?|ers?|ing)?(\s+money)?|Morgan Stanley|(Peter L. )?Scher|(Ray\s*)?Dalio|Schwartz?man|Serageldin|UBS|us.gio@jpmorgan.com',
         emailers={
             AMANDA_ENS: 'Citigroup',
+            BRAD_WECHSLER: f"head of {LEON_BLACK}'s personal investment vehicle according to FT",
             DANIEL_SABBA: 'UBS Investment Bank',
             DAVID_FISZEL: 'CIO Honeycomb Asset Management',
             JES_STALEY: 'former CEO of Barclays',
             JIDE_ZEITLIN: 'former partner at Goldman Sachs, allegations of sexual misconduct',
+            'Laurie Cameron': 'currency trading',
             LEON_BLACK: 'Apollo CEO',
             MARC_LEON: 'Luxury Properties Sari Morrocco',
             MELANIE_SPINELLA: f'representative of {LEON_BLACK}',
@@ -378,7 +383,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label=JOURNALIST,
         style='bright_yellow',
-        pattern=r'Palm\s*Beach\s*(Daily\s*News|Post)|ABC(\s*News)?|Alex\s*Yablon|(Andrew\s*)?Marra|Arianna(\s*Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie\s*Rose|China\s*Daily|CNBC|CNN(politics?)?|Con[cs]hita|Sarnoff|(?<!Virgin[-\s]Islands[-\s])Daily\s*(Beast|Mail|News|Telegraph)|(David\s*)?Pecker|David\s*Brooks|Ed\s*Krassenstein|(Emily\s*)?Michot|Ezra\s*Klein|(George\s*)?Stephanopoulus|Globe\s*and\s*Mail|Good\s*Morning\s*America|Graydon(\s*Carter)?|Huffington(\s*Post)?|Ingram, David|(James\s*)?Patterson|Jonathan\s*Karl|Julie\s*(K.?\s*)?Brown|(Katie\s*)?Couric|Keith\s*Larsen|L\.?A\.?\s*Times|Miami\s*Herald|(Michele\s*)?Dargan|(National\s*)?Enquirer|(The\s*)?N(ew\s*)?Y(ork\s*)?(P(ost)?|T(imes)?)|(The\s*)?New\s*Yorker|NYer|PERVERSION\s*OF\s*JUSTICE|Politico|Pro\s*Publica|(Sean\s*)?Hannity|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|(The\s*)?Wa(shington\s*)?Po(st)?|Viceland|Vick[iy]\s*Ward|Vox|WGBH|(The\s*)?Wall\s*Street\s*Journal|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
+        pattern=r'Palm\s*Beach\s*(Daily\s*News|Post)|ABC(\s*News)?|Alex\s*Yablon|(Andrew\s*)?Marra|Arianna(\s*Huffington)?|(Arthur\s*)?Kretchmer|BBC|Bloomberg|Breitbart|Charlie\s*Rose|China\s*Daily|CNBC|CNN(politics?)?|Con[cs]hita|Sarnoff|(?<!Virgin[-\s]Islands[-\s])Daily\s*(Beast|Mail|News|Telegraph)|(David\s*)?Pecker|David\s*Brooks|Ed\s*Krassenstein|(Emily\s*)?Michot|Ezra\s*Klein|(George\s*)?Stephanopoulus|Globe\s*and\s*Mail|Good\s*Morning\s*America|Graydon(\s*Carter)?|Huffington(\s*Post)?|Ingram, David|(James\s*)?(Hill|Patterson)|Jonathan\s*Karl|Julie\s*(K.?\s*)?Brown|(Katie\s*)?Couric|Keith\s*Larsen|L\.?A\.?\s*Times|Miami\s*Herald|(Michele\s*)?Dargan|(National\s*)?Enquirer|(The\s*)?N(ew\s*)?Y(ork\s*)?(P(ost)?|T(imes)?)|(The\s*)?New\s*Yorker|NYer|PERVERSION\s*OF\s*JUSTICE|Politico|Pro\s*Publica|(Sean\s*)?Hannity|Sulzberger|SunSentinel|Susan Edelman|(Uma\s*)?Sanghvi|(The\s*)?Wa(shington\s*)?Po(st)?|Viceland|Vick[iy]\s*Ward|Vox|WGBH|(The\s*)?Wall\s*Street\s*Journal|WSJ|[-\w.]+@(bbc|independent|mailonline|mirror|thetimes)\.co\.uk',
         emailers = {
             EDWARD_JAY_EPSTEIN: 'reporter who wrote about the kinds of crimes Epstein was involved in, no relation to Jeffrey',
             'James Hill': 'ABC News',
@@ -458,6 +463,7 @@ HIGHLIGHTED_NAMES = [
             IAN_OSBORNE: f"{OSBORNE_LLP} reputation repairer possibly hired by Epstein ca. 2011-06",
             MICHAEL_SITRICK: 'crisis PR',
             PEGGY_SIEGAL: 'socialite',
+            'R. Couri Hay': None,
             ROSS_GOW: 'Acuity Reputation Management',
             TYLER_SHEARS: f"{REPUTATION_MGMT}, worked on Epstein's Google search results with {CHRISTINA_GALBRAITH}",
         }
@@ -493,14 +499,16 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label=ACADEMIA,
         style='light_goldenrod2',
-        pattern=r'Alain Forget|Brotherton|Carl\s*Sagan|Columbia|David Grosof|J(ames|im)\s*Watson|(Lord\s*)?Martin\s*Rees|Massachusetts\s*Institute\s*of\s*Technology|MIT(\s*Media\s*Lab)?|Media\s*Lab|Minsky|((Noam|Valeria)\s*)?Chomsky|Praluent|Regeneron|(Richard\s*)?Dawkins|Sanofi|Stanford|(Stephen\s*)?Hawking|(Steven?\s*)?Pinker|UCLA',
+        pattern=r'Alain Forget|Brotherton|Carl\s*Sagan|Columbia|David Grosof|J(ames|im)\s*Watson|(Lord\s*)?Martin\s*Rees|Massachusetts\s*Institute\s*of\s*Technology|MIT(\s*Media\s*Lab)?|Media\s*Lab|Minsky|((Noam|Valeria)\s*)?Chomsky|Norman\s*Finkelstein|Praluent|Regeneron|(Richard\s*)?Dawkins|Sanofi|Stanford|(Stephen\s*)?Hawking|(Steven?\s*)?Pinker|UCLA',
         emailers = {
             DAVID_HAIG: None,
             JOSCHA_BACH: 'cognitive science / AI research',
             'Daniel Kahneman': 'Nobel economic sciences laureate and cognitivie psychologist (?)',
+            'Ed Boyden': 'Associate Professor, MIT Media Lab neurobiology',
             LAWRENCE_KRAUSS: 'theoretical physicist',
             LINDA_STONE: 'ex-Microsoft, MIT Media Lab',
             MARK_TRAMO: 'professor of neurology at UCLA',
+            'Nancy Dahl': f'wife of {LAWRENCE_KRAUSS}',
             NEAL_KASSELL: 'professor of neurosurgery at University of Virginia',
             PETER_ATTIA: 'longevity medicine',
             ROBERT_TRIVERS: 'evolutionary biology',

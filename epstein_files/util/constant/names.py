@@ -143,7 +143,7 @@ REID_HOFFMAN = 'Reid Hoffman'
 REID_WEINGARTEN = 'Reid Weingarten'
 RENATA_BOLOTOVA = 'Renata Bolotova'
 RICHARD_KAHN = 'Richard Kahn'
-ROBERT_D_CRITTON = 'Robert D. Critton Jr.'
+ROBERT_D_CRITTON_JR = 'Robert D. Critton Jr.'
 ROBERT_LAWRENCE_KUHN = 'Robert Lawrence Kuhn'
 ROBERT_TRIVERS = 'Robert Trivers'
 ROGER_SCHANK = 'Roger Schank'
@@ -229,20 +229,20 @@ OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
     aaron albert alberto alec alexandra alice anderson andre ann anna anne ariana arthur
     baldwin barack ben benjamin berger bert binant bob bonner boyden bradley brady branson bright bruno bryant burton
     chapman charles charlie christopher clint cohen colin collins conway
-    davis dean debra deborah dennis diana diane diaz dickinson dixon dominique don dylan
+    danny davis dean debra deborah dennis diana diane diaz dickinson dixon dominique don dylan
     edmond elizabeth emily entwistle erik evelyn
-    ferguson flachsbart francis franco frank
+    ferguson flachsbart francis franco frank frost
     gardner gary geoff geoffrey gilbert gloria goldberg gonzalez gould graham greene guarino gwyneth
-    hancock harold harrison harry helen hirsch hofstadter horowitz hussein
+    hancock harold harrison harry hay helen hirsch hofstadter horowitz hussein
     ian isaac isaacson
     jamie jane janet jason jen jim joe johnson jones josh julie justin
     karl kate kathy kelly kim kruger kyle
-    leo leonard lenny leslie lieberman louis lynch lynn
+    laurie leo leonard lenny leslie lieberman louis lynch lynn
     marcus marianne matt matthew melissa michele michelle moore moscowitz
-    nicole nussbaum
+    nancy nicole nussbaum
     paulson philippe
     rafael ray richard richardson rob robin ron rubin rudolph ryan
-    sara sarah seligman serge sergey silverman sloman smith snowden sorkin steele stevie stewart
+    sara sarah sean seligman serge sergey silverman sloman smith snowden sorkin steele stevie stewart
     ted theresa thompson tiffany timothy tony
     valeria
     walter warren weinstein weiss william
