@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Extract configs
 * phone numbers
 
 ### 1.0.10
