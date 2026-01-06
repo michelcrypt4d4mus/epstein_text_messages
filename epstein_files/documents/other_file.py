@@ -240,7 +240,7 @@ class OtherFile(Document):
         table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
 
         for file in files:
-            link_and_info = [file.external_links()]
+            link_and_info = [file.external_links_txt()]
             date_str = file.date_str()
 
             if file.is_duplicate():
