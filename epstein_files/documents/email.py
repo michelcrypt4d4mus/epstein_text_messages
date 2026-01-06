@@ -1,5 +1,6 @@
 import logging
 import re
+from copy import deepcopy
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from typing import ClassVar, cast
@@ -21,6 +22,7 @@ from epstein_files.util.constants import *
 from epstein_files.util.data import (TIMEZONE_INFO, collapse_newlines, escape_single_quotes, extract_last_name,
      flatten, remove_timezone, uniquify)
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
+from epstein_files.util.file_helper import extract_file_id, file_stem_for_id
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
@@ -35,9 +37,11 @@ REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGN
 BAD_TIMEZONE_REGEX = re.compile(fr'\((UTC|GMT\+\d\d:\d\d)\)|{REDACTED}')
 DATE_HEADER_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
 TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
+LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
+APPEARS_IN = 'Appears in'
 MAX_CHARS_TO_PRINT = 4000
 MAX_NUM_HEADER_LINES = 14
 MAX_QUOTED_REPLIES = 2
@@ -321,6 +325,17 @@ class Email(Communication):
     rewritten_header_ids: ClassVar[set[str]] = set([])
 
     def __post_init__(self):
+        self.filename = self.file_path.name
+        self.file_id = extract_file_id(self.filename)
+
+        # Special handling for copying properties out of the config for the document this one was extracted from
+        if self.is_local_extract_file():
+            self.url_slug = LOCAL_EXTRACT_REGEX.sub('', file_stem_for_id(self.file_id))
+            extracted_from_doc_id = self.url_slug.split('_')[-1]
+
+            if extracted_from_doc_id in ALL_FILE_CONFIGS:
+                self._set_config_for_extracted_file()
+
         super().__post_init__()
 
         try:
@@ -651,6 +666,27 @@ class Email(Communication):
         if sent_from_match:
             sent_from = sent_from_match.group(0)
             return 'S' + sent_from[1:] if sent_from.startswith('sent') else sent_from
+
+    def _set_config_for_extracted_file(self) -> None:
+        """Copy info from original config for file this document was extracted from."""
+        if self.file_id in ALL_FILE_CONFIGS:
+            self.config = cast(EmailCfg, deepcopy(ALL_FILE_CONFIGS[self.file_id]))
+            self.warn(f"Merging existing config for {self.file_id} with config for file this document was extracted from")
+        else:
+            self.config = EmailCfg(id=self.file_id)
+
+        extracted_from_description = self.config.complete_description()
+
+        if extracted_from_description:
+            extracted_description = f"{APPEARS_IN} {extracted_from_description}"
+
+            if self.config.description:
+                self.warn(f"Overwriting description '{self.config.description}' with extract description '{self.config.description}'")
+
+            self.config.description = extracted_description
+
+        self.config.is_interesting = self.config.is_interesting or self.config.is_interesting
+        self.warn(f"Constructed local config\n{self.config}")
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         logger.debug(f"Printing '{self.filename}'...")
