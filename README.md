@@ -31,7 +31,7 @@ epstein_generate
 # Search for a string:
 epstein_search Bannon
 # Or a regex:
-epstein_search '\bSteve\s*Bannon\b'
+epstein_search '\bSteve\s*Bannon|Jeffrey\s*Epstein\b'
 
 # Show a file with color highlighting of keywords:
 epstein_show 030999
