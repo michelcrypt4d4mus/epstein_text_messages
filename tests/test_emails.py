@@ -243,7 +243,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Dan Fleuette": 1,
     'Daniel Dawson': 2,
     "Daniel Siad": 2,
-    "Danny Goldberg": 4,
+    "Danny Goldberg": 5,
     DARREN_INDYKE: 49,
     DAVID_BLAINE: 1,
     "David Grosof": 6,

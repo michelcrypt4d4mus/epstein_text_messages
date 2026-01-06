@@ -1,5 +1,6 @@
 import logging
 import re
+from copy import deepcopy
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from typing import ClassVar, cast
@@ -21,6 +22,7 @@ from epstein_files.util.constants import *
 from epstein_files.util.data import (TIMEZONE_INFO, collapse_newlines, escape_single_quotes, extract_last_name,
      flatten, remove_timezone, uniquify)
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
+from epstein_files.util.file_helper import extract_file_id, file_stem_for_id
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
@@ -35,9 +37,11 @@ REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGN
 BAD_TIMEZONE_REGEX = re.compile(fr'\((UTC|GMT\+\d\d:\d\d)\)|{REDACTED}')
 DATE_HEADER_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
 TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
+LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
+APPEARS_IN = 'Appears in'
 MAX_CHARS_TO_PRINT = 4000
 MAX_NUM_HEADER_LINES = 14
 MAX_QUOTED_REPLIES = 2
@@ -248,6 +252,7 @@ KRASSNER_RECIPIENTS = uniquify(flatten([ALL_FILE_CONFIGS[id].recipients for id i
 
 # No point in ever displaying these; their emails show up elsewhere because they're mostly CC recipients
 USELESS_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + KRASSNER_RECIPIENTS + [
+    'Alan Dlugash',                            # CCed with Richard Kahn
     'Alan Rogers',                           # Random CC
     'Andrew Friendly',                       # Presumably some relation of Kelly Friendly
     'BS Stern',                              # A random fwd of email we have
@@ -264,6 +269,8 @@ USELESS_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + KRASSNER_RECIP
     'Lyn Fontanilla',                        # Random CC
     'Mark Albert',                           # Random CC
     'Matthew Schafer',                       # Random CC
+    MICHAEL_BUCHHOLTZ,                       # Terry Kafka CC
+    'Nancy Dahl',                            # covered by Lawrence Krauss (her husband)
     'Michael Simmons',                       # Random CC
     'Nancy Portland',                        # Lawrence Krauss CC
     'Oliver Goodenough',                     # Robert Trivers CC
@@ -318,6 +325,17 @@ class Email(Communication):
     rewritten_header_ids: ClassVar[set[str]] = set([])
 
     def __post_init__(self):
+        self.filename = self.file_path.name
+        self.file_id = extract_file_id(self.filename)
+
+        # Special handling for copying properties out of the config for the document this one was extracted from
+        if self.is_local_extract_file():
+            self.url_slug = LOCAL_EXTRACT_REGEX.sub('', file_stem_for_id(self.file_id))
+            extracted_from_doc_id = self.url_slug.split('_')[-1]
+
+            if extracted_from_doc_id in ALL_FILE_CONFIGS:
+                self._set_config_for_extracted_file(ALL_FILE_CONFIGS[extracted_from_doc_id])
+
         super().__post_init__()
 
         try:
@@ -570,7 +588,7 @@ class Email(Communication):
             self._merge_lines(3)  # Merge 4th and 5th rows
         elif self.file_id in '026609 029402 032405 022695'.split():
             self._merge_lines(4)  # Merge 5th and 6th rows
-        elif self.file_id in ['019407', '031980', '030384', '033144', '030999', '033575', '029835', '030381']:
+        elif self.file_id in ['019407', '031980', '030384', '033144', '030999', '033575', '029835', '030381', '033357']:
             self._merge_lines(2, 4)
         elif self.file_id in ['029154', '029163']:
             self._merge_lines(2, 5)
@@ -648,6 +666,27 @@ class Email(Communication):
         if sent_from_match:
             sent_from = sent_from_match.group(0)
             return 'S' + sent_from[1:] if sent_from.startswith('sent') else sent_from
+
+    def _set_config_for_extracted_file(self, extracted_from_doc_cfg: DocCfg) -> None:
+        """Copy info from original config for file this document was extracted from."""
+        if self.file_id in ALL_FILE_CONFIGS:
+            self.config = cast(EmailCfg, deepcopy(ALL_FILE_CONFIGS[self.file_id]))
+            self.warn(f"Merging existing config for {self.file_id} with config for file this document was extracted from")
+        else:
+            self.config = EmailCfg(id=self.file_id)
+
+        extracted_from_description = extracted_from_doc_cfg.complete_description()
+
+        if extracted_from_description:
+            extracted_description = f"{APPEARS_IN} {extracted_from_description}"
+
+            if self.config.description:
+                self.warn(f"Overwriting description '{self.config.description}' with extract description '{self.config.description}'")
+
+            self.config.description = extracted_description
+
+        self.config.is_interesting = self.config.is_interesting or extracted_from_doc_cfg.is_interesting
+        self.warn(f"Constructed synthetic config: {self.config}")
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         logger.debug(f"Printing '{self.filename}'...")

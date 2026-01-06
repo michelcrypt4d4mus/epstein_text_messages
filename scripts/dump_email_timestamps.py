@@ -8,6 +8,7 @@ from rich.markup import escape
 from rich.panel import Panel
 
 from scripts.use_pickled import console, epstein_files
+from epstein_files.documents.email import USELESS_EMAILERS
 from epstein_files.util.constants import ALL_FILE_CONFIGS
 from epstein_files.util.data import sort_dict
 from epstein_files.util.rich import console, print_json
@@ -21,10 +22,20 @@ counts = defaultdict(int)
 #     console.print(doc.summary())
 #     print_json('metadata', doc.metadata())
 
-for email in epstein_files.emails:
-    if email.is_local_extract_file():
-        email.warn(f'is local extract, file_id={email.file_id}, filename={email.filename}, url_slug={email.url_slug}')
-        email.warn(f"config={email.config}")
+emailers = sorted(epstein_files.all_emailers(), key=lambda e: epstein_files.earliest_email_at(e))
+
+for emailer in emailers:
+    emails = epstein_files.emails_for(emailer)
+    emails_sent_by = [e for e in emails if e.author == emailer]
+    emailer_str = f"(useless emailer) {emailer}" if emailer in USELESS_EMAILERS else emailer
+
+    if len(emails) == 1:
+        if len(emails_sent_by) == 1:
+            console.print(f"SENT one email: {emailer_str} ({len(emails[0].recipients)} recipients)")
+        else:
+            console.print(f"RECEIVED only one email: {emailer_str} ({len(emails[0].recipients)} recipients)")
+    elif len(emails_sent_by) == 0:
+        console.print(f"{emailer_str} received {len(emails)} emails but sent none.")
 
 
 sys.exit()

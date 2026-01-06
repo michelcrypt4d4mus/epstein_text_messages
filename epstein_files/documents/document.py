@@ -31,10 +31,8 @@ INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
 MAX_TOP_LINES_LEN = 4000  # Only for logging
 MIN_DOCUMENT_ID = 10477
-LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
-EXTRACTED_FROM = 'Extracted from'
 MIN_TIMESTAMP = datetime(1991, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
 MAX_TIMESTAMP = datetime(2020, 1, 1)
@@ -96,15 +94,9 @@ class Document:
     def __post_init__(self):
         self.filename = self.file_path.name
         self.file_id = extract_file_id(self.filename)
-        self.config = deepcopy(ALL_FILE_CONFIGS.get(self.file_id))
+        self.config = self.config or deepcopy(ALL_FILE_CONFIGS.get(self.file_id))
 
-        if self.is_local_extract_file():
-            self.url_slug = LOCAL_EXTRACT_REGEX.sub('', file_stem_for_id(self.file_id))
-            extracted_from_doc_id = self.url_slug.split('_')[-1]
-
-            if extracted_from_doc_id in ALL_FILE_CONFIGS:
-                self._set_extract_config(deepcopy(ALL_FILE_CONFIGS[extracted_from_doc_id]))
-        else:
+        if 'url_slug' not in vars(self):
             self.url_slug = self.file_path.stem
 
         self._set_computed_fields(text=self.text or self._load_file())
@@ -324,26 +316,6 @@ class Document:
         self.length = len(self.text)
         self.lines = [line.strip() if self.strip_whitespace else line for line in self.text.split('\n')]
         self.num_lines = len(self.lines)
-
-    def _set_extract_config(self, doc_cfg: DocCfg | EmailCfg) -> None:
-        """Copy info from original config for file this document was extracted from."""
-        if self.config:
-            self.warn(f"Merging existing config with config for file this document was extracted from")
-        else:
-            self.config = EmailCfg(id=self.file_id)
-
-        extracted_from_description = doc_cfg.complete_description()
-
-        if extracted_from_description:
-            extracted_description = f"{EXTRACTED_FROM} {extracted_from_description}"
-
-            if self.config.description:
-                self.warn(f"Overwriting description '{self.config.description}' with extract description '{doc_cfg.description}'")
-
-            self.config.description = extracted_description
-
-        self.config.is_interesting = self.config.is_interesting or doc_cfg.is_interesting
-        self.warn(f"Constructed local config\n{self.config}")
 
     def _write_clean_text(self, output_path: Path) -> None:
         """Write self.text to 'output_path'. Used only for diffing files."""
