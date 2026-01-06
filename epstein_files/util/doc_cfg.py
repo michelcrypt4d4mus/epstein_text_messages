@@ -47,17 +47,11 @@ FINANCIAL_REPORTS_AUTHORS = [
 ]
 
 # Fields like timestamp and author are better added from the Document object
-METADATA_FIELDS = [
-    'attribution_reason',
-    'author',
-    'category',
-    'dupe_of_id',
-    'duplicate_ids',
-    'is_attribution_uncertain',
-    'is_fwded_article',
-    'is_interesting',
-    'recipients',
-    'timestamp',
+NON_METADATA_FIELDS = [
+    'actual_text',
+    'date',
+    'id',
+    'is_synthetic',
 ]
 
 
@@ -108,7 +102,8 @@ class DocCfg:
             return f"{msg} {self.description}" if self.description else msg
         elif self.author and self.description:
             if self.category in [ACADEMIA, BOOK]:
-                return self.title_by_author()
+                title = self.description if '"' in self.description else f"'{self.description}'"
+                return f"{title} by {self.author}"
             elif self.category == FINANCE and self.author in FINANCIAL_REPORTS_AUTHORS:
                 return f"{self.author} report: '{self.description}'"
             elif self.category == LEGAL and 'v.' in self.author:
@@ -118,9 +113,6 @@ class DocCfg:
 
         pieces = without_falsey([self.author, self.description])
         return ' '.join(pieces) if pieces else None
-
-    def duplicate_reason(self) -> str | None:
-        return DUPE_TYPE_STRS[self.dupe_type] if self.dupe_type else None
 
     def duplicate_cfgs(self) -> Generator['DocCfg', None, None]:
         """Create synthetic DocCfg objects that set the 'dupe_of_id' field to point back to this object."""
@@ -134,26 +126,13 @@ class DocCfg:
             yield dupe_cfg
 
     def metadata(self) -> Metadata:
-        return {k: v for k, v in asdict(self).items() if v and k in METADATA_FIELDS}
-
-    def non_null_field_names(self) -> list[str]:
-        return [f.name for f in self.sorted_fields() if getattr(self, f.name)]
-
-    def sorted_fields(self) -> list[Field]:
-        return sorted(fields(self), key=lambda f: FIELD_SORT_KEY.get(f.name, f.name))
-
-    def title_by_author(self) -> str:
-        if not (self.author and self.description):
-            raise RuntimeError(f"Can't call title_by_author() without author and description!")
-
-        title = self.description if '"' in self.description else f"'{self.description}'"
-        return f"{title} by {self.author}"
+        return {k: v for k, v in asdict(self).items() if k not in NON_METADATA_FIELDS and v}
 
     def _props_strs(self) -> list[str]:
         props = []
         add_prop = lambda f, value: props.append(f"{f.name}={value}")
 
-        for _field in self.sorted_fields():
+        for _field in sorted(fields(self), key=lambda f: FIELD_SORT_KEY.get(f.name, f.name)):
             value = getattr(self, _field.name)
 
             if value is None or value is False or (isinstance(value, list) and len(value) == 0):
@@ -162,7 +141,7 @@ class DocCfg:
                 add_prop(_field, constantize_name(str(value)) if CONSTANTIZE_NAMES else f"'{value}'")
             elif _field.name == 'category' and value in [EMAIL, TEXT_MESSAGE]:
                 continue
-            elif _field.name == 'recipients' and isinstance(value, list):
+            elif _field.name == 'recipients' and value:
                 recipients_str = str([constantize_name(r) if (CONSTANTIZE_NAMES and r) else r for r in value])
                 add_prop(_field, recipients_str.replace("'", '') if CONSTANTIZE_NAMES else recipients_str)
             elif _field.name == 'timestamp' and self.date is not None:

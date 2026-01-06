@@ -125,7 +125,7 @@ def print_json_files(epstein_files: EpsteinFiles):
             console.print_json(json_file.json_str(), indent=4, sort_keys=False)
 
 
-def print_json_metadata(epstein_files: EpsteinFiles) -> None:
+def write_json_metadata(epstein_files: EpsteinFiles) -> None:
     json_str = epstein_files.json_metadata()
 
     if args.build:
