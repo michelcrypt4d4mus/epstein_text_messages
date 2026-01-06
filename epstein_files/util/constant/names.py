@@ -42,6 +42,7 @@ CECILE_DE_JONGH = 'Cecile de Jongh'
 CECILIA_STEEN = 'Cecilia Steen'
 CELINA_DUBIN = 'Celina Dubin'
 CHRISTINA_GALBRAITH = 'Christina Galbraith'  # Works with Tyler Shears on reputation stuff
+DANGENE_AND_JENNIE_ENTERPRISE = 'Dangene and Jennie Enterprise'
 DANIEL_SABBA = 'Daniel Sabba'
 DANIEL_SIAD = 'Daniel Siad'
 DANNY_FROST = 'Danny Frost'
