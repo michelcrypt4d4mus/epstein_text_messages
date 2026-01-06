@@ -76,7 +76,7 @@ class MessengerLog(Communication):
         is_phone_number = author_str.startswith('+')
 
         if is_phone_number:
-            logger.warning(f"Found phone number: {author_str} {self.summary()}")
+            logger.warning(f"{self.summary()} Found phone number: {author_str}")
             self.phone_number = author_str
 
         # If the Sender: is redacted or if it's an unredacted phone number that means it's from self.author

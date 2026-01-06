@@ -21,19 +21,10 @@ counts = defaultdict(int)
 #     console.print(doc.summary())
 #     print_json('metadata', doc.metadata())
 
-
-for file in epstein_files.non_json_other_files():
-    console.print(file.summary_panel())
-    console.print(f"     IS_INTERESTING={file.is_interesting()}")
-
-
-# for email in epstein_files.emails:
-#     if email.is_local_extract_file():
-#         email.log(f' is local extract, file_id={email.file_id}, filename={email.filename}, url_slug={email.url_slug}', logging.WARNING)
-
-#         if email.url_slug.split('_')[-1] in ALL_FILE_CONFIGS:
-#             email.log(f"Found {email.url_slug.split('_')[-1]} in ALL_FILE_CONFIGS, config={email.config}", logging.WARNING)
-#             email.log(str(email.config), logging.WARNING)
+for email in epstein_files.emails:
+    if email.is_local_extract_file():
+        email.warn(f'is local extract, file_id={email.file_id}, filename={email.filename}, url_slug={email.url_slug}')
+        email.warn(f"config={email.config}")
 
 
 sys.exit()
