@@ -85,7 +85,7 @@ class Document:
     num_lines: int = field(init=False)
     text: str = ''
     timestamp: datetime | None = None
-    url_slug: str = field(init=False)  # e.g. 'HOUSE_OVERSIGHT_123456
+    url_slug: str = ''
 
     # Class variables
     include_description_in_summary_panel: ClassVar[bool] = False
@@ -94,11 +94,9 @@ class Document:
     def __post_init__(self):
         self.filename = self.file_path.name
         self.file_id = extract_file_id(self.filename)
+        # config and url_slug could have been pre-set in Email
         self.config = self.config or deepcopy(ALL_FILE_CONFIGS.get(self.file_id))
-
-        if 'url_slug' not in vars(self):
-            self.url_slug = self.file_path.stem
-
+        self.url_slug = self.url_slug or self.file_path.stem
         self._set_computed_fields(text=self.text or self._load_file())
         self._repair()
         self._extract_author()
