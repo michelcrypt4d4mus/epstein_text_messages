@@ -224,7 +224,7 @@ def write_word_counts_html() -> None:
     for imessage_log in imessage_logs:
         logger.info(f"Counting words in {imessage_log}")
 
-        for i, msg in enumerate(imessage_log.messages()):
+        for i, msg in enumerate(imessage_log.messages):
             if specified_names and msg.author not in specified_names:
                 continue
             elif HTML_REGEX.search(line):

@@ -662,9 +662,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='025041', is_fwded_article=True, duplicate_ids=['028675']),  # Obama agenda
     EmailCfg(id='031136', is_fwded_article=True, duplicate_ids=['028791']),  # 'Smart Money is Fleeing US Stocks'
     EmailCfg(id='031779', is_fwded_article=True, duplicate_ids=['026938']),  # Sarah Silverman on AI
-    EmailCfg(id='029849', is_fwded_article=True, duplicate_ids=['033482']), # Fareed Zakaria: Trump sells America short),
-    EmailCfg(id='032023', is_fwded_article=True, duplicate_ids=['032012']), # American-Israeli Cooperative Enterprise Newsletter
-    EmailCfg(id='021758', is_fwded_article=True),  # Radar Online article about Epstein's early prison release
+    EmailCfg(id='029849', is_fwded_article=True, duplicate_ids=['033482']),  # Fareed Zakaria: Trump sells America short),
+    EmailCfg(id='032023', is_fwded_article=True, duplicate_ids=['032012']),  # American-Israeli Cooperative Enterprise Newsletter
+    EmailCfg(id='021758', is_fwded_article=True, duplicate_ids=['030616']),  # Radar Online article about Epstein's early prison release
     EmailCfg(id='030868', is_fwded_article=True),  # 'He doesn't like this sh*t': Trump reportedly hates his job and his staff after 1 month
     EmailCfg(id='026755', is_fwded_article=True),  # HuffPo
     EmailCfg(id='016218', is_fwded_article=True),  # AT&T confirms it paid Trump lawyer Cohen for insights on Trump
@@ -805,7 +805,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='026618', duplicate_ids=['028485']),
     EmailCfg(id='030609', duplicate_ids=['030495']),
     EmailCfg(id='029831', duplicate_ids=['028972']),
-    EmailCfg(id='021758', duplicate_ids=['030616']),
     EmailCfg(id='033498', duplicate_ids=['029884']),
     EmailCfg(id='028620', duplicate_ids=['027094']),
     EmailCfg(id='032456', duplicate_ids=['033579']),
@@ -853,7 +852,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='030015', fwded_text_after='Bill Clinton reportedly'),
     EmailCfg(id='026312', fwded_text_after='Steve Bannon trying to get on disgraced'),
     EmailCfg(id='031742', fwded_text_after="Trump's former campaign manager Paul Manafort"),
-    EmailCfg(id='012197', fwded_text_after="Thanks -- Jay"),
+    EmailCfg(id='012197_4', fwded_text_after="Thanks -- Jay"),
     EmailCfg(id='028925', fwded_text_after='> on Jan 4, 2015'),
     EmailCfg(id='029773', fwded_text_after='Omar Quadhafi', duplicate_ids=['012685']),
 ]

@@ -74,12 +74,15 @@ class EpsteinFiles:
         for file_arg in self.all_files:
             doc_timer = Timer(decimals=4)
             document = Document(file_arg)
+            cls = document_cls(document)
 
             if document.length == 0:
                 logger.warning(f"Skipping empty file: {document}]")
                 continue
+            elif args.skip_other_files and cls == OtherFile and file_type_count[cls.__name__] > 1:
+                logger.warning(f"Skipping {document.filename}...")
+                continue
 
-            cls = document_cls(document)
             documents.append(cls(file_arg, text=document.text))
             logger.info(str(documents[-1]))
             file_type_count[cls.__name__] += 1
@@ -304,7 +307,7 @@ class EpsteinFiles:
         text_summary_msg = f"\nDeanonymized {Document.known_author_count(self.imessage_logs)} of "
         text_summary_msg += f"{len(self.imessage_logs)} {TEXT_MESSAGE} logs found in {len(self.all_files):,} files."
         console.print(text_summary_msg)
-        imessage_msg_count = sum([len(log.messages()) for log in self.imessage_logs])
+        imessage_msg_count = sum([len(log.messages) for log in self.imessage_logs])
         console.print(f"Found {imessage_msg_count} text messages in {len(self.imessage_logs)} iMessage log files.")
 
     def print_other_files_table(self) -> list[OtherFile]:
@@ -362,6 +365,8 @@ def count_by_month(docs: Sequence[Document]) -> dict[str | None, int]:
 def document_cls(doc: Document) -> Type[Document]:
     search_area = doc.text[0:5000]  # Limit search area to avoid pointless scans of huge files
 
+    if doc.length == 0:
+        return Document
     if doc.text[0] == '{':
         return JsonFile
     elif isinstance(doc.config, EmailCfg) or (DETECT_EMAIL_REGEX.match(search_area) and doc.config is None):
