@@ -104,7 +104,7 @@ class DocCfg:
             elif self.category == FINANCE and self.author in FINANCIAL_REPORTS_AUTHORS:
                 return f"{self.author} report: '{self.description}'"
             elif self.category == LEGAL and 'v.' in self.author:
-                return f"{self.author}: '{self.description}'"
+                return f"{self.author}: {self.description}"
         elif self.category and self.author is None and self.description is None:
             return self.category
 
@@ -229,10 +229,6 @@ class EmailCfg(CommunicationCfg):
     is_fwded_article: bool = False
     recipients: list[str | None] = field(default_factory=list)
 
-    def __post_init__(self):
-        super().__post_init__()
-        self.category = EMAIL
-
     @classmethod
     def from_doc_cfg(cls, cfg: DocCfg) -> 'EmailCfg':
         return cls(**asdict(cfg))
@@ -244,10 +240,6 @@ class EmailCfg(CommunicationCfg):
 
 @dataclass(kw_only=True)
 class TextCfg(CommunicationCfg):
-    def __post_init__(self):
-        super().__post_init__()
-        self.category = TEXT_MESSAGE
-
     # This is necessary because for some dumb reason @dataclass(repr=False) doesn't cut it
     def __repr__(self) -> str:
         return super().__repr__()
