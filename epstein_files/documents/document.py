@@ -96,7 +96,7 @@ class Document:
         self.file_id = extract_file_id(self.filename)
         # config and url_slug could have been pre-set in Email
         self.config = self.config or deepcopy(ALL_FILE_CONFIGS.get(self.file_id))
-        self.url_slug = self.url_slug or self.file_path.stem
+        self.url_slug = self.url_slug or self.filename.split('.')[0]
         self._set_computed_fields(text=self.text or self._load_file())
         self._repair()
         self._extract_author()
@@ -109,6 +109,9 @@ class Document:
 
     def date_str(self) -> str | None:
         return date_str(self.timestamp)
+
+    def debug_info(self) -> str:
+        return ', '.join([f"{prop}={getattr(self, prop)}" for prop in ['file_id', 'filename', 'url_slug']])
 
     def duplicate_file_txt(self) -> Text:
         """If the file is a dupe make a nice message to explain what file it's a duplicate of."""
