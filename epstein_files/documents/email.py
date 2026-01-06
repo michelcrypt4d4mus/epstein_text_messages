@@ -358,6 +358,9 @@ class Email(Communication):
         self.actual_text = self._actual_text()
         self.sent_from_device = self._sent_from_device()
 
+    def attachments(self) -> list[str]:
+        return (self.header.attachments or '').split(';')
+
     def info_txt(self) -> Text:
         email_type = 'fwded article' if self.is_fwded_article() else 'email'
         txt = Text(f"OCR text of {email_type} from ", style='grey46').append(self.author_txt).append(' to ')
@@ -610,6 +613,8 @@ class Email(Communication):
             self._merge_lines(7, 9)
         elif self.file_id == '030299':
             self._merge_lines(7, 10)
+        elif self.file_id in ['022673', '022684']:
+            self._merge_lines(9)
         elif self.file_id == '014860':
             self._merge_lines(3)
             self._merge_lines(4)

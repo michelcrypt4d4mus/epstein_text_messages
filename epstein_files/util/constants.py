@@ -1191,7 +1191,7 @@ OTHER_FILES_LEGAL = [
 ]
 
 OTHER_FILES_CONFERENCES = [
-    DocCfg(id='014315', author=BOFA_MERRILL, description=f'2016 Future of Financials Conference'),
+    DocCfg(id='014315', author=BOFA_MERRILL, description=f'2016 Future of Financials Conference, attached to 014312'),
     DocCfg(id='026825', author=DEUTSCHE_BANK, description=f"Asset & Wealth Management featured speaker bios"),  # Really "Deutsche Asset" which may not be Deutsche Bank?
     DocCfg(id='023123', author=LAWRENCE_KRAUSS_ASU_ORIGINS, description=f"{STRANGE_BEDFELLOWS} (old draft)"),
     DocCfg(id='023120', author=LAWRENCE_KRAUSS_ASU_ORIGINS, description=STRANGE_BEDFELLOWS, duplicate_ids=['023121'], dupe_type='earlier'),
