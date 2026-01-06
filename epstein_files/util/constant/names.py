@@ -234,9 +234,9 @@ OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
     edmond elizabeth emily entwistle erik evelyn
     ferguson flachsbart francis franco frank frost
     gardner gary geoff geoffrey gilbert gloria goldberg gonzalez gould graham greene guarino gwyneth
-    hancock harold harrison harry hay helen hirsch hofstadter horowitz hussein
+    hancock harold harrison harry hay helen hill hirsch hofstadter horowitz hussein
     ian isaac isaacson
-    jamie jane janet jason jen jim joe johnson jones josh julie justin
+    james jamie jane janet jason jen jim joe johnson jones josh julie justin
     karl kate kathy kelly kim kruger kyle
     laurie leo leonard lenny leslie lieberman louis lynch lynn
     marcus marianne matt matthew melissa michele michelle moore moscowitz
