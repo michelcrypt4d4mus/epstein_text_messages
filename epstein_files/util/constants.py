@@ -66,7 +66,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     BRAD_EDWARDS:  re.compile(r'Brad(ley)?(\s*J(.?|ames))?\s*Edwards', re.IGNORECASE),
     BRAD_KARP: re.compile(r'Brad (S.? )?Karp|Karp, Brad', re.IGNORECASE),
     'Dangene and Jennie Enterprise': re.compile(r'Dangene and Jennie Enterprise?', re.IGNORECASE),
-    DANNY_FROST: re.compile(r'Frost, Danny|frostd@dany.nyc.gov', re.IGNORECASE),
+    DANNY_FROST: re.compile(r'Frost, Danny|frostd@dany.nyc.gov|Danny\s*Frost', re.IGNORECASE),
     DARREN_INDYKE: re.compile(r'darren$|Darren\s*(K\.?\s*)?[il]n[dq]_?yke?|dkiesq', re.IGNORECASE),
     DAVID_FISZEL: re.compile(r'David\s*Fis?zel', re.IGNORECASE),
     DAVID_HAIG: re.compile(fr'{DAVID_HAIG}|Haig, David', re.IGNORECASE),
@@ -128,7 +128,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     PRINCE_ANDREW: re.compile(r'Prince Andrew|The Duke', re.IGNORECASE),
     REID_WEINGARTEN: re.compile(r'Weingarten, Rei[cdi]|Rei[cdi] Weingarten', re.IGNORECASE),
     RICHARD_KAHN: re.compile(r'rich(ard)? kahn?', re.IGNORECASE),
-    ROBERT_D_CRITTON: re.compile(r'Robert D.? Critton Jr.?', re.IGNORECASE),
+    ROBERT_D_CRITTON_JR: re.compile(r'Robert D.? Critton Jr.?', re.IGNORECASE),
     ROBERT_LAWRENCE_KUHN: re.compile(r'Robert\s*(Lawrence)?\s*Kuhn', re.IGNORECASE),
     ROBERT_TRIVERS: re.compile(r'tri[vy]ersr@gmail|Robert\s*Trivers?', re.IGNORECASE),
     ROSS_GOW: re.compile(fr"{ROSS_GOW}|ross@acuityreputation.com", re.IGNORECASE),
@@ -163,6 +163,7 @@ EMAILERS = [
     DEEPAK_CHOPRA,
     GLENN_DUBIN,
     GORDON_GETTY,
+    'Kevin Bright',
     'Jack Lang',
     JACK_SCAROLA,
     JAY_LEFKOWITZ,
@@ -506,7 +507,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='033488', author=LAWRANCE_VISOSKI, duplicate_ids=['033154']),
     EmailCfg(id='033309', author=LINDA_STONE, attribution_reason='"Co-authored with iPhone autocorrect"'),
     EmailCfg(id='017581', author='Lisa Randall', attribution_reason='reply header'),
-    EmailCfg(id='026609', author='Mark Green', attribution_reason='Actually a fwd'),
+    EmailCfg(id='026609', author='Mark Green', attribution_reason='Actually a fwd, Mark Green is in signature'),
     EmailCfg(id='030472', author=MARTIN_WEINBERG, attribution_reason='Maybe. in reply', is_attribution_uncertain=True),
     EmailCfg(id='030235', author=MELANIE_WALKER, attribution_reason='In fwd'),
     EmailCfg(id='032343', author=MELANIE_WALKER, attribution_reason='Name seen in later reply 032346'),
@@ -663,6 +664,10 @@ EMAILS_CONFIG = [
     EmailCfg(id='029849', is_fwded_article=True, duplicate_ids=['033482']),  # Fareed Zakaria: Trump sells America short),
     EmailCfg(id='032023', is_fwded_article=True, duplicate_ids=['032012']),  # American-Israeli Cooperative Enterprise Newsletter
     EmailCfg(id='021758', is_fwded_article=True, duplicate_ids=['030616']),  # Radar Online article about Epstein's early prison release
+    EmailCfg(id='031774', is_fwded_article=True),  # Krassner fwd of Palmer Report article
+    EmailCfg(id='033345', is_fwded_article=True),  # Krassner fwd of Palmer Report article
+    EmailCfg(id='029903', is_fwded_article=True),  # Krassner fwd of Ann Coulter article about Epstein
+    EmailCfg(id='030266', is_fwded_article=True),  # Krassner fwd of article about Dershowitz
     EmailCfg(id='030868', is_fwded_article=True),  # 'He doesn't like this sh*t': Trump reportedly hates his job and his staff after 1 month
     EmailCfg(id='026755', is_fwded_article=True),  # HuffPo
     EmailCfg(id='016218', is_fwded_article=True),  # AT&T confirms it paid Trump lawyer Cohen for insights on Trump
@@ -708,6 +713,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='033311', is_fwded_article=True),  # 2016 election polls
     EmailCfg(id='026580', is_fwded_article=True),  # NPR: Antigua: Land Of Sun, Sand, And Super Cheap
     EmailCfg(id='031340', is_fwded_article=True),  # Article about Alex Jones threatening Robert Mueller
+    EmailCfg(id='030209', is_fwded_article=True),  # Atlantic Council  Syria: Blackberry Diplomacy
     EmailCfg(id='033297', is_fwded_article=True, duplicate_ids=['033586']),  # Sultan Sulayem fwding article about Trump and Russia
     EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
