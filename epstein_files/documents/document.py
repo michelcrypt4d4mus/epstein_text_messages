@@ -136,9 +136,9 @@ class Document:
     def external_url(self, fxn: Callable[[str], str], style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         return link_text_obj(fxn(self.url_slug), link_txt or self.file_path.stem, style)
 
-    def external_links(self, style: str = '', include_alt_link: bool = False) -> Text:
+    def external_links(self, style: str = '', include_alt_links: bool = False) -> Text:
         """Returns colored links to epstein.media and and epsteinweb in a Text object."""
-        txt = Text('', style='white' if include_alt_link else ARCHIVE_LINK_COLOR)
+        txt = Text('', style='white' if include_alt_links else ARCHIVE_LINK_COLOR)
 
         if args.use_epstein_web:
             txt.append(self.epstein_web_link(style=style))
@@ -147,7 +147,7 @@ class Document:
             txt.append(self.epstein_media_link(style=style))
             alt_link = self.epstein_web_link(style='white dim', link_txt=EPSTEIN_WEB)
 
-        if include_alt_link:
+        if include_alt_links:
             txt.append(' (').append(self.epsteinify_link(style='white dim', link_txt=EPSTEINIFY)).append(')')
             txt.append(' (').append(alt_link).append(')')
 
@@ -158,7 +158,7 @@ class Document:
 
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any additional info about the file."""
-        panel = Panel(self.external_links(include_alt_link=True), border_style=self._border_style(), expand=False)
+        panel = Panel(self.external_links(include_alt_links=True), border_style=self._border_style(), expand=False)
         padded_info = [Padding(sentence, INFO_PADDING) for sentence in self.info()]
         return Group(*([panel] + padded_info))
 
