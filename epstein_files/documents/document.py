@@ -16,7 +16,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP
-from epstein_files.util.data import collapse_newlines, date_str, patternize, remove_time_from_timestamp_str, without_falsey
+from epstein_files.util.data import collapse_newlines, date_str, patternize, remove_zero_time_from_timestamp_str, without_falsey
 from epstein_files.util.doc_cfg import DUPE_TYPE_STRS, EmailCfg, DocCfg, Metadata, TextCfg
 from epstein_files.util.env import DOCS_DIR, args
 from epstein_files.util.file_helper import (file_stem_for_id, extract_file_id, file_size,
@@ -243,7 +243,7 @@ class Document:
         txt.append(f" {self.url_slug}", style=FILENAME_STYLE)
 
         if self.timestamp:
-            timestamp_str = remove_time_from_timestamp_str(self.timestamp)
+            timestamp_str = remove_zero_time_from_timestamp_str(self.timestamp).replace('T', ' ')
             txt.append(' (', style=SYMBOL_STYLE)
             txt.append(f"{timestamp_str}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
 

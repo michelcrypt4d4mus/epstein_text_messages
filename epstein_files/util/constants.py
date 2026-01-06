@@ -714,6 +714,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='026580', is_fwded_article=True),  # NPR: Antigua: Land Of Sun, Sand, And Super Cheap
     EmailCfg(id='031340', is_fwded_article=True),  # Article about Alex Jones threatening Robert Mueller
     EmailCfg(id='030209', is_fwded_article=True),  # Atlantic Council  Syria: Blackberry Diplomacy
+    EmailCfg(id='026605', is_fwded_article=True),  # Article about Ruemmler turning down attorney general job by NEDRA PICKLER
     EmailCfg(id='033297', is_fwded_article=True, duplicate_ids=['033586']),  # Sultan Sulayem fwding article about Trump and Russia
     EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
@@ -929,6 +930,7 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='029865', author=LA_TIMES, description=f"front page article about {DEEPAK_CHOPRA} and young Iranians", date='2016-11-05'),
     DocCfg(id='026598', author=LA_TIMES, description=f"op-ed about why America needs a Ministry of Culture"),
     DocCfg(id='027024', author=LA_TIMES, description=f"Scientists Create Human Embryos to Make Stem Cells", date='2013-05-15'),
+    DocCfg(id='022811', author='Law.com', description='Sarah Ransome Identifies Herself in Epstein Sex Trafficking Case', date='2018-01-09'),
     DocCfg(id='031776', author='Law360', description=f"article about Michael Avenatti by Andrew Strickler"),
     DocCfg(id='023102', author=f'Litigation Daily', description=f"article about {REID_WEINGARTEN}", date='2015-09-04'),
     DocCfg(id='029340', author=f'MarketWatch', description=f'article about estate taxes, particularly Epstein\'s favoured GRATs'),
@@ -1190,7 +1192,7 @@ OTHER_FILES_LEGAL = [
 ]
 
 OTHER_FILES_CONFERENCES = [
-    DocCfg(id='014315', author=BOFA_MERRILL, description=f'2016 Future of Financials Conference'),
+    DocCfg(id='014315', author=BOFA_MERRILL, description=f'2016 Future of Financials Conference, attached to 014312'),
     DocCfg(id='026825', author=DEUTSCHE_BANK, description=f"Asset & Wealth Management featured speaker bios"),  # Really "Deutsche Asset" which may not be Deutsche Bank?
     DocCfg(id='023123', author=LAWRENCE_KRAUSS_ASU_ORIGINS, description=f"{STRANGE_BEDFELLOWS} (old draft)"),
     DocCfg(id='023120', author=LAWRENCE_KRAUSS_ASU_ORIGINS, description=STRANGE_BEDFELLOWS, duplicate_ids=['023121'], dupe_type='earlier'),

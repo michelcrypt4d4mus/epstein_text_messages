@@ -491,6 +491,7 @@ HIGHLIGHTED_NAMES = [
         style='red bold',
         pattern=r'Alfa\s*Bank|Anya\s*Rasulova|Chernobyl|Day\s+One\s+Ventures|(Dmitry\s)?(Kiselyov|(Lana\s*)?Pozhidaeva|Medvedev|Rybolo(o?l?ev|vlev))|Dmitry|FSB|GRU|KGB|Kislyak|Kremlin|Kuznetsova|Lavrov|Lukoil|Moscow|(Oleg\s*)?Deripaska|Oleksandr Vilkul|Rosneft|RT|St.?\s*?Petersburg|Russian?|Sberbank|Soviet(\s*Union)?|USSR|Vladimir|(Vladimir\s*)?(Putin|Yudashkin)|Women\s*Empowerment|Xitrans',
         emailers = {
+            'Dasha Zhukova': 'art collector, daughter of Alexander Zhukov',
             MASHA_DROKOVA: 'silicon valley VC, former Putin Youth',
             RENATA_BOLOTOVA: 'former aspiring model, now fund manager at New York State Insurance Fund',
             SVETLANA_POZHIDAEVA: f'Epstein\'s Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and {DAVID_BLAINE}',
