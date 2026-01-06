@@ -684,7 +684,7 @@ class Email(Communication):
             extracted_description = f"{APPEARS_IN} {extracted_from_description}"
 
             if isinstance(extracted_from_doc_cfg, EmailCfg):
-                extracted_from_description += ' email'
+                extracted_description += ' email'
 
             if self.config.description:
                 self.warn(f"Overwriting description '{self.config.description}' with extract description '{self.config.description}'")
