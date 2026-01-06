@@ -17,7 +17,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP
 from epstein_files.util.data import collapse_newlines, date_str, iso_timestamp, patternize, without_falsey
-from epstein_files.util.doc_cfg import EmailCfg, DocCfg, Metadata, TextCfg
+from epstein_files.util.doc_cfg import DUPE_TYPE_STRS, EmailCfg, DocCfg, Metadata, TextCfg
 from epstein_files.util.env import DOCS_DIR, args
 from epstein_files.util.file_helper import (file_stem_for_id, extract_file_id, file_size,
      file_size_str, is_local_extract_file)
@@ -122,11 +122,11 @@ class Document:
 
     def duplicate_file_txt(self) -> Text:
         """If the file is a dupe make a nice message to explain what file it's a duplicate of."""
-        if not self.config or not self.config.dupe_of_id:
+        if not self.config or not self.config.dupe_of_id or self.config.dupe_type is None:
             raise RuntimeError(f"duplicate_file_txt() called on {self.summary()} but not a dupe! config:\n\n{self.config}")
 
         txt = Text(f"Not showing ", style=INFO_STYLE).append(epstein_media_doc_link_txt(self.file_id, style='cyan'))
-        txt.append(f" because it's {self.config.duplicate_reason()} ")
+        txt.append(f" because it's {DUPE_TYPE_STRS[self.config.dupe_type]} ")
         return txt.append(epstein_media_doc_link_txt(self.config.dupe_of_id, style='royal_blue1'))
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
@@ -141,9 +141,28 @@ class Document:
         """Create a Text obj link to this document on EpsteinWeb."""
         return link_text_obj(epstein_web_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
 
+    def external_links(self, style: str = '', include_alt_link: bool = False) -> Text:
+        """Returns colored links to epstein.media and and epsteinweb in a Text object."""
+        txt = Text('', style='white' if include_alt_link else ARCHIVE_LINK_COLOR)
+
+        if args.use_epstein_web:
+            txt.append(self.epstein_web_link(style=style))
+
+            if include_alt_link:
+                txt.append(' (').append(self.epsteinify_link(style='white dim', link_txt=EPSTEINIFY)).append(')')
+                txt.append(' (').append(self.epstein_media_link(style='white dim', link_txt=EPSTEIN_MEDIA)).append(')')
+        else:
+            txt.append(self.epstein_media_link(style=style))
+
+            if include_alt_link:
+                txt.append(' (').append(self.epsteinify_link(style='white dim', link_txt=EPSTEINIFY)).append(')')
+                txt.append(' (').append(self.epstein_web_link(style='white dim', link_txt=EPSTEIN_WEB)).append(')')
+
+        return txt
+
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any additional info about the file."""
-        panel = Panel(self.raw_document_link_txt(include_alt_link=True), border_style=self._border_style(), expand=False)
+        panel = Panel(self.external_links(include_alt_link=True), border_style=self._border_style(), expand=False)
         padded_info = [Padding(sentence, INFO_PADDING) for sentence in self.info()]
         return Group(*([panel] + padded_info))
 
@@ -155,12 +174,10 @@ class Document:
 
     def info(self) -> list[Text]:
         """0 to 2 sentences containing the info_txt() as well as any configured description."""
-        sentences = [
+        return without_falsey([
             self.info_txt(),
             highlighter(Text(self.config_description(), style=INFO_STYLE)) if self.config_description() else None
-        ]
-
-        return without_falsey(sentences)
+        ])
 
     def info_txt(self) -> Text | None:
         """Secondary info about this file (recipients, level of certainty, etc). Overload in subclasses."""
@@ -197,9 +214,9 @@ class Document:
 
         if self.is_local_extract_file():
             metadata['extracted_file'] = {
-                'explanation': 'This file was extracted from a court filing, not distributed directly. A copy can be found on github.',
-                'extracted_from_file': self.url_slug + '.txt',
-                'extracted_file_url': extracted_file_url(self.filename),
+                'explanation': 'Manually extracted from one of the court filings.',
+                'extracted_from': self.url_slug + '.txt',
+                'url': extracted_file_url(self.filename),
             }
 
         return metadata
@@ -207,25 +224,6 @@ class Document:
     def raw_text(self) -> str:
         with open(self.file_path) as f:
             return f.read()
-
-    def raw_document_link_txt(self, style: str = '', include_alt_link: bool = False) -> Text:
-        """Returns colored links to epstein.media and and epsteinweb in a Text object."""
-        txt = Text('', style='white' if include_alt_link else ARCHIVE_LINK_COLOR)
-
-        if args.use_epstein_web:
-            txt.append(self.epstein_web_link(style=style))
-
-            if include_alt_link:
-                txt.append(' (').append(self.epsteinify_link(style='white dim', link_txt=EPSTEINIFY)).append(')')
-                txt.append(' (').append(self.epstein_media_link(style='white dim', link_txt=EPSTEIN_MEDIA)).append(')')
-        else:
-            txt.append(self.epstein_media_link(style=style))
-
-            if include_alt_link:
-                txt.append(' (').append(self.epsteinify_link(style='white dim', link_txt=EPSTEINIFY)).append(')')
-                txt.append(' (').append(self.epstein_web_link(style='white dim', link_txt=EPSTEIN_WEB)).append(')')
-
-        return txt
 
     def repair_ocr_text(self, repairs: dict[str | re.Pattern, str], text: str) -> str:
         """Apply a dict of repairs (key is pattern or string, value is replacement string) to text."""
