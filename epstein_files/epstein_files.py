@@ -104,8 +104,9 @@ class EpsteinFiles:
         if PICKLED_PATH.exists() and not args.overwrite_pickle:
             with gzip.open(PICKLED_PATH, 'rb') as file:
                 epstein_files = pickle.load(file)
-                timer.print_at_checkpoint(f"Loaded {len(epstein_files.all_files):,} documents from '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})")
                 epstein_files.timer = timer
+                timer_msg = f"Loaded {len(epstein_files.all_files):,} documents from '{PICKLED_PATH}'"
+                epstein_files.timer.print_at_checkpoint(f"{timer_msg} ({file_size_str(PICKLED_PATH)})")
                 return epstein_files
 
         logger.warning(f"Building new cache file, this will take a few minutes...")
@@ -172,7 +173,7 @@ class EpsteinFiles:
         return sorted(list(self.unknown_recipient_email_ids))
 
     def emails_by(self, author: str | None) -> list[Email]:
-        return [e for e in self.emails if e.author == author]
+        return Document.sort_by_timestamp([e for e in self.emails if e.author == author])
 
     def emails_for(self, author: str | None) -> list[Email]:
         """Returns emails to or from a given 'author' sorted chronologically."""
@@ -185,9 +186,11 @@ class EpsteinFiles:
 
     def emails_to(self, author: str | None) -> list[Email]:
         if author is None:
-            return [e for e in self.emails if len(e.recipients) == 0 or None in e.recipients]
+            emails = [e for e in self.emails if len(e.recipients) == 0 or None in e.recipients]
         else:
-            return [e for e in self.emails if author in e.recipients]
+            emails = [e for e in self.emails if author in e.recipients]
+
+        return Document.sort_by_timestamp(emails)
 
     def get_documents_by_id(self, file_ids: str | list[str]) -> list[Document]:
         file_ids = listify(file_ids)
@@ -230,8 +233,8 @@ class EpsteinFiles:
                 f"{len([d for d in docs if d.is_duplicate()])}",
             )
 
-        add_row('iMessage Logs', self.imessage_logs)
         add_row('Emails', self.emails)
+        add_row('iMessage Logs', self.imessage_logs)
         add_row('JSON Data', self.json_files)
         add_row('Other', self.non_json_other_files())
         console.print(Align.center(table))
