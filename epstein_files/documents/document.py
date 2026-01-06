@@ -101,10 +101,9 @@ class Document:
         if self.is_local_extract_file():
             self.url_slug = LOCAL_EXTRACT_REGEX.sub('', file_stem_for_id(self.file_id))
             extracted_from_doc_id = self.url_slug.split('_')[-1]
-            extracted_from_doc_cfg = deepcopy(ALL_FILE_CONFIGS.get(extracted_from_doc_id))
 
-            if extracted_from_doc_cfg:
-                self._set_extract_config(extracted_from_doc_cfg)
+            if extracted_from_doc_id in ALL_FILE_CONFIGS:
+                self._set_extract_config(deepcopy(ALL_FILE_CONFIGS[extracted_from_doc_id]))
         else:
             self.url_slug = self.file_path.stem
 
@@ -333,7 +332,6 @@ class Document:
         if self.config:
             self.warn(f"Merging existing config with config for file this document was extracted from")
         else:
-            self.warn(f"Creating synthetic config for extracted file")
             self.config = EmailCfg(id=self.file_id)
 
         extracted_from_description = doc_cfg.complete_description()
@@ -342,7 +340,7 @@ class Document:
             extracted_description = f"{EXTRACTED_FROM} {extracted_from_description}"
 
             if self.config.description:
-                self.warn(f"About to overwrite local description '{self.config.description}' with extract description '{doc_cfg.description}'")
+                self.warn(f"Overwriting description '{self.config.description}' with extract description '{doc_cfg.description}'")
 
             self.config.description = extracted_description
 
