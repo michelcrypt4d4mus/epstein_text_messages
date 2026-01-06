@@ -132,7 +132,6 @@ JUNK_EMAILERS = [
     'How To Academy',
     'Jokeland',
     JP_MORGAN_USGIO,
-    'Saved by Internet Explorer 11',
 ]
 
 MAILING_LISTS = [
@@ -278,7 +277,6 @@ USELESS_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + KRASSNER_RECIP
     'Peter Aldhous',                         # Lawrence Krauss CC
     'Sam Harris',                            # Lawrence Krauss CC
     SAMUEL_LEFF,                             # Random CC
-    "Saved by Internet Explorer 11",
     'Sean T Lehane',                         # Random CC
     'Stephen Rubin',                         # Random CC
     'Tim Kane',                              # Random CC
