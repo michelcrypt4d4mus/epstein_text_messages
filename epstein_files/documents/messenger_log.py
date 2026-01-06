@@ -16,7 +16,7 @@ from epstein_files.util.data import iso_timestamp, listify, sort_dict
 from epstein_files.util.doc_cfg import Metadata, TextCfg
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import build_table
+from epstein_files.util.rich import build_table, highlighter
 
 CONFIRMED_MSG = 'Found confirmed counterparty'
 GUESSED_MSG = 'This is probably a conversation with'
@@ -43,8 +43,13 @@ class MessengerLog(Communication):
             return None
 
         info_msg = GUESSED_MSG if self.is_attribution_uncertain() else CONFIRMED_MSG
-        author_txt = Text(self.author_or_unknown(), style=self.author_style + ' bold')
-        return Text(f"({info_msg} ", style='dim').append(author_txt).append(')')
+        author_txt = Text(self.author, style=self.author_style + ' bold')
+        txt = Text(f"({info_msg} ", style='dim').append(author_txt)
+
+        if self.phone_number:
+            txt.append(f" using the phone number {self.phone_number}")
+
+        return highlighter(txt.append(')'))
 
     def last_message_at(self, name: str | None) -> datetime:
         return self.messages_by(name)[-1].timestamp()
