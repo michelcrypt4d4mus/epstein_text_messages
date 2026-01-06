@@ -7,12 +7,14 @@ from collections import defaultdict
 from rich.markup import escape
 from rich.panel import Panel
 from rich.table import Table
+from rich.text import Text
 
 from scripts.use_pickled import console, epstein_files
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import USELESS_EMAILERS
 from epstein_files.util.constants import ALL_FILE_CONFIGS
 from epstein_files.util.data import sort_dict
+from epstein_files.util.logging import logger
 from epstein_files.util.rich import console, highlighter, print_json
 
 
@@ -25,6 +27,20 @@ counts = defaultdict(int)
 #     print_json('metadata', doc.metadata())
 
 
+for doc in epstein_files.other_files:
+    logger.warning(f"{doc.filename} is dupe: {doc.is_duplicate()}")
+
+    if doc.file_id == '029356':
+        logger.warning(f"config: {doc.config}")
+        logger.warning(f"config.duplicate_of_id={doc.config.duplicate_of_id}")
+        cfg = ALL_FILE_CONFIGS[doc.file_id]
+        print(f"ALL_FILE_CONFIGS: {cfg}")
+        logger.warning(f"ALL_FILE_CONFIGS.duplicate_of_id={cfg.duplicate_of_id}")
+
+sys.exit()
+
+
+
 table = Table(header_style='bold', highlight=True)
 table.add_column('id')
 table.add_column('sent at')
@@ -32,7 +48,6 @@ table.add_column('author')
 table.add_column('recipients', max_width=38)
 # table.add_column('att')
 table.add_column('subject')
-
 
 for email in Document.sort_by_timestamp(epstein_files.emails):
     if email.is_fwded_article() or email.is_junk_mail() or email.is_duplicate():

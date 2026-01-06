@@ -75,6 +75,7 @@ UNINTERESTING_PREFIXES = FINANCIAL_REPORTS_AUTHORS + [
     JOHN_BOLTON_PRESS_CLIPPING,
     'Journal of Criminal',
     LA_TIMES,
+    'Law.com',
     'Litigation Daily',
     LAWRENCE_KRAUSS,
     LAWRENCE_KRAUSS_ASU_ORIGINS,
@@ -98,6 +99,7 @@ UNINTERESTING_PREFIXES = FINANCIAL_REPORTS_AUTHORS + [
     ROBERT_TRIVERS,
     'SCMP',
     'SciencExpress',
+    SCOTT_J_LINK,
     'Scowcroft',
     SHIMON_POST_ARTICLE,
     SINGLE_PAGE,
@@ -114,6 +116,7 @@ UNINTERESTING_PREFIXES = FINANCIAL_REPORTS_AUTHORS + [
     'U.S. News',
     'US Office',
     'Vanity Fair',
+    'very short',
     VI_DAILY_NEWS,
     WAPO,
 ]

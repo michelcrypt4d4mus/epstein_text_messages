@@ -72,7 +72,7 @@ class EpsteinFiles:
 
         # Read through and classify all the files
         for file_arg in self.all_files:
-            doc_timer = Timer(decimals=4)
+            doc_timer = Timer(decimals=2)
             document = Document(file_arg)
             cls = document_cls(document)
 
