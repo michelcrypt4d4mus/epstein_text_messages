@@ -108,18 +108,16 @@ class Document:
                 extracted_description = f"{EXTRACTED_FROM} {doc_cfg.complete_description()}"
 
                 if self.config:
-                    self.log(f"Have existing config {self.config}, also found config for {doc_id}: {doc_cfg}", logging.WARNING)
+                    self.log(f"Merging existing config with config for file this was extracted from", logging.WARNING)
 
                     if self.config.description:
-                        raise ValueError(f"Can't have a description in both the extract '{self.config.complete_description()}' and the original config '{doc_cfg.complete_description()}'")
+                        raise ValueError(f"{self.filename} Can't have a description in both the extract cfg and this files cfg!")
                     elif doc_cfg.description:
                         self.config.description = extracted_description
                         self.config.is_interesting = self.config.is_interesting or doc_cfg.is_interesting
                 else:
-                    self.config = EmailCfg(id=self.file_id, description=extracted_description)
                     self.log(f"Creating synthetic config for extracted file {self.filename}", logging.WARNING)
-
-                self.log(f"Final config: {self.config}", logging.WARNING)
+                    self.config = EmailCfg(id=self.file_id, description=extracted_description, is_interesting=doc_cfg.is_interesting)
         else:
             self.url_slug = self.file_path.stem
 

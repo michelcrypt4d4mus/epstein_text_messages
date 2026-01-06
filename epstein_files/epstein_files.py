@@ -80,6 +80,7 @@ class EpsteinFiles:
                 logger.warning(f"Skipping empty file: {document}]")
                 continue
             elif args.skip_other_files and cls == OtherFile and file_type_count[cls.__name__] > 1:
+                logger.warning(f"Skipping {document.filename}...")
                 continue
 
             documents.append(cls(file_arg, text=document.text))
