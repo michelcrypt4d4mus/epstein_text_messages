@@ -300,19 +300,6 @@ HIGHLIGHTED_NAMES = [
         }
     ),
     HighlightedNames(
-        label='friend',
-        style='tan',
-        pattern=r"Andrew Farkas|Thomas\s*(J\.?\s*)?Barrack(\s*Jr)?",
-        emailers = {
-            DAVID_STERN: f'emailed Epstein from Moscow, appears to know chairman of {DEUTSCHE_BANK}',
-            JONATHAN_FARKAS: "heir to the Alexander's department store fortune",
-            'linkspirit': "Skype username of someone Epstein communicated with",
-            'Peter Thomas Roth': 'student of Epstein at Dalton, skincare company founder',
-            STEPHEN_HANSON: None,
-            TOM_BARRACK: 'long time friend of Trump',
-        }
-    ),
-    HighlightedNames(
         label=FINANCE,
         style='green',
         pattern=r'Apollo|Ari\s*Glass|Bank|(Bernie\s*)?Madoff|Black(rock|stone)|B\s*of\s*A|Boothbay(\sFund\sManagement)?|Chase\s*Bank|Credit\s*Suisse|DB|Deutsche\s*(Asset|Bank)|Electron\s*Capital\s*(Partners)?|Fenner|FRBNY|Goldman(\s*Sachs)|HSBC|Invesco|(Janet\s*)?Yellen|(Jerome\s*)?Powell(?!M\. Cabot)|(Jimmy\s*)?Cayne|JPMC?|j\.?p\.?\s*morgan(\.?com|\s*Chase)?|Madoff|Merrill(\s*Lynch)?|(Michael\s*)?(Cembalest|Milken)|Mizrahi\s*Bank|MLPF&S|((anti.?)?money\s+)?launder(s?|ers?|ing)?(\s+money)?|Morgan Stanley|(Peter L. )?Scher|(Ray\s*)?Dalio|Schwartz?man|Serageldin|UBS|us.gio@jpmorgan.com',
@@ -331,6 +318,20 @@ HIGHLIGHTED_NAMES = [
             PAUL_BARRETT: None,
             PAUL_MORRIS: 'Deutsche Bank',
         }
+    ),
+    HighlightedNames(
+        label='friend',
+        style='tan',
+        pattern=r"Andrew Farkas|Thomas\s*(J\.?\s*)?Barrack(\s*Jr)?",
+        emailers = {
+            DANGENE_AND_JENNIE_ENTERPRISE: 'founders of the members-only CORE club',
+            DAVID_STERN: f'emailed Epstein from Moscow, appears to know chairman of {DEUTSCHE_BANK}',
+            JONATHAN_FARKAS: "heir to the Alexander's department store fortune",
+            'linkspirit': "Skype username of someone Epstein communicated with",
+            'Peter Thomas Roth': 'student of Epstein at Dalton, skincare company founder',
+            STEPHEN_HANSON: None,
+            TOM_BARRACK: 'long time friend of Trump',
+        },
     ),
     HighlightedNames(
         label=HARVARD.lower(),
