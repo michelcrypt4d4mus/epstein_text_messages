@@ -141,14 +141,15 @@ class Document:
         links = [self.epstein_media_link(style=style)]
 
         if include_alt_links:
-            links.append(parenthesize(self.epsteinify_link(style=ALT_LINK_STYLE, link_txt=EPSTEINIFY)))
-            links.append(parenthesize(self.epstein_web_link(style=ALT_LINK_STYLE, link_txt=EPSTEIN_WEB)))
+            links.append(self.epsteinify_link(style=ALT_LINK_STYLE, link_txt=EPSTEINIFY))
+            links.append(self.epstein_web_link(style=ALT_LINK_STYLE, link_txt=EPSTEIN_WEB))
 
             if self._class_name() == 'Email':
-                links.append(parenthesize(self.rollcall_link(style=ALT_LINK_STYLE, link_txt=ROLLCALL)))
+                links.append(self.rollcall_link(style=ALT_LINK_STYLE, link_txt=ROLLCALL))
 
-        txt = Text('', style='white' if include_alt_links else ARCHIVE_LINK_COLOR)
-        return txt.append(join_texts(links))
+        links = [links[0]] + [parenthesize(link) for link in links[1:]]
+        base_txt = Text('', style='white' if include_alt_links else ARCHIVE_LINK_COLOR)
+        return base_txt.append(join_texts(links))
 
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any additional info about the file."""
