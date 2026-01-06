@@ -463,6 +463,7 @@ HIGHLIGHTED_NAMES = [
             CHRISTINA_GALBRAITH: f"{REPUTATION_MGMT}, worked on Epstein's Google search results with {TYLER_SHEARS}",
             IAN_OSBORNE: f"{OSBORNE_LLP} reputation repairer possibly hired by Epstein ca. 2011-06",
             MICHAEL_SITRICK: 'crisis PR',
+            'Owen Blicksilver': 'OBPR, Inc.',
             PEGGY_SIEGAL: 'socialite',
             'R. Couri Hay': None,
             ROSS_GOW: 'Acuity Reputation Management',
