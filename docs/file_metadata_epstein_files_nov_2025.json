@@ -60,9 +60,9 @@
             "bytes": 1509,
             "description": "Extracted from Jean Luc Brunel v. Jeffrey Epstein and Tyler McDonald d/b/a YI.org: court filing",
             "extracted_file": {
-                "explanation": "This file was extracted from a court filing, not distributed directly. A copy can be found on github.",
-                "extracted_file_url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_011908_1.txt",
-                "extracted_from_file": "HOUSE_OVERSIGHT_011908.txt"
+                "explanation": "Manually extracted from one of the court filings.",
+                "extracted_from": "HOUSE_OVERSIGHT_011908.txt",
+                "url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_011908_1.txt"
             },
             "file_id": "011908_1",
             "filename": "HOUSE_OVERSIGHT_011908.txt",
@@ -79,9 +79,9 @@
             "bytes": 738,
             "description": "Extracted from Jean Luc Brunel v. Jeffrey Epstein and Tyler McDonald d/b/a YI.org: court filing",
             "extracted_file": {
-                "explanation": "This file was extracted from a court filing, not distributed directly. A copy can be found on github.",
-                "extracted_file_url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_011908_2.txt",
-                "extracted_from_file": "HOUSE_OVERSIGHT_011908.txt"
+                "explanation": "Manually extracted from one of the court filings.",
+                "extracted_from": "HOUSE_OVERSIGHT_011908.txt",
+                "url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_011908_2.txt"
             },
             "file_id": "011908_2",
             "filename": "HOUSE_OVERSIGHT_011908.txt",
@@ -100,9 +100,9 @@
             "bytes": 750,
             "description": "Extracted from Jean Luc Brunel v. Jeffrey Epstein and Tyler McDonald d/b/a YI.org: court filing",
             "extracted_file": {
-                "explanation": "This file was extracted from a court filing, not distributed directly. A copy can be found on github.",
-                "extracted_file_url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_011908_3.txt",
-                "extracted_from_file": "HOUSE_OVERSIGHT_011908.txt"
+                "explanation": "Manually extracted from one of the court filings.",
+                "extracted_from": "HOUSE_OVERSIGHT_011908.txt",
+                "url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_011908_3.txt"
             },
             "file_id": "011908_3",
             "filename": "HOUSE_OVERSIGHT_011908.txt",
@@ -119,9 +119,9 @@
             "bytes": 898,
             "description": "Extracted from Jean Luc Brunel v. Jeffrey Epstein and Tyler McDonald d/b/a YI.org: court filing",
             "extracted_file": {
-                "explanation": "This file was extracted from a court filing, not distributed directly. A copy can be found on github.",
-                "extracted_file_url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_011908_4.txt",
-                "extracted_from_file": "HOUSE_OVERSIGHT_011908.txt"
+                "explanation": "Manually extracted from one of the court filings.",
+                "extracted_from": "HOUSE_OVERSIGHT_011908.txt",
+                "url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_011908_4.txt"
             },
             "file_id": "011908_4",
             "filename": "HOUSE_OVERSIGHT_011908.txt",
@@ -138,9 +138,9 @@
             "bytes": 750,
             "description": "Extracted from Jean Luc Brunel v. Jeffrey Epstein and Tyler McDonald d/b/a YI.org: court filing",
             "extracted_file": {
-                "explanation": "This file was extracted from a court filing, not distributed directly. A copy can be found on github.",
-                "extracted_file_url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_011908_5.txt",
-                "extracted_from_file": "HOUSE_OVERSIGHT_011908.txt"
+                "explanation": "Manually extracted from one of the court filings.",
+                "extracted_from": "HOUSE_OVERSIGHT_011908.txt",
+                "url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_011908_5.txt"
             },
             "file_id": "011908_5",
             "filename": "HOUSE_OVERSIGHT_011908.txt",
@@ -157,9 +157,9 @@
             "bytes": 1374,
             "description": "Extracted from Jean Luc Brunel v. Jeffrey Epstein and Tyler McDonald d/b/a YI.org: court filing",
             "extracted_file": {
-                "explanation": "This file was extracted from a court filing, not distributed directly. A copy can be found on github.",
-                "extracted_file_url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_011908_6.txt",
-                "extracted_from_file": "HOUSE_OVERSIGHT_011908.txt"
+                "explanation": "Manually extracted from one of the court filings.",
+                "extracted_from": "HOUSE_OVERSIGHT_011908.txt",
+                "url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_011908_6.txt"
             },
             "file_id": "011908_6",
             "filename": "HOUSE_OVERSIGHT_011908.txt",
@@ -178,9 +178,9 @@
             "bytes": 4837,
             "description": "Extracted from Jean Luc Brunel v. Jeffrey Epstein and Tyler McDonald d/b/a YI.org: court filing",
             "extracted_file": {
-                "explanation": "This file was extracted from a court filing, not distributed directly. A copy can be found on github.",
-                "extracted_file_url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_011908_7.txt",
-                "extracted_from_file": "HOUSE_OVERSIGHT_011908.txt"
+                "explanation": "Manually extracted from one of the court filings.",
+                "extracted_from": "HOUSE_OVERSIGHT_011908.txt",
+                "url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_011908_7.txt"
             },
             "file_id": "011908_7",
             "filename": "HOUSE_OVERSIGHT_011908.txt",
@@ -235,9 +235,9 @@
             "bytes": 2912,
             "description": "Extracted from SDFL Response to Jay Lefkowitz on Epstein Plea Agreement Compliance",
             "extracted_file": {
-                "explanation": "This file was extracted from a court filing, not distributed directly. A copy can be found on github.",
-                "extracted_file_url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_012197_1.txt",
-                "extracted_from_file": "HOUSE_OVERSIGHT_012197.txt"
+                "explanation": "Manually extracted from one of the court filings.",
+                "extracted_from": "HOUSE_OVERSIGHT_012197.txt",
+                "url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_012197_1.txt"
             },
             "file_id": "012197_1",
             "filename": "HOUSE_OVERSIGHT_012197.txt",
@@ -254,9 +254,9 @@
             "bytes": 2757,
             "description": "Extracted from SDFL Response to Jay Lefkowitz on Epstein Plea Agreement Compliance",
             "extracted_file": {
-                "explanation": "This file was extracted from a court filing, not distributed directly. A copy can be found on github.",
-                "extracted_file_url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_012197_2.txt",
-                "extracted_from_file": "HOUSE_OVERSIGHT_012197.txt"
+                "explanation": "Manually extracted from one of the court filings.",
+                "extracted_from": "HOUSE_OVERSIGHT_012197.txt",
+                "url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_012197_2.txt"
             },
             "file_id": "012197_2",
             "filename": "HOUSE_OVERSIGHT_012197.txt",
@@ -273,9 +273,9 @@
             "bytes": 1703,
             "description": "Extracted from SDFL Response to Jay Lefkowitz on Epstein Plea Agreement Compliance",
             "extracted_file": {
-                "explanation": "This file was extracted from a court filing, not distributed directly. A copy can be found on github.",
-                "extracted_file_url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_012197_3.txt",
-                "extracted_from_file": "HOUSE_OVERSIGHT_012197.txt"
+                "explanation": "Manually extracted from one of the court filings.",
+                "extracted_from": "HOUSE_OVERSIGHT_012197.txt",
+                "url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_012197_3.txt"
             },
             "file_id": "012197_3",
             "filename": "HOUSE_OVERSIGHT_012197.txt",
@@ -292,9 +292,9 @@
             "bytes": 2515,
             "description": "Extracted from SDFL Response to Jay Lefkowitz on Epstein Plea Agreement Compliance",
             "extracted_file": {
-                "explanation": "This file was extracted from a court filing, not distributed directly. A copy can be found on github.",
-                "extracted_file_url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_012197_4.txt",
-                "extracted_from_file": "HOUSE_OVERSIGHT_012197.txt"
+                "explanation": "Manually extracted from one of the court filings.",
+                "extracted_from": "HOUSE_OVERSIGHT_012197.txt",
+                "url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_012197_4.txt"
             },
             "file_id": "012197_4",
             "filename": "HOUSE_OVERSIGHT_012197.txt",
@@ -566,9 +566,9 @@
             "bytes": 1446,
             "description": "Extracted from Virginia Giuffre v. Ghislaine Maxwell: Declaration of Laura A. Menninger in Opposition to Plaintiff's Motion",
             "extracted_file": {
-                "explanation": "This file was extracted from a court filing, not distributed directly. A copy can be found on github.",
-                "extracted_file_url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_014797_1.txt",
-                "extracted_from_file": "HOUSE_OVERSIGHT_014797.txt"
+                "explanation": "Manually extracted from one of the court filings.",
+                "extracted_from": "HOUSE_OVERSIGHT_014797.txt",
+                "url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_014797_1.txt"
             },
             "file_id": "014797_1",
             "filename": "HOUSE_OVERSIGHT_014797.txt",
@@ -646,9 +646,9 @@
             "bytes": 1670,
             "description": "Extracted from Virginia Giuffre v. Ghislaine Maxwell: Defamation Complaint",
             "extracted_file": {
-                "explanation": "This file was extracted from a court filing, not distributed directly. A copy can be found on github.",
-                "extracted_file_url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_015529_1.txt",
-                "extracted_from_file": "HOUSE_OVERSIGHT_015529.txt"
+                "explanation": "Manually extracted from one of the court filings.",
+                "extracted_from": "HOUSE_OVERSIGHT_015529.txt",
+                "url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_015529_1.txt"
             },
             "file_id": "015529_1",
             "filename": "HOUSE_OVERSIGHT_015529.txt",
@@ -707,9 +707,9 @@
             "bytes": 6611,
             "description": "Extracted from New York v. Jeffrey Epstein: New York Post Motion to Unseal Appellate Briefs",
             "extracted_file": {
-                "explanation": "This file was extracted from a court filing, not distributed directly. A copy can be found on github.",
-                "extracted_file_url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_016420_1.txt",
-                "extracted_from_file": "HOUSE_OVERSIGHT_016420.txt"
+                "explanation": "Manually extracted from one of the court filings.",
+                "extracted_from": "HOUSE_OVERSIGHT_016420.txt",
+                "url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_016420_1.txt"
             },
             "file_id": "016420_1",
             "filename": "HOUSE_OVERSIGHT_016420.txt",
@@ -7776,9 +7776,9 @@
             "bytes": 358,
             "description": "Extracted from Darren Indyke",
             "extracted_file": {
-                "explanation": "This file was extracted from a court filing, not distributed directly. A copy can be found on github.",
-                "extracted_file_url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_026624_1.txt",
-                "extracted_from_file": "HOUSE_OVERSIGHT_026624.txt"
+                "explanation": "Manually extracted from one of the court filings.",
+                "extracted_from": "HOUSE_OVERSIGHT_026624.txt",
+                "url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_026624_1.txt"
             },
             "file_id": "026624_1",
             "filename": "HOUSE_OVERSIGHT_026624.txt",
