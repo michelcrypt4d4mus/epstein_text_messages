@@ -5,7 +5,7 @@ from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
 from subprocess import run
-from typing import ClassVar, Sequence, TypeVar
+from typing import Callable, ClassVar, Sequence, TypeVar
 
 from rich.console import Console, ConsoleOptions, Group, RenderResult
 from rich.padding import Padding
@@ -122,16 +122,19 @@ class Document:
         return txt.append(epstein_media_doc_link_txt(self.config.dupe_of_id, style='royal_blue1'))
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        """Create a Text obj link to this document on epsteinify.com."""
-        return link_text_obj(epsteinify_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
+        return self.external_url(epsteinify_doc_url, style, link_txt)
 
     def epstein_media_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        """Create a Text obj link to this document on epstein.media."""
-        return link_text_obj(epstein_media_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
+        return self.external_url(epstein_media_doc_url, style, link_txt)
 
     def epstein_web_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
-        """Create a Text obj link to this document on EpsteinWeb."""
-        return link_text_obj(epstein_web_doc_url(self.url_slug), link_txt or self.file_path.stem, style)
+        return self.external_url(epstein_web_doc_url, style, link_txt)
+
+    def rollcall_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
+        return self.external_url(rollcall_doc_url, style, link_txt)
+
+    def external_url(self, fxn: Callable[[str], str], style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
+        return link_text_obj(fxn(self.url_slug), link_txt or self.file_path.stem, style)
 
     def external_links(self, style: str = '', include_alt_link: bool = False) -> Text:
         """Returns colored links to epstein.media and and epsteinweb in a Text object."""
@@ -139,16 +142,17 @@ class Document:
 
         if args.use_epstein_web:
             txt.append(self.epstein_web_link(style=style))
-
-            if include_alt_link:
-                txt.append(' (').append(self.epsteinify_link(style='white dim', link_txt=EPSTEINIFY)).append(')')
-                txt.append(' (').append(self.epstein_media_link(style='white dim', link_txt=EPSTEIN_MEDIA)).append(')')
+            alt_link = self.epstein_media_link(style='white dim', link_txt=EPSTEIN_MEDIA)
         else:
             txt.append(self.epstein_media_link(style=style))
+            alt_link = self.epstein_web_link(style='white dim', link_txt=EPSTEIN_WEB)
 
-            if include_alt_link:
-                txt.append(' (').append(self.epsteinify_link(style='white dim', link_txt=EPSTEINIFY)).append(')')
-                txt.append(' (').append(self.epstein_web_link(style='white dim', link_txt=EPSTEIN_WEB)).append(')')
+        if include_alt_link:
+            txt.append(' (').append(self.epsteinify_link(style='white dim', link_txt=EPSTEINIFY)).append(')')
+            txt.append(' (').append(alt_link).append(')')
+
+            if self._class_name() == 'Email':
+                txt.append(' (').append(self.rollcall_link(style='white dim', link_txt=ROLLCALL)).append(')')
 
         return txt
 
