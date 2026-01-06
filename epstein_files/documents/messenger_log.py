@@ -16,7 +16,7 @@ from epstein_files.util.data import iso_timestamp, listify, sort_dict
 from epstein_files.util.doc_cfg import Metadata, TextCfg
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import build_table, highlighter
+from epstein_files.util.rich import LAST_TIMESTAMP_STYLE, build_table, highlighter
 
 CONFIRMED_MSG = 'Found confirmed counterparty'
 GUESSED_MSG = 'This is probably a conversation with'
@@ -130,7 +130,7 @@ class MessengerLog(Communication):
         counts_table.add_column('Files', justify='right', style='white')
         counts_table.add_column("Msgs", justify='right')
         counts_table.add_column('First Sent At', justify='center', highlight=True, width=21)
-        counts_table.add_column('Last Sent At', justify='center', style='wheat4', width=21)
+        counts_table.add_column('Last Sent At', justify='center', style=LAST_TIMESTAMP_STYLE, width=21)
         counts_table.add_column('Days', justify='right', style='dim')
 
         for name, count in sort_dict(cls.count_authors(imessage_logs)):

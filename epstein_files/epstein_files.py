@@ -23,12 +23,12 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import (EPSTEIN_MEDIA, EPSTEIN_WEB, JMAIL, epstein_media_person_url,
      epsteinify_name_url, epstein_web_person_url, search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
-from epstein_files.util.data import dict_sets_to_lists, json_safe, listify, sort_dict
+from epstein_files.util.data import dict_sets_to_lists, iso_timestamp, json_safe, listify, sort_dict
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.env import DOCS_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
-from epstein_files.util.rich import (DEFAULT_NAME_STYLE, NA_TXT, add_cols_to_table,
+from epstein_files.util.rich import (DEFAULT_NAME_STYLE, LAST_TIMESTAMP_STYLE, NA_TXT, add_cols_to_table,
      build_table, console, highlighter, link_text_obj, link_markup, print_author_header, print_centered,
      print_other_site_link, print_panel, print_section_header, vertically_pad)
 from epstein_files.util.search_result import SearchResult
@@ -278,25 +278,40 @@ class EpsteinFiles:
     def print_emailer_counts_table(self) -> None:
         footer = f"Identified authors of {self.attributed_email_count():,} out of {len(self.emails):,} emails ."
         counts_table = build_table("Email Counts", caption=footer)
-        add_cols_to_table(counts_table, ['Name', 'Count', 'Sent', "Recv'd", JMAIL, EPSTEIN_MEDIA, EPSTEIN_WEB, 'Twitter'])
+
+        add_cols_to_table(counts_table, [
+            'Name',
+            'Num',
+            'Sent',
+            "Recv",
+            {'name': 'First', 'highlight': True},
+            {'name': 'Last', 'style': LAST_TIMESTAMP_STYLE},
+            JMAIL,
+            'eMedia',
+            'eWeb',
+            'Twitter',
+        ])
 
         emailer_counts = {
             emailer: self.email_author_counts[emailer] + self.email_recipient_counts[emailer]
             for emailer in self.all_emailers(True)
         }
 
-        for p, count in sort_dict(emailer_counts):
-            style = get_style_for_name(p, default_style=DEFAULT_NAME_STYLE)
+        for name, count in sort_dict(emailer_counts):
+            style = get_style_for_name(name, default_style=DEFAULT_NAME_STYLE)
+            emails = self.emails_for(name)
 
             counts_table.add_row(
-                Text.from_markup(link_markup(epsteinify_name_url(p or UNKNOWN), p or UNKNOWN, style)),
+                Text.from_markup(link_markup(epsteinify_name_url(name or UNKNOWN), name or UNKNOWN, style)),
                 str(count),
-                str(self.email_author_counts[p]),
-                str(self.email_recipient_counts[p]),
-                '' if p is None else link_text_obj(search_jmail_url(p), JMAIL),
-                '' if not is_ok_for_epstein_web(p) else link_text_obj(epstein_media_person_url(p), EPSTEIN_MEDIA),
-                '' if not is_ok_for_epstein_web(p) else link_text_obj(epstein_web_person_url(p), EPSTEIN_WEB),
-                '' if p is None else link_text_obj(search_twitter_url(p), 'search X'),
+                str(self.email_author_counts[name]),
+                str(self.email_recipient_counts[name]),
+                emails[0].timestamp_without_seconds(),
+                emails[-1].timestamp_without_seconds(),
+                '' if name is None else link_text_obj(search_jmail_url(name), JMAIL),
+                '' if not is_ok_for_epstein_web(name) else link_text_obj(epstein_media_person_url(name), 'eMedia'),
+                '' if not is_ok_for_epstein_web(name) else link_text_obj(epstein_web_person_url(name), 'eWeb'),
+                '' if name is None else link_text_obj(search_twitter_url(name), 'search X'),
             )
 
         console.print(vertically_pad(counts_table, 2))

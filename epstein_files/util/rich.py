@@ -33,6 +33,7 @@ GREY_NUMBERS = [58, 39, 39, 35, 30, 27, 23, 23, 19, 19, 15, 15, 15]
 DEFAULT_NAME_STYLE = 'gray46'
 INFO_STYLE = 'white dim italic'
 KEY_STYLE='honeydew2 bold'
+LAST_TIMESTAMP_STYLE='wheat4'
 SECTION_HEADER_STYLE = 'bold white on blue3'
 SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
 SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
@@ -79,10 +80,18 @@ console = Console(**CONSOLE_ARGS)
 highlighter = CONSOLE_ARGS['highlighter']
 
 
-def add_cols_to_table(table: Table, col_names: list[str]) -> None:
+def add_cols_to_table(table: Table, col_names: list[str | dict]) -> None:
     """Left most col will be left justified, rest are center justified."""
     for i, col in enumerate(col_names):
-        table.add_column(col, justify='left' if i == 0 else 'center')
+        if isinstance(col, dict):
+            col_name = col['name']
+            kwargs = col
+            del kwargs['name']
+        else:
+            col_name = col
+            kwargs = {}
+
+        table.add_column(col_name, justify='left' if i == 0 else 'center', **kwargs)
 
 
 def build_highlighter(pattern: str) -> EpsteinHighlighter:
