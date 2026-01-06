@@ -94,10 +94,13 @@ class DocCfg:
 
     def complete_description(self) -> str | None:
         """String that summarizes what is known about this document."""
-        if self.category and not self.description:
+        if self.category and not self.description and not self.author:
             return self.category
         elif self.category == REPUTATION:
             return f"{REPUTATION_MGMT}: {self.description}"
+        elif self.category == SKYPE_LOG:
+            msg = f"{self.category} of conversation with {self.author}" if self.author else self.category
+            return f"{msg} {self.description}" if self.description else msg
         elif self.author and self.description:
             if self.category in [ACADEMIA, BOOK]:
                 return self.title_by_author()
