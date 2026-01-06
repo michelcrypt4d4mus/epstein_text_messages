@@ -45,7 +45,7 @@ class TextMessage:
             self.author_str = self.author_str or self.author
 
         if not self.id_confirmed and self.author is not None and self.author != JEFFREY_EPSTEIN:
-            self.author_str = self.author + ' (?)'
+            self.author_str += ' (?)'
 
         logger.warning(f"author={self.author}, author_str={self.author_str}")
 
