@@ -163,6 +163,7 @@ EMAILERS = [
     DEEPAK_CHOPRA,
     GLENN_DUBIN,
     GORDON_GETTY,
+    'Kevin Bright',
     'Jack Lang',
     JACK_SCAROLA,
     JAY_LEFKOWITZ,
@@ -663,6 +664,10 @@ EMAILS_CONFIG = [
     EmailCfg(id='029849', is_fwded_article=True, duplicate_ids=['033482']),  # Fareed Zakaria: Trump sells America short),
     EmailCfg(id='032023', is_fwded_article=True, duplicate_ids=['032012']),  # American-Israeli Cooperative Enterprise Newsletter
     EmailCfg(id='021758', is_fwded_article=True, duplicate_ids=['030616']),  # Radar Online article about Epstein's early prison release
+    EmailCfg(id='031774', is_fwded_article=True),  # Krassner fwd of Palmer Report article
+    EmailCfg(id='033345', is_fwded_article=True),  # Krassner fwd of Palmer Report article
+    EmailCfg(id='029903', is_fwded_article=True),  # Krassner fwd of Ann Coulter article about Epstein
+    EmailCfg(id='030266', is_fwded_article=True),  # Krassner fwd of article about Dershowitz
     EmailCfg(id='030868', is_fwded_article=True),  # 'He doesn't like this sh*t': Trump reportedly hates his job and his staff after 1 month
     EmailCfg(id='026755', is_fwded_article=True),  # HuffPo
     EmailCfg(id='016218', is_fwded_article=True),  # AT&T confirms it paid Trump lawyer Cohen for insights on Trump
