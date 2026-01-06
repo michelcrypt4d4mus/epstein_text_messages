@@ -212,6 +212,9 @@ class EpsteinFiles:
 
         return json.dumps(metadata, indent=4, sort_keys=True)
 
+    def non_duplicate_emails(self) -> list[Email]:
+        return [email for email in self.emails if not email.is_duplicate()]
+
     def non_json_other_files(self) -> list[OtherFile]:
         return [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
 
@@ -271,12 +274,12 @@ class EpsteinFiles:
         console.print(Align.center(Email.build_table(emails, author)), '\n')
 
     def print_email_device_info(self) -> None:
-        print_panel(f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown", padding=(4, 0, 0, 0), centered=True)
+        print_panel(f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown", padding=(2, 0, 0, 0), centered=True)
         console.print(_build_signature_table(self.email_authors_to_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
         console.print(_build_signature_table(self.email_device_signatures_to_authors, (DEVICE_SIGNATURE, AUTHOR), ', '))
 
     def print_emailer_counts_table(self) -> None:
-        attributed_emails = [e for e in self.emails if e.author and not e.is_duplicate()]
+        attributed_emails = [e for e in self.non_duplicate_emails() if e.author]
         footer = f"Identified authors of {len(attributed_emails):,} out of {len(self.emails):,} emails."
         counts_table = build_table("Email Counts", caption=footer)
 
@@ -309,10 +312,10 @@ class EpsteinFiles:
                 str(self.email_recipient_counts[name]),
                 emails[0].timestamp_without_seconds(),
                 emails[-1].timestamp_without_seconds(),
-                '' if name is None else link_text_obj(search_jmail_url(name), JMAIL),
-                '' if not is_ok_for_epstein_web(name) else link_text_obj(epstein_media_person_url(name), 'eMedia'),
-                '' if not is_ok_for_epstein_web(name) else link_text_obj(epstein_web_person_url(name), 'eWeb'),
-                '' if name is None else link_text_obj(search_twitter_url(name), 'search X'),
+                link_text_obj(search_jmail_url(name), JMAIL) if name else '',
+                link_text_obj(epstein_media_person_url(name), 'eMedia') if is_ok_for_epstein_web(name) else '',
+                link_text_obj(epstein_web_person_url(name), 'eWeb') if is_ok_for_epstein_web(name) else '',
+                link_text_obj(search_twitter_url(name), 'search X') if name else '',
             )
 
         console.print(vertically_pad(counts_table, 2))
@@ -333,7 +336,8 @@ class EpsteinFiles:
         print_section_header(f"{FIRST_FEW_LINES} of {len(interesting_files)} {header_pfx}Files That Are Neither Emails Nor Text Msgs")
 
         if not args.all_other_files:
-            print_centered(f"(the other site is uncurated and has all {len(self.other_files)} unclassifiable files and {len(self.emails):,} emails)", style='dim')
+            msg = f"(the other site is uncurated and has all {len(self.other_files)} unclassifiable files"
+            print_centered(f"{msg} and {len(self.emails):,} emails)", style='dim')
             print_other_site_link(False)
             console.line(2)
 
@@ -348,10 +352,7 @@ class EpsteinFiles:
 
     def _tally_email_data(self) -> None:
         """Tally up summary info about Email objects."""
-        for email in self.emails:
-            if email.is_duplicate():
-                continue
-
+        for email in self.non_duplicate_emails():
             self.email_author_counts[email.author] += 1
 
             if len(email.recipients) == 0:
