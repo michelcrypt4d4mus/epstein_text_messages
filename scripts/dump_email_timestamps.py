@@ -21,7 +21,7 @@ counts = defaultdict(int)
 
 for log in epstein_files.imessage_logs:
     if log.phone_number:
-        console.print(f"{log} has phone number {log.phone_number}")
+        console.print(f"{log} has phone number {log.phone_number} for {log.author}")
 
 sys.exit()
 
