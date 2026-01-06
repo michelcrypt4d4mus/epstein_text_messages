@@ -359,7 +359,8 @@ class Email(Communication):
         self.sent_from_device = self._sent_from_device()
 
     def info_txt(self) -> Text:
-        txt = Text("OCR text of email from ", style='grey46').append(self.author_txt).append(' to ')
+        email_type = 'fwded article' if self.is_fwded_article() else 'email'
+        txt = Text(f"OCR text of {email_type} from ", style='grey46').append(self.author_txt).append(' to ')
         return txt.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
 
     def is_fwded_article(self) -> bool:
