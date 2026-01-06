@@ -273,7 +273,6 @@ USELESS_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + KRASSNER_RECIP
     'Michael Simmons',                       # Random CC
     'Nancy Portland',                        # Lawrence Krauss CC
     'Oliver Goodenough',                     # Robert Trivers CC
-    'Owen Blicksilver',                      # Landon Thomas CC
     'Peter Aldhous',                         # Lawrence Krauss CC
     'Sam Harris',                            # Lawrence Krauss CC
     SAMUEL_LEFF,                             # Random CC
@@ -586,7 +585,7 @@ class Email(Communication):
                 self._merge_lines(2, 5)
             elif self.file_id in ['029498', '031428']:
                 self._merge_lines(2, 4)
-        elif self.file_id in ['029976', '023067']:
+        elif self.file_id in ['029976', '023067', '033576']:
             self._merge_lines(3)  # Merge 4th and 5th rows
         elif self.file_id in '026609 029402 032405 022695'.split():
             self._merge_lines(4)  # Merge 5th and 6th rows
