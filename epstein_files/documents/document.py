@@ -100,7 +100,7 @@ class Document:
             self.url_slug = LOCAL_EXTRACT_REGEX.sub('', file_stem_for_id(self.file_id))
 
             # Coerce FileConfig for court docs etc. to MessageCfg for email files extracted from that document
-            if self.class_name() == EMAIL_CLASS and self.config and not isinstance(self.config, EmailCfg):
+            if self._class_name() == EMAIL_CLASS and self.config and not isinstance(self.config, EmailCfg):
                 self.config = EmailCfg.from_doc_cfg(self.config)
         else:
             self.url_slug = self.file_path.stem
@@ -110,10 +110,6 @@ class Document:
         self._extract_author()
         self.timestamp = self._extract_timestamp()
 
-    def class_name(self) -> str:
-        """Annoying workaround for circular import issues and isinstance()."""
-        return str(type(self).__name__)
-
     def config_description(self) -> str | None:
         """Overloaded in OtherFile."""
         if self.config and self.config.description:
@@ -121,9 +117,6 @@ class Document:
 
     def date_str(self) -> str | None:
         return date_str(self.timestamp)
-
-    def document_type_style(self) -> str:
-        return DOC_TYPE_STYLES[self.class_name()]
 
     def duplicate_file_txt(self) -> Text:
         """If the file is a dupe make a nice message to explain what file it's a duplicate of."""
@@ -198,7 +191,7 @@ class Document:
         metadata.update({k: v for k, v in asdict(self).items() if k in METADATA_FIELDS and v is not None})
         metadata['bytes'] = self.file_size()
         metadata['filename'] = f"{self.url_slug}.txt"
-        metadata['type'] = self.class_name()
+        metadata['type'] = self._class_name()
 
         if self.is_local_extract_file():
             metadata['extracted_file'] = {
@@ -243,7 +236,7 @@ class Document:
         return text
 
     def sort_key(self) -> tuple[datetime, str, int]:
-        if self.config and self.config.dupe_of_id:
+        if self.is_duplicate():
             sort_id = self.config.dupe_of_id
             dupe_idx = 1
         else:
@@ -254,7 +247,7 @@ class Document:
 
     def summary(self) -> Text:
         """Summary of this file for logging. Brackets are left open for subclasses to add stuff."""
-        txt = Text('').append(self.class_name(), style=self.document_type_style())
+        txt = Text('').append(self._class_name(), style=self._class_style())
         txt.append(f" {self.url_slug}", style=FILENAME_STYLE)
 
         if self.timestamp:
@@ -277,7 +270,7 @@ class Document:
         if self.include_description_in_summary_panel:
             sentences += [Text('', style='italic').append(h) for h in self.info()]
 
-        return Panel(Group(*sentences), border_style=self.document_type_style(), expand=False)
+        return Panel(Group(*sentences), border_style=self._class_style(), expand=False)
 
     def top_lines(self, n: int = 10) -> str:
         return '\n'.join(self.lines[0:n])[:MAX_TOP_LINES_LEN]
@@ -285,6 +278,13 @@ class Document:
     def _border_style(self) -> str:
         """Should be overloaded in subclasses."""
         return 'white'
+
+    def _class_name(self) -> str:
+        """Annoying workaround for circular import issues and isinstance()."""
+        return str(type(self).__name__)
+
+    def _class_style(self) -> str:
+        return DOC_TYPE_STYLES[self._class_name()]
 
     def _extract_author(self) -> None:
         """Get author from config. Extended in Email subclass to also check headers."""
