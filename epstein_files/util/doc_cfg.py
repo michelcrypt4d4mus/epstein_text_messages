@@ -47,17 +47,11 @@ FINANCIAL_REPORTS_AUTHORS = [
 ]
 
 # Fields like timestamp and author are better added from the Document object
-METADATA_FIELDS = [
-    'attribution_reason',
-    'author',
-    'category',
-    'dupe_of_id',
-    'duplicate_ids',
-    'is_attribution_uncertain',
-    'is_fwded_article',
-    'is_interesting',
-    'recipients',
-    'timestamp',
+NON_METADATA_FIELDS = [
+    'actual_text',
+    'date',
+    'id',
+    'is_synthetic',
 ]
 
 
@@ -134,7 +128,7 @@ class DocCfg:
             yield dupe_cfg
 
     def metadata(self) -> Metadata:
-        return {k: v for k, v in asdict(self).items() if v and k in METADATA_FIELDS}
+        return {k: v for k, v in asdict(self).items() if v and k not in NON_METADATA_FIELDS}
 
     def non_null_field_names(self) -> list[str]:
         return [f.name for f in self.sorted_fields() if getattr(self, f.name)]
