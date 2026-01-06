@@ -80,7 +80,7 @@ class EpsteinFiles:
                 logger.warning(f"Skipping empty file: {document}]")
                 continue
             elif args.skip_other_files and cls == OtherFile and file_type_count[cls.__name__] > 1:
-                logger.warning(f"Skipping {document.filename}...")
+                document.log(f"Skipping OtherFile...")
                 continue
 
             documents.append(cls(file_arg, text=document.text))
@@ -112,9 +112,12 @@ class EpsteinFiles:
         logger.warning(f"Building new cache file, this will take a few minutes...")
         epstein_files = EpsteinFiles(timer=timer)
 
-        with gzip.open(PICKLED_PATH, 'wb') as file:
-            pickle.dump(epstein_files, file)
-            logger.warning(f"Pickled data to '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})...")
+        if args.skip_other_files:
+            logger.warning(f"Not writing pickled data because --skip-other-files")
+        else:
+            with gzip.open(PICKLED_PATH, 'wb') as file:
+                pickle.dump(epstein_files, file)
+                logger.warning(f"Pickled data to '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})...")
 
         timer.print_at_checkpoint(f'Processed {len(epstein_files.all_files):,} documents')
         return epstein_files

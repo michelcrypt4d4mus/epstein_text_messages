@@ -206,7 +206,7 @@ class Document:
 
         if self.is_local_extract_file():
             metadata['extracted_file'] = {
-                'explanation': 'Manually extracted from one of the court filings.',
+                'explanation': 'manually extracted from one of the other files',
                 'extracted_from': self.url_slug + '.txt',
                 'url': extracted_file_url(self.filename),
             }

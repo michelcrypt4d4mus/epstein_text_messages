@@ -1186,7 +1186,7 @@ OTHER_FILES_LEGAL = [
         date='2019-01-11',
     ),
     DocCfg(id='028540', author='SCOTUS', description=f"decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP"),
-    DocCfg(id='012197', author='SDFL', description=f"Response to {JAY_LEFKOWITZ} on Epstein Plea Agreement Compliance"),
+    DocCfg(id='012197', author='SDFL', description=f"response to {JAY_LEFKOWITZ} on Epstein Plea Agreement Compliance"),
     DocCfg(id='022277', description=f"text of National Labour Relations Board (NLRB) law", is_interesting=False),
 ]
 
