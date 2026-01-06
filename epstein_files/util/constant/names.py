@@ -178,6 +178,7 @@ JARED_KUSHNER = 'Jared Kushner'
 JULIE_K_BROWN = 'Julie K. Brown'
 KARIM_SADJADPOUR = 'KARIM SADJADPOUR'.title()
 MICHAEL_J_BOCCIO = 'Michael J. Boccio'
+NERIO_ALESSANDRI = 'Nerio Alessandri (Founder and Chairman of Technogym S.p.A. Italy)'
 PAUL_G_CASSELL = 'Paul G. Cassell'
 RUDY_GIULIANI = 'Rudy Giuliani'
 TULSI_GABBARD = 'Tulsi Gabbard'
