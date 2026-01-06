@@ -5,6 +5,7 @@ from datetime import datetime
 from rich.text import Text
 
 from epstein_files.util.constant.names import JEFFREY_EPSTEIN, STEVE_BANNON, UNKNOWN
+from epstein_files.util.constant.strings import TIMESTAMP_DIM
 from epstein_files.util.data import extract_last_name
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.logging import logger
@@ -12,7 +13,6 @@ from epstein_files.util.rich import TEXT_LINK, highlighter
 
 MSG_DATE_FORMAT = r"%m/%d/%y %I:%M:%S %p"
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
-TIMESTAMP_STYLE = 'turquoise4 dim'
 
 DISPLAY_LAST_NAME_ONLY = [
     JEFFREY_EPSTEIN,
@@ -77,5 +77,5 @@ class TextMessage:
     def __rich__(self) -> Text:
         author_style = get_style_for_name(self.author_str if self.author_str.startswith('+') else self.author)
         author_txt = Text(self.author_str, style=author_style)
-        timestamp_txt = Text(f"[{self.timestamp_str}]", style=TIMESTAMP_STYLE).append(' ')
+        timestamp_txt = Text(f"[{self.timestamp_str}]", style=TIMESTAMP_DIM).append(' ')
         return Text('').append(timestamp_txt).append(author_txt).append(': ', style='dim').append(self._message())
