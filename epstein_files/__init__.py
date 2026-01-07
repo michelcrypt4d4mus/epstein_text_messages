@@ -19,7 +19,7 @@ from epstein_files.documents.email import Email
 from epstein_files.util.constant.output_files import ALL_EMAILS_PATH, CHRONOLOGICAL_EMAILS_PATH, TEXT_MSGS_HTML_PATH, make_clean
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import coerce_file_path, extract_file_id
-from epstein_files.util.logging import logger
+from epstein_files.util.logging import exit_with_error, logger
 from epstein_files.util.output import (print_emails_section, print_json_files, print_json_stats,
      print_other_files_section, print_text_messages_section, write_complete_emails_timeline, write_json_metadata, write_urls)
 from epstein_files.util.rich import build_highlighter, console, print_color_key, print_title_page_header, print_title_page_tables, print_panel, write_html
@@ -54,8 +54,9 @@ def generate_html() -> None:
         exit()
 
     if args.output_texts:
-        print_text_messages_section(epstein_files)
-        timer.print_at_checkpoint(f'Printed {len(epstein_files.imessage_logs)} text message logs')
+        imessage_logs = [log for log in epstein_files.imessage_logs if not args.names or log.author in args.names]
+        print_text_messages_section(imessage_logs)
+        timer.print_at_checkpoint(f'Printed {len(imessage_logs)} text message log files')
 
     if args.output_emails:
         emails_that_were_printed = print_emails_section(epstein_files)
@@ -150,5 +151,4 @@ def epstein_word_count() -> None:
 
 def _assert_positional_args():
     if not args.positional_args:
-        console.print(f"\n  ERROR: No positional args!\n", style='red1')
-        exit(1)
+        exit_with_error(f"No positional args provided!\n")

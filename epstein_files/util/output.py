@@ -156,20 +156,29 @@ def print_other_files_section(files: list[OtherFile], epstein_files: EpsteinFile
     console.print(other_files_preview_table)
 
 
-def print_text_messages_section(epstein_files: EpsteinFiles) -> None:
+def print_text_messages_section(imessage_logs: list[MessengerLog]) -> None:
     """Print summary table and stats for text messages."""
+    if not imessage_logs:
+        logger.warning(f"No MessengerLog objects to output...")
+        return
+
     print_section_header('All of His Text Messages')
-    print_centered(MessengerLog.summary_table(epstein_files.imessage_logs))
+
+    if not args.names:
+        print_centered(MessengerLog.summary_table(imessage_logs))
+
     console.line(3)
     console.print(" Conversations are sorted chronologically based on timestamp of first message in the log file.\n", style='grey70')
 
-    for log_file in epstein_files.imessage_logs:
+    for log_file in imessage_logs:
         console.print(Padding(log_file))
         console.line(2)
 
 
 def write_complete_emails_timeline(epstein_files: EpsteinFiles) -> None:
-    table = build_table('All Non-Junk Emails In Chronological Order', highlight=True)
+    """Print a table of all emails in chronological order."""
+    emails = [email for email in epstein_files.non_duplicate_emails() if not email.is_junk_mail()]
+    table = build_table(f'All {len(emails):,} Non-Junk Emails in Chronological Order', highlight=True)
     table.add_column('ID', style='dim')
     table.add_column('Sent At', style=TIMESTAMP_DIM)
     table.add_column('Author', max_width=22)
@@ -177,7 +186,7 @@ def write_complete_emails_timeline(epstein_files: EpsteinFiles) -> None:
     table.add_column('Length', justify='right', style='wheat4')
     table.add_column('Subject')
 
-    for email in Document.sort_by_timestamp(epstein_files.non_duplicate_emails()):
+    for email in Document.sort_by_timestamp(emails):
         if email.is_junk_mail():
             continue
 
