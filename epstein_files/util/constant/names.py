@@ -238,7 +238,7 @@ OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
     ian isaac isaacson
     james jamie jane janet jason jen jim joe johnson jones josh julie justin
     karl kate kathy kelly kim kruger kyle
-    laurie leo leonard lenny leslie lieberman louis lynch lynn
+    laurie lawrence leo leonard lenny leslie lieberman louis lynch lynn
     marcus marianne matt matthew melissa michele michelle moore moscowitz
     nancy nicole nussbaum
     owen
