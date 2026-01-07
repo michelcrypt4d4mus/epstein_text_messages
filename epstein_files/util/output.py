@@ -92,7 +92,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
             num_emails_printed_since_last_color_key = 0
 
     if emailer_tables:
-        print_author_header(f"Email Tables for {len(emailer_tables)} Other People", 'white')
+        print_author_panel(f"Email Tables for {len(emailer_tables)} Other People", 'white')
 
         for name in DEFAULT_EMAILER_TABLES:
             epstein_files.print_emails_table_for(name)
