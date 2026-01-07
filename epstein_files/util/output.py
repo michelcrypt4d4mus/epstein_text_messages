@@ -60,7 +60,7 @@ if len(set(DEFAULT_EMAILERS).intersection(set(DEFAULT_EMAILER_TABLES))) > 0:
 def print_emails(epstein_files: EpsteinFiles) -> int:
     """Returns number of emails printed."""
     print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
-    print_other_site_link(is_header=False)
+    print_all_files_page_link(epstein_files)
     emailers_to_print: list[str | None]
     emailer_tables: list[str | None] = []
     already_printed_emails: list[Email] = []

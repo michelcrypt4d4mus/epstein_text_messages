@@ -29,8 +29,8 @@ from epstein_files.util.env import DOCS_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames, get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_STYLE, LAST_TIMESTAMP_STYLE, NA_TXT, add_cols_to_table,
-     build_table, console, highlighter, link_text_obj, link_markup, print_author_header, print_centered,
-     print_other_site_link, print_panel, print_section_header, vertically_pad)
+     print_all_files_page_link, build_table, console, highlighter, link_text_obj, link_markup, print_author_header, print_centered,
+     print_panel, print_section_header, vertically_pad)
 from epstein_files.util.search_result import SearchResult
 from epstein_files.util.timer import Timer
 
@@ -292,7 +292,7 @@ class EpsteinFiles:
 
     def print_emailer_counts_table(self) -> None:
         attributed_emails = [e for e in self.non_duplicate_emails() if e.author]
-        footer = f"Identified authors of {len(attributed_emails):,} out of {len(self.emails):,} emails."
+        footer = f"Identified authors of {len(attributed_emails):,} out of {len(self.non_duplicate_emails()):,} emails."
         counts_table = build_table("Email Counts", caption=footer)
 
         add_cols_to_table(counts_table, [
@@ -343,20 +343,19 @@ class EpsteinFiles:
 
     def print_other_files_table(self, files: list[OtherFile]) -> None:
         """Returns the OtherFile objects that were interesting enough to print."""
-        header_pfx = '' if args.all_other_files else 'Selected '
         category_table = OtherFile.count_by_category_table(files)
         other_files_preview_table = OtherFile.build_table(files)
-        print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {header_pfx}Files That Are Neither Emails Nor Text Msgs")
+        header_pfx = '' if args.all_other_files else 'Selected '
+        print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {header_pfx}Files That Are Neither Emails Nor Text Messages")
 
         if args.all_other_files:
             console.line(1)
         else:
-            category_table.title = f"Selected {category_table.title}"
-            other_files_preview_table.title = f"Selected {other_files_preview_table.title}"
-            msg = f"(the other site is uncurated and has all {len(self.other_files)} unclassifiable files"
-            print_centered(f"{msg} and {len(self.emails):,} emails)", style='dim')
-            print_other_site_link(False)
+            print_all_files_page_link(self)
             console.line(2)
+
+            for table in [category_table, other_files_preview_table]:
+                table.title = f"{header_pfx} {table.title}"
 
         print_centered(category_table)
         console.line(2)
