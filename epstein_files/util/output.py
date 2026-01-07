@@ -144,13 +144,10 @@ def print_other_files_section(files: list[OtherFile], epstein_files: EpsteinFile
     other_files_preview_table = OtherFile.files_preview_table(files)
     header_pfx = '' if args.all_other_files else 'Selected '
     print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {header_pfx}Files That Are Neither Emails Nor Text Messages")
+    print_other_page_link(epstein_files)
+    console.line()
 
-    if args.all_other_files:
-        console.line(1)
-    else:
-        print_other_page_link(epstein_files)
-        console.line(2)
-
+    if not args.all_other_files:
         for table in [category_table, other_files_preview_table]:
             table.title = f"{header_pfx}{table.title}"
 
@@ -162,13 +159,13 @@ def print_other_files_section(files: list[OtherFile], epstein_files: EpsteinFile
 def print_text_messages_section(epstein_files: EpsteinFiles) -> None:
     """Print summary table and stats for text messages."""
     print_section_header('All of His Text Messages')
-    print_centered("(conversations are sorted chronologically based on timestamp of first message)\n", style='gray30')
+    print_centered(MessengerLog.summary_table(epstein_files.imessage_logs))
+    console.line(3)
+    console.print(" Conversations are sorted chronologically based on timestamp of first message in the log file.\n", style='grey70')
 
     for log_file in epstein_files.imessage_logs:
         console.print(Padding(log_file))
         console.line(2)
-
-    print_centered(MessengerLog.summary_table(epstein_files.imessage_logs))
 
 
 def write_complete_emails_timeline(epstein_files: EpsteinFiles) -> None:

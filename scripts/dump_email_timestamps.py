@@ -27,34 +27,6 @@ counts = defaultdict(int)
 #     print_json('metadata', doc.metadata())
 
 
-table = Table(header_style='bold', highlight=True)
-table.add_column('id')
-table.add_column('sent at')
-table.add_column('author')
-table.add_column('recipients', max_width=38)
-# table.add_column('att')
-table.add_column('len')
-table.add_column('actual')
-table.add_column('subject')
-
-for email in sorted(epstein_files.non_duplicate_emails(), key=lambda e: -e.length()):
-    if email.is_fwded_article() or email.is_junk_mail():
-        continue
-
-    table.add_row(
-        email.file_id[0:6],
-        email.timestamp_without_seconds(),
-        email.author_txt,
-        email.recipients_txt(),
-        str(email.length()),
-        str(len(email.actual_text)),
-        # ', '.join(email.attachments())
-        email.subject(),
-    )
-
-console.print(table)
-sys.exit()
-
 def print_potential_useless_emailers():
     emailers = sorted(epstein_files.all_emailers(), key=lambda e: epstein_files.earliest_email_at(e))
 
@@ -72,7 +44,8 @@ def print_potential_useless_emailers():
             console.print(f"{emailer_str} received {len(emails)} emails but sent none.")
 
 
-
+print_potential_useless_emailers()
+sys.exit()
 counts = defaultdict(int)
 
 

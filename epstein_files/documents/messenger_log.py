@@ -2,7 +2,7 @@ import logging
 import re
 from collections import defaultdict
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from rich.console import Console, ConsoleOptions, RenderResult
 from rich.table import Table
@@ -36,10 +36,10 @@ class MessengerLog(Communication):
         self.messages = [self._build_message(match) for match in MSG_REGEX.finditer(self.text)]
 
     def first_message_at(self, name: str | None) -> datetime:
-        return self.messages_by(name)[0].timestamp()
+        return self.messages_by(name)[0].parse_timestamp()
 
     def info_txt(self) -> Text | None:
-        num_days_str = days_between_str(self.timestamp, self.messages[-1].timestamp())
+        num_days_str = days_between_str(self.timestamp, self.messages[-1].parse_timestamp())
         txt = Text(f"(Covers {num_days_str} starting ", style='dim')
         txt.append(self.date_str(), style=TIMESTAMP_STYLE).append(' ')
 
@@ -55,7 +55,7 @@ class MessengerLog(Communication):
         return txt.append(')')
 
     def last_message_at(self, name: str | None) -> datetime:
-        return self.messages_by(name)[-1].timestamp()
+        return self.messages_by(name)[-1].parse_timestamp()
 
     def messages_by(self, name: str | None) -> list[TextMessage]:
         """Return all messages by 'name'."""
@@ -96,11 +96,30 @@ class MessengerLog(Communication):
             message = self._build_message(match)
 
             try:
-                return message.timestamp()
+                return message.parse_timestamp()
             except ValueError as e:
                 logger.info(f"Failed to parse '{message.timestamp_str}' to datetime! Using next match. Error: {e}'")
 
         raise RuntimeError(f"{self}: No timestamp found!")
+
+    def _set_message_timestamps(self) -> None:
+        raise NotImplementedError(f"TextMessage.timestamp no longer exists")
+        last_message: TextMessage | None = None
+
+        for i, message in enumerate(self.messages):
+            try:
+                message.timestamp = message.parse_timestamp()
+            except Exception as e:
+                msg = f"Failed to parse timestamp for TextMessage {i + 1}, {message}: {e}"
+
+                if i == 0:
+                    message.timestamp = self.timestamp
+                    self.warn(f"{msg}\nit's the first message so using the MessengerLog timestamp property {self.timestamp}")
+                else:
+                    message.timestamp = last_message.timestamp + timedelta(milliseconds=1)
+                    self.warn(f"{msg}\nadding 1 millisecond to last timestamp {last_message.timestamp}")
+
+            last_message = message
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield self.file_info_panel()
@@ -131,8 +150,8 @@ class MessengerLog(Communication):
         counts_table.add_column(AUTHOR.title(), justify='left', width=30)
         counts_table.add_column('Files', justify='right', style='white')
         counts_table.add_column("Msgs", justify='right')
-        counts_table.add_column('First Sent At', justify='center', highlight=True, width=21)
-        counts_table.add_column('Last Sent At', justify='center', style=LAST_TIMESTAMP_STYLE, width=21)
+        counts_table.add_column('First Sent At', justify='center', highlight=True)
+        counts_table.add_column('Last Sent At', justify='center', style=LAST_TIMESTAMP_STYLE)
         counts_table.add_column('Days', justify='right', style='dim')
 
         for name, count in sort_dict(author_counts):

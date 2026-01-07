@@ -1,4 +1,8 @@
 # NEXT RELEASE
+* Remove AM/PM from imessage timestamp strings
+
+# 1.1.0
+* Chronological emails page
 
 ### 1.0.16
 
