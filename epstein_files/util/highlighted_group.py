@@ -283,7 +283,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='europe',
         style='light_sky_blue3',
-        pattern=r'(Angela )?Merk(el|le)|Austria|(Benjamin\s*)?Harnwell|Berlin|Borge|Boris\s*Johnson|Brexit(eers?)?|Brit(ain|ish)|Brussels|Cannes|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|Davos|ECB|England|EU|Europe(an)?(\s*Union)?|Fr(ance|ench)|Geneva|Germany?|Gillard|Gree(ce|k)|Ital(ian|y)|Jacques|(Kevin\s*)?Rudd|Le\s*Pen|London|Macron|Melusine|Munich|(Natalia\s*)?Veselnitskaya|(Nicholas\s*)?Sarkozy|Nigel(\s*Farage)?|Norw(ay|egian)|Oslo|Paris|Polish|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strasbourg|Strauss[- ]?Kahn|Swed(en|ish)(?![-\s]+America)|Switzerland|(Tony\s)?Blair|U\.?K\.?|Ukrain(e|ian)|Vienna|(Vitaly\s*)?Churkin|Zug',
+        pattern=r'(Angela )?Merk(el|le)|Austria|(Benjamin\s*)?Harnwell|Berlin|Borge|Boris\s*Johnson|Brexit(eers?)?|Brit(ain|ish)|Brussels|Cannes|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|Davos|ECB|England|EU|Europe(an)?(\s*Union)?|Fr(ance|ench)|Geneva|Germany?|Gillard|Gree(ce|k)|Ital(ian|y)|Jacques|(Kevin\s*)?Rudd|Le\s*Pen|London|Macron|Melusine|Munich|(Natalia\s*)?Veselnitskaya|(Nicholas\s*)?Sarkozy|Nigel(\s*Farage)?|Norw(ay|egian)|Oslo|Paris|Polish|pope|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strasbourg|Strauss[- ]?Kahn|Swed(en|ish)(?![-\s]+America)|Switzerland|(Tony\s)?Blair|U\.?K\.?|Ukrain(e|ian)|Vienna|(Vitaly\s*)?Churkin|Zug',
         emailers = {
             ANDRZEJ_DUDA: 'former president of Poland',
             MIROSLAV_LAJCAK: 'Russia-friendly Slovakian politician, friend of Steve Bannon',
@@ -318,7 +318,8 @@ HIGHLIGHTED_NAMES = [
             MELANIE_SPINELLA: f'representative of {LEON_BLACK}',
             MORTIMER_ZUCKERMAN: 'business partner of Epstein',
             PAUL_BARRETT: None,
-            PAUL_MORRIS: 'Deutsche Bank',
+            PAUL_MORRIS: DEUTSCHE_BANK,
+            'Steven Elkman': DEUTSCHE_BANK,
         }
     ),
     HighlightedNames(
@@ -422,7 +423,7 @@ HIGHLIGHTED_NAMES = [
         label='mideast',
         style='dark_sea_green4',
         # something like this won't match ever because of word boundary: [-\s]9/11[\s.]
-        pattern=r"Abdulmalik Al-Makhlafi|Abdullah|Abu\s+Dhabi|Afghanistan|Al[-\s]?Qa[ei]da|Ahmadinejad|Arab|Aramco|Assad|Bahrain|Basiji?|Benghazi|Cairo|Chagoury|Dj[iu]bo?uti|Doha|Dubai|Egypt(ian)?|Emir(at(es?|i))?|Erdogan|Fashi|Gaddafi|(Hamid\s*)?Karzai|Hamad\s*bin\s*Jassim|HBJ|Houthi|Imran\s+Khan|Iran(ian)?|Isi[ls]|Islam(abad|ic|ist)?|Istanbul|Kh?ashoggi|(Kairat\s*)?Kelimbetov|kasshohgi|Kaz(akh|ich)stan|Kazakh?|Kh[ao]menei|Khalid\s*Sheikh\s*Mohammed|KSA|Leban(ese|on)|Libyan?|Mahmoud|Marra[hk]e[cs]h|MB(N|S|Z)|Mohammed\s+bin\s+Salman|Morocco|Mubarak|Muslim|Nayaf|Pakistani?|Omar|(Osama\s*)?Bin\s*Laden|Osama(?! al)|Palestin(e|ian)|Persian?|Riya(dh|nd)|Saddam|Salman|Saudi(\s+Arabian?)?|Shariah?|SHC|sheikh|shia|(Sultan\s*)?Yacoub|Syrian?|(Tarek\s*)?El\s*Sayed|Tehran|Tunisian?|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
+        pattern=r"Abdulmalik Al-Makhlafi|Abdullah|Abu\s+Dhabi|Afghanistan|Al[-\s]?Qa[ei]da|Ahmadinejad|Arab|Aramco|Assad|Bahrain|Basiji?|Benghazi|Cairo|Chagoury|Dj[iu]bo?uti|Doha|Dubai|Egypt(ian)?|Emir(at(es?|i))?|Erdogan|Fashi|Gaddafi|(Hamid\s*)?Karzai|Hamad\s*bin\s*Jassim|HBJ|Houthi|Imran\s+Khan|Iran(ian)?|Isi[ls]|Islam(abad|ic|ist)?|Istanbul|Kh?ashoggi|(Kairat\s*)?Kelimbetov|kasshohgi|Kaz(akh|ich)stan|Kazakh?|Kh[ao]menei|Khalid\s*Sheikh\s*Mohammed|KSA|Leban(ese|on)|Libyan?|Mahmoud|Marra[hk]e[cs]h|MB(N|S|Z)|Mid(dle)?\s*East|Mohammed\s+bin\s+Salman|Morocco|Mubarak|Muslim|Nayaf|Pakistani?|Omar|(Osama\s*)?Bin\s*Laden|Osama(?! al)|Palestin(e|ian)|Persian?|Riya(dh|nd)|Saddam|Salman|Saudi(\s+Arabian?)?|Shariah?|SHC|sheikh|shia|(Sultan\s*)?Yacoub|Syrian?|(Tarek\s*)?El\s*Sayed|Tehran|Tunisian?|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
         emailers = {
             ANAS_ALRASHEED: f'former information minister of Kuwait {QUESTION_MARKS}',
             AZIZA_ALAHMADI: 'Abu Dhabi Department of Culture & Tourism',
