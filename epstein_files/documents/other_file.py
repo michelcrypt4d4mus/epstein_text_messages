@@ -210,6 +210,36 @@ class OtherFile(Document):
             self.log_top_lines(15, msg=timestamps_log_msg, level=logging.DEBUG)
 
     @staticmethod
+    def count_by_category_table(files: Sequence['OtherFile']) -> Table:
+        counts = defaultdict(int)
+        category_bytes = defaultdict(int)
+
+        for file in files:
+            if file.category() is None:
+                logger.warning(f"file {file.file_id} has no category")
+
+            counts[file.category()] += 1
+            category_bytes[file.category()] += file.file_size()
+
+        table = build_table('Other Files Summary', ['Category', 'Count', 'Has Author', 'No Author', 'Size'])
+        table.columns[0].min_width = 14
+        table.columns[-1].style = 'dim'
+
+        for (category, count) in sort_dict(counts):
+            category_files = [f for f in files if f.category() == category]
+            known_author_count = Document.known_author_count(category_files)
+
+            table.add_row(
+                styled_category(category or UNKNOWN),
+                str(count),
+                str(known_author_count),
+                str(count - known_author_count),
+                file_size_to_str(category_bytes[category]),
+            )
+
+        return table
+
+    @staticmethod
     def files_preview_table(files: Sequence['OtherFile']) -> Table:
         """Build a table of OtherFile documents."""
         table = build_table('Other Files Details', show_lines=True)
@@ -238,36 +268,6 @@ class OtherFile(Document):
                 file.category_txt(),
                 preview_text,
                 style=row_style
-            )
-
-        return table
-
-    @staticmethod
-    def count_by_category_table(files: Sequence['OtherFile']) -> Table:
-        counts = defaultdict(int)
-        category_bytes = defaultdict(int)
-
-        for file in files:
-            if file.category() is None:
-                logger.warning(f"file {file.file_id} has no category")
-
-            counts[file.category()] += 1
-            category_bytes[file.category()] += file.file_size()
-
-        table = build_table('Other Files Summary', ['Category', 'Count', 'Has Author', 'No Author', 'Size'])
-        table.columns[0].min_width = 14
-        table.columns[-1].style = 'dim'
-
-        for (category, count) in sort_dict(counts):
-            category_files = [f for f in files if f.category() == category]
-            known_author_count = Document.known_author_count(category_files)
-
-            table.add_row(
-                styled_category(category or UNKNOWN),
-                str(count),
-                str(known_author_count),
-                str(count - known_author_count),
-                file_size_to_str(category_bytes[category]),
             )
 
         return table
