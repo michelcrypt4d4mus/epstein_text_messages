@@ -76,7 +76,7 @@ class EpsteinFiles:
             document = Document(file_arg)
             cls = document_cls(document)
 
-            if document.length == 0:
+            if document.length() == 0:
                 logger.warning(f"Skipping empty file: {document}]")
                 continue
             elif args.skip_other_files and cls == OtherFile and file_type_count[cls.__name__] > 1:
@@ -391,7 +391,7 @@ def count_by_month(docs: Sequence[Document]) -> dict[str | None, int]:
 def document_cls(doc: Document) -> Type[Document]:
     search_area = doc.text[0:5000]  # Limit search area to avoid pointless scans of huge files
 
-    if doc.length == 0:
+    if doc.length() == 0:
         return Document
     if doc.text[0] == '{':
         return JsonFile

@@ -46,7 +46,6 @@ FILENAME_MATCH_STYLES = [
 METADATA_FIELDS = [
     'author',
     'file_id',
-    'num_lines',
     'timestamp'
 ]
 
@@ -68,7 +67,6 @@ class Document:
         config (DocCfg): Information about this fil
         file_id (str): 6 digit (or 8 digits if it's a local extract file) string ID
         filename (str): File's basename
-        length (int): Number of characters in the file after all the cleanup
         lines (str): Number of lines in the file after all the cleanup
         text (str): Contents of the file
         timestamp (datetime | None): When the file was originally created
@@ -80,9 +78,7 @@ class Document:
     config: EmailCfg | DocCfg | TextCfg | None = None
     file_id: str = field(init=False)
     filename: str = field(init=False)
-    length: int = field(init=False)
     lines: list[str] = field(init=False)
-    num_lines: int = field(init=False)
     text: str = ''
     timestamp: datetime | None = None
     url_slug: str = ''
@@ -182,6 +178,9 @@ class Document:
         """True if file created by extracting text from a court doc (identifiable from filename e.g. HOUSE_OVERSIGHT_012345_1.txt)."""
         return is_local_extract_file(self.filename)
 
+    def length(self) -> int:
+        return len(self.text)
+
     def log(self, msg: str, level: int = logging.INFO):
         """Log with filename as a prefix."""
         logger.log(level, f"{self.file_path.stem} {msg}")
@@ -202,6 +201,7 @@ class Document:
         metadata.update({k: v for k, v in asdict(self).items() if k in METADATA_FIELDS and v is not None})
         metadata['bytes'] = self.file_size()
         metadata['filename'] = f"{self.url_slug}.txt"
+        metadata['num_lines'] = self.num_lines()
         metadata['type'] = self._class_name()
 
         if self.is_local_extract_file():
@@ -212,6 +212,9 @@ class Document:
             }
 
         return metadata
+
+    def num_lines(self) -> int:
+        return len(self.lines)
 
     def raw_text(self) -> str:
         with open(self.file_path) as f:
@@ -248,7 +251,7 @@ class Document:
             txt.append(f"{timestamp_str}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
 
         txt.append(' [').append(key_value_txt('size', Text(self.file_size_str(), style='aquamarine1')))
-        txt.append(", ").append(key_value_txt('lines', self.num_lines))
+        txt.append(", ").append(key_value_txt('lines', self.num_lines()))
 
         if self.config and self.config.duplicate_of_id:
             txt.append(", ").append(key_value_txt('dupe_of', Text(self.config.duplicate_of_id, style='magenta')))
@@ -313,9 +316,7 @@ class Document:
         else:
             raise RuntimeError(f"[{self.filename}] Either 'lines' or 'text' arg must be provided (neither was)")
 
-        self.length = len(self.text)
         self.lines = [line.strip() if self.strip_whitespace else line for line in self.text.split('\n')]
-        self.num_lines = len(self.lines)
 
     def _write_clean_text(self, output_path: Path) -> None:
         """Write self.text to 'output_path'. Used only for diffing files."""
@@ -328,7 +329,7 @@ class Document:
         with open(output_path, 'w') as f:
             f.write(self.text)
 
-        logger.warning(f"Wrote {self.length} chars of cleaned {self.filename} to {output_path}.")
+        logger.warning(f"Wrote {self.length()} chars of cleaned {self.filename} to {output_path}.")
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield self.file_info_panel()
