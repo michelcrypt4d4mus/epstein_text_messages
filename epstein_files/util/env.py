@@ -34,14 +34,14 @@ parser.add_argument('--overwrite-pickle', '-op', action='store_true', help='re-p
 output = parser.add_argument_group('OUTPUT', 'Options used by epstein_generate.')
 output.add_argument('--all-emails', '-ae', action='store_true', help='all the emails instead of just the interesting ones')
 output.add_argument('--all-other-files', '-ao', action='store_true', help='all the non-email, non-text msg files instead of just the interesting ones')
-output.add_argument('--build', '-b', action='store_true', help='write output to an HTML file in docs/ dir')
+output.add_argument('--build', '-b', action='store_true', help='write output to an HTML file in docs/')
 output.add_argument('--email-timeline', action='store_true', help='print a table of all emails in chronological order')
 output.add_argument('--json-files', action='store_true', help='pretty print all the raw JSON data files in the collection and exit')
 output.add_argument('--json-metadata', action='store_true', help='dump JSON metadata for all files and exit')
 output.add_argument('--output-emails', '-oe', action='store_true', help='generate emails section')
 output.add_argument('--output-other', '-oo', action='store_true', help='generate other files section')
 output.add_argument('--output-texts', '-ot', action='store_true', help='generate text messages section')
-output.add_argument('--sort-alphabetical', action='store_true', help='sort emailers alphabetically intead of by email count')
+output.add_argument('--sort-alphabetical', action='store_true', help='sort tables alphabetically intead of by count')
 output.add_argument('--suppress-output', action='store_true', help='no output to terminal (use with --build)')
 output.add_argument('--uninteresting', action='store_true', help='only output uninteresting other files')
 output.add_argument('--width', '-w', type=int, default=DEFAULT_WIDTH, help='screen width to use (in characters)')
@@ -60,6 +60,7 @@ debug.add_argument('--skip-other-files', '-sof', action='store_true', help='skip
 debug.add_argument('--suppress-logs', '-sl', action='store_true', help='set debug level to FATAL')
 
 
+# Parse args
 args = parser.parse_args()
 is_html_script = parser.prog in HTML_SCRIPTS
 
@@ -84,6 +85,10 @@ if is_html_script:
 elif not args.positional_args:
     exit_with_error(f"{parser.prog} requires positional arguments but got none!")
 
+if args.names:
+    logger.warning(f"Output restricted to {args.names}")
+    args.output_other = False
+
 
 # Log level args
 if args.deep_debug:
@@ -99,7 +104,3 @@ logger.debug(f'Log level set to {logger.level}...')
 args_str = ',\n'.join([f"{k}={v}" for k, v in vars(args).items() if v])
 logger.info(f"'{parser.prog}' script invoked\n{args_str}")
 logger.debug(f"Reading Epstein documents from '{DOCS_DIR}'...")
-
-if args.names:
-    args.output_other = False
-    logger.warning(f"Output restricted to {args.names}")
