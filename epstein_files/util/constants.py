@@ -1005,7 +1005,7 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='023046', author=VI_DAILY_NEWS, description='article', date='2019-02-27'),
     DocCfg(id='031170', author=VI_DAILY_NEWS, description='article', date='2019-03-06'),
     DocCfg(id='016506', author=VI_DAILY_NEWS, description='article', date='2019-02-28'),
-    DocCfg(id='016507', author=VI_DAILY_NEWS, description=f"'Perversion of Justice' by {JULIE_K_BROWN}", date='2018-12-19'),
+    DocCfg(id='016507', author=VI_DAILY_NEWS, description=f'"Perversion of Justice" by {JULIE_K_BROWN}', date='2018-12-19'),
     DocCfg(id='019212', author=WAPO, description=f'and Times Tribune articles about Bannon, Trump, and healthcare execs'),
     DocCfg(id='033379', author=WAPO, description=f'"How Washington Pivoted From Finger-Wagging to Appeasement" (about Viktor Orban)', date='2018-05-25'),
     DocCfg(
