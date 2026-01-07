@@ -125,17 +125,6 @@ def print_json_files(epstein_files: EpsteinFiles):
             console.print_json(json_file.json_str(), indent=4, sort_keys=False)
 
 
-def write_json_metadata(epstein_files: EpsteinFiles) -> None:
-    json_str = epstein_files.json_metadata()
-
-    if args.build:
-        with open(JSON_METADATA_PATH, 'w') as f:
-            f.write(json_str)
-            log_file_write(JSON_METADATA_PATH)
-    else:
-        console.print_json(json_str, indent=4, sort_keys=True)
-
-
 def print_json_stats(epstein_files: EpsteinFiles) -> None:
     console.line(5)
     console.print(Panel('JSON Stats Dump', expand=True, style='reverse bold'), '\n')
@@ -149,21 +138,19 @@ def print_json_stats(epstein_files: EpsteinFiles) -> None:
     print_json("count_by_month", count_by_month(epstein_files.all_documents()))
 
 
-def print_text_messages(epstein_files: EpsteinFiles) -> None:
-    print_section_header('Text Messages')
-    print_centered("(conversations are sorted chronologically based on timestamp of first message)\n", style='gray30')
-    authors: list[str | None] = specified_names if specified_names else [JEFFREY_EPSTEIN]
-    log_files = epstein_files.imessage_logs_for(authors)
+def write_json_metadata(epstein_files: EpsteinFiles) -> None:
+    json_str = epstein_files.json_metadata()
 
-    for log_file in log_files:
-        console.print(Padding(log_file))
-        console.line(2)
-
-    epstein_files.print_imessage_summary()
+    if args.build:
+        with open(JSON_METADATA_PATH, 'w') as f:
+            f.write(json_str)
+            log_file_write(JSON_METADATA_PATH)
+    else:
+        console.print_json(json_str, indent=4, sort_keys=True)
 
 
 def write_urls() -> None:
-    """Write _URL style constant variables to a file bash scripts can load as env vars."""
+    """Write _URL style constant variables to URLS_ENV file so bash scripts can load as env vars."""
     url_vars = {k: v for k, v in vars(output_files).items() if k.endswith('URL') and not k.startswith('GH')}
 
     if not args.suppress_output:
