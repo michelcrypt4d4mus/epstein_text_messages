@@ -25,7 +25,7 @@ from epstein_files.util.constant.urls import (EPSTEIN_MEDIA, EPSTEIN_WEB, JMAIL,
 from epstein_files.util.constants import *
 from epstein_files.util.data import days_between, dict_sets_to_lists, json_safe, listify, sort_dict
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
-from epstein_files.util.env import DOCS_DIR, args, logger, specified_names
+from epstein_files.util.env import DOCS_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames, get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_STYLE, LAST_TIMESTAMP_STYLE, NA_TXT, add_cols_to_table,
@@ -201,9 +201,6 @@ class EpsteinFiles:
 
         return docs
 
-    def imessage_logs_for(self, author: str | None | list[str | None]) -> Sequence[MessengerLog]:
-        return MessengerLog.logs_for(author, self.imessage_logs)
-
     def json_metadata(self) -> str:
         """Create a JSON string containing metadata for all the files."""
         metadata = {
@@ -289,44 +286,6 @@ class EpsteinFiles:
         print_panel(f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown", padding=(2, 0, 0, 0), centered=True)
         console.print(_build_signature_table(self.email_authors_to_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
         console.print(_build_signature_table(self.email_device_signatures_to_authors, (DEVICE_SIGNATURE, AUTHOR), ', '))
-
-    def print_other_files_section(self, files: list[OtherFile]) -> None:
-        """Returns the OtherFile objects that were interesting enough to print."""
-        category_table = OtherFile.count_by_category_table(files)
-        other_files_preview_table = OtherFile.files_preview_table(files)
-        header_pfx = '' if args.all_other_files else 'Selected '
-        print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {header_pfx}Files That Are Neither Emails Nor Text Messages")
-
-        if args.all_other_files:
-            console.line(1)
-        else:
-            print_all_files_page_link(self)
-            console.line(2)
-
-            for table in [category_table, other_files_preview_table]:
-                table.title = f"{header_pfx}{table.title}"
-
-        print_centered(category_table)
-        console.line(2)
-        console.print(other_files_preview_table)
-
-    def print_text_messages_section(self) -> None:
-        """Print summary table and stats for text messages."""
-        print_section_header('All of His Text Messages')
-        print_centered("(conversations are sorted chronologically based on timestamp of first message)\n", style='gray30')
-        authors: list[str | None] = specified_names if specified_names else [JEFFREY_EPSTEIN]
-        log_files = self.imessage_logs_for(authors)
-
-        for log_file in log_files:
-            console.print(Padding(log_file))
-            console.line(2)
-
-        print_centered(MessengerLog.summary_table(self.imessage_logs))
-        text_summary_msg = f"\nDeanonymized {Document.known_author_count(self.imessage_logs)} of "
-        text_summary_msg += f"{len(self.imessage_logs)} {TEXT_MESSAGE} logs found in {len(self.all_files):,} files."
-        console.print(text_summary_msg)
-        imessage_msg_count = sum([len(log.messages) for log in self.imessage_logs])
-        console.print(f"Found {imessage_msg_count} text messages in {len(self.imessage_logs)} iMessage log files.")
 
     def table_of_emailers(self) -> Table:
         attributed_emails = [e for e in self.non_duplicate_emails() if e.author]

@@ -57,12 +57,10 @@ TIMESTAMP_DIM = f"turquoise4 dim"
 AUTHOR = 'author'
 DEFAULT = 'default'
 EVERYONE = 'everyone'
-FIRST_FEW_LINES = 'First Few Lines'
 HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
 JSON = 'json'
 NA = 'n/a'
 REDACTED = '<REDACTED>'
-URL_SIGNIFIERS = ['gclid', 'htm', 'ref=', 'utm']
 QUESTION_MARKS = '(???)'
 
 # Regexes

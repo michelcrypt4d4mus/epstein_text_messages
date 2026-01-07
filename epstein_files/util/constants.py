@@ -208,73 +208,6 @@ for emailer in EMAILERS:
     EMAILER_REGEXES[emailer] = re.compile(emailer, re.IGNORECASE)
 
 
-##########################
-# OtherFile config stuff #
-##########################
-
-# strings
-FBI = 'FBI'
-MEME = 'meme of'
-PRESS_RELEASE = 'press release'
-RESUME_OF = 'professional resumé'
-SCREENSHOT = 'screenshot of'
-TRANSLATION = 'translation of'
-TWEET = 'tweet'
-
-# Legal cases
-BRUNEL_V_EPSTEIN = f"{JEAN_LUC_BRUNEL} v. {JEFFREY_EPSTEIN} and Tyler McDonald d/b/a YI.org"
-EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} & {PAUL_G_CASSELL} v. {ALAN_DERSHOWITZ}"
-EPSTEIN_V_ROTHSTEIN_EDWARDS = f"Epstein v. Scott Rothstein, {BRAD_EDWARDS}, and L.M."
-GIUFFRE_V_DERSHOWITZ = f"{VIRGINIA_GIUFFRE} v. {ALAN_DERSHOWITZ}"
-GIUFFRE_V_EPSTEIN = f"{VIRGINIA_GIUFFRE} v. {JEFFREY_EPSTEIN}"
-GIUFFRE_V_MAXWELL = f"{VIRGINIA_GIUFFRE} v. {GHISLAINE_MAXWELL}"
-JANE_DOE_V_EPSTEIN_TRUMP = f"Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}"
-JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
-NEW_YORK_V_EPSTEIN = f"New York v. {JEFFREY_EPSTEIN}"
-
-# Descriptions of non-email, non-text message files
-ARTICLE_DRAFT = 'draft of an article about'
-BOFA_MERRILL = f'{BOFA} / Merrill Lynch Report'
-BOFA_WEALTH_MGMT = f'{BOFA} Wealth Management'
-BROCKMAN_INC = 'Brockman, Inc.'
-CVRA = "Crime Victims' Rights Act [CVRA]"
-DAVID_BLAINE_VISA_LETTER = f"letter of recommendation for visa for a model"
-DERSH_GIUFFRE_TWEET = f"{TWEET} about {VIRGINIA_GIUFFRE}"
-DEUTSCHE_BANK_TAX_TOPICS = f'{DEUTSCHE_BANK} Wealth Management Tax Topics'
-DIANA_DEGETTE_CAMPAIGN = "Colorado legislator Diana DeGette's campaign"
-EPSTEIN_FOUNDATION = 'Jeffrey Epstein VI Foundation'
-FBI_REPORT = f"report on Epstein investigation (redacted)"
-FBI_SEIZED_PROPERTY = f"seized property inventory (redacted)"
-FEMALE_HEALTH_COMPANY = 'Female Health Company (FHX)'
-FIRE_AND_FURY = f"Fire And Fury"
-HARVARD_POETRY = f'{HARVARD} poetry stuff from {LISA_NEW}'
-HBS_APPLICATION = f"{HARVARD} Business School application letter"
-JASTA = 'JASTA'
-JASTA_SAUDI_LAWSUIT = f"{JASTA} lawsuit against Saudi Arabia by 9/11 victims"
-JP_MORGAN_EYE_ON_THE_MARKET = f"Eye On The Market"
-LAWRENCE_KRAUSS_ASU_ORIGINS = f"{LAWRENCE_KRAUSS}'s ASU Origins Project"
-LEXIS_NEXIS_CVRA_SEARCH = f"{LEXIS_NEXIS} search for case law around the {CVRA}"
-KEN_STARR_LETTER = f"letter to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
-MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
-NIGHT_FLIGHT_BOOK = f'"Night Flight" (draft)'
-NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
-OBAMA_JOKE = 'joke about Obama'
-PALM_BEACH_CODE_ENFORCEMENT = f'{PALM_BEACH} Code Enforcement'
-PALM_BEACH_PROPERTY_INFO = f"{PALM_BEACH} property info"
-PALM_BEACH_TSV = f"TSV of {PALM_BEACH} property"
-PALM_BEACH_WATER_COMMITTEE = f'{PALM_BEACH} Water Committee'
-PATTERSON_BOOK_SCANS = f'pages of "Filthy Rich: The Shocking True Story of {JEFFREY_EPSTEIN}"'
-REAL_DEAL_ARTICLE = 'article by Keith Larsen'
-SHIMON_POST_ARTICLE = f'selection of articles about the mideast'
-SINGLE_PAGE = 'single page of'
-STRANGE_BEDFELLOWS = "'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more"
-SWEDISH_LIFE_SCIENCES_SUMMIT = f"{BARBRO_C_EHNBOM}'s Swedish American Life Science Summit (SALSS)"
-TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Government Ethics"
-UBS_CIO_REPORT = 'CIO Monthly Extended report'
-UN_GENERAL_ASSEMBLY = '67th U.N. General Assembly'
-WOMEN_EMPOWERMENT = f"Women Empowerment (WE) conference"
-ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
-
 # Atribution reasons
 BOLOTOVA_REASON = 'Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")'
 KATHY_REASON = 'from "Kathy" about dems, sent from iPad'
@@ -368,6 +301,8 @@ TEXTS_CONFIG = CONFIRMED_TEXTS_CONFIG + UNCONFIRMED_TEXTS_CONFIG
 ########################################################################################################
 ################################################ EMAILS ################################################
 ########################################################################################################
+
+MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
 
 # Some emails have a lot of uninteresting CCs
 IRAN_DEAL_RECIPIENTS = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
@@ -866,6 +801,65 @@ EMAILS_CONFIG = [
 ####################################### OTHER FILES ############################################
 ################################################################################################
 
+# strings
+FBI = 'FBI'
+MEME = 'meme of'
+PRESS_RELEASE = 'press release'
+RESUME_OF = 'professional resumé'
+SCREENSHOT = 'screenshot of'
+TRANSLATION = 'translation of'
+TWEET = 'tweet'
+
+# Legal cases
+BRUNEL_V_EPSTEIN = f"{JEAN_LUC_BRUNEL} v. {JEFFREY_EPSTEIN} and Tyler McDonald d/b/a YI.org"
+EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} & {PAUL_G_CASSELL} v. {ALAN_DERSHOWITZ}"
+EPSTEIN_V_ROTHSTEIN_EDWARDS = f"Epstein v. Scott Rothstein, {BRAD_EDWARDS}, and L.M."
+GIUFFRE_V_DERSHOWITZ = f"{VIRGINIA_GIUFFRE} v. {ALAN_DERSHOWITZ}"
+GIUFFRE_V_EPSTEIN = f"{VIRGINIA_GIUFFRE} v. {JEFFREY_EPSTEIN}"
+GIUFFRE_V_MAXWELL = f"{VIRGINIA_GIUFFRE} v. {GHISLAINE_MAXWELL}"
+JANE_DOE_V_EPSTEIN_TRUMP = f"Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}"
+JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
+NEW_YORK_V_EPSTEIN = f"New York v. {JEFFREY_EPSTEIN}"
+
+# Descriptions of non-email, non-text message files
+ARTICLE_DRAFT = 'draft of an article about'
+BOFA_WEALTH_MGMT = f'{BOFA} Wealth Management'
+BROCKMAN_INC = 'Brockman, Inc.'
+CVRA = "Crime Victims' Rights Act [CVRA]"
+DAVID_BLAINE_VISA_LETTER = f"letter of recommendation for visa for a model"
+DERSH_GIUFFRE_TWEET = f"{TWEET} about {VIRGINIA_GIUFFRE}"
+DEUTSCHE_BANK_TAX_TOPICS = f'{DEUTSCHE_BANK} Wealth Management Tax Topics'
+DIANA_DEGETTE_CAMPAIGN = "Colorado legislator Diana DeGette's campaign"
+FBI_REPORT = f"report on Epstein investigation (redacted)"
+FBI_SEIZED_PROPERTY = f"seized property inventory (redacted)"
+FEMALE_HEALTH_COMPANY = 'Female Health Company (FHX)'
+FIRE_AND_FURY = f"Fire And Fury"
+HARVARD_POETRY = f'{HARVARD} poetry stuff from {LISA_NEW}'
+HBS_APPLICATION = f"{HARVARD} Business School application letter"
+JASTA = 'JASTA'
+JASTA_SAUDI_LAWSUIT = f"{JASTA} lawsuit against Saudi Arabia by 9/11 victims"
+JP_MORGAN_EYE_ON_THE_MARKET = f"Eye On The Market"
+LAWRENCE_KRAUSS_ASU_ORIGINS = f"{LAWRENCE_KRAUSS}'s ASU Origins Project"
+KEN_STARR_LETTER = f"letter to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
+LEXIS_NEXIS_CVRA_SEARCH = f"{LEXIS_NEXIS} search for case law around the {CVRA}"
+NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
+OBAMA_JOKE = 'joke about Obama'
+PALM_BEACH_CODE_ENFORCEMENT = f'{PALM_BEACH} Code Enforcement'
+PALM_BEACH_PROPERTY_INFO = f"{PALM_BEACH} property info"
+PALM_BEACH_TSV = f"TSV of {PALM_BEACH} property"
+PALM_BEACH_WATER_COMMITTEE = f'{PALM_BEACH} Water Committee'
+PATTERSON_BOOK_SCANS = f'pages of "Filthy Rich: The Shocking True Story of {JEFFREY_EPSTEIN}"'
+REAL_DEAL_ARTICLE = 'article by Keith Larsen'
+SHIMON_POST_ARTICLE = f'selection of articles about the mideast'
+STRANGE_BEDFELLOWS = "'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more"
+SWEDISH_LIFE_SCIENCES_SUMMIT = f"{BARBRO_C_EHNBOM}'s Swedish American Life Science Summit (SALSS)"
+TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Government Ethics"
+UBS_CIO_REPORT = 'CIO Monthly Extended report'
+UN_GENERAL_ASSEMBLY = '67th U.N. General Assembly'
+WOMEN_EMPOWERMENT = f"Women Empowerment (WE) conference"
+ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
+
+
 OTHER_FILES_BOOKS = [
     DocCfg(id='017088', author=ALAN_DERSHOWITZ, description=f'"Taking the Stand: My Life in the Law" (draft)'),
     DocCfg(id='013501', author='Arnold J. Mandell', description=f'The Nearness Of Grace: A Personal Science Of Spiritual Transformation', date='2005-01-01'),
@@ -873,7 +867,7 @@ OTHER_FILES_BOOKS = [
     DocCfg(id='018438', author='Clarisse Thorn', description=f'The S&M Feminist'),
     DocCfg(id='019477', author=EDWARD_JAY_EPSTEIN, description=f'How America Lost Its Secrets: Edward Snowden, the Man, and the Theft'),
     DocCfg(id='020153', author=EDWARD_JAY_EPSTEIN, description=f'The Snowden Affair: A Spy Story In Six Parts'),
-    DocCfg(id='011472', author=EHUD_BARAK, description=NIGHT_FLIGHT_BOOK, date='2006-07-12', duplicate_ids=['027849']),  # date from _extract_timestamp()
+    DocCfg(id='011472', author=EHUD_BARAK, description=f'"Night Flight" (draft)', date='2006-07-12', duplicate_ids=['027849']),  # date from _extract_timestamp()
     DocCfg(id='010912', author=GORDON_GETTY, description=f'"Free Growth and Other Surprises" (draft)', date='2018-10-18'),
     DocCfg(id='010477', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
     DocCfg(id='010486', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
@@ -1002,7 +996,7 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='024997', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-09-08'),
     DocCfg(id='031941', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-11-17'),
     DocCfg(id='030829', author=f'South Florida Sun Sentinel', description=f'article about {BRAD_EDWARDS} and {JEFFREY_EPSTEIN}'),
-    DocCfg(id='021092', author='Tatler', description=f'{SINGLE_PAGE} of article about {GHISLAINE_MAXWELL} shredding documents', date='2019-08-15'),
+    DocCfg(id='021092', author='Tatler', description=f'single page of article about {GHISLAINE_MAXWELL} shredding documents', date='2019-08-15'),
     DocCfg(id='030333', author=f'The Independent', description=f'article about Prince Andrew, Epstein, and Epstein\'s butler who stole his address book'),
     DocCfg(id='010754', author=f'U.S. News', description=f"article about Yitzhak Rabin"),
     DocCfg(id='014498', author=VI_DAILY_NEWS, description='article', date='2016-12-13'),
@@ -1030,7 +1024,7 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='033480', description=f"John Bolton press clipping", date='2018-04-06', duplicate_ids=['033481']),
     DocCfg(id='013403', description=f"{LEXIS_NEXIS} result from The Evening Standard about Bernie Madoff", date='2009-12-24'),
     DocCfg(id='021093', description=f"page of unknown article about Epstein and Maxwell"),
-    DocCfg(id='031191', description=f"{SINGLE_PAGE} unknown article about Epstein and Trump's relationship in 1997"),
+    DocCfg(id='031191', description=f"single page of unknown article about Epstein and Trump's relationship in 1997"),
     DocCfg(id='026520', description=f'Spanish language article about {SULTAN_BIN_SULAYEM}', date='2013-09-27'),
     DocCfg(
         id='031736',
@@ -1186,16 +1180,16 @@ OTHER_FILES_LEGAL = [
 ]
 
 OTHER_FILES_CONFERENCES = [
-    DocCfg(id='014315', author=BOFA_MERRILL, description=f'2016 Future of Financials Conference, attached to 014312'),
+    DocCfg(id='014315', author=BOFA_MERRILL, description=f'2016 Future of Financials Conference', attached_to_email_id='014312'),
     DocCfg(id='026825', author=DEUTSCHE_BANK, description=f"Asset & Wealth Management featured speaker bios"),  # Really "Deutsche Asset" which may not be Deutsche Bank?
     DocCfg(id='023123', author=LAWRENCE_KRAUSS_ASU_ORIGINS, description=f"{STRANGE_BEDFELLOWS} (old draft)"),
     DocCfg(id='023120', author=LAWRENCE_KRAUSS_ASU_ORIGINS, description=STRANGE_BEDFELLOWS, duplicate_ids=['023121'], dupe_type='earlier'),
-    DocCfg(id='031359', author=NOBEL_CHARITABLE_TRUST, description=f"Earth Environment Convention about ESG investing"),
+    DocCfg(id='031359', author=NOBEL_CHARITABLE_TRUST, description=f'"Earth Environment Convention" about ESG investing'),
     DocCfg(id='031354', author=NOBEL_CHARITABLE_TRUST, description=f'"Thinking About the Environment and Technology" report 2011'),
     DocCfg(id='019300', author=SVETLANA_POZHIDAEVA, description=f'{WOMEN_EMPOWERMENT} f. {KATHRYN_RUEMMLER}', date='2019-04-05'),
     DocCfg(id='022267', author=SVETLANA_POZHIDAEVA, description=f'{WOMEN_EMPOWERMENT} founder essay about growing the seminar business'),
     DocCfg(id='022407', author=SVETLANA_POZHIDAEVA, description=f'{WOMEN_EMPOWERMENT} seminar pitch deck'),
-    DocCfg(id='017524', author=SWEDISH_LIFE_SCIENCES_SUMMIT, description=f"2012 program emailed to epstein BY {BARBRO_C_EHNBOM} in 031226", date='2012-08-18'),
+    DocCfg(id='017524', author=SWEDISH_LIFE_SCIENCES_SUMMIT, description=f"2012 program", date='2012-08-18', attached_to_email_id='031226'),
     DocCfg(id='026747', author=SWEDISH_LIFE_SCIENCES_SUMMIT, description=f"2017 program", date='2017-08-23'),
     DocCfg(id='014951', author='TED Talks', description=f"2017 program", date='2017-04-20'),
     DocCfg(id='024179', author=UN_GENERAL_ASSEMBLY, description=f'president and first lady schedule', date='2012-09-21'),
@@ -1411,7 +1405,7 @@ OTHER_FILES_POLITICS = [
         description=f"'Breaking Down Democracy: Goals, Strategies, and Methods of Modern Authoritarians'",
         date='2017-06-02',
     ),
-    DocCfg(id='026856', author='Kevin Rudd', description=f"speech 'Xi Jinping, China And The Global Order'", date='2018-06-26'),
+    DocCfg(id='026856', author='Kevin Rudd', description=f'speech "Xi Jinping, China And The Global Order"', date='2018-06-26'),
     DocCfg(id='026827', author='Scowcroft Group', description=f'report on ISIS', date='2015-11-14'),
     DocCfg(id='024294', author=STACEY_PLASKETT, description=f"campaign flier", date='2016-10-01'),
     DocCfg(
