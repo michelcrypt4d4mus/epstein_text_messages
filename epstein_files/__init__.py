@@ -95,7 +95,7 @@ def epstein_search():
 
             if args.whole_file:
                 if isinstance(search_result.document, Email):
-                    search_result.document.truncation_allowed = False
+                    search_result.document._truncation_allowed = False
 
                 console.print(search_result.document)
             else:
@@ -116,7 +116,7 @@ def epstein_show():
 
     for doc in docs:
         if isinstance(doc, Email):
-            doc.truncation_allowed = False
+            doc._truncation_allowed = False
 
         console.print('\n', doc, '\n')
 
