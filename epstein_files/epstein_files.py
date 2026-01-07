@@ -344,16 +344,23 @@ class EpsteinFiles:
     def print_other_files_table(self, files: list[OtherFile]) -> None:
         """Returns the OtherFile objects that were interesting enough to print."""
         header_pfx = '' if args.all_other_files else 'Selected '
+        category_table = OtherFile.count_by_category_table(files)
+        other_files_preview_table = OtherFile.build_table(files)
         print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {header_pfx}Files That Are Neither Emails Nor Text Msgs")
 
-        if not args.all_other_files:
+        if args.all_other_files:
+            console.line(1)
+        else:
+            category_table.title = f"Selected {category_table.title}"
+            other_files_preview_table.title = f"Selected {other_files_preview_table.title}"
             msg = f"(the other site is uncurated and has all {len(self.other_files)} unclassifiable files"
             print_centered(f"{msg} and {len(self.emails):,} emails)", style='dim')
             print_other_site_link(False)
             console.line(2)
 
-        console.print(OtherFile.build_table(files))
-        console.print(Padding(OtherFile.count_by_category_table(files), (2, 0, 2, 2)))
+        print_centered(category_table)
+        console.line(2)
+        console.print(other_files_preview_table)
         skipped_file_count = len(self.other_files) - len(files)
 
         if skipped_file_count > 0:

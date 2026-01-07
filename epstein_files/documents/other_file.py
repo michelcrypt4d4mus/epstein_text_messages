@@ -194,7 +194,7 @@ class OtherFile(Document):
     @staticmethod
     def build_table(files: Sequence['OtherFile']) -> Table:
         """Build a table of OtherFile documents."""
-        table = build_table(None, show_lines=True)
+        table = build_table('Other Files Details', show_lines=True)
         table.add_column('File', justify='center', width=FILENAME_LENGTH)
         table.add_column('Date', justify='center')
         table.add_column('Size', justify='center')
@@ -236,8 +236,7 @@ class OtherFile(Document):
             counts[file.category()] += 1
             category_bytes[file.category()] += file.file_size()
 
-        table = build_table('Other Files Summary')
-        add_cols_to_table(table, ['Category', 'Count', 'Has Author', 'No Author', 'Size'])
+        table = build_table('Other Files Summary', ['Category', 'Count', 'Has Author', 'No Author', 'Size'])
         table.columns[-1].style = 'dim'
 
         for (category, count) in sort_dict(counts):
