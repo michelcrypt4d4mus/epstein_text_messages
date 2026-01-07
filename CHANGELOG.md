@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+# 1.1.0
 * Chronological emails page
 
 ### 1.0.16
