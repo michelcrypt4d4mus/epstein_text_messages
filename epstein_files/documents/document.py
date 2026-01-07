@@ -78,7 +78,7 @@ class Document:
     config: EmailCfg | DocCfg | TextCfg | None = None
     file_id: str = field(init=False)
     filename: str = field(init=False)
-    lines: list[str] = field(init=False)
+    lines: list[str] = field(default_factory=list)
     text: str = ''
     timestamp: datetime | None = None
     url_slug: str = ''
@@ -93,7 +93,10 @@ class Document:
         # config and url_slug could have been pre-set in Email
         self.config = self.config or deepcopy(ALL_FILE_CONFIGS.get(self.file_id))
         self.url_slug = self.url_slug or self.filename.split('.')[0]
-        self._set_computed_fields(text=self.text or self._load_file())
+
+        if not self.text:
+            self._load_file()
+
         self._repair()
         self._extract_author()
         self.timestamp = self._extract_timestamp()
@@ -293,13 +296,19 @@ class Document:
         """Should be implemented in subclasses."""
         pass
 
-    def _load_file(self) -> str:
+    def _load_file(self) -> None:
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
         text = self.raw_text()
         text = text[1:] if (len(text) > 0 and text[0] == '\ufeff') else text  # remove BOM
         text = self.repair_ocr_text(OCR_REPAIRS, text.strip())
-        lines = [l.strip() for l in text.split('\n') if not l.startswith(HOUSE_OVERSIGHT)]
-        return collapse_newlines('\n'.join(lines))
+
+        lines = [
+            line.strip() if self.strip_whitespace else line for line in text.split('\n')
+            if not line.startswith(HOUSE_OVERSIGHT)
+        ]
+
+        self.text = collapse_newlines('\n'.join(lines))
+        self.lines = self.text.split('\n')
 
     def _repair(self) -> None:
         """Can optionally be overloaded in subclasses to further improve self.text."""
