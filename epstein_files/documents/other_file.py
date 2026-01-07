@@ -234,7 +234,7 @@ class OtherFile(Document):
                 logger.warning(f"file {file.file_id} has no category")
 
             counts[file.category()] += 1
-            category_bytes[file.category()] += file.length()
+            category_bytes[file.category()] += file.file_size()
 
         table = build_table('Other Files Summary')
         add_cols_to_table(table, ['Category', 'Count', 'Has Author', 'No Author', 'Size'])

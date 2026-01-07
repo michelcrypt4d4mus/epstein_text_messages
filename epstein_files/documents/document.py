@@ -109,9 +109,6 @@ class Document:
     def date_str(self) -> str | None:
         return date_str(self.timestamp)
 
-    def debug_info(self) -> str:
-        return ', '.join([f"{prop}={getattr(self, prop)}" for prop in ['file_id', 'filename', 'url_slug']])
-
     def duplicate_file_txt(self) -> Text:
         """If the file is a dupe make a nice message to explain what file it's a duplicate of."""
         if not self.is_duplicate():
@@ -150,6 +147,9 @@ class Document:
         links = [links[0]] + [parenthesize(link) for link in links[1:]]
         base_txt = Text('', style='white' if include_alt_links else ARCHIVE_LINK_COLOR)
         return base_txt.append(join_texts(links))
+
+    def file_id_debug_info(self) -> str:
+        return ', '.join([f"{prop}={getattr(self, prop)}" for prop in ['file_id', 'filename', 'url_slug']])
 
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any additional info about the file."""
