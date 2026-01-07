@@ -111,7 +111,7 @@ class HighlightedNames(HighlightedText):
         return ', '.join(info_pieces) if info_pieces else None
 
     def _emailer_pattern(self, name: str) -> str:
-        """Pattern matching 'name'. Extends value in EMAILER_ID_REGEXES with last name if it exists."""
+        """Pattern matching 'name'. Extends value in EMAILER_ID_REGEXES with first/last name if it exists."""
         name = remove_question_marks(name)
         last_name = extract_last_name(name)
         first_name = name.removesuffix(f" {last_name}")
@@ -185,7 +185,10 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='China',
         style='bright_red',
-        pattern=r"Ali.?baba|Beijing|CCP|Chin(a|e?se)(?! Daily)|DPRK|Gino\s+Yu|Global Times|Guo|Hong|Huaw[ae]i|Kim\s*Jong\s*Un|Kong|Jack\s+Ma|Kwok|Ministry\sof\sState\sSecurity|Mongolian?|MSS|North\s*Korea|Peking|PRC|SCMP|Tai(pei|wan)|Xi(aomi)?|Jinping",
+        pattern=r"Ali.?baba|Beijing|CCP|Chin(a|e?se)(?! Daily)|DPRK|Global Times|Guo|Hong|Huaw[ae]i|Kim\s*Jong\s*Un|Kong|Jack\s+Ma|Kwok|Ministry\sof\sState\sSecurity|Mongolian?|MSS|North\s*Korea|Peking|PRC|SCMP|Tai(pei|wan)|Xi(aomi)?|Jinping",
+        emailers={
+            'Gino Yu': 'professor / game designer in Hong Kong',
+        }
     ),
     HighlightedNames(
         label='Deepak Chopra',
@@ -280,7 +283,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='europe',
         style='light_sky_blue3',
-        pattern=r'(Angela )?Merk(el|le)|Austria|(Benjamin\s*)?Harnwell|Berlin|Borge|Boris\s*Johnson|Brexit(eers?)?|Brit(ain|ish)|Brussels|Cannes|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|Davos|ECB|England|EU|Europe(an)?(\s*Union)?|Fr(ance|ench)|Geneva|Germany?|Gillard|Gree(ce|k)|Ital(ian|y)|Jacques|(Kevin\s*)?Rudd|Le\s*Pen|London|Macron|Melusine|Munich|(Natalia\s*)?Veselnitskaya|(Nicholas\s*)?Sarkozy|Nigel(\s*Farage)?|Norw(ay|egian)|Oslo|Paris|Polish|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strasbourg|Strauss[- ]?Kahn|Swed(en|ish)(?![-\s]+America)|Switzerland|(Tony\s)?Blair|U\.?K\.?|Ukrain(e|ian)|Vienna|(Vitaly\s*)?Churkin|Zug',
+        pattern=r'(Angela )?Merk(el|le)|Austria|(Benjamin\s*)?Harnwell|Berlin|Borge|Boris\s*Johnson|Brexit(eers?)?|Brit(ain|ish)|Brussels|Cannes|(Caroline|Jack)?\s*Lang(, Caroline)?|Cypr(iot|us)|Davos|ECB|England|EU|Europe(an)?(\s*Union)?|Fr(ance|ench)|Geneva|Germany?|Gillard|Gree(ce|k)|Ital(ian|y)|Jacques|(Kevin\s*)?Rudd|Le\s*Pen|London|Macron|Melusine|Munich|(Natalia\s*)?Veselnitskaya|(Nicholas\s*)?Sarkozy|Nigel(\s*Farage)?|Norw(ay|egian)|Oslo|Paris|Polish|pope|(Sebastian )?Kurz|(Vi(c|k)tor\s+)?Orbah?n|Edward Rod Larsen|Strasbourg|Strauss[- ]?Kahn|Swed(en|ish)(?![-\s]+America)|Switzerland|(Tony\s)?Blair|U\.?K\.?|Ukrain(e|ian)|Vienna|(Vitaly\s*)?Churkin|Zug',
         emailers = {
             ANDRZEJ_DUDA: 'former president of Poland',
             MIROSLAV_LAJCAK: 'Russia-friendly Slovakian politician, friend of Steve Bannon',
@@ -315,7 +318,8 @@ HIGHLIGHTED_NAMES = [
             MELANIE_SPINELLA: f'representative of {LEON_BLACK}',
             MORTIMER_ZUCKERMAN: 'business partner of Epstein',
             PAUL_BARRETT: None,
-            PAUL_MORRIS: 'Deutsche Bank',
+            PAUL_MORRIS: DEUTSCHE_BANK,
+            'Steven Elkman': DEUTSCHE_BANK,
         }
     ),
     HighlightedNames(
@@ -418,8 +422,8 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='mideast',
         style='dark_sea_green4',
-        # this won't match ever because of word boundary: [-\s]9/11[\s.]
-        pattern=r"Abdulmalik Al-Makhlafi|Abdullah|Abu\s+Dhabi|Afghanistan|Al[-\s]?Qa[ei]da|Ahmadinejad|Arab|Aramco|Assad|Bahrain|Basiji?|Benghazi|Cairo|Chagoury|Dj[iu]bo?uti|Doha|Dubai|Egypt(ian)?|Emir(at(es?|i))?|Erdogan|Fashi|Gaddafi|(Hamid\s*)?Karzai|Hamad\s*bin\s*Jassim|HBJ|Houthi|Imran\s+Khan|Iran(ian)?|Isi[ls]|Islam(abad|ic|ist)?|Istanbul|Kh?ashoggi|(Kairat\s*)?Kelimbetov|kasshohgi|Kaz(akh|ich)stan|Kazakh?|Kh[ao]menei|Khalid\s*Sheikh\s*Mohammed|KSA|Leban(ese|on)|Libyan?|Mahmoud|Marra[hk]e[cs]h|MB(N|S|Z)|Mohammed\s+bin\s+Salman|Morocco|Mubarak|Muslim|Nayaf|Pakistani?|Omar|(Osama\s*)?Bin\s*Laden|Osama(?! al)|Palestin(e|ian)|Persian?|Riya(dh|nd)|Saddam|Salman|Saudi(\s+Arabian?)?|Shariah?|SHC|sheikh|shia|(Sultan\s*)?Yacoub|Syrian?|(Tarek\s*)?El\s*Sayed|Tehran|Tunisian?|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
+        # something like this won't match ever because of word boundary: [-\s]9/11[\s.]
+        pattern=r"Abdulmalik Al-Makhlafi|Abdullah|Abu\s+Dhabi|Afghanistan|Al[-\s]?Qa[ei]da|Ahmadinejad|Arab|Aramco|Assad|Bahrain|Basiji?|Benghazi|Cairo|Chagoury|Dj[iu]bo?uti|Doha|Dubai|Egypt(ian)?|Emir(at(es?|i))?|Erdogan|Fashi|Gaddafi|(Hamid\s*)?Karzai|Hamad\s*bin\s*Jassim|HBJ|Houthi|Imran\s+Khan|Iran(ian)?|Isi[ls]|Islam(abad|ic|ist)?|Istanbul|Kh?ashoggi|(Kairat\s*)?Kelimbetov|kasshohgi|Kaz(akh|ich)stan|Kazakh?|Kh[ao]menei|Khalid\s*Sheikh\s*Mohammed|KSA|Leban(ese|on)|Libyan?|Mahmoud|Marra[hk]e[cs]h|MB(N|S|Z)|Mid(dle)?\s*East|Mohammed\s+bin\s+Salman|Morocco|Mubarak|Muslim|Nayaf|Pakistani?|Omar|(Osama\s*)?Bin\s*Laden|Osama(?! al)|Palestin(e|ian)|Persian?|Riya(dh|nd)|Saddam|Salman|Saudi(\s+Arabian?)?|Shariah?|SHC|sheikh|shia|(Sultan\s*)?Yacoub|Syrian?|(Tarek\s*)?El\s*Sayed|Tehran|Tunisian?|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
         emailers = {
             ANAS_ALRASHEED: f'former information minister of Kuwait {QUESTION_MARKS}',
             AZIZA_ALAHMADI: 'Abu Dhabi Department of Culture & Tourism',
@@ -553,7 +557,7 @@ HIGHLIGHTED_NAMES = [
         style='sea_green1',
         pattern=r'Antigua|Bahamas|Caribb?ean|Dominican\s*Republic|(Great|Little)\s*St.?\s*James|Haiti(an)?|(John\s*)deJongh(\s*Jr\.?)|(Kenneth E\. )?Mapp|Palm\s*Beach(?!\s*Post)|PBI|S(ain)?t.?\s*Thomas|USVI|(?<!Epstein )VI|(The\s*)?Virgin\s*Islands(\s*Daily\s*News)?',  # TODO: VI Daily News should be yellow but it's hard bc Daily News xists
         emailers = {
-            CECILE_DE_JONGH: f'First lady 2007-2015',
+            CECILE_DE_JONGH: f'first lady 2007-2015',
             STACEY_PLASKETT: 'non-voting member of Congress',
             KENNETH_E_MAPP: 'Governor',
         },
@@ -572,6 +576,9 @@ HIGHLIGHTED_NAMES = [
         label=STEVE_BANNON,
         style='color(58)',
         pattern=r'((Steve|Sean)\s*)?Bannon?|(American\s*)?Dharma',
+        emailers = {
+            STEVE_BANNON: 'Trump campaign manager, memecoin grifter, convicted criminal',
+        }
     ),
     HighlightedNames(
         emailers={STEVEN_HOFFENBERG: HEADER_ABBREVIATIONS['Hoffenberg']},
@@ -645,7 +652,7 @@ ALL_HIGHLIGHTS = HIGHLIGHTED_NAMES + HIGHLIGHTED_TEXTS
 
 
 class EpsteinHighlighter(RegexHighlighter):
-    """rich.highlighter that finds and colors interesting keywords based on the above config."""
+    """Finds and colors interesting keywords based on the above config."""
     base_style = f"{REGEX_STYLE_PREFIX}."
     highlights = [highlight_group.regex for highlight_group in ALL_HIGHLIGHTS]
 
@@ -665,10 +672,8 @@ def get_style_for_category(category: str) -> str | None:
     elif category == SOCIAL:
         return get_style_for_category(PUBLICIST)
 
-    category = CATEGORY_STYLE_MAPPING.get(category, category)
-
     for highlight_group in HIGHLIGHTED_NAMES:
-        if highlight_group.label == category:
+        if highlight_group.label == CATEGORY_STYLE_MAPPING.get(category, category):
             return highlight_group.style
 
 
