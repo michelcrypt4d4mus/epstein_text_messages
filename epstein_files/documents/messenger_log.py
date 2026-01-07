@@ -34,7 +34,6 @@ class MessengerLog(Communication):
     def __post_init__(self):
         super().__post_init__()
         self.messages = [self._build_message(match) for match in MSG_REGEX.finditer(self.text)]
-        self._set_message_timestamps()
 
     def first_message_at(self, name: str | None) -> datetime:
         return self.messages_by(name)[0].parse_timestamp()
@@ -104,6 +103,7 @@ class MessengerLog(Communication):
         raise RuntimeError(f"{self}: No timestamp found!")
 
     def _set_message_timestamps(self) -> None:
+        raise NotImplementedError(f"TextMessage.timestamp no longer exists")
         last_message: TextMessage | None = None
 
         for i, message in enumerate(self.messages):
