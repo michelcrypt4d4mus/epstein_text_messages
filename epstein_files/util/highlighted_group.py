@@ -143,9 +143,10 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='Africa',
         style='light_pink4',
-        pattern=r'Econet(\s*Wireless)|Ghana(ian)?|Johannesburg|Kenya|Nigerian?|Senegal(ese)?|Serengeti|(South\s*)?African?|(Strive\s*)?Masiyiwa|Tanzania|Ugandan?|Zimbabwe(an)?',
+        pattern=r'Buhari|Econet(\s*Wireless)|Ghana(ian)?|Glencore|Goodluck Jonathan|Johannesburg|Kenya|Nigerian?|Okey Enelamah|Senegal(ese)?|Serengeti|(South\s*)?African?|(Strive\s*)?Masiyiwa|Tanzania|Ugandan?|Zimbabwe(an)?',
         emailers={
             'Abdoulaye Wade': 'former president of Senegal, father of Karim Wade',
+            'Ivan Glasenberg': "South African former CEO of Glencore, one of the world's largest commodity trading and mining companies",
             'Karim Wade': 'son of the president of Senegal, facing arrest for corruption, email handle is "Afri zp"',
             'Miles Alexander': 'Operations Manager Michaelhouse Balgowan KwaZulu-Natal South Africa',  # TODO: what's up with this person?
             'Macky Sall': 'prime minister of Senegal, defeated Abdoulaye Wade',
@@ -424,7 +425,7 @@ HIGHLIGHTED_NAMES = [
         label='mideast',
         style='dark_sea_green4',
         # something like this won't match ever because of word boundary: [-\s]9/11[\s.]
-        pattern=r"Abdulmalik Al-Makhlafi|Abdullah|Abu\s+Dhabi|Afghanistan|Al[-\s]?Qa[ei]da|Ahmadinejad|Arab|Aramco|Assad|Bahrain|Basiji?|Benghazi|Cairo|Chagoury|Dj[iu]bo?uti|Doha|Dubai|Egypt(ian)?|Emir(at(es?|i))?|Erdogan|Fashi|Gaddafi|(Hamid\s*)?Karzai|Hamad\s*bin\s*Jassim|HBJ|Houthi|Imran\s+Khan|Iran(ian)?|Isi[ls]|Islam(abad|ic|ist)?|Istanbul|Kh?ashoggi|(Kairat\s*)?Kelimbetov|kasshohgi|Kaz(akh|ich)stan|Kazakh?|Kh[ao]menei|Khalid\s*Sheikh\s*Mohammed|KSA|Leban(ese|on)|Libyan?|Mahmoud|Marra[hk]e[cs]h|MB(N|S|Z)|Mid(dle)?\s*East|Mohammed\s+bin\s+Salman|Morocco|Mubarak|Muslim|Nayaf|Pakistani?|Omar|(Osama\s*)?Bin\s*Laden|Osama(?! al)|Palestin(e|ian)|Persian?|Riya(dh|nd)|Saddam|Salman|Saudi(\s+Arabian?)?|Shariah?|SHC|sheikh|shia|(Sultan\s*)?Yacoub|Syrian?|(Tarek\s*)?El\s*Sayed|Tehran|Tunisian?|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
+        pattern=r"Abdulmalik Al-Makhlafi|Abdullah|Abu\s+Dhabi|Afghanistan|Al[-\s]?Qa[ei]da|Ahmadinejad|Arab|Aramco|Assad|Bahrain|Basiji?|Benghazi|Cairo|Chagoury|Dj[iu]bo?uti|Doha|[DB]ubai|Egypt(ian)?|Emir(at(es?|i))?|Erdogan|Fashi|Gaddafi|(Hamid\s*)?Karzai|Hamad\s*bin\s*Jassim|HBJ|Houthi|Imran\s+Khan|Iran(ian)?|Isi[ls]|Islam(abad|ic|ist)?|Istanbul|Kh?ashoggi|(Kairat\s*)?Kelimbetov|kasshohgi|Kaz(akh|ich)stan|Kazakh?|Kh[ao]menei|Khalid\s*Sheikh\s*Mohammed|KSA|Leban(ese|on)|Libyan?|Mahmoud|Marra[hk]e[cs]h|MB(N|S|Z)|Mid(dle)?\s*East|Mohammed\s+bin\s+Salman|Morocco|Mubarak|Muslim|Nayaf|Pakistani?|Omar|(Osama\s*)?Bin\s*Laden|Osama(?! al)|Palestin(e|ian)|Persian?|Riya(dh|nd)|Saddam|Salman|Saudi(\s+Arabian?)?|Shariah?|SHC|sheikh|shia|(Sultan\s*)?Yacoub|Syrian?|(Tarek\s*)?El\s*Sayed|Tehran|Tunisian?|Turk(ey|ish)|UAE|((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
         emailers = {
             ANAS_ALRASHEED: f'former information minister of Kuwait {QUESTION_MARKS}',
             AZIZA_ALAHMADI: 'Abu Dhabi Department of Culture & Tourism',
