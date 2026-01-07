@@ -143,19 +143,6 @@ def parenthesize(msg: str | Text, style: str = '') -> Text:
     return Text('(', style=style).append(txt).append(')')
 
 
-def print_other_page_link(epstein_files: 'EpsteinFiles') -> None:
-    markup_msg = link_markup(other_site_url(), 'the other page', style='light_slate_grey bold')
-
-    if other_site_type() == EMAIL:
-        txt = Text.from_markup(markup_msg).append(f' is uncurated and has all {len(epstein_files.other_files)}')
-        txt.append(f" unclassifiable files and {len(epstein_files.emails):,} emails")
-    else:
-        txt = Text.from_markup(markup_msg).append(f' displays only a small collection of emails and')
-        txt.append(" unclassifiable files of particular interest")
-
-    print_centered(parenthesize(txt), style='dim')
-
-
 def print_author_header(msg: str, color: str | None, footer: str | None = None) -> None:
     txt = Text(msg, justify='center')
     color = color or 'white'
@@ -274,6 +261,19 @@ def print_numbered_list_of_emailers(_list: list[str | None], epstein_files = Non
         console.print(txt)
 
     console.line()
+
+
+def print_other_page_link(epstein_files: 'EpsteinFiles') -> None:
+    markup_msg = link_markup(other_site_url(), 'the other page', style='light_slate_grey bold')
+
+    if other_site_type() == EMAIL:
+        txt = Text.from_markup(markup_msg).append(f' is uncurated and has all {len(epstein_files.other_files)}')
+        txt.append(f" unclassifiable files and {len(epstein_files.emails):,} emails")
+    else:
+        txt = Text.from_markup(markup_msg).append(f' displays only a small collection of emails and')
+        txt.append(" unclassifiable files of particular interest")
+
+    print_centered(parenthesize(txt), style='dim')
 
 
 def print_page_title(expand: bool = True, width: int | None = None) -> None:
