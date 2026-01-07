@@ -35,6 +35,7 @@ CHINA_DAILY = "China Daily"
 DAILY_MAIL = 'Daily Mail'
 DAILY_TELEGRAPH = "Daily Telegraph"
 LA_TIMES = 'LA Times'
+LEXIS_NEXIS = 'Lexis Nexis'
 MIAMI_HERALD = 'Miami Herald'
 NYT = "New York Times"
 PALM_BEACH_DAILY_NEWS = f'{PALM_BEACH} Daily News'

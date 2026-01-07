@@ -27,7 +27,7 @@ from epstein_files.util.data import days_between, dict_sets_to_lists, json_safe,
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.env import DOCS_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
-from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
+from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames, get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_STYLE, LAST_TIMESTAMP_STYLE, NA_TXT, add_cols_to_table,
      build_table, console, highlighter, link_text_obj, link_markup, print_author_header, print_centered,
      print_other_site_link, print_panel, print_section_header, vertically_pad)
@@ -207,10 +207,19 @@ class EpsteinFiles:
     def json_metadata(self) -> str:
         """Create a JSON string containing metadata for all the files."""
         metadata = {
-            Email.__name__: _sorted_metadata(self.emails),
-            JsonFile.__name__: _sorted_metadata(self.json_files),
-            MessengerLog.__name__: _sorted_metadata(self.imessage_logs),
-            OtherFile.__name__: _sorted_metadata(self.non_json_other_files()),
+            'files': {
+                Email.__name__: _sorted_metadata(self.emails),
+                JsonFile.__name__: _sorted_metadata(self.json_files),
+                MessengerLog.__name__: _sorted_metadata(self.imessage_logs),
+                OtherFile.__name__: _sorted_metadata(self.non_json_other_files()),
+            },
+            'people': {
+                name: highlighted_group.get_info(name)
+                for highlighted_group in HIGHLIGHTED_NAMES
+                if isinstance(highlighted_group, HighlightedNames)
+                for name, description in highlighted_group.emailers.items()
+                if description
+            }
         }
 
         return json.dumps(metadata, indent=4, sort_keys=True)

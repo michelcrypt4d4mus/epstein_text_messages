@@ -36,95 +36,53 @@ TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
-UNINTERESTING_CATEGORES = [
+UNINTERESTING_CATEGORIES = [
+    ARTICLE,
     ARTS,
     BOOK,
+    CONFERENCE,
     JUNK,
+    POLITICS,
     SKYPE_LOG,
     SPEECH,
 ]
 
 # OtherFiles whose descriptions/info match these prefixes are not displayed unless --all-other-files is used
-UNINTERESTING_PREFIXES = FINANCIAL_REPORTS_AUTHORS + [
+UNINTERESTING_PREFIXES = [
     'article about',
-    ARTICLE_DRAFT,
-    'Aviation International',
-    BBC,
-    BLOOMBERG,
-    'Boston Globe',
     BROCKMAN_INC,
-    CHINA_DAILY,
-    CNN,
-    'completely redacted',
     CVRA,
-    DAILY_MAIL,
-    DAILY_TELEGRAPH,
-    CVRA_LEXIS_SEARCH[0:-12],  # Because date at end :(
     DERSH_GIUFFRE_TWEET,
-    'Financial Times',
-    'Forbes',
-    'Frontlines',
-    'Future Science',
-    'Globe and Mail',
     GORDON_GETTY,
     f"{HARVARD} Econ",
     HARVARD_POETRY,
     'Inference',
     JASTA,
-    'JetGala',
-    JOHN_BOLTON_PRESS_CLIPPING,
-    'Journal of Criminal',
-    LA_TIMES,
-    'Law.com',
-    'Litigation Daily',
+    LEXIS_NEXIS,
     LAWRENCE_KRAUSS,
     LAWRENCE_KRAUSS_ASU_ORIGINS,
-    'MarketWatch',
     MARTIN_NOWAK,
-    'Morning News',
     NOBEL_CHARITABLE_TRUST,
-    'Nautilus',
-    'New Yorker',
-    NYT,
     PALM_BEACH_CODE_ENFORCEMENT,
-    PALM_BEACH_DAILY_NEWS,
-    PALM_BEACH_POST,
     PALM_BEACH_TSV,
     PALM_BEACH_WATER_COMMITTEE,
-    PAUL_KRASSNER,
-    PEGGY_SIEGAL,
-    'Politifact',
-    'Rafanelli',
-    ROBERT_LAWRENCE_KUHN,
     ROBERT_TRIVERS,
-    'SCMP',
-    'SciencExpress',
-    SCOTT_J_LINK,
-    'Scowcroft',
     SHIMON_POST_ARTICLE,
-    SINGLE_PAGE,
-    STACEY_PLASKETT,
-    'Tatler',
-    TERJE_ROD_LARSEN,
-    TRANSLATION,
     TWEET,
-    REAL_DEAL_ARTICLE,
-    TRUMP_DISCLOSURES,
-    UBS_CIO_REPORT,
     UN_GENERAL_ASSEMBLY,
-    'U.S. News',
     'US Office',
-    'Vanity Fair',
-    'very short',
-    VI_DAILY_NEWS,
-    WAPO,
+]
+
+INTERESTING_AUTHORS = [
+    EDWARD_JAY_EPSTEIN,
+    MICHAEL_WOLFF,
+    SVETLANA_POZHIDAEVA,
 ]
 
 
 @dataclass
 class OtherFile(Document):
     """File that is not an email, an iMessage log, or JSON data."""
-
     include_description_in_summary_panel: ClassVar[bool] = True
 
     def __post_init__(self):
@@ -166,9 +124,11 @@ class OtherFile(Document):
         elif self.config:
             if self.config.is_interesting is not None:
                 return self.config.is_interesting
+            elif self.config.author in INTERESTING_AUTHORS:
+                return True
             elif self.category() == FINANCE and self.author is not None:
                 return False
-            elif self.category() in UNINTERESTING_CATEGORES:
+            elif self.category() in UNINTERESTING_CATEGORIES:
                 return False
 
         for prefix in UNINTERESTING_PREFIXES:
