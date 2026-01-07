@@ -32,7 +32,6 @@ class TextMessage:
     author_str: str = ''
     id_confirmed: bool = False
     text: str
-    timestamp: datetime | None = None
     timestamp_str: str
 
     def __post_init__(self):
@@ -50,6 +49,16 @@ class TextMessage:
 
     def parse_timestamp(self) -> datetime:
         return datetime.strptime(self.timestamp_str, MSG_DATE_FORMAT)
+
+    def timestamp_txt(self) -> Text:
+        timestamp_str = self.timestamp_str
+
+        try:
+            timestamp_str = iso_timestamp(self.parse_timestamp())
+        except Exception as e:
+            logger.warning(f"Failed to parse timestamp for {self}")
+
+        return Text(f"[{timestamp_str}]", style=TIMESTAMP_DIM)
 
     def _message(self) -> Text:
         lines = self.text.split('\n')
@@ -76,7 +85,7 @@ class TextMessage:
         return msg_txt
 
     def __rich__(self) -> Text:
-        timestamp_txt = Text(f"[{iso_timestamp(self.timestamp)}]", style=TIMESTAMP_DIM).append(' ')
+        timestamp_txt = self.timestamp_txt().append(' ')
         author_style = get_style_for_name(self.author_str if self.author_str.startswith('+') else self.author)
         author_txt = Text(self.author_str, style=author_style)
         return Text('').append(timestamp_txt).append(author_txt).append(': ', style='dim').append(self._message())
