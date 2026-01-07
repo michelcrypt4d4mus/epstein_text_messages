@@ -96,7 +96,7 @@ class Document:
         self.file_id = extract_file_id(self.filename)
         # config and url_slug could have been pre-set in Email
         self.config = self.config or deepcopy(ALL_FILE_CONFIGS.get(self.file_id))
-        self.url_slug = self.url_slug or self.file_path.stem
+        self.url_slug = self.url_slug or self.filename.split('.')[0]
         self._set_computed_fields(text=self.text or self._load_file())
         self._repair()
         self._extract_author()
@@ -110,9 +110,12 @@ class Document:
     def date_str(self) -> str | None:
         return date_str(self.timestamp)
 
+    def debug_info(self) -> str:
+        return ', '.join([f"{prop}={getattr(self, prop)}" for prop in ['file_id', 'filename', 'url_slug']])
+
     def duplicate_file_txt(self) -> Text:
         """If the file is a dupe make a nice message to explain what file it's a duplicate of."""
-        if not self.config or not self.config.duplicate_of_id or self.config.dupe_type is None:
+        if not self.is_duplicate():
             raise RuntimeError(f"duplicate_file_txt() called on {self.summary()} but not a dupe! config:\n\n{self.config}")
 
         txt = Text(f"Not showing ", style=INFO_STYLE).append(epstein_media_doc_link_txt(self.file_id, style='cyan'))
@@ -203,7 +206,7 @@ class Document:
 
         if self.is_local_extract_file():
             metadata['extracted_file'] = {
-                'explanation': 'Manually extracted from one of the court filings.',
+                'explanation': 'manually extracted from one of the other files',
                 'extracted_from': self.url_slug + '.txt',
                 'url': extracted_file_url(self.filename),
             }

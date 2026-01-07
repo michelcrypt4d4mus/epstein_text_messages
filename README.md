@@ -10,11 +10,12 @@
 
 
 ## Usage
-
 #### Installation
 1. Requires you have a local copy of the OCR text files from the House Oversight document release in a directory `/path/to/epstein/ocr_txt_files`. You can download those OCR text files from [the Congressional Google Drive folder](https://drive.google.com/drive/folders/1ldncvdqIf6miiskDp_EDuGSDAaI_fJx8) (make sure you grab both the `001/` and `002/` folders).
 1. Use `poetry install` for easiest time installing. `pip install epstein-files` should also work, though `pipx install epstein-files` is usually better.
 
+
+#### Command Line Tools
 You need to set the `EPSTEIN_DOCS_DIR` environment variable with the path to the folder of files you just downloaded when running. You can either create a `.env` file modeled on [`.env.example`](./.env.example) (which will set it permanently) or you can run with:
 
 ```bash
@@ -30,7 +31,7 @@ epstein_generate
 # Search for a string:
 epstein_search Bannon
 # Or a regex:
-epstein_search '\bSteve\s*Bannon\b'
+epstein_search '\bSteve\s*Bannon|Jeffrey\s*Epstein\b'
 
 # Show a file with color highlighting of keywords:
 epstein_show 030999
@@ -48,6 +49,12 @@ epstein_diff 030999 020442
 
 The first time you run anything it will take a few minutes to fix all the janky OCR text, attribute the redacted emails, etc. After that things will be quick.
 Run `epstein_generate --help` for command line option assistance.
+
+**Optional:** There are a handful of emails that I extracted from the legal filings they were contained in. If you want to include these files in your local analysis you'll need to copy those files from the repo into your local document directory. Something like:
+
+```bash
+cp ./emails_extracted_from_legal_filings/*.txt "$EPSTEIN_DOCS_DIR"
+```
 
 
 #### As A Library

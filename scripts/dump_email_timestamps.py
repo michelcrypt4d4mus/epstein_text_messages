@@ -49,8 +49,8 @@ table.add_column('recipients', max_width=38)
 # table.add_column('att')
 table.add_column('subject')
 
-for email in Document.sort_by_timestamp(epstein_files.emails):
-    if email.is_fwded_article() or email.is_junk_mail() or email.is_duplicate():
+for email in Document.sort_by_timestamp(epstein_files.non_duplicate_emails()):
+    if email.is_fwded_article() or email.is_junk_mail():
         continue
 
     table.add_row(

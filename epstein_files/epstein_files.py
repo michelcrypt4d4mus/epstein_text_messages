@@ -27,7 +27,7 @@ from epstein_files.util.data import days_between, dict_sets_to_lists, json_safe,
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.env import DOCS_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
-from epstein_files.util.highlighted_group import get_info_for_name, get_style_for_name
+from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames, get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_STYLE, LAST_TIMESTAMP_STYLE, NA_TXT, add_cols_to_table,
      build_table, console, highlighter, link_text_obj, link_markup, print_author_header, print_centered,
      print_other_site_link, print_panel, print_section_header, vertically_pad)
@@ -80,7 +80,7 @@ class EpsteinFiles:
                 logger.warning(f"Skipping empty file: {document}]")
                 continue
             elif args.skip_other_files and cls == OtherFile and file_type_count[cls.__name__] > 1:
-                logger.warning(f"Skipping {document.filename}...")
+                document.log(f"Skipping OtherFile...")
                 continue
 
             documents.append(cls(file_arg, text=document.text))
@@ -104,16 +104,20 @@ class EpsteinFiles:
         if PICKLED_PATH.exists() and not args.overwrite_pickle:
             with gzip.open(PICKLED_PATH, 'rb') as file:
                 epstein_files = pickle.load(file)
-                timer.print_at_checkpoint(f"Loaded {len(epstein_files.all_files):,} documents from '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})")
                 epstein_files.timer = timer
+                timer_msg = f"Loaded {len(epstein_files.all_files):,} documents from '{PICKLED_PATH}'"
+                epstein_files.timer.print_at_checkpoint(f"{timer_msg} ({file_size_str(PICKLED_PATH)})")
                 return epstein_files
 
         logger.warning(f"Building new cache file, this will take a few minutes...")
         epstein_files = EpsteinFiles(timer=timer)
 
-        with gzip.open(PICKLED_PATH, 'wb') as file:
-            pickle.dump(epstein_files, file)
-            logger.warning(f"Pickled data to '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})...")
+        if args.skip_other_files:
+            logger.warning(f"Not writing pickled data because --skip-other-files")
+        else:
+            with gzip.open(PICKLED_PATH, 'wb') as file:
+                pickle.dump(epstein_files, file)
+                logger.warning(f"Pickled data to '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})...")
 
         timer.print_at_checkpoint(f'Processed {len(epstein_files.all_files):,} documents')
         return epstein_files
@@ -126,9 +130,6 @@ class EpsteinFiles:
         names = [a for a in self.email_author_counts.keys()] + [r for r in self.email_recipient_counts.keys()]
         names = names if include_useless else [e for e in names if e is None or e.lower() not in EXCLUDED_EMAILERS]
         return sorted(list(set(names)), key=lambda e: self.email_author_counts[e] + self.email_recipient_counts[e])
-
-    def attributed_email_count(self) -> int:
-        return sum([i for author, i in self.email_author_counts.items() if author != UNKNOWN])
 
     def docs_matching(
             self,
@@ -172,7 +173,7 @@ class EpsteinFiles:
         return sorted(list(self.unknown_recipient_email_ids))
 
     def emails_by(self, author: str | None) -> list[Email]:
-        return [e for e in self.emails if e.author == author]
+        return Document.sort_by_timestamp([e for e in self.emails if e.author == author])
 
     def emails_for(self, author: str | None) -> list[Email]:
         """Returns emails to or from a given 'author' sorted chronologically."""
@@ -185,9 +186,11 @@ class EpsteinFiles:
 
     def emails_to(self, author: str | None) -> list[Email]:
         if author is None:
-            return [e for e in self.emails if len(e.recipients) == 0 or None in e.recipients]
+            emails = [e for e in self.emails if len(e.recipients) == 0 or None in e.recipients]
         else:
-            return [e for e in self.emails if author in e.recipients]
+            emails = [e for e in self.emails if author in e.recipients]
+
+        return Document.sort_by_timestamp(emails)
 
     def get_documents_by_id(self, file_ids: str | list[str]) -> list[Document]:
         file_ids = listify(file_ids)
@@ -204,13 +207,25 @@ class EpsteinFiles:
     def json_metadata(self) -> str:
         """Create a JSON string containing metadata for all the files."""
         metadata = {
-            Email.__name__: _sorted_metadata(self.emails),
-            JsonFile.__name__: _sorted_metadata(self.json_files),
-            MessengerLog.__name__: _sorted_metadata(self.imessage_logs),
-            OtherFile.__name__: _sorted_metadata(self.non_json_other_files()),
+            'files': {
+                Email.__name__: _sorted_metadata(self.emails),
+                JsonFile.__name__: _sorted_metadata(self.json_files),
+                MessengerLog.__name__: _sorted_metadata(self.imessage_logs),
+                OtherFile.__name__: _sorted_metadata(self.non_json_other_files()),
+            },
+            'people': {
+                name: highlighted_group.get_info(name)
+                for highlighted_group in HIGHLIGHTED_NAMES
+                if isinstance(highlighted_group, HighlightedNames)
+                for name, description in highlighted_group.emailers.items()
+                if description
+            }
         }
 
         return json.dumps(metadata, indent=4, sort_keys=True)
+
+    def non_duplicate_emails(self) -> list[Email]:
+        return [email for email in self.emails if not email.is_duplicate()]
 
     def non_json_other_files(self) -> list[OtherFile]:
         return [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
@@ -230,8 +245,8 @@ class EpsteinFiles:
                 f"{len([d for d in docs if d.is_duplicate()])}",
             )
 
-        add_row('iMessage Logs', self.imessage_logs)
         add_row('Emails', self.emails)
+        add_row('iMessage Logs', self.imessage_logs)
         add_row('JSON Data', self.json_files)
         add_row('Other', self.non_json_other_files())
         console.print(Align.center(table))
@@ -271,12 +286,13 @@ class EpsteinFiles:
         console.print(Align.center(Email.build_table(emails, author)), '\n')
 
     def print_email_device_info(self) -> None:
-        print_panel(f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown", padding=(4, 0, 0, 0), centered=True)
+        print_panel(f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown", padding=(2, 0, 0, 0), centered=True)
         console.print(_build_signature_table(self.email_authors_to_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
         console.print(_build_signature_table(self.email_device_signatures_to_authors, (DEVICE_SIGNATURE, AUTHOR), ', '))
 
     def print_emailer_counts_table(self) -> None:
-        footer = f"Identified authors of {self.attributed_email_count():,} out of {len(self.emails):,} emails ."
+        attributed_emails = [e for e in self.non_duplicate_emails() if e.author]
+        footer = f"Identified authors of {len(attributed_emails):,} out of {len(self.emails):,} emails."
         counts_table = build_table("Email Counts", caption=footer)
 
         add_cols_to_table(counts_table, [
@@ -308,10 +324,10 @@ class EpsteinFiles:
                 str(self.email_recipient_counts[name]),
                 emails[0].timestamp_without_seconds(),
                 emails[-1].timestamp_without_seconds(),
-                '' if name is None else link_text_obj(search_jmail_url(name), JMAIL),
-                '' if not is_ok_for_epstein_web(name) else link_text_obj(epstein_media_person_url(name), 'eMedia'),
-                '' if not is_ok_for_epstein_web(name) else link_text_obj(epstein_web_person_url(name), 'eWeb'),
-                '' if name is None else link_text_obj(search_twitter_url(name), 'search X'),
+                link_text_obj(search_jmail_url(name), JMAIL) if name else '',
+                link_text_obj(epstein_media_person_url(name), 'eMedia') if is_ok_for_epstein_web(name) else '',
+                link_text_obj(epstein_web_person_url(name), 'eWeb') if is_ok_for_epstein_web(name) else '',
+                link_text_obj(search_twitter_url(name), 'search X') if name else '',
             )
 
         console.print(vertically_pad(counts_table, 2))
@@ -325,32 +341,27 @@ class EpsteinFiles:
         imessage_msg_count = sum([len(log.messages) for log in self.imessage_logs])
         console.print(f"Found {imessage_msg_count} text messages in {len(self.imessage_logs)} iMessage log files.")
 
-    def print_other_files_table(self) -> list[OtherFile]:
+    def print_other_files_table(self, files: list[OtherFile]) -> None:
         """Returns the OtherFile objects that were interesting enough to print."""
-        interesting_files = [doc for doc in self.other_files if args.all_other_files or doc.is_interesting()]
         header_pfx = '' if args.all_other_files else 'Selected '
-        print_section_header(f"{FIRST_FEW_LINES} of {len(interesting_files)} {header_pfx}Files That Are Neither Emails Nor Text Msgs")
+        print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {header_pfx}Files That Are Neither Emails Nor Text Msgs")
 
         if not args.all_other_files:
-            print_centered(f"(the other site is uncurated and has all {len(self.other_files)} unclassifiable files and {len(self.emails):,} emails)", style='dim')
+            msg = f"(the other site is uncurated and has all {len(self.other_files)} unclassifiable files"
+            print_centered(f"{msg} and {len(self.emails):,} emails)", style='dim')
             print_other_site_link(False)
             console.line(2)
 
-        console.print(OtherFile.build_table(interesting_files))
-        console.print(Padding(OtherFile.count_by_category_table(interesting_files), (2, 0, 2, 2)))
-        skipped_file_count = len(self.other_files) - len(interesting_files)
+        console.print(OtherFile.build_table(files))
+        console.print(Padding(OtherFile.count_by_category_table(files), (2, 0, 2, 2)))
+        skipped_file_count = len(self.other_files) - len(files)
 
         if skipped_file_count > 0:
             logger.warning(f"Skipped {skipped_file_count} uninteresting other files...")
 
-        return interesting_files
-
     def _tally_email_data(self) -> None:
         """Tally up summary info about Email objects."""
-        for email in self.emails:
-            if email.is_duplicate():
-                continue
-
+        for email in self.non_duplicate_emails():
             self.email_author_counts[email.author] += 1
 
             if len(email.recipients) == 0:
