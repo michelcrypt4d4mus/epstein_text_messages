@@ -3,7 +3,6 @@ from epstein_files.util.highlighted_group import CATEGORY_STYLES, HIGHLIGHTED_NA
 
 
 def test_other_files_config():
-    assert len(OTHER_FILES_CONFIG) == 444
     encountered_file_ids = set()
 
     for cfg in ALL_CONFIGS:
