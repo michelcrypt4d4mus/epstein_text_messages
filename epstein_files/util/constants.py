@@ -1020,12 +1020,12 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='026648', description=f'article about {JASTA} lawsuit against Saudi Arabia by 9/11 victims (Russian propaganda?)', date='2017-05-13'),
     DocCfg(id='032159', description=f"article about microfinance and cell phones in Zimbabwe, Strive Masiyiwa (Econet Wireless)"),
     DocCfg(id='030825', description=f'{ARTICLE_DRAFT} Syria'),
-    DocCfg(id='027051', description=f"German language article about the 2013 Lifeball / AIDS Gala", date='2013-01-01'),
+    DocCfg(id='027051', description=f"German article about the 2013 Lifeball / AIDS Gala", date='2013-01-01', attached_to_email_id='027049'),
     DocCfg(id='033480', description=f"John Bolton press clipping", date='2018-04-06', duplicate_ids=['033481']),
     DocCfg(id='013403', description=f"{LEXIS_NEXIS} result from The Evening Standard about Bernie Madoff", date='2009-12-24'),
     DocCfg(id='021093', description=f"page of unknown article about Epstein and Maxwell"),
     DocCfg(id='031191', description=f"single page of unknown article about Epstein and Trump's relationship in 1997"),
-    DocCfg(id='026520', description=f'Spanish language article about {SULTAN_BIN_SULAYEM}', date='2013-09-27'),
+    DocCfg(id='026520', description=f'Spanish article about {SULTAN_BIN_SULAYEM}', date='2013-09-27'),
     DocCfg(
         id='031736',
         description=f"{TRANSLATION} Arabic article by Abdulnaser Salamah 'Trump; Prince of Believers (Caliph)!'",
@@ -1418,7 +1418,7 @@ OTHER_FILES_POLITICS = [
     DocCfg(
         id='025849',
         author='US Office of Government Information Services',
-        description=f"Building a Bridge Between FOIA Requesters & Agencies",
+        description=f'"Building a Bridge Between FOIA Requesters & Agencies"',
     ),
     DocCfg(id='031670', description=f"letter from General Mike Flynn's lawyers to senators Mark Warner & Richard Burr about subpoena"),
     DocCfg(
