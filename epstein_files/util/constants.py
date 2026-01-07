@@ -208,72 +208,6 @@ for emailer in EMAILERS:
     EMAILER_REGEXES[emailer] = re.compile(emailer, re.IGNORECASE)
 
 
-##########################
-# OtherFile config stuff #
-##########################
-
-# strings
-FBI = 'FBI'
-MEME = 'meme of'
-PRESS_RELEASE = 'press release'
-RESUME_OF = 'professional resumé'
-SCREENSHOT = 'screenshot of'
-TRANSLATION = 'translation of'
-TWEET = 'tweet'
-
-# Legal cases
-BRUNEL_V_EPSTEIN = f"{JEAN_LUC_BRUNEL} v. {JEFFREY_EPSTEIN} and Tyler McDonald d/b/a YI.org"
-EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} & {PAUL_G_CASSELL} v. {ALAN_DERSHOWITZ}"
-EPSTEIN_V_ROTHSTEIN_EDWARDS = f"Epstein v. Scott Rothstein, {BRAD_EDWARDS}, and L.M."
-GIUFFRE_V_DERSHOWITZ = f"{VIRGINIA_GIUFFRE} v. {ALAN_DERSHOWITZ}"
-GIUFFRE_V_EPSTEIN = f"{VIRGINIA_GIUFFRE} v. {JEFFREY_EPSTEIN}"
-GIUFFRE_V_MAXWELL = f"{VIRGINIA_GIUFFRE} v. {GHISLAINE_MAXWELL}"
-JANE_DOE_V_EPSTEIN_TRUMP = f"Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}"
-JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
-NEW_YORK_V_EPSTEIN = f"New York v. {JEFFREY_EPSTEIN}"
-
-# Descriptions of non-email, non-text message files
-ARTICLE_DRAFT = 'draft of an article about'
-BOFA_WEALTH_MGMT = f'{BOFA} Wealth Management'
-BROCKMAN_INC = 'Brockman, Inc.'
-CVRA = "Crime Victims' Rights Act [CVRA]"
-DAVID_BLAINE_VISA_LETTER = f"letter of recommendation for visa for a model"
-DERSH_GIUFFRE_TWEET = f"{TWEET} about {VIRGINIA_GIUFFRE}"
-DEUTSCHE_BANK_TAX_TOPICS = f'{DEUTSCHE_BANK} Wealth Management Tax Topics'
-DIANA_DEGETTE_CAMPAIGN = "Colorado legislator Diana DeGette's campaign"
-EPSTEIN_FOUNDATION = 'Jeffrey Epstein VI Foundation'
-FBI_REPORT = f"report on Epstein investigation (redacted)"
-FBI_SEIZED_PROPERTY = f"seized property inventory (redacted)"
-FEMALE_HEALTH_COMPANY = 'Female Health Company (FHX)'
-FIRE_AND_FURY = f"Fire And Fury"
-HARVARD_POETRY = f'{HARVARD} poetry stuff from {LISA_NEW}'
-HBS_APPLICATION = f"{HARVARD} Business School application letter"
-JASTA = 'JASTA'
-JASTA_SAUDI_LAWSUIT = f"{JASTA} lawsuit against Saudi Arabia by 9/11 victims"
-JP_MORGAN_EYE_ON_THE_MARKET = f"Eye On The Market"
-LAWRENCE_KRAUSS_ASU_ORIGINS = f"{LAWRENCE_KRAUSS}'s ASU Origins Project"
-LEXIS_NEXIS_CVRA_SEARCH = f"{LEXIS_NEXIS} search for case law around the {CVRA}"
-KEN_STARR_LETTER = f"letter to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
-MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
-NIGHT_FLIGHT_BOOK = f'"Night Flight" (draft)'
-NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
-OBAMA_JOKE = 'joke about Obama'
-PALM_BEACH_CODE_ENFORCEMENT = f'{PALM_BEACH} Code Enforcement'
-PALM_BEACH_PROPERTY_INFO = f"{PALM_BEACH} property info"
-PALM_BEACH_TSV = f"TSV of {PALM_BEACH} property"
-PALM_BEACH_WATER_COMMITTEE = f'{PALM_BEACH} Water Committee'
-PATTERSON_BOOK_SCANS = f'pages of "Filthy Rich: The Shocking True Story of {JEFFREY_EPSTEIN}"'
-REAL_DEAL_ARTICLE = 'article by Keith Larsen'
-SHIMON_POST_ARTICLE = f'selection of articles about the mideast'
-SINGLE_PAGE = 'single page of'
-STRANGE_BEDFELLOWS = "'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more"
-SWEDISH_LIFE_SCIENCES_SUMMIT = f"{BARBRO_C_EHNBOM}'s Swedish American Life Science Summit (SALSS)"
-TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Government Ethics"
-UBS_CIO_REPORT = 'CIO Monthly Extended report'
-UN_GENERAL_ASSEMBLY = '67th U.N. General Assembly'
-WOMEN_EMPOWERMENT = f"Women Empowerment (WE) conference"
-ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
-
 # Atribution reasons
 BOLOTOVA_REASON = 'Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")'
 KATHY_REASON = 'from "Kathy" about dems, sent from iPad'
@@ -367,6 +301,8 @@ TEXTS_CONFIG = CONFIRMED_TEXTS_CONFIG + UNCONFIRMED_TEXTS_CONFIG
 ########################################################################################################
 ################################################ EMAILS ################################################
 ########################################################################################################
+
+MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
 
 # Some emails have a lot of uninteresting CCs
 IRAN_DEAL_RECIPIENTS = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
@@ -864,6 +800,68 @@ EMAILS_CONFIG = [
 ################################################################################################
 ####################################### OTHER FILES ############################################
 ################################################################################################
+
+# strings
+FBI = 'FBI'
+MEME = 'meme of'
+PRESS_RELEASE = 'press release'
+RESUME_OF = 'professional resumé'
+SCREENSHOT = 'screenshot of'
+TRANSLATION = 'translation of'
+TWEET = 'tweet'
+
+# Legal cases
+BRUNEL_V_EPSTEIN = f"{JEAN_LUC_BRUNEL} v. {JEFFREY_EPSTEIN} and Tyler McDonald d/b/a YI.org"
+EDWARDS_V_DERSHOWITZ = f"{BRAD_EDWARDS} & {PAUL_G_CASSELL} v. {ALAN_DERSHOWITZ}"
+EPSTEIN_V_ROTHSTEIN_EDWARDS = f"Epstein v. Scott Rothstein, {BRAD_EDWARDS}, and L.M."
+GIUFFRE_V_DERSHOWITZ = f"{VIRGINIA_GIUFFRE} v. {ALAN_DERSHOWITZ}"
+GIUFFRE_V_EPSTEIN = f"{VIRGINIA_GIUFFRE} v. {JEFFREY_EPSTEIN}"
+GIUFFRE_V_MAXWELL = f"{VIRGINIA_GIUFFRE} v. {GHISLAINE_MAXWELL}"
+JANE_DOE_V_EPSTEIN_TRUMP = f"Jane Doe v. Donald Trump and {JEFFREY_EPSTEIN}"
+JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
+NEW_YORK_V_EPSTEIN = f"New York v. {JEFFREY_EPSTEIN}"
+
+# Descriptions of non-email, non-text message files
+ARTICLE_DRAFT = 'draft of an article about'
+BOFA_WEALTH_MGMT = f'{BOFA} Wealth Management'
+BROCKMAN_INC = 'Brockman, Inc.'
+CVRA = "Crime Victims' Rights Act [CVRA]"
+DAVID_BLAINE_VISA_LETTER = f"letter of recommendation for visa for a model"
+DERSH_GIUFFRE_TWEET = f"{TWEET} about {VIRGINIA_GIUFFRE}"
+DEUTSCHE_BANK_TAX_TOPICS = f'{DEUTSCHE_BANK} Wealth Management Tax Topics'
+DIANA_DEGETTE_CAMPAIGN = "Colorado legislator Diana DeGette's campaign"
+EPSTEIN_FOUNDATION = 'Jeffrey Epstein VI Foundation'
+FBI_REPORT = f"report on Epstein investigation (redacted)"
+FBI_SEIZED_PROPERTY = f"seized property inventory (redacted)"
+FEMALE_HEALTH_COMPANY = 'Female Health Company (FHX)'
+FIRE_AND_FURY = f"Fire And Fury"
+HARVARD_POETRY = f'{HARVARD} poetry stuff from {LISA_NEW}'
+HBS_APPLICATION = f"{HARVARD} Business School application letter"
+JASTA = 'JASTA'
+JASTA_SAUDI_LAWSUIT = f"{JASTA} lawsuit against Saudi Arabia by 9/11 victims"
+JP_MORGAN_EYE_ON_THE_MARKET = f"Eye On The Market"
+LAWRENCE_KRAUSS_ASU_ORIGINS = f"{LAWRENCE_KRAUSS}'s ASU Origins Project"
+LEXIS_NEXIS_CVRA_SEARCH = f"{LEXIS_NEXIS} search for case law around the {CVRA}"
+KEN_STARR_LETTER = f"letter to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
+NIGHT_FLIGHT_BOOK = f'"Night Flight" (draft)'
+NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
+OBAMA_JOKE = 'joke about Obama'
+PALM_BEACH_CODE_ENFORCEMENT = f'{PALM_BEACH} Code Enforcement'
+PALM_BEACH_PROPERTY_INFO = f"{PALM_BEACH} property info"
+PALM_BEACH_TSV = f"TSV of {PALM_BEACH} property"
+PALM_BEACH_WATER_COMMITTEE = f'{PALM_BEACH} Water Committee'
+PATTERSON_BOOK_SCANS = f'pages of "Filthy Rich: The Shocking True Story of {JEFFREY_EPSTEIN}"'
+REAL_DEAL_ARTICLE = 'article by Keith Larsen'
+SHIMON_POST_ARTICLE = f'selection of articles about the mideast'
+SINGLE_PAGE = 'single page of'
+STRANGE_BEDFELLOWS = "'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more"
+SWEDISH_LIFE_SCIENCES_SUMMIT = f"{BARBRO_C_EHNBOM}'s Swedish American Life Science Summit (SALSS)"
+TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Government Ethics"
+UBS_CIO_REPORT = 'CIO Monthly Extended report'
+UN_GENERAL_ASSEMBLY = '67th U.N. General Assembly'
+WOMEN_EMPOWERMENT = f"Women Empowerment (WE) conference"
+ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
+
 
 OTHER_FILES_BOOKS = [
     DocCfg(id='017088', author=ALAN_DERSHOWITZ, description=f'"Taking the Stand: My Life in the Law" (draft)'),
