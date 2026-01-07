@@ -351,10 +351,6 @@ class EpsteinFiles:
         print_centered(category_table)
         console.line(2)
         console.print(other_files_preview_table)
-        skipped_file_count = len(self.other_files) - len(files)
-
-        if skipped_file_count > 0:
-            logger.warning(f"Skipped {skipped_file_count} uninteresting other files...")
 
     def print_text_messages_section(self) -> None:
         """Print summary table and stats for text messages."""
