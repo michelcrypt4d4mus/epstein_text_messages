@@ -36,6 +36,11 @@ TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
+SKIP_TIMESTAMP_EXTRACT = [
+    PALM_BEACH_TSV,
+    PALM_BEACH_PROPERTY_INFO,
+]
+
 UNINTERESTING_CATEGORIES = [
     ARTICLE,
     ARTS,
@@ -153,6 +158,8 @@ class OtherFile(Document):
         """Return configured timestamp or value extracted by scanning text with datefinder."""
         if self.config and self.config.timestamp:
             return self.config.timestamp
+        elif self.config and any([s in (self.config_description() or '') for s in SKIP_TIMESTAMP_EXTRACT]):
+            return None
 
         timestamps: list[datetime] = []
 

@@ -260,6 +260,7 @@ NIGHT_FLIGHT_BOOK = f'"Night Flight" (draft)'
 NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
 OBAMA_JOKE = 'joke about Obama'
 PALM_BEACH_CODE_ENFORCEMENT = f'{PALM_BEACH} Code Enforcement'
+PALM_BEACH_PROPERTY_INFO = f"{PALM_BEACH} property info"
 PALM_BEACH_TSV = f"TSV of {PALM_BEACH} property"
 PALM_BEACH_WATER_COMMITTEE = f'{PALM_BEACH} Water Committee'
 PATTERSON_BOOK_SCANS = f'pages of "Filthy Rich: The Shocking True Story of {JEFFREY_EPSTEIN}"'
@@ -866,13 +867,13 @@ EMAILS_CONFIG = [
 ################################################################################################
 
 OTHER_FILES_BOOKS = [
-    DocCfg(id='017088', author=ALAN_DERSHOWITZ,  description=f'"Taking the Stand: My Life in the Law" (draft)'),
+    DocCfg(id='017088', author=ALAN_DERSHOWITZ, description=f'"Taking the Stand: My Life in the Law" (draft)'),
     DocCfg(id='013501', author='Arnold J. Mandell', description=f'The Nearness Of Grace: A Personal Science Of Spiritual Transformation', date='2005-01-01'),
     DocCfg(id='012899', author='Ben Goertzel', description=f'Engineering General Intelligence: A Path to Advanced AGI Via Embodied Learning and Cognitive Synergy'),
     DocCfg(id='018438', author='Clarisse Thorn', description=f'The S&M Feminist'),
     DocCfg(id='019477', author=EDWARD_JAY_EPSTEIN, description=f'How America Lost Its Secrets: Edward Snowden, the Man, and the Theft'),
     DocCfg(id='020153', author=EDWARD_JAY_EPSTEIN, description=f'The Snowden Affair: A Spy Story In Six Parts'),
-    DocCfg(id='011472', author=EHUD_BARAK, description=NIGHT_FLIGHT_BOOK),
+    DocCfg(id='011472', author=EHUD_BARAK, description=NIGHT_FLIGHT_BOOK, date='2006-07-12'),  # date from _extract_timestamp()
     DocCfg(id='027849', author=EHUD_BARAK, description=NIGHT_FLIGHT_BOOK),
     DocCfg(id='010912', author=GORDON_GETTY, description=f'"Free Growth and Other Surprises" (draft)', date='2018-10-18'),
     DocCfg(id='010477', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
@@ -1354,8 +1355,8 @@ OTHER_FILES_PROPERTY = [
     DocCfg(id='029520', author=THE_REAL_DEAL, description=f"{REAL_DEAL_ARTICLE} 'Lost Paradise at the Palm House'", date='2019-06-17'),
     DocCfg(id='016597', author='Trump Properties LLC', description=f'appeal of some decision about Mar-a-Lago by {PALM_BEACH} authorities'),
     DocCfg(id='018743', description=f"Las Vegas property listing"),
-    DocCfg(id='016695', description=f"{PALM_BEACH} property info (?)"),
-    DocCfg(id='016697', description=f"{PALM_BEACH} property tax info (?) that mentions Trump"),
+    DocCfg(id='016695', description=f"{PALM_BEACH_PROPERTY_INFO} (?)"),
+    DocCfg(id='016697', description=f"{PALM_BEACH_PROPERTY_INFO} (?) that mentions Trump"),
     DocCfg(id='016599', description=f"{PALM_BEACH_TSV} consumption (water?)"),
     DocCfg(id='016600', description=f"{PALM_BEACH_TSV} consumption (water?)"),
     DocCfg(id='016601', description=f"{PALM_BEACH_TSV} consumption (water?)"),
