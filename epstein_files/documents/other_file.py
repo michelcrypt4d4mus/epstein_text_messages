@@ -36,7 +36,13 @@ TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
+SKIP_TIMESTAMP_EXTRACT = [
+    PALM_BEACH_TSV,
+    PALM_BEACH_PROPERTY_INFO,
+]
+
 UNINTERESTING_CATEGORIES = [
+    ACADEMIA,
     ARTICLE,
     ARTS,
     BOOK,
@@ -44,7 +50,6 @@ UNINTERESTING_CATEGORIES = [
     JUNK,
     POLITICS,
     SKYPE_LOG,
-    SPEECH,
 ]
 
 # OtherFiles whose descriptions/info match these prefixes are not displayed unless --all-other-files is used
@@ -56,18 +61,12 @@ UNINTERESTING_PREFIXES = [
     GORDON_GETTY,
     f"{HARVARD} Econ",
     HARVARD_POETRY,
-    'Inference',
     JASTA,
     LEXIS_NEXIS,
-    LAWRENCE_KRAUSS,
-    LAWRENCE_KRAUSS_ASU_ORIGINS,
-    MARTIN_NOWAK,
     NOBEL_CHARITABLE_TRUST,
     PALM_BEACH_CODE_ENFORCEMENT,
     PALM_BEACH_TSV,
     PALM_BEACH_WATER_COMMITTEE,
-    ROBERT_TRIVERS,
-    SHIMON_POST_ARTICLE,
     TWEET,
     UN_GENERAL_ASSEMBLY,
     'US Office',
@@ -75,6 +74,9 @@ UNINTERESTING_PREFIXES = [
 
 INTERESTING_AUTHORS = [
     EDWARD_JAY_EPSTEIN,
+    EHUD_BARAK,
+    JOI_ITO,
+    NOAM_CHOMSKY,
     MICHAEL_WOLFF,
     SVETLANA_POZHIDAEVA,
 ]
@@ -82,8 +84,14 @@ INTERESTING_AUTHORS = [
 
 @dataclass
 class OtherFile(Document):
-    """File that is not an email, an iMessage log, or JSON data."""
-    include_description_in_summary_panel: ClassVar[bool] = True
+    """
+    File that is not an email, an iMessage log, or JSON data.
+
+    Attributes:
+        was_timestamp_extracted (bool): True if the timestamp was programmatically extracted (and could be wrong)
+    """
+    was_timestamp_extracted: bool = False
+    include_description_in_summary_panel: ClassVar[bool] = True  # Class var for logging output
 
     def __post_init__(self):
         super().__post_init__()
@@ -140,6 +148,10 @@ class OtherFile(Document):
     def metadata(self) -> Metadata:
         metadata = super().metadata()
         metadata['is_interesting'] = self.is_interesting()
+
+        if self.was_timestamp_extracted:
+            metadata['was_timestamp_extracted'] = self.was_timestamp_extracted
+
         return metadata
 
     def preview_text(self) -> str:
@@ -153,6 +165,8 @@ class OtherFile(Document):
         """Return configured timestamp or value extracted by scanning text with datefinder."""
         if self.config and self.config.timestamp:
             return self.config.timestamp
+        elif self.config and any([s in (self.config_description() or '') for s in SKIP_TIMESTAMP_EXTRACT]):
+            return None
 
         timestamps: list[datetime] = []
 
@@ -176,7 +190,10 @@ class OtherFile(Document):
                 self.log_top_lines(15, msg=f"No timestamps found")
 
             return None
-        elif len(timestamps) == 1:
+
+        self.was_timestamp_extracted = True
+
+        if len(timestamps) == 1:
             return timestamps[0]
         else:
             timestamps = sorted(uniquify(timestamps), reverse=True)
@@ -192,9 +209,9 @@ class OtherFile(Document):
             self.log_top_lines(15, msg=timestamps_log_msg, level=logging.DEBUG)
 
     @staticmethod
-    def build_table(files: Sequence['OtherFile']) -> Table:
+    def files_preview_table(files: Sequence['OtherFile']) -> Table:
         """Build a table of OtherFile documents."""
-        table = build_table(None, show_lines=True)
+        table = build_table('Other Files Details', show_lines=True)
         table.add_column('File', justify='center', width=FILENAME_LENGTH)
         table.add_column('Date', justify='center')
         table.add_column('Size', justify='center')
@@ -234,10 +251,10 @@ class OtherFile(Document):
                 logger.warning(f"file {file.file_id} has no category")
 
             counts[file.category()] += 1
-            category_bytes[file.category()] += file.length
+            category_bytes[file.category()] += file.file_size()
 
-        table = build_table('Other Files Summary')
-        add_cols_to_table(table, ['Category', 'Count', 'Has Author', 'No Author', 'Size'])
+        table = build_table('Other Files Summary', ['Category', 'Count', 'Has Author', 'No Author', 'Size'])
+        table.columns[0].min_width = 14
         table.columns[-1].style = 'dim'
 
         for (category, count) in sort_dict(counts):

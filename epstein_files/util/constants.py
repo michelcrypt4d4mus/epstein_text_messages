@@ -85,7 +85,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     JAMES_HILL: re.compile(r"hill, james e.|james.e.hill@abc.com", re.IGNORECASE),
     JEAN_LUC_BRUNEL: re.compile(r'Jean[- ]Luc Brunel?', re.IGNORECASE),
     JEFF_FULLER: re.compile(r"jeff@mc2mm.com|Jeff Fuller", re.IGNORECASE),
-    JEFFREY_EPSTEIN: re.compile(r'[djl]\s?ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeffrey E((sp|ps)tein?)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(Mark L.|ard Jay) )Epstein', re.IGNORECASE),
+    JEFFREY_EPSTEIN: re.compile(r'[djl]\s?ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeffrey E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(Mark L.|ard Jay) )Epstein', re.IGNORECASE),
     JESSICA_CADWELL: re.compile(r'Jessica Cadwell?', re.IGNORECASE),
     JOHNNY_EL_HACHEM: re.compile(r'el hachem johnny|johnny el hachem', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|(joichi|joi)( Ito)?', re.IGNORECASE),
@@ -260,6 +260,7 @@ NIGHT_FLIGHT_BOOK = f'"Night Flight" (draft)'
 NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
 OBAMA_JOKE = 'joke about Obama'
 PALM_BEACH_CODE_ENFORCEMENT = f'{PALM_BEACH} Code Enforcement'
+PALM_BEACH_PROPERTY_INFO = f"{PALM_BEACH} property info"
 PALM_BEACH_TSV = f"TSV of {PALM_BEACH} property"
 PALM_BEACH_WATER_COMMITTEE = f'{PALM_BEACH} Water Committee'
 PATTERSON_BOOK_SCANS = f'pages of "Filthy Rich: The Shocking True Story of {JEFFREY_EPSTEIN}"'
@@ -866,14 +867,13 @@ EMAILS_CONFIG = [
 ################################################################################################
 
 OTHER_FILES_BOOKS = [
-    DocCfg(id='017088', author=ALAN_DERSHOWITZ,  description=f'"Taking the Stand: My Life in the Law" (draft)'),
+    DocCfg(id='017088', author=ALAN_DERSHOWITZ, description=f'"Taking the Stand: My Life in the Law" (draft)'),
     DocCfg(id='013501', author='Arnold J. Mandell', description=f'The Nearness Of Grace: A Personal Science Of Spiritual Transformation', date='2005-01-01'),
     DocCfg(id='012899', author='Ben Goertzel', description=f'Engineering General Intelligence: A Path to Advanced AGI Via Embodied Learning and Cognitive Synergy'),
     DocCfg(id='018438', author='Clarisse Thorn', description=f'The S&M Feminist'),
     DocCfg(id='019477', author=EDWARD_JAY_EPSTEIN, description=f'How America Lost Its Secrets: Edward Snowden, the Man, and the Theft'),
     DocCfg(id='020153', author=EDWARD_JAY_EPSTEIN, description=f'The Snowden Affair: A Spy Story In Six Parts'),
-    DocCfg(id='011472', author=EHUD_BARAK, description=NIGHT_FLIGHT_BOOK),
-    DocCfg(id='027849', author=EHUD_BARAK, description=NIGHT_FLIGHT_BOOK),
+    DocCfg(id='011472', author=EHUD_BARAK, description=NIGHT_FLIGHT_BOOK, date='2006-07-12', duplicate_ids=['027849']),  # date from _extract_timestamp()
     DocCfg(id='010912', author=GORDON_GETTY, description=f'"Free Growth and Other Surprises" (draft)', date='2018-10-18'),
     DocCfg(id='010477', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
     DocCfg(id='010486', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
@@ -1354,8 +1354,8 @@ OTHER_FILES_PROPERTY = [
     DocCfg(id='029520', author=THE_REAL_DEAL, description=f"{REAL_DEAL_ARTICLE} 'Lost Paradise at the Palm House'", date='2019-06-17'),
     DocCfg(id='016597', author='Trump Properties LLC', description=f'appeal of some decision about Mar-a-Lago by {PALM_BEACH} authorities'),
     DocCfg(id='018743', description=f"Las Vegas property listing"),
-    DocCfg(id='016695', description=f"{PALM_BEACH} property info (?)"),
-    DocCfg(id='016697', description=f"{PALM_BEACH} property tax info (?) that mentions Trump"),
+    DocCfg(id='016695', description=f"{PALM_BEACH_PROPERTY_INFO} (?)"),
+    DocCfg(id='016697', description=f"{PALM_BEACH_PROPERTY_INFO} (?) that mentions Trump"),
     DocCfg(id='016599', description=f"{PALM_BEACH_TSV} consumption (water?)"),
     DocCfg(id='016600', description=f"{PALM_BEACH_TSV} consumption (water?)"),
     DocCfg(id='016601', description=f"{PALM_BEACH_TSV} consumption (water?)"),
@@ -1404,12 +1404,14 @@ OTHER_FILES_POLITICS = [
     DocCfg(id='029918', author=DIANA_DEGETTE_CAMPAIGN, description=f"bio", date='2012-09-27'),
     DocCfg(id='031184', author=DIANA_DEGETTE_CAMPAIGN, description=f"invitation to fundraiser hosted by {BARBRO_C_EHNBOM}", date='2012-09-27'),
     DocCfg(id='026248', author='Don McGahn', description=f'letter from Trump lawyer to Devin Nunes (R-CA) about FISA courts and Trump'),
+    DocCfg(id='027009', author=EHUD_BARAK, description=f"speech to AIPAC", date='2013-03-03'),
     DocCfg(
         id='019233',
         author='Freedom House',
         description=f"'Breaking Down Democracy: Goals, Strategies, and Methods of Modern Authoritarians'",
         date='2017-06-02',
     ),
+    DocCfg(id='026856', author='Kevin Rudd', description=f"speech 'Xi Jinping, China And The Global Order'", date='2018-06-26'),
     DocCfg(id='026827', author='Scowcroft Group', description=f'report on ISIS', date='2015-11-14'),
     DocCfg(id='024294', author=STACEY_PLASKETT, description=f"campaign flier", date='2016-10-01'),
     DocCfg(
@@ -1444,6 +1446,7 @@ OTHER_FILES_ACADEMIA = [
         description=f'report: "Challenges of AI: Envisioning and Addressing Adverse Outcomes"',
         duplicate_ids=['011284']
     ),
+    DocCfg(id='026731', author='Lord Martin Rees', description=f"speech at first inaugural Cornell Carl Sagan Lecture"),
     DocCfg(id='015501', author=f"{MOSHE_HOFFMAN}, Erez Yoeli, and Carlos David Navarrete", description=f"Game Theory and Morality"),
     DocCfg(
         id='026521',
@@ -1471,13 +1474,13 @@ OTHER_FILES_ACADEMIA = [
     DocCfg(id='029592', description=HARVARD_POETRY),
     DocCfg(id='019396', description=f'{HARVARD} Economics 1545 Professor Kenneth Rogoff syllabus'),
     DocCfg(id='022445', description=f"Inference: International Review of Science Feedback & Comments", date='2018-11-01'),
-    DocCfg(id='029355', description=f'{SCREENSHOT} quote in book about {LARRY_SUMMERS}', duplicate_ids=['029356'], dupe_type='quoted'),  # 029356 is zoomed in corner
-]
-
-OTHER_FILES_SPEECH = [
-    DocCfg(id='027009', author=EHUD_BARAK, description=f"speech to AIPAC", date='2013-03-03'),
-    DocCfg(id='026856', author='Kevin Rudd', description=f"speech 'Xi Jinping, China And The Global Order'", date='2018-06-26'),
-    DocCfg(id='026731', author='Lord Martin Rees', description=f"speech at first inaugural Cornell Carl Sagan Lecture"),
+    DocCfg(
+        id='029355',
+        description=f'{SCREENSHOT} quote in book about {LARRY_SUMMERS}',
+        duplicate_ids=['029356'],  # 029356 is zoomed in corner
+        dupe_type='quoted',
+        is_interesting=False,
+    ),
 ]
 
 # resumes and application letters
@@ -1590,7 +1593,6 @@ OTHER_FILES_CATEGORIES = [
     REPUTATION,
     'RESUMES',
     SOCIAL,
-    SPEECH,
 ]
 
 OTHER_FILES_CONFIG = []

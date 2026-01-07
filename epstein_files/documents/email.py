@@ -131,12 +131,12 @@ JUNK_EMAILERS = [
     'editorialstaff@flipboard.com',
     'How To Academy',
     'Jokeland',
-    JP_MORGAN_USGIO,
 ]
 
 MAILING_LISTS = [
     INTELLIGENCE_SQUARED,
     'middle.east.update@hotmail.com',
+    JP_MORGAN_USGIO,
 ]
 
 TRUNCATE_ALL_EMAILS_FROM = JUNK_EMAILERS + MAILING_LISTS + [
@@ -316,7 +316,7 @@ class Email(Communication):
     recipients: list[str | None] = field(default_factory=list)
     sent_from_device: str | None = None
     signature_substitution_counts: dict[str, int] = field(default_factory=dict)  # defaultdict breaks asdict :(
-    truncation_allowed: bool = True
+    _truncation_allowed: bool = True  # Hacky way to get __rich_console__() not to truncate in epstein_show script
 
     # For logging how many headers we prettified while printing, kind of janky
     rewritten_header_ids: ClassVar[set[str]] = set([])
@@ -337,10 +337,10 @@ class Email(Communication):
 
         try:
             if self.config and self.config.recipients:
-                self.recipients = cast(list[str | None], self.config.recipients)
+                self.recipients = self.config.recipients
             else:
                 for recipient in self.header.recipients():
-                    self.recipients.extend(self._get_names(recipient))
+                    self.recipients.extend(self._emailer_names(recipient))
         except Exception as e:
             console.print_exception()
             console.line(2)
@@ -402,8 +402,8 @@ class Email(Communication):
             return self.text
 
         reply_text_match = REPLY_TEXT_REGEX.search(text)
-        # logger.info(f"Raw text:\n" + self.top_lines(20) + '\n\n')
-        # logger.info(f"With header removed:\n" + text[0:500] + '\n\n')
+        self.log_top_lines(20, "Raw text:", logging.DEBUG)
+        self.log(f"With header removed:\n{text[0:500]}\n\n", logging.DEBUG)
 
         if reply_text_match:
             actual_num_chars = len(reply_text_match.group(1))
@@ -439,12 +439,32 @@ class Email(Communication):
 
         return style.replace('bold', '').strip()
 
+    def _emailer_names(self, emailer_str: str) -> list[str]:
+        """Return a list of people's names found in 'emailer_str' (email author or recipients field)."""
+        emailer_str = EmailHeader.cleanup_str(emailer_str)
+
+        if len(emailer_str) == 0:
+            return []
+
+        names_found = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
+
+        if BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
+            if len(names_found) == 0 and emailer_str not in SUPPRESS_LOGS_FOR_AUTHORS:
+                logger.warning(f"'{self.filename}': No emailer found in '{escape_single_quotes(emailer_str)}'")
+            else:
+                logger.info(f"Extracted {len(names_found)} names from semi-invalid '{emailer_str}': {names_found}...")
+
+            return names_found
+
+        names_found = names_found or [emailer_str]
+        return [_reverse_first_and_last_names(name) for name in names_found]
+
     def _extract_author(self) -> None:
         self._extract_header()
         super()._extract_author()
 
         if not self.author and self.header.author:
-            authors = self._get_names(self.header.author)
+            authors = self._emailer_names(self.header.author)
             self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
 
     def _extract_header(self) -> None:
@@ -493,26 +513,6 @@ class Email(Communication):
                 return timestamp
 
         raise RuntimeError(f"No timestamp found in '{self.file_path.name}' top lines:\n{searchable_text}")
-
-    def _get_names(self, emailer_str: str) -> list[str]:
-        """Return a list of people's names found in 'emailer_str' (email author or recipients field)."""
-        emailer_str = EmailHeader.cleanup_str(emailer_str)
-
-        if len(emailer_str) == 0:
-            return []
-
-        names_found = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
-
-        if BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
-            if len(names_found) == 0 and emailer_str not in SUPPRESS_LOGS_FOR_AUTHORS:
-                logger.warning(f"'{self.filename}': No emailer found in '{escape_single_quotes(emailer_str)}'")
-            else:
-                logger.info(f"Extracted {len(names_found)} names from semi-invalid '{emailer_str}': {names_found}...")
-
-            return names_found
-
-        names_found = names_found or [emailer_str]
-        return [_reverse_first_and_last_names(name) for name in names_found]
 
     def _idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES, text: str | None = None) -> int | None:
         """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line in self.text."""
@@ -711,10 +711,10 @@ class Email(Communication):
             num_chars = quote_cutoff
 
         # Truncate long emails but leave a note explaining what happened w/link to source document
-        if len(text) > num_chars and self.truncation_allowed:
+        if len(text) > num_chars and self._truncation_allowed:
             text = text[0:num_chars]
             doc_link_markup = epstein_media_doc_link_markup(self.url_slug, self.author_style)
-            trim_note = f"<...trimmed to {num_chars} characters of {self.length}, read the rest at {doc_link_markup}...>"
+            trim_note = f"<...trimmed to {num_chars} characters of {self.length()}, read the rest at {doc_link_markup}...>"
             trim_footer_txt = Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
 
         # Rewrite broken headers where the values are on separate lines from the field names

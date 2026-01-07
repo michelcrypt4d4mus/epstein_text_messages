@@ -25,12 +25,12 @@ from epstein_files.util.constant.urls import (EPSTEIN_MEDIA, EPSTEIN_WEB, JMAIL,
 from epstein_files.util.constants import *
 from epstein_files.util.data import days_between, dict_sets_to_lists, json_safe, listify, sort_dict
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
-from epstein_files.util.env import DOCS_DIR, args, logger
+from epstein_files.util.env import DOCS_DIR, args, logger, specified_names
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames, get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_STYLE, LAST_TIMESTAMP_STYLE, NA_TXT, add_cols_to_table,
-     build_table, console, highlighter, link_text_obj, link_markup, print_author_header, print_centered,
-     print_other_site_link, print_panel, print_section_header, vertically_pad)
+     print_all_files_page_link, build_table, console, highlighter, link_text_obj, link_markup, print_author_header, print_centered,
+     print_panel, print_section_header, vertically_pad)
 from epstein_files.util.search_result import SearchResult
 from epstein_files.util.timer import Timer
 
@@ -76,14 +76,14 @@ class EpsteinFiles:
             document = Document(file_arg)
             cls = document_cls(document)
 
-            if document.length == 0:
+            if document.length() == 0:
                 logger.warning(f"Skipping empty file: {document}]")
                 continue
             elif args.skip_other_files and cls == OtherFile and file_type_count[cls.__name__] > 1:
                 document.log(f"Skipping OtherFile...")
                 continue
 
-            documents.append(cls(file_arg, text=document.text))
+            documents.append(cls(file_arg, lines=document.lines, text=document.text))
             logger.info(str(documents[-1]))
             file_type_count[cls.__name__] += 1
 
@@ -290,9 +290,47 @@ class EpsteinFiles:
         console.print(_build_signature_table(self.email_authors_to_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
         console.print(_build_signature_table(self.email_device_signatures_to_authors, (DEVICE_SIGNATURE, AUTHOR), ', '))
 
-    def print_emailer_counts_table(self) -> None:
+    def print_other_files_section(self, files: list[OtherFile]) -> None:
+        """Returns the OtherFile objects that were interesting enough to print."""
+        category_table = OtherFile.count_by_category_table(files)
+        other_files_preview_table = OtherFile.files_preview_table(files)
+        header_pfx = '' if args.all_other_files else 'Selected '
+        print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {header_pfx}Files That Are Neither Emails Nor Text Messages")
+
+        if args.all_other_files:
+            console.line(1)
+        else:
+            print_all_files_page_link(self)
+            console.line(2)
+
+            for table in [category_table, other_files_preview_table]:
+                table.title = f"{header_pfx}{table.title}"
+
+        print_centered(category_table)
+        console.line(2)
+        console.print(other_files_preview_table)
+
+    def print_text_messages_section(self) -> None:
+        """Print summary table and stats for text messages."""
+        print_section_header('All of His Text Messages')
+        print_centered("(conversations are sorted chronologically based on timestamp of first message)\n", style='gray30')
+        authors: list[str | None] = specified_names if specified_names else [JEFFREY_EPSTEIN]
+        log_files = self.imessage_logs_for(authors)
+
+        for log_file in log_files:
+            console.print(Padding(log_file))
+            console.line(2)
+
+        print_centered(MessengerLog.summary_table(self.imessage_logs))
+        text_summary_msg = f"\nDeanonymized {Document.known_author_count(self.imessage_logs)} of "
+        text_summary_msg += f"{len(self.imessage_logs)} {TEXT_MESSAGE} logs found in {len(self.all_files):,} files."
+        console.print(text_summary_msg)
+        imessage_msg_count = sum([len(log.messages) for log in self.imessage_logs])
+        console.print(f"Found {imessage_msg_count} text messages in {len(self.imessage_logs)} iMessage log files.")
+
+    def table_of_emailers(self) -> Table:
         attributed_emails = [e for e in self.non_duplicate_emails() if e.author]
-        footer = f"Identified authors of {len(attributed_emails):,} out of {len(self.emails):,} emails."
+        footer = f"Identified authors of {len(attributed_emails):,} out of {len(self.non_duplicate_emails()):,} emails."
         counts_table = build_table("Email Counts", caption=footer)
 
         add_cols_to_table(counts_table, [
@@ -330,34 +368,7 @@ class EpsteinFiles:
                 link_text_obj(search_twitter_url(name), 'search X') if name else '',
             )
 
-        console.print(vertically_pad(counts_table, 2))
-
-    def print_imessage_summary(self) -> None:
-        """Print summary table and stats for text messages."""
-        console.print(MessengerLog.summary_table(self.imessage_logs))
-        text_summary_msg = f"\nDeanonymized {Document.known_author_count(self.imessage_logs)} of "
-        text_summary_msg += f"{len(self.imessage_logs)} {TEXT_MESSAGE} logs found in {len(self.all_files):,} files."
-        console.print(text_summary_msg)
-        imessage_msg_count = sum([len(log.messages) for log in self.imessage_logs])
-        console.print(f"Found {imessage_msg_count} text messages in {len(self.imessage_logs)} iMessage log files.")
-
-    def print_other_files_table(self, files: list[OtherFile]) -> None:
-        """Returns the OtherFile objects that were interesting enough to print."""
-        header_pfx = '' if args.all_other_files else 'Selected '
-        print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {header_pfx}Files That Are Neither Emails Nor Text Msgs")
-
-        if not args.all_other_files:
-            msg = f"(the other site is uncurated and has all {len(self.other_files)} unclassifiable files"
-            print_centered(f"{msg} and {len(self.emails):,} emails)", style='dim')
-            print_other_site_link(False)
-            console.line(2)
-
-        console.print(OtherFile.build_table(files))
-        console.print(Padding(OtherFile.count_by_category_table(files), (2, 0, 2, 2)))
-        skipped_file_count = len(self.other_files) - len(files)
-
-        if skipped_file_count > 0:
-            logger.warning(f"Skipped {skipped_file_count} uninteresting other files...")
+        return counts_table
 
     def _tally_email_data(self) -> None:
         """Tally up summary info about Email objects."""
@@ -391,7 +402,7 @@ def count_by_month(docs: Sequence[Document]) -> dict[str | None, int]:
 def document_cls(doc: Document) -> Type[Document]:
     search_area = doc.text[0:5000]  # Limit search area to avoid pointless scans of huge files
 
-    if doc.length == 0:
+    if doc.length() == 0:
         return Document
     if doc.text[0] == '{':
         return JsonFile
