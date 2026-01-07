@@ -366,7 +366,7 @@ class Email(Communication):
     def info_txt(self) -> Text:
         email_type = 'fwded article' if self.is_fwded_article() else 'email'
         txt = Text(f"OCR text of {email_type} from ", style='grey46').append(self.author_txt).append(' to ')
-        return txt.append(self._recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
+        return txt.append(self.recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
 
     def is_fwded_article(self) -> bool:
         return bool(self.config and self.config.is_fwded_article)
@@ -382,6 +382,16 @@ class Email(Communication):
         metadata.update({k: v for k, v in local_metadata.items() if v and k in METADATA_FIELDS})
         return metadata
 
+    def recipients_txt(self, max_full_names: int = 2) -> Text:
+        """Text object with comma separated colored versions of all recipients."""
+        recipients = [r or UNKNOWN for r in self.recipients] if len(self.recipients) > 0 else [UNKNOWN]
+
+        # Use just the last name for each recipient if there's 3 or more recipients
+        return join_texts([
+            Text(r if len(recipients) <= max_full_names else extract_last_name(r), style=get_style_for_name(r))
+            for r in recipients
+        ], join=', ')
+
     def subject(self) -> str:
         return self.header.subject or ''
 
@@ -390,7 +400,7 @@ class Email(Communication):
         txt = self._summary()
 
         if len(self.recipients) > 0:
-            txt.append(', ').append(key_value_txt('recipients', self._recipients_txt()))
+            txt.append(', ').append(key_value_txt('recipients', self.recipients_txt()))
 
         return txt.append(CLOSE_PROPERTIES_CHAR)
 
@@ -552,16 +562,6 @@ class Email(Communication):
             self.signature_substitution_counts[name] += num_replaced
 
         return collapse_newlines(text).strip()
-
-    def _recipients_txt(self) -> Text:
-        """Text object with comma separated colored versions of all recipients."""
-        recipients = [r or UNKNOWN for r in self.recipients] if len(self.recipients) > 0 else [UNKNOWN]
-
-        # Use just the last name for each recipient if there's 3 or more recipients
-        return join_texts([
-            Text(r if len(recipients) < 3 else extract_last_name(r), style=get_style_for_name(r))
-            for r in recipients
-        ], join=', ')
 
     def _remove_line(self, idx: int) -> None:
         """Remove a line from self.lines."""

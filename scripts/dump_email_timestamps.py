@@ -45,7 +45,7 @@ for email in sorted(epstein_files.non_duplicate_emails(), key=lambda e: -e.lengt
         email.file_id[0:6],
         email.timestamp_without_seconds(),
         email.author_txt,
-        email._recipients_txt(),
+        email.recipients_txt(),
         str(email.length()),
         str(len(email.actual_text)),
         # ', '.join(email.attachments())
