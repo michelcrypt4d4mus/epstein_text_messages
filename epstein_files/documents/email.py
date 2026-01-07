@@ -344,7 +344,7 @@ class Email(Communication):
                 for recipient in self.header.recipients():
                     self.recipients.extend(self._emailer_names(recipient))
 
-                if len(self.recipients) == 0 and self.author in MAILING_LISTS:
+                if self.author in MAILING_LISTS and (len(self.recipients) == 0 or self.recipients == [self.author]):
                     self.recipients = [JEFFREY_EPSTEIN]   # Assume mailing list emails are to Epstein
         except Exception as e:
             console.print_exception()
@@ -594,7 +594,7 @@ class Email(Communication):
             self._merge_lines(3)  # Merge 4th and 5th rows
         elif self.file_id in '026609 029402 032405 022695'.split():
             self._merge_lines(4)  # Merge 5th and 6th rows
-        elif self.file_id in ['019407', '031980', '030384', '033144', '030999', '033575', '029835', '030381', '033357']:
+        elif self.file_id in ['019407', '031980', '030384', '033144', '030999', '033575', '029835', '030381', '033357', '026924']:
             self._merge_lines(2, 4)
         elif self.file_id in ['029154', '029163']:
             self._merge_lines(2, 5)
