@@ -1496,6 +1496,13 @@ OTHER_FILES_RESUMES = [
 OTHER_FILES_ARTS = [
     DocCfg(id='018703', author=ANDRES_SERRANO, description=f"artist statement about Trump objects"),
     DocCfg(id='023438', author=BROCKMAN_INC, description=f"announcement of auction of 'Noise' by Daniel Kahneman, Olivier Sibony, and Cass Sunstein"),
+    DocCfg(
+        id='025147',
+        author=BROCKMAN_INC,
+        description=f'hot list Frankfurt Book Fair (includes article about Silk Road/Ross Ulbricht)',
+        date='2016-10-23',
+        is_interesting=True,
+    ),
     DocCfg(id='030769', author='Independent Filmmaker Project (IFP)', description=f"2017 Gotham Awards invitation"),
     DocCfg(
         id='025205',
@@ -1520,12 +1527,6 @@ OTHER_FILES_MISC = [
         author=f'linkspirit (French?) and {LAWRENCE_KRAUSS}',
         is_interesting=True,  # we don't know who linkspirit is yet
     ),
-    DocCfg(
-        id='025147',
-        author=BROCKMAN_INC,
-        description=f'hot list Frankfurt Book Fair (includes article about Silk Road/Ross Ulbricht)',
-        date='2016-10-23',
-    ),
     DocCfg(id='022494', author='DOJ', description=f'Foreign Corrupt Practices Act (FCPA) Resource Guide'),
     DocCfg(id='023096', author=EPSTEIN_FOUNDATION, description=f'blog post', date='2012-11-15'),
     DocCfg(id='029326', author=EPSTEIN_FOUNDATION, description=f'{PRESS_RELEASE}', date='2013-02-15'),
@@ -1533,7 +1534,7 @@ OTHER_FILES_MISC = [
     DocCfg(id='027071', author=FEMALE_HEALTH_COMPANY, description=f"brochure requesting donations for female condoms in Uganda"),
     DocCfg(id='027074', author=FEMALE_HEALTH_COMPANY, description=f"pitch deck (USAID was a customer)"),
     DocCfg(id='032735', author=GORDON_GETTY, description=f"on Trump", date='2018-03-20'),  # Dated based on concurrent emails from Getty
-    DocCfg(id='025540', author=JEFFREY_EPSTEIN, description=f"rough draft of Epstein's side of the story?"),
+    DocCfg(id='025540', author=JEFFREY_EPSTEIN, description=f"rough draft of his side of the story"),
     DocCfg(id='026634', author='Michael Carrier', description=f"comments about an Apollo linked hedge fund 'DE Fund VIII'"),
     DocCfg(id='031425', author=SCOTT_J_LINK, description=f'completely redacted email from', is_interesting=False),
     DocCfg(id='020447', author='Working Group on Chinese Influence Activities in the U.S.', description=f'Promoting Constructive Vigilance'),
