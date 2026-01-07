@@ -6,6 +6,7 @@ from inflection import parameterize
 from rich.text import Text
 
 from epstein_files.util.constant.output_files import *
+from epstein_files.util.env import args
 from epstein_files.util.file_helper import coerce_file_stem
 
 # Style stuff
@@ -99,6 +100,14 @@ def link_markup(
 
 def link_text_obj(url: str, link_text: str | None = None, style: str = ARCHIVE_LINK_COLOR) -> Text:
     return Text.from_markup(link_markup(url, link_text, style))
+
+
+def other_site_type() -> SiteType:
+    return TEXT_MESSAGE if args.all_emails else EMAIL
+
+
+def other_site_url() -> str:
+    return SITE_URLS[other_site_type()]
 
 
 CRYPTADAMUS_TWITTER = link_markup('https://x.com/cryptadamist', '@cryptadamist')
