@@ -61,7 +61,6 @@ HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
 JSON = 'json'
 NA = 'n/a'
 REDACTED = '<REDACTED>'
-URL_SIGNIFIERS = ['gclid', 'htm', 'ref=', 'utm']
 QUESTION_MARKS = '(???)'
 
 # Regexes
