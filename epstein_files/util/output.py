@@ -136,6 +136,18 @@ def print_json_stats(epstein_files: EpsteinFiles) -> None:
     print_json("count_by_month", count_by_month(epstein_files.all_documents()))
 
 
+def print_text_messages_section(epstein_files: EpsteinFiles) -> None:
+    """Print summary table and stats for text messages."""
+    print_section_header('All of His Text Messages')
+    print_centered("(conversations are sorted chronologically based on timestamp of first message)\n", style='gray30')
+
+    for log_file in epstein_files.imessage_logs:
+        console.print(Padding(log_file))
+        console.line(2)
+
+    print_centered(MessengerLog.summary_table(epstein_files.imessage_logs))
+
+
 def write_json_metadata(epstein_files: EpsteinFiles) -> None:
     json_str = epstein_files.json_metadata()
 
