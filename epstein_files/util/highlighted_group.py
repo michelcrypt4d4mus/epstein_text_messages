@@ -15,7 +15,7 @@ from epstein_files.util.data import extract_last_name, listify, without_falsey
 CIVIL_ATTORNEY = 'civil attorney'
 CRIMINAL_DEFENSE_ATTORNEY = 'criminal defense attorney'
 CRIMINAL_DEFENSE_2008 = f"{CRIMINAL_DEFENSE_ATTORNEY} on 2008 case"
-EPSTEIN_LAWYER = 'epstein_lawyer'
+EPSTEIN_LAWYER = 'Epstein lawyer'
 EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} working on {EPSTEIN_V_ROTHSTEIN_EDWARDS}"
 ESTATE_EXECUTOR = 'estate executor'
 EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
@@ -103,7 +103,7 @@ class HighlightedNames(HighlightedText):
     def get_info(self, name: str) -> str | None:
         """Label and additional info for 'name' if 'name' is in self.emailers."""
         info_pieces = [
-            None if len(self.emailers) == 1 else (self.category or self.label.title()),
+            None if len(self.emailers) == 1 else (self.category or self.label.replace('_', ' ')),
             self.emailers.get(name),
         ]
 
@@ -141,7 +141,7 @@ class HighlightedNames(HighlightedText):
 
 HIGHLIGHTED_NAMES = [
     HighlightedNames(
-        label='africa',
+        label='Africa',
         style='light_pink4',
         pattern=r'Econet(\s*Wireless)|Ghana(ian)?|Johannesburg|Kenya|Nigerian?|Senegal(ese)?|Serengeti|(South\s*)?African?|(Strive\s*)?Masiyiwa|Tanzania|Ugandan?|Zimbabwe(an)?',
         emailers={
@@ -183,12 +183,12 @@ HIGHLIGHTED_NAMES = [
         pattern=r"CBD|cannabis|marijuana|THC|WEED(guide|maps)?[^s]?",
     ),
     HighlightedNames(
-        label='china',
+        label='China',
         style='bright_red',
         pattern=r"Ali.?baba|Beijing|CCP|Chin(a|e?se)(?! Daily)|DPRK|Gino\s+Yu|Global Times|Guo|Hong|Huaw[ae]i|Kim\s*Jong\s*Un|Kong|Jack\s+Ma|Kwok|Ministry\sof\sState\sSecurity|Mongolian?|MSS|North\s*Korea|Peking|PRC|SCMP|Tai(pei|wan)|Xi(aomi)?|Jinping",
     ),
     HighlightedNames(
-        label='deepak_chopra',
+        label='Deepak Chopra',
         style='dark_sea_green4',
         emailers = {
             'Carolyn Rangel': 'assistant',
@@ -196,7 +196,7 @@ HIGHLIGHTED_NAMES = [
         }
     ),
     HighlightedNames(
-        label='democrats',
+        label='Democrats',
         style='sky_blue1',
         pattern=r'(Al\s*)?Franken|((Bill|Hillart?y)\s*)?Clinton|((Chuck|Charles)\s*)?S(ch|hc)umer|(Diana\s*)?DeGette|DNC|Elena\s*Kagan|(Eliott?\s*)?Spitzer(, Eliot)?|George\s*Mitchell|(George\s*)?Soros|Hill?ary|Dem(ocrat(ic)?)?|(Jo(e|seph)\s*)?Biden|(John\s*)?Kerry|Lisa Monaco|(Matteo\s*)?Salvini|Maxine\s*Waters|(Barac?k )?Obama|(Nancy )?Pelosi|Ron\s*Dellums|Schumer|(Tim\s*)?Geithner|Vernon\s*Jordan',
     ),
@@ -271,7 +271,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label=ESTATE_EXECUTOR,
         style='purple3 bold',
-        category='epstein lawyer',
+        category='Epstein lawyer',
         emailers = {
             DARREN_INDYKE: EPSTEIN_ESTATE_EXECUTOR,
             RICHARD_KAHN: EPSTEIN_ESTATE_EXECUTOR,
@@ -290,9 +290,8 @@ HIGHLIGHTED_NAMES = [
         }
     ),
     HighlightedNames(
-        label='famous_lawyer',
+        label='famous lawyer',
         style='medium_purple3',
-        category='famous_lawyer',
         pattern=r'(David\s*)?Bo[il]es|dersh|(Gloria\s*)?Allred|(Mi(chael|ke)\s*)?Avenatti',
         emailers = {
             ALAN_DERSHOWITZ: 'Harvard Law School professor and all around (in)famous American lawyer',
@@ -334,7 +333,7 @@ HIGHLIGHTED_NAMES = [
         },
     ),
     HighlightedNames(
-        label=HARVARD.lower(),
+        label=HARVARD,
         style='light_goldenrod3',
         pattern=r'Cambridge|(Derek\s*)?Bok|Elisa(\s*New)?|Harvard(\s*(Business|Law|University)(\s*School)?)?|(Jonathan\s*)?Zittrain|(Stephen\s*)?Kosslyn',
         emailers = {
@@ -349,7 +348,7 @@ HIGHLIGHTED_NAMES = [
         }
     ),
     HighlightedNames(
-        label='india',
+        label='India',
         style='bright_green',
         pattern=r'Abraaj|Anna\s*Hazare|(Arif\s*)?Naqvi|(Arvind\s*)?Kejriwal|Hardeep( Pur[ei]e)?|Indian?|InsightsPod|Modi|Mumbai|Tranchulas',
         emailers = {
@@ -359,7 +358,7 @@ HIGHLIGHTED_NAMES = [
         }
     ),
     HighlightedNames(
-        label='israel',
+        label='Israel',
         style='dodger_blue2',
         pattern=r"AIPAC|Bibi|(eh|(Ehud|Nili Priell) )?barak|Ehud\s*Barack|Israeli?|Jerusalem|J\s*Street|Mossad|Netanyahu|(Sheldon\s*)?Adelson|Tel\s*Aviv|(The\s*)?Shimon\s*Post|Yitzhak|Rabin|YIVO|zionist",
         emailers={
@@ -369,7 +368,7 @@ HIGHLIGHTED_NAMES = [
         }
     ),
     HighlightedNames(
-        label='japan',
+        label='Japan',
         style='color(168)',
         pattern=r'BOJ|(Bank\s+of\s+)?Japan(ese)?|jpy?(?! Morgan)|SG|Singapore|Toky[op]',
     ),
@@ -389,7 +388,7 @@ HIGHLIGHTED_NAMES = [
         }
     ),
     HighlightedNames(
-        label='latin america',
+        label='Latin America',
         style='yellow',
         pattern=r'Argentin(a|ian)|Bolsonar[aio]|Bra[sz]il(ian)?|Bukele|Caracas|Castro|Colombian?|Cuban?|El\s*Salvador|((Enrique )?Pena )?Nieto|LatAm|Lula|Mexic(an|o)|(Nicolas\s+)?Maduro|Panama( Papers)?|Peru|Venezuelan?|Zambrano',
     ),
@@ -463,7 +462,7 @@ HIGHLIGHTED_NAMES = [
         }
     ),
     HighlightedNames(
-        label='republicans',
+        label='Republicans',
         style='bold dark_red',
         pattern=r'Alberto\sGonzale[sz]|(Alex\s*)?Acosta|(Bill\s*)?Barr|Bill\s*Shine|(Bob\s*)?Corker|(John\s*(R.?\s*)?)Bolton|Broidy|(Chris\s)?Christie|Devin\s*Nunes|(Don\s*)?McGa[hn]n|McMaster|(George\s*)?Nader|GOP|(Brett\s*)?Kavanaugh|Kissinger|Kobach|Koch\s*Brothers|Kolfage|Kudlow|Lewandowski|(Marco\s)?Rubio|(Mark\s*)Meadows|Mattis|McCain|(?<!Merwin Dela )Cruz|(Michael\s)?Hayden|((General|Mike)\s*)?(Flynn|Pence)|(Mitt\s*)?Romney|Mnuchin|Nikki|Haley|(Paul\s+)?(Manafort|Volcker)|(Peter\s)?Navarro|Pompeo|Reagan|Reince|Priebus|Republican|(Rex\s*)?Tillerson|(?<!Cynthia )(Richard\s*)?Nixon|Sasse|Tea\s*Party',
         # There's no emails from these people, they're just here to automate the regex creation for both first + last names
@@ -481,7 +480,7 @@ HIGHLIGHTED_NAMES = [
         },
     ),
     HighlightedNames(
-        label='russia',
+        label='Russia',
         style='red bold',
         pattern=r'Alfa\s*Bank|Anya\s*Rasulova|Chernobyl|Day\s+One\s+Ventures|(Dmitry\s)?(Kiselyov|(Lana\s*)?Pozhidaeva|Medvedev|Rybolo(o?l?ev|vlev))|Dmitry|FSB|GRU|KGB|Kislyak|Kremlin|Kuznetsova|Lavrov|Lukoil|Moscow|(Oleg\s*)?Deripaska|Oleksandr Vilkul|Rosneft|RT|St.?\s*?Petersburg|Russian?|Sberbank|Soviet(\s*Union)?|USSR|Vladimir|(Vladimir\s*)?(Putin|Yudashkin)|Women\s*Empowerment|Xitrans',
         emailers = {
@@ -511,7 +510,7 @@ HIGHLIGHTED_NAMES = [
         },
     ),
     HighlightedNames(
-        label='southeast_asia',
+        label='southeast Asia',
         style='light_salmon3 bold',
         pattern=r'Bangkok|Burm(a|ese)|Cambodian?|Laos|Malaysian?|Myan?mar|Thai(land)?|Vietnam(ese)?',
     ),
@@ -541,7 +540,7 @@ HIGHLIGHTED_NAMES = [
         pattern=r'BVI|(Jane|Tiffany)\s*Doe|Katie\s*Johnson|(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre|Virginia\s+Roberts',
     ),
     HighlightedNames(
-        label='victim_lawyer',
+        label='victim lawyer',
         style='dark_magenta bold',
         pattern=r'(Alan(\s*P.)?|MINTZ)\s*FRAADE|Paul\s*(G.\s*)?Cassell|Rothstein\s*Rosenfeldt\s*Adler|(Scott\s*)?Rothstein|(J\.?\s*)?(Stan(ley)?\s*)?Pottinger',
         emailers = {
