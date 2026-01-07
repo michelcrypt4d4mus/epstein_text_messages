@@ -1268,7 +1268,12 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='026944', author=GOLDMAN_INVESTMENT_MGMT, description=f"Risk of a US-Iran Military Conflict", date='2019-05-23'),
     DocCfg(id='018804', author='Integra Realty Resources', description=f"appraisal of going concern for IGY American Yacht Harbor Marina in {VIRGIN_ISLANDS}"),
     DocCfg(id='026679', author='Invesco', description=f"Global Sovereign Asset Management Study 2017"),
-    DocCfg(id='033220', author='Joseph G. Carson', description=f"short economic report on defense spending under Trump"),
+    DocCfg(
+        id='033220',
+        author='Joseph G. Carson',
+        description=f"short economic report on defense spending under Trump",
+        is_interesting=True,
+    ),
     DocCfg(id='026572', author=JP_MORGAN, description=f"Global Asset Allocation report", date='2012-11-09'),
     DocCfg(id='030848', author=JP_MORGAN, description=f"Global Asset Allocation report", date='2013-03-28'),
     DocCfg(id='030840', author=JP_MORGAN, description=f"Market Thoughts"),
@@ -1288,7 +1293,7 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='025763', author='S&P', description=f"Economic Research: How Increasing Income Inequality Is Dampening U.S. Growth", date='2014-08-05'),
     DocCfg(id='024135', author=UBS, description=UBS_CIO_REPORT, date='2012-06-29'),
     DocCfg(id='025247', author=UBS, description=UBS_CIO_REPORT, date='2012-10-25'),
-    DocCfg(id='026584', description=f"article about tax implications of disregarded entities", date='2009-07-01'),
+    DocCfg(id='026584', description=f"article about tax implications of disregarded entities", date='2009-07-01', is_interesting=True),
     DocCfg(
         id='024271',
         description=f"Blockchain Capital and Brock Pierce pitch deck",
