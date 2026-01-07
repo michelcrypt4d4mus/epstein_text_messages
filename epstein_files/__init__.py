@@ -21,7 +21,7 @@ from epstein_files.util.env import args, specified_names
 from epstein_files.util.file_helper import coerce_file_path, extract_file_id
 from epstein_files.util.logging import logger
 from epstein_files.util.output import (print_emails, print_json_files, print_json_stats,
-     write_json_metadata, write_urls)
+     print_text_messages_section, write_json_metadata, write_urls)
 from epstein_files.util.rich import build_highlighter, console, print_header, print_panel, write_html
 from epstein_files.util.timer import Timer
 from epstein_files.util.word_count import write_word_counts_html
@@ -49,7 +49,7 @@ def generate_html() -> None:
         exit()
 
     if args.output_texts:
-        epstein_files.print_text_messages_section()
+        print_text_messages_section(epstein_files)
         timer.print_at_checkpoint(f'Printed {len(epstein_files.imessage_logs)} text message logs')
 
     if args.output_emails:

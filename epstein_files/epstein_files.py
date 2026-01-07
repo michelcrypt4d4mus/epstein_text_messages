@@ -310,19 +310,6 @@ class EpsteinFiles:
         console.line(2)
         console.print(other_files_preview_table)
 
-    def print_text_messages_section(self) -> None:
-        """Print summary table and stats for text messages."""
-        print_section_header('All of His Text Messages')
-        print_centered("(conversations are sorted chronologically based on timestamp of first message)\n", style='gray30')
-        authors: list[str | None] = specified_names if specified_names else [JEFFREY_EPSTEIN]
-        log_files = self.imessage_logs_for(authors)
-
-        for log_file in log_files:
-            console.print(Padding(log_file))
-            console.line(2)
-
-        print_centered(MessengerLog.summary_table(self.imessage_logs))
-
     def table_of_emailers(self) -> Table:
         attributed_emails = [e for e in self.non_duplicate_emails() if e.author]
         footer = f"Identified authors of {len(attributed_emails):,} out of {len(self.non_duplicate_emails()):,} emails."
