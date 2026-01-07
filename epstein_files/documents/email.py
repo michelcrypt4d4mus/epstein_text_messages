@@ -340,7 +340,7 @@ class Email(Communication):
                 self.recipients = cast(list[str | None], self.config.recipients)
             else:
                 for recipient in self.header.recipients():
-                    self.recipients.extend(self._get_names(recipient))
+                    self.recipients.extend(self._emailer_names(recipient))
         except Exception as e:
             console.print_exception()
             console.line(2)
@@ -439,12 +439,32 @@ class Email(Communication):
 
         return style.replace('bold', '').strip()
 
+    def _emailer_names(self, emailer_str: str) -> list[str]:
+        """Return a list of people's names found in 'emailer_str' (email author or recipients field)."""
+        emailer_str = EmailHeader.cleanup_str(emailer_str)
+
+        if len(emailer_str) == 0:
+            return []
+
+        names_found = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
+
+        if BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
+            if len(names_found) == 0 and emailer_str not in SUPPRESS_LOGS_FOR_AUTHORS:
+                logger.warning(f"'{self.filename}': No emailer found in '{escape_single_quotes(emailer_str)}'")
+            else:
+                logger.info(f"Extracted {len(names_found)} names from semi-invalid '{emailer_str}': {names_found}...")
+
+            return names_found
+
+        names_found = names_found or [emailer_str]
+        return [_reverse_first_and_last_names(name) for name in names_found]
+
     def _extract_author(self) -> None:
         self._extract_header()
         super()._extract_author()
 
         if not self.author and self.header.author:
-            authors = self._get_names(self.header.author)
+            authors = self._emailer_names(self.header.author)
             self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
 
     def _extract_header(self) -> None:
@@ -493,26 +513,6 @@ class Email(Communication):
                 return timestamp
 
         raise RuntimeError(f"No timestamp found in '{self.file_path.name}' top lines:\n{searchable_text}")
-
-    def _get_names(self, emailer_str: str) -> list[str]:
-        """Return a list of people's names found in 'emailer_str' (email author or recipients field)."""
-        emailer_str = EmailHeader.cleanup_str(emailer_str)
-
-        if len(emailer_str) == 0:
-            return []
-
-        names_found = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
-
-        if BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
-            if len(names_found) == 0 and emailer_str not in SUPPRESS_LOGS_FOR_AUTHORS:
-                logger.warning(f"'{self.filename}': No emailer found in '{escape_single_quotes(emailer_str)}'")
-            else:
-                logger.info(f"Extracted {len(names_found)} names from semi-invalid '{emailer_str}': {names_found}...")
-
-            return names_found
-
-        names_found = names_found or [emailer_str]
-        return [_reverse_first_and_last_names(name) for name in names_found]
 
     def _idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES, text: str | None = None) -> int | None:
         """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line in self.text."""
