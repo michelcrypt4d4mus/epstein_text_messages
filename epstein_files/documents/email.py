@@ -402,8 +402,8 @@ class Email(Communication):
             return self.text
 
         reply_text_match = REPLY_TEXT_REGEX.search(text)
-        # logger.info(f"Raw text:\n" + self.top_lines(20) + '\n\n')
-        # logger.info(f"With header removed:\n" + text[0:500] + '\n\n')
+        self.log_top_lines(20, "Raw text:", logging.DEBUG)
+        self.log(f"With header removed:\n{text[0:500]}\n\n", logging.DEBUG)
 
         if reply_text_match:
             actual_num_chars = len(reply_text_match.group(1))
