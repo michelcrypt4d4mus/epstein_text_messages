@@ -8,10 +8,8 @@ from rich_argparse_plus import RichHelpFormatterPlus
 
 from epstein_files.util.logging import env_log_level, logger
 
-COUNT_WORDS_SCRIPT = 'epstein_word_count'
 DEFAULT_WIDTH = 145
-HTML_SCRIPTS = ['epstein_generate', COUNT_WORDS_SCRIPT]
-EPSTEIN_DOCS_DIR_ENV_VAR_NAME = 'EPSTEIN_DOCS_DIR'
+HTML_SCRIPTS = ['epstein_generate', 'epstein_word_count']
 
 
 RichHelpFormatterPlus.choose_theme('morning_glory')
@@ -50,6 +48,7 @@ args = parser.parse_args()
 
 
 # Verify Epstein docs can be found
+EPSTEIN_DOCS_DIR_ENV_VAR_NAME = 'EPSTEIN_DOCS_DIR'
 DOCS_DIR_ENV = environ.get(EPSTEIN_DOCS_DIR_ENV_VAR_NAME)
 DOCS_DIR = Path(DOCS_DIR_ENV or '').resolve()
 
