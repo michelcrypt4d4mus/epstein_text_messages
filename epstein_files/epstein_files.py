@@ -29,7 +29,7 @@ from epstein_files.util.env import DOCS_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames, get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_STYLE, LAST_TIMESTAMP_STYLE, NA_TXT, add_cols_to_table,
-     print_other_page_link, build_table, console, highlighter, link_text_obj, link_markup, print_author_header, print_centered,
+     print_other_page_link, build_table, console, highlighter, link_text_obj, link_markup, print_author_panel, print_centered,
      print_panel, print_section_header, vertically_pad)
 from epstein_files.util.search_result import SearchResult
 from epstein_files.util.timer import Timer
@@ -256,7 +256,7 @@ class EpsteinFiles:
         unique_emails = [email for email in emails if not email.is_duplicate()]
         author = _author or UNKNOWN
 
-        print_author_header(
+        print_author_panel(
             f"Found {len(unique_emails)} {author} emails starting {emails[0].timestamp.date()} over {conversation_length:,} days",
             get_style_for_name(author),
             get_info_for_name(author)

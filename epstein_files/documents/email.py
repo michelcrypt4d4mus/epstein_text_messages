@@ -697,7 +697,7 @@ class Email(Communication):
             self.config.description = extracted_description
 
         self.config.is_interesting = self.config.is_interesting or extracted_from_doc_cfg.is_interesting
-        self.warn(f"Constructed synthetic config: {self.config}")
+        self.log(f"Constructed synthetic config: {self.config}")
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         logger.debug(f"Printing '{self.filename}'...")

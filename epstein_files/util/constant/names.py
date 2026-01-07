@@ -239,7 +239,7 @@ OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
     gardner gary geoff geoffrey gilbert gloria goldberg gonzalez gould graham greene guarino gwyneth
     hancock harold harrison harry hay helen hill hirsch hofstadter horowitz hussein
     ian isaac isaacson
-    james jamie jane janet jason jen jim joe johnson jones josh julie justin
+    james jamie jane janet jason jeffrey jen jim joe johnson jones josh julie justin
     karl kate kathy kelly kim kruger kyle
     laurie lawrence leo leonard lenny leslie lieberman louis lynch lynn
     marcus marianne matt matthew melissa michele michelle moore moscowitz

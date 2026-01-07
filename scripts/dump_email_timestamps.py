@@ -27,37 +27,27 @@ counts = defaultdict(int)
 #     print_json('metadata', doc.metadata())
 
 
-for doc in epstein_files.other_files:
-    logger.warning(f"{doc.filename} is dupe: {doc.is_duplicate()}")
-
-    if doc.file_id == '029356':
-        logger.warning(f"config: {doc.config}")
-        logger.warning(f"config.duplicate_of_id={doc.config.duplicate_of_id}")
-        cfg = ALL_FILE_CONFIGS[doc.file_id]
-        print(f"ALL_FILE_CONFIGS: {cfg}")
-        logger.warning(f"ALL_FILE_CONFIGS.duplicate_of_id={cfg.duplicate_of_id}")
-
-sys.exit()
-
-
-
 table = Table(header_style='bold', highlight=True)
 table.add_column('id')
 table.add_column('sent at')
 table.add_column('author')
 table.add_column('recipients', max_width=38)
 # table.add_column('att')
+table.add_column('len')
+table.add_column('actual')
 table.add_column('subject')
 
-for email in Document.sort_by_timestamp(epstein_files.non_duplicate_emails()):
+for email in sorted(epstein_files.non_duplicate_emails(), key=lambda e: -e.length()):
     if email.is_fwded_article() or email.is_junk_mail():
         continue
 
     table.add_row(
-        email.file_id,
+        email.file_id[0:6],
         email.timestamp_without_seconds(),
         email.author_txt,
         email._recipients_txt(),
+        str(email.length()),
+        str(len(email.actual_text)),
         # ', '.join(email.attachments())
         email.subject(),
     )

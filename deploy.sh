@@ -67,6 +67,9 @@ else
 fi
 
 echo -e ""
+print_msg "Building chronological emails page..."
+epstein_generate --build --email-timeline --suppress-output
+echo -e ""
 print_msg "Building word counts page..."
 epstein_word_count --build --suppress-output --width 125
 echo -e ""
@@ -83,9 +86,10 @@ git checkout master
 
 source $URLS_ENV
 echo -e ""
-print_msg "             texts URL:" "$TEXT_MSGS_URL"
-print_msg "            emails URL:" "$ALL_EMAILS_URL"
-print_msg "       word counts URL:" "$WORD_COUNT_URL"
-print_msg "     json metadata URL:" "$JSON_METADATA_URL"
-print_msg "        json files URL:" "$JSON_FILES_URL"
+print_msg "                texts URL:" "$TEXT_MSGS_URL"
+print_msg "               emails URL:" "$ALL_EMAILS_URL"
+print_msg " chronological emails URL:" "$CHRONOLOGICAL_EMAILS_URL"
+print_msg "          word counts URL:" "$WORD_COUNT_URL"
+print_msg "        json metadata URL:" "$JSON_METADATA_URL"
+print_msg "           json files URL:" "$JSON_FILES_URL"
 echo -e "\n\n"

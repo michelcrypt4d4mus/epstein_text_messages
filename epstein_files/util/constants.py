@@ -1005,7 +1005,7 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='023046', author=VI_DAILY_NEWS, description='article', date='2019-02-27'),
     DocCfg(id='031170', author=VI_DAILY_NEWS, description='article', date='2019-03-06'),
     DocCfg(id='016506', author=VI_DAILY_NEWS, description='article', date='2019-02-28'),
-    DocCfg(id='016507', author=VI_DAILY_NEWS, description=f"'Perversion of Justice' by {JULIE_K_BROWN}", date='2018-12-19'),
+    DocCfg(id='016507', author=VI_DAILY_NEWS, description=f'"Perversion of Justice" by {JULIE_K_BROWN}', date='2018-12-19'),
     DocCfg(id='019212', author=WAPO, description=f'and Times Tribune articles about Bannon, Trump, and healthcare execs'),
     DocCfg(id='033379', author=WAPO, description=f'"How Washington Pivoted From Finger-Wagging to Appeasement" (about Viktor Orban)', date='2018-05-25'),
     DocCfg(
@@ -1020,12 +1020,12 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='026648', description=f'article about {JASTA} lawsuit against Saudi Arabia by 9/11 victims (Russian propaganda?)', date='2017-05-13'),
     DocCfg(id='032159', description=f"article about microfinance and cell phones in Zimbabwe, Strive Masiyiwa (Econet Wireless)"),
     DocCfg(id='030825', description=f'{ARTICLE_DRAFT} Syria'),
-    DocCfg(id='027051', description=f"German language article about the 2013 Lifeball / AIDS Gala", date='2013-01-01'),
+    DocCfg(id='027051', description=f"German article about the 2013 Lifeball / AIDS Gala", date='2013-01-01', attached_to_email_id='027049'),
     DocCfg(id='033480', description=f"John Bolton press clipping", date='2018-04-06', duplicate_ids=['033481']),
     DocCfg(id='013403', description=f"{LEXIS_NEXIS} result from The Evening Standard about Bernie Madoff", date='2009-12-24'),
     DocCfg(id='021093', description=f"page of unknown article about Epstein and Maxwell"),
     DocCfg(id='031191', description=f"single page of unknown article about Epstein and Trump's relationship in 1997"),
-    DocCfg(id='026520', description=f'Spanish language article about {SULTAN_BIN_SULAYEM}', date='2013-09-27'),
+    DocCfg(id='026520', description=f'Spanish article about {SULTAN_BIN_SULAYEM}', date='2013-09-27'),
     DocCfg(
         id='031736',
         description=f"{TRANSLATION} Arabic article by Abdulnaser Salamah 'Trump; Prince of Believers (Caliph)!'",
@@ -1418,7 +1418,7 @@ OTHER_FILES_POLITICS = [
     DocCfg(
         id='025849',
         author='US Office of Government Information Services',
-        description=f"Building a Bridge Between FOIA Requesters & Agencies",
+        description=f'"Building a Bridge Between FOIA Requesters & Agencies"',
     ),
     DocCfg(id='031670', description=f"letter from General Mike Flynn's lawyers to senators Mark Warner & Richard Burr about subpoena"),
     DocCfg(
@@ -1496,6 +1496,13 @@ OTHER_FILES_RESUMES = [
 OTHER_FILES_ARTS = [
     DocCfg(id='018703', author=ANDRES_SERRANO, description=f"artist statement about Trump objects"),
     DocCfg(id='023438', author=BROCKMAN_INC, description=f"announcement of auction of 'Noise' by Daniel Kahneman, Olivier Sibony, and Cass Sunstein"),
+    DocCfg(
+        id='025147',
+        author=BROCKMAN_INC,
+        description=f'hot list Frankfurt Book Fair (includes article about Silk Road/Ross Ulbricht)',
+        date='2016-10-23',
+        is_interesting=True,
+    ),
     DocCfg(id='030769', author='Independent Filmmaker Project (IFP)', description=f"2017 Gotham Awards invitation"),
     DocCfg(
         id='025205',
@@ -1520,12 +1527,6 @@ OTHER_FILES_MISC = [
         author=f'linkspirit (French?) and {LAWRENCE_KRAUSS}',
         is_interesting=True,  # we don't know who linkspirit is yet
     ),
-    DocCfg(
-        id='025147',
-        author=BROCKMAN_INC,
-        description=f'hot list Frankfurt Book Fair (includes article about Silk Road/Ross Ulbricht)',
-        date='2016-10-23',
-    ),
     DocCfg(id='022494', author='DOJ', description=f'Foreign Corrupt Practices Act (FCPA) Resource Guide'),
     DocCfg(id='023096', author=EPSTEIN_FOUNDATION, description=f'blog post', date='2012-11-15'),
     DocCfg(id='029326', author=EPSTEIN_FOUNDATION, description=f'{PRESS_RELEASE}', date='2013-02-15'),
@@ -1533,7 +1534,7 @@ OTHER_FILES_MISC = [
     DocCfg(id='027071', author=FEMALE_HEALTH_COMPANY, description=f"brochure requesting donations for female condoms in Uganda"),
     DocCfg(id='027074', author=FEMALE_HEALTH_COMPANY, description=f"pitch deck (USAID was a customer)"),
     DocCfg(id='032735', author=GORDON_GETTY, description=f"on Trump", date='2018-03-20'),  # Dated based on concurrent emails from Getty
-    DocCfg(id='025540', author=JEFFREY_EPSTEIN, description=f"rough draft of Epstein's side of the story?"),
+    DocCfg(id='025540', author=JEFFREY_EPSTEIN, description=f"rough draft of his side of the story"),
     DocCfg(id='026634', author='Michael Carrier', description=f"comments about an Apollo linked hedge fund 'DE Fund VIII'"),
     DocCfg(id='031425', author=SCOTT_J_LINK, description=f'completely redacted email from', is_interesting=False),
     DocCfg(id='020447', author='Working Group on Chinese Influence Activities in the U.S.', description=f'Promoting Constructive Vigilance'),
