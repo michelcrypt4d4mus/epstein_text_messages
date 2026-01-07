@@ -20,8 +20,8 @@ from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import (EPSTEIN_MEDIA, EPSTEIN_WEB, JMAIL, epstein_media_person_url,
-     epsteinify_name_url, epstein_web_person_url, search_jmail_url, search_twitter_url)
+from epstein_files.util.constant.urls import (JMAIL, epstein_media_person_url, epsteinify_name_url,
+     epstein_web_person_url, search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
 from epstein_files.util.data import days_between, dict_sets_to_lists, json_safe, listify, sort_dict
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
@@ -29,8 +29,7 @@ from epstein_files.util.env import DOCS_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames, get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_STYLE, LAST_TIMESTAMP_STYLE, NA_TXT, add_cols_to_table,
-     print_other_page_link, build_table, console, highlighter, link_text_obj, link_markup, print_author_panel, print_centered,
-     print_panel, print_section_header, vertically_pad)
+     build_table, console, highlighter, link_text_obj, link_markup, print_author_panel, print_panel)
 from epstein_files.util.search_result import SearchResult
 from epstein_files.util.timer import Timer
 

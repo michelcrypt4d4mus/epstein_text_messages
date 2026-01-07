@@ -22,7 +22,7 @@ from epstein_files.util.file_helper import coerce_file_path, extract_file_id
 from epstein_files.util.logging import logger
 from epstein_files.util.output import (print_emails_section, print_json_files, print_json_stats,
      print_other_files_section, print_text_messages_section, write_complete_emails_timeline, write_json_metadata, write_urls)
-from epstein_files.util.rich import build_highlighter, console, print_title_page_header, print_title_page_tables, print_panel, write_html
+from epstein_files.util.rich import build_highlighter, console, print_color_key, print_title_page_header, print_title_page_tables, print_panel, write_html
 from epstein_files.util.timer import Timer
 from epstein_files.util.word_count import write_word_counts_html
 
@@ -45,7 +45,9 @@ def generate_html() -> None:
 
     print_title_page_header(epstein_files)
 
-    if not args.email_timeline:
+    if args.email_timeline:
+        print_color_key()
+    else:
         print_title_page_tables(epstein_files)
 
     if args.colors_only:
