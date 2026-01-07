@@ -150,8 +150,8 @@ class MessengerLog(Communication):
         counts_table.add_column(AUTHOR.title(), justify='left', width=30)
         counts_table.add_column('Files', justify='right', style='white')
         counts_table.add_column("Msgs", justify='right')
-        counts_table.add_column('First Sent At', justify='center', highlight=True, width=21)
-        counts_table.add_column('Last Sent At', justify='center', style=LAST_TIMESTAMP_STYLE, width=21)
+        counts_table.add_column('First Sent At', justify='center', highlight=True)
+        counts_table.add_column('Last Sent At', justify='center', style=LAST_TIMESTAMP_STYLE)
         counts_table.add_column('Days', justify='right', style='dim')
 
         for name, count in sort_dict(author_counts):

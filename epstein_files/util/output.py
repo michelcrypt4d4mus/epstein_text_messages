@@ -162,13 +162,13 @@ def print_other_files_section(files: list[OtherFile], epstein_files: EpsteinFile
 def print_text_messages_section(epstein_files: EpsteinFiles) -> None:
     """Print summary table and stats for text messages."""
     print_section_header('All of His Text Messages')
-    print_centered("(conversations are sorted chronologically based on timestamp of first message)\n", style='gray30')
+    print_centered(MessengerLog.summary_table(epstein_files.imessage_logs))
+    console.line(3)
+    console.print(" Conversations are sorted chronologically based on timestamp of first message in the log file.\n", style='grey70')
 
     for log_file in epstein_files.imessage_logs:
         console.print(Padding(log_file))
         console.line(2)
-
-    print_centered(MessengerLog.summary_table(epstein_files.imessage_logs))
 
 
 def write_complete_emails_timeline(epstein_files: EpsteinFiles) -> None:
