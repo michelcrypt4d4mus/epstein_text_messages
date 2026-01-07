@@ -344,7 +344,7 @@ class Email(Communication):
                 for recipient in self.header.recipients():
                     self.recipients.extend(self._emailer_names(recipient))
 
-                if len(self.recipients) == 0 and self.author in MAILING_LISTS:
+                if self.author in MAILING_LISTS and (len(self.recipients) == 0 or self.recipients == [self.author]):
                     self.recipients = [JEFFREY_EPSTEIN]   # Assume mailing list emails are to Epstein
         except Exception as e:
             console.print_exception()
