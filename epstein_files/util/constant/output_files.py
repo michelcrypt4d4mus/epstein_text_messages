@@ -6,6 +6,7 @@ from epstein_files.util.constant.strings import EMAIL, TEXT_MESSAGE, SiteType
 HTML_DIR = Path('docs')
 EPSTEIN_FILES_NOV_2025 = 'epstein_files_nov_2025'
 ALL_EMAILS_PATH = HTML_DIR.joinpath(f'all_emails_{EPSTEIN_FILES_NOV_2025}.html')
+CHRONOLOGICAL_EMAILS_PATH = HTML_DIR.joinpath(f'chronological_emails_{EPSTEIN_FILES_NOV_2025}.html')
 JSON_FILES_JSON_PATH = HTML_DIR.joinpath(f'json_files_from_{EPSTEIN_FILES_NOV_2025}.json')
 JSON_METADATA_PATH = HTML_DIR.joinpath(f'file_metadata_{EPSTEIN_FILES_NOV_2025}.json')
 TEXT_MSGS_HTML_PATH = HTML_DIR.joinpath('index.html')
@@ -18,6 +19,7 @@ URLS_ENV = '.urls.env'
 GH_PAGES_BASE_URL = 'https://michelcrypt4d4mus.github.io'
 TEXT_MSGS_URL = f"{GH_PAGES_BASE_URL}/epstein_text_messages"
 ALL_EMAILS_URL = f"{TEXT_MSGS_URL}/{ALL_EMAILS_PATH.name}"
+CHRONOLOGICAL_EMAILS_URL = f"{TEXT_MSGS_URL}/{CHRONOLOGICAL_EMAILS_PATH.name}"
 JSON_FILES_URL = f"{TEXT_MSGS_URL}/{JSON_FILES_JSON_PATH.name}"
 JSON_METADATA_URL = f"{TEXT_MSGS_URL}/{JSON_METADATA_PATH.name}"
 WORD_COUNT_URL = f"{TEXT_MSGS_URL}/{WORD_COUNT_HTML_PATH.name}"
@@ -29,6 +31,7 @@ SITE_URLS: dict[SiteType, str] = {
 
 BUILD_ARTIFACTS = [
     ALL_EMAILS_PATH,
+    CHRONOLOGICAL_EMAILS_URL,
     # EPSTEIN_WORD_COUNT_HTML_PATH,
     JSON_FILES_JSON_PATH,
     JSON_METADATA_PATH,

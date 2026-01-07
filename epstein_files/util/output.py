@@ -2,6 +2,7 @@ import json
 
 from rich.padding import Padding
 
+from epstein_files.documents.document import Document
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
@@ -10,6 +11,7 @@ from epstein_files.util.constant import output_files
 from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.output_files import JSON_FILES_JSON_PATH, JSON_METADATA_PATH
+from epstein_files.util.constant.strings import TIMESTAMP_DIM
 from epstein_files.util.data import dict_sets_to_lists
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
@@ -27,8 +29,8 @@ DEFAULT_EMAILERS = [
     AL_SECKEL,
     DANIEL_SIAD,
     JEAN_LUC_BRUNEL,
-    STEVEN_HOFFENBERG,
     RENATA_BOLOTOVA,
+    STEVEN_HOFFENBERG,
     MASHA_DROKOVA,
     EHUD_BARAK,
     MARTIN_NOWAK,
@@ -167,6 +169,32 @@ def print_text_messages_section(epstein_files: EpsteinFiles) -> None:
         console.line(2)
 
     print_centered(MessengerLog.summary_table(epstein_files.imessage_logs))
+
+
+def write_complete_emails_timeline(epstein_files: EpsteinFiles) -> None:
+    table = build_table('All Non-Junk Emails In Chronological Order', highlight=True)
+    table.add_column('ID', style='dim')
+    table.add_column('Sent At', style=TIMESTAMP_DIM)
+    table.add_column('Author', max_width=22)
+    table.add_column('Recipients', max_width=38)
+    table.add_column('Length')
+    table.add_column('Subject')
+
+    for email in Document.sort_by_timestamp(epstein_files.non_duplicate_emails()):
+        if email.is_junk_mail():
+            continue
+
+        table.add_row(
+            email.source_file_id(),
+            email.epstein_media_link(link_txt=email.timestamp_without_seconds()),
+            email.author_txt,
+            email._recipients_txt(),
+            f"{email.length()}",
+            email.subject(),
+        )
+
+    console.line(2)
+    console.print(table)
 
 
 def write_json_metadata(epstein_files: EpsteinFiles) -> None:

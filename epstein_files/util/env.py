@@ -22,6 +22,7 @@ output = parser.add_argument_group('OUTPUT', 'Options used by epstein_generate.'
 output.add_argument('--all-emails', '-ae', action='store_true', help='all the emails instead of just the interesting ones')
 output.add_argument('--all-other-files', '-ao', action='store_true', help='all the non-email, non-text msg files instead of just the interesting ones')
 output.add_argument('--build', '-b', action='store_true', help='write HTML output to a file')
+output.add_argument('--email-timeline', action='store_true', help='print a table of all emails in chronological order')
 output.add_argument('--json-files', action='store_true', help='pretty print all the raw JSON data files in the collection and exit')
 output.add_argument('--json-metadata', action='store_true', help='dump JSON metadata for all files and exit')
 output.add_argument('--output-emails', '-oe', action='store_true', help='generate emails section')
@@ -70,7 +71,7 @@ args.output_other = args.output_other or args.all_other_files or args.uninterest
 args.overwrite_pickle = args.overwrite_pickle or (is_env_var_set('OVERWRITE_PICKLE') and not is_env_var_set('PICKLED'))
 args.width = args.width if is_html_script else None
 is_any_output_selected = any([arg.startswith('output_') and value for arg, value in vars(args).items()])
-is_any_output_selected = is_any_output_selected or args.json_metadata or args.colors_only
+is_any_output_selected = is_any_output_selected or args.colors_only or args.email_timeline or args.json_metadata
 
 # Log level args
 if args.deep_debug:
