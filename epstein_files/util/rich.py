@@ -181,7 +181,7 @@ def print_color_key() -> None:
 
 
 def print_title_page_header(epstein_files: 'EpsteinFiles') -> None:
-    not_optimized_msg = f"This site isn't optimized for mobile"
+    not_optimized_msg = f"This page isn't optimized for mobile"
 
     if not args.all_emails:
         not_optimized_msg += f" but if you get past the header it should be readable"
