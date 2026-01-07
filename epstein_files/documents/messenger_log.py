@@ -128,7 +128,7 @@ class MessengerLog(Communication):
 
         footer = f"Deanonymized {msg_count - author_counts[None]:,} of {msg_count:,} text messages in"
         counts_table = build_table("Text Message Counts By Author", caption=f"{footer} {len(log_files)} files")
-        counts_table.add_column(AUTHOR.title(), justify='left', style="steel_blue bold", width=30)
+        counts_table.add_column(AUTHOR.title(), justify='left', width=30)
         counts_table.add_column('Files', justify='right', style='white')
         counts_table.add_column("Msgs", justify='right')
         counts_table.add_column('First Sent At', justify='center', highlight=True, width=21)
