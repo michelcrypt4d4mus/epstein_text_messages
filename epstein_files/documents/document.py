@@ -160,8 +160,8 @@ class Document:
     def file_size(self) -> int:
         return file_size(self.file_path)
 
-    def file_size_str(self) -> str:
-        return file_size_str(self.file_path)
+    def file_size_str(self, decimal_places: int | None = None) -> str:
+        return file_size_str(self.file_path, decimal_places)
 
     def info(self) -> list[Text]:
         """0 to 2 sentences containing the info_txt() as well as any configured description."""
@@ -171,14 +171,14 @@ class Document:
         ])
 
     def info_txt(self) -> Text | None:
-        """Secondary info about this file (recipients, level of certainty, etc). Overload in subclasses."""
+        """Secondary info about this file (description recipients, etc). Overload in subclasses."""
         return None
 
     def is_duplicate(self) -> bool:
         return bool(self.config and self.config.duplicate_of_id)
 
     def is_local_extract_file(self) -> bool:
-        """True if file created by extracting text from a court doc (identifiable from filename e.g. HOUSE_OVERSIGHT_012345_1.txt)."""
+        """True if extracted from other file (identifiable from filename e.g. HOUSE_OVERSIGHT_012345_1.txt)."""
         return is_local_extract_file(self.filename)
 
     def length(self) -> int:
@@ -234,6 +234,7 @@ class Document:
         return text
 
     def sort_key(self) -> tuple[datetime, str, int]:
+        """Sort by timestamp, file_id, then whether or not it's a duplicate file."""
         if self.is_duplicate():
             sort_id = self.config.duplicate_of_id
             dupe_idx = 1
@@ -253,7 +254,7 @@ class Document:
             txt.append(' (', style=SYMBOL_STYLE)
             txt.append(f"{timestamp_str}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
 
-        txt.append(' [').append(key_value_txt('size', Text(self.file_size_str(), style='aquamarine1')))
+        txt.append(' [').append(key_value_txt('size', Text(self.file_size_str(0), style='aquamarine1')))
         txt.append(", ").append(key_value_txt('lines', self.num_lines()))
 
         if self.config and self.config.duplicate_of_id:
@@ -271,6 +272,7 @@ class Document:
         return Panel(Group(*sentences), border_style=self._class_style(), expand=False)
 
     def top_lines(self, n: int = 10) -> str:
+        """First n lines."""
         return '\n'.join(self.lines[0:n])[:MAX_TOP_LINES_LEN]
 
     def warn(self, msg: str) -> None:

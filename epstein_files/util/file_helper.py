@@ -12,7 +12,6 @@ KB = 1024
 MB = KB * KB
 
 file_size = lambda file_path: Path(file_path).stat().st_size
-file_size_str = lambda file_path: file_size_to_str(file_size(file_path))
 
 # Coerce methods handle both string and int arguments.
 coerce_file_name = lambda filename_or_id: coerce_file_stem(filename_or_id) + '.txt'
@@ -46,8 +45,12 @@ def extract_file_id(filename_or_id: int | str | Path) -> str:
     return file_match.group(1)
 
 
-def file_size_to_str(size: int) -> str:
-    digits = 2
+def file_size_str(file_path, digits: int | None = None):
+    return file_size_to_str(file_size(file_path), digits)
+
+
+def file_size_to_str(size: int, digits: int | None = None) -> str:
+    _digits = 2
 
     if size > MB:
         size_num = float(size) / MB
@@ -55,10 +58,11 @@ def file_size_to_str(size: int) -> str:
     elif size > KB:
         size_num = float(size) / KB
         size_str = 'kb'
-        digits = 1
+        _digits = 1
     else:
         return f"{size} b"
 
+    digits = _digits if digits is None else digits
     return f"{size_num:,.{digits}f} {size_str}"
 
 
