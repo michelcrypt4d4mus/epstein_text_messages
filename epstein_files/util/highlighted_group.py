@@ -302,7 +302,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label=FINANCE,
         style='green',
-        pattern=r'Apollo|Ari\s*Glass|Bank|(Bernie\s*)?Madoff|Black(rock|stone)|B\s*of\s*A|Boothbay(\sFund\sManagement)?|Chase\s*Bank|Credit\s*Suisse|DB|Deutsche\s*(Asset|Bank)|Electron\s*Capital\s*(Partners)?|Fenner|FRBNY|Goldman(\s*Sachs)|HSBC|Invesco|(Janet\s*)?Yellen|(Jerome\s*)?Powell(?!M\. Cabot)|(Jimmy\s*)?Cayne|JPMC?|j\.?p\.?\s*morgan(\.?com|\s*Chase)?|Madoff|Merrill(\s*Lynch)?|(Michael\s*)?(Cembalest|Milken)|Mizrahi\s*Bank|MLPF&S|((anti.?)?money\s+)?launder(s?|ers?|ing)?(\s+money)?|Morgan Stanley|(Peter L. )?Scher|(Ray\s*)?Dalio|(Richard\s*)?LeFrak|Schwartz?man|Serageldin|UBS|us.gio@jpmorgan.com',
+        pattern=r'Apollo|Ari\s*Glass|Bank|(Bernie\s*)?Madoff|Black(rock|stone)|B\s*of\s*A|Boothbay(\sFund\sManagement)?|Chase\s*Bank|Credit\s*Suisse|DB|Deutsche?\s*(Asset|Bank)|Electron\s*Capital\s*(Partners)?|Fenner|FRBNY|Goldman(\s*Sachs)|HSBC|Invesco|(Janet\s*)?Yellen|(Jerome\s*)?Powell(?!M\. Cabot)|(Jimmy\s*)?Cayne|JPMC?|j\.?p\.?\s*morgan(\.?com|\s*Chase)?|Madoff|Merrill(\s*Lynch)?|(Michael\s*)?(Cembalest|Milken)|Mizrahi\s*Bank|MLPF&S|((anti.?)?money\s+)?launder(s?|ers?|ing)?(\s+money)?|Morgan Stanley|(Peter L. )?Scher|(Ray\s*)?Dalio|(Richard\s*)?LeFrak|Schwartz?man|Serageldin|UBS|us.gio@jpmorgan.com',
         emailers={
             AMANDA_ENS: 'Citigroup',
             BRAD_WECHSLER: f"head of {LEON_BLACK}'s personal investment vehicle according to FT",
@@ -396,7 +396,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='law enforcement',
         style='color(24) bold',
-        pattern=r'ag|(Alicia\s*)?Valle|AML|(Andrew\s*)?McCabe|attorney|((Bob|Robert)\s*)?Mueller|(Byung\s)?Pak|CFTC?|CIA|CIS|CVRA|Dep(artmen)?t\.?\s*of\s*(the\s*)?(Justice|Treasury)|DHS|DOJ|FBI|FCPA|FDIC|Federal\s*Bureau\s*of\s*Investigation|FinCEN|FINRA|FOIA|FTC|IRS|(James\s*)?Comey|(Jennifer\s*Shasky\s*)?Calvery|((Judge|Mark)\s*)?(Carney|Filip)|(Kirk )?Blouin|KYC|NIH|NS(A|C)|OCC|OFAC|(Lann?a\s*)?Belohlavek|lawyer|(Michael\s*)?Reiter|OGE|Office\s*of\s*Government\s*Ethics|Police Code Enforcement|(Preet\s*)?Bharara|SCOTUS|SD(FL|NY)|SEC|Secret\s*Service|Securities\s*and\s*Exchange\s*Commission|Southern\s*District\s*of\s*(Florida|New\s*York)|State\s*Dep(artmen)?t|Strzok|Supreme\s*Court|Treasury\s*(Dep(artmen)?t|Secretary)|TSA|USAID|(William\s*J\.?\s*)?Zloch',
+        pattern=r'ag|(Alicia\s*)?Valle|AML|(Andrew\s*)?McCabe|((Bob|Robert)\s*)?Mueller|(Byung\s)?Pak|CFTC?|CIA|CIS|CVRA|Dep(artmen)?t\.?\s*of\s*(the\s*)?(Justice|Treasury)|DHS|DOJ|FBI|FCPA|FDIC|Federal\s*Bureau\s*of\s*Investigation|FinCEN|FINRA|FOIA|FTC|IRS|(James\s*)?Comey|(Jennifer\s*Shasky\s*)?Calvery|((Judge|Mark)\s*)?(Carney|Filip)|(Kirk )?Blouin|KYC|NIH|NS(A|C)|OCC|OFAC|(Lann?a\s*)?Belohlavek|(Michael\s*)?Reiter|OGE|Office\s*of\s*Government\s*Ethics|Police Code Enforcement|(Preet\s*)?Bharara|SCOTUS|SD(FL|NY)|SEC|Secret\s*Service|Securities\s*and\s*Exchange\s*Commission|Southern\s*District\s*of\s*(Florida|New\s*York)|State\s*Dep(artmen)?t|Strzok|Supreme\s*Court|Treasury\s*(Dep(artmen)?t|Secretary)|TSA|USAID|(William\s*J\.?\s*)?Zloch',
         emailers = {
             ANN_MARIE_VILLAFANA: 'southern district of Florida U.S. Attorney',
             DANNY_FROST: 'Director of Communications at Manhattan DA',

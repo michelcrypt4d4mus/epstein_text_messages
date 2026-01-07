@@ -14,7 +14,7 @@ from epstein_files.util.constant.common_words import COMMON_WORDS_LIST, COMMON_W
 from epstein_files.util.constant.names import OTHER_NAMES
 from epstein_files.util.constant.output_files import WORD_COUNT_HTML_PATH
 from epstein_files.util.data import ALL_NAMES, flatten, sort_dict
-from epstein_files.util.env import args, specified_names
+from epstein_files.util.env import args
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import (console, highlighter, print_centered, print_color_key, print_page_title,
      print_panel, print_starred_header, write_html)
@@ -201,7 +201,7 @@ def write_word_counts_html() -> None:
     emails = [e for e in epstein_files.non_duplicate_emails() if not (e.is_junk_mail() or e.is_fwded_article())]
 
     for email in emails:
-        if specified_names and email.author not in specified_names:
+        if args.names and email.author not in args.names:
             continue
 
         logger.info(f"Counting words in {email}\n  [SUBJECT] {email.subject()}")
@@ -218,14 +218,12 @@ def write_word_counts_html() -> None:
             for word in line.split():
                 word_count.tally_word(word, SearchResult(email, [MatchedLine(line, i)]))
 
-    # Add in iMessage conversation words
-    imessage_logs = epstein_files.imessage_logs_for(specified_names) if specified_names else epstein_files.imessage_logs
-
-    for imessage_log in imessage_logs:
+    # Add in iMessage conversations
+    for imessage_log in epstein_files.imessage_logs:
         logger.info(f"Counting words in {imessage_log}")
 
         for i, msg in enumerate(imessage_log.messages):
-            if specified_names and msg.author not in specified_names:
+            if args.names and msg.author not in args.names:
                 continue
             elif HTML_REGEX.search(line):
                 continue

@@ -121,23 +121,22 @@ class MessengerLog(Communication):
         return sender_counts
 
     @classmethod
-    def logs_for(cls, author: str | None | list[str | None], logs: list['MessengerLog']) -> list['MessengerLog']:
-        authors = listify(author)
-        return logs if JEFFREY_EPSTEIN in authors else [log for log in logs if log.author in authors]
-
-    @classmethod
-    def summary_table(cls, imessage_logs: list['MessengerLog']) -> Table:
+    def summary_table(cls, log_files: list['MessengerLog']) -> Table:
         """Build a table summarizing the text messages in 'imessage_logs'."""
-        counts_table = build_table("Text Message Counts By Author")
-        counts_table.add_column(AUTHOR.title(), justify='left', style="steel_blue bold", width=30)
+        author_counts = cls.count_authors(log_files)
+        msg_count = sum([len(log.messages) for log in log_files])
+
+        footer = f"Deanonymized {msg_count - author_counts[None]:,} of {msg_count:,} text messages in"
+        counts_table = build_table("Text Message Counts By Author", caption=f"{footer} {len(log_files)} files")
+        counts_table.add_column(AUTHOR.title(), justify='left', width=30)
         counts_table.add_column('Files', justify='right', style='white')
         counts_table.add_column("Msgs", justify='right')
         counts_table.add_column('First Sent At', justify='center', highlight=True, width=21)
         counts_table.add_column('Last Sent At', justify='center', style=LAST_TIMESTAMP_STYLE, width=21)
         counts_table.add_column('Days', justify='right', style='dim')
 
-        for name, count in sort_dict(cls.count_authors(imessage_logs)):
-            logs = cls.logs_for(name, imessage_logs)
+        for name, count in sort_dict(author_counts):
+            logs = log_files if name == JEFFREY_EPSTEIN else [log for log in log_files if log.author == name]
             first_at = logs[0].first_message_at(name)
             last_at = logs[-1].first_message_at(name)
 

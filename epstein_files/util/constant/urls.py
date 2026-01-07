@@ -49,7 +49,7 @@ DOC_LINK_BASE_URLS: dict[ExternalSite, str] = {
 }
 
 
-epsteinify_api_url = lambda file_id: f"{EPSTEINIFY_URL}/api/documents/HOUSE_OVERSIGHT_{file_id}"
+epsteinify_api_url = lambda file_stem: f"{EPSTEINIFY_URL}/api/documents/{file_stem}"
 epsteinify_doc_link_markup = lambda filename_or_id, style = TEXT_LINK: external_doc_link_markup(EPSTEINIFY, filename_or_id, style)
 epsteinify_doc_link_txt = lambda filename_or_id, style = TEXT_LINK: Text.from_markup(external_doc_link_markup(filename_or_id, style))
 epsteinify_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[EPSTEINIFY], file_stem)
@@ -66,8 +66,6 @@ epstein_web_search_url = lambda s: f"{EPSTEIN_WEB_URL}/?ewmfileq={urllib.parse.q
 
 rollcall_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[ROLLCALL], file_stem, 'title')
 
-search_archive_url = lambda txt: f"{COURIER_NEWSROOM_ARCHIVE_URL}&q={urllib.parse.quote(txt)}&p=1"
-search_coffeezilla_url = lambda txt: f"{COFFEEZILLA_ARCHIVE_URL}&q={urllib.parse.quote(txt)}&p=1"
 search_jmail_url = lambda txt: f"{JMAIL_URL}/search?q={urllib.parse.quote(txt)}"
 search_twitter_url = lambda txt: f"https://x.com/search?q={urllib.parse.quote(txt)}&src=typed_query&f=live"
 
@@ -101,10 +99,6 @@ def link_markup(
 
 def link_text_obj(url: str, link_text: str | None = None, style: str = ARCHIVE_LINK_COLOR) -> Text:
     return Text.from_markup(link_markup(url, link_text, style))
-
-
-def search_coffeezilla_link(text: str, link_txt: str, style: str = ARCHIVE_LINK_COLOR) -> Text:
-    return link_text_obj(search_coffeezilla_url(text), link_txt or text, style)
 
 
 CRYPTADAMUS_TWITTER = link_markup('https://x.com/cryptadamist', '@cryptadamist')
