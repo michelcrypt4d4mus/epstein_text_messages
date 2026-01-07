@@ -36,7 +36,7 @@ FIELD_SORT_KEY = {
 }
 
 FINANCIAL_REPORTS_AUTHORS = [
-    BOFA,
+    BOFA_MERRILL,
     DEUTSCHE_BANK,
     ELECTRON_CAPITAL_PARTNERS,
     GOLDMAN_INVESTMENT_MGMT,
@@ -102,10 +102,10 @@ class DocCfg:
             return f"{msg} {self.description}" if self.description else msg
         elif self.author and self.description:
             if self.category in [ACADEMIA, BOOK]:
-                title = self.description if '"' in self.description else f"'{self.description}'"
+                title = self.description if '"' in self.description else f'"{self.description}"'
                 return f"{title} by {self.author}"
             elif self.category == FINANCE and self.author in FINANCIAL_REPORTS_AUTHORS:
-                return f"{self.author} report: '{self.description}'"
+                return f'{self.author} report: "{self.description}"'
             elif self.category == LEGAL and 'v.' in self.author:
                 return f"{self.author}: {self.description}"
         elif self.category and self.author is None and self.description is None:

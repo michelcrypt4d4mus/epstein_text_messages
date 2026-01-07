@@ -17,12 +17,12 @@ from rich.text import Text
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_REGEX, Document
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
-from epstein_files.util.doc_cfg import FINANCIAL_REPORTS_AUTHORS, DocCfg, Metadata
+from epstein_files.util.doc_cfg import DocCfg, Metadata
 from epstein_files.util.data import days_between, escape_single_quotes, remove_timezone, sort_dict, uniquify
 from epstein_files.util.file_helper import FILENAME_LENGTH, file_size_to_str
 from epstein_files.util.env import args
 from epstein_files.util.highlighted_group import styled_category
-from epstein_files.util.rich import QUESTION_MARK_TXT, add_cols_to_table, build_table, highlighter
+from epstein_files.util.rich import QUESTION_MARK_TXT, build_table, highlighter
 from epstein_files.util.logging import logger
 
 FIRST_FEW_LINES = 'First Few Lines'
