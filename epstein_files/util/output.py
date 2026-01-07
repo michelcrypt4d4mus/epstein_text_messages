@@ -176,8 +176,8 @@ def write_complete_emails_timeline(epstein_files: EpsteinFiles) -> None:
     table.add_column('ID', style='dim')
     table.add_column('Sent At', style=TIMESTAMP_DIM)
     table.add_column('Author', max_width=22)
-    table.add_column('Recipients', max_width=38)
-    table.add_column('Length')
+    table.add_column('Recipients', max_width=30)
+    table.add_column('Length', justify='right', style='wheat4')
     table.add_column('Subject')
 
     for email in Document.sort_by_timestamp(epstein_files.non_duplicate_emails()):
@@ -188,7 +188,7 @@ def write_complete_emails_timeline(epstein_files: EpsteinFiles) -> None:
             email.source_file_id(),
             email.epstein_media_link(link_txt=email.timestamp_without_seconds()),
             email.author_txt,
-            email._recipients_txt(),
+            email.recipients_txt(max_full_names=1),
             f"{email.length()}",
             email.subject(),
         )
