@@ -335,7 +335,7 @@ class EpsteinFiles:
     def print_other_files_section(self, files: list[OtherFile]) -> None:
         """Returns the OtherFile objects that were interesting enough to print."""
         category_table = OtherFile.count_by_category_table(files)
-        other_files_preview_table = OtherFile.build_table(files)
+        other_files_preview_table = OtherFile.files_preview_table(files)
         header_pfx = '' if args.all_other_files else 'Selected '
         print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {header_pfx}Files That Are Neither Emails Nor Text Messages")
 

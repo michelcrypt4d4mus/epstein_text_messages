@@ -192,7 +192,7 @@ class OtherFile(Document):
             self.log_top_lines(15, msg=timestamps_log_msg, level=logging.DEBUG)
 
     @staticmethod
-    def build_table(files: Sequence['OtherFile']) -> Table:
+    def files_preview_table(files: Sequence['OtherFile']) -> Table:
         """Build a table of OtherFile documents."""
         table = build_table('Other Files Details', show_lines=True)
         table.add_column('File', justify='center', width=FILENAME_LENGTH)
