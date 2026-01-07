@@ -476,7 +476,7 @@ HIGHLIGHTED_NAMES = [
         pattern=r'Alberto\sGonzale[sz]|(Alex\s*)?Acosta|(Bill\s*)?Barr|Bill\s*Shine|(Bob\s*)?Corker|(John\s*(R.?\s*)?)Bolton|Broidy|(Chris\s)?Christie|Devin\s*Nunes|(Don\s*)?McGa[hn]n|McMaster|(George\s*)?Nader|GOP|(Brett\s*)?Kavanaugh|Kissinger|Kobach|Koch\s*Brothers|Kolfage|Kudlow|Lewandowski|(Marco\s)?Rubio|(Mark\s*)Meadows|Mattis|McCain|(?<!Merwin Dela )Cruz|(Michael\s)?Hayden|((General|Mike)\s*)?(Flynn|Pence)|(Mitt\s*)?Romney|Mnuchin|Nikki|Haley|(Paul\s+)?(Manafort|Volcker)|(Peter\s)?Navarro|Pompeo|Reagan|Reince|Priebus|Republican|(Rex\s*)?Tillerson|(?<!Cynthia )(Richard\s*)?Nixon|Sasse|Tea\s*Party',
         # There's no emails from these people, they're just here to automate the regex creation for both first + last names
         emailers = {
-            RUDY_GIULIANI: 'disbarred formed mayor of New York City',
+            RUDY_GIULIANI: None,
             TULSI_GABBARD: None,
         },
     ),
@@ -484,7 +484,7 @@ HIGHLIGHTED_NAMES = [
         label='Rothschild family',
         style='indian_red',
         emailers={
-            ARIANE_DE_ROTHSCHILD: None,
+            ARIANE_DE_ROTHSCHILD: 'heiress',
             JOHNNY_EL_HACHEM: f'Works with {ARIANE_DE_ROTHSCHILD}',
         },
     ),
@@ -504,7 +504,7 @@ HIGHLIGHTED_NAMES = [
         style='light_goldenrod2',
         pattern=r'Alain Forget|Brotherton|Carl\s*Sagan|Columbia|David Grosof|J(ames|im)\s*Watson|(Lord\s*)?Martin\s*Rees|Massachusetts\s*Institute\s*of\s*Technology|MIT(\s*Media\s*Lab)?|Media\s*Lab|Minsky|((Noam|Valeria)\s*)?Chomsky|Norman\s*Finkelstein|Praluent|Regeneron|(Richard\s*)?Dawkins|Sanofi|Stanford|(Stephen\s*)?Hawking|(Steven?\s*)?Pinker|UCLA',
         emailers = {
-            DAVID_HAIG: None,
+            DAVID_HAIG: 'evolutionary geneticist?',
             JOSCHA_BACH: 'cognitive science / AI research',
             'Daniel Kahneman': 'Nobel economic sciences laureate and cognitivie psychologist (?)',
             'Ed Boyden': 'Associate Professor, MIT Media Lab neurobiology',
