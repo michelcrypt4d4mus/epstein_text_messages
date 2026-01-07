@@ -5,6 +5,14 @@ from epstein_files.util.env import args
 
 PAGE_TITLE = '   ∞ Michel de Cryptadamus ∞   '
 
+if args.all_emails:
+    page_type = 'Emails'
+elif args.email_timeline:
+    page_type = 'Chronological Emails'
+else:
+    page_type = 'Text Messages'
+
+
 CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +26,7 @@ CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
             background-color: {background};
         }}
     </style>
-""" + f"<title>Epstein {'Emails' if args.all_emails else 'Text Messages'}</title>" + """
+""" + f"<title>Epstein {page_type}</title>" + """
 </head>
 <body>
     <pre style="font-family: Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace; white-space: pre-wrap; overflow-wrap: break-word;">
