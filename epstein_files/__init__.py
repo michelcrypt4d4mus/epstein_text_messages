@@ -63,7 +63,7 @@ def generate_html() -> None:
             files = [f for f in epstein_files.other_files if args.all_other_files or f.is_interesting()]
 
         epstein_files.print_other_files_section(files)
-        timer.print_at_checkpoint(f"Printed {len(files)} other files")
+        timer.print_at_checkpoint(f"Printed {len(files)} other files (skipped {len(epstein_files.other_files) - len(files)})")
 
     # Save output
     write_html(ALL_EMAILS_PATH if args.all_emails else TEXT_MSGS_HTML_PATH)

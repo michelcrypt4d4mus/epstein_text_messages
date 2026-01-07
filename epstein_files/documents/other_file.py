@@ -87,8 +87,14 @@ INTERESTING_AUTHORS = [
 
 @dataclass
 class OtherFile(Document):
-    """File that is not an email, an iMessage log, or JSON data."""
-    include_description_in_summary_panel: ClassVar[bool] = True
+    """
+    File that is not an email, an iMessage log, or JSON data.
+
+    Attributes:
+        was_timestamp_extracted (bool): True if the timestamp was programmatically extracted (and could be wrong)
+    """
+    was_timestamp_extracted: bool = False
+    include_description_in_summary_panel: ClassVar[bool] = True  # Class var for logging output
 
     def __post_init__(self):
         super().__post_init__()
@@ -145,6 +151,10 @@ class OtherFile(Document):
     def metadata(self) -> Metadata:
         metadata = super().metadata()
         metadata['is_interesting'] = self.is_interesting()
+
+        if self.was_timestamp_extracted:
+            metadata['was_timestamp_extracted'] = self.was_timestamp_extracted
+
         return metadata
 
     def preview_text(self) -> str:
@@ -183,7 +193,10 @@ class OtherFile(Document):
                 self.log_top_lines(15, msg=f"No timestamps found")
 
             return None
-        elif len(timestamps) == 1:
+
+        self.was_timestamp_extracted = True
+
+        if len(timestamps) == 1:
             return timestamps[0]
         else:
             timestamps = sorted(uniquify(timestamps), reverse=True)

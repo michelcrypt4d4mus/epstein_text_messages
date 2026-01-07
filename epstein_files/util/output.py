@@ -105,8 +105,8 @@ def print_emails(epstein_files: EpsteinFiles) -> int:
     if args.all_emails:
         _verify_all_emails_were_printed(epstein_files, already_printed_emails)
 
-    fwded_articles = [e for e in already_printed_emails if e.config and e.config.is_fwded_article]
-    log_msg = f"Rewrote {len(Email.rewritten_header_ids)} email headers (out of {len(already_printed_emails)})"
+    fwded_articles = [e for e in already_printed_emails if e.config and e.is_fwded_article()]
+    log_msg = f"Rewrote {len(Email.rewritten_header_ids)} of {len(already_printed_emails)} email headers"
     logger.warning(f"{log_msg}, {len(fwded_articles)} of the emails were forwarded articles.")
     return len(already_printed_emails)
 
