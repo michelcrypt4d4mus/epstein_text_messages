@@ -594,7 +594,7 @@ class Email(Communication):
             self._merge_lines(3)  # Merge 4th and 5th rows
         elif self.file_id in '026609 029402 032405 022695'.split():
             self._merge_lines(4)  # Merge 5th and 6th rows
-        elif self.file_id in ['019407', '031980', '030384', '033144', '030999', '033575', '029835', '030381', '033357']:
+        elif self.file_id in ['019407', '031980', '030384', '033144', '030999', '033575', '029835', '030381', '033357', '026924']:
             self._merge_lines(2, 4)
         elif self.file_id in ['029154', '029163']:
             self._merge_lines(2, 5)
