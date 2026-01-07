@@ -536,6 +536,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='033274', recipients=[JEFFREY_EPSTEIN]),  # this is a note sent to self
     EmailCfg(id='032780', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
     EmailCfg(id='029324', recipients=[JEFFREY_EPSTEIN, "Jojo Fontanilla", "Lyn Fontanilla"]),  # Bad OCR (nofix)
+    EmailCfg(id='013482', recipients=[JEFFREY_EPSTEIN], is_fwded_article=True),  # other recipients redacted. "The view from the US: Stem cell therapy steps up a gear with firs"
     EmailCfg(id='033456', recipients=["Joel"], attribution_reason='Reply'),
     EmailCfg(id='033458', recipients=["Joel"], attribution_reason='Reply'),
     EmailCfg(id='033460', recipients=["Joel"], attribution_reason='Reply'),
@@ -626,7 +627,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='021740', is_fwded_article=True),  # Miami Herald article about Epstein prosecutor
     EmailCfg(id='023126', is_fwded_article=True),  # Miami Herald on Alex Acosta
     EmailCfg(id='029625', is_fwded_article=True),  # Conchita Sarnoff Daily Beast Articles - Epstein Sex Trafficking Investigation and Settlement
-    EmailCfg(id='013482', is_fwded_article=True),  # The view from the US: Stem cell therapy steps up a gear with firs
     EmailCfg(id='029505', is_fwded_article=True),  # Foreign Policy Middle Eastern Monarchs Look at the Trump
     EmailCfg(id='029859', is_fwded_article=True),  # Palm Beach Post: Epstein paid three women $5.5 million to end lawsuits
     EmailCfg(id='031988', is_fwded_article=True),  # NYT review of Inside Job
