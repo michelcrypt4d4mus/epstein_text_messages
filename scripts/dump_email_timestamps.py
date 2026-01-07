@@ -27,11 +27,11 @@ counts = defaultdict(int)
 #     print_json('metadata', doc.metadata())
 
 for log in epstein_files.imessage_logs:
-    for message in log.messages:
+    for i, message in enumerate(log.messages):
         try:
-            message.timestamp()
+            message.parse_timestamp()
         except Exception as e:
-            logger.error(f"{message}:  {e}")
+            logger.error(f"line {i}, {message}:  {e}")
 
 
 sys.exit()

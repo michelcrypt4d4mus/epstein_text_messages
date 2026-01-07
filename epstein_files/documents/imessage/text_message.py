@@ -6,7 +6,7 @@ from rich.text import Text
 
 from epstein_files.util.constant.names import JEFFREY_EPSTEIN, STEVE_BANNON, UNKNOWN
 from epstein_files.util.constant.strings import TIMESTAMP_DIM
-from epstein_files.util.data import extract_last_name
+from epstein_files.util.data import extract_last_name, iso_timestamp
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import TEXT_LINK, highlighter
@@ -32,6 +32,7 @@ class TextMessage:
     author_str: str = ''
     id_confirmed: bool = False
     text: str
+    timestamp: datetime | None = None
     timestamp_str: str
 
     def __post_init__(self):
@@ -47,7 +48,7 @@ class TextMessage:
         if not self.id_confirmed and self.author is not None and self.author != JEFFREY_EPSTEIN:
             self.author_str += ' (?)'
 
-    def timestamp(self) -> datetime:
+    def parse_timestamp(self) -> datetime:
         return datetime.strptime(self.timestamp_str, MSG_DATE_FORMAT)
 
     def _message(self) -> Text:
@@ -75,7 +76,7 @@ class TextMessage:
         return msg_txt
 
     def __rich__(self) -> Text:
-        timestamp_txt = Text(f"[{self.timestamp_str}]", style=TIMESTAMP_DIM).append(' ')
+        timestamp_txt = Text(f"[{iso_timestamp(self.timestamp)}]", style=TIMESTAMP_DIM).append(' ')
         author_style = get_style_for_name(self.author_str if self.author_str.startswith('+') else self.author)
         author_txt = Text(self.author_str, style=author_style)
         return Text('').append(timestamp_txt).append(author_txt).append(': ', style='dim').append(self._message())
