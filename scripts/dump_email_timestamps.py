@@ -26,33 +26,14 @@ counts = defaultdict(int)
 #     console.print(doc.summary())
 #     print_json('metadata', doc.metadata())
 
+for log in epstein_files.imessage_logs:
+    for message in log.messages:
+        try:
+            message.timestamp()
+        except Exception as e:
+            logger.error(f"{message}:  {e}")
 
-table = Table(header_style='bold', highlight=True)
-table.add_column('id')
-table.add_column('sent at')
-table.add_column('author')
-table.add_column('recipients', max_width=38)
-# table.add_column('att')
-table.add_column('len')
-table.add_column('actual')
-table.add_column('subject')
 
-for email in sorted(epstein_files.non_duplicate_emails(), key=lambda e: -e.length()):
-    if email.is_fwded_article() or email.is_junk_mail():
-        continue
-
-    table.add_row(
-        email.file_id[0:6],
-        email.timestamp_without_seconds(),
-        email.author_txt,
-        email.recipients_txt(),
-        str(email.length()),
-        str(len(email.actual_text)),
-        # ', '.join(email.attachments())
-        email.subject(),
-    )
-
-console.print(table)
 sys.exit()
 
 def print_potential_useless_emailers():
