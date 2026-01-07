@@ -287,26 +287,6 @@ class EpsteinFiles:
         console.print(_build_signature_table(self.email_authors_to_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
         console.print(_build_signature_table(self.email_device_signatures_to_authors, (DEVICE_SIGNATURE, AUTHOR), ', '))
 
-    def print_other_files_section(self, files: list[OtherFile]) -> None:
-        """Returns the OtherFile objects that were interesting enough to print."""
-        category_table = OtherFile.count_by_category_table(files)
-        other_files_preview_table = OtherFile.files_preview_table(files)
-        header_pfx = '' if args.all_other_files else 'Selected '
-        print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {header_pfx}Files That Are Neither Emails Nor Text Messages")
-
-        if args.all_other_files:
-            console.line(1)
-        else:
-            print_all_files_page_link(self)
-            console.line(2)
-
-            for table in [category_table, other_files_preview_table]:
-                table.title = f"{header_pfx}{table.title}"
-
-        print_centered(category_table)
-        console.line(2)
-        console.print(other_files_preview_table)
-
     def table_of_emailers(self) -> Table:
         attributed_emails = [e for e in self.non_duplicate_emails() if e.author]
         footer = f"Identified authors of {len(attributed_emails):,} out of {len(self.non_duplicate_emails()):,} emails."

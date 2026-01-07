@@ -25,6 +25,7 @@ from epstein_files.util.highlighted_group import styled_category
 from epstein_files.util.rich import QUESTION_MARK_TXT, add_cols_to_table, build_table, highlighter
 from epstein_files.util.logging import logger
 
+FIRST_FEW_LINES = 'First Few Lines'
 MAX_DAYS_SPANNED_TO_BE_VALID = 10
 MAX_EXTRACTED_TIMESTAMPS = 100
 MIN_TIMESTAMP = datetime(2000, 1, 1)
