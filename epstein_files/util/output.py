@@ -32,8 +32,6 @@ DEFAULT_EMAILERS = [
     MASHA_DROKOVA,
     RENATA_BOLOTOVA,
     STEVE_BANNON,
-    OLIVIER_COLOM,
-    BORIS_NIKOLIC,
     PRINCE_ANDREW,
     JIDE_ZEITLIN,
     DAVID_STERN,
@@ -69,7 +67,7 @@ def print_emails(epstein_files: EpsteinFiles) -> int:
     if specified_names:
         emailers_to_print = specified_names
     else:
-        epstein_files.print_emailer_counts_table()
+        print_centered(Padding(epstein_files.table_of_emailers(), (2, 0)))
 
         if args.all_emails:
             emailers_to_print = sorted(epstein_files.all_emailers(), key=lambda e: epstein_files.earliest_email_at(e))

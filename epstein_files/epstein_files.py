@@ -290,7 +290,45 @@ class EpsteinFiles:
         console.print(_build_signature_table(self.email_authors_to_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
         console.print(_build_signature_table(self.email_device_signatures_to_authors, (DEVICE_SIGNATURE, AUTHOR), ', '))
 
-    def print_emailer_counts_table(self) -> None:
+    def print_other_files_section(self, files: list[OtherFile]) -> None:
+        """Returns the OtherFile objects that were interesting enough to print."""
+        category_table = OtherFile.count_by_category_table(files)
+        other_files_preview_table = OtherFile.files_preview_table(files)
+        header_pfx = '' if args.all_other_files else 'Selected '
+        print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {header_pfx}Files That Are Neither Emails Nor Text Messages")
+
+        if args.all_other_files:
+            console.line(1)
+        else:
+            print_all_files_page_link(self)
+            console.line(2)
+
+            for table in [category_table, other_files_preview_table]:
+                table.title = f"{header_pfx}{table.title}"
+
+        print_centered(category_table)
+        console.line(2)
+        console.print(other_files_preview_table)
+
+    def print_text_messages_section(self) -> None:
+        """Print summary table and stats for text messages."""
+        print_section_header('All of His Text Messages')
+        print_centered("(conversations are sorted chronologically based on timestamp of first message)\n", style='gray30')
+        authors: list[str | None] = specified_names if specified_names else [JEFFREY_EPSTEIN]
+        log_files = self.imessage_logs_for(authors)
+
+        for log_file in log_files:
+            console.print(Padding(log_file))
+            console.line(2)
+
+        print_centered(MessengerLog.summary_table(self.imessage_logs))
+        text_summary_msg = f"\nDeanonymized {Document.known_author_count(self.imessage_logs)} of "
+        text_summary_msg += f"{len(self.imessage_logs)} {TEXT_MESSAGE} logs found in {len(self.all_files):,} files."
+        console.print(text_summary_msg)
+        imessage_msg_count = sum([len(log.messages) for log in self.imessage_logs])
+        console.print(f"Found {imessage_msg_count} text messages in {len(self.imessage_logs)} iMessage log files.")
+
+    def table_of_emailers(self) -> Table:
         attributed_emails = [e for e in self.non_duplicate_emails() if e.author]
         footer = f"Identified authors of {len(attributed_emails):,} out of {len(self.non_duplicate_emails()):,} emails."
         counts_table = build_table("Email Counts", caption=footer)
@@ -330,45 +368,7 @@ class EpsteinFiles:
                 link_text_obj(search_twitter_url(name), 'search X') if name else '',
             )
 
-        console.print(vertically_pad(counts_table, 2))
-
-    def print_other_files_section(self, files: list[OtherFile]) -> None:
-        """Returns the OtherFile objects that were interesting enough to print."""
-        category_table = OtherFile.count_by_category_table(files)
-        other_files_preview_table = OtherFile.files_preview_table(files)
-        header_pfx = '' if args.all_other_files else 'Selected '
-        print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {header_pfx}Files That Are Neither Emails Nor Text Messages")
-
-        if args.all_other_files:
-            console.line(1)
-        else:
-            print_all_files_page_link(self)
-            console.line(2)
-
-            for table in [category_table, other_files_preview_table]:
-                table.title = f"{header_pfx} {table.title}"
-
-        print_centered(category_table)
-        console.line(2)
-        console.print(other_files_preview_table)
-
-    def print_text_messages_section(self) -> None:
-        """Print summary table and stats for text messages."""
-        print_section_header('Text Messages')
-        print_centered("(conversations are sorted chronologically based on timestamp of first message)\n", style='gray30')
-        authors: list[str | None] = specified_names if specified_names else [JEFFREY_EPSTEIN]
-        log_files = self.imessage_logs_for(authors)
-
-        for log_file in log_files:
-            console.print(Padding(log_file))
-            console.line(2)
-
-        print_centered(MessengerLog.summary_table(self.imessage_logs))
-        text_summary_msg = f"\nDeanonymized {Document.known_author_count(self.imessage_logs)} of "
-        text_summary_msg += f"{len(self.imessage_logs)} {TEXT_MESSAGE} logs found in {len(self.all_files):,} files."
-        console.print(text_summary_msg)
-        imessage_msg_count = sum([len(log.messages) for log in self.imessage_logs])
-        console.print(f"Found {imessage_msg_count} text messages in {len(self.imessage_logs)} iMessage log files.")
+        return counts_table
 
     def _tally_email_data(self) -> None:
         """Tally up summary info about Email objects."""
