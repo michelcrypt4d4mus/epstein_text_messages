@@ -135,6 +135,7 @@ JUNK_EMAILERS = [
 ]
 
 MAILING_LISTS = [
+    CAROLYN_RANGEL,
     INTELLIGENCE_SQUARED,
     'middle.east.update@hotmail.com',
     JP_MORGAN_USGIO,
@@ -342,6 +343,9 @@ class Email(Communication):
             else:
                 for recipient in self.header.recipients():
                     self.recipients.extend(self._emailer_names(recipient))
+
+                if len(self.recipients) == 0 and self.author in MAILING_LISTS:
+                    self.recipients = [JEFFREY_EPSTEIN]   # Assume mailing list emails are to Epstein
         except Exception as e:
             console.print_exception()
             console.line(2)
