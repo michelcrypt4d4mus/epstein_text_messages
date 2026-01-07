@@ -234,7 +234,6 @@ NEW_YORK_V_EPSTEIN = f"New York v. {JEFFREY_EPSTEIN}"
 
 # Descriptions of non-email, non-text message files
 ARTICLE_DRAFT = 'draft of an article about'
-BOFA_MERRILL = f'{BOFA} / Merrill Lynch Report'
 BOFA_WEALTH_MGMT = f'{BOFA} Wealth Management'
 BROCKMAN_INC = 'Brockman, Inc.'
 CVRA = "Crime Victims' Rights Act [CVRA]"

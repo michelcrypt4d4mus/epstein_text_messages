@@ -187,6 +187,7 @@ VIRGINIA_GIUFFRE = 'Virginia Giuffre'
 
 # Organizations
 BOFA = 'BofA'
+BOFA_MERRILL = f'{BOFA} / Merrill Lynch'
 CNN = 'CNN'
 DEUTSCHE_BANK = 'Deutsche Bank'
 ELECTRON_CAPITAL_PARTNERS = 'Electron Capital Partners'
