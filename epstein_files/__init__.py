@@ -20,8 +20,8 @@ from epstein_files.util.constant.output_files import ALL_EMAILS_PATH, TEXT_MSGS_
 from epstein_files.util.env import args, specified_names
 from epstein_files.util.file_helper import coerce_file_path, extract_file_id
 from epstein_files.util.logging import logger
-from epstein_files.util.output import (print_emails, print_json_files, print_json_stats,
-     print_text_messages_section, write_json_metadata, write_urls)
+from epstein_files.util.output import (print_emails_section, print_json_files, print_json_stats,
+     print_other_files_section, print_text_messages_section, write_json_metadata, write_urls)
 from epstein_files.util.rich import build_highlighter, console, print_header, print_panel, write_html
 from epstein_files.util.timer import Timer
 from epstein_files.util.word_count import write_word_counts_html
@@ -53,8 +53,8 @@ def generate_html() -> None:
         timer.print_at_checkpoint(f'Printed {len(epstein_files.imessage_logs)} text message logs')
 
     if args.output_emails:
-        emails_printed = print_emails(epstein_files)
-        timer.print_at_checkpoint(f"Printed {emails_printed:,} emails")
+        emails_that_were_printed = print_emails_section(epstein_files)
+        timer.print_at_checkpoint(f"Printed {len(emails_that_were_printed):,} emails")
 
     if args.output_other:
         if args.uninteresting:
@@ -62,7 +62,7 @@ def generate_html() -> None:
         else:
             files = [f for f in epstein_files.other_files if args.all_other_files or f.is_interesting()]
 
-        epstein_files.print_other_files_section(files)
+        print_other_files_section(files, epstein_files)
         timer.print_at_checkpoint(f"Printed {len(files)} other files (skipped {len(epstein_files.other_files) - len(files)})")
 
     # Save output
