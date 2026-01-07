@@ -874,7 +874,7 @@ OTHER_FILES_BOOKS = [
     DocCfg(id='019477', author=EDWARD_JAY_EPSTEIN, description=f'How America Lost Its Secrets: Edward Snowden, the Man, and the Theft'),
     DocCfg(id='020153', author=EDWARD_JAY_EPSTEIN, description=f'The Snowden Affair: A Spy Story In Six Parts'),
     DocCfg(id='011472', author=EHUD_BARAK, description=NIGHT_FLIGHT_BOOK, date='2006-07-12'),  # date from _extract_timestamp()
-    DocCfg(id='027849', author=EHUD_BARAK, description=NIGHT_FLIGHT_BOOK),
+    DocCfg(id='027849', author=EHUD_BARAK, description=NIGHT_FLIGHT_BOOK, date='2006-07-12'),  # date from _extract_timestamp()
     DocCfg(id='010912', author=GORDON_GETTY, description=f'"Free Growth and Other Surprises" (draft)', date='2018-10-18'),
     DocCfg(id='010477', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
     DocCfg(id='010486', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
