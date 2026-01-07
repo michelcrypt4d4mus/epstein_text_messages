@@ -218,10 +218,8 @@ def write_word_counts_html() -> None:
             for word in line.split():
                 word_count.tally_word(word, SearchResult(email, [MatchedLine(line, i)]))
 
-    # Add in iMessage conversation words
-    imessage_logs = epstein_files.imessage_logs_for(specified_names) if specified_names else epstein_files.imessage_logs
-
-    for imessage_log in imessage_logs:
+    # Add in iMessage conversations
+    for imessage_log in epstein_files.imessage_logs:
         logger.info(f"Counting words in {imessage_log}")
 
         for i, msg in enumerate(imessage_log.messages):
