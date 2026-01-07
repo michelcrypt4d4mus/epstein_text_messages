@@ -830,7 +830,6 @@ DAVID_BLAINE_VISA_LETTER = f"letter of recommendation for visa for a model"
 DERSH_GIUFFRE_TWEET = f"{TWEET} about {VIRGINIA_GIUFFRE}"
 DEUTSCHE_BANK_TAX_TOPICS = f'{DEUTSCHE_BANK} Wealth Management Tax Topics'
 DIANA_DEGETTE_CAMPAIGN = "Colorado legislator Diana DeGette's campaign"
-EPSTEIN_FOUNDATION = 'Jeffrey Epstein VI Foundation'
 FBI_REPORT = f"report on Epstein investigation (redacted)"
 FBI_SEIZED_PROPERTY = f"seized property inventory (redacted)"
 FEMALE_HEALTH_COMPANY = 'Female Health Company (FHX)'
@@ -843,7 +842,6 @@ JP_MORGAN_EYE_ON_THE_MARKET = f"Eye On The Market"
 LAWRENCE_KRAUSS_ASU_ORIGINS = f"{LAWRENCE_KRAUSS}'s ASU Origins Project"
 LEXIS_NEXIS_CVRA_SEARCH = f"{LEXIS_NEXIS} search for case law around the {CVRA}"
 KEN_STARR_LETTER = f"letter to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
-NIGHT_FLIGHT_BOOK = f'"Night Flight" (draft)'
 NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
 OBAMA_JOKE = 'joke about Obama'
 PALM_BEACH_CODE_ENFORCEMENT = f'{PALM_BEACH} Code Enforcement'
@@ -853,7 +851,6 @@ PALM_BEACH_WATER_COMMITTEE = f'{PALM_BEACH} Water Committee'
 PATTERSON_BOOK_SCANS = f'pages of "Filthy Rich: The Shocking True Story of {JEFFREY_EPSTEIN}"'
 REAL_DEAL_ARTICLE = 'article by Keith Larsen'
 SHIMON_POST_ARTICLE = f'selection of articles about the mideast'
-SINGLE_PAGE = 'single page of'
 STRANGE_BEDFELLOWS = "'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more"
 SWEDISH_LIFE_SCIENCES_SUMMIT = f"{BARBRO_C_EHNBOM}'s Swedish American Life Science Summit (SALSS)"
 TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Government Ethics"
@@ -870,7 +867,7 @@ OTHER_FILES_BOOKS = [
     DocCfg(id='018438', author='Clarisse Thorn', description=f'The S&M Feminist'),
     DocCfg(id='019477', author=EDWARD_JAY_EPSTEIN, description=f'How America Lost Its Secrets: Edward Snowden, the Man, and the Theft'),
     DocCfg(id='020153', author=EDWARD_JAY_EPSTEIN, description=f'The Snowden Affair: A Spy Story In Six Parts'),
-    DocCfg(id='011472', author=EHUD_BARAK, description=NIGHT_FLIGHT_BOOK, date='2006-07-12', duplicate_ids=['027849']),  # date from _extract_timestamp()
+    DocCfg(id='011472', author=EHUD_BARAK, description=f'"Night Flight" (draft)', date='2006-07-12', duplicate_ids=['027849']),  # date from _extract_timestamp()
     DocCfg(id='010912', author=GORDON_GETTY, description=f'"Free Growth and Other Surprises" (draft)', date='2018-10-18'),
     DocCfg(id='010477', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
     DocCfg(id='010486', author=JAMES_PATTERSON, description=PATTERSON_BOOK_SCANS, date='2016-10-10'),
@@ -999,7 +996,7 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='024997', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-09-08'),
     DocCfg(id='031941', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-11-17'),
     DocCfg(id='030829', author=f'South Florida Sun Sentinel', description=f'article about {BRAD_EDWARDS} and {JEFFREY_EPSTEIN}'),
-    DocCfg(id='021092', author='Tatler', description=f'{SINGLE_PAGE} of article about {GHISLAINE_MAXWELL} shredding documents', date='2019-08-15'),
+    DocCfg(id='021092', author='Tatler', description=f'single page of article about {GHISLAINE_MAXWELL} shredding documents', date='2019-08-15'),
     DocCfg(id='030333', author=f'The Independent', description=f'article about Prince Andrew, Epstein, and Epstein\'s butler who stole his address book'),
     DocCfg(id='010754', author=f'U.S. News', description=f"article about Yitzhak Rabin"),
     DocCfg(id='014498', author=VI_DAILY_NEWS, description='article', date='2016-12-13'),
@@ -1027,7 +1024,7 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='033480', description=f"John Bolton press clipping", date='2018-04-06', duplicate_ids=['033481']),
     DocCfg(id='013403', description=f"{LEXIS_NEXIS} result from The Evening Standard about Bernie Madoff", date='2009-12-24'),
     DocCfg(id='021093', description=f"page of unknown article about Epstein and Maxwell"),
-    DocCfg(id='031191', description=f"{SINGLE_PAGE} unknown article about Epstein and Trump's relationship in 1997"),
+    DocCfg(id='031191', description=f"single page of unknown article about Epstein and Trump's relationship in 1997"),
     DocCfg(id='026520', description=f'Spanish language article about {SULTAN_BIN_SULAYEM}', date='2013-09-27'),
     DocCfg(
         id='031736',
