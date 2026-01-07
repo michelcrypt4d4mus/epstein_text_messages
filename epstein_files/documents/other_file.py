@@ -42,6 +42,7 @@ SKIP_TIMESTAMP_EXTRACT = [
 ]
 
 UNINTERESTING_CATEGORIES = [
+    ACADEMIA,
     ARTICLE,
     ARTS,
     BOOK,
@@ -49,7 +50,6 @@ UNINTERESTING_CATEGORIES = [
     JUNK,
     POLITICS,
     SKYPE_LOG,
-    SPEECH,
 ]
 
 # OtherFiles whose descriptions/info match these prefixes are not displayed unless --all-other-files is used
@@ -61,18 +61,12 @@ UNINTERESTING_PREFIXES = [
     GORDON_GETTY,
     f"{HARVARD} Econ",
     HARVARD_POETRY,
-    'Inference',
     JASTA,
     LEXIS_NEXIS,
-    LAWRENCE_KRAUSS,
-    LAWRENCE_KRAUSS_ASU_ORIGINS,
-    MARTIN_NOWAK,
     NOBEL_CHARITABLE_TRUST,
     PALM_BEACH_CODE_ENFORCEMENT,
     PALM_BEACH_TSV,
     PALM_BEACH_WATER_COMMITTEE,
-    ROBERT_TRIVERS,
-    SHIMON_POST_ARTICLE,
     TWEET,
     UN_GENERAL_ASSEMBLY,
     'US Office',
@@ -80,6 +74,9 @@ UNINTERESTING_PREFIXES = [
 
 INTERESTING_AUTHORS = [
     EDWARD_JAY_EPSTEIN,
+    EHUD_BARAK,
+    JOI_ITO,
+    NOAM_CHOMSKY,
     MICHAEL_WOLFF,
     SVETLANA_POZHIDAEVA,
 ]
@@ -257,6 +254,7 @@ class OtherFile(Document):
             category_bytes[file.category()] += file.file_size()
 
         table = build_table('Other Files Summary', ['Category', 'Count', 'Has Author', 'No Author', 'Size'])
+        table.columns[0].min_width = 14
         table.columns[-1].style = 'dim'
 
         for (category, count) in sort_dict(counts):

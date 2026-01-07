@@ -22,7 +22,6 @@ PUBLICIST = 'publicist'
 REPUTATION = 'reputation'
 SKYPE_LOG = 'Skype log'
 SOCIAL = 'social'
-SPEECH = 'speech'
 
 # Locations
 PALM_BEACH = 'Palm Beach'
