@@ -341,11 +341,10 @@ class EpsteinFiles:
         imessage_msg_count = sum([len(log.messages) for log in self.imessage_logs])
         console.print(f"Found {imessage_msg_count} text messages in {len(self.imessage_logs)} iMessage log files.")
 
-    def print_other_files_table(self) -> list[OtherFile]:
+    def print_other_files_table(self, files: list[OtherFile]) -> None:
         """Returns the OtherFile objects that were interesting enough to print."""
-        interesting_files = [doc for doc in self.other_files if args.all_other_files or doc.is_interesting()]
         header_pfx = '' if args.all_other_files else 'Selected '
-        print_section_header(f"{FIRST_FEW_LINES} of {len(interesting_files)} {header_pfx}Files That Are Neither Emails Nor Text Msgs")
+        print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {header_pfx}Files That Are Neither Emails Nor Text Msgs")
 
         if not args.all_other_files:
             msg = f"(the other site is uncurated and has all {len(self.other_files)} unclassifiable files"
@@ -353,14 +352,12 @@ class EpsteinFiles:
             print_other_site_link(False)
             console.line(2)
 
-        console.print(OtherFile.build_table(interesting_files))
-        console.print(Padding(OtherFile.count_by_category_table(interesting_files), (2, 0, 2, 2)))
-        skipped_file_count = len(self.other_files) - len(interesting_files)
+        console.print(OtherFile.build_table(files))
+        console.print(Padding(OtherFile.count_by_category_table(files), (2, 0, 2, 2)))
+        skipped_file_count = len(self.other_files) - len(files)
 
         if skipped_file_count > 0:
             logger.warning(f"Skipped {skipped_file_count} uninteresting other files...")
-
-        return interesting_files
 
     def _tally_email_data(self) -> None:
         """Tally up summary info about Email objects."""
