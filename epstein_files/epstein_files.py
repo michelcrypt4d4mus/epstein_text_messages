@@ -83,7 +83,7 @@ class EpsteinFiles:
                 document.log(f"Skipping OtherFile...")
                 continue
 
-            documents.append(cls(file_arg, text=document.text))
+            documents.append(cls(file_arg, lines=document.lines, text=document.text))
             logger.info(str(documents[-1]))
             file_type_count[cls.__name__] += 1
 
