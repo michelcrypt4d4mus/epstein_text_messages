@@ -154,8 +154,9 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='bitcoin',
         style='orange1 bold',
-        pattern=r'Balaji|bitcoin|block ?chain(\s*capital)?|Brock(\s*Pierce)?|coins?|cr[iy]?pto(currenc(y|ies))?|e-currency|(Gavin )?Andressen|(Howard\s+)?Lutnic?k|(jeffrey\s+)?wernick|Libra|Madars|(Patrick\s*)?Murck|(Ross\s*)?Ulbricht|Silk\s*Road|SpanCash|Tether|virtual\s*currenc(ies|y)|(zero\s+knowledge\s+|zk)pro(of|tocols?)',
+        pattern=r'Balaji|bitcoin|block ?chain(\s*capital)?|Brock(\s*Pierce)?|coins?|cr[iy]?pto(currenc(y|ies))?|e-currency|(Gavin )?Andressen|(Howard\s+)?Lutnic?k|Libra|Madars|(Patrick\s*)?Murck|(Ross\s*)?Ulbricht|Silk\s*Road|SpanCash|Tether|virtual\s*currenc(ies|y)|(zero\s+knowledge\s+|zk)pro(of|tocols?)',
         emailers = {
+            'Jeffrey Wernick': 'former COO of Parler, involved in numerous crypto companies like Bitforex',
             JEREMY_RUBIN: 'developer/researcher',
             ANTHONY_SCARAMUCCI: 'Skybridge Capital, FTX investor',
         },
