@@ -201,9 +201,6 @@ class EpsteinFiles:
 
         return docs
 
-    def imessage_logs_for(self, author: str | None | list[str | None]) -> Sequence[MessengerLog]:
-        return MessengerLog.logs_for(author, self.imessage_logs)
-
     def json_metadata(self) -> str:
         """Create a JSON string containing metadata for all the files."""
         metadata = {
