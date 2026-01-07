@@ -11,7 +11,7 @@ from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.output_files import JSON_FILES_JSON_PATH, JSON_METADATA_PATH
 from epstein_files.util.data import dict_sets_to_lists
-from epstein_files.util.env import args, specified_names
+from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
@@ -65,8 +65,8 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     already_printed_emails: list[Email] = []
     num_emails_printed_since_last_color_key = 0
 
-    if specified_names:
-        emailers_to_print = specified_names
+    if args.names:
+        emailers_to_print = args.names
     else:
         print_centered(Padding(epstein_files.table_of_emailers(), (2, 0)))
 
@@ -98,7 +98,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
         for name in DEFAULT_EMAILER_TABLES:
             epstein_files.print_emails_table_for(name)
 
-    if not specified_names:
+    if not args.names:
         epstein_files.print_email_device_info()
 
     if args.all_emails:
