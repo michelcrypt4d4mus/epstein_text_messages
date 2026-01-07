@@ -57,8 +57,9 @@ def generate_html() -> None:
         timer.print_at_checkpoint(f"Printed {emails_printed:,} emails")
 
     if args.output_other:
-        files_printed = epstein_files.print_other_files_table()
-        timer.print_at_checkpoint(f"Printed {len(files_printed)} other files")
+        files = [f for f in epstein_files.other_files if args.all_other_files or f.is_interesting()]
+        epstein_files.print_other_files_table(files)
+        timer.print_at_checkpoint(f"Printed {len(files)} other files")
 
     # Save output
     write_html(ALL_EMAILS_PATH if args.all_emails else TEXT_MSGS_HTML_PATH)
