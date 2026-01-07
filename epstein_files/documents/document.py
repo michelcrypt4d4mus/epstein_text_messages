@@ -46,7 +46,6 @@ FILENAME_MATCH_STYLES = [
 METADATA_FIELDS = [
     'author',
     'file_id',
-    'num_lines',
     'timestamp'
 ]
 
@@ -68,7 +67,6 @@ class Document:
         config (DocCfg): Information about this fil
         file_id (str): 6 digit (or 8 digits if it's a local extract file) string ID
         filename (str): File's basename
-        length (int): Number of characters in the file after all the cleanup
         lines (str): Number of lines in the file after all the cleanup
         text (str): Contents of the file
         timestamp (datetime | None): When the file was originally created
@@ -80,9 +78,7 @@ class Document:
     config: EmailCfg | DocCfg | TextCfg | None = None
     file_id: str = field(init=False)
     filename: str = field(init=False)
-    length: int = field(init=False)
-    lines: list[str] = field(init=False)
-    num_lines: int = field(init=False)
+    lines: list[str] = field(default_factory=list)
     text: str = ''
     timestamp: datetime | None = None
     url_slug: str = ''
@@ -97,7 +93,10 @@ class Document:
         # config and url_slug could have been pre-set in Email
         self.config = self.config or deepcopy(ALL_FILE_CONFIGS.get(self.file_id))
         self.url_slug = self.url_slug or self.filename.split('.')[0]
-        self._set_computed_fields(text=self.text or self._load_file())
+
+        if not self.text:
+            self._load_file()
+
         self._repair()
         self._extract_author()
         self.timestamp = self._extract_timestamp()
@@ -109,9 +108,6 @@ class Document:
 
     def date_str(self) -> str | None:
         return date_str(self.timestamp)
-
-    def debug_info(self) -> str:
-        return ', '.join([f"{prop}={getattr(self, prop)}" for prop in ['file_id', 'filename', 'url_slug']])
 
     def duplicate_file_txt(self) -> Text:
         """If the file is a dupe make a nice message to explain what file it's a duplicate of."""
@@ -152,6 +148,9 @@ class Document:
         base_txt = Text('', style='white' if include_alt_links else ARCHIVE_LINK_COLOR)
         return base_txt.append(join_texts(links))
 
+    def file_id_debug_info(self) -> str:
+        return ', '.join([f"{prop}={getattr(self, prop)}" for prop in ['file_id', 'filename', 'url_slug']])
+
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any additional info about the file."""
         panel = Panel(self.external_links_txt(include_alt_links=True), border_style=self._border_style(), expand=False)
@@ -182,6 +181,9 @@ class Document:
         """True if file created by extracting text from a court doc (identifiable from filename e.g. HOUSE_OVERSIGHT_012345_1.txt)."""
         return is_local_extract_file(self.filename)
 
+    def length(self) -> int:
+        return len(self.text)
+
     def log(self, msg: str, level: int = logging.INFO):
         """Log with filename as a prefix."""
         logger.log(level, f"{self.file_path.stem} {msg}")
@@ -202,6 +204,7 @@ class Document:
         metadata.update({k: v for k, v in asdict(self).items() if k in METADATA_FIELDS and v is not None})
         metadata['bytes'] = self.file_size()
         metadata['filename'] = f"{self.url_slug}.txt"
+        metadata['num_lines'] = self.num_lines()
         metadata['type'] = self._class_name()
 
         if self.is_local_extract_file():
@@ -212,6 +215,9 @@ class Document:
             }
 
         return metadata
+
+    def num_lines(self) -> int:
+        return len(self.lines)
 
     def raw_text(self) -> str:
         with open(self.file_path) as f:
@@ -248,7 +254,7 @@ class Document:
             txt.append(f"{timestamp_str}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
 
         txt.append(' [').append(key_value_txt('size', Text(self.file_size_str(), style='aquamarine1')))
-        txt.append(", ").append(key_value_txt('lines', self.num_lines))
+        txt.append(", ").append(key_value_txt('lines', self.num_lines()))
 
         if self.config and self.config.duplicate_of_id:
             txt.append(", ").append(key_value_txt('dupe_of', Text(self.config.duplicate_of_id, style='magenta')))
@@ -290,13 +296,19 @@ class Document:
         """Should be implemented in subclasses."""
         pass
 
-    def _load_file(self) -> str:
+    def _load_file(self) -> None:
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
         text = self.raw_text()
         text = text[1:] if (len(text) > 0 and text[0] == '\ufeff') else text  # remove BOM
         text = self.repair_ocr_text(OCR_REPAIRS, text.strip())
-        lines = [l.strip() for l in text.split('\n') if not l.startswith(HOUSE_OVERSIGHT)]
-        return collapse_newlines('\n'.join(lines))
+
+        lines = [
+            line.strip() if self.strip_whitespace else line for line in text.split('\n')
+            if not line.startswith(HOUSE_OVERSIGHT)
+        ]
+
+        self.text = collapse_newlines('\n'.join(lines))
+        self.lines = self.text.split('\n')
 
     def _repair(self) -> None:
         """Can optionally be overloaded in subclasses to further improve self.text."""
@@ -313,9 +325,7 @@ class Document:
         else:
             raise RuntimeError(f"[{self.filename}] Either 'lines' or 'text' arg must be provided (neither was)")
 
-        self.length = len(self.text)
         self.lines = [line.strip() if self.strip_whitespace else line for line in self.text.split('\n')]
-        self.num_lines = len(self.lines)
 
     def _write_clean_text(self, output_path: Path) -> None:
         """Write self.text to 'output_path'. Used only for diffing files."""
@@ -328,7 +338,7 @@ class Document:
         with open(output_path, 'w') as f:
             f.write(self.text)
 
-        logger.warning(f"Wrote {self.length} chars of cleaned {self.filename} to {output_path}.")
+        logger.warning(f"Wrote {self.length()} chars of cleaned {self.filename} to {output_path}.")
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield self.file_info_panel()

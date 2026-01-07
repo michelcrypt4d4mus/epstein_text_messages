@@ -12,4 +12,4 @@ def test_other_files_categories(epstein_files):
 
 
 def test_interesting_file_count(epstein_files):
-    assert len([f.file_id for f in epstein_files.other_files if f.is_interesting()]) == 164
+    assert len([f.file_id for f in epstein_files.other_files if f.is_interesting()]) == 158

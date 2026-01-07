@@ -552,7 +552,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label=VIRGIN_ISLANDS,
         style='sea_green1',
-        pattern=r'Antigua|Bahamas|Caribb?ean|Dominican\s*Republic|(Great|Little)\s*St.?\s*James|Haiti(an)?|(John\s*)deJongh(\s*Jr\.?)|(Kenneth E\. )?Mapp|Palm\s*Beach(?!\s*Post)|PBI|S(ain)?t.?\s*Thomas|USVI|VI|(The\s*)?Virgin\s*Islands(\s*Daily\s*News)?',  # TODO: VI Daily News should be yellow but it's hard bc Daily News xists
+        pattern=r'Antigua|Bahamas|Caribb?ean|Dominican\s*Republic|(Great|Little)\s*St.?\s*James|Haiti(an)?|(John\s*)deJongh(\s*Jr\.?)|(Kenneth E\. )?Mapp|Palm\s*Beach(?!\s*Post)|PBI|S(ain)?t.?\s*Thomas|USVI|(?<!Epstein )VI|(The\s*)?Virgin\s*Islands(\s*Daily\s*News)?',  # TODO: VI Daily News should be yellow but it's hard bc Daily News xists
         emailers = {
             CECILE_DE_JONGH: f'First lady 2007-2015',
             STACEY_PLASKETT: 'non-voting member of Congress',
@@ -661,7 +661,7 @@ def get_info_for_name(name: str) -> str | None:
 def get_style_for_category(category: str) -> str | None:
     if category in CATEGORY_STYLES:
         return CATEGORY_STYLES[category]
-    elif category in [CONFERENCE, SPEECH]:
+    elif category == CONFERENCE:
         return f"{get_style_for_category(ACADEMIA)} dim"
     elif category == SOCIAL:
         return get_style_for_category(PUBLICIST)

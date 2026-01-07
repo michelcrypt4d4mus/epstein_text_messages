@@ -32,8 +32,6 @@ DEFAULT_EMAILERS = [
     MASHA_DROKOVA,
     RENATA_BOLOTOVA,
     STEVE_BANNON,
-    OLIVIER_COLOM,
-    BORIS_NIKOLIC,
     PRINCE_ANDREW,
     JIDE_ZEITLIN,
     DAVID_STERN,
@@ -60,7 +58,7 @@ if len(set(DEFAULT_EMAILERS).intersection(set(DEFAULT_EMAILER_TABLES))) > 0:
 def print_emails(epstein_files: EpsteinFiles) -> int:
     """Returns number of emails printed."""
     print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
-    print_other_site_link(is_header=False)
+    print_all_files_page_link(epstein_files)
     emailers_to_print: list[str | None]
     emailer_tables: list[str | None] = []
     already_printed_emails: list[Email] = []
@@ -69,7 +67,7 @@ def print_emails(epstein_files: EpsteinFiles) -> int:
     if specified_names:
         emailers_to_print = specified_names
     else:
-        epstein_files.print_emailer_counts_table()
+        print_centered(Padding(epstein_files.table_of_emailers(), (2, 0)))
 
         if args.all_emails:
             emailers_to_print = sorted(epstein_files.all_emailers(), key=lambda e: epstein_files.earliest_email_at(e))
@@ -105,8 +103,8 @@ def print_emails(epstein_files: EpsteinFiles) -> int:
     if args.all_emails:
         _verify_all_emails_were_printed(epstein_files, already_printed_emails)
 
-    fwded_articles = [e for e in already_printed_emails if e.config and e.config.is_fwded_article]
-    log_msg = f"Rewrote {len(Email.rewritten_header_ids)} email headers (out of {len(already_printed_emails)})"
+    fwded_articles = [e for e in already_printed_emails if e.config and e.is_fwded_article()]
+    log_msg = f"Rewrote {len(Email.rewritten_header_ids)} of {len(already_printed_emails)} email headers"
     logger.warning(f"{log_msg}, {len(fwded_articles)} of the emails were forwarded articles.")
     return len(already_printed_emails)
 
@@ -125,17 +123,6 @@ def print_json_files(epstein_files: EpsteinFiles):
             console.print_json(json_file.json_str(), indent=4, sort_keys=False)
 
 
-def write_json_metadata(epstein_files: EpsteinFiles) -> None:
-    json_str = epstein_files.json_metadata()
-
-    if args.build:
-        with open(JSON_METADATA_PATH, 'w') as f:
-            f.write(json_str)
-            log_file_write(JSON_METADATA_PATH)
-    else:
-        console.print_json(json_str, indent=4, sort_keys=True)
-
-
 def print_json_stats(epstein_files: EpsteinFiles) -> None:
     console.line(5)
     console.print(Panel('JSON Stats Dump', expand=True, style='reverse bold'), '\n')
@@ -149,21 +136,19 @@ def print_json_stats(epstein_files: EpsteinFiles) -> None:
     print_json("count_by_month", count_by_month(epstein_files.all_documents()))
 
 
-def print_text_messages(epstein_files: EpsteinFiles) -> None:
-    print_section_header('Text Messages')
-    print_centered("(conversations are sorted chronologically based on timestamp of first message)\n", style='gray30')
-    authors: list[str | None] = specified_names if specified_names else [JEFFREY_EPSTEIN]
-    log_files = epstein_files.imessage_logs_for(authors)
+def write_json_metadata(epstein_files: EpsteinFiles) -> None:
+    json_str = epstein_files.json_metadata()
 
-    for log_file in log_files:
-        console.print(Padding(log_file))
-        console.line(2)
-
-    epstein_files.print_imessage_summary()
+    if args.build:
+        with open(JSON_METADATA_PATH, 'w') as f:
+            f.write(json_str)
+            log_file_write(JSON_METADATA_PATH)
+    else:
+        console.print_json(json_str, indent=4, sort_keys=True)
 
 
 def write_urls() -> None:
-    """Write _URL style constant variables to a file bash scripts can load as env vars."""
+    """Write _URL style constant variables to URLS_ENV file so bash scripts can load as env vars."""
     url_vars = {k: v for k, v in vars(output_files).items() if k.endswith('URL') and not k.startswith('GH')}
 
     if not args.suppress_output:
