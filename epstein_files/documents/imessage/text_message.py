@@ -1,5 +1,5 @@
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, fields
 from datetime import datetime
 
 from rich.text import Text
@@ -79,3 +79,20 @@ class TextMessage:
         author_style = get_style_for_name(self.author_str if self.author_str.startswith('+') else self.author)
         author_txt = Text(self.author_str, style=author_style)
         return Text('').append(timestamp_txt).append(author_txt).append(': ', style='dim').append(self._message())
+
+    def __repr__(self) -> str:
+        props = []
+        add_prop = lambda k, v: props.append(f"{k}={v}")
+
+        for _field in sorted(fields(self), key=lambda f: f.name):
+            key = _field.name
+            value = getattr(self, key)
+
+            if key == 'author_str' and self.author and self.author_str.startswith(value):
+                continue
+            elif isinstance(value, str):
+                add_prop(key, f'"{value}"')
+            else:
+                add_prop(key, value)
+
+        return f"{type(self).__name__}(" + ', '.join(props) + f')'
