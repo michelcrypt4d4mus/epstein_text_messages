@@ -47,7 +47,6 @@ DEFAULT_EMAILERS = [
 # Order matters. Default names to print tables w/email subject, timestamp, etc for. # TODO: get rid of this ?
 DEFAULT_EMAILER_TABLES: list[str | None] = [
     GHISLAINE_MAXWELL,
-    LEON_BLACK,
     SULTAN_BIN_SULAYEM,
     DEEPAK_CHOPRA,
     ARIANE_DE_ROTHSCHILD,
