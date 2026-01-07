@@ -45,9 +45,9 @@ HEADER_ABBREVIATIONS = {
 }
 
 
-#######################
-# Emails Config Stuff #
-#######################
+#########################
+# Emailers Config Stuff #
+#########################
 
 # Emailers
 EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
@@ -220,7 +220,6 @@ RESUME_OF = 'professional resumé'
 SCREENSHOT = 'screenshot of'
 TRANSLATION = 'translation of'
 TWEET = 'tweet'
-TEXT_OF_US_LAW = 'text of U.S. law:'
 
 # Legal cases
 BRUNEL_V_EPSTEIN = f"{JEAN_LUC_BRUNEL} v. {JEFFREY_EPSTEIN} and Tyler McDonald d/b/a YI.org"
@@ -239,7 +238,6 @@ BOFA_MERRILL = f'{BOFA} / Merrill Lynch Report'
 BOFA_WEALTH_MGMT = f'{BOFA} Wealth Management'
 BROCKMAN_INC = 'Brockman, Inc.'
 CVRA = "Crime Victims' Rights Act [CVRA]"
-CVRA_LEXIS_SEARCH = f"Lexis Nexis search for case law around the {CVRA}"
 DAVID_BLAINE_VISA_LETTER = f"letter of recommendation for visa for a model"
 DERSH_GIUFFRE_TWEET = f"{TWEET} about {VIRGINIA_GIUFFRE}"
 DEUTSCHE_BANK_TAX_TOPICS = f'{DEUTSCHE_BANK} Wealth Management Tax Topics'
@@ -253,9 +251,9 @@ HARVARD_POETRY = f'{HARVARD} poetry stuff from {LISA_NEW}'
 HBS_APPLICATION = f"{HARVARD} Business School application letter"
 JASTA = 'JASTA'
 JASTA_SAUDI_LAWSUIT = f"{JASTA} lawsuit against Saudi Arabia by 9/11 victims"
-JOHN_BOLTON_PRESS_CLIPPING = 'John Bolton press clipping'
 JP_MORGAN_EYE_ON_THE_MARKET = f"Eye On The Market"
 LAWRENCE_KRAUSS_ASU_ORIGINS = f"{LAWRENCE_KRAUSS}'s ASU Origins Project"
+LEXIS_NEXIS_CVRA_SEARCH = f"{LEXIS_NEXIS} search for case law around the {CVRA}"
 KEN_STARR_LETTER = f"letter to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
 MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
 NIGHT_FLIGHT_BOOK = f'"Night Flight" (draft)'
@@ -649,9 +647,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='032358', actual_text=REDACTED),  # Completely redacted
     EmailCfg(id='033050', actual_text='schwartman'),
     EmailCfg(id='022219', description="discussion of attempts to clean up Epstein's Google search results"),
-    EmailCfg(id='023627', is_fwded_article=True, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
     EmailCfg(id='031333', is_fwded_article=True, description='looks like a Russian disinfo article'),  # Russia Says IMF Chief Jailed For Discovering All US Gold is Gone
     EmailCfg(id='031335', is_fwded_article=True, description='looks like a Russian disinfo article'),  # DOMINQUE STRAUSS-KAHN ARRESTED, NOT BECAUSE HE RAPED A MAID, BUT BECAUSE HE HAD EVIDENCE US HAS NO GOLD IN FORT KNOX.
+    EmailCfg(id='023627', is_fwded_article=True, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
     EmailCfg(id='026298', is_fwded_article=True, duplicate_ids=['026499']),  # Written by someone else?
     EmailCfg(id='029692', is_fwded_article=True, duplicate_ids=['029779']),  # WaPo article
     EmailCfg(id='022344', is_fwded_article=True, duplicate_ids=['028529']),  # Bill Gates is most admired from Nikolic
@@ -664,6 +662,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='029849', is_fwded_article=True, duplicate_ids=['033482']),  # Fareed Zakaria: Trump sells America short),
     EmailCfg(id='032023', is_fwded_article=True, duplicate_ids=['032012']),  # American-Israeli Cooperative Enterprise Newsletter
     EmailCfg(id='021758', is_fwded_article=True, duplicate_ids=['030616']),  # Radar Online article about Epstein's early prison release
+    EmailCfg(id='033297', is_fwded_article=True, duplicate_ids=['033586']),  # Sultan Sulayem fwding article about Trump and Russia
     EmailCfg(id='031774', is_fwded_article=True),  # Krassner fwd of Palmer Report article
     EmailCfg(id='033345', is_fwded_article=True),  # Krassner fwd of Palmer Report article
     EmailCfg(id='029903', is_fwded_article=True),  # Krassner fwd of Ann Coulter article about Epstein
@@ -715,7 +714,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='031340', is_fwded_article=True),  # Article about Alex Jones threatening Robert Mueller
     EmailCfg(id='030209', is_fwded_article=True),  # Atlantic Council  Syria: Blackberry Diplomacy
     EmailCfg(id='026605', is_fwded_article=True),  # Article about Ruemmler turning down attorney general job by NEDRA PICKLER
-    EmailCfg(id='033297', is_fwded_article=True, duplicate_ids=['033586']),  # Sultan Sulayem fwding article about Trump and Russia
     EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
 
@@ -899,9 +897,6 @@ OTHER_FILES_BOOKS = [
 ]
 
 OTHER_FILES_ARTICLES = [
-    DocCfg(id='030258', author=ALAN_DERSHOWITZ, description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030248'),
-    DocCfg(id='030248', author=ALAN_DERSHOWITZ, description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030258'),
-    DocCfg(id='029165', author=ALAN_DERSHOWITZ, description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030258'),
     DocCfg(id='030013', author=f'Aviation International News', description=f'article', date='2012-07-01'),
     DocCfg(id='013275', author=BLOOMBERG, description=f"article on notable 2013 obituaries", date='2013-12-26'),
     DocCfg(id='026543', author=BLOOMBERG, description=f"BNA article about taxes"),
@@ -943,6 +938,7 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='022952', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
     DocCfg(id='024229', author=MICHAEL_WOLFF, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
     DocCfg(id='031198', author='Morning News USA', description=f"article about identify of Jane Doe in {JANE_DOE_V_EPSTEIN_TRUMP}"),
+    DocCfg(id='015462', author='Nautilus Education', description=f'magazine (?) issue'),
     DocCfg(id='031972', author=NYT, description=f"article about #MeToo allegations against {LAWRENCE_KRAUSS}", date='2018-03-07'),
     DocCfg(id='032435', author=NYT, description=f'article about Chinese butlers'),
     DocCfg(id='029452', author=NYT, description=f"article about {PETER_THIEL}"),
@@ -1029,12 +1025,10 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='031725', description=f"article about Gloria Allred and Trump allegations", date='2016-10-10'),
     DocCfg(id='026648', description=f'article about {JASTA} lawsuit against Saudi Arabia by 9/11 victims (Russian propaganda?)', date='2017-05-13'),
     DocCfg(id='032159', description=f"article about microfinance and cell phones in Zimbabwe, Strive Masiyiwa (Econet Wireless)"),
-    DocCfg(id='033468', description=f'{ARTICLE_DRAFT} Rod Rosenstein', date='2018-09-24'),
     DocCfg(id='030825', description=f'{ARTICLE_DRAFT} Syria'),
     DocCfg(id='027051', description=f"German language article about the 2013 Lifeball / AIDS Gala", date='2013-01-01'),
-    DocCfg(id='033480', description=f"{JOHN_BOLTON_PRESS_CLIPPING}", date='2018-04-06', duplicate_ids=['033481']),
-    DocCfg(id='013403', description=f"Lexis Nexis result from The Evening Standard about Bernie Madoff", date='2009-12-24'),
-    DocCfg(id='015462', description=f'Nautilus Education magazine (?) issue'),
+    DocCfg(id='033480', description=f"John Bolton press clipping", date='2018-04-06', duplicate_ids=['033481']),
+    DocCfg(id='013403', description=f"{LEXIS_NEXIS} result from The Evening Standard about Bernie Madoff", date='2009-12-24'),
     DocCfg(id='021093', description=f"page of unknown article about Epstein and Maxwell"),
     DocCfg(id='031191', description=f"{SINGLE_PAGE} unknown article about Epstein and Trump's relationship in 1997"),
     DocCfg(id='026520', description=f'Spanish language article about {SULTAN_BIN_SULAYEM}', date='2013-09-27'),
@@ -1044,16 +1038,16 @@ OTHER_FILES_ARTICLES = [
         date='2017-05-13',
     ),
     DocCfg(id='025094', description=f'{TRANSLATION} Spanish article about Cuba', date='2015-11-08'),
-    DocCfg(id='031794', description=f"very short French magazine clipping", is_interesting=False),
+    DocCfg(id='031794', description=f"very short French magazine clipping"),
 ]
 
 OTHER_FILES_LEGAL = [
     DocCfg(id='017789', author=ALAN_DERSHOWITZ, description=f'letter to {HARVARD} Crimson complaining he was defamed'),
     DocCfg(id='011908', author=BRUNEL_V_EPSTEIN, description=f"court filing"),
-    DocCfg(id='017603', author=DAVID_SCHOEN, description=CVRA_LEXIS_SEARCH, date='2019-02-28'),
-    DocCfg(id='017635', author=DAVID_SCHOEN, description=CVRA_LEXIS_SEARCH, date='2019-02-28'),
-    DocCfg(id='016509', author=DAVID_SCHOEN, description=CVRA_LEXIS_SEARCH, date='2019-02-28'),
-    DocCfg(id='017714', author=DAVID_SCHOEN, description=CVRA_LEXIS_SEARCH, date='2019-02-28'),
+    DocCfg(id='017603', author=DAVID_SCHOEN, description=LEXIS_NEXIS_CVRA_SEARCH, date='2019-02-28'),
+    DocCfg(id='017635', author=DAVID_SCHOEN, description=LEXIS_NEXIS_CVRA_SEARCH, date='2019-02-28'),
+    DocCfg(id='016509', author=DAVID_SCHOEN, description=LEXIS_NEXIS_CVRA_SEARCH, date='2019-02-28'),
+    DocCfg(id='017714', author=DAVID_SCHOEN, description=LEXIS_NEXIS_CVRA_SEARCH, date='2019-02-28'),
     DocCfg(id='021824', author=EDWARDS_V_DERSHOWITZ, description=f"deposition of {PAUL_G_CASSELL}"),
     DocCfg(
         id='010757',
@@ -1187,8 +1181,8 @@ OTHER_FILES_LEGAL = [
         date='2019-01-11',
     ),
     DocCfg(id='028540', author='SCOTUS', description=f"decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP"),
-    DocCfg(id='012197', author='SDFL', description=f"Response to {JAY_LEFKOWITZ} on Epstein Plea Agreement Compliance"),
-    DocCfg(id='022277', description=f"{TEXT_OF_US_LAW} National Labour Relations Board (NLRB)"),
+    DocCfg(id='012197', author='SDFL', description=f"response to {JAY_LEFKOWITZ} on Epstein Plea Agreement Compliance"),
+    DocCfg(id='022277', description=f"text of National Labour Relations Board (NLRB) law", is_interesting=False),
 ]
 
 OTHER_FILES_CONFERENCES = [
@@ -1210,10 +1204,20 @@ OTHER_FILES_CONFERENCES = [
         author=UN_GENERAL_ASSEMBLY,
         description=f'schedule including "Presidents Private Dinner - Jeffrey Epstine (sic)"',
         date='2012-09-21',
+        is_interesting=True,
     ),
     DocCfg(id='017526', description=f'Intellectual Jazz conference brochure f. {DAVID_BLAINE}'),
-    DocCfg(id='029427', description=f"seems related to an IRL meeting about concerns China will attempt to absorb Mongolia"),
-    DocCfg(id='025797', description=f'someone\'s notes from Aspen Strategy Group', date='2013-05-29'),
+    DocCfg(
+        id='029427',
+        description=f"seems related to an IRL meeting about concerns China will attempt to absorb Mongolia",
+        is_interesting=True,
+    ),
+    DocCfg(
+        id='025797',
+        date='2013-05-29',
+        description=f"someone's notes from Aspen Strategy Group",
+        is_interesting=True,
+    ),
     DocCfg(
         id='017060',
         description=f'World Economic Forum (WEF) Annual Meeting 2011 List of Participants',
@@ -1264,7 +1268,12 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='026944', author=GOLDMAN_INVESTMENT_MGMT, description=f"Risk of a US-Iran Military Conflict", date='2019-05-23'),
     DocCfg(id='018804', author='Integra Realty Resources', description=f"appraisal of going concern for IGY American Yacht Harbor Marina in {VIRGIN_ISLANDS}"),
     DocCfg(id='026679', author='Invesco', description=f"Global Sovereign Asset Management Study 2017"),
-    DocCfg(id='033220', author='Joseph G. Carson', description=f"short economic report on defense spending under Trump"),
+    DocCfg(
+        id='033220',
+        author='Joseph G. Carson',
+        description=f"short economic report on defense spending under Trump",
+        is_interesting=True,
+    ),
     DocCfg(id='026572', author=JP_MORGAN, description=f"Global Asset Allocation report", date='2012-11-09'),
     DocCfg(id='030848', author=JP_MORGAN, description=f"Global Asset Allocation report", date='2013-03-28'),
     DocCfg(id='030840', author=JP_MORGAN, description=f"Market Thoughts"),
@@ -1284,7 +1293,7 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='025763', author='S&P', description=f"Economic Research: How Increasing Income Inequality Is Dampening U.S. Growth", date='2014-08-05'),
     DocCfg(id='024135', author=UBS, description=UBS_CIO_REPORT, date='2012-06-29'),
     DocCfg(id='025247', author=UBS, description=UBS_CIO_REPORT, date='2012-10-25'),
-    DocCfg(id='026584', description=f"article about tax implications of disregarded entities", date='2009-07-01'),
+    DocCfg(id='026584', description=f"article about tax implications of disregarded entities", date='2009-07-01', is_interesting=True),
     DocCfg(
         id='024271',
         description=f"Blockchain Capital and Brock Pierce pitch deck",
@@ -1389,6 +1398,9 @@ OTHER_FILES_SOCIAL = [
 ]
 
 OTHER_FILES_POLITICS = [
+    DocCfg(id='030258', author=ALAN_DERSHOWITZ, description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030248'),
+    DocCfg(id='030248', author=ALAN_DERSHOWITZ, description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030258'),
+    DocCfg(id='029165', author=ALAN_DERSHOWITZ, description=f'{ARTICLE_DRAFT} Mueller probe, almost same as 030258'),
     DocCfg(id='029918', author=DIANA_DEGETTE_CAMPAIGN, description=f"bio", date='2012-09-27'),
     DocCfg(id='031184', author=DIANA_DEGETTE_CAMPAIGN, description=f"invitation to fundraiser hosted by {BARBRO_C_EHNBOM}", date='2012-09-27'),
     DocCfg(id='026248', author='Don McGahn', description=f'letter from Trump lawyer to Devin Nunes (R-CA) about FISA courts and Trump'),
@@ -1406,6 +1418,7 @@ OTHER_FILES_POLITICS = [
         description=f'The Search for Peace in the Arab-Israeli Conflict',
         date='2019-12-09',
     ),
+    DocCfg(id='033468', description=f'{ARTICLE_DRAFT} Rod Rosenstein', date='2018-09-24'),
     DocCfg(
         id='025849',
         author='US Office of Government Information Services',
@@ -1418,8 +1431,8 @@ OTHER_FILES_POLITICS = [
         date='2015-01-15',  # TODO: this is just a guess
         duplicate_ids=['028887'],
     ),
-    DocCfg(id='010617', description=TRUMP_DISCLOSURES, date='2017-01-20'),
-    DocCfg(id='016699', description=TRUMP_DISCLOSURES, date='2017-01-20'),
+    DocCfg(id='010617', description=TRUMP_DISCLOSURES, date='2017-01-20', is_interesting=True),
+    DocCfg(id='016699', description=TRUMP_DISCLOSURES, date='2017-01-20', is_interesting=True),
 ]
 
 OTHER_FILES_ACADEMIA = [
@@ -1525,7 +1538,7 @@ OTHER_FILES_MISC = [
     DocCfg(id='032735', author=GORDON_GETTY, description=f"on Trump", date='2018-03-20'),  # Dated based on concurrent emails from Getty
     DocCfg(id='025540', author=JEFFREY_EPSTEIN, description=f"rough draft of Epstein's side of the story?"),
     DocCfg(id='026634', author='Michael Carrier', description=f"comments about an Apollo linked hedge fund 'DE Fund VIII'"),
-    DocCfg(id='031425', author=SCOTT_J_LINK, description=f'completely redacted email from'),
+    DocCfg(id='031425', author=SCOTT_J_LINK, description=f'completely redacted email from', is_interesting=False),
     DocCfg(id='020447', author='Working Group on Chinese Influence Activities in the U.S.', description=f'Promoting Constructive Vigilance'),
     DocCfg(id='031743', description=f'a few pages describing the internet as a "New Nation State" (Network State?)'),
     DocCfg(id='012718', description=f"{CVRA} congressional record", date='2011-06-17'),
@@ -1542,7 +1555,7 @@ OTHER_FILES_MISC = [
         date='2000-06-07',
         description=f"{PRESS_RELEASE} announcing Donald Trump & {NICHOLAS_RIBIS} ended their working relationship at Trump's casino",
     ),
-    DocCfg(id='029328', description=f"Rafanelli Events promotional deck"),
+    DocCfg(id='029328', description=f"Rafanelli Events promotional deck", is_interesting=False),
     DocCfg(id='033434', description=f"{SCREENSHOT} iPhone chat labeled 'Edwards' at the top"),
     DocCfg(id='029475', description=f'{VIRGIN_ISLANDS} Twin City Mobile Integrated Health Services (TCMIH) proposal/request for donation'),
     DocCfg(id='029448', description=f"weird short essay titled 'President Obama and Self-Deception'"),

@@ -31,6 +31,7 @@ output.add_argument('--output-other', '-oo', action='store_true', help='generate
 output.add_argument('--output-texts', '-ot', action='store_true', help='generate text messages section')
 output.add_argument('--sort-alphabetical', action='store_true', help='sort emailers alphabetically intead of by email count')
 output.add_argument('--suppress-output', action='store_true', help='no output to terminal (use with --build)')
+output.add_argument('--uninteresting', action='store_true', help='only output uninteresting other files')
 output.add_argument('--width', '-w', type=int, default=DEFAULT_WIDTH, help='screen width to use (in characters)')
 
 scripts = parser.add_argument_group('SCRIPTS', 'Options used by epstein_search, epstein_show, and epstein_diff.')
@@ -65,7 +66,7 @@ is_html_script = current_script in HTML_SCRIPTS
 
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 args.output_emails = args.output_emails or args.all_emails
-args.output_other = args.output_other or args.all_other_files
+args.output_other = args.output_other or args.all_other_files or args.uninteresting
 args.overwrite_pickle = args.overwrite_pickle or (is_env_var_set('OVERWRITE_PICKLE') and not is_env_var_set('PICKLED'))
 args.width = args.width if is_html_script else None
 is_output_selected = any([arg.startswith('output_') and value for arg, value in vars(args).items()])

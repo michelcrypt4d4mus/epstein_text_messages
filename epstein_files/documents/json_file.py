@@ -6,9 +6,11 @@ from typing import ClassVar
 
 from rich.text import Text
 
-from epstein_files.documents.other_file import OtherFile
+from epstein_files.documents.other_file import Metadata, OtherFile
 from epstein_files.util.constant.strings import JSON
 from epstein_files.util.rich import INFO_STYLE
+
+DESCRIPTION = "JSON data containing preview info for links sent in a messaging app like iMessage"
 
 TEXT_FIELDS = [
     'caption',
@@ -23,7 +25,6 @@ TEXT_FIELDS = [
 @dataclass
 class JsonFile(OtherFile):
     """File containing JSON data."""
-
     include_description_in_summary_panel: ClassVar[bool] = False
     strip_whitespace: ClassVar[bool] = False
 
@@ -39,7 +40,7 @@ class JsonFile(OtherFile):
         return JSON
 
     def info_txt(self) -> Text | None:
-        return Text(f"JSON file, contains preview data for links sent a messaging app", style=INFO_STYLE)
+        return Text(DESCRIPTION, style=INFO_STYLE)
 
     def is_interesting(self):
         return False
@@ -47,6 +48,11 @@ class JsonFile(OtherFile):
     def json_data(self) -> object:
         with open(self.file_path, encoding='utf-8-sig') as f:
             return json.load(f)
+
+    def metadata(self) -> Metadata:
+        metadata = super().metadata()
+        metadata['description'] = DESCRIPTION
+        return metadata
 
     def json_str(self) -> str:
         return json.dumps(self.json_data(), indent=4)
