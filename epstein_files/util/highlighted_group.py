@@ -354,7 +354,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='India',
         style='bright_green',
-        pattern=r'Abraaj|Anna\s*Hazare|(Arif\s*)?Naqvi|(Arvind\s*)?Kejriwal|Hardeep( Pur[ei]e)?|Indian?|InsightsPod|Modi|Mumbai|Tranchulas',
+        pattern=r'Abraaj|Anna\s*Hazare|(Arif\s*)?Naqvi|(Arvind\s*)?Kejriwal|Bangalore|Hardeep( Pur[ei]e)?|Indian?|InsightsPod|Modi|Mumbai|(New\s*)?Delhi|Tranchulas',
         emailers = {
             ANIL_AMBANI: 'chairman of Reliance Group',
             VINIT_SAHNI: None,
