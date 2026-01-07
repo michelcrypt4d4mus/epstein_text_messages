@@ -88,8 +88,8 @@
                 "filename": "HOUSE_OVERSIGHT_011908.txt",
                 "num_lines": 22,
                 "recipients": [
-                    "pink@mc2mm.com",
                     "Jeff Fuller",
+                    "pink@mc2mm.com",
                     "Jean Luc Brunel"
                 ],
                 "subject": "FW: Victoria",
@@ -166,8 +166,8 @@
                 "filename": "HOUSE_OVERSIGHT_011908.txt",
                 "num_lines": 32,
                 "recipients": [
-                    "pink@mc2mm.com",
                     "Jeff Fuller",
+                    "pink@mc2mm.com",
                     "Jean Luc Brunel"
                 ],
                 "subject": "FW: Press Inquiry from AFP (Agence France Presse)",
@@ -575,12 +575,12 @@
                 "filename": "HOUSE_OVERSIGHT_014797.txt",
                 "num_lines": 26,
                 "recipients": [
-                    "io-anne.pugh@bbc.co.uk",
-                    "martin.robinson@mailonline.co.uk",
                     "nick.sommerlad@mirror.co.uk",
-                    "david.brown@thetimes.co.uk",
                     "nick.alwav@bbc.co.uk",
-                    "p.peachev@independent.co.uk"
+                    "p.peachev@independent.co.uk",
+                    "martin.robinson@mailonline.co.uk",
+                    "david.brown@thetimes.co.uk",
+                    "io-anne.pugh@bbc.co.uk"
                 ],
                 "sent_from_device": "Sent from my BlackBerry\u00ae wireless device",
                 "subject": "Ghislaine Maxwell",
@@ -1233,8 +1233,8 @@
                 "filename": "HOUSE_OVERSIGHT_019407.txt",
                 "num_lines": 90,
                 "recipients": [
-                    "Michael Sitrick",
-                    "Jeffrey Epstein"
+                    "Jeffrey Epstein",
+                    "Michael Sitrick"
                 ],
                 "subject": "Fw:",
                 "timestamp": "2011-03-08T16:40:35",
@@ -1718,8 +1718,8 @@
                 "filename": "HOUSE_OVERSIGHT_021729.txt",
                 "num_lines": 228,
                 "recipients": [
-                    "Martin Weinberg",
-                    "Darren Indyke"
+                    "Darren Indyke",
+                    "Martin Weinberg"
                 ],
                 "subject": "Fwd: Epstein prosecutor was rebuked for prior child sex case I Miami Herald",
                 "timestamp": "2019-03-14T16:48:11",
@@ -1821,8 +1821,8 @@
                 "filename": "HOUSE_OVERSIGHT_021790.txt",
                 "num_lines": 144,
                 "recipients": [
-                    "Jessica Cadwell",
-                    "Robert D. Critton Jr."
+                    "Robert D. Critton Jr.",
+                    "Jessica Cadwell"
                 ],
                 "subject": "Fwd: Fw: Epstein -- I apologize if you have received this but it keeps coming back to me as undeliverable",
                 "timestamp": "2010-02-26T18:37:49",
@@ -3058,9 +3058,9 @@
                 "filename": "HOUSE_OVERSIGHT_023018.txt",
                 "num_lines": 37,
                 "recipients": [
-                    "Jeffrey Epstein",
                     "Debbie Fein",
-                    "Darren Indyke"
+                    "Darren Indyke",
+                    "Jeffrey Epstein"
                 ],
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Fwd: Request for comment from The Mail on Sunday with noon ET Saturday deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
@@ -3106,10 +3106,10 @@
                 "filename": "HOUSE_OVERSIGHT_023024.txt",
                 "num_lines": 41,
                 "recipients": [
-                    "Jeffrey Epstein",
-                    "Tonja Haddad Coleman",
                     "Debbie Fein",
-                    "Darren Indyke"
+                    "Tonja Haddad Coleman",
+                    "Darren Indyke",
+                    "Jeffrey Epstein"
                 ],
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Re: Request for comment from The Mail on Sunday with noon ET Saturday deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
@@ -3125,10 +3125,10 @@
                 "filename": "HOUSE_OVERSIGHT_023026.txt",
                 "num_lines": 43,
                 "recipients": [
-                    "Jeffrey Epstein",
-                    "Tonja Haddad Coleman",
                     "Debbie Fein",
-                    "Fred Haddad"
+                    "Tonja Haddad Coleman",
+                    "Fred Haddad",
+                    "Jeffrey Epstein"
                 ],
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Re: Request for comment from The Mail on Sunday with noon ET Saturday deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
@@ -3308,9 +3308,9 @@
                 "filename": "HOUSE_OVERSIGHT_023067.txt",
                 "num_lines": 59,
                 "recipients": [
-                    "Darren Indyke",
-                    "Tonja Haddad Coleman",
                     "Debbie Fein",
+                    "Tonja Haddad Coleman",
+                    "Darren Indyke",
                     "Fred Haddad"
                 ],
                 "subject": "Re: Request for comment from The Mail on Sunday with noon ET Saturday deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
@@ -3847,11 +3847,11 @@
                 "filename": "HOUSE_OVERSIGHT_024923.txt",
                 "num_lines": 162,
                 "recipients": [
-                    "Mrisman02",
                     "George Krassner",
-                    "Nick Kazan",
+                    "Mrisman02",
+                    "Rebecca Risman",
                     "Linda W. Grossman",
-                    "Rebecca Risman"
+                    "Nick Kazan"
                 ],
                 "timestamp": "2019-05-15T00:17:32",
                 "type": "Email"
@@ -4352,23 +4352,23 @@
                 "filename": "HOUSE_OVERSIGHT_025329.txt",
                 "num_lines": 72,
                 "recipients": [
-                    "Steven Gaydos",
-                    "Danny Goldberg",
-                    "Caryl Ratner",
-                    "Tom",
-                    "Kevin Bright",
-                    "Lee Quarnstrom",
                     "George Krassner",
-                    "Samuel Leff",
-                    "Daniel Dawson",
-                    "Nancy Cain",
-                    "Michael Simmons",
-                    "Linda W. Grossman",
-                    "Barb Cowles",
-                    "Marie Moneysmith",
+                    "Lee Quarnstrom",
                     "Bob Fass",
+                    "Tom",
+                    "Daniel Dawson",
+                    "Michael Simmons",
+                    "Kevin Bright",
+                    "Holly Krassner Dawson",
+                    "Nancy Cain",
+                    "Marie Moneysmith",
+                    "Caryl Ratner",
+                    "Samuel Leff",
                     "Lynnie Tofte Fass",
-                    "Holly Krassner Dawson"
+                    "Barb Cowles",
+                    "Danny Goldberg",
+                    "Linda W. Grossman",
+                    "Steven Gaydos"
                 ],
                 "subject": "Fwd: Manson Girls / Acid Trip Agreement",
                 "timestamp": "2019-01-16T19:50:41",
@@ -4574,11 +4574,11 @@
                 "filename": "HOUSE_OVERSIGHT_025589.txt",
                 "num_lines": 51,
                 "recipients": [
-                    "Tim Kane",
                     "Oliver Goodenough",
-                    "Gordon Getty",
                     "Jeffrey Epstein",
-                    "Alan Rogers"
+                    "Tim Kane",
+                    "Alan Rogers",
+                    "Gordon Getty"
                 ],
                 "timestamp": "2018-04-14T17:06:12",
                 "type": "Email"
@@ -4807,9 +4807,9 @@
                 "filename": "HOUSE_OVERSIGHT_025790.txt",
                 "num_lines": 37,
                 "recipients": [
-                    "Jeffrey Epstein",
                     "Jack Goldberger",
-                    "Darren Indyke"
+                    "Darren Indyke",
+                    "Jeffrey Epstein"
                 ],
                 "subject": "FW: National Enquirer Comment Request Re: Jeffrey Epstein",
                 "timestamp": "2015-01-29T20:33:35",
@@ -5532,8 +5532,8 @@
                 "filename": "HOUSE_OVERSIGHT_026059.txt",
                 "num_lines": 131,
                 "recipients": [
-                    "Jeffrey Epstein",
-                    "Ariane de Rothschild"
+                    "Ariane de Rothschild",
+                    "Jeffrey Epstein"
                 ],
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Re: Edmond de Rothschild Infrastructure Expertise",
@@ -5847,8 +5847,8 @@
                 "filename": "HOUSE_OVERSIGHT_026159.txt",
                 "num_lines": 24,
                 "recipients": [
-                    "Jeffrey Epstein",
-                    "Jack Lang"
+                    "Jack Lang",
+                    "Jeffrey Epstein"
                 ],
                 "subject": "RE:",
                 "timestamp": "2017-07-11T09:40:01",
@@ -6694,8 +6694,8 @@
                 "filename": "HOUSE_OVERSIGHT_026347.txt",
                 "num_lines": 19,
                 "recipients": [
-                    "Bill Gates",
-                    "Larry Cohen"
+                    "Larry Cohen",
+                    "Bill Gates"
                 ],
                 "timestamp": "2015-01-19T09:48:00",
                 "type": "Email"
@@ -7422,10 +7422,10 @@
                 "filename": "HOUSE_OVERSIGHT_026517.txt",
                 "num_lines": 60,
                 "recipients": [
+                    "Mark Epstein",
                     "Warren Eisenstein",
                     "Mark Albert",
-                    "Jeffrey Epstein",
-                    "Mark Epstein"
+                    "Jeffrey Epstein"
                 ],
                 "subject": "FW: shortest books of all time",
                 "timestamp": "2013-08-19T20:34:18",
@@ -7698,35 +7698,35 @@
                 "fwded_text_after": "From: Mike Cohen",
                 "num_lines": 54,
                 "recipients": [
-                    "John Zouzelka",
-                    "Bennet Greenwald",
-                    "Michael Buchholtz",
-                    "ACT for America",
-                    "Gary Gross",
-                    "Herb Goodman",
-                    "Nate White",
                     "Bennett Schmidt",
-                    "Rafael Bardaji",
-                    "Janet Kafka",
-                    "Neil Anderson",
-                    "Marcie Brown",
-                    "Grant Seeger",
-                    "Allen West",
-                    "Forrest Miller",
-                    "Marshall Funk",
                     "Joel Dunn",
-                    "Lisa Albert",
-                    "Rita Hortenstine",
-                    "Taal Safdie",
-                    "Val Sherman",
-                    "James Ramsey",
                     "Uri Fouzailov",
-                    "Henry Hortenstine",
-                    "Michael Horowitz",
-                    "Philip Kafka",
+                    "Herb Goodman",
                     "Nate McClain",
+                    "Val Sherman",
+                    "Marshall Funk",
+                    "Taal Safdie",
+                    "Marcie Brown",
+                    "Lisa Albert",
+                    "James Ramsey",
+                    "Michael Horowitz",
+                    "Gary Gross",
+                    "Forrest Miller",
+                    "Philip Kafka",
+                    "Mark Epstein",
+                    "Grant Seeger",
+                    "Rita Hortenstine",
+                    "ACT for America",
                     "Jeffrey Epstein",
-                    "Mark Epstein"
+                    "Janet Kafka",
+                    "Allen West",
+                    "Neil Anderson",
+                    "Nate White",
+                    "Bennet Greenwald",
+                    "Henry Hortenstine",
+                    "Michael Buchholtz",
+                    "John Zouzelka",
+                    "Rafael Bardaji"
                 ],
                 "sent_from_device": "Sent via BlackBerry by AT&T",
                 "timestamp": "2015-08-04T22:23:22",
@@ -8056,8 +8056,8 @@
                 "filename": "HOUSE_OVERSIGHT_026754.txt",
                 "num_lines": 20,
                 "recipients": [
-                    "Owen Blicksilver",
-                    "Jeffrey Epstein"
+                    "Jeffrey Epstein",
+                    "Owen Blicksilver"
                 ],
                 "subject": "Barrack",
                 "timestamp": "2017-08-23T18:31:58",
@@ -8080,8 +8080,8 @@
                 "filename": "HOUSE_OVERSIGHT_026764.txt",
                 "num_lines": 118,
                 "recipients": [
-                    "Joseph Vinciguerra",
-                    "Jeffrey Epstein"
+                    "Jeffrey Epstein",
+                    "Joseph Vinciguerra"
                 ],
                 "subject": "G650 profit model",
                 "timestamp": "2017-10-02T17:20:00",
@@ -8094,8 +8094,8 @@
                 "filename": "HOUSE_OVERSIGHT_026768.txt",
                 "num_lines": 345,
                 "recipients": [
-                    "Sam Harris",
-                    "Travis Pangburn"
+                    "Travis Pangburn",
+                    "Sam Harris"
                 ],
                 "subject": "Re: Sexual harassment and Lawrence Krauss fro",
                 "timestamp": "2017-12-11T17:47:53",
@@ -8747,8 +8747,8 @@
                 "num_lines": 9,
                 "recipients": [
                     "Dan Fleuette",
-                    "Steve Bannon",
-                    "Jeffrey Epstein"
+                    "Jeffrey Epstein",
+                    "Steve Bannon"
                 ],
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Re: Trump@War",
@@ -8855,35 +8855,35 @@
                 "fwded_text_after": "From: Mike Cohen",
                 "num_lines": 59,
                 "recipients": [
-                    "John Zouzelka",
-                    "Bennet Greenwald",
-                    "Michael Buchholtz",
-                    "ACT for America",
-                    "Gary Gross",
-                    "Herb Goodman",
-                    "Nate White",
                     "Bennett Schmidt",
-                    "Rafael Bardaji",
-                    "Janet Kafka",
-                    "Neil Anderson",
-                    "Marcie Brown",
-                    "Grant Seeger",
-                    "Allen West",
-                    "Forrest Miller",
-                    "Marshall Funk",
                     "Joel Dunn",
-                    "Lisa Albert",
-                    "Rita Hortenstine",
-                    "Taal Safdie",
-                    "Val Sherman",
-                    "James Ramsey",
                     "Uri Fouzailov",
-                    "Henry Hortenstine",
-                    "Michael Horowitz",
-                    "Philip Kafka",
+                    "Herb Goodman",
                     "Nate McClain",
+                    "Val Sherman",
+                    "Marshall Funk",
+                    "Taal Safdie",
+                    "Marcie Brown",
+                    "Lisa Albert",
+                    "James Ramsey",
+                    "Michael Horowitz",
+                    "Gary Gross",
+                    "Forrest Miller",
+                    "Philip Kafka",
+                    "Mark Epstein",
+                    "Grant Seeger",
+                    "Rita Hortenstine",
+                    "ACT for America",
                     "Jeffrey Epstein",
-                    "Mark Epstein"
+                    "Janet Kafka",
+                    "Allen West",
+                    "Neil Anderson",
+                    "Nate White",
+                    "Bennet Greenwald",
+                    "Henry Hortenstine",
+                    "Michael Buchholtz",
+                    "John Zouzelka",
+                    "Rafael Bardaji"
                 ],
                 "sent_from_device": "Sent via BlackBerry by AT&T",
                 "timestamp": "2015-08-04T22:23:22",
@@ -8983,8 +8983,8 @@
                 "filename": "HOUSE_OVERSIGHT_028497.txt",
                 "num_lines": 112,
                 "recipients": [
-                    "Steven Pfeiffer",
-                    "Jeffrey Epstein"
+                    "Jeffrey Epstein",
+                    "Steven Pfeiffer"
                 ],
                 "subject": "RE: 2017 IFP Gotham Awards",
                 "timestamp": "2017-11-20T20:09:46",
@@ -8997,8 +8997,8 @@
                 "filename": "HOUSE_OVERSIGHT_028501.txt",
                 "num_lines": 99,
                 "recipients": [
-                    "Jeffrey Epstein",
-                    "Peggy Siegal"
+                    "Peggy Siegal",
+                    "Jeffrey Epstein"
                 ],
                 "subject": "Re: 2017 IFP Gotham Awards",
                 "timestamp": "2017-11-16T21:23:58",
@@ -9952,8 +9952,8 @@
                 "filename": "HOUSE_OVERSIGHT_028957.txt",
                 "num_lines": 34,
                 "recipients": [
-                    "Lisa New",
-                    "Jeffrey Epstein"
+                    "Jeffrey Epstein",
+                    "Lisa New"
                 ],
                 "subject": "following up: WA poetry release",
                 "timestamp": "2015-12-08T15:33:09",
@@ -9995,8 +9995,8 @@
                 "filename": "HOUSE_OVERSIGHT_028964.txt",
                 "num_lines": 25,
                 "recipients": [
-                    "Martin Nowak",
-                    "Jeffrey Epstein"
+                    "Jeffrey Epstein",
+                    "Martin Nowak"
                 ],
                 "subject": "Re:",
                 "timestamp": "2016-03-20T19:33:11",
@@ -10027,9 +10027,9 @@
                 "filename": "HOUSE_OVERSIGHT_028970.txt",
                 "num_lines": 60,
                 "recipients": [
-                    "Jeffrey Epstein",
                     "Jack Goldberger",
-                    "Roy Black"
+                    "Roy Black",
+                    "Jeffrey Epstein"
                 ],
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Re: Reuters / lawsuit against Jeffrey Epstein",
@@ -10598,8 +10598,8 @@
                 "filename": "HOUSE_OVERSIGHT_029154.txt",
                 "num_lines": 25,
                 "recipients": [
-                    "David Haig",
-                    "Jeffrey Epstein"
+                    "Jeffrey Epstein",
+                    "David Haig"
                 ],
                 "timestamp": "2018-03-19T03:19:49",
                 "type": "Email"
@@ -10611,8 +10611,8 @@
                 "filename": "HOUSE_OVERSIGHT_029163.txt",
                 "num_lines": 33,
                 "recipients": [
-                    "Robert Trivers",
-                    "Jeffrey Epstein"
+                    "Jeffrey Epstein",
+                    "Robert Trivers"
                 ],
                 "subject": "Re:",
                 "timestamp": "2018-03-19T09:10:54",
@@ -11089,8 +11089,8 @@
                 "filename": "HOUSE_OVERSIGHT_029282.txt",
                 "num_lines": 22,
                 "recipients": [
-                    "Joi Ito",
-                    "Reid Hoffman"
+                    "Reid Hoffman",
+                    "Joi Ito"
                 ],
                 "timestamp": "2017-03-16T11:26:44",
                 "type": "Email"
@@ -11197,9 +11197,9 @@
                 "filename": "HOUSE_OVERSIGHT_029324.txt",
                 "num_lines": 19,
                 "recipients": [
+                    "Lyn Fontanilla",
                     "Jojo Fontanilla",
-                    "Jeffrey Epstein",
-                    "Lyn Fontanilla"
+                    "Jeffrey Epstein"
                 ],
                 "subject": "Ed Boyden-Can't make it to dinner tonight!",
                 "timestamp": "2014-03-14T14:24:48",
@@ -11397,9 +11397,9 @@
                 "num_lines": 7,
                 "recipients": [
                     "Norman Finkelstein",
-                    "David Haig",
                     "Gordon Getty",
-                    "Jeffrey Epstein"
+                    "Jeffrey Epstein",
+                    "David Haig"
                 ],
                 "subject": "Trump set to dine with law professor Alan Dershowitz",
                 "timestamp": "2018-04-11T02:18:04",
@@ -11439,8 +11439,8 @@
                 "filename": "HOUSE_OVERSIGHT_029501.txt",
                 "num_lines": 38,
                 "recipients": [
-                    "Jeffrey Epstein",
                     "Gerald Lefcourt",
+                    "Jeffrey Epstein",
                     "Martin Weinberg"
                 ],
                 "sent_from_device": "Sent from my iPhone",
@@ -12062,8 +12062,8 @@
                 "filename": "HOUSE_OVERSIGHT_029766.txt",
                 "num_lines": 284,
                 "recipients": [
-                    "Jeffrey Epstein",
-                    "Darren Indyke"
+                    "Darren Indyke",
+                    "Jeffrey Epstein"
                 ],
                 "subject": "Fwd: raw text",
                 "timestamp": "2011-04-03T14:08:00",
@@ -12145,9 +12145,9 @@
                 "filename": "HOUSE_OVERSIGHT_029833.txt",
                 "num_lines": 56,
                 "recipients": [
-                    "Jeffrey Epstein",
                     "Jack Goldberger",
-                    "Roy Black"
+                    "Roy Black",
+                    "Jeffrey Epstein"
                 ],
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Re: Reuters / lawsuit against Jeffrey Epstein",
@@ -12165,8 +12165,8 @@
                 "filename": "HOUSE_OVERSIGHT_029835.txt",
                 "num_lines": 53,
                 "recipients": [
-                    "Alan Dershowitz",
                     "Jack Goldberger",
+                    "Alan Dershowitz",
                     "Jeffrey Epstein"
                 ],
                 "subject": "RE: Reuters / lawsuit against Jeffrey Epstein",
@@ -12184,8 +12184,8 @@
                 "filename": "HOUSE_OVERSIGHT_029837.txt",
                 "num_lines": 49,
                 "recipients": [
-                    "Alan Dershowitz",
                     "Jack Goldberger",
+                    "Alan Dershowitz",
                     "Roy Black"
                 ],
                 "subject": "Fwd: Reuters / lawsuit against Jeffrey Epstein",
@@ -12375,8 +12375,8 @@
                 "filename": "HOUSE_OVERSIGHT_029880.txt",
                 "num_lines": 125,
                 "recipients": [
-                    "Jeffrey Epstein",
-                    "Robert D. Critton Jr."
+                    "Robert D. Critton Jr.",
+                    "Jeffrey Epstein"
                 ],
                 "subject": "FW: Jane Doe",
                 "timestamp": "2009-08-11T18:55:54",
@@ -12404,10 +12404,10 @@
                 "filename": "HOUSE_OVERSIGHT_029889.txt",
                 "num_lines": 158,
                 "recipients": [
+                    "Robert D. Critton Jr.",
                     "Connie Zaguirre",
                     "Jack Goldberger",
-                    "Jeffrey Epstein",
-                    "Robert D. Critton Jr."
+                    "Jeffrey Epstein"
                 ],
                 "subject": "FW: Jane Doe",
                 "timestamp": "2009-08-11T19:16:00",
@@ -12741,14 +12741,14 @@
                 "filename": "HOUSE_OVERSIGHT_029977.txt",
                 "num_lines": 28,
                 "recipients": [
-                    "Lesley Groff",
-                    "Januiz Banasiak",
-                    "Louella Rabuyo",
-                    "Darren Indyke",
                     "Francis Derby",
-                    "Jeffrey Epstein",
                     "Richard Kahn",
-                    "Richard Barnnet"
+                    "Lesley Groff",
+                    "Jeffrey Epstein",
+                    "Richard Barnnet",
+                    "Louella Rabuyo",
+                    "Januiz Banasiak",
+                    "Darren Indyke"
                 ],
                 "subject": "Re: 3:00 Wheels up!!",
                 "timestamp": "2012-09-28T14:41:02",
@@ -13388,8 +13388,8 @@
                 "filename": "HOUSE_OVERSIGHT_030299.txt",
                 "num_lines": 483,
                 "recipients": [
-                    "Jessica Cadwell",
-                    "Robert D. Critton Jr."
+                    "Robert D. Critton Jr.",
+                    "Jessica Cadwell"
                 ],
                 "subject": "Fwd: Fw: Epstein News Articles",
                 "timestamp": "2010-02-26T18:41:25",
@@ -13406,8 +13406,8 @@
                 "filename": "HOUSE_OVERSIGHT_030311.txt",
                 "num_lines": 144,
                 "recipients": [
-                    "Jessica Cadwell",
-                    "Robert D. Critton Jr."
+                    "Robert D. Critton Jr.",
+                    "Jessica Cadwell"
                 ],
                 "subject": "Fwd: Fw: Epstein -- I apologize if you have received this but it keeps coming back to me as undeliverable",
                 "timestamp": "2010-02-26T18:37:49",
@@ -13494,8 +13494,8 @@
                 "filename": "HOUSE_OVERSIGHT_030328.txt",
                 "num_lines": 58,
                 "recipients": [
-                    "Jeffrey Epstein",
-                    "Valeria Chomsky"
+                    "Valeria Chomsky",
+                    "Jeffrey Epstein"
                 ],
                 "subject": "Re:",
                 "timestamp": "2016-12-26T18:56:58",
@@ -13822,8 +13822,8 @@
                 "filename": "HOUSE_OVERSIGHT_030381.txt",
                 "num_lines": 21,
                 "recipients": [
-                    "Brad Wechsler",
-                    "Melanie Spinella"
+                    "Melanie Spinella",
+                    "Brad Wechsler"
                 ],
                 "subject": "draft",
                 "timestamp": "2015-10-26T18:08:48",
@@ -14423,8 +14423,8 @@
                 "filename": "HOUSE_OVERSIGHT_030486.txt",
                 "num_lines": 25,
                 "recipients": [
-                    "Jes Staley",
-                    "Peter Mandelson"
+                    "Peter Mandelson",
+                    "Jes Staley"
                 ],
                 "subject": "this is the type of crazy frank rich nytimes that screams be careful",
                 "timestamp": "2010-01-24T14:57:00",
@@ -14870,8 +14870,8 @@
                 "filename": "HOUSE_OVERSIGHT_030589.txt",
                 "num_lines": 74,
                 "recipients": [
-                    "Jay Lefkowitz",
-                    "Martin Weinberg"
+                    "Martin Weinberg",
+                    "Jay Lefkowitz"
                 ],
                 "subject": "Fwd: FW: Ghislaine Maxwell",
                 "timestamp": "2011-03-04T16:31:00",
@@ -15044,10 +15044,10 @@
                 "filename": "HOUSE_OVERSIGHT_030618.txt",
                 "num_lines": 42,
                 "recipients": [
-                    "Jeffrey Epstein",
-                    "Tonja Haddad Coleman",
                     "Debbie Fein",
-                    "Fred Haddad"
+                    "Tonja Haddad Coleman",
+                    "Fred Haddad",
+                    "Jeffrey Epstein"
                 ],
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Re: Request for comment from The Mail on Sunday with noon ET Saturday deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
@@ -15061,9 +15061,9 @@
                 "filename": "HOUSE_OVERSIGHT_030620.txt",
                 "num_lines": 57,
                 "recipients": [
-                    "Darren Indyke",
-                    "Tonja Haddad Coleman",
                     "Debbie Fein",
+                    "Tonja Haddad Coleman",
+                    "Darren Indyke",
                     "Fred Haddad"
                 ],
                 "sent_from_device": "Sent from my iPhone",
@@ -15080,10 +15080,10 @@
                 "filename": "HOUSE_OVERSIGHT_030622.txt",
                 "num_lines": 40,
                 "recipients": [
-                    "Jeffrey Epstein",
-                    "Tonja Haddad Coleman",
                     "Debbie Fein",
-                    "Darren Indyke"
+                    "Tonja Haddad Coleman",
+                    "Darren Indyke",
+                    "Jeffrey Epstein"
                 ],
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Re: Request for comment from The Mail on Sunday with noon ET Saturday deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
@@ -15101,9 +15101,9 @@
                 "filename": "HOUSE_OVERSIGHT_030624.txt",
                 "num_lines": 36,
                 "recipients": [
-                    "Jeffrey Epstein",
                     "Debbie Fein",
-                    "Darren Indyke"
+                    "Darren Indyke",
+                    "Jeffrey Epstein"
                 ],
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Fwd: Request for comment from The Mail on Sunday with noon ET Saturday deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
@@ -15117,11 +15117,11 @@
                 "filename": "HOUSE_OVERSIGHT_030626.txt",
                 "num_lines": 40,
                 "recipients": [
+                    "Ken Starr",
                     "Kathryn Ruemmler",
-                    "Darren Indyke",
                     "Alan Dershowitz",
-                    "Martin Weinberg",
-                    "Ken Starr"
+                    "Darren Indyke",
+                    "Martin Weinberg"
                 ],
                 "subject": "Fwd: FW: Motion to Unseal Epstein Appeal Briefs",
                 "timestamp": "2018-12-21T21:22:54",
@@ -16510,8 +16510,8 @@
                 "filename": "HOUSE_OVERSIGHT_030861.txt",
                 "num_lines": 66,
                 "recipients": [
-                    "Jeffrey Epstein",
-                    "Vahe Stepanian"
+                    "Vahe Stepanian",
+                    "Jeffrey Epstein"
                 ],
                 "subject": "FW: EOD Commodities Note - 31 Mar",
                 "timestamp": "2015-03-31T20:06:56",
@@ -17650,14 +17650,14 @@
                 "filename": "HOUSE_OVERSIGHT_031129.txt",
                 "num_lines": 33,
                 "recipients": [
-                    "Lesley Groff",
-                    "Januiz Banasiak",
-                    "Louella Rabuyo",
-                    "Darren Indyke",
                     "Francis Derby",
-                    "Jeffrey Epstein",
                     "Richard Kahn",
-                    "Richard Barnnet"
+                    "Lesley Groff",
+                    "Jeffrey Epstein",
+                    "Richard Barnnet",
+                    "Louella Rabuyo",
+                    "Januiz Banasiak",
+                    "Darren Indyke"
                 ],
                 "timestamp": "2012-09-28T14:41:02",
                 "type": "Email"
@@ -17906,8 +17906,8 @@
                 "filename": "HOUSE_OVERSIGHT_031203.txt",
                 "num_lines": 89,
                 "recipients": [
-                    "Jeffrey Epstein",
-                    "Bennet Moskowitz"
+                    "Bennet Moskowitz",
+                    "Jeffrey Epstein"
                 ],
                 "subject": "Fwd: JUDGE SWEET ALLOWING STEVEN HOFFENBERG TO TALK WITH THE TOWERS VICTIMS TO EXPLAIN THE VICTIMS SUIT FILING AGAINST JEFF EPSTEIN",
                 "timestamp": "2016-07-13T13:37:19",
@@ -17924,8 +17924,8 @@
                 "filename": "HOUSE_OVERSIGHT_031206.txt",
                 "num_lines": 94,
                 "recipients": [
-                    "Jeffrey Epstein",
-                    "Darren Indyke"
+                    "Darren Indyke",
+                    "Jeffrey Epstein"
                 ],
                 "subject": "RE: JUDGE SWEET ALLOWING STEVEN HOFFENBERG TO TALK WITH THE TOWERS VICTIMS TO EXPLAIN THE VICTIMS SUIT FILING AGAINST JEFF EPSTEIN",
                 "timestamp": "2016-07-13T18:02:16",
@@ -18057,8 +18057,8 @@
                 "filename": "HOUSE_OVERSIGHT_031230.txt",
                 "num_lines": 85,
                 "recipients": [
-                    "Jeffrey Epstein",
-                    "Bennet Moskowitz"
+                    "Bennet Moskowitz",
+                    "Jeffrey Epstein"
                 ],
                 "subject": "Fwd: JUDGE SWEET ALLOWING STEVEN HOFFENBERG TO TALK WITH THE TOWERS VICTIMS TO EXPLAIN THE VICTIMS SUIT FILING AGAINST JEFF EPSTEIN",
                 "timestamp": "2016-07-13T13:37:19",
@@ -18110,8 +18110,8 @@
                 "filename": "HOUSE_OVERSIGHT_031255.txt",
                 "num_lines": 314,
                 "recipients": [
-                    "Peter Aldhous",
-                    "Matthew Schafer"
+                    "Matthew Schafer",
+                    "Peter Aldhous"
                 ],
                 "subject": "Re: URGENT: BuzzFeed News inquiry re allegations of sexual harassment",
                 "timestamp": "2017-12-11T17:18:30",
@@ -18575,10 +18575,10 @@
                 "filename": "HOUSE_OVERSIGHT_031384.txt",
                 "num_lines": 112,
                 "recipients": [
-                    "Scott J. Link",
                     "Jack Goldberger",
+                    "Darren Indyke",
                     "Martin Weinberg",
-                    "Darren Indyke"
+                    "Scott J. Link"
                 ],
                 "subject": "Fwd: Herald",
                 "timestamp": "2019-03-05T23:12:41",
@@ -18793,10 +18793,10 @@
                 "filename": "HOUSE_OVERSIGHT_031428.txt",
                 "num_lines": 112,
                 "recipients": [
-                    "Ken Starr",
-                    "Reid Weingarten",
                     "Lilly Sanchez",
-                    "Martin Weinberg"
+                    "Reid Weingarten",
+                    "Martin Weinberg",
+                    "Ken Starr"
                 ],
                 "subject": "Fwd: Herald",
                 "timestamp": "2019-03-05T23:19:19",
@@ -20133,9 +20133,9 @@
                 "filename": "HOUSE_OVERSIGHT_031699.txt",
                 "num_lines": 149,
                 "recipients": [
-                    "Michael Buchholtz",
+                    "Mark Epstein",
                     "Jeffrey Epstein",
-                    "Mark Epstein"
+                    "Michael Buchholtz"
                 ],
                 "subject": "FW: Rabbi Steven Pruzansky",
                 "timestamp": "2013-11-04T16:06:12",
@@ -20577,8 +20577,8 @@
                 "filename": "HOUSE_OVERSIGHT_031791.txt",
                 "num_lines": 78,
                 "recipients": [
-                    "Jeffrey Epstein",
-                    "Robert D. Critton Jr."
+                    "Robert D. Critton Jr.",
+                    "Jeffrey Epstein"
                 ],
                 "subject": "FW: Jane Doe",
                 "timestamp": "2009-08-05T16:25:51",
@@ -20852,11 +20852,11 @@
                 "filename": "HOUSE_OVERSIGHT_031973.txt",
                 "num_lines": 161,
                 "recipients": [
-                    "Mrisman02",
                     "George Krassner",
-                    "Nick Kazan",
+                    "Mrisman02",
+                    "Rebecca Risman",
                     "Linda W. Grossman",
-                    "Rebecca Risman"
+                    "Nick Kazan"
                 ],
                 "timestamp": "2019-05-15T00:17:32",
                 "type": "Email"
@@ -20872,8 +20872,8 @@
                 "filename": "HOUSE_OVERSIGHT_031980.txt",
                 "num_lines": 109,
                 "recipients": [
-                    "Michael Sitrick",
-                    "Jeffrey Epstein"
+                    "Jeffrey Epstein",
+                    "Michael Sitrick"
                 ],
                 "subject": "Fw: Alexandra Wolfe called from Newsweek",
                 "timestamp": "2011-03-08T16:41:04",
@@ -20954,9 +20954,9 @@
                 "filename": "HOUSE_OVERSIGHT_031994.txt",
                 "num_lines": 37,
                 "recipients": [
-                    "Jeffrey Epstein",
                     "Jack Goldberger",
-                    "Darren Indyke"
+                    "Darren Indyke",
+                    "Jeffrey Epstein"
                 ],
                 "subject": "FW: National Enquirer Comment Request Re: Jeffrey Epstein",
                 "timestamp": "2015-01-29T20:33:35",
@@ -21242,8 +21242,8 @@
                 "filename": "HOUSE_OVERSIGHT_032063.txt",
                 "num_lines": 25,
                 "recipients": [
-                    "Reid Weingarten",
                     "Darren Indyke",
+                    "Reid Weingarten",
                     "Jeffrey Epstein"
                 ],
                 "sent_from_device": "Sent from my BlackBerry - the most secure mobile device",
@@ -21259,8 +21259,8 @@
                 "num_lines": 17,
                 "recipients": [
                     "Kathryn Ruemmler",
-                    "Martin Weinberg",
-                    "Darren Indyke"
+                    "Darren Indyke",
+                    "Martin Weinberg"
                 ],
                 "timestamp": "2016-10-09T01:07:24",
                 "type": "Email"
@@ -21273,8 +21273,8 @@
                 "num_lines": 17,
                 "recipients": [
                     "Kathryn Ruemmler",
-                    "Martin Weinberg",
-                    "Darren Indyke"
+                    "Darren Indyke",
+                    "Martin Weinberg"
                 ],
                 "timestamp": "2016-04-28T21:10:25",
                 "type": "Email"
@@ -22998,8 +22998,8 @@
                 "filename": "HOUSE_OVERSIGHT_032398.txt",
                 "num_lines": 170,
                 "recipients": [
-                    "Jeffrey Epstein",
-                    "Thanu Boonyawatana"
+                    "Thanu Boonyawatana",
+                    "Jeffrey Epstein"
                 ],
                 "subject": "Re:",
                 "timestamp": "2016-12-29T11:35:31",
@@ -23376,8 +23376,8 @@
                 "filename": "HOUSE_OVERSIGHT_032458.txt",
                 "num_lines": 66,
                 "recipients": [
-                    "Jeffrey Epstein",
-                    "Caroline Lang"
+                    "Caroline Lang",
+                    "Jeffrey Epstein"
                 ],
                 "subject": "RE: update",
                 "timestamp": "2017-02-10T17:40:45",
@@ -23390,8 +23390,8 @@
                 "filename": "HOUSE_OVERSIGHT_032461.txt",
                 "num_lines": 71,
                 "recipients": [
-                    "Etienne Binant",
-                    "Jeffrey Epstein"
+                    "Jeffrey Epstein",
+                    "Etienne Binant"
                 ],
                 "subject": "Re: update",
                 "timestamp": "2017-02-10T18:37:32",
@@ -27872,8 +27872,8 @@
                 "filename": "HOUSE_OVERSIGHT_033097.txt",
                 "num_lines": 31,
                 "recipients": [
-                    "Richard Kahn",
-                    "Paul Barrett"
+                    "Paul Barrett",
+                    "Richard Kahn"
                 ],
                 "timestamp": "2018-07-13T11:11:16",
                 "type": "Email"
@@ -28168,8 +28168,8 @@
                 "filename": "HOUSE_OVERSIGHT_033144.txt",
                 "num_lines": 17,
                 "recipients": [
-                    "Richard Kahn",
-                    "Darren Indyke"
+                    "Darren Indyke",
+                    "Richard Kahn"
                 ],
                 "timestamp": "2019-05-13T20:36:29",
                 "type": "Email"
@@ -28982,8 +28982,8 @@
                 "filename": "HOUSE_OVERSIGHT_033222.txt",
                 "num_lines": 67,
                 "recipients": [
-                    "Richard Kahn",
-                    "Jeffrey Epstein"
+                    "Jeffrey Epstein",
+                    "Richard Kahn"
                 ],
                 "subject": "Fwd: February 2nd Hot Topic Briefing: Challenging Immigration Detention with Habeas Petitions",
                 "timestamp": "2017-02-01T17:02:59",
@@ -29050,9 +29050,9 @@
                 "filename": "HOUSE_OVERSIGHT_033228.txt",
                 "num_lines": 17,
                 "recipients": [
+                    "Darren Indyke",
                     "Fred Haddad",
-                    "Jeffrey Epstein",
-                    "Darren Indyke"
+                    "Jeffrey Epstein"
                 ],
                 "subject": "The article",
                 "timestamp": "2017-03-14T12:31:06",
@@ -29290,8 +29290,8 @@
                 "filename": "HOUSE_OVERSIGHT_033251.txt",
                 "num_lines": 34,
                 "recipients": [
-                    "Richard Kahn",
                     "Darren Indyke",
+                    "Richard Kahn",
                     "Jeffrey Epstein"
                 ],
                 "subject": "Cuba trip",
@@ -29909,8 +29909,8 @@
                 "filename": "HOUSE_OVERSIGHT_033304.txt",
                 "num_lines": 6,
                 "recipients": [
-                    "Jeffrey Epstein",
-                    "Darren Indyke"
+                    "Darren Indyke",
+                    "Jeffrey Epstein"
                 ],
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Jared Kushner: The Donald Trump I Know I I Observer",
@@ -30148,8 +30148,8 @@
                 "filename": "HOUSE_OVERSIGHT_033333.txt",
                 "num_lines": 9,
                 "recipients": [
-                    "Jeffrey Epstein",
-                    "Lawrance Visoski"
+                    "Lawrance Visoski",
+                    "Jeffrey Epstein"
                 ],
                 "subject": "President Trump's Private Plane Clipped On Ground At LaGuardia Airport",
                 "timestamp": "2018-11-29T22:02:09",
@@ -30435,8 +30435,8 @@
                 "filename": "HOUSE_OVERSIGHT_033361.txt",
                 "num_lines": 31,
                 "recipients": [
-                    "Jeffrey Epstein",
                     "Jackie Perczek",
+                    "Jeffrey Epstein",
                     "Martin Weinberg"
                 ],
                 "timestamp": "2019-05-29T16:57:42",
@@ -31241,8 +31241,8 @@
                 "filename": "HOUSE_OVERSIGHT_033486.txt",
                 "num_lines": 16,
                 "recipients": [
-                    "Richard Kahn",
                     "Darren Indyke",
+                    "Richard Kahn",
                     "Jeffrey Epstein"
                 ],
                 "sent_from_device": "Sent via BlackBerry by AT&T",
@@ -31289,8 +31289,8 @@
                 "filename": "HOUSE_OVERSIGHT_033489.txt",
                 "num_lines": 34,
                 "recipients": [
-                    "Richard Kahn",
                     "Darren Indyke",
+                    "Richard Kahn",
                     "Jeffrey Epstein"
                 ],
                 "subject": "Cuba trip",
@@ -31387,8 +31387,8 @@
                 "filename": "HOUSE_OVERSIGHT_033508.txt",
                 "num_lines": 125,
                 "recipients": [
-                    "Jeffrey Epstein",
-                    "Robert D. Critton Jr."
+                    "Robert D. Critton Jr.",
+                    "Jeffrey Epstein"
                 ],
                 "subject": "FW: Jane Doe",
                 "timestamp": "2009-08-11T18:55:54",
@@ -31405,9 +31405,9 @@
                 "filename": "HOUSE_OVERSIGHT_033512.txt",
                 "num_lines": 30,
                 "recipients": [
-                    "Jeffrey Epstein",
                     "Darren Indyke",
                     "Jackie Perczek",
+                    "Jeffrey Epstein",
                     "Martin Weinberg"
                 ],
                 "subject": "FW: epstein",
@@ -31541,8 +31541,8 @@
                 "filename": "HOUSE_OVERSIGHT_033564.txt",
                 "num_lines": 26,
                 "recipients": [
-                    "Ken Starr",
-                    "Jeffrey Epstein"
+                    "Jeffrey Epstein",
+                    "Ken Starr"
                 ],
                 "subject": "Re:",
                 "timestamp": "2018-05-19T19:14:30",
@@ -31598,19 +31598,19 @@
                 "filename": "HOUSE_OVERSIGHT_033568.txt",
                 "num_lines": 66,
                 "recipients": [
-                    "Danny Goldberg",
-                    "Lee Quarnstrom",
-                    "Kevin Bright",
-                    "Tom",
-                    "George Krassner",
-                    "Jay Levin",
-                    "Daniel Dawson",
                     "Harry Shearer",
-                    "Michael Simmons",
-                    "Walli Leff",
-                    "Larry Sloman",
+                    "George Krassner",
+                    "Lee Quarnstrom",
+                    "Lanny Swerdlow",
                     "W&K",
-                    "Lanny Swerdlow"
+                    "Daniel Dawson",
+                    "Walli Leff",
+                    "Michael Simmons",
+                    "Kevin Bright",
+                    "Larry Sloman",
+                    "Danny Goldberg",
+                    "Tom",
+                    "Jay Levin"
                 ],
                 "timestamp": "2019-02-10T00:09:30",
                 "type": "Email"
@@ -31626,9 +31626,9 @@
                 "filename": "HOUSE_OVERSIGHT_033575.txt",
                 "num_lines": 16,
                 "recipients": [
-                    "Jeffrey Epstein",
                     "Debbie Fein",
-                    "Darren Indyke"
+                    "Darren Indyke",
+                    "Jeffrey Epstein"
                 ],
                 "timestamp": "2013-05-13T22:28:30",
                 "type": "Email"
@@ -31931,7 +31931,8 @@
                 "is_interesting": false,
                 "num_lines": 2217,
                 "timestamp": "2018-09-24T14:30:00",
-                "type": "JsonFile"
+                "type": "JsonFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 51587,
@@ -31941,7 +31942,8 @@
                 "is_interesting": false,
                 "num_lines": 2571,
                 "timestamp": "2018-09-24T00:00:00",
-                "type": "JsonFile"
+                "type": "JsonFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 364367,
@@ -31960,7 +31962,8 @@
                 "is_interesting": false,
                 "num_lines": 1690,
                 "timestamp": "2018-09-24T00:00:00",
-                "type": "JsonFile"
+                "type": "JsonFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 64769,
@@ -31970,7 +31973,8 @@
                 "is_interesting": false,
                 "num_lines": 3780,
                 "timestamp": "2018-09-24T00:00:00",
-                "type": "JsonFile"
+                "type": "JsonFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 41793,
@@ -31980,7 +31984,8 @@
                 "is_interesting": false,
                 "num_lines": 2052,
                 "timestamp": "2018-09-24T00:00:00",
-                "type": "JsonFile"
+                "type": "JsonFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 31470,
@@ -31990,7 +31995,8 @@
                 "is_interesting": false,
                 "num_lines": 1534,
                 "timestamp": "2018-09-24T18:58:00",
-                "type": "JsonFile"
+                "type": "JsonFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 56791,
@@ -32000,7 +32006,8 @@
                 "is_interesting": false,
                 "num_lines": 2750,
                 "timestamp": "2018-09-24T00:00:00",
-                "type": "JsonFile"
+                "type": "JsonFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 31808,
@@ -32010,7 +32017,8 @@
                 "is_interesting": false,
                 "num_lines": 1589,
                 "timestamp": "2018-09-23T00:00:00",
-                "type": "JsonFile"
+                "type": "JsonFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 36890,
@@ -32020,7 +32028,8 @@
                 "is_interesting": false,
                 "num_lines": 1891,
                 "timestamp": "2018-09-24T00:00:00",
-                "type": "JsonFile"
+                "type": "JsonFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 28667,
@@ -32039,7 +32048,8 @@
                 "is_interesting": false,
                 "num_lines": 1742,
                 "timestamp": "2018-09-24T00:00:00",
-                "type": "JsonFile"
+                "type": "JsonFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 66691,
@@ -32049,7 +32059,8 @@
                 "is_interesting": false,
                 "num_lines": 3831,
                 "timestamp": "2018-09-24T00:00:00",
-                "type": "JsonFile"
+                "type": "JsonFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 67159,
@@ -32059,7 +32070,8 @@
                 "is_interesting": false,
                 "num_lines": 3791,
                 "timestamp": "2018-09-24T00:00:00",
-                "type": "JsonFile"
+                "type": "JsonFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 53121,
@@ -32069,7 +32081,8 @@
                 "is_interesting": false,
                 "num_lines": 1240,
                 "timestamp": "2018-09-24T00:00:00",
-                "type": "JsonFile"
+                "type": "JsonFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 19878,
@@ -32079,7 +32092,8 @@
                 "is_interesting": false,
                 "num_lines": 881,
                 "timestamp": "2019-02-18T00:00:00",
-                "type": "JsonFile"
+                "type": "JsonFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 26708,
@@ -32089,7 +32103,8 @@
                 "is_interesting": false,
                 "num_lines": 1087,
                 "timestamp": "2018-12-14T00:00:00",
-                "type": "JsonFile"
+                "type": "JsonFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 22954,
@@ -32099,7 +32114,8 @@
                 "is_interesting": false,
                 "num_lines": 1173,
                 "timestamp": "2018-09-24T20:35:00",
-                "type": "JsonFile"
+                "type": "JsonFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 15390,
@@ -32109,7 +32125,8 @@
                 "is_interesting": false,
                 "num_lines": 739,
                 "timestamp": "2018-09-24T23:55:00",
-                "type": "JsonFile"
+                "type": "JsonFile",
+                "was_timestamp_extracted": true
             }
         ],
         "MessengerLog": [
@@ -33111,7 +33128,8 @@
                 "is_interesting": false,
                 "num_lines": 145,
                 "timestamp": "2015-11-05T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Brad Edwards & Paul G. Cassell v. Alan Dershowitz",
@@ -33173,7 +33191,8 @@
                 "is_interesting": false,
                 "num_lines": 727,
                 "timestamp": "2017-02-17T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Virginia Giuffre v. Ghislaine Maxwell",
@@ -33206,9 +33225,13 @@
                 "bytes": 1108276,
                 "category": "book",
                 "description": "\"Night Flight\" (draft)",
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "027849"
+                ],
                 "file_id": "011472",
                 "filename": "HOUSE_OVERSIGHT_011472.txt",
-                "is_interesting": false,
+                "is_interesting": true,
                 "num_lines": 15224,
                 "timestamp": "2006-07-12T00:00:00",
                 "type": "OtherFile"
@@ -33223,7 +33246,8 @@
                 "is_interesting": true,
                 "num_lines": 3636,
                 "timestamp": "2015-01-26T12:26:55",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 114857,
@@ -33234,7 +33258,8 @@
                 "is_interesting": true,
                 "num_lines": 2693,
                 "timestamp": "2017-11-14T18:15:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Epstein v. Scott Rothstein, Brad Edwards, and L.M.",
@@ -33288,7 +33313,8 @@
                 "is_interesting": true,
                 "num_lines": 16026,
                 "timestamp": "2015-07-14T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Peggy Siegal",
@@ -33359,7 +33385,8 @@
                 "is_interesting": false,
                 "num_lines": 147,
                 "timestamp": "2011-08-31T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Marc D. Hauser",
@@ -33371,7 +33398,8 @@
                 "is_interesting": false,
                 "num_lines": 5121,
                 "timestamp": "2017-03-20T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Ben Goertzel",
@@ -33383,7 +33411,8 @@
                 "is_interesting": false,
                 "num_lines": 12986,
                 "timestamp": "2013-09-19T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "JetGala",
@@ -33395,7 +33424,8 @@
                 "is_interesting": false,
                 "num_lines": 139,
                 "timestamp": "2013-11-18T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Bloomberg",
@@ -33538,7 +33568,8 @@
                 "is_interesting": false,
                 "num_lines": 8095,
                 "timestamp": "2008-06-24T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Journal of Criminal Law and Criminology",
@@ -33550,7 +33581,8 @@
                 "is_interesting": true,
                 "num_lines": 1911,
                 "timestamp": "2013-12-04T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Jane Doe #1 and Jane Doe #2 v. United States",
@@ -33586,7 +33618,8 @@
                 "is_interesting": false,
                 "num_lines": 4787,
                 "timestamp": "2016-11-17T23:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "BofA / Merrill Lynch Report",
@@ -33719,10 +33752,11 @@
                 ],
                 "file_id": "014697",
                 "filename": "HOUSE_OVERSIGHT_014697.txt",
-                "is_interesting": true,
+                "is_interesting": false,
                 "num_lines": 725,
                 "timestamp": "2017-02-17T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "BofA / Merrill Lynch Report",
@@ -33786,7 +33820,8 @@
                 "is_interesting": false,
                 "num_lines": 191,
                 "timestamp": "2017-04-07T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "BofA / Merrill Lynch Report",
@@ -33846,7 +33881,8 @@
                 "is_interesting": false,
                 "num_lines": 159,
                 "timestamp": "2017-08-26T08:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Paul Krassner",
@@ -33858,7 +33894,8 @@
                 "is_interesting": false,
                 "num_lines": 1918,
                 "timestamp": "2016-11-08T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Nautilus Education",
@@ -33870,7 +33907,8 @@
                 "is_interesting": false,
                 "num_lines": 1810,
                 "timestamp": "2013-09-13T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Moshe Hoffman, Erez Yoeli, and Carlos David Navarrete",
@@ -33879,10 +33917,11 @@
                 "description": "Game Theory and Morality",
                 "file_id": "015501",
                 "filename": "HOUSE_OVERSIGHT_015501.txt",
-                "is_interesting": true,
+                "is_interesting": false,
                 "num_lines": 1214,
                 "timestamp": "2013-08-25T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Virginia Giuffre v. Ghislaine Maxwell",
@@ -33954,7 +33993,8 @@
                 "is_interesting": false,
                 "num_lines": 12455,
                 "timestamp": "2014-09-28T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "BofA / Merrill Lynch Report",
@@ -33978,7 +34018,8 @@
                 "is_interesting": true,
                 "num_lines": 7,
                 "timestamp": "2019-07-03T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "John Brockman",
@@ -34040,7 +34081,8 @@
                 "is_interesting": false,
                 "num_lines": 244,
                 "timestamp": "2019-02-28T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "David Schoen",
@@ -34105,7 +34147,8 @@
                 "is_interesting": true,
                 "num_lines": 74,
                 "timestamp": "2008-07-07T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 3123,
@@ -34173,7 +34216,8 @@
                 "is_interesting": false,
                 "num_lines": 1535,
                 "timestamp": "2009-01-29T15:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 428581,
@@ -34208,7 +34252,7 @@
             {
                 "bytes": 576592,
                 "category": "property",
-                "description": "Palm Beach property tax info (?) that mentions Trump",
+                "description": "Palm Beach property info (?) that mentions Trump",
                 "file_id": "016697",
                 "filename": "HOUSE_OVERSIGHT_016697.txt",
                 "is_interesting": true,
@@ -34262,7 +34306,8 @@
                 "is_interesting": false,
                 "num_lines": 2020,
                 "timestamp": "2010-12-16T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 103382,
@@ -34285,7 +34330,8 @@
                 "is_interesting": false,
                 "num_lines": 5170,
                 "timestamp": "2012-04-02T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Epstein v. Scott Rothstein, Brad Edwards, and L.M.",
@@ -34320,7 +34366,8 @@
                 "is_interesting": false,
                 "num_lines": 4127,
                 "timestamp": "2012-02-15T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "David Schoen",
@@ -34368,7 +34415,8 @@
                 "is_interesting": true,
                 "num_lines": 55,
                 "timestamp": "2019-04-16T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Virginia Giuffre v. Alan Dershowitz",
@@ -34392,7 +34440,8 @@
                 "is_interesting": true,
                 "num_lines": 4,
                 "timestamp": "2019-04-16T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Alan Dershowitz",
@@ -34404,7 +34453,8 @@
                 "is_interesting": true,
                 "num_lines": 4,
                 "timestamp": "2019-04-16T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Virginia Giuffre v. Alan Dershowitz",
@@ -34416,7 +34466,8 @@
                 "is_interesting": true,
                 "num_lines": 90,
                 "timestamp": "2019-04-16T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Virginia Giuffre v. Alan Dershowitz",
@@ -34428,7 +34479,8 @@
                 "is_interesting": true,
                 "num_lines": 8,
                 "timestamp": "2019-04-16T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Virginia Giuffre v. Alan Dershowitz",
@@ -34440,7 +34492,8 @@
                 "is_interesting": true,
                 "num_lines": 471,
                 "timestamp": "2019-04-16T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Virginia Giuffre v. Alan Dershowitz",
@@ -34464,7 +34517,8 @@
                 "is_interesting": true,
                 "num_lines": 42,
                 "timestamp": "2019-04-16T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "JASTA lawsuit against Saudi Arabia by 9/11 victims",
@@ -34476,7 +34530,8 @@
                 "is_interesting": false,
                 "num_lines": 6828,
                 "timestamp": "2012-10-03T20:04:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "JASTA lawsuit against Saudi Arabia by 9/11 victims",
@@ -34523,7 +34578,8 @@
                 "is_interesting": true,
                 "num_lines": 358,
                 "timestamp": "2019-05-31T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Joshua Cooper Ramo",
@@ -34535,7 +34591,8 @@
                 "is_interesting": false,
                 "num_lines": 8558,
                 "timestamp": "2014-10-01T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Clarisse Thorn",
@@ -34547,7 +34604,8 @@
                 "is_interesting": false,
                 "num_lines": 10444,
                 "timestamp": "2012-06-16T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Andres Serrano",
@@ -34559,7 +34617,8 @@
                 "is_interesting": false,
                 "num_lines": 124,
                 "timestamp": "2016-03-14T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 19149,
@@ -34581,7 +34640,8 @@
                 "is_interesting": true,
                 "num_lines": 1855,
                 "timestamp": "2015-05-20T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Integra Realty Resources",
@@ -34593,7 +34653,8 @@
                 "is_interesting": false,
                 "num_lines": 1923,
                 "timestamp": "2015-12-15T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Virgin Islands Daily News",
@@ -34605,7 +34666,8 @@
                 "is_interesting": false,
                 "num_lines": 2193,
                 "timestamp": "2020-10-30T12:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "FBI",
@@ -34617,7 +34679,8 @@
                 "is_interesting": true,
                 "num_lines": 11058,
                 "timestamp": "2006-11-14T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "David Blaine",
@@ -34677,7 +34740,8 @@
                 "is_interesting": false,
                 "num_lines": 174,
                 "timestamp": "2016-12-28T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Ken Starr",
@@ -34753,7 +34817,8 @@
                 "is_interesting": true,
                 "num_lines": 3017,
                 "timestamp": "2007-05-01T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 18214,
@@ -34764,7 +34829,8 @@
                 "is_interesting": false,
                 "num_lines": 270,
                 "timestamp": "2009-11-09T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "New York Times",
@@ -34810,7 +34876,8 @@
                 "is_interesting": true,
                 "num_lines": 427,
                 "timestamp": "2010-11-08T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Daily Mail",
@@ -34822,7 +34889,8 @@
                 "is_interesting": false,
                 "num_lines": 142,
                 "timestamp": "2015-01-13T18:47:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "David Blaine",
@@ -34858,7 +34926,8 @@
                 "is_interesting": true,
                 "num_lines": 11950,
                 "timestamp": "2016-04-01T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Peggy Siegal",
@@ -34886,7 +34955,8 @@
                 "is_interesting": true,
                 "num_lines": 875,
                 "timestamp": "2017-11-08T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Peggy Siegal",
@@ -34924,7 +34994,8 @@
                 "is_interesting": true,
                 "num_lines": 2848,
                 "timestamp": "2015-02-22T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Working Group on Chinese Influence Activities in the U.S.",
@@ -34936,7 +35007,8 @@
                 "is_interesting": true,
                 "num_lines": 7325,
                 "timestamp": "2018-10-24T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Mishcon de Reya",
@@ -34948,7 +35020,8 @@
                 "is_interesting": true,
                 "num_lines": 124,
                 "timestamp": "2018-12-18T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Mary Meeker",
@@ -34994,7 +35067,8 @@
                 "is_interesting": false,
                 "num_lines": 79,
                 "timestamp": "2007-06-02T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Michael Wolff",
@@ -35006,7 +35080,8 @@
                 "is_interesting": true,
                 "num_lines": 1516,
                 "timestamp": "2018-02-27T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Virginia Giuffre",
@@ -35041,7 +35116,8 @@
                 "is_interesting": true,
                 "num_lines": 5512,
                 "timestamp": "2009-08-08T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "FBI",
@@ -35053,7 +35129,8 @@
                 "is_interesting": true,
                 "num_lines": 11736,
                 "timestamp": "2018-02-03T18:20:48",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Virgin Islands Daily News",
@@ -35065,7 +35142,8 @@
                 "is_interesting": false,
                 "num_lines": 1754,
                 "timestamp": "2013-08-01T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Palm Beach Post",
@@ -35077,7 +35155,8 @@
                 "is_interesting": false,
                 "num_lines": 521,
                 "timestamp": "2008-07-27T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Brad Edwards & Paul G. Cassell v. Alan Dershowitz",
@@ -35089,7 +35168,8 @@
                 "is_interesting": true,
                 "num_lines": 6853,
                 "timestamp": "2015-10-16T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "James Patterson",
@@ -35137,7 +35217,8 @@
                 "is_interesting": false,
                 "num_lines": 96,
                 "timestamp": "2019-03-01T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Virgin Islands Daily News",
@@ -35149,7 +35230,8 @@
                 "is_interesting": false,
                 "num_lines": 126,
                 "timestamp": "2019-03-02T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Virgin Islands Daily News",
@@ -35161,7 +35243,8 @@
                 "is_interesting": false,
                 "num_lines": 107,
                 "timestamp": "2019-03-02T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 685,
@@ -35204,7 +35287,8 @@
                 "is_interesting": false,
                 "num_lines": 9227,
                 "timestamp": "2018-06-07T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Deutsche Bank Wealth Management Tax Topics",
@@ -35239,7 +35323,8 @@
                 "is_interesting": false,
                 "num_lines": 356,
                 "timestamp": "2010-12-17T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Deutsche Bank Wealth Management Tax Topics",
@@ -35274,7 +35359,8 @@
                 "is_interesting": false,
                 "num_lines": 1589,
                 "timestamp": "2021-07-01T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Noam Chomsky",
@@ -35297,7 +35383,8 @@
                 "is_interesting": true,
                 "num_lines": 79,
                 "timestamp": "2008-03-04T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Park Partners NYC",
@@ -35309,7 +35396,8 @@
                 "is_interesting": true,
                 "num_lines": 1118,
                 "timestamp": "2015-11-23T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 24651,
@@ -35332,7 +35420,8 @@
                 "is_interesting": false,
                 "num_lines": 62,
                 "timestamp": "2018-12-08T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "DOJ",
@@ -35344,7 +35433,8 @@
                 "is_interesting": true,
                 "num_lines": 8418,
                 "timestamp": "2012-11-14T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Michael Wolff",
@@ -35387,7 +35477,8 @@
                 "is_interesting": true,
                 "num_lines": 421,
                 "timestamp": "2003-07-03T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Law.com",
@@ -35464,7 +35555,8 @@
                 "is_interesting": false,
                 "num_lines": 201,
                 "timestamp": "2011-03-13T02:26:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 2307,
@@ -35486,7 +35578,8 @@
                 "is_interesting": false,
                 "num_lines": 10,
                 "timestamp": "2017-05-12T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Palm Beach Post",
@@ -35498,7 +35591,8 @@
                 "is_interesting": false,
                 "num_lines": 25,
                 "timestamp": "2017-05-10T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Palm Beach Post",
@@ -35510,7 +35604,8 @@
                 "is_interesting": false,
                 "num_lines": 66,
                 "timestamp": "2017-05-12T15:43:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Virgin Islands Daily News",
@@ -35522,7 +35617,8 @@
                 "is_interesting": false,
                 "num_lines": 194,
                 "timestamp": "2019-03-04T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Virgin Islands Daily News",
@@ -35546,7 +35642,8 @@
                 "is_interesting": false,
                 "num_lines": 183,
                 "timestamp": "2019-02-27T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Virgin Islands Daily News",
@@ -35570,7 +35667,8 @@
                 "is_interesting": false,
                 "num_lines": 209,
                 "timestamp": "2019-02-27T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Alan Dershowitz",
@@ -35582,7 +35680,8 @@
                 "is_interesting": true,
                 "num_lines": 27,
                 "timestamp": "2019-03-02T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "BofA / Merrill Lynch Report",
@@ -35618,7 +35717,8 @@
                 "is_interesting": false,
                 "num_lines": 28,
                 "timestamp": "2005-03-13T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Litigation Daily",
@@ -35681,7 +35781,8 @@
                 "is_interesting": false,
                 "num_lines": 39,
                 "timestamp": "2019-02-16T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Terje R\u00f8d-Larsen, Nur Laiq, Fabrice Aidan",
@@ -35749,7 +35850,8 @@
                 "is_interesting": false,
                 "num_lines": 28,
                 "timestamp": "2018-03-20T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 2470,
@@ -35817,7 +35919,8 @@
                 "is_interesting": false,
                 "num_lines": 97,
                 "timestamp": "2016-07-22T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "China Daily",
@@ -35853,7 +35956,8 @@
                 "is_interesting": false,
                 "num_lines": 41,
                 "timestamp": "2017-05-13T08:55:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "BofA / Merrill Lynch Report",
@@ -35877,7 +35981,8 @@
                 "is_interesting": false,
                 "num_lines": 788,
                 "timestamp": "2017-01-16T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 50073,
@@ -35900,7 +36005,8 @@
                 "is_interesting": false,
                 "num_lines": 4828,
                 "timestamp": "2021-03-16T20:18:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Robert Lawrence Kuhn",
@@ -35924,7 +36030,8 @@
                 "is_interesting": false,
                 "num_lines": 280,
                 "timestamp": "2008-02-04T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Roger Schank",
@@ -35936,7 +36043,8 @@
                 "is_interesting": false,
                 "num_lines": 8219,
                 "timestamp": "2007-12-23T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 360223,
@@ -35947,7 +36055,8 @@
                 "is_interesting": true,
                 "num_lines": 5090,
                 "timestamp": "2017-01-01T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 59022,
@@ -36052,7 +36161,8 @@
                 "is_interesting": true,
                 "num_lines": 498,
                 "timestamp": "2016-12-10T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Virgin Islands Daily News",
@@ -36064,7 +36174,8 @@
                 "is_interesting": false,
                 "num_lines": 139,
                 "timestamp": "2017-06-24T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 12220,
@@ -36111,7 +36222,8 @@
                 "is_interesting": false,
                 "num_lines": 83,
                 "timestamp": "2012-11-17T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 517416,
@@ -36122,7 +36234,8 @@
                 "is_interesting": true,
                 "num_lines": 6624,
                 "timestamp": "2020-06-01T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "The Shimon Post",
@@ -36146,7 +36259,8 @@
                 "is_interesting": true,
                 "num_lines": 6977,
                 "timestamp": "2017-12-28T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 261891,
@@ -36157,7 +36271,8 @@
                 "is_interesting": true,
                 "num_lines": 5317,
                 "timestamp": "2019-02-25T11:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "The Shimon Post",
@@ -36204,7 +36319,8 @@
                 "is_interesting": false,
                 "num_lines": 365,
                 "timestamp": "2018-03-14T20:17:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "China Daily",
@@ -36225,7 +36341,7 @@
                 "description": "Africa, Parasites, Intelligence",
                 "file_id": "025143",
                 "filename": "HOUSE_OVERSIGHT_025143.txt",
-                "is_interesting": true,
+                "is_interesting": false,
                 "num_lines": 39,
                 "timestamp": "2018-06-25T00:00:00",
                 "type": "OtherFile"
@@ -36330,7 +36446,8 @@
                 "is_interesting": false,
                 "num_lines": 80,
                 "timestamp": "2015-01-06T02:10:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Laffer Associates",
@@ -36354,7 +36471,8 @@
                 "is_interesting": false,
                 "num_lines": 666,
                 "timestamp": "2018-04-24T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Ken Starr",
@@ -36470,7 +36588,8 @@
                 "is_interesting": false,
                 "num_lines": 603,
                 "timestamp": "2013-03-13T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Jane Doe v. Donald Trump and Jeffrey Epstein",
@@ -36529,7 +36648,8 @@
                 "is_interesting": true,
                 "num_lines": 784,
                 "timestamp": "2017-06-12T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Don McGahn",
@@ -36541,7 +36661,8 @@
                 "is_interesting": false,
                 "num_lines": 187,
                 "timestamp": "2018-02-02T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Jane Doe v. Donald Trump and Jeffrey Epstein",
@@ -36573,10 +36694,11 @@
                 "description": "Cooperating Without Looking: Game Theory Model of Trust and Reciprocal Cooperation",
                 "file_id": "026521",
                 "filename": "HOUSE_OVERSIGHT_026521.txt",
-                "is_interesting": true,
+                "is_interesting": false,
                 "num_lines": 561,
                 "timestamp": "2013-08-11T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Bloomberg",
@@ -36588,7 +36710,8 @@
                 "is_interesting": false,
                 "num_lines": 143,
                 "timestamp": "2014-02-27T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Jeffrey Epstein VI Foundation",
@@ -36633,7 +36756,8 @@
                 "is_interesting": true,
                 "num_lines": 121,
                 "timestamp": "2011-04-01T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 37186,
@@ -36656,7 +36780,8 @@
                 "is_interesting": false,
                 "num_lines": 118,
                 "timestamp": "2013-03-27T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Zubair Khan and Anya Rasulova",
@@ -36668,7 +36793,8 @@
                 "is_interesting": true,
                 "num_lines": 98,
                 "timestamp": "2016-10-19T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Michael Carrier",
@@ -36702,7 +36828,8 @@
                 "is_interesting": false,
                 "num_lines": 160,
                 "timestamp": "2017-02-16T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 146,
@@ -36725,19 +36852,21 @@
                 "is_interesting": false,
                 "num_lines": 2177,
                 "timestamp": "2017-04-17T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Lord Martin Rees",
                 "bytes": 32644,
-                "category": "speech",
+                "category": "academia",
                 "description": "speech at first inaugural Cornell Carl Sagan Lecture",
                 "file_id": "026731",
                 "filename": "HOUSE_OVERSIGHT_026731.txt",
                 "is_interesting": false,
                 "num_lines": 250,
                 "timestamp": "2017-05-08T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Barbro C. Ehnbom's Swedish American Life Science Summit (SALSS)",
@@ -36773,7 +36902,8 @@
                 "is_interesting": false,
                 "num_lines": 112,
                 "timestamp": "2017-09-09T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Mintz Fraade",
@@ -36797,7 +36927,8 @@
                 "is_interesting": false,
                 "num_lines": 673,
                 "timestamp": "2015-11-04T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Deutsche Bank",
@@ -36809,7 +36940,8 @@
                 "is_interesting": false,
                 "num_lines": 81,
                 "timestamp": "2014-10-01T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Scowcroft Group",
@@ -36845,12 +36977,13 @@
                 "is_interesting": true,
                 "num_lines": 80,
                 "timestamp": "2016-09-09T15:15:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Kevin Rudd",
                 "bytes": 29178,
-                "category": "speech",
+                "category": "politics",
                 "description": "speech 'Xi Jinping, China And The Global Order'",
                 "file_id": "026856",
                 "filename": "HOUSE_OVERSIGHT_026856.txt",
@@ -36881,7 +37014,8 @@
                 "is_interesting": false,
                 "num_lines": 216,
                 "timestamp": "2018-09-18T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Robert Lawrence Kuhn",
@@ -36893,7 +37027,8 @@
                 "is_interesting": false,
                 "num_lines": 123,
                 "timestamp": "2018-09-18T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Goldman Sachs Investment Management Division",
@@ -36926,7 +37061,7 @@
                 "description": "The Computational Structure of Mental Representation",
                 "file_id": "027004",
                 "filename": "HOUSE_OVERSIGHT_027004.txt",
-                "is_interesting": true,
+                "is_interesting": false,
                 "num_lines": 254,
                 "timestamp": "2013-02-26T00:00:00",
                 "type": "OtherFile"
@@ -36934,11 +37069,11 @@
             {
                 "author": "Ehud Barak",
                 "bytes": 10603,
-                "category": "speech",
+                "category": "politics",
                 "description": "speech to AIPAC",
                 "file_id": "027009",
                 "filename": "HOUSE_OVERSIGHT_027009.txt",
-                "is_interesting": false,
+                "is_interesting": true,
                 "num_lines": 130,
                 "timestamp": "2013-03-03T00:00:00",
                 "type": "OtherFile"
@@ -36976,7 +37111,8 @@
                 "is_interesting": true,
                 "num_lines": 25,
                 "timestamp": "2018-11-16T10:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Female Health Company (FHX)",
@@ -36988,7 +37124,8 @@
                 "is_interesting": true,
                 "num_lines": 120,
                 "timestamp": "2012-03-26T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Female Health Company (FHX)",
@@ -37000,7 +37137,8 @@
                 "is_interesting": true,
                 "num_lines": 209,
                 "timestamp": "2006-01-01T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Virgin Islands Daily News",
@@ -37012,13 +37150,16 @@
                 "is_interesting": false,
                 "num_lines": 27,
                 "timestamp": "2019-02-23T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Ehud Barak",
                 "bytes": 1108276,
                 "category": "book",
                 "description": "\"Night Flight\" (draft)",
+                "dupe_type": "same",
+                "duplicate_of_id": "011472",
                 "file_id": "027849",
                 "filename": "HOUSE_OVERSIGHT_027849.txt",
                 "is_interesting": false,
@@ -37035,7 +37176,8 @@
                 "is_interesting": false,
                 "num_lines": 1037,
                 "timestamp": "2020-10-15T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "New York Times",
@@ -37059,7 +37201,8 @@
                 "is_interesting": true,
                 "num_lines": 1310,
                 "timestamp": "2019-02-27T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Zubair Khan and Anya Rasulova",
@@ -37098,7 +37241,8 @@
                 "is_interesting": false,
                 "num_lines": 79,
                 "timestamp": "2015-04-24T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Martin Weinberg",
@@ -37114,7 +37258,8 @@
                 "is_interesting": true,
                 "num_lines": 79,
                 "timestamp": "2015-04-24T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Zubair Khan and Anya Rasulova",
@@ -37157,7 +37302,7 @@
                 "description": "response sent to the Gruterites (Gordon Getty fans)",
                 "file_id": "029155",
                 "filename": "HOUSE_OVERSIGHT_029155.txt",
-                "is_interesting": true,
+                "is_interesting": false,
                 "num_lines": 115,
                 "timestamp": "2018-03-19T00:00:00",
                 "type": "OtherFile"
@@ -37172,7 +37317,8 @@
                 "is_interesting": false,
                 "num_lines": 52,
                 "timestamp": "2018-03-16T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Robert Lawrence Kuhn",
@@ -37184,7 +37330,8 @@
                 "is_interesting": false,
                 "num_lines": 114,
                 "timestamp": "2018-08-02T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Palm Beach Daily News",
@@ -37196,7 +37343,8 @@
                 "is_interesting": false,
                 "num_lines": 60,
                 "timestamp": "2016-11-24T07:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Jane Doe v. Donald Trump and Jeffrey Epstein",
@@ -37219,7 +37367,8 @@
                 "is_interesting": false,
                 "num_lines": 29,
                 "timestamp": "2018-11-25T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Michael J. Boccio",
@@ -37255,7 +37404,8 @@
                 "is_interesting": true,
                 "num_lines": 17,
                 "timestamp": "2011-07-11T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "CCH Tax",
@@ -37313,7 +37463,8 @@
                 "is_interesting": false,
                 "num_lines": 59,
                 "timestamp": "2013-04-29T12:09:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 3356,
@@ -37324,7 +37475,8 @@
                 "is_interesting": true,
                 "num_lines": 78,
                 "timestamp": "2014-07-31T14:32:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 732,
@@ -37380,10 +37532,11 @@
                 ],
                 "file_id": "029355",
                 "filename": "HOUSE_OVERSIGHT_029355.txt",
-                "is_interesting": true,
+                "is_interesting": false,
                 "num_lines": 73,
                 "timestamp": "2013-01-12T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 1271,
@@ -37422,7 +37575,8 @@
                 "is_interesting": true,
                 "num_lines": 95,
                 "timestamp": "2016-10-10T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "National Enquirer / Radar Online v. FBI",
@@ -37463,7 +37617,8 @@
                 "is_interesting": true,
                 "num_lines": 55,
                 "timestamp": "2017-06-19T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "BofA Wealth Management",
@@ -37497,7 +37652,8 @@
                 "is_interesting": false,
                 "num_lines": 149,
                 "timestamp": "2018-03-07T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 37932,
@@ -37508,7 +37664,8 @@
                 "is_interesting": true,
                 "num_lines": 729,
                 "timestamp": "2018-03-10T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 1656,
@@ -37519,7 +37676,8 @@
                 "is_interesting": false,
                 "num_lines": 29,
                 "timestamp": "2018-11-25T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Virgin Islands Daily News",
@@ -37531,7 +37689,8 @@
                 "is_interesting": false,
                 "num_lines": 110,
                 "timestamp": "2018-12-05T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "The Real Deal",
@@ -37555,7 +37714,8 @@
                 "is_interesting": false,
                 "num_lines": 137,
                 "timestamp": "2013-05-29T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 3863,
@@ -37587,7 +37747,8 @@
                 "is_interesting": false,
                 "num_lines": 29,
                 "timestamp": "2018-11-25T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 1653,
@@ -37598,7 +37759,8 @@
                 "is_interesting": false,
                 "num_lines": 30,
                 "timestamp": "2018-11-25T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 1593,
@@ -37609,7 +37771,8 @@
                 "is_interesting": false,
                 "num_lines": 31,
                 "timestamp": "2018-11-25T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Virgin Islands Daily News",
@@ -37621,7 +37784,8 @@
                 "is_interesting": false,
                 "num_lines": 76,
                 "timestamp": "2019-02-22T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 1625,
@@ -37679,7 +37843,8 @@
                 "is_interesting": false,
                 "num_lines": 1016,
                 "timestamp": "2011-12-12T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "The Shimon Post",
@@ -37751,7 +37916,8 @@
                 "is_interesting": false,
                 "num_lines": 107,
                 "timestamp": "2019-07-03T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 2315,
@@ -37786,7 +37952,8 @@
                 "is_interesting": false,
                 "num_lines": 51,
                 "timestamp": "2016-11-08T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 1725,
@@ -37809,7 +37976,8 @@
                 "is_interesting": false,
                 "num_lines": 34,
                 "timestamp": "2018-03-16T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Alan Dershowitz",
@@ -37821,7 +37989,8 @@
                 "is_interesting": false,
                 "num_lines": 36,
                 "timestamp": "2018-03-16T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "The Shimon Post",
@@ -37845,7 +38014,8 @@
                 "is_interesting": false,
                 "num_lines": 40,
                 "timestamp": "2015-01-07T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Ian Osborne & Partners LLP",
@@ -37869,7 +38039,8 @@
                 "is_interesting": false,
                 "num_lines": 164,
                 "timestamp": "2019-07-06T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "The Shimon Post",
@@ -37892,7 +38063,8 @@
                 "is_interesting": true,
                 "num_lines": 43,
                 "timestamp": "2011-02-25T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Independent Filmmaker Project (IFP)",
@@ -37904,7 +38076,8 @@
                 "is_interesting": false,
                 "num_lines": 36,
                 "timestamp": "2017-11-27T18:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "JP Morgan",
@@ -37950,7 +38123,8 @@
                 "is_interesting": false,
                 "num_lines": 589,
                 "timestamp": "2014-04-22T03:25:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "JP Morgan",
@@ -37962,7 +38136,8 @@
                 "is_interesting": false,
                 "num_lines": 332,
                 "timestamp": "2012-11-14T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "JP Morgan",
@@ -38064,7 +38239,8 @@
                 "is_interesting": false,
                 "num_lines": 185,
                 "timestamp": "2016-06-24T20:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Virgin Islands Daily News",
@@ -38076,7 +38252,8 @@
                 "is_interesting": false,
                 "num_lines": 154,
                 "timestamp": "2017-01-10T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 26,
@@ -38108,7 +38285,8 @@
                 "is_interesting": false,
                 "num_lines": 794,
                 "timestamp": "2001-03-11T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "WaPo",
@@ -38161,7 +38339,8 @@
                 "is_interesting": true,
                 "num_lines": 97,
                 "timestamp": "2015-08-19T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 19925,
@@ -38193,7 +38372,8 @@
                 "is_interesting": false,
                 "num_lines": 231,
                 "timestamp": "2017-05-22T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Fortune Magazine",
@@ -38261,7 +38441,8 @@
                 "is_interesting": false,
                 "num_lines": 55,
                 "timestamp": "2019-03-27T01:52:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 566,
@@ -38342,7 +38523,8 @@
                 "is_interesting": false,
                 "num_lines": 105,
                 "timestamp": "2014-08-19T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "The Shimon Post",
@@ -38365,7 +38547,8 @@
                 "is_interesting": false,
                 "num_lines": 41,
                 "timestamp": "2017-08-24T19:14:01",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Lawrence Krauss",
@@ -38376,7 +38559,8 @@
                 "is_interesting": false,
                 "num_lines": 7,
                 "timestamp": "2017-07-11T23:42:34",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Lawrence Krauss",
@@ -38387,7 +38571,8 @@
                 "is_interesting": false,
                 "num_lines": 31,
                 "timestamp": "2017-07-05T23:01:43",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "linkspirit",
@@ -38398,7 +38583,8 @@
                 "is_interesting": true,
                 "num_lines": 46,
                 "timestamp": "2019-04-05T15:57:08",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Zubair Khan and Anya Rasulova",
@@ -38446,7 +38632,8 @@
                 "is_interesting": false,
                 "num_lines": 47,
                 "timestamp": "2017-01-15T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Robert Lawrence Kuhn",
@@ -38458,7 +38645,8 @@
                 "is_interesting": false,
                 "num_lines": 135,
                 "timestamp": "2017-10-26T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 101,
@@ -38529,7 +38717,8 @@
                 "is_interesting": true,
                 "num_lines": 212,
                 "timestamp": "2016-09-30T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Business Standard",
@@ -38541,7 +38730,8 @@
                 "is_interesting": false,
                 "num_lines": 95,
                 "timestamp": "2017-03-30T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 448,
@@ -38564,7 +38754,8 @@
                 "is_interesting": false,
                 "num_lines": 61,
                 "timestamp": "2017-09-14T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Robert Trivers and Nathan H. Lents",
@@ -38573,7 +38764,7 @@
                 "description": "'Does Trump Fit the Evolutionary Role of Narcissistic Sociopath?' (draft)",
                 "file_id": "033323",
                 "filename": "HOUSE_OVERSIGHT_033323.txt",
-                "is_interesting": true,
+                "is_interesting": false,
                 "num_lines": 27,
                 "timestamp": "2018-12-07T00:00:00",
                 "type": "OtherFile"
@@ -38599,7 +38790,8 @@
                 "is_interesting": false,
                 "num_lines": 84,
                 "timestamp": "2019-05-29T00:00:00",
-                "type": "OtherFile"
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "WaPo",
