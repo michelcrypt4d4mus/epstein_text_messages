@@ -65,13 +65,13 @@ is_env_var_set = lambda s: len(environ.get(s) or '') > 0
 is_html_script = current_script in HTML_SCRIPTS
 
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
+args.names = [None if n == 'None' else n for n in (args.names or [])]
 args.output_emails = args.output_emails or args.all_emails
 args.output_other = args.output_other or args.all_other_files or args.uninteresting
 args.overwrite_pickle = args.overwrite_pickle or (is_env_var_set('OVERWRITE_PICKLE') and not is_env_var_set('PICKLED'))
 args.width = args.width if is_html_script else None
-is_output_selected = any([arg.startswith('output_') and value for arg, value in vars(args).items()])
-is_output_selected = is_output_selected or args.json_metadata or args.colors_only
-specified_names: list[str | None] = [None if n == 'None' else n for n in (args.names or [])]
+is_any_output_selected = any([arg.startswith('output_') and value for arg, value in vars(args).items()])
+is_any_output_selected = is_any_output_selected or args.json_metadata or args.colors_only
 
 # Log level args
 if args.deep_debug:
@@ -86,9 +86,12 @@ elif not env_log_level:
 logger.info(f'Log level set to {logger.level}...')
 
 # Massage args that depend on other args to the appropriate state
-if current_script == 'epstein_generate' and not (is_output_selected or args.make_clean):
+if current_script == 'epstein_generate' and not (is_any_output_selected or args.make_clean):
     logger.warning(f"No output section chosen; outputting default selection of texts, selected emails, and other files...")
     args.output_texts = args.output_emails = args.output_other = True
 
 if args.debug:
-    logger.warning(f"Invocation args:\ncurrent_script={current_script}\nis_html_script={is_html_script},\nis_output_selected={is_output_selected}\nspecified_names={specified_names},\nargs={args}")
+    logger.warning(f"Invocation args:\ncurrent_script={current_script}\nis_html_script={is_html_script},\nis_output_selected={is_any_output_selected},\nargs={args}")
+
+if args.names:
+    logger.warning(f"Output restricted to {args.names}")
