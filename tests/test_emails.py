@@ -206,7 +206,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 53,
+    None: 51,
     "ACT for America": 1,
     "Alan Dershowitz": 11,
     'Alan Dlugash': 1,
