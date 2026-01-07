@@ -322,11 +322,6 @@ class EpsteinFiles:
             console.line(2)
 
         print_centered(MessengerLog.summary_table(self.imessage_logs))
-        text_summary_msg = f"\nDeanonymized {Document.known_author_count(self.imessage_logs)} of "
-        text_summary_msg += f"{len(self.imessage_logs)} {TEXT_MESSAGE} logs found in {len(self.all_files):,} files."
-        console.print(text_summary_msg)
-        imessage_msg_count = sum([len(log.messages) for log in self.imessage_logs])
-        console.print(f"Found {imessage_msg_count} text messages in {len(self.imessage_logs)} iMessage log files.")
 
     def table_of_emailers(self) -> Table:
         attributed_emails = [e for e in self.non_duplicate_emails() if e.author]
