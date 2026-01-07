@@ -232,7 +232,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Brad Karp": 5,
     BRAD_WECHSLER: 2,
     "Caroline Lang": 2,
-    'Caryl Ratner': 1,
+    'Caryl Ratner': 2,
     "Cecile de Jongh": 2,
     CECILIA_STEEN: 1,
     "Charlotte Abrams": 1,
@@ -290,7 +290,7 @@ EMAIL_RECIPIENT_COUNTS = {
     JEAN_HUGUEN: 1,
     JEAN_LUC_BRUNEL: 9,
     JEFF_FULLER: 2,
-    JEFFREY_EPSTEIN: 1460,
+    JEFFREY_EPSTEIN: 1462,
     JES_STALEY: 7,
     JESSICA_CADWELL: 3,
     "Joel": 3,
@@ -308,7 +308,7 @@ EMAIL_RECIPIENT_COUNTS = {
     KATHRYN_RUEMMLER: 55,
     KEN_STARR: 9,
     "Kenneth E. Mapp": 1,
-    "Kevin Bright": 3,
+    "Kevin Bright": 4,
     "Landon Thomas Jr": 52,
     'Lanny Swerdlow': 1,
     "Larry Cohen": 1,
@@ -443,7 +443,6 @@ EMAIL_RECIPIENT_COUNTS = {
 }
 
 UNKNOWN_RECIPIENT_FILE_IDS = [
-    "013482",
     "016692",
     "016693",
     '018726',
@@ -480,7 +479,6 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     "031039",
     "031040",
     '031278',
-    "031329",
     "031688",
     "031747",
     "031826",
