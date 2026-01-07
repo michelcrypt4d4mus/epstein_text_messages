@@ -102,8 +102,13 @@ def build_highlighter(pattern: str) -> EpsteinHighlighter:
     return TempHighlighter()
 
 
-def build_table(title: str | None, **kwargs) -> Table:
-    return Table(title=title, **{**DEFAULT_TABLE_KWARGS, **kwargs})
+def build_table(title: str | None, cols: list[str | dict] | None = None, **kwargs) -> Table:
+    table = Table(title=title, **{**DEFAULT_TABLE_KWARGS, **kwargs})
+
+    if cols:
+        add_cols_to_table(table, cols)
+
+    return table
 
 
 def join_texts(txts: list[Text], join: str = ' ', encloser: str = '', encloser_style: str = 'wheat4') -> Text:
