@@ -198,7 +198,7 @@ EMAILERS = [
     'Vladimir Yudashkin',
 ]
 
-EMAILER_REGEXES = deepcopy(EMAILER_ID_REGEXES)
+EMAILER_REGEXES = deepcopy(EMAILER_ID_REGEXES)  # Keep a copy without the simple EMAILERS regexes
 
 # Add simple matching regexes for EMAILERS entries to EMAILER_REGEXES
 for emailer in EMAILERS:

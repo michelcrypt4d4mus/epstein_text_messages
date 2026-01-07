@@ -75,7 +75,7 @@ class TextMessage:
         return msg_txt
 
     def __rich__(self) -> Text:
+        timestamp_txt = Text(f"[{self.timestamp_str}]", style=TIMESTAMP_DIM).append(' ')
         author_style = get_style_for_name(self.author_str if self.author_str.startswith('+') else self.author)
         author_txt = Text(self.author_str, style=author_style)
-        timestamp_txt = Text(f"[{self.timestamp_str}]", style=TIMESTAMP_DIM).append(' ')
         return Text('').append(timestamp_txt).append(author_txt).append(': ', style='dim').append(self._message())
