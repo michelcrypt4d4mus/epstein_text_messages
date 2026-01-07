@@ -26,15 +26,6 @@ counts = defaultdict(int)
 #     console.print(doc.summary())
 #     print_json('metadata', doc.metadata())
 
-for log in epstein_files.imessage_logs:
-    for i, message in enumerate(log.messages):
-        try:
-            message.parse_timestamp()
-        except Exception as e:
-            logger.error(f"line {i}, {message}:  {e}")
-
-
-sys.exit()
 
 def print_potential_useless_emailers():
     emailers = sorted(epstein_files.all_emailers(), key=lambda e: epstein_files.earliest_email_at(e))
@@ -53,7 +44,8 @@ def print_potential_useless_emailers():
             console.print(f"{emailer_str} received {len(emails)} emails but sent none.")
 
 
-
+print_potential_useless_emailers()
+sys.exit()
 counts = defaultdict(int)
 
 
