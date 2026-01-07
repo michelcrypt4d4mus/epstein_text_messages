@@ -840,8 +840,8 @@ JASTA = 'JASTA'
 JASTA_SAUDI_LAWSUIT = f"{JASTA} lawsuit against Saudi Arabia by 9/11 victims"
 JP_MORGAN_EYE_ON_THE_MARKET = f"Eye On The Market"
 LAWRENCE_KRAUSS_ASU_ORIGINS = f"{LAWRENCE_KRAUSS}'s ASU Origins Project"
-LEXIS_NEXIS_CVRA_SEARCH = f"{LEXIS_NEXIS} search for case law around the {CVRA}"
 KEN_STARR_LETTER = f"letter to judge overseeing Epstein's criminal prosecution, mentions Alex Acosta"
+LEXIS_NEXIS_CVRA_SEARCH = f"{LEXIS_NEXIS} search for case law around the {CVRA}"
 NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
 OBAMA_JOKE = 'joke about Obama'
 PALM_BEACH_CODE_ENFORCEMENT = f'{PALM_BEACH} Code Enforcement'
@@ -1180,16 +1180,16 @@ OTHER_FILES_LEGAL = [
 ]
 
 OTHER_FILES_CONFERENCES = [
-    DocCfg(id='014315', author=BOFA_MERRILL, description=f'2016 Future of Financials Conference, attached to 014312'),
+    DocCfg(id='014315', author=BOFA_MERRILL, description=f'2016 Future of Financials Conference', attached_to_email_id='014312'),
     DocCfg(id='026825', author=DEUTSCHE_BANK, description=f"Asset & Wealth Management featured speaker bios"),  # Really "Deutsche Asset" which may not be Deutsche Bank?
     DocCfg(id='023123', author=LAWRENCE_KRAUSS_ASU_ORIGINS, description=f"{STRANGE_BEDFELLOWS} (old draft)"),
     DocCfg(id='023120', author=LAWRENCE_KRAUSS_ASU_ORIGINS, description=STRANGE_BEDFELLOWS, duplicate_ids=['023121'], dupe_type='earlier'),
-    DocCfg(id='031359', author=NOBEL_CHARITABLE_TRUST, description=f"Earth Environment Convention about ESG investing"),
+    DocCfg(id='031359', author=NOBEL_CHARITABLE_TRUST, description=f'"Earth Environment Convention" about ESG investing'),
     DocCfg(id='031354', author=NOBEL_CHARITABLE_TRUST, description=f'"Thinking About the Environment and Technology" report 2011'),
     DocCfg(id='019300', author=SVETLANA_POZHIDAEVA, description=f'{WOMEN_EMPOWERMENT} f. {KATHRYN_RUEMMLER}', date='2019-04-05'),
     DocCfg(id='022267', author=SVETLANA_POZHIDAEVA, description=f'{WOMEN_EMPOWERMENT} founder essay about growing the seminar business'),
     DocCfg(id='022407', author=SVETLANA_POZHIDAEVA, description=f'{WOMEN_EMPOWERMENT} seminar pitch deck'),
-    DocCfg(id='017524', author=SWEDISH_LIFE_SCIENCES_SUMMIT, description=f"2012 program emailed to epstein BY {BARBRO_C_EHNBOM} in 031226", date='2012-08-18'),
+    DocCfg(id='017524', author=SWEDISH_LIFE_SCIENCES_SUMMIT, description=f"2012 program", date='2012-08-18', attached_to_email_id='031226'),
     DocCfg(id='026747', author=SWEDISH_LIFE_SCIENCES_SUMMIT, description=f"2017 program", date='2017-08-23'),
     DocCfg(id='014951', author='TED Talks', description=f"2017 program", date='2017-04-20'),
     DocCfg(id='024179', author=UN_GENERAL_ASSEMBLY, description=f'president and first lady schedule', date='2012-09-21'),
@@ -1405,7 +1405,7 @@ OTHER_FILES_POLITICS = [
         description=f"'Breaking Down Democracy: Goals, Strategies, and Methods of Modern Authoritarians'",
         date='2017-06-02',
     ),
-    DocCfg(id='026856', author='Kevin Rudd', description=f"speech 'Xi Jinping, China And The Global Order'", date='2018-06-26'),
+    DocCfg(id='026856', author='Kevin Rudd', description=f'speech "Xi Jinping, China And The Global Order"', date='2018-06-26'),
     DocCfg(id='026827', author='Scowcroft Group', description=f'report on ISIS', date='2015-11-14'),
     DocCfg(id='024294', author=STACEY_PLASKETT, description=f"campaign flier", date='2016-10-01'),
     DocCfg(
