@@ -1,5 +1,5 @@
 import re
-from dataclasses import dataclass, fields
+from dataclasses import dataclass, field, fields
 from datetime import datetime
 
 from rich.text import Text
@@ -30,7 +30,7 @@ class TextMessage:
     """Class representing a single iMessage text message."""
     author: str | None
     author_str: str = ''
-    id_confirmed: bool = False
+    is_id_confirmed: bool = False
     text: str
     timestamp_str: str
 
@@ -44,8 +44,16 @@ class TextMessage:
         else:
             self.author_str = self.author_str or self.author
 
-        if not self.id_confirmed and self.author is not None and self.author != JEFFREY_EPSTEIN:
+        if not self.is_id_confirmed and self.author is not None and self.author != JEFFREY_EPSTEIN:
             self.author_str += ' (?)'
+
+        if self.is_link():
+            self.text = self.text.replace('\n', '').replace(' ', '_')
+        else:
+            self.text = self.text.replace('\n', ' ')
+
+    def is_link(self) -> bool:
+        return self.text.startswith('http')
 
     def parse_timestamp(self) -> datetime:
         return datetime.strptime(self.timestamp_str, MSG_DATE_FORMAT)
@@ -61,28 +69,10 @@ class TextMessage:
         return Text(f"[{timestamp_str}]", style=TIMESTAMP_DIM)
 
     def _message(self) -> Text:
-        lines = self.text.split('\n')
-
-        # Fix multiline links
-        if self.text.startswith('http'):
-            text = self.text
-
-            if len(lines) > 1 and not lines[0].endswith('html'):
-                if len(lines) > 2 and lines[1].endswith('-'):
-                    text = text.replace('\n', '', 2)
-                else:
-                    text = text.replace('\n', '', 1)
-
-            lines = text.split('\n')
-            link_text = lines.pop()
-            msg_txt = Text('').append(Text.from_markup(f"[link={link_text}]{link_text}[/link]", style=TEXT_LINK))
-
-            if len(lines) > 0:
-                msg_txt.append('\n' + ' '.join(lines))
+        if self.is_link():
+            return Text.from_markup(f"[link={self.text}]{self.text}[/link]", style=TEXT_LINK)
         else:
-            msg_txt = highlighter(' '.join(lines))  # remove newlines
-
-        return msg_txt
+            return highlighter(self.text)
 
     def __rich__(self) -> Text:
         timestamp_txt = self.timestamp_txt().append(' ')

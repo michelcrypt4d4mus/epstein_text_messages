@@ -86,7 +86,7 @@ class MessengerLog(Communication):
         return TextMessage(
             author=self.author if (is_phone_number or not author_str) else author_str,
             author_str=author_str if is_phone_number else '',  # Preserve phone numbers
-            id_confirmed=not self.is_attribution_uncertain(),
+            is_id_confirmed=not self.is_attribution_uncertain(),
             text=match.group(4).strip(),
             timestamp_str=match.group(2).strip(),
         )
