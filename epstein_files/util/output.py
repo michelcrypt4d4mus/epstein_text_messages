@@ -3,7 +3,7 @@ import json
 from rich.padding import Padding
 
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import Email
+from epstein_files.documents.email import JUNK_EMAILERS, KRASSNER_RECIPIENTS, Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles, count_by_month
@@ -11,8 +11,8 @@ from epstein_files.util.constant import output_files
 from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.output_files import JSON_FILES_JSON_PATH, JSON_METADATA_PATH
-from epstein_files.util.constant.strings import TIMESTAMP_DIM
-from epstein_files.util.data import dict_sets_to_lists
+from epstein_files.util.constant.strings import TIMESTAMP_DIM, TIMESTAMP_STYLE
+from epstein_files.util.data import dict_sets_to_lists, sort_dict
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
 from epstein_files.util.logging import logger
@@ -45,16 +45,12 @@ DEFAULT_EMAILERS = [
     None,
 ]
 
-# Order matters. Default names to print tables w/email subject, timestamp, etc for. # TODO: get rid of this ?
-DEFAULT_EMAILER_TABLES: list[str | None] = [
-    GHISLAINE_MAXWELL,
-    PRINCE_ANDREW,
-    SULTAN_BIN_SULAYEM,
-    ARIANE_DE_ROTHSCHILD,
+INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [
+    'ACT for America',
+    'BS Stern',
+    INTELLIGENCE_SQUARED,
+    UNKNOWN,
 ]
-
-if len(set(DEFAULT_EMAILERS).intersection(set(DEFAULT_EMAILER_TABLES))) > 0:
-    raise RuntimeError(f"Some names appear in both DEFAULT_EMAILERS and DEFAULT_EMAILER_TABLES")
 
 
 def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
@@ -75,7 +71,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
         print_other_page_link(epstein_files)
         console.line(2)
         console.print(table_of_selected_emailers(emailers_to_print, epstein_files))
-        console.print(Padding(epstein_files.table_of_emailers(), (2, 0)))
+        console.print(Padding(_all_emailers_table(epstein_files), (2, 0)))
 
     for author in emailers_to_print:
         author_emails = epstein_files.print_emails_for(author)
@@ -133,9 +129,7 @@ def print_other_files_section(files: list[OtherFile], epstein_files: EpsteinFile
     other_files_preview_table = OtherFile.files_preview_table(files, title_pfx=title_pfx)
     print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {title_pfx}Files That Are Neither Emails Nor Text Messages")
     print_other_page_link(epstein_files)
-    console.line(2)
-    print_centered(category_table)
-    console.line(2)
+    print_centered(Padding(category_table, (2, 0)))
     console.print(other_files_preview_table)
 
 
@@ -146,13 +140,12 @@ def print_text_messages_section(imessage_logs: list[MessengerLog]) -> None:
         return
 
     print_section_header('All of His Text Messages')
+    print_centered("(conversations are sorted chronologically based on timestamp of first message in the log file)", style='dim')
+    console.line(2)
 
     if not args.names:
-        print_centered("(conversations are sorted chronologically based on timestamp of first message in the log file)", style='dim')
-        console.line(2)
         print_centered(MessengerLog.summary_table(imessage_logs))
-
-    console.line(2)
+        console.line(2)
 
     for log_file in imessage_logs:
         console.print(Padding(log_file))
@@ -218,6 +211,64 @@ def write_urls() -> None:
         console.line()
 
     logger.warning(f"Wrote {len(url_vars)} URL variables to '{URLS_ENV}'\n")
+
+
+def _all_emailers_table(epstein_files: EpsteinFiles) -> Table:
+    attributed_emails = [e for e in epstein_files.non_duplicate_emails() if e.author]
+    footer = f"(identified {len(epstein_files.email_author_counts)} authors of {len(attributed_emails):,}"
+    footer = f"{footer} out of {len(epstein_files.non_duplicate_emails()):,} emails)"
+    counts_table = build_table("All of the Email Counterparties Who Appear in the Files", caption=footer)
+
+    add_cols_to_table(counts_table, [
+        'Name',
+        {'name': 'Count', 'justify': 'right', 'style': 'bold bright_white'},
+        {'name': 'Sent', 'justify': 'right', 'style': 'gray74'},
+        {'name': 'Recv', 'justify': 'right', 'style': 'gray74'},
+        {'name': 'First', 'style': TIMESTAMP_STYLE},
+        {'name': 'Last', 'style': LAST_TIMESTAMP_STYLE},
+        {'name': 'Days', 'justify': 'right', 'style': 'dim'},
+        JMAIL,
+        EPSTEIN_MEDIA,
+        EPSTEIN_WEB,
+        'Twitter',
+    ])
+
+    emailer_counts = {
+        emailer: epstein_files.email_author_counts[emailer] + epstein_files.email_recipient_counts[emailer]
+        for emailer in epstein_files.all_emailers(True)
+    }
+
+    for name, count in sort_dict(emailer_counts):
+        style = get_style_for_name(name, default_style=DEFAULT_NAME_STYLE)
+        emails = epstein_files.emails_for(name)
+
+        counts_table.add_row(
+            Text.from_markup(link_markup(epsteinify_name_url(name or UNKNOWN), name or UNKNOWN, style)),
+            f"{count:,}",
+            str(epstein_files.email_author_counts[name]),
+            str(epstein_files.email_recipient_counts[name]),
+            emails[0].date_str(),
+            emails[-1].date_str(),
+            f"{epstein_files.email_conversation_length_in_days(name)}",
+            link_text_obj(search_jmail_url(name), JMAIL) if name else '',
+            link_text_obj(epstein_media_person_url(name), EPSTEIN_MEDIA) if is_ok_for_epstein_web(name) else '',
+            link_text_obj(epstein_web_person_url(name), EPSTEIN_WEB) if is_ok_for_epstein_web(name) else '',
+            link_text_obj(search_twitter_url(name), 'search X') if name else '',
+        )
+
+    return counts_table
+
+
+def is_ok_for_epstein_web(name: str | None) -> bool:
+    """Return True if it's likely that EpsteinWeb has a page for this name."""
+    if name is None or ' ' not in name:
+        return False
+    elif '@' in name or '/' in name or '??' in name:
+        return False
+    elif name in INVALID_FOR_EPSTEIN_WEB:
+        return False
+
+    return True
 
 
 def _verify_all_emails_were_printed(epstein_files: EpsteinFiles, already_printed_emails: list[Email]) -> None:
