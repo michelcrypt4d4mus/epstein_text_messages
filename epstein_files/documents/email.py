@@ -20,7 +20,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constants import *
 from epstein_files.util.data import (TIMEZONE_INFO, collapse_newlines, escape_single_quotes, extract_last_name,
-     flatten, remove_timezone, uniquify)
+     flatten, listify, remove_timezone, uniquify)
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.file_helper import extract_file_id, file_stem_for_id
 from epstein_files.util.highlighted_group import get_style_for_name
@@ -302,6 +302,49 @@ METADATA_FIELDS = [
     'sent_from_device',
     'subject',
 ]
+
+LINE_REPAIR_MERGES = {
+    '019407': [2, 4],
+    '021729': 2,
+    '022673': 9,
+    '022684': 9,
+    '022695': 4,
+    '023067': 3,
+    '025790': 2,
+    '026609': 4,
+    '026924': [2, 4],
+    '028931': [3, 6],
+    '029154': [2, 5],
+    '029163': [2, 5],
+    '029282': 2,
+    '029402': 4,
+    '029498': 2,
+    '029501': 2,
+    '029835': [2, 4],
+    '029889': 2,
+    '029976': 3,
+    '030299': [7, 10],
+    '030381': [2, 4],
+    '030384': [2, 4],
+    '030626': 2,
+    '030999': [2, 4],
+    '031384': 2,
+    '031428': 2,
+    '031442': 0,
+    '031980': [2, 4],
+    '032063': [3, 5],
+    '032272': 3,
+    '032405': 4,
+    '033097': 2,
+    '033144': [2, 4],
+    '033228': [3, 5],
+    '033357': [2, 4],
+    '033486': [7, 9],
+    '033512': 2,
+    '033575': [2, 4],
+    '033576': 3,
+    '033583': 2,
+}
 
 
 @dataclass
@@ -586,30 +629,21 @@ class Email(Communication):
         self._set_computed_fields(lines=[line for line in self.lines if not BAD_LINE_REGEX.match(line)])
         old_text = self.text
 
-        if self.file_id in ['031442']:
-            self._merge_lines(0)  # Merge 1st and 2nd rows
-        elif self.file_id in '021729 025790 029282 029501 029889 030626 031384 031428 033097 033512 033583 029498 033583'.split():
-            self._merge_lines(2)  # Merge 3rd and 4th rows
+        if self.file_id in LINE_REPAIR_MERGES:
+            merge = LINE_REPAIR_MERGES[self.file_id]
+            merge_args = merge if isinstance(merge, list) else [merge]
+            self._merge_lines(*merge_args)
 
-            if self.file_id in ['030626']:  # Merge 6th and 7th (now 5th and 6th) rows
-                self._merge_lines(4)
-            elif self.file_id == '029889':
-                self._merge_lines(2, 5)
-            elif self.file_id in ['029498', '031428']:
-                self._merge_lines(2, 4)
-        elif self.file_id in ['029976', '023067', '033576', '032272']:
-            self._merge_lines(3)  # Merge 4th and 5th rows
-        elif self.file_id in '026609 029402 032405 022695'.split():
-            self._merge_lines(4)  # Merge 5th and 6th rows
-        elif self.file_id in ['019407', '031980', '030384', '033144', '030999', '033575', '029835', '030381', '033357', '026924']:
-            self._merge_lines(2, 4)
-        elif self.file_id in ['029154', '029163']:
+        # These already had 2nd line merged
+        if self.file_id in ['030626']:  # Merge 6th and 7th (now 5th and 6th) rows
+            self._merge_lines(4)
+        elif self.file_id == '029889':
             self._merge_lines(2, 5)
-        elif self.file_id in ['033228', '032063']:
-            self._merge_lines(3, 5)
-        elif self.file_id == '028931':
-            self._merge_lines(3, 6)
-        elif self.file_id == '013415':
+        elif self.file_id in ['029498', '031428']:
+            self._merge_lines(2, 4)
+
+        # Multiline
+        if self.file_id == '013415':
             for _i in range(2):
                 self._merge_lines(4)
         elif self.file_id in ['033568']:
@@ -618,12 +652,6 @@ class Email(Communication):
         elif self.file_id in ['025329']:
             for _i in range(9):
                 self._merge_lines(2)
-        elif self.file_id == '033486':
-            self._merge_lines(7, 9)
-        elif self.file_id == '030299':
-            self._merge_lines(7, 10)
-        elif self.file_id in ['022673', '022684']:
-            self._merge_lines(9)
         elif self.file_id == '014860':
             self._merge_lines(3)
             self._merge_lines(4)
@@ -636,7 +664,9 @@ class Email(Communication):
 
             self._merge_lines(4)
             self._merge_lines(2, 4)
-        elif self.file_id == '025041':
+
+        # Bad line removal
+        if self.file_id == '025041':
             self._remove_line(4)
             self._remove_line(4)
         elif self.file_id == '029692':
