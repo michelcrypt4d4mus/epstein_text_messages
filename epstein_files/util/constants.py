@@ -25,7 +25,7 @@ HEADER_ABBREVIATIONS = {
     'Jagland': 'Thorbjørn Jagland (former Norwegian prime minister)',
     'JEGE': "Epstein's airplane holding company",
     'Jeffrey Wernick': 'right wing crypto bro, former COO of Parler',
-    'Joi': 'Joi Ito (MIT Media Lab, MIT Digital Currency Initiative)',
+    'Joi': f"Joi Ito ({MIT_MEDIA_LAB}, MIT Digital Currency Initiative)",
     "Hoffenberg": "Steven Hoffenberg (Epstein's ponzi scheme partner)",
     'KSA': "Kingdom of Saudi Arabia",
     'Kurz': 'Sebastian Kurz (former Austrian Chancellor)',
