@@ -319,6 +319,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
             BARBRO_C_EHNBOM: 'Swedish pharmaceuticals, SALSS',
+            'David Mitchell': 'president of New York real estate development firm Mitchell Holdings',
             FRED_HADDAD: "co-founder of Heck's in West Virginia",
             GERALD_BARTON: "Maryland property developer Landmark Land Company, fan of Trump's Irish golf course",
             GORDON_GETTY: 'heir of oil tycoon J. Paul Getty',
@@ -632,6 +633,7 @@ HIGHLIGHTED_NAMES = [
             PAUL_BARRETT: None,
             PAUL_MORRIS: DEUTSCHE_BANK,
             'Steven Elkman': DEUTSCHE_BANK,
+            'Skip Rimer': 'Milken Institute (Michael Milken)',
         },
         patterns=[
             r"((anti.?)?money\s+)?launder(s?|ers?|ing)?(\s+money)?",
@@ -1212,6 +1214,7 @@ HIGHLIGHTED_NAMES = [
             PETER_THIEL: 'Paypal mafia member, founder of Palantir, early Facebook investor, reactionary',
             REID_HOFFMAN: 'PayPal mafia member, founder of LinkedIn',
             STEVEN_SINOFSKY: 'ex-Microsoft, loves bitcoin',
+            VINCENZO_IOZZO: 'CEO of the identity-security company SlashID',
         },
         patterns=[
             r"AG?I",
@@ -1278,10 +1281,12 @@ HIGHLIGHTED_NAMES = [
     ),
     HighlightedNames(
         label='victim lawyer',
-        style='dark_magenta bold',
+        style='medium_orchid1',
         emailers={
-            BRAD_EDWARDS: 'Rothstein Rosenfeldt Adler (Rothstein was a crook & partner of Roger Stone)',
+            BRAD_EDWARDS: ROTHSTEIN_ROSENFELDT_ADLER,
+            'Grant J. Smith': ROTHSTEIN_ROSENFELDT_ADLER,
             JACK_SCAROLA: 'Searcy Denney Scarola Barnhart & Shipley',
+            KEN_JENNE: ROTHSTEIN_ROSENFELDT_ADLER,
         },
         patterns=[
             r"(Alan(\s*P.)?|MINTZ)\s*FRAADE",

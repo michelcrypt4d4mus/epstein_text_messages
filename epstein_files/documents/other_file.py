@@ -184,7 +184,7 @@ class OtherFile(Document):
                     if len(timestamps) >= MAX_EXTRACTED_TIMESTAMPS:
                         break
             except ValueError as e:
-                self.log(f"Error while iterating through datefinder.find_dates(): {e}", logging.WARNING)
+                self.warn(f"Error while iterating through datefinder.find_dates(): {e}")
 
         if len(timestamps) == 0:
             if not (self.is_duplicate() or VAST_HOUSE in self.text):

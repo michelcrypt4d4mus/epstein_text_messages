@@ -11,11 +11,10 @@ FILENAME_LENGTH = len(HOUSE_OVERSIGHT_PREFIX) + 6
 KB = 1024
 MB = KB * KB
 
-file_size = lambda file_path: Path(file_path).stat().st_size
-
 # Coerce methods handle both string and int arguments.
 coerce_file_name = lambda filename_or_id: coerce_file_stem(filename_or_id) + '.txt'
 coerce_file_path = lambda filename_or_id: DOCS_DIR.joinpath(coerce_file_name(filename_or_id))
+file_size = lambda file_path: Path(file_path).stat().st_size
 id_str = lambda id: f"{int(id):06d}"
 
 

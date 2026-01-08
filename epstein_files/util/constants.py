@@ -145,7 +145,8 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     TERRY_KAFKA: re.compile(r'Terry Kafka?', re.IGNORECASE),
     THANU_BOONYAWATANA: re.compile(r"Thanu (BOONYAWATANA|Cnx)", re.IGNORECASE),
     THORBJORN_JAGLAND: re.compile(r'(Thor.{3,8})?Jag[il]and?', re.IGNORECASE),
-    TONJA_HADDAD_COLEMAN: re.compile(fr"To(nj|rl)a Haddad Coleman|haddadfm@aol.com", re.IGNORECASE)
+    TONJA_HADDAD_COLEMAN: re.compile(r"To(nj|rl)a Haddad Coleman|haddadfm@aol.com", re.IGNORECASE),
+    VINCENZO_IOZZO: re.compile(r"Vincenzo [IL]ozzo", re.IGNORECASE),
 }
 
 # If found as substring consider them the author
@@ -194,7 +195,6 @@ EMAILERS = [
     'Steven Victor MD',
     'Susan Edelman',
     TOM_BARRACK,
-    'Vincenzo Lozzo',
     'Vladimir Yudashkin',
 ]
 

@@ -11,7 +11,7 @@ class Timer:
     decimals: int = 2
 
     def print_at_checkpoint(self, msg: str) -> None:
-        logger.warning(f"{msg} in {self.seconds_since_checkpoint_str()}")
+        logger.warning(f"{msg} in {self.seconds_since_checkpoint_str()}...")
         self.checkpoint_at = time.perf_counter()
 
     def seconds_since_checkpoint_str(self) -> str:
