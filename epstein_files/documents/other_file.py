@@ -210,7 +210,7 @@ class OtherFile(Document):
             self.log_top_lines(15, msg=timestamps_log_msg, level=logging.DEBUG)
 
     @staticmethod
-    def count_by_category_table(files: Sequence['OtherFile']) -> Table:
+    def count_by_category_table(files: Sequence['OtherFile'], title_pfx: str = '') -> Table:
         counts = defaultdict(int)
         category_bytes = defaultdict(int)
 
@@ -221,7 +221,8 @@ class OtherFile(Document):
             counts[file.category()] += 1
             category_bytes[file.category()] += file.file_size()
 
-        table = build_table('Other Files Summary', ['Category', 'Count', 'Has Author', 'No Author', 'Size'])
+        table = build_table(f'{title_pfx}Other Files Summary', ['Category', 'Count', 'Has Author', 'No Author', 'Size'])
+        table.columns[-1].justify = 'right'
         table.columns[0].min_width = 14
         table.columns[-1].style = 'dim'
 
@@ -240,12 +241,12 @@ class OtherFile(Document):
         return table
 
     @staticmethod
-    def files_preview_table(files: Sequence['OtherFile']) -> Table:
+    def files_preview_table(files: Sequence['OtherFile'], title_pfx: str = '') -> Table:
         """Build a table of OtherFile documents."""
-        table = build_table('Other Files Details', show_lines=True)
+        table = build_table(f'{title_pfx}Other Files Details', show_lines=True)
         table.add_column('File', justify='center', width=FILENAME_LENGTH)
         table.add_column('Date', justify='center')
-        table.add_column('Size', justify='center')
+        table.add_column('Size', justify='right')
         table.add_column('Type', justify='center')
         table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
 

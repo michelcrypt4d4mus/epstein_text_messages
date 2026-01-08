@@ -72,6 +72,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
         else:
             emailers_to_print = DEFAULT_EMAILERS
 
+        console.line()
         console.print(table_of_selected_emailers(emailers_to_print, epstein_files))
         console.line()
         print_other_page_link(epstein_files)
@@ -128,17 +129,12 @@ def print_json_stats(epstein_files: EpsteinFiles) -> None:
 
 def print_other_files_section(files: list[OtherFile], epstein_files: EpsteinFiles) -> None:
     """Returns the OtherFile objects that were interesting enough to print."""
-    category_table = OtherFile.count_by_category_table(files)
-    other_files_preview_table = OtherFile.files_preview_table(files)
-    header_pfx = '' if args.all_other_files else 'Selected '
-    print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {header_pfx}Files That Are Neither Emails Nor Text Messages")
+    title_pfx = '' if args.all_other_files else 'Selected '
+    category_table = OtherFile.count_by_category_table(files, title_pfx=title_pfx)
+    other_files_preview_table = OtherFile.files_preview_table(files, title_pfx=title_pfx)
+    print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {title_pfx}Files That Are Neither Emails Nor Text Messages")
     print_other_page_link(epstein_files)
-    console.line()
-
-    if not args.all_other_files:
-        for table in [category_table, other_files_preview_table]:
-            table.title = f"{header_pfx}{table.title}"
-
+    console.line(2)
     print_centered(category_table)
     console.line(2)
     console.print(other_files_preview_table)
@@ -151,11 +147,12 @@ def print_text_messages_section(imessage_logs: list[MessengerLog]) -> None:
         return
 
     print_section_header('All of His Text Messages')
+    console.line()
 
     if not args.names:
         print_centered(MessengerLog.summary_table(imessage_logs))
 
-    console.line(3)
+    console.line(2)
     console.print(" Conversations are sorted chronologically based on timestamp of first message in the log file.\n", style='grey70')
 
     for log_file in imessage_logs:

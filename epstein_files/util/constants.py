@@ -1511,8 +1511,8 @@ OTHER_FILES_ARTS = [
 ]
 
 OTHER_FILES_MISC = [
-    DocCfg(id='022780', category=FLIGHT_LOGS),
-    DocCfg(id='022816', category=FLIGHT_LOGS),
+    DocCfg(id='022780', category=FLIGHT_LOG),
+    DocCfg(id='022816', category=FLIGHT_LOG),
     DocCfg(id='032206', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
     DocCfg(id='032208', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
     DocCfg(id='032209', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
