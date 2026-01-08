@@ -82,7 +82,7 @@ if is_html_script:
         elif not args.email_timeline:
             logger.warning(f"No output section chosen; outputting default selection of texts, selected emails, and other files...")
             args.output_texts = args.output_emails = args.output_other = True
-elif not args.positional_args:
+elif parser.prog.startswith('epstein_') and not args.positional_args:
     exit_with_error(f"{parser.prog} requires positional arguments but got none!")
 
 if args.names:
