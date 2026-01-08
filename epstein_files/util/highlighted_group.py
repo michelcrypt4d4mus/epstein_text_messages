@@ -1307,7 +1307,7 @@ HIGHLIGHTED_NAMES = [
             r"Haiti(an)?",
             r"(John\s*)deJongh(\s*Jr\.?)",
             r"(Kenneth E\. )?Mapp",
-            r"Palm\s*Beach(?!\s*Post)",
+            r"Palm\s*Beach(?!\s*(Daily|Post))",
             r"PBI",
             r"S(ain)?t.?\s*Thomas",
             r"USVI",
