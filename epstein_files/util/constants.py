@@ -95,7 +95,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     LANDON_THOMAS: re.compile(r'lando[nr] thomas( jr)?|thomas jr.?, lando[nr]', re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r'(La(wrence|rry).{1,5})?Summers?|^LH$|LHS|Ihsofficel', re.IGNORECASE),
     LAWRANCE_VISOSKI: re.compile(r'La(rry|wrance) Visoski?|Lvjet', re.IGNORECASE),
-    LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus|[jl]awkrauss|kruase', re.IGNORECASE),
+    LAWRENCE_KRAUSS: re.compile(r'Lawrence Kraus[es]?|[jl]awkrauss|kruase', re.IGNORECASE),
     LEON_BLACK: re.compile(r'Leon\s*Black?|(?<!Marc )Leon(?! (Botstein|Jaworski|Wieseltier))', re.IGNORECASE),
     LILLY_SANCHEZ: re.compile(r'Lilly.*Sanchez', re.IGNORECASE),
     LISA_NEW: re.compile(r'E?Lisa New?\b', re.IGNORECASE),

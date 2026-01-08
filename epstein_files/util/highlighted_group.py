@@ -1059,6 +1059,7 @@ HIGHLIGHTED_NAMES = [
             MANUELA_MARTINEZ: 'Mega Partners (Brazilian agency)',
             MARIANA_IDZKOWSKA: None,
             'Michael Sanka': 'MC2 Model Management (?)',
+            'Vladimir Yudashkin': 'director of the 1 Mother Agency',
         },
         patterns=[
             r"\w+@mc2mm.com",
@@ -1184,7 +1185,7 @@ HIGHLIGHTED_NAMES = [
             r"Soviet(\s*Union)?",
             r"USSR",
             r"Vladimir",
-            r"(Vladimir\s*)?(Putin|Yudashkin)",
+            r"(Vladimir\s*)?Putin",
             r"Women\s*Empowerment",
             r"Xitrans",
             r"(Vitaly\s*)?Churkin",
