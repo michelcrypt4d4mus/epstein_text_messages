@@ -181,8 +181,8 @@ def write_complete_emails_timeline(epstein_files: EpsteinFiles) -> None:
     table = build_table(f'All {len(emails):,} Non-Junk Emails in Chronological Order', highlight=True)
     table.add_column('ID', style='dim')
     table.add_column('Sent At', style=TIMESTAMP_DIM)
-    table.add_column('Author', max_width=22)
-    table.add_column('Recipients', max_width=30)
+    table.add_column('Author', max_width=20)
+    table.add_column('Recipients', max_width=22)
     table.add_column('Length', justify='right', style='wheat4')
     table.add_column('Subject')
 

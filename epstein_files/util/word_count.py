@@ -196,7 +196,6 @@ def write_word_counts_html() -> None:
     epstein_files = EpsteinFiles.get_files(timer)
     email_subjects: set[str] = set()
     word_count = WordCount()
-
     # Remove dupes, junk mail, and fwded articles from emails
     emails = [e for e in epstein_files.non_duplicate_emails() if not (e.is_junk_mail() or e.is_fwded_article())]
 
@@ -225,7 +224,7 @@ def write_word_counts_html() -> None:
         for i, msg in enumerate(imessage_log.messages):
             if args.names and msg.author not in args.names:
                 continue
-            elif HTML_REGEX.search(line):
+            elif HTML_REGEX.search(msg.text):
                 continue
 
             for word in msg.text.split():
