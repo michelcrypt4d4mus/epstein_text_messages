@@ -321,7 +321,7 @@ HIGHLIGHTED_NAMES = [
             BARBRO_C_EHNBOM: 'Swedish pharmaceuticals, SALSS',
             'David Mitchell': 'president of New York real estate development firm Mitchell Holdings',
             FRED_HADDAD: "co-founder of Heck's in West Virginia",
-            GERALD_BARTON: "Maryland property developer Landmark Land Company, fan of Trump's Irish golf course",
+            GERALD_BARTON: "Maryland property developer Landmark Land Company",
             GORDON_GETTY: 'heir of oil tycoon J. Paul Getty',
             NICHOLAS_RIBIS: 'Hilton CEO, former president of Trump Organization',
             'Philip Kafka': 'president of Prince Concepts (and son of Terry Kafka?)',
@@ -458,7 +458,7 @@ HIGHLIGHTED_NAMES = [
         style='light_steel_blue3',
         emailers={
             ANDRES_SERRANO: "'Piss Christ' artist",
-            'Barry Josephson': 'American film producer and former music manager, editor FamilySecurityMatters.org',
+            'Barry Josephson': 'American film producer, editor FamilySecurityMatters.org',
             BILL_SIEGEL: 'documentary film producer and director',
             DAVID_BLAINE: 'famous magician',
             HENRY_HOLT: f"{MICHAEL_WOLFF}'s book publisher",
@@ -511,7 +511,7 @@ HIGHLIGHTED_NAMES = [
             MICHAEL_MILLER: 'Steptoe LLP partner',
             REID_WEINGARTEN: 'Steptoe LLP partner',
             ROBERT_D_CRITTON_JR: CRIMINAL_DEFENSE_ATTORNEY,
-            'Robert Gold': 'helped Epstein track down millions of dollars belonging to wealthy Spanish families',
+            'Robert Gold': 'helped Epstein track down millions belonging to wealthy Spanish families',
             'Roy Black': CRIMINAL_DEFENSE_2008,
             SCOTT_J_LINK: CRIMINAL_DEFENSE_ATTORNEY,
             TONJA_HADDAD_COLEMAN: f'{EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY}, maybe daughter of Fred Haddad?',
@@ -594,7 +594,7 @@ HIGHLIGHTED_NAMES = [
             r"Swed(en|ish)(?![-\s]+American Life Scienc)",
             r"Switzerland",
             r"(Tony\s)?Blair",
-            r"U\.?K\.?",
+            r"U\.K\.",
             r"Ukrain(e|ian)",
             r"Vienna",
             r"Zug",
@@ -698,7 +698,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             'Donald Rubin': 'Professor of Statistics',
             'Kelly Friendly': 'longtime aide and spokesperson of Larry Summers',
-            LARRY_SUMMERS: 'board of Digital Currency Group (DCG), Harvard president, Obama economic advisor',
+            LARRY_SUMMERS: 'board of Digital Currency Group (DCG), Obama economic advisor',
             'Leah Reis-Dennis': "producer for Lisa New's Poetry in America",
             LISA_NEW: f'professor of poetry, wife of {LARRY_SUMMERS}, AKA "Elisa New"',
             'Lisa Randall': 'theoretical physicist',
@@ -721,7 +721,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             ANIL_AMBANI: 'chairman of Reliance Group',
             VINIT_SAHNI: None,
-            ZUBAIR_KHAN: 'cybersecurity firm Tranchulas CEO, InsightsPod founder, based in Islamabad and Dubai',
+            ZUBAIR_KHAN: 'cybersecurity firm Tranchulas CEO, InsightsPod founder, Islamabad/Dubai',
         },
         patterns=[
             r"Abraaj",
@@ -780,7 +780,7 @@ HIGHLIGHTED_NAMES = [
         label=JOURNALIST,
         style='bright_yellow',
         emailers={
-            EDWARD_JAY_EPSTEIN: 'reporter who wrote about the kinds of crimes Epstein was involved in, no relation to Jeffrey',
+            EDWARD_JAY_EPSTEIN: 'no relation, wrote about the kinds of crimes Epstein was involved in',
             JAMES_HILL: 'ABC News',
             JENNIFER_JACQUET: 'Future Science',
             JOHN_BROCKMAN: 'literary agent and author specializing in scientific literature',
@@ -1073,14 +1073,14 @@ HIGHLIGHTED_NAMES = [
         emailers={
             AL_SECKEL: 'husband of Isabel Maxwell, Mindshift conference organizer who fell off a cliff',
             'Barnaby Marsh': 'co-founder of Saint Partners, a philanthropy services company',
-            CHRISTINA_GALBRAITH: f"{REPUTATION_MGMT}, worked on Epstein's Google search results with Tyler Shears",
+            CHRISTINA_GALBRAITH: f"{REPUTATION_MGMT}, worked with Tyler Shears",
             IAN_OSBORNE: f'{OSBORNE_LLP} reputation repairer hired by Epstein in 2011',
             MICHAEL_SITRICK: 'crisis PR',
             'Owen Blicksilver': 'OBPR, Inc.',
             PEGGY_SIEGAL: 'socialite',
             'R. Couri Hay': None,
             ROSS_GOW: 'Acuity Reputation Management',
-            TYLER_SHEARS: f"{REPUTATION_MGMT}, worked on Epstein's Google search results with Christina Galbraith",
+            TYLER_SHEARS: f"{REPUTATION_MGMT}, worked on with {CHRISTINA_GALBRAITH}",
         },
         patterns=[
             r"(Matt(hew)? )?Hiltzi[gk]",
@@ -1140,7 +1140,7 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        label='Rothschild family',
+        label='Rothschild',
         style='indian_red',
         emailers={
             ARIANE_DE_ROTHSCHILD: 'heiress',
@@ -1212,7 +1212,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             'Auren Hoffman': 'CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp',
             ELON_MUSK: 'father of Mecha-Hitler',
-            PETER_THIEL: 'Paypal mafia member, founder of Palantir, early Facebook investor, reactionary',
+            PETER_THIEL: 'Paypal mafia member, founder of Palantir, Facebook investor',
             REID_HOFFMAN: 'PayPal mafia member, founder of LinkedIn',
             STEVEN_SINOFSKY: 'ex-Microsoft, loves bitcoin',
             VINCENZO_IOZZO: 'CEO of the identity-security company SlashID',
@@ -1353,7 +1353,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         style='dark_olive_green3',
         category=FINANCE,
-        emailers={STEVEN_HOFFENBERG: "Epstein's ponzi scheme partner at Towers Financial, went to prison for 18 years"},
+        emailers={STEVEN_HOFFENBERG: "Epstein's ponzi scheme partner at Towers Financial, prison for 18 years"},
         patterns=[r"(steven?\s*)?hoffenberg?w?"],
     ),
     HighlightedNames(emailers={GHISLAINE_MAXWELL: None}, patterns=[r"gmax(1@ellmax.com)?", r"TerraMar"], style='deep_pink3'),
