@@ -1352,17 +1352,17 @@ HIGHLIGHTED_NAMES = [
 
     # HighlightedText not HighlightedNames bc of word boundary issue
     HighlightedText(
-        label='unknown',
-        style='cyan',
-        patterns=[r'\(unknown\)']
-    ),
-    HighlightedText(
         label='phone_number',
         style='bright_green',
         patterns=[
             r"\+?(1?\(?\d{3}\)?[- ]\d{3}[- ]\d{4}|\d{2}[- ]\(?0?\)?\d{2}[- ]\d{4}[- ]\d{4})",
             r"(\b|\+)[\d+]{10,12}\b",
         ],
+    ),
+    HighlightedText(
+        label='unknown',
+        style='cyan',
+        patterns=[r'\(unknown\)']
     ),
 ]
 
@@ -1403,6 +1403,8 @@ HIGHLIGHTED_TEXTS = [
         style=TIMESTAMP_STYLE,
         patterns=[r"\d{1,4}[-/]\d{1,2}[-/]\d{2,4} \d{1,2}:\d{2}:\d{2}( [AP]M)?"],
     ),
+
+    # Manual regexes
     ManualHighlight(
         label='email_attachments',
         style='gray30 italic',
