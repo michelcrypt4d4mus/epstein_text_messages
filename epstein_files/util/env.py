@@ -49,7 +49,7 @@ output.add_argument('--width', '-w', type=int, default=DEFAULT_WIDTH, help='scre
 scripts = parser.add_argument_group('SCRIPTS', 'Options used by epstein_search, epstein_show, and epstein_diff.')
 scripts.add_argument('positional_args', nargs='*', help='strings to searchs for, file IDs to show or diff, etc.')
 scripts.add_argument('--raw', '-r', action='store_true', help='show raw contents of file (used by epstein_show)')
-scripts.add_argument('--whole-file', '-wf', action='store_true', help='print whole file (used by epstein_search)')
+scripts.add_argument('--whole-file', '-wf', action='store_true', help='print whole files')
 
 debug = parser.add_argument_group('DEBUG')
 debug.add_argument('--colors-only', '-c', action='store_true', help='print header with color key table and links and exit')
