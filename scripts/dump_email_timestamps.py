@@ -37,9 +37,9 @@ def print_potential_useless_emailers():
 
         if len(emails) == 1:
             if len(emails_sent_by) == 1:
-                console.print(f"SENT one email: {emailer_str} ({len(emails[0].recipients)} recipients)")
+                console.print(Text('[SENT]', style='bright_green').append(f" one email: {emailer_str} ({len(emails[0].recipients)} recipients)"))
             else:
-                console.print(f"RECEIVED only one email: {emailer_str} ({len(emails[0].recipients)} recipients)")
+                console.print(Text('[RECEIVED]', style='bright_red').append(f" only one email: {emailer_str} ({len(emails[0].recipients)} recipients)"))
         elif len(emails_sent_by) == 0:
             console.print(f"{emailer_str} received {len(emails)} emails but sent none.")
 
