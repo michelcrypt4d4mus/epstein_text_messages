@@ -152,6 +152,7 @@ TRUNCATION_LENGTHS = {
     '030245': 7_500,   # Epstein rationalizes his behavior in an open letter to the world
     '030781': 1_700,   # Bannon email about crypto coin issues
     '032906': 750,     # David Blaine email
+    '026036': 6000,    # Gino Yu blockchain mention
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
