@@ -8,7 +8,6 @@ from datetime import datetime
 from pathlib import Path
 from typing import Sequence, Type
 
-from rich.align import Align
 from rich.padding import Padding
 from rich.table import Table
 from rich.text import Text
@@ -29,7 +28,7 @@ from epstein_files.util.env import DOCS_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames, get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_STYLE, LAST_TIMESTAMP_STYLE, NA_TXT, add_cols_to_table,
-     build_table, console, highlighter, link_text_obj, link_markup, print_author_panel, print_subtitle_panel)
+     build_table, console, highlighter, link_text_obj, link_markup, print_author_panel, print_centered, print_subtitle_panel)
 from epstein_files.util.search_result import SearchResult
 from epstein_files.util.timer import Timer
 
@@ -231,6 +230,7 @@ class EpsteinFiles:
     def print_files_summary(self) -> None:
         table = build_table('Summary of Document Types')
         add_cols_to_table(table, ['File Type', 'Files', 'Author Known', 'Author Unknown', 'Duplicates'])
+        table.columns[1].justify = 'right'
 
         def add_row(label: str, docs: list):
             known = None if isinstance(docs[0], JsonFile) else Document.known_author_count(docs)
@@ -247,7 +247,7 @@ class EpsteinFiles:
         add_row('iMessage Logs', self.imessage_logs)
         add_row('JSON Data', self.json_files)
         add_row('Other', self.non_json_other_files())
-        console.print(Align.center(table))
+        print_centered(table)
         console.line()
 
     def print_emails_for(self, _author: str | None) -> list[Email]:
@@ -281,7 +281,8 @@ class EpsteinFiles:
 
     def print_emails_table_for(self, author: str | None) -> None:
         emails = [email for email in self.emails_for(author) if not email.is_duplicate()]  # Remove dupes
-        console.print(Align.center(Email.build_emails_table(emails, author)), '\n')
+        print_centered(Email.build_emails_table(emails, author))
+        console.line()
 
     def print_email_device_info(self) -> None:
         print_subtitle_panel(DEVICE_SIGNATURE_SUBTITLE, padding=(2, 0, 0, 0), centered=True)
