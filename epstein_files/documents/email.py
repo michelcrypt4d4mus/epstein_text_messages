@@ -755,19 +755,19 @@ class Email(Communication):
             self.log_top_lines(self.header.num_header_rows + 4, f'Original header:')
 
     @staticmethod
-    def build_emails_table(emails: list['Email'], _author: str | None) -> Table:
-        """Turn a set of Email objects into a Table."""
+    def build_emails_table(emails: list['Email'], _author: str | None, include_title: bool = False) -> Table:
+        """Turn a set of Emails to/from a given _author into a Table."""
         author = _author or UNKNOWN
 
         table = Table(
-            title=f"Emails to/from {author} starting {emails[0].timestamp.date()}",
+            title=f"Emails to/from {author} starting {emails[0].timestamp.date()}" if include_title else None,
             border_style=get_style_for_name(author, allow_bold=False),
             header_style="bold"
         )
 
         table.add_column('From', justify='left')
         table.add_column('Timestamp', justify='center')
-        table.add_column('Subject', justify='left', style='honeydew2', min_width=60)
+        table.add_column('Subject', justify='left', style='honeydew2', min_width=70)
 
         for email in emails:
             table.add_row(
