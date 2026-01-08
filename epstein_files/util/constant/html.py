@@ -23,8 +23,8 @@ CONSOLE_HTML_FORMAT = """
     <style>
         {stylesheet}
         body {{
-            color: {foreground};
             background-color: {background};
+            color: {foreground};
         }}
     </style>
 """ + f"<title>Epstein {page_type}</title>" + """
