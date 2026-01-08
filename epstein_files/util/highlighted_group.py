@@ -206,6 +206,12 @@ class ManualHighlight(BaseHighlight):
 
 
 HIGHLIGHTED_NAMES = [
+    # This has to come first to get both stylings applied to the email subjects
+    ManualHighlight(
+        label='email_subject',
+        style='light_yellow3',
+        pattern=r"^(> )?Subject: (?P<email_subject>.*)",
+    ),
     HighlightedNames(
         label=ACADEMIA,
         style='light_goldenrod2',
@@ -1400,11 +1406,6 @@ HIGHLIGHTED_TEXTS = [
         patterns=[r"\d{1,4}[-/]\d{1,2}[-/]\d{2,4} \d{1,2}:\d{2}:\d{2}( [AP]M)?"],
     ),
     ManualHighlight(
-        label='email_subject',
-        style='light_yellow3',
-        pattern=r"^(> )?Subject: (?P<email_subject>.*)",
-    ),
-    ManualHighlight(
         label='email_attachments',
         style='gray30 italic',
         pattern=r"^(> )?Attachments: (?P<email_attachments>.*)",
@@ -1413,7 +1414,7 @@ HIGHLIGHTED_TEXTS = [
         label='email_timestamp',
         style=TIMESTAMP_STYLE,
         pattern=r"^(> )?(Date|Sent): (?P<email_timestamp>.*)",
-    )
+    ),
 ]
 
 ALL_HIGHLIGHTS = HIGHLIGHTED_NAMES + HIGHLIGHTED_TEXTS
