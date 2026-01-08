@@ -1,5 +1,6 @@
 import json
 import re
+from abc import ABC
 from dataclasses import dataclass, field
 
 from rich.highlighter import RegexHighlighter
@@ -12,6 +13,7 @@ from epstein_files.util.constants import (EMAILER_ID_REGEXES, EPSTEIN_V_ROTHSTEI
      OSBORNE_LLP, REPLY_REGEX, SENT_FROM_REGEX, VIRGIN_ISLANDS)
 from epstein_files.util.doc_cfg import *
 from epstein_files.util.data import extract_last_name, listify, without_falsey
+from epstein_files.util.logging import logger
 
 CIVIL_ATTORNEY = 'civil attorney'
 CRIMINAL_DEFENSE_ATTORNEY = 'criminal defense attorney'
@@ -41,9 +43,9 @@ CATEGORY_STYLES = {
 
 
 @dataclass(kw_only=True)
-class HighlightedText:
+class BaseHighlight:
     """
-    Color highlighting for things other than people's names (e.g. phone numbers, email headers).
+    Regex and style information.
 
     Attributes:
         label (str): RegexHighlighter match group name, defaults to 1st 'emailers' key if only 1 emailer provided
@@ -53,21 +55,42 @@ class HighlightedText:
         theme_style_name (str): The style name that must be a part of the rich.Console's theme
     """
     label: str = ''
-    patterns: list[str] = field(default_factory=list)
-    style: str
     regex: re.Pattern = field(init=False)
+    style: str
     theme_style_name: str = field(init=False)
     _capture_group_label: str = field(init=False)
     _match_group_var: str = field(init=False)
-    _pattern: str = field(init=False)
 
     def __post_init__(self):
         if not self.label:
-            raise ValueError(f"No label provided for {repr(self)}")
+            raise ValueError(f'Missing label for {self}')
 
         self._capture_group_label = self.label.lower().replace(' ', '_').replace('-', '_')
         self._match_group_var = fr"?P<{self._capture_group_label}>"
         self.theme_style_name = f"{REGEX_STYLE_PREFIX}.{self._capture_group_label}"
+
+
+@dataclass(kw_only=True)
+class HighlightedText(BaseHighlight):
+    """
+    Color highlighting for things other than people's names (e.g. phone numbers, email headers).
+
+    Attributes:
+        label (str): RegexHighlighter match group name, defaults to 1st 'emailers' key if only 1 emailer provided
+        patterns (list[str]): regex patterns identifying strings matching this group
+        regex (re.Pattern): matches self.pattern
+        style (str): Rich style to apply to text matching this group
+        theme_style_name (str): The style name that must be a part of the rich.Console's theme
+    """
+    patterns: list[str] = field(default_factory=list)
+    _pattern: str = field(init=False)
+
+    def __post_init__(self):
+        super().__post_init__()
+
+        if not self.label:
+            raise ValueError(f"No label provided for {repr(self)}")
+
         self._pattern = '|'.join(self.patterns)
         self.regex = re.compile(fr"({self._match_group_var}{self._pattern})", re.IGNORECASE | re.MULTILINE)
 
@@ -166,6 +189,20 @@ class HighlightedNames(HighlightedText):
                 s += f"{json.dumps(value)},"
 
         return s + '\n)'
+
+
+@dataclass(kw_only=True)
+class ManualHighlight(BaseHighlight):
+    """For when you can't construct the regex."""
+    pattern: str
+
+    def __post_init__(self):
+        super().__post_init__()
+
+        if self._match_group_var not in self.pattern:
+            raise ValueError(f"Label '{self.label}' must appear in regex pattern '{self.pattern}'")
+
+        self.regex = re.compile(self.pattern, re.MULTILINE)
 
 
 HIGHLIGHTED_NAMES = [
@@ -1351,6 +1388,21 @@ HIGHLIGHTED_TEXTS = [
         style=TIMESTAMP_STYLE,
         patterns=[r"\d{1,4}[-/]\d{1,2}[-/]\d{2,4} \d{1,2}:\d{2}:\d{2}( [AP]M)?"],
     ),
+    ManualHighlight(
+        label='email_subject',
+        style='light_yellow3',
+        pattern=r"^(> )?Subject: (?P<email_subject>.*)",
+    ),
+    ManualHighlight(
+        label='email_attachments',
+        style='gray30 italic',
+        pattern=r"^(> )?Attachments: (?P<email_attachments>.*)",
+    ),
+    ManualHighlight(
+        label='email_timestamp',
+        style=TIMESTAMP_STYLE,
+        pattern=r"^(> )?(Date|Sent): (?P<email_timestamp>.*)",
+    )
 ]
 
 ALL_HIGHLIGHTS = HIGHLIGHTED_NAMES + HIGHLIGHTED_TEXTS
@@ -1359,11 +1411,7 @@ ALL_HIGHLIGHTS = HIGHLIGHTED_NAMES + HIGHLIGHTED_TEXTS
 class EpsteinHighlighter(RegexHighlighter):
     """Finds and colors interesting keywords based on the above config."""
     base_style = f"{REGEX_STYLE_PREFIX}."
-    highlights = [
-        re.compile(r"^Subject: (?P<email_subject>.*)", re.MULTILINE),
-        re.compile(r"^Attachments: (?P<email_attachments>.*)", re.MULTILINE),
-        *[highlight_group.regex for highlight_group in ALL_HIGHLIGHTS],
-    ]
+    highlights = [highlight_group.regex for highlight_group in ALL_HIGHLIGHTS]
 
 
 def get_info_for_name(name: str) -> str | None:
