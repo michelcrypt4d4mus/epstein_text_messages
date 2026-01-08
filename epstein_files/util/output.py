@@ -35,12 +35,12 @@ DEFAULT_EMAILERS = [
     EHUD_BARAK,
     MARTIN_NOWAK,
     STEVE_BANNON,
+    TYLER_SHEARS,
     JIDE_ZEITLIN,
+    CHRISTINA_GALBRAITH,
     DAVID_STERN,
     MOHAMED_WAHEED_HASSAN,
     JENNIFER_JACQUET,
-    TYLER_SHEARS,
-    CHRISTINA_GALBRAITH,
     ZUBAIR_KHAN,
     None,
 ]
@@ -60,28 +60,22 @@ if len(set(DEFAULT_EMAILERS).intersection(set(DEFAULT_EMAILER_TABLES))) > 0:
 def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     """Returns emails that were printed (may contain dupes if printed for both author and recipient)."""
     print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
-    print_other_page_link(epstein_files)
     emailers_to_print: list[str | None]
-    emailer_tables: list[str | None] = []
     already_printed_emails: list[Email] = []
     num_emails_printed_since_last_color_key = 0
 
     if args.names:
         emailers_to_print = args.names
     else:
-        print_centered(Padding(epstein_files.table_of_emailers(), (2, 0)))
-
         if args.all_emails:
             emailers_to_print = sorted(epstein_files.all_emailers(), key=lambda e: epstein_files.earliest_email_at(e))
-            console.print('Email conversations are sorted chronologically based on time of the first email.')
-            print_numbered_list_of_emailers(emailers_to_print, epstein_files)
         else:
             emailers_to_print = DEFAULT_EMAILERS
-            emailer_tables = DEFAULT_EMAILER_TABLES
-            console.print('Email conversations grouped by counterparty can be found in the order listed below.')
-            print_numbered_list_of_emailers(emailers_to_print)
-            console.print("\nAfter that there's tables linking to (but not displaying) all known emails for each of these people:")
-            print_numbered_list_of_emailers(emailer_tables)
+
+        print_other_page_link(epstein_files)
+        console.line(2)
+        console.print(table_of_selected_emailers(emailers_to_print, epstein_files))
+        console.print(Padding(epstein_files.table_of_emailers(), (2, 0)))
 
     for author in emailers_to_print:
         author_emails = epstein_files.print_emails_for(author)
@@ -92,12 +86,6 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
         if num_emails_printed_since_last_color_key > PRINT_COLOR_KEY_EVERY_N_EMAILS:
             print_color_key()
             num_emails_printed_since_last_color_key = 0
-
-    if emailer_tables:
-        print_author_panel(f"Email Tables for {len(emailer_tables)} Other People", 'white')
-
-        for name in DEFAULT_EMAILER_TABLES:
-            epstein_files.print_emails_table_for(name)
 
     if not args.names:
         epstein_files.print_email_device_info()
@@ -140,17 +128,12 @@ def print_json_stats(epstein_files: EpsteinFiles) -> None:
 
 def print_other_files_section(files: list[OtherFile], epstein_files: EpsteinFiles) -> None:
     """Returns the OtherFile objects that were interesting enough to print."""
-    category_table = OtherFile.count_by_category_table(files)
-    other_files_preview_table = OtherFile.files_preview_table(files)
-    header_pfx = '' if args.all_other_files else 'Selected '
-    print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {header_pfx}Files That Are Neither Emails Nor Text Messages")
+    title_pfx = '' if args.all_other_files else 'Selected '
+    category_table = OtherFile.count_by_category_table(files, title_pfx=title_pfx)
+    other_files_preview_table = OtherFile.files_preview_table(files, title_pfx=title_pfx)
+    print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {title_pfx}Files That Are Neither Emails Nor Text Messages")
     print_other_page_link(epstein_files)
-    console.line()
-
-    if not args.all_other_files:
-        for table in [category_table, other_files_preview_table]:
-            table.title = f"{header_pfx}{table.title}"
-
+    console.line(2)
     print_centered(category_table)
     console.line(2)
     console.print(other_files_preview_table)
@@ -165,10 +148,11 @@ def print_text_messages_section(imessage_logs: list[MessengerLog]) -> None:
     print_section_header('All of His Text Messages')
 
     if not args.names:
+        print_centered("(conversations are sorted chronologically based on timestamp of first message in the log file)", style='dim')
+        console.line(2)
         print_centered(MessengerLog.summary_table(imessage_logs))
 
-    console.line(3)
-    console.print(" Conversations are sorted chronologically based on timestamp of first message in the log file.\n", style='grey70')
+    console.line(2)
 
     for log_file in imessage_logs:
         console.print(Padding(log_file))

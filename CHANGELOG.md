@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Use a table for emailers in all cases, remove email tables
 
 ### 1.1.1
 * Remove AM/PM from imessage timestamp strings
