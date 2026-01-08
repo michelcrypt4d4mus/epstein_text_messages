@@ -9,10 +9,10 @@ from rich.text import Text
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
-from epstein_files.util.constants import (EMAILER_ID_REGEXES, EPSTEIN_V_ROTHSTEIN_EDWARDS, HEADER_ABBREVIATIONS,
+from epstein_files.util.constants import (EMAILER_ID_REGEXES, EPSTEIN_V_ROTHSTEIN_EDWARDS,
      OSBORNE_LLP, REPLY_REGEX, SENT_FROM_REGEX, VIRGIN_ISLANDS)
 from epstein_files.util.doc_cfg import *
-from epstein_files.util.data import extract_last_name, listify, without_falsey
+from epstein_files.util.data import extract_last_name, without_falsey
 from epstein_files.util.logging import logger
 
 CIVIL_ATTORNEY = 'civil attorney'
@@ -22,6 +22,7 @@ EPSTEIN_LAWYER = 'Epstein lawyer'
 EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} working on {EPSTEIN_V_ROTHSTEIN_EDWARDS}"
 ESTATE_EXECUTOR = 'estate executor'
 EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
+QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='dim')
 REGEX_STYLE_PREFIX = 'regex'
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w ]+$", re.IGNORECASE)
 
@@ -1462,7 +1463,10 @@ def get_style_for_name(name: str | None, default_style: str = DEFAULT, allow_bol
     return style if allow_bold else style.replace('bold', '').strip()
 
 
-def styled_category(category: str) -> Text:
+def styled_category(category: str | None) -> Text:
+    if not category:
+        return QUESTION_MARKS_TXT
+
     return Text(category, get_style_for_category(category) or 'wheat4')
 
 

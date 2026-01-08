@@ -26,7 +26,6 @@ from epstein_files.util.logging import logger
 TITLE_WIDTH = 50
 NUM_COLOR_KEY_COLS = 4
 NA_TXT = Text(NA, style='dim')
-QUESTION_MARK_TXT = Text(QUESTION_MARKS, style='dim')
 GREY_NUMBERS = [58, 39, 39, 35, 30, 27, 23, 23, 19, 19, 15, 15, 15]
 
 DEFAULT_NAME_STYLE = 'gray46'
