@@ -251,7 +251,7 @@ class Document:
     def summary(self) -> Text:
         """Summary of this file for logging. Brackets are left open for subclasses to add stuff."""
         txt = Text('').append(self._class_name(), style=self._class_style())
-        txt.append(f" {self.url_slug}", style=FILENAME_STYLE)
+        txt.append(f" {self.file_path.stem}", style=FILENAME_STYLE)
 
         if self.timestamp:
             timestamp_str = remove_zero_time_from_timestamp_str(self.timestamp).replace('T', ' ')

@@ -20,7 +20,8 @@ from epstein_files.util.constants import FALLBACK_TIMESTAMP, HEADER_ABBREVIATION
 from epstein_files.util.data import json_safe
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
-from epstein_files.util.highlighted_group import ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES, EpsteinHighlighter, get_category_for_name, get_info_for_name, get_style_for_name
+from epstein_files.util.highlighted_group import (ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES, EpsteinHighlighter,
+     get_category_for_name, get_info_for_name, get_style_for_name)
 from epstein_files.util.logging import logger
 
 TITLE_WIDTH = 50
@@ -241,7 +242,7 @@ def table_of_selected_emailers(_list: list[str | None], epstein_files: 'EpsteinF
     table = build_table(f'{header_pfx}Email Conversations Grouped by Counterparty Will Appear in this Order')
     table.add_column('Start Date')
     table.add_column('Name', max_width=25, no_wrap=True)
-    table.add_column('Category', style='dim')
+    table.add_column('Category', justify='center', style='dim italic')
     table.add_column('Num', justify='right', style='wheat4')
     table.add_column('Info', style='white italic')
 
@@ -257,10 +258,12 @@ def table_of_selected_emailers(_list: list[str | None], epstein_files: 'EpsteinF
 
         current_year_month = year_months
         current_year = earliest_email_date.year
-        info = get_info_for_name(name)
         category = get_category_for_name(name)
+        info = get_info_for_name(name)
 
-        if category and info:
+        if category and category.plain == 'paula_heil_fisher':  # TODO: hacky
+            category = None
+        elif category and info:
             info = info.removeprefix(f"{category.plain}, ")
         elif not name:
             info = Text('(emails whose author or recipient could not be determined)', style='medium_purple4')
@@ -268,7 +271,7 @@ def table_of_selected_emailers(_list: list[str | None], epstein_files: 'EpsteinF
         table.add_row(
             Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[grey_idx]}"),
             Text(name or UNKNOWN, style=get_style_for_name(name or UNKNOWN, default_style='dim')),
-            get_category_for_name(name),
+            category,
             f"{len(epstein_files.emails_for(name)):,}",
             info or '',
         )
