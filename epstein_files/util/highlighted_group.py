@@ -921,6 +921,8 @@ HIGHLIGHTED_NAMES = [
             r"Erdogan",
             r"Fashi",
             r"Gaddafi",
+            r"Gulf\s*Cooperation\s*Council",
+            r"GCC",
             r"(Hamid\s*)?Karzai",
             r"Hamad\s*bin\s*Jassim",
             r"HBJ",
