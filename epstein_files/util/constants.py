@@ -131,7 +131,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     ROBERT_D_CRITTON_JR: re.compile(r'Robert D.? Critton Jr.?', re.IGNORECASE),
     ROBERT_LAWRENCE_KUHN: re.compile(r'Robert\s*(Lawrence)?\s*Kuhn', re.IGNORECASE),
     ROBERT_TRIVERS: re.compile(r'tri[vy]ersr@gmail|Robert\s*Trivers?', re.IGNORECASE),
-    ROSS_GOW: re.compile(fr"{ROSS_GOW}|ross@acuityreputation.com", re.IGNORECASE),
+    ROSS_GOW: re.compile(fr"Ross(acuity)? Gow|(ross@)?acuity\s*reputation(\.com)?", re.IGNORECASE),
     SAMUEL_LEFF: re.compile(r"Sam(uel)?(/Walli)? Leff", re.IGNORECASE),
     SCOTT_J_LINK: re.compile(r'scott j. link?', re.IGNORECASE),
     SEAN_BANNON: re.compile(r'sean bannon?', re.IGNORECASE),
