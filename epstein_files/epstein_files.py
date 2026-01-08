@@ -249,7 +249,7 @@ class EpsteinFiles:
         author = _author or UNKNOWN
 
         print_author_panel(
-            f"Found {len(unique_emails)} {author} emails starting {emails[0].timestamp.date()} covering {conversation_length:,} days",
+            f"Found {len(unique_emails)} emails to/from {author} starting {emails[0].timestamp.date()} covering {conversation_length:,} days",
             get_style_for_name(author),
             get_info_for_name(author)
         )
