@@ -308,6 +308,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             'Jeffrey Wernick': 'former COO of Parler, involved in numerous crypto companies like Bitforex',
             JEREMY_RUBIN: 'developer/researcher',
+            JOI_ITO: f"former head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative",
             ANTHONY_SCARAMUCCI: 'Skybridge Capital, FTX investor',
         },
     ),
@@ -1325,6 +1326,7 @@ HIGHLIGHTED_NAMES = [
     ),
     HighlightedNames(
         label=STEVE_BANNON,
+        category=POLITICS,
         style='color(58)',
         patterns=[
             r"(American\s*)?Dharma",
@@ -1335,16 +1337,16 @@ HIGHLIGHTED_NAMES = [
         },
     ),
     HighlightedNames(
-        style='gold3',
+        style='dark_olive_green3',
+        category=FINANCE,
         patterns=[r"(steven?\s*)?hoffenberg?w?"],
         emailers={
-            STEVEN_HOFFENBERG: "Epstein's ponzi scheme partner who went to prison for 18 years",
+            STEVEN_HOFFENBERG: "Epstein's ponzi scheme partner at Towers Financial, went to prison for 18 years",
         },
     ),
     HighlightedNames(emailers={GHISLAINE_MAXWELL: None}, patterns=[r"gmax(1@ellmax.com)?", r"TerraMar"], style='deep_pink3'),
-    HighlightedNames(emailers={JABOR_Y: '"an influential man in Qatar"'}, style='spring_green1'),
+    HighlightedNames(emailers={JABOR_Y: '"an influential man in Qatar"'}, category='mideast', style='spring_green1'),
     HighlightedNames(emailers={JEFFREY_EPSTEIN: None}, patterns=[r"JEGE", r"LSJ", r"Mark (L. )?Epstein"], style='blue1'),
-    HighlightedNames(emailers={JOI_ITO: f"former head of {MIT_MEDIA_LAB}, MIT Digital Currency Initiative"}, style='gold1'),
     HighlightedNames(emailers={KATHRYN_RUEMMLER: 'former Obama legal counsel'}, style='magenta2'),
     HighlightedNames(emailers={MELANIE_WALKER: 'doctor'}, style='pale_violet_red1'),
     HighlightedNames(emailers={PAULA: "Epstein's ex-girlfriend who is now in the opera world"}, label='paula_heil_fisher', style='pink1'),
@@ -1426,10 +1428,20 @@ class EpsteinHighlighter(RegexHighlighter):
     highlights = [highlight_group.regex for highlight_group in ALL_HIGHLIGHTS]
 
 
-def get_info_for_name(name: str) -> str | None:
+def get_category_for_name(name: str | None) -> Text | None:
     highlight_group = _get_highlight_group_for_name(name)
 
     if highlight_group and isinstance(highlight_group, HighlightedNames):
+        category = highlight_group.category or highlight_group.label
+
+        if category != name:
+            return styled_category(category)
+
+
+def get_info_for_name(name: str | None) -> str | None:
+    highlight_group = _get_highlight_group_for_name(name)
+
+    if highlight_group and isinstance(highlight_group, HighlightedNames) and name:
         return highlight_group.get_info(name)
 
 
@@ -1456,7 +1468,10 @@ def styled_category(category: str) -> Text:
     return Text(category, get_style_for_category(category) or 'wheat4')
 
 
-def _get_highlight_group_for_name(name: str) -> HighlightedNames | None:
+def _get_highlight_group_for_name(name: str | None) -> HighlightedNames | None:
+    if name is None:
+        return None
+
     for highlight_group in HIGHLIGHTED_NAMES:
         if highlight_group.regex.search(name):
             return highlight_group
