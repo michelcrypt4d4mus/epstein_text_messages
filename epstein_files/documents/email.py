@@ -1,3 +1,4 @@
+import json
 import logging
 import re
 from copy import deepcopy
@@ -582,11 +583,6 @@ class Email(Communication):
 
     def _merge_lines(self, idx: int, idx2: int | None = None) -> None:
         """Combine lines numbered 'idx' and 'idx2' into a single line (idx2 defaults to idx + 1)."""
-        if idx2:
-            logger.fatal(f"    '{self.file_id}': ({idx}, {idx2}),")
-        else:
-            logger.fatal(f"    '{self.file_id}': {idx},")
-
         idx2 = idx2 if idx2 is not None else (idx + 1)
         lines = self.lines[0:idx]
 
@@ -736,24 +732,46 @@ class Email(Communication):
         self.config.is_interesting = self.config.is_interesting or extracted_from_doc_cfg.is_interesting
         self.log(f"Constructed synthetic config: {self.config}")
 
-    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        logger.debug(f"Printing '{self.filename}'...")
-        yield self.file_info_panel()
-        should_rewrite_header = self.header.was_initially_empty and self.header.num_header_rows > 0
+    def _truncate_to_length(self) -> int:
+        """When printing truncate this email to this length."""
         quote_cutoff = self._idx_of_nth_quoted_reply(text=self.text)  # Trim if there's many quoted replies
-        num_chars = MAX_CHARS_TO_PRINT
-        trim_footer_txt = None
-        text = self.text
+        includes_truncate_term = next((term for term in TRUNCATE_TERMS if term in self.text), None)
 
+        if args.whole_file:
+            num_chars = len(self.text)
         if self.file_id in TRUNCATION_LENGTHS:
             num_chars = TRUNCATION_LENGTHS[self.file_id]
-        elif self.author in TRUNCATE_ALL_EMAILS_FROM or any((term in self.text) for term in TRUNCATE_TERMS):
+        elif self.author in TRUNCATE_ALL_EMAILS_FROM or includes_truncate_term:
             num_chars = int(MAX_CHARS_TO_PRINT / 3)
         elif quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
             num_chars = quote_cutoff
+        else:
+            num_chars = MAX_CHARS_TO_PRINT
+
+        if num_chars != MAX_CHARS_TO_PRINT and not self.is_duplicate():
+            log_args = {
+                'num_chars': num_chars,
+                'author_truncate': self.author in TRUNCATE_ALL_EMAILS_FROM,
+                'is_fwded_article': self.is_fwded_article(),
+                'is_quote_cutoff': quote_cutoff == num_chars,
+                'includes_truncate_term': json.dumps(includes_truncate_term) if includes_truncate_term else None,
+                'quote_cutoff': quote_cutoff,
+            }
+
+            if quote_cutoff != num_chars:
+                logger.debug(f'{self.summary()} truncating: ' + ', '.join([f"{k}={v}" for k, v in log_args.items() if v]) + '\n')
+
+        return num_chars
+
+    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
+        logger.debug(f"Printing '{self.filename}'...")
+        should_rewrite_header = self.header.was_initially_empty and self.header.num_header_rows > 0
+        num_chars = self._truncate_to_length()
+        trim_footer_txt = None
+        text = self.text
 
         # Truncate long emails but leave a note explaining what happened w/link to source document
-        if len(text) > num_chars and not args.whole_file:
+        if len(text) > num_chars:
             text = text[0:num_chars]
             doc_link_markup = epstein_media_doc_link_markup(self.url_slug, self.author_style)
             trim_note = f"<...trimmed to {num_chars} characters of {self.length()}, read the rest at {doc_link_markup}...>"
@@ -775,15 +793,14 @@ class Email(Communication):
             text = _add_line_breaks(text)  # This was skipped when _prettify_text() w/a broken header so we do it now
             self.rewritten_header_ids.add(self.file_id)
 
-        panel_txt = highlighter(text)
-
         email_txt_panel = Panel(
-            panel_txt.append('\n\n').append(trim_footer_txt) if trim_footer_txt else panel_txt,
+            highlighter(text).append('\n\n').append(trim_footer_txt) if trim_footer_txt else highlighter(text),
             border_style=self._border_style(),
             expand=False,
             subtitle=REWRITTEN_HEADER_MSG if should_rewrite_header else None,
         )
 
+        yield self.file_info_panel()
         yield Padding(email_txt_panel, (0, 0, 1, INFO_INDENT))
 
         if should_rewrite_header:
