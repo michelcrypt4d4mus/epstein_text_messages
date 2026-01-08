@@ -43,7 +43,7 @@ LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
 URL_SIGNIFIERS = ['gclid', 'htm', 'ref=', 'utm']
-APPEARS_IN = 'Appears in'
+APPEARS_IN = 'appears in'
 MAX_CHARS_TO_PRINT = 4000
 MAX_NUM_HEADER_LINES = 14
 MAX_QUOTED_REPLIES = 2
@@ -287,6 +287,13 @@ USELESS_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + KRASSNER_RECIP
     'Tim Kane',                              # Random CC
     'Travis Pangburn',                       # Random CC
     'Vahe Stepanian',                        # Random CC
+    # Ross Gow BCC
+    'david.brown@thetimes.co.uk',
+    'io-anne.pugh@bbc.co.uk',
+    'martin.robinson@mailonline.co.uk',
+    'nick.alwav@bbc.co.uk'
+    'nick.sommerlad@mirror.co.uk',
+    'p.peachev@independent.co.uk',
 ]
 
 # Emails sent by epstein to himself that are just notes
