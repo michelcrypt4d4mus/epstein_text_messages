@@ -246,12 +246,12 @@ OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
     marcus marianne matt matthew melissa michele michelle moore moscowitz
     nancy nicole nussbaum
     owen
-    paulson philippe
+    paulson peter philippe
     rafael ray richard richardson rob robin ron rubin rudolph ryan
     sara sarah sean seligman serge sergey silverman sloman smith snowden sorkin steele stevie stewart
     ted theresa thompson tiffany timothy tony
     valeria
-    walter warren weinstein weiss william
+    walter warren waters weinstein weiss william
     zach zack
 """.strip().split()
 
