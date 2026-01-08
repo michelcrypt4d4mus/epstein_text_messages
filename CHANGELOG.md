@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.1.1
 * Remove AM/PM from imessage timestamp strings
 
 # 1.1.0
