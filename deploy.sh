@@ -2,6 +2,7 @@
 # Use --pickled arg to use pickled data file, otherwise pickled data will always be overwritten
 # Set ONLY_TEXTS=true to skip build/deploy of full emails site.
 set -e
+source .env
 
 CURRENT_BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
 PICKLE_ARG=$([[ $1 == '--pickled' ]] && echo "" || echo "--overwrite-pickle")
@@ -11,7 +12,7 @@ if [ -n "$BASH_COLORS_PATH" ]; then
     source "$BASH_COLORS_PATH"
     clr_cyan "Sourced '$(clr_green $BASH_COLORS_PATH)'..."
 else
-    echo -e "bash colors not found, can't print status msgs"
+    echo -e "bash colors not found, can't print status msgs. BASH_COLORS_PATH=$BASH_COLORS_PATH"
     exit 1
 fi
 
