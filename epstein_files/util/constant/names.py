@@ -235,7 +235,7 @@ OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
     baldwin barack ben benjamin berger bert binant bob bonner boyden bradley brady branson bright bruno bryant burton
     chapman charles charlie christopher clint cohen colin collins conway
     danny davis dean debra deborah dennis diana diane diaz dickinson dixon dominique don dylan
-    edmond elizabeth emily entwistle erik evelyn
+    edmond elizabeth emily enterprises entwistle erik evelyn
     ferguson flachsbart francis franco frank frost
     gardner gary geoff geoffrey gilbert gloria goldberg gonzalez gould graham greene guarino gwyneth
     hancock harold harrison harry hay helen hill hirsch hofstadter horowitz hussein
