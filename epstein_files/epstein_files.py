@@ -20,7 +20,7 @@ from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
-from epstein_files.util.data import days_between, dict_sets_to_lists, json_safe, listify, sort_dict
+from epstein_files.util.data import days_between, dict_sets_to_lists, json_safe, listify
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.env import DOCS_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
@@ -243,13 +243,14 @@ class EpsteinFiles:
 
     def print_emails_for(self, _author: str | None) -> list[Email]:
         """Print complete emails to or from a particular 'author'. Returns the Emails that were printed."""
-        conversation_length = self.email_conversation_length_in_days(_author)
         emails = self.emails_for(_author)
+        num_days = self.email_conversation_length_in_days(_author)
         unique_emails = [email for email in emails if not email.is_duplicate()]
+        start_date = emails[0].timestamp.date()
         author = _author or UNKNOWN
 
         print_author_panel(
-            f"Found {len(unique_emails)} emails to/from {author} starting {emails[0].timestamp.date()} covering {conversation_length:,} days",
+            f"Found {len(unique_emails)} emails to/from {author} starting {start_date} covering {num_days:,} days",
             get_style_for_name(author),
             get_info_for_name(author)
         )
