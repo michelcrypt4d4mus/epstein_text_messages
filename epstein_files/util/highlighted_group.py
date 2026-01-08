@@ -789,7 +789,6 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"ABC(\s*News)?",
             r"Alex\s*Yablon",
-            r"(Andrew\s*)?Marra",
             r"Arianna(\s*Huffington)?",
             r"(Arthur\s*)?Kretchmer",
             r'Associated\s*Press',
@@ -906,6 +905,7 @@ HIGHLIGHTED_NAMES = [
             r"Jeff(rey)?\s*Sessions",
             r"(Jennifer\s*Shasky\s*)?Calvery",
             r"((Judge|Mark)\s*)?(Carney|Filip)",
+            r"(Judge\s*)?(Kenneth\s*)?(A\.?\s*)?Marra",
             r"(Justice|Treasury)\s*Dep(t|artment)",
             r"(Kirk )?Blouin",
             r"KYC",

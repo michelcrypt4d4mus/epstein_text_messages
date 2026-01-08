@@ -739,7 +739,7 @@ class Email(Communication):
 
         if args.whole_file:
             num_chars = len(self.text)
-        if self.file_id in TRUNCATION_LENGTHS:
+        elif self.file_id in TRUNCATION_LENGTHS:
             num_chars = TRUNCATION_LENGTHS[self.file_id]
         elif self.author in TRUNCATE_ALL_EMAILS_FROM or includes_truncate_term:
             num_chars = int(MAX_CHARS_TO_PRINT / 3)
