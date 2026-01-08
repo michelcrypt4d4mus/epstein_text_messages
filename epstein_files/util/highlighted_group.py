@@ -569,6 +569,7 @@ HIGHLIGHTED_NAMES = [
             r"Gree(ce|k)",
             r"Ital(ian|y)",
             r"Jacques",
+            r"Kiev",
             r"Le\s*Pen",
             r"London",
             r"Macron",
