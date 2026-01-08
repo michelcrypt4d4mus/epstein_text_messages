@@ -168,7 +168,7 @@ class EpsteinFiles:
 
     def emails_for(self, author: str | None) -> list[Email]:
         """Returns emails to or from a given 'author' sorted chronologically."""
-        emails = self.emails if author == EVERYONE else (self.emails_by(author) + self.emails_to(author))
+        emails = self.emails_by(author) + self.emails_to(author)
 
         if len(emails) == 0:
             raise RuntimeError(f"No emails found for '{author}'")
