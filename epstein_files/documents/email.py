@@ -1,3 +1,4 @@
+import json
 import logging
 import re
 from copy import deepcopy
@@ -20,7 +21,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constants import *
 from epstein_files.util.data import (TIMEZONE_INFO, collapse_newlines, escape_single_quotes, extract_last_name,
-     flatten, remove_timezone, uniquify)
+     flatten, listify, remove_timezone, uniquify)
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.file_helper import extract_file_id, file_stem_for_id
 from epstein_files.util.highlighted_group import get_style_for_name
@@ -303,6 +304,49 @@ METADATA_FIELDS = [
     'subject',
 ]
 
+LINE_REPAIR_MERGES = {
+    '019407': [2, 4],
+    '021729': 2,
+    '022673': 9,
+    '022684': 9,
+    '022695': 4,
+    '023067': 3,
+    '025790': 2,
+    '026609': 4,
+    '026924': [2, 4],
+    '028931': [3, 6],
+    '029154': [2, 5],
+    '029163': [2, 5],
+    '029282': 2,
+    '029402': 4,
+    '029498': 2,
+    '029501': 2,
+    '029835': [2, 4],
+    '029889': 2,
+    '029976': 3,
+    '030299': [7, 10],
+    '030381': [2, 4],
+    '030384': [2, 4],
+    '030626': 2,
+    '030999': [2, 4],
+    '031384': 2,
+    '031428': 2,
+    '031442': 0,
+    '031980': [2, 4],
+    '032063': [3, 5],
+    '032272': 3,
+    '032405': 4,
+    '033097': 2,
+    '033144': [2, 4],
+    '033228': [3, 5],
+    '033357': [2, 4],
+    '033486': [7, 9],
+    '033512': 2,
+    '033575': [2, 4],
+    '033576': 3,
+    '033583': 2,
+}
+
 
 @dataclass
 class Email(Communication):
@@ -581,30 +625,21 @@ class Email(Communication):
         self._set_computed_fields(lines=[line for line in self.lines if not BAD_LINE_REGEX.match(line)])
         old_text = self.text
 
-        if self.file_id in ['031442']:
-            self._merge_lines(0)  # Merge 1st and 2nd rows
-        elif self.file_id in '021729 025790 029282 029501 029889 030626 031384 031428 033097 033512 033583 029498 033583'.split():
-            self._merge_lines(2)  # Merge 3rd and 4th rows
+        if self.file_id in LINE_REPAIR_MERGES:
+            merge = LINE_REPAIR_MERGES[self.file_id]
+            merge_args = merge if isinstance(merge, list) else [merge]
+            self._merge_lines(*merge_args)
 
-            if self.file_id in ['030626']:  # Merge 6th and 7th (now 5th and 6th) rows
-                self._merge_lines(4)
-            elif self.file_id == '029889':
-                self._merge_lines(2, 5)
-            elif self.file_id in ['029498', '031428']:
-                self._merge_lines(2, 4)
-        elif self.file_id in ['029976', '023067', '033576']:
-            self._merge_lines(3)  # Merge 4th and 5th rows
-        elif self.file_id in '026609 029402 032405 022695'.split():
-            self._merge_lines(4)  # Merge 5th and 6th rows
-        elif self.file_id in ['019407', '031980', '030384', '033144', '030999', '033575', '029835', '030381', '033357', '026924']:
-            self._merge_lines(2, 4)
-        elif self.file_id in ['029154', '029163']:
+        # These already had 2nd line merged
+        if self.file_id in ['030626']:  # Merge 6th and 7th (now 5th and 6th) rows
+            self._merge_lines(4)
+        elif self.file_id == '029889':
             self._merge_lines(2, 5)
-        elif self.file_id in ['033228', '032063']:
-            self._merge_lines(3, 5)
-        elif self.file_id == '028931':
-            self._merge_lines(3, 6)
-        elif self.file_id == '013415':
+        elif self.file_id in ['029498', '031428']:
+            self._merge_lines(2, 4)
+
+        # Multiline
+        if self.file_id == '013415':
             for _i in range(2):
                 self._merge_lines(4)
         elif self.file_id in ['033568']:
@@ -613,12 +648,6 @@ class Email(Communication):
         elif self.file_id in ['025329']:
             for _i in range(9):
                 self._merge_lines(2)
-        elif self.file_id == '033486':
-            self._merge_lines(7, 9)
-        elif self.file_id == '030299':
-            self._merge_lines(7, 10)
-        elif self.file_id in ['022673', '022684']:
-            self._merge_lines(9)
         elif self.file_id == '014860':
             self._merge_lines(3)
             self._merge_lines(4)
@@ -631,7 +660,9 @@ class Email(Communication):
 
             self._merge_lines(4)
             self._merge_lines(2, 4)
-        elif self.file_id == '025041':
+
+        # Bad line removal
+        if self.file_id == '025041':
             self._remove_line(4)
             self._remove_line(4)
         elif self.file_id == '029692':
@@ -701,24 +732,46 @@ class Email(Communication):
         self.config.is_interesting = self.config.is_interesting or extracted_from_doc_cfg.is_interesting
         self.log(f"Constructed synthetic config: {self.config}")
 
-    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        logger.debug(f"Printing '{self.filename}'...")
-        yield self.file_info_panel()
-        should_rewrite_header = self.header.was_initially_empty and self.header.num_header_rows > 0
+    def _truncate_to_length(self) -> int:
+        """When printing truncate this email to this length."""
         quote_cutoff = self._idx_of_nth_quoted_reply(text=self.text)  # Trim if there's many quoted replies
-        num_chars = MAX_CHARS_TO_PRINT
-        trim_footer_txt = None
-        text = self.text
+        includes_truncate_term = next((term for term in TRUNCATE_TERMS if term in self.text), None)
 
+        if args.whole_file:
+            num_chars = len(self.text)
         if self.file_id in TRUNCATION_LENGTHS:
             num_chars = TRUNCATION_LENGTHS[self.file_id]
-        elif self.author in TRUNCATE_ALL_EMAILS_FROM or any((term in self.text) for term in TRUNCATE_TERMS):
+        elif self.author in TRUNCATE_ALL_EMAILS_FROM or includes_truncate_term:
             num_chars = int(MAX_CHARS_TO_PRINT / 3)
         elif quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
             num_chars = quote_cutoff
+        else:
+            num_chars = MAX_CHARS_TO_PRINT
+
+        if num_chars != MAX_CHARS_TO_PRINT and not self.is_duplicate():
+            log_args = {
+                'num_chars': num_chars,
+                'author_truncate': self.author in TRUNCATE_ALL_EMAILS_FROM,
+                'is_fwded_article': self.is_fwded_article(),
+                'is_quote_cutoff': quote_cutoff == num_chars,
+                'includes_truncate_term': json.dumps(includes_truncate_term) if includes_truncate_term else None,
+                'quote_cutoff': quote_cutoff,
+            }
+
+            if quote_cutoff != num_chars:
+                logger.debug(f'{self.summary()} truncating: ' + ', '.join([f"{k}={v}" for k, v in log_args.items() if v]) + '\n')
+
+        return num_chars
+
+    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
+        logger.debug(f"Printing '{self.filename}'...")
+        should_rewrite_header = self.header.was_initially_empty and self.header.num_header_rows > 0
+        num_chars = self._truncate_to_length()
+        trim_footer_txt = None
+        text = self.text
 
         # Truncate long emails but leave a note explaining what happened w/link to source document
-        if len(text) > num_chars and not args.whole_file:
+        if len(text) > num_chars:
             text = text[0:num_chars]
             doc_link_markup = epstein_media_doc_link_markup(self.url_slug, self.author_style)
             trim_note = f"<...trimmed to {num_chars} characters of {self.length()}, read the rest at {doc_link_markup}...>"
@@ -740,34 +793,33 @@ class Email(Communication):
             text = _add_line_breaks(text)  # This was skipped when _prettify_text() w/a broken header so we do it now
             self.rewritten_header_ids.add(self.file_id)
 
-        panel_txt = highlighter(text)
-
         email_txt_panel = Panel(
-            panel_txt.append('\n\n').append(trim_footer_txt) if trim_footer_txt else panel_txt,
+            highlighter(text).append('\n\n').append(trim_footer_txt) if trim_footer_txt else highlighter(text),
             border_style=self._border_style(),
             expand=False,
             subtitle=REWRITTEN_HEADER_MSG if should_rewrite_header else None,
         )
 
+        yield self.file_info_panel()
         yield Padding(email_txt_panel, (0, 0, 1, INFO_INDENT))
 
         if should_rewrite_header:
             self.log_top_lines(self.header.num_header_rows + 4, f'Original header:')
 
     @staticmethod
-    def build_emails_table(emails: list['Email'], _author: str | None) -> Table:
-        """Turn a set of Email objects into a Table."""
+    def build_emails_table(emails: list['Email'], _author: str | None, include_title: bool = False) -> Table:
+        """Turn a set of Emails to/from a given _author into a Table."""
         author = _author or UNKNOWN
 
         table = Table(
-            title=f"Emails to/from {author} starting {emails[0].timestamp.date()}",
+            title=f"Emails to/from {author} starting {emails[0].timestamp.date()}" if include_title else None,
             border_style=get_style_for_name(author, allow_bold=False),
             header_style="bold"
         )
 
         table.add_column('From', justify='left')
         table.add_column('Timestamp', justify='center')
-        table.add_column('Subject', justify='left', style='honeydew2', min_width=60)
+        table.add_column('Subject', justify='left', style='honeydew2', min_width=70)
 
         for email in emails:
             table.add_row(

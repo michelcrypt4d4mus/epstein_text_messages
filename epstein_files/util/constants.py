@@ -26,7 +26,7 @@ HEADER_ABBREVIATIONS = {
     'JEGE': "Epstein's airplane holding company",
     'Jeffrey Wernick': 'right wing crypto bro, former COO of Parler',
     'Joi': f"Joi Ito ({MIT_MEDIA_LAB}, MIT Digital Currency Initiative)",
-    "Hoffenberg": "Steven Hoffenberg (Epstein's ponzi scheme partner)",
+    "Hoffenberg": f"{STEVEN_HOFFENBERG} (Epstein's ponzi scheme partner)",
     'KSA': "Kingdom of Saudi Arabia",
     'Kurz': 'Sebastian Kurz (former Austrian Chancellor)',
     'Kwok': "Chinese criminal Miles Kwok AKA Miles Guo AKA Guo Wengui",
@@ -500,7 +500,7 @@ EMAILS_CONFIG = [
         author=STEVEN_HOFFENBERG,
         recipients=["Players2"],
         timestamp=parse('2016-08-11 09:36:01'),
-        attribution_reason='Actually a fwd by Charles Michael but Hoffenberg email more interesting',
+        attribution_reason=f"Actually a fwd by Charles Michael but {STEVEN_HOFFENBERG} email more interesting",
     ),
     EmailCfg(
         id='026620',
