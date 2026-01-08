@@ -319,6 +319,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
             BARBRO_C_EHNBOM: 'Swedish pharmaceuticals, SALSS',
+            'David Mitchell': 'president of New York real estate development firm Mitchell Holdings',
             FRED_HADDAD: "co-founder of Heck's in West Virginia",
             GERALD_BARTON: "Maryland property developer Landmark Land Company, fan of Trump's Irish golf course",
             GORDON_GETTY: 'heir of oil tycoon J. Paul Getty',
@@ -632,6 +633,7 @@ HIGHLIGHTED_NAMES = [
             PAUL_BARRETT: None,
             PAUL_MORRIS: DEUTSCHE_BANK,
             'Steven Elkman': DEUTSCHE_BANK,
+            'Skip Rimer': 'Milken Institute (Michael Milken)',
         },
         patterns=[
             r"((anti.?)?money\s+)?launder(s?|ers?|ing)?(\s+money)?",
