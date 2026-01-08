@@ -1279,10 +1279,12 @@ HIGHLIGHTED_NAMES = [
     ),
     HighlightedNames(
         label='victim lawyer',
-        style='dark_magenta bold',
+        style='medium_orchid1',
         emailers={
-            BRAD_EDWARDS: 'Rothstein Rosenfeldt Adler (Rothstein was a crook & partner of Roger Stone)',
+            BRAD_EDWARDS: ROTHSTEIN_ROSENFELDT_ADLER,
+            'Grant J. Smith': ROTHSTEIN_ROSENFELDT_ADLER,
             JACK_SCAROLA: 'Searcy Denney Scarola Barnhart & Shipley',
+            KEN_JENNE: ROTHSTEIN_ROSENFELDT_ADLER,
         },
         patterns=[
             r"(Alan(\s*P.)?|MINTZ)\s*FRAADE",
