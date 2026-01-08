@@ -258,7 +258,7 @@ class EpsteinFiles:
         author = _author or UNKNOWN
 
         print_author_panel(
-            f"Found {len(unique_emails)} {author} emails starting {emails[0].timestamp.date()} over {conversation_length:,} days",
+            f"Found {len(unique_emails)} {author} emails starting {emails[0].timestamp.date()} covering {conversation_length:,} days",
             get_style_for_name(author),
             get_info_for_name(author)
         )
@@ -292,7 +292,7 @@ class EpsteinFiles:
         attributed_emails = [e for e in self.non_duplicate_emails() if e.author]
         footer = f"(identified {len(self.email_author_counts)} authors of {len(attributed_emails):,}"
         footer = f"{footer} out of {len(self.non_duplicate_emails()):,} emails)"
-        counts_table = build_table("Email Counterparties Appearing in the Files", caption=footer)
+        counts_table = build_table("All of the Email Counterparties Who Appear in the Files", caption=footer)
 
         add_cols_to_table(counts_table, [
             'Name',
