@@ -45,23 +45,12 @@ DEFAULT_EMAILERS = [
     None,
 ]
 
-# Order matters. Default names to print tables w/email subject, timestamp, etc for. # TODO: get rid of this ?
-DEFAULT_EMAILER_TABLES: list[str | None] = [
-    GHISLAINE_MAXWELL,
-    PRINCE_ANDREW,
-    SULTAN_BIN_SULAYEM,
-    ARIANE_DE_ROTHSCHILD,
-]
-
 INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [
     'ACT for America',
     'BS Stern',
     INTELLIGENCE_SQUARED,
     UNKNOWN,
 ]
-
-if len(set(DEFAULT_EMAILERS).intersection(set(DEFAULT_EMAILER_TABLES))) > 0:
-    raise RuntimeError(f"Some names appear in both DEFAULT_EMAILERS and DEFAULT_EMAILER_TABLES")
 
 
 def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
