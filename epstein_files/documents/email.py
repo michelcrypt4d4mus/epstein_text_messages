@@ -153,6 +153,7 @@ TRUNCATION_LENGTHS = {
     '030781': 1_700,   # Bannon email about crypto coin issues
     '032906': 750,     # David Blaine email
     '026036': 6000,    # Gino Yu blockchain mention
+    '023208': 350_000, # Long discussion about leon black's finances
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
