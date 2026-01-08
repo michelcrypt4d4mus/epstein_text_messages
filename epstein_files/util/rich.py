@@ -33,13 +33,13 @@ DEFAULT_NAME_STYLE = 'gray46'
 INFO_STYLE = 'white dim italic'
 KEY_STYLE = 'honeydew2 bold'
 LAST_TIMESTAMP_STYLE = 'wheat4'
-OTHER_PAGE_MSG_STYLE = 'gray58'
+OTHER_PAGE_MSG_STYLE = 'gray78 dim'
 SECTION_HEADER_STYLE = 'bold white on blue3'
 SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
 SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 SYMBOL_STYLE = 'grey70'
 TABLE_BORDER_STYLE = 'grey46'
-TABLE_TITLE_STYLE = f"gray85 italic"
+TABLE_TITLE_STYLE = f"gray54 italic"
 TITLE_STYLE = 'black on bright_white bold'
 
 AUX_SITE_LINK_STYLE = 'dark_orange3'
@@ -47,6 +47,7 @@ OTHER_SITE_LINK_STYLE = 'dark_goldenrod'
 
 DEFAULT_TABLE_KWARGS = {
     'border_style': TABLE_BORDER_STYLE,
+    'caption_style': 'navajo_white3 dim italic',
     'header_style': "bold",
     'title_style': TABLE_TITLE_STYLE,
 }

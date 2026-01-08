@@ -146,13 +146,13 @@ def print_text_messages_section(imessage_logs: list[MessengerLog]) -> None:
         return
 
     print_section_header('All of His Text Messages')
-    console.line()
 
     if not args.names:
+        print_centered("(conversations are sorted chronologically based on timestamp of first message in the log file)", style='dim')
+        console.line(2)
         print_centered(MessengerLog.summary_table(imessage_logs))
 
     console.line(2)
-    console.print(" Conversations are sorted chronologically based on timestamp of first message in the log file.\n", style='grey70')
 
     for log_file in imessage_logs:
         console.print(Padding(log_file))

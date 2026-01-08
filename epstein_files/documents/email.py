@@ -755,7 +755,7 @@ class Email(Communication):
             self.log_top_lines(self.header.num_header_rows + 4, f'Original header:')
 
     @staticmethod
-    def build_table(emails: list['Email'], _author: str | None) -> Table:
+    def build_emails_table(emails: list['Email'], _author: str | None) -> Table:
         """Turn a set of Email objects into a Table."""
         author = _author or UNKNOWN
 
