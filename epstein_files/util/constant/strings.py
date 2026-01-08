@@ -77,3 +77,8 @@ OTHER_FILE_CLASS = 'OtherFile'
 
 
 remove_question_marks = lambda name: QUESTION_MARKS_REGEX.sub('', name)
+
+
+def indented(s: str, spaces: int = 4) -> str:
+    indent = ' ' * spaces
+    return indent + f"\n{indent}".join(s.split('\n'))
