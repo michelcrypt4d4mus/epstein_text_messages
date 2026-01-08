@@ -1212,6 +1212,7 @@ HIGHLIGHTED_NAMES = [
             PETER_THIEL: 'Paypal mafia member, founder of Palantir, early Facebook investor, reactionary',
             REID_HOFFMAN: 'PayPal mafia member, founder of LinkedIn',
             STEVEN_SINOFSKY: 'ex-Microsoft, loves bitcoin',
+            VINCENZO_IOZZO: 'CEO of the identity-security company SlashID',
         },
         patterns=[
             r"AG?I",

@@ -166,6 +166,7 @@ TOM_BARRACK = 'Tom Barrack'
 TOM_PRITZKER = 'Tom Pritzker'
 TONJA_HADDAD_COLEMAN = 'Tonja Haddad Coleman'
 TYLER_SHEARS = 'Tyler Shears'  # Reputation manager, like Al Seckel
+VINCENZO_IOZZO = 'Vincenzo Iozzo'
 VINIT_SAHNI = 'Vinit Sahni'
 ZUBAIR_KHAN = 'Zubair Khan'
 

@@ -192,7 +192,7 @@ EMAIL_AUTHOR_COUNTS = {
     TONJA_HADDAD_COLEMAN: 5,
     "Tyler Shears": 6,
     "Valeria Chomsky": 2,
-    "Vincenzo Lozzo": 1,
+    VINCENZO_IOZZO: 1,
     "Vinit Sahni": 2,
     "Vladimir Yudashkin": 1,
     ZUBAIR_KHAN: 10,
@@ -529,7 +529,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         "Ross Gow"
     ],
     "Sent from my Iphone": [
-        "Vincenzo Lozzo"
+        VINCENZO_IOZZO
     ],
     "Sent from my Samsung JackTM, a Windows Mobile® smartphone from AT&T": [
         "Boris Nikolic"
@@ -862,7 +862,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     "Tyler Shears": [
         "Sent from my iPhone"
     ],
-    "Vincenzo Lozzo": [
+    VINCENZO_IOZZO: [
         "Sent from my Iphone"
     ]
 }
