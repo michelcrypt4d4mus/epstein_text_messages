@@ -21,8 +21,8 @@ from epstein_files.util.doc_cfg import DocCfg, Metadata
 from epstein_files.util.data import days_between, escape_single_quotes, remove_timezone, sort_dict, uniquify
 from epstein_files.util.file_helper import FILENAME_LENGTH, file_size_to_str
 from epstein_files.util.env import args
-from epstein_files.util.highlighted_group import styled_category
-from epstein_files.util.rich import QUESTION_MARK_TXT, build_table, highlighter
+from epstein_files.util.highlighted_group import QUESTION_MARKS_TXT, styled_category
+from epstein_files.util.rich import build_table, highlighter
 from epstein_files.util.logging import logger
 
 FIRST_FEW_LINES = 'First Few Lines'
@@ -105,7 +105,7 @@ class OtherFile(Document):
         return self.config and self.config.category
 
     def category_txt(self) -> Text | None:
-        return styled_category(self.category() or UNKNOWN)
+        return styled_category(self.category())
 
     def config_description(self) -> str | None:
         """Overloads superclass method."""
@@ -231,7 +231,7 @@ class OtherFile(Document):
             known_author_count = Document.known_author_count(category_files)
 
             table.add_row(
-                styled_category(category or UNKNOWN),
+                styled_category(category),
                 str(count),
                 str(known_author_count),
                 str(count - known_author_count),
@@ -247,7 +247,7 @@ class OtherFile(Document):
         table.add_column('File', justify='center', width=FILENAME_LENGTH)
         table.add_column('Date', justify='center')
         table.add_column('Size', justify='right', style='dim')
-        table.add_column('Type', justify='center')
+        table.add_column('Category', justify='center')
         table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
 
         for file in files:
@@ -264,7 +264,7 @@ class OtherFile(Document):
 
             table.add_row(
                 Group(*link_and_info),
-                Text(date_str, style=TIMESTAMP_STYLE) if date_str else QUESTION_MARK_TXT,
+                Text(date_str, style=TIMESTAMP_STYLE) if date_str else QUESTION_MARKS_TXT,
                 file.file_size_str(),
                 file.category_txt(),
                 preview_text,
