@@ -128,7 +128,7 @@ class HighlightedNames(HighlightedText):
     def get_info(self, name: str) -> str | None:
         """Label and additional info for 'name' if 'name' is in self.emailers."""
         info_pieces = [
-            None if len(self.emailers) == 1 else (self.category or self.label.replace('_', ' ')),
+            self.category or ('' if len(self.emailers) == 1 else self.label.replace('_', ' ')),
             self.emailers.get(name),
         ]
 
@@ -1067,7 +1067,7 @@ HIGHLIGHTED_NAMES = [
             AL_SECKEL: 'husband of Isabel Maxwell, Mindshift conference organizer who fell off a cliff',
             'Barnaby Marsh': 'co-founder of Saint Partners, a philanthropy services company',
             CHRISTINA_GALBRAITH: f"{REPUTATION_MGMT}, worked on Epstein's Google search results with Tyler Shears",
-            IAN_OSBORNE: f'{OSBORNE_LLP} reputation repairer possibly hired by Epstein ca. 2011-06',
+            IAN_OSBORNE: f'{OSBORNE_LLP} reputation repairer hired by Epstein in 2011',
             MICHAEL_SITRICK: 'crisis PR',
             'Owen Blicksilver': 'OBPR, Inc.',
             PEGGY_SIEGAL: 'socialite',
@@ -1338,13 +1338,13 @@ HIGHLIGHTED_NAMES = [
         style='gold3',
         patterns=[r"(steven?\s*)?hoffenberg?w?"],
         emailers={
-            STEVEN_HOFFENBERG: HEADER_ABBREVIATIONS['Hoffenberg'],
+            STEVEN_HOFFENBERG: "Epstein's ponzi scheme partner who went to prison for 18 years",
         },
     ),
     HighlightedNames(emailers={GHISLAINE_MAXWELL: None}, patterns=[r"gmax(1@ellmax.com)?", r"TerraMar"], style='deep_pink3'),
     HighlightedNames(emailers={JABOR_Y: '"an influential man in Qatar"'}, style='spring_green1'),
     HighlightedNames(emailers={JEFFREY_EPSTEIN: None}, patterns=[r"JEGE", r"LSJ", r"Mark (L. )?Epstein"], style='blue1'),
-    HighlightedNames(emailers={JOI_ITO: HEADER_ABBREVIATIONS['Joi']}, style='gold1'),
+    HighlightedNames(emailers={JOI_ITO: f"former head of {MIT_MEDIA_LAB}, MIT Digital Currency Initiative"}, style='gold1'),
     HighlightedNames(emailers={KATHRYN_RUEMMLER: 'former Obama legal counsel'}, style='magenta2'),
     HighlightedNames(emailers={MELANIE_WALKER: 'doctor'}, style='pale_violet_red1'),
     HighlightedNames(emailers={PAULA: "Epstein's ex-girlfriend who is now in the opera world"}, label='paula_heil_fisher', style='pink1'),
