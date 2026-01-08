@@ -859,7 +859,6 @@ UN_GENERAL_ASSEMBLY = '67th U.N. General Assembly'
 WOMEN_EMPOWERMENT = f"Women Empowerment (WE) conference"
 ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
 
-
 OTHER_FILES_BOOKS = [
     DocCfg(id='017088', author=ALAN_DERSHOWITZ, description=f'"Taking the Stand: My Life in the Law" (draft)'),
     DocCfg(id='013501', author='Arnold J. Mandell', description=f'The Nearness Of Grace: A Personal Science Of Spiritual Transformation', date='2005-01-01'),
@@ -1139,11 +1138,7 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='025353', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-05-19', duplicate_ids=['010723', '019224'], dupe_type='redacted'),
     DocCfg(id='025704', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-05-27', duplicate_ids=['010732', '019221'], dupe_type='redacted'),
     DocCfg(id='012130', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-06-19', duplicate_ids=['012135']),
-    DocCfg(
-        id='031447',
-        author=MARTIN_WEINBERG,
-        description=f"letter from to Melanie Ann Pustay and Sean O'Neill re: an Epstein FOIA request"
-    ),
+    DocCfg(id='031447', author=MARTIN_WEINBERG, description=f"letter from to Melanie Ann Pustay & Sean O'Neill re: Epstein FOIA request"),
     DocCfg(
         id='028965',
         author=MARTIN_WEINBERG,
@@ -1223,7 +1218,7 @@ OTHER_FILES_CONFERENCES = [
 OTHER_FILES_FINANCE = [
     DocCfg(id='024631', author='Ackrell Capital', description=f"Cannabis Investment Report 2018", is_interesting=True),
     DocCfg(id='016111', author=BOFA_MERRILL, description=f"GEMs Paper #26 Saudi Arabia: beyond oil but not so fast", date='2016-06-30'),
-    DocCfg(id='010609', author=BOFA_MERRILL, description=f"Liquid Insight Trump\'s effect on MXN", date='2016-09-22'),
+    DocCfg(id='010609', author=BOFA_MERRILL, description=f"Liquid Insight Trump's effect on MXN", date='2016-09-22'),
     DocCfg(id='025978', author=BOFA_MERRILL, description=f"Understanding when risk parity risk Increases", date='2016-08-09'),
     DocCfg(id='014404', author=BOFA_MERRILL, description=f'Japan Investment Strategy Report', date='2016-11-18'),
     DocCfg(id='014410', author=BOFA_MERRILL, description=f'Japan Investment Strategy Report', date='2016-11-18'),
@@ -1541,7 +1536,7 @@ OTHER_FILES_MISC = [
     DocCfg(id='031743', description=f'a few pages describing the internet as a "New Nation State" (Network State?)'),
     DocCfg(id='012718', description=f"{CVRA} congressional record", date='2011-06-17'),
     DocCfg(id='024117', description=f"FAQ about anti-money laundering (AML) and terrorist financing (CFT) law in the U.S."),
-    DocCfg(id='019448', description=f"Haitian business investment proposal called Jacmel"),
+    DocCfg(id='019448', description=f"Haitian business investment proposal called Jacmel", attached_to_email_id='019448'),
     DocCfg(id='023644', description=f"interview with Mohammed bin Salman", date='2016-04-25'),
     DocCfg(
         id='030142',
