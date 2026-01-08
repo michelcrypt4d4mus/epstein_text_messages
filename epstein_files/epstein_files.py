@@ -20,8 +20,8 @@ from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import (JMAIL, epstein_media_person_url, epsteinify_name_url,
-     epstein_web_person_url, search_jmail_url, search_twitter_url)
+from epstein_files.util.constant.urls import (EPSTEIN_MEDIA, EPSTEIN_WEB, JMAIL, epstein_media_person_url,
+     epsteinify_name_url, epstein_web_person_url, search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
 from epstein_files.util.data import days_between, dict_sets_to_lists, json_safe, listify, sort_dict
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
@@ -288,19 +288,21 @@ class EpsteinFiles:
 
     def table_of_emailers(self) -> Table:
         attributed_emails = [e for e in self.non_duplicate_emails() if e.author]
-        footer = f"Identified authors of {len(attributed_emails):,} out of {len(self.non_duplicate_emails()):,} emails."
-        counts_table = build_table("Email Counts", caption=footer)
+        footer = f"Identified {len(self.email_author_counts)} authors of {len(attributed_emails):,}"
+        footer = f"{footer} out of {len(self.non_duplicate_emails()):,} emails."
+        counts_table = build_table("All Email Counterparties Found in the Files", caption=footer)
 
         add_cols_to_table(counts_table, [
             'Name',
-            'Num',
-            'Sent',
-            "Recv",
-            {'name': 'First', 'highlight': True},
+            {'name': 'Count', 'justify': 'right', 'style': 'bold bright_white'},
+            {'name': 'Sent', 'justify': 'right', 'style': 'gray74'},
+            {'name': 'Recv', 'justify': 'right', 'style': 'gray74'},
+            {'name': 'First', 'style': TIMESTAMP_STYLE},
             {'name': 'Last', 'style': LAST_TIMESTAMP_STYLE},
+            {'name': 'Days', 'justify': 'right', 'style': 'dim'},
             JMAIL,
-            'eMedia',
-            'eWeb',
+            EPSTEIN_MEDIA,
+            EPSTEIN_WEB,
             'Twitter',
         ])
 
@@ -315,14 +317,15 @@ class EpsteinFiles:
 
             counts_table.add_row(
                 Text.from_markup(link_markup(epsteinify_name_url(name or UNKNOWN), name or UNKNOWN, style)),
-                str(count),
+                f"{count:,}",
                 str(self.email_author_counts[name]),
                 str(self.email_recipient_counts[name]),
-                emails[0].timestamp_without_seconds(),
-                emails[-1].timestamp_without_seconds(),
+                emails[0].date_str(),
+                emails[-1].date_str(),
+                f"{self.email_conversation_length_in_days(name)}",
                 link_text_obj(search_jmail_url(name), JMAIL) if name else '',
-                link_text_obj(epstein_media_person_url(name), 'eMedia') if is_ok_for_epstein_web(name) else '',
-                link_text_obj(epstein_web_person_url(name), 'eWeb') if is_ok_for_epstein_web(name) else '',
+                link_text_obj(epstein_media_person_url(name), EPSTEIN_MEDIA) if is_ok_for_epstein_web(name) else '',
+                link_text_obj(epstein_web_person_url(name), EPSTEIN_WEB) if is_ok_for_epstein_web(name) else '',
                 link_text_obj(search_twitter_url(name), 'search X') if name else '',
             )
 

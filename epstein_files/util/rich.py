@@ -20,7 +20,7 @@ from epstein_files.util.constants import FALLBACK_TIMESTAMP, HEADER_ABBREVIATION
 from epstein_files.util.data import json_safe
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
-from epstein_files.util.highlighted_group import ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES, REGEX_STYLE_PREFIX, EpsteinHighlighter
+from epstein_files.util.highlighted_group import ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES, EpsteinHighlighter, get_info_for_name, get_style_for_name
 from epstein_files.util.logging import logger
 
 TITLE_WIDTH = 50
@@ -82,15 +82,21 @@ highlighter = CONSOLE_ARGS['highlighter']
 def add_cols_to_table(table: Table, col_names: list[str | dict]) -> None:
     """Left most col will be left justified, rest are center justified."""
     for i, col in enumerate(col_names):
+        justify='left' if i == 0 else 'center'
+
         if isinstance(col, dict):
             col_name = col['name']
             kwargs = col
             del kwargs['name']
+
+            if 'justify' in col:
+                justify = col['justify']
+                del col['justify']
         else:
             col_name = col
             kwargs = {}
 
-        table.add_column(col_name, justify='left' if i == 0 else 'center', **kwargs)
+        table.add_column(col_name, justify=justify, **kwargs)
 
 
 def build_highlighter(pattern: str) -> EpsteinHighlighter:
@@ -225,41 +231,45 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
     console.line()
 
 
-def print_numbered_list_of_emailers(_list: list[str | None], epstein_files = None) -> None:
+def table_of_selected_emailers(_list: list[str | None], epstein_files: 'EpsteinFiles') -> Table:
     """Add the first emailed_at timestamp for each emailer if 'epstein_files' provided."""
     current_year = 1990
     current_year_month = current_year * 12
     grey_idx = 0
     console.line()
+    header_pfx = '' if args.all_emails else 'Selected '
+    table = build_table(f'{header_pfx}Email Conversations Grouped by Counterparty Will Appear in this Order')
+    table.add_column('Start Date')
+    table.add_column('Name', max_width=25, no_wrap=True)
+    table.add_column('Num', justify='right', style='wheat4')
+    table.add_column('Info', style='white italic')
 
     for i, name in enumerate(_list):
-        indent = '   ' if i < 9 else ('  ' if i < 99 else ' ')
-        txt = Text((indent) + F"   {i + 1}. ", style=DEFAULT_NAME_STYLE)
+        earliest_email_date = (epstein_files.earliest_email_at(name) or FALLBACK_TIMESTAMP).date()
+        year_months = (earliest_email_date.year * 12) + earliest_email_date.month
 
-        if epstein_files:
-            earliest_email_date = (epstein_files.earliest_email_at(name) or FALLBACK_TIMESTAMP).date()
-            year_months = (earliest_email_date.year * 12) + earliest_email_date.month
+        # Color year rollovers more brightly
+        if current_year != earliest_email_date.year:
+            grey_idx = 0
+        elif current_year_month != year_months:
+            grey_idx = ((current_year_month - 1) % 12) + 1
 
-            # Color year rollovers more brightly
-            if current_year != earliest_email_date.year:
-                grey_idx = 0
-            elif current_year_month != year_months:
-                grey_idx = ((current_year_month - 1) % 12) + 1
+        current_year_month = year_months
+        current_year = earliest_email_date.year
 
-            current_year_month = year_months
-            current_year = earliest_email_date.year
-            txt.append(escape(f"[{earliest_email_date}] "), style=f"grey{GREY_NUMBERS[grey_idx]}")
+        if name:
+            info = get_info_for_name(name or UNKNOWN) or ''
+        else:
+            info = Text('(emails whose author or recipient could not be determined)', style='medium_purple4')
 
-        txt.append(highlighter(name or UNKNOWN))
+        table.add_row(
+            Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[grey_idx]}"),
+            Text(name or UNKNOWN, style=get_style_for_name(name or UNKNOWN, default_style='dim')),
+            f"{len(epstein_files.emails_for(name)):,}",
+            info,
+        )
 
-        if epstein_files:
-            num_days_in_converation = epstein_files.email_conversation_length_in_days(name)
-            msg = f" ({len(epstein_files.emails_for(name))} emails over {num_days_in_converation:,} days)"
-            txt.append(msg, style=f'dim italic')
-
-        console.print(txt)
-
-    console.line()
+    return table
 
 
 def print_other_page_link(epstein_files: 'EpsteinFiles') -> None:
@@ -269,7 +279,7 @@ def print_other_page_link(epstein_files: 'EpsteinFiles') -> None:
         txt = Text.from_markup(markup_msg).append(f' is uncurated and has all {len(epstein_files.other_files)}')
         txt.append(f" unclassifiable files and {len(epstein_files.emails):,} emails")
     else:
-        txt = Text.from_markup(markup_msg).append(f' displays only a small collection of emails and')
+        txt = Text.from_markup(markup_msg).append(f' displays a limited collection of emails and')
         txt.append(" unclassifiable files of particular interest")
 
     print_centered(parenthesize(txt), style='dim')
