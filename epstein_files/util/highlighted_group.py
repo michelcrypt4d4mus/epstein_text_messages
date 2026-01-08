@@ -554,6 +554,7 @@ HIGHLIGHTED_NAMES = [
             r"Macron",
             r"Melusine",
             r"Munich",
+            r"NATO",
             r"(Nicholas\s*)?Sarkozy",
             r"Nigel(\s*Farage)?",
             r"Norw(ay|egian)",
