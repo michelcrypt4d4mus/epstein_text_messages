@@ -236,7 +236,6 @@ def table_of_selected_emailers(_list: list[str | None], epstein_files: 'EpsteinF
     current_year = 1990
     current_year_month = current_year * 12
     grey_idx = 0
-    console.line()
     header_pfx = '' if args.all_emails else 'Selected '
     table = build_table(f'{header_pfx}Email Conversations Grouped by Counterparty Will Appear in this Order')
     table.add_column('Start Date')
@@ -313,7 +312,7 @@ def print_panel(msg: str, style: str = 'black on white', padding: tuple | None =
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
     panel = Panel(Text(msg, justify='center'), expand=True, padding=(1, 1), style=style)
     panel = Align.center(panel) if is_centered else panel
-    console.print(Padding(panel, (3, 2, 1, 2)))
+    console.print(Padding(panel, (3, 0, 1, 0)))
 
 
 def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, style: str = TITLE_STYLE) -> None:
