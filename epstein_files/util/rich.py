@@ -58,8 +58,6 @@ HIGHLIGHTED_GROUP_COLOR_KEYS = [
 THEME_STYLES = {
     DEFAULT: 'wheat4',
     TEXT_LINK: 'deep_sky_blue4 underline',
-    f'{REGEX_STYLE_PREFIX}.email_subject': 'gray62',
-    f'{REGEX_STYLE_PREFIX}.email_attachments': 'gray30 italic',
     **{hg.theme_style_name: hg.style for hg in ALL_HIGHLIGHTS},
 }
 
