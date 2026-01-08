@@ -138,7 +138,7 @@ class HighlightedNames(HighlightedText):
         return '|'.join(name_patterns)
 
     def __str__(self) -> str:
-        return f"{type(self).__name__}(label='{self.label}')"
+        return super().__str__()
 
     def __repr__(self) -> str:
         s = f"{type(self).__name__}("
@@ -146,10 +146,10 @@ class HighlightedNames(HighlightedText):
         for property in ['label', 'style', 'category', 'patterns', 'emailers']:
             value = getattr(self, property)
 
-            if not value or (property == 'label' and len(self.emailers) == 1 and not self.pattern):
+            if not value or (property == 'label' and len(self.emailers) == 1 and not self.patterns):
                 continue
 
-            s += f"\n    {'patterns' if property == 'pattern' else property}="
+            s += f"\n    {property}="
 
             if isinstance(value, dict):
                 s += '{'
@@ -969,7 +969,7 @@ HIGHLIGHTED_NAMES = [
             AL_SECKEL: 'husband of Isabel Maxwell, Mindshift conference organizer who fell off a cliff',
             'Barnaby Marsh': 'co-founder of Saint Partners, a philanthropy services company',
             CHRISTINA_GALBRAITH: "reputation management, worked on Epstein's Google search results with Tyler Shears",
-            IAN_OSBORNE: 'Ian Osborne & Partners LLP reputation repairer possibly hired by Epstein ca. 2011-06',
+            IAN_OSBORNE: f'{OSBORNE_LLP} reputation repairer possibly hired by Epstein ca. 2011-06',
             MICHAEL_SITRICK: 'crisis PR',
             'Owen Blicksilver': 'OBPR, Inc.',
             PEGGY_SIEGAL: 'socialite',
@@ -1409,5 +1409,3 @@ def _print_highlighted_names_repr() -> None:
 
     import sys
     sys.exit()
-
-_print_highlighted_names_repr()
