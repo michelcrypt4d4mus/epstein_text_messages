@@ -817,7 +817,7 @@ HIGHLIGHTED_NAMES = [
             r"Ingram, David",
             r"(James\s*)?(Hill|Patterson)",
             r"Jonathan\s*Karl",
-            r"Julie\s*(K.?\s*)?Brown",
+            r"Julie\s*(K.?\s*)?Brown", r'jbrown@miamiherald.com',
             r"(Katie\s*)?Couric",
             r"Keith\s*Larsen",
             r"L\.?A\.?\s*Times",
