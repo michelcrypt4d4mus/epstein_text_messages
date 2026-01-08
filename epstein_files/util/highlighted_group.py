@@ -707,7 +707,7 @@ HIGHLIGHTED_NAMES = [
             r"Globe\s*and\s*Mail",
             r"Good\s*Morning\s*America",
             r"Graydon(\s*Carter)?",
-            r"Huffington(\s*Post)?",
+            r"Huff(ington)?(\s*Po(st)?)?",
             r"Ingram, David",
             r"(James\s*)?(Hill|Patterson)",
             r"Jonathan\s*Karl",

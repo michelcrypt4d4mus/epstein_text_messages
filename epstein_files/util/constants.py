@@ -1541,7 +1541,7 @@ OTHER_FILES_MISC = [
     DocCfg(id='031743', description=f'a few pages describing the internet as a "New Nation State" (Network State?)'),
     DocCfg(id='012718', description=f"{CVRA} congressional record", date='2011-06-17'),
     DocCfg(id='024117', description=f"FAQ about anti-money laundering (AML) and terrorist financing (CFT) law in the U.S."),
-    DocCfg(id='019448', description=f"Haitian business investment proposal called Jacmel"),
+    DocCfg(id='019448', description=f"Haitian business investment proposal called Jacmel", attached_to_email_id='019448'),
     DocCfg(id='023644', description=f"interview with Mohammed bin Salman", date='2016-04-25'),
     DocCfg(
         id='030142',
