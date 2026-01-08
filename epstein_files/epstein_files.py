@@ -13,22 +13,20 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import DETECT_EMAIL_REGEX, JUNK_EMAILERS, KRASSNER_RECIPIENTS, USELESS_EMAILERS, Email
+from epstein_files.documents.email import DETECT_EMAIL_REGEX, USELESS_EMAILERS, Email
 from epstein_files.documents.emails.email_header import AUTHOR
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import (EPSTEIN_MEDIA, EPSTEIN_WEB, JMAIL, epstein_media_person_url,
-     epsteinify_name_url, epstein_web_person_url, search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
 from epstein_files.util.data import days_between, dict_sets_to_lists, json_safe, listify, sort_dict
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.env import DOCS_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames, get_info_for_name, get_style_for_name
-from epstein_files.util.rich import (DEFAULT_NAME_STYLE, LAST_TIMESTAMP_STYLE, NA_TXT, add_cols_to_table,
-     build_table, console, highlighter, link_text_obj, link_markup, print_author_panel, print_centered, print_subtitle_panel)
+from epstein_files.util.rich import (NA_TXT, add_cols_to_table, build_table, console, highlighter,
+     print_author_panel, print_centered, print_subtitle_panel)
 from epstein_files.util.search_result import SearchResult
 from epstein_files.util.timer import Timer
 
@@ -39,13 +37,6 @@ DEVICE_SIGNATURE_SUBTITLE = f"Email [italic]Sent from \\[DEVICE][/italic] Signat
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (1, 0)
 SLOW_FILE_SECONDS = 1.0
-
-INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [
-    'ACT for America',
-    'BS Stern',
-    INTELLIGENCE_SQUARED,
-    UNKNOWN,
-]
 
 
 @dataclass
@@ -289,51 +280,6 @@ class EpsteinFiles:
         console.print(_build_signature_table(self.email_device_signatures_to_authors, (DEVICE_SIGNATURE, AUTHOR), ', '))
         console.print(_build_signature_table(self.email_authors_to_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
 
-    def table_of_emailers(self) -> Table:
-        attributed_emails = [e for e in self.non_duplicate_emails() if e.author]
-        footer = f"(identified {len(self.email_author_counts)} authors of {len(attributed_emails):,}"
-        footer = f"{footer} out of {len(self.non_duplicate_emails()):,} emails)"
-        counts_table = build_table("All of the Email Counterparties Who Appear in the Files", caption=footer)
-
-        add_cols_to_table(counts_table, [
-            'Name',
-            {'name': 'Count', 'justify': 'right', 'style': 'bold bright_white'},
-            {'name': 'Sent', 'justify': 'right', 'style': 'gray74'},
-            {'name': 'Recv', 'justify': 'right', 'style': 'gray74'},
-            {'name': 'First', 'style': TIMESTAMP_STYLE},
-            {'name': 'Last', 'style': LAST_TIMESTAMP_STYLE},
-            {'name': 'Days', 'justify': 'right', 'style': 'dim'},
-            JMAIL,
-            EPSTEIN_MEDIA,
-            EPSTEIN_WEB,
-            'Twitter',
-        ])
-
-        emailer_counts = {
-            emailer: self.email_author_counts[emailer] + self.email_recipient_counts[emailer]
-            for emailer in self.all_emailers(True)
-        }
-
-        for name, count in sort_dict(emailer_counts):
-            style = get_style_for_name(name, default_style=DEFAULT_NAME_STYLE)
-            emails = self.emails_for(name)
-
-            counts_table.add_row(
-                Text.from_markup(link_markup(epsteinify_name_url(name or UNKNOWN), name or UNKNOWN, style)),
-                f"{count:,}",
-                str(self.email_author_counts[name]),
-                str(self.email_recipient_counts[name]),
-                emails[0].date_str(),
-                emails[-1].date_str(),
-                f"{self.email_conversation_length_in_days(name)}",
-                link_text_obj(search_jmail_url(name), JMAIL) if name else '',
-                link_text_obj(epstein_media_person_url(name), EPSTEIN_MEDIA) if is_ok_for_epstein_web(name) else '',
-                link_text_obj(epstein_web_person_url(name), EPSTEIN_WEB) if is_ok_for_epstein_web(name) else '',
-                link_text_obj(search_twitter_url(name), 'search X') if name else '',
-            )
-
-        return counts_table
-
     def _tally_email_data(self) -> None:
         """Tally up summary info about Email objects."""
         for email in self.non_duplicate_emails():
@@ -376,18 +322,6 @@ def document_cls(doc: Document) -> Type[Document]:
         return MessengerLog
     else:
         return OtherFile
-
-
-def is_ok_for_epstein_web(name: str | None) -> bool:
-    """Return True if it's likely that EpsteinWeb has a page for this name."""
-    if name is None or ' ' not in name:
-        return False
-    elif '@' in name or '/' in name or '??' in name:
-        return False
-    elif name in INVALID_FOR_EPSTEIN_WEB:
-        return False
-
-    return True
 
 
 def _build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Padding:
