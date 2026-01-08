@@ -57,7 +57,7 @@ epsteinify_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[EPSTEINI
 epsteinify_name_url = lambda name: f"{EPSTEINIFY_URL}/?name={urllib.parse.quote(name)}"
 
 epstein_media_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[EPSTEIN_MEDIA], file_stem, 'lower')
-epstein_media_doc_link_markup = lambda filename_or_id, style = TEXT_LINK: external_doc_link_markup(EPSTEIN_MEDIA, filename_or_id.lower(), style)
+epstein_media_doc_link_markup = lambda filename_or_id, style = TEXT_LINK: external_doc_link_markup(EPSTEIN_MEDIA, filename_or_id, style)
 epstein_media_doc_link_txt = lambda filename_or_id, style = TEXT_LINK: Text.from_markup(epstein_media_doc_link_markup(filename_or_id, style))
 epstein_media_person_url = lambda person: f"{EPSTEIN_MEDIA_URL}/people/{parameterize(person)}"
 
@@ -73,7 +73,7 @@ search_twitter_url = lambda txt: f"https://x.com/search?q={urllib.parse.quote(tx
 
 def build_doc_url(base_url: str, filename_or_id: int | str, case: Literal['lower', 'title'] | None = None) -> str:
     file_stem = coerce_file_stem(filename_or_id)
-    file_stem = file_stem.lower() if case == 'lower' else file_stem
+    file_stem = file_stem.lower() if case == 'lower' or EPSTEIN_MEDIA in base_url else file_stem
     file_stem = file_stem.title() if case == 'title' else file_stem
     return f"{base_url}{file_stem}"
 
