@@ -79,6 +79,7 @@ print_msg "Building JSON files data..."
 epstein_generate --build --json-files
 
 # Commit changes
+echo -e ""
 git commit -am"Update HTML"
 git push origin gh_pages --quiet
 git checkout master
