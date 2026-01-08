@@ -679,7 +679,7 @@ class Email(Communication):
         """Copy info from original config for file this document was extracted from."""
         if self.file_id in ALL_FILE_CONFIGS:
             self.config = cast(EmailCfg, deepcopy(ALL_FILE_CONFIGS[self.file_id]))
-            self.warn(f"Merging existing config for {self.file_id} with config for file this document was extracted from")
+            self.warn(f"Merging existing cfg for '{self.file_id}' with cfg for extracted document...")
         else:
             self.config = EmailCfg(id=self.file_id)
 
@@ -692,7 +692,7 @@ class Email(Communication):
                 extracted_description += ' email'
 
             if self.config.description:
-                self.warn(f"Overwriting description '{self.config.description}' with extract description '{self.config.description}'")
+                self.warn(f"Overwriting description '{self.config.description}' with extract's '{self.config.description}'")
 
             self.config.description = extracted_description
 
