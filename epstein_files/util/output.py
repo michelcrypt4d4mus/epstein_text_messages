@@ -179,8 +179,8 @@ def write_complete_emails_timeline(epstein_files: EpsteinFiles) -> None:
     """Print a table of all emails in chronological order."""
     emails = [email for email in epstein_files.non_duplicate_emails() if not email.is_junk_mail()]
     table = build_table(f'All {len(emails):,} Non-Junk Emails in Chronological Order', highlight=True)
-    table.add_column('ID', style='dim')
-    table.add_column('Sent At', style=TIMESTAMP_DIM)
+    table.add_column('ID', style=TIMESTAMP_DIM)
+    table.add_column('Sent At', style=LAST_TIMESTAMP_STYLE)
     table.add_column('Author', max_width=20)
     table.add_column('Recipients', max_width=22)
     table.add_column('Length', justify='right', style='wheat4')
@@ -191,8 +191,8 @@ def write_complete_emails_timeline(epstein_files: EpsteinFiles) -> None:
             continue
 
         table.add_row(
-            email.source_file_id(),
-            email.epstein_media_link(link_txt=email.timestamp_without_seconds()),
+            email.epstein_media_link(link_txt=email.source_file_id()),
+            email.timestamp_without_seconds(),
             email.author_txt,
             email.recipients_txt(max_full_names=1),
             f"{email.length()}",
