@@ -298,7 +298,7 @@ def print_page_title(expand: bool = True, width: int | None = None) -> None:
     console.line(2)
 
 
-def print_panel(msg: str, style: str = 'black on white', padding: tuple | None = None, centered: bool = False) -> None:
+def print_subtitle_panel(msg: str, style: str = 'black on white', padding: tuple | None = None, centered: bool = False) -> None:
     _padding: list[int] = list(padding or [0, 0, 0, 0])
     _padding[2] += 1  # Bottom pad
     actual_padding: tuple[int, int, int, int] = tuple(_padding)

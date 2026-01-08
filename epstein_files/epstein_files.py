@@ -29,12 +29,14 @@ from epstein_files.util.env import DOCS_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames, get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_STYLE, LAST_TIMESTAMP_STYLE, NA_TXT, add_cols_to_table,
-     build_table, console, highlighter, link_text_obj, link_markup, print_author_panel, print_panel)
+     build_table, console, highlighter, link_text_obj, link_markup, print_author_panel, print_subtitle_panel)
 from epstein_files.util.search_result import SearchResult
 from epstein_files.util.timer import Timer
 
 EXCLUDED_EMAILERS = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
 PICKLED_PATH = Path("the_epstein_files.pkl.gz")
+
+DEVICE_SIGNATURE_SUBTITLE = f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown"
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (1, 0)
 SLOW_FILE_SECONDS = 1.0
@@ -282,15 +284,15 @@ class EpsteinFiles:
         console.print(Align.center(Email.build_table(emails, author)), '\n')
 
     def print_email_device_info(self) -> None:
-        print_panel(f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown", padding=(2, 0, 0, 0), centered=True)
-        console.print(_build_signature_table(self.email_authors_to_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
+        print_subtitle_panel(DEVICE_SIGNATURE_SUBTITLE, padding=(2, 0, 0, 0), centered=True)
         console.print(_build_signature_table(self.email_device_signatures_to_authors, (DEVICE_SIGNATURE, AUTHOR), ', '))
+        console.print(_build_signature_table(self.email_authors_to_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
 
     def table_of_emailers(self) -> Table:
         attributed_emails = [e for e in self.non_duplicate_emails() if e.author]
-        footer = f"Identified {len(self.email_author_counts)} authors of {len(attributed_emails):,}"
-        footer = f"{footer} out of {len(self.non_duplicate_emails()):,} emails."
-        counts_table = build_table("All Email Counterparties Found in the Files", caption=footer)
+        footer = f"(identified {len(self.email_author_counts)} authors of {len(attributed_emails):,}"
+        footer = f"{footer} out of {len(self.non_duplicate_emails()):,} emails)"
+        counts_table = build_table("Email Counterparties Appearing in the Files", caption=footer)
 
         add_cols_to_table(counts_table, [
             'Name',
