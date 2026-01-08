@@ -370,6 +370,7 @@ HIGHLIGHTED_NAMES = [
             r"North\s*Korea",
             r"Peking",
             r"PRC",
+            r"Pyongyang",
             r"SCMP",
             r"Tai(pei|wan)",
             r"Xi(aomi)?",
