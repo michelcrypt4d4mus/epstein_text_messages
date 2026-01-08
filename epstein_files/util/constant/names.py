@@ -197,6 +197,7 @@ GOLDMAN_SACHS = 'Goldman Sachs'
 GOLDMAN_INVESTMENT_MGMT = f'{GOLDMAN_SACHS} Investment Management Division'
 HARVARD = 'Harvard'
 INSIGHTS_POD = f"InsightsPod"  # Zubair bots
+MIT_MEDIA_LAB = 'MIT Media Lab'
 NEXT_MANAGEMENT = 'Next Management LLC'
 JP_MORGAN = 'JP Morgan'
 OSBORNE_LLP = f"{IAN_OSBORNE} & Partners LLP"  # Ian Osborne's PR firm
