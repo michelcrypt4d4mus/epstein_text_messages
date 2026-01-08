@@ -170,7 +170,7 @@ def write_complete_emails_timeline(epstein_files: EpsteinFiles) -> None:
         table.add_row(
             email.epstein_media_link(link_txt=email.source_file_id()),
             email.timestamp_without_seconds(),
-            email.author_txt,
+            email.author_txt(),
             email.recipients_txt(max_full_names=1),
             f"{email.length()}",
             email.subject(),

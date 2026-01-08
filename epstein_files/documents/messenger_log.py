@@ -47,7 +47,7 @@ class MessengerLog(Communication):
             txt.append('with unknown counterparty')
         else:
             txt.append(GUESSED_MSG if self.is_attribution_uncertain() else CONFIRMED_MSG).append(' ')
-            txt.append(Text(self.author, style=self.author_style + ' bold'))
+            txt.append(Text(self.author, style=self.author_style() + ' bold'))
 
         if self.phone_number:
             txt.append(highlighter(f" using the phone number {self.phone_number}"))
@@ -71,7 +71,7 @@ class MessengerLog(Communication):
         return metadata
 
     def _border_style(self) -> str:
-        return self.author_style
+        return self.author_style()
 
     def _build_message(self, match: re.Match) -> TextMessage:
         """Turn a regex match into a TextMessage."""
