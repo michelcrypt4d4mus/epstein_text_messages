@@ -1319,7 +1319,7 @@ HIGHLIGHTED_TEXTS = [
     HighlightedText(
         label='header_field',
         style='plum4',
-        patterns=[r'^(Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):'],
+        patterns=[r'^(> )?(Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):'],
     ),
     HighlightedText(
         label='http_links',
@@ -1359,7 +1359,11 @@ ALL_HIGHLIGHTS = HIGHLIGHTED_NAMES + HIGHLIGHTED_TEXTS
 class EpsteinHighlighter(RegexHighlighter):
     """Finds and colors interesting keywords based on the above config."""
     base_style = f"{REGEX_STYLE_PREFIX}."
-    highlights = [highlight_group.regex for highlight_group in ALL_HIGHLIGHTS]
+    highlights = [
+        re.compile(r"^Subject: (?P<email_subject>.*)", re.MULTILINE),
+        re.compile(r"^Attachments: (?P<email_attachments>.*)", re.MULTILINE),
+        *[highlight_group.regex for highlight_group in ALL_HIGHLIGHTS],
+    ]
 
 
 def get_info_for_name(name: str) -> str | None:

@@ -20,7 +20,7 @@ from epstein_files.util.constants import FALLBACK_TIMESTAMP, HEADER_ABBREVIATION
 from epstein_files.util.data import json_safe
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
-from epstein_files.util.highlighted_group import ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES, EpsteinHighlighter
+from epstein_files.util.highlighted_group import ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES, REGEX_STYLE_PREFIX, EpsteinHighlighter
 from epstein_files.util.logging import logger
 
 TITLE_WIDTH = 50
@@ -58,6 +58,8 @@ HIGHLIGHTED_GROUP_COLOR_KEYS = [
 THEME_STYLES = {
     DEFAULT: 'wheat4',
     TEXT_LINK: 'deep_sky_blue4 underline',
+    f'{REGEX_STYLE_PREFIX}.email_subject': 'gray62',
+    f'{REGEX_STYLE_PREFIX}.email_attachments': 'gray30 italic',
     **{hg.theme_style_name: hg.style for hg in ALL_HIGHLIGHTS},
 }
 
