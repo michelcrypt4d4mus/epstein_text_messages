@@ -243,10 +243,10 @@ class OtherFile(Document):
     @staticmethod
     def files_preview_table(files: Sequence['OtherFile'], title_pfx: str = '') -> Table:
         """Build a table of OtherFile documents."""
-        table = build_table(f'{title_pfx}Other Files Details', show_lines=True)
+        table = build_table(f'{title_pfx}Other Files Details in Chronological Order', show_lines=True)
         table.add_column('File', justify='center', width=FILENAME_LENGTH)
         table.add_column('Date', justify='center')
-        table.add_column('Size', justify='right')
+        table.add_column('Size', justify='right', style='dim')
         table.add_column('Type', justify='center')
         table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
 
@@ -264,7 +264,7 @@ class OtherFile(Document):
 
             table.add_row(
                 Group(*link_and_info),
-                Text(date_str, style=TIMESTAMP_DIM) if date_str else QUESTION_MARK_TXT,
+                Text(date_str, style=TIMESTAMP_STYLE) if date_str else QUESTION_MARK_TXT,
                 file.file_size_str(),
                 file.category_txt(),
                 preview_text,
