@@ -6,7 +6,7 @@ from rich.text import Text
 
 from scripts.use_pickled import console, epstein_files
 from epstein_files.util.data import sort_dict
-from epstein_files.util.rich import highlighter, print_panel
+from epstein_files.util.rich import highlighter, print_subtitle_panel
 
 INDENT = '  '
 GUID_REGEX = re.compile(r'[-\d\w]{36}')
@@ -70,7 +70,7 @@ for json_file in epstein_files.json_files:
     stats.count_obj(json_file.json_data())
 
 console.line(4)
-print_panel("Counts of Keys in JSON data")
+print_subtitle_panel("Counts of Keys in JSON data")
 
 for (key, count) in sort_dict(stats.key_count):
     console.print(f"{key}: {count}")

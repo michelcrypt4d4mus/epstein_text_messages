@@ -20,7 +20,7 @@ from epstein_files.util.constants import FALLBACK_TIMESTAMP, HEADER_ABBREVIATION
 from epstein_files.util.data import json_safe
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
-from epstein_files.util.highlighted_group import ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES, REGEX_STYLE_PREFIX, EpsteinHighlighter
+from epstein_files.util.highlighted_group import ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES, EpsteinHighlighter, get_info_for_name, get_style_for_name
 from epstein_files.util.logging import logger
 
 TITLE_WIDTH = 50
@@ -31,14 +31,15 @@ GREY_NUMBERS = [58, 39, 39, 35, 30, 27, 23, 23, 19, 19, 15, 15, 15]
 
 DEFAULT_NAME_STYLE = 'gray46'
 INFO_STYLE = 'white dim italic'
-KEY_STYLE='honeydew2 bold'
-LAST_TIMESTAMP_STYLE='wheat4'
+KEY_STYLE = 'honeydew2 bold'
+LAST_TIMESTAMP_STYLE = 'wheat4'
+OTHER_PAGE_MSG_STYLE = 'gray78 dim'
 SECTION_HEADER_STYLE = 'bold white on blue3'
 SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
 SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
 SYMBOL_STYLE = 'grey70'
 TABLE_BORDER_STYLE = 'grey46'
-TABLE_TITLE_STYLE = f"gray85 italic"
+TABLE_TITLE_STYLE = f"gray54 italic"
 TITLE_STYLE = 'black on bright_white bold'
 
 AUX_SITE_LINK_STYLE = 'dark_orange3'
@@ -46,6 +47,7 @@ OTHER_SITE_LINK_STYLE = 'dark_goldenrod'
 
 DEFAULT_TABLE_KWARGS = {
     'border_style': TABLE_BORDER_STYLE,
+    'caption_style': 'navajo_white3 dim italic',
     'header_style': "bold",
     'title_style': TABLE_TITLE_STYLE,
 }
@@ -82,15 +84,21 @@ highlighter = CONSOLE_ARGS['highlighter']
 def add_cols_to_table(table: Table, col_names: list[str | dict]) -> None:
     """Left most col will be left justified, rest are center justified."""
     for i, col in enumerate(col_names):
+        justify='left' if i == 0 else 'center'
+
         if isinstance(col, dict):
             col_name = col['name']
             kwargs = col
             del kwargs['name']
+
+            if 'justify' in col:
+                justify = col['justify']
+                del col['justify']
         else:
             col_name = col
             kwargs = {}
 
-        table.add_column(col_name, justify='left' if i == 0 else 'center', **kwargs)
+        table.add_column(col_name, justify=justify, **kwargs)
 
 
 def build_highlighter(pattern: str) -> EpsteinHighlighter:
@@ -225,70 +233,73 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
     console.line()
 
 
-def print_numbered_list_of_emailers(_list: list[str | None], epstein_files = None) -> None:
+def table_of_selected_emailers(_list: list[str | None], epstein_files: 'EpsteinFiles') -> Table:
     """Add the first emailed_at timestamp for each emailer if 'epstein_files' provided."""
     current_year = 1990
     current_year_month = current_year * 12
     grey_idx = 0
-    console.line()
+    header_pfx = '' if args.all_emails else 'Selected '
+    table = build_table(f'{header_pfx}Email Conversations Grouped by Counterparty Will Appear in this Order')
+    table.add_column('Start Date')
+    table.add_column('Name', max_width=25, no_wrap=True)
+    table.add_column('Num', justify='right', style='wheat4')
+    table.add_column('Info', style='white italic')
 
     for i, name in enumerate(_list):
-        indent = '   ' if i < 9 else ('  ' if i < 99 else ' ')
-        txt = Text((indent) + F"   {i + 1}. ", style=DEFAULT_NAME_STYLE)
+        earliest_email_date = (epstein_files.earliest_email_at(name) or FALLBACK_TIMESTAMP).date()
+        year_months = (earliest_email_date.year * 12) + earliest_email_date.month
 
-        if epstein_files:
-            earliest_email_date = (epstein_files.earliest_email_at(name) or FALLBACK_TIMESTAMP).date()
-            year_months = (earliest_email_date.year * 12) + earliest_email_date.month
+        # Color year rollovers more brightly
+        if current_year != earliest_email_date.year:
+            grey_idx = 0
+        elif current_year_month != year_months:
+            grey_idx = ((current_year_month - 1) % 12) + 1
 
-            # Color year rollovers more brightly
-            if current_year != earliest_email_date.year:
-                grey_idx = 0
-            elif current_year_month != year_months:
-                grey_idx = ((current_year_month - 1) % 12) + 1
+        current_year_month = year_months
+        current_year = earliest_email_date.year
 
-            current_year_month = year_months
-            current_year = earliest_email_date.year
-            txt.append(escape(f"[{earliest_email_date}] "), style=f"grey{GREY_NUMBERS[grey_idx]}")
+        if name:
+            info = get_info_for_name(name or UNKNOWN) or ''
+        else:
+            info = Text('(emails whose author or recipient could not be determined)', style='medium_purple4')
 
-        txt.append(highlighter(name or UNKNOWN))
+        table.add_row(
+            Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[grey_idx]}"),
+            Text(name or UNKNOWN, style=get_style_for_name(name or UNKNOWN, default_style='dim')),
+            f"{len(epstein_files.emails_for(name)):,}",
+            info,
+        )
 
-        if epstein_files:
-            num_days_in_converation = epstein_files.email_conversation_length_in_days(name)
-            msg = f" ({len(epstein_files.emails_for(name))} emails over {num_days_in_converation:,} days)"
-            txt.append(msg, style=f'dim italic')
-
-        console.print(txt)
-
-    console.line()
+    return table
 
 
 def print_other_page_link(epstein_files: 'EpsteinFiles') -> None:
     markup_msg = link_markup(other_site_url(), 'the other page', style='light_slate_grey bold')
 
     if other_site_type() == EMAIL:
-        txt = Text.from_markup(markup_msg).append(f' is uncurated and has all {len(epstein_files.other_files)}')
-        txt.append(f" unclassifiable files and {len(epstein_files.emails):,} emails")
+        txt = Text.from_markup(markup_msg).append(f' is uncurated and has all {len(epstein_files.emails):,} emails')
+        txt.append(f" and {len(epstein_files.other_files)} unclassifiable files")
     else:
-        txt = Text.from_markup(markup_msg).append(f' displays only a small collection of emails and')
+        txt = Text.from_markup(markup_msg).append(f' displays a limited collection of emails and')
         txt.append(" unclassifiable files of particular interest")
 
-    print_centered(parenthesize(txt), style='dim')
+    print_centered(parenthesize(txt), style=OTHER_PAGE_MSG_STYLE)
     chrono_emails_markup = link_text_obj(CHRONOLOGICAL_EMAILS_URL, 'a page', style='light_slate_grey bold')
     chrono_emails_txt = Text(f"there's also ").append(chrono_emails_markup)
     chrono_emails_txt.append(' with a table of all the emails in chronological order')
-    print_centered(parenthesize(chrono_emails_txt), style='dim')
+    print_centered(parenthesize(chrono_emails_txt), style=OTHER_PAGE_MSG_STYLE)
 
 
 def print_page_title(expand: bool = True, width: int | None = None) -> None:
     warning = Text('This page was generated by ').append(link_text_obj('https://pypi.org/project/rich/', 'rich'))
-    print_centered(warning.append('. It is not optimized for mobile.'), style='dim')
+    print_centered(warning.append('. It is not optimized for mobile.\n'), style='dim')
     title_panel = Panel(Text(PAGE_TITLE, justify='center'), expand=expand, style=TITLE_STYLE, width=width)
     print_centered(vertically_pad(title_panel))
     _print_social_media_links()
     console.line(2)
 
 
-def print_panel(msg: str, style: str = 'black on white', padding: tuple | None = None, centered: bool = False) -> None:
+def print_subtitle_panel(msg: str, style: str = 'black on white', padding: tuple | None = None, centered: bool = False) -> None:
     _padding: list[int] = list(padding or [0, 0, 0, 0])
     _padding[2] += 1  # Bottom pad
     actual_padding: tuple[int, int, int, int] = tuple(_padding)
@@ -303,7 +314,7 @@ def print_panel(msg: str, style: str = 'black on white', padding: tuple | None =
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
     panel = Panel(Text(msg, justify='center'), expand=True, padding=(1, 1), style=style)
     panel = Align.center(panel) if is_centered else panel
-    console.print(Padding(panel, (3, 2, 1, 2)))
+    console.print(Padding(panel, (3, 0, 1, 0)))
 
 
 def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, style: str = TITLE_STYLE) -> None:

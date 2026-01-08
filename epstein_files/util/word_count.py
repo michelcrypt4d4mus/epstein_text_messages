@@ -17,7 +17,7 @@ from epstein_files.util.data import ALL_NAMES, flatten, sort_dict
 from epstein_files.util.env import args
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import (console, highlighter, print_centered, print_color_key, print_page_title,
-     print_panel, print_starred_header, write_html)
+     print_subtitle_panel, print_starred_header, write_html)
 from epstein_files.util.search_result import MatchedLine, SearchResult
 from epstein_files.util.timer import Timer
 
@@ -238,7 +238,7 @@ def write_word_counts_html() -> None:
     console.line()
     console.print(word_count)
     console.line(2)
-    print_panel(f"{len(COMMON_WORDS_LIST):,} Excluded Words", centered=True)
+    print_subtitle_panel(f"{len(COMMON_WORDS_LIST):,} Excluded Words", centered=True)
     console.print(', '.join(COMMON_WORDS_LIST), highlight=False)
     write_html(WORD_COUNT_HTML_PATH)
     timer.print_at_checkpoint(f"Finished counting words")

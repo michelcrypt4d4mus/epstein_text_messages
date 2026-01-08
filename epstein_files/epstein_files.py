@@ -20,8 +20,8 @@ from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import (JMAIL, epstein_media_person_url, epsteinify_name_url,
-     epstein_web_person_url, search_jmail_url, search_twitter_url)
+from epstein_files.util.constant.urls import (EPSTEIN_MEDIA, EPSTEIN_WEB, JMAIL, epstein_media_person_url,
+     epsteinify_name_url, epstein_web_person_url, search_jmail_url, search_twitter_url)
 from epstein_files.util.constants import *
 from epstein_files.util.data import days_between, dict_sets_to_lists, json_safe, listify, sort_dict
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
@@ -29,12 +29,14 @@ from epstein_files.util.env import DOCS_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames, get_info_for_name, get_style_for_name
 from epstein_files.util.rich import (DEFAULT_NAME_STYLE, LAST_TIMESTAMP_STYLE, NA_TXT, add_cols_to_table,
-     build_table, console, highlighter, link_text_obj, link_markup, print_author_panel, print_panel)
+     build_table, console, highlighter, link_text_obj, link_markup, print_author_panel, print_subtitle_panel)
 from epstein_files.util.search_result import SearchResult
 from epstein_files.util.timer import Timer
 
 EXCLUDED_EMAILERS = [e.lower() for e in (USELESS_EMAILERS + [JEFFREY_EPSTEIN])]
 PICKLED_PATH = Path("the_epstein_files.pkl.gz")
+
+DEVICE_SIGNATURE_SUBTITLE = f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown"
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (1, 0)
 SLOW_FILE_SECONDS = 1.0
@@ -279,28 +281,30 @@ class EpsteinFiles:
 
     def print_emails_table_for(self, author: str | None) -> None:
         emails = [email for email in self.emails_for(author) if not email.is_duplicate()]  # Remove dupes
-        console.print(Align.center(Email.build_table(emails, author)), '\n')
+        console.print(Align.center(Email.build_emails_table(emails, author)), '\n')
 
     def print_email_device_info(self) -> None:
-        print_panel(f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown", padding=(2, 0, 0, 0), centered=True)
-        console.print(_build_signature_table(self.email_authors_to_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
+        print_subtitle_panel(DEVICE_SIGNATURE_SUBTITLE, padding=(2, 0, 0, 0), centered=True)
         console.print(_build_signature_table(self.email_device_signatures_to_authors, (DEVICE_SIGNATURE, AUTHOR), ', '))
+        console.print(_build_signature_table(self.email_authors_to_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
 
     def table_of_emailers(self) -> Table:
         attributed_emails = [e for e in self.non_duplicate_emails() if e.author]
-        footer = f"Identified authors of {len(attributed_emails):,} out of {len(self.non_duplicate_emails()):,} emails."
-        counts_table = build_table("Email Counts", caption=footer)
+        footer = f"(identified {len(self.email_author_counts)} authors of {len(attributed_emails):,}"
+        footer = f"{footer} out of {len(self.non_duplicate_emails()):,} emails)"
+        counts_table = build_table("Email Counterparties Appearing in the Files", caption=footer)
 
         add_cols_to_table(counts_table, [
             'Name',
-            'Num',
-            'Sent',
-            "Recv",
-            {'name': 'First', 'highlight': True},
+            {'name': 'Count', 'justify': 'right', 'style': 'bold bright_white'},
+            {'name': 'Sent', 'justify': 'right', 'style': 'gray74'},
+            {'name': 'Recv', 'justify': 'right', 'style': 'gray74'},
+            {'name': 'First', 'style': TIMESTAMP_STYLE},
             {'name': 'Last', 'style': LAST_TIMESTAMP_STYLE},
+            {'name': 'Days', 'justify': 'right', 'style': 'dim'},
             JMAIL,
-            'eMedia',
-            'eWeb',
+            EPSTEIN_MEDIA,
+            EPSTEIN_WEB,
             'Twitter',
         ])
 
@@ -315,14 +319,15 @@ class EpsteinFiles:
 
             counts_table.add_row(
                 Text.from_markup(link_markup(epsteinify_name_url(name or UNKNOWN), name or UNKNOWN, style)),
-                str(count),
+                f"{count:,}",
                 str(self.email_author_counts[name]),
                 str(self.email_recipient_counts[name]),
-                emails[0].timestamp_without_seconds(),
-                emails[-1].timestamp_without_seconds(),
+                emails[0].date_str(),
+                emails[-1].date_str(),
+                f"{self.email_conversation_length_in_days(name)}",
                 link_text_obj(search_jmail_url(name), JMAIL) if name else '',
-                link_text_obj(epstein_media_person_url(name), 'eMedia') if is_ok_for_epstein_web(name) else '',
-                link_text_obj(epstein_web_person_url(name), 'eWeb') if is_ok_for_epstein_web(name) else '',
+                link_text_obj(epstein_media_person_url(name), EPSTEIN_MEDIA) if is_ok_for_epstein_web(name) else '',
+                link_text_obj(epstein_web_person_url(name), EPSTEIN_WEB) if is_ok_for_epstein_web(name) else '',
                 link_text_obj(search_twitter_url(name), 'search X') if name else '',
             )
 

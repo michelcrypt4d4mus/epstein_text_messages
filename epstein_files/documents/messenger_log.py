@@ -145,8 +145,8 @@ class MessengerLog(Communication):
         author_counts = cls.count_authors(log_files)
         msg_count = sum([len(log.messages) for log in log_files])
 
-        footer = f"Deanonymized {msg_count - author_counts[None]:,} of {msg_count:,} text messages in"
-        counts_table = build_table("Text Message Counts By Author", caption=f"{footer} {len(log_files)} files")
+        footer = f"deanonymized {msg_count - author_counts[None]:,} of {msg_count:,} text messages in"
+        counts_table = build_table("Text Message Counts By Author", caption=f"({footer} {len(log_files)} files)")
         counts_table.add_column(AUTHOR.title(), justify='left', width=30)
         counts_table.add_column('Files', justify='right', style='white')
         counts_table.add_column("Msgs", justify='right')
