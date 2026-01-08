@@ -153,6 +153,7 @@ TRUNCATION_LENGTHS = {
     '030781': 1_700,   # Bannon email about crypto coin issues
     '032906': 750,     # David Blaine email
     '026036': 6000,    # Gino Yu blockchain mention
+    '023208': 350_000, # Long discussion about leon black's finances
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
@@ -277,6 +278,7 @@ USELESS_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + KRASSNER_RECIP
     'Nancy Portland',                        # Lawrence Krauss CC
     'Oliver Goodenough',                     # Robert Trivers CC
     'Peter Aldhous',                         # Lawrence Krauss CC
+    'Players2',                              # Hoffenberg CC
     'Sam Harris',                            # Lawrence Krauss CC
     SAMUEL_LEFF,                             # Random CC
     'Sean T Lehane',                         # Random CC
