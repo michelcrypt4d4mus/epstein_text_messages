@@ -727,6 +727,7 @@ HIGHLIGHTED_NAMES = [
             r"(Andrew\s*)?Marra",
             r"Arianna(\s*Huffington)?",
             r"(Arthur\s*)?Kretchmer",
+            r'Associated\s*Press',
             r"BBC",
             r"Bloomberg",
             r"Breitbart",
@@ -953,7 +954,7 @@ HIGHLIGHTED_NAMES = [
             r"(Osama\s*)?Bin\s*Laden",
             r"Osama(?! al)",
             r"Palestin(e|ian)",
-            r"Persian?",
+            r"Persian?(\s*Gulf)?",
             r"Riya(dh|nd)",
             r"Saddam",
             r"Salman",
@@ -1073,6 +1074,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='Rothschild family',
         style='indian_red',
+        patterns=['AdR'],
         emailers={
             ARIANE_DE_ROTHSCHILD: 'heiress',
             JOHNNY_EL_HACHEM: f'works with {ARIANE_DE_ROTHSCHILD}',
