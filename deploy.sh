@@ -54,7 +54,7 @@ git merge --no-edit master --quiet
 
 # Build files
 echo -e ""
-print_msg "Building text messages page $PICKLE_ARG"
+print_msg "Building text messages page... $PICKLE_ARG"
 epstein_generate --build --suppress-output $PICKLE_ARG
 
 if [ -n "$ONLY_TEXTS" ]; then
