@@ -72,10 +72,9 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
         else:
             emailers_to_print = DEFAULT_EMAILERS
 
-        console.line()
-        console.print(table_of_selected_emailers(emailers_to_print, epstein_files))
-        console.line()
         print_other_page_link(epstein_files)
+        console.line(2)
+        console.print(table_of_selected_emailers(emailers_to_print, epstein_files))
         console.print(Padding(epstein_files.table_of_emailers(), (2, 0)))
 
     for author in emailers_to_print:

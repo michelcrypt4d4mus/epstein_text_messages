@@ -31,8 +31,9 @@ GREY_NUMBERS = [58, 39, 39, 35, 30, 27, 23, 23, 19, 19, 15, 15, 15]
 
 DEFAULT_NAME_STYLE = 'gray46'
 INFO_STYLE = 'white dim italic'
-KEY_STYLE='honeydew2 bold'
-LAST_TIMESTAMP_STYLE='wheat4'
+KEY_STYLE = 'honeydew2 bold'
+LAST_TIMESTAMP_STYLE = 'wheat4'
+OTHER_PAGE_MSG_STYLE = 'gray58'
 SECTION_HEADER_STYLE = 'bold white on blue3'
 SOCIAL_MEDIA_LINK_STYLE = 'pale_turquoise4'
 SUBSTACK_POST_LINK_STYLE = 'bright_cyan'
@@ -275,17 +276,17 @@ def print_other_page_link(epstein_files: 'EpsteinFiles') -> None:
     markup_msg = link_markup(other_site_url(), 'the other page', style='light_slate_grey bold')
 
     if other_site_type() == EMAIL:
-        txt = Text.from_markup(markup_msg).append(f' is uncurated and has all {len(epstein_files.other_files)}')
-        txt.append(f" unclassifiable files and {len(epstein_files.emails):,} emails")
+        txt = Text.from_markup(markup_msg).append(f' is uncurated and has all {len(epstein_files.emails):,} emails')
+        txt.append(f" and {len(epstein_files.other_files)} unclassifiable files")
     else:
         txt = Text.from_markup(markup_msg).append(f' displays a limited collection of emails and')
         txt.append(" unclassifiable files of particular interest")
 
-    print_centered(parenthesize(txt), style='dim')
+    print_centered(parenthesize(txt), style=OTHER_PAGE_MSG_STYLE)
     chrono_emails_markup = link_text_obj(CHRONOLOGICAL_EMAILS_URL, 'a page', style='light_slate_grey bold')
     chrono_emails_txt = Text(f"there's also ").append(chrono_emails_markup)
     chrono_emails_txt.append(' with a table of all the emails in chronological order')
-    print_centered(parenthesize(chrono_emails_txt), style='dim')
+    print_centered(parenthesize(chrono_emails_txt), style=OTHER_PAGE_MSG_STYLE)
 
 
 def print_page_title(expand: bool = True, width: int | None = None) -> None:
