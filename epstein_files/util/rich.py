@@ -24,6 +24,7 @@ from epstein_files.util.highlighted_group import ALL_HIGHLIGHTS, HIGHLIGHTED_NAM
 from epstein_files.util.logging import logger
 
 TITLE_WIDTH = 50
+MIN_AUTHOR_PANEL_WIDTH = 80
 NUM_COLOR_KEY_COLS = 4
 NA_TXT = Text(NA, style='dim')
 GREY_NUMBERS = [58, 39, 39, 35, 30, 27, 23, 23, 19, 19, 15, 15, 15]
@@ -151,10 +152,11 @@ def parenthesize(msg: str | Text, style: str = '') -> Text:
 
 def print_author_panel(msg: str, color: str | None, footer: str | None = None) -> None:
     """Print a panel with the name of an emailer and a few tidbits of information about them."""
-    txt = Text(msg, justify='center')
     color = color or 'white'
     color = 'white' if color == DEFAULT else color
-    panel = Panel(txt, width=80, style=f"black on {color} bold")
+    width = max(MIN_AUTHOR_PANEL_WIDTH, len(msg) + 4)
+    logger.warning(f"width={width}")
+    panel = Panel(Text(msg, justify='center'), width=width, style=f"black on {color} bold")
     console.print('\n', Align.center(panel))
 
     if footer:
