@@ -1,5 +1,6 @@
 import logging
 from os import environ
+from sys import exit
 
 import datefinder
 import rich_argparse_plus
@@ -39,7 +40,7 @@ class LogHighlighter(ReprHighlighter):
 
 log_console = Console(color_system='256', theme=Theme(LOG_THEME))
 log_handler = RichHandler(console=log_console, highlighter=LogHighlighter())
-logging.basicConfig(level="NOTSET", format="%(message)s", datefmt="[%X]", handlers=[log_handler])
+logging.basicConfig(level="NOTSET", format="%(message)s", datefmt=" ", handlers=[log_handler])
 logger = logging.getLogger("rich")
 
 
@@ -58,3 +59,9 @@ if env_log_level_str:
 
     logger.warning(f"Setting log level to {env_log_level} based on {LOG_LEVEL_ENV_VAR} env var...")
     logger.setLevel(env_log_level)
+
+
+def exit_with_error(msg: str) -> None:
+    print('')
+    logger.error(msg + '\n')
+    exit(1)

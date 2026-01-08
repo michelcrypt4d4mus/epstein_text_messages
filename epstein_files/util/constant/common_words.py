@@ -89,6 +89,6 @@ UNSINGULARIZABLE_WORDS = """
 """.strip().split()
 
 
-if args.deep_debug:
-    word_str = '\n'.join(COMMON_WORDS_LIST)
-    print(f"common words:\n\n{word_str}")
+# if args.deep_debug:
+#     word_str = '\n'.join(COMMON_WORDS_LIST)
+#     print(f"common words:\n\n{word_str}")

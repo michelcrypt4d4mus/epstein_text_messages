@@ -152,6 +152,7 @@ TRUNCATION_LENGTHS = {
     '030245': 7_500,   # Epstein rationalizes his behavior in an open letter to the world
     '030781': 1_700,   # Bannon email about crypto coin issues
     '032906': 750,     # David Blaine email
+    '026036': 6000,    # Gino Yu blockchain mention
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
@@ -318,7 +319,6 @@ class Email(Communication):
     recipients: list[str | None] = field(default_factory=list)
     sent_from_device: str | None = None
     signature_substitution_counts: dict[str, int] = field(default_factory=dict)  # defaultdict breaks asdict :(
-    _truncation_allowed: bool = True  # Hacky way to get __rich_console__() not to truncate in epstein_show script
 
     # For logging how many headers we prettified while printing, kind of janky
     rewritten_header_ids: ClassVar[set[str]] = set([])
@@ -716,7 +716,7 @@ class Email(Communication):
             num_chars = quote_cutoff
 
         # Truncate long emails but leave a note explaining what happened w/link to source document
-        if len(text) > num_chars and self._truncation_allowed:
+        if len(text) > num_chars and not args.whole_file:
             text = text[0:num_chars]
             doc_link_markup = epstein_media_doc_link_markup(self.url_slug, self.author_style)
             trim_note = f"<...trimmed to {num_chars} characters of {self.length()}, read the rest at {doc_link_markup}...>"
