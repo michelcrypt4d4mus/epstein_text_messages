@@ -397,7 +397,7 @@ HIGHLIGHTED_NAMES = [
         },
     ),
     HighlightedNames(
-        label='Democrats',
+        label='Democrat',
         style='sky_blue1',
         patterns=[
             r"(Al\s*)?Franken",
@@ -604,6 +604,7 @@ HIGHLIGHTED_NAMES = [
         style='medium_purple3',
         emailers={
             ALAN_DERSHOWITZ: 'Harvard Law School professor and all around (in)famous American lawyer',
+            'Fabrice Aidan': f'diplomat who worked with {TERJE_ROD_LARSEN}',
             KEN_STARR: 'head of the Monica Lewinsky investigation against Bill Clinton',
         },
         patterns=[
@@ -1084,9 +1085,10 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        label='Republicans',
+        label='Republican',
         style='dark_red bold',
         emailers={
+            "Juleanna Glover": 'CEO of D.C. public affairs advisory firm Ridgely|Walsh',
             RUDY_GIULIANI: None,
             TULSI_GABBARD: None,
         },
@@ -1334,7 +1336,9 @@ HIGHLIGHTED_NAMES = [
         label=STEVE_BANNON,
         style='color(58)',
         category=POLITICS,
-        emailers={STEVE_BANNON: "Trump campaign manager, memecoin grifter, convicted criminal"},
+        emailers={
+            STEVE_BANNON: "Trump campaign manager, memecoin grifter, convicted criminal",
+        },
         patterns=[
             r"(American\s*)?Dharma",
             r"((Steve|Sean)\s*)?Bannon?",

@@ -34,14 +34,15 @@ def print_potential_useless_emailers():
         emails = epstein_files.emails_for(emailer)
         emails_sent_by = [e for e in emails if e.author == emailer]
         emailer_str = f"(useless emailer) {emailer}" if emailer in USELESS_EMAILERS else emailer
+        txt = Text('')
 
         if len(emails) == 1:
             if len(emails_sent_by) == 1:
-                console.print(Text('[SENT]', style='bright_green').append(f" one email: {emailer_str} ({len(emails[0].recipients)} recipients)"))
+                console.print(txt.append('     [SENT ONE]', style='bright_green dim').append(highlighter(f" {emailer_str} ({len(emails[0].recipients)} recipients)")))
             else:
-                console.print(Text('[RECEIVED]', style='bright_red').append(f" only one email: {emailer_str} ({len(emails[0].recipients)} recipients)"))
+                console.print(txt.append(' [RECEIVED ONE]', style='bright_red dim').append(highlighter(f" {emailer_str} ({len(emails[0].recipients)} recipients)")))
         elif len(emails_sent_by) == 0:
-            console.print(f"{emailer_str} received {len(emails)} emails but sent none.")
+            console.print(txt.append('    [NONE SENT]', style='dim').append(highlighter(f" {emailer_str} received {len(emails)} emails but sent none")))
 
 
 print_potential_useless_emailers()
