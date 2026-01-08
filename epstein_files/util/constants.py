@@ -1138,11 +1138,7 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='025353', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-05-19', duplicate_ids=['010723', '019224'], dupe_type='redacted'),
     DocCfg(id='025704', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-05-27', duplicate_ids=['010732', '019221'], dupe_type='redacted'),
     DocCfg(id='012130', author=KEN_STARR, description=KEN_STARR_LETTER, date='2008-06-19', duplicate_ids=['012135']),
-    DocCfg(
-        id='031447',
-        author=MARTIN_WEINBERG,
-        description=f"letter from to Melanie Ann Pustay and Sean O'Neill re: an Epstein FOIA request"
-    ),
+    DocCfg(id='031447', author=MARTIN_WEINBERG, description=f"letter from to Melanie Ann Pustay & Sean O'Neill re: Epstein FOIA request"),
     DocCfg(
         id='028965',
         author=MARTIN_WEINBERG,
