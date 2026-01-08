@@ -388,7 +388,7 @@ class Email(Communication):
                 self.recipients = self.config.recipients
             else:
                 for recipient in self.header.recipients():
-                    self.recipients.extend(self._emailer_names(recipient))
+                    self.recipients.extend(self._extract_emailer_names(recipient))
 
                 if self.author in MAILING_LISTS and (len(self.recipients) == 0 or self.recipients == [self.author]):
                     self.recipients = [JEFFREY_EPSTEIN]   # Assume mailing list emails are to Epstein
@@ -411,7 +411,7 @@ class Email(Communication):
 
     def info_txt(self) -> Text:
         email_type = 'fwded article' if self.is_fwded_article() else 'email'
-        txt = Text(f"OCR text of {email_type} from ", style='grey46').append(self.author_txt).append(' to ')
+        txt = Text(f"OCR text of {email_type} from ", style='grey46').append(self.author_txt()).append(' to ')
         return txt.append(self.recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
 
     def is_fwded_article(self) -> bool:
@@ -492,15 +492,23 @@ class Email(Communication):
         """Color emails from epstein to others with the color for the first recipient."""
         if self.author == JEFFREY_EPSTEIN:
             if len(self.recipients) == 0 or self.recipients == [None]:
-                style = self.author_style
+                style = self.author_style()
             else:
                 style = get_style_for_name(self.recipients[0])
         else:
-            style = self.author_style
+            style = self.author_style()
 
         return style.replace('bold', '').strip()
 
-    def _emailer_names(self, emailer_str: str) -> list[str]:
+    def _extract_author(self) -> None:
+        self._extract_header()
+        super()._extract_author()
+
+        if not self.author and self.header.author:
+            authors = self._extract_emailer_names(self.header.author)
+            self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
+
+    def _extract_emailer_names(self, emailer_str: str) -> list[str]:
         """Return a list of people's names found in 'emailer_str' (email author or recipients field)."""
         emailer_str = EmailHeader.cleanup_str(emailer_str)
 
@@ -519,14 +527,6 @@ class Email(Communication):
 
         names_found = names_found or [emailer_str]
         return [_reverse_first_and_last_names(name) for name in names_found]
-
-    def _extract_author(self) -> None:
-        self._extract_header()
-        super()._extract_author()
-
-        if not self.author and self.header.author:
-            authors = self._emailer_names(self.header.author)
-            self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
 
     def _extract_header(self) -> None:
         """Extract an EmailHeader object from the OCR text."""
@@ -739,7 +739,7 @@ class Email(Communication):
 
         if args.whole_file:
             num_chars = len(self.text)
-        if self.file_id in TRUNCATION_LENGTHS:
+        elif self.file_id in TRUNCATION_LENGTHS:
             num_chars = TRUNCATION_LENGTHS[self.file_id]
         elif self.author in TRUNCATE_ALL_EMAILS_FROM or includes_truncate_term:
             num_chars = int(MAX_CHARS_TO_PRINT / 3)
@@ -773,7 +773,7 @@ class Email(Communication):
         # Truncate long emails but leave a note explaining what happened w/link to source document
         if len(text) > num_chars:
             text = text[0:num_chars]
-            doc_link_markup = epstein_media_doc_link_markup(self.url_slug, self.author_style)
+            doc_link_markup = epstein_media_doc_link_markup(self.url_slug, self.author_style())
             trim_note = f"<...trimmed to {num_chars} characters of {self.length()}, read the rest at {doc_link_markup}...>"
             trim_footer_txt = Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
 
@@ -823,7 +823,7 @@ class Email(Communication):
 
         for email in emails:
             table.add_row(
-                email.author_txt,
+                email.author_txt(),
                 email.epstein_media_link(link_txt=email.timestamp_without_seconds()),
                 highlighter(email.subject())
             )

@@ -18,25 +18,24 @@ TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 @dataclass
 class Communication(Document):
     """Superclass for Email and MessengerLog."""
-    author_style: str = 'white'
-    author_txt: Text = field(init=False)
     config: CommunicationCfg | None = None
     timestamp: datetime = FALLBACK_TIMESTAMP  # TODO this default sucks (though it never happens)
 
-    def __post_init__(self):
-        super().__post_init__()
-        self.author_style = get_style_for_name(self.author_or_unknown())
-        self.author_txt = Text(self.author_or_unknown(), style=self.author_style)
-
     def author_or_unknown(self) -> str:
         return self.author or UNKNOWN
+
+    def author_style(self) -> str:
+        return get_style_for_name(self.author_or_unknown())
+
+    def author_txt(self) -> Text:
+        return Text(self.author_or_unknown(), style=self.author_style())
 
     def is_attribution_uncertain(self) -> bool:
         return bool(self.config and self.config.is_attribution_uncertain)
 
     def external_links_txt(self, _style: str = '', include_alt_links: bool = True) -> Text:
         """Overrides super() method to apply self.author_style."""
-        return super().external_links_txt(self.author_style, include_alt_links=include_alt_links)
+        return super().external_links_txt(self.author_style(), include_alt_links=include_alt_links)
 
     def summary(self) -> Text:
         return self._summary().append(CLOSE_PROPERTIES_CHAR)
@@ -47,7 +46,7 @@ class Communication(Document):
     def _summary(self) -> Text:
         """One line summary mostly for logging."""
         txt = super().summary().append(', ')
-        return txt.append(key_value_txt('author', Text(f"'{self.author_or_unknown()}'", style=self.author_style)))
+        return txt.append(key_value_txt('author', Text(f"'{self.author_or_unknown()}'", style=self.author_style())))
 
 
 CommunicationType = TypeVar('CommunicationType', bound=Document)
