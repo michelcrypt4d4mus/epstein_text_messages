@@ -277,6 +277,7 @@ USELESS_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + KRASSNER_RECIP
     'Nancy Portland',                        # Lawrence Krauss CC
     'Oliver Goodenough',                     # Robert Trivers CC
     'Peter Aldhous',                         # Lawrence Krauss CC
+    'Players2',                              # Hoffenberg CC
     'Sam Harris',                            # Lawrence Krauss CC
     SAMUEL_LEFF,                             # Random CC
     'Sean T Lehane',                         # Random CC

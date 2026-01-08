@@ -844,7 +844,7 @@ HIGHLIGHTED_NAMES = [
             r"Cuban?",
             r"El\s*Salvador",
             r"((Enrique )?Pena )?Nieto",
-            r"LatAm",
+            r"Lat(in)?\s*Am(erica)?",
             r"Lula",
             r"Mexic(an|o)",
             r"(Nicolas\s+)?Maduro",
