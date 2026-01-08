@@ -152,10 +152,8 @@ def parenthesize(msg: str | Text, style: str = '') -> Text:
 
 def print_author_panel(msg: str, color: str | None, footer: str | None = None) -> None:
     """Print a panel with the name of an emailer and a few tidbits of information about them."""
-    color = color or 'white'
-    color = 'white' if color == DEFAULT else color
+    color = 'white' if (not color or color == DEFAULT) else color
     width = max(MIN_AUTHOR_PANEL_WIDTH, len(msg) + 4)
-    logger.warning(f"width={width}")
     panel = Panel(Text(msg, justify='center'), width=width, style=f"black on {color} bold")
     console.print('\n', Align.center(panel))
 
