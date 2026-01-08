@@ -133,9 +133,7 @@ def print_other_files_section(files: list[OtherFile], epstein_files: EpsteinFile
     other_files_preview_table = OtherFile.files_preview_table(files, title_pfx=title_pfx)
     print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {title_pfx}Files That Are Neither Emails Nor Text Messages")
     print_other_page_link(epstein_files)
-    console.line(2)
-    print_centered(category_table)
-    console.line(2)
+    print_centered(Padding(category_table, (2, 0)))
     console.print(other_files_preview_table)
 
 
@@ -146,13 +144,12 @@ def print_text_messages_section(imessage_logs: list[MessengerLog]) -> None:
         return
 
     print_section_header('All of His Text Messages')
+    print_centered("(conversations are sorted chronologically based on timestamp of first message in the log file)", style='dim')
+    console.line(2)
 
     if not args.names:
-        print_centered("(conversations are sorted chronologically based on timestamp of first message in the log file)", style='dim')
-        console.line(2)
         print_centered(MessengerLog.summary_table(imessage_logs))
-
-    console.line(2)
+        console.line(2)
 
     for log_file in imessage_logs:
         console.print(Padding(log_file))
