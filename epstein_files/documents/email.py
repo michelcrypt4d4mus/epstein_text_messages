@@ -539,6 +539,11 @@ class Email(Communication):
 
     def _merge_lines(self, idx: int, idx2: int | None = None) -> None:
         """Combine lines numbered 'idx' and 'idx2' into a single line (idx2 defaults to idx + 1)."""
+        if idx2:
+            logger.fatal(f"    '{self.file_id}': ({idx}, {idx2}),")
+        else:
+            logger.fatal(f"    '{self.file_id}': {idx},")
+
         idx2 = idx2 if idx2 is not None else (idx + 1)
         lines = self.lines[0:idx]
 
