@@ -13,7 +13,8 @@ else:
     page_type = 'Text Messages'
 
 
-CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
+CONSOLE_HTML_FORMAT = """
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -22,17 +23,15 @@ CONSOLE_HTML_FORMAT = """<!DOCTYPE html>
     <style>
         {stylesheet}
         body {{
-            color: {foreground};
             background-color: {background};
+            color: {foreground};
         }}
     </style>
 """ + f"<title>Epstein {page_type}</title>" + """
 </head>
 <body>
     <pre style="font-family: Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace; white-space: pre-wrap; overflow-wrap: break-word;">
-        <code style="font-family: inherit; white-space: pre-wrap; overflow-wrap: break-word;">
-            {code}
-        </code>
+        <code style="font-family: inherit; white-space: pre-wrap; overflow-wrap: break-word;">{code}</code>
     </pre>
 </body>
 </html>

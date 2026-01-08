@@ -20,7 +20,7 @@ from epstein_files.util.constants import FALLBACK_TIMESTAMP, HEADER_ABBREVIATION
 from epstein_files.util.data import json_safe
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
-from epstein_files.util.highlighted_group import ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES, EpsteinHighlighter
+from epstein_files.util.highlighted_group import ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES, REGEX_STYLE_PREFIX, EpsteinHighlighter
 from epstein_files.util.logging import logger
 
 TITLE_WIDTH = 50
@@ -213,8 +213,6 @@ def print_title_page_tables(epstein_files: 'EpsteinFiles') -> None:
 
 
 def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
-    print(obj)
-
     if isinstance(obj, dict):
         if skip_falsey:
             obj = {k: v for k, v in obj.items() if v}
@@ -390,5 +388,5 @@ def _print_social_media_links() -> None:
     print_centered(join_texts(social_links, join='  /  '))#, encloser='()'))#, encloser='‹›'))
 
 
-# if args.deep_debug:
-#     print_json('THEME_STYLES', THEME_STYLES)
+if args.colors_only:
+    print_json('THEME_STYLES', THEME_STYLES)
