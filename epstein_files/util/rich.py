@@ -213,8 +213,6 @@ def print_title_page_tables(epstein_files: 'EpsteinFiles') -> None:
 
 
 def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
-    print(obj)
-
     if isinstance(obj, dict):
         if skip_falsey:
             obj = {k: v for k, v in obj.items() if v}
@@ -390,5 +388,5 @@ def _print_social_media_links() -> None:
     print_centered(join_texts(social_links, join='  /  '))#, encloser='()'))#, encloser='‹›'))
 
 
-# if args.deep_debug:
-#     print_json('THEME_STYLES', THEME_STYLES)
+if args.colors_only:
+    print_json('THEME_STYLES', THEME_STYLES)
