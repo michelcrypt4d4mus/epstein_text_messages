@@ -54,7 +54,7 @@ git merge --no-edit master --quiet
 
 # Build files
 echo -e ""
-print_msg "Building text messages page $PICKLE_ARG"
+print_msg "Building text messages page... $PICKLE_ARG"
 epstein_generate --build --suppress-output $PICKLE_ARG
 
 if [ -n "$ONLY_TEXTS" ]; then
@@ -79,6 +79,7 @@ print_msg "Building JSON files data..."
 epstein_generate --build --json-files
 
 # Commit changes
+echo -e ""
 git commit -am"Update HTML"
 git push origin gh_pages --quiet
 git checkout master

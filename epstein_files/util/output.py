@@ -251,15 +251,15 @@ def _all_emailers_table(epstein_files: EpsteinFiles) -> Table:
             emails[-1].date_str(),
             f"{epstein_files.email_conversation_length_in_days(name)}",
             link_text_obj(search_jmail_url(name), JMAIL) if name else '',
-            link_text_obj(epstein_media_person_url(name), EPSTEIN_MEDIA) if is_ok_for_epstein_web(name) else '',
-            link_text_obj(epstein_web_person_url(name), EPSTEIN_WEB) if is_ok_for_epstein_web(name) else '',
+            link_text_obj(epstein_media_person_url(name), EPSTEIN_MEDIA) if _is_ok_for_epstein_web(name) else '',
+            link_text_obj(epstein_web_person_url(name), EPSTEIN_WEB) if _is_ok_for_epstein_web(name) else '',
             link_text_obj(search_twitter_url(name), 'search X') if name else '',
         )
 
     return counts_table
 
 
-def is_ok_for_epstein_web(name: str | None) -> bool:
+def _is_ok_for_epstein_web(name: str | None) -> bool:
     """Return True if it's likely that EpsteinWeb has a page for this name."""
     if name is None or ' ' not in name:
         return False

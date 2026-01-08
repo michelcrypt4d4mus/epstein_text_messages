@@ -166,6 +166,7 @@ TOM_BARRACK = 'Tom Barrack'
 TOM_PRITZKER = 'Tom Pritzker'
 TONJA_HADDAD_COLEMAN = 'Tonja Haddad Coleman'
 TYLER_SHEARS = 'Tyler Shears'  # Reputation manager, like Al Seckel
+VINCENZO_IOZZO = 'Vincenzo Iozzo'
 VINIT_SAHNI = 'Vinit Sahni'
 ZUBAIR_KHAN = 'Zubair Khan'
 
@@ -201,6 +202,7 @@ MIT_MEDIA_LAB = 'MIT Media Lab'
 NEXT_MANAGEMENT = 'Next Management LLC'
 JP_MORGAN = 'JP Morgan'
 OSBORNE_LLP = f"{IAN_OSBORNE} & Partners LLP"  # Ian Osborne's PR firm
+ROTHSTEIN_ROSENFELDT_ADLER = 'Rothstein Rosenfeldt Adler (Rothstein was a crook & partner of Roger Stone)'
 TRUMP_ORG = 'Trump Organization'
 UBS = 'UBS'
 
