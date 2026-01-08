@@ -71,8 +71,8 @@ class HighlightedText:
         self._pattern = '|'.join(self.patterns)
         self.regex = re.compile(fr"({self._match_group_var}{self._pattern})", re.IGNORECASE | re.MULTILINE)
 
-    def __str__(self) -> str:
-        return f"{type(self).__name__}(label='{self.label}', pattern='{self._pattern}')"
+    def __repr__(self) -> str:
+        return f"{type(self).__name__}(label='{self.label}', pattern='{self._pattern}', style='{self.style}')"
 
 
 @dataclass(kw_only=True)
@@ -137,13 +137,13 @@ class HighlightedNames(HighlightedText):
 
         return '|'.join(name_patterns)
 
-    # def __str__(self) -> str:
-    #     return f"{type(self).__name__}(label='{self.label}')"
+    def __str__(self) -> str:
+        return f"{type(self).__name__}(label='{self.label}')"
 
     def __repr__(self) -> str:
         s = f"{type(self).__name__}("
 
-        for property in ['label', 'style', 'category', 'pattern', 'emailers']:
+        for property in ['label', 'style', 'category', 'patterns', 'emailers']:
             value = getattr(self, property)
 
             if not value or (property == 'label' and len(self.emailers) == 1 and not self.pattern):
@@ -158,26 +158,9 @@ class HighlightedNames(HighlightedText):
                     s += f"\n        {constantize_name(k)}: {json.dumps(v).replace('null', 'None')},"
 
                 s += '\n    },'
-            elif property == 'pattern':
-                parentheses_depth = 0
-                patterns = []
-                token = ''
+            elif property == 'patterns':
                 s += '[\n        '
-
-                for char in value:
-                    if char == '|' and parentheses_depth == 0:
-                        patterns.append(token)
-                        token = ''
-                        continue
-                    elif char == '(':
-                        parentheses_depth += 1
-                    elif char == ')':
-                        parentheses_depth -= 1
-
-                    token += char
-
-                patterns.append(token)
-                s += ',\n        '.join([f'r"{p}"' for p in patterns])
+                s += repr(value).removeprefix('[').removesuffix(']').replace(', ', ',\n        ')
                 s += ',\n    ],'
             else:
                 s += f"{json.dumps(value)},"
@@ -1376,11 +1359,6 @@ HIGHLIGHTED_TEXTS = [
 
 ALL_HIGHLIGHTS = HIGHLIGHTED_NAMES + HIGHLIGHTED_TEXTS
 
-# for hn in HIGHLIGHTED_NAMES:
-#     print(indented(repr(hn)) + ',')
-
-# import sys
-# sys.exit()
 
 class EpsteinHighlighter(RegexHighlighter):
     """Finds and colors interesting keywords based on the above config."""
@@ -1422,3 +1400,14 @@ def _get_highlight_group_for_name(name: str) -> HighlightedNames | None:
     for highlight_group in HIGHLIGHTED_NAMES:
         if highlight_group.regex.search(name):
             return highlight_group
+
+
+def _print_highlighted_names_repr() -> None:
+    for hn in HIGHLIGHTED_NAMES:
+        if isinstance(hn, HighlightedNames):
+            print(indented(repr(hn)) + ',')
+
+    import sys
+    sys.exit()
+
+_print_highlighted_names_repr()
