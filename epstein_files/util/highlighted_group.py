@@ -603,6 +603,7 @@ HIGHLIGHTED_NAMES = [
             r"Elisa(\s*New)?",
             r"Harvard(\s*(Business|Law|University)(\s*School)?)?",
             r"(Jonathan\s*)?Zittrain",
+            r"Poetry\s*in\s*America",
             r"(Stephen\s*)?Kosslyn",
         ],
         emailers={
