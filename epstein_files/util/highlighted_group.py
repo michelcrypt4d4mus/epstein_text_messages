@@ -221,6 +221,7 @@ HIGHLIGHTED_NAMES = [
             JOSCHA_BACH: 'cognitive science / AI research',
             'Daniel Kahneman': 'Nobel economic sciences laureate and cognitivie psychologist (?)',
             'Ed Boyden': f'Associate Professor, {MIT_MEDIA_LAB} neurobiology',
+            'Harry Fisch': "men's health expert at New York-Presbyterian / Weill Cornell (?)",
             LAWRENCE_KRAUSS: 'theoretical physicist',
             LINDA_STONE: f'ex-Microsoft, {MIT_MEDIA_LAB}',
             MARK_TRAMO: 'professor of neurology at UCLA',
@@ -384,7 +385,6 @@ HIGHLIGHTED_NAMES = [
             r"PRC",
             r"Pyongyang",
             r"SCMP",
-            r"Tai(pei|wan)",
             r"Xi(aomi)?",
             r"Jinping",
         ],
@@ -400,6 +400,9 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='Democrat',
         style='sky_blue1',
+        emailers={
+            PAUL_PROSPERI: 'friend of Bill Clinton',
+        },
         patterns=[
             r"(Al\s*)?Franken",
             r"(Barac?k )?Obama",
@@ -810,6 +813,7 @@ HIGHLIGHTED_NAMES = [
             r"Ed\s*Krassenstein",
             r"(Emily\s*)?Michot",
             r"Ezra\s*Klein",
+            r"FrontPage Magazine",
             r"FT",
             r"(George\s*)?Stephanopoulus",
             r"Globe\s*and\s*Mail",
@@ -1213,6 +1217,7 @@ HIGHLIGHTED_NAMES = [
             r"Malaysian?",
             r"Myan?mar",
             r"South\s*Korea",
+            r"Tai(pei|wan)",
             r"Thai(land)?",
             r"Vietnam(ese)?",
         ],
@@ -1253,7 +1258,7 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        label='trump',
+        label='Trump',
         style='red3 bold',
         emailers={
             'Bruce Moskowitz': "'Trump's health guy' according to Epstein",
@@ -1275,6 +1280,7 @@ HIGHLIGHTED_NAMES = [
             r"\bMatt C\b",
             r"Melania",
             r"(Michael (J.? )?)?Boccio",
+            r"Paul Rampell",
             r"Rebekah\s*Mercer",
             r"Roger\s+Stone",
             r"rona",
