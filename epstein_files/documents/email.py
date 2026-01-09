@@ -126,15 +126,6 @@ EMAIL_SIGNATURE_REGEXES = {
     UNKNOWN: re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL),
 }
 
-# Invalid for links to EpsteinWeb
-JUNK_EMAILERS = [
-    'asmallworld@travel.asmallworld.net',
-    "digest-noreply@quora.com",
-    'editorialstaff@flipboard.com',
-    'How To Academy',
-    'Jokeland',
-]
-
 MAILING_LISTS = [
     CAROLYN_RANGEL,
     INTELLIGENCE_SQUARED,

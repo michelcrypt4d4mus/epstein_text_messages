@@ -3,7 +3,7 @@ import json
 from rich.padding import Padding
 
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import JUNK_EMAILERS, KRASSNER_RECIPIENTS, Email
+from epstein_files.documents.email import KRASSNER_RECIPIENTS, Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles, count_by_month
@@ -308,6 +308,8 @@ def _table_of_selected_emailers(_list: list[str | None], epstein_files: EpsteinF
             info = info.removeprefix(f"{category.plain}, ").removeprefix(category.plain)
         elif not name:
             info = Text('(emails whose author or recipient could not be determined)', style='medium_purple4')
+        elif name in JUNK_EMAILERS:
+            category = Text('junk', style='gray30')
         elif style == 'none' and '@' not in name and not (category or info):
             info = QUESTION_MARKS_TXT
 

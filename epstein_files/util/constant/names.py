@@ -206,6 +206,15 @@ ROTHSTEIN_ROSENFELDT_ADLER = 'Rothstein Rosenfeldt Adler (Rothstein was a crook 
 TRUMP_ORG = 'Trump Organization'
 UBS = 'UBS'
 
+# Invalid for links to EpsteinWeb
+JUNK_EMAILERS = [
+    'asmallworld@travel.asmallworld.net',
+    "digest-noreply@quora.com",
+    'editorialstaff@flipboard.com',
+    'How To Academy',
+    'Jokeland',
+]
+
 # First and last names that should be made part of a highlighting regex for emailers
 NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
     'Al', 'Alan', 'Alfredo', 'Allen', 'Alex', 'Alexander', 'Amanda', 'Andres', 'Andrew',
