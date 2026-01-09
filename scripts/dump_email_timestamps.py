@@ -14,6 +14,7 @@ from epstein_files.documents.document import Document
 from epstein_files.documents.email import USELESS_EMAILERS
 from epstein_files.util.constants import ALL_FILE_CONFIGS
 from epstein_files.util.data import sort_dict
+from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import console, highlighter, print_json
 
@@ -43,6 +44,8 @@ def print_potential_useless_emailers():
                 console.print(txt.append(' [RECEIVED ONE]', style='bright_red dim').append(highlighter(f" {emailer_str} ({len(emails[0].recipients)} recipients)")))
         elif len(emails_sent_by) == 0:
             console.print(txt.append('    [NONE SENT]', style='dim').append(highlighter(f" {emailer_str} received {len(emails)} emails but sent none")))
+        elif get_style_for_name(emailer, default_style='none') == 'none':
+            console.print(Text('     [NO STYLE]', style='wheat4').append(highlighter(f" {emailer_str} has no associated styling")))
 
 
 print_potential_useless_emailers()
