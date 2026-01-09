@@ -117,7 +117,7 @@ def epstein_show():
     _assert_positional_args()
     ids = [extract_file_id(arg) for arg in args.positional_args]
     raw_docs = [Document(coerce_file_path(id)) for id in ids]
-    docs = [document_cls(doc)(doc.file_path) for doc in raw_docs]
+    docs = Document.sort_by_timestamp([document_cls(doc)(doc.file_path) for doc in raw_docs])
     console.line()
 
     for doc in docs:
