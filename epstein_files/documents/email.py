@@ -24,7 +24,7 @@ from epstein_files.util.data import (TIMEZONE_INFO, collapse_newlines, escape_si
      flatten, listify, remove_timezone, uniquify)
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.file_helper import extract_file_id, file_stem_for_id
-from epstein_files.util.highlighted_group import get_style_for_name
+from epstein_files.util.highlighted_group import JUNK_EMAILERS, get_style_for_name
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
 

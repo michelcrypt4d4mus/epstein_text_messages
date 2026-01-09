@@ -38,7 +38,6 @@ CATEGORY_STYLE_MAPPING = {
 
 CATEGORY_STYLES = {
     JSON: 'dark_red',
-    JUNK: 'grey19',
     'letter': 'medium_orchid1'
 }
 
@@ -858,6 +857,17 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
+        label=JUNK,
+        style='gray46',
+        emailers={
+            'asmallworld@travel.asmallworld.net': None,
+            "digest-noreply@quora.com": None,
+            'editorialstaff@flipboard.com': None,
+            'How To Academy': None,
+            'Jokeland': None,
+        }
+    ),
+    HighlightedNames(
         label='Latin America',
         style='yellow',
         patterns=[
@@ -1208,7 +1218,6 @@ HIGHLIGHTED_NAMES = [
             r"(Vitaly\s*)?Churkin",
         ],
     ),
-
     HighlightedNames(
         label='Southeast Asia',
         style='light_salmon3 bold',
@@ -1456,6 +1465,7 @@ HIGHLIGHTED_TEXTS = [
 ]
 
 ALL_HIGHLIGHTS = HIGHLIGHTED_NAMES + HIGHLIGHTED_TEXTS
+JUNK_EMAILERS = [name for name in [hn for hn in HIGHLIGHTED_NAMES if hn.label == JUNK][0].emailers.keys()]
 
 
 class EpsteinHighlighter(RegexHighlighter):
