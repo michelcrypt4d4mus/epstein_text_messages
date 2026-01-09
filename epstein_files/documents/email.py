@@ -649,6 +649,9 @@ class Email(Communication):
         if self.file_id == '013415':
             for _i in range(2):
                 self._merge_lines(4)
+        elif self.file_id == '013405':
+            for _i in range(2):
+                self._merge_lines(4)
         elif self.file_id in ['033568']:
             for _i in range(5):
                 self._merge_lines(5)
