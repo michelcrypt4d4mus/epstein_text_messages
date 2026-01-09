@@ -177,7 +177,7 @@ def table_of_selected_emailers(_list: list[str | None], epstein_files: EpsteinFi
 
         current_year_month = year_months
         current_year = earliest_email_date.year
-        category = get_category_for_name(name)
+        category = get_category_txt_for_name(name)
         info = get_info_for_name(name)
 
         if category and category.plain == 'paula':  # TODO: hacky

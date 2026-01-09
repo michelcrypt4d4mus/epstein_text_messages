@@ -21,7 +21,7 @@ from epstein_files.util.data import json_safe
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
 from epstein_files.util.highlighted_group import (ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES, EpsteinHighlighter,
-     get_category_for_name, get_info_for_name, get_style_for_name)
+     get_category_txt_for_name, get_info_for_name, get_style_for_name)
 from epstein_files.util.logging import logger
 
 TITLE_WIDTH = 50

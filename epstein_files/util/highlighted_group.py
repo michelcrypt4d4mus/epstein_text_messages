@@ -1452,7 +1452,7 @@ class EpsteinHighlighter(RegexHighlighter):
     highlights = [highlight_group.regex for highlight_group in ALL_HIGHLIGHTS]
 
 
-def get_category_for_name(name: str | None) -> Text | None:
+def get_category_txt_for_name(name: str | None) -> Text | None:
     highlight_group = _get_highlight_group_for_name(name)
 
     if highlight_group and isinstance(highlight_group, HighlightedNames):
