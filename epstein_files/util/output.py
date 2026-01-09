@@ -124,8 +124,9 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
 
 
 def print_json_files(epstein_files: EpsteinFiles):
+    """Print all the JsonFile objects"""
     if args.build:
-        json_data = {json_file.url_slug: json_file.json_data() for json_file in epstein_files.json_files}
+        json_data = {jf.url_slug: jf.json_data() for jf in epstein_files.json_files}
 
         with open(JSON_FILES_JSON_PATH, 'w') as f:
             f.write(json.dumps(json_data, sort_keys=True))
@@ -135,6 +136,17 @@ def print_json_files(epstein_files: EpsteinFiles):
             console.line(2)
             console.print(json_file.summary_panel())
             console.print_json(json_file.json_str(), indent=4, sort_keys=False)
+
+
+def print_json_metadata(epstein_files: EpsteinFiles) -> None:
+    json_str = epstein_files.json_metadata()
+
+    if args.build:
+        with open(JSON_METADATA_PATH, 'w') as f:
+            f.write(json_str)
+            log_file_write(JSON_METADATA_PATH)
+    else:
+        console.print_json(json_str, indent=4, sort_keys=True)
 
 
 def print_json_stats(epstein_files: EpsteinFiles) -> None:
@@ -178,17 +190,6 @@ def print_text_messages_section(imessage_logs: list[MessengerLog]) -> None:
     for log_file in imessage_logs:
         console.print(Padding(log_file))
         console.line(2)
-
-
-def write_json_metadata(epstein_files: EpsteinFiles) -> None:
-    json_str = epstein_files.json_metadata()
-
-    if args.build:
-        with open(JSON_METADATA_PATH, 'w') as f:
-            f.write(json_str)
-            log_file_write(JSON_METADATA_PATH)
-    else:
-        console.print_json(json_str, indent=4, sort_keys=True)
 
 
 def write_urls() -> None:
