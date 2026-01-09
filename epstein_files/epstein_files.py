@@ -218,8 +218,8 @@ class EpsteinFiles:
         return [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
 
     def print_files_summary(self) -> None:
-        table = build_table('Summary of Document Types')
-        add_cols_to_table(table, ['File Type', 'Files', 'Author Known', 'Author Unknown', 'Duplicates'])
+        table = build_table('File Overview')
+        add_cols_to_table(table, ['File Type', 'Count', 'Author Known', 'Author Unknown', 'Duplicates'])
         table.columns[1].justify = 'right'
 
         def add_row(label: str, docs: list):
