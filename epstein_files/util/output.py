@@ -85,8 +85,9 @@ def print_email_timeline(epstein_files: EpsteinFiles) -> None:
 
     console.line(2)
     console.print(table)
-    console.line(2)
-    print_subtitle_panel('The Emails')
+    console.line(4)
+    print_subtitle_panel('The Chronologically Ordered Emails', centered=True)
+    console.line()
 
     for email in emails:
         console.print(email)
