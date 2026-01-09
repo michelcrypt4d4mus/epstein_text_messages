@@ -14,17 +14,17 @@ from rich.theme import Theme
 
 from epstein_files.util.constant.html import CONSOLE_HTML_FORMAT, HTML_TERMINAL_THEME, PAGE_TITLE
 from epstein_files.util.constant.names import UNKNOWN
-from epstein_files.util.constant.strings import DEFAULT, EMAIL, NA, QUESTION_MARKS, TEXT_MESSAGE
+from epstein_files.util.constant.strings import DEFAULT, EMAIL, NA, TEXT_MESSAGE
 from epstein_files.util.constant.urls import *
-from epstein_files.util.constants import FALLBACK_TIMESTAMP, HEADER_ABBREVIATIONS
+from epstein_files.util.constants import HEADER_ABBREVIATIONS
 from epstein_files.util.data import json_safe
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
-from epstein_files.util.highlighted_group import (ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES, EpsteinHighlighter,
-     get_category_txt_for_name, get_info_for_name, get_style_for_name)
+from epstein_files.util.highlighted_group import ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES, EpsteinHighlighter
 from epstein_files.util.logging import logger
 
 TITLE_WIDTH = 50
+SUBTITLE_WIDTH = 110
 MIN_AUTHOR_PANEL_WIDTH = 80
 NUM_COLOR_KEY_COLS = 4
 NA_TXT = Text(NA, style='dim')
@@ -263,7 +263,7 @@ def print_subtitle_panel(msg: str, style: str = 'black on white', padding: tuple
     _padding: list[int] = list(padding or [0, 0, 0, 0])
     _padding[2] += 1  # Bottom pad
     actual_padding: tuple[int, int, int, int] = tuple(_padding)
-    panel = Panel(Text.from_markup(msg, justify='center'), width=70, style=style)
+    panel = Panel(Text.from_markup(msg, justify='center'), width=SUBTITLE_WIDTH, style=style)
 
     if centered:
         console.print(Align.center(Padding(panel, actual_padding)))
