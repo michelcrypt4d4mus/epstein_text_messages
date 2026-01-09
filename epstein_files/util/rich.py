@@ -306,8 +306,8 @@ def wrap_in_markup_style(msg: str, style: str | None = None) -> str:
     return msg
 
 
-def write_html(output_path: Path) -> None:
-    if not args.build:
+def write_html(output_path: Path | None) -> None:
+    if not output_path:
         logger.warning(f"Not writing HTML because args.build={args.build}.")
         return
 
