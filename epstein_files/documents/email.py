@@ -312,6 +312,7 @@ METADATA_FIELDS = [
 ]
 
 LINE_REPAIR_MERGES = {
+    '017523': 4,
     '019407': [2, 4],
     '021729': 2,
     '022673': 9,
@@ -325,7 +326,7 @@ LINE_REPAIR_MERGES = {
     '029154': [2, 5],
     '029163': [2, 5],
     '029282': 2,
-    '029402': 4,
+    '029402': 5,
     '029498': 2,
     '029501': 2,
     '029835': [2, 4],
@@ -649,6 +650,24 @@ class Email(Communication):
         if self.file_id == '013415':
             for _i in range(2):
                 self._merge_lines(4)
+        elif self.file_id == '013405':
+            for _i in range(2):
+                self._merge_lines(4)
+        elif self.file_id == '029458':
+            for _i in range(3):
+                self._merge_lines(4)
+        elif self.file_id in ['025233']:
+            for _i in range(2):
+                self._merge_lines(4)
+
+            self.lines[4] = f"Attachments: {self.lines[4]}"
+            self._set_computed_fields(lines=self.lines)
+        elif self.file_id in ['023001']:
+            for _i in range(3):
+                self._merge_lines(5)
+        elif self.file_id in ['019105']:
+            for _i in range(4):
+                self._merge_lines(5)
         elif self.file_id in ['033568']:
             for _i in range(5):
                 self._merge_lines(5)
@@ -667,6 +686,12 @@ class Email(Communication):
 
             self._merge_lines(4)
             self._merge_lines(2, 4)
+        elif self.file_id in ['033252']:
+            for _i in range(2):
+                self._merge_lines(9)
+        elif self.file_id in ['032637']:
+            for _i in range(3):
+                self._merge_lines(9)
 
         # Bad line removal
         if self.file_id == '025041':
