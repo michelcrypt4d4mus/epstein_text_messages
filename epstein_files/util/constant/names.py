@@ -250,7 +250,7 @@ OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
     nancy nicole nussbaum
     owen
     paulson peter philippe
-    rafael ray richard richardson rob robert robin ron rubin rudolph ryan
+    rafael ray richard richardson rob robert robin ron roy rubin rudolph ryan
     sara sarah sean seligman serge sergey silverman sloman smith snowden sorkin steele stevie stewart
     ted theresa thompson tiffany timothy tony
     valeria
