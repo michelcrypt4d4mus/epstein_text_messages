@@ -602,13 +602,6 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        label='lawyer',
-        style='medium_purple3',
-        patterns=[
-            r"(Mi(chael|ke)\s*)?Avenatti",
-        ],
-    ),
-    HighlightedNames(
         label=FINANCE,
         style='green',
         emailers={
@@ -1315,6 +1308,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"(Alan(\s*P.)?|MINTZ)\s*FRAADE",
             r"(J\.?\s*)?(Stan(ley)?\s*)?Pottinger",
+            r"(Mi(chael|ke)\s*)?Avenatti",
             r"Paul\s*(G.\s*)?Cassell",
             r"Rothstein\s*Rosenfeldt\s*Adler",
             r"(Scott\s*)?Rothstein",
