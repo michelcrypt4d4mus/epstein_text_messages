@@ -53,7 +53,7 @@ INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [
 ]
 
 
-def print_complete_emails_timeline(epstein_files: EpsteinFiles) -> None:
+def print_email_timeline(epstein_files: EpsteinFiles) -> None:
     """Print a table of all emails in chronological order."""
     emails = [email for email in epstein_files.non_duplicate_emails() if not email.is_junk_mail()]
     table = build_table(f'All {len(emails):,} Non-Junk Emails in Chronological Order', highlight=True)
