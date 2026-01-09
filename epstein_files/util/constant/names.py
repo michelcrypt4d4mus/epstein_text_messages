@@ -239,7 +239,7 @@ OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
     danny davis dean debra deborah dennis diana diane diaz dickinson dixon dominique don dylan
     edmond elizabeth emily enterprises entwistle erik evelyn
     ferguson flachsbart francis franco frank frost
-    gardner gary geoff geoffrey gilbert gloria goldberg gonzalez gould graham greene guarino gwyneth
+    gardner gary geoff geoffrey gerald gilbert gloria gold goldberg gonzalez gould graham greene guarino gwyneth
     hancock harold harrison harry hay helen hill hirsch hofstadter horowitz hussein
     ian isaac isaacson
     james jamie jane janet jason jeffrey jen jim joe johnson jones josh julie justin
@@ -249,7 +249,7 @@ OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
     nancy nicole nussbaum
     owen
     paulson peter philippe
-    rafael ray richard richardson rob robin ron rubin rudolph ryan
+    rafael ray richard richardson rob robert robin ron rubin rudolph ryan
     sara sarah sean seligman serge sergey silverman sloman smith snowden sorkin steele stevie stewart
     ted theresa thompson tiffany timothy tony
     valeria
