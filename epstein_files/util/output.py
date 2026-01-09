@@ -51,6 +51,8 @@ INTERESTiNG_OTHER_EMAIL_IDS = [
     '028784',  # seminars: Money / Power
     '029342',  # Hakeem Jeffries
     '023454',  # Email invitation sent to tech CEOs + Epstein
+    '030630',  # 'What happens with zubair's project?'
+    '033178',  # 'How is it going with Zubair?'
     # '023627',  # Michael Wolff article (already printed bc epstein->epstein email)
 ]
 

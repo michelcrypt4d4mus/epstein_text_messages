@@ -598,12 +598,13 @@ HIGHLIGHTED_NAMES = [
             r"Strasbourg",
             r"Strauss[- ]?Kahn",
             r"Swed(en|ish)(?![-\s]+American Life Scienc)",
-            r"Switzerland",
+            r"Swi(ss|tzerland)",
             r"(Tony\s)?Blair",
             r"U\.K\.",
             r"Ukrain(e|ian)",
             r"Vienna",
             r"Zug",
+            r"Zurich",
         ],
     ),
     HighlightedNames(
@@ -1169,7 +1170,7 @@ HIGHLIGHTED_NAMES = [
         style='indian_red',
         emailers={
             ARIANE_DE_ROTHSCHILD: 'heiress',
-            JOHNNY_EL_HACHEM: f'works with {ARIANE_DE_ROTHSCHILD}',
+            JOHNNY_EL_HACHEM: f'Edmond de Rothschild Private Equity',
         },
         patterns=['AdR'],
     ),
