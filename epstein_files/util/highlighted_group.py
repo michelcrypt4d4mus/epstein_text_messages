@@ -1203,7 +1203,7 @@ HIGHLIGHTED_NAMES = [
     ),
 
     HighlightedNames(
-        label='southeast Asia',
+        label='Southeast Asia',
         style='light_salmon3 bold',
         patterns=[
             r"Bangkok",
@@ -1212,6 +1212,7 @@ HIGHLIGHTED_NAMES = [
             r"Laos",
             r"Malaysian?",
             r"Myan?mar",
+            r"South\s*Korea",
             r"Thai(land)?",
             r"Vietnam(ese)?",
         ],
