@@ -221,6 +221,7 @@ HIGHLIGHTED_NAMES = [
             JOSCHA_BACH: 'cognitive science / AI research',
             'Daniel Kahneman': 'Nobel economic sciences laureate and cognitivie psychologist (?)',
             'Ed Boyden': f'Associate Professor, {MIT_MEDIA_LAB} neurobiology',
+            'Harry Fisch': "men's health expert at New York-Presbyterian / Weill Cornell (?)",
             LAWRENCE_KRAUSS: 'theoretical physicist',
             LINDA_STONE: f'ex-Microsoft, {MIT_MEDIA_LAB}',
             MARK_TRAMO: 'professor of neurology at UCLA',
@@ -384,7 +385,6 @@ HIGHLIGHTED_NAMES = [
             r"PRC",
             r"Pyongyang",
             r"SCMP",
-            r"Tai(pei|wan)",
             r"Xi(aomi)?",
             r"Jinping",
         ],
@@ -400,6 +400,9 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='Democrat',
         style='sky_blue1',
+        emailers={
+            PAUL_PROSPERI: 'friend of Bill Clinton',
+        },
         patterns=[
             r"(Al\s*)?Franken",
             r"(Barac?k )?Obama",
@@ -634,6 +637,7 @@ HIGHLIGHTED_NAMES = [
             PAUL_MORRIS: DEUTSCHE_BANK,
             'Skip Rimer': 'Milken Institute (Michael Milken)',
             'Steven Elkman': DEUTSCHE_BANK,
+            'Vahe Stepanian': 'Cetera Financial Group',
         },
         patterns=[
             r"((anti.?)?money\s+)?launder(s?|ers?|ing)?(\s+money)?",
@@ -810,6 +814,7 @@ HIGHLIGHTED_NAMES = [
             r"Ed\s*Krassenstein",
             r"(Emily\s*)?Michot",
             r"Ezra\s*Klein",
+            r"FrontPage Magazine",
             r"FT",
             r"(George\s*)?Stephanopoulus",
             r"Globe\s*and\s*Mail",
@@ -1004,7 +1009,7 @@ HIGHLIGHTED_NAMES = [
             r"HBJ",
             r"Houthi",
             r"Imran\s+Khan",
-            r"Iran(ian)?",
+            r"Iran(ian)?([-\s]Contra)?",
             r"Isi[ls]",
             r"Islam(abad|ic|ist)?",
             r"Istanbul",
@@ -1047,6 +1052,7 @@ HIGHLIGHTED_NAMES = [
             r"Syrian?",
             r"(Tarek\s*)?El\s*Sayed",
             r"Tehran",
+            r"Tripoli",
             r"Tunisian?",
             r"Turk(ey|ish)",
             r"UAE",
@@ -1203,7 +1209,7 @@ HIGHLIGHTED_NAMES = [
     ),
 
     HighlightedNames(
-        label='southeast Asia',
+        label='Southeast Asia',
         style='light_salmon3 bold',
         patterns=[
             r"Bangkok",
@@ -1212,6 +1218,9 @@ HIGHLIGHTED_NAMES = [
             r"Laos",
             r"Malaysian?",
             r"Myan?mar",
+            r"Philippines",
+            r"South\s*Korea",
+            r"Tai(pei|wan)",
             r"Thai(land)?",
             r"Vietnam(ese)?",
         ],
@@ -1252,7 +1261,7 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        label='trump',
+        label='Trump',
         style='red3 bold',
         emailers={
             'Bruce Moskowitz': "'Trump's health guy' according to Epstein",
@@ -1262,7 +1271,7 @@ HIGHLIGHTED_NAMES = [
             r"(Alan\s*)?Weiss?elberg",
             r"\bDJ?T\b",
             r"Donald J. Tramp",
-            r"(Donald\s+(J\.\s+)?)?Trump(ism|\s*Properties)?",
+            r"(Donald\s+(J\.\s+)?)?Trump(ism|\s*(Org(anization)?|Properties)(\s*LLC)?)?",
             r"Don(ald| *Jr)(?! Rubin)",
             r"Ivank?a",
             r"Jared",
@@ -1274,6 +1283,7 @@ HIGHLIGHTED_NAMES = [
             r"\bMatt C\b",
             r"Melania",
             r"(Michael (J.? )?)?Boccio",
+            r"Paul Rampell",
             r"Rebekah\s*Mercer",
             r"Roger\s+Stone",
             r"rona",
@@ -1326,6 +1336,7 @@ HIGHLIGHTED_NAMES = [
             r"(John\s*)deJongh(\s*Jr\.?)",
             r"(Kenneth E\. )?Mapp",
             r"PBI",
+            r"Puerto\s*Ric(an|o)",
             r"S(ain)?t.?\s*Thomas",
             r"USVI",
             r"(?<!Epstein )VI",
@@ -1371,7 +1382,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(emailers={JEFFREY_EPSTEIN: None}, patterns=[r"JEGE", r"LSJ", r"Mark (L. )?Epstein"], style='blue1'),
     HighlightedNames(emailers={KATHRYN_RUEMMLER: 'former Obama legal counsel'}, style='magenta2'),
     HighlightedNames(emailers={MELANIE_WALKER: 'doctor'}, style='pale_violet_red1'),
-    HighlightedNames(emailers={PAULA: "Epstein's ex-girlfriend who is now in the opera world"}, label='paula_heil_fisher', style='pink1'),
+    HighlightedNames(emailers={PAULA: "Epstein's ex-girlfriend who is now in the opera world"}, label='paula', style='pink1'),
     HighlightedNames(emailers={PRINCE_ANDREW: 'British royal family'}, style='dodger_blue1'),
     HighlightedNames(emailers={SOON_YI_PREVIN: 'wife of Woody Allen'}, style='hot_pink'),
     HighlightedNames(emailers={SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of ports in Dubai'}, style='green1'),
@@ -1452,7 +1463,7 @@ class EpsteinHighlighter(RegexHighlighter):
     highlights = [highlight_group.regex for highlight_group in ALL_HIGHLIGHTS]
 
 
-def get_category_for_name(name: str | None) -> Text | None:
+def get_category_txt_for_name(name: str | None) -> Text | None:
     highlight_group = _get_highlight_group_for_name(name)
 
     if highlight_group and isinstance(highlight_group, HighlightedNames):
