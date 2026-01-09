@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.1.2
 * Use a table for emailers in all cases, remove email tables
 
 ### 1.1.1
