@@ -15,6 +15,7 @@ from epstein_files.util.constant.strings import TIMESTAMP_DIM, TIMESTAMP_STYLE
 from epstein_files.util.data import dict_sets_to_lists, sort_dict
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
+from epstein_files.util.highlighted_group import QUESTION_MARKS_TXT
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
 
@@ -299,13 +300,16 @@ def _table_of_selected_emailers(_list: list[str | None], epstein_files: EpsteinF
         current_year = earliest_email_date.year
         category = get_category_txt_for_name(name)
         info = get_info_for_name(name)
+        style = get_style_for_name(name, default_style='none')
 
         if category and category.plain == 'paula':  # TODO: hacky
             category = None
         elif category and info:
-            info = info.removeprefix(f"{category.plain}, ")
+            info = info.removeprefix(f"{category.plain}, ").removeprefix(category.plain)
         elif not name:
             info = Text('(emails whose author or recipient could not be determined)', style='medium_purple4')
+        elif style == 'none' and '@' not in name and not (category or info):
+            info = QUESTION_MARKS_TXT
 
         table.add_row(
             Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[grey_idx]}"),
