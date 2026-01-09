@@ -128,7 +128,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     PRINCE_ANDREW: re.compile(r'Prince Andrew|The Duke', re.IGNORECASE),
     REID_WEINGARTEN: re.compile(r'Weingarten, Rei[cdi]|Rei[cdi] Weingarten', re.IGNORECASE),
     RICHARD_KAHN: re.compile(r'rich(ard)? kahn?', re.IGNORECASE),
-    ROBERT_D_CRITTON_JR: re.compile(r'Robert D.? Critton Jr.?', re.IGNORECASE),
+    ROBERT_D_CRITTON_JR: re.compile(r'Robert D.? Critton,? Jr.?', re.IGNORECASE),
     ROBERT_LAWRENCE_KUHN: re.compile(r'Robert\s*(Lawrence)?\s*Kuhn', re.IGNORECASE),
     ROBERT_TRIVERS: re.compile(r'tri[vy]ersr@gmail|Robert\s*Trivers?', re.IGNORECASE),
     ROSS_GOW: re.compile(fr"Ross(acuity)? Gow|(ross@)?acuity\s*reputation(\.com)?", re.IGNORECASE),
