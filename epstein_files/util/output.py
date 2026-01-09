@@ -53,6 +53,34 @@ INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [
 ]
 
 
+def print_complete_emails_timeline(epstein_files: EpsteinFiles) -> None:
+    """Print a table of all emails in chronological order."""
+    emails = [email for email in epstein_files.non_duplicate_emails() if not email.is_junk_mail()]
+    table = build_table(f'All {len(emails):,} Non-Junk Emails in Chronological Order', highlight=True)
+    table.add_column('ID', style=TIMESTAMP_DIM)
+    table.add_column('Sent At', style='dim')
+    table.add_column('Author', max_width=20)
+    table.add_column('Recipients', max_width=22)
+    table.add_column('Length', justify='right', style='wheat4')
+    table.add_column('Subject')
+
+    for email in Document.sort_by_timestamp(emails):
+        if email.is_junk_mail():
+            continue
+
+        table.add_row(
+            email.epstein_media_link(link_txt=email.source_file_id()),
+            email.timestamp_without_seconds(),
+            email.author_txt(),
+            email.recipients_txt(max_full_names=1),
+            f"{email.length()}",
+            email.subject(),
+        )
+
+    console.line(2)
+    console.print(table)
+
+
 def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     """Returns emails that were printed (may contain dupes if printed for both author and recipient)."""
     print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
@@ -150,34 +178,6 @@ def print_text_messages_section(imessage_logs: list[MessengerLog]) -> None:
     for log_file in imessage_logs:
         console.print(Padding(log_file))
         console.line(2)
-
-
-def write_complete_emails_timeline(epstein_files: EpsteinFiles) -> None:
-    """Print a table of all emails in chronological order."""
-    emails = [email for email in epstein_files.non_duplicate_emails() if not email.is_junk_mail()]
-    table = build_table(f'All {len(emails):,} Non-Junk Emails in Chronological Order', highlight=True)
-    table.add_column('ID', style=TIMESTAMP_DIM)
-    table.add_column('Sent At', style='dim')
-    table.add_column('Author', max_width=20)
-    table.add_column('Recipients', max_width=22)
-    table.add_column('Length', justify='right', style='wheat4')
-    table.add_column('Subject')
-
-    for email in Document.sort_by_timestamp(emails):
-        if email.is_junk_mail():
-            continue
-
-        table.add_row(
-            email.epstein_media_link(link_txt=email.source_file_id()),
-            email.timestamp_without_seconds(),
-            email.author_txt(),
-            email.recipients_txt(max_full_names=1),
-            f"{email.length()}",
-            email.subject(),
-        )
-
-    console.line(2)
-    console.print(table)
 
 
 def write_json_metadata(epstein_files: EpsteinFiles) -> None:
