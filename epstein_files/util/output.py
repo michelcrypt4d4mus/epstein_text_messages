@@ -53,6 +53,34 @@ INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [
 ]
 
 
+def print_email_timeline(epstein_files: EpsteinFiles) -> None:
+    """Print a table of all emails in chronological order."""
+    emails = [email for email in epstein_files.non_duplicate_emails() if not email.is_junk_mail()]
+    table = build_table(f'All {len(emails):,} Non-Junk Emails in Chronological Order', highlight=True)
+    table.add_column('ID', style=TIMESTAMP_DIM)
+    table.add_column('Sent At', style='dim')
+    table.add_column('Author', max_width=20)
+    table.add_column('Recipients', max_width=22)
+    table.add_column('Length', justify='right', style='wheat4')
+    table.add_column('Subject')
+
+    for email in Document.sort_by_timestamp(emails):
+        if email.is_junk_mail():
+            continue
+
+        table.add_row(
+            email.epstein_media_link(link_txt=email.source_file_id()),
+            email.timestamp_without_seconds(),
+            email.author_txt(),
+            email.recipients_txt(max_full_names=1),
+            f"{email.length()}",
+            email.subject(),
+        )
+
+    console.line(2)
+    console.print(table)
+
+
 def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     """Returns emails that were printed (may contain dupes if printed for both author and recipient)."""
     print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
@@ -70,7 +98,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
 
         print_other_page_link(epstein_files)
         console.line(2)
-        console.print(table_of_selected_emailers(emailers_to_print, epstein_files))
+        console.print(_table_of_selected_emailers(emailers_to_print, epstein_files))
         console.print(Padding(_all_emailers_table(epstein_files), (2, 0)))
 
     for author in emailers_to_print:
@@ -96,8 +124,9 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
 
 
 def print_json_files(epstein_files: EpsteinFiles):
+    """Print all the JsonFile objects"""
     if args.build:
-        json_data = {json_file.url_slug: json_file.json_data() for json_file in epstein_files.json_files}
+        json_data = {jf.url_slug: jf.json_data() for jf in epstein_files.json_files}
 
         with open(JSON_FILES_JSON_PATH, 'w') as f:
             f.write(json.dumps(json_data, sort_keys=True))
@@ -107,6 +136,17 @@ def print_json_files(epstein_files: EpsteinFiles):
             console.line(2)
             console.print(json_file.summary_panel())
             console.print_json(json_file.json_str(), indent=4, sort_keys=False)
+
+
+def print_json_metadata(epstein_files: EpsteinFiles) -> None:
+    json_str = epstein_files.json_metadata()
+
+    if args.build:
+        with open(JSON_METADATA_PATH, 'w') as f:
+            f.write(json_str)
+            log_file_write(JSON_METADATA_PATH)
+    else:
+        console.print_json(json_str, indent=4, sort_keys=True)
 
 
 def print_json_stats(epstein_files: EpsteinFiles) -> None:
@@ -150,45 +190,6 @@ def print_text_messages_section(imessage_logs: list[MessengerLog]) -> None:
     for log_file in imessage_logs:
         console.print(Padding(log_file))
         console.line(2)
-
-
-def write_complete_emails_timeline(epstein_files: EpsteinFiles) -> None:
-    """Print a table of all emails in chronological order."""
-    emails = [email for email in epstein_files.non_duplicate_emails() if not email.is_junk_mail()]
-    table = build_table(f'All {len(emails):,} Non-Junk Emails in Chronological Order', highlight=True)
-    table.add_column('ID', style=TIMESTAMP_DIM)
-    table.add_column('Sent At', style='dim')
-    table.add_column('Author', max_width=20)
-    table.add_column('Recipients', max_width=22)
-    table.add_column('Length', justify='right', style='wheat4')
-    table.add_column('Subject')
-
-    for email in Document.sort_by_timestamp(emails):
-        if email.is_junk_mail():
-            continue
-
-        table.add_row(
-            email.epstein_media_link(link_txt=email.source_file_id()),
-            email.timestamp_without_seconds(),
-            email.author_txt(),
-            email.recipients_txt(max_full_names=1),
-            f"{email.length()}",
-            email.subject(),
-        )
-
-    console.line(2)
-    console.print(table)
-
-
-def write_json_metadata(epstein_files: EpsteinFiles) -> None:
-    json_str = epstein_files.json_metadata()
-
-    if args.build:
-        with open(JSON_METADATA_PATH, 'w') as f:
-            f.write(json_str)
-            log_file_write(JSON_METADATA_PATH)
-    else:
-        console.print_json(json_str, indent=4, sort_keys=True)
 
 
 def write_urls() -> None:
@@ -269,6 +270,52 @@ def _is_ok_for_epstein_web(name: str | None) -> bool:
         return False
 
     return True
+
+
+def _table_of_selected_emailers(_list: list[str | None], epstein_files: EpsteinFiles) -> Table:
+    """Add the first emailed_at timestamp for each emailer if 'epstein_files' provided."""
+    header_pfx = '' if args.all_emails else 'Selected '
+    table = build_table(f'{header_pfx}Email Conversations Grouped by Counterparty Will Appear in this Order')
+    table.add_column('Start Date')
+    table.add_column('Name', max_width=25, no_wrap=True)
+    table.add_column('Category', justify='center', style='dim italic')
+    table.add_column('Num', justify='right', style='wheat4')
+    table.add_column('Info', style='white italic')
+    current_year = 1990
+    current_year_month = current_year * 12
+    grey_idx = 0
+
+    for i, name in enumerate(_list):
+        earliest_email_date = (epstein_files.earliest_email_at(name) or FALLBACK_TIMESTAMP).date()
+        year_months = (earliest_email_date.year * 12) + earliest_email_date.month
+
+        # Color year rollovers more brightly
+        if current_year != earliest_email_date.year:
+            grey_idx = 0
+        elif current_year_month != year_months:
+            grey_idx = ((current_year_month - 1) % 12) + 1
+
+        current_year_month = year_months
+        current_year = earliest_email_date.year
+        category = get_category_txt_for_name(name)
+        info = get_info_for_name(name)
+
+        if category and category.plain == 'paula':  # TODO: hacky
+            category = None
+        elif category and info:
+            info = info.removeprefix(f"{category.plain}, ")
+        elif not name:
+            info = Text('(emails whose author or recipient could not be determined)', style='medium_purple4')
+
+        table.add_row(
+            Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[grey_idx]}"),
+            Text(name or UNKNOWN, style=get_style_for_name(name or UNKNOWN, default_style='dim')),
+            category,
+            f"{len(epstein_files.emails_for(name)):,}",
+            info or '',
+        )
+
+    return table
 
 
 def _verify_all_emails_were_printed(epstein_files: EpsteinFiles, already_printed_emails: list[Email]) -> None:

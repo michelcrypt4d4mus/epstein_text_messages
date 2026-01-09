@@ -16,13 +16,14 @@ from rich.text import Text
 from epstein_files.epstein_files import EpsteinFiles, document_cls
 from epstein_files.documents.document import INFO_PADDING, Document
 from epstein_files.documents.email import Email
-from epstein_files.util.constant.output_files import ALL_EMAILS_PATH, CHRONOLOGICAL_EMAILS_PATH, TEXT_MSGS_HTML_PATH, make_clean
+from epstein_files.util.constant.output_files import make_clean
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import coerce_file_path, extract_file_id
 from epstein_files.util.logging import exit_with_error, logger
 from epstein_files.util.output import (print_emails_section, print_json_files, print_json_stats,
-     print_other_files_section, print_text_messages_section, write_complete_emails_timeline, write_json_metadata, write_urls)
-from epstein_files.util.rich import build_highlighter, console, print_color_key, print_title_page_header, print_title_page_tables, print_subtitle_panel, write_html
+     print_other_files_section, print_text_messages_section, print_email_timeline, print_json_metadata, write_urls)
+from epstein_files.util.rich import (build_highlighter, console, print_color_key, print_title_page_header,
+     print_title_page_tables, print_subtitle_panel, write_html)
 from epstein_files.util.timer import Timer
 from epstein_files.util.word_count import write_word_counts_html
 
@@ -37,7 +38,7 @@ def generate_html() -> None:
     epstein_files = EpsteinFiles.get_files(timer)
 
     if args.json_metadata:
-        write_json_metadata(epstein_files)
+        print_json_metadata(epstein_files)
         exit()
     elif args.json_files:
         print_json_files(epstein_files)
@@ -62,7 +63,7 @@ def generate_html() -> None:
         emails_that_were_printed = print_emails_section(epstein_files)
         timer.print_at_checkpoint(f"Printed {len(emails_that_were_printed):,} emails")
     elif args.email_timeline:
-        write_complete_emails_timeline(epstein_files)
+        print_email_timeline(epstein_files)
         timer.print_at_checkpoint(f"Printed chronological emails table")
 
     if args.output_other:
@@ -74,15 +75,7 @@ def generate_html() -> None:
         print_other_files_section(files, epstein_files)
         timer.print_at_checkpoint(f"Printed {len(files)} other files (skipped {len(epstein_files.other_files) - len(files)})")
 
-    # Save output
-    if args.all_emails:
-        output_path = ALL_EMAILS_PATH
-    elif args.email_timeline:
-        output_path = CHRONOLOGICAL_EMAILS_PATH
-    else:
-        output_path = TEXT_MSGS_HTML_PATH
-
-    write_html(output_path)
+    write_html(args.build)
     logger.warning(f"Total time: {timer.seconds_since_start_str()}")
 
     # JSON stats (mostly used for building pytest checks)
