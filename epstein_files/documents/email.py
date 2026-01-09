@@ -24,7 +24,7 @@ from epstein_files.util.data import (TIMEZONE_INFO, collapse_newlines, escape_si
      flatten, listify, remove_timezone, uniquify)
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.file_helper import extract_file_id, file_stem_for_id
-from epstein_files.util.highlighted_group import get_style_for_name
+from epstein_files.util.highlighted_group import JUNK_EMAILERS, get_style_for_name
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
 
@@ -125,15 +125,6 @@ EMAIL_SIGNATURE_REGEXES = {
     TONJA_HADDAD_COLEMAN: re.compile(fr"Tonja Haddad Coleman.*\nTonja Haddad.*\nAdvocate Building\n315 SE 7th.*(\nSuite.*)?\nFort Lauderdale.*(\n({REDACTED} )?facsimile)?(\nwww.tonjahaddad.com?)?(\nPlease add this efiling.*\nThe information.*\nyou are not.*\nyou are not.*)?", re.IGNORECASE),
     UNKNOWN: re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL),
 }
-
-# Invalid for links to EpsteinWeb
-JUNK_EMAILERS = [
-    'asmallworld@travel.asmallworld.net',
-    "digest-noreply@quora.com",
-    'editorialstaff@flipboard.com',
-    'How To Academy',
-    'Jokeland',
-]
 
 MAILING_LISTS = [
     CAROLYN_RANGEL,
