@@ -3,7 +3,7 @@ import json
 from rich.padding import Padding
 
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import JUNK_EMAILERS, KRASSNER_RECIPIENTS, Email
+from epstein_files.documents.email import KRASSNER_RECIPIENTS, Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles, count_by_month
@@ -15,7 +15,7 @@ from epstein_files.util.constant.strings import TIMESTAMP_DIM, TIMESTAMP_STYLE
 from epstein_files.util.data import dict_sets_to_lists, sort_dict
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
-from epstein_files.util.highlighted_group import QUESTION_MARKS_TXT
+from epstein_files.util.highlighted_group import JUNK_EMAILERS, QUESTION_MARKS_TXT
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
 
