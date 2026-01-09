@@ -1,6 +1,5 @@
 import json
 import re
-from abc import ABC
 from dataclasses import dataclass, field
 
 from rich.highlighter import RegexHighlighter
@@ -45,12 +44,11 @@ CATEGORY_STYLES = {
 @dataclass(kw_only=True)
 class BaseHighlight:
     """
-    Regex and style information.
+    Regex and style information for things we want to highlight.
 
     Attributes:
-        label (str): RegexHighlighter match group name, defaults to 1st 'emailers' key if only 1 emailer provided
+        label (str): RegexHighlighter match group name
         pattern (str): regex pattern identifying strings matching this group
-        regex (re.Pattern): matches self.pattern
         style (str): Rich style to apply to text matching this group
         theme_style_name (str): The style name that must be a part of the rich.Console's theme
     """
@@ -78,9 +76,6 @@ class HighlightedText(BaseHighlight):
     Attributes:
         label (str): RegexHighlighter match group name, defaults to 1st 'emailers' key if only 1 emailer provided
         patterns (list[str]): regex patterns identifying strings matching this group
-        regex (re.Pattern): matches self.pattern
-        style (str): Rich style to apply to text matching this group
-        theme_style_name (str): The style name that must be a part of the rich.Console's theme
     """
     patterns: list[str] = field(default_factory=list)
     _pattern: str = field(init=False)
@@ -224,7 +219,7 @@ HIGHLIGHTED_NAMES = [
             LAWRENCE_KRAUSS: 'theoretical physicist',
             LINDA_STONE: f'ex-Microsoft, {MIT_MEDIA_LAB}',
             MARK_TRAMO: 'professor of neurology at UCLA',
-            'Nancy Dahl': 'wife of Lawrence Krauss',
+            'Nancy Dahl': f'wife of {LAWRENCE_KRAUSS}',
             NEAL_KASSELL: 'professor of neurosurgery at University of Virginia',
             PETER_ATTIA: 'longevity medicine',
             ROBERT_TRIVERS: 'evolutionary biology',
@@ -287,7 +282,7 @@ HIGHLIGHTED_NAMES = [
         label='bitcoin',
         style='orange1 bold',
         emailers={
-            'Jeffrey Wernick': 'former COO of Parler, involved in numerous crypto companies like Bitforex',
+            JEFFREY_WERNICK: 'former COO of Parler, involved in numerous crypto companies like Bitforex',
             JEREMY_RUBIN: 'developer/researcher',
             JOI_ITO: f"former head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative",
             ANTHONY_SCARAMUCCI: 'Skybridge Capital, FTX investor',
@@ -543,6 +538,7 @@ HIGHLIGHTED_NAMES = [
         style='light_sky_blue3',
         emailers={
             ANDRZEJ_DUDA: 'former president of Poland',
+            'Fabrice Aidan': f'diplomat who worked with {TERJE_ROD_LARSEN}',
             MIROSLAV_LAJCAK: 'Russia-friendly Slovakian politician, friend of Steve Bannon',
             PETER_MANDELSON: 'UK politics',
             TERJE_ROD_LARSEN: 'Norwegian diplomat',
@@ -603,11 +599,11 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
+        category='lawyer',
         label='famous lawyer',
         style='medium_purple3',
         emailers={
             ALAN_DERSHOWITZ: 'Harvard Law School professor and all around (in)famous American lawyer',
-            'Fabrice Aidan': f'diplomat who worked with {TERJE_ROD_LARSEN}',
             KEN_STARR: 'head of the Monica Lewinsky investigation against Bill Clinton',
         },
         patterns=[
