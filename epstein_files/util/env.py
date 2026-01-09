@@ -36,7 +36,7 @@ parser.add_argument('--overwrite-pickle', '-op', action='store_true', help='re-p
 output = parser.add_argument_group('OUTPUT', 'Options used by epstein_generate.')
 output.add_argument('--all-emails', '-ae', action='store_true', help='all the emails instead of just the interesting ones')
 output.add_argument('--all-other-files', '-ao', action='store_true', help='all the non-email, non-text msg files instead of just the interesting ones')
-parser.add_argument('--build', '-b', nargs="?", default=False, const=DEFAULT_FILE, help='write output to HTML file')
+parser.add_argument('--build', '-b', nargs="?", default=None, const=DEFAULT_FILE, help='write output to HTML file')
 output.add_argument('--email-timeline', action='store_true', help='print a table of all emails in chronological order')
 output.add_argument('--json-files', action='store_true', help='pretty print all the raw JSON data files in the collection and exit')
 output.add_argument('--json-metadata', action='store_true', help='dump JSON metadata for all files and exit')
