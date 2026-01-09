@@ -5,9 +5,11 @@ from pathlib import Path
 
 from rich_argparse_plus import RichHelpFormatterPlus
 
+from epstein_files.util.constant.output_files import ALL_EMAILS_PATH, CHRONOLOGICAL_EMAILS_PATH, TEXT_MSGS_HTML_PATH
 from epstein_files.util.logging import env_log_level, exit_with_error, logger
 
 DEFAULT_WIDTH = 145
+DEFAULT_FILE = 'default_file'
 EPSTEIN_GENERATE = 'epstein_generate'
 HTML_SCRIPTS = [EPSTEIN_GENERATE, 'epstein_word_count']
 
@@ -34,7 +36,7 @@ parser.add_argument('--overwrite-pickle', '-op', action='store_true', help='re-p
 output = parser.add_argument_group('OUTPUT', 'Options used by epstein_generate.')
 output.add_argument('--all-emails', '-ae', action='store_true', help='all the emails instead of just the interesting ones')
 output.add_argument('--all-other-files', '-ao', action='store_true', help='all the non-email, non-text msg files instead of just the interesting ones')
-output.add_argument('--build', '-b', action='store_true', help='write output to an HTML file in docs/')
+parser.add_argument('--build', '-b', nargs="?", default=False, const=DEFAULT_FILE, help='write output to HTML file')
 output.add_argument('--email-timeline', action='store_true', help='print a table of all emails in chronological order')
 output.add_argument('--json-files', action='store_true', help='pretty print all the raw JSON data files in the collection and exit')
 output.add_argument('--json-metadata', action='store_true', help='dump JSON metadata for all files and exit')
@@ -82,6 +84,14 @@ if is_html_script:
         elif not args.email_timeline:
             logger.warning(f"No output section chosen; outputting default selection of texts, selected emails, and other files...")
             args.output_texts = args.output_emails = args.output_other = True
+
+    if args.build == DEFAULT_FILE:
+        if args.all_emails:
+            args.build = ALL_EMAILS_PATH
+        elif args.email_timeline:
+            args.build = CHRONOLOGICAL_EMAILS_PATH
+        else:
+            args.build = TEXT_MSGS_HTML_PATH
 elif parser.prog.startswith('epstein_') and not args.positional_args:
     exit_with_error(f"{parser.prog} requires positional arguments but got none!")
 
