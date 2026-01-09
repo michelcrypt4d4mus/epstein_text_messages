@@ -81,7 +81,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Jean Huguen": 1,
     JEAN_LUC_BRUNEL: 3,
     JEFF_FULLER: 1,
-    JEFFREY_EPSTEIN: 667,
+    JEFFREY_EPSTEIN: 668,
     JENNIFER_JACQUET: 1,
     "Jeremy Rubin": 3,
     JES_STALEY: 2,
@@ -135,7 +135,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Mitchell Bard": 2,
     "Mohamed Waheed Hassan": 2,
     MOSHE_HOFFMAN: 1,
-    "Nadia Marcinko": 8,
+    "Nadia Marcinko": 7,
     "Neal Kassell": 2,
     NICHOLAS_RIBIS: 42,
     "Noam Chomsky": 4,
@@ -206,7 +206,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 47,
+    None: 46,
     "ACT for America": 1,
     "Alan Dershowitz": 11,
     'Alan Dlugash': 1,
@@ -354,7 +354,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Mortimer Zuckerman": 3,
     MOSHE_HOFFMAN: 1,
     'Mrisman02': 1,
-    "Nadia Marcinko": 1,
+    "Nadia Marcinko": 2,
     "Nancy Cain": 3,
     "Nancy Dahl": 2,
     "Nancy Portland": 2,
@@ -448,7 +448,6 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     "016693",
     '018726',
     "019871",
-    "022193",
     "022247",
     "022936",
     "022938",
