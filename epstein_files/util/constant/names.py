@@ -178,6 +178,7 @@ HENRY_HOLT = 'Henry Holt'  # Actually a company?
 IVANKA = 'Ivanka'
 JAMES_PATTERSON = 'James Patterson'
 JARED_KUSHNER = 'Jared Kushner'
+JEFFREY_WERNICK = 'Jeffrey Wernick'
 JULIE_K_BROWN = 'Julie K. Brown'
 KARIM_SADJADPOUR = 'KARIM SADJADPOUR'.title()
 MICHAEL_J_BOCCIO = 'Michael J. Boccio'
