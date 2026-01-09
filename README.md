@@ -48,6 +48,9 @@ epstein_diff 030999 020442
 ```
 
 The first time you run anything it will take a few minutes to fix all the janky OCR text, attribute the redacted emails, etc. After that things will be quick.
+
+The commands used to build the various sites that are deployed on Github Pages can be found in [`deploy.sh`](./deploy.sh).
+
 Run `epstein_generate --help` for command line option assistance.
 
 **Optional:** There are a handful of emails that I extracted from the legal filings they were contained in. If you want to include these files in your local analysis you'll need to copy those files from the repo into your local document directory. Something like:
