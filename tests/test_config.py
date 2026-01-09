@@ -1,5 +1,5 @@
 from epstein_files.util.constants import *
-from epstein_files.util.highlighted_group import CATEGORY_STYLES, HIGHLIGHTED_NAMES
+from epstein_files.util.highlighted_group import CATEGORY_STYLES, HIGHLIGHTED_NAMES, ALL_HIGHLIGHTS
 
 
 def test_other_files_config():
@@ -18,3 +18,11 @@ def test_category_styles():
     for category in CATEGORY_STYLES:
         for highlight_group in HIGHLIGHTED_NAMES:
             assert highlight_group.label != category
+
+
+def test_highlight_labels():
+    labels: set[str] = set([])
+
+    for highlight_group in HIGHLIGHTED_NAMES:
+        assert highlight_group.label not in labels
+        labels.add(highlight_group.label)

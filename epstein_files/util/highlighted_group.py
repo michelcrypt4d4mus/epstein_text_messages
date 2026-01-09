@@ -492,6 +492,7 @@ HIGHLIGHTED_NAMES = [
         style='purple',
         emailers={
             'Alan S Halperin': 'partner at Paul, Weiss',
+            ALAN_DERSHOWITZ: 'Harvard Law School professor and all around (in)famous American lawyer',
             ARDA_BESKARDES: 'NYC immigration attorney allegedly involved in sex-trafficking operations',
             BENNET_MOSKOWITZ: f'represented the {EPSTEIN_ESTATE_EXECUTOR}s',
             BRAD_KARP: 'head of the law firm Paul Weiss',
@@ -503,6 +504,7 @@ HIGHLIGHTED_NAMES = [
             JACKIE_PERCZEK: CRIMINAL_DEFENSE_2008,
             JAY_LEFKOWITZ: f"Kirkland & Ellis partner, {CRIMINAL_DEFENSE_2008}",
             JESSICA_CADWELL: f'paralegal to {ROBERT_D_CRITTON_JR}',  # house_oversight_030464
+            KEN_STARR: 'head of the Monica Lewinsky investigation against Bill Clinton',
             LILLY_SANCHEZ: CRIMINAL_DEFENSE_ATTORNEY,
             MARTIN_WEINBERG: CRIMINAL_DEFENSE_ATTORNEY,
             MICHAEL_MILLER: 'Steptoe LLP partner',
@@ -515,6 +517,7 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"(Barry (E. )?)?Krischer",
+            r"dersh",
             r"Kate Kelly",
             r"Kirkland\s*&\s*Ellis",
             r"(Leon\s*)?Jaworski",
@@ -599,17 +602,9 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        category='lawyer',
-        label='famous lawyer',
+        label='lawyer',
         style='medium_purple3',
-        emailers={
-            ALAN_DERSHOWITZ: 'Harvard Law School professor and all around (in)famous American lawyer',
-            KEN_STARR: 'head of the Monica Lewinsky investigation against Bill Clinton',
-        },
         patterns=[
-            r"(David\s*)?Bo[il]es",
-            r"dersh",
-            r"(Gloria\s*)?Allred",
             r"(Mi(chael|ke)\s*)?Avenatti",
         ],
     ),
@@ -1300,6 +1295,8 @@ HIGHLIGHTED_NAMES = [
         label='victim',
         style='orchid1',
         patterns=[
+            r"(David\s*)?Bo[il]es",
+            r"(Gloria\s*)?Allred",
             r"(Jane|Tiffany)\s*Doe",
             r"Katie\s*Johnson",
             r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre",
