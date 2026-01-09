@@ -627,6 +627,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='032358', actual_text=REDACTED),  # Completely redacted
     EmailCfg(id='033050', actual_text='schwartman'),
     EmailCfg(id='022219', description="discussion of attempts to clean up Epstein's Google search results"),
+    EmailCfg(id='028524', is_fwded_article=True, description='Zach Braff op-ed on Woody Allen in NYT'),
     EmailCfg(id='031333', is_fwded_article=True, description='looks like a Russian disinfo article'),  # Russia Says IMF Chief Jailed For Discovering All US Gold is Gone
     EmailCfg(id='031335', is_fwded_article=True, description='looks like a Russian disinfo article'),  # DOMINQUE STRAUSS-KAHN ARRESTED, NOT BECAUSE HE RAPED A MAID, BUT BECAUSE HE HAD EVIDENCE US HAS NO GOLD IN FORT KNOX.
     EmailCfg(id='023627', is_fwded_article=True, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
@@ -682,7 +683,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='031472', is_fwded_article=True),  # WSJ: Lawyers for Imam Wanted by Turkish authorities Fear for Their Client's Life
     EmailCfg(id='012684', is_fwded_article=True),  # Trump in talks to buy socialite Kluge's Charlottesville vineyard
     EmailCfg(id='028536', is_fwded_article=True),  # Palm Beach Post FBI Epstein files say he gave info. Does it explain sweetheart deal?
-    EmailCfg(id='028524', is_fwded_article=True),  # Zach Braff article on Woody Allen in NYT
     EmailCfg(id='030326', is_fwded_article=True),  # NYP Congressional candidate compares Melania Trump to prostitute
     EmailCfg(id='030519', is_fwded_article=True),  # Daily Mail on Prince Andrew
     EmailCfg(id='030878', is_fwded_article=True),  # Steve Bannon almost appeared in Michael Moore's 'Fahrenheit 11/9'
