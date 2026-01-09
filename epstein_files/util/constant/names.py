@@ -178,6 +178,7 @@ HENRY_HOLT = 'Henry Holt'  # Actually a company?
 IVANKA = 'Ivanka'
 JAMES_PATTERSON = 'James Patterson'
 JARED_KUSHNER = 'Jared Kushner'
+JEFFREY_WERNICK = 'Jeffrey Wernick'
 JULIE_K_BROWN = 'Julie K. Brown'
 KARIM_SADJADPOUR = 'KARIM SADJADPOUR'.title()
 MICHAEL_J_BOCCIO = 'Michael J. Boccio'
@@ -236,7 +237,7 @@ OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
     aaron albert alberto alec alexandra alice anderson andre ann anna anne ariana arthur
     baldwin barack barrett ben benjamin berger bert binant bob bonner boyden bradley brady branson bright bruno bryant burton
     chapman charles charlie christopher clint cohen colin collins conway
-    danny davis dean debra deborah dennis diana diane diaz dickinson dixon dominique don dylan
+    danny davis dean debra deborah dennis diana diane diaz dickinson dixon dominique don donald dylan
     edmond elizabeth emily enterprises entwistle erik evelyn
     ferguson flachsbart francis franco frank frost
     gardner gary geoff geoffrey gerald gilbert gloria gold goldberg gonzalez gould graham greene guarino gwyneth
@@ -249,7 +250,7 @@ OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
     nancy nicole nussbaum
     owen
     paulson peter philippe
-    rafael ray richard richardson rob robert robin ron rubin rudolph ryan
+    rafael ray richard richardson rob robert robin ron roy rubin rudolph ryan
     sara sarah sean seligman serge sergey silverman sloman smith snowden sorkin steele stevie stewart
     ted theresa thompson tiffany timothy tony
     valeria

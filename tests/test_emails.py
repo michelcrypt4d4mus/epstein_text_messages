@@ -81,7 +81,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Jean Huguen": 1,
     JEAN_LUC_BRUNEL: 3,
     JEFF_FULLER: 1,
-    JEFFREY_EPSTEIN: 668,
+    JEFFREY_EPSTEIN: 667,
     JENNIFER_JACQUET: 1,
     "Jeremy Rubin": 3,
     JES_STALEY: 2,
@@ -243,13 +243,13 @@ EMAIL_RECIPIENT_COUNTS = {
     'Daniel Dawson': 2,
     "Daniel Siad": 2,
     "Danny Goldberg": 5,
-    DARREN_INDYKE: 49,
+    DARREN_INDYKE: 48,
     DAVID_BLAINE: 1,
     "David Grosof": 6,
     "David Haig": 2,
     "David Schoen": 3,
     "David Stern": 1,
-    "Debbie Fein": 6,
+    "Debbie Fein": 5,
     "Deepak Chopra": 1,
     "Diane Ziman": 1,
     "Ed Boyden": 1,
@@ -261,7 +261,7 @@ EMAIL_RECIPIENT_COUNTS = {
     FAITH_KATES: 5,
     "Forrest Miller": 1,
     "Francis Derby": 2,
-    "Fred Haddad": 4,
+    "Fred Haddad": 3,
     "Gary Gross": 1,
     "George Krassner": 3,
     "Gerald Barton": 1,
@@ -421,7 +421,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Tom": 2,
     "Tom Barrack": 2,
     "Tom Pritzker": 8,
-    "Tonja Haddad Coleman": 4,
+    TONJA_HADDAD_COLEMAN: 3,
     "Travis Pangburn": 1,
     "Tyler Shears": 1,
     "Uri Fouzailov": 1,
@@ -496,6 +496,9 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
 ]
 
 DEVICE_SIGNATURE_TO_AUTHORS = {
+    'Envoyé de mon iPhone': [
+        'Fabrice Aidan',
+    ],
     "Sent from AOL Mobile Mail": [
         DAVID_SCHOEN,
     ],
@@ -688,6 +691,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     "Eva Dubin": [
         "Sent from my iPhone"
+    ],
+    'Fabrice Aidan': [
+        'Envoyé de mon iPhone',
     ],
     "Faith Kates": [
         "Sent from my iPhone"

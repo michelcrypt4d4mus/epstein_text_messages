@@ -1,6 +1,5 @@
 import json
 import re
-from abc import ABC
 from dataclasses import dataclass, field
 
 from rich.highlighter import RegexHighlighter
@@ -45,12 +44,11 @@ CATEGORY_STYLES = {
 @dataclass(kw_only=True)
 class BaseHighlight:
     """
-    Regex and style information.
+    Regex and style information for things we want to highlight.
 
     Attributes:
-        label (str): RegexHighlighter match group name, defaults to 1st 'emailers' key if only 1 emailer provided
+        label (str): RegexHighlighter match group name
         pattern (str): regex pattern identifying strings matching this group
-        regex (re.Pattern): matches self.pattern
         style (str): Rich style to apply to text matching this group
         theme_style_name (str): The style name that must be a part of the rich.Console's theme
     """
@@ -78,9 +76,6 @@ class HighlightedText(BaseHighlight):
     Attributes:
         label (str): RegexHighlighter match group name, defaults to 1st 'emailers' key if only 1 emailer provided
         patterns (list[str]): regex patterns identifying strings matching this group
-        regex (re.Pattern): matches self.pattern
-        style (str): Rich style to apply to text matching this group
-        theme_style_name (str): The style name that must be a part of the rich.Console's theme
     """
     patterns: list[str] = field(default_factory=list)
     _pattern: str = field(init=False)
@@ -218,13 +213,13 @@ HIGHLIGHTED_NAMES = [
         emailers={
             DAVID_HAIG: 'evolutionary geneticist?',
             JOSCHA_BACH: 'cognitive science / AI research',
-            'Daniel Kahneman': 'Nobel economic sciences laureate and cognitivie psychologist (?)',
+            'Dan(iel|ny) Kahneman': 'Nobel economic sciences laureate and cognitivie psychologist (?)',
             'Ed Boyden': f'Associate Professor, {MIT_MEDIA_LAB} neurobiology',
             'Harry Fisch': "men's health expert at New York-Presbyterian / Weill Cornell (?)",
             LAWRENCE_KRAUSS: 'theoretical physicist',
             LINDA_STONE: f'ex-Microsoft, {MIT_MEDIA_LAB}',
             MARK_TRAMO: 'professor of neurology at UCLA',
-            'Nancy Dahl': 'wife of Lawrence Krauss',
+            'Nancy Dahl': f'wife of {LAWRENCE_KRAUSS}',
             NEAL_KASSELL: 'professor of neurosurgery at University of Virginia',
             PETER_ATTIA: 'longevity medicine',
             ROBERT_TRIVERS: 'evolutionary biology',
@@ -287,7 +282,7 @@ HIGHLIGHTED_NAMES = [
         label='bitcoin',
         style='orange1 bold',
         emailers={
-            'Jeffrey Wernick': 'former COO of Parler, involved in numerous crypto companies like Bitforex',
+            JEFFREY_WERNICK: 'former COO of Parler, involved in numerous crypto companies like Bitforex',
             JEREMY_RUBIN: 'developer/researcher',
             JOI_ITO: f"former head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative",
             ANTHONY_SCARAMUCCI: 'Skybridge Capital, FTX investor',
@@ -415,6 +410,7 @@ HIGHLIGHTED_NAMES = [
             r"Eric Holder",
             r"George\s*Mitchell",
             r"(George\s*)?Soros",
+            r"Hakeem\s*Jeffries",
             r"Hill?ary",
             r"HRC",
             r"(Jo(e|seph)\s*)?Biden",
@@ -440,7 +436,7 @@ HIGHLIGHTED_NAMES = [
     ),
     HighlightedNames(
         label='employee',
-        style='deep_sky_blue4',
+        style='dark_blue',
         emailers={
             'Alfredo Rodriguez': "Epstein's butler, stole the journal",
             ERIC_ROTH: 'jet decorator',
@@ -453,7 +449,11 @@ HIGHLIGHTED_NAMES = [
             NADIA_MARCINKO: 'pilot',
             'Sean J. Lancaster': 'airplane reseller',
         },
-        patterns=[r"Merwin"],
+        patterns=[
+            r"Adriana\s*Ross",
+            r"Merwin",
+            r"(Sarah\s*)?Kellen", r"Vickers",  # Married name is Metiers
+        ],
     ),
     HighlightedNames(
         label=ENTERTAINER,
@@ -497,6 +497,7 @@ HIGHLIGHTED_NAMES = [
         style='purple',
         emailers={
             'Alan S Halperin': 'partner at Paul, Weiss',
+            ALAN_DERSHOWITZ: 'Harvard Law School professor and all around (in)famous American lawyer',
             ARDA_BESKARDES: 'NYC immigration attorney allegedly involved in sex-trafficking operations',
             BENNET_MOSKOWITZ: f'represented the {EPSTEIN_ESTATE_EXECUTOR}s',
             BRAD_KARP: 'head of the law firm Paul Weiss',
@@ -508,6 +509,7 @@ HIGHLIGHTED_NAMES = [
             JACKIE_PERCZEK: CRIMINAL_DEFENSE_2008,
             JAY_LEFKOWITZ: f"Kirkland & Ellis partner, {CRIMINAL_DEFENSE_2008}",
             JESSICA_CADWELL: f'paralegal to {ROBERT_D_CRITTON_JR}',  # house_oversight_030464
+            KEN_STARR: 'head of the Monica Lewinsky investigation against Bill Clinton',
             LILLY_SANCHEZ: CRIMINAL_DEFENSE_ATTORNEY,
             MARTIN_WEINBERG: CRIMINAL_DEFENSE_ATTORNEY,
             MICHAEL_MILLER: 'Steptoe LLP partner',
@@ -520,6 +522,7 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"(Barry (E. )?)?Krischer",
+            r"dersh",
             r"Kate Kelly",
             r"Kirkland\s*&\s*Ellis",
             r"(Leon\s*)?Jaworski",
@@ -543,6 +546,7 @@ HIGHLIGHTED_NAMES = [
         style='light_sky_blue3',
         emailers={
             ANDRZEJ_DUDA: 'former president of Poland',
+            'Fabrice Aidan': f'diplomat who worked with {TERJE_ROD_LARSEN}',
             MIROSLAV_LAJCAK: 'Russia-friendly Slovakian politician, friend of Steve Bannon',
             PETER_MANDELSON: 'UK politics',
             TERJE_ROD_LARSEN: 'Norwegian diplomat',
@@ -603,21 +607,6 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        label='famous lawyer',
-        style='medium_purple3',
-        emailers={
-            ALAN_DERSHOWITZ: 'Harvard Law School professor and all around (in)famous American lawyer',
-            'Fabrice Aidan': f'diplomat who worked with {TERJE_ROD_LARSEN}',
-            KEN_STARR: 'head of the Monica Lewinsky investigation against Bill Clinton',
-        },
-        patterns=[
-            r"(David\s*)?Bo[il]es",
-            r"dersh",
-            r"(Gloria\s*)?Allred",
-            r"(Mi(chael|ke)\s*)?Avenatti",
-        ],
-    ),
-    HighlightedNames(
         label=FINANCE,
         style='green',
         emailers={
@@ -666,7 +655,8 @@ HIGHLIGHTED_NAMES = [
             r"j\.?p\.?\s*morgan(\.?com|\s*Chase)?",
             r"Madoff",
             r"Merrill(\s*Lynch)?",
-            r"(Michael\s*)?(Cembalest|Milken)",
+            r"(Michael\s*)?Cembalest",
+            r"(Mi(chael|ke)\s*)?Milken(\s*Conference)?",
             r"Mizrahi\s*Bank",
             r"MLPF&S",
             r"Morgan Stanley",
@@ -799,24 +789,26 @@ HIGHLIGHTED_NAMES = [
             r"Arianna(\s*Huffington)?",
             r"(Arthur\s*)?Kretchmer",
             r'Associated\s*Press',
+            r"Axios",
             r"BBC",
-            r"Bloomberg",
             r"Breitbart",
             r"Charlie\s*Rose",
             r"China\s*Daily",
             r"CNBC",
             r"CNN(politics?)?",
-            r"Con[cs]hita",
-            r"Sarnoff",
+            r"Con[cs]hita", r"Sarnoff",
+            r"Daily Business Review",
             r"(?<!Virgin[-\s]Islands[-\s])Daily\s*(Beast|Mail|News|Telegraph)",
             r"(David\s*)?(Pecker|Pegg)",
             r"David\s*Brooks",
             r"Ed\s*Krassenstein",
             r"(Emily\s*)?Michot",
             r"Ezra\s*Klein",
+            r"Fox\s*News(\.com)?",
             r"FrontPage Magazine",
             r"FT",
             r"(George\s*)?Stephanopoulus",
+            r"Ger(ald|ry)\s*Baker",
             r"Globe\s*and\s*Mail",
             r"Good\s*Morning\s*America",
             r"Graydon(\s*Carter)?",
@@ -828,9 +820,14 @@ HIGHLIGHTED_NAMES = [
             r"(Katie\s*)?Couric",
             r"Keith\s*Larsen",
             r"L\.?A\.?\s*Times",
+            r"Law(360|\.com)",
+            r"MarketWatch",
             r"Miami\s*Herald",
+            r"(Mi(chael|ke)\s*)?Bloomberg",
             r"(Michele\s*)?Dargan",
+            r"Morning News USA",
             r"(National\s*)?Enquirer",
+            r"Newsweek",
             r"NYer",
             r"Palm\s*Beach\s*(Daily\s*News|Post)",
             r"PERVERSION\s*OF\s*JUSTICE",
@@ -842,6 +839,8 @@ HIGHLIGHTED_NAMES = [
             r"Susan Edelman",
             r"(The\s*)?Financial\s*Times",
             r"The\s*Guardian",
+            r"TheHill",
+            r"(The\s*)?Mail\s*On\s*Sunday",
             r"(The\s*)?N(ew\s*)?Y(ork\s*)?(P(ost)?|T(imes)?)",
             r"(The\s*)?New\s*Yorker",
             r"(The\s*)?Wall\s*Street\s*Journal",
@@ -880,7 +879,7 @@ HIGHLIGHTED_NAMES = [
             r"Cuban?",
             r"El\s*Salvador",
             r"((Enrique )?Pena )?Nieto",
-            r"Lat(in)?\s*Am(erica)?",
+            r"Lat(in)?\s*Am(erican?)?",
             r"Lula",
             r"Mexic(an|o)",
             r"(Nicolas\s+)?Maduro",
@@ -1088,6 +1087,7 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"\w+@mc2mm.com",
+            r"MC2",
             r"model(ed|ing)",
             r"(Nicole\s*)?Junkerman",  # Also a venture fund manager now
         ],
@@ -1133,7 +1133,6 @@ HIGHLIGHTED_NAMES = [
             r"(?<!Merwin Dela )Cruz",
             r"Devin\s*Nunes",
             r"(Don\s*)?McGa[hn]n",
-            r"Fox\s*News",
             r"George\s*(H\.?\s*)?(W\.?\s*)?Bush",
             r"(George\s*)?Nader",
             r"GOP",
@@ -1254,7 +1253,10 @@ HIGHLIGHTED_NAMES = [
             r"Eric\s*Schmidt",
             r"Greylock(\s*Partners)?",
             r"(?<!(ustin|Moshe)\s)Hoffmand?",
+            r"(Jeff\s*)?Bezos",
+            r"Larry Page",
             r"LinkedIn",
+            r"(Marc\s*)?Andreess?en",
             r"(Mark\s*)?Zuckerberg",
             r"Masa(yoshi)?(\sSon)?",
             r"Najeev",
@@ -1282,7 +1284,7 @@ HIGHLIGHTED_NAMES = [
             r"\bDJ?T\b",
             r"Donald J. Tramp",
             r"(Donald\s+(J\.\s+)?)?Trump(ism|\s*(Org(anization)?|Properties)(\s*LLC)?)?",
-            r"Don(ald| *Jr)(?! Rubin)",
+            r"Don(ald| *Jr)(?! (B|Rubin))",
             r"Ivank?a",
             r"Jared",
             r"Kushner",
@@ -1291,6 +1293,7 @@ HIGHLIGHTED_NAMES = [
             r"(Marla\s*)?Maples",
             r"(Matt(hew)? )?Calamari",
             r"\bMatt C\b",
+            r"Michael\s*Cohen",
             r"Melania",
             r"(Michael (J.? )?)?Boccio",
             r"Paul Rampell",
@@ -1304,6 +1307,8 @@ HIGHLIGHTED_NAMES = [
         label='victim',
         style='orchid1',
         patterns=[
+            r"(David\s*)?Bo[il]es",
+            r"(Gloria\s*)?Allred",
             r"(Jane|Tiffany)\s*Doe",
             r"Katie\s*Johnson",
             r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre",
@@ -1322,6 +1327,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"(Alan(\s*P.)?|MINTZ)\s*FRAADE",
             r"(J\.?\s*)?(Stan(ley)?\s*)?Pottinger",
+            r"(Mi(chael|ke)\s*)?Avenatti",
             r"Paul\s*(G.\s*)?Cassell",
             r"Rothstein\s*Rosenfeldt\s*Adler",
             r"(Scott\s*)?Rothstein",
@@ -1363,7 +1369,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"BG",
             r"b?g?C3",
-            r"(Bill\s*((and|or)\s*Melinda\s*)?)?Gates",
+            r"(Bill\s*((and|or)\s*Melinda\s*)?)?Gates(\s*Foundation)?",
             r"Melinda(\s*Gates)?",
             r"Microsoft",
             r"MSFT",
@@ -1378,6 +1384,7 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"(American\s*)?Dharma",
+            r"Biosphere",
             r"((Steve|Sean)\s*)?Bannon?",
         ],
     ),
@@ -1418,7 +1425,7 @@ HIGHLIGHTED_TEXTS = [
     HighlightedText(
         label='header_field',
         style='plum4',
-        patterns=[r'^(> )?(Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments):'],
+        patterns=[r'^(> )?(Date|From|Sent|To|C[cC]|Importance|Reply-To|Subject|Bee|B[cC]{2}|Attachments):'],
     ),
     HighlightedText(
         label='http_links',
