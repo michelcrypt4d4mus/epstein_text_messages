@@ -15,7 +15,7 @@ from epstein_files.util.constant.strings import TIMESTAMP_DIM, TIMESTAMP_STYLE
 from epstein_files.util.data import dict_sets_to_lists, sort_dict
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
-from epstein_files.util.highlighted_group import QUESTION_MARKS_TXT
+from epstein_files.util.highlighted_group import JUNK_EMAILERS, QUESTION_MARKS_TXT
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
 
@@ -308,8 +308,6 @@ def _table_of_selected_emailers(_list: list[str | None], epstein_files: EpsteinF
             info = info.removeprefix(f"{category.plain}, ").removeprefix(category.plain)
         elif not name:
             info = Text('(emails whose author or recipient could not be determined)', style='medium_purple4')
-        elif name in JUNK_EMAILERS:
-            category = Text('junk', style='gray30')
         elif style == 'none' and '@' not in name and not (category or info):
             info = QUESTION_MARKS_TXT
 
