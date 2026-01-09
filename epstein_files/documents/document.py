@@ -89,7 +89,7 @@ class Document:
 
     def __post_init__(self):
         if not self.file_path.exists():
-            raise ValueError(f"File '{self.file_path.name}' does not exist!")
+            raise FileNotFoundError(f"File '{self.file_path.name}' does not exist!")
 
         self.filename = self.file_path.name
         self.file_id = extract_file_id(self.filename)
