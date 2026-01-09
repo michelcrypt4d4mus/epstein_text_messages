@@ -15,10 +15,11 @@ from epstein_files.util.constant.strings import TIMESTAMP_DIM, TIMESTAMP_STYLE
 from epstein_files.util.data import dict_sets_to_lists, sort_dict
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
-from epstein_files.util.highlighted_group import JUNK_EMAILERS, QUESTION_MARKS_TXT
+from epstein_files.util.highlighted_group import JUNK_EMAILERS, QUESTION_MARKS_TXT, get_category_txt_for_name, get_info_for_name, get_style_for_name
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
 
+OTHER_INTERESTING_EMAILS_SUBTITLE = 'Other Interesting Emails\n(these emails have been flagged as being of particular interest)'
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
 
 # Order matters. Default names to print emails for.
@@ -125,8 +126,23 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
             print_color_key()
             num_emails_printed_since_last_color_key = 0
 
-    if not args.names:
-        epstein_files.print_email_device_info()
+    if args.names:
+        return already_printed_emails
+
+    # Print other interesting emails
+    already_printed_ids = [email.file_id for email in already_printed_emails]
+    console.line(2)
+    print_subtitle_panel(OTHER_INTERESTING_EMAILS_SUBTITLE, centered=True)
+    console.line()
+
+    for other_email in epstein_files.get_documents_by_id(INTERESTiNG_OTHER_EMAIL_IDS):
+        if other_email.file_id in already_printed_ids:
+            logger.info(f"{other_email.summary()} Skipping intersting file_id bc it was already printed")
+            continue
+
+        console.print(other_email)
+
+    epstein_files.print_email_device_info()
 
     if args.all_emails:
         _verify_all_emails_were_printed(epstein_files, already_printed_emails)
