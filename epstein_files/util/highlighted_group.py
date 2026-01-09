@@ -633,6 +633,7 @@ HIGHLIGHTED_NAMES = [
             MARC_LEON: 'Luxury Properties Sari Morrocco',
             MELANIE_SPINELLA: 'representative of Leon Black',
             MORTIMER_ZUCKERMAN: 'business partner of Epstein, newspaper publisher',
+            NORMAN_D_RAU: 'managing director at Morgan Stanley',
             PAUL_BARRETT: None,
             PAUL_MORRIS: DEUTSCHE_BANK,
             'Skip Rimer': 'Milken Institute (Michael Milken)',
