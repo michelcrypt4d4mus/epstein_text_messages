@@ -71,6 +71,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     # Signatures
     'BlackBerry by AT &T': 'BlackBerry by AT&T',
     'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
+    'Envoy& de mon iPhone': 'Envoyé de mon iPhone',
     "from my 'Phone": 'from my iPhone',
     'from Samsung Mob.le': 'from Samsung Mobile',
     'gJeremyRubin': '@JeremyRubin',
@@ -146,6 +147,7 @@ TRUNCATION_LENGTHS = {
     '032906': 750,     # David Blaine email
     '026036': 6000,    # Gino Yu blockchain mention
     '023208': 350_000, # Long discussion about leon black's finances
+    '029609': 864,     # Joi Ito
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
@@ -311,6 +313,7 @@ LINE_REPAIR_MERGES = {
     '022695': 4,
     '023067': 3,
     '025790': 2,
+    '026345': 3,
     '026609': 4,
     '026924': [2, 4],
     '028931': [3, 6],

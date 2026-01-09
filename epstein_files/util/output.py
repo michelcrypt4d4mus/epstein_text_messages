@@ -46,6 +46,14 @@ DEFAULT_EMAILERS = [
     None,
 ]
 
+INTERESTiNG_OTHER_EMAIL_IDS = [
+    '032229',  # Michael Wolff on strategy
+    '028784',  # seminars: Money / Power
+    '029342',  # Hakeem Jeffries
+    '023454',  # Email invitation sent to tech CEOs + Epstein
+    # '023627',  # Michael Wolff article (already printed bc epstein->epstein email)
+]
+
 INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [
     'ACT for America',
     'BS Stern',
