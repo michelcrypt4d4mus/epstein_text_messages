@@ -1262,7 +1262,7 @@ HIGHLIGHTED_NAMES = [
             r"(Alan\s*)?Weiss?elberg",
             r"\bDJ?T\b",
             r"Donald J. Tramp",
-            r"(Donald\s+(J\.\s+)?)?Trump(ism|\s*Properties)?",
+            r"(Donald\s+(J\.\s+)?)?Trump(ism|\s*(Org(anization)?|Properties)(\s*LLC)?)?",
             r"Don(ald| *Jr)(?! Rubin)",
             r"Ivank?a",
             r"Jared",
