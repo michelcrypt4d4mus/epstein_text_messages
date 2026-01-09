@@ -632,8 +632,8 @@ HIGHLIGHTED_NAMES = [
             MORTIMER_ZUCKERMAN: 'business partner of Epstein, newspaper publisher',
             PAUL_BARRETT: None,
             PAUL_MORRIS: DEUTSCHE_BANK,
-            'Steven Elkman': DEUTSCHE_BANK,
             'Skip Rimer': 'Milken Institute (Michael Milken)',
+            'Steven Elkman': DEUTSCHE_BANK,
         },
         patterns=[
             r"((anti.?)?money\s+)?launder(s?|ers?|ing)?(\s+money)?",
