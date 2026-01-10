@@ -150,7 +150,7 @@ def parenthesize(msg: str | Text, style: str = '') -> Text:
     return Text('(', style=style).append(txt).append(')')
 
 
-def print_author_panel(msg: str, style: str | None, footer: str | None = None) -> None:
+def print_author_panel(msg: str, footer: str | None, style: str | None) -> None:
     """Print a panel with the name of an emailer and a few tidbits of information about them."""
     style = 'white' if (not style or style == DEFAULT) else style
     panel_style = f"black on {style} bold"
