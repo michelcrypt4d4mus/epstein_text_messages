@@ -492,11 +492,8 @@ class Email(Communication):
 
     def _border_style(self) -> str:
         """Color emails from epstein to others with the color for the first recipient."""
-        if self.author == JEFFREY_EPSTEIN:
-            if len(self.recipients) == 0 or self.recipients == [None]:
-                style = self.author_style()
-            else:
-                style = get_style_for_name(self.recipients[0])
+        if self.author == JEFFREY_EPSTEIN and len(self.recipients) > 0:
+            style = get_style_for_name(self.recipients[0])
         else:
             style = self.author_style()
 

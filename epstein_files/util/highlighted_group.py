@@ -1528,6 +1528,10 @@ def styled_category(category: str | None) -> Text:
     return Text(category, get_style_for_category(category) or 'wheat4')
 
 
+def styled_name(name: str | None, default_style: str = DEFAULT_NAME_STYLE) -> Text:
+    return Text(name or UNKNOWN, style=get_style_for_name(name, default_style=default_style))
+
+
 def _get_highlight_group_for_name(name: str | None) -> HighlightedNames | None:
     if name is None:
         return None

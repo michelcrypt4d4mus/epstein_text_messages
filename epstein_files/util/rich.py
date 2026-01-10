@@ -32,7 +32,6 @@ NA_TXT = Text(NA, style='dim')
 SUBTITLE_PADDING = (2, 0, 1, 0)
 GREY_NUMBERS = [58, 39, 39, 35, 30, 27, 23, 23, 19, 19, 15, 15, 15]
 
-DEFAULT_NAME_STYLE = 'gray46'
 INFO_STYLE = 'white dim italic'
 KEY_STYLE = 'honeydew2 bold'
 LAST_TIMESTAMP_STYLE = 'wheat4'
