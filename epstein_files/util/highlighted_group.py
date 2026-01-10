@@ -427,7 +427,7 @@ HIGHLIGHTED_NAMES = [
             r"(Nancy )?Pelosi",
             r"Ron\s*Dellums",
             r"Schumer",
-            r"(Tim\s*)?Geithner",
+            r"(Tim(othy)?\s*)?Geithner",
             r"Vernon\s*Jordan",
         ],
     ),
@@ -1532,7 +1532,8 @@ def styled_category(category: str | None) -> Text:
     if not category:
         return QUESTION_MARKS_TXT
 
-    return Text(category, get_style_for_category(category) or 'wheat4')
+    category_str = 'resumé' if category == 'resume' else category
+    return Text(category_str, get_style_for_category(category) or 'wheat4')
 
 
 def styled_name(name: str | None, default_style: str = DEFAULT_NAME_STYLE) -> Text:
