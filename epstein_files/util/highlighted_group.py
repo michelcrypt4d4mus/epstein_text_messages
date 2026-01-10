@@ -1011,6 +1011,7 @@ HIGHLIGHTED_NAMES = [
             r"Basiji?",
             r"Beirut",
             r"Benghazi",
+            r"Brunei",
             r"Cairo",
             r"Chagoury",
             r"Damascus",

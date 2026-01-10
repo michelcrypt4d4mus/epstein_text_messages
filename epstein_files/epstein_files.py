@@ -30,7 +30,6 @@ from epstein_files.util.rich import (NA_TXT, add_cols_to_table, build_table, con
 from epstein_files.util.search_result import SearchResult
 from epstein_files.util.timer import Timer
 
-EXCLUDED_EMAILERS = USELESS_EMAILERS + [JEFFREY_EPSTEIN]
 DEVICE_SIGNATURE_SUBTITLE = f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown"
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (1, 0)
@@ -116,9 +115,9 @@ class EpsteinFiles:
         return self.imessage_logs + self.emails + self.other_files
 
     def all_emailers(self, include_useless: bool = False) -> list[str | None]:
-        """Returns all emailers except Epstein and EXCLUDED_EMAILERS, sorted from least frequent to most."""
+        """Returns all emailers USELESS_EMAILERS, sorted from least frequent to most."""
         names = [a for a in self.email_author_counts.keys()] + [r for r in self.email_recipient_counts.keys()]
-        names = names if include_useless else [e for e in names if e not in EXCLUDED_EMAILERS]
+        names = names if include_useless else [e for e in names if e not in USELESS_EMAILERS]
         return sorted(list(set(names)), key=lambda e: self.email_author_counts[e] + self.email_recipient_counts[e])
 
     def docs_matching(
