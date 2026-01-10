@@ -692,6 +692,7 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"Andrew Farkas",
+            r"Jonanthan and Kimberly Farkus",
             r"Thomas\s*(J\.?\s*)?Barrack(\s*Jr)?",
         ],
     ),
