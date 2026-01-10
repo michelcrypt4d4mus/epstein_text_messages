@@ -11,7 +11,7 @@ from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
 from epstein_files.util.constants import (EMAILER_ID_REGEXES, EPSTEIN_V_ROTHSTEIN_EDWARDS,
      OSBORNE_LLP, REPLY_REGEX, SENT_FROM_REGEX, VIRGIN_ISLANDS)
 from epstein_files.util.doc_cfg import *
-from epstein_files.util.data import extract_last_name, without_falsey
+from epstein_files.util.data import extract_first_name, extract_last_name, without_falsey
 from epstein_files.util.logging import logger
 
 CIVIL_ATTORNEY = 'civil attorney'
@@ -106,6 +106,7 @@ class HighlightedNames(HighlightedText):
     """
     category: str = ''
     emailers: dict[str, str | None] = field(default_factory=dict)
+    should_match_first_last_name: bool = True
 
     def __post_init__(self):
         if not (self.emailers or self.patterns):
@@ -132,9 +133,12 @@ class HighlightedNames(HighlightedText):
 
     def _emailer_pattern(self, name: str) -> str:
         """Pattern matching 'name'. Extends value in EMAILER_ID_REGEXES with first/last name if it exists."""
+        if not self.should_match_first_last_name:
+            return name
+
         name = remove_question_marks(name)
+        first_name = extract_first_name(name)
         last_name = extract_last_name(name)
-        first_name = name.removesuffix(f" {last_name}")
 
         if name in EMAILER_ID_REGEXES:
             pattern = EMAILER_ID_REGEXES[name].pattern
@@ -213,7 +217,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             DAVID_HAIG: 'evolutionary geneticist?',
             JOSCHA_BACH: 'cognitive science / AI research',
-            'Dan(iel|ny) Kahneman': 'Nobel economic sciences laureate and cognitivie psychologist (?)',
+            'Daniel Kahneman': 'Nobel economic sciences laureate and cognitivie psychologist (?)',
             'Ed Boyden': f'Associate Professor, {MIT_MEDIA_LAB} neurobiology',
             'Harry Fisch': "men's health expert at New York-Presbyterian / Weill Cornell (?)",
             LAWRENCE_KRAUSS: 'theoretical physicist',
@@ -230,6 +234,7 @@ HIGHLIGHTED_NAMES = [
             r"Brotherton",
             r"Carl\s*Sagan",
             r"Columbia",
+            r"Dan(iel|ny) Kahneman",
             r"David Grosof",
             r"J(ames|im)\s*Watson",
             r"(Lord\s*)?Martin\s*Rees",
@@ -868,7 +873,8 @@ HIGHLIGHTED_NAMES = [
             'editorialstaff@flipboard.com': None,
             'How To Academy': None,
             'Jokeland': None,
-        }
+        },
+        should_match_first_last_name=False,
     ),
     HighlightedNames(
         label='Latin America',

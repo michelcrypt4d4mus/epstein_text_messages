@@ -208,53 +208,53 @@ TRUMP_ORG = 'Trump Organization'
 UBS = 'UBS'
 
 # First and last names that should be made part of a highlighting regex for emailers
-NAMES_TO_NOT_HIGHLIGHT: list[str] = [name.lower() for name in [
-    'Al', 'Alan', 'Alfredo', 'Allen', 'Alex', 'Alexander', 'Amanda', 'Andres', 'Andrew',
-    'Bard', 'Barry', 'Bill', 'Black', 'Boris', 'Brad', 'Bruce',
-    'Carolyn', 'Chris', 'Christina',
-    'Dan', 'Daniel', 'Danny', 'Darren', 'Dave', 'David',
-    'Ed', 'Edward', 'Edwards', 'Epstein', 'Eric', 'Erika', 'Etienne',
-    'Faith', 'Fred', 'Friendly', 'Frost', 'Fuller',
-    'George',
-    'Heather', 'Henry', 'Hill', 'Hoffman',
-    'Ian',
-    'Jack', 'James', 'Jay', 'Jean', 'Jeff', 'Jeffrey', 'Jennifer', 'Jeremy', 'jessica', 'Joel', 'John', 'Jon', 'Jonathan', 'Joseph', 'Jr',
-    'Kahn', 'Katherine', 'Kelly', 'Ken', 'Kevin',
-    'Larry', 'Leon', 'Lesley', 'Linda', 'Link', 'Lisa',
-    'Mann', 'Marc', 'Marie', 'Mark', 'Martin', 'Melanie', 'Michael', 'Mike', 'Miller', 'Mitchell', 'Miles', 'Morris', 'Moskowitz',
-    'Nancy', 'Neal', 'New',
-    'Paul', 'Paula', 'Pen', 'Peter', 'Philip', 'Prince',
-    'Randall', 'Reid', 'Richard', 'Robert', 'Rodriguez', 'Roger', 'Rosenberg', 'Ross', 'Roth', 'Rubin',
-    'Scott', 'Sean', 'Stanley', 'Stern', 'Stephen', 'Steve', 'Steven', 'Stone', 'Susan',
-    'The', 'Thomas', 'Tim', 'Tom', 'Tyler',
-    'Victor',
-    'Wade',
-    "Y",
-]]
+NAMES_TO_NOT_HIGHLIGHT = """
+    al alan alfredo allen alex alexander amanda andres andrew
+    bard barrett barry bill black boris brad bruce
+    carolyn chris christina
+    dan daniel danny darren dave david donald
+    ed edward edwards enterprise enterprises entourage epstein eric erika etienne
+    faith fred friendly frost fuller
+    gerald george gold
+    harry hay heather henry hill hoffman
+    ian
+    jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr
+    kahn karl kate katherine kelly ken kevin
+    larry laurie lawrence leon lesley linda link lisa
+    mann marc marie mark martin melanie michael mike miller mitchell miles morris moskowitz
+    nancy neal new nicole
+    owen
+    paul paula pen peter philip prince
+    randall reid richard robert rodriguez roger rosenberg ross roth roy rubin
+    scott sean skip stanley stern stephen steve steven stone susan
+    the thomas tim tom tony tyler
+    victor
+    wade waters
+    y
+""".strip().split()
 
 # Names to color white in the word counts
 OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
     aaron albert alberto alec alexandra alice anderson andre ann anna anne ariana arthur
     baldwin barack barrett ben benjamin berger bert binant bob bonner boyden bradley brady branson bright bruno bryant burton
     chapman charles charlie christopher clint cohen colin collins conway
-    danny davis dean debra deborah dennis diana diane diaz dickinson dixon dominique don donald dylan
-    edmond elizabeth emily enterprises entwistle erik evelyn
-    ferguson flachsbart francis franco frank frost
-    gardner gary geoff geoffrey gerald gilbert gloria gold goldberg gonzalez gould graham greene guarino gwyneth
-    hancock harold harrison harry hay helen hill hirsch hofstadter horowitz hussein
-    ian isaac isaacson
-    james jamie jane janet jason jeffrey jen jim joe johnson jones josh julie justin
-    karl kate kathy kelly kim kruger kyle
-    laurie lawrence leo leonard lenny leslie lieberman louis lynch lynn
+    davis dean debra deborah dennis diana diane diaz dickinson dixon dominique don dylan
+    edmond elizabeth emily entwistle erik evelyn
+    ferguson flachsbart francis franco frank
+    gardner gary geoff geoffrey gilbert gloria goldberg gonzalez gould graham greene guarino gwyneth
+    hancock harold harrison helen hirsch hofstadter horowitz hussein
+    isaac isaacson
+    jamie jane janet jason jeffrey jen jim joe johnson jones josh julie justin
+    kathy kim kruger kyle
+    lawrence leo leonard lenny leslie lieberman louis lynch lynn
     marcus marianne matt matthew melissa michele michelle moore moscowitz
-    nancy nicole nussbaum
-    owen
-    paulson peter philippe
-    rafael ray richard richardson rob robert robin ron roy rubin rudolph ryan
-    sara sarah sean seligman serge sergey silverman sloman smith snowden sorkin steele stevie stewart
-    ted theresa thompson tiffany timothy tony
+    nancy nussbaum
+    paulson philippe
+    rafael ray richard richardson rob robert robin ron rubin rudolph ryan
+    sara sarah seligman serge sergey silverman sloman smith snowden sorkin steele stevie stewart
+    ted theresa thompson tiffany timothy
     valeria
-    walter warren waters weinstein weiss william
+    walter warren weinstein weiss william
     zach zack
 """.strip().split()
 
