@@ -1,33 +1,24 @@
-import json
-import re
-from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime, date
-from pathlib import Path
-from typing import Sequence, Type
 
-from rich.console import Console, Group, RenderableType
+from rich.console import Group, RenderableType
 from rich.padding import Padding
 from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import DETECT_EMAIL_REGEX, JUNK_EMAILERS, KRASSNER_RECIPIENTS, USELESS_EMAILERS, Email
-from epstein_files.documents.emails.email_header import AUTHOR
-from epstein_files.documents.json_file import JsonFile
-from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
+from epstein_files.documents.email import JUNK_EMAILERS, KRASSNER_RECIPIENTS, Email
+from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import *
-from epstein_files.util.data import days_between, dict_sets_to_lists, json_safe, listify
-from epstein_files.util.doc_cfg import EmailCfg, Metadata
-from epstein_files.util.env import DOCS_DIR, args, logger
-from epstein_files.util.file_helper import file_size_str
-from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, QUESTION_MARKS_TXT, HighlightedNames, get_highlight_group_for_name, get_style_for_name, styled_category, styled_name
-from epstein_files.util.rich import (GREY_NUMBERS, NA_TXT, add_cols_to_table, build_table, console, highlighter,
-     print_centered, print_subtitle_panel)
+from epstein_files.util.data import days_between
+from epstein_files.util.env import args
+from epstein_files.util.highlighted_group import (QUESTION_MARKS_TXT, HighlightedNames,
+     get_highlight_group_for_name, get_style_for_name, styled_category, styled_name)
+from epstein_files.util.rich import GREY_NUMBERS, build_table, console,  print_centered
 
 ALT_INFO_STYLE = 'medium_purple4'
 MIN_AUTHOR_PANEL_WIDTH = 80
@@ -212,6 +203,7 @@ class Author:
         return [email for email in self.emails if not email.is_duplicate()]
 
     def _printable_emails(self):
+        """For Epstein we only want to print emails he sent to himself."""
         if self.name == JEFFREY_EPSTEIN:
             return [e for e in self.emails if e.is_note_to_self()]
         else:
@@ -231,7 +223,7 @@ class Author:
         current_year_month = current_year * 12
         grey_idx = 0
 
-        for i, author in enumerate(authors):
+        for author in authors:
             earliest_email_date = author.earliest_email_date()
             year_months = (earliest_email_date.year * 12) + earliest_email_date.month
 
@@ -248,7 +240,7 @@ class Author:
                 Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[grey_idx]}"),
                 author.name_txt(),  # TODO: make link?
                 author.category_txt(),
-                f"{len(author.emails):,}",
+                f"{len(author._printable_emails()):,}",
                 author.info_txt() or '',
             )
 

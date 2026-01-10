@@ -285,6 +285,21 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
+        label=BILL_GATES,
+        style='turquoise4',
+        emailers={
+            BORIS_NIKOLIC: f'biotech VC partner of {BILL_GATES}, {EPSTEIN_ESTATE_EXECUTOR}',
+        },
+        patterns=[
+            r"BG",
+            r"b?g?C3",
+            r"(Bill\s*((and|or|&)\s*Melinda\s*)?)?Gates(\s*Foundation)?",
+            r"Melinda(\s*Gates)?",
+            r"Microsoft",
+            r"MSFT",
+        ],
+    ),
+    HighlightedNames(
         label='bitcoin',
         style='orange1 bold',
         emailers={
@@ -505,6 +520,18 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
+        label='Epstein',
+        style='blue1',
+        emailers={
+            JEFFREY_EPSTEIN: None,
+            MARK_EPSTEIN: 'brother of Jeffrey',
+        },
+        patterns=[
+            r"JEGE",
+            r"LSJ",
+        ],
+    ),
+    HighlightedNames(
         label=EPSTEIN_LAWYER,
         style='purple',
         emailers={
@@ -686,7 +713,7 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        label='friend',
+        label=FRIEND,
         style='tan',
         emailers={
             DANGENE_AND_JENNIE_ENTERPRISE: 'founders of the members-only CORE club',
@@ -1385,21 +1412,8 @@ HIGHLIGHTED_NAMES = [
             r"(West\s*)?Palm\s*Beach(?!\s*(Daily|Post))",
         ],
     ),
-    HighlightedNames(
-        label=BILL_GATES,
-        style='turquoise4',
-        emailers={
-            BORIS_NIKOLIC: f'biotech VC partner of {BILL_GATES}, {EPSTEIN_ESTATE_EXECUTOR}',
-        },
-        patterns=[
-            r"BG",
-            r"b?g?C3",
-            r"(Bill\s*((and|or|&)\s*Melinda\s*)?)?Gates(\s*Foundation)?",
-            r"Melinda(\s*Gates)?",
-            r"Microsoft",
-            r"MSFT",
-        ],
-    ),
+
+    # Individuals
     HighlightedNames(
         label=STEVE_BANNON,
         style='color(58)',
@@ -1419,15 +1433,14 @@ HIGHLIGHTED_NAMES = [
         emailers={STEVEN_HOFFENBERG: "Epstein's ponzi scheme partner at Towers Financial, prison for 18 years"},
         patterns=[r"(steven?\s*)?hoffenberg?w?"],
     ),
-    HighlightedNames(emailers={GHISLAINE_MAXWELL: None}, patterns=[r"gmax(1@ellmax.com)?", r"(The )?TerraMar Project"], style='deep_pink3'),
+    HighlightedNames(emailers={GHISLAINE_MAXWELL: None}, patterns=[r"gmax(1@ellmax.com)?", r"(The )?TerraMar Project"], style='deep_pink3', category='Epstein'),
     HighlightedNames(emailers={JABOR_Y: '"an influential man in Qatar"'}, category='mideast', style='spring_green1'),
-    HighlightedNames(emailers={JEFFREY_EPSTEIN: None}, patterns=[r"JEGE", r"LSJ", r"Mark (L. )?Epstein"], category='Epstein', style='blue1'),
-    HighlightedNames(emailers={KATHRYN_RUEMMLER: 'former Obama legal counsel'}, style='magenta2'),
-    HighlightedNames(emailers={MELANIE_WALKER: 'doctor'}, style='pale_violet_red1'),
-    HighlightedNames(emailers={PAULA: "Epstein's ex-girlfriend who is now in the opera world"}, label='paula', style='pink1'),
-    HighlightedNames(emailers={PRINCE_ANDREW: 'British royal family'}, style='dodger_blue1'),
-    HighlightedNames(emailers={SOON_YI_PREVIN: 'wife of Woody Allen'}, style='hot_pink'),
-    HighlightedNames(emailers={SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of ports in Dubai'}, style='green1'),
+    HighlightedNames(emailers={KATHRYN_RUEMMLER: 'former Obama legal counsel'}, style='magenta2', category=FRIEND),
+    HighlightedNames(emailers={MELANIE_WALKER: 'doctor'}, style='pale_violet_red1', category=FRIEND),
+    HighlightedNames(emailers={PAULA: "Epstein's ex-girlfriend who is now in the opera world"}, label='paula', style='pink1', category=FRIEND),
+    HighlightedNames(emailers={PRINCE_ANDREW: 'British royal family'}, style='dodger_blue1', category='Europe'),
+    HighlightedNames(emailers={SOON_YI_PREVIN: 'wife of Woody Allen'}, style='hot_pink', category=FRIEND),
+    HighlightedNames(emailers={SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of ports in Dubai'}, style='green1', category='mideast'),
 
     # HighlightedText not HighlightedNames bc of word boundary issue
     HighlightedText(

@@ -93,8 +93,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
             authors = epstein_files.author_objs(DEFAULT_EMAILERS)
 
         print_other_page_link(epstein_files)
-        console.line(2)
-        print_centered(Author.author_info_table(authors))
+        print_centered(Padding(Author.author_info_table(authors), (2, 0, 0, 0)))
         print_centered(Padding(_all_emailers_table(epstein_files), (2, 0)))
 
     for author in authors:
