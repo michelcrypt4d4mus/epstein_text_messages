@@ -19,6 +19,7 @@ HEADER_ABBREVIATIONS = {
     'bgC3': 'Bill Gates Ventures (renamed in 2018)',
     "Brock": 'Brock Pierce (crypto bro with a very sordid past)',
     "DB": "Deutsche Bank (maybe??)",
+    "GRAT": "Grantor Retained Annuity Trust (tax shelter)",
     'HBJ': "Sheikh Hamad bin Jassim (former Qatari prime minister)",
     'Jabor': '"an influential man in Qatar"',
     'Jared': "Jared Kushner",
