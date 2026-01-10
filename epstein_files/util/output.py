@@ -102,8 +102,8 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
 
         print_other_page_link(epstein_files)
         console.line(2)
-        console.print(_table_of_selected_emailers(emailers_to_print, epstein_files))
-        console.print(Padding(_all_emailers_table(epstein_files), (2, 0)))
+        print_centered(_table_of_selected_emailers(emailers_to_print, epstein_files))
+        print_centered(Padding(_all_emailers_table(epstein_files), (2, 0)))
 
     for author in emailers_to_print:
         author_emails = epstein_files.print_emails_for(author)
@@ -231,9 +231,10 @@ def write_urls() -> None:
 
 def _all_emailers_table(epstein_files: EpsteinFiles) -> Table:
     attributed_emails = [e for e in epstein_files.non_duplicate_emails() if e.author]
-    footer = f"(identified {len(epstein_files.email_author_counts)} authors of {len(attributed_emails):,}"
+    num_authors = len(epstein_files.email_author_counts)
+    footer = f"(identified {num_authors} authors of {len(attributed_emails):,}"
     footer = f"{footer} out of {len(epstein_files.non_duplicate_emails()):,} emails)"
-    counts_table = build_table("Everyone Who Sent or Received an Email in the Files", caption=footer)
+    counts_table = build_table(f"All {num_authors} People Who Sent or Received an Email in the Files", caption=footer)
 
     add_cols_to_table(counts_table, [
         'Name',
@@ -250,19 +251,32 @@ def _all_emailers_table(epstein_files: EpsteinFiles) -> Table:
     ])
 
     emailer_counts = {
-        emailer: epstein_files.email_author_counts[emailer] + epstein_files.email_recipient_counts[emailer]
+        emailer: [
+            epstein_files.email_author_counts[emailer] + epstein_files.email_recipient_counts[emailer],
+            epstein_files.email_author_counts[emailer],
+            epstein_files.email_recipient_counts[emailer],
+        ]
         for emailer in epstein_files.all_emailers(include_useless=True)
     }
 
-    for name, count in sort_dict(emailer_counts):
+    def sort_key(kv: tuple[str | None, list[int]]) -> list[str | int] | str:
+        name = kv[0] or ''
+
+        if args.sort_alphabetical:
+            return name
+
+        value = [-1 * element for element in kv[1]]
+        return [*value, name]
+
+    for name, counts in sorted([kv for kv in emailer_counts.items()], key=sort_key):
         style = get_style_for_name(name, default_style=DEFAULT_NAME_STYLE)
         emails = epstein_files.emails_for(name)
 
         counts_table.add_row(
             Text.from_markup(link_markup(epsteinify_name_url(name or UNKNOWN), name or UNKNOWN, style)),
-            f"{count:,}",
-            str(epstein_files.email_author_counts[name]),
-            str(epstein_files.email_recipient_counts[name]),
+            f"{counts[0]:,}",
+            f"{counts[1]:,}",
+            f"{counts[2]:,}",
             emails[0].date_str(),
             emails[-1].date_str(),
             f"{epstein_files.email_conversation_length_in_days(name)}",
