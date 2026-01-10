@@ -1507,7 +1507,7 @@ class EpsteinHighlighter(RegexHighlighter):
 
 
 def get_category_txt_for_name(name: str | None) -> Text | None:
-    highlight_group = _get_highlight_group_for_name(name)
+    highlight_group = get_highlight_group_for_name(name)
 
     if highlight_group and isinstance(highlight_group, HighlightedNames):
         category = highlight_group.category or highlight_group.label
@@ -1517,7 +1517,7 @@ def get_category_txt_for_name(name: str | None) -> Text | None:
 
 
 def get_info_for_name(name: str | None) -> str | None:
-    highlight_group = _get_highlight_group_for_name(name)
+    highlight_group = get_highlight_group_for_name(name)
 
     if highlight_group and isinstance(highlight_group, HighlightedNames) and name:
         return highlight_group.get_info(name)
@@ -1537,7 +1537,7 @@ def get_style_for_category(category: str) -> str | None:
 
 
 def get_style_for_name(name: str | None, default_style: str = DEFAULT, allow_bold: bool = True) -> str:
-    highlight_group = _get_highlight_group_for_name(name or UNKNOWN)
+    highlight_group = get_highlight_group_for_name(name or UNKNOWN)
     style = highlight_group.style if highlight_group else default_style
     return style if allow_bold else style.replace('bold', '').strip()
 
@@ -1554,7 +1554,7 @@ def styled_name(name: str | None, default_style: str = DEFAULT_NAME_STYLE) -> Te
     return Text(name or UNKNOWN, style=get_style_for_name(name, default_style=default_style))
 
 
-def _get_highlight_group_for_name(name: str | None) -> HighlightedNames | None:
+def get_highlight_group_for_name(name: str | None) -> HighlightedNames | None:
     if name is None:
         return None
 

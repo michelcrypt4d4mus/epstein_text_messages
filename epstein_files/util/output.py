@@ -2,6 +2,7 @@ import json
 
 from rich.padding import Padding
 
+from epstein_files.author import Author
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import KRASSNER_RECIPIENTS, Email
 from epstein_files.documents.messenger_log import MessengerLog
@@ -22,7 +23,6 @@ from epstein_files.util.rich import *
 
 OTHER_INTERESTING_EMAILS_SUBTITLE = 'Other Interesting Emails\n(these emails have been flagged as being of particular interest)'
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
-ALT_INFO_STYLE = 'medium_purple4'
 
 # Order matters. Default names to print emails for.
 DEFAULT_EMAILERS = [
@@ -64,13 +64,6 @@ INTERESTING_EMAIL_IDS = [
     '023627',  # Michael Wolff article w/Brock
 ]
 
-INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [
-    'ACT for America',
-    'BS Stern',
-    INTELLIGENCE_SQUARED,
-    UNKNOWN,
-]
-
 
 def print_email_timeline(epstein_files: EpsteinFiles) -> None:
     """Print a table of all emails in chronological order."""
@@ -88,25 +81,25 @@ def print_email_timeline(epstein_files: EpsteinFiles) -> None:
 def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     """Returns emails that were printed (may contain dupes if printed for both author and recipient)."""
     print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
-    emailers_to_print: list[str | None]
+    authors_to_print: list[Author]
     already_printed_emails: list[Email] = []
     num_emails_printed_since_last_color_key = 0
 
     if args.names:
-        emailers_to_print = args.names
+        authors_to_print = epstein_files.author_objs(args.names)
     else:
         if args.all_emails:
-            emailers_to_print = sorted(epstein_files.all_emailers(), key=lambda e: epstein_files.earliest_email_at(e))
+            authors_to_print = sorted(epstein_files.all_emailers(), key=lambda author: author.earliest_email_at())
         else:
-            emailers_to_print = DEFAULT_EMAILERS
+            authors_to_print = epstein_files.author_objs(DEFAULT_EMAILERS)
 
         print_other_page_link(epstein_files)
         console.line(2)
-        print_centered(_table_of_selected_emailers(emailers_to_print, epstein_files))
+        print_centered(_table_of_selected_emailers(authors_to_print))
         print_centered(Padding(_all_emailers_table(epstein_files), (2, 0)))
 
-    for author in emailers_to_print:
-        author_emails = epstein_files.print_emails_for(author)
+    for author in authors_to_print:
+        author_emails = author.print_emails_for()
         already_printed_emails.extend(author_emails)
         num_emails_printed_since_last_color_key += len(author_emails)
 
@@ -234,74 +227,44 @@ def _all_emailers_table(epstein_files: EpsteinFiles) -> Table:
     num_authors = len(epstein_files.email_author_counts)
     footer = f"(identified {num_authors} authors of {len(attributed_emails):,}"
     footer = f"{footer} out of {len(epstein_files.non_duplicate_emails()):,} emails)"
-    counts_table = build_table(f"All {num_authors} People Who Sent or Received an Email in the Files", caption=footer)
 
-    add_cols_to_table(counts_table, [
-        'Name',
-        {'name': 'Count', 'justify': 'right', 'style': 'bold bright_white'},
-        {'name': 'Sent', 'justify': 'right', 'style': 'gray74'},
-        {'name': 'Recv', 'justify': 'right', 'style': 'gray74'},
-        {'name': 'First', 'style': TIMESTAMP_STYLE},
-        {'name': 'Last', 'style': LAST_TIMESTAMP_STYLE},
-        {'name': 'Days', 'justify': 'right', 'style': 'dim'},
-        JMAIL,
-        EPSTEIN_MEDIA,
-        EPSTEIN_WEB,
-        'Twitter',
-    ])
-
-    emailer_counts = {
-        emailer: [
-            epstein_files.email_author_counts[emailer] + epstein_files.email_recipient_counts[emailer],
-            epstein_files.email_author_counts[emailer],
-            epstein_files.email_recipient_counts[emailer],
+    counts_table = build_table(
+        f"All {num_authors} People Who Sent or Received an Email in the Files",
+        caption=footer,
+        cols=[
+            'Name',
+            {'name': 'Count', 'justify': 'right', 'style': 'bold bright_white'},
+            {'name': 'Sent', 'justify': 'right', 'style': 'gray74'},
+            {'name': 'Recv', 'justify': 'right', 'style': 'gray74'},
+            {'name': 'First', 'style': TIMESTAMP_STYLE},
+            {'name': 'Last', 'style': LAST_TIMESTAMP_STYLE},
+            {'name': 'Days', 'justify': 'right', 'style': 'dim'},
+            JMAIL,
+            EPSTEIN_MEDIA,
+            EPSTEIN_WEB,
+            'Twitter',
         ]
-        for emailer in epstein_files.all_emailers(include_useless=True)
-    }
+    )
 
-    def sort_key(kv: tuple[str | None, list[int]]) -> list[str | int] | str:
-        name = kv[0] or ''
-
-        if args.sort_alphabetical:
-            return name
-
-        value = [-1 * element for element in kv[1]]
-        return [*value, name]
-
-    for name, counts in sorted([kv for kv in emailer_counts.items()], key=sort_key):
-        style = get_style_for_name(name, default_style=DEFAULT_NAME_STYLE)
-        emails = epstein_files.emails_for(name)
-
+    for author in sorted(epstein_files.all_emailers(), key=lambda author: author.sort_key()):
         counts_table.add_row(
-            Text.from_markup(link_markup(epsteinify_name_url(name or UNKNOWN), name or UNKNOWN, style)),
-            f"{counts[0]:,}",
-            f"{counts[1]:,}",
-            f"{counts[2]:,}",
-            emails[0].date_str(),
-            emails[-1].date_str(),
-            f"{epstein_files.email_conversation_length_in_days(name)}",
-            link_text_obj(search_jmail_url(name), JMAIL) if name else '',
-            link_text_obj(epstein_media_person_url(name), EPSTEIN_MEDIA) if _is_ok_for_epstein_web(name) else '',
-            link_text_obj(epstein_web_person_url(name), EPSTEIN_WEB) if _is_ok_for_epstein_web(name) else '',
-            link_text_obj(search_twitter_url(name), 'search X') if name else '',
+            author.name_link(),
+            f"{len(author.emails):,}",
+            f"{len(author.emails_by()):,}",
+            f"{len(author.emails_to()):,}",
+            str(author.earliest_email_date()),
+            str(author.last_email_date()),
+            f"{author.email_conversation_length_in_days()}",
+            author.external_link_txt(JMAIL),
+            author.external_link_txt(EPSTEIN_MEDIA) if author._is_ok_for_epstein_web() else '',
+            author.external_link_txt(EPSTEIN_WEB) if author._is_ok_for_epstein_web() else '',
+            author.external_link_txt(TWITTER),
         )
 
     return counts_table
 
 
-def _is_ok_for_epstein_web(name: str | None) -> bool:
-    """Return True if it's likely that EpsteinWeb has a page for this name."""
-    if name is None or ' ' not in name:
-        return False
-    elif '@' in name or '/' in name or '??' in name:
-        return False
-    elif name in INVALID_FOR_EPSTEIN_WEB:
-        return False
-
-    return True
-
-
-def _table_of_selected_emailers(_list: list[str | None], epstein_files: EpsteinFiles) -> Table:
+def _table_of_selected_emailers(_list: list[Author]) -> Table:
     """Add the first emailed_at timestamp for each emailer if 'epstein_files' provided."""
     header_pfx = '' if args.all_emails else 'Selected '
     table = build_table(f'{header_pfx}Email Conversations Grouped by Counterparty Will Appear in this Order')
@@ -314,8 +277,8 @@ def _table_of_selected_emailers(_list: list[str | None], epstein_files: EpsteinF
     current_year_month = current_year * 12
     grey_idx = 0
 
-    for i, name in enumerate(_list):
-        earliest_email_date = (epstein_files.earliest_email_at(name)).date()
+    for i, author in enumerate(_list):
+        earliest_email_date = author.earliest_email_date()
         year_months = (earliest_email_date.year * 12) + earliest_email_date.month
 
         # Color year rollovers more brightly
@@ -326,27 +289,13 @@ def _table_of_selected_emailers(_list: list[str | None], epstein_files: EpsteinF
 
         current_year_month = year_months
         current_year = earliest_email_date.year
-        category = get_category_txt_for_name(name)
-        info = get_info_for_name(name)
-        style = get_style_for_name(name, default_style='none')
-
-        if name == JEFFREY_EPSTEIN:
-            info = Text('(emails sent by Epstein to himself that would not otherwise be printed)', style=ALT_INFO_STYLE)
-        if category and category.plain == 'paula':  # TODO: hacky
-            category = None
-        elif category and info:
-            info = info.removeprefix(f"{category.plain}, ").removeprefix(category.plain)
-        elif not name:
-            info = Text('(emails whose author or recipient could not be determined)', style=ALT_INFO_STYLE)
-        elif style == 'none' and '@' not in name and not (category or info):
-            info = QUESTION_MARKS_TXT
 
         table.add_row(
             Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[grey_idx]}"),
-            styled_name(name, default_style='dim'),
-            category,
-            f"{len(epstein_files.emails_for(name)):,}",
-            info or '',
+            author.name_txt(),  # TODO: make link?
+            author.category_txt(),
+            f"{len(author.emails):,}",
+            author.info_txt() or '',
         )
 
     return table
