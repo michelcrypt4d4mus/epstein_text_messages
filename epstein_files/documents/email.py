@@ -400,7 +400,7 @@ class Email(Communication):
         if not self.is_note_to_self():
             self.recipients = [r for r in self.recipients if r != self.author]
 
-        self.recipients = list(set(self.recipients))
+        self.recipients = list(set(sorted(self.recipients, key=lambda r: r or UNKNOWN)))
         self.text = self._prettify_text()
         self.actual_text = self._actual_text()
         self.sent_from_device = self._sent_from_device()
