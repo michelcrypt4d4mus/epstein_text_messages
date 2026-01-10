@@ -185,7 +185,7 @@ class EpsteinFiles:
 
         return Document.sort_by_timestamp(emails)
 
-    def get_documents_by_id(self, file_ids: str | list[str]) -> list[Document]:
+    def for_ids(self, file_ids: str | list[str]) -> list[Document]:
         file_ids = listify(file_ids)
         docs = [doc for doc in self.all_documents() if doc.file_id in file_ids]
 
@@ -280,7 +280,7 @@ class EpsteinFiles:
         console.line()
 
     def print_email_device_info(self) -> None:
-        print_subtitle_panel(DEVICE_SIGNATURE_SUBTITLE, padding=(2, 0, 0, 0), centered=True)
+        print_subtitle_panel(DEVICE_SIGNATURE_SUBTITLE)
         console.print(_build_signature_table(self.email_device_signatures_to_authors, (DEVICE_SIGNATURE, AUTHOR), ', '))
         console.print(_build_signature_table(self.email_authors_to_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
 

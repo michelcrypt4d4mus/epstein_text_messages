@@ -28,6 +28,7 @@ SUBTITLE_WIDTH = 110
 MIN_AUTHOR_PANEL_WIDTH = 80
 NUM_COLOR_KEY_COLS = 4
 NA_TXT = Text(NA, style='dim')
+SUBTITLE_PADDING = (2, 0, 1, 0)
 GREY_NUMBERS = [58, 39, 39, 35, 30, 27, 23, 23, 19, 19, 15, 15, 15]
 
 DEFAULT_NAME_STYLE = 'gray46'
@@ -259,16 +260,9 @@ def print_page_title(expand: bool = True, width: int | None = None) -> None:
     console.line(2)
 
 
-def print_subtitle_panel(msg: str, style: str = 'black on white', padding: tuple | None = None, centered: bool = False) -> None:
-    _padding: list[int] = list(padding or [0, 0, 0, 0])
-    _padding[2] += 1  # Bottom pad
-    actual_padding: tuple[int, int, int, int] = tuple(_padding)
+def print_subtitle_panel(msg: str, style: str = 'black on white') -> None:
     panel = Panel(Text.from_markup(msg, justify='center'), width=SUBTITLE_WIDTH, style=style)
-
-    if centered:
-        console.print(Align.center(Padding(panel, actual_padding)))
-    else:
-        console.print(Padding(panel, actual_padding))
+    print_centered(Padding(panel, SUBTITLE_PADDING))
 
 
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
