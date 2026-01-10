@@ -289,15 +289,6 @@ USELESS_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + KRASSNER_RECIP
     'p.peachev@independent.co.uk',
 ]
 
-# Emails sent by epstein to himself that are just notes
-SELF_EMAILS_FILE_IDS = [
-    '026677',
-    '029752',   # TODO: jokeland...
-    '030238',
-    # '033274',  # TODO: Epstein's note to self doesn't get printed if we don't set the recipients to [None]
-    # '033162',
-]
-
 METADATA_FIELDS = [
     'is_junk_mail',
     'recipients',
@@ -402,8 +393,10 @@ class Email(Communication):
             console.line(2)
             raise e
 
-        # Remove self CCs
-        recipients = [r for r in self.recipients if r != self.author or self.file_id in SELF_EMAILS_FILE_IDS]
+        # Remove self CCs but preserve self emails
+        if self.recipients != [self.author]:
+            recipients = [r for r in self.recipients if r != self.author]
+
         self.recipients = list(set(recipients))
         self.text = self._prettify_text()
         self.actual_text = self._actual_text()
@@ -422,6 +415,9 @@ class Email(Communication):
 
     def is_junk_mail(self) -> bool:
         return self.author in JUNK_EMAILERS or self.author in MAILING_LISTS
+
+    def is_note_to_self(self) -> bool:
+        return self.recipients == [self.author]
 
     def metadata(self) -> Metadata:
         local_metadata = asdict(self)

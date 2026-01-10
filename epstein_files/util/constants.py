@@ -628,8 +628,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='033050', actual_text='schwartman'),
     EmailCfg(id='022219', description="discussion of attempts to clean up Epstein's Google search results"),
     EmailCfg(id='028524', is_fwded_article=True, description='Zach Braff op-ed on Woody Allen in NYT'),
-    EmailCfg(id='031333', is_fwded_article=True, description='looks like a Russian disinfo article'),  # Russia Says IMF Chief Jailed For Discovering All US Gold is Gone
-    EmailCfg(id='031335', is_fwded_article=True, description='looks like a Russian disinfo article'),  # DOMINQUE STRAUSS-KAHN ARRESTED, NOT BECAUSE HE RAPED A MAID, BUT BECAUSE HE HAD EVIDENCE US HAS NO GOLD IN FORT KNOX.
+    EmailCfg(id='031333', is_fwded_article=True, description='Fort Knox conspiracy theory, looks like a Russian disinfo article'),  # Russia Says IMF Chief Jailed For Discovering All US Gold is Gone
+    EmailCfg(id='031335', is_fwded_article=True, description='Fort Knox conspiracy theory, looks like a Russian disinfo article'),  # DOMINQUE STRAUSS-KAHN ARRESTED, NOT BECAUSE HE RAPED A MAID, BUT BECAUSE HE HAD EVIDENCE US HAS NO GOLD IN FORT KNOX.
     EmailCfg(id='023627', is_fwded_article=True, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
     EmailCfg(id='026298', is_fwded_article=True, duplicate_ids=['026499']),  # Written by someone else?
     EmailCfg(id='029692', is_fwded_article=True, duplicate_ids=['029779']),  # WaPo article
