@@ -25,7 +25,7 @@ class Communication(Document):
         return self.author or UNKNOWN
 
     def author_style(self) -> str:
-        return get_style_for_name(self.author_or_unknown())
+        return get_style_for_name(self.author)
 
     def author_txt(self) -> Text:
         return Text(self.author_or_unknown(), style=self.author_style())

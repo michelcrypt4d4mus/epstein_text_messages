@@ -824,26 +824,45 @@ class Email(Communication):
             self.log_top_lines(self.header.num_header_rows + 4, f'Original header:')
 
     @staticmethod
-    def build_emails_table(emails: list['Email'], _author: str | None, include_title: bool = False) -> Table:
+    def build_emails_table(emails: list['Email'], author: str | None = '', title: str = '', include_id: bool = False) -> Table:
         """Turn a set of Emails to/from a given _author into a Table."""
-        author = _author or UNKNOWN
+        if title and author:
+            raise ValueError(f"Can't provide both 'author' and 'title' args")
 
-        table = Table(
-            title=f"Emails to/from {author} starting {emails[0].timestamp.date()}" if include_title else None,
-            border_style=get_style_for_name(author, allow_bold=False),
-            header_style="bold"
+        table = build_table(
+            title or None,
+            border_style=DEFAULT_TABLE_KWARGS['border_style'] if title else get_style_for_name(author, allow_bold=False),
+            header_style="bold",
+            highlight=True,
         )
 
-        table.add_column('From', justify='left')
-        table.add_column('Timestamp', justify='center')
-        table.add_column('Subject', justify='left', style='honeydew2', min_width=70)
+        if include_id:
+            table.add_column('ID', style='dim')
+
+        table.add_column('Sent At', style=TIMESTAMP_DIM)
+        table.add_column('From', max_width=20)
+        table.add_column('To', max_width=22)
+
+        if include_id:
+            table.add_column('Length', justify='right', style='wheat4')
+
+        table.add_column('Subject', justify='left', style='honeydew2' if not include_id else None, min_width=30)
 
         for email in emails:
-            table.add_row(
+            fields = [
+                email.epstein_media_link(link_txt=email.source_file_id()),
+                email.timestamp_without_seconds(),
                 email.author_txt(),
-                email.epstein_media_link(link_txt=email.timestamp_without_seconds()),
-                highlighter(email.subject())
-            )
+                email.recipients_txt(max_full_names=1),
+                f"{email.length()}",
+                email.subject(),
+            ]
+
+            if not include_id:
+                fields = fields[1:4] + [fields[5]]
+                fields[0] = email.epstein_media_link(link_txt=fields[0], style=get_style_for_name(author, allow_bold=False))
+
+            table.add_row(*fields)
 
         return table
 
