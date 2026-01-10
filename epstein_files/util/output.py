@@ -15,7 +15,8 @@ from epstein_files.util.constant.strings import TIMESTAMP_DIM, TIMESTAMP_STYLE
 from epstein_files.util.data import dict_sets_to_lists, sort_dict
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
-from epstein_files.util.highlighted_group import JUNK_EMAILERS, QUESTION_MARKS_TXT, get_category_txt_for_name, get_info_for_name, get_style_for_name
+from epstein_files.util.highlighted_group import (JUNK_EMAILERS, QUESTION_MARKS_TXT, get_category_txt_for_name,
+     get_info_for_name, get_style_for_name)
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
 
