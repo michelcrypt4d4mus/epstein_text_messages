@@ -390,7 +390,7 @@ EMAIL_RECIPIENT_COUNTS = {
     RENATA_BOLOTOVA: 2,
     "Richard Barnnet": 1,
     "Richard Joshi": 1,
-    "Richard Kahn": 28,
+    "Richard Kahn": 29,
     "Richard Merkin": 1,
     "Rita Hortenstine": 1,
     "Robert D. Critton Jr.": 6,
