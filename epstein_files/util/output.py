@@ -27,8 +27,8 @@ ALT_INFO_STYLE = 'medium_purple4'
 # Order matters. Default names to print emails for.
 DEFAULT_EMAILERS = [
     JEREMY_RUBIN,
-    JOI_ITO,
     JABOR_Y,
+    JOI_ITO,
     STEVEN_SINOFSKY,
     AL_SECKEL,
     DANIEL_SIAD,
@@ -71,27 +71,9 @@ INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [
 def print_email_timeline(epstein_files: EpsteinFiles) -> None:
     """Print a table of all emails in chronological order."""
     emails = Document.sort_by_timestamp([e for e in epstein_files.non_duplicate_emails() if not e.is_junk_mail()])
-    table = build_table(f'All {len(emails):,} Non-Junk Emails in Chronological Order', highlight=True)
-    table.add_column('ID', style=TIMESTAMP_DIM)
-    table.add_column('Sent At', style='dim')
-    table.add_column('Author', max_width=20)
-    table.add_column('Recipients', max_width=22)
-    table.add_column('Length', justify='right', style='wheat4')
-    table.add_column('Subject')
-
-    for email in emails:
-        table.add_row(
-            email.epstein_media_link(link_txt=email.source_file_id()),
-            email.timestamp_without_seconds(),
-            email.author_txt(),
-            email.recipients_txt(max_full_names=1),
-            f"{email.length()}",
-            email.subject(),
-        )
-
-    console.line(2)
-    console.print(table)
-    console.line(2)
+    title = f'All {len(emails):,} Non-Junk Emails in Chronological Order'
+    table = Email.build_emails_table(emails, title=title, include_id=True)
+    console.print(Padding(table, (2, 0)))
     print_subtitle_panel('The Chronologically Ordered Emails')
     console.line()
 
@@ -343,7 +325,7 @@ def _table_of_selected_emailers(_list: list[str | None], epstein_files: EpsteinF
 
         table.add_row(
             Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[grey_idx]}"),
-            Text(name or UNKNOWN, style=get_style_for_name(name or UNKNOWN, default_style='dim')),
+            Text(name or UNKNOWN, style=get_style_for_name(name, default_style='dim')),
             category,
             f"{len(epstein_files.emails_for(name)):,}",
             info or '',
