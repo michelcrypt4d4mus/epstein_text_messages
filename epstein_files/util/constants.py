@@ -1381,8 +1381,6 @@ OTHER_FILES_LETTERS = [
         description=f"letter about algorithmic trading",
         date='2016-06-24',  # date is based on Brexit reference but he could be backtesting,
     ),
-    DocCfg(id='029304', author=DONALD_TRUMP, description=f"recommendation letter for recently departed {TRUMP_ORG} lawyer {MICHAEL_J_BOCCIO}"),
-    DocCfg(id='029301', author=MICHAEL_J_BOCCIO, description=f"letter from former lawyer at the {TRUMP_ORG}", date='2011-08-07'),
     DocCfg(id='026134', description=f'letter to someone named George about investment opportunities in the Ukraine banking sector'),
 ]
 
@@ -1533,11 +1531,25 @@ OTHER_FILES_ACADEMIA = [
 
 # resumes and application letters
 OTHER_FILES_RESUMES = [
+    DocCfg(
+        id='029304',
+        attached_to_email_id='029299',
+        author=DONALD_TRUMP,
+        description=f"recommendation letter for recently departed {TRUMP_ORG} lawyer {MICHAEL_J_BOCCIO}",
+    ),
     DocCfg(id='022367', author='Jack J Grynberg', description=RESUME_OF, date='2014-07-01'),
     DocCfg(
         id='029302',
+        attached_to_email_id='029299',
         author=MICHAEL_J_BOCCIO,
         description=f"{RESUME_OF} (former lawyer at the {TRUMP_ORG})",
+        date='2011-08-07',
+    ),
+    DocCfg(
+        id='029301',
+        attached_to_email_id='029299',
+        author=MICHAEL_J_BOCCIO,
+        description=f"letter from former lawyer at the {TRUMP_ORG}",
         date='2011-08-07',
     ),
     DocCfg(id='029102', author=NERIO_ALESSANDRI, description=HBS_APPLICATION),
