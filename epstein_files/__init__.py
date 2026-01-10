@@ -44,7 +44,7 @@ def generate_html() -> None:
         print_json_files(epstein_files)
         exit()
 
-    print_title_page_header(epstein_files)
+    print_title_page_header()
 
     if args.email_timeline:
         print_color_key()
