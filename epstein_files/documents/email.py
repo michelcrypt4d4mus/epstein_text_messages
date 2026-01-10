@@ -150,12 +150,13 @@ TRUNCATE_ALL_EMAILS_FROM = JUNK_EMAILERS + MAILING_LISTS + [
 
 TRUNCATION_LENGTHS = {
     '023627': 16_800,  # Micheal Wolff article with brock pierce
-    '030245': 7_500,   # Epstein rationalizes his behavior in an open letter to the world
-    '030781': 1_700,   # Bannon email about crypto coin issues
-    '032906': 750,     # David Blaine email
+    '030245': None,    # Epstein rationalizes his behavior in an open letter to the world
+    '030781': None,    # Bannon email about crypto coin issues
+    '032906': None,    # David Blaine email
     '026036': 6000,    # Gino Yu blockchain mention
-    '023208': 350_000, # Long discussion about leon black's finances
-    '029609': 864,     # Joi Ito
+    '023208': None,    # Long discussion about leon black's finances
+    '029609': None,    # Joi Ito
+    '025233': None,    # Reputation.com discussion
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
@@ -771,7 +772,7 @@ class Email(Communication):
         if args.whole_file:
             num_chars = len(self.text)
         elif self.file_id in TRUNCATION_LENGTHS:
-            num_chars = TRUNCATION_LENGTHS[self.file_id]
+            num_chars = TRUNCATION_LENGTHS[self.file_id] or self.file_size()
         elif self.author in TRUNCATE_ALL_EMAILS_FROM or includes_truncate_term:
             num_chars = int(MAX_CHARS_TO_PRINT / 3)
         elif quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
