@@ -1415,7 +1415,7 @@ HIGHLIGHTED_NAMES = [
         emailers={STEVEN_HOFFENBERG: "Epstein's ponzi scheme partner at Towers Financial, prison for 18 years"},
         patterns=[r"(steven?\s*)?hoffenberg?w?"],
     ),
-    HighlightedNames(emailers={GHISLAINE_MAXWELL: None}, patterns=[r"gmax(1@ellmax.com)?", r"TerraMar"], style='deep_pink3'),
+    HighlightedNames(emailers={GHISLAINE_MAXWELL: None}, patterns=[r"gmax(1@ellmax.com)?", r"(The )?TerraMar Project"], style='deep_pink3'),
     HighlightedNames(emailers={JABOR_Y: '"an influential man in Qatar"'}, category='mideast', style='spring_green1'),
     HighlightedNames(emailers={JEFFREY_EPSTEIN: None}, patterns=[r"JEGE", r"LSJ", r"Mark (L. )?Epstein"], style='blue1'),
     HighlightedNames(emailers={KATHRYN_RUEMMLER: 'former Obama legal counsel'}, style='magenta2'),
