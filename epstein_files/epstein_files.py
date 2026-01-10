@@ -257,7 +257,7 @@ class EpsteinFiles:
         else:
             title += f" to/from {author} starting {start_date} covering {num_days:,} days"
 
-        print_author_panel(title, get_style_for_name(author), get_info_for_name(author))
+        print_author_panel(title, get_info_for_name(author), get_style_for_name(author))
         self.print_emails_table_for(_author)
         last_printed_email_was_duplicate = False
 
