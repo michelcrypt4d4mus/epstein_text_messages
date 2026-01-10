@@ -25,8 +25,8 @@ from epstein_files.util.data import days_between, dict_sets_to_lists, json_safe,
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.env import DOCS_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
-from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, QUESTION_MARKS_TXT, HighlightedNames, get_highlight_group_for_name, get_info_for_name, get_style_for_name, styled_category, styled_name
-from epstein_files.util.rich import (NA_TXT, add_cols_to_table, build_table, console, highlighter,
+from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, QUESTION_MARKS_TXT, HighlightedNames, get_highlight_group_for_name, get_style_for_name, styled_category, styled_name
+from epstein_files.util.rich import (GREY_NUMBERS, NA_TXT, add_cols_to_table, build_table, console, highlighter,
      print_centered, print_subtitle_panel)
 
 ALT_INFO_STYLE = 'medium_purple4'
@@ -143,7 +143,7 @@ class Author:
         elif self.name is None:
             return Text('(emails whose author or recipient could not be determined)', style=ALT_INFO_STYLE)
         elif not self.style() and '@' not in self.name and not info:
-            return QUESTION_MARKS_TXT
+            return Text(QUESTION_MARKS, style='grey50 dim')
         elif category and info:
             info = info.removeprefix(category).removeprefix(', ')
 
@@ -216,3 +216,40 @@ class Author:
             return [e for e in self.emails if e.is_note_to_self()]
         else:
             return self.emails
+
+    @staticmethod
+    def author_info_table(authors: list['Author']) -> Table:
+        """Add the first emailed_at timestamp for each emailer if 'epstein_files' provided."""
+        header_pfx = '' if args.all_emails else 'Selected '
+        table = build_table(f'{header_pfx}Email Conversations Grouped by Counterparty Will Appear in this Order')
+        table.add_column('Start Date')
+        table.add_column('Name', max_width=25, no_wrap=True)
+        table.add_column('Category', justify='center', style='dim italic')
+        table.add_column('Num', justify='right', style='wheat4')
+        table.add_column('Info', style='white italic')
+        current_year = 1990
+        current_year_month = current_year * 12
+        grey_idx = 0
+
+        for i, author in enumerate(authors):
+            earliest_email_date = author.earliest_email_date()
+            year_months = (earliest_email_date.year * 12) + earliest_email_date.month
+
+            # Color year rollovers more brightly
+            if current_year != earliest_email_date.year:
+                grey_idx = 0
+            elif current_year_month != year_months:
+                grey_idx = ((current_year_month - 1) % 12) + 1
+
+            current_year_month = year_months
+            current_year = earliest_email_date.year
+
+            table.add_row(
+                Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[grey_idx]}"),
+                author.name_txt(),  # TODO: make link?
+                author.category_txt(),
+                f"{len(author.emails):,}",
+                author.info_txt() or '',
+            )
+
+        return table

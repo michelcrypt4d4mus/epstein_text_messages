@@ -25,7 +25,7 @@ from epstein_files.util.data import dict_sets_to_lists, json_safe, listify
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.env import DOCS_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
-from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames, get_info_for_name, get_style_for_name
+from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames
 from epstein_files.util.rich import (NA_TXT, add_cols_to_table, build_table, console, highlighter,
      print_centered, print_subtitle_panel)
 from epstein_files.util.search_result import SearchResult

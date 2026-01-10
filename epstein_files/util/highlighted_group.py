@@ -23,7 +23,7 @@ EPSTEIN_LAWYER = 'EpsteinLawyer'
 EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} working on {EPSTEIN_V_ROTHSTEIN_EDWARDS}"
 ESTATE_EXECUTOR = 'estate executor'
 EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
-QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='dim')
+QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
 REGEX_STYLE_PREFIX = 'regex'
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w ]+$", re.IGNORECASE)
 
@@ -1504,23 +1504,6 @@ class EpsteinHighlighter(RegexHighlighter):
     """Finds and colors interesting keywords based on the above config."""
     base_style = f"{REGEX_STYLE_PREFIX}."
     highlights = [highlight_group.regex for highlight_group in ALL_HIGHLIGHTS]
-
-
-def get_category_txt_for_name(name: str | None) -> Text | None:
-    highlight_group = get_highlight_group_for_name(name)
-
-    if highlight_group and isinstance(highlight_group, HighlightedNames):
-        category = highlight_group.category or highlight_group.label
-
-        if category != name:
-            return styled_category(category)
-
-
-def get_info_for_name(name: str | None) -> str | None:
-    highlight_group = get_highlight_group_for_name(name)
-
-    if highlight_group and isinstance(highlight_group, HighlightedNames) and name:
-        return highlight_group.get_info(name)
 
 
 def get_style_for_category(category: str) -> str | None:
