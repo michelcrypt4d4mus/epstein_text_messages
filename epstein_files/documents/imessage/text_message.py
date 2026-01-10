@@ -11,6 +11,7 @@ from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import TEXT_LINK, highlighter
 
+EPSTEIN_TEXTERS = ['e:', 'e:jeeitunes@gmail.com']
 MSG_DATE_FORMAT = r"%m/%d/%y %I:%M:%S %p"
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
 UNCERTAIN_SUFFIX = ' (?)'
@@ -19,11 +20,6 @@ DISPLAY_LAST_NAME_ONLY = [
     JEFFREY_EPSTEIN,
     STEVE_BANNON,
 ]
-
-TEXTER_MAPPING = {
-    'e:': JEFFREY_EPSTEIN,
-    'e:jeeitunes@gmail.com': JEFFREY_EPSTEIN,
-}
 
 
 @dataclass(kw_only=True)
@@ -36,7 +32,7 @@ class TextMessage:
     timestamp_str: str
 
     def __post_init__(self):
-        self.author = TEXTER_MAPPING.get(self.author or UNKNOWN, self.author)
+        self.author = JEFFREY_EPSTEIN if self.author in EPSTEIN_TEXTERS else self.author
 
         if not self.author:
             self.author_str = UNKNOWN
@@ -60,12 +56,11 @@ class TextMessage:
         return datetime.strptime(self.timestamp_str, MSG_DATE_FORMAT)
 
     def timestamp_txt(self) -> Text:
-        timestamp_str = self.timestamp_str
-
         try:
             timestamp_str = iso_timestamp(self.parse_timestamp())
         except Exception as e:
             logger.warning(f"Failed to parse timestamp for {self}")
+            timestamp_str = self.timestamp_str
 
         return Text(f"[{timestamp_str}]", style=TIMESTAMP_DIM)
 
