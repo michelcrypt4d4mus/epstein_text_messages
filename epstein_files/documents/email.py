@@ -127,6 +127,15 @@ EMAIL_SIGNATURE_REGEXES = {
     UNKNOWN: re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL),
 }
 
+EMAIL_TABLE_COLS = [
+    {'name': 'ID', 'style': 'dim'},
+    {'name': 'Sent At', 'style': TIMESTAMP_DIM},
+    {'name': 'From', 'justify': 'left', 'max_width': 20},
+    {'name': 'To', 'justify': 'left', 'max_width': 22},
+    {'name': 'Length', 'style': 'wheat4'},
+    {'name': 'Subject', 'justify': 'left', 'min_width': 35, 'style': 'honeydew2'},
+]
+
 MAILING_LISTS = [
     CAROLYN_RANGEL,
     INTELLIGENCE_SQUARED,
@@ -825,28 +834,21 @@ class Email(Communication):
 
     @staticmethod
     def build_emails_table(emails: list['Email'], author: str | None = '', title: str = '', include_id: bool = False) -> Table:
-        """Turn a set of Emails to/from a given _author into a Table."""
+        """Turn a set of Emails into a Table."""
         if title and author:
             raise ValueError(f"Can't provide both 'author' and 'title' args")
+        elif author == '' and title == '':
+            raise ValueError(f"Must provide either 'author' or 'title' arg")
+
+        author_style = get_style_for_name(author, allow_bold=False)
 
         table = build_table(
             title or None,
-            border_style=DEFAULT_TABLE_KWARGS['border_style'] if title else get_style_for_name(author, allow_bold=False),
+            cols=[col for col in EMAIL_TABLE_COLS if include_id or col['name'] not in ['ID', 'Length']],
+            border_style=DEFAULT_TABLE_KWARGS['border_style'] if title else author_style,
             header_style="bold",
             highlight=True,
         )
-
-        if include_id:
-            table.add_column('ID', style='dim')
-
-        table.add_column('Sent At', style=TIMESTAMP_DIM)
-        table.add_column('From', max_width=20)
-        table.add_column('To', max_width=22)
-
-        if include_id:
-            table.add_column('Length', justify='right', style='wheat4')
-
-        table.add_column('Subject', justify='left', style='honeydew2' if not include_id else None, min_width=30)
 
         for email in emails:
             fields = [
@@ -860,7 +862,7 @@ class Email(Communication):
 
             if not include_id:
                 fields = fields[1:4] + [fields[5]]
-                fields[0] = email.epstein_media_link(link_txt=fields[0], style=get_style_for_name(author, allow_bold=False))
+                fields[0] = email.epstein_media_link(link_txt=fields[0], style=author_style)
 
             table.add_row(*fields)
 

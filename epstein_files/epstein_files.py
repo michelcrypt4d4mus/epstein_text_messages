@@ -276,8 +276,7 @@ class EpsteinFiles:
 
     def print_emails_table_for(self, author: str | None) -> None:
         emails = [email for email in self.emails_for(author) if not email.is_duplicate()]  # Remove dupes
-        print_centered(Email.build_emails_table(emails, author))
-        console.line()
+        print_centered(Padding(Email.build_emails_table(emails, author), (0, 5, 2, 5)))
 
     def print_email_device_info(self) -> None:
         print_subtitle_panel(DEVICE_SIGNATURE_SUBTITLE)
