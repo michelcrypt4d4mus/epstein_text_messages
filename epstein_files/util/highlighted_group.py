@@ -808,6 +808,7 @@ HIGHLIGHTED_NAMES = [
             r"Axios",
             r"BBC",
             r"Breitbart",
+            r"BuzzFeed",
             r"Charlie\s*Rose",
             r"China\s*Daily",
             r"CNBC",
