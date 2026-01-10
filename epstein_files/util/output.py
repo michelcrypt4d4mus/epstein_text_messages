@@ -21,6 +21,7 @@ from epstein_files.util.rich import *
 
 OTHER_INTERESTING_EMAILS_SUBTITLE = 'Other Interesting Emails\n(these emails have been flagged as being of particular interest)'
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
+ALT_INFO_STYLE = 'medium_purple4'
 
 # Order matters. Default names to print emails for.
 DEFAULT_EMAILERS = [
@@ -45,6 +46,7 @@ DEFAULT_EMAILERS = [
     JENNIFER_JACQUET,
     ZUBAIR_KHAN,
     None,
+    JEFFREY_EPSTEIN,
 ]
 
 INTERESTiNG_OTHER_EMAIL_IDS = [
@@ -248,7 +250,7 @@ def _all_emailers_table(epstein_files: EpsteinFiles) -> Table:
     attributed_emails = [e for e in epstein_files.non_duplicate_emails() if e.author]
     footer = f"(identified {len(epstein_files.email_author_counts)} authors of {len(attributed_emails):,}"
     footer = f"{footer} out of {len(epstein_files.non_duplicate_emails()):,} emails)"
-    counts_table = build_table("All of the Email Counterparties Who Appear in the Files", caption=footer)
+    counts_table = build_table("Everyone Who Sent or Received an Email in the Files", caption=footer)
 
     add_cols_to_table(counts_table, [
         'Name',
@@ -316,7 +318,7 @@ def _table_of_selected_emailers(_list: list[str | None], epstein_files: EpsteinF
     grey_idx = 0
 
     for i, name in enumerate(_list):
-        earliest_email_date = (epstein_files.earliest_email_at(name) or FALLBACK_TIMESTAMP).date()
+        earliest_email_date = (epstein_files.earliest_email_at(name)).date()
         year_months = (earliest_email_date.year * 12) + earliest_email_date.month
 
         # Color year rollovers more brightly
@@ -331,12 +333,14 @@ def _table_of_selected_emailers(_list: list[str | None], epstein_files: EpsteinF
         info = get_info_for_name(name)
         style = get_style_for_name(name, default_style='none')
 
+        if name == JEFFREY_EPSTEIN:
+            info = Text('(emails sent by Epstein to himself that would not otherwise be printed)', style=ALT_INFO_STYLE)
         if category and category.plain == 'paula':  # TODO: hacky
             category = None
         elif category and info:
             info = info.removeprefix(f"{category.plain}, ").removeprefix(category.plain)
         elif not name:
-            info = Text('(emails whose author or recipient could not be determined)', style='medium_purple4')
+            info = Text('(emails whose author or recipient could not be determined)', style=ALT_INFO_STYLE)
         elif style == 'none' and '@' not in name and not (category or info):
             info = QUESTION_MARKS_TXT
 

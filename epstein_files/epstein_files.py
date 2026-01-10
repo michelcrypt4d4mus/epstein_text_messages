@@ -167,7 +167,10 @@ class EpsteinFiles:
 
     def emails_for(self, author: str | None) -> list[Email]:
         """Returns emails to or from a given 'author' sorted chronologically."""
-        emails = self.emails_by(author) + self.emails_to(author)
+        if author == JEFFREY_EPSTEIN:
+            emails = [e for e in self.emails_by(JEFFREY_EPSTEIN) if e.is_note_to_self()]
+        else:
+            emails = self.emails_by(author) + self.emails_to(author)
 
         if len(emails) == 0:
             raise RuntimeError(f"No emails found for '{author}'")
@@ -247,13 +250,14 @@ class EpsteinFiles:
         unique_emails = [email for email in emails if not email.is_duplicate()]
         start_date = emails[0].timestamp.date()
         author = _author or UNKNOWN
+        title = f"Found {len(unique_emails)} emails"
 
-        print_author_panel(
-            f"Found {len(unique_emails)} emails to/from {author} starting {start_date} covering {num_days:,} days",
-            get_style_for_name(author),
-            get_info_for_name(author)
-        )
+        if author == JEFFREY_EPSTEIN:
+            title += f" sent by {JEFFREY_EPSTEIN} to himself"
+        else:
+            title += f" to/from {author} starting {start_date} covering {num_days:,} days"
 
+        print_author_panel(title, get_style_for_name(author), get_info_for_name(author))
         self.print_emails_table_for(_author)
         last_printed_email_was_duplicate = False
 
