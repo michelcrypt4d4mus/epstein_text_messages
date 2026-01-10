@@ -235,15 +235,17 @@ HIGHLIGHTED_NAMES = [
             r"(Lord\s*)?Martin\s*Rees",
             r"Massachusetts\s*Institute\s*of\s*Technology",
             r"Media\s*Lab",
-            r"Minsky",
+            r"(Marvin\s*)?Minsky",
             r"MIT(\s*Media\s*Lab)?",
             r"((Noam|Valeria)\s*)?Chomsky",
             r"Norman\s*Finkelstein",
+            r"Oxford(?! Analytica)",
             r"Praluent",
+            r"Princeton(\s*University)?",
             r"Regeneron",
             r"(Richard\s*)?Dawkins",
             r"Sanofi",
-            r"Stanford",
+            r"Stanford(\s*University)?(\s*Hospital)?",
             r"(Stephen\s*)?Hawking",
             r"(Steven?\s*)?Pinker",
             r"UCLA",
@@ -289,11 +291,12 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"Balaji",
-            r"bitcoin",
+            r"bitcoin(\s*Foundation)?",
             r"block ?chain(\s*capital)?",
             r"Brock(\s*Pierce)?",
             r"coins?",
             r"cr[iy]?pto(currenc(y|ies))?",
+            r"Digital\s*Currenc(ies|y)(\s*Initiative)?",
             r"e-currency",
             r"(Gavin )?Andressen",
             r"(Howard\s+)?Lutnic?k",
@@ -598,12 +601,13 @@ HIGHLIGHTED_NAMES = [
             r"Strasbourg",
             r"Strauss[- ]?Kahn",
             r"Swed(en|ish)(?![-\s]+American Life Scienc)",
-            r"Switzerland",
+            r"Swi(ss|tzerland)",
             r"(Tony\s)?Blair",
             r"U\.K\.",
             r"Ukrain(e|ian)",
             r"Vienna",
             r"Zug",
+            r"Zurich",
         ],
     ),
     HighlightedNames(
@@ -1169,7 +1173,7 @@ HIGHLIGHTED_NAMES = [
         style='indian_red',
         emailers={
             ARIANE_DE_ROTHSCHILD: 'heiress',
-            JOHNNY_EL_HACHEM: f'works with {ARIANE_DE_ROTHSCHILD}',
+            JOHNNY_EL_HACHEM: f'Edmond de Rothschild Private Equity',
         },
         patterns=['AdR'],
     ),
@@ -1522,6 +1526,10 @@ def styled_category(category: str | None) -> Text:
         return QUESTION_MARKS_TXT
 
     return Text(category, get_style_for_category(category) or 'wheat4')
+
+
+def styled_name(name: str | None, default_style: str = DEFAULT_NAME_STYLE) -> Text:
+    return Text(name or UNKNOWN, style=get_style_for_name(name, default_style=default_style))
 
 
 def _get_highlight_group_for_name(name: str | None) -> HighlightedNames | None:

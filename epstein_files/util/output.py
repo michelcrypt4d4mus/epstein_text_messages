@@ -11,21 +11,24 @@ from epstein_files.util.constant import output_files
 from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.output_files import JSON_FILES_JSON_PATH, JSON_METADATA_PATH
-from epstein_files.util.constant.strings import TIMESTAMP_DIM, TIMESTAMP_STYLE
+from epstein_files.util.constant.strings import DEFAULT_NAME_STYLE, TIMESTAMP_DIM, TIMESTAMP_STYLE
 from epstein_files.util.data import dict_sets_to_lists, sort_dict
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
-from epstein_files.util.highlighted_group import JUNK_EMAILERS, QUESTION_MARKS_TXT
+from epstein_files.util.highlighted_group import (JUNK_EMAILERS, QUESTION_MARKS_TXT, get_category_txt_for_name,
+     get_info_for_name, get_style_for_name, styled_name)
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
 
+OTHER_INTERESTING_EMAILS_SUBTITLE = 'Other Interesting Emails\n(these emails have been flagged as being of particular interest)'
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
+ALT_INFO_STYLE = 'medium_purple4'
 
 # Order matters. Default names to print emails for.
 DEFAULT_EMAILERS = [
     JEREMY_RUBIN,
-    JOI_ITO,
     JABOR_Y,
+    JOI_ITO,
     STEVEN_SINOFSKY,
     AL_SECKEL,
     DANIEL_SIAD,
@@ -44,13 +47,16 @@ DEFAULT_EMAILERS = [
     JENNIFER_JACQUET,
     ZUBAIR_KHAN,
     None,
+    JEFFREY_EPSTEIN,
 ]
 
-INTERESTiNG_OTHER_EMAIL_IDS = [
+INTERESTING_EMAIL_IDS = [
     '032229',  # Michael Wolff on strategy
     '028784',  # seminars: Money / Power
     '029342',  # Hakeem Jeffries
     '023454',  # Email invitation sent to tech CEOs + Epstein
+    '030630',  # 'What happens with zubair's project?'
+    '033178',  # 'How is it going with Zubair?'
     # '023627',  # Michael Wolff article (already printed bc epstein->epstein email)
 ]
 
@@ -65,28 +71,10 @@ INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [
 def print_email_timeline(epstein_files: EpsteinFiles) -> None:
     """Print a table of all emails in chronological order."""
     emails = Document.sort_by_timestamp([e for e in epstein_files.non_duplicate_emails() if not e.is_junk_mail()])
-    table = build_table(f'All {len(emails):,} Non-Junk Emails in Chronological Order', highlight=True)
-    table.add_column('ID', style=TIMESTAMP_DIM)
-    table.add_column('Sent At', style='dim')
-    table.add_column('Author', max_width=20)
-    table.add_column('Recipients', max_width=22)
-    table.add_column('Length', justify='right', style='wheat4')
-    table.add_column('Subject')
-
-    for email in emails:
-        table.add_row(
-            email.epstein_media_link(link_txt=email.source_file_id()),
-            email.timestamp_without_seconds(),
-            email.author_txt(),
-            email.recipients_txt(max_full_names=1),
-            f"{email.length()}",
-            email.subject(),
-        )
-
-    console.line(2)
-    console.print(table)
-    console.line(4)
-    print_subtitle_panel('The Chronologically Ordered Emails', centered=True)
+    title = f'All {len(emails):,} Non-Junk Emails in Chronological Order'
+    table = Email.build_emails_table(emails, title=title, include_id=True)
+    console.print(Padding(table, (2, 0)))
+    print_subtitle_panel('The Chronologically Ordered Emails')
     console.line()
 
     for email in emails:
@@ -123,8 +111,19 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
             print_color_key()
             num_emails_printed_since_last_color_key = 0
 
-    if not args.names:
-        epstein_files.print_email_device_info()
+    if args.names:
+        return already_printed_emails
+
+    # Print other interesting emails
+    already_printed_ids = [email.file_id for email in already_printed_emails]
+    extra_emails = [e for e in epstein_files.for_ids(INTERESTING_EMAIL_IDS) if e.file_id not in already_printed_ids]
+    print_subtitle_panel(OTHER_INTERESTING_EMAILS_SUBTITLE)
+    console.line()
+
+    for other_email in extra_emails:
+        console.print(other_email)
+
+    epstein_files.print_email_device_info()
 
     if args.all_emails:
         _verify_all_emails_were_printed(epstein_files, already_printed_emails)
@@ -230,7 +229,7 @@ def _all_emailers_table(epstein_files: EpsteinFiles) -> Table:
     attributed_emails = [e for e in epstein_files.non_duplicate_emails() if e.author]
     footer = f"(identified {len(epstein_files.email_author_counts)} authors of {len(attributed_emails):,}"
     footer = f"{footer} out of {len(epstein_files.non_duplicate_emails()):,} emails)"
-    counts_table = build_table("All of the Email Counterparties Who Appear in the Files", caption=footer)
+    counts_table = build_table("Everyone Who Sent or Received an Email in the Files", caption=footer)
 
     add_cols_to_table(counts_table, [
         'Name',
@@ -298,7 +297,7 @@ def _table_of_selected_emailers(_list: list[str | None], epstein_files: EpsteinF
     grey_idx = 0
 
     for i, name in enumerate(_list):
-        earliest_email_date = (epstein_files.earliest_email_at(name) or FALLBACK_TIMESTAMP).date()
+        earliest_email_date = (epstein_files.earliest_email_at(name)).date()
         year_months = (earliest_email_date.year * 12) + earliest_email_date.month
 
         # Color year rollovers more brightly
@@ -313,18 +312,20 @@ def _table_of_selected_emailers(_list: list[str | None], epstein_files: EpsteinF
         info = get_info_for_name(name)
         style = get_style_for_name(name, default_style='none')
 
+        if name == JEFFREY_EPSTEIN:
+            info = Text('(emails sent by Epstein to himself that would not otherwise be printed)', style=ALT_INFO_STYLE)
         if category and category.plain == 'paula':  # TODO: hacky
             category = None
         elif category and info:
             info = info.removeprefix(f"{category.plain}, ").removeprefix(category.plain)
         elif not name:
-            info = Text('(emails whose author or recipient could not be determined)', style='medium_purple4')
+            info = Text('(emails whose author or recipient could not be determined)', style=ALT_INFO_STYLE)
         elif style == 'none' and '@' not in name and not (category or info):
             info = QUESTION_MARKS_TXT
 
         table.add_row(
             Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[grey_idx]}"),
-            Text(name or UNKNOWN, style=get_style_for_name(name or UNKNOWN, default_style='dim')),
+            styled_name(name, default_style='dim'),
             category,
             f"{len(epstein_files.emails_for(name)):,}",
             info or '',

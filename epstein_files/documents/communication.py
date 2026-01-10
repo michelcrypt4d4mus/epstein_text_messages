@@ -9,7 +9,7 @@ from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, Document
 from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constants import FALLBACK_TIMESTAMP
 from epstein_files.util.doc_cfg import CommunicationCfg
-from epstein_files.util.highlighted_group import get_style_for_name
+from epstein_files.util.highlighted_group import get_style_for_name, styled_name
 from epstein_files.util.rich import key_value_txt
 
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
@@ -25,10 +25,10 @@ class Communication(Document):
         return self.author or UNKNOWN
 
     def author_style(self) -> str:
-        return get_style_for_name(self.author_or_unknown())
+        return get_style_for_name(self.author)
 
     def author_txt(self) -> Text:
-        return Text(self.author_or_unknown(), style=self.author_style())
+        return styled_name(self.author)
 
     def external_links_txt(self, _style: str = '', include_alt_links: bool = True) -> Text:
         """Overrides super() method to apply self.author_style."""

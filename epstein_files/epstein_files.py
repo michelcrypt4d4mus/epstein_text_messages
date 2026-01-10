@@ -167,7 +167,10 @@ class EpsteinFiles:
 
     def emails_for(self, author: str | None) -> list[Email]:
         """Returns emails to or from a given 'author' sorted chronologically."""
-        emails = self.emails_by(author) + self.emails_to(author)
+        if author == JEFFREY_EPSTEIN:
+            emails = [e for e in self.emails_by(JEFFREY_EPSTEIN) if e.is_note_to_self()]
+        else:
+            emails = self.emails_by(author) + self.emails_to(author)
 
         if len(emails) == 0:
             raise RuntimeError(f"No emails found for '{author}'")
@@ -182,7 +185,7 @@ class EpsteinFiles:
 
         return Document.sort_by_timestamp(emails)
 
-    def get_documents_by_id(self, file_ids: str | list[str]) -> list[Document]:
+    def for_ids(self, file_ids: str | list[str]) -> list[Document]:
         file_ids = listify(file_ids)
         docs = [doc for doc in self.all_documents() if doc.file_id in file_ids]
 
@@ -247,13 +250,14 @@ class EpsteinFiles:
         unique_emails = [email for email in emails if not email.is_duplicate()]
         start_date = emails[0].timestamp.date()
         author = _author or UNKNOWN
+        title = f"Found {len(unique_emails)} emails"
 
-        print_author_panel(
-            f"Found {len(unique_emails)} emails to/from {author} starting {start_date} covering {num_days:,} days",
-            get_style_for_name(author),
-            get_info_for_name(author)
-        )
+        if author == JEFFREY_EPSTEIN:
+            title += f" sent by {JEFFREY_EPSTEIN} to himself"
+        else:
+            title += f" to/from {author} starting {start_date} covering {num_days:,} days"
 
+        print_author_panel(title, get_info_for_name(author), get_style_for_name(author))
         self.print_emails_table_for(_author)
         last_printed_email_was_duplicate = False
 
@@ -272,11 +276,10 @@ class EpsteinFiles:
 
     def print_emails_table_for(self, author: str | None) -> None:
         emails = [email for email in self.emails_for(author) if not email.is_duplicate()]  # Remove dupes
-        print_centered(Email.build_emails_table(emails, author))
-        console.line()
+        print_centered(Padding(Email.build_emails_table(emails, author), (0, 5, 1, 5)))
 
     def print_email_device_info(self) -> None:
-        print_subtitle_panel(DEVICE_SIGNATURE_SUBTITLE, padding=(2, 0, 0, 0), centered=True)
+        print_subtitle_panel(DEVICE_SIGNATURE_SUBTITLE)
         console.print(_build_signature_table(self.email_device_signatures_to_authors, (DEVICE_SIGNATURE, AUTHOR), ', '))
         console.print(_build_signature_table(self.email_authors_to_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
 

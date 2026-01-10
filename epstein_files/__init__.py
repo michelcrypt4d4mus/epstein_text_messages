@@ -44,7 +44,7 @@ def generate_html() -> None:
         print_json_files(epstein_files)
         exit()
 
-    print_title_page_header(epstein_files)
+    print_title_page_header()
 
     if args.email_timeline:
         print_color_key()
@@ -96,8 +96,7 @@ def epstein_search():
     for search_term in args.positional_args:
         temp_highlighter = build_highlighter(search_term)
         search_results = epstein_files.docs_matching(search_term, args.names)
-        console.line(2)
-        print_subtitle_panel(f"Found {len(search_results)} documents matching '{search_term}'", padding=(0, 0, 0, 3))
+        print_subtitle_panel(f"Found {len(search_results)} documents matching '{search_term}'")
 
         for search_result in search_results:
             console.line()
@@ -115,10 +114,15 @@ def epstein_search():
 def epstein_show():
     """Show the color highlighted file. If --raw arg is passed, show the raw text of the file as well."""
     _assert_positional_args()
-    ids = [extract_file_id(arg) for arg in args.positional_args]
-    raw_docs = [Document(coerce_file_path(id)) for id in ids]
-    docs = Document.sort_by_timestamp([document_cls(doc)(doc.file_path) for doc in raw_docs])
+    raw_docs: list[Document] = []
     console.line()
+
+    try:
+        ids = [extract_file_id(arg) for arg in args.positional_args]
+        raw_docs = [Document(coerce_file_path(id)) for id in ids]
+        docs = Document.sort_by_timestamp([document_cls(doc)(doc.file_path) for doc in raw_docs])
+    except Exception as e:
+        exit_with_error(str(e))
 
     for doc in docs:
         console.print('\n', doc, '\n')
