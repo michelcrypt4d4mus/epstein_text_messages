@@ -42,6 +42,7 @@ class EmailHeader:
     bcc: list[str] | None = None
     cc: list[str] | None = None
     classification: str | None = None
+    flag: str | None = None
     importance: str | None = None
     attachments: str | None = None
     to: list[str] | None = None

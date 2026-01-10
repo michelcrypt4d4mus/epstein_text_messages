@@ -499,7 +499,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='030235', author=MELANIE_WALKER, attribution_reason='In fwd'),
     EmailCfg(id='032343', author=MELANIE_WALKER, attribution_reason='Name seen in later reply 032346'),
     EmailCfg(id='032212', author=MIROSLAV_LAJCAK, attribution_reason='signature'),
-    EmailCfg(id='021814', author=NADIA_MARCINKO, attribution_reason='reply'),
+    EmailCfg(id='021814', author=NADIA_MARCINKO, attribution_reason='reply'), #, actual_text="I'm a pilot...I prefer sex slave to copilot ;)"),
     EmailCfg(id='021808', author=NADIA_MARCINKO, attribution_reason='reply'),
     EmailCfg(id='022190', author=NADIA_MARCINKO, attribution_reason='reply'),
     EmailCfg(id='021818', author=NADIA_MARCINKO, attribution_reason='reply'),
