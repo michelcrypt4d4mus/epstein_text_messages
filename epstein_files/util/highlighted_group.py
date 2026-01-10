@@ -439,7 +439,7 @@ HIGHLIGHTED_NAMES = [
     ),
     HighlightedNames(
         label='employee',
-        style='dark_blue',
+        style='medium_purple4',
         emailers={
             'Alfredo Rodriguez': "Epstein's butler, stole the journal",
             ERIC_ROTH: 'jet decorator',
