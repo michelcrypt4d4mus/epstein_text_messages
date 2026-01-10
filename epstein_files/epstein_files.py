@@ -271,6 +271,9 @@ class EpsteinFiles:
                     logger.warning(f"Replacing '{email.file_id}' {field_name} {duplicate_prop} with '{original_prop}' from duplicated '{original.file_id}'")
                     setattr(email, field_name, original_prop)
 
+        # Resort in case any timestamp were updated
+        self.emails = Document.sort_by_timestamp(self.emails)
+
     def _tally_email_data(self) -> None:
         """Tally up summary info about Email objects."""
         for email in self.non_duplicate_emails():
