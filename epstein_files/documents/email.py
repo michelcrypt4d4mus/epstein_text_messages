@@ -136,14 +136,14 @@ EMAIL_TABLE_COLS = [
     {'name': 'Subject', 'justify': 'left', 'min_width': 35, 'style': 'honeydew2'},
 ]
 
-MAILING_LISTS = [
+MAILING_LISTS = JUNK_EMAILERS + [
     CAROLYN_RANGEL,
     INTELLIGENCE_SQUARED,
     'middle.east.update@hotmail.com',
     JP_MORGAN_USGIO,
 ]
 
-TRUNCATE_ALL_EMAILS_FROM = JUNK_EMAILERS + MAILING_LISTS + [
+TRUNCATE_ALL_EMAILS_FROM = MAILING_LISTS + [
     'Alan S Halperin',
     'Mitchell Bard',
     'Skip Rimer',

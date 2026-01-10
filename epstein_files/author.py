@@ -133,6 +133,8 @@ class Author:
             return Text('(emails sent by Epstein to himself that would not otherwise be printed)', style=ALT_INFO_STYLE)
         elif self.name is None:
             return Text('(emails whose author or recipient could not be determined)', style=ALT_INFO_STYLE)
+        elif category == JUNK:
+            return Text(f"({JUNK})", style='tan dim')
         elif not self.style() and '@' not in self.name and not info:
             return Text(QUESTION_MARKS, style='grey50 dim')
         elif category and info:
@@ -214,7 +216,7 @@ class Author:
         """Add the first emailed_at timestamp for each emailer if 'epstein_files' provided."""
         header_pfx = '' if args.all_emails else 'Selected '
         table = build_table(f'{header_pfx}Email Conversations Grouped by Counterparty Will Appear in this Order')
-        table.add_column('Start Date')
+        table.add_column('First Email')
         table.add_column('Name', max_width=25, no_wrap=True)
         table.add_column('Category', justify='center', style='dim italic')
         table.add_column('Num', justify='right', style='wheat4')
