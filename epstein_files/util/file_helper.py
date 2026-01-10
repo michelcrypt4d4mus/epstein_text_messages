@@ -36,7 +36,7 @@ def extract_file_id(filename_or_id: int | str | Path) -> str:
     if isinstance(filename_or_id, int) or (isinstance(filename_or_id, str) and len(filename_or_id) <= 6):
         return id_str(filename_or_id)
 
-    file_match = FILE_ID_REGEX.match(str(filename_or_id))
+    file_match = FILE_ID_REGEX.match(str(filename_or_id).upper())
 
     if not file_match:
         raise RuntimeError(f"Failed to extract file ID from {filename_or_id}")

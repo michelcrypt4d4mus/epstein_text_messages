@@ -311,6 +311,7 @@ FLIGHT_IN_2012_PEOPLE = ['Francis Derby', 'Januiz Banasiak', 'Louella Rabuyo', '
 EMAILS_CONFIG = [
     # 026294 and 026294 might also be Ittihadieh based on timing
     EmailCfg(id='032436', author=ALIREZA_ITTIHADIEH, attribution_reason='Signature'),
+    # 032542 026078 026080 026083 026086 026090 might also be Anas based on discussion of Dubai and Kuwait
     EmailCfg(id='032543', author=ANAS_ALRASHEED, attribution_reason='Later reply 033000 has quote'),
     EmailCfg(id='026167', author=ANAS_ALRASHEED, attribution_reason='name visible in 033022 reply'),
     EmailCfg(id='032571', author=ANAS_ALRASHEED, attribution_reason='name visible in 033022 reply'),
