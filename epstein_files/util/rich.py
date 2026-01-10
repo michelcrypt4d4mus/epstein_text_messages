@@ -5,7 +5,7 @@ from os import devnull
 from pathlib import Path
 
 from rich.align import Align
-from rich.console import Console, RenderableType
+from rich.console import Console, Group, RenderableType
 from rich.markup import escape
 from rich.panel import Panel
 from rich.padding import Padding
@@ -18,7 +18,7 @@ from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constant.strings import DEFAULT, EMAIL, NA, TEXT_MESSAGE
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import HEADER_ABBREVIATIONS
-from epstein_files.util.data import json_safe
+from epstein_files.util.data import json_safe, without_falsey
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
 from epstein_files.util.highlighted_group import ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES, EpsteinHighlighter
@@ -150,17 +150,17 @@ def parenthesize(msg: str | Text, style: str = '') -> Text:
     return Text('(', style=style).append(txt).append(')')
 
 
-def print_author_panel(msg: str, color: str | None, footer: str | None = None) -> None:
+def print_author_panel(msg: str, style: str | None, footer: str | None = None) -> None:
     """Print a panel with the name of an emailer and a few tidbits of information about them."""
-    color = 'white' if (not color or color == DEFAULT) else color
+    style = 'white' if (not style or style == DEFAULT) else style
+    panel_style = f"black on {style} bold"
     width = max(MIN_AUTHOR_PANEL_WIDTH, len(msg) + 4, len(footer or '') + 8)
-    panel = Panel(Text(msg, justify='center'), width=width, style=f"black on {color} bold")
-    console.print('\n', Align.center(panel))
+    elements: list[RenderableType] = [Panel(Text(msg, justify='center'), width=width, style=panel_style)]
 
     if footer:
-        console.print(Align.center(f"({footer})"), highlight=False, style=f'{color} italic')
+        elements.append(Text(f"({footer})", justify='center', style=f"{style} italic"))
 
-    console.line()
+    print_centered(Padding(Group(*elements), (2, 0, 1, 0)))
 
 
 def print_centered(obj: RenderableType, style: str = '') -> None:
