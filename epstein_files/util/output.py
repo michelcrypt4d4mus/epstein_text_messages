@@ -99,9 +99,9 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
         print_centered(Padding(_all_emailers_table(epstein_files), (2, 0)))
 
     for author in authors_to_print:
-        author_emails = author.print_emails_for()
-        already_printed_emails.extend(author_emails)
-        num_emails_printed_since_last_color_key += len(author_emails)
+        printed_emails = author.print_emails()
+        already_printed_emails.extend(printed_emails)
+        num_emails_printed_since_last_color_key += len(printed_emails)
 
         # Print color key every once in a while
         if num_emails_printed_since_last_color_key > PRINT_COLOR_KEY_EVERY_N_EMAILS:
@@ -256,8 +256,8 @@ def _all_emailers_table(epstein_files: EpsteinFiles) -> Table:
             str(author.last_email_date()),
             f"{author.email_conversation_length_in_days()}",
             author.external_link_txt(JMAIL),
-            author.external_link_txt(EPSTEIN_MEDIA) if author._is_ok_for_epstein_web() else '',
-            author.external_link_txt(EPSTEIN_WEB) if author._is_ok_for_epstein_web() else '',
+            author.external_link_txt(EPSTEIN_MEDIA) if author.is_linkable() else '',
+            author.external_link_txt(EPSTEIN_WEB) if author.is_linkable() else '',
             author.external_link_txt(TWITTER),
         )
 

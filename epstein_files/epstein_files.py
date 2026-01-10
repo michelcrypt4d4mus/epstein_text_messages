@@ -21,7 +21,7 @@ from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
-from epstein_files.util.data import days_between, dict_sets_to_lists, json_safe, listify
+from epstein_files.util.data import dict_sets_to_lists, json_safe, listify
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.env import DOCS_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
@@ -175,10 +175,7 @@ class EpsteinFiles:
 
     def emails_for(self, author: str | None) -> list[Email]:
         """Returns emails to or from a given 'author' sorted chronologically."""
-        if author == JEFFREY_EPSTEIN:
-            emails = [e for e in self.emails_by(JEFFREY_EPSTEIN) if e.is_note_to_self()]
-        else:
-            emails = self.emails_by(author) + self.emails_to(author)
+        emails = self.emails_by(author) + self.emails_to(author)
 
         if len(emails) == 0:
             raise RuntimeError(f"No emails found for '{author}'")
