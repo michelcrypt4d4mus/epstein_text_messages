@@ -305,6 +305,7 @@ HIGHLIGHTED_NAMES = [
             r"(Howard\s+)?Lutnic?k",
             r"Libra",
             r"Madars",
+            r"Mi(chael|ke)\s*Novogratz",
             r"(Patrick\s*)?Murck",
             r"(Ross\s*)?Ulbricht",
             r"Silk\s*Road",
@@ -582,6 +583,7 @@ HIGHLIGHTED_NAMES = [
             r"Germany?",
             r"Gillard",
             r"Gree(ce|k)",
+            r"Ibiza",
             r"Ital(ian|y)",
             r"Jacques",
             r"Kiev",
@@ -1102,8 +1104,8 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"\w+@mc2mm.com",
             r"MC2",
-            r"model(ed|ing)",
             r"(Nicole\s*)?Junkerman",  # Also a venture fund manager now
+            r"Tigrane",
         ],
     ),
     HighlightedNames(
@@ -1211,7 +1213,7 @@ HIGHLIGHTED_NAMES = [
             r"KGB",
             r"Kislyak",
             r"Kremlin",
-            r"Kuznetsova",
+            r"(Anastasia\s*)?Kuznetsova",
             r"Lavrov",
             r"Lukoil",
             r"Moscow",
