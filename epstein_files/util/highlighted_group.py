@@ -207,7 +207,7 @@ HIGHLIGHTED_NAMES = [
     ManualHighlight(
         label='email_subject',
         style='light_yellow3',
-        pattern=r"^(> )?Subject: (?P<email_subject>.*)",
+        pattern=r"^(> )?(Flag|Subject): (?P<email_subject>.*)",
     ),
     HighlightedNames(
         label=ACADEMIA,
@@ -405,6 +405,7 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"(Al\s*)?Franken",
+            r"Al\s*Gore",
             r"(Barac?k )?Obama",
             r"((Bill|Hillart?y)\s*)?Clinton",
             r"((Chuck|Charles)\s*)?S(ch|hc)umer",
@@ -534,7 +535,7 @@ HIGHLIGHTED_NAMES = [
             r"(Leon\s*)?Jaworski",
             r"Michael J. Pike",
             r"Paul,?\s*Weiss",
-            r"Steptoe(\s*LLP)?",
+            r"Steptoe(\s*& Johnson)?(\s*LLP)?",
             r"Wein(berg|garten)",
         ],
     ),
@@ -645,6 +646,7 @@ HIGHLIGHTED_NAMES = [
             r"B\s*of\s*A",
             r"Boothbay(\sFund\sManagement)?",
             r"Chase\s*Bank",
+            r"Conrad B",
             r"Credit\s*Suisse",
             r"DB",
             r"Deutsche?\s*(Asset|Bank)",
@@ -900,7 +902,7 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        label='law enforcement',
+        label='government',
         style='color(24) bold',
         emailers={
             ANN_MARIE_VILLAFANA: 'Southern District of Florida (SDFL) U.S. Attorney',
@@ -930,6 +932,7 @@ HIGHLIGHTED_NAMES = [
             r"FINRA",
             r"FOIA",
             r"FTC",
+            r"(General\s*)?P(a|e)traeus",
             r"IRS",
             r"(James\s*)?Comey",
             r"Jeff(rey)?\s*Sessions",
@@ -1145,6 +1148,7 @@ HIGHLIGHTED_NAMES = [
             r"(?<!Merwin Dela )Cruz",
             r"Devin\s*Nunes",
             r"(Don\s*)?McGa[hn]n",
+            r"Gary\s*Cohn",
             r"George\s*(H\.?\s*)?(W\.?\s*)?Bush",
             r"(George\s*)?Nader",
             r"GOP",
@@ -1152,7 +1156,7 @@ HIGHLIGHTED_NAMES = [
             r"Kissinger",
             r"Kobach",
             r"Kolfage",
-            r"Kudlow",
+            r"(Larry\s*)?Kudlow",
             r"Lewandowski",
             r"(Marco\s)?Rubio",
             r"(Mark\s*)Meadows",
@@ -1380,7 +1384,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"BG",
             r"b?g?C3",
-            r"(Bill\s*((and|or)\s*Melinda\s*)?)?Gates(\s*Foundation)?",
+            r"(Bill\s*((and|or|&)\s*Melinda\s*)?)?Gates(\s*Foundation)?",
             r"Melinda(\s*Gates)?",
             r"Microsoft",
             r"MSFT",
@@ -1436,7 +1440,7 @@ HIGHLIGHTED_TEXTS = [
     HighlightedText(
         label='header_field',
         style='plum4',
-        patterns=[r'^(> )?(Date|From|Sent|To|C[cC]|Importance|Reply-To|Subject|Bee|B[cC]{2}|Attachments):'],
+        patterns=[r'^(> )?(Date|From|Sent|To|C[cC]|Importance|Reply-To|Subject|Bee|B[cC]{2}|Attachments|Flag):'],
     ),
     HighlightedText(
         label='http_links',
