@@ -26,7 +26,6 @@ from epstein_files.util.logging import logger
 
 TITLE_WIDTH = 50
 SUBTITLE_WIDTH = 110
-MIN_AUTHOR_PANEL_WIDTH = 80
 NUM_COLOR_KEY_COLS = 4
 NA_TXT = Text(NA, style='dim')
 SUBTITLE_PADDING = (2, 0, 1, 0)
@@ -147,19 +146,6 @@ def key_value_txt(key: str, value: Text | int | str) -> Text:
 def parenthesize(msg: str | Text, style: str = '') -> Text:
     txt = Text(msg) if isinstance(msg, str) else msg
     return Text('(', style=style).append(txt).append(')')
-
-
-def print_author_panel(msg: str, footer: str | None, style: str | None) -> None:
-    """Print a panel with the name of an emailer and a few tidbits of information about them."""
-    style = 'white' if (not style or style == DEFAULT) else style
-    panel_style = f"black on {style} bold"
-    width = max(MIN_AUTHOR_PANEL_WIDTH, len(msg) + 4, len(footer or '') + 8)
-    elements: list[RenderableType] = [Panel(Text(msg, justify='center'), width=width, style=panel_style)]
-
-    if footer:
-        elements.append(Text(f"({footer})", justify='center', style=f"{style} italic"))
-
-    print_centered(Padding(Group(*elements), (2, 0, 1, 0)))
 
 
 def print_centered(obj: RenderableType, style: str = '') -> None:

@@ -6,7 +6,9 @@ from datetime import datetime, date
 from pathlib import Path
 from typing import Sequence, Type
 
+from rich.console import Console, Group, RenderableType
 from rich.padding import Padding
+from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
 
@@ -25,9 +27,10 @@ from epstein_files.util.env import DOCS_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, QUESTION_MARKS_TXT, HighlightedNames, get_highlight_group_for_name, get_info_for_name, get_style_for_name, styled_category, styled_name
 from epstein_files.util.rich import (NA_TXT, add_cols_to_table, build_table, console, highlighter,
-     print_author_panel, print_centered, print_subtitle_panel)
+     print_centered, print_subtitle_panel)
 
 ALT_INFO_STYLE = 'medium_purple4'
+MIN_AUTHOR_PANEL_WIDTH = 80
 
 INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [
     'ACT for America',
@@ -95,6 +98,27 @@ class Author:
     def highlight_group(self) -> HighlightedNames | None:
         return get_highlight_group_for_name(self.name)
 
+    def info_panel(self) -> Padding:
+        """Print a panel with the name of an emailer and a few tidbits of information about them."""
+        style = 'white' if (not self.style() or self.style() == DEFAULT) else self.style()
+        panel_style = f"black on {style} bold"
+        title = f"Found {len(self.unique_emails())} emails"
+
+        if self.name == JEFFREY_EPSTEIN:
+            title += f" sent by {JEFFREY_EPSTEIN} to himself"
+        else:
+            num_days = self.email_conversation_length_in_days()
+            title += f" to/from {self.name_str()} starting {self.earliest_email_date()} covering {num_days:,} days"
+
+        footer = self.info_str()
+        width = max(MIN_AUTHOR_PANEL_WIDTH, len(self.info_str() or '') + 4, len(footer or '') + 8)
+        elements: list[RenderableType] = [Panel(Text(title, justify='center'), width=width, style=panel_style)]
+
+        if footer:
+            elements.append(Text(f"({footer})", justify='center', style=f"{style} italic"))
+
+        return Padding(Group(*elements), (2, 0, 1, 0))
+
     def info_str(self) -> str | None:
         highlight_group = self.highlight_group()
 
@@ -143,16 +167,7 @@ class Author:
 
     def print_emails_for(self) -> list[Email]:
         """Print complete emails to or from a particular 'author'. Returns the Emails that were printed."""
-        num_days = self.email_conversation_length_in_days()
-        unique_emails = [email for email in self.emails if not email.is_duplicate()]
-        title = f"Found {len(unique_emails)} emails"
-
-        if self.name == JEFFREY_EPSTEIN:
-            title += f" sent by {JEFFREY_EPSTEIN} to himself"
-        else:
-            title += f" to/from {self.name_str()} starting {self.earliest_email_date()} covering {num_days:,} days"
-
-        print_author_panel(title, self.info_str(), self.style())
+        print_centered(self.info_panel())
         self.print_emails_table_for()
         last_printed_email_was_duplicate = False
 
@@ -184,3 +199,6 @@ class Author:
 
     def style(self) -> str:
         return get_style_for_name(self.name, default_style='')
+
+    def unique_emails(self) -> list[Email]:
+        return [email for email in self.emails if not email.is_duplicate()]
