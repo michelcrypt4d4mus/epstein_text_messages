@@ -55,6 +55,7 @@ REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + [
 
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r'grnail\.com'): 'gmail.com',
+    'Newsmax. corn': 'Newsmax.com',
     re.compile(r"^(From|To)(: )?[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",  # Redacted email addresses
     # These 3 must come in this order!
     re.compile(r'([/vkT]|Ai|li|(I|7)v)rote:'): 'wrote:',

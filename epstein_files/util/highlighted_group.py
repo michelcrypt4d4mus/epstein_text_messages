@@ -844,7 +844,7 @@ HIGHLIGHTED_NAMES = [
             r"(Michele\s*)?Dargan",
             r"Morning News USA",
             r"(National\s*)?Enquirer",
-            r"Newsweek",
+            r"News(max|week)",
             r"NYer",
             r"Palm\s*Beach\s*(Daily\s*News|Post)",
             r"PERVERSION\s*OF\s*JUSTICE",
