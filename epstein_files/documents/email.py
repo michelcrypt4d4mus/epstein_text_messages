@@ -395,9 +395,9 @@ class Email(Communication):
 
         # Remove self CCs but preserve self emails
         if self.recipients != [self.author]:
-            recipients = [r for r in self.recipients if r != self.author]
+            self.recipients = [r for r in self.recipients if r != self.author]
 
-        self.recipients = list(set(recipients))
+        self.recipients = list(set(self.recipients))
         self.text = self._prettify_text()
         self.actual_text = self._actual_text()
         self.sent_from_device = self._sent_from_device()
