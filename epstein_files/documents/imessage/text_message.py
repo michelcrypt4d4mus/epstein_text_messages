@@ -13,6 +13,7 @@ from epstein_files.util.rich import TEXT_LINK, highlighter
 
 MSG_DATE_FORMAT = r"%m/%d/%y %I:%M:%S %p"
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
+UNCERTAIN_SUFFIX = ' (?)'
 
 DISPLAY_LAST_NAME_ONLY = [
     JEFFREY_EPSTEIN,
@@ -45,7 +46,7 @@ class TextMessage:
             self.author_str = self.author_str or self.author
 
         if not self.is_id_confirmed and self.author is not None and self.author != JEFFREY_EPSTEIN:
-            self.author_str += ' (?)'
+            self.author_str += UNCERTAIN_SUFFIX
 
         if self.is_link():
             self.text = self.text.replace('\n', '').replace(' ', '_')
