@@ -124,7 +124,7 @@ EMAIL_AUTHOR_COUNTS = {
     MARK_TRAMO: 1,
     "Martin Nowak": 1,
     "Martin Weinberg": 17,
-    MASHA_DROKOVA: 12,
+    MASHA_DROKOVA: 11,
     "Matthew Hiltzik": 1,
     "Melanie Spinella": 1,
     "Melanie Walker": 3,
