@@ -309,7 +309,7 @@ IRAN_DEAL_RECIPIENTS = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Go
 FLIGHT_IN_2012_PEOPLE = ['Francis Derby', 'Januiz Banasiak', 'Louella Rabuyo', 'Richard Barnnet']
 
 EMAILS_CONFIG = [
-    # 026294 and 026294 might also be Ittihadieh based on timing
+    # 026294 and 026296 might also be Ittihadieh based on timing
     EmailCfg(id='032436', author=ALIREZA_ITTIHADIEH, attribution_reason='Signature'),
     # 032542 026078 026080 026083 026086 026090 might also be Anas based on discussion of Dubai and Kuwait
     EmailCfg(id='032543', author=ANAS_ALRASHEED, attribution_reason='Later reply 033000 has quote'),
@@ -341,6 +341,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='026188', author=ANAS_ALRASHEED, attribution_reason='name visible in 026180 reply'),
     EmailCfg(id='026193', author=ANAS_ALRASHEED, attribution_reason='name visible in 026180 reply'),
     EmailCfg(id='026198', author=ANAS_ALRASHEED, attribution_reason='name visible in 026180 reply'),
+    EmailCfg(id='026210', author=ANAS_ALRASHEED, attribution_reason='name visible in 026180 reply'),
     EmailCfg(id='026204', author=ANAS_ALRASHEED, attribution_reason='name visible in 026180 reply'),
     EmailCfg(id='032660', author=ANAS_ALRASHEED, attribution_reason='name visible in 029113 reply'),
     EmailCfg(id='032663', author=ANAS_ALRASHEED, attribution_reason='name visible in 029113 reply'),

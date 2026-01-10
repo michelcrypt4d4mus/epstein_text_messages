@@ -885,6 +885,7 @@ HIGHLIGHTED_NAMES = [
             r"Bra[sz]il(ian)?",
             r"Caracas",
             r"Castro",
+            r"Chile",
             r"Colombian?",
             r"Cuban?",
             r"El\s*Salvador",
