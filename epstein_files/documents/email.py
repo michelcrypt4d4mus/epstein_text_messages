@@ -340,6 +340,7 @@ LINE_REPAIR_MERGES = {
     '032405': 4,
     '033097': 2,
     '033144': [2, 4],
+    '033217': 3,
     '033228': [3, 5],
     '033357': [2, 4],
     '033486': [7, 9],
@@ -409,8 +410,13 @@ class Email(Communication):
 
     def info_txt(self) -> Text:
         email_type = 'fwded article' if self.is_fwded_article() else 'email'
-        txt = Text(f"OCR text of {email_type} from ", style='grey46').append(self.author_txt()).append(' to ')
-        return txt.append(self.recipients_txt()).append(highlighter(f" probably sent at {self.timestamp}"))
+        txt = Text(f"OCR text of {email_type} from ", style='grey46').append(self.author_txt())
+
+        if self.config and self.config.is_attribution_uncertain:
+            txt.append(f" {QUESTION_MARKS}", style=self.author_style())
+
+        txt.append(' to ').append(self.recipients_txt())
+        return txt.append(highlighter(f" probably sent at {self.timestamp}"))
 
     def is_fwded_article(self) -> bool:
         return bool(self.config and self.config.is_fwded_article)
