@@ -187,7 +187,8 @@ def print_color_key() -> None:
     print_centered(vertically_pad(color_table))
 
 
-def print_title_page_header(epstein_files: 'EpsteinFiles') -> None:
+def print_title_page_header() -> None:
+    """Top half of the title page."""
     print_page_title(width=TITLE_WIDTH)
     site_type = EMAIL if (args.all_emails or args.email_timeline) else TEXT_MESSAGE
     title = f"This is the " + ('chronological ' if args.email_timeline else '') + f"Epstein {site_type.title()}s Page"
@@ -208,6 +209,7 @@ def print_title_page_header(epstein_files: 'EpsteinFiles') -> None:
 
 
 def print_title_page_tables(epstein_files: 'EpsteinFiles') -> None:
+    """Bottom half of the title page."""
     _print_external_links()
     console.line()
     _print_abbreviations_table()
