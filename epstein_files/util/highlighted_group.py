@@ -824,7 +824,7 @@ HIGHLIGHTED_NAMES = [
             r"(Katie\s*)?Couric",
             r"Keith\s*Larsen",
             r"L\.?A\.?\s*Times",
-            r"Law(360|\.com)",
+            r"Law(360|\.com|fare)",
             r"MarketWatch",
             r"Miami\s*Herald",
             r"(Mi(chael|ke)\s*)?Bloomberg",
@@ -1114,6 +1114,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"(Matt(hew)? )?Hiltzi[gk]",
             REPUTATION_MGMT,
+            r"Reputation.com",
         ],
     ),
     HighlightedNames(
