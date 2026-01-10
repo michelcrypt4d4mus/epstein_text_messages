@@ -128,7 +128,6 @@ EMAIL_SIGNATURE_REGEXES = {
 }
 
 EMAIL_TABLE_COLS = [
-    {'name': 'ID', 'style': 'dim'},
     {'name': 'Sent At', 'justify': 'left', 'style': TIMESTAMP_DIM},
     {'name': 'From', 'justify': 'left', 'max_width': 20},
     {'name': 'To', 'justify': 'left', 'max_width': 22},
@@ -833,7 +832,7 @@ class Email(Communication):
             self.log_top_lines(self.header.num_header_rows + 4, f'Original header:')
 
     @staticmethod
-    def build_emails_table(emails: list['Email'], author: str | None = '', title: str = '', include_id: bool = False) -> Table:
+    def build_emails_table(emails: list['Email'], author: str | None = '', title: str = '', show_length: bool = False) -> Table:
         """Turn a set of Emails into a Table."""
         if title and author:
             raise ValueError(f"Can't provide both 'author' and 'title' args")
@@ -841,10 +840,11 @@ class Email(Communication):
             raise ValueError(f"Must provide either 'author' or 'title' arg")
 
         author_style = get_style_for_name(author, allow_bold=False)
+        link_style = author_style if author else ARCHIVE_LINK_COLOR
 
         table = build_table(
             title or None,
-            cols=[col for col in EMAIL_TABLE_COLS if include_id or col['name'] not in ['ID', 'Length']],
+            cols=[col for col in EMAIL_TABLE_COLS if show_length or col['name'] not in ['Length']],
             border_style=DEFAULT_TABLE_KWARGS['border_style'] if title else author_style,
             header_style="bold",
             highlight=True,
@@ -852,17 +852,15 @@ class Email(Communication):
 
         for email in emails:
             fields = [
-                email.epstein_media_link(link_txt=email.source_file_id()),
-                email.timestamp_without_seconds(),
+                email.epstein_media_link(link_txt=email.timestamp_without_seconds(), style=link_style),
                 email.author_txt(),
                 email.recipients_txt(max_full_names=1),
                 f"{email.length()}",
                 email.subject(),
             ]
 
-            if not include_id:
-                fields = fields[1:4] + [fields[5]]
-                fields[0] = email.epstein_media_link(link_txt=fields[0], style=author_style)
+            if not show_length:
+                del fields[3]
 
             table.add_row(*fields)
 
