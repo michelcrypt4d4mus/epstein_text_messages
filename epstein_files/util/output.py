@@ -59,7 +59,9 @@ INTERESTING_EMAIL_IDS = [
     '033178',  # 'How is it going with Zubair?'
     '022396',  # Ukraine friend
     '026505',  # I know how dirty trump is
-    # '023627',  # Michael Wolff article (already printed bc epstein->epstein email)
+    '029679',  # Trump's driver was the bag man
+    '030781', '026258', '026260',  # Bannon cripto coin issues
+    '023627',  # Michael Wolff article w/Brock
 ]
 
 INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [
