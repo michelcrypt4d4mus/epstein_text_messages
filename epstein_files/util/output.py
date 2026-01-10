@@ -4,7 +4,7 @@ from rich.padding import Padding
 
 from epstein_files.author import Author
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import KRASSNER_RECIPIENTS, Email
+from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles, count_by_month
@@ -12,12 +12,10 @@ from epstein_files.util.constant import output_files
 from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.output_files import JSON_FILES_JSON_PATH, JSON_METADATA_PATH
-from epstein_files.util.constant.strings import DEFAULT_NAME_STYLE, TIMESTAMP_DIM, TIMESTAMP_STYLE
-from epstein_files.util.data import dict_sets_to_lists, sort_dict
+from epstein_files.util.constant.strings import TIMESTAMP_STYLE
+from epstein_files.util.data import dict_sets_to_lists
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
-from epstein_files.util.highlighted_group import (JUNK_EMAILERS, QUESTION_MARKS_TXT, get_category_txt_for_name,
-     get_info_for_name, get_style_for_name, styled_name)
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
 
@@ -96,7 +94,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
 
         print_other_page_link(epstein_files)
         console.line(2)
-        print_centered(_table_of_selected_emailers(authors_to_print))
+        print_centered(Author.author_info_table(authors_to_print))
         print_centered(Padding(_all_emailers_table(epstein_files), (2, 0)))
 
     for author in authors_to_print:
@@ -263,43 +261,6 @@ def _all_emailers_table(epstein_files: EpsteinFiles) -> Table:
         )
 
     return counts_table
-
-
-def _table_of_selected_emailers(authors: list[Author]) -> Table:
-    """Add the first emailed_at timestamp for each emailer if 'epstein_files' provided."""
-    header_pfx = '' if args.all_emails else 'Selected '
-    table = build_table(f'{header_pfx}Email Conversations Grouped by Counterparty Will Appear in this Order')
-    table.add_column('Start Date')
-    table.add_column('Name', max_width=25, no_wrap=True)
-    table.add_column('Category', justify='center', style='dim italic')
-    table.add_column('Num', justify='right', style='wheat4')
-    table.add_column('Info', style='white italic')
-    current_year = 1990
-    current_year_month = current_year * 12
-    grey_idx = 0
-
-    for i, author in enumerate(authors):
-        earliest_email_date = author.earliest_email_date()
-        year_months = (earliest_email_date.year * 12) + earliest_email_date.month
-
-        # Color year rollovers more brightly
-        if current_year != earliest_email_date.year:
-            grey_idx = 0
-        elif current_year_month != year_months:
-            grey_idx = ((current_year_month - 1) % 12) + 1
-
-        current_year_month = year_months
-        current_year = earliest_email_date.year
-
-        table.add_row(
-            Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[grey_idx]}"),
-            author.name_txt(),  # TODO: make link?
-            author.category_txt(),
-            f"{len(author.emails):,}",
-            author.info_txt() or '',
-        )
-
-    return table
 
 
 def _verify_all_emails_were_printed(epstein_files: EpsteinFiles, already_printed_emails: list[Email]) -> None:
