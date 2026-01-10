@@ -305,6 +305,7 @@ METADATA_FIELDS = [
     'subject',
 ]
 
+# Note the line repair happens *after* 'Importance: High' is removed
 LINE_REPAIR_MERGES = {
     '017523': 4,
     '019407': [2, 4],

@@ -207,7 +207,7 @@ HIGHLIGHTED_NAMES = [
     ManualHighlight(
         label='email_subject',
         style='light_yellow3',
-        pattern=r"^(> )?(Flag|Subject): (?P<email_subject>.*)",
+        pattern=r"^(> )?(Classification|Flag|Subject): (?P<email_subject>.*)",
     ),
     HighlightedNames(
         label=ACADEMIA,
@@ -1446,7 +1446,7 @@ HIGHLIGHTED_TEXTS = [
     HighlightedText(
         label='header_field',
         style='plum4',
-        patterns=[r'^(> )?(Date|From|Sent|To|C[cC]|Importance|Reply-To|Subject|Bee|B[cC]{2}|Attachments|Flag):'],
+        patterns=[r'^(> )?(Date|From|Sent|To|C[cC]|Importance|Reply-To|Subject|Bee|B[cC]{2}|Attachments|Flag|Classification):'],
     ),
     HighlightedText(
         label='http_links',
