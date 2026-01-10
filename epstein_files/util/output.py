@@ -91,8 +91,8 @@ def print_email_timeline(epstein_files: EpsteinFiles) -> None:
 
     console.line(2)
     console.print(table)
-    console.line(4)
-    print_subtitle_panel('The Chronologically Ordered Emails', centered=True)
+    console.line(2)
+    print_subtitle_panel('The Chronologically Ordered Emails')
     console.line()
 
     for email in emails:
@@ -134,15 +134,11 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
 
     # Print other interesting emails
     already_printed_ids = [email.file_id for email in already_printed_emails]
-    console.line(2)
-    print_subtitle_panel(OTHER_INTERESTING_EMAILS_SUBTITLE, centered=True)
+    extra_emails = [e for e in epstein_files.for_ids(INTERESTING_EMAIL_IDS) if e.file_id not in already_printed_ids]
+    print_subtitle_panel(OTHER_INTERESTING_EMAILS_SUBTITLE)
     console.line()
 
-    for other_email in epstein_files.get_documents_by_id(INTERESTING_EMAIL_IDS):
-        if other_email.file_id in already_printed_ids:
-            logger.info(f"{other_email.summary()} Skipping intersting file_id bc it was already printed")
-            continue
-
+    for other_email in extra_emails:
         console.print(other_email)
 
     epstein_files.print_email_device_info()

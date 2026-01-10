@@ -96,8 +96,7 @@ def epstein_search():
     for search_term in args.positional_args:
         temp_highlighter = build_highlighter(search_term)
         search_results = epstein_files.docs_matching(search_term, args.names)
-        console.line(2)
-        print_subtitle_panel(f"Found {len(search_results)} documents matching '{search_term}'", padding=(0, 0, 0, 3))
+        print_subtitle_panel(f"Found {len(search_results)} documents matching '{search_term}'")
 
         for search_result in search_results:
             console.line()

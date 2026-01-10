@@ -889,9 +889,9 @@ def test_email_recipient_counts(epstein_files):
 
 
 def test_info_sentences(epstein_files):
-    email = epstein_files.get_documents_by_id('026290')[0]
+    email = epstein_files.for_ids('026290')[0]
     assert len(email.info()) == 1
-    email_with_description = epstein_files.get_documents_by_id('031278')[0]
+    email_with_description = epstein_files.for_ids('031278')[0]
     assert len(email_with_description.info()) == 2
 
 
