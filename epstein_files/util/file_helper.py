@@ -33,6 +33,9 @@ def coerce_file_stem(filename_or_id: int | str) -> str:
 
 
 def extract_file_id(filename_or_id: int | str | Path) -> str:
+    if isinstance(filename_or_id, str):
+        filename_or_id = filename_or_id.removesuffix(',')
+
     if isinstance(filename_or_id, int) or (isinstance(filename_or_id, str) and len(filename_or_id) <= 6):
         return id_str(filename_or_id)
 
