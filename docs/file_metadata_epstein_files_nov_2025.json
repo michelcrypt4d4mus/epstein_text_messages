@@ -8244,11 +8244,11 @@
                 "bytes": 12610,
                 "file_id": "026829",
                 "filename": "HOUSE_OVERSIGHT_026829.txt",
-                "num_lines": 172,
+                "num_lines": 171,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
-                "subject": "Fwd: Alert: FIRPTA and REIT Reform Provisions in the New Tax Law Open Door to Increased Foreign Investment in",
+                "subject": "Fwd: Alert: FIRPTA and REIT Reform Provisions in the New Tax Law Open Door to Increased Foreign Investment in U.S. Real Property Interests",
                 "timestamp": "2015-12-24T00:52:15",
                 "type": "Email"
             },
@@ -11635,10 +11635,11 @@
                 "bytes": 7576,
                 "file_id": "029545",
                 "filename": "HOUSE_OVERSIGHT_029545.txt",
-                "num_lines": 127,
+                "num_lines": 126,
                 "recipients": [
                     "Christina Galbraith",
-                    "Jeffrey Epstein"
+                    "Jeffrey Epstein",
+                    "Richard Kahn"
                 ],
                 "subject": "Re: boosting strategy",
                 "timestamp": "2014-02-08T01:32:58",
@@ -12300,10 +12301,12 @@
                 ],
                 "file_id": "029841",
                 "filename": "HOUSE_OVERSIGHT_029841.txt",
-                "num_lines": 289,
+                "num_lines": 288,
                 "recipients": [
-                    "Jeffrey Epstein"
+                    "Jeffrey Epstein",
+                    "Lesley Groff"
                 ],
+                "subject": "RE: Events this week",
                 "timestamp": "2011-06-14T16:54:35",
                 "type": "Email"
             },
@@ -30087,11 +30090,11 @@
                 "bytes": 570,
                 "file_id": "033299",
                 "filename": "HOUSE_OVERSIGHT_033299.txt",
-                "num_lines": 16,
+                "num_lines": 15,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
-                "subject": "www.washingtonpost.com: In new poll, support for Trump has plunged, giving Clinton a double-digit lead - The",
+                "subject": "www.washingtonpost.com: In new poll, support for Trump has plunged, giving Clinton a double-digit lead - The Washington Post",
                 "timestamp": "2016-06-26T21:55:27",
                 "type": "Email"
             },
@@ -39146,7 +39149,7 @@
         "Andres Serrano": "entertainer, 'Piss Christ' artist",
         "Andrzej Duda or entourage": "Europe, former president of Poland",
         "Anil Ambani": "India, chairman of Reliance Group",
-        "Ann Marie Villafana": "law enforcement, Southern District of Florida (SDFL) U.S. Attorney",
+        "Ann Marie Villafana": "government, Southern District of Florida (SDFL) U.S. Attorney",
         "Anthony Scaramucci": "bitcoin, Skybridge Capital, FTX investor",
         "Arda Beskardes": "Epstein lawyer, NYC immigration attorney allegedly involved in sex-trafficking operations",
         "Ariane de Rothschild": "Rothschild, heiress",
@@ -39168,7 +39171,7 @@
         "Dangene and Jennie Enterprise": "friend, founders of the members-only CORE club",
         "Daniel Kahneman": "academia, Nobel economic sciences laureate and cognitivie psychologist (?)",
         "Daniel Sabba": "finance, UBS Investment Bank",
-        "Danny Frost": "law enforcement, Director of Communications at Manhattan D.A.",
+        "Danny Frost": "government, Director of Communications at Manhattan D.A.",
         "Darren Indyke": "Epstein lawyer, Epstein estate executor",
         "Dasha Zhukova": "Russia, art collector, daughter of Alexander Zhukov",
         "David Blaine": "entertainer, famous magician",
@@ -39208,6 +39211,7 @@
         "Jack Scarola": "victim lawyer, Searcy Denney Scarola Barnhart & Shipley",
         "Jackie Perczek": "Epstein lawyer, criminal defense attorney on 2008 case",
         "James Hill": "journalist, ABC News",
+        "Janusz Banasiak": "employee, Epstein's house manager",
         "Jay Lefkowitz": "Epstein lawyer, Kirkland & Ellis partner, criminal defense attorney on 2008 case",
         "Jean Huguen": "employee, interior design at Alberto Pinto Cabinet",
         "Jean Luc Brunel": "modeling, MC2 Model Management founder, died by suicide in French jail",
