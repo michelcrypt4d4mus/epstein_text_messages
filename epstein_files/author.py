@@ -62,8 +62,13 @@ class Author:
                 return category
 
     def category_txt(self) -> Text | None:
-        if self.category():
+        if self.name is None:
+            return None
+        elif self.category():
             return styled_category(self.category())
+        elif not self.style() and '@' not in self.name and not self.info_str():
+            return Text(QUESTION_MARKS)
+            return QUESTION_MARKS_TXT
 
     def email_conversation_length_in_days(self) -> int:
         return days_between(self.emails[0].timestamp, self.emails[-1].timestamp)

@@ -265,7 +265,7 @@ def _all_emailers_table(epstein_files: EpsteinFiles) -> Table:
     return counts_table
 
 
-def _table_of_selected_emailers(_list: list[Author]) -> Table:
+def _table_of_selected_emailers(authors: list[Author]) -> Table:
     """Add the first emailed_at timestamp for each emailer if 'epstein_files' provided."""
     header_pfx = '' if args.all_emails else 'Selected '
     table = build_table(f'{header_pfx}Email Conversations Grouped by Counterparty Will Appear in this Order')
@@ -278,7 +278,7 @@ def _table_of_selected_emailers(_list: list[Author]) -> Table:
     current_year_month = current_year * 12
     grey_idx = 0
 
-    for i, author in enumerate(_list):
+    for i, author in enumerate(authors):
         earliest_email_date = author.earliest_email_date()
         year_months = (earliest_email_date.year * 12) + earliest_email_date.month
 
