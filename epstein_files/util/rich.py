@@ -1,10 +1,11 @@
 # Rich reference: https://rich.readthedocs.io/en/latest/reference.html
 import json
+from copy import deepcopy
 from os import devnull
 from pathlib import Path
 
 from rich.align import Align
-from rich.console import Console, RenderableType
+from rich.console import Console, Group, RenderableType
 from rich.markup import escape
 from rich.panel import Panel
 from rich.padding import Padding
@@ -14,23 +15,23 @@ from rich.theme import Theme
 
 from epstein_files.util.constant.html import CONSOLE_HTML_FORMAT, HTML_TERMINAL_THEME, PAGE_TITLE
 from epstein_files.util.constant.names import UNKNOWN
-from epstein_files.util.constant.strings import DEFAULT, EMAIL, NA, QUESTION_MARKS, TEXT_MESSAGE
+from epstein_files.util.constant.strings import DEFAULT, EMAIL, NA, TEXT_MESSAGE
 from epstein_files.util.constant.urls import *
-from epstein_files.util.constants import FALLBACK_TIMESTAMP, HEADER_ABBREVIATIONS
-from epstein_files.util.data import json_safe
+from epstein_files.util.constants import HEADER_ABBREVIATIONS
+from epstein_files.util.data import json_safe, without_falsey
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
-from epstein_files.util.highlighted_group import (ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES, EpsteinHighlighter,
-     get_category_txt_for_name, get_info_for_name, get_style_for_name)
+from epstein_files.util.highlighted_group import ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES, EpsteinHighlighter
 from epstein_files.util.logging import logger
 
 TITLE_WIDTH = 50
+SUBTITLE_WIDTH = 110
 MIN_AUTHOR_PANEL_WIDTH = 80
 NUM_COLOR_KEY_COLS = 4
 NA_TXT = Text(NA, style='dim')
+SUBTITLE_PADDING = (2, 0, 1, 0)
 GREY_NUMBERS = [58, 39, 39, 35, 30, 27, 23, 23, 19, 19, 15, 15, 15]
 
-DEFAULT_NAME_STYLE = 'gray46'
 INFO_STYLE = 'white dim italic'
 KEY_STYLE = 'honeydew2 bold'
 LAST_TIMESTAMP_STYLE = 'wheat4'
@@ -89,17 +90,14 @@ def add_cols_to_table(table: Table, col_names: list[str | dict]) -> None:
 
         if isinstance(col, dict):
             col_name = col['name']
-            kwargs = col
+            kwargs = deepcopy(col)
+            kwargs['justify'] = kwargs.get('justify', justify)
             del kwargs['name']
-
-            if 'justify' in col:
-                justify = col['justify']
-                del col['justify']
         else:
             col_name = col
-            kwargs = {}
+            kwargs = {'justify': justify}
 
-        table.add_column(col_name, justify=justify, **kwargs)
+        table.add_column(col_name, **kwargs)
 
 
 def build_highlighter(pattern: str) -> EpsteinHighlighter:
@@ -151,17 +149,17 @@ def parenthesize(msg: str | Text, style: str = '') -> Text:
     return Text('(', style=style).append(txt).append(')')
 
 
-def print_author_panel(msg: str, color: str | None, footer: str | None = None) -> None:
+def print_author_panel(msg: str, footer: str | None, style: str | None) -> None:
     """Print a panel with the name of an emailer and a few tidbits of information about them."""
-    color = 'white' if (not color or color == DEFAULT) else color
-    width = max(MIN_AUTHOR_PANEL_WIDTH, len(msg) + 4)
-    panel = Panel(Text(msg, justify='center'), width=width, style=f"black on {color} bold")
-    console.print('\n', Align.center(panel))
+    style = 'white' if (not style or style == DEFAULT) else style
+    panel_style = f"black on {style} bold"
+    width = max(MIN_AUTHOR_PANEL_WIDTH, len(msg) + 4, len(footer or '') + 8)
+    elements: list[RenderableType] = [Panel(Text(msg, justify='center'), width=width, style=panel_style)]
 
     if footer:
-        console.print(Align.center(f"({footer})"), highlight=False, style=f'{color} italic')
+        elements.append(Text(f"({footer})", justify='center', style=f"{style} italic"))
 
-    console.line()
+    print_centered(Padding(Group(*elements), (2, 0, 1, 0)))
 
 
 def print_centered(obj: RenderableType, style: str = '') -> None:
@@ -188,7 +186,8 @@ def print_color_key() -> None:
     print_centered(vertically_pad(color_table))
 
 
-def print_title_page_header(epstein_files: 'EpsteinFiles') -> None:
+def print_title_page_header() -> None:
+    """Top half of the title page."""
     print_page_title(width=TITLE_WIDTH)
     site_type = EMAIL if (args.all_emails or args.email_timeline) else TEXT_MESSAGE
     title = f"This is the " + ('chronological ' if args.email_timeline else '') + f"Epstein {site_type.title()}s Page"
@@ -209,6 +208,7 @@ def print_title_page_header(epstein_files: 'EpsteinFiles') -> None:
 
 
 def print_title_page_tables(epstein_files: 'EpsteinFiles') -> None:
+    """Bottom half of the title page."""
     _print_external_links()
     console.line()
     _print_abbreviations_table()
@@ -246,7 +246,7 @@ def print_other_page_link(epstein_files: 'EpsteinFiles') -> None:
     print_centered(parenthesize(txt), style=OTHER_PAGE_MSG_STYLE)
     chrono_emails_markup = link_text_obj(CHRONOLOGICAL_EMAILS_URL, 'a page', style='light_slate_grey bold')
     chrono_emails_txt = Text(f"there's also ").append(chrono_emails_markup)
-    chrono_emails_txt.append(' with a table of all the emails in chronological order')
+    chrono_emails_txt.append(' with all the emails in chronological order')
     print_centered(parenthesize(chrono_emails_txt), style=OTHER_PAGE_MSG_STYLE)
 
 
@@ -259,16 +259,9 @@ def print_page_title(expand: bool = True, width: int | None = None) -> None:
     console.line(2)
 
 
-def print_subtitle_panel(msg: str, style: str = 'black on white', padding: tuple | None = None, centered: bool = False) -> None:
-    _padding: list[int] = list(padding or [0, 0, 0, 0])
-    _padding[2] += 1  # Bottom pad
-    actual_padding: tuple[int, int, int, int] = tuple(_padding)
-    panel = Panel(Text.from_markup(msg, justify='center'), width=70, style=style)
-
-    if centered:
-        console.print(Align.center(Padding(panel, actual_padding)))
-    else:
-        console.print(Padding(panel, actual_padding))
+def print_subtitle_panel(msg: str, style: str = 'black on white') -> None:
+    panel = Panel(Text.from_markup(msg, justify='center'), width=SUBTITLE_WIDTH, style=style)
+    print_centered(Padding(panel, SUBTITLE_PADDING))
 
 
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:

@@ -127,6 +127,15 @@ EMAIL_SIGNATURE_REGEXES = {
     UNKNOWN: re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL),
 }
 
+EMAIL_TABLE_COLS = [
+    {'name': 'ID', 'style': 'dim'},
+    {'name': 'Sent At', 'style': TIMESTAMP_DIM},
+    {'name': 'From', 'justify': 'left', 'max_width': 20},
+    {'name': 'To', 'justify': 'left', 'max_width': 22},
+    {'name': 'Length', 'style': 'wheat4'},
+    {'name': 'Subject', 'justify': 'left', 'min_width': 35, 'style': 'honeydew2'},
+]
+
 MAILING_LISTS = [
     CAROLYN_RANGEL,
     INTELLIGENCE_SQUARED,
@@ -289,14 +298,6 @@ USELESS_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + KRASSNER_RECIP
     'p.peachev@independent.co.uk',
 ]
 
-# Emails sent by epstein to himself that are just notes
-SELF_EMAILS_FILE_IDS = [
-    '026677',
-    '029752',   # TODO: jokeland...
-    '030238',
-    # '033274',  # TODO: Epstein's note to self doesn't get printed if we don't set the recipients to [None]
-]
-
 METADATA_FIELDS = [
     'is_junk_mail',
     'recipients',
@@ -385,25 +386,21 @@ class Email(Communication):
 
         super().__post_init__()
 
-        try:
-            if self.config and self.config.recipients:
-                self.recipients = self.config.recipients
-            else:
-                for recipient in self.header.recipients():
-                    self.recipients.extend(self._extract_emailer_names(recipient))
+        if self.config and self.config.recipients:
+            self.recipients = self.config.recipients
+        else:
+            for recipient in self.header.recipients():
+                self.recipients.extend(self._extract_emailer_names(recipient))
 
-                if self.author in MAILING_LISTS and (len(self.recipients) == 0 or self.recipients == [self.author]):
-                    self.recipients = [JEFFREY_EPSTEIN]   # Assume mailing list emails are to Epstein
-        except Exception as e:
-            console.print_exception()
-            console.line(2)
-            logger.fatal(f"Failed on {self.file_id}")
-            console.line(2)
-            raise e
+            # Assume mailing list emails are to Epstein
+            if self.author in MAILING_LISTS and (self.is_note_to_self() or not self.recipients):
+                self.recipients = [JEFFREY_EPSTEIN]
 
-        # Remove self CCs
-        recipients = [r for r in self.recipients if r != self.author or self.file_id in SELF_EMAILS_FILE_IDS]
-        self.recipients = list(set(recipients))
+        # Remove self CCs but preserve self emails
+        if not self.is_note_to_self():
+            self.recipients = [r for r in self.recipients if r != self.author]
+
+        self.recipients = list(set(sorted(self.recipients, key=lambda r: r or UNKNOWN)))
         self.text = self._prettify_text()
         self.actual_text = self._actual_text()
         self.sent_from_device = self._sent_from_device()
@@ -421,6 +418,9 @@ class Email(Communication):
 
     def is_junk_mail(self) -> bool:
         return self.author in JUNK_EMAILERS or self.author in MAILING_LISTS
+
+    def is_note_to_self(self) -> bool:
+        return self.recipients == [self.author]
 
     def metadata(self) -> Metadata:
         local_metadata = asdict(self)
@@ -492,11 +492,8 @@ class Email(Communication):
 
     def _border_style(self) -> str:
         """Color emails from epstein to others with the color for the first recipient."""
-        if self.author == JEFFREY_EPSTEIN:
-            if len(self.recipients) == 0 or self.recipients == [None]:
-                style = self.author_style()
-            else:
-                style = get_style_for_name(self.recipients[0])
+        if self.author == JEFFREY_EPSTEIN and len(self.recipients) > 0:
+            style = get_style_for_name(self.recipients[0])
         else:
             style = self.author_style()
 
@@ -833,26 +830,38 @@ class Email(Communication):
             self.log_top_lines(self.header.num_header_rows + 4, f'Original header:')
 
     @staticmethod
-    def build_emails_table(emails: list['Email'], _author: str | None, include_title: bool = False) -> Table:
-        """Turn a set of Emails to/from a given _author into a Table."""
-        author = _author or UNKNOWN
+    def build_emails_table(emails: list['Email'], author: str | None = '', title: str = '', include_id: bool = False) -> Table:
+        """Turn a set of Emails into a Table."""
+        if title and author:
+            raise ValueError(f"Can't provide both 'author' and 'title' args")
+        elif author == '' and title == '':
+            raise ValueError(f"Must provide either 'author' or 'title' arg")
 
-        table = Table(
-            title=f"Emails to/from {author} starting {emails[0].timestamp.date()}" if include_title else None,
-            border_style=get_style_for_name(author, allow_bold=False),
-            header_style="bold"
+        author_style = get_style_for_name(author, allow_bold=False)
+
+        table = build_table(
+            title or None,
+            cols=[col for col in EMAIL_TABLE_COLS if include_id or col['name'] not in ['ID', 'Length']],
+            border_style=DEFAULT_TABLE_KWARGS['border_style'] if title else author_style,
+            header_style="bold",
+            highlight=True,
         )
 
-        table.add_column('From', justify='left')
-        table.add_column('Timestamp', justify='center')
-        table.add_column('Subject', justify='left', style='honeydew2', min_width=70)
-
         for email in emails:
-            table.add_row(
+            fields = [
+                email.epstein_media_link(link_txt=email.source_file_id()),
+                email.timestamp_without_seconds(),
                 email.author_txt(),
-                email.epstein_media_link(link_txt=email.timestamp_without_seconds()),
-                highlighter(email.subject())
-            )
+                email.recipients_txt(max_full_names=1),
+                f"{email.length()}",
+                email.subject(),
+            ]
+
+            if not include_id:
+                fields = fields[1:4] + [fields[5]]
+                fields[0] = email.epstein_media_link(link_txt=fields[0], style=author_style)
+
+            table.add_row(*fields)
 
         return table
 

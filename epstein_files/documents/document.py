@@ -88,6 +88,9 @@ class Document:
     strip_whitespace: ClassVar[bool] = True  # Overridden in JsonFile
 
     def __post_init__(self):
+        if not self.file_path.exists():
+            raise FileNotFoundError(f"File '{self.file_path.name}' does not exist!")
+
         self.filename = self.file_path.name
         self.file_id = extract_file_id(self.filename)
         # config and url_slug could have been pre-set in Email

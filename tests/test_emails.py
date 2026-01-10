@@ -2,7 +2,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.data import dict_sets_to_lists
 
 EMAIL_AUTHOR_COUNTS = {
-    None: 68,
+    None: 64,
     "Abi Schwinck": 1,
     AL_SECKEL: 7,
     "Alain Forget": 3,
@@ -11,7 +11,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Alex Yablon": 1,
     ALIREZA_ITTIHADIEH: 8,
     AMANDA_ENS: 8,
-    ANAS_ALRASHEED: 39,
+    ANAS_ALRASHEED: 43,
     ANDRES_SERRANO: 3,
     ANIL_AMBANI: 1,
     "Ann Marie Villafana": 1,
@@ -206,7 +206,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 46,
+    None: 33,
     "ACT for America": 1,
     "Alan Dershowitz": 11,
     'Alan Dlugash': 1,
@@ -291,7 +291,7 @@ EMAIL_RECIPIENT_COUNTS = {
     JEAN_HUGUEN: 1,
     JEAN_LUC_BRUNEL: 9,
     JEFF_FULLER: 2,
-    JEFFREY_EPSTEIN: 1463,
+    JEFFREY_EPSTEIN: 1476,
     JES_STALEY: 7,
     JESSICA_CADWELL: 3,
     "Joel": 3,
@@ -447,28 +447,20 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     "016692",
     "016693",
     '018726',
-    "019871",
     "022247",
     "022936",
     "022938",
-    "023054",
     "023062",
-    "023627",
     "024930",
-    "026631",
-    "026632",
     "026659",
-    "026755",
     '026943',
     "028757",
     "028760",
     "029206",
-    "029622",
     "029962",
     "029982",
     "030095",
     "030211",
-    "030245",
     "030768",
     "030823",
     "030992",
@@ -477,18 +469,13 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     "031039",
     "031040",
     "031688",
-    "031747",
     "031826",
     "031830",
     "032213",
     "032283",
     "033025",
     "033027",
-    "033205",
-    "033242",
-    '033274',
     "033345",
-    "033428",
 ]
 
 DEVICE_SIGNATURE_TO_AUTHORS = {
@@ -902,9 +889,9 @@ def test_email_recipient_counts(epstein_files):
 
 
 def test_info_sentences(epstein_files):
-    email = epstein_files.get_documents_by_id('026290')[0]
+    email = epstein_files.for_ids('026290')[0]
     assert len(email.info()) == 1
-    email_with_description = epstein_files.get_documents_by_id('031278')[0]
+    email_with_description = epstein_files.for_ids('031278')[0]
     assert len(email_with_description.info()) == 2
 
 

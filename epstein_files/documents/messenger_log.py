@@ -14,7 +14,7 @@ from epstein_files.util.constant.names import JEFFREY_EPSTEIN, UNKNOWN
 from epstein_files.util.constant.strings import AUTHOR, TIMESTAMP_STYLE
 from epstein_files.util.data import days_between, days_between_str, iso_timestamp, sort_dict
 from epstein_files.util.doc_cfg import Metadata, TextCfg
-from epstein_files.util.highlighted_group import get_style_for_name
+from epstein_files.util.highlighted_group import get_style_for_name, styled_name
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import LAST_TIMESTAMP_STYLE, build_table, highlighter
 
@@ -160,7 +160,7 @@ class MessengerLog(Communication):
             last_at = logs[-1].first_message_at(name)
 
             counts_table.add_row(
-                Text(name or UNKNOWN, get_style_for_name(name)),
+                styled_name(name),
                 str(len(logs)),
                 f"{count:,}",
                 iso_timestamp(first_at),
