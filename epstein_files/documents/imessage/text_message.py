@@ -4,9 +4,9 @@ from datetime import datetime
 
 from rich.text import Text
 
-from epstein_files.util.constant.names import JEFFREY_EPSTEIN, STEVE_BANNON, UNKNOWN
+from epstein_files.util.constant.names import JEFFREY_EPSTEIN, STEVE_BANNON, UNKNOWN, extract_last_name
 from epstein_files.util.constant.strings import TIMESTAMP_DIM
-from epstein_files.util.data import extract_last_name, iso_timestamp
+from epstein_files.util.data import iso_timestamp
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import TEXT_LINK, highlighter

@@ -217,7 +217,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     faith fred friendly frost fuller
     gerald george gold
     harry hay heather henry hill hoffman
-    ian
+    ian ivan
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr
     kahn karl kate katherine kelly ken kevin
     larry laurie lawrence leon lesley linda link lisa
@@ -272,3 +272,22 @@ def constantize_name(name: str) -> str:
         return f"'{name}'"
     else:
         return variable_name
+
+
+def extract_first_name(name: str) -> str:
+    if ' ' not in name:
+        return name
+
+    return name.removesuffix(f" {extract_last_name(name)}")
+
+
+def extract_last_name(name: str) -> str:
+    if ' ' not in name:
+        return name
+
+    first_last_names = remove_question_marks(name).strip().split()
+
+    if first_last_names[-1].startswith('Jr') and len(first_last_names[-1]) <= 3:
+        return ' '.join(first_last_names[-2:])
+    else:
+        return first_last_names[-1]
