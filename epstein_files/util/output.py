@@ -248,7 +248,7 @@ def _all_emailers_table(epstein_files: EpsteinFiles) -> Table:
 
     emailer_counts = {
         emailer: epstein_files.email_author_counts[emailer] + epstein_files.email_recipient_counts[emailer]
-        for emailer in epstein_files.all_emailers(True)
+        for emailer in epstein_files.all_emailers(include_useless=True)
     }
 
     for name, count in sort_dict(emailer_counts):
