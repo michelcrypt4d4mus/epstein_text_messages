@@ -309,8 +309,9 @@ IRAN_DEAL_RECIPIENTS = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Go
 FLIGHT_IN_2012_PEOPLE = ['Francis Derby', 'Januiz Banasiak', 'Louella Rabuyo', 'Richard Barnnet']
 
 EMAILS_CONFIG = [
-    # 026294 and 026294 might also be Ittihadieh based on timing
+    # 026294 and 026296 might also be Ittihadieh based on timing
     EmailCfg(id='032436', author=ALIREZA_ITTIHADIEH, attribution_reason='Signature'),
+    # 032542 026078 026080 026083 026086 026090 might also be Anas based on discussion of Dubai and Kuwait
     EmailCfg(id='032543', author=ANAS_ALRASHEED, attribution_reason='Later reply 033000 has quote'),
     EmailCfg(id='026167', author=ANAS_ALRASHEED, attribution_reason='name visible in 033022 reply'),
     EmailCfg(id='032571', author=ANAS_ALRASHEED, attribution_reason='name visible in 033022 reply'),
@@ -340,6 +341,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='026188', author=ANAS_ALRASHEED, attribution_reason='name visible in 026180 reply'),
     EmailCfg(id='026193', author=ANAS_ALRASHEED, attribution_reason='name visible in 026180 reply'),
     EmailCfg(id='026198', author=ANAS_ALRASHEED, attribution_reason='name visible in 026180 reply'),
+    EmailCfg(id='026210', author=ANAS_ALRASHEED, attribution_reason='name visible in 026180 reply'),
     EmailCfg(id='026204', author=ANAS_ALRASHEED, attribution_reason='name visible in 026180 reply'),
     EmailCfg(id='032660', author=ANAS_ALRASHEED, attribution_reason='name visible in 029113 reply'),
     EmailCfg(id='032663', author=ANAS_ALRASHEED, attribution_reason='name visible in 029113 reply'),
@@ -483,6 +485,16 @@ EMAILS_CONFIG = [
     EmailCfg(id='026609', author='Mark Green', attribution_reason='Actually a fwd, Mark Green is in signature'),
     EmailCfg(id='030472', author=MARTIN_WEINBERG, attribution_reason='Maybe. in reply', is_attribution_uncertain=True),
     EmailCfg(id='032563', author=MASHA_DROKOVA, attribution_reason='replied to in 033014'),
+    EmailCfg(id='032564', author=MASHA_DROKOVA, attribution_reason='follow up to 032563 about huffpo article with link'),
+    EmailCfg(id='031544', author=MASHA_DROKOVA, attribution_reason='follow up to 032563 about huffpo article with link'),
+    EmailCfg(id='032605', author=MASHA_DROKOVA, attribution_reason="re: PR interview, 031544 says she'll be in NY at that time"),
+    EmailCfg(id='032606', author=MASHA_DROKOVA, attribution_reason="re: PR interview, 031544 says she'll be in NY at that time"),
+    EmailCfg(id='032607', author=MASHA_DROKOVA, attribution_reason="re: PR interview, 031544 says she'll be in NY at that time"),
+    EmailCfg(id='032609', author=MASHA_DROKOVA, attribution_reason="re: PR interview, 031544 says she'll be in NY at that time"),
+    # 032581, 032604, 033025 may also be Masha based on timing, subject (interviews/articles), and sequential ID
+    EmailCfg(id='032604', author=MASHA_DROKOVA, attribution_reason="timing, subject (interviews/articles), and sequential ID", is_attribution_uncertain=True),
+    EmailCfg(id='032581', author=MASHA_DROKOVA, attribution_reason="timing, subject (interviews/articles), and sequential ID", is_attribution_uncertain=True),
+    EmailCfg(id='033025', author=MASHA_DROKOVA, attribution_reason="timing, subject (interviews/articles), and sequential ID", is_attribution_uncertain=True),
     EmailCfg(id='030235', author=MELANIE_WALKER, attribution_reason='In fwd'),
     EmailCfg(id='032343', author=MELANIE_WALKER, attribution_reason='Name seen in later reply 032346'),
     EmailCfg(id='032212', author=MIROSLAV_LAJCAK, attribution_reason='signature'),
@@ -607,6 +619,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='033466', recipients=[LAWRANCE_VISOSKI], attribution_reason='Reply signature'),
     EmailCfg(id='022250', recipients=[LESLEY_GROFF], attribution_reason='Reply'),
     EmailCfg(id='030242', recipients=[MARIANA_IDZKOWSKA], duplicate_ids=['032048'], dupe_type='redacted'),
+    EmailCfg(id='033027', recipients=[MASHA_DROKOVA], attribution_reason="re: PR interview, 031544 says she'll be in NY at that time"),
     EmailCfg(id='030368', recipients=[MELANIE_SPINELLA], attribution_reason='Actually a self fwd from jeffrey to jeffrey'),
     EmailCfg(id='030369', recipients=[MELANIE_SPINELLA], attribution_reason='Actually a self fwd from jeffrey to jeffrey'),
     EmailCfg(id='030371', recipients=[MELANIE_SPINELLA], attribution_reason='Actually a self fwd from jeffrey to jeffrey'),

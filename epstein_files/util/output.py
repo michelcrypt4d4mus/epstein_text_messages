@@ -57,6 +57,7 @@ INTERESTING_EMAIL_IDS = [
     '023454',  # Email invitation sent to tech CEOs + Epstein
     '030630',  # 'What happens with zubair's project?'
     '033178',  # 'How is it going with Zubair?'
+    '022396',  # Ukraine friend
     # '023627',  # Michael Wolff article (already printed bc epstein->epstein email)
 ]
 

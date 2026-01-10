@@ -12,13 +12,31 @@ from rich.text import Text
 from scripts.use_pickled import console, epstein_files
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import USELESS_EMAILERS
+from epstein_files.util.constant.names import *
 from epstein_files.util.constants import ALL_FILE_CONFIGS
-from epstein_files.util.data import sort_dict
-from epstein_files.util.highlighted_group import get_style_for_name
+from epstein_files.util.data import *
+from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames, get_style_for_name
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import console, highlighter, print_json
 
 
+names = []
+
+for highlight in HIGHLIGHTED_NAMES:
+    if type(highlight) != HighlightedNames:
+        continue
+    elif not highlight.should_match_first_last_name:
+        continue
+
+    for name in highlight.emailers:
+        for partial_name in [n.lower() for n in [extract_first_name(name), extract_last_name(name)]]:
+            if partial_name not in NAMES_TO_NOT_HIGHLIGHT:
+                names.append(partial_name)
+                print(f"name='{name}', partial_name='{partial_name}'")
+
+
+print('\n'.join(sorted(names)))
+sys.exit()
 max_sizes = defaultdict(int)
 counts = defaultdict(int)
 
