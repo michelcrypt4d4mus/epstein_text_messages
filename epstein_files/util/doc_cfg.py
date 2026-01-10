@@ -94,30 +94,40 @@ class DocCfg:
 
     def complete_description(self) -> str | None:
         """String that summarizes what is known about this document."""
+        description = ''
+
         if self.category and not self.description and not self.author:
             if self.category == JUNK:
                 return None
             else:
-                return self.category
+                description = self.category
         elif self.category == REPUTATION:
             author_str = f"{self.author} " if self.author else ''
-            return f"{REPUTATION_MGMT}: {author_str}{self.description}"
+            description = f"{REPUTATION_MGMT}: {author_str}{self.description}"
         elif self.category == SKYPE_LOG:
             msg = f"{self.category} of conversation with {self.author}" if self.author else self.category
-            return f"{msg} {self.description}" if self.description else msg
+            description = f"{msg} {self.description}" if self.description else msg
         elif self.author and self.description:
             if self.category in [ACADEMIA, BOOK]:
                 title = self.description if '"' in self.description else f'"{self.description}"'
-                return f"{title} by {self.author}"
+                description = f"{title} by {self.author}"
             elif self.category == FINANCE and self.author in FINANCIAL_REPORTS_AUTHORS:
-                return f'{self.author} report: "{self.description}"'
+                description = f'{self.author} report: "{self.description}"'
             elif self.category == LEGAL and 'v.' in self.author:
-                return f"{self.author}: {self.description}"
-        elif self.category and self.author is None and self.description is None:
-            return self.category
+                description = f"{self.author}: {self.description}"
 
-        pieces = without_falsey([self.author, self.description])
-        return ' '.join(pieces) if pieces else None
+        if not description:
+            pieces = without_falsey([self.author, self.description])
+
+            if pieces:
+                description = ' '.join(pieces)
+            else:
+                return None
+
+        if self.attached_to_email_id:
+            description += f" attached to email {self.attached_to_email_id}"
+
+        return description
 
     def duplicate_cfgs(self) -> Generator['DocCfg', None, None]:
         """Create synthetic DocCfg objects that set the 'duplicate_of_id' field to point back to this object."""
