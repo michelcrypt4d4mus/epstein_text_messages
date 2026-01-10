@@ -2,6 +2,7 @@ import json
 import re
 from dataclasses import dataclass, field
 
+from rich.console import Console
 from rich.highlighter import RegexHighlighter
 from rich.text import Text
 
@@ -11,7 +12,8 @@ from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
 from epstein_files.util.constants import (EMAILER_ID_REGEXES, EPSTEIN_V_ROTHSTEIN_EDWARDS,
      OSBORNE_LLP, REPLY_REGEX, SENT_FROM_REGEX, VIRGIN_ISLANDS)
 from epstein_files.util.doc_cfg import *
-from epstein_files.util.data import extract_first_name, extract_last_name, without_falsey
+from epstein_files.util.data import without_falsey
+from epstein_files.util.env import args
 from epstein_files.util.logging import logger
 
 CIVIL_ATTORNEY = 'civil attorney'
@@ -39,6 +41,8 @@ CATEGORY_STYLES = {
     JSON: 'dark_red',
     'letter': 'medium_orchid1'
 }
+
+debug_console = Console(color_system='256')
 
 
 @dataclass(kw_only=True)
@@ -136,28 +140,22 @@ class HighlightedNames(HighlightedText):
         if not self.should_match_first_last_name:
             return name
 
-        name = remove_question_marks(name)
-        first_name = extract_first_name(name)
-        last_name = extract_last_name(name)
-
         if name in EMAILER_ID_REGEXES:
-            pattern = EMAILER_ID_REGEXES[name].pattern
+            name_patterns = [EMAILER_ID_REGEXES[name].pattern]
+        else:
+            name_patterns = [remove_question_marks(name).replace(' ', r"\s+")]
 
-            # Include regex for first and last names
-            for partial_name in [first_name, last_name]:
-                if SIMPLE_NAME_REGEX.match(partial_name) and partial_name.lower() not in NAMES_TO_NOT_HIGHLIGHT:
-                    pattern += fr"|{partial_name}"
+        if ' ' in name:
+            for partial_name in [extract_first_name(name), extract_last_name(name)]:
+                if partial_name.lower() not in NAMES_TO_NOT_HIGHLIGHT and SIMPLE_NAME_REGEX.match(partial_name):
+                    name_patterns.append(partial_name.replace(' ', r"\s+"))
 
-            return pattern
-        elif ' ' not in name:
-            return name
+        pattern = '|'.join(name_patterns)
 
-        name_patterns = [
-            n.replace(' ', r"\s+") for n in [name, first_name, last_name]
-            if n.lower() not in NAMES_TO_NOT_HIGHLIGHT
-        ]
+        if args.debug:
+            debug_console.print(Text('').append(f"{name:25s}", style=self.style).append(f" '{pattern}'", style='dim'))
 
-        return '|'.join(name_patterns)
+        return pattern
 
     def __str__(self) -> str:
         return super().__str__()
@@ -658,7 +656,7 @@ HIGHLIGHTED_NAMES = [
             r"HSBC",
             r"Invesco",
             r"(Janet\s*)?Yellen",
-            r"(Jerome\s*)?Powell(?!M\. Cabot)",
+            r"(Jerome\s*)?Powell(?! M\. Cabot)",
             r"(Jimmy\s*)?Cayne",
             r"JPMC?",
             r"j\.?p\.?\s*morgan(\.?com|\s*Chase)?",
@@ -1300,8 +1298,7 @@ HIGHLIGHTED_NAMES = [
             r"(Donald\s+(J\.\s+)?)?Trump(ism|\s*(Org(anization)?|Properties)(\s*LLC)?)?",
             r"Don(ald| *Jr)(?! (B|Rubin))",
             r"Ivank?a",
-            r"Jared",
-            r"Kushner",
+            r"Jared", r"(?<!Tony )Kushner",
             r"(Madeleine\s*)?Westerhout",
             r"Mar[-\s]*a[-\s]*Lago",
             r"(Marla\s*)?Maples",

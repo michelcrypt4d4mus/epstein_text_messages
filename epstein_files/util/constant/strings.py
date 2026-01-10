@@ -76,7 +76,7 @@ MESSENGER_LOG_CLASS = 'MessengerLog'
 OTHER_FILE_CLASS = 'OtherFile'
 
 
-remove_question_marks = lambda name: QUESTION_MARKS_REGEX.sub('', name)
+remove_question_marks = lambda name: QUESTION_MARKS_REGEX.sub('', name).strip()
 
 
 def indented(s: str, spaces: int = 4) -> str:

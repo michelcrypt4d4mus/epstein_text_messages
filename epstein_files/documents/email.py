@@ -20,7 +20,7 @@ from epstein_files.documents.emails.email_header import (BAD_EMAILER_REGEX, EMAI
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constants import *
-from epstein_files.util.data import (TIMEZONE_INFO, collapse_newlines, escape_single_quotes, extract_last_name,
+from epstein_files.util.data import (TIMEZONE_INFO, collapse_newlines, escape_single_quotes,
      flatten, listify, remove_timezone, uniquify)
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.file_helper import extract_file_id, file_stem_for_id
@@ -316,6 +316,7 @@ LINE_REPAIR_MERGES = {
     '025790': 2,
     '026345': 3,
     '026609': 4,
+    '026829': 3,
     '026924': [2, 4],
     '028931': [3, 6],
     '029154': [2, 5],
