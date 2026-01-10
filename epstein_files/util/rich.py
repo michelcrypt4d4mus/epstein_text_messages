@@ -1,5 +1,6 @@
 # Rich reference: https://rich.readthedocs.io/en/latest/reference.html
 import json
+from copy import deepcopy
 from os import devnull
 from pathlib import Path
 
@@ -90,17 +91,14 @@ def add_cols_to_table(table: Table, col_names: list[str | dict]) -> None:
 
         if isinstance(col, dict):
             col_name = col['name']
-            kwargs = col
+            kwargs = deepcopy(col)
+            kwargs['justify'] = kwargs.get('justify', justify)
             del kwargs['name']
-
-            if 'justify' in col:
-                justify = col['justify']
-                del col['justify']
         else:
             col_name = col
-            kwargs = {}
+            kwargs = {'justify': justify}
 
-        table.add_column(col_name, justify=justify, **kwargs)
+        table.add_column(col_name, **kwargs)
 
 
 def build_highlighter(pattern: str) -> EpsteinHighlighter:
