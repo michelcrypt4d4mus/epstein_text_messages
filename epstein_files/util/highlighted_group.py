@@ -411,7 +411,7 @@ HIGHLIGHTED_NAMES = [
         label=DEEPAK_CHOPRA,
         style='dark_sea_green4',
         emailers={
-            CAROLYN_RANGEL: 'assistant',
+            CAROLYN_RANGEL: f"Deepak Chopra's assistant {QUESTION_MARKS}",
             DEEPAK_CHOPRA: 'woo woo',
         },
     ),
@@ -468,11 +468,11 @@ HIGHLIGHTED_NAMES = [
             GWENDOLYN_BECK: 'Epstein fund manager in the 90s',
             'Janusz Banasiak': "Epstein's house manager",
             JEAN_HUGUEN: 'interior design at Alberto Pinto Cabinet',
-            LAWRANCE_VISOSKI: 'pilot',
-            LESLEY_GROFF: 'assistant',
+            LAWRANCE_VISOSKI: "Epstein's pilot",
+            LESLEY_GROFF: f"Epstein's assistant",
             'Linda Pinto': 'interior design at Alberto Pinto Cabinet',
             MERWIN_DELA_CRUZ: None,  # HOUSE_OVERSIGHT_032652 Groff says "Jojo and Merwin both requested off Nov. 25 and 26"
-            NADIA_MARCINKO: 'pilot',
+            NADIA_MARCINKO: "Epstein's pilot",
             'Sean J. Lancaster': 'airplane reseller',
         },
         patterns=[
@@ -780,7 +780,7 @@ HIGHLIGHTED_NAMES = [
         label='Israel',
         style='dodger_blue2',
         emailers={
-            EHUD_BARAK: 'former primer minister',
+            EHUD_BARAK: 'former prime minister',
             'Mitchell Bard': 'director of the American-Israeli Cooperative Enterprise (AICE)',
             'Nili Priell Barak': 'wife of Ehud Barak',
         },
@@ -1419,12 +1419,12 @@ HIGHLIGHTED_NAMES = [
         style='color(58)',
         category=POLITICS,
         emailers={
+            SEAN_BANNON: f"{STEVE_BANNON}'s brother",
             STEVE_BANNON: "Trump campaign manager, memecoin grifter, convicted criminal",
         },
         patterns=[
             r"(American\s*)?Dharma",
             r"Biosphere",
-            r"((Steve|Sean)\s*)?Bannon?",
         ],
     ),
     HighlightedNames(
@@ -1436,7 +1436,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(emailers={GHISLAINE_MAXWELL: None}, patterns=[r"gmax(1@ellmax.com)?", r"(The )?TerraMar Project"], style='deep_pink3', category='Epstein'),
     HighlightedNames(emailers={JABOR_Y: '"an influential man in Qatar"'}, category='mideast', style='spring_green1'),
     HighlightedNames(emailers={KATHRYN_RUEMMLER: 'former Obama legal counsel'}, style='magenta2', category=FRIEND),
-    HighlightedNames(emailers={MELANIE_WALKER: 'doctor'}, style='pale_violet_red1', category=FRIEND),
+    HighlightedNames(emailers={MELANIE_WALKER: f"doctor, friend of {BILL_GATES}"}, style='pale_violet_red1', category=FRIEND),
     HighlightedNames(emailers={PAULA: "Epstein's ex-girlfriend who is now in the opera world"}, label='paula', style='pink1', category=FRIEND),
     HighlightedNames(emailers={PRINCE_ANDREW: 'British royal family'}, style='dodger_blue1', category='Europe'),
     HighlightedNames(emailers={SOON_YI_PREVIN: 'wife of Woody Allen'}, style='hot_pink', category=FRIEND),

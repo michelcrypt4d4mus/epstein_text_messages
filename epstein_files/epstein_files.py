@@ -6,7 +6,7 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
-from typing import Sequence, Type
+from typing import Sequence, Type, cast
 
 from rich.padding import Padding
 from rich.table import Table
@@ -34,6 +34,7 @@ from epstein_files.util.timer import Timer
 DEVICE_SIGNATURE_SUBTITLE = f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown"
 DEVICE_SIGNATURE = 'Device Signature'
 DEVICE_SIGNATURE_PADDING = (1, 0)
+DUPLICATE_PROPS_TO_COPY = ['author', 'recipients', 'timestamp']
 PICKLED_PATH = Path("the_epstein_files.pkl.gz")
 SLOW_FILE_SECONDS = 1.0
 
@@ -84,6 +85,7 @@ class EpsteinFiles:
         self.imessage_logs = Document.sort_by_timestamp([d for d in documents if isinstance(d, MessengerLog)])
         self.other_files = Document.sort_by_timestamp([d for d in documents if isinstance(d, (JsonFile, OtherFile))])
         self.json_files = [doc for doc in self.other_files if isinstance(doc, JsonFile)]
+        self._copy_duplicate_email_properties()
         self._tally_email_data()
 
     @classmethod
@@ -91,7 +93,7 @@ class EpsteinFiles:
         """Alternate constructor that reads/writes a pickled version of the data ('timer' arg is for logging)."""
         timer = timer or Timer()
 
-        if PICKLED_PATH.exists() and not args.overwrite_pickle:
+        if PICKLED_PATH.exists() and not args.overwrite_pickle and not args.skip_other_files:
             with gzip.open(PICKLED_PATH, 'rb') as file:
                 epstein_files = pickle.load(file)
                 epstein_files.timer = timer
@@ -252,6 +254,22 @@ class EpsteinFiles:
         print_subtitle_panel(DEVICE_SIGNATURE_SUBTITLE)
         console.print(_build_signature_table(self.email_device_signatures_to_authors, (DEVICE_SIGNATURE, AUTHOR), ', '))
         console.print(_build_signature_table(self.email_authors_to_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
+
+    def _copy_duplicate_email_properties(self) -> None:
+        """Ensure dupe emails have the properties of the emails they duplicate to capture any repairs, config etc."""
+        for email in self.emails:
+            if not email.is_duplicate():
+                continue
+
+            original = cast(Email, self.for_ids(email.duplicate_of_id())[0])
+
+            for field_name in DUPLICATE_PROPS_TO_COPY:
+                original_prop = getattr(original, field_name)
+                duplicate_prop = getattr(email, field_name)
+
+                if original_prop != duplicate_prop:
+                    logger.warning(f"Replacing '{email.file_id}' {field_name} {duplicate_prop} with '{original_prop}' from duplicated '{original.file_id}'")
+                    setattr(email, field_name, original_prop)
 
     def _tally_email_data(self) -> None:
         """Tally up summary info about Email objects."""
