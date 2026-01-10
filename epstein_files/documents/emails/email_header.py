@@ -8,7 +8,7 @@ from epstein_files.util.doc_cfg import EmailCfg
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import UNKNOWN
 
-FIELD_NAMES = ['From', 'Date', 'Sent', 'Subject']
+FIELD_NAMES = ['Date', 'From', 'Sent', 'Subject']
 NON_HEADER_FIELDS = ['field_names', 'num_header_rows', 'was_initially_empty']
 ON_BEHALF_OF = 'on behalf of'
 TO_FIELDS = ['bcc', 'cc', 'to']
