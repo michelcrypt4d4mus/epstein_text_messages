@@ -80,26 +80,26 @@ def print_email_timeline(epstein_files: EpsteinFiles) -> None:
 def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     """Returns emails that were printed (may contain dupes if printed for both author and recipient)."""
     print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
-    authors_to_print: list[Author]
-    already_printed_emails: list[Email] = []
+    authors: list[Author]
+    printed_emails: list[Email] = []
     num_emails_printed_since_last_color_key = 0
 
     if args.names:
-        authors_to_print = epstein_files.author_objs(args.names)
+        authors = epstein_files.author_objs(args.names)
     else:
         if args.all_emails:
-            authors_to_print = sorted(epstein_files.all_emailers(), key=lambda author: author.earliest_email_at())
+            authors = sorted(epstein_files.all_emailers(), key=lambda author: author.earliest_email_at())
         else:
-            authors_to_print = epstein_files.author_objs(DEFAULT_EMAILERS)
+            authors = epstein_files.author_objs(DEFAULT_EMAILERS)
 
         print_other_page_link(epstein_files)
         console.line(2)
-        print_centered(Author.author_info_table(authors_to_print))
+        print_centered(Author.author_info_table(authors))
         print_centered(Padding(_all_emailers_table(epstein_files), (2, 0)))
 
-    for author in authors_to_print:
+    for author in authors:
         printed_emails = author.print_emails()
-        already_printed_emails.extend(printed_emails)
+        printed_emails.extend(printed_emails)
         num_emails_printed_since_last_color_key += len(printed_emails)
 
         # Print color key every once in a while
@@ -108,11 +108,11 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
             num_emails_printed_since_last_color_key = 0
 
     if args.names:
-        return already_printed_emails
+        return printed_emails
 
     # Print other interesting emails
-    already_printed_ids = [email.file_id for email in already_printed_emails]
-    extra_emails = [e for e in epstein_files.for_ids(INTERESTING_EMAIL_IDS) if e.file_id not in already_printed_ids]
+    printed_email_ids = [email.file_id for email in printed_emails]
+    extra_emails = [e for e in epstein_files.for_ids(INTERESTING_EMAIL_IDS) if e.file_id not in printed_email_ids]
     print_subtitle_panel(OTHER_INTERESTING_EMAILS_SUBTITLE)
     console.line()
 
@@ -122,12 +122,12 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     epstein_files.print_email_device_info()
 
     if args.all_emails:
-        _verify_all_emails_were_printed(epstein_files, already_printed_emails)
+        _verify_all_emails_were_printed(epstein_files, printed_emails)
 
-    fwded_articles = [e for e in already_printed_emails if e.config and e.is_fwded_article()]
-    log_msg = f"Rewrote {len(Email.rewritten_header_ids)} of {len(already_printed_emails)} email headers"
+    fwded_articles = [e for e in printed_emails if e.config and e.is_fwded_article()]
+    log_msg = f"Rewrote {len(Email.rewritten_header_ids)} of {len(printed_emails)} email headers"
     logger.warning(f"{log_msg}, {len(fwded_articles)} of the emails were forwarded articles.")
-    return already_printed_emails
+    return printed_emails
 
 
 def print_json_files(epstein_files: EpsteinFiles):
