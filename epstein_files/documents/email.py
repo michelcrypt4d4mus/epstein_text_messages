@@ -132,7 +132,7 @@ EMAIL_TABLE_COLS = [
     {'name': 'Sent At', 'style': TIMESTAMP_DIM},
     {'name': 'From', 'justify': 'left', 'max_width': 20},
     {'name': 'To', 'justify': 'left', 'max_width': 22},
-    {'name': 'Length', 'style': 'wheat4'},
+    {'name': 'Length', 'justify': 'right', 'style': 'wheat4'},
     {'name': 'Subject', 'justify': 'left', 'min_width': 35, 'style': 'honeydew2'},
 ]
 
@@ -441,7 +441,10 @@ class Email(Communication):
         ], join=', ')
 
     def subject(self) -> str:
-        return self.header.subject or ''
+        if self.config and self.config.subject:
+            return self.config.subject
+        else:
+            return self.header.subject or ''
 
     def summary(self) -> Text:
         """One line summary mostly for logging."""
