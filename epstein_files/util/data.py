@@ -38,25 +38,6 @@ def dict_sets_to_lists(d: dict[str, set]) -> dict[str, list]:
     return {k: sorted(list(v)) for k, v in d.items()}
 
 
-def extract_last_name(name: str) -> str:
-    if ' ' not in name:
-        return name
-
-    names = name.removesuffix(QUESTION_MARKS).strip().split()
-
-    if names[-1].startswith('Jr') and len(names[-1]) <= 3:
-        return ' '.join(names[-2:])
-    else:
-        return names[-1]
-
-
-def extract_first_name(name: str) -> str:
-    if ' ' not in name:
-        return name
-
-    return name.removesuffix(f" {extract_last_name(name)}")
-
-
 def flatten(_list: list[list[T]]) -> list[T]:
     return list(itertools.chain.from_iterable(_list))
 

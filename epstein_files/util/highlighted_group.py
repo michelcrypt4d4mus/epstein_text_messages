@@ -2,6 +2,7 @@ import json
 import re
 from dataclasses import dataclass, field
 
+from rich.console import Console
 from rich.highlighter import RegexHighlighter
 from rich.text import Text
 
@@ -11,7 +12,8 @@ from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
 from epstein_files.util.constants import (EMAILER_ID_REGEXES, EPSTEIN_V_ROTHSTEIN_EDWARDS,
      OSBORNE_LLP, REPLY_REGEX, SENT_FROM_REGEX, VIRGIN_ISLANDS)
 from epstein_files.util.doc_cfg import *
-from epstein_files.util.data import extract_first_name, extract_last_name, without_falsey
+from epstein_files.util.data import without_falsey
+from epstein_files.util.env import args
 from epstein_files.util.logging import logger
 
 CIVIL_ATTORNEY = 'civil attorney'
@@ -39,6 +41,8 @@ CATEGORY_STYLES = {
     JSON: 'dark_red',
     'letter': 'medium_orchid1'
 }
+
+debug_console = Console(color_system='256')
 
 
 @dataclass(kw_only=True)
@@ -136,28 +140,22 @@ class HighlightedNames(HighlightedText):
         if not self.should_match_first_last_name:
             return name
 
-        name = remove_question_marks(name)
-        first_name = extract_first_name(name)
-        last_name = extract_last_name(name)
-
         if name in EMAILER_ID_REGEXES:
-            pattern = EMAILER_ID_REGEXES[name].pattern
+            name_patterns = [EMAILER_ID_REGEXES[name].pattern]
+        else:
+            name_patterns = [remove_question_marks(name).replace(' ', r"\s+")]
 
-            # Include regex for first and last names
-            for partial_name in [first_name, last_name]:
-                if SIMPLE_NAME_REGEX.match(partial_name) and partial_name.lower() not in NAMES_TO_NOT_HIGHLIGHT:
-                    pattern += fr"|{partial_name}"
+        if ' ' in name:
+            for partial_name in [extract_first_name(name), extract_last_name(name)]:
+                if partial_name.lower() not in NAMES_TO_NOT_HIGHLIGHT and SIMPLE_NAME_REGEX.match(partial_name):
+                    name_patterns.append(partial_name.replace(' ', r"\s+"))
 
-            return pattern
-        elif ' ' not in name:
-            return name
+        pattern = '|'.join(name_patterns)
 
-        name_patterns = [
-            n.replace(' ', r"\s+") for n in [name, first_name, last_name]
-            if n.lower() not in NAMES_TO_NOT_HIGHLIGHT
-        ]
+        if args.debug:
+            debug_console.print(Text('').append(f"{name:25s}", style=self.style).append(f" '{pattern}'", style='dim'))
 
-        return '|'.join(name_patterns)
+        return pattern
 
     def __str__(self) -> str:
         return super().__str__()
@@ -209,7 +207,7 @@ HIGHLIGHTED_NAMES = [
     ManualHighlight(
         label='email_subject',
         style='light_yellow3',
-        pattern=r"^(> )?Subject: (?P<email_subject>.*)",
+        pattern=r"^(> )?(Classification|Flag|Subject): (?P<email_subject>.*)",
     ),
     HighlightedNames(
         label=ACADEMIA,
@@ -231,6 +229,7 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"Alain Forget",
+            r"Bard\s+((Early )?College|High School|Schools)",
             r"Brotherton",
             r"Carl\s*Sagan",
             r"Columbia",
@@ -303,16 +302,18 @@ HIGHLIGHTED_NAMES = [
             r"cr[iy]?pto(currenc(y|ies))?",
             r"Digital\s*Currenc(ies|y)(\s*Initiative)?",
             r"e-currency",
-            r"(Gavin )?Andressen",
+            r"(Gavin )?Andress?en",
             r"(Howard\s+)?Lutnic?k",
             r"Libra",
             r"Madars",
+            r"Mi(chael|ke)\s*Novogratz",
             r"(Patrick\s*)?Murck",
             r"(Ross\s*)?Ulbricht",
             r"Silk\s*Road",
             r"SpanCash",
             r"Tether",
             r"virtual\s*currenc(ies|y)",
+            r"Wladimir( van der Laan)?",
             r"(zero\s+knowledge\s+|zk)pro(of|tocols?)",
         ],
     ),
@@ -407,6 +408,7 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"(Al\s*)?Franken",
+            r"Al\s*Gore",
             r"(Barac?k )?Obama",
             r"((Bill|Hillart?y)\s*)?Clinton",
             r"((Chuck|Charles)\s*)?S(ch|hc)umer",
@@ -429,7 +431,7 @@ HIGHLIGHTED_NAMES = [
             r"(Nancy )?Pelosi",
             r"Ron\s*Dellums",
             r"Schumer",
-            r"(Tim\s*)?Geithner",
+            r"(Tim(othy)?\s*)?Geithner",
             r"Vernon\s*Jordan",
         ],
     ),
@@ -449,6 +451,7 @@ HIGHLIGHTED_NAMES = [
             'Alfredo Rodriguez': "Epstein's butler, stole the journal",
             ERIC_ROTH: 'jet decorator',
             GWENDOLYN_BECK: 'Epstein fund manager in the 90s',
+            'Janusz Banasiak': "Epstein's house manager",
             JEAN_HUGUEN: 'interior design at Alberto Pinto Cabinet',
             LAWRANCE_VISOSKI: 'pilot',
             LESLEY_GROFF: 'assistant',
@@ -459,6 +462,7 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"Adriana\s*Ross",
+            r"Janusz", r"Banasiak",
             r"Merwin",
             r"(Sarah\s*)?Kellen", r"Vickers",  # Married name is Metiers
         ],
@@ -536,7 +540,7 @@ HIGHLIGHTED_NAMES = [
             r"(Leon\s*)?Jaworski",
             r"Michael J. Pike",
             r"Paul,?\s*Weiss",
-            r"Steptoe(\s*LLP)?",
+            r"Steptoe(\s*& Johnson)?(\s*LLP)?",
             r"Wein(berg|garten)",
         ],
     ),
@@ -583,6 +587,7 @@ HIGHLIGHTED_NAMES = [
             r"Germany?",
             r"Gillard",
             r"Gree(ce|k)",
+            r"Ibiza",
             r"Ital(ian|y)",
             r"Jacques",
             r"Kiev",
@@ -647,6 +652,7 @@ HIGHLIGHTED_NAMES = [
             r"B\s*of\s*A",
             r"Boothbay(\sFund\sManagement)?",
             r"Chase\s*Bank",
+            r"Conrad B",
             r"Credit\s*Suisse",
             r"DB",
             r"Deutsche?\s*(Asset|Bank)",
@@ -658,7 +664,7 @@ HIGHLIGHTED_NAMES = [
             r"HSBC",
             r"Invesco",
             r"(Janet\s*)?Yellen",
-            r"(Jerome\s*)?Powell(?!M\. Cabot)",
+            r"(Jerome\s*)?Powell(?! M\. Cabot)",
             r"(Jimmy\s*)?Cayne",
             r"JPMC?",
             r"j\.?p\.?\s*morgan(\.?com|\s*Chase)?",
@@ -902,7 +908,7 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        label='law enforcement',
+        label='government',
         style='color(24) bold',
         emailers={
             ANN_MARIE_VILLAFANA: 'Southern District of Florida (SDFL) U.S. Attorney',
@@ -932,6 +938,7 @@ HIGHLIGHTED_NAMES = [
             r"FINRA",
             r"FOIA",
             r"FTC",
+            r"(General\s*)?P(a|e)traeus",
             r"IRS",
             r"(James\s*)?Comey",
             r"Jeff(rey)?\s*Sessions",
@@ -1101,8 +1108,8 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"\w+@mc2mm.com",
             r"MC2",
-            r"model(ed|ing)",
             r"(Nicole\s*)?Junkerman",  # Also a venture fund manager now
+            r"Tigrane",
         ],
     ),
     HighlightedNames(
@@ -1147,6 +1154,7 @@ HIGHLIGHTED_NAMES = [
             r"(?<!Merwin Dela )Cruz",
             r"Devin\s*Nunes",
             r"(Don\s*)?McGa[hn]n",
+            r"Gary\s*Cohn",
             r"George\s*(H\.?\s*)?(W\.?\s*)?Bush",
             r"(George\s*)?Nader",
             r"GOP",
@@ -1154,7 +1162,7 @@ HIGHLIGHTED_NAMES = [
             r"Kissinger",
             r"Kobach",
             r"Kolfage",
-            r"Kudlow",
+            r"(Larry\s*)?Kudlow",
             r"Lewandowski",
             r"(Marco\s)?Rubio",
             r"(Mark\s*)Meadows",
@@ -1209,7 +1217,7 @@ HIGHLIGHTED_NAMES = [
             r"KGB",
             r"Kislyak",
             r"Kremlin",
-            r"Kuznetsova",
+            r"(Anastasia\s*)?Kuznetsova",
             r"Lavrov",
             r"Lukoil",
             r"Moscow",
@@ -1240,6 +1248,7 @@ HIGHLIGHTED_NAMES = [
             r"Cambodian?",
             r"Laos",
             r"Malaysian?",
+            r"Maldives",
             r"Myan?mar",
             r"Philippines",
             r"South\s*Korean?",
@@ -1300,8 +1309,7 @@ HIGHLIGHTED_NAMES = [
             r"(Donald\s+(J\.\s+)?)?Trump(ism|\s*(Org(anization)?|Properties)(\s*LLC)?)?",
             r"Don(ald| *Jr)(?! (B|Rubin))",
             r"Ivank?a",
-            r"Jared",
-            r"Kushner",
+            r"Jared", r"(?<!Tony )Kushner",
             r"(Madeleine\s*)?Westerhout",
             r"Mar[-\s]*a[-\s]*Lago",
             r"(Marla\s*)?Maples",
@@ -1383,7 +1391,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"BG",
             r"b?g?C3",
-            r"(Bill\s*((and|or)\s*Melinda\s*)?)?Gates(\s*Foundation)?",
+            r"(Bill\s*((and|or|&)\s*Melinda\s*)?)?Gates(\s*Foundation)?",
             r"Melinda(\s*Gates)?",
             r"Microsoft",
             r"MSFT",
@@ -1408,7 +1416,7 @@ HIGHLIGHTED_NAMES = [
         emailers={STEVEN_HOFFENBERG: "Epstein's ponzi scheme partner at Towers Financial, prison for 18 years"},
         patterns=[r"(steven?\s*)?hoffenberg?w?"],
     ),
-    HighlightedNames(emailers={GHISLAINE_MAXWELL: None}, patterns=[r"gmax(1@ellmax.com)?", r"TerraMar"], style='deep_pink3'),
+    HighlightedNames(emailers={GHISLAINE_MAXWELL: None}, patterns=[r"gmax(1@ellmax.com)?", r"(The )?TerraMar Project"], style='deep_pink3'),
     HighlightedNames(emailers={JABOR_Y: '"an influential man in Qatar"'}, category='mideast', style='spring_green1'),
     HighlightedNames(emailers={JEFFREY_EPSTEIN: None}, patterns=[r"JEGE", r"LSJ", r"Mark (L. )?Epstein"], style='blue1'),
     HighlightedNames(emailers={KATHRYN_RUEMMLER: 'former Obama legal counsel'}, style='magenta2'),
@@ -1439,7 +1447,7 @@ HIGHLIGHTED_TEXTS = [
     HighlightedText(
         label='header_field',
         style='plum4',
-        patterns=[r'^(> )?(Date|From|Sent|To|C[cC]|Importance|Reply-To|Subject|Bee|B[cC]{2}|Attachments):'],
+        patterns=[r'^(> )?(Date|From|Sent|To|C[cC]|Importance|Reply-To|Subject|Bee|B[cC]{2}|Attachments|Flag|Classification):'],
     ),
     HighlightedText(
         label='http_links',
@@ -1535,7 +1543,8 @@ def styled_category(category: str | None) -> Text:
     if not category:
         return QUESTION_MARKS_TXT
 
-    return Text(category, get_style_for_category(category) or 'wheat4')
+    category_str = 'resumé' if category == 'resume' else category
+    return Text(category_str, get_style_for_category(category) or 'wheat4')
 
 
 def styled_name(name: str | None, default_style: str = DEFAULT_NAME_STYLE) -> Text:

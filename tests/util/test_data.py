@@ -1,4 +1,4 @@
-from epstein_files.util.data import extract_last_name
+from epstein_files.util.constant.names import extract_last_name
 
 
 def test_extract_last_name():

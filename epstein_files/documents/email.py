@@ -20,7 +20,7 @@ from epstein_files.documents.emails.email_header import (BAD_EMAILER_REGEX, EMAI
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constants import *
-from epstein_files.util.data import (TIMEZONE_INFO, collapse_newlines, escape_single_quotes, extract_last_name,
+from epstein_files.util.data import (TIMEZONE_INFO, collapse_newlines, escape_single_quotes,
      flatten, listify, remove_timezone, uniquify)
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.file_helper import extract_file_id, file_stem_for_id
@@ -305,6 +305,7 @@ METADATA_FIELDS = [
     'subject',
 ]
 
+# Note the line repair happens *after* 'Importance: High' is removed
 LINE_REPAIR_MERGES = {
     '017523': 4,
     '019407': [2, 4],
@@ -314,8 +315,11 @@ LINE_REPAIR_MERGES = {
     '022695': 4,
     '023067': 3,
     '025790': 2,
+    '029841': 3,
     '026345': 3,
     '026609': 4,
+    '033299': 3,
+    '026829': 3,
     '026924': [2, 4],
     '028931': [3, 6],
     '029154': [2, 5],
@@ -326,6 +330,7 @@ LINE_REPAIR_MERGES = {
     '029501': 2,
     '029835': [2, 4],
     '029889': 2,
+    '029545': [3, 5],
     '029976': 3,
     '030299': [7, 10],
     '030381': [2, 4],
