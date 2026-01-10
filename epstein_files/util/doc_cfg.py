@@ -210,11 +210,13 @@ class EmailCfg(CommunicationCfg):
         fwded_text_after (str | None): If set, any text after this is a fwd of an article or similar
         is_fwded_article (bool): True if this is a newspaper article someone fwded. Used to exclude articles from word counting.
         recipients (list[str | None]): Who received the email
+        subject (str): Subject line
     """
     actual_text: str | None = None
     fwded_text_after: str | None = None
     is_fwded_article: bool = False
     recipients: list[str | None] = field(default_factory=list)
+    subject: str | None = None
 
     # This is necessary because for some dumb reason @dataclass(repr=False) doesn't cut it
     def __repr__(self) -> str:
