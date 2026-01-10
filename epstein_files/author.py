@@ -56,10 +56,13 @@ class Author:
         highlight_group = self.highlight_group()
 
         if highlight_group and isinstance(highlight_group, HighlightedNames):
-            return highlight_group.category or highlight_group.label
+            category = highlight_group.category or highlight_group.label
+
+            if category != self.name and category != 'paula':  # TODO: this sucks
+                return category
 
     def category_txt(self) -> Text | None:
-        if self.category() and self.category() != self.name:
+        if self.category():
             return styled_category(self.category())
 
     def email_conversation_length_in_days(self) -> int:
@@ -131,14 +134,14 @@ class Author:
 
         if self.name == JEFFREY_EPSTEIN:
             return Text('(emails sent by Epstein to himself that would not otherwise be printed)', style=ALT_INFO_STYLE)
-        if category and category == 'paula':  # TODO: hacky
-            category = None
+        elif self.name is None:
+            return Text('(emails whose author or recipient could not be determined)', style=ALT_INFO_STYLE)
+        elif not self.style() and '@' not in self.name and not info:
+            return QUESTION_MARKS_TXT
         elif category and info:
             info = info.removeprefix(category).removeprefix(', ')
-        elif not self.name:
-            info = Text('(emails whose author or recipient could not be determined)', style=ALT_INFO_STYLE)
-        elif not self.style() and '@' not in self.name and not (category or info):
-            info = QUESTION_MARKS_TXT
+
+        return Text(info) if info else None
 
     # TODO: rename is_linkable()
     def _is_ok_for_epstein_web(self) -> bool:
