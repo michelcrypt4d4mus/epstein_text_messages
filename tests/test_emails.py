@@ -321,7 +321,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Leah Reis-Dennis": 1,
     'Lee Quarnstrom': 2,
     "Leon Black": 4,
-    "Lesley Groff": 20,
+    "Lesley Groff": 21,
     "Lilly Sanchez": 2,
     "Linda Stone": 2,
     'Linda W. Grossman': 2,

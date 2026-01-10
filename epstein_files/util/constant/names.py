@@ -225,7 +225,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     nancy neal new nicole
     owen
     paul paula pen peter philip prince
-    randall reid richard robert rodriguez roger rosenberg ross roth roy rubin
+    randall rangel reid richard robert rodriguez roger rosenberg ross roth roy rubin
     scott sean skip stanley stern stephen steve steven stone susan
     the thomas tim tom tony tyler
     victor

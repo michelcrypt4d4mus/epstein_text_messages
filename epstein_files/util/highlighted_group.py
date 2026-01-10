@@ -1244,6 +1244,7 @@ HIGHLIGHTED_NAMES = [
             r"Cambodian?",
             r"Laos",
             r"Malaysian?",
+            r"Maldives",
             r"Myan?mar",
             r"Philippines",
             r"South\s*Korean?",
