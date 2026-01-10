@@ -207,7 +207,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 32,
+    None: 31,
     "ACT for America": 1,
     "Alan Dershowitz": 11,
     'Alan Dlugash': 1,
@@ -292,7 +292,7 @@ EMAIL_RECIPIENT_COUNTS = {
     JEAN_HUGUEN: 1,
     JEAN_LUC_BRUNEL: 9,
     JEFF_FULLER: 2,
-    JEFFREY_EPSTEIN: 1477,
+    JEFFREY_EPSTEIN: 1476,
     JES_STALEY: 7,
     JESSICA_CADWELL: 3,
     "Joel": 3,
@@ -339,7 +339,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Marshall Funk": 1,
     "Martin Nowak": 1,
     MARTIN_WEINBERG: 25,
-    MASHA_DROKOVA: 3,
+    MASHA_DROKOVA: 4,
     "Matthew Hiltzik": 1,
     "Matthew Schafer": 1,
     MELANIE_SPINELLA: 13,
@@ -474,7 +474,6 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     "031830",
     "032213",
     "032283",
-    "033025",
     "033345",
 ]
 

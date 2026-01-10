@@ -493,10 +493,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='032606', author=MASHA_DROKOVA, attribution_reason="re: PR interview, 031544 says she'll be in NY at that time"),
     EmailCfg(id='032607', author=MASHA_DROKOVA, attribution_reason="re: PR interview, 031544 says she'll be in NY at that time"),
     EmailCfg(id='032609', author=MASHA_DROKOVA, attribution_reason="re: PR interview, 031544 says she'll be in NY at that time"),
-    # 032581, 032604, 033025 may also be Masha based on timing, subject (interviews/articles), and sequential ID
     EmailCfg(id='032604', author=MASHA_DROKOVA, attribution_reason="timing, subject (interviews/articles), and sequential ID", is_attribution_uncertain=True),
     EmailCfg(id='032581', author=MASHA_DROKOVA, attribution_reason="timing, subject (interviews/articles), and sequential ID", is_attribution_uncertain=True),
-    EmailCfg(id='033025', author=MASHA_DROKOVA, attribution_reason="timing, subject (interviews/articles), and sequential ID", is_attribution_uncertain=True),
     EmailCfg(id='030235', author=MELANIE_WALKER, attribution_reason='In fwd'),
     EmailCfg(id='032343', author=MELANIE_WALKER, attribution_reason='Name seen in later reply 032346'),
     EmailCfg(id='032212', author=MIROSLAV_LAJCAK, attribution_reason='signature'),
@@ -622,6 +620,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='022250', recipients=[LESLEY_GROFF], attribution_reason='Reply'),
     EmailCfg(id='030242', recipients=[MARIANA_IDZKOWSKA], duplicate_ids=['032048'], dupe_type='redacted'),
     EmailCfg(id='033027', recipients=[MASHA_DROKOVA], attribution_reason="re: PR interview, 031544 says she'll be in NY at that time"),
+    EmailCfg(id='033025', recipients=[MASHA_DROKOVA], attribution_reason="timing, subject (interviews/articles), and sequential ID", is_attribution_uncertain=True),
     EmailCfg(id='030368', recipients=[MELANIE_SPINELLA], attribution_reason='Actually a self fwd from jeffrey to jeffrey'),
     EmailCfg(id='030369', recipients=[MELANIE_SPINELLA], attribution_reason='Actually a self fwd from jeffrey to jeffrey'),
     EmailCfg(id='030371', recipients=[MELANIE_SPINELLA], attribution_reason='Actually a self fwd from jeffrey to jeffrey'),
@@ -713,6 +712,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
 
     # Configure duplicates
+    EmailCfg(id='026631', duplicate_ids=['026632'], dupe_type='quoted'),
     EmailCfg(id='028768', duplicate_ids=['026563'], dupe_type='redacted'),
     EmailCfg(id='027056', duplicate_ids=['028762'], dupe_type='redacted'),
     EmailCfg(id='032248', duplicate_ids=['032246'], dupe_type='redacted'),
