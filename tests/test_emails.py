@@ -1,8 +1,9 @@
 from epstein_files.util.constant.names import *
 from epstein_files.util.data import dict_sets_to_lists
 
+
 EMAIL_AUTHOR_COUNTS = {
-    None: 64,
+    None: 55,
     "Abi Schwinck": 1,
     AL_SECKEL: 7,
     "Alain Forget": 3,
@@ -11,7 +12,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Alex Yablon": 1,
     ALIREZA_ITTIHADIEH: 8,
     AMANDA_ENS: 8,
-    ANAS_ALRASHEED: 43,
+    ANAS_ALRASHEED: 44,
     ANDRES_SERRANO: 3,
     ANIL_AMBANI: 1,
     "Ann Marie Villafana": 1,
@@ -81,7 +82,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Jean Huguen": 1,
     JEAN_LUC_BRUNEL: 3,
     JEFF_FULLER: 1,
-    JEFFREY_EPSTEIN: 668,
+    JEFFREY_EPSTEIN: 667,
     JENNIFER_JACQUET: 1,
     "Jeremy Rubin": 3,
     JES_STALEY: 2,
@@ -123,7 +124,7 @@ EMAIL_AUTHOR_COUNTS = {
     MARK_TRAMO: 1,
     "Martin Nowak": 1,
     "Martin Weinberg": 17,
-    MASHA_DROKOVA: 3,
+    MASHA_DROKOVA: 12,
     "Matthew Hiltzik": 1,
     "Melanie Spinella": 1,
     "Melanie Walker": 3,
@@ -206,7 +207,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 33,
+    None: 32,
     "ACT for America": 1,
     "Alan Dershowitz": 11,
     'Alan Dlugash': 1,
@@ -338,7 +339,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Marshall Funk": 1,
     "Martin Nowak": 1,
     MARTIN_WEINBERG: 25,
-    "Masha Drokova": 2,
+    MASHA_DROKOVA: 3,
     "Matthew Hiltzik": 1,
     "Matthew Schafer": 1,
     MELANIE_SPINELLA: 13,
