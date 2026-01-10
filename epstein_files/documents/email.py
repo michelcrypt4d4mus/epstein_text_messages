@@ -377,24 +377,18 @@ class Email(Communication):
 
         super().__post_init__()
 
-        try:
-            if self.config and self.config.recipients:
-                self.recipients = self.config.recipients
-            else:
-                for recipient in self.header.recipients():
-                    self.recipients.extend(self._extract_emailer_names(recipient))
+        if self.config and self.config.recipients:
+            self.recipients = self.config.recipients
+        else:
+            for recipient in self.header.recipients():
+                self.recipients.extend(self._extract_emailer_names(recipient))
 
-                if self.author in MAILING_LISTS and (len(self.recipients) == 0 or self.recipients == [self.author]):
-                    self.recipients = [JEFFREY_EPSTEIN]   # Assume mailing list emails are to Epstein
-        except Exception as e:
-            console.print_exception()
-            console.line(2)
-            logger.fatal(f"Failed on {self.file_id}")
-            console.line(2)
-            raise e
+            # Assume mailing list emails are to Epstein
+            if self.author in MAILING_LISTS and (self.is_note_to_self() or not self.recipients):
+                self.recipients = [JEFFREY_EPSTEIN]
 
         # Remove self CCs but preserve self emails
-        if self.recipients != [self.author]:
+        if not self.is_note_to_self():
             self.recipients = [r for r in self.recipients if r != self.author]
 
         self.recipients = list(set(self.recipients))
