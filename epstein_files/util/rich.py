@@ -246,7 +246,7 @@ def print_other_page_link(epstein_files: 'EpsteinFiles') -> None:
     print_centered(parenthesize(txt), style=OTHER_PAGE_MSG_STYLE)
     chrono_emails_markup = link_text_obj(CHRONOLOGICAL_EMAILS_URL, 'a page', style='light_slate_grey bold')
     chrono_emails_txt = Text(f"there's also ").append(chrono_emails_markup)
-    chrono_emails_txt.append(' with a table of all the emails in chronological order')
+    chrono_emails_txt.append(' with all the emails in chronological order')
     print_centered(parenthesize(chrono_emails_txt), style=OTHER_PAGE_MSG_STYLE)
 
 
