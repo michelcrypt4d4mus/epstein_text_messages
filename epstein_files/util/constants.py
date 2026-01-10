@@ -546,6 +546,7 @@ EMAILS_CONFIG = [
         author=TERRY_KAFKA,
         fwded_text_after='From: Mike Cohen',
         recipients=cast(list[str | None], [JEFFREY_EPSTEIN, MARK_EPSTEIN, MICHAEL_BUCHHOLTZ] + IRAN_DEAL_RECIPIENTS),
+        subject='Fw: The Iran Nuclear Deal',
         duplicate_ids=['028482'],
     ),
     EmailCfg(id='029992', author=TERRY_KAFKA, attribution_reason='Quoted reply'),

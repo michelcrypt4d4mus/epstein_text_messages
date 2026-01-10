@@ -377,7 +377,7 @@ HIGHLIGHTED_NAMES = [
             r"Ministry\sof\sState\sSecurity",
             r"Mongolian?",
             r"MSS",
-            r"North\s*Korea",
+            r"North\s*Korean?",
             r"Peking",
             r"PRC",
             r"Pyongyang",
@@ -439,7 +439,7 @@ HIGHLIGHTED_NAMES = [
     ),
     HighlightedNames(
         label='employee',
-        style='dark_blue',
+        style='medium_purple4',
         emailers={
             'Alfredo Rodriguez': "Epstein's butler, stole the journal",
             ERIC_ROTH: 'jet decorator',
@@ -1232,7 +1232,7 @@ HIGHLIGHTED_NAMES = [
             r"Malaysian?",
             r"Myan?mar",
             r"Philippines",
-            r"South\s*Korea",
+            r"South\s*Korean?",
             r"Tai(pei|wan)",
             r"Thai(land)?",
             r"Vietnam(ese)?",
