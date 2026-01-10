@@ -850,6 +850,7 @@ HIGHLIGHTED_NAMES = [
             r"PERVERSION\s*OF\s*JUSTICE",
             r"Politico",
             r"Pro\s*Publica",
+            r"Reuters",
             r"(Sean\s*)?Hannity",
             r"Sulzberger",
             r"SunSentinel",
