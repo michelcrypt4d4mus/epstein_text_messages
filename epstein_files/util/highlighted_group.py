@@ -229,6 +229,7 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"Alain Forget",
+            r"Bard\s+((Early )?College|High School|Schools)",
             r"Brotherton",
             r"Carl\s*Sagan",
             r"Columbia",
@@ -449,6 +450,7 @@ HIGHLIGHTED_NAMES = [
             'Alfredo Rodriguez': "Epstein's butler, stole the journal",
             ERIC_ROTH: 'jet decorator',
             GWENDOLYN_BECK: 'Epstein fund manager in the 90s',
+            'Janusz Banasiak': "Epstein's house manager",
             JEAN_HUGUEN: 'interior design at Alberto Pinto Cabinet',
             LAWRANCE_VISOSKI: 'pilot',
             LESLEY_GROFF: 'assistant',
@@ -459,6 +461,7 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"Adriana\s*Ross",
+            r"Janusz", r"Banasiak",
             r"Merwin",
             r"(Sarah\s*)?Kellen", r"Vickers",  # Married name is Metiers
         ],
