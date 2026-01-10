@@ -6105,6 +6105,8 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "name visible in 026180 reply",
+                "author": "Anas Alrasheed",
                 "bytes": 10496,
                 "file_id": "026210",
                 "filename": "HOUSE_OVERSIGHT_026210.txt",
@@ -19462,6 +19464,8 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "follow up to 032563 about huffpo article with link",
+                "author": "Masha Drokova",
                 "bytes": 1373,
                 "file_id": "031544",
                 "filename": "HOUSE_OVERSIGHT_031544.txt",
@@ -24286,6 +24290,8 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "follow up to 032563 about huffpo article with link",
+                "author": "Masha Drokova",
                 "bytes": 285,
                 "file_id": "032564",
                 "filename": "HOUSE_OVERSIGHT_032564.txt",
@@ -24413,9 +24419,12 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "timing, subject (interviews/articles), and sequential ID",
+                "author": "Masha Drokova",
                 "bytes": 503,
                 "file_id": "032581",
                 "filename": "HOUSE_OVERSIGHT_032581.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 8,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -24515,9 +24524,12 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "timing, subject (interviews/articles), and sequential ID",
+                "author": "Masha Drokova",
                 "bytes": 1546,
                 "file_id": "032604",
                 "filename": "HOUSE_OVERSIGHT_032604.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 26,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -24527,6 +24539,8 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "re: PR interview, 031544 says she'll be in NY at that time",
+                "author": "Masha Drokova",
                 "bytes": 392,
                 "file_id": "032605",
                 "filename": "HOUSE_OVERSIGHT_032605.txt",
@@ -24539,6 +24553,8 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "re: PR interview, 031544 says she'll be in NY at that time",
+                "author": "Masha Drokova",
                 "bytes": 1190,
                 "file_id": "032606",
                 "filename": "HOUSE_OVERSIGHT_032606.txt",
@@ -24551,6 +24567,8 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "re: PR interview, 031544 says she'll be in NY at that time",
+                "author": "Masha Drokova",
                 "bytes": 2082,
                 "file_id": "032607",
                 "filename": "HOUSE_OVERSIGHT_032607.txt",
@@ -24563,6 +24581,8 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "re: PR interview, 031544 says she'll be in NY at that time",
+                "author": "Masha Drokova",
                 "bytes": 2911,
                 "file_id": "032609",
                 "filename": "HOUSE_OVERSIGHT_032609.txt",
@@ -27541,21 +27561,27 @@
                 "type": "Email"
             },
             {
-                "author": "Jeffrey Epstein",
+                "attribution_reason": "timing, subject (interviews/articles), and sequential ID",
+                "author": "Masha Drokova",
                 "bytes": 2193,
                 "file_id": "033025",
                 "filename": "HOUSE_OVERSIGHT_033025.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 41,
                 "subject": "Re: science in Trump time",
                 "timestamp": "2017-09-10T09:01:16",
                 "type": "Email"
             },
             {
+                "attribution_reason": "re: PR interview, 031544 says she'll be in NY at that time",
                 "author": "Jeffrey Epstein",
                 "bytes": 3609,
                 "file_id": "033027",
                 "filename": "HOUSE_OVERSIGHT_033027.txt",
                 "num_lines": 78,
+                "recipients": [
+                    "Masha Drokova"
+                ],
                 "subject": "Re: Interview with Futurism",
                 "timestamp": "2017-09-12T05:07:38",
                 "type": "Email"
@@ -29143,11 +29169,11 @@
                 "bytes": 458,
                 "file_id": "033217",
                 "filename": "HOUSE_OVERSIGHT_033217.txt",
-                "num_lines": 8,
+                "num_lines": 7,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
-                "subject": "Kathy Ruemmler shared a link: Malevolence Tempered by Incompetence: Trump's Horrifying Executive Order on",
+                "subject": "Kathy Ruemmler shared a link: Malevolence Tempered by Incompetence: Trump's Horrifying Executive Order on Refugees and Visas - Lawfare",
                 "timestamp": "2017-01-29T13:44:28",
                 "type": "Email"
             },
@@ -39139,8 +39165,8 @@
         "Carolyn Rangel": "Deepak Chopra, assistant",
         "Cecile de Jongh": "Virgin Islands, first lady 2007-2015",
         "Christina Galbraith": "publicist, reputation management, worked with Tyler Shears",
-        "Dan(iel|ny) Kahneman": "academia, Nobel economic sciences laureate and cognitivie psychologist (?)",
         "Dangene and Jennie Enterprise": "friend, founders of the members-only CORE club",
+        "Daniel Kahneman": "academia, Nobel economic sciences laureate and cognitivie psychologist (?)",
         "Daniel Sabba": "finance, UBS Investment Bank",
         "Danny Frost": "law enforcement, Director of Communications at Manhattan D.A.",
         "Darren Indyke": "Epstein lawyer, Epstein estate executor",
