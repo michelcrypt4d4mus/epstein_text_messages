@@ -50,7 +50,7 @@ DEFAULT_EMAILERS = [
     JEFFREY_EPSTEIN,
 ]
 
-INTERESTiNG_OTHER_EMAIL_IDS = [
+INTERESTING_EMAIL_IDS = [
     '032229',  # Michael Wolff on strategy
     '028784',  # seminars: Money / Power
     '029342',  # Hakeem Jeffries
@@ -138,7 +138,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     print_subtitle_panel(OTHER_INTERESTING_EMAILS_SUBTITLE, centered=True)
     console.line()
 
-    for other_email in epstein_files.get_documents_by_id(INTERESTiNG_OTHER_EMAIL_IDS):
+    for other_email in epstein_files.get_documents_by_id(INTERESTING_EMAIL_IDS):
         if other_email.file_id in already_printed_ids:
             logger.info(f"{other_email.summary()} Skipping intersting file_id bc it was already printed")
             continue
