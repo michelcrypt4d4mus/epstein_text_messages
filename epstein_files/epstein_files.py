@@ -12,6 +12,7 @@ from rich.padding import Padding
 from rich.table import Table
 from rich.text import Text
 
+from epstein_files.author import Author
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import DETECT_EMAIL_REGEX, USELESS_EMAILERS, Email
 from epstein_files.documents.emails.email_header import AUTHOR
@@ -114,11 +115,22 @@ class EpsteinFiles:
     def all_documents(self) -> Sequence[Document]:
         return self.imessage_logs + self.emails + self.other_files
 
-    def all_emailers(self, include_useless: bool = False) -> list[str | None]:
-        """Returns all emailers USELESS_EMAILERS, sorted from least frequent to most."""
-        names = [a for a in self.email_author_counts.keys()] + [r for r in self.email_recipient_counts.keys()]
-        names = names if include_useless else [e for e in names if e not in USELESS_EMAILERS]
-        return sorted(list(set(names)), key=lambda e: self.email_author_counts[e] + self.email_recipient_counts[e])
+    def all_emailers(self, include_useless: bool = False) -> list[Author]:
+        """Returns all emailers except USELESS_EMAILERS, sorted from least frequent to most."""
+        names = list(set([email.author for email in self.emails]))
+        names = names if include_useless else [a for a in names if a not in USELESS_EMAILERS]
+        return self.author_objs(names)
+
+    def author_objs(self, names: list[str | None]) -> list[Author]:
+        """Construct Author objects for a list of names."""
+        return [
+            Author(
+                name=name,
+                emails=self.emails_for(name),
+                imessage_logs=[l for l in self.imessage_logs if name == l.author]
+            )
+            for name in names
+        ]
 
     def docs_matching(
             self,
@@ -144,9 +156,6 @@ class EpsteinFiles:
 
     def last_email_at(self, author: str | None) -> datetime:
         return self.emails_for(author)[-1].timestamp
-
-    def email_conversation_length_in_days(self, author: str | None) -> int:
-        return days_between(self.earliest_email_at(author), self.last_email_at(author))
 
     def email_signature_substitution_counts(self) -> dict[str, int]:
         """Return the number of times an email signature was replaced with "<...snipped...>" for each author."""
@@ -241,41 +250,6 @@ class EpsteinFiles:
         add_row('Other', self.non_json_other_files())
         print_centered(table)
         console.line()
-
-    def print_emails_for(self, _author: str | None) -> list[Email]:
-        """Print complete emails to or from a particular 'author'. Returns the Emails that were printed."""
-        emails = self.emails_for(_author)
-        num_days = self.email_conversation_length_in_days(_author)
-        unique_emails = [email for email in emails if not email.is_duplicate()]
-        start_date = emails[0].timestamp.date()
-        author = _author or UNKNOWN
-        title = f"Found {len(unique_emails)} emails"
-
-        if author == JEFFREY_EPSTEIN:
-            title += f" sent by {JEFFREY_EPSTEIN} to himself"
-        else:
-            title += f" to/from {author} starting {start_date} covering {num_days:,} days"
-
-        print_author_panel(title, get_info_for_name(author), get_style_for_name(author))
-        self.print_emails_table_for(_author)
-        last_printed_email_was_duplicate = False
-
-        for email in emails:
-            if email.is_duplicate():
-                console.print(Padding(email.duplicate_file_txt().append('...'), (0, 0, 0, 4)))
-                last_printed_email_was_duplicate = True
-            else:
-                if last_printed_email_was_duplicate:
-                    console.line()
-
-                console.print(email)
-                last_printed_email_was_duplicate = False
-
-        return emails
-
-    def print_emails_table_for(self, author: str | None) -> None:
-        emails = [email for email in self.emails_for(author) if not email.is_duplicate()]  # Remove dupes
-        print_centered(Padding(Email.build_emails_table(emails, author), (0, 5, 1, 5)))
 
     def print_email_device_info(self) -> None:
         print_subtitle_panel(DEVICE_SIGNATURE_SUBTITLE)
