@@ -105,20 +105,22 @@ class Author:
         """Print a panel with the name of an emailer and a few tidbits of information about them."""
         style = 'white' if (not self.style() or self.style() == DEFAULT) else self.style()
         panel_style = f"black on {style} bold"
-        title = f"Found {len(self.unique_emails())} emails"
 
         if self.name == JEFFREY_EPSTEIN:
-            title += f" sent by {JEFFREY_EPSTEIN} to himself"
+            email_count = len(self._printable_emails())
+            title_suffix = f"sent by {JEFFREY_EPSTEIN} to himself"
         else:
+            email_count = len(self.unique_emails())
             num_days = self.email_conversation_length_in_days()
-            title += f" to/from {self.name_str()} starting {self.earliest_email_date()} covering {num_days:,} days"
+            title_suffix = f"to/from {self.name_str()} starting {self.earliest_email_date()} covering {num_days:,} days"
 
-        footer = self.info_str()
-        width = max(MIN_AUTHOR_PANEL_WIDTH, len(self.info_str() or '') + 4, len(footer or '') + 8)
-        elements: list[RenderableType] = [Panel(Text(title, justify='center'), width=width, style=panel_style)]
+        title = f"Found {email_count} emails {title_suffix}"
+        width = max(MIN_AUTHOR_PANEL_WIDTH, len(self.info_str() or '') + 4, len(self.info_str() or '') + 8)
+        panel = Panel(Text(title, justify='center'), width=width, style=panel_style)
+        elements: list[RenderableType] = [panel]
 
-        if footer:
-            elements.append(Text(f"({footer})", justify='center', style=f"{style} italic"))
+        if self.info_str():
+            elements.append(Text(f"({self.info_str()})", justify='center', style=f"{style} italic"))
 
         return Padding(Group(*elements), (2, 0, 1, 0))
 
@@ -143,8 +145,7 @@ class Author:
 
         return Text(info) if info else None
 
-    # TODO: rename is_linkable()
-    def _is_ok_for_epstein_web(self) -> bool:
+    def is_linkable(self) -> bool:
         """Return True if it's likely that EpsteinWeb has a page for this name."""
         if self.name is None or ' ' not in self.name:
             return False
@@ -160,7 +161,7 @@ class Author:
 
     def name_link(self) -> Text:
         """Will only link if it's worth linking, otherwise just a Text object."""
-        if not self._is_ok_for_epstein_web():
+        if not self.is_linkable():
             return self.name_txt()
         else:
             return Text.from_markup(link_markup(self.external_link(), self.name_str(), self.style()))
@@ -168,13 +169,13 @@ class Author:
     def name_txt(self) -> Text:
         return styled_name(self.name)
 
-    def print_emails_for(self) -> list[Email]:
+    def print_emails(self) -> list[Email]:
         """Print complete emails to or from a particular 'author'. Returns the Emails that were printed."""
         print_centered(self.info_panel())
-        self.print_emails_table_for()
+        self.print_emails_table()
         last_printed_email_was_duplicate = False
 
-        for email in self.emails:
+        for email in self._printable_emails():
             if email.is_duplicate():
                 console.print(Padding(email.duplicate_file_txt().append('...'), (0, 0, 0, 4)))
                 last_printed_email_was_duplicate = True
@@ -185,10 +186,10 @@ class Author:
                 console.print(email)
                 last_printed_email_was_duplicate = False
 
-        return self.emails
+        return self._printable_emails()
 
-    def print_emails_table_for(self) -> None:
-        emails = [email for email in self.emails if not email.is_duplicate()]  # Remove dupes
+    def print_emails_table(self) -> None:
+        emails = [email for email in self._printable_emails() if not email.is_duplicate()]  # Remove dupes
         print_centered(Padding(Email.build_emails_table(emails, self.name), (0, 5, 1, 5)))
 
     def sort_key(self) -> list[int | str]:
@@ -205,3 +206,9 @@ class Author:
 
     def unique_emails(self) -> list[Email]:
         return [email for email in self.emails if not email.is_duplicate()]
+
+    def _printable_emails(self):
+        if self.name == JEFFREY_EPSTEIN:
+            return [e for e in self.emails if e.is_note_to_self()]
+        else:
+            return self.emails
