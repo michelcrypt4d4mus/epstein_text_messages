@@ -38,14 +38,14 @@ def generate_html() -> None:
     timer = Timer()
     epstein_files = EpsteinFiles.get_files(timer)
 
-    if args.json_metadata:
+    if args.emailers_info_png:
+        print_emailers_info_png(epstein_files)
+        exit()
+    elif args.json_metadata:
         print_json_metadata(epstein_files)
         exit()
     elif args.json_files:
         print_json_files(epstein_files)
-        exit()
-    elif args.emailers_info_png:
-        print_emailers_info_png(epstein_files)
         exit()
 
     print_title_page_header()
@@ -59,25 +59,19 @@ def generate_html() -> None:
         exit()
 
     if args.output_texts:
-        imessage_logs = [log for log in epstein_files.imessage_logs if not args.names or log.author in args.names]
-        print_text_messages_section(imessage_logs)
-        timer.print_at_checkpoint(f'Printed {len(imessage_logs)} text message log files')
+        printed_logs = print_text_messages_section(epstein_files)
+        timer.log_section_complete('MessengerLog', epstein_files.imessage_logs, printed_logs)
 
     if args.output_emails:
-        emails_that_were_printed = print_emails_section(epstein_files)
-        timer.print_at_checkpoint(f"Printed {len(emails_that_were_printed):,} emails")
+        printed_emails = print_emails_section(epstein_files)
+        timer.log_section_complete('Email', epstein_files.emails, printed_emails)
     elif args.email_timeline:
         print_email_timeline(epstein_files)
         timer.print_at_checkpoint(f"Printed chronological emails table")
 
     if args.output_other:
-        if args.uninteresting:
-            files = [f for f in epstein_files.other_files if not f.is_interesting()]
-        else:
-            files = [f for f in epstein_files.other_files if args.all_other_files or f.is_interesting()]
-
-        print_other_files_section(files, epstein_files)
-        timer.print_at_checkpoint(f"Printed {len(files)} other files (skipped {len(epstein_files.other_files) - len(files)})")
+        printed_files = print_other_files_section(epstein_files)
+        timer.log_section_complete('OtherFile', epstein_files.other_files, printed_files)
 
     write_html(args.build)
     logger.warning(f"Total time: {timer.seconds_since_start_str()}")
@@ -94,7 +88,6 @@ def epstein_diff():
 
 def epstein_search():
     """Search the cleaned up text of the files."""
-    _assert_positional_args()
     epstein_files = EpsteinFiles.get_files()
 
     for search_term in args.positional_args:
@@ -117,7 +110,6 @@ def epstein_search():
 
 def epstein_show():
     """Show the color highlighted file. If --raw arg is passed, show the raw text of the file as well."""
-    _assert_positional_args()
     raw_docs: list[Document] = []
     console.line()
 
@@ -142,8 +134,3 @@ def epstein_show():
 
 def epstein_word_count() -> None:
     write_word_counts_html()
-
-
-def _assert_positional_args():
-    if not args.positional_args:
-        exit_with_error(f"No positional args provided!\n")

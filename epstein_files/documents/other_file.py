@@ -22,7 +22,7 @@ from epstein_files.util.data import days_between, escape_single_quotes, remove_t
 from epstein_files.util.file_helper import FILENAME_LENGTH, file_size_to_str
 from epstein_files.util.env import args
 from epstein_files.util.highlighted_group import QUESTION_MARKS_TXT, styled_category
-from epstein_files.util.rich import build_table, highlighter
+from epstein_files.util.rich import add_cols_to_table, build_table, highlighter
 from epstein_files.util.logging import logger
 
 FIRST_FEW_LINES = 'First Few Lines'
@@ -209,39 +209,8 @@ class OtherFile(Document):
         if num_days_spanned > MAX_DAYS_SPANNED_TO_BE_VALID and VAST_HOUSE not in self.text:
             self.log_top_lines(15, msg=timestamps_log_msg, level=logging.DEBUG)
 
-    @staticmethod
-    def count_by_category_table(files: Sequence['OtherFile'], title_pfx: str = '') -> Table:
-        counts = defaultdict(int)
-        category_bytes = defaultdict(int)
-
-        for file in files:
-            if file.category() is None:
-                logger.warning(f"file {file.file_id} has no category")
-
-            counts[file.category()] += 1
-            category_bytes[file.category()] += file.file_size()
-
-        table = build_table(f'{title_pfx}Other Files Summary', ['Category', 'Count', 'Has Author', 'No Author', 'Size'])
-        table.columns[-1].justify = 'right'
-        table.columns[0].min_width = 14
-        table.columns[-1].style = 'dim'
-
-        for (category, count) in sort_dict(counts):
-            category_files = [f for f in files if f.category() == category]
-            known_author_count = Document.known_author_count(category_files)
-
-            table.add_row(
-                styled_category(category),
-                str(count),
-                str(known_author_count),
-                str(count - known_author_count),
-                file_size_to_str(category_bytes[category]),
-            )
-
-        return table
-
-    @staticmethod
-    def files_preview_table(files: Sequence['OtherFile'], title_pfx: str = '') -> Table:
+    @classmethod
+    def files_preview_table(cls, files: Sequence['OtherFile'], title_pfx: str = '') -> Table:
         """Build a table of OtherFile documents."""
         table = build_table(f'{title_pfx}Other Files Details in Chronological Order', show_lines=True)
         table.add_column('File', justify='center', width=FILENAME_LENGTH)
@@ -270,5 +239,17 @@ class OtherFile(Document):
                 preview_text,
                 style=row_style
             )
+
+        return table
+
+    @classmethod
+    def summary_table(cls, files: Sequence['OtherFile'], title_pfx: str = '') -> Table:
+        categories = uniquify([f.category() for f in files])
+        categories = sorted(categories, key=lambda c: -len([f for f in files if f.category() == c]))
+        table = cls.file_info_table(f'{title_pfx}Other Files Summary', 'Category')
+
+        for category in categories:
+            category_files = [f for f in files if f.category() == category]
+            table.add_row(styled_category(category), *cls.files_info_row(category_files))
 
         return table

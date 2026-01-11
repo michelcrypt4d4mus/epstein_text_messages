@@ -1,5 +1,8 @@
 # NEXT RELEASE
 
+# 1.2.0
+* PNG export of emailers table
+
 ### 1.1.5
 
 ### 1.1.4

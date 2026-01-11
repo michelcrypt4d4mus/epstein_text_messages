@@ -9,6 +9,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import Sequence, Type, cast
 
+from rich.table import Table
+
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import DETECT_EMAIL_REGEX, Email
 from epstein_files.documents.json_file import JsonFile
@@ -22,7 +24,6 @@ from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.env import DOCS_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames
-from epstein_files.util.rich import NA_TXT, add_cols_to_table, build_table, console, print_centered
 from epstein_files.util.search_result import SearchResult
 from epstein_files.util.timer import Timer
 
@@ -31,9 +32,13 @@ PICKLED_PATH = Path("the_epstein_files.pkl.gz")
 SLOW_FILE_SECONDS = 1.0
 
 EMAILS_WITH_UNINTERESTING_CCS = [
-    '025329',  # Krassner
-    '024923',  # Krassner
-    '033568',  # Krassner
+    '025329',    # Krassner
+    '024923',    # Krassner
+    '033568',    # Krassner
+]
+
+EMAILS_WITH_UNINTERESTING_BCCS = [
+    '014797_1',  # Ross Gow
 ]
 
 
@@ -45,7 +50,7 @@ class EpsteinFiles:
     json_files: list[JsonFile] = field(default_factory=list)
     other_files: list[OtherFile] = field(default_factory=list)
     timer: Timer = field(default_factory=lambda: Timer())
-    uninteresting_ccs: list[Name] = field(init=False)
+    uninteresting_ccs: list[Name] = field(default_factory=list)
 
     def __post_init__(self):
         """Iterate through files and build appropriate objects."""
@@ -88,13 +93,12 @@ class EpsteinFiles:
         if PICKLED_PATH.exists() and not args.overwrite_pickle and not args.skip_other_files:
             with gzip.open(PICKLED_PATH, 'rb') as file:
                 epstein_files = pickle.load(file)
-                epstein_files.timer = timer
                 timer_msg = f"Loaded {len(epstein_files.all_files):,} documents from '{PICKLED_PATH}'"
-                epstein_files.timer.print_at_checkpoint(f"{timer_msg} ({file_size_str(PICKLED_PATH)})")
+                timer.print_at_checkpoint(f"{timer_msg} ({file_size_str(PICKLED_PATH)})")
                 return epstein_files
 
         logger.warning(f"Building new cache file, this will take a few minutes...")
-        epstein_files = EpsteinFiles(timer=timer)
+        epstein_files = EpsteinFiles()
 
         if args.skip_other_files:
             logger.warning(f"Not writing pickled data because --skip-other-files")
@@ -253,28 +257,13 @@ class EpsteinFiles:
             for name in names
         ]
 
-    def print_files_summary(self) -> None:
-        table = build_table('File Overview')
-        add_cols_to_table(table, ['File Type', 'Count', 'Author Known', 'Author Unknown', 'Duplicates'])
-        table.columns[1].justify = 'right'
-
-        def add_row(label: str, docs: list):
-            known = None if isinstance(docs[0], JsonFile) else Document.known_author_count(docs)
-
-            table.add_row(
-                label,
-                f"{len(docs):,}",
-                f"{known:,}" if known is not None else NA_TXT,
-                f"{len(docs) - known:,}" if known is not None else NA_TXT,
-                f"{len([d for d in docs if d.is_duplicate()])}",
-            )
-
-        add_row('Emails', self.emails)
-        add_row('iMessage Logs', self.imessage_logs)
-        add_row('JSON Data', self.json_files)
-        add_row('Other', self.non_json_other_files())
-        print_centered(table)
-        console.line()
+    def overview_table(self) -> Table:
+        table = Document.file_info_table('Files Overview', 'File Type')
+        table.add_row('Emails', *Document.files_info_row(self.emails))
+        table.add_row('iMessage Logs', *Document.files_info_row(self.imessage_logs))
+        table.add_row('JSON Data', *Document.files_info_row(self.json_files, True))
+        table.add_row('Other', *Document.files_info_row(self.non_json_other_files()))
+        return table
 
     def unknown_recipient_ids(self) -> list[str]:
         """IDs of emails whose recipient is not known."""
@@ -306,8 +295,8 @@ class EpsteinFiles:
         self.emails = Document.sort_by_timestamp(self.emails)
 
     def _set_uninteresting_ccs(self) -> None:
-        ross_gow_email = self.email_for_id('014797_1')
-        self.uninteresting_ccs = copy(cast(list[Name], ross_gow_email.header.bcc))
+        for id in EMAILS_WITH_UNINTERESTING_BCCS:
+            self.uninteresting_ccs += copy(cast(list[Name], self.email_for_id(id).header.bcc))
 
         for id in EMAILS_WITH_UNINTERESTING_CCS:
             self.uninteresting_ccs += self.email_for_id(id).recipients
