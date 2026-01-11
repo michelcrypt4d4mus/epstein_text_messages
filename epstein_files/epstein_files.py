@@ -268,7 +268,7 @@ class EpsteinFiles:
                 duplicate_prop = getattr(email, field_name)
 
                 if original_prop != duplicate_prop:
-                    logger.warning(f"Replacing '{email.file_id}' {field_name} {duplicate_prop} with '{original_prop}' from duplicated '{original.file_id}'")
+                    logger.warning(f"Replacing '{email.file_id}' {field_name} {duplicate_prop} with {original_prop} from duplicated '{original.file_id}'")
                     setattr(email, field_name, original_prop)
 
         # Resort in case any timestamp were updated
