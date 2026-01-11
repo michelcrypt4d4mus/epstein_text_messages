@@ -3,7 +3,7 @@ from epstein_files.util.data import dict_sets_to_lists
 
 
 EMAIL_AUTHOR_COUNTS = {
-    None: 55,
+    None: 54,
     "Abi Schwinck": 1,
     AL_SECKEL: 7,
     "Alain Forget": 3,
@@ -172,7 +172,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Sean J. Lancaster": 1,
     SHAHER_ABDULHAK_BESHER: 2,
     "Skip Rimer": 1,
-    SOON_YI_PREVIN: 8,
+    SOON_YI_PREVIN: 9,
     "Stanley Rosenberg": 3,
     "Stephanie": 2,
     "Stephen Alexander": 1,
