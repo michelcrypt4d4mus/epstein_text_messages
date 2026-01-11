@@ -32,7 +32,7 @@ INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [
 
 
 @dataclass(kw_only=True)
-class Author:
+class Person:
     """Collection of data about someone texting or emailing Epstein."""
     name: str | None
     emails: list[Email] = field(default_factory=list)
@@ -218,7 +218,7 @@ class Author:
             return self.emails
 
     @staticmethod
-    def author_info_table(authors: list['Author']) -> Table:
+    def author_info_table(authors: list['Person']) -> Table:
         """Add the first emailed_at timestamp for each emailer if 'epstein_files' provided."""
         header_pfx = '' if args.all_emails else 'Selected '
         table = build_table(f'{header_pfx}Email Conversations Grouped by Counterparty Will Appear in this Order')
