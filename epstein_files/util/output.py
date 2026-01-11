@@ -5,7 +5,7 @@ from rich.padding import Padding
 
 from epstein_files.author import Author
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import Email
+from epstein_files.documents.email import USELESS_EMAILERS, Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles, count_by_month
@@ -92,7 +92,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
         authors = epstein_files.author_objs(args.names)
     else:
         if args.all_emails:
-            authors = sorted(epstein_files.all_emailers(), key=lambda author: author.earliest_email_at())
+            authors = sorted(epstein_files.email_authors(), key=lambda author: author.earliest_email_at())
         else:
             authors = epstein_files.author_objs(DEFAULT_EMAILERS)
 
@@ -101,6 +101,9 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
         print_centered(Padding(_all_emailers_table(epstein_files), (2, 0)))
 
     for author in authors:
+        if author.name in USELESS_EMAILERS:
+            continue
+
         printed_author_emails = author.print_emails()
         printed_emails.extend(printed_author_emails)
         num_emails_printed_since_last_color_key += len(printed_author_emails)
@@ -250,7 +253,7 @@ def _all_emailers_table(epstein_files: EpsteinFiles) -> Table:
         ]
     )
 
-    for author in sorted(epstein_files.all_emailers(), key=lambda author: author.sort_key()):
+    for author in sorted(epstein_files.email_authors(), key=lambda author: author.sort_key()):
         counts_table.add_row(
             author.name_link(),
             f"{len(author.emails):,}",
