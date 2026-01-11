@@ -331,6 +331,7 @@
                 "fwded_text_after": "Omar Quadhafi",
                 "num_lines": 291,
                 "recipients": [
+                    "Jeffrey Epstein",
                     "Peggy Siegal"
                 ],
                 "subject": "RE: Oscar diary",
@@ -379,6 +380,7 @@
                 "num_lines": 17,
                 "recipients": [
                     "Darren Indyke",
+                    "Debbie Fein",
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2013-05-13T22:28:30",
@@ -1252,6 +1254,7 @@
                 "filename": "HOUSE_OVERSIGHT_019409.txt",
                 "num_lines": 110,
                 "recipients": [
+                    "Jeffrey Epstein",
                     "Michael Sitrick"
                 ],
                 "subject": "Fw: Alexandra Wolfe called from Newsweek",
@@ -1843,6 +1846,7 @@
                 "filename": "HOUSE_OVERSIGHT_021794.txt",
                 "num_lines": 485,
                 "recipients": [
+                    "Jessica Cadwell",
                     "Robert D. Critton Jr."
                 ],
                 "subject": "Fwd: Fw: Epstein News Articles",
@@ -3459,7 +3463,7 @@
                     "Brad Wechsler",
                     "Melanie Spinella"
                 ],
-                "timestamp": "2018-04-08T16:20:18",
+                "timestamp": "2015-10-26T20:37:00",
                 "type": "Email"
             },
             {
@@ -3618,6 +3622,9 @@
                 "filename": "HOUSE_OVERSIGHT_023550.txt",
                 "is_junk_mail": true,
                 "num_lines": 390,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
                 "subject": "a JokeLand E-Mail",
                 "timestamp": "2015-05-09T19:17:32",
                 "type": "Email"
@@ -4864,10 +4871,13 @@
                 "bytes": 3183,
                 "file_id": "025812",
                 "filename": "HOUSE_OVERSIGHT_025812.txt",
-                "num_lines": 56,
+                "num_lines": 54,
                 "recipients": [
-                    "Jeffrey Epstein"
+                    "Christina Galbraith",
+                    "Jeffrey Epstein",
+                    "Richard Kahn"
                 ],
+                "subject": "Re: Shears Update",
                 "timestamp": "2014-07-16T17:56:14",
                 "type": "Email"
             },
@@ -6180,6 +6190,7 @@
                 "filename": "HOUSE_OVERSIGHT_026228.txt",
                 "num_lines": 113,
                 "recipients": [
+                    "Jeffrey Epstein",
                     "Steven Pfeiffer"
                 ],
                 "timestamp": "2017-11-20T20:09:46",
@@ -7378,7 +7389,7 @@
                 "type": "Email"
             },
             {
-                "author": "Jeffrey Epstein",
+                "author": "Juleanna Glover",
                 "bytes": 11439,
                 "dupe_type": "same",
                 "duplicate_of_id": "026298",
@@ -7387,10 +7398,10 @@
                 "is_fwded_article": true,
                 "num_lines": 132,
                 "recipients": [
-                    "BS Stern"
+                    "Jeffrey Epstein"
                 ],
                 "subject": "Fwd: Our May conversation - more thoughts",
-                "timestamp": "2018-08-09T10:47:00",
+                "timestamp": "2018-08-03T03:49:00",
                 "type": "Email"
             },
             {
@@ -7881,6 +7892,10 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 1618,
+                "dupe_type": "quoted",
+                "duplicate_ids": [
+                    "026632"
+                ],
                 "file_id": "026631",
                 "filename": "HOUSE_OVERSIGHT_026631.txt",
                 "num_lines": 33,
@@ -7894,6 +7909,8 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 2557,
+                "dupe_type": "quoted",
+                "duplicate_of_id": "026631",
                 "file_id": "026632",
                 "filename": "HOUSE_OVERSIGHT_026632.txt",
                 "num_lines": 56,
@@ -7901,7 +7918,7 @@
                     "Jeffrey Epstein"
                 ],
                 "subject": "Fwd: contacts",
-                "timestamp": "2016-11-01T18:45:15",
+                "timestamp": "2016-10-30T16:40:14",
                 "type": "Email"
             },
             {
@@ -8431,7 +8448,7 @@
                     "Steven Gaydos"
                 ],
                 "subject": "Re: IMPORTANT",
-                "timestamp": "2019-03-30T04:23:32",
+                "timestamp": "2019-03-29T23:28:13",
                 "type": "Email"
             },
             {
@@ -9329,7 +9346,7 @@
                 "type": "Email"
             },
             {
-                "author": "rt",
+                "author": "Jeffrey Epstein",
                 "bytes": 71688,
                 "dupe_type": "same",
                 "duplicate_of_id": "025041",
@@ -9338,7 +9355,7 @@
                 "is_fwded_article": true,
                 "num_lines": 1719,
                 "recipients": [
-                    "Jeffrey Epstein"
+                    "Larry Summers"
                 ],
                 "subject": "2/15/2013 12:42:34 AM",
                 "timestamp": "2013-02-15T00:42:34",
@@ -10086,6 +10103,7 @@
                 "num_lines": 58,
                 "recipients": [
                     "Alan Dershowitz",
+                    "Jack Goldberger",
                     "Jeffrey Epstein"
                 ],
                 "subject": "RE: Reuters / lawsuit against Jeffrey Epstein",
@@ -11034,7 +11052,9 @@
                 "filename": "HOUSE_OVERSIGHT_029255.txt",
                 "num_lines": 58,
                 "recipients": [
-                    "Alan Dershowitz"
+                    "Alan Dershowitz",
+                    "Jack Goldberger",
+                    "Roy Black"
                 ],
                 "subject": "Fwd: Reuters / lawsuit against Jeffrey Epstein",
                 "timestamp": "2016-04-28T16:39:12",
@@ -12131,7 +12151,7 @@
                 "is_junk_mail": true,
                 "num_lines": 494,
                 "recipients": [
-                    "Jokeland"
+                    "Jeffrey Epstein"
                 ],
                 "subject": "a JokeLand E-Mail",
                 "timestamp": "2015-05-09T19:17:32",
@@ -12161,8 +12181,9 @@
                 "file_id": "029773",
                 "filename": "HOUSE_OVERSIGHT_029773.txt",
                 "fwded_text_after": "Omar Quadhafi",
-                "num_lines": 286,
+                "num_lines": 285,
                 "recipients": [
+                    "Jeffrey Epstein",
                     "Peggy Siegal"
                 ],
                 "subject": "RE: Oscar diary",
@@ -12184,6 +12205,7 @@
                 "type": "Email"
             },
             {
+                "author": "Jeffrey Epstein",
                 "bytes": 66930,
                 "dupe_type": "same",
                 "duplicate_of_id": "029692",
@@ -12192,7 +12214,7 @@
                 "is_fwded_article": true,
                 "num_lines": 1678,
                 "recipients": [
-                    "Jeffrey Epstein"
+                    "Larry Summers"
                 ],
                 "timestamp": "2013-02-14T20:47:12",
                 "type": "Email"
@@ -12661,7 +12683,7 @@
                 "type": "Email"
             },
             {
-                "attribution_reason": "\"Longevity & Aging\"",
+                "attribution_reason": "signature \"Beck Center for Longevity & Aging\"",
                 "author": "Gwendolyn Beck",
                 "bytes": 2403,
                 "file_id": "029959",
@@ -12675,7 +12697,7 @@
                 "type": "Email"
             },
             {
-                "attribution_reason": "Reply",
+                "attribution_reason": "signature \"Beck Center for Longevity & Aging\"",
                 "author": "Gwendolyn Beck",
                 "bytes": 3316,
                 "file_id": "029960",
@@ -12713,7 +12735,7 @@
                 "type": "Email"
             },
             {
-                "attribution_reason": "Signature",
+                "attribution_reason": "signature \"beckresearchlabs.com\"",
                 "author": "Gwendolyn Beck",
                 "bytes": 800,
                 "dupe_type": "same",
@@ -12731,7 +12753,7 @@
                 "type": "Email"
             },
             {
-                "attribution_reason": "Signature",
+                "attribution_reason": "signature \"Longevity & Successful Aging\"",
                 "author": "Gwendolyn Beck",
                 "bytes": 1713,
                 "file_id": "029969",
@@ -14896,10 +14918,11 @@
                     "Jeffrey Epstein"
                 ],
                 "subject": "RE: <no subject>",
-                "timestamp": "2011-03-08T23:17:00",
+                "timestamp": "2011-03-08T23:17:34",
                 "type": "Email"
             },
             {
+                "author": "Faith Kates",
                 "bytes": 8701,
                 "dupe_type": "redacted",
                 "duplicate_of_id": "030414",
@@ -15271,6 +15294,7 @@
                 "type": "Email"
             },
             {
+                "author": "Faith Kates",
                 "bytes": 276,
                 "dupe_type": "redacted",
                 "duplicate_of_id": "031135",
@@ -17694,7 +17718,7 @@
                 "type": "Email"
             },
             {
-                "attribution_reason": "Signature",
+                "attribution_reason": "signature \"beckresearchlabs.com\"",
                 "author": "Gwendolyn Beck",
                 "bytes": 690,
                 "dupe_type": "same",
@@ -18170,7 +18194,8 @@
                 "filename": "HOUSE_OVERSIGHT_031227.txt",
                 "num_lines": 99,
                 "recipients": [
-                    "Darren Indyke"
+                    "Darren Indyke",
+                    "Jeffrey Epstein"
                 ],
                 "subject": "Jeffrey Epstein [jeevacation@gmail.com]",
                 "timestamp": "2016-07-13T18:02:16",
@@ -18729,6 +18754,8 @@
                 "filename": "HOUSE_OVERSIGHT_031388.txt",
                 "num_lines": 115,
                 "recipients": [
+                    "Ken Starr",
+                    "Lilly Sanchez",
                     "Martin Weinberg",
                     "Reid Weingarten"
                 ],
@@ -21184,7 +21211,7 @@
                     "Jeffrey Epstein"
                 ],
                 "subject": "Reminder: AICE Update: Did the British promise the Arabs independence in Palestine?",
-                "timestamp": "2019-07-04T12:46:27",
+                "timestamp": "2019-07-01T12:46:20",
                 "type": "Email"
             },
             {
@@ -21897,7 +21924,7 @@
                 ],
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Re: Patterson",
-                "timestamp": "2016-03-18T15:57:19",
+                "timestamp": "2016-03-18T15:57:38",
                 "type": "Email"
             },
             {
@@ -27565,12 +27592,15 @@
             },
             {
                 "attribution_reason": "timing, subject (interviews/articles), and sequential ID",
-                "author": "Masha Drokova",
+                "author": "Jeffrey Epstein",
                 "bytes": 2193,
                 "file_id": "033025",
                 "filename": "HOUSE_OVERSIGHT_033025.txt",
                 "is_attribution_uncertain": true,
                 "num_lines": 41,
+                "recipients": [
+                    "Masha Drokova"
+                ],
                 "subject": "Re: science in Trump time",
                 "timestamp": "2017-09-10T09:01:16",
                 "type": "Email"
@@ -28536,6 +28566,7 @@
                 "filename": "HOUSE_OVERSIGHT_033156.txt",
                 "num_lines": 13,
                 "recipients": [
+                    "Darren Indyke",
                     "Jeffrey Epstein",
                     "Richard Kahn"
                 ],
@@ -30001,9 +30032,12 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "mentions \"Woody's movie\"",
+                "author": "Soon-Yi Previn",
                 "bytes": 238,
                 "file_id": "033292",
                 "filename": "HOUSE_OVERSIGHT_033292.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 8,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -30657,6 +30691,7 @@
                 "filename": "HOUSE_OVERSIGHT_033361.txt",
                 "num_lines": 31,
                 "recipients": [
+                    "Darren Indyke",
                     "Jackie Perczek",
                     "Jeffrey Epstein",
                     "Martin Weinberg"
@@ -31678,7 +31713,7 @@
                     "Jeffrey Epstein"
                 ],
                 "subject": "Reminder: AICE Update: Is UNRWA vital for the Palestinians' future?",
-                "timestamp": "2019-06-13T12:46:24",
+                "timestamp": "2019-06-10T12:46:19",
                 "type": "Email"
             },
             {
@@ -32061,6 +32096,7 @@
                 "filename": "HOUSE_OVERSIGHT_033589.txt",
                 "num_lines": 69,
                 "recipients": [
+                    "Darren Indyke",
                     "Jeffrey Epstein",
                     "Kathryn Ruemmler"
                 ],
@@ -37600,9 +37636,10 @@
                 "was_timestamp_extracted": true
             },
             {
+                "attached_to_email_id": "029299",
                 "author": "Michael J. Boccio",
                 "bytes": 2150,
-                "category": "letter",
+                "category": "resume",
                 "description": "letter from former lawyer at the Trump Organization",
                 "file_id": "029301",
                 "filename": "HOUSE_OVERSIGHT_029301.txt",
@@ -37612,6 +37649,7 @@
                 "type": "OtherFile"
             },
             {
+                "attached_to_email_id": "029299",
                 "author": "Michael J. Boccio",
                 "bytes": 6170,
                 "category": "resume",
@@ -37624,9 +37662,10 @@
                 "type": "OtherFile"
             },
             {
+                "attached_to_email_id": "029299",
                 "author": "Donald Trump",
                 "bytes": 1056,
-                "category": "letter",
+                "category": "resume",
                 "description": "recommendation letter for recently departed Trump Organization lawyer Michael J. Boccio",
                 "file_id": "029304",
                 "filename": "HOUSE_OVERSIGHT_029304.txt",
@@ -39139,7 +39178,8 @@
     "people": {
         "Abdoulaye Wade": "Africa, former president of Senegal, father of Karim Wade",
         "Abi Schwinck": "modeling, MC2 Model Management (?)",
-        "Al Seckel": "publicist, husband of Isabel Maxwell, Mindshift conference organizer who fell off a cliff",
+        "Al Seckel": "publicist, Isabel Maxwell's husband, Mindshift conference organizer, fell off a cliff",
+        "Alain Forget": "journalist, author of \"How To Get Out Of This World ALIVE\"",
         "Alan Dershowitz": "Epstein lawyer, Harvard Law School professor and all around (in)famous American lawyer",
         "Alan S Halperin": "Epstein lawyer, partner at Paul, Weiss",
         "Alfredo Rodriguez": "employee, Epstein's butler, stole the journal",
@@ -39156,18 +39196,20 @@
         "Auren Hoffman": "tech bro, CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp",
         "Aziza Alahmadi": "mideast, Abu Dhabi Department of Culture & Tourism",
         "Barbro C. Ehnbom": "business, Swedish pharmaceuticals, SALSS",
-        "Barnaby Marsh": "publicist, co-founder of Saint Partners, a philanthropy services company",
+        "Barnaby Marsh": "publicist, co-founder of philanthropy services company Saint Partners",
         "Barry Josephson": "entertainer, American film producer, editor FamilySecurityMatters.org",
         "Bennet Moskowitz": "Epstein lawyer, represented the Epstein estate executors",
         "Bill Siegel": "entertainer, documentary film producer and director",
-        "Boris Nikolic": "biotech VC partner of Bill Gates, Epstein estate executor",
+        "Bob Crowe": "lobbyist, partner at Nelson Mullins",
+        "Boris Nikolic": "Bill Gates, biotech VC partner of Bill Gates, Epstein estate executor",
         "Brad Edwards": "victim lawyer, Rothstein Rosenfeldt Adler (Rothstein was a crook & partner of Roger Stone)",
         "Brad Karp": "Epstein lawyer, head of the law firm Paul Weiss",
         "Brad Wechsler": "finance, head of Leon Black's personal investment vehicle according to FT",
-        "Bruce Moskowitz": "'Trump's health guy' according to Epstein",
-        "Carolyn Rangel": "Deepak Chopra, assistant",
+        "Bruce Moskowitz": "Trump, 'Trump's health guy' according to Epstein",
+        "Carolyn Rangel": "deepak, Deepak Chopra's assistant (???)",
         "Cecile de Jongh": "Virgin Islands, first lady 2007-2015",
-        "Christina Galbraith": "publicist, reputation management, worked with Tyler Shears",
+        "Christina Galbraith": "publicist, Jeffrey Epstein VI Foundation Media/PR, worked with Tyler Shears",
+        "Connie Zaguirre": "Epstein lawyer, office of Robert D. Critton Jr.",
         "Dangene and Jennie Enterprise": "friend, founders of the members-only CORE club",
         "Daniel Kahneman": "academia, Nobel economic sciences laureate and cognitivie psychologist (?)",
         "Daniel Sabba": "finance, UBS Investment Bank",
@@ -39181,11 +39223,11 @@
         "David Schoen": "Epstein lawyer, criminal defense attorney after 2019 arrest",
         "David Stern": "friend, emailed Epstein from Moscow, appears to know chairman of Deutsche Bank",
         "Debbie Fein": "Epstein lawyer, civil attorney working on Epstein v. Scott Rothstein, Brad Edwards, and L.M.",
-        "Deepak Chopra": "Deepak Chopra, woo woo",
+        "Deepak Chopra": "deepak, woo woo",
         "Donald Rubin": "Harvard, Professor of Statistics",
         "Ed Boyden": "academia, Associate Professor, MIT Media Lab neurobiology",
         "Edward Jay Epstein": "journalist, no relation, wrote about the kinds of crimes Epstein was involved in",
-        "Ehud Barak": "Israel, former primer minister",
+        "Ehud Barak": "Israel, former prime minister of Israel, Epstein business partner",
         "Elon Musk": "tech bro, father of Mecha-Hitler",
         "Eric Roth": "employee, jet decorator",
         "Erika Kellerhals": "Epstein lawyer, attorney in St. Thomas",
@@ -39196,14 +39238,14 @@
         "Gerald Barton": "business, Maryland property developer Landmark Land Company",
         "Gerald Lefcourt": "Epstein lawyer, friend of Alan Dershowitz",
         "Gianni Serazzi": "modeling, fashion consultant?",
-        "Gino Yu": "professor / game designer in Hong Kong",
+        "Gino Yu": "China, professor / game designer in Hong Kong",
         "Glenn Dubin": "Dubin family, Highbridge Capital Management, married to Epstein's ex-gf Eva",
         "Gordon Getty": "business, heir of oil tycoon J. Paul Getty",
         "Grant J. Smith": "victim lawyer, Rothstein Rosenfeldt Adler (Rothstein was a crook & partner of Roger Stone)",
         "Gwendolyn Beck": "employee, Epstein fund manager in the 90s",
         "Harry Fisch": "academia, men's health expert at New York-Presbyterian / Weill Cornell (?)",
         "Heather Mann": "modeling, South African former model, ex-girlfriend of Prince Andrew (?)",
-        "Henry Holt": "entertainer, Michael Wolff's book publisher",
+        "Henry Holt": "journalist, Michael Wolff's book publisher",
         "Ian Osborne": "publicist, Ian Osborne & Partners LLP reputation repairer hired by Epstein in 2011",
         "Ivan Glasenberg": "Africa, South African former CEO of Glencore, one of the world's largest commodity trading and mining companies",
         "Jabor Y": "mideast, \"an influential man in Qatar\"",
@@ -39231,7 +39273,7 @@
         "Juleanna Glover": "Republican, CEO of D.C. public affairs advisory firm Ridgely|Walsh",
         "Karim Wade": "Africa, son of the president of Senegal, facing arrest for corruption, email handle is \"Afri zp\"",
         "Katherine Keating": "lobbyist, Daughter of former Australian PM",
-        "Kathryn Ruemmler": "former Obama legal counsel",
+        "Kathryn Ruemmler": "friend, former Obama legal counsel",
         "Kelly Friendly": "Harvard, longtime aide and spokesperson of Larry Summers",
         "Ken Jenne": "victim lawyer, Rothstein Rosenfeldt Adler (Rothstein was a crook & partner of Roger Stone)",
         "Ken Starr": "Epstein lawyer, head of the Monica Lewinsky investigation against Bill Clinton",
@@ -39239,11 +39281,11 @@
         "Landon Thomas Jr": "journalist, New York Times",
         "Larry Summers": "Harvard, board of Digital Currency Group (DCG), Obama economic advisor",
         "Laurie Cameron": "finance, currency trading",
-        "Lawrance Visoski": "employee, pilot",
+        "Lawrance Visoski": "employee, Epstein's pilot",
         "Lawrence Krauss": "academia, theoretical physicist",
         "Leah Reis-Dennis": "Harvard, producer for Lisa New's Poetry in America",
         "Leon Black": "finance, Apollo CEO",
-        "Lesley Groff": "employee, assistant",
+        "Lesley Groff": "employee, Epstein's assistant",
         "Lilly Sanchez": "Epstein lawyer, criminal defense attorney",
         "Linda Pinto": "employee, interior design at Alberto Pinto Cabinet",
         "Linda Stone": "academia, ex-Microsoft, MIT Media Lab",
@@ -39252,12 +39294,13 @@
         "Macky Sall": "Africa, prime minister of Senegal, defeated Abdoulaye Wade",
         "Manuela Martinez": "modeling, Mega Partners (Brazilian agency)",
         "Marc Leon": "finance, Luxury Properties Sari Morrocco",
+        "Mark Epstein": "Epstein, brother of Jeffrey",
         "Mark Tramo": "academia, professor of neurology at UCLA",
         "Martin Nowak": "Harvard, professor of mathematics and biology",
         "Martin Weinberg": "Epstein lawyer, criminal defense attorney",
         "Masha Drokova": "Russia, silicon valley VC, former Putin Youth",
         "Melanie Spinella": "finance, representative of Leon Black",
-        "Melanie Walker": "doctor",
+        "Melanie Walker": "friend, doctor, friend of Bill Gates",
         "Michael Miller": "Epstein lawyer, Steptoe LLP partner",
         "Michael Sanka": "modeling, MC2 Model Management (?)",
         "Michael Sitrick": "publicist, crisis PR",
@@ -39268,26 +39311,27 @@
         "Mohamed Waheed Hassan": "lobbyist, former president of the Maldives",
         "Mortimer Zuckerman": "finance, business partner of Epstein, newspaper publisher",
         "Moshe Hoffman": "Harvard, lecturer and research scholar in behavioral and evolutionary economics",
-        "Nadia Marcinko": "employee, pilot",
+        "Nadia Marcinko": "employee, Epstein's pilot",
         "Nancy Dahl": "academia, wife of Lawrence Krauss",
         "Neal Kassell": "academia, professor of neurosurgery at University of Virginia",
         "Nicholas Ribis": "business, Hilton CEO, former president of Trump Organization",
         "Nili Priell Barak": "Israel, wife of Ehud Barak",
+        "Noam Chomsky": "academia, professor of linguistics at MIT",
         "Norman D. Rau": "finance, managing director at Morgan Stanley",
         "Olivier Colom": "lobbyist, France",
         "Owen Blicksilver": "publicist, OBPR, Inc.",
         "Paul Keating": "lobbyist, former PM of Australia",
         "Paul Krassner": "journalist, 60s counterculture guy",
         "Paul Morris": "finance, Deutsche Bank",
-        "Paul Prosperi": "friend of Bill Clinton",
-        "Paula Heil Fisher (???)": "Epstein's ex-girlfriend who is now in the opera world",
-        "Peggy Siegal": "publicist, socialite",
+        "Paul Prosperi": "Democrat, friend of Bill Clinton",
+        "Paula Heil Fisher (???)": "friend, Epstein's ex-girlfriend who is now in the opera world",
+        "Peggy Siegal": "publicist, socialite, movie promoter",
         "Peter Attia": "academia, longevity medicine",
         "Peter Mandelson": "Europe, UK politics",
         "Peter Thiel": "tech bro, Paypal mafia member, founder of Palantir, Facebook investor",
         "Peter Thomas Roth": "friend, student of Epstein at Dalton, skincare company founder",
         "Philip Kafka": "business, president of Prince Concepts (and son of Terry Kafka?)",
-        "Prince Andrew": "British royal family",
+        "Prince Andrew": "Europe, British royal family",
         "Purevsuren Lundeg": "lobbyist, Mongolian ambassador to the UN",
         "Raafat Alsabbagh": "mideast, Saudi royal advisor",
         "Reid Hoffman": "tech bro, PayPal mafia member, founder of LinkedIn",
@@ -39303,18 +39347,19 @@
         "Ross Gow": "publicist, Acuity Reputation Management",
         "Roy Black": "Epstein lawyer, criminal defense attorney on 2008 case",
         "Scott J. Link": "Epstein lawyer, criminal defense attorney",
+        "Sean Bannon": "politics, Steve Bannon's brother",
         "Sean J. Lancaster": "employee, airplane reseller",
         "Shaher Abdulhak Besher (???)": "mideast, Yemeni billionaire",
         "Skip Rimer": "finance, Milken Institute (Michael Milken)",
-        "Soon-Yi Previn": "wife of Woody Allen",
+        "Soon-Yi Previn": "friend, wife of Woody Allen",
         "Stacey Plaskett": "Virgin Islands, non-voting member of Congress",
         "Stanley Rosenberg": "lobbyist, former President of the Massachusetts Senate",
-        "Steve Bannon": "politics, Trump campaign manager, memecoin grifter, convicted criminal",
+        "Steve Bannon": "politics, Trump campaign manager, memecoin grifter",
         "Steven Elkman": "finance, Deutsche Bank",
         "Steven Hoffenberg": "finance, Epstein's ponzi scheme partner at Towers Financial, prison for 18 years",
         "Steven Pfeiffer": "entertainer, Associate Director at Independent Filmmaker Project (IFP)",
         "Steven Sinofsky": "tech bro, ex-Microsoft, loves bitcoin",
-        "Sultan Ahmed Bin Sulayem": "CEO of DP World, chairman of ports in Dubai",
+        "Sultan Ahmed Bin Sulayem": "mideast, CEO of DP World, chairman of ports in Dubai",
         "Svetlana Pozhidaeva": "Russia, Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and David Blaine",
         "Terje R\u00f8d-Larsen": "Europe, Norwegian diplomat",
         "Terry Kafka": "business, CEO of Impact Outdoor (highway billboards)",
@@ -39325,9 +39370,10 @@
         "Tonja Haddad Coleman": "Epstein lawyer, civil attorney working on Epstein v. Scott Rothstein, Brad Edwards, and L.M., maybe daughter of Fred Haddad?",
         "Tyler Shears": "publicist, reputation management, worked on with Christina Galbraith",
         "Vahe Stepanian": "finance, Cetera Financial Group",
+        "Valeria Chomsky": "academia, wife of Noam Chomsky",
         "Vincenzo Iozzo": "tech bro, CEO of the identity-security company SlashID",
         "Vladimir Yudashkin": "modeling, director of the 1 Mother Agency",
-        "Zubair Khan": "India, cybersecurity firm Tranchulas CEO, InsightsPod founder, Islamabad/Dubai",
+        "Zubair Khan": "employee, cybersecurity firm Tranchulas CEO, InsightsPod founder, Islamabad/Dubai",
         "linkspirit": "friend, Skype username of someone Epstein communicated with"
     }
 }
