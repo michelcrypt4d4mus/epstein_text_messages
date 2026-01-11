@@ -94,13 +94,12 @@ class EpsteinFiles:
         if PICKLED_PATH.exists() and not args.overwrite_pickle and not args.skip_other_files:
             with gzip.open(PICKLED_PATH, 'rb') as file:
                 epstein_files = pickle.load(file)
-                epstein_files.timer = timer
                 timer_msg = f"Loaded {len(epstein_files.all_files):,} documents from '{PICKLED_PATH}'"
-                epstein_files.timer.print_at_checkpoint(f"{timer_msg} ({file_size_str(PICKLED_PATH)})")
+                timer.print_at_checkpoint(f"{timer_msg} ({file_size_str(PICKLED_PATH)})")
                 return epstein_files
 
         logger.warning(f"Building new cache file, this will take a few minutes...")
-        epstein_files = EpsteinFiles(timer=timer)
+        epstein_files = EpsteinFiles()
 
         if args.skip_other_files:
             logger.warning(f"Not writing pickled data because --skip-other-files")
