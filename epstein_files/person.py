@@ -254,7 +254,7 @@ class Person:
         return f"{self.name_str()}"
 
     @staticmethod
-    def emailer_info_table(people: list['Person'], highlighted: list['Person'] | None = None) -> Table:
+    def emailer_info_table(people: list['Person'], highlighted: list['Person'] | None = None, show_epstein_total: bool = False) -> Table:
         """Table of info about emailers."""
         highlighted = highlighted or people
         highlighted_names = [p.name for p in highlighted]
@@ -296,7 +296,7 @@ class Person:
                 Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[0 if is_selection else grey_idx]}"),
                 person.name_txt(),  # TODO: make link?
                 person.category_txt(),
-                f"{len(person._printable_emails())}",
+                f"{len(person.unique_emails() if show_epstein_total else person._printable_emails())}",
                 f"{len(person.unique_emails_by())}",
                 f"{len(person.unique_emails_to())}",
                 f"{person.email_conversation_length_in_days()}",
