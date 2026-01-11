@@ -3,14 +3,11 @@ import json
 import pickle
 import re
 from collections import defaultdict
+from copy import copy
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from typing import Sequence, Type, cast
-
-from rich.padding import Padding
-from rich.table import Table
-from rich.text import Text
 
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import DETECT_EMAIL_REGEX, Email
@@ -33,6 +30,12 @@ DUPLICATE_PROPS_TO_COPY = ['author', 'recipients', 'timestamp']
 PICKLED_PATH = Path("the_epstein_files.pkl.gz")
 SLOW_FILE_SECONDS = 1.0
 
+EMAILS_WITH_UNINTERESTING_CCS = [
+    '025329',  # Krassner
+    '024923',  # Krassner
+    '033568',  # Krassner
+]
+
 
 @dataclass
 class EpsteinFiles:
@@ -42,6 +45,7 @@ class EpsteinFiles:
     json_files: list[JsonFile] = field(default_factory=list)
     other_files: list[OtherFile] = field(default_factory=list)
     timer: Timer = field(default_factory=lambda: Timer())
+    uninteresting_ccs: list[Name] = field(init=False)
 
     def __post_init__(self):
         """Iterate through files and build appropriate objects."""
@@ -73,6 +77,7 @@ class EpsteinFiles:
         self.imessage_logs = Document.sort_by_timestamp([d for d in documents if isinstance(d, MessengerLog)])
         self.other_files = Document.sort_by_timestamp([d for d in documents if isinstance(d, (JsonFile, OtherFile))])
         self.json_files = [doc for doc in self.other_files if isinstance(doc, JsonFile)]
+        self._set_uninteresting_ccs()
         self._copy_duplicate_email_properties()
 
     @classmethod
@@ -104,11 +109,7 @@ class EpsteinFiles:
     def all_documents(self) -> Sequence[Document]:
         return self.imessage_logs + self.emails + self.other_files
 
-    def docs_matching(
-            self,
-            pattern: re.Pattern | str,
-            names: list[str | None] | None = None
-        ) -> list[SearchResult]:
+    def docs_matching(self, pattern: re.Pattern | str, names: list[Name] | None = None) -> list[SearchResult]:
         """Find documents whose text matches a pattern (file_type and names args limit the documents searched)."""
         results: list[SearchResult] = []
 
@@ -123,13 +124,13 @@ class EpsteinFiles:
 
         return results
 
-    def earliest_email_at(self, author: str | None) -> datetime:
-        return self.emails_for(author)[0].timestamp
+    def earliest_email_at(self, name: Name) -> datetime:
+        return self.emails_for(name)[0].timestamp
 
-    def last_email_at(self, author: str | None) -> datetime:
-        return self.emails_for(author)[-1].timestamp
+    def last_email_at(self, name: Name) -> datetime:
+        return self.emails_for(name)[-1].timestamp
 
-    def email_author_counts(self) -> dict[str | None, int]:
+    def email_author_counts(self) -> dict[Name, int]:
         return {
             person.name: len(person.unique_emails_by())
             for person in self.emailers() if len(person.unique_emails_by()) > 0
@@ -151,7 +152,7 @@ class EpsteinFiles:
 
         return signatures
 
-    def email_recipient_counts(self) -> dict[str | None, int]:
+    def email_recipient_counts(self) -> dict[Name, int]:
         return {
             person.name: len(person.unique_emails_to())
             for person in self.emailers() if len(person.unique_emails_to()) > 0
@@ -173,10 +174,10 @@ class EpsteinFiles:
         recipients = flatten([email.recipients for email in self.emails])
         return self.person_objs(uniquify(authors + recipients))
 
-    def emails_by(self, name: str | None) -> list[Email]:
-        return Document.sort_by_timestamp([e for e in self.emails if e.author == name])
+    def emails_by(self, author: Name) -> list[Email]:
+        return Document.sort_by_timestamp([e for e in self.emails if e.author == author])
 
-    def emails_for(self, name: str | None) -> list[Email]:
+    def emails_for(self, name: Name) -> list[Email]:
         """Returns emails to or from a given 'author' sorted chronologically."""
         emails = self.emails_by(name) + self.emails_to(name)
 
@@ -185,13 +186,21 @@ class EpsteinFiles:
 
         return Document.sort_by_timestamp(Document.uniquify(emails))
 
-    def emails_to(self, name: str | None) -> list[Email]:
+    def emails_to(self, name: Name) -> list[Email]:
         if name is None:
             emails = [e for e in self.emails if len(e.recipients) == 0 or None in e.recipients]
         else:
             emails = [e for e in self.emails if name in e.recipients]
 
         return Document.sort_by_timestamp(emails)
+
+    def email_for_id(self, file_id: str) -> Email:
+        docs = self.for_ids([file_id])
+
+        if docs and isinstance(docs[0], Email):
+            return docs[0]
+        else:
+            raise ValueError(f"No email found for {file_id}")
 
     def for_ids(self, file_ids: str | list[str]) -> list[Document]:
         file_ids = listify(file_ids)
@@ -202,7 +211,7 @@ class EpsteinFiles:
 
         return docs
 
-    def imessage_logs_for(self, name: str | None) -> list[MessengerLog]:
+    def imessage_logs_for(self, name: Name) -> list[MessengerLog]:
         return [log for log in self.imessage_logs if name == log.author]
 
     def json_metadata(self) -> str:
@@ -231,10 +240,16 @@ class EpsteinFiles:
     def non_json_other_files(self) -> list[OtherFile]:
         return [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
 
-    def person_objs(self, names: list[str | None]) -> list[Person]:
+    def person_objs(self, names: list[Name]) -> list[Person]:
         """Construct Person objects for a list of names."""
         return [
-            Person(name=name, emails=self.emails_for(name), imessage_logs=self.imessage_logs_for(name))
+            Person(
+                name=name,
+                emails=self.emails_for(name),
+                imessage_logs=self.imessage_logs_for(name),
+                is_uninteresting_cc=name in self.uninteresting_emailers(),
+                other_files=[f for f in self.other_files if name and name == f.author]
+            )
             for name in names
         ]
 
@@ -265,13 +280,19 @@ class EpsteinFiles:
         """IDs of emails whose recipient is not known."""
         return sorted([e.file_id for e in self.emails if None in e.recipients or not e.recipients])
 
+    def uninteresting_emailers(self) -> list[Name]:
+        if '_uninteresting_emailers' not in vars(self):
+            self._uninteresting_emailers = sorted(uniquify(UNINTERESTING_EMAILERS + self.uninteresting_ccs))
+
+        return self._uninteresting_emailers
+
     def _copy_duplicate_email_properties(self) -> None:
         """Ensure dupe emails have the properties of the emails they duplicate to capture any repairs, config etc."""
         for email in self.emails:
             if not email.is_duplicate():
                 continue
 
-            original = cast(Email, self.for_ids(email.duplicate_of_id())[0])
+            original = self.email_for_id(email.duplicate_of_id())
 
             for field_name in DUPLICATE_PROPS_TO_COPY:
                 original_prop = getattr(original, field_name)
@@ -283,6 +304,16 @@ class EpsteinFiles:
 
         # Resort in case any timestamp were updated
         self.emails = Document.sort_by_timestamp(self.emails)
+
+    def _set_uninteresting_ccs(self) -> None:
+        ross_gow_email = self.email_for_id('014797_1')
+        self.uninteresting_ccs = copy(cast(list[Name], ross_gow_email.header.bcc))
+
+        for id in EMAILS_WITH_UNINTERESTING_CCS:
+            self.uninteresting_ccs += self.email_for_id(id).recipients
+
+        self.uninteresting_ccs = sorted(uniquify(self.uninteresting_ccs))
+        logger.info(f"Extracted uninteresting_ccs: {self.uninteresting_ccs}")
 
 
 def count_by_month(docs: Sequence[Document]) -> dict[str | None, int]:

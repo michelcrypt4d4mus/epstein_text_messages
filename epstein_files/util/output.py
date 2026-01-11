@@ -1,10 +1,11 @@
 import json
+from copy import copy
 from typing import cast
 
 from rich.padding import Padding
 
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import USELESS_EMAILERS, Email
+from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles, count_by_month
@@ -14,7 +15,7 @@ from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.output_files import JSON_FILES_JSON_PATH, JSON_METADATA_PATH
 from epstein_files.util.constant.strings import AUTHOR, TIMESTAMP_STYLE
-from epstein_files.util.data import dict_sets_to_lists
+from epstein_files.util.data import dict_sets_to_lists, uniquify
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
 from epstein_files.util.logging import logger
@@ -71,7 +72,7 @@ INTERESTING_EMAIL_IDS = [
 
 def print_email_timeline(epstein_files: EpsteinFiles) -> None:
     """Print a table of all emails in chronological order."""
-    emails = Document.sort_by_timestamp([e for e in epstein_files.non_duplicate_emails() if not e.is_junk_mail()])
+    emails = Document.sort_by_timestamp([e for e in epstein_files.non_duplicate_emails() if not e.is_mailing_list()])
     title = f'Table of All {len(emails):,} Non-Junk Emails in Chronological Order (actual emails below)'
     table = Email.build_emails_table(emails, title=title, show_length=True)
     console.print(Padding(table, (2, 0)))
@@ -86,11 +87,9 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     """Returns emails that were printed (may contain dupes if printed for both author and recipient)."""
     print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
     all_emailers = sorted(epstein_files.emailers(), key=lambda person: person.earliest_email_at())
-    people_to_print: list[Person]
-    printed_emails: list[Email] = []
     num_emails_printed_since_last_color_key = 0
-    ross_gow_email = cast(Email, epstein_files.for_ids('014797_1')[0])
-    emailers_to_not_print = USELESS_EMAILERS + ross_gow_email.header.bcc
+    printed_emails: list[Email] = []
+    people_to_print: list[Person]
 
     if args.names:
         people_to_print = epstein_files.person_objs(args.names)
@@ -100,11 +99,13 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
         else:
             people_to_print = epstein_files.person_objs(DEFAULT_EMAILERS)
 
-        people_to_print = [p for p in people_to_print if p.name not in emailers_to_not_print]
         print_other_page_link(epstein_files)
-        print_centered(Padding(Person.emailer_info_table(people_to_print), (2, 0, 1, 0)))
+        print_centered(Padding(Person.emailer_info_table(all_emailers, people_to_print), (2, 0, 1, 0)))
 
     for person in people_to_print:
+        if person.name in epstein_files.uninteresting_emailers() and not args.names:
+            continue
+
         printed_person_emails = person.print_emails()
         printed_emails.extend(printed_person_emails)
         num_emails_printed_since_last_color_key += len(printed_person_emails)
@@ -131,11 +132,6 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
 
     if args.all_emails:
         _verify_all_emails_were_printed(epstein_files, printed_emails)
-    else:
-        print_subtitle_panel("All People Appearing in the Emails (not all are shown on this page)")
-        print_other_page_link(epstein_files)
-        console.line()
-        print_centered(Padding(Person.emailer_info_table(all_emailers), (1, 0, 1, 0)))
 
     _print_email_device_info(epstein_files)
     fwded_articles = [e for e in printed_emails if e.config and e.is_fwded_article()]
@@ -243,7 +239,7 @@ def _print_email_device_info(epstein_files: EpsteinFiles) -> None:
 
 def _signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Padding:
     """Build table for who signed emails with 'Sent from my iPhone' etc."""
-    title = 'Signatures Used By Authors' if cols[0] == AUTHOR else 'Authors Seen Using Signatures'
+    title = 'Email Signatures Used By Authors' if cols[0] == AUTHOR else 'Authors Seen Using Email Signatures'
     table = build_table(title, header_style="bold reverse", show_lines=True)
 
     for i, col in enumerate(cols):

@@ -85,6 +85,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     JACKIE_PERCZEK:  re.compile(r'jackie percze[kl]?', re.IGNORECASE),
     JABOR_Y: re.compile(r'[ji]abor\s*y?', re.IGNORECASE),
     JAMES_HILL: re.compile(r"hill, james e.|james.e.hill@abc.com", re.IGNORECASE),
+    JANUSZ_BANASIAK: re.compile(r"Janu[is]z Banasiak", re.IGNORECASE),
     JEAN_LUC_BRUNEL: re.compile(r'Jean[- ]Luc Brunel?', re.IGNORECASE),
     JEFF_FULLER: re.compile(r"jeff@mc2mm.com|Jeff Fuller", re.IGNORECASE),
     JEFFREY_EPSTEIN: re.compile(r'[djl]\s?ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeffrey E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(Mark L.|ard Jay) )Epstein', re.IGNORECASE),
@@ -305,11 +306,10 @@ TEXTS_CONFIG = CONFIRMED_TEXTS_CONFIG + UNCONFIRMED_TEXTS_CONFIG
 ################################################ EMAILS ################################################
 ########################################################################################################
 
-MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
-
 # Some emails have a lot of uninteresting CCs
-IRAN_DEAL_RECIPIENTS = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
-FLIGHT_IN_2012_PEOPLE = ['Francis Derby', 'Januiz Banasiak', 'Louella Rabuyo', 'Richard Barnnet']
+FLIGHT_IN_2012_PEOPLE: list[Name] = ['Francis Derby', JANUSZ_BANASIAK, 'Louella Rabuyo', 'Richard Barnnet']
+IRAN_DEAL_RECIPIENTS: list[Name] = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
+MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
 
 EMAILS_CONFIG = [
     # 026294 and 026296 might also be Ittihadieh based on timing
@@ -477,7 +477,7 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='029977',
         author=LAWRANCE_VISOSKI,
-        recipients=cast(list[str | None], [JEFFREY_EPSTEIN, DARREN_INDYKE, LESLEY_GROFF, RICHARD_KAHN] + FLIGHT_IN_2012_PEOPLE),
+        recipients=[JEFFREY_EPSTEIN, DARREN_INDYKE, LESLEY_GROFF, RICHARD_KAHN] + FLIGHT_IN_2012_PEOPLE,
         attribution_reason=LARRY_REASON,
         duplicate_ids=['031129'],
     ),
@@ -559,7 +559,7 @@ EMAILS_CONFIG = [
         attribution_reason='ends with "Respectfully, terry"',
         author=TERRY_KAFKA,
         fwded_text_after='From: Mike Cohen',
-        recipients=cast(list[str | None], [JEFFREY_EPSTEIN, MARK_EPSTEIN, MICHAEL_BUCHHOLTZ] + IRAN_DEAL_RECIPIENTS),
+        recipients=[JEFFREY_EPSTEIN, MARK_EPSTEIN, MICHAEL_BUCHHOLTZ] + IRAN_DEAL_RECIPIENTS,
         subject='Fw: The Iran Nuclear Deal',
         duplicate_ids=['028482'],
     ),
@@ -1695,3 +1695,39 @@ REPLY_LINE_ON_DATE_PATTERN = fr"^On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sa
 REPLY_LINE_PATTERN = rf"({REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
 SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?((Envoyé de mon|Sent (from|via)).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
+
+
+# No point in ever displaying these; their emails show up elsewhere because they're mostly CC recipients
+UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + [
+    'Alan Dlugash',                          # CCed with Richard Kahn
+    'Alan Rogers',                           # Random CC
+    'Andrew Friendly',                       # Presumably some relation of Kelly Friendly
+    'BS Stern',                              # A random fwd of email we have
+    'Cheryl Kleen',                          # Single email from Anne Boyles, displayed under Anne Boyles
+    'Connie Zaguirre',                       # Random CC
+    'Dan Fleuette',                          # CC from sean bannon
+    'Danny Goldberg',                        # Random Paul Krassner emails
+    GERALD_LEFCOURT,                         # Single CC
+    GORDON_GETTY,                            # Random CC
+    JEFF_FULLER,                             # Random Jean Luc Brunel CC
+    'Jojo Fontanilla',                       # Random CC
+    'Joseph Vinciguerra',                    # Random CC
+    'Larry Cohen',                           # Random Bill Gates CC
+    'Lyn Fontanilla',                        # Random CC
+    'Mark Albert',                           # Random CC
+    'Matthew Schafer',                       # Random CC
+    MICHAEL_BUCHHOLTZ,                       # Terry Kafka CC
+    'Nancy Dahl',                            # covered by Lawrence Krauss (her husband)
+    'Michael Simmons',                       # Random CC
+    'Nancy Portland',                        # Lawrence Krauss CC
+    'Oliver Goodenough',                     # Robert Trivers CC
+    'Peter Aldhous',                         # Lawrence Krauss CC
+    'Players2',                              # Hoffenberg CC
+    'Sam Harris',                            # Lawrence Krauss CC
+    SAMUEL_LEFF,                             # Random CC
+    'Sean T Lehane',                         # Random CC
+    'Stephen Rubin',                         # Random CC
+    'Tim Kane',                              # Random CC
+    'Travis Pangburn',                       # Random CC
+    'Vahe Stepanian',                        # Random CC
+]

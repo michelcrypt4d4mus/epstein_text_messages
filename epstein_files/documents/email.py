@@ -136,7 +136,9 @@ MAILING_LISTS = [
     JP_MORGAN_USGIO,
 ]
 
-TRUNCATE_ALL_EMAILS_FROM = JUNK_EMAILERS + MAILING_LISTS + [
+BBC_LISTS = JUNK_EMAILERS + MAILING_LISTS
+
+TRUNCATE_ALL_EMAILS_FROM = BBC_LISTS + [
     'Alan S Halperin',
     'Mitchell Bard',
     'Skip Rimer',
@@ -248,53 +250,9 @@ TRUNCATE_TERMS = [
     'https://www.washingtonpost.com/politics/2018/09/04/transcript-phone-call',
 ]
 
-# Some Paul Krassner emails have a ton of CCed parties we don't care about
-KRASSNER_RECIPIENTS = uniquify(flatten([ALL_FILE_CONFIGS[id].recipients for id in ['025329', '024923', '033568']]))
-
-# No point in ever displaying these; their emails show up elsewhere because they're mostly CC recipients
-USELESS_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + KRASSNER_RECIPIENTS + [
-    'Alan Dlugash',                          # CCed with Richard Kahn
-    'Alan Rogers',                           # Random CC
-    'Andrew Friendly',                       # Presumably some relation of Kelly Friendly
-    'BS Stern',                              # A random fwd of email we have
-    'Cheryl Kleen',                          # Single email from Anne Boyles, displayed under Anne Boyles
-    'Connie Zaguirre',                       # Random CC
-    'Dan Fleuette',                          # CC from sean bannon
-    'Danny Goldberg',                        # Random Paul Krassner emails
-    GERALD_LEFCOURT,                         # Single CC
-    GORDON_GETTY,                            # Random CC
-    JEFF_FULLER,                             # Random Jean Luc Brunel CC
-    'Jojo Fontanilla',                       # Random CC
-    'Joseph Vinciguerra',                    # Random CC
-    'Larry Cohen',                           # Random Bill Gates CC
-    'Lyn Fontanilla',                        # Random CC
-    'Mark Albert',                           # Random CC
-    'Matthew Schafer',                       # Random CC
-    MICHAEL_BUCHHOLTZ,                       # Terry Kafka CC
-    'Nancy Dahl',                            # covered by Lawrence Krauss (her husband)
-    'Michael Simmons',                       # Random CC
-    'Nancy Portland',                        # Lawrence Krauss CC
-    'Oliver Goodenough',                     # Robert Trivers CC
-    'Peter Aldhous',                         # Lawrence Krauss CC
-    'Players2',                              # Hoffenberg CC
-    'Sam Harris',                            # Lawrence Krauss CC
-    SAMUEL_LEFF,                             # Random CC
-    'Sean T Lehane',                         # Random CC
-    'Stephen Rubin',                         # Random CC
-    'Tim Kane',                              # Random CC
-    'Travis Pangburn',                       # Random CC
-    'Vahe Stepanian',                        # Random CC
-    # Ross Gow BCC
-    'david.brown@thetimes.co.uk',
-    'io-anne.pugh@bbc.co.uk',
-    'martin.robinson@mailonline.co.uk',
-    'nick.alwav@bbc.co.uk'
-    'nick.sommerlad@mirror.co.uk',
-    'p.peachev@independent.co.uk',
-]
-
 METADATA_FIELDS = [
     'is_junk_mail',
+    'is_mailing_list',
     'recipients',
     'sent_from_device',
     'subject',
@@ -360,14 +318,14 @@ class Email(Communication):
         actual_text (str) - best effort at the text actually sent in this email, excluding quoted replies and forwards
         config (EmailCfg | None) - manual config for this email (if it exists)
         header (EmailHeader) - header data extracted from the text (from/to/sent/subject etc)
-        recipients (list[str | None]) - who this email was sent to
+        recipients (list[Name]) - who this email was sent to
         sent_from_device (str | None) - "Sent from my iPhone" style signature (if it exists)
         signature_substitution_counts (dict[str, int]) - count of how many times a signature was replaced with <...snipped...> for each participant
     """
     actual_text: str = field(init=False)
     config: EmailCfg | None = None
     header: EmailHeader = field(init=False)
-    recipients: list[str | None] = field(default_factory=list)
+    recipients: list[Name] = field(default_factory=list)
     sent_from_device: str | None = None
     signature_substitution_counts: dict[str, int] = field(default_factory=dict)  # defaultdict breaks asdict :(
 
@@ -395,7 +353,7 @@ class Email(Communication):
                 self.recipients.extend(self._extract_emailer_names(recipient))
 
             # Assume mailing list emails are to Epstein
-            if self.author in MAILING_LISTS and (self.is_note_to_self() or not self.recipients):
+            if self.author in BBC_LISTS and (self.is_note_to_self() or not self.recipients):
                 self.recipients = [JEFFREY_EPSTEIN]
 
         # Remove self CCs but preserve self emails
@@ -424,10 +382,10 @@ class Email(Communication):
         return bool(self.config and self.config.is_fwded_article)
 
     def is_junk_mail(self) -> bool:
-        return self.author in JUNK_EMAILERS or self.is_mailing_list()
+        return self.author in JUNK_EMAILERS
 
     def is_mailing_list(self) -> bool:
-        return self.author in MAILING_LISTS
+        return self.author in MAILING_LISTS or self.is_junk_mail()
 
     def is_note_to_self(self) -> bool:
         return self.recipients == [self.author]
@@ -435,6 +393,7 @@ class Email(Communication):
     def metadata(self) -> Metadata:
         local_metadata = asdict(self)
         local_metadata['is_junk_mail'] = self.is_junk_mail()
+        local_metadata['is_mailing_list'] = self.is_junk_mail()
         local_metadata['subject'] = self.subject() or None
         metadata = super().metadata()
         metadata.update({k: v for k, v in local_metadata.items() if v and k in METADATA_FIELDS})
@@ -848,7 +807,7 @@ class Email(Communication):
             self.log_top_lines(self.header.num_header_rows + 4, f'Original header:')
 
     @staticmethod
-    def build_emails_table(emails: list['Email'], name: str | None = '', title: str = '', show_length: bool = False) -> Table:
+    def build_emails_table(emails: list['Email'], name: Name = '', title: str = '', show_length: bool = False) -> Table:
         """Turn a set of Emails into a Table."""
         if title and name:
             raise ValueError(f"Can't provide both 'author' and 'title' args")

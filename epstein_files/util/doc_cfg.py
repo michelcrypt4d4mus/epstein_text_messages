@@ -62,7 +62,7 @@ class DocCfg:
 
     Attributes:
         id (str): ID of file
-        author (str | None): Author of the document (if any)
+        author (Name): Author of the document (if any)
         category (str | None): Type of file
         date (str | None): If passed will be immediated parsed into the 'timestamp' field
         dupe_type (DuplicateType | None): The type of duplicate this file is or its 'duplicate_ids' are
@@ -74,7 +74,7 @@ class DocCfg:
     """
     id: str
     attached_to_email_id: str | None = None
-    author: str | None = None
+    author: Name = None
     category: str | None = None
     date: str | None = None
     description: str | None = None
@@ -219,13 +219,13 @@ class EmailCfg(CommunicationCfg):
         actual_text (str | None): In dire cases of broken OCR we just configure the body of the email as a string.
         fwded_text_after (str | None): If set, any text after this is a fwd of an article or similar
         is_fwded_article (bool): True if this is a newspaper article someone fwded. Used to exclude articles from word counting.
-        recipients (list[str | None]): Who received the email
+        recipients (list[Name]): Who received the email
         subject (str): Subject line
     """
     actual_text: str | None = None
     fwded_text_after: str | None = None
     is_fwded_article: bool = False
-    recipients: list[str | None] = field(default_factory=list)
+    recipients: list[Name] = field(default_factory=list)
     subject: str | None = None
 
     # This is necessary because for some dumb reason @dataclass(repr=False) doesn't cut it
