@@ -33,7 +33,7 @@ LOG_LEVEL_ENV_VAR = 'LOG_LEVEL'
 # Augment the standard log highlighter with 'epstein_filename' matcher
 class LogHighlighter(ReprHighlighter):
     highlights = ReprHighlighter.highlights + [
-        *[fr"(?P<{doc_type}>{doc_type}(Cfg)?)" for doc_type in DOC_TYPE_STYLES.keys()],
+        *[fr"(?P<{doc_type}>{doc_type}(Cfg|s)?)" for doc_type in DOC_TYPE_STYLES.keys()],
         "(?P<epstein_filename>" + FILE_NAME_REGEX.pattern + ')',
     ]
 

@@ -59,7 +59,7 @@ class TextMessage:
         try:
             timestamp_str = iso_timestamp(self.parse_timestamp())
         except Exception as e:
-            logger.warning(f"Failed to parse timestamp for {self}")
+            logger.info(f"Failed to parse timestamp for {self}")
             timestamp_str = self.timestamp_str
 
         return Text(f"[{timestamp_str}]", style=TIMESTAMP_DIM)

@@ -199,8 +199,13 @@ def print_json_stats(epstein_files: EpsteinFiles) -> None:
     print_json("count_by_month", count_by_month(epstein_files.all_documents()))
 
 
-def print_other_files_section(files: list[OtherFile], epstein_files: EpsteinFiles) -> None:
+def print_other_files_section(epstein_files: EpsteinFiles) -> list[OtherFile]:
     """Returns the OtherFile objects that were interesting enough to print."""
+    if args.uninteresting:
+        files = [f for f in epstein_files.other_files if not f.is_interesting()]
+    else:
+        files = [f for f in epstein_files.other_files if args.all_other_files or f.is_interesting()]
+
     title_pfx = '' if args.all_other_files else 'Selected '
     category_table = OtherFile.count_by_category_table(files, title_pfx=title_pfx)
     other_files_preview_table = OtherFile.files_preview_table(files, title_pfx=title_pfx)
@@ -208,12 +213,15 @@ def print_other_files_section(files: list[OtherFile], epstein_files: EpsteinFile
     print_other_page_link(epstein_files)
     print_centered(Padding(category_table, (2, 0)))
     console.print(other_files_preview_table)
+    return files
 
 
-def print_text_messages_section(imessage_logs: list[MessengerLog]) -> None:
+def print_text_messages_section(epstein_files: EpsteinFiles) -> list[MessengerLog]:
     """Print summary table and stats for text messages."""
+    imessage_logs = [log for log in epstein_files.imessage_logs if not args.names or log.author in args.names]
+
     if not imessage_logs:
-        logger.warning(f"No MessengerLog objects to output...")
+        logger.warning(f"No MessengerLogs found for {args.names}")
         return
 
     print_section_header('All of His Text Messages')
@@ -227,6 +235,8 @@ def print_text_messages_section(imessage_logs: list[MessengerLog]) -> None:
     for log_file in imessage_logs:
         console.print(Padding(log_file))
         console.line(2)
+
+    return imessage_logs
 
 
 def write_urls() -> None:
