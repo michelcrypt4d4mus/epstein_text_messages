@@ -84,24 +84,25 @@ def print_email_timeline(epstein_files: EpsteinFiles) -> None:
 def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     """Returns emails that were printed (may contain dupes if printed for both author and recipient)."""
     print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
-    people: list[Person]
+    all_emailers = epstein_files.emailers()
+    people_to_print: list[Person]
     printed_emails: list[Email] = []
     num_emails_printed_since_last_color_key = 0
 
     if args.names:
-        people = epstein_files.person_objs(args.names)
+        people_to_print = epstein_files.person_objs(args.names)
     else:
         if args.all_emails:
-            people = sorted(epstein_files.emailers(), key=lambda person: person.earliest_email_at())
+            people_to_print = sorted(all_emailers, key=lambda person: person.earliest_email_at())
         else:
-            people = epstein_files.person_objs(DEFAULT_EMAILERS)
+            people_to_print = epstein_files.person_objs(DEFAULT_EMAILERS)
 
         print_other_page_link(epstein_files)
-        print_centered(Padding(Person.emailer_info_table(people), (2, 0, 0, 0)))
-        print_centered(Padding(_emailer_stats_table(epstein_files), (2, 0)))
+        print_centered(Padding(Person.emailer_info_table(people_to_print), (2, 0, 0, 0)))
+        print_centered(Padding(Person.emailer_stats_table(all_emailers), (2, 0)))
 
-    for person in people:
-        if person.name in USELESS_EMAILERS:
+    for person in people_to_print:
+        if person.name in USELESS_EMAILERS and not args.names:
             continue
 
         printed_person_emails = person.print_emails()
@@ -228,49 +229,6 @@ def write_urls() -> None:
         console.line()
 
     logger.warning(f"Wrote {len(url_vars)} URL variables to '{URLS_ENV}'\n")
-
-
-def _emailer_stats_table(epstein_files: EpsteinFiles) -> Table:
-    attributed_emails = [e for e in epstein_files.non_duplicate_emails() if e.author]
-    author_counts = epstein_files.email_author_counts()
-    del author_counts[None]
-    footer = f"(identified {len(author_counts)} authors of {len(attributed_emails):,}"
-    footer = f"{footer} out of {len(epstein_files.non_duplicate_emails()):,} emails)"
-
-    counts_table = build_table(
-        f"All {len(author_counts)} People Who Sent or Received an Email in the Files",
-        caption=footer,
-        cols=[
-            'Name',
-            {'name': 'Count', 'justify': 'right', 'style': 'bold bright_white'},
-            {'name': 'Sent', 'justify': 'right', 'style': 'gray74'},
-            {'name': 'Recv', 'justify': 'right', 'style': 'gray74'},
-            {'name': 'First', 'style': TIMESTAMP_STYLE},
-            {'name': 'Last', 'style': LAST_TIMESTAMP_STYLE},
-            {'name': 'Days', 'justify': 'right', 'style': 'dim'},
-            JMAIL,
-            EPSTEIN_MEDIA,
-            EPSTEIN_WEB,
-            'Twitter',
-        ]
-    )
-
-    for person in sorted(epstein_files.emailers(), key=lambda person: person.sort_key()):
-        counts_table.add_row(
-            person.name_link(),
-            f"{len(person.emails):,}",
-            f"{len(person.emails_by()):,}",
-            f"{len(person.emails_to()):,}",
-            str(person.earliest_email_date()),
-            str(person.last_email_date()),
-            f"{person.email_conversation_length_in_days()}",
-            person.external_link_txt(JMAIL),
-            person.external_link_txt(EPSTEIN_MEDIA) if person.is_linkable() else '',
-            person.external_link_txt(EPSTEIN_WEB) if person.is_linkable() else '',
-            person.external_link_txt(TWITTER),
-        )
-
-    return counts_table
 
 
 def _print_email_device_info(epstein_files: EpsteinFiles) -> None:
