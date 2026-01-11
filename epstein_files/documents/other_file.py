@@ -249,6 +249,6 @@ class OtherFile(Document):
 
         for category in categories:
             category_files = [f for f in files if f.category() == category]
-            table.add_row(styled_category(category), *cls.files_info(category_files).values())
+            table.add_row(styled_category(category), *cls.files_info_row(category_files))
 
         return table

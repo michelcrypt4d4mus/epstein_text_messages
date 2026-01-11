@@ -379,16 +379,20 @@ class Document:
 
     @classmethod
     def files_info(cls, files: Sequence['Document'], author_na: bool = False) -> dict[str, str | Text]:
-        """Create a summary of a group of files."""
-        count = len(files)
+        """Summary info about a group of files."""
+        file_count = len(files)
         author_count = cls.known_author_count(files)
 
         return {
-            'count': str(count),
+            'count': str(file_count),
             'author_count': str(author_count),
-            'no_author_count': str(count - author_count),
+            'no_author_count': str(file_count - author_count),
             'bytes': file_size_to_str(sum([f.file_size() for f in files])),
         }
+
+    @classmethod
+    def files_info_row(cls, files: Sequence['Document'], author_na: bool = False) -> Sequence[str | Text]:
+        return [v for v in cls.files_info(files, author_na).values()]
 
     @staticmethod
     def diff_files(files: list[str]) -> None:

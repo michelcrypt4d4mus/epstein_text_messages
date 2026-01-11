@@ -259,26 +259,11 @@ class EpsteinFiles:
         ]
 
     def files_summary_table(self) -> Table:
-
-        table = build_table('File Overview')
-        add_cols_to_table(table, ['File Type', 'Count', 'Author Known', 'Author Unknown', 'Duplicates'])
-        table.columns[1].justify = 'right'
-
-        def add_row(label: str, docs: list):
-            known = None if isinstance(docs[0], JsonFile) else Document.known_author_count(docs)
-
-            table.add_row(
-                label,
-                f"{len(docs):,}",
-                f"{known:,}" if known is not None else NA_TXT,
-                f"{len(docs) - known:,}" if known is not None else NA_TXT,
-                f"{len([d for d in docs if d.is_duplicate()])}",
-            )
-
-        add_row('Emails', self.emails)
-        add_row('iMessage Logs', self.imessage_logs)
-        add_row('JSON Data', self.json_files)
-        add_row('Other', self.non_json_other_files())
+        table = Document.file_info_table('File Overview', 'File Type')
+        table.add_row('Emails', *Document.files_info_row(self.emails))
+        table.add_row('iMessage Logs', *Document.files_info_row(self.imessage_logs))
+        table.add_row('JSON Data', *Document.files_info_row(self.json_files, True))
+        table.add_row('Other', *Document.files_info_row(self.non_json_other_files()))
         return table
 
     def unknown_recipient_ids(self) -> list[str]:
