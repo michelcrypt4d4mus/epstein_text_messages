@@ -474,7 +474,7 @@ HIGHLIGHTED_NAMES = [
             'Alfredo Rodriguez': "Epstein's butler, stole the journal",
             ERIC_ROTH: 'jet decorator',
             GWENDOLYN_BECK: 'Epstein fund manager in the 90s',
-            'Janusz Banasiak': "Epstein's house manager",
+            JANUSZ_BANASIAK: "Epstein's house manager",
             JEAN_HUGUEN: 'interior design at Alberto Pinto Cabinet',
             LAWRANCE_VISOSKI: "Epstein's pilot",
             LESLEY_GROFF: f"Epstein's assistant",
@@ -486,7 +486,6 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"Adriana\s*Ross",
-            r"Janusz", r"Banasiak",
             r"Merwin",
             r"(Sarah\s*)?Kellen", r"Vickers",  # Married name is Metiers
         ],

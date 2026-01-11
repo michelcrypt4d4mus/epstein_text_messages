@@ -286,7 +286,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Jackie Perczek": 3,
     "James Ramsey": 1,
     "Janet Kafka": 1,
-    "Januiz Banasiak": 1,
+    JANUSZ_BANASIAK: 1,
     "Jay Lefkowitz": 3,
     'Jay Levin': 1,
     JEAN_HUGUEN: 1,

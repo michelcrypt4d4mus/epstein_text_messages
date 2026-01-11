@@ -103,7 +103,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
         print_centered(Padding(Person.emailer_info_table(all_emailers, people_to_print), (2, 0, 1, 0)))
 
     for person in people_to_print:
-        if person.name in epstein_files.uninteresting_emailers():
+        if person.name in epstein_files.uninteresting_emailers() and not args.names:
             continue
 
         printed_person_emails = person.print_emails()
