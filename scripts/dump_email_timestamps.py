@@ -49,7 +49,7 @@ counts = defaultdict(int)
 
 
 def print_potential_useless_emailers():
-    emailers = sorted(epstein_files.email_authors(), key=lambda e: epstein_files.earliest_email_at(e))
+    emailers = sorted(epstein_files.emailers(), key=lambda e: epstein_files.earliest_email_at(e))
 
     for emailer in emailers:
         emails = epstein_files.emails_for(emailer)
