@@ -259,6 +259,7 @@ class EpsteinFiles:
         ]
 
     def files_summary_table(self) -> Table:
+
         table = build_table('File Overview')
         add_cols_to_table(table, ['File Type', 'Count', 'Author Known', 'Author Unknown', 'Duplicates'])
         table.columns[1].justify = 'right'

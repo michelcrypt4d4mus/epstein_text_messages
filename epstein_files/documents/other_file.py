@@ -42,13 +42,6 @@ SKIP_TIMESTAMP_EXTRACT = [
     PALM_BEACH_PROPERTY_INFO,
 ]
 
-SUMMARY_TABLE_COLS: list[str | dict] = [
-    'Count',
-    {'name': 'Has Author', 'style': 'honeydew2'},
-    {'name': 'No Author', 'style': 'wheat4'},
-    {'name': 'Size', 'justify': 'right', 'style': 'dim'},
-]
-
 UNINTERESTING_CATEGORIES = [
     ACADEMIA,
     ARTICLE,
@@ -259,24 +252,3 @@ class OtherFile(Document):
             table.add_row(styled_category(category), *cls.files_info(category_files).values())
 
         return table
-
-    @classmethod
-    def file_info_table(cls, title: str, first_col_name: str) -> Table:
-        """Empty table with appropriate cols for file summaries."""
-        table = build_table(title)
-        cols = [{'name': first_col_name, 'min_width': 14}] + SUMMARY_TABLE_COLS
-        add_cols_to_table(table, cols, 'right')
-        return table
-
-    @classmethod
-    def files_info(cls, files: Sequence[Document], author_na: bool = False) -> dict[str, str | Text]:
-        """Create a summary of a group of files."""
-        count = len(files)
-        author_count = Document.known_author_count(files)
-
-        return {
-            'count': str(count),
-            'author_count': str(author_count),
-            'no_author_count': str(count - author_count),
-            'bytes': file_size_to_str(sum([f.file_size() for f in files])),
-        }

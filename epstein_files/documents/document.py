@@ -11,6 +11,7 @@ from rich.console import Console, ConsoleOptions, Group, RenderResult
 from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
+from rich.table import Table
 
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
@@ -19,9 +20,9 @@ from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP
 from epstein_files.util.data import collapse_newlines, date_str, patternize, remove_zero_time_from_timestamp_str, without_falsey
 from epstein_files.util.doc_cfg import DUPE_TYPE_STRS, EmailCfg, DocCfg, Metadata, TextCfg
 from epstein_files.util.env import DOCS_DIR, args
-from epstein_files.util.file_helper import extract_file_id, file_size, file_size_str, is_local_extract_file
+from epstein_files.util.file_helper import extract_file_id, file_size, file_size_str, file_size_to_str, is_local_extract_file
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
-from epstein_files.util.rich import INFO_STYLE, SYMBOL_STYLE, console, highlighter, join_texts, key_value_txt, link_text_obj, parenthesize
+from epstein_files.util.rich import INFO_STYLE, SYMBOL_STYLE, add_cols_to_table, build_table, console, highlighter, join_texts, key_value_txt, link_text_obj, parenthesize
 from epstein_files.util.search_result import MatchedLine
 
 ALT_LINK_STYLE = 'white dim'
@@ -54,6 +55,13 @@ OCR_REPAIRS = {
     re.compile('ln(adequate|dyke)'): r'In\1',
     'Nil Priell': 'Nili Priell',
 }
+
+SUMMARY_TABLE_COLS: list[str | dict] = [
+    'Count',
+    {'name': 'Has Author', 'style': 'honeydew2'},
+    {'name': 'No Author', 'style': 'wheat4'},
+    {'name': 'Size', 'justify': 'right', 'style': 'dim'},
+]
 
 
 @dataclass
@@ -361,6 +369,27 @@ class Document:
     def __str__(self) -> str:
         return self.summary().plain
 
+    @classmethod
+    def file_info_table(cls, title: str, first_col_name: str) -> Table:
+        """Empty table with appropriate cols for summarizing groups of files."""
+        table = build_table(title)
+        cols = [{'name': first_col_name, 'min_width': 14}] + SUMMARY_TABLE_COLS
+        add_cols_to_table(table, cols, 'right')
+        return table
+
+    @classmethod
+    def files_info(cls, files: Sequence['Document'], author_na: bool = False) -> dict[str, str | Text]:
+        """Create a summary of a group of files."""
+        count = len(files)
+        author_count = cls.known_author_count(files)
+
+        return {
+            'count': str(count),
+            'author_count': str(author_count),
+            'no_author_count': str(count - author_count),
+            'bytes': file_size_to_str(sum([f.file_size() for f in files])),
+        }
+
     @staticmethod
     def diff_files(files: list[str]) -> None:
         """Diff the contents of two Documents after all cleanup, BOM removal, etc."""
@@ -400,8 +429,8 @@ class Document:
     def sort_by_timestamp(docs: Sequence['DocumentType']) -> list['DocumentType']:
         return sorted(docs, key=lambda doc: doc.sort_key())
 
-    @classmethod
-    def uniquify(cls, documents: Sequence['DocumentType']) -> Sequence['DocumentType']:
+    @staticmethod
+    def uniquify(documents: Sequence['DocumentType']) -> Sequence['DocumentType']:
         """Uniquify by file_id."""
         id_map = {doc.file_id: doc for doc in documents}
         return [doc for doc in id_map.values()]
