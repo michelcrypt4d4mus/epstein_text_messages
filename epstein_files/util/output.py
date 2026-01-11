@@ -13,13 +13,16 @@ from epstein_files.util.constant import output_files
 from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.output_files import JSON_FILES_JSON_PATH, JSON_METADATA_PATH
-from epstein_files.util.constant.strings import TIMESTAMP_STYLE
+from epstein_files.util.constant.strings import AUTHOR, TIMESTAMP_STYLE
 from epstein_files.util.data import dict_sets_to_lists
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
 
+DEVICE_SIGNATURE_SUBTITLE = f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown"
+DEVICE_SIGNATURE = 'Device Signature'
+DEVICE_SIGNATURE_PADDING = (1, 0)
 OTHER_INTERESTING_EMAILS_SUBTITLE = 'Other Interesting Emails\n(these emails have been flagged as being of particular interest)'
 PRINT_COLOR_KEY_EVERY_N_EMAILS = 150
 
@@ -120,7 +123,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
         console.print(other_email)
         printed_emails.append(cast(Email, other_email))
 
-    epstein_files.print_email_device_info()
+    _print_email_device_info(epstein_files)
 
     if args.all_emails:
         _verify_all_emails_were_printed(epstein_files, printed_emails)
@@ -263,6 +266,29 @@ def _all_emailers_table(epstein_files: EpsteinFiles) -> Table:
         )
 
     return counts_table
+
+
+def _print_email_device_info(epstein_files: EpsteinFiles) -> None:
+    print_subtitle_panel(DEVICE_SIGNATURE_SUBTITLE)
+    console.print(_signature_table(epstein_files.email_device_signatures_to_authors(), (DEVICE_SIGNATURE, AUTHOR), ', '))
+    console.print(_signature_table(epstein_files.email_authors_to_device_signatures(), (AUTHOR, DEVICE_SIGNATURE)))
+
+
+def _signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Padding:
+    """Build table for who signed emails with 'Sent from my iPhone' etc."""
+    title = 'Signatures Used By Authors' if cols[0] == AUTHOR else 'Authors Seen Using Signatures'
+    table = build_table(title, header_style="bold reverse", show_lines=True)
+
+    for i, col in enumerate(cols):
+        table.add_column(col.title() + ('s' if i == 1 else ''))
+
+    new_dict = dict_sets_to_lists(keyed_sets)
+
+    for k in sorted(new_dict.keys()):
+        table.add_row(highlighter(k or UNKNOWN), highlighter(join_char.join(sorted(new_dict[k]))))
+
+    return Padding(table, DEVICE_SIGNATURE_PADDING)
+
 
 
 def _verify_all_emails_were_printed(epstein_files: EpsteinFiles, already_printed_emails: list[Email]) -> None:
