@@ -14,11 +14,11 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import *
-from epstein_files.util.data import days_between
+from epstein_files.util.data import days_between, flatten
 from epstein_files.util.env import args
 from epstein_files.util.highlighted_group import (QUESTION_MARKS_TXT, HighlightedNames,
      get_highlight_group_for_name, get_style_for_name, styled_category, styled_name)
-from epstein_files.util.rich import GREY_NUMBERS, build_table, console,  print_centered
+from epstein_files.util.rich import GREY_NUMBERS, LAST_TIMESTAMP_STYLE, build_table, console,  print_centered
 
 ALT_INFO_STYLE = 'medium_purple4'
 MIN_AUTHOR_PANEL_WIDTH = 80
@@ -26,7 +26,6 @@ MIN_AUTHOR_PANEL_WIDTH = 80
 INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [
     'ACT for America',
     'BS Stern',
-    INTELLIGENCE_SQUARED,
     UNKNOWN,
 ]
 
@@ -57,7 +56,7 @@ class Person:
             return None
         elif self.category():
             return styled_category(self.category())
-        elif self.style() == DEFAULT_NAME_STYLE and '@' not in self.name and not self.info_str():
+        elif self.style() == DEFAULT_NAME_STYLE and not self.is_email_address() and not self.info_str():
             return QUESTION_MARKS_TXT
 
     def email_conversation_length_in_days(self) -> int:
@@ -135,18 +134,21 @@ class Person:
             return Text('(emails whose author or recipient could not be determined)', style=ALT_INFO_STYLE)
         elif category == JUNK:
             return Text(f"({JUNK})", style='tan dim')
-        elif self.style() == DEFAULT_NAME_STYLE and '@' not in self.name and not info:
+        elif self.style() == DEFAULT_NAME_STYLE and not self.is_email_address() and not info:
             return Text(QUESTION_MARKS, style='grey50 dim')
         elif category and info:
             info = info.removeprefix(category).removeprefix(', ')
 
         return Text(info) if info else None
 
+    def is_email_address(self) -> bool:
+        return '@' in (self.name or '')
+
     def is_linkable(self) -> bool:
         """Return True if it's likely that EpsteinWeb has a page for this name."""
         if self.name is None or ' ' not in self.name:
             return False
-        elif '@' in self.name or '/' in self.name or QUESTION_MARKS in self.name:
+        elif self.is_email_address() or '/' in self.name or QUESTION_MARKS in self.name:
             return False
         elif self.name in INVALID_FOR_EPSTEIN_WEB:
             return False
@@ -220,8 +222,11 @@ class Person:
         else:
             return self.emails
 
+    def __str__(self):
+        return f"{self.name_str()}"
+
     @staticmethod
-    def emailer_info_table(authors: list['Person']) -> Table:
+    def emailer_info_table(people: list['Person']) -> Table:
         """Table of info about emailers."""
         header_pfx = '' if args.all_emails else 'Selected '
         table = build_table(f'{header_pfx}Email Conversations Grouped by Counterparty Will Appear in this Order')
@@ -234,8 +239,8 @@ class Person:
         current_year_month = current_year * 12
         grey_idx = 0
 
-        for author in authors:
-            earliest_email_date = author.earliest_email_date()
+        for person in people:
+            earliest_email_date = person.earliest_email_date()
             year_months = (earliest_email_date.year * 12) + earliest_email_date.month
 
             # Color year rollovers more brightly
@@ -249,10 +254,53 @@ class Person:
 
             table.add_row(
                 Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[grey_idx]}"),
-                author.name_txt(),  # TODO: make link?
-                author.category_txt(),
-                f"{len(author._printable_emails()):,}",
-                author.info_txt() or '',
+                person.name_txt(),  # TODO: make link?
+                person.category_txt(),
+                f"{len(person._printable_emails()):,}",
+                person.info_txt() or '',
             )
 
         return table
+
+    @staticmethod
+    def emailer_stats_table(people: list['Person']) -> Table:
+        email_authors = [p for p in people if p.emails_by() and p.name]
+        all_emails = Document.uniquify(flatten([p.unique_emails() for p in people]))
+        attributed_emails = [email for email in all_emails if email.author]
+        footer = f"(identified {len(email_authors)} authors of {len(attributed_emails):,}"
+        footer = f"{footer} out of {len(attributed_emails):,} emails)"
+
+        counts_table = build_table(
+            f"All {len(email_authors)} People Who Sent or Received an Email in the Files",
+            caption=footer,
+            cols=[
+                'Name',
+                {'name': 'Count', 'justify': 'right', 'style': 'bold bright_white'},
+                {'name': 'Sent', 'justify': 'right', 'style': 'gray74'},
+                {'name': 'Recv', 'justify': 'right', 'style': 'gray74'},
+                {'name': 'First', 'style': TIMESTAMP_STYLE},
+                {'name': 'Last', 'style': LAST_TIMESTAMP_STYLE},
+                {'name': 'Days', 'justify': 'right', 'style': 'dim'},
+                JMAIL,
+                EPSTEIN_MEDIA,
+                EPSTEIN_WEB,
+                'Twitter',
+            ]
+        )
+
+        for person in sorted(people, key=lambda person: person.sort_key()):
+            counts_table.add_row(
+                person.name_link(),
+                f"{len(person.unique_emails()):,}",
+                f"{len(person.unique_emails_by()):,}",
+                f"{len(person.unique_emails_to()):,}",
+                str(person.earliest_email_date()),
+                str(person.last_email_date()),
+                f"{person.email_conversation_length_in_days()}",
+                person.external_link_txt(JMAIL),
+                person.external_link_txt(EPSTEIN_MEDIA) if person.is_linkable() else '',
+                person.external_link_txt(EPSTEIN_WEB) if person.is_linkable() else '',
+                person.external_link_txt(TWITTER),
+            )
+
+        return counts_table

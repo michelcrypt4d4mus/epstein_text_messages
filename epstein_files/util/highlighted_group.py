@@ -23,6 +23,7 @@ EPSTEIN_LAWYER = 'EpsteinLawyer'
 EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} working on {EPSTEIN_V_ROTHSTEIN_EDWARDS}"
 ESTATE_EXECUTOR = 'estate executor'
 EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
+MIDEAST = 'mideast'
 QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
 REGEX_STYLE_PREFIX = 'regex'
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w ]+$", re.IGNORECASE)
@@ -1025,7 +1026,7 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        label='mideast',
+        label=MIDEAST,
         style='dark_sea_green4',
         emailers={
             ANAS_ALRASHEED: 'former information minister of Kuwait (???)',
@@ -1435,13 +1436,13 @@ HIGHLIGHTED_NAMES = [
         patterns=[r"(steven?\s*)?hoffenberg?w?"],
     ),
     HighlightedNames(emailers={GHISLAINE_MAXWELL: None}, patterns=[r"gmax(1@ellmax.com)?", r"(The )?TerraMar Project"], style='deep_pink3', category='Epstein'),
-    HighlightedNames(emailers={JABOR_Y: '"an influential man in Qatar"'}, category='mideast', style='spring_green1'),
+    HighlightedNames(emailers={JABOR_Y: '"an influential man in Qatar"'}, category=MIDEAST, style='spring_green1'),
     HighlightedNames(emailers={KATHRYN_RUEMMLER: 'former Obama legal counsel'}, style='magenta2', category=FRIEND),
     HighlightedNames(emailers={MELANIE_WALKER: f"doctor, friend of {BILL_GATES}"}, style='pale_violet_red1', category=FRIEND),
     HighlightedNames(emailers={PAULA: "Epstein's ex-girlfriend who is now in the opera world"}, label='paula', style='pink1', category=FRIEND),
     HighlightedNames(emailers={PRINCE_ANDREW: 'British royal family'}, style='dodger_blue1', category='Europe'),
     HighlightedNames(emailers={SOON_YI_PREVIN: 'wife of Woody Allen'}, style='hot_pink', category=FRIEND),
-    HighlightedNames(emailers={SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of ports in Dubai'}, style='green1', category='mideast'),
+    HighlightedNames(emailers={SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of ports in Dubai'}, style='green1', category=MIDEAST),
 
     # HighlightedText not HighlightedNames bc of word boundary issue
     HighlightedText(
