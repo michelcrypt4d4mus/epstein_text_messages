@@ -36,5 +36,3 @@ def test_info_str(anne_boyles, eduardo, eva, sultan):
 
     assert anne_boyles.category_txt().plain == QUESTION_MARKS
     assert anne_boyles.info_txt().plain == QUESTION_MARKS
-
-    assert 

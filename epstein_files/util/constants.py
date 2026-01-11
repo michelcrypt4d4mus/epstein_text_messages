@@ -477,7 +477,7 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='029977',
         author=LAWRANCE_VISOSKI,
-        recipients=cast(list[str | None], [JEFFREY_EPSTEIN, DARREN_INDYKE, LESLEY_GROFF, RICHARD_KAHN] + FLIGHT_IN_2012_PEOPLE),
+        recipients=cast(list[Name], [JEFFREY_EPSTEIN, DARREN_INDYKE, LESLEY_GROFF, RICHARD_KAHN] + FLIGHT_IN_2012_PEOPLE),
         attribution_reason=LARRY_REASON,
         duplicate_ids=['031129'],
     ),
@@ -559,7 +559,7 @@ EMAILS_CONFIG = [
         attribution_reason='ends with "Respectfully, terry"',
         author=TERRY_KAFKA,
         fwded_text_after='From: Mike Cohen',
-        recipients=cast(list[str | None], [JEFFREY_EPSTEIN, MARK_EPSTEIN, MICHAEL_BUCHHOLTZ] + IRAN_DEAL_RECIPIENTS),
+        recipients=cast(list[Name], [JEFFREY_EPSTEIN, MARK_EPSTEIN, MICHAEL_BUCHHOLTZ] + IRAN_DEAL_RECIPIENTS),
         subject='Fw: The Iran Nuclear Deal',
         duplicate_ids=['028482'],
     ),

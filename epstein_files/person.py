@@ -34,7 +34,7 @@ INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + MAILING_LISTS + 
 @dataclass(kw_only=True)
 class Person:
     """Collection of data about someone texting or emailing Epstein."""
-    name: str | None
+    name: Name
     emails: list[Email] = field(default_factory=list)
     imessage_logs: list[MessengerLog] = field(default_factory=list)
     other_files: list[OtherFile] = field(default_factory=list)
