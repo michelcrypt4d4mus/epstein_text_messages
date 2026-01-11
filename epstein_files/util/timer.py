@@ -11,7 +11,7 @@ class Timer:
     checkpoint_at: float = field(default_factory=lambda: time.perf_counter())
     decimals: int = 2
 
-    def log_section_complete(self, label: str, all_docs: list['Document'], printed_docs: list['Document']) -> None:
+    def log_section_complete(self, label: str, all_docs: list, printed_docs: list) -> None:
         num_skipped = len(all_docs) - len(printed_docs)
         prefix = suffix = ''
 
