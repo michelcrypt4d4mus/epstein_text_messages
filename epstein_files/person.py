@@ -23,8 +23,8 @@ from epstein_files.util.rich import GREY_NUMBERS, LAST_TIMESTAMP_STYLE, build_ta
 ALT_INFO_STYLE = 'medium_purple4'
 CC = 'cc:'
 MIN_AUTHOR_PANEL_WIDTH = 80
-EMAILER_INFO_TITLE = 'Email Conversations Will Appear in this Order'
-UNINTERESTING_CC_INFO = "CC: or BCC: recipient"
+EMAILER_INFO_TITLE = 'Email Conversations Will Appear'
+UNINTERESTING_CC_INFO = "CC: or BCC: recipient only"
 
 INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + MAILING_LISTS + [
     'ACT for America',
@@ -54,15 +54,13 @@ class Person:
 
             if category != self.name and category != 'paula':  # TODO: this sucks
                 return category
-        # elif self.is_uninteresting_cc:
-        #     return CC
 
     def category_txt(self) -> Text | None:
         if self.name is None:
             return None
         elif self.category():
             return styled_category(self.category())
-        elif self.is_a_mystery():
+        elif self.is_a_mystery() or self.is_uninteresting_cc:
             return QUESTION_MARKS_TXT
 
     def email_conversation_length_in_days(self) -> int:
@@ -147,8 +145,8 @@ class Person:
         elif self.category() == JUNK:
             return Text(f"({JUNK} mail)", style='tan dim')
         elif self.is_a_mystery():
-            return Text(QUESTION_MARKS, style='grey50 dim')
-        elif self.is_uninteresting_cc:
+            return Text(QUESTION_MARKS, style='magenta dim')
+        elif self.is_uninteresting_cc and self.info_str() == UNINTERESTING_CC_INFO:
             return Text(f"({self.info_str()})", style='wheat4 dim')
         elif self.info_str() is None:
             if self.name in MAILING_LISTS:
@@ -263,9 +261,10 @@ class Person:
         is_selection = len(people) != len(highlighted)
 
         if is_selection:
-            title = f"{EMAILER_INFO_TITLE} for the Highlighted Names (see other page for the rest)"
+            title = Text(f"{EMAILER_INFO_TITLE} in This Order for the Highlighted Names (see ", style='italic')
+            title.append(THE_OTHER_PAGE_TXT).append(" for the rest)")
         else:
-            title = EMAILER_INFO_TITLE
+            title = f"{EMAILER_INFO_TITLE} in Chronological Order Based on Timestamp of First Email"
 
         table = build_table(title)
         table.add_column('Start')

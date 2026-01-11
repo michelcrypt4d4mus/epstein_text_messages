@@ -347,7 +347,7 @@ HIGHLIGHTED_NAMES = [
             'David Mitchell': 'Mitchell Holdings New York real estate developer',
             FRED_HADDAD: "co-founder of Heck's in West Virginia",
             GERALD_BARTON: "Maryland property developer Landmark Land Company",
-            GORDON_GETTY: 'heir of oil tycoon J. Paul Getty',
+            GORDON_GETTY: 'heir to oil tycoon J. Paul Getty',
             NICHOLAS_RIBIS: 'Hilton CEO, former president of Trump Organization',
             'Philip Kafka': 'president of Prince Concepts (and son of Terry Kafka?)',
             ROBERT_LAWRENCE_KUHN: 'investment banker, China expert',
