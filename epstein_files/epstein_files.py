@@ -9,6 +9,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import Sequence, Type, cast
 
+from rich.table import Table
+
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import DETECT_EMAIL_REGEX, Email
 from epstein_files.documents.json_file import JsonFile
@@ -22,7 +24,7 @@ from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.env import DOCS_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames
-from epstein_files.util.rich import NA_TXT, add_cols_to_table, build_table, console, print_centered
+from epstein_files.util.rich import NA_TXT, add_cols_to_table, build_table
 from epstein_files.util.search_result import SearchResult
 from epstein_files.util.timer import Timer
 
@@ -253,7 +255,7 @@ class EpsteinFiles:
             for name in names
         ]
 
-    def print_files_summary(self) -> None:
+    def files_summary_table(self) -> Table:
         table = build_table('File Overview')
         add_cols_to_table(table, ['File Type', 'Count', 'Author Known', 'Author Unknown', 'Duplicates'])
         table.columns[1].justify = 'right'
@@ -273,8 +275,7 @@ class EpsteinFiles:
         add_row('iMessage Logs', self.imessage_logs)
         add_row('JSON Data', self.json_files)
         add_row('Other', self.non_json_other_files())
-        print_centered(table)
-        console.line()
+        return table
 
     def unknown_recipient_ids(self) -> list[str]:
         """IDs of emails whose recipient is not known."""
