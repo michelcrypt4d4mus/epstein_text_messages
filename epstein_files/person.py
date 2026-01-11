@@ -172,16 +172,19 @@ class Person:
         self.print_emails_table()
         last_printed_email_was_duplicate = False
 
-        for email in self._printable_emails():
-            if email.is_duplicate():
-                console.print(Padding(email.duplicate_file_txt().append('...'), (0, 0, 0, 4)))
-                last_printed_email_was_duplicate = True
-            else:
-                if last_printed_email_was_duplicate:
-                    console.line()
+        if self.category() == JUNK:
+            logger.warning(f"Not printing junk emailer '{self.name}'")
+        else:
+            for email in self._printable_emails():
+                if email.is_duplicate():
+                    console.print(Padding(email.duplicate_file_txt().append('...'), (0, 0, 0, 4)))
+                    last_printed_email_was_duplicate = True
+                else:
+                    if last_printed_email_was_duplicate:
+                        console.line()
 
-                console.print(email)
-                last_printed_email_was_duplicate = False
+                    console.print(email)
+                    last_printed_email_was_duplicate = False
 
         return self._printable_emails()
 
@@ -218,8 +221,8 @@ class Person:
             return self.emails
 
     @staticmethod
-    def author_info_table(authors: list['Person']) -> Table:
-        """Add the first emailed_at timestamp for each emailer if 'epstein_files' provided."""
+    def emailer_info_table(authors: list['Person']) -> Table:
+        """Table of info about emailers."""
         header_pfx = '' if args.all_emails else 'Selected '
         table = build_table(f'{header_pfx}Email Conversations Grouped by Counterparty Will Appear in this Order')
         table.add_column('First Email')
