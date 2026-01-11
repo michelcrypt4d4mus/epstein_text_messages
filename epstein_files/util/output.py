@@ -156,7 +156,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     _print_email_device_info(epstein_files)
     fwded_articles = [e for e in printed_emails if e.config and e.is_fwded_article()]
     log_msg = f"Rewrote {len(Email.rewritten_header_ids)} of {len(printed_emails)} email headers"
-    logger.warning(f"{log_msg}, {len(fwded_articles)} of the emails were forwarded articles.")
+    logger.warning(f"  -> {log_msg}, {len(fwded_articles)} of the Emails printed were forwarded articles.")
     return printed_emails
 
 
