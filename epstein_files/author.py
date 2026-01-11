@@ -110,7 +110,7 @@ class Author:
             title_suffix = f"to/from {self.name_str()} starting {self.earliest_email_date()} covering {num_days:,} days"
 
         title = f"Found {email_count} emails {title_suffix}"
-        width = max(MIN_AUTHOR_PANEL_WIDTH, len(self.info_str() or '') + 4, len(self.info_str() or '') + 8)
+        width = max(MIN_AUTHOR_PANEL_WIDTH, len(title) + 4, len(self.info_str() or '') + 8)
         panel = Panel(Text(title, justify='center'), width=width, style=panel_style)
         elements: list[RenderableType] = [panel]
 
