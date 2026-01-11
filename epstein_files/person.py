@@ -18,7 +18,7 @@ from epstein_files.util.data import days_between, flatten, without_falsey
 from epstein_files.util.env import args
 from epstein_files.util.highlighted_group import (QUESTION_MARKS_TXT, HighlightedNames,
      get_highlight_group_for_name, get_style_for_name, styled_category, styled_name)
-from epstein_files.util.rich import GREY_NUMBERS, LAST_TIMESTAMP_STYLE, build_table, console, join_texts, print_centered
+from epstein_files.util.rich import GREY_NUMBERS, LAST_TIMESTAMP_STYLE, TABLE_TITLE_STYLE, build_table, console, join_texts, print_centered
 
 ALT_INFO_STYLE = 'medium_purple4'
 CC = 'cc:'
@@ -261,7 +261,7 @@ class Person:
         is_selection = len(people) != len(highlighted)
 
         if is_selection:
-            title = Text(f"{EMAILER_INFO_TITLE} in This Order for the Highlighted Names (see ", style='italic')
+            title = Text(f"{EMAILER_INFO_TITLE} in This Order for the Highlighted Names (see ", style=TABLE_TITLE_STYLE)
             title.append(THE_OTHER_PAGE_TXT).append(" for the rest)")
         else:
             title = f"{EMAILER_INFO_TITLE} in Chronological Order Based on Timestamp of First Email"
