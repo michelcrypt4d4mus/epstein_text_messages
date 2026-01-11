@@ -20,7 +20,12 @@ def anne_boyles(epstein_files) -> Person:
     return epstein_files.person_objs(['Anne Boyles'])[0]
 
 
-def test_info_str(anne_boyles, eduardo, sultan):
+@pytest.fixture(scope='session')
+def eva(epstein_files) -> Person:
+    return epstein_files.person_objs([EVA])[0]
+
+
+def test_info_str(anne_boyles, eduardo, eva, sultan):
     assert sultan.highlight_group() is not None
     assert sultan.info_str() == 'CEO of DP World, chairman of ports in Dubai'
     assert sultan.info_with_category() == 'mideast, CEO of DP World, chairman of ports in Dubai'
@@ -31,3 +36,5 @@ def test_info_str(anne_boyles, eduardo, sultan):
 
     assert anne_boyles.category_txt().plain == QUESTION_MARKS
     assert anne_boyles.info_txt().plain == QUESTION_MARKS
+
+    assert 

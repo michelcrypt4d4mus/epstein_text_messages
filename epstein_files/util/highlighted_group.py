@@ -19,8 +19,8 @@ from epstein_files.util.logging import logger
 CIVIL_ATTORNEY = 'civil attorney'
 CRIMINAL_DEFENSE_ATTORNEY = 'criminal defense attorney'
 CRIMINAL_DEFENSE_2008 = f"{CRIMINAL_DEFENSE_ATTORNEY} on 2008 case"
-EPSTEIN_LAWYER = 'Epstein lawyer'
-EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} working on {EPSTEIN_V_ROTHSTEIN_EDWARDS}"
+EPSTEIN_LAWYER = 'lawyer'
+EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} in {EPSTEIN_V_ROTHSTEIN_EDWARDS}"
 ESTATE_EXECUTOR = 'estate executor'
 EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
 MIDEAST = 'mideast'
@@ -344,7 +344,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
             BARBRO_C_EHNBOM: 'Swedish pharmaceuticals, SALSS',
-            'David Mitchell': 'president of New York real estate development firm Mitchell Holdings',
+            'David Mitchell': 'Mitchell Holdings New York real estate developer',
             FRED_HADDAD: "co-founder of Heck's in West Virginia",
             GERALD_BARTON: "Maryland property developer Landmark Land Company",
             GORDON_GETTY: 'heir of oil tycoon J. Paul Getty',
@@ -458,11 +458,12 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        label='Dubin family',
+        label='Dubins',
         style='medium_orchid1',
         emailers={
             GLENN_DUBIN: "Highbridge Capital Management, married to Epstein's ex-gf Eva",
             EVA: "possibly Epstein's ex-girlfriend (?)",
+            'Eva Dubin': f"Epstein's ex-girlfriend now married to {GLENN_DUBIN}",
         },
         patterns=[r"((Celina|Eva( Anderss?on)?|Glenn) )?Dubin"],
     ),
@@ -543,7 +544,7 @@ HIGHLIGHTED_NAMES = [
         style='purple',
         emailers={
             'Alan S Halperin': 'partner at Paul, Weiss',
-            ALAN_DERSHOWITZ: 'Harvard Law School professor and all around (in)famous American lawyer',
+            ALAN_DERSHOWITZ: 'Harvard Law School professor',
             ARDA_BESKARDES: 'NYC immigration attorney allegedly involved in sex-trafficking operations',
             BENNET_MOSKOWITZ: f'represented the {EPSTEIN_ESTATE_EXECUTOR}s',
             BRAD_KARP: 'head of the law firm Paul Weiss',
@@ -562,10 +563,10 @@ HIGHLIGHTED_NAMES = [
             MICHAEL_MILLER: 'Steptoe LLP partner',
             REID_WEINGARTEN: 'Steptoe LLP partner',
             ROBERT_D_CRITTON_JR: CRIMINAL_DEFENSE_ATTORNEY,
-            'Robert Gold': 'helped Epstein track down millions belonging to wealthy Spanish families',
+            'Robert Gold': 'helped Epstein track down money belonging to Spanish families',
             'Roy Black': CRIMINAL_DEFENSE_2008,
             SCOTT_J_LINK: CRIMINAL_DEFENSE_ATTORNEY,
-            TONJA_HADDAD_COLEMAN: f'{EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY}, maybe daughter of Fred Haddad?',
+            TONJA_HADDAD_COLEMAN: f'{EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY}, relation of Fred Haddad?',
         },
         patterns=[
             r"(Barry (E. )?)?Krischer",
@@ -593,11 +594,12 @@ HIGHLIGHTED_NAMES = [
         style='light_sky_blue3',
         emailers={
             ANDRZEJ_DUDA: 'former president of Poland',
+            "Edward Rod Larsen": f"son of {TERJE_ROD_LARSEN}",
             'Fabrice Aidan': f'diplomat who worked with {TERJE_ROD_LARSEN}',
             MIROSLAV_LAJCAK: 'Russia-friendly Slovakian politician, friend of Steve Bannon',
             PETER_MANDELSON: 'UK politics',
             TERJE_ROD_LARSEN: 'Norwegian diplomat',
-            THORBJORN_JAGLAND: 'former prime minister of Norway and head of the Nobel Peace Prize Committee',
+            THORBJORN_JAGLAND: 'former prime minister of Norway, Nobel Peace Prize Committee',
         },
         patterns=[
             r"(Angela )?Merk(el|le)",
@@ -614,7 +616,6 @@ HIGHLIGHTED_NAMES = [
             r"Cypr(iot|us)",
             r"Davos",
             r"ECB",
-            r"Edward Rod Larsen",
             r"England",
             r"EU",
             r"Europe(an)?(\s*Union)?",
@@ -725,7 +726,7 @@ HIGHLIGHTED_NAMES = [
         style='tan',
         emailers={
             DANGENE_AND_JENNIE_ENTERPRISE: 'founders of the members-only CORE club',
-            DAVID_STERN: f'emailed Epstein from Moscow, appears to know chairman of {DEUTSCHE_BANK}',
+            DAVID_STERN: f'emailed Epstein from Moscow, knows chairman of {DEUTSCHE_BANK} (?)',
             JONATHAN_FARKAS: "heir to the Alexander's department store fortune",
             'linkspirit': 'Skype username of someone Epstein communicated with',
             'Peter Thomas Roth': 'student of Epstein at Dalton, skincare company founder',
@@ -749,7 +750,7 @@ HIGHLIGHTED_NAMES = [
             LISA_NEW: f'professor of poetry, wife of {LARRY_SUMMERS}, AKA "Elisa New"',
             'Lisa Randall': 'theoretical physicist',
             MARTIN_NOWAK: 'professor of mathematics and biology',
-            MOSHE_HOFFMAN: 'lecturer and research scholar in behavioral and evolutionary economics',
+            MOSHE_HOFFMAN: 'behavioral and evolutionary economics',
         },
         patterns=[
             r"Cambridge",
@@ -826,7 +827,7 @@ HIGHLIGHTED_NAMES = [
         style='bright_yellow',
         emailers={
             'Alain Forget': 'author of "How To Get Out Of This World ALIVE"',
-            EDWARD_JAY_EPSTEIN: 'no relation, wrote about the kinds of crimes Epstein was involved in',
+            EDWARD_JAY_EPSTEIN: 'no relation, wrote books about spies',
             HENRY_HOLT: f"{MICHAEL_WOLFF}'s book publisher",
             JAMES_HILL: 'ABC News',
             JENNIFER_JACQUET: 'Future Science',
@@ -1159,10 +1160,11 @@ HIGHLIGHTED_NAMES = [
         label=PUBLICIST,
         style='orange_red1',
         emailers={
-            AL_SECKEL: "Isabel Maxwell's husband, Mindshift conference organizer, fell off a cliff",
+            AL_SECKEL: "Isabel Maxwell's husband, Mindshift conference, fell off a cliff",
             'Barnaby Marsh': 'co-founder of philanthropy services company Saint Partners',
             CHRISTINA_GALBRAITH: f"{EPSTEIN_FOUNDATION} Media/PR, worked with {TYLER_SHEARS}",  # Title in 031441
-            IAN_OSBORNE: f'{OSBORNE_LLP} reputation repairer hired by Epstein in 2011',
+            IAN_OSBORNE: f'{OSBORNE_LLP} reputation repairer hired in 2011',
+            MATTHEW_HILTZIK: 'crisis PR at Hiltzik Strategies',
             MICHAEL_SITRICK: 'crisis PR',
             'Owen Blicksilver': 'OBPR, Inc.',
             PEGGY_SIEGAL: 'socialite, movie promoter',
@@ -1243,7 +1245,7 @@ HIGHLIGHTED_NAMES = [
         style='red bold',
         emailers={
             'Dasha Zhukova': 'art collector, daughter of Alexander Zhukov',
-            MASHA_DROKOVA: 'silicon valley VC, former Putin Youth',
+            MASHA_DROKOVA: 'silicon valley VC, former Putin Youth member',
             RENATA_BOLOTOVA: 'former aspiring model, now fund manager at New York State Insurance Fund',
             SVETLANA_POZHIDAEVA: "Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and David Blaine",
         },
@@ -1399,12 +1401,12 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        label=VIRGIN_ISLANDS,
+        label='USVI',
         style='sea_green1',
         emailers={
-            CECILE_DE_JONGH: 'first lady 2007-2015',
-            KENNETH_E_MAPP: 'Governor',
-            STACEY_PLASKETT: 'non-voting member of Congress',
+            CECILE_DE_JONGH: 'Virgin Islands first lady 2007-2015',
+            KENNETH_E_MAPP: 'Virgin Islands Governor',
+            STACEY_PLASKETT: 'Virgin Islands non-voting member of Congress',
         },
         patterns=[
             r"Antigua",
@@ -1430,7 +1432,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label=STEVE_BANNON,
         style='color(58)',
-        category=POLITICS,
+        category='Republican',
         emailers={
             SEAN_BANNON: f"{STEVE_BANNON}'s brother",
             STEVE_BANNON: "Trump campaign manager, memecoin grifter",
@@ -1443,7 +1445,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         style='dark_olive_green3',
         category=FINANCE,
-        emailers={STEVEN_HOFFENBERG: "Epstein's ponzi scheme partner at Towers Financial, prison for 18 years"},
+        emailers={STEVEN_HOFFENBERG: "Epstein's Towers Financial ponzi scheme partner, prison 18 years"},
         patterns=[r"(steven?\s*)?hoffenberg?w?"],
     ),
     HighlightedNames(emailers={GHISLAINE_MAXWELL: None}, patterns=[r"gmax(1@ellmax.com)?", r"(The )?TerraMar Project"], style='deep_pink3', category='Epstein'),
