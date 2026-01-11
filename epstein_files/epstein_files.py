@@ -49,6 +49,7 @@ class EpsteinFiles:
     json_files: list[JsonFile] = field(default_factory=list)
     other_files: list[OtherFile] = field(default_factory=list)
     timer: Timer = field(default_factory=lambda: Timer())
+    uninteresting_ccs: list[Name] = field(init=False)
 
     def __post_init__(self):
         """Iterate through files and build appropriate objects."""
@@ -80,6 +81,7 @@ class EpsteinFiles:
         self.imessage_logs = Document.sort_by_timestamp([d for d in documents if isinstance(d, MessengerLog)])
         self.other_files = Document.sort_by_timestamp([d for d in documents if isinstance(d, (JsonFile, OtherFile))])
         self.json_files = [doc for doc in self.other_files if isinstance(doc, JsonFile)]
+        self._set_uninteresting_ccs()
         self._copy_duplicate_email_properties()
 
     @classmethod
@@ -249,7 +251,13 @@ class EpsteinFiles:
     def person_objs(self, names: list[Name]) -> list[Person]:
         """Construct Person objects for a list of names."""
         return [
-            Person(name=name, emails=self.emails_for(name), imessage_logs=self.imessage_logs_for(name))
+            Person(
+                name=name,
+                emails=self.emails_for(name),
+                imessage_logs=self.imessage_logs_for(name),
+                is_uninteresting_cc=name in self.uninteresting_ccs,
+                other_files=[f for f in self.other_files if name and name == f.author]
+            )
             for name in names
         ]
 
@@ -281,14 +289,7 @@ class EpsteinFiles:
         return sorted([e.file_id for e in self.emails if None in e.recipients or not e.recipients])
 
     def uninteresting_emailers(self) -> list[Name]:
-        ross_gow_email = self.email_for_id('014797_1')
-        uninteresting_names = copy(cast(list[Name], ross_gow_email.header.bcc))
-
-        for id in EMAILS_WITH_UNINTERESTING_CCS:
-            uninteresting_names += self.email_for_id(id).recipients
-
-        logger.info(f"Extracted uninteresting_names: {uninteresting_names}")
-        return sorted(uniquify(UNINTERESTING_EMAILERS + uninteresting_names))
+        return sorted(uniquify(UNINTERESTING_EMAILERS + self.uninteresting_ccs))
 
     def _copy_duplicate_email_properties(self) -> None:
         """Ensure dupe emails have the properties of the emails they duplicate to capture any repairs, config etc."""
@@ -308,6 +309,16 @@ class EpsteinFiles:
 
         # Resort in case any timestamp were updated
         self.emails = Document.sort_by_timestamp(self.emails)
+
+    def _set_uninteresting_ccs(self) -> None:
+        ross_gow_email = self.email_for_id('014797_1')
+        self.uninteresting_ccs = copy(cast(list[Name], ross_gow_email.header.bcc))
+
+        for id in EMAILS_WITH_UNINTERESTING_CCS:
+            self.uninteresting_ccs += self.email_for_id(id).recipients
+
+        self.uninteresting_ccs = sorted(uniquify(self.uninteresting_ccs))
+        logger.info(f"Extracted uninteresting_ccs: {self.uninteresting_ccs}")
 
 
 def count_by_month(docs: Sequence[Document]) -> dict[str | None, int]:
