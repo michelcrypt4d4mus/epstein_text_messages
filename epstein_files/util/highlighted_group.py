@@ -1111,7 +1111,7 @@ HIGHLIGHTED_NAMES = [
             r"sheikh",
             r"shia",
             r"(Sultan\s*)?Yacoub",
-            r"Sultan",
+            r"Sultan(?! Ahmed)",
             r"Syrian?",
             r"(Tarek\s*)?El\s*Sayed",
             r"Tehran",
@@ -1568,6 +1568,9 @@ def _print_highlighted_names_repr() -> None:
     for hn in HIGHLIGHTED_NAMES:
         if isinstance(hn, HighlightedNames):
             print(indented(repr(hn)) + ',')
+            print(f"pattern: '{hn.regex.pattern}'")
 
     import sys
     sys.exit()
+
+#_print_highlighted_names_repr()
