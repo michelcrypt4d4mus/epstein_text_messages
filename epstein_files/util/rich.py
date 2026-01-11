@@ -83,21 +83,21 @@ console = Console(**CONSOLE_ARGS)
 highlighter = CONSOLE_ARGS['highlighter']
 
 
-def add_cols_to_table(table: Table, col_names: list[str | dict]) -> None:
+def add_cols_to_table(table: Table, cols: list[str | dict], justify: str = 'center') -> None:
     """Left most col will be left justified, rest are center justified."""
-    for i, col in enumerate(col_names):
-        justify='left' if i == 0 else 'center'
+    for i, col in enumerate(cols):
+        col_justify = 'left' if i == 0 else justify
 
         if isinstance(col, dict):
             col_name = col['name']
-            kwargs = deepcopy(col)
-            kwargs['justify'] = kwargs.get('justify', justify)
-            del kwargs['name']
+            col_kwargs = deepcopy(col)
+            col_kwargs['justify'] = col_kwargs.get('justify', col_justify)
+            del col_kwargs['name']
         else:
             col_name = col
-            kwargs = {'justify': justify}
+            col_kwargs = {'justify': col_justify}
 
-        table.add_column(col_name, **kwargs)
+        table.add_column(col_name, **col_kwargs)
 
 
 def build_highlighter(pattern: str) -> EpsteinHighlighter:
