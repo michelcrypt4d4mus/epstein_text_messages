@@ -22,7 +22,7 @@ from epstein_files.util.doc_cfg import DUPE_TYPE_STRS, EmailCfg, DocCfg, Metadat
 from epstein_files.util.env import DOCS_DIR, args
 from epstein_files.util.file_helper import extract_file_id, file_size, file_size_str, file_size_to_str, is_local_extract_file
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
-from epstein_files.util.rich import INFO_STYLE, SYMBOL_STYLE, add_cols_to_table, build_table, console, highlighter, join_texts, key_value_txt, link_text_obj, parenthesize
+from epstein_files.util.rich import INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_cols_to_table, build_table, console, highlighter, join_texts, key_value_txt, link_text_obj, parenthesize
 from epstein_files.util.search_result import MatchedLine
 
 ALT_LINK_STYLE = 'white dim'
@@ -378,15 +378,15 @@ class Document:
         return table
 
     @classmethod
-    def files_info(cls, files: Sequence['Document'], author_na: bool = False) -> dict[str, str | Text]:
+    def files_info(cls, files: Sequence['Document'], is_author_na: bool = False) -> dict[str, str | Text]:
         """Summary info about a group of files."""
         file_count = len(files)
         author_count = cls.known_author_count(files)
 
         return {
             'count': str(file_count),
-            'author_count': str(author_count),
-            'no_author_count': str(file_count - author_count),
+            'author_count': NA_TXT if is_author_na else str(author_count),
+            'no_author_count': NA_TXT if is_author_na else str(file_count - author_count),
             'bytes': file_size_to_str(sum([f.file_size() for f in files])),
         }
 

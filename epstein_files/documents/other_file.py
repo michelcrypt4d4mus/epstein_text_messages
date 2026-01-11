@@ -245,6 +245,7 @@ class OtherFile(Document):
     @classmethod
     def summary_table(cls, files: Sequence['OtherFile'], title_pfx: str = '') -> Table:
         categories = uniquify([f.category() for f in files])
+        categories = sorted(categories, key=lambda c: -len([f for f in files if f.category() == c]))
         table = cls.file_info_table(f'{title_pfx}Other Files Summary', 'Category')
 
         for category in categories:
