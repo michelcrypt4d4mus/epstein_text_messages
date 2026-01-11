@@ -72,7 +72,7 @@ INTERESTING_EMAIL_IDS = [
 
 def print_email_timeline(epstein_files: EpsteinFiles) -> None:
     """Print a table of all emails in chronological order."""
-    emails = Document.sort_by_timestamp([e for e in epstein_files.non_duplicate_emails() if not e.is_junk_mail()])
+    emails = Document.sort_by_timestamp([e for e in epstein_files.non_duplicate_emails() if not e.is_mailing_list()])
     title = f'Table of All {len(emails):,} Non-Junk Emails in Chronological Order (actual emails below)'
     table = Email.build_emails_table(emails, title=title, show_length=True)
     console.print(Padding(table, (2, 0)))

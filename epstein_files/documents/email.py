@@ -136,7 +136,9 @@ MAILING_LISTS = [
     JP_MORGAN_USGIO,
 ]
 
-TRUNCATE_ALL_EMAILS_FROM = JUNK_EMAILERS + MAILING_LISTS + [
+BBC_LISTS = JUNK_EMAILERS + MAILING_LISTS
+
+TRUNCATE_ALL_EMAILS_FROM = BBC_LISTS + [
     'Alan S Halperin',
     'Mitchell Bard',
     'Skip Rimer',
@@ -292,6 +294,7 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + [
 
 METADATA_FIELDS = [
     'is_junk_mail',
+    'is_mailing_list',
     'recipients',
     'sent_from_device',
     'subject',
@@ -392,7 +395,7 @@ class Email(Communication):
                 self.recipients.extend(self._extract_emailer_names(recipient))
 
             # Assume mailing list emails are to Epstein
-            if self.author in MAILING_LISTS and (self.is_note_to_self() or not self.recipients):
+            if self.author in BBC_LISTS and (self.is_note_to_self() or not self.recipients):
                 self.recipients = [JEFFREY_EPSTEIN]
 
         # Remove self CCs but preserve self emails
@@ -421,10 +424,10 @@ class Email(Communication):
         return bool(self.config and self.config.is_fwded_article)
 
     def is_junk_mail(self) -> bool:
-        return self.author in JUNK_EMAILERS or self.is_mailing_list()
+        return self.author in JUNK_EMAILERS
 
     def is_mailing_list(self) -> bool:
-        return self.author in MAILING_LISTS
+        return self.author in MAILING_LISTS or self.is_junk_mail()
 
     def is_note_to_self(self) -> bool:
         return self.recipients == [self.author]
@@ -432,6 +435,7 @@ class Email(Communication):
     def metadata(self) -> Metadata:
         local_metadata = asdict(self)
         local_metadata['is_junk_mail'] = self.is_junk_mail()
+        local_metadata['is_mailing_list'] = self.is_junk_mail()
         local_metadata['subject'] = self.subject() or None
         metadata = super().metadata()
         metadata.update({k: v for k, v in local_metadata.items() if v and k in METADATA_FIELDS})
