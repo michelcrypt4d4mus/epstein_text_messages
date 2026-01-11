@@ -21,8 +21,10 @@ from epstein_files.util.highlighted_group import (QUESTION_MARKS_TXT, Highlighte
 from epstein_files.util.rich import GREY_NUMBERS, LAST_TIMESTAMP_STYLE, build_table, console, join_texts, print_centered
 
 ALT_INFO_STYLE = 'medium_purple4'
+CC = 'cc:'
 MIN_AUTHOR_PANEL_WIDTH = 80
-EMAILER_INFO_TITLE = 'Email Conversations Grouped by Counterparty Will Appear in this Order'
+EMAILER_INFO_TITLE = 'Email Conversations Will Appear in this Order'
+UNINTERESTING_CC_INFO = "CC: or BCC: recipient"
 
 INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + MAILING_LISTS + [
     'ACT for America',
@@ -52,8 +54,8 @@ class Person:
 
             if category != self.name and category != 'paula':  # TODO: this sucks
                 return category
-        elif self.is_uninteresting_cc:
-            return 'cc'
+        # elif self.is_uninteresting_cc:
+        #     return CC
 
     def category_txt(self) -> Text | None:
         if self.name is None:
@@ -132,7 +134,7 @@ class Person:
         if highlight_group and isinstance(highlight_group, HighlightedNames) and self.name:
             return highlight_group.info_for(self.name)
         elif self.is_uninteresting_cc:
-            return f"uninteresting CC or BCC"
+            return UNINTERESTING_CC_INFO
 
     def info_with_category(self) -> str:
         return ', '.join(without_falsey([self.category(), self.info_str()]))
@@ -146,6 +148,8 @@ class Person:
             return Text(f"({JUNK} mail)", style='tan dim')
         elif self.is_a_mystery():
             return Text(QUESTION_MARKS, style='grey50 dim')
+        elif self.is_uninteresting_cc:
+            return Text(f"({self.info_str()})", style='wheat4 dim')
         elif self.info_str() is None:
             if self.name in MAILING_LISTS:
                 return Text('(mailing list)', style=f"{self.style()} dim")
@@ -259,7 +263,7 @@ class Person:
         is_selection = len(people) != len(highlighted)
 
         if is_selection:
-            title = f"Highlighted {EMAILER_INFO_TITLE} (see other page for the rest)"
+            title = f"{EMAILER_INFO_TITLE} for the Highlighted Names (see other page for the rest)"
         else:
             title = EMAILER_INFO_TITLE
 

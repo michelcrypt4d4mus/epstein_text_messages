@@ -9,12 +9,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import Sequence, Type, cast
 
-from rich.padding import Padding
-from rich.table import Table
-from rich.text import Text
-
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import DETECT_EMAIL_REGEX, UNINTERESTING_EMAILERS, Email
+from epstein_files.documents.email import DETECT_EMAIL_REGEX, Email
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
@@ -255,7 +251,7 @@ class EpsteinFiles:
                 name=name,
                 emails=self.emails_for(name),
                 imessage_logs=self.imessage_logs_for(name),
-                is_uninteresting_cc=name in self.uninteresting_ccs,
+                is_uninteresting_cc=name in self.uninteresting_emailers(),
                 other_files=[f for f in self.other_files if name and name == f.author]
             )
             for name in names
@@ -289,7 +285,10 @@ class EpsteinFiles:
         return sorted([e.file_id for e in self.emails if None in e.recipients or not e.recipients])
 
     def uninteresting_emailers(self) -> list[Name]:
-        return sorted(uniquify(UNINTERESTING_EMAILERS + self.uninteresting_ccs))
+        if '_uninteresting_emailers' not in vars(self):
+            self._uninteresting_emailers = sorted(uniquify(UNINTERESTING_EMAILERS + self.uninteresting_ccs))
+
+        return self._uninteresting_emailers
 
     def _copy_duplicate_email_properties(self) -> None:
         """Ensure dupe emails have the properties of the emails they duplicate to capture any repairs, config etc."""
@@ -297,7 +296,7 @@ class EpsteinFiles:
             if not email.is_duplicate():
                 continue
 
-            original = cast(Email, self.for_ids(email.duplicate_of_id())[0])
+            original = self.email_for_id(email.duplicate_of_id())
 
             for field_name in DUPLICATE_PROPS_TO_COPY:
                 original_prop = getattr(original, field_name)

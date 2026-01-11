@@ -1694,3 +1694,39 @@ REPLY_LINE_ON_DATE_PATTERN = fr"^On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sa
 REPLY_LINE_PATTERN = rf"({REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
 SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?((Envoyé de mon|Sent (from|via)).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)', re.M | re.I)
+
+
+# No point in ever displaying these; their emails show up elsewhere because they're mostly CC recipients
+UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + [
+    'Alan Dlugash',                          # CCed with Richard Kahn
+    'Alan Rogers',                           # Random CC
+    'Andrew Friendly',                       # Presumably some relation of Kelly Friendly
+    'BS Stern',                              # A random fwd of email we have
+    'Cheryl Kleen',                          # Single email from Anne Boyles, displayed under Anne Boyles
+    'Connie Zaguirre',                       # Random CC
+    'Dan Fleuette',                          # CC from sean bannon
+    'Danny Goldberg',                        # Random Paul Krassner emails
+    GERALD_LEFCOURT,                         # Single CC
+    GORDON_GETTY,                            # Random CC
+    JEFF_FULLER,                             # Random Jean Luc Brunel CC
+    'Jojo Fontanilla',                       # Random CC
+    'Joseph Vinciguerra',                    # Random CC
+    'Larry Cohen',                           # Random Bill Gates CC
+    'Lyn Fontanilla',                        # Random CC
+    'Mark Albert',                           # Random CC
+    'Matthew Schafer',                       # Random CC
+    MICHAEL_BUCHHOLTZ,                       # Terry Kafka CC
+    'Nancy Dahl',                            # covered by Lawrence Krauss (her husband)
+    'Michael Simmons',                       # Random CC
+    'Nancy Portland',                        # Lawrence Krauss CC
+    'Oliver Goodenough',                     # Robert Trivers CC
+    'Peter Aldhous',                         # Lawrence Krauss CC
+    'Players2',                              # Hoffenberg CC
+    'Sam Harris',                            # Lawrence Krauss CC
+    SAMUEL_LEFF,                             # Random CC
+    'Sean T Lehane',                         # Random CC
+    'Stephen Rubin',                         # Random CC
+    'Tim Kane',                              # Random CC
+    'Travis Pangburn',                       # Random CC
+    'Vahe Stepanian',                        # Random CC
+]
