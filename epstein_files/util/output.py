@@ -252,7 +252,6 @@ def _signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], joi
     return Padding(table, DEVICE_SIGNATURE_PADDING)
 
 
-
 def _verify_all_emails_were_printed(epstein_files: EpsteinFiles, already_printed_emails: list[Email]) -> None:
     """Log warnings if some emails were never printed."""
     email_ids_that_were_printed = set([email.file_id for email in already_printed_emails])
