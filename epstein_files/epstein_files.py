@@ -104,17 +104,6 @@ class EpsteinFiles:
     def all_documents(self) -> Sequence[Document]:
         return self.imessage_logs + self.emails + self.other_files
 
-    def author_objs(self, names: list[str | None]) -> list[Person]:
-        """Construct Author objects for a list of names."""
-        return [
-            Person(
-                name=name,
-                emails=self.emails_for(name),
-                imessage_logs=[l for l in self.imessage_logs if name == l.author]
-            )
-            for name in names
-        ]
-
     def docs_matching(
             self,
             pattern: re.Pattern | str,
@@ -182,25 +171,25 @@ class EpsteinFiles:
         """All the people who sent or received an email."""
         authors = [email.author for email in self.emails]
         recipients = flatten([email.recipients for email in self.emails])
-        return self.author_objs(uniquify(authors + recipients))
+        return self.person_objs(uniquify(authors + recipients))
 
-    def emails_by(self, author: str | None) -> list[Email]:
-        return Document.sort_by_timestamp([e for e in self.emails if e.author == author])
+    def emails_by(self, name: str | None) -> list[Email]:
+        return Document.sort_by_timestamp([e for e in self.emails if e.author == name])
 
-    def emails_for(self, author: str | None) -> list[Email]:
+    def emails_for(self, name: str | None) -> list[Email]:
         """Returns emails to or from a given 'author' sorted chronologically."""
-        emails = self.emails_by(author) + self.emails_to(author)
+        emails = self.emails_by(name) + self.emails_to(name)
 
         if len(emails) == 0:
-            raise RuntimeError(f"No emails found for '{author}'")
+            raise RuntimeError(f"No emails found for '{name}'")
 
         return Document.sort_by_timestamp(Document.uniquify(emails))
 
-    def emails_to(self, author: str | None) -> list[Email]:
-        if author is None:
+    def emails_to(self, name: str | None) -> list[Email]:
+        if name is None:
             emails = [e for e in self.emails if len(e.recipients) == 0 or None in e.recipients]
         else:
-            emails = [e for e in self.emails if author in e.recipients]
+            emails = [e for e in self.emails if name in e.recipients]
 
         return Document.sort_by_timestamp(emails)
 
@@ -212,6 +201,9 @@ class EpsteinFiles:
             logger.warning(f"{len(file_ids)} file IDs provided but only {len(docs)} Epstein files found!")
 
         return docs
+
+    def imessage_logs_for(self, name: str | None) -> list[MessengerLog]:
+        return [log for log in self.imessage_logs if name == log.author]
 
     def json_metadata(self) -> str:
         """Create a JSON string containing metadata for all the files."""
@@ -238,6 +230,13 @@ class EpsteinFiles:
 
     def non_json_other_files(self) -> list[OtherFile]:
         return [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
+
+    def person_objs(self, names: list[str | None]) -> list[Person]:
+        """Construct Person objects for a list of names."""
+        return [
+            Person(name=name, emails=self.emails_for(name), imessage_logs=self.imessage_logs_for(name))
+            for name in names
+        ]
 
     def print_files_summary(self) -> None:
         table = build_table('File Overview')
