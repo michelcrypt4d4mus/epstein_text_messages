@@ -3,6 +3,7 @@ import json
 import pickle
 import re
 from collections import defaultdict
+from copy import copy
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
@@ -13,7 +14,7 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import DETECT_EMAIL_REGEX, Email
+from epstein_files.documents.email import DETECT_EMAIL_REGEX, UNINTERESTING_EMAILERS, Email
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
@@ -32,6 +33,12 @@ from epstein_files.util.timer import Timer
 DUPLICATE_PROPS_TO_COPY = ['author', 'recipients', 'timestamp']
 PICKLED_PATH = Path("the_epstein_files.pkl.gz")
 SLOW_FILE_SECONDS = 1.0
+
+EMAILS_WITH_UNINTERESTING_CCS = [
+    '025329',  # Krassner
+    '024923',  # Krassner
+    '033568',  # Krassner
+]
 
 
 @dataclass
@@ -193,6 +200,14 @@ class EpsteinFiles:
 
         return Document.sort_by_timestamp(emails)
 
+    def email_for_id(self, file_id: str) -> Email:
+        docs = self.for_ids([file_id])
+
+        if docs and isinstance(docs[0], Email):
+            return docs[0]
+        else:
+            raise ValueError(f"No email found for {file_id}")
+
     def for_ids(self, file_ids: str | list[str]) -> list[Document]:
         file_ids = listify(file_ids)
         docs = [doc for doc in self.all_documents() if doc.file_id in file_ids]
@@ -264,6 +279,16 @@ class EpsteinFiles:
     def unknown_recipient_ids(self) -> list[str]:
         """IDs of emails whose recipient is not known."""
         return sorted([e.file_id for e in self.emails if None in e.recipients or not e.recipients])
+
+    def uninteresting_emailers(self) -> list[Name]:
+        ross_gow_email = self.email_for_id('014797_1')
+        uninteresting_names = copy(cast(list[Name], ross_gow_email.header.bcc))
+
+        for id in EMAILS_WITH_UNINTERESTING_CCS:
+            uninteresting_names += self.email_for_id(id).recipients
+
+        logger.info(f"Extracted uninteresting_names: {uninteresting_names}")
+        return sorted(uniquify(UNINTERESTING_EMAILERS + uninteresting_names))
 
     def _copy_duplicate_email_properties(self) -> None:
         """Ensure dupe emails have the properties of the emails they duplicate to capture any repairs, config etc."""
