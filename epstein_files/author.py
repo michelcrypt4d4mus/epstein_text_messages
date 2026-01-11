@@ -204,6 +204,12 @@ class Author:
     def unique_emails(self) -> list[Email]:
         return [email for email in self.emails if not email.is_duplicate()]
 
+    def unique_emails_by(self) -> list[Email]:
+        return [email for email in self.emails_by() if not email.is_duplicate()]
+
+    def unique_emails_to(self) -> list[Email]:
+        return [email for email in self.emails_to() if not email.is_duplicate()]
+
     def _printable_emails(self):
         """For Epstein we only want to print emails he sent to himself."""
         if self.name == JEFFREY_EPSTEIN:

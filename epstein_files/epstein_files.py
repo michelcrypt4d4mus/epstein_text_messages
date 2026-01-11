@@ -14,20 +14,18 @@ from rich.text import Text
 
 from epstein_files.author import Author
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import DETECT_EMAIL_REGEX, USELESS_EMAILERS, Email
-from epstein_files.documents.emails.email_header import AUTHOR
+from epstein_files.documents.email import DETECT_EMAIL_REGEX, Email
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
-from epstein_files.util.data import dict_sets_to_lists, json_safe, listify
+from epstein_files.util.data import json_safe, listify
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.env import DOCS_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames
-from epstein_files.util.rich import (NA_TXT, add_cols_to_table, build_table, console, highlighter,
-     print_centered, print_subtitle_panel)
+from epstein_files.util.rich import NA_TXT, add_cols_to_table, build_table, console, print_centered
 from epstein_files.util.search_result import SearchResult
 from epstein_files.util.timer import Timer
 
@@ -106,12 +104,6 @@ class EpsteinFiles:
     def all_documents(self) -> Sequence[Document]:
         return self.imessage_logs + self.emails + self.other_files
 
-    def all_emailers(self, include_useless: bool = False) -> list[Author]:
-        """Returns all emailers except USELESS_EMAILERS, sorted from least frequent to most."""
-        names = list(set([email.author for email in self.emails]))
-        names = names if include_useless else [a for a in names if a not in USELESS_EMAILERS]
-        return self.author_objs(names)
-
     def author_objs(self, names: list[str | None]) -> list[Author]:
         """Construct Author objects for a list of names."""
         return [
@@ -149,12 +141,10 @@ class EpsteinFiles:
         return self.emails_for(author)[-1].timestamp
 
     def email_author_counts(self) -> dict[str | None, int]:
-        counts = defaultdict(int)
+        return {author.name: len(author.unique_emails_by()) for author in self.email_authors()}
 
-        for email in self.non_duplicate_emails():
-            counts[email.author] += 1
-
-        return dict(counts)
+    def email_authors(self) -> list[Author]:
+        return self.author_objs(list(set([email.author for email in self.emails])))
 
     def email_authors_to_device_signatures(self) -> dict[str, set[str]]:
         signatures = defaultdict(set)
