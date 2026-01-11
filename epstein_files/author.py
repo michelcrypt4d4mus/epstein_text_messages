@@ -57,7 +57,7 @@ class Author:
             return None
         elif self.category():
             return styled_category(self.category())
-        elif not self.style() and '@' not in self.name and not self.info_str():
+        elif self.style() == DEFAULT_NAME_STYLE and '@' not in self.name and not self.info_str():
             return QUESTION_MARKS_TXT
 
     def email_conversation_length_in_days(self) -> int:
@@ -135,7 +135,7 @@ class Author:
             return Text('(emails whose author or recipient could not be determined)', style=ALT_INFO_STYLE)
         elif category == JUNK:
             return Text(f"({JUNK})", style='tan dim')
-        elif not self.style() and '@' not in self.name and not info:
+        elif self.style() == DEFAULT_NAME_STYLE and '@' not in self.name and not info:
             return Text(QUESTION_MARKS, style='grey50 dim')
         elif category and info:
             info = info.removeprefix(category).removeprefix(', ')
@@ -199,7 +199,7 @@ class Author:
             return counts + [self.name_str()]
 
     def style(self) -> str:
-        return get_style_for_name(self.name, default_style='')
+        return get_style_for_name(self.name)
 
     def unique_emails(self) -> list[Email]:
         return [email for email in self.emails if not email.is_duplicate()]

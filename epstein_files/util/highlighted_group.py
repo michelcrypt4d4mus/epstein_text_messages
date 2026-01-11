@@ -1532,10 +1532,12 @@ def get_style_for_category(category: str) -> str | None:
             return highlight_group.style
 
 
-def get_style_for_name(name: str | None, default_style: str = DEFAULT, allow_bold: bool = True) -> str:
+def get_style_for_name(name: str | None, default_style: str = DEFAULT_NAME_STYLE, allow_bold: bool = True) -> str:
     highlight_group = get_highlight_group_for_name(name or UNKNOWN)
     style = highlight_group.style if highlight_group else default_style
-    return style if allow_bold else style.replace('bold', '').strip()
+    style = style if allow_bold else style.replace('bold', '').strip()
+    logger.debug(f"get_style_for_name('{name}', '{default_style}', '{allow_bold}') yielded '{style}'")
+    return style
 
 
 def styled_category(category: str | None) -> Text:
