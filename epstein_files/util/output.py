@@ -119,12 +119,14 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     # Print other interesting emails
     printed_email_ids = [email.file_id for email in printed_emails]
     extra_emails = [e for e in epstein_files.for_ids(INTERESTING_EMAIL_IDS) if e.file_id not in printed_email_ids]
-    print_subtitle_panel(OTHER_INTERESTING_EMAILS_SUBTITLE)
-    console.line()
 
-    for other_email in extra_emails:
-        console.print(other_email)
-        printed_emails.append(cast(Email, other_email))
+    if len(extra_emails) > 0:
+        print_subtitle_panel(OTHER_INTERESTING_EMAILS_SUBTITLE)
+        console.line()
+
+        for other_email in extra_emails:
+            console.print(other_email)
+            printed_emails.append(cast(Email, other_email))
 
     _print_email_device_info(epstein_files)
 
