@@ -447,6 +447,7 @@ HIGHLIGHTED_NAMES = [
             r"Ron\s*Dellums",
             r"Schumer",
             r"(Tim(othy)?\s*)?Geithner",
+            r"Tom McMillen",
             r"Vernon\s*Jordan",
         ],
     ),

@@ -148,6 +148,7 @@ TRUNCATE_ALL_EMAILS_FROM = MAILING_LISTS + [
     'Alan S Halperin',
     'Mitchell Bard',
     'Skip Rimer',
+    'Steven Victor MD',
 ]
 
 TRUNCATION_LENGTHS = {

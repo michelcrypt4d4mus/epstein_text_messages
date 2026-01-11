@@ -411,11 +411,11 @@ EMAILS_CONFIG = [
         dupe_type='redacted'
     ),
     EmailCfg(id='026547', author=GERALD_BARTON, recipients=[JEFFREY_EPSTEIN]),  # Bad OCR # TODO: email header is really jacked up
-    EmailCfg(id='029969', author=GWENDOLYN_BECK, attribution_reason='Signature'),
-    EmailCfg(id='029968', author=GWENDOLYN_BECK, attribution_reason='Signature', duplicate_ids=['031120']),
+    EmailCfg(id='029969', author=GWENDOLYN_BECK, attribution_reason='signature "Longevity & Successful Aging"'),
+    EmailCfg(id='029968', author=GWENDOLYN_BECK, attribution_reason='signature "beckresearchlabs.com"', duplicate_ids=['031120']),
     EmailCfg(id='029970', author=GWENDOLYN_BECK, attribution_reason='signed "Longevity & Successful Agin"'),
-    EmailCfg(id='029960', author=GWENDOLYN_BECK, attribution_reason='Reply'),
-    EmailCfg(id='029959', author=GWENDOLYN_BECK, attribution_reason='"Longevity & Aging"'),
+    EmailCfg(id='029960', author=GWENDOLYN_BECK, attribution_reason='signature "Beck Center for Longevity & Aging"'),
+    EmailCfg(id='029959', author=GWENDOLYN_BECK, attribution_reason='signature "Beck Center for Longevity & Aging"'),
     EmailCfg(id='033360', author=HENRY_HOLT, attribution_reason='in signature'),  # Henry Holt is a company not a person
     EmailCfg(id='033384', author=JACK_GOLDBERGER, attribution_reason='Might be Paul Prosperi?', is_attribution_uncertain=True),
     EmailCfg(id='026024', author=JEAN_HUGUEN, attribution_reason='Signature'),
@@ -540,11 +540,12 @@ EMAILS_CONFIG = [
         author=SEAN_BANNON,
         attribution_reason="From protonmail, Bannon wrote 'just sent from my protonmail' in 027067",
     ),
-    EmailCfg(id='029003', author=SOON_YI_PREVIN, attribution_reason="\"Sent from Soon-Yi's iPhone\""),
-    EmailCfg(id='029005', author=SOON_YI_PREVIN, attribution_reason="\"Sent from Soon-Yi's iPhone\""),
-    EmailCfg(id='029007', author=SOON_YI_PREVIN, attribution_reason="\"Sent from Soon-Yi's iPhone\""),
-    EmailCfg(id='029010', author=SOON_YI_PREVIN, attribution_reason="\"Sent from Soon-Yi's iPhone\""),
-    EmailCfg(id='032296', author=SOON_YI_PREVIN, attribution_reason="\"Sent from Soon-Yi's iPhone\""),
+    EmailCfg(id='029003', author=SOON_YI_PREVIN, attribution_reason='"Sent from Soon-Yi\'s iPhone"'),
+    EmailCfg(id='029005', author=SOON_YI_PREVIN, attribution_reason='"Sent from Soon-Yi\'s iPhone"'),
+    EmailCfg(id='029007', author=SOON_YI_PREVIN, attribution_reason='"Sent from Soon-Yi\'s iPhone"'),
+    EmailCfg(id='029010', author=SOON_YI_PREVIN, attribution_reason='"Sent from Soon-Yi\'s iPhone"'),
+    EmailCfg(id='032296', author=SOON_YI_PREVIN, attribution_reason='"Sent from Soon-Yi\'s iPhone"'),
+    EmailCfg(id='033292', author=SOON_YI_PREVIN, attribution_reason='mentions "Woody\'s movie"', is_attribution_uncertain=True),
     EmailCfg(
         id='019109',
         author=STEVEN_HOFFENBERG,
