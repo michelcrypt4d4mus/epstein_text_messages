@@ -1,4 +1,5 @@
 import json
+from typing import cast
 
 from rich.padding import Padding
 
@@ -97,9 +98,9 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
         print_centered(Padding(_all_emailers_table(epstein_files), (2, 0)))
 
     for author in authors:
-        printed_emails = author.print_emails()
-        printed_emails.extend(printed_emails)
-        num_emails_printed_since_last_color_key += len(printed_emails)
+        printed_author_emails = author.print_emails()
+        printed_emails.extend(printed_author_emails)
+        num_emails_printed_since_last_color_key += len(printed_author_emails)
 
         # Print color key every once in a while
         if num_emails_printed_since_last_color_key > PRINT_COLOR_KEY_EVERY_N_EMAILS:
@@ -117,6 +118,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
 
     for other_email in extra_emails:
         console.print(other_email)
+        printed_emails.append(cast(Email, other_email))
 
     epstein_files.print_email_device_info()
 
