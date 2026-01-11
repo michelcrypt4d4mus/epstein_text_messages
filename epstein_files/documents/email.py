@@ -80,6 +80,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'twitter glhsummers': 'twitter @lhsummers',
     re.compile(r"twitter\.com[i/][lI]krauss[1lt]"): "twitter.com/lkrauss1",
     re.compile(r'from my BlackBerry[0°] wireless device'): 'from my BlackBerry® wireless device',
+    re.compile(r'^INW$', re.MULTILINE): REDACTED,
     # links
     'Imps ://': 'https://',
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
