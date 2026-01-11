@@ -195,12 +195,7 @@ class Person:
         print_centered(Padding(Email.build_emails_table(emails, self.name), (0, 5, 1, 5)))
 
     def sort_key(self) -> list[int | str]:
-        counts = [
-            len(self.unique_emails()),
-            len(self.unique_emails_by()),
-            len(self.unique_emails_to()),
-        ]
-
+        counts = [len(self.unique_emails())]
         counts = [-1 * count for count in counts]
 
         if args.sort_alphabetical:
