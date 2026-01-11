@@ -250,6 +250,9 @@ class Person:
         else:
             return self.emails
 
+    def _unique_printable_emails(self):
+        return [email for email in self._printable_emails() if not email.is_duplicate()]
+
     def __str__(self):
         return f"{self.name_str()}"
 
@@ -296,7 +299,7 @@ class Person:
                 Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[0 if is_selection else grey_idx]}"),
                 person.name_txt(),  # TODO: make link?
                 person.category_txt(),
-                f"{len(person.unique_emails() if show_epstein_total else person._printable_emails())}",
+                f"{len(person.unique_emails() if show_epstein_total else person._unique_printable_emails())}",
                 f"{len(person.unique_emails_by())}",
                 f"{len(person.unique_emails_to())}",
                 f"{person.email_conversation_length_in_days()}",
