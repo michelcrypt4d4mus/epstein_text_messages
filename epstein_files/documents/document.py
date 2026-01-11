@@ -439,6 +439,10 @@ class Document:
         id_map = {doc.file_id: doc for doc in documents}
         return [doc for doc in id_map.values()]
 
+    @staticmethod
+    def without_dupes(docs: Sequence['DocumentType']) -> list['DocumentType']:
+        return [doc for doc in docs if not doc.is_duplicate()]
+
 
 DocumentType = TypeVar('DocumentType', bound=Document)
 

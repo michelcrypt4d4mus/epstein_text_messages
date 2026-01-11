@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 from datetime import datetime, date
+from typing import Sequence
 
 from rich.console import Group, RenderableType
 from rich.padding import Padding
@@ -214,8 +215,8 @@ class Person:
         return self._printable_emails()
 
     def print_emails_table(self) -> None:
-        emails = [email for email in self._printable_emails() if not email.is_duplicate()]  # Remove dupes
-        print_centered(Padding(Email.build_emails_table(emails, self.name), (0, 5, 0, 5)))
+        table = Email.build_emails_table(self._unique_printable_emails(), self.name)
+        print_centered(Padding(table, (0, 5, 0, 5)))
 
         if self.is_linkable():
             print_centered(self.external_links_line())
@@ -234,14 +235,14 @@ class Person:
     def style(self) -> str:
         return get_style_for_name(self.name)
 
-    def unique_emails(self) -> list[Email]:
-        return [email for email in self.emails if not email.is_duplicate()]
+    def unique_emails(self) -> Sequence[Email]:
+        return Document.without_dupes(self.emails)
 
     def unique_emails_by(self) -> list[Email]:
-        return [email for email in self.emails_by() if not email.is_duplicate()]
+        return Document.without_dupes(self.emails_by())
 
     def unique_emails_to(self) -> list[Email]:
-        return [email for email in self.emails_to() if not email.is_duplicate()]
+        return Document.without_dupes(self.emails_to())
 
     def _printable_emails(self):
         """For Epstein we only want to print emails he sent to himself."""
@@ -251,7 +252,7 @@ class Person:
             return self.emails
 
     def _unique_printable_emails(self):
-        return [email for email in self._printable_emails() if not email.is_duplicate()]
+        return Document.without_dupes(self._printable_emails())
 
     def __str__(self):
         return f"{self.name_str()}"
