@@ -98,7 +98,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
 
         print_other_page_link(epstein_files)
         print_centered(Padding(Person.emailer_info_table(people), (2, 0, 0, 0)))
-        print_centered(Padding(_all_emailers_table(epstein_files), (2, 0)))
+        print_centered(Padding(_emailer_stats_table(epstein_files), (2, 0)))
 
     for person in people:
         if person.name in USELESS_EMAILERS:
@@ -230,7 +230,7 @@ def write_urls() -> None:
     logger.warning(f"Wrote {len(url_vars)} URL variables to '{URLS_ENV}'\n")
 
 
-def _all_emailers_table(epstein_files: EpsteinFiles) -> Table:
+def _emailer_stats_table(epstein_files: EpsteinFiles) -> Table:
     attributed_emails = [e for e in epstein_files.non_duplicate_emails() if e.author]
     author_counts = epstein_files.email_author_counts()
     del author_counts[None]
