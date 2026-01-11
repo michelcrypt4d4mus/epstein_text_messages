@@ -1,5 +1,5 @@
 import json
-from copy import copy
+from os import unlink
 from typing import cast
 
 from rich.padding import Padding
@@ -13,7 +13,7 @@ from epstein_files.person import Person
 from epstein_files.util.constant import output_files
 from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
-from epstein_files.util.constant.output_files import JSON_FILES_JSON_PATH, JSON_METADATA_PATH
+from epstein_files.util.constant.output_files import EMAILERS_TABLE_PNG_PATH, JSON_FILES_JSON_PATH, JSON_METADATA_PATH
 from epstein_files.util.constant.strings import AUTHOR, TIMESTAMP_STYLE
 from epstein_files.util.data import dict_sets_to_lists, uniquify
 from epstein_files.util.env import args
@@ -81,6 +81,18 @@ def print_email_timeline(epstein_files: EpsteinFiles) -> None:
 
     for email in emails:
         console.print(email)
+
+
+def print_emailers_info_png(epstein_files: EpsteinFiles) -> None:
+    all_emailers = sorted(epstein_files.emailers(), key=lambda person: person.sort_key())
+    console.print(Person.emailer_info_table(all_emailers))
+    svg_path = f"{EMAILERS_TABLE_PNG_PATH}.svg"
+    console.save_svg(svg_path, theme=HTML_TERMINAL_THEME, title="Epstein Emailers")
+    log_file_write(svg_path)
+    import cairosvg
+    cairosvg.svg2png(url=svg_path, write_to=str(EMAILERS_TABLE_PNG_PATH))
+    log_file_write(EMAILERS_TABLE_PNG_PATH)
+    unlink(svg_path)
 
 
 def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
