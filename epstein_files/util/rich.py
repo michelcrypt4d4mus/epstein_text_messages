@@ -187,7 +187,7 @@ def print_title_page_header() -> None:
         Text.from_markup(link_markup(other_site_url(), other_site_msg, f"{OTHER_SITE_LINK_STYLE} bold")),
         link_text_obj(WORD_COUNT_URL, 'most frequently used words in the emails and texts', AUX_SITE_LINK_STYLE),
         link_text_obj(JSON_METADATA_URL, 'author attribution explanations', AUX_SITE_LINK_STYLE),
-        link_text_obj(WORD_COUNT_URL, "epstein's json files", AUX_SITE_LINK_STYLE),
+        link_text_obj(JSON_FILES_URL, "epstein's json files", AUX_SITE_LINK_STYLE),
     ]
 
     for link in links:
