@@ -11,7 +11,7 @@ from rich.text import Text
 
 from scripts.use_pickled import console, epstein_files
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import USELESS_EMAILERS
+from epstein_files.documents.email import UNINTERESTING_EMAILERS
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import ALL_FILE_CONFIGS
 from epstein_files.util.data import *
@@ -48,13 +48,13 @@ counts = defaultdict(int)
 #     print_json('metadata', doc.metadata())
 
 
-def print_potential_useless_emailers():
+def print_potential_uninteresting_emailers():
     emailers = sorted(epstein_files.emailers(), key=lambda e: epstein_files.earliest_email_at(e))
 
     for emailer in emailers:
         emails = epstein_files.emails_for(emailer)
         emails_sent_by = [e for e in emails if e.author == emailer]
-        emailer_str = f"(useless emailer) {emailer}" if emailer in USELESS_EMAILERS else emailer
+        emailer_str = f"(useless emailer) {emailer}" if emailer in UNINTERESTING_EMAILERS else emailer
         txt = Text('')
 
         if len(emails) == 1:
@@ -68,7 +68,7 @@ def print_potential_useless_emailers():
             console.print(Text('     [NO STYLE]', style='wheat4').append(highlighter(f" {emailer_str} has no associated styling")))
 
 
-print_potential_useless_emailers()
+print_potential_uninteresting_emailers()
 sys.exit()
 counts = defaultdict(int)
 

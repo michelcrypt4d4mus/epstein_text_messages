@@ -8,7 +8,7 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import MAILING_LISTS, JUNK_EMAILERS, KRASSNER_RECIPIENTS, Email
+from epstein_files.documents.email import MAILING_LISTS, JUNK_EMAILERS, Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.strings import *
@@ -18,13 +18,15 @@ from epstein_files.util.data import days_between, flatten, without_falsey
 from epstein_files.util.env import args
 from epstein_files.util.highlighted_group import (QUESTION_MARKS_TXT, HighlightedNames,
      get_highlight_group_for_name, get_style_for_name, styled_category, styled_name)
-from epstein_files.util.rich import GREY_NUMBERS, LAST_TIMESTAMP_STYLE, build_table, console, join_texts, print_centered
+from epstein_files.util.rich import GREY_NUMBERS, LAST_TIMESTAMP_STYLE, TABLE_TITLE_STYLE, build_table, console, join_texts, print_centered
 
 ALT_INFO_STYLE = 'medium_purple4'
+CC = 'cc:'
 MIN_AUTHOR_PANEL_WIDTH = 80
-EMAILER_INFO_TITLE = 'Email Conversations Grouped by Counterparty Will Appear in this Order'
+EMAILER_INFO_TITLE = 'Email Conversations Will Appear'
+UNINTERESTING_CC_INFO = "CC: or BCC: recipient only"
 
-INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + MAILING_LISTS + [
+INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + MAILING_LISTS + [
     'ACT for America',
     'BS Stern',
     UNKNOWN,
@@ -34,10 +36,11 @@ INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + MAILING_LISTS + 
 @dataclass(kw_only=True)
 class Person:
     """Collection of data about someone texting or emailing Epstein."""
-    name: str | None
+    name: Name
     emails: list[Email] = field(default_factory=list)
     imessage_logs: list[MessengerLog] = field(default_factory=list)
     other_files: list[OtherFile] = field(default_factory=list)
+    is_uninteresting_cc: bool = False
 
     def __post_init__(self):
         self.emails = Document.sort_by_timestamp(self.emails)
@@ -57,7 +60,7 @@ class Person:
             return None
         elif self.category():
             return styled_category(self.category())
-        elif self.is_a_mystery():
+        elif self.is_a_mystery() or self.is_uninteresting_cc:
             return QUESTION_MARKS_TXT
 
     def email_conversation_length_in_days(self) -> int:
@@ -128,6 +131,8 @@ class Person:
 
         if highlight_group and isinstance(highlight_group, HighlightedNames) and self.name:
             return highlight_group.info_for(self.name)
+        elif self.is_uninteresting_cc:
+            return UNINTERESTING_CC_INFO
 
     def info_with_category(self) -> str:
         return ', '.join(without_falsey([self.category(), self.info_str()]))
@@ -140,7 +145,9 @@ class Person:
         elif self.category() == JUNK:
             return Text(f"({JUNK} mail)", style='tan dim')
         elif self.is_a_mystery():
-            return Text(QUESTION_MARKS, style='grey50 dim')
+            return Text(QUESTION_MARKS, style='magenta dim')
+        elif self.is_uninteresting_cc and self.info_str() == UNINTERESTING_CC_INFO:
+            return Text(f"({self.info_str()})", style='wheat4 dim')
         elif self.info_str() is None:
             if self.name in MAILING_LISTS:
                 return Text('(mailing list)', style=f"{self.style()} dim")
@@ -151,7 +158,7 @@ class Person:
 
     def is_a_mystery(self) -> bool:
         """Return True if this is someone we theroetically could know more about."""
-        return self.is_unstyled() and not self.is_email_address() and not self.info_str()
+        return self.is_unstyled() and not (self.is_email_address() or self.info_str() or self.is_uninteresting_cc)
 
     def is_email_address(self) -> bool:
         return '@' in (self.name or '')
@@ -247,17 +254,17 @@ class Person:
         return f"{self.name_str()}"
 
     @staticmethod
-    def emailer_info_table(people: list['Person']) -> Table:
-        is_addendum = len(people) > 100
-
+    def emailer_info_table(people: list['Person'], highlighted: list['Person'] | None = None) -> Table:
         """Table of info about emailers."""
-        if args.all_emails:
-            title = EMAILER_INFO_TITLE
+        highlighted = highlighted or people
+        highlighted_names = [p.name for p in highlighted]
+        is_selection = len(people) != len(highlighted)
+
+        if is_selection:
+            title = Text(f"{EMAILER_INFO_TITLE} in This Order for the Highlighted Names (see ", style=TABLE_TITLE_STYLE)
+            title.append(THE_OTHER_PAGE_TXT).append(" for the rest)")
         else:
-            if is_addendum:
-                title = None
-            else:
-                title = f"Selected {EMAILER_INFO_TITLE}"
+            title = f"{EMAILER_INFO_TITLE} in Chronological Order Based on Timestamp of First Email"
 
         table = build_table(title)
         table.add_column('Start')
@@ -286,7 +293,7 @@ class Person:
             current_year = earliest_email_date.year
 
             table.add_row(
-                Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[grey_idx if is_addendum or args.all_emails else 0]}"),
+                Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[0 if is_selection else grey_idx]}"),
                 person.name_txt(),  # TODO: make link?
                 person.category_txt(),
                 f"{len(person._printable_emails())}",
@@ -294,6 +301,7 @@ class Person:
                 f"{len(person.unique_emails_to())}",
                 f"{person.email_conversation_length_in_days()}",
                 person.info_txt() or '',
+                style='' if person.name in highlighted_names else 'dim',
             )
 
         return table

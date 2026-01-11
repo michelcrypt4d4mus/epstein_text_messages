@@ -1,6 +1,6 @@
 from epstein_files.util.constant.strings import QUESTION_MARKS, remove_question_marks
 
-UNKNOWN = '(unknown)'
+Name = str | None
 
 # Texting Names
 ANDRZEJ_DUDA = 'Andrzej Duda or entourage'
@@ -79,6 +79,7 @@ JACK_GOLDBERGER = 'Jack Goldberger'
 JACK_SCAROLA = 'Jack Scarola'
 JACKIE_PERCZEK = 'Jackie Perczek'
 JAMES_HILL = 'James Hill'
+JANUSZ_BANASIAK = 'Janusz Banasiak'
 JAY_LEFKOWITZ = 'Jay Lefkowitz'
 JEAN_HUGUEN = 'Jean Huguen'
 JEAN_LUC_BRUNEL = 'Jean Luc Brunel'
@@ -172,6 +173,8 @@ VINCENZO_IOZZO = 'Vincenzo Iozzo'
 VINIT_SAHNI = 'Vinit Sahni'
 ZUBAIR_KHAN = 'Zubair Khan'
 
+UNKNOWN = '(unknown)'
+
 # No communications but name is in the files
 BILL_GATES = 'Bill Gates'
 DONALD_TRUMP = 'Donald Trump'
@@ -221,7 +224,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     haddad harry hay heather henry hill hoffman
     ian ivan
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr
-    kahn karl kate katherine kelly ken kevin
+    kahn karl kate katherine kelly ken kevin krassner
     larry laurie lawrence leon lesley linda link lisa
     mann marc marie mark martin melanie michael mike miller mitchell miles morris moskowitz
     nancy neal new nicole

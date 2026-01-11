@@ -10,7 +10,7 @@ from rich.text import Text
 
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.imessage.text_message import TextMessage
-from epstein_files.util.constant.names import JEFFREY_EPSTEIN, UNKNOWN
+from epstein_files.util.constant.names import JEFFREY_EPSTEIN, Name
 from epstein_files.util.constant.strings import AUTHOR, TIMESTAMP_STYLE
 from epstein_files.util.data import days_between, days_between_str, iso_timestamp, sort_dict
 from epstein_files.util.doc_cfg import Metadata, TextCfg
@@ -35,7 +35,7 @@ class MessengerLog(Communication):
         super().__post_init__()
         self.messages = [self._build_message(match) for match in MSG_REGEX.finditer(self.text)]
 
-    def first_message_at(self, name: str | None) -> datetime:
+    def first_message_at(self, name: Name) -> datetime:
         return self.messages_by(name)[0].parse_timestamp()
 
     def info_txt(self) -> Text | None:
@@ -54,10 +54,10 @@ class MessengerLog(Communication):
 
         return txt.append(')')
 
-    def last_message_at(self, name: str | None) -> datetime:
+    def last_message_at(self, name: Name) -> datetime:
         return self.messages_by(name)[-1].parse_timestamp()
 
-    def messages_by(self, name: str | None) -> list[TextMessage]:
+    def messages_by(self, name: Name) -> list[TextMessage]:
         """Return all messages by 'name'."""
         return [m for m in self.messages if m.author == name]
 
@@ -129,9 +129,9 @@ class MessengerLog(Communication):
             yield message
 
     @classmethod
-    def count_authors(cls, imessage_logs: list['MessengerLog']) -> dict[str | None, int]:
+    def count_authors(cls, imessage_logs: list['MessengerLog']) -> dict[Name, int]:
         """Count up how many texts were sent by each author."""
-        sender_counts: dict[str | None, int] = defaultdict(int)
+        sender_counts: dict[Name, int] = defaultdict(int)
 
         for message_log in imessage_logs:
             for message in message_log.messages:

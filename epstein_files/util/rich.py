@@ -108,7 +108,7 @@ def build_highlighter(pattern: str) -> EpsteinHighlighter:
     return TempHighlighter()
 
 
-def build_table(title: str | None, cols: list[str | dict] | None = None, **kwargs) -> Table:
+def build_table(title: str | Text | None, cols: list[str | dict] | None = None, **kwargs) -> Table:
     table = Table(title=title, **{**DEFAULT_TABLE_KWARGS, **kwargs})
 
     if cols:
@@ -221,13 +221,11 @@ def print_json(label: str, obj: object, skip_falsey: bool = False) -> None:
 
 
 def print_other_page_link(epstein_files: 'EpsteinFiles') -> None:
-    markup_msg = link_markup(other_site_url(), 'the other page', style='light_slate_grey bold')
-
     if other_site_type() == EMAIL:
-        txt = Text.from_markup(markup_msg).append(f' is uncurated and has all {len(epstein_files.emails):,} emails')
+        txt = THE_OTHER_PAGE_TXT + Text(f' is uncurated and has all {len(epstein_files.emails):,} emails')
         txt.append(f" and {len(epstein_files.other_files)} unclassifiable files")
     else:
-        txt = Text.from_markup(markup_msg).append(f' displays a limited collection of emails and')
+        txt = THE_OTHER_PAGE_TXT + (f' displays a limited collection of emails and')
         txt.append(" unclassifiable files of particular interest")
 
     print_centered(parenthesize(txt), style=OTHER_PAGE_MSG_STYLE)

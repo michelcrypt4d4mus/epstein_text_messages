@@ -158,7 +158,7 @@ class HighlightedNames(HighlightedText):
 
         pattern = '|'.join(name_patterns)
 
-        if args.debug:
+        if args.deep_debug:
             debug_console.print(Text('').append(f"{name:25s}", style=self.style).append(f" '{pattern}'", style='dim'))
 
         return pattern
@@ -347,7 +347,7 @@ HIGHLIGHTED_NAMES = [
             'David Mitchell': 'Mitchell Holdings New York real estate developer',
             FRED_HADDAD: "co-founder of Heck's in West Virginia",
             GERALD_BARTON: "Maryland property developer Landmark Land Company",
-            GORDON_GETTY: 'heir of oil tycoon J. Paul Getty',
+            GORDON_GETTY: 'heir to oil tycoon J. Paul Getty',
             NICHOLAS_RIBIS: 'Hilton CEO, former president of Trump Organization',
             'Philip Kafka': 'president of Prince Concepts (and son of Terry Kafka?)',
             ROBERT_LAWRENCE_KUHN: 'investment banker, China expert',
@@ -474,7 +474,7 @@ HIGHLIGHTED_NAMES = [
             'Alfredo Rodriguez': "Epstein's butler, stole the journal",
             ERIC_ROTH: 'jet decorator',
             GWENDOLYN_BECK: 'Epstein fund manager in the 90s',
-            'Janusz Banasiak': "Epstein's house manager",
+            JANUSZ_BANASIAK: "Epstein's house manager",
             JEAN_HUGUEN: 'interior design at Alberto Pinto Cabinet',
             LAWRANCE_VISOSKI: "Epstein's pilot",
             LESLEY_GROFF: f"Epstein's assistant",
@@ -486,7 +486,6 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"Adriana\s*Ross",
-            r"Janusz", r"Banasiak",
             r"Merwin",
             r"(Sarah\s*)?Kellen", r"Vickers",  # Married name is Metiers
         ],
