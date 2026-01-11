@@ -84,29 +84,29 @@ def print_email_timeline(epstein_files: EpsteinFiles) -> None:
 def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     """Returns emails that were printed (may contain dupes if printed for both author and recipient)."""
     print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
-    authors: list[Person]
+    people: list[Person]
     printed_emails: list[Email] = []
     num_emails_printed_since_last_color_key = 0
 
     if args.names:
-        authors = epstein_files.author_objs(args.names)
+        people = epstein_files.person_objs(args.names)
     else:
         if args.all_emails:
-            authors = sorted(epstein_files.emailers(), key=lambda author: author.earliest_email_at())
+            people = sorted(epstein_files.emailers(), key=lambda person: person.earliest_email_at())
         else:
-            authors = epstein_files.author_objs(DEFAULT_EMAILERS)
+            people = epstein_files.person_objs(DEFAULT_EMAILERS)
 
         print_other_page_link(epstein_files)
-        print_centered(Padding(Person.emailer_info_table(authors), (2, 0, 0, 0)))
+        print_centered(Padding(Person.emailer_info_table(people), (2, 0, 0, 0)))
         print_centered(Padding(_all_emailers_table(epstein_files), (2, 0)))
 
-    for author in authors:
-        if author.name in USELESS_EMAILERS:
+    for person in people:
+        if person.name in USELESS_EMAILERS:
             continue
 
-        printed_author_emails = author.print_emails()
-        printed_emails.extend(printed_author_emails)
-        num_emails_printed_since_last_color_key += len(printed_author_emails)
+        printed_person_emails = person.print_emails()
+        printed_emails.extend(printed_person_emails)
+        num_emails_printed_since_last_color_key += len(printed_person_emails)
 
         # Print color key every once in a while
         if num_emails_printed_since_last_color_key > PRINT_COLOR_KEY_EVERY_N_EMAILS:
@@ -255,19 +255,19 @@ def _all_emailers_table(epstein_files: EpsteinFiles) -> Table:
         ]
     )
 
-    for author in sorted(epstein_files.emailers(), key=lambda author: author.sort_key()):
+    for person in sorted(epstein_files.emailers(), key=lambda person: person.sort_key()):
         counts_table.add_row(
-            author.name_link(),
-            f"{len(author.emails):,}",
-            f"{len(author.emails_by()):,}",
-            f"{len(author.emails_to()):,}",
-            str(author.earliest_email_date()),
-            str(author.last_email_date()),
-            f"{author.email_conversation_length_in_days()}",
-            author.external_link_txt(JMAIL),
-            author.external_link_txt(EPSTEIN_MEDIA) if author.is_linkable() else '',
-            author.external_link_txt(EPSTEIN_WEB) if author.is_linkable() else '',
-            author.external_link_txt(TWITTER),
+            person.name_link(),
+            f"{len(person.emails):,}",
+            f"{len(person.emails_by()):,}",
+            f"{len(person.emails_to()):,}",
+            str(person.earliest_email_date()),
+            str(person.last_email_date()),
+            f"{person.email_conversation_length_in_days()}",
+            person.external_link_txt(JMAIL),
+            person.external_link_txt(EPSTEIN_MEDIA) if person.is_linkable() else '',
+            person.external_link_txt(EPSTEIN_WEB) if person.is_linkable() else '',
+            person.external_link_txt(TWITTER),
         )
 
     return counts_table
