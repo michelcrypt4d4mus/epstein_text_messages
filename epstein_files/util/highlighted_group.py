@@ -846,6 +846,7 @@ HIGHLIGHTED_NAMES = [
             r"BBC",
             r"Breitbart",
             r"BuzzFeed",
+            r"CBS(\s*(4|Corp|News))?"
             r"Charlie\s*Rose",
             r"China\s*Daily",
             r"CNBC",
@@ -875,6 +876,7 @@ HIGHLIGHTED_NAMES = [
             r"Keith\s*Larsen",
             r"L\.?A\.?\s*Times",
             r"Law(360|\.com|fare)",
+            r"(Les\s*)?Moonves",
             r"MarketWatch",
             r"Miami\s*Herald",
             r"(Mi(chael|ke)\s*)?Bloomberg",
