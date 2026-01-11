@@ -19,7 +19,7 @@ from epstein_files.util.logging import logger
 CIVIL_ATTORNEY = 'civil attorney'
 CRIMINAL_DEFENSE_ATTORNEY = 'criminal defense attorney'
 CRIMINAL_DEFENSE_2008 = f"{CRIMINAL_DEFENSE_ATTORNEY} on 2008 case"
-EPSTEIN_LAWYER = 'Epstein lawyer'
+EPSTEIN_LAWYER = 'lawyer'
 EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} working on {EPSTEIN_V_ROTHSTEIN_EDWARDS}"
 ESTATE_EXECUTOR = 'estate executor'
 EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
@@ -458,7 +458,7 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        label='Dubin family',
+        label='Dubins',
         style='medium_orchid1',
         emailers={
             GLENN_DUBIN: "Highbridge Capital Management, married to Epstein's ex-gf Eva",
@@ -1399,12 +1399,12 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        label=VIRGIN_ISLANDS,
+        label='USVI',
         style='sea_green1',
         emailers={
-            CECILE_DE_JONGH: 'first lady 2007-2015',
-            KENNETH_E_MAPP: 'Governor',
-            STACEY_PLASKETT: 'non-voting member of Congress',
+            CECILE_DE_JONGH: 'Virgin Islands first lady 2007-2015',
+            KENNETH_E_MAPP: 'Virgin Islands Governor',
+            STACEY_PLASKETT: 'Virgin Islands non-voting member of Congress',
         },
         patterns=[
             r"Antigua",
