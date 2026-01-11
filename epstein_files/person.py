@@ -18,7 +18,7 @@ from epstein_files.util.data import days_between, flatten, without_falsey
 from epstein_files.util.env import args
 from epstein_files.util.highlighted_group import (QUESTION_MARKS_TXT, HighlightedNames,
      get_highlight_group_for_name, get_style_for_name, styled_category, styled_name)
-from epstein_files.util.rich import GREY_NUMBERS, LAST_TIMESTAMP_STYLE, build_table, console,  print_centered
+from epstein_files.util.rich import GREY_NUMBERS, LAST_TIMESTAMP_STYLE, build_table, console, join_texts, print_centered
 
 ALT_INFO_STYLE = 'medium_purple4'
 MIN_AUTHOR_PANEL_WIDTH = 80
@@ -84,13 +84,17 @@ class Person:
         ]
 
     def external_link(self, site: ExternalSite = EPSTEINIFY) -> str:
-        return AUTHOR_LINK_BUILDERS[site](self.name_str())
+        return PERSON_LINK_BUILDERS[site](self.name_str())
 
     def external_link_txt(self, site: ExternalSite = EPSTEINIFY, link_str: str | None = None) -> Text:
         if self.name is None:
             return Text('')
 
-        return link_text_obj(self.external_link(site), link_str or site)
+        return link_text_obj(self.external_link(site), link_str or site, style=self.style())
+
+    def external_links_line(self) -> Text:
+        links = [self.external_link_txt(site) for site in PERSON_LINK_BUILDERS]
+        return Text('', justify='center', style='dim').append(join_texts(links, join=' / '))  #, encloser='()'))#, encloser='‹›'))
 
     def highlight_group(self) -> HighlightedNames | None:
         return get_highlight_group_for_name(self.name)
@@ -200,7 +204,12 @@ class Person:
 
     def print_emails_table(self) -> None:
         emails = [email for email in self._printable_emails() if not email.is_duplicate()]  # Remove dupes
-        print_centered(Padding(Email.build_emails_table(emails, self.name), (0, 5, 1, 5)))
+        print_centered(Padding(Email.build_emails_table(emails, self.name), (0, 5, 0, 5)))
+
+        if self.is_linkable():
+            print_centered(self.external_links_line())
+
+        console.line()
 
     def sort_key(self) -> list[int | str]:
         counts = [len(self.unique_emails())]
