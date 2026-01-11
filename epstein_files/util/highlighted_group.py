@@ -19,7 +19,7 @@ from epstein_files.util.logging import logger
 CIVIL_ATTORNEY = 'civil attorney'
 CRIMINAL_DEFENSE_ATTORNEY = 'criminal defense attorney'
 CRIMINAL_DEFENSE_2008 = f"{CRIMINAL_DEFENSE_ATTORNEY} on 2008 case"
-EPSTEIN_LAWYER = 'epstein lawyer'
+EPSTEIN_LAWYER = 'Epstein lawyer'
 EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} working on {EPSTEIN_V_ROTHSTEIN_EDWARDS}"
 ESTATE_EXECUTOR = 'estate executor'
 EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
@@ -1553,7 +1553,7 @@ def styled_category(category: str | None) -> Text:
     if not category:
         return QUESTION_MARKS_TXT
 
-    category_str = 'resumé' if category == 'resume' else category
+    category_str = 'resumé' if category == 'resume' else category.lower()
     return Text(category_str, get_style_for_category(category) or 'wheat4')
 
 
