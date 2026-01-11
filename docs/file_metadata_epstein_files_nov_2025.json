@@ -362,6 +362,7 @@
                 "file_id": "012722",
                 "filename": "HOUSE_OVERSIGHT_012722.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 331,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -672,6 +673,7 @@
                 "file_id": "016203",
                 "filename": "HOUSE_OVERSIGHT_016203.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 98,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -800,6 +802,7 @@
                 "file_id": "016787",
                 "filename": "HOUSE_OVERSIGHT_016787.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 96,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -2395,6 +2398,7 @@
                 "file_id": "022464",
                 "filename": "HOUSE_OVERSIGHT_022464.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 99,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -2409,6 +2413,7 @@
                 "file_id": "022479",
                 "filename": "HOUSE_OVERSIGHT_022479.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 99,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -3354,6 +3359,7 @@
                 "file_id": "023107",
                 "filename": "HOUSE_OVERSIGHT_023107.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 90,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -3621,6 +3627,7 @@
                 "file_id": "023550",
                 "filename": "HOUSE_OVERSIGHT_023550.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 390,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -3747,6 +3754,7 @@
                 "file_id": "023971",
                 "filename": "HOUSE_OVERSIGHT_023971.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 573,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -3775,6 +3783,7 @@
                 "file_id": "024295",
                 "filename": "HOUSE_OVERSIGHT_024295.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 134,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -4264,7 +4273,6 @@
                 ],
                 "file_id": "025215",
                 "filename": "HOUSE_OVERSIGHT_025215.txt",
-                "is_junk_mail": true,
                 "num_lines": 93,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -4280,7 +4288,6 @@
                 "duplicate_of_id": "031156",
                 "file_id": "025226",
                 "filename": "HOUSE_OVERSIGHT_025226.txt",
-                "is_junk_mail": true,
                 "num_lines": 41,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -4320,7 +4327,6 @@
                 "bytes": 15799,
                 "file_id": "025235",
                 "filename": "HOUSE_OVERSIGHT_025235.txt",
-                "is_junk_mail": true,
                 "num_lines": 87,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -4374,6 +4380,7 @@
                 "file_id": "025313",
                 "filename": "HOUSE_OVERSIGHT_025313.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 99,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -4417,6 +4424,7 @@
                 "file_id": "025332",
                 "filename": "HOUSE_OVERSIGHT_025332.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 99,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -4825,6 +4833,7 @@
                 "file_id": "025699",
                 "filename": "HOUSE_OVERSIGHT_025699.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 134,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -4858,6 +4867,7 @@
                 "file_id": "025792",
                 "filename": "HOUSE_OVERSIGHT_025792.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 140,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -8247,7 +8257,6 @@
                 "bytes": 9692,
                 "file_id": "026788",
                 "filename": "HOUSE_OVERSIGHT_026788.txt",
-                "is_junk_mail": true,
                 "num_lines": 153,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -8479,6 +8488,7 @@
                 "file_id": "026970",
                 "filename": "HOUSE_OVERSIGHT_026970.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 128,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -8493,6 +8503,7 @@
                 "file_id": "026975",
                 "filename": "HOUSE_OVERSIGHT_026975.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 86,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -8507,6 +8518,7 @@
                 "file_id": "026980",
                 "filename": "HOUSE_OVERSIGHT_026980.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 132,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -8521,6 +8533,7 @@
                 "file_id": "026985",
                 "filename": "HOUSE_OVERSIGHT_026985.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 149,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -8548,6 +8561,7 @@
                 "file_id": "026999",
                 "filename": "HOUSE_OVERSIGHT_026999.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 80,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -9162,7 +9176,6 @@
                 "bytes": 9607,
                 "file_id": "028513",
                 "filename": "HOUSE_OVERSIGHT_028513.txt",
-                "is_junk_mail": true,
                 "num_lines": 75,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -9625,6 +9638,7 @@
                 "file_id": "028801",
                 "filename": "HOUSE_OVERSIGHT_028801.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 96,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -12149,6 +12163,7 @@
                 "file_id": "029752",
                 "filename": "HOUSE_OVERSIGHT_029752.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 494,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -12464,6 +12479,7 @@
                 "file_id": "029866",
                 "filename": "HOUSE_OVERSIGHT_029866.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 96,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -12849,7 +12865,7 @@
                 "recipients": [
                     "Darren Indyke",
                     "Francis Derby",
-                    "Januiz Banasiak",
+                    "Janusz Banasiak",
                     "Jeffrey Epstein",
                     "Lesley Groff",
                     "Louella Rabuyo",
@@ -12999,7 +13015,6 @@
                 ],
                 "file_id": "030006",
                 "filename": "HOUSE_OVERSIGHT_030006.txt",
-                "is_junk_mail": true,
                 "num_lines": 63,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -13028,6 +13043,7 @@
                 "file_id": "030017",
                 "filename": "HOUSE_OVERSIGHT_030017.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 90,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -14231,7 +14247,6 @@
                 "bytes": 10256,
                 "file_id": "030423",
                 "filename": "HOUSE_OVERSIGHT_030423.txt",
-                "is_junk_mail": true,
                 "num_lines": 88,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -14299,7 +14314,6 @@
                 "bytes": 8010,
                 "file_id": "030434",
                 "filename": "HOUSE_OVERSIGHT_030434.txt",
-                "is_junk_mail": true,
                 "num_lines": 66,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -14327,7 +14341,6 @@
                 "bytes": 4512,
                 "file_id": "030445",
                 "filename": "HOUSE_OVERSIGHT_030445.txt",
-                "is_junk_mail": true,
                 "num_lines": 71,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -16575,7 +16588,6 @@
                 "duplicate_of_id": "031126",
                 "file_id": "030837",
                 "filename": "HOUSE_OVERSIGHT_030837.txt",
-                "is_junk_mail": true,
                 "num_lines": 60,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -16593,7 +16605,6 @@
                 ],
                 "file_id": "030844",
                 "filename": "HOUSE_OVERSIGHT_030844.txt",
-                "is_junk_mail": true,
                 "num_lines": 147,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -17691,7 +17702,6 @@
                 "duplicate_of_id": "030844",
                 "file_id": "031114",
                 "filename": "HOUSE_OVERSIGHT_031114.txt",
-                "is_junk_mail": true,
                 "num_lines": 147,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -17738,7 +17748,6 @@
                 "bytes": 17455,
                 "file_id": "031121",
                 "filename": "HOUSE_OVERSIGHT_031121.txt",
-                "is_junk_mail": true,
                 "num_lines": 119,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -17770,7 +17779,6 @@
                 ],
                 "file_id": "031126",
                 "filename": "HOUSE_OVERSIGHT_031126.txt",
-                "is_junk_mail": true,
                 "num_lines": 60,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -17791,7 +17799,7 @@
                 "recipients": [
                     "Darren Indyke",
                     "Francis Derby",
-                    "Januiz Banasiak",
+                    "Janusz Banasiak",
                     "Jeffrey Epstein",
                     "Lesley Groff",
                     "Louella Rabuyo",
@@ -17872,7 +17880,6 @@
                 "bytes": 15139,
                 "file_id": "031146",
                 "filename": "HOUSE_OVERSIGHT_031146.txt",
-                "is_junk_mail": true,
                 "num_lines": 85,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -17903,7 +17910,6 @@
                 ],
                 "file_id": "031156",
                 "filename": "HOUSE_OVERSIGHT_031156.txt",
-                "is_junk_mail": true,
                 "num_lines": 41,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -17919,7 +17925,6 @@
                 "duplicate_of_id": "025215",
                 "file_id": "031159",
                 "filename": "HOUSE_OVERSIGHT_031159.txt",
-                "is_junk_mail": true,
                 "num_lines": 93,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -17935,7 +17940,6 @@
                 "duplicate_of_id": "030006",
                 "file_id": "031165",
                 "filename": "HOUSE_OVERSIGHT_031165.txt",
-                "is_junk_mail": true,
                 "num_lines": 63,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -18526,7 +18530,6 @@
                 "bytes": 11969,
                 "file_id": "031329",
                 "filename": "HOUSE_OVERSIGHT_031329.txt",
-                "is_junk_mail": true,
                 "num_lines": 74,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -21238,6 +21241,7 @@
                 "file_id": "032034",
                 "filename": "HOUSE_OVERSIGHT_032034.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 96,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -21487,6 +21491,7 @@
                 "file_id": "032107",
                 "filename": "HOUSE_OVERSIGHT_032107.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 331,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -21505,6 +21510,7 @@
                 "file_id": "032125",
                 "filename": "HOUSE_OVERSIGHT_032125.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 573,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -31739,6 +31745,7 @@
                 "file_id": "033539",
                 "filename": "HOUSE_OVERSIGHT_033539.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 99,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -31753,6 +31760,7 @@
                 "file_id": "033554",
                 "filename": "HOUSE_OVERSIGHT_033554.txt",
                 "is_junk_mail": true,
+                "is_mailing_list": true,
                 "num_lines": 69,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -37004,7 +37012,7 @@
             {
                 "bytes": 499,
                 "category": "reputation",
-                "description": "Epstein's internet search results at start of reputation repair campaign, maybe from Ian Osborne & Partners LLP",
+                "description": "Epstein's internet search results at start of reputation repair campaign, maybe from Ian Osborne & Partners",
                 "file_id": "026582",
                 "filename": "HOUSE_OVERSIGHT_026582.txt",
                 "is_interesting": true,
@@ -37014,7 +37022,7 @@
             {
                 "bytes": 5875,
                 "category": "reputation",
-                "description": "Google search results for 'Jeffrey Epstein' with analysis (Ian Osborne & Partners LLP?)",
+                "description": "Google search results for 'Jeffrey Epstein' with analysis (Ian Osborne & Partners?)",
                 "file_id": "026583",
                 "filename": "HOUSE_OVERSIGHT_026583.txt",
                 "is_interesting": true,
@@ -38286,7 +38294,7 @@
                 "was_timestamp_extracted": true
             },
             {
-                "author": "Ian Osborne & Partners LLP",
+                "author": "Ian Osborne & Partners",
                 "bytes": 6899,
                 "category": "reputation",
                 "description": "reputation repair proposal (cites Michael Milken)",
@@ -38325,7 +38333,7 @@
             {
                 "bytes": 2593,
                 "category": "reputation",
-                "description": "Epstein's unflattering Google search results, maybe screenshot by Al Seckel or Ian Osborne & Partners LLP",
+                "description": "Epstein's unflattering Google search results, maybe screenshot by Al Seckel or Ian Osborne & Partners",
                 "file_id": "030573",
                 "filename": "HOUSE_OVERSIGHT_030573.txt",
                 "is_interesting": true,
@@ -39242,7 +39250,7 @@
         "Gianni Serazzi": "modeling, fashion consultant?",
         "Gino Yu": "China, professor / game designer in Hong Kong",
         "Glenn Dubin": "Dubins, Highbridge Capital Management, married to Epstein's ex-gf Eva",
-        "Gordon Getty": "business, heir of oil tycoon J. Paul Getty",
+        "Gordon Getty": "business, heir to oil tycoon J. Paul Getty",
         "Grant J. Smith": "victim lawyer, Rothstein Rosenfeldt Adler (Rothstein was Roger Stone's partner)",
         "Gwendolyn Beck": "employee, Epstein fund manager in the 90s",
         "Harry Fisch": "academia, men's health expert at New York-Presbyterian / Weill Cornell (?)",
