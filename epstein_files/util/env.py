@@ -67,7 +67,7 @@ debug.add_argument('--suppress-logs', '-sl', action='store_true', help='set debu
 args = parser.parse_args()
 is_html_script = parser.prog in HTML_SCRIPTS
 
-args.build = args.build or args.emailers_info_png
+args.build = args.build
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 args.names = [None if n == 'None' else n for n in (args.names or [])]
 args.output_emails = args.output_emails or args.all_emails

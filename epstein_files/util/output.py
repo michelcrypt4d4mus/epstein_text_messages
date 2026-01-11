@@ -89,6 +89,11 @@ def print_emailers_info_png(epstein_files: EpsteinFiles) -> None:
     console.line()
     all_emailers = sorted(epstein_files.emailers(), key=lambda person: person.sort_key())
     console.print(Person.emailer_info_table(all_emailers))
+
+    if not args.build:
+        logger.warning(f"Not writing .png file because --build is not set")
+        return
+
     svg_path = f"{EMAILERS_TABLE_PNG_PATH}.svg"
     console.save_svg(svg_path, theme=HTML_TERMINAL_THEME, title="Epstein Emailers")
     log_file_write(svg_path)
