@@ -84,6 +84,8 @@ def print_email_timeline(epstein_files: EpsteinFiles) -> None:
 
 
 def print_emailers_info_png(epstein_files: EpsteinFiles) -> None:
+    print_color_key()
+    console.line()
     all_emailers = sorted(epstein_files.emailers(), key=lambda person: person.sort_key())
     console.print(Person.emailer_info_table(all_emailers))
     svg_path = f"{EMAILERS_TABLE_PNG_PATH}.svg"
