@@ -1,6 +1,6 @@
 import re
 import urllib.parse
-from typing import Literal
+from typing import Callable, Literal
 
 from inflection import parameterize
 from rich.text import Text
@@ -14,12 +14,13 @@ ARCHIVE_LINK_COLOR = 'slate_blue3'
 TEXT_LINK = 'text_link'
 
 # External site names
-ExternalSite = Literal['epstein.media', 'epsteinify', 'EpsteinWeb', 'RollCall']
+ExternalSite = Literal['epstein.media', 'epsteinify', 'EpsteinWeb', 'Jmail', 'RollCall', 'search X']
 EPSTEIN_MEDIA = 'epstein.media'
 EPSTEIN_WEB = 'EpsteinWeb'
 EPSTEINIFY = 'epsteinify'
 JMAIL = 'Jmail'
 ROLLCALL = 'RollCall'
+TWITTER = 'search X'
 
 GH_PROJECT_URL = 'https://github.com/michelcrypt4d4mus/epstein_text_messages'
 GH_MASTER_URL = f"{GH_PROJECT_URL}/blob/master"
@@ -69,6 +70,15 @@ rollcall_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[ROLLCALL],
 
 search_jmail_url = lambda txt: f"{JMAIL_URL}/search?q={urllib.parse.quote(txt)}"
 search_twitter_url = lambda txt: f"https://x.com/search?q={urllib.parse.quote(txt)}&src=typed_query&f=live"
+
+
+AUTHOR_LINK_BUILDERS: dict[ExternalSite, Callable[[str], str]] = {
+    EPSTEIN_MEDIA: epstein_media_person_url,
+    EPSTEIN_WEB: epstein_web_person_url,
+    EPSTEINIFY: epsteinify_name_url,
+    JMAIL: search_jmail_url,
+    TWITTER: search_twitter_url,
+}
 
 
 def build_doc_url(base_url: str, filename_or_id: int | str, case: Literal['lower', 'title'] | None = None) -> str:

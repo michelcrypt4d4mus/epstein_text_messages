@@ -23,7 +23,8 @@ EPSTEIN_LAWYER = 'Epstein lawyer'
 EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} working on {EPSTEIN_V_ROTHSTEIN_EDWARDS}"
 ESTATE_EXECUTOR = 'estate executor'
 EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
-QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='dim')
+MIDEAST = 'mideast'
+QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
 REGEX_STYLE_PREFIX = 'regex'
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w ]+$", re.IGNORECASE)
 
@@ -125,13 +126,18 @@ class HighlightedNames(HighlightedText):
         self._pattern = '|'.join([self._emailer_pattern(e) for e in self.emailers] + self.patterns)
         self.regex = re.compile(fr"\b({self._match_group_var}({self._pattern})s?)\b", re.IGNORECASE)
 
-    def get_info(self, name: str) -> str | None:
-        """Label and additional info for 'name' if 'name' is in self.emailers."""
-        info_pieces = [
-            self.category or ('' if len(self.emailers) == 1 else self.label.replace('_', ' ')),
-            self.emailers.get(name),
-        ]
+    def category_str(self) -> str:
+        if self.category:
+            return self.category
+        elif len(self.emailers) == 1 and self.label == [k for k in self.emailers.keys()][0]:
+            return ''
+        else:
+            return self.label.replace('_', ' ')
 
+    def info_for(self, name: str, include_category: bool = False) -> str | None:
+        """Label and additional info for 'name' if 'name' is in self.emailers."""
+        info_pieces = [self.category_str()] if include_category else []
+        info_pieces.append(self.emailers.get(name) or '')
         info_pieces = without_falsey(info_pieces)
         return ', '.join(info_pieces) if info_pieces else None
 
@@ -223,12 +229,13 @@ HIGHLIGHTED_NAMES = [
             MARK_TRAMO: 'professor of neurology at UCLA',
             'Nancy Dahl': f'wife of {LAWRENCE_KRAUSS}',
             NEAL_KASSELL: 'professor of neurosurgery at University of Virginia',
+            NOAM_CHOMSKY: f"professor of linguistics at MIT",
             PETER_ATTIA: 'longevity medicine',
             ROBERT_TRIVERS: 'evolutionary biology',
             ROGER_SCHANK: 'Teachers College, Columbia University',
+            'Valeria Chomsky': f"wife of {NOAM_CHOMSKY}",
         },
         patterns=[
-            r"Alain Forget",
             r"Bard\s+((Early )?College|High School|Schools)",
             r"Brotherton",
             r"Carl\s*Sagan",
@@ -241,7 +248,6 @@ HIGHLIGHTED_NAMES = [
             r"Media\s*Lab",
             r"(Marvin\s*)?Minsky",
             r"MIT(\s*Media\s*Lab)?",
-            r"((Noam|Valeria)\s*)?Chomsky",
             r"Norman\s*Finkelstein",
             r"Oxford(?! Analytica)",
             r"Praluent",
@@ -282,6 +288,21 @@ HIGHLIGHTED_NAMES = [
             r"Tanzania",
             r"Ugandan?",
             r"Zimbabwe(an)?",
+        ],
+    ),
+    HighlightedNames(
+        label=BILL_GATES,
+        style='turquoise4',
+        emailers={
+            BORIS_NIKOLIC: f'biotech VC partner of {BILL_GATES}, {EPSTEIN_ESTATE_EXECUTOR}',
+        },
+        patterns=[
+            r"BG",
+            r"b?g?C3",
+            r"(Bill\s*((and|or|&)\s*Melinda\s*)?)?Gates(\s*Foundation)?",
+            r"Melinda(\s*Gates)?",
+            r"Microsoft",
+            r"MSFT",
         ],
     ),
     HighlightedNames(
@@ -393,10 +414,10 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        label=DEEPAK_CHOPRA,
+        label='deepak',
         style='dark_sea_green4',
         emailers={
-            CAROLYN_RANGEL: 'assistant',
+            CAROLYN_RANGEL: f"Deepak Chopra's assistant {QUESTION_MARKS}",
             DEEPAK_CHOPRA: 'woo woo',
         },
     ),
@@ -432,6 +453,7 @@ HIGHLIGHTED_NAMES = [
             r"Ron\s*Dellums",
             r"Schumer",
             r"(Tim(othy)?\s*)?Geithner",
+            r"Tom McMillen",
             r"Vernon\s*Jordan",
         ],
     ),
@@ -453,12 +475,13 @@ HIGHLIGHTED_NAMES = [
             GWENDOLYN_BECK: 'Epstein fund manager in the 90s',
             'Janusz Banasiak': "Epstein's house manager",
             JEAN_HUGUEN: 'interior design at Alberto Pinto Cabinet',
-            LAWRANCE_VISOSKI: 'pilot',
-            LESLEY_GROFF: 'assistant',
+            LAWRANCE_VISOSKI: "Epstein's pilot",
+            LESLEY_GROFF: f"Epstein's assistant",
             'Linda Pinto': 'interior design at Alberto Pinto Cabinet',
             MERWIN_DELA_CRUZ: None,  # HOUSE_OVERSIGHT_032652 Groff says "Jojo and Merwin both requested off Nov. 25 and 26"
-            NADIA_MARCINKO: 'pilot',
+            NADIA_MARCINKO: "Epstein's pilot",
             'Sean J. Lancaster': 'airplane reseller',
+            ZUBAIR_KHAN: 'cybersecurity firm Tranchulas CEO, InsightsPod founder, Islamabad/Dubai',
         },
         patterns=[
             r"Adriana\s*Ross",
@@ -475,7 +498,6 @@ HIGHLIGHTED_NAMES = [
             'Barry Josephson': 'American film producer, editor FamilySecurityMatters.org',
             BILL_SIEGEL: 'documentary film producer and director',
             DAVID_BLAINE: 'famous magician',
-            HENRY_HOLT: f"{MICHAEL_WOLFF}'s book publisher",
             'Richard Merkin': 'painter, illustrator and arts educator',
             STEVEN_PFEIFFER: 'Associate Director at Independent Filmmaker Project (IFP)',
         },
@@ -505,6 +527,18 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
+        label='Epstein',
+        style='blue1',
+        emailers={
+            JEFFREY_EPSTEIN: None,
+            MARK_EPSTEIN: 'brother of Jeffrey',
+        },
+        patterns=[
+            r"JEGE",
+            r"LSJ",
+        ],
+    ),
+    HighlightedNames(
         label=EPSTEIN_LAWYER,
         style='purple',
         emailers={
@@ -513,6 +547,7 @@ HIGHLIGHTED_NAMES = [
             ARDA_BESKARDES: 'NYC immigration attorney allegedly involved in sex-trafficking operations',
             BENNET_MOSKOWITZ: f'represented the {EPSTEIN_ESTATE_EXECUTOR}s',
             BRAD_KARP: 'head of the law firm Paul Weiss',
+            'Connie Zaguirre': f"office of {ROBERT_D_CRITTON_JR}",
             DAVID_SCHOEN: f"{CRIMINAL_DEFENSE_ATTORNEY} after 2019 arrest",
             DEBBIE_FEIN: EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY,
             'Erika Kellerhals': 'attorney in St. Thomas',
@@ -579,6 +614,7 @@ HIGHLIGHTED_NAMES = [
             r"Cypr(iot|us)",
             r"Davos",
             r"ECB",
+            r"Edward Rod Larsen",
             r"England",
             r"EU",
             r"Europe(an)?(\s*Union)?",
@@ -606,8 +642,7 @@ HIGHLIGHTED_NAMES = [
             r"Polish",
             r"pope",
             r"(Sebastian )?Kurz",
-            r"(Vi(c|k)tor\s+)?Orbah?n",
-            r"Edward Rod Larsen",
+            r"Stockholm",
             r"Strasbourg",
             r"Strauss[- ]?Kahn",
             r"Swed(en|ish)(?![-\s]+American Life Scienc)",
@@ -615,6 +650,7 @@ HIGHLIGHTED_NAMES = [
             r"(Tony\s)?Blair",
             r"U\.K\.",
             r"Ukrain(e|ian)",
+            r"(Vi(c|k)tor\s+)?Orbah?n",
             r"Vienna",
             r"Zug",
             r"Zurich",
@@ -685,7 +721,7 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        label='friend',
+        label=FRIEND,
         style='tan',
         emailers={
             DANGENE_AND_JENNIE_ENTERPRISE: 'founders of the members-only CORE club',
@@ -731,7 +767,6 @@ HIGHLIGHTED_NAMES = [
         emailers={
             ANIL_AMBANI: 'chairman of Reliance Group',
             VINIT_SAHNI: None,
-            ZUBAIR_KHAN: 'cybersecurity firm Tranchulas CEO, InsightsPod founder, Islamabad/Dubai',
         },
         patterns=[
             r"Abraaj",
@@ -752,7 +787,7 @@ HIGHLIGHTED_NAMES = [
         label='Israel',
         style='dodger_blue2',
         emailers={
-            EHUD_BARAK: 'former primer minister',
+            EHUD_BARAK: 'former prime minister of Israel, Epstein business partner',
             'Mitchell Bard': 'director of the American-Israeli Cooperative Enterprise (AICE)',
             'Nili Priell Barak': 'wife of Ehud Barak',
         },
@@ -790,7 +825,9 @@ HIGHLIGHTED_NAMES = [
         label=JOURNALIST,
         style='bright_yellow',
         emailers={
+            'Alain Forget': 'author of "How To Get Out Of This World ALIVE"',
             EDWARD_JAY_EPSTEIN: 'no relation, wrote about the kinds of crimes Epstein was involved in',
+            HENRY_HOLT: f"{MICHAEL_WOLFF}'s book publisher",
             JAMES_HILL: 'ABC News',
             JENNIFER_JACQUET: 'Future Science',
             JOHN_BROCKMAN: 'literary agent and author specializing in scientific literature',
@@ -808,18 +845,22 @@ HIGHLIGHTED_NAMES = [
             r"Axios",
             r"BBC",
             r"Breitbart",
+            r"BuzzFeed",
+            r"CBS(\s*(4|Corp|News))?"
             r"Charlie\s*Rose",
             r"China\s*Daily",
             r"CNBC",
             r"CNN(politics?)?",
             r"Con[cs]hita", r"Sarnoff",
             r"Daily Business Review",
-            r"(?<!Virgin[-\s]Islands[-\s])Daily\s*(Beast|Mail|News|Telegraph)",
+            r"(?<!Virgin[-\s]Islands[-\s])(The\s*)?Daily\s*(Beast|Mail|News|Telegraph)",
             r"(David\s*)?(Pecker|Pegg)",
             r"David\s*Brooks",
             r"Ed\s*Krassenstein",
             r"(Emily\s*)?Michot",
             r"Ezra\s*Klein",
+            r"Forbes",
+            r"Fortune\s*Magazine",
             r"Fox\s*News(\.com)?",
             r"FrontPage Magazine",
             r"FT",
@@ -837,18 +878,20 @@ HIGHLIGHTED_NAMES = [
             r"Keith\s*Larsen",
             r"L\.?A\.?\s*Times",
             r"Law(360|\.com|fare)",
+            r"(Les\s*)?Moonves",
             r"MarketWatch",
             r"Miami\s*Herald",
             r"(Mi(chael|ke)\s*)?Bloomberg",
             r"(Michele\s*)?Dargan",
             r"Morning News USA",
             r"(National\s*)?Enquirer",
-            r"Newsweek",
+            r"News(max|week)",
             r"NYer",
             r"Palm\s*Beach\s*(Daily\s*News|Post)",
             r"PERVERSION\s*OF\s*JUSTICE",
             r"Politico",
             r"Pro\s*Publica",
+            r"Reuters",
             r"(Sean\s*)?Hannity",
             r"Sulzberger",
             r"SunSentinel",
@@ -978,6 +1021,7 @@ HIGHLIGHTED_NAMES = [
         label=LOBBYIST,
         style='light_coral',
         emailers={
+            BOB_CROWE: 'partner at Nelson Mullins',
             'Joshua Cooper Ramo': 'co-CEO of Henry Kissinger Associates',
             KATHERINE_KEATING: 'Daughter of former Australian PM',
             MOHAMED_WAHEED_HASSAN: 'former president of the Maldives',
@@ -987,14 +1031,13 @@ HIGHLIGHTED_NAMES = [
             'Stanley Rosenberg': 'former President of the Massachusetts Senate',
         },
         patterns=[
-            r"[BR]ob Crowe",
             r"CSIS",
             r"(Kevin\s*)?Rudd",
             r"Stanley Rosenberg",
         ],
     ),
     HighlightedNames(
-        label='mideast',
+        label=MIDEAST,
         style='dark_sea_green4',
         emailers={
             ANAS_ALRASHEED: 'former information minister of Kuwait (???)',
@@ -1078,7 +1121,7 @@ HIGHLIGHTED_NAMES = [
             r"sheikh",
             r"shia",
             r"(Sultan\s*)?Yacoub",
-            r"Sultan",
+            r"Sultan(?! Ahmed)",
             r"Syrian?",
             r"(Tarek\s*)?El\s*Sayed",
             r"Tehran",
@@ -1116,13 +1159,13 @@ HIGHLIGHTED_NAMES = [
         label=PUBLICIST,
         style='orange_red1',
         emailers={
-            AL_SECKEL: 'husband of Isabel Maxwell, Mindshift conference organizer who fell off a cliff',
-            'Barnaby Marsh': 'co-founder of Saint Partners, a philanthropy services company',
-            CHRISTINA_GALBRAITH: f"{REPUTATION_MGMT}, worked with Tyler Shears",
+            AL_SECKEL: "Isabel Maxwell's husband, Mindshift conference organizer, fell off a cliff",
+            'Barnaby Marsh': 'co-founder of philanthropy services company Saint Partners',
+            CHRISTINA_GALBRAITH: f"{EPSTEIN_FOUNDATION} Media/PR, worked with {TYLER_SHEARS}",  # Title in 031441
             IAN_OSBORNE: f'{OSBORNE_LLP} reputation repairer hired by Epstein in 2011',
             MICHAEL_SITRICK: 'crisis PR',
             'Owen Blicksilver': 'OBPR, Inc.',
-            PEGGY_SIEGAL: 'socialite',
+            PEGGY_SIEGAL: 'socialite, movie promoter',
             'R. Couri Hay': None,
             ROSS_GOW: 'Acuity Reputation Management',
             TYLER_SHEARS: f"{REPUTATION_MGMT}, worked on with {CHRISTINA_GALBRAITH}",
@@ -1382,32 +1425,19 @@ HIGHLIGHTED_NAMES = [
             r"(West\s*)?Palm\s*Beach(?!\s*(Daily|Post))",
         ],
     ),
-    HighlightedNames(
-        label=BILL_GATES,
-        style='turquoise4',
-        emailers={
-            BORIS_NIKOLIC: f'biotech VC partner of {BILL_GATES}, {EPSTEIN_ESTATE_EXECUTOR}',
-        },
-        patterns=[
-            r"BG",
-            r"b?g?C3",
-            r"(Bill\s*((and|or|&)\s*Melinda\s*)?)?Gates(\s*Foundation)?",
-            r"Melinda(\s*Gates)?",
-            r"Microsoft",
-            r"MSFT",
-        ],
-    ),
+
+    # Individuals
     HighlightedNames(
         label=STEVE_BANNON,
         style='color(58)',
         category=POLITICS,
         emailers={
-            STEVE_BANNON: "Trump campaign manager, memecoin grifter, convicted criminal",
+            SEAN_BANNON: f"{STEVE_BANNON}'s brother",
+            STEVE_BANNON: "Trump campaign manager, memecoin grifter",
         },
         patterns=[
             r"(American\s*)?Dharma",
             r"Biosphere",
-            r"((Steve|Sean)\s*)?Bannon?",
         ],
     ),
     HighlightedNames(
@@ -1416,15 +1446,14 @@ HIGHLIGHTED_NAMES = [
         emailers={STEVEN_HOFFENBERG: "Epstein's ponzi scheme partner at Towers Financial, prison for 18 years"},
         patterns=[r"(steven?\s*)?hoffenberg?w?"],
     ),
-    HighlightedNames(emailers={GHISLAINE_MAXWELL: None}, patterns=[r"gmax(1@ellmax.com)?", r"(The )?TerraMar Project"], style='deep_pink3'),
-    HighlightedNames(emailers={JABOR_Y: '"an influential man in Qatar"'}, category='mideast', style='spring_green1'),
-    HighlightedNames(emailers={JEFFREY_EPSTEIN: None}, patterns=[r"JEGE", r"LSJ", r"Mark (L. )?Epstein"], style='blue1'),
-    HighlightedNames(emailers={KATHRYN_RUEMMLER: 'former Obama legal counsel'}, style='magenta2'),
-    HighlightedNames(emailers={MELANIE_WALKER: 'doctor'}, style='pale_violet_red1'),
-    HighlightedNames(emailers={PAULA: "Epstein's ex-girlfriend who is now in the opera world"}, label='paula', style='pink1'),
-    HighlightedNames(emailers={PRINCE_ANDREW: 'British royal family'}, style='dodger_blue1'),
-    HighlightedNames(emailers={SOON_YI_PREVIN: 'wife of Woody Allen'}, style='hot_pink'),
-    HighlightedNames(emailers={SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of ports in Dubai'}, style='green1'),
+    HighlightedNames(emailers={GHISLAINE_MAXWELL: None}, patterns=[r"gmax(1@ellmax.com)?", r"(The )?TerraMar Project"], style='deep_pink3', category='Epstein'),
+    HighlightedNames(emailers={JABOR_Y: '"an influential man in Qatar"'}, category=MIDEAST, style='spring_green1'),
+    HighlightedNames(emailers={KATHRYN_RUEMMLER: 'former Obama legal counsel'}, style='magenta2', category=FRIEND),
+    HighlightedNames(emailers={MELANIE_WALKER: f"doctor, friend of {BILL_GATES}"}, style='pale_violet_red1', category=FRIEND),
+    HighlightedNames(emailers={PAULA: "Epstein's ex-girlfriend who is now in the opera world"}, label='paula', style='pink1', category=FRIEND),
+    HighlightedNames(emailers={PRINCE_ANDREW: 'British royal family'}, style='dodger_blue1', category='Europe'),
+    HighlightedNames(emailers={SOON_YI_PREVIN: 'wife of Woody Allen'}, style='hot_pink', category=FRIEND),
+    HighlightedNames(emailers={SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of ports in Dubai'}, style='green1', category=MIDEAST),
 
     # HighlightedText not HighlightedNames bc of word boundary issue
     HighlightedText(
@@ -1503,23 +1532,6 @@ class EpsteinHighlighter(RegexHighlighter):
     highlights = [highlight_group.regex for highlight_group in ALL_HIGHLIGHTS]
 
 
-def get_category_txt_for_name(name: str | None) -> Text | None:
-    highlight_group = _get_highlight_group_for_name(name)
-
-    if highlight_group and isinstance(highlight_group, HighlightedNames):
-        category = highlight_group.category or highlight_group.label
-
-        if category != name:
-            return styled_category(category)
-
-
-def get_info_for_name(name: str | None) -> str | None:
-    highlight_group = _get_highlight_group_for_name(name)
-
-    if highlight_group and isinstance(highlight_group, HighlightedNames) and name:
-        return highlight_group.get_info(name)
-
-
 def get_style_for_category(category: str) -> str | None:
     if category in CATEGORY_STYLES:
         return CATEGORY_STYLES[category]
@@ -1533,17 +1545,19 @@ def get_style_for_category(category: str) -> str | None:
             return highlight_group.style
 
 
-def get_style_for_name(name: str | None, default_style: str = DEFAULT, allow_bold: bool = True) -> str:
-    highlight_group = _get_highlight_group_for_name(name or UNKNOWN)
+def get_style_for_name(name: str | None, default_style: str = DEFAULT_NAME_STYLE, allow_bold: bool = True) -> str:
+    highlight_group = get_highlight_group_for_name(name or UNKNOWN)
     style = highlight_group.style if highlight_group else default_style
-    return style if allow_bold else style.replace('bold', '').strip()
+    style = style if allow_bold else style.replace('bold', '').strip()
+    logger.debug(f"get_style_for_name('{name}', '{default_style}', '{allow_bold}') yielded '{style}'")
+    return style
 
 
 def styled_category(category: str | None) -> Text:
     if not category:
         return QUESTION_MARKS_TXT
 
-    category_str = 'resumé' if category == 'resume' else category
+    category_str = 'resumé' if category == 'resume' else category.lower()
     return Text(category_str, get_style_for_category(category) or 'wheat4')
 
 
@@ -1551,7 +1565,7 @@ def styled_name(name: str | None, default_style: str = DEFAULT_NAME_STYLE) -> Te
     return Text(name or UNKNOWN, style=get_style_for_name(name, default_style=default_style))
 
 
-def _get_highlight_group_for_name(name: str | None) -> HighlightedNames | None:
+def get_highlight_group_for_name(name: str | None) -> HighlightedNames | None:
     if name is None:
         return None
 
@@ -1564,6 +1578,9 @@ def _print_highlighted_names_repr() -> None:
     for hn in HIGHLIGHTED_NAMES:
         if isinstance(hn, HighlightedNames):
             print(indented(repr(hn)) + ',')
+            print(f"pattern: '{hn.regex.pattern}'")
 
     import sys
     sys.exit()
+
+#_print_highlighted_names_repr()

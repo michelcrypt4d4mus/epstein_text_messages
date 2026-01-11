@@ -34,6 +34,7 @@ BARBRO_C_EHNBOM = 'Barbro C. Ehnbom'
 BARRY_J_COHEN = 'Barry J. Cohen'
 BENNET_MOSKOWITZ = 'Bennet Moskowitz'
 BILL_SIEGEL = 'Bill Siegel'
+BOB_CROWE = 'Bob Crowe'
 BRAD_EDWARDS = 'Brad Edwards'
 BRAD_KARP = 'Brad Karp'
 BRAD_WECHSLER = 'Brad Wechsler'
@@ -209,14 +210,14 @@ UBS = 'UBS'
 
 # First and last names that should be made part of a highlighting regex for emailers
 NAMES_TO_NOT_HIGHLIGHT = """
-    al alan alfredo allen alex alexander amanda andres andrew
-    bard barrett barry bill black boris brad bruce
+    al alain alan alfredo allen alex alexander amanda andres andrew
+    bard barrett barry bill black bob boris brad bruce
     carolyn chris christina
     dan daniel danny darren dave david donald
     ed edward edwards enterprise enterprises entourage epstein eric erika etienne
-    faith fred friendly frost fuller
+    faith forget fred friendly frost fuller
     gerald george gold gordon
-    harry hay heather henry hill hoffman
+    haddad harry hay heather henry hill hoffman
     ian ivan
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr
     kahn karl kate katherine kelly ken kevin
