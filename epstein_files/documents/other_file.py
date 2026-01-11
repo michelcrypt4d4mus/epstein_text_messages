@@ -22,7 +22,7 @@ from epstein_files.util.data import days_between, escape_single_quotes, remove_t
 from epstein_files.util.file_helper import FILENAME_LENGTH, file_size_to_str
 from epstein_files.util.env import args
 from epstein_files.util.highlighted_group import QUESTION_MARKS_TXT, styled_category
-from epstein_files.util.rich import build_table, highlighter
+from epstein_files.util.rich import add_cols_to_table, build_table, highlighter
 from epstein_files.util.logging import logger
 
 FIRST_FEW_LINES = 'First Few Lines'
@@ -40,6 +40,13 @@ VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IG
 SKIP_TIMESTAMP_EXTRACT = [
     PALM_BEACH_TSV,
     PALM_BEACH_PROPERTY_INFO,
+]
+
+SUMMARY_TABLE_COLS: list[str | dict] = [
+    'Count',
+    {'name': 'Has Author', 'style': 'honeydew2'},
+    {'name': 'No Author', 'style': 'wheat4'},
+    {'name': 'Size', 'justify': 'right', 'style': 'dim'},
 ]
 
 UNINTERESTING_CATEGORIES = [
@@ -209,8 +216,8 @@ class OtherFile(Document):
         if num_days_spanned > MAX_DAYS_SPANNED_TO_BE_VALID and VAST_HOUSE not in self.text:
             self.log_top_lines(15, msg=timestamps_log_msg, level=logging.DEBUG)
 
-    @staticmethod
-    def files_preview_table(files: Sequence['OtherFile'], title_pfx: str = '') -> Table:
+    @classmethod
+    def files_preview_table(cls, files: Sequence['OtherFile'], title_pfx: str = '') -> Table:
         """Build a table of OtherFile documents."""
         table = build_table(f'{title_pfx}Other Files Details in Chronological Order', show_lines=True)
         table.add_column('File', justify='center', width=FILENAME_LENGTH)
@@ -242,33 +249,34 @@ class OtherFile(Document):
 
         return table
 
-    @staticmethod
-    def summary_table(files: Sequence['OtherFile'], title_pfx: str = '') -> Table:
-        counts = defaultdict(int)
-        category_bytes = defaultdict(int)
+    @classmethod
+    def summary_table(cls, files: Sequence['OtherFile'], title_pfx: str = '') -> Table:
+        categories = uniquify([f.category() for f in files])
+        table = cls.file_info_table(f'{title_pfx}Other Files Summary', 'Category')
 
-        for file in files:
-            if file.category() is None:
-                logger.warning(f"file {file.file_id} has no category")
-
-            counts[file.category()] += 1
-            category_bytes[file.category()] += file.file_size()
-
-        table = build_table(f'{title_pfx}Other Files Summary', ['Category', 'Count', 'Has Author', 'No Author', 'Size'])
-        table.columns[-1].justify = 'right'
-        table.columns[0].min_width = 14
-        table.columns[-1].style = 'dim'
-
-        for (category, count) in sort_dict(counts):
+        for category in categories:
             category_files = [f for f in files if f.category() == category]
-            known_author_count = Document.known_author_count(category_files)
-
-            table.add_row(
-                styled_category(category),
-                str(count),
-                str(known_author_count),
-                str(count - known_author_count),
-                file_size_to_str(category_bytes[category]),
-            )
+            table.add_row(styled_category(category), *cls.files_info(category_files).values())
 
         return table
+
+    @classmethod
+    def file_info_table(cls, title: str, first_col_name: str) -> Table:
+        """Empty table with appropriate cols for file summaries."""
+        table = build_table(title)
+        cols = [{'name': first_col_name, 'min_width': 14}] + SUMMARY_TABLE_COLS
+        add_cols_to_table(table, cols, 'right')
+        return table
+
+    @classmethod
+    def files_info(cls, files: Sequence[Document], author_na: bool = False) -> dict[str, str | Text]:
+        """Create a summary of a group of files."""
+        count = len(files)
+        author_count = Document.known_author_count(files)
+
+        return {
+            'count': str(count),
+            'author_count': str(author_count),
+            'no_author_count': str(count - author_count),
+            'bytes': file_size_to_str(sum([f.file_size() for f in files])),
+        }
