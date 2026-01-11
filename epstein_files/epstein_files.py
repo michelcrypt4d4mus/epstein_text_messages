@@ -33,9 +33,13 @@ PICKLED_PATH = Path("the_epstein_files.pkl.gz")
 SLOW_FILE_SECONDS = 1.0
 
 EMAILS_WITH_UNINTERESTING_CCS = [
-    '025329',  # Krassner
-    '024923',  # Krassner
-    '033568',  # Krassner
+    '025329',    # Krassner
+    '024923',    # Krassner
+    '033568',    # Krassner
+]
+
+EMAILS_WITH_UNINTERESTING_BCCS = [
+    '014797_1',  # Ross Gow
 ]
 
 
@@ -47,7 +51,7 @@ class EpsteinFiles:
     json_files: list[JsonFile] = field(default_factory=list)
     other_files: list[OtherFile] = field(default_factory=list)
     timer: Timer = field(default_factory=lambda: Timer())
-    uninteresting_ccs: list[Name] = field(init=False)
+    uninteresting_ccs: list[Name] = field(default_factory=list)
 
     def __post_init__(self):
         """Iterate through files and build appropriate objects."""
@@ -307,8 +311,8 @@ class EpsteinFiles:
         self.emails = Document.sort_by_timestamp(self.emails)
 
     def _set_uninteresting_ccs(self) -> None:
-        ross_gow_email = self.email_for_id('014797_1')
-        self.uninteresting_ccs = copy(cast(list[Name], ross_gow_email.header.bcc))
+        for id in EMAILS_WITH_UNINTERESTING_BCCS:
+            self.uninteresting_ccs += copy(cast(list[Name], self.email_for_id(id).header.bcc))
 
         for id in EMAILS_WITH_UNINTERESTING_CCS:
             self.uninteresting_ccs += self.email_for_id(id).recipients
