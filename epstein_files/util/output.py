@@ -98,14 +98,12 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
         else:
             people_to_print = epstein_files.person_objs(DEFAULT_EMAILERS)
 
+        people_to_print = [p for p in people_to_print if p.name not in USELESS_EMAILERS]
         print_other_page_link(epstein_files)
         print_centered(Padding(Person.emailer_info_table(people_to_print), (2, 0, 0, 0)))
         print_centered(Padding(Person.emailer_stats_table(all_emailers), (2, 0)))
 
     for person in people_to_print:
-        if person.name in USELESS_EMAILERS and not args.names:
-            continue
-
         printed_person_emails = person.print_emails()
         printed_emails.extend(printed_person_emails)
         num_emails_printed_since_last_color_key += len(printed_person_emails)

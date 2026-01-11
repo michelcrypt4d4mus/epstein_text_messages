@@ -14,7 +14,7 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import *
-from epstein_files.util.data import days_between, flatten
+from epstein_files.util.data import days_between, flatten, without_falsey
 from epstein_files.util.env import args
 from epstein_files.util.highlighted_group import (QUESTION_MARKS_TXT, HighlightedNames,
      get_highlight_group_for_name, get_style_for_name, styled_category, styled_name)
@@ -109,12 +109,12 @@ class Person:
             title_suffix = f"to/from {self.name_str()} starting {self.earliest_email_date()} covering {num_days:,} days"
 
         title = f"Found {email_count} emails {title_suffix}"
-        width = max(MIN_AUTHOR_PANEL_WIDTH, len(title) + 4, len(self.info_str() or '') + 8)
+        width = max(MIN_AUTHOR_PANEL_WIDTH, len(title) + 4, len(self.info_with_category()) + 8)
         panel = Panel(Text(title, justify='center'), width=width, style=panel_style)
         elements: list[RenderableType] = [panel]
 
-        if self.info_str():
-            elements.append(Text(f"({self.info_str()})", justify='center', style=f"{style} italic"))
+        if self.info_with_category():
+            elements.append(Text(f"({self.info_with_category()})", justify='center', style=f"{style} italic"))
 
         return Padding(Group(*elements), (2, 0, 1, 0))
 
@@ -122,23 +122,24 @@ class Person:
         highlight_group = self.highlight_group()
 
         if highlight_group and isinstance(highlight_group, HighlightedNames) and self.name:
-            return highlight_group.get_info(self.name)
+            return highlight_group.info_for(self.name)
+
+    def info_with_category(self) -> str:
+        return ', '.join(without_falsey([self.category(), self.info_str()]))
 
     def info_txt(self) -> Text | None:
-        info = self.info_str()
-
         if self.name == JEFFREY_EPSTEIN:
             return Text('(emails sent by Epstein to himself that would not otherwise be printed)', style=ALT_INFO_STYLE)
         elif self.name is None:
             return Text('(emails whose author or recipient could not be determined)', style=ALT_INFO_STYLE)
         elif self.category() == JUNK:
-            return Text(f"({JUNK})", style='tan dim')
+            return Text(f"({JUNK} mail)", style='tan dim')
         elif self.is_a_mystery():
             return Text(QUESTION_MARKS, style='grey50 dim')
-        elif self.category() and info:
-            info = info.removeprefix(self.category() or '').removeprefix(', ')
-
-        return Text(info) if info else None
+        elif self.info_str() is None:
+            return None
+        else:
+            return Text(self.info_str())
 
     def is_a_mystery(self) -> bool:
         """Return True if this is someone we theroetically could know more about."""

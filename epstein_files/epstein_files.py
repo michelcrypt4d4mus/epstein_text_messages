@@ -215,7 +215,7 @@ class EpsteinFiles:
                 OtherFile.__name__: _sorted_metadata(self.non_json_other_files()),
             },
             'people': {
-                name: highlighted_group.get_info(name)
+                name: highlighted_group.info_for(name, include_category=True)
                 for highlighted_group in HIGHLIGHTED_NAMES
                 if isinstance(highlighted_group, HighlightedNames)
                 for name, description in highlighted_group.emailers.items()
