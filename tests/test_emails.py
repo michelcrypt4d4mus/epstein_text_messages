@@ -473,6 +473,7 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     "031830",
     "032213",
     "032283",
+    '032951',
     "033345",
 ]
 
@@ -903,4 +904,4 @@ def test_signature_substitutions(epstein_files):
 
 
 def test_unknown_recipient_file_ids(epstein_files):
-    assert epstein_files.email_unknown_recipient_file_ids() == UNKNOWN_RECIPIENT_FILE_IDS
+    assert epstein_files.unknown_recipient_ids() == UNKNOWN_RECIPIENT_FILE_IDS

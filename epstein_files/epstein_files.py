@@ -169,8 +169,9 @@ class EpsteinFiles:
 
         return substitution_counts
 
-    def email_unknown_recipient_file_ids(self) -> list[str]:
-        return sorted(list(self.unknown_recipient_email_ids))
+    def unknown_recipient_ids(self) -> list[str]:
+        unknown_recipient_ids = [e.file_id for e in self.emails if None in e.recipients or not e.recipients]
+        return sorted(unknown_recipient_ids)
 
     def emails_by(self, author: str | None) -> list[Email]:
         return Document.sort_by_timestamp([e for e in self.emails if e.author == author])
