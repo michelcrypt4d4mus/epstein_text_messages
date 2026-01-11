@@ -782,7 +782,7 @@ HIGHLIGHTED_NAMES = [
         label='Israel',
         style='dodger_blue2',
         emailers={
-            EHUD_BARAK: 'former prime minister',
+            EHUD_BARAK: 'former prime minister of Israel, Epstein business partner',
             'Mitchell Bard': 'director of the American-Israeli Cooperative Enterprise (AICE)',
             'Nili Priell Barak': 'wife of Ehud Barak',
         },
@@ -1422,7 +1422,7 @@ HIGHLIGHTED_NAMES = [
         category=POLITICS,
         emailers={
             SEAN_BANNON: f"{STEVE_BANNON}'s brother",
-            STEVE_BANNON: "Trump campaign manager, memecoin grifter, convicted criminal",
+            STEVE_BANNON: "Trump campaign manager, memecoin grifter",
         },
         patterns=[
             r"(American\s*)?Dharma",
