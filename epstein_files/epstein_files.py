@@ -24,7 +24,6 @@ from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.env import DOCS_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames
-from epstein_files.util.rich import NA_TXT, add_cols_to_table, build_table
 from epstein_files.util.search_result import SearchResult
 from epstein_files.util.timer import Timer
 
@@ -258,8 +257,8 @@ class EpsteinFiles:
             for name in names
         ]
 
-    def files_summary_table(self) -> Table:
-        table = Document.file_info_table('File Overview', 'File Type')
+    def overview_table(self) -> Table:
+        table = Document.file_info_table('Files Overview', 'File Type')
         table.add_row('Emails', *Document.files_info_row(self.emails))
         table.add_row('iMessage Logs', *Document.files_info_row(self.imessage_logs))
         table.add_row('JSON Data', *Document.files_info_row(self.json_files, True))
