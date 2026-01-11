@@ -126,13 +126,18 @@ class HighlightedNames(HighlightedText):
         self._pattern = '|'.join([self._emailer_pattern(e) for e in self.emailers] + self.patterns)
         self.regex = re.compile(fr"\b({self._match_group_var}({self._pattern})s?)\b", re.IGNORECASE)
 
-    def get_info(self, name: str) -> str | None:
-        """Label and additional info for 'name' if 'name' is in self.emailers."""
-        info_pieces = [
-            self.category or ('' if len(self.emailers) == 1 else self.label.replace('_', ' ')),
-            self.emailers.get(name),
-        ]
+    def category_str(self) -> str:
+        if self.category:
+            return self.category
+        elif len(self.emailers) == 1 and self.label == [k for k in self.emailers.keys()][0]:
+            return ''
+        else:
+            return self.label.replace('_', ' ')
 
+    def info_for(self, name: str, include_category: bool = False) -> str | None:
+        """Label and additional info for 'name' if 'name' is in self.emailers."""
+        info_pieces = [self.category_str()] if include_category else []
+        info_pieces.append(self.emailers.get(name) or '')
         info_pieces = without_falsey(info_pieces)
         return ', '.join(info_pieces) if info_pieces else None
 
@@ -224,9 +229,11 @@ HIGHLIGHTED_NAMES = [
             MARK_TRAMO: 'professor of neurology at UCLA',
             'Nancy Dahl': f'wife of {LAWRENCE_KRAUSS}',
             NEAL_KASSELL: 'professor of neurosurgery at University of Virginia',
+            NOAM_CHOMSKY: f"professor of linguistics at MIT",
             PETER_ATTIA: 'longevity medicine',
             ROBERT_TRIVERS: 'evolutionary biology',
             ROGER_SCHANK: 'Teachers College, Columbia University',
+            'Valeria Chomsky': f"wife of {NOAM_CHOMSKY}",
         },
         patterns=[
             r"Alain Forget",
@@ -242,7 +249,6 @@ HIGHLIGHTED_NAMES = [
             r"Media\s*Lab",
             r"(Marvin\s*)?Minsky",
             r"MIT(\s*Media\s*Lab)?",
-            r"((Noam|Valeria)\s*)?Chomsky",
             r"Norman\s*Finkelstein",
             r"Oxford(?! Analytica)",
             r"Praluent",
