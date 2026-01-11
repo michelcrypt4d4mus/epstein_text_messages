@@ -237,7 +237,7 @@ class Person:
         """Table of info about emailers."""
         header_pfx = '' if args.all_emails else 'Selected '
         table = build_table(f'{header_pfx}Email Conversations Grouped by Counterparty Will Appear in this Order')
-        table.add_column('First Email')
+        table.add_column('Start')
         table.add_column('Name', max_width=25, no_wrap=True)
         table.add_column('Category', justify='center', style='dim italic')
         table.add_column('Num', justify='right', style='wheat4')
@@ -260,7 +260,7 @@ class Person:
             current_year = earliest_email_date.year
 
             table.add_row(
-                Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[grey_idx]}"),
+                Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[grey_idx if args.all_emails else 0]}"),
                 person.name_txt(),  # TODO: make link?
                 person.category_txt(),
                 f"{len(person._printable_emails()):,}",
