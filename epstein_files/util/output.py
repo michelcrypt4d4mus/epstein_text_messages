@@ -84,6 +84,7 @@ def print_email_timeline(epstein_files: EpsteinFiles) -> None:
 
 
 def print_emailers_info_png(epstein_files: EpsteinFiles) -> None:
+    """Print tbe summary table of everyone in the files to an image."""
     print_color_key()
     console.line()
     all_emailers = sorted(epstein_files.emailers(), key=lambda person: person.sort_key())
