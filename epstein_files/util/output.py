@@ -3,7 +3,7 @@ from typing import cast
 
 from rich.padding import Padding
 
-from epstein_files.author import Author
+from epstein_files.person import Author
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import USELESS_EMAILERS, Email
 from epstein_files.documents.messenger_log import MessengerLog

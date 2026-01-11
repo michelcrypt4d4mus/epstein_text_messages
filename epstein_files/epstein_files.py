@@ -12,7 +12,7 @@ from rich.padding import Padding
 from rich.table import Table
 from rich.text import Text
 
-from epstein_files.author import Author
+from epstein_files.person import Author
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import DETECT_EMAIL_REGEX, Email
 from epstein_files.documents.json_file import JsonFile
