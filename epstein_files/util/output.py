@@ -102,7 +102,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
 
         people_to_print = [p for p in people_to_print if p.name not in emailers_to_not_print]
         print_other_page_link(epstein_files)
-        print_centered(Padding(Person.emailer_info_table(people_to_print), (2, 0, 1, 0)))
+        print_centered(Padding(Person.emailer_info_table(all_emailers, people_to_print), (2, 0, 1, 0)))
 
     for person in people_to_print:
         printed_person_emails = person.print_emails()
@@ -131,11 +131,6 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
 
     if args.all_emails:
         _verify_all_emails_were_printed(epstein_files, printed_emails)
-    else:
-        print_subtitle_panel("All People Appearing in the Emails (not all are shown on this page)")
-        print_other_page_link(epstein_files)
-        console.line()
-        print_centered(Padding(Person.emailer_info_table(all_emailers), (1, 0, 1, 0)))
 
     _print_email_device_info(epstein_files)
     fwded_articles = [e for e in printed_emails if e.config and e.is_fwded_article()]
@@ -243,7 +238,7 @@ def _print_email_device_info(epstein_files: EpsteinFiles) -> None:
 
 def _signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Padding:
     """Build table for who signed emails with 'Sent from my iPhone' etc."""
-    title = 'Signatures Used By Authors' if cols[0] == AUTHOR else 'Authors Seen Using Signatures'
+    title = 'Email Signatures Used By Authors' if cols[0] == AUTHOR else 'Authors Seen Using Email Signatures'
     table = build_table(title, header_style="bold reverse", show_lines=True)
 
     for i, col in enumerate(cols):
