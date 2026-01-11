@@ -859,6 +859,8 @@ HIGHLIGHTED_NAMES = [
             r"Ed\s*Krassenstein",
             r"(Emily\s*)?Michot",
             r"Ezra\s*Klein",
+            r"Forbes",
+            r"Fortune\s*Magazine",
             r"Fox\s*News(\.com)?",
             r"FrontPage Magazine",
             r"FT",
