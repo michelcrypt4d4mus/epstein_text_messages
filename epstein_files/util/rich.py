@@ -253,7 +253,7 @@ def print_subtitle_panel(msg: str, style: str = 'black on white') -> None:
 def print_section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> None:
     panel = Panel(Text(msg, justify='center'), expand=True, padding=(1, 1), style=style)
     panel = Align.center(panel) if is_centered else panel
-    console.print(Padding(panel, (3, 0, 1, 0)))
+    console.print(Padding(panel, (3, 5, 1, 5)))
 
 
 def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, style: str = TITLE_STYLE) -> None:
