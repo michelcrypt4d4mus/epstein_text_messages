@@ -38,6 +38,7 @@ class Person:
     emails: list[Email] = field(default_factory=list)
     imessage_logs: list[MessengerLog] = field(default_factory=list)
     other_files: list[OtherFile] = field(default_factory=list)
+    is_uninteresting_cc: bool = False
 
     def __post_init__(self):
         self.emails = Document.sort_by_timestamp(self.emails)
@@ -51,6 +52,8 @@ class Person:
 
             if category != self.name and category != 'paula':  # TODO: this sucks
                 return category
+        elif self.is_uninteresting_cc:
+            return 'cc'
 
     def category_txt(self) -> Text | None:
         if self.name is None:
@@ -128,6 +131,8 @@ class Person:
 
         if highlight_group and isinstance(highlight_group, HighlightedNames) and self.name:
             return highlight_group.info_for(self.name)
+        elif self.is_uninteresting_cc:
+            return f"uninteresting CC or BCC"
 
     def info_with_category(self) -> str:
         return ', '.join(without_falsey([self.category(), self.info_str()]))
@@ -151,7 +156,7 @@ class Person:
 
     def is_a_mystery(self) -> bool:
         """Return True if this is someone we theroetically could know more about."""
-        return self.is_unstyled() and not self.is_email_address() and not self.info_str()
+        return self.is_unstyled() and not (self.is_email_address() or self.info_str() or self.is_uninteresting_cc)
 
     def is_email_address(self) -> bool:
         return '@' in (self.name or '')
