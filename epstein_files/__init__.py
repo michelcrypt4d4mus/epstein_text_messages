@@ -88,7 +88,6 @@ def epstein_diff():
 
 def epstein_search():
     """Search the cleaned up text of the files."""
-    _assert_positional_args()
     epstein_files = EpsteinFiles.get_files()
 
     for search_term in args.positional_args:
@@ -111,7 +110,6 @@ def epstein_search():
 
 def epstein_show():
     """Show the color highlighted file. If --raw arg is passed, show the raw text of the file as well."""
-    _assert_positional_args()
     raw_docs: list[Document] = []
     console.line()
 
@@ -136,8 +134,3 @@ def epstein_show():
 
 def epstein_word_count() -> None:
     write_word_counts_html()
-
-
-def _assert_positional_args():
-    if not args.positional_args:
-        exit_with_error(f"No positional args provided!\n")
