@@ -1,7 +1,7 @@
 import pytest
 
-from epstein_files.util.constant.names import SULTAN_BIN_SULAYEM
 from epstein_files.person import Person
+from epstein_files.util.constant.names import SULTAN_BIN_SULAYEM
 
 
 @pytest.fixture(scope='session')

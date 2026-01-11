@@ -216,7 +216,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     ed edward edwards enterprise enterprises entourage epstein eric erika etienne
     faith fred friendly frost fuller
     gerald george gold gordon
-    harry hay heather henry hill hoffman
+    haddad harry hay heather henry hill hoffman
     ian ivan
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr
     kahn karl kate katherine kelly ken kevin
