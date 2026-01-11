@@ -1,6 +1,6 @@
 from epstein_files.util.constant.strings import QUESTION_MARKS, remove_question_marks
 
-UNKNOWN = '(unknown)'
+Name = str | None
 
 # Texting Names
 ANDRZEJ_DUDA = 'Andrzej Duda or entourage'
@@ -171,6 +171,8 @@ TYLER_SHEARS = 'Tyler Shears'  # Reputation manager, like Al Seckel
 VINCENZO_IOZZO = 'Vincenzo Iozzo'
 VINIT_SAHNI = 'Vinit Sahni'
 ZUBAIR_KHAN = 'Zubair Khan'
+
+UNKNOWN = '(unknown)'
 
 # No communications but name is in the files
 BILL_GATES = 'Bill Gates'

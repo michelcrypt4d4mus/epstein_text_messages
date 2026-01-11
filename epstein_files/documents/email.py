@@ -360,14 +360,14 @@ class Email(Communication):
         actual_text (str) - best effort at the text actually sent in this email, excluding quoted replies and forwards
         config (EmailCfg | None) - manual config for this email (if it exists)
         header (EmailHeader) - header data extracted from the text (from/to/sent/subject etc)
-        recipients (list[str | None]) - who this email was sent to
+        recipients (list[Name]) - who this email was sent to
         sent_from_device (str | None) - "Sent from my iPhone" style signature (if it exists)
         signature_substitution_counts (dict[str, int]) - count of how many times a signature was replaced with <...snipped...> for each participant
     """
     actual_text: str = field(init=False)
     config: EmailCfg | None = None
     header: EmailHeader = field(init=False)
-    recipients: list[str | None] = field(default_factory=list)
+    recipients: list[Name] = field(default_factory=list)
     sent_from_device: str | None = None
     signature_substitution_counts: dict[str, int] = field(default_factory=dict)  # defaultdict breaks asdict :(
 
@@ -848,7 +848,7 @@ class Email(Communication):
             self.log_top_lines(self.header.num_header_rows + 4, f'Original header:')
 
     @staticmethod
-    def build_emails_table(emails: list['Email'], name: str | None = '', title: str = '', show_length: bool = False) -> Table:
+    def build_emails_table(emails: list['Email'], name: Name = '', title: str = '', show_length: bool = False) -> Table:
         """Turn a set of Emails into a Table."""
         if title and name:
             raise ValueError(f"Can't provide both 'author' and 'title' args")

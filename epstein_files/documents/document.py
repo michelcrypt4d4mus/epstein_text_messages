@@ -63,7 +63,7 @@ class Document:
 
     Attributes:
         file_path (Path): Local path to file
-        author (str | None): Who is responsible for the text in the file
+        author (Name): Who is responsible for the text in the file
         config (DocCfg): Information about this fil
         file_id (str): 6 digit (or 8 digits if it's a local extract file) string ID
         filename (str): File's basename
@@ -74,7 +74,7 @@ class Document:
     """
     file_path: Path
     # Optional fields
-    author: str | None = None
+    author: Name = None
     config: EmailCfg | DocCfg | TextCfg | None = None
     file_id: str = field(init=False)
     filename: str = field(init=False)

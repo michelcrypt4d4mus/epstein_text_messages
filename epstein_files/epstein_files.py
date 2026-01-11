@@ -107,7 +107,7 @@ class EpsteinFiles:
     def docs_matching(
             self,
             pattern: re.Pattern | str,
-            names: list[str | None] | None = None
+            names: list[Name] | None = None
         ) -> list[SearchResult]:
         """Find documents whose text matches a pattern (file_type and names args limit the documents searched)."""
         results: list[SearchResult] = []
@@ -123,13 +123,13 @@ class EpsteinFiles:
 
         return results
 
-    def earliest_email_at(self, author: str | None) -> datetime:
-        return self.emails_for(author)[0].timestamp
+    def earliest_email_at(self, name: Name) -> datetime:
+        return self.emails_for(name)[0].timestamp
 
-    def last_email_at(self, author: str | None) -> datetime:
-        return self.emails_for(author)[-1].timestamp
+    def last_email_at(self, name: Name) -> datetime:
+        return self.emails_for(name)[-1].timestamp
 
-    def email_author_counts(self) -> dict[str | None, int]:
+    def email_author_counts(self) -> dict[Name, int]:
         return {
             person.name: len(person.unique_emails_by())
             for person in self.emailers() if len(person.unique_emails_by()) > 0
@@ -151,7 +151,7 @@ class EpsteinFiles:
 
         return signatures
 
-    def email_recipient_counts(self) -> dict[str | None, int]:
+    def email_recipient_counts(self) -> dict[Name, int]:
         return {
             person.name: len(person.unique_emails_to())
             for person in self.emailers() if len(person.unique_emails_to()) > 0
@@ -173,10 +173,10 @@ class EpsteinFiles:
         recipients = flatten([email.recipients for email in self.emails])
         return self.person_objs(uniquify(authors + recipients))
 
-    def emails_by(self, name: str | None) -> list[Email]:
-        return Document.sort_by_timestamp([e for e in self.emails if e.author == name])
+    def emails_by(self, author: Name) -> list[Email]:
+        return Document.sort_by_timestamp([e for e in self.emails if e.author == author])
 
-    def emails_for(self, name: str | None) -> list[Email]:
+    def emails_for(self, name: Name) -> list[Email]:
         """Returns emails to or from a given 'author' sorted chronologically."""
         emails = self.emails_by(name) + self.emails_to(name)
 
@@ -185,7 +185,7 @@ class EpsteinFiles:
 
         return Document.sort_by_timestamp(Document.uniquify(emails))
 
-    def emails_to(self, name: str | None) -> list[Email]:
+    def emails_to(self, name: Name) -> list[Email]:
         if name is None:
             emails = [e for e in self.emails if len(e.recipients) == 0 or None in e.recipients]
         else:
@@ -202,7 +202,7 @@ class EpsteinFiles:
 
         return docs
 
-    def imessage_logs_for(self, name: str | None) -> list[MessengerLog]:
+    def imessage_logs_for(self, name: Name) -> list[MessengerLog]:
         return [log for log in self.imessage_logs if name == log.author]
 
     def json_metadata(self) -> str:
@@ -231,7 +231,7 @@ class EpsteinFiles:
     def non_json_other_files(self) -> list[OtherFile]:
         return [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
 
-    def person_objs(self, names: list[str | None]) -> list[Person]:
+    def person_objs(self, names: list[Name]) -> list[Person]:
         """Construct Person objects for a list of names."""
         return [
             Person(name=name, emails=self.emails_for(name), imessage_logs=self.imessage_logs_for(name))
