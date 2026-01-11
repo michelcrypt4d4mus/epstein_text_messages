@@ -85,7 +85,7 @@ def print_email_timeline(epstein_files: EpsteinFiles) -> None:
 def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     """Returns emails that were printed (may contain dupes if printed for both author and recipient)."""
     print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
-    all_emailers = epstein_files.emailers()
+    all_emailers = sorted(epstein_files.emailers(), key=lambda person: person.earliest_email_at())
     people_to_print: list[Person]
     printed_emails: list[Email] = []
     num_emails_printed_since_last_color_key = 0
@@ -96,14 +96,13 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
         people_to_print = epstein_files.person_objs(args.names)
     else:
         if args.all_emails:
-            people_to_print = sorted(all_emailers, key=lambda person: person.earliest_email_at())
+            people_to_print = all_emailers
         else:
             people_to_print = epstein_files.person_objs(DEFAULT_EMAILERS)
 
         people_to_print = [p for p in people_to_print if p.name not in emailers_to_not_print]
         print_other_page_link(epstein_files)
-        print_centered(Padding(Person.emailer_info_table(people_to_print), (2, 0, 0, 0)))
-        print_centered(Padding(Person.emailer_stats_table(all_emailers), (2, 0)))
+        print_centered(Padding(Person.emailer_info_table(people_to_print), (2, 0, 1, 0)))
 
     for person in people_to_print:
         printed_person_emails = person.print_emails()
@@ -130,11 +129,15 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
             console.print(other_email)
             printed_emails.append(cast(Email, other_email))
 
-    _print_email_device_info(epstein_files)
-
     if args.all_emails:
         _verify_all_emails_were_printed(epstein_files, printed_emails)
+    else:
+        print_subtitle_panel("All People Appearing in the Emails (not all are shown on this page)")
+        print_other_page_link(epstein_files)
+        console.line()
+        print_centered(Padding(Person.emailer_info_table(all_emailers), (1, 0, 1, 0)))
 
+    _print_email_device_info(epstein_files)
     fwded_articles = [e for e in printed_emails if e.config and e.is_fwded_article()]
     log_msg = f"Rewrote {len(Email.rewritten_header_ids)} of {len(printed_emails)} email headers"
     logger.warning(f"{log_msg}, {len(fwded_articles)} of the emails were forwarded articles.")
