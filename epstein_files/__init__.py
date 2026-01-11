@@ -59,25 +59,19 @@ def generate_html() -> None:
         exit()
 
     if args.output_texts:
-        imessage_logs = [log for log in epstein_files.imessage_logs if not args.names or log.author in args.names]
-        print_text_messages_section(imessage_logs)
-        timer.print_at_checkpoint(f'Printed {len(imessage_logs)} text message log files')
+        printed_logs = print_text_messages_section(epstein_files)
+        timer.log_section_complete('MessengerLog', epstein_files.imessage_logs, printed_logs)
 
     if args.output_emails:
-        emails_that_were_printed = print_emails_section(epstein_files)
-        timer.print_at_checkpoint(f"Printed {len(emails_that_were_printed):,} emails")
+        printed_emails = print_emails_section(epstein_files)
+        timer.log_section_complete('Email', epstein_files.emails, printed_emails)
     elif args.email_timeline:
         print_email_timeline(epstein_files)
         timer.print_at_checkpoint(f"Printed chronological emails table")
 
     if args.output_other:
-        if args.uninteresting:
-            files = [f for f in epstein_files.other_files if not f.is_interesting()]
-        else:
-            files = [f for f in epstein_files.other_files if args.all_other_files or f.is_interesting()]
-
-        print_other_files_section(files, epstein_files)
-        timer.print_at_checkpoint(f"Printed {len(files)} other files (skipped {len(epstein_files.other_files) - len(files)})")
+        printed_files = print_other_files_section(epstein_files)
+        timer.log_section_complete('OtherFile', epstein_files.other_files, printed_files)
 
     write_html(args.build)
     logger.warning(f"Total time: {timer.seconds_since_start_str()}")
