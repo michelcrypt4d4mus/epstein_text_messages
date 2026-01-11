@@ -24,7 +24,7 @@ ALT_INFO_STYLE = 'medium_purple4'
 CC = 'cc:'
 MIN_AUTHOR_PANEL_WIDTH = 80
 EMAILER_INFO_TITLE = 'Email Conversations Will Appear'
-UNINTERESTING_CC_INFO = "CC: or BCC: recipient only"
+UNINTERESTING_CC_INFO = "cc: or bcc: recipient only"
 
 INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + MAILING_LISTS + [
     'ACT for America',
