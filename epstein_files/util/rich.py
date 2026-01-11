@@ -70,7 +70,7 @@ CONSOLE_ARGS = {
     'color_system': '256',
     'highlighter': EpsteinHighlighter(),
     'record': args.build,
-    'safe_box': False,
+    'safe_box': True,
     'theme': Theme(THEME_STYLES),
     'width': args.width,
 }
