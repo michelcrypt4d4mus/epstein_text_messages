@@ -48,18 +48,11 @@ class EpsteinFiles:
     other_files: list[OtherFile] = field(default_factory=list)
     timer: Timer = field(default_factory=lambda: Timer())
 
-    # Analytics / calculations
-    email_author_counts: dict[str | None, int] = field(default_factory=lambda: defaultdict(int))
-    email_authors_to_device_signatures: dict[str, set] = field(default_factory=lambda: defaultdict(set))
-    email_device_signatures_to_authors: dict[str, set] = field(default_factory=lambda: defaultdict(set))
-    email_recipient_counts: dict[str | None, int] = field(default_factory=lambda: defaultdict(int))
-    unknown_recipient_email_ids: set[str] = field(default_factory=set)
-
     def __post_init__(self):
         """Iterate through files and build appropriate objects."""
         self.all_files = sorted([f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')])
         documents = []
-        file_type_count = defaultdict(int)
+        file_type_count = defaultdict(int)  # Hack used by --skip-other-files option
 
         # Read through and classify all the files
         for file_arg in self.all_files:
@@ -86,7 +79,6 @@ class EpsteinFiles:
         self.other_files = Document.sort_by_timestamp([d for d in documents if isinstance(d, (JsonFile, OtherFile))])
         self.json_files = [doc for doc in self.other_files if isinstance(doc, JsonFile)]
         self._copy_duplicate_email_properties()
-        self._tally_email_data()
 
     @classmethod
     def get_files(cls, timer: Timer | None = None) -> 'EpsteinFiles':
@@ -159,6 +151,39 @@ class EpsteinFiles:
     def last_email_at(self, author: str | None) -> datetime:
         return self.emails_for(author)[-1].timestamp
 
+    def email_author_counts(self) -> dict[str | None, int]:
+        counts = defaultdict(int)
+
+        for email in self.non_duplicate_emails():
+            counts[email.author] += 1
+
+        return dict(counts)
+
+    def email_authors_to_device_signatures(self) -> dict[str, set[str]]:
+        signatures = defaultdict(set)
+
+        for email in [e for e in self.non_duplicate_emails() if e.sent_from_device]:
+            signatures[email.author_or_unknown()].add(email.sent_from_device)
+
+        return signatures
+
+    def email_device_signatures_to_authors(self) -> dict[str, set[str]]:
+        signatures = defaultdict(set)
+
+        for email in [e for e in self.non_duplicate_emails() if e.sent_from_device]:
+            signatures[email.sent_from_device].add(email.author_or_unknown())
+
+        return signatures
+
+    def email_recipient_counts(self) -> dict[str | None, int]:
+        counts = defaultdict(int)
+
+        for email in self.non_duplicate_emails():
+            for recipient in (email.recipients or [None]):
+                counts[recipient] += 1
+
+        return dict(counts)
+
     def email_signature_substitution_counts(self) -> dict[str, int]:
         """Return the number of times an email signature was replaced with "<...snipped...>" for each author."""
         substitution_counts = defaultdict(int)
@@ -168,10 +193,6 @@ class EpsteinFiles:
                 substitution_counts[name] += num_replaced
 
         return substitution_counts
-
-    def unknown_recipient_ids(self) -> list[str]:
-        unknown_recipient_ids = [e.file_id for e in self.emails if None in e.recipients or not e.recipients]
-        return sorted(unknown_recipient_ids)
 
     def emails_by(self, author: str | None) -> list[Email]:
         return Document.sort_by_timestamp([e for e in self.emails if e.author == author])
@@ -253,8 +274,12 @@ class EpsteinFiles:
 
     def print_email_device_info(self) -> None:
         print_subtitle_panel(DEVICE_SIGNATURE_SUBTITLE)
-        console.print(_build_signature_table(self.email_device_signatures_to_authors, (DEVICE_SIGNATURE, AUTHOR), ', '))
-        console.print(_build_signature_table(self.email_authors_to_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
+        console.print(_build_signature_table(self.email_device_signatures_to_authors(), (DEVICE_SIGNATURE, AUTHOR), ', '))
+        console.print(_build_signature_table(self.email_authors_to_device_signatures(), (AUTHOR, DEVICE_SIGNATURE)))
+
+    def unknown_recipient_ids(self) -> list[str]:
+        """IDs of emails whose recipient is not known."""
+        return sorted([e.file_id for e in self.emails if None in e.recipients or not e.recipients])
 
     def _copy_duplicate_email_properties(self) -> None:
         """Ensure dupe emails have the properties of the emails they duplicate to capture any repairs, config etc."""
@@ -274,22 +299,6 @@ class EpsteinFiles:
 
         # Resort in case any timestamp were updated
         self.emails = Document.sort_by_timestamp(self.emails)
-
-    def _tally_email_data(self) -> None:
-        """Tally up summary info about Email objects."""
-        for email in self.non_duplicate_emails():
-            self.email_author_counts[email.author] += 1
-
-            if len(email.recipients) == 0:
-                self.unknown_recipient_email_ids.add(email.file_id)
-                self.email_recipient_counts[None] += 1
-            else:
-                for recipient in email.recipients:
-                    self.email_recipient_counts[recipient] += 1
-
-            if email.sent_from_device:
-                self.email_authors_to_device_signatures[email.author_or_unknown()].add(email.sent_from_device)
-                self.email_device_signatures_to_authors[email.sent_from_device].add(email.author_or_unknown())
 
 
 def count_by_month(docs: Sequence[Document]) -> dict[str | None, int]:

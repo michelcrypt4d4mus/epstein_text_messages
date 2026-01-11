@@ -880,11 +880,11 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
 
 
 def test_email_author_counts(epstein_files):
-    assert epstein_files.email_author_counts == EMAIL_AUTHOR_COUNTS
+    assert epstein_files.email_author_counts() == EMAIL_AUTHOR_COUNTS
 
 
 def test_email_recipient_counts(epstein_files):
-    assert epstein_files.email_recipient_counts == EMAIL_RECIPIENT_COUNTS
+    assert epstein_files.email_recipient_counts() == EMAIL_RECIPIENT_COUNTS
 
 
 def test_info_sentences(epstein_files):
@@ -895,8 +895,8 @@ def test_info_sentences(epstein_files):
 
 
 def test_signatures(epstein_files):
-    assert dict_sets_to_lists(epstein_files.email_authors_to_device_signatures) == AUTHORS_TO_DEVICE_SIGNATURES
-    assert dict_sets_to_lists(epstein_files.email_device_signatures_to_authors) == DEVICE_SIGNATURE_TO_AUTHORS
+    assert dict_sets_to_lists(epstein_files.email_authors_to_device_signatures()) == AUTHORS_TO_DEVICE_SIGNATURES
+    assert dict_sets_to_lists(epstein_files.email_device_signatures_to_authors()) == DEVICE_SIGNATURE_TO_AUTHORS
 
 
 def test_signature_substitutions(epstein_files):

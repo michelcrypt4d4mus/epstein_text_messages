@@ -161,11 +161,11 @@ def print_json_stats(epstein_files: EpsteinFiles) -> None:
     console.line(5)
     console.print(Panel('JSON Stats Dump', expand=True, style='reverse bold'), '\n')
     print_json(f"MessengerLog Sender Counts", MessengerLog.count_authors(epstein_files.imessage_logs), skip_falsey=True)
-    print_json(f"Email Author Counts", epstein_files.email_author_counts, skip_falsey=True)
-    print_json(f"Email Recipient Counts", epstein_files.email_recipient_counts, skip_falsey=True)
+    print_json(f"Email Author Counts", epstein_files.email_author_counts(), skip_falsey=True)
+    print_json(f"Email Recipient Counts", epstein_files.email_recipient_counts(), skip_falsey=True)
     print_json("Email signature_substitution_countss", epstein_files.email_signature_substitution_counts(), skip_falsey=True)
-    print_json("email_author_device_signatures", dict_sets_to_lists(epstein_files.email_authors_to_device_signatures))
-    print_json("email_sent_from_devices", dict_sets_to_lists(epstein_files.email_device_signatures_to_authors))
+    print_json("email_author_device_signatures", dict_sets_to_lists(epstein_files.email_authors_to_device_signatures()))
+    print_json("email_sent_from_devices", dict_sets_to_lists(epstein_files.email_device_signatures_to_authors()))
     print_json("unknown_recipient_ids", epstein_files.unknown_recipient_ids())
     print_json("count_by_month", count_by_month(epstein_files.all_documents()))
 
@@ -224,12 +224,13 @@ def write_urls() -> None:
 
 def _all_emailers_table(epstein_files: EpsteinFiles) -> Table:
     attributed_emails = [e for e in epstein_files.non_duplicate_emails() if e.author]
-    num_authors = len(epstein_files.email_author_counts)
-    footer = f"(identified {num_authors} authors of {len(attributed_emails):,}"
+    author_counts = epstein_files.email_author_counts()
+    del author_counts[None]
+    footer = f"(identified {len(author_counts)} authors of {len(attributed_emails):,}"
     footer = f"{footer} out of {len(epstein_files.non_duplicate_emails()):,} emails)"
 
     counts_table = build_table(
-        f"All {num_authors} People Who Sent or Received an Email in the Files",
+        f"All {len(author_counts)} People Who Sent or Received an Email in the Files",
         caption=footer,
         cols=[
             'Name',
