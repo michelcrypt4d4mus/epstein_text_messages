@@ -22,6 +22,7 @@ from epstein_files.util.rich import GREY_NUMBERS, LAST_TIMESTAMP_STYLE, build_ta
 
 ALT_INFO_STYLE = 'medium_purple4'
 MIN_AUTHOR_PANEL_WIDTH = 80
+EMAILER_INFO_TITLE = 'Email Conversations Grouped by Counterparty Will Appear in this Order'
 
 INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [
     'ACT for America',
@@ -133,7 +134,7 @@ class Person:
 
     def info_txt(self) -> Text | None:
         if self.name == JEFFREY_EPSTEIN:
-            return Text('(emails sent by Epstein to himself that would not otherwise be printed)', style=ALT_INFO_STYLE)
+            return Text('(emails sent by Epstein to himself are here)', style=ALT_INFO_STYLE)
         elif self.name is None:
             return Text('(emails whose author or recipient could not be determined)', style=ALT_INFO_STYLE)
         elif self.category() == JUNK:
@@ -244,13 +245,25 @@ class Person:
 
     @staticmethod
     def emailer_info_table(people: list['Person']) -> Table:
+        is_addendum = len(people) > 100
+
         """Table of info about emailers."""
-        header_pfx = '' if args.all_emails else 'Selected '
-        table = build_table(f'{header_pfx}Email Conversations Grouped by Counterparty Will Appear in this Order')
+        if args.all_emails:
+            title = EMAILER_INFO_TITLE
+        else:
+            if is_addendum:
+                title = None
+            else:
+                title = f"Selected {EMAILER_INFO_TITLE}"
+
+        table = build_table(title)
         table.add_column('Start')
-        table.add_column('Name', max_width=25, no_wrap=True)
-        table.add_column('Category', justify='center', style='dim italic')
-        table.add_column('Num', justify='right', style='wheat4')
+        table.add_column('Name', max_width=24, no_wrap=True)
+        table.add_column('Category', justify='left', style='dim italic')
+        table.add_column('Num', justify='right', style='white')
+        table.add_column('Sent', justify='right', style='wheat4')
+        table.add_column('Recv', justify='right', style='wheat4')
+        table.add_column('Days', justify='right', style=TIMESTAMP_DIM)
         table.add_column('Info', style='white italic')
         current_year = 1990
         current_year_month = current_year * 12
@@ -270,10 +283,13 @@ class Person:
             current_year = earliest_email_date.year
 
             table.add_row(
-                Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[grey_idx if args.all_emails else 0]}"),
+                Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[grey_idx if is_addendum or args.all_emails else 0]}"),
                 person.name_txt(),  # TODO: make link?
                 person.category_txt(),
-                f"{len(person._printable_emails()):,}",
+                f"{len(person._printable_emails())}",
+                f"{len(person.unique_emails_by())}",
+                f"{len(person.unique_emails_to())}",
+                f"{person.email_conversation_length_in_days()}",
                 person.info_txt() or '',
             )
 
