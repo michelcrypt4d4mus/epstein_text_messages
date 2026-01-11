@@ -853,7 +853,7 @@ HIGHLIGHTED_NAMES = [
             r"CNN(politics?)?",
             r"Con[cs]hita", r"Sarnoff",
             r"Daily Business Review",
-            r"(?<!Virgin[-\s]Islands[-\s])Daily\s*(Beast|Mail|News|Telegraph)",
+            r"(?<!Virgin[-\s]Islands[-\s])(The\s*)?Daily\s*(Beast|Mail|News|Telegraph)",
             r"(David\s*)?(Pecker|Pegg)",
             r"David\s*Brooks",
             r"Ed\s*Krassenstein",
