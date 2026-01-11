@@ -247,17 +247,16 @@ class Person:
         return f"{self.name_str()}"
 
     @staticmethod
-    def emailer_info_table(people: list['Person']) -> Table:
-        is_addendum = len(people) > 100
-
+    def emailer_info_table(people: list['Person'], highlighted: list['Person'] | None = None) -> Table:
         """Table of info about emailers."""
-        if args.all_emails:
-            title = EMAILER_INFO_TITLE
+        highlighted = highlighted or people
+        highlighted_names = [p.name for p in highlighted]
+        is_selection = len(people) != len(highlighted)
+
+        if is_selection:
+            title = f"Highlighted {EMAILER_INFO_TITLE} (see other page for the rest)"
         else:
-            if is_addendum:
-                title = None
-            else:
-                title = f"Selected {EMAILER_INFO_TITLE}"
+            title = EMAILER_INFO_TITLE
 
         table = build_table(title)
         table.add_column('Start')
@@ -286,7 +285,7 @@ class Person:
             current_year = earliest_email_date.year
 
             table.add_row(
-                Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[grey_idx if is_addendum or args.all_emails else 0]}"),
+                Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[0 if is_selection else grey_idx]}"),
                 person.name_txt(),  # TODO: make link?
                 person.category_txt(),
                 f"{len(person._printable_emails())}",
@@ -294,6 +293,7 @@ class Person:
                 f"{len(person.unique_emails_to())}",
                 f"{person.email_conversation_length_in_days()}",
                 person.info_txt() or '',
+                style='' if person.name in highlighted_names else 'dim',
             )
 
         return table
