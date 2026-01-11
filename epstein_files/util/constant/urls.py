@@ -72,7 +72,7 @@ search_jmail_url = lambda txt: f"{JMAIL_URL}/search?q={urllib.parse.quote(txt)}"
 search_twitter_url = lambda txt: f"https://x.com/search?q={urllib.parse.quote(txt)}&src=typed_query&f=live"
 
 
-AUTHOR_LINK_BUILDERS: dict[ExternalSite, Callable[[str], str]] = {
+PERSON_LINK_BUILDERS: dict[ExternalSite, Callable[[str], str]] = {
     EPSTEIN_MEDIA: epstein_media_person_url,
     EPSTEIN_WEB: epstein_web_person_url,
     EPSTEINIFY: epsteinify_name_url,

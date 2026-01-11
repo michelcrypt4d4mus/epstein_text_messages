@@ -67,7 +67,7 @@ fi
 
 echo -e ""
 print_msg "Building chronological emails page..."
-epstein_generate --build --email-timeline --suppress-output --width 158
+epstein_generate --build --email-timeline --suppress-output
 echo -e ""
 print_msg "Building word counts page..."
 epstein_word_count --build --suppress-output --width 125

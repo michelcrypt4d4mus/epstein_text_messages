@@ -51,7 +51,7 @@ TEXT_MESSAGE = 'text message'
 SiteType = Literal['email', 'text message']
 
 # Styles
-DEFAULT_NAME_STYLE = 'gray46'
+DEFAULT_NAME_STYLE = 'grey23'
 TIMESTAMP_STYLE = 'turquoise4'
 TIMESTAMP_DIM = f"turquoise4 dim"
 

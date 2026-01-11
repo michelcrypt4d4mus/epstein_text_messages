@@ -129,14 +129,14 @@ EMAIL_SIGNATURE_REGEXES = {
     UNKNOWN: re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL),
 }
 
-MAILING_LISTS = JUNK_EMAILERS + [
+MAILING_LISTS = [
     CAROLYN_RANGEL,
     INTELLIGENCE_SQUARED,
     'middle.east.update@hotmail.com',
     JP_MORGAN_USGIO,
 ]
 
-TRUNCATE_ALL_EMAILS_FROM = MAILING_LISTS + [
+TRUNCATE_ALL_EMAILS_FROM = JUNK_EMAILERS + MAILING_LISTS + [
     'Alan S Halperin',
     'Mitchell Bard',
     'Skip Rimer',
@@ -424,7 +424,10 @@ class Email(Communication):
         return bool(self.config and self.config.is_fwded_article)
 
     def is_junk_mail(self) -> bool:
-        return self.author in JUNK_EMAILERS or self.author in MAILING_LISTS
+        return self.author in JUNK_EMAILERS or self.is_mailing_list()
+
+    def is_mailing_list(self) -> bool:
+        return self.author in MAILING_LISTS
 
     def is_note_to_self(self) -> bool:
         return self.recipients == [self.author]

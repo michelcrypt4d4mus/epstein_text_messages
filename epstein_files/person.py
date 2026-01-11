@@ -8,7 +8,7 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import JUNK_EMAILERS, KRASSNER_RECIPIENTS, Email
+from epstein_files.documents.email import MAILING_LISTS, JUNK_EMAILERS, KRASSNER_RECIPIENTS, Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.strings import *
@@ -18,12 +18,13 @@ from epstein_files.util.data import days_between, flatten, without_falsey
 from epstein_files.util.env import args
 from epstein_files.util.highlighted_group import (QUESTION_MARKS_TXT, HighlightedNames,
      get_highlight_group_for_name, get_style_for_name, styled_category, styled_name)
-from epstein_files.util.rich import GREY_NUMBERS, LAST_TIMESTAMP_STYLE, build_table, console,  print_centered
+from epstein_files.util.rich import GREY_NUMBERS, LAST_TIMESTAMP_STYLE, build_table, console, join_texts, print_centered
 
 ALT_INFO_STYLE = 'medium_purple4'
 MIN_AUTHOR_PANEL_WIDTH = 80
+EMAILER_INFO_TITLE = 'Email Conversations Grouped by Counterparty Will Appear in this Order'
 
-INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + [
+INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + MAILING_LISTS + [
     'ACT for America',
     'BS Stern',
     UNKNOWN,
@@ -84,13 +85,17 @@ class Person:
         ]
 
     def external_link(self, site: ExternalSite = EPSTEINIFY) -> str:
-        return AUTHOR_LINK_BUILDERS[site](self.name_str())
+        return PERSON_LINK_BUILDERS[site](self.name_str())
 
     def external_link_txt(self, site: ExternalSite = EPSTEINIFY, link_str: str | None = None) -> Text:
         if self.name is None:
             return Text('')
 
-        return link_text_obj(self.external_link(site), link_str or site)
+        return link_text_obj(self.external_link(site), link_str or site, style=self.style())
+
+    def external_links_line(self) -> Text:
+        links = [self.external_link_txt(site) for site in PERSON_LINK_BUILDERS]
+        return Text('', justify='center', style='dim').append(join_texts(links, join=' / '))  #, encloser='()'))#, encloser='‹›'))
 
     def highlight_group(self) -> HighlightedNames | None:
         return get_highlight_group_for_name(self.name)
@@ -129,7 +134,7 @@ class Person:
 
     def info_txt(self) -> Text | None:
         if self.name == JEFFREY_EPSTEIN:
-            return Text('(emails sent by Epstein to himself that would not otherwise be printed)', style=ALT_INFO_STYLE)
+            return Text('(emails sent by Epstein to himself are here)', style=ALT_INFO_STYLE)
         elif self.name is None:
             return Text('(emails whose author or recipient could not be determined)', style=ALT_INFO_STYLE)
         elif self.category() == JUNK:
@@ -137,7 +142,10 @@ class Person:
         elif self.is_a_mystery():
             return Text(QUESTION_MARKS, style='grey50 dim')
         elif self.info_str() is None:
-            return None
+            if self.name in MAILING_LISTS:
+                return Text('(mailing list)', style=f"{self.style()} dim")
+            else:
+                return None
         else:
             return Text(self.info_str())
 
@@ -200,7 +208,12 @@ class Person:
 
     def print_emails_table(self) -> None:
         emails = [email for email in self._printable_emails() if not email.is_duplicate()]  # Remove dupes
-        print_centered(Padding(Email.build_emails_table(emails, self.name), (0, 5, 1, 5)))
+        print_centered(Padding(Email.build_emails_table(emails, self.name), (0, 5, 0, 5)))
+
+        if self.is_linkable():
+            print_centered(self.external_links_line())
+
+        console.line()
 
     def sort_key(self) -> list[int | str]:
         counts = [len(self.unique_emails())]
@@ -235,13 +248,25 @@ class Person:
 
     @staticmethod
     def emailer_info_table(people: list['Person']) -> Table:
+        is_addendum = len(people) > 100
+
         """Table of info about emailers."""
-        header_pfx = '' if args.all_emails else 'Selected '
-        table = build_table(f'{header_pfx}Email Conversations Grouped by Counterparty Will Appear in this Order')
+        if args.all_emails:
+            title = EMAILER_INFO_TITLE
+        else:
+            if is_addendum:
+                title = None
+            else:
+                title = f"Selected {EMAILER_INFO_TITLE}"
+
+        table = build_table(title)
         table.add_column('Start')
-        table.add_column('Name', max_width=25, no_wrap=True)
-        table.add_column('Category', justify='center', style='dim italic')
-        table.add_column('Num', justify='right', style='wheat4')
+        table.add_column('Name', max_width=24, no_wrap=True)
+        table.add_column('Category', justify='left', style='dim italic')
+        table.add_column('Num', justify='right', style='white')
+        table.add_column('Sent', justify='right', style='wheat4')
+        table.add_column('Recv', justify='right', style='wheat4')
+        table.add_column('Days', justify='right', style=TIMESTAMP_DIM)
         table.add_column('Info', style='white italic')
         current_year = 1990
         current_year_month = current_year * 12
@@ -261,10 +286,13 @@ class Person:
             current_year = earliest_email_date.year
 
             table.add_row(
-                Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[grey_idx if args.all_emails else 0]}"),
+                Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[grey_idx if is_addendum or args.all_emails else 0]}"),
                 person.name_txt(),  # TODO: make link?
                 person.category_txt(),
-                f"{len(person._printable_emails()):,}",
+                f"{len(person._printable_emails())}",
+                f"{len(person.unique_emails_by())}",
+                f"{len(person.unique_emails_to())}",
+                f"{person.email_conversation_length_in_days()}",
                 person.info_txt() or '',
             )
 

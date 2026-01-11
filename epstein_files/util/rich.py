@@ -298,7 +298,7 @@ def write_html(output_path: Path | None) -> None:
 def _print_abbreviations_table() -> None:
     table = build_table(title="Abbreviations Used Frequently In These Conversations", show_header=False)
     table.add_column("Abbreviation", justify="center", style='bold')
-    table.add_column("Translation", style="white", justify="center")
+    table.add_column("Translation", justify="center", min_width=62, style="white")
 
     for k, v in HEADER_ABBREVIATIONS.items():
         table.add_row(highlighter(k), v)
