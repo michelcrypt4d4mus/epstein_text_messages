@@ -236,7 +236,6 @@ HIGHLIGHTED_NAMES = [
             'Valeria Chomsky': f"wife of {NOAM_CHOMSKY}",
         },
         patterns=[
-            r"Alain Forget",
             r"Bard\s+((Early )?College|High School|Schools)",
             r"Brotherton",
             r"Carl\s*Sagan",
@@ -415,7 +414,7 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        label=DEEPAK_CHOPRA,
+        label='deepak',
         style='dark_sea_green4',
         emailers={
             CAROLYN_RANGEL: f"Deepak Chopra's assistant {QUESTION_MARKS}",
@@ -826,6 +825,7 @@ HIGHLIGHTED_NAMES = [
         label=JOURNALIST,
         style='bright_yellow',
         emailers={
+            'Alain Forget': 'author of "How To Get Out Of This World ALIVE"',
             EDWARD_JAY_EPSTEIN: 'no relation, wrote about the kinds of crimes Epstein was involved in',
             HENRY_HOLT: f"{MICHAEL_WOLFF}'s book publisher",
             JAMES_HILL: 'ABC News',
@@ -1021,6 +1021,7 @@ HIGHLIGHTED_NAMES = [
         label=LOBBYIST,
         style='light_coral',
         emailers={
+            BOB_CROWE: 'partner at Nelson Mullins',
             'Joshua Cooper Ramo': 'co-CEO of Henry Kissinger Associates',
             KATHERINE_KEATING: 'Daughter of former Australian PM',
             MOHAMED_WAHEED_HASSAN: 'former president of the Maldives',
@@ -1030,7 +1031,6 @@ HIGHLIGHTED_NAMES = [
             'Stanley Rosenberg': 'former President of the Massachusetts Senate',
         },
         patterns=[
-            r"[BR]ob Crowe",
             r"CSIS",
             r"(Kevin\s*)?Rudd",
             r"Stanley Rosenberg",
