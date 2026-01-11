@@ -31,9 +31,6 @@ from epstein_files.util.rich import (NA_TXT, add_cols_to_table, build_table, con
 from epstein_files.util.search_result import SearchResult
 from epstein_files.util.timer import Timer
 
-DEVICE_SIGNATURE_SUBTITLE = f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown"
-DEVICE_SIGNATURE = 'Device Signature'
-DEVICE_SIGNATURE_PADDING = (1, 0)
 DUPLICATE_PROPS_TO_COPY = ['author', 'recipients', 'timestamp']
 PICKLED_PATH = Path("the_epstein_files.pkl.gz")
 SLOW_FILE_SECONDS = 1.0
@@ -272,11 +269,6 @@ class EpsteinFiles:
         print_centered(table)
         console.line()
 
-    def print_email_device_info(self) -> None:
-        print_subtitle_panel(DEVICE_SIGNATURE_SUBTITLE)
-        console.print(_build_signature_table(self.email_device_signatures_to_authors(), (DEVICE_SIGNATURE, AUTHOR), ', '))
-        console.print(_build_signature_table(self.email_authors_to_device_signatures(), (AUTHOR, DEVICE_SIGNATURE)))
-
     def unknown_recipient_ids(self) -> list[str]:
         """IDs of emails whose recipient is not known."""
         return sorted([e.file_id for e in self.emails if None in e.recipients or not e.recipients])
@@ -326,21 +318,6 @@ def document_cls(doc: Document) -> Type[Document]:
         return MessengerLog
     else:
         return OtherFile
-
-
-def _build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Padding:
-    title = 'Signatures Used By Authors' if cols[0] == AUTHOR else 'Authors Seen Using Signatures'
-    table = build_table(title, header_style="bold reverse", show_lines=True)
-
-    for i, col in enumerate(cols):
-        table.add_column(col.title() + ('s' if i == 1 else ''))
-
-    new_dict = dict_sets_to_lists(keyed_sets)
-
-    for k in sorted(new_dict.keys()):
-        table.add_row(highlighter(k or UNKNOWN), highlighter(join_char.join(sorted(new_dict[k]))))
-
-    return Padding(table, DEVICE_SIGNATURE_PADDING)
 
 
 def _sorted_metadata(docs: Sequence[Document]) -> list[Metadata]:
