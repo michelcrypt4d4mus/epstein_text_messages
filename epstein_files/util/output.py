@@ -1,10 +1,11 @@
 import json
+from copy import copy
 from typing import cast
 
 from rich.padding import Padding
 
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import USELESS_EMAILERS, Email
+from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles, count_by_month
@@ -14,7 +15,7 @@ from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.output_files import JSON_FILES_JSON_PATH, JSON_METADATA_PATH
 from epstein_files.util.constant.strings import AUTHOR, TIMESTAMP_STYLE
-from epstein_files.util.data import dict_sets_to_lists
+from epstein_files.util.data import dict_sets_to_lists, uniquify
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
 from epstein_files.util.logging import logger
@@ -89,8 +90,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     people_to_print: list[Person]
     printed_emails: list[Email] = []
     num_emails_printed_since_last_color_key = 0
-    ross_gow_email = cast(Email, epstein_files.for_ids('014797_1')[0])
-    emailers_to_not_print = USELESS_EMAILERS + ross_gow_email.header.bcc
+    uninteresting_emailers = epstein_files.uninteresting_emailers()
 
     if args.names:
         people_to_print = epstein_files.person_objs(args.names)
@@ -100,9 +100,9 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
         else:
             people_to_print = epstein_files.person_objs(DEFAULT_EMAILERS)
 
-        people_to_print = [p for p in people_to_print if p.name not in emailers_to_not_print]
         print_other_page_link(epstein_files)
         print_centered(Padding(Person.emailer_info_table(all_emailers, people_to_print), (2, 0, 1, 0)))
+        people_to_print = [p for p in people_to_print if p.name not in uninteresting_emailers]
 
     for person in people_to_print:
         printed_person_emails = person.print_emails()

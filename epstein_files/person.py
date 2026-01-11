@@ -8,7 +8,7 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import MAILING_LISTS, JUNK_EMAILERS, KRASSNER_RECIPIENTS, Email
+from epstein_files.documents.email import MAILING_LISTS, JUNK_EMAILERS, Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.strings import *
@@ -24,7 +24,7 @@ ALT_INFO_STYLE = 'medium_purple4'
 MIN_AUTHOR_PANEL_WIDTH = 80
 EMAILER_INFO_TITLE = 'Email Conversations Grouped by Counterparty Will Appear in this Order'
 
-INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + KRASSNER_RECIPIENTS + MAILING_LISTS + [
+INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + MAILING_LISTS + [
     'ACT for America',
     'BS Stern',
     UNKNOWN,

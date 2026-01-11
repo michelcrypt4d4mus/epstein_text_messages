@@ -158,7 +158,7 @@ class HighlightedNames(HighlightedText):
 
         pattern = '|'.join(name_patterns)
 
-        if args.debug:
+        if args.deep_debug:
             debug_console.print(Text('').append(f"{name:25s}", style=self.style).append(f" '{pattern}'", style='dim'))
 
         return pattern
