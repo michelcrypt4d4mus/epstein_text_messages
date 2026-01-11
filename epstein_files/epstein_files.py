@@ -6,33 +6,30 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
-from typing import Sequence, Type
+from typing import Sequence, Type, cast
 
 from rich.padding import Padding
 from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import DETECT_EMAIL_REGEX, USELESS_EMAILERS, Email
-from epstein_files.documents.emails.email_header import AUTHOR
+from epstein_files.documents.email import DETECT_EMAIL_REGEX, Email
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
+from epstein_files.person import Person
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
-from epstein_files.util.data import days_between, dict_sets_to_lists, json_safe, listify
+from epstein_files.util.data import flatten, json_safe, listify, uniquify
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.env import DOCS_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
-from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames, get_info_for_name, get_style_for_name
-from epstein_files.util.rich import (NA_TXT, add_cols_to_table, build_table, console, highlighter,
-     print_author_panel, print_centered, print_subtitle_panel)
+from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames
+from epstein_files.util.rich import NA_TXT, add_cols_to_table, build_table, console, print_centered
 from epstein_files.util.search_result import SearchResult
 from epstein_files.util.timer import Timer
 
-DEVICE_SIGNATURE_SUBTITLE = f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown"
-DEVICE_SIGNATURE = 'Device Signature'
-DEVICE_SIGNATURE_PADDING = (1, 0)
+DUPLICATE_PROPS_TO_COPY = ['author', 'recipients', 'timestamp']
 PICKLED_PATH = Path("the_epstein_files.pkl.gz")
 SLOW_FILE_SECONDS = 1.0
 
@@ -46,18 +43,11 @@ class EpsteinFiles:
     other_files: list[OtherFile] = field(default_factory=list)
     timer: Timer = field(default_factory=lambda: Timer())
 
-    # Analytics / calculations
-    email_author_counts: dict[str | None, int] = field(default_factory=lambda: defaultdict(int))
-    email_authors_to_device_signatures: dict[str, set] = field(default_factory=lambda: defaultdict(set))
-    email_device_signatures_to_authors: dict[str, set] = field(default_factory=lambda: defaultdict(set))
-    email_recipient_counts: dict[str | None, int] = field(default_factory=lambda: defaultdict(int))
-    unknown_recipient_email_ids: set[str] = field(default_factory=set)
-
     def __post_init__(self):
         """Iterate through files and build appropriate objects."""
         self.all_files = sorted([f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')])
         documents = []
-        file_type_count = defaultdict(int)
+        file_type_count = defaultdict(int)  # Hack used by --skip-other-files option
 
         # Read through and classify all the files
         for file_arg in self.all_files:
@@ -83,14 +73,14 @@ class EpsteinFiles:
         self.imessage_logs = Document.sort_by_timestamp([d for d in documents if isinstance(d, MessengerLog)])
         self.other_files = Document.sort_by_timestamp([d for d in documents if isinstance(d, (JsonFile, OtherFile))])
         self.json_files = [doc for doc in self.other_files if isinstance(doc, JsonFile)]
-        self._tally_email_data()
+        self._copy_duplicate_email_properties()
 
     @classmethod
     def get_files(cls, timer: Timer | None = None) -> 'EpsteinFiles':
         """Alternate constructor that reads/writes a pickled version of the data ('timer' arg is for logging)."""
         timer = timer or Timer()
 
-        if PICKLED_PATH.exists() and not args.overwrite_pickle:
+        if PICKLED_PATH.exists() and not args.overwrite_pickle and not args.skip_other_files:
             with gzip.open(PICKLED_PATH, 'rb') as file:
                 epstein_files = pickle.load(file)
                 epstein_files.timer = timer
@@ -113,12 +103,6 @@ class EpsteinFiles:
 
     def all_documents(self) -> Sequence[Document]:
         return self.imessage_logs + self.emails + self.other_files
-
-    def all_emailers(self, include_useless: bool = False) -> list[str | None]:
-        """Returns all emailers USELESS_EMAILERS, sorted from least frequent to most."""
-        names = [a for a in self.email_author_counts.keys()] + [r for r in self.email_recipient_counts.keys()]
-        names = names if include_useless else [e for e in names if e not in USELESS_EMAILERS]
-        return sorted(list(set(names)), key=lambda e: self.email_author_counts[e] + self.email_recipient_counts[e])
 
     def docs_matching(
             self,
@@ -145,8 +129,33 @@ class EpsteinFiles:
     def last_email_at(self, author: str | None) -> datetime:
         return self.emails_for(author)[-1].timestamp
 
-    def email_conversation_length_in_days(self, author: str | None) -> int:
-        return days_between(self.earliest_email_at(author), self.last_email_at(author))
+    def email_author_counts(self) -> dict[str | None, int]:
+        return {
+            person.name: len(person.unique_emails_by())
+            for person in self.emailers() if len(person.unique_emails_by()) > 0
+        }
+
+    def email_authors_to_device_signatures(self) -> dict[str, set[str]]:
+        signatures = defaultdict(set)
+
+        for email in [e for e in self.non_duplicate_emails() if e.sent_from_device]:
+            signatures[email.author_or_unknown()].add(email.sent_from_device)
+
+        return signatures
+
+    def email_device_signatures_to_authors(self) -> dict[str, set[str]]:
+        signatures = defaultdict(set)
+
+        for email in [e for e in self.non_duplicate_emails() if e.sent_from_device]:
+            signatures[email.sent_from_device].add(email.author_or_unknown())
+
+        return signatures
+
+    def email_recipient_counts(self) -> dict[str | None, int]:
+        return {
+            person.name: len(person.unique_emails_to())
+            for person in self.emailers() if len(person.unique_emails_to()) > 0
+        }
 
     def email_signature_substitution_counts(self) -> dict[str, int]:
         """Return the number of times an email signature was replaced with "<...snipped...>" for each author."""
@@ -158,29 +167,29 @@ class EpsteinFiles:
 
         return substitution_counts
 
-    def email_unknown_recipient_file_ids(self) -> list[str]:
-        return sorted(list(self.unknown_recipient_email_ids))
+    def emailers(self) -> list[Person]:
+        """All the people who sent or received an email."""
+        authors = [email.author for email in self.emails]
+        recipients = flatten([email.recipients for email in self.emails])
+        return self.person_objs(uniquify(authors + recipients))
 
-    def emails_by(self, author: str | None) -> list[Email]:
-        return Document.sort_by_timestamp([e for e in self.emails if e.author == author])
+    def emails_by(self, name: str | None) -> list[Email]:
+        return Document.sort_by_timestamp([e for e in self.emails if e.author == name])
 
-    def emails_for(self, author: str | None) -> list[Email]:
+    def emails_for(self, name: str | None) -> list[Email]:
         """Returns emails to or from a given 'author' sorted chronologically."""
-        if author == JEFFREY_EPSTEIN:
-            emails = [e for e in self.emails_by(JEFFREY_EPSTEIN) if e.is_note_to_self()]
-        else:
-            emails = self.emails_by(author) + self.emails_to(author)
+        emails = self.emails_by(name) + self.emails_to(name)
 
         if len(emails) == 0:
-            raise RuntimeError(f"No emails found for '{author}'")
+            raise RuntimeError(f"No emails found for '{name}'")
 
         return Document.sort_by_timestamp(Document.uniquify(emails))
 
-    def emails_to(self, author: str | None) -> list[Email]:
-        if author is None:
+    def emails_to(self, name: str | None) -> list[Email]:
+        if name is None:
             emails = [e for e in self.emails if len(e.recipients) == 0 or None in e.recipients]
         else:
-            emails = [e for e in self.emails if author in e.recipients]
+            emails = [e for e in self.emails if name in e.recipients]
 
         return Document.sort_by_timestamp(emails)
 
@@ -193,6 +202,9 @@ class EpsteinFiles:
 
         return docs
 
+    def imessage_logs_for(self, name: str | None) -> list[MessengerLog]:
+        return [log for log in self.imessage_logs if name == log.author]
+
     def json_metadata(self) -> str:
         """Create a JSON string containing metadata for all the files."""
         metadata = {
@@ -203,7 +215,7 @@ class EpsteinFiles:
                 OtherFile.__name__: _sorted_metadata(self.non_json_other_files()),
             },
             'people': {
-                name: highlighted_group.get_info(name)
+                name: highlighted_group.info_for(name, include_category=True)
                 for highlighted_group in HIGHLIGHTED_NAMES
                 if isinstance(highlighted_group, HighlightedNames)
                 for name, description in highlighted_group.emailers.items()
@@ -218,6 +230,13 @@ class EpsteinFiles:
 
     def non_json_other_files(self) -> list[OtherFile]:
         return [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
+
+    def person_objs(self, names: list[str | None]) -> list[Person]:
+        """Construct Person objects for a list of names."""
+        return [
+            Person(name=name, emails=self.emails_for(name), imessage_logs=self.imessage_logs_for(name))
+            for name in names
+        ]
 
     def print_files_summary(self) -> None:
         table = build_table('File Overview')
@@ -242,61 +261,28 @@ class EpsteinFiles:
         print_centered(table)
         console.line()
 
-    def print_emails_for(self, _author: str | None) -> list[Email]:
-        """Print complete emails to or from a particular 'author'. Returns the Emails that were printed."""
-        emails = self.emails_for(_author)
-        num_days = self.email_conversation_length_in_days(_author)
-        unique_emails = [email for email in emails if not email.is_duplicate()]
-        start_date = emails[0].timestamp.date()
-        author = _author or UNKNOWN
-        title = f"Found {len(unique_emails)} emails"
+    def unknown_recipient_ids(self) -> list[str]:
+        """IDs of emails whose recipient is not known."""
+        return sorted([e.file_id for e in self.emails if None in e.recipients or not e.recipients])
 
-        if author == JEFFREY_EPSTEIN:
-            title += f" sent by {JEFFREY_EPSTEIN} to himself"
-        else:
-            title += f" to/from {author} starting {start_date} covering {num_days:,} days"
+    def _copy_duplicate_email_properties(self) -> None:
+        """Ensure dupe emails have the properties of the emails they duplicate to capture any repairs, config etc."""
+        for email in self.emails:
+            if not email.is_duplicate():
+                continue
 
-        print_author_panel(title, get_info_for_name(author), get_style_for_name(author))
-        self.print_emails_table_for(_author)
-        last_printed_email_was_duplicate = False
+            original = cast(Email, self.for_ids(email.duplicate_of_id())[0])
 
-        for email in emails:
-            if email.is_duplicate():
-                console.print(Padding(email.duplicate_file_txt().append('...'), (0, 0, 0, 4)))
-                last_printed_email_was_duplicate = True
-            else:
-                if last_printed_email_was_duplicate:
-                    console.line()
+            for field_name in DUPLICATE_PROPS_TO_COPY:
+                original_prop = getattr(original, field_name)
+                duplicate_prop = getattr(email, field_name)
 
-                console.print(email)
-                last_printed_email_was_duplicate = False
+                if original_prop != duplicate_prop:
+                    logger.warning(f"Replacing '{email.file_id}' {field_name} {duplicate_prop} with {original_prop} from duplicated '{original.file_id}'")
+                    setattr(email, field_name, original_prop)
 
-        return emails
-
-    def print_emails_table_for(self, author: str | None) -> None:
-        emails = [email for email in self.emails_for(author) if not email.is_duplicate()]  # Remove dupes
-        print_centered(Padding(Email.build_emails_table(emails, author), (0, 5, 1, 5)))
-
-    def print_email_device_info(self) -> None:
-        print_subtitle_panel(DEVICE_SIGNATURE_SUBTITLE)
-        console.print(_build_signature_table(self.email_device_signatures_to_authors, (DEVICE_SIGNATURE, AUTHOR), ', '))
-        console.print(_build_signature_table(self.email_authors_to_device_signatures, (AUTHOR, DEVICE_SIGNATURE)))
-
-    def _tally_email_data(self) -> None:
-        """Tally up summary info about Email objects."""
-        for email in self.non_duplicate_emails():
-            self.email_author_counts[email.author] += 1
-
-            if len(email.recipients) == 0:
-                self.unknown_recipient_email_ids.add(email.file_id)
-                self.email_recipient_counts[None] += 1
-            else:
-                for recipient in email.recipients:
-                    self.email_recipient_counts[recipient] += 1
-
-            if email.sent_from_device:
-                self.email_authors_to_device_signatures[email.author_or_unknown()].add(email.sent_from_device)
-                self.email_device_signatures_to_authors[email.sent_from_device].add(email.author_or_unknown())
+        # Resort in case any timestamp were updated
+        self.emails = Document.sort_by_timestamp(self.emails)
 
 
 def count_by_month(docs: Sequence[Document]) -> dict[str | None, int]:
@@ -324,21 +310,6 @@ def document_cls(doc: Document) -> Type[Document]:
         return MessengerLog
     else:
         return OtherFile
-
-
-def _build_signature_table(keyed_sets: dict[str, set[str]], cols: tuple[str, str], join_char: str = '\n') -> Padding:
-    title = 'Signatures Used By Authors' if cols[0] == AUTHOR else 'Authors Seen Using Signatures'
-    table = build_table(title, header_style="bold reverse", show_lines=True)
-
-    for i, col in enumerate(cols):
-        table.add_column(col.title() + ('s' if i == 1 else ''))
-
-    new_dict = dict_sets_to_lists(keyed_sets)
-
-    for k in sorted(new_dict.keys()):
-        table.add_row(highlighter(k or UNKNOWN), highlighter(join_char.join(sorted(new_dict[k]))))
-
-    return Padding(table, DEVICE_SIGNATURE_PADDING)
 
 
 def _sorted_metadata(docs: Sequence[Document]) -> list[Metadata]:

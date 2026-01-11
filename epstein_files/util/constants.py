@@ -63,6 +63,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     BARBRO_C_EHNBOM: re.compile(r'behnbom@aol.com|(Barbro\s.*)?Ehnbom', re.IGNORECASE),
     BARRY_J_COHEN: re.compile(r'barry\s*((j.?|james)\s*)?cohen?', re.IGNORECASE),
     BENNET_MOSKOWITZ: re.compile(r'Moskowitz.*Bennet|Bennet.*Moskowitz', re.IGNORECASE),
+    BOB_CROWE: re.compile(r"[BR]ob Crowe", re.IGNORECASE),
     BORIS_NIKOLIC: re.compile(r'(boris )?nikolic?', re.IGNORECASE),
     BRAD_EDWARDS:  re.compile(r'Brad(ley)?(\s*J(.?|ames))?\s*Edwards', re.IGNORECASE),
     BRAD_KARP: re.compile(r'Brad (S.? )?Karp|Karp, Brad', re.IGNORECASE),
@@ -411,11 +412,11 @@ EMAILS_CONFIG = [
         dupe_type='redacted'
     ),
     EmailCfg(id='026547', author=GERALD_BARTON, recipients=[JEFFREY_EPSTEIN]),  # Bad OCR # TODO: email header is really jacked up
-    EmailCfg(id='029969', author=GWENDOLYN_BECK, attribution_reason='Signature'),
-    EmailCfg(id='029968', author=GWENDOLYN_BECK, attribution_reason='Signature', duplicate_ids=['031120']),
+    EmailCfg(id='029969', author=GWENDOLYN_BECK, attribution_reason='signature "Longevity & Successful Aging"'),
+    EmailCfg(id='029968', author=GWENDOLYN_BECK, attribution_reason='signature "beckresearchlabs.com"', duplicate_ids=['031120']),
     EmailCfg(id='029970', author=GWENDOLYN_BECK, attribution_reason='signed "Longevity & Successful Agin"'),
-    EmailCfg(id='029960', author=GWENDOLYN_BECK, attribution_reason='Reply'),
-    EmailCfg(id='029959', author=GWENDOLYN_BECK, attribution_reason='"Longevity & Aging"'),
+    EmailCfg(id='029960', author=GWENDOLYN_BECK, attribution_reason='signature "Beck Center for Longevity & Aging"'),
+    EmailCfg(id='029959', author=GWENDOLYN_BECK, attribution_reason='signature "Beck Center for Longevity & Aging"'),
     EmailCfg(id='033360', author=HENRY_HOLT, attribution_reason='in signature'),  # Henry Holt is a company not a person
     EmailCfg(id='033384', author=JACK_GOLDBERGER, attribution_reason='Might be Paul Prosperi?', is_attribution_uncertain=True),
     EmailCfg(id='026024', author=JEAN_HUGUEN, attribution_reason='Signature'),
@@ -493,10 +494,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='032606', author=MASHA_DROKOVA, attribution_reason="re: PR interview, 031544 says she'll be in NY at that time"),
     EmailCfg(id='032607', author=MASHA_DROKOVA, attribution_reason="re: PR interview, 031544 says she'll be in NY at that time"),
     EmailCfg(id='032609', author=MASHA_DROKOVA, attribution_reason="re: PR interview, 031544 says she'll be in NY at that time"),
-    # 032581, 032604, 033025 may also be Masha based on timing, subject (interviews/articles), and sequential ID
     EmailCfg(id='032604', author=MASHA_DROKOVA, attribution_reason="timing, subject (interviews/articles), and sequential ID", is_attribution_uncertain=True),
     EmailCfg(id='032581', author=MASHA_DROKOVA, attribution_reason="timing, subject (interviews/articles), and sequential ID", is_attribution_uncertain=True),
-    EmailCfg(id='033025', author=MASHA_DROKOVA, attribution_reason="timing, subject (interviews/articles), and sequential ID", is_attribution_uncertain=True),
     EmailCfg(id='030235', author=MELANIE_WALKER, attribution_reason='In fwd'),
     EmailCfg(id='032343', author=MELANIE_WALKER, attribution_reason='Name seen in later reply 032346'),
     EmailCfg(id='032212', author=MIROSLAV_LAJCAK, attribution_reason='signature'),
@@ -542,11 +541,12 @@ EMAILS_CONFIG = [
         author=SEAN_BANNON,
         attribution_reason="From protonmail, Bannon wrote 'just sent from my protonmail' in 027067",
     ),
-    EmailCfg(id='029003', author=SOON_YI_PREVIN, attribution_reason="\"Sent from Soon-Yi's iPhone\""),
-    EmailCfg(id='029005', author=SOON_YI_PREVIN, attribution_reason="\"Sent from Soon-Yi's iPhone\""),
-    EmailCfg(id='029007', author=SOON_YI_PREVIN, attribution_reason="\"Sent from Soon-Yi's iPhone\""),
-    EmailCfg(id='029010', author=SOON_YI_PREVIN, attribution_reason="\"Sent from Soon-Yi's iPhone\""),
-    EmailCfg(id='032296', author=SOON_YI_PREVIN, attribution_reason="\"Sent from Soon-Yi's iPhone\""),
+    EmailCfg(id='029003', author=SOON_YI_PREVIN, attribution_reason='"Sent from Soon-Yi\'s iPhone"'),
+    EmailCfg(id='029005', author=SOON_YI_PREVIN, attribution_reason='"Sent from Soon-Yi\'s iPhone"'),
+    EmailCfg(id='029007', author=SOON_YI_PREVIN, attribution_reason='"Sent from Soon-Yi\'s iPhone"'),
+    EmailCfg(id='029010', author=SOON_YI_PREVIN, attribution_reason='"Sent from Soon-Yi\'s iPhone"'),
+    EmailCfg(id='032296', author=SOON_YI_PREVIN, attribution_reason='"Sent from Soon-Yi\'s iPhone"'),
+    EmailCfg(id='033292', author=SOON_YI_PREVIN, attribution_reason='mentions "Woody\'s movie"', is_attribution_uncertain=True),
     EmailCfg(
         id='019109',
         author=STEVEN_HOFFENBERG,
@@ -622,6 +622,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='022250', recipients=[LESLEY_GROFF], attribution_reason='Reply'),
     EmailCfg(id='030242', recipients=[MARIANA_IDZKOWSKA], duplicate_ids=['032048'], dupe_type='redacted'),
     EmailCfg(id='033027', recipients=[MASHA_DROKOVA], attribution_reason="re: PR interview, 031544 says she'll be in NY at that time"),
+    EmailCfg(id='033025', recipients=[MASHA_DROKOVA], attribution_reason="timing, subject (interviews/articles), and sequential ID", is_attribution_uncertain=True),
     EmailCfg(id='030368', recipients=[MELANIE_SPINELLA], attribution_reason='Actually a self fwd from jeffrey to jeffrey'),
     EmailCfg(id='030369', recipients=[MELANIE_SPINELLA], attribution_reason='Actually a self fwd from jeffrey to jeffrey'),
     EmailCfg(id='030371', recipients=[MELANIE_SPINELLA], attribution_reason='Actually a self fwd from jeffrey to jeffrey'),
@@ -713,6 +714,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
 
     # Configure duplicates
+    EmailCfg(id='026631', duplicate_ids=['026632'], dupe_type='quoted'),
     EmailCfg(id='028768', duplicate_ids=['026563'], dupe_type='redacted'),
     EmailCfg(id='027056', duplicate_ids=['028762'], dupe_type='redacted'),
     EmailCfg(id='032248', duplicate_ids=['032246'], dupe_type='redacted'),
@@ -1381,8 +1383,6 @@ OTHER_FILES_LETTERS = [
         description=f"letter about algorithmic trading",
         date='2016-06-24',  # date is based on Brexit reference but he could be backtesting,
     ),
-    DocCfg(id='029304', author=DONALD_TRUMP, description=f"recommendation letter for recently departed {TRUMP_ORG} lawyer {MICHAEL_J_BOCCIO}"),
-    DocCfg(id='029301', author=MICHAEL_J_BOCCIO, description=f"letter from former lawyer at the {TRUMP_ORG}", date='2011-08-07'),
     DocCfg(id='026134', description=f'letter to someone named George about investment opportunities in the Ukraine banking sector'),
 ]
 
@@ -1533,11 +1533,25 @@ OTHER_FILES_ACADEMIA = [
 
 # resumes and application letters
 OTHER_FILES_RESUMES = [
+    DocCfg(
+        id='029304',
+        attached_to_email_id='029299',
+        author=DONALD_TRUMP,
+        description=f"recommendation letter for recently departed {TRUMP_ORG} lawyer {MICHAEL_J_BOCCIO}",
+    ),
     DocCfg(id='022367', author='Jack J Grynberg', description=RESUME_OF, date='2014-07-01'),
     DocCfg(
         id='029302',
+        attached_to_email_id='029299',
         author=MICHAEL_J_BOCCIO,
         description=f"{RESUME_OF} (former lawyer at the {TRUMP_ORG})",
+        date='2011-08-07',
+    ),
+    DocCfg(
+        id='029301',
+        attached_to_email_id='029299',
+        author=MICHAEL_J_BOCCIO,
+        description=f"letter from former lawyer at the {TRUMP_ORG}",
         date='2011-08-07',
     ),
     DocCfg(id='029102', author=NERIO_ALESSANDRI, description=HBS_APPLICATION),

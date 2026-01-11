@@ -121,6 +121,10 @@ class Document:
         txt.append(f" because it's {DUPE_TYPE_STRS[self.config.dupe_type]} ")
         return txt.append(epstein_media_doc_link_txt(self.config.duplicate_of_id, style='royal_blue1'))
 
+    def duplicate_of_id(self) -> str | None:
+        if self.config and self.config.duplicate_of_id:
+            return self.config.duplicate_of_id
+
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         return self.external_link(epsteinify_doc_url, style, link_txt)
 
@@ -178,7 +182,7 @@ class Document:
         return None
 
     def is_duplicate(self) -> bool:
-        return bool(self.config and self.config.duplicate_of_id)
+        return bool(self.duplicate_of_id())
 
     def is_local_extract_file(self) -> bool:
         """True if extracted from other file (identifiable from filename e.g. HOUSE_OVERSIGHT_012345_1.txt)."""

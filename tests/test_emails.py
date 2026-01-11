@@ -3,7 +3,7 @@ from epstein_files.util.data import dict_sets_to_lists
 
 
 EMAIL_AUTHOR_COUNTS = {
-    None: 55,
+    None: 54,
     "Abi Schwinck": 1,
     AL_SECKEL: 7,
     "Alain Forget": 3,
@@ -124,7 +124,7 @@ EMAIL_AUTHOR_COUNTS = {
     MARK_TRAMO: 1,
     "Martin Nowak": 1,
     "Martin Weinberg": 17,
-    MASHA_DROKOVA: 12,
+    MASHA_DROKOVA: 11,
     "Matthew Hiltzik": 1,
     "Melanie Spinella": 1,
     "Melanie Walker": 3,
@@ -172,7 +172,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Sean J. Lancaster": 1,
     SHAHER_ABDULHAK_BESHER: 2,
     "Skip Rimer": 1,
-    SOON_YI_PREVIN: 8,
+    SOON_YI_PREVIN: 9,
     "Stanley Rosenberg": 3,
     "Stephanie": 2,
     "Stephen Alexander": 1,
@@ -207,7 +207,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 32,
+    None: 31,
     "ACT for America": 1,
     "Alan Dershowitz": 11,
     'Alan Dlugash': 1,
@@ -292,7 +292,7 @@ EMAIL_RECIPIENT_COUNTS = {
     JEAN_HUGUEN: 1,
     JEAN_LUC_BRUNEL: 9,
     JEFF_FULLER: 2,
-    JEFFREY_EPSTEIN: 1476,
+    JEFFREY_EPSTEIN: 1477,
     JES_STALEY: 7,
     JESSICA_CADWELL: 3,
     "Joel": 3,
@@ -301,7 +301,6 @@ EMAIL_RECIPIENT_COUNTS = {
     "John Zouzelka": 1,
     JOI_ITO: 11,
     "Jojo Fontanilla": 1,
-    'Jokeland': 1,
     "Jonathan Farkas": 9,
     "Joscha Bach": 4,
     "Joseph Vinciguerra": 1,
@@ -339,7 +338,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Marshall Funk": 1,
     "Martin Nowak": 1,
     MARTIN_WEINBERG: 25,
-    MASHA_DROKOVA: 3,
+    MASHA_DROKOVA: 4,
     "Matthew Hiltzik": 1,
     "Matthew Schafer": 1,
     MELANIE_SPINELLA: 13,
@@ -474,7 +473,7 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     "031830",
     "032213",
     "032283",
-    "033025",
+    '032951',
     "033345",
 ]
 
@@ -881,11 +880,11 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
 
 
 def test_email_author_counts(epstein_files):
-    assert epstein_files.email_author_counts == EMAIL_AUTHOR_COUNTS
+    assert epstein_files.email_author_counts() == EMAIL_AUTHOR_COUNTS
 
 
 def test_email_recipient_counts(epstein_files):
-    assert epstein_files.email_recipient_counts == EMAIL_RECIPIENT_COUNTS
+    assert epstein_files.email_recipient_counts() == EMAIL_RECIPIENT_COUNTS
 
 
 def test_info_sentences(epstein_files):
@@ -896,8 +895,8 @@ def test_info_sentences(epstein_files):
 
 
 def test_signatures(epstein_files):
-    assert dict_sets_to_lists(epstein_files.email_authors_to_device_signatures) == AUTHORS_TO_DEVICE_SIGNATURES
-    assert dict_sets_to_lists(epstein_files.email_device_signatures_to_authors) == DEVICE_SIGNATURE_TO_AUTHORS
+    assert dict_sets_to_lists(epstein_files.email_authors_to_device_signatures()) == AUTHORS_TO_DEVICE_SIGNATURES
+    assert dict_sets_to_lists(epstein_files.email_device_signatures_to_authors()) == DEVICE_SIGNATURE_TO_AUTHORS
 
 
 def test_signature_substitutions(epstein_files):
@@ -905,4 +904,4 @@ def test_signature_substitutions(epstein_files):
 
 
 def test_unknown_recipient_file_ids(epstein_files):
-    assert epstein_files.email_unknown_recipient_file_ids() == UNKNOWN_RECIPIENT_FILE_IDS
+    assert epstein_files.unknown_recipient_ids() == UNKNOWN_RECIPIENT_FILE_IDS

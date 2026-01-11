@@ -18,7 +18,7 @@ from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constant.strings import DEFAULT, EMAIL, NA, TEXT_MESSAGE
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import HEADER_ABBREVIATIONS
-from epstein_files.util.data import json_safe, without_falsey
+from epstein_files.util.data import json_safe
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
 from epstein_files.util.highlighted_group import ALL_HIGHLIGHTS, HIGHLIGHTED_NAMES, EpsteinHighlighter
@@ -26,11 +26,11 @@ from epstein_files.util.logging import logger
 
 TITLE_WIDTH = 50
 SUBTITLE_WIDTH = 110
-MIN_AUTHOR_PANEL_WIDTH = 80
 NUM_COLOR_KEY_COLS = 4
 NA_TXT = Text(NA, style='dim')
 SUBTITLE_PADDING = (2, 0, 1, 0)
 GREY_NUMBERS = [58, 39, 39, 35, 30, 27, 23, 23, 19, 19, 15, 15, 15]
+VALID_GREYS = [0, 3, 7, 11, 15, 19, 23, 27, 30, 35, 37, 39, 42, 46, 50, 53, 54, 58, 62, 63, 66, 69, 70, 74, 78, 82, 84, 85, 89, 93]
 
 INFO_STYLE = 'white dim italic'
 KEY_STYLE = 'honeydew2 bold'
@@ -147,19 +147,6 @@ def key_value_txt(key: str, value: Text | int | str) -> Text:
 def parenthesize(msg: str | Text, style: str = '') -> Text:
     txt = Text(msg) if isinstance(msg, str) else msg
     return Text('(', style=style).append(txt).append(')')
-
-
-def print_author_panel(msg: str, footer: str | None, style: str | None) -> None:
-    """Print a panel with the name of an emailer and a few tidbits of information about them."""
-    style = 'white' if (not style or style == DEFAULT) else style
-    panel_style = f"black on {style} bold"
-    width = max(MIN_AUTHOR_PANEL_WIDTH, len(msg) + 4, len(footer or '') + 8)
-    elements: list[RenderableType] = [Panel(Text(msg, justify='center'), width=width, style=panel_style)]
-
-    if footer:
-        elements.append(Text(f"({footer})", justify='center', style=f"{style} italic"))
-
-    print_centered(Padding(Group(*elements), (2, 0, 1, 0)))
 
 
 def print_centered(obj: RenderableType, style: str = '') -> None:

@@ -55,6 +55,7 @@ REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + [
 
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r'grnail\.com'): 'gmail.com',
+    'Newsmax. corn': 'Newsmax.com',
     re.compile(r"^(From|To)(: )?[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",  # Redacted email addresses
     # These 3 must come in this order!
     re.compile(r'([/vkT]|Ai|li|(I|7)v)rote:'): 'wrote:',
@@ -79,6 +80,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'twitter glhsummers': 'twitter @lhsummers',
     re.compile(r"twitter\.com[i/][lI]krauss[1lt]"): "twitter.com/lkrauss1",
     re.compile(r'from my BlackBerry[0°] wireless device'): 'from my BlackBerry® wireless device',
+    re.compile(r'^INW$', re.MULTILINE): REDACTED,
     # links
     'Imps ://': 'https://',
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
@@ -127,25 +129,18 @@ EMAIL_SIGNATURE_REGEXES = {
     UNKNOWN: re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL),
 }
 
-EMAIL_TABLE_COLS = [
-    {'name': 'Sent At', 'justify': 'left', 'style': TIMESTAMP_DIM},
-    {'name': 'From', 'justify': 'left', 'max_width': 20},
-    {'name': 'To', 'justify': 'left', 'max_width': 22},
-    {'name': 'Length', 'justify': 'right', 'style': 'wheat4'},
-    {'name': 'Subject', 'justify': 'left', 'min_width': 35, 'style': 'honeydew2'},
-]
-
-MAILING_LISTS = [
+MAILING_LISTS = JUNK_EMAILERS + [
     CAROLYN_RANGEL,
     INTELLIGENCE_SQUARED,
     'middle.east.update@hotmail.com',
     JP_MORGAN_USGIO,
 ]
 
-TRUNCATE_ALL_EMAILS_FROM = JUNK_EMAILERS + MAILING_LISTS + [
+TRUNCATE_ALL_EMAILS_FROM = MAILING_LISTS + [
     'Alan S Halperin',
     'Mitchell Bard',
     'Skip Rimer',
+    'Steven Victor MD',
 ]
 
 TRUNCATION_LENGTHS = {
@@ -258,7 +253,7 @@ KRASSNER_RECIPIENTS = uniquify(flatten([ALL_FILE_CONFIGS[id].recipients for id i
 
 # No point in ever displaying these; their emails show up elsewhere because they're mostly CC recipients
 USELESS_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + KRASSNER_RECIPIENTS + [
-    'Alan Dlugash',                            # CCed with Richard Kahn
+    'Alan Dlugash',                          # CCed with Richard Kahn
     'Alan Rogers',                           # Random CC
     'Andrew Friendly',                       # Presumably some relation of Kelly Friendly
     'BS Stern',                              # A random fwd of email we have
@@ -313,6 +308,7 @@ LINE_REPAIR_MERGES = {
     '022673': 9,
     '022684': 9,
     '022695': 4,
+    '029773': [2, 5],
     '023067': 3,
     '025790': 2,
     '029841': 3,
@@ -555,6 +551,8 @@ class Email(Communication):
             self.log_top_lines(msg='No email header match found!', level=log_level)
             self.header = EmailHeader(field_names=[])
 
+        logger.debug(f"{self.file_id} extracted header\n\n{self.header}\n")
+
     def _extract_timestamp(self) -> datetime:
         if self.config and self.config.timestamp:
             return self.config.timestamp
@@ -679,6 +677,9 @@ class Email(Communication):
         elif self.file_id in ['025329']:
             for _i in range(9):
                 self._merge_lines(2)
+        elif self.file_id in ['025812']:
+            for _i in range(2):
+                self._merge_lines(3)
         elif self.file_id == '014860':
             self._merge_lines(3)
             self._merge_lines(4)
@@ -844,19 +845,29 @@ class Email(Communication):
             self.log_top_lines(self.header.num_header_rows + 4, f'Original header:')
 
     @staticmethod
-    def build_emails_table(emails: list['Email'], author: str | None = '', title: str = '', show_length: bool = False) -> Table:
+    def build_emails_table(emails: list['Email'], name: str | None = '', title: str = '', show_length: bool = False) -> Table:
         """Turn a set of Emails into a Table."""
-        if title and author:
+        if title and name:
             raise ValueError(f"Can't provide both 'author' and 'title' args")
-        elif author == '' and title == '':
+        elif name == '' and title == '':
             raise ValueError(f"Must provide either 'author' or 'title' arg")
 
-        author_style = get_style_for_name(author, allow_bold=False)
-        link_style = author_style if author else ARCHIVE_LINK_COLOR
+        author_style = get_style_for_name(name, allow_bold=False)
+        link_style = author_style if name else ARCHIVE_LINK_COLOR
+        min_width = len(name or UNKNOWN)
+        max_width = max(20, min_width)
+
+        columns = [
+            {'name': 'Sent At', 'justify': 'left', 'style': TIMESTAMP_DIM},
+            {'name': 'From', 'justify': 'left', 'min_width': min_width, 'max_width': max_width},
+            {'name': 'To', 'justify': 'left', 'min_width': min_width, 'max_width': max_width + 2},
+            {'name': 'Length', 'justify': 'right', 'style': 'wheat4'},
+            {'name': 'Subject', 'justify': 'left', 'min_width': 35, 'style': 'honeydew2'},
+        ]
 
         table = build_table(
             title or None,
-            cols=[col for col in EMAIL_TABLE_COLS if show_length or col['name'] not in ['Length']],
+            cols=[col for col in columns if show_length or col['name'] not in ['Length']],
             border_style=DEFAULT_TABLE_KWARGS['border_style'] if title else author_style,
             header_style="bold",
             highlight=True,
