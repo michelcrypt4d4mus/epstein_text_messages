@@ -2,6 +2,7 @@ import pytest
 
 from epstein_files.person import Person
 from epstein_files.util.constant.names import *
+from epstein_files.util.constant.strings import QUESTION_MARKS
 
 
 @pytest.fixture(scope='session')
@@ -14,8 +15,12 @@ def eduardo(epstein_files) -> Person:
     return epstein_files.person_objs([EDUARDO_ROBLES])[0]
 
 
+@pytest.fixture(scope='session')
+def anne_boyles(epstein_files) -> Person:
+    return epstein_files.person_objs(['Anne Boyles'])[0]
 
-def test_info_str(eduardo, sultan):
+
+def test_info_str(anne_boyles, eduardo, sultan):
     assert sultan.highlight_group() is not None
     assert sultan.info_str() == 'CEO of DP World, chairman of ports in Dubai'
     assert sultan.info_with_category() == 'mideast, CEO of DP World, chairman of ports in Dubai'
@@ -23,3 +28,6 @@ def test_info_str(eduardo, sultan):
     assert eduardo.highlight_group() is None
     assert eduardo.info_with_category() == ''
     assert eduardo.info_str() is None
+
+    assert anne_boyles.category_txt().plain == QUESTION_MARKS
+    assert anne_boyles.info_txt().plain == QUESTION_MARKS
