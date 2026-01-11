@@ -56,7 +56,7 @@ class Person:
             return None
         elif self.category():
             return styled_category(self.category())
-        elif self.style() == DEFAULT_NAME_STYLE and not self.is_email_address() and not self.info_str():
+        elif self.is_a_mystery():
             return QUESTION_MARKS_TXT
 
     def email_conversation_length_in_days(self) -> int:
@@ -125,21 +125,24 @@ class Person:
             return highlight_group.get_info(self.name)
 
     def info_txt(self) -> Text | None:
-        category = self.category()
         info = self.info_str()
 
         if self.name == JEFFREY_EPSTEIN:
             return Text('(emails sent by Epstein to himself that would not otherwise be printed)', style=ALT_INFO_STYLE)
         elif self.name is None:
             return Text('(emails whose author or recipient could not be determined)', style=ALT_INFO_STYLE)
-        elif category == JUNK:
+        elif self.category() == JUNK:
             return Text(f"({JUNK})", style='tan dim')
-        elif self.style() == DEFAULT_NAME_STYLE and not self.is_email_address() and not info:
+        elif self.is_a_mystery():
             return Text(QUESTION_MARKS, style='grey50 dim')
-        elif category and info:
-            info = info.removeprefix(category).removeprefix(', ')
+        elif self.category() and info:
+            info = info.removeprefix(self.category() or '').removeprefix(', ')
 
         return Text(info) if info else None
+
+    def is_a_mystery(self) -> bool:
+        """Return True if this is someone we theroetically could know more about."""
+        return self.is_unstyled() and not self.is_email_address() and not self.info_str()
 
     def is_email_address(self) -> bool:
         return '@' in (self.name or '')
@@ -154,6 +157,10 @@ class Person:
             return False
 
         return True
+
+    def is_unstyled(self) -> bool:
+        """True if there's no highlight group for this name."""
+        return self.style() == DEFAULT_NAME_STYLE
 
     def name_str(self) -> str:
         return self.name or UNKNOWN
