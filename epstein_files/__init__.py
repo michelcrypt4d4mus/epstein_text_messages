@@ -38,14 +38,14 @@ def generate_html() -> None:
     timer = Timer()
     epstein_files = EpsteinFiles.get_files(timer)
 
-    if args.json_metadata:
+    if args.emailers_info_png:
+        print_emailers_info_png(epstein_files)
+        exit()
+    elif args.json_metadata:
         print_json_metadata(epstein_files)
         exit()
     elif args.json_files:
         print_json_files(epstein_files)
-        exit()
-    elif args.emailers_info_png:
-        print_emailers_info_png(epstein_files)
         exit()
 
     print_title_page_header()

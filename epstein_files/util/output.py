@@ -207,7 +207,7 @@ def print_other_files_section(epstein_files: EpsteinFiles) -> list[OtherFile]:
         files = [f for f in epstein_files.other_files if args.all_other_files or f.is_interesting()]
 
     title_pfx = '' if args.all_other_files else 'Selected '
-    category_table = OtherFile.count_by_category_table(files, title_pfx=title_pfx)
+    category_table = OtherFile.summary_table(files, title_pfx=title_pfx)
     other_files_preview_table = OtherFile.files_preview_table(files, title_pfx=title_pfx)
     print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {title_pfx}Files That Are Neither Emails Nor Text Messages")
     print_other_page_link(epstein_files)
