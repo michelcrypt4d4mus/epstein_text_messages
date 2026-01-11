@@ -239,7 +239,7 @@ class EpsteinFiles:
         return json.dumps(metadata, indent=4, sort_keys=True)
 
     def non_duplicate_emails(self) -> list[Email]:
-        return [email for email in self.emails if not email.is_duplicate()]
+        return Document.without_dupes(self.emails)
 
     def non_json_other_files(self) -> list[OtherFile]:
         return [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
