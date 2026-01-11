@@ -87,10 +87,9 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     """Returns emails that were printed (may contain dupes if printed for both author and recipient)."""
     print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
     all_emailers = sorted(epstein_files.emailers(), key=lambda person: person.earliest_email_at())
-    people_to_print: list[Person]
-    printed_emails: list[Email] = []
     num_emails_printed_since_last_color_key = 0
-    uninteresting_emailers = epstein_files.uninteresting_emailers()
+    printed_emails: list[Email] = []
+    people_to_print: list[Person]
 
     if args.names:
         people_to_print = epstein_files.person_objs(args.names)
@@ -102,9 +101,11 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
 
         print_other_page_link(epstein_files)
         print_centered(Padding(Person.emailer_info_table(all_emailers, people_to_print), (2, 0, 1, 0)))
-        people_to_print = [p for p in people_to_print if p.name not in uninteresting_emailers]
 
     for person in people_to_print:
+        if person.name in epstein_files.uninteresting_emailers():
+            continue
+
         printed_person_emails = person.print_emails()
         printed_emails.extend(printed_person_emails)
         num_emails_printed_since_last_color_key += len(printed_person_emails)
