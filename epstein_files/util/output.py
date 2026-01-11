@@ -89,6 +89,8 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     people_to_print: list[Person]
     printed_emails: list[Email] = []
     num_emails_printed_since_last_color_key = 0
+    ross_gow_email = cast(Email, epstein_files.for_ids('014797_1')[0])
+    emailers_to_not_print = USELESS_EMAILERS + ross_gow_email.header.bcc
 
     if args.names:
         people_to_print = epstein_files.person_objs(args.names)
@@ -98,7 +100,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
         else:
             people_to_print = epstein_files.person_objs(DEFAULT_EMAILERS)
 
-        people_to_print = [p for p in people_to_print if p.name not in USELESS_EMAILERS]
+        people_to_print = [p for p in people_to_print if p.name not in emailers_to_not_print]
         print_other_page_link(epstein_files)
         print_centered(Padding(Person.emailer_info_table(people_to_print), (2, 0, 0, 0)))
         print_centered(Padding(Person.emailer_stats_table(all_emailers), (2, 0)))
