@@ -92,7 +92,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
         authors = epstein_files.author_objs(args.names)
     else:
         if args.all_emails:
-            authors = sorted(epstein_files.email_authors(), key=lambda author: author.earliest_email_at())
+            authors = sorted(epstein_files.emailers(), key=lambda author: author.earliest_email_at())
         else:
             authors = epstein_files.author_objs(DEFAULT_EMAILERS)
 
@@ -253,7 +253,7 @@ def _all_emailers_table(epstein_files: EpsteinFiles) -> Table:
         ]
     )
 
-    for author in sorted(epstein_files.email_authors(), key=lambda author: author.sort_key()):
+    for author in sorted(epstein_files.emailers(), key=lambda author: author.sort_key()):
         counts_table.add_row(
             author.name_link(),
             f"{len(author.emails):,}",

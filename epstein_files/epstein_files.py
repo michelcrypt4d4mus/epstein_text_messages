@@ -20,7 +20,7 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.person import Person
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
-from epstein_files.util.data import json_safe, listify
+from epstein_files.util.data import flatten, json_safe, listify, uniquify
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.env import DOCS_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
@@ -141,10 +141,10 @@ class EpsteinFiles:
         return self.emails_for(author)[-1].timestamp
 
     def email_author_counts(self) -> dict[str | None, int]:
-        return {author.name: len(author.unique_emails_by()) for author in self.email_authors()}
-
-    def email_authors(self) -> list[Person]:
-        return self.author_objs(list(set([email.author for email in self.emails])))
+        return {
+            person.name: len(person.unique_emails_by())
+            for person in self.emailers() if len(person.unique_emails_by()) > 0
+        }
 
     def email_authors_to_device_signatures(self) -> dict[str, set[str]]:
         signatures = defaultdict(set)
@@ -163,13 +163,10 @@ class EpsteinFiles:
         return signatures
 
     def email_recipient_counts(self) -> dict[str | None, int]:
-        counts = defaultdict(int)
-
-        for email in self.non_duplicate_emails():
-            for recipient in (email.recipients or [None]):
-                counts[recipient] += 1
-
-        return dict(counts)
+        return {
+            person.name: len(person.unique_emails_to())
+            for person in self.emailers() if len(person.unique_emails_to()) > 0
+        }
 
     def email_signature_substitution_counts(self) -> dict[str, int]:
         """Return the number of times an email signature was replaced with "<...snipped...>" for each author."""
@@ -180,6 +177,12 @@ class EpsteinFiles:
                 substitution_counts[name] += num_replaced
 
         return substitution_counts
+
+    def emailers(self) -> list[Person]:
+        """All the people who sent or received an email."""
+        authors = [email.author for email in self.emails]
+        recipients = flatten([email.recipients for email in self.emails])
+        return self.author_objs(uniquify(authors + recipients))
 
     def emails_by(self, author: str | None) -> list[Email]:
         return Document.sort_by_timestamp([e for e in self.emails if e.author == author])
