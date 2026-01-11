@@ -83,21 +83,21 @@ console = Console(**CONSOLE_ARGS)
 highlighter = CONSOLE_ARGS['highlighter']
 
 
-def add_cols_to_table(table: Table, col_names: list[str | dict]) -> None:
+def add_cols_to_table(table: Table, cols: list[str | dict], justify: str = 'center') -> None:
     """Left most col will be left justified, rest are center justified."""
-    for i, col in enumerate(col_names):
-        justify='left' if i == 0 else 'center'
+    for i, col in enumerate(cols):
+        col_justify = 'left' if i == 0 else justify
 
         if isinstance(col, dict):
             col_name = col['name']
-            kwargs = deepcopy(col)
-            kwargs['justify'] = kwargs.get('justify', justify)
-            del kwargs['name']
+            col_kwargs = deepcopy(col)
+            col_kwargs['justify'] = col_kwargs.get('justify', col_justify)
+            del col_kwargs['name']
         else:
             col_name = col
-            kwargs = {'justify': justify}
+            col_kwargs = {'justify': col_justify}
 
-        table.add_column(col_name, **kwargs)
+        table.add_column(col_name, **col_kwargs)
 
 
 def build_highlighter(pattern: str) -> EpsteinHighlighter:
@@ -187,7 +187,7 @@ def print_title_page_header() -> None:
         Text.from_markup(link_markup(other_site_url(), other_site_msg, f"{OTHER_SITE_LINK_STYLE} bold")),
         link_text_obj(WORD_COUNT_URL, 'most frequently used words in the emails and texts', AUX_SITE_LINK_STYLE),
         link_text_obj(JSON_METADATA_URL, 'author attribution explanations', AUX_SITE_LINK_STYLE),
-        link_text_obj(WORD_COUNT_URL, "epstein's json files", AUX_SITE_LINK_STYLE),
+        link_text_obj(JSON_FILES_URL, "epstein's json files", AUX_SITE_LINK_STYLE),
     ]
 
     for link in links:
@@ -199,7 +199,8 @@ def print_title_page_tables(epstein_files: 'EpsteinFiles') -> None:
     _print_external_links()
     console.line()
     _print_abbreviations_table()
-    epstein_files.print_files_summary()
+    print_centered(epstein_files.overview_table())
+    console.line()
     print_color_key()
     print_centered(f"if you think there's an attribution error or can deanonymize an {UNKNOWN} contact {CRYPTADAMUS_TWITTER}", 'grey46')
     print_centered('note this site is based on the OCR text provided by Congress which is not always the greatest', 'grey23')

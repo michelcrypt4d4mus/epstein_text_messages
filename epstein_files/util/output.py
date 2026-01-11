@@ -84,8 +84,16 @@ def print_email_timeline(epstein_files: EpsteinFiles) -> None:
 
 
 def print_emailers_info_png(epstein_files: EpsteinFiles) -> None:
+    """Print tbe summary table of everyone in the files to an image."""
+    print_color_key()
+    console.line()
     all_emailers = sorted(epstein_files.emailers(), key=lambda person: person.sort_key())
     console.print(Person.emailer_info_table(all_emailers))
+
+    if not args.build:
+        logger.warning(f"Not writing .png file because --build is not set")
+        return
+
     svg_path = f"{EMAILERS_TABLE_PNG_PATH}.svg"
     console.save_svg(svg_path, theme=HTML_TERMINAL_THEME, title="Epstein Emailers")
     log_file_write(svg_path)
@@ -148,7 +156,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     _print_email_device_info(epstein_files)
     fwded_articles = [e for e in printed_emails if e.config and e.is_fwded_article()]
     log_msg = f"Rewrote {len(Email.rewritten_header_ids)} of {len(printed_emails)} email headers"
-    logger.warning(f"{log_msg}, {len(fwded_articles)} of the emails were forwarded articles.")
+    logger.warning(f"  -> {log_msg}, {len(fwded_articles)} of the Emails printed were forwarded articles.")
     return printed_emails
 
 
@@ -191,21 +199,29 @@ def print_json_stats(epstein_files: EpsteinFiles) -> None:
     print_json("count_by_month", count_by_month(epstein_files.all_documents()))
 
 
-def print_other_files_section(files: list[OtherFile], epstein_files: EpsteinFiles) -> None:
+def print_other_files_section(epstein_files: EpsteinFiles) -> list[OtherFile]:
     """Returns the OtherFile objects that were interesting enough to print."""
+    if args.uninteresting:
+        files = [f for f in epstein_files.other_files if not f.is_interesting()]
+    else:
+        files = [f for f in epstein_files.other_files if args.all_other_files or f.is_interesting()]
+
     title_pfx = '' if args.all_other_files else 'Selected '
-    category_table = OtherFile.count_by_category_table(files, title_pfx=title_pfx)
+    category_table = OtherFile.summary_table(files, title_pfx=title_pfx)
     other_files_preview_table = OtherFile.files_preview_table(files, title_pfx=title_pfx)
     print_section_header(f"{FIRST_FEW_LINES} of {len(files)} {title_pfx}Files That Are Neither Emails Nor Text Messages")
     print_other_page_link(epstein_files)
     print_centered(Padding(category_table, (2, 0)))
     console.print(other_files_preview_table)
+    return files
 
 
-def print_text_messages_section(imessage_logs: list[MessengerLog]) -> None:
+def print_text_messages_section(epstein_files: EpsteinFiles) -> list[MessengerLog]:
     """Print summary table and stats for text messages."""
+    imessage_logs = [log for log in epstein_files.imessage_logs if not args.names or log.author in args.names]
+
     if not imessage_logs:
-        logger.warning(f"No MessengerLog objects to output...")
+        logger.warning(f"No MessengerLogs found for {args.names}")
         return
 
     print_section_header('All of His Text Messages')
@@ -219,6 +235,8 @@ def print_text_messages_section(imessage_logs: list[MessengerLog]) -> None:
     for log_file in imessage_logs:
         console.print(Padding(log_file))
         console.line(2)
+
+    return imessage_logs
 
 
 def write_urls() -> None:

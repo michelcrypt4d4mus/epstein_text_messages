@@ -258,7 +258,7 @@ class Person:
         """Table of info about emailers."""
         highlighted = highlighted or people
         highlighted_names = [p.name for p in highlighted]
-        is_selection = len(people) != len(highlighted)
+        is_selection = len(people) != len(highlighted) or args.emailers_info_png
 
         if is_selection:
             title = Text(f"{EMAILER_INFO_TITLE} in This Order for the Highlighted Names (see ", style=TABLE_TITLE_STYLE)
