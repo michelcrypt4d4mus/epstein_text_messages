@@ -12,12 +12,12 @@ from rich.padding import Padding
 from rich.table import Table
 from rich.text import Text
 
-from epstein_files.person import Author
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import DETECT_EMAIL_REGEX, Email
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
+from epstein_files.person import Person
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.data import json_safe, listify
@@ -104,10 +104,10 @@ class EpsteinFiles:
     def all_documents(self) -> Sequence[Document]:
         return self.imessage_logs + self.emails + self.other_files
 
-    def author_objs(self, names: list[str | None]) -> list[Author]:
+    def author_objs(self, names: list[str | None]) -> list[Person]:
         """Construct Author objects for a list of names."""
         return [
-            Author(
+            Person(
                 name=name,
                 emails=self.emails_for(name),
                 imessage_logs=[l for l in self.imessage_logs if name == l.author]
@@ -143,7 +143,7 @@ class EpsteinFiles:
     def email_author_counts(self) -> dict[str | None, int]:
         return {author.name: len(author.unique_emails_by()) for author in self.email_authors()}
 
-    def email_authors(self) -> list[Author]:
+    def email_authors(self) -> list[Person]:
         return self.author_objs(list(set([email.author for email in self.emails])))
 
     def email_authors_to_device_signatures(self) -> dict[str, set[str]]:

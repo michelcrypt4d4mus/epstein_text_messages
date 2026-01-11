@@ -3,12 +3,12 @@ from typing import cast
 
 from rich.padding import Padding
 
-from epstein_files.person import Author
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import USELESS_EMAILERS, Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles, count_by_month
+from epstein_files.person import Person
 from epstein_files.util.constant import output_files
 from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
@@ -84,7 +84,7 @@ def print_email_timeline(epstein_files: EpsteinFiles) -> None:
 def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     """Returns emails that were printed (may contain dupes if printed for both author and recipient)."""
     print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
-    authors: list[Author]
+    authors: list[Person]
     printed_emails: list[Email] = []
     num_emails_printed_since_last_color_key = 0
 
@@ -97,7 +97,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
             authors = epstein_files.author_objs(DEFAULT_EMAILERS)
 
         print_other_page_link(epstein_files)
-        print_centered(Padding(Author.author_info_table(authors), (2, 0, 0, 0)))
+        print_centered(Padding(Person.author_info_table(authors), (2, 0, 0, 0)))
         print_centered(Padding(_all_emailers_table(epstein_files), (2, 0)))
 
     for author in authors:
