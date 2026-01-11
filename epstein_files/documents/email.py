@@ -250,48 +250,6 @@ TRUNCATE_TERMS = [
     'https://www.washingtonpost.com/politics/2018/09/04/transcript-phone-call',
 ]
 
-# No point in ever displaying these; their emails show up elsewhere because they're mostly CC recipients
-UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + [
-    'Alan Dlugash',                          # CCed with Richard Kahn
-    'Alan Rogers',                           # Random CC
-    'Andrew Friendly',                       # Presumably some relation of Kelly Friendly
-    'BS Stern',                              # A random fwd of email we have
-    'Cheryl Kleen',                          # Single email from Anne Boyles, displayed under Anne Boyles
-    'Connie Zaguirre',                       # Random CC
-    'Dan Fleuette',                          # CC from sean bannon
-    'Danny Goldberg',                        # Random Paul Krassner emails
-    GERALD_LEFCOURT,                         # Single CC
-    GORDON_GETTY,                            # Random CC
-    JEFF_FULLER,                             # Random Jean Luc Brunel CC
-    'Jojo Fontanilla',                       # Random CC
-    'Joseph Vinciguerra',                    # Random CC
-    'Larry Cohen',                           # Random Bill Gates CC
-    'Lyn Fontanilla',                        # Random CC
-    'Mark Albert',                           # Random CC
-    'Matthew Schafer',                       # Random CC
-    MICHAEL_BUCHHOLTZ,                       # Terry Kafka CC
-    'Nancy Dahl',                            # covered by Lawrence Krauss (her husband)
-    'Michael Simmons',                       # Random CC
-    'Nancy Portland',                        # Lawrence Krauss CC
-    'Oliver Goodenough',                     # Robert Trivers CC
-    'Peter Aldhous',                         # Lawrence Krauss CC
-    'Players2',                              # Hoffenberg CC
-    'Sam Harris',                            # Lawrence Krauss CC
-    SAMUEL_LEFF,                             # Random CC
-    'Sean T Lehane',                         # Random CC
-    'Stephen Rubin',                         # Random CC
-    'Tim Kane',                              # Random CC
-    'Travis Pangburn',                       # Random CC
-    'Vahe Stepanian',                        # Random CC
-    # Ross Gow BCC
-    'david.brown@thetimes.co.uk',
-    'io-anne.pugh@bbc.co.uk',
-    'martin.robinson@mailonline.co.uk',
-    'nick.alwav@bbc.co.uk'
-    'nick.sommerlad@mirror.co.uk',
-    'p.peachev@independent.co.uk',
-]
-
 METADATA_FIELDS = [
     'is_junk_mail',
     'is_mailing_list',
