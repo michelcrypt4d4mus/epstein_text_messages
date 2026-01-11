@@ -19,7 +19,7 @@ from epstein_files.util.logging import logger
 CIVIL_ATTORNEY = 'civil attorney'
 CRIMINAL_DEFENSE_ATTORNEY = 'criminal defense attorney'
 CRIMINAL_DEFENSE_2008 = f"{CRIMINAL_DEFENSE_ATTORNEY} on 2008 case"
-EPSTEIN_LAWYER = 'EpsteinLawyer'
+EPSTEIN_LAWYER = 'epstein lawyer'
 EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} working on {EPSTEIN_V_ROTHSTEIN_EDWARDS}"
 ESTATE_EXECUTOR = 'estate executor'
 EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
@@ -493,7 +493,6 @@ HIGHLIGHTED_NAMES = [
             'Barry Josephson': 'American film producer, editor FamilySecurityMatters.org',
             BILL_SIEGEL: 'documentary film producer and director',
             DAVID_BLAINE: 'famous magician',
-            HENRY_HOLT: f"{MICHAEL_WOLFF}'s book publisher",
             'Richard Merkin': 'painter, illustrator and arts educator',
             STEVEN_PFEIFFER: 'Associate Director at Independent Filmmaker Project (IFP)',
         },
@@ -543,6 +542,7 @@ HIGHLIGHTED_NAMES = [
             ARDA_BESKARDES: 'NYC immigration attorney allegedly involved in sex-trafficking operations',
             BENNET_MOSKOWITZ: f'represented the {EPSTEIN_ESTATE_EXECUTOR}s',
             BRAD_KARP: 'head of the law firm Paul Weiss',
+            'Connie Zaguirre': f"office of {ROBERT_D_CRITTON_JR}",
             DAVID_SCHOEN: f"{CRIMINAL_DEFENSE_ATTORNEY} after 2019 arrest",
             DEBBIE_FEIN: EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY,
             'Erika Kellerhals': 'attorney in St. Thomas',
@@ -821,6 +821,7 @@ HIGHLIGHTED_NAMES = [
         style='bright_yellow',
         emailers={
             EDWARD_JAY_EPSTEIN: 'no relation, wrote about the kinds of crimes Epstein was involved in',
+            HENRY_HOLT: f"{MICHAEL_WOLFF}'s book publisher",
             JAMES_HILL: 'ABC News',
             JENNIFER_JACQUET: 'Future Science',
             JOHN_BROCKMAN: 'literary agent and author specializing in scientific literature',
@@ -1388,7 +1389,7 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        label=VIRGIN_ISLANDS.replace(' ', ''),
+        label=VIRGIN_ISLANDS,
         style='sea_green1',
         emailers={
             CECILE_DE_JONGH: 'first lady 2007-2015',

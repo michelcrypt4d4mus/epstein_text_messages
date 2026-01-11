@@ -129,14 +129,6 @@ EMAIL_SIGNATURE_REGEXES = {
     UNKNOWN: re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL),
 }
 
-EMAIL_TABLE_COLS = [
-    {'name': 'Sent At', 'justify': 'left', 'style': TIMESTAMP_DIM},
-    {'name': 'From', 'justify': 'left', 'max_width': 20},
-    {'name': 'To', 'justify': 'left', 'max_width': 22},
-    {'name': 'Length', 'justify': 'right', 'style': 'wheat4'},
-    {'name': 'Subject', 'justify': 'left', 'min_width': 35, 'style': 'honeydew2'},
-]
-
 MAILING_LISTS = JUNK_EMAILERS + [
     CAROLYN_RANGEL,
     INTELLIGENCE_SQUARED,
@@ -848,19 +840,29 @@ class Email(Communication):
             self.log_top_lines(self.header.num_header_rows + 4, f'Original header:')
 
     @staticmethod
-    def build_emails_table(emails: list['Email'], author: str | None = '', title: str = '', show_length: bool = False) -> Table:
+    def build_emails_table(emails: list['Email'], name: str | None = '', title: str = '', show_length: bool = False) -> Table:
         """Turn a set of Emails into a Table."""
-        if title and author:
+        if title and name:
             raise ValueError(f"Can't provide both 'author' and 'title' args")
-        elif author == '' and title == '':
+        elif name == '' and title == '':
             raise ValueError(f"Must provide either 'author' or 'title' arg")
 
-        author_style = get_style_for_name(author, allow_bold=False)
-        link_style = author_style if author else ARCHIVE_LINK_COLOR
+        author_style = get_style_for_name(name, allow_bold=False)
+        link_style = author_style if name else ARCHIVE_LINK_COLOR
+        min_width = len(name or UNKNOWN)
+        max_width = max(20, min_width)
+
+        columns = [
+            {'name': 'Sent At', 'justify': 'left', 'style': TIMESTAMP_DIM},
+            {'name': 'From', 'justify': 'left', 'min_width': min_width, 'max_width': max_width},
+            {'name': 'To', 'justify': 'left', 'min_width': min_width, 'max_width': max_width + 2},
+            {'name': 'Length', 'justify': 'right', 'style': 'wheat4'},
+            {'name': 'Subject', 'justify': 'left', 'min_width': 35, 'style': 'honeydew2'},
+        ]
 
         table = build_table(
             title or None,
-            cols=[col for col in EMAIL_TABLE_COLS if show_length or col['name'] not in ['Length']],
+            cols=[col for col in columns if show_length or col['name'] not in ['Length']],
             border_style=DEFAULT_TABLE_KWARGS['border_style'] if title else author_style,
             header_style="bold",
             highlight=True,
