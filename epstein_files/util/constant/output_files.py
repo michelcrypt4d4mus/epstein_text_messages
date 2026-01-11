@@ -13,6 +13,7 @@ TEXT_MSGS_HTML_PATH = HTML_DIR.joinpath('index.html')
 WORD_COUNT_HTML_PATH = HTML_DIR.joinpath(f'communication_word_count_{EPSTEIN_FILES_NOV_2025}.html')
 # EPSTEIN_WORD_COUNT_HTML_PATH = HTML_DIR.joinpath('epstein_texts_and_emails_word_count.html')
 URLS_ENV = '.urls.env'
+EMAILERS_TABLE_PNG_PATH = HTML_DIR.joinpath('emailers_info_table.png')
 
 # Deployment URLS
 # NOTE: don't rename these variables without changing deploy.sh!
