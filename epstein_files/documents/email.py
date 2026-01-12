@@ -31,7 +31,7 @@ from epstein_files.util.rich import *
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
 BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,]|L\._)$')
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
-LINK_LINE_REGEX = re.compile(f"^(> )?htt")
+LINK_LINE_REGEX = re.compile(f"^>? ?htt")
 QUOTED_REPLY_LINE_REGEX = re.compile(r'(\nFrom:(.*)|wrote:)\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
 
@@ -42,7 +42,7 @@ LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
-URL_SIGNIFIERS = ['gclid', 'htm', 'keywords=', 'module=', 'ref=', 'mpweb', 'utm']
+URL_SIGNIFIERS = ['cd=', 'click', 'gclid', 'htm', 'keywords=', 'module=', 'nlid=', 'ref=', 'mpweb', 'usg=', 'utm']
 APPEARS_IN = 'appears in'
 MAX_CHARS_TO_PRINT = 4000
 MAX_NUM_HEADER_LINES = 14
@@ -688,15 +688,16 @@ class Email(Communication):
             line = lines[i]
 
             if LINK_LINE_REGEX.search(line):
-                while 'htm' not in line \
-                        and i < (len(lines) - 1) \
+                while i < (len(lines) - 1) \
+                        and 'http' not in lines[i + 1] \
                         and (lines[i + 1].endswith('/') or any(s in lines[i + 1] for s in URL_SIGNIFIERS)):
                     logger.debug(f"{self.filename}: Joining link lines\n   1. {line}\n   2. {lines[i + 1]}\n")
                     line += lines[i + 1]
                     i += 1
+                    #import pdb;pdb.set_trace()
 
                 line = line.replace(' ', '')
-            elif ' http' in line:
+            elif ' http' in line and line.endswith('html'):
                 pre_link, post_link = line.split(' http', 1)
                 line = f"{pre_link} http{post_link.replace(' ', '')}"
 
