@@ -881,6 +881,7 @@ HIGHLIGHTED_NAMES = [
             r"Huff(ington)?(\s*Po(st)?)?",
             r"Ingram, David",
             r"(James\s*)?(Hill|Patterson)",
+            r"Jesse Kornbluth",
             r"Jonathan\s*Karl",
             r"Julie\s*(K.?\s*)?Brown", r'jbrown@miamiherald.com',
             r"(Katie\s*)?Couric",
