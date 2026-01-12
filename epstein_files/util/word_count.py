@@ -239,7 +239,7 @@ def write_word_counts_html() -> None:
     console.print(word_count)
     print_subtitle_panel(f"{len(COMMON_WORDS_LIST):,} Excluded Words")
     console.print(', '.join(COMMON_WORDS_LIST), highlight=False)
-    write_html(WORD_COUNT_HTML_PATH)
+    write_html(WORD_COUNT_HTML_PATH if args.build else None)
     timer.print_at_checkpoint(f"Finished counting words")
 
 
