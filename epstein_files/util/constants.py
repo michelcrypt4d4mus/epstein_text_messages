@@ -514,7 +514,7 @@ EMAILS_CONFIG = [
         recipients=['George Krassner', 'Nick Kazan', 'Mrisman02', 'Rebecca Risman', 'Linda W. Grossman'],
         duplicate_ids=['031973']
     ),
-    EmailCfg(id='032457', author=PAUL_KRASSNER),  # Bad OCR (nofix)
+    EmailCfg(id='032457', author=PAUL_KRASSNER, recipients=[JEFFREY_EPSTEIN, 'Nancy Cain']),  # Bad OCR (nofix)
     EmailCfg(id='029981', author=PAULA, attribution_reason='Name in reply + opera reference (Fisher now works in opera)'),
     EmailCfg(id='030482', author=PAULA, attribution_reason=PAULA_REASON),
     EmailCfg(id='033383', author=PAUL_PROSPERI, attribution_reason='Reply'),
