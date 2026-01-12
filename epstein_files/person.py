@@ -271,7 +271,7 @@ class Person:
             title = f"{EMAILER_INFO_TITLE} in Chronological Order Based on Timestamp of First Email"
 
         table = build_table(title)
-        table.add_column('Start')
+        table.add_column('First')
         table.add_column('Name', max_width=24, no_wrap=True)
         table.add_column('Category', justify='left', style='dim italic')
         table.add_column('Num', justify='right', style='white')
@@ -301,54 +301,11 @@ class Person:
                 person.name_txt(),  # TODO: make link?
                 person.category_txt(),
                 f"{len(person.unique_emails() if show_epstein_total else person._unique_printable_emails())}",
-                f"{len(person.unique_emails_by())}",
-                f"{len(person.unique_emails_to())}",
+                Text(f"{len(person.unique_emails_by())}", style='dim' if len(person.unique_emails_by()) == 0 else ''),
+                Text(f"{len(person.unique_emails_to())}", style='dim' if len(person.unique_emails_to()) == 0 else ''),
                 f"{person.email_conversation_length_in_days()}",
                 person.info_txt() or '',
                 style='' if person.name in highlighted_names else 'dim',
             )
 
         return table
-
-    @staticmethod
-    def emailer_stats_table(people: list['Person']) -> Table:
-        email_authors = [p for p in people if p.emails_by() and p.name]
-        all_emails = Document.uniquify(flatten([p.unique_emails() for p in people]))
-        attributed_emails = [email for email in all_emails if email.author]
-        footer = f"(identified {len(email_authors)} authors of {len(attributed_emails):,}"
-        footer = f"{footer} out of {len(attributed_emails):,} emails)"
-
-        counts_table = build_table(
-            f"All {len(email_authors)} People Who Sent or Received an Email in the Files",
-            caption=footer,
-            cols=[
-                'Name',
-                {'name': 'Count', 'justify': 'right', 'style': 'bold bright_white'},
-                {'name': 'Sent', 'justify': 'right', 'style': 'gray74'},
-                {'name': 'Recv', 'justify': 'right', 'style': 'gray74'},
-                {'name': 'First', 'style': TIMESTAMP_STYLE},
-                {'name': 'Last', 'style': LAST_TIMESTAMP_STYLE},
-                {'name': 'Days', 'justify': 'right', 'style': 'dim'},
-                JMAIL,
-                EPSTEIN_MEDIA,
-                EPSTEIN_WEB,
-                'Twitter',
-            ]
-        )
-
-        for person in sorted(people, key=lambda person: person.sort_key()):
-            counts_table.add_row(
-                person.name_link(),
-                f"{len(person.unique_emails()):,}",
-                f"{len(person.unique_emails_by()):,}",
-                f"{len(person.unique_emails_to()):,}",
-                str(person.earliest_email_date()),
-                str(person.last_email_date()),
-                f"{person.email_conversation_length_in_days()}",
-                person.external_link_txt(JMAIL),
-                person.external_link_txt(EPSTEIN_MEDIA) if person.is_linkable() else '',
-                person.external_link_txt(EPSTEIN_WEB) if person.is_linkable() else '',
-                person.external_link_txt(TWITTER),
-            )
-
-        return counts_table
