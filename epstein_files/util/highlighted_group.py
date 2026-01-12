@@ -384,6 +384,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
             BARBRO_C_EHNBOM: 'Swedish pharmaceuticals, SALSS',
+            BARRY_J_COHEN: None,
             'David Mitchell': 'Mitchell Holdings New York real estate developer',
             FRED_HADDAD: "co-founder of Heck's in West Virginia",
             GERALD_BARTON: "Maryland property developer Landmark Land Company",
