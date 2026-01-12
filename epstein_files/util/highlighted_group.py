@@ -1468,7 +1468,7 @@ HIGHLIGHTED_NAMES = [
 
     # Individuals
     HighlightedNames(
-        emailers={STEVEN_HOFFENBERG: "Epstein's Towers Financial ponzi scheme partner, prison 18 years"},
+        emailers={STEVEN_HOFFENBERG: "Epstein's Towers Financial ponzi partner, prison for 18 years"},
         style='dark_olive_green3',
         category=FINANCE,
         patterns=[r"(steven?\s*)?hoffenberg?w?"],
@@ -1484,8 +1484,8 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(emailers={MELANIE_WALKER: f"doctor, friend of {BILL_GATES}"}, style='pale_violet_red1', category=FRIEND),
     HighlightedNames(emailers={PAULA: "Epstein's ex-girlfriend who is now in the opera world"}, label='paula', style='pink1', category=FRIEND),
     HighlightedNames(emailers={PRINCE_ANDREW: 'British royal family'}, style='dodger_blue1', category='Europe'),
-    HighlightedNames(emailers={SOON_YI_PREVIN: 'wife of Woody Allen'}, style='hot_pink', category=FRIEND),
-    HighlightedNames(emailers={SULTAN_BIN_SULAYEM: 'CEO of DP World, chairman of ports in Dubai'}, style='green1', category=MIDEAST),
+    HighlightedNames(emailers={SOON_YI_PREVIN: 'wife of Woody Allen'}, style='hot_pink', category=ARTS),
+    HighlightedNames(emailers={SULTAN_BIN_SULAYEM: 'chairman of ports in Dubai, CEO of DP World'}, style='green1', category=MIDEAST),
 
     # HighlightedText not HighlightedNames bc of word boundary issue
     HighlightedText(
@@ -1508,7 +1508,7 @@ HIGHLIGHTED_TEXTS = [
     HighlightedText(
         label='header_field',
         style='plum4',
-        patterns=[r'^>? ?(Date|From|Sent|To|C[cC]|Importance|Reply-To|Subject|Bee|B[cC]{2}|Attachments|Flag|Classification|((A|De|Envoye|Objet|Q) ?)):'],
+        patterns=[r'^>? ?(Date|From|Sent|To|C[cC]|Importance|Reply-To|Subject|Bee|B[cC]{2}|Attachments|Flag|Classification|((A|De(stinataire)?|Envoye|Expe(cl|d)iteur|Objet|Q) ?)):'],
     ),
     HighlightedText(
         label='http_links',

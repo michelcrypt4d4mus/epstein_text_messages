@@ -120,7 +120,7 @@ class Person:
         else:
             email_count = len(self.unique_emails())
             num_days = self.email_conversation_length_in_days()
-            title_suffix = f"to/from {self.name_str()} starting {self.earliest_email_date()} covering {num_days:,} days"
+            title_suffix = f"{TO_FROM} {self.name_str()} starting {self.earliest_email_date()} covering {num_days:,} days"
 
         title = f"Found {email_count} emails {title_suffix}"
         width = max(MIN_AUTHOR_PANEL_WIDTH, len(title) + 4, len(self.info_with_category()) + 8)
@@ -136,8 +136,12 @@ class Person:
         highlight_group = self.highlight_group()
 
         if highlight_group and isinstance(highlight_group, HighlightedNames) and self.name:
-            return highlight_group.info_for(self.name)
-        elif self.is_uninteresting_cc:
+            info = highlight_group.info_for(self.name)
+
+            if info:
+                return info
+
+        if self.is_uninteresting_cc:
             if self.has_any_epstein_emails():
                 return UNINTERESTING_CC_INFO
             else:
@@ -152,7 +156,7 @@ class Person:
         elif self.name is None:
             return Text('(emails whose author or recipient could not be determined)', style=ALT_INFO_STYLE)
         elif self.category() == JUNK:
-            return Text(f"({JUNK} mail)", style='tan dim')
+            return Text(f"({JUNK} mail)", style='bright_black dim')
         elif self.is_uninteresting_cc and (self.info_str() or '').startswith(UNINTERESTING_CC_INFO):
             if self.info_str() == UNINTERESTING_CC_INFO:
                 return Text(f"({self.info_str()})", style='wheat4 dim')
@@ -324,7 +328,7 @@ class Person:
                 Text(f"{len(person.unique_emails_to())}", style='dim' if len(person.unique_emails_to()) == 0 else ''),
                 f"{person.email_conversation_length_in_days()}",
                 person.info_txt() or '',
-                style='' if is_on_page else 'dim',
+                style='' if show_epstein_total or is_on_page else 'dim',
             )
 
         return table
