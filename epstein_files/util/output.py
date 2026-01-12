@@ -45,7 +45,6 @@ DEFAULT_EMAILERS = [
     TYLER_SHEARS,
     JIDE_ZEITLIN,
     CHRISTINA_GALBRAITH,
-    DAVID_STERN,
     MOHAMED_WAHEED_HASSAN,
     JENNIFER_JACQUET,
     ZUBAIR_KHAN,
@@ -68,6 +67,8 @@ INTERESTING_EMAIL_IDS = [
     '032359',  # Jabor e-currency
     '031451', '031596',  # "would you like photso of donald and girls in bikinis in my kitchen."
     '031601',  # Old gf i gave to donald
+    '030727',  # David Stern "Death of chinese shareholder quite an issue. What can we do with Qataris here?"
+    '030725',  # David Stern in Moscow
     #'023208',  # Extremely long Leon Black email chain
 ]
 

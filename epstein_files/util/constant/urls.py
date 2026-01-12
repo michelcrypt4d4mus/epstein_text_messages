@@ -27,6 +27,7 @@ GH_PROJECT_URL = 'https://github.com/michelcrypt4d4mus/epstein_text_messages'
 GH_MASTER_URL = f"{GH_PROJECT_URL}/blob/master"
 ATTRIBUTIONS_URL = f'{GH_MASTER_URL}/epstein_files/util/constants.py'
 EXTRACTS_BASE_URL = f'{GH_MASTER_URL}/emails_extracted_from_legal_filings'
+TO_FROM = 'to/from'
 
 extracted_file_url = lambda f: f"{EXTRACTS_BASE_URL}/{f}"
 
@@ -100,7 +101,7 @@ def external_doc_link_txt(site: ExternalSite, filename_or_id: int | str, style: 
 
 def internal_link_to_emails(name: str) -> str:
     """e.g. https://michelcrypt4d4mus.github.io/epstein_text_messages/all_emails_epstein_files_nov_2025.html#:~:text=to%2Ffrom%20Jack%20Goldberger"""
-    search_term = urllib.parse.quote(f"to/from {remove_question_marks(name)}")
+    search_term = urllib.parse.quote(f"{TO_FROM} {remove_question_marks(name)}")
     return f"{this_site_url()}#:~:text={search_term}"
 
 
