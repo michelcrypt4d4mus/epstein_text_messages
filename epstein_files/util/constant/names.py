@@ -214,11 +214,11 @@ UBS = 'UBS'
 
 # First and last names that should be made part of a highlighting regex for emailers
 NAMES_TO_NOT_HIGHLIGHT = """
-    al alain alan alfredo allen alex alexander amanda andres andrew
-    bard barrett barry bill black bob boris brad bruce
+    al alain alan alfredo allen alex alexander amanda andres andrew anthony
+    bard barrett barry bennet bill black bob boris brad bruce
     carolyn chris christina
     dan daniel danny darren dave david donald
-    ed edward edwards enterprise enterprises entourage epstein eric erika etienne
+    ed edward edwards enforcement enterprise enterprises entourage epstein eric erika etienne
     faith forget fred friendly frost fuller
     gerald george gold gordon
     haddad harry hay heather henry hill hoffman
@@ -226,8 +226,8 @@ NAMES_TO_NOT_HIGHLIGHT = """
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr
     kahn karl kate katherine kelly ken kevin krassner
     larry laurie lawrence leon lesley linda link lisa
-    mann marc marie mark martin melanie michael mike miller mitchell miles morris moskowitz
-    nancy neal new nicole
+    mann marc marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
+    nancy neal new nicole norman
     owen
     paul paula pen peter philip prince
     randall rangel reid richard robert rodriguez roger rosenberg ross roth roy rubin
@@ -296,3 +296,10 @@ def extract_last_name(name: str) -> str:
         return ' '.join(first_last_names[-2:])
     else:
         return first_last_names[-1]
+
+
+def reversed_name(name: str) -> str:
+    if ' ' not in name:
+        return name
+
+    return f"{extract_last_name(name)}, {extract_first_name(name)}"

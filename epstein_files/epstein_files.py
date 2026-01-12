@@ -270,6 +270,7 @@ class EpsteinFiles:
         return sorted([e.file_id for e in self.emails if None in e.recipients or not e.recipients])
 
     def uninteresting_emailers(self) -> list[Name]:
+        """Emailers whom we don't want to print a separate section for because they're just CCed."""
         if '_uninteresting_emailers' not in vars(self):
             self._uninteresting_emailers = sorted(uniquify(UNINTERESTING_EMAILERS + self.uninteresting_ccs))
 

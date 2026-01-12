@@ -34,9 +34,6 @@ class Communication(Document):
         """Overrides super() method to apply self.author_style."""
         return super().external_links_txt(self.author_style(), include_alt_links=include_alt_links)
 
-    def is_attribution_uncertain(self) -> bool:
-        return bool(self.config and self.config.is_attribution_uncertain)
-
     def summary(self) -> Text:
         return self._summary().append(CLOSE_PROPERTIES_CHAR)
 

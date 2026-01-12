@@ -60,6 +60,7 @@ SUMMARY_TABLE_COLS: list[str | dict] = [
     'Count',
     {'name': 'Has Author', 'style': 'honeydew2'},
     {'name': 'No Author', 'style': 'wheat4'},
+    {'name': 'Uncertain Author', 'style': 'royal_blue1 dim'},
     {'name': 'Size', 'justify': 'right', 'style': 'dim'},
 ]
 
@@ -189,6 +190,9 @@ class Document:
         """Secondary info about this file (description recipients, etc). Overload in subclasses."""
         return None
 
+    def is_attribution_uncertain(self) -> bool:
+        return bool(self.config and self.config.is_attribution_uncertain)
+
     def is_duplicate(self) -> bool:
         return bool(self.duplicate_of_id())
 
@@ -248,17 +252,6 @@ class Document:
 
         return text
 
-    def sort_key(self) -> tuple[datetime, str, int]:
-        """Sort by timestamp, file_id, then whether or not it's a duplicate file."""
-        if self.is_duplicate():
-            sort_id = self.config.duplicate_of_id
-            dupe_idx = 1
-        else:
-            sort_id = self.file_id
-            dupe_idx = 0
-
-        return (self.timestamp or FALLBACK_TIMESTAMP, sort_id, dupe_idx)
-
     def source_file_id(self) -> str:
         """Strip off the _1, _2, etc. suffixes for extracted documents."""
         return self.file_id[0:6]
@@ -289,6 +282,17 @@ class Document:
             sentences += [Text('', style='italic').append(h) for h in self.info()]
 
         return Panel(Group(*sentences), border_style=self._class_style(), expand=False)
+
+    def timestamp_sort_key(self) -> tuple[datetime, str, int]:
+        """Sort by timestamp, file_id, then whether or not it's a duplicate file."""
+        if self.is_duplicate():
+            sort_id = self.config.duplicate_of_id
+            dupe_idx = 1
+        else:
+            sort_id = self.file_id
+            dupe_idx = 0
+
+        return (self.timestamp or FALLBACK_TIMESTAMP, sort_id, dupe_idx)
 
     def top_lines(self, n: int = 10) -> str:
         """First n lines."""
@@ -387,6 +391,7 @@ class Document:
             'count': str(file_count),
             'author_count': NA_TXT if is_author_na else str(author_count),
             'no_author_count': NA_TXT if is_author_na else str(file_count - author_count),
+            'uncertain_author_count': NA_TXT if is_author_na else str(len([f for f in files if f.is_attribution_uncertain()])),
             'bytes': file_size_to_str(sum([f.file_size() for f in files])),
         }
 
@@ -431,7 +436,7 @@ class Document:
 
     @staticmethod
     def sort_by_timestamp(docs: Sequence['DocumentType']) -> list['DocumentType']:
-        return sorted(docs, key=lambda doc: doc.sort_key())
+        return sorted(docs, key=lambda doc: doc.timestamp_sort_key())
 
     @staticmethod
     def uniquify(documents: Sequence['DocumentType']) -> Sequence['DocumentType']:

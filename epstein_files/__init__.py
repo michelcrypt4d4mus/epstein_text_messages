@@ -21,7 +21,7 @@ from epstein_files.util.env import args
 from epstein_files.util.file_helper import coerce_file_path, extract_file_id
 from epstein_files.util.logging import exit_with_error, logger
 from epstein_files.util.output import (print_emails_section, print_json_files, print_json_stats,
-     print_other_files_section, print_text_messages_section, print_email_timeline, print_emailers_info_png,
+     print_other_files_section, print_text_messages_section, print_email_timeline, print_emailers_info,
      print_json_metadata, write_urls)
 from epstein_files.util.rich import (build_highlighter, console, print_color_key, print_title_page_header,
      print_title_page_tables, print_subtitle_panel, write_html)
@@ -38,8 +38,8 @@ def generate_html() -> None:
     timer = Timer()
     epstein_files = EpsteinFiles.get_files(timer)
 
-    if args.emailers_info_png:
-        print_emailers_info_png(epstein_files)
+    if args.emailers_info:
+        print_emailers_info(epstein_files)
         exit()
     elif args.json_metadata:
         print_json_metadata(epstein_files)

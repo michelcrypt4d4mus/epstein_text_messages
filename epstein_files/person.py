@@ -19,13 +19,14 @@ from epstein_files.util.data import days_between, flatten, without_falsey
 from epstein_files.util.env import args
 from epstein_files.util.highlighted_group import (QUESTION_MARKS_TXT, HighlightedNames,
      get_highlight_group_for_name, get_style_for_name, styled_category, styled_name)
-from epstein_files.util.rich import GREY_NUMBERS, LAST_TIMESTAMP_STYLE, TABLE_TITLE_STYLE, build_table, console, join_texts, print_centered
+from epstein_files.util.rich import GREY_NUMBERS, TABLE_TITLE_STYLE, build_table, console, join_texts, print_centered
 
 ALT_INFO_STYLE = 'medium_purple4'
 CC = 'cc:'
 MIN_AUTHOR_PANEL_WIDTH = 80
 EMAILER_INFO_TITLE = 'Email Conversations Will Appear'
 UNINTERESTING_CC_INFO = "cc: or bcc: recipient only"
+UNINTERESTING_CC_INFO_NO_CONTACT = f"{UNINTERESTING_CC_INFO}, no direct contact with Epstein"
 
 INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + MAILING_LISTS + [
     'ACT for America',
@@ -101,6 +102,10 @@ class Person:
         links = [self.external_link_txt(site) for site in PERSON_LINK_BUILDERS]
         return Text('', justify='center', style='dim').append(join_texts(links, join=' / '))  #, encloser='()'))#, encloser='‹›'))
 
+    def has_any_epstein_emails(self) -> bool:
+        contacts = [e.author for e in self.emails] + flatten([e.recipients for e in self.emails])
+        return JEFFREY_EPSTEIN in contacts
+
     def highlight_group(self) -> HighlightedNames | None:
         return get_highlight_group_for_name(self.name)
 
@@ -133,7 +138,10 @@ class Person:
         if highlight_group and isinstance(highlight_group, HighlightedNames) and self.name:
             return highlight_group.info_for(self.name)
         elif self.is_uninteresting_cc:
-            return UNINTERESTING_CC_INFO
+            if self.has_any_epstein_emails():
+                return UNINTERESTING_CC_INFO
+            else:
+                return UNINTERESTING_CC_INFO_NO_CONTACT
 
     def info_with_category(self) -> str:
         return ', '.join(without_falsey([self.category(), self.info_str()]))
@@ -145,13 +153,18 @@ class Person:
             return Text('(emails whose author or recipient could not be determined)', style=ALT_INFO_STYLE)
         elif self.category() == JUNK:
             return Text(f"({JUNK} mail)", style='tan dim')
-        elif self.is_uninteresting_cc and self.info_str() == UNINTERESTING_CC_INFO:
-            return Text(f"({self.info_str()})", style='wheat4 dim')
+        elif self.is_uninteresting_cc and (self.info_str() or '').startswith(UNINTERESTING_CC_INFO):
+            if self.info_str() == UNINTERESTING_CC_INFO:
+                return Text(f"({self.info_str()})", style='wheat4 dim')
+            else:
+                return Text(f"({self.info_str()})", style='plum4 dim')
         elif self.is_a_mystery():
-            return Text(QUESTION_MARKS, style='dark_sea_green4')
+            return Text(QUESTION_MARKS, style='honeydew2 bold')
         elif self.info_str() is None:
             if self.name in MAILING_LISTS:
-                return Text('(mailing list)', style=f"{self.style()} dim")
+                return Text('(mailing list)', style=f"pale_turquoise4 dim")
+            elif self.category():
+                return Text(QUESTION_MARKS, style=self.style())
             else:
                 return None
         else:
@@ -224,7 +237,7 @@ class Person:
         console.line()
 
     def sort_key(self) -> list[int | str]:
-        counts = [len(self.unique_emails())]
+        counts = [len(self.unique_emails()), int(self.has_any_epstein_emails())]
         counts = [-1 * count for count in counts]
 
         if args.sort_alphabetical:
@@ -262,7 +275,7 @@ class Person:
         """Table of info about emailers."""
         highlighted = highlighted or people
         highlighted_names = [p.name for p in highlighted]
-        is_selection = len(people) != len(highlighted) or args.emailers_info_png
+        is_selection = len(people) != len(highlighted) or args.emailers_info
 
         if is_selection:
             title = Text(f"{EMAILER_INFO_TITLE} in This Order for the Highlighted Names (see ", style=TABLE_TITLE_STYLE)
