@@ -46,9 +46,15 @@ elif any_uncommitted_changes; then
     exit 1
 fi
 
-# Push changes, switch to gh_pages branch
+# Build .png and push master changes
+echo -e ""
+print_msg "Building emailer info .png..."
+epstein_generate --build --emailers-info-png --suppress-output
 epstein_generate --make-clean --suppress-output
+git commit -am"Update .png"
 git push origin master --quiet
+
+# Switch to gh_pages branch
 git checkout gh_pages
 git merge --no-edit master --quiet
 
@@ -58,16 +64,16 @@ print_msg "Building text messages page... $PICKLE_ARG"
 epstein_generate --build --suppress-output $PICKLE_ARG
 
 if [ -n "$ONLY_TEXTS" ]; then
-    print_msg "Skipping build of emails page..."
+    print_msg "Skipping build of emails pages..."
 else
     echo -e ""
     print_msg "Building all emails page..."
     epstein_generate --build --all-emails --all-other-files --suppress-output
+    echo -e ""
+    print_msg "Building chronological emails page..."
+    epstein_generate --build --email-timeline --suppress-output
 fi
 
-echo -e ""
-print_msg "Building chronological emails page..."
-epstein_generate --build --email-timeline --suppress-output
 echo -e ""
 print_msg "Building word counts page..."
 epstein_word_count --build --suppress-output --width 125
