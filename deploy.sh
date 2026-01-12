@@ -51,8 +51,11 @@ echo -e ""
 print_msg "Building emailer info .png..."
 epstein_generate --build --emailers-info --suppress-output
 epstein_generate --make-clean --suppress-output
-git commit -am"Update .png"
-git push origin master --quiet
+
+if any_uncommitted_changes; then
+    git commit -am"Update .png"
+    git push origin master --quiet
+fi
 
 # Switch to gh_pages branch
 git checkout gh_pages
