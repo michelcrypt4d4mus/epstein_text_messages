@@ -252,17 +252,6 @@ class Document:
 
         return text
 
-    def sort_key(self) -> tuple[datetime, str, int]:
-        """Sort by timestamp, file_id, then whether or not it's a duplicate file."""
-        if self.is_duplicate():
-            sort_id = self.config.duplicate_of_id
-            dupe_idx = 1
-        else:
-            sort_id = self.file_id
-            dupe_idx = 0
-
-        return (self.timestamp or FALLBACK_TIMESTAMP, sort_id, dupe_idx)
-
     def source_file_id(self) -> str:
         """Strip off the _1, _2, etc. suffixes for extracted documents."""
         return self.file_id[0:6]
@@ -293,6 +282,17 @@ class Document:
             sentences += [Text('', style='italic').append(h) for h in self.info()]
 
         return Panel(Group(*sentences), border_style=self._class_style(), expand=False)
+
+    def timestamp_sort_key(self) -> tuple[datetime, str, int]:
+        """Sort by timestamp, file_id, then whether or not it's a duplicate file."""
+        if self.is_duplicate():
+            sort_id = self.config.duplicate_of_id
+            dupe_idx = 1
+        else:
+            sort_id = self.file_id
+            dupe_idx = 0
+
+        return (self.timestamp or FALLBACK_TIMESTAMP, sort_id, dupe_idx)
 
     def top_lines(self, n: int = 10) -> str:
         """First n lines."""
@@ -436,7 +436,7 @@ class Document:
 
     @staticmethod
     def sort_by_timestamp(docs: Sequence['DocumentType']) -> list['DocumentType']:
-        return sorted(docs, key=lambda doc: doc.sort_key())
+        return sorted(docs, key=lambda doc: doc.timestamp_sort_key())
 
     @staticmethod
     def uniquify(documents: Sequence['DocumentType']) -> Sequence['DocumentType']:
