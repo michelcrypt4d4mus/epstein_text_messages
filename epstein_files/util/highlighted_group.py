@@ -23,6 +23,7 @@ EPSTEIN_LAWYER = 'lawyer'
 EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} {EPSTEIN_V_ROTHSTEIN_EDWARDS}"
 ESTATE_EXECUTOR = 'estate executor'
 EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
+MC2_MODEL_MANAGEMENT = f"{JEAN_LUC_BRUNEL}'s MC2 Model Management"
 MIDEAST = 'mideast'
 QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
 REGEX_STYLE_PREFIX = 'regex'
@@ -1142,16 +1143,18 @@ HIGHLIGHTED_NAMES = [
         label='modeling',
         style='pale_violet_red1',
         emailers={
-            'Abi Schwinck': 'MC2 Model Management (?)',
+            'Abi Schwinck': f'{MC2_MODEL_MANAGEMENT} {QUESTION_MARKS}',
             DANIEL_SIAD: None,
             FAITH_KATES: 'Next Models co-founder',
             'Gianni Serazzi': 'fashion consultant?',
             HEATHER_MANN: 'South African former model, ex-girlfriend of Prince Andrew (?)',
-            JEAN_LUC_BRUNEL: 'MC2 Model Management founder, died by suicide in French jail',
-            JEFF_FULLER: 'president of MC2 Model Management USA',
+            JEAN_LUC_BRUNEL: f'MC2 Model Management founder, died by suicide in French jail',
+            JEFF_FULLER: f'president of {MC2_MODEL_MANAGEMENT} USA',
+            'lorraine@mc2mm.com': f'{MC2_MODEL_MANAGEMENT}',
+            'pink@mc2mm.com': f'{MC2_MODEL_MANAGEMENT}',
             MANUELA_MARTINEZ: 'Mega Partners (Brazilian agency)',
             MARIANA_IDZKOWSKA: None,
-            'Michael Sanka': 'MC2 Model Management (?)',
+            'Michael Sanka': f'{MC2_MODEL_MANAGEMENT} {QUESTION_MARKS}',
             'Vladimir Yudashkin': 'director of the 1 Mother Agency',
         },
         patterns=[
