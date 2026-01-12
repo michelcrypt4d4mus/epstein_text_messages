@@ -320,7 +320,7 @@ class Person:
 
             table.add_row(
                 Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[0 if is_selection else grey_idx]}"),
-                person.internal_link() if is_on_page else person.name_txt(),
+                person.internal_link() if is_on_page and not person.is_uninteresting_cc else person.name_txt(),
                 # person.name_txt(),  # TODO: make link?
                 person.category_txt(),
                 f"{len(person.unique_emails() if show_epstein_total else person._unique_printable_emails())}",
