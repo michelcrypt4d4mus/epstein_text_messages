@@ -196,6 +196,7 @@ EMAILERS = [
     'Peter Aldhous',
     'Peter Green',
     ROGER_SCHANK,
+    'Roy Black',
     STEVEN_PFEIFFER,
     'Steven Victor MD',
     'Susan Edelman',
