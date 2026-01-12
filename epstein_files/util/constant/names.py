@@ -226,8 +226,8 @@ NAMES_TO_NOT_HIGHLIGHT = """
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr
     kahn karl kate katherine kelly ken kevin krassner
     larry laurie lawrence leon lesley linda link lisa
-    mann marc marie mark martin melanie michael mike miller mitchell miles morris moskowitz
-    nancy neal new nicole
+    mann marc marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
+    nancy neal new nicole norman
     owen
     paul paula pen peter philip prince
     randall rangel reid richard robert rodriguez roger rosenberg ross roth roy rubin

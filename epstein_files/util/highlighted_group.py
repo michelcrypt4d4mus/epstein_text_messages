@@ -26,7 +26,7 @@ EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
 MIDEAST = 'mideast'
 QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
 REGEX_STYLE_PREFIX = 'regex'
-SIMPLE_NAME_REGEX = re.compile(r"^[-\w ]+$", re.IGNORECASE)
+SIMPLE_NAME_REGEX = re.compile(r"^[-\w, ]+$", re.IGNORECASE)
 
 CATEGORY_STYLE_MAPPING = {
     ARTICLE: JOURNALIST,
@@ -230,6 +230,7 @@ HIGHLIGHTED_NAMES = [
             'Nancy Dahl': f'wife of {LAWRENCE_KRAUSS}',
             NEAL_KASSELL: 'professor of neurosurgery at University of Virginia',
             NOAM_CHOMSKY: f"professor of linguistics at MIT",
+            'Norman Finkelstein': 'scholar, well known critic of Israel',
             PETER_ATTIA: 'longevity medicine',
             ROBERT_TRIVERS: 'evolutionary biology',
             ROGER_SCHANK: 'Teachers College, Columbia University',
@@ -835,6 +836,7 @@ HIGHLIGHTED_NAMES = [
             LANDON_THOMAS: 'New York Times',
             MICHAEL_WOLFF: 'Author of "Fire and Fury: Inside the Trump White House"',
             PAUL_KRASSNER: '60s counterculture guy',
+            'Peter Aldhous': 'Buzzfeed science reporter',
             "Susan Edelman": 'New York Post reporter',
             'Tim Zagat': 'Zagat restaurant guide CEO',
         },
