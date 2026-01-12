@@ -69,6 +69,10 @@ INTERESTING_EMAIL_IDS = [
     #'023208',  # Extremely long Leon Black email chain
 ]
 
+INTERESTING_TEXT_IDS = [
+    '027275',  #"Crypto- Kerry- Qatar -sessions"
+]
+
 
 def print_email_timeline(epstein_files: EpsteinFiles) -> None:
     """Print a table of all emails in chronological order."""
