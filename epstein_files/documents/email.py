@@ -154,6 +154,7 @@ TRUNCATION_LENGTHS = {
     '023208': None,    # Long discussion about leon black's finances
     '029609': None,    # Joi Ito
     '025233': None,    # Reputation.com discussion
+    '031791': None,    # First email in Jessica Cadwell chain about service of legal documents
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
@@ -764,8 +765,7 @@ class Email(Communication):
                 'quote_cutoff': quote_cutoff,
             }
 
-            if quote_cutoff != num_chars:
-                logger.debug(f'{self.summary()} truncating: ' + ', '.join([f"{k}={v}" for k, v in log_args.items() if v]) + '\n')
+            logger.debug(f'{self.summary()} truncating: ' + ', '.join([f"{k}={v}" for k, v in log_args.items() if v]) + '\n')
 
         return num_chars
 

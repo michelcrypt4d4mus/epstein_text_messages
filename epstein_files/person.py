@@ -170,6 +170,10 @@ class Person:
         else:
             return Text(self.info_str())
 
+    def internal_link(self) -> Text:
+        """Kind of like an anchor link to the section of the page containing these emails."""
+        return link_text_obj(internal_link_to_emails(self.name_str()), self.name_str(), style=self.style())
+
     def is_a_mystery(self) -> bool:
         """Return True if this is someone we theroetically could know more about."""
         return self.is_unstyled() and not (self.is_email_address() or self.info_str() or self.is_uninteresting_cc)
@@ -298,6 +302,7 @@ class Person:
 
         for person in people:
             earliest_email_date = person.earliest_email_date()
+            is_on_page = False if show_epstein_total else person.name in highlighted_names
             year_months = (earliest_email_date.year * 12) + earliest_email_date.month
 
             # Color year rollovers more brightly
@@ -311,14 +316,15 @@ class Person:
 
             table.add_row(
                 Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[0 if is_selection else grey_idx]}"),
-                person.name_txt(),  # TODO: make link?
+                person.internal_link() if is_on_page else person.name_txt(),
+                # person.name_txt(),  # TODO: make link?
                 person.category_txt(),
                 f"{len(person.unique_emails() if show_epstein_total else person._unique_printable_emails())}",
                 Text(f"{len(person.unique_emails_by())}", style='dim' if len(person.unique_emails_by()) == 0 else ''),
                 Text(f"{len(person.unique_emails_to())}", style='dim' if len(person.unique_emails_to()) == 0 else ''),
                 f"{person.email_conversation_length_in_days()}",
                 person.info_txt() or '',
-                style='' if person.name in highlighted_names else 'dim',
+                style='' if is_on_page else 'dim',
             )
 
         return table

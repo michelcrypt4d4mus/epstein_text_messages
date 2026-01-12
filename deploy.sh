@@ -47,10 +47,10 @@ elif any_uncommitted_changes; then
 fi
 
 # Build .png and push master changes
+epstein_generate --make-clean --suppress-output
 echo -e ""
 print_msg "Building emailer info .png..."
 epstein_generate --build --emailers-info --suppress-output
-epstein_generate --make-clean --suppress-output
 
 if any_uncommitted_changes; then
     git commit -am"Update .png"
