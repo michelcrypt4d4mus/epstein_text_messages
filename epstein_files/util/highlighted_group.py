@@ -151,11 +151,7 @@ class HighlightedNames(HighlightedText):
             name_patterns = [remove_question_marks(name).replace(' ', r"\s+")]
 
         if ' ' in name:
-            first_name = extract_first_name(name)
-            last_name = extract_last_name(name)
-            reversed_name = f"{last_name}, {first_name}"
-
-            for partial_name in [first_name, last_name, reversed_name]:
+            for partial_name in [extract_first_name(name), extract_last_name(name), reversed_name(name)]:
                 if partial_name.lower() not in NAMES_TO_NOT_HIGHLIGHT and SIMPLE_NAME_REGEX.match(partial_name):
                     name_patterns.append(partial_name.replace(' ', r"\s+"))
 

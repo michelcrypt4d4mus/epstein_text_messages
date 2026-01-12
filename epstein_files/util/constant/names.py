@@ -296,3 +296,10 @@ def extract_last_name(name: str) -> str:
         return ' '.join(first_last_names[-2:])
     else:
         return first_last_names[-1]
+
+
+def reversed_name(name: str) -> str:
+    if ' ' not in name:
+        return name
+
+    return f"{extract_last_name(name)}, {extract_first_name(name)}"
