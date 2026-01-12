@@ -39,6 +39,7 @@ HEADER_ABBREVIATIONS = {
     'MBZ': "Mohamed bin Zayed Al Nahyan (Emirates sheikh)",
     "Miro": MIROSLAV_LAJCAK,
     "Mooch": "Anthony 'The Mooch' Scaramucci (Skybridge crypto bro)",
+    "NPA": 'non-prosecution agreement',
     "Terje": TERJE_ROD_LARSEN,
     "VI": f"U.S. {VIRGIN_ISLANDS}",
     "Woody": "Woody Allen",
@@ -86,7 +87,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     JABOR_Y: re.compile(r'[ji]abor\s*y?', re.IGNORECASE),
     JAMES_HILL: re.compile(r"hill, james e.|james.e.hill@abc.com", re.IGNORECASE),
     JANUSZ_BANASIAK: re.compile(r"Janu[is]z Banasiak", re.IGNORECASE),
-    JEAN_LUC_BRUNEL: re.compile(r'Jean[- ]Luc Brunel?', re.IGNORECASE),
+    JEAN_LUC_BRUNEL: re.compile(r'Jean[- ]Luc Brunel?|JeanLuc', re.IGNORECASE),
     JEFF_FULLER: re.compile(r"jeff@mc2mm.com|Jeff Fuller", re.IGNORECASE),
     JEFFREY_EPSTEIN: re.compile(r'[djl]\s?ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeffrey E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(Mark L.|ard Jay) )Epstein', re.IGNORECASE),
     JESSICA_CADWELL: re.compile(r'Jessica Cadwell?', re.IGNORECASE),
@@ -195,6 +196,7 @@ EMAILERS = [
     'Peter Aldhous',
     'Peter Green',
     ROGER_SCHANK,
+    'Roy Black',
     STEVEN_PFEIFFER,
     'Steven Victor MD',
     'Susan Edelman',
@@ -513,7 +515,7 @@ EMAILS_CONFIG = [
         recipients=['George Krassner', 'Nick Kazan', 'Mrisman02', 'Rebecca Risman', 'Linda W. Grossman'],
         duplicate_ids=['031973']
     ),
-    EmailCfg(id='032457', author=PAUL_KRASSNER),  # Bad OCR (nofix)
+    EmailCfg(id='032457', author=PAUL_KRASSNER, recipients=[JEFFREY_EPSTEIN, 'Nancy Cain']),  # Bad OCR (nofix)
     EmailCfg(id='029981', author=PAULA, attribution_reason='Name in reply + opera reference (Fisher now works in opera)'),
     EmailCfg(id='030482', author=PAULA, attribution_reason=PAULA_REASON),
     EmailCfg(id='033383', author=PAUL_PROSPERI, attribution_reason='Reply'),
