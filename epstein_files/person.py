@@ -237,7 +237,7 @@ class Person:
         console.line()
 
     def sort_key(self) -> list[int | str]:
-        counts = [len(self.unique_emails())]
+        counts = [len(self.unique_emails()), int(self.has_any_epstein_emails())]
         counts = [-1 * count for count in counts]
 
         if args.sort_alphabetical:
