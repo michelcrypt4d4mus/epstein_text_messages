@@ -667,6 +667,9 @@ class Email(Communication):
         elif self.file_id in ['032637']:
             for _i in range(3):
                 self._merge_lines(9)
+        elif self.file_id in ['014397']:
+            for _i in range(2):
+                self._merge_lines(4)
 
         # Bad line removal
         if self.file_id == '025041':
