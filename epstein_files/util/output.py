@@ -88,7 +88,7 @@ def print_emailers_info_png(epstein_files: EpsteinFiles) -> None:
     print_color_key()
     console.line()
     all_emailers = sorted(epstein_files.emailers(), key=lambda person: person.sort_key())
-    console.print(Person.emailer_info_table(all_emailers))
+    console.print(Person.emailer_info_table(all_emailers, show_epstein_total=True))
 
     if not args.build:
         logger.warning(f"Not writing .png file because --build is not set")
@@ -222,7 +222,7 @@ def print_text_messages_section(epstein_files: EpsteinFiles) -> list[MessengerLo
 
     if not imessage_logs:
         logger.warning(f"No MessengerLogs found for {args.names}")
-        return
+        return imessage_logs
 
     print_section_header('All of His Text Messages')
     print_centered("(conversations are sorted chronologically based on timestamp of first message in the log file)", style='dim')

@@ -10,7 +10,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
 from epstein_files.util.constants import (EMAILER_ID_REGEXES, EPSTEIN_V_ROTHSTEIN_EDWARDS,
-     OSBORNE_LLP, REPLY_REGEX, SENT_FROM_REGEX, VIRGIN_ISLANDS)
+     OSBORNE_LLP, REPLY_REGEX, SENT_FROM_REGEX)
 from epstein_files.util.doc_cfg import *
 from epstein_files.util.data import without_falsey
 from epstein_files.util.env import args
@@ -20,7 +20,7 @@ CIVIL_ATTORNEY = 'civil attorney'
 CRIMINAL_DEFENSE_ATTORNEY = 'criminal defense attorney'
 CRIMINAL_DEFENSE_2008 = f"{CRIMINAL_DEFENSE_ATTORNEY} on 2008 case"
 EPSTEIN_LAWYER = 'lawyer'
-EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} in {EPSTEIN_V_ROTHSTEIN_EDWARDS}"
+EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} {EPSTEIN_V_ROTHSTEIN_EDWARDS}"
 ESTATE_EXECUTOR = 'estate executor'
 EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
 MIDEAST = 'mideast'
@@ -329,6 +329,7 @@ HIGHLIGHTED_NAMES = [
         label=BILL_GATES,
         style='turquoise4',
         emailers={
+            BILL_GATES: 'ex-Microsoft, Gates Foundation, bgC3',
             BORIS_NIKOLIC: f'biotech VC partner of {BILL_GATES}, {EPSTEIN_ESTATE_EXECUTOR}',
         },
         patterns=[
@@ -517,7 +518,7 @@ HIGHLIGHTED_NAMES = [
             MERWIN_DELA_CRUZ: None,  # HOUSE_OVERSIGHT_032652 Groff says "Jojo and Merwin both requested off Nov. 25 and 26"
             NADIA_MARCINKO: "Epstein's pilot",
             'Sean J. Lancaster': 'airplane reseller',
-            ZUBAIR_KHAN: 'cybersecurity firm Tranchulas CEO, InsightsPod founder, Islamabad/Dubai',
+            ZUBAIR_KHAN: 'cybersecurity firm Tranchulas CEO, InsightsPod founder, Islamabad / Dubai',
         },
         patterns=[
             r"Adriana\s*Ross",
@@ -1369,6 +1370,33 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
+        label='USVI',
+        style='sea_green1',
+        emailers={
+            CECILE_DE_JONGH: 'Virgin Islands first lady 2007-2015',
+            KENNETH_E_MAPP: 'Virgin Islands Governor',
+            STACEY_PLASKETT: 'Virgin Islands non-voting member of Congress',
+        },
+        patterns=[
+            r"Antigua",
+            r"Bahamas",
+            r"BVI",
+            r"Caribb?ean",
+            r"Dominican\s*Republic",
+            r"(Great|Little)\s*St.?\s*James",
+            r"Haiti(an)?",
+            r"(John\s*)deJongh(\s*Jr\.?)",
+            r"(Kenneth E\. )?Mapp",
+            r"PBI",
+            r"Puerto\s*Ric(an|o)",
+            r"S(ain)?t.?\s*Thomas",
+            r"USVI",
+            r"(?<!Epstein )VI",
+            r"(The\s*)?Virgin\s*Islands(\s*Daily\s*News)?",  # Hard to make this work right
+            r"(West\s*)?Palm\s*Beach(?!\s*(Daily|Post))",
+        ],
+    ),
+    HighlightedNames(
         label='victim',
         style='orchid1',
         patterns=[
@@ -1396,33 +1424,6 @@ HIGHLIGHTED_NAMES = [
             r"Paul\s*(G.\s*)?Cassell",
             r"Rothstein\s*Rosenfeldt\s*Adler",
             r"(Scott\s*)?Rothstein",
-        ],
-    ),
-    HighlightedNames(
-        label='USVI',
-        style='sea_green1',
-        emailers={
-            CECILE_DE_JONGH: 'Virgin Islands first lady 2007-2015',
-            KENNETH_E_MAPP: 'Virgin Islands Governor',
-            STACEY_PLASKETT: 'Virgin Islands non-voting member of Congress',
-        },
-        patterns=[
-            r"Antigua",
-            r"Bahamas",
-            r"BVI",
-            r"Caribb?ean",
-            r"Dominican\s*Republic",
-            r"(Great|Little)\s*St.?\s*James",
-            r"Haiti(an)?",
-            r"(John\s*)deJongh(\s*Jr\.?)",
-            r"(Kenneth E\. )?Mapp",
-            r"PBI",
-            r"Puerto\s*Ric(an|o)",
-            r"S(ain)?t.?\s*Thomas",
-            r"USVI",
-            r"(?<!Epstein )VI",
-            r"(The\s*)?Virgin\s*Islands(\s*Daily\s*News)?",  # Hard to make this work right
-            r"(West\s*)?Palm\s*Beach(?!\s*(Daily|Post))",
         ],
     ),
 

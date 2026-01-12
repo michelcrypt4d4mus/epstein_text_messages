@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 from datetime import datetime, date
+from typing import Sequence
 
 from rich.console import Group, RenderableType
 from rich.padding import Padding
@@ -24,7 +25,7 @@ ALT_INFO_STYLE = 'medium_purple4'
 CC = 'cc:'
 MIN_AUTHOR_PANEL_WIDTH = 80
 EMAILER_INFO_TITLE = 'Email Conversations Will Appear'
-UNINTERESTING_CC_INFO = "CC: or BCC: recipient only"
+UNINTERESTING_CC_INFO = "cc: or bcc: recipient only"
 
 INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + MAILING_LISTS + [
     'ACT for America',
@@ -144,10 +145,10 @@ class Person:
             return Text('(emails whose author or recipient could not be determined)', style=ALT_INFO_STYLE)
         elif self.category() == JUNK:
             return Text(f"({JUNK} mail)", style='tan dim')
-        elif self.is_a_mystery():
-            return Text(QUESTION_MARKS, style='magenta dim')
         elif self.is_uninteresting_cc and self.info_str() == UNINTERESTING_CC_INFO:
             return Text(f"({self.info_str()})", style='wheat4 dim')
+        elif self.is_a_mystery():
+            return Text(QUESTION_MARKS, style='dark_sea_green4')
         elif self.info_str() is None:
             if self.name in MAILING_LISTS:
                 return Text('(mailing list)', style=f"{self.style()} dim")
@@ -214,8 +215,8 @@ class Person:
         return self._printable_emails()
 
     def print_emails_table(self) -> None:
-        emails = [email for email in self._printable_emails() if not email.is_duplicate()]  # Remove dupes
-        print_centered(Padding(Email.build_emails_table(emails, self.name), (0, 5, 0, 5)))
+        table = Email.build_emails_table(self._unique_printable_emails(), self.name)
+        print_centered(Padding(table, (0, 5, 0, 5)))
 
         if self.is_linkable():
             print_centered(self.external_links_line())
@@ -234,14 +235,14 @@ class Person:
     def style(self) -> str:
         return get_style_for_name(self.name)
 
-    def unique_emails(self) -> list[Email]:
-        return [email for email in self.emails if not email.is_duplicate()]
+    def unique_emails(self) -> Sequence[Email]:
+        return Document.without_dupes(self.emails)
 
     def unique_emails_by(self) -> list[Email]:
-        return [email for email in self.emails_by() if not email.is_duplicate()]
+        return Document.without_dupes(self.emails_by())
 
     def unique_emails_to(self) -> list[Email]:
-        return [email for email in self.emails_to() if not email.is_duplicate()]
+        return Document.without_dupes(self.emails_to())
 
     def _printable_emails(self):
         """For Epstein we only want to print emails he sent to himself."""
@@ -250,11 +251,14 @@ class Person:
         else:
             return self.emails
 
+    def _unique_printable_emails(self):
+        return Document.without_dupes(self._printable_emails())
+
     def __str__(self):
         return f"{self.name_str()}"
 
     @staticmethod
-    def emailer_info_table(people: list['Person'], highlighted: list['Person'] | None = None) -> Table:
+    def emailer_info_table(people: list['Person'], highlighted: list['Person'] | None = None, show_epstein_total: bool = False) -> Table:
         """Table of info about emailers."""
         highlighted = highlighted or people
         highlighted_names = [p.name for p in highlighted]
@@ -267,7 +271,7 @@ class Person:
             title = f"{EMAILER_INFO_TITLE} in Chronological Order Based on Timestamp of First Email"
 
         table = build_table(title)
-        table.add_column('Start')
+        table.add_column('First')
         table.add_column('Name', max_width=24, no_wrap=True)
         table.add_column('Category', justify='left', style='dim italic')
         table.add_column('Num', justify='right', style='white')
@@ -296,55 +300,12 @@ class Person:
                 Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[0 if is_selection else grey_idx]}"),
                 person.name_txt(),  # TODO: make link?
                 person.category_txt(),
-                f"{len(person._printable_emails())}",
-                f"{len(person.unique_emails_by())}",
-                f"{len(person.unique_emails_to())}",
+                f"{len(person.unique_emails() if show_epstein_total else person._unique_printable_emails())}",
+                Text(f"{len(person.unique_emails_by())}", style='dim' if len(person.unique_emails_by()) == 0 else ''),
+                Text(f"{len(person.unique_emails_to())}", style='dim' if len(person.unique_emails_to()) == 0 else ''),
                 f"{person.email_conversation_length_in_days()}",
                 person.info_txt() or '',
                 style='' if person.name in highlighted_names else 'dim',
             )
 
         return table
-
-    @staticmethod
-    def emailer_stats_table(people: list['Person']) -> Table:
-        email_authors = [p for p in people if p.emails_by() and p.name]
-        all_emails = Document.uniquify(flatten([p.unique_emails() for p in people]))
-        attributed_emails = [email for email in all_emails if email.author]
-        footer = f"(identified {len(email_authors)} authors of {len(attributed_emails):,}"
-        footer = f"{footer} out of {len(attributed_emails):,} emails)"
-
-        counts_table = build_table(
-            f"All {len(email_authors)} People Who Sent or Received an Email in the Files",
-            caption=footer,
-            cols=[
-                'Name',
-                {'name': 'Count', 'justify': 'right', 'style': 'bold bright_white'},
-                {'name': 'Sent', 'justify': 'right', 'style': 'gray74'},
-                {'name': 'Recv', 'justify': 'right', 'style': 'gray74'},
-                {'name': 'First', 'style': TIMESTAMP_STYLE},
-                {'name': 'Last', 'style': LAST_TIMESTAMP_STYLE},
-                {'name': 'Days', 'justify': 'right', 'style': 'dim'},
-                JMAIL,
-                EPSTEIN_MEDIA,
-                EPSTEIN_WEB,
-                'Twitter',
-            ]
-        )
-
-        for person in sorted(people, key=lambda person: person.sort_key()):
-            counts_table.add_row(
-                person.name_link(),
-                f"{len(person.unique_emails()):,}",
-                f"{len(person.unique_emails_by()):,}",
-                f"{len(person.unique_emails_to()):,}",
-                str(person.earliest_email_date()),
-                str(person.last_email_date()),
-                f"{person.email_conversation_length_in_days()}",
-                person.external_link_txt(JMAIL),
-                person.external_link_txt(EPSTEIN_MEDIA) if person.is_linkable() else '',
-                person.external_link_txt(EPSTEIN_WEB) if person.is_linkable() else '',
-                person.external_link_txt(TWITTER),
-            )
-
-        return counts_table
