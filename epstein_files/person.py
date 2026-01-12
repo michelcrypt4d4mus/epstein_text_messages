@@ -136,8 +136,12 @@ class Person:
         highlight_group = self.highlight_group()
 
         if highlight_group and isinstance(highlight_group, HighlightedNames) and self.name:
-            return highlight_group.info_for(self.name)
-        elif self.is_uninteresting_cc:
+            info = highlight_group.info_for(self.name)
+
+            if info:
+                return info
+
+        if self.is_uninteresting_cc:
             if self.has_any_epstein_emails():
                 return UNINTERESTING_CC_INFO
             else:
@@ -147,6 +151,9 @@ class Person:
         return ', '.join(without_falsey([self.category(), self.info_str()]))
 
     def info_txt(self) -> Text | None:
+        # if self.name_str().startswith('p.peachev'):
+        #     import pdb;pdb.set_trace()
+
         if self.name == JEFFREY_EPSTEIN:
             return Text('(emails sent by Epstein to himself are here)', style=ALT_INFO_STYLE)
         elif self.name is None:
