@@ -17,12 +17,13 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP
-from epstein_files.util.data import collapse_newlines, date_str, patternize, remove_zero_time_from_timestamp_str, without_falsey
+from epstein_files.util.data import collapse_newlines, date_str, patternize, remove_zero_time, without_falsey
 from epstein_files.util.doc_cfg import DUPE_TYPE_STRS, EmailCfg, DocCfg, Metadata, TextCfg
 from epstein_files.util.env import DOCS_DIR, args
 from epstein_files.util.file_helper import extract_file_id, file_size, file_size_str, file_size_to_str, is_local_extract_file
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
-from epstein_files.util.rich import INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_cols_to_table, build_table, console, highlighter, join_texts, key_value_txt, link_text_obj, parenthesize
+from epstein_files.util.rich import (INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_cols_to_table, build_table, console,
+     highlighter, join_texts, key_value_txt, link_text_obj, parenthesize)
 from epstein_files.util.search_result import MatchedLine
 
 ALT_LINK_STYLE = 'white dim'
@@ -262,7 +263,7 @@ class Document:
         txt.append(f" {self.file_path.stem}", style=FILENAME_STYLE)
 
         if self.timestamp:
-            timestamp_str = remove_zero_time_from_timestamp_str(self.timestamp).replace('T', ' ')
+            timestamp_str = remove_zero_time(self.timestamp).replace('T', ' ')
             txt.append(' (', style=SYMBOL_STYLE)
             txt.append(f"{timestamp_str}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
 

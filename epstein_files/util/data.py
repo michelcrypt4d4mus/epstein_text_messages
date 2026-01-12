@@ -29,7 +29,7 @@ escape_single_quotes = lambda text: text.replace("'", r"\'")
 iso_timestamp = lambda dt: dt.isoformat().replace('T', ' ')
 days_between = lambda dt1, dt2: (dt2 - dt1).days + 1
 days_between_str = lambda dt1, dt2: f"{days_between(dt1, dt2)} day" + ('s' if days_between(dt1, dt2) > 1 else '')
-remove_zero_time_from_timestamp_str = lambda dt: dt.isoformat().removesuffix('T00:00:00')
+remove_zero_time = lambda dt: dt.isoformat().removesuffix('T00:00:00')
 uniquify = lambda _list: list(set(_list))
 without_falsey = lambda _list: [e for e in _list if e]
 
