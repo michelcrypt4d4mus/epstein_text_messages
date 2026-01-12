@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Internal links
 
 ### 1.2.1
 
