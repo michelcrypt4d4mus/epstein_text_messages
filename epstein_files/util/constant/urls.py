@@ -6,6 +6,7 @@ from inflection import parameterize
 from rich.text import Text
 
 from epstein_files.util.constant.output_files import *
+from epstein_files.util.constant.strings import remove_question_marks
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import coerce_file_stem
 
@@ -72,7 +73,6 @@ rollcall_doc_url = lambda file_stem: build_doc_url(DOC_LINK_BASE_URLS[ROLLCALL],
 search_jmail_url = lambda txt: f"{JMAIL_URL}/search?q={urllib.parse.quote(txt)}"
 search_twitter_url = lambda txt: f"https://x.com/search?q={urllib.parse.quote(txt)}&src=typed_query&f=live"
 
-
 PERSON_LINK_BUILDERS: dict[ExternalSite, Callable[[str], str]] = {
     EPSTEIN_MEDIA: epstein_media_person_url,
     EPSTEIN_WEB: epstein_web_person_url,
@@ -98,6 +98,12 @@ def external_doc_link_txt(site: ExternalSite, filename_or_id: int | str, style: 
     return Text.from_markup(external_doc_link_markup(site, filename_or_id, style))
 
 
+def internal_link_to_emails(name: str) -> str:
+    """e.g. https://michelcrypt4d4mus.github.io/epstein_text_messages/all_emails_epstein_files_nov_2025.html#:~:text=to%2Ffrom%20Jack%20Goldberger"""
+    search_term = urllib.parse.quote(f"to/from {remove_question_marks(name)}")
+    return f"{this_site_url()}#:~:text={search_term}"
+
+
 def link_markup(
     url: str,
     link_text: str | None = None,
@@ -119,6 +125,10 @@ def other_site_type() -> SiteType:
 
 def other_site_url() -> str:
     return SITE_URLS[other_site_type()]
+
+
+def this_site_url() -> str:
+    return SITE_URLS[EMAIL if other_site_type() == TEXT_MESSAGE else TEXT_MESSAGE]
 
 
 CRYPTADAMUS_TWITTER = link_markup('https://x.com/cryptadamist', '@cryptadamist')
