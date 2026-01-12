@@ -8,7 +8,7 @@ from dateutil.parser import parse
 
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.data import remove_zero_time_from_timestamp_str, without_falsey
+from epstein_files.util.data import remove_zero_time, without_falsey
 
 DuplicateType = Literal['earlier', 'quoted', 'redacted', 'same']
 Metadata = dict[str, bool | datetime | int | str | list[str | None] |dict[str, bool | str]]
@@ -163,7 +163,7 @@ class DocCfg:
             elif _field.name == 'timestamp' and self.date is not None:
                 continue  # Don't print both timestamp and date
             elif isinstance(value, datetime):
-                value_str = remove_zero_time_from_timestamp_str(value)
+                value_str = remove_zero_time(value)
                 add_prop(_field, f"parse('{value_str}')" if CONSTANTIZE_NAMES else f"'{value}'")
             elif isinstance(value, str):
                 if "'" in value:

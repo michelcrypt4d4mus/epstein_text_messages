@@ -18,7 +18,7 @@ from epstein_files.util.constant.strings import AUTHOR, TIMESTAMP_STYLE
 from epstein_files.util.data import dict_sets_to_lists, uniquify
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
-from epstein_files.util.logging import logger
+from epstein_files.util.logging import logger, exit_with_error
 from epstein_files.util.rich import *
 
 DEVICE_SIGNATURE_SUBTITLE = f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown"
@@ -70,7 +70,8 @@ INTERESTING_EMAIL_IDS = [
 ]
 
 INTERESTING_TEXT_IDS = [
-    '027275',  #"Crypto- Kerry- Qatar -sessions"
+    '027275',  # "Crypto- Kerry- Qatar -sessions"
+    '027165',  # melaniee walker crypto health
 ]
 
 
@@ -116,7 +117,10 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     people_to_print: list[Person]
 
     if args.names:
-        people_to_print = epstein_files.person_objs(args.names)
+        try:
+            people_to_print = epstein_files.person_objs(args.names)
+        except Exception as e:
+            exit_with_error(str(e))
     else:
         if args.all_emails:
             people_to_print = all_emailers
@@ -157,7 +161,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     if args.all_emails:
         _verify_all_emails_were_printed(epstein_files, printed_emails)
 
-    _print_email_device_info(epstein_files)
+    _print_email_device_signature_info(epstein_files)
     fwded_articles = [e for e in printed_emails if e.config and e.is_fwded_article()]
     log_msg = f"Rewrote {len(Email.rewritten_header_ids)} of {len(printed_emails)} email headers"
     logger.warning(f"  -> {log_msg}, {len(fwded_articles)} of the Emails printed were forwarded articles.")
@@ -265,7 +269,7 @@ def write_urls() -> None:
     logger.warning(f"Wrote {len(url_vars)} URL variables to '{URLS_ENV}'\n")
 
 
-def _print_email_device_info(epstein_files: EpsteinFiles) -> None:
+def _print_email_device_signature_info(epstein_files: EpsteinFiles) -> None:
     print_subtitle_panel(DEVICE_SIGNATURE_SUBTITLE)
     console.print(_signature_table(epstein_files.email_device_signatures_to_authors(), (DEVICE_SIGNATURE, AUTHOR), ', '))
     console.print(_signature_table(epstein_files.email_authors_to_device_signatures(), (AUTHOR, DEVICE_SIGNATURE)))

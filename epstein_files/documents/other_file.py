@@ -252,4 +252,5 @@ class OtherFile(Document):
             category_files = [f for f in files if f.category() == category]
             table.add_row(styled_category(category), *cls.files_info_row(category_files))
 
+        table.columns = table.columns[:-2] + [table.columns[-1]]  # Removee unknown author col
         return table

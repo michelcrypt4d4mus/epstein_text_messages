@@ -9,7 +9,6 @@ from epstein_files.util.logging import logger
 from epstein_files.util.rich import UNKNOWN
 
 FIELD_NAMES = ['Date', 'From', 'Sent', 'Subject']
-NON_HEADER_FIELDS = ['field_names', 'num_header_rows', 'was_initially_empty']
 ON_BEHALF_OF = 'on behalf of'
 TO_FIELDS = ['bcc', 'cc', 'to']
 EMAILER_FIELDS = [AUTHOR] + TO_FIELDS
@@ -28,10 +27,18 @@ CONFIGURED_ACTUAL_TEXTS = [
     if isinstance(cfg, EmailCfg) and cfg.actual_text is not None
 ]
 
+NON_HEADER_FIELDS = [
+    'field_names',
+    'header_chars',
+    'num_header_rows',
+    'was_initially_empty',
+]
+
 
 @dataclass(kw_only=True)
 class EmailHeader:
     field_names: list[str]  # Order is same as the order header fields appear in the email file text
+    header_chars: str = ''
     num_header_rows: int = field(init=False)
     was_initially_empty: bool = False
 
@@ -101,6 +108,7 @@ class EmailHeader:
             setattr(self, field_name, value)
 
         self.num_header_rows = len(self.field_names) + num_headers
+        self.header_chars = '\n'.join(email_lines[0:self.num_header_rows])
         log_msg = f"Corrected empty header using {self.num_header_rows} lines to:\n"
         logger.debug(f"{log_msg}{self}\n\nTop lines:\n\n%s", '\n'.join(email_lines[0:(num_headers + 1) * 2]))
 
@@ -163,7 +171,7 @@ class EmailHeader:
         if should_log_header:
             logger.debug(f"Header being parsed was this:\n\n{header}\n")
 
-        return EmailHeader(field_names=field_names, **kw_args)
+        return cls(field_names=field_names, header_chars=header, **kw_args)
 
     @staticmethod
     def cleanup_str(_str: str) -> str:
