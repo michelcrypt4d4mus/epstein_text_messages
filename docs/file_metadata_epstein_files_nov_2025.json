@@ -17192,6 +17192,7 @@
                 "bytes": 7709,
                 "file_id": "030983",
                 "filename": "HOUSE_OVERSIGHT_030983.txt",
+                "is_fwded_article": true,
                 "num_lines": 102,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -33301,7 +33302,7 @@
                 "type": "OtherFile"
             },
             {
-                "author": "Epstein v. Scott Rothstein, Brad Edwards, and L.M.",
+                "author": "Epstein v. Scott Rothstein, Brad Edwards, & L.M.",
                 "bytes": 79852,
                 "category": "legal",
                 "description": "Statement of Undisputed Facts",
@@ -33531,7 +33532,7 @@
                 "was_timestamp_extracted": true
             },
             {
-                "author": "Epstein v. Scott Rothstein, Brad Edwards, and L.M.",
+                "author": "Epstein v. Scott Rothstein, Brad Edwards, & L.M.",
                 "bytes": 59617,
                 "category": "legal",
                 "description": "Telephone Interview with Virginia Giuffre",
@@ -33622,7 +33623,7 @@
                 "type": "OtherFile"
             },
             {
-                "author": "Epstein v. Scott Rothstein, Brad Edwards, and L.M.",
+                "author": "Epstein v. Scott Rothstein, Brad Edwards, & L.M.",
                 "bytes": 5220,
                 "category": "legal",
                 "description": "Master Contact List - Privilege Log",
@@ -33709,7 +33710,7 @@
                 "type": "OtherFile"
             },
             {
-                "author": "Epstein v. Scott Rothstein, Brad Edwards, and L.M.",
+                "author": "Epstein v. Scott Rothstein, Brad Edwards, & L.M.",
                 "bytes": 169046,
                 "category": "legal",
                 "description": "Plaintiff Response to Epstein's Motion for Summary Judgment",
@@ -34604,7 +34605,7 @@
                 "was_timestamp_extracted": true
             },
             {
-                "author": "Epstein v. Scott Rothstein, Brad Edwards, and L.M.",
+                "author": "Epstein v. Scott Rothstein, Brad Edwards, & L.M.",
                 "bytes": 147508,
                 "category": "legal",
                 "description": "Deposition of Scott Rothstein",
@@ -37696,7 +37697,7 @@
                 "type": "OtherFile"
             },
             {
-                "author": "Epstein v. Scott Rothstein, Brad Edwards, and L.M.",
+                "author": "Epstein v. Scott Rothstein, Brad Edwards, & L.M.",
                 "bytes": 23846,
                 "category": "legal",
                 "description": "Plaintiff Motion for Summary Judgment by Jack Scarola",
@@ -39185,7 +39186,7 @@
     },
     "people": {
         "Abdoulaye Wade": "Africa, former president of Senegal, father of Karim Wade",
-        "Abi Schwinck": "modeling, MC2 Model Management (?)",
+        "Abi Schwinck": "modeling, Jean Luc Brunel's MC2 Model Management (???)",
         "Al Seckel": "publicist, Isabel Maxwell's husband, Mindshift conference, fell off a cliff",
         "Alain Forget": "journalist, author of \"How To Get Out Of This World ALIVE\"",
         "Alan Dershowitz": "lawyer, Harvard Law School professor",
@@ -39273,7 +39274,7 @@
         "Jay Lefkowitz": "lawyer, Kirkland & Ellis partner, criminal defense attorney on 2008 case",
         "Jean Huguen": "employee, interior design at Alberto Pinto Cabinet",
         "Jean Luc Brunel": "modeling, MC2 Model Management founder, died by suicide in French jail",
-        "Jeff Fuller": "modeling, president of MC2 Model Management USA",
+        "Jeff Fuller": "modeling, president of Jean Luc Brunel's MC2 Model Management USA",
         "Jeffrey Wernick": "bitcoin, former COO of Parler, involved in numerous crypto companies like Bitforex",
         "Jennifer Jacquet": "journalist, Future Science magazine",
         "Jeremy Rubin": "bitcoin, developer/researcher",
@@ -39319,7 +39320,7 @@
         "Melanie Spinella": "finance, representative of Leon Black",
         "Melanie Walker": "friend, doctor, friend of Bill Gates",
         "Michael Miller": "lawyer, Steptoe LLP partner",
-        "Michael Sanka": "modeling, MC2 Model Management (?)",
+        "Michael Sanka": "modeling, Jean Luc Brunel's MC2 Model Management (???)",
         "Michael Sitrick": "publicist, crisis PR",
         "Michael Wolff": "journalist, Author of \"Fire and Fury: Inside the Trump White House\"",
         "Miles Alexander": "Africa, Operations Manager Michaelhouse Balgowan KwaZulu-Natal South Africa",
@@ -39396,6 +39397,8 @@
         "Vincenzo Iozzo": "tech bro, CEO of the identity-security company SlashID",
         "Vladimir Yudashkin": "modeling, director of the 1 Mother Agency",
         "Zubair Khan": "employee, cybersecurity firm Tranchulas CEO, InsightsPod founder, Islamabad / Dubai",
-        "linkspirit": "friend, Skype username of someone Epstein communicated with"
+        "linkspirit": "friend, Skype username of someone Epstein communicated with",
+        "lorraine@mc2mm.com": "modeling, Jean Luc Brunel's MC2 Model Management",
+        "pink@mc2mm.com": "modeling, Jean Luc Brunel's MC2 Model Management"
     }
 }
