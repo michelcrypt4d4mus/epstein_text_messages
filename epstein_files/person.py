@@ -159,7 +159,7 @@ class Person:
         elif self.name is None:
             return Text('(emails whose author or recipient could not be determined)', style=ALT_INFO_STYLE)
         elif self.category() == JUNK:
-            return Text(f"({JUNK} mail)", style='tan dim')
+            return Text(f"({JUNK} mail)", style='bright_black dim')
         elif self.is_uninteresting_cc and (self.info_str() or '').startswith(UNINTERESTING_CC_INFO):
             if self.info_str() == UNINTERESTING_CC_INFO:
                 return Text(f"({self.info_str()})", style='wheat4 dim')
