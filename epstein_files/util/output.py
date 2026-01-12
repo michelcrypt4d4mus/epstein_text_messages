@@ -18,7 +18,7 @@ from epstein_files.util.constant.strings import AUTHOR, TIMESTAMP_STYLE
 from epstein_files.util.data import dict_sets_to_lists, uniquify
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
-from epstein_files.util.logging import logger
+from epstein_files.util.logging import logger, exit_with_error
 from epstein_files.util.rich import *
 
 DEVICE_SIGNATURE_SUBTITLE = f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown"
@@ -117,7 +117,10 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     people_to_print: list[Person]
 
     if args.names:
-        people_to_print = epstein_files.person_objs(args.names)
+        try:
+            people_to_print = epstein_files.person_objs(args.names)
+        except Exception as e:
+            exit_with_error(str(e))
     else:
         if args.all_emails:
             people_to_print = all_emailers

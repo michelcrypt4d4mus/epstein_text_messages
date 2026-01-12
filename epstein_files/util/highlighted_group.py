@@ -1014,7 +1014,7 @@ HIGHLIGHTED_NAMES = [
             r"SEC",
             r"Secret\s*Service",
             r"Securities\s*and\s*Exchange\s*Commission",
-            r"Southern\s*District\s*of\s*(Florida|New\s*York)",
+            r"Southern\s*District(\s*of\s*(Florida|New\s*York))?",
             r"State\s*Dep(artmen)?t",
             r"Strzok",
             r"Supreme\s*Court",
