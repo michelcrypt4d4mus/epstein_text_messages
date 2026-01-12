@@ -278,8 +278,8 @@ class Person:
         is_selection = len(people) != len(highlighted) or args.emailers_info
 
         if is_selection:
-            title = Text(f"{EMAILER_INFO_TITLE} in This Order for the Highlighted Names (see ", style=TABLE_TITLE_STYLE)
-            title.append(THE_OTHER_PAGE_TXT).append(" for the rest)")
+            title = Text(f"{EMAILER_INFO_TITLE} in This Order for the Highlighted Names (", style=TABLE_TITLE_STYLE)
+            title.append(THE_OTHER_PAGE_TXT).append(" has the rest)")
         else:
             title = f"{EMAILER_INFO_TITLE} in Chronological Order Based on Timestamp of First Email"
 
