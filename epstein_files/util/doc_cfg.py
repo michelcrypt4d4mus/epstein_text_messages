@@ -81,6 +81,7 @@ class DocCfg:
     dupe_type: DuplicateType | None = None
     duplicate_ids: list[str] = field(default_factory=list)
     duplicate_of_id: str | None = None
+    is_attribution_uncertain: bool = False
     is_interesting: bool | None = None
     is_synthetic: bool = False
     timestamp: datetime | None = None
@@ -206,7 +207,6 @@ class CommunicationCfg(DocCfg):
         is_attribution_uncertain (bool): True if we have a good idea of who the author is but are not 100% certain
     """
     attribution_reason: str | None = None
-    is_attribution_uncertain: bool = False
 
     def __repr__(self) -> str:
         return super().__repr__()

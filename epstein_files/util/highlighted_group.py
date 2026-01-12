@@ -26,7 +26,8 @@ EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
 MIDEAST = 'mideast'
 QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
 REGEX_STYLE_PREFIX = 'regex'
-SIMPLE_NAME_REGEX = re.compile(r"^[-\w ]+$", re.IGNORECASE)
+SIMPLE_NAME_REGEX = re.compile(r"^[-\w, ]+$", re.IGNORECASE)
+TECH_BRO = 'tech bro'
 
 CATEGORY_STYLE_MAPPING = {
     ARTICLE: JOURNALIST,
@@ -151,7 +152,7 @@ class HighlightedNames(HighlightedText):
             name_patterns = [remove_question_marks(name).replace(' ', r"\s+")]
 
         if ' ' in name:
-            for partial_name in [extract_first_name(name), extract_last_name(name)]:
+            for partial_name in [extract_first_name(name), extract_last_name(name), reversed_name(name)]:
                 if partial_name.lower() not in NAMES_TO_NOT_HIGHLIGHT and SIMPLE_NAME_REGEX.match(partial_name):
                     name_patterns.append(partial_name.replace(' ', r"\s+"))
 
@@ -218,17 +219,19 @@ HIGHLIGHTED_NAMES = [
         label=ACADEMIA,
         style='light_goldenrod2',
         emailers={
-            DAVID_HAIG: 'evolutionary geneticist?',
-            JOSCHA_BACH: 'cognitive science / AI research',
             'Daniel Kahneman': 'Nobel economic sciences laureate and cognitivie psychologist (?)',
-            'Ed Boyden': f'Associate Professor, {MIT_MEDIA_LAB} neurobiology',
+            DAVID_HAIG: 'evolutionary geneticist?',
+            'David Grosof': 'MIT Sloan School of Management',
+            'Ed Boyden': f'{MIT_MEDIA_LAB} neurobiology professor',
             'Harry Fisch': "men's health expert at New York-Presbyterian / Weill Cornell (?)",
-            LAWRENCE_KRAUSS: 'theoretical physicist',
+            JOSCHA_BACH: 'cognitive science / AI research',
+            LAWRENCE_KRAUSS: 'theoretical physicist with #MeToo problems',
             LINDA_STONE: f'ex-Microsoft, {MIT_MEDIA_LAB}',
             MARK_TRAMO: 'professor of neurology at UCLA',
             'Nancy Dahl': f'wife of {LAWRENCE_KRAUSS}',
             NEAL_KASSELL: 'professor of neurosurgery at University of Virginia',
             NOAM_CHOMSKY: f"professor of linguistics at MIT",
+            'Norman Finkelstein': 'scholar, well known critic of Israel',
             PETER_ATTIA: 'longevity medicine',
             ROBERT_TRIVERS: 'evolutionary biology',
             ROGER_SCHANK: 'Teachers College, Columbia University',
@@ -240,7 +243,6 @@ HIGHLIGHTED_NAMES = [
             r"Carl\s*Sagan",
             r"Columbia",
             r"Dan(iel|ny) Kahneman",
-            r"David Grosof",
             r"J(ames|im)\s*Watson",
             r"(Lord\s*)?Martin\s*Rees",
             r"Massachusetts\s*Institute\s*of\s*Technology",
@@ -299,6 +301,7 @@ HIGHLIGHTED_NAMES = [
             DAVID_BLAINE: 'famous magician',
             'Richard Merkin': 'painter, illustrator and arts educator',
             STEVEN_PFEIFFER: 'Associate Director at Independent Filmmaker Project (IFP)',
+            'Steven Gaydos': 'American screenwriter and journalist',
         },
         patterns=[
             r"(Art )?Spiegelman",
@@ -320,7 +323,6 @@ HIGHLIGHTED_NAMES = [
             r"Ramsey Elkholy",
             r"Regan arts",
             r"shirley maclaine",
-            r"Steven Gaydos?",
             r"Woody( Allen)?",
             r"Zach Braff",
         ],
@@ -328,6 +330,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label=BILL_GATES,
         style='turquoise4',
+        category=TECH_BRO,
         emailers={
             BILL_GATES: 'ex-Microsoft, Gates Foundation, bgC3',
             BORIS_NIKOLIC: f'biotech VC partner of {BILL_GATES}, {EPSTEIN_ESTATE_EXECUTOR}',
@@ -565,7 +568,7 @@ HIGHLIGHTED_NAMES = [
             'Robert Gold': 'helped Epstein track down money belonging to Spanish families',
             'Roy Black': CRIMINAL_DEFENSE_2008,
             SCOTT_J_LINK: CRIMINAL_DEFENSE_ATTORNEY,
-            TONJA_HADDAD_COLEMAN: f'{EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY}, relation of Fred Haddad?',
+            TONJA_HADDAD_COLEMAN: f'{EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY}',  # relation of Fred Haddad?
         },
         patterns=[
             r"(Barry (E. )?)?Krischer",
@@ -593,8 +596,10 @@ HIGHLIGHTED_NAMES = [
         style='light_sky_blue3',
         emailers={
             ANDRZEJ_DUDA: 'former president of Poland',
+            'Caroline Lang': 'daughter of Jack Lang',
             "Edward Rod Larsen": f"son of {TERJE_ROD_LARSEN}",
             'Fabrice Aidan': f'diplomat who worked with {TERJE_ROD_LARSEN}',
+            'Jack Lang': 'former French Minister of National Education',
             MIROSLAV_LAJCAK: 'Russia-friendly Slovakian politician, friend of Steve Bannon',
             PETER_MANDELSON: 'UK politics',
             TERJE_ROD_LARSEN: 'Norwegian diplomat',
@@ -611,7 +616,6 @@ HIGHLIGHTED_NAMES = [
             r"Brit(ain|ish)",
             r"Brussels",
             r"Cannes",
-            r"(Caroline|Jack)?\s*Lang(, Caroline)?",
             r"Cypr(iot|us)",
             r"Davos",
             r"ECB",
@@ -662,12 +666,13 @@ HIGHLIGHTED_NAMES = [
         emailers={
             AMANDA_ENS: 'Citigroup',
             BRAD_WECHSLER: f"head of {LEON_BLACK}'s personal investment vehicle according to FT",
+            CECILIA_STEEN: None,
             DANIEL_SABBA: 'UBS Investment Bank',
             DAVID_FISZEL: 'CIO Honeycomb Asset Management',
             JES_STALEY: 'former CEO of Barclays',
             JIDE_ZEITLIN: 'former partner at Goldman Sachs, allegations of sexual misconduct',
             'Laurie Cameron': 'currency trading',
-            LEON_BLACK: 'Apollo CEO',
+            LEON_BLACK: 'Apollo CEO who paid Epstein tens of millions for tax advice',
             MARC_LEON: 'Luxury Properties Sari Morrocco',
             MELANIE_SPINELLA: 'representative of Leon Black',
             MORTIMER_ZUCKERMAN: 'business partner of Epstein, newspaper publisher',
@@ -826,19 +831,21 @@ HIGHLIGHTED_NAMES = [
         style='bright_yellow',
         emailers={
             'Alain Forget': 'author of "How To Get Out Of This World ALIVE"',
+            'Alex Yablon': 'New York Magazine fact checker (?)',
             EDWARD_JAY_EPSTEIN: 'no relation, wrote books about spies',
             HENRY_HOLT: f"{MICHAEL_WOLFF}'s book publisher",
             JAMES_HILL: 'ABC News',
-            JENNIFER_JACQUET: 'Future Science',
+            JENNIFER_JACQUET: 'Future Science magazine',
             JOHN_BROCKMAN: 'literary agent and author specializing in scientific literature',
-            LANDON_THOMAS: 'New York Times',
+            LANDON_THOMAS: 'New York Times financial reporter',
             MICHAEL_WOLFF: 'Author of "Fire and Fury: Inside the Trump White House"',
             PAUL_KRASSNER: '60s counterculture guy',
+            'Peter Aldhous': 'Buzzfeed science reporter',
+            "Susan Edelman": 'New York Post reporter',
             'Tim Zagat': 'Zagat restaurant guide CEO',
         },
         patterns=[
             r"ABC(\s*News)?",
-            r"Alex\s*Yablon",
             r"Arianna(\s*Huffington)?",
             r"(Arthur\s*)?Kretchmer",
             r'Associated\s*Press',
@@ -895,7 +902,6 @@ HIGHLIGHTED_NAMES = [
             r"(Sean\s*)?Hannity",
             r"Sulzberger",
             r"SunSentinel",
-            r"Susan Edelman",
             r"(The\s*)?Financial\s*Times",
             r"The\s*Guardian",
             r"TheHill",
@@ -956,6 +962,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             ANN_MARIE_VILLAFANA: 'Southern District of Florida (SDFL) U.S. Attorney',
             DANNY_FROST: 'Director of Communications at Manhattan D.A.',
+            'Police Code Enforcement': f"{PALM_BEACH} buildings code enforcement",
         },
         patterns=[
             r"AG",
@@ -999,7 +1006,7 @@ HIGHLIGHTED_NAMES = [
             r"(Michael\s*)?Reiter",
             r"OGE",
             r"Office\s*of\s*Government\s*Ethics",
-            r"Police Code Enforcement",
+            r"police",
             r"(Preet\s*)?Bharara",
             r"SCOTUS",
             r"SD(FL|NY)",
@@ -1302,7 +1309,7 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        label='tech bro',
+        label=TECH_BRO,
         style='bright_cyan',
         emailers={
             'Auren Hoffman': 'CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp',
@@ -1426,8 +1433,6 @@ HIGHLIGHTED_NAMES = [
             r"(Scott\s*)?Rothstein",
         ],
     ),
-
-    # Individuals
     HighlightedNames(
         label=STEVE_BANNON,
         style='color(58)',
@@ -1441,13 +1446,20 @@ HIGHLIGHTED_NAMES = [
             r"Biosphere",
         ],
     ),
+
+    # Individuals
     HighlightedNames(
+        emailers={STEVEN_HOFFENBERG: "Epstein's Towers Financial ponzi scheme partner, prison 18 years"},
         style='dark_olive_green3',
         category=FINANCE,
-        emailers={STEVEN_HOFFENBERG: "Epstein's Towers Financial ponzi scheme partner, prison 18 years"},
         patterns=[r"(steven?\s*)?hoffenberg?w?"],
     ),
-    HighlightedNames(emailers={GHISLAINE_MAXWELL: None}, patterns=[r"gmax(1@ellmax.com)?", r"(The )?TerraMar Project"], style='deep_pink3', category='Epstein'),
+    HighlightedNames(
+        emailers={GHISLAINE_MAXWELL: "Epstein's girlfriend, daughter of the spy Robert Maxwell"},
+        category='Epstein',
+        patterns=[r"gmax(1@ellmax.com)?", r"(The )?TerraMar Project"],
+        style='deep_pink3',
+    ),
     HighlightedNames(emailers={JABOR_Y: '"an influential man in Qatar"'}, category=MIDEAST, style='spring_green1'),
     HighlightedNames(emailers={KATHRYN_RUEMMLER: 'former Obama legal counsel'}, style='magenta2', category=FRIEND),
     HighlightedNames(emailers={MELANIE_WALKER: f"doctor, friend of {BILL_GATES}"}, style='pale_violet_red1', category=FRIEND),

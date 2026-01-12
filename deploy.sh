@@ -49,7 +49,7 @@ fi
 # Build .png and push master changes
 echo -e ""
 print_msg "Building emailer info .png..."
-epstein_generate --build --emailers-info-png --suppress-output
+epstein_generate --build --emailers-info --suppress-output
 epstein_generate --make-clean --suppress-output
 git commit -am"Update .png"
 git push origin master --quiet
