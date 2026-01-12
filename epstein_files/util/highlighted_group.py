@@ -859,7 +859,7 @@ HIGHLIGHTED_NAMES = [
             r"BBC",
             r"Breitbart",
             r"BuzzFeed",
-            r"CBS(\s*(4|Corp|News))?"
+            r"CBS(\s*(4|Corp|News))?",
             r"Charlie\s*Rose",
             r"China\s*Daily",
             r"CNBC",
@@ -975,6 +975,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"AG",
             r"(Alicia\s*)?Valle",
+            r'Alice\s*Fisher|Fisher, Alice',
             r"AML",
             r"(Andrew\s*)?McCabe",
             r"Attorney General",
