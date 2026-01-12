@@ -39,6 +39,7 @@ HEADER_ABBREVIATIONS = {
     'MBZ': "Mohamed bin Zayed Al Nahyan (Emirates sheikh)",
     "Miro": MIROSLAV_LAJCAK,
     "Mooch": "Anthony 'The Mooch' Scaramucci (Skybridge crypto bro)",
+    "NPA": 'non-prosecution agreement',
     "Terje": TERJE_ROD_LARSEN,
     "VI": f"U.S. {VIRGIN_ISLANDS}",
     "Woody": "Woody Allen",
