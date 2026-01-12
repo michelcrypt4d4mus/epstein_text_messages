@@ -27,6 +27,7 @@ MIDEAST = 'mideast'
 QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
 REGEX_STYLE_PREFIX = 'regex'
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w, ]+$", re.IGNORECASE)
+TECH_BRO = 'tech bro'
 
 CATEGORY_STYLE_MAPPING = {
     ARTICLE: JOURNALIST,
@@ -224,7 +225,7 @@ HIGHLIGHTED_NAMES = [
             'Ed Boyden': f'{MIT_MEDIA_LAB} neurobiology professor',
             'Harry Fisch': "men's health expert at New York-Presbyterian / Weill Cornell (?)",
             JOSCHA_BACH: 'cognitive science / AI research',
-            LAWRENCE_KRAUSS: 'theoretical physicist',
+            LAWRENCE_KRAUSS: 'theoretical physicist with #MeToo problems',
             LINDA_STONE: f'ex-Microsoft, {MIT_MEDIA_LAB}',
             MARK_TRAMO: 'professor of neurology at UCLA',
             'Nancy Dahl': f'wife of {LAWRENCE_KRAUSS}',
@@ -300,6 +301,7 @@ HIGHLIGHTED_NAMES = [
             DAVID_BLAINE: 'famous magician',
             'Richard Merkin': 'painter, illustrator and arts educator',
             STEVEN_PFEIFFER: 'Associate Director at Independent Filmmaker Project (IFP)',
+            'Steven Gaydos': 'American screenwriter and journalist',
         },
         patterns=[
             r"(Art )?Spiegelman",
@@ -321,7 +323,6 @@ HIGHLIGHTED_NAMES = [
             r"Ramsey Elkholy",
             r"Regan arts",
             r"shirley maclaine",
-            r"Steven Gaydos?",
             r"Woody( Allen)?",
             r"Zach Braff",
         ],
@@ -329,6 +330,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label=BILL_GATES,
         style='turquoise4',
+        category=TECH_BRO,
         emailers={
             BILL_GATES: 'ex-Microsoft, Gates Foundation, bgC3',
             BORIS_NIKOLIC: f'biotech VC partner of {BILL_GATES}, {EPSTEIN_ESTATE_EXECUTOR}',
@@ -664,6 +666,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             AMANDA_ENS: 'Citigroup',
             BRAD_WECHSLER: f"head of {LEON_BLACK}'s personal investment vehicle according to FT",
+            CECILIA_STEEN: None,
             DANIEL_SABBA: 'UBS Investment Bank',
             DAVID_FISZEL: 'CIO Honeycomb Asset Management',
             JES_STALEY: 'former CEO of Barclays',
@@ -828,12 +831,13 @@ HIGHLIGHTED_NAMES = [
         style='bright_yellow',
         emailers={
             'Alain Forget': 'author of "How To Get Out Of This World ALIVE"',
+            'Alex Yablon': 'New York Magazine fact checker (?)',
             EDWARD_JAY_EPSTEIN: 'no relation, wrote books about spies',
             HENRY_HOLT: f"{MICHAEL_WOLFF}'s book publisher",
             JAMES_HILL: 'ABC News',
             JENNIFER_JACQUET: 'Future Science magazine',
             JOHN_BROCKMAN: 'literary agent and author specializing in scientific literature',
-            LANDON_THOMAS: 'New York Times',
+            LANDON_THOMAS: 'New York Times financial reporter',
             MICHAEL_WOLFF: 'Author of "Fire and Fury: Inside the Trump White House"',
             PAUL_KRASSNER: '60s counterculture guy',
             'Peter Aldhous': 'Buzzfeed science reporter',
@@ -842,7 +846,6 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"ABC(\s*News)?",
-            r"Alex\s*Yablon",
             r"Arianna(\s*Huffington)?",
             r"(Arthur\s*)?Kretchmer",
             r'Associated\s*Press',
@@ -1306,7 +1309,7 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        label='tech bro',
+        label=TECH_BRO,
         style='bright_cyan',
         emailers={
             'Auren Hoffman': 'CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp',

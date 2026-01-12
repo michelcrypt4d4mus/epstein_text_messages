@@ -215,7 +215,7 @@ UBS = 'UBS'
 # First and last names that should be made part of a highlighting regex for emailers
 NAMES_TO_NOT_HIGHLIGHT = """
     al alain alan alfredo allen alex alexander amanda andres andrew anthony
-    bard barrett barry bill black bob boris brad bruce
+    bard barrett barry bennet bill black bob boris brad bruce
     carolyn chris christina
     dan daniel danny darren dave david donald
     ed edward edwards enforcement enterprise enterprises entourage epstein eric erika etienne
