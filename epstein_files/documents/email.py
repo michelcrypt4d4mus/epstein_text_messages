@@ -696,6 +696,9 @@ class Email(Communication):
                     i += 1
 
                 line = line.replace(' ', '')
+            elif ' http' in line:
+                pre_link, post_link = line.split(' http', 1)
+                line = f"{pre_link} http{post_link.replace(' ', '')}"
 
             new_lines.append(line)
 
