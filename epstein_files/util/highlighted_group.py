@@ -419,6 +419,7 @@ HIGHLIGHTED_NAMES = [
             r"CBD",
             r"cannabis",
             r"marijuana",
+            r"psychedelic",
             r"THC",
             r"WEED(guide|maps)?[^s]?",
         ],
@@ -852,6 +853,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"ABC(\s*News)?",
             r"Alexandra Wolfe|Wolfe, Alexandra",
+            r"AlterNet",
             r"Arianna(\s*Huffington)?",
             r"(Arthur\s*)?Kretchmer",
             r'Associated\s*Press',
@@ -859,7 +861,7 @@ HIGHLIGHTED_NAMES = [
             r"BBC",
             r"Breitbart",
             r"BuzzFeed",
-            r"CBS(\s*(4|Corp|News))?"
+            r"CBS(\s*(4|Corp|News))?",
             r"Charlie\s*Rose",
             r"China\s*Daily",
             r"CNBC",
@@ -884,7 +886,8 @@ HIGHLIGHTED_NAMES = [
             r"Graydon(\s*Carter)?",
             r"Huff(ington)?(\s*Po(st)?)?",
             r"Ingram, David",
-            r"(James\s*)?(Hill|Patterson)",
+            r"James\s*Hill",
+            r"(James\s*)?Patterson",
             r"Jesse Kornbluth",
             r"Jonathan\s*Karl",
             r"Julie\s*(K.?\s*)?Brown", r'jbrown@miamiherald.com',
@@ -975,6 +978,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"AG",
             r"(Alicia\s*)?Valle",
+            r'Alice\s*Fisher|Fisher, Alice',
             r"AML",
             r"(Andrew\s*)?McCabe",
             r"Attorney General",
@@ -1007,6 +1011,7 @@ HIGHLIGHTED_NAMES = [
             r"KYC",
             r"(Lann?a\s*)?Belohlavek",
             r"NIH",
+            r"NPA",
             r"NS(A|C)",
             r"OCC",
             r"OFAC",
@@ -1368,6 +1373,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"@?realDonaldTrump",
             r"(Alan\s*)?Weiss?elberg",
+            r"Alex\s*Jones",
             r"\bDJ?T\b",
             r"Donald J. Tramp",
             r"(Donald\s+(J\.\s+)?)?Trump(ism|\s*(Org(anization)?|Properties)(\s*LLC)?)?",
@@ -1502,7 +1508,7 @@ HIGHLIGHTED_TEXTS = [
     HighlightedText(
         label='header_field',
         style='plum4',
-        patterns=[r'^(> )?(Date|From|Sent|To|C[cC]|Importance|Reply-To|Subject|Bee|B[cC]{2}|Attachments|Flag|Classification):'],
+        patterns=[r'^>? ?(Date|From|Sent|To|C[cC]|Importance|Reply-To|Subject|Bee|B[cC]{2}|Attachments|Flag|Classification|((A|De|Envoye|Objet|Q) ?)):'],
     ),
     HighlightedText(
         label='http_links',

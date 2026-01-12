@@ -42,7 +42,7 @@ LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
-URL_SIGNIFIERS = ['cd=', 'click', 'gclid', 'htm', 'keywords=', 'module=', 'nlid=', 'ref=', 'mpweb', 'usg=', 'utm']
+URL_SIGNIFIERS = ['amp?', 'cd=', 'click', 'gclid', 'htm', 'keywords=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'usg=', 'utm']
 APPEARS_IN = 'appears in'
 MAX_CHARS_TO_PRINT = 4000
 MAX_NUM_HEADER_LINES = 14
@@ -72,7 +72,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     # Signatures
     'BlackBerry by AT &T': 'BlackBerry by AT&T',
     'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
-    'Envoy& de mon iPhone': 'Envoyé de mon iPhone',
+    'Envoy& de': 'Envoyé de',
     "from my 'Phone": 'from my iPhone',
     'from Samsung Mob.le': 'from Samsung Mobile',
     'gJeremyRubin': '@JeremyRubin',
@@ -109,6 +109,8 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
 EMAIL_SIGNATURE_REGEXES = {
     ARIANE_DE_ROTHSCHILD: re.compile(r"Ensemble.*\nCe.*\ndestinataires.*\nremercions.*\nautorisee.*\nd.*\nLe.*\ncontenues.*\nEdmond.*\nRoth.*\nlo.*\nRoth.*\ninfo.*\nFranc.*\n.2.*", re.I),
     BARBRO_C_EHNBOM: re.compile(r"Barbro C.? Ehn.*\nChairman, Swedish-American.*\n((Office|Cell|Sweden):.*\n)*(360.*\nNew York.*)?"),
+    #DANIEL_SIAD: re.compile(r"Confidentiality Notice: .*\nconfidential information intended.*\nrecipients. If the reader.*\ncopy of this communication.*\nnotify me immediately.*\ncomputer system.*"),
+    DANIEL_SIAD: re.compile(r"Confidentiality Notice: The information contained in this electronic message is PRIVILEGED and confidential information intended only for the use of the individual entity or entities named as recipient or recipients. If the reader is not the intended recipient, be hereby notified that any dissemination, distribution or copy of this communication is strictly prohibited. If you have received this communication in error, please notify me immediately by electronic mail or by telephone and permanently delete this message from your computer system. Thank you.".replace(' ', r'\s*'), re.IGNORECASE),
     DANNY_FROST: re.compile(r"Danny Frost\nDirector.*\nManhattan District.*\n212.*", re.IGNORECASE),
     DARREN_INDYKE: re.compile(r"DARREN K. INDYKE.*?\**\nThe information contained in this communication.*?Darren K.[\n\s]+?[Il]ndyke(, PLLC)? — All rights reserved\.? ?\n\*{50,120}(\n\**)?", re.DOTALL),
     DAVID_INGRAM: re.compile(r"Thank you in advance.*\nDavid Ingram.*\nCorrespondent\nReuters.*\nThomson.*(\n(Office|Mobile|Reuters.com).*)*"),
@@ -274,6 +276,7 @@ LINE_REPAIR_MERGES = {
     '026345': 3,
     '026609': 4,
     '033299': 3,
+    '029831': [3, 6],
     '026829': 3,
     '026924': [2, 4],
     '028931': [3, 6],
@@ -646,7 +649,7 @@ class Email(Communication):
         elif self.file_id in ['025329']:
             for _i in range(9):
                 self._merge_lines(2)
-        elif self.file_id in ['025812']:
+        elif self.file_id in ['025812', '031748']:
             for _i in range(2):
                 self._merge_lines(3)
         elif self.file_id == '014860':
@@ -666,6 +669,12 @@ class Email(Communication):
                 self._merge_lines(9)
         elif self.file_id in ['032637']:
             for _i in range(3):
+                self._merge_lines(9)
+        elif self.file_id in ['014397']:
+            for _i in range(2):
+                self._merge_lines(4)
+        elif self.file_id in ['022977']:
+            for _i in range(10):
                 self._merge_lines(9)
 
         # Bad line removal
