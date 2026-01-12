@@ -386,7 +386,7 @@ HIGHLIGHTED_NAMES = [
             ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
             BARBRO_C_EHNBOM: 'Swedish pharmaceuticals, SALSS',
             BARRY_J_COHEN: None,
-            'David Mitchell': 'Mitchell Holdings New York real estate developer',
+            'David Mitchell': 'Mitchell Holdings, New York real estate developer',
             FRED_HADDAD: "co-founder of Heck's in West Virginia",
             GERALD_BARTON: "Maryland property developer Landmark Land Company",
             GORDON_GETTY: 'heir to oil tycoon J. Paul Getty',
