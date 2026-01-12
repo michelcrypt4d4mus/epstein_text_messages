@@ -120,7 +120,7 @@ class Person:
         else:
             email_count = len(self.unique_emails())
             num_days = self.email_conversation_length_in_days()
-            title_suffix = f"to/from {self.name_str()} starting {self.earliest_email_date()} covering {num_days:,} days"
+            title_suffix = f"{TO_FROM} {self.name_str()} starting {self.earliest_email_date()} covering {num_days:,} days"
 
         title = f"Found {email_count} emails {title_suffix}"
         width = max(MIN_AUTHOR_PANEL_WIDTH, len(title) + 4, len(self.info_with_category()) + 8)
