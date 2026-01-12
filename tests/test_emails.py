@@ -268,7 +268,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "George Krassner": 3,
     "Gerald Barton": 1,
     GERALD_LEFCOURT: 1,
-    "Ghislaine Maxwell": 8,
+    GHISLAINE_MAXWELL: 8,
     "Gianni Serazzi": 1,
     "Glenn Dubin": 1,
     "Gordon Getty": 2,

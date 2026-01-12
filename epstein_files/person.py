@@ -19,7 +19,7 @@ from epstein_files.util.data import days_between, flatten, without_falsey
 from epstein_files.util.env import args
 from epstein_files.util.highlighted_group import (QUESTION_MARKS_TXT, HighlightedNames,
      get_highlight_group_for_name, get_style_for_name, styled_category, styled_name)
-from epstein_files.util.rich import GREY_NUMBERS, LAST_TIMESTAMP_STYLE, TABLE_TITLE_STYLE, build_table, console, join_texts, print_centered
+from epstein_files.util.rich import GREY_NUMBERS, TABLE_TITLE_STYLE, build_table, console, join_texts, print_centered
 
 ALT_INFO_STYLE = 'medium_purple4'
 CC = 'cc:'
@@ -148,10 +148,12 @@ class Person:
         elif self.is_uninteresting_cc and self.info_str() == UNINTERESTING_CC_INFO:
             return Text(f"({self.info_str()})", style='wheat4 dim')
         elif self.is_a_mystery():
-            return Text(QUESTION_MARKS, style='dark_sea_green4')
+            return Text(QUESTION_MARKS, style='honeydew2 bold')
         elif self.info_str() is None:
             if self.name in MAILING_LISTS:
-                return Text('(mailing list)', style=f"{self.style()} dim")
+                return Text('(mailing list)', style=f"pale_turquoise4 dim")
+            elif self.category():
+                return Text(QUESTION_MARKS, style=self.style())
             else:
                 return None
         else:
