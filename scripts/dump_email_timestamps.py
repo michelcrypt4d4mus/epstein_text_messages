@@ -22,6 +22,7 @@ from epstein_files.util.rich import console, highlighter, print_json
 
 def print_partial_names_used_in_regexes():
     names = []
+    partial_name_counts = defaultdict(int)
 
     for highlight in HIGHLIGHTED_NAMES:
         if type(highlight) != HighlightedNames:
@@ -31,14 +32,23 @@ def print_partial_names_used_in_regexes():
 
         for name in highlight.emailers:
             for partial_name in [n.lower() for n in [extract_first_name(name), extract_last_name(name)]]:
+                partial_name_counts[partial_name] += 1
+
                 if partial_name not in NAMES_TO_NOT_HIGHLIGHT:
                     names.append(partial_name)
                     print(f"name='{name}', partial_name='{partial_name}'")
 
     print('\n'.join(sorted(names)))
+    print(f"\n\n")
+
+    for name, count in partial_name_counts.items():
+        if count > 1:
+            print(f"partial name '{name}' appears {count} times")
+
     sys.exit()
 
 
+print_partial_names_used_in_regexes()
 max_sizes = defaultdict(int)
 counts = defaultdict(int)
 
