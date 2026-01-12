@@ -145,10 +145,10 @@ class Person:
             return Text('(emails whose author or recipient could not be determined)', style=ALT_INFO_STYLE)
         elif self.category() == JUNK:
             return Text(f"({JUNK} mail)", style='tan dim')
-        elif self.is_a_mystery():
-            return Text(QUESTION_MARKS, style='magenta dim')
         elif self.is_uninteresting_cc and self.info_str() == UNINTERESTING_CC_INFO:
             return Text(f"({self.info_str()})", style='wheat4 dim')
+        elif self.is_a_mystery():
+            return Text(QUESTION_MARKS, style='dark_sea_green4')
         elif self.info_str() is None:
             if self.name in MAILING_LISTS:
                 return Text('(mailing list)', style=f"{self.style()} dim")

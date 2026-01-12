@@ -329,6 +329,7 @@ HIGHLIGHTED_NAMES = [
         label=BILL_GATES,
         style='turquoise4',
         emailers={
+            BILL_GATES: 'ex-Microsoft, Gates Foundation, bgC3',
             BORIS_NIKOLIC: f'biotech VC partner of {BILL_GATES}, {EPSTEIN_ESTATE_EXECUTOR}',
         },
         patterns=[
