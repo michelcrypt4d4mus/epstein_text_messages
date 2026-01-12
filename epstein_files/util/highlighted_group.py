@@ -849,6 +849,7 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"ABC(\s*News)?",
+            r"Alexandra Wolfe|Wolfe, Alexandra",
             r"Arianna(\s*Huffington)?",
             r"(Arthur\s*)?Kretchmer",
             r'Associated\s*Press',
