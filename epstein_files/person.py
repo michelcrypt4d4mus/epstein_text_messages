@@ -26,6 +26,7 @@ CC = 'cc:'
 MIN_AUTHOR_PANEL_WIDTH = 80
 EMAILER_INFO_TITLE = 'Email Conversations Will Appear'
 UNINTERESTING_CC_INFO = "cc: or bcc: recipient only"
+UNINTERESTING_CC_INFO_NO_CONTACT = f"{UNINTERESTING_CC_INFO}, no direct contact with Epstein"
 
 INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + MAILING_LISTS + [
     'ACT for America',
@@ -101,6 +102,10 @@ class Person:
         links = [self.external_link_txt(site) for site in PERSON_LINK_BUILDERS]
         return Text('', justify='center', style='dim').append(join_texts(links, join=' / '))  #, encloser='()'))#, encloser='‹›'))
 
+    def has_any_epstein_emails(self) -> bool:
+        contacts = [e.author for e in self.emails] + flatten([e.recipients for e in self.emails])
+        return JEFFREY_EPSTEIN in contacts
+
     def highlight_group(self) -> HighlightedNames | None:
         return get_highlight_group_for_name(self.name)
 
@@ -133,7 +138,10 @@ class Person:
         if highlight_group and isinstance(highlight_group, HighlightedNames) and self.name:
             return highlight_group.info_for(self.name)
         elif self.is_uninteresting_cc:
-            return UNINTERESTING_CC_INFO
+            if self.has_any_epstein_emails():
+                return UNINTERESTING_CC_INFO
+            else:
+                return UNINTERESTING_CC_INFO_NO_CONTACT
 
     def info_with_category(self) -> str:
         return ', '.join(without_falsey([self.category(), self.info_str()]))
@@ -145,8 +153,11 @@ class Person:
             return Text('(emails whose author or recipient could not be determined)', style=ALT_INFO_STYLE)
         elif self.category() == JUNK:
             return Text(f"({JUNK} mail)", style='tan dim')
-        elif self.is_uninteresting_cc and self.info_str() == UNINTERESTING_CC_INFO:
-            return Text(f"({self.info_str()})", style='wheat4 dim')
+        elif self.is_uninteresting_cc and (self.info_str() or '').startswith(UNINTERESTING_CC_INFO):
+            if self.info_str() == UNINTERESTING_CC_INFO:
+                return Text(f"({self.info_str()})", style='wheat4 dim')
+            else:
+                return Text(f"({self.info_str()})", style='plum4 dim')
         elif self.is_a_mystery():
             return Text(QUESTION_MARKS, style='honeydew2 bold')
         elif self.info_str() is None:
