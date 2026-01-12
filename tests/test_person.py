@@ -28,7 +28,7 @@ def eva(epstein_files) -> Person:
 def test_info_str(anne_boyles, eduardo, eva, sultan):
     assert sultan.highlight_group() is not None
     assert sultan.info_str() == 'chairman of ports in Dubai, CEO of DP World'
-    assert sultan.info_with_category() == 'mideast, CEO of DP World, chairman of ports in Dubai'
+    assert sultan.info_with_category() == 'mideast, chairman of ports in Dubai, CEO of DP World'
 
     assert eduardo.highlight_group() is None
     assert eduardo.info_with_category() == ''

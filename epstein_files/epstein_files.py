@@ -297,7 +297,7 @@ class EpsteinFiles:
 
     def _set_uninteresting_ccs(self) -> None:
         for id in EMAILS_WITH_UNINTERESTING_BCCS:
-            self.uninteresting_ccs += copy(cast(list[Name], self.email_for_id(id).header.bcc))
+            self.uninteresting_ccs += [bcc.lower() for bcc in cast(list[str], self.email_for_id(id).header.bcc)]
 
         for id in EMAILS_WITH_UNINTERESTING_CCS:
             self.uninteresting_ccs += self.email_for_id(id).recipients
