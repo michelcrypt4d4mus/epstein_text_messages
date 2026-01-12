@@ -153,7 +153,7 @@ class HighlightedNames(HighlightedText):
             name_patterns = [remove_question_marks(name).replace(' ', r"\s+")]
 
         if ' ' in name:
-            for partial_name in [extract_first_name(name), extract_last_name(name), reversed_name(name)]:
+            for partial_name in [reversed_name(name), extract_first_name(name), extract_last_name(name)]:  # Order matters
                 if partial_name.lower() not in NAMES_TO_NOT_HIGHLIGHT and SIMPLE_NAME_REGEX.match(partial_name):
                     name_patterns.append(partial_name.replace(' ', r"\s+"))
 
@@ -320,6 +320,7 @@ HIGHLIGHTED_NAMES = [
             r"Lena\s*Dunham",
             r"Madonna",
             r"Mark\s*Burnett",
+            r"Peter Getzels",
             r"Phaidon",
             r"Ramsey Elkholy",
             r"Regan arts",
@@ -906,6 +907,7 @@ HIGHLIGHTED_NAMES = [
             r"Pro\s*Publica",
             r"Reuters",
             r"(Sean\s*)?Hannity",
+            r"Sharon Churcher",  # Daily Mail
             r"Sulzberger",
             r"SunSentinel",
             r"(The\s*)?Financial\s*Times",

@@ -4,6 +4,7 @@
 set -e
 source .env
 
+GENERATE_CMD='epstein_generate --build --suppress-output'
 CURRENT_BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
 PICKLE_ARG=$([[ $1 == '--pickled' ]] && echo "" || echo "--overwrite-pickle")
 URLS_ENV=.urls.env
@@ -50,7 +51,7 @@ fi
 epstein_generate --make-clean --suppress-output
 echo -e ""
 print_msg "Building emailer info .png..."
-epstein_generate --build --emailers-info --suppress-output
+$GENERATE_CMD --emailers-info
 
 if any_uncommitted_changes; then
     git commit -am"Update .png"
@@ -64,17 +65,17 @@ git merge --no-edit master --quiet
 # Build files
 echo -e ""
 print_msg "Building text messages page... $PICKLE_ARG"
-epstein_generate --build --suppress-output $PICKLE_ARG
+$GENERATE_CMD $PICKLE_ARG
 
 if [ -n "$ONLY_TEXTS" ]; then
     print_msg "Skipping build of emails pages..."
 else
     echo -e ""
     print_msg "Building all emails page..."
-    epstein_generate --build --all-emails --all-other-files --suppress-output
+    $GENERATE_CMD --all-emails --all-other-files
     echo -e ""
     print_msg "Building chronological emails page..."
-    epstein_generate --build --email-timeline --suppress-output
+    $GENERATE_CMD --email-timeline
 fi
 
 echo -e ""
@@ -82,10 +83,10 @@ print_msg "Building word counts page..."
 epstein_word_count --build --suppress-output --width 125
 echo -e ""
 print_msg "Building JSON metadata page..."
-epstein_generate --build --json-metadata
+$GENERATE_CMD --json-metadata
 echo -e ""
 print_msg "Building JSON files data..."
-epstein_generate --build --json-files
+$GENERATE_CMD --json-files
 
 # Commit changes
 echo -e ""
