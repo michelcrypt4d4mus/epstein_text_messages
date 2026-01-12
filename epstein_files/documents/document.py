@@ -60,6 +60,7 @@ SUMMARY_TABLE_COLS: list[str | dict] = [
     'Count',
     {'name': 'Has Author', 'style': 'honeydew2'},
     {'name': 'No Author', 'style': 'wheat4'},
+    {'name': 'Uncertain Author', 'style': 'royal_blue1 dim'},
     {'name': 'Size', 'justify': 'right', 'style': 'dim'},
 ]
 
@@ -188,6 +189,9 @@ class Document:
     def info_txt(self) -> Text | None:
         """Secondary info about this file (description recipients, etc). Overload in subclasses."""
         return None
+
+    def is_attribution_uncertain(self) -> bool:
+        return bool(self.config and self.config.is_attribution_uncertain)
 
     def is_duplicate(self) -> bool:
         return bool(self.duplicate_of_id())
@@ -387,6 +391,7 @@ class Document:
             'count': str(file_count),
             'author_count': NA_TXT if is_author_na else str(author_count),
             'no_author_count': NA_TXT if is_author_na else str(file_count - author_count),
+            'uncertain_author_count': NA_TXT if is_author_na else str(len([f for f in files if f.is_attribution_uncertain()])),
             'bytes': file_size_to_str(sum([f.file_size() for f in files])),
         }
 
