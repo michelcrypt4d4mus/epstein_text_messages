@@ -690,6 +690,7 @@ HIGHLIGHTED_NAMES = [
             r"Apollo",
             r"Ari\s*Glass",
             r"Bank(\s*of\s*Scotland)",
+            r"Bear\s*Stearns",
             r"(Bernie\s*)?Madoff",
             r"Black(rock|stone)",
             r"B\s*of\s*A",
