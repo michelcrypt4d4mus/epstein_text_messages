@@ -557,6 +557,7 @@ HIGHLIGHTED_NAMES = [
             DEBBIE_FEIN: EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY,
             'Erika Kellerhals': 'attorney in St. Thomas',
             GERALD_LEFCOURT: f'friend of {ALAN_DERSHOWITZ}',
+            'Howard Rubenstein': f"Epstein's former spokesman",
             JACK_GOLDBERGER: CRIMINAL_DEFENSE_2008,
             JACKIE_PERCZEK: CRIMINAL_DEFENSE_2008,
             JAY_LEFKOWITZ: f"Kirkland & Ellis partner, {CRIMINAL_DEFENSE_2008}",

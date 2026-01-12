@@ -221,7 +221,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     ed edward edwards enforcement enterprise enterprises entourage epstein eric erika etienne
     faith forget fred friendly frost fuller
     gerald george gold gordon
-    haddad harry hay heather henry hill hoffman
+    haddad harry hay heather henry hill hoffman howard
     ian ivan
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr
     kahn karl kate katherine kelly ken kevin krassner
@@ -230,7 +230,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     nancy neal new nicole norman
     owen
     paul paula pen peter philip prince
-    randall rangel reid richard robert rodriguez roger rosenberg ross roth roy rubin
+    randall rangel reid richard robert rodriguez roger rosenberg ross roth roy rubenstein rubin
     scott sean skip stanley stern stephen steve steven stone susan
     the thomas tim tom tony tyler
     victor
