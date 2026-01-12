@@ -151,9 +151,6 @@ class Person:
         return ', '.join(without_falsey([self.category(), self.info_str()]))
 
     def info_txt(self) -> Text | None:
-        # if self.name_str().startswith('p.peachev'):
-        #     import pdb;pdb.set_trace()
-
         if self.name == JEFFREY_EPSTEIN:
             return Text('(emails sent by Epstein to himself are here)', style=ALT_INFO_STYLE)
         elif self.name is None:
@@ -331,7 +328,7 @@ class Person:
                 Text(f"{len(person.unique_emails_to())}", style='dim' if len(person.unique_emails_to()) == 0 else ''),
                 f"{person.email_conversation_length_in_days()}",
                 person.info_txt() or '',
-                style='' if is_on_page else 'dim',
+                style='' if show_epstein_total or is_on_page else 'dim',
             )
 
         return table
