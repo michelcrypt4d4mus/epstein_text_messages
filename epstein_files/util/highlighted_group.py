@@ -23,6 +23,7 @@ EPSTEIN_LAWYER = 'lawyer'
 EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} {EPSTEIN_V_ROTHSTEIN_EDWARDS}"
 ESTATE_EXECUTOR = 'estate executor'
 EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
+MC2_MODEL_MANAGEMENT = f"{JEAN_LUC_BRUNEL}'s MC2 Model Management"
 MIDEAST = 'mideast'
 QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
 REGEX_STYLE_PREFIX = 'regex'
@@ -383,6 +384,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             ALIREZA_ITTIHADIEH: 'CEO Freestream Aircraft Limited',
             BARBRO_C_EHNBOM: 'Swedish pharmaceuticals, SALSS',
+            BARRY_J_COHEN: None,
             'David Mitchell': 'Mitchell Holdings New York real estate developer',
             FRED_HADDAD: "co-founder of Heck's in West Virginia",
             GERALD_BARTON: "Maryland property developer Landmark Land Company",
@@ -688,6 +690,7 @@ HIGHLIGHTED_NAMES = [
             r"Apollo",
             r"Ari\s*Glass",
             r"Bank(\s*of\s*Scotland)",
+            r"Bear\s*Stearns",
             r"(Bernie\s*)?Madoff",
             r"Black(rock|stone)",
             r"B\s*of\s*A",
@@ -879,6 +882,7 @@ HIGHLIGHTED_NAMES = [
             r"Huff(ington)?(\s*Po(st)?)?",
             r"Ingram, David",
             r"(James\s*)?(Hill|Patterson)",
+            r"Jesse Kornbluth",
             r"Jonathan\s*Karl",
             r"Julie\s*(K.?\s*)?Brown", r'jbrown@miamiherald.com',
             r"(Katie\s*)?Couric",
@@ -991,7 +995,6 @@ HIGHLIGHTED_NAMES = [
             r"(General\s*)?P(a|e)traeus",
             r"IRS",
             r"(James\s*)?Comey",
-            r"Jeff(rey)?\s*Sessions",
             r"(Jennifer\s*Shasky\s*)?Calvery",
             r"((Judge|Mark)\s*)?(Carney|Filip)",
             r"(Judge\s*)?(Kenneth\s*)?(A\.?\s*)?Marra",
@@ -1013,7 +1016,7 @@ HIGHLIGHTED_NAMES = [
             r"SEC",
             r"Secret\s*Service",
             r"Securities\s*and\s*Exchange\s*Commission",
-            r"Southern\s*District\s*of\s*(Florida|New\s*York)",
+            r"Southern\s*District(\s*of\s*(Florida|New\s*York))?",
             r"State\s*Dep(artmen)?t",
             r"Strzok",
             r"Supreme\s*Court",
@@ -1143,16 +1146,18 @@ HIGHLIGHTED_NAMES = [
         label='modeling',
         style='pale_violet_red1',
         emailers={
-            'Abi Schwinck': 'MC2 Model Management (?)',
+            'Abi Schwinck': f'{MC2_MODEL_MANAGEMENT} {QUESTION_MARKS}',
             DANIEL_SIAD: None,
             FAITH_KATES: 'Next Models co-founder',
             'Gianni Serazzi': 'fashion consultant?',
             HEATHER_MANN: 'South African former model, ex-girlfriend of Prince Andrew (?)',
-            JEAN_LUC_BRUNEL: 'MC2 Model Management founder, died by suicide in French jail',
-            JEFF_FULLER: 'president of MC2 Model Management USA',
+            JEAN_LUC_BRUNEL: f'MC2 Model Management founder, died by suicide in French jail',
+            JEFF_FULLER: f'president of {MC2_MODEL_MANAGEMENT} USA',
+            'lorraine@mc2mm.com': f'{MC2_MODEL_MANAGEMENT}',
+            'pink@mc2mm.com': f'{MC2_MODEL_MANAGEMENT}',
             MANUELA_MARTINEZ: 'Mega Partners (Brazilian agency)',
             MARIANA_IDZKOWSKA: None,
-            'Michael Sanka': 'MC2 Model Management (?)',
+            'Michael Sanka': f'{MC2_MODEL_MANAGEMENT} {QUESTION_MARKS}',
             'Vladimir Yudashkin': 'director of the 1 Mother Agency',
         },
         patterns=[
@@ -1209,6 +1214,7 @@ HIGHLIGHTED_NAMES = [
             r"George\s*(H\.?\s*)?(W\.?\s*)?Bush",
             r"(George\s*)?Nader",
             r"GOP",
+            r"Jeff(rey)?\s*Sessions",
             r"(John\s*(R.?\s*)?)Bolton",
             r"Kissinger",
             r"Kobach",

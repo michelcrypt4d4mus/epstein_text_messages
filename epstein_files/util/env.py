@@ -69,7 +69,7 @@ is_html_script = parser.prog in HTML_SCRIPTS
 
 args.build = args.build
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
-args.names = [None if n == 'None' else n for n in (args.names or [])]
+args.names = [None if n == 'None' else n.strip() for n in (args.names or [])]
 args.output_emails = args.output_emails or args.all_emails
 args.output_other = args.output_other or args.all_other_files or args.uninteresting
 args.overwrite_pickle = args.overwrite_pickle or (is_env_var_set('OVERWRITE_PICKLE') and not is_env_var_set('PICKLED'))

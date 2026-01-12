@@ -661,6 +661,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='032023', is_fwded_article=True, duplicate_ids=['032012']),  # American-Israeli Cooperative Enterprise Newsletter
     EmailCfg(id='021758', is_fwded_article=True, duplicate_ids=['030616']),  # Radar Online article about Epstein's early prison release
     EmailCfg(id='033297', is_fwded_article=True, duplicate_ids=['033586']),  # Sultan Sulayem fwding article about Trump and Russia
+    EmailCfg(id='030983', is_fwded_article=True),  # Power Line blog Alex Acosta and Jeffrey Epstein Plea Deal Analysis
     EmailCfg(id='031774', is_fwded_article=True),  # Krassner fwd of Palmer Report article
     EmailCfg(id='033345', is_fwded_article=True),  # Krassner fwd of Palmer Report article
     EmailCfg(id='029903', is_fwded_article=True),  # Krassner fwd of Ann Coulter article about Epstein

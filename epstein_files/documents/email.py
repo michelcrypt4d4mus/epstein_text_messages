@@ -32,7 +32,7 @@ BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE
 BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,]|L\._)$')
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 LINK_LINE_REGEX = re.compile(f"^(> )?htt")
-QUOTED_REPLY_LINE_REGEX = re.compile(r'wrote:\n', re.IGNORECASE)
+QUOTED_REPLY_LINE_REGEX = re.compile(r'(\nFrom:(.*)|wrote:)\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
 
 BAD_TIMEZONE_REGEX = re.compile(fr'\((UTC|GMT\+\d\d:\d\d)\)|{REDACTED}')
@@ -114,7 +114,7 @@ EMAIL_SIGNATURE_REGEXES = {
     DAVID_INGRAM: re.compile(r"Thank you in advance.*\nDavid Ingram.*\nCorrespondent\nReuters.*\nThomson.*(\n(Office|Mobile|Reuters.com).*)*"),
     DEEPAK_CHOPRA: re.compile(fr"({DEEPAK_CHOPRA}( MD)?\n)?2013 Costa Del Mar Road\nCarlsbad, CA 92009(\n(Chopra Foundation|Super Genes: Unlock.*))?(\nJiyo)?(\nChopra Center for Wellbeing)?(\nHome: Where Everyone is Welcome)?"),
     JEFFREY_EPSTEIN: re.compile(r"((\*+|please note)\n+)?(> )?(• )?(» )?The information contained in this communication is\n(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?", re.DOTALL),
-    JESSICA_CADWELL: re.compile(r"(f.*\n)?Certified Para.*\nFlorida.*\nBURMAN.*\n515.*\nSuite.*\nWest Palm.*", re.IGNORECASE),
+    JESSICA_CADWELL: re.compile(r"(f.*\n)?Certified Para.*\nFlorida.*\nBURMAN.*\n515.*\nSuite.*\nWest Palm.*(\nTel:.*)?(\nEmail:.*)?", re.IGNORECASE),
     KEN_JENNE: re.compile(r"Ken Jenne\nRothstein.*\n401 E.*\nFort Lauderdale.*", re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r"Please direct all scheduling.*\nFollow me on twitter.*\nwww.larrysummers.*", re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r"Lawrence (M. )?Krauss\n(Director.*\n)?(Co-director.*\n)?Foundation.*\nSchool.*\n(Co-director.*\n)?(and Director.*\n)?Arizona.*(\nResearch.*\nOri.*\n(krauss.*\n)?origins.*)?", re.IGNORECASE),
@@ -436,9 +436,9 @@ class Email(Communication):
         elif self.header.num_header_rows == 0:
             return self.text
 
-        reply_text_match = REPLY_TEXT_REGEX.search(text)
         self.log_top_lines(20, "Raw text:", logging.DEBUG)
         self.log(f"With header removed:\n{text[0:500]}\n\n", logging.DEBUG)
+        reply_text_match = REPLY_TEXT_REGEX.search(text)
 
         if reply_text_match:
             actual_num_chars = len(reply_text_match.group(1))
@@ -550,9 +550,15 @@ class Email(Communication):
 
     def _idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES, text: str | None = None) -> int | None:
         """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line in self.text."""
-        for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text or self.text)):
+        if text is None:
+            header_offset = len(self.header.header_chars)
+            text = self.text[header_offset:]
+        else:
+            header_offset = 0
+
+        for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text)):
             if i >= n:
-                return match.end() - 1
+                return match.end() + header_offset - 1
 
     def _merge_lines(self, idx: int, idx2: int | None = None) -> None:
         """Combine lines numbered 'idx' and 'idx2' into a single line (idx2 defaults to idx + 1)."""

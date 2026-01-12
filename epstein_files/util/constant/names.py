@@ -216,7 +216,7 @@ UBS = 'UBS'
 NAMES_TO_NOT_HIGHLIGHT = """
     al alain alan alfredo allen alex alexander amanda andres andrew anthony
     bard barrett barry bennet bill black bob boris brad bruce
-    carolyn chris christina
+    caroline carolyn chris christina cohen
     dan daniel danny darren dave david donald
     ed edward edwards enforcement enterprise enterprises entourage epstein eric erika etienne
     faith forget fred friendly frost fuller

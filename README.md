@@ -1,4 +1,4 @@
-# I Made Epstein's Text Messages Great Again
+# Color Highlighted Epstein Emails and Text Messages
 
 ![joi](https://github.com/michelcrypt4d4mus/epstein_text_messages/raw/master/docs/joi_ito_gavin_is_clever_epstein_funds_bitcoin_dev_team.png)
 
@@ -85,3 +85,6 @@ for json_file in epstein_files.json_files:
 for file in epstein_files.other_files:
     do_stuff(file)
 ```
+
+# Everyone Who Sent or Received an Email in the November Document Dump
+![emails](https://github.com/michelcrypt4d4mus/epstein_text_messages/raw/master/docs/emailers_info_table.png)
