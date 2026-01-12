@@ -853,6 +853,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"ABC(\s*News)?",
             r"Alexandra Wolfe|Wolfe, Alexandra",
+            r"AlterNet",
             r"Arianna(\s*Huffington)?",
             r"(Arthur\s*)?Kretchmer",
             r'Associated\s*Press',
@@ -885,7 +886,8 @@ HIGHLIGHTED_NAMES = [
             r"Graydon(\s*Carter)?",
             r"Huff(ington)?(\s*Po(st)?)?",
             r"Ingram, David",
-            r"(James\s*)?(Hill|Patterson)",
+            r"James\s*Hill",
+            r"(James\s*)?Patterson",
             r"Jesse Kornbluth",
             r"Jonathan\s*Karl",
             r"Julie\s*(K.?\s*)?Brown", r'jbrown@miamiherald.com',
@@ -1371,6 +1373,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"@?realDonaldTrump",
             r"(Alan\s*)?Weiss?elberg",
+            r"Alex\s*Jones",
             r"\bDJ?T\b",
             r"Donald J. Tramp",
             r"(Donald\s+(J\.\s+)?)?Trump(ism|\s*(Org(anization)?|Properties)(\s*LLC)?)?",
