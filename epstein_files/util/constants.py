@@ -87,7 +87,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     JABOR_Y: re.compile(r'[ji]abor\s*y?', re.IGNORECASE),
     JAMES_HILL: re.compile(r"hill, james e.|james.e.hill@abc.com", re.IGNORECASE),
     JANUSZ_BANASIAK: re.compile(r"Janu[is]z Banasiak", re.IGNORECASE),
-    JEAN_LUC_BRUNEL: re.compile(r'Jean[- ]Luc Brunel?', re.IGNORECASE),
+    JEAN_LUC_BRUNEL: re.compile(r'Jean[- ]Luc Brunel?|JeanLuc', re.IGNORECASE),
     JEFF_FULLER: re.compile(r"jeff@mc2mm.com|Jeff Fuller", re.IGNORECASE),
     JEFFREY_EPSTEIN: re.compile(r'[djl]\s?ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeffrey E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(Mark L.|ard Jay) )Epstein', re.IGNORECASE),
     JESSICA_CADWELL: re.compile(r'Jessica Cadwell?', re.IGNORECASE),
