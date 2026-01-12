@@ -72,7 +72,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     # Signatures
     'BlackBerry by AT &T': 'BlackBerry by AT&T',
     'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
-    'Envoy& de mon iPhone': 'Envoyé de mon iPhone',
+    'Envoy& de': 'Envoyé de',
     "from my 'Phone": 'from my iPhone',
     'from Samsung Mob.le': 'from Samsung Mobile',
     'gJeremyRubin': '@JeremyRubin',

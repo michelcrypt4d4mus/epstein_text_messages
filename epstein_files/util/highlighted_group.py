@@ -1502,7 +1502,7 @@ HIGHLIGHTED_TEXTS = [
     HighlightedText(
         label='header_field',
         style='plum4',
-        patterns=[r'^(> )?(Date|From|Sent|To|C[cC]|Importance|Reply-To|Subject|Bee|B[cC]{2}|Attachments|Flag|Classification):'],
+        patterns=[r'^(> )?(Date|From|Sent|To|C[cC]|Importance|Reply-To|Subject|Bee|B[cC]{2}|Attachments|Flag|Classification|((A|De|Envoye|Objet|Q) ?)):'],
     ),
     HighlightedText(
         label='http_links',
