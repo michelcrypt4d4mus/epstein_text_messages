@@ -4,7 +4,7 @@ from datetime import datetime
 
 from rich.text import Text
 
-from epstein_files.util.constant.names import JEFFREY_EPSTEIN, STEVE_BANNON, UNKNOWN, Name, extract_last_name
+from epstein_files.util.constant.names import ANTHONY_SCARAMUCCI, JEFFREY_EPSTEIN, STEVE_BANNON, UNKNOWN, Name, extract_last_name
 from epstein_files.util.constant.strings import TIMESTAMP_DIM
 from epstein_files.util.data import iso_timestamp
 from epstein_files.util.highlighted_group import get_style_for_name
@@ -17,6 +17,7 @@ PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
 UNCERTAIN_SUFFIX = ' (?)'
 
 DISPLAY_LAST_NAME_ONLY = [
+    ANTHONY_SCARAMUCCI,
     JEFFREY_EPSTEIN,
     STEVE_BANNON,
 ]
