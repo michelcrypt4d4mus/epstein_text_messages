@@ -300,6 +300,7 @@ HIGHLIGHTED_NAMES = [
             'Barry Josephson': 'American film producer, editor FamilySecurityMatters.org',
             BILL_SIEGEL: 'documentary film producer and director',
             DAVID_BLAINE: 'famous magician',
+            'David Brenner': 'American comedian and actor',
             'Richard Merkin': 'painter, illustrator and arts educator',
             STEVEN_PFEIFFER: 'Associate Director at Independent Filmmaker Project (IFP)',
             'Steven Gaydos': 'American screenwriter and journalist',
