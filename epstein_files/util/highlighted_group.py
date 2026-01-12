@@ -10,7 +10,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
 from epstein_files.util.constants import (EMAILER_ID_REGEXES, EPSTEIN_V_ROTHSTEIN_EDWARDS,
-     OSBORNE_LLP, REPLY_REGEX, SENT_FROM_REGEX, VIRGIN_ISLANDS)
+     OSBORNE_LLP, REPLY_REGEX, SENT_FROM_REGEX)
 from epstein_files.util.doc_cfg import *
 from epstein_files.util.data import without_falsey
 from epstein_files.util.env import args
@@ -1369,6 +1369,33 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
+        label='USVI',
+        style='sea_green1',
+        emailers={
+            CECILE_DE_JONGH: 'Virgin Islands first lady 2007-2015',
+            KENNETH_E_MAPP: 'Virgin Islands Governor',
+            STACEY_PLASKETT: 'Virgin Islands non-voting member of Congress',
+        },
+        patterns=[
+            r"Antigua",
+            r"Bahamas",
+            r"BVI",
+            r"Caribb?ean",
+            r"Dominican\s*Republic",
+            r"(Great|Little)\s*St.?\s*James",
+            r"Haiti(an)?",
+            r"(John\s*)deJongh(\s*Jr\.?)",
+            r"(Kenneth E\. )?Mapp",
+            r"PBI",
+            r"Puerto\s*Ric(an|o)",
+            r"S(ain)?t.?\s*Thomas",
+            r"USVI",
+            r"(?<!Epstein )VI",
+            r"(The\s*)?Virgin\s*Islands(\s*Daily\s*News)?",  # Hard to make this work right
+            r"(West\s*)?Palm\s*Beach(?!\s*(Daily|Post))",
+        ],
+    ),
+    HighlightedNames(
         label='victim',
         style='orchid1',
         patterns=[
@@ -1396,33 +1423,6 @@ HIGHLIGHTED_NAMES = [
             r"Paul\s*(G.\s*)?Cassell",
             r"Rothstein\s*Rosenfeldt\s*Adler",
             r"(Scott\s*)?Rothstein",
-        ],
-    ),
-    HighlightedNames(
-        label='USVI',
-        style='sea_green1',
-        emailers={
-            CECILE_DE_JONGH: 'Virgin Islands first lady 2007-2015',
-            KENNETH_E_MAPP: 'Virgin Islands Governor',
-            STACEY_PLASKETT: 'Virgin Islands non-voting member of Congress',
-        },
-        patterns=[
-            r"Antigua",
-            r"Bahamas",
-            r"BVI",
-            r"Caribb?ean",
-            r"Dominican\s*Republic",
-            r"(Great|Little)\s*St.?\s*James",
-            r"Haiti(an)?",
-            r"(John\s*)deJongh(\s*Jr\.?)",
-            r"(Kenneth E\. )?Mapp",
-            r"PBI",
-            r"Puerto\s*Ric(an|o)",
-            r"S(ain)?t.?\s*Thomas",
-            r"USVI",
-            r"(?<!Epstein )VI",
-            r"(The\s*)?Virgin\s*Islands(\s*Daily\s*News)?",  # Hard to make this work right
-            r"(West\s*)?Palm\s*Beach(?!\s*(Daily|Post))",
         ],
     ),
 
