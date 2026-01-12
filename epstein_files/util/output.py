@@ -161,7 +161,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     if args.all_emails:
         _verify_all_emails_were_printed(epstein_files, printed_emails)
 
-    _print_email_device_info(epstein_files)
+    _print_email_device_signature_info(epstein_files)
     fwded_articles = [e for e in printed_emails if e.config and e.is_fwded_article()]
     log_msg = f"Rewrote {len(Email.rewritten_header_ids)} of {len(printed_emails)} email headers"
     logger.warning(f"  -> {log_msg}, {len(fwded_articles)} of the Emails printed were forwarded articles.")
@@ -269,7 +269,7 @@ def write_urls() -> None:
     logger.warning(f"Wrote {len(url_vars)} URL variables to '{URLS_ENV}'\n")
 
 
-def _print_email_device_info(epstein_files: EpsteinFiles) -> None:
+def _print_email_device_signature_info(epstein_files: EpsteinFiles) -> None:
     print_subtitle_panel(DEVICE_SIGNATURE_SUBTITLE)
     console.print(_signature_table(epstein_files.email_device_signatures_to_authors(), (DEVICE_SIGNATURE, AUTHOR), ', '))
     console.print(_signature_table(epstein_files.email_authors_to_device_signatures(), (AUTHOR, DEVICE_SIGNATURE)))
