@@ -320,6 +320,7 @@ HIGHLIGHTED_NAMES = [
             r"Lena\s*Dunham",
             r"Madonna",
             r"Mark\s*Burnett",
+            r"Peter Getzels",
             r"Phaidon",
             r"Ramsey Elkholy",
             r"Regan arts",
