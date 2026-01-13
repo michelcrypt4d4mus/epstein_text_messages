@@ -493,6 +493,7 @@ HIGHLIGHTED_NAMES = [
             r"(Matteo\s*)?Salvini",
             r"Maxine\s*Waters",
             r"(Nancy )?Pelosi",
+            r"Open Society( Global Board)?",
             r"Ron\s*Dellums",
             r"Schumer",
             r"(Tim(othy)?\s*)?Geithner",
