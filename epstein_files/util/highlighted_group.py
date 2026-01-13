@@ -1,5 +1,6 @@
 import json
 import re
+from collections import defaultdict
 from dataclasses import dataclass, field
 
 from rich.console import Console
@@ -11,8 +12,8 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
 from epstein_files.util.constants import (EMAILER_ID_REGEXES, EPSTEIN_V_ROTHSTEIN_EDWARDS,
      OSBORNE_LLP, REPLY_REGEX, SENT_FROM_REGEX)
+from epstein_files.util.data import sort_dict, without_falsey
 from epstein_files.util.doc_cfg import *
-from epstein_files.util.data import without_falsey
 from epstein_files.util.env import args
 from epstein_files.util.logging import logger
 
@@ -663,6 +664,7 @@ HIGHLIGHTED_NAMES = [
             r"(Tony\s)?Blair",
             r"U\.K\.",
             r"Ukrain(e|ian)",
+            r"Venice",
             r"(Vi(c|k)tor\s+)?Orbah?n",
             r"Vienna",
             r"Zug",
@@ -1588,6 +1590,31 @@ class EpsteinHighlighter(RegexHighlighter):
     """Finds and colors interesting keywords based on the above config."""
     base_style = f"{REGEX_STYLE_PREFIX}."
     highlights = [highlight_group.regex for highlight_group in ALL_HIGHLIGHTS]
+    highlight_counts = defaultdict(int)
+
+    def highlight(self, text: Text) -> None:
+        """overrides https://rich.readthedocs.io/en/latest/_modules/rich/highlighter.html#RegexHighlighter"""
+        highlight_regex = text.highlight_regex
+
+        for re_highlight in self.highlights:
+            highlight_regex(re_highlight, style_prefix=self.base_style)
+
+            if args.debug and isinstance(re_highlight, re.Pattern):
+                for match in re_highlight.finditer(text.plain):
+                    type(self).highlight_counts[(match.group(1) or 'None').replace('\n', ' ')] += 1
+
+    def print_highlight_counts(self, console: Console) -> None:
+        highlight_counts = deepcopy(self.highlight_counts)
+        weak_date_regex = re.compile(r"^(\d\d?/|20|http|On ).*")
+
+        for highlighted, count in sort_dict(highlight_counts):
+            if highlighted is None or weak_date_regex.match(highlighted):
+                continue
+
+            try:
+                console.print(f"{highlighted:25s} highlighted {count} times")
+            except Exception as e:
+                logger.error(f"Failed to print highlight count {count} for {highlighted}")
 
 
 def get_style_for_category(category: str) -> str | None:
