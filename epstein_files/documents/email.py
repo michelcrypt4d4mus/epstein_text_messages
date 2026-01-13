@@ -160,6 +160,8 @@ TRUNCATION_LENGTHS = {
     '017827': None,    # Bannon / Peggy Siegal email about netflix doc on Epstein
     '030222': None,    # Ross Gow / Ghislaine correspondence
     '026028': None,    # Larry Summers / Karim Wade intro
+    '029545': None,    # Tyler Shears reputation
+    '025812': None,    # Tyler Shears reputation
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
