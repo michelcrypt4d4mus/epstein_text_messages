@@ -994,7 +994,7 @@ HIGHLIGHTED_NAMES = [
             r"The\s*Guardian",
             r"TheHill",
             r"(The\s*)?Mail\s*On\s*Sunday",
-            r"(The\s*)?N(ew\s*)?Y(ork)?\s*(P(ost)?|T(imes)?)",
+            r"(The\s*)?N(ew\s*)?Y(ork)?\s*(Magazine|Observer|P(ost)?|T(imes)?)",
             r"(The\s*)?New\s*Yorker",
             r"(The\s*)?Wall\s*Street\s*Journal",
             r"(The\s*)?Wa(shington\s*)?Po(st)?",
@@ -1076,6 +1076,7 @@ HIGHLIGHTED_NAMES = [
             r"Miami(?!\s?Herald)",
             r"Nantucket",
             r"New\s*Mexico",
+            r"NYC",
             r"Phoenix",
             r"Santa\s*Fe",
             r"Teterboro",
@@ -1223,8 +1224,10 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"(Matt(hew)? )?Hiltzi[gk]",
+            r"PR\s*Newswire",
             REPUTATION_MGMT,
             r"Reputation.com",
+            r"(Robert L\. )?Dilenschneider",
         ],
     ),
     HighlightedNames(

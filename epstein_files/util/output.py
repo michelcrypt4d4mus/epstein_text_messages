@@ -70,6 +70,7 @@ INTERESTING_EMAIL_IDS = [
     '030725',  # David Stern in Moscow
     '029098',  # Nowak, "her Skype contact is in moscow."
     '030714',  # Bannon, Russian Dugan shout out
+    '030222',  # Ross Gow / Ghislaine
     #'023208',  # Extremely long Leon Black email chain
 ]
 
