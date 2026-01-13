@@ -1384,8 +1384,10 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"AG?I",
+            r"Artificial\s*(General\s*)?Intelligence",
             r"Chamath", r"Palihapitiya",
             r"Danny\s*Hillis",
+            r"deep learning",
             r"Drew\s*Houston",
             r"Eric\s*Schmidt",
             r"Greylock(\s*Partners)?",
