@@ -1604,6 +1604,7 @@ class EpsteinHighlighter(RegexHighlighter):
                     type(self).highlight_counts[(match.group(1) or 'None').replace('\n', ' ')] += 1
 
     def print_highlight_counts(self, console: Console) -> None:
+        """Print counts of how many times strings were highlighted."""
         highlight_counts = deepcopy(self.highlight_counts)
         weak_date_regex = re.compile(r"^(\d\d?/|20|http|On ).*")
 
