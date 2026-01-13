@@ -278,6 +278,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"Buhari",
             r"Econet(\s*Wireless)",
+            r"Ethiopian?",
             r"Ghana(ian)?",
             r"Glencore",
             r"Goodluck Jonathan",
@@ -285,12 +286,15 @@ HIGHLIGHTED_NAMES = [
             r"Kenya",
             r"Nigerian?",
             r"Okey Enelamah",
+            r"(Paul\s*)?Kagame",
+            r"Rwandan?",
             r"Senegal(ese)?",
             r"Serengeti",
             r"(South\s*)?African?",
             r"(Strive\s*)?Masiyiwa",
-            r"Tanzania",
+            r"Tanzanian?",
             r"Ugandan?",
+            r"(Yoweri\s*)?Museveni",
             r"Zimbabwe(an)?",
         ],
     ),
@@ -736,6 +740,7 @@ HIGHLIGHTED_NAMES = [
             r"Serageldin",
             r"UBS",
             r"us.gio@jpmorgan.com",
+            r"Wall\s*Street(?!\s*Jour)",
         ],
     ),
     HighlightedNames(
@@ -1059,8 +1064,10 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"CSIS",
+            r"elisabeth\s*feliho",
             r"(Kevin\s*)?Rudd",
             r"Stanley Rosenberg",
+            r"Vinoda\s*Basnayake",
         ],
     ),
     HighlightedNames(

@@ -71,6 +71,8 @@ INTERESTING_EMAIL_IDS = [
     '029098',  # Nowak, "her Skype contact is in moscow."
     '030714',  # Bannon, Russian Dugan shout out
     '030222',  # Ross Gow / Ghislaine
+    '026028',  # Larry Summers / Karim Wade intro
+    '031659',  # "i have met some very bad people „ none as bad as trump"
     #'023208',  # Extremely long Leon Black email chain
 ]
 
