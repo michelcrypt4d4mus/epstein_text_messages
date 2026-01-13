@@ -147,21 +147,27 @@ TRUNCATE_ALL_EMAILS_FROM = BBC_LISTS + [
     'Steven Victor MD',
 ]
 
-TRUNCATION_LENGTHS = {
+# These IDs will be appended to INTERESTING_EMAIL_IDS
+INTERESTING_TRUNCATION_LENGTHS = {
     '023627': 16_800,  # Micheal Wolff article with brock pierce
     '030245': None,    # Epstein rationalizes his behavior in an open letter to the world
     '030781': None,    # Bannon email about crypto coin issues
     '032906': None,    # David Blaine email
     '026036': 6000,    # Gino Yu blockchain mention
-    '023208': None,    # Long discussion about leon black's finances
     '029609': None,    # Joi Ito
     '025233': None,    # Reputation.com discussion
-    '031791': None,    # First email in Jessica Cadwell chain about service of legal documents
     '017827': None,    # Bannon / Peggy Siegal email about netflix doc on Epstein
     '030222': None,    # Ross Gow / Ghislaine correspondence
     '026028': None,    # Larry Summers / Karim Wade intro
     '029545': None,    # Tyler Shears reputation
     '025812': None,    # Tyler Shears reputation
+    '029914': None,    # Lord Mandelson russian investments
+}
+
+TRUNCATION_LENGTHS = {
+    **INTERESTING_TRUNCATION_LENGTHS,
+    '031791': None,    # First email in Jessica Cadwell chain about service of legal documents
+    '023208': None,    # Long discussion about leon black's finances
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
