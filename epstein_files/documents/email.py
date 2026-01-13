@@ -158,6 +158,7 @@ TRUNCATION_LENGTHS = {
     '025233': None,    # Reputation.com discussion
     '031791': None,    # First email in Jessica Cadwell chain about service of legal documents
     '017827': None,    # Bannon / Peggy Siegal email about netflix doc on Epstein
+    '030222': None,    # Ross Gow / Ghislaine correspondence
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
