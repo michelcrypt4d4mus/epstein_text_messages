@@ -1618,6 +1618,15 @@ class EpsteinHighlighter(RegexHighlighter):
                 logger.error(f"Failed to print highlight count {count} for {highlighted}")
 
 
+def get_highlight_group_for_name(name: str | None) -> HighlightedNames | None:
+    if name is None:
+        return None
+
+    for highlight_group in HIGHLIGHTED_NAMES:
+        if highlight_group.regex.search(name):
+            return highlight_group
+
+
 def get_style_for_category(category: str) -> str | None:
     if category in CATEGORY_STYLES:
         return CATEGORY_STYLES[category]
@@ -1649,15 +1658,6 @@ def styled_category(category: str | None) -> Text:
 
 def styled_name(name: str | None, default_style: str = DEFAULT_NAME_STYLE) -> Text:
     return Text(name or UNKNOWN, style=get_style_for_name(name, default_style=default_style))
-
-
-def get_highlight_group_for_name(name: str | None) -> HighlightedNames | None:
-    if name is None:
-        return None
-
-    for highlight_group in HIGHLIGHTED_NAMES:
-        if highlight_group.regex.search(name):
-            return highlight_group
 
 
 def _print_highlighted_names_repr() -> None:
