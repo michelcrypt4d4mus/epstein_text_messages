@@ -240,6 +240,7 @@ HIGHLIGHTED_NAMES = [
             'Valeria Chomsky': f"wife of {NOAM_CHOMSKY}",
         },
         patterns=[
+            r"Andy\s*Lippman",  # Media Lab
             r"Arizona\s*State\s*University",
             r"Bard\s+((Early )?College|High School|Schools)",
             r"Brotherton",
@@ -258,6 +259,7 @@ HIGHLIGHTED_NAMES = [
             r"Princeton(\s*University)?",
             r"Regeneron",
             r"(Richard\s*)?Dawkins",
+            r"(Sandy\s*)?Pentland",  # Media Lab
             r"Sanofi",
             r"Stanford(\s*University)?(\s*Hospital)?",
             r"(Stephen\s*)?Hawking",
@@ -367,23 +369,27 @@ HIGHLIGHTED_NAMES = [
             r"Balaji",
             r"bitcoin(\s*Foundation)?",
             r"block ?chain(\s*capital)?",
+            r"Brian Forde",
             r"Brock(\s*Pierce)?",
             r"coins?",
+            r"Cory\s*Fields",  # bitcoin dev
             r"cr[iy]?pto(currenc(y|ies))?",
             r"Digital\s*Currenc(ies|y)(\s*Initiative)?",
             r"e-currency",
-            r"(Gavin )?Andress?en",
+            r"(Gavin )?Andress?en",  # bitcoin dev
             r"(Howard\s+)?Lutnic?k",
+            r"(Jim\s*)Pallotta",  # Media lab advisory board
             r"Libra",
             r"Madars",
             r"Mi(chael|ke)\s*Novogratz",
             r"(Patrick\s*)?Murck",
+            r"Ron Rivest",
             r"(Ross\s*)?Ulbricht",
             r"Silk\s*Road",
             r"SpanCash",
             r"Tether",
             r"virtual\s*currenc(ies|y)",
-            r"Wladimir( van der Laan)?",
+            r"Wladimir( van der Laan)?",  # bitcoin dev
             r"(zero\s+knowledge\s+|zk)pro(of|tocols?)",
         ],
     ),
@@ -1340,7 +1346,7 @@ HIGHLIGHTED_NAMES = [
             r"Sberbank",
             r"Soviet(\s*Union)?",
             r"USSR",
-            r"Vladimir",
+            r"Vlad(imir)?",
             r"(Vladimir\s*)?Putin",
             r"Women\s*Empowerment",
             r"Xitrans",
@@ -1458,7 +1464,7 @@ HIGHLIGHTED_NAMES = [
             r"Puerto\s*Ric(an|o)",
             r"S(ain)?t.?\s*Thomas",
             r"USVI",
-            r"(?<!Epstein )VI",
+            r"(?<!stein |vis-a-)VI(?!s-a-)",
             r"(The\s*)?Virgin\s*Islands(\s*Daily\s*News)?",  # Hard to make this work right
             r"(West\s*)?Palm\s*Beach(?!\s*(Daily|Post))",
         ],
@@ -1467,6 +1473,7 @@ HIGHLIGHTED_NAMES = [
         label='victim',
         style='orchid1',
         patterns=[
+            r"#metoo",
             r"(David\s*)?Bo[il]es",
             r"(Gloria\s*)?Allred",
             r"(Jane|Tiffany)\s*Doe",
