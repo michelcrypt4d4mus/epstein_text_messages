@@ -68,7 +68,8 @@ INTERESTING_EMAIL_IDS = [
     '031601',  # Old gf i gave to donald
     '030727',  # David Stern "Death of chinese shareholder quite an issue. What can we do with Qataris here?"
     '030725',  # David Stern in Moscow
-    '029098',  # Nowak, "her Skype contact is in moscow. "
+    '029098',  # Nowak, "her Skype contact is in moscow."
+    '030714',  # Bannon, Russian Dugan shout out
     #'023208',  # Extremely long Leon Black email chain
 ]
 
