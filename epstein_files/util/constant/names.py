@@ -243,7 +243,7 @@ OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
     aaron albert alberto alec alexandra alice anderson andre ann anna anne ariana arthur
     baldwin barack barrett ben benjamin berger bert binant bob bonner boyden bradley brady branson bright bruno bryant burton
     chapman charles charlie christopher clint cohen colin collins conway
-    davis dean debra deborah dennis diana diane diaz dickinson dixon dominique don dylan
+    davis dean debbie debra deborah dennis diana diane diaz dickinson dixon dominique don dylan
     edmond elizabeth emily entwistle erik evelyn
     ferguson flachsbart francis franco frank
     gardner gary geoff geoffrey gilbert gloria goldberg gonzalez gould graham greene guarino gwyneth
