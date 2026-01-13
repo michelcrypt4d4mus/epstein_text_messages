@@ -707,6 +707,7 @@ HIGHLIGHTED_NAMES = [
             'Vahe Stepanian': 'Cetera Financial Group',
         },
         patterns=[
+            r"Ace\s*Greenberg",
             r"((anti.?)?money\s+)?launder(s?|ers?|ing)?(\s+money)?",
             r"Apollo",
             r"Ari\s*Glass",
@@ -781,7 +782,7 @@ HIGHLIGHTED_NAMES = [
             r"(Alicia\s*)?Valle",
             r'Alice\s*Fisher|Fisher, Alice',
             r"AML",
-            r"(Andrew\s*)?McCabe",
+            r"(Andrew\s*)?(McCabe|Natsios)",
             r"Attorney General",
             r"((Bob|Robert)\s*)?Mueller",
             r"(Byung\s)?Pak",
@@ -834,7 +835,10 @@ HIGHLIGHTED_NAMES = [
             r"TSA",
             r"U\.?S\.? attorney",
             r"USAID",
+            r"US\s*(AF|Army|Air\s*Force)",
+            r"Walter\s*Reed(\s*Army\s*Institute\s*of\s*Research)?",
             r"(William\s*J\.?\s*)?Zloch",
+            r"WRAIR",
         ],
     ),
     HighlightedNames(
@@ -1343,6 +1347,8 @@ HIGHLIGHTED_NAMES = [
             r"(Natalia\s*)?Veselnitskaya",
             r"(Oleg\s*)?Deripaska",
             r"Oleksandr Vilkul",
+            r"Onexim",  # Prokhorov investment vehicle
+            r"Prokhorov",
             r"Rosneft",
             r"RT",
             r"St.?\s*?Petersburg",
