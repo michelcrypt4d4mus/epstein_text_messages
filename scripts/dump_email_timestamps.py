@@ -21,7 +21,7 @@ from epstein_files.util.logging import logger
 from epstein_files.util.rich import console, highlighter, print_json, print_subtitle_panel
 
 
-args.positional_args = TRUNCATE_TERMS
+args.positional_args = [term.replace('(', r"\(") for term in TRUNCATE_TERMS]
 epstein_search()
 sys.exit()
 
