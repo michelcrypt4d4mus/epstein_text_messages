@@ -1207,7 +1207,7 @@ HIGHLIGHTED_NAMES = [
             r"MB(N|S|Z)",
             r"Mid(dle)?\s*East(ern)?",
             r"Mohammed\s+bin\s+Salman",
-            r"Morocco",
+            r"Morocc(an|o)",
             r"Mubarak",
             r"Muslim(\s*Brotherhood)?",
             r"Nayaf",
