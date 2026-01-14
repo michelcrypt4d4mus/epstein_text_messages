@@ -56,7 +56,6 @@ DEFAULT_EMAILERS = [
 INTERESTING_EMAIL_IDS = [
     '032229',  # Michael Wolff on strategy
     '028784',  # seminars: Money / Power
-    '029342',  # Hakeem Jeffries
     '030630',  # 'What happens with zubair's project?'
     '033178',  # 'How is it going with Zubair?'
     '022396',  # Ukraine friend
