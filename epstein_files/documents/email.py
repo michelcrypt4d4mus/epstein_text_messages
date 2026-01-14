@@ -252,6 +252,8 @@ TRUNCATE_TERMS = [
     "Donald Trump's newly named chief strategist and senior counselor",
     # Diane Ziman
     'I was so proud to see him speak at the Women',
+    # lawyers
+    'recuses itself from Jeffrey Epstein case',
     # Krauss
     'On confronting dogma, I of course agree',
     'I did neck with that woman, but never forced myself on her',
