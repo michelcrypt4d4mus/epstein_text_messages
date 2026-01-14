@@ -5569,7 +5569,7 @@
                 "bytes": 3610,
                 "file_id": "026057",
                 "filename": "HOUSE_OVERSIGHT_026057.txt",
-                "num_lines": 63,
+                "num_lines": 62,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -6939,7 +6939,7 @@
                 "bytes": 2130,
                 "file_id": "026381",
                 "filename": "HOUSE_OVERSIGHT_026381.txt",
-                "num_lines": 45,
+                "num_lines": 44,
                 "recipients": [
                     "Richard Kahn"
                 ],
@@ -8272,6 +8272,7 @@
                 "bytes": 12610,
                 "file_id": "026829",
                 "filename": "HOUSE_OVERSIGHT_026829.txt",
+                "is_fwded_article": true,
                 "num_lines": 171,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -17437,6 +17438,7 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 3169,
+                "description": "Barbro C. Ehnbom related donation and Swedish girls discussion",
                 "file_id": "031036",
                 "filename": "HOUSE_OVERSIGHT_031036.txt",
                 "num_lines": 60,
@@ -18473,6 +18475,7 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 5396,
+                "description": "Epstein and Richard Kahn appear to be discussing routing donatings through Peggy Siegal",
                 "file_id": "031320",
                 "filename": "HOUSE_OVERSIGHT_031320.txt",
                 "num_lines": 137,
@@ -19349,7 +19352,7 @@
                 "bytes": 8333,
                 "file_id": "031511",
                 "filename": "HOUSE_OVERSIGHT_031511.txt",
-                "num_lines": 144,
+                "num_lines": 143,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -20567,12 +20570,12 @@
                 "bytes": 8565,
                 "file_id": "031764",
                 "filename": "HOUSE_OVERSIGHT_031764.txt",
-                "num_lines": 121,
+                "num_lines": 118,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
                 "sent_from_device": "Sent from my BlackBerry 10 smartphone.",
-                "subject": "Fw: GOP fundraiser Broidy under investigation for alleged effort to sell government influence, people familiar with",
+                "subject": "Fw: GOP fundraiser Broidy under investigation for alleged effort to sell government influence, people familiar with probe say - The Washington Post",
                 "timestamp": "2018-08-18T16:51:06",
                 "type": "Email"
             },
@@ -21985,7 +21988,7 @@
                 "bytes": 1343,
                 "file_id": "032252",
                 "filename": "HOUSE_OVERSIGHT_032252.txt",
-                "num_lines": 30,
+                "num_lines": 29,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -24313,7 +24316,7 @@
                 "bytes": 1252,
                 "file_id": "032562",
                 "filename": "HOUSE_OVERSIGHT_032562.txt",
-                "num_lines": 25,
+                "num_lines": 24,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -26620,7 +26623,7 @@
                 "bytes": 860,
                 "file_id": "032896",
                 "filename": "HOUSE_OVERSIGHT_032896.txt",
-                "num_lines": 19,
+                "num_lines": 18,
                 "recipients": [
                     "Martin Weinberg"
                 ],
@@ -28058,7 +28061,7 @@
                 "bytes": 1094,
                 "file_id": "033090",
                 "filename": "HOUSE_OVERSIGHT_033090.txt",
-                "num_lines": 18,
+                "num_lines": 17,
                 "recipients": [
                     "Nicholas Ribis"
                 ],
@@ -28884,7 +28887,7 @@
                 "bytes": 409,
                 "file_id": "033191",
                 "filename": "HOUSE_OVERSIGHT_033191.txt",
-                "num_lines": 10,
+                "num_lines": 9,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -29440,7 +29443,7 @@
                 "bytes": 735,
                 "file_id": "033240",
                 "filename": "HOUSE_OVERSIGHT_033240.txt",
-                "num_lines": 10,
+                "num_lines": 9,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -29958,7 +29961,7 @@
                 "bytes": 407,
                 "file_id": "033284",
                 "filename": "HOUSE_OVERSIGHT_033284.txt",
-                "num_lines": 13,
+                "num_lines": 12,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -39255,7 +39258,7 @@
         "Edward Rod Larsen": "Europe, son of Terje R\u00f8d-Larsen",
         "Ehud Barak": "Israel, former prime minister of Israel, Epstein business partner",
         "Elon Musk": "tech bro, father of Mecha-Hitler",
-        "Eric Roth": "employee, jet decorator",
+        "Eric Roth": "employee, jet decorator at International Jet",
         "Erika Kellerhals": "lawyer, attorney in St. Thomas",
         "Eva (Dubin?)": "Dubins, possibly Epstein's ex-girlfriend (?)",
         "Eva Dubin": "Dubins, Epstein's ex-girlfriend now married to Glenn Dubin",
