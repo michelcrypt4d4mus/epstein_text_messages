@@ -911,7 +911,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             EHUD_BARAK: 'former prime minister of Israel, Epstein business partner',
             'Mitchell Bard': 'director of the American-Israeli Cooperative Enterprise (AICE)',
-            'Nili Priell Barak': 'wife of Ehud Barak',
+            NILI_PRIELL_BARAK: 'wife of Ehud Barak',
         },
         patterns=[
             r"AIPAC",
