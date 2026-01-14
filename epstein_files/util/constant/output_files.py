@@ -45,6 +45,7 @@ BUILD_ARTIFACTS = [
 def make_clean() -> None:
     """Delete all build artifacts."""
     for build_file in BUILD_ARTIFACTS:
-        if build_file.exists():
-            logger.warning(f"Removing build file '{build_file}'...")
-            build_file.unlink()
+        for file in [build_file, f"{build_file}.txt"]:
+            if file.exists():
+                logger.warning(f"Removing build file '{file}'...")
+                file.unlink()
