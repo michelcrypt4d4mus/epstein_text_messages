@@ -1,5 +1,6 @@
 import json
 import re
+from collections import defaultdict
 from dataclasses import dataclass, field
 
 from rich.console import Console
@@ -11,8 +12,8 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
 from epstein_files.util.constants import (EMAILER_ID_REGEXES, EPSTEIN_V_ROTHSTEIN_EDWARDS,
      OSBORNE_LLP, REPLY_REGEX, SENT_FROM_REGEX)
+from epstein_files.util.data import sort_dict, without_falsey
 from epstein_files.util.doc_cfg import *
-from epstein_files.util.data import without_falsey
 from epstein_files.util.env import args
 from epstein_files.util.logging import logger
 
@@ -239,11 +240,14 @@ HIGHLIGHTED_NAMES = [
             'Valeria Chomsky': f"wife of {NOAM_CHOMSKY}",
         },
         patterns=[
+            r"Andy\s*Lippman",  # Media Lab
+            r"Arizona\s*State\s*University",
             r"Bard\s+((Early )?College|High School|Schools)",
             r"Brotherton",
             r"Carl\s*Sagan",
             r"Columbia",
             r"Dan(iel|ny) Kahneman",
+            r"(Francis\s*)?Crick",
             r"J(ames|im)\s*Watson",
             r"(Lord\s*)?Martin\s*Rees",
             r"Massachusetts\s*Institute\s*of\s*Technology",
@@ -256,10 +260,13 @@ HIGHLIGHTED_NAMES = [
             r"Princeton(\s*University)?",
             r"Regeneron",
             r"(Richard\s*)?Dawkins",
+            r"(Sandy\s*)?Pentland",  # Media Lab
             r"Sanofi",
             r"Stanford(\s*University)?(\s*Hospital)?",
             r"(Stephen\s*)?Hawking",
             r"(Steven?\s*)?Pinker",
+            r"Texas\s*A&M",
+            r"Tulane",
             r"UCLA",
         ],
     ),
@@ -276,6 +283,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"Buhari",
             r"Econet(\s*Wireless)",
+            r"Ethiopian?",
             r"Ghana(ian)?",
             r"Glencore",
             r"Goodluck Jonathan",
@@ -283,12 +291,15 @@ HIGHLIGHTED_NAMES = [
             r"Kenya",
             r"Nigerian?",
             r"Okey Enelamah",
+            r"(Paul\s*)?Kagame",
+            r"Rwandan?",
             r"Senegal(ese)?",
             r"Serengeti",
             r"(South\s*)?African?",
             r"(Strive\s*)?Masiyiwa",
-            r"Tanzania",
+            r"Tanzanian?",
             r"Ugandan?",
+            r"(Yoweri\s*)?Museveni",
             r"Zimbabwe(an)?",
         ],
     ),
@@ -313,6 +324,9 @@ HIGHLIGHTED_NAMES = [
             r"Errol(\s*Morris)?",
             r"Etienne Binant",
             r"(Frank\s)?Gehry",
+            r"Harvey\s*Weinstein", r"wientstein", r"Weinstein\s*Co(s?|mpany)",
+            r"IFP",
+            r"Independent\s*Filmmaker\s*Project",
             r"Jagger",
             r"(Jeffrey\s*)?Katzenberg",
             r"(Johnny\s*)?Depp",
@@ -321,6 +335,7 @@ HIGHLIGHTED_NAMES = [
             r"Lena\s*Dunham",
             r"Madonna",
             r"Mark\s*Burnett",
+            r"New York Film Festival",
             r"Peter Getzels",
             r"Phaidon",
             r"Ramsey Elkholy",
@@ -342,6 +357,7 @@ HIGHLIGHTED_NAMES = [
             r"BG",
             r"b?g?C3",
             r"(Bill\s*((and|or|&)\s*Melinda\s*)?)?Gates(\s*Foundation)?",
+            r"Kofi\s*Rashid",
             r"Melinda(\s*Gates)?",
             r"Microsoft",
             r"MSFT",
@@ -360,23 +376,27 @@ HIGHLIGHTED_NAMES = [
             r"Balaji",
             r"bitcoin(\s*Foundation)?",
             r"block ?chain(\s*capital)?",
+            r"Brian Forde",
             r"Brock(\s*Pierce)?",
             r"coins?",
+            r"Cory\s*Fields",  # bitcoin dev
             r"cr[iy]?pto(currenc(y|ies))?",
             r"Digital\s*Currenc(ies|y)(\s*Initiative)?",
             r"e-currency",
-            r"(Gavin )?Andress?en",
+            r"(Gavin )?Andress?en",  # bitcoin dev
             r"(Howard\s+)?Lutnic?k",
+            r"(Jim\s*)Pallotta",  # Media lab advisory board
             r"Libra",
             r"Madars",
             r"Mi(chael|ke)\s*Novogratz",
             r"(Patrick\s*)?Murck",
+            r"Ron Rivest",
             r"(Ross\s*)?Ulbricht",
             r"Silk\s*Road",
             r"SpanCash",
             r"Tether",
             r"virtual\s*currenc(ies|y)",
-            r"Wladimir( van der Laan)?",
+            r"Wladimir( van der Laan)?",  # bitcoin dev
             r"(zero\s+knowledge\s+|zk)pro(of|tocols?)",
         ],
     ),
@@ -388,10 +408,8 @@ HIGHLIGHTED_NAMES = [
             BARBRO_C_EHNBOM: 'Swedish pharmaceuticals, SALSS',
             BARRY_J_COHEN: None,
             'David Mitchell': 'Mitchell Holdings, New York real estate developer',
-            FRED_HADDAD: "co-founder of Heck's in West Virginia",
             GERALD_BARTON: "Maryland property developer Landmark Land Company",
             GORDON_GETTY: 'heir to oil tycoon J. Paul Getty',
-            NICHOLAS_RIBIS: 'Hilton CEO, former president of Trump Organization',
             'Philip Kafka': 'president of Prince Concepts (and son of Terry Kafka?)',
             ROBERT_LAWRENCE_KUHN: 'investment banker, China expert',
             TERRY_KAFKA: 'CEO of Impact Outdoor (highway billboards)',
@@ -400,7 +418,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"((Bill|David)\s*)?Koch(\s*(Bro(s|thers)|Industries))?",
             r"Gruterite",
-            r"(John\s*)?Kluge",
+            r"((John|Patricia)\s*)?Kluge",
             r"Marc Rich",
             r"(Mi(chael|ke)\s*)?Ovitz",
             r"(Steve\s+)?Wynn",
@@ -409,6 +427,7 @@ HIGHLIGHTED_NAMES = [
             r"Park Partners",
             r"SALSS",
             r"Swedish[-\s]*American\s*Life\s*Science\s*Summit",
+            r"Trilateral Commission",
             r"Valhi",
             r"(Yves\s*)?Bouvier",
         ],
@@ -477,6 +496,7 @@ HIGHLIGHTED_NAMES = [
             r"(Barac?k )?Obama",
             r"((Bill|Hillart?y)\s*)?Clinton",
             r"((Chuck|Charles)\s*)?S(ch|hc)umer",
+            r"Debbie\s*Wasserman\s*Schultz",
             r"Dem(ocrat(ic)?)?",
             r"(Diana\s*)?DeGette",
             r"DNC",
@@ -494,6 +514,7 @@ HIGHLIGHTED_NAMES = [
             r"(Matteo\s*)?Salvini",
             r"Maxine\s*Waters",
             r"(Nancy )?Pelosi",
+            r"Open Society( Global Board)?",
             r"Ron\s*Dellums",
             r"Schumer",
             r"(Tim(othy)?\s*)?Geithner",
@@ -509,16 +530,19 @@ HIGHLIGHTED_NAMES = [
             EVA: "possibly Epstein's ex-girlfriend (?)",
             'Eva Dubin': f"Epstein's ex-girlfriend now married to {GLENN_DUBIN}",
         },
-        patterns=[r"((Celina|Eva( Anderss?on)?|Glenn) )?Dubin"],
+        patterns=[r"((Celina|Eva( Anderss?on)?|Glenn?) )?Dubin"],
     ),
     HighlightedNames(
         label='employee',
         style='medium_purple4',
         emailers={
             'Alfredo Rodriguez': "Epstein's butler, stole the journal",
+            'Bernard Kruger': "Epstein's doctor",
+            EDUARDO_ROBLES: f'Creative Kingdom Dubai builder recommended by {SULTAN_BIN_SULAYEM}',
             ERIC_ROTH: 'jet decorator',
             GWENDOLYN_BECK: 'Epstein fund manager in the 90s',
             JANUSZ_BANASIAK: "Epstein's house manager",
+            "John Allessi": "Epstein's houseman",
             JEAN_HUGUEN: 'interior design at Alberto Pinto Cabinet',
             LAWRANCE_VISOSKI: "Epstein's pilot",
             LESLEY_GROFF: f"Epstein's assistant",
@@ -559,6 +583,7 @@ HIGHLIGHTED_NAMES = [
             DAVID_SCHOEN: f"{CRIMINAL_DEFENSE_ATTORNEY} after 2019 arrest",
             DEBBIE_FEIN: EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY,
             'Erika Kellerhals': 'attorney in St. Thomas',
+            FRED_HADDAD: "co-founder of Heck's in West Virginia",
             GERALD_LEFCOURT: f'friend of {ALAN_DERSHOWITZ}',
             'Howard Rubenstein': f"Epstein's former spokesman",
             JACK_GOLDBERGER: CRIMINAL_DEFENSE_2008,
@@ -660,6 +685,7 @@ HIGHLIGHTED_NAMES = [
             r"(Tony\s)?Blair",
             r"U\.K\.",
             r"Ukrain(e|ian)",
+            r"Venice",
             r"(Vi(c|k)tor\s+)?Orbah?n",
             r"Vienna",
             r"Zug",
@@ -690,6 +716,7 @@ HIGHLIGHTED_NAMES = [
             'Vahe Stepanian': 'Cetera Financial Group',
         },
         patterns=[
+            r"Ace\s*Greenberg",
             r"((anti.?)?money\s+)?launder(s?|ers?|ing)?(\s+money)?",
             r"Apollo",
             r"Ari\s*Glass",
@@ -730,6 +757,7 @@ HIGHLIGHTED_NAMES = [
             r"Serageldin",
             r"UBS",
             r"us.gio@jpmorgan.com",
+            r"Wall\s*Street(?!\s*Jour)",
         ],
     ),
     HighlightedNames(
@@ -748,6 +776,78 @@ HIGHLIGHTED_NAMES = [
             r"Andrew Farkas",
             r"Jonanthan and Kimberly Farkus",
             r"Thomas\s*(J\.?\s*)?Barrack(\s*Jr)?",
+        ],
+    ),
+    HighlightedNames(
+        label='government',
+        style='color(24) bold',
+        emailers={
+            ANN_MARIE_VILLAFANA: 'Southern District of Florida (SDFL) U.S. Attorney',
+            DANNY_FROST: 'Director of Communications at Manhattan D.A.',
+            'Police Code Enforcement': f"{PALM_BEACH} buildings code enforcement",
+        },
+        patterns=[
+            r"AG",
+            r"(Alicia\s*)?Valle",
+            r'Alice\s*Fisher|Fisher, Alice',
+            r"AML",
+            r"(Andrew\s*)?(McCabe|Natsios)",
+            r"Attorney General",
+            r"((Bob|Robert)\s*)?Mueller",
+            r"(Byung\s)?Pak",
+            r"Case 1:19-cv-03377(-LAP)?",
+            r"CFTC?",
+            r"CIA",
+            r"CIS",
+            r"CVRA",
+            r"Dep(artmen)?t\.?\s*of\s*(the\s*)?(Justice|Treasury)",
+            r"DHS",
+            r"DOJ",
+            r"FBI",
+            r"FCPA",
+            r"FDIC",
+            r"Federal\s*Bureau\s*of\s*Investigation",
+            r"FinCEN",
+            r"FINRA",
+            r"FOIA",
+            r"FTC",
+            r"(General\s*)?P(a|e)traeus",
+            r"IRS",
+            r"(James\s*)?Comey",
+            r"(Jennifer\s*Shasky\s*)?Calvery",
+            r"((Judge|Mark)\s*)?(Carney|Filip)",
+            r"(Judge\s*)?(Kenneth\s*)?(A\.?\s*)?Marra",
+            r"(Justice|Treasury)\s*Dep(t|artment)",
+            r"(Kirk )?Blouin",
+            r"KYC",
+            r"(Lann?a\s*)?Belohlavek",
+            r"NIH",
+            r"NPA",
+            r"NS(A|C)",
+            r"OCC",
+            r"OFAC",
+            r"(Michael\s*)?Reiter",
+            r"OGE",
+            r"Office\s*of\s*Government\s*Ethics",
+            r"police",
+            r"(Preet\s*)?Bharara",
+            r"SCOTUS",
+            r"SD(FL|NY)",
+            r"SEC",
+            r"Secret\s*Service",
+            r"Securities\s*and\s*Exchange\s*Commission",
+            r"Southern\s*District(\s*of\s*(Florida|New\s*York))?",
+            r"State\s*Dep(artmen)?t",
+            r"Strzok",
+            r"Supreme\s*Court",
+            r"Treasury\s*(Dep(artmen)?t|Secretary)",
+            r"TSA",
+            r"U\.?S\.? attorney",
+            r"USAID",
+            r"US\s*(AF|Army|Air\s*Force)",
+            r"Walter\s*Reed(\s*Army\s*Institute\s*of\s*Research)?",
+            r"(William\s*J\.?\s*)?Zloch",
+            r"WRAIR",
         ],
     ),
     HighlightedNames(
@@ -861,7 +961,8 @@ HIGHLIGHTED_NAMES = [
             r"Axios",
             r"BBC",
             r"Breitbart",
-            r"BuzzFeed",
+            r"BuzzFeed(\s*News)?",
+            r"C-?Span",
             r"CBS(\s*(4|Corp|News))?",
             r"Charlie\s*Rose",
             r"China\s*Daily",
@@ -875,6 +976,7 @@ HIGHLIGHTED_NAMES = [
             r"Ed\s*Krassenstein",
             r"(Emily\s*)?Michot",
             r"Ezra\s*Klein",
+            r"Fire\s*and\s*Fury",
             r"Forbes",
             r"Fortune\s*Magazine",
             r"Fox\s*News(\.com)?",
@@ -899,7 +1001,7 @@ HIGHLIGHTED_NAMES = [
             r"(Les\s*)?Moonves",
             r"MarketWatch",
             r"Miami\s*Herald",
-            r"(Mi(chael|ke)\s*)?Bloomberg",
+            r"(Mi(chael|ke)\s*)?Bloomber[gq](\s*News)?",
             r"(Michele\s*)?Dargan",
             r"Morning News USA",
             r"(National\s*)?Enquirer",
@@ -918,7 +1020,7 @@ HIGHLIGHTED_NAMES = [
             r"The\s*Guardian",
             r"TheHill",
             r"(The\s*)?Mail\s*On\s*Sunday",
-            r"(The\s*)?N(ew\s*)?Y(ork\s*)?(P(ost)?|T(imes)?)",
+            r"(The\s*)?N(ew\s*)?Y(ork)?\s*(Magazine|Observer|P(ost)?|T(imes)?)",
             r"(The\s*)?New\s*Yorker",
             r"(The\s*)?Wall\s*Street\s*Journal",
             r"(The\s*)?Wa(shington\s*)?Po(st)?",
@@ -960,7 +1062,7 @@ HIGHLIGHTED_NAMES = [
             r"((Enrique )?Pena )?Nieto",
             r"Lat(in)?\s*Am(erican?)?",
             r"Lula",
-            r"Mexic(an|o)",
+            r"(?<!New )Mexic(an|o)",
             r"(Nicolas\s+)?Maduro",
             r"Panama( Papers)?",
             r"Peru(vian)?",
@@ -969,91 +1071,55 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        label='government',
-        style='color(24) bold',
-        emailers={
-            ANN_MARIE_VILLAFANA: 'Southern District of Florida (SDFL) U.S. Attorney',
-            DANNY_FROST: 'Director of Communications at Manhattan D.A.',
-            'Police Code Enforcement': f"{PALM_BEACH} buildings code enforcement",
-        },
-        patterns=[
-            r"AG",
-            r"(Alicia\s*)?Valle",
-            r'Alice\s*Fisher|Fisher, Alice',
-            r"AML",
-            r"(Andrew\s*)?McCabe",
-            r"Attorney General",
-            r"((Bob|Robert)\s*)?Mueller",
-            r"(Byung\s)?Pak",
-            r"Case 1:19-cv-03377(-LAP)?",
-            r"CFTC?",
-            r"CIA",
-            r"CIS",
-            r"CVRA",
-            r"Dep(artmen)?t\.?\s*of\s*(the\s*)?(Justice|Treasury)",
-            r"DHS",
-            r"DOJ",
-            r"FBI",
-            r"FCPA",
-            r"FDIC",
-            r"Federal\s*Bureau\s*of\s*Investigation",
-            r"FinCEN",
-            r"FINRA",
-            r"FOIA",
-            r"FTC",
-            r"(General\s*)?P(a|e)traeus",
-            r"IRS",
-            r"(James\s*)?Comey",
-            r"(Jennifer\s*Shasky\s*)?Calvery",
-            r"((Judge|Mark)\s*)?(Carney|Filip)",
-            r"(Judge\s*)?(Kenneth\s*)?(A\.?\s*)?Marra",
-            r"(Justice|Treasury)\s*Dep(t|artment)",
-            r"(Kirk )?Blouin",
-            r"KYC",
-            r"(Lann?a\s*)?Belohlavek",
-            r"NIH",
-            r"NPA",
-            r"NS(A|C)",
-            r"OCC",
-            r"OFAC",
-            r"(Michael\s*)?Reiter",
-            r"OGE",
-            r"Office\s*of\s*Government\s*Ethics",
-            r"police",
-            r"(Preet\s*)?Bharara",
-            r"SCOTUS",
-            r"SD(FL|NY)",
-            r"SEC",
-            r"Secret\s*Service",
-            r"Securities\s*and\s*Exchange\s*Commission",
-            r"Southern\s*District(\s*of\s*(Florida|New\s*York))?",
-            r"State\s*Dep(artmen)?t",
-            r"Strzok",
-            r"Supreme\s*Court",
-            r"Treasury\s*(Dep(artmen)?t|Secretary)",
-            r"TSA",
-            r"U\.?S\.? attorney",
-            r"USAID",
-            r"(William\s*J\.?\s*)?Zloch",
-        ],
-    ),
-    HighlightedNames(
         label=LOBBYIST,
         style='light_coral',
         emailers={
             BOB_CROWE: 'partner at Nelson Mullins',
             'Joshua Cooper Ramo': 'co-CEO of Henry Kissinger Associates',
-            KATHERINE_KEATING: 'Daughter of former Australian PM',
+            KATHERINE_KEATING: 'daughter of former Australian prime minister',
             MOHAMED_WAHEED_HASSAN: 'former president of the Maldives',
             OLIVIER_COLOM: 'France',
-            'Paul Keating': 'former PM of Australia',
+            'Paul Keating': 'former prime minister of Australia',
             PUREVSUREN_LUNDEG: 'Mongolian ambassador to the UN',
             'Stanley Rosenberg': 'former President of the Massachusetts Senate',
         },
         patterns=[
             r"CSIS",
+            r"elisabeth\s*feliho",
             r"(Kevin\s*)?Rudd",
             r"Stanley Rosenberg",
+            r"Vinoda\s*Basnayake",
+        ],
+    ),
+    HighlightedNames(
+        label='locations',
+        style='cornsilk1',
+        patterns=[
+            r"Arizona(?! State University)",
+            r"Aspen",
+            r"Berkeley",
+            r"California",
+            r"Canada",
+            r"Cape Cod",
+            r"Connecticut",
+            r"Florida",
+            r"Martha's\s*Vineyard",
+            r"Miami(?!\s?Herald)",
+            r"Nantucket",
+            r"New\s*Mexico",
+            r"(North|South)\s*Carolina",
+            r"NY(C|\s*State)",
+            r"Orange\s*County",
+            r"Phoenix",
+            r"Santa\s*Fe",
+            r"Telluride",
+            r"Teterboro",
+            r"Texas(?! A&M)",
+            r"Toronto",
+            r"Tu(sc|cs)on",
+            r"Vermont",
+            r"Washington(\s*D\.?C)?",
+            r"Westchester",
         ],
     ),
     HighlightedNames(
@@ -1195,8 +1261,10 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"(Matt(hew)? )?Hiltzi[gk]",
+            r"PR\s*Newswire",
             REPUTATION_MGMT,
             r"Reputation.com",
+            r"(Robert L\. )?Dilenschneider",
         ],
     ),
     HighlightedNames(
@@ -1228,7 +1296,8 @@ HIGHLIGHTED_NAMES = [
             r"(George\s*)?Nader",
             r"GOP",
             r"Jeff(rey)?\s*Sessions",
-            r"(John\s*(R.?\s*)?)Bolton",
+            r"(John\s*(R.?\s*)?)?Bolton",
+            r"Keith\s*Schiller",
             r"Kissinger",
             r"Kobach",
             r"Kolfage",
@@ -1294,6 +1363,8 @@ HIGHLIGHTED_NAMES = [
             r"(Natalia\s*)?Veselnitskaya",
             r"(Oleg\s*)?Deripaska",
             r"Oleksandr Vilkul",
+            r"Onexim",  # Prokhorov investment vehicle
+            r"Prokhorov",
             r"Rosneft",
             r"RT",
             r"St.?\s*?Petersburg",
@@ -1302,7 +1373,7 @@ HIGHLIGHTED_NAMES = [
             r"Sberbank",
             r"Soviet(\s*Union)?",
             r"USSR",
-            r"Vladimir",
+            r"Vlad(imir)?",
             r"(Vladimir\s*)?Putin",
             r"Women\s*Empowerment",
             r"Xitrans",
@@ -1313,6 +1384,7 @@ HIGHLIGHTED_NAMES = [
         label='Southeast Asia',
         style='light_salmon3 bold',
         patterns=[
+            r"Australian?",
             r"Bangkok",
             r"Burm(a|ese)",
             r"Cambodian?",
@@ -1340,8 +1412,10 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"AG?I",
+            r"Artificial\s*(General\s*)?Intelligence",
             r"Chamath", r"Palihapitiya",
             r"Danny\s*Hillis",
+            r"deep learning",
             r"Drew\s*Houston",
             r"Eric\s*Schmidt",
             r"Greylock(\s*Partners)?",
@@ -1370,6 +1444,7 @@ HIGHLIGHTED_NAMES = [
         style='red3 bold',
         emailers={
             'Bruce Moskowitz': "'Trump's health guy' according to Epstein",
+            NICHOLAS_RIBIS: 'Hilton CEO, former president of Trump Organization',
         },
         patterns=[
             r"@?realDonaldTrump",
@@ -1386,7 +1461,7 @@ HIGHLIGHTED_NAMES = [
             r"(Marla\s*)?Maples",
             r"(Matt(hew)? )?Calamari",
             r"\bMatt C\b",
-            r"Michael\s*Cohen",
+            r"Michael\s*(D\.?\s*)?Cohen",
             r"Melania",
             r"(Michael (J.? )?)?Boccio",
             r"Paul Rampell",
@@ -1412,14 +1487,15 @@ HIGHLIGHTED_NAMES = [
             r"Dominican\s*Republic",
             r"(Great|Little)\s*St.?\s*James",
             r"Haiti(an)?",
+            r"Jamaican?",
             r"(John\s*)deJongh(\s*Jr\.?)",
             r"(Kenneth E\. )?Mapp",
             r"PBI",
             r"Puerto\s*Ric(an|o)",
             r"S(ain)?t.?\s*Thomas",
             r"USVI",
-            r"(?<!Epstein )VI",
-            r"(The\s*)?Virgin\s*Islands(\s*Daily\s*News)?",  # Hard to make this work right
+            r"(?<!stein |vis-a-)VI(?!s-a-)",
+            r"(The\s*)?Virgin\s*Is(al|la)nds(\s*Daily\s*News)?",  # Hard to make this work right
             r"(West\s*)?Palm\s*Beach(?!\s*(Daily|Post))",
         ],
     ),
@@ -1427,10 +1503,13 @@ HIGHLIGHTED_NAMES = [
         label='victim',
         style='orchid1',
         patterns=[
-            r"(David\s*)?Bo[il]es",
+            r"#metoo",
+            r"(David\s*)?Bo[il]es(,?\s*Schiller( & Flexner)?)?",
             r"(Gloria\s*)?Allred",
             r"(Jane|Tiffany)\s*Doe",
             r"Katie\s*Johnson",
+            r"Stephanie\s*Clifford",
+            r"Stormy\s*Daniels",
             r"(Virginia\s+((L\.?|Roberts)\s+)?)?Giuffre",
             r"Virginia\s+Roberts",
         ],
@@ -1509,7 +1588,7 @@ HIGHLIGHTED_TEXTS = [
     HighlightedText(
         label='header_field',
         style='plum4',
-        patterns=[r'^>? ?(Date|From|Sent|To|C[cC]|Importance|Reply-To|Subject|Bee|B[cC]{2}|Attachments|Flag|Classification|((A|De(stinataire)?|Envoye|Expe(cl|d)iteur|Objet|Q) ?)):'],
+        patterns=[r'^>? ?(Date|From|Sent|To|C[cC]|Importance|Reply[- ]?To|Subject|Bee|B[cC]{2}|Attachments|Flag|Classification|((A|De(stinataire)?|Envoye|Expe(cl|d)iteur|Objet|Q) ?)):'],
     ),
     HighlightedText(
         label='http_links',
@@ -1563,6 +1642,41 @@ class EpsteinHighlighter(RegexHighlighter):
     """Finds and colors interesting keywords based on the above config."""
     base_style = f"{REGEX_STYLE_PREFIX}."
     highlights = [highlight_group.regex for highlight_group in ALL_HIGHLIGHTS]
+    highlight_counts = defaultdict(int)
+
+    def highlight(self, text: Text) -> None:
+        """overrides https://rich.readthedocs.io/en/latest/_modules/rich/highlighter.html#RegexHighlighter"""
+        highlight_regex = text.highlight_regex
+
+        for re_highlight in self.highlights:
+            highlight_regex(re_highlight, style_prefix=self.base_style)
+
+            if args.debug and isinstance(re_highlight, re.Pattern):
+                for match in re_highlight.finditer(text.plain):
+                    type(self).highlight_counts[(match.group(1) or 'None').replace('\n', ' ')] += 1
+
+    def print_highlight_counts(self, console: Console) -> None:
+        """Print counts of how many times strings were highlighted."""
+        highlight_counts = deepcopy(self.highlight_counts)
+        weak_date_regex = re.compile(r"^(\d\d?/|20|http|On ).*")
+
+        for highlighted, count in sort_dict(highlight_counts):
+            if highlighted is None or weak_date_regex.match(highlighted):
+                continue
+
+            try:
+                console.print(f"{highlighted:25s} highlighted {count} times")
+            except Exception as e:
+                logger.error(f"Failed to print highlight count {count} for {highlighted}")
+
+
+def get_highlight_group_for_name(name: str | None) -> HighlightedNames | None:
+    if name is None:
+        return None
+
+    for highlight_group in HIGHLIGHTED_NAMES:
+        if highlight_group.regex.search(name):
+            return highlight_group
 
 
 def get_style_for_category(category: str) -> str | None:
@@ -1596,15 +1710,6 @@ def styled_category(category: str | None) -> Text:
 
 def styled_name(name: str | None, default_style: str = DEFAULT_NAME_STYLE) -> Text:
     return Text(name or UNKNOWN, style=get_style_for_name(name, default_style=default_style))
-
-
-def get_highlight_group_for_name(name: str | None) -> HighlightedNames | None:
-    if name is None:
-        return None
-
-    for highlight_group in HIGHLIGHTED_NAMES:
-        if highlight_group.regex.search(name):
-            return highlight_group
 
 
 def _print_highlighted_names_repr() -> None:

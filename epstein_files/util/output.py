@@ -5,7 +5,7 @@ from typing import cast
 from rich.padding import Padding
 
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import Email
+from epstein_files.documents.email import INTERESTING_TRUNCATION_LENGTHS, Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles, count_by_month
@@ -40,7 +40,6 @@ DEFAULT_EMAILERS = [
     STEVEN_HOFFENBERG,
     MASHA_DROKOVA,
     EHUD_BARAK,
-    MARTIN_NOWAK,
     STEVE_BANNON,
     TYLER_SHEARS,
     JIDE_ZEITLIN,
@@ -62,15 +61,24 @@ INTERESTING_EMAIL_IDS = [
     '022396',  # Ukraine friend
     '026505',  # I know how dirty trump is
     '029679',  # Trump's driver was the bag man
-    '030781', '026258', '026260',  # Bannon cripto coin issues
-    '023627',  # Michael Wolff article w/Brock
+    '026258', '026260',  # Bannon cripto coin issues
     '032359',  # Jabor e-currency
     '031451', '031596',  # "would you like photso of donald and girls in bikinis in my kitchen."
     '031601',  # Old gf i gave to donald
     '030727',  # David Stern "Death of chinese shareholder quite an issue. What can we do with Qataris here?"
     '030725',  # David Stern in Moscow
-    #'023208',  # Extremely long Leon Black email chain
+    '029098',  # Nowak, "her Skype contact is in moscow."
+    '030714',  # Bannon, Russian Dugan shout out
+    '031659',  # "i have met some very bad people „ none as bad as trump"
 ]
+
+for id in INTERESTING_TRUNCATION_LENGTHS:
+    if id not in INTERESTING_EMAIL_IDS:
+        logger.debug(f"INTERESTING_TRUNCATION_LENGTHS id {id} not in INTERESTING_EMAIL_IDS")
+        INTERESTING_EMAIL_IDS.append(id)
+    else:
+        logger.debug(f"INTERESTING_EMAIL_IDS has email id {id} ")
+
 
 INTERESTING_TEXT_IDS = [
     '027275',  # "Crypto- Kerry- Qatar -sessions"

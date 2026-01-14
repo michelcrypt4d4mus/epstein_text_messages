@@ -271,7 +271,7 @@ class Document:
         txt.append(", ").append(key_value_txt('lines', self.num_lines()))
 
         if self.config and self.config.duplicate_of_id:
-            txt.append(", ").append(key_value_txt('dupe_of', Text(self.config.duplicate_of_id, style='magenta')))
+            txt.append(", ").append(key_value_txt('dupe_of', Text(self.config.duplicate_of_id, style='cyan dim')))
 
         return txt
 

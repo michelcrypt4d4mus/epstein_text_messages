@@ -60,7 +60,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     ANIL_AMBANI: re.compile(r'Anil.Ambani', re.IGNORECASE),
     ANN_MARIE_VILLAFANA: re.compile(r'Villafana, Ann Marie|(A(\.|nn) Marie )?Villafa(c|n|ri)a', re.IGNORECASE),
     ANTHONY_SCARAMUCCI: re.compile(r"mooch|(Anthony ('The Mooch' )?)?Scaramucci", re.IGNORECASE),
-    ARIANE_DE_ROTHSCHILD: re.compile(r'AdeR|((Ariane|Edmond) de )?Rothschild|Ariane', re.IGNORECASE),
+    ARIANE_DE_ROTHSCHILD: re.compile(r'AdeR|((Ariane|Edmond) (de )?)?Rothsch?ild|Ariane', re.IGNORECASE),
     BARBRO_C_EHNBOM: re.compile(r'behnbom@aol.com|(Barbro\s.*)?Ehnbom', re.IGNORECASE),
     BARRY_J_COHEN: re.compile(r'barry\s*((j.?|james)\s*)?cohen?', re.IGNORECASE),
     BENNET_MOSKOWITZ: re.compile(r'Moskowitz.*Bennet|Bennet.*Moskowitz', re.IGNORECASE),
@@ -114,7 +114,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     MICHAEL_BUCHHOLTZ: re.compile(r'Michael.*Buchholtz', re.IGNORECASE),
     MICHAEL_MILLER: re.compile(r'Micha(el)? Miller|Miller, Micha(el)?', re.IGNORECASE),
     MICHAEL_SITRICK: re.compile(r'(Mi(chael|ke).{0,5})?[CS]itrick', re.IGNORECASE),
-    MICHAEL_WOLFF: re.compile(r'Michael\s*Wol(f[ef]|i)|Wolff', re.IGNORECASE),
+    MICHAEL_WOLFF: re.compile(r'Michael\s*Wol(f[ef]e?|i)|Wolff', re.IGNORECASE),
     MIROSLAV_LAJCAK: re.compile(r"Miro(slav)?(\s+Laj[cč][aá]k)?"),
     MOHAMED_WAHEED_HASSAN: re.compile(r'Mohamed Waheed(\s+Hassan)?', re.IGNORECASE),
     NADIA_MARCINKO: re.compile(r"Na[dď]i?a\s+Marcinko(v[aá])?", re.IGNORECASE),
@@ -664,6 +664,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='032023', is_fwded_article=True, duplicate_ids=['032012']),  # American-Israeli Cooperative Enterprise Newsletter
     EmailCfg(id='021758', is_fwded_article=True, duplicate_ids=['030616']),  # Radar Online article about Epstein's early prison release
     EmailCfg(id='033297', is_fwded_article=True, duplicate_ids=['033586']),  # Sultan Sulayem fwding article about Trump and Russia
+    EmailCfg(id='020443', is_fwded_article=True),  # WSJ Deplorables Bannon
+    EmailCfg(id='030372', is_fwded_article=True),  # Bannon China Iran
     EmailCfg(id='030983', is_fwded_article=True),  # Power Line blog Alex Acosta and Jeffrey Epstein Plea Deal Analysis
     EmailCfg(id='031774', is_fwded_article=True),  # Krassner fwd of Palmer Report article
     EmailCfg(id='033345', is_fwded_article=True),  # Krassner fwd of Palmer Report article
@@ -714,6 +716,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='031340', is_fwded_article=True),  # Article about Alex Jones threatening Robert Mueller
     EmailCfg(id='030209', is_fwded_article=True),  # Atlantic Council  Syria: Blackberry Diplomacy
     EmailCfg(id='026605', is_fwded_article=True),  # Article about Ruemmler turning down attorney general job by NEDRA PICKLER
+    EmailCfg(id='031990', is_fwded_article=True),  # newsmax on ken starr
+    EmailCfg(id='029433', is_fwded_article=True),  # Estate Planning After the Enactment of the Tax Cuts and Jobs Act
     EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
 
@@ -1358,7 +1362,12 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='012048', description=f"{PRESS_RELEASE} 'Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm' and other articles"),
 
     # private placement memoranda
-    DocCfg(id='024432', description=f"Michael Milken's Knowledge Universe Education (KUE) $1,000,000 corporate share placement notice (SEC filing?)"),
+    DocCfg(
+        id='024432',
+        date='2006-09-27',
+        description=f"Michael Milken's Knowledge Universe Education (KUE) $1,000,000 corporate share placement notice (SEC filing?)"
+    ),
+
     DocCfg(id='024003', description=f"New Leaf Ventures ($375 million biotech fund) private placement memorandum"),
 ]
 

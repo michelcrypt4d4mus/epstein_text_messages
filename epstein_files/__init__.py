@@ -23,7 +23,7 @@ from epstein_files.util.logging import exit_with_error, logger
 from epstein_files.util.output import (print_emails_section, print_json_files, print_json_stats,
      print_other_files_section, print_text_messages_section, print_email_timeline, print_emailers_info,
      print_json_metadata, write_urls)
-from epstein_files.util.rich import (build_highlighter, console, print_color_key, print_title_page_header,
+from epstein_files.util.rich import (build_highlighter, console, highlighter, print_color_key, print_title_page_header,
      print_title_page_tables, print_subtitle_panel, write_html)
 from epstein_files.util.timer import Timer
 from epstein_files.util.word_count import write_word_counts_html
@@ -75,6 +75,9 @@ def generate_html() -> None:
 
     write_html(args.build)
     logger.warning(f"Total time: {timer.seconds_since_start_str()}")
+
+    if args.debug:
+        highlighter.print_highlight_counts(console)
 
     # JSON stats (mostly used for building pytest checks)
     if args.json_stats:

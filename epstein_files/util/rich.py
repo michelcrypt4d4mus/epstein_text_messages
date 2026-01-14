@@ -290,6 +290,7 @@ def write_html(output_path: Path | None) -> None:
         logger.warning(f"Not writing HTML because args.build={args.build}.")
         return
 
+    logger.warning(f"output_path: {output_path}")
     console.save_html(str(output_path), code_format=CONSOLE_HTML_FORMAT, theme=HTML_TERMINAL_THEME)
     log_file_write(output_path)
 
