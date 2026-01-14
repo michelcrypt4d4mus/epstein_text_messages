@@ -861,6 +861,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
 SIGNATURE_SUBSTITUTION_COUNTS = {
     "(unknown)": 2,
     BARBRO_C_EHNBOM: 5,
+    BRAD_KARP: 5,
     ARIANE_DE_ROTHSCHILD: 4,
     'Daniel Siad': 5,
     "Danny Frost": 8,
