@@ -220,7 +220,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     dan daniel danny darren dave david donald
     ed edward edwards enforcement enterprise enterprises entourage epstein eric erika etienne
     faith fisher forget fred friendly frost fuller
-    gerald george gold gordon
+    gates gerald george gold gordon
     haddad harry hay heather henry hill hoffman howard
     ian ivan
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr

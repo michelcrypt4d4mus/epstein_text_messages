@@ -357,6 +357,7 @@ HIGHLIGHTED_NAMES = [
             r"BG",
             r"b?g?C3",
             r"(Bill\s*((and|or|&)\s*Melinda\s*)?)?Gates(\s*Foundation)?",
+            r"Kofi\s*Rashid",
             r"Melinda(\s*Gates)?",
             r"Microsoft",
             r"MSFT",
