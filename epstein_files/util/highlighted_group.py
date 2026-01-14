@@ -716,6 +716,7 @@ HIGHLIGHTED_NAMES = [
             'Skip Rimer': 'Milken Institute (Michael Milken)',
             'Steven Elkman': DEUTSCHE_BANK,
             'Vahe Stepanian': 'Cetera Financial Group',
+            VINIT_SAHNI: f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}",
         },
         patterns=[
             r"Ace\s*Greenberg",
@@ -887,8 +888,7 @@ HIGHLIGHTED_NAMES = [
         label='India',
         style='bright_green',
         emailers={
-            ANIL_AMBANI: 'chairman of Reliance Group',
-            VINIT_SAHNI: None,
+            ANIL_AMBANI: 'billionaire chairman of Reliance Group',
         },
         patterns=[
             r"Abraaj",
