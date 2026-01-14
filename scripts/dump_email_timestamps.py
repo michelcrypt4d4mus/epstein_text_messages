@@ -10,14 +10,20 @@ from rich.table import Table
 from rich.text import Text
 
 from scripts.use_pickled import console, epstein_files
+from epstein_files import epstein_search
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import UNINTERESTING_EMAILERS
+from epstein_files.documents.email import TRUNCATE_TERMS, UNINTERESTING_EMAILERS
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import ALL_FILE_CONFIGS
 from epstein_files.util.data import *
 from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames, get_style_for_name
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import console, highlighter, print_json
+from epstein_files.util.rich import console, highlighter, print_json, print_subtitle_panel
+
+
+args.positional_args = [term.replace('(', r"\(") for term in TRUNCATE_TERMS]
+epstein_search()
+sys.exit()
 
 
 def print_partial_names_used_in_regexes():

@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* `--write-text` option
 
 ### 1.2.4
 * Linkify links in emails

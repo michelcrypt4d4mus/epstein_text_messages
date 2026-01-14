@@ -61,6 +61,8 @@ $GENERATE_CMD --emailers-info
 if any_uncommitted_changes; then
     git commit -am"Update .png"
     git push origin master --quiet
+else
+    echo -e "No changes to emailers .png file..."
 fi
 
 # Switch to gh_pages branch
