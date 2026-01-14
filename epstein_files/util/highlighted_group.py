@@ -756,7 +756,7 @@ HIGHLIGHTED_NAMES = [
             r"(Peter L. )?Scher",
             r"(Ray\s*)?Dalio",
             r"(Richard\s*)?LeFrak",
-            r"Schwartz?man",
+            r"(Ste(phen|ve)\s*)?Schwart?z?man",
             r"Serageldin",
             r"UBS",
             r"us.gio@jpmorgan.com",
