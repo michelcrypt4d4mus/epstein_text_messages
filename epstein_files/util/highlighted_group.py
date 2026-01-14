@@ -741,6 +741,7 @@ HIGHLIGHTED_NAMES = [
             r"Gratitude (America|& Enhanced)",  # Leon Black and/or Epstein charity?
             r"HSBC",
             r"Invesco",
+            r"Jamie\s*D(imon)?"
             r"(Janet\s*)?Yellen",
             r"(Jerome\s*)?Powell(?! M\. Cabot)",
             r"(Jimmy\s*)?Cayne",
@@ -1307,6 +1308,7 @@ HIGHLIGHTED_NAMES = [
             r"GOP",
             r"Jeff(rey)?\s*Sessions",
             r"(John\s*(R.?\s*)?)?Bolton",
+            r"Kasich",
             r"Keith\s*Schiller",
             r"Kissinger",
             r"Kobach",
