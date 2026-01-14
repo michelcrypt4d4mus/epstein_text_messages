@@ -17,6 +17,7 @@ from epstein_files.epstein_files import EpsteinFiles, document_cls
 from epstein_files.documents.document import INFO_PADDING, Document
 from epstein_files.documents.email import Email
 from epstein_files.util.constant.output_files import make_clean
+from epstein_files.util.constant.strings import ID_REGEX
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import coerce_file_path, extract_file_id
 from epstein_files.util.logging import exit_with_error, logger
@@ -92,6 +93,11 @@ def epstein_diff():
 def epstein_search():
     """Search the cleaned up text of the files."""
     epstein_files = EpsteinFiles.get_files()
+
+    if ID_REGEX.match(args.positional_args[0]):
+        logger.warning(f"'{args.positional_args[0]}' seems to be an ID, running epstein_show instead...")
+        epstein_show()
+        return
 
     for search_term in args.positional_args:
         temp_highlighter = build_highlighter(search_term)

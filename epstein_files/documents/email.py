@@ -32,7 +32,7 @@ BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE
 BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,]|L\._)$')
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 LINK_LINE_REGEX = re.compile(f"^>? ?htt")
-LINK_LINE2_REGEX = re.compile(r"^[-\w.]{5,}$")
+LINK_LINE2_REGEX = re.compile(r"^[-\w.%&=/]{5,}$")
 QUOTED_REPLY_LINE_REGEX = re.compile(r'(\nFrom:(.*)|wrote:)\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
 
@@ -126,7 +126,7 @@ EMAIL_SIGNATURE_REGEXES = {
     STEVEN_PFEIFFER: re.compile(r"Steven\nSteven .*\nAssociate.*\nIndependent Filmmaker Project\nMade in NY.*\n30 .*\nBrooklyn.*\n(p:.*\n)?www\.ifp.*", re.IGNORECASE),
     PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
     PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(142 W 57th Street, 11th Floor, New York, NY 10019?[\n\s]+)?(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
-    RICHARD_KAHN: re.compile(r'Richard Kahn[\n\s]+HBRK Associates Inc.?[\n\s]+((301 East 66th Street, Suite 1OF|575 Lexington Avenue,? 4th Floor,?)[\n\s]+)?New York, (NY|New York) 100(22|65)(\s+(Tel?|Phone)( I)?\s+Fa[x"]?(_|<REDACTED>)*\s+[Ce]el?l?)?', re.IGNORECASE),
+    RICHARD_KAHN: re.compile(fr'Richard Kahn[\n\s]+HBRK Associates Inc.?[\n\s]+((301 East 66th Street, Suite 1OF|575 Lexington Avenue,? 4th Floor,?)[\n\s]+)?New York, (NY|New York) 100(22|65)(\s+(Tel?|Phone)( I|{REDACTED})?\s+Fa[x",]?(_|{REDACTED})*\s+[Ce]el?l?)?', re.IGNORECASE),
     'Susan Edelman': re.compile(r'Susan Edel.*\nReporter\n1211.*\n917.*\nsedelman.*', re.IGNORECASE),
     TERRY_KAFKA: re.compile(r"((>|I) )?Terry B.? Kafka.*\n(> )?Impact Outdoor.*\n(> )?5454.*\n(> )?Dallas.*\n((> )?c?ell.*\n)?(> )?Impactoutdoor.*(\n(> )?cell.*)?", re.IGNORECASE),
     TONJA_HADDAD_COLEMAN: re.compile(fr"Tonja Haddad Coleman.*\nTonja Haddad.*\nAdvocate Building\n315 SE 7th.*(\nSuite.*)?\nFort Lauderdale.*(\n({REDACTED} )?facsimile)?(\nwww.tonjahaddad.com?)?(\nPlease add this efiling.*\nThe information.*\nyou are not.*\nyou are not.*)?", re.IGNORECASE),
@@ -144,6 +144,7 @@ BBC_LISTS = JUNK_EMAILERS + MAILING_LISTS
 
 TRUNCATE_ALL_EMAILS_FROM = BBC_LISTS + [
     'Alan S Halperin',
+    LISA_NEW,
     'Mitchell Bard',
     'Skip Rimer',
     'Steven Victor MD',
@@ -166,12 +167,14 @@ INTERESTING_TRUNCATION_LENGTHS = {
     '029914': None,    # Lord Mandelson russian investments
     '033453': None,    # "Just heard you were telling people that you heard I asked Trump for a million dollars"
     '031320': None,    # Epstein Gratitude foundation
+    '031036': None,    # Barbro Ehnbom talking about Swedish girl
 }
 
 TRUNCATION_LENGTHS = {
     **INTERESTING_TRUNCATION_LENGTHS,
     '031791': None,    # First email in Jessica Cadwell chain about service of legal documents
     '023208': None,    # Long discussion about leon black's finances
+    '028589': None,    # Long thread with Reid Weingarten
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
@@ -249,6 +252,8 @@ TRUNCATE_TERMS = [
     "Donald Trump's newly named chief strategist and senior counselor",
     # Diane Ziman
     'I was so proud to see him speak at the Women',
+    # lawyers
+    'recuses itself from Jeffrey Epstein case',
     # Krauss
     'On confronting dogma, I of course agree',
     'I did neck with that woman, but never forced myself on her',
@@ -281,6 +286,7 @@ LINE_REPAIR_MERGES = {
     '017523': 4,
     '019407': [2, 4],
     '021729': 2,
+    '031764': 3,
     '029433': 3,
     '033271': 3,
     '022673': 9,
@@ -780,7 +786,7 @@ class Email(Communication):
         elif self.file_id in TRUNCATION_LENGTHS:
             num_chars = TRUNCATION_LENGTHS[self.file_id] or self.file_size()
         elif self.author in TRUNCATE_ALL_EMAILS_FROM or includes_truncate_term:
-            num_chars = int(MAX_CHARS_TO_PRINT / 3)
+            num_chars = min(quote_cutoff or MAX_CHARS_TO_PRINT, int(MAX_CHARS_TO_PRINT / 3))
         elif quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
             num_chars = quote_cutoff
         else:
