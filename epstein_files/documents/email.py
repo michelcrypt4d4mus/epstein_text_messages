@@ -157,6 +157,7 @@ TRUNCATE_EMAILS_FROM_OR_TO = [
     KATHERINE_KEATING,
     LAWRENCE_KRAUSS,
     LISA_NEW,
+    NILI_PRIELL_BARAK,
     PAUL_KRASSNER,
 ]
 
@@ -169,6 +170,7 @@ TRUNCATE_EMAILS_FROM = BCC_LISTS + TRUNCATE_EMAILS_FROM_OR_TO + [
     DAVID_HAIG,
     EDWARD_ROD_LARSEN,
     JOHNNY_EL_HACHEM,
+    MELANIE_WALKER,
     'Mitchell Bard',
     PEGGY_SIEGAL,
     ROBERT_LAWRENCE_KUHN,
@@ -207,62 +209,45 @@ TRUNCATION_LENGTHS = {
     '031791': None,    # First email in Jessica Cadwell chain about service of legal documents
     '023208': None,    # Long discussion about leon black's finances
     '028589': None,    # Long thread with Reid Weingarten
+    '029433': TRUNCATED_CHARS,  # Kahn taxes
+    '026778': TRUNCATED_CHARS,  # Kahn taxes
+    '033311': TRUNCATED_CHARS,  # Kahn taxes
+    '024251': TRUNCATED_CHARS,  # Kahn taxes
+    '026755': TRUNCATED_CHARS,  # Epstein self fwd
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
 TRUNCATE_TERMS = [
-    'The rebuilding of Indonesia',
+    'The rebuilding of Indonesia',  # Vikcy ward article
     'Dominique Strauss-Kahn',
     'THOMAS L. FRIEDMAN',
     'a sleek, briskly paced film whose title suggests a heist movie',  # Inside Job
-    'quote from The Colbert Report distinguishes',
     'Calendar of Major Events, Openings, and Fundraisers',
-    'Nuclear Operator Raises Alarm on Crisis',
-    'as responsible for the democratisation of computing and',
-    'AROUND 1,000 operational satellites are circling the Earth',
     "In recent months, China's BAT collapse",
     'President Obama introduces Jim Yong Kim as his nominee',
     'Trump appears with mobster-affiliated felon at New',
     'Congratulations to the 2019 Hillman Prize recipients',
     "Special counsel Robert Mueller's investigation may face a serious legal obstacle",
     "nearly leak-proof since its inception more than a year ago",
-    # Juleanna Glover / Bannon
-    'This much we know - the Fall elections are shaping up',
+    # Nikolic
+    'Nuclear Operator Raises Alarm on Crisis',
+    'as responsible for the democratisation of computing and',
+    'AROUND 1,000 operational satellites are circling the Earth',
     # Sultan Sulayem
     'co-inventor of the GTX Smart Shoe',
     'my latest Washington Post column',
-    # melanie
-    'Some years ago when I worked at the libertarian Cato Institute',
-    # rich kahn
-    'House and Senate Republicans on their respective tax overhaul',
-    'The Tax Act contains changes to the treatment of "carried interests"',
-    'General Election: Trump vs. Clinton LA Times/USC Tracking',
-    'Location: Quicken Loans Arena in Cleveland, OH',
-    # Fabrice Aidan
-    'A friendly discussion about Syria with a former US State Department',
-    # Robert Kuhn
-    'The US trade war against China: The view from Beijing',
     # Bannon
     "Bannon the European: He's opening the populist fort in Brussels",
     "Steve Bannon doesn't do subtle.",
     'The Department of Justice lost its latest battle with Congress',
-    # Diane Ziman
-    'I was so proud to see him speak at the Women',
     # lawyers
     'recuses itself from Jeffrey Epstein case',
-    # Krauss
-    "I appreciate the opportunity to respond to your email",
-    'On confronting dogma, I of course agree',
-    'It is hard to know how to respond to a list of false',
-    # Nikolic
-    'people from LifeBall',
-    # to Nili Priell Barak
-    'David Ben Gurion was asked why he, after 2000',
-    # Lisa New
-    'The raw materials for that period include interviews',
-    'Whether you donated to Poetry in America through',
-    # Random
-    "It began with deep worries regarding China's growth path",
+    # Misc
+    'people from LifeBall',  # Nikolic
+    "It began with deep worries regarding China's growth path",  # Paul Morris
+    'A friendly discussion about Syria with a former US State Department',  # Fabrice Aidan
+    'The US trade war against China: The view from Beijing',  # Robert Kuhn / Groff
+    'This much we know - the Fall elections are shaping up',  # Juleanna Glover / Bannon
 ]
 
 METADATA_FIELDS = [
@@ -297,6 +282,7 @@ LINE_REPAIR_MERGES = {
     '026609': [[4]],
     '026829': [[3]],
     '026924': [[2, 4]],
+    '028728': [[3]],
     '028931': [[3, 6]],
     '029154': [[2, 5]],
     '029163': [[2, 5]],
