@@ -148,7 +148,7 @@ MAILING_LISTS = [
 
 BCC_LISTS = JUNK_EMAILERS + MAILING_LISTS
 
-TRUNCATE_ALL_EMAILS_FROM = BCC_LISTS + [
+TRUNCATE_EMAILS_FROM = BCC_LISTS + [
     'Alan S Halperin',
     'Alain Forget',
     AMANDA_ENS,
@@ -746,7 +746,7 @@ class Email(Communication):
             num_chars = args.truncate
         elif self.file_id in TRUNCATION_LENGTHS:
             num_chars = TRUNCATION_LENGTHS[self.file_id] or self.file_size()
-        elif self.author in TRUNCATE_ALL_EMAILS_FROM or includes_truncate_term:
+        elif self.author in TRUNCATE_EMAILS_FROM or includes_truncate_term:
             num_chars = min(quote_cutoff or MAX_CHARS_TO_PRINT, TRUNCATED_CHARS)
         elif quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
             num_chars = quote_cutoff
@@ -756,7 +756,7 @@ class Email(Communication):
         if num_chars != MAX_CHARS_TO_PRINT and not self.is_duplicate():
             log_args = {
                 'num_chars': num_chars,
-                'author_truncate': self.author in TRUNCATE_ALL_EMAILS_FROM,
+                'author_truncate': self.author in TRUNCATE_EMAILS_FROM,
                 'is_fwded_article': self.is_fwded_article(),
                 'is_quote_cutoff': quote_cutoff == num_chars,
                 'includes_truncate_term': json.dumps(includes_truncate_term) if includes_truncate_term else None,
