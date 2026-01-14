@@ -61,6 +61,7 @@ debug.add_argument('--deep-debug', '-dd', action='store_true', help='set debug l
 debug.add_argument('--json-stats', '-j', action='store_true', help='print JSON formatted stats about the files')
 debug.add_argument('--skip-other-files', '-sof', action='store_true', help='skip parsing non email/text files')
 debug.add_argument('--suppress-logs', '-sl', action='store_true', help='set debug level to FATAL')
+debug.add_argument('--truncate', '-t', type=int, help='truncate emails to this many characters')
 
 
 # Parse args

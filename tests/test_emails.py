@@ -874,6 +874,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     "Paul Barrett": 10,
     "Peter Mandelson": 10,
     "Richard Kahn": 121,
+    ROSS_GOW: 7,
     STEVEN_PFEIFFER: 11,
     "Susan Edelman": 9,
     "Terry Kafka": 10,
