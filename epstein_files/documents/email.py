@@ -164,7 +164,7 @@ INTERESTING_TRUNCATION_LENGTHS = {
     '026028': None,    # Larry Summers / Karim Wade intro
     '029545': None,    # Tyler Shears reputation
     '025812': None,    # Tyler Shears reputation
-    '029914': None,    # Lord Mandelson russian investments
+    '029914': 4500,    # Lord Mandelson russian investments
     '033453': None,    # "Just heard you were telling people that you heard I asked Trump for a million dollars"
     '031320': None,    # Epstein Gratitude foundation
     '031036': None,    # Barbro Ehnbom talking about Swedish girl
