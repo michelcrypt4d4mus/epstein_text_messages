@@ -539,7 +539,7 @@ HIGHLIGHTED_NAMES = [
             'Alfredo Rodriguez': "Epstein's butler, stole the journal",
             'Bernard Kruger': "Epstein's doctor",
             EDUARDO_ROBLES: f'Creative Kingdom Dubai builder recommended by {SULTAN_BIN_SULAYEM}',
-            ERIC_ROTH: 'jet decorator',
+            ERIC_ROTH: 'jet decorator at International Jet',
             GWENDOLYN_BECK: 'Epstein fund manager in the 90s',
             JANUSZ_BANASIAK: "Epstein's house manager",
             "John Allessi": "Epstein's houseman",
