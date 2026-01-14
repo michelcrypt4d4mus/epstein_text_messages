@@ -1,10 +1,5 @@
 #!/usr/bin/env python
-# Print arguments used to correct emails to a dict
-from rich.markup import escape
-from rich.panel import Panel
-from rich.table import Table
-from rich.text import Text
-
+# Print arguments used to correct emails to a dict (LINE_REPAIR_MERGES variable)
 from scripts.use_pickled import console, epstein_files
 from epstein_files.documents.document import Document
 from epstein_files.util.data import all_elements_same
