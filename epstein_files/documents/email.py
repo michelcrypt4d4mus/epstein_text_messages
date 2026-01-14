@@ -289,7 +289,7 @@ METADATA_FIELDS = [
     'subject',
 ]
 
-# Note the line repair happens *after* 'Importance: High' is removed
+# Arguments to _merge_lines(). Note the line repair happens *after* 'Importance: High' is removed
 LINE_REPAIR_MERGES = {
     '013405': [[4]] * 2,
     '013415': [[4]] * 2,
@@ -329,7 +329,7 @@ LINE_REPAIR_MERGES = {
     '029841': [[3]],
     '029889': [[2], [2, 5]],
     '029976': [[3]],
-    '029977': [[2], [2], [2], [2], [4], [2, 4]],
+    '029977': ([[2]] * 4) + [[4], [2, 4]],
     '030299': [[7, 10]],
     '030315': [[3, 5]],
     '030381': [[2, 4]],
