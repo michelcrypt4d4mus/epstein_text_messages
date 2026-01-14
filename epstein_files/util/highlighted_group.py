@@ -1223,6 +1223,7 @@ HIGHLIGHTED_NAMES = [
             r"Tripoli",
             r"Tunisian?",
             r"Turk(ey|ish)",
+            r"Turks(?! & Caicos)",
             r"UAE",
             r"((Iraq|Iran|Kuwait|Qatar|Yemen)i?)",
         ],
