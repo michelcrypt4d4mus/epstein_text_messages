@@ -127,7 +127,7 @@ EMAIL_SIGNATURE_REGEXES = {
     LARRY_SUMMERS: re.compile(r"Please direct all scheduling.*\nFollow me on twitter.*\nwww.larrysummers.*", re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r"Lawrence (M. )?Krauss\n(Director.*\n)?(Co-director.*\n)?Foundation.*\nSchool.*\n(Co-director.*\n)?(and Director.*\n)?Arizona.*(\nResearch.*\nOri.*\n(krauss.*\n)?origins.*)?", re.IGNORECASE),
     MARTIN_WEINBERG: re.compile(r"(Martin G. Weinberg, Esq.\n20 Park Plaza((, )|\n)Suite 1000\nBoston, MA 02116(\n61.*?)?(\n.*?([cC]ell|Office))*\n)?This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
-    NICHOLAS_RIBIS: re.compile(r"Summit NJ.*\n0:\nF:\n\*{50,}\nCONFIDENTIALITY NOTICE: This message is being sent by NLR.*\nattachments.*\ncopying.*\nIf you have.*\nthe copy.*\nThank.*\n\*{50,}"),
+    NICHOLAS_RIBIS: re.compile(r"60 Morris Turnpike 2FL\nSummit,? NJ.*\n0:\nF:\n\*{20,}\nCONFIDENTIALITY NOTICE.*\nattachments.*\ncopying.*\nIf you have.*\nthe copy.*\nThank.*\n\*{20,}"),
     PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
     PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(142 W 57th Street, 11th Floor, New York, NY 10019?[\n\s]+)?(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
     RICHARD_KAHN: re.compile(fr'Richard Kahn[\n\s]+HBRK Associates Inc.?[\n\s]+((301 East 66th Street, Suite 1OF|575 Lexington Avenue,? 4th Floor,?)[\n\s]+)?New York, (NY|New York) 100(22|65)(\s+(Tel?|Phone)( I|{REDACTED})?\s+Fa[x",]?(_|{REDACTED})*\s+[Ce]el?l?)?', re.IGNORECASE),
