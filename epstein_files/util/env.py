@@ -38,7 +38,7 @@ output.add_argument('--all-emails', '-ae', action='store_true', help='all the em
 output.add_argument('--all-other-files', '-ao', action='store_true', help='all the non-email, non-text msg files instead of just the interesting ones')
 parser.add_argument('--build', '-b', nargs="?", default=None, const=DEFAULT_FILE, help='write output to HTML file')
 output.add_argument('--email-timeline', action='store_true', help='print a table of all emails in chronological order')
-output.add_argument('--emailers-info', action='store_true', help='write a .png of the eeailers info table')
+output.add_argument('--emailers-info', '-ei', action='store_true', help='write a .png of the eeailers info table')
 output.add_argument('--json-files', action='store_true', help='pretty print all the raw JSON data files in the collection and exit')
 output.add_argument('--json-metadata', action='store_true', help='dump JSON metadata for all files and exit')
 output.add_argument('--output-emails', '-oe', action='store_true', help='generate emails section')

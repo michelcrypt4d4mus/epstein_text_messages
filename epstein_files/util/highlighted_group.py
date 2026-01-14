@@ -538,7 +538,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             'Alfredo Rodriguez': "Epstein's butler, stole the journal",
             'Bernard Kruger': "Epstein's doctor",
-            EDUARDO_ROBLES: f'Creative Kingdom Dubai builder recommended by {SULTAN_BIN_SULAYEM}',
+            EDUARDO_ROBLES: f'home builder at Creative Kingdom Dubai',
             ERIC_ROTH: 'jet decorator at International Jet',
             GWENDOLYN_BECK: 'Epstein fund manager in the 90s',
             JANUSZ_BANASIAK: "Epstein's house manager",
@@ -550,7 +550,7 @@ HIGHLIGHTED_NAMES = [
             MERWIN_DELA_CRUZ: None,  # HOUSE_OVERSIGHT_032652 Groff says "Jojo and Merwin both requested off Nov. 25 and 26"
             NADIA_MARCINKO: "Epstein's pilot",
             'Sean J. Lancaster': 'airplane reseller',
-            ZUBAIR_KHAN: 'cybersecurity firm Tranchulas CEO, InsightsPod founder, Islamabad / Dubai',
+            ZUBAIR_KHAN: 'Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai',
         },
         patterns=[
             r"Adriana\s*Ross",
@@ -716,9 +716,11 @@ HIGHLIGHTED_NAMES = [
             'Skip Rimer': 'Milken Institute (Michael Milken)',
             'Steven Elkman': DEUTSCHE_BANK,
             'Vahe Stepanian': 'Cetera Financial Group',
+            VINIT_SAHNI: f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}",
         },
         patterns=[
             r"Ace\s*Greenberg",
+            r"AIG",
             r"((anti.?)?money\s+)?launder(s?|ers?|ing)?(\s+money)?",
             r"Apollo",
             r"Ari\s*Glass",
@@ -739,6 +741,7 @@ HIGHLIGHTED_NAMES = [
             r"Goldman(\s*Sachs)",
             r"GRAT",
             r"Gratitude (America|& Enhanced)",  # Leon Black and/or Epstein charity?
+            r"Hank\s*Greenburg",
             r"HSBC",
             r"Invesco",
             r"Jamie\s*D(imon)?",
@@ -885,8 +888,7 @@ HIGHLIGHTED_NAMES = [
         label='India',
         style='bright_green',
         emailers={
-            ANIL_AMBANI: 'chairman of Reliance Group',
-            VINIT_SAHNI: None,
+            ANIL_AMBANI: 'billionaire chairman of Reliance Group',
         },
         patterns=[
             r"Abraaj",
@@ -1121,7 +1123,7 @@ HIGHLIGHTED_NAMES = [
             r"Martha's\s*Vineyard",
             r"Miami(?!\s?Herald)",
             r"Nantucket",
-            r"New\s*Mexico",
+            r"New\s*(Jersey|Mexico)",
             r"(North|South)\s*Carolina",
             r"NY(C|\s*State)",
             r"Orange\s*County",
@@ -1340,7 +1342,7 @@ HIGHLIGHTED_NAMES = [
             r"Reagan",
             r"Reince", r"Priebus",
             r"Republican",
-            r"(Rex\s*)?Tillerson",
+            r"(Rex\s*)?Till?erson",
             r"(?<!Cynthia )(Richard\s*)?Nixon",
             r"RNC",
             r"Tea\s*Party",

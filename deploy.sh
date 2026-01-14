@@ -53,6 +53,7 @@ elif any_uncommitted_changes; then
 fi
 
 # Build .png and push master changes
+git push origin master --quiet
 epstein_generate --make-clean --suppress-output
 print_deploy_step "Building emailer info .png..."
 $GENERATE_CMD --emailers-info

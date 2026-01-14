@@ -881,6 +881,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     STEVEN_PFEIFFER: 11,
     "Susan Edelman": 9,
     "Terry Kafka": 10,
+    TOM_PRITZKER: 17,
     "Tonja Haddad Coleman": 9,
 }
 
