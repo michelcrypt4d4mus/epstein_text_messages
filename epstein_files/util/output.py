@@ -48,6 +48,7 @@ DEFAULT_EMAILERS = [
     JENNIFER_JACQUET,
     ZUBAIR_KHAN,
     ROSS_GOW,
+    DAVID_BLAINE,
     None,
     JEFFREY_EPSTEIN,
 ]
@@ -55,8 +56,6 @@ DEFAULT_EMAILERS = [
 INTERESTING_EMAIL_IDS = [
     '032229',  # Michael Wolff on strategy
     '028784',  # seminars: Money / Power
-    '029342',  # Hakeem Jeffries
-    '023454',  # Email invitation sent to tech CEOs + Epstein
     '030630',  # 'What happens with zubair's project?'
     '033178',  # 'How is it going with Zubair?'
     '022396',  # Ukraine friend

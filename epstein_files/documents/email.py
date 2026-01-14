@@ -110,7 +110,6 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
 EMAIL_SIGNATURE_REGEXES = {
     ARIANE_DE_ROTHSCHILD: re.compile(r"Ensemble.*\nCe.*\ndestinataires.*\nremercions.*\nautorisee.*\nd.*\nLe.*\ncontenues.*\nEdmond.*\nRoth.*\nlo.*\nRoth.*\ninfo.*\nFranc.*\n.2.*", re.I),
     BARBRO_C_EHNBOM: re.compile(r"Barbro C.? Ehn.*\nChairman, Swedish-American.*\n((Office|Cell|Sweden):.*\n)*(360.*\nNew York.*)?"),
-    #DANIEL_SIAD: re.compile(r"Confidentiality Notice: .*\nconfidential information intended.*\nrecipients. If the reader.*\ncopy of this communication.*\nnotify me immediately.*\ncomputer system.*"),
     DANIEL_SIAD: re.compile(r"Confidentiality Notice: The information contained in this electronic message is PRIVILEGED and confidential information intended only for the use of the individual entity or entities named as recipient or recipients. If the reader is not the intended recipient, be hereby notified that any dissemination, distribution or copy of this communication is strictly prohibited. If you have received this communication in error, please notify me immediately by electronic mail or by telephone and permanently delete this message from your computer system. Thank you.".replace(' ', r'\s*'), re.IGNORECASE),
     DANNY_FROST: re.compile(r"Danny Frost\nDirector.*\nManhattan District.*\n212.*", re.IGNORECASE),
     DARREN_INDYKE: re.compile(r"DARREN K. INDYKE.*?\**\nThe information contained in this communication.*?Darren K.[\n\s]+?[Il]ndyke(, PLLC)? — All rights reserved\.? ?\n\*{50,120}(\n\**)?", re.DOTALL),
@@ -123,10 +122,11 @@ EMAIL_SIGNATURE_REGEXES = {
     LARRY_SUMMERS: re.compile(r"Please direct all scheduling.*\nFollow me on twitter.*\nwww.larrysummers.*", re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r"Lawrence (M. )?Krauss\n(Director.*\n)?(Co-director.*\n)?Foundation.*\nSchool.*\n(Co-director.*\n)?(and Director.*\n)?Arizona.*(\nResearch.*\nOri.*\n(krauss.*\n)?origins.*)?", re.IGNORECASE),
     MARTIN_WEINBERG: re.compile(r"(Martin G. Weinberg, Esq.\n20 Park Plaza((, )|\n)Suite 1000\nBoston, MA 02116(\n61.*)?(\n.*([cC]ell|Office))*\n)?This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
-    STEVEN_PFEIFFER: re.compile(r"Steven\nSteven .*\nAssociate.*\nIndependent Filmmaker Project\nMade in NY.*\n30 .*\nBrooklyn.*\n(p:.*\n)?www\.ifp.*", re.IGNORECASE),
     PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
     PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(142 W 57th Street, 11th Floor, New York, NY 10019?[\n\s]+)?(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
     RICHARD_KAHN: re.compile(fr'Richard Kahn[\n\s]+HBRK Associates Inc.?[\n\s]+((301 East 66th Street, Suite 1OF|575 Lexington Avenue,? 4th Floor,?)[\n\s]+)?New York, (NY|New York) 100(22|65)(\s+(Tel?|Phone)( I|{REDACTED})?\s+Fa[x",]?(_|{REDACTED})*\s+[Ce]el?l?)?', re.IGNORECASE),
+    ROSS_GOW: re.compile(r"Ross Gow\nManaging Partner\nACUITY Reputation Limited\n23 Berkeley Square\nLondon.*\nMobile.*\nTel"),
+    STEVEN_PFEIFFER: re.compile(r"Steven\nSteven .*\nAssociate.*\nIndependent Filmmaker Project\nMade in NY.*\n30 .*\nBrooklyn.*\n(p:.*\n)?www\.ifp.*", re.IGNORECASE),
     'Susan Edelman': re.compile(r'Susan Edel.*\nReporter\n1211.*\n917.*\nsedelman.*', re.IGNORECASE),
     TERRY_KAFKA: re.compile(r"((>|I) )?Terry B.? Kafka.*\n(> )?Impact Outdoor.*\n(> )?5454.*\n(> )?Dallas.*\n((> )?c?ell.*\n)?(> )?Impactoutdoor.*(\n(> )?cell.*)?", re.IGNORECASE),
     TONJA_HADDAD_COLEMAN: re.compile(fr"Tonja Haddad Coleman.*\nTonja Haddad.*\nAdvocate Building\n315 SE 7th.*(\nSuite.*)?\nFort Lauderdale.*(\n({REDACTED} )?facsimile)?(\nwww.tonjahaddad.com?)?(\nPlease add this efiling.*\nThe information.*\nyou are not.*\nyou are not.*)?", re.IGNORECASE),
@@ -140,14 +140,17 @@ MAILING_LISTS = [
     JP_MORGAN_USGIO,
 ]
 
-BBC_LISTS = JUNK_EMAILERS + MAILING_LISTS
+BCC_LISTS = JUNK_EMAILERS + MAILING_LISTS
 
-TRUNCATE_ALL_EMAILS_FROM = BBC_LISTS + [
+TRUNCATE_ALL_EMAILS_FROM = BCC_LISTS + [
     'Alan S Halperin',
+    BILL_SIEGEL,
     LISA_NEW,
     'Mitchell Bard',
+    PAUL_KRASSNER,
     'Skip Rimer',
     'Steven Victor MD',
+    TERRY_KAFKA,
 ]
 
 # These IDs will be appended to INTERESTING_EMAIL_IDS
@@ -164,10 +167,12 @@ INTERESTING_TRUNCATION_LENGTHS = {
     '026028': None,    # Larry Summers / Karim Wade intro
     '029545': None,    # Tyler Shears reputation
     '025812': None,    # Tyler Shears reputation
-    '029914': None,    # Lord Mandelson russian investments
+    '029914': 4500,    # Lord Mandelson russian investments
     '033453': None,    # "Just heard you were telling people that you heard I asked Trump for a million dollars"
     '031320': None,    # Epstein Gratitude foundation
     '031036': None,    # Barbro Ehnbom talking about Swedish girl
+    '023454': 1878,    # Email invitation sent to tech CEOs + Epstein
+    '029342': 2000,    # Hakeem Jeffries
 }
 
 TRUNCATION_LENGTHS = {
@@ -381,7 +386,7 @@ class Email(Communication):
                 self.recipients.extend(self._extract_emailer_names(recipient))
 
             # Assume mailing list emails are to Epstein
-            if self.author in BBC_LISTS and (self.is_note_to_self() or not self.recipients):
+            if self.author in BCC_LISTS and (self.is_note_to_self() or not self.recipients):
                 self.recipients = [JEFFREY_EPSTEIN]
 
         # Remove self CCs but preserve self emails
@@ -783,6 +788,8 @@ class Email(Communication):
 
         if args.whole_file:
             num_chars = len(self.text)
+        elif args.truncate:
+            num_chars = args.truncate
         elif self.file_id in TRUNCATION_LENGTHS:
             num_chars = TRUNCATION_LENGTHS[self.file_id] or self.file_size()
         elif self.author in TRUNCATE_ALL_EMAILS_FROM or includes_truncate_term:
