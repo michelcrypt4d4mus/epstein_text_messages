@@ -754,8 +754,8 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my Verizon Wireless BlackBerry"
     ],
     MARK_EPSTEIN: [
-        "Sent via tin can and string.",
         "Sent from my iPad",
+        "Sent via tin can and string.",
     ],
     "Martin Weinberg": [
         "Sent from my iPhone"
