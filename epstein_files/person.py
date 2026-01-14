@@ -172,7 +172,7 @@ class Person:
             else:
                 return None
         else:
-            return Text(self.info_str())
+            return Text(self.info_str(), style=self.style())
 
     def internal_link(self) -> Text:
         """Kind of like an anchor link to the section of the page containing these emails."""
@@ -245,7 +245,13 @@ class Person:
         console.line()
 
     def sort_key(self) -> list[int | str]:
-        counts = [len(self.unique_emails()), int(self.has_any_epstein_emails())]
+        counts = [
+            len(self.unique_emails()),
+            -1 * int((self.info_str() or '') == UNINTERESTING_CC_INFO_NO_CONTACT),
+            -1 * int((self.info_str() or '') == UNINTERESTING_CC_INFO),
+            int(self.has_any_epstein_emails()),
+        ]
+
         counts = [-1 * count for count in counts]
 
         if args.sort_alphabetical:
@@ -326,7 +332,6 @@ class Person:
             table.add_row(
                 Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[0 if is_selection else grey_idx]}"),
                 person.internal_link() if is_on_page and not person.is_uninteresting_cc else person.name_txt(),
-                # person.name_txt(),  # TODO: make link?
                 person.category_txt(),
                 f"{len(person.unique_emails() if show_epstein_total else person._unique_printable_emails())}",
                 Text(f"{len(person.unique_emails_by())}", style='dim' if len(person.unique_emails_by()) == 0 else ''),
