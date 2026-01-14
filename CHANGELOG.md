@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.2.5
 * `--write-text` option
 
 ### 1.2.4
