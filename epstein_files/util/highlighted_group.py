@@ -566,7 +566,7 @@ HIGHLIGHTED_NAMES = [
             MARK_EPSTEIN: 'brother of Jeffrey',
         },
         patterns=[
-            r"JEGE",
+            r"JEGE(\s*Inc)",
             r"LSJ",
         ],
     ),
