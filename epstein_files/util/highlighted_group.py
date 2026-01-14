@@ -741,7 +741,7 @@ HIGHLIGHTED_NAMES = [
             r"Gratitude (America|& Enhanced)",  # Leon Black and/or Epstein charity?
             r"HSBC",
             r"Invesco",
-            r"Jamie\s*D(imon)?"
+            r"Jamie\s*D(imon)?",
             r"(Janet\s*)?Yellen",
             r"(Jerome\s*)?Powell(?! M\. Cabot)",
             r"(Jimmy\s*)?Cayne",
