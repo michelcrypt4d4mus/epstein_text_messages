@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from epstein_files.util.constant.strings import EMAIL, TEXT_MESSAGE, SiteType
+from epstein_files.util.logging import logger
 
 # Files output by the code
 HTML_DIR = Path('docs')
@@ -45,5 +46,5 @@ def make_clean() -> None:
     """Delete all build artifacts."""
     for build_file in BUILD_ARTIFACTS:
         if build_file.exists():
-            print(f"Removing build file '{build_file}'...")
+            logger.warning(f"Removing build file '{build_file}'...")
             build_file.unlink()
