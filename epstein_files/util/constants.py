@@ -743,7 +743,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='033512', duplicate_ids=['033361']),
     EmailCfg(id='030299', duplicate_ids=['021794']),
     EmailCfg(id='033575', duplicate_ids=['012898']),
-    EmailCfg(id='031428', duplicate_ids=['031388']),
+    EmailCfg(id='031428', is_fwded_article=True, duplicate_ids=['031388']),
     EmailCfg(id='031980', duplicate_ids=['019409']),
     EmailCfg(id='033486', duplicate_ids=['033156']),
     EmailCfg(id='025790', duplicate_ids=['031994']),

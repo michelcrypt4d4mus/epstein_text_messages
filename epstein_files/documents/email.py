@@ -173,6 +173,7 @@ TRUNCATION_LENGTHS = {
     **INTERESTING_TRUNCATION_LENGTHS,
     '031791': None,    # First email in Jessica Cadwell chain about service of legal documents
     '023208': None,    # Long discussion about leon black's finances
+    '028589': None,    # Long thread with Reid Weingarten
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
