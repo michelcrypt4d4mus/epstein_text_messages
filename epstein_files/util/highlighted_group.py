@@ -738,6 +738,7 @@ HIGHLIGHTED_NAMES = [
             r"FRBNY",
             r"Goldman(\s*Sachs)",
             r"GRAT",
+            r"Gratitude (America|& Enhanced)",  # Leon Black and/or Epstein charity?
             r"HSBC",
             r"Invesco",
             r"(Janet\s*)?Yellen",
