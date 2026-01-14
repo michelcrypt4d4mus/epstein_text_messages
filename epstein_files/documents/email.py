@@ -221,7 +221,6 @@ TRUNCATE_TERMS = [
     "In recent months, China's BAT collapse",
     'President Obama introduces Jim Yong Kim as his nominee',
     'Trump appears with mobster-affiliated felon at New',
-    'Lead Code Enforcement Walton presented the facts',
     'The New York company, led by Stephen Ross',
     'I spent some time mulling additional aspects of a third choice presidential',
     'Congratulations to the 2019 Hillman Prize recipients',
