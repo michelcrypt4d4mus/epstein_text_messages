@@ -1615,7 +1615,7 @@ HIGHLIGHTED_TEXTS = [
     HighlightedText(
         label='header_field',
         style='plum4',
-        patterns=[r'^>? ?(Date|From|Sent|To|C[cC]|Importance|Reply[- ]?To|Subject|Bee|B[cC]{2}|Attachments|Flag|Classification|((A|De(stinataire)?|Envoye|Expe(cl|d)iteur|Objet|Q) ?)):'],
+        patterns=[r'^[> ]{,3}(Date|From|Sent|To|C[cC]|Importance|Reply[- ]?To|Subject|Bee|B[cC]{2}|Attachments|Flag|Classification|((A|De(stinataire)?|Envoye|Expe(cl|d)iteur|Objet|Q) ?)):'],
     ),
     HighlightedText(
         label='http_links',
