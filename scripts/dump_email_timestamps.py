@@ -22,7 +22,12 @@ from epstein_files.util.rich import console, highlighter, print_json
 
 for email in epstein_files.emails:
     if email._line_merge_arguments:
-        print(f"'{email.file_id}': {email._line_merge_arguments}")
+        args = [list(arg) for arg in email._line_merge_arguments]
+
+        if len(args) > 1 and all_elements_same(args):
+            print(f"'{email.file_id}': {args[0]} * {len(args)}")
+        else:
+            print(f"'{email.file_id}': {args}")
 
 sys.exit()
 
