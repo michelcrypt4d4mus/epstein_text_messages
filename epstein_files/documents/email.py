@@ -280,6 +280,7 @@ LINE_REPAIR_MERGES = {
     '025812': [[3]] * 2,
     '026345': [[3]],
     '026609': [[4]],
+    '026620': ([[20]] * 4) + [[3, 2]] + ([[2]] * 15) + [[2, 4]],
     '026829': [[3]],
     '026924': [[2, 4]],
     '028728': [[3]],
@@ -586,22 +587,25 @@ class Email(Communication):
             if i >= n:
                 return match.end() + header_offset - 1
 
-    def _merge_lines(self, idx: int, idx2: int | None = None) -> None:
+    def _merge_lines(self, idx1: int, idx2: int | None = None) -> None:
         """Combine lines numbered 'idx' and 'idx2' into a single line (idx2 defaults to idx + 1)."""
         if idx2 is None:
-            self._line_merge_arguments.append((idx,))
-            idx2 = idx + 1
+            self._line_merge_arguments.append((idx1,))
+            idx2 = idx1 + 1
         else:
-            self._line_merge_arguments.append((idx, idx2))
+            self._line_merge_arguments.append((idx1, idx2))
 
-        lines = self.lines[0:idx]
-
-        if idx2 <= idx:
-            raise RuntimeError(f"idx2 ({idx2}) must be greater than idx ({idx})")
-        elif idx2 == (idx + 1):
-            lines += [self.lines[idx] + ' ' + self.lines[idx + 1]] + self.lines[idx + 2:]
+        if idx2 < idx1:
+            lines = self.lines[0:idx2] + self.lines[idx2 + 1:idx1] + [self.lines[idx1] + ' ' + self.lines[idx2]] + self.lines[idx1 + 1:]
+        elif idx2 == idx1:
+            raise RuntimeError(f"idx2 ({idx2}) must be greater or less than idx ({idx1})")
         else:
-            lines += [self.lines[idx] + ' ' + self.lines[idx2]] + self.lines[idx + 1:idx2] + self.lines[idx2 + 1:]
+            lines = self.lines[0:idx1]
+
+            if idx2 == (idx1 + 1):
+                lines += [self.lines[idx1] + ' ' + self.lines[idx1 + 1]] + self.lines[idx1 + 2:]
+            else:
+                lines += [self.lines[idx1] + ' ' + self.lines[idx2]] + self.lines[idx1 + 1:idx2] + self.lines[idx2 + 1:]
 
         self._set_computed_fields(lines=lines)
 
