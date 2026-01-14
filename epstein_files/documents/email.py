@@ -169,6 +169,7 @@ INTERESTING_TRUNCATION_LENGTHS = {
     '031320': None,    # Epstein Gratitude foundation
     '031036': None,    # Barbro Ehnbom talking about Swedish girl
     '023454': 1878,    # Email invitation sent to tech CEOs + Epstein
+    '029342': 2000,    # Hakeem Jeffries
 }
 
 TRUNCATION_LENGTHS = {
