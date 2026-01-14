@@ -5435,6 +5435,7 @@
             {
                 "author": "Michael Wolff",
                 "bytes": 3114,
+                "description": "is the 'roger' Epstein is trying to meet Roger Stone?",
                 "file_id": "026026",
                 "filename": "HOUSE_OVERSIGHT_026026.txt",
                 "num_lines": 60,
@@ -5462,6 +5463,7 @@
             {
                 "author": "Michael Wolff",
                 "bytes": 4248,
+                "description": "is the 'roger' Epstein is trying to meet Roger Stone?",
                 "file_id": "026030",
                 "filename": "HOUSE_OVERSIGHT_026030.txt",
                 "num_lines": 80,
@@ -5475,6 +5477,7 @@
             {
                 "author": "Michael Wolff",
                 "bytes": 5211,
+                "description": "is the 'roger' Epstein is trying to meet Roger Stone?",
                 "file_id": "026033",
                 "filename": "HOUSE_OVERSIGHT_026033.txt",
                 "num_lines": 98,
@@ -9387,11 +9390,11 @@
                 "file_id": "028728",
                 "filename": "HOUSE_OVERSIGHT_028728.txt",
                 "is_fwded_article": true,
-                "num_lines": 752,
+                "num_lines": 751,
                 "recipients": [
                     "Larry Summers"
                 ],
-                "subject": "prep for dinner, israel pres briefing /",
+                "subject": "prep for dinner, israel pres briefing / The Wall Street Journal",
                 "timestamp": "2013-02-11T17:45:09",
                 "type": "Email"
             },
@@ -15445,6 +15448,7 @@
             {
                 "author": "Michael Wolff",
                 "bytes": 1283,
+                "description": "is the 'roger' Epstein is trying to meet Roger Stone?",
                 "file_id": "030648",
                 "filename": "HOUSE_OVERSIGHT_030648.txt",
                 "num_lines": 25,
@@ -15458,6 +15462,7 @@
             {
                 "author": "Michael Wolff",
                 "bytes": 2268,
+                "description": "is the 'roger' Epstein is trying to meet Roger Stone?",
                 "file_id": "030649",
                 "filename": "HOUSE_OVERSIGHT_030649.txt",
                 "num_lines": 43,
@@ -16224,6 +16229,7 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 2126,
+                "description": "is the 'roger' Epstein is trying to meet Roger Stone?",
                 "file_id": "030762",
                 "filename": "HOUSE_OVERSIGHT_030762.txt",
                 "num_lines": 42,
@@ -31739,6 +31745,7 @@
                 "duplicate_of_id": "033528",
                 "file_id": "033517",
                 "filename": "HOUSE_OVERSIGHT_033517.txt",
+                "is_fwded_article": true,
                 "num_lines": 99,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -31756,6 +31763,7 @@
                 ],
                 "file_id": "033528",
                 "filename": "HOUSE_OVERSIGHT_033528.txt",
+                "is_fwded_article": true,
                 "num_lines": 100,
                 "recipients": [
                     "Jeffrey Epstein"
