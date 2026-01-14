@@ -18,6 +18,7 @@ from epstein_files.documents.document import INFO_PADDING, Document
 from epstein_files.documents.email import Email
 from epstein_files.util.constant.output_files import make_clean
 from epstein_files.util.constant.strings import ID_REGEX
+from epstein_files.util.data import flatten
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import coerce_file_path, extract_file_id
 from epstein_files.util.logging import exit_with_error, logger
@@ -123,8 +124,13 @@ def epstein_show():
     console.line()
 
     try:
-        ids = [extract_file_id(arg) for arg in args.positional_args]
-        raw_docs = [Document(coerce_file_path(id)) for id in ids]
+        if args.names:
+            people = EpsteinFiles.get_files().person_objs(args.names)
+            raw_docs = [doc for doc in flatten([p.emails for p in people])]
+        else:
+            ids = [extract_file_id(arg) for arg in args.positional_args]
+            raw_docs = [Document(coerce_file_path(id)) for id in ids]
+
         docs = Document.sort_by_timestamp([document_cls(doc)(doc.file_path) for doc in raw_docs])
     except Exception as e:
         exit_with_error(str(e))
