@@ -647,6 +647,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='033050', actual_text='schwartman'),
     EmailCfg(id='031036', description=f"{BARBRO_C_EHNBOM} related donation and Swedish girls discussion"),
     EmailCfg(id='022219', description="discussion of attempts to clean up Epstein's Google search results"),
+    EmailCfg(id='032946', description="discussion of obtaining a Moroccan visa for an unnamed woman"),
     EmailCfg(id='030648', description="is the 'roger' Epstein is trying to meet Roger Stone?"),
     EmailCfg(id='030762', description="is the 'roger' Epstein is trying to meet Roger Stone?"),
     EmailCfg(id='030649', description="is the 'roger' Epstein is trying to meet Roger Stone?"),
