@@ -11,23 +11,21 @@ from rich.text import Text
 
 from scripts.use_pickled import console, epstein_files
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import UNINTERESTING_EMAILERS
+from epstein_files.documents.email import TRUNCATE_TERMS, UNINTERESTING_EMAILERS
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import ALL_FILE_CONFIGS
 from epstein_files.util.data import *
 from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames, get_style_for_name
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import console, highlighter, print_json
+from epstein_files.util.rich import console, highlighter, print_json, print_subtitle_panel
 
 
-for email in epstein_files.emails:
-    if email._line_merge_arguments:
-        args = [list(arg) for arg in email._line_merge_arguments]
+for search_term in TRUNCATE_TERMS:
+    results = epstein_files.docs_matching(search_term)
+    print_subtitle_panel(f"{len(results)} emails for '{search_term}'")
 
-        if len(args) > 1 and all_elements_same(args):
-            print(f"'{email.file_id}': {args[0]} * {len(args)}")
-        else:
-            print(f"'{email.file_id}': {args}")
+    for result in results:
+        console.print(result.document)
 
 sys.exit()
 
