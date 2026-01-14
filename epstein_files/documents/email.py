@@ -150,13 +150,24 @@ BCC_LISTS = JUNK_EMAILERS + MAILING_LISTS
 
 TRUNCATE_ALL_EMAILS_FROM = BCC_LISTS + [
     'Alan S Halperin',
+    'Alain Forget',
     AMANDA_ENS,
+    ARIANE_DE_ROTHSCHILD,
+    AZIZA_ALAHMADI,
     BILL_SIEGEL,
+    DAVID_HAIG,
+    EDWARD_ROD_LARSEN,
+    JOHNNY_EL_HACHEM,
+    LAWRENCE_KRAUSS,
     LISA_NEW,
     'Mitchell Bard',
     PAUL_KRASSNER,
+    PEGGY_SIEGAL,
     ROBERT_LAWRENCE_KUHN,
+    ROBERT_TRIVERS,
     'Skip Rimer',
+    'Steven Elkman',
+    STEVEN_PFEIFFER,
     'Steven Victor MD',
     TERRY_KAFKA,
 ]
@@ -205,82 +216,58 @@ TRUNCATE_TERMS = [
     'President Obama introduces Jim Yong Kim as his nominee',
     'Trump appears with mobster-affiliated felon at New',
     'Lead Code Enforcement Walton presented the facts',
-    "Is UNRWA vital for the Palestinians' future",
     'The New York company, led by Stephen Ross',
     'I spent some time mulling additional aspects of a third choice presidential',
-    'you are referring to duplication of a gene',
-    'i am writing you both because i am attaching a still not-quite-complete response',
-    'Learn to meditate and discover what truly nourishes your entire being',
     'Congratulations to the 2019 Hillman Prize recipients',
     'This much we know - the Fall elections are shaping up',
     "Special counsel Robert Mueller's investigation may face a serious legal obstacle",
     "nearly leak-proof since its inception more than a year ago",
-    "I appreciate the opportunity to respond to your email",
-    "Hello Peter. I am currently on a plane. I sent you earlier",
-    "I appreciate the opportunity to respond to your email",
-    'I just wanted to follow up on a couple of notes. I have been coordinating with Richard Kahn',
-    'So, Peggy, if you could just let me know what info to include on the donation',
-    'Consult a lawyer beforehand, if possible, but be cooperative/nice at this stage',
     # Sultan Sulayem
     'co-inventor of the GTX Smart Shoe',
     'my latest Washington Post column',
     # Amanda Ens
     'Erika Najarian, BAML financials research analyst, just returned',
-    # Rothschild
-    'As previously discussed between you and Ariane',
-    # Trivers
-    'no evidence you got the latest so i have sent you just the key message',
     # Joscha Bach
     'Cells seem to be mostly indistinguishable (except',
     'gender differenece. unlikely motivational, every cell is different',
     'Some thoughts I meant to send back for a long time',
     # Krassner
     'My friend Michael Simmons, who has been the editor of National Lampoon',
-    "In the premiere episode of 'The Last Laugh' podcast, Sarah Silverman",
-    'Thanks so much for sharing both your note to Steven and your latest Manson essay',
-    # Edward Larson
-    'Coming from an international background, and having lived in Oslo, Tel Aviv',
     # Katherine Keating
     'Paul Keating is aware that many people see him as a puzzle and contradiction',
     'his panoramic view of world affairs sharper than ever, Paul Keating blames',
     # melanie
-    'Some years ago when I worked at the libertarian Cato Institute'
+    'Some years ago when I worked at the libertarian Cato Institute',
     # rich kahn
     'House and Senate Republicans on their respective tax overhaul',
     'The Tax Act contains changes to the treatment of "carried interests"',
     'General Election: Trump vs. Clinton LA Times/USC Tracking',
     'Location: Quicken Loans Arena in Cleveland, OH',
+    # Fabrice Aidan
     'A friendly discussion about Syria with a former US State Department',
     # Robert Kuhn
     'The US trade war against China: The view from Beijing',
-    # Tom / Paul Krassner
-    'I forgot to post my cartoon from week before last, about Howard Schultz',
     # Bannon
     "Bannon the European: He's opening the populist fort in Brussels",
     "Steve Bannon doesn't do subtle.",
     'The Department of Justice lost its latest battle with Congress',
-    "Donald Trump's newly named chief strategist and senior counselor",
     # Diane Ziman
     'I was so proud to see him speak at the Women',
     # lawyers
     'recuses itself from Jeffrey Epstein case',
     # Krauss
+    "I appreciate the opportunity to respond to your email",
     'On confronting dogma, I of course agree',
-    'I did neck with that woman, but never forced myself on her',
     'It is hard to know how to respond to a list of false',
-    'The Women in the World Summit opens April 12',
-    'lecture in Heidelberg Oct 14 but they had to cancel',
     # Nikolic
     'people from LifeBall',
-    # Epstein
+    # to Nili Priell Barak
     'David Ben Gurion was asked why he, after 2000',
     # Lisa New
     'The raw materials for that period include interviews',
     'Whether you donated to Poetry in America through',
     # Random
-    'Little Hodiaki',
     "It began with deep worries regarding China's growth path",
-    'https://www.washingtonpost.com/politics/2018/09/04/transcript-phone-call',
 ]
 
 METADATA_FIELDS = [

@@ -628,7 +628,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             ANDRZEJ_DUDA: 'former president of Poland',
             'Caroline Lang': 'daughter of Jack Lang',
-            "Edward Rod Larsen": f"son of {TERJE_ROD_LARSEN}",
+            EDWARD_ROD_LARSEN: f"son of {TERJE_ROD_LARSEN}",
             'Fabrice Aidan': f'diplomat who worked with {TERJE_ROD_LARSEN}',
             'Jack Lang': 'former French Minister of National Education',
             MIROSLAV_LAJCAK: 'Russia-friendly Slovakian politician, friend of Steve Bannon',
