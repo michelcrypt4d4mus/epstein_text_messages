@@ -140,12 +140,13 @@ MAILING_LISTS = [
     JP_MORGAN_USGIO,
 ]
 
-BBC_LISTS = JUNK_EMAILERS + MAILING_LISTS
+BCC_LISTS = JUNK_EMAILERS + MAILING_LISTS
 
-TRUNCATE_ALL_EMAILS_FROM = BBC_LISTS + [
+TRUNCATE_ALL_EMAILS_FROM = BCC_LISTS + [
     'Alan S Halperin',
     LISA_NEW,
     'Mitchell Bard',
+    PAUL_KRASSNER,
     'Skip Rimer',
     'Steven Victor MD',
 ]
@@ -383,7 +384,7 @@ class Email(Communication):
                 self.recipients.extend(self._extract_emailer_names(recipient))
 
             # Assume mailing list emails are to Epstein
-            if self.author in BBC_LISTS and (self.is_note_to_self() or not self.recipients):
+            if self.author in BCC_LISTS and (self.is_note_to_self() or not self.recipients):
                 self.recipients = [JEFFREY_EPSTEIN]
 
         # Remove self CCs but preserve self emails
