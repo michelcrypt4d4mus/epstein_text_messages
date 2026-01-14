@@ -69,25 +69,26 @@ debug.add_argument('--write-txt', '-wt', action='store_true', help='write a plai
 args = parser.parse_args()
 is_html_script = parser.prog in HTML_SCRIPTS
 
-args.build = args.build
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')
 args.names = [None if n == 'None' else n.strip() for n in (args.names or [])]
 args.output_emails = args.output_emails or args.all_emails
 args.output_other = args.output_other or args.all_other_files or args.uninteresting
 args.overwrite_pickle = args.overwrite_pickle or (is_env_var_set('OVERWRITE_PICKLE') and not is_env_var_set('PICKLED'))
 args.width = args.width if is_html_script else None
+args.any_output_selected = any([is_output_arg(arg) and val for arg, val in vars(args).items()])
+
+if not (args.any_output_selected or args.email_timeline or args.emailers_info):
+    logger.warning(f"No output section chosen; outputting default selection of texts, selected emails, and other files...")
+    args.output_emails = args.output_other = args.output_texts = True
 
 if is_html_script:
     if args.positional_args:
         exit_with_error(f"{parser.prog} does not accept positional arguments (receeived {args.positional_args})")
 
     if parser.prog == EPSTEIN_GENERATE:
-        if any([is_output_arg(arg) and val for arg, val in vars(args).items()]):
+        if args.any_output_selected:
             if args.email_timeline:
                 exit_with_error(f"--email-timeline option is mutually exlusive with other output options")
-        elif not args.email_timeline and not args.emailers_info:
-            logger.warning(f"No output section chosen; outputting default selection of texts, selected emails, and other files...")
-            args.output_texts = args.output_emails = args.output_other = True
 
     if args.build == DEFAULT_FILE:
         if args.all_emails:
