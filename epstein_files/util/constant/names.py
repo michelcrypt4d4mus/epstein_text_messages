@@ -226,7 +226,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     haddad harry hay heather henry hill hoffman howard
     ian ivan
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr
-    kahn karl kate katherine kelly ken kevin krassner
+    kafka kahn karl kate katherine kelly ken kevin krassner
     larry laurie lawrence leon lesley linda link lisa
     mann marc marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
     nancy neal new nicole norman
