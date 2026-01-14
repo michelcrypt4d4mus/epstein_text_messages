@@ -477,6 +477,9 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
 ]
 
 DEVICE_SIGNATURE_TO_AUTHORS = {
+    'Co-authored with iPhone auto-correct': [
+        LINDA_STONE
+    ],
     'Envoyé de mon iPhone': [
         'Fabrice Aidan',
     ],
@@ -746,6 +749,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     "Lesley Groff": [
         "Sent from my iPhone"
+    ],
+    LINDA_STONE: [
+        'Co-authored with iPhone auto-correct',
     ],
     "Lisa New": [
         "Sent from my iPhone"
