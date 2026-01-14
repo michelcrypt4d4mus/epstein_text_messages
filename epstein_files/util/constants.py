@@ -645,7 +645,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='029344', actual_text='I thought of you when I read this article. Was this your idea? Alan'),
     EmailCfg(id='032358', actual_text=REDACTED),  # Completely redacted
     EmailCfg(id='033050', actual_text='schwartman'),
-    EmailCfg(id='031036', description=f"{BARBRO_C_EHNBOM} related donation"),
+    EmailCfg(id='031036', description=f"{BARBRO_C_EHNBOM} related donation and Swedish girls discussion"),
     EmailCfg(id='031320', description=f"Epstein and {RICHARD_KAHN} appear to be discussing routing donatings through {PEGGY_SIEGAL}"),
     EmailCfg(id='022219', description="discussion of attempts to clean up Epstein's Google search results"),
     EmailCfg(id='016693', description='signed "MM"'),
