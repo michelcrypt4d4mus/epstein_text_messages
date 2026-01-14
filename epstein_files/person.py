@@ -172,7 +172,7 @@ class Person:
             else:
                 return None
         else:
-            return Text(self.info_str(), style=self.style())
+            return Text(self.info_str(), style=self.style(allow_bold=False))
 
     def internal_link(self) -> Text:
         """Kind of like an anchor link to the section of the page containing these emails."""
@@ -259,8 +259,8 @@ class Person:
         else:
             return counts + [self.name_str()]
 
-    def style(self) -> str:
-        return get_style_for_name(self.name)
+    def style(self, allow_bold: bool = True) -> str:
+        return get_style_for_name(self.name, allow_bold=allow_bold)
 
     def unique_emails(self) -> Sequence[Email]:
         return Document.without_dupes(self.emails)

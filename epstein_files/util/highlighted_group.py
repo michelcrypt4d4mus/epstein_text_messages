@@ -413,7 +413,7 @@ HIGHLIGHTED_NAMES = [
             'Philip Kafka': 'president of Prince Concepts (and son of Terry Kafka?)',
             ROBERT_LAWRENCE_KUHN: 'investment banker, China expert',
             TERRY_KAFKA: 'CEO of Impact Outdoor (highway billboards)',
-            TOM_PRITZKER: 'brother of J.B. Pritzker',
+            TOM_PRITZKER: 'chairman of The Pritzker Organization and Hyatt Hotels',
         },
         patterns=[
             r"((Bill|David)\s*)?Koch(\s*(Bro(s|thers)|Industries))?",
@@ -952,7 +952,7 @@ HIGHLIGHTED_NAMES = [
             'Alain Forget': 'author of "How To Get Out Of This World ALIVE"',
             'Alex Yablon': 'New York Magazine fact checker (?)',
             EDWARD_JAY_EPSTEIN: 'no relation, wrote books about spies',
-            HENRY_HOLT: f"{MICHAEL_WOLFF}'s book publisher",
+            HENRY_HOLT: f"{MICHAEL_WOLFF}'s book publisher (company not a person)",
             JAMES_HILL: 'ABC News',
             JENNIFER_JACQUET: 'Future Science magazine',
             JOHN_BROCKMAN: 'literary agent and author specializing in scientific literature',
