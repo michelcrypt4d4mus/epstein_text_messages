@@ -148,20 +148,26 @@ MAILING_LISTS = [
 
 BCC_LISTS = JUNK_EMAILERS + MAILING_LISTS
 
-TRUNCATE_EMAILS_FROM = BCC_LISTS + [
+TRUNCATE_EMAILS_FROM_OR_TO = [
+    AMANDA_ENS,
+    DIANE_ZIMAN,
+    JOSCHA_BACH,
+    KATHERINE_KEATING,
+    LAWRENCE_KRAUSS,
+    LISA_NEW,
+    PAUL_KRASSNER,
+]
+
+TRUNCATE_EMAILS_FROM = BCC_LISTS + TRUNCATE_EMAILS_FROM_OR_TO + [
     'Alan S Halperin',
     'Alain Forget',
-    AMANDA_ENS,
     ARIANE_DE_ROTHSCHILD,
     AZIZA_ALAHMADI,
     BILL_SIEGEL,
     DAVID_HAIG,
     EDWARD_ROD_LARSEN,
     JOHNNY_EL_HACHEM,
-    LAWRENCE_KRAUSS,
-    LISA_NEW,
     'Mitchell Bard',
-    PAUL_KRASSNER,
     PEGGY_SIEGAL,
     ROBERT_LAWRENCE_KUHN,
     ROBERT_TRIVERS,
@@ -225,17 +231,6 @@ TRUNCATE_TERMS = [
     # Sultan Sulayem
     'co-inventor of the GTX Smart Shoe',
     'my latest Washington Post column',
-    # Amanda Ens
-    'Erika Najarian, BAML financials research analyst, just returned',
-    # Joscha Bach
-    'Cells seem to be mostly indistinguishable (except',
-    'gender differenece. unlikely motivational, every cell is different',
-    'Some thoughts I meant to send back for a long time',
-    # Krassner
-    'My friend Michael Simmons, who has been the editor of National Lampoon',
-    # Katherine Keating
-    'Paul Keating is aware that many people see him as a puzzle and contradiction',
-    'his panoramic view of world affairs sharper than ever, Paul Keating blames',
     # melanie
     'Some years ago when I worked at the libertarian Cato Institute',
     # rich kahn
@@ -431,6 +426,9 @@ class Email(Communication):
 
     def is_note_to_self(self) -> bool:
         return self.recipients == [self.author]
+
+    def is_with(self, name: str) -> bool:
+        return name in [self.author] + self.recipients
 
     def metadata(self) -> Metadata:
         local_metadata = asdict(self)
@@ -746,7 +744,7 @@ class Email(Communication):
             num_chars = args.truncate
         elif self.file_id in TRUNCATION_LENGTHS:
             num_chars = TRUNCATION_LENGTHS[self.file_id] or self.file_size()
-        elif self.author in TRUNCATE_EMAILS_FROM or includes_truncate_term:
+        elif self.author in TRUNCATE_EMAILS_FROM or any([self.is_with(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) or includes_truncate_term:
             num_chars = min(quote_cutoff or MAX_CHARS_TO_PRINT, TRUNCATED_CHARS)
         elif quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
             num_chars = quote_cutoff
