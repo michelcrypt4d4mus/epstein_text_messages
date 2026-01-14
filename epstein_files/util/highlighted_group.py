@@ -1319,6 +1319,7 @@ HIGHLIGHTED_NAMES = [
             r"(John\s*(R.?\s*)?)?Bolton",
             r"Kasich",
             r"Keith\s*Schiller",
+            r"Kelly(\s*Anne?)?\s*Conway|Kellyanne",
             r"Kissinger",
             r"Kobach",
             r"Kolfage",
