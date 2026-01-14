@@ -1,6 +1,7 @@
 import json
 import logging
 import re
+from collections import defaultdict
 from copy import deepcopy
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
@@ -45,9 +46,11 @@ SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
 URL_SIGNIFIERS = ['amp?', 'cd=', 'click', 'ft=', 'gclid', 'htm', 'keywords=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'usg=', 'utm']
 APPEARS_IN = 'appears in'
-MAX_CHARS_TO_PRINT = 4000
+
 MAX_NUM_HEADER_LINES = 14
 MAX_QUOTED_REPLIES = 2
+MAX_CHARS_TO_PRINT = 4000
+TRUNCATED_CHARS = int(MAX_CHARS_TO_PRINT / 3)
 
 REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + [
     '********************************',
@@ -111,6 +114,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
 EMAIL_SIGNATURE_REGEXES = {
     ARIANE_DE_ROTHSCHILD: re.compile(r"Ensemble.*\nCe.*\ndestinataires.*\nremercions.*\nautorisee.*\nd.*\nLe.*\ncontenues.*\nEdmond.*\nRoth.*\nlo.*\nRoth.*\ninfo.*\nFranc.*\n.2.*", re.I),
     BARBRO_C_EHNBOM: re.compile(r"Barbro C.? Ehn.*\nChairman, Swedish-American.*\n((Office|Cell|Sweden):.*\n)*(360.*\nNew York.*)?"),
+    BRAD_KARP: re.compile(r"This message is intended only for the use of the Addressee and may contain information.*\nnot the intended recipient, you are hereby notified.*\nreceived this communication in error.*"),
     DANIEL_SIAD: re.compile(r"Confidentiality Notice: The information contained in this electronic message is PRIVILEGED and confidential information intended only for the use of the individual entity or entities named as recipient or recipients. If the reader is not the intended recipient, be hereby notified that any dissemination, distribution or copy of this communication is strictly prohibited. If you have received this communication in error, please notify me immediately by electronic mail or by telephone and permanently delete this message from your computer system. Thank you.".replace(' ', r'\s*'), re.IGNORECASE),
     DANNY_FROST: re.compile(r"Danny Frost\nDirector.*\nManhattan District.*\n212.*", re.IGNORECASE),
     DARREN_INDYKE: re.compile(r"DARREN K. INDYKE.*?\**\nThe information contained in this communication.*?Darren K.[\n\s]+?[Il]ndyke(, PLLC)? — All rights reserved\.? ?\n\*{50,120}(\n\**)?", re.DOTALL),
@@ -122,7 +126,8 @@ EMAIL_SIGNATURE_REGEXES = {
     KEN_JENNE: re.compile(r"Ken Jenne\nRothstein.*\n401 E.*\nFort Lauderdale.*", re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r"Please direct all scheduling.*\nFollow me on twitter.*\nwww.larrysummers.*", re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r"Lawrence (M. )?Krauss\n(Director.*\n)?(Co-director.*\n)?Foundation.*\nSchool.*\n(Co-director.*\n)?(and Director.*\n)?Arizona.*(\nResearch.*\nOri.*\n(krauss.*\n)?origins.*)?", re.IGNORECASE),
-    MARTIN_WEINBERG: re.compile(r"(Martin G. Weinberg, Esq.\n20 Park Plaza((, )|\n)Suite 1000\nBoston, MA 02116(\n61.*)?(\n.*([cC]ell|Office))*\n)?This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
+    MARTIN_WEINBERG: re.compile(r"(Martin G. Weinberg, Esq.\n20 Park Plaza((, )|\n)Suite 1000\nBoston, MA 02116(\n61.*?)?(\n.*?([cC]ell|Office))*\n)?This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
+    NICHOLAS_RIBIS: re.compile(r"60 Morris Turnpike 2FL\nSummit,? NJ.*\n0:\nF:\n\*{20,}\nCONFIDENTIALITY NOTICE.*\nattachments.*\ncopying.*\nIf you have.*\nthe copy.*\nThank.*\n\*{20,}"),
     PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
     PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(142 W 57th Street, 11th Floor, New York, NY 10019?[\n\s]+)?(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
     RICHARD_KAHN: re.compile(fr'Richard Kahn[\n\s]+HBRK Associates Inc.?[\n\s]+((301 East 66th Street, Suite 1OF|575 Lexington Avenue,? 4th Floor,?)[\n\s]+)?New York, (NY|New York) 100(22|65)(\s+(Tel?|Phone)( I|{REDACTED})?\s+Fa[x",]?(_|{REDACTED})*\s+[Ce]el?l?)?', re.IGNORECASE),
@@ -144,13 +149,35 @@ MAILING_LISTS = [
 
 BCC_LISTS = JUNK_EMAILERS + MAILING_LISTS
 
-TRUNCATE_ALL_EMAILS_FROM = BCC_LISTS + [
-    'Alan S Halperin',
-    BILL_SIEGEL,
+TRUNCATE_EMAILS_FROM_OR_TO = [
+    AMANDA_ENS,
+    ANTHONY_BARRETT,
+    DIANE_ZIMAN,
+    JOSCHA_BACH,
+    KATHERINE_KEATING,
+    LAWRENCE_KRAUSS,
     LISA_NEW,
-    'Mitchell Bard',
+    NILI_PRIELL_BARAK,
     PAUL_KRASSNER,
+]
+
+TRUNCATE_EMAILS_FROM = BCC_LISTS + TRUNCATE_EMAILS_FROM_OR_TO + [
+    'Alan S Halperin',
+    'Alain Forget',
+    ARIANE_DE_ROTHSCHILD,
+    AZIZA_ALAHMADI,
+    BILL_SIEGEL,
+    DAVID_HAIG,
+    EDWARD_ROD_LARSEN,
+    JOHNNY_EL_HACHEM,
+    MELANIE_WALKER,
+    'Mitchell Bard',
+    PEGGY_SIEGAL,
+    ROBERT_LAWRENCE_KUHN,
+    ROBERT_TRIVERS,
     'Skip Rimer',
+    'Steven Elkman',
+    STEVEN_PFEIFFER,
     'Steven Victor MD',
     TERRY_KAFKA,
 ]
@@ -182,102 +209,45 @@ TRUNCATION_LENGTHS = {
     '031791': None,    # First email in Jessica Cadwell chain about service of legal documents
     '023208': None,    # Long discussion about leon black's finances
     '028589': None,    # Long thread with Reid Weingarten
+    '029433': TRUNCATED_CHARS,  # Kahn taxes
+    '026778': TRUNCATED_CHARS,  # Kahn taxes
+    '033311': TRUNCATED_CHARS,  # Kahn taxes
+    '024251': TRUNCATED_CHARS,  # Kahn taxes
+    '026755': TRUNCATED_CHARS,  # Epstein self fwd
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
 TRUNCATE_TERMS = [
-    'The rebuilding of Indonesia',
+    'The rebuilding of Indonesia',  # Vikcy ward article
     'Dominique Strauss-Kahn',
     'THOMAS L. FRIEDMAN',
-    'a sleek, briskly paced film whose title suggests a heist movie',
-    'quote from The Colbert Report distinguishes',
-    'co-inventor of the GTX Smart Shoe',
-    'my latest Washington Post column',
-    'supported my humanities work at Harvard',
+    'a sleek, briskly paced film whose title suggests a heist movie',  # Inside Job
     'Calendar of Major Events, Openings, and Fundraisers',
-    'Nuclear Operator Raises Alarm on Crisis',
-    'as responsible for the democratisation of computing and',
-    'AROUND 1,000 operational satellites are circling the Earth',
     "In recent months, China's BAT collapse",
     'President Obama introduces Jim Yong Kim as his nominee',
     'Trump appears with mobster-affiliated felon at New',
-    'Lead Code Enforcement Walton presented the facts',
-    "Is UNRWA vital for the Palestinians' future",
-    'The New York company, led by Stephen Ross',
-    'I spent some time mulling additional aspects of a third choice presidential',
-    'you are referring to duplication of a gene',
-    'i am writing you both because i am attaching a still not-quite-complete response',
-    'Learn to meditate and discover what truly nourishes your entire being',
     'Congratulations to the 2019 Hillman Prize recipients',
-    'This much we know - the Fall elections are shaping up',
     "Special counsel Robert Mueller's investigation may face a serious legal obstacle",
     "nearly leak-proof since its inception more than a year ago",
-    "I appreciate the opportunity to respond to your email",
-    "Hello Peter. I am currently on a plane. I sent you earlier",
-    "I appreciate the opportunity to respond to your email",
-    'I just wanted to follow up on a couple of notes. I have been coordinating with Richard Kahn',
-    'So, Peggy, if you could just let me know what info to include on the donation',
-    'Consult a lawyer beforehand, if possible, but be cooperative/nice at this stage',
-    # Amanda Ens
-    'We remain positive on banks that can make acceptable returns',
-    'David Woo (BAML head of FX, Rates and EM Strategy, very highly regarded',
-    "Please let me know if you're interested in joining a small group meeting",
-    'Erika Najarian, BAML financials research analyst, just returned',
-    'We can also discuss single stock and Topix banks',
-    'We are recording unprecedented divergences in falling equity vol',
-    'As previously discussed between you and Ariane',
-    'no evidence you got the latest so i have sent you just the key message',
-    # Joscha Bach
-    'Cells seem to be mostly indistinguishable (except',
-    'gender differenece. unlikely motivational, every cell is different',
-    'Some thoughts I meant to send back for a long time',
-    # Krassner
-    'My friend Michael Simmons, who has been the editor of National Lampoon',
-    "In the premiere episode of 'The Last Laugh' podcast, Sarah Silverman",
-    'Thanks so much for sharing both your note to Steven and your latest Manson essay',
-    # Edward Larson
-    'Coming from an international background, and having lived in Oslo, Tel Aviv',
-    # Katherine Keating
-    'Paul Keating is aware that many people see him as a puzzle and contradiction',
-    'his panoramic view of world affairs sharper than ever, Paul Keating blames',
-    # melanie
-    'Some years ago when I worked at the libertarian Cato Institute'
-    # rich kahn
-    'House and Senate Republicans on their respective tax overhaul',
-    'The Tax Act contains changes to the treatment of "carried interests"',
-    'General Election: Trump vs. Clinton LA Times/USC Tracking',
-    'Location: Quicken Loans Arena in Cleveland, OH',
-    'A friendly discussion about Syria with a former US State Department',
-    # Robert Kuhn
-    'The US trade war against China: The view from Beijing',
-    # Tom / Paul Krassner
-    'I forgot to post my cartoon from week before last, about Howard Schultz',
+    # Nikolic
+    'Nuclear Operator Raises Alarm on Crisis',
+    'as responsible for the democratisation of computing and',
+    'AROUND 1,000 operational satellites are circling the Earth',
+    # Sultan Sulayem
+    'co-inventor of the GTX Smart Shoe',
+    'my latest Washington Post column',
     # Bannon
     "Bannon the European: He's opening the populist fort in Brussels",
     "Steve Bannon doesn't do subtle.",
     'The Department of Justice lost its latest battle with Congress',
-    "Donald Trump's newly named chief strategist and senior counselor",
-    # Diane Ziman
-    'I was so proud to see him speak at the Women',
     # lawyers
     'recuses itself from Jeffrey Epstein case',
-    # Krauss
-    'On confronting dogma, I of course agree',
-    'I did neck with that woman, but never forced myself on her',
-    'It is hard to know how to respond to a list of false',
-    'The Women in the World Summit opens April 12',
-    'lecture in Heidelberg Oct 14 but they had to cancel',
-    # Nikolic
-    'people from LifeBall',
-    # Epstein
-    'David Ben Gurion was asked why he, after 2000',
-    # Lisa New
-    'The raw materials for that period include interviews',
-    'Whether you donated to Poetry in America through',
-    # Random
-    'Little Hodiaki',
-    "It began with deep worries regarding China's growth path",
-    'https://www.washingtonpost.com/politics/2018/09/04/transcript-phone-call',
+    # Misc
+    'people from LifeBall',  # Nikolic
+    "It began with deep worries regarding China's growth path",  # Paul Morris
+    'A friendly discussion about Syria with a former US State Department',  # Fabrice Aidan
+    'The US trade war against China: The view from Beijing',  # Robert Kuhn / Groff
+    'This much we know - the Fall elections are shaping up',  # Juleanna Glover / Bannon
 ]
 
 METADATA_FIELDS = [
@@ -288,61 +258,78 @@ METADATA_FIELDS = [
     'subject',
 ]
 
-# Note the line repair happens *after* 'Importance: High' is removed
+# Arguments to _merge_lines(). Note the line repair happens *after* 'Importance: High' is removed
 LINE_REPAIR_MERGES = {
-    '017523': 4,
-    '019407': [2, 4],
-    '021729': 2,
-    '031764': 3,
-    '029433': 3,
-    '033271': 3,
-    '022673': 9,
-    '022684': 9,
-    '022695': 4,
-    '029773': [2, 5],
-    '023067': 3,
-    '025790': 2,
-    '029841': 3,
-    '026345': 3,
-    '026609': 4,
-    '033299': 3,
-    '030315': [3, 5],
-    '029831': [3, 6],
-    '026829': 3,
-    '026924': [2, 4],
-    '028931': [3, 6],
-    '029154': [2, 5],
-    '029163': [2, 5],
-    '029282': 2,
-    '029402': 5,
-    '029498': 2,
-    '029501': 2,
-    '029835': [2, 4],
-    '029889': 2,
-    '029545': [3, 5],
-    '029976': 3,
-    '030299': [7, 10],
-    '030381': [2, 4],
-    '030384': [2, 4],
-    '030626': 2,
-    '030999': [2, 4],
-    '031384': 2,
-    '031428': 2,
-    '031442': 0,
-    '031980': [2, 4],
-    '032063': [3, 5],
-    '032272': 3,
-    '032405': 4,
-    '033097': 2,
-    '033144': [2, 4],
-    '033217': 3,
-    '033228': [3, 5],
-    '033357': [2, 4],
-    '033486': [7, 9],
-    '033512': 2,
-    '033575': [2, 4],
-    '033576': 3,
-    '033583': 2,
+    '013405': [[4]] * 2,
+    '013415': [[4]] * 2,
+    '014397': [[4]] * 2,
+    '014860': [[3], [4], [4]],
+    '017523': [[4]],
+    '019105': [[5]] * 4,
+    '019407': [[2, 4]],
+    '021729': [[2]],
+    '022673': [[9]],
+    '022684': [[9]],
+    '022695': [[4]],
+    '022977': [[9]] * 10,
+    '023001': [[5]] * 3,
+    '023067': [[3]],
+    '025233': [[4]] * 2,
+    '025329': [[2]] * 9,
+    '025790': [[2]],
+    '025812': [[3]] * 2,
+    '026345': [[3]],
+    '026609': [[4]],
+    '026829': [[3]],
+    '026924': [[2, 4]],
+    '028728': [[3]],
+    '028931': [[3, 6]],
+    '029154': [[2, 5]],
+    '029163': [[2, 5]],
+    '029282': [[2]],
+    '029402': [[5]],
+    '029433': [[3]],
+    '029458': [[4]] * 3,
+    '029498': [[2], [2, 4]],
+    '029501': [[2]],
+    '029545': [[3, 5]],
+    '029773': [[2, 5]],
+    '029831': [[3, 6]],
+    '029835': [[2, 4]],
+    '029841': [[3]],
+    '029889': [[2], [2, 5]],
+    '029976': [[3]],
+    '029977': ([[2]] * 4) + [[4], [2, 4]],
+    '030299': [[7, 10]],
+    '030315': [[3, 5]],
+    '030381': [[2, 4]],
+    '030384': [[2, 4]],
+    '030626': [[2], [4]],
+    '030999': [[2, 4]],
+    '031384': [[2]],
+    '031428': [[2], [2, 4]],
+    '031442': [[0]],
+    '031748': [[3]] * 2,
+    '031764': [[3]],
+    '031980': [[2, 4]],
+    '032063': [[3, 5]],
+    '032272': [[3]],
+    '032405': [[4]],
+    '032637': [[9]] * 3,
+    '033097': [[2]],
+    '033144': [[2, 4]],
+    '033217': [[3]],
+    '033228': [[3, 5]],
+    '033252': [[9]] * 2,
+    '033271': [[3]],
+    '033299': [[3]],
+    '033357': [[2, 4]],
+    '033486': [[7, 9]],
+    '033512': [[2]],
+    '033568': [[5]] * 5,
+    '033575': [[2, 4]],
+    '033576': [[3]],
+    '033583': [[2]],
 }
 
 
@@ -363,6 +350,7 @@ class Email(Communication):
     recipients: list[Name] = field(default_factory=list)
     sent_from_device: str | None = None
     signature_substitution_counts: dict[str, int] = field(default_factory=dict)  # defaultdict breaks asdict :(
+    _line_merge_arguments: list[tuple[int] | tuple[int, int]] = field(default_factory=list)
 
     # For logging how many headers we prettified while printing, kind of janky
     rewritten_header_ids: ClassVar[set[str]] = set([])
@@ -424,6 +412,9 @@ class Email(Communication):
 
     def is_note_to_self(self) -> bool:
         return self.recipients == [self.author]
+
+    def is_with(self, name: str) -> bool:
+        return name in [self.author] + self.recipients
 
     def metadata(self) -> Metadata:
         local_metadata = asdict(self)
@@ -597,7 +588,12 @@ class Email(Communication):
 
     def _merge_lines(self, idx: int, idx2: int | None = None) -> None:
         """Combine lines numbered 'idx' and 'idx2' into a single line (idx2 defaults to idx + 1)."""
-        idx2 = idx2 if idx2 is not None else (idx + 1)
+        if idx2 is None:
+            self._line_merge_arguments.append((idx,))
+            idx2 = idx + 1
+        else:
+            self._line_merge_arguments.append((idx, idx2))
+
         lines = self.lines[0:idx]
 
         if idx2 <= idx:
@@ -640,73 +636,14 @@ class Email(Communication):
         old_text = self.text
 
         if self.file_id in LINE_REPAIR_MERGES:
-            merge = LINE_REPAIR_MERGES[self.file_id]
-            merge_args = merge if isinstance(merge, list) else [merge]
-            self._merge_lines(*merge_args)
+            for merge_args in LINE_REPAIR_MERGES[self.file_id]:
+                self._merge_lines(*merge_args)
 
-        # These already had 2nd line merged
-        if self.file_id in ['030626']:  # Merge 6th and 7th (now 5th and 6th) rows
-            self._merge_lines(4)
-        elif self.file_id == '029889':
-            self._merge_lines(2, 5)
-        elif self.file_id in ['029498', '031428']:
-            self._merge_lines(2, 4)
-
-        # Multiline
-        if self.file_id == '013415':
-            for _i in range(2):
-                self._merge_lines(4)
-        elif self.file_id == '013405':
-            for _i in range(2):
-                self._merge_lines(4)
-        elif self.file_id == '029458':
-            for _i in range(3):
-                self._merge_lines(4)
-        elif self.file_id in ['025233']:
-            for _i in range(2):
-                self._merge_lines(4)
-
+        if self.file_id in ['025233']:
             self.lines[4] = f"Attachments: {self.lines[4]}"
             self._set_computed_fields(lines=self.lines)
-        elif self.file_id in ['023001']:
-            for _i in range(3):
-                self._merge_lines(5)
-        elif self.file_id in ['019105']:
-            for _i in range(4):
-                self._merge_lines(5)
-        elif self.file_id in ['033568']:
-            for _i in range(5):
-                self._merge_lines(5)
-        elif self.file_id in ['025329']:
-            for _i in range(9):
-                self._merge_lines(2)
-        elif self.file_id in ['025812', '031748']:
-            for _i in range(2):
-                self._merge_lines(3)
-        elif self.file_id == '014860':
-            self._merge_lines(3)
-            self._merge_lines(4)
-            self._merge_lines(4)
         elif self.file_id == '029977':
             self._set_computed_fields(text=self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM'))
-
-            for _i in range(4):
-                self._merge_lines(2)
-
-            self._merge_lines(4)
-            self._merge_lines(2, 4)
-        elif self.file_id in ['033252']:
-            for _i in range(2):
-                self._merge_lines(9)
-        elif self.file_id in ['032637']:
-            for _i in range(3):
-                self._merge_lines(9)
-        elif self.file_id in ['014397']:
-            for _i in range(2):
-                self._merge_lines(4)
-        elif self.file_id in ['022977']:
-            for _i in range(10):
-                self._merge_lines(9)
 
         # Bad line removal
         if self.file_id == '025041':
@@ -734,7 +671,6 @@ class Email(Communication):
                     logger.debug(f"{self.filename}: Joining link lines\n   1. {line}\n   2. {lines[i + 1]}\n")
                     line += lines[i + 1]
                     i += 1
-                    #import pdb;pdb.set_trace()
 
                 line = line.replace(' ', '')
             elif ' http' in line and line.endswith('html'):
@@ -794,8 +730,8 @@ class Email(Communication):
             num_chars = args.truncate
         elif self.file_id in TRUNCATION_LENGTHS:
             num_chars = TRUNCATION_LENGTHS[self.file_id] or self.file_size()
-        elif self.author in TRUNCATE_ALL_EMAILS_FROM or includes_truncate_term:
-            num_chars = min(quote_cutoff or MAX_CHARS_TO_PRINT, int(MAX_CHARS_TO_PRINT / 3))
+        elif self.author in TRUNCATE_EMAILS_FROM or any([self.is_with(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) or includes_truncate_term:
+            num_chars = min(quote_cutoff or MAX_CHARS_TO_PRINT, TRUNCATED_CHARS)
         elif quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
             num_chars = quote_cutoff
         else:
@@ -804,7 +740,7 @@ class Email(Communication):
         if num_chars != MAX_CHARS_TO_PRINT and not self.is_duplicate():
             log_args = {
                 'num_chars': num_chars,
-                'author_truncate': self.author in TRUNCATE_ALL_EMAILS_FROM,
+                'author_truncate': self.author in TRUNCATE_EMAILS_FROM,
                 'is_fwded_article': self.is_fwded_article(),
                 'is_quote_cutoff': quote_cutoff == num_chars,
                 'includes_truncate_term': json.dumps(includes_truncate_term) if includes_truncate_term else None,

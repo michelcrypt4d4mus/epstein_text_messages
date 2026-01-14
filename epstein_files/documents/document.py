@@ -436,6 +436,10 @@ class Document:
         return len([doc for doc in docs if doc.author])
 
     @staticmethod
+    def sort_by_id(docs: Sequence['DocumentType']) -> list['DocumentType']:
+        return sorted(docs, key=lambda d: d.file_id)
+
+    @staticmethod
     def sort_by_timestamp(docs: Sequence['DocumentType']) -> list['DocumentType']:
         return sorted(docs, key=lambda doc: doc.timestamp_sort_key())
 

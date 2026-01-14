@@ -628,7 +628,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             ANDRZEJ_DUDA: 'former president of Poland',
             'Caroline Lang': 'daughter of Jack Lang',
-            "Edward Rod Larsen": f"son of {TERJE_ROD_LARSEN}",
+            EDWARD_ROD_LARSEN: f"son of {TERJE_ROD_LARSEN}",
             'Fabrice Aidan': f'diplomat who worked with {TERJE_ROD_LARSEN}',
             'Jack Lang': 'former French Minister of National Education',
             MIROSLAV_LAJCAK: 'Russia-friendly Slovakian politician, friend of Steve Bannon',
@@ -911,7 +911,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             EHUD_BARAK: 'former prime minister of Israel, Epstein business partner',
             'Mitchell Bard': 'director of the American-Israeli Cooperative Enterprise (AICE)',
-            'Nili Priell Barak': 'wife of Ehud Barak',
+            NILI_PRIELL_BARAK: 'wife of Ehud Barak',
         },
         patterns=[
             r"AIPAC",
@@ -1209,7 +1209,7 @@ HIGHLIGHTED_NAMES = [
             r"Mohammed\s+bin\s+Salman",
             r"Morocco",
             r"Mubarak",
-            r"Muslim",
+            r"Muslim(\s*Brotherhood)?",
             r"Nayaf",
             r"Pakistani?",
             r"Omar",
@@ -1319,6 +1319,7 @@ HIGHLIGHTED_NAMES = [
             r"(John\s*(R.?\s*)?)?Bolton",
             r"Kasich",
             r"Keith\s*Schiller",
+            r"Kelly(\s*Anne?)?\s*Conway|Kellyanne",
             r"Kissinger",
             r"Kobach",
             r"Kolfage",

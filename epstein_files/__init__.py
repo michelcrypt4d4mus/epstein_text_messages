@@ -16,6 +16,8 @@ from rich.text import Text
 from epstein_files.epstein_files import EpsteinFiles, document_cls
 from epstein_files.documents.document import INFO_PADDING, Document
 from epstein_files.documents.email import Email
+from epstein_files.documents.messenger_log import MessengerLog
+from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.output_files import make_clean
 from epstein_files.util.constant.strings import ID_REGEX
 from epstein_files.util.data import flatten
@@ -106,16 +108,24 @@ def epstein_search():
         print_subtitle_panel(f"Found {len(search_results)} documents matching '{search_term}'")
 
         for search_result in search_results:
-            console.line()
+            document = search_result.document
+
+            if (isinstance(document, Email) and not args.output_emails) \
+                    or (isinstance(document, OtherFile) and not args.output_other) \
+                    or (isinstance(document, MessengerLog) and not args.output_texts):
+                document.warn(f"{type(document).__name__} Skipping search result...")
+                continue
 
             if args.whole_file:
-                console.print(search_result.document)
+                console.print(document)
             else:
-                console.print(search_result.document.summary_panel())
+                console.print(document.summary_panel())
 
                 for matching_line in search_result.lines:
                     line_txt = matching_line.__rich__()
                     console.print(Padding(temp_highlighter(line_txt), INFO_PADDING), style='gray37')
+
+            console.line()
 
 
 def epstein_show():
