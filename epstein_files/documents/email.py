@@ -163,6 +163,7 @@ INTERESTING_TRUNCATION_LENGTHS = {
     '025812': None,    # Tyler Shears reputation
     '029914': None,    # Lord Mandelson russian investments
     '033453': None,    # "Just heard you were telling people that you heard I asked Trump for a million dollars"
+    '031320': None,    # Epstein Gratitude foundation
 }
 
 TRUNCATION_LENGTHS = {
@@ -278,6 +279,8 @@ LINE_REPAIR_MERGES = {
     '017523': 4,
     '019407': [2, 4],
     '021729': 2,
+    '029433': 3,
+    '033271': 3,
     '022673': 9,
     '022684': 9,
     '022695': 4,
