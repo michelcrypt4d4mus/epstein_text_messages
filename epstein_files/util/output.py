@@ -75,10 +75,8 @@ INTERESTING_EMAIL_IDS = [
 
 for id in INTERESTING_TRUNCATION_LENGTHS:
     if id not in INTERESTING_EMAIL_IDS:
-        logger.debug(f"INTERESTING_TRUNCATION_LENGTHS id {id} not in INTERESTING_EMAIL_IDS")
+        logger.debug(f"Adding INTERESTING_TRUNCATION_LENGTHS ID {id} to INTERESTING_EMAIL_IDS")
         INTERESTING_EMAIL_IDS.append(id)
-    else:
-        logger.debug(f"INTERESTING_EMAIL_IDS has email id {id} ")
 
 
 INTERESTING_TEXT_IDS = [
@@ -166,7 +164,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
         print_subtitle_panel(OTHER_INTERESTING_EMAILS_SUBTITLE)
         console.line()
 
-        for other_email in extra_emails:
+        for other_email in Document.sort_by_timestamp(extra_emails):
             console.print(other_email)
             printed_emails.append(cast(Email, other_email))
 
