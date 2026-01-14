@@ -168,6 +168,7 @@ INTERESTING_TRUNCATION_LENGTHS = {
     '033453': None,    # "Just heard you were telling people that you heard I asked Trump for a million dollars"
     '031320': None,    # Epstein Gratitude foundation
     '031036': None,    # Barbro Ehnbom talking about Swedish girl
+    '023454': 1878,    # Email invitation sent to tech CEOs + Epstein
 }
 
 TRUNCATION_LENGTHS = {
@@ -783,6 +784,8 @@ class Email(Communication):
 
         if args.whole_file:
             num_chars = len(self.text)
+        elif args.truncate:
+            num_chars = args.truncate
         elif self.file_id in TRUNCATION_LENGTHS:
             num_chars = TRUNCATION_LENGTHS[self.file_id] or self.file_size()
         elif self.author in TRUNCATE_ALL_EMAILS_FROM or includes_truncate_term:
