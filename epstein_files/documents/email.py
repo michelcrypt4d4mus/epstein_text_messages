@@ -46,9 +46,11 @@ SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
 URL_SIGNIFIERS = ['amp?', 'cd=', 'click', 'ft=', 'gclid', 'htm', 'keywords=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'usg=', 'utm']
 APPEARS_IN = 'appears in'
-MAX_CHARS_TO_PRINT = 4000
+
 MAX_NUM_HEADER_LINES = 14
 MAX_QUOTED_REPLIES = 2
+MAX_CHARS_TO_PRINT = 4000
+TRUNCATED_CHARS = int(MAX_CHARS_TO_PRINT / 3)
 
 REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + [
     '********************************',
@@ -147,10 +149,12 @@ BCC_LISTS = JUNK_EMAILERS + MAILING_LISTS
 
 TRUNCATE_ALL_EMAILS_FROM = BCC_LISTS + [
     'Alan S Halperin',
+    AMANDA_ENS,
     BILL_SIEGEL,
     LISA_NEW,
     'Mitchell Bard',
     PAUL_KRASSNER,
+    ROBERT_LAWRENCE_KUHN,
     'Skip Rimer',
     'Steven Victor MD',
     TERRY_KAFKA,
@@ -190,7 +194,7 @@ TRUNCATE_TERMS = [
     'The rebuilding of Indonesia',
     'Dominique Strauss-Kahn',
     'THOMAS L. FRIEDMAN',
-    'a sleek, briskly paced film whose title suggests a heist movie',
+    'a sleek, briskly paced film whose title suggests a heist movie',  # Inside Job
     'quote from The Colbert Report distinguishes',
     'co-inventor of the GTX Smart Shoe',
     'my latest Washington Post column',
@@ -220,13 +224,10 @@ TRUNCATE_TERMS = [
     'So, Peggy, if you could just let me know what info to include on the donation',
     'Consult a lawyer beforehand, if possible, but be cooperative/nice at this stage',
     # Amanda Ens
-    'We remain positive on banks that can make acceptable returns',
-    'David Woo (BAML head of FX, Rates and EM Strategy, very highly regarded',
-    "Please let me know if you're interested in joining a small group meeting",
     'Erika Najarian, BAML financials research analyst, just returned',
-    'We can also discuss single stock and Topix banks',
-    'We are recording unprecedented divergences in falling equity vol',
+    # Rothschild
     'As previously discussed between you and Ariane',
+    # Trivers
     'no evidence you got the latest so i have sent you just the key message',
     # Joscha Bach
     'Cells seem to be mostly indistinguishable (except',
@@ -758,7 +759,7 @@ class Email(Communication):
         elif self.file_id in TRUNCATION_LENGTHS:
             num_chars = TRUNCATION_LENGTHS[self.file_id] or self.file_size()
         elif self.author in TRUNCATE_ALL_EMAILS_FROM or includes_truncate_term:
-            num_chars = min(quote_cutoff or MAX_CHARS_TO_PRINT, int(MAX_CHARS_TO_PRINT / 3))
+            num_chars = min(quote_cutoff or MAX_CHARS_TO_PRINT, TRUNCATED_CHARS)
         elif quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
             num_chars = quote_cutoff
         else:
