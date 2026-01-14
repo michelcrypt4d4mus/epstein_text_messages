@@ -18767,6 +18767,7 @@
                 "duplicate_of_id": "031428",
                 "file_id": "031388",
                 "filename": "HOUSE_OVERSIGHT_031388.txt",
+                "is_fwded_article": true,
                 "num_lines": 115,
                 "recipients": [
                     "Ken Starr",
@@ -18969,6 +18970,7 @@
                 ],
                 "file_id": "031428",
                 "filename": "HOUSE_OVERSIGHT_031428.txt",
+                "is_fwded_article": true,
                 "num_lines": 112,
                 "recipients": [
                     "Ken Starr",
