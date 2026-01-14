@@ -1209,7 +1209,7 @@ HIGHLIGHTED_NAMES = [
             r"Mohammed\s+bin\s+Salman",
             r"Morocco",
             r"Mubarak",
-            r"Muslim",
+            r"Muslim(\s*Brotherhood)?",
             r"Nayaf",
             r"Pakistani?",
             r"Omar",
