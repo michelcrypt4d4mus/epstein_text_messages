@@ -215,12 +215,12 @@ UBS = 'UBS'
 # First and last names that should be made part of a highlighting regex for emailers
 NAMES_TO_NOT_HIGHLIGHT = """
     al alain alan alfredo allen alex alexander amanda andres andrew anthony
-    bard barrett barry bennet bill black bob boris brad brenner bruce
+    bard barrett barry bennet bernard bill black bob boris brad brenner bruce
     caroline carolyn chris christina cohen
     dan daniel danny darren dave david donald
     ed edward edwards enforcement enterprise enterprises entourage epstein eric erika etienne
     faith fisher forget fred friendly frost fuller
-    gerald george gold gordon
+    gates gerald george gold gordon
     haddad harry hay heather henry hill hoffman howard
     ian ivan
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr
@@ -243,7 +243,7 @@ OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
     aaron albert alberto alec alexandra alice anderson andre ann anna anne ariana arthur
     baldwin barack barrett ben benjamin berger bert binant bob bonner boyden bradley brady branson bright bruno bryant burton
     chapman charles charlie christopher clint cohen colin collins conway
-    davis dean debra deborah dennis diana diane diaz dickinson dixon dominique don dylan
+    davis dean debbie debra deborah dennis diana diane diaz dickinson dixon dominique don dylan
     edmond elizabeth emily entwistle erik evelyn
     ferguson flachsbart francis franco frank
     gardner gary geoff geoffrey gilbert gloria goldberg gonzalez gould graham greene guarino gwyneth

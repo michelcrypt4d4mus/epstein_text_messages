@@ -32,6 +32,7 @@ BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE
 BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,]|L\._)$')
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 LINK_LINE_REGEX = re.compile(f"^>? ?htt")
+LINK_LINE2_REGEX = re.compile(r"^[-\w.]{5,}$")
 QUOTED_REPLY_LINE_REGEX = re.compile(r'(\nFrom:(.*)|wrote:)\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
 
@@ -42,7 +43,7 @@ LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
-URL_SIGNIFIERS = ['amp?', 'cd=', 'click', 'gclid', 'htm', 'keywords=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'usg=', 'utm']
+URL_SIGNIFIERS = ['amp?', 'cd=', 'click', 'ft=', 'gclid', 'htm', 'keywords=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'usg=', 'utm']
 APPEARS_IN = 'appears in'
 MAX_CHARS_TO_PRINT = 4000
 MAX_NUM_HEADER_LINES = 14
@@ -115,6 +116,7 @@ EMAIL_SIGNATURE_REGEXES = {
     DARREN_INDYKE: re.compile(r"DARREN K. INDYKE.*?\**\nThe information contained in this communication.*?Darren K.[\n\s]+?[Il]ndyke(, PLLC)? — All rights reserved\.? ?\n\*{50,120}(\n\**)?", re.DOTALL),
     DAVID_INGRAM: re.compile(r"Thank you in advance.*\nDavid Ingram.*\nCorrespondent\nReuters.*\nThomson.*(\n(Office|Mobile|Reuters.com).*)*"),
     DEEPAK_CHOPRA: re.compile(fr"({DEEPAK_CHOPRA}( MD)?\n)?2013 Costa Del Mar Road\nCarlsbad, CA 92009(\n(Chopra Foundation|Super Genes: Unlock.*))?(\nJiyo)?(\nChopra Center for Wellbeing)?(\nHome: Where Everyone is Welcome)?"),
+    EDUARDO_ROBLES: re.compile(fr"(• )?email:.*\n(• )?email:\n(• )?website: www.creativekingdom.com\n(• )?address: 5th Floor Office No:504 Aspect Tower,\nBusiness Bay, Dubai United Arab Emirates."),
     JEFFREY_EPSTEIN: re.compile(r"((\*+|please note)\n+)?(> )?(• )?(» )?The information contained in this communication is\n(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?", re.DOTALL),
     JESSICA_CADWELL: re.compile(r"(f.*\n)?Certified Para.*\nFlorida.*\nBURMAN.*\n515.*\nSuite.*\nWest Palm.*(\nTel:.*)?(\nEmail:.*)?", re.IGNORECASE),
     KEN_JENNE: re.compile(r"Ken Jenne\nRothstein.*\n401 E.*\nFort Lauderdale.*", re.IGNORECASE),
@@ -147,16 +149,29 @@ TRUNCATE_ALL_EMAILS_FROM = BBC_LISTS + [
     'Steven Victor MD',
 ]
 
-TRUNCATION_LENGTHS = {
+# These IDs will be appended to INTERESTING_EMAIL_IDS
+INTERESTING_TRUNCATION_LENGTHS = {
     '023627': 16_800,  # Micheal Wolff article with brock pierce
     '030245': None,    # Epstein rationalizes his behavior in an open letter to the world
     '030781': None,    # Bannon email about crypto coin issues
     '032906': None,    # David Blaine email
     '026036': 6000,    # Gino Yu blockchain mention
-    '023208': None,    # Long discussion about leon black's finances
     '029609': None,    # Joi Ito
     '025233': None,    # Reputation.com discussion
+    '017827': None,    # Bannon / Peggy Siegal email about netflix doc on Epstein
+    '030222': None,    # Ross Gow / Ghislaine correspondence
+    '026028': None,    # Larry Summers / Karim Wade intro
+    '029545': None,    # Tyler Shears reputation
+    '025812': None,    # Tyler Shears reputation
+    '029914': None,    # Lord Mandelson russian investments
+    '033453': None,    # "Just heard you were telling people that you heard I asked Trump for a million dollars"
+    '031320': None,    # Epstein Gratitude foundation
+}
+
+TRUNCATION_LENGTHS = {
+    **INTERESTING_TRUNCATION_LENGTHS,
     '031791': None,    # First email in Jessica Cadwell chain about service of legal documents
+    '023208': None,    # Long discussion about leon black's finances
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
@@ -266,6 +281,8 @@ LINE_REPAIR_MERGES = {
     '017523': 4,
     '019407': [2, 4],
     '021729': 2,
+    '029433': 3,
+    '033271': 3,
     '022673': 9,
     '022684': 9,
     '022695': 4,
@@ -276,6 +293,7 @@ LINE_REPAIR_MERGES = {
     '026345': 3,
     '026609': 4,
     '033299': 3,
+    '030315': [3, 5],
     '029831': [3, 6],
     '026829': 3,
     '026924': [2, 4],
@@ -699,7 +717,7 @@ class Email(Communication):
             if LINK_LINE_REGEX.search(line):
                 while i < (len(lines) - 1) \
                         and 'http' not in lines[i + 1] \
-                        and (lines[i + 1].endswith('/') or any(s in lines[i + 1] for s in URL_SIGNIFIERS)):
+                        and (lines[i + 1].endswith('/') or any(s in lines[i + 1] for s in URL_SIGNIFIERS) or LINK_LINE2_REGEX.match(lines[i + 1])):
                     logger.debug(f"{self.filename}: Joining link lines\n   1. {line}\n   2. {lines[i + 1]}\n")
                     line += lines[i + 1]
                     i += 1

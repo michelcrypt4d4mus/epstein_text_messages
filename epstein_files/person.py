@@ -284,6 +284,11 @@ class Person:
         highlighted = highlighted or people
         highlighted_names = [p.name for p in highlighted]
         is_selection = len(people) != len(highlighted) or args.emailers_info
+        all_emails = Document.uniquify(flatten([list(p.unique_emails()) for p in people]))
+        email_authors = [p for p in people if p.emails_by() and p.name]
+        attributed_emails = [email for email in all_emails if email.author]
+        footer = f"(identified {len(email_authors)} authors of {len(attributed_emails):,}" \
+                 f" out of {len(all_emails):,} emails, {len(all_emails) - len(attributed_emails)} still unknown)"
 
         if is_selection:
             title = Text(f"{EMAILER_INFO_TITLE} in This Order for the Highlighted Names (", style=TABLE_TITLE_STYLE)
@@ -291,7 +296,7 @@ class Person:
         else:
             title = f"{EMAILER_INFO_TITLE} in Chronological Order Based on Timestamp of First Email"
 
-        table = build_table(title)
+        table = build_table(title, caption=footer)
         table.add_column('First')
         table.add_column('Name', max_width=24, no_wrap=True)
         table.add_column('Category', justify='left', style='dim italic')
