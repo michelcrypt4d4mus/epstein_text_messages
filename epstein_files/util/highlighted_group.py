@@ -1342,7 +1342,7 @@ HIGHLIGHTED_NAMES = [
             r"Reagan",
             r"Reince", r"Priebus",
             r"Republican",
-            r"(Rex\s*)?Tillerson",
+            r"(Rex\s*)?Till?erson",
             r"(?<!Cynthia )(Richard\s*)?Nixon",
             r"RNC",
             r"Tea\s*Party",
