@@ -637,6 +637,7 @@ HIGHLIGHTED_NAMES = [
             THORBJORN_JAGLAND: 'former prime minister of Norway, Nobel Peace Prize Committee',
         },
         patterns=[
+            r"AfD",
             r"(Angela )?Merk(el|le)",
             r"Austria",
             r"(Benjamin\s*)?Harnwell",
@@ -676,6 +677,7 @@ HIGHLIGHTED_NAMES = [
             r"Paris",
             r"Polish",
             r"pope",
+            r"Scotland",
             r"(Sebastian )?Kurz",
             r"Stockholm",
             r"Strasbourg",
@@ -1392,6 +1394,7 @@ HIGHLIGHTED_NAMES = [
             r"Malaysian?",
             r"Maldives",
             r"Myan?mar",
+            r"New\s*Zealand",
             r"Philippines",
             r"South\s*Korean?",
             r"Tai(pei|wan)",
