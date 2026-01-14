@@ -53,7 +53,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Donald Rubin": 1,
     "Eduardo Robles": 1,
     EDWARD_JAY_EPSTEIN: 2,
-    "Edward Rod Larsen": 2,
+    EDWARD_ROD_LARSEN: 2,
     EHUD_BARAK: 10,
     "Eric Roth": 3,
     "Erika Kellerhals": 3,
