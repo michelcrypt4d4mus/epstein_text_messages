@@ -646,8 +646,14 @@ EMAILS_CONFIG = [
     EmailCfg(id='032358', actual_text=REDACTED),  # Completely redacted
     EmailCfg(id='033050', actual_text='schwartman'),
     EmailCfg(id='031036', description=f"{BARBRO_C_EHNBOM} related donation and Swedish girls discussion"),
-    EmailCfg(id='031320', description=f"Epstein and {RICHARD_KAHN} appear to be discussing routing donatings through {PEGGY_SIEGAL}"),
     EmailCfg(id='022219', description="discussion of attempts to clean up Epstein's Google search results"),
+    EmailCfg(id='030648', description="is the 'roger' Epstein is trying to meet Roger Stone?"),
+    EmailCfg(id='030762', description="is the 'roger' Epstein is trying to meet Roger Stone?"),
+    EmailCfg(id='030649', description="is the 'roger' Epstein is trying to meet Roger Stone?"),
+    EmailCfg(id='026026', description="is the 'roger' Epstein is trying to meet Roger Stone?"),
+    EmailCfg(id='026030', description="is the 'roger' Epstein is trying to meet Roger Stone?"),
+    EmailCfg(id='026033', description="is the 'roger' Epstein is trying to meet Roger Stone?"),
+    EmailCfg(id='031320', description=f"Epstein and {RICHARD_KAHN} appear to be discussing routing donatings through {PEGGY_SIEGAL}"),
     EmailCfg(id='016693', description='signed "MM"'),
     EmailCfg(id='028524', is_fwded_article=True, description='Zach Braff op-ed on Woody Allen in NYT'),
     EmailCfg(id='031333', is_fwded_article=True, description='Fort Knox conspiracy theory, looks like a Russian disinfo article'),  # Russia Says IMF Chief Jailed For Discovering All US Gold is Gone
