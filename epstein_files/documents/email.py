@@ -844,6 +844,13 @@ class Email(Communication):
             text = _add_line_breaks(text)  # This was skipped when _prettify_text() w/a broken header so we do it now
             self.rewritten_header_ids.add(self.file_id)
 
+        lines = [
+            Text.from_markup(f"[link={line}]{line}[/link]") if line.startswith('http') else Text(line)
+            for line in text.split('\n')
+        ]
+
+        text = join_texts(lines, '\n')
+
         email_txt_panel = Panel(
             highlighter(text).append('\n\n').append(trim_footer_txt) if trim_footer_txt else highlighter(text),
             border_style=self._border_style(),
