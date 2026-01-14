@@ -291,59 +291,75 @@ METADATA_FIELDS = [
 
 # Note the line repair happens *after* 'Importance: High' is removed
 LINE_REPAIR_MERGES = {
-    '017523': 4,
-    '019407': [2, 4],
-    '021729': 2,
-    '031764': 3,
-    '029433': 3,
-    '033271': 3,
-    '022673': 9,
-    '022684': 9,
-    '022695': 4,
-    '029773': [2, 5],
-    '023067': 3,
-    '025790': 2,
-    '029841': 3,
-    '026345': 3,
-    '026609': 4,
-    '033299': 3,
-    '030315': [3, 5],
-    '029831': [3, 6],
-    '026829': 3,
-    '026924': [2, 4],
-    '028931': [3, 6],
-    '029154': [2, 5],
-    '029163': [2, 5],
-    '029282': 2,
-    '029402': 5,
-    '029498': 2,
-    '029501': 2,
-    '029835': [2, 4],
-    '029889': 2,
-    '029545': [3, 5],
-    '029976': 3,
-    '030299': [7, 10],
-    '030381': [2, 4],
-    '030384': [2, 4],
-    '030626': 2,
-    '030999': [2, 4],
-    '031384': 2,
-    '031428': 2,
-    '031442': 0,
-    '031980': [2, 4],
-    '032063': [3, 5],
-    '032272': 3,
-    '032405': 4,
-    '033097': 2,
-    '033144': [2, 4],
-    '033217': 3,
-    '033228': [3, 5],
-    '033357': [2, 4],
-    '033486': [7, 9],
-    '033512': 2,
-    '033575': [2, 4],
-    '033576': 3,
-    '033583': 2,
+    '013405': [[4]] * 2,
+    '013415': [[4]] * 2,
+    '014397': [[4]] * 2,
+    '014860': [[3], [4], [4]],
+    '017523': [[4]],
+    '019105': [[5]] * 4,
+    '019407': [[2, 4]],
+    '021729': [[2]],
+    '022673': [[9]],
+    '022684': [[9]],
+    '022695': [[4]],
+    '022977': [[9]] * 10,
+    '023001': [[5]] * 3,
+    '023067': [[3]],
+    '025233': [[4]] * 2,
+    '025329': [[2]] * 9,
+    '025790': [[2]],
+    '025812': [[3]] * 2,
+    '026345': [[3]],
+    '026609': [[4]],
+    '026829': [[3]],
+    '026924': [[2, 4]],
+    '028931': [[3, 6]],
+    '029154': [[2, 5]],
+    '029163': [[2, 5]],
+    '029282': [[2]],
+    '029402': [[5]],
+    '029433': [[3]],
+    '029458': [[4]] * 3,
+    '029498': [[2], [2, 4]],
+    '029501': [[2]],
+    '029545': [[3, 5]],
+    '029773': [[2, 5]],
+    '029831': [[3, 6]],
+    '029835': [[2, 4]],
+    '029841': [[3]],
+    '029889': [[2], [2, 5]],
+    '029976': [[3]],
+    '029977': [[2], [2], [2], [2], [4], [2, 4]],
+    '030299': [[7, 10]],
+    '030315': [[3, 5]],
+    '030381': [[2, 4]],
+    '030384': [[2, 4]],
+    '030626': [[2], [4]],
+    '030999': [[2, 4]],
+    '031384': [[2]],
+    '031428': [[2], [2, 4]],
+    '031442': [[0]],
+    '031748': [[3]] * 2,
+    '031764': [[3]],
+    '031980': [[2, 4]],
+    '032063': [[3, 5]],
+    '032272': [[3]],
+    '032405': [[4]],
+    '032637': [[9]] * 3,
+    '033097': [[2]],
+    '033144': [[2, 4]],
+    '033217': [[3]],
+    '033228': [[3, 5]],
+    '033252': [[9]] * 2,
+    '033271': [[3]],
+    '033299': [[3]],
+    '033357': [[2, 4]],
+    '033486': [[7, 9]],
+    '033512': [[2]],
+    '033568': [[5]] * 5,
+    '033575': [[2, 4]],
+    '033576': [[3]],
+    '033583': [[2]],
 }
 
 
@@ -647,73 +663,14 @@ class Email(Communication):
         old_text = self.text
 
         if self.file_id in LINE_REPAIR_MERGES:
-            merge = LINE_REPAIR_MERGES[self.file_id]
-            merge_args = merge if isinstance(merge, list) else [merge]
-            self._merge_lines(*merge_args)
+            for merge_args in LINE_REPAIR_MERGES[self.file_id]:
+                self._merge_lines(*merge_args)
 
-        # These already had 2nd line merged
-        if self.file_id in ['030626']:  # Merge 6th and 7th (now 5th and 6th) rows
-            self._merge_lines(4)
-        elif self.file_id == '029889':
-            self._merge_lines(2, 5)
-        elif self.file_id in ['029498', '031428']:
-            self._merge_lines(2, 4)
-
-        # Multiline
-        if self.file_id == '013415':
-            for _i in range(2):
-                self._merge_lines(4)
-        elif self.file_id == '013405':
-            for _i in range(2):
-                self._merge_lines(4)
-        elif self.file_id == '029458':
-            for _i in range(3):
-                self._merge_lines(4)
-        elif self.file_id in ['025233']:
-            for _i in range(2):
-                self._merge_lines(4)
-
+        if self.file_id in ['025233']:
             self.lines[4] = f"Attachments: {self.lines[4]}"
             self._set_computed_fields(lines=self.lines)
-        elif self.file_id in ['023001']:
-            for _i in range(3):
-                self._merge_lines(5)
-        elif self.file_id in ['019105']:
-            for _i in range(4):
-                self._merge_lines(5)
-        elif self.file_id in ['033568']:
-            for _i in range(5):
-                self._merge_lines(5)
-        elif self.file_id in ['025329']:
-            for _i in range(9):
-                self._merge_lines(2)
-        elif self.file_id in ['025812', '031748']:
-            for _i in range(2):
-                self._merge_lines(3)
-        elif self.file_id == '014860':
-            self._merge_lines(3)
-            self._merge_lines(4)
-            self._merge_lines(4)
         elif self.file_id == '029977':
             self._set_computed_fields(text=self.text.replace('Sent 9/28/2012 2:41:02 PM', 'Sent: 9/28/2012 2:41:02 PM'))
-
-            for _i in range(4):
-                self._merge_lines(2)
-
-            self._merge_lines(4)
-            self._merge_lines(2, 4)
-        elif self.file_id in ['033252']:
-            for _i in range(2):
-                self._merge_lines(9)
-        elif self.file_id in ['032637']:
-            for _i in range(3):
-                self._merge_lines(9)
-        elif self.file_id in ['014397']:
-            for _i in range(2):
-                self._merge_lines(4)
-        elif self.file_id in ['022977']:
-            for _i in range(10):
-                self._merge_lines(9)
 
         # Bad line removal
         if self.file_id == '025041':
@@ -741,7 +698,6 @@ class Email(Communication):
                     logger.debug(f"{self.filename}: Joining link lines\n   1. {line}\n   2. {lines[i + 1]}\n")
                     line += lines[i + 1]
                     i += 1
-                    #import pdb;pdb.set_trace()
 
                 line = line.replace(' ', '')
             elif ' http' in line and line.endswith('html'):
