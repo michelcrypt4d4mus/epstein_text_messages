@@ -538,7 +538,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             'Alfredo Rodriguez': "Epstein's butler, stole the journal",
             'Bernard Kruger': "Epstein's doctor",
-            EDUARDO_ROBLES: f'Creative Kingdom Dubai builder recommended by {SULTAN_BIN_SULAYEM}',
+            EDUARDO_ROBLES: f'home builder at Creative Kingdom Dubai',
             ERIC_ROTH: 'jet decorator at International Jet',
             GWENDOLYN_BECK: 'Epstein fund manager in the 90s',
             JANUSZ_BANASIAK: "Epstein's house manager",
@@ -550,7 +550,7 @@ HIGHLIGHTED_NAMES = [
             MERWIN_DELA_CRUZ: None,  # HOUSE_OVERSIGHT_032652 Groff says "Jojo and Merwin both requested off Nov. 25 and 26"
             NADIA_MARCINKO: "Epstein's pilot",
             'Sean J. Lancaster': 'airplane reseller',
-            ZUBAIR_KHAN: 'cybersecurity firm Tranchulas CEO, InsightsPod founder, Islamabad / Dubai',
+            ZUBAIR_KHAN: 'Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai',
         },
         patterns=[
             r"Adriana\s*Ross",
