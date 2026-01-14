@@ -17,6 +17,11 @@ else
     exit 1
 fi
 
+print_deploy_step() {
+    echo -e ""
+    clr_cyan "$1"
+}
+
 print_msg() {
     local msg="$1"
     local colored_part="$2"
@@ -49,8 +54,7 @@ fi
 
 # Build .png and push master changes
 epstein_generate --make-clean --suppress-output
-echo -e ""
-print_msg "Building emailer info .png..."
+print_deploy_step "Building emailer info .png..."
 $GENERATE_CMD --emailers-info
 
 if any_uncommitted_changes; then
@@ -63,29 +67,23 @@ git checkout gh_pages
 git merge --no-edit master --quiet
 
 # Build files
-echo -e ""
-print_msg "Building text messages page... $PICKLE_ARG"
+print_deploy_step "Building text messages page... $PICKLE_ARG"
 $GENERATE_CMD $PICKLE_ARG
 
 if [ -n "$ONLY_TEXTS" ]; then
-    print_msg "Skipping build of emails pages..."
+    print_deploy_step "Skipping build of emails pages..."
 else
-    echo -e ""
-    print_msg "Building all emails page..."
+    print_deploy_step "Building all emails page..."
     $GENERATE_CMD --all-emails --all-other-files
-    echo -e ""
-    print_msg "Building chronological emails page..."
+    print_deploy_step "Building chronological emails page..."
     $GENERATE_CMD --email-timeline
 fi
 
-echo -e ""
-print_msg "Building word counts page..."
+print_deploy_step "Building word counts page..."
 epstein_word_count --build --suppress-output --width 125
-echo -e ""
-print_msg "Building JSON metadata page..."
+print_deploy_step "Building JSON metadata page..."
 $GENERATE_CMD --json-metadata
-echo -e ""
-print_msg "Building JSON files data..."
+print_deploy_step "Building JSON files data..."
 $GENERATE_CMD --json-files
 
 # Commit changes
