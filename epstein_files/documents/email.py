@@ -364,7 +364,7 @@ class Email(Communication):
     recipients: list[Name] = field(default_factory=list)
     sent_from_device: str | None = None
     signature_substitution_counts: dict[str, int] = field(default_factory=dict)  # defaultdict breaks asdict :(
-    _line_merge_arguments: list[tuple[int, int]] = field(default_factory=list)
+    _line_merge_arguments: list[tuple[int] | tuple[int, int]] = field(default_factory=list)
 
     # For logging how many headers we prettified while printing, kind of janky
     rewritten_header_ids: ClassVar[set[str]] = set([])
@@ -599,7 +599,12 @@ class Email(Communication):
 
     def _merge_lines(self, idx: int, idx2: int | None = None) -> None:
         """Combine lines numbered 'idx' and 'idx2' into a single line (idx2 defaults to idx + 1)."""
-        idx2 = idx2 if idx2 is not None else (idx + 1)
+        if idx2 is None:
+            self._line_merge_arguments.append((idx,))
+            idx2 = idx + 1
+        else:
+            self._line_merge_arguments.append((idx, idx2))
+
         lines = self.lines[0:idx]
 
         if idx2 <= idx:
@@ -610,7 +615,6 @@ class Email(Communication):
             lines += [self.lines[idx] + ' ' + self.lines[idx2]] + self.lines[idx + 1:idx2] + self.lines[idx2 + 1:]
 
         self._set_computed_fields(lines=lines)
-        self._line_merge_arguments.append((idx, idx2))
 
     def _prettify_text(self) -> str:
         """Add newlines before quoted replies and snip signatures."""

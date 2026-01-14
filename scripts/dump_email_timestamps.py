@@ -20,6 +20,13 @@ from epstein_files.util.logging import logger
 from epstein_files.util.rich import console, highlighter, print_json
 
 
+for email in epstein_files.emails:
+    if email._line_merge_arguments:
+        print(f"'{email.file_id}': {email._line_merge_arguments}")
+
+sys.exit()
+
+
 def print_partial_names_used_in_regexes():
     names = []
     partial_name_counts = defaultdict(int)
