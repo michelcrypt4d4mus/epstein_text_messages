@@ -412,7 +412,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"((Bill|David)\s*)?Koch(\s*(Bro(s|thers)|Industries))?",
             r"Gruterite",
-            r"(John\s*)?Kluge",
+            r"((John|Patricia)\s*)?Kluge",
             r"Marc Rich",
             r"(Mi(chael|ke)\s*)?Ovitz",
             r"(Steve\s+)?Wynn",
@@ -524,7 +524,7 @@ HIGHLIGHTED_NAMES = [
             EVA: "possibly Epstein's ex-girlfriend (?)",
             'Eva Dubin': f"Epstein's ex-girlfriend now married to {GLENN_DUBIN}",
         },
-        patterns=[r"((Celina|Eva( Anderss?on)?|Glenn) )?Dubin"],
+        patterns=[r"((Celina|Eva( Anderss?on)?|Glenn?) )?Dubin"],
     ),
     HighlightedNames(
         label='employee',
@@ -1066,10 +1066,10 @@ HIGHLIGHTED_NAMES = [
         emailers={
             BOB_CROWE: 'partner at Nelson Mullins',
             'Joshua Cooper Ramo': 'co-CEO of Henry Kissinger Associates',
-            KATHERINE_KEATING: 'Daughter of former Australian PM',
+            KATHERINE_KEATING: 'daughter of former Australian prime minister',
             MOHAMED_WAHEED_HASSAN: 'former president of the Maldives',
             OLIVIER_COLOM: 'France',
-            'Paul Keating': 'former PM of Australia',
+            'Paul Keating': 'former prime minister of Australia',
             PUREVSUREN_LUNDEG: 'Mongolian ambassador to the UN',
             'Stanley Rosenberg': 'former President of the Massachusetts Senate',
         },
@@ -1368,6 +1368,7 @@ HIGHLIGHTED_NAMES = [
         label='Southeast Asia',
         style='light_salmon3 bold',
         patterns=[
+            r"Australian?",
             r"Bangkok",
             r"Burm(a|ese)",
             r"Cambodian?",
@@ -1569,7 +1570,7 @@ HIGHLIGHTED_TEXTS = [
     HighlightedText(
         label='header_field',
         style='plum4',
-        patterns=[r'^>? ?(Date|From|Sent|To|C[cC]|Importance|Reply-To|Subject|Bee|B[cC]{2}|Attachments|Flag|Classification|((A|De(stinataire)?|Envoye|Expe(cl|d)iteur|Objet|Q) ?)):'],
+        patterns=[r'^>? ?(Date|From|Sent|To|C[cC]|Importance|Reply-?To|Subject|Bee|B[cC]{2}|Attachments|Flag|Classification|((A|De(stinataire)?|Envoye|Expe(cl|d)iteur|Objet|Q) ?)):'],
     ),
     HighlightedText(
         label='http_links',
