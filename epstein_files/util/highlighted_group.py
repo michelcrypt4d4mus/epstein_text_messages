@@ -719,6 +719,7 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"Ace\s*Greenberg",
+            r"AIG",
             r"((anti.?)?money\s+)?launder(s?|ers?|ing)?(\s+money)?",
             r"Apollo",
             r"Ari\s*Glass",
@@ -739,6 +740,7 @@ HIGHLIGHTED_NAMES = [
             r"Goldman(\s*Sachs)",
             r"GRAT",
             r"Gratitude (America|& Enhanced)",  # Leon Black and/or Epstein charity?
+            r"Hank\s*Greenburg",
             r"HSBC",
             r"Invesco",
             r"Jamie\s*D(imon)?",
@@ -1121,7 +1123,7 @@ HIGHLIGHTED_NAMES = [
             r"Martha's\s*Vineyard",
             r"Miami(?!\s?Herald)",
             r"Nantucket",
-            r"New\s*Mexico",
+            r"New\s*(Jersey|Mexico)",
             r"(North|South)\s*Carolina",
             r"NY(C|\s*State)",
             r"Orange\s*County",
