@@ -53,7 +53,7 @@ HEADER_ABBREVIATIONS = {
 
 # Emailers
 EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
-    ALAN_DERSHOWITZ: re.compile(r'(alan.{1,7})?dershowi(lz?|tz)|AlanDersh', re.IGNORECASE),
+    ALAN_DERSHOWITZ: re.compile(r'(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh', re.IGNORECASE),
     ALIREZA_ITTIHADIEH: re.compile(r'Alireza.[Il]ttihadieh', re.IGNORECASE),
     AMANDA_ENS: re.compile(r'ens, amanda?|Amanda.Ens', re.IGNORECASE),
     ANAS_ALRASHEED: re.compile(r'anas\s*al\s*rashee[cd]', re.IGNORECASE),
