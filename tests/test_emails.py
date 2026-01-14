@@ -118,9 +118,8 @@ EMAIL_AUTHOR_COUNTS = {
     "Lisa Randall": 2,
     "Manuela Martinez": 2,
     "Marc Leon": 2,
-    "Mark Epstein": 5,
+    "Mark Epstein": 6,
     "Mark Green": 1,
-    "Mark Lloyd": 1,
     MARK_TRAMO: 1,
     "Martin Nowak": 1,
     "Martin Weinberg": 17,
@@ -544,7 +543,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         KATHRYN_RUEMMLER,
         LARRY_SUMMERS,
         'Lawrance Visoski',
-        'Mark Lloyd',
+        MARK_EPSTEIN,
         'Neal Kassell',
         'Peggy Siegal',
         PUREVSUREN_LUNDEG,
@@ -754,11 +753,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     "Lisa Randall": [
         "Sent from my Verizon Wireless BlackBerry"
     ],
-    "Mark Epstein": [
-        "Sent via tin can and string."
-    ],
-    "Mark Lloyd": [
-        "Sent from my iPad"
+    MARK_EPSTEIN: [
+        "Sent from my iPad",
+        "Sent via tin can and string.",
     ],
     "Martin Weinberg": [
         "Sent from my iPhone"
