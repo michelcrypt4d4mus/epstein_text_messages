@@ -114,6 +114,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
 EMAIL_SIGNATURE_REGEXES = {
     ARIANE_DE_ROTHSCHILD: re.compile(r"Ensemble.*\nCe.*\ndestinataires.*\nremercions.*\nautorisee.*\nd.*\nLe.*\ncontenues.*\nEdmond.*\nRoth.*\nlo.*\nRoth.*\ninfo.*\nFranc.*\n.2.*", re.I),
     BARBRO_C_EHNBOM: re.compile(r"Barbro C.? Ehn.*\nChairman, Swedish-American.*\n((Office|Cell|Sweden):.*\n)*(360.*\nNew York.*)?"),
+    BRAD_KARP: re.compile(r"This message is intended only for the use of the Addressee and may contain information.*\nnot the intended recipient, you are hereby notified.*\nreceived this communication in error.*"),
     DANIEL_SIAD: re.compile(r"Confidentiality Notice: The information contained in this electronic message is PRIVILEGED and confidential information intended only for the use of the individual entity or entities named as recipient or recipients. If the reader is not the intended recipient, be hereby notified that any dissemination, distribution or copy of this communication is strictly prohibited. If you have received this communication in error, please notify me immediately by electronic mail or by telephone and permanently delete this message from your computer system. Thank you.".replace(' ', r'\s*'), re.IGNORECASE),
     DANNY_FROST: re.compile(r"Danny Frost\nDirector.*\nManhattan District.*\n212.*", re.IGNORECASE),
     DARREN_INDYKE: re.compile(r"DARREN K. INDYKE.*?\**\nThe information contained in this communication.*?Darren K.[\n\s]+?[Il]ndyke(, PLLC)? — All rights reserved\.? ?\n\*{50,120}(\n\**)?", re.DOTALL),
@@ -150,6 +151,7 @@ BCC_LISTS = JUNK_EMAILERS + MAILING_LISTS
 
 TRUNCATE_EMAILS_FROM_OR_TO = [
     AMANDA_ENS,
+    ANTHONY_BARRETT,
     DIANE_ZIMAN,
     JOSCHA_BACH,
     KATHERINE_KEATING,
@@ -221,12 +223,11 @@ TRUNCATE_TERMS = [
     "In recent months, China's BAT collapse",
     'President Obama introduces Jim Yong Kim as his nominee',
     'Trump appears with mobster-affiliated felon at New',
-    'The New York company, led by Stephen Ross',
-    'I spent some time mulling additional aspects of a third choice presidential',
     'Congratulations to the 2019 Hillman Prize recipients',
-    'This much we know - the Fall elections are shaping up',
     "Special counsel Robert Mueller's investigation may face a serious legal obstacle",
     "nearly leak-proof since its inception more than a year ago",
+    # Juleanna Glover / Bannon
+    'This much we know - the Fall elections are shaping up',
     # Sultan Sulayem
     'co-inventor of the GTX Smart Shoe',
     'my latest Washington Post column',
