@@ -784,7 +784,7 @@ class Email(Communication):
         elif self.file_id in TRUNCATION_LENGTHS:
             num_chars = TRUNCATION_LENGTHS[self.file_id] or self.file_size()
         elif self.author in TRUNCATE_ALL_EMAILS_FROM or includes_truncate_term:
-            num_chars = int(MAX_CHARS_TO_PRINT / 3)
+            num_chars = min(quote_cutoff or MAX_CHARS_TO_PRINT, int(MAX_CHARS_TO_PRINT / 3))
         elif quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
             num_chars = quote_cutoff
         else:
