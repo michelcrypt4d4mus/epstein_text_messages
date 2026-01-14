@@ -915,6 +915,7 @@ HIGHLIGHTED_NAMES = [
             r"AIPAC",
             r"Bibi",
             r"(eh|(Ehud|Nili Priell)\s*)?barak",
+            r"EB",
             r"Ehud\s*Barack",
             r"Israeli?",
             r"Jerusalem",
