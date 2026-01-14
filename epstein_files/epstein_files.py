@@ -334,5 +334,4 @@ def document_cls(doc: Document) -> Type[Document]:
 
 
 def _sorted_metadata(docs: Sequence[Document]) -> list[Metadata]:
-    docs_sorted_by_id = sorted(docs, key=lambda d: d.file_id)
-    return [json_safe(d.metadata()) for d in docs_sorted_by_id]
+    return [json_safe(d.metadata()) for d in Document.sort_by_id(docs)]
