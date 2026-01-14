@@ -336,7 +336,7 @@ def _print_social_media_links() -> None:
         link_text_obj('https://universeodon.com/@cryptadamist/115572634993386057', '@mastodon', style=SOCIAL_MEDIA_LINK_STYLE),
         link_text_obj(SUBSTACK_URL, '@substack', style=SOCIAL_MEDIA_LINK_STYLE),
         link_text_obj('https://x.com/Cryptadamist/status/1990866804630036988', '@twitter', style=SOCIAL_MEDIA_LINK_STYLE),
-        link_text_obj('https://github.com/michelcrypt4d4mus/epstein_text_messages', '@github', style=SOCIAL_MEDIA_LINK_STYLE)
+        link_text_obj(GH_PROJECT_URL, '@github', style=SOCIAL_MEDIA_LINK_STYLE)
     ]
 
     print_centered(join_texts(social_links, join='  /  '))#, encloser='()'))#, encloser='‹›'))

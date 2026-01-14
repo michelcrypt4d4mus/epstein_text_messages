@@ -17,9 +17,10 @@ URLS_ENV = '.urls.env'
 EMAILERS_TABLE_PNG_PATH = HTML_DIR.joinpath('emailers_info_table.png')
 
 # Deployment URLS
-# NOTE: don't rename these variables without changing deploy.sh!
+# NOTE: don't rename these variables without changing deploy.sh
+GH_REPO_NAME = 'epstein_text_messages'
 GH_PAGES_BASE_URL = 'https://michelcrypt4d4mus.github.io'
-TEXT_MSGS_URL = f"{GH_PAGES_BASE_URL}/epstein_text_messages"
+TEXT_MSGS_URL = f"{GH_PAGES_BASE_URL}/{GH_REPO_NAME}"
 ALL_EMAILS_URL = f"{TEXT_MSGS_URL}/{ALL_EMAILS_PATH.name}"
 CHRONOLOGICAL_EMAILS_URL = f"{TEXT_MSGS_URL}/{CHRONOLOGICAL_EMAILS_PATH.name}"
 JSON_FILES_URL = f"{TEXT_MSGS_URL}/{JSON_FILES_JSON_PATH.name}"
