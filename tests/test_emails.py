@@ -874,6 +874,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     LARRY_SUMMERS: 232,
     "Lawrence Krauss": 78,
     "Martin Weinberg": 17,
+    NICHOLAS_RIBIS: 2,
     "Paul Barrett": 10,
     "Peter Mandelson": 10,
     "Richard Kahn": 121,
