@@ -1391,6 +1391,7 @@ HIGHLIGHTED_NAMES = [
             r"Russian?",
             r"Sberbank",
             r"Soviet(\s*Union)?",
+            r"Timur\s*Kulibayev",
             r"USSR",
             r"Vlad(imir)?(?! Yudash)",
             r"(Vladimir\s*)?Putin",
