@@ -10,6 +10,7 @@ from rich.table import Table
 from rich.text import Text
 
 from scripts.use_pickled import console, epstein_files
+from epstein_files import epstein_search
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import TRUNCATE_TERMS, UNINTERESTING_EMAILERS
 from epstein_files.util.constant.names import *
@@ -20,13 +21,8 @@ from epstein_files.util.logging import logger
 from epstein_files.util.rich import console, highlighter, print_json, print_subtitle_panel
 
 
-for search_term in TRUNCATE_TERMS:
-    results = epstein_files.docs_matching(search_term)
-    print_subtitle_panel(f"{len(results)} emails for '{search_term}'")
-
-    for result in results:
-        console.print(result.document)
-
+args.positional_args = TRUNCATE_TERMS
+epstein_search()
 sys.exit()
 
 
