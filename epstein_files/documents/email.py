@@ -149,6 +149,7 @@ TRUNCATE_ALL_EMAILS_FROM = BCC_LISTS + [
     PAUL_KRASSNER,
     'Skip Rimer',
     'Steven Victor MD',
+    TERRY_KAFKA,
 ]
 
 # These IDs will be appended to INTERESTING_EMAIL_IDS
