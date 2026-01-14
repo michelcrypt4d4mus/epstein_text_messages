@@ -79,6 +79,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'gJeremyRubin': '@JeremyRubin',
     'Sent from Mabfl': 'Sent from Mobile',  # NADIA_MARCINKO signature bad OCR
     'twitter glhsummers': 'twitter @lhsummers',
+    re.compile(r"[cC]o-authored with i ?Phone auto-correct"): "Co-authored with iPhone auto-correct",
     re.compile(r"twitter\.com[i/][lI]krauss[1lt]"): "twitter.com/lkrauss1",
     re.compile(r'from my BlackBerry[0°] wireless device'): 'from my BlackBerry® wireless device',
     re.compile(r'^INW$', re.MULTILINE): REDACTED,
@@ -842,6 +843,13 @@ class Email(Communication):
             text = self.header.rewrite_header() + '\n' + '\n'.join(lines)
             text = _add_line_breaks(text)  # This was skipped when _prettify_text() w/a broken header so we do it now
             self.rewritten_header_ids.add(self.file_id)
+
+        lines = [
+            Text.from_markup(f"[link={line}]{line}[/link]") if line.startswith('http') else Text(line)
+            for line in text.split('\n')
+        ]
+
+        text = join_texts(lines, '\n')
 
         email_txt_panel = Panel(
             highlighter(text).append('\n\n').append(trim_footer_txt) if trim_footer_txt else highlighter(text),

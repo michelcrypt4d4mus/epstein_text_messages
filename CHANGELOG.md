@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Linkify links in emails
 
 ### 1.2.3
 
