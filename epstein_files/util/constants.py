@@ -53,7 +53,7 @@ HEADER_ABBREVIATIONS = {
 
 # Emailers
 EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
-    ALAN_DERSHOWITZ: re.compile(r'(alan.{1,7})?dershowi(lz?|tz)|AlanDersh', re.IGNORECASE),
+    ALAN_DERSHOWITZ: re.compile(r'(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh', re.IGNORECASE),
     ALIREZA_ITTIHADIEH: re.compile(r'Alireza.[Il]ttihadieh', re.IGNORECASE),
     AMANDA_ENS: re.compile(r'ens, amanda?|Amanda.Ens', re.IGNORECASE),
     ANAS_ALRASHEED: re.compile(r'anas\s*al\s*rashee[cd]', re.IGNORECASE),
@@ -645,6 +645,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='029344', actual_text='I thought of you when I read this article. Was this your idea? Alan'),
     EmailCfg(id='032358', actual_text=REDACTED),  # Completely redacted
     EmailCfg(id='033050', actual_text='schwartman'),
+    EmailCfg(id='031036', description=f"{BARBRO_C_EHNBOM} related donation and Swedish girls discussion"),
     EmailCfg(id='031320', description=f"Epstein and {RICHARD_KAHN} appear to be discussing routing donatings through {PEGGY_SIEGAL}"),
     EmailCfg(id='022219', description="discussion of attempts to clean up Epstein's Google search results"),
     EmailCfg(id='016693', description='signed "MM"'),
@@ -665,6 +666,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='032023', is_fwded_article=True, duplicate_ids=['032012']),  # American-Israeli Cooperative Enterprise Newsletter
     EmailCfg(id='021758', is_fwded_article=True, duplicate_ids=['030616']),  # Radar Online article about Epstein's early prison release
     EmailCfg(id='033297', is_fwded_article=True, duplicate_ids=['033586']),  # Sultan Sulayem fwding article about Trump and Russia
+    EmailCfg(id='026829', is_fwded_article=True),  # Taxes
     EmailCfg(id='020443', is_fwded_article=True),  # WSJ Deplorables Bannon
     EmailCfg(id='030372', is_fwded_article=True),  # Bannon China Iran
     EmailCfg(id='030983', is_fwded_article=True),  # Power Line blog Alex Acosta and Jeffrey Epstein Plea Deal Analysis
@@ -741,7 +743,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='033512', duplicate_ids=['033361']),
     EmailCfg(id='030299', duplicate_ids=['021794']),
     EmailCfg(id='033575', duplicate_ids=['012898']),
-    EmailCfg(id='031428', duplicate_ids=['031388']),
+    EmailCfg(id='031428', is_fwded_article=True, duplicate_ids=['031388']),
     EmailCfg(id='031980', duplicate_ids=['019409']),
     EmailCfg(id='033486', duplicate_ids=['033156']),
     EmailCfg(id='025790', duplicate_ids=['031994']),
