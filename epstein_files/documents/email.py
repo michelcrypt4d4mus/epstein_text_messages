@@ -144,6 +144,7 @@ BBC_LISTS = JUNK_EMAILERS + MAILING_LISTS
 
 TRUNCATE_ALL_EMAILS_FROM = BBC_LISTS + [
     'Alan S Halperin',
+    LISA_NEW,
     'Mitchell Bard',
     'Skip Rimer',
     'Steven Victor MD',
