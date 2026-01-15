@@ -981,7 +981,7 @@ HIGHLIGHTED_NAMES = [
             r'Associated\s*Press',
             r"Axios",
             r"BBC",
-            r"(Bob|Robert)\s*Costa",
+            r"(Bob|Robert)\s*(Costa|Woodward)",
             r"Breitbart",
             r"BuzzFeed(\s*News)?",
             r"C-?Span",
