@@ -1351,6 +1351,7 @@ HIGHLIGHTED_NAMES = [
             r"(?<!Cynthia )(Richard\s*)?Nixon",
             r"RNC",
             r"Tea\s*Party",
+            r"Wilbur\s*Ross",
         ],
     ),
     HighlightedNames(
