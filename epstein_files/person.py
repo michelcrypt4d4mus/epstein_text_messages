@@ -189,9 +189,9 @@ class Person:
         email_authors = uniquify([e.author for e in self.emails_to()])
 
         if len(self.unique_emails()) == 1 and len(email_authors) > 0:
-            logger.warning(f"sole author of email to '{self.name}' is '{email_authors[0]}'")
+            logger.info(f"sole author of email to '{self.name}' is '{email_authors[0]}'")
         else:
-            logger.warning(f"'{self.name}' email_authors '{email_authors[0]}'")
+            logger.info(f"'{self.name}' email_authors '{email_authors[0]}'")
 
         if len(self.unique_emails_by()) > 0:
             return None
