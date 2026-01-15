@@ -784,6 +784,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='022624', is_fwded_article=True),  # Disgusting: Clinton Snared In Pedophile Ring
     EmailCfg(id='022673', is_fwded_article=True),  # Epstein + Clinton
     EmailCfg(id='021729', is_fwded_article=True),  # Acosta rebuke
+    EmailCfg(id='023635', is_fwded_article=True),  # Landon Thomas finance related
+    EmailCfg(id='026637', is_fwded_article=True),  # Landon Thomas finance related
     EmailCfg(id='021764', is_fwded_article=True),  # He was 50 and they were girls
     EmailCfg(id='033311', is_fwded_article=True),  # 2016 election polls
     EmailCfg(id='026580', is_fwded_article=True),  # NPR: Antigua: Land Of Sun, Sand, And Super Cheap
@@ -1818,6 +1820,7 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_
     'Nancy Portland',                        # Lawrence Krauss CC
     'Oliver Goodenough',                     # Robert Trivers CC
     'Peter Aldhous',                         # Lawrence Krauss CC
+    'Peter Green',  # Farkas emailer
     'Players2',                              # Hoffenberg CC
     'Police Code Enforcement',               # Kirk Blouin / John Page CC
     'Sam Harris',                            # Lawrence Krauss CC
