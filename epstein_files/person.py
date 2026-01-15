@@ -9,7 +9,7 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import MAILING_LISTS, JUNK_EMAILERS, Email
+from epstein_files.documents.email import TRUNCATE_EMAILS_FROM, MAILING_LISTS, JUNK_EMAILERS, Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.strings import *
@@ -195,6 +195,10 @@ class Person:
             return False
 
         return True
+
+    def should_always_truncate(self) -> bool:
+        """True if we want to truncate all emails to/from this user."""
+        return self.name in TRUNCATE_EMAILS_FROM or self.is_uninteresting_cc
 
     def is_unstyled(self) -> bool:
         """True if there's no highlight group for this name."""

@@ -170,6 +170,8 @@ TRUNCATE_EMAILS_FROM_OR_TO = [
     MOSHE_HOFFMAN,
     NILI_PRIELL_BARAK,
     PAUL_KRASSNER,
+    'Susan Edelman',
+    TERRY_KAFKA,
 ]
 
 TRUNCATE_EMAILS_FROM = BCC_LISTS + TRUNCATE_EMAILS_FROM_OR_TO + [
@@ -181,6 +183,7 @@ TRUNCATE_EMAILS_FROM = BCC_LISTS + TRUNCATE_EMAILS_FROM_OR_TO + [
     DAVID_HAIG,
     EDWARD_ROD_LARSEN,
     JOHNNY_EL_HACHEM,
+    'Mark Green',
     MELANIE_WALKER,
     'Mitchell Bard',
     PEGGY_SIEGAL,
@@ -219,6 +222,14 @@ INTERESTING_TRUNCATION_LENGTHS = {
     '032319': None,    # Zubair
     '032325': None,    # Zubair
     '031152': None,    # Kazakhstan Aliyev news
+
+    # 1st emails for various people
+    # '019406': None,    # warning about newsweek article
+    # '029530': None,    # Waheed hassan 1st email
+    # '022214': None,    # Nadia 1st email
+    # '031964': None,    # Ehud barak 1st email
+    # '031174': None,    # Kelly Friendly 1st email
+    # '029207': None,    # Ed Boyden 1st
 }
 
 TRUNCATION_LENGTHS = {
@@ -243,6 +254,11 @@ TRUNCATION_LENGTHS = {
     '027126': 1000,   # Summers
     '030950': 4500,   # Ian Osborne
     '029684': 402,    # Maldives reply
+    '031217': None,    # 1st email for dersh, has long article
+    '031011': TRUNCATED_CHARS,  # joke
+    '018045': TRUNCATED_CHARS,  # invite
+    '017574': MAX_CHARS_TO_PRINT,  # Lisa Randall invite
+    '031278': 2500, # Hoffenberg
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
@@ -390,6 +406,7 @@ class Email(Communication):
     recipients: list[Name] = field(default_factory=list)
     sent_from_device: str | None = None
     signature_substitution_counts: dict[str, int] = field(default_factory=dict)  # defaultdict breaks asdict :(
+    _is_first_for_user: bool = False  # Only set when printing
     _line_merge_arguments: list[tuple[int] | tuple[int, int]] = field(default_factory=list)
 
     # For logging how many headers we prettified while printing, kind of janky
@@ -795,22 +812,27 @@ class Email(Communication):
                 or self.is_fwded_article() \
                 or includes_truncate_term:
             num_chars = min(quote_cutoff or MAX_CHARS_TO_PRINT, TRUNCATED_CHARS)
-        elif quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
-            num_chars = quote_cutoff
         else:
-            num_chars = MAX_CHARS_TO_PRINT
+            if quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
+                num_chars = quote_cutoff
+            else:
+                num_chars = min(self.file_size(), MAX_CHARS_TO_PRINT)
 
-        if num_chars != MAX_CHARS_TO_PRINT and not self.is_duplicate():
-            log_args = {
-                'num_chars': num_chars,
-                'author_truncate': self.author in TRUNCATE_EMAILS_FROM,
-                'is_fwded_article': self.is_fwded_article(),
-                'is_quote_cutoff': quote_cutoff == num_chars,
-                'includes_truncate_term': json.dumps(includes_truncate_term) if includes_truncate_term else None,
-                'quote_cutoff': quote_cutoff,
-            }
+            # Always print whole email for 1st email for user
+            if self._is_first_for_user and num_chars < self.file_size() and not self.is_duplicate():
+                log_args = {
+                    'num_chars': num_chars,
+                    'author_truncate': self.author in TRUNCATE_EMAILS_FROM,
+                    'is_fwded_article': self.is_fwded_article(),
+                    'is_quote_cutoff': quote_cutoff == num_chars,
+                    'includes_truncate_term': json.dumps(includes_truncate_term) if includes_truncate_term else None,
+                    'quote_cutoff': quote_cutoff,
+                }
 
-            logger.debug(f'{self.summary()} truncating: ' + ', '.join([f"{k}={v}" for k, v in log_args.items() if v]) + '\n')
+                log_args_str = ', '.join([f"{k}={v}" for k, v in log_args.items() if v])
+                # logger.info(f'{self} truncating: {log_args_str}\n')
+                logger.warning(f"{self} Overriding cutoff for first email {log_args}")
+                num_chars = self.file_size()
 
         return num_chars
 
