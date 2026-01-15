@@ -1744,6 +1744,7 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + [
     'Danny Goldberg',                        # Random Paul Krassner emails
     GERALD_LEFCOURT,                         # Single CC
     GORDON_GETTY,                            # Random CC
+    'Grant J. Smith',                        # Ken Jenne CC
     JEFF_FULLER,                             # Random Jean Luc Brunel CC
     'Jojo Fontanilla',                       # Random CC
     'Joseph Vinciguerra',                    # Random CC
