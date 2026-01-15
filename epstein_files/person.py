@@ -159,7 +159,7 @@ class Person:
             return Text(f"({JUNK} mail)", style='bright_black dim')
         elif self.is_uninteresting and (self.info_str() or '').startswith(UNINTERESTING_CC_INFO):
             if self.sole_cc():
-                return Text(f"(sole cc: from {self.sole_cc()})", style='wheat4 dim')
+                return Text(f"(cc: from {self.sole_cc()} only)", style='wheat4 dim')
             elif self.info_str() == UNINTERESTING_CC_INFO:
                 return Text(f"({self.info_str()})", style='wheat4 dim')
             else:
