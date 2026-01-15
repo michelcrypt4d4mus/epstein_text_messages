@@ -1387,7 +1387,6 @@
                 "file_id": "020437",
                 "filename": "HOUSE_OVERSIGHT_020437.txt",
                 "fwded_text_after": "Will Cohen Cooperate",
-                "is_fwded_article": true,
                 "num_lines": 150,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -2605,7 +2604,7 @@
                 "file_id": "022766",
                 "filename": "HOUSE_OVERSIGHT_022766.txt",
                 "fwded_text_after": "--- On Wed, 4/22/15",
-                "num_lines": 217,
+                "num_lines": 163,
                 "recipients": [
                     "Jeffrey Epstein",
                     "Kathryn Ruemmler"
@@ -2900,7 +2899,7 @@
                 "bytes": 9193,
                 "file_id": "022926",
                 "filename": "HOUSE_OVERSIGHT_022926.txt",
-                "num_lines": 216,
+                "num_lines": 178,
                 "recipients": [
                     "Darren Indyke"
                 ],
@@ -2913,7 +2912,7 @@
                 "bytes": 9084,
                 "file_id": "022931",
                 "filename": "HOUSE_OVERSIGHT_022931.txt",
-                "num_lines": 228,
+                "num_lines": 188,
                 "recipients": [
                     "Alan Dershowitz"
                 ],
@@ -9429,7 +9428,7 @@
                 ],
                 "file_id": "028752",
                 "filename": "HOUSE_OVERSIGHT_028752.txt",
-                "num_lines": 240,
+                "num_lines": 239,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -9906,7 +9905,7 @@
                 "file_id": "028921",
                 "filename": "HOUSE_OVERSIGHT_028921.txt",
                 "fwded_text_after": "Salacious new chapter",
-                "num_lines": 67,
+                "num_lines": 65,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -11388,6 +11387,7 @@
                 "bytes": 11520,
                 "file_id": "029344",
                 "filename": "HOUSE_OVERSIGHT_029344.txt",
+                "is_fwded_article": true,
                 "num_lines": 172,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -13603,8 +13603,9 @@
                 "bytes": 7469,
                 "file_id": "030318",
                 "filename": "HOUSE_OVERSIGHT_030318.txt",
-                "num_lines": 97,
+                "num_lines": 96,
                 "recipients": [
+                    "Darren Indyke",
                     "Jeffrey Epstein",
                     "Kathryn Ruemmler"
                 ],
@@ -17281,7 +17282,6 @@
                 "file_id": "030989",
                 "filename": "HOUSE_OVERSIGHT_030989.txt",
                 "fwded_text_after": "New book paints sordid picture of Trump real estate",
-                "is_fwded_article": true,
                 "num_lines": 61,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -18218,7 +18218,7 @@
                 "duplicate_of_id": "031213",
                 "file_id": "031221",
                 "filename": "HOUSE_OVERSIGHT_031221.txt",
-                "num_lines": 235,
+                "num_lines": 234,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -19289,11 +19289,12 @@
                 "bytes": 1967,
                 "file_id": "031489",
                 "filename": "HOUSE_OVERSIGHT_031489.txt",
-                "num_lines": 45,
+                "num_lines": 41,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
                 "sent_from_device": "Sent from my iPad",
+                "subject": "Fwd: Breaking News: Donald Trump brags in vulgar terms about groping women in a 2005 recording, saying, \"When you're a star they let you do it\"",
                 "timestamp": "2016-10-07T22:30:45",
                 "type": "Email"
             },
@@ -19937,11 +19938,11 @@
                 "bytes": 2706,
                 "file_id": "031619",
                 "filename": "HOUSE_OVERSIGHT_031619.txt",
-                "num_lines": 64,
+                "num_lines": 61,
                 "recipients": [
                     "Stephen Hanson"
                 ],
-                "subject": "Re: Breaking News: Donald Trump brags in vulgar terms about groping women",
+                "subject": "Re: Breaking News: Donald Trump brags in vulgar terms about groping women in a 2005 recording, saying, \"When you're a star they let you do it\"",
                 "timestamp": "2016-10-08T01:29:26",
                 "type": "Email"
             },
@@ -31660,7 +31661,7 @@
                 "duplicate_of_id": "026548",
                 "file_id": "033491",
                 "filename": "HOUSE_OVERSIGHT_033491.txt",
-                "num_lines": 154,
+                "num_lines": 147,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -31675,7 +31676,7 @@
                 "duplicate_of_id": "026548",
                 "file_id": "033495",
                 "filename": "HOUSE_OVERSIGHT_033495.txt",
-                "num_lines": 126,
+                "num_lines": 120,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
