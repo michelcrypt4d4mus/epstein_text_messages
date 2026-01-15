@@ -844,6 +844,11 @@ class Email(Communication):
         yield self.file_info_panel()
         yield Padding(email_txt_panel, (0, 0, 1, INFO_INDENT))
 
+        if self.attached_docs:
+            attachments_table_title = f" {self.url_slug} Email Attachments:"
+            attachments_table = OtherFile.files_preview_table(self.attached_docs, title=attachments_table_title)
+            yield Padding(attachments_table, (0, 0, 1, 12))
+
         if should_rewrite_header:
             self.log_top_lines(self.header.num_header_rows + 4, f'Original header:')
 
