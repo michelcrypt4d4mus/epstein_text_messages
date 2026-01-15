@@ -1261,60 +1261,58 @@ EMAIL_COMMENTS = {
     '031659': '"i have met some very bad people „ none as bad as trump"',
 }
 
-get_emails_cfg_dict = lambda: {cfg.id: cfg for cfg in EMAILS_CONFIG}
-emails_cfg_dict = get_emails_cfg_dict()
+# get_emails_cfg_dict = lambda: {cfg.id: cfg for cfg in EMAILS_CONFIG}
+# emails_cfg_dict = get_emails_cfg_dict()
 
-for id in INTERESTING_EMAIL_IDS:
-    if id in emails_cfg_dict:
-        emails_cfg_dict[id].is_interesting = True
-    else:
-        logger.warning(f"Appending is_interesting for '{id}'")
-        EMAILS_CONFIG.append(EmailCfg(id=id, is_interesting=True))
+# for id in INTERESTING_EMAIL_IDS:
+#     if id in emails_cfg_dict:
+#         emails_cfg_dict[id].is_interesting = True
+#     else:
+#         logger.warning(f"Appending is_interesting for '{id}'")
+#         EMAILS_CONFIG.append(EmailCfg(id=id, is_interesting=True))
 
-emails_cfg_dict = get_emails_cfg_dict()
+# emails_cfg_dict = get_emails_cfg_dict()
 
-for id, truncate_to in INTERESTING_TRUNCATION_LENGTHS.items():
-    logger.warning(f"interesting truncation for '{id}' is {truncate_to}")
-    truncate_to = truncate_to or -1
+# for id, truncate_to in INTERESTING_TRUNCATION_LENGTHS.items():
+#     logger.warning(f"interesting truncation for '{id}' is {truncate_to}")
+#     truncate_to = truncate_to or -1
 
-    if id in emails_cfg_dict:
-        logger.warning(f"   Setting truncation for '{id}'")
-        emails_cfg_dict[id].is_interesting = True
-        emails_cfg_dict[id].truncate_to = truncate_to
-    else:
-        logger.warning(f"    Appending truncation for '{id}'")
-        EMAILS_CONFIG.append(EmailCfg(id=id, is_interesting=True, truncate_to=truncate_to))
+#     if id in emails_cfg_dict:
+#         logger.warning(f"   Setting truncation for '{id}'")
+#         emails_cfg_dict[id].is_interesting = True
+#         emails_cfg_dict[id].truncate_to = truncate_to
+#     else:
+#         logger.warning(f"    Appending truncation for '{id}'")
+#         EMAILS_CONFIG.append(EmailCfg(id=id, is_interesting=True, truncate_to=truncate_to))
 
-emails_cfg_dict = get_emails_cfg_dict()
+# emails_cfg_dict = get_emails_cfg_dict()
 
-for id, truncate_to in TRUNCATION_LENGTHS.items():
-    logger.warning(f"truncation for '{id}' is {truncate_to}")
-    truncate_to = truncate_to or -1
+# for id, truncate_to in TRUNCATION_LENGTHS.items():
+#     logger.warning(f"truncation for '{id}' is {truncate_to}")
+#     truncate_to = truncate_to or -1
 
-    if id in emails_cfg_dict:
-        logger.warning(f"   Setting truncation for '{id}'")
-        emails_cfg_dict[id].truncate_to = truncate_to
-    else:
-        logger.warning(f"    Appending truncation for '{id}'")
-        EMAILS_CONFIG.append(EmailCfg(id=id, truncate_to=truncate_to))
+#     if id in emails_cfg_dict:
+#         logger.warning(f"   Setting truncation for '{id}'")
+#         emails_cfg_dict[id].truncate_to = truncate_to
+#     else:
+#         logger.warning(f"    Appending truncation for '{id}'")
+#         EMAILS_CONFIG.append(EmailCfg(id=id, truncate_to=truncate_to))
 
-emails_cfg_dict = get_emails_cfg_dict()
+# emails_cfg_dict = get_emails_cfg_dict()
 
-for id, comment in EMAIL_COMMENTS.items():
-    logger.warning(f"comment for '{id}' is {truncate_to}")
+# for id, comment in EMAIL_COMMENTS.items():
+#     logger.warning(f"comment for '{id}' is {comment}")
 
-    if id in emails_cfg_dict:
-        logger.warning(f"   Setting comment for '{id}'")
-        emails_cfg_dict[id].comment = comment
-    else:
-        logger.warning(f"    Appending comment for '{id}'")
-        EMAILS_CONFIG.append(EmailCfg(id=id, comment=comment))
+#     if id in emails_cfg_dict:
+#         logger.warning(f"   Setting comment for '{id}'")
+#         emails_cfg_dict[id].comment = comment
+#     else:
+#         logger.warning(f"    Appending comment for '{id}'")
+#         EMAILS_CONFIG.append(EmailCfg(id=id, comment=comment))
 
 if args.deep_debug:
     for email_cfg in EMAILS_CONFIG:
         print(f"{email_cfg},")
-
-    import sys; sys.exit()
 
 
 ################################################################################################
