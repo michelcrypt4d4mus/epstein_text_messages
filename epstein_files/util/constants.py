@@ -1314,7 +1314,7 @@ OTHER_FILES_CONFERENCES = [
     DocCfg(id='022267', author=SVETLANA_POZHIDAEVA, description=f'{WOMEN_EMPOWERMENT} founder essay about growing the seminar business'),
     DocCfg(id='022407', author=SVETLANA_POZHIDAEVA, description=f'{WOMEN_EMPOWERMENT} seminar pitch deck'),
     DocCfg(id='017524', author=SWEDISH_LIFE_SCIENCES_SUMMIT, description=f"2012 program", date='2012-08-18', attached_to_email_id='031226'),
-    DocCfg(id='026747', author=SWEDISH_LIFE_SCIENCES_SUMMIT, description=f"2017 program", date='2017-08-23'),
+    DocCfg(id='026747', author=SWEDISH_LIFE_SCIENCES_SUMMIT, description=f"2017 program", date='2017-08-23', attached_to_email_id='031215'),
     DocCfg(id='014951', author='TED Talks', description=f"2017 program", date='2017-04-20'),
     DocCfg(id='024179', author=UN_GENERAL_ASSEMBLY, description=f'president and first lady schedule', date='2012-09-21'),
     DocCfg(
