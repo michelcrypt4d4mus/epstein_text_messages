@@ -44,7 +44,7 @@ LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
-URL_SIGNIFIERS = ['?amp', 'amp?', 'cd=', 'click', 'ft=', 'gclid', 'htm', 'keywords=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'usg=', 'utm']
+URL_SIGNIFIERS = ['?amp', 'amp?', 'cd=', 'click', 'contentId', 'ft=', 'gclid', 'htm', 'keywords=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'usg=', 'utm']
 APPEARS_IN = 'appears in'
 
 MAX_NUM_HEADER_LINES = 14
@@ -99,6 +99,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     "COVER UP SEX ABUSE CRIMES\nBY THE WHITE HOUSE": "COVER UP SEX ABUSE CRIMES BY THE WHITE HOUSE",
     'Priebus, used\nprivate email accounts for': 'Priebus, used private email accounts for',
     "War on the Investigations\nEncircling Him": "War on the Investigations Encircling Him",
+    "Subject; RE": "Subject: RE",
     re.compile(r"deadline re Mr Bradley Edwards vs Mr\s*Jeffrey Epstein", re.I): "deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
     re.compile(r"Following Plea That Implicated Trump -\s*https://www.npr.org/676040070", re.I): "Following Plea That Implicated Trump - https://www.npr.org/676040070",
     re.compile(r"for Attorney General -\s+Wikisource, the"): r"for Attorney General - Wikisource, the",
@@ -120,7 +121,9 @@ EMAIL_SIGNATURE_REGEXES = {
     DARREN_INDYKE: re.compile(r"DARREN K. INDYKE.*?\**\nThe information contained in this communication.*?Darren K.[\n\s]+?[Il]ndyke(, PLLC)? — All rights reserved\.? ?\n\*{50,120}(\n\**)?", re.DOTALL),
     DAVID_INGRAM: re.compile(r"Thank you in advance.*\nDavid Ingram.*\nCorrespondent\nReuters.*\nThomson.*(\n(Office|Mobile|Reuters.com).*)*"),
     DEEPAK_CHOPRA: re.compile(fr"({DEEPAK_CHOPRA}( MD)?\n)?2013 Costa Del Mar Road\nCarlsbad, CA 92009(\n(Chopra Foundation|Super Genes: Unlock.*))?(\nJiyo)?(\nChopra Center for Wellbeing)?(\nHome: Where Everyone is Welcome)?"),
-    EDUARDO_ROBLES: re.compile(fr"(• )?email:.*\n(• )?email:\n(• )?website: www.creativekingdom.com\n(• )?address: 5th Floor Office No:504 Aspect Tower,\nBusiness Bay, Dubai United Arab Emirates."),
+    EDUARDO_ROBLES: re.compile(r"(• )?email:.*\n(• )?email:\n(• )?website: www.creativekingdom.com\n(• )?address: 5th Floor Office No:504 Aspect Tower,\nBusiness Bay, Dubai United Arab Emirates."),
+    ERIC_ROTH: re.compile(r"2221 Smithtown Avenue\nLong Island.*\nRonkonkoma.*\n(.1. )?Phone\nFax\nCell\ne-mail"),
+    GHISLAINE_MAXWELL: re.compile(r"FACEBOOK\nTWITTER\nG\+\nPINTEREST\nINSTAGRAM\nPLEDGE\nTHE DAILY CATCH"),
     JEFFREY_EPSTEIN: re.compile(r"((\*+|please note)\n+)?(> )?(• )?(» )?The information contained in this communication is\n(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?", re.DOTALL),
     JESSICA_CADWELL: re.compile(r"(f.*\n)?Certified Para.*\nFlorida.*\nBURMAN.*\n515.*\nSuite.*\nWest Palm.*(\nTel:.*)?(\nEmail:.*)?", re.IGNORECASE),
     KEN_JENNE: re.compile(r"Ken Jenne\nRothstein.*\n401 E.*\nFort Lauderdale.*", re.IGNORECASE),
@@ -155,6 +158,7 @@ TRUNCATE_EMAILS_FROM_OR_TO = [
     DIANE_ZIMAN,
     JOSCHA_BACH,
     KATHERINE_KEATING,
+    LAWRANCE_VISOSKI,
     LAWRENCE_KRAUSS,
     LISA_NEW,
     NILI_PRIELL_BARAK,
@@ -203,6 +207,7 @@ INTERESTING_TRUNCATION_LENGTHS = {
     '023454': 1878,    # Email invitation sent to tech CEOs + Epstein
     '029342': 2000,    # Hakeem Jeffries
     '032946': None,    # Jabor Y about visa for Morocco for unnamed woman
+    '031326': None,    # "dog that hasn't barked is trump.. virignia  spent hours at my house with him"
 }
 
 TRUNCATION_LENGTHS = {
@@ -218,6 +223,9 @@ TRUNCATION_LENGTHS = {
     '022977': 1800,   # Krassner with huge attachments field
     '026059': 2650,   # Rothschild
     '032643': None,   # Anas al Rasheed
+    '028494': None,   # Email about being in palm beach w/trump people
+    '033593': None,   # visoski email about planes
+    '031764': 3500,   # broidy malaysia
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
@@ -313,7 +321,7 @@ LINE_REPAIR_MERGES = {
     '031428': [[2], [2, 4]],
     '031442': [[0]],
     '031748': [[3]] * 2,
-    '031764': [[3]],
+    '031764': [[3], [8]],  # 8 is just for style fix internally, not header
     '031980': [[2, 4]],
     '032063': [[3, 5]],
     '032272': [[3]],
@@ -418,6 +426,12 @@ class Email(Communication):
 
     def is_with(self, name: str) -> bool:
         return name in [self.author] + self.recipients
+
+    def is_word_count_worthy(self) -> bool:
+        if self.is_fwded_article():
+            return len(self.actual_text) < 500
+        else:
+            return not self.is_mailing_list()
 
     def metadata(self) -> Metadata:
         local_metadata = asdict(self)
@@ -672,7 +686,7 @@ class Email(Communication):
 
             if LINK_LINE_REGEX.search(line):
                 while i < (len(lines) - 1) \
-                        and 'http' not in lines[i + 1] \
+                        and not lines[i + 1].startswith('htt') \
                         and (lines[i + 1].endswith('/') or any(s in lines[i + 1] for s in URL_SIGNIFIERS) or LINK_LINE2_REGEX.match(lines[i + 1])):
                     logger.debug(f"{self.filename}: Joining link lines\n   1. {line}\n   2. {lines[i + 1]}\n")
                     line += lines[i + 1]

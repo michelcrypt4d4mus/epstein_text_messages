@@ -75,7 +75,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     DAVID_HAIG: re.compile(fr'{DAVID_HAIG}|Haig, David', re.IGNORECASE),
     DAVID_STERN: re.compile(r'David Stern?', re.IGNORECASE),
     EDUARDO_ROBLES: re.compile(r'Ed(uardo)?\s*Robles', re.IGNORECASE),
-    EDWARD_JAY_EPSTEIN: re.compile(r'Edward (Jay )?Epstein', re.IGNORECASE),
+    EDWARD_JAY_EPSTEIN: re.compile(r'(?<!Jeffrey )Edward (Jay )?Epstein', re.IGNORECASE),
     EHUD_BARAK: re.compile(r'(ehud|e?h)\s*barak|\behud', re.IGNORECASE),
     FAITH_KATES: re.compile(r'faith kates?', re.IGNORECASE),
     GERALD_BARTON: re.compile(r'Gerald.*Barton', re.IGNORECASE),
@@ -89,7 +89,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     JANUSZ_BANASIAK: re.compile(r"Janu[is]z Banasiak", re.IGNORECASE),
     JEAN_LUC_BRUNEL: re.compile(r'Jean[- ]Luc Brunel?|JeanLuc', re.IGNORECASE),
     JEFF_FULLER: re.compile(r"jeff@mc2mm.com|Jeff Fuller", re.IGNORECASE),
-    JEFFREY_EPSTEIN: re.compile(r'[djl]\s?ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeffrey E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(Mark L.|ard Jay) )Epstein', re.IGNORECASE),
+    JEFFREY_EPSTEIN: re.compile(r'[djl]\s?ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeff(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(Mark L.|ard Jay) )Epstein', re.IGNORECASE),
     JESSICA_CADWELL: re.compile(r'Jessica Cadwell?', re.IGNORECASE),
     JOHNNY_EL_HACHEM: re.compile(r'el hachem johnny|johnny el hachem', re.IGNORECASE),
     JOI_ITO: re.compile(r'ji@media.mit.?edu|(joichi|joi)( Ito)?', re.IGNORECASE),
@@ -381,7 +381,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='031215', author=BARBRO_C_EHNBOM, duplicate_ids=['026745'], dupe_type='redacted'),  # the same except for 'your Anna!'. author must be specified because email address is redacted in 026745 so it needs the config
     EmailCfg(id='026764', author=BARRY_J_COHEN),  # Bad OCR (nofix)
     EmailCfg(id='031206', author=BENNET_MOSKOWITZ, duplicate_ids=['031227']),
-    EmailCfg(id='031442', author=CHRISTINA_GALBRAITH, duplicate_ids=['031996']),
+    EmailCfg(id='031591', duplicate_ids=['031442', '031996']),
     EmailCfg(
         id='019446',
         author=CHRISTINA_GALBRAITH,
@@ -431,7 +431,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='021823', author=JEAN_LUC_BRUNEL, attribution_reason='Reply'),
     EmailCfg(id='022949', author=JEFFREY_EPSTEIN),  # Bad OCR (nofix)
     EmailCfg(id='031624', author=JEFFREY_EPSTEIN),  # Bad OCR (nofix)
-    EmailCfg(id='031996', author=JEFFREY_EPSTEIN, recipients=[CHRISTINA_GALBRAITH], attribution_reason='bounced', duplicate_ids=['031442']),
     EmailCfg(id='018726', author=JEFFREY_EPSTEIN, timestamp=parse('2018-06-08 08:36:00')),  # nofix
     EmailCfg(id='032283', author=JEFFREY_EPSTEIN, timestamp=parse('2016-09-14 08:04:00')),  # nofix
     EmailCfg(id='026943', author=JEFFREY_EPSTEIN, timestamp=parse('2019-05-22 05:47:00')),  # nofix
@@ -679,6 +678,19 @@ EMAILS_CONFIG = [
     EmailCfg(id='032023', is_fwded_article=True, duplicate_ids=['032012']),  # American-Israeli Cooperative Enterprise Newsletter
     EmailCfg(id='021758', is_fwded_article=True, duplicate_ids=['030616']),  # Radar Online article about Epstein's early prison release
     EmailCfg(id='033297', is_fwded_article=True, duplicate_ids=['033586']),  # Sultan Sulayem fwding article about Trump and Russia
+    EmailCfg(id='031428', is_fwded_article=True, duplicate_ids=['031388']),
+    EmailCfg(id='033528', is_fwded_article=True, duplicate_ids=['033517']),
+    EmailCfg(id='030238', is_fwded_article=True, duplicate_ids=['031130']),
+
+    EmailCfg(id='014523', is_fwded_article=True),  # finance research
+    EmailCfg(id='014857', is_fwded_article=True),  # finance research
+    EmailCfg(id='029458', is_fwded_article=True),  # finance research
+    EmailCfg(id='026893', is_fwded_article=True),  # finance research
+    EmailCfg(id='033362', is_fwded_article=True),  # finance research
+
+
+    EmailCfg(id='030865', is_fwded_article=True),  # Deutsche bank research
+    EmailCfg(id='021231', is_fwded_article=True),  # 11 places with worse economy than US
     EmailCfg(id='029905', is_fwded_article=True),  # Ann Coulter
     EmailCfg(id='026829', is_fwded_article=True),  # Taxes
     EmailCfg(id='020443', is_fwded_article=True),  # WSJ Deplorables Bannon
@@ -735,9 +747,11 @@ EMAILS_CONFIG = [
     EmailCfg(id='026605', is_fwded_article=True),  # Article about Ruemmler turning down attorney general job by NEDRA PICKLER
     EmailCfg(id='031990', is_fwded_article=True),  # newsmax on ken starr
     EmailCfg(id='029433', is_fwded_article=True),  # Estate Planning After the Enactment of the Tax Cuts and Jobs Act
+    EmailCfg(id='030927', is_fwded_article=True),  # don't talk to the FBI
+    EmailCfg(id='031764', is_fwded_article=True),  # GOP fundraiser Broidy under investigation
+
     EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
-
     # Configure duplicates
     EmailCfg(id='026631', duplicate_ids=['026632'], dupe_type='quoted'),
     EmailCfg(id='028768', duplicate_ids=['026563'], dupe_type='redacted'),
@@ -757,19 +771,17 @@ EMAILS_CONFIG = [
     EmailCfg(id='033512', duplicate_ids=['033361']),
     EmailCfg(id='030299', duplicate_ids=['021794']),
     EmailCfg(id='033575', duplicate_ids=['012898']),
-    EmailCfg(id='031428', is_fwded_article=True, duplicate_ids=['031388']),
     EmailCfg(id='031980', duplicate_ids=['019409']),
     EmailCfg(id='033486', duplicate_ids=['033156']),
     EmailCfg(id='025790', duplicate_ids=['031994']),
     EmailCfg(id='028497', duplicate_ids=['026228']),
-    EmailCfg(id='033528', is_fwded_article=True, duplicate_ids=['033517']),
     EmailCfg(id='019412', duplicate_ids=['028621']),
     EmailCfg(id='027053', duplicate_ids=['028765']),
     EmailCfg(id='027049', duplicate_ids=['028773']),
     EmailCfg(id='033580', duplicate_ids=['033207']),
     EmailCfg(id='028506', duplicate_ids=['025547']),
     EmailCfg(id='028784', duplicate_ids=['026549']),
-    EmailCfg(id='033386', duplicate_ids=['033599']),
+    EmailCfg(id='033386', recipients=[JEFFREY_EPSTEIN, None], duplicate_ids=['033599']),
     EmailCfg(id='023024', duplicate_ids=['030622']),
     EmailCfg(id='030618', duplicate_ids=['023026']),
     EmailCfg(id='028780', duplicate_ids=['026834']),
@@ -780,7 +792,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='030587', duplicate_ids=['030514']),
     EmailCfg(id='031089', duplicate_ids=['018084']),
     EmailCfg(id='031088', duplicate_ids=['030885']),
-    EmailCfg(id='030238', duplicate_ids=['031130']),
+
     EmailCfg(id='030859', duplicate_ids=['031067']),
     EmailCfg(id='030635', duplicate_ids=['031134']),
     EmailCfg(id='028494', duplicate_ids=['026234']),
@@ -814,7 +826,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='027032', duplicate_ids=['028531']),
     EmailCfg(id='026777', duplicate_ids=['028493']),
     EmailCfg(id='029837', duplicate_ids=['029255']),
-    EmailCfg(id='031423', duplicate_ids=['025361']),
+    EmailCfg(id='031423', is_fwded_article=True, duplicate_ids=['025361']),
     EmailCfg(id='029299', duplicate_ids=['033594']),
     EmailCfg(id='030904', duplicate_ids=['031069']),
     EmailCfg(id='030006', duplicate_ids=['031165']),
@@ -835,7 +847,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='028620', duplicate_ids=['027094']),
     EmailCfg(id='032456', duplicate_ids=['033579']),
     EmailCfg(id='030315', duplicate_ids=['030255']),
-    EmailCfg(id='031112', duplicate_ids=['030876']),
+    EmailCfg(id='031112', is_fwded_article=True, duplicate_ids=['030876']),
     EmailCfg(id='030614', duplicate_ids=['030491']),
     EmailCfg(id='033585', duplicate_ids=['032279']),
     EmailCfg(id='031220', duplicate_ids=['031189']),
@@ -846,7 +858,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='028752', duplicate_ids=['026569']),
     EmailCfg(id='031773', duplicate_ids=['032050']),
     EmailCfg(id='021400', duplicate_ids=['031983']),
-    EmailCfg(id='026548', duplicate_ids=['033491']),
+    EmailCfg(id='026548', duplicate_ids=['033491', '033495']),  # 033495 is HTML garbage version
     EmailCfg(id='029752', duplicate_ids=['023550']),
     EmailCfg(id='030339', duplicate_ids=['030592']),
     EmailCfg(id='032250', duplicate_ids=['033589']),
@@ -861,7 +873,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='024251', fwded_text_after='Debate Schedule'),
     EmailCfg(id='028943', fwded_text_after='-Lisa'),
     EmailCfg(id='029431', fwded_text_after='I am writing now'),
-    EmailCfg(id='020437', fwded_text_after='Will Cohen Cooperate'),
+    EmailCfg(id='020437', is_fwded_article=True, fwded_text_after='Will Cohen Cooperate'),
     EmailCfg(id='026663', fwded_text_after='REGULATORY & COMPLIANCE ALERT'),
     EmailCfg(id='028921', fwded_text_after='Salacious new chapter'),
     EmailCfg(id='030324', fwded_text_after='For Federal Programs'),
@@ -872,7 +884,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='019203', fwded_text_after='This end-of-the-year'),
     EmailCfg(id='022207', fwded_text_after='Web Images Videos Maps'),
     EmailCfg(id='033210', fwded_text_after='Trump appears with mobster-affiliated'),
-    EmailCfg(id='030989', fwded_text_after='New book paints sordid picture of Trump real estate'),
+    EmailCfg(id='030989', is_fwded_article=True, fwded_text_after='New book paints sordid picture of Trump real estate'),
     EmailCfg(id='029174', fwded_text_after='The US trade war against China'),
     EmailCfg(id='030015', fwded_text_after='Bill Clinton reportedly'),
     EmailCfg(id='026312', fwded_text_after='Steve Bannon trying to get on disgraced'),
@@ -1339,7 +1351,13 @@ OTHER_FILES_FINANCE = [
         is_interesting=True,
     ),
     DocCfg(id='014532', author=GOLDMAN_INVESTMENT_MGMT, description=f"Outlook - Half Full", date='2017-01-01'),
-    DocCfg(id='026909', author=GOLDMAN_INVESTMENT_MGMT, description=f"The Unsteady Undertow Commands the Seas (Temporarily)", date='2018-10-14'),
+    DocCfg(
+        id='026909',
+        attached_to_email_id='026893',
+        author=GOLDMAN_INVESTMENT_MGMT,
+        description=f"The Unsteady Undertow Commands the Seas (Temporarily)",
+        date='2018-10-14',
+    ),
     DocCfg(id='026944', author=GOLDMAN_INVESTMENT_MGMT, description=f"Risk of a US-Iran Military Conflict", date='2019-05-23'),
     DocCfg(id='018804', author='Integra Realty Resources', description=f"appraisal of going concern for IGY American Yacht Harbor Marina in {VIRGIN_ISLANDS}"),
     DocCfg(id='026679', author='Invesco', description=f"Global Sovereign Asset Management Study 2017"),
@@ -1354,7 +1372,7 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='030840', author=JP_MORGAN, description=f"Market Thoughts"),
     DocCfg(id='022350', author=JP_MORGAN, description=f"tax efficiency of Intentionally Defective Grantor Trusts (IDGT)"),
     DocCfg(id='025242', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2012-04-09'),
-    DocCfg(id='030010', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-06-14'),
+    DocCfg(id='030010', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, attached_to_email_id='030006', date='2011-06-14'),
     DocCfg(id='030808', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-07-11'),
     DocCfg(id='025221', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-07-25'),
     DocCfg(id='025229', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-08-04'),
@@ -1742,6 +1760,7 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + [
     'Danny Goldberg',                        # Random Paul Krassner emails
     GERALD_LEFCOURT,                         # Single CC
     GORDON_GETTY,                            # Random CC
+    'Grant J. Smith',                        # Ken Jenne CC
     JEFF_FULLER,                             # Random Jean Luc Brunel CC
     'Jojo Fontanilla',                       # Random CC
     'Joseph Vinciguerra',                    # Random CC
