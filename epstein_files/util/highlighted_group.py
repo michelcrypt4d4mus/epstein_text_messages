@@ -263,7 +263,7 @@ HIGHLIGHTED_NAMES = [
             r"(Sandy\s*)?Pentland",  # Media Lab
             r"Sanofi",
             r"Stanford(\s*University)?(\s*Hospital)?",
-            r"(Stephen\s*)?Hawking",
+            r"(Ste(ph|v)en\s*)?Hawking",
             r"(Steven?\s*)?Pinker",
             r"Texas\s*A&M",
             r"Tulane",
