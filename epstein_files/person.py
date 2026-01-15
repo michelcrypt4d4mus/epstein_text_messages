@@ -186,15 +186,18 @@ class Person:
 
     def sole_cc(self) -> str | None:
         """Return name if this person sent 0 emails and received CC from only one that name."""
-        if len(self.emails_by()) > 0:
-            return None
-
         email_authors = uniquify([e.author for e in self.emails_to()])
+
+        if len(self.unique_emails()) == 1 and len(email_authors) > 0:
+            logger.warning(f"sole author of email to '{self.name}' is '{email_authors[0]}'")
+        else:
+            logger.warning(f"'{self.name}' email_authors '{email_authors[0]}'")
+
+        if len(self.unique_emails_by()) > 0:
+            return None
 
         if len(email_authors) == 1:
             return email_authors[0]
-        else:
-            return None
 
     def is_email_address(self) -> bool:
         return '@' in (self.name or '')
