@@ -31,7 +31,7 @@ from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
 
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
-BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,]|L\._|_filtered|.*(yiv0232|font-family:|margin-bottom:).*)$')
+BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Hide caption|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,]|L\._|_filtered|.*(yiv0232|font-family:|margin-bottom:).*)$')
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 LINK_LINE_REGEX = re.compile(f"^>? ?htt")
 LINK_LINE2_REGEX = re.compile(r"^[-\w.%&=/]{5,}$")
@@ -170,6 +170,7 @@ TRUNCATE_EMAILS_FROM_OR_TO = [
     MOSHE_HOFFMAN,
     NILI_PRIELL_BARAK,
     PAUL_KRASSNER,
+    PAUL_PROSPERI,
     'Susan Edelman',
     TERRY_KAFKA,
 ]
@@ -252,6 +253,9 @@ TRUNCATION_LENGTHS = {
     '017574': MAX_CHARS_TO_PRINT,  # Lisa Randall invite
     '031278': 2500,  # Hoffenberg
     '030589': 1000,  # Brett Jaffe Fwd
+    '032250': 1000,  # Wolff article
+    '025655': 400,   # reply to article
+    '026451': 500,   # reply to article
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
@@ -259,6 +263,7 @@ TRUNCATE_TERMS = [
     'The rebuilding of Indonesia',  # Vikcy ward article
     'a sleek, briskly paced film whose title suggests a heist movie',  # Inside Job
     'Calendar of Major Events, Openings, and Fundraisers',
+    'sent over from Marshall Heyman at the WSJ',
     "In recent months, China's BAT collapse",
     'President Obama introduces Jim Yong Kim as his nominee',
     'Trump appears with mobster-affiliated felon at New',
@@ -327,6 +332,7 @@ LINE_REPAIR_MERGES = {
     '026829': [[3]],
     '026924': [[2, 4]],
     '028728': [[3]],
+    '026451': [[3, 5]] * 2,
     '028931': [[3, 6]],
     '029154': [[2, 5]],
     '029163': [[2, 5]],
