@@ -122,8 +122,8 @@ class OtherFile(Document):
 
             return Text(escape(self.preview_text()))
 
-    def is_interesting(self):
-        """False for lame prefixes, duplicates, and other boring files."""
+    def is_interesting(self) -> bool:
+        """Overloaded. False for lame prefixes, duplicates, and other boring files."""
         info_sentences = self.info()
 
         if self.is_duplicate():
@@ -164,8 +164,8 @@ class OtherFile(Document):
 
     def _extract_timestamp(self) -> datetime | None:
         """Return configured timestamp or value extracted by scanning text with datefinder."""
-        if self.config and self.config.timestamp:
-            return self.config.timestamp
+        if self.config and self.config.timestamp():
+            return self.config.timestamp()
         elif self.config and any([s in (self.config_description() or '') for s in SKIP_TIMESTAMP_EXTRACT]):
             return None
 

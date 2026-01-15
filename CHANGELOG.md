@@ -1,4 +1,6 @@
 # NEXT RELEASE
+* `--constantize` debug option
+* Unify all email config properties in `EmailCfg` objects
 
 ### 1.2.6
 

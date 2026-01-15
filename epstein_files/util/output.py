@@ -5,7 +5,7 @@ from typing import cast
 from rich.padding import Padding
 
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import INTERESTING_TRUNCATION_LENGTHS, Email
+from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
 from epstein_files.epstein_files import EpsteinFiles, count_by_month
@@ -53,31 +53,6 @@ DEFAULT_EMAILERS = [
     JEFFREY_EPSTEIN,
 ]
 
-INTERESTING_EMAIL_IDS = [
-    '032229',  # Michael Wolff on strategy
-    '028784',  # seminars: Money / Power
-    '030630',  # 'What happens with zubair's project?'
-    '033178',  # 'How is it going with Zubair?'
-    '022396',  # Ukraine friend
-    '026505',  # I know how dirty trump is
-    '029679',  # Trump's driver was the bag man
-    '026258', '026260',  # Bannon cripto coin issues
-    '032359',  # Jabor e-currency
-    '031451', '031596',  # "would you like photso of donald and girls in bikinis in my kitchen."
-    '031601',  # Old gf i gave to donald
-    '030727',  # David Stern "Death of chinese shareholder quite an issue. What can we do with Qataris here?"
-    '030725',  # David Stern in Moscow
-    '029098',  # Nowak, "her Skype contact is in moscow."
-    '030714',  # Bannon, Russian Dugan shout out
-    '031659',  # "i have met some very bad people „ none as bad as trump"
-]
-
-for id in INTERESTING_TRUNCATION_LENGTHS:
-    if id not in INTERESTING_EMAIL_IDS:
-        logger.debug(f"Adding INTERESTING_TRUNCATION_LENGTHS ID {id} to INTERESTING_EMAIL_IDS")
-        INTERESTING_EMAIL_IDS.append(id)
-
-
 INTERESTING_TEXT_IDS = [
     '027275',  # "Crypto- Kerry- Qatar -sessions"
     '027165',  # melaniee walker crypto health
@@ -121,6 +96,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     """Returns emails that were printed (may contain dupes if printed for both author and recipient)."""
     print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
     all_emailers = sorted(epstein_files.emailers(), key=lambda person: person.earliest_email_at())
+    all_emails = Person.emails_from_people(all_emailers)
     num_emails_printed_since_last_color_key = 0
     printed_emails: list[Email] = []
     people_to_print: list[Person]
@@ -157,7 +133,8 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
 
     # Print other interesting emails
     printed_email_ids = [email.file_id for email in printed_emails]
-    extra_emails = [e for e in epstein_files.for_ids(INTERESTING_EMAIL_IDS) if e.file_id not in printed_email_ids]
+    extra_emails = [e for e in all_emails if e.is_interesting() and e.file_id not in printed_email_ids]
+    logger.warning(f"Found {len(extra_emails)} extra_emails...")
 
     if len(extra_emails) > 0:
         print_subtitle_panel(OTHER_INTERESTING_EMAILS_SUBTITLE)
