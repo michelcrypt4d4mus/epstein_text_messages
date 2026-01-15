@@ -930,7 +930,11 @@ def test_border_style(epstein_files):
 
 
 def test_is_fwded_article(epstein_files):
+    fwded_article = epstein_files.email_for_id('033311')
+    assert fwded_article.is_word_count_worthy() is False
     non_article_with_fwd_text = epstein_files.email_for_id('012197_4')
     assert non_article_with_fwd_text.is_fwded_article() is False
+    assert non_article_with_fwd_text.is_word_count_worthy() is True
     article_with_fwd_text = epstein_files.email_for_id('016413')
     assert article_with_fwd_text.is_fwded_article() is True
+    assert article_with_fwd_text.is_word_count_worthy() is True

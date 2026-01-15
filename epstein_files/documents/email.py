@@ -44,7 +44,7 @@ LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
-URL_SIGNIFIERS = ['?amp', 'amp?', 'cd=', 'click', 'contentId', 'ft=', 'gclid', 'htm', 'keywords=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'usg=', 'utm']
+URL_SIGNIFIERS = ['?amp', 'amp?', 'cd=', 'click', 'CMP=', 'contentId', 'ft=', 'gclid', 'htm', 'keywords=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'usg=', 'utm']
 APPEARS_IN = 'appears in'
 
 MAX_NUM_HEADER_LINES = 14
@@ -444,7 +444,7 @@ class Email(Communication):
 
     def is_word_count_worthy(self) -> bool:
         if self.is_fwded_article():
-            return len(self.actual_text) < 500
+            return bool(self.config.fwded_text_after)
         else:
             return not self.is_mailing_list()
 
