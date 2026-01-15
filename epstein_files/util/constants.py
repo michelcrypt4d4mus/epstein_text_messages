@@ -60,7 +60,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     ANIL_AMBANI: re.compile(r'Anil.Ambani', re.IGNORECASE),
     ANN_MARIE_VILLAFANA: re.compile(r'Villafana, Ann Marie|(A(\.|nn) Marie )?Villafa(c|n|ri)a', re.IGNORECASE),
     ANTHONY_SCARAMUCCI: re.compile(r"mooch|(Anthony ('The Mooch' )?)?Scaramucci", re.IGNORECASE),
-    ARIANE_DE_ROTHSCHILD: re.compile(r'AdeR|((Ariane|Edmond) (de )?)?Rothsch?ild|Ariane', re.IGNORECASE),
+    ARIANE_DE_ROTHSCHILD: re.compile(r'AdeR|((Ariane|Edmond) (de )?)?Rothsch?ild|Ariane(?! Dwyer)', re.IGNORECASE),
     BARBRO_C_EHNBOM: re.compile(r'behnbom@aol.com|(Barbro\s.*)?Ehnbom', re.IGNORECASE),
     BARRY_J_COHEN: re.compile(r'barry\s*((j.?|james)\s*)?cohen?', re.IGNORECASE),
     BENNET_MOSKOWITZ: re.compile(r'Moskowitz.*Bennet|Bennet.*Moskowitz', re.IGNORECASE),
@@ -157,6 +157,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
 EMAILERS = [
     'Anne Boyles',
     AL_SECKEL,
+    'Ariane Dwyer',
     AZIZA_ALAHMADI,
     BILL_GATES,
     BILL_SIEGEL,
@@ -201,6 +202,7 @@ EMAILERS = [
     'Steven Victor MD',
     'Susan Edelman',
     TOM_BARRACK,
+    'Vahe Stepanian',
     'Vladimir Yudashkin',
 ]
 
@@ -308,10 +310,43 @@ TEXTS_CONFIG = CONFIRMED_TEXTS_CONFIG + UNCONFIRMED_TEXTS_CONFIG
 ################################################ EMAILS ################################################
 ########################################################################################################
 
+MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
 # Some emails have a lot of uninteresting CCs
 FLIGHT_IN_2012_PEOPLE: list[Name] = ['Francis Derby', JANUSZ_BANASIAK, 'Louella Rabuyo', 'Richard Barnnet']
 IRAN_DEAL_RECIPIENTS: list[Name] = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
-MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
+
+TRIVERS_CCS: list[Name] = [
+    "Alan Rogers",
+    "Anna Dreber",
+    "Anula Jayasuriya",
+    "Bill Prezant",
+    "Bobby McCormick",
+    "Clive Crook",
+    "Dane Stangler",
+    "Ron Bailey",
+    "Ditsa Pines",
+    "David Darst",
+    "Gerry Ohrstrom",
+    "Paul Romer",
+    "John Mallen",
+    "Jim Halligan",
+    "Lee Silver",
+    "Monika Gruter Cheney",
+    "Marguerite Atkins",
+    "Matt Ridley",
+    "Mike Cagney",
+    "Evan Smith",
+    "Roger Edelen",
+    "Oliver Goodenough",
+    "Paul Zak",
+    "Peter J Richerson",
+    "Clair Brown",
+    "Terry Anderson",
+    "Tim Kane",
+    "Rob Hanson",
+    "president@usfca.edu",
+]
+
 
 EMAILS_CONFIG = [
     # 026294 and 026296 might also be Ittihadieh based on timing
@@ -595,12 +630,14 @@ EMAILS_CONFIG = [
     EmailCfg(id='030367', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
     EmailCfg(id='033274', recipients=[JEFFREY_EPSTEIN]),  # this is a note sent to self
     EmailCfg(id='032780', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
+    EmailCfg(id='033386', recipients=[JEFFREY_EPSTEIN, None], duplicate_ids=['033599']),
     EmailCfg(id='029324', recipients=[JEFFREY_EPSTEIN, "Jojo Fontanilla", "Lyn Fontanilla"]),  # Bad OCR (nofix)
     EmailCfg(id='013482', recipients=[JEFFREY_EPSTEIN], is_fwded_article=True),  # other recipients redacted. "The view from the US: Stem cell therapy steps up a gear with firs"
     EmailCfg(id='029558', recipients=[JEFFREY_EPSTEIN, KATHERINE_KEATING], attribution_reason='BCC', fwded_text_after='Creativity is central'),
     EmailCfg(id='033456', recipients=["Joel"], attribution_reason='Reply'),
     EmailCfg(id='033458', recipients=["Joel"], attribution_reason='Reply'),
     EmailCfg(id='033460', recipients=["Joel"], attribution_reason='Reply'),
+    EmailCfg(id='025589', recipients=[GORDON_GETTY, JEFFREY_EPSTEIN] + TRIVERS_CCS, attribution_reason='Reply'),
     EmailCfg(
         id='021090',
         recipients=[JONATHAN_FARKAS],
@@ -679,14 +716,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='031428', is_fwded_article=True, duplicate_ids=['031388']),
     EmailCfg(id='033528', is_fwded_article=True, duplicate_ids=['033517']),
     EmailCfg(id='030238', is_fwded_article=True, duplicate_ids=['031130']),
-
+    EmailCfg(id='031112', is_fwded_article=True, duplicate_ids=['030876']),
+    EmailCfg(id='031423', is_fwded_article=True, duplicate_ids=['025361']),
     EmailCfg(id='014523', is_fwded_article=True),  # finance research
     EmailCfg(id='014857', is_fwded_article=True),  # finance research
     EmailCfg(id='029458', is_fwded_article=True),  # finance research
     EmailCfg(id='026893', is_fwded_article=True),  # finance research
     EmailCfg(id='033362', is_fwded_article=True),  # finance research
-
-
     EmailCfg(id='030865', is_fwded_article=True),  # Deutsche bank research
     EmailCfg(id='021231', is_fwded_article=True),  # 11 places with worse economy than US
     EmailCfg(id='029905', is_fwded_article=True),  # Ann Coulter
@@ -746,8 +782,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='031990', is_fwded_article=True),  # newsmax on ken starr
     EmailCfg(id='029433', is_fwded_article=True),  # Estate Planning After the Enactment of the Tax Cuts and Jobs Act
     EmailCfg(id='030927', is_fwded_article=True),  # don't talk to the FBI
+    EmailCfg(id='033329', is_fwded_article=True),  # Chinese economists
     EmailCfg(id='031764', is_fwded_article=True),  # GOP fundraiser Broidy under investigation
-
     EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
     # Configure duplicates
@@ -780,7 +816,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='033580', duplicate_ids=['033207']),
     EmailCfg(id='028506', duplicate_ids=['025547']),
     EmailCfg(id='028784', duplicate_ids=['026549']),
-    EmailCfg(id='033386', recipients=[JEFFREY_EPSTEIN, None], duplicate_ids=['033599']),
     EmailCfg(id='023024', duplicate_ids=['030622']),
     EmailCfg(id='030618', duplicate_ids=['023026']),
     EmailCfg(id='028780', duplicate_ids=['026834']),
@@ -791,7 +826,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='030587', duplicate_ids=['030514']),
     EmailCfg(id='031089', duplicate_ids=['018084']),
     EmailCfg(id='031088', duplicate_ids=['030885']),
-
     EmailCfg(id='030859', duplicate_ids=['031067']),
     EmailCfg(id='030635', duplicate_ids=['031134']),
     EmailCfg(id='028494', duplicate_ids=['026234']),
@@ -825,7 +859,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='027032', duplicate_ids=['028531']),
     EmailCfg(id='026777', duplicate_ids=['028493']),
     EmailCfg(id='029837', duplicate_ids=['029255']),
-    EmailCfg(id='031423', is_fwded_article=True, duplicate_ids=['025361']),
     EmailCfg(id='029299', duplicate_ids=['033594']),
     EmailCfg(id='030904', duplicate_ids=['031069']),
     EmailCfg(id='030006', duplicate_ids=['031165']),
@@ -846,7 +879,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='028620', duplicate_ids=['027094']),
     EmailCfg(id='032456', duplicate_ids=['033579']),
     EmailCfg(id='030315', duplicate_ids=['030255']),
-    EmailCfg(id='031112', is_fwded_article=True, duplicate_ids=['030876']),
     EmailCfg(id='030614', duplicate_ids=['030491']),
     EmailCfg(id='033585', duplicate_ids=['032279']),
     EmailCfg(id='031220', duplicate_ids=['031189']),
@@ -1528,7 +1560,7 @@ OTHER_FILES_POLITICS = [
         date='2015-01-15',  # TODO: this is just a guess
         duplicate_ids=['028887'],
     ),
-    DocCfg(id='010617', description=TRUMP_DISCLOSURES, date='2017-01-20', is_interesting=True),
+    DocCfg(id='010617', description=TRUMP_DISCLOSURES, date='2017-01-20', is_interesting=True, attached_to_email_id='033091'),
     DocCfg(id='016699', description=TRUMP_DISCLOSURES, date='2017-01-20', is_interesting=True, attached_to_email_id='033091'),
 ]
 
@@ -1746,9 +1778,8 @@ REPLY_LINE_PATTERN = rf"({FRENCH_REPLY_PATTERN}|{GERMAN_REPLY_PATTERN}|{NORWEGAI
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
 SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?((Envoyé de mon|Sent (from|via)).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)|Co-authored with iPhone auto-correct', re.M | re.I)
 
-
 # No point in ever displaying these; their emails show up elsewhere because they're mostly CC recipients
-UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + [
+UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_CCS + [
     'Alan Dlugash',                          # CCed with Richard Kahn
     'Alan Rogers',                           # Random CC
     'Andrew Friendly',                       # Presumably some relation of Kelly Friendly
@@ -1779,6 +1810,7 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + [
     SAMUEL_LEFF,                             # Random CC
     'Sean T Lehane',                         # Random CC
     'Stephen Rubin',                         # Random CC
+    THANU_BOONYAWATANA,                      # Eduardo Robles CC
     'Tim Kane',                              # Random CC
     'Travis Pangburn',                       # Random CC
     'Vahe Stepanian',                        # Random CC

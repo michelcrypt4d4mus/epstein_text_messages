@@ -233,7 +233,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     owen
     paul paula pen peter philip prince
     randall rangel reid richard robert rodriguez roger rosenberg ross roth roy rubenstein rubin
-    scott sean skip stanley stern stephen steve steven stone susan
+    scott sean skip smith stanley stern stephen steve steven stone susan
     the thomas tim tom tony tyler
     victor
     wade waters
