@@ -206,7 +206,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 31,
+    None: 32,
     "ACT for America": 1,
     "Alan Dershowitz": 11,
     'Alan Dlugash': 1,
@@ -474,6 +474,8 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     "032283",
     '032951',
     "033345",
+    '033386',
+    '033599',
 ]
 
 DEVICE_SIGNATURE_TO_AUTHORS = {
@@ -869,6 +871,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     "David Ingram": 9,
     "Deepak Chopra": 19,
     EDUARDO_ROBLES: 6,
+    ERIC_ROTH: 5,
     GHISLAINE_MAXWELL: 13,
     "Jeffrey Epstein": 3374,
     JESSICA_CADWELL: 57,
@@ -915,3 +918,9 @@ def test_signature_substitutions(epstein_files):
 
 def test_unknown_recipient_file_ids(epstein_files):
     assert epstein_files.unknown_recipient_ids() == UNKNOWN_RECIPIENT_FILE_IDS
+
+
+def test_border_style(epstein_files):
+    email = epstein_files.email_for_id('033071')
+    assert email._border_style() == 'purple'
+    assert email.author_style() == 'blue1'

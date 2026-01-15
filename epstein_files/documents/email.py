@@ -225,6 +225,7 @@ TRUNCATION_LENGTHS = {
     '032643': None,   # Anas al Rasheed
     '028494': None,   # Email about being in palm beach w/trump people
     '033593': None,   # visoski email about planes
+    '031764': 3500,   # broidy malaysia
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
@@ -320,7 +321,7 @@ LINE_REPAIR_MERGES = {
     '031428': [[2], [2, 4]],
     '031442': [[0]],
     '031748': [[3]] * 2,
-    '031764': [[3]],
+    '031764': [[3], [8]],  # 8 is just for style fix internally, not header
     '031980': [[2, 4]],
     '032063': [[3, 5]],
     '032272': [[3]],

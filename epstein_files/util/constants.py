@@ -381,7 +381,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='031215', author=BARBRO_C_EHNBOM, duplicate_ids=['026745'], dupe_type='redacted'),  # the same except for 'your Anna!'. author must be specified because email address is redacted in 026745 so it needs the config
     EmailCfg(id='026764', author=BARRY_J_COHEN),  # Bad OCR (nofix)
     EmailCfg(id='031206', author=BENNET_MOSKOWITZ, duplicate_ids=['031227']),
-    EmailCfg(id='031442', author=CHRISTINA_GALBRAITH, duplicate_ids=['031996']),
+    EmailCfg(id='031591', duplicate_ids=['031442', '031996']),
     EmailCfg(
         id='019446',
         author=CHRISTINA_GALBRAITH,
@@ -431,7 +431,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='021823', author=JEAN_LUC_BRUNEL, attribution_reason='Reply'),
     EmailCfg(id='022949', author=JEFFREY_EPSTEIN),  # Bad OCR (nofix)
     EmailCfg(id='031624', author=JEFFREY_EPSTEIN),  # Bad OCR (nofix)
-    EmailCfg(id='031996', author=JEFFREY_EPSTEIN, recipients=[CHRISTINA_GALBRAITH], attribution_reason='bounced', duplicate_ids=['031442']),
     EmailCfg(id='018726', author=JEFFREY_EPSTEIN, timestamp=parse('2018-06-08 08:36:00')),  # nofix
     EmailCfg(id='032283', author=JEFFREY_EPSTEIN, timestamp=parse('2016-09-14 08:04:00')),  # nofix
     EmailCfg(id='026943', author=JEFFREY_EPSTEIN, timestamp=parse('2019-05-22 05:47:00')),  # nofix
@@ -749,6 +748,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='031990', is_fwded_article=True),  # newsmax on ken starr
     EmailCfg(id='029433', is_fwded_article=True),  # Estate Planning After the Enactment of the Tax Cuts and Jobs Act
     EmailCfg(id='030927', is_fwded_article=True),  # don't talk to the FBI
+    EmailCfg(id='031764', is_fwded_article=True),  # GOP fundraiser Broidy under investigation
+
     EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
     # Configure duplicates
