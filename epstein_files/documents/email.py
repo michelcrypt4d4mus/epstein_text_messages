@@ -18,6 +18,7 @@ from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, INFO_INDENT
 from epstein_files.documents.emails.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, FIELD_NAMES, TIME_REGEX, EmailHeader)
+from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constants import *
@@ -365,6 +366,7 @@ class Email(Communication):
         sent_from_device (str | None) - "Sent from my iPhone" style signature (if it exists)
         signature_substitution_counts (dict[str, int]) - count of how many times a signature was replaced with <...snipped...> for each participant
     """
+    attached_docs: list[OtherFile] = field(default_factory=list)
     actual_text: str = field(init=False)
     config: EmailCfg | None = None
     header: EmailHeader = field(init=False)
@@ -410,6 +412,7 @@ class Email(Communication):
         self.sent_from_device = self._sent_from_device()
 
     def attachments(self) -> list[str]:
+        """Returns the string in the header."""
         return (self.header.attachments or '').split(';')
 
     def info_txt(self) -> Text:
