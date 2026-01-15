@@ -49,8 +49,6 @@ APPEARS_IN = 'appears in'
 
 MAX_NUM_HEADER_LINES = 14
 MAX_QUOTED_REPLIES = 2
-MAX_CHARS_TO_PRINT = 4000
-TRUNCATED_CHARS = int(MAX_CHARS_TO_PRINT / 3)
 
 REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + [
     '********************************',
@@ -195,68 +193,6 @@ TRUNCATE_EMAILS_FROM = BCC_LISTS + TRUNCATE_EMAILS_FROM_OR_TO + [
     'Steven Victor MD',
     TERRY_KAFKA,
 ]
-
-# These IDs will be appended to INTERESTING_EMAIL_IDS
-INTERESTING_TRUNCATION_LENGTHS = {
-    '023627': 16_800,  # Micheal Wolff article with brock pierce
-    '030245': None,    # Epstein rationalizes his behavior in an open letter to the world
-    '030781': None,    # Bannon email about crypto coin issues
-    '032906': None,    # David Blaine email
-    '026036': 6000,    # Gino Yu blockchain mention
-    '029609': None,    # Joi Ito
-    '025233': None,    # Reputation.com discussion
-    '017827': None,    # Bannon / Peggy Siegal email about netflix doc on Epstein
-    '030222': None,    # Ross Gow / Ghislaine correspondence
-    '026028': None,    # Larry Summers / Karim Wade intro
-    '029545': None,    # Tyler Shears reputation
-    '025812': None,    # Tyler Shears reputation
-    '029914': 4500,    # Lord Mandelson russian investments
-    '033453': None,    # "Just heard you were telling people that you heard I asked Trump for a million dollars"
-    '031320': None,    # Epstein Gratitude foundation
-    '031036': None,    # Barbro Ehnbom talking about Swedish girl
-    '023454': 1878,    # Email invitation sent to tech CEOs + Epstein
-    '029342': 2000,    # Hakeem Jeffries
-    '032946': None,    # Jabor Y about visa for Morocco for unnamed woman
-    '031326': None,    # "dog that hasn't barked is trump.. virignia  spent hours at my house with him"
-    '033171': None,    # Zubair
-    '032319': None,    # Zubair
-    '032325': None,    # Zubair
-    '031152': None,    # Kazakhstan Aliyev news
-}
-
-TRUNCATION_LENGTHS = {
-    **INTERESTING_TRUNCATION_LENGTHS,
-    '031791': None,    # First email in Jessica Cadwell chain about service of legal documents
-    '023208': None,    # Long discussion about leon black's finances
-    '028589': None,    # Long thread with Reid Weingarten
-    '029433': TRUNCATED_CHARS,  # Kahn taxes
-    '026778': TRUNCATED_CHARS,  # Kahn taxes
-    '033311': TRUNCATED_CHARS,  # Kahn taxes
-    '024251': TRUNCATED_CHARS,  # Kahn taxes
-    '026755': TRUNCATED_CHARS,  # Epstein self fwd
-    '022977': 1800,   # Krassner with huge attachments field
-    '026059': 2650,   # Rothschild
-    '032643': None,   # Anas al Rasheed
-    '028494': None,   # Email about being in palm beach w/trump people
-    '033593': None,   # visoski email about planes
-    '031764': 3500,   # broidy malaysia
-    '031619': 652,    # Reply to grab em by the pussy story
-    '021096': 700,    # Sinofsky article quote
-    '032865': 445,    # Barton reply
-    '027126': 1000,   # Summers
-    '030950': 4500,   # Ian Osborne
-    '029684': 402,    # Maldives reply
-    '031217': None,    # 1st email for dersh, has long article
-    '031011': TRUNCATED_CHARS,  # joke
-    '018045': TRUNCATED_CHARS,  # invite
-    '017574': MAX_CHARS_TO_PRINT,  # Lisa Randall invite
-    '031278': 2500,  # Hoffenberg
-    '030589': 1000,  # Brett Jaffe Fwd
-    '032250': 1000,  # Wolff article
-    '025655': 400,   # reply to article
-    '026451': 500,   # reply to article
-    '023717': 489,   # reply to article
-}
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
 TRUNCATE_TERMS = [
@@ -610,8 +546,8 @@ class Email(Communication):
         logger.debug(f"{self.file_id} extracted header\n\n{self.header}\n")
 
     def _extract_timestamp(self) -> datetime:
-        if self.config and self.config.timestamp:
-            return self.config.timestamp
+        if self.config and self.config.timestamp():
+            return self.config.timestamp()
         elif self.header.sent_at:
             timestamp = _parse_timestamp(self.header.sent_at)
 
@@ -809,8 +745,8 @@ class Email(Communication):
             num_chars = len(self.text)
         elif args.truncate:
             num_chars = args.truncate
-        elif self.file_id in TRUNCATION_LENGTHS:
-            num_chars = TRUNCATION_LENGTHS[self.file_id] or self.file_size()
+        elif self.config and self.config.truncate_to is not None:
+            num_chars = len(self.text) if self.config.truncate_to == NO_TRUNCATE else self.config.truncate_to
         elif self.author in TRUNCATE_EMAILS_FROM \
                 or any([self.is_with(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \
                 or self.is_fwded_article() \

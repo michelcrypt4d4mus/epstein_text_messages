@@ -311,7 +311,7 @@ class Person:
         highlighted = highlighted or people
         highlighted_names = [p.name for p in highlighted]
         is_selection = len(people) != len(highlighted) or args.emailers_info
-        all_emails = Document.uniquify(flatten([list(p.unique_emails()) for p in people]))
+        all_emails = Person.emails_from_people(people)
         email_authors = [p for p in people if p.emails_by() and p.name]
         attributed_emails = [email for email in all_emails if email.author]
         footer = f"(identified {len(email_authors)} authors of {len(attributed_emails):,}" \
@@ -363,3 +363,7 @@ class Person:
             )
 
         return table
+
+    @staticmethod
+    def emails_from_people(people: list['Person']) -> Sequence[Email]:
+        return Document.uniquify(flatten([list(p.unique_emails()) for p in people]))

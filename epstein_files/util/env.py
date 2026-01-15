@@ -56,6 +56,7 @@ scripts.add_argument('--whole-file', '-wf', action='store_true', help='print who
 
 debug = parser.add_argument_group('DEBUG')
 debug.add_argument('--colors-only', '-c', action='store_true', help='print header with color key table and links and exit')
+debug.add_argument('--constantize', action='store_true', help='constantize names when printing repr() of objects')
 debug.add_argument('--debug', '-d', action='store_true', help='set debug level to INFO')
 debug.add_argument('--deep-debug', '-dd', action='store_true', help='set debug level to DEBUG')
 debug.add_argument('--json-stats', '-j', action='store_true', help='print JSON formatted stats about the files')

@@ -269,6 +269,10 @@ OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
 def constantize_name(name: str) -> str:
     if name == 'Andrzej Duda or entourage':
         return 'ANDRZEJ_DUDA'
+    elif name == MIROSLAV_LAJCAK:
+        return 'MIROSLAV_LAJCAK'
+    elif name == 'Paula Heil Fisher (???)':
+        return 'PAULA'
 
     variable_name = remove_question_marks(name)
     variable_name = variable_name.removesuffix('.').removesuffix('Jr').replace('ź', 'z').replace('ø', 'o').strip()
