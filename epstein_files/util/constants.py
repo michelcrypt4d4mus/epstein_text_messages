@@ -1029,7 +1029,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='026028', is_interesting=True, truncate_to=NO_TRUNCATE, comment='Larry Summers / Karim Wade intro'),
     EmailCfg(id='029545', is_interesting=True, truncate_to=NO_TRUNCATE, comment='Tyler Shears reputation'),
     EmailCfg(id='025812', is_interesting=True, truncate_to=NO_TRUNCATE, comment='Tyler Shears reputation'),
-    EmailCfg(id='029914', is_interesting=True, truncate_to=4500, comment='Lord Mandelson russian investments'),
+    EmailCfg(
+        id='029914',
+        description='Epstein and Lord Mandelson discuss Russian investments',
+        is_interesting=True,
+        truncate_to=4500,
+    ),
     EmailCfg(
         id='033453',
         is_interesting=True,
@@ -1945,7 +1950,6 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_
     'Matthew Schafer',                       # Random CC
     MICHAEL_BUCHHOLTZ,                       # Terry Kafka CC
     'Nancy Dahl',                            # covered by Lawrence Krauss (her husband)
-    'Michael J. Pike',                       # lawyer CC
     'Michael Simmons',                       # Random CC
     'Nancy Portland',                        # Lawrence Krauss CC
     'Oliver Goodenough',                     # Robert Trivers CC
