@@ -1529,7 +1529,7 @@ OTHER_FILES_POLITICS = [
         duplicate_ids=['028887'],
     ),
     DocCfg(id='010617', description=TRUMP_DISCLOSURES, date='2017-01-20', is_interesting=True),
-    DocCfg(id='016699', description=TRUMP_DISCLOSURES, date='2017-01-20', is_interesting=True),
+    DocCfg(id='016699', description=TRUMP_DISCLOSURES, date='2017-01-20', is_interesting=True, attached_to_email_id='033091'),
 ]
 
 OTHER_FILES_ACADEMIA = [
@@ -1656,7 +1656,7 @@ OTHER_FILES_MISC = [
     DocCfg(id='031743', description=f'a few pages describing the internet as a "New Nation State" (Network State?)'),
     DocCfg(id='012718', description=f"{CVRA} congressional record", date='2011-06-17'),
     DocCfg(id='024117', description=f"FAQ about anti-money laundering (AML) and terrorist financing (CFT) law in the U.S."),
-    DocCfg(id='019448', description=f"Haitian business investment proposal called Jacmel", attached_to_email_id='019448'),
+    DocCfg(id='019448', description=f"Haitian business investment proposal called Jacmel", attached_to_email_id='019446'),
     DocCfg(id='023644', description=f"interview with Mohammed bin Salman", date='2016-04-25'),
     DocCfg(
         id='030142',

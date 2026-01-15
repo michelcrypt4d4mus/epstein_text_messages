@@ -18,6 +18,7 @@ from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, INFO_INDENT
 from epstein_files.documents.emails.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, FIELD_NAMES, TIME_REGEX, EmailHeader)
+from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constants import *
@@ -44,7 +45,7 @@ LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
-URL_SIGNIFIERS = ['?amp', 'amp?', 'cd=', 'click', 'contentId', 'ft=', 'gclid', 'htm', 'keywords=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'usg=', 'utm']
+URL_SIGNIFIERS = ['?amp', 'amp?', 'cd=', 'click', 'CMP=', 'contentId', 'ft=', 'gclid', 'htm', 'keywords=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'usg=', 'utm']
 APPEARS_IN = 'appears in'
 
 MAX_NUM_HEADER_LINES = 14
@@ -365,6 +366,7 @@ class Email(Communication):
         sent_from_device (str | None) - "Sent from my iPhone" style signature (if it exists)
         signature_substitution_counts (dict[str, int]) - count of how many times a signature was replaced with <...snipped...> for each participant
     """
+    attached_docs: list[OtherFile] = field(default_factory=list)
     actual_text: str = field(init=False)
     config: EmailCfg | None = None
     header: EmailHeader = field(init=False)
@@ -410,6 +412,7 @@ class Email(Communication):
         self.sent_from_device = self._sent_from_device()
 
     def attachments(self) -> list[str]:
+        """Returns the string in the header."""
         return (self.header.attachments or '').split(';')
 
     def info_txt(self) -> Text:
@@ -444,7 +447,7 @@ class Email(Communication):
 
     def is_word_count_worthy(self) -> bool:
         if self.is_fwded_article():
-            return len(self.actual_text) < 500
+            return bool(self.config.fwded_text_after)
         else:
             return not self.is_mailing_list()
 
@@ -840,6 +843,11 @@ class Email(Communication):
 
         yield self.file_info_panel()
         yield Padding(email_txt_panel, (0, 0, 1, INFO_INDENT))
+
+        if self.attached_docs:
+            attachments_table_title = f" {self.url_slug} Email Attachments:"
+            attachments_table = OtherFile.files_preview_table(self.attached_docs, title=attachments_table_title)
+            yield Padding(attachments_table, (0, 0, 1, 12))
 
         if should_rewrite_header:
             self.log_top_lines(self.header.num_header_rows + 4, f'Original header:')
