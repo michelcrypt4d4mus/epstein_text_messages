@@ -479,6 +479,7 @@ EMAILS_CONFIG = [
         description="very long email chain about Leon Black's finances and things like Gratitude America",
         duplicate_ids=['023291'],
         fwded_text_after='Date: Tue, Oct 27',
+        truncate_to=-1,
         comment="Long discussion about leon black's finances",
     ),
     EmailCfg(
@@ -503,6 +504,7 @@ EMAILS_CONFIG = [
         id='031791',
         author=JESSICA_CADWELL,
         attribution_reason='signature',
+        truncate_to=-1,
         comment='First email in Jessica Cadwell chain about service of legal documents',
     ),
     EmailCfg(
@@ -539,7 +541,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='030478', author=LANDON_THOMAS),
     EmailCfg(id='029013', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='029196', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN], actual_text='Talk in 40?'),
-    EmailCfg(id='033593', author=LAWRANCE_VISOSKI, attribution_reason='Signature', comment='visoski email about planes'),
+    EmailCfg(id='033593', author=LAWRANCE_VISOSKI, attribution_reason='Signature', truncate_to=-1, comment='visoski email about planes'),
     EmailCfg(id='033370', author=LAWRANCE_VISOSKI, attribution_reason='Planes discussion signed "Larry"'),
     EmailCfg(id='033495', author=LAWRANCE_VISOSKI, attribution_reason='Planes discussion signed "Larry"'),
     EmailCfg(id='033487', author=LAWRANCE_VISOSKI, recipients=[JEFFREY_EPSTEIN]),
@@ -779,6 +781,7 @@ EMAILS_CONFIG = [
         id='031036',
         description='Barbro C. Ehnbom related donation and Swedish girls discussion',
         is_interesting=True,
+        truncate_to=-1,
         comment='Barbro Ehnbom talking about Swedish girl',
     ),
     EmailCfg(id='022219', description="discussion of attempts to clean up Epstein's Google search results"),
@@ -786,6 +789,7 @@ EMAILS_CONFIG = [
         id='032946',
         description='discussion of obtaining a Moroccan visa for an unnamed woman',
         is_interesting=True,
+        truncate_to=-1,
         comment='Jabor Y about visa for Morocco for unnamed woman',
     ),
     EmailCfg(id='030648', description="is the 'roger' Epstein is trying to meet Roger Stone?"),
@@ -798,6 +802,7 @@ EMAILS_CONFIG = [
         id='031320',
         description='Epstein and Richard Kahn appear to be discussing routing donatings through Peggy Siegal',
         is_interesting=True,
+        truncate_to=-1,
         comment='Epstein Gratitude foundation',
     ),
     EmailCfg(id='016693', description='signed "MM"'),
@@ -898,7 +903,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='031764', is_fwded_article=True, truncate_to=3500, comment='broidy malaysia'),
     EmailCfg(id='032475', date='2017-02-15 13:31:25'),
     EmailCfg(id='030373', date='2018-10-03 01:49:27'),
-    EmailCfg(id='032325', duplicate_ids=['026014'], dupe_type='quoted', is_interesting=True, comment='Zubair'),
+    EmailCfg(id='032325', duplicate_ids=['026014'], dupe_type='quoted', is_interesting=True, truncate_to=-1, comment='Zubair'),
     EmailCfg(id='026631', duplicate_ids=['026632'], dupe_type='quoted'),
     EmailCfg(id='028768', duplicate_ids=['026563'], dupe_type='redacted'),
     EmailCfg(id='027056', duplicate_ids=['028762'], dupe_type='redacted'),
@@ -939,12 +944,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='031088', duplicate_ids=['030885']),
     EmailCfg(id='030859', duplicate_ids=['031067']),
     EmailCfg(id='030635', duplicate_ids=['031134']),
-    EmailCfg(id='028494', duplicate_ids=['026234'], comment='Email about being in palm beach w/trump people'),
+    EmailCfg(id='028494', duplicate_ids=['026234'], truncate_to=-1, comment='Email about being in palm beach w/trump people'),
     EmailCfg(id='030311', duplicate_ids=['021790']),
     EmailCfg(id='033508', duplicate_ids=['029880']),
     EmailCfg(id='030493', duplicate_ids=['030612']),
     EmailCfg(id='032051', duplicate_ids=['031771']),
-    EmailCfg(id='031217', duplicate_ids=['021761'], comment='1st email for dersh, has long article'),
+    EmailCfg(id='031217', duplicate_ids=['021761'], truncate_to=-1, comment='1st email for dersh, has long article'),
     EmailCfg(id='031346', duplicate_ids=['031426']),
     EmailCfg(id='031345', duplicate_ids=['031427']),
     EmailCfg(id='031343', duplicate_ids=['031432']),
@@ -1053,32 +1058,38 @@ EMAILS_CONFIG = [
     EmailCfg(id='029098', is_interesting=True, comment='Nowak, "her Skype contact is in moscow."'),
     EmailCfg(id='030714', is_interesting=True, comment='Bannon, Russian Dugan shout out'),
     EmailCfg(id='031659', is_interesting=True, comment='"i have met some very bad people „ none as bad as trump"'),
-    EmailCfg(id='030245', is_interesting=True, comment='Epstein rationalizes his behavior in an open letter to the world'),
-    EmailCfg(id='030781', is_interesting=True, comment='Bannon email about crypto coin issues'),
-    EmailCfg(id='032906', is_interesting=True, comment='David Blaine email'),
+    EmailCfg(id='030245', is_interesting=True, truncate_to=-1, comment='Epstein rationalizes his behavior in an open letter to the world'),
+    EmailCfg(id='030781', is_interesting=True, truncate_to=-1, comment='Bannon email about crypto coin issues'),
+    EmailCfg(id='032906', is_interesting=True, truncate_to=-1, comment='David Blaine email'),
     EmailCfg(id='026036', is_interesting=True, truncate_to=6000, comment='Gino Yu blockchain mention'),
-    EmailCfg(id='029609', is_interesting=True, comment='Joi Ito'),
-    EmailCfg(id='025233', is_interesting=True, comment='Reputation.com discussion'),
-    EmailCfg(id='017827', is_interesting=True, comment='Bannon / Peggy Siegal email about netflix doc on Epstein'),
-    EmailCfg(id='030222', is_interesting=True, comment='Ross Gow / Ghislaine correspondence'),
-    EmailCfg(id='026028', is_interesting=True, comment='Larry Summers / Karim Wade intro'),
-    EmailCfg(id='029545', is_interesting=True, comment='Tyler Shears reputation'),
-    EmailCfg(id='025812', is_interesting=True, comment='Tyler Shears reputation'),
+    EmailCfg(id='029609', is_interesting=True, truncate_to=-1, comment='Joi Ito'),
+    EmailCfg(id='025233', is_interesting=True, truncate_to=-1, comment='Reputation.com discussion'),
+    EmailCfg(id='017827', is_interesting=True, truncate_to=-1, comment='Bannon / Peggy Siegal email about netflix doc on Epstein'),
+    EmailCfg(id='030222', is_interesting=True, truncate_to=-1, comment='Ross Gow / Ghislaine correspondence'),
+    EmailCfg(id='026028', is_interesting=True, truncate_to=-1, comment='Larry Summers / Karim Wade intro'),
+    EmailCfg(id='029545', is_interesting=True, truncate_to=-1, comment='Tyler Shears reputation'),
+    EmailCfg(id='025812', is_interesting=True, truncate_to=-1, comment='Tyler Shears reputation'),
     EmailCfg(id='029914', is_interesting=True, truncate_to=4500, comment='Lord Mandelson russian investments'),
     EmailCfg(
         id='033453',
         is_interesting=True,
+        truncate_to=-1,
         comment='"Just heard you were telling people that you heard I asked Trump for a million dollars"',
     ),
     EmailCfg(id='023454', is_interesting=True, truncate_to=1878, comment='Email invitation sent to tech CEOs + Epstein'),
     EmailCfg(id='029342', is_interesting=True, truncate_to=2000, comment='Hakeem Jeffries'),
-    EmailCfg(id='031326', is_interesting=True, comment="\"dog that hasn't barked is trump.. virignia spent hours at my house with him\""),
-    EmailCfg(id='033171', is_interesting=True, comment='Zubair'),
-    EmailCfg(id='032319', is_interesting=True, comment='Zubair'),
-    EmailCfg(id='031152', is_interesting=True, comment='Kazakhstan Aliyev news'),
-    EmailCfg(id='028589', comment='Long thread with Reid Weingarten'),
+    EmailCfg(
+        id='031326',
+        is_interesting=True,
+        truncate_to=-1,
+        comment="\"dog that hasn't barked is trump.. virignia spent hours at my house with him\"",
+    ),
+    EmailCfg(id='033171', is_interesting=True, truncate_to=-1, comment='Zubair'),
+    EmailCfg(id='032319', is_interesting=True, truncate_to=-1, comment='Zubair'),
+    EmailCfg(id='031152', is_interesting=True, truncate_to=-1, comment='Kazakhstan Aliyev news'),
+    EmailCfg(id='028589', truncate_to=-1, comment='Long thread with Reid Weingarten'),
     EmailCfg(id='026059', truncate_to=2650, comment='Rothschild'),
-    EmailCfg(id='032643', comment='Anas al Rasheed'),
+    EmailCfg(id='032643', truncate_to=-1, comment='Anas al Rasheed'),
     EmailCfg(id='031619', truncate_to=652, comment='Reply to grab em by the pussy story'),
     EmailCfg(id='021096', truncate_to=700, comment='Sinofsky article quote'),
     EmailCfg(id='032865', truncate_to=445, comment='Barton reply'),
@@ -1264,6 +1275,7 @@ emails_cfg_dict = get_emails_cfg_dict()
 
 for id, truncate_to in INTERESTING_TRUNCATION_LENGTHS.items():
     logger.warning(f"interesting truncation for '{id}' is {truncate_to}")
+    truncate_to = truncate_to or -1
 
     if id in emails_cfg_dict:
         logger.warning(f"   Setting truncation for '{id}'")
@@ -1277,6 +1289,7 @@ emails_cfg_dict = get_emails_cfg_dict()
 
 for id, truncate_to in TRUNCATION_LENGTHS.items():
     logger.warning(f"truncation for '{id}' is {truncate_to}")
+    truncate_to = truncate_to or -1
 
     if id in emails_cfg_dict:
         logger.warning(f"   Setting truncation for '{id}'")
