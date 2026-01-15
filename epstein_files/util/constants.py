@@ -202,6 +202,7 @@ EMAILERS = [
     'Steven Victor MD',
     'Susan Edelman',
     TOM_BARRACK,
+    'Vahe Stepanian',
     'Vladimir Yudashkin',
 ]
 
