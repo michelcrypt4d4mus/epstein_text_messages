@@ -1026,7 +1026,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='025233', is_interesting=True, truncate_to=NO_TRUNCATE, comment='Reputation.com discussion'),
     EmailCfg(id='017827', is_interesting=True, truncate_to=NO_TRUNCATE, comment='Bannon / Peggy Siegal email about netflix doc on Epstein'),
     EmailCfg(id='030222', is_interesting=True, truncate_to=NO_TRUNCATE, comment='Ross Gow / Ghislaine correspondence'),
-    EmailCfg(id='026028', is_interesting=True, truncate_to=NO_TRUNCATE, comment='Larry Summers / Karim Wade intro'),
+    EmailCfg(
+        id='026028',
+        description=f"Epstein introduces {LARRY_SUMMERS} to possibly corrupt Senegalese official Karim Wade",
+        is_interesting=True,
+        truncate_to=NO_TRUNCATE,
+
+    ),
     EmailCfg(id='029545', is_interesting=True, truncate_to=NO_TRUNCATE, comment='Tyler Shears reputation'),
     EmailCfg(id='025812', is_interesting=True, truncate_to=NO_TRUNCATE, comment='Tyler Shears reputation'),
     EmailCfg(
