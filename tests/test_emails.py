@@ -884,6 +884,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     "Peter Mandelson": 10,
     "Richard Kahn": 121,
     ROSS_GOW: 7,
+    'Stephen Hanson': 2,
     STEVEN_PFEIFFER: 11,
     "Susan Edelman": 9,
     "Terry Kafka": 10,
