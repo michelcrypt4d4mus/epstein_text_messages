@@ -848,7 +848,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='028752', duplicate_ids=['026569']),
     EmailCfg(id='031773', duplicate_ids=['032050']),
     EmailCfg(id='021400', duplicate_ids=['031983']),
-    EmailCfg(id='026548', duplicate_ids=['033491']),
+    EmailCfg(id='026548', duplicate_ids=['033491', '033495']),  # 033495 is HTML garbage version
     EmailCfg(id='029752', duplicate_ids=['023550']),
     EmailCfg(id='030339', duplicate_ids=['030592']),
     EmailCfg(id='032250', duplicate_ids=['033589']),

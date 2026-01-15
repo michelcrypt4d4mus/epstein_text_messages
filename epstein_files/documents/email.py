@@ -157,6 +157,7 @@ TRUNCATE_EMAILS_FROM_OR_TO = [
     DIANE_ZIMAN,
     JOSCHA_BACH,
     KATHERINE_KEATING,
+    LAWRANCE_VISOSKI,
     LAWRENCE_KRAUSS,
     LISA_NEW,
     NILI_PRIELL_BARAK,
@@ -222,6 +223,7 @@ TRUNCATION_LENGTHS = {
     '026059': 2650,   # Rothschild
     '032643': None,   # Anas al Rasheed
     '028494': None,   # Email about being in palm beach w/trump people
+    '033593': None,   # visoski email about planes
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
