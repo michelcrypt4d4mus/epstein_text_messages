@@ -212,6 +212,9 @@ INTERESTING_TRUNCATION_LENGTHS = {
     '029342': 2000,    # Hakeem Jeffries
     '032946': None,    # Jabor Y about visa for Morocco for unnamed woman
     '031326': None,    # "dog that hasn't barked is trump.. virignia  spent hours at my house with him"
+    '033171': None,    # Zubair
+    '032319': None,    # Zubair
+    '032325': None,    # Zubair
 }
 
 TRUNCATION_LENGTHS = {
