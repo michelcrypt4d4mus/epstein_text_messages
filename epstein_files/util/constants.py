@@ -592,7 +592,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='026426', recipients=[JEAN_HUGUEN], attribution_reason='Reply'),
     EmailCfg(id='022202', recipients=[JEAN_LUC_BRUNEL], attribution_reason='Follow up / reply', duplicate_ids=['029975']),
     EmailCfg(id='022187', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
-    EmailCfg(id='031489', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (unfixable)
     EmailCfg(id='030347', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
     EmailCfg(id='030367', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
     EmailCfg(id='033274', recipients=[JEFFREY_EPSTEIN]),  # this is a note sent to self
