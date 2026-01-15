@@ -573,8 +573,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='029992', author=TERRY_KAFKA, attribution_reason='Quoted reply'),
     EmailCfg(id='029985', author=TERRY_KAFKA, attribution_reason='Quoted reply in 029992'),
     EmailCfg(id='020666', author=TERRY_KAFKA, attribution_reason="Ends with 'Terry'"),
-    #EmailCfg(id='026014', author=ZUBAIR_KHAN, recipients=[JEFFREY_EPSTEIN], timestamp=parse('2016-11-04 17:46:00')),
-    EmailCfg(id='032325', duplicate_ids=['026014']),  # Zubair
+    # EmailCfg(id='026014', author=ZUBAIR_KHAN, recipients=[JEFFREY_EPSTEIN], timestamp=parse('2016-11-04 13:07:21')),
+    EmailCfg(id='032325', dupe_type='quoted', duplicate_ids=['026014'], timestamp=parse('2016-11-04 13:07:21')),  # timestamp required for 026014
     EmailCfg(id='033021', recipients=[ANAS_ALRASHEED], attribution_reason='visible in 033022'),
     EmailCfg(id='027063', recipients=[ANTHONY_BARRETT]),
     EmailCfg(id='030764', recipients=[ARIANE_DE_ROTHSCHILD], attribution_reason='Reply'),
