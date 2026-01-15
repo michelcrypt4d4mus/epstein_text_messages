@@ -632,7 +632,6 @@ class Email(Communication):
         # Share / Tweet lines
         if self.author == KATHRYN_RUEMMLER:
             text = '\n'.join([l for l in text.split('\n') if l not in ['Share', 'Tweet', 'Bookmark it']])
-        # elif self.author ==
 
         return collapse_newlines(text).strip()
 

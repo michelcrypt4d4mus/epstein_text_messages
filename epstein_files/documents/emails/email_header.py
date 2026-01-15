@@ -13,7 +13,7 @@ ON_BEHALF_OF = 'on behalf of'
 TO_FIELDS = ['bcc', 'cc', 'to']
 EMAILER_FIELDS = [AUTHOR] + TO_FIELDS
 
-HEADER_REGEX_STR = r'(((?:(?:Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments|Classification|Flag):|on behalf of ?)(?! +(by |from my|via )).*\n){3,})'
+HEADER_REGEX_STR = r'(((?:(?:Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments|Classification|Flag|Reply-To):|on behalf of ?)(?! +(by |from my|via )).*\n){3,})'
 EMAIL_SIMPLE_HEADER_REGEX = re.compile(rf'^{HEADER_REGEX_STR}')
 EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX = re.compile(HEADER_REGEX_STR)
 EMAIL_PRE_FORWARD_REGEX = re.compile(r"(.{3,2000}?)" + HEADER_REGEX_STR, re.DOTALL)  # Match up to the next email header section
@@ -53,6 +53,7 @@ class EmailHeader:
     importance: str | None = None
     attachments: str | None = None
     to: list[str] | None = None
+    reply_to: str | None = None
 
     def __post_init__(self):
         self.num_header_rows = len(self.field_names)
@@ -151,7 +152,7 @@ class EmailHeader:
             #logger.debug(f"extracting header line: '{line}'")
             key, value = [element.strip() for element in line.split(':', 1)]
             value = value.rstrip('_')
-            key = AUTHOR if key == 'From' else ('sent_at' if key in ['Date', 'Sent'] else key.lower())
+            key = AUTHOR if key == 'From' else ('sent_at' if key in ['Date', 'Sent'] else key.lower().replace('-', '_'))
             key = 'bcc' if key == 'bee' else key
 
             if kw_args.get(key):
@@ -160,6 +161,9 @@ class EmailHeader:
                 continue
 
             field_names.append(key)
+
+            if key == 'reply_to':
+                logger.warning(f"Found value for Reply-To field: '{value}'")
 
             if key in TO_FIELDS:
                 recipients = [element.strip() for element in value.split(';')]

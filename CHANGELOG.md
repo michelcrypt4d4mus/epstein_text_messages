@@ -1,4 +1,7 @@
 # NEXT RELEASE
+* `EmailHeader.reply_to` field
+
+# 1.3.0
 * `--constantize` debug option
 * Unify all email config properties in `EmailCfg` objects
 
