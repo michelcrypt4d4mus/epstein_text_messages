@@ -310,10 +310,43 @@ TEXTS_CONFIG = CONFIRMED_TEXTS_CONFIG + UNCONFIRMED_TEXTS_CONFIG
 ################################################ EMAILS ################################################
 ########################################################################################################
 
+MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
 # Some emails have a lot of uninteresting CCs
 FLIGHT_IN_2012_PEOPLE: list[Name] = ['Francis Derby', JANUSZ_BANASIAK, 'Louella Rabuyo', 'Richard Barnnet']
 IRAN_DEAL_RECIPIENTS: list[Name] = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
-MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
+
+TRIVERS_CCS: list[Name] = [
+    "Alan Rogers",
+    "Anna Dreber",
+    "Anula Jayasuriya",
+    "Bill Prezant",
+    "Bobby McCormick",
+    "Clive Crook",
+    "Dane Stangler",
+    "Ron Bailey",
+    "Ditsa Pines",
+    "David Darst",
+    "Gerry Ohrstrom",
+    "Paul Romer",
+    "John Mallen",
+    "Jim Halligan",
+    "Lee Silver",
+    "Monika Gruter Cheney",
+    "Marguerite Atkins",
+    "Matt Ridley",
+    "Mike Cagney",
+    "Evan Smith",
+    "Roger Edelen",
+    "Oliver Goodenough",
+    "Paul Zak",
+    "Peter J Richerson",
+    "Clair Brown",
+    "Terry Anderson",
+    "Tim Kane",
+    "Rob Hanson",
+    "president@usfca.edu",
+]
+
 
 EMAILS_CONFIG = [
     # 026294 and 026296 might also be Ittihadieh based on timing
@@ -604,6 +637,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='033456', recipients=["Joel"], attribution_reason='Reply'),
     EmailCfg(id='033458', recipients=["Joel"], attribution_reason='Reply'),
     EmailCfg(id='033460', recipients=["Joel"], attribution_reason='Reply'),
+    EmailCfg(id='025589', recipients=[GORDON_GETTY, JEFFREY_EPSTEIN] + TRIVERS_CCS, attribution_reason='Reply'),
     EmailCfg(
         id='021090',
         recipients=[JONATHAN_FARKAS],
@@ -1744,9 +1778,8 @@ REPLY_LINE_PATTERN = rf"({FRENCH_REPLY_PATTERN}|{GERMAN_REPLY_PATTERN}|{NORWEGAI
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
 SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?((Envoyé de mon|Sent (from|via)).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)|Co-authored with iPhone auto-correct', re.M | re.I)
 
-
 # No point in ever displaying these; their emails show up elsewhere because they're mostly CC recipients
-UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + [
+UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_CCS + [
     'Alan Dlugash',                          # CCed with Richard Kahn
     'Alan Rogers',                           # Random CC
     'Andrew Friendly',                       # Presumably some relation of Kelly Friendly
