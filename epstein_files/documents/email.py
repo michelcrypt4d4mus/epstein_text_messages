@@ -218,6 +218,7 @@ TRUNCATION_LENGTHS = {
     '022977': 1800,   # Krassner with huge attachments field
     '026059': 2650,   # Rothschild
     '032643': None,   # Anas al Rasheed
+    '028494': None,   # Email about being in palm beach w/trump people
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist

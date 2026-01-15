@@ -115,6 +115,9 @@ def epstein_search():
                     or (isinstance(document, MessengerLog) and not args.output_texts):
                 document.warn(f"{type(document).__name__} Skipping search result...")
                 continue
+            elif document.is_duplicate():
+                console.print('\n', document.duplicate_file_txt(), '\n')
+                continue
 
             if args.whole_file:
                 console.print(document)
