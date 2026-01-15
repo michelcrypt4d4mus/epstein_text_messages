@@ -210,9 +210,10 @@ class OtherFile(Document):
             self.log_top_lines(15, msg=timestamps_log_msg, level=logging.DEBUG)
 
     @classmethod
-    def files_preview_table(cls, files: Sequence['OtherFile'], title_pfx: str = '') -> Table:
+    def files_preview_table(cls, files: Sequence['OtherFile'], title_pfx: str = '', title: str = '') -> Table:
         """Build a table of OtherFile documents."""
-        table = build_table(f'{title_pfx}Other Files Details in Chronological Order', show_lines=True)
+        title = title or f'{title_pfx}Other Files Details in Chronological Order'
+        table = build_table(title, show_lines=True, title_justify='left' if title else 'center')
         table.add_column('File', justify='center', width=FILENAME_LENGTH)
         table.add_column('Date', justify='center')
         table.add_column('Size', justify='right', style='dim')
@@ -244,6 +245,7 @@ class OtherFile(Document):
 
     @classmethod
     def summary_table(cls, files: Sequence['OtherFile'], title_pfx: str = '') -> Table:
+        """Table showing file count by category."""
         categories = uniquify([f.category() for f in files])
         categories = sorted(categories, key=lambda c: -len([f for f in files if f.category() == c]))
         table = cls.file_info_table(f'{title_pfx}Other Files Summary', 'Category')
