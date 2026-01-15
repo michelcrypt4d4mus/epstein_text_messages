@@ -863,7 +863,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='030904', duplicate_ids=['031069']),
     EmailCfg(id='030006', duplicate_ids=['031165']),
     EmailCfg(id='025215', duplicate_ids=['031159']),
-    EmailCfg(id='031011', duplicate_ids=['031090']),
+    EmailCfg(id='031011', description="jokes about Chicago corruption", duplicate_ids=['031090']),
     EmailCfg(id='032068', duplicate_ids=['018158']),
     EmailCfg(id='031213', duplicate_ids=['031221']),
     EmailCfg(id='016595', duplicate_ids=['016690']),
@@ -1783,6 +1783,7 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_
     'Alan Dlugash',                          # CCed with Richard Kahn
     'Alan Rogers',                           # Random CC
     'Andrew Friendly',                       # Presumably some relation of Kelly Friendly
+    'Ariane Dwyer',  # Sabba CC
     'BS Stern',                              # A random fwd of email we have
     'Cheryl Kleen',                          # Single email from Anne Boyles, displayed under Anne Boyles
     'Connie Zaguirre',                       # Random CC
@@ -1794,12 +1795,14 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_
     JEFF_FULLER,                             # Random Jean Luc Brunel CC
     'Jojo Fontanilla',                       # Random CC
     'Joseph Vinciguerra',                    # Random CC
+    'Kirk Blouin',                           # John Page / Police Code Enforcement chain
     'Larry Cohen',                           # Random Bill Gates CC
     'Lyn Fontanilla',                        # Random CC
     'Mark Albert',                           # Random CC
     'Matthew Schafer',                       # Random CC
     MICHAEL_BUCHHOLTZ,                       # Terry Kafka CC
     'Nancy Dahl',                            # covered by Lawrence Krauss (her husband)
+    'Michael J. Pike',                       # lawyer CC
     'Michael Simmons',                       # Random CC
     'Nancy Portland',                        # Lawrence Krauss CC
     'Oliver Goodenough',                     # Robert Trivers CC

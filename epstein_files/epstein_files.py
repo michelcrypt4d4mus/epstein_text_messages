@@ -84,7 +84,7 @@ class EpsteinFiles:
         self.json_files = [doc for doc in self.other_files if isinstance(doc, JsonFile)]
         self._set_uninteresting_ccs()
         self._copy_duplicate_email_properties()
-        self._find_email_attachments()
+        self._find_email_attachments_and_set_is_first_for_user()
 
     @classmethod
     def get_files(cls, timer: Timer | None = None) -> 'EpsteinFiles':
@@ -277,12 +277,16 @@ class EpsteinFiles:
 
         return self._uninteresting_emailers
 
-    def _find_email_attachments(self) -> None:
+    def _find_email_attachments_and_set_is_first_for_user(self) -> None:
         for file in self.other_files:
             if file.config and file.config.attached_to_email_id:
                 email = self.email_for_id(file.config.attached_to_email_id)
                 file.warn(f"Attaching to {email}")
                 email.attached_docs.append(file)
+
+        for emailer in self.emailers():
+            first_email = emailer.emails[0]
+            first_email._is_first_for_user = True
 
     def _copy_duplicate_email_properties(self) -> None:
         """Ensure dupe emails have the properties of the emails they duplicate to capture any repairs, config etc."""

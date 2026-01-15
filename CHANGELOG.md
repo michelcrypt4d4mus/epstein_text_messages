@@ -1,5 +1,7 @@
 # NEXT RELEASE
 
+### 1.2.6
+
 ### 1.2.5
 * `--write-text` option
 
