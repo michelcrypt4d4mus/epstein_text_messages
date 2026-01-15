@@ -22,8 +22,7 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constants import *
-from epstein_files.util.data import (TIMEZONE_INFO, collapse_newlines, escape_single_quotes,
-     flatten, listify, remove_timezone, uniquify)
+from epstein_files.util.data import TIMEZONE_INFO, collapse_newlines, escape_single_quotes, remove_timezone
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.file_helper import extract_file_id, file_stem_for_id
 from epstein_files.util.highlighted_group import JUNK_EMAILERS, get_style_for_name
@@ -641,7 +640,12 @@ class Email(Communication):
                 logger.debug(f"Fell back to timestamp {timestamp} in line '{line}'...")
                 return timestamp
 
-        raise RuntimeError(f"No timestamp found in '{self.file_path.name}' top lines:\n{searchable_text}")
+        no_timestamp_msg = f"No timestamp found in '{self.file_path.name}'"
+
+        if self.is_duplicate():
+            logger.warning(f"{no_timestamp_msg} but timestamp should be copied from {self.duplicate_of_id()}")
+        else:
+            raise RuntimeError(f"{no_timestamp_msg}, top lines:\n{searchable_text}")
 
     def _idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES, text: str | None = None) -> int | None:
         """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line in self.text."""
