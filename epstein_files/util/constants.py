@@ -1945,7 +1945,6 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_
     'Matthew Schafer',                       # Random CC
     MICHAEL_BUCHHOLTZ,                       # Terry Kafka CC
     'Nancy Dahl',                            # covered by Lawrence Krauss (her husband)
-    'Michael J. Pike',                       # lawyer CC
     'Michael Simmons',                       # Random CC
     'Nancy Portland',                        # Lawrence Krauss CC
     'Oliver Goodenough',                     # Robert Trivers CC
