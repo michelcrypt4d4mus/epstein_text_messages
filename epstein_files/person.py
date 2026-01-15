@@ -15,7 +15,7 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import *
-from epstein_files.util.data import days_between, flatten, without_falsey
+from epstein_files.util.data import days_between, flatten, uniquify, without_falsey
 from epstein_files.util.env import args
 from epstein_files.util.highlighted_group import (QUESTION_MARKS_TXT, HighlightedNames,
      get_highlight_group_for_name, get_style_for_name, styled_category, styled_name)
@@ -42,7 +42,7 @@ class Person:
     emails: list[Email] = field(default_factory=list)
     imessage_logs: list[MessengerLog] = field(default_factory=list)
     other_files: list[OtherFile] = field(default_factory=list)
-    is_uninteresting_cc: bool = False
+    is_uninteresting: bool = False
 
     def __post_init__(self):
         self.emails = Document.sort_by_timestamp(self.emails)
@@ -62,7 +62,7 @@ class Person:
             return None
         elif self.category():
             return styled_category(self.category())
-        elif self.is_a_mystery() or self.is_uninteresting_cc:
+        elif self.is_a_mystery() or self.is_uninteresting:
             return QUESTION_MARKS_TXT
 
     def email_conversation_length_in_days(self) -> int:
@@ -141,7 +141,7 @@ class Person:
             if info:
                 return info
 
-        if self.is_uninteresting_cc:
+        if self.is_uninteresting and len(self.emails_by()) == 0:
             if self.has_any_epstein_emails():
                 return UNINTERESTING_CC_INFO
             else:
@@ -157,8 +157,10 @@ class Person:
             return Text('(emails whose author or recipient could not be determined)', style=ALT_INFO_STYLE)
         elif self.category() == JUNK:
             return Text(f"({JUNK} mail)", style='bright_black dim')
-        elif self.is_uninteresting_cc and (self.info_str() or '').startswith(UNINTERESTING_CC_INFO):
-            if self.info_str() == UNINTERESTING_CC_INFO:
+        elif self.is_uninteresting and (self.info_str() or '').startswith(UNINTERESTING_CC_INFO):
+            if self.sole_cc():
+                return Text(f"(sole cc: from {self.sole_cc()})", style='wheat4 dim')
+            elif self.info_str() == UNINTERESTING_CC_INFO:
                 return Text(f"({self.info_str()})", style='wheat4 dim')
             else:
                 return Text(f"({self.info_str()})", style='plum4 dim')
@@ -180,7 +182,19 @@ class Person:
 
     def is_a_mystery(self) -> bool:
         """Return True if this is someone we theroetically could know more about."""
-        return self.is_unstyled() and not (self.is_email_address() or self.info_str() or self.is_uninteresting_cc)
+        return self.is_unstyled() and not (self.is_email_address() or self.info_str() or self.is_uninteresting)
+
+    def sole_cc(self) -> str | None:
+        """Return name if this person sent 0 emails and received CC from only one that name."""
+        if len(self.emails_by()) > 0:
+            return None
+
+        email_authors = uniquify([e.author for e in self.emails_to()])
+
+        if len(email_authors) == 1:
+            return email_authors[0]
+        else:
+            return None
 
     def is_email_address(self) -> bool:
         return '@' in (self.name or '')
@@ -198,7 +212,7 @@ class Person:
 
     def should_always_truncate(self) -> bool:
         """True if we want to truncate all emails to/from this user."""
-        return self.name in TRUNCATE_EMAILS_FROM or self.is_uninteresting_cc
+        return self.name in TRUNCATE_EMAILS_FROM or self.is_uninteresting
 
     def is_unstyled(self) -> bool:
         """True if there's no highlight group for this name."""
@@ -335,7 +349,7 @@ class Person:
 
             table.add_row(
                 Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[0 if is_selection else grey_idx]}"),
-                person.internal_link() if is_on_page and not person.is_uninteresting_cc else person.name_txt(),
+                person.internal_link() if is_on_page and not person.is_uninteresting else person.name_txt(),
                 person.category_txt(),
                 f"{len(person.unique_emails() if show_epstein_total else person._unique_printable_emails())}",
                 str(len(person.unique_emails_by())) if len(person.unique_emails_by()) > 0 else '',

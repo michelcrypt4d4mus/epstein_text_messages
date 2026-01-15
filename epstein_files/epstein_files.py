@@ -252,7 +252,7 @@ class EpsteinFiles:
                 name=name,
                 emails=self.emails_for(name),
                 imessage_logs=self.imessage_logs_for(name),
-                is_uninteresting_cc=name in self.uninteresting_emailers(),
+                is_uninteresting=name in self.uninteresting_emailers(),
                 other_files=[f for f in self.other_files if name and name == f.author]
             )
             for name in names
