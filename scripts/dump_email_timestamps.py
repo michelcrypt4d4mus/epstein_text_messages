@@ -27,7 +27,7 @@ for email in sorted(epstein_files.non_duplicate_emails(), key=lambda e: -1 * e._
         continue
 
     if email.config and email.config.fwded_text_after:
-        email.warn(f"fwded_text_after='{email.config.fwded_text_after}'")
+        # email.warn(f"fwded_text_after='{email.config.fwded_text_after}'")
         console.print(email)
     # if email.is_mailing_list() or email.file_size() > 100000 or email.file_size() < 1333:
     #     continue
