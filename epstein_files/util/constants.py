@@ -7,6 +7,7 @@ from dateutil.parser import parse
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.doc_cfg import DocCfg, EmailCfg, TextCfg
+from epstein_files.util.env import args
 from epstein_files.util.logging import logger
 
 FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
@@ -427,18 +428,18 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='026624',
         author=DARREN_INDYKE,
-        recipients=[JEFFREY_EPSTEIN],
-        timestamp=parse('2016-10-01 16:40:00'),
+        date='2016-10-01 16:40:00',
         duplicate_ids=['031708'],
+        recipients=[JEFFREY_EPSTEIN],
     ),
     EmailCfg(
         id='031278',
         actual_text='',
+        attribution_reason='Quoted replies are in 019109',
         author=DARREN_INDYKE,
+        date='2016-08-17 11:26:00',
         description=f"heavily redacted email, quoted replies are from {STEVEN_HOFFENBERG} about James Patterson's book",
         recipients=['Charles Michael'],
-        timestamp=parse('2016-08-17 11:26:00'),
-        attribution_reason='Quoted replies are in 019109',
     ),
     EmailCfg(id='026290', author=DAVID_SCHOEN, attribution_reason='Signature'),
     EmailCfg(id='031339', author=DAVID_SCHOEN, attribution_reason='Signature'),
@@ -466,9 +467,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='021823', author=JEAN_LUC_BRUNEL, attribution_reason='Reply'),
     EmailCfg(id='022949', author=JEFFREY_EPSTEIN),  # Bad OCR (nofix)
     EmailCfg(id='031624', author=JEFFREY_EPSTEIN),  # Bad OCR (nofix)
-    EmailCfg(id='018726', author=JEFFREY_EPSTEIN, timestamp=parse('2018-06-08 08:36:00')),  # nofix
-    EmailCfg(id='032283', author=JEFFREY_EPSTEIN, timestamp=parse('2016-09-14 08:04:00')),  # nofix
-    EmailCfg(id='026943', author=JEFFREY_EPSTEIN, timestamp=parse('2019-05-22 05:47:00')),  # nofix
+    EmailCfg(id='018726', author=JEFFREY_EPSTEIN, date='2018-06-08 08:36:00'),  # nofix
+    EmailCfg(id='032283', author=JEFFREY_EPSTEIN, date='2016-09-14 08:04:00'),  # nofix
+    EmailCfg(id='026943', author=JEFFREY_EPSTEIN, date='2019-05-22 05:47:00'),  # nofix
     EmailCfg(
         id='023208',
         author=JEFFREY_EPSTEIN,
@@ -600,8 +601,8 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='019109',
         author=STEVEN_HOFFENBERG,
+        date='2016-08-11 09:36:01',
         recipients=["Players2"],
-        timestamp=parse('2016-08-11 09:36:01'),
         attribution_reason=f"Actually a fwd by Charles Michael but {STEVEN_HOFFENBERG} email more interesting",
     ),
     EmailCfg(
@@ -800,8 +801,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='030927', is_fwded_article=True),  # don't talk to the FBI
     EmailCfg(id='033329', is_fwded_article=True),  # Chinese economists
     EmailCfg(id='031764', is_fwded_article=True),  # GOP fundraiser Broidy under investigation
-    EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
-    EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
+    EmailCfg(id='032475', date='2017-02-15 13:31:25'),
+    EmailCfg(id='030373', date='2018-10-03 01:49:27'),
     # Configure duplicates
     EmailCfg(id='032325', duplicate_ids=['026014'], dupe_type='quoted'),
     EmailCfg(id='026631', duplicate_ids=['026632'], dupe_type='quoted'),
@@ -940,6 +941,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='029773', fwded_text_after='Omar Quadhafi', duplicate_ids=['012685']),
     EmailCfg(id='012197_4', fwded_text_after="Thanks -- Jay", is_fwded_article=False),
 ]
+
+if args.deep_debug:
+    for email_cfg in EMAILS_CONFIG:
+        print(f"{email_cfg},")
+
+    import sys; sys.exit()
 
 
 ################################################################################################
