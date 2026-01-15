@@ -44,7 +44,7 @@ LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
-URL_SIGNIFIERS = ['?amp', 'amp?', 'cd=', 'click', 'ft=', 'gclid', 'htm', 'keywords=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'usg=', 'utm']
+URL_SIGNIFIERS = ['?amp', 'amp?', 'cd=', 'click', 'contentId', 'ft=', 'gclid', 'htm', 'keywords=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'usg=', 'utm']
 APPEARS_IN = 'appears in'
 
 MAX_NUM_HEADER_LINES = 14
@@ -684,7 +684,7 @@ class Email(Communication):
 
             if LINK_LINE_REGEX.search(line):
                 while i < (len(lines) - 1) \
-                        and 'http' not in lines[i + 1] \
+                        and not lines[i + 1].startswith('htt') \
                         and (lines[i + 1].endswith('/') or any(s in lines[i + 1] for s in URL_SIGNIFIERS) or LINK_LINE2_REGEX.match(lines[i + 1])):
                     logger.debug(f"{self.filename}: Joining link lines\n   1. {line}\n   2. {lines[i + 1]}\n")
                     line += lines[i + 1]
