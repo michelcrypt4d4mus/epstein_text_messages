@@ -518,6 +518,7 @@
                 "bytes": 4545,
                 "file_id": "014523",
                 "filename": "HOUSE_OVERSIGHT_014523.txt",
+                "is_fwded_article": true,
                 "num_lines": 75,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -598,6 +599,7 @@
                 "bytes": 4395,
                 "file_id": "014857",
                 "filename": "HOUSE_OVERSIGHT_014857.txt",
+                "is_fwded_article": true,
                 "num_lines": 82,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -1385,6 +1387,7 @@
                 "file_id": "020437",
                 "filename": "HOUSE_OVERSIGHT_020437.txt",
                 "fwded_text_after": "Will Cohen Cooperate",
+                "is_fwded_article": true,
                 "num_lines": 150,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -1592,6 +1595,7 @@
                 "bytes": 13489,
                 "file_id": "021231",
                 "filename": "HOUSE_OVERSIGHT_021231.txt",
+                "is_fwded_article": true,
                 "num_lines": 157,
                 "recipients": [
                     "Sultan Ahmed Bin Sulayem"
@@ -4468,6 +4472,7 @@
                 "duplicate_of_id": "031423",
                 "file_id": "025361",
                 "filename": "HOUSE_OVERSIGHT_025361.txt",
+                "is_fwded_article": true,
                 "num_lines": 93,
                 "recipients": [
                     "Sultan Ahmed Bin Sulayem"
@@ -5411,7 +5416,7 @@
                 "bytes": 5844,
                 "file_id": "026020",
                 "filename": "HOUSE_OVERSIGHT_026020.txt",
-                "num_lines": 106,
+                "num_lines": 105,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -5655,7 +5660,7 @@
                 "bytes": 2785,
                 "file_id": "026076",
                 "filename": "HOUSE_OVERSIGHT_026076.txt",
-                "num_lines": 55,
+                "num_lines": 53,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -7047,7 +7052,7 @@
                 "bytes": 6564,
                 "file_id": "026422",
                 "filename": "HOUSE_OVERSIGHT_026422.txt",
-                "num_lines": 120,
+                "num_lines": 119,
                 "recipients": [
                     "Robert Lawrence Kuhn"
                 ],
@@ -7558,7 +7563,8 @@
                 "bytes": 895,
                 "dupe_type": "same",
                 "duplicate_ids": [
-                    "033491"
+                    "033491",
+                    "033495"
                 ],
                 "file_id": "026548",
                 "filename": "HOUSE_OVERSIGHT_026548.txt",
@@ -8388,6 +8394,7 @@
                 "bytes": 35922,
                 "file_id": "026893",
                 "filename": "HOUSE_OVERSIGHT_026893.txt",
+                "is_fwded_article": true,
                 "num_lines": 411,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -11230,7 +11237,7 @@
                 "bytes": 2212,
                 "file_id": "029283",
                 "filename": "HOUSE_OVERSIGHT_029283.txt",
-                "num_lines": 40,
+                "num_lines": 37,
                 "recipients": [
                     "Joi Ito"
                 ],
@@ -11500,6 +11507,7 @@
                 "bytes": 19255,
                 "file_id": "029458",
                 "filename": "HOUSE_OVERSIGHT_029458.txt",
+                "is_fwded_article": true,
                 "num_lines": 372,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -13393,7 +13401,7 @@
                 "bytes": 11347,
                 "file_id": "030222",
                 "filename": "HOUSE_OVERSIGHT_030222.txt",
-                "num_lines": 203,
+                "num_lines": 197,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -13437,6 +13445,7 @@
                 ],
                 "file_id": "030238",
                 "filename": "HOUSE_OVERSIGHT_030238.txt",
+                "is_fwded_article": true,
                 "num_lines": 108,
                 "recipients": [
                     "Faith Kates"
@@ -16711,6 +16720,7 @@
                 "bytes": 6125,
                 "file_id": "030865",
                 "filename": "HOUSE_OVERSIGHT_030865.txt",
+                "is_fwded_article": true,
                 "num_lines": 97,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -16777,6 +16787,7 @@
                 "duplicate_of_id": "031112",
                 "file_id": "030876",
                 "filename": "HOUSE_OVERSIGHT_030876.txt",
+                "is_fwded_article": true,
                 "num_lines": 59,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -17020,10 +17031,12 @@
                 "bytes": 36014,
                 "file_id": "030927",
                 "filename": "HOUSE_OVERSIGHT_030927.txt",
+                "is_fwded_article": true,
                 "num_lines": 532,
                 "recipients": [
                     "Grant J. Smith"
                 ],
+                "subject": "RE: Sam Fields on 302 Interview",
                 "timestamp": "2009-10-12T17:44:42",
                 "type": "Email"
             },
@@ -17268,6 +17281,7 @@
                 "file_id": "030989",
                 "filename": "HOUSE_OVERSIGHT_030989.txt",
                 "fwded_text_after": "New book paints sordid picture of Trump real estate",
+                "is_fwded_article": true,
                 "num_lines": 61,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -17723,6 +17737,7 @@
                 ],
                 "file_id": "031112",
                 "filename": "HOUSE_OVERSIGHT_031112.txt",
+                "is_fwded_article": true,
                 "num_lines": 59,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -17853,6 +17868,7 @@
                 "duplicate_of_id": "030238",
                 "file_id": "031130",
                 "filename": "HOUSE_OVERSIGHT_031130.txt",
+                "is_fwded_article": true,
                 "num_lines": 104,
                 "recipients": [
                     "Faith Kates"
@@ -18947,6 +18963,7 @@
                 ],
                 "file_id": "031423",
                 "filename": "HOUSE_OVERSIGHT_031423.txt",
+                "is_fwded_article": true,
                 "num_lines": 93,
                 "recipients": [
                     "Sultan Ahmed Bin Sulayem"
@@ -19052,11 +19069,10 @@
                 "type": "Email"
             },
             {
-                "attribution_reason": "bounced",
                 "author": "Jeffrey Epstein",
                 "bytes": 8939,
                 "dupe_type": "same",
-                "duplicate_of_id": "031996",
+                "duplicate_of_id": "031591",
                 "file_id": "031442",
                 "filename": "HOUSE_OVERSIGHT_031442.txt",
                 "num_lines": 155,
@@ -19064,7 +19080,7 @@
                     "Christina Galbraith"
                 ],
                 "subject": "failure notice",
-                "timestamp": "2015-01-06T01:15:20",
+                "timestamp": "2015-01-06T01:15:19",
                 "type": "Email"
             },
             {
@@ -19731,6 +19747,11 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 1861,
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "031442",
+                    "031996"
+                ],
                 "file_id": "031591",
                 "filename": "HOUSE_OVERSIGHT_031591.txt",
                 "num_lines": 37,
@@ -20598,7 +20619,8 @@
                 "bytes": 8565,
                 "file_id": "031764",
                 "filename": "HOUSE_OVERSIGHT_031764.txt",
-                "num_lines": 118,
+                "is_fwded_article": true,
+                "num_lines": 117,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -20865,7 +20887,7 @@
                 "bytes": 1270,
                 "file_id": "031802",
                 "filename": "HOUSE_OVERSIGHT_031802.txt",
-                "num_lines": 23,
+                "num_lines": 22,
                 "recipients": [
                     "David Schoen"
                 ],
@@ -20878,7 +20900,7 @@
                 "bytes": 1510,
                 "file_id": "031803",
                 "filename": "HOUSE_OVERSIGHT_031803.txt",
-                "num_lines": 25,
+                "num_lines": 24,
                 "recipients": [
                     "David Schoen"
                 ],
@@ -21175,20 +21197,17 @@
                 "type": "Email"
             },
             {
-                "attribution_reason": "bounced",
                 "author": "Jeffrey Epstein",
                 "bytes": 8814,
                 "dupe_type": "same",
-                "duplicate_ids": [
-                    "031442"
-                ],
+                "duplicate_of_id": "031591",
                 "file_id": "031996",
                 "filename": "HOUSE_OVERSIGHT_031996.txt",
                 "num_lines": 161,
                 "recipients": [
                     "Christina Galbraith"
                 ],
-                "timestamp": "2015-01-06T01:15:20",
+                "timestamp": "2015-01-06T01:15:19",
                 "type": "Email"
             },
             {
@@ -29205,7 +29224,7 @@
                 "bytes": 476,
                 "file_id": "033213",
                 "filename": "HOUSE_OVERSIGHT_033213.txt",
-                "num_lines": 10,
+                "num_lines": 9,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -30247,7 +30266,7 @@
                 "bytes": 392,
                 "file_id": "033306",
                 "filename": "HOUSE_OVERSIGHT_033306.txt",
-                "num_lines": 7,
+                "num_lines": 6,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -30761,6 +30780,7 @@
                 "bytes": 4144,
                 "file_id": "033362",
                 "filename": "HOUSE_OVERSIGHT_033362.txt",
+                "is_fwded_article": true,
                 "num_lines": 61,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -30913,6 +30933,7 @@
                 "filename": "HOUSE_OVERSIGHT_033386.txt",
                 "num_lines": 70,
                 "recipients": [
+                    null,
                     "Jeffrey Epstein"
                 ],
                 "subject": "Gulfstream V - offmarket, sleeper aircraft",
@@ -31648,9 +31669,10 @@
                 "type": "Email"
             },
             {
-                "attribution_reason": "Planes discussion signed \"Larry\"",
                 "author": "Lawrance Visoski",
                 "bytes": 4804,
+                "dupe_type": "same",
+                "duplicate_of_id": "026548",
                 "file_id": "033495",
                 "filename": "HOUSE_OVERSIGHT_033495.txt",
                 "num_lines": 126,
@@ -31658,7 +31680,7 @@
                     "Jeffrey Epstein"
                 ],
                 "subject": "Fwd: Photos",
-                "timestamp": "2014-06-07T16:45:54",
+                "timestamp": "2014-06-07T17:00:22",
                 "type": "Email"
             },
             {
@@ -32237,6 +32259,7 @@
                 "filename": "HOUSE_OVERSIGHT_033599.txt",
                 "num_lines": 68,
                 "recipients": [
+                    null,
                     "Jeffrey Epstein"
                 ],
                 "subject": "Gulfstream V - offmarket, sleeper aircraft",
@@ -37355,6 +37378,7 @@
                 "was_timestamp_extracted": true
             },
             {
+                "attached_to_email_id": "026893",
                 "author": "Goldman Sachs Investment Management Division",
                 "bytes": 38046,
                 "category": "finance",
@@ -38187,6 +38211,7 @@
                 "type": "OtherFile"
             },
             {
+                "attached_to_email_id": "030006",
                 "author": "JP Morgan",
                 "bytes": 14813,
                 "category": "finance",
