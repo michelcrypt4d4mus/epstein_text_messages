@@ -27,8 +27,8 @@ from epstein_files.util.logging import exit_with_error, logger
 from epstein_files.util.output import (print_emails_section, print_json_files, print_json_stats,
      print_other_files_section, print_text_messages_section, print_email_timeline, print_emailers_info,
      print_json_metadata, write_urls)
-from epstein_files.util.rich import (build_highlighter, console, highlighter, print_color_key, print_title_page_header,
-     print_title_page_tables, print_subtitle_panel, write_html)
+from epstein_files.util.rich import (build_highlighter, console, highlighter, print_color_key, print_json,
+     print_title_page_header, print_title_page_tables, print_subtitle_panel, write_html)
 from epstein_files.util.timer import Timer
 from epstein_files.util.word_count import write_word_counts_html
 
@@ -155,6 +155,9 @@ def epstein_show():
             if isinstance(doc, Email):
                 console.print(Panel(Text("actual_text: ").append(doc.summary()), expand=False, style=doc._border_style()))
                 console.print(escape(doc._actual_text()), '\n')
+                metadata = doc.metadata()
+                metadata['is_word_count_worthy'] = doc.is_word_count_worthy()
+                print_json(f"{doc.file_id} Metadata", metadata)
 
 
 def epstein_word_count() -> None:
