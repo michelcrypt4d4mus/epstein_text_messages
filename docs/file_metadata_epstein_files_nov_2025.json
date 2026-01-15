@@ -5665,9 +5665,12 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "discussion of Kuwait and timing",
+                "author": "Anas Alrasheed",
                 "bytes": 1869,
                 "file_id": "026078",
                 "filename": "HOUSE_OVERSIGHT_026078.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 39,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -5678,9 +5681,12 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "discussion of Kuwait and timing",
+                "author": "Anas Alrasheed",
                 "bytes": 5747,
                 "file_id": "026080",
                 "filename": "HOUSE_OVERSIGHT_026080.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 90,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -5691,9 +5697,12 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "discussion of Kuwait and timing",
+                "author": "Anas Alrasheed",
                 "bytes": 6867,
                 "file_id": "026083",
                 "filename": "HOUSE_OVERSIGHT_026083.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 113,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -5704,9 +5713,12 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "discussion of Kuwait and timing",
+                "author": "Anas Alrasheed",
                 "bytes": 7737,
                 "file_id": "026086",
                 "filename": "HOUSE_OVERSIGHT_026086.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 135,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -5717,9 +5729,12 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "discussion of Kuwait and timing",
+                "author": "Anas Alrasheed",
                 "bytes": 7900,
                 "file_id": "026090",
                 "filename": "HOUSE_OVERSIGHT_026090.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 133,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -7778,7 +7793,7 @@
                 "file_id": "026620",
                 "filename": "HOUSE_OVERSIGHT_026620.txt",
                 "fwded_text_after": "From: Mike Cohen",
-                "num_lines": 54,
+                "num_lines": 33,
                 "recipients": [
                     "ACT for America",
                     "Allen West",
@@ -11610,7 +11625,7 @@
                 "file_id": "029509",
                 "filename": "HOUSE_OVERSIGHT_029509.txt",
                 "is_fwded_article": true,
-                "num_lines": 248,
+                "num_lines": 247,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -12621,6 +12636,7 @@
                 "bytes": 2161,
                 "file_id": "029905",
                 "filename": "HOUSE_OVERSIGHT_029905.txt",
+                "is_fwded_article": true,
                 "num_lines": 35,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -24139,9 +24155,12 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "discussion of Kuwait and timing",
+                "author": "Anas Alrasheed",
                 "bytes": 944,
                 "file_id": "032542",
                 "filename": "HOUSE_OVERSIGHT_032542.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 21,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -27008,6 +27027,7 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 3764,
+                "description": "discussion of obtaining a Moroccan visa for an unnamed woman",
                 "file_id": "032946",
                 "filename": "HOUSE_OVERSIGHT_032946.txt",
                 "num_lines": 77,
@@ -39295,7 +39315,7 @@
         "Gwendolyn Beck": "employee, Epstein fund manager in the 90s",
         "Harry Fisch": "academia, men's health expert at New York-Presbyterian / Weill Cornell (?)",
         "Heather Mann": "modeling, South African former model, ex-girlfriend of Prince Andrew (?)",
-        "Henry Holt": "journalist, Michael Wolff's book publisher",
+        "Henry Holt": "journalist, Michael Wolff's book publisher (company not a person)",
         "Howard Rubenstein": "lawyer, Epstein's former spokesman",
         "Ian Osborne": "publicist, Ian Osborne & Partners reputation repairer hired in 2011",
         "Ivan Glasenberg": "Africa, South African former CEO of Glencore, one of the world's largest commodity trading and mining companies",
@@ -39425,7 +39445,7 @@
         "Thorbj\u00f8rn Jagland": "Europe, former prime minister of Norway, Nobel Peace Prize Committee",
         "Tim Zagat": "journalist, Zagat restaurant guide CEO",
         "Tom Barrack": "friend, long time friend of Trump",
-        "Tom Pritzker": "business, brother of J.B. Pritzker",
+        "Tom Pritzker": "business, chairman of The Pritzker Organization and Hyatt Hotels",
         "Tonja Haddad Coleman": "lawyer, civil attorney Epstein v. Scott Rothstein, Brad Edwards, & L.M.",
         "Tyler Shears": "publicist, reputation management, worked on with Christina Galbraith",
         "Vahe Stepanian": "finance, Cetera Financial Group",
