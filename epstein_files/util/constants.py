@@ -682,6 +682,10 @@ EMAILS_CONFIG = [
     EmailCfg(id='031428', is_fwded_article=True, duplicate_ids=['031388']),
     EmailCfg(id='033528', is_fwded_article=True, duplicate_ids=['033517']),
     EmailCfg(id='030238', is_fwded_article=True, duplicate_ids=['031130']),
+
+    EmailCfg(id='014523', is_fwded_article=True),  # finance bank research
+    EmailCfg(id='014857', is_fwded_article=True),  # finance bank research
+    EmailCfg(id='030865', is_fwded_article=True),  # Deutsche bank research
     EmailCfg(id='021231', is_fwded_article=True),  # 11 places with worse economy than US
     EmailCfg(id='029905', is_fwded_article=True),  # Ann Coulter
     EmailCfg(id='026829', is_fwded_article=True),  # Taxes
