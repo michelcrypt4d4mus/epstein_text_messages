@@ -218,6 +218,7 @@ INTERESTING_TRUNCATION_LENGTHS = {
     '033171': None,    # Zubair
     '032319': None,    # Zubair
     '032325': None,    # Zubair
+    '031152': None,    # Kazakhstan Aliyev news
 }
 
 TRUNCATION_LENGTHS = {
