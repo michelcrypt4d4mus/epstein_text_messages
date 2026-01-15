@@ -11,6 +11,8 @@ from epstein_files.util.env import args
 from epstein_files.util.logging import logger
 
 FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
+MAX_CHARS_TO_PRINT = 4000
+TRUNCATED_CHARS = int(MAX_CHARS_TO_PRINT / 3)
 
 HEADER_ABBREVIATIONS = {
     "AD": "Abu Dhabi",
@@ -413,7 +415,13 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='033328', author=AZIZA_ALAHMADI, attribution_reason='"Regards, Aziza" at bottom'),
     EmailCfg(id='026659', author=BARBRO_C_EHNBOM, attribution_reason='Reply'),
-    EmailCfg(id='031215', author=BARBRO_C_EHNBOM, duplicate_ids=['026745'], dupe_type='redacted', comment="the same except for 'your Anna!'. author must be specified because email address is redacted in 026745 so it needs the config"),
+    EmailCfg(
+        id='031215',
+        author=BARBRO_C_EHNBOM,
+        duplicate_ids=['026745'],
+        dupe_type='redacted',
+        comment="the same except for 'your Anna!'. author must be specified because email address is redacted in 026745 so it needs the config",
+    ),
     EmailCfg(id='026764', author=BARRY_J_COHEN),
     EmailCfg(id='031206', author=BENNET_MOSKOWITZ, duplicate_ids=['031227']),
     EmailCfg(id='031591', duplicate_ids=['031442', '031996']),
@@ -432,6 +440,8 @@ EMAILS_CONFIG = [
         attribution_reason='Quoted replies are in 019109',
         date='2016-08-17 11:26:00',
         description="heavily redacted email, quoted replies are from Steven Hoffenberg about James Patterson's book",
+        truncate_to=2500,
+        comment='Hoffenberg',
     ),
     EmailCfg(id='026290', author=DAVID_SCHOEN, attribution_reason='Signature'),
     EmailCfg(id='031339', author=DAVID_SCHOEN, attribution_reason='Signature'),
@@ -469,6 +479,8 @@ EMAILS_CONFIG = [
         description="very long email chain about Leon Black's finances and things like Gratitude America",
         duplicate_ids=['023291'],
         fwded_text_after='Date: Tue, Oct 27',
+        truncate_to=-1,
+        comment="Long discussion about leon black's finances",
     ),
     EmailCfg(
         id='032214',
@@ -481,14 +493,20 @@ EMAILS_CONFIG = [
         id='029582',
         author=JEFFREY_EPSTEIN,
         recipients=[RENATA_BOLOTOVA],
-        attribution_reason=BOLOTOVA_REASON,
+        attribution_reason='Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")',
     ),
     EmailCfg(id='030997', author=JEFFREY_EPSTEIN, actual_text='call back'),
     EmailCfg(id='028770', author=JEFFREY_EPSTEIN, actual_text='call me now'),
     EmailCfg(id='031826', author=JEFFREY_EPSTEIN, actual_text='I have'),
     EmailCfg(id='030768', author=JEFFREY_EPSTEIN, actual_text='ok'),
     EmailCfg(id='022938', author=JEFFREY_EPSTEIN, actual_text='what do you suggest?'),
-    EmailCfg(id='031791', author=JESSICA_CADWELL, attribution_reason='signature'),
+    EmailCfg(
+        id='031791',
+        author=JESSICA_CADWELL,
+        attribution_reason='signature',
+        truncate_to=-1,
+        comment='First email in Jessica Cadwell chain about service of legal documents',
+    ),
     EmailCfg(
         id='028850',
         description='Joi Ito reaching out to Epstein for an immediate phone call after news about illicit Russian money',
@@ -523,7 +541,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='030478', author=LANDON_THOMAS),
     EmailCfg(id='029013', author=LARRY_SUMMERS, recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='029196', author=LAWRENCE_KRAUSS, recipients=[JEFFREY_EPSTEIN], actual_text='Talk in 40?'),
-    EmailCfg(id='033593', author=LAWRANCE_VISOSKI, attribution_reason='Signature'),
+    EmailCfg(id='033593', author=LAWRANCE_VISOSKI, attribution_reason='Signature', truncate_to=-1, comment='visoski email about planes'),
     EmailCfg(id='033370', author=LAWRANCE_VISOSKI, attribution_reason='Planes discussion signed "Larry"'),
     EmailCfg(id='033495', author=LAWRANCE_VISOSKI, attribution_reason='Planes discussion signed "Larry"'),
     EmailCfg(id='033487', author=LAWRANCE_VISOSKI, recipients=[JEFFREY_EPSTEIN]),
@@ -597,12 +615,12 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='029605',
         author=RENATA_BOLOTOVA,
-        attribution_reason=BOLOTOVA_REASON,
+        attribution_reason='Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")',
     ),
     EmailCfg(
         id='029606',
         author=RENATA_BOLOTOVA,
-        attribution_reason=BOLOTOVA_REASON,
+        attribution_reason='Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")',
     ),
     EmailCfg(id='029604', author=RENATA_BOLOTOVA, attribution_reason='Continued in 239606 etc'),
     EmailCfg(
@@ -752,127 +770,140 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='029581',
         recipients=[RENATA_BOLOTOVA],
-        attribution_reason=BOLOTOVA_REASON,
+        attribution_reason='Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")',
     ),
     EmailCfg(id='019334', recipients=[STEVE_BANNON], attribution_reason='quoted reply'),
     EmailCfg(id='021106', recipients=[STEVE_BANNON], attribution_reason='Reply'),
     EmailCfg(id='029344', actual_text='I thought of you when I read this article. Was this your idea? Alan', is_fwded_article=True),
     EmailCfg(id='032358', actual_text='<REDACTED>'),
     EmailCfg(id='033050', actual_text='schwartman'),
-    EmailCfg(id='031036', description='Barbro C. Ehnbom related donation and Swedish girls discussion'),
+    EmailCfg(
+        id='031036',
+        description='Barbro C. Ehnbom related donation and Swedish girls discussion',
+        is_interesting=True,
+        truncate_to=-1,
+        comment='Barbro Ehnbom talking about Swedish girl',
+    ),
     EmailCfg(id='022219', description="discussion of attempts to clean up Epstein's Google search results"),
-    EmailCfg(id='032946', description='discussion of obtaining a Moroccan visa for an unnamed woman'),
+    EmailCfg(
+        id='032946',
+        description='discussion of obtaining a Moroccan visa for an unnamed woman',
+        is_interesting=True,
+        truncate_to=-1,
+        comment='Jabor Y about visa for Morocco for unnamed woman',
+    ),
     EmailCfg(id='030648', description="is the 'roger' Epstein is trying to meet Roger Stone?"),
     EmailCfg(id='030762', description="is the 'roger' Epstein is trying to meet Roger Stone?"),
     EmailCfg(id='030649', description="is the 'roger' Epstein is trying to meet Roger Stone?"),
     EmailCfg(id='026026', description="is the 'roger' Epstein is trying to meet Roger Stone?"),
     EmailCfg(id='026030', description="is the 'roger' Epstein is trying to meet Roger Stone?"),
     EmailCfg(id='026033', description="is the 'roger' Epstein is trying to meet Roger Stone?"),
-    EmailCfg(id='031320', description='Epstein and Richard Kahn appear to be discussing routing donatings through Peggy Siegal'),
+    EmailCfg(
+        id='031320',
+        description='Epstein and Richard Kahn appear to be discussing routing donatings through Peggy Siegal',
+        is_interesting=True,
+        truncate_to=-1,
+        comment='Epstein Gratitude foundation',
+    ),
     EmailCfg(id='016693', description='signed "MM"'),
     EmailCfg(id='028524', description='Zach Braff op-ed on Woody Allen in NYT', is_fwded_article=True),
     EmailCfg(id='031333', description='Fort Knox conspiracy theory, looks like a Russian disinfo article', is_fwded_article=True),
     EmailCfg(id='031335', description='Fort Knox conspiracy theory, looks like a Russian disinfo article', is_fwded_article=True),
-    EmailCfg(
-        id='023627',
-        description='draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015',
-        is_fwded_article=True,
-    ),
-    EmailCfg(id='023627', is_fwded_article=True, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
-    EmailCfg(id='026298', is_fwded_article=True, duplicate_ids=['026499'], comment="Written by someone else?"),
-    EmailCfg(id='029692', is_fwded_article=True, duplicate_ids=['029779'], comment="WaPo article"),
-    EmailCfg(id='022344', is_fwded_article=True, duplicate_ids=['028529'], comment="Bill Gates is most admired from Nikolic"),
-    EmailCfg(id='018197', is_fwded_article=True, duplicate_ids=['028648'], comment="Ray Takeyh article fwd"),
-    EmailCfg(id='028728', is_fwded_article=True, duplicate_ids=['027102'], comment="WSJ forward to Larry Summers"),
-    EmailCfg(id='028781', is_fwded_article=True, duplicate_ids=['013460'], comment="Atlantic on Jim Yong Kim, Obama's World Bank Pick"),
-    EmailCfg(id='025041', is_fwded_article=True, duplicate_ids=['028675'], comment="Obama agenda"),
-    EmailCfg(id='031136', is_fwded_article=True, duplicate_ids=['028791'], comment="'Smart Money is Fleeing US Stocks'"),
-    EmailCfg(id='031779', is_fwded_article=True, duplicate_ids=['026938'], comment="Sarah Silverman on AI"),
-    EmailCfg(id='029849', is_fwded_article=True, duplicate_ids=['033482'], comment="Fareed Zakaria: Trump sells America short),"),
-    EmailCfg(id='032023', is_fwded_article=True, duplicate_ids=['032012'], comment="American-Israeli Cooperative Enterprise Newsletter"),
-    EmailCfg(id='021758', is_fwded_article=True, duplicate_ids=['030616'], comment="Radar Online article about Epstein's early prison release"),
-    EmailCfg(id='033297', is_fwded_article=True, duplicate_ids=['033586'], comment="Sultan Sulayem fwding article about Trump and Russia"),
-    EmailCfg(id='031428', is_fwded_article=True, duplicate_ids=['031388']),
-    EmailCfg(id='033528', is_fwded_article=True, duplicate_ids=['033517']),
-    EmailCfg(id='030238', is_fwded_article=True, duplicate_ids=['031130']),
-    EmailCfg(id='031112', is_fwded_article=True, duplicate_ids=['030876']),
-    EmailCfg(id='031423', is_fwded_article=True, duplicate_ids=['025361']),
-    EmailCfg(id='025643', is_fwded_article=True, comment="Alice Fisher stated to be in the mix of potential candidates for new FBI director."),
-    EmailCfg(id='014523', is_fwded_article=True, comment="finance research"),
-    EmailCfg(id='014857', is_fwded_article=True, comment="finance research"),
-    EmailCfg(id='029458', is_fwded_article=True, comment="finance research"),
-    EmailCfg(id='026893', is_fwded_article=True, comment="finance research"),
-    EmailCfg(id='033362', is_fwded_article=True, comment="finance research"),
-    EmailCfg(id='030865', is_fwded_article=True, comment="Deutsche bank research"),
-    EmailCfg(id='021231', is_fwded_article=True, comment="11 places with worse economy than US"),
-    EmailCfg(id='029905', is_fwded_article=True, comment="Ann Coulter"),
-    EmailCfg(id='026829', is_fwded_article=True, comment="Taxes"),
-    EmailCfg(id='020443', is_fwded_article=True, comment="WSJ Deplorables Bannon"),
-    EmailCfg(id='030372', is_fwded_article=True, comment="Bannon China Iran"),
-    EmailCfg(id='030983', is_fwded_article=True, comment="Power Line blog Alex Acosta and Jeffrey Epstein Plea Deal Analysis"),
-    EmailCfg(id='031774', is_fwded_article=True, comment="Krassner fwd of Palmer Report article"),
-    EmailCfg(id='033345', is_fwded_article=True, comment="Krassner fwd of Palmer Report article"),
-    EmailCfg(id='029903', is_fwded_article=True, comment="Krassner fwd of Ann Coulter article about Epstein"),
-    EmailCfg(id='030266', is_fwded_article=True, comment="Krassner fwd of article about Dershowitz"),
+    EmailCfg(id='023627', description='draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015', is_fwded_article=True, is_interesting=True, truncate_to=16800, comment='Micheal Wolff article with brock pierce'),
+    EmailCfg(id='023627', description='draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015', is_fwded_article=True, is_interesting=True, truncate_to=16800, comment='Micheal Wolff article with brock pierce'),
+    EmailCfg(id='026298', duplicate_ids=['026499'], is_fwded_article=True, comment='Written by someone else?'),
+    EmailCfg(id='029692', duplicate_ids=['029779'], is_fwded_article=True, comment='WaPo article'),
+    EmailCfg(id='022344', duplicate_ids=['028529'], is_fwded_article=True, comment='Bill Gates is most admired from Nikolic'),
+    EmailCfg(id='018197', duplicate_ids=['028648'], is_fwded_article=True, comment='Ray Takeyh article fwd'),
+    EmailCfg(id='028728', duplicate_ids=['027102'], is_fwded_article=True, comment='WSJ forward to Larry Summers'),
+    EmailCfg(id='028781', duplicate_ids=['013460'], is_fwded_article=True, comment="Atlantic on Jim Yong Kim, Obama's World Bank Pick"),
+    EmailCfg(id='025041', duplicate_ids=['028675'], is_fwded_article=True, comment='Obama agenda'),
+    EmailCfg(id='031136', duplicate_ids=['028791'], is_fwded_article=True, comment="'Smart Money is Fleeing US Stocks'"),
+    EmailCfg(id='031779', duplicate_ids=['026938'], is_fwded_article=True, comment='Sarah Silverman on AI'),
+    EmailCfg(id='029849', duplicate_ids=['033482'], is_fwded_article=True, comment='Fareed Zakaria: Trump sells America short),'),
+    EmailCfg(id='032023', duplicate_ids=['032012'], is_fwded_article=True, comment='American-Israeli Cooperative Enterprise Newsletter'),
+    EmailCfg(id='021758', duplicate_ids=['030616'], is_fwded_article=True, comment="Radar Online article about Epstein's early prison release"),
+    EmailCfg(id='033297', duplicate_ids=['033586'], is_fwded_article=True, comment='Sultan Sulayem fwding article about Trump and Russia'),
+    EmailCfg(id='031428', duplicate_ids=['031388'], is_fwded_article=True),
+    EmailCfg(id='033528', duplicate_ids=['033517'], is_fwded_article=True),
+    EmailCfg(id='030238', duplicate_ids=['031130'], is_fwded_article=True),
+    EmailCfg(id='031112', duplicate_ids=['030876'], is_fwded_article=True),
+    EmailCfg(id='031423', duplicate_ids=['025361'], is_fwded_article=True),
+    EmailCfg(id='025643', is_fwded_article=True, comment='Alice Fisher stated to be in the mix of potential candidates for new FBI director.'),
+    EmailCfg(id='014523', is_fwded_article=True, comment='finance research'),
+    EmailCfg(id='014857', is_fwded_article=True, comment='finance research'),
+    EmailCfg(id='029458', is_fwded_article=True, comment='finance research'),
+    EmailCfg(id='026893', is_fwded_article=True, comment='finance research'),
+    EmailCfg(id='033362', is_fwded_article=True, comment='finance research'),
+    EmailCfg(id='030865', is_fwded_article=True, comment='Deutsche bank research'),
+    EmailCfg(id='021231', is_fwded_article=True, comment='11 places with worse economy than US'),
+    EmailCfg(id='029905', is_fwded_article=True, comment='Ann Coulter'),
+    EmailCfg(id='026829', is_fwded_article=True, comment='Taxes'),
+    EmailCfg(id='020443', is_fwded_article=True, comment='WSJ Deplorables Bannon'),
+    EmailCfg(id='030372', is_fwded_article=True, comment='Bannon China Iran'),
+    EmailCfg(id='030983', is_fwded_article=True, comment='Power Line blog Alex Acosta and Jeffrey Epstein Plea Deal Analysis'),
+    EmailCfg(id='031774', is_fwded_article=True, comment='Krassner fwd of Palmer Report article'),
+    EmailCfg(id='033345', is_fwded_article=True, comment='Krassner fwd of Palmer Report article'),
+    EmailCfg(id='029903', is_fwded_article=True, comment='Krassner fwd of Ann Coulter article about Epstein'),
+    EmailCfg(id='030266', is_fwded_article=True, comment='Krassner fwd of article about Dershowitz'),
     EmailCfg(id='030868', is_fwded_article=True, comment="'He doesn't like this sh*t': Trump reportedly hates his job and his staff after 1 month"),
-    EmailCfg(id='026755', is_fwded_article=True, comment="HuffPo"),
-    EmailCfg(id='016218', is_fwded_article=True, comment="AT&T confirms it paid Trump lawyer Cohen for insights on Trump"),
-    EmailCfg(id='030528', is_fwded_article=True, comment="Vicky Ward article"),
-    EmailCfg(id='030460', is_fwded_article=True, comment="Vicky Ward article"),
-    EmailCfg(id='028508', is_fwded_article=True, comment="nanosatellites article"),
-    EmailCfg(id='019845', is_fwded_article=True, comment="Pro Publica article on Preet Bharara"),
-    EmailCfg(id='029021', is_fwded_article=True, comment="article about bannon sent by Alain Forget"),
-    EmailCfg(id='031688', is_fwded_article=True, comment="Bill Siegel fwd of email about hamas"),
+    EmailCfg(id='026755', is_fwded_article=True, truncate_to=1333, comment='Epstein self fwd'),
+    EmailCfg(id='016218', is_fwded_article=True, comment='AT&T confirms it paid Trump lawyer Cohen for insights on Trump'),
+    EmailCfg(id='030528', is_fwded_article=True, comment='Vicky Ward article'),
+    EmailCfg(id='030460', is_fwded_article=True, comment='Vicky Ward article'),
+    EmailCfg(id='028508', is_fwded_article=True, comment='nanosatellites article'),
+    EmailCfg(id='019845', is_fwded_article=True, comment='Pro Publica article on Preet Bharara'),
+    EmailCfg(id='029021', is_fwded_article=True, comment='article about bannon sent by Alain Forget'),
+    EmailCfg(id='031688', is_fwded_article=True, comment='Bill Siegel fwd of email about hamas'),
     EmailCfg(id='026551', is_fwded_article=True, comment='Sultan bin Sulayem "Ayatollah between the sheets"'),
     EmailCfg(id='031768', is_fwded_article=True, comment="Sultan bin Sulayem 'Horseface'"),
-    EmailCfg(id='031569', is_fwded_article=True, comment="Article by Kathryn Alexeeff fwded to Peter Thiel"),
-    EmailCfg(id='029689', is_fwded_article=True, comment="Tunisia article to Larry Summers"),
-    EmailCfg(id='014525', is_fwded_article=True, comment="Really more of a mailing list from Paul Morris?"),
-    EmailCfg(id='024384', is_fwded_article=True, comment="Interview with Bill Siegal re: Islam"),
-    EmailCfg(id='030200', is_fwded_article=True, comment="Lawfare indicting a president"),
-    EmailCfg(id='029509', is_fwded_article=True, comment="Deepak Chopra LSD, Quantum Healing"),
-    EmailCfg(id='026778', is_fwded_article=True, comment="tax alert"),
-    EmailCfg(id='023001', is_fwded_article=True, comment="Miami Herald article timeline of the sex abuse case"),
-    EmailCfg(id='013405', is_fwded_article=True, comment="Articles about epstein case"),
-    EmailCfg(id='021740', is_fwded_article=True, comment="Miami Herald article about Epstein prosecutor"),
-    EmailCfg(id='023126', is_fwded_article=True, comment="Miami Herald on Alex Acosta"),
-    EmailCfg(id='029625', is_fwded_article=True, comment="Conchita Sarnoff Daily Beast Articles - Epstein Sex Trafficking Investigation and Settlement"),
-    EmailCfg(id='029505', is_fwded_article=True, comment="Foreign Policy Middle Eastern Monarchs Look at the Trump"),
-    EmailCfg(id='029859', is_fwded_article=True, comment="Palm Beach Post: Epstein paid three women $5.5 million to end lawsuits"),
-    EmailCfg(id='031988', is_fwded_article=True, comment="NYT review of Inside Job"),
-    EmailCfg(id='029901', is_fwded_article=True, comment="THE EDGE question"),
+    EmailCfg(id='031569', is_fwded_article=True, comment='Article by Kathryn Alexeeff fwded to Peter Thiel'),
+    EmailCfg(id='029689', is_fwded_article=True, comment='Tunisia article to Larry Summers'),
+    EmailCfg(id='014525', is_fwded_article=True, comment='Really more of a mailing list from Paul Morris?'),
+    EmailCfg(id='024384', is_fwded_article=True, comment='Interview with Bill Siegal re: Islam'),
+    EmailCfg(id='030200', is_fwded_article=True, comment='Lawfare indicting a president'),
+    EmailCfg(id='029509', is_fwded_article=True, comment='Deepak Chopra LSD, Quantum Healing'),
+    EmailCfg(id='026778', is_fwded_article=True, truncate_to=1333, comment='Kahn taxes'),
+    EmailCfg(id='023001', is_fwded_article=True, comment='Miami Herald article timeline of the sex abuse case'),
+    EmailCfg(id='013405', is_fwded_article=True, comment='Articles about epstein case'),
+    EmailCfg(id='021740', is_fwded_article=True, comment='Miami Herald article about Epstein prosecutor'),
+    EmailCfg(id='023126', is_fwded_article=True, comment='Miami Herald on Alex Acosta'),
+    EmailCfg(id='029625', is_fwded_article=True, comment='Conchita Sarnoff Daily Beast Articles - Epstein Sex Trafficking Investigation and Settlement'),
+    EmailCfg(id='029505', is_fwded_article=True, comment='Foreign Policy Middle Eastern Monarchs Look at the Trump'),
+    EmailCfg(id='029859', is_fwded_article=True, comment='Palm Beach Post: Epstein paid three women $5.5 million to end lawsuits'),
+    EmailCfg(id='031988', is_fwded_article=True, comment='NYT review of Inside Job'),
+    EmailCfg(id='029901', is_fwded_article=True, comment='THE EDGE question'),
     EmailCfg(id='031399', is_fwded_article=True, comment="Miami U.S. Attorney's Office recuses itself from Jeffrey Epstein case"),
-    EmailCfg(id='031705', is_fwded_article=True, comment="Thomas Friedman why not in vegas?"),
-    EmailCfg(id='016801', is_fwded_article=True, comment="Capital Market Outlook"),
+    EmailCfg(id='031705', is_fwded_article=True, comment='Thomas Friedman why not in vegas?'),
+    EmailCfg(id='016801', is_fwded_article=True, comment='Capital Market Outlook'),
     EmailCfg(id='023564', is_fwded_article=True, comment="BBG ;Leon Black's Tax-Overhaul Dilemma Could Alter Wall Street Model"),
-    EmailCfg(id='025231', is_fwded_article=True, comment="Newsmax: Laffer, Laffer: Obama Must Use Reaganomics to Save Economy The only way President Barack Obama can solve"),
+    EmailCfg(id='025231', is_fwded_article=True, comment='Newsmax: Laffer, Laffer: Obama Must Use Reaganomics to Save Economy The only way President Barack Obama can solve'),
     EmailCfg(id='031472', is_fwded_article=True, comment="WSJ: Lawyers for Imam Wanted by Turkish authorities Fear for Their Client's Life"),
-    EmailCfg(id='028536', is_fwded_article=True, comment="Palm Beach Post FBI Epstein files say he gave info. Does it explain sweetheart deal?"),
-    EmailCfg(id='030326', is_fwded_article=True, comment="NYP Congressional candidate compares Melania Trump to prostitute"),
-    EmailCfg(id='030519', is_fwded_article=True, comment="Daily Mail on Prince Andrew"),
+    EmailCfg(id='028536', is_fwded_article=True, comment='Palm Beach Post FBI Epstein files say he gave info. Does it explain sweetheart deal?'),
+    EmailCfg(id='030326', is_fwded_article=True, comment='NYP Congressional candidate compares Melania Trump to prostitute'),
+    EmailCfg(id='030519', is_fwded_article=True, comment='Daily Mail on Prince Andrew'),
     EmailCfg(id='030878', is_fwded_article=True, comment="Steve Bannon almost appeared in Michael Moore's 'Fahrenheit 11/9'"),
-    EmailCfg(id='024300', is_fwded_article=True, comment="Bookstore owner calls police after customer confronted Steve Bannon"),
-    EmailCfg(id='026924', is_fwded_article=True, comment="The Onion"),
-    EmailCfg(id='022624', is_fwded_article=True, comment="Disgusting: Clinton Snared In Pedophile Ring"),
-    EmailCfg(id='022673', is_fwded_article=True, comment="Epstein + Clinton"),
-    EmailCfg(id='021729', is_fwded_article=True, comment="Acosta rebuke"),
-    EmailCfg(id='023635', is_fwded_article=True, comment="Landon Thomas finance related"),
-    EmailCfg(id='026637', is_fwded_article=True, comment="Landon Thomas finance related"),
-    EmailCfg(id='021764', is_fwded_article=True, comment="He was 50 and they were girls"),
-    EmailCfg(id='033311', is_fwded_article=True, comment="2016 election polls"),
-    EmailCfg(id='026580', is_fwded_article=True, comment="NPR: Antigua: Land Of Sun, Sand, And Super Cheap"),
-    EmailCfg(id='031340', is_fwded_article=True, comment="Article about Alex Jones threatening Robert Mueller"),
-    EmailCfg(id='030209', is_fwded_article=True, comment="Atlantic Council  Syria: Blackberry Diplomacy"),
-    EmailCfg(id='026605', is_fwded_article=True, comment="Article about Ruemmler turning down attorney general job by NEDRA PICKLER"),
-    EmailCfg(id='031990', is_fwded_article=True, comment="newsmax on ken starr"),
-    EmailCfg(id='029433', is_fwded_article=True, comment="Estate Planning After the Enactment of the Tax Cuts and Jobs Act"),
+    EmailCfg(id='024300', is_fwded_article=True, comment='Bookstore owner calls police after customer confronted Steve Bannon'),
+    EmailCfg(id='026924', is_fwded_article=True, comment='The Onion'),
+    EmailCfg(id='022624', is_fwded_article=True, comment='Disgusting: Clinton Snared In Pedophile Ring'),
+    EmailCfg(id='022673', is_fwded_article=True, comment='Epstein + Clinton'),
+    EmailCfg(id='021729', is_fwded_article=True, comment='Acosta rebuke'),
+    EmailCfg(id='023635', is_fwded_article=True, comment='Landon Thomas finance related'),
+    EmailCfg(id='026637', is_fwded_article=True, comment='Landon Thomas finance related'),
+    EmailCfg(id='021764', is_fwded_article=True, comment='He was 50 and they were girls'),
+    EmailCfg(id='033311', is_fwded_article=True, truncate_to=1333, comment='Kahn taxes'),
+    EmailCfg(id='026580', is_fwded_article=True, comment='NPR: Antigua: Land Of Sun, Sand, And Super Cheap'),
+    EmailCfg(id='031340', is_fwded_article=True, comment='Article about Alex Jones threatening Robert Mueller'),
+    EmailCfg(id='030209', is_fwded_article=True, comment='Atlantic Council  Syria: Blackberry Diplomacy'),
+    EmailCfg(id='026605', is_fwded_article=True, comment='Article about Ruemmler turning down attorney general job by NEDRA PICKLER'),
+    EmailCfg(id='031990', is_fwded_article=True, comment='newsmax on ken starr'),
+    EmailCfg(id='029433', is_fwded_article=True, truncate_to=1333, comment='Kahn taxes'),
     EmailCfg(id='030927', is_fwded_article=True, comment="don't talk to the FBI"),
-    EmailCfg(id='033329', is_fwded_article=True, comment="Chinese economists"),
-    EmailCfg(id='031764', is_fwded_article=True, comment="GOP fundraiser Broidy under investigation"),
+    EmailCfg(id='033329', is_fwded_article=True, comment='Chinese economists'),
+    EmailCfg(id='031764', is_fwded_article=True, truncate_to=3500, comment='broidy malaysia'),
     EmailCfg(id='032475', date='2017-02-15 13:31:25'),
     EmailCfg(id='030373', date='2018-10-03 01:49:27'),
-    # Configure duplicates
-    EmailCfg(id='032325', duplicate_ids=['026014'], dupe_type='quoted'),
+    EmailCfg(id='032325', duplicate_ids=['026014'], dupe_type='quoted', is_interesting=True, truncate_to=-1, comment='Zubair'),
     EmailCfg(id='026631', duplicate_ids=['026632'], dupe_type='quoted'),
     EmailCfg(id='028768', duplicate_ids=['026563'], dupe_type='redacted'),
     EmailCfg(id='027056', duplicate_ids=['028762'], dupe_type='redacted'),
@@ -913,12 +944,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='031088', duplicate_ids=['030885']),
     EmailCfg(id='030859', duplicate_ids=['031067']),
     EmailCfg(id='030635', duplicate_ids=['031134']),
-    EmailCfg(id='028494', duplicate_ids=['026234']),
+    EmailCfg(id='028494', duplicate_ids=['026234'], truncate_to=-1, comment='Email about being in palm beach w/trump people'),
     EmailCfg(id='030311', duplicate_ids=['021790']),
     EmailCfg(id='033508', duplicate_ids=['029880']),
     EmailCfg(id='030493', duplicate_ids=['030612']),
     EmailCfg(id='032051', duplicate_ids=['031771']),
-    EmailCfg(id='031217', duplicate_ids=['021761']),
+    EmailCfg(id='031217', duplicate_ids=['021761'], truncate_to=-1, comment='1st email for dersh, has long article'),
     EmailCfg(id='031346', duplicate_ids=['031426']),
     EmailCfg(id='031345', duplicate_ids=['031427']),
     EmailCfg(id='031343', duplicate_ids=['031432']),
@@ -948,7 +979,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='030904', duplicate_ids=['031069']),
     EmailCfg(id='030006', duplicate_ids=['031165']),
     EmailCfg(id='025215', duplicate_ids=['031159']),
-    EmailCfg(id='031011', description="jokes about Chicago corruption", duplicate_ids=['031090']),
+    EmailCfg(id='031011', description='jokes about Chicago corruption', duplicate_ids=['031090'], truncate_to=1333, comment='joke'),
     EmailCfg(id='032068', duplicate_ids=['018158']),
     EmailCfg(id='031213', duplicate_ids=['031221']),
     EmailCfg(id='016595', duplicate_ids=['016690']),
@@ -974,19 +1005,17 @@ EMAILS_CONFIG = [
     EmailCfg(id='028752', duplicate_ids=['026569']),
     EmailCfg(id='031773', duplicate_ids=['032050']),
     EmailCfg(id='021400', duplicate_ids=['031983']),
-    EmailCfg(id='026548', duplicate_ids=['033491', '033495']),  # 033495 is HTML garbage version
+    EmailCfg(id='026548', duplicate_ids=['033491', '033495']),
     EmailCfg(id='029752', duplicate_ids=['023550']),
     EmailCfg(id='030339', duplicate_ids=['030592']),
-    EmailCfg(id='032250', duplicate_ids=['033589']),
-
-    # Emails that need a little help determining how to separate the actual text from fwded text
+    EmailCfg(id='032250', duplicate_ids=['033589'], truncate_to=1000, comment='Wolff article'),
     EmailCfg(id='013415', fwded_text_after='Darren K. Indyke'),
     EmailCfg(id='024624', fwded_text_after='On Tue, May 14'),
     EmailCfg(id='025888', fwded_text_after='Jul 24, 2015'),
     EmailCfg(id='016413', fwded_text_after='In a former warehouse'),
     EmailCfg(id='025548', fwded_text_after='Edward Jay Epstein'),
     EmailCfg(id='032806', fwded_text_after='• Sep 13, 2018'),
-    EmailCfg(id='024251', fwded_text_after='Debate Schedule'),
+    EmailCfg(id='024251', fwded_text_after='Debate Schedule', truncate_to=1333, comment='Kahn taxes'),
     EmailCfg(id='028943', fwded_text_after='-Lisa'),
     EmailCfg(id='029431', fwded_text_after='I am writing now'),
     EmailCfg(id='020437', fwded_text_after='Will Cohen Cooperate'),
@@ -995,7 +1024,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='030324', fwded_text_after='For Federal Programs'),
     EmailCfg(id='022766', fwded_text_after='--- On Wed, 4/22/15'),
     EmailCfg(id='025606', fwded_text_after='> On May 6,'),
-    EmailCfg(id='022977', fwded_text_after='Top of Form'),
+    EmailCfg(id='022977', fwded_text_after='Top of Form', truncate_to=1800, comment='Krassner with huge attachments field'),
     EmailCfg(id='033420', fwded_text_after='Slowing economy could increase pressure on'),
     EmailCfg(id='019203', fwded_text_after='This end-of-the-year'),
     EmailCfg(id='022207', fwded_text_after='Web Images Videos Maps'),
@@ -1006,9 +1035,140 @@ EMAILS_CONFIG = [
     EmailCfg(id='026312', fwded_text_after='Steve Bannon trying to get on disgraced'),
     EmailCfg(id='031742', fwded_text_after="Trump's former campaign manager Paul Manafort"),
     EmailCfg(id='028925', fwded_text_after='> on Jan 4, 2015'),
-    EmailCfg(id='029773', fwded_text_after='Omar Quadhafi', duplicate_ids=['012685']),
-    EmailCfg(id='012197_4', fwded_text_after="Thanks -- Jay", is_fwded_article=False),
+    EmailCfg(id='029773', duplicate_ids=['012685'], fwded_text_after='Omar Quadhafi'),
+    EmailCfg(id='012197_4', fwded_text_after='Thanks -- Jay', is_fwded_article=False),
 ]
+
+
+# These IDs will be appended to INTERESTING_EMAIL_IDS
+INTERESTING_TRUNCATION_LENGTHS = {
+    '023627': 16_800,  # Micheal Wolff article with brock pierce
+    '030245': None,    # Epstein rationalizes his behavior in an open letter to the world
+    '030781': None,    # Bannon email about crypto coin issues
+    '032906': None,    # David Blaine email
+    '026036': 6000,    # Gino Yu blockchain mention
+    '029609': None,    # Joi Ito
+    '025233': None,    # Reputation.com discussion
+    '017827': None,    # Bannon / Peggy Siegal email about netflix doc on Epstein
+    '030222': None,    # Ross Gow / Ghislaine correspondence
+    '026028': None,    # Larry Summers / Karim Wade intro
+    '029545': None,    # Tyler Shears reputation
+    '025812': None,    # Tyler Shears reputation
+    '029914': 4500,    # Lord Mandelson russian investments
+    '033453': None,    # "Just heard you were telling people that you heard I asked Trump for a million dollars"
+    '031320': None,    # Epstein Gratitude foundation
+    '031036': None,    # Barbro Ehnbom talking about Swedish girl
+    '023454': 1878,    # Email invitation sent to tech CEOs + Epstein
+    '029342': 2000,    # Hakeem Jeffries
+    '032946': None,    # Jabor Y about visa for Morocco for unnamed woman
+    '031326': None,    # "dog that hasn't barked is trump.. virignia  spent hours at my house with him"
+    '033171': None,    # Zubair
+    '032319': None,    # Zubair
+    '032325': None,    # Zubair
+    '031152': None,    # Kazakhstan Aliyev news
+}
+
+TRUNCATION_LENGTHS = {
+    **INTERESTING_TRUNCATION_LENGTHS,
+    '031791': None,    # First email in Jessica Cadwell chain about service of legal documents
+    '023208': None,    # Long discussion about leon black's finances
+    '028589': None,    # Long thread with Reid Weingarten
+    '029433': TRUNCATED_CHARS,  # Kahn taxes
+    '026778': TRUNCATED_CHARS,  # Kahn taxes
+    '033311': TRUNCATED_CHARS,  # Kahn taxes
+    '024251': TRUNCATED_CHARS,  # Kahn taxes
+    '026755': TRUNCATED_CHARS,  # Epstein self fwd
+    '022977': 1800,   # Krassner with huge attachments field
+    '026059': 2650,   # Rothschild
+    '032643': None,   # Anas al Rasheed
+    '028494': None,   # Email about being in palm beach w/trump people
+    '033593': None,   # visoski email about planes
+    '031764': 3500,   # broidy malaysia
+    '031619': 652,    # Reply to grab em by the pussy story
+    '021096': 700,    # Sinofsky article quote
+    '032865': 445,    # Barton reply
+    '027126': 1000,   # Summers
+    '030950': 4500,   # Ian Osborne
+    '029684': 402,    # Maldives reply
+    '031217': None,    # 1st email for dersh, has long article
+    '031011': TRUNCATED_CHARS,  # joke
+    '018045': TRUNCATED_CHARS,  # invite
+    '017574': MAX_CHARS_TO_PRINT,  # Lisa Randall invite
+    '031278': 2500,  # Hoffenberg
+    '030589': 1000,  # Brett Jaffe Fwd
+    '032250': 1000,  # Wolff article
+    '025655': 400,   # reply to article
+    '026451': 500,   # reply to article
+    '023717': 489,   # reply to article
+}
+
+EMAIL_COMMENTS = {
+    '023627': "Micheal Wolff article with brock pierce",
+    '030245': "Epstein rationalizes his behavior in an open letter to the world",
+    '030781': "Bannon email about crypto coin issues",
+    '032906': "David Blaine email",
+    '026036': "Gino Yu blockchain mention",
+    '029609': "Joi Ito",
+    '025233': "Reputation.com discussion",
+    '017827': "Bannon / Peggy Siegal email about netflix doc on Epstein",
+    '030222': "Ross Gow / Ghislaine correspondence",
+    '026028': "Larry Summers / Karim Wade intro",
+    '029545': "Tyler Shears reputation",
+    '025812': "Tyler Shears reputation",
+    '029914': "Lord Mandelson russian investments",
+    '033453': '"Just heard you were telling people that you heard I asked Trump for a million dollars"',
+    '031320': "Epstein Gratitude foundation",
+    '031036': "Barbro Ehnbom talking about Swedish girl",
+    '023454': "Email invitation sent to tech CEOs + Epstein",
+    '029342': "Hakeem Jeffries",
+    '032946': "Jabor Y about visa for Morocco for unnamed woman",
+    '031326': '"dog that hasn\'t barked is trump.. virignia spent hours at my house with him"',
+    '033171': "Zubair",
+    '032319': "Zubair",
+    '032325': "Zubair",
+    '031152': "Kazakhstan Aliyev news",
+    '031791': "First email in Jessica Cadwell chain about service of legal documents",
+    '023208': "Long discussion about leon black's finances",
+    '028589': "Long thread with Reid Weingarten",
+    '029433': "Kahn taxes",
+    '026778': "Kahn taxes",
+    '033311': "Kahn taxes",
+    '024251': "Kahn taxes",
+    '026755': "Epstein self fwd",
+    '022977': "Krassner with huge attachments field",
+    '026059': "Rothschild",
+    '032643': "Anas al Rasheed",
+    '028494': "Email about being in palm beach w/trump people",
+    '033593': "visoski email about planes",
+    '031764': "broidy malaysia",
+    '031619': "Reply to grab em by the pussy story",
+    '021096': "Sinofsky article quote",
+    '032865': "Barton reply",
+    '027126': "Summers",
+    '030950': "Ian Osborne",
+    '029684': "Maldives reply",
+    '031217': "1st email for dersh, has long article",
+    '031011': "joke",
+    '018045': "invite",
+    '017574': "Lisa Randall invite",
+    '031278': "Hoffenberg",
+    '030589': "Brett Jaffe Fwd",
+    '032250': "Wolff article",
+    '025655': "reply to article",
+    '026451': "reply to article",
+    '023717': "reply to article",
+}
+
+for email_cfg in EMAILS_CONFIG:
+    if email_cfg.id in INTERESTING_TRUNCATION_LENGTHS:
+        email_cfg.is_interesting = True
+
+    if email_cfg.id in TRUNCATION_LENGTHS:
+        email_cfg.truncate_to = -1 if TRUNCATION_LENGTHS[email_cfg.id] is None else TRUNCATION_LENGTHS[email_cfg.id]
+
+    if email_cfg.id in EMAIL_COMMENTS:
+        email_cfg.comment = EMAIL_COMMENTS[email_cfg.id]
+
 
 if args.deep_debug:
     for email_cfg in EMAILS_CONFIG:

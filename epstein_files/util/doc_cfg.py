@@ -34,6 +34,7 @@ DUPE_TYPE_STRS: dict[DuplicateType, str] = {
 FIELD_SORT_KEY = {
     'id': 'a',
     'author': 'aa',
+    'comment': 'zz',
     'duplicate_ids': 'dup',
     'duplicate_of_id': 'dupe',
     'recipients': 'aaa',
@@ -182,7 +183,7 @@ class DocCfg:
         type_str = f"{type(self).__name__}("
         single_line_repr = type_str + ', '.join(props) + f')'
 
-        if len(single_line_repr) < MAX_LINE_LENGTH or self.comment:
+        if len(single_line_repr) < MAX_LINE_LENGTH or (self.comment and getattr(self, 'is_fwded_article')):
             repr_str = single_line_repr
         else:
             repr_str = f"{type_str}{INDENT_NEWLINE}" + INDENTED_JOIN.join(props)
@@ -227,6 +228,7 @@ class EmailCfg(CommunicationCfg):
     is_fwded_article: bool | None = None
     recipients: list[Name] = field(default_factory=list)
     subject: str | None = None
+    truncate_to: int | None = None
 
     # This is necessary because for some dumb reason @dataclass(repr=False) doesn't cut it
     def __repr__(self) -> str:
