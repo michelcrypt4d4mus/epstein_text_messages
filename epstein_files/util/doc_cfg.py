@@ -156,7 +156,7 @@ class DocCfg:
         for _field in sorted(fields(self), key=lambda f: FIELD_SORT_KEY.get(f.name, f.name)):
             value = getattr(self, _field.name)
 
-            if _field.name in ['is_fwded_article', 'is_interesting']:  # is_interesting can be False or None
+            if _field.name in ['actual_text', 'is_fwded_article', 'is_interesting']:  # fields can be False or None or ''
                 if value is not None:
                     add_prop(_field, str(value))
             elif not value or _field.name == 'dupe_type' and value == 'same':
