@@ -44,7 +44,7 @@ LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
-URL_SIGNIFIERS = ['amp?', 'cd=', 'click', 'ft=', 'gclid', 'htm', 'keywords=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'usg=', 'utm']
+URL_SIGNIFIERS = ['?amp', 'amp?', 'cd=', 'click', 'ft=', 'gclid', 'htm', 'keywords=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'usg=', 'utm']
 APPEARS_IN = 'appears in'
 
 MAX_NUM_HEADER_LINES = 14
@@ -217,6 +217,7 @@ TRUNCATION_LENGTHS = {
     '026755': TRUNCATED_CHARS,  # Epstein self fwd
     '022977': 1800,   # Krassner with huge attachments field
     '026059': 2650,   # Rothschild
+    '032643': None,   # Anas al Rasheed
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
@@ -737,7 +738,10 @@ class Email(Communication):
             num_chars = args.truncate
         elif self.file_id in TRUNCATION_LENGTHS:
             num_chars = TRUNCATION_LENGTHS[self.file_id] or self.file_size()
-        elif self.author in TRUNCATE_EMAILS_FROM or any([self.is_with(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) or includes_truncate_term:
+        elif self.author in TRUNCATE_EMAILS_FROM \
+                or any([self.is_with(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \
+                or self.is_fwded_article() \
+                or includes_truncate_term:
             num_chars = min(quote_cutoff or MAX_CHARS_TO_PRINT, TRUNCATED_CHARS)
         elif quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
             num_chars = quote_cutoff
