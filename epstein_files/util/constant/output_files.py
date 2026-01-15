@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from epstein_files.util.constant.strings import EMAIL, TEXT_MESSAGE, SiteType
+from epstein_files.util.logging import logger
 
 # Files output by the code
 HTML_DIR = Path('docs')
@@ -16,9 +17,10 @@ URLS_ENV = '.urls.env'
 EMAILERS_TABLE_PNG_PATH = HTML_DIR.joinpath('emailers_info_table.png')
 
 # Deployment URLS
-# NOTE: don't rename these variables without changing deploy.sh!
+# NOTE: don't rename these variables without changing deploy.sh
+GH_REPO_NAME = 'epstein_text_messages'
 GH_PAGES_BASE_URL = 'https://michelcrypt4d4mus.github.io'
-TEXT_MSGS_URL = f"{GH_PAGES_BASE_URL}/epstein_text_messages"
+TEXT_MSGS_URL = f"{GH_PAGES_BASE_URL}/{GH_REPO_NAME}"
 ALL_EMAILS_URL = f"{TEXT_MSGS_URL}/{ALL_EMAILS_PATH.name}"
 CHRONOLOGICAL_EMAILS_URL = f"{TEXT_MSGS_URL}/{CHRONOLOGICAL_EMAILS_PATH.name}"
 JSON_FILES_URL = f"{TEXT_MSGS_URL}/{JSON_FILES_JSON_PATH.name}"
@@ -44,6 +46,7 @@ BUILD_ARTIFACTS = [
 def make_clean() -> None:
     """Delete all build artifacts."""
     for build_file in BUILD_ARTIFACTS:
-        if build_file.exists():
-            print(f"Removing build file '{build_file}'...")
-            build_file.unlink()
+        for file in [build_file, Path(f"{build_file}.txt")]:
+            if file.exists():
+                logger.warning(f"Removing build file '{file}'...")
+                file.unlink()

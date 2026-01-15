@@ -172,7 +172,7 @@ class Person:
             else:
                 return None
         else:
-            return Text(self.info_str(), style=self.style())
+            return Text(self.info_str(), style=self.style(allow_bold=False))
 
     def internal_link(self) -> Text:
         """Kind of like an anchor link to the section of the page containing these emails."""
@@ -259,8 +259,8 @@ class Person:
         else:
             return counts + [self.name_str()]
 
-    def style(self) -> str:
-        return get_style_for_name(self.name)
+    def style(self, allow_bold: bool = True) -> str:
+        return get_style_for_name(self.name, allow_bold=allow_bold)
 
     def unique_emails(self) -> Sequence[Email]:
         return Document.without_dupes(self.emails)
@@ -334,8 +334,8 @@ class Person:
                 person.internal_link() if is_on_page and not person.is_uninteresting_cc else person.name_txt(),
                 person.category_txt(),
                 f"{len(person.unique_emails() if show_epstein_total else person._unique_printable_emails())}",
-                Text(f"{len(person.unique_emails_by())}", style='dim' if len(person.unique_emails_by()) == 0 else ''),
-                Text(f"{len(person.unique_emails_to())}", style='dim' if len(person.unique_emails_to()) == 0 else ''),
+                str(len(person.unique_emails_by())) if len(person.unique_emails_by()) > 0 else '',
+                str(len(person.unique_emails_to())) if len(person.unique_emails_to()) > 0 else '',
                 f"{person.email_conversation_length_in_days()}",
                 person.info_txt() or '',
                 style='' if show_epstein_total or is_on_page else 'dim',

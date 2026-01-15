@@ -44,7 +44,7 @@ LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
-URL_SIGNIFIERS = ['amp?', 'cd=', 'click', 'ft=', 'gclid', 'htm', 'keywords=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'usg=', 'utm']
+URL_SIGNIFIERS = ['?amp', 'amp?', 'cd=', 'click', 'ft=', 'gclid', 'htm', 'keywords=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'usg=', 'utm']
 APPEARS_IN = 'appears in'
 
 MAX_NUM_HEADER_LINES = 14
@@ -202,6 +202,7 @@ INTERESTING_TRUNCATION_LENGTHS = {
     '031036': None,    # Barbro Ehnbom talking about Swedish girl
     '023454': 1878,    # Email invitation sent to tech CEOs + Epstein
     '029342': 2000,    # Hakeem Jeffries
+    '032946': None,    # Jabor Y about visa for Morocco for unnamed woman
 }
 
 TRUNCATION_LENGTHS = {
@@ -214,13 +215,14 @@ TRUNCATION_LENGTHS = {
     '033311': TRUNCATED_CHARS,  # Kahn taxes
     '024251': TRUNCATED_CHARS,  # Kahn taxes
     '026755': TRUNCATED_CHARS,  # Epstein self fwd
+    '022977': 1800,   # Krassner with huge attachments field
+    '026059': 2650,   # Rothschild
+    '032643': None,   # Anas al Rasheed
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
 TRUNCATE_TERMS = [
     'The rebuilding of Indonesia',  # Vikcy ward article
-    'Dominique Strauss-Kahn',
-    'THOMAS L. FRIEDMAN',
     'a sleek, briskly paced film whose title suggests a heist movie',  # Inside Job
     'Calendar of Major Events, Openings, and Fundraisers',
     "In recent months, China's BAT collapse",
@@ -280,6 +282,7 @@ LINE_REPAIR_MERGES = {
     '025812': [[3]] * 2,
     '026345': [[3]],
     '026609': [[4]],
+    '026620': ([[20]] * 4) + [[3, 2]] + ([[2]] * 15) + [[2, 4]],
     '026829': [[3]],
     '026924': [[2, 4]],
     '028728': [[3]],
@@ -586,22 +589,25 @@ class Email(Communication):
             if i >= n:
                 return match.end() + header_offset - 1
 
-    def _merge_lines(self, idx: int, idx2: int | None = None) -> None:
+    def _merge_lines(self, idx1: int, idx2: int | None = None) -> None:
         """Combine lines numbered 'idx' and 'idx2' into a single line (idx2 defaults to idx + 1)."""
         if idx2 is None:
-            self._line_merge_arguments.append((idx,))
-            idx2 = idx + 1
+            self._line_merge_arguments.append((idx1,))
+            idx2 = idx1 + 1
         else:
-            self._line_merge_arguments.append((idx, idx2))
+            self._line_merge_arguments.append((idx1, idx2))
 
-        lines = self.lines[0:idx]
-
-        if idx2 <= idx:
-            raise RuntimeError(f"idx2 ({idx2}) must be greater than idx ({idx})")
-        elif idx2 == (idx + 1):
-            lines += [self.lines[idx] + ' ' + self.lines[idx + 1]] + self.lines[idx + 2:]
+        if idx2 < idx1:
+            lines = self.lines[0:idx2] + self.lines[idx2 + 1:idx1] + [self.lines[idx1] + ' ' + self.lines[idx2]] + self.lines[idx1 + 1:]
+        elif idx2 == idx1:
+            raise RuntimeError(f"idx2 ({idx2}) must be greater or less than idx ({idx1})")
         else:
-            lines += [self.lines[idx] + ' ' + self.lines[idx2]] + self.lines[idx + 1:idx2] + self.lines[idx2 + 1:]
+            lines = self.lines[0:idx1]
+
+            if idx2 == (idx1 + 1):
+                lines += [self.lines[idx1] + ' ' + self.lines[idx1 + 1]] + self.lines[idx1 + 2:]
+            else:
+                lines += [self.lines[idx1] + ' ' + self.lines[idx2]] + self.lines[idx1 + 1:idx2] + self.lines[idx2 + 1:]
 
         self._set_computed_fields(lines=lines)
 
@@ -730,7 +736,10 @@ class Email(Communication):
             num_chars = args.truncate
         elif self.file_id in TRUNCATION_LENGTHS:
             num_chars = TRUNCATION_LENGTHS[self.file_id] or self.file_size()
-        elif self.author in TRUNCATE_EMAILS_FROM or any([self.is_with(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) or includes_truncate_term:
+        elif self.author in TRUNCATE_EMAILS_FROM \
+                or any([self.is_with(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \
+                or self.is_fwded_article() \
+                or includes_truncate_term:
             num_chars = min(quote_cutoff or MAX_CHARS_TO_PRINT, TRUNCATED_CHARS)
         elif quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
             num_chars = quote_cutoff

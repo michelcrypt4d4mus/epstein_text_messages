@@ -440,6 +440,10 @@ class Document:
         return sorted(docs, key=lambda d: d.file_id)
 
     @staticmethod
+    def sort_by_length(docs: Sequence['DocumentType']) -> list['DocumentType']:
+        return sorted(docs, key=lambda d: d.file_size(), reverse=True)
+
+    @staticmethod
     def sort_by_timestamp(docs: Sequence['DocumentType']) -> list['DocumentType']:
         return sorted(docs, key=lambda doc: doc.timestamp_sort_key())
 

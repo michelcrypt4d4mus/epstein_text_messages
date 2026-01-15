@@ -78,7 +78,9 @@ args.width = args.width if is_html_script else None
 args.any_output_selected = any([is_output_arg(arg) and val for arg, val in vars(args).items()])
 
 if not (args.any_output_selected or args.email_timeline or args.emailers_info):
-    logger.warning(f"No output section chosen; outputting default selection of texts, selected emails, and other files...")
+    if is_html_script:
+        logger.warning(f"No output section chosen; outputting default selection of texts, selected emails, and other files...")
+
     args.output_emails = args.output_other = args.output_texts = True
 
 if is_html_script:
@@ -104,6 +106,8 @@ if args.names:
     logger.warning(f"Output restricted to {args.names}")
     args.output_other = False
 
+if args.truncate and args.whole_file:
+    exit_with_error(f"--whole-file and --truncate are incompatible")
 
 # Log level args
 if args.deep_debug:
