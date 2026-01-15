@@ -12,7 +12,7 @@ from rich.text import Text
 from scripts.use_pickled import console, epstein_files
 from epstein_files import epstein_search
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import TRUNCATION_LENGTHS, UNINTERESTING_EMAILERS
+from epstein_files.documents.email import UNINTERESTING_EMAILERS
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import ALL_FILE_CONFIGS
 from epstein_files.util.data import *
