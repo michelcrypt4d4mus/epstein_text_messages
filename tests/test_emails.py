@@ -244,7 +244,7 @@ EMAIL_RECIPIENT_COUNTS = {
     'Daniel Dawson': 2,
     "Daniel Siad": 2,
     "Danny Goldberg": 5,
-    DARREN_INDYKE: 49,
+    DARREN_INDYKE: 50,
     DAVID_BLAINE: 1,
     "David Grosof": 6,
     "David Haig": 2,
@@ -878,12 +878,15 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     KEN_JENNE: 1,
     LARRY_SUMMERS: 232,
     "Lawrence Krauss": 78,
+    LISA_NEW: 68,
     "Martin Weinberg": 17,
     NICHOLAS_RIBIS: 2,
     "Paul Barrett": 10,
+    PETER_ATTIA: 3,
     "Peter Mandelson": 10,
     "Richard Kahn": 121,
     ROSS_GOW: 7,
+    'Stephen Hanson': 2,
     STEVEN_PFEIFFER: 11,
     "Susan Edelman": 9,
     "Terry Kafka": 10,
@@ -924,3 +927,10 @@ def test_border_style(epstein_files):
     email = epstein_files.email_for_id('033071')
     assert email._border_style() == 'purple'
     assert email.author_style() == 'blue1'
+
+
+def test_is_fwded_article(epstein_files):
+    non_article_with_fwd_text = epstein_files.email_for_id('012197_4')
+    assert non_article_with_fwd_text.is_fwded_article() is False
+    article_with_fwd_text = epstein_files.email_for_id('016413')
+    assert article_with_fwd_text.is_fwded_article() is True

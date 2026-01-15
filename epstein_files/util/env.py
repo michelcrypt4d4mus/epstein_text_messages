@@ -99,7 +99,7 @@ if is_html_script:
             args.build = CHRONOLOGICAL_EMAILS_PATH
         else:
             args.build = TEXT_MSGS_HTML_PATH
-elif parser.prog.startswith('epstein_') and not args.positional_args:
+elif parser.prog.startswith('epstein_') and not args.positional_args and not args.names:
     exit_with_error(f"{parser.prog} requires positional arguments but got none!")
 
 if args.names:
