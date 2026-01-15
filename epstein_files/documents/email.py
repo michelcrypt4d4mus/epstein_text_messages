@@ -422,7 +422,12 @@ class Email(Communication):
         return txt.append(highlighter(f" probably sent at {self.timestamp}"))
 
     def is_fwded_article(self) -> bool:
-        return bool(self.config and self.config.is_fwded_article)
+        if self.config is None:
+            return False
+        elif self.config.fwded_text_after:
+            return self.config.is_fwded_article is not False
+        else:
+            return bool(self.config.is_fwded_article)
 
     def is_junk_mail(self) -> bool:
         return self.author in JUNK_EMAILERS
