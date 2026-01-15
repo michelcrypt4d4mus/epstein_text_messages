@@ -9746,6 +9746,11 @@
             {
                 "author": "Joi Ito",
                 "bytes": 1486,
+                "description": "Joi Ito reaching out to Epstein for an immediate phone call after news about illicit Russian money",
+                "dupe_type": "quoted",
+                "duplicate_ids": [
+                    "028849"
+                ],
                 "file_id": "028848",
                 "filename": "HOUSE_OVERSIGHT_028848.txt",
                 "num_lines": 28,
@@ -9757,22 +9762,28 @@
                 "type": "Email"
             },
             {
-                "attribution_reason": "Conversation with Joi Ito",
                 "author": "Joi Ito",
                 "bytes": 1333,
                 "description": "Joi Ito reaching out to Epstein for an immediate phone call after news about illicit Russian money",
+                "dupe_type": "quoted",
+                "duplicate_of_id": "028848",
                 "file_id": "028849",
                 "filename": "HOUSE_OVERSIGHT_028849.txt",
                 "num_lines": 26,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
-                "timestamp": "2014-04-27T07:41:00",
+                "timestamp": "2014-04-27T18:55:07",
                 "type": "Email"
             },
             {
                 "author": "Joi Ito",
                 "bytes": 1494,
+                "description": "Joi Ito reaching out to Epstein for an immediate phone call after news about illicit Russian money",
+                "dupe_type": "quoted",
+                "duplicate_ids": [
+                    "028851"
+                ],
                 "file_id": "028850",
                 "filename": "HOUSE_OVERSIGHT_028850.txt",
                 "num_lines": 28,
@@ -9786,13 +9797,16 @@
             {
                 "author": "Joi Ito",
                 "bytes": 1343,
+                "description": "Joi Ito reaching out to Epstein for an immediate phone call after news about illicit Russian money",
+                "dupe_type": "quoted",
+                "duplicate_of_id": "028850",
                 "file_id": "028851",
                 "filename": "HOUSE_OVERSIGHT_028851.txt",
                 "num_lines": 25,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
-                "timestamp": "2014-04-27T06:00:00",
+                "timestamp": "2014-04-27T18:57:02",
                 "type": "Email"
             },
             {
@@ -37066,6 +37080,7 @@
                 "was_timestamp_extracted": true
             },
             {
+                "attached_to_email_id": "029837",
                 "author": "Jane Doe v. Donald Trump and Jeffrey Epstein",
                 "bytes": 15116,
                 "category": "legal",
