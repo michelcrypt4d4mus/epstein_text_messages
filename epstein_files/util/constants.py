@@ -595,6 +595,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='030367', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
     EmailCfg(id='033274', recipients=[JEFFREY_EPSTEIN]),  # this is a note sent to self
     EmailCfg(id='032780', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
+    EmailCfg(id='033386', recipients=[JEFFREY_EPSTEIN, None], duplicate_ids=['033599']),
     EmailCfg(id='029324', recipients=[JEFFREY_EPSTEIN, "Jojo Fontanilla", "Lyn Fontanilla"]),  # Bad OCR (nofix)
     EmailCfg(id='013482', recipients=[JEFFREY_EPSTEIN], is_fwded_article=True),  # other recipients redacted. "The view from the US: Stem cell therapy steps up a gear with firs"
     EmailCfg(id='029558', recipients=[JEFFREY_EPSTEIN, KATHERINE_KEATING], attribution_reason='BCC', fwded_text_after='Creativity is central'),
@@ -679,14 +680,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='031428', is_fwded_article=True, duplicate_ids=['031388']),
     EmailCfg(id='033528', is_fwded_article=True, duplicate_ids=['033517']),
     EmailCfg(id='030238', is_fwded_article=True, duplicate_ids=['031130']),
-
+    EmailCfg(id='031112', is_fwded_article=True, duplicate_ids=['030876']),
+    EmailCfg(id='031423', is_fwded_article=True, duplicate_ids=['025361']),
     EmailCfg(id='014523', is_fwded_article=True),  # finance research
     EmailCfg(id='014857', is_fwded_article=True),  # finance research
     EmailCfg(id='029458', is_fwded_article=True),  # finance research
     EmailCfg(id='026893', is_fwded_article=True),  # finance research
     EmailCfg(id='033362', is_fwded_article=True),  # finance research
-
-
     EmailCfg(id='030865', is_fwded_article=True),  # Deutsche bank research
     EmailCfg(id='021231', is_fwded_article=True),  # 11 places with worse economy than US
     EmailCfg(id='029905', is_fwded_article=True),  # Ann Coulter
@@ -746,8 +746,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='031990', is_fwded_article=True),  # newsmax on ken starr
     EmailCfg(id='029433', is_fwded_article=True),  # Estate Planning After the Enactment of the Tax Cuts and Jobs Act
     EmailCfg(id='030927', is_fwded_article=True),  # don't talk to the FBI
+    EmailCfg(id='033329', is_fwded_article=True),  # Chinese economists
     EmailCfg(id='031764', is_fwded_article=True),  # GOP fundraiser Broidy under investigation
-
     EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
     # Configure duplicates
@@ -780,7 +780,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='033580', duplicate_ids=['033207']),
     EmailCfg(id='028506', duplicate_ids=['025547']),
     EmailCfg(id='028784', duplicate_ids=['026549']),
-    EmailCfg(id='033386', recipients=[JEFFREY_EPSTEIN, None], duplicate_ids=['033599']),
     EmailCfg(id='023024', duplicate_ids=['030622']),
     EmailCfg(id='030618', duplicate_ids=['023026']),
     EmailCfg(id='028780', duplicate_ids=['026834']),
@@ -791,7 +790,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='030587', duplicate_ids=['030514']),
     EmailCfg(id='031089', duplicate_ids=['018084']),
     EmailCfg(id='031088', duplicate_ids=['030885']),
-
     EmailCfg(id='030859', duplicate_ids=['031067']),
     EmailCfg(id='030635', duplicate_ids=['031134']),
     EmailCfg(id='028494', duplicate_ids=['026234']),
@@ -825,7 +823,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='027032', duplicate_ids=['028531']),
     EmailCfg(id='026777', duplicate_ids=['028493']),
     EmailCfg(id='029837', duplicate_ids=['029255']),
-    EmailCfg(id='031423', is_fwded_article=True, duplicate_ids=['025361']),
     EmailCfg(id='029299', duplicate_ids=['033594']),
     EmailCfg(id='030904', duplicate_ids=['031069']),
     EmailCfg(id='030006', duplicate_ids=['031165']),
@@ -846,7 +843,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='028620', duplicate_ids=['027094']),
     EmailCfg(id='032456', duplicate_ids=['033579']),
     EmailCfg(id='030315', duplicate_ids=['030255']),
-    EmailCfg(id='031112', is_fwded_article=True, duplicate_ids=['030876']),
     EmailCfg(id='030614', duplicate_ids=['030491']),
     EmailCfg(id='033585', duplicate_ids=['032279']),
     EmailCfg(id='031220', duplicate_ids=['031189']),

@@ -450,7 +450,7 @@ class Email(Communication):
 
     def is_word_count_worthy(self) -> bool:
         if self.is_fwded_article():
-            return bool(self.config.fwded_text_after)
+            return bool(self.config.fwded_text_after) or len(self.actual_text) < 150
         else:
             return not self.is_mailing_list()
 
