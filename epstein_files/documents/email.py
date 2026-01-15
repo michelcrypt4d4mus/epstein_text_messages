@@ -223,8 +223,6 @@ TRUNCATION_LENGTHS = {
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
 TRUNCATE_TERMS = [
     'The rebuilding of Indonesia',  # Vikcy ward article
-    'Dominique Strauss-Kahn',
-    'THOMAS L. FRIEDMAN',
     'a sleek, briskly paced film whose title suggests a heist movie',  # Inside Job
     'Calendar of Major Events, Openings, and Fundraisers',
     "In recent months, China's BAT collapse",
