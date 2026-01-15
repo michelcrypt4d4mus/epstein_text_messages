@@ -82,7 +82,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Jean Huguen": 1,
     JEAN_LUC_BRUNEL: 3,
     JEFF_FULLER: 1,
-    JEFFREY_EPSTEIN: 667,
+    JEFFREY_EPSTEIN: 666,
     JENNIFER_JACQUET: 1,
     "Jeremy Rubin": 3,
     JES_STALEY: 2,
@@ -106,7 +106,7 @@ EMAIL_AUTHOR_COUNTS = {
     LANDON_THOMAS: 72,
     LARRY_SUMMERS: 48,
     "Laurie Cameron": 1,
-    LAWRANCE_VISOSKI: 40,
+    LAWRANCE_VISOSKI: 39,
     LAWRENCE_KRAUSS: 33,
     "Leah Reis-Dennis": 1,
     "Leon Black": 1,
@@ -206,7 +206,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 31,
+    None: 32,
     "ACT for America": 1,
     "Alan Dershowitz": 11,
     'Alan Dlugash': 1,
@@ -238,7 +238,7 @@ EMAIL_RECIPIENT_COUNTS = {
     'Charles Michael': 1,
     "Charlotte Abrams": 1,
     "Cheryl Kleen": 1,
-    CHRISTINA_GALBRAITH: 7,
+    CHRISTINA_GALBRAITH: 6,
     "Connie Zaguirre": 1,
     "Dan Fleuette": 1,
     'Daniel Dawson': 2,
@@ -291,7 +291,7 @@ EMAIL_RECIPIENT_COUNTS = {
     JEAN_HUGUEN: 1,
     JEAN_LUC_BRUNEL: 9,
     JEFF_FULLER: 2,
-    JEFFREY_EPSTEIN: 1478,
+    JEFFREY_EPSTEIN: 1477,
     JES_STALEY: 7,
     JESSICA_CADWELL: 3,
     "Joel": 3,
@@ -474,6 +474,8 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     "032283",
     '032951',
     "033345",
+    '033386',
+    '033599',
 ]
 
 DEVICE_SIGNATURE_TO_AUTHORS = {
@@ -869,6 +871,8 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     "David Ingram": 9,
     "Deepak Chopra": 19,
     EDUARDO_ROBLES: 6,
+    ERIC_ROTH: 5,
+    GHISLAINE_MAXWELL: 13,
     "Jeffrey Epstein": 3374,
     JESSICA_CADWELL: 57,
     KEN_JENNE: 1,
@@ -914,3 +918,9 @@ def test_signature_substitutions(epstein_files):
 
 def test_unknown_recipient_file_ids(epstein_files):
     assert epstein_files.unknown_recipient_ids() == UNKNOWN_RECIPIENT_FILE_IDS
+
+
+def test_border_style(epstein_files):
+    email = epstein_files.email_for_id('033071')
+    assert email._border_style() == 'purple'
+    assert email.author_style() == 'blue1'

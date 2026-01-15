@@ -27,8 +27,8 @@ from epstein_files.util.logging import exit_with_error, logger
 from epstein_files.util.output import (print_emails_section, print_json_files, print_json_stats,
      print_other_files_section, print_text_messages_section, print_email_timeline, print_emailers_info,
      print_json_metadata, write_urls)
-from epstein_files.util.rich import (build_highlighter, console, highlighter, print_color_key, print_title_page_header,
-     print_title_page_tables, print_subtitle_panel, write_html)
+from epstein_files.util.rich import (build_highlighter, console, highlighter, print_color_key, print_json,
+     print_title_page_header, print_title_page_tables, print_subtitle_panel, write_html)
 from epstein_files.util.timer import Timer
 from epstein_files.util.word_count import write_word_counts_html
 
@@ -115,6 +115,9 @@ def epstein_search():
                     or (isinstance(document, MessengerLog) and not args.output_texts):
                 document.warn(f"{type(document).__name__} Skipping search result...")
                 continue
+            elif document.is_duplicate():
+                console.print('\n', document.duplicate_file_txt(), '\n')
+                continue
 
             if args.whole_file:
                 console.print(document)
@@ -138,7 +141,7 @@ def epstein_show():
             people = EpsteinFiles.get_files().person_objs(args.names)
             raw_docs = [doc for doc in flatten([p.emails for p in people])]
         else:
-            ids = [extract_file_id(arg) for arg in args.positional_args]
+            ids = [extract_file_id(arg.strip().strip('_')) for arg in args.positional_args]
             raw_docs = [Document(coerce_file_path(id)) for id in ids]
 
         docs = Document.sort_by_timestamp([document_cls(doc)(doc.file_path) for doc in raw_docs])
@@ -155,6 +158,9 @@ def epstein_show():
             if isinstance(doc, Email):
                 console.print(Panel(Text("actual_text: ").append(doc.summary()), expand=False, style=doc._border_style()))
                 console.print(escape(doc._actual_text()), '\n')
+                metadata = doc.metadata()
+                metadata['is_word_count_worthy'] = doc.is_word_count_worthy()
+                print_json(f"{doc.file_id} Metadata", metadata)
 
 
 def epstein_word_count() -> None:
