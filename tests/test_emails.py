@@ -869,6 +869,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     "David Ingram": 9,
     "Deepak Chopra": 19,
     EDUARDO_ROBLES: 6,
+    GHISLAINE_MAXWELL: 13,
     "Jeffrey Epstein": 3374,
     JESSICA_CADWELL: 57,
     KEN_JENNE: 1,
