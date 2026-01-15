@@ -230,6 +230,8 @@ TRUNCATION_LENGTHS = {
     '033593': None,   # visoski email about planes
     '031764': 3500,   # broidy malaysia
     '031619': 652,    # Reply to grab em by the pussy story
+    '021096': 700,    # Sinofsky article quote
+    '032865': 445,    # Barton reply
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
@@ -642,6 +644,10 @@ class Email(Communication):
             text, num_replaced = signature_regex.subn(signature_replacement, text)
             self.signature_substitution_counts[name] = self.signature_substitution_counts.get(name, 0)
             self.signature_substitution_counts[name] += num_replaced
+
+        # Share / Tweet lines
+        if self.author == KATHRYN_RUEMMLER:
+            text = '\n'.join([l for l in text.split('\n') if l not in ['Share', 'Tweet', 'Bookmark it']])
 
         return collapse_newlines(text).strip()
 
