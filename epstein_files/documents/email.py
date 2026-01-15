@@ -419,6 +419,12 @@ class Email(Communication):
     def is_with(self, name: str) -> bool:
         return name in [self.author] + self.recipients
 
+    def is_word_count_worthy(self) -> bool:
+        if self.is_fwded_article():
+            return len(self.actual_text) < 500
+        else:
+            return not self.is_mailing_list()
+
     def metadata(self) -> Metadata:
         local_metadata = asdict(self)
         local_metadata['is_junk_mail'] = self.is_junk_mail()
