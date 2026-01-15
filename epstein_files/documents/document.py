@@ -197,6 +197,9 @@ class Document:
     def is_duplicate(self) -> bool:
         return bool(self.duplicate_of_id())
 
+    def is_interesting(self) -> bool:
+        return bool(self.config and self.config.is_interesting)
+
     def is_local_extract_file(self) -> bool:
         """True if extracted from other file (identifiable from filename e.g. HOUSE_OVERSIGHT_012345_1.txt)."""
         return is_local_extract_file(self.filename)
