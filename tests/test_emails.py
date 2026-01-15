@@ -927,3 +927,10 @@ def test_border_style(epstein_files):
     email = epstein_files.email_for_id('033071')
     assert email._border_style() == 'purple'
     assert email.author_style() == 'blue1'
+
+
+def test_is_fwded_article(epstein_files):
+    non_article_with_fwd_text = epstein_files.email_for_id('012197_4')
+    assert non_article_with_fwd_text.is_fwded_article() is False
+    article_with_fwd_text = epstein_files.email_for_id('016413')
+    assert article_with_fwd_text.is_fwded_article() is True

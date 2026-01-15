@@ -872,7 +872,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='024251', fwded_text_after='Debate Schedule'),
     EmailCfg(id='028943', fwded_text_after='-Lisa'),
     EmailCfg(id='029431', fwded_text_after='I am writing now'),
-    EmailCfg(id='020437', is_fwded_article=True, fwded_text_after='Will Cohen Cooperate'),
+    EmailCfg(id='020437', fwded_text_after='Will Cohen Cooperate'),
     EmailCfg(id='026663', fwded_text_after='REGULATORY & COMPLIANCE ALERT'),
     EmailCfg(id='028921', fwded_text_after='Salacious new chapter'),
     EmailCfg(id='030324', fwded_text_after='For Federal Programs'),
@@ -883,14 +883,14 @@ EMAILS_CONFIG = [
     EmailCfg(id='019203', fwded_text_after='This end-of-the-year'),
     EmailCfg(id='022207', fwded_text_after='Web Images Videos Maps'),
     EmailCfg(id='033210', fwded_text_after='Trump appears with mobster-affiliated'),
-    EmailCfg(id='030989', is_fwded_article=True, fwded_text_after='New book paints sordid picture of Trump real estate'),
+    EmailCfg(id='030989', fwded_text_after='New book paints sordid picture of Trump real estate'),
     EmailCfg(id='029174', fwded_text_after='The US trade war against China'),
     EmailCfg(id='030015', fwded_text_after='Bill Clinton reportedly'),
     EmailCfg(id='026312', fwded_text_after='Steve Bannon trying to get on disgraced'),
     EmailCfg(id='031742', fwded_text_after="Trump's former campaign manager Paul Manafort"),
     EmailCfg(id='028925', fwded_text_after='> on Jan 4, 2015'),
     EmailCfg(id='029773', fwded_text_after='Omar Quadhafi', duplicate_ids=['012685']),
-    EmailCfg(id='012197_4', fwded_text_after="Thanks -- Jay"),
+    EmailCfg(id='012197_4', fwded_text_after="Thanks -- Jay", is_fwded_article=False),
 ]
 
 

@@ -38,6 +38,8 @@ def extract_file_id(filename_or_id: int | str | Path) -> str:
 
     if isinstance(filename_or_id, int) or (isinstance(filename_or_id, str) and len(filename_or_id) <= 6):
         return id_str(filename_or_id)
+    elif isinstance(filename_or_id, str) and len(filename_or_id) == 8:
+        return f"{HOUSE_OVERSIGHT_PREFIX}{filename_or_id}"
 
     file_match = FILE_ID_REGEX.match(str(filename_or_id).upper())
 
