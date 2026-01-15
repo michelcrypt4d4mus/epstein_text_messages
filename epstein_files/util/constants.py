@@ -413,7 +413,7 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='033328', author=AZIZA_ALAHMADI, attribution_reason='"Regards, Aziza" at bottom'),
     EmailCfg(id='026659', author=BARBRO_C_EHNBOM, attribution_reason='Reply'),
-    EmailCfg(id='031215', author=BARBRO_C_EHNBOM, duplicate_ids=['026745'], dupe_type='redacted'),
+    EmailCfg(id='031215', author=BARBRO_C_EHNBOM, duplicate_ids=['026745'], dupe_type='redacted', comment="the same except for 'your Anna!'. author must be specified because email address is redacted in 026745 so it needs the config"),
     EmailCfg(id='026764', author=BARRY_J_COHEN),
     EmailCfg(id='031206', author=BENNET_MOSKOWITZ, duplicate_ids=['031227']),
     EmailCfg(id='031591', duplicate_ids=['031442', '031996']),
@@ -481,7 +481,7 @@ EMAILS_CONFIG = [
         id='029582',
         author=JEFFREY_EPSTEIN,
         recipients=[RENATA_BOLOTOVA],
-        attribution_reason='Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")',
+        attribution_reason=BOLOTOVA_REASON,
     ),
     EmailCfg(id='030997', author=JEFFREY_EPSTEIN, actual_text='call back'),
     EmailCfg(id='028770', author=JEFFREY_EPSTEIN, actual_text='call me now'),
@@ -597,12 +597,12 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='029605',
         author=RENATA_BOLOTOVA,
-        attribution_reason='Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")',
+        attribution_reason=BOLOTOVA_REASON,
     ),
     EmailCfg(
         id='029606',
         author=RENATA_BOLOTOVA,
-        attribution_reason='Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")',
+        attribution_reason=BOLOTOVA_REASON,
     ),
     EmailCfg(id='029604', author=RENATA_BOLOTOVA, attribution_reason='Continued in 239606 etc'),
     EmailCfg(
@@ -752,7 +752,7 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='029581',
         recipients=[RENATA_BOLOTOVA],
-        attribution_reason='Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")',
+        attribution_reason=BOLOTOVA_REASON,
     ),
     EmailCfg(id='019334', recipients=[STEVE_BANNON], attribution_reason='quoted reply'),
     EmailCfg(id='021106', recipients=[STEVE_BANNON], attribution_reason='Reply'),
