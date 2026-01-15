@@ -19,7 +19,7 @@ Metadata = dict[str, bool | datetime | int | str | list[str | None] |dict[str, b
 INDENT = '    '
 INDENT_NEWLINE = f'\n{INDENT}'
 INDENTED_JOIN = f',{INDENT_NEWLINE}'
-MAX_LINE_LENGTH = 150
+MAX_LINE_LENGTH = 135
 REPUTATION_MGMT = f'{REPUTATION} management'
 SAME = 'same'
 
@@ -34,7 +34,9 @@ DUPE_TYPE_STRS: dict[DuplicateType, str] = {
 FIELD_SORT_KEY = {
     'id': 'a',
     'author': 'aa',
-    'attribution_reason': 'zz',
+    'duplicate_ids': 'dup',
+    'duplicate_of_id': 'dupe',
+    'recipients': 'aaa',
 }
 
 FINANCIAL_REPORTS_AUTHORS = [
@@ -152,10 +154,10 @@ class DocCfg:
         for _field in sorted(fields(self), key=lambda f: FIELD_SORT_KEY.get(f.name, f.name)):
             value = getattr(self, _field.name)
 
-            if _field.name == 'is_interesting':  # is_interesting can be False or None
+            if _field.name in ['is_fwded_article', 'is_interesting']:  # is_interesting can be False or None
                 if value is not None:
                     add_prop(_field, str(value))
-            elif not value:
+            elif not value or _field.name == 'dupe_type' and value == 'same':
                 continue
             elif _field.name == AUTHOR:
                 add_prop(_field, constantize_name(str(value)) if args.constantize else f"'{value}'")
@@ -163,7 +165,12 @@ class DocCfg:
                 recipients_str = str([constantize_name(r) if (args.constantize and r) else r for r in value])
                 add_prop(_field, recipients_str.replace("'", '') if args.constantize else recipients_str)
             elif isinstance(value, str):
-                add_prop(_field, json.dumps(value))
+                if "'" in value:
+                    value = '"' + value.replace('"', r'\"') + '"'
+                else:
+                    value = "'" + value.replace("'", r'\'') + "'"
+
+                add_prop(_field, value)
             else:
                 add_prop(_field, str(value))
 
