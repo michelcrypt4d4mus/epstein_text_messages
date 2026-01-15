@@ -1529,7 +1529,7 @@ OTHER_FILES_POLITICS = [
         duplicate_ids=['028887'],
     ),
     DocCfg(id='010617', description=TRUMP_DISCLOSURES, date='2017-01-20', is_interesting=True),
-    DocCfg(id='016699', description=TRUMP_DISCLOSURES, date='2017-01-20', is_interesting=True),
+    DocCfg(id='016699', description=TRUMP_DISCLOSURES, date='2017-01-20', is_interesting=True, attached_to_email_id='033091'),
 ]
 
 OTHER_FILES_ACADEMIA = [
