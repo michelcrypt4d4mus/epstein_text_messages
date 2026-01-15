@@ -159,6 +159,7 @@ def epstein_show():
                 console.print(Panel(Text("actual_text: ").append(doc.summary()), expand=False, style=doc._border_style()))
                 console.print(escape(doc._actual_text()), '\n')
                 metadata = doc.metadata()
+                metadata['is_fwded_article'] = doc.is_fwded_article()
                 metadata['is_word_count_worthy'] = doc.is_word_count_worthy()
                 print_json(f"{doc.file_id} Metadata", metadata)
 

@@ -30,7 +30,7 @@ from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
 
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
-BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,]|L\._)$')
+BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,]|L\._|_filtered|.*(yiv0232|font-family:|margin-bottom:).*)$')
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 LINK_LINE_REGEX = re.compile(f"^>? ?htt")
 LINK_LINE2_REGEX = re.compile(r"^[-\w.%&=/]{5,}$")
@@ -129,12 +129,15 @@ EMAIL_SIGNATURE_REGEXES = {
     KEN_JENNE: re.compile(r"Ken Jenne\nRothstein.*\n401 E.*\nFort Lauderdale.*", re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r"Please direct all scheduling.*\nFollow me on twitter.*\nwww.larrysummers.*", re.IGNORECASE),
     LAWRENCE_KRAUSS: re.compile(r"Lawrence (M. )?Krauss\n(Director.*\n)?(Co-director.*\n)?Foundation.*\nSchool.*\n(Co-director.*\n)?(and Director.*\n)?Arizona.*(\nResearch.*\nOri.*\n(krauss.*\n)?origins.*)?", re.IGNORECASE),
+    LISA_NEW: re.compile(r"Elisa New\nPowell M. Cabot.*\n(Director.*\n)?Harvard.*\n148.*\n([1I] )?12.*\nCambridge.*\n([1I] )?02138"),
     MARTIN_WEINBERG: re.compile(r"(Martin G. Weinberg, Esq.\n20 Park Plaza((, )|\n)Suite 1000\nBoston, MA 02116(\n61.*?)?(\n.*?([cC]ell|Office))*\n)?This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
     NICHOLAS_RIBIS: re.compile(r"60 Morris Turnpike 2FL\nSummit,? NJ.*\n0:\nF:\n\*{20,}\nCONFIDENTIALITY NOTICE.*\nattachments.*\ncopying.*\nIf you have.*\nthe copy.*\nThank.*\n\*{20,}"),
     PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
     PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(142 W 57th Street, 11th Floor, New York, NY 10019?[\n\s]+)?(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
+    PETER_ATTIA: re.compile(r"The information contained in this transmission may contain.*\n(laws|patient).*\n(distribution|named).*\n(distribution.*\nplease.*|copies.*)"),
     RICHARD_KAHN: re.compile(fr'Richard Kahn[\n\s]+HBRK Associates Inc.?[\n\s]+((301 East 66th Street, Suite 1OF|575 Lexington Avenue,? 4th Floor,?)[\n\s]+)?New York, (NY|New York) 100(22|65)(\s+(Tel?|Phone)( I|{REDACTED})?\s+Fa[x",]?(_|{REDACTED})*\s+[Ce]el?l?)?', re.IGNORECASE),
     ROSS_GOW: re.compile(r"Ross Gow\nManaging Partner\nACUITY Reputation Limited\n23 Berkeley Square\nLondon.*\nMobile.*\nTel"),
+    STEPHEN_HANSON: re.compile(r"(> )?Confidentiality Notice: This e-mail transmission.*\n(which it is addressed )?and may contain.*\n(applicable law. If you are not the intended )?recipient you are hereby.*\n(information contained in or attached to this transmission is )?STRICTLY PROHIBITED.*"),
     STEVEN_PFEIFFER: re.compile(r"Steven\nSteven .*\nAssociate.*\nIndependent Filmmaker Project\nMade in NY.*\n30 .*\nBrooklyn.*\n(p:.*\n)?www\.ifp.*", re.IGNORECASE),
     'Susan Edelman': re.compile(r'Susan Edel.*\nReporter\n1211.*\n917.*\nsedelman.*', re.IGNORECASE),
     TERRY_KAFKA: re.compile(r"((>|I) )?Terry B.? Kafka.*\n(> )?Impact Outdoor.*\n(> )?5454.*\n(> )?Dallas.*\n((> )?c?ell.*\n)?(> )?Impactoutdoor.*(\n(> )?cell.*)?", re.IGNORECASE),
@@ -226,6 +229,9 @@ TRUNCATION_LENGTHS = {
     '028494': None,   # Email about being in palm beach w/trump people
     '033593': None,   # visoski email about planes
     '031764': 3500,   # broidy malaysia
+    '031619': 652,    # Reply to grab em by the pussy story
+    '021096': 700,    # Sinofsky article quote
+    '032865': 445,    # Barton reply
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
@@ -290,6 +296,7 @@ LINE_REPAIR_MERGES = {
     '025812': [[3]] * 2,
     '026345': [[3]],
     '026609': [[4]],
+    '028921': [[5, 4], [4, 5]],
     '026620': ([[20]] * 4) + [[3, 2]] + ([[2]] * 15) + [[2, 4]],
     '026829': [[3]],
     '026924': [[2, 4]],
@@ -313,6 +320,7 @@ LINE_REPAIR_MERGES = {
     '029977': ([[2]] * 4) + [[4], [2, 4]],
     '030299': [[7, 10]],
     '030315': [[3, 5]],
+    '030318': [[3, 5]],
     '030381': [[2, 4]],
     '030384': [[2, 4]],
     '030626': [[2], [4]],
@@ -320,6 +328,8 @@ LINE_REPAIR_MERGES = {
     '031384': [[2]],
     '031428': [[2], [2, 4]],
     '031442': [[0]],
+    '031489': [[2, 4], [3, 4], [3, 4], [10]],
+    '031619': [[7], [17], [17]],
     '031748': [[3]] * 2,
     '031764': [[3], [8]],  # 8 is just for style fix internally, not header
     '031980': [[2, 4]],
@@ -413,7 +423,12 @@ class Email(Communication):
         return txt.append(highlighter(f" probably sent at {self.timestamp}"))
 
     def is_fwded_article(self) -> bool:
-        return bool(self.config and self.config.is_fwded_article)
+        if self.config is None:
+            return False
+        elif self.config.fwded_text_after:
+            return self.config.is_fwded_article is not False
+        else:
+            return bool(self.config.is_fwded_article)
 
     def is_junk_mail(self) -> bool:
         return self.author in JUNK_EMAILERS
@@ -637,6 +652,11 @@ class Email(Communication):
             self.signature_substitution_counts[name] = self.signature_substitution_counts.get(name, 0)
             self.signature_substitution_counts[name] += num_replaced
 
+        # Share / Tweet lines
+        if self.author == KATHRYN_RUEMMLER:
+            text = '\n'.join([l for l in text.split('\n') if l not in ['Share', 'Tweet', 'Bookmark it']])
+        # elif self.author ==
+
         return collapse_newlines(text).strip()
 
     def _remove_line(self, idx: int) -> None:
@@ -785,7 +805,7 @@ class Email(Communication):
         if len(text) > num_chars:
             text = text[0:num_chars]
             doc_link_markup = epstein_media_doc_link_markup(self.url_slug, self.author_style())
-            trim_note = f"<...trimmed to {num_chars} characters of {self.length()}, read the rest at {doc_link_markup}...>"
+            trim_note = f"<...trimmed to {num_chars:,} characters of {self.length():,}, read the rest at {doc_link_markup}...>"
             trim_footer_txt = Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
 
         # Rewrite broken headers where the values are on separate lines from the field names

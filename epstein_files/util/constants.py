@@ -60,7 +60,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     ANIL_AMBANI: re.compile(r'Anil.Ambani', re.IGNORECASE),
     ANN_MARIE_VILLAFANA: re.compile(r'Villafana, Ann Marie|(A(\.|nn) Marie )?Villafa(c|n|ri)a', re.IGNORECASE),
     ANTHONY_SCARAMUCCI: re.compile(r"mooch|(Anthony ('The Mooch' )?)?Scaramucci", re.IGNORECASE),
-    ARIANE_DE_ROTHSCHILD: re.compile(r'AdeR|((Ariane|Edmond) (de )?)?Roths(ch|hc)?ild|Ariane', re.IGNORECASE),
+    ARIANE_DE_ROTHSCHILD: re.compile(r'AdeR|((Ariane|Edmond) (de )?)?Rothsch?ild|Ariane', re.IGNORECASE),
     BARBRO_C_EHNBOM: re.compile(r'behnbom@aol.com|(Barbro\s.*)?Ehnbom', re.IGNORECASE),
     BARRY_J_COHEN: re.compile(r'barry\s*((j.?|james)\s*)?cohen?', re.IGNORECASE),
     BENNET_MOSKOWITZ: re.compile(r'Moskowitz.*Bennet|Bennet.*Moskowitz', re.IGNORECASE),
@@ -592,7 +592,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='026426', recipients=[JEAN_HUGUEN], attribution_reason='Reply'),
     EmailCfg(id='022202', recipients=[JEAN_LUC_BRUNEL], attribution_reason='Follow up / reply', duplicate_ids=['029975']),
     EmailCfg(id='022187', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
-    EmailCfg(id='031489', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (unfixable)
     EmailCfg(id='030347', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
     EmailCfg(id='030367', recipients=[JEFFREY_EPSTEIN]),  # Bad OCR (nofix)
     EmailCfg(id='033274', recipients=[JEFFREY_EPSTEIN]),  # this is a note sent to self
@@ -647,7 +646,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='021106', recipients=[STEVE_BANNON], attribution_reason='Reply'),
 
     # Misc configs
-    EmailCfg(id='029344', actual_text='I thought of you when I read this article. Was this your idea? Alan'),
+    EmailCfg(id='029344', actual_text='I thought of you when I read this article. Was this your idea? Alan', is_fwded_article=True),
     EmailCfg(id='032358', actual_text=REDACTED),  # Completely redacted
     EmailCfg(id='033050', actual_text='schwartman'),
     EmailCfg(id='031036', description=f"{BARBRO_C_EHNBOM} related donation and Swedish girls discussion"),
@@ -873,7 +872,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='024251', fwded_text_after='Debate Schedule'),
     EmailCfg(id='028943', fwded_text_after='-Lisa'),
     EmailCfg(id='029431', fwded_text_after='I am writing now'),
-    EmailCfg(id='020437', is_fwded_article=True, fwded_text_after='Will Cohen Cooperate'),
+    EmailCfg(id='020437', fwded_text_after='Will Cohen Cooperate'),
     EmailCfg(id='026663', fwded_text_after='REGULATORY & COMPLIANCE ALERT'),
     EmailCfg(id='028921', fwded_text_after='Salacious new chapter'),
     EmailCfg(id='030324', fwded_text_after='For Federal Programs'),
@@ -884,14 +883,14 @@ EMAILS_CONFIG = [
     EmailCfg(id='019203', fwded_text_after='This end-of-the-year'),
     EmailCfg(id='022207', fwded_text_after='Web Images Videos Maps'),
     EmailCfg(id='033210', fwded_text_after='Trump appears with mobster-affiliated'),
-    EmailCfg(id='030989', is_fwded_article=True, fwded_text_after='New book paints sordid picture of Trump real estate'),
+    EmailCfg(id='030989', fwded_text_after='New book paints sordid picture of Trump real estate'),
     EmailCfg(id='029174', fwded_text_after='The US trade war against China'),
     EmailCfg(id='030015', fwded_text_after='Bill Clinton reportedly'),
     EmailCfg(id='026312', fwded_text_after='Steve Bannon trying to get on disgraced'),
     EmailCfg(id='031742', fwded_text_after="Trump's former campaign manager Paul Manafort"),
     EmailCfg(id='028925', fwded_text_after='> on Jan 4, 2015'),
     EmailCfg(id='029773', fwded_text_after='Omar Quadhafi', duplicate_ids=['012685']),
-    EmailCfg(id='012197_4', fwded_text_after="Thanks -- Jay"),
+    EmailCfg(id='012197_4', fwded_text_after="Thanks -- Jay", is_fwded_article=False),
 ]
 
 
@@ -1742,7 +1741,7 @@ NORWEGAIN_REPLY_PATTERN = r"(Den .* folgende|(fre|lor|son)\. .* skrev .*):"
 REPLY_LINE_IN_A_MSG_PATTERN = r"In a message dated \d+/\d+/\d+.*writes:"
 REPLY_LINE_ENDING_PATTERN = r"[_ \n](AM|PM|[<_]|wrote:?)"
 REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"On \d+/\d+/\d+[, ].*{REPLY_LINE_ENDING_PATTERN}"
-REPLY_LINE_ON_DATE_PATTERN = fr"^On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Jan|Fe(b|vr\.)|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*)[, ].*{REPLY_LINE_ENDING_PATTERN}"
+REPLY_LINE_ON_DATE_PATTERN = fr"^[> ]*On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Jan|Fe(b|vr\.)|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*)[, ].*{REPLY_LINE_ENDING_PATTERN}"
 REPLY_LINE_PATTERN = rf"({FRENCH_REPLY_PATTERN}|{GERMAN_REPLY_PATTERN}|{NORWEGAIN_REPLY_PATTERN}|{REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
 SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?((Envoyé de mon|Sent (from|via)).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)|Co-authored with iPhone auto-correct', re.M | re.I)

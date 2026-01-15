@@ -225,7 +225,7 @@ class EmailCfg(CommunicationCfg):
     """
     actual_text: str | None = None
     fwded_text_after: str | None = None
-    is_fwded_article: bool = False
+    is_fwded_article: bool | None = None
     recipients: list[Name] = field(default_factory=list)
     subject: str | None = None
 
