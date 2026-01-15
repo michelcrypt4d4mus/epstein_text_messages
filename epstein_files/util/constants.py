@@ -558,6 +558,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='030482', author=PAULA, attribution_reason=PAULA_REASON),
     EmailCfg(id='033383', author=PAUL_PROSPERI, attribution_reason='Reply'),
     EmailCfg(
+        id='012684',
+        attribution_reason='one week after Epstein asked Prosperi for info on Kluge auction',
+        author=PAUL_PROSPERI,
+        is_attribution_uncertain=True,
+        is_fwded_article=True
+    ),
+    EmailCfg(
         id='033561',
         author=PAUL_PROSPERI,
         attribution_reason='Fwded mail sent to Prosperi. Might be Subotnick Stuart?',
@@ -718,6 +725,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='030238', is_fwded_article=True, duplicate_ids=['031130']),
     EmailCfg(id='031112', is_fwded_article=True, duplicate_ids=['030876']),
     EmailCfg(id='031423', is_fwded_article=True, duplicate_ids=['025361']),
+    EmailCfg(id='025643', is_fwded_article=True),  # Alice Fisher stated to be in the mix of potential candidates for new FBI director.
     EmailCfg(id='014523', is_fwded_article=True),  # finance research
     EmailCfg(id='014857', is_fwded_article=True),  # finance research
     EmailCfg(id='029458', is_fwded_article=True),  # finance research
@@ -767,13 +775,18 @@ EMAILS_CONFIG = [
     EmailCfg(id='023564', is_fwded_article=True),  # BBG ;Leon Black's Tax-Overhaul Dilemma Could Alter Wall Street Model
     EmailCfg(id='025231', is_fwded_article=True),  # Newsmax: Laffer, Laffer: Obama Must Use Reaganomics to Save Economy The only way President Barack Obama can solve
     EmailCfg(id='031472', is_fwded_article=True),  # WSJ: Lawyers for Imam Wanted by Turkish authorities Fear for Their Client's Life
-    EmailCfg(id='012684', is_fwded_article=True),  # Trump in talks to buy socialite Kluge's Charlottesville vineyard
     EmailCfg(id='028536', is_fwded_article=True),  # Palm Beach Post FBI Epstein files say he gave info. Does it explain sweetheart deal?
     EmailCfg(id='030326', is_fwded_article=True),  # NYP Congressional candidate compares Melania Trump to prostitute
     EmailCfg(id='030519', is_fwded_article=True),  # Daily Mail on Prince Andrew
     EmailCfg(id='030878', is_fwded_article=True),  # Steve Bannon almost appeared in Michael Moore's 'Fahrenheit 11/9'
     EmailCfg(id='024300', is_fwded_article=True),  # Bookstore owner calls police after customer confronted Steve Bannon
     EmailCfg(id='026924', is_fwded_article=True),  # The Onion
+    EmailCfg(id='022624', is_fwded_article=True),  # Disgusting: Clinton Snared In Pedophile Ring
+    EmailCfg(id='022673', is_fwded_article=True),  # Epstein + Clinton
+    EmailCfg(id='021729', is_fwded_article=True),  # Acosta rebuke
+    EmailCfg(id='023635', is_fwded_article=True),  # Landon Thomas finance related
+    EmailCfg(id='026637', is_fwded_article=True),  # Landon Thomas finance related
+    EmailCfg(id='021764', is_fwded_article=True),  # He was 50 and they were girls
     EmailCfg(id='033311', is_fwded_article=True),  # 2016 election polls
     EmailCfg(id='026580', is_fwded_article=True),  # NPR: Antigua: Land Of Sun, Sand, And Super Cheap
     EmailCfg(id='031340', is_fwded_article=True),  # Article about Alex Jones threatening Robert Mueller
@@ -1075,7 +1088,7 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='013435', author=PALM_BEACH_DAILY_NEWS, description=f"article about Epstein's address book", date='2011-03-11'),
     DocCfg(id='013440', author=PALM_BEACH_DAILY_NEWS, description=f"article about Epstein's gag order", date='2011-07-13'),
     DocCfg(id='029238', author=PALM_BEACH_DAILY_NEWS, description=f"article about Epstein's plea deal"),
-    DocCfg(id='021775', author=PALM_BEACH_POST, description="article about 'He Was 50. And They Were Girls'"),
+    DocCfg(id='021775', author=PALM_BEACH_POST, description="article about 'He Was 50. And They Were Girls'", attached_to_email_id='021764'),
     DocCfg(id='022989', author=PALM_BEACH_POST, description="article about alleged rape of 13 year old by Trump"),
     DocCfg(id='022987', author=PALM_BEACH_POST, description="article about just a headline on Trump and Epstein"),
     DocCfg(id='015028', author=PALM_BEACH_POST, description="article about reopening Epstein's criminal case"),
@@ -1807,6 +1820,7 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_
     'Nancy Portland',                        # Lawrence Krauss CC
     'Oliver Goodenough',                     # Robert Trivers CC
     'Peter Aldhous',                         # Lawrence Krauss CC
+    'Peter Green',  # Farkas emailer
     'Players2',                              # Hoffenberg CC
     'Police Code Enforcement',               # Kirk Blouin / John Page CC
     'Sam Harris',                            # Lawrence Krauss CC
