@@ -222,14 +222,6 @@ INTERESTING_TRUNCATION_LENGTHS = {
     '032319': None,    # Zubair
     '032325': None,    # Zubair
     '031152': None,    # Kazakhstan Aliyev news
-
-    # 1st emails for various people
-    # '019406': None,    # warning about newsweek article
-    # '029530': None,    # Waheed hassan 1st email
-    # '022214': None,    # Nadia 1st email
-    # '031964': None,    # Ehud barak 1st email
-    # '031174': None,    # Kelly Friendly 1st email
-    # '029207': None,    # Ed Boyden 1st
 }
 
 TRUNCATION_LENGTHS = {
@@ -258,7 +250,8 @@ TRUNCATION_LENGTHS = {
     '031011': TRUNCATED_CHARS,  # joke
     '018045': TRUNCATED_CHARS,  # invite
     '017574': MAX_CHARS_TO_PRINT,  # Lisa Randall invite
-    '031278': 2500, # Hoffenberg
+    '031278': 2500,  # Hoffenberg
+    '030589': 1000,  # Brett Jaffe Fwd
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
