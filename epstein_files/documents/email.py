@@ -830,8 +830,7 @@ class Email(Communication):
                 }
 
                 log_args_str = ', '.join([f"{k}={v}" for k, v in log_args.items() if v])
-                # logger.info(f'{self} truncating: {log_args_str}\n')
-                logger.warning(f"{self} Overriding cutoff for first email {log_args}")
+                logger.info(f"{self} Overriding cutoff for first email {log_args_str}")
                 num_chars = self.file_size()
 
         return num_chars
