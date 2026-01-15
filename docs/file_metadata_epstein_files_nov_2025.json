@@ -5375,13 +5375,15 @@
             {
                 "author": "Zubair Khan",
                 "bytes": 5417,
+                "dupe_type": "same",
+                "duplicate_of_id": "032325",
                 "file_id": "026014",
                 "filename": "HOUSE_OVERSIGHT_026014.txt",
                 "num_lines": 117,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
-                "timestamp": "2016-11-04T17:46:00",
+                "timestamp": "2016-11-04T13:07:21",
                 "type": "Email"
             },
             {
@@ -22593,6 +22595,10 @@
             {
                 "author": "Zubair Khan",
                 "bytes": 5433,
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "026014"
+                ],
                 "file_id": "032325",
                 "filename": "HOUSE_OVERSIGHT_032325.txt",
                 "num_lines": 121,
@@ -33514,6 +33520,7 @@
                 "type": "OtherFile"
             },
             {
+                "attached_to_email_id": "033171",
                 "author": "Zubair Khan and Anya Rasulova",
                 "bytes": 297574,
                 "category": "social",
@@ -37133,6 +37140,7 @@
                 "was_timestamp_extracted": true
             },
             {
+                "attached_to_email_id": "026626",
                 "author": "Zubair Khan and Anya Rasulova",
                 "bytes": 1437,
                 "category": "social",
@@ -37556,6 +37564,7 @@
                 "was_timestamp_extracted": true
             },
             {
+                "attached_to_email_id": "033171",
                 "author": "Zubair Khan and Anya Rasulova",
                 "bytes": 43135,
                 "category": "social",
@@ -37613,6 +37622,7 @@
                 "was_timestamp_extracted": true
             },
             {
+                "attached_to_email_id": "033171",
                 "author": "Zubair Khan and Anya Rasulova",
                 "bytes": 4537,
                 "category": "social",
@@ -38942,10 +38952,11 @@
                 "was_timestamp_extracted": true
             },
             {
+                "attached_to_email_id": "032280",
                 "author": "Zubair Khan and Anya Rasulova",
                 "bytes": 2162,
                 "category": "social",
-                "description": "InsightsPod forecasting election for Trump",
+                "description": "InsightsPod eleciton social media trends report",
                 "file_id": "032281",
                 "filename": "HOUSE_OVERSIGHT_032281.txt",
                 "is_interesting": true,
@@ -38966,6 +38977,7 @@
                 "type": "OtherFile"
             },
             {
+                "attached_to_email_id": "032323",
                 "author": "Zubair Khan and Anya Rasulova",
                 "bytes": 787,
                 "category": "social",
