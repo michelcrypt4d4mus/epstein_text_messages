@@ -745,8 +745,8 @@ class Email(Communication):
             num_chars = len(self.text)
         elif args.truncate:
             num_chars = args.truncate
-        elif self.file_id in TRUNCATION_LENGTHS:
-            num_chars = TRUNCATION_LENGTHS[self.file_id] or self.file_size()
+        elif self.config and self.config.truncate_to is not None:
+            num_chars = self.file_size() if self.config.truncate_to == -1 else self.config.truncate_to
         elif self.author in TRUNCATE_EMAILS_FROM \
                 or any([self.is_with(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \
                 or self.is_fwded_article() \
