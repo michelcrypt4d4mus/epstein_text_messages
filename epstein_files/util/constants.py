@@ -491,14 +491,17 @@ EMAILS_CONFIG = [
     EmailCfg(id='030768', author=JEFFREY_EPSTEIN, actual_text='ok'),
     EmailCfg(id='022938', author=JEFFREY_EPSTEIN, actual_text='what do you suggest?'),
     EmailCfg(id='031791', author=JESSICA_CADWELL, attribution_reason='signature'),
-    EmailCfg(id='028851', author=JOI_ITO, recipients=[JEFFREY_EPSTEIN], timestamp=parse('2014-04-27 06:00:00')),
     EmailCfg(
-        id='028849',
-        attribution_reason='Conversation with Joi Ito',
-        author=JOI_ITO,
+        id='028850',
         description=f"{JOI_ITO} reaching out to Epstein for an immediate phone call after news about illicit Russian money",
-        recipients=[JEFFREY_EPSTEIN],
-        timestamp=parse('2014-04-27 07:41:00'),  # Filled in from 028847
+        duplicate_ids=['028851'],
+        dupe_type='quoted',
+    ),
+    EmailCfg(
+        id='028848',
+        description=f"{JOI_ITO} reaching out to Epstein for an immediate phone call after news about illicit Russian money",
+        duplicate_ids=['028849'],
+        dupe_type='quoted',
     ),
     EmailCfg(id='028507', author=JONATHAN_FARKAS, attribution_reason='reply signed "best Jonathan"'),
     EmailCfg(id='033282', author=JONATHAN_FARKAS, attribution_reason='reply signed "thanks Jonathan"', duplicate_ids=['033484']),
@@ -800,7 +803,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
     # Configure duplicates
-    EmailCfg(id='032325', duplicate_ids=['026014'], dupe_type='quoted', timestamp=parse('2016-11-04 13:07:21')),  # timestamp required for 026014
+    EmailCfg(id='032325', duplicate_ids=['026014'], dupe_type='quoted'),
     EmailCfg(id='026631', duplicate_ids=['026632'], dupe_type='quoted'),
     EmailCfg(id='028768', duplicate_ids=['026563'], dupe_type='redacted'),
     EmailCfg(id='027056', duplicate_ids=['028762'], dupe_type='redacted'),
@@ -1267,7 +1270,7 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='013489', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f'Affidavit of {BRAD_EDWARDS}', date='2010-07-20'),
     DocCfg(id='029398', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f'article in Law.com'),
     DocCfg(id='026854', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f"Civil Docket"),
-    DocCfg(id='026384', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f"Complaint for rape and sexual abuse", date='2016-06-20'),
+    DocCfg(id='026384', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f"Complaint for rape and sexual abuse", date='2016-06-20', attached_to_email_id='029837'),
     DocCfg(id='013463', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f'Deposition of Scott Rothstein', date='2010-03-23'),
     DocCfg(id='029257', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f'allegations and identity of plaintiff Katie Johnson', date='2016-04-26'),
     DocCfg(id='032321', author=JANE_DOE_V_EPSTEIN_TRUMP, description=f"Notice of Initial Conference", date='2016-10-04'),
