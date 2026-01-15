@@ -679,6 +679,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='032023', is_fwded_article=True, duplicate_ids=['032012']),  # American-Israeli Cooperative Enterprise Newsletter
     EmailCfg(id='021758', is_fwded_article=True, duplicate_ids=['030616']),  # Radar Online article about Epstein's early prison release
     EmailCfg(id='033297', is_fwded_article=True, duplicate_ids=['033586']),  # Sultan Sulayem fwding article about Trump and Russia
+    EmailCfg(id='031428', is_fwded_article=True, duplicate_ids=['031388']),
+    EmailCfg(id='033528', is_fwded_article=True, duplicate_ids=['033517']),
+    EmailCfg(id='030238', is_fwded_article=True, duplicate_ids=['031130']),
     EmailCfg(id='021231', is_fwded_article=True),  # 11 places with worse economy than US
     EmailCfg(id='029905', is_fwded_article=True),  # Ann Coulter
     EmailCfg(id='026829', is_fwded_article=True),  # Taxes
@@ -736,9 +739,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='026605', is_fwded_article=True),  # Article about Ruemmler turning down attorney general job by NEDRA PICKLER
     EmailCfg(id='031990', is_fwded_article=True),  # newsmax on ken starr
     EmailCfg(id='029433', is_fwded_article=True),  # Estate Planning After the Enactment of the Tax Cuts and Jobs Act
+    EmailCfg(id='030927', is_fwded_article=True),  # don't talk to the FBI
     EmailCfg(id='032475', timestamp=parse('2017-02-15 13:31:25')),
     EmailCfg(id='030373', timestamp=parse('2018-10-03 01:49:27')),
-
     # Configure duplicates
     EmailCfg(id='026631', duplicate_ids=['026632'], dupe_type='quoted'),
     EmailCfg(id='028768', duplicate_ids=['026563'], dupe_type='redacted'),
@@ -758,12 +761,10 @@ EMAILS_CONFIG = [
     EmailCfg(id='033512', duplicate_ids=['033361']),
     EmailCfg(id='030299', duplicate_ids=['021794']),
     EmailCfg(id='033575', duplicate_ids=['012898']),
-    EmailCfg(id='031428', is_fwded_article=True, duplicate_ids=['031388']),
     EmailCfg(id='031980', duplicate_ids=['019409']),
     EmailCfg(id='033486', duplicate_ids=['033156']),
     EmailCfg(id='025790', duplicate_ids=['031994']),
     EmailCfg(id='028497', duplicate_ids=['026228']),
-    EmailCfg(id='033528', is_fwded_article=True, duplicate_ids=['033517']),
     EmailCfg(id='019412', duplicate_ids=['028621']),
     EmailCfg(id='027053', duplicate_ids=['028765']),
     EmailCfg(id='027049', duplicate_ids=['028773']),
@@ -781,7 +782,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='030587', duplicate_ids=['030514']),
     EmailCfg(id='031089', duplicate_ids=['018084']),
     EmailCfg(id='031088', duplicate_ids=['030885']),
-    EmailCfg(id='030238', is_fwded_article=True, duplicate_ids=['031130']),
+
     EmailCfg(id='030859', duplicate_ids=['031067']),
     EmailCfg(id='030635', duplicate_ids=['031134']),
     EmailCfg(id='028494', duplicate_ids=['026234']),
