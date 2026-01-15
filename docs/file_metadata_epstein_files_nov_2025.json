@@ -378,7 +378,7 @@
                 "duplicate_of_id": "033575",
                 "file_id": "012898",
                 "filename": "HOUSE_OVERSIGHT_012898.txt",
-                "num_lines": 17,
+                "num_lines": 16,
                 "recipients": [
                     "Darren Indyke",
                     "Debbie Fein",
@@ -4619,18 +4619,46 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "Reply",
                 "author": "Robert Trivers",
                 "bytes": 2914,
                 "file_id": "025589",
                 "filename": "HOUSE_OVERSIGHT_025589.txt",
-                "num_lines": 51,
+                "num_lines": 39,
                 "recipients": [
                     "Alan Rogers",
+                    "Anna Dreber",
+                    "Anula Jayasuriya",
+                    "Bill Prezant",
+                    "Bobby McCormick",
+                    "Clair Brown",
+                    "Clive Crook",
+                    "Dane Stangler",
+                    "David Darst",
+                    "Ditsa Pines",
+                    "Evan Smith",
+                    "Gerry Ohrstrom",
                     "Gordon Getty",
                     "Jeffrey Epstein",
+                    "Jim Halligan",
+                    "John Mallen",
+                    "Lee Silver",
+                    "Marguerite Atkins",
+                    "Matt Ridley",
+                    "Mike Cagney",
+                    "Monika Gruter Cheney",
                     "Oliver Goodenough",
-                    "Tim Kane"
+                    "Paul Romer",
+                    "Paul Zak",
+                    "Peter J Richerson",
+                    "Rob Hanson",
+                    "Roger Edelen",
+                    "Ron Bailey",
+                    "Terry Anderson",
+                    "Tim Kane",
+                    "president@usfca.edu"
                 ],
+                "subject": "Re: Free Growth (09-29-17) part 2.pdf",
                 "timestamp": "2018-04-14T17:06:12",
                 "type": "Email"
             },
@@ -5375,7 +5403,7 @@
             {
                 "author": "Zubair Khan",
                 "bytes": 5417,
-                "dupe_type": "same",
+                "dupe_type": "quoted",
                 "duplicate_of_id": "032325",
                 "file_id": "026014",
                 "filename": "HOUSE_OVERSIGHT_026014.txt",
@@ -5647,7 +5675,7 @@
                 "bytes": 1959,
                 "file_id": "026075",
                 "filename": "HOUSE_OVERSIGHT_026075.txt",
-                "num_lines": 38,
+                "num_lines": 35,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -6648,7 +6676,7 @@
                 "bytes": 4381,
                 "file_id": "026317",
                 "filename": "HOUSE_OVERSIGHT_026317.txt",
-                "num_lines": 66,
+                "num_lines": 65,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -9278,7 +9306,7 @@
                 "file_id": "028536",
                 "filename": "HOUSE_OVERSIGHT_028536.txt",
                 "is_fwded_article": true,
-                "num_lines": 106,
+                "num_lines": 105,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -16696,8 +16724,9 @@
                 "bytes": 4790,
                 "file_id": "030861",
                 "filename": "HOUSE_OVERSIGHT_030861.txt",
-                "num_lines": 66,
+                "num_lines": 65,
                 "recipients": [
+                    "Ariane Dwyer",
                     "Jeffrey Epstein",
                     "Vahe Stepanian"
                 ],
@@ -22595,7 +22624,7 @@
             {
                 "author": "Zubair Khan",
                 "bytes": 5433,
-                "dupe_type": "same",
+                "dupe_type": "quoted",
                 "duplicate_ids": [
                     "026014"
                 ],
@@ -30458,6 +30487,7 @@
                 "bytes": 4680,
                 "file_id": "033329",
                 "filename": "HOUSE_OVERSIGHT_033329.txt",
+                "is_fwded_article": true,
                 "num_lines": 75,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -31974,7 +32004,7 @@
                 ],
                 "file_id": "033575",
                 "filename": "HOUSE_OVERSIGHT_033575.txt",
-                "num_lines": 16,
+                "num_lines": 15,
                 "recipients": [
                     "Darren Indyke",
                     "Debbie Fein",
@@ -33408,6 +33438,7 @@
                 "type": "OtherFile"
             },
             {
+                "attached_to_email_id": "033091",
                 "bytes": 232303,
                 "category": "politics",
                 "description": "Donald Trump financial disclosures from U.S. Office of Government Ethics",
@@ -33524,7 +33555,7 @@
                 "author": "Zubair Khan and Anya Rasulova",
                 "bytes": 297574,
                 "category": "social",
-                "description": "InsightsPod collected tweets about #Brexit",
+                "description": "InsightsPod collected tweets from #Brexit case study",
                 "file_id": "011170",
                 "filename": "HOUSE_OVERSIGHT_011170.txt",
                 "is_interesting": true,
