@@ -215,6 +215,8 @@ TRUNCATION_LENGTHS = {
     '033311': TRUNCATED_CHARS,  # Kahn taxes
     '024251': TRUNCATED_CHARS,  # Kahn taxes
     '026755': TRUNCATED_CHARS,  # Epstein self fwd
+    '022977': 1800,   # Krassner with huge attachments field
+    '026059': 2650,   # Rothschild
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
