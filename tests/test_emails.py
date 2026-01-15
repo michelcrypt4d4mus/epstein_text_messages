@@ -898,6 +898,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     'Daniel Siad': 5,
     "Danny Frost": 8,
     "Darren Indyke": 47,
+    DAVID_FISZEL: 1,
     "David Ingram": 9,
     "Deepak Chopra": 19,
     EDUARDO_ROBLES: 6,
