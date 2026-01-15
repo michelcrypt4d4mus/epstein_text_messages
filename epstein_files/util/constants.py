@@ -1810,6 +1810,7 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_
     SAMUEL_LEFF,                             # Random CC
     'Sean T Lehane',                         # Random CC
     'Stephen Rubin',                         # Random CC
+    THANU_BOONYAWATANA,                      # Eduardo Robles CC
     'Tim Kane',                              # Random CC
     'Travis Pangburn',                       # Random CC
     'Vahe Stepanian',                        # Random CC
