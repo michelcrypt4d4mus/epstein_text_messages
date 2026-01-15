@@ -683,8 +683,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='033528', is_fwded_article=True, duplicate_ids=['033517']),
     EmailCfg(id='030238', is_fwded_article=True, duplicate_ids=['031130']),
 
-    EmailCfg(id='014523', is_fwded_article=True),  # finance bank research
-    EmailCfg(id='014857', is_fwded_article=True),  # finance bank research
+    EmailCfg(id='014523', is_fwded_article=True),  # finance research
+    EmailCfg(id='014857', is_fwded_article=True),  # finance research
+    EmailCfg(id='029458', is_fwded_article=True),  # finance research
+    EmailCfg(id='026893', is_fwded_article=True),  # finance research
+    EmailCfg(id='033362', is_fwded_article=True),  # finance research
+
+
     EmailCfg(id='030865', is_fwded_article=True),  # Deutsche bank research
     EmailCfg(id='021231', is_fwded_article=True),  # 11 places with worse economy than US
     EmailCfg(id='029905', is_fwded_article=True),  # Ann Coulter
@@ -775,7 +780,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='033580', duplicate_ids=['033207']),
     EmailCfg(id='028506', duplicate_ids=['025547']),
     EmailCfg(id='028784', duplicate_ids=['026549']),
-    EmailCfg(id='033386', duplicate_ids=['033599']),
+    EmailCfg(id='033386', recipients=[JEFFREY_EPSTEIN, None], duplicate_ids=['033599']),
     EmailCfg(id='023024', duplicate_ids=['030622']),
     EmailCfg(id='030618', duplicate_ids=['023026']),
     EmailCfg(id='028780', duplicate_ids=['026834']),
@@ -867,7 +872,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='024251', fwded_text_after='Debate Schedule'),
     EmailCfg(id='028943', fwded_text_after='-Lisa'),
     EmailCfg(id='029431', fwded_text_after='I am writing now'),
-    EmailCfg(id='020437', fwded_text_after='Will Cohen Cooperate'),
+    EmailCfg(id='020437', is_fwded_article=True, fwded_text_after='Will Cohen Cooperate'),
     EmailCfg(id='026663', fwded_text_after='REGULATORY & COMPLIANCE ALERT'),
     EmailCfg(id='028921', fwded_text_after='Salacious new chapter'),
     EmailCfg(id='030324', fwded_text_after='For Federal Programs'),
@@ -878,7 +883,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='019203', fwded_text_after='This end-of-the-year'),
     EmailCfg(id='022207', fwded_text_after='Web Images Videos Maps'),
     EmailCfg(id='033210', fwded_text_after='Trump appears with mobster-affiliated'),
-    EmailCfg(id='030989', fwded_text_after='New book paints sordid picture of Trump real estate'),
+    EmailCfg(id='030989', is_fwded_article=True, fwded_text_after='New book paints sordid picture of Trump real estate'),
     EmailCfg(id='029174', fwded_text_after='The US trade war against China'),
     EmailCfg(id='030015', fwded_text_after='Bill Clinton reportedly'),
     EmailCfg(id='026312', fwded_text_after='Steve Bannon trying to get on disgraced'),
@@ -1345,7 +1350,13 @@ OTHER_FILES_FINANCE = [
         is_interesting=True,
     ),
     DocCfg(id='014532', author=GOLDMAN_INVESTMENT_MGMT, description=f"Outlook - Half Full", date='2017-01-01'),
-    DocCfg(id='026909', author=GOLDMAN_INVESTMENT_MGMT, description=f"The Unsteady Undertow Commands the Seas (Temporarily)", date='2018-10-14'),
+    DocCfg(
+        id='026909',
+        attached_to_email_id='026893',
+        author=GOLDMAN_INVESTMENT_MGMT,
+        description=f"The Unsteady Undertow Commands the Seas (Temporarily)",
+        date='2018-10-14',
+    ),
     DocCfg(id='026944', author=GOLDMAN_INVESTMENT_MGMT, description=f"Risk of a US-Iran Military Conflict", date='2019-05-23'),
     DocCfg(id='018804', author='Integra Realty Resources', description=f"appraisal of going concern for IGY American Yacht Harbor Marina in {VIRGIN_ISLANDS}"),
     DocCfg(id='026679', author='Invesco', description=f"Global Sovereign Asset Management Study 2017"),
@@ -1360,7 +1371,7 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='030840', author=JP_MORGAN, description=f"Market Thoughts"),
     DocCfg(id='022350', author=JP_MORGAN, description=f"tax efficiency of Intentionally Defective Grantor Trusts (IDGT)"),
     DocCfg(id='025242', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2012-04-09'),
-    DocCfg(id='030010', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-06-14'),
+    DocCfg(id='030010', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, attached_to_email_id='030006', date='2011-06-14'),
     DocCfg(id='030808', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-07-11'),
     DocCfg(id='025221', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-07-25'),
     DocCfg(id='025229', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2011-08-04'),
