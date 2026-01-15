@@ -215,7 +215,7 @@ HIGHLIGHTED_NAMES = [
     ManualHighlight(
         label='email_subject',
         style='light_yellow3',
-        pattern=r"^(> )?(Classification|Flag|Subject): (?P<email_subject>.*)",
+        pattern=r"^(> )?(Classification|Flag|Subject|Sujet ?): (?P<email_subject>.*)",
     ),
     HighlightedNames(
         label=ACADEMIA,
@@ -251,6 +251,7 @@ HIGHLIGHTED_NAMES = [
             r"J(ames|im)\s*Watson",
             r"(Lord\s*)?Martin\s*Rees",
             r"Massachusetts\s*Institute\s*of\s*Technology",
+            r"Mayo\s*Clinic",
             r"Media\s*Lab",
             r"(Marvin\s*)?Minsky",
             r"MIT(\s*Media\s*Lab)?",
@@ -754,6 +755,7 @@ HIGHLIGHTED_NAMES = [
             r"(Janet\s*)?Yellen",
             r"(Jerome\s*)?Powell(?! M\. Cabot)",
             r"(Jimmy\s*)?Cayne",
+            r"Joon\s*Yun",
             r"JPMC?",
             r"j\.?p\.?\s*morgan(\.?com|\s*Chase)?",
             r"Madoff",
@@ -1630,7 +1632,7 @@ HIGHLIGHTED_TEXTS = [
     HighlightedText(
         label='header_field',
         style='plum4',
-        patterns=[r'^[>• ]{,4}(Date|From|Sent|To|C[cC]|Importance|Reply[- ]?To|Subject|Bee|B[cC]{2}|Attachments|Flag|Classification|((A|Debut du message transfer[&e]|De(stinataire)?|Envoye|Expe(cl|d)iteur|Objet|Q) ?)):'],
+        patterns=[r'^[>• ]{,4}(Date ?|From|Sent|To|C[cC]|Importance|Reply[- ]?To|Subject|Bee|B[cC]{2}|Attachments|Flag|Classification|((A|Debut du message transfer[&e]|De(stinataire)?|Envoye|Expe(cl|d)iteur|Objet|Q|Sujet) ?)):|^on behalf of'],
     ),
     HighlightedText(
         label='http_links',
@@ -1640,7 +1642,7 @@ HIGHLIGHTED_TEXTS = [
     HighlightedText(
         label='quoted_reply_line',
         style='dim',
-        patterns=[REPLY_REGEX.pattern],
+        patterns=[REPLY_REGEX.pattern, r"^> wrote:$"],
     ),
     HighlightedText(
         label='redacted',
