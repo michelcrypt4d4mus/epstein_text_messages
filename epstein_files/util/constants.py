@@ -1481,7 +1481,7 @@ OTHER_FILES_SOCIAL = [
     DocCfg(id='033433', author=ALAN_DERSHOWITZ, description=f"{DERSH_GIUFFRE_TWEET} / David Boies", date='2019-03-02'),
     DocCfg(id='033432', author=ALAN_DERSHOWITZ, description=f"{DERSH_GIUFFRE_TWEET} / David Boies", date='2019-05-02'),
     DocCfg(id='028815', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} business plan", date='2016-08-20', attached_to_email_id='033171'),
-    DocCfg(id='011170', author=ZUBAIR_AND_ANYA, description=f'{INSIGHTS_POD} collected tweets about #Brexit', date='2016-06-23', attached_to_email_id='033171'),
+    DocCfg(id='011170', author=ZUBAIR_AND_ANYA, description=f'{INSIGHTS_POD} collected tweets from #Brexit case study', date='2016-06-23', attached_to_email_id='033171'),
     DocCfg(id='032324', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} election social media trend analysis", date='2016-11-05', attached_to_email_id='032323'),
     DocCfg(id='032281', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} eleciton social media trends report", date='2016-10-25', attached_to_email_id='032280'),
     DocCfg(id='028988', author=ZUBAIR_AND_ANYA, description=f"{INSIGHTS_POD} pitch deck", date='2016-08-20', attached_to_email_id='033171'),
