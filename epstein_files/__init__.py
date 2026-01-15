@@ -141,7 +141,7 @@ def epstein_show():
             people = EpsteinFiles.get_files().person_objs(args.names)
             raw_docs = [doc for doc in flatten([p.emails for p in people])]
         else:
-            ids = [extract_file_id(arg) for arg in args.positional_args]
+            ids = [extract_file_id(arg.strip().strip('_')) for arg in args.positional_args]
             raw_docs = [Document(coerce_file_path(id)) for id in ids]
 
         docs = Document.sort_by_timestamp([document_cls(doc)(doc.file_path) for doc in raw_docs])
