@@ -244,7 +244,7 @@ EMAIL_RECIPIENT_COUNTS = {
     'Daniel Dawson': 2,
     "Daniel Siad": 2,
     "Danny Goldberg": 5,
-    DARREN_INDYKE: 49,
+    DARREN_INDYKE: 50,
     DAVID_BLAINE: 1,
     "David Grosof": 6,
     "David Haig": 2,
