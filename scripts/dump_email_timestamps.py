@@ -21,12 +21,13 @@ from epstein_files.util.logging import logger
 from epstein_files.util.rich import console, highlighter, print_json, print_subtitle_panel
 
 
-for email in Document.sort_by_length(epstein_files.non_duplicate_emails()):
+# for email in Document.sort_by_length(epstein_files.non_duplicate_emails()):
+for email in sorted(epstein_files.non_duplicate_emails(), key=lambda e: -1 * e._truncate_to_length()):
     if email.file_size() > 100000:
         continue
 
     if email.config and email.config.fwded_text_after:
-        email.warn(f"fwded_text_after='{email.config.fwded_text_after}'")
+        # email.warn(f"fwded_text_after='{email.config.fwded_text_after}'")
         console.print(email)
     # if email.is_mailing_list() or email.file_size() > 100000 or email.file_size() < 1333:
     #     continue
