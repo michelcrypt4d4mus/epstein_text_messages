@@ -309,9 +309,12 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "one week after Epstein asked Prosperi for info on Kluge auction",
+                "author": "Paul Prosperi",
                 "bytes": 4448,
                 "file_id": "012684",
                 "filename": "HOUSE_OVERSIGHT_012684.txt",
+                "is_attribution_uncertain": true,
                 "is_fwded_article": true,
                 "num_lines": 50,
                 "recipients": [
@@ -1733,6 +1736,7 @@
                 "bytes": 15612,
                 "file_id": "021729",
                 "filename": "HOUSE_OVERSIGHT_021729.txt",
+                "is_fwded_article": true,
                 "num_lines": 228,
                 "recipients": [
                     "Darren Indyke",
@@ -1821,6 +1825,7 @@
                 "bytes": 32687,
                 "file_id": "021764",
                 "filename": "HOUSE_OVERSIGHT_021764.txt",
+                "is_fwded_article": true,
                 "num_lines": 466,
                 "recipients": [
                     "Alan Dershowitz"
@@ -2432,6 +2437,7 @@
                 "bytes": 47064,
                 "file_id": "022624",
                 "filename": "HOUSE_OVERSIGHT_022624.txt",
+                "is_fwded_article": true,
                 "num_lines": 830,
                 "recipients": [
                     "Jeffrey Epstein",
@@ -2564,6 +2570,7 @@
                 "bytes": 22282,
                 "file_id": "022673",
                 "filename": "HOUSE_OVERSIGHT_022673.txt",
+                "is_fwded_article": true,
                 "num_lines": 348,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -3715,6 +3722,7 @@
                 "bytes": 6481,
                 "file_id": "023635",
                 "filename": "HOUSE_OVERSIGHT_023635.txt",
+                "is_fwded_article": true,
                 "num_lines": 72,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -4788,6 +4796,7 @@
                 "bytes": 6132,
                 "file_id": "025643",
                 "filename": "HOUSE_OVERSIGHT_025643.txt",
+                "is_fwded_article": true,
                 "num_lines": 124,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -7275,10 +7284,11 @@
                 "bytes": 4154,
                 "file_id": "026451",
                 "filename": "HOUSE_OVERSIGHT_026451.txt",
-                "num_lines": 78,
+                "num_lines": 77,
                 "recipients": [
                     "Darren Indyke"
                 ],
+                "subject": "Re: Breaking News: At least six of President Trump's advisers, including Steve Bannon and Reince Priebus, used private email accounts for government business",
                 "timestamp": "2017-09-26T00:23:33",
                 "type": "Email"
             },
@@ -8004,6 +8014,7 @@
                 "bytes": 29119,
                 "file_id": "026637",
                 "filename": "HOUSE_OVERSIGHT_026637.txt",
+                "is_fwded_article": true,
                 "num_lines": 393,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -12513,7 +12524,7 @@
                 "file_id": "029859",
                 "filename": "HOUSE_OVERSIGHT_029859.txt",
                 "is_fwded_article": true,
-                "num_lines": 153,
+                "num_lines": 144,
                 "recipients": [
                     "Jeffrey Epstein",
                     "Martin Weinberg"
@@ -35536,6 +35547,7 @@
                 "was_timestamp_extracted": true
             },
             {
+                "attached_to_email_id": "021764",
                 "author": "Palm Beach Post",
                 "bytes": 37356,
                 "category": "article",
