@@ -240,6 +240,8 @@ TRUNCATION_LENGTHS = {
     '021096': 700,    # Sinofsky article quote
     '032865': 445,    # Barton reply
     '027126': 1000,   # Summers
+    '030950': 4500,   # Ian Osborne
+    '029684': 402,    # Maldives reply
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
@@ -294,6 +296,8 @@ LINE_REPAIR_MERGES = {
     '019105': [[5]] * 4,
     '019407': [[2, 4]],
     '021729': [[2]],
+    '021814': [[1, 6], [2, 6], [3, 6], [4, 6]],
+    '022190': [[1, 7], [0, 6], [3, 6], [4, 6]],
     '022673': [[9]],
     '022684': [[9]],
     '022695': [[4]],
