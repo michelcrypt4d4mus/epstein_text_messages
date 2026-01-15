@@ -60,7 +60,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     ANIL_AMBANI: re.compile(r'Anil.Ambani', re.IGNORECASE),
     ANN_MARIE_VILLAFANA: re.compile(r'Villafana, Ann Marie|(A(\.|nn) Marie )?Villafa(c|n|ri)a', re.IGNORECASE),
     ANTHONY_SCARAMUCCI: re.compile(r"mooch|(Anthony ('The Mooch' )?)?Scaramucci", re.IGNORECASE),
-    ARIANE_DE_ROTHSCHILD: re.compile(r'AdeR|((Ariane|Edmond) (de )?)?Rothsch?ild|Ariane', re.IGNORECASE),
+    ARIANE_DE_ROTHSCHILD: re.compile(r'AdeR|((Ariane|Edmond) (de )?)?Rothsch?ild|Ariane(?! Dwyer)', re.IGNORECASE),
     BARBRO_C_EHNBOM: re.compile(r'behnbom@aol.com|(Barbro\s.*)?Ehnbom', re.IGNORECASE),
     BARRY_J_COHEN: re.compile(r'barry\s*((j.?|james)\s*)?cohen?', re.IGNORECASE),
     BENNET_MOSKOWITZ: re.compile(r'Moskowitz.*Bennet|Bennet.*Moskowitz', re.IGNORECASE),
@@ -157,6 +157,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
 EMAILERS = [
     'Anne Boyles',
     AL_SECKEL,
+    'Ariane Dwyer',
     AZIZA_ALAHMADI,
     BILL_GATES,
     BILL_SIEGEL,
