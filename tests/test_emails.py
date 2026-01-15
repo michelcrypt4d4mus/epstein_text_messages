@@ -865,6 +865,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     BARBRO_C_EHNBOM: 5,
     BRAD_KARP: 5,
     ARIANE_DE_ROTHSCHILD: 4,
+    'Ariane Dwyer': 1,
     'Daniel Siad': 5,
     "Danny Frost": 8,
     "Darren Indyke": 47,

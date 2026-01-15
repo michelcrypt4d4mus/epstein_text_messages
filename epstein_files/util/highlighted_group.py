@@ -251,6 +251,7 @@ HIGHLIGHTED_NAMES = [
             r"J(ames|im)\s*Watson",
             r"(Lord\s*)?Martin\s*Rees",
             r"Massachusetts\s*Institute\s*of\s*Technology",
+            r"Mayo\s*Clinic",
             r"Media\s*Lab",
             r"(Marvin\s*)?Minsky",
             r"MIT(\s*Media\s*Lab)?",
