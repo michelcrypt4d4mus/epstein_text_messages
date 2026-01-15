@@ -24210,7 +24210,7 @@
                 "bytes": 3611,
                 "file_id": "032544",
                 "filename": "HOUSE_OVERSIGHT_032544.txt",
-                "num_lines": 75,
+                "num_lines": 74,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -27464,7 +27464,7 @@
                 "bytes": 865,
                 "file_id": "033003",
                 "filename": "HOUSE_OVERSIGHT_033003.txt",
-                "num_lines": 18,
+                "num_lines": 17,
                 "recipients": [
                     "Landon Thomas Jr"
                 ],
@@ -27488,7 +27488,7 @@
                 "bytes": 3449,
                 "file_id": "033005",
                 "filename": "HOUSE_OVERSIGHT_033005.txt",
-                "num_lines": 72,
+                "num_lines": 71,
                 "recipients": [
                     "Michael Wolff"
                 ],
@@ -34617,6 +34617,7 @@
                 "type": "OtherFile"
             },
             {
+                "attached_to_email_id": "033091",
                 "bytes": 177784,
                 "category": "politics",
                 "description": "Donald Trump financial disclosures from U.S. Office of Government Ethics",
@@ -35216,7 +35217,7 @@
                 "type": "OtherFile"
             },
             {
-                "attached_to_email_id": "019448",
+                "attached_to_email_id": "019446",
                 "bytes": 34440,
                 "category": "misc",
                 "description": "Haitian business investment proposal called Jacmel",
