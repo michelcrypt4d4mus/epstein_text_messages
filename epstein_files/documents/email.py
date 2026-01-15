@@ -648,6 +648,7 @@ class Email(Communication):
         # Share / Tweet lines
         if self.author == KATHRYN_RUEMMLER:
             text = '\n'.join([l for l in text.split('\n') if l not in ['Share', 'Tweet', 'Bookmark it']])
+        # elif self.author ==
 
         return collapse_newlines(text).strip()
 
@@ -689,6 +690,7 @@ class Email(Communication):
             self.log_top_lines(12, 'Result of modifications')
 
         lines = self.repair_ocr_text(OCR_REPAIRS, self.text).split('\n')
+        lines = [line for line in lines if 'yiv0232' not in line and line != '_filtered' and 'font-family:' not in line]
         new_lines = []
         i = 0
 
