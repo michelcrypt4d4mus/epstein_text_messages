@@ -1286,6 +1286,7 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"(Matt(hew)? )?Hiltzi[gk]",
+            r"Philip\s*Barden",
             r"PR\s*Newswire",
             REPUTATION_MGMT,
             r"Reputation.com",
