@@ -320,6 +320,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"(Art )?Spiegelman",
             r"Artspace",
+            r"Ayn\s*Rand",
             r"Bobby slayton",
             r"bono\s*mick",
             r"Errol(\s*Morris)?",
