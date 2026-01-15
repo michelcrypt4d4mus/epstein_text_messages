@@ -45,7 +45,7 @@ LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 
 SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
-URL_SIGNIFIERS = ['?amp', 'amp?', 'cd=', 'click', 'CMP=', 'contentId', 'ft=', 'gclid', 'htm', 'keywords=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'usg=', 'utm']
+URL_SIGNIFIERS = ['?amp', 'amp?', 'cd=', 'click', 'CMP=', 'contentId', 'ft=', 'gclid', 'htm', 'icmp=', 'keywords=', 'mediaId=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'usg=', 'utm']
 APPEARS_IN = 'appears in'
 
 MAX_NUM_HEADER_LINES = 14
@@ -236,6 +236,7 @@ TRUNCATION_LENGTHS = {
     '031619': 652,    # Reply to grab em by the pussy story
     '021096': 700,    # Sinofsky article quote
     '032865': 445,    # Barton reply
+    '027126': 1000,   # Summers
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
