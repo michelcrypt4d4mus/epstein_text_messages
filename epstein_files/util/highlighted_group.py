@@ -1360,6 +1360,7 @@ HIGHLIGHTED_NAMES = [
             r"(Rex\s*)?Till?erson",
             r"(?<!Cynthia )(Richard\s*)?Nixon",
             r"RNC",
+            r"(Roy|Stephen)\s*Moore",
             r"Tea\s*Party",
             r"Wilbur\s*Ross",
         ],
