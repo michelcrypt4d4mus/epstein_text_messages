@@ -779,96 +779,96 @@ EMAILS_CONFIG = [
         is_fwded_article=True,
     ),
     EmailCfg(id='023627', is_fwded_article=True, description=MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT),
-    EmailCfg(id='026298', is_fwded_article=True, duplicate_ids=['026499']),  # Written by someone else?
-    EmailCfg(id='029692', is_fwded_article=True, duplicate_ids=['029779']),  # WaPo article
-    EmailCfg(id='022344', is_fwded_article=True, duplicate_ids=['028529']),  # Bill Gates is most admired from Nikolic
-    EmailCfg(id='018197', is_fwded_article=True, duplicate_ids=['028648']),  # Ray Takeyh article fwd
-    EmailCfg(id='028728', is_fwded_article=True, duplicate_ids=['027102']),  # WSJ forward to Larry Summers
-    EmailCfg(id='028781', is_fwded_article=True, duplicate_ids=['013460']),  # Atlantic on Jim Yong Kim, Obama's World Bank Pick
-    EmailCfg(id='025041', is_fwded_article=True, duplicate_ids=['028675']),  # Obama agenda
-    EmailCfg(id='031136', is_fwded_article=True, duplicate_ids=['028791']),  # 'Smart Money is Fleeing US Stocks'
-    EmailCfg(id='031779', is_fwded_article=True, duplicate_ids=['026938']),  # Sarah Silverman on AI
-    EmailCfg(id='029849', is_fwded_article=True, duplicate_ids=['033482']),  # Fareed Zakaria: Trump sells America short),
-    EmailCfg(id='032023', is_fwded_article=True, duplicate_ids=['032012']),  # American-Israeli Cooperative Enterprise Newsletter
-    EmailCfg(id='021758', is_fwded_article=True, duplicate_ids=['030616']),  # Radar Online article about Epstein's early prison release
-    EmailCfg(id='033297', is_fwded_article=True, duplicate_ids=['033586']),  # Sultan Sulayem fwding article about Trump and Russia
+    EmailCfg(id='026298', is_fwded_article=True, duplicate_ids=['026499'], comment="Written by someone else?"),
+    EmailCfg(id='029692', is_fwded_article=True, duplicate_ids=['029779'], comment="WaPo article"),
+    EmailCfg(id='022344', is_fwded_article=True, duplicate_ids=['028529'], comment="Bill Gates is most admired from Nikolic"),
+    EmailCfg(id='018197', is_fwded_article=True, duplicate_ids=['028648'], comment="Ray Takeyh article fwd"),
+    EmailCfg(id='028728', is_fwded_article=True, duplicate_ids=['027102'], comment="WSJ forward to Larry Summers"),
+    EmailCfg(id='028781', is_fwded_article=True, duplicate_ids=['013460'], comment="Atlantic on Jim Yong Kim, Obama's World Bank Pick"),
+    EmailCfg(id='025041', is_fwded_article=True, duplicate_ids=['028675'], comment="Obama agenda"),
+    EmailCfg(id='031136', is_fwded_article=True, duplicate_ids=['028791'], comment="'Smart Money is Fleeing US Stocks'"),
+    EmailCfg(id='031779', is_fwded_article=True, duplicate_ids=['026938'], comment="Sarah Silverman on AI"),
+    EmailCfg(id='029849', is_fwded_article=True, duplicate_ids=['033482'], comment="Fareed Zakaria: Trump sells America short),"),
+    EmailCfg(id='032023', is_fwded_article=True, duplicate_ids=['032012'], comment="American-Israeli Cooperative Enterprise Newsletter"),
+    EmailCfg(id='021758', is_fwded_article=True, duplicate_ids=['030616'], comment="Radar Online article about Epstein's early prison release"),
+    EmailCfg(id='033297', is_fwded_article=True, duplicate_ids=['033586'], comment="Sultan Sulayem fwding article about Trump and Russia"),
     EmailCfg(id='031428', is_fwded_article=True, duplicate_ids=['031388']),
     EmailCfg(id='033528', is_fwded_article=True, duplicate_ids=['033517']),
     EmailCfg(id='030238', is_fwded_article=True, duplicate_ids=['031130']),
     EmailCfg(id='031112', is_fwded_article=True, duplicate_ids=['030876']),
     EmailCfg(id='031423', is_fwded_article=True, duplicate_ids=['025361']),
-    EmailCfg(id='025643', is_fwded_article=True),  # Alice Fisher stated to be in the mix of potential candidates for new FBI director.
-    EmailCfg(id='014523', is_fwded_article=True),  # finance research
-    EmailCfg(id='014857', is_fwded_article=True),  # finance research
-    EmailCfg(id='029458', is_fwded_article=True),  # finance research
-    EmailCfg(id='026893', is_fwded_article=True),  # finance research
-    EmailCfg(id='033362', is_fwded_article=True),  # finance research
-    EmailCfg(id='030865', is_fwded_article=True),  # Deutsche bank research
-    EmailCfg(id='021231', is_fwded_article=True),  # 11 places with worse economy than US
-    EmailCfg(id='029905', is_fwded_article=True),  # Ann Coulter
-    EmailCfg(id='026829', is_fwded_article=True),  # Taxes
-    EmailCfg(id='020443', is_fwded_article=True),  # WSJ Deplorables Bannon
-    EmailCfg(id='030372', is_fwded_article=True),  # Bannon China Iran
-    EmailCfg(id='030983', is_fwded_article=True),  # Power Line blog Alex Acosta and Jeffrey Epstein Plea Deal Analysis
-    EmailCfg(id='031774', is_fwded_article=True),  # Krassner fwd of Palmer Report article
-    EmailCfg(id='033345', is_fwded_article=True),  # Krassner fwd of Palmer Report article
-    EmailCfg(id='029903', is_fwded_article=True),  # Krassner fwd of Ann Coulter article about Epstein
-    EmailCfg(id='030266', is_fwded_article=True),  # Krassner fwd of article about Dershowitz
-    EmailCfg(id='030868', is_fwded_article=True),  # 'He doesn't like this sh*t': Trump reportedly hates his job and his staff after 1 month
-    EmailCfg(id='026755', is_fwded_article=True),  # HuffPo
-    EmailCfg(id='016218', is_fwded_article=True),  # AT&T confirms it paid Trump lawyer Cohen for insights on Trump
-    EmailCfg(id='030528', is_fwded_article=True),  # Vicky Ward article
-    EmailCfg(id='030460', is_fwded_article=True),  # Vicky Ward article
-    EmailCfg(id='028508', is_fwded_article=True),  # nanosatellites article
-    EmailCfg(id='019845', is_fwded_article=True),  # Pro Publica article on Preet Bharara
-    EmailCfg(id='029021', is_fwded_article=True),  # article about bannon sent by Alain Forget
-    EmailCfg(id='031688', is_fwded_article=True),  # Bill Siegel fwd of email about hamas
-    EmailCfg(id='026551', is_fwded_article=True),  # Sultan bin Sulayem "Ayatollah between the sheets"
-    EmailCfg(id='031768', is_fwded_article=True),  # Sultan bin Sulayem 'Horseface'
-    EmailCfg(id='031569', is_fwded_article=True),  # Article by Kathryn Alexeeff fwded to Peter Thiel
-    EmailCfg(id='029689', is_fwded_article=True),  # Tunisia article to Larry Summers
-    EmailCfg(id='014525', is_fwded_article=True),  # Really more of a mailing list from Paul Morris?
-    EmailCfg(id='024384', is_fwded_article=True),  # Interview with Bill Siegal re: Islam
-    EmailCfg(id='030200', is_fwded_article=True),  # Lawfare indicting a president
-    EmailCfg(id='029509', is_fwded_article=True),  # Deepak Chopra LSD, Quantum Healing
-    EmailCfg(id='026778', is_fwded_article=True),  # tax alert
-    EmailCfg(id='023001', is_fwded_article=True),  # Miami Herald article timeline of the sex abuse case
-    EmailCfg(id='013405', is_fwded_article=True),  # Articles about epstein case
-    EmailCfg(id='021740', is_fwded_article=True),  # Miami Herald article about Epstein prosecutor
-    EmailCfg(id='023126', is_fwded_article=True),  # Miami Herald on Alex Acosta
-    EmailCfg(id='029625', is_fwded_article=True),  # Conchita Sarnoff Daily Beast Articles - Epstein Sex Trafficking Investigation and Settlement
-    EmailCfg(id='029505', is_fwded_article=True),  # Foreign Policy Middle Eastern Monarchs Look at the Trump
-    EmailCfg(id='029859', is_fwded_article=True),  # Palm Beach Post: Epstein paid three women $5.5 million to end lawsuits
-    EmailCfg(id='031988', is_fwded_article=True),  # NYT review of Inside Job
-    EmailCfg(id='029901', is_fwded_article=True),  # THE EDGE question
-    EmailCfg(id='031399', is_fwded_article=True),  # Miami U.S. Attorney's Office recuses itself from Jeffrey Epstein case
-    EmailCfg(id='031705', is_fwded_article=True),  # Thomas Friedman why not in vegas?
-    EmailCfg(id='016801', is_fwded_article=True),  # Capital Market Outlook
-    EmailCfg(id='023564', is_fwded_article=True),  # BBG ;Leon Black's Tax-Overhaul Dilemma Could Alter Wall Street Model
-    EmailCfg(id='025231', is_fwded_article=True),  # Newsmax: Laffer, Laffer: Obama Must Use Reaganomics to Save Economy The only way President Barack Obama can solve
-    EmailCfg(id='031472', is_fwded_article=True),  # WSJ: Lawyers for Imam Wanted by Turkish authorities Fear for Their Client's Life
-    EmailCfg(id='028536', is_fwded_article=True),  # Palm Beach Post FBI Epstein files say he gave info. Does it explain sweetheart deal?
-    EmailCfg(id='030326', is_fwded_article=True),  # NYP Congressional candidate compares Melania Trump to prostitute
-    EmailCfg(id='030519', is_fwded_article=True),  # Daily Mail on Prince Andrew
-    EmailCfg(id='030878', is_fwded_article=True),  # Steve Bannon almost appeared in Michael Moore's 'Fahrenheit 11/9'
-    EmailCfg(id='024300', is_fwded_article=True),  # Bookstore owner calls police after customer confronted Steve Bannon
-    EmailCfg(id='026924', is_fwded_article=True),  # The Onion
-    EmailCfg(id='022624', is_fwded_article=True),  # Disgusting: Clinton Snared In Pedophile Ring
-    EmailCfg(id='022673', is_fwded_article=True),  # Epstein + Clinton
-    EmailCfg(id='021729', is_fwded_article=True),  # Acosta rebuke
-    EmailCfg(id='023635', is_fwded_article=True),  # Landon Thomas finance related
-    EmailCfg(id='026637', is_fwded_article=True),  # Landon Thomas finance related
-    EmailCfg(id='021764', is_fwded_article=True),  # He was 50 and they were girls
-    EmailCfg(id='033311', is_fwded_article=True),  # 2016 election polls
-    EmailCfg(id='026580', is_fwded_article=True),  # NPR: Antigua: Land Of Sun, Sand, And Super Cheap
-    EmailCfg(id='031340', is_fwded_article=True),  # Article about Alex Jones threatening Robert Mueller
-    EmailCfg(id='030209', is_fwded_article=True),  # Atlantic Council  Syria: Blackberry Diplomacy
-    EmailCfg(id='026605', is_fwded_article=True),  # Article about Ruemmler turning down attorney general job by NEDRA PICKLER
-    EmailCfg(id='031990', is_fwded_article=True),  # newsmax on ken starr
-    EmailCfg(id='029433', is_fwded_article=True),  # Estate Planning After the Enactment of the Tax Cuts and Jobs Act
-    EmailCfg(id='030927', is_fwded_article=True),  # don't talk to the FBI
-    EmailCfg(id='033329', is_fwded_article=True),  # Chinese economists
-    EmailCfg(id='031764', is_fwded_article=True),  # GOP fundraiser Broidy under investigation
+    EmailCfg(id='025643', is_fwded_article=True, comment="Alice Fisher stated to be in the mix of potential candidates for new FBI director."),
+    EmailCfg(id='014523', is_fwded_article=True, comment="finance research"),
+    EmailCfg(id='014857', is_fwded_article=True, comment="finance research"),
+    EmailCfg(id='029458', is_fwded_article=True, comment="finance research"),
+    EmailCfg(id='026893', is_fwded_article=True, comment="finance research"),
+    EmailCfg(id='033362', is_fwded_article=True, comment="finance research"),
+    EmailCfg(id='030865', is_fwded_article=True, comment="Deutsche bank research"),
+    EmailCfg(id='021231', is_fwded_article=True, comment="11 places with worse economy than US"),
+    EmailCfg(id='029905', is_fwded_article=True, comment="Ann Coulter"),
+    EmailCfg(id='026829', is_fwded_article=True, comment="Taxes"),
+    EmailCfg(id='020443', is_fwded_article=True, comment="WSJ Deplorables Bannon"),
+    EmailCfg(id='030372', is_fwded_article=True, comment="Bannon China Iran"),
+    EmailCfg(id='030983', is_fwded_article=True, comment="Power Line blog Alex Acosta and Jeffrey Epstein Plea Deal Analysis"),
+    EmailCfg(id='031774', is_fwded_article=True, comment="Krassner fwd of Palmer Report article"),
+    EmailCfg(id='033345', is_fwded_article=True, comment="Krassner fwd of Palmer Report article"),
+    EmailCfg(id='029903', is_fwded_article=True, comment="Krassner fwd of Ann Coulter article about Epstein"),
+    EmailCfg(id='030266', is_fwded_article=True, comment="Krassner fwd of article about Dershowitz"),
+    EmailCfg(id='030868', is_fwded_article=True, comment="'He doesn't like this sh*t': Trump reportedly hates his job and his staff after 1 month"),
+    EmailCfg(id='026755', is_fwded_article=True, comment="HuffPo"),
+    EmailCfg(id='016218', is_fwded_article=True, comment="AT&T confirms it paid Trump lawyer Cohen for insights on Trump"),
+    EmailCfg(id='030528', is_fwded_article=True, comment="Vicky Ward article"),
+    EmailCfg(id='030460', is_fwded_article=True, comment="Vicky Ward article"),
+    EmailCfg(id='028508', is_fwded_article=True, comment="nanosatellites article"),
+    EmailCfg(id='019845', is_fwded_article=True, comment="Pro Publica article on Preet Bharara"),
+    EmailCfg(id='029021', is_fwded_article=True, comment="article about bannon sent by Alain Forget"),
+    EmailCfg(id='031688', is_fwded_article=True, comment="Bill Siegel fwd of email about hamas"),
+    EmailCfg(id='026551', is_fwded_article=True, comment='Sultan bin Sulayem "Ayatollah between the sheets"'),
+    EmailCfg(id='031768', is_fwded_article=True, comment="Sultan bin Sulayem 'Horseface'"),
+    EmailCfg(id='031569', is_fwded_article=True, comment="Article by Kathryn Alexeeff fwded to Peter Thiel"),
+    EmailCfg(id='029689', is_fwded_article=True, comment="Tunisia article to Larry Summers"),
+    EmailCfg(id='014525', is_fwded_article=True, comment="Really more of a mailing list from Paul Morris?"),
+    EmailCfg(id='024384', is_fwded_article=True, comment="Interview with Bill Siegal re: Islam"),
+    EmailCfg(id='030200', is_fwded_article=True, comment="Lawfare indicting a president"),
+    EmailCfg(id='029509', is_fwded_article=True, comment="Deepak Chopra LSD, Quantum Healing"),
+    EmailCfg(id='026778', is_fwded_article=True, comment="tax alert"),
+    EmailCfg(id='023001', is_fwded_article=True, comment="Miami Herald article timeline of the sex abuse case"),
+    EmailCfg(id='013405', is_fwded_article=True, comment="Articles about epstein case"),
+    EmailCfg(id='021740', is_fwded_article=True, comment="Miami Herald article about Epstein prosecutor"),
+    EmailCfg(id='023126', is_fwded_article=True, comment="Miami Herald on Alex Acosta"),
+    EmailCfg(id='029625', is_fwded_article=True, comment="Conchita Sarnoff Daily Beast Articles - Epstein Sex Trafficking Investigation and Settlement"),
+    EmailCfg(id='029505', is_fwded_article=True, comment="Foreign Policy Middle Eastern Monarchs Look at the Trump"),
+    EmailCfg(id='029859', is_fwded_article=True, comment="Palm Beach Post: Epstein paid three women $5.5 million to end lawsuits"),
+    EmailCfg(id='031988', is_fwded_article=True, comment="NYT review of Inside Job"),
+    EmailCfg(id='029901', is_fwded_article=True, comment="THE EDGE question"),
+    EmailCfg(id='031399', is_fwded_article=True, comment="Miami U.S. Attorney's Office recuses itself from Jeffrey Epstein case"),
+    EmailCfg(id='031705', is_fwded_article=True, comment="Thomas Friedman why not in vegas?"),
+    EmailCfg(id='016801', is_fwded_article=True, comment="Capital Market Outlook"),
+    EmailCfg(id='023564', is_fwded_article=True, comment="BBG ;Leon Black's Tax-Overhaul Dilemma Could Alter Wall Street Model"),
+    EmailCfg(id='025231', is_fwded_article=True, comment="Newsmax: Laffer, Laffer: Obama Must Use Reaganomics to Save Economy The only way President Barack Obama can solve"),
+    EmailCfg(id='031472', is_fwded_article=True, comment="WSJ: Lawyers for Imam Wanted by Turkish authorities Fear for Their Client's Life"),
+    EmailCfg(id='028536', is_fwded_article=True, comment="Palm Beach Post FBI Epstein files say he gave info. Does it explain sweetheart deal?"),
+    EmailCfg(id='030326', is_fwded_article=True, comment="NYP Congressional candidate compares Melania Trump to prostitute"),
+    EmailCfg(id='030519', is_fwded_article=True, comment="Daily Mail on Prince Andrew"),
+    EmailCfg(id='030878', is_fwded_article=True, comment="Steve Bannon almost appeared in Michael Moore's 'Fahrenheit 11/9'"),
+    EmailCfg(id='024300', is_fwded_article=True, comment="Bookstore owner calls police after customer confronted Steve Bannon"),
+    EmailCfg(id='026924', is_fwded_article=True, comment="The Onion"),
+    EmailCfg(id='022624', is_fwded_article=True, comment="Disgusting: Clinton Snared In Pedophile Ring"),
+    EmailCfg(id='022673', is_fwded_article=True, comment="Epstein + Clinton"),
+    EmailCfg(id='021729', is_fwded_article=True, comment="Acosta rebuke"),
+    EmailCfg(id='023635', is_fwded_article=True, comment="Landon Thomas finance related"),
+    EmailCfg(id='026637', is_fwded_article=True, comment="Landon Thomas finance related"),
+    EmailCfg(id='021764', is_fwded_article=True, comment="He was 50 and they were girls"),
+    EmailCfg(id='033311', is_fwded_article=True, comment="2016 election polls"),
+    EmailCfg(id='026580', is_fwded_article=True, comment="NPR: Antigua: Land Of Sun, Sand, And Super Cheap"),
+    EmailCfg(id='031340', is_fwded_article=True, comment="Article about Alex Jones threatening Robert Mueller"),
+    EmailCfg(id='030209', is_fwded_article=True, comment="Atlantic Council  Syria: Blackberry Diplomacy"),
+    EmailCfg(id='026605', is_fwded_article=True, comment="Article about Ruemmler turning down attorney general job by NEDRA PICKLER"),
+    EmailCfg(id='031990', is_fwded_article=True, comment="newsmax on ken starr"),
+    EmailCfg(id='029433', is_fwded_article=True, comment="Estate Planning After the Enactment of the Tax Cuts and Jobs Act"),
+    EmailCfg(id='030927', is_fwded_article=True, comment="don't talk to the FBI"),
+    EmailCfg(id='033329', is_fwded_article=True, comment="Chinese economists"),
+    EmailCfg(id='031764', is_fwded_article=True, comment="GOP fundraiser Broidy under investigation"),
     EmailCfg(id='032475', date='2017-02-15 13:31:25'),
     EmailCfg(id='030373', date='2018-10-03 01:49:27'),
     # Configure duplicates

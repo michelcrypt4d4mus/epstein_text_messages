@@ -79,6 +79,7 @@ class DocCfg:
     attached_to_email_id: str | None = None
     author: Name = None
     category: str | None = None
+    comment: str = ''
     date: str | None = None
     description: str | None = None
     dupe_type: DuplicateType | None = None
@@ -181,7 +182,7 @@ class DocCfg:
         type_str = f"{type(self).__name__}("
         single_line_repr = type_str + ', '.join(props) + f')'
 
-        if len(single_line_repr) < MAX_LINE_LENGTH:
+        if len(single_line_repr) < MAX_LINE_LENGTH or self.comment:
             repr_str = single_line_repr
         else:
             repr_str = f"{type_str}{INDENT_NEWLINE}" + INDENTED_JOIN.join(props)
