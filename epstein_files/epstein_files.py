@@ -124,6 +124,9 @@ class EpsteinFiles:
 
             lines = doc.matching_lines(pattern)
 
+            if args.min_line_length:
+                lines = [line for line in lines if len(line.line) > args.min_line_length]
+
             if len(lines) > 0:
                 results.append(SearchResult(doc, lines))
 

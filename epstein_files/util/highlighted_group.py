@@ -1657,7 +1657,7 @@ HIGHLIGHTED_TEXTS = [
     ),
     HighlightedText(
         label='sent_from',
-        style='color(103) italic dim',
+        style='light_cyan3 italic dim',
         patterns=[SENT_FROM_REGEX.pattern],
     ),
     HighlightedText(

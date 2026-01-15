@@ -118,6 +118,12 @@ def epstein_search():
             elif document.is_duplicate():
                 console.print('\n', document.duplicate_file_txt(), '\n')
                 continue
+            elif isinstance(document, Email) and args.email_body:
+                body_lines = [l for l in search_result.lines if l.line_number > document.header.num_header_rows]
+
+                if not body_lines:
+                    logger.debug(f"None of the matches for '{search_term}' seem to be in the body of the email")
+                    continue
 
             if args.whole_file:
                 console.print(document)
