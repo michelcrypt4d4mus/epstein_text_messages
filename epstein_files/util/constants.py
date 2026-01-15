@@ -810,7 +810,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='031333', description='Fort Knox conspiracy theory, looks like a Russian disinfo article', is_fwded_article=True),
     EmailCfg(id='031335', description='Fort Knox conspiracy theory, looks like a Russian disinfo article', is_fwded_article=True),
     EmailCfg(id='023627', description='draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015', is_fwded_article=True, is_interesting=True, truncate_to=16800, comment='Micheal Wolff article with brock pierce'),
-    EmailCfg(id='023627', description='draft of an unpublished article about Epstein by Michael Wolff written ca. 2014/2015', is_fwded_article=True, is_interesting=True, truncate_to=16800, comment='Micheal Wolff article with brock pierce'),
     EmailCfg(id='026298', duplicate_ids=['026499'], is_fwded_article=True, comment='Written by someone else?'),
     EmailCfg(id='029692', duplicate_ids=['029779'], is_fwded_article=True, comment='WaPo article'),
     EmailCfg(id='022344', duplicate_ids=['028529'], is_fwded_article=True, comment='Bill Gates is most admired from Nikolic'),
