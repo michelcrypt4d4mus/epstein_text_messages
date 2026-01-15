@@ -30,7 +30,7 @@ from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
 
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
-BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,]|L\._)$')
+BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,]|L\._|_filtered|.*(yiv0232|font-family:|margin-bottom:).*)$')
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 LINK_LINE_REGEX = re.compile(f"^>? ?htt")
 LINK_LINE2_REGEX = re.compile(r"^[-\w.%&=/]{5,}$")
@@ -690,7 +690,6 @@ class Email(Communication):
             self.log_top_lines(12, 'Result of modifications')
 
         lines = self.repair_ocr_text(OCR_REPAIRS, self.text).split('\n')
-        lines = [line for line in lines if 'yiv0232' not in line and line != '_filtered' and 'font-family:' not in line]
         new_lines = []
         i = 0
 
