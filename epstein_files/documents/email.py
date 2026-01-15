@@ -256,6 +256,7 @@ TRUNCATION_LENGTHS = {
     '032250': 1000,  # Wolff article
     '025655': 400,   # reply to article
     '026451': 500,   # reply to article
+    '023717': 489,   # reply to article
 }
 
 # These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
