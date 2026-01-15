@@ -829,6 +829,7 @@ HIGHLIGHTED_NAMES = [
             r"FTC",
             r"(General\s*)?P(a|e)traeus",
             r"Geoff\s*Ling",
+            r"Homeland\s*Security",
             r"IRS",
             r"(James\s*)?Comey",
             r"(Jennifer\s*Shasky\s*)?Calvery",
@@ -1540,6 +1541,7 @@ HIGHLIGHTED_NAMES = [
         style='orchid1',
         patterns=[
             r"#metoo",
+            r"child\s*pornography",
             r"(David\s*)?Bo[il]es(,?\s*Schiller( & Flexner)?)?",
             r"(Gloria\s*)?Allred",
             r"(Jane|Tiffany)\s*Doe",
