@@ -23,7 +23,7 @@ JMAIL = 'Jmail'
 ROLLCALL = 'RollCall'
 TWITTER = 'search X'
 
-GH_PROJECT_URL = 'https://github.com/michelcrypt4d4mus/epstein_text_messages'
+GH_PROJECT_URL = f'https://github.com/michelcrypt4d4mus/{GH_REPO_NAME}'
 GH_MASTER_URL = f"{GH_PROJECT_URL}/blob/master"
 ATTRIBUTIONS_URL = f'{GH_MASTER_URL}/epstein_files/util/constants.py'
 EXTRACTS_BASE_URL = f'{GH_MASTER_URL}/emails_extracted_from_legal_filings'

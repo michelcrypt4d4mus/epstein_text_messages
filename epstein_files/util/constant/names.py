@@ -218,7 +218,7 @@ UBS = 'UBS'
 NAMES_TO_NOT_HIGHLIGHT = """
     al alain alan alfredo allen alex alexander amanda andres andrew anthony
     bard barrett barry bennet bernard bill black bob boris brad brenner bruce
-    caroline carolyn chris christina cohen
+    cameron caroline carolyn chris christina cohen
     dan daniel danny darren dave david debbie donald
     ed edward edwards enforcement enterprise enterprises entourage epstein eric erika etienne
     faith fisher forget fred friendly frost fuller
@@ -226,7 +226,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     haddad harry hay heather henry hill hoffman howard
     ian ivan
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr
-    kahn karl kate katherine kelly ken kevin krassner
+    kafka kahn karl kate katherine kelly ken kevin krassner
     larry laurie lawrence leon lesley linda link lisa
     mann marc marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
     nancy neal new nicole norman

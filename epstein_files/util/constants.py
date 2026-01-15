@@ -355,6 +355,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='032676', author=ANAS_ALRASHEED, attribution_reason='name visible in 029113 reply'),
     EmailCfg(id='026237', author=ANAS_ALRASHEED, attribution_reason='name visible in 029113 reply'),
     EmailCfg(id='032682', author=ANAS_ALRASHEED, attribution_reason='name visible in 029113 reply'),
+    EmailCfg(id='032542', author=ANAS_ALRASHEED, attribution_reason='discussion of Kuwait and timing', is_attribution_uncertain=True),
+    EmailCfg(id='026078', author=ANAS_ALRASHEED, attribution_reason='discussion of Kuwait and timing', is_attribution_uncertain=True),
+    EmailCfg(id='026080', author=ANAS_ALRASHEED, attribution_reason='discussion of Kuwait and timing', is_attribution_uncertain=True),
+    EmailCfg(id='026083', author=ANAS_ALRASHEED, attribution_reason='discussion of Kuwait and timing', is_attribution_uncertain=True),
+    EmailCfg(id='026086', author=ANAS_ALRASHEED, attribution_reason='discussion of Kuwait and timing', is_attribution_uncertain=True),
+    EmailCfg(id='026090', author=ANAS_ALRASHEED, attribution_reason='discussion of Kuwait and timing', is_attribution_uncertain=True),
     EmailCfg(id='026064', author=ARIANE_DE_ROTHSCHILD, attribution_reason='signature'),
     EmailCfg(id='026069', author=ARIANE_DE_ROTHSCHILD, attribution_reason='signature'),
     EmailCfg(id='030741', author=ARIANE_DE_ROTHSCHILD, attribution_reason='signature'),
@@ -647,6 +653,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='033050', actual_text='schwartman'),
     EmailCfg(id='031036', description=f"{BARBRO_C_EHNBOM} related donation and Swedish girls discussion"),
     EmailCfg(id='022219', description="discussion of attempts to clean up Epstein's Google search results"),
+    EmailCfg(id='032946', description="discussion of obtaining a Moroccan visa for an unnamed woman"),
     EmailCfg(id='030648', description="is the 'roger' Epstein is trying to meet Roger Stone?"),
     EmailCfg(id='030762', description="is the 'roger' Epstein is trying to meet Roger Stone?"),
     EmailCfg(id='030649', description="is the 'roger' Epstein is trying to meet Roger Stone?"),
@@ -672,6 +679,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='032023', is_fwded_article=True, duplicate_ids=['032012']),  # American-Israeli Cooperative Enterprise Newsletter
     EmailCfg(id='021758', is_fwded_article=True, duplicate_ids=['030616']),  # Radar Online article about Epstein's early prison release
     EmailCfg(id='033297', is_fwded_article=True, duplicate_ids=['033586']),  # Sultan Sulayem fwding article about Trump and Russia
+    EmailCfg(id='029905', is_fwded_article=True),  # Ann Coulter
     EmailCfg(id='026829', is_fwded_article=True),  # Taxes
     EmailCfg(id='020443', is_fwded_article=True),  # WSJ Deplorables Bannon
     EmailCfg(id='030372', is_fwded_article=True),  # Bannon China Iran
@@ -1716,7 +1724,7 @@ NORWEGAIN_REPLY_PATTERN = r"(Den .* folgende|(fre|lor|son)\. .* skrev .*):"
 REPLY_LINE_IN_A_MSG_PATTERN = r"In a message dated \d+/\d+/\d+.*writes:"
 REPLY_LINE_ENDING_PATTERN = r"[_ \n](AM|PM|[<_]|wrote:?)"
 REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"On \d+/\d+/\d+[, ].*{REPLY_LINE_ENDING_PATTERN}"
-REPLY_LINE_ON_DATE_PATTERN = fr"^On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*)[, ].*{REPLY_LINE_ENDING_PATTERN}"
+REPLY_LINE_ON_DATE_PATTERN = fr"^On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Jan|Fe(b|vr\.)|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*)[, ].*{REPLY_LINE_ENDING_PATTERN}"
 REPLY_LINE_PATTERN = rf"({FRENCH_REPLY_PATTERN}|{GERMAN_REPLY_PATTERN}|{NORWEGAIN_REPLY_PATTERN}|{REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
 SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?((Envoyé de mon|Sent (from|via)).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)|Co-authored with iPhone auto-correct', re.M | re.I)
