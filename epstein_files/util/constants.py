@@ -416,7 +416,6 @@ EMAILS_CONFIG = [
         fwded_text_after='Transcript: Phone call between President',
     ),
     EmailCfg(id='033328', author=AZIZA_ALAHMADI, attribution_reason='"Regards, Aziza" at bottom'),
-    EmailCfg(id='026659', author=BARBRO_C_EHNBOM, attribution_reason='Reply'),
     EmailCfg(
         id='031215',
         author=BARBRO_C_EHNBOM,
