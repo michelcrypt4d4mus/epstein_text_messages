@@ -696,16 +696,17 @@ class Email(Communication):
             elif ' http' in line and line.endswith('html'):
                 pre_link, post_link = line.split(' http', 1)
                 line = f"{pre_link} http{post_link.replace(' ', '')}"
-            elif line.startswith('Subject:') \
-                    and i < (len(lines) - 2) \
-                    and len(line) > 40 \
-                    and len(lines[i + 1]) > 1 \
-                    and not any([cont in lines[i + 1] for cont in BAD_SUBJECT_CONTINUATIONS]) \
-                    and ((subject_line.endswith(lines[i + 1]) and lines[i + 1] != subject) \
-                        or (not FIELDS_COLON_REGEX.search(lines[i + 1]) and FIELDS_COLON_REGEX.search(lines[i + 2]))):
-                self.warn(f"Fixing broken subject line\n  line: '{line}'\n    next: '{lines[i + 1]}'\n    next: '{lines[i + 2]}'\n")
-                # line += f" {lines[i + 1]}"
-                # i += 1
+            elif line.startswith('Subject:') and i < (len(lines) - 2) and len(line) >= 40:
+                next_line = lines[i + 1]
+                next_next = lines[i + 2]
+
+                if len(next_line) <= 1 or any([cont in next_line for cont in BAD_SUBJECT_CONTINUATIONS]):
+                    pass
+                elif (subject.endswith(next_line) and next_line != subject) \
+                        or (FIELDS_COLON_REGEX.search(next_next) and not FIELDS_COLON_REGEX.search(next_line)):
+                    self.warn(f"Fixing broken subject line\n  line: '{line}'\n    next: '{next_line}'\n    next: '{next_next}'\nsubject='{subject}'\n")
+                    line += f" {lines[i + 1]}"
+                    i += 1
 
             new_lines.append(line)
 
