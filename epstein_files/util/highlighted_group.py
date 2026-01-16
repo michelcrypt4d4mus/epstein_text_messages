@@ -1358,7 +1358,7 @@ HIGHLIGHTED_NAMES = [
             r"(Michael\s)?Hayden",
             r"((General|Mike)\s*)?(Flynn|Pence)",
             r"(Mitt\s*)?Romney",
-            r"(Steven?\s*)Mnuchin",
+            r"(Steven?\s*)?Mnuchin",
             r"(Newt\s*)Gingrich",
             r"Nikki",
             r"Haley",
@@ -1658,7 +1658,7 @@ HIGHLIGHTED_TEXTS = [
     HighlightedText(
         label='quoted_reply_line',
         style='dim',
-        patterns=[REPLY_REGEX.pattern, r"^> wrote:$"],
+        patterns=[REPLY_REGEX.pattern, r"^(> )?wrote:$"],
     ),
     HighlightedText(
         label='redacted',
