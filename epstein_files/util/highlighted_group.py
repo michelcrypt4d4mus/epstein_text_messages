@@ -31,6 +31,8 @@ REGEX_STYLE_PREFIX = 'regex'
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w, ]+$", re.IGNORECASE)
 TECH_BRO = 'tech bro'
 
+VICTIM_COLOR = 'orchid1'
+
 CATEGORY_STYLE_MAPPING = {
     ARTICLE: JOURNALIST,
     BOOK: JOURNALIST,
@@ -1549,9 +1551,8 @@ HIGHLIGHTED_NAMES = [
     ),
     HighlightedNames(
         label='victim',
-        style='orchid1',
+        style=VICTIM_COLOR,
         patterns=[
-            r"#metoo",
             r"child\s*pornography",
             r"(David\s*)?Bo[il]es(,?\s*Schiller( & Flexner)?)?",
             r"(Gloria\s*)?Allred",
@@ -1618,6 +1619,11 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(emailers={SULTAN_BIN_SULAYEM: 'chairman of ports in Dubai, CEO of DP World'}, style='green1', category=MIDEAST),
 
     # HighlightedText not HighlightedNames bc of word boundary issue
+    HighlightedText(
+        label='metoo',
+        style=VICTIM_COLOR,
+        patterns=[r"#metoo"]
+    ),
     HighlightedText(
         label='phone_number',
         style='bright_green',

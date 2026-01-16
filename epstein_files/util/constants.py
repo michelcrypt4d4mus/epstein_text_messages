@@ -747,7 +747,7 @@ EMAILS_CONFIG = [
         truncate_to=NO_TRUNCATE,
         comment='Barbro Ehnbom talking about Swedish girl',
     ),
-    EmailCfg(id='022219', description="discussion of attempts to clean up Epstein's Google search results"),
+    EmailCfg(id='022219', description="discussion of attempts to clean up Epstein's Google search results", truncate_to=2404),
     EmailCfg(
         id='032946',
         description='discussion of obtaining a Moroccan visa for an unnamed woman',
@@ -1075,7 +1075,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='023717', truncate_to=489, comment='reply to article'),
 ]
 
-if args.deep_debug:
+if args.constantize:
     for email_cfg in EMAILS_CONFIG:
         print(f"{email_cfg},")
 
