@@ -558,7 +558,6 @@ HIGHLIGHTED_NAMES = [
             MERWIN_DELA_CRUZ: None,  # HOUSE_OVERSIGHT_032652 Groff says "Jojo and Merwin both requested off Nov. 25 and 26"
             NADIA_MARCINKO: "Epstein's pilot",
             'Sean J. Lancaster': 'airplane reseller',
-            ZUBAIR_KHAN: 'Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai',
         },
         patterns=[
             r"Adriana\s*Ross",
@@ -1470,6 +1469,7 @@ HIGHLIGHTED_NAMES = [
             REID_HOFFMAN: 'PayPal mafia member, founder of LinkedIn',
             STEVEN_SINOFSKY: 'ex-Microsoft, loves bitcoin',
             VINCENZO_IOZZO: 'CEO of the identity-security company SlashID',
+            ZUBAIR_KHAN: 'Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai',
         },
         patterns=[
             r"AG?I",
