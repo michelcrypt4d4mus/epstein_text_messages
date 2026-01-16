@@ -1013,16 +1013,17 @@
                 "type": "Email"
             },
             {
-                "attribution_reason": "Actually a fwd by Charles Michael but Steven Hoffenberg email more interesting",
                 "author": "Steven Hoffenberg",
                 "bytes": 1375,
                 "date": "2016-08-11 09:36:01",
+                "description": "looks like a memo from Charles Michael containing copy/paste of email contents?",
                 "file_id": "019109",
                 "filename": "HOUSE_OVERSIGHT_019109.txt",
                 "num_lines": 30,
                 "recipients": [
                     "Players2"
                 ],
+                "subject": "FW: Privileged and Confidential - Fwd: JAMES PATTERSON NEW BOOK TELLING FEDS COVER UP OF BILLIONAIRE JEFF EPSTEIN CHILD RAPES RELEASE DATE OCT 10 2016 STEVEN HOFFENBERG IS ON THE BOOK WRITING TEAM !!!!",
                 "timestamp": "2016-08-11T09:36:01",
                 "type": "Email"
             },
@@ -1994,11 +1995,12 @@
                 "bytes": 1723,
                 "file_id": "022187",
                 "filename": "HOUSE_OVERSIGHT_022187.txt",
-                "num_lines": 40,
+                "num_lines": 36,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
                 "sent_from_device": "Sent from my iPhone",
+                "subject": "Fwd: CNN Inquiry",
                 "timestamp": "2016-10-13T18:08:00",
                 "type": "Email"
             },
@@ -3945,13 +3947,14 @@
             {
                 "author": "Paul Krassner",
                 "bytes": 12655,
+                "comment": "krassner",
                 "dupe_type": "same",
                 "duplicate_ids": [
                     "031973"
                 ],
                 "file_id": "024923",
                 "filename": "HOUSE_OVERSIGHT_024923.txt",
-                "num_lines": 162,
+                "num_lines": 160,
                 "recipients": [
                     "George Krassner",
                     "Linda W. Grossman",
@@ -3959,6 +3962,7 @@
                     "Nick Kazan",
                     "Rebecca Risman"
                 ],
+                "subject": "rather long and a few typos",
                 "timestamp": "2019-05-15T00:17:32",
                 "type": "Email"
             },
@@ -5535,10 +5539,11 @@
                 "bytes": 1524,
                 "file_id": "026024",
                 "filename": "HOUSE_OVERSIGHT_026024.txt",
-                "num_lines": 38,
+                "num_lines": 36,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
+                "subject": "Ref. : TR:",
                 "timestamp": "2016-11-28T11:36:54",
                 "type": "Email"
             },
@@ -7339,8 +7344,10 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 1348,
+                "description": "comments about Trump's 'former bridge girl and toy'",
                 "file_id": "026449",
                 "filename": "HOUSE_OVERSIGHT_026449.txt",
+                "is_interesting": true,
                 "num_lines": 22,
                 "recipients": [
                     "Boris Nikolic"
@@ -7775,7 +7782,7 @@
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
-                "subject": "Be_M1.jpg",
+                "subject": "Re: Program & Attendee list",
                 "timestamp": "2012-08-20T13:23:57",
                 "type": "Email"
             },
@@ -7996,6 +8003,7 @@
                     "Jeffrey Epstein"
                 ],
                 "sent_from_device": "Sent from my iPhone",
+                "subject": "Donald Trump Rape Lawsuit Refiled With New Witness I Law News",
                 "timestamp": "2016-10-01T16:40:00",
                 "type": "Email"
             },
@@ -9590,6 +9598,7 @@
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
+                "subject": "Re: Program & Attendee list",
                 "timestamp": "2012-08-20T13:23:57",
                 "type": "Email"
             },
@@ -11871,6 +11880,7 @@
             {
                 "author": "Mohamed Waheed Hassan",
                 "bytes": 9199,
+                "comment": "Maldives",
                 "file_id": "029534",
                 "filename": "HOUSE_OVERSIGHT_029534.txt",
                 "num_lines": 149,
@@ -11880,6 +11890,7 @@
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Re:",
                 "timestamp": "2013-01-27T04:33:18",
+                "truncate_to": 900,
                 "type": "Email"
             },
             {
@@ -12325,6 +12336,7 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 8338,
+                "comment": "Maldives",
                 "file_id": "029680",
                 "filename": "HOUSE_OVERSIGHT_029680.txt",
                 "num_lines": 141,
@@ -12333,6 +12345,7 @@
                 ],
                 "subject": "Re:",
                 "timestamp": "2013-01-27T04:15:30",
+                "truncate_to": 900,
                 "type": "Email"
             },
             {
@@ -18626,6 +18639,7 @@
                 "recipients": [
                     "Charles Michael"
                 ],
+                "subject": "FW: Privileged and Confidential - Fwd: JAMES PATTERSON NEW BOOK TELLING FEDS COVER UP OF BILLIONAIRE JEFF EPSTEIN CHILD RAPES RELEASE DATE OCT 10 2016 STEVEN HOFFENBERG IS ON THE BOOK WRITING TEAM !!!!",
                 "timestamp": "2016-08-17T11:26:00",
                 "truncate_to": 2500,
                 "type": "Email"
@@ -21366,6 +21380,7 @@
             {
                 "author": "Paul Krassner",
                 "bytes": 12432,
+                "comment": "krassner",
                 "dupe_type": "same",
                 "duplicate_of_id": "024923",
                 "file_id": "031973",
@@ -26999,8 +27014,9 @@
                 "bytes": 860,
                 "file_id": "032896",
                 "filename": "HOUSE_OVERSIGHT_032896.txt",
-                "num_lines": 18,
+                "num_lines": 17,
                 "recipients": [
+                    "Darren Indyke",
                     "Martin Weinberg"
                 ],
                 "timestamp": "2016-10-19T15:05:12",
@@ -27261,6 +27277,7 @@
                 "filename": "HOUSE_OVERSIGHT_032936.txt",
                 "num_lines": 17,
                 "recipients": [
+                    "Jean Huguen",
                     "Lesley Groff"
                 ],
                 "timestamp": "2016-11-28T00:22:35",
@@ -32299,6 +32316,7 @@
                     "W&K",
                     "Walli Leff"
                 ],
+                "subject": "Fwd: Daryl Cagle's Blog",
                 "timestamp": "2019-02-10T00:09:30",
                 "type": "Email"
             },
