@@ -1658,7 +1658,7 @@ HIGHLIGHTED_TEXTS = [
     HighlightedText(
         label='quoted_reply_line',
         style='dim',
-        patterns=[REPLY_REGEX.pattern, r"^> wrote:$"],
+        patterns=[REPLY_REGEX.pattern, r"^(> )?wrote:$"],
     ),
     HighlightedText(
         label='redacted',
