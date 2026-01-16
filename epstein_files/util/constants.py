@@ -665,7 +665,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='022202', recipients=[JEAN_LUC_BRUNEL], attribution_reason='Follow up / reply', duplicate_ids=['029975']),
     EmailCfg(id='022187', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='030347', recipients=[JEFFREY_EPSTEIN]),
-    EmailCfg(id='030367', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='033274', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='032780', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='033386', recipients=[JEFFREY_EPSTEIN, None], duplicate_ids=['033599']),
