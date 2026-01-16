@@ -420,6 +420,7 @@ HIGHLIGHTED_NAMES = [
             TOM_PRITZKER: 'chairman of The Pritzker Organization and Hyatt Hotels',
         },
         patterns=[
+            r"Arthur Klein",
             r"((Bill|David)\s*)?Koch(\s*(Bro(s|thers)|Industries))?",
             r"Gruterite",
             r"((John|Patricia)\s*)?Kluge",
@@ -427,6 +428,7 @@ HIGHLIGHTED_NAMES = [
             r"(Mi(chael|ke)\s*)?Ovitz",
             r"(Steve\s+)?Wynn",
             r"(Les(lie)?\s+)?Wexner",
+            r"Michael\s*Klein",
             r"New Leaf Ventures",
             r"Park Partners",
             r"SALSS",
