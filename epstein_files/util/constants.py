@@ -459,6 +459,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='026287', author=DAVID_SCHOEN, attribution_reason='Signature'),
     EmailCfg(id='033419', author=DAVID_SCHOEN, attribution_reason='Signature'),
     EmailCfg(id='031460', author=EDWARD_JAY_EPSTEIN, attribution_reason='quoted reply has edwardjayepstein.com', is_fwded_article=True),
+    EmailCfg(id='031607', is_fwded_article=True, comment='Epstein reply to Edward Jay Epstein'),
     EmailCfg(
         id='030475',
         author=FAITH_KATES,
@@ -855,6 +856,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='026924', is_fwded_article=True, comment='The Onion'),
     EmailCfg(id='022624', is_fwded_article=True, comment='Disgusting: Clinton Snared In Pedophile Ring'),
     EmailCfg(id='022673', is_fwded_article=True, comment='Epstein + Clinton'),
+    EmailCfg(id='033301', is_fwded_article=True, comment='description of Trump jet'),
     EmailCfg(id='021729', is_fwded_article=True, comment='Acosta rebuke'),
     EmailCfg(id='023635', is_fwded_article=True, comment='Landon Thomas finance related'),
     EmailCfg(id='026637', is_fwded_article=True, comment='Landon Thomas finance related'),
