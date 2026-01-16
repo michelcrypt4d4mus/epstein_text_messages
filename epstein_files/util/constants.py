@@ -1045,7 +1045,7 @@ EMAILS_CONFIG = [
         truncate_to=4500,
     ),
     EmailCfg(id='033453', is_interesting=True, comment='"heard you were telling people I asked Trump for a million dollars"'),
-    EmailCfg(id='023454', is_interesting=True, truncate_to=1878, comment='Email invitation sent to tech CEOs + Epstein'),
+    EmailCfg(id='023454', description='Email invitation sent to tech CEOs and Epstein', is_interesting=True, truncate_to=1878),
     EmailCfg(id='029342', is_interesting=True, truncate_to=2000, comment='Hakeem Jeffries'),
     EmailCfg(id='031326', is_interesting=True, comment='"dog that hasn\'t barked is trump"'),
     EmailCfg(id='033171', is_interesting=True, comment='Zubair'),
