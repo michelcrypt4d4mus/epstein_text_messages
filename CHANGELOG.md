@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* `--email-body` argument
 * `EmailHeader.reply_to` field
 
 # 1.3.0

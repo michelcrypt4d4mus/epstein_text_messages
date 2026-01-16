@@ -51,6 +51,8 @@ output.add_argument('--width', '-w', type=int, default=DEFAULT_WIDTH, help='scre
 
 scripts = parser.add_argument_group('SCRIPTS', 'Options used by epstein_search, epstein_show, and epstein_diff.')
 scripts.add_argument('positional_args', nargs='*', help='strings to searchs for, file IDs to show or diff, etc.')
+scripts.add_argument('--email-body', action='store_true', help='epstein_search but only for the body of the email')
+scripts.add_argument('--min-line-length', type=int, help='epstein_search minimum length of a matched line')
 scripts.add_argument('--raw', '-r', action='store_true', help='show raw contents of file (used by epstein_show)')
 scripts.add_argument('--whole-file', '-wf', action='store_true', help='print whole files')
 

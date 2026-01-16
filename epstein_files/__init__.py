@@ -106,25 +106,36 @@ def epstein_search():
         temp_highlighter = build_highlighter(search_term)
         search_results = epstein_files.docs_matching(search_term, args.names)
         print_subtitle_panel(f"Found {len(search_results)} documents matching '{search_term}'")
+        last_document = None
 
         for search_result in search_results:
-            document = search_result.document
+            doc = search_result.document
+            lines = search_result.lines
 
-            if (isinstance(document, Email) and not args.output_emails) \
-                    or (isinstance(document, OtherFile) and not args.output_other) \
-                    or (isinstance(document, MessengerLog) and not args.output_texts):
-                document.warn(f"{type(document).__name__} Skipping search result...")
+            if (isinstance(doc, Email) and not args.output_emails) \
+                    or (isinstance(doc, OtherFile) and not args.output_other) \
+                    or (isinstance(doc, MessengerLog) and not args.output_texts):
+                doc.log(f"{type(doc).__name__} Skipping search result...")
                 continue
-            elif document.is_duplicate():
-                console.print('\n', document.duplicate_file_txt(), '\n')
-                continue
+            elif isinstance(doc, Email) and args.email_body:
+                lines = [l for l in search_result.lines if l.line_number > doc.header.num_header_rows]
 
-            if args.whole_file:
-                console.print(document)
+                if not lines:
+                    doc.log(f"None of the matches for '{search_term}' seem to be in the body of the email")
+                    continue
+
+            if doc.is_duplicate():
+                if last_document and not last_document.is_duplicate():
+                    console.line()
+
+                last_document = doc
+                console.print(doc.duplicate_file_txt())
+            elif args.whole_file:
+                console.print(doc)
             else:
-                console.print(document.summary_panel())
+                console.print(doc.summary_panel())
 
-                for matching_line in search_result.lines:
+                for matching_line in lines:
                     line_txt = matching_line.__rich__()
                     console.print(Padding(temp_highlighter(line_txt), INFO_PADDING), style='gray37')
 
