@@ -969,3 +969,9 @@ def test_is_fwded_article(epstein_files):
     article_with_fwd_text = epstein_files.email_for_id('016413')
     assert article_with_fwd_text.is_fwded_article() is True
     assert article_with_fwd_text.is_word_count_worthy() is True
+
+
+def test_broken_header_repair(epstein_files):
+    broken_email = epstein_files.email_for_id('032213')
+    assert broken_email.actual_text == 'https://www.thedailybeast.com/how-close-is-donald-trump-to-a-psychiatric-breakdown?ref=home\n<...snipped jeffrey epstein legal signature...>'
+    assert broken_email.header.num_header_rows == 5

@@ -468,8 +468,9 @@ class Email(Communication):
         elif self.header.num_header_rows == 0:
             return self.text
 
+        # import pdb;pdb.set_trace()
         self.log_top_lines(20, "Raw text:", logging.DEBUG)
-        self.log(f"With header removed:\n{text[0:500]}\n\n", logging.DEBUG)
+        self.log(f"With {self.header.num_header_rows} header lines removed:\n{text[0:500]}\n\n", logging.DEBUG)
         reply_text_match = REPLY_TEXT_REGEX.search(text)
 
         if reply_text_match:
