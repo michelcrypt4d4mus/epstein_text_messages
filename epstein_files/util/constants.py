@@ -423,8 +423,7 @@ EMAILS_CONFIG = [
         dupe_type='redacted',
         comment="the same except for 'your Anna!'. author must be specified because email address is redacted in 026745 so it needs the config",
     ),
-    EmailCfg(id='026764', author=BARRY_J_COHEN),
-    EmailCfg(id='031206', author=BENNET_MOSKOWITZ, duplicate_ids=['031227']),
+    EmailCfg(id='031206', duplicate_ids=['031227']),
     EmailCfg(id='031591', duplicate_ids=['031442', '031996']),
     EmailCfg(
         id='019446',
