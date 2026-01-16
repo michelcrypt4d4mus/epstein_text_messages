@@ -1867,7 +1867,7 @@
                 "duplicate_of_id": "030311",
                 "file_id": "021790",
                 "filename": "HOUSE_OVERSIGHT_021790.txt",
-                "num_lines": 144,
+                "num_lines": 143,
                 "recipients": [
                     "Jessica Cadwell",
                     "Robert D. Critton Jr."
@@ -2399,7 +2399,7 @@
                 "bytes": 5839,
                 "file_id": "022397",
                 "filename": "HOUSE_OVERSIGHT_022397.txt",
-                "num_lines": 125,
+                "num_lines": 124,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -4099,7 +4099,7 @@
                 "bytes": 5129,
                 "file_id": "025124",
                 "filename": "HOUSE_OVERSIGHT_025124.txt",
-                "num_lines": 110,
+                "num_lines": 108,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -4113,7 +4113,7 @@
                 "bytes": 6156,
                 "file_id": "025128",
                 "filename": "HOUSE_OVERSIGHT_025128.txt",
-                "num_lines": 122,
+                "num_lines": 120,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -4127,7 +4127,7 @@
                 "bytes": 7377,
                 "file_id": "025133",
                 "filename": "HOUSE_OVERSIGHT_025133.txt",
-                "num_lines": 148,
+                "num_lines": 146,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -5558,7 +5558,7 @@
             {
                 "author": "Larry Summers",
                 "bytes": 3375,
-                "comment": "Larry Summers / Karim Wade intro",
+                "description": "Epstein introduces Larry Summers to possibly corrupt Senegalese official Karim Wade",
                 "file_id": "026028",
                 "filename": "HOUSE_OVERSIGHT_026028.txt",
                 "is_interesting": true,
@@ -5607,7 +5607,7 @@
                 "file_id": "026036",
                 "filename": "HOUSE_OVERSIGHT_026036.txt",
                 "is_interesting": true,
-                "num_lines": 203,
+                "num_lines": 202,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -5621,7 +5621,7 @@
                 "bytes": 14459,
                 "file_id": "026041",
                 "filename": "HOUSE_OVERSIGHT_026041.txt",
-                "num_lines": 228,
+                "num_lines": 227,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -7366,7 +7366,7 @@
                 "comment": "reply to article",
                 "file_id": "026451",
                 "filename": "HOUSE_OVERSIGHT_026451.txt",
-                "num_lines": 77,
+                "num_lines": 76,
                 "recipients": [
                     "Darren Indyke"
                 ],
@@ -8146,7 +8146,7 @@
                 "bytes": 19112,
                 "file_id": "026652",
                 "filename": "HOUSE_OVERSIGHT_026652.txt",
-                "num_lines": 244,
+                "num_lines": 243,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -8436,7 +8436,7 @@
                 "file_id": "026829",
                 "filename": "HOUSE_OVERSIGHT_026829.txt",
                 "is_fwded_article": true,
-                "num_lines": 171,
+                "num_lines": 170,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -10773,7 +10773,7 @@
                 "bytes": 3208,
                 "file_id": "029108",
                 "filename": "HOUSE_OVERSIGHT_029108.txt",
-                "num_lines": 65,
+                "num_lines": 63,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -11426,7 +11426,7 @@
                 "bytes": 3039,
                 "file_id": "029285",
                 "filename": "HOUSE_OVERSIGHT_029285.txt",
-                "num_lines": 70,
+                "num_lines": 69,
                 "recipients": [
                     "Larry Summers"
                 ],
@@ -11439,7 +11439,7 @@
                 "bytes": 2714,
                 "file_id": "029288",
                 "filename": "HOUSE_OVERSIGHT_029288.txt",
-                "num_lines": 59,
+                "num_lines": 58,
                 "recipients": [
                     "Larry Summers"
                 ],
@@ -11637,7 +11637,7 @@
                 "file_id": "029433",
                 "filename": "HOUSE_OVERSIGHT_029433.txt",
                 "is_fwded_article": true,
-                "num_lines": 89,
+                "num_lines": 88,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -13334,7 +13334,7 @@
                 "bytes": 7578,
                 "file_id": "030098",
                 "filename": "HOUSE_OVERSIGHT_030098.txt",
-                "num_lines": 106,
+                "num_lines": 105,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -13347,7 +13347,7 @@
                 "bytes": 9342,
                 "file_id": "030101",
                 "filename": "HOUSE_OVERSIGHT_030101.txt",
-                "num_lines": 142,
+                "num_lines": 140,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -13360,7 +13360,7 @@
                 "bytes": 8194,
                 "file_id": "030105",
                 "filename": "HOUSE_OVERSIGHT_030105.txt",
-                "num_lines": 124,
+                "num_lines": 123,
                 "recipients": [
                     "Kathryn Ruemmler"
                 ],
@@ -13784,7 +13784,7 @@
                 ],
                 "file_id": "030311",
                 "filename": "HOUSE_OVERSIGHT_030311.txt",
-                "num_lines": 144,
+                "num_lines": 143,
                 "recipients": [
                     "Jessica Cadwell",
                     "Robert D. Critton Jr."
@@ -15795,7 +15795,7 @@
                 "bytes": 3438,
                 "file_id": "030656",
                 "filename": "HOUSE_OVERSIGHT_030656.txt",
-                "num_lines": 62,
+                "num_lines": 61,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -18343,7 +18343,7 @@
                 "bytes": 4684,
                 "file_id": "031192",
                 "filename": "HOUSE_OVERSIGHT_031192.txt",
-                "num_lines": 94,
+                "num_lines": 93,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -18356,7 +18356,7 @@
                 "bytes": 3506,
                 "file_id": "031195",
                 "filename": "HOUSE_OVERSIGHT_031195.txt",
-                "num_lines": 79,
+                "num_lines": 78,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -20963,7 +20963,7 @@
                 "bytes": 593,
                 "file_id": "031772",
                 "filename": "HOUSE_OVERSIGHT_031772.txt",
-                "num_lines": 14,
+                "num_lines": 13,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -20996,7 +20996,7 @@
                 "file_id": "031774",
                 "filename": "HOUSE_OVERSIGHT_031774.txt",
                 "is_fwded_article": true,
-                "num_lines": 13,
+                "num_lines": 12,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -29628,7 +29628,7 @@
                 "bytes": 3135,
                 "file_id": "033222",
                 "filename": "HOUSE_OVERSIGHT_033222.txt",
-                "num_lines": 67,
+                "num_lines": 66,
                 "recipients": [
                     "Jeffrey Epstein",
                     "Richard Kahn"
