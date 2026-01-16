@@ -912,7 +912,6 @@
                 ],
                 "subject": "Re: Netflix/Jeffrey Epstein",
                 "timestamp": "2019-04-23T09:55:44",
-                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -1919,6 +1918,7 @@
                 ],
                 "subject": "Re: we'll see",
                 "timestamp": "2015-01-09T18:56:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -3051,7 +3051,7 @@
                 "bytes": 4717,
                 "file_id": "022949",
                 "filename": "HOUSE_OVERSIGHT_022949.txt",
-                "num_lines": 93,
+                "num_lines": 91,
                 "recipients": [
                     "Landon Thomas Jr"
                 ],
@@ -4393,7 +4393,6 @@
                 ],
                 "subject": "Approach Summary",
                 "timestamp": "2011-12-16T18:41:00",
-                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -4998,7 +4997,6 @@
                 ],
                 "subject": "Re: Shears Update",
                 "timestamp": "2014-07-16T17:56:14",
-                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -5490,7 +5488,6 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2016-11-04T13:07:21",
-                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -5573,7 +5570,6 @@
                 "sent_from_device": "Sent from my iPad",
                 "subject": "Re: Re:",
                 "timestamp": "2016-11-29T12:13:41",
-                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -11901,7 +11897,6 @@
                 ],
                 "subject": "Re: boosting strategy",
                 "timestamp": "2014-02-08T01:32:58",
-                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -12199,7 +12194,6 @@
                 ],
                 "subject": "Re: $25K from ASU",
                 "timestamp": "2019-03-04T16:08:40",
-                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -12971,6 +12965,7 @@
                 "sent_from_device": "Sent from my Windows Phone",
                 "subject": "RE: Hello",
                 "timestamp": "2016-05-18T16:41:19",
+                "truncate_to": 498,
                 "type": "Email"
             },
             {
@@ -13029,7 +13024,7 @@
                 "type": "Email"
             },
             {
-                "attribution_reason": "signed \"Longevity & Successful Agin\"",
+                "attribution_reason": "signed \"Longevity & Successful Aging\"",
                 "author": "Gwendolyn Beck",
                 "bytes": 2573,
                 "file_id": "029970",
@@ -13040,6 +13035,7 @@
                 ],
                 "subject": "RE: Hello!!!",
                 "timestamp": "2017-06-25T21:10:33",
+                "truncate_to": 400,
                 "type": "Email"
             },
             {
@@ -13624,7 +13620,6 @@
                 ],
                 "subject": "FW: Daily Mail",
                 "timestamp": "2011-03-11T00:54:00",
-                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -13713,7 +13708,6 @@
                 ],
                 "subject": "the story",
                 "timestamp": "2016-07-17T13:35:22",
-                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -14077,12 +14071,12 @@
                 "bytes": 1606,
                 "file_id": "030367",
                 "filename": "HOUSE_OVERSIGHT_030367.txt",
-                "num_lines": 30,
+                "num_lines": 28,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
                 "subject": "RE: [External]",
-                "timestamp": "2018-01-03T13:31:00",
+                "timestamp": "2018-01-03T18:46:53",
                 "type": "Email"
             },
             {
@@ -16216,7 +16210,7 @@
             {
                 "author": "David Stern",
                 "bytes": 2310,
-                "comment": "David Stern \"Death of chinese shareholder quite an issue. What can we do with Qataris here?\"",
+                "comment": "David Stern \"Death of chinese shareholder quite an issue. What can we do with Qataris?\"",
                 "file_id": "030727",
                 "filename": "HOUSE_OVERSIGHT_030727.txt",
                 "is_interesting": true,
@@ -16390,6 +16384,7 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 4481,
+                "description": "planning a public statement for Ghislaine",
                 "file_id": "030745",
                 "filename": "HOUSE_OVERSIGHT_030745.txt",
                 "num_lines": 111,
@@ -16398,6 +16393,7 @@
                 ],
                 "subject": "Re:",
                 "timestamp": "2015-01-10T14:36:20",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -16633,7 +16629,6 @@
                 ],
                 "subject": "Re:",
                 "timestamp": "2018-02-26T05:01:50",
-                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -17618,7 +17613,6 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 5793,
-                "comment": "joke",
                 "description": "jokes about Chicago corruption",
                 "dupe_type": "same",
                 "duplicate_ids": [
@@ -17743,7 +17737,6 @@
                 "sent_from_device": "Sorry for all the typos .Sent from my iPhone",
                 "subject": "Re: Check ou1- Sok p5 Google",
                 "timestamp": "2011-05-16T20:28:27",
-                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -17902,7 +17895,6 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 5878,
-                "comment": "joke",
                 "description": "jokes about Chicago corruption",
                 "dupe_type": "same",
                 "duplicate_of_id": "031011",
@@ -18204,7 +18196,7 @@
             {
                 "author": "Reid Weingarten",
                 "bytes": 8977,
-                "description": "discussion of notoriously corrupt Kazakh politician Rakhat Aliyev whom Epstein apparently knows",
+                "description": "discussion of notoriously corrupt Kazakh politician Rakhat Aliyev whom Epstein apparently knew",
                 "file_id": "031152",
                 "filename": "HOUSE_OVERSIGHT_031152.txt",
                 "is_interesting": true,
@@ -18214,7 +18206,6 @@
                 ],
                 "subject": "Re: Re:",
                 "timestamp": "2011-11-10T14:46:50",
-                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -18786,7 +18777,7 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 5396,
-                "description": "Epstein and Richard Kahn discussing routing Gratitude money via Peggy Siegal",
+                "description": "discussion of routing Gratitude foundation money through Peggy Siegal",
                 "file_id": "031320",
                 "filename": "HOUSE_OVERSIGHT_031320.txt",
                 "is_interesting": true,
@@ -18796,7 +18787,6 @@
                 ],
                 "subject": "Re: 2017 IFP Gotham Awards",
                 "timestamp": "2017-11-21T13:44:04",
-                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -18814,7 +18804,7 @@
             {
                 "author": "Ghislaine Maxwell",
                 "bytes": 1132,
-                "comment": "\"dog that hasn't barked is trump.. virignia spent hours at my house with him\"",
+                "comment": "\"dog that hasn't barked is trump\"",
                 "file_id": "031326",
                 "filename": "HOUSE_OVERSIGHT_031326.txt",
                 "is_interesting": true,
@@ -18824,7 +18814,6 @@
                 ],
                 "subject": "Re:",
                 "timestamp": "2011-04-02T19:09:39",
-                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -19538,7 +19527,6 @@
             {
                 "author": "Reid Weingarten",
                 "bytes": 15968,
-                "comment": "WSJ: Lawyers for Imam Wanted by Turkish authorities Fear for Their Client's Life",
                 "description": "discussion of publishing an audio recording related to the coup in Turkey",
                 "file_id": "031472",
                 "filename": "HOUSE_OVERSIGHT_031472.txt",
@@ -22624,7 +22612,6 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2016-10-29T13:40:09",
-                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -22882,7 +22869,6 @@
                 ],
                 "subject": "Re:",
                 "timestamp": "2016-10-29T13:40:09",
-                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -22928,7 +22914,6 @@
                 ],
                 "subject": "Re: Election Update",
                 "timestamp": "2016-11-04T13:07:21",
-                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -25343,6 +25328,7 @@
             {
                 "author": "Reid Weingarten",
                 "bytes": 1086,
+                "description": "connections to Fusion GPS who produced the Steele Dossier on Trump",
                 "file_id": "032671",
                 "filename": "HOUSE_OVERSIGHT_032671.txt",
                 "num_lines": 23,
@@ -26641,7 +26627,6 @@
                 ],
                 "subject": "Re:",
                 "timestamp": "2014-07-02T14:42:24",
-                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -27098,7 +27083,6 @@
                 ],
                 "subject": "Re:",
                 "timestamp": "2016-11-10T22:08:36",
-                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -27398,7 +27382,6 @@
                 ],
                 "subject": "Re:",
                 "timestamp": "2016-12-17T20:30:26",
-                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -28145,7 +28128,7 @@
                 "bytes": 1055,
                 "file_id": "033050",
                 "filename": "HOUSE_OVERSIGHT_033050.txt",
-                "num_lines": 33,
+                "num_lines": 28,
                 "recipients": [
                     "Richard Kahn"
                 ],
@@ -28156,6 +28139,7 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 1745,
+                "description": "connections to Fusion GPS who produced the Steele Dossier on Trump",
                 "file_id": "033052",
                 "filename": "HOUSE_OVERSIGHT_033052.txt",
                 "num_lines": 38,
@@ -29124,7 +29108,6 @@
                 ],
                 "subject": "Update on US Elections",
                 "timestamp": "2016-09-27T21:46:03",
-                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -30512,7 +30495,7 @@
             {
                 "author": "Sultan Ahmed Bin Sulayem",
                 "bytes": 3792,
-                "comment": "Sultan Sulayem fwding article about Trump and Russia",
+                "comment": "Sultan Sulayem article about Trump and Russia",
                 "dupe_type": "same",
                 "duplicate_ids": [
                     "033586"
@@ -31767,7 +31750,7 @@
             },
             {
                 "bytes": 796,
-                "comment": "\"Just heard you were telling people that you heard I asked Trump for a million dollars\"",
+                "comment": "\"heard you were telling people I asked Trump for a million dollars\"",
                 "file_id": "033453",
                 "filename": "HOUSE_OVERSIGHT_033453.txt",
                 "is_interesting": true,
@@ -31778,7 +31761,6 @@
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Fwd: Off the record trump",
                 "timestamp": "2019-04-13T22:40:00",
-                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -32500,7 +32482,7 @@
             {
                 "author": "Sultan Ahmed Bin Sulayem",
                 "bytes": 3732,
-                "comment": "Sultan Sulayem fwding article about Trump and Russia",
+                "comment": "Sultan Sulayem article about Trump and Russia",
                 "dupe_type": "same",
                 "duplicate_of_id": "033297",
                 "file_id": "033586",
@@ -35462,14 +35444,14 @@
                 "author": "Virgin Islands Daily News",
                 "bytes": 74242,
                 "category": "article",
-                "description": "article",
+                "date": "2012-11-09",
+                "description": "articles about Sen. Alvin Williams Jr. Fraud case, arson",
                 "file_id": "018862",
                 "filename": "HOUSE_OVERSIGHT_018862.txt",
                 "is_interesting": false,
                 "num_lines": 2193,
-                "timestamp": "2020-10-30T12:00:00",
-                "type": "OtherFile",
-                "was_timestamp_extracted": true
+                "timestamp": "2012-11-09T00:00:00",
+                "type": "OtherFile"
             },
             {
                 "author": "FBI",
@@ -35860,13 +35842,11 @@
                 "author": "Tatler",
                 "bytes": 4548,
                 "category": "article",
-                "date": "2019-08-15",
                 "description": "single page of article about Ghislaine Maxwell shredding documents",
                 "file_id": "021092",
                 "filename": "HOUSE_OVERSIGHT_021092.txt",
                 "is_interesting": false,
                 "num_lines": 77,
-                "timestamp": "2019-08-15T00:00:00",
                 "type": "OtherFile"
             },
             {
@@ -36184,14 +36164,14 @@
                 "author": "Ernst & Young",
                 "bytes": 82069,
                 "category": "finance",
+                "date": "2016-11-09",
                 "description": "2016 election report",
                 "file_id": "022372",
                 "filename": "HOUSE_OVERSIGHT_022372.txt",
                 "is_interesting": false,
                 "num_lines": 1589,
-                "timestamp": "2021-07-01T00:00:00",
-                "type": "OtherFile",
-                "was_timestamp_extracted": true
+                "timestamp": "2016-11-09T00:00:00",
+                "type": "OtherFile"
             },
             {
                 "author": "Noam Chomsky",
@@ -36626,13 +36606,13 @@
                 "author": "Terje R\u00f8d-Larsen, Nur Laiq, Fabrice Aidan",
                 "bytes": 113826,
                 "category": "politics",
-                "date": "2019-12-09",
+                "date": "2014-12-09",
                 "description": "The Search for Peace in the Arab-Israeli Conflict",
                 "file_id": "023133",
                 "filename": "HOUSE_OVERSIGHT_023133.txt",
                 "is_interesting": false,
                 "num_lines": 3321,
-                "timestamp": "2019-12-09T00:00:00",
+                "timestamp": "2014-12-09T00:00:00",
                 "type": "OtherFile"
             },
             {
@@ -36844,17 +36824,18 @@
                 "type": "OtherFile"
             },
             {
+                "attached_to_email_id": "033252",
                 "author": "Robert Lawrence Kuhn",
                 "bytes": 192114,
                 "category": "article",
+                "date": "2018-09-30",
                 "description": "sizzle reel / television appearances",
                 "file_id": "023666",
                 "filename": "HOUSE_OVERSIGHT_023666.txt",
                 "is_interesting": false,
                 "num_lines": 4828,
-                "timestamp": "2021-03-16T20:18:00",
-                "type": "OtherFile",
-                "was_timestamp_extracted": true
+                "timestamp": "2018-09-30T00:00:00",
+                "type": "OtherFile"
             },
             {
                 "author": "Robert Lawrence Kuhn",
@@ -38079,14 +38060,14 @@
             {
                 "bytes": 77224,
                 "category": "arts",
+                "date": "2010-10-13",
                 "description": "art show flier for \"The House Of The Nobleman\" curated by Wolfe Von Lenkiewicz & Victoria Golembiovskaya",
                 "file_id": "028281",
                 "filename": "HOUSE_OVERSIGHT_028281.txt",
                 "is_interesting": false,
                 "num_lines": 1037,
-                "timestamp": "2020-10-15T00:00:00",
-                "type": "OtherFile",
-                "was_timestamp_extracted": true
+                "timestamp": "2010-10-13T00:00:00",
+                "type": "OtherFile"
             },
             {
                 "author": "New York Times",
@@ -38237,6 +38218,7 @@
                 "was_timestamp_extracted": true
             },
             {
+                "attached_to_email_id": "029174",
                 "author": "Robert Lawrence Kuhn",
                 "bytes": 4739,
                 "category": "article",
@@ -39611,6 +39593,7 @@
                 "was_timestamp_extracted": true
             },
             {
+                "attached_to_email_id": "032637",
                 "author": "Robert Lawrence Kuhn",
                 "bytes": 7157,
                 "category": "article",
@@ -39725,6 +39708,7 @@
                 "type": "OtherFile"
             },
             {
+                "attached_to_email_id": "033252",
                 "author": "Robert Lawrence Kuhn",
                 "bytes": 3591,
                 "category": "article",
