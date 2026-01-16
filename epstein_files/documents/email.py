@@ -117,6 +117,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"Subject:\s*Fwd: Trending Now: Friends for three decades"): "Subject: Fwd: Trending Now: Friends for three decades",
     # Misc
     'AVG°': 'AVGO',
+    'Saw Matt C with DTF at golf': 'Saw Matt C with DJT at golf',
 }
 
 EMAIL_SIGNATURE_REGEXES = {
