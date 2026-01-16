@@ -1017,7 +1017,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='032359', is_interesting=True, comment='Jabor e-currency'),
     EmailCfg(id='031451', is_interesting=True, comment='"would you like photso of donald and girls in bikinis in my kitchen."'),
     EmailCfg(id='031596', is_interesting=True, comment='"would you like photso of donald and girls in bikinis in my kitchen."'),
-    EmailCfg(id='031601', is_interesting=True, comment='Old gf i gave to donald'),
+    EmailCfg(id='031601', is_interesting=True, comment='Old gf i gave to donald', truncate_to=2000),
     EmailCfg(id='030727', is_interesting=True, comment='David Stern "Death of chinese shareholder quite an issue. What can we do with Qataris?"'),
     EmailCfg(id='030725', is_interesting=True, comment='David Stern in Moscow'),
     EmailCfg(id='029098', is_interesting=True, comment='Nowak, "her Skype contact is in moscow."'),
