@@ -99,13 +99,10 @@ class EmailHeader:
                     logger.info(f"{log_prefix}, trying next line...")
                     num_headers += 1
                     value = email_lines[i + num_headers]
-                elif BAD_EMAILER_REGEX.match(value):
+                elif BAD_EMAILER_REGEX.match(value) or value.startswith('http'):
                     logger.info(f"{log_prefix}, decrementing num_headers and skipping...")
                     num_headers -= 1
                     continue
-                elif value.startswith('http'):
-                    logger.info(f"{log_prefix}, using empty string instead...")
-                    value = ''
 
                 value = [v.strip() for v in value.split(';') if len(v.strip()) > 0]
 
@@ -114,7 +111,12 @@ class EmailHeader:
         self.num_header_rows = len(self.field_names) + num_headers
         self.header_chars = '\n'.join(email_lines[0:self.num_header_rows])
         log_msg = f"Corrected empty header using {self.num_header_rows} lines to:\n"
-        logger.debug(f"{log_msg}{self}\n\nTop lines:\n\n%s", '\n'.join(email_lines[0:(num_headers + 1) * 2]))
+
+        logger.warning(
+            f"{log_msg}{self}\n\n[top lines]:\n\n%s\n\n[body_lines]:\n\n%s\n\n",
+            '\n'.join(email_lines[0:(num_headers + 1) * 2]),
+            '\n'.join(email_lines[self.num_header_rows:self.num_header_rows + 5]),
+        )
 
     def rewrite_header(self) -> str:
         header_fields = {}

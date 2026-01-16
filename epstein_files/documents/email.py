@@ -34,7 +34,7 @@ BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classi
 BAD_SUBJECT_CONTINUATIONS = ['orwarded', 'Hi ', 'Sent ', 'AmLaw', 'Original Message', 'Privileged', 'Sorry', '---']
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 FIELDS_COLON_REGEX = re.compile(FIELDS_COLON_PATTERN)
-LINK_LINE_REGEX = re.compile(f"^>? ?htt")
+LINK_LINE_REGEX = re.compile(f"^[>• ]*htt")
 LINK_LINE2_REGEX = re.compile(r"^[-\w.%&=/]{5,}$")
 QUOTED_REPLY_LINE_REGEX = re.compile(r'(\nFrom:(.*)|wrote:)\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
@@ -252,6 +252,7 @@ LINE_REPAIR_MERGES = {
     '022197': [[0, 5], [1, 5], [3, 5]],
     '021814': [[1, 6], [2, 6], [3, 6], [4, 6]],
     '022190': [[1, 7], [0, 6], [3, 6], [4, 6]],
+    '029582': [[0, 5], [1, 5], [3, 5], [3, 5]],
     '022673': [[9]],
     '022684': [[9]],
     '022695': [[4]],
@@ -468,8 +469,9 @@ class Email(Communication):
         elif self.header.num_header_rows == 0:
             return self.text
 
+        # import pdb;pdb.set_trace()
         self.log_top_lines(20, "Raw text:", logging.DEBUG)
-        self.log(f"With header removed:\n{text[0:500]}\n\n", logging.DEBUG)
+        self.log(f"With {self.header.num_header_rows} header lines removed:\n{text[0:500]}\n\n", logging.DEBUG)
         reply_text_match = REPLY_TEXT_REGEX.search(text)
 
         if reply_text_match:
@@ -585,13 +587,10 @@ class Email(Communication):
         else:
             raise RuntimeError(f"{no_timestamp_msg}, top lines:\n{searchable_text}")
 
-    def _idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES, text: str | None = None) -> int | None:
+    def _idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES) -> int | None:
         """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line in self.text."""
-        if text is None:
-            header_offset = len(self.header.header_chars)
-            text = self.text[header_offset:]
-        else:
-            header_offset = 0
+        header_offset = len(self.header.header_chars)
+        text = self.text[header_offset:]
 
         for i, match in enumerate(QUOTED_REPLY_LINE_REGEX.finditer(text)):
             if i >= n:
@@ -680,14 +679,16 @@ class Email(Communication):
         new_lines = []
         i = 0
 
-        # Fix links (remove spaces, merge multiline links to a single line)
+        # Fix links and quoted subjects (remove spaces, merge multiline links to a single line)
         while i < len(lines):
             line = lines[i]
 
             if LINK_LINE_REGEX.search(line):
                 while i < (len(lines) - 1) \
                         and not lines[i + 1].startswith('htt') \
-                        and (lines[i + 1].endswith('/') or any(s in lines[i + 1] for s in URL_SIGNIFIERS) or LINK_LINE2_REGEX.match(lines[i + 1])):
+                        and (lines[i + 1].endswith('/') \
+                             or any(s in lines[i + 1] for s in URL_SIGNIFIERS) \
+                             or LINK_LINE2_REGEX.match(lines[i + 1])):
                     logger.debug(f"{self.filename}: Joining link lines\n   1. {line}\n   2. {lines[i + 1]}\n")
                     line += lines[i + 1]
                     i += 1
