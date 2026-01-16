@@ -89,9 +89,10 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r'^INW$', re.MULTILINE): REDACTED,
     # links
     'Imps ://': 'https://',
-    re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
     'on-accusers-rose-\nmcgowan/ ': 'on-accusers-rose-\nmcgowan/\n',
     'the-truth-\nabout-the-bitcoin-foundation/ )': 'the-truth-about-the-bitcoin-foundation/ )\n',
+    'woody-allen-jeffrey-epsteins-\nsociety-friends-close-ranks/ ---': 'woody-allen-jeffrey-epsteins-society-friends-close_ranks/\n',
+    re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
     # Subject lines
     "Arrested in\nInauguration Day Riot": "Arrested in Inauguration Day Riot",
     "as Putin Mayhem Tests President's Grip\non GOP": "as Putin Mayhem Tests President's Grip on GOP",
