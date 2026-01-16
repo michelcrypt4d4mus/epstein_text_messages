@@ -1152,7 +1152,7 @@ HIGHLIGHTED_NAMES = [
             r"Pennsylvania",
             r"Phoenix",
             r"Portland",
-            r"Santa\s*Fe",
+            r"Sant[ae]\s*Fe",
             r"Telluride",
             r"Teterboro",
             r"Texas(?! A&M)",
@@ -1665,7 +1665,7 @@ HIGHLIGHTED_TEXTS = [
     HighlightedText(
         label='redacted',
         style='grey58',
-        patterns=[fr"{REDACTED}|Privileged - Redacted"],
+        patterns=[fr"{REDACTED}|<?Privileged - Redacted>?"],
     ),
     HighlightedText(
         label='sent_from',
