@@ -460,8 +460,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='026547', author=GERALD_BARTON, recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='029969', author=GWENDOLYN_BECK, attribution_reason='signature "Longevity & Successful Aging"'),
     EmailCfg(id='029968', author=GWENDOLYN_BECK, attribution_reason='signature "beckresearchlabs.com"', duplicate_ids=['031120']),
-    EmailCfg(id='029970', author=GWENDOLYN_BECK, attribution_reason='signed "Longevity & Successful Agin"'),
-    EmailCfg(id='029960', author=GWENDOLYN_BECK, attribution_reason='signature "Beck Center for Longevity & Aging"'),
+    EmailCfg(id='029970', author=GWENDOLYN_BECK, attribution_reason='signed "Longevity & Successful Aging"', truncate_to=400),
+    EmailCfg(id='029960', author=GWENDOLYN_BECK, attribution_reason='signature "Beck Center for Longevity & Aging"', truncate_to=498),
     EmailCfg(id='029959', author=GWENDOLYN_BECK, attribution_reason='signature "Beck Center for Longevity & Aging"'),
     EmailCfg(id='033360', author=HENRY_HOLT, attribution_reason='in signature'),
     EmailCfg(id='033384', author=JACK_GOLDBERGER, attribution_reason='Might be Paul Prosperi?', is_attribution_uncertain=True),
@@ -1057,6 +1057,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='023717', truncate_to=489, comment='reply to article'),
     EmailCfg(id='022265', truncate_to=NO_TRUNCATE),
     EmailCfg(id='026243', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='029680', truncate_to=900, comment='Maldives'),
+    EmailCfg(id='029534', truncate_to=900, comment='Maldives'),
 ]
 
 if args.constantize:
@@ -1231,14 +1233,14 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='010715', author=PEGGY_SIEGAL, description=f"Oscar Diary April", date='2012-02-27'),
     DocCfg(id='019849', author=PEGGY_SIEGAL, description=f"Oscar Diary April", date='2017-02-27', duplicate_ids=['019864']),
     DocCfg(id='026851', author='Politifact', description=f"lying politicians chart", date='2016-07-26'),
-    DocCfg(id='033253', author=ROBERT_LAWRENCE_KUHN, description=f'{BBC} article about Rohingya in Myanmar'),
+    DocCfg(id='033253', author=ROBERT_LAWRENCE_KUHN, description=f'{BBC} article about Rohingya in Myanmar', attached_to_email_id='033252'),
     DocCfg(id='026887', author=ROBERT_LAWRENCE_KUHN, description=f'{BBC} "New Tariffs - Trade War"'),
     DocCfg(id='026877', author=ROBERT_LAWRENCE_KUHN, description=f'{CNN} "New Tariffs - Trade War"'),
     DocCfg(id='026868', author=ROBERT_LAWRENCE_KUHN, description=f'{CNN} "Quest Means Business New China Tariffs — Trade War"', date='2018-09-18'),
     DocCfg(id='023707', author=ROBERT_LAWRENCE_KUHN, description=f'{CNN} "Quest Means Business U.S. and China Agree to Pause Trade War"', date='2018-12-03'),
-    DocCfg(id='029176', author=ROBERT_LAWRENCE_KUHN, description=f'{CNN} "U.S. China Tariffs - Trade War"'),
-    DocCfg(id='032638', author=ROBERT_LAWRENCE_KUHN, description=f'{CNN} "Xi Jinping and the New Politburo Committee"'),
-    DocCfg(id='023666', author=ROBERT_LAWRENCE_KUHN, description=f"sizzle reel / television appearances"),
+    DocCfg(id='029176', author=ROBERT_LAWRENCE_KUHN, description=f'{CNN} "U.S. China Tariffs - Trade War"', attached_to_email_id='029174'),
+    DocCfg(id='032638', author=ROBERT_LAWRENCE_KUHN, description=f'{CNN} "Xi Jinping and the New Politburo Committee"', attached_to_email_id='032637'),
+    DocCfg(id='023666', author=ROBERT_LAWRENCE_KUHN, description=f"sizzle reel / television appearances", date='2018-09-30', attached_to_email_id='033252'),
     DocCfg(id='016996', author=f'SciencExpress', description=f'article "Quantitative Analysis of Culture Using Millions of Digitized Books" by Jean-Baptiste Michel'),
     DocCfg(id='025104', author='SCMP', description=f"article about China and globalisation"),
     DocCfg(id='030030', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-03-29'),
@@ -1262,7 +1264,7 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='024997', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-09-08'),
     DocCfg(id='031941', author=SHIMON_POST, description=SHIMON_POST_ARTICLE, date='2011-11-17'),
     DocCfg(id='030829', author=f'South Florida Sun Sentinel', description=f'article about {BRAD_EDWARDS} and {JEFFREY_EPSTEIN}'),
-    DocCfg(id='021092', author='Tatler', description=f'single page of article about {GHISLAINE_MAXWELL} shredding documents', date='2019-08-15'),
+    DocCfg(id='021092', author='Tatler', description=f'single page of article about {GHISLAINE_MAXWELL} shredding documents'),
     DocCfg(id='030333', author=f'The Independent', description=f'article about Prince Andrew, Epstein, and Epstein\'s butler who stole his address book'),
     DocCfg(id='010754', author=f'U.S. News', description=f"article about Yitzhak Rabin"),
     DocCfg(id='014498', author=VI_DAILY_NEWS, description='article', date='2016-12-13'),
@@ -1271,6 +1273,8 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='023046', author=VI_DAILY_NEWS, description='article', date='2019-02-27'),
     DocCfg(id='031170', author=VI_DAILY_NEWS, description='article', date='2019-03-06'),
     DocCfg(id='016506', author=VI_DAILY_NEWS, description='article', date='2019-02-28'),
+    DocCfg(id='018862', author=VI_DAILY_NEWS, description='articles about Sen. Alvin Williams Jr. Fraud case, arson', date='2012-11-09'),
+
     DocCfg(id='016507', author=VI_DAILY_NEWS, description=f'"Perversion of Justice" by {JULIE_K_BROWN}', date='2018-12-19'),
     DocCfg(id='019212', author=WAPO, description=f'and Times Tribune articles about Bannon, Trump, and healthcare execs'),
     DocCfg(id='033379', author=WAPO, description=f'"How Washington Pivoted From Finger-Wagging to Appeasement" (about Viktor Orban)', date='2018-05-25'),
@@ -1511,7 +1515,7 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='022330', author=DEUTSCHE_BANK_TAX_TOPICS, date='2013-12-20', description='table of contents'),
     DocCfg(id='019440', author=DEUTSCHE_BANK_TAX_TOPICS, date='2014-01-29'),
     DocCfg(id='024202', author=ELECTRON_CAPITAL_PARTNERS, description=f"Global Utility White Paper", date='2013-03-08'),
-    DocCfg(id='022372', author='Ernst & Young', description=f'2016 election report'),
+    DocCfg(id='022372', author='Ernst & Young', date='2016-11-09', description=f'2016 election report'),
     DocCfg(
         id='025663',
         author=GOLDMAN_INVESTMENT_MGMT,
@@ -1683,7 +1687,7 @@ OTHER_FILES_POLITICS = [
         id='023133',
         author=f"{TERJE_ROD_LARSEN}, Nur Laiq, Fabrice Aidan",
         description=f'The Search for Peace in the Arab-Israeli Conflict',
-        date='2019-12-09',
+        date='2014-12-09',
     ),
     DocCfg(id='033468', description=f'{ARTICLE_DRAFT} Rod Rosenstein', date='2018-09-24'),
     DocCfg(
@@ -1796,7 +1800,11 @@ OTHER_FILES_ARTS = [
         date='2010-02-01',
         duplicate_ids=['025210']
     ),
-    DocCfg(id='028281', description=f'art show flier for "The House Of The Nobleman" curated by Wolfe Von Lenkiewicz & Victoria Golembiovskaya'),
+    DocCfg(
+        id='028281',
+        date='2010-10-13',
+        description=f'art show flier for "The House Of The Nobleman" curated by Wolfe Von Lenkiewicz & Victoria Golembiovskaya',
+    ),
 ]
 
 OTHER_FILES_MISC = [
