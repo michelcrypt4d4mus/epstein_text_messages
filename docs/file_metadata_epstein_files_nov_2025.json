@@ -2138,6 +2138,7 @@
                 ],
                 "subject": "Re: Results",
                 "timestamp": "2010-12-16T13:15:29",
+                "truncate_to": 2404,
                 "type": "Email"
             },
             {
@@ -4760,7 +4761,7 @@
                 "bytes": 6021,
                 "file_id": "025594",
                 "filename": "HOUSE_OVERSIGHT_025594.txt",
-                "num_lines": 138,
+                "num_lines": 137,
                 "recipients": [
                     "Joi Ito"
                 ],
@@ -4786,7 +4787,7 @@
                 "bytes": 4421,
                 "file_id": "025600",
                 "filename": "HOUSE_OVERSIGHT_025600.txt",
-                "num_lines": 99,
+                "num_lines": 98,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -4799,7 +4800,7 @@
                 "bytes": 5401,
                 "file_id": "025603",
                 "filename": "HOUSE_OVERSIGHT_025603.txt",
-                "num_lines": 125,
+                "num_lines": 124,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -4814,7 +4815,7 @@
                 "file_id": "025606",
                 "filename": "HOUSE_OVERSIGHT_025606.txt",
                 "fwded_text_after": "> On May 6,",
-                "num_lines": 152,
+                "num_lines": 151,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -10692,7 +10693,7 @@
                 "bytes": 1466,
                 "file_id": "029094",
                 "filename": "HOUSE_OVERSIGHT_029094.txt",
-                "num_lines": 26,
+                "num_lines": 22,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -10718,7 +10719,7 @@
                 "bytes": 3466,
                 "file_id": "029096",
                 "filename": "HOUSE_OVERSIGHT_029096.txt",
-                "num_lines": 69,
+                "num_lines": 64,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -12039,11 +12040,11 @@
                 "bytes": 1839,
                 "file_id": "029582",
                 "filename": "HOUSE_OVERSIGHT_029582.txt",
-                "num_lines": 42,
+                "num_lines": 39,
                 "recipients": [
                     "Renata Bolotova"
                 ],
-                "subject": "12/12/2018 6:28:33 PM",
+                "subject": "Re: Michael Cohen Sentenced To 3 Years In Prison Following Plea That Implicated Trump - https://www.npr.org/676040070",
                 "timestamp": "2018-12-12T18:28:33",
                 "type": "Email"
             },
