@@ -1358,7 +1358,7 @@ HIGHLIGHTED_NAMES = [
             r"(Michael\s)?Hayden",
             r"((General|Mike)\s*)?(Flynn|Pence)",
             r"(Mitt\s*)?Romney",
-            r"(Steven?\s*)Mnuchin",
+            r"(Steven?\s*)?Mnuchin",
             r"(Newt\s*)Gingrich",
             r"Nikki",
             r"Haley",
