@@ -51,7 +51,7 @@ APPEARS_IN = 'appears in'
 
 MAX_NUM_HEADER_LINES = 14
 MAX_QUOTED_REPLIES = 2
-NUM_WORDS_IN_LAST_QUOTE = 10
+NUM_WORDS_IN_LAST_QUOTE = 5
 
 REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + [
     '********************************',
@@ -89,7 +89,12 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r'^INW$', re.MULTILINE): REDACTED,
     # links
     'Imps ://': 'https://',
+    'on-accusers-rose-\nmcgowan/ ': 'on-accusers-rose-\nmcgowan/\n',
+    'the-truth-\nabout-the-bitcoin-foundation/ )': 'the-truth-about-the-bitcoin-foundation/ )\n',
+    'woody-allen-jeffrey-epsteins-\nsociety-friends-close-ranks/ ---': 'woody-allen-jeffrey-epsteins-society-friends-close_ranks/\n',
+    ' https://www.theguardian.com/world/2017/may/29/close-friend-trump-thomas-barrack-\nalleged-tax-evasion-italy-sardinia?CMP=share btn fb': '\nhttps://www.theguardian.com/world/2017/may/29/close-friend-trump-thomas-barrack-alleged-tax-evasion-italy-sardinia?CMP=share_btn_fb',
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
+    re.compile(r" http ?://www. ?dailymail. ?co ?.uk/news/article-\d+/Troub ?led-woman-history-drug-\n?us ?e-\n?.*html"): '\nhttp://www.dailymail.co.uk/news/article-3914012/Troubled-woman-history-drug-use-claimed-assaulted-Donald-Trump-Jeffrey-Epstein-sex-party-age-13-FABRICATED-story.html',
     # Subject lines
     "Arrested in\nInauguration Day Riot": "Arrested in Inauguration Day Riot",
     "as Putin Mayhem Tests President's Grip\non GOP": "as Putin Mayhem Tests President's Grip on GOP",
@@ -256,6 +261,9 @@ LINE_REPAIR_MERGES = {
     '029582': [[0, 5], [1, 5], [3, 5], [3, 5]],
     '022673': [[9]],
     '022684': [[9]],
+    '026625': [[0, 7], [1, 7], [2, 7], [3, 7], [4, 7], [5, 7]],
+    '026659': [[0, 5], [1, 5]],
+    '026764': [[0, 6], [1, 6]],
     '022695': [[4]],
     '022977': [[9]] * 10,
     '023001': [[5]] * 3,
@@ -770,9 +778,13 @@ class Email(Communication):
             num_chars = min(quote_cutoff or MAX_CHARS_TO_PRINT, TRUNCATED_CHARS)
         else:
             if quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
-                hidden_words = self.text[quote_cutoff:].split()
-                last_quoted_text = ' '.join(hidden_words[:NUM_WORDS_IN_LAST_QUOTE])
-                num_chars = quote_cutoff + len(last_quoted_text) + 1  # Give a hint of the next line
+                trimmed_words = self.text[quote_cutoff:].split()
+
+                if trimmed_words and trimmed_words[0] not in ['From:', 'Sent:']:
+                    last_quoted_text = ' '.join(trimmed_words[:NUM_WORDS_IN_LAST_QUOTE])
+                    num_chars = quote_cutoff + len(last_quoted_text) + 1  # Give a hint of the next line
+                else:
+                    num_chars = quote_cutoff
             else:
                 num_chars = min(self.file_size(), MAX_CHARS_TO_PRINT)
 
