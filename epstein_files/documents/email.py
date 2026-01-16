@@ -427,7 +427,7 @@ class Email(Communication):
     def is_note_to_self(self) -> bool:
         return self.recipients == [self.author]
 
-    def is_with(self, name: str) -> bool:
+    def is_from_or_to(self, name: str) -> bool:
         return name in [self.author] + self.recipients
 
     def is_word_count_worthy(self) -> bool:
@@ -778,7 +778,7 @@ class Email(Communication):
         elif self.is_interesting():
             num_chars = len(self.text)
         elif self.author in TRUNCATE_EMAILS_FROM \
-                or any([self.is_with(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \
+                or any([self.is_from_or_to(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \
                 or self.is_fwded_article() \
                 or includes_truncate_term:
             num_chars = min(quote_cutoff or MAX_CHARS_TO_PRINT, TRUNCATED_CHARS)
