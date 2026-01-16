@@ -13,7 +13,10 @@ ON_BEHALF_OF = 'on behalf of'
 TO_FIELDS = ['bcc', 'cc', 'to']
 EMAILER_FIELDS = [AUTHOR] + TO_FIELDS
 
-HEADER_REGEX_STR = r'(((?:(?:Date|From|Sent|To|C[cC]|Importance|Subject|Bee|B[cC]{2}|Attachments|Classification|Flag|Reply-To):|on behalf of ?)(?! +(by |from my|via )).*\n){3,})'
+FIELD_PATTERNS = ['Date', 'From', 'Sent', 'To', r"C[cC]", r"B[cC][cC]", 'Importance', 'Subject', 'Attachments', 'Classification', 'Flag', 'Reply-To']
+FIELDS_PATTERN = '|'.join(FIELD_PATTERNS)
+FIELDS_COLON_PATTERN = fr"^({FIELDS_PATTERN}):"
+HEADER_REGEX_STR = fr"(((?:(?:{FIELDS_PATTERN}|Bee):|on behalf of ?)(?! +(by |from my|via )).*\n){{3,}})"
 EMAIL_SIMPLE_HEADER_REGEX = re.compile(rf'^{HEADER_REGEX_STR}')
 EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX = re.compile(HEADER_REGEX_STR)
 EMAIL_PRE_FORWARD_REGEX = re.compile(r"(.{3,2000}?)" + HEADER_REGEX_STR, re.DOTALL)  # Match up to the next email header section

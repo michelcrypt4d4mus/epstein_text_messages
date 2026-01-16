@@ -17,7 +17,7 @@ from rich.text import Text
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, INFO_INDENT
 from epstein_files.documents.emails.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX,
-     EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, FIELD_NAMES, TIME_REGEX, EmailHeader)
+     EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, FIELD_NAMES, FIELDS_COLON_PATTERN, TIME_REGEX, EmailHeader)
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
@@ -31,7 +31,9 @@ from epstein_files.util.rich import *
 
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
 BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Hide caption|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,]|L\._|_filtered|.*(yiv0232|font-family:|margin-bottom:).*)$')
+BAD_SUBJECT_CONTINUATIONS = ['orwarded', 'Hi ', 'Sent ', 'AmLaw', 'Original Message', 'Privileged', 'Sorry', '---']
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
+FIELDS_COLON_REGEX = re.compile(FIELDS_COLON_PATTERN)
 LINK_LINE_REGEX = re.compile(f"^>? ?htt")
 LINK_LINE2_REGEX = re.compile(r"^[-\w.%&=/]{5,}$")
 QUOTED_REPLY_LINE_REGEX = re.compile(r'(\nFrom:(.*)|wrote:)\n', re.IGNORECASE)
@@ -673,6 +675,8 @@ class Email(Communication):
             self.log_top_lines(12, 'Result of modifications')
 
         lines = self.repair_ocr_text(OCR_REPAIRS, self.text).split('\n')
+        subject_line = next((line for line in lines if line.startswith('Subject:')), None) or ''
+        subject = subject_line.split(':')[1].strip() if subject_line else ''
         new_lines = []
         i = 0
 
@@ -692,6 +696,17 @@ class Email(Communication):
             elif ' http' in line and line.endswith('html'):
                 pre_link, post_link = line.split(' http', 1)
                 line = f"{pre_link} http{post_link.replace(' ', '')}"
+            elif line.startswith('Subject:') and i < (len(lines) - 2) and len(line) >= 40:
+                next_line = lines[i + 1]
+                next_next = lines[i + 2]
+
+                if len(next_line) <= 1 or any([cont in next_line for cont in BAD_SUBJECT_CONTINUATIONS]):
+                    pass
+                elif (subject.endswith(next_line) and next_line != subject) \
+                        or (FIELDS_COLON_REGEX.search(next_next) and not FIELDS_COLON_REGEX.search(next_line)):
+                    self.warn(f"Fixing broken subject line\n  line: '{line}'\n    next: '{next_line}'\n    next: '{next_next}'\nsubject='{subject}'\n")
+                    line += f" {lines[i + 1]}"
+                    i += 1
 
             new_lines.append(line)
 
@@ -715,7 +730,7 @@ class Email(Communication):
         """Copy info from original config for file this document was extracted from."""
         if self.file_id in ALL_FILE_CONFIGS:
             self.config = cast(EmailCfg, deepcopy(ALL_FILE_CONFIGS[self.file_id]))
-            self.warn(f"Merging existing cfg for '{self.file_id}' with cfg for extracted document...")
+            self.log(f"Merging existing cfg for '{self.file_id}' with cfg for extracted document...")
         else:
             self.config = EmailCfg(id=self.file_id)
 
