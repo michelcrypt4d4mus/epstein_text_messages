@@ -22,12 +22,9 @@ from epstein_files.util.rich import console, highlighter, print_json, print_subt
 
 
 for email in epstein_files.non_duplicate_emails():
-    if email.is_interesting() and email.config:
-        console.line()
-        console.print(Text(f"Interesting email truncate_to={email.config.truncate_to}: ").append(email.summary()))
+    if not (email.subject() or email.is_duplicate() or email._truncate_to_length() > 100000):
+        console.print(email)
 
-        if email.config.truncate_to != -1:
-            console.print(email)
 
 sys.exit()
 
