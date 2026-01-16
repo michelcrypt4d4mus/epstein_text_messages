@@ -675,6 +675,8 @@ class Email(Communication):
             self.log_top_lines(12, 'Result of modifications')
 
         lines = self.repair_ocr_text(OCR_REPAIRS, self.text).split('\n')
+        subject_line = next((line for line in lines if line.startswith('Subject:')), None) or ''
+        subject = subject_line.split(':')[1].strip() if subject_line else ''
         new_lines = []
         i = 0
 
@@ -695,13 +697,15 @@ class Email(Communication):
                 pre_link, post_link = line.split(' http', 1)
                 line = f"{pre_link} http{post_link.replace(' ', '')}"
             elif line.startswith('Subject:') \
-                    and len(line) > 40 \
                     and i < (len(lines) - 2) \
-                    and not FIELDS_COLON_REGEX.search(lines[i + 1]) \
-                    and FIELDS_COLON_REGEX.search(lines[i + 2]) \
+                    and len(line) > 40 \
                     and len(lines[i + 1]) > 1 \
-                    and not any([cont in lines[i + 1] for cont in BAD_SUBJECT_CONTINUATIONS]):
-                self.warn(f"broken subject line?\n  line: '{line}'\n    next: '{lines[i + 1]}'\n    next: '{lines[i + 2]}'\n")
+                    and not any([cont in lines[i + 1] for cont in BAD_SUBJECT_CONTINUATIONS]) \
+                    and ((subject_line.endswith(lines[i + 1]) and lines[i + 1] != subject) \
+                        or (not FIELDS_COLON_REGEX.search(lines[i + 1]) and FIELDS_COLON_REGEX.search(lines[i + 2]))):
+                self.warn(f"Fixing broken subject line\n  line: '{line}'\n    next: '{lines[i + 1]}'\n    next: '{lines[i + 2]}'\n")
+                # line += f" {lines[i + 1]}"
+                # i += 1
 
             new_lines.append(line)
 
