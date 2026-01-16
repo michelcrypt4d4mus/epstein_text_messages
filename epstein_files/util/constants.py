@@ -581,9 +581,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='028487', author=NORMAN_D_RAU, attribution_reason='Fwded from "to" address', duplicate_ids=['026612']),
     EmailCfg(
         id='024923',
-        author=PAUL_KRASSNER,
         recipients=["George Krassner", "Nick Kazan", "Mrisman02", "Rebecca Risman", "Linda W. Grossman"],
         duplicate_ids=['031973'],
+        comment='krassner',
     ),
     EmailCfg(id='032457', author=PAUL_KRASSNER, recipients=[JEFFREY_EPSTEIN, "Nancy Cain"]),
     EmailCfg(id='029981', author=PAULA, attribution_reason='Name in reply + opera reference (Fisher now works in opera)'),
@@ -670,6 +670,7 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='033568',
         recipients=["George Krassner", "Daniel Dawson", "Danny Goldberg", "Tom", "Kevin Bright", "Walli Leff", "Michael Simmons", "Lee Quarnstrom", "Lanny Swerdlow", "Larry Sloman", "W&K", "Harry Shearer", "Jay Levin"],
+        subject="Fwd: Daryl Cagle's Blog",
     ),
     EmailCfg(id='026426', recipients=[JEAN_HUGUEN], attribution_reason='Reply'),
     EmailCfg(id='022202', recipients=[JEAN_LUC_BRUNEL], attribution_reason='Follow up / reply', duplicate_ids=['029975']),
@@ -1914,8 +1915,8 @@ for cfg in ALL_CONFIGS:
 
     # Add extra config objects for duplicate files that match the config of file they are duplicating
     for dupe_cfg in cfg.duplicate_cfgs():
-        if not isinstance(dupe_cfg, EmailCfg):
-            logger.debug(f"Generated synthetic config for dupe: {dupe_cfg}")
+        # if not isinstance(dupe_cfg, EmailCfg):
+        #     logger.debug(f"Generated synthetic config for dupe: {dupe_cfg}")
 
         ALL_FILE_CONFIGS[dupe_cfg.id] = dupe_cfg
 
