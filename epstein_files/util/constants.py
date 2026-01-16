@@ -467,7 +467,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='033384', author=JACK_GOLDBERGER, attribution_reason='Might be Paul Prosperi?', is_attribution_uncertain=True),
     EmailCfg(id='026024', author=JEAN_HUGUEN, attribution_reason='Signature'),
     EmailCfg(id='021823', author=JEAN_LUC_BRUNEL, attribution_reason='Reply'),
-    EmailCfg(id='022949', author=JEFFREY_EPSTEIN),
     EmailCfg(id='031624', author=JEFFREY_EPSTEIN),
     EmailCfg(id='018726', author=JEFFREY_EPSTEIN, date='2018-06-08 08:36:00'),
     EmailCfg(id='032283', author=JEFFREY_EPSTEIN, date='2016-09-14 08:04:00'),
