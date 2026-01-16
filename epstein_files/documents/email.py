@@ -705,7 +705,7 @@ class Email(Communication):
                 elif (subject.endswith(next_line) and next_line != subject) \
                         or (FIELDS_COLON_REGEX.search(next_next) and not FIELDS_COLON_REGEX.search(next_line)):
                     self.warn(f"Fixing broken subject line\n  line: '{line}'\n    next: '{next_line}'\n    next: '{next_next}'\nsubject='{subject}'\n")
-                    line += f" {lines[i + 1]}"
+                    line += f" {next_line}"
                     i += 1
 
             new_lines.append(line)
