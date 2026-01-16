@@ -1045,7 +1045,6 @@ HIGHLIGHTED_NAMES = [
             r"PERVERSION\s*OF\s*JUSTICE",
             r"Politico",
             r"Pro\s*Publica",
-            r"Reuters",
             r"(Sean\s*)?Hannity",
             r"Sharon Churcher",  # Daily Mail
             r"Sulzberger",
@@ -1058,6 +1057,7 @@ HIGHLIGHTED_NAMES = [
             r"(The\s*)?New\s*Yorker",
             r"(The\s*)?Wall\s*Street\s*Journal",
             r"(The\s*)?Wa(shington\s*)?Po(st)?",
+            r"(Thomson\s*)?Reuters",
             r"(Uma\s*)?Sanghvi",
             r"USA\s*Today",
             r"Vanity\s*Fair",
