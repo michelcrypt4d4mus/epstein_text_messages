@@ -919,7 +919,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='033508', duplicate_ids=['029880']),
     EmailCfg(id='030493', duplicate_ids=['030612']),
     EmailCfg(id='032051', duplicate_ids=['031771']),
-    EmailCfg(id='031217', duplicate_ids=['021761'], truncate_to=NO_TRUNCATE, comment='1st email for dersh, has long article'),
+    EmailCfg(id='031217', duplicate_ids=['021761'], truncate_to=1800, comment='1st email for dersh, has long article'),
     EmailCfg(id='031346', duplicate_ids=['031426']),
     EmailCfg(id='031345', duplicate_ids=['031427']),
     EmailCfg(id='031343', duplicate_ids=['031432']),
@@ -1049,7 +1049,7 @@ EMAILS_CONFIG = [
         is_interesting=True,
         truncate_to=4500,
     ),
-    EmailCfg(id='033453', is_interesting=True, comment='"heard you were telling people I asked Trump for a million dollars"'),
+    EmailCfg(id='033453', is_interesting=True, description='possibly an email from one of the women who sued Trump'),
     EmailCfg(id='029342', is_interesting=True, truncate_to=2000, comment='Hakeem Jeffries'),
     EmailCfg(id='031326', is_interesting=True, comment='"dog that hasn\'t barked is trump"'),
     EmailCfg(id='033171', is_interesting=True, comment='Zubair'),
@@ -1088,6 +1088,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='028760', truncate_to=900, comment='Epstein in an argument with someone'),
     EmailCfg(id='028757', truncate_to=900, comment='Epstein in an argument with someone'),
     EmailCfg(id='027059', truncate_to=NO_TRUNCATE, comment='Jean Luc Brunel and Boris Nikolic'),
+    EmailCfg(id='027028', truncate_to=1000, comment='Tom Pritzer penny pritzker'),
+    EmailCfg(id='029910', truncate_to=NO_TRUNCATE, comment='Tom Pritzer Aspen'),
+    EmailCfg(id='025163', truncate_to=NO_TRUNCATE, comment='Tom Pritzer'),
 ]
 
 if args.constantize:
