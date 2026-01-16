@@ -2,7 +2,7 @@ import json
 import re
 from dataclasses import asdict, dataclass, field
 
-from epstein_files.util.constant.strings import AUTHOR, REDACTED
+from epstein_files.util.constant.strings import AUTHOR, REDACTED, indented
 from epstein_files.util.constants import ALL_CONFIGS
 from epstein_files.util.doc_cfg import EmailCfg
 from epstein_files.util.logging import logger
@@ -114,8 +114,8 @@ class EmailHeader:
 
         logger.warning(
             f"{log_msg}{self}\n\n[top lines]:\n\n%s\n\n[body_lines]:\n\n%s\n\n",
-            '\n'.join(email_lines[0:(num_headers + 1) * 2]),
-            '\n'.join(email_lines[self.num_header_rows:self.num_header_rows + 5]),
+            indented('\n'.join(email_lines[0:(num_headers + 1) * 2]), prefix='> '),
+            indented('\n'.join(email_lines[self.num_header_rows:self.num_header_rows + 5]), prefix='> '),
         )
 
     def rewrite_header(self) -> str:
