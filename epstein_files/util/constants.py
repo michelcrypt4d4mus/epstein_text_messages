@@ -790,8 +790,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='026755', is_fwded_article=True, truncate_to=TRUNCATED_CHARS, comment='Epstein self fwd'),
     EmailCfg(id='026778', is_fwded_article=True, truncate_to=TRUNCATED_CHARS, comment='Kahn taxes'),
     EmailCfg(id='032458', truncate_to=NO_TRUNCATE, description='discussion of acquiring pieces for Epstein\'s art collection'),
-    # TODO: just use a search string
-    EmailCfg(id='032464', truncate_to=700, description='redacted discussion about art advisor Etienne Binant'),
+    EmailCfg(id='032464', truncate_to=NO_TRUNCATE, description='redacted discussion about art advisor Etienne Binant'),
+    # TODO: just use a search string for truncation
     EmailCfg(id='032964', truncate_to=700, description='redacted discussion about art advisor Etienne Binant'),
     EmailCfg(id='032968', truncate_to=700, description='redacted discussion about art advisor Etienne Binant'),
     EmailCfg(id='032467', truncate_to=700, description='redacted discussion about art advisor Etienne Binant'),
