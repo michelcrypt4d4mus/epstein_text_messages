@@ -51,6 +51,7 @@ APPEARS_IN = 'appears in'
 
 MAX_NUM_HEADER_LINES = 14
 MAX_QUOTED_REPLIES = 2
+NUM_WORDS_IN_LAST_QUOTE = 10
 
 REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + [
     '********************************',
@@ -769,7 +770,9 @@ class Email(Communication):
             num_chars = min(quote_cutoff or MAX_CHARS_TO_PRINT, TRUNCATED_CHARS)
         else:
             if quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
-                num_chars = quote_cutoff
+                hidden_words = self.text[quote_cutoff:].split()
+                last_quoted_text = ' '.join(hidden_words[:NUM_WORDS_IN_LAST_QUOTE])
+                num_chars = quote_cutoff + len(last_quoted_text) + 1  # Give a hint of the next line
             else:
                 num_chars = min(self.file_size(), MAX_CHARS_TO_PRINT)
 
@@ -801,7 +804,7 @@ class Email(Communication):
 
         # Truncate long emails but leave a note explaining what happened w/link to source document
         if len(text) > num_chars:
-            text = text[0:num_chars]
+            text = text[0:num_chars] + '...'
             doc_link_markup = epstein_media_doc_link_markup(self.url_slug, self.author_style())
             trim_note = f"<...trimmed to {num_chars:,} characters of {self.length():,}, read the rest at {doc_link_markup}...>"
             trim_footer_txt = Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
