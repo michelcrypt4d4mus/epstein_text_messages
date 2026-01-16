@@ -431,7 +431,6 @@ EMAILS_CONFIG = [
         attribution_reason='shows from "Christina media/PR" which fits',
         is_attribution_uncertain=True,
     ),
-    EmailCfg(id='026625', author=DARREN_INDYKE, actual_text='Hysterical.'),
     EmailCfg(id='026624', author=DARREN_INDYKE, recipients=[JEFFREY_EPSTEIN], date='2016-10-01 16:40:00', duplicate_ids=['031708']),
     EmailCfg(
         id='031278',
