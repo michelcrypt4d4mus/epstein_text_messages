@@ -54,7 +54,6 @@ FINANCIAL_REPORTS_AUTHORS = [
 # Fields like timestamp and author are better added from the Document object
 NON_METADATA_FIELDS = [
     'actual_text',
-    'date',
     'id',
     'is_synthetic',
 ]
@@ -143,7 +142,12 @@ class DocCfg:
             yield dupe_cfg
 
     def metadata(self) -> Metadata:
-        return {k: v for k, v in asdict(self).items() if k not in NON_METADATA_FIELDS and v}
+        metadata = {k: v for k, v in asdict(self).items() if k not in NON_METADATA_FIELDS and v}
+
+        if self.is_interesting is False:
+            metadata['is_interesting'] = False
+
+        return metadata
 
     def timestamp(self) -> datetime | None:
         if self.date:

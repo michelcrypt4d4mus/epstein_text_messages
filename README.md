@@ -29,9 +29,9 @@ All the tools that come with the package require `EPSTEIN_DOCS_DIR` to be set. T
 epstein_generate
 
 # Search for a string:
-epstein_search Bannon
+epstein_grep Bannon
 # Or a regex:
-epstein_search '\bSteve\s*Bannon|Jeffrey\s*Epstein\b'
+epstein_grep '\bSteve\s*Bannon|Jeffrey\s*Epstein\b'
 
 # Show a file with color highlighting of keywords:
 epstein_show 030999

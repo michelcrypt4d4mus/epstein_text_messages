@@ -93,7 +93,7 @@ def epstein_diff():
     Document.diff_files(args.positional_args)
 
 
-def epstein_search():
+def epstein_grep():
     """Search the cleaned up text of the files."""
     epstein_files = EpsteinFiles.get_files()
 
