@@ -30,7 +30,7 @@ from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
 
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
-BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Hide caption|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,]|L\._|_filtered|.*(yiv0232|font-family:|margin-bottom:).*)$')
+BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Hide caption|Importance:?\s*High|[iI,•]|[1i] (_ )?[il]|, [-,]|L\._|_filtered|.*(yiv0232|font-family:|margin-bottom:).*)$')
 BAD_SUBJECT_CONTINUATIONS = ['orwarded', 'Hi ', 'Sent ', 'AmLaw', 'Original Message', 'Privileged', 'Sorry', '---']
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 FIELDS_COLON_REGEX = re.compile(FIELDS_COLON_PATTERN)
@@ -118,7 +118,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     # Misc
     'AVG°': 'AVGO',
     'Saw Matt C with DTF at golf': 'Saw Matt C with DJT at golf',
-    re.compile(r"[i. ]*Privileged *- *Redacted[i. ]*"): '<PRIVILEGED - REDACTED>',
+    re.compile(r"[i. ]*Privileged[- ]*Redacted[i. ]*"): '<PRIVILEGED - REDACTED>',
 }
 
 EMAIL_SIGNATURE_REGEXES = {

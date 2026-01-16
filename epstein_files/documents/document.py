@@ -270,7 +270,7 @@ class Document:
             txt.append(' (', style=SYMBOL_STYLE)
             txt.append(f"{timestamp_str}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
 
-        txt.append(' [').append(key_value_txt('size', Text(self.file_size_str(0), style='aquamarine1')))
+        txt.append(' [').append(key_value_txt('size', Text(str(self.length()), style='aquamarine1')))
         txt.append(", ").append(key_value_txt('lines', self.num_lines()))
 
         if self.config and self.config.duplicate_of_id:
