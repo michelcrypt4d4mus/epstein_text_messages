@@ -1087,6 +1087,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='029534', truncate_to=900, comment='Maldives'),
     EmailCfg(id='028760', truncate_to=900, comment='Epstein in an argument with someone'),
     EmailCfg(id='028757', truncate_to=900, comment='Epstein in an argument with someone'),
+    EmailCfg(id='027059', truncate_to=NO_TRUNCATE, comment='Jean Luc Brunel and Boris Nikolic'),
 ]
 
 if args.constantize:
