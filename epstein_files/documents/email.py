@@ -51,7 +51,7 @@ APPEARS_IN = 'appears in'
 
 MAX_NUM_HEADER_LINES = 14
 MAX_QUOTED_REPLIES = 2
-NUM_WORDS_IN_LAST_QUOTE = 5
+NUM_WORDS_IN_LAST_QUOTE = 1
 
 REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + [
     '********************************',
@@ -781,7 +781,7 @@ class Email(Communication):
             if quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
                 trimmed_words = self.text[quote_cutoff:].split()
 
-                if trimmed_words and trimmed_words[0] not in ['From:', 'Sent:']:
+                if trimmed_words and trimmed_words[0] not in ['From:', 'Sent:', '<...snipped']:
                     last_quoted_text = ' '.join(trimmed_words[:NUM_WORDS_IN_LAST_QUOTE])
                     num_chars = quote_cutoff + len(last_quoted_text) + 1  # Give a hint of the next line
                 else:
