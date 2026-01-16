@@ -51,7 +51,7 @@ APPEARS_IN = 'appears in'
 
 MAX_NUM_HEADER_LINES = 14
 MAX_QUOTED_REPLIES = 2
-NUM_WORDS_IN_LAST_QUOTE = 1
+NUM_WORDS_IN_LAST_QUOTE = 2
 
 REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + [
     '********************************',
