@@ -12526,13 +12526,13 @@
                 ],
                 "file_id": "029835",
                 "filename": "HOUSE_OVERSIGHT_029835.txt",
-                "num_lines": 53,
+                "num_lines": 52,
                 "recipients": [
                     "Alan Dershowitz",
                     "Jack Goldberger",
                     "Jeffrey Epstein"
                 ],
-                "subject": "RE: Reuters / lawsuit against Jeffrey Epstein",
+                "subject": "RE: Reuters / lawsuit against Jeffrey Epstein <PRIVILEGED - REDACTED>",
                 "timestamp": "2016-04-28T16:47:41",
                 "type": "Email"
             },
@@ -13952,11 +13952,11 @@
                 ],
                 "file_id": "030339",
                 "filename": "HOUSE_OVERSIGHT_030339.txt",
-                "num_lines": 110,
+                "num_lines": 109,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
-                "subject": "Fw: Fwd: Media Enquiry - The Guardian - Re: Jeffrey Epstein",
+                "subject": "Fw: Fwd: Media Enquiry - The Guardian - Re: Jeffrey Epstein <PRIVILEGED - REDACTED>",
                 "timestamp": "2015-01-30T19:03:47",
                 "type": "Email"
             },
@@ -13965,11 +13965,11 @@
                 "bytes": 7235,
                 "file_id": "030343",
                 "filename": "HOUSE_OVERSIGHT_030343.txt",
-                "num_lines": 128,
+                "num_lines": 127,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
-                "subject": "Re: Media Enquiry - The Guardian - Re: Jeffrey Epstein",
+                "subject": "Re: Media Enquiry - The Guardian - Re: Jeffrey Epstein <PRIVILEGED - REDACTED>",
                 "timestamp": "2015-01-30T20:20:19",
                 "type": "Email"
             },
@@ -15291,11 +15291,11 @@
                 "duplicate_of_id": "030339",
                 "file_id": "030592",
                 "filename": "HOUSE_OVERSIGHT_030592.txt",
-                "num_lines": 104,
+                "num_lines": 103,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
-                "subject": "Fw: Fwd: Media Enquiry - The Guardian - Re: Jeffrey Epstein",
+                "subject": "Fw: Fwd: Media Enquiry - The Guardian - Re: Jeffrey Epstein <PRIVILEGED - REDACTED>",
                 "timestamp": "2015-01-30T19:03:47",
                 "type": "Email"
             },
@@ -22522,10 +22522,11 @@
                 "bytes": 1651,
                 "file_id": "032272",
                 "filename": "HOUSE_OVERSIGHT_032272.txt",
-                "num_lines": 34,
+                "num_lines": 33,
                 "recipients": [
                     "Darren Indyke",
-                    "Jeffrey Epstein"
+                    "Jeffrey Epstein",
+                    "Kathryn Ruemmler"
                 ],
                 "subject": "RE:",
                 "timestamp": "2016-07-07T13:04:06",
