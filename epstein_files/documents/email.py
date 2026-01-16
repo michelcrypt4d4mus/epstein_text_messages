@@ -50,8 +50,8 @@ URL_SIGNIFIERS = ['?amp', 'amp?', 'cd=', 'click', 'CMP=', 'contentId', 'ft=', 'g
 APPEARS_IN = 'appears in'
 
 MAX_NUM_HEADER_LINES = 14
-MAX_QUOTED_REPLIES = 2
-NUM_WORDS_IN_LAST_QUOTE = 2
+MAX_QUOTED_REPLIES = 1
+NUM_WORDS_IN_LAST_QUOTE = 6
 
 REPLY_SPLITTERS = [f"{field}:" for field in FIELD_NAMES] + [
     '********************************',
@@ -786,9 +786,16 @@ class Email(Communication):
             if quote_cutoff and quote_cutoff < MAX_CHARS_TO_PRINT:
                 trimmed_words = self.text[quote_cutoff:].split()
 
-                if trimmed_words and trimmed_words[0] not in ['From:', 'Sent:', '<...snipped']:
-                    last_quoted_text = ' '.join(trimmed_words[:NUM_WORDS_IN_LAST_QUOTE])
-                    num_chars = quote_cutoff + len(last_quoted_text) + 1  # Give a hint of the next line
+                if '<...snipped' in trimmed_words[:NUM_WORDS_IN_LAST_QUOTE]:
+                    num_trailing_words = 0
+                elif trimmed_words and trimmed_words[0] in ['From:', 'Sent:']:
+                    num_trailing_words = NUM_WORDS_IN_LAST_QUOTE
+                else:
+                    num_trailing_words = NUM_WORDS_IN_LAST_QUOTE
+
+                if trimmed_words:
+                    last_quoted_text = ' '.join(trimmed_words[:num_trailing_words])
+                    num_chars = quote_cutoff + len(last_quoted_text) + 1 # Give a hint of the next line
                 else:
                     num_chars = quote_cutoff
             else:
@@ -822,7 +829,7 @@ class Email(Communication):
 
         # Truncate long emails but leave a note explaining what happened w/link to source document
         if len(text) > num_chars:
-            text = text[0:num_chars] + '...'
+            text = text[0:num_chars]
             doc_link_markup = epstein_media_doc_link_markup(self.url_slug, self.author_style())
             trim_note = f"<...trimmed to {num_chars:,} characters of {self.length():,}, read the rest at {doc_link_markup}...>"
             trim_footer_txt = Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
@@ -851,7 +858,7 @@ class Email(Communication):
         text = join_texts(lines, '\n')
 
         email_txt_panel = Panel(
-            highlighter(text).append('\n\n').append(trim_footer_txt) if trim_footer_txt else highlighter(text),
+            highlighter(text).append('...\n\n').append(trim_footer_txt) if trim_footer_txt else highlighter(text),
             border_style=self._border_style(),
             expand=False,
             subtitle=REWRITTEN_HEADER_MSG if should_rewrite_header else None,
