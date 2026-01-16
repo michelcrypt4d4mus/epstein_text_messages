@@ -135,25 +135,6 @@
                 "type": "Email"
             },
             {
-                "author": "Manuela Martinez",
-                "bytes": 750,
-                "description": "appears in Jean Luc Brunel v. Jeffrey Epstein and Tyler McDonald d/b/a YI.org: court filing",
-                "extracted_file": {
-                    "explanation": "manually extracted from one of the other files",
-                    "extracted_from": "HOUSE_OVERSIGHT_011908.txt",
-                    "url": "https://github.com/michelcrypt4d4mus/epstein_text_messages/blob/master/emails_extracted_from_legal_filings/HOUSE_OVERSIGHT_011908_5.txt"
-                },
-                "file_id": "011908_5",
-                "filename": "HOUSE_OVERSIGHT_011908.txt",
-                "num_lines": 22,
-                "recipients": [
-                    "Jean Luc Brunel"
-                ],
-                "subject": "MC2",
-                "timestamp": "2014-10-17T21:36:00",
-                "type": "Email"
-            },
-            {
                 "author": "lorraine@mc2mm.com",
                 "bytes": 1374,
                 "description": "appears in Jean Luc Brunel v. Jeffrey Epstein and Tyler McDonald d/b/a YI.org: court filing",
@@ -1844,7 +1825,7 @@
                 ],
                 "subject": "Fwd: Fw: Epstein -- I apologize if you have received this but it keeps coming back to me as undeliverable",
                 "timestamp": "2010-02-26T14:59:54",
-                "truncate_to": -1,
+                "truncate_to": 1800,
                 "type": "Email"
             },
             {
@@ -3639,7 +3620,7 @@
             {
                 "author": "John Brockman",
                 "bytes": 9138,
-                "comment": "Email invitation sent to tech CEOs + Epstein",
+                "description": "Email invitation sent to tech CEOs and Epstein",
                 "file_id": "023454",
                 "filename": "HOUSE_OVERSIGHT_023454.txt",
                 "is_interesting": true,
@@ -4172,6 +4153,7 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 4235,
+                "comment": "Tom Pritzer",
                 "file_id": "025163",
                 "filename": "HOUSE_OVERSIGHT_025163.txt",
                 "num_lines": 76,
@@ -4180,6 +4162,7 @@
                 ],
                 "subject": "Re: Re:",
                 "timestamp": "2016-11-28T18:47:15",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -5170,6 +5153,7 @@
             {
                 "author": "Sultan Ahmed Bin Sulayem",
                 "bytes": 14782,
+                "comment": "sultan asking about cholesterol drug",
                 "file_id": "025888",
                 "filename": "HOUSE_OVERSIGHT_025888.txt",
                 "fwded_text_after": "Jul 24, 2015",
@@ -7008,8 +6992,10 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 15551,
+                "comment": "sultan asking about cholesterol drug",
                 "file_id": "026362",
                 "filename": "HOUSE_OVERSIGHT_026362.txt",
+                "fwded_text_after": "Jul 24, 2015",
                 "num_lines": 197,
                 "recipients": [
                     "Sultan Ahmed Bin Sulayem"
@@ -8753,6 +8739,7 @@
             {
                 "author": "Tom Pritzker",
                 "bytes": 2574,
+                "comment": "Tom Pritzer penny pritzker",
                 "file_id": "027028",
                 "filename": "HOUSE_OVERSIGHT_027028.txt",
                 "num_lines": 54,
@@ -8761,6 +8748,7 @@
                 ],
                 "subject": "Fwd: Pritzker Alert",
                 "timestamp": "2013-05-23T03:15:37",
+                "truncate_to": 1000,
                 "type": "Email"
             },
             {
@@ -8973,6 +8961,7 @@
             {
                 "author": "Jean Luc Brunel",
                 "bytes": 2884,
+                "comment": "Jean Luc Brunel and Boris Nikolic",
                 "file_id": "027059",
                 "filename": "HOUSE_OVERSIGHT_027059.txt",
                 "num_lines": 59,
@@ -8981,6 +8970,7 @@
                 ],
                 "subject": "Re: Fw: Fwd: Happy new year!",
                 "timestamp": "2013-01-01T00:51:25",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -9605,22 +9595,26 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 5837,
+                "comment": "Epstein in an argument with someone",
                 "file_id": "028757",
                 "filename": "HOUSE_OVERSIGHT_028757.txt",
                 "num_lines": 85,
                 "subject": "Re: press",
                 "timestamp": "2012-07-26T18:30:00",
+                "truncate_to": 900,
                 "type": "Email"
             },
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 5086,
+                "comment": "Epstein in an argument with someone",
                 "file_id": "028760",
                 "filename": "HOUSE_OVERSIGHT_028760.txt",
                 "num_lines": 74,
                 "sent_from_device": "Sorry for all the typos .Sent from my iPhone",
                 "subject": "Re: press",
                 "timestamp": "2012-07-26T18:12:00",
+                "truncate_to": 900,
                 "type": "Email"
             },
             {
@@ -10740,7 +10734,7 @@
             {
                 "author": "Martin Nowak",
                 "bytes": 2572,
-                "comment": "Nowak, \"her Skype contact is in moscow.\"",
+                "description": "Masha Drokova's skype contact is in Moscow",
                 "file_id": "029098",
                 "filename": "HOUSE_OVERSIGHT_029098.txt",
                 "is_interesting": true,
@@ -12886,6 +12880,7 @@
             {
                 "author": "Tom Pritzker",
                 "bytes": 3650,
+                "comment": "Tom Pritzer Aspen",
                 "file_id": "029910",
                 "filename": "HOUSE_OVERSIGHT_029910.txt",
                 "num_lines": 58,
@@ -12894,6 +12889,7 @@
                 ],
                 "subject": "RE: Re:",
                 "timestamp": "2016-08-08T21:28:25",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -16223,7 +16219,7 @@
             {
                 "author": "David Stern",
                 "bytes": 2310,
-                "comment": "David Stern \"Death of chinese shareholder quite an issue. What can we do with Qataris?\"",
+                "description": "Epstein requesting help for Russia and discussion of an unknown dead Chinese shareholder",
                 "file_id": "030727",
                 "filename": "HOUSE_OVERSIGHT_030727.txt",
                 "is_interesting": true,
@@ -18461,7 +18457,7 @@
                 ],
                 "subject": "Fwd: Fw: Epstein -- I apologize if you have received this but it keeps coming back to me as undeliverable",
                 "timestamp": "2010-02-26T14:59:54",
-                "truncate_to": -1,
+                "truncate_to": 1800,
                 "type": "Email"
             },
             {
@@ -20125,6 +20121,7 @@
                 ],
                 "subject": "Re: Trump",
                 "timestamp": "2015-12-08T22:14:34",
+                "truncate_to": 2000,
                 "type": "Email"
             },
             {
@@ -22129,7 +22126,7 @@
             {
                 "author": "Michael Wolff",
                 "bytes": 1599,
-                "comment": "Michael Wolff on strategy",
+                "description": "Michael Wolff offers ideas for entrapping Trump",
                 "file_id": "032229",
                 "filename": "HOUSE_OVERSIGHT_032229.txt",
                 "is_interesting": true,
@@ -22937,7 +22934,7 @@
                 "bytes": 2455,
                 "file_id": "032329",
                 "filename": "HOUSE_OVERSIGHT_032329.txt",
-                "num_lines": 45,
+                "num_lines": 44,
                 "recipients": [
                     "Jeffrey Epstein",
                     "Reid Weingarten"
@@ -23942,6 +23939,7 @@
             {
                 "author": "Etienne Binant",
                 "bytes": 3313,
+                "description": "discussion of acquiring pieces for Epstein's art collection",
                 "file_id": "032458",
                 "filename": "HOUSE_OVERSIGHT_032458.txt",
                 "num_lines": 66,
@@ -23951,6 +23949,7 @@
                 ],
                 "subject": "RE: update",
                 "timestamp": "2017-02-10T17:40:45",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -23970,6 +23969,7 @@
             {
                 "author": "Darren Indyke",
                 "bytes": 3666,
+                "description": "redacted discussion about art advisor Etienne Binant",
                 "file_id": "032464",
                 "filename": "HOUSE_OVERSIGHT_032464.txt",
                 "num_lines": 77,
@@ -23979,11 +23979,13 @@
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Fwd: TR: update",
                 "timestamp": "2017-02-15T11:11:40",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
                 "author": "Darren Indyke",
                 "bytes": 4486,
+                "description": "redacted discussion about art advisor Etienne Binant",
                 "file_id": "032467",
                 "filename": "HOUSE_OVERSIGHT_032467.txt",
                 "num_lines": 96,
@@ -23993,6 +23995,7 @@
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Re: TR: update",
                 "timestamp": "2017-02-15T11:49:48",
+                "truncate_to": 700,
                 "type": "Email"
             },
             {
@@ -24078,6 +24081,7 @@
             {
                 "author": "Darren Indyke",
                 "bytes": 5392,
+                "description": "redacted discussion about art advisor Etienne Binant",
                 "file_id": "032480",
                 "filename": "HOUSE_OVERSIGHT_032480.txt",
                 "num_lines": 105,
@@ -24087,6 +24091,7 @@
                 "sent_from_device": "Sent from my Verizon 4G LTE Droid",
                 "subject": "Fwd: RE: TR: update",
                 "timestamp": "2017-02-15T17:54:14",
+                "truncate_to": 700,
                 "type": "Email"
             },
             {
@@ -24119,6 +24124,7 @@
             {
                 "author": "Darren Indyke",
                 "bytes": 5611,
+                "description": "redacted discussion about art advisor Etienne Binant",
                 "file_id": "032486",
                 "filename": "HOUSE_OVERSIGHT_032486.txt",
                 "num_lines": 112,
@@ -24128,11 +24134,13 @@
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Fwd: TR: TR: update",
                 "timestamp": "2017-02-17T02:34:42",
+                "truncate_to": 700,
                 "type": "Email"
             },
             {
                 "author": "Darren Indyke",
                 "bytes": 6472,
+                "description": "redacted discussion about art advisor Etienne Binant",
                 "file_id": "032491",
                 "filename": "HOUSE_OVERSIGHT_032491.txt",
                 "num_lines": 127,
@@ -24141,11 +24149,13 @@
                 ],
                 "subject": "Fwd: update",
                 "timestamp": "2017-02-17T19:00:21",
+                "truncate_to": 700,
                 "type": "Email"
             },
             {
                 "author": "Darren Indyke",
                 "bytes": 8280,
+                "description": "redacted discussion about art advisor Etienne Binant",
                 "file_id": "032496",
                 "filename": "HOUSE_OVERSIGHT_032496.txt",
                 "num_lines": 164,
@@ -24154,6 +24164,7 @@
                 ],
                 "subject": "Re: update",
                 "timestamp": "2017-02-17T20:34:47",
+                "truncate_to": 700,
                 "type": "Email"
             },
             {
@@ -27547,6 +27558,7 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 4353,
+                "description": "redacted discussion about art advisor Etienne Binant",
                 "file_id": "032964",
                 "filename": "HOUSE_OVERSIGHT_032964.txt",
                 "num_lines": 92,
@@ -27556,11 +27568,13 @@
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Re: TR: update",
                 "timestamp": "2017-02-15T11:37:13",
+                "truncate_to": 700,
                 "type": "Email"
             },
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 4367,
+                "description": "redacted discussion about art advisor Etienne Binant",
                 "file_id": "032968",
                 "filename": "HOUSE_OVERSIGHT_032968.txt",
                 "num_lines": 92,
@@ -27569,6 +27583,7 @@
                 ],
                 "subject": "Re: TR: update",
                 "timestamp": "2017-02-15T11:37:26",
+                "truncate_to": 700,
                 "type": "Email"
             },
             {
@@ -27600,6 +27615,7 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 7187,
+                "description": "redacted discussion about art advisor Etienne Binant",
                 "file_id": "032975",
                 "filename": "HOUSE_OVERSIGHT_032975.txt",
                 "num_lines": 144,
@@ -27608,6 +27624,7 @@
                 ],
                 "subject": "Re: update",
                 "timestamp": "2017-02-17T20:26:51",
+                "truncate_to": 700,
                 "type": "Email"
             },
             {
@@ -30574,8 +30591,10 @@
             {
                 "author": "Barry Josephson",
                 "bytes": 4059,
+                "comment": "description of Trump jet",
                 "file_id": "033301",
                 "filename": "HOUSE_OVERSIGHT_033301.txt",
+                "is_fwded_article": true,
                 "num_lines": 75,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -31240,8 +31259,10 @@
             {
                 "author": "Jide Zeitlin",
                 "bytes": 3532,
+                "description": "Epstein says he knows Russian oligarch Oleg Deripaska",
                 "file_id": "033377",
                 "filename": "HOUSE_OVERSIGHT_033377.txt",
+                "is_interesting": true,
                 "num_lines": 67,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -31768,7 +31789,7 @@
             },
             {
                 "bytes": 796,
-                "comment": "\"heard you were telling people I asked Trump for a million dollars\"",
+                "description": "possibly an email from one of the women who sued Trump",
                 "file_id": "033453",
                 "filename": "HOUSE_OVERSIGHT_033453.txt",
                 "is_interesting": true,
@@ -36155,6 +36176,7 @@
                 "was_timestamp_extracted": true
             },
             {
+                "attached_to_email_id": "022359",
                 "author": "Deutsche Bank Wealth Management Tax Topics",
                 "bytes": 23345,
                 "category": "finance",
@@ -38023,7 +38045,7 @@
                 "was_timestamp_extracted": true
             },
             {
-                "author": "Female Health Company (FHX)",
+                "author": "Female Health Company (FHC)",
                 "bytes": 9957,
                 "category": "misc",
                 "description": "brochure requesting donations for female condoms in Uganda",
@@ -38036,7 +38058,7 @@
                 "was_timestamp_extracted": true
             },
             {
-                "author": "Female Health Company (FHX)",
+                "author": "Female Health Company (FHC)",
                 "bytes": 9905,
                 "category": "misc",
                 "description": "pitch deck (USAID was a customer)",
@@ -40118,7 +40140,7 @@
         "Vincenzo Iozzo": "tech bro, CEO of the identity-security company SlashID",
         "Vinit Sahni": "finance, analyst at Deutsche Bank and Goldman Sachs",
         "Vladimir Yudashkin": "modeling, director of the 1 Mother Agency",
-        "Zubair Khan": "employee, Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai",
+        "Zubair Khan": "tech bro, Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai",
         "linkspirit": "friend, Skype username of someone Epstein communicated with",
         "lorraine@mc2mm.com": "modeling, Jean Luc Brunel's MC2 Model Management",
         "pink@mc2mm.com": "modeling, Jean Luc Brunel's MC2 Model Management"
