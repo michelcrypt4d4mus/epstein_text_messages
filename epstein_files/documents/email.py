@@ -118,6 +118,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     # Misc
     'AVG°': 'AVGO',
     'Saw Matt C with DTF at golf': 'Saw Matt C with DJT at golf',
+    re.compile(r"[i. ]*Privileged *- *Redacted[i. ]*"): '<PRIVILEGED - REDACTED>',
 }
 
 EMAIL_SIGNATURE_REGEXES = {

@@ -250,6 +250,7 @@ class Document:
         """Apply a dict of repairs (key is pattern or string, value is replacement string) to text."""
         for k, v in repairs.items():
             if isinstance(k, re.Pattern):
+                self.warn(f"repairing '{k.pattern}'")
                 text = k.sub(v, text)
             else:
                 text = text.replace(k, v)
