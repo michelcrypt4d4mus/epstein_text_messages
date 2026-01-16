@@ -21,6 +21,17 @@ from epstein_files.util.logging import logger
 from epstein_files.util.rich import console, highlighter, print_json, print_subtitle_panel
 
 
+for email in epstein_files.non_duplicate_emails():
+    if email.is_interesting() and email.config:
+        console.line()
+        console.print(Text(f"Interesting email truncate_to={email.config.truncate_to}: ").append(email.summary()))
+
+        if email.config.truncate_to != -1:
+            console.print(email)
+
+sys.exit()
+
+
 def print_first_emails():
     emailers = sorted(epstein_files.emailers(), key=lambda e: e.earliest_email_at())
 
