@@ -90,6 +90,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     # links
     'Imps ://': 'https://',
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
+    'on-accusers-rose-\nmcgowan/ ': 'on-accusers-rose-\nmcgowan/\n',
     # Subject lines
     "Arrested in\nInauguration Day Riot": "Arrested in Inauguration Day Riot",
     "as Putin Mayhem Tests President's Grip\non GOP": "as Putin Mayhem Tests President's Grip on GOP",
