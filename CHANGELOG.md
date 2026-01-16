@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+# 1.4.0
 * Rename `epstein_search` to `epstein_grep`
 * `--email-body` argument
 * `EmailHeader.reply_to` field

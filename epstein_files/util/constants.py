@@ -978,7 +978,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='032250', duplicate_ids=['033589'], truncate_to=1000, comment='Wolff article'),
     EmailCfg(id='013415', fwded_text_after='Darren K. Indyke'),
     EmailCfg(id='024624', fwded_text_after='On Tue, May 14'),
-    EmailCfg(id='025888', fwded_text_after='Jul 24, 2015'),
+    EmailCfg(id='025888', fwded_text_after='Jul 24, 2015', comment='sultan asking about cholesterol drug'),
+    EmailCfg(id='026362', fwded_text_after='Jul 24, 2015', comment='sultan asking about cholesterol drug'),
     EmailCfg(id='016413', fwded_text_after='In a former warehouse'),
     EmailCfg(id='025548', fwded_text_after='Edward Jay Epstein'),
     EmailCfg(id='032806', fwded_text_after='• Sep 13, 2018'),
@@ -1081,6 +1082,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='026243', truncate_to=NO_TRUNCATE),
     EmailCfg(id='029680', truncate_to=900, comment='Maldives'),
     EmailCfg(id='029534', truncate_to=900, comment='Maldives'),
+    EmailCfg(id='028760', truncate_to=900, comment='Epstein in an argument with someone'),
+    EmailCfg(id='028757', truncate_to=900, comment='Epstein in an argument with someone'),
 ]
 
 if args.constantize:
@@ -1532,7 +1535,7 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='024302', author='Carvana', description=f"form 14A SEC filing proxy statement", date='2019-04-23'),
     DocCfg(id='029305', author='CCH Tax', description=f"Briefing on end of Defense of Marriage Act", date='2013-06-27'),
     DocCfg(id='026794', author=DEUTSCHE_BANK, description=f"Global Political and Regulatory Risk in 2015/2016"),
-    DocCfg(id='022361', author=DEUTSCHE_BANK_TAX_TOPICS, date='2013-05-01'),
+    DocCfg(id='022361', author=DEUTSCHE_BANK_TAX_TOPICS, date='2013-05-01', attached_to_email_id='022359'),
     DocCfg(id='022325', author=DEUTSCHE_BANK_TAX_TOPICS, date='2013-12-20'),
     DocCfg(id='022330', author=DEUTSCHE_BANK_TAX_TOPICS, date='2013-12-20', description='table of contents'),
     DocCfg(id='019440', author=DEUTSCHE_BANK_TAX_TOPICS, date='2014-01-29'),
@@ -1597,7 +1600,6 @@ OTHER_FILES_FINANCE = [
         date='2006-09-27',
         description=f"Michael Milken's Knowledge Universe Education (KUE) $1,000,000 corporate share placement notice (SEC filing?)"
     ),
-
     DocCfg(id='024003', description=f"New Leaf Ventures ($375 million biotech fund) private placement memorandum"),
 ]
 

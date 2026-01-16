@@ -1024,6 +1024,7 @@ HIGHLIGHTED_NAMES = [
             r"Jesse Kornbluth",
             r"John\s*Connolly",
             r"Jonathan\s*Karl",
+            r"Journal of Criminal Law and Criminology",
             r"Julie\s*(K.?\s*)?Brown", r'jbrown@miamiherald.com',
             r"(Katie\s*)?Couric",
             r"Keith\s*Larsen",
