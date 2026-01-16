@@ -1020,7 +1020,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='031601', is_interesting=True, comment='Old gf i gave to donald', truncate_to=2000),
     EmailCfg(id='030727', is_interesting=True, comment='David Stern "Death of chinese shareholder quite an issue. What can we do with Qataris?"'),
     EmailCfg(id='030725', is_interesting=True, comment='David Stern in Moscow'),
-    EmailCfg(id='029098', is_interesting=True, comment='Nowak, "her Skype contact is in moscow."'),
+    EmailCfg(id='029098', is_interesting=True, description=f"{MASHA_DROKOVA}'s skype contact is in Moscow"),
     EmailCfg(id='030714', is_interesting=True, comment='Bannon, Russian Dugan shout out'),
     EmailCfg(id='031659', is_interesting=True, comment='"i have met some very bad people „ none as bad as trump"'),
     EmailCfg(id='030245', is_interesting=True, comment='Epstein rationalizes his behavior in an open letter to the world'),
@@ -1126,7 +1126,7 @@ DEUTSCHE_BANK_TAX_TOPICS = f'{DEUTSCHE_BANK} Wealth Management Tax Topics'
 DIANA_DEGETTE_CAMPAIGN = "Colorado legislator Diana DeGette's campaign"
 FBI_REPORT = f"report on Epstein investigation (redacted)"
 FBI_SEIZED_PROPERTY = f"seized property inventory (redacted)"
-FEMALE_HEALTH_COMPANY = 'Female Health Company (FHX)'
+FEMALE_HEALTH_COMPANY = 'Female Health Company (FHC)'
 FIRE_AND_FURY = f"Fire And Fury"
 HARVARD_POETRY = f'{HARVARD} poetry stuff from {LISA_NEW}'
 HBS_APPLICATION = f"{HARVARD} Business School application letter"
