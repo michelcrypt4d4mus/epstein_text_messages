@@ -736,7 +736,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='021106', recipients=[STEVE_BANNON], attribution_reason='Reply'),
     EmailCfg(id='029344', actual_text='I thought of you when I read this article. Was this your idea? Alan', is_fwded_article=True),
     EmailCfg(id='032358', actual_text=REDACTED),
-    EmailCfg(id='033050', actual_text='schwartman'),
+    # EmailCfg(id='033050', actual_text='schwartman'),
     EmailCfg(
         id='031036',
         description='Barbro C. Ehnbom related donation and Swedish girls discussion',
