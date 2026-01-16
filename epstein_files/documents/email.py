@@ -95,6 +95,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     ' https://www.theguardian.com/world/2017/may/29/close-friend-trump-thomas-barrack-\nalleged-tax-evasion-italy-sardinia?CMP=share btn fb': '\nhttps://www.theguardian.com/world/2017/may/29/close-friend-trump-thomas-barrack-alleged-tax-evasion-italy-sardinia?CMP=share_btn_fb',
     re.compile(r'timestopics/people/t/landon jr thomas/inde\n?x\n?\.\n?h\n?tml'): 'timestopics/people/t/landon_jr_thomas/index.html',
     re.compile(r" http ?://www. ?dailymail. ?co ?.uk/news/article-\d+/Troub ?led-woman-history-drug-\n?us ?e-\n?.*html"): '\nhttp://www.dailymail.co.uk/news/article-3914012/Troubled-woman-history-drug-use-claimed-assaulted-Donald-Trump-Jeffrey-Epstein-sex-party-age-13-FABRICATED-story.html',
+    re.compile(r"http.*steve-bannon-trump-tower-\n?interview-\n?trumps-\n?strategist-plots-\n?new-political-movement-948747"): "\nhttp://www.hollywoodreporter.com/news/steve-bannon-trump-tower-interview-trumps-strategist-plots-new-political-movement-948747",
     # Subject lines
     "Arrested in\nInauguration Day Riot": "Arrested in Inauguration Day Riot",
     "as Putin Mayhem Tests President's Grip\non GOP": "as Putin Mayhem Tests President's Grip on GOP",
@@ -116,6 +117,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"Subject:\s*Fwd: Trending Now: Friends for three decades"): "Subject: Fwd: Trending Now: Friends for three decades",
     # Misc
     'AVG°': 'AVGO',
+    'Saw Matt C with DTF at golf': 'Saw Matt C with DJT at golf',
 }
 
 EMAIL_SIGNATURE_REGEXES = {
@@ -256,7 +258,9 @@ LINE_REPAIR_MERGES = {
     '030367': [[1, 4], [2, 4]],
     '019105': [[5]] * 4,
     '019407': [[2, 4]],
+    '022187': [[1, 8], [2, 8], [3, 8], [4, 8]],
     '021729': [[2]],
+    '032896': [[2]],
     '033050': [[0, 6], [1, 6], [2, 6], [3, 6], [4, 6]],
     '022949': [[0, 4], [1, 4]],
     '022197': [[0, 5], [1, 5], [3, 5]],
@@ -332,6 +336,8 @@ LINE_REPAIR_MERGES = {
     '033357': [[2, 4]],
     '033486': [[7, 9]],
     '033512': [[2]],
+    '026024': [[1, 3], [2, 3]],
+    '024923': [[0, 5], [2]],
     '033568': [[5]] * 5,
     '033575': [[2, 4]],
     '033576': [[3]],

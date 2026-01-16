@@ -92,6 +92,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     JABOR_Y: re.compile(r'[ji]abor\s*y?', re.IGNORECASE),
     JAMES_HILL: re.compile(r"hill, james e.|james.e.hill@abc.com", re.IGNORECASE),
     JANUSZ_BANASIAK: re.compile(r"Janu[is]z Banasiak", re.IGNORECASE),
+    JEAN_HUGUEN: re.compile(r"Jean[\s.]Huguen", re.IGNORECASE),
     JEAN_LUC_BRUNEL: re.compile(r'Jean[- ]Luc Brunel?|JeanLuc', re.IGNORECASE),
     JEFF_FULLER: re.compile(r"jeff@mc2mm.com|Jeff Fuller", re.IGNORECASE),
     JEFFREY_EPSTEIN: re.compile(r'[djl]\s?ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeff(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(Mark L.|ard Jay) )Epstein', re.IGNORECASE),
@@ -431,7 +432,14 @@ EMAILS_CONFIG = [
         attribution_reason='shows from "Christina media/PR" which fits',
         is_attribution_uncertain=True,
     ),
-    EmailCfg(id='026624', author=DARREN_INDYKE, recipients=[JEFFREY_EPSTEIN], date='2016-10-01 16:40:00', duplicate_ids=['031708']),
+    EmailCfg(
+        id='026624',
+        author=DARREN_INDYKE,
+        date='2016-10-01 16:40:00',
+        duplicate_ids=['031708'],
+        recipients=[JEFFREY_EPSTEIN],
+        subject='Donald Trump Rape Lawsuit Refiled With New Witness I Law News',
+    ),
     EmailCfg(
         id='031278',
         actual_text='',
@@ -440,6 +448,7 @@ EMAILS_CONFIG = [
         attribution_reason='Quoted replies are in 019109',
         date='2016-08-17 11:26:00',
         description="heavily redacted email, quoted replies are from Steven Hoffenberg about James Patterson's book",
+        subject='FW: Privileged and Confidential - Fwd: JAMES PATTERSON NEW BOOK TELLING FEDS COVER UP OF BILLIONAIRE JEFF EPSTEIN CHILD RAPES RELEASE DATE OCT 10 2016 STEVEN HOFFENBERG IS ON THE BOOK WRITING TEAM !!!!',
         truncate_to=2500,
         comment='Hoffenberg',
     ),
@@ -572,9 +581,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='028487', author=NORMAN_D_RAU, attribution_reason='Fwded from "to" address', duplicate_ids=['026612']),
     EmailCfg(
         id='024923',
-        author=PAUL_KRASSNER,
         recipients=["George Krassner", "Nick Kazan", "Mrisman02", "Rebecca Risman", "Linda W. Grossman"],
         duplicate_ids=['031973'],
+        comment='krassner',
     ),
     EmailCfg(id='032457', author=PAUL_KRASSNER, recipients=[JEFFREY_EPSTEIN, "Nancy Cain"]),
     EmailCfg(id='029981', author=PAULA, attribution_reason='Name in reply + opera reference (Fisher now works in opera)'),
@@ -625,8 +634,9 @@ EMAILS_CONFIG = [
         id='019109',
         author=STEVEN_HOFFENBERG,
         recipients=["Players2"],
-        attribution_reason='Actually a fwd by Charles Michael but Steven Hoffenberg email more interesting',
+        description='looks like a memo from Charles Michael containing copy/paste of email contents?',
         date='2016-08-11 09:36:01',
+        subject='FW: Privileged and Confidential - Fwd: JAMES PATTERSON NEW BOOK TELLING FEDS COVER UP OF BILLIONAIRE JEFF EPSTEIN CHILD RAPES RELEASE DATE OCT 10 2016 STEVEN HOFFENBERG IS ON THE BOOK WRITING TEAM !!!!',
     ),
     EmailCfg(
         id='026620',
@@ -660,10 +670,10 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='033568',
         recipients=["George Krassner", "Daniel Dawson", "Danny Goldberg", "Tom", "Kevin Bright", "Walli Leff", "Michael Simmons", "Lee Quarnstrom", "Lanny Swerdlow", "Larry Sloman", "W&K", "Harry Shearer", "Jay Levin"],
+        subject="Fwd: Daryl Cagle's Blog",
     ),
     EmailCfg(id='026426', recipients=[JEAN_HUGUEN], attribution_reason='Reply'),
     EmailCfg(id='022202', recipients=[JEAN_LUC_BRUNEL], attribution_reason='Follow up / reply', duplicate_ids=['029975']),
-    EmailCfg(id='022187', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='030347', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='033274', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='032780', recipients=[JEFFREY_EPSTEIN]),
@@ -948,7 +958,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='033230', duplicate_ids=['033577']),
     EmailCfg(id='032125', duplicate_ids=['023971']),
     EmailCfg(id='031230', duplicate_ids=['031203']),
-    EmailCfg(id='028752', duplicate_ids=['026569']),
+    EmailCfg(id='028752', duplicate_ids=['026569'], subject='Re: Program & Attendee list'),
     EmailCfg(id='031773', duplicate_ids=['032050']),
     EmailCfg(id='021400', duplicate_ids=['031983']),
     EmailCfg(id='026548', duplicate_ids=['033491', '033495'], comment='033495 is HTML garbage version'),
@@ -983,6 +993,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='028925', fwded_text_after='> on Jan 4, 2015'),
     EmailCfg(id='029773', fwded_text_after='Omar Quadhafi', duplicate_ids=['012685']),
     EmailCfg(id='012197_4', fwded_text_after='Thanks -- Jay', is_fwded_article=False),
+    EmailCfg(id='026449', is_interesting=True, description="comments about Trump's 'former bridge girl and toy'"),
     EmailCfg(id='032229', is_interesting=True, comment='Michael Wolff on strategy'),
     EmailCfg(id='030630', is_interesting=True, comment="'What happens with zubair's project?'"),
     EmailCfg(id='033178', is_interesting=True, comment="'How is it going with Zubair?'"),
@@ -1905,8 +1916,8 @@ for cfg in ALL_CONFIGS:
 
     # Add extra config objects for duplicate files that match the config of file they are duplicating
     for dupe_cfg in cfg.duplicate_cfgs():
-        if not isinstance(dupe_cfg, EmailCfg):
-            logger.debug(f"Generated synthetic config for dupe: {dupe_cfg}")
+        # if not isinstance(dupe_cfg, EmailCfg):
+        #     logger.debug(f"Generated synthetic config for dupe: {dupe_cfg}")
 
         ALL_FILE_CONFIGS[dupe_cfg.id] = dupe_cfg
 
