@@ -31,7 +31,7 @@ from epstein_files.util.rich import *
 
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
 BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Hide caption|Importance:?\s*High|[iI,•]|i (_ )?i|, [-,]|L\._|_filtered|.*(yiv0232|font-family:|margin-bottom:).*)$')
-BAD_SUBJECT_CONTINUATIONS = ['--', 'Sent ', 'AmLaw', 'Privileged', 'Sorry']
+BAD_SUBJECT_CONTINUATIONS = ['orwarded', 'Hi ', 'Sent ', 'AmLaw', 'Original Message', 'Privileged', 'Sorry', '---']
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}From:')
 FIELDS_COLON_REGEX = re.compile(FIELDS_COLON_PATTERN)
 LINK_LINE_REGEX = re.compile(f"^>? ?htt")
@@ -694,13 +694,13 @@ class Email(Communication):
             elif ' http' in line and line.endswith('html'):
                 pre_link, post_link = line.split(' http', 1)
                 line = f"{pre_link} http{post_link.replace(' ', '')}"
-            elif line.startswith('Subject:') and \
-                    len(line) > 40 and \
-                    i < (len(lines) - 2) and \
-                    FIELDS_COLON_REGEX.search(lines[i + 2]) and \
-                    len(lines[i + 1]) > 1 and \
-                    ':' not in lines[i + 1] \
-                    and not any([lines[i + 1].startswith(cont) for cont in BAD_SUBJECT_CONTINUATIONS]):
+            elif line.startswith('Subject:') \
+                    and len(line) > 40 \
+                    and i < (len(lines) - 2) \
+                    and not FIELDS_COLON_REGEX.search(lines[i + 1]) \
+                    and FIELDS_COLON_REGEX.search(lines[i + 2]) \
+                    and len(lines[i + 1]) > 1 \
+                    and not any([cont in lines[i + 1] for cont in BAD_SUBJECT_CONTINUATIONS]):
                 self.warn(f"broken subject line?\n  line: '{line}'\n    next: '{lines[i + 1]}'\n    next: '{lines[i + 2]}'\n")
 
             new_lines.append(line)
