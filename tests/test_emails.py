@@ -908,6 +908,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     KEN_JENNE: 1,
     LARRY_SUMMERS: 232,
     "Lawrence Krauss": 78,
+    LEON_BLACK: 4,
     LISA_NEW: 68,
     "Martin Weinberg": 17,
     NICHOLAS_RIBIS: 2,
