@@ -752,7 +752,7 @@ class Email(Communication):
 
     def _truncate_to_length(self) -> int:
         """When printing truncate this email to this length."""
-        quote_cutoff = self._idx_of_nth_quoted_reply(text=self.text)  # Trim if there's many quoted replies
+        quote_cutoff = self._idx_of_nth_quoted_reply()  # Trim if there's many quoted replies
         includes_truncate_term = next((term for term in TRUNCATE_TERMS if term in self.text), None)
 
         if args.whole_file:
@@ -774,19 +774,21 @@ class Email(Communication):
 
             # Always print whole email for 1st email for user
             if self._is_first_for_user and num_chars < self.file_size() and not self.is_duplicate():
-                log_args = {
-                    'num_chars': num_chars,
-                    'author_truncate': self.author in TRUNCATE_EMAILS_FROM,
-                    'is_fwded_article': self.is_fwded_article(),
-                    'is_quote_cutoff': quote_cutoff == num_chars,
-                    'includes_truncate_term': json.dumps(includes_truncate_term) if includes_truncate_term else None,
-                    'quote_cutoff': quote_cutoff,
-                }
-
-                log_args_str = ', '.join([f"{k}={v}" for k, v in log_args.items() if v])
-                logger.info(f"{self} Overriding cutoff for first email {log_args_str}")
+                logger.info(f"{self} Overriding cutoff {num_chars} for first email")
                 num_chars = self.file_size()
 
+        log_args = {
+            'num_chars': num_chars,
+            '_is_first_for_user': self._is_first_for_user,
+            'author_truncate': self.author in TRUNCATE_EMAILS_FROM,
+            'is_fwded_article': self.is_fwded_article(),
+            'is_quote_cutoff': quote_cutoff == num_chars,
+            'includes_truncate_term': json.dumps(includes_truncate_term) if includes_truncate_term else None,
+            'quote_cutoff': quote_cutoff,
+        }
+
+        log_args_str = ', '.join([f"{k}={v}" for k, v in log_args.items() if v])
+        logger.debug(f"Truncate determination: {log_args_str}")
         return num_chars
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
