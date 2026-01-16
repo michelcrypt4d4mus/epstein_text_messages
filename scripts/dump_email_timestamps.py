@@ -22,8 +22,8 @@ from epstein_files.util.rich import console, highlighter, print_json, print_subt
 
 
 for email in epstein_files.non_duplicate_emails():
-    if not (email.subject() or email.is_duplicate() or email._truncate_to_length() > 100000):
-        console.print(email)
+    if email._is_first_for_user:
+        print(f"{email}, _is_first_for_user={email._is_first_for_user}")
 
 
 sys.exit()
@@ -34,7 +34,6 @@ def print_first_emails():
 
     for emailer in emailers:
         first_email = emailer.emails[0]
-        first_email._is_first_for_user = True
 
         if emailer.is_uninteresting or first_email.is_fwded_article():
             continue
