@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Use `inkscape` instead of `cairosvg` for .png emailers table generation
 
 # 1.4.0
 * Rename `epstein_search` to `epstein_grep`
