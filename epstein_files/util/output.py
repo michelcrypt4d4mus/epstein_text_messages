@@ -1,5 +1,6 @@
 import json
 from os import unlink
+from subprocess import CalledProcessError, check_output
 from typing import cast
 
 from rich.padding import Padding
@@ -85,8 +86,17 @@ def print_emailers_info(epstein_files: EpsteinFiles) -> None:
     svg_path = f"{EMAILERS_TABLE_PNG_PATH}.svg"
     console.save_svg(svg_path, theme=HTML_TERMINAL_THEME, title="Epstein Emailers")
     log_file_write(svg_path)
-    import cairosvg
-    cairosvg.svg2png(url=svg_path, write_to=str(EMAILERS_TABLE_PNG_PATH))
+
+    try:
+        # Inkscape is better at converting svg to png
+        inkscape_cmd_args = ['inkscape', f'--export-filename={EMAILERS_TABLE_PNG_PATH}', svg_path]
+        logger.warning(f"Running inkscape cmd: {' '.join(inkscape_cmd_args)}")
+        check_output(inkscape_cmd_args)
+    except (CalledProcessError, FileNotFoundError) as e:
+        logger.error(f"Failed to convert svg to png with inkscape, falling back to cairosvg: {e}")
+        import cairosvg
+        cairosvg.svg2png(url=svg_path, write_to=str(EMAILERS_TABLE_PNG_PATH))
+
     log_file_write(EMAILERS_TABLE_PNG_PATH)
     unlink(svg_path)
 
