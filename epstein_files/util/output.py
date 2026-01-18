@@ -1,5 +1,6 @@
 import json
 from os import unlink
+from subprocess import CalledProcessError, check_output
 from typing import cast
 
 from rich.padding import Padding
@@ -88,7 +89,14 @@ def print_emailers_info(epstein_files: EpsteinFiles) -> None:
     import cairosvg
     cairosvg.svg2png(url=svg_path, write_to=str(EMAILERS_TABLE_PNG_PATH))
     log_file_write(EMAILERS_TABLE_PNG_PATH)
-    unlink(svg_path)
+
+    # Inkscape is better at converting svg to png
+    inkscape_png_path = f"{EMAILERS_TABLE_PNG_PATH}.inkscape.png"
+    inkscape_cmd_args = ['inkscape', f'--export-filename={inkscape_png_path}', svg_path]
+    logger.warning(f"Running inkscape cmd: {' '.join(inkscape_cmd_args)}")
+    check_output(inkscape_cmd_args)
+    log_file_write(inkscape_png_path)
+    # unlink(svg_path)
 
 
 def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
