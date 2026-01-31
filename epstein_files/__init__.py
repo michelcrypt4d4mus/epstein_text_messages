@@ -63,8 +63,18 @@ def generate_html() -> None:
         exit()
 
     if args.output_doj2026_files:
+        last_was_empty = False
+
         for file in epstein_files.doj_2026_01_30_other_files:
-            console.print(file)
+            if file.is_empty():
+                console.print(f"Skipping {file.file_id} because it had only images without OCR text...", style='dim')
+                last_was_empty = True
+            else:
+                if last_was_empty:
+                    console.line()
+
+                console.print(file)
+                last_was_empty = False
 
         timer.log_section_complete('DOJ201601', epstein_files.doj_2026_01_30_other_files, epstein_files.doj_2026_01_30_other_files)
 
