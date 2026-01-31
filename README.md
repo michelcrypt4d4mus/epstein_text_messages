@@ -22,6 +22,8 @@ You need to set the `EPSTEIN_DOCS_DIR` environment variable with the path to the
 EPSTEIN_DOCS_DIR=/path/to/epstein/ocr_txt_files epstein_generate --help
 ```
 
+If you want to work with the documents released by DOJ on January 30th 2026 you'll need to also set the `EPSTEIN_DOJ_2026_01_30_DOCS_DIR` env var.
+
 All the tools that come with the package require `EPSTEIN_DOCS_DIR` to be set. These are the available tools:
 
 ```bash

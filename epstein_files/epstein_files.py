@@ -58,7 +58,6 @@ class EpsteinFiles:
         self.all_files = sorted([f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')])
         documents = []
         file_type_count = defaultdict(int)  # Hack used by --skip-other-files option
-        logger.warning(f"Found {len(self.doj_2026_01_30_other_files)} DOJ 2026 files in '{DOJ_2026_01_30_DIR}'")
 
         # Read through and classify all the files
         for file_arg in self.all_files:
@@ -84,7 +83,11 @@ class EpsteinFiles:
         self.imessage_logs = Document.sort_by_timestamp([d for d in documents if isinstance(d, MessengerLog)])
         self.other_files = Document.sort_by_timestamp([d for d in documents if isinstance(d, (JsonFile, OtherFile))])
         self.json_files = [doc for doc in self.other_files if isinstance(doc, JsonFile)]
-        self.doj_2026_01_30_other_files = Document.sort_by_id([OtherFile(p) for p in DOJ_2026_01_30_DIR.glob('**/*.txt')])
+
+        if DOJ_2026_01_30_DIR is not None:
+            self.doj_2026_01_30_other_files = Document.sort_by_id([OtherFile(p) for p in DOJ_2026_01_30_DIR.glob('**/*.txt')])
+            logger.warning(f"Found {len(self.doj_2026_01_30_other_files)} DOJ 2026 files in '{DOJ_2026_01_30_DIR}'")
+
         self._set_uninteresting_ccs()
         self._copy_duplicate_email_properties()
         self._find_email_attachments_and_set_is_first_for_user()
