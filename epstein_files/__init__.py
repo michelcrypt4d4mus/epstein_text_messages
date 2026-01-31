@@ -4,6 +4,7 @@ Reformat Epstein text message files for readability and count email senders.
 
     Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT epstein_generate'
 """
+import re
 from sys import exit
 
 from dotenv import load_dotenv
@@ -31,6 +32,28 @@ from epstein_files.util.rich import (build_highlighter, console, highlighter, pr
      print_title_page_header, print_title_page_tables, print_subtitle_panel, write_html)
 from epstein_files.util.timer import Timer
 from epstein_files.util.word_count import write_word_counts_html
+
+IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
+
+BAD_DOJ_FILE_IDS = [
+    'EFTA00008511',
+    'EFTA00008503',
+    'EFTA00008501',
+    'EFTA00008500',
+    'EFTA00008514',
+    'EFTA00008410',
+    'EFTA00008411',
+    'EFTA00008519',
+    'EFTA00008493',
+    'EFTA00008527',
+    'EFTA00008480',
+    'EFTA00008497',
+    'EFTA00008496',
+    'EFTA00008441',
+    'EFTA00000675',
+    'EFTA00002538',
+    'EFTA00000672',
+]
 
 
 def generate_html() -> None:
@@ -66,12 +89,18 @@ def generate_html() -> None:
         last_was_empty = False
 
         for file in epstein_files.doj_2026_01_30_other_files:
-            if file.is_empty():
-                console.print(f"Skipping {file.file_id} because it had only images without OCR text...", style='dim')
+            if file.is_empty() or file.file_id in BAD_DOJ_FILE_IDS:
+                console.print(f"{file.file_id}: single image/no text", style='dim')
                 last_was_empty = True
             else:
                 if last_was_empty:
                     console.line()
+
+                non_number_lines = [line for line in file.lines if not IGNORE_LINE_REGEX.match(line)]
+
+                if len(non_number_lines) != len(file.lines):
+                    logger.warning(f"{file.file_id}: Reduced line count from {len(file.lines)} to {len(non_number_lines)}")
+                    file._set_computed_fields(lines = non_number_lines)
 
                 console.print(file)
                 last_was_empty = False

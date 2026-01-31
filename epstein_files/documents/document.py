@@ -180,7 +180,7 @@ class Document:
                 links.append(self.rollcall_link(style=ALT_LINK_STYLE, link_txt=ROLLCALL))
 
         if self.doj_2026_data_set:
-            links.append(link_text_obj(doj_2026_file_url(self.doj_2026_data_set, self.url_slug), 'DOJ'))
+            links = [link_text_obj(doj_2026_file_url(self.doj_2026_data_set, self.url_slug), self.url_slug)]
 
         links = [links[0]] + [parenthesize(link) for link in links[1:]]
         base_txt = Text('', style='white' if include_alt_links else ARCHIVE_LINK_COLOR)
@@ -219,7 +219,7 @@ class Document:
         return bool(self.duplicate_of_id())
 
     def is_empty(self) -> bool:
-        return len(self.text.strip().removesuffix(NO_IMAGE_SUFFIX)) < 5
+        return len(self.text.strip().removesuffix(NO_IMAGE_SUFFIX)) < 20
 
     def is_interesting(self) -> bool:
         return bool(self.config and self.config.is_interesting)
