@@ -5,7 +5,8 @@ from pathlib import Path
 
 from rich_argparse_plus import RichHelpFormatterPlus
 
-from epstein_files.util.constant.output_files import ALL_EMAILS_PATH, CHRONOLOGICAL_EMAILS_PATH, TEXT_MSGS_HTML_PATH
+from epstein_files.util.constant.output_files import (ALL_EMAILS_PATH, CHRONOLOGICAL_EMAILS_PATH,
+     DOJ_2026_HTML_PATH, TEXT_MSGS_HTML_PATH)
 from epstein_files.util.logging import env_log_level, exit_with_error, logger
 
 DEFAULT_WIDTH = 155
@@ -22,6 +23,9 @@ if not DOCS_DIR_ENV:
     exit_with_error(f"{EPSTEIN_DOCS_DIR_ENV_VAR_NAME} env var not set!\n")
 elif not DOCS_DIR.exists():
     exit_with_error(f"{EPSTEIN_DOCS_DIR_ENV_VAR_NAME}='{DOCS_DIR}' does not exist!\n")
+
+DOJ_2026_01_30_DIR_ENV_VAR_NAME = 'DOJ_2026_01_30_DIR'
+DOJ_2026_01_30_DIR = Path(environ.get(DOJ_2026_01_30_DIR_ENV_VAR_NAME) or '').resolve()
 
 is_env_var_set = lambda s: len(environ.get(s) or '') > 0
 is_output_arg = lambda arg: any([arg.startswith(pfx) for pfx in ['colors_only', 'json', 'make_clean', 'output']])
@@ -41,6 +45,7 @@ output.add_argument('--email-timeline', action='store_true', help='print a table
 output.add_argument('--emailers-info', '-ei', action='store_true', help='write a .png of the eeailers info table')
 output.add_argument('--json-files', action='store_true', help='pretty print all the raw JSON data files in the collection and exit')
 output.add_argument('--json-metadata', action='store_true', help='dump JSON metadata for all files and exit')
+parser.add_argument('--output-doj2026-files', action='store_true', help='print the files from 2026-01-30')
 output.add_argument('--output-emails', '-oe', action='store_true', help='generate emails section')
 output.add_argument('--output-other', '-oo', action='store_true', help='generate other files section')
 output.add_argument('--output-texts', '-ot', action='store_true', help='generate text messages section')
@@ -100,6 +105,8 @@ if is_html_script:
             args.build = ALL_EMAILS_PATH
         elif args.email_timeline:
             args.build = CHRONOLOGICAL_EMAILS_PATH
+        elif args.output_doj2026_files:
+            args.build = DOJ_2026_HTML_PATH
         else:
             args.build = TEXT_MSGS_HTML_PATH
 elif parser.prog.startswith('epstein_') and not args.positional_args and not args.names:
