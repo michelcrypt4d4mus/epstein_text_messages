@@ -37,6 +37,7 @@ requests = "^2.32.5"
 rich = "^14.2.0"
 rich-argparse-plus = "^0.3.1.4"
 cairosvg = "^2.8.2"
+pdfalyzer = "^1.19.5"
 
 
 [tool.poetry.group.dev.dependencies]
