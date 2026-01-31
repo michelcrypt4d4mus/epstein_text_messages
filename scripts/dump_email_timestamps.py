@@ -21,6 +21,16 @@ from epstein_files.util.logging import logger
 from epstein_files.util.rich import console, highlighter, print_json, print_subtitle_panel
 
 
+# Show biggest files
+for i, doc in enumerate(sorted(epstein_files.doj_2026_01_30_other_files, key=lambda f: -f.length)):
+    console.print(f"{doc.file_id}: {doc.file_size_str()} ({doc.length:,} bytes)")
+
+    if i > 2000:
+        break
+
+
+sys.exit()
+
 for email in epstein_files.non_duplicate_emails():
     if email._is_first_for_user:
         print(f"{email}, _is_first_for_user={email._is_first_for_user}")
@@ -37,7 +47,7 @@ def print_first_emails():
 
         if emailer.is_uninteresting or first_email.is_fwded_article():
             continue
-        elif first_email._truncate_to_length() >= first_email.length():
+        elif first_email._truncate_to_length() >= first_email.length:
             logger.warning(f"User '{emailer.name}' first email is untruncated")
             continue
         elif emailer.should_always_truncate():
