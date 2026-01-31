@@ -69,6 +69,9 @@ BAD_DOJ_FILE_IDS = [
     'EFTA00001979',
     'EFTA00002110',
     'EFTA00008504',
+    'EFTA00000134',
+    'EFTA00000471',
+    'EFTA00001848',
 ]
 
 REPLACEMENT_TEXT = {
@@ -111,7 +114,7 @@ def generate_html() -> None:
     if args.output_doj2026_files:
         last_was_empty = False
 
-        for file in epstein_files.doj_2026_01_30_other_files:
+        for file in reversed(epstein_files.doj_2026_01_30_other_files):
             if file.is_empty() or file.file_id in BAD_DOJ_FILE_IDS:
                 console.print(f"{file.file_id}: single image/no text", style='dim')
                 last_was_empty = True
