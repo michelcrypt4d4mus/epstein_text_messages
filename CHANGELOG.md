@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.4.1
 * Use `inkscape` instead of `cairosvg` for .png emailers table generation
 
 # 1.4.0
