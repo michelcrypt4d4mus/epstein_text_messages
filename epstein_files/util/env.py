@@ -5,7 +5,8 @@ from pathlib import Path
 
 from rich_argparse_plus import RichHelpFormatterPlus
 
-from epstein_files.util.constant.output_files import ALL_EMAILS_PATH, CHRONOLOGICAL_EMAILS_PATH, TEXT_MSGS_HTML_PATH
+from epstein_files.util.constant.output_files import (ALL_EMAILS_PATH, CHRONOLOGICAL_EMAILS_PATH,
+     DOJ_2026_HTML_PATH, TEXT_MSGS_HTML_PATH)
 from epstein_files.util.logging import env_log_level, exit_with_error, logger
 
 DEFAULT_WIDTH = 155
@@ -40,11 +41,11 @@ output = parser.add_argument_group('OUTPUT', 'Options used by epstein_generate.'
 output.add_argument('--all-emails', '-ae', action='store_true', help='all the emails instead of just the interesting ones')
 output.add_argument('--all-other-files', '-ao', action='store_true', help='all the non-email, non-text msg files instead of just the interesting ones')
 parser.add_argument('--build', '-b', nargs="?", default=None, const=DEFAULT_FILE, help='write output to HTML file')
-parser.add_argument('--doj-2026-january-file', action='store_true', help='print the files from 2026-01-30')
 output.add_argument('--email-timeline', action='store_true', help='print a table of all emails in chronological order')
 output.add_argument('--emailers-info', '-ei', action='store_true', help='write a .png of the eeailers info table')
 output.add_argument('--json-files', action='store_true', help='pretty print all the raw JSON data files in the collection and exit')
 output.add_argument('--json-metadata', action='store_true', help='dump JSON metadata for all files and exit')
+parser.add_argument('--output-doj2026-files', action='store_true', help='print the files from 2026-01-30')
 output.add_argument('--output-emails', '-oe', action='store_true', help='generate emails section')
 output.add_argument('--output-other', '-oo', action='store_true', help='generate other files section')
 output.add_argument('--output-texts', '-ot', action='store_true', help='generate text messages section')
@@ -104,6 +105,8 @@ if is_html_script:
             args.build = ALL_EMAILS_PATH
         elif args.email_timeline:
             args.build = CHRONOLOGICAL_EMAILS_PATH
+        elif args.output_doj2026_files:
+            args.build = DOJ_2026_HTML_PATH
         else:
             args.build = TEXT_MSGS_HTML_PATH
 elif parser.prog.startswith('epstein_') and not args.positional_args and not args.names:

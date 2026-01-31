@@ -62,6 +62,12 @@ def generate_html() -> None:
     if args.colors_only:
         exit()
 
+    if args.output_doj2026_files:
+        for file in epstein_files.doj_2026_01_30_other_files:
+            console.print(file)
+
+        timer.log_section_complete('DOJ201601', epstein_files.doj_2026_01_30_other_files, epstein_files.doj_2026_01_30_other_files)
+
     if args.output_texts:
         printed_logs = print_text_messages_section(epstein_files)
         timer.log_section_complete('MessengerLog', epstein_files.imessage_logs, printed_logs)

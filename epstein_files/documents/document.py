@@ -333,7 +333,7 @@ class Document:
 
         lines = [
             line.strip() if self.strip_whitespace else line for line in text.split('\n')
-            if not line.startswith(HOUSE_OVERSIGHT)
+            if not (line.startswith(HOUSE_OVERSIGHT) or line.startswith('EFTA'))
         ]
 
         self.text = collapse_newlines('\n'.join(lines))
