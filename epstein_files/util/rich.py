@@ -177,7 +177,13 @@ def print_title_page_header() -> None:
     """Top half of the title page."""
     print_page_title(width=TITLE_WIDTH)
     site_type = EMAIL if (args.all_emails or args.email_timeline) else TEXT_MESSAGE
-    title = f"This is the " + ('chronological ' if args.email_timeline else '') + f"Epstein {site_type.title()}s Page"
+    title = f"This is the "
+
+    if args.output_doj2026_files:
+        title += "DOJ 2026-01-30 Document Dump"
+    else:
+        title += ('Chronological ' if args.email_timeline else '') + f"Epstein {site_type.title()}s Page"
+
     print_starred_header(title, num_spaces=9 if args.all_emails else 6, num_stars=14)
     #print_centered(f"This page contains all of the text messages and a curated selection of emails and other files.", style='gray74')
     print_centered(f"These documents come from the Nov. 2025 House Oversight Committee release.\n", style='gray74')
