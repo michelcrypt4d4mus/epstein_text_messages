@@ -24,8 +24,15 @@ if not DOCS_DIR_ENV:
 elif not DOCS_DIR.exists():
     exit_with_error(f"{EPSTEIN_DOCS_DIR_ENV_VAR_NAME}='{DOCS_DIR}' does not exist!\n")
 
-DOJ_2026_01_30_DIR_ENV_VAR_NAME = 'DOJ_2026_01_30_DIR'
-DOJ_2026_01_30_DIR = Path(environ.get(DOJ_2026_01_30_DIR_ENV_VAR_NAME) or '').resolve()
+DOJ_2026_01_30_DIR_ENV_VAR_NAME = 'EPSTEIN_DOJ_2026_01_30_DOCS_DIR'
+DOJ_2026_01_30_DIR_ENV = environ.get(DOJ_2026_01_30_DIR_ENV_VAR_NAME)
+
+if DOJ_2026_01_30_DIR_ENV:
+    DOJ_2026_01_30_DIR = Path(DOJ_2026_01_30_DIR_ENV).resolve()
+else:
+    DOJ_2026_01_30_DIR = None
+    logger.warning(f"{DOJ_2026_01_30_DIR_ENV_VAR_NAME} env var not set, not scanning for Jan. 2026 DOJ files")
+
 
 is_env_var_set = lambda s: len(environ.get(s) or '') > 0
 is_output_arg = lambda arg: any([arg.startswith(pfx) for pfx in ['colors_only', 'json', 'make_clean', 'output']])
