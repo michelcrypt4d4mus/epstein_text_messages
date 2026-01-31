@@ -33,6 +33,8 @@ INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
 MAX_TOP_LINES_LEN = 4000  # Only for logging
 MIN_DOCUMENT_ID = 10477
+
+DATASET_NUMBER_REGEX = re.compile(r"epstein_dataset_(\d+)")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
 MIN_TIMESTAMP = datetime(1991, 1, 1)
@@ -65,6 +67,13 @@ SUMMARY_TABLE_COLS: list[str | dict] = [
     {'name': 'Size', 'justify': 'right', 'style': 'dim'},
 ]
 
+NO_IMAGE_SUFFIX = """
+┏━━━━━━━━━━━━━━━━━┓
+│ Page 1, Image 1 │
+└─────────────────┘
+(no text found in image)
+""".strip()
+
 
 @dataclass
 class Document:
@@ -86,6 +95,7 @@ class Document:
     # Optional fields
     author: Name = None
     config: EmailCfg | DocCfg | TextCfg | None = None
+    doj_2026_data_set: int | None = None
     file_id: str = field(init=False)
     filename: str = field(init=False)
     lines: list[str] = field(default_factory=list)
@@ -96,6 +106,10 @@ class Document:
     # Class variables
     include_description_in_summary_panel: ClassVar[bool] = False
     strip_whitespace: ClassVar[bool] = True  # Overridden in JsonFile
+
+    @property
+    def length(self) -> int:
+        return len(self.text)
 
     def __post_init__(self):
         if not self.file_path.exists():
@@ -109,6 +123,10 @@ class Document:
 
         if not self.text:
             self._load_file()
+
+        if (data_set_match := DATASET_NUMBER_REGEX.search(str(self.file_path))):
+            self.doj_2026_data_set = int(data_set_match.group(1))
+            logger.warning(f"Extracted data set number {self.doj_2026_data_set} for {self.url_slug}")
 
         self._repair()
         self._extract_author()
@@ -161,6 +179,9 @@ class Document:
             if self._class_name() == 'Email':
                 links.append(self.rollcall_link(style=ALT_LINK_STYLE, link_txt=ROLLCALL))
 
+        if self.doj_2026_data_set:
+            links = [link_text_obj(doj_2026_file_url(self.doj_2026_data_set, self.url_slug), self.url_slug)]
+
         links = [links[0]] + [parenthesize(link) for link in links[1:]]
         base_txt = Text('', style='white' if include_alt_links else ARCHIVE_LINK_COLOR)
         return base_txt.append(join_texts(links))
@@ -197,15 +218,15 @@ class Document:
     def is_duplicate(self) -> bool:
         return bool(self.duplicate_of_id())
 
+    def is_empty(self) -> bool:
+        return len(self.text.strip().removesuffix(NO_IMAGE_SUFFIX)) < 20
+
     def is_interesting(self) -> bool:
         return bool(self.config and self.config.is_interesting)
 
     def is_local_extract_file(self) -> bool:
         """True if extracted from other file (identifiable from filename e.g. HOUSE_OVERSIGHT_012345_1.txt)."""
         return is_local_extract_file(self.filename)
-
-    def length(self) -> int:
-        return len(self.text)
 
     def log(self, msg: str, level: int = logging.INFO):
         """Log with filename as a prefix."""
@@ -270,7 +291,7 @@ class Document:
             txt.append(' (', style=SYMBOL_STYLE)
             txt.append(f"{timestamp_str}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
 
-        txt.append(' [').append(key_value_txt('size', Text(str(self.length()), style='aquamarine1')))
+        txt.append(' [').append(key_value_txt('size', Text(str(self.length), style='aquamarine1')))
         txt.append(", ").append(key_value_txt('lines', self.num_lines()))
 
         if self.config and self.config.duplicate_of_id:
@@ -333,7 +354,7 @@ class Document:
 
         lines = [
             line.strip() if self.strip_whitespace else line for line in text.split('\n')
-            if not line.startswith(HOUSE_OVERSIGHT)
+            if not (line.startswith(HOUSE_OVERSIGHT) or line.startswith('EFTA'))
         ]
 
         self.text = collapse_newlines('\n'.join(lines))
@@ -367,7 +388,7 @@ class Document:
         with open(output_path, 'w') as f:
             f.write(self.text)
 
-        logger.warning(f"Wrote {self.length()} chars of cleaned {self.filename} to {output_path}.")
+        logger.warning(f"Wrote {self.length} chars of cleaned {self.filename} to {output_path}.")
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield self.file_info_panel()

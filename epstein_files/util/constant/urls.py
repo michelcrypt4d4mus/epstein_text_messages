@@ -53,6 +53,10 @@ DOC_LINK_BASE_URLS: dict[ExternalSite, str] = {
     ROLLCALL: f'https://rollcall.com/factbase/epstein/file?id=',
 }
 
+# Example: https://www.justice.gov/epstein/files/DataSet%208/EFTA00009802.pdf
+DOJ_2026_FILE_BASE_URL = "https://www.justice.gov/epstein/files/DataSet%20"
+doj_2026_file_url = lambda dataset_id, file_stem: f"{DOJ_2026_FILE_BASE_URL}{dataset_id}/{file_stem}.pdf"
+
 
 epsteinify_api_url = lambda file_stem: f"{EPSTEINIFY_URL}/api/documents/{file_stem}"
 epsteinify_doc_link_markup = lambda filename_or_id, style = TEXT_LINK: external_doc_link_markup(EPSTEINIFY, filename_or_id, style)

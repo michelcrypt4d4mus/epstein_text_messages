@@ -88,6 +88,8 @@ print_deploy_step "Building JSON metadata page..."
 $GENERATE_CMD --json-metadata
 print_deploy_step "Building JSON files data..."
 $GENERATE_CMD --json-files
+print_deploy_step "Building DOJ 2026 files..."
+$GENERATE_CMD --output-doj2026-files
 
 # Commit changes
 echo -e ""
@@ -103,4 +105,5 @@ print_msg " chronological emails URL:" "$CHRONOLOGICAL_EMAILS_URL"
 print_msg "          word counts URL:" "$WORD_COUNT_URL"
 print_msg "        json metadata URL:" "$JSON_METADATA_URL"
 print_msg "           json files URL:" "$JSON_FILES_URL"
+print_msg "       DOJ 2026 files URL:" "$DOJ_2026_URL"
 echo -e "\n\n"

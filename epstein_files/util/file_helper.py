@@ -20,6 +20,9 @@ id_str = lambda id: f"{int(id):06d}"
 
 def coerce_file_stem(filename_or_id: int | str) -> str:
     """Generate a valid file_stem no matter what form the argument comes in."""
+    if isinstance(filename_or_id, str) and filename_or_id.startswith('EFTA'):
+        return Path(filename_or_id).stem
+
     if isinstance(filename_or_id, str) and filename_or_id.startswith(HOUSE_OVERSIGHT_PREFIX):
         file_id = extract_file_id(filename_or_id)
         file_stem = file_stem_for_id(file_id)
@@ -33,6 +36,10 @@ def coerce_file_stem(filename_or_id: int | str) -> str:
 
 
 def extract_file_id(filename_or_id: int | str | Path) -> str:
+    # DOJ 2026-01 files have different pattern
+    if isinstance(filename_or_id, str) and filename_or_id.startswith('EFTA'):
+        return Path(filename_or_id).stem
+
     if isinstance(filename_or_id, str):
         filename_or_id = filename_or_id.removesuffix(',')
 

@@ -21,7 +21,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.data import flatten, json_safe, listify, uniquify
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
-from epstein_files.util.env import DOCS_DIR, args, logger
+from epstein_files.util.env import DOCS_DIR, DOJ_2026_01_30_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames
 from epstein_files.util.search_result import SearchResult
@@ -49,6 +49,7 @@ class EpsteinFiles:
     imessage_logs: list[MessengerLog] = field(default_factory=list)
     json_files: list[JsonFile] = field(default_factory=list)
     other_files: list[OtherFile] = field(default_factory=list)
+    doj_2026_01_30_other_files: list[OtherFile] = field(default_factory=list)
     timer: Timer = field(default_factory=lambda: Timer())
     uninteresting_ccs: list[Name] = field(default_factory=list)
 
@@ -57,6 +58,7 @@ class EpsteinFiles:
         self.all_files = sorted([f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')])
         documents = []
         file_type_count = defaultdict(int)  # Hack used by --skip-other-files option
+        logger.warning(f"Found {len(self.doj_2026_01_30_other_files)} DOJ 2026 files in '{DOJ_2026_01_30_DIR}'")
 
         # Read through and classify all the files
         for file_arg in self.all_files:
@@ -64,7 +66,7 @@ class EpsteinFiles:
             document = Document(file_arg)
             cls = document_cls(document)
 
-            if document.length() == 0:
+            if document.length == 0:
                 logger.warning(f"Skipping empty file: {document}]")
                 continue
             elif args.skip_other_files and cls == OtherFile and file_type_count[cls.__name__] > 1:
@@ -82,6 +84,7 @@ class EpsteinFiles:
         self.imessage_logs = Document.sort_by_timestamp([d for d in documents if isinstance(d, MessengerLog)])
         self.other_files = Document.sort_by_timestamp([d for d in documents if isinstance(d, (JsonFile, OtherFile))])
         self.json_files = [doc for doc in self.other_files if isinstance(doc, JsonFile)]
+        self.doj_2026_01_30_other_files = Document.sort_by_id([OtherFile(p) for p in DOJ_2026_01_30_DIR.glob('**/*.txt')])
         self._set_uninteresting_ccs()
         self._copy_duplicate_email_properties()
         self._find_email_attachments_and_set_is_first_for_user()
@@ -212,7 +215,7 @@ class EpsteinFiles:
 
     def for_ids(self, file_ids: str | list[str]) -> list[Document]:
         file_ids = listify(file_ids)
-        docs = [doc for doc in self.all_documents() if doc.file_id in file_ids]
+        docs = [doc for doc in (list(self.all_documents()) + self.doj_2026_01_30_other_files) if doc.file_id in file_ids]
 
         if len(docs) != len(file_ids):
             logger.warning(f"{len(file_ids)} file IDs provided but only {len(docs)} Epstein files found!")
@@ -336,7 +339,7 @@ def count_by_month(docs: Sequence[Document]) -> dict[str | None, int]:
 def document_cls(doc: Document) -> Type[Document]:
     search_area = doc.text[0:5000]  # Limit search area to avoid pointless scans of huge files
 
-    if doc.length() == 0:
+    if doc.length == 0:
         return Document
     if doc.text[0] == '{':
         return JsonFile

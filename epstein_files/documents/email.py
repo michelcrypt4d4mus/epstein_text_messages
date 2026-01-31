@@ -839,7 +839,7 @@ class Email(Communication):
         if len(text) > num_chars:
             text = text[0:num_chars]
             doc_link_markup = epstein_media_doc_link_markup(self.url_slug, self.author_style())
-            trim_note = f"<...trimmed to {num_chars:,} characters of {self.length():,}, read the rest at {doc_link_markup}...>"
+            trim_note = f"<...trimmed to {num_chars:,} characters of {self.length:,}, read the rest at {doc_link_markup}...>"
             trim_footer_txt = Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
 
         # Rewrite broken headers where the values are on separate lines from the field names
@@ -917,7 +917,7 @@ class Email(Communication):
                 email.epstein_media_link(link_txt=email.timestamp_without_seconds(), style=link_style),
                 email.author_txt(),
                 email.recipients_txt(max_full_names=1),
-                f"{email.length()}",
+                f"{email.length}",
                 email.subject(),
             ]
 

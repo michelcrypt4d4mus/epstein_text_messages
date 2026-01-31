@@ -379,6 +379,7 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"Balaji",
+            r"Bart\s*Stephens",  # co-founder, Blockchain Capital
             r"bitcoin(\s*Foundation)?",
             r"block ?chain(\s*capital)?",
             r"Brian Forde",
