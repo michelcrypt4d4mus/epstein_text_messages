@@ -34,7 +34,7 @@ INFO_PADDING = (0, 0, 0, INFO_INDENT)
 MAX_TOP_LINES_LEN = 4000  # Only for logging
 MIN_DOCUMENT_ID = 10477
 
-DATASET_NUMBER_REGEX = re.compile(r"epstein_dataset_(\d+)")
+DATASET_NUMBER_REGEX = re.compile(r"(?:epstein_dataset_|DataSet )(\d+)")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
 MIN_TIMESTAMP = datetime(1991, 1, 1)
