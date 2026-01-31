@@ -23,6 +23,9 @@ if not DOCS_DIR_ENV:
 elif not DOCS_DIR.exists():
     exit_with_error(f"{EPSTEIN_DOCS_DIR_ENV_VAR_NAME}='{DOCS_DIR}' does not exist!\n")
 
+DOJ_2026_01_30_DIR_ENV_VAR_NAME = 'DOJ_2026_01_30_DIR'
+DOJ_2026_01_30_DIR = Path(environ.get(DOJ_2026_01_30_DIR_ENV_VAR_NAME) or '').resolve()
+
 is_env_var_set = lambda s: len(environ.get(s) or '') > 0
 is_output_arg = lambda arg: any([arg.startswith(pfx) for pfx in ['colors_only', 'json', 'make_clean', 'output']])
 
@@ -37,6 +40,7 @@ output = parser.add_argument_group('OUTPUT', 'Options used by epstein_generate.'
 output.add_argument('--all-emails', '-ae', action='store_true', help='all the emails instead of just the interesting ones')
 output.add_argument('--all-other-files', '-ao', action='store_true', help='all the non-email, non-text msg files instead of just the interesting ones')
 parser.add_argument('--build', '-b', nargs="?", default=None, const=DEFAULT_FILE, help='write output to HTML file')
+parser.add_argument('--doj-2026-january-file', action='store_true', help='print the files from 2026-01-30')
 output.add_argument('--email-timeline', action='store_true', help='print a table of all emails in chronological order')
 output.add_argument('--emailers-info', '-ei', action='store_true', help='write a .png of the eeailers info table')
 output.add_argument('--json-files', action='store_true', help='pretty print all the raw JSON data files in the collection and exit')

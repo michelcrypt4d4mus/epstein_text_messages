@@ -21,7 +21,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.data import flatten, json_safe, listify, uniquify
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
-from epstein_files.util.env import DOCS_DIR, args, logger
+from epstein_files.util.env import DOCS_DIR, DOJ_2026_01_30_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames
 from epstein_files.util.search_result import SearchResult
@@ -49,6 +49,7 @@ class EpsteinFiles:
     imessage_logs: list[MessengerLog] = field(default_factory=list)
     json_files: list[JsonFile] = field(default_factory=list)
     other_files: list[OtherFile] = field(default_factory=list)
+    doj_2026_01_30_other_files: list[OtherFile] = field(default_factory=list)
     timer: Timer = field(default_factory=lambda: Timer())
     uninteresting_ccs: list[Name] = field(default_factory=list)
 
@@ -57,6 +58,8 @@ class EpsteinFiles:
         self.all_files = sorted([f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')])
         documents = []
         file_type_count = defaultdict(int)  # Hack used by --skip-other-files option
+        self.doj_2026_01_30_other_files = [OtherFile(p) for p in DOJ_2026_01_30_DIR.glob('**/*.txt')]
+        logger.warning(f"Found {len(self.doj_2026_01_30_other_files)} DOJ 2026 files in '{DOJ_2026_01_30_DIR}'")
 
         # Read through and classify all the files
         for file_arg in self.all_files:

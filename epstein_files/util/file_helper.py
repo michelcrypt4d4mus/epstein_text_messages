@@ -33,6 +33,10 @@ def coerce_file_stem(filename_or_id: int | str) -> str:
 
 
 def extract_file_id(filename_or_id: int | str | Path) -> str:
+    # DOJ 2026-01 files have different pattern
+    if isinstance(filename_or_id, str) and filename_or_id.startswith('EFTA'):
+        return filename_or_id
+
     if isinstance(filename_or_id, str):
         filename_or_id = filename_or_id.removesuffix(',')
 
