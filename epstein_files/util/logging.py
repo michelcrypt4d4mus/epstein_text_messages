@@ -29,14 +29,14 @@ LOG_THEME = {
 }
 
 LOG_THEME[f"{ReprHighlighter.base_style}epstein_filename"] = FILENAME_STYLE
-LOG_LEVEL_ENV_VAR = 'LOG_LEVEL'
+LOG_LEVEL_ENV_VAR = 'EPSTEIN_LOG_LEVEL'
 
 
 # Augment the standard log highlighter with 'epstein_filename' matcher
 class LogHighlighter(ReprHighlighter):
     highlights = ReprHighlighter.highlights + [
         *[fr"(?P<{doc_type}>{doc_type}(Cfg|s)?)" for doc_type in DOC_TYPE_STYLES.keys()],
-        "(?P<epstein_filename>" + '|'.join([FILE_NAME_REGEX.pattern, DOJ_FILE_REGEX.pattern]) + ')',
+        "(?P<epstein_filename>" + '|'.join([HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX.pattern, DOJ_FILE_NAME_REGEX.pattern]) + ')',
     ]
 
 log_console = Console(
@@ -52,11 +52,23 @@ logging.basicConfig(level="NOTSET", format="%(message)s", datefmt=" ", handlers=
 logger = logging.getLogger("epstein_text_messages")
 
 
-# Set log levels to suppress annoying output
+# Set log levels to suppress annoying output from other packages
 logging.getLogger('datefinder').setLevel(logging.FATAL)
 logging.getLogger('rich_argparse').setLevel(logging.FATAL)
 env_log_level_str = environ.get(LOG_LEVEL_ENV_VAR) or None
 env_log_level = None
+
+
+def exit_with_error(msg: str) -> None:
+    print('')
+    logger.error(msg + '\n')
+    exit(1)
+
+
+def set_log_level(log_level: int | str) -> None:
+    for lg in [logger] + logger.handlers:
+        lg.setLevel(log_level)
+
 
 if env_log_level_str:
     try:
@@ -66,10 +78,4 @@ if env_log_level_str:
         env_log_level = logging.DEBUG
 
     logger.warning(f"Setting log level to {env_log_level} based on {LOG_LEVEL_ENV_VAR} env var...")
-    logger.setLevel(env_log_level)
-
-
-def exit_with_error(msg: str) -> None:
-    print('')
-    logger.error(msg + '\n')
-    exit(1)
+    set_log_level(env_log_level)

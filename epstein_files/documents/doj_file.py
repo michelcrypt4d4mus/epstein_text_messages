@@ -4,7 +4,7 @@ import re
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
-from typing import ClassVar
+from typing import ClassVar, Self
 
 from rich.align import Align
 from rich.columns import Columns
@@ -16,7 +16,7 @@ from rich.text import Text
 from epstein_files.documents.document import INFO_INDENT, INFO_PADDING
 from epstein_files.documents.other_file import Metadata, OtherFile
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, doj_2026_file_url
-from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP
+from epstein_files.util.constants import FALLBACK_TIMESTAMP
 from epstein_files.util.doc_cfg import DocCfg
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import RAINBOW, SKIPPED_FILE_MSG_PADDING, highlighter, join_texts, link_text_obj
@@ -147,23 +147,29 @@ class DojFile(OtherFile):
             SKIPPED_FILE_MSG_PADDING
         )
 
-    def prep_for_printing(self) -> None:
-        """Replace some fields and strip out some lines, but do it only before printing (don't store to pickled file)."""
+    def printable_doj_file(self) -> Self:
+        """Return a copy of this `DojFile` with simplified text if file ID is in `REPLACEMENT_TEXT`."""
         if self.file_id in REPLACEMENT_TEXT:
-            self._set_computed_fields(text=f'(Text of "{REPLACEMENT_TEXT[self.file_id]}" not shown here, check link for PDF)')
-            return
-
-        non_number_lines = [line for line in self.lines if not IGNORE_LINE_REGEX.match(line)]
-
-        if len(non_number_lines) != len(self.lines):
-            logger.warning(f"{self.file_id}: Reduced line count from {len(self.lines)} to {len(non_number_lines)}")
-            self._set_computed_fields(lines=non_number_lines)
+            replacement_text = f'(Text of "{REPLACEMENT_TEXT[self.file_id]}" not shown here, check link for PDF)'
+            new_doj_file = type(self)(self.file_path)
+            new_doj_file._set_computed_fields(text=replacement_text)
+            return new_doj_file
+        else:
+            return self
 
     def _border_style(self) -> str:
         """Color emails from epstein to others with the color for the first recipient."""
         style = RAINBOW[self.border_style_rainbow_idx % len(RAINBOW)]
         type(self).border_style_rainbow_idx += 1
         return style
+
+    def _remove_lines_that_are_just_numebrs(self) -> None:
+        """No longer used because the PDF OCR extraction was improved to get rid of most of these lines from legal filings."""
+        non_number_lines = [line for line in self.lines if not IGNORE_LINE_REGEX.match(line)]
+
+        if len(non_number_lines) != len(self.lines):
+            logger.warning(f"{self.file_id}: Reduced line count from {len(self.lines)} to {len(non_number_lines)}")
+            self._set_computed_fields(lines=non_number_lines)
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         info_panel = self.file_info_panel()
@@ -173,3 +179,8 @@ class DojFile(OtherFile):
         yield Padding(timestamp_txt, INFO_PADDING)
         text_panel = Panel(highlighter(self.text), border_style=info_panel._renderables[0].border_style, expand=False)
         yield Padding(text_panel, (0, 0, 1, INFO_INDENT))
+
+
+
+def repair_EFTA00006770(doj_file: DojFile):
+    """It's a phone bill."""

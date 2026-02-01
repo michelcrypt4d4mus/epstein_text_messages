@@ -7,34 +7,22 @@ from rich_argparse_plus import RichHelpFormatterPlus
 
 from epstein_files.util.constant.output_files import (ALL_EMAILS_PATH, CHRONOLOGICAL_EMAILS_PATH,
      DOJ_2026_HTML_PATH, TEXT_MSGS_HTML_PATH)
-from epstein_files.util.logging import env_log_level, exit_with_error, logger
+from epstein_files.util.helpers.env_helpers import get_env_dir
+from epstein_files.util.logging import env_log_level, exit_with_error, logger, set_log_level
 
 DEFAULT_WIDTH = 155
 DEFAULT_FILE = 'default_file'
 EPSTEIN_GENERATE = 'epstein_generate'
 HTML_SCRIPTS = [EPSTEIN_GENERATE, 'epstein_word_count']
 
-# Verify Epstein docs dir exists
-EPSTEIN_DOCS_DIR_ENV_VAR_NAME = 'EPSTEIN_DOCS_DIR'
-DOCS_DIR_ENV = environ.get(EPSTEIN_DOCS_DIR_ENV_VAR_NAME)
-DOCS_DIR = Path(DOCS_DIR_ENV or '').resolve()
+# Get dirs from Env vars
+DOCS_DIR_ENV_VAR = 'EPSTEIN_DOCS_DIR'
+DOJ_PDFS_20260130_DIR_ENV_VAR = 'EPSTEIN_DOJ_PDFS_20260130_DIR'
+DOJ_TXTS_20260130_DIR_ENV_VAR = 'EPSTEIN_DOJ_TXTS_20260130_DIR'
 
-if not DOCS_DIR_ENV:
-    exit_with_error(f"{EPSTEIN_DOCS_DIR_ENV_VAR_NAME} env var not set!\n")
-elif not DOCS_DIR.exists():
-    exit_with_error(f"{EPSTEIN_DOCS_DIR_ENV_VAR_NAME}='{DOCS_DIR}' does not exist!\n")
-
-DOJ_2026_01_30_DIR_ENV_VAR_NAME = 'EPSTEIN_DOJ_2026_01_30_DOCS_DIR'
-DOJ_2026_01_30_DIR_ENV = environ.get(DOJ_2026_01_30_DIR_ENV_VAR_NAME)
-
-if DOJ_2026_01_30_DIR_ENV:
-    DOJ_2026_01_30_DIR = Path(DOJ_2026_01_30_DIR_ENV).resolve()
-    DOJ_2026_01_30_EXTRACTED_TEXT_DIR = DOJ_2026_01_30_DIR.joinpath('extracted_text')
-else:
-    DOJ_2026_01_30_DIR = None
-    DOJ_2026_01_30_EXTRACTED_TEXT_DIR = None
-    logger.warning(f"{DOJ_2026_01_30_DIR_ENV_VAR_NAME} env var not set, not scanning for Jan. 2026 DOJ files")
-
+DOCS_DIR: Path = get_env_dir(DOCS_DIR_ENV_VAR, must_exist=True)
+DOJ_PDFS_20260130_DIR: Path = get_env_dir(DOJ_PDFS_20260130_DIR_ENV_VAR, must_exist=False)
+DOJ_TXTS_20260130_DIR: Path = get_env_dir(DOJ_TXTS_20260130_DIR_ENV_VAR, must_exist=False)
 
 is_env_var_set = lambda s: len(environ.get(s) or '') > 0
 is_output_arg = lambda arg: any([arg.startswith(pfx) for pfx in ['colors_only', 'json', 'make_clean', 'output']])
@@ -130,13 +118,13 @@ if args.truncate and args.whole_file:
 
 # Log level args
 if args.deep_debug:
-    logger.setLevel(logging.DEBUG)
+    set_log_level(logging.DEBUG)
 elif args.debug:
-    logger.setLevel(logging.INFO)
+    set_log_level(logging.INFO)
 elif args.suppress_logs:
-    logger.setLevel(logging.FATAL)
+    set_log_level(logging.FATAL)
 elif not env_log_level:
-    logger.setLevel(logging.WARNING)
+    set_log_level(logging.WARNING)
 
 logger.debug(f'Log level set to {logger.level}...')
 args_str = ',\n'.join([f"{k}={v}" for k, v in vars(args).items() if v])

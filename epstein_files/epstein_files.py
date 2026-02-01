@@ -22,7 +22,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.data import flatten, json_safe, listify, uniquify
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
-from epstein_files.util.env import DOCS_DIR, DOJ_2026_01_30_DIR, args, logger
+from epstein_files.util.env import DOCS_DIR, DOJ_PDFS_20260130_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames
 from epstein_files.util.search_result import SearchResult
@@ -85,9 +85,9 @@ class EpsteinFiles:
         self.other_files = Document.sort_by_timestamp([d for d in documents if isinstance(d, (JsonFile, OtherFile))])
         self.json_files = [doc for doc in self.other_files if isinstance(doc, JsonFile)]
 
-        if DOJ_2026_01_30_DIR is not None:
-            self.doj_files = Document.sort_by_id([DojFile(p) for p in DOJ_2026_01_30_DIR.glob('**/*.txt')])
-            logger.warning(f"Found {len(self.doj_files)} DojFiles in '{DOJ_2026_01_30_DIR}'")
+        if DOJ_PDFS_20260130_DIR is not None:
+            self.doj_files = Document.sort_by_id([DojFile(p) for p in DOJ_PDFS_20260130_DIR.glob('**/*.txt')])
+            logger.warning(f"Found {len(self.doj_files)} DojFiles in '{DOJ_PDFS_20260130_DIR}'")
 
         self._set_uninteresting_ccs()
         self._copy_duplicate_email_properties()
