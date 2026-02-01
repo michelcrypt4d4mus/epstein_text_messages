@@ -57,6 +57,7 @@ TIMESTAMP_DIM = f"turquoise4 dim"
 # Misc
 AUTHOR = 'author'
 DEFAULT = 'default'
+EFTA_PREFIX = 'EFTA'
 HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
 JSON = 'json'
 NA = 'n/a'

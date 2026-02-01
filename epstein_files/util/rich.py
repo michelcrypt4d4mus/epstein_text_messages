@@ -179,7 +179,7 @@ def print_title_page_header() -> None:
     site_type = EMAIL if (args.all_emails or args.email_timeline) else TEXT_MESSAGE
     title = f"This is the "
 
-    if args.output_doj2026_files:
+    if args.output_doj_files:
         title += "DOJ 2026-01-30 Document Dump"
     else:
         title += ('Chronological ' if args.email_timeline else '') + f"Epstein {site_type.title()}s Page"
