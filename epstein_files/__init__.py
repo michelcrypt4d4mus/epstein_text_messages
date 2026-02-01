@@ -144,6 +144,7 @@ def epstein_grep():
                     line_txt = matching_line.__rich__()
                     console.print(Padding(temp_highlighter(line_txt), INFO_PADDING), style='gray37')
 
+            console.print(doc.local_path_and_url, style='dim')
             console.line()
 
 
@@ -159,10 +160,12 @@ def epstein_show():
         else:
             ids = [extract_file_id(arg.strip().strip('_')) for arg in args.positional_args]
             logger.info(f"extracted IDs: {ids}")
-            raw_docs = [Document(coerce_file_path(id)) for id in ids]
+            raw_docs = [Document.from_file_id(id) for id in ids]
             logger.info(f"raw docs: {raw_docs}")
 
+        # Rebuild the Document objs so we can see result of latest processing
         docs = Document.sort_by_timestamp([document_cls(doc)(doc.file_path) for doc in raw_docs])
+        logger.info(f"Document types: {[doc._class_name for doc in docs]}")
     except Exception as e:
         exit_with_error(str(e))
 
@@ -181,6 +184,8 @@ def epstein_show():
                 metadata['is_word_count_worthy'] = doc.is_word_count_worthy
                 metadata['_is_first_for_user'] = doc._is_first_for_user
                 print_json(f"{doc.file_id} Metadata", metadata)
+
+        console.print(doc.local_path_and_url, style='dim')
 
 
 def epstein_word_count() -> None:

@@ -32,7 +32,6 @@ from epstein_files.util.rich import *
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
 BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Hide caption|Importance:?\s*High|[iI,•]|[1i] (_ )?[il]|, [-,]|L\._|_filtered|.*(yiv0232|font-family:|margin-bottom:).*)$')
 BAD_SUBJECT_CONTINUATIONS = ['orwarded', 'Hi ', 'Sent ', 'AmLaw', 'Original Message', 'Privileged', 'Sorry', '---']
-DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}(From|Subject):')  # IDed 140 emails out of 3777 with just 'From:' match
 FIELDS_COLON_REGEX = re.compile(FIELDS_COLON_PATTERN)
 LINK_LINE_REGEX = re.compile(f"^[>• ]*htt")
 LINK_LINE2_REGEX = re.compile(r"^[-\w.%&=/]{5,}$")
@@ -119,6 +118,8 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'AVG°': 'AVGO',
     'Saw Matt C with DTF at golf': 'Saw Matt C with DJT at golf',
     re.compile(r"[i. ]*Privileged[- ]*Redacted[i. ]*"): '<PRIVILEGED - REDACTED>',
+    # DOJ file specific
+    re.compile(fr"({FIELDS_COLON_PATTERN}.*\n)\nSubject:", re.MULTILINE): r'\1Subject:',
 }
 
 EMAIL_SIGNATURE_REGEXES = {
@@ -344,6 +345,7 @@ LINE_REPAIR_MERGES = {
     '033575': [[2, 4]],
     '033576': [[3]],
     '033583': [[2]],
+    'EFTA00039689': [[5]],
 }
 
 
@@ -499,7 +501,6 @@ class Email(Communication):
         elif self.header.num_header_rows == 0:
             return self.text
 
-        # import pdb;pdb.set_trace()
         self.log_top_lines(20, "Raw text:", logging.DEBUG)
         self.log(f"With {self.header.num_header_rows} header lines removed:\n{text[0:500]}\n\n", logging.DEBUG)
         reply_text_match = REPLY_TEXT_REGEX.search(text)
@@ -747,6 +748,7 @@ class Email(Communication):
 
             i += 1
 
+        logger.debug(f"----after line repair---\n" + '\n'.join(new_lines[0:20]) + "\n---")
         self._set_computed_fields(lines=new_lines)
 
     def _sent_from_device(self) -> str | None:

@@ -13,7 +13,7 @@ from rich.table import Table
 
 from epstein_files.documents.document import Document
 from epstein_files.documents.doj_file import DojFile
-from epstein_files.documents.email import DETECT_EMAIL_REGEX, Email
+from epstein_files.documents.email import Email
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
@@ -347,11 +347,11 @@ def document_cls(doc: Document) -> Type[Document]:
         return Document
     if doc.text[0] == '{':
         return JsonFile
-    elif isinstance(doc.config, EmailCfg) or (DETECT_EMAIL_REGEX.match(search_area) and doc.config is None):
+    elif Document.is_email(doc) and not doc.is_doj_file:  # TODO: right now we setup the DojFile first
         return Email
     elif MSG_REGEX.search(search_area):
         return MessengerLog
-    elif doc.file_id.startswith(EFTA_PREFIX):
+    elif doc.is_doj_file:
         return DojFile
     else:
         return OtherFile

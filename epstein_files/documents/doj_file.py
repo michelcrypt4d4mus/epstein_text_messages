@@ -13,19 +13,24 @@ from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
 
-from epstein_files.documents.document import INFO_INDENT, INFO_PADDING
+from epstein_files.documents.document import INFO_INDENT, Document
+from epstein_files.documents.email import Email
+from epstein_files.documents.emails.email_header import FIELDS_COLON_PATTERN
 from epstein_files.documents.other_file import Metadata, OtherFile
-from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, doj_2026_file_url
+from epstein_files.util.constant.urls import doj_2026_file_url
 from epstein_files.util.constants import FALLBACK_TIMESTAMP
 from epstein_files.util.data import remove_zero_time
-from epstein_files.util.doc_cfg import DocCfg
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import RAINBOW, SKIPPED_FILE_MSG_PADDING, highlighter, join_texts, link_text_obj
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
-DATASET_ID_REGEX = re.compile(r"(?:epstein_dataset_|DataSet )(\d+)")
 IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTALL)
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
+
+# OCR_REPAIRS: dict[str | re.Pattern, str] = {
+#     # DOJ file specific
+#     re.compile(fr"({FIELDS_COLON_PATTERN}.*\n)\nSubject:", re.MULTILINE): r'\1Subject:',
+# }
 
 BAD_DOJ_FILE_IDS = [
     'EFTA00008511',
@@ -84,7 +89,7 @@ REPLACEMENT_TEXT = {
 
 INTERESTING_DOJ_FILES = {
     'EFTA02640711': 'Jabor Y home address (HBJ)',
-    'EFTA00039689': 'Bioptix / RIOT / Honig',
+    'EFTA00039689': 'Dilorio emails to SEC about Signature Bank, Hapoalim, Bioptix / RIOT, Honig, etc.',
 }
 
 NO_IMAGE_SUFFIX = """
@@ -98,15 +103,8 @@ NO_IMAGE_SUFFIX = """
 class DojFile(OtherFile):
     """
     Class for the files released by DOJ on 2026-01-30 with `EFTA000` prefix.
-
-    Attributes:
-        doj_2026_dataset_id (int): The ID of the DataSet the DOJ released this file in. Important for links.
     """
-    file_path: Path
-    doj_2026_dataset_id: int = field(init=False)
-
-    # For fancy coloring only
-    border_style_rainbow_idx: ClassVar[int] = 0
+    border_style_rainbow_idx: ClassVar[int] = 0  # ClassVar to help change color as we print, no impact beyond fancier output
 
     @property
     def is_bad_ocr(self) -> bool:
@@ -126,22 +124,9 @@ class DojFile(OtherFile):
         sort_timestamp = FALLBACK_TIMESTAMP if sort_timestamp.year <= 2001 else sort_timestamp
         return (sort_timestamp, self.file_id, dupe_idx)
 
-    def __post_init__(self):
-        super().__post_init__()
-
-        if (data_set_match := DATASET_ID_REGEX.search(str(self.file_path))):
-            self.doj_2026_dataset_id = int(data_set_match.group(1))
-            logger.info(f"Extracted data set number {self.doj_2026_dataset_id} for {self.url_slug}")
-
     def doj_link(self) -> Text:
         """Link to this file on the DOJ site."""
         return link_text_obj(doj_2026_file_url(self.doj_2026_dataset_id, self.url_slug), self.url_slug)
-
-    def external_links_txt(self, style: str = '', include_alt_links: bool = False) -> Text:
-        """Overloads superclass method."""
-        links = [self.doj_link()]
-        base_txt = Text('', style='white' if include_alt_links else ARCHIVE_LINK_COLOR)
-        return base_txt.append(join_texts(links))
 
     def image_with_no_text_msg(self) -> RenderableType:
         """One line of linked text to show if this file doesn't seem to have any OCR text."""
@@ -150,13 +135,15 @@ class DojFile(OtherFile):
             SKIPPED_FILE_MSG_PADDING
         )
 
-    def printable_doj_file(self) -> Self:
+    def printable_doc(self) -> Self | Email:
         """Return a copy of this `DojFile` with simplified text if file ID is in `REPLACEMENT_TEXT`."""
         if self.file_id in REPLACEMENT_TEXT:
             replacement_text = f'(Text of "{REPLACEMENT_TEXT[self.file_id]}" {CHECK_LINK_FOR_DETAILS})'
             new_doj_file = type(self)(self.file_path)
             new_doj_file._set_computed_fields(text=replacement_text)
             return new_doj_file
+        elif Document.is_email(self):
+            return Email(self.file_path, text=self.text)  # Pass text= to avoid reprocessing
         else:
             return self
 
@@ -188,7 +175,17 @@ class DojFile(OtherFile):
             new_text = f"{pages[0]}\n\n(Redacted phone bill covering 2006-02-01 to 2006-06-16 {CHECK_LINK_FOR_DETAILS})"
             self._set_computed_fields(text=new_text)
 
+        # text = self.repair_ocr_text(OCR_REPAIRS, self.text)
+        # self._set_computed_fields(text=text)
+        # print(f"WAS REPAIRED\n-------\n{self.text}\n-----")
+
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
+        doc = self.printable_doc()
+
+        if not isinstance(doc, type(self)):
+            yield doc  # Email documents handle their own formatting
+            return
+
         info_panel = self.file_info_panel()
         timestamp_str = f'(inferred timestamp: {remove_zero_time(self.timestamp)})' if self.timestamp else ''
         yield info_panel
