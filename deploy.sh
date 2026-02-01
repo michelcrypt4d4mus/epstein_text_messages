@@ -89,7 +89,7 @@ $GENERATE_CMD --json-metadata
 print_deploy_step "Building JSON files data..."
 $GENERATE_CMD --json-files
 print_deploy_step "Building DOJ 2026 files..."
-$GENERATE_CMD --output-doj2026-files
+$GENERATE_CMD --output-doj-files
 
 # Commit changes
 echo -e ""

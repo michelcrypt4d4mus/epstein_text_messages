@@ -12,6 +12,7 @@ from typing import Sequence, Type, cast
 from rich.table import Table
 
 from epstein_files.documents.document import Document
+from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import DETECT_EMAIL_REGEX, Email
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
@@ -49,7 +50,7 @@ class EpsteinFiles:
     imessage_logs: list[MessengerLog] = field(default_factory=list)
     json_files: list[JsonFile] = field(default_factory=list)
     other_files: list[OtherFile] = field(default_factory=list)
-    doj_2026_01_30_other_files: list[OtherFile] = field(default_factory=list)
+    doj_2026_01_30_other_files: list[DojFile] = field(default_factory=list)
     timer: Timer = field(default_factory=lambda: Timer())
     uninteresting_ccs: list[Name] = field(default_factory=list)
 
@@ -57,8 +58,11 @@ class EpsteinFiles:
         """Iterate through files and build appropriate objects."""
         self.all_files = sorted([f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')])
         documents = []
-        file_type_count = defaultdict(int)  # Hack used by --skip-other-files option
-        logger.warning(f"Found {len(self.doj_2026_01_30_other_files)} DOJ 2026 files in '{DOJ_2026_01_30_DIR}'")
+        file_type_count = defaultdict(int)  # Hack used by --skip-other-files option to get a few files parsed before skipping the rest
+
+        if DOJ_2026_01_30_DIR is not None:
+            self.doj_2026_01_30_other_files = Document.sort_by_id([DojFile(p) for p in DOJ_2026_01_30_DIR.glob('**/*.txt')])
+            logger.warning(f"Found {len(self.doj_2026_01_30_other_files)} DojFiles in '{DOJ_2026_01_30_DIR}'")
 
         # Read through and classify all the files
         for file_arg in self.all_files:
@@ -84,7 +88,6 @@ class EpsteinFiles:
         self.imessage_logs = Document.sort_by_timestamp([d for d in documents if isinstance(d, MessengerLog)])
         self.other_files = Document.sort_by_timestamp([d for d in documents if isinstance(d, (JsonFile, OtherFile))])
         self.json_files = [doc for doc in self.other_files if isinstance(doc, JsonFile)]
-        self.doj_2026_01_30_other_files = Document.sort_by_id([OtherFile(p) for p in DOJ_2026_01_30_DIR.glob('**/*.txt')])
         self._set_uninteresting_ccs()
         self._copy_duplicate_email_properties()
         self._find_email_attachments_and_set_is_first_for_user()
