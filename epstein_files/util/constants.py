@@ -459,7 +459,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='026287', author=DAVID_SCHOEN, attribution_reason='Signature'),
     EmailCfg(id='033419', author=DAVID_SCHOEN, attribution_reason='Signature'),
     EmailCfg(id='031460', author=EDWARD_JAY_EPSTEIN, attribution_reason='quoted reply has edwardjayepstein.com', is_fwded_article=True),
-    EmailCfg(id='031607', is_fwded_article=True, comment='Epstein reply to Edward Jay Epstein'),
     EmailCfg(
         id='030475',
         author=FAITH_KATES,
@@ -657,7 +656,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='026431', recipients=[ARIANE_DE_ROTHSCHILD], attribution_reason='Reply'),
     EmailCfg(id='032876', recipients=[CECILIA_STEEN], attribution_reason='unredacted in 032267'),
     EmailCfg(id='026466', recipients=[DIANE_ZIMAN], attribution_reason='Quoted reply'),
-    EmailCfg(id='031607', recipients=[EDWARD_JAY_EPSTEIN], attribution_reason='quoted reply has edwardjayepstein.com'),
+    EmailCfg(id='031607', recipients=[EDWARD_JAY_EPSTEIN], is_fwded_article=True, attribution_reason='quoted reply has edwardjayepstein.com'),
     EmailCfg(
         id='030525',
         recipients=[FAITH_KATES],
@@ -1098,18 +1097,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731475', date='2023-05-31T20:53:00'),
     EmailCfg(id='EFTA02731732', date='2024-03-06T12:21:00'),
     EmailCfg(id='EFTA02731485', date='2023-06-12T13:53:00'),
+    EmailCfg(id='EFTA02731617', date='2021-04-28T15:05:41'),
     EmailCfg(id='EFTA02730483', date='2023-07-11T08:25:00'), # TODO: actually reply timewtamp
-
     EmailCfg(id='EFTA02730481', date='2023-07-07T11:01:00'), # TODO: actually reply timewtamp
     EmailCfg(id='EFTA02731754', date='2024-03-06T23:24:00'), # TODO: actually reply timewtamp
     EmailCfg(id='EFTA02731735', date='2024-03-04T05:04:00'), # TODO: actually reply timewtamp
     EmailCfg(id='EFTA02731577', date='2024-10-16T00:00:00'), # TODO: actually reply timewtamp
     EmailCfg(id='EFTA02730468', date='2019-07-11T08:25:00'), # TODO: This is just wrong
-    EmailCfg(id='EFTA02731617', date='2021-04-28T15:05:41'),
-    EmailCfg(id='', date='2023-07-11T08:25:00'), # TODO: actually reply timewtamp
-    EmailCfg(id='', date='2023-07-11T08:25:00'), # TODO: actually reply timewtamp
-
-
     # Generated basd on OtheFile extract_timestamp()
     EmailCfg(id='EFTA02731783', date='2022-01-21 17:28:00'),
     EmailCfg(id='EFTA02731587', date='2022-01-21 17:28:00'),
