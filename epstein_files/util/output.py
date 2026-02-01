@@ -60,12 +60,13 @@ INTERESTING_TEXT_IDS = [
 ]
 
 
-def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile]:
+def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile | Email]:
     last_was_empty = False
-    printed_doj_files: list[DojFile] = []
+    printed_doj_files: list[DojFile | Email] = []
+    doj_files = [Email(f.file_path) if document_cls(f) == Email else f for f in epstein_files.doj_files]
 
-    for doj_file in Document.sort_by_timestamp(epstein_files.doj_files):
-        if doj_file.is_empty() or doj_file.is_bad_ocr:
+    for doj_file in Document.sort_by_timestamp(doj_files):
+        if doj_file.is_empty() or (isinstance(doj_file, DojFile) and doj_file.is_bad_ocr):
             console.print(f"{doj_file.file_id}: single image/no text", style='dim')
             last_was_empty = True
             continue
@@ -74,8 +75,8 @@ def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile]:
             console.line()
 
         # Print probably emails as emails
-        if document_cls(doj_file) == Email:
-            console.print(Email(doj_file.file_path))
+        if isinstance(doj_file, Email):
+            console.print(doj_file)
         else:
             doj_file.prep_for_printing()
             console.print(doj_file)
