@@ -65,6 +65,19 @@ THEME_STYLES = {
     **{hg.theme_style_name: hg.style for hg in ALL_HIGHLIGHTS},
 }
 
+RAINBOW = [
+    'royal_blue1',
+    'medium_purple',
+    'light_coral',
+    'light_slate_gray',
+    'dark_goldenrod',
+    'wheat4',
+    'white',
+    'medium_orchid',
+    'deep_pink1',
+    'navajo_white1',
+]
+
 # Instantiate console object
 CONSOLE_ARGS = {
     'color_system': '256',
