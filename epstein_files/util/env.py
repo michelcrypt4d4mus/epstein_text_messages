@@ -71,7 +71,11 @@ debug.add_argument('--write-txt', '-wt', action='store_true', help='write a plai
 
 
 # Parse args
-args = parser.parse_args()
+if environ.get('INVOKED_BY_PYTEST'):
+    args = parser.parse_args([EPSTEIN_GENERATE])
+else:
+    args = parser.parse_args()
+
 is_html_script = parser.prog in HTML_SCRIPTS
 
 args.debug = args.deep_debug or args.debug or is_env_var_set('DEBUG')

@@ -5,7 +5,7 @@ from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
 from subprocess import run
-from typing import Callable, ClassVar, Sequence, TypeVar
+from typing import Callable, ClassVar, Self, Sequence, TypeVar
 
 from rich.console import Console, ConsoleOptions, Group, RenderResult
 from rich.padding import Padding
@@ -16,12 +16,12 @@ from rich.table import Table
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
-from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP
+from epstein_files.util.constants import ALL_FILE_CONFIGS, DOJ_FILE_STEM_REGEX, FALLBACK_TIMESTAMP
 from epstein_files.util.data import collapse_newlines, date_str, patternize, remove_zero_time, without_falsey
 from epstein_files.util.doc_cfg import DUPE_TYPE_STRS, EmailCfg, DocCfg, Metadata, TextCfg
 from epstein_files.util.env import DOCS_DIR
-from epstein_files.util.file_helper import (extract_file_id, file_size, file_size_str, file_size_to_str,
-     is_local_extract_file)
+from epstein_files.util.file_helper import (coerce_file_path, extract_file_id, file_size, file_size_str,
+     file_size_to_str, is_local_extract_file)
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 from epstein_files.util.rich import (INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_cols_to_table, build_table,
      console, highlighter, join_texts, key_value_txt, link_text_obj, parenthesize)
@@ -152,6 +152,10 @@ class Document:
         return bool(self.config and self.config.is_attribution_uncertain)
 
     @property
+    def is_doj_file(self) -> bool:
+        return bool(DOJ_FILE_STEM_REGEX.match(self.file_id))
+
+    @property
     def is_duplicate(self) -> bool:
         return bool(self.duplicate_of_id)
 
@@ -241,6 +245,11 @@ class Document:
         self._repair()
         self._extract_author()
         self.timestamp = self._extract_timestamp()
+
+    @classmethod
+    def from_file_id(cls, file_id: str | int) -> Self:
+        """Alternate constructor that finds the file and builds the Document."""
+        return cls(coerce_file_path(file_id))
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         return self.external_link(epsteinify_doc_url, style, link_txt)

@@ -180,7 +180,8 @@ class OtherFile(Document):
             warnings.filterwarnings("ignore", module="dateutil")
 
             try:
-                for timestamp in datefinder.find_dates(self.text, strict=False):  # TODO: datefinder cannot ID 08/29/2019 style :( e.g. EFTA00005783
+                # TODO: datefinder.find_dates() cannot find 08/29/2019 style e.g. in EFTA00005783 :(
+                for timestamp in datefinder.find_dates(self.text, strict=False):
                     timestamp = remove_timezone(timestamp)
 
                     if MIN_TIMESTAMP < timestamp < MAX_TIMESTAMP:
