@@ -260,10 +260,6 @@ class Document:
 
         return text
 
-    def source_file_id(self) -> str:
-        """Strip off the _1, _2, etc. suffixes for extracted documents."""
-        return self.file_id[0:6]
-
     def summary(self) -> Text:
         """Summary of this file for logging. Brackets are left open for subclasses to add stuff."""
         txt = Text('').append(self._class_name(), style=self._class_style())
