@@ -384,7 +384,7 @@ HIGHLIGHTED_NAMES = [
             r"bitcoin(\s*Foundation)?",
             r"Brian Forde",
             r"Brock(\s*Pierce)?",
-            r"coins?",
+            r"coins?(\s*Center)?",
             r"Cory\s*Fields",  # bitcoin dev
             r"cr[iy]?pto(currenc(y|ies))?",
             r"Digital\s*Currenc(ies|y)(\s*Initiative)?",
@@ -396,6 +396,7 @@ HIGHLIGHTED_NAMES = [
             r"Madars",
             r"Mi(chael|ke)\s*Novogratz",
             r"(Patrick\s*)?Murck",
+            r"(Hester\s*)?Peirce",
             r"Ron\s*Rivest",
             r"(RIOT\s*)?block ?chain(\s*capital)?",
             r"(Ross\s*)?Ulbricht",
