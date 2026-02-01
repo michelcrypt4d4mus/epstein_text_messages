@@ -66,8 +66,8 @@ def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile | Email]:
     doj_files = [Email(f.file_path) if document_cls(f) == Email else f for f in epstein_files.doj_files]
 
     for doj_file in Document.sort_by_timestamp(doj_files):
-        if doj_file.is_empty() or (isinstance(doj_file, DojFile) and doj_file.is_bad_ocr):
-            console.print(f"{doj_file.file_id}: single image/no text", style='dim')
+        if isinstance(doj_file, DojFile) and (doj_file.is_empty() or doj_file.is_bad_ocr):
+            console.print(doj_file.image_with_no_text_msg(), style='dim')
             last_was_empty = True
             continue
 

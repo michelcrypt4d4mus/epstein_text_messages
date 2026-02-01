@@ -8,7 +8,7 @@ from typing import ClassVar
 
 from rich.align import Align
 from rich.columns import Columns
-from rich.console import Console, ConsoleOptions, Group, RenderResult
+from rich.console import Console, ConsoleOptions, Group, RenderableType, RenderResult
 from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
@@ -17,9 +17,9 @@ from epstein_files.documents.document import INFO_INDENT, INFO_PADDING
 from epstein_files.documents.other_file import Metadata, OtherFile
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, doj_2026_file_url
 from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP
-from epstein_files.util.doc_cfg import DocCfg, EmailCfg
+from epstein_files.util.doc_cfg import DocCfg
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import RAINBOW, highlighter, join_texts, link_text_obj, parenthesize
+from epstein_files.util.rich import RAINBOW, SKIPPED_FILE_MSG_PADDING, highlighter, join_texts, link_text_obj
 
 DATASET_ID_REGEX = re.compile(r"(?:epstein_dataset_|DataSet )(\d+)")
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
@@ -38,6 +38,8 @@ BAD_DOJ_FILE_IDS = [
     'EFTA00008527',
     'EFTA00008480',
     'EFTA00008497',
+    'EFTA00001031',
+    'EFTA00005495',
     'EFTA00002830',
     'EFTA00008496',
     'EFTA00008441',
@@ -117,12 +119,22 @@ class DojFile(OtherFile):
             self.doj_2026_data_set = int(data_set_match.group(1))
             logger.info(f"Extracted data set number {self.doj_2026_data_set} for {self.url_slug}")
 
+    def doj_link(self) -> Text:
+        """Link to this file on the DOJ site."""
+        return link_text_obj(doj_2026_file_url(self.doj_2026_data_set, self.url_slug), self.url_slug)
+
     def external_links_txt(self, style: str = '', include_alt_links: bool = False) -> Text:
         """Overloads superclass method."""
-        links = [link_text_obj(doj_2026_file_url(self.doj_2026_data_set, self.url_slug), self.url_slug)]
-        links = [links[0]] + [parenthesize(link) for link in links[1:]]
+        links = [self.doj_link()]
         base_txt = Text('', style='white' if include_alt_links else ARCHIVE_LINK_COLOR)
         return base_txt.append(join_texts(links))
+
+    def image_with_no_text_msg(self) -> RenderableType:
+        """One line of linked text to show if this file doesn't seem to have any OCR text."""
+        return Padding(
+            Text('').append(self.doj_link()).append(f" is a single image with no text..."),
+            SKIPPED_FILE_MSG_PADDING
+        )
 
     def is_empty(self) -> bool:
         """Overloads superclass method."""

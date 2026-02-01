@@ -19,7 +19,8 @@ from epstein_files.util.data import days_between, flatten, uniquify, without_fal
 from epstein_files.util.env import args
 from epstein_files.util.highlighted_group import (QUESTION_MARKS_TXT, HighlightedNames,
      get_highlight_group_for_name, get_style_for_name, styled_category, styled_name)
-from epstein_files.util.rich import GREY_NUMBERS, TABLE_TITLE_STYLE, build_table, console, join_texts, print_centered
+from epstein_files.util.rich import (GREY_NUMBERS, SKIPPED_FILE_MSG_PADDING, TABLE_TITLE_STYLE, build_table,
+     console, join_texts, print_centered)
 
 ALT_INFO_STYLE = 'medium_purple4'
 CC = 'cc:'
@@ -245,7 +246,7 @@ class Person:
         else:
             for email in self._printable_emails():
                 if email.is_duplicate():
-                    console.print(Padding(email.duplicate_file_txt().append('...'), (0, 0, 0, 4)))
+                    console.print(Padding(email.duplicate_file_txt().append('...'), SKIPPED_FILE_MSG_PADDING))
                     last_printed_email_was_duplicate = True
                 else:
                     if last_printed_email_was_duplicate:
