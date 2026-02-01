@@ -101,10 +101,6 @@ class DojFile(OtherFile):
     border_style_rainbow_idx: ClassVar[int] = 0
 
     @property
-    def config(self) -> DocCfg | None:
-        return deepcopy(ALL_FILE_CONFIGS.get(self.file_id))
-
-    @property
     def is_bad_ocr(self) -> bool:
         return self.file_id in BAD_DOJ_FILE_IDS
 
