@@ -1561,7 +1561,7 @@ HIGHLIGHTED_NAMES = [
             r"S(ain)?t.?\s*Thomas",
             r"USVI",
             r"(?<!stein |vis-a-)VI(?!s-a-)",
-            r"(The\s*)?Virgin\s*Is(al|la)nds(\s*Daily\s*News)?",  # Hard to make this work right
+            r"(The\s*)?Virgin\s*Is(al|la)nd?s(\s*Daily\s*News)?",  # Hard to make this work right
             r"(West\s*)?Palm\s*Beach(\s*County)?(?!\s*(Daily|Post))",
         ],
     ),
