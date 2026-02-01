@@ -49,7 +49,8 @@ log_console = Console(
 
 log_handler = RichHandler(console=log_console, highlighter=LogHighlighter())
 logging.basicConfig(level="NOTSET", format="%(message)s", datefmt=" ", handlers=[log_handler])
-logger = logging.getLogger("epstein_text_messages")
+logger = logging.getLogger(__name__)
+logger = logging.getLogger("epstein_text_files")
 
 
 # Set log levels to suppress annoying output from other packages

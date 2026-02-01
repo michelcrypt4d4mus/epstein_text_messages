@@ -217,6 +217,15 @@ class Document:
         return len(self.lines)
 
     @property
+    def panel_title_timestamp(self) -> str | None:
+        """String placed in the `title` of the enclosing `Panel` when printing this document's text."""
+        if not self.timestamp:
+            return None
+
+        prefix = '' if self.config and self.config.timestamp else 'inferred '
+        return f"({prefix}timestamp: {remove_zero_time(self.timestamp)})"
+
+    @property
     def summary_panel(self) -> Panel:
         """Panelized description() with info_txt(), used in search results."""
         sentences = [self.summary()]
@@ -273,7 +282,7 @@ class Document:
 
     @classmethod
     def from_file_id(cls, file_id: str | int) -> Self:
-        """Alternate constructor that finds the file and builds the Document."""
+        """Alternate constructor that finds the file path automatically and builds a `Document`."""
         return cls(coerce_file_path(file_id))
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
@@ -313,7 +322,7 @@ class Document:
         return Group(*([panel] + padded_info))
 
     def log(self, msg: str, level: int = logging.INFO):
-        """Log with filename as a prefix."""
+        """Log a message with with this document's filename as a prefix."""
         logger.log(level, f"{self.file_path.stem} {msg}")
 
     def log_top_lines(self, n: int = 10, msg: str = '', level: int = logging.INFO) -> None:
@@ -343,7 +352,7 @@ class Document:
         return text
 
     def summary(self) -> Text:
-        """Summary of this file for logging. Brackets are left open for subclasses to add stuff."""
+        """Summary of this file for logging. Subclasses should extend with a method that closes the open '['."""
         txt = Text('').append(self._class_name, style=self._class_style)
         txt.append(f" {self.file_path.stem}", style=FILENAME_STYLE)
 
@@ -426,7 +435,15 @@ class Document:
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield self.file_info_panel()
-        text_panel = Panel(highlighter(self.text), border_style=self._border_style(), expand=False)
+
+        text_panel = Panel(
+            highlighter(self.text),
+            border_style=self._border_style(),
+            expand=False,
+            title=self.panel_title_timestamp,
+            title_align='right',
+        )
+
         yield Padding(text_panel, (0, 0, 1, INFO_INDENT))
 
     def __str__(self) -> str:
