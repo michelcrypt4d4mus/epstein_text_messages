@@ -73,6 +73,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     BORIS_NIKOLIC: re.compile(r'(boris )?nikolic?', re.IGNORECASE),
     BRAD_EDWARDS:  re.compile(r'Brad(ley)?(\s*J(.?|ames))?\s*Edwards', re.IGNORECASE),
     BRAD_KARP: re.compile(r'Brad (S.? )?Karp|Karp, Brad', re.IGNORECASE),
+    CHRISTOPHER_DILORIO: re.compile(r"Chris\s*Di[lI]o[nr](io)?", re.IGNORECASE),
     DANGENE_AND_JENNIE_ENTERPRISE: re.compile(r'Dangene and Jennie Enterprise?', re.IGNORECASE),
     DANNY_FROST: re.compile(r'Frost, Danny|frostd@dany.nyc.gov|Danny\s*Frost', re.IGNORECASE),
     DARREN_INDYKE: re.compile(r'darren$|Darren\s*(K\.?\s*)?[il]n[dq]_?yke?|dkiesq', re.IGNORECASE),
@@ -1121,7 +1122,7 @@ EMAILS_CONFIG = [
     # EmailCfg(id='EFTA02730468', date='2004-02-03 00:00:00'),  # TODO: ???
     EmailCfg(id='EFTA02731528', date='2021-05-06 09:39:15'),
     EmailCfg(id='EFTA02730485', date='2021-12-03 00:00:00'),
-
+    EmailCfg(id='EFTA00039689', truncate_to=NO_TRUNCATE),
 ]
 
 if args.constantize:
