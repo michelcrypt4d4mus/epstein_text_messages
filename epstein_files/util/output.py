@@ -10,7 +10,7 @@ from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
-from epstein_files.epstein_files import EpsteinFiles, count_by_month
+from epstein_files.epstein_files import EpsteinFiles, count_by_month, document_cls
 from epstein_files.person import Person
 from epstein_files.util.constant import output_files
 from epstein_files.util.constant.html import *
@@ -64,7 +64,7 @@ def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile]:
     last_was_empty = False
     printed_doj_files: list[DojFile] = []
 
-    for doj_file in reversed(epstein_files.doj_files):
+    for doj_file in Document.sort_by_timestamp(epstein_files.doj_files):
         if doj_file.is_empty() or doj_file.is_bad_ocr:
             console.print(f"{doj_file.file_id}: single image/no text", style='dim')
             last_was_empty = True
@@ -73,8 +73,13 @@ def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile]:
         if last_was_empty:
             console.line()
 
-        doj_file.prep_for_printing()
-        console.print(doj_file)
+        # Print probably emails as emails
+        if document_cls(doj_file) == Email:
+            console.print(Email(doj_file.file_path))
+        else:
+            doj_file.prep_for_printing()
+            console.print(doj_file)
+
         last_was_empty = False
         printed_doj_files.append(doj_file)
 

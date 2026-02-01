@@ -351,6 +351,8 @@ def document_cls(doc: Document) -> Type[Document]:
         return Email
     elif MSG_REGEX.search(search_area):
         return MessengerLog
+    elif doc.file_id.startswith(EFTA_PREFIX):
+        return DojFile
     else:
         return OtherFile
 
