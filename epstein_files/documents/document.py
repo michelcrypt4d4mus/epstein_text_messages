@@ -33,8 +33,6 @@ INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
 MAX_TOP_LINES_LEN = 4000  # Only for logging
 MIN_DOCUMENT_ID = 10477
-
-DATASET_NUMBER_REGEX = re.compile(r"(?:epstein_dataset_|DataSet )(\d+)")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
 MIN_TIMESTAMP = datetime(1991, 1, 1)
@@ -67,13 +65,6 @@ SUMMARY_TABLE_COLS: list[str | dict] = [
     {'name': 'Size', 'justify': 'right', 'style': 'dim'},
 ]
 
-NO_IMAGE_SUFFIX = """
-┏━━━━━━━━━━━━━━━━━┓
-│ Page 1, Image 1 │
-└─────────────────┘
-(no text found in image)
-""".strip()
-
 
 @dataclass
 class Document:
@@ -95,7 +86,6 @@ class Document:
     # Optional fields
     author: Name = None
     config: EmailCfg | DocCfg | TextCfg | None = None
-    doj_2026_data_set: int | None = None
     file_id: str = field(init=False)
     filename: str = field(init=False)
     lines: list[str] = field(default_factory=list)
@@ -123,10 +113,6 @@ class Document:
 
         if not self.text:
             self._load_file()
-
-        if (data_set_match := DATASET_NUMBER_REGEX.search(str(self.file_path))):
-            self.doj_2026_data_set = int(data_set_match.group(1))
-            logger.warning(f"Extracted data set number {self.doj_2026_data_set} for {self.url_slug}")
 
         self._repair()
         self._extract_author()
@@ -179,9 +165,6 @@ class Document:
             if self._class_name() == 'Email':
                 links.append(self.rollcall_link(style=ALT_LINK_STYLE, link_txt=ROLLCALL))
 
-        if self.doj_2026_data_set:
-            links = [link_text_obj(doj_2026_file_url(self.doj_2026_data_set, self.url_slug), self.url_slug)]
-
         links = [links[0]] + [parenthesize(link) for link in links[1:]]
         base_txt = Text('', style='white' if include_alt_links else ARCHIVE_LINK_COLOR)
         return base_txt.append(join_texts(links))
@@ -219,7 +202,7 @@ class Document:
         return bool(self.duplicate_of_id())
 
     def is_empty(self) -> bool:
-        return len(self.text.strip().removesuffix(NO_IMAGE_SUFFIX)) < 20
+        return len(self.text.strip()) < 20
 
     def is_interesting(self) -> bool:
         return bool(self.config and self.config.is_interesting)

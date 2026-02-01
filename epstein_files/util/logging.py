@@ -8,6 +8,7 @@ from rich.console import Console
 from rich.highlighter import ReprHighlighter
 from rich.logging import RichHandler
 from rich.theme import Theme
+from yaralyzer.util.helpers.env_helper import console_width_possibilities
 
 from epstein_files.util.constant.strings import *
 
@@ -37,11 +38,17 @@ class LogHighlighter(ReprHighlighter):
         "(?P<epstein_filename>" + FILE_NAME_REGEX.pattern + ')',
     ]
 
+log_console = Console(
+    color_system='256',
+    stderr=True,
+    theme=Theme(LOG_THEME),
+    width=max(console_width_possibilities())
+)
 
-log_console = Console(color_system='256', theme=Theme(LOG_THEME))
+
 log_handler = RichHandler(console=log_console, highlighter=LogHighlighter())
 logging.basicConfig(level="NOTSET", format="%(message)s", datefmt=" ", handlers=[log_handler])
-logger = logging.getLogger("rich")
+logger = logging.getLogger("epstein_text_messages")
 
 
 # Set log levels to suppress annoying output

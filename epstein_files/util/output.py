@@ -6,6 +6,7 @@ from typing import cast
 from rich.padding import Padding
 
 from epstein_files.documents.document import Document
+from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
@@ -57,6 +58,27 @@ INTERESTING_TEXT_IDS = [
     '027275',  # "Crypto- Kerry- Qatar -sessions"
     '027165',  # melaniee walker crypto health
 ]
+
+
+def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile]:
+    last_was_empty = False
+    printed_doj_files: list[DojFile] = []
+
+    for doj_file in reversed(epstein_files.doj_2026_01_30_other_files):
+        if doj_file.is_empty() or doj_file.is_bad_ocr:
+            console.print(f"{doj_file.file_id}: single image/no text", style='dim')
+            last_was_empty = True
+            continue
+
+        if last_was_empty:
+            console.line()
+
+        doj_file.prep_for_printing()
+        console.print(doj_file)
+        last_was_empty = False
+        printed_doj_files.append(doj_file)
+
+    return printed_doj_files
 
 
 def print_email_timeline(epstein_files: EpsteinFiles) -> None:

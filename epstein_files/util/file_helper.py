@@ -1,7 +1,7 @@
 import re
 from pathlib import Path
 
-from epstein_files.util.constant.strings import FILE_NAME_REGEX, FILE_STEM_REGEX, HOUSE_OVERSIGHT_PREFIX
+from epstein_files.util.constant.strings import EFTA_PREFIX, FILE_NAME_REGEX, FILE_STEM_REGEX, HOUSE_OVERSIGHT_PREFIX
 from epstein_files.util.env import DOCS_DIR
 from epstein_files.util.logging import logger
 
@@ -20,7 +20,7 @@ id_str = lambda id: f"{int(id):06d}"
 
 def coerce_file_stem(filename_or_id: int | str) -> str:
     """Generate a valid file_stem no matter what form the argument comes in."""
-    if isinstance(filename_or_id, str) and filename_or_id.startswith('EFTA'):
+    if isinstance(filename_or_id, str) and filename_or_id.startswith(EFTA_PREFIX):
         return Path(filename_or_id).stem
 
     if isinstance(filename_or_id, str) and filename_or_id.startswith(HOUSE_OVERSIGHT_PREFIX):
@@ -37,7 +37,7 @@ def coerce_file_stem(filename_or_id: int | str) -> str:
 
 def extract_file_id(filename_or_id: int | str | Path) -> str:
     # DOJ 2026-01 files have different pattern
-    if isinstance(filename_or_id, str) and filename_or_id.startswith('EFTA'):
+    if isinstance(filename_or_id, str) and filename_or_id.startswith(EFTA_PREFIX):
         return Path(filename_or_id).stem
 
     if isinstance(filename_or_id, str):
