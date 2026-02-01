@@ -3,15 +3,22 @@ import logging
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import ClassVar
 
+from rich.align import Align
+from rich.columns import Columns
+from rich.console import Console, ConsoleOptions, Group, RenderResult
+from rich.padding import Padding
+from rich.panel import Panel
 from rich.text import Text
 
+from epstein_files.documents.document import INFO_INDENT
 from epstein_files.documents.other_file import Metadata, OtherFile
 from epstein_files.util.doc_cfg import DocCfg, EmailCfg
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, doj_2026_file_url
 from epstein_files.util.constants import ALL_FILE_CONFIGS
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import join_texts, link_text_obj, parenthesize
+from epstein_files.util.rich import RAINBOW, highlighter, join_texts, link_text_obj, parenthesize
 
 DATASET_ID_REGEX = re.compile(r"(?:epstein_dataset_|DataSet )(\d+)")
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
@@ -34,6 +41,7 @@ BAD_DOJ_FILE_IDS = [
     'EFTA00000675',
     'EFTA00002538',
     'EFTA00000672',
+    'EFTA00002814',
     'EFTA00002812',
     'EFTA00002543',
     'EFTA00002813',
@@ -88,9 +96,16 @@ class DojFile(OtherFile):
     file_path: Path
     doj_2026_data_set: int = field(init=False)
 
+    # For fancy coloring only
+    border_style_rainbow_idx: ClassVar[int] = 0
+
     @property
     def config(self) -> DocCfg | None:
         return deepcopy(ALL_FILE_CONFIGS.get(self.file_id))
+
+    @property
+    def is_bad_ocr(self) -> bool:
+        return self.file_id in BAD_DOJ_FILE_IDS
 
     def __post_init__(self):
         super().__post_init__()
@@ -105,10 +120,6 @@ class DojFile(OtherFile):
         links = [links[0]] + [parenthesize(link) for link in links[1:]]
         base_txt = Text('', style='white' if include_alt_links else ARCHIVE_LINK_COLOR)
         return base_txt.append(join_texts(links))
-
-    @property
-    def is_bad_ocr(self) -> bool:
-        return self.file_id in BAD_DOJ_FILE_IDS
 
     def is_empty(self) -> bool:
         """Overloads superclass method."""
@@ -125,3 +136,17 @@ class DojFile(OtherFile):
         if len(non_number_lines) != len(self.lines):
             logger.warning(f"{self.file_id}: Reduced line count from {len(self.lines)} to {len(non_number_lines)}")
             self._set_computed_fields(lines=non_number_lines)
+
+    def _border_style(self) -> str:
+        """Color emails from epstein to others with the color for the first recipient."""
+        style = RAINBOW[self.border_style_rainbow_idx % len(RAINBOW)]
+        type(self).border_style_rainbow_idx += 1
+        return style
+
+    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
+        info_panel = self.file_info_panel()
+        timestamp_txt = Text('(inferred timestamp: ', style='dim').append(str(self.timestamp)).append(')')
+        # import pdb;pdb.set_trace()
+        yield Columns([info_panel, Align(timestamp_txt, vertical='middle')])
+        text_panel = Panel(highlighter(self.text), border_style=self._border_style(), expand=False)
+        yield Padding(text_panel, (0, 0, 1, INFO_INDENT))
