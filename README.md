@@ -22,7 +22,7 @@ You need to set the `EPSTEIN_DOCS_DIR` environment variable with the path to the
 EPSTEIN_DOCS_DIR=/path/to/epstein/ocr_txt_files epstein_generate --help
 ```
 
-If you want to work with the documents released by DOJ on January 30th 2026 you'll need to also set the `EPSTEIN_DOJ_2026_01_30_DOCS_DIR` env var.
+If you want to work with the documents released by DOJ on January 30th 2026 you'll need to also set the `EPSTEIN_DOJ_2026_01_30_DOCS_DIR` env var to point at folders full of OCR extracted texts from the raw PDFs. If you have the PDFs but not the text files there's [a script](scripts/extract_doj_pdfs.py) that can help you take care of that.
 
 All the tools that come with the package require `EPSTEIN_DOCS_DIR` to be set. These are the available tools:
 
@@ -90,3 +90,7 @@ for file in epstein_files.other_files:
 
 # Everyone Who Sent or Received an Email in the November Document Dump
 ![emails](https://github.com/michelcrypt4d4mus/epstein_text_messages/raw/master/docs/emailers_info_table.png)
+
+
+# TODO List
+See [TODO.md](TODO.md).
