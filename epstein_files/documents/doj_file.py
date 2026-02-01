@@ -108,12 +108,13 @@ class DojFile(OtherFile):
         """Overloads superclass method."""
         return len(self.text.strip().removesuffix(NO_IMAGE_SUFFIX)) < 20
 
-    def prep_for_printing(self):
+    def prep_for_printing(self) -> None:
         """Replace some fields and strip out some lines, but do it only before printing (don't store to pickled file)."""
         if self.file_id in REPLACEMENT_TEXT:
             self._set_computed_fields(text=f'(Text of "{REPLACEMENT_TEXT[self.file_id]}" not shown here, check link for PDF)')
-        else:
-            non_number_lines = [line for line in self.lines if not IGNORE_LINE_REGEX.match(line)]
+            return
+
+        non_number_lines = [line for line in self.lines if not IGNORE_LINE_REGEX.match(line)]
 
         if len(non_number_lines) != len(self.lines):
             logger.warning(f"{self.file_id}: Reduced line count from {len(self.lines)} to {len(non_number_lines)}")
