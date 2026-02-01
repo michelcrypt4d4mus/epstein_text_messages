@@ -23,6 +23,8 @@ from epstein_files.util.rich import console, highlighter, print_json, print_subt
 
 # Look for possible email files in the DOJ files
 with open('timestamps_cfg.txt', 'wt') as f:
+    emails = []
+
     for i, doc in enumerate(sorted(epstein_files.doj_files, key=lambda f: -f.length)):
         cls = document_cls(doc)
 
@@ -30,6 +32,7 @@ with open('timestamps_cfg.txt', 'wt') as f:
             try:
                 email = Email(doc.file_path)
                 console.print(email)
+                emails.append(email)
             except Exception as e:
                 logger.error(f"Failed to turn {doc} into an email ({e})")
 
@@ -39,6 +42,7 @@ with open('timestamps_cfg.txt', 'wt') as f:
         else:
             logger.warning(f"{doc.file_id}: {doc.file_size_str()} ({doc.length:,} bytes) is not an Email...")
 
+console.print(f"Found {len(emails)} emails out of {len(epstein_files.doj_files)} DOJ files.")
 sys.exit()
 
 
