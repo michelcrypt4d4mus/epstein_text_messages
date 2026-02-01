@@ -94,23 +94,61 @@ class OtherFile(Document):
     was_timestamp_extracted: bool = False
     include_description_in_summary_panel: ClassVar[bool] = True  # Class var for logging output
 
+    @property
+    def config_description(self) -> str | None:
+        """Overloads superclass property."""
+        if self.config and self.config.description:
+            return self.config.complete_description()
+
+    @property
+    def category(self) -> str | None:
+        return self.config and self.config.category
+
+    @property
+    def category_txt(self) -> Text | None:
+        return styled_category(self.category)
+
+    @property
+    def is_interesting(self) -> bool:
+        """Overloaded. False for lame prefixes, duplicates, and other boring files."""
+        info_sentences = self.info
+
+        if self.is_duplicate:
+            return False
+        elif len(info_sentences) == 0:
+            return True
+        elif self.config:
+            if self.config.is_interesting is not None:
+                return self.config.is_interesting
+            elif self.config.author in INTERESTING_AUTHORS:
+                return True
+            elif self.category == FINANCE and self.author is not None:
+                return False
+            elif self.category in UNINTERESTING_CATEGORIES:
+                return False
+
+        for prefix in UNINTERESTING_PREFIXES:
+            if info_sentences[0].plain.startswith(prefix):
+                return False
+
+        return True
+
+    @property
+    def metadata(self) -> Metadata:
+        metadata = super().metadata
+        metadata['is_interesting'] = self.is_interesting
+
+        if self.was_timestamp_extracted:
+            metadata['was_timestamp_extracted'] = self.was_timestamp_extracted
+
+        return metadata
+
     def __post_init__(self):
         super().__post_init__()
 
         if self.config is None and VI_DAILY_NEWS_REGEX.search(self.text):
             self.log(f"Creating synthetic config for VI Daily News article...")
             self.config = DocCfg(id=self.file_id, author=VI_DAILY_NEWS, category=ARTICLE, description='article')
-
-    def category(self) -> str | None:
-        return self.config and self.config.category
-
-    def category_txt(self) -> Text | None:
-        return styled_category(self.category())
-
-    def config_description(self) -> str | None:
-        """Overloads superclass method."""
-        if self.config is not None:
-            return self.config.complete_description()
 
     def highlighted_preview_text(self) -> Text:
         try:
@@ -121,39 +159,6 @@ class OtherFile(Document):
                          f"File: '{self.filename}'\n")
 
             return Text(escape(self.preview_text()))
-
-    def is_interesting(self) -> bool:
-        """Overloaded. False for lame prefixes, duplicates, and other boring files."""
-        info_sentences = self.info()
-
-        if self.is_duplicate():
-            return False
-        elif len(info_sentences) == 0:
-            return True
-        elif self.config:
-            if self.config.is_interesting is not None:
-                return self.config.is_interesting
-            elif self.config.author in INTERESTING_AUTHORS:
-                return True
-            elif self.category() == FINANCE and self.author is not None:
-                return False
-            elif self.category() in UNINTERESTING_CATEGORIES:
-                return False
-
-        for prefix in UNINTERESTING_PREFIXES:
-            if info_sentences[0].plain.startswith(prefix):
-                return False
-
-        return True
-
-    def metadata(self) -> Metadata:
-        metadata = super().metadata()
-        metadata['is_interesting'] = self.is_interesting()
-
-        if self.was_timestamp_extracted:
-            metadata['was_timestamp_extracted'] = self.was_timestamp_extracted
-
-        return metadata
 
     def preview_text(self) -> str:
         return WHITESPACE_REGEX.sub(' ', self.text)[0:PREVIEW_CHARS]
@@ -166,7 +171,7 @@ class OtherFile(Document):
         """Return configured timestamp or value extracted by scanning text with datefinder."""
         if self.config and self.config.timestamp():
             return self.config.timestamp()
-        elif self.config and any([s in (self.config_description() or '') for s in SKIP_TIMESTAMP_EXTRACT]):
+        elif self.config and any([s in (self.config_description or '') for s in SKIP_TIMESTAMP_EXTRACT]):
             return None
 
         timestamps: list[datetime] = []
@@ -187,7 +192,7 @@ class OtherFile(Document):
                 self.warn(f"Error while iterating through datefinder.find_dates(): {e}")
 
         if len(timestamps) == 0:
-            if not (self.is_duplicate() or VAST_HOUSE in self.text):
+            if not (self.is_duplicate or VAST_HOUSE in self.text):
                 self.log_top_lines(15, msg=f"No timestamps found")
 
             return None
@@ -222,21 +227,21 @@ class OtherFile(Document):
 
         for file in files:
             link_and_info = [file.external_links_txt()]
-            date_str = file.date_str()
+            date_str = file.date_str
 
-            if file.is_duplicate():
-                preview_text = file.duplicate_file_txt()
+            if file.is_duplicate:
+                preview_text = file.duplicate_file_txt
                 row_style = ' dim'
             else:
-                link_and_info += file.info()
+                link_and_info += file.info
                 preview_text = file.highlighted_preview_text()
                 row_style = ''
 
             table.add_row(
                 Group(*link_and_info),
                 Text(date_str, style=TIMESTAMP_STYLE) if date_str else QUESTION_MARKS_TXT,
-                file.file_size_str(),
-                file.category_txt(),
+                file.file_size_str,
+                file.category_txt,
                 preview_text,
                 style=row_style
             )
@@ -246,12 +251,12 @@ class OtherFile(Document):
     @classmethod
     def summary_table(cls, files: Sequence['OtherFile'], title_pfx: str = '') -> Table:
         """Table showing file count by category."""
-        categories = uniquify([f.category() for f in files])
-        categories = sorted(categories, key=lambda c: -len([f for f in files if f.category() == c]))
+        categories = uniquify([f.category for f in files])
+        categories = sorted(categories, key=lambda c: -len([f for f in files if f.category == c]))
         table = cls.file_info_table(f'{title_pfx}Other Files Summary', 'Category')
 
         for category in categories:
-            category_files = [f for f in files if f.category() == category]
+            category_files = [f for f in files if f.category == category]
             table.add_row(styled_category(category), *cls.files_info_row(category_files))
 
         table.columns = table.columns[:-2] + [table.columns[-1]]  # Removee unknown author col

@@ -7,7 +7,7 @@ from epstein_files.util.file_helper import EXTRACTED_EMAILS_DIR
 
 
 for email in epstein_files.emails:
-    if email.is_local_extract_file():
+    if email.is_local_extract_file:
         new_path = EXTRACTED_EMAILS_DIR.joinpath(email.filename)
         console.print(email.summary())
         console.print(f'   Copying to "{new_path}"\n')

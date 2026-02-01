@@ -937,9 +937,9 @@ def test_email_recipient_counts(epstein_files):
 
 def test_info_sentences(epstein_files):
     email = epstein_files.for_ids('026290')[0]
-    assert len(email.info()) == 1
+    assert len(email.info) == 1
     email_with_description = epstein_files.for_ids('031278')[0]
-    assert len(email_with_description.info()) == 2
+    assert len(email_with_description.info) == 2
 
 
 def test_signatures(epstein_files):
@@ -958,18 +958,18 @@ def test_unknown_recipient_file_ids(epstein_files):
 def test_border_style(epstein_files):
     email = epstein_files.email_for_id('033071')
     assert email._border_style() == 'purple'
-    assert email.author_style() == 'blue1'
+    assert email.author_style == 'blue1'
 
 
 def test_is_fwded_article(epstein_files):
     fwded_article = epstein_files.email_for_id('033311')
-    assert fwded_article.is_word_count_worthy() is False
+    assert fwded_article.is_word_count_worthy is False
     non_article_with_fwd_text = epstein_files.email_for_id('012197_4')
-    assert non_article_with_fwd_text.is_fwded_article() is False
-    assert non_article_with_fwd_text.is_word_count_worthy() is True
+    assert non_article_with_fwd_text.is_fwded_article is False
+    assert non_article_with_fwd_text.is_word_count_worthy is True
     article_with_fwd_text = epstein_files.email_for_id('016413')
-    assert article_with_fwd_text.is_fwded_article() is True
-    assert article_with_fwd_text.is_word_count_worthy() is True
+    assert article_with_fwd_text.is_fwded_article is True
+    assert article_with_fwd_text.is_word_count_worthy is True
 
 
 def test_broken_header_repair(epstein_files):

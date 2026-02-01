@@ -23,7 +23,7 @@ You need to set the `EPSTEIN_DOCS_DIR` environment variable with the path to the
 EPSTEIN_DOCS_DIR=/path/to/epstein/ocr_txt_files epstein_generate --help
 ```
 
-To work with the DOJ 2026-01 files you'll also need to set the `EPSTEIN_DOJ_2026_01_30_DOCS_DIR` env var to point at folders full of OCR extracted texts from the raw DOJ PDFs. If you have the PDFs but not the text files there's [a script](scripts/extract_doj_pdfs.py) that can help you take care of that.
+To work with the January 2026 DOJ documents you'll also need to set the `EPSTEIN_DOJ_2026_01_30_DOCS_DIR` env var to point at folders full of OCR extracted texts from the raw DOJ PDFs. If you have the PDFs but not the text files there's [a script](scripts/extract_doj_pdfs.py) that can help you take care of that.
 
 ```bash
 EPSTEIN_DOCS_DIR=/path/to/epstein/ocr_txt_files EPSTEIN_DOJ_2026_01_30_DOCS_DIR=/path/to/doj/files epstein_generate --help

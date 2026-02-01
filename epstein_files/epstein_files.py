@@ -119,7 +119,7 @@ class EpsteinFiles:
         return epstein_files
 
     def all_documents(self) -> Sequence[Document]:
-        return self.imessage_logs + self.emails + self.other_files
+        return self.imessage_logs + self.emails + self.other_files + self.doj_files
 
     def docs_matching(self, pattern: re.Pattern | str, names: list[Name] | None = None) -> list[SearchResult]:
         """Find documents whose text matches a pattern (file_type and names args limit the documents searched)."""
@@ -147,15 +147,15 @@ class EpsteinFiles:
 
     def email_author_counts(self) -> dict[Name, int]:
         return {
-            person.name: len(person.unique_emails_by())
-            for person in self.emailers() if len(person.unique_emails_by()) > 0
+            person.name: len(person.unique_emails_by)
+            for person in self.emailers() if len(person.unique_emails_by) > 0
         }
 
     def email_authors_to_device_signatures(self) -> dict[str, set[str]]:
         signatures = defaultdict(set)
 
         for email in [e for e in self.non_duplicate_emails() if e.sent_from_device]:
-            signatures[email.author_or_unknown()].add(email.sent_from_device)
+            signatures[email.author_or_unknown].add(email.sent_from_device)
 
         return signatures
 
@@ -163,14 +163,14 @@ class EpsteinFiles:
         signatures = defaultdict(set)
 
         for email in [e for e in self.non_duplicate_emails() if e.sent_from_device]:
-            signatures[email.sent_from_device].add(email.author_or_unknown())
+            signatures[email.sent_from_device].add(email.author_or_unknown)
 
         return signatures
 
     def email_recipient_counts(self) -> dict[Name, int]:
         return {
-            person.name: len(person.unique_emails_to())
-            for person in self.emailers() if len(person.unique_emails_to()) > 0
+            person.name: len(person.unique_emails_to)
+            for person in self.emailers() if len(person.unique_emails_to) > 0
         }
 
     def email_signature_substitution_counts(self) -> dict[str, int]:
@@ -301,10 +301,10 @@ class EpsteinFiles:
     def _copy_duplicate_email_properties(self) -> None:
         """Ensure dupe emails have the properties of the emails they duplicate to capture any repairs, config etc."""
         for email in self.emails:
-            if not email.is_duplicate():
+            if not email.is_duplicate:
                 continue
 
-            original = self.email_for_id(email.duplicate_of_id())
+            original = self.email_for_id(email.duplicate_of_id)
 
             for field_name in DUPLICATE_PROPS_TO_COPY:
                 original_prop = getattr(original, field_name)
@@ -358,4 +358,4 @@ def document_cls(doc: Document) -> Type[Document]:
 
 
 def _sorted_metadata(docs: Sequence[Document]) -> list[Metadata]:
-    return [json_safe(d.metadata()) for d in Document.sort_by_id(docs)]
+    return [json_safe(d.metadata) for d in Document.sort_by_id(docs)]

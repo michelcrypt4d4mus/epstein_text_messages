@@ -112,7 +112,7 @@ class EmailHeader:
         self.header_chars = '\n'.join(email_lines[0:self.num_header_rows])
         log_msg = f"Corrected empty header using {self.num_header_rows} lines to:\n"
 
-        logger.warning(
+        logger.info(
             f"{log_msg}{self}\n\n[top lines]:\n\n%s\n\n[body_lines]:\n\n%s\n\n",
             indented('\n'.join(email_lines[0:(num_headers + 1) * 2]), prefix='> '),
             indented('\n'.join(email_lines[self.num_header_rows:self.num_header_rows + 5]), prefix='> '),

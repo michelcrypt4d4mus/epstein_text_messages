@@ -129,16 +129,16 @@ def epstein_grep():
                     doc.log(f"None of the matches for '{search_term}' seem to be in the body of the email")
                     continue
 
-            if doc.is_duplicate():
-                if last_document and not last_document.is_duplicate():
+            if doc.is_duplicate:
+                if last_document and not last_document.is_duplicate:
                     console.line()
 
                 last_document = doc
-                console.print(doc.duplicate_file_txt())
+                console.print(doc.duplicate_file_txt)
             elif args.whole_file:
                 console.print(doc)
             else:
-                console.print(doc.summary_panel())
+                console.print(doc.summary_panel)
 
                 for matching_line in lines:
                     line_txt = matching_line.__rich__()
@@ -174,9 +174,9 @@ def epstein_show():
             if isinstance(doc, Email):
                 console.print(Panel(Text("actual_text: ").append(doc.summary()), expand=False, style=doc._border_style()))
                 console.print(escape(doc._actual_text()), '\n')
-                metadata = doc.metadata()
-                metadata['is_fwded_article'] = doc.is_fwded_article()
-                metadata['is_word_count_worthy'] = doc.is_word_count_worthy()
+                metadata = doc.metadata
+                metadata['is_fwded_article'] = doc.is_fwded_article
+                metadata['is_word_count_worthy'] = doc.is_word_count_worthy
                 metadata['_is_first_for_user'] = doc._is_first_for_user
                 print_json(f"{doc.file_id} Metadata", metadata)
 

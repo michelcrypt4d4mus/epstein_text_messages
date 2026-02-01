@@ -40,7 +40,7 @@ with open('timestamps_cfg.txt', 'wt') as f:
                     f.write(f"    EmailCfg(id='{doc.file_id}', date='{doc.timestamp}'),\n")
                     logger.warning(f"Wrote EmailCfg line with timestamp {doc.timestamp}...")
         else:
-            logger.warning(f"{doc.file_id}: {doc.file_size_str()} ({doc.length:,} bytes) is not an Email...")
+            logger.warning(f"{doc.file_id}: {doc.file_size_str} ({doc.length:,} bytes) is not an Email...")
 
 console.print(f"Found {len(emails)} emails out of {len(epstein_files.doj_files)} DOJ files.")
 sys.exit()
@@ -48,7 +48,7 @@ sys.exit()
 
 # Show biggest files
 for i, doc in enumerate(sorted(epstein_files.doj_files, key=lambda f: -f.length)):
-    console.print(f"{doc.file_id}: {doc.file_size_str()} ({doc.length:,} bytes)")
+    console.print(f"{doc.file_id}: {doc.file_size_str} ({doc.length:,} bytes)")
 
     if i > 2000:
         break
@@ -65,21 +65,21 @@ sys.exit()
 
 
 def print_first_emails():
-    emailers = sorted(epstein_files.emailers(), key=lambda e: e.earliest_email_at())
+    emailers = sorted(epstein_files.emailers(), key=lambda e: e.earliest_email_at)
 
     for emailer in emailers:
         first_email = emailer.emails[0]
 
-        if emailer.is_uninteresting or first_email.is_fwded_article():
+        if emailer.is_uninteresting or first_email.is_fwded_article:
             continue
         elif first_email._truncate_to_length() >= first_email.length:
             logger.warning(f"User '{emailer.name}' first email is untruncated")
             continue
-        elif emailer.should_always_truncate():
+        elif emailer.should_always_truncate:
             logger.warning(f"Skipping truncatable user '{emailer.name}'")
             continue
 
-        print_subtitle_panel(emailer.name_str())
+        print_subtitle_panel(emailer.name_str)
         console.print(emailer.emails[0])
 
 print_first_emails()
@@ -125,7 +125,7 @@ counts = defaultdict(int)
 
 
 def print_potential_uninteresting_emailers():
-    emailers = sorted(epstein_files.emailers(), key=lambda e: epstein_files.earliest_email_at(e))
+    emailers = sorted(epstein_files.emailers(), key=lambda e: epstein_files.earliest_email_at(e.name))
 
     for emailer in emailers:
         emails = epstein_files.emails_for(emailer)
@@ -150,12 +150,12 @@ counts = defaultdict(int)
 
 
 for email in sorted(epstein_files.emails, key=lambda e: -len(e.actual_text)):
-    if email.is_fwded_article() or email.is_mailing_list() or email.is_duplicate():
-        if email.is_fwded_article():
+    if email.is_fwded_article or email.is_mailing_list or email.is_duplicate:
+        if email.is_fwded_article:
             counts['fwd'] += 1
-        elif email.is_mailing_list():
+        elif email.is_mailing_list:
             counts['mailing_list'] += 1
-        elif email.is_duplicate():
+        elif email.is_duplicate:
             counts['dupe'] += 1
 
         continue
