@@ -90,16 +90,12 @@ NO_IMAGE_SUFFIX = """
 class DojFile(OtherFile):
     """
     Class for the files released by DOJ on 2026-01-30 with `EFTA000` prefix.
-    """
-
-    """
-    Base class for all Epstein Files documents.
 
     Attributes:
-        doj_2026_data_set (int): The ID of the DataSet the DOJ released this file in. Important for links.
+        doj_2026_dataset_id (int): The ID of the DataSet the DOJ released this file in. Important for links.
     """
     file_path: Path
-    doj_2026_data_set: int = field(init=False)
+    doj_2026_dataset_id: int = field(init=False)
 
     # For fancy coloring only
     border_style_rainbow_idx: ClassVar[int] = 0
@@ -116,12 +112,12 @@ class DojFile(OtherFile):
         super().__post_init__()
 
         if (data_set_match := DATASET_ID_REGEX.search(str(self.file_path))):
-            self.doj_2026_data_set = int(data_set_match.group(1))
-            logger.info(f"Extracted data set number {self.doj_2026_data_set} for {self.url_slug}")
+            self.doj_2026_dataset_id = int(data_set_match.group(1))
+            logger.info(f"Extracted data set number {self.doj_2026_dataset_id} for {self.url_slug}")
 
     def doj_link(self) -> Text:
         """Link to this file on the DOJ site."""
-        return link_text_obj(doj_2026_file_url(self.doj_2026_data_set, self.url_slug), self.url_slug)
+        return link_text_obj(doj_2026_file_url(self.doj_2026_dataset_id, self.url_slug), self.url_slug)
 
     def external_links_txt(self, style: str = '', include_alt_links: bool = False) -> Text:
         """Overloads superclass method."""
