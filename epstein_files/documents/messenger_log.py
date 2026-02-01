@@ -31,28 +31,39 @@ class MessengerLog(Communication):
     messages: list[TextMessage] = field(default_factory=list)
     phone_number: str | None = None
 
+    @property
+    def info_txt(self) -> Text | None:
+        num_days_str = days_between_str(self.timestamp, self.messages[-1].parse_timestamp())
+        txt = Text(f"(Covers {num_days_str} starting ", style='dim')
+        txt.append(self.date_str, style=TIMESTAMP_STYLE).append(' ')
+
+        if not self.author:
+            txt.append('with unknown counterparty')
+        else:
+            txt.append(GUESSED_MSG if self.is_attribution_uncertain else CONFIRMED_MSG).append(' ')
+            txt.append(Text(self.author, style=self.author_style + ' bold'))
+
+        if self.phone_number:
+            txt.append(highlighter(f" using the phone number {self.phone_number}"))
+
+        return txt.append(')')
+
+    @property
+    def metadata(self) -> Metadata:
+        metadata = super().metadata
+        metadata.update({'num_messages': len(self.messages)})
+
+        if self.phone_number:
+            metadata['phone_number'] = self.phone_number
+
+        return metadata
+
     def __post_init__(self):
         super().__post_init__()
         self.messages = [self._build_message(match) for match in MSG_REGEX.finditer(self.text)]
 
     def first_message_at(self, name: Name) -> datetime:
         return self.messages_by(name)[0].parse_timestamp()
-
-    def info_txt(self) -> Text | None:
-        num_days_str = days_between_str(self.timestamp, self.messages[-1].parse_timestamp())
-        txt = Text(f"(Covers {num_days_str} starting ", style='dim')
-        txt.append(self.date_str(), style=TIMESTAMP_STYLE).append(' ')
-
-        if not self.author:
-            txt.append('with unknown counterparty')
-        else:
-            txt.append(GUESSED_MSG if self.is_attribution_uncertain() else CONFIRMED_MSG).append(' ')
-            txt.append(Text(self.author, style=self.author_style() + ' bold'))
-
-        if self.phone_number:
-            txt.append(highlighter(f" using the phone number {self.phone_number}"))
-
-        return txt.append(')')
 
     def last_message_at(self, name: Name) -> datetime:
         return self.messages_by(name)[-1].parse_timestamp()
@@ -61,17 +72,8 @@ class MessengerLog(Communication):
         """Return all messages by 'name'."""
         return [m for m in self.messages if m.author == name]
 
-    def metadata(self) -> Metadata:
-        metadata = super().metadata()
-        metadata.update({'num_messages': len(self.messages)})
-
-        if self.phone_number:
-            metadata['phone_number'] = self.phone_number
-
-        return metadata
-
     def _border_style(self) -> str:
-        return self.author_style()
+        return self.author_style
 
     def _build_message(self, match: re.Match) -> TextMessage:
         """Turn a regex match into a TextMessage."""
@@ -86,7 +88,7 @@ class MessengerLog(Communication):
         return TextMessage(
             author=self.author if (is_phone_number or not author_str) else author_str,
             author_str=author_str if is_phone_number else '',  # Preserve phone numbers
-            is_id_confirmed=not self.is_attribution_uncertain(),
+            is_id_confirmed=not self.is_attribution_uncertain,
             text=match.group(4).strip(),
             timestamp_str=match.group(2).strip(),
         )

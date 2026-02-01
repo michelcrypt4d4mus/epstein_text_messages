@@ -98,8 +98,122 @@ class Document:
     strip_whitespace: ClassVar[bool] = True  # Overridden in JsonFile
 
     @property
+    def config_description(self) -> str | None:
+        if self.config and self.config.description:
+            return f"({self.config.description})"
+
+    @property
+    def date_str(self) -> str | None:
+        return date_str(self.timestamp)
+
+    @property
+    def duplicate_file_txt(self) -> Text:
+        """If the file is a dupe make a nice message to explain what file it's a duplicate of."""
+        if not self.is_duplicate:
+            raise RuntimeError(f"duplicate_file_txt() called on {self.summary()} but not a dupe! config:\n\n{self.config}")
+
+        txt = Text(f"Not showing ", style=INFO_STYLE).append(epstein_media_doc_link_txt(self.file_id, style='cyan'))
+        txt.append(f" because it's {DUPE_TYPE_STRS[self.config.dupe_type]} ")
+        return txt.append(epstein_media_doc_link_txt(self.config.duplicate_of_id, style='royal_blue1'))
+
+    @property
+    def duplicate_of_id(self) -> str | None:
+        if self.config and self.config.duplicate_of_id:
+            return self.config.duplicate_of_id
+
+    @property
+    def file_id_debug_info(self) -> str:
+        return ', '.join([f"{prop}={getattr(self, prop)}" for prop in ['file_id', 'filename', 'url_slug']])
+
+    @property
+    def file_size(self) -> int:
+        return file_size(self.file_path)
+
+    @property
+    def file_size_str(self, decimal_places: int | None = None) -> str:
+        return file_size_str(self.file_path, decimal_places)
+
+    @property
+    def info(self) -> list[Text]:
+        """0 to 2 sentences containing the info_txt() as well as any configured description."""
+        return without_falsey([
+            self.info_txt,
+            highlighter(Text(self.config_description, style=INFO_STYLE)) if self.config_description else None
+        ])
+
+    @property
+    def info_txt(self) -> Text | None:
+        """Secondary info about this file (description recipients, etc). Overload in subclasses."""
+        return None
+
+    @property
+    def is_attribution_uncertain(self) -> bool:
+        return bool(self.config and self.config.is_attribution_uncertain)
+
+    @property
+    def is_duplicate(self) -> bool:
+        return bool(self.duplicate_of_id)
+
+    @property
+    def is_empty(self) -> bool:
+        return len(self.text.strip()) < 20
+
+    @property
+    def is_interesting(self) -> bool:
+        return bool(self.config and self.config.is_interesting)
+
+    @property
+    def is_local_extract_file(self) -> bool:
+        """True if extracted from other file (identifiable from filename e.g. HOUSE_OVERSIGHT_012345_1.txt)."""
+        return is_local_extract_file(self.filename)
+
+    @property
     def length(self) -> int:
         return len(self.text)
+
+    @property
+    def metadata(self) -> Metadata:
+        metadata = self.config.metadata if self.config else {}
+        metadata.update({k: v for k, v in asdict(self).items() if k in METADATA_FIELDS and v is not None})
+        metadata['bytes'] = self.file_size
+        metadata['filename'] = f"{self.url_slug}.txt"
+        metadata['num_lines'] = self.num_lines
+        metadata['type'] = self._class_name()
+
+        if self.is_local_extract_file:
+            metadata['extracted_file'] = {
+                'explanation': 'manually extracted from one of the other files',
+                'extracted_from': self.url_slug + '.txt',
+                'url': extracted_file_url(self.filename),
+            }
+
+        return metadata
+
+    @property
+    def num_lines(self) -> int:
+        return len(self.lines)
+
+    @property
+    def summary_panel(self) -> Panel:
+        """Panelized description() with info_txt(), used in search results."""
+        sentences = [self.summary()]
+
+        if self.include_description_in_summary_panel:
+            sentences += [Text('', style='italic').append(h) for h in self.info]
+
+        return Panel(Group(*sentences), border_style=self._class_style(), expand=False)
+
+    @property
+    def timestamp_sort_key(self) -> tuple[datetime, str, int]:
+        """Sort by timestamp, file_id, then whether or not it's a duplicate file."""
+        if self.is_duplicate:
+            sort_id = self.config.duplicate_of_id
+            dupe_idx = 1
+        else:
+            sort_id = self.file_id
+            dupe_idx = 0
+
+        return (self.timestamp or FALLBACK_TIMESTAMP, sort_id, dupe_idx)
 
     def __post_init__(self):
         if not self.file_path.exists():
@@ -117,27 +231,6 @@ class Document:
         self._repair()
         self._extract_author()
         self.timestamp = self._extract_timestamp()
-
-    def config_description(self) -> str | None:
-        """Overloaded in OtherFile."""
-        if self.config and self.config.description:
-            return f"({self.config.description})"
-
-    def date_str(self) -> str | None:
-        return date_str(self.timestamp)
-
-    def duplicate_file_txt(self) -> Text:
-        """If the file is a dupe make a nice message to explain what file it's a duplicate of."""
-        if not self.is_duplicate():
-            raise RuntimeError(f"duplicate_file_txt() called on {self.summary()} but not a dupe! config:\n\n{self.config}")
-
-        txt = Text(f"Not showing ", style=INFO_STYLE).append(epstein_media_doc_link_txt(self.file_id, style='cyan'))
-        txt.append(f" because it's {DUPE_TYPE_STRS[self.config.dupe_type]} ")
-        return txt.append(epstein_media_doc_link_txt(self.config.duplicate_of_id, style='royal_blue1'))
-
-    def duplicate_of_id(self) -> str | None:
-        if self.config and self.config.duplicate_of_id:
-            return self.config.duplicate_of_id
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         return self.external_link(epsteinify_doc_url, style, link_txt)
@@ -169,47 +262,11 @@ class Document:
         base_txt = Text('', style='white' if include_alt_links else ARCHIVE_LINK_COLOR)
         return base_txt.append(join_texts(links))
 
-    def file_id_debug_info(self) -> str:
-        return ', '.join([f"{prop}={getattr(self, prop)}" for prop in ['file_id', 'filename', 'url_slug']])
-
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any additional info about the file."""
         panel = Panel(self.external_links_txt(include_alt_links=True), border_style=self._border_style(), expand=False)
-        padded_info = [Padding(sentence, INFO_PADDING) for sentence in self.info()]
+        padded_info = [Padding(sentence, INFO_PADDING) for sentence in self.info]
         return Group(*([panel] + padded_info))
-
-    def file_size(self) -> int:
-        return file_size(self.file_path)
-
-    def file_size_str(self, decimal_places: int | None = None) -> str:
-        return file_size_str(self.file_path, decimal_places)
-
-    def info(self) -> list[Text]:
-        """0 to 2 sentences containing the info_txt() as well as any configured description."""
-        return without_falsey([
-            self.info_txt(),
-            highlighter(Text(self.config_description(), style=INFO_STYLE)) if self.config_description() else None
-        ])
-
-    def info_txt(self) -> Text | None:
-        """Secondary info about this file (description recipients, etc). Overload in subclasses."""
-        return None
-
-    def is_attribution_uncertain(self) -> bool:
-        return bool(self.config and self.config.is_attribution_uncertain)
-
-    def is_duplicate(self) -> bool:
-        return bool(self.duplicate_of_id())
-
-    def is_empty(self) -> bool:
-        return len(self.text.strip()) < 20
-
-    def is_interesting(self) -> bool:
-        return bool(self.config and self.config.is_interesting)
-
-    def is_local_extract_file(self) -> bool:
-        """True if extracted from other file (identifiable from filename e.g. HOUSE_OVERSIGHT_012345_1.txt)."""
-        return is_local_extract_file(self.filename)
 
     def log(self, msg: str, level: int = logging.INFO):
         """Log with filename as a prefix."""
@@ -226,27 +283,8 @@ class Document:
         pattern = patternize(_pattern)
         return [MatchedLine(line, i) for i, line in enumerate(self.lines) if pattern.search(line)]
 
-    def metadata(self) -> Metadata:
-        metadata = self.config.metadata() if self.config else {}
-        metadata.update({k: v for k, v in asdict(self).items() if k in METADATA_FIELDS and v is not None})
-        metadata['bytes'] = self.file_size()
-        metadata['filename'] = f"{self.url_slug}.txt"
-        metadata['num_lines'] = self.num_lines()
-        metadata['type'] = self._class_name()
-
-        if self.is_local_extract_file():
-            metadata['extracted_file'] = {
-                'explanation': 'manually extracted from one of the other files',
-                'extracted_from': self.url_slug + '.txt',
-                'url': extracted_file_url(self.filename),
-            }
-
-        return metadata
-
-    def num_lines(self) -> int:
-        return len(self.lines)
-
     def raw_text(self) -> str:
+        """Reload the raw data from the underlying file and return it."""
         with open(self.file_path) as f:
             return f.read()
 
@@ -260,10 +298,6 @@ class Document:
 
         return text
 
-    def source_file_id(self) -> str:
-        """Strip off the _1, _2, etc. suffixes for extracted documents."""
-        return self.file_id[0:6]
-
     def summary(self) -> Text:
         """Summary of this file for logging. Brackets are left open for subclasses to add stuff."""
         txt = Text('').append(self._class_name(), style=self._class_style())
@@ -275,38 +309,19 @@ class Document:
             txt.append(f"{timestamp_str}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
 
         txt.append(' [').append(key_value_txt('size', Text(str(self.length), style='aquamarine1')))
-        txt.append(", ").append(key_value_txt('lines', self.num_lines()))
+        txt.append(", ").append(key_value_txt('lines', self.num_lines))
 
         if self.config and self.config.duplicate_of_id:
             txt.append(", ").append(key_value_txt('dupe_of', Text(self.config.duplicate_of_id, style='cyan dim')))
 
         return txt
 
-    def summary_panel(self) -> Panel:
-        """Panelized description() with info_txt(), used in search results."""
-        sentences = [self.summary()]
-
-        if self.include_description_in_summary_panel:
-            sentences += [Text('', style='italic').append(h) for h in self.info()]
-
-        return Panel(Group(*sentences), border_style=self._class_style(), expand=False)
-
-    def timestamp_sort_key(self) -> tuple[datetime, str, int]:
-        """Sort by timestamp, file_id, then whether or not it's a duplicate file."""
-        if self.is_duplicate():
-            sort_id = self.config.duplicate_of_id
-            dupe_idx = 1
-        else:
-            sort_id = self.file_id
-            dupe_idx = 0
-
-        return (self.timestamp or FALLBACK_TIMESTAMP, sort_id, dupe_idx)
-
     def top_lines(self, n: int = 10) -> str:
         """First n lines."""
         return '\n'.join(self.lines[0:n])[:MAX_TOP_LINES_LEN]
 
     def warn(self, msg: str) -> None:
+        """Print a warning message prefixed by info about this `Document`."""
         self.log(msg, level=logging.WARNING)
 
     def _border_style(self) -> str:
@@ -399,8 +414,8 @@ class Document:
             'count': str(file_count),
             'author_count': NA_TXT if is_author_na else str(author_count),
             'no_author_count': NA_TXT if is_author_na else str(file_count - author_count),
-            'uncertain_author_count': NA_TXT if is_author_na else str(len([f for f in files if f.is_attribution_uncertain()])),
-            'bytes': file_size_to_str(sum([f.file_size() for f in files])),
+            'uncertain_author_count': NA_TXT if is_author_na else str(len([f for f in files if f.is_attribution_uncertain])),
+            'bytes': file_size_to_str(sum([f.file_size for f in files])),
         }
 
     @classmethod
@@ -448,11 +463,11 @@ class Document:
 
     @staticmethod
     def sort_by_length(docs: Sequence['DocumentType']) -> list['DocumentType']:
-        return sorted(docs, key=lambda d: d.file_size(), reverse=True)
+        return sorted(docs, key=lambda d: d.file_size, reverse=True)
 
     @staticmethod
     def sort_by_timestamp(docs: Sequence['DocumentType']) -> list['DocumentType']:
-        return sorted(docs, key=lambda doc: doc.timestamp_sort_key())
+        return sorted(docs, key=lambda doc: doc.timestamp_sort_key)
 
     @staticmethod
     def uniquify(documents: Sequence['DocumentType']) -> Sequence['DocumentType']:
@@ -462,7 +477,7 @@ class Document:
 
     @staticmethod
     def without_dupes(docs: Sequence['DocumentType']) -> list['DocumentType']:
-        return [doc for doc in docs if not doc.is_duplicate()]
+        return [doc for doc in docs if not doc.is_duplicate]
 
 
 DocumentType = TypeVar('DocumentType', bound=Document)

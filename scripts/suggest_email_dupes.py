@@ -22,7 +22,7 @@ for email in EpsteinFiles.get_files().emails:
     if other_email.url_slug == email.url_slug:
         console.print(f"Skipping same url_slug for '{email.filename}'...", style='dim')
         continue
-    elif other_email.is_duplicate or email.is_duplicate():
+    elif other_email.is_duplicate or email.is_duplicate:
         console.print(f"Skipping already suppressed '{email.filename}'...", style='dim')
         continue
     elif email.file_id in OK_FILE_IDS:

@@ -66,8 +66,8 @@ def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile | Email]:
     doj_files = [Email(f.file_path) if document_cls(f) == Email else f for f in epstein_files.doj_files]
 
     for doj_file in Document.sort_by_timestamp(doj_files):
-        if doj_file.is_empty() or (isinstance(doj_file, DojFile) and doj_file.is_bad_ocr):
-            console.print(f"{doj_file.file_id}: single image/no text", style='dim')
+        if isinstance(doj_file, DojFile) and (doj_file.is_empty or doj_file.is_bad_ocr):
+            console.print(doj_file.image_with_no_text_msg(), style='dim')
             last_was_empty = True
             continue
 
@@ -89,7 +89,7 @@ def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile | Email]:
 
 def print_email_timeline(epstein_files: EpsteinFiles) -> None:
     """Print a table of all emails in chronological order."""
-    emails = Document.sort_by_timestamp([e for e in epstein_files.non_duplicate_emails() if not e.is_mailing_list()])
+    emails = Document.sort_by_timestamp([e for e in epstein_files.non_duplicate_emails() if not e.is_mailing_list])
     title = f'Table of All {len(emails):,} Non-Junk Emails in Chronological Order (actual emails below)'
     table = Email.build_emails_table(emails, title=title, show_length=True)
     console.print(Padding(table, (2, 0)))
@@ -104,7 +104,7 @@ def print_emailers_info(epstein_files: EpsteinFiles) -> None:
     """Print tbe summary table of everyone in the files to an image."""
     print_color_key()
     console.line()
-    all_emailers = sorted(epstein_files.emailers(), key=lambda person: person.sort_key())
+    all_emailers = sorted(epstein_files.emailers(), key=lambda person: person.sort_key)
     console.print(Person.emailer_info_table(all_emailers, show_epstein_total=True))
 
     if not args.build:
@@ -132,7 +132,7 @@ def print_emailers_info(epstein_files: EpsteinFiles) -> None:
 def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     """Returns emails that were printed (may contain dupes if printed for both author and recipient)."""
     print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
-    all_emailers = sorted(epstein_files.emailers(), key=lambda person: person.earliest_email_at())
+    all_emailers = sorted(epstein_files.emailers(), key=lambda person: person.earliest_email_at)
     all_emails = Person.emails_from_people(all_emailers)
     num_emails_printed_since_last_color_key = 0
     printed_emails: list[Email] = []
@@ -170,7 +170,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
 
     # Print other interesting emails
     printed_email_ids = [email.file_id for email in printed_emails]
-    extra_emails = [e for e in all_emails if e.is_interesting() and e.file_id not in printed_email_ids]
+    extra_emails = [e for e in all_emails if e.is_interesting and e.file_id not in printed_email_ids]
     logger.warning(f"Found {len(extra_emails)} extra_emails...")
 
     if len(extra_emails) > 0:
@@ -185,7 +185,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
         _verify_all_emails_were_printed(epstein_files, printed_emails)
 
     _print_email_device_signature_info(epstein_files)
-    fwded_articles = [e for e in printed_emails if e.config and e.is_fwded_article()]
+    fwded_articles = [e for e in printed_emails if e.config and e.is_fwded_article]
     log_msg = f"Rewrote {len(Email.rewritten_header_ids)} of {len(printed_emails)} email headers"
     logger.warning(f"  -> {log_msg}, {len(fwded_articles)} of the Emails printed were forwarded articles.")
     return printed_emails
@@ -202,7 +202,7 @@ def print_json_files(epstein_files: EpsteinFiles):
     else:
         for json_file in epstein_files.json_files:
             console.line(2)
-            console.print(json_file.summary_panel())
+            console.print(json_file.summary_panel)
             console.print_json(json_file.json_str(), indent=4, sort_keys=False)
 
 
@@ -233,9 +233,9 @@ def print_json_stats(epstein_files: EpsteinFiles) -> None:
 def print_other_files_section(epstein_files: EpsteinFiles) -> list[OtherFile]:
     """Returns the OtherFile objects that were interesting enough to print."""
     if args.uninteresting:
-        files = [f for f in epstein_files.other_files if not f.is_interesting()]
+        files = [f for f in epstein_files.other_files if not f.is_interesting]
     else:
-        files = [f for f in epstein_files.other_files if args.all_other_files or f.is_interesting()]
+        files = [f for f in epstein_files.other_files if args.all_other_files or f.is_interesting]
 
     title_pfx = '' if args.all_other_files else 'Selected '
     category_table = OtherFile.summary_table(files, title_pfx=title_pfx)

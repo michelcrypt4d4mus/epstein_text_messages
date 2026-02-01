@@ -26,13 +26,13 @@ def eva(epstein_files) -> Person:
 
 
 def test_info_str(anne_boyles, john_page, eva, sultan):
-    assert sultan.highlight_group() is not None
-    assert sultan.info_str() == 'chairman of ports in Dubai, CEO of DP World'
-    assert sultan.info_with_category() == 'mideast, chairman of ports in Dubai, CEO of DP World'
+    assert sultan.highlight_group is not None
+    assert sultan.info_str == 'chairman of ports in Dubai, CEO of DP World'
+    assert sultan.info_with_category == 'mideast, chairman of ports in Dubai, CEO of DP World'
 
-    assert john_page.highlight_group() is None
-    assert john_page.info_with_category() == ''
-    assert john_page.info_str() is None
+    assert john_page.highlight_group is None
+    assert john_page.info_with_category == ''
+    assert john_page.info_str is None
 
-    assert anne_boyles.category_txt().plain == QUESTION_MARKS
-    assert anne_boyles.info_txt().plain == QUESTION_MARKS
+    assert anne_boyles.category_txt.plain == QUESTION_MARKS
+    assert anne_boyles.info_txt.plain == QUESTION_MARKS

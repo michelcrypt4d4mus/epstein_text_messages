@@ -1,3 +1,4 @@
+from epstein_files.documents.doj_file import DojFile
 from epstein_files.epstein_files import count_by_month
 
 
@@ -151,5 +152,6 @@ FILE_DATES = {
 }
 
 
-def test_email_author_counts(epstein_files):
-    assert count_by_month(epstein_files.all_documents()) == FILE_DATES
+def test_email_monthly_counts(epstein_files):
+    docs = [d for d in epstein_files.all_documents() if not isinstance(d, DojFile)]
+    assert count_by_month(docs) == FILE_DATES

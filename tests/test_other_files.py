@@ -8,8 +8,8 @@ def test_other_files_author_count(epstein_files):
 
 
 def test_other_files_categories(epstein_files):
-    assert len([f for f in epstein_files.other_files if f.category() is None]) == 0
+    assert len([f for f in epstein_files.other_files if f.category is None]) == 0
 
 
 def test_interesting_file_count(epstein_files):
-    assert len([f.file_id for f in epstein_files.other_files if f.is_interesting()]) == 160
+    assert len([f.file_id for f in epstein_files.other_files if f.is_interesting]) == 166

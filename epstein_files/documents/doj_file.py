@@ -8,7 +8,7 @@ from typing import ClassVar
 
 from rich.align import Align
 from rich.columns import Columns
-from rich.console import Console, ConsoleOptions, Group, RenderResult
+from rich.console import Console, ConsoleOptions, Group, RenderableType, RenderResult
 from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
@@ -17,9 +17,9 @@ from epstein_files.documents.document import INFO_INDENT, INFO_PADDING
 from epstein_files.documents.other_file import Metadata, OtherFile
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, doj_2026_file_url
 from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP
-from epstein_files.util.doc_cfg import DocCfg, EmailCfg
+from epstein_files.util.doc_cfg import DocCfg
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import RAINBOW, highlighter, join_texts, link_text_obj, parenthesize
+from epstein_files.util.rich import RAINBOW, SKIPPED_FILE_MSG_PADDING, highlighter, join_texts, link_text_obj
 
 DATASET_ID_REGEX = re.compile(r"(?:epstein_dataset_|DataSet )(\d+)")
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
@@ -38,6 +38,8 @@ BAD_DOJ_FILE_IDS = [
     'EFTA00008527',
     'EFTA00008480',
     'EFTA00008497',
+    'EFTA00001031',
+    'EFTA00005495',
     'EFTA00002830',
     'EFTA00008496',
     'EFTA00008441',
@@ -88,45 +90,57 @@ NO_IMAGE_SUFFIX = """
 class DojFile(OtherFile):
     """
     Class for the files released by DOJ on 2026-01-30 with `EFTA000` prefix.
-    """
-
-    """
-    Base class for all Epstein Files documents.
 
     Attributes:
-        doj_2026_data_set (int): The ID of the DataSet the DOJ released this file in. Important for links.
+        doj_2026_dataset_id (int): The ID of the DataSet the DOJ released this file in. Important for links.
     """
     file_path: Path
-    doj_2026_data_set: int = field(init=False)
+    doj_2026_dataset_id: int = field(init=False)
 
     # For fancy coloring only
     border_style_rainbow_idx: ClassVar[int] = 0
 
     @property
-    def config(self) -> DocCfg | None:
-        return deepcopy(ALL_FILE_CONFIGS.get(self.file_id))
-
-    @property
     def is_bad_ocr(self) -> bool:
         return self.file_id in BAD_DOJ_FILE_IDS
+
+    @property
+    def is_empty(self) -> bool:
+        """Overloads superclass method."""
+        return len(self.text.strip().removesuffix(NO_IMAGE_SUFFIX)) < 20
+
+    @property
+    def timestamp_sort_key(self) -> tuple[datetime, str, int]:
+        """Overloads parent method."""
+        dupe_idx = 0
+        # TODO: Years of 2001 are often garbage pared from '1.6' etc.
+        sort_timestamp = self.timestamp or FALLBACK_TIMESTAMP
+        sort_timestamp = FALLBACK_TIMESTAMP if sort_timestamp.year <= 2001 else sort_timestamp
+        return (sort_timestamp, self.file_id, dupe_idx)
 
     def __post_init__(self):
         super().__post_init__()
 
         if (data_set_match := DATASET_ID_REGEX.search(str(self.file_path))):
-            self.doj_2026_data_set = int(data_set_match.group(1))
-            logger.info(f"Extracted data set number {self.doj_2026_data_set} for {self.url_slug}")
+            self.doj_2026_dataset_id = int(data_set_match.group(1))
+            logger.info(f"Extracted data set number {self.doj_2026_dataset_id} for {self.url_slug}")
+
+    def doj_link(self) -> Text:
+        """Link to this file on the DOJ site."""
+        return link_text_obj(doj_2026_file_url(self.doj_2026_dataset_id, self.url_slug), self.url_slug)
 
     def external_links_txt(self, style: str = '', include_alt_links: bool = False) -> Text:
         """Overloads superclass method."""
-        links = [link_text_obj(doj_2026_file_url(self.doj_2026_data_set, self.url_slug), self.url_slug)]
-        links = [links[0]] + [parenthesize(link) for link in links[1:]]
+        links = [self.doj_link()]
         base_txt = Text('', style='white' if include_alt_links else ARCHIVE_LINK_COLOR)
         return base_txt.append(join_texts(links))
 
-    def is_empty(self) -> bool:
-        """Overloads superclass method."""
-        return len(self.text.strip().removesuffix(NO_IMAGE_SUFFIX)) < 20
+    def image_with_no_text_msg(self) -> RenderableType:
+        """One line of linked text to show if this file doesn't seem to have any OCR text."""
+        return Padding(
+            Text('').append(self.doj_link()).append(f" is a single image with no text..."),
+            SKIPPED_FILE_MSG_PADDING
+        )
 
     def prep_for_printing(self) -> None:
         """Replace some fields and strip out some lines, but do it only before printing (don't store to pickled file)."""
@@ -139,14 +153,6 @@ class DojFile(OtherFile):
         if len(non_number_lines) != len(self.lines):
             logger.warning(f"{self.file_id}: Reduced line count from {len(self.lines)} to {len(non_number_lines)}")
             self._set_computed_fields(lines=non_number_lines)
-
-    def timestamp_sort_key(self) -> tuple[datetime, str, int]:
-        """Overloads parent method."""
-        dupe_idx = 0
-        # TODO: Years of 2001 are often garbage pared from '1.6' etc.
-        sort_timestamp = self.timestamp or FALLBACK_TIMESTAMP
-        sort_timestamp = FALLBACK_TIMESTAMP if sort_timestamp.year <= 2001 else sort_timestamp
-        return (sort_timestamp, self.file_id, dupe_idx)
 
     def _border_style(self) -> str:
         """Color emails from epstein to others with the color for the first recipient."""
