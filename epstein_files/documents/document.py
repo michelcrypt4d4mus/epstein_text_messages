@@ -13,6 +13,7 @@ from rich.panel import Panel
 from rich.text import Text
 from rich.table import Table
 
+from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
@@ -34,6 +35,8 @@ INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
 MAX_TOP_LINES_LEN = 4000  # Only for logging
 MIN_DOCUMENT_ID = 10477
+
+DOJ_DATASET_ID_REGEX = re.compile(r"(?:epstein_dataset_|DataSet )(\d+)")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
 MIN_TIMESTAMP = datetime(1991, 1, 1)
@@ -75,7 +78,8 @@ class Document:
     Attributes:
         file_path (Path): Local path to file
         author (Name): Who is responsible for the text in the file
-        config (DocCfg): Information about this fil
+        config (DocCfg): Preconfigured information about this file
+        doj_2026_dataset_id (int, optional): Only set for files that came from the DOJ website.
         file_id (str): 6 digit (or 8 digits if it's a local extract file) string ID
         filename (str): File's basename
         lines (str): Number of lines in the file after all the cleanup
@@ -87,6 +91,7 @@ class Document:
     # Optional fields
     author: Name = None
     config: EmailCfg | DocCfg | TextCfg | None = None
+    doj_2026_dataset_id: int | None = None
     file_id: str = field(init=False)
     filename: str = field(init=False)
     lines: list[str] = field(default_factory=list)
@@ -121,6 +126,14 @@ class Document:
     def duplicate_of_id(self) -> str | None:
         if self.config and self.config.duplicate_of_id:
             return self.config.duplicate_of_id
+
+    @property
+    def external_url(self) -> str:
+        """The primary external URL to use when linking to this document's source."""
+        if self.is_doj_file and self.doj_2026_dataset_id:
+            return doj_2026_file_url(self.doj_2026_dataset_id, self.url_slug)
+        else:
+            return epstein_media_doc_url(self.url_slug)
 
     @property
     def file_id_debug_info(self) -> str:
@@ -175,6 +188,11 @@ class Document:
     @property
     def length(self) -> int:
         return len(self.text)
+
+    @property
+    def local_path_and_url(self) -> Text:
+        """Text obj with local path and URL."""
+        return Text(f"{self.file_id} URL:       {self.external_url}\n{self.file_id} Local path: '{self.file_path}'")
 
     @property
     def metadata(self) -> Metadata:
@@ -239,9 +257,16 @@ class Document:
         self.config = self.config or deepcopy(ALL_FILE_CONFIGS.get(self.file_id))
         self.url_slug = self.url_slug or self.filename.split('.')[0]
 
-        if not self.text:
-            self._load_file()
+        # Extract the DOJ dataset ID from the path
+        if self.is_doj_file:
+            if (data_set_match := DOJ_DATASET_ID_REGEX.search(str(self.file_path))):
+                self.doj_2026_dataset_id = int(data_set_match.group(1))
+                logger.info(f"Extracted data set ID {self.doj_2026_dataset_id} for {self.url_slug}")
+            else:
+                self.warn(f"Couldn't find a data set ID in path '{self.file_path}'! Cannot create valid links.")
 
+        self.text = self.text or self._load_file()
+        self._set_computed_fields(text=self.text)
         self._repair()
         self._extract_author()
         self.timestamp = self._extract_timestamp()
@@ -268,7 +293,7 @@ class Document:
 
     def external_links_txt(self, style: str = '', include_alt_links: bool = False) -> Text:
         """Returns colored links to epstein.media and alternates in a Text object."""
-        links = [self.epstein_media_link(style=style)]
+        links = [link_text_obj(self.external_url, self.url_slug, style=style)]
 
         if include_alt_links:
             links.append(self.epsteinify_link(style=ALT_LINK_STYLE, link_txt=EPSTEINIFY))
@@ -356,7 +381,7 @@ class Document:
         """Should be implemented in subclasses."""
         pass
 
-    def _load_file(self) -> None:
+    def _load_file(self) -> str:
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
         text = self.raw_text()
         text = text[1:] if (len(text) > 0 and text[0] == '\ufeff') else text  # remove BOM
@@ -367,8 +392,7 @@ class Document:
             if not (line.startswith(HOUSE_OVERSIGHT) or line.startswith('EFTA'))
         ]
 
-        self.text = collapse_newlines('\n'.join(lines))
-        self.lines = self.text.split('\n')
+        return collapse_newlines('\n'.join(lines))
 
     def _repair(self) -> None:
         """Can optionally be overloaded in subclasses to further improve self.text."""
@@ -463,6 +487,11 @@ class Document:
 
         for f in tmpfiles:
             f.unlink()
+
+    @staticmethod
+    def is_email(doc: 'Document') -> bool:
+        search_area = doc.text[0:5000]  # Limit search area to avoid pointless scans of huge files
+        return isinstance(doc.config, EmailCfg) or bool(DETECT_EMAIL_REGEX.match(search_area) and doc.config is None)
 
     @staticmethod
     def known_author_count(docs: Sequence['Document']) -> int:
