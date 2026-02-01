@@ -50,7 +50,7 @@ class EpsteinFiles:
     imessage_logs: list[MessengerLog] = field(default_factory=list)
     json_files: list[JsonFile] = field(default_factory=list)
     other_files: list[OtherFile] = field(default_factory=list)
-    doj_2026_01_30_other_files: list[DojFile] = field(default_factory=list)
+    doj_files: list[DojFile] = field(default_factory=list)
     timer: Timer = field(default_factory=lambda: Timer())
     uninteresting_ccs: list[Name] = field(default_factory=list)
 
@@ -86,8 +86,8 @@ class EpsteinFiles:
         self.json_files = [doc for doc in self.other_files if isinstance(doc, JsonFile)]
 
         if DOJ_2026_01_30_DIR is not None:
-            self.doj_2026_01_30_other_files = Document.sort_by_id([DojFile(p) for p in DOJ_2026_01_30_DIR.glob('**/*.txt')])
-            logger.warning(f"Found {len(self.doj_2026_01_30_other_files)} DojFiles in '{DOJ_2026_01_30_DIR}'")
+            self.doj_files = Document.sort_by_id([DojFile(p) for p in DOJ_2026_01_30_DIR.glob('**/*.txt')])
+            logger.warning(f"Found {len(self.doj_files)} DojFiles in '{DOJ_2026_01_30_DIR}'")
 
         self._set_uninteresting_ccs()
         self._copy_duplicate_email_properties()
@@ -219,7 +219,7 @@ class EpsteinFiles:
 
     def for_ids(self, file_ids: str | list[str]) -> list[Document]:
         file_ids = listify(file_ids)
-        docs = [doc for doc in (list(self.all_documents()) + self.doj_2026_01_30_other_files) if doc.file_id in file_ids]
+        docs = [doc for doc in (list(self.all_documents()) + self.doj_files) if doc.file_id in file_ids]
 
         if len(docs) != len(file_ids):
             logger.warning(f"{len(file_ids)} file IDs provided but only {len(docs)} Epstein files found!")
@@ -351,6 +351,8 @@ def document_cls(doc: Document) -> Type[Document]:
         return Email
     elif MSG_REGEX.search(search_area):
         return MessengerLog
+    elif doc.file_id.startswith(EFTA_PREFIX):
+        return DojFile
     else:
         return OtherFile
 

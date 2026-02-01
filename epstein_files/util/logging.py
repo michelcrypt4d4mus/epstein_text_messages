@@ -16,6 +16,7 @@ FILENAME_STYLE = 'gray27'
 
 DOC_TYPE_STYLES = {
     DOCUMENT_CLASS: 'grey69',
+    DOJ_FILE_CLASS: 'magenta',
     EMAIL_CLASS: 'dark_orange3',
     JSON_FILE_CLASS: 'sandy_brown',
     MESSENGER_LOG_CLASS: 'deep_pink4',
@@ -35,7 +36,7 @@ LOG_LEVEL_ENV_VAR = 'LOG_LEVEL'
 class LogHighlighter(ReprHighlighter):
     highlights = ReprHighlighter.highlights + [
         *[fr"(?P<{doc_type}>{doc_type}(Cfg|s)?)" for doc_type in DOC_TYPE_STYLES.keys()],
-        "(?P<epstein_filename>" + FILE_NAME_REGEX.pattern + ')',
+        "(?P<epstein_filename>" + '|'.join([FILE_NAME_REGEX.pattern, DOJ_FILE_REGEX.pattern]) + ')',
     ]
 
 log_console = Console(
