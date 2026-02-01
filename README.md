@@ -13,6 +13,7 @@
 #### Installation
 1. Requires you have a local copy of the OCR text files from the House Oversight document release in a directory `/path/to/epstein/ocr_txt_files`. You can download those OCR text files from [the Congressional Google Drive folder](https://drive.google.com/drive/folders/1ldncvdqIf6miiskDp_EDuGSDAaI_fJx8) (make sure you grab both the `001/` and `002/` folders).
 1. Use `poetry install` for easiest time installing. `pip install epstein-files` should also work, though `pipx install epstein-files` is usually better.
+1. (Optional) If you want to work with the documents released by DOJ on January 30th 2026 you'll need to also download the PDF collections from [the DOJ site](https://www.justice.gov/epstein/doj-disclosures) (they're in the "Epstein Files Transparency Act" section) and OCR them or find another way to get the OCR text.
 
 
 #### Command Line Tools
@@ -22,7 +23,12 @@ You need to set the `EPSTEIN_DOCS_DIR` environment variable with the path to the
 EPSTEIN_DOCS_DIR=/path/to/epstein/ocr_txt_files epstein_generate --help
 ```
 
-If you want to work with the documents released by DOJ on January 30th 2026 you'll need to also set the `EPSTEIN_DOJ_2026_01_30_DOCS_DIR` env var to point at folders full of OCR extracted texts from the raw PDFs. If you have the PDFs but not the text files there's [a script](scripts/extract_doj_pdfs.py) that can help you take care of that.
+To work with the DOJ 2026-01 files you'll also need to set the `EPSTEIN_DOJ_2026_01_30_DOCS_DIR` env var to point at folders full of OCR extracted texts from the raw DOJ PDFs. If you have the PDFs but not the text files there's [a script](scripts/extract_doj_pdfs.py) that can help you take care of that.
+
+```bash
+EPSTEIN_DOCS_DIR=/path/to/epstein/ocr_txt_files EPSTEIN_DOJ_2026_01_30_DOCS_DIR=/path/to/doj/files epstein_generate --help
+```
+
 
 All the tools that come with the package require `EPSTEIN_DOCS_DIR` to be set. These are the available tools:
 
