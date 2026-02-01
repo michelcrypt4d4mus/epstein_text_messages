@@ -19,11 +19,12 @@ from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP
 from epstein_files.util.data import collapse_newlines, date_str, patternize, remove_zero_time, without_falsey
 from epstein_files.util.doc_cfg import DUPE_TYPE_STRS, EmailCfg, DocCfg, Metadata, TextCfg
-from epstein_files.util.env import DOCS_DIR, args
-from epstein_files.util.file_helper import extract_file_id, file_size, file_size_str, file_size_to_str, is_local_extract_file
+from epstein_files.util.env import DOCS_DIR
+from epstein_files.util.file_helper import (extract_file_id, file_size, file_size_str, file_size_to_str,
+     is_local_extract_file)
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
-from epstein_files.util.rich import (INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_cols_to_table, build_table, console,
-     highlighter, join_texts, key_value_txt, link_text_obj, parenthesize)
+from epstein_files.util.rich import (INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_cols_to_table, build_table,
+     console, highlighter, join_texts, key_value_txt, link_text_obj, parenthesize)
 from epstein_files.util.search_result import MatchedLine
 
 ALT_LINK_STYLE = 'white dim'
@@ -178,7 +179,7 @@ class Document:
         metadata['bytes'] = self.file_size
         metadata['filename'] = f"{self.url_slug}.txt"
         metadata['num_lines'] = self.num_lines
-        metadata['type'] = self._class_name()
+        metadata['type'] = self._class_name
 
         if self.is_local_extract_file:
             metadata['extracted_file'] = {
@@ -201,19 +202,28 @@ class Document:
         if self.include_description_in_summary_panel:
             sentences += [Text('', style='italic').append(h) for h in self.info]
 
-        return Panel(Group(*sentences), border_style=self._class_style(), expand=False)
+        return Panel(Group(*sentences), border_style=self._class_style, expand=False)
 
     @property
     def timestamp_sort_key(self) -> tuple[datetime, str, int]:
         """Sort by timestamp, file_id, then whether or not it's a duplicate file."""
-        if self.is_duplicate:
-            sort_id = self.config.duplicate_of_id
+        if self.duplicate_of_id:
+            sort_id = self.duplicate_of_id
             dupe_idx = 1
         else:
             sort_id = self.file_id
             dupe_idx = 0
 
         return (self.timestamp or FALLBACK_TIMESTAMP, sort_id, dupe_idx)
+
+    @property
+    def _class_name(self) -> str:
+        """Annoying workaround for circular import issues and isinstance()."""
+        return str(type(self).__name__)
+
+    @property
+    def _class_style(self) -> str:
+        return DOC_TYPE_STYLES[self._class_name]
 
     def __post_init__(self):
         if not self.file_path.exists():
@@ -255,7 +265,7 @@ class Document:
             links.append(self.epsteinify_link(style=ALT_LINK_STYLE, link_txt=EPSTEINIFY))
             links.append(self.epstein_web_link(style=ALT_LINK_STYLE, link_txt=EPSTEIN_WEB))
 
-            if self._class_name() == 'Email':
+            if self._class_name == 'Email':
                 links.append(self.rollcall_link(style=ALT_LINK_STYLE, link_txt=ROLLCALL))
 
         links = [links[0]] + [parenthesize(link) for link in links[1:]]
@@ -300,7 +310,7 @@ class Document:
 
     def summary(self) -> Text:
         """Summary of this file for logging. Brackets are left open for subclasses to add stuff."""
-        txt = Text('').append(self._class_name(), style=self._class_style())
+        txt = Text('').append(self._class_name, style=self._class_style)
         txt.append(f" {self.file_path.stem}", style=FILENAME_STYLE)
 
         if self.timestamp:
@@ -327,13 +337,6 @@ class Document:
     def _border_style(self) -> str:
         """Should be overloaded in subclasses."""
         return 'white'
-
-    def _class_name(self) -> str:
-        """Annoying workaround for circular import issues and isinstance()."""
-        return str(type(self).__name__)
-
-    def _class_style(self) -> str:
-        return DOC_TYPE_STYLES[self._class_name()]
 
     def _extract_author(self) -> None:
         """Get author from config. Extended in Email subclass to also check headers."""
