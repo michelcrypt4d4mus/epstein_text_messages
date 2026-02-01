@@ -208,7 +208,6 @@ class OtherFile(Document):
             return timestamps[0]  # Most recent timestamp appearing in text is usually the closest
 
     def _log_extracted_timestamps_info(self, timestamps: list[datetime]) -> None:
-        logger.warning(f"_log_extracted_timestamps_info()")
         num_days_spanned = days_between(timestamps[-1], timestamps[0])
         timestamps_log_msg = f"Extracted {len(timestamps)} timestamps spanning {num_days_spanned} days{TIMESTAMP_LOG_INDENT}"
         timestamps_log_msg += TIMESTAMP_LOG_INDENT.join([str(dt) for dt in timestamps])

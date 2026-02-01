@@ -118,8 +118,6 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'AVG°': 'AVGO',
     'Saw Matt C with DTF at golf': 'Saw Matt C with DJT at golf',
     re.compile(r"[i. ]*Privileged[- ]*Redacted[i. ]*"): '<PRIVILEGED - REDACTED>',
-    # DOJ file specific
-    re.compile(fr"({FIELDS_COLON_PATTERN}.*\n)\nSubject:", re.MULTILINE): r'\1Subject:',
 }
 
 EMAIL_SIGNATURE_REGEXES = {
@@ -345,7 +343,9 @@ LINE_REPAIR_MERGES = {
     '033575': [[2, 4]],
     '033576': [[3]],
     '033583': [[2]],
-    'EFTA00039689': [[5]],
+
+    # Note DOJ file line adjustments happen *after* DojFile._repair() is called
+    'EFTA00039689': [[4]],
 }
 
 
@@ -676,7 +676,7 @@ class Email(Communication):
         self.log_top_lines(num_lines, msg=f'after removal of line {idx}')
 
     def _repair(self) -> None:
-        """Repair particularly janky files."""
+        """Repair particularly janky files. Note that OCR_REPAIRS are applied *after* other line adjustments."""
         if BAD_FIRST_LINE_REGEX.match(self.lines[0]):
             self._set_computed_fields(lines=self.lines[1:])
 
