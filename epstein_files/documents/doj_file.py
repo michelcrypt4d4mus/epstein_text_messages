@@ -1,14 +1,10 @@
-from copy import deepcopy
-import logging
 import re
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from typing import ClassVar, Self
 
-from rich.align import Align
-from rich.columns import Columns
-from rich.console import Console, ConsoleOptions, Group, RenderableType, RenderResult
+from rich.console import Console, ConsoleOptions, RenderableType, RenderResult
 from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
@@ -21,7 +17,7 @@ from epstein_files.util.constant.urls import doj_2026_file_url
 from epstein_files.util.constants import FALLBACK_TIMESTAMP
 from epstein_files.util.data import remove_zero_time
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import RAINBOW, SKIPPED_FILE_MSG_PADDING, highlighter, join_texts, link_text_obj
+from epstein_files.util.rich import RAINBOW, SKIPPED_FILE_MSG_PADDING, highlighter, link_text_obj
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTALL)
@@ -158,14 +154,6 @@ class DojFile(OtherFile):
         style = RAINBOW[self.border_style_rainbow_idx % len(RAINBOW)]
         type(self).border_style_rainbow_idx += 1
         return style
-
-    def _remove_lines_that_are_just_numebrs(self) -> None:
-        """No longer used because the PDF OCR extraction was improved to get rid of most of these lines from legal filings."""
-        non_number_lines = [line for line in self.lines if not IGNORE_LINE_REGEX.match(line)]
-
-        if len(non_number_lines) != len(self.lines):
-            logger.warning(f"{self.file_id}: Reduced line count from {len(self.lines)} to {len(non_number_lines)}")
-            self._set_computed_fields(lines=non_number_lines)
 
     def _repair(self) -> None:
         if self.file_id == 'EFTA00006770':
