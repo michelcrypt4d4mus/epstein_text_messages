@@ -1699,6 +1699,11 @@ OTHER_FILES_PROPERTY = [
         description=f"{VIRGIN_ISLANDS} property deal pitch deck, building will be leased to the U.S. govt GSA",
         date='2014-06-01',
     ),
+
+    # DOJ files
+    DocCfg(id='EFTA00001884', date='2019-03-14', description='photo of letter from Virgin Islands DOJ to Epstein'),
+    DocCfg(id='EFTA00005783', date='2019-08-29', description='heavily redacted handwritten note and 30+ completely blacked out redacted pages'),
+
 ]
 
 OTHER_FILES_REPUTATION = [

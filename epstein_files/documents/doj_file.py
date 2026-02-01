@@ -17,6 +17,7 @@ from epstein_files.documents.document import INFO_INDENT, INFO_PADDING
 from epstein_files.documents.other_file import Metadata, OtherFile
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, doj_2026_file_url
 from epstein_files.util.constants import FALLBACK_TIMESTAMP
+from epstein_files.util.data import remove_zero_time
 from epstein_files.util.doc_cfg import DocCfg
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import RAINBOW, SKIPPED_FILE_MSG_PADDING, highlighter, join_texts, link_text_obj
@@ -189,9 +190,15 @@ class DojFile(OtherFile):
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         info_panel = self.file_info_panel()
-        timestamp_txt = Text(f'(inferred timestamp: ', style='dim').append(str(self.timestamp)).append(')')
-
+        timestamp_str = f'(inferred timestamp: {remove_zero_time(self.timestamp)})' if self.timestamp else ''
         yield info_panel
-        yield Padding(timestamp_txt, INFO_PADDING)
-        text_panel = Panel(highlighter(self.text), border_style=info_panel._renderables[0].border_style, expand=False)
+
+        text_panel = Panel(
+            highlighter(self.text),
+            border_style=info_panel._renderables[0].border_style,
+            expand=False,
+            title=timestamp_str if timestamp_str else None,
+            title_align='left',
+        )
+
         yield Padding(text_panel, (0, 0, 1, INFO_INDENT))
