@@ -177,6 +177,9 @@ ZUBAIR_KHAN = 'Zubair Khan'
 
 UNKNOWN = '(unknown)'
 
+# DOJ files emails
+CHRISTOPHER_DILORIO = 'Christopher Dilorio'
+
 # No communications but name is in the files
 BILL_GATES = 'Bill Gates'
 DONALD_TRUMP = 'Donald Trump'
