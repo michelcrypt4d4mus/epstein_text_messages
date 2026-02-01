@@ -108,28 +108,12 @@ class OtherFile(Document):
     def category_txt(self) -> Text | None:
         return styled_category(self.category)
 
-    def __post_init__(self):
-        super().__post_init__()
-
-        if self.config is None and VI_DAILY_NEWS_REGEX.search(self.text):
-            self.log(f"Creating synthetic config for VI Daily News article...")
-            self.config = DocCfg(id=self.file_id, author=VI_DAILY_NEWS, category=ARTICLE, description='article')
-
-    def highlighted_preview_text(self) -> Text:
-        try:
-            return highlighter(escape(self.preview_text()))
-        except Exception as e:
-            logger.error(f"Failed to apply markup in string '{escape_single_quotes(self.preview_text())}'\n"
-                         f"Original string: '{escape_single_quotes(self.preview_text())}'\n"
-                         f"File: '{self.filename}'\n")
-
-            return Text(escape(self.preview_text()))
-
+    @property
     def is_interesting(self) -> bool:
         """Overloaded. False for lame prefixes, duplicates, and other boring files."""
-        info_sentences = self.info()
+        info_sentences = self.info
 
-        if self.is_duplicate():
+        if self.is_duplicate:
             return False
         elif len(info_sentences) == 0:
             return True
@@ -149,14 +133,32 @@ class OtherFile(Document):
 
         return True
 
+    @property
     def metadata(self) -> Metadata:
-        metadata = super().metadata()
-        metadata['is_interesting'] = self.is_interesting()
+        metadata = super().metadata
+        metadata['is_interesting'] = self.is_interesting
 
         if self.was_timestamp_extracted:
             metadata['was_timestamp_extracted'] = self.was_timestamp_extracted
 
         return metadata
+
+    def __post_init__(self):
+        super().__post_init__()
+
+        if self.config is None and VI_DAILY_NEWS_REGEX.search(self.text):
+            self.log(f"Creating synthetic config for VI Daily News article...")
+            self.config = DocCfg(id=self.file_id, author=VI_DAILY_NEWS, category=ARTICLE, description='article')
+
+    def highlighted_preview_text(self) -> Text:
+        try:
+            return highlighter(escape(self.preview_text()))
+        except Exception as e:
+            logger.error(f"Failed to apply markup in string '{escape_single_quotes(self.preview_text())}'\n"
+                         f"Original string: '{escape_single_quotes(self.preview_text())}'\n"
+                         f"File: '{self.filename}'\n")
+
+            return Text(escape(self.preview_text()))
 
     def preview_text(self) -> str:
         return WHITESPACE_REGEX.sub(' ', self.text)[0:PREVIEW_CHARS]
@@ -169,7 +171,7 @@ class OtherFile(Document):
         """Return configured timestamp or value extracted by scanning text with datefinder."""
         if self.config and self.config.timestamp():
             return self.config.timestamp()
-        elif self.config and any([s in (self.config_description() or '') for s in SKIP_TIMESTAMP_EXTRACT]):
+        elif self.config and any([s in (self.config_description or '') for s in SKIP_TIMESTAMP_EXTRACT]):
             return None
 
         timestamps: list[datetime] = []
@@ -190,7 +192,7 @@ class OtherFile(Document):
                 self.warn(f"Error while iterating through datefinder.find_dates(): {e}")
 
         if len(timestamps) == 0:
-            if not (self.is_duplicate() or VAST_HOUSE in self.text):
+            if not (self.is_duplicate or VAST_HOUSE in self.text):
                 self.log_top_lines(15, msg=f"No timestamps found")
 
             return None
@@ -225,20 +227,20 @@ class OtherFile(Document):
 
         for file in files:
             link_and_info = [file.external_links_txt()]
-            date_str = file.date_str()
+            date_str = file.date_str
 
-            if file.is_duplicate():
-                preview_text = file.duplicate_file_txt()
+            if file.is_duplicate:
+                preview_text = file.duplicate_file_txt
                 row_style = ' dim'
             else:
-                link_and_info += file.info()
+                link_and_info += file.info
                 preview_text = file.highlighted_preview_text()
                 row_style = ''
 
             table.add_row(
                 Group(*link_and_info),
                 Text(date_str, style=TIMESTAMP_STYLE) if date_str else QUESTION_MARKS_TXT,
-                file.file_size_str(),
+                file.file_size_str,
                 file.category_txt,
                 preview_text,
                 style=row_style

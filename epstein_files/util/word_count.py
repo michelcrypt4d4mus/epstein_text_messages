@@ -197,18 +197,18 @@ def write_word_counts_html() -> None:
     email_subjects: set[str] = set()
     word_count = WordCount()
     # Remove dupes, junk mail, and fwded articles from emails
-    emails = [e for e in epstein_files.non_duplicate_emails() if e.is_word_count_worthy()]
+    emails = [e for e in epstein_files.non_duplicate_emails() if e.is_word_count_worthy]
 
     for email in emails:
         if args.names and email.author not in args.names:
             continue
 
-        logger.info(f"Counting words in {email}\n  [SUBJECT] {email.subject()}")
+        logger.info(f"Counting words in {email}\n  [SUBJECT] {email.subject}")
         lines = email.actual_text.split('\n')
 
-        if email.subject() not in email_subjects and f'Re: {email.subject()}' not in email_subjects:
-            email_subjects.add(email.subject())
-            lines.append(email.subject())
+        if email.subject not in email_subjects and f'Re: {email.subject}' not in email_subjects:
+            email_subjects.add(email.subject)
+            lines.append(email.subject)
 
         for i, line in enumerate(lines):
             if HTML_REGEX.search(line):

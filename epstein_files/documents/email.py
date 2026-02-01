@@ -371,12 +371,73 @@ class Email(Communication):
     # For logging how many headers we prettified while printing, kind of janky
     rewritten_header_ids: ClassVar[set[str]] = set([])
 
+    @property
+    def attachments(self) -> list[str]:
+        """Returns the string in the header."""
+        return (self.header.attachments or '').split(';')
+
+    @property
+    def info_txt(self) -> Text:
+        email_type = 'fwded article' if self.is_fwded_article else 'email'
+        txt = Text(f"OCR text of {email_type} from ", style='grey46').append(self.author_txt)
+
+        if self.config and self.config.is_attribution_uncertain:
+            txt.append(f" {QUESTION_MARKS}", style=self.author_style)
+
+        txt.append(' to ').append(self.recipients_txt())
+        return txt.append(highlighter(f" probably sent at {self.timestamp}"))
+
+    @property
+    def is_fwded_article(self) -> bool:
+        if self.config is None:
+            return False
+        elif self.config.fwded_text_after:
+            return self.config.is_fwded_article is not False
+        else:
+            return bool(self.config.is_fwded_article)
+
+    @property
+    def is_junk_mail(self) -> bool:
+        return self.author in JUNK_EMAILERS
+
+    @property
+    def is_mailing_list(self) -> bool:
+        return self.author in MAILING_LISTS or self.is_junk_mail
+
+    @property
+    def is_note_to_self(self) -> bool:
+        return self.recipients == [self.author]
+
+    @property
+    def is_word_count_worthy(self) -> bool:
+        if self.is_fwded_article:
+            return bool(self.config.fwded_text_after) or len(self.actual_text) < 150
+        else:
+            return not self.is_mailing_list
+
+    @property
+    def metadata(self) -> Metadata:
+        local_metadata = asdict(self)
+        local_metadata['is_junk_mail'] = self.is_junk_mail
+        local_metadata['is_mailing_list'] = self.is_junk_mail
+        local_metadata['subject'] = self.subject or None
+        metadata = super().metadata
+        metadata.update({k: v for k, v in local_metadata.items() if v and k in METADATA_FIELDS})
+        return metadata
+
+    @property
+    def subject(self) -> str:
+        if self.config and self.config.subject:
+            return self.config.subject
+        else:
+            return self.header.subject or ''
+
     def __post_init__(self):
         self.filename = self.file_path.name
         self.file_id = extract_file_id(self.filename)
 
         # Special handling for copying properties out of the config for the document this one was extracted from
-        if self.is_local_extract_file():
+        if self.is_local_extract_file:
             self.url_slug = LOCAL_EXTRACT_REGEX.sub('', file_stem_for_id(self.file_id))
             extracted_from_doc_id = self.url_slug.split('_')[-1]
 
@@ -392,11 +453,11 @@ class Email(Communication):
                 self.recipients.extend(self._extract_emailer_names(recipient))
 
             # Assume mailing list emails are to Epstein
-            if self.author in BCC_LISTS and (self.is_note_to_self() or not self.recipients):
+            if self.author in BCC_LISTS and (self.is_note_to_self or not self.recipients):
                 self.recipients = [JEFFREY_EPSTEIN]
 
         # Remove self CCs but preserve self emails
-        if not self.is_note_to_self():
+        if not self.is_note_to_self:
             self.recipients = [r for r in self.recipients if r != self.author]
 
         self.recipients = sorted(list(set(self.recipients)), key=lambda r: r or UNKNOWN)
@@ -404,54 +465,8 @@ class Email(Communication):
         self.actual_text = self._actual_text()
         self.sent_from_device = self._sent_from_device()
 
-    def attachments(self) -> list[str]:
-        """Returns the string in the header."""
-        return (self.header.attachments or '').split(';')
-
-    def info_txt(self) -> Text:
-        email_type = 'fwded article' if self.is_fwded_article() else 'email'
-        txt = Text(f"OCR text of {email_type} from ", style='grey46').append(self.author_txt())
-
-        if self.config and self.config.is_attribution_uncertain:
-            txt.append(f" {QUESTION_MARKS}", style=self.author_style())
-
-        txt.append(' to ').append(self.recipients_txt())
-        return txt.append(highlighter(f" probably sent at {self.timestamp}"))
-
-    def is_fwded_article(self) -> bool:
-        if self.config is None:
-            return False
-        elif self.config.fwded_text_after:
-            return self.config.is_fwded_article is not False
-        else:
-            return bool(self.config.is_fwded_article)
-
-    def is_junk_mail(self) -> bool:
-        return self.author in JUNK_EMAILERS
-
-    def is_mailing_list(self) -> bool:
-        return self.author in MAILING_LISTS or self.is_junk_mail()
-
-    def is_note_to_self(self) -> bool:
-        return self.recipients == [self.author]
-
     def is_from_or_to(self, name: str) -> bool:
         return name in [self.author] + self.recipients
-
-    def is_word_count_worthy(self) -> bool:
-        if self.is_fwded_article():
-            return bool(self.config.fwded_text_after) or len(self.actual_text) < 150
-        else:
-            return not self.is_mailing_list()
-
-    def metadata(self) -> Metadata:
-        local_metadata = asdict(self)
-        local_metadata['is_junk_mail'] = self.is_junk_mail()
-        local_metadata['is_mailing_list'] = self.is_junk_mail()
-        local_metadata['subject'] = self.subject() or None
-        metadata = super().metadata()
-        metadata.update({k: v for k, v in local_metadata.items() if v and k in METADATA_FIELDS})
-        return metadata
 
     def recipients_txt(self, max_full_names: int = 2) -> Text:
         """Text object with comma separated colored versions of all recipients."""
@@ -462,12 +477,6 @@ class Email(Communication):
             Text(r if len(recipients) <= max_full_names else extract_last_name(r), style=get_style_for_name(r))
             for r in recipients
         ], join=', ')
-
-    def subject(self) -> str:
-        if self.config and self.config.subject:
-            return self.config.subject
-        else:
-            return self.header.subject or ''
 
     def summary(self) -> Text:
         """One line summary mostly for logging."""
@@ -522,7 +531,7 @@ class Email(Communication):
         if self.author == JEFFREY_EPSTEIN and len(self.recipients) > 0:
             style = get_style_for_name(self.recipients[0])
         else:
-            style = self.author_style()
+            style = self.author_style
 
         return style.replace('bold', '').strip()
 
@@ -603,8 +612,8 @@ class Email(Communication):
 
         no_timestamp_msg = f"No timestamp found in '{self.file_path.name}'"
 
-        if self.is_duplicate():
-            logger.warning(f"{no_timestamp_msg} but timestamp should be copied from {self.duplicate_of_id()}")
+        if self.is_duplicate:
+            logger.warning(f"{no_timestamp_msg} but timestamp should be copied from {self.duplicate_of_id}")
         else:
             raise RuntimeError(f"{no_timestamp_msg}, top lines:\n" + '\n'.join(self.lines[0:MAX_NUM_HEADER_LINES + 10]))
 
@@ -783,11 +792,11 @@ class Email(Communication):
             num_chars = args.truncate
         elif self.config and self.config.truncate_to is not None:
             num_chars = len(self.text) if self.config.truncate_to == NO_TRUNCATE else self.config.truncate_to
-        elif self.is_interesting():
+        elif self.is_interesting:
             num_chars = len(self.text)
         elif self.author in TRUNCATE_EMAILS_FROM \
                 or any([self.is_from_or_to(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \
-                or self.is_fwded_article() \
+                or self.is_fwded_article \
                 or includes_truncate_term:
             num_chars = min(quote_cutoff or MAX_CHARS_TO_PRINT, TRUNCATED_CHARS)
         else:
@@ -807,18 +816,18 @@ class Email(Communication):
                 else:
                     num_chars = quote_cutoff
             else:
-                num_chars = min(self.file_size(), MAX_CHARS_TO_PRINT)
+                num_chars = min(self.file_size, MAX_CHARS_TO_PRINT)
 
             # Always print whole email for 1st email for user
-            if self._is_first_for_user and num_chars < self.file_size() and not self.is_duplicate():
+            if self._is_first_for_user and num_chars < self.file_size and not self.is_duplicate:
                 logger.info(f"{self} Overriding cutoff {num_chars} for first email")
-                num_chars = self.file_size()
+                num_chars = self.file_size
 
         log_args = {
             'num_chars': num_chars,
             '_is_first_for_user': self._is_first_for_user,
             'author_truncate': self.author in TRUNCATE_EMAILS_FROM,
-            'is_fwded_article': self.is_fwded_article(),
+            'is_fwded_article': self.is_fwded_article,
             'is_quote_cutoff': quote_cutoff == num_chars,
             'includes_truncate_term': json.dumps(includes_truncate_term) if includes_truncate_term else None,
             'quote_cutoff': quote_cutoff,
@@ -838,7 +847,7 @@ class Email(Communication):
         # Truncate long emails but leave a note explaining what happened w/link to source document
         if len(text) > num_chars:
             text = text[0:num_chars]
-            doc_link_markup = epstein_media_doc_link_markup(self.url_slug, self.author_style())
+            doc_link_markup = epstein_media_doc_link_markup(self.url_slug, self.author_style)
             trim_note = f"<...trimmed to {num_chars:,} characters of {self.length:,}, read the rest at {doc_link_markup}...>"
             trim_footer_txt = Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
 
@@ -914,11 +923,11 @@ class Email(Communication):
 
         for email in emails:
             fields = [
-                email.epstein_media_link(link_txt=email.timestamp_without_seconds(), style=link_style),
-                email.author_txt(),
+                email.epstein_media_link(link_txt=email.timestamp_without_seconds, style=link_style),
+                email.author_txt,
                 email.recipients_txt(max_full_names=1),
                 f"{email.length}",
-                email.subject(),
+                email.subject,
             ]
 
             if not show_length:

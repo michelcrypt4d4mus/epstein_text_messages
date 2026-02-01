@@ -32,6 +32,20 @@ class JsonFile(OtherFile):
     def category(self) -> str:
         return JSON
 
+    @property
+    def is_interesting(self):
+        return False
+
+    @property
+    def info_txt(self) -> Text | None:
+        return Text(DESCRIPTION, style=INFO_STYLE)
+
+    @property
+    def metadata(self) -> Metadata:
+        metadata = super().metadata
+        metadata['description'] = DESCRIPTION
+        return metadata
+
     def __post_init__(self):
         super().__post_init__()
 
@@ -40,20 +54,9 @@ class JsonFile(OtherFile):
 
         self._set_computed_fields(text=self.json_str())
 
-    def info_txt(self) -> Text | None:
-        return Text(DESCRIPTION, style=INFO_STYLE)
-
-    def is_interesting(self):
-        return False
-
     def json_data(self) -> object:
         with open(self.file_path, encoding='utf-8-sig') as f:
             return json.load(f)
-
-    def metadata(self) -> Metadata:
-        metadata = super().metadata()
-        metadata['description'] = DESCRIPTION
-        return metadata
 
     def json_str(self) -> str:
         return json.dumps(self.json_data(), indent=4)
