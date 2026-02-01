@@ -5,3 +5,4 @@
 5. Identify dupes in the DOJ files
 6. Reformat `DojFile` objects to remove the box around them (saves a lot of whitespace in the HTML)
 7. Identify and attribute redacted emails in the DOJ files
+8. `EFTA00040144`, `EFTA00040105` are email but not recognized as such
