@@ -24,8 +24,17 @@ if not DOCS_DIR_ENV:
 elif not DOCS_DIR.exists():
     exit_with_error(f"{EPSTEIN_DOCS_DIR_ENV_VAR_NAME}='{DOCS_DIR}' does not exist!\n")
 
-DOJ_2026_01_30_DIR_ENV_VAR_NAME = 'DOJ_2026_01_30_DIR'
-DOJ_2026_01_30_DIR = Path(environ.get(DOJ_2026_01_30_DIR_ENV_VAR_NAME) or '').resolve()
+DOJ_2026_01_30_DIR_ENV_VAR_NAME = 'EPSTEIN_DOJ_2026_01_30_DOCS_DIR'
+DOJ_2026_01_30_DIR_ENV = environ.get(DOJ_2026_01_30_DIR_ENV_VAR_NAME)
+
+if DOJ_2026_01_30_DIR_ENV:
+    DOJ_2026_01_30_DIR = Path(DOJ_2026_01_30_DIR_ENV).resolve()
+    DOJ_2026_01_30_EXTRACTED_TEXT_DIR = DOJ_2026_01_30_DIR.joinpath('extracted_text')
+else:
+    DOJ_2026_01_30_DIR = None
+    DOJ_2026_01_30_EXTRACTED_TEXT_DIR = None
+    logger.warning(f"{DOJ_2026_01_30_DIR_ENV_VAR_NAME} env var not set, not scanning for Jan. 2026 DOJ files")
+
 
 is_env_var_set = lambda s: len(environ.get(s) or '') > 0
 is_output_arg = lambda arg: any([arg.startswith(pfx) for pfx in ['colors_only', 'json', 'make_clean', 'output']])
@@ -45,7 +54,7 @@ output.add_argument('--email-timeline', action='store_true', help='print a table
 output.add_argument('--emailers-info', '-ei', action='store_true', help='write a .png of the eeailers info table')
 output.add_argument('--json-files', action='store_true', help='pretty print all the raw JSON data files in the collection and exit')
 output.add_argument('--json-metadata', action='store_true', help='dump JSON metadata for all files and exit')
-parser.add_argument('--output-doj2026-files', action='store_true', help='print the files from 2026-01-30')
+output.add_argument('--output-doj-files', '-od', action='store_true', help='generate the DOJ files from 2026-01-30')
 output.add_argument('--output-emails', '-oe', action='store_true', help='generate emails section')
 output.add_argument('--output-other', '-oo', action='store_true', help='generate other files section')
 output.add_argument('--output-texts', '-ot', action='store_true', help='generate text messages section')
@@ -105,7 +114,7 @@ if is_html_script:
             args.build = ALL_EMAILS_PATH
         elif args.email_timeline:
             args.build = CHRONOLOGICAL_EMAILS_PATH
-        elif args.output_doj2026_files:
+        elif args.output_doj_files:
             args.build = DOJ_2026_HTML_PATH
         else:
             args.build = TEXT_MSGS_HTML_PATH

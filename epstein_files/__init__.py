@@ -25,61 +25,13 @@ from epstein_files.util.data import flatten
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import coerce_file_path, extract_file_id
 from epstein_files.util.logging import exit_with_error, logger
-from epstein_files.util.output import (print_emails_section, print_json_files, print_json_stats,
+from epstein_files.util.output import (print_doj_files, print_emails_section, print_json_files, print_json_stats,
      print_other_files_section, print_text_messages_section, print_email_timeline, print_emailers_info,
      print_json_metadata, write_urls)
 from epstein_files.util.rich import (build_highlighter, console, highlighter, print_color_key, print_json,
      print_title_page_header, print_title_page_tables, print_subtitle_panel, write_html)
 from epstein_files.util.timer import Timer
 from epstein_files.util.word_count import write_word_counts_html
-
-IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
-
-BAD_DOJ_FILE_IDS = [
-    'EFTA00008511',
-    'EFTA00008503',
-    'EFTA00008501',
-    'EFTA00008500',
-    'EFTA00008514',
-    'EFTA00008410',
-    'EFTA00008411',
-    'EFTA00008519',
-    'EFTA00008493',
-    'EFTA00008527',
-    'EFTA00008480',
-    'EFTA00008497',
-    'EFTA00008496',
-    'EFTA00008441',
-    'EFTA00000675',
-    'EFTA00002538',
-    'EFTA00000672',
-    'EFTA00002812',
-    'EFTA00002543',
-    'EFTA00002813',
-    'EFTA00002523',
-    'EFTA00002079',
-    'EFTA00002805',
-    'EFTA00001840',
-    'EFTA00001114',
-    'EFTA00002812',
-    'EFTA00002543',
-    'EFTA00002786',
-    'EFTA00001271',
-    'EFTA00002523',
-    'EFTA00001979',
-    'EFTA00002110',
-    'EFTA00008504',
-    'EFTA00000134',
-    'EFTA00000471',
-    'EFTA00001848',
-]
-
-REPLACEMENT_TEXT = {
-    'EFTA00008120': 'Part II: The Art of Receiving a Massage',
-    'EFTA00008020': 'Massage for Dummies',
-    'EFTA00008220': 'Massage book: Chapter 11: Putting the Moves Together',
-    'EFTA00008320': 'Massage for Dummies (???)',
-}
 
 
 def generate_html() -> None:
@@ -111,29 +63,9 @@ def generate_html() -> None:
     if args.colors_only:
         exit()
 
-    if args.output_doj2026_files:
-        last_was_empty = False
-
-        for file in reversed(epstein_files.doj_2026_01_30_other_files):
-            if file.is_empty() or file.file_id in BAD_DOJ_FILE_IDS:
-                console.print(f"{file.file_id}: single image/no text", style='dim')
-                last_was_empty = True
-            elif file.file_id in REPLACEMENT_TEXT:
-                file._set_computed_fields(text=f'(Text of "{REPLACEMENT_TEXT[file.file_id]}" not shown here, check link for PDF)')
-            else:
-                if last_was_empty:
-                    console.line()
-
-                non_number_lines = [line for line in file.lines if not IGNORE_LINE_REGEX.match(line)]
-
-                if len(non_number_lines) != len(file.lines):
-                    logger.warning(f"{file.file_id}: Reduced line count from {len(file.lines)} to {len(non_number_lines)}")
-                    file._set_computed_fields(lines = non_number_lines)
-
-                console.print(file)
-                last_was_empty = False
-
-        timer.log_section_complete('DOJ201601', epstein_files.doj_2026_01_30_other_files, epstein_files.doj_2026_01_30_other_files)
+    if args.output_doj_files:
+        printed_doj_files = print_doj_files(epstein_files)
+        timer.log_section_complete('DojFile', epstein_files.doj_2026_01_30_other_files, printed_doj_files)
 
     if args.output_texts:
         printed_logs = print_text_messages_section(epstein_files)

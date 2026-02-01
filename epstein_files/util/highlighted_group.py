@@ -576,6 +576,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"JEGE(\s*Inc)?",
             r"LSJ",
+            r"Zorro(\s*Ranch)?",
         ],
     ),
     HighlightedNames(
