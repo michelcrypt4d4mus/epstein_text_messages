@@ -27,10 +27,10 @@ CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTALL)
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
 
-# OCR_REPAIRS: dict[str | re.Pattern, str] = {
-#     # DOJ file specific
-#     re.compile(fr"({FIELDS_COLON_PATTERN}.*\n)\nSubject:", re.MULTILINE): r'\1Subject:',
-# }
+# DojFile specific repair
+OCR_REPAIRS: dict[str | re.Pattern, str] = {
+    re.compile(fr"({FIELDS_COLON_PATTERN}.*\n)\nSubject:", re.MULTILINE): r'\1Subject:',
+}
 
 BAD_DOJ_FILE_IDS = [
     'EFTA00008511',
@@ -175,9 +175,9 @@ class DojFile(OtherFile):
             new_text = f"{pages[0]}\n\n(Redacted phone bill covering 2006-02-01 to 2006-06-16 {CHECK_LINK_FOR_DETAILS})"
             self._set_computed_fields(text=new_text)
 
-        # text = self.repair_ocr_text(OCR_REPAIRS, self.text)
-        # self._set_computed_fields(text=text)
-        # print(f"WAS REPAIRED\n-------\n{self.text}\n-----")
+        text = self.repair_ocr_text(OCR_REPAIRS, self.text)
+        self._set_computed_fields(text=text)
+        #print(f"WAS REPAIRED\n-------\n{self.text[0:5000]}\n-----")
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         doc = self.printable_doc()

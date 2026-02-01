@@ -1189,7 +1189,7 @@ HIGHLIGHTED_NAMES = [
         style='dark_sea_green4',
         emailers={
             ANAS_ALRASHEED: 'former information minister of Kuwait (???)',
-            AZIZA_ALAHMADI: 'Abu Dhabi Department of Culture & Tourism',
+            AZIZA_ALAHMADI: 'Abu Dhabi Department of Culture & Tourism, assistant of Al Sabbagh',
             RAAFAT_ALSABBAGH: 'Saudi royal advisor',
             SHAHER_ABDULHAK_BESHER: 'Yemeni billionaire',
         },
