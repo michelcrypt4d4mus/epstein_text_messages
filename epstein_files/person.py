@@ -49,8 +49,9 @@ class Person:
         self.emails = Document.sort_by_timestamp(self.emails)
         self.imessage_logs = Document.sort_by_timestamp(self.imessage_logs)
 
+    @property
     def category(self) -> str | None:
-        highlight_group = self.highlight_group()
+        highlight_group = self.highlight_group
 
         if highlight_group and isinstance(highlight_group, HighlightedNames):
             category = highlight_group.category or highlight_group.label
@@ -58,60 +59,63 @@ class Person:
             if category != self.name and category != 'paula':  # TODO: this sucks
                 return category
 
+    @property
     def category_txt(self) -> Text | None:
         if self.name is None:
             return None
-        elif self.category():
-            return styled_category(self.category())
-        elif self.is_a_mystery() or self.is_uninteresting:
+        elif self.category:
+            return styled_category(self.category)
+        elif self.is_a_mystery or self.is_uninteresting:
             return QUESTION_MARKS_TXT
 
+    @property
     def email_conversation_length_in_days(self) -> int:
         return days_between(self.emails[0].timestamp, self.emails[-1].timestamp)
 
+    @property
     def earliest_email_at(self) -> datetime:
         return self.emails[0].timestamp
 
+    @property
     def earliest_email_date(self) -> date:
-        return self.earliest_email_at().date()
+        return self.earliest_email_at.date()
 
+    @property
     def last_email_at(self) -> datetime:
         return self.emails[-1].timestamp
 
+    @property
     def last_email_date(self) -> date:
-        return self.last_email_at().date()
+        return self.last_email_at.date()
 
+    @property
     def emails_by(self) -> list[Email]:
         return [e for e in self.emails if self.name == e.author]
 
+    @property
     def emails_to(self) -> list[Email]:
         return [
             e for e in self.emails
             if self.name in e.recipients or (self.name is None and len(e.recipients) == 0)
         ]
 
-    def external_link(self, site: ExternalSite = EPSTEINIFY) -> str:
-        return PERSON_LINK_BUILDERS[site](self.name_str())
-
-    def external_link_txt(self, site: ExternalSite = EPSTEINIFY, link_str: str | None = None) -> Text:
-        if self.name is None:
-            return Text('')
-
-        return link_text_obj(self.external_link(site), link_str or site, style=self.style())
-
+    @property
     def external_links_line(self) -> Text:
         links = [self.external_link_txt(site) for site in PERSON_LINK_BUILDERS]
         return Text('', justify='center', style='dim').append(join_texts(links, join=' / '))  #, encloser='()'))#, encloser='‹›'))
 
+    @property
     def has_any_epstein_emails(self) -> bool:
         contacts = [e.author for e in self.emails] + flatten([e.recipients for e in self.emails])
         return JEFFREY_EPSTEIN in contacts
 
+    @property
     def highlight_group(self) -> HighlightedNames | None:
         return get_highlight_group_for_name(self.name)
 
+    @property
     def info_panel(self) -> Padding:
-        """Print a panel with the name of an emailer and a few tidbits of information about them."""
+        """Return a `Panel` with the name of an emailer and a few tidbits of information about them."""
         style = 'white' if (not self.style() or self.style() == DEFAULT) else self.style()
         panel_style = f"black on {style} bold"
 
@@ -119,22 +123,23 @@ class Person:
             email_count = len(self._printable_emails())
             title_suffix = f"sent by {JEFFREY_EPSTEIN} to himself"
         else:
-            email_count = len(self.unique_emails())
-            num_days = self.email_conversation_length_in_days()
-            title_suffix = f"{TO_FROM} {self.name_str()} starting {self.earliest_email_date()} covering {num_days:,} days"
+            email_count = len(self.unique_emails)
+            num_days = self.email_conversation_length_in_days
+            title_suffix = f"{TO_FROM} {self.name_str} starting {self.earliest_email_date} covering {num_days:,} days"
 
         title = f"Found {email_count} emails {title_suffix}"
-        width = max(MIN_AUTHOR_PANEL_WIDTH, len(title) + 4, len(self.info_with_category()) + 8)
+        width = max(MIN_AUTHOR_PANEL_WIDTH, len(title) + 4, len(self.info_with_category) + 8)
         panel = Panel(Text(title, justify='center'), width=width, style=panel_style)
         elements: list[RenderableType] = [panel]
 
-        if self.info_with_category():
-            elements.append(Text(f"({self.info_with_category()})", justify='center', style=f"{style} italic"))
+        if self.info_with_category:
+            elements.append(Text(f"({self.info_with_category})", justify='center', style=f"{style} italic"))
 
         return Padding(Group(*elements), (2, 0, 1, 0))
 
+    @property
     def info_str(self) -> str | None:
-        highlight_group = self.highlight_group()
+        highlight_group = self.highlight_group
 
         if highlight_group and isinstance(highlight_group, HighlightedNames) and self.name:
             info = highlight_group.info_for(self.name)
@@ -142,106 +147,155 @@ class Person:
             if info:
                 return info
 
-        if self.is_uninteresting and len(self.emails_by()) == 0:
-            if self.has_any_epstein_emails():
+        if self.is_uninteresting and len(self.emails_by) == 0:
+            if self.has_any_epstein_emails:
                 return UNINTERESTING_CC_INFO
             else:
                 return UNINTERESTING_CC_INFO_NO_CONTACT
 
-    def info_with_category(self) -> str:
-        return ', '.join(without_falsey([self.category(), self.info_str()]))
-
+    @property
     def info_txt(self) -> Text | None:
         if self.name == JEFFREY_EPSTEIN:
             return Text('(emails sent by Epstein to himself are here)', style=ALT_INFO_STYLE)
         elif self.name is None:
             return Text('(emails whose author or recipient could not be determined)', style=ALT_INFO_STYLE)
-        elif self.category() == JUNK:
+        elif self.category == JUNK:
             return Text(f"({JUNK} mail)", style='bright_black dim')
-        elif self.is_uninteresting and (self.info_str() or '').startswith(UNINTERESTING_CC_INFO):
-            if self.sole_cc():
-                return Text(f"(cc: from {self.sole_cc()} only)", style='wheat4 dim')
-            elif self.info_str() == UNINTERESTING_CC_INFO:
-                return Text(f"({self.info_str()})", style='wheat4 dim')
+        elif self.is_uninteresting and (self.info_str or '').startswith(UNINTERESTING_CC_INFO):
+            if self.sole_cc:
+                return Text(f"(cc: from {self.sole_cc} only)", style='wheat4 dim')
+            elif self.info_str == UNINTERESTING_CC_INFO:
+                return Text(f"({self.info_str})", style='wheat4 dim')
             else:
-                return Text(f"({self.info_str()})", style='plum4 dim')
-        elif self.is_a_mystery():
+                return Text(f"({self.info_str})", style='plum4 dim')
+        elif self.is_a_mystery:
             return Text(QUESTION_MARKS, style='honeydew2 bold')
-        elif self.info_str() is None:
+        elif self.info_str is None:
             if self.name in MAILING_LISTS:
                 return Text('(mailing list)', style=f"pale_turquoise4 dim")
-            elif self.category():
+            elif self.category:
                 return Text(QUESTION_MARKS, style=self.style())
             else:
                 return None
         else:
-            return Text(self.info_str(), style=self.style(allow_bold=False))
+            return Text(self.info_str, style=self.style(allow_bold=False))
 
+    @property
+    def info_with_category(self) -> str:
+        return ', '.join(without_falsey([self.category, self.info_str]))
+
+    @property
     def internal_link(self) -> Text:
         """Kind of like an anchor link to the section of the page containing these emails."""
-        return link_text_obj(internal_link_to_emails(self.name_str()), self.name_str(), style=self.style())
+        return link_text_obj(internal_link_to_emails(self.name_str), self.name_str, style=self.style())
 
+    @property
     def is_a_mystery(self) -> bool:
         """Return True if this is someone we theroetically could know more about."""
-        return self.is_unstyled() and not (self.is_email_address() or self.info_str() or self.is_uninteresting)
+        return self.is_unstyled and not (self.is_email_address or self.info_str or self.is_uninteresting)
 
-    def sole_cc(self) -> str | None:
-        """Return name if this person sent 0 emails and received CC from only one that name."""
-        email_authors = uniquify([e.author for e in self.emails_to()])
-
-        if len(self.unique_emails()) == 1 and len(email_authors) > 0:
-            logger.info(f"sole author of email to '{self.name}' is '{email_authors[0]}'")
-        else:
-            logger.info(f"'{self.name}' email_authors '{email_authors[0]}'")
-
-        if len(self.unique_emails_by()) > 0:
-            return None
-
-        if len(email_authors) == 1:
-            return email_authors[0]
-
+    @property
     def is_email_address(self) -> bool:
         return '@' in (self.name or '')
 
+    @property
     def is_linkable(self) -> bool:
         """Return True if it's likely that EpsteinWeb has a page for this name."""
         if self.name is None or ' ' not in self.name:
             return False
-        elif self.is_email_address() or '/' in self.name or QUESTION_MARKS in self.name:
+        elif self.is_email_address or '/' in self.name or QUESTION_MARKS in self.name:
             return False
         elif self.name in INVALID_FOR_EPSTEIN_WEB:
             return False
 
         return True
 
-    def should_always_truncate(self) -> bool:
-        """True if we want to truncate all emails to/from this user."""
-        return self.name in TRUNCATE_EMAILS_FROM or self.is_uninteresting
-
+    @property
     def is_unstyled(self) -> bool:
         """True if there's no highlight group for this name."""
         return self.style() == DEFAULT_NAME_STYLE
 
+    @property
+    def name_link(self) -> Text:
+        """Will only link if it's worth linking, otherwise just a Text object."""
+        if not self.is_linkable:
+            return self.name_txt
+        else:
+            return Text.from_markup(link_markup(self.external_link(), self.name_str, self.style()))
+
+    @property
     def name_str(self) -> str:
         return self.name or UNKNOWN
 
-    def name_link(self) -> Text:
-        """Will only link if it's worth linking, otherwise just a Text object."""
-        if not self.is_linkable():
-            return self.name_txt()
-        else:
-            return Text.from_markup(link_markup(self.external_link(), self.name_str(), self.style()))
-
+    @property
     def name_txt(self) -> Text:
         return styled_name(self.name)
 
+    @property  # TODO: unused?
+    def should_always_truncate(self) -> bool:
+        """True if we want to truncate all emails to/from this user."""
+        return self.name in TRUNCATE_EMAILS_FROM or self.is_uninteresting
+
+    @property
+    def sole_cc(self) -> str | None:
+        """Return name if this person sent 0 emails and received CC from only one that name."""
+        email_authors = uniquify([e.author for e in self.emails_to])
+
+        if len(self.unique_emails) == 1 and len(email_authors) > 0:
+            logger.info(f"sole author of email to '{self.name}' is '{email_authors[0]}'")
+        else:
+            logger.info(f"'{self.name}' email_authors '{email_authors[0]}'")
+
+        if len(self.unique_emails_by) > 0:
+            return None
+
+        if len(email_authors) == 1:
+            return email_authors[0]
+
+    @property
+    def sort_key(self) -> list[int | str]:
+        counts = [
+            len(self.unique_emails),
+            -1 * int((self.info_str or '') == UNINTERESTING_CC_INFO_NO_CONTACT),
+            -1 * int((self.info_str or '') == UNINTERESTING_CC_INFO),
+            int(self.has_any_epstein_emails),
+        ]
+
+        counts = [-1 * count for count in counts]
+
+        if args.sort_alphabetical:
+            return [self.name_str] + counts
+        else:
+            return counts + [self.name_str]
+
+    @property
+    def unique_emails(self) -> Sequence[Email]:
+        return Document.without_dupes(self.emails)
+
+    @property
+    def unique_emails_by(self) -> list[Email]:
+        return Document.without_dupes(self.emails_by)
+
+    @property
+    def unique_emails_to(self) -> list[Email]:
+        return Document.without_dupes(self.emails_to)
+
+    def external_link(self, site: ExternalSite = EPSTEINIFY) -> str:
+        return PERSON_LINK_BUILDERS[site](self.name_str)
+
+    def external_link_txt(self, site: ExternalSite = EPSTEINIFY, link_str: str | None = None) -> Text:
+        if self.name is None:
+            return Text('')
+
+        return link_text_obj(self.external_link(site), link_str or site, style=self.style())
+
     def print_emails(self) -> list[Email]:
         """Print complete emails to or from a particular 'author'. Returns the Emails that were printed."""
-        print_centered(self.info_panel())
+        print_centered(self.info_panel)
         self.print_emails_table()
         last_printed_email_was_duplicate = False
 
-        if self.category() == JUNK:
+        if self.category == JUNK:
             logger.warning(f"Not printing junk emailer '{self.name}'")
         else:
             for email in self._printable_emails():
@@ -261,37 +315,13 @@ class Person:
         table = Email.build_emails_table(self._unique_printable_emails(), self.name)
         print_centered(Padding(table, (0, 5, 0, 5)))
 
-        if self.is_linkable():
-            print_centered(self.external_links_line())
+        if self.is_linkable:
+            print_centered(self.external_links_line)
 
         console.line()
 
-    def sort_key(self) -> list[int | str]:
-        counts = [
-            len(self.unique_emails()),
-            -1 * int((self.info_str() or '') == UNINTERESTING_CC_INFO_NO_CONTACT),
-            -1 * int((self.info_str() or '') == UNINTERESTING_CC_INFO),
-            int(self.has_any_epstein_emails()),
-        ]
-
-        counts = [-1 * count for count in counts]
-
-        if args.sort_alphabetical:
-            return [self.name_str()] + counts
-        else:
-            return counts + [self.name_str()]
-
     def style(self, allow_bold: bool = True) -> str:
         return get_style_for_name(self.name, allow_bold=allow_bold)
-
-    def unique_emails(self) -> Sequence[Email]:
-        return Document.without_dupes(self.emails)
-
-    def unique_emails_by(self) -> list[Email]:
-        return Document.without_dupes(self.emails_by())
-
-    def unique_emails_to(self) -> list[Email]:
-        return Document.without_dupes(self.emails_to())
 
     def _printable_emails(self):
         """For Epstein we only want to print emails he sent to himself."""
@@ -304,7 +334,7 @@ class Person:
         return Document.without_dupes(self._printable_emails())
 
     def __str__(self):
-        return f"{self.name_str()}"
+        return f"{self.name_str}"
 
     @staticmethod
     def emailer_info_table(people: list['Person'], highlighted: list['Person'] | None = None, show_epstein_total: bool = False) -> Table:
@@ -313,7 +343,7 @@ class Person:
         highlighted_names = [p.name for p in highlighted]
         is_selection = len(people) != len(highlighted) or args.emailers_info
         all_emails = Person.emails_from_people(people)
-        email_authors = [p for p in people if p.emails_by() and p.name]
+        email_authors = [p for p in people if p.emails_by and p.name]
         attributed_emails = [email for email in all_emails if email.author]
         footer = f"(identified {len(email_authors)} authors of {len(attributed_emails):,}" \
                  f" out of {len(all_emails):,} emails, {len(all_emails) - len(attributed_emails)} still unknown)"
@@ -338,7 +368,7 @@ class Person:
         grey_idx = 0
 
         for person in people:
-            earliest_email_date = person.earliest_email_date()
+            earliest_email_date = person.earliest_email_date
             is_on_page = False if show_epstein_total else person.name in highlighted_names
             year_months = (earliest_email_date.year * 12) + earliest_email_date.month
 
@@ -353,13 +383,13 @@ class Person:
 
             table.add_row(
                 Text(str(earliest_email_date), style=f"grey{GREY_NUMBERS[0 if is_selection else grey_idx]}"),
-                person.internal_link() if is_on_page and not person.is_uninteresting else person.name_txt(),
-                person.category_txt(),
-                f"{len(person.unique_emails() if show_epstein_total else person._unique_printable_emails())}",
-                str(len(person.unique_emails_by())) if len(person.unique_emails_by()) > 0 else '',
-                str(len(person.unique_emails_to())) if len(person.unique_emails_to()) > 0 else '',
-                f"{person.email_conversation_length_in_days()}",
-                person.info_txt() or '',
+                person.internal_link if is_on_page and not person.is_uninteresting else person.name_txt,
+                person.category_txt,
+                f"{len(person.unique_emails if show_epstein_total else person._unique_printable_emails())}",
+                str(len(person.unique_emails_by)) if len(person.unique_emails_by) > 0 else '',
+                str(len(person.unique_emails_to)) if len(person.unique_emails_to) > 0 else '',
+                f"{person.email_conversation_length_in_days}",
+                person.info_txt or '',
                 style='' if show_epstein_total or is_on_page else 'dim',
             )
 
@@ -367,4 +397,4 @@ class Person:
 
     @staticmethod
     def emails_from_people(people: list['Person']) -> Sequence[Email]:
-        return Document.uniquify(flatten([list(p.unique_emails()) for p in people]))
+        return Document.uniquify(flatten([list(p.unique_emails) for p in people]))

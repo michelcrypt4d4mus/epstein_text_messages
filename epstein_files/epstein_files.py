@@ -147,8 +147,8 @@ class EpsteinFiles:
 
     def email_author_counts(self) -> dict[Name, int]:
         return {
-            person.name: len(person.unique_emails_by())
-            for person in self.emailers() if len(person.unique_emails_by()) > 0
+            person.name: len(person.unique_emails_by)
+            for person in self.emailers() if len(person.unique_emails_by) > 0
         }
 
     def email_authors_to_device_signatures(self) -> dict[str, set[str]]:
@@ -169,8 +169,8 @@ class EpsteinFiles:
 
     def email_recipient_counts(self) -> dict[Name, int]:
         return {
-            person.name: len(person.unique_emails_to())
-            for person in self.emailers() if len(person.unique_emails_to()) > 0
+            person.name: len(person.unique_emails_to)
+            for person in self.emailers() if len(person.unique_emails_to) > 0
         }
 
     def email_signature_substitution_counts(self) -> dict[str, int]:

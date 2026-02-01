@@ -94,23 +94,26 @@ class OtherFile(Document):
     was_timestamp_extracted: bool = False
     include_description_in_summary_panel: ClassVar[bool] = True  # Class var for logging output
 
+    @property
+    def config_description(self) -> str | None:
+        """Overloads superclass property."""
+        if self.config and self.config.description:
+            return self.config.complete_description()
+
+    @property
+    def category(self) -> str | None:
+        return self.config and self.config.category
+
+    @property
+    def category_txt(self) -> Text | None:
+        return styled_category(self.category)
+
     def __post_init__(self):
         super().__post_init__()
 
         if self.config is None and VI_DAILY_NEWS_REGEX.search(self.text):
             self.log(f"Creating synthetic config for VI Daily News article...")
             self.config = DocCfg(id=self.file_id, author=VI_DAILY_NEWS, category=ARTICLE, description='article')
-
-    def category(self) -> str | None:
-        return self.config and self.config.category
-
-    def category_txt(self) -> Text | None:
-        return styled_category(self.category())
-
-    def config_description(self) -> str | None:
-        """Overloads superclass method."""
-        if self.config is not None:
-            return self.config.complete_description()
 
     def highlighted_preview_text(self) -> Text:
         try:
@@ -135,9 +138,9 @@ class OtherFile(Document):
                 return self.config.is_interesting
             elif self.config.author in INTERESTING_AUTHORS:
                 return True
-            elif self.category() == FINANCE and self.author is not None:
+            elif self.category == FINANCE and self.author is not None:
                 return False
-            elif self.category() in UNINTERESTING_CATEGORIES:
+            elif self.category in UNINTERESTING_CATEGORIES:
                 return False
 
         for prefix in UNINTERESTING_PREFIXES:
@@ -236,7 +239,7 @@ class OtherFile(Document):
                 Group(*link_and_info),
                 Text(date_str, style=TIMESTAMP_STYLE) if date_str else QUESTION_MARKS_TXT,
                 file.file_size_str(),
-                file.category_txt(),
+                file.category_txt,
                 preview_text,
                 style=row_style
             )
@@ -246,12 +249,12 @@ class OtherFile(Document):
     @classmethod
     def summary_table(cls, files: Sequence['OtherFile'], title_pfx: str = '') -> Table:
         """Table showing file count by category."""
-        categories = uniquify([f.category() for f in files])
-        categories = sorted(categories, key=lambda c: -len([f for f in files if f.category() == c]))
+        categories = uniquify([f.category for f in files])
+        categories = sorted(categories, key=lambda c: -len([f for f in files if f.category == c]))
         table = cls.file_info_table(f'{title_pfx}Other Files Summary', 'Category')
 
         for category in categories:
-            category_files = [f for f in files if f.category() == category]
+            category_files = [f for f in files if f.category == category]
             table.add_row(styled_category(category), *cls.files_info_row(category_files))
 
         table.columns = table.columns[:-2] + [table.columns[-1]]  # Removee unknown author col

@@ -65,7 +65,7 @@ sys.exit()
 
 
 def print_first_emails():
-    emailers = sorted(epstein_files.emailers(), key=lambda e: e.earliest_email_at())
+    emailers = sorted(epstein_files.emailers(), key=lambda e: e.earliest_email_at)
 
     for emailer in emailers:
         first_email = emailer.emails[0]
@@ -75,11 +75,11 @@ def print_first_emails():
         elif first_email._truncate_to_length() >= first_email.length:
             logger.warning(f"User '{emailer.name}' first email is untruncated")
             continue
-        elif emailer.should_always_truncate():
+        elif emailer.should_always_truncate:
             logger.warning(f"Skipping truncatable user '{emailer.name}'")
             continue
 
-        print_subtitle_panel(emailer.name_str())
+        print_subtitle_panel(emailer.name_str)
         console.print(emailer.emails[0])
 
 print_first_emails()
@@ -125,7 +125,7 @@ counts = defaultdict(int)
 
 
 def print_potential_uninteresting_emailers():
-    emailers = sorted(epstein_files.emailers(), key=lambda e: epstein_files.earliest_email_at(e))
+    emailers = sorted(epstein_files.emailers(), key=lambda e: epstein_files.earliest_email_at(e.name))
 
     for emailer in emailers:
         emails = epstein_files.emails_for(emailer)

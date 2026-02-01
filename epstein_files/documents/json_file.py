@@ -28,6 +28,10 @@ class JsonFile(OtherFile):
     include_description_in_summary_panel: ClassVar[bool] = False
     strip_whitespace: ClassVar[bool] = False
 
+    @property
+    def category(self) -> str:
+        return JSON
+
     def __post_init__(self):
         super().__post_init__()
 
@@ -35,9 +39,6 @@ class JsonFile(OtherFile):
             self.url_slug = Path(self.url_slug).stem
 
         self._set_computed_fields(text=self.json_str())
-
-    def category(self) -> str:
-        return JSON
 
     def info_txt(self) -> Text | None:
         return Text(DESCRIPTION, style=INFO_STYLE)
