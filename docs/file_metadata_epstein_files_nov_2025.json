@@ -20143,6 +20143,7 @@
                 "bytes": 7831,
                 "file_id": "031607",
                 "filename": "HOUSE_OVERSIGHT_031607.txt",
+                "is_fwded_article": true,
                 "num_lines": 92,
                 "recipients": [
                     "Edward Jay Epstein"
@@ -35685,7 +35686,7 @@
                 "date": "2014-01-29",
                 "file_id": "019440",
                 "filename": "HOUSE_OVERSIGHT_019440.txt",
-                "is_interesting": false,
+                "is_interesting": true,
                 "num_lines": 161,
                 "timestamp": "2014-01-29T00:00:00",
                 "type": "OtherFile"
@@ -36144,7 +36145,7 @@
                 "date": "2013-12-20",
                 "file_id": "022325",
                 "filename": "HOUSE_OVERSIGHT_022325.txt",
-                "is_interesting": false,
+                "is_interesting": true,
                 "num_lines": 175,
                 "timestamp": "2013-12-20T00:00:00",
                 "type": "OtherFile"
@@ -36183,7 +36184,7 @@
                 "date": "2013-05-01",
                 "file_id": "022361",
                 "filename": "HOUSE_OVERSIGHT_022361.txt",
-                "is_interesting": false,
+                "is_interesting": true,
                 "num_lines": 245,
                 "timestamp": "2013-05-01T00:00:00",
                 "type": "OtherFile"
@@ -39537,7 +39538,7 @@
                 "category": "Skype log",
                 "file_id": "032206",
                 "filename": "HOUSE_OVERSIGHT_032206.txt",
-                "is_interesting": false,
+                "is_interesting": true,
                 "num_lines": 41,
                 "timestamp": "2017-08-24T19:14:01",
                 "type": "OtherFile",
@@ -39549,7 +39550,7 @@
                 "category": "Skype log",
                 "file_id": "032208",
                 "filename": "HOUSE_OVERSIGHT_032208.txt",
-                "is_interesting": false,
+                "is_interesting": true,
                 "num_lines": 7,
                 "timestamp": "2017-07-11T23:42:34",
                 "type": "OtherFile",
@@ -39561,7 +39562,7 @@
                 "category": "Skype log",
                 "file_id": "032209",
                 "filename": "HOUSE_OVERSIGHT_032209.txt",
-                "is_interesting": false,
+                "is_interesting": true,
                 "num_lines": 31,
                 "timestamp": "2017-07-05T23:01:43",
                 "type": "OtherFile",
