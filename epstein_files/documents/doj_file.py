@@ -21,7 +21,9 @@ from epstein_files.util.doc_cfg import DocCfg
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import RAINBOW, SKIPPED_FILE_MSG_PADDING, highlighter, join_texts, link_text_obj
 
+CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 DATASET_ID_REGEX = re.compile(r"(?:epstein_dataset_|DataSet )(\d+)")
+IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTALL)
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
 
 BAD_DOJ_FILE_IDS = [
@@ -150,12 +152,18 @@ class DojFile(OtherFile):
     def printable_doj_file(self) -> Self:
         """Return a copy of this `DojFile` with simplified text if file ID is in `REPLACEMENT_TEXT`."""
         if self.file_id in REPLACEMENT_TEXT:
-            replacement_text = f'(Text of "{REPLACEMENT_TEXT[self.file_id]}" not shown here, check link for PDF)'
+            replacement_text = f'(Text of "{REPLACEMENT_TEXT[self.file_id]}" {CHECK_LINK_FOR_DETAILS})'
             new_doj_file = type(self)(self.file_path)
             new_doj_file._set_computed_fields(text=replacement_text)
             return new_doj_file
         else:
             return self
+
+    def strip_image_ocr_panels(self) -> None:
+        """Removes the ╭--- Page 5, Image 1 ---- panels from the text."""
+        new_text, num_replaced = IMAGE_PANEL_REGEX.subn('', self.text)
+        self.warn(f"Stripped {num_replaced} image panels.")
+        self._set_computed_fields(text=new_text)
 
     def _border_style(self) -> str:
         """Color emails from epstein to others with the color for the first recipient."""
@@ -171,6 +179,14 @@ class DojFile(OtherFile):
             logger.warning(f"{self.file_id}: Reduced line count from {len(self.lines)} to {len(non_number_lines)}")
             self._set_computed_fields(lines=non_number_lines)
 
+    def _repair(self) -> None:
+        if self.file_id == 'EFTA00006770':
+            # Huge phone bill
+            self.strip_image_ocr_panels()
+            pages = self.text.split('MetroPCS')
+            new_text = f"{pages[0]}\n\n(Redacted phone bill covering 2006-02-01 to 2006-06-16 {CHECK_LINK_FOR_DETAILS})"
+            self._set_computed_fields(text=new_text)
+
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         info_panel = self.file_info_panel()
         timestamp_txt = Text(f'(inferred timestamp: ', style='dim').append(str(self.timestamp)).append(')')
@@ -179,8 +195,3 @@ class DojFile(OtherFile):
         yield Padding(timestamp_txt, INFO_PADDING)
         text_panel = Panel(highlighter(self.text), border_style=info_panel._renderables[0].border_style, expand=False)
         yield Padding(text_panel, (0, 0, 1, INFO_INDENT))
-
-
-
-def repair_EFTA00006770(doj_file: DojFile):
-    """It's a phone bill."""
