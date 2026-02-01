@@ -10,9 +10,9 @@ from rich.table import Table
 from rich.text import Text
 
 from scripts.use_pickled import console, epstein_files
-from epstein_files import epstein_grep
+from epstein_files.epstein_files import document_cls
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import UNINTERESTING_EMAILERS
+from epstein_files.documents.email import Email, UNINTERESTING_EMAILERS
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import ALL_FILE_CONFIGS
 from epstein_files.util.data import *
@@ -21,8 +21,33 @@ from epstein_files.util.logging import logger
 from epstein_files.util.rich import console, highlighter, print_json, print_subtitle_panel
 
 
+# Look for possible email files in the DOJ files
+with open('timestamps_cfg.txt', 'wt') as f:
+    emails = []
+
+    for i, doc in enumerate(sorted(epstein_files.doj_files, key=lambda f: -f.length)):
+        cls = document_cls(doc)
+
+        if cls == Email:
+            try:
+                email = Email(doc.file_path)
+                console.print(email)
+                emails.append(email)
+            except Exception as e:
+                logger.error(f"Failed to turn {doc} into an email ({e})")
+
+                if doc.timestamp:
+                    f.write(f"    EmailCfg(id='{doc.file_id}', date='{doc.timestamp}'),\n")
+                    logger.warning(f"Wrote EmailCfg line with timestamp {doc.timestamp}...")
+        else:
+            logger.warning(f"{doc.file_id}: {doc.file_size_str()} ({doc.length:,} bytes) is not an Email...")
+
+console.print(f"Found {len(emails)} emails out of {len(epstein_files.doj_files)} DOJ files.")
+sys.exit()
+
+
 # Show biggest files
-for i, doc in enumerate(sorted(epstein_files.doj_2026_01_30_other_files, key=lambda f: -f.length)):
+for i, doc in enumerate(sorted(epstein_files.doj_files, key=lambda f: -f.length)):
     console.print(f"{doc.file_id}: {doc.file_size_str()} ({doc.length:,} bytes)")
 
     if i > 2000:

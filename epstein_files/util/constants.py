@@ -1091,6 +1091,43 @@ EMAILS_CONFIG = [
     EmailCfg(id='027028', truncate_to=1000, comment='Tom Pritzer penny pritzker'),
     EmailCfg(id='029910', truncate_to=NO_TRUNCATE, comment='Tom Pritzer Aspen'),
     EmailCfg(id='025163', truncate_to=NO_TRUNCATE, comment='Tom Pritzer'),
+
+    # DOJ files
+    EmailCfg(id='EFTA02731737', date='2023-06-30T16:05:00'),
+    EmailCfg(id='EFTA02731689', date='2023-06-09T20:14:10'),
+    EmailCfg(id='EFTA02731475', date='2023-05-31T20:53:00'),
+    EmailCfg(id='EFTA02731732', date='2024-03-06T12:21:00'),
+    EmailCfg(id='EFTA02731485', date='2023-06-12T13:53:00'),
+    EmailCfg(id='EFTA02730483', date='2023-07-11T08:25:00'), # TODO: actually reply timewtamp
+
+    EmailCfg(id='EFTA02730481', date='2023-07-07T11:01:00'), # TODO: actually reply timewtamp
+    EmailCfg(id='EFTA02731754', date='2024-03-06T23:24:00'), # TODO: actually reply timewtamp
+    EmailCfg(id='EFTA02731735', date='2024-03-04T05:04:00'), # TODO: actually reply timewtamp
+    EmailCfg(id='EFTA02731577', date='2024-10-16T00:00:00'), # TODO: actually reply timewtamp
+    EmailCfg(id='EFTA02730468', date='2019-07-11T08:25:00'), # TODO: This is just wrong
+    EmailCfg(id='EFTA02731617', date='2021-04-28T15:05:41'),
+    EmailCfg(id='', date='2023-07-11T08:25:00'), # TODO: actually reply timewtamp
+    EmailCfg(id='', date='2023-07-11T08:25:00'), # TODO: actually reply timewtamp
+
+
+    # Generated basd on OtheFile extract_timestamp()
+    EmailCfg(id='EFTA02731783', date='2022-01-21 17:28:00'),
+    EmailCfg(id='EFTA02731587', date='2022-01-21 17:28:00'),
+    EmailCfg(id='EFTA02731729', date='2021-08-17 00:00:00'),
+    EmailCfg(id='EFTA02731578', date='2021-05-28 10:00:00'),
+    EmailCfg(id='EFTA02730473', date='2013-04-24 16:32:00'),
+    EmailCfg(id='EFTA02731699', date='2021-05-27 10:19:00'),
+    EmailCfg(id='EFTA02731583', date='2022-01-21 17:28:00'),
+    EmailCfg(id='EFTA02731552', date='2021-05-26 16:12:00'),
+    EmailCfg(id='EFTA00039888', date='2019-05-14 16:49:00'),
+    EmailCfg(id='EFTA02731684', date='2021-05-11 15:27:00'),
+    EmailCfg(id='EFTA02731697', date='2021-06-07 17:33:00'),
+    EmailCfg(id='EFTA02731733', date='2021-05-17 17:29:00'),
+    EmailCfg(id='EFTA00040145', date='2021-11-09 17:24:30'),
+    # EmailCfg(id='EFTA02730468', date='2004-02-03 00:00:00'),  # TODO: ???
+    EmailCfg(id='EFTA02731528', date='2021-05-06 09:39:15'),
+    EmailCfg(id='EFTA02730485', date='2021-12-03 00:00:00'),
+
 ]
 
 if args.constantize:
@@ -1894,6 +1931,13 @@ OTHER_FILES_JUNK = [
     DocCfg(id='029351', description=OBAMA_JOKE, date='2013-07-26'),
     DocCfg(id='029354', description=OBAMA_JOKE, date='2013-07-26'),
     DocCfg(id='031293'),
+
+    # Completely redacted DOJ emails, no timestamp at all
+    DocCfg(id='EFTA02731726'),
+    DocCfg(id='EFTA02731728'),
+    # Almost no timestamp
+    DocCfg(id='EFTA00003154'),
+
 ]
 
 OTHER_FILES_CATEGORIES = [

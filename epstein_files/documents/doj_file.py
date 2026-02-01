@@ -1,3 +1,4 @@
+from copy import deepcopy
 import logging
 import re
 from dataclasses import dataclass, field
@@ -6,7 +7,9 @@ from pathlib import Path
 from rich.text import Text
 
 from epstein_files.documents.other_file import Metadata, OtherFile
+from epstein_files.util.doc_cfg import DocCfg, EmailCfg
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR, doj_2026_file_url
+from epstein_files.util.constants import ALL_FILE_CONFIGS
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import join_texts, link_text_obj, parenthesize
 
@@ -85,13 +88,16 @@ class DojFile(OtherFile):
     file_path: Path
     doj_2026_data_set: int = field(init=False)
 
+    @property
+    def config(self) -> DocCfg | None:
+        return deepcopy(ALL_FILE_CONFIGS.get(self.file_id))
+
     def __post_init__(self):
         super().__post_init__()
 
         if (data_set_match := DATASET_ID_REGEX.search(str(self.file_path))):
             self.doj_2026_data_set = int(data_set_match.group(1))
             logger.info(f"Extracted data set number {self.doj_2026_data_set} for {self.url_slug}")
-
 
     def external_links_txt(self, style: str = '', include_alt_links: bool = False) -> Text:
         """Overloads superclass method."""

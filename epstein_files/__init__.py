@@ -65,7 +65,7 @@ def generate_html() -> None:
 
     if args.output_doj_files:
         printed_doj_files = print_doj_files(epstein_files)
-        timer.log_section_complete('DojFile', epstein_files.doj_2026_01_30_other_files, printed_doj_files)
+        timer.log_section_complete('DojFile', epstein_files.doj_files, printed_doj_files)
 
     if args.output_texts:
         printed_logs = print_text_messages_section(epstein_files)
