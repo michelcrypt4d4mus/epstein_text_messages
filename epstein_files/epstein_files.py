@@ -119,7 +119,7 @@ class EpsteinFiles:
         return epstein_files
 
     def all_documents(self) -> Sequence[Document]:
-        return self.imessage_logs + self.emails + self.other_files
+        return self.imessage_logs + self.emails + self.other_files + self.doj_files
 
     def docs_matching(self, pattern: re.Pattern | str, names: list[Name] | None = None) -> list[SearchResult]:
         """Find documents whose text matches a pattern (file_type and names args limit the documents searched)."""
