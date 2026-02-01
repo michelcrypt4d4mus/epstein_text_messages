@@ -64,7 +64,7 @@ def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile]:
     last_was_empty = False
     printed_doj_files: list[DojFile] = []
 
-    for doj_file in reversed(epstein_files.doj_2026_01_30_other_files):
+    for doj_file in reversed(epstein_files.doj_files):
         if doj_file.is_empty() or doj_file.is_bad_ocr:
             console.print(f"{doj_file.file_id}: single image/no text", style='dim')
             last_was_empty = True

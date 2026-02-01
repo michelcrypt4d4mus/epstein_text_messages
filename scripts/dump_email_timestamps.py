@@ -22,7 +22,7 @@ from epstein_files.util.rich import console, highlighter, print_json, print_subt
 
 
 # Show biggest files
-for i, doc in enumerate(sorted(epstein_files.doj_2026_01_30_other_files, key=lambda f: -f.length)):
+for i, doc in enumerate(sorted(epstein_files.doj_files, key=lambda f: -f.length)):
     console.print(f"{doc.file_id}: {doc.file_size_str()} ({doc.length:,} bytes)")
 
     if i > 2000:
