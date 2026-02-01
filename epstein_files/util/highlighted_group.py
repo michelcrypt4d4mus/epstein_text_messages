@@ -380,8 +380,8 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"Balaji",
             r"Bart\s*Stephens",  # co-founder, Blockchain Capital
+            r"Bioptix",  # Now RIOT Blockchain
             r"bitcoin(\s*Foundation)?",
-            r"block ?chain(\s*capital)?",
             r"Brian Forde",
             r"Brock(\s*Pierce)?",
             r"coins?",
@@ -396,12 +396,14 @@ HIGHLIGHTED_NAMES = [
             r"Madars",
             r"Mi(chael|ke)\s*Novogratz",
             r"(Patrick\s*)?Murck",
-            r"Ron Rivest",
+            r"Ron\s*Rivest",
+            r"(RIOT\s*)?block ?chain(\s*capital)?",
             r"(Ross\s*)?Ulbricht",
             r"Silk\s*Road",
             r"SpanCash",
             r"Tether",
             r"virtual\s*currenc(ies|y)",
+            r"Wire\s*ca\n?rd",
             r"Wladimir( van der Laan)?",  # bitcoin dev
             r"(zero\s+knowledge\s+|zk)pro(of|tocols?)",
         ],
@@ -423,6 +425,7 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"Arthur Klein",
+            r"(Barry\s*)?Honig",
             r"((Bill|David)\s*)?Koch(\s*(Bro(s|thers)|Industries))?",
             r"Gruterite",
             r"((John|Patricia)\s*)?Kluge",
@@ -647,6 +650,7 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"AfD",
+            r"Alfa(\s*Bank)",
             r"(Angela )?Merk(el|le)",
             r"Austria",
             r"Belgi(an|um)",
@@ -778,6 +782,8 @@ HIGHLIGHTED_NAMES = [
             r"(Ray\s*)?Dalio",
             r"(Richard\s*)?LeFrak",
             r"Rockefeller(?! University)(\s*Foundation)?",
+            r"SBNY",
+            r"Signature\s*Bank",
             r"(Ste(phen|ve)\s*)?Schwart?z?man",
             r"Serageldin",
             r"UBS",
@@ -938,6 +944,7 @@ HIGHLIGHTED_NAMES = [
             r"(eh|(Ehud|Nili Priell)\s*)?barak",
             r"EB",
             r"Ehud\s*Barack",
+            r"Hapoalim",
             r"Israeli?",
             r"Jerusalem",
             r"J\s*Street",
@@ -1426,6 +1433,7 @@ HIGHLIGHTED_NAMES = [
             r"Oleksandr Vilkul",
             r"Onexim",  # Prokhorov investment vehicle
             r"Prokhorov",
+            r"Rakishev",
             r"Rosneft",
             r"RT",
             r"St.?\s*?Petersburg",
