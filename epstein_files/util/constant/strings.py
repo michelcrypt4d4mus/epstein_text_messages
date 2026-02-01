@@ -73,7 +73,7 @@ MESSENGER_LOG_CLASS = 'MessengerLog'
 OTHER_FILE_CLASS = 'OtherFile'
 
 # Regexes
-DOJ_FILE_STEM_REGEX = re.compile(fr"{EFTA_PREFIX}\d+")
+DOJ_FILE_STEM_REGEX = re.compile(fr"{EFTA_PREFIX}\d{{8}}")
 DOJ_FILE_NAME_REGEX = re.compile(fr"{DOJ_FILE_STEM_REGEX.pattern}(\.txt)?")
 
 HOUSE_OVERSIGHT_NOV_2025_ID_REGEX = re.compile(r"\d{6}(_\d{1,2})?")
