@@ -20,7 +20,7 @@ from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.output_files import make_clean
-from epstein_files.util.constant.strings import ID_REGEX
+from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGEX
 from epstein_files.util.data import flatten
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import coerce_file_path, extract_file_id
@@ -102,7 +102,7 @@ def epstein_grep():
     """Search the cleaned up text of the files."""
     epstein_files = EpsteinFiles.get_files()
 
-    if ID_REGEX.match(args.positional_args[0]):
+    if HOUSE_OVERSIGHT_NOV_2025_ID_REGEX.match(args.positional_args[0]):
         logger.warning(f"'{args.positional_args[0]}' seems to be an ID, running epstein_show instead...")
         epstein_show()
         return
@@ -158,7 +158,9 @@ def epstein_show():
             raw_docs = [doc for doc in flatten([p.emails for p in people])]
         else:
             ids = [extract_file_id(arg.strip().strip('_')) for arg in args.positional_args]
+            logger.info(f"extracted IDs: {ids}")
             raw_docs = [Document(coerce_file_path(id)) for id in ids]
+            logger.info(f"raw docs: {raw_docs}")
 
         docs = Document.sort_by_timestamp([document_cls(doc)(doc.file_path) for doc in raw_docs])
     except Exception as e:

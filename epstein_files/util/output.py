@@ -78,8 +78,7 @@ def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile | Email]:
         if isinstance(doj_file, Email):
             console.print(doj_file)
         else:
-            doj_file.prep_for_printing()
-            console.print(doj_file)
+            console.print(doj_file.printable_doj_file())
 
         last_was_empty = False
         printed_doj_files.append(doj_file)
