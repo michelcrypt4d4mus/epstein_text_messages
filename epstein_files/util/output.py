@@ -10,7 +10,7 @@ from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
-from epstein_files.epstein_files import EpsteinFiles, count_by_month, document_cls
+from epstein_files.epstein_files import EpsteinFiles, count_by_month
 from epstein_files.person import Person
 from epstein_files.util.constant import output_files
 from epstein_files.util.constant.html import *
@@ -210,7 +210,7 @@ def print_json_metadata(epstein_files: EpsteinFiles) -> None:
         console.print_json(json_str, indent=4, sort_keys=True)
 
 
-def print_json_stats(epstein_files: EpsteinFiles) -> None:
+def print_stats(epstein_files: EpsteinFiles) -> None:
     console.line(5)
     console.print(Panel('JSON Stats Dump', expand=True, style='reverse bold'), '\n')
     print_json(f"MessengerLog Sender Counts", MessengerLog.count_authors(epstein_files.imessage_logs), skip_falsey=True)

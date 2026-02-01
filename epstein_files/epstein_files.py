@@ -288,11 +288,17 @@ class EpsteinFiles:
         return self._uninteresting_emailers
 
     def _find_email_attachments_and_set_is_first_for_user(self) -> None:
-        for file in self.other_files:
-            if file.config and file.config.attached_to_email_id:
-                email = self.email_for_id(file.config.attached_to_email_id)
-                file.warn(f"Attaching to {email}")
-                email.attached_docs.append(file)
+        for other_file in self.other_files:
+            if other_file.config and other_file.config.attached_to_email_id:
+                email = self.email_for_id(other_file.config.attached_to_email_id)
+                email.attached_docs.append(other_file)
+
+                if other_file.timestamp \
+                        and other_file.timestamp != email.timestamp \
+                        and not (other_file.config and other_file.config.timestamp):
+                    other_file.warn(f"Overwriting '{other_file.timestamp}' with {email}'s timestamp {email.timestamp}")
+
+                other_file.timestamp = email.timestamp
 
         for emailer in self.emailers():
             first_email = emailer.emails[0]

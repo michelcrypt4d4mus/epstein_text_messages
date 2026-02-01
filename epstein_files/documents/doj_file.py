@@ -1,7 +1,6 @@
 import re
 from dataclasses import dataclass, field
 from datetime import datetime
-from pathlib import Path
 from typing import ClassVar, Self
 
 from rich.console import Console, ConsoleOptions, RenderableType, RenderResult
@@ -150,8 +149,9 @@ class DojFile(OtherFile):
         self._set_computed_fields(text=new_text)
 
     def _border_style(self) -> str:
-        """Color emails from epstein to others with the color for the first recipient."""
-        style = RAINBOW[self.border_style_rainbow_idx % len(RAINBOW)]
+        """Color emails from Epstein to others with the color for the first recipient."""
+        # Divide by 2 bc there's 2 calls for each DojFile, header panel and text
+        style = RAINBOW[int(self.border_style_rainbow_idx % len(RAINBOW) / 2)]
         type(self).border_style_rainbow_idx += 1
         return style
 
@@ -170,20 +170,9 @@ class DojFile(OtherFile):
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         doc = self.printable_doc()
 
-        if not isinstance(doc, type(self)):
-            yield doc  # Email documents handle their own formatting
-            return
-
-        info_panel = self.file_info_panel()
-        timestamp_str = f'(inferred timestamp: {remove_zero_time(self.timestamp)})' if self.timestamp else ''
-        yield info_panel
-
-        text_panel = Panel(
-            highlighter(self.text),
-            border_style=info_panel._renderables[0].border_style,
-            expand=False,
-            title=timestamp_str if timestamp_str else None,
-            title_align='left',
-        )
-
-        yield Padding(text_panel, (0, 0, 1, INFO_INDENT))
+        # Emails handle their own formatting
+        if isinstance(doc, Email):
+            yield doc
+        else:
+            for renderable in super().__rich_console__(console, options):
+                yield renderable

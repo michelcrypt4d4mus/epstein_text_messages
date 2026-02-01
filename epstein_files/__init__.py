@@ -25,7 +25,7 @@ from epstein_files.util.data import flatten
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import coerce_file_path, extract_file_id
 from epstein_files.util.logging import exit_with_error, logger
-from epstein_files.util.output import (print_doj_files, print_emails_section, print_json_files, print_json_stats,
+from epstein_files.util.output import (print_doj_files, print_emails_section, print_json_files, print_stats,
      print_other_files_section, print_text_messages_section, print_email_timeline, print_emailers_info,
      print_json_metadata, write_urls)
 from epstein_files.util.rich import (build_highlighter, console, highlighter, print_color_key, print_json,
@@ -88,9 +88,8 @@ def generate_html() -> None:
     if args.debug:
         highlighter.print_highlight_counts(console)
 
-    # JSON stats (mostly used for building pytest checks)
-    if args.json_stats:
-        print_json_stats(epstein_files)
+    if args.stats:
+        print_stats(epstein_files)  # Used for building pytest checks
 
 
 def epstein_diff():

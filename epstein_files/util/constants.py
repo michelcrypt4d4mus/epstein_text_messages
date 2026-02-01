@@ -1617,7 +1617,12 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='024132', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2012-03-15'),
     DocCfg(id='024194', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2012-10-22'),
     DocCfg(id='025296', author='Laffer Associates', description=f'report predicting Trump win', date='2016-07-06'),
-    DocCfg(id='020824', author='Mary Meeker', description=f"USA Inc: A Basic Summary of America's Financial Statements compiled", date='2011-02-01'),
+    DocCfg(
+        id='020824',
+        author='Mary Meeker',
+        date='2011-02-01',
+        description=f"USA Inc: A Basic Summary of America's Financial Statements compiled",
+    ),
     DocCfg(id='025551', author='Morgan Stanley', description=f'report about alternative asset managers', date='2018-01-30'),
     DocCfg(id='019856', author='Sadis Goldberg LLP', description=f"report on SCOTUS ruling about insider trading", is_interesting=True),
     DocCfg(id='025763', author='S&P', description=f"Economic Research: How Increasing Income Inequality Is Dampening U.S. Growth", date='2014-08-05'),
@@ -1626,12 +1631,20 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='026584', description=f"article about tax implications of disregarded entities", date='2009-07-01', is_interesting=True),
     DocCfg(
         id='024271',
-        description=f"Blockchain Capital and Brock Pierce pitch deck",
         date='2015-10-01',
+        description=f"Blockchain Capital and Brock Pierce pitch deck",
         is_interesting=True,
     ),
-    DocCfg(id='024817', description=f"Cowen's Collective View of CBD / Cannabis report"),
-    DocCfg(id='012048', description=f"{PRESS_RELEASE} 'Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm' and other articles"),
+    DocCfg(
+        id='024817',
+        date='2019-02-25',
+        description=f"Cowen's Collective View of CBD / Cannabis report",
+        is_interesting=True
+    ),
+    DocCfg(
+        id='012048',
+        description=f"{PRESS_RELEASE} 'Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm' and other articles"
+    ),
 
     # private placement memoranda
     DocCfg(

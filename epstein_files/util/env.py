@@ -63,7 +63,7 @@ debug.add_argument('--colors-only', '-c', action='store_true', help='print heade
 debug.add_argument('--constantize', action='store_true', help='constantize names when printing repr() of objects')
 debug.add_argument('--debug', '-d', action='store_true', help='set debug level to INFO')
 debug.add_argument('--deep-debug', '-dd', action='store_true', help='set debug level to DEBUG')
-debug.add_argument('--json-stats', '-j', action='store_true', help='print JSON formatted stats about the files')
+debug.add_argument('--stats', '-j', action='store_true', help='print JSON formatted stats about the files')
 debug.add_argument('--skip-other-files', '-sof', action='store_true', help='skip parsing non email/text files')
 debug.add_argument('--suppress-logs', '-sl', action='store_true', help='set debug level to FATAL')
 debug.add_argument('--truncate', '-t', type=int, help='truncate emails to this many characters')
