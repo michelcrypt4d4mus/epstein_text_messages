@@ -98,6 +98,11 @@ class Document:
     strip_whitespace: ClassVar[bool] = True  # Overridden in JsonFile
 
     @property
+    def config_description(self) -> str | None:
+        if self.config and self.config.description:
+            return f"({self.config.description})"
+
+    @property
     def length(self) -> int:
         return len(self.text)
 
@@ -117,11 +122,6 @@ class Document:
         self._repair()
         self._extract_author()
         self.timestamp = self._extract_timestamp()
-
-    def config_description(self) -> str | None:
-        """Overloaded in OtherFile."""
-        if self.config and self.config.description:
-            return f"({self.config.description})"
 
     def date_str(self) -> str | None:
         return date_str(self.timestamp)
@@ -188,7 +188,7 @@ class Document:
         """0 to 2 sentences containing the info_txt() as well as any configured description."""
         return without_falsey([
             self.info_txt(),
-            highlighter(Text(self.config_description(), style=INFO_STYLE)) if self.config_description() else None
+            highlighter(Text(self.config_description, style=INFO_STYLE)) if self.config_description else None
         ])
 
     def info_txt(self) -> Text | None:
