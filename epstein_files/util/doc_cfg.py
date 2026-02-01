@@ -89,6 +89,15 @@ class DocCfg:
     is_interesting: bool | None = None
     is_synthetic: bool = False
 
+    @property
+    def metadata(self) -> Metadata:
+        metadata = {k: v for k, v in asdict(self).items() if k not in NON_METADATA_FIELDS and v}
+
+        if self.is_interesting is False:
+            metadata['is_interesting'] = False
+
+        return metadata
+
     def __post_init__(self):
         if self.duplicate_of_id or self.duplicate_ids:
             self.dupe_type = self.dupe_type or SAME
@@ -140,14 +149,6 @@ class DocCfg:
             dupe_cfg.dupe_type = self.dupe_type
             dupe_cfg.is_synthetic = True
             yield dupe_cfg
-
-    def metadata(self) -> Metadata:
-        metadata = {k: v for k, v in asdict(self).items() if k not in NON_METADATA_FIELDS and v}
-
-        if self.is_interesting is False:
-            metadata['is_interesting'] = False
-
-        return metadata
 
     def timestamp(self) -> datetime | None:
         if self.date:

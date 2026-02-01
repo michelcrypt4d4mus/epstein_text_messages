@@ -254,6 +254,7 @@ class Person:
 
     @property
     def sort_key(self) -> list[int | str]:
+        """Key used to sort `Person` objects by the number of emails sent/received."""
         counts = [
             len(self.unique_emails),
             -1 * int((self.info_str or '') == UNINTERESTING_CC_INFO_NO_CONTACT),
@@ -299,8 +300,8 @@ class Person:
             logger.warning(f"Not printing junk emailer '{self.name}'")
         else:
             for email in self._printable_emails():
-                if email.is_duplicate():
-                    console.print(Padding(email.duplicate_file_txt().append('...'), SKIPPED_FILE_MSG_PADDING))
+                if email.is_duplicate:
+                    console.print(Padding(email.duplicate_file_txt.append('...'), SKIPPED_FILE_MSG_PADDING))
                     last_printed_email_was_duplicate = True
                 else:
                     if last_printed_email_was_duplicate:
@@ -326,7 +327,7 @@ class Person:
     def _printable_emails(self):
         """For Epstein we only want to print emails he sent to himself."""
         if self.name == JEFFREY_EPSTEIN:
-            return [e for e in self.emails if e.is_note_to_self()]
+            return [e for e in self.emails if e.is_note_to_self]
         else:
             return self.emails
 

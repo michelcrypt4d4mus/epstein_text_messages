@@ -104,6 +104,20 @@ class DojFile(OtherFile):
     def is_bad_ocr(self) -> bool:
         return self.file_id in BAD_DOJ_FILE_IDS
 
+    @property
+    def is_empty(self) -> bool:
+        """Overloads superclass method."""
+        return len(self.text.strip().removesuffix(NO_IMAGE_SUFFIX)) < 20
+
+    @property
+    def timestamp_sort_key(self) -> tuple[datetime, str, int]:
+        """Overloads parent method."""
+        dupe_idx = 0
+        # TODO: Years of 2001 are often garbage pared from '1.6' etc.
+        sort_timestamp = self.timestamp or FALLBACK_TIMESTAMP
+        sort_timestamp = FALLBACK_TIMESTAMP if sort_timestamp.year <= 2001 else sort_timestamp
+        return (sort_timestamp, self.file_id, dupe_idx)
+
     def __post_init__(self):
         super().__post_init__()
 
@@ -128,10 +142,6 @@ class DojFile(OtherFile):
             SKIPPED_FILE_MSG_PADDING
         )
 
-    def is_empty(self) -> bool:
-        """Overloads superclass method."""
-        return len(self.text.strip().removesuffix(NO_IMAGE_SUFFIX)) < 20
-
     def prep_for_printing(self) -> None:
         """Replace some fields and strip out some lines, but do it only before printing (don't store to pickled file)."""
         if self.file_id in REPLACEMENT_TEXT:
@@ -143,14 +153,6 @@ class DojFile(OtherFile):
         if len(non_number_lines) != len(self.lines):
             logger.warning(f"{self.file_id}: Reduced line count from {len(self.lines)} to {len(non_number_lines)}")
             self._set_computed_fields(lines=non_number_lines)
-
-    def timestamp_sort_key(self) -> tuple[datetime, str, int]:
-        """Overloads parent method."""
-        dupe_idx = 0
-        # TODO: Years of 2001 are often garbage pared from '1.6' etc.
-        sort_timestamp = self.timestamp or FALLBACK_TIMESTAMP
-        sort_timestamp = FALLBACK_TIMESTAMP if sort_timestamp.year <= 2001 else sort_timestamp
-        return (sort_timestamp, self.file_id, dupe_idx)
 
     def _border_style(self) -> str:
         """Color emails from epstein to others with the color for the first recipient."""
