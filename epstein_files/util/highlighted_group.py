@@ -828,7 +828,9 @@ HIGHLIGHTED_NAMES = [
             r'Alice\s*Fisher|Fisher, Alice',
             r"AML",
             r"(Andrew\s*)?(McCabe|Natsios)",
+            r"(Assistant\s+)?State\s*Attorney",
             r"Attorney General",
+            r'Barbara\s*Burns',  # AUSA
             r"((Bob|Robert)\s*)?Mueller",
             r"(Byung\s)?Pak",
             r"Case 1:19-cv-03377(-LAP)?",
