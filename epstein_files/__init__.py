@@ -173,11 +173,11 @@ def epstein_show():
         console.print('\n', doc, '\n')
 
         if args.raw:
-            console.print(Panel(Text("RAW: ").append(doc.summary()), expand=False, style=doc.border_style()))
+            console.print(Panel(Text("RAW: ").append(doc.summary()), expand=False, style=doc.border_style))
             console.print(escape(doc.raw_text()), '\n')
 
             if isinstance(doc, Email):
-                console.print(Panel(Text("actual_text: ").append(doc.summary()), expand=False, style=doc.border_style()))
+                console.print(Panel(Text("actual_text: ").append(doc.summary()), expand=False, style=doc.border_style))
                 console.print(escape(doc._actual_text()), '\n')
                 metadata = doc.metadata
                 metadata['is_fwded_article'] = doc.is_fwded_article

@@ -32,6 +32,10 @@ class MessengerLog(Communication):
     phone_number: str | None = None
 
     @property
+    def border_style(self) -> str:
+        return self.author_style
+
+    @property
     def info_txt(self) -> Text | None:
         num_days_str = days_between_str(self.timestamp, self.messages[-1].parse_timestamp())
         txt = Text(f"(Covers {num_days_str} starting ", style='dim')
@@ -61,9 +65,6 @@ class MessengerLog(Communication):
     def __post_init__(self):
         super().__post_init__()
         self.messages = [self._build_message(match) for match in MSG_REGEX.finditer(self.text)]
-
-    def border_style(self) -> str:
-        return self.author_style
 
     def first_message_at(self, name: Name) -> datetime:
         return self.messages_by(name)[0].parse_timestamp()
