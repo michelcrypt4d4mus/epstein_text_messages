@@ -246,16 +246,3 @@ def test_document_monthly_counts(epstein_files):
     assert counts == EXPECTED_MONTHLY_COUNTS
     len_all_files = len(epstein_files.all_files)
     assert sum(counts.values()) == len_all_files - 1256  # There's 1256 empty files
-
-
-def _show_timestamps(epstein_files):
-    for doc in epstein_files.doj_files:
-        doc.warn(f"timestamp: {doc.timestamp}")
-
-
-def _verify_filenames(epstein_files):
-    doc_filenames = set([doc.file_path.name for doc in epstein_files.all_documents()])
-
-    for file_path in epstein_files.all_files:
-        if file_path.name not in doc_filenames:
-            print(f"'{file_path}' is not in list of {len(doc_filenames)} Document obj filenames!")
