@@ -39,6 +39,8 @@ EPSTEIN_DOCS_URL = 'https://epstein-docs.github.io'
 OVERSIGHT_REPUBLICANS_PRESSER_URL = 'https://oversight.house.gov/release/oversight-committee-releases-additional-epstein-estate-documents/'
 RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL = 'https://drive.google.com/drive/folders/1hTNH5woIRio578onLGElkTWofUSWRoH_'
 SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great'
+# DOJ docs
+DOJ_2026_URL = 'https://www.justice.gov/epstein/doj-disclosures'
 
 # Document source sites
 EPSTEINIFY_URL = 'https://epsteinify.com'

@@ -337,6 +337,7 @@ def _print_external_links() -> None:
     presser_link = link_text_obj(OVERSIGHT_REPUBLICANS_PRESSER_URL, 'Official Oversight Committee Press Release')
     raw_docs_link = join_texts([link_text_obj(RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL, 'raw files', style=f"{ARCHIVE_LINK_COLOR} dim")], encloser='()')
     print_centered(join_texts([presser_link, raw_docs_link]))
+    print_centered(link_markup(DOJ_2026_URL, 'Disclosures Under the Epstein Files Transparency Act'))
     print_centered(link_markup(JMAIL_URL, JMAIL) + " (read His Emails via Gmail interface)")
     print_centered(link_markup(EPSTEIN_DOCS_URL) + " (searchable archive)")
     print_centered(link_markup(EPSTEINIFY_URL) + " (raw document images)")

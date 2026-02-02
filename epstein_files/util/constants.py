@@ -1094,7 +1094,7 @@ EMAILS_CONFIG = [
 
     # DOJ files
     EmailCfg(id='EFTA02731737', date='2023-06-30T16:05:00'),
-    EmailCfg(id='EFTA02731689', date='2023-06-09T20:14:10'),
+    EmailCfg(id='EFTA02731689', author=UNKNOWN, recipients=[None], date='2023-06-09 20:14:00'),
     EmailCfg(id='EFTA02731475', date='2023-05-31T20:53:00'),
     EmailCfg(id='EFTA02731732', date='2024-03-06T12:21:00'),
     EmailCfg(id='EFTA02731485', date='2023-06-12T13:53:00'),
@@ -1122,8 +1122,8 @@ EMAILS_CONFIG = [
     # EmailCfg(id='EFTA02730468', date='2004-02-03 00:00:00'),  # TODO: ???
     EmailCfg(id='EFTA02731528', date='2021-05-06 09:39:15'),
     EmailCfg(id='EFTA02730485', date='2021-12-03 00:00:00'),
-    EmailCfg(id='EFTA02731689', author=UNKNOWN, recipients=[None], date='2023-06-09 14:14:00'),
     EmailCfg(id='EFTA00039689', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00995559', author=RENATA_BOLOTOVA, attribution_reason='poorly redacted signature'),
 ]
 
 if args.constantize:

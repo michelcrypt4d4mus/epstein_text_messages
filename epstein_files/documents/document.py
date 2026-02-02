@@ -105,6 +105,11 @@ class Document:
             return f"({self.config.description})"
 
     @property
+    def config_timestamp(self) -> datetime | None:
+        """Configured timestamp, if any."""
+        return self.config.timestamp if self.config and self.config.timestamp else None
+
+    @property
     def date_str(self) -> str | None:
         return date_str(self.timestamp)
 
@@ -274,7 +279,7 @@ class Document:
         self._set_computed_fields(text=self.text)
         self._repair()
         self._extract_author()
-        self.timestamp = self._extract_timestamp()
+        self.timestamp = self.config_timestamp or self._extract_timestamp()
 
     @classmethod
     def from_file_id(cls, file_id: str | int) -> Self:

@@ -57,7 +57,11 @@ class EpsteinFiles:
     def __post_init__(self):
         """Iterate through files and build appropriate objects."""
         self.all_files = sorted([f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')])
-        documents = []
+
+        if DOJ_PDFS_20260130_DIR:
+            self.all_files += sorted([f for f in DOJ_PDFS_20260130_DIR.glob('**/*.txt')])
+
+        docs = []
         file_type_count = defaultdict(int)  # Hack used by --skip-other-files option to get a few files parsed before skipping the rest
 
         # Read through and classify all the files
@@ -73,22 +77,18 @@ class EpsteinFiles:
                 document.log(f"Skipping OtherFile...")
                 continue
 
-            documents.append(cls(file_arg, lines=document.lines, text=document.text))
-            logger.info(str(documents[-1]))
+            docs.append(cls(file_arg, lines=document.lines, text=document.text))
+            logger.info(str(docs[-1]))
             file_type_count[cls.__name__] += 1
 
             if doc_timer.seconds_since_start() > SLOW_FILE_SECONDS:
-                doc_timer.print_at_checkpoint(f"Slow file: {documents[-1]} processed")
+                doc_timer.print_at_checkpoint(f"Slow file: {docs[-1]} processed")
 
-        self.emails = Document.sort_by_timestamp([d for d in documents if isinstance(d, Email)])
-        self.imessage_logs = Document.sort_by_timestamp([d for d in documents if isinstance(d, MessengerLog)])
-        self.other_files = Document.sort_by_timestamp([d for d in documents if isinstance(d, (JsonFile, OtherFile))])
-        self.json_files = [doc for doc in self.other_files if isinstance(doc, JsonFile)]
-
-        if DOJ_PDFS_20260130_DIR is not None:
-            self.doj_files = Document.sort_by_id([DojFile(p) for p in DOJ_PDFS_20260130_DIR.glob('**/*.txt')])
-            logger.warning(f"Found {len(self.doj_files)} DojFiles in '{DOJ_PDFS_20260130_DIR}'")
-
+        self.doj_files = Document.sort_by_timestamp([d for d in docs if d.is_doj_file])
+        self.emails = Document.sort_by_timestamp([d for d in docs if isinstance(d, Email)])
+        self.imessage_logs = Document.sort_by_timestamp([d for d in docs if isinstance(d, MessengerLog)])
+        self.other_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, OtherFile) and not d.is_doj_file])
+        self.json_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, JsonFile)])
         self._set_uninteresting_ccs()
         self._copy_duplicate_email_properties()
         self._find_email_attachments_and_set_is_first_for_user()
@@ -295,7 +295,7 @@ class EpsteinFiles:
 
                 if other_file.timestamp \
                         and other_file.timestamp != email.timestamp \
-                        and not (other_file.config and other_file.config.timestamp):
+                        and not other_file.config_timestamp:
                     other_file.warn(f"Overwriting '{other_file.timestamp}' with {email}'s timestamp {email.timestamp}")
 
                 other_file.timestamp = email.timestamp
@@ -351,14 +351,14 @@ def document_cls(doc: Document) -> Type[Document]:
 
     if doc.length == 0:
         return Document
+    elif doc.is_doj_file:
+        return DojFile
     if doc.text[0] == '{':
         return JsonFile
-    elif Document.is_email(doc) and not doc.is_doj_file:  # TODO: right now we setup the DojFile first
+    elif Document.is_email(doc):  # TODO: right now we setup the DojFile which makes an Email obj only later at print time
         return Email
     elif MSG_REGEX.search(search_area):
         return MessengerLog
-    elif doc.is_doj_file:
-        return DojFile
     else:
         return OtherFile
 
