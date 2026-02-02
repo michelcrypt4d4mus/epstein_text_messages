@@ -158,6 +158,18 @@ def key_value_txt(key: str, value: Text | int | str) -> Text:
     return Text('').append(key, style=KEY_STYLE).append('=', style=SYMBOL_STYLE).append(value)
 
 
+def left_bar_panel(text: str, bar_style: str) -> Table:
+    # Create a table with no surrounding border
+    table = Table.grid(padding=0)
+    table.add_column(justify='left', style=bar_style)  # Column for the line
+    table.add_column(justify='left')                   # Column for content
+
+    for txt_line in highlighter(text).split('\n'):
+        table.add_row('| ', txt_line)
+
+    return table
+
+
 def parenthesize(msg: str | Text, style: str = '') -> Text:
     txt = Text(msg) if isinstance(msg, str) else msg
     return Text('(', style=style).append(txt).append(')')
