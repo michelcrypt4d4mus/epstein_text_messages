@@ -14,9 +14,10 @@ from epstein_files.documents.email import Email
 from epstein_files.documents.emails.email_header import FIELDS_COLON_PATTERN
 from epstein_files.documents.other_file import Metadata, OtherFile
 from epstein_files.util.constants import FALLBACK_TIMESTAMP
+from epstein_files.util.data import without_falsey
 from epstein_files.util.layout.left_bar_panel import LeftBarPanel
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import RAINBOW, SKIPPED_FILE_MSG_PADDING, link_text_obj
+from epstein_files.util.rich import RAINBOW, INFO_STYLE, SKIPPED_FILE_MSG_PADDING, highlighter, link_text_obj
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTALL)
@@ -89,7 +90,7 @@ PHONE_BILL_IDS = {
     'EFTA00006770': 'covering 2006-02-01 to 2006-06-16',
     'EFTA00006870': 'covering 2006-02-09 to 2006-07',
     'EFTA00006970': 'covering 2006-04-15 to 2006-07-16',
-    # 'EFTA00007070':  # TODO: not a messy phone bill, short
+    # 'EFTA00007070':  # TODO: not a messy phone bill, short, has additional info at end
 }
 
 REPLACEMENT_TEXT = {
@@ -145,13 +146,49 @@ class DojFile(OtherFile):
         return self._border_style
 
     @property
+    def info(self) -> list[Text]:
+        """Overloads superclass. Only create info line if `description` is not meant to be full replacement."""
+        if self.config_description and not self.has_replacement_text:
+            description = highlighter(Text(self.config_description, style=INFO_STYLE))
+        else:
+            description = None
+
+        return without_falsey([self.info_txt, description])
+
+    @property
     def is_bad_ocr(self) -> bool:
         return self.file_id in BAD_DOJ_FILE_IDS
+
+    @property
+    def has_replacement_text(self) -> bool:
+        return bool(self.config_description and self.config.replace_text_with_description)
 
     @property
     def is_empty(self) -> bool:
         """Overloads superclass method."""
         return len(self.text.strip().removesuffix(NO_IMAGE_SUFFIX)) < 20
+
+    @property
+    def prettified_text(self) -> Text:
+        """Returns the string we want to print as the body of the document."""
+        style = ''
+
+        if self.file_id in PHONE_BILL_IDS:
+            pages = self.text.split('MetroPCS')
+            text = f"{pages[0]}\n\n(Redacted phone bill {PHONE_BILL_IDS[self.file_id]} {CHECK_LINK_FOR_DETAILS})"
+        elif self.file_id in REPLACEMENT_TEXT:
+            style = INFO_STYLE
+            text = REPLACEMENT_TEXT[self.file_id]
+
+            if len(text) < 400:
+                text = f'(Text of {text} {CHECK_LINK_FOR_DETAILS})'
+        elif self.has_replacement_text:
+            style = INFO_STYLE
+            text = f'(Text of {self.config_description} {CHECK_LINK_FOR_DETAILS})'
+        else:
+            text = self.text
+
+        return Text(text, style)
 
     @property
     def timestamp_sort_key(self) -> tuple[datetime, str, int]:
@@ -161,6 +198,12 @@ class DojFile(OtherFile):
         sort_timestamp = self.timestamp or FALLBACK_TIMESTAMP
         sort_timestamp = FALLBACK_TIMESTAMP if sort_timestamp.year <= 2001 else sort_timestamp
         return (sort_timestamp, self.file_id, dupe_idx)
+
+    def __post_init__(self):
+        super().__post_init__()
+
+        if self.file_id in PHONE_BILL_IDS:
+            self.strip_image_ocr_panels()
 
     def doj_link(self) -> Text:
         """Link to this file on the DOJ site."""
@@ -182,19 +225,6 @@ class DojFile(OtherFile):
         if Document.is_email(self):
             return Email(self.file_path, text=self.text)  # Pass text= to avoid reprocessing
         else:
-            if self.file_id in PHONE_BILL_IDS:
-                self.strip_image_ocr_panels()
-                pages = self.text.split('MetroPCS')
-                printable_text = f"{pages[0]}\n\n(Redacted phone bill {PHONE_BILL_IDS[self.file_id]} {CHECK_LINK_FOR_DETAILS})"
-            elif self.file_id in REPLACEMENT_TEXT:
-                printable_text = REPLACEMENT_TEXT[self.file_id]
-
-                if len(printable_text) < 400:
-                    printable_text = f'(Text of {printable_text} {CHECK_LINK_FOR_DETAILS})'
-            else:
-                printable_text = self.text
-
-            self._set_computed_fields(text=printable_text)
             return self
 
     def strip_image_ocr_panels(self) -> None:
@@ -227,7 +257,7 @@ class DojFile(OtherFile):
         else:
             yield (info_panel := self.file_info_panel())
             border_style = info_panel.renderables[0].border_style
-            panel_args = [self.text, border_style]
+            panel_args = [self.prettified_text, border_style]
 
             if self.panel_title_timestamp:
                 panel_args.append(Text(f"[{self.panel_title_timestamp}]", style='dim italic ' + border_style))
