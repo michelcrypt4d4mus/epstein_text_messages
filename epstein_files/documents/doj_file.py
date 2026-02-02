@@ -8,18 +8,22 @@ from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
 
-from epstein_files.documents.document import Document
+from epstein_files.documents.document import INFO_INDENT, Document
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.email_header import FIELDS_COLON_PATTERN
 from epstein_files.documents.other_file import Metadata, OtherFile
 from epstein_files.util.constant.urls import doj_2026_file_url
 from epstein_files.util.constants import FALLBACK_TIMESTAMP
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import RAINBOW, SKIPPED_FILE_MSG_PADDING, link_text_obj
+from epstein_files.util.rich import RAINBOW, SKIPPED_FILE_MSG_PADDING, left_bar_panel, link_text_obj
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTALL)
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
+
+OTHER_DOC_URLS = {
+    '245-22.pdf': 'https://www.justice.gov/multimedia/Court%20Records/Government%20of%20the%20United%20States%20Virgin%20Islands%20v.%20JPMorgan%20Chase%20Bank,%20N.A.,%20No.%20122-cv-10904%20(S.D.N.Y.%202022)/245-22.pdf'
+}
 
 # DojFile specific repair
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
@@ -50,6 +54,7 @@ BAD_DOJ_FILE_IDS = [
     'EFTA00001031',
     'EFTA00005495',
     'EFTA00002830',
+    'EFTA00001937',
     'EFTA00008496',
     'EFTA00008441',
     'EFTA00008415',
@@ -92,6 +97,8 @@ REPLACEMENT_TEXT = {
     'EFTA00008020': '"Massage for Dummies"',
     'EFTA00008220': '"Massage book: Chapter 11: Putting the Moves Together"',
     'EFTA00008320': '"Massage for Dummies (???)"',
+    'EFTA00000476': 'Photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09',
+    'EFTA00039312': 'Bureau of Prisons Program Statement / Memo about BOP Pharmacy Program',
     # Manual transcription required
     'EFTA00009622': 'handwritten lascivious note that the OCR failed on / is unsearchable. If you want to manually transcribe it and send me the result I will update this box with the correct text',
     # TODO: move to PHONE_BILL_IDS
@@ -100,8 +107,10 @@ REPLACEMENT_TEXT = {
     'EFTA00006587': 'T-Mobile phone bill from 2006-09-04 to 2016-10-15',
     'EFTA00006687': 'T-Mobile phone bill from 2006-10-31 to 2006-12-25',
     'EFTA00007401': 'T-Mobile phone bill from 2004-08-25 to 2005-07-13',
-    'EFTA00007301': 'T-Mobile response to subpoena March 23, 2007 AKA a phone bill',
+    'EFTA00007301': 'T-Mobile response to subpoena March 23, 2007 - Blackberry phone logs for 2005',
     'EFTA00006487': 'T-Mobile phone bill 2006-08-26',
+    'EFTA00006100': 'Palm Beach Police fax machine activity log 2005-12-28 to 2006-01-04',
+    'EFTA00007253': 'T-Mobile response to subpoena March 23, 2007 - phone bill ',
 }
 
 INTERESTING_DOJ_FILES = {
@@ -208,5 +217,5 @@ class DojFile(OtherFile):
         if isinstance(doc, Email):
             yield doc
         else:
-            for renderable in OtherFile.__rich_console__(doc, console, options):
-                yield renderable
+            yield self.file_info_panel()
+            yield Padding(left_bar_panel(self.text, self._border_style()), (0, 0, 1, 1))
