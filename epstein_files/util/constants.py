@@ -1943,6 +1943,7 @@ OTHER_FILES_MISC = [
 
     # DOJ files
     DocCfg(id='EFTA00007781', description='paychecks signed by Epstein deposited at Colonial Bank'),
+    DocCfg(id='EFTA00009622', description='handwritten note transcribed by @TheReclamare via Claude AI', date='2006-07-19'),
 ]
 
 OTHER_FILES_JUNK = [
