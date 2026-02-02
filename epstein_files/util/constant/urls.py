@@ -57,7 +57,6 @@ DOC_LINK_BASE_URLS: dict[ExternalSite, str] = {
 
 # Example: https://www.justice.gov/epstein/files/DataSet%208/EFTA00009802.pdf
 DOJ_2026_FILE_BASE_URL = "https://www.justice.gov/epstein/files/DataSet%20"
-doj_2026_file_url = lambda dataset_id, file_stem: f"{DOJ_2026_FILE_BASE_URL}{dataset_id}/{file_stem}.pdf"
 
 
 epsteinify_api_url = lambda file_stem: f"{EPSTEINIFY_URL}/api/documents/{file_stem}"
@@ -94,6 +93,16 @@ def build_doc_url(base_url: str, filename_or_id: int | str, case: Literal['lower
     file_stem = file_stem.lower() if case == 'lower' or EPSTEIN_MEDIA in base_url else file_stem
     file_stem = file_stem.title() if case == 'title' else file_stem
     return f"{base_url}{file_stem}"
+
+
+def doj_2026_file_url(dataset_id: int, file_stem: str) -> str:
+    """Link to justice.gov for a DOJ file."""
+    return f"{DOJ_2026_FILE_BASE_URL}{dataset_id}/{file_stem}.pdf"
+
+
+def jmail_doj_2026_file_url(dataset_id: int, file_stem: str) -> str:
+    """Link to Jmail backup of DOJ file."""
+    return f"{JMAIL_URL}/drive/vol{dataset_id:05}-{file_stem.lower()}-pdf"
 
 
 def external_doc_link_markup(site: ExternalSite, filename_or_id: int | str, style: str = TEXT_LINK) -> str:

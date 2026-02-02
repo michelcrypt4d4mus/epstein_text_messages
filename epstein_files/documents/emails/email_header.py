@@ -14,7 +14,7 @@ TO_FIELDS = ['bcc', 'cc', 'to']
 EMAILER_FIELDS = [AUTHOR] + TO_FIELDS
 
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}(From|Subject):')  # IDed 140 emails out of 3777 DOJ files with just 'From:' match
-FIELD_PATTERNS = ['Date', 'From', 'Sent', 'To', r"C[cC]", r"B[cC][cC]", 'Importance', 'Subject', 'Attachments', 'Classification', 'Flag', 'Reply-To']
+FIELD_PATTERNS = ['Date', 'From', 'Sent', 'To', r"C[cC]", r"B[cC][cC]", 'Importance', 'Subject', 'Attachments', 'Classification', 'Flag', 'Reply-To', 'Inline-Images']
 FIELDS_PATTERN = '|'.join(FIELD_PATTERNS)
 FIELDS_COLON_PATTERN = fr"^({FIELDS_PATTERN}):"
 HEADER_REGEX_STR = fr"(((?:(?:{FIELDS_PATTERN}|Bee):|on behalf of ?)(?! +(by |from my|via )).*\n){{3,}})"
@@ -55,6 +55,7 @@ class EmailHeader:
     classification: str | None = None
     flag: str | None = None
     importance: str | None = None
+    inline_images: str | None = None
     attachments: str | None = None
     to: list[str] | None = None
     reply_to: str | None = None

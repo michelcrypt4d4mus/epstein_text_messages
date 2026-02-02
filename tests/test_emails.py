@@ -957,7 +957,7 @@ def test_unknown_recipient_file_ids(epstein_files):
 
 def test_border_style(epstein_files):
     email = epstein_files.email_for_id('033071')
-    assert email._border_style() == 'purple'
+    assert email.border_style == 'purple'
     assert email.author_style == 'blue1'
 
 
