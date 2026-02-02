@@ -1610,7 +1610,9 @@ HIGHLIGHTED_NAMES = [
         style='medium_orchid1',
         emailers={
             BRAD_EDWARDS: ROTHSTEIN_ROSENFELDT_ADLER,
+            'Douglas Wigdor': f'lawsuit against {LEON_BLACK}, Wigdor LLP',
             'Grant J. Smith': ROTHSTEIN_ROSENFELDT_ADLER,
+            'Jeanne M. Christensen': f'lawsuit against {LEON_BLACK}, Wigdor LLP',
             JACK_SCAROLA: 'Searcy Denney Scarola Barnhart & Shipley',
             KEN_JENNE: ROTHSTEIN_ROSENFELDT_ADLER,
         },
