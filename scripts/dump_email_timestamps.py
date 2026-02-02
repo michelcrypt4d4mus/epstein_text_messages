@@ -21,8 +21,7 @@ from epstein_files.util.logging import logger
 from epstein_files.util.rich import console, highlighter, print_json, print_subtitle_panel
 
 
-
-
+# Print all DOJ files from biggest to smallest.
 for i, doc in enumerate(sorted(epstein_files.doj_files, key=lambda f: -f.length)):
     console.print(doc)
 

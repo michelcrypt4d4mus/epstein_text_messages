@@ -93,12 +93,17 @@ REPLACEMENT_TEXT = {
     'EFTA00009622': 'handwritten lascivious note that the OCR failed on / is unsearchable. If you want to manually transcribe it and send me the result I will update this box with the correct text',
     # TODO: move to PHONE_BILL_IDS
     'EFTA00006387': 'T-Mobile phone bill covering 2006-06-15 to 2006-07-23',
-    'EFTA00007501': 'T-mobile phone bill from 2005',
+    'EFTA00007501': 'T-Mobile phone bill from 2005',
+    'EFTA00006587': 'T-Mobile phone bill from 2006-09-04 to 2016-10-15',
+    'EFTA00006687': 'T-Mobile phone bill from 2006-10-31 to 2006-12-25',
+    'EFTA00007401': 'T-Mobile phone bill from 2004-08-25 to 2005-07-13',
+    'EFTA00007301': 'T-Mobile response to subpoena March 23, 2007 AKA a phone bill',
 }
 
 INTERESTING_DOJ_FILES = {
     'EFTA02640711': 'Jabor Y home address (HBJ)',
     'EFTA00039689': 'Dilorio emails to SEC about Signature Bank, Hapoalim, Bioptix / RIOT, Honig, etc.',
+    'EFTA00039025': 'Investigation and Review of the Federal Bureau of Prisons Custody, Care, and Supervision of Jeffrey Epstein',
 }
 
 NO_IMAGE_SUFFIX = """
