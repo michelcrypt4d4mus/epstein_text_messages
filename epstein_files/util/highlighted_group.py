@@ -1597,6 +1597,7 @@ HIGHLIGHTED_NAMES = [
             r"(Gloria\s*)?Allred",
             r"(Jane|Tiffany)\s*Doe",
             r"Katie\s*Johnson",
+            r"Minor\s*Victim",
             r"pedophile",
             r"Stephanie\s*Clifford",
             r"Stormy\s*Daniels",
@@ -1700,6 +1701,7 @@ HIGHLIGHTED_TEXTS = [
         patterns=[
             REPLY_REGEX.pattern, r"^(> )?wrote:$",
             r"CONFIDENTIAL FOR ATTORNEY'S EYES ONLY(\nDO NOT COPY)?",
+            r"PRIVILEGED ?- ?ATTORNEY WORK.*(\nCONFIDENTIAL - SUBJECT TO.*)?",
         ],
     ),
     HighlightedText(
