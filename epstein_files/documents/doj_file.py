@@ -94,23 +94,7 @@ PHONE_BILL_IDS = {
 }
 
 REPLACEMENT_TEXT = {
-    'EFTA00008120': '"Part II: The Art of Receiving a Massage"',
-    'EFTA00008020': '"Massage for Dummies"',
-    'EFTA00008220': '"Massage book: Chapter 11: Putting the Moves Together"',
-    'EFTA00008320': '"Massage for Dummies (???)"',
-    'EFTA00000476': 'Photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09',
-    'EFTA00039312': 'Bureau of Prisons Program Statement / Memo about BOP Pharmacy Program',
     'EFTA00009622': EFTA00009622_TEXT,
-    # TODO: move to PHONE_BILL_IDS
-    'EFTA00006387': 'T-Mobile phone bill covering 2006-06-15 to 2006-07-23',
-    'EFTA00007501': 'T-Mobile phone bill from 2005',
-    'EFTA00006587': 'T-Mobile phone bill from 2006-09-04 to 2016-10-15',
-    'EFTA00006687': 'T-Mobile phone bill from 2006-10-31 to 2006-12-25',
-    'EFTA00007401': 'T-Mobile phone bill from 2004-08-25 to 2005-07-13',
-    'EFTA00007301': 'T-Mobile response to subpoena March 23, 2007 - Blackberry phone logs for 2005',
-    'EFTA00006487': 'T-Mobile phone bill 2006-08-26',
-    'EFTA00006100': 'Palm Beach Police fax machine activity log 2005-12-28 to 2006-01-04',
-    'EFTA00007253': 'T-Mobile response to subpoena March 23, 2007 - phone bill ',
 }
 
 INTERESTING_DOJ_FILES = {
@@ -149,7 +133,7 @@ class DojFile(OtherFile):
     def info(self) -> list[Text]:
         """Overloads superclass. Only create info line if `description` is not meant to be full replacement."""
         if self.config_description and not self.has_replacement_text:
-            description = highlighter(Text(self.config_description, style=INFO_STYLE))
+            description = highlighter(Text(f" <{self.config_description}>", style=INFO_STYLE))
         else:
             description = None
 
@@ -177,7 +161,6 @@ class DojFile(OtherFile):
             pages = self.text.split('MetroPCS')
             text = f"{pages[0]}\n\n(Redacted phone bill {PHONE_BILL_IDS[self.file_id]} {CHECK_LINK_FOR_DETAILS})"
         elif self.file_id in REPLACEMENT_TEXT:
-            style = INFO_STYLE
             text = REPLACEMENT_TEXT[self.file_id]
 
             if len(text) < 400:
