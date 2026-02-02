@@ -178,6 +178,7 @@ ZUBAIR_KHAN = 'Zubair Khan'
 UNKNOWN = '(unknown)'
 
 # DOJ files emails
+CHRISTIAN_EVERDELL = 'Christian Everdell'
 CHRISTOPHER_DILORIO = 'Christopher Dilorio'
 
 # No communications but name is in the files
@@ -221,7 +222,7 @@ UBS = 'UBS'
 NAMES_TO_NOT_HIGHLIGHT = """
     al alain alan alfredo allen alex alexander amanda andres andrew anthony
     bard barrett barry bennet bernard bill black bob boris brad brenner bruce
-    cameron caroline carolyn chris christina cohen
+    cameron caroline carolyn chris christian christina cohen
     dan daniel danny darren dave david debbie donald
     ed edward edwards enforcement enterprise enterprises entourage epstein eric erika etienne
     faith fisher forget fred friendly frost fuller
