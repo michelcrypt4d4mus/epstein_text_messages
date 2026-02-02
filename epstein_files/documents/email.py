@@ -106,6 +106,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     'Priebus, used\nprivate email accounts for': 'Priebus, used private email accounts for',
     "War on the Investigations\nEncircling Him": "War on the Investigations Encircling Him",
     "Subject; RE": "Subject: RE",
+    "straining relations between UK and\nAmerica": "straining relations between UK and America",
     re.compile(r"deadline re Mr Bradley Edwards vs Mr\s*Jeffrey Epstein", re.I): "deadline re Mr Bradley Edwards vs Mr Jeffrey Epstein",
     re.compile(r"Following Plea That Implicated Trump -\s*https://www.npr.org/676040070", re.I): "Following Plea That Implicated Trump - https://www.npr.org/676040070",
     re.compile(r"for Attorney General -\s+Wikisource, the"): r"for Attorney General - Wikisource, the",

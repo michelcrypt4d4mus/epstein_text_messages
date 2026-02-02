@@ -16,6 +16,7 @@ from rich.text import Text
 
 from epstein_files.epstein_files import EpsteinFiles, document_cls
 from epstein_files.documents.document import INFO_PADDING, Document
+from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
@@ -117,7 +118,7 @@ def epstein_grep():
             lines = search_result.lines
 
             if (isinstance(doc, Email) and not args.output_emails) \
-                    or (isinstance(doc, OtherFile) and not args.output_other) \
+                    or (isinstance(doc, (DojFile, OtherFile)) and not args.output_other) \
                     or (isinstance(doc, MessengerLog) and not args.output_texts):
                 doc.log(f"{type(doc).__name__} Skipping search result...")
                 continue
@@ -143,8 +144,8 @@ def epstein_grep():
                     line_txt = matching_line.__rich__()
                     console.print(Padding(temp_highlighter(line_txt), INFO_PADDING), style='gray37')
 
-            console.print(doc.local_path_and_url, style='dim')
             console.line()
+            console.print(doc.local_path_and_url + '\n', style='dim')
 
 
 def epstein_show():
