@@ -167,6 +167,7 @@ def epstein_show():
         docs = Document.sort_by_timestamp([document_cls(doc)(doc.file_path) for doc in raw_docs])
         logger.info(f"Document types: {[doc._class_name for doc in docs]}")
     except Exception as e:
+        console.print_exception()
         exit_with_error(str(e))
 
     for doc in docs:

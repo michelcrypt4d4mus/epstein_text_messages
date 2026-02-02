@@ -32,6 +32,7 @@ SKIPPED_FILE_MSG_PADDING = (0, 0, 0, 4)
 SUBTITLE_PADDING = (2, 0, 1, 0)
 GREY_NUMBERS = [58, 39, 39, 35, 30, 27, 23, 23, 19, 19, 15, 15, 15]
 VALID_GREYS = [0, 3, 7, 11, 15, 19, 23, 27, 30, 35, 37, 39, 42, 46, 50, 53, 54, 58, 62, 63, 66, 69, 70, 74, 78, 82, 84, 85, 89, 93]
+DOJ_PAGE_LINK_MSG = 'WIP page with documents from the Epstein Files Transparency Act'
 
 INFO_STYLE = 'white dim italic'
 KEY_STYLE = 'honeydew2 bold'
@@ -206,6 +207,7 @@ def print_title_page_header() -> None:
 
     links = [
         Text.from_markup(link_markup(other_site_url(), other_site_msg, f"{OTHER_SITE_LINK_STYLE} bold")),
+        Text.from_markup(link_markup(DOJ_2026_URL, DOJ_PAGE_LINK_MSG, f"{OTHER_SITE_LINK_STYLE} bold")),
         link_text_obj(WORD_COUNT_URL, 'most frequently used words in the emails and texts', AUX_SITE_LINK_STYLE),
         link_text_obj(JSON_METADATA_URL, 'author attribution explanations', AUX_SITE_LINK_STYLE),
         link_text_obj(JSON_FILES_URL, "epstein's json files", AUX_SITE_LINK_STYLE),

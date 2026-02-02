@@ -1945,6 +1945,27 @@ OTHER_FILES_MISC = [
     # DOJ files
     DocCfg(id='EFTA00007781', description='paychecks signed by Epstein deposited at Colonial Bank'),
     DocCfg(id='EFTA00009622', description='handwritten note transcribed by @TheReclamare via Claude AI', date='2006-07-19'),
+    DocCfg(
+        id='EFTA00039295',
+        description='Bureau of Prisons inmate telephone privileges Program Statement',
+        replace_text_with_description=True,
+    ),
+    DocCfg(id='EFTA00008120', description='"Part II: The Art of Receiving a Massage"', replace_text_with_description=True),
+    DocCfg(id='EFTA00008020', description='"Massage for Dummies"', replace_text_with_description=True),
+    DocCfg(id='EFTA00008220', description='"Massage book: Chapter 11: Putting the Moves Together"', replace_text_with_description=True),
+    DocCfg(id='EFTA00008320', description='"Massage for Dummies (???)"', replace_text_with_description=True),
+    DocCfg(id='EFTA00000476', description='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09', replace_text_with_description=True),
+    DocCfg(id='EFTA00039312', description='Bureau of Prisons Program Statement / Memo about BOP Pharmacy Program', replace_text_with_description=True),
+    # Phone bills TODO: Some kind of special handling?
+    DocCfg(id='EFTA00006387', description='T-Mobile phone bill covering 2006-06-15 to 2006-07-23', replace_text_with_description=True),
+    DocCfg(id='EFTA00007501', description='T-Mobile phone bill from 2005', replace_text_with_description=True),
+    DocCfg(id='EFTA00006587', description='T-Mobile phone bill from 2006-09-04 to 2016-10-15', replace_text_with_description=True),
+    DocCfg(id='EFTA00006687', description='T-Mobile phone bill from 2006-10-31 to 2006-12-25', replace_text_with_description=True),
+    DocCfg(id='EFTA00007401', description='T-Mobile phone bill from 2004-08-25 to 2005-07-13', replace_text_with_description=True),
+    DocCfg(id='EFTA00007301', description='T-Mobile response to subpoena March 23, 2007 - Blackberry phone logs for 2005', replace_text_with_description=True),
+    DocCfg(id='EFTA00006487', description='T-Mobile phone bill 2006-08-26', replace_text_with_description=True),
+    DocCfg(id='EFTA00006100', description='Palm Beach Police fax machine activity log 2005-12-28 to 2006-01-04', replace_text_with_description=True),
+    DocCfg(id='EFTA00007253', description='T-Mobile response to subpoena March 23, 2007 - phone bill ', replace_text_with_description=True),
 ]
 
 OTHER_FILES_JUNK = [
