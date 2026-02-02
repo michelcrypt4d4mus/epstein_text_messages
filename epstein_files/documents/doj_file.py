@@ -136,6 +136,15 @@ class DojFile(OtherFile):
     max_timestamp: ClassVar[datetime] = datetime(2025, 1, 29) # Overloaded in DojFile
 
     @property
+    def border_style(self) -> str:
+        """Use a rainbow to make sure each printed object has different color for those before and after."""
+        if self._border_style is None:
+            self._border_style = RAINBOW[int(self.border_style_rainbow_idx % len(RAINBOW))]
+            type(self).border_style_rainbow_idx += 1
+
+        return self._border_style
+
+    @property
     def is_bad_ocr(self) -> bool:
         return self.file_id in BAD_DOJ_FILE_IDS
 
@@ -153,21 +162,13 @@ class DojFile(OtherFile):
         sort_timestamp = FALLBACK_TIMESTAMP if sort_timestamp.year <= 2001 else sort_timestamp
         return (sort_timestamp, self.file_id, dupe_idx)
 
-    def border_style(self) -> str:
-        """Use a rainbow to make sure each printed object has different color for those before and after."""
-        if self._border_style is None:
-            self._border_style = RAINBOW[int(self.border_style_rainbow_idx % len(RAINBOW))]
-            type(self).border_style_rainbow_idx += 1
-
-        return self._border_style
-
     def doj_link(self) -> Text:
         """Link to this file on the DOJ site."""
         return link_text_obj(self.external_url, self.url_slug)
 
     def external_links_txt(self, _style: str = '', include_alt_links: bool = True) -> Text:
         """Overrides super() method to apply self.author_style."""
-        return super().external_links_txt(self.border_style(), include_alt_links=include_alt_links)
+        return super().external_links_txt(self.border_style, include_alt_links=include_alt_links)
 
     def image_with_no_text_msg(self) -> RenderableType:
         """One line of linked text to show if this file doesn't seem to have any OCR text."""
