@@ -295,7 +295,7 @@ class EpsteinFiles:
 
                 if other_file.timestamp \
                         and other_file.timestamp != email.timestamp \
-                        and not (other_file.config and other_file.config.timestamp):
+                        and not other_file.config_timestamp:
                     other_file.warn(f"Overwriting '{other_file.timestamp}' with {email}'s timestamp {email.timestamp}")
 
                 other_file.timestamp = email.timestamp

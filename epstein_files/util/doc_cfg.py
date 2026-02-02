@@ -98,6 +98,11 @@ class DocCfg:
 
         return metadata
 
+    @property
+    def timestamp(self) -> datetime | None:
+        if self.date:
+            return parse(self.date)
+
     def __post_init__(self):
         if self.duplicate_of_id or self.duplicate_ids:
             self.dupe_type = self.dupe_type or SAME
@@ -149,10 +154,6 @@ class DocCfg:
             dupe_cfg.dupe_type = self.dupe_type
             dupe_cfg.is_synthetic = True
             yield dupe_cfg
-
-    def timestamp(self) -> datetime | None:
-        if self.date:
-            return parse(self.date)
 
     def _props_strs(self) -> list[str]:
         props = []

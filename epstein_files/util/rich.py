@@ -345,7 +345,6 @@ def _print_external_links() -> None:
     print_centered(link_markup(EPSTEIN_MEDIA_URL) + " (raw document images)")
 
 
-
 def _print_social_media_links() -> None:
     print_centered_link(
         SUBSTACK_URL,
