@@ -9,6 +9,7 @@ from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.documents.document import INFO_INDENT, Document
+from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.email_header import FIELDS_COLON_PATTERN
 from epstein_files.documents.other_file import Metadata, OtherFile
@@ -98,8 +99,7 @@ REPLACEMENT_TEXT = {
     'EFTA00008320': '"Massage for Dummies (???)"',
     'EFTA00000476': 'Photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09',
     'EFTA00039312': 'Bureau of Prisons Program Statement / Memo about BOP Pharmacy Program',
-    # Manual transcription required
-    'EFTA00009622': 'handwritten lascivious note that the OCR failed on / is unsearchable. If you want to manually transcribe it and send me the result I will update this box with the correct text',
+    'EFTA00009622': EFTA00009622_TEXT,
     # TODO: move to PHONE_BILL_IDS
     'EFTA00006387': 'T-Mobile phone bill covering 2006-06-15 to 2006-07-23',
     'EFTA00007501': 'T-Mobile phone bill from 2005',
