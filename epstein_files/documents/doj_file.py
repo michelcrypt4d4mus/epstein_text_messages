@@ -8,15 +8,14 @@ from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
 
-from epstein_files.documents.document import INFO_INDENT, Document
+from epstein_files.documents.document import Document
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.email_header import FIELDS_COLON_PATTERN
 from epstein_files.documents.other_file import Metadata, OtherFile
 from epstein_files.util.constant.urls import doj_2026_file_url
 from epstein_files.util.constants import FALLBACK_TIMESTAMP
-from epstein_files.util.data import remove_zero_time
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import RAINBOW, SKIPPED_FILE_MSG_PADDING, highlighter, link_text_obj
+from epstein_files.util.rich import RAINBOW, SKIPPED_FILE_MSG_PADDING, link_text_obj
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTALL)
@@ -34,6 +33,7 @@ BAD_DOJ_FILE_IDS = [
     'EFTA00008501',
     'EFTA00008500',
     'EFTA00008514',
+    'EFTA00001940',
     'EFTA00008410',
     'EFTA00008411',
     'EFTA00008519',
@@ -75,11 +75,19 @@ BAD_DOJ_FILE_IDS = [
     'EFTA00001848',
 ]
 
+PHONE_BILL_IDS = {
+    'EFTA00006770': 'covering 2006-02-01 to 2006-06-16',
+    'EFTA00006870': 'covering 2006-02-09 to 2006-07',
+    'EFTA00006970': 'covering 2006-04-15 to 2006-07-16',
+    # 'EFTA00007070':  # TODO: not a messy phone bill, short
+}
+
 REPLACEMENT_TEXT = {
     'EFTA00008120': 'Part II: The Art of Receiving a Massage',
     'EFTA00008020': 'Massage for Dummies',
     'EFTA00008220': 'Massage book: Chapter 11: Putting the Moves Together',
     'EFTA00008320': 'Massage for Dummies (???)',
+    'EFTA00006387': 'T-Mobile phone bill covering 2006-06-15 to 2006-07-23',  # TODO: move to PHONE_BILL_IDS
 }
 
 INTERESTING_DOJ_FILES = {
@@ -132,14 +140,20 @@ class DojFile(OtherFile):
 
     def printable_doc(self) -> Self | Email:
         """Return a copy of this `DojFile` with simplified text if file ID is in `REPLACEMENT_TEXT`."""
-        if self.file_id in REPLACEMENT_TEXT:
-            replacement_text = f'(Text of "{REPLACEMENT_TEXT[self.file_id]}" {CHECK_LINK_FOR_DETAILS})'
-            new_doj_file = type(self)(self.file_path)
-            new_doj_file._set_computed_fields(text=replacement_text)
-            return new_doj_file
-        elif Document.is_email(self):
+        if Document.is_email(self):
             return Email(self.file_path, text=self.text)  # Pass text= to avoid reprocessing
         else:
+            if self.file_id in PHONE_BILL_IDS:
+                self.strip_image_ocr_panels()
+                pages = self.text.split('MetroPCS')
+                printable_text = f"{pages[0]}\n\n(Redacted phone bill {PHONE_BILL_IDS[self.file_id]} {CHECK_LINK_FOR_DETAILS})"
+            elif self.file_id in REPLACEMENT_TEXT:
+                # TODO: maybe shouldn't destructively replace these?
+                printable_text = f'(Text of "{REPLACEMENT_TEXT[self.file_id]}" {CHECK_LINK_FOR_DETAILS})'
+            else:
+                printable_text = self.text
+
+            self._set_computed_fields(text=printable_text)
             return self
 
     def strip_image_ocr_panels(self) -> None:
@@ -156,16 +170,8 @@ class DojFile(OtherFile):
         return style
 
     def _repair(self) -> None:
-        if self.file_id == 'EFTA00006770':
-            # Huge phone bill
-            self.strip_image_ocr_panels()
-            pages = self.text.split('MetroPCS')
-            new_text = f"{pages[0]}\n\n(Redacted phone bill covering 2006-02-01 to 2006-06-16 {CHECK_LINK_FOR_DETAILS})"
-            self._set_computed_fields(text=new_text)
-
-        text = self.repair_ocr_text(OCR_REPAIRS, self.text)
-        self._set_computed_fields(text=text)
-        #print(f"WAS REPAIRED\n-------\n{self.text[0:5000]}\n-----")
+        new_text = self.repair_ocr_text(OCR_REPAIRS, self.text)
+        self._set_computed_fields(text=new_text)
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         doc = self.printable_doc()
@@ -174,5 +180,5 @@ class DojFile(OtherFile):
         if isinstance(doc, Email):
             yield doc
         else:
-            for renderable in super().__rich_console__(console, options):
+            for renderable in OtherFile.__rich_console__(doc, console, options):
                 yield renderable

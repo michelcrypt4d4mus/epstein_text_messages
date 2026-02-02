@@ -192,7 +192,7 @@ class Document:
     @property
     def local_path_and_url(self) -> Text:
         """Text obj with local path and URL."""
-        return Text(f"{self.file_id} URL:       {self.external_url}\n{self.file_id} Local path: '{self.file_path}'")
+        return Text(f"{self.file_id} URL:         {self.external_url}\n{self.file_id} Local path: '{self.file_path}'")
 
     @property
     def metadata(self) -> Metadata:
@@ -219,7 +219,7 @@ class Document:
     @property
     def panel_title_timestamp(self) -> str | None:
         """String placed in the `title` of the enclosing `Panel` when printing this document's text."""
-        if not self.timestamp:
+        if (self.timestamp or FALLBACK_TIMESTAMP) == FALLBACK_TIMESTAMP:
             return None
 
         prefix = '' if self.config and self.config.timestamp else 'inferred '
@@ -434,6 +434,7 @@ class Document:
         logger.warning(f"Wrote {self.length} chars of cleaned {self.filename} to {output_path}.")
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
+        """Default `Document` renderer (Email and MessengerLog override this)."""
         yield self.file_info_panel()
 
         text_panel = Panel(

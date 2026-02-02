@@ -143,8 +143,8 @@ def epstein_grep():
                     line_txt = matching_line.__rich__()
                     console.print(Padding(temp_highlighter(line_txt), INFO_PADDING), style='gray37')
 
-            console.print(doc.local_path_and_url, style='dim')
             console.line()
+            console.print(doc.local_path_and_url + '\n', style='dim')
 
 
 def epstein_show():
