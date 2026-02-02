@@ -73,6 +73,7 @@ BAD_DOJ_FILE_IDS = [
     'EFTA00001979',
     'EFTA00002110',
     'EFTA00008504',
+    'EFTA00001368',
     'EFTA00000134',
     'EFTA00000471',
     'EFTA00001848',
@@ -107,6 +108,7 @@ INTERESTING_DOJ_FILES = {
     'EFTA02640711': 'Jabor Y home address (HBJ)',
     'EFTA00039689': 'Dilorio emails to SEC about Signature Bank, Hapoalim, Bioptix / RIOT, Honig, etc.',
     'EFTA00039025': 'Investigation and Review of the Federal Bureau of Prisons Custody, Care, and Supervision of Jeffrey Epstein',
+    'EFTA02296929': "Renata Bolotova appears to know Epstein's final girlfriend",
 }
 
 NO_IMAGE_SUFFIX = """
