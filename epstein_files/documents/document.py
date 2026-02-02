@@ -286,6 +286,10 @@ class Document:
         """Alternate constructor that finds the file path automatically and builds a `Document`."""
         return cls(coerce_file_path(file_id))
 
+    def border_style(self) -> str:
+        """Should be overloaded in subclasses."""
+        return 'white'
+
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         return self.external_link(epsteinify_doc_url, style, link_txt)
 
@@ -318,7 +322,7 @@ class Document:
 
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any additional info about the file."""
-        panel = Panel(self.external_links_txt(include_alt_links=True), border_style=self._border_style(), expand=False)
+        panel = Panel(self.external_links_txt(include_alt_links=True), border_style=self.border_style(), expand=False)
         padded_info = [Padding(sentence, INFO_PADDING) for sentence in self.info]
         return Group(*([panel] + padded_info))
 
@@ -378,10 +382,6 @@ class Document:
         """Print a warning message prefixed by info about this `Document`."""
         self.log(msg, level=logging.WARNING)
 
-    def _border_style(self) -> str:
-        """Should be overloaded in subclasses."""
-        return 'white'
-
     def _extract_author(self) -> None:
         """Get author from config. Extended in Email subclass to also check headers."""
         if self.config and self.config.author:
@@ -440,7 +440,7 @@ class Document:
 
         text_panel = Panel(
             highlighter(self.text),
-            border_style=self._border_style(),
+            border_style=self.border_style(),
             expand=False,
             title=f"({self.panel_title_timestamp})",
             title_align='right',

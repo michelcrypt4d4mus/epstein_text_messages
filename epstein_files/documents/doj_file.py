@@ -151,9 +151,15 @@ class DojFile(OtherFile):
         sort_timestamp = FALLBACK_TIMESTAMP if sort_timestamp.year <= 2001 else sort_timestamp
         return (sort_timestamp, self.file_id, dupe_idx)
 
+    def border_style(self) -> str:
+        """Color emails from Epstein to others with the color for the first recipient."""
+        style = RAINBOW[int(self.border_style_rainbow_idx % len(RAINBOW))]
+        type(self).border_style_rainbow_idx += 1
+        return style
+
     def doj_link(self) -> Text:
         """Link to this file on the DOJ site."""
-        return link_text_obj(doj_2026_file_url(self.doj_2026_dataset_id, self.url_slug), self.url_slug)
+        return link_text_obj(self.external_url, self.url_slug)
 
     def image_with_no_text_msg(self) -> RenderableType:
         """One line of linked text to show if this file doesn't seem to have any OCR text."""
@@ -187,12 +193,6 @@ class DojFile(OtherFile):
         new_text, num_replaced = IMAGE_PANEL_REGEX.subn('', self.text)
         self.warn(f"Stripped {num_replaced} image panels.")
         self._set_computed_fields(text=new_text)
-
-    def _border_style(self) -> str:
-        """Color emails from Epstein to others with the color for the first recipient."""
-        style = RAINBOW[int(self.border_style_rainbow_idx % len(RAINBOW))]
-        type(self).border_style_rainbow_idx += 1
-        return style
 
     def _repair(self) -> None:
         """Overloads superclass method."""

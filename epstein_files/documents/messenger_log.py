@@ -62,6 +62,9 @@ class MessengerLog(Communication):
         super().__post_init__()
         self.messages = [self._build_message(match) for match in MSG_REGEX.finditer(self.text)]
 
+    def border_style(self) -> str:
+        return self.author_style
+
     def first_message_at(self, name: Name) -> datetime:
         return self.messages_by(name)[0].parse_timestamp()
 
@@ -71,9 +74,6 @@ class MessengerLog(Communication):
     def messages_by(self, name: Name) -> list[TextMessage]:
         """Return all messages by 'name'."""
         return [m for m in self.messages if m.author == name]
-
-    def _border_style(self) -> str:
-        return self.author_style
 
     def _build_message(self, match: re.Match) -> TextMessage:
         """Turn a regex match into a TextMessage."""
