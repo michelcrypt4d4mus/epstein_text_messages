@@ -582,9 +582,7 @@ class Email(Communication):
         logger.debug(f"{self.file_id} extracted header\n\n{self.header}\n")
 
     def _extract_timestamp(self) -> datetime:
-        if self.config and self.config.timestamp():
-            return self.config.timestamp()
-        elif self.header.sent_at:
+        if self.header.sent_at:
             timestamp = _parse_timestamp(self.header.sent_at)
 
             if timestamp:
