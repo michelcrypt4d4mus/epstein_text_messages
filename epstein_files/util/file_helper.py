@@ -1,26 +1,41 @@
 import re
 from pathlib import Path
 
-from epstein_files.util.constant.strings import EFTA_PREFIX, FILE_NAME_REGEX, FILE_STEM_REGEX, HOUSE_OVERSIGHT_PREFIX
-from epstein_files.util.env import DOCS_DIR
+from epstein_files.util.constant.strings import (DOJ_FILE_NAME_REGEX, EFTA_PREFIX,
+     HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX, HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX,
+     HOUSE_OVERSIGHT_PREFIX)
+from epstein_files.util.env import DOCS_DIR, DOJ_TXTS_20260130_DIR
 from epstein_files.util.logging import logger
 
 EXTRACTED_EMAILS_DIR = Path('emails_extracted_from_legal_filings')
-FILE_ID_REGEX = re.compile(fr".*{FILE_NAME_REGEX.pattern}")
+FILE_ID_REGEX = re.compile(fr".*{HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX.pattern}")
 FILENAME_LENGTH = len(HOUSE_OVERSIGHT_PREFIX) + 6
 KB = 1024
 MB = KB * KB
 
 # Coerce methods handle both string and int arguments.
 coerce_file_name = lambda filename_or_id: coerce_file_stem(filename_or_id) + '.txt'
-coerce_file_path = lambda filename_or_id: DOCS_DIR.joinpath(coerce_file_name(filename_or_id))
 file_size = lambda file_path: Path(file_path).stat().st_size
 id_str = lambda id: f"{int(id):06d}"
 
 
+def coerce_file_path(filename_or_id: int | str) -> Path:
+    """Returns the `Path` for the file with `filename_or_id` ID."""
+    filename = coerce_file_name(filename_or_id)
+
+    if isinstance(filename_or_id, str) and DOJ_FILE_NAME_REGEX.match(filename_or_id):
+        for txt_file in DOJ_TXTS_20260130_DIR.glob('**/*.txt'):
+            if txt_file.name == filename:
+                return txt_file
+
+        raise RuntimeError(f"'{filename_or_id}' looks like DOJ file but no file named {filename} in '{DOJ_TXTS_20260130_DIR}'")
+    else:
+        return DOCS_DIR.joinpath(filename)
+
+
 def coerce_file_stem(filename_or_id: int | str) -> str:
-    """Generate a valid file_stem no matter what form the argument comes in."""
-    if isinstance(filename_or_id, str) and filename_or_id.startswith(EFTA_PREFIX):
+    """Generate a valid file stem no matter what form the argument comes in."""
+    if isinstance(filename_or_id, str) and DOJ_FILE_NAME_REGEX.search(filename_or_id):
         return Path(filename_or_id).stem
 
     if isinstance(filename_or_id, str) and filename_or_id.startswith(HOUSE_OVERSIGHT_PREFIX):
@@ -29,7 +44,7 @@ def coerce_file_stem(filename_or_id: int | str) -> str:
     else:
         file_stem = file_stem_for_id(filename_or_id)
 
-    if not FILE_STEM_REGEX.match(file_stem):
+    if not HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX.match(file_stem):
         raise RuntimeError(f"Invalid stem '{file_stem}' from '{filename_or_id}'")
 
     return file_stem

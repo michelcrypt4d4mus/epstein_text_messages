@@ -10,7 +10,7 @@ from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import FIRST_FEW_LINES, OtherFile
-from epstein_files.epstein_files import EpsteinFiles, count_by_month, document_cls
+from epstein_files.epstein_files import EpsteinFiles, count_by_month
 from epstein_files.person import Person
 from epstein_files.util.constant import output_files
 from epstein_files.util.constant.html import *
@@ -63,9 +63,8 @@ INTERESTING_TEXT_IDS = [
 def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile | Email]:
     last_was_empty = False
     printed_doj_files: list[DojFile | Email] = []
-    doj_files = [Email(f.file_path) if document_cls(f) == Email else f for f in epstein_files.doj_files]
 
-    for doj_file in Document.sort_by_timestamp(doj_files):
+    for doj_file in Document.sort_by_timestamp(epstein_files.doj_files):
         if isinstance(doj_file, DojFile) and (doj_file.is_empty or doj_file.is_bad_ocr):
             console.print(doj_file.image_with_no_text_msg(), style='dim')
             last_was_empty = True
@@ -74,13 +73,7 @@ def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile | Email]:
         if last_was_empty:
             console.line()
 
-        # Print probably emails as emails
-        if isinstance(doj_file, Email):
-            console.print(doj_file)
-        else:
-            doj_file.prep_for_printing()
-            console.print(doj_file)
-
+        console.print(doj_file.printable_doj_file())
         last_was_empty = False
         printed_doj_files.append(doj_file)
 
@@ -217,7 +210,7 @@ def print_json_metadata(epstein_files: EpsteinFiles) -> None:
         console.print_json(json_str, indent=4, sort_keys=True)
 
 
-def print_json_stats(epstein_files: EpsteinFiles) -> None:
+def print_stats(epstein_files: EpsteinFiles) -> None:
     console.line(5)
     console.print(Panel('JSON Stats Dump', expand=True, style='reverse bold'), '\n')
     print_json(f"MessengerLog Sender Counts", MessengerLog.count_authors(epstein_files.imessage_logs), skip_falsey=True)

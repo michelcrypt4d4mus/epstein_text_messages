@@ -13,6 +13,7 @@ ON_BEHALF_OF = 'on behalf of'
 TO_FIELDS = ['bcc', 'cc', 'to']
 EMAILER_FIELDS = [AUTHOR] + TO_FIELDS
 
+DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}(From|Subject):')  # IDed 140 emails out of 3777 DOJ files with just 'From:' match
 FIELD_PATTERNS = ['Date', 'From', 'Sent', 'To', r"C[cC]", r"B[cC][cC]", 'Importance', 'Subject', 'Attachments', 'Classification', 'Flag', 'Reply-To']
 FIELDS_PATTERN = '|'.join(FIELD_PATTERNS)
 FIELDS_COLON_PATTERN = fr"^({FIELDS_PATTERN}):"

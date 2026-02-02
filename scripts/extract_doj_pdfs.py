@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # Extract PDFs from the DOJ 2026-01-30 dump.
+# Requires the EPSTEIN_DOJ_PDFS_20260130_DIR env var to be set.
 import logging
 from logging import Formatter, Handler
 
@@ -7,19 +8,19 @@ from pdfalyzer.decorators.pdf_file import PdfFile
 from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
 from yaralyzer.util.helpers.shell_helper import ShellResult
 
-from epstein_files.documents.document import DATASET_NUMBER_REGEX, Document
-from epstein_files.util.env import DOJ_2026_01_30_DIR, DOJ_2026_01_30_EXTRACTED_TEXT_DIR, DOJ_2026_01_30_DIR_ENV_VAR_NAME
+from epstein_files.documents.doj_file import DATASET_ID_REGEX
+from epstein_files.util.env import DOJ_PDFS_20260130_DIR, DOJ_TXTS_20260130_DIR, DOJ_PDFS_20260130_DIR_ENV_VAR
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import console
 
-assert DOJ_2026_01_30_DIR is not None, f"{DOJ_2026_01_30_DIR_ENV_VAR_NAME} env var is not set!"
-assert DOJ_2026_01_30_EXTRACTED_TEXT_DIR is not None
+assert DOJ_PDFS_20260130_DIR is not None, f"{DOJ_PDFS_20260130_DIR_ENV_VAR} env var is not set!"
+assert DOJ_TXTS_20260130_DIR is not None
 
 EXTRACT_ARGS = ['extract_pdf_text', '--no-page-number-panels', '--panelize-image-text']
 
-if not DOJ_2026_01_30_EXTRACTED_TEXT_DIR.exists():
-    ask_to_proceed(f"Dir {DOJ_2026_01_30_EXTRACTED_TEXT_DIR} doesn't exist, create?")
-    DOJ_2026_01_30_EXTRACTED_TEXT_DIR.mkdir()
+if not DOJ_TXTS_20260130_DIR.exists():
+    ask_to_proceed(f"Dir {DOJ_TXTS_20260130_DIR} doesn't exist, create?")
+    DOJ_TXTS_20260130_DIR.mkdir()
 
 
 logger.setLevel(logging.DEBUG)
@@ -37,15 +38,15 @@ for app_name in ['pdfalyzer', 'yaralyzer']:
             print(f"logger name = '{log.name}', handlers = {log.handlers}")
 
 
-for dir in [d for d in DOJ_2026_01_30_DIR.glob('*') if d.is_dir()]:
-    if (dir_match := DATASET_NUMBER_REGEX.search(dir.name)):
+for dir in [d for d in DOJ_PDFS_20260130_DIR.glob('*') if d.is_dir()]:
+    if (dir_match := DATASET_ID_REGEX.search(dir.name)):
         dataset_number = int(dir_match.group(1))
         logger.info(f"Processing DataSet {dataset_number} (dir: '{dir}')")
     else:
         logger.debug(f"Skipping dir: '{dir}'")
         continue
 
-    extracted_text_dir = DOJ_2026_01_30_EXTRACTED_TEXT_DIR.joinpath(dir.name)
+    extracted_text_dir = DOJ_TXTS_20260130_DIR.joinpath(dir.name)
 
     if not extracted_text_dir.exists():
         logger.warning(f"Export dir '{extracted_text_dir}' does not exist, creating...")

@@ -73,6 +73,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     BORIS_NIKOLIC: re.compile(r'(boris )?nikolic?', re.IGNORECASE),
     BRAD_EDWARDS:  re.compile(r'Brad(ley)?(\s*J(.?|ames))?\s*Edwards', re.IGNORECASE),
     BRAD_KARP: re.compile(r'Brad (S.? )?Karp|Karp, Brad', re.IGNORECASE),
+    CHRISTOPHER_DILORIO: re.compile(r"Chris\s*Di[lI]o[nr](io)?", re.IGNORECASE),
     DANGENE_AND_JENNIE_ENTERPRISE: re.compile(r'Dangene and Jennie Enterprise?', re.IGNORECASE),
     DANNY_FROST: re.compile(r'Frost, Danny|frostd@dany.nyc.gov|Danny\s*Frost', re.IGNORECASE),
     DARREN_INDYKE: re.compile(r'darren$|Darren\s*(K\.?\s*)?[il]n[dq]_?yke?|dkiesq', re.IGNORECASE),
@@ -1121,7 +1122,7 @@ EMAILS_CONFIG = [
     # EmailCfg(id='EFTA02730468', date='2004-02-03 00:00:00'),  # TODO: ???
     EmailCfg(id='EFTA02731528', date='2021-05-06 09:39:15'),
     EmailCfg(id='EFTA02730485', date='2021-12-03 00:00:00'),
-
+    EmailCfg(id='EFTA00039689', truncate_to=NO_TRUNCATE),
 ]
 
 if args.constantize:
@@ -1616,7 +1617,12 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='024132', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2012-03-15'),
     DocCfg(id='024194', author=JP_MORGAN, description=JP_MORGAN_EYE_ON_THE_MARKET, date='2012-10-22'),
     DocCfg(id='025296', author='Laffer Associates', description=f'report predicting Trump win', date='2016-07-06'),
-    DocCfg(id='020824', author='Mary Meeker', description=f"USA Inc: A Basic Summary of America's Financial Statements compiled", date='2011-02-01'),
+    DocCfg(
+        id='020824',
+        author='Mary Meeker',
+        date='2011-02-01',
+        description=f"USA Inc: A Basic Summary of America's Financial Statements compiled",
+    ),
     DocCfg(id='025551', author='Morgan Stanley', description=f'report about alternative asset managers', date='2018-01-30'),
     DocCfg(id='019856', author='Sadis Goldberg LLP', description=f"report on SCOTUS ruling about insider trading", is_interesting=True),
     DocCfg(id='025763', author='S&P', description=f"Economic Research: How Increasing Income Inequality Is Dampening U.S. Growth", date='2014-08-05'),
@@ -1625,12 +1631,20 @@ OTHER_FILES_FINANCE = [
     DocCfg(id='026584', description=f"article about tax implications of disregarded entities", date='2009-07-01', is_interesting=True),
     DocCfg(
         id='024271',
-        description=f"Blockchain Capital and Brock Pierce pitch deck",
         date='2015-10-01',
+        description=f"Blockchain Capital and Brock Pierce pitch deck",
         is_interesting=True,
     ),
-    DocCfg(id='024817', description=f"Cowen's Collective View of CBD / Cannabis report"),
-    DocCfg(id='012048', description=f"{PRESS_RELEASE} 'Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm' and other articles"),
+    DocCfg(
+        id='024817',
+        date='2019-02-25',
+        description=f"Cowen's Collective View of CBD / Cannabis report",
+        is_interesting=True
+    ),
+    DocCfg(
+        id='012048',
+        description=f"{PRESS_RELEASE} 'Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm' and other articles"
+    ),
 
     # private placement memoranda
     DocCfg(
@@ -1699,6 +1713,11 @@ OTHER_FILES_PROPERTY = [
         description=f"{VIRGIN_ISLANDS} property deal pitch deck, building will be leased to the U.S. govt GSA",
         date='2014-06-01',
     ),
+
+    # DOJ files
+    DocCfg(id='EFTA00001884', date='2019-03-14', description='photo of letter from Virgin Islands DOJ to Epstein'),
+    DocCfg(id='EFTA00005783', date='2019-08-29', description='heavily redacted handwritten note and 30+ completely blacked out redacted pages'),
+
 ]
 
 OTHER_FILES_REPUTATION = [

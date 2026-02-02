@@ -20,12 +20,12 @@ from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.output_files import make_clean
-from epstein_files.util.constant.strings import ID_REGEX
+from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGEX
 from epstein_files.util.data import flatten
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import coerce_file_path, extract_file_id
 from epstein_files.util.logging import exit_with_error, logger
-from epstein_files.util.output import (print_doj_files, print_emails_section, print_json_files, print_json_stats,
+from epstein_files.util.output import (print_doj_files, print_emails_section, print_json_files, print_stats,
      print_other_files_section, print_text_messages_section, print_email_timeline, print_emailers_info,
      print_json_metadata, write_urls)
 from epstein_files.util.rich import (build_highlighter, console, highlighter, print_color_key, print_json,
@@ -88,9 +88,8 @@ def generate_html() -> None:
     if args.debug:
         highlighter.print_highlight_counts(console)
 
-    # JSON stats (mostly used for building pytest checks)
-    if args.json_stats:
-        print_json_stats(epstein_files)
+    if args.stats:
+        print_stats(epstein_files)  # Used for building pytest checks
 
 
 def epstein_diff():
@@ -102,7 +101,7 @@ def epstein_grep():
     """Search the cleaned up text of the files."""
     epstein_files = EpsteinFiles.get_files()
 
-    if ID_REGEX.match(args.positional_args[0]):
+    if HOUSE_OVERSIGHT_NOV_2025_ID_REGEX.match(args.positional_args[0]):
         logger.warning(f"'{args.positional_args[0]}' seems to be an ID, running epstein_show instead...")
         epstein_show()
         return
@@ -144,6 +143,7 @@ def epstein_grep():
                     line_txt = matching_line.__rich__()
                     console.print(Padding(temp_highlighter(line_txt), INFO_PADDING), style='gray37')
 
+            console.print(doc.local_path_and_url, style='dim')
             console.line()
 
 
@@ -158,9 +158,13 @@ def epstein_show():
             raw_docs = [doc for doc in flatten([p.emails for p in people])]
         else:
             ids = [extract_file_id(arg.strip().strip('_')) for arg in args.positional_args]
-            raw_docs = [Document(coerce_file_path(id)) for id in ids]
+            logger.info(f"extracted IDs: {ids}")
+            raw_docs = [Document.from_file_id(id) for id in ids]
+            logger.info(f"raw docs: {raw_docs}")
 
+        # Rebuild the Document objs so we can see result of latest processing
         docs = Document.sort_by_timestamp([document_cls(doc)(doc.file_path) for doc in raw_docs])
+        logger.info(f"Document types: {[doc._class_name for doc in docs]}")
     except Exception as e:
         exit_with_error(str(e))
 
@@ -179,6 +183,8 @@ def epstein_show():
                 metadata['is_word_count_worthy'] = doc.is_word_count_worthy
                 metadata['_is_first_for_user'] = doc._is_first_for_user
                 print_json(f"{doc.file_id} Metadata", metadata)
+
+        console.print(doc.local_path_and_url, style='dim')
 
 
 def epstein_word_count() -> None:
