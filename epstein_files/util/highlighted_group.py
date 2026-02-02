@@ -1417,7 +1417,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             'Dasha Zhukova': 'art collector, daughter of Alexander Zhukov',
             MASHA_DROKOVA: 'silicon valley VC, former Putin Youth member',
-            RENATA_BOLOTOVA: 'former model, fund manager at New York State Insurance Fund',
+            RENATA_BOLOTOVA: 'former model, fund manager at New York State Insurance Fund, Рената Болотова',
             SVETLANA_POZHIDAEVA: "Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and David Blaine",
         },
         patterns=[
