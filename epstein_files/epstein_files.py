@@ -13,7 +13,7 @@ from rich.table import Table
 
 from epstein_files.documents.document import Document
 from epstein_files.documents.doj_file import DojFile
-from epstein_files.documents.email import DETECT_EMAIL_REGEX, Email
+from epstein_files.documents.email import Email
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
@@ -22,7 +22,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.data import flatten, json_safe, listify, uniquify
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
-from epstein_files.util.env import DOCS_DIR, DOJ_2026_01_30_DIR, args, logger
+from epstein_files.util.env import DOCS_DIR, DOJ_PDFS_20260130_DIR, args, logger
 from epstein_files.util.file_helper import file_size_str
 from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames
 from epstein_files.util.search_result import SearchResult
@@ -85,9 +85,9 @@ class EpsteinFiles:
         self.other_files = Document.sort_by_timestamp([d for d in documents if isinstance(d, (JsonFile, OtherFile))])
         self.json_files = [doc for doc in self.other_files if isinstance(doc, JsonFile)]
 
-        if DOJ_2026_01_30_DIR is not None:
-            self.doj_files = Document.sort_by_id([DojFile(p) for p in DOJ_2026_01_30_DIR.glob('**/*.txt')])
-            logger.warning(f"Found {len(self.doj_files)} DojFiles in '{DOJ_2026_01_30_DIR}'")
+        if DOJ_PDFS_20260130_DIR is not None:
+            self.doj_files = Document.sort_by_id([DojFile(p) for p in DOJ_PDFS_20260130_DIR.glob('**/*.txt')])
+            logger.warning(f"Found {len(self.doj_files)} DojFiles in '{DOJ_PDFS_20260130_DIR}'")
 
         self._set_uninteresting_ccs()
         self._copy_duplicate_email_properties()
@@ -288,11 +288,17 @@ class EpsteinFiles:
         return self._uninteresting_emailers
 
     def _find_email_attachments_and_set_is_first_for_user(self) -> None:
-        for file in self.other_files:
-            if file.config and file.config.attached_to_email_id:
-                email = self.email_for_id(file.config.attached_to_email_id)
-                file.warn(f"Attaching to {email}")
-                email.attached_docs.append(file)
+        for other_file in self.other_files:
+            if other_file.config and other_file.config.attached_to_email_id:
+                email = self.email_for_id(other_file.config.attached_to_email_id)
+                email.attached_docs.append(other_file)
+
+                if other_file.timestamp \
+                        and other_file.timestamp != email.timestamp \
+                        and not (other_file.config and other_file.config.timestamp):
+                    other_file.warn(f"Overwriting '{other_file.timestamp}' with {email}'s timestamp {email.timestamp}")
+
+                other_file.timestamp = email.timestamp
 
         for emailer in self.emailers():
             first_email = emailer.emails[0]
@@ -347,11 +353,11 @@ def document_cls(doc: Document) -> Type[Document]:
         return Document
     if doc.text[0] == '{':
         return JsonFile
-    elif isinstance(doc.config, EmailCfg) or (DETECT_EMAIL_REGEX.match(search_area) and doc.config is None):
+    elif Document.is_email(doc) and not doc.is_doj_file:  # TODO: right now we setup the DojFile first
         return Email
     elif MSG_REGEX.search(search_area):
         return MessengerLog
-    elif doc.file_id.startswith(EFTA_PREFIX):
+    elif doc.is_doj_file:
         return DojFile
     else:
         return OtherFile

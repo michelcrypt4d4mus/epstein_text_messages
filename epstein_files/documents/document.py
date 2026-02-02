@@ -5,7 +5,7 @@ from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
 from subprocess import run
-from typing import Callable, ClassVar, Sequence, TypeVar
+from typing import Callable, ClassVar, Self, Sequence, TypeVar
 
 from rich.console import Console, ConsoleOptions, Group, RenderResult
 from rich.padding import Padding
@@ -13,17 +13,19 @@ from rich.panel import Panel
 from rich.text import Text
 from rich.table import Table
 
+from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
-from epstein_files.util.constants import ALL_FILE_CONFIGS, FALLBACK_TIMESTAMP
+from epstein_files.util.constants import ALL_FILE_CONFIGS, DOJ_FILE_STEM_REGEX, FALLBACK_TIMESTAMP
 from epstein_files.util.data import collapse_newlines, date_str, patternize, remove_zero_time, without_falsey
 from epstein_files.util.doc_cfg import DUPE_TYPE_STRS, EmailCfg, DocCfg, Metadata, TextCfg
-from epstein_files.util.env import DOCS_DIR, args
-from epstein_files.util.file_helper import extract_file_id, file_size, file_size_str, file_size_to_str, is_local_extract_file
+from epstein_files.util.env import DOCS_DIR
+from epstein_files.util.file_helper import (coerce_file_path, extract_file_id, file_size, file_size_str,
+     file_size_to_str, is_local_extract_file)
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
-from epstein_files.util.rich import (INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_cols_to_table, build_table, console,
-     highlighter, join_texts, key_value_txt, link_text_obj, parenthesize)
+from epstein_files.util.rich import (INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_cols_to_table, build_table,
+     console, highlighter, join_texts, key_value_txt, link_text_obj, parenthesize)
 from epstein_files.util.search_result import MatchedLine
 
 ALT_LINK_STYLE = 'white dim'
@@ -33,6 +35,8 @@ INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
 MAX_TOP_LINES_LEN = 4000  # Only for logging
 MIN_DOCUMENT_ID = 10477
+
+DOJ_DATASET_ID_REGEX = re.compile(r"(?:epstein_dataset_|DataSet )(\d+)")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
 MIN_TIMESTAMP = datetime(1991, 1, 1)
@@ -74,7 +78,8 @@ class Document:
     Attributes:
         file_path (Path): Local path to file
         author (Name): Who is responsible for the text in the file
-        config (DocCfg): Information about this fil
+        config (DocCfg): Preconfigured information about this file
+        doj_2026_dataset_id (int, optional): Only set for files that came from the DOJ website.
         file_id (str): 6 digit (or 8 digits if it's a local extract file) string ID
         filename (str): File's basename
         lines (str): Number of lines in the file after all the cleanup
@@ -86,6 +91,7 @@ class Document:
     # Optional fields
     author: Name = None
     config: EmailCfg | DocCfg | TextCfg | None = None
+    doj_2026_dataset_id: int | None = None
     file_id: str = field(init=False)
     filename: str = field(init=False)
     lines: list[str] = field(default_factory=list)
@@ -122,6 +128,14 @@ class Document:
             return self.config.duplicate_of_id
 
     @property
+    def external_url(self) -> str:
+        """The primary external URL to use when linking to this document's source."""
+        if self.is_doj_file and self.doj_2026_dataset_id:
+            return doj_2026_file_url(self.doj_2026_dataset_id, self.url_slug)
+        else:
+            return epstein_media_doc_url(self.url_slug)
+
+    @property
     def file_id_debug_info(self) -> str:
         return ', '.join([f"{prop}={getattr(self, prop)}" for prop in ['file_id', 'filename', 'url_slug']])
 
@@ -151,6 +165,10 @@ class Document:
         return bool(self.config and self.config.is_attribution_uncertain)
 
     @property
+    def is_doj_file(self) -> bool:
+        return bool(DOJ_FILE_STEM_REGEX.match(self.file_id))
+
+    @property
     def is_duplicate(self) -> bool:
         return bool(self.duplicate_of_id)
 
@@ -172,13 +190,18 @@ class Document:
         return len(self.text)
 
     @property
+    def local_path_and_url(self) -> Text:
+        """Text obj with local path and URL."""
+        return Text(f"{self.file_id} URL:       {self.external_url}\n{self.file_id} Local path: '{self.file_path}'")
+
+    @property
     def metadata(self) -> Metadata:
         metadata = self.config.metadata if self.config else {}
         metadata.update({k: v for k, v in asdict(self).items() if k in METADATA_FIELDS and v is not None})
         metadata['bytes'] = self.file_size
         metadata['filename'] = f"{self.url_slug}.txt"
         metadata['num_lines'] = self.num_lines
-        metadata['type'] = self._class_name()
+        metadata['type'] = self._class_name
 
         if self.is_local_extract_file:
             metadata['extracted_file'] = {
@@ -194,6 +217,15 @@ class Document:
         return len(self.lines)
 
     @property
+    def panel_title_timestamp(self) -> str | None:
+        """String placed in the `title` of the enclosing `Panel` when printing this document's text."""
+        if not self.timestamp:
+            return None
+
+        prefix = '' if self.config and self.config.timestamp else 'inferred '
+        return f"({prefix}timestamp: {remove_zero_time(self.timestamp)})"
+
+    @property
     def summary_panel(self) -> Panel:
         """Panelized description() with info_txt(), used in search results."""
         sentences = [self.summary()]
@@ -201,19 +233,28 @@ class Document:
         if self.include_description_in_summary_panel:
             sentences += [Text('', style='italic').append(h) for h in self.info]
 
-        return Panel(Group(*sentences), border_style=self._class_style(), expand=False)
+        return Panel(Group(*sentences), border_style=self._class_style, expand=False)
 
     @property
     def timestamp_sort_key(self) -> tuple[datetime, str, int]:
         """Sort by timestamp, file_id, then whether or not it's a duplicate file."""
-        if self.is_duplicate:
-            sort_id = self.config.duplicate_of_id
+        if self.duplicate_of_id:
+            sort_id = self.duplicate_of_id
             dupe_idx = 1
         else:
             sort_id = self.file_id
             dupe_idx = 0
 
         return (self.timestamp or FALLBACK_TIMESTAMP, sort_id, dupe_idx)
+
+    @property
+    def _class_name(self) -> str:
+        """Annoying workaround for circular import issues and isinstance()."""
+        return str(type(self).__name__)
+
+    @property
+    def _class_style(self) -> str:
+        return DOC_TYPE_STYLES[self._class_name]
 
     def __post_init__(self):
         if not self.file_path.exists():
@@ -225,12 +266,24 @@ class Document:
         self.config = self.config or deepcopy(ALL_FILE_CONFIGS.get(self.file_id))
         self.url_slug = self.url_slug or self.filename.split('.')[0]
 
-        if not self.text:
-            self._load_file()
+        # Extract the DOJ dataset ID from the path
+        if self.is_doj_file:
+            if (data_set_match := DOJ_DATASET_ID_REGEX.search(str(self.file_path))):
+                self.doj_2026_dataset_id = int(data_set_match.group(1))
+                logger.info(f"Extracted data set ID {self.doj_2026_dataset_id} for {self.url_slug}")
+            else:
+                self.warn(f"Couldn't find a data set ID in path '{self.file_path}'! Cannot create valid links.")
 
+        self.text = self.text or self._load_file()
+        self._set_computed_fields(text=self.text)
         self._repair()
         self._extract_author()
         self.timestamp = self._extract_timestamp()
+
+    @classmethod
+    def from_file_id(cls, file_id: str | int) -> Self:
+        """Alternate constructor that finds the file path automatically and builds a `Document`."""
+        return cls(coerce_file_path(file_id))
 
     def epsteinify_link(self, style: str = ARCHIVE_LINK_COLOR, link_txt: str | None = None) -> Text:
         return self.external_link(epsteinify_doc_url, style, link_txt)
@@ -249,13 +302,13 @@ class Document:
 
     def external_links_txt(self, style: str = '', include_alt_links: bool = False) -> Text:
         """Returns colored links to epstein.media and alternates in a Text object."""
-        links = [self.epstein_media_link(style=style)]
+        links = [link_text_obj(self.external_url, self.url_slug, style=style)]
 
         if include_alt_links:
             links.append(self.epsteinify_link(style=ALT_LINK_STYLE, link_txt=EPSTEINIFY))
             links.append(self.epstein_web_link(style=ALT_LINK_STYLE, link_txt=EPSTEIN_WEB))
 
-            if self._class_name() == 'Email':
+            if self._class_name == 'Email':
                 links.append(self.rollcall_link(style=ALT_LINK_STYLE, link_txt=ROLLCALL))
 
         links = [links[0]] + [parenthesize(link) for link in links[1:]]
@@ -269,7 +322,7 @@ class Document:
         return Group(*([panel] + padded_info))
 
     def log(self, msg: str, level: int = logging.INFO):
-        """Log with filename as a prefix."""
+        """Log a message with with this document's filename as a prefix."""
         logger.log(level, f"{self.file_path.stem} {msg}")
 
     def log_top_lines(self, n: int = 10, msg: str = '', level: int = logging.INFO) -> None:
@@ -299,8 +352,8 @@ class Document:
         return text
 
     def summary(self) -> Text:
-        """Summary of this file for logging. Brackets are left open for subclasses to add stuff."""
-        txt = Text('').append(self._class_name(), style=self._class_style())
+        """Summary of this file for logging. Subclasses should extend with a method that closes the open '['."""
+        txt = Text('').append(self._class_name, style=self._class_style)
         txt.append(f" {self.file_path.stem}", style=FILENAME_STYLE)
 
         if self.timestamp:
@@ -328,13 +381,6 @@ class Document:
         """Should be overloaded in subclasses."""
         return 'white'
 
-    def _class_name(self) -> str:
-        """Annoying workaround for circular import issues and isinstance()."""
-        return str(type(self).__name__)
-
-    def _class_style(self) -> str:
-        return DOC_TYPE_STYLES[self._class_name()]
-
     def _extract_author(self) -> None:
         """Get author from config. Extended in Email subclass to also check headers."""
         if self.config and self.config.author:
@@ -344,7 +390,7 @@ class Document:
         """Should be implemented in subclasses."""
         pass
 
-    def _load_file(self) -> None:
+    def _load_file(self) -> str:
         """Remove BOM and HOUSE OVERSIGHT lines, strip whitespace."""
         text = self.raw_text()
         text = text[1:] if (len(text) > 0 and text[0] == '\ufeff') else text  # remove BOM
@@ -355,8 +401,7 @@ class Document:
             if not (line.startswith(HOUSE_OVERSIGHT) or line.startswith('EFTA'))
         ]
 
-        self.text = collapse_newlines('\n'.join(lines))
-        self.lines = self.text.split('\n')
+        return collapse_newlines('\n'.join(lines))
 
     def _repair(self) -> None:
         """Can optionally be overloaded in subclasses to further improve self.text."""
@@ -390,7 +435,15 @@ class Document:
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         yield self.file_info_panel()
-        text_panel = Panel(highlighter(self.text), border_style=self._border_style(), expand=False)
+
+        text_panel = Panel(
+            highlighter(self.text),
+            border_style=self._border_style(),
+            expand=False,
+            title=self.panel_title_timestamp,
+            title_align='right',
+        )
+
         yield Padding(text_panel, (0, 0, 1, INFO_INDENT))
 
     def __str__(self) -> str:
@@ -451,6 +504,11 @@ class Document:
 
         for f in tmpfiles:
             f.unlink()
+
+    @staticmethod
+    def is_email(doc: 'Document') -> bool:
+        search_area = doc.text[0:5000]  # Limit search area to avoid pointless scans of huge files
+        return isinstance(doc.config, EmailCfg) or bool(DETECT_EMAIL_REGEX.match(search_area) and doc.config is None)
 
     @staticmethod
     def known_author_count(docs: Sequence['Document']) -> int:
