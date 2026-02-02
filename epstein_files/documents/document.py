@@ -39,10 +39,6 @@ MIN_DOCUMENT_ID = 10477
 DOJ_DATASET_ID_REGEX = re.compile(r"(?:epstein_dataset_|DataSet )(\d+)")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
-MIN_TIMESTAMP = datetime(1991, 1, 1)
-MID_TIMESTAMP = datetime(2007, 1, 1)
-MAX_TIMESTAMP = datetime(2020, 1, 1)
-
 FILENAME_MATCH_STYLES = [
     'dark_green',
     'green',

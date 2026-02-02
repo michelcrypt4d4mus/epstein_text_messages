@@ -30,7 +30,6 @@ MAX_DAYS_SPANNED_TO_BE_VALID = 10
 MAX_EXTRACTED_TIMESTAMPS = 100
 MIN_TIMESTAMP = datetime(2000, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
-MAX_TIMESTAMP = datetime(2022, 12, 31)
 PREVIEW_CHARS = int(580 * (1 if args.all_other_files else 1.5))
 LOG_INDENT = '\n         '
 TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
@@ -93,6 +92,7 @@ class OtherFile(Document):
     """
     was_timestamp_extracted: bool = False
     include_description_in_summary_panel: ClassVar[bool] = True  # Class var for logging output
+    max_timestamp: ClassVar[datetime] = datetime(2022, 12, 31) # Overloaded in DojFile
 
     @property
     def config_description(self) -> str | None:
@@ -184,7 +184,7 @@ class OtherFile(Document):
                 for timestamp in datefinder.find_dates(self.text, strict=False):
                     timestamp = remove_timezone(timestamp)
 
-                    if MIN_TIMESTAMP < timestamp < MAX_TIMESTAMP:
+                    if MIN_TIMESTAMP < timestamp < self.max_timestamp:
                         timestamps.append(timestamp)
 
                     if len(timestamps) >= MAX_EXTRACTED_TIMESTAMPS:
