@@ -98,7 +98,7 @@ class OtherFile(Document):
     def config_description(self) -> str | None:
         """Overloads superclass property."""
         if self.config and self.config.description:
-            return self.config.complete_description()
+            return self.config.complete_description
 
     @property
     def category(self) -> str | None:

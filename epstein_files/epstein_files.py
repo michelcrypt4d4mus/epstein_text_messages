@@ -87,8 +87,8 @@ class EpsteinFiles:
         self.doj_files = Document.sort_by_timestamp([d for d in docs if d.is_doj_file])
         self.emails = Document.sort_by_timestamp([d for d in docs if isinstance(d, Email)])
         self.imessage_logs = Document.sort_by_timestamp([d for d in docs if isinstance(d, MessengerLog)])
-        self.other_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, JsonFile) and not d.is_doj_file])
-        self.json_files = [doc for doc in self.other_files if isinstance(doc, JsonFile)]
+        self.other_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, OtherFile) and not d.is_doj_file])
+        self.json_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, JsonFile)])
         self._set_uninteresting_ccs()
         self._copy_duplicate_email_properties()
         self._find_email_attachments_and_set_is_first_for_user()
