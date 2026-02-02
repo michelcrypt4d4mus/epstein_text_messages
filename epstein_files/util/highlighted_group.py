@@ -1688,7 +1688,7 @@ HIGHLIGHTED_TEXTS = [
     HighlightedText(
         label='header_field',
         style='plum4',
-        patterns=[r'^[>• ]{,4}(Date ?|From|Sent|To|C[cC]|Importance|Reply[- ]?To|Subject|Bee|B[cC]{2}|Attachments|Flag|Classification|((A|Debut du message transfer[&e]|De(stinataire)?|Envoye|Expe(cl|d)iteur|Objet|Q|Sujet) ?)):|^on behalf of'],
+        patterns=[r'^[>• ]{,4}(Date ?|From|Sent|To|C[cC]|Importance|Reply[- ]?To|Subject|Bee|B[cC]{2}|Attachments|Flag|Classification|[Il]nline-[Il]mages|((A|Debut du message transfer[&e]|De(stinataire)?|Envoye|Expe(cl|d)iteur|Objet|Q|Sujet) ?)):|^on behalf of'],
     ),
     HighlightedText(
         label='http_links',
@@ -1729,7 +1729,7 @@ HIGHLIGHTED_TEXTS = [
     ManualHighlight(
         label='email_attachments',
         style='gray30 italic',
-        pattern=r"^(> )?Attachments: (?P<email_attachments>.*)",
+        pattern=r"^(> )?(Attachments|[Il]nline-[Il]mages): (?P<email_attachments>.*)",
     ),
     ManualHighlight(
         label='email_timestamp',
