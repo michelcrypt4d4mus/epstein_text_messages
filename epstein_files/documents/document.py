@@ -311,7 +311,8 @@ class Document:
 
         if include_alt_links:
             if self.doj_2026_dataset_id:
-                jmail_link = link_text_obj(jmail_doj_2026_file_url(self.doj_2026_dataset_id, self.file_id), JMAIL)
+                jmail_url = jmail_doj_2026_file_url(self.doj_2026_dataset_id, self.file_id)
+                jmail_link = link_text_obj(jmail_url, JMAIL, style=f"{style} dim" if style else ARCHIVE_LINK_COLOR)
                 links.append(jmail_link)
             else:
                 links.append(self.epsteinify_link(style=ALT_LINK_STYLE, link_txt=EPSTEINIFY))
