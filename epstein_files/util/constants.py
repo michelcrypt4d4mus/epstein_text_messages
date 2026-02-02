@@ -168,7 +168,9 @@ EMAILERS = [
     AZIZA_ALAHMADI,
     BILL_GATES,
     BILL_SIEGEL,
+    'Bobbi C Sternheim',
     BRAD_WECHSLER,
+    CHRISTIAN_EVERDELL,
     CHRISTINA_GALBRAITH,
     DANIEL_SABBA,
     'Danny Goldberg',
@@ -177,6 +179,7 @@ EMAILERS = [
     DEEPAK_CHOPRA,
     GLENN_DUBIN,
     GORDON_GETTY,
+    'Jeff Pagliuca',
     'Kevin Bright',
     'Jack Lang',
     JACK_SCAROLA,
@@ -200,6 +203,7 @@ EMAILERS = [
     'Nancy Cain',
     'Nancy Dahl',
     'Nancy Portland',
+    'Nathan NYSD Chambers',
     'Oliver Goodenough',
     'Peter Aldhous',
     'Peter Green',
@@ -1508,6 +1512,10 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='028540', author='SCOTUS', description=f"decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP"),
     DocCfg(id='012197', author='SDFL', description=f"response to {JAY_LEFKOWITZ} on Epstein Plea Agreement Compliance"),
     DocCfg(id='022277', description=f"text of National Labour Relations Board (NLRB) law", is_interesting=False),
+
+    # DOJ files
+    DocCfg(id='EFTA00007157', description='victim list and police log'),
+    DocCfg(id='EFTA02730274', description='evidence inventory that appears to have since been deleted from the DOJ website'),
 ]
 
 OTHER_FILES_CONFERENCES = [
@@ -1932,6 +1940,9 @@ OTHER_FILES_MISC = [
     DocCfg(id='033434', description=f"{SCREENSHOT} iPhone chat labeled 'Edwards' at the top"),
     DocCfg(id='029475', description=f'{VIRGIN_ISLANDS} Twin City Mobile Integrated Health Services (TCMIH) proposal/request for donation'),
     DocCfg(id='029448', description=f"weird short essay titled 'President Obama and Self-Deception'"),
+
+    # DOJ files
+    DocCfg(id='EFTA00007781', description='paychecks signed by Epstein deposited at Colonial Bank'),
 ]
 
 OTHER_FILES_JUNK = [
@@ -1951,7 +1962,6 @@ OTHER_FILES_JUNK = [
     DocCfg(id='EFTA02731728'),
     # Almost no timestamp
     DocCfg(id='EFTA00003154'),
-
 ]
 
 OTHER_FILES_CATEGORIES = [

@@ -8,7 +8,7 @@ from pdfalyzer.decorators.pdf_file import PdfFile
 from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
 from yaralyzer.util.helpers.shell_helper import ShellResult
 
-from epstein_files.documents.doj_file import DATASET_ID_REGEX
+from epstein_files.documents.document import DOJ_DATASET_ID_REGEX
 from epstein_files.util.env import DOJ_PDFS_20260130_DIR, DOJ_TXTS_20260130_DIR, DOJ_PDFS_20260130_DIR_ENV_VAR
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import console
@@ -39,7 +39,7 @@ for app_name in ['pdfalyzer', 'yaralyzer']:
 
 
 for dir in [d for d in DOJ_PDFS_20260130_DIR.glob('*') if d.is_dir()]:
-    if (dir_match := DATASET_ID_REGEX.search(dir.name)):
+    if (dir_match := DOJ_DATASET_ID_REGEX.search(dir.name)):
         dataset_number = int(dir_match.group(1))
         logger.info(f"Processing DataSet {dataset_number} (dir: '{dir}')")
     else:
