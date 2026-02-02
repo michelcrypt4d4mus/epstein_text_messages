@@ -1537,6 +1537,7 @@ HIGHLIGHTED_NAMES = [
             r"@?realDonaldTrump",
             r"(Alan\s*)?Weiss?elberg",
             r"Alex\s*Jones",
+            r"(Brad(ley)?\s*)Parscale",
             r"\bDJ?T\b",
             r"Donald J. Tramp",
             r"(Donald\s+(J\.\s+)?)?Trump(ism|\s*(Org(anization)?|Properties)(\s*LLC)?)?",

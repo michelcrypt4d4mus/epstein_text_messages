@@ -224,7 +224,7 @@ class Document:
             return None
 
         prefix = '' if self.config and self.config.timestamp else 'inferred '
-        return f"({prefix}timestamp: {remove_zero_time(self.timestamp)})"
+        return f"{prefix}timestamp: {remove_zero_time(self.timestamp)}"
 
     @property
     def summary_panel(self) -> Panel:
@@ -442,7 +442,7 @@ class Document:
             highlighter(self.text),
             border_style=self._border_style(),
             expand=False,
-            title=self.panel_title_timestamp,
+            title=f"({self.panel_title_timestamp})",
             title_align='right',
         )
 
