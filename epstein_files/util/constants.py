@@ -1124,6 +1124,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02730485', date='2021-12-03 00:00:00'),
     EmailCfg(id='EFTA02731689', author=UNKNOWN, recipients=[None], date='2023-06-09 14:14:00'),
     EmailCfg(id='EFTA00039689', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00995559', author=RENATA_BOLOTOVA, attribution_reason='poorly redacted signature'),
 ]
 
 if args.constantize:
