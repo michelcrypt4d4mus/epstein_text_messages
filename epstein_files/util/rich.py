@@ -32,6 +32,7 @@ SKIPPED_FILE_MSG_PADDING = (0, 0, 0, 4)
 SUBTITLE_PADDING = (2, 0, 1, 0)
 GREY_NUMBERS = [58, 39, 39, 35, 30, 27, 23, 23, 19, 19, 15, 15, 15]
 VALID_GREYS = [0, 3, 7, 11, 15, 19, 23, 27, 30, 35, 37, 39, 42, 46, 50, 53, 54, 58, 62, 63, 66, 69, 70, 74, 78, 82, 84, 85, 89, 93]
+VERTICAL_BAR = '┃ '  # ⎹┃┇┋❘⦀🁢⏐┃⎹
 
 INFO_STYLE = 'white dim italic'
 KEY_STYLE = 'honeydew2 bold'
@@ -165,7 +166,7 @@ def left_bar_panel(text: str, bar_style: str) -> Table:
     table.add_column(justify='left')                   # Column for content
 
     for txt_line in highlighter(text).split('\n'):
-        table.add_row('| ', txt_line)
+        table.add_row(VERTICAL_BAR, txt_line)
 
     return table
 
