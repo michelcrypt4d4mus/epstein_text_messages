@@ -309,12 +309,16 @@ class Document:
         """Returns colored links to epstein.media and alternates in a Text object."""
         links = [link_text_obj(self.external_url, self.url_slug, style=style)]
 
-        if include_alt_links and not self.is_doj_file:
-            links.append(self.epsteinify_link(style=ALT_LINK_STYLE, link_txt=EPSTEINIFY))
-            links.append(self.epstein_web_link(style=ALT_LINK_STYLE, link_txt=EPSTEIN_WEB))
+        if include_alt_links:
+            if self.doj_2026_dataset_id:
+                jmail_link = link_text_obj(jmail_doj_2026_file_url(self.doj_2026_dataset_id, self.file_id), JMAIL)
+                links.append(jmail_link)
+            else:
+                links.append(self.epsteinify_link(style=ALT_LINK_STYLE, link_txt=EPSTEINIFY))
+                links.append(self.epstein_web_link(style=ALT_LINK_STYLE, link_txt=EPSTEIN_WEB))
 
-            if self._class_name == 'Email':
-                links.append(self.rollcall_link(style=ALT_LINK_STYLE, link_txt=ROLLCALL))
+                if self._class_name == 'Email':
+                    links.append(self.rollcall_link(style=ALT_LINK_STYLE, link_txt=ROLLCALL))
 
         links = [links[0]] + [parenthesize(link) for link in links[1:]]
         base_txt = Text('', style='white' if include_alt_links else ARCHIVE_LINK_COLOR)

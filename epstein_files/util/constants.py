@@ -73,6 +73,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     BORIS_NIKOLIC: re.compile(r'(boris )?nikolic?', re.IGNORECASE),
     BRAD_EDWARDS:  re.compile(r'Brad(ley)?(\s*J(.?|ames))?\s*Edwards', re.IGNORECASE),
     BRAD_KARP: re.compile(r'Brad (S.? )?Karp|Karp, Brad', re.IGNORECASE),
+    CHRISTIAN_EVERDELL: re.compile(r"C(hristian\s*)?Everdell?", re.IGNORECASE),
     CHRISTOPHER_DILORIO: re.compile(r"Chris\s*Di[lI]o[nr](io)?", re.IGNORECASE),
     DANGENE_AND_JENNIE_ENTERPRISE: re.compile(r'Dangene and Jennie Enterprise?', re.IGNORECASE),
     DANNY_FROST: re.compile(r'Frost, Danny|frostd@dany.nyc.gov|Danny\s*Frost', re.IGNORECASE),
@@ -170,7 +171,6 @@ EMAILERS = [
     BILL_SIEGEL,
     'Bobbi C Sternheim',
     BRAD_WECHSLER,
-    CHRISTIAN_EVERDELL,
     CHRISTINA_GALBRAITH,
     DANIEL_SABBA,
     'Danny Goldberg',
@@ -213,6 +213,7 @@ EMAILERS = [
     'Steven Victor MD',
     'Susan Edelman',
     TOM_BARRACK,
+    'USANYS',
     'Vahe Stepanian',
     'Vladimir Yudashkin',
 ]
