@@ -90,23 +90,6 @@ class DocCfg:
     is_synthetic: bool = False
 
     @property
-    def metadata(self) -> Metadata:
-        metadata = {k: v for k, v in asdict(self).items() if k not in NON_METADATA_FIELDS and v}
-
-        if self.is_interesting is False:
-            metadata['is_interesting'] = False
-
-        return metadata
-
-    @property
-    def timestamp(self) -> datetime | None:
-        if self.date:
-            return parse(self.date)
-
-    def __post_init__(self):
-        if self.duplicate_of_id or self.duplicate_ids:
-            self.dupe_type = self.dupe_type or SAME
-
     def complete_description(self) -> str | None:
         """String that summarizes what is known about this document."""
         description = ''
@@ -143,6 +126,24 @@ class DocCfg:
             description += f" attached to email {self.attached_to_email_id}"
 
         return description
+
+    @property
+    def metadata(self) -> Metadata:
+        metadata = {k: v for k, v in asdict(self).items() if k not in NON_METADATA_FIELDS and v}
+
+        if self.is_interesting is False:
+            metadata['is_interesting'] = False
+
+        return metadata
+
+    @property
+    def timestamp(self) -> datetime | None:
+        if self.date:
+            return parse(self.date)
+
+    def __post_init__(self):
+        if self.duplicate_of_id or self.duplicate_ids:
+            self.dupe_type = self.dupe_type or SAME
 
     def duplicate_cfgs(self) -> Generator['DocCfg', None, None]:
         """Create synthetic DocCfg objects that set the 'duplicate_of_id' field to point back to this object."""

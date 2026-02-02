@@ -766,7 +766,7 @@ class Email(Communication):
         else:
             self.config = EmailCfg(id=self.file_id)
 
-        extracted_from_description = extracted_from_doc_cfg.complete_description()
+        extracted_from_description = extracted_from_doc_cfg.complete_description
 
         if extracted_from_description:
             extracted_description = f"{APPEARS_IN} {extracted_from_description}"
