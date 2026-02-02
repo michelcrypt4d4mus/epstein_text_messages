@@ -100,6 +100,7 @@ REPLACEMENT_TEXT = {
     'EFTA00006687': 'T-Mobile phone bill from 2006-10-31 to 2006-12-25',
     'EFTA00007401': 'T-Mobile phone bill from 2004-08-25 to 2005-07-13',
     'EFTA00007301': 'T-Mobile response to subpoena March 23, 2007 AKA a phone bill',
+    'EFTA00006487': 'T-Mobile phone bill 2006-08-26',
 }
 
 INTERESTING_DOJ_FILES = {
