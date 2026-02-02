@@ -190,8 +190,7 @@ class DojFile(OtherFile):
 
     def _border_style(self) -> str:
         """Color emails from Epstein to others with the color for the first recipient."""
-        # Divide by 2 bc there's 2 calls for each DojFile, header panel and text
-        style = RAINBOW[int(self.border_style_rainbow_idx % len(RAINBOW) / 1)]
+        style = RAINBOW[int(self.border_style_rainbow_idx % len(RAINBOW))]
         type(self).border_style_rainbow_idx += 1
         return style
 

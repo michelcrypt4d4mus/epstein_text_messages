@@ -305,7 +305,7 @@ class Document:
         """Returns colored links to epstein.media and alternates in a Text object."""
         links = [link_text_obj(self.external_url, self.url_slug, style=style)]
 
-        if include_alt_links:
+        if include_alt_links and not self.is_doj_file:
             links.append(self.epsteinify_link(style=ALT_LINK_STYLE, link_txt=EPSTEINIFY))
             links.append(self.epstein_web_link(style=ALT_LINK_STYLE, link_txt=EPSTEIN_WEB))
 
