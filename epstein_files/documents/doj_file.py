@@ -13,10 +13,10 @@ from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.email_header import FIELDS_COLON_PATTERN
 from epstein_files.documents.other_file import Metadata, OtherFile
-from epstein_files.util.constant.urls import doj_2026_file_url
 from epstein_files.util.constants import FALLBACK_TIMESTAMP
+from epstein_files.util.layout.left_bar_panel import LeftBarPanel
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import RAINBOW, SKIPPED_FILE_MSG_PADDING, left_bar_panel, link_text_obj
+from epstein_files.util.rich import RAINBOW, SKIPPED_FILE_MSG_PADDING, link_text_obj
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTALL)
@@ -132,8 +132,19 @@ class DojFile(OtherFile):
     """
     Class for the files released by DOJ on 2026-01-30 with `EFTA000` prefix.
     """
+    _border_style: str | None = None
+
     border_style_rainbow_idx: ClassVar[int] = 0  # ClassVar to help change color as we print, no impact beyond fancier output
     max_timestamp: ClassVar[datetime] = datetime(2025, 1, 29) # Overloaded in DojFile
+
+    @property
+    def border_style(self) -> str:
+        """Use a rainbow to make sure each printed object has different color for those before and after."""
+        if self._border_style is None:
+            self._border_style = RAINBOW[int(self.border_style_rainbow_idx % len(RAINBOW))]
+            type(self).border_style_rainbow_idx += 1
+
+        return self._border_style
 
     @property
     def is_bad_ocr(self) -> bool:
@@ -155,13 +166,17 @@ class DojFile(OtherFile):
 
     def doj_link(self) -> Text:
         """Link to this file on the DOJ site."""
-        return link_text_obj(doj_2026_file_url(self.doj_2026_dataset_id, self.url_slug), self.url_slug)
+        return link_text_obj(self.external_url, self.url_slug)
+
+    def external_links_txt(self, _style: str = '', include_alt_links: bool = True) -> Text:
+        """Overrides super() method to apply self.author_style."""
+        return super().external_links_txt(self.border_style, include_alt_links=include_alt_links)
 
     def image_with_no_text_msg(self) -> RenderableType:
         """One line of linked text to show if this file doesn't seem to have any OCR text."""
         return Padding(
             Text('').append(self.doj_link()).append(f" is a single image with no text..."),
-            SKIPPED_FILE_MSG_PADDING
+            (0, 0, 0, 1)
         )
 
     def printable_doc(self) -> Self | Email:
@@ -174,8 +189,10 @@ class DojFile(OtherFile):
                 pages = self.text.split('MetroPCS')
                 printable_text = f"{pages[0]}\n\n(Redacted phone bill {PHONE_BILL_IDS[self.file_id]} {CHECK_LINK_FOR_DETAILS})"
             elif self.file_id in REPLACEMENT_TEXT:
-                # TODO: maybe shouldn't destructively replace these?
-                printable_text = f'(Text of {REPLACEMENT_TEXT[self.file_id]} {CHECK_LINK_FOR_DETAILS})'
+                printable_text = REPLACEMENT_TEXT[self.file_id]
+
+                if len(printable_text) < 400:
+                    printable_text = f'(Text of {printable_text} {CHECK_LINK_FOR_DETAILS})'
             else:
                 printable_text = self.text
 
@@ -187,13 +204,6 @@ class DojFile(OtherFile):
         new_text, num_replaced = IMAGE_PANEL_REGEX.subn('', self.text)
         self.warn(f"Stripped {num_replaced} image panels.")
         self._set_computed_fields(text=new_text)
-
-    def _border_style(self) -> str:
-        """Color emails from Epstein to others with the color for the first recipient."""
-        # Divide by 2 bc there's 2 calls for each DojFile, header panel and text
-        style = RAINBOW[int(self.border_style_rainbow_idx % len(RAINBOW) / 1)]
-        type(self).border_style_rainbow_idx += 1
-        return style
 
     def _repair(self) -> None:
         """Overloads superclass method."""
@@ -219,12 +229,10 @@ class DojFile(OtherFile):
         else:
             yield (info_panel := self.file_info_panel())
             border_style = info_panel.renderables[0].border_style
-            table = left_bar_panel(self.text, border_style)
+            panel_args = [self.text, border_style]
 
             if self.panel_title_timestamp:
-                timestamp_txt = Text(self.panel_title_timestamp, style='dim ' + border_style)
-                table = left_bar_panel(self.text, border_style, timestamp_txt)
-            else:
-                table = left_bar_panel(self.text, border_style)
+                panel_args.append(Text(f"[{self.panel_title_timestamp}]", style='dim italic ' + border_style))
 
+            table = LeftBarPanel.build(*panel_args)
             yield Padding(table, (0, 0, 1, 1))

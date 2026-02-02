@@ -100,6 +100,11 @@ class Document:
     strip_whitespace: ClassVar[bool] = True  # Overridden in JsonFile
 
     @property
+    def border_style(self) -> str:
+        """Should be overloaded in subclasses."""
+        return 'white'
+
+    @property
     def config_description(self) -> str | None:
         if self.config and self.config.description:
             return f"({self.config.description})"
@@ -306,11 +311,16 @@ class Document:
         links = [link_text_obj(self.external_url, self.url_slug, style=style)]
 
         if include_alt_links:
-            links.append(self.epsteinify_link(style=ALT_LINK_STYLE, link_txt=EPSTEINIFY))
-            links.append(self.epstein_web_link(style=ALT_LINK_STYLE, link_txt=EPSTEIN_WEB))
+            if self.doj_2026_dataset_id:
+                jmail_url = jmail_doj_2026_file_url(self.doj_2026_dataset_id, self.file_id)
+                jmail_link = link_text_obj(jmail_url, JMAIL, style=f"{style} dim" if style else ARCHIVE_LINK_COLOR)
+                links.append(jmail_link)
+            else:
+                links.append(self.epsteinify_link(style=ALT_LINK_STYLE, link_txt=EPSTEINIFY))
+                links.append(self.epstein_web_link(style=ALT_LINK_STYLE, link_txt=EPSTEIN_WEB))
 
-            if self._class_name == 'Email':
-                links.append(self.rollcall_link(style=ALT_LINK_STYLE, link_txt=ROLLCALL))
+                if self._class_name == 'Email':
+                    links.append(self.rollcall_link(style=ALT_LINK_STYLE, link_txt=ROLLCALL))
 
         links = [links[0]] + [parenthesize(link) for link in links[1:]]
         base_txt = Text('', style='white' if include_alt_links else ARCHIVE_LINK_COLOR)
@@ -318,7 +328,7 @@ class Document:
 
     def file_info_panel(self) -> Group:
         """Panel with filename linking to raw file plus any additional info about the file."""
-        panel = Panel(self.external_links_txt(include_alt_links=True), border_style=self._border_style(), expand=False)
+        panel = Panel(self.external_links_txt(include_alt_links=True), border_style=self.border_style, expand=False)
         padded_info = [Padding(sentence, INFO_PADDING) for sentence in self.info]
         return Group(*([panel] + padded_info))
 
@@ -378,10 +388,6 @@ class Document:
         """Print a warning message prefixed by info about this `Document`."""
         self.log(msg, level=logging.WARNING)
 
-    def _border_style(self) -> str:
-        """Should be overloaded in subclasses."""
-        return 'white'
-
     def _extract_author(self) -> None:
         """Get author from config. Extended in Email subclass to also check headers."""
         if self.config and self.config.author:
@@ -440,7 +446,7 @@ class Document:
 
         text_panel = Panel(
             highlighter(self.text),
-            border_style=self._border_style(),
+            border_style=self.border_style,
             expand=False,
             title=f"({self.panel_title_timestamp})",
             title_align='right',
