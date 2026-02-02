@@ -1,9 +1,9 @@
 EFTA00009622_TEXT = """
-[redacted] s GJ Test.     7/19/2006
+[redacted] s GJ Test.          7/19/2006
 
 [redacted] dob          16 yrs
 
-[redacted]     - Loxahatchee
+[redacted] - Loxahatchee
 
 2005 [redacted]          9th grade
 
@@ -15,19 +15,22 @@ EFTA00009622_TEXT = """
 
 met for first time the night before went to JE
 11:30 ish 10
-do you want to make 200.00
+do you want to make $200
 
-met my friend Jeff          bighouse
+met my friend Jeff  bighouse
 
-but you have to give massage 45 min + that's all you have to do get 200.00
+but you have to give massage 45 min + that's all you have to do get $200
 
-[redacted] told [redacted] [redacted] d     cut to Bathroom to again came back out     [redacted]     called Jeff on the phone.     T assistant answered the pho...
+[redacted] told [redacted] + [redacted] went to Bathroom
+to argue
+came back out [redacted] called Jeff on the phone.
+1 assistant answered the pho...
 
 Page 2
 Jeff asst answered phone - [redacted] had someone to give massage Lady asked how old I was
 she told the lady 18 + went to [redacted]
 
-Its 200.00     didn't care what
+Its $200     didn't care what
 [redacted] - Lady trying to verify 18 Yes
 Graduated from [redacted]     Known [redacted] for a long time
 & the next morning
@@ -70,7 +73,7 @@ initially     guy golfy     khaki pants pullover
 
 t-shirt + jeans     thong     bra
 
-hesitant     thinking what's going on. I didn't care cause I     wanted     200.00
+hesitant     thinking what's going on. I didn't care cause I wanted $200
 
 He laid on massage table     He said grab any 3 lotions
 
@@ -82,7 +85,7 @@ Sat on table     15-20 minute conversation     another house in NY
 
 Page 5
 
-He asked if I wanted to make an extra 300.00.
+He asked if I wanted to make an extra $300
 Straddle him
 
 massage over -
@@ -103,7 +106,7 @@ Page 6
 
 Yes     Saw [redacted]
 
-He opened wallet     got the 200.00
+He opened wallet     got the   $200
 
 He told her to write Name + #
 
@@ -114,12 +117,12 @@ I didn't see him [redacted]
 I was scared to tell
 
 [redacted]     her body not his body
-Went down by herself          got 1st     No didn't do anything     but [redacted]     200.00 ~~too~~
+Went down by herself    got 1st  No didn't do anything  but [redacted]  $200 ~~too~~
 
 Page 7
 I figure it was probably because she brought me
 
-What happened     I got 300.00 I was excited
+What happened     I got $300 I was excited
 
 What did you have to do with him
 If you do this you get that
