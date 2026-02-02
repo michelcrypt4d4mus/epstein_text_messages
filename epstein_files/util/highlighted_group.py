@@ -1417,7 +1417,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             'Dasha Zhukova': 'art collector, daughter of Alexander Zhukov',
             MASHA_DROKOVA: 'silicon valley VC, former Putin Youth member',
-            RENATA_BOLOTOVA: 'former model, fund manager at New York State Insurance Fund',
+            RENATA_BOLOTOVA: 'former model, fund manager at New York State Insurance Fund, Рената Болотова',
             SVETLANA_POZHIDAEVA: "Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and David Blaine",
         },
         patterns=[
@@ -1640,7 +1640,11 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         emailers={GHISLAINE_MAXWELL: "Epstein's girlfriend, daughter of the spy Robert Maxwell"},
         category='Epstein',
-        patterns=[r"gmax(1@ellmax.com)?", r"(The )?TerraMar Project"],
+        patterns=[
+            r"gmax(1@ellmax.com)?",
+            r"(The )?TerraMar Project",
+            r"(Scott\s*)?Borgenson",
+        ],
         style='deep_pink3',
     ),
     HighlightedNames(emailers={JABOR_Y: '"an influential man in Qatar"'}, category=MIDEAST, style='spring_green1'),
@@ -1687,7 +1691,10 @@ HIGHLIGHTED_TEXTS = [
     HighlightedText(
         label='quoted_reply_line',
         style='dim',
-        patterns=[REPLY_REGEX.pattern, r"^(> )?wrote:$"],
+        patterns=[
+            REPLY_REGEX.pattern, r"^(> )?wrote:$",
+            r"CONFIDENTIAL FOR ATTORNEY'S EYES ONLY(\nDO NOT COPY)?",
+        ],
     ),
     HighlightedText(
         label='redacted',

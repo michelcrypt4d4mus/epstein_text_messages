@@ -98,7 +98,7 @@ class OtherFile(Document):
     def config_description(self) -> str | None:
         """Overloads superclass property."""
         if self.config and self.config.description:
-            return self.config.complete_description()
+            return self.config.complete_description
 
     @property
     def category(self) -> str | None:
@@ -169,9 +169,7 @@ class OtherFile(Document):
 
     def _extract_timestamp(self) -> datetime | None:
         """Return configured timestamp or value extracted by scanning text with datefinder."""
-        if self.config and self.config.timestamp():
-            return self.config.timestamp()
-        elif self.config and any([s in (self.config_description or '') for s in SKIP_TIMESTAMP_EXTRACT]):
+        if self.config and any([s in (self.config_description or '') for s in SKIP_TIMESTAMP_EXTRACT]):
             return None
 
         timestamps: list[datetime] = []

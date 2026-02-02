@@ -582,9 +582,7 @@ class Email(Communication):
         logger.debug(f"{self.file_id} extracted header\n\n{self.header}\n")
 
     def _extract_timestamp(self) -> datetime:
-        if self.config and self.config.timestamp():
-            return self.config.timestamp()
-        elif self.header.sent_at:
+        if self.header.sent_at:
             timestamp = _parse_timestamp(self.header.sent_at)
 
             if timestamp:
@@ -768,7 +766,7 @@ class Email(Communication):
         else:
             self.config = EmailCfg(id=self.file_id)
 
-        extracted_from_description = extracted_from_doc_cfg.complete_description()
+        extracted_from_description = extracted_from_doc_cfg.complete_description
 
         if extracted_from_description:
             extracted_description = f"{APPEARS_IN} {extracted_from_description}"
