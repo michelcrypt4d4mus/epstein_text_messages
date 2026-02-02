@@ -1,5 +1,4 @@
-EFTA00009622_TEXT = """(handwritten cursive note transcribed by @TheReclamare and Claude)
-
+EFTA00009622_TEXT = """
 [redacted] s GJ Test.     7/19/2006
 
 [redacted] dob          16 yrs

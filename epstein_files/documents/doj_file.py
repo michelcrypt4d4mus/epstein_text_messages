@@ -172,8 +172,10 @@ class DojFile(OtherFile):
                 pages = self.text.split('MetroPCS')
                 printable_text = f"{pages[0]}\n\n(Redacted phone bill {PHONE_BILL_IDS[self.file_id]} {CHECK_LINK_FOR_DETAILS})"
             elif self.file_id in REPLACEMENT_TEXT:
-                # TODO: maybe shouldn't destructively replace these?
-                printable_text = f'(Text of {REPLACEMENT_TEXT[self.file_id]} {CHECK_LINK_FOR_DETAILS})'
+                printable_text = REPLACEMENT_TEXT[self.file_id]
+
+                if len(printable_text) < 400:
+                    printable_text = f'(Text of {printable_text} {CHECK_LINK_FOR_DETAILS})'
             else:
                 printable_text = self.text
 
