@@ -73,7 +73,7 @@ def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile | Email]:
         if last_was_empty:
             console.line()
 
-        console.print(doj_file.printable_doj_file())
+        console.print(doj_file)
         last_was_empty = False
         printed_doj_files.append(doj_file)
 

@@ -1122,6 +1122,7 @@ EMAILS_CONFIG = [
     # EmailCfg(id='EFTA02730468', date='2004-02-03 00:00:00'),  # TODO: ???
     EmailCfg(id='EFTA02731528', date='2021-05-06 09:39:15'),
     EmailCfg(id='EFTA02730485', date='2021-12-03 00:00:00'),
+    EmailCfg(id='EFTA02731689', author=UNKNOWN, recipients=[None], date='2023-06-09 14:14:00'),
     EmailCfg(id='EFTA00039689', truncate_to=NO_TRUNCATE),
 ]
 
