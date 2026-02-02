@@ -44,6 +44,8 @@ BAD_DOJ_FILE_IDS = [
     'EFTA00000052',
     'EFTA00008445',
     'EFTA00008480',
+    'EFTA00001124',
+    'EFTA00002509',
     'EFTA00008497',
     'EFTA00001031',
     'EFTA00005495',
@@ -83,11 +85,15 @@ PHONE_BILL_IDS = {
 }
 
 REPLACEMENT_TEXT = {
-    'EFTA00008120': 'Part II: The Art of Receiving a Massage',
-    'EFTA00008020': 'Massage for Dummies',
-    'EFTA00008220': 'Massage book: Chapter 11: Putting the Moves Together',
-    'EFTA00008320': 'Massage for Dummies (???)',
-    'EFTA00006387': 'T-Mobile phone bill covering 2006-06-15 to 2006-07-23',  # TODO: move to PHONE_BILL_IDS
+    'EFTA00008120': '"Part II: The Art of Receiving a Massage"',
+    'EFTA00008020': '"Massage for Dummies"',
+    'EFTA00008220': '"Massage book: Chapter 11: Putting the Moves Together"',
+    'EFTA00008320': '"Massage for Dummies (???)"',
+    # Manual transcription required
+    'EFTA00009622': 'handwritten lascivious note that the OCR failed on / is unsearchable. If you want to manually transcribe it and send me the result I will update this box with the correct text',
+    # TODO: move to PHONE_BILL_IDS
+    'EFTA00006387': 'T-Mobile phone bill covering 2006-06-15 to 2006-07-23',
+    'EFTA00007501': 'T-mobile phone bill from 2005',
 }
 
 INTERESTING_DOJ_FILES = {
@@ -150,7 +156,7 @@ class DojFile(OtherFile):
                 printable_text = f"{pages[0]}\n\n(Redacted phone bill {PHONE_BILL_IDS[self.file_id]} {CHECK_LINK_FOR_DETAILS})"
             elif self.file_id in REPLACEMENT_TEXT:
                 # TODO: maybe shouldn't destructively replace these?
-                printable_text = f'(Text of "{REPLACEMENT_TEXT[self.file_id]}" {CHECK_LINK_FOR_DETAILS})'
+                printable_text = f'(Text of {REPLACEMENT_TEXT[self.file_id]} {CHECK_LINK_FOR_DETAILS})'
             else:
                 printable_text = self.text
 
@@ -171,8 +177,19 @@ class DojFile(OtherFile):
         return style
 
     def _repair(self) -> None:
+        """Overloads superclass method."""
         new_text = self.repair_ocr_text(OCR_REPAIRS, self.text)
         self._set_computed_fields(text=new_text)
+        self._remove_number_only_lines()
+
+    def _remove_number_only_lines(self) -> None:
+        """Remove number only lines (which happen a lot in legal doc OCR) if there are more than a certain amount of them."""
+        non_number_lines = [line for line in self.lines if not IGNORE_LINE_REGEX.match(line)]
+        number_only_line_count = len(self.lines) - len(non_number_lines)
+
+        if number_only_line_count > 20:
+            logger.warning(f"{self.file_id}: Reduced line count from {len(self.lines)} to {len(non_number_lines)}")
+            self._set_computed_fields(lines=non_number_lines)
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         doc = self.printable_doc()

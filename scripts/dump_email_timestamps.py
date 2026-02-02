@@ -21,6 +21,14 @@ from epstein_files.util.logging import logger
 from epstein_files.util.rich import console, highlighter, print_json, print_subtitle_panel
 
 
+
+
+for i, doc in enumerate(sorted(epstein_files.doj_files, key=lambda f: -f.length)):
+    console.print(doc)
+
+sys.exit()
+
+
 # Look for possible email files in the DOJ files
 with open('timestamps_cfg.txt', 'wt') as f:
     emails = []
