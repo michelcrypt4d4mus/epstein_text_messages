@@ -166,7 +166,7 @@ def left_bar_panel(text: str, bar_style: str, header: str | Text = '') -> Table:
     table.add_column(justify='left')                   # Column for content
 
     if header:
-        table.add_row('', Text('        ') + header)
+        table.add_row('🁢 ', Text('        ') + header)
         table.add_row(VERTICAL_BAR, '')
 
     for txt_line in highlighter(text).split('\n'):
