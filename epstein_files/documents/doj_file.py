@@ -13,10 +13,10 @@ from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.email_header import FIELDS_COLON_PATTERN
 from epstein_files.documents.other_file import Metadata, OtherFile
-from epstein_files.util.constant.urls import doj_2026_file_url
 from epstein_files.util.constants import FALLBACK_TIMESTAMP
+from epstein_files.util.layout.left_bar_panel import LeftBarPanel
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import RAINBOW, SKIPPED_FILE_MSG_PADDING, left_bar_panel, link_text_obj
+from epstein_files.util.rich import RAINBOW, SKIPPED_FILE_MSG_PADDING, link_text_obj
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTALL)
@@ -165,7 +165,7 @@ class DojFile(OtherFile):
         """One line of linked text to show if this file doesn't seem to have any OCR text."""
         return Padding(
             Text('').append(self.doj_link()).append(f" is a single image with no text..."),
-            SKIPPED_FILE_MSG_PADDING
+            (0, 0, 0, 1)
         )
 
     def printable_doc(self) -> Self | Email:
@@ -218,12 +218,10 @@ class DojFile(OtherFile):
         else:
             yield (info_panel := self.file_info_panel())
             border_style = info_panel.renderables[0].border_style
-            table = left_bar_panel(self.text, border_style)
+            panel_args = [self.text, border_style]
 
             if self.panel_title_timestamp:
-                timestamp_txt = Text(self.panel_title_timestamp, style='dim ' + border_style)
-                table = left_bar_panel(self.text, border_style, timestamp_txt)
-            else:
-                table = left_bar_panel(self.text, border_style)
+                panel_args.append(Text(f"[{self.panel_title_timestamp}]", style='dim italic ' + border_style))
 
+            table = LeftBarPanel.build(*panel_args)
             yield Padding(table, (0, 0, 1, 1))
