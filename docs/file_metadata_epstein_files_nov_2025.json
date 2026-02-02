@@ -32665,7 +32665,7 @@
                 "filename": "HOUSE_OVERSIGHT_028326.txt",
                 "is_interesting": false,
                 "num_lines": 2217,
-                "timestamp": "2018-09-24T14:30:00",
+                "timestamp": "2018-09-24T18:30:02",
                 "type": "JsonFile",
                 "was_timestamp_extracted": true
             },
@@ -32676,7 +32676,7 @@
                 "filename": "HOUSE_OVERSIGHT_028336.txt",
                 "is_interesting": false,
                 "num_lines": 2571,
-                "timestamp": "2018-09-24T00:00:00",
+                "timestamp": "2018-09-25T00:07:41",
                 "type": "JsonFile",
                 "was_timestamp_extracted": true
             },
@@ -32687,7 +32687,9 @@
                 "filename": "HOUSE_OVERSIGHT_028347.txt",
                 "is_interesting": false,
                 "num_lines": 6859,
-                "type": "JsonFile"
+                "timestamp": "2018-09-24T18:06:16",
+                "type": "JsonFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 32184,
@@ -32696,7 +32698,7 @@
                 "filename": "HOUSE_OVERSIGHT_028375.txt",
                 "is_interesting": false,
                 "num_lines": 1690,
-                "timestamp": "2018-09-24T00:00:00",
+                "timestamp": "2018-12-01T00:00:00",
                 "type": "JsonFile",
                 "was_timestamp_extracted": true
             },
@@ -32707,7 +32709,7 @@
                 "filename": "HOUSE_OVERSIGHT_028382.txt",
                 "is_interesting": false,
                 "num_lines": 3780,
-                "timestamp": "2018-09-24T00:00:00",
+                "timestamp": "2018-09-24T15:15:15",
                 "type": "JsonFile",
                 "was_timestamp_extracted": true
             },
@@ -32718,7 +32720,7 @@
                 "filename": "HOUSE_OVERSIGHT_028397.txt",
                 "is_interesting": false,
                 "num_lines": 2052,
-                "timestamp": "2018-09-24T00:00:00",
+                "timestamp": "2018-09-25T00:07:35",
                 "type": "JsonFile",
                 "was_timestamp_extracted": true
             },
@@ -32740,7 +32742,7 @@
                 "filename": "HOUSE_OVERSIGHT_028413.txt",
                 "is_interesting": false,
                 "num_lines": 2750,
-                "timestamp": "2018-09-24T00:00:00",
+                "timestamp": "2018-09-24T10:09:00",
                 "type": "JsonFile",
                 "was_timestamp_extracted": true
             },
@@ -32751,7 +32753,7 @@
                 "filename": "HOUSE_OVERSIGHT_028425.txt",
                 "is_interesting": false,
                 "num_lines": 1589,
-                "timestamp": "2018-09-23T00:00:00",
+                "timestamp": "2018-09-24T10:08:56",
                 "type": "JsonFile",
                 "was_timestamp_extracted": true
             },
@@ -32762,7 +32764,7 @@
                 "filename": "HOUSE_OVERSIGHT_028432.txt",
                 "is_interesting": false,
                 "num_lines": 1891,
-                "timestamp": "2018-09-24T00:00:00",
+                "timestamp": "2018-09-25T00:18:43",
                 "type": "JsonFile",
                 "was_timestamp_extracted": true
             },
@@ -32773,7 +32775,9 @@
                 "filename": "HOUSE_OVERSIGHT_028440.txt",
                 "is_interesting": false,
                 "num_lines": 1146,
-                "type": "JsonFile"
+                "timestamp": "2018-09-24T19:55:08.111000",
+                "type": "JsonFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 33014,
@@ -32782,7 +32786,7 @@
                 "filename": "HOUSE_OVERSIGHT_028446.txt",
                 "is_interesting": false,
                 "num_lines": 1742,
-                "timestamp": "2018-09-24T00:00:00",
+                "timestamp": "2018-09-24T23:59:21",
                 "type": "JsonFile",
                 "was_timestamp_extracted": true
             },
@@ -32793,7 +32797,7 @@
                 "filename": "HOUSE_OVERSIGHT_028453.txt",
                 "is_interesting": false,
                 "num_lines": 3831,
-                "timestamp": "2018-09-24T00:00:00",
+                "timestamp": "2018-09-24T21:45:51",
                 "type": "JsonFile",
                 "was_timestamp_extracted": true
             },
@@ -32804,7 +32808,7 @@
                 "filename": "HOUSE_OVERSIGHT_028467.txt",
                 "is_interesting": false,
                 "num_lines": 3791,
-                "timestamp": "2018-09-24T00:00:00",
+                "timestamp": "2018-09-24T04:32:20",
                 "type": "JsonFile",
                 "was_timestamp_extracted": true
             },
@@ -32815,7 +32819,7 @@
                 "filename": "HOUSE_OVERSIGHT_031059.txt",
                 "is_interesting": false,
                 "num_lines": 1240,
-                "timestamp": "2018-09-24T00:00:00",
+                "timestamp": "2018-09-24T21:08:57.136000",
                 "type": "JsonFile",
                 "was_timestamp_extracted": true
             },
@@ -32848,7 +32852,7 @@
                 "filename": "HOUSE_OVERSIGHT_033469.txt",
                 "is_interesting": false,
                 "num_lines": 1173,
-                "timestamp": "2018-09-24T20:35:00",
+                "timestamp": "2018-09-24T20:35:40",
                 "type": "JsonFile",
                 "was_timestamp_extracted": true
             },
@@ -33805,7 +33809,7 @@
                 "filename": "HOUSE_OVERSIGHT_010617.txt",
                 "is_interesting": true,
                 "num_lines": 9890,
-                "timestamp": "2017-01-20T00:00:00",
+                "timestamp": "2018-04-22T19:28:13",
                 "type": "OtherFile"
             },
             {
@@ -33927,7 +33931,7 @@
                 "filename": "HOUSE_OVERSIGHT_011170.txt",
                 "is_interesting": true,
                 "num_lines": 13903,
-                "timestamp": "2016-06-23T00:00:00",
+                "timestamp": "2016-09-27T21:46:03",
                 "type": "OtherFile"
             },
             {
@@ -34011,7 +34015,7 @@
                 "filename": "HOUSE_OVERSIGHT_012048.txt",
                 "is_interesting": true,
                 "num_lines": 2693,
-                "timestamp": "2017-11-14T18:15:00",
+                "timestamp": "2019-03-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -34069,7 +34073,7 @@
                 "filename": "HOUSE_OVERSIGHT_012197.txt",
                 "is_interesting": true,
                 "num_lines": 16026,
-                "timestamp": "2015-07-14T00:00:00",
+                "timestamp": "2014-12-13T15:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -34185,7 +34189,7 @@
                 "filename": "HOUSE_OVERSIGHT_013268.txt",
                 "is_interesting": false,
                 "num_lines": 139,
-                "timestamp": "2013-11-18T00:00:00",
+                "timestamp": "2014-01-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -34340,7 +34344,7 @@
                 "filename": "HOUSE_OVERSIGHT_013796.txt",
                 "is_interesting": false,
                 "num_lines": 8095,
-                "timestamp": "2008-06-24T00:00:00",
+                "timestamp": "2009-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -34353,7 +34357,7 @@
                 "filename": "HOUSE_OVERSIGHT_014037.txt",
                 "is_interesting": true,
                 "num_lines": 1911,
-                "timestamp": "2013-12-04T00:00:00",
+                "timestamp": "2014-07-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -34393,7 +34397,7 @@
                 "filename": "HOUSE_OVERSIGHT_014315.txt",
                 "is_interesting": false,
                 "num_lines": 4787,
-                "timestamp": "2016-11-17T23:00:00",
+                "timestamp": "2016-11-17T18:05:47",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -34687,7 +34691,7 @@
                 "filename": "HOUSE_OVERSIGHT_015032.txt",
                 "is_interesting": false,
                 "num_lines": 1918,
-                "timestamp": "2016-11-08T00:00:00",
+                "timestamp": "2017-07-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -34700,7 +34704,7 @@
                 "filename": "HOUSE_OVERSIGHT_015462.txt",
                 "is_interesting": false,
                 "num_lines": 1810,
-                "timestamp": "2013-09-13T00:00:00",
+                "timestamp": "2013-10-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -34713,7 +34717,7 @@
                 "filename": "HOUSE_OVERSIGHT_015501.txt",
                 "is_interesting": false,
                 "num_lines": 1214,
-                "timestamp": "2013-08-25T00:00:00",
+                "timestamp": "2016-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -34791,7 +34795,7 @@
                 "filename": "HOUSE_OVERSIGHT_015675.txt",
                 "is_interesting": false,
                 "num_lines": 12455,
-                "timestamp": "2014-09-28T00:00:00",
+                "timestamp": "2020-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -35024,7 +35028,7 @@
                 "filename": "HOUSE_OVERSIGHT_016636.txt",
                 "is_interesting": false,
                 "num_lines": 1535,
-                "timestamp": "2009-01-29T15:00:00",
+                "timestamp": "2009-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -35088,7 +35092,7 @@
                 "filename": "HOUSE_OVERSIGHT_016699.txt",
                 "is_interesting": true,
                 "num_lines": 8319,
-                "timestamp": "2017-01-20T00:00:00",
+                "timestamp": "2018-04-22T19:28:13",
                 "type": "OtherFile"
             },
             {
@@ -35117,7 +35121,7 @@
                 "filename": "HOUSE_OVERSIGHT_016996.txt",
                 "is_interesting": false,
                 "num_lines": 2020,
-                "timestamp": "2010-12-16T00:00:00",
+                "timestamp": "2014-01-12T16:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -35170,7 +35174,7 @@
                 "filename": "HOUSE_OVERSIGHT_017524.txt",
                 "is_interesting": false,
                 "num_lines": 256,
-                "timestamp": "2012-08-18T00:00:00",
+                "timestamp": "2012-08-18T16:11:07",
                 "type": "OtherFile"
             },
             {
@@ -35181,7 +35185,7 @@
                 "filename": "HOUSE_OVERSIGHT_017526.txt",
                 "is_interesting": false,
                 "num_lines": 4127,
-                "timestamp": "2012-02-15T00:00:00",
+                "timestamp": "2012-06-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -35401,7 +35405,7 @@
                 "filename": "HOUSE_OVERSIGHT_018224.txt",
                 "is_interesting": true,
                 "num_lines": 358,
-                "timestamp": "2019-05-31T00:00:00",
+                "timestamp": "2019-06-01T11:54:45.300000",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -35414,7 +35418,7 @@
                 "filename": "HOUSE_OVERSIGHT_018232.txt",
                 "is_interesting": false,
                 "num_lines": 8558,
-                "timestamp": "2014-10-01T00:00:00",
+                "timestamp": "2015-03-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -35427,7 +35431,7 @@
                 "filename": "HOUSE_OVERSIGHT_018438.txt",
                 "is_interesting": false,
                 "num_lines": 10444,
-                "timestamp": "2012-06-16T00:00:00",
+                "timestamp": "2012-05-14T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -35440,7 +35444,7 @@
                 "filename": "HOUSE_OVERSIGHT_018703.txt",
                 "is_interesting": false,
                 "num_lines": 124,
-                "timestamp": "2016-03-14T00:00:00",
+                "timestamp": "2016-06-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -35464,7 +35468,7 @@
                 "filename": "HOUSE_OVERSIGHT_018743.txt",
                 "is_interesting": true,
                 "num_lines": 1855,
-                "timestamp": "2015-05-20T00:00:00",
+                "timestamp": "2018-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -35503,7 +35507,7 @@
                 "filename": "HOUSE_OVERSIGHT_018872.txt",
                 "is_interesting": true,
                 "num_lines": 11058,
-                "timestamp": "2006-11-14T00:00:00",
+                "timestamp": "2006-10-07T11:45:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -35713,7 +35717,7 @@
                 "filename": "HOUSE_OVERSIGHT_019448.txt",
                 "is_interesting": true,
                 "num_lines": 427,
-                "timestamp": "2010-11-08T00:00:00",
+                "timestamp": "2012-06-22T23:08:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -35765,7 +35769,7 @@
                 "filename": "HOUSE_OVERSIGHT_019477.txt",
                 "is_interesting": true,
                 "num_lines": 11950,
-                "timestamp": "2016-04-01T00:00:00",
+                "timestamp": "2017-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -35836,7 +35840,7 @@
                 "filename": "HOUSE_OVERSIGHT_020153.txt",
                 "is_interesting": true,
                 "num_lines": 2848,
-                "timestamp": "2015-02-22T00:00:00",
+                "timestamp": "2016-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -35849,7 +35853,7 @@
                 "filename": "HOUSE_OVERSIGHT_020447.txt",
                 "is_interesting": true,
                 "num_lines": 7325,
-                "timestamp": "2018-10-24T00:00:00",
+                "timestamp": "2019-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -35888,7 +35892,9 @@
                 "filename": "HOUSE_OVERSIGHT_021092.txt",
                 "is_interesting": false,
                 "num_lines": 77,
-                "type": "OtherFile"
+                "timestamp": "2001-02-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 5793,
@@ -35898,7 +35904,9 @@
                 "filename": "HOUSE_OVERSIGHT_021093.txt",
                 "is_interesting": false,
                 "num_lines": 96,
-                "type": "OtherFile"
+                "timestamp": "2003-02-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Globe and Mail",
@@ -35935,7 +35943,9 @@
                 "filename": "HOUSE_OVERSIGHT_021145.txt",
                 "is_interesting": false,
                 "num_lines": 6213,
-                "type": "OtherFile"
+                "timestamp": "2008-02-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "The Chicago Social Brain Network",
@@ -35972,7 +35982,7 @@
                 "filename": "HOUSE_OVERSIGHT_021569.txt",
                 "is_interesting": true,
                 "num_lines": 11736,
-                "timestamp": "2018-02-03T18:20:48",
+                "timestamp": "2014-03-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -35985,7 +35995,7 @@
                 "filename": "HOUSE_OVERSIGHT_021718.txt",
                 "is_interesting": false,
                 "num_lines": 1754,
-                "timestamp": "2013-08-01T00:00:00",
+                "timestamp": "2016-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -35999,7 +36009,7 @@
                 "filename": "HOUSE_OVERSIGHT_021775.txt",
                 "is_interesting": false,
                 "num_lines": 521,
-                "timestamp": "2008-07-27T00:00:00",
+                "timestamp": "2010-02-26T15:01:31",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -36090,7 +36100,7 @@
                 "filename": "HOUSE_OVERSIGHT_022212.txt",
                 "is_interesting": false,
                 "num_lines": 107,
-                "timestamp": "2019-03-02T00:00:00",
+                "timestamp": "2020-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -36113,7 +36123,9 @@
                 "filename": "HOUSE_OVERSIGHT_022237.txt",
                 "is_interesting": true,
                 "num_lines": 266,
-                "type": "OtherFile"
+                "timestamp": "2014-12-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Svetlana Pozhidaeva",
@@ -36172,7 +36184,7 @@
                 "filename": "HOUSE_OVERSIGHT_022350.txt",
                 "is_interesting": false,
                 "num_lines": 356,
-                "timestamp": "2010-12-17T00:00:00",
+                "timestamp": "2015-04-02T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -36186,7 +36198,7 @@
                 "filename": "HOUSE_OVERSIGHT_022361.txt",
                 "is_interesting": true,
                 "num_lines": 245,
-                "timestamp": "2013-05-01T00:00:00",
+                "timestamp": "2013-04-30T18:57:28",
                 "type": "OtherFile"
             },
             {
@@ -36235,7 +36247,7 @@
                 "filename": "HOUSE_OVERSIGHT_022407.txt",
                 "is_interesting": true,
                 "num_lines": 79,
-                "timestamp": "2008-03-04T00:00:00",
+                "timestamp": "2018-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -36248,7 +36260,7 @@
                 "filename": "HOUSE_OVERSIGHT_022417.txt",
                 "is_interesting": true,
                 "num_lines": 1118,
-                "timestamp": "2015-11-23T00:00:00",
+                "timestamp": "2017-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -36299,7 +36311,9 @@
                 "filename": "HOUSE_OVERSIGHT_022707.txt",
                 "is_interesting": true,
                 "num_lines": 146,
-                "type": "OtherFile"
+                "timestamp": "2014-02-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Michael Wolff",
@@ -36310,7 +36324,9 @@
                 "filename": "HOUSE_OVERSIGHT_022727.txt",
                 "is_interesting": true,
                 "num_lines": 146,
-                "type": "OtherFile"
+                "timestamp": "2014-02-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Michael Wolff",
@@ -36321,7 +36337,9 @@
                 "filename": "HOUSE_OVERSIGHT_022746.txt",
                 "is_interesting": true,
                 "num_lines": 149,
-                "type": "OtherFile"
+                "timestamp": "2014-02-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 5448,
@@ -36365,7 +36383,9 @@
                 "filename": "HOUSE_OVERSIGHT_022844.txt",
                 "is_interesting": true,
                 "num_lines": 149,
-                "type": "OtherFile"
+                "timestamp": "2014-02-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Michael Wolff",
@@ -36376,7 +36396,9 @@
                 "filename": "HOUSE_OVERSIGHT_022863.txt",
                 "is_interesting": true,
                 "num_lines": 109,
-                "type": "OtherFile"
+                "timestamp": "2009-02-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Michael Wolff",
@@ -36387,7 +36409,9 @@
                 "filename": "HOUSE_OVERSIGHT_022894.txt",
                 "is_interesting": true,
                 "num_lines": 99,
-                "type": "OtherFile"
+                "timestamp": "2009-02-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Michael Wolff",
@@ -36398,7 +36422,9 @@
                 "filename": "HOUSE_OVERSIGHT_022952.txt",
                 "is_interesting": true,
                 "num_lines": 140,
-                "type": "OtherFile"
+                "timestamp": "2014-02-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Daily Mail",
@@ -36701,7 +36727,9 @@
                 "filename": "HOUSE_OVERSIGHT_023435.txt",
                 "is_interesting": false,
                 "num_lines": 107,
-                "type": "OtherFile"
+                "timestamp": "2016-02-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Brockman, Inc.",
@@ -36876,7 +36904,7 @@
                 "filename": "HOUSE_OVERSIGHT_023666.txt",
                 "is_interesting": false,
                 "num_lines": 4828,
-                "timestamp": "2018-09-30T00:00:00",
+                "timestamp": "2017-09-25T07:06:34",
                 "type": "OtherFile"
             },
             {
@@ -36901,7 +36929,7 @@
                 "filename": "HOUSE_OVERSIGHT_023720.txt",
                 "is_interesting": false,
                 "num_lines": 280,
-                "timestamp": "2008-02-04T00:00:00",
+                "timestamp": "2012-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -36914,7 +36942,7 @@
                 "filename": "HOUSE_OVERSIGHT_023731.txt",
                 "is_interesting": false,
                 "num_lines": 8219,
-                "timestamp": "2007-12-23T00:00:00",
+                "timestamp": "2011-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -36926,7 +36954,7 @@
                 "filename": "HOUSE_OVERSIGHT_024003.txt",
                 "is_interesting": true,
                 "num_lines": 5090,
-                "timestamp": "2017-01-01T00:00:00",
+                "timestamp": "2020-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -36938,7 +36966,9 @@
                 "filename": "HOUSE_OVERSIGHT_024117.txt",
                 "is_interesting": true,
                 "num_lines": 751,
-                "type": "OtherFile"
+                "timestamp": "2012-07-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "JP Morgan",
@@ -37027,7 +37057,9 @@
                 "filename": "HOUSE_OVERSIGHT_024229.txt",
                 "is_interesting": true,
                 "num_lines": 79,
-                "type": "OtherFile"
+                "timestamp": "2009-02-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Joi Ito",
@@ -37038,7 +37070,7 @@
                 "filename": "HOUSE_OVERSIGHT_024256.txt",
                 "is_interesting": true,
                 "num_lines": 498,
-                "timestamp": "2016-12-10T00:00:00",
+                "timestamp": "2017-05-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -37102,7 +37134,7 @@
                 "filename": "HOUSE_OVERSIGHT_024374.txt",
                 "is_interesting": false,
                 "num_lines": 83,
-                "timestamp": "2012-11-17T00:00:00",
+                "timestamp": "2019-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -37140,21 +37172,21 @@
                 "filename": "HOUSE_OVERSIGHT_024631.txt",
                 "is_interesting": true,
                 "num_lines": 6977,
-                "timestamp": "2017-12-28T00:00:00",
+                "timestamp": "2019-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
             {
                 "bytes": 261891,
                 "category": "finance",
+                "date": "2019-02-25",
                 "description": "Cowen's Collective View of CBD / Cannabis report",
                 "file_id": "024817",
                 "filename": "HOUSE_OVERSIGHT_024817.txt",
                 "is_interesting": true,
                 "num_lines": 5317,
-                "timestamp": "2019-02-25T11:00:00",
-                "type": "OtherFile",
-                "was_timestamp_extracted": true
+                "timestamp": "2019-02-25T00:00:00",
+                "type": "OtherFile"
             },
             {
                 "author": "The Shimon Post",
@@ -37203,7 +37235,7 @@
                 "filename": "HOUSE_OVERSIGHT_025104.txt",
                 "is_interesting": false,
                 "num_lines": 365,
-                "timestamp": "2018-03-14T20:17:00",
+                "timestamp": "2020-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -37339,7 +37371,7 @@
                 "filename": "HOUSE_OVERSIGHT_025292.txt",
                 "is_interesting": false,
                 "num_lines": 80,
-                "timestamp": "2015-01-06T02:10:00",
+                "timestamp": "2016-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -37396,7 +37428,9 @@
                 "filename": "HOUSE_OVERSIGHT_025540.txt",
                 "is_interesting": true,
                 "num_lines": 36,
-                "type": "OtherFile"
+                "timestamp": "2009-07-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Morgan Stanley",
@@ -37489,7 +37523,7 @@
                 "filename": "HOUSE_OVERSIGHT_025849.txt",
                 "is_interesting": false,
                 "num_lines": 603,
-                "timestamp": "2013-03-13T00:00:00",
+                "timestamp": "2014-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -37553,7 +37587,7 @@
                 "filename": "HOUSE_OVERSIGHT_026134.txt",
                 "is_interesting": true,
                 "num_lines": 784,
-                "timestamp": "2017-06-12T00:00:00",
+                "timestamp": "2020-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -37581,7 +37615,7 @@
                 "filename": "HOUSE_OVERSIGHT_026384.txt",
                 "is_interesting": true,
                 "num_lines": 226,
-                "timestamp": "2016-06-20T00:00:00",
+                "timestamp": "2016-04-28T16:39:12",
                 "type": "OtherFile"
             },
             {
@@ -37618,7 +37652,7 @@
                 "filename": "HOUSE_OVERSIGHT_026543.txt",
                 "is_interesting": false,
                 "num_lines": 143,
-                "timestamp": "2014-02-27T00:00:00",
+                "timestamp": "2020-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -37705,7 +37739,7 @@
                 "filename": "HOUSE_OVERSIGHT_026627.txt",
                 "is_interesting": true,
                 "num_lines": 98,
-                "timestamp": "2016-10-19T00:00:00",
+                "timestamp": "2016-10-25T09:07:53",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -37779,7 +37813,7 @@
                 "filename": "HOUSE_OVERSIGHT_026731.txt",
                 "is_interesting": false,
                 "num_lines": 250,
-                "timestamp": "2017-05-08T00:00:00",
+                "timestamp": "2020-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -37794,7 +37828,7 @@
                 "filename": "HOUSE_OVERSIGHT_026747.txt",
                 "is_interesting": false,
                 "num_lines": 169,
-                "timestamp": "2017-08-23T00:00:00",
+                "timestamp": "2017-07-19T14:09:32",
                 "type": "OtherFile"
             },
             {
@@ -37845,7 +37879,7 @@
                 "filename": "HOUSE_OVERSIGHT_026794.txt",
                 "is_interesting": false,
                 "num_lines": 673,
-                "timestamp": "2015-11-04T00:00:00",
+                "timestamp": "2020-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -37858,7 +37892,7 @@
                 "filename": "HOUSE_OVERSIGHT_026825.txt",
                 "is_interesting": false,
                 "num_lines": 81,
-                "timestamp": "2014-10-01T00:00:00",
+                "timestamp": "2015-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -37964,7 +37998,7 @@
                 "filename": "HOUSE_OVERSIGHT_026909.txt",
                 "is_interesting": false,
                 "num_lines": 652,
-                "timestamp": "2018-10-14T00:00:00",
+                "timestamp": "2018-10-15T18:56:57",
                 "type": "OtherFile"
             },
             {
@@ -38029,7 +38063,7 @@
                 "filename": "HOUSE_OVERSIGHT_027051.txt",
                 "is_interesting": false,
                 "num_lines": 213,
-                "timestamp": "2013-01-01T00:00:00",
+                "timestamp": "2012-05-07T23:21:03",
                 "type": "OtherFile"
             },
             {
@@ -38054,7 +38088,7 @@
                 "filename": "HOUSE_OVERSIGHT_027071.txt",
                 "is_interesting": true,
                 "num_lines": 120,
-                "timestamp": "2012-03-26T00:00:00",
+                "timestamp": "2015-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -38148,7 +38182,7 @@
                 "filename": "HOUSE_OVERSIGHT_028815.txt",
                 "is_interesting": true,
                 "num_lines": 719,
-                "timestamp": "2016-08-20T00:00:00",
+                "timestamp": "2016-09-27T21:46:03",
                 "type": "OtherFile"
             },
             {
@@ -38208,7 +38242,7 @@
                 "filename": "HOUSE_OVERSIGHT_028988.txt",
                 "is_interesting": true,
                 "num_lines": 152,
-                "timestamp": "2016-08-20T00:00:00",
+                "timestamp": "2016-09-27T21:46:03",
                 "type": "OtherFile"
             },
             {
@@ -38220,7 +38254,9 @@
                 "filename": "HOUSE_OVERSIGHT_029102.txt",
                 "is_interesting": true,
                 "num_lines": 94,
-                "type": "OtherFile"
+                "timestamp": "2016-02-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Nerio Alessandri (Founder and Chairman of Technogym S.p.A. Italy)",
@@ -38231,7 +38267,9 @@
                 "filename": "HOUSE_OVERSIGHT_029104.txt",
                 "is_interesting": true,
                 "num_lines": 94,
-                "type": "OtherFile"
+                "timestamp": "2016-02-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Robert Trivers",
@@ -38269,7 +38307,7 @@
                 "filename": "HOUSE_OVERSIGHT_029176.txt",
                 "is_interesting": false,
                 "num_lines": 114,
-                "timestamp": "2018-08-02T00:00:00",
+                "timestamp": "2018-08-19T03:53:57",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -38322,7 +38360,7 @@
                 "filename": "HOUSE_OVERSIGHT_029301.txt",
                 "is_interesting": true,
                 "num_lines": 25,
-                "timestamp": "2011-08-07T00:00:00",
+                "timestamp": "2011-08-07T16:01:33",
                 "type": "OtherFile"
             },
             {
@@ -38336,7 +38374,7 @@
                 "filename": "HOUSE_OVERSIGHT_029302.txt",
                 "is_interesting": true,
                 "num_lines": 89,
-                "timestamp": "2011-08-07T00:00:00",
+                "timestamp": "2011-08-07T16:01:33",
                 "type": "OtherFile"
             },
             {
@@ -38349,7 +38387,7 @@
                 "filename": "HOUSE_OVERSIGHT_029304.txt",
                 "is_interesting": true,
                 "num_lines": 17,
-                "timestamp": "2011-07-11T00:00:00",
+                "timestamp": "2011-08-07T16:01:33",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -38400,7 +38438,9 @@
                 "filename": "HOUSE_OVERSIGHT_029328.txt",
                 "is_interesting": false,
                 "num_lines": 230,
-                "type": "OtherFile"
+                "timestamp": "2011-02-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "MarketWatch",
@@ -38411,7 +38451,7 @@
                 "filename": "HOUSE_OVERSIGHT_029340.txt",
                 "is_interesting": false,
                 "num_lines": 59,
-                "timestamp": "2013-04-29T12:09:00",
+                "timestamp": "2014-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -38501,7 +38541,9 @@
                 "filename": "HOUSE_OVERSIGHT_029356.txt",
                 "is_interesting": false,
                 "num_lines": 18,
-                "type": "OtherFile"
+                "timestamp": "2001-08-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 28525,
@@ -38597,7 +38639,9 @@
                 "filename": "HOUSE_OVERSIGHT_029448.txt",
                 "is_interesting": true,
                 "num_lines": 25,
-                "type": "OtherFile"
+                "timestamp": "2016-02-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "New York Times",
@@ -38832,7 +38876,7 @@
                 "filename": "HOUSE_OVERSIGHT_030010.txt",
                 "is_interesting": false,
                 "num_lines": 161,
-                "timestamp": "2011-06-14T00:00:00",
+                "timestamp": "2011-06-14T11:54:12",
                 "type": "OtherFile"
             },
             {
@@ -39087,7 +39131,9 @@
                 "filename": "HOUSE_OVERSIGHT_030825.txt",
                 "is_interesting": false,
                 "num_lines": 15,
-                "type": "OtherFile"
+                "timestamp": "2013-06-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "South Florida Sun Sentinel",
@@ -39111,7 +39157,7 @@
                 "filename": "HOUSE_OVERSIGHT_030840.txt",
                 "is_interesting": false,
                 "num_lines": 332,
-                "timestamp": "2012-11-14T00:00:00",
+                "timestamp": "2014-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -39136,7 +39182,9 @@
                 "filename": "HOUSE_OVERSIGHT_030875.txt",
                 "is_interesting": true,
                 "num_lines": 22,
-                "type": "OtherFile"
+                "timestamp": "2004-02-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 367,
@@ -39254,7 +39302,9 @@
                 "filename": "HOUSE_OVERSIGHT_031354.txt",
                 "is_interesting": false,
                 "num_lines": 182,
-                "type": "OtherFile"
+                "timestamp": "2012-02-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "Nobel Charitable Trust",
@@ -39265,7 +39315,7 @@
                 "filename": "HOUSE_OVERSIGHT_031359.txt",
                 "is_interesting": false,
                 "num_lines": 794,
-                "timestamp": "2001-03-11T00:00:00",
+                "timestamp": "2012-05-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -39321,7 +39371,7 @@
                 "filename": "HOUSE_OVERSIGHT_031447.txt",
                 "is_interesting": true,
                 "num_lines": 97,
-                "timestamp": "2015-08-19T00:00:00",
+                "timestamp": "2015-10-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -39333,7 +39383,9 @@
                 "filename": "HOUSE_OVERSIGHT_031533.txt",
                 "is_interesting": false,
                 "num_lines": 67,
-                "type": "OtherFile"
+                "timestamp": "2016-05-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "bytes": 1214,
@@ -39440,7 +39492,9 @@
                 "filename": "HOUSE_OVERSIGHT_031794.txt",
                 "is_interesting": false,
                 "num_lines": 24,
-                "type": "OtherFile"
+                "timestamp": "2008-02-01T00:00:00",
+                "type": "OtherFile",
+                "was_timestamp_extracted": true
             },
             {
                 "author": "The Shimon Post",
@@ -39591,7 +39645,7 @@
                 "filename": "HOUSE_OVERSIGHT_032281.txt",
                 "is_interesting": true,
                 "num_lines": 40,
-                "timestamp": "2016-10-25T00:00:00",
+                "timestamp": "2016-09-15T17:02:37",
                 "type": "OtherFile"
             },
             {
@@ -39618,7 +39672,7 @@
                 "filename": "HOUSE_OVERSIGHT_032324.txt",
                 "is_interesting": true,
                 "num_lines": 21,
-                "timestamp": "2016-11-05T00:00:00",
+                "timestamp": "2016-11-04T12:43:32",
                 "type": "OtherFile"
             },
             {
@@ -39644,7 +39698,7 @@
                 "filename": "HOUSE_OVERSIGHT_032638.txt",
                 "is_interesting": false,
                 "num_lines": 135,
-                "timestamp": "2017-10-26T00:00:00",
+                "timestamp": "2017-11-06T13:19:09",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -39720,7 +39774,7 @@
                 "filename": "HOUSE_OVERSIGHT_033220.txt",
                 "is_interesting": true,
                 "num_lines": 212,
-                "timestamp": "2016-09-30T00:00:00",
+                "timestamp": "2018-02-01T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -39759,7 +39813,7 @@
                 "filename": "HOUSE_OVERSIGHT_033253.txt",
                 "is_interesting": false,
                 "num_lines": 61,
-                "timestamp": "2017-09-14T00:00:00",
+                "timestamp": "2017-09-25T07:06:34",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -39943,7 +39997,7 @@
         "Arda Beskardes": "lawyer, NYC immigration attorney allegedly involved in sex-trafficking operations",
         "Ariane de Rothschild": "Rothschild, heiress",
         "Auren Hoffman": "tech bro, CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp",
-        "Aziza Alahmadi": "mideast, Abu Dhabi Department of Culture & Tourism",
+        "Aziza Alahmadi": "mideast, Abu Dhabi Department of Culture & Tourism, assistant of Al Sabbagh",
         "Barbro C. Ehnbom": "business, Swedish pharmaceuticals, SALSS",
         "Barnaby Marsh": "publicist, co-founder of philanthropy services company Saint Partners",
         "Barry Josephson": "arts, American film producer, editor FamilySecurityMatters.org",
@@ -39961,6 +40015,7 @@
         "Carolyn Rangel": "deepak, Deepak Chopra's assistant (???)",
         "Cecile de Jongh": "USVI, Virgin Islands first lady 2007-2015",
         "Christina Galbraith": "publicist, Jeffrey Epstein VI Foundation Media/PR, worked with Tyler Shears",
+        "Christopher Dilorio": "government, self described whistleblower",
         "Connie Zaguirre": "lawyer, office of Robert D. Critton Jr.",
         "Dangene and Jennie Enterprise": "friend, founders of the members-only CORE club",
         "Daniel Kahneman": "academia, Nobel economic sciences laureate and cognitivie psychologist (?)",
