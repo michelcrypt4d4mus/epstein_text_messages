@@ -108,6 +108,7 @@ class DojFile(OtherFile):
     Class for the files released by DOJ on 2026-01-30 with `EFTA000` prefix.
     """
     border_style_rainbow_idx: ClassVar[int] = 0  # ClassVar to help change color as we print, no impact beyond fancier output
+    max_timestamp: ClassVar[datetime] = datetime(2025, 1, 29) # Overloaded in DojFile
 
     @property
     def is_bad_ocr(self) -> bool:
