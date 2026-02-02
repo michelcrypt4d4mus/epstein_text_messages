@@ -159,11 +159,15 @@ def key_value_txt(key: str, value: Text | int | str) -> Text:
     return Text('').append(key, style=KEY_STYLE).append('=', style=SYMBOL_STYLE).append(value)
 
 
-def left_bar_panel(text: str, bar_style: str) -> Table:
+def left_bar_panel(text: str, bar_style: str, header: str | Text = '') -> Table:
     # Create a table with no surrounding border
     table = Table.grid(padding=0)
     table.add_column(justify='left', style=bar_style)  # Column for the line
     table.add_column(justify='left')                   # Column for content
+
+    if header:
+        table.add_row('', Text('        ') + header)
+        table.add_row(VERTICAL_BAR, '')
 
     for txt_line in highlighter(text).split('\n'):
         table.add_row(VERTICAL_BAR, txt_line)

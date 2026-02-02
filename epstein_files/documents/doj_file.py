@@ -189,7 +189,7 @@ class DojFile(OtherFile):
     def _border_style(self) -> str:
         """Color emails from Epstein to others with the color for the first recipient."""
         # Divide by 2 bc there's 2 calls for each DojFile, header panel and text
-        style = RAINBOW[int(self.border_style_rainbow_idx % len(RAINBOW) / 2)]
+        style = RAINBOW[int(self.border_style_rainbow_idx % len(RAINBOW) / 1)]
         type(self).border_style_rainbow_idx += 1
         return style
 
@@ -215,5 +215,14 @@ class DojFile(OtherFile):
         if isinstance(doc, Email):
             yield doc
         else:
-            yield self.file_info_panel()
-            yield Padding(left_bar_panel(self.text, self._border_style()), (0, 0, 1, 1))
+            yield (info_panel := self.file_info_panel())
+            border_style = info_panel.renderables[0].border_style
+            table = left_bar_panel(self.text, border_style)
+
+            if self.panel_title_timestamp:
+                timestamp_txt = Text(self.panel_title_timestamp, style='dim ' + border_style)
+                table = left_bar_panel(self.text, border_style, timestamp_txt)
+            else:
+                table = left_bar_panel(self.text, border_style)
+
+            yield Padding(table, (0, 0, 1, 1))
