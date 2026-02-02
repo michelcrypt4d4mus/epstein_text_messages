@@ -469,6 +469,15 @@ class Email(Communication):
         self.actual_text = self._actual_text()
         self.sent_from_device = self._sent_from_device()
 
+    def border_style(self) -> str:
+        """Color emails from epstein to others with the color for the first recipient."""
+        if self.author == JEFFREY_EPSTEIN and len(self.recipients) > 0:
+            style = get_style_for_name(self.recipients[0])
+        else:
+            style = self.author_style
+
+        return style.replace('bold', '').strip()
+
     def is_from_or_to(self, name: str) -> bool:
         return name in [self.author] + self.recipients
 
@@ -528,15 +537,6 @@ class Email(Communication):
             break
 
         return text.strip()
-
-    def _border_style(self) -> str:
-        """Color emails from epstein to others with the color for the first recipient."""
-        if self.author == JEFFREY_EPSTEIN and len(self.recipients) > 0:
-            style = get_style_for_name(self.recipients[0])
-        else:
-            style = self.author_style
-
-        return style.replace('bold', '').strip()
 
     def _extract_author(self) -> None:
         self._extract_header()
@@ -878,7 +878,7 @@ class Email(Communication):
 
         email_txt_panel = Panel(
             highlighter(text).append('...\n\n').append(trim_footer_txt) if trim_footer_txt else highlighter(text),
-            border_style=self._border_style(),
+            border_style=self.border_style(),
             expand=False,
             subtitle=REWRITTEN_HEADER_MSG if should_rewrite_header else None,
         )
