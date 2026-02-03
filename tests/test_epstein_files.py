@@ -237,12 +237,12 @@ EXPECTED_MONTHLY_COUNTS = {
     "2024-10": 2,
     "2024-11": 2,
     "2024-12": 1,
-    None: 2155
+    None: 2141
 }
 
 
 def test_document_monthly_counts(epstein_files):
-    counts = count_by_month(epstein_files.all_documents())
+    counts = count_by_month(epstein_files.all_documents)
     assert counts == EXPECTED_MONTHLY_COUNTS
     len_all_files = len(epstein_files.all_files)
     assert sum(counts.values()) == len_all_files - 1256  # There's 1256 empty files

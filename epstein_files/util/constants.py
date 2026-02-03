@@ -387,7 +387,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='026609', author='Mark Green', attribution_reason='Actually a fwd, Mark Green is in signature'),
     EmailCfg(id='030472', author=MARTIN_WEINBERG, attribution_reason='Maybe. in reply', is_attribution_uncertain=True),
     EmailCfg(id='032563', author=MASHA_DROKOVA, attribution_reason='replied to in 033014'),
-    EmailCfg(id='032564', author=MASHA_DROKOVA, attribution_reason='follow up to 032563 about huffpo article with link'),
+    EmailCfg(
+        id='032564',
+        attribution_reason='follow up to 032563 about huffpo article with link',
+        author=MASHA_DROKOVA,
+        description='an archived version of the HuffPost link is here: https://archive.is/hJxT3 '
+    ),
     EmailCfg(id='031544', author=MASHA_DROKOVA, attribution_reason='follow up to 032563 about huffpo article with link'),
     EmailCfg(id='032605', author=MASHA_DROKOVA, attribution_reason="re: PR interview, 031544 says she'll be in NY at that time"),
     EmailCfg(id='032606', author=MASHA_DROKOVA, attribution_reason="re: PR interview, 031544 says she'll be in NY at that time"),
@@ -927,6 +932,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='025163', truncate_to=NO_TRUNCATE, comment='Tom Pritzer'),
 
     # DOJ files
+    EmailCfg(id='EFTA00935996', recipients=[RENATA_BOLOTOVA], attribution_reason='"sneaky dog"'),
     EmailCfg(id='EFTA02731737', date='2023-06-30T16:05:00'),
     EmailCfg(id='EFTA02731689', author=UNKNOWN, recipients=[None], date='2023-06-09 20:14:00'),
     EmailCfg(id='EFTA02731475', date='2023-05-31T20:53:00'),
@@ -1030,7 +1036,7 @@ ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
 OTHER_FILES_BOOKS = [
     DocCfg(id='017088', author=ALAN_DERSHOWITZ, description=f'"Taking the Stand: My Life in the Law" (draft)'),
     DocCfg(id='013501', author='Arnold J. Mandell', description=f'The Nearness Of Grace: A Personal Science Of Spiritual Transformation', date='2005-01-01'),
-    DocCfg(id='012899', author='Ben Goertzel', description=f'Engineering General Intelligence: A Path to Advanced AGI Via Embodied Learning and Cognitive Synergy'),
+    DocCfg(id='012899', author='Ben Goertzel', description=f'Engineering General Intelligence: A Path to Advanced AGI Via Embodied Learning and Cognitive Synergy', date='2013-09-19'),
     DocCfg(id='018438', author='Clarisse Thorn', description=f'The S&M Feminist'),
     DocCfg(id='019477', author=EDWARD_JAY_EPSTEIN, description=f'How America Lost Its Secrets: Edward Snowden, the Man, and the Theft'),
     DocCfg(id='020153', author=EDWARD_JAY_EPSTEIN, description=f'The Snowden Affair: A Spy Story In Six Parts'),

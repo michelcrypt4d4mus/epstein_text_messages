@@ -184,6 +184,8 @@ BROCK_PIERCE = 'Brock Pierce'
 CHRISTIAN_EVERDELL = 'Christian Everdell'
 CHRISTOPHER_DILORIO = 'Christopher Dilorio'
 DOUGLAS_WIGDOR = 'Douglas Wigdor'
+KARYNA_SHULIAK = 'Karyna Shuliak'
+STACEY_RICHMAN = 'Stacey Richman'
 
 # No communications but name is in the files
 BILL_GATES = 'Bill Gates'
@@ -241,7 +243,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     owen
     paul paula pen peter philip pierce prince
     randall rangel reid richard robert rodriguez roger rosenberg ross roth roy rubenstein rubin
-    scott sean skip smith stanley stern stephen steve steven stone susan
+    scott sean skip smith stacey stanley stern stephen steve steven stone susan
     terry the thomas tim tom tony tyler
     victor
     wade waters
@@ -312,7 +314,20 @@ def extract_last_name(name: str) -> str:
         return first_last_names[-1]
 
 
+def reverse_first_and_last_names(name: str) -> str:
+    """If there's a comma in the name in the style 'Lastname, Firstname', reverse it and remove comma."""
+    if '@' in name:
+        return name.lower()
+
+    if ', ' in name:
+        names = name.split(', ')
+        return f"{names[1]} {names[0]}"
+    else:
+        return name
+
+
 def reversed_name(name: str) -> str:
+    """'Jeffrey Epstein' becomes 'Epstein Jeffrey'."""
     if ' ' not in name:
         return name
 
