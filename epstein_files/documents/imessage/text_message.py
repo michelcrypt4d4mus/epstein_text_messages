@@ -6,13 +6,12 @@ from rich.text import Text
 
 from epstein_files.util.constant.names import ANTHONY_SCARAMUCCI, JEFFREY_EPSTEIN, STEVE_BANNON, UNKNOWN, Name, extract_last_name
 from epstein_files.util.constant.strings import TIMESTAMP_DIM
-from epstein_files.util.data import iso_timestamp
+from epstein_files.util.data import AMERICAN_DATE_FORMAT, iso_timestamp
 from epstein_files.util.highlighted_group import get_style_for_name
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import TEXT_LINK, highlighter
 
 EPSTEIN_TEXTERS = ['e:', 'e:jeeitunes@gmail.com']
-MSG_DATE_FORMAT = r"%m/%d/%y %I:%M:%S %p"
 PHONE_NUMBER_REGEX = re.compile(r'^[\d+]+.*')
 UNCERTAIN_SUFFIX = ' (?)'
 
@@ -54,7 +53,7 @@ class TextMessage:
         return self.text.startswith('http')
 
     def parse_timestamp(self) -> datetime:
-        return datetime.strptime(self.timestamp_str, MSG_DATE_FORMAT)
+        return datetime.strptime(self.timestamp_str, AMERICAN_DATE_FORMAT)
 
     def timestamp_txt(self) -> Text:
         try:
