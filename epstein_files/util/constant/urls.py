@@ -12,6 +12,7 @@ from epstein_files.util.file_helper import coerce_file_stem
 
 # Style stuff
 ARCHIVE_LINK_COLOR = 'slate_blue3'
+ARCHIVE_ALT_LINK_STYLE = 'medium_purple4 italic'
 TEXT_LINK = 'text_link'
 
 # External site names
@@ -41,6 +42,7 @@ RAW_OVERSIGHT_DOCS_GOOGLE_DRIVE_URL = 'https://drive.google.com/drive/folders/1h
 SUBSTACK_URL = 'https://cryptadamus.substack.com/p/i-made-epsteins-text-messages-great'
 # DOJ docs
 DOJ_2026_URL = 'https://www.justice.gov/epstein/doj-disclosures'
+DOJ_SEARCH_URL = 'https://www.justice.gov/epstein/search'
 
 # Document source sites
 EPSTEINIFY_URL = 'https://epsteinify.com'
