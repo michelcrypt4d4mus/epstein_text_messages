@@ -55,8 +55,8 @@ fi
 # Build .png and push master changes
 git push origin master --quiet
 epstein_generate --make-clean --suppress-output
-print_deploy_step "Building emailer info .png..."
-$GENERATE_CMD --emailers-info
+print_deploy_step "Building emailer info .png... $PICKLE_ARG"
+$GENERATE_CMD --emailers-info $PICKLE_ARG
 
 if any_uncommitted_changes; then
     git commit -am"Update .png"
@@ -70,8 +70,8 @@ git checkout gh_pages
 git merge --no-edit master --quiet
 
 # Build files
-print_deploy_step "Building text messages page... $PICKLE_ARG"
-$GENERATE_CMD $PICKLE_ARG
+print_deploy_step "Building text messages page... "
+$GENERATE_CMD
 
 if [ -n "$ONLY_TEXTS" ]; then
     print_deploy_step "Skipping build of emails pages..."
