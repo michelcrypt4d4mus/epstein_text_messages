@@ -15,15 +15,14 @@ from rich.text import Text
 
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, INFO_INDENT
-from epstein_files.documents.emails.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX,
-     EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, FIELD_NAMES, FIELDS_COLON_PATTERN, TIME_REGEX, EmailHeader)
-from epstein_files.documents.emails.emailers import EMAILER_REGEXES
+from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX,
+     EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, FIELD_NAMES, FIELDS_COLON_PATTERN, EmailHeader)
+from epstein_files.documents.emails.emailers import extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constants import *
-from epstein_files.util.data import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines, escape_single_quotes,
-     remove_timezone)
+from epstein_files.util.data import AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines, remove_timezone
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.file_helper import extract_file_id, file_stem_for_id
 from epstein_files.util.highlighted_group import JUNK_EMAILERS, get_style_for_name
@@ -44,7 +43,6 @@ DATE_HEADER_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\
 TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 
-SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
 URL_SIGNIFIERS = ['?amp', 'amp?', 'cd=', 'click', 'CMP=', 'contentId', 'ft=', 'gclid', 'htm', 'mp=', 'keywords=', 'Id=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'sp=', 'usg=', 'utm']
 APPEARS_IN = 'appears in'
@@ -466,7 +464,7 @@ class Email(Communication):
             self.recipients = self.config.recipients
         else:
             for recipient in self.header.recipients():
-                self.recipients.extend(self._extract_emailer_names(recipient))
+                self.recipients.extend(extract_emailer_names(recipient))
 
             # Assume mailing list emails are to Epstein
             if self.author in BCC_LISTS and (self.is_note_to_self or not self.recipients):
@@ -547,28 +545,8 @@ class Email(Communication):
         super()._extract_author()
 
         if not self.author and self.header.author:
-            authors = self._extract_emailer_names(self.header.author)
+            authors = extract_emailer_names(self.header.author)
             self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
-
-    def _extract_emailer_names(self, emailer_str: str) -> list[str]:
-        """Return a list of people's names found in `emailer_str` (email author or recipients field)."""
-        emailer_str = EmailHeader.cleanup_str(emailer_str)
-
-        if len(emailer_str) == 0:
-            return []
-
-        names_found = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
-
-        if BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
-            if len(names_found) == 0 and emailer_str not in SUPPRESS_LOGS_FOR_AUTHORS:
-                logger.warning(f"'{self.filename}': No emailer found in '{escape_single_quotes(emailer_str)}'")
-            else:
-                logger.info(f"Extracted {len(names_found)} names from semi-invalid '{emailer_str}': {names_found}...")
-
-            return names_found
-
-        names_found = names_found or [emailer_str]
-        return [reverse_first_and_last_names(name) for name in names_found]
 
     def _extract_header(self) -> None:
         """Extract an `EmailHeader` from the OCR text."""

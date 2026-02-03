@@ -5,9 +5,14 @@ import re
 from copy import deepcopy
 
 from epstein_files.util.constant.names import *
+from epstein_files.util.constant.strings import REDACTED
+from epstein_files.util.data import escape_single_quotes
+from epstein_files.util.logging import logger
 
+BAD_EMAILER_REGEX = re.compile(r'^(>|11111111)|agreed|ok|sexy|re:|fwd:|Multiple Senders|((sent|attachments|subject|importance).*|.*(january|201\d|hysterical|i have|image0|so that people|article 1.?|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
+BAD_NAME_CHARS_REGEX = re.compile(r"[\"'\[\]*><•]")
+TIME_REGEX = re.compile(r'^(\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday).*')
 
-# Emailers
 EMAILER_ID_PATTERNS: dict[str, str] = {
     ALAN_DERSHOWITZ: r'(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh',
     ALIREZA_ITTIHADIEH: r'Alireza.[Il]ttihadieh',
@@ -182,3 +187,34 @@ for emailer in EMAILERS:
         raise RuntimeError(f"Can't overwrite emailer regex for '{emailer}'")
 
     EMAILER_REGEXES[emailer] = re.compile(emailer, re.IGNORECASE)
+
+SUPPRESS_LOGS_FOR_AUTHORS = [
+    'Undisclosed recipients:',
+    'undisclosed-recipients:',
+    'Multiple Senders Multiple Senders',
+]
+
+
+def cleanup_str(_str: str) -> str:
+    return BAD_NAME_CHARS_REGEX.sub('', _str.replace(REDACTED, '')).strip().strip('_').strip()
+
+
+def extract_emailer_names(emailer_str: str) -> list[str]:
+    """Return a list of people's names found in `emailer_str` (email author or recipients field)."""
+    emailer_str = cleanup_str(emailer_str)
+
+    if len(emailer_str) == 0:
+        return []
+
+    names_found = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
+
+    if BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
+        if len(names_found) == 0 and emailer_str not in SUPPRESS_LOGS_FOR_AUTHORS:
+            logger.warning(f"No emailer found in '{escape_single_quotes(emailer_str)}'")
+        else:
+            logger.info(f"Extracted {len(names_found)} names from semi-invalid '{emailer_str}': {names_found}...")
+
+        return names_found
+
+    names_found = names_found or [emailer_str]
+    return [reverse_first_and_last_names(name) for name in names_found]
