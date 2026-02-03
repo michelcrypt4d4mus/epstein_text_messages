@@ -18,6 +18,7 @@ from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, INFO_INDENT
 from epstein_files.documents.emails.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, FIELD_NAMES, FIELDS_COLON_PATTERN, TIME_REGEX, EmailHeader)
+from epstein_files.documents.emails.emailers import EMAILER_REGEXES
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED

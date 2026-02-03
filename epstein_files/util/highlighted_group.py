@@ -7,11 +7,11 @@ from rich.console import Console
 from rich.highlighter import RegexHighlighter
 from rich.text import Text
 
+from epstein_files.documents.emails.emailers import EMAILER_ID_REGEXES
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
-from epstein_files.util.constants import (EMAILER_ID_REGEXES, EPSTEIN_V_ROTHSTEIN_EDWARDS,
-     OSBORNE_LLP, REPLY_REGEX, SENT_FROM_REGEX)
+from epstein_files.util.constants import EPSTEIN_V_ROTHSTEIN_EDWARDS, OSBORNE_LLP, REPLY_REGEX, SENT_FROM_REGEX
 from epstein_files.util.data import sort_dict, without_falsey
 from epstein_files.util.doc_cfg import *
 from epstein_files.util.env import args
@@ -372,6 +372,7 @@ HIGHLIGHTED_NAMES = [
         label='bitcoin',
         style='orange1 bold',
         emailers={
+            BROCK_PIERCE: 'crypto bro, Bannon business partner, Tether co-founder, arrested in house full of machine guns & "8,000 fotografias de pornopgraphia infantil"',
             JEFFREY_WERNICK: 'former COO of Parler, involved in numerous crypto companies like Bitforex',
             JEREMY_RUBIN: 'developer/researcher',
             JOI_ITO: f"former head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative",
@@ -818,6 +819,7 @@ HIGHLIGHTED_NAMES = [
         label='government',
         style='color(24) bold',
         emailers={
+            ALISON_J_NATHAN: "judge in New York's Southern District",
             ANN_MARIE_VILLAFANA: 'Southern District of Florida (SDFL) U.S. Attorney',
             CHRISTOPHER_DILORIO: 'self described whistleblower',
             DANNY_FROST: 'Director of Communications at Manhattan D.A.',
