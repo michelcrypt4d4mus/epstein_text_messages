@@ -1652,12 +1652,15 @@ HIGHLIGHTED_NAMES = [
         patterns=[r"(steven?\s*)?hoffenberg?w?"],
     ),
     HighlightedNames(
-        emailers={GHISLAINE_MAXWELL: "Epstein's girlfriend, daughter of the spy Robert Maxwell"},
+        emailers={
+            BOBBI_C_STERNHEIM: f"{GHISLAINE_MAXWELL} {CRIMINAL_DEFENSE_ATTORNEY}",
+            GHISLAINE_MAXWELL: "Epstein's girlfriend, daughter of the spy Robert Maxwell",
+        },
         category='Epstein',
         patterns=[
             r"gmax(1@ellmax.com)?",
             r"(The )?TerraMar Project",
-            r"(Scott\s*)?Borgenson",
+            r"(Scott\s*)?Borgenson", # Ghislaine lawyer
         ],
         style='deep_pink3',
     ),
