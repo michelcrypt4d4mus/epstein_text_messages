@@ -13,6 +13,7 @@ from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.email_header import FIELDS_COLON_PATTERN
 from epstein_files.documents.other_file import Metadata, OtherFile
+from epstein_files.util.constant.names import RENATA_BOLOTOVA
 from epstein_files.util.constants import FALLBACK_TIMESTAMP
 from epstein_files.util.data import without_falsey
 from epstein_files.util.layout.left_bar_panel import LeftBarPanel
@@ -102,7 +103,8 @@ INTERESTING_DOJ_FILES = {
     'EFTA02640711': 'Jabor Y home address (HBJ)',
     'EFTA00039689': 'Dilorio emails to SEC about Signature Bank, Hapoalim, Bioptix / RIOT, Honig, etc.',
     'EFTA00039025': 'Investigation and Review of the Federal Bureau of Prisons Custody, Care, and Supervision of Jeffrey Epstein',
-    'EFTA02296929': "Renata Bolotova appears to know Epstein's final girlfriend",
+    'EFTA02296929': f"{RENATA_BOLOTOVA} appears to know Epstein's final girlfriend",
+    'EFTA01273102': f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank",
 }
 
 NO_IMAGE_SUFFIX = """
