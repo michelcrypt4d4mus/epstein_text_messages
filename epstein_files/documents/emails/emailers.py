@@ -99,6 +99,7 @@ EMAILER_ID_PATTERNS: dict[str, str] = {
     'pink@mc2mm.com': r"^Pink$|pink@mc2mm\.com",
     PRINCE_ANDREW: r'Prince Andrew|The Duke',
     REID_WEINGARTEN: r'Weingarten, Rei[cdi]|Rei[cdi] Weingarten',
+    RENATA_BOLOTOVA: fr"{RENATA_BOLOTOVA}|Rena B",
     RICHARD_KAHN: r'rich(ard)? kahn?',
     ROBERT_D_CRITTON_JR: r'Robert D.? Critton,? Jr.?',
     ROBERT_LAWRENCE_KUHN: r'Robert\s*(Lawrence)?\s*Kuhn',

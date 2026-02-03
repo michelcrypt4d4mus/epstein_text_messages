@@ -143,6 +143,11 @@ class OtherFile(Document):
 
         return metadata
 
+    @property
+    def summary(self) -> Text:
+        """One line summary mostly for logging."""
+        return super().summary.append(CLOSE_PROPERTIES_CHAR)
+
     def __post_init__(self):
         super().__post_init__()
 
@@ -162,10 +167,6 @@ class OtherFile(Document):
 
     def preview_text(self) -> str:
         return WHITESPACE_REGEX.sub(' ', self.text)[0:PREVIEW_CHARS]
-
-    def summary(self) -> Text:
-        """One line summary mostly for logging."""
-        return super().summary().append(CLOSE_PROPERTIES_CHAR)
 
     def _extract_timestamp(self) -> datetime | None:
         """Return configured timestamp or value extracted by scanning text with datefinder."""

@@ -317,7 +317,7 @@ def _verify_all_emails_were_printed(epstein_files: EpsteinFiles, already_printed
 
     for email in epstein_files.non_duplicate_emails():
         if email.file_id not in email_ids_that_were_printed:
-            logger.error(f"Failed to print {email.summary()}")
+            logger.error(f"Failed to print {email.summary}")
             missed_an_email = True
 
     if not missed_an_email:
