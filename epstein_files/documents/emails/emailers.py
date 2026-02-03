@@ -125,6 +125,7 @@ EMAILERS = [
     BILL_SIEGEL,
     'Bobbi C Sternheim',
     BRAD_WECHSLER,
+    BROCK_PIERCE,
     CHRISTINA_GALBRAITH,
     DANIEL_SABBA,
     'Danny Goldberg',
