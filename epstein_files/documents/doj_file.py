@@ -112,6 +112,7 @@ INTERESTING_DOJ_FILES = {
     'EFTA02296929': f"{RENATA_BOLOTOVA} appears to know Epstein's final girlfriend",
     'EFTA01273102': f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank",
     'EFTA02725909': 'presentation to NYDFS for "NYC Bitcoin Exchanges" with Balaji Srinivisan and Andrew Farkas on the board',
+    'EFTA01622387': f"{RENATA_BOLOTOVA} iMessage conversation",
 }
 
 NO_IMAGE_SUFFIX = """

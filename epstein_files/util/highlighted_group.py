@@ -373,11 +373,12 @@ HIGHLIGHTED_NAMES = [
         style='orange1 bold',
         emailers={
             AMIR_TAAKI: f"bitcoin bro, partner of {BROCK_PIERCE} (?)",
+            ANTHONY_SCARAMUCCI: 'Skybridge Capital, FTX investor',
+            AUSTIN_HILL: 'Blockstream co-founder with Adam Back',
             BROCK_PIERCE: 'crypto bro, Bannon business partner, Tether co-founder, arrested in house full of machine guns & "8,000 fotografias de pornopgraphia infantil"',
             JEFFREY_WERNICK: 'former COO of Parler, involved in numerous crypto companies like Bitforex',
             JEREMY_RUBIN: 'developer/researcher',
             JOI_ITO: f"former head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative",
-            ANTHONY_SCARAMUCCI: 'Skybridge Capital, FTX investor',
         },
         patterns=[
             r"Balaji",
@@ -1494,6 +1495,7 @@ HIGHLIGHTED_NAMES = [
         label=TECH_BRO,
         style='bright_cyan',
         emailers={
+            'Andrew McCormack': f"partner at {PETER_THIEL}'s Valar Ventures {QUESTION_MARKS}",
             'Auren Hoffman': 'CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp',
             ELON_MUSK: 'father of Mecha-Hitler',
             PETER_THIEL: 'Paypal mafia member, founder of Palantir, Facebook investor',
@@ -1531,6 +1533,7 @@ HIGHLIGHTED_NAMES = [
             r"Softbank",
             r"SpaceX",
             r"Tim\s*Ferriss?",
+            r"Valar(\s*)Ventures",
             r"Vision\s*Fund",
             r"WikiLeak(ed|s)",
         ],
