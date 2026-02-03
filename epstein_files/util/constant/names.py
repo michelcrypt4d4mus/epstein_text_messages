@@ -312,7 +312,20 @@ def extract_last_name(name: str) -> str:
         return first_last_names[-1]
 
 
+def reverse_first_and_last_names(name: str) -> str:
+    """If there's a comma in the name in the style 'Lastname, Firstname', reverse it and remove comma."""
+    if '@' in name:
+        return name.lower()
+
+    if ', ' in name:
+        names = name.split(', ')
+        return f"{names[1]} {names[0]}"
+    else:
+        return name
+
+
 def reversed_name(name: str) -> str:
+    """'Jeffrey Epstein' becomes 'Epstein Jeffrey'."""
     if ' ' not in name:
         return name
 
