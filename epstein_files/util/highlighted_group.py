@@ -818,6 +818,7 @@ HIGHLIGHTED_NAMES = [
         label='government',
         style='color(24) bold',
         emailers={
+            ALISON_J_NATHAN: "judge in New York's Southern District",
             ANN_MARIE_VILLAFANA: 'Southern District of Florida (SDFL) U.S. Attorney',
             CHRISTOPHER_DILORIO: 'self described whistleblower',
             DANNY_FROST: 'Director of Communications at Manhattan D.A.',

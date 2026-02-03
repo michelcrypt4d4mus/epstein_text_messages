@@ -178,6 +178,7 @@ ZUBAIR_KHAN = 'Zubair Khan'
 UNKNOWN = '(unknown)'
 
 # DOJ files emails
+ALISON_J_NATHAN = 'Alison J. Nathan'
 CHRISTIAN_EVERDELL = 'Christian Everdell'
 CHRISTOPHER_DILORIO = 'Christopher Dilorio'
 DOUGLAS_WIGDOR = 'Douglas Wigdor'
@@ -221,10 +222,10 @@ UBS = 'UBS'
 
 # First and last names that should be made part of a highlighting regex for emailers
 NAMES_TO_NOT_HIGHLIGHT = """
-    al alain alan alfredo allen alex alexander amanda andres andrew anthony
+    al alain alan alison alfredo allen alex alexander amanda andres andrew anthony
     bard barrett barry bennet bernard bill black bob boris brad brenner bruce
     cameron caroline carolyn chris christian christina cohen
-    dan daniel danny darren dave david debbie donald
+    dan daniel danny darren dave david debbie donald douglas
     ed edward edwards enforcement enterprise enterprises entourage epstein eric erika etienne
     faith fisher forget fred friendly frost fuller
     gates gerald george gold gordon
@@ -234,7 +235,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     kafka kahn karl kate katherine kelly ken kevin krassner
     larry larsen laurie lawrence leon lesley linda link lisa
     mann marc marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
-    nancy neal new nicole norman
+    nancy nathan neal new nicole norman
     owen
     paul paula pen peter philip prince
     randall rangel reid richard robert rodriguez roger rosenberg ross roth roy rubenstein rubin
