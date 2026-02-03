@@ -421,9 +421,10 @@ EMAILS_CONFIG = [
     EmailCfg(id='028487', author=NORMAN_D_RAU, attribution_reason='Fwded from "to" address', duplicate_ids=['026612']),
     EmailCfg(
         id='024923',
-        recipients=["George Krassner", "Nick Kazan", "Mrisman02", "Rebecca Risman", "Linda W. Grossman"],
-        duplicate_ids=['031973'],
         comment='krassner',
+        duplicate_ids=['031973'],
+        has_uninteresting_ccs=True,
+        recipients=["George Krassner", "Nick Kazan", "Mrisman02", "Rebecca Risman", "Linda W. Grossman"],
     ),
     EmailCfg(id='032457', author=PAUL_KRASSNER, recipients=[JEFFREY_EPSTEIN, "Nancy Cain"]),
     EmailCfg(id='029981', author=PAULA, attribution_reason='Name in reply + opera reference (Fisher now works in opera)'),
@@ -505,10 +506,12 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(
         id='025329',
+        has_uninteresting_ccs=True,
         recipients=["George Krassner", "Nancy Cain", "Tom", "Marie Moneysmith", "Steven Gaydos", "Linda W. Grossman", "Holly Krassner Dawson", "Daniel Dawson", "Danny Goldberg", "Caryl Ratner", "Kevin Bright", "Michael Simmons", SAMUEL_LEFF, "Bob Fass", "Lynnie Tofte Fass", "Barb Cowles", "Lee Quarnstrom"],
     ),
     EmailCfg(
         id='033568',
+        has_uninteresting_ccs=True,
         recipients=["George Krassner", "Daniel Dawson", "Danny Goldberg", "Tom", "Kevin Bright", "Walli Leff", "Michael Simmons", "Lee Quarnstrom", "Lanny Swerdlow", "Larry Sloman", "W&K", "Harry Shearer", "Jay Levin"],
         subject="Fwd: Daryl Cagle's Blog",
     ),
@@ -930,6 +933,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='027028', truncate_to=1000, comment='Tom Pritzer penny pritzker'),
     EmailCfg(id='029910', truncate_to=NO_TRUNCATE, comment='Tom Pritzer Aspen'),
     EmailCfg(id='025163', truncate_to=NO_TRUNCATE, comment='Tom Pritzer'),
+    EmailCfg(id='014797_1', has_uninteresting_bccs=True),
 
     # DOJ files
     EmailCfg(id='EFTA00935996', recipients=[RENATA_BOLOTOVA], attribution_reason='"sneaky dog"'),
@@ -1270,13 +1274,18 @@ OTHER_FILES_LEGAL = [
     DocCfg(id='014118', author=GIUFFRE_V_EPSTEIN, description=f"Declaration in Support of Motion to Compel Production of Documents", date='2016-10-21'),
     DocCfg(id='014652', author=GIUFFRE_V_MAXWELL, description=f"Complaint", date='2015-04-22'),
     DocCfg(id='015529', author=GIUFFRE_V_MAXWELL, description=f"Defamation Complaint", date='2015-09-21'),
-    DocCfg(id='014797', author=GIUFFRE_V_MAXWELL, description=f"Declaration of Laura A. Menninger in Opposition to Plaintiff's Motion", date='2017-03-17'),
+    DocCfg(
+        id='014797',
+        author=GIUFFRE_V_MAXWELL,
+        date='2017-03-17',
+        description=f"Declaration of Laura A. Menninger in Opposition to Plaintiff's Motion",
+    ),
     DocCfg(id='011304', author=GIUFFRE_V_MAXWELL, description=f"Oral Argument Transcript", date='2017-03-17'),
     DocCfg(
         id='014788',
         author=GIUFFRE_V_MAXWELL,
-        description=f"Maxwell Response to Plaintiff's Omnibus Motion in Limine",
         date='2017-03-17',
+        description=f"Maxwell Response to Plaintiff's Omnibus Motion in Limine",
         duplicate_ids=['011463'],
     ),
     DocCfg(
