@@ -1810,7 +1810,8 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00007301', replace_text_with='T-Mobile response to subpoena March 23, 2007 - Blackberry phone logs for 2005'),
     DocCfg(id='EFTA00006487', replace_text_with='T-Mobile phone bill 2006-08-26'),
     DocCfg(id='EFTA00006100', replace_text_with='Palm Beach Police fax machine activity log 2005-12-28 to 2006-01-04'),
-    DocCfg(id='EFTA00007253', replace_text_with='T-Mobile response to subpoena March 23, 2007 - phone bill '),
+    DocCfg(id='EFTA00007253', replace_text_with='T-Mobile response to subpoena March 23, 2007 - phone bill'),
+    DocCfg(id='EFTA00005586', replace_text_with='Completely redacted 69 pages labeled "Grand Jury - NY"'),
 ]
 
 OTHER_FILES_JUNK = [
