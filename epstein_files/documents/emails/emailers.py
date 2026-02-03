@@ -10,8 +10,8 @@ from epstein_files.util.data import escape_single_quotes
 from epstein_files.util.logging import logger
 
 BAD_EMAILER_REGEX = re.compile(r'^(>|11111111)|agreed|ok|sexy|re:|fwd:|Multiple Senders|((sent|attachments|subject|importance).*|.*(january|201\d|hysterical|i have|image0|so that people|article 1.?|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
-BAD_NAME_CHARS_REGEX = re.compile(r"[\"'\[\]*><•]")
-TIME_REGEX = re.compile(r'^(\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday).*')
+BAD_NAME_CHARS_REGEX = re.compile(r"[\"'\[\]*><•=()]")
+TIME_REGEX = re.compile(r'^((\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday)|\d{4} ).*')
 
 EMAILER_ID_PATTERNS: dict[str, str] = {
     ALAN_DERSHOWITZ: r'(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh',
@@ -61,6 +61,7 @@ EMAILER_ID_PATTERNS: dict[str, str] = {
     JOHNNY_EL_HACHEM: r'el hachem johnny|johnny el hachem',
     JOI_ITO: r'ji@media.mit.?edu|(joichi|joi)( Ito)?',
     JONATHAN_FARKAS: r'Jonathan Fark(a|u)(s|il)',
+    KARYNA_SHULIAK: r"Karyna\s*Shuliak?",
     KATHRYN_RUEMMLER: r'Kathr?yn? Ruemmler?',
     KEN_STARR: r'starr, ken|Ken(neth\s*(W.\s*)?)?\s+starr?|starr',
     LANDON_THOMAS: r'lando[nr] thomas( jr)?|thomas jr.?, lando[nr]',

@@ -54,6 +54,15 @@ class EpsteinFiles:
     timer: Timer = field(default_factory=lambda: Timer())
     uninteresting_ccs: list[Name] = field(default_factory=list)
 
+    @property
+    def all_documents(self) -> Sequence[Document]:
+        return self.imessage_logs + self.emails + self.other_files + self.doj_files
+
+    @property
+    def all_doj_files(self) -> Sequence[DojFile | Email]:
+        """All files with the filename EFTAXXXXXX."""
+        return [doc for doc in self.all_documents if doc.is_doj_file]
+
     def __post_init__(self):
         """Iterate through files and build appropriate objects."""
         self.all_files = sorted([f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')])
@@ -77,18 +86,18 @@ class EpsteinFiles:
                 document.log(f"Skipping OtherFile...")
                 continue
 
-            docs.append(cls(file_arg, lines=document.lines, text=document.text))
+            docs.append(cls(file_arg, lines=document.lines, text=document.text).printable_document())
             logger.info(str(docs[-1]))
             file_type_count[cls.__name__] += 1
 
             if doc_timer.seconds_since_start() > SLOW_FILE_SECONDS:
                 doc_timer.print_at_checkpoint(f"Slow file: {docs[-1]} processed")
 
-        self.doj_files = Document.sort_by_timestamp([d for d in docs if d.is_doj_file])
+        self.doj_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, DojFile)])
         self.emails = Document.sort_by_timestamp([d for d in docs if isinstance(d, Email)])
         self.imessage_logs = Document.sort_by_timestamp([d for d in docs if isinstance(d, MessengerLog)])
-        self.other_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, OtherFile) and not d.is_doj_file])
         self.json_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, JsonFile)])
+        self.other_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, OtherFile) and not isinstance(d, DojFile)])
         self._set_uninteresting_ccs()
         self._copy_duplicate_email_properties()
         self._find_email_attachments_and_set_is_first_for_user()
@@ -118,14 +127,11 @@ class EpsteinFiles:
         timer.print_at_checkpoint(f'Processed {len(epstein_files.all_files):,} documents')
         return epstein_files
 
-    def all_documents(self) -> Sequence[Document]:
-        return self.imessage_logs + self.emails + self.other_files + self.doj_files
-
     def docs_matching(self, pattern: re.Pattern | str, names: list[Name] | None = None) -> list[SearchResult]:
         """Find documents whose text matches a pattern (file_type and names args limit the documents searched)."""
         results: list[SearchResult] = []
 
-        for doc in self.all_documents():
+        for doc in self.all_documents:
             if names and doc.author not in names:
                 continue
 
@@ -219,7 +225,7 @@ class EpsteinFiles:
 
     def for_ids(self, file_ids: str | list[str]) -> list[Document]:
         file_ids = listify(file_ids)
-        docs = [doc for doc in (list(self.all_documents()) + self.doj_files) if doc.file_id in file_ids]
+        docs = [doc for doc in (list(self.all_documents) + self.doj_files) if doc.file_id in file_ids]
 
         if len(docs) != len(file_ids):
             logger.warning(f"{len(file_ids)} file IDs provided but only {len(docs)} Epstein files found!")

@@ -192,7 +192,7 @@ class DojFile(OtherFile):
             (0, 0, 0, 1)
         )
 
-    def printable_doc(self) -> Self | Email:
+    def printable_document(self) -> Self | Email:
         """Return a copy of this `DojFile` with simplified text if file ID is in `REPLACEMENT_TEXT`."""
         if Document.is_email(self):
             try:
@@ -225,7 +225,7 @@ class DojFile(OtherFile):
             self._set_computed_fields(lines=non_number_lines)
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        doc = self.printable_doc()
+        doc = self.printable_document()
 
         # Emails handle their own formatting
         if isinstance(doc, Email):
