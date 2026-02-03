@@ -226,14 +226,19 @@ class CommunicationCfg(DocCfg):
 class EmailCfg(CommunicationCfg):
     """
     Attributes:
-        actual_text (str | None): In dire cases of broken OCR we just configure the body of the email as a string.
-        fwded_text_after (str | None): If set, any text after this is a fwd of an article or similar
-        is_fwded_article (bool): True if this is a newspaper article someone fwded. Used to exclude articles from word counting.
-        recipients (list[Name]): Who received the email
-        subject (str): Subject line
+        actual_text (str, optional): In dire cases of broken OCR we just configure the body of the email as a string.
+        fwded_text_after (str, optional): If set, any text after this is a fwd of an article or similar.
+        has_uninteresting_ccs (bool): If `True` this email's CC: recipients will be marked as 'uninteresting'.
+        has_uninteresting_bccs (bool): If `True` this email's BCC: recipients will be marked as 'uninteresting'.
+        is_fwded_article (bool, optional): `True` if this is a newspaper article someone fwded. Used to exclude articles from word counting.
+        recipients (list[Name]): Who received the email.
+        subject (str, optional): Subject line.
+        truncate_to (int, optional): Number of characters to truncate this email to when displayed.
     """
     actual_text: str | None = None
     fwded_text_after: str | None = None
+    has_uninteresting_ccs: bool = False
+    has_uninteresting_bccs: bool = False
     is_fwded_article: bool | None = None
     recipients: list[Name] = field(default_factory=list)
     subject: str | None = None

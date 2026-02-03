@@ -17,7 +17,7 @@ TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 
 @dataclass
 class Communication(Document):
-    """Superclass for Email and MessengerLog."""
+    """Superclass for `Email` and `MessengerLog`."""
     config: CommunicationCfg | None = None
     timestamp: datetime = FALLBACK_TIMESTAMP  # TODO this default sucks (though it never happens)
 
@@ -34,17 +34,20 @@ class Communication(Document):
         return styled_name(self.author)
 
     @property
+    def summary(self) -> Text:
+        """One line summary mostly for logging."""
+        return self.summary_with_author.append(CLOSE_PROPERTIES_CHAR)
+
+    @property
+    def summary_with_author(self) -> Text:
+        """Append author information to `super().summary`, bracket is left open."""
+        txt = super().summary.append(', ')
+        return txt.append(key_value_txt('author', Text(f"'{self.author_or_unknown}'", style=self.author_style)))
+
+    @property
     def timestamp_without_seconds(self) -> str:
         return TIMESTAMP_SECONDS_REGEX.sub('', str(self.timestamp))
 
     def external_links_txt(self, _style: str = '', include_alt_links: bool = True) -> Text:
         """Overrides super() method to apply self.author_style."""
         return super().external_links_txt(self.author_style, include_alt_links=include_alt_links)
-
-    def summary(self) -> Text:
-        return self._summary().append(CLOSE_PROPERTIES_CHAR)
-
-    def _summary(self) -> Text:
-        """One line summary mostly for logging."""
-        txt = super().summary().append(', ')
-        return txt.append(key_value_txt('author', Text(f"'{self.author_or_unknown}'", style=self.author_style)))

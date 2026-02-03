@@ -32,16 +32,6 @@ DUPLICATE_PROPS_TO_COPY = ['author', 'recipients', 'timestamp']
 PICKLED_PATH = Path("the_epstein_files.pkl.gz")
 SLOW_FILE_SECONDS = 1.0
 
-EMAILS_WITH_UNINTERESTING_CCS = [
-    '025329',    # Krassner
-    '024923',    # Krassner
-    '033568',    # Krassner
-]
-
-EMAILS_WITH_UNINTERESTING_BCCS = [
-    '014797_1',  # Ross Gow
-]
-
 
 @dataclass
 class EpsteinFiles:
@@ -330,11 +320,11 @@ class EpsteinFiles:
         self.emails = Document.sort_by_timestamp(self.emails)
 
     def _set_uninteresting_ccs(self) -> None:
-        for id in EMAILS_WITH_UNINTERESTING_BCCS:
-            self.uninteresting_ccs += [bcc.lower() for bcc in cast(list[str], self.email_for_id(id).header.bcc)]
+        for email in [e for e in self.emails if e.config and e.config.has_uninteresting_bccs]:
+            self.uninteresting_ccs += [bcc.lower() for bcc in cast(list[str], email.header.bcc)]
 
-        for id in EMAILS_WITH_UNINTERESTING_CCS:
-            self.uninteresting_ccs += self.email_for_id(id).recipients
+        for email in [e for e in self.emails if e.config and e.config.has_uninteresting_ccs]:
+            self.uninteresting_ccs += email.recipients
 
         self.uninteresting_ccs = sorted(uniquify(self.uninteresting_ccs))
         logger.info(f"Extracted uninteresting_ccs: {self.uninteresting_ccs}")
