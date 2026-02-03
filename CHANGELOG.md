@@ -1,7 +1,8 @@
 # NEXT RELEASE
 
 # 1.5.0
-* Add support for DOJ Epstein Files Transparency Act documents, printable with `--output-doj-files`
+* Add support for DOJ Epstein Files Transparency Act documents via `DojFile` class
+* `--output-doj-files` option to print Epstein Files Transparency Act documents
 
 ### 1.4.1
 * Use `inkscape` instead of `cairosvg` for .png emailers table generation
