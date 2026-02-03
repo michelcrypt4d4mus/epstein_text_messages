@@ -870,6 +870,8 @@ HIGHLIGHTED_NAMES = [
             r"(Kirk )?Blouin",
             r"KYC",
             r"(Lann?a\s*)?Belohlavek",
+            r"MDC"
+            r"Metropolitan Detention Center",
             r"NIH",
             r"NPA",
             r"NS(A|C)",
