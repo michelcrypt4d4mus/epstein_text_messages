@@ -541,6 +541,7 @@ class Email(Communication):
         return text.strip()
 
     def _extract_author(self) -> None:
+        """Overloads superclass method, called at instantiation time."""
         self._extract_header()
         super()._extract_author()
 
