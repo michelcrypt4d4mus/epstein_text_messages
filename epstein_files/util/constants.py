@@ -62,6 +62,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     ALIREZA_ITTIHADIEH: re.compile(r'Alireza.[Il]ttihadieh', re.IGNORECASE),
     ALISON_J_NATHAN: re.compile(r"Alison(\s*J\.?)?\s*Nathan|Nathan NYSD Chambers?"),
     AMANDA_ENS: re.compile(r'ens, amanda?|Amanda.Ens', re.IGNORECASE),
+    AMIR_TAAKI: re.compile(r'Amir\s*Taaki|genjix'),
     ANAS_ALRASHEED: re.compile(r'anas\s*al\s*rashee[cd]', re.IGNORECASE),
     ANIL_AMBANI: re.compile(r'Anil.Ambani', re.IGNORECASE),
     ANN_MARIE_VILLAFANA: re.compile(r'Villafana, Ann Marie|(A(\.|nn) Marie )?Villafa(c|n|ri)a', re.IGNORECASE),
