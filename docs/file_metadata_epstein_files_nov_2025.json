@@ -568,6 +568,7 @@
                 },
                 "file_id": "014797_1",
                 "filename": "HOUSE_OVERSIGHT_014797.txt",
+                "has_uninteresting_bccs": true,
                 "num_lines": 26,
                 "recipients": [
                     "david.brown@thetimes.co.uk",
@@ -3935,6 +3936,7 @@
                 ],
                 "file_id": "024923",
                 "filename": "HOUSE_OVERSIGHT_024923.txt",
+                "has_uninteresting_ccs": true,
                 "num_lines": 160,
                 "recipients": [
                     "George Krassner",
@@ -4454,6 +4456,7 @@
                 "bytes": 6084,
                 "file_id": "025329",
                 "filename": "HOUSE_OVERSIGHT_025329.txt",
+                "has_uninteresting_ccs": true,
                 "num_lines": 72,
                 "recipients": [
                     "Barb Cowles",
@@ -21383,6 +21386,7 @@
                 "duplicate_of_id": "024923",
                 "file_id": "031973",
                 "filename": "HOUSE_OVERSIGHT_031973.txt",
+                "has_uninteresting_ccs": true,
                 "num_lines": 161,
                 "recipients": [
                     "George Krassner",
@@ -32324,6 +32328,7 @@
                 "bytes": 3304,
                 "file_id": "033568",
                 "filename": "HOUSE_OVERSIGHT_033568.txt",
+                "has_uninteresting_ccs": true,
                 "num_lines": 66,
                 "recipients": [
                     "Daniel Dawson",
@@ -32899,12 +32904,13 @@
                 "type": "Email"
             },
             {
-                "bytes": 4932,
+                "author": "USANYS",
+                "bytes": 4938,
                 "file_id": "EFTA00039875",
                 "filename": "EFTA00039875.txt",
                 "num_lines": 90,
                 "recipients": [
-                    "BOBBI"
+                    "Bobbi C. Sternheim"
                 ],
                 "subject": "RE: Ghislaine Maxwell 02879-509",
                 "timestamp": "2020-11-16T18:06:58",
@@ -33036,13 +33042,10 @@
             },
             {
                 "author": "USANYS",
-                "bytes": 410,
+                "bytes": 393,
                 "file_id": "EFTA00039980",
                 "filename": "EFTA00039980.txt",
                 "num_lines": 9,
-                "recipients": [
-                    ". SMISNYS alMIN"
-                ],
                 "subject": "2019.09.09 Letter to OCME.v1.docx",
                 "timestamp": "2019-09-09T17:47:35",
                 "type": "Email"
@@ -34066,7 +34069,7 @@
                 "num_lines": 23,
                 "recipients": [
                     "Jeffrey Epstein",
-                    "Rena B"
+                    "Renata Bolotova"
                 ],
                 "subject": "Re: Happy Va entine's to a beautiful couple!!!VVV Love both of you!!!",
                 "timestamp": "2019-02-14T15:07:00",
@@ -34090,8 +34093,8 @@
                 "type": "Email"
             },
             {
-                "author": ",.._y",
-                "bytes": 170,
+                "author": "Renata Bolotova",
+                "bytes": 174,
                 "file_id": "EFTA02349495",
                 "filename": "EFTA02349495.txt",
                 "num_lines": 6,
@@ -34333,12 +34336,12 @@
                 "type": "Email"
             },
             {
-                "author": ".1saanali-Chditgasaa",
-                "bytes": 991,
+                "author": "Jeanne M. Christensen",
+                "bytes": 986,
                 "file_id": "EFTA02731511",
                 "filename": "EFTA02731511.txt",
-                "num_lines": 22,
-                "subject": "EXTERNAL Con 'dental L Black",
+                "num_lines": 19,
+                "subject": "EXTERNAL Confidental L Black",
                 "timestamp": "2024-03-07T19:10:20",
                 "type": "Email"
             },
@@ -34373,13 +34376,14 @@
                 "type": "Email"
             },
             {
-                "author": "inane M. Chrisinmen",
-                "bytes": 4309,
+                "author": "Jeanne M. Christensen",
+                "bytes": 4313,
                 "file_id": "EFTA02731517",
                 "filename": "EFTA02731517.txt",
-                "num_lines": 94,
+                "num_lines": 90,
                 "recipients": [
-                    "pouolas Wiodor kiersgalifkgrag"
+                    "Douglas Wigdor",
+                    "Meredith Firetog"
                 ],
                 "subject": "[EXTERNAL] RE: Re: L. Black, photos with JE",
                 "timestamp": "2024-03-11T16:34:00",
@@ -42311,6 +42315,7 @@
         "Bill Gates": "tech bro, ex-Microsoft, Gates Foundation, bgC3",
         "Bill Siegel": "arts, documentary film producer and director",
         "Bob Crowe": "lobbyist, partner at Nelson Mullins",
+        "Bobbi C. Sternheim": "Epstein, Ghislaine Maxwell criminal defense attorney",
         "Boris Nikolic": "tech bro, biotech VC partner of Bill Gates, Epstein estate executor",
         "Brad Edwards": "victim lawyer, Rothstein Rosenfeldt Adler (Rothstein was Roger Stone's partner)",
         "Brad Karp": "lawyer, head of the law firm Paul Weiss",
@@ -42397,6 +42402,7 @@
         "Joshua Cooper Ramo": "lobbyist, co-CEO of Henry Kissinger Associates",
         "Juleanna Glover": "Republican, CEO of D.C. public affairs advisory firm Ridgely|Walsh",
         "Karim Wade": "Africa, son of the president of Senegal, facing arrest for corruption, email handle is \"Afri zp\"",
+        "Karyna Shuliak": "Russia, Epstein's final girlfriend to whom he tried to leave $50-100 million and the island",
         "Katherine Keating": "lobbyist, daughter of former Australian prime minister",
         "Kathryn Ruemmler": "friend, former Obama legal counsel",
         "Kelly Friendly": "Harvard, longtime aide and spokesperson of Larry Summers",
