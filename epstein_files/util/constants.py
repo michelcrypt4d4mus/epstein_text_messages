@@ -1951,6 +1951,11 @@ OTHER_FILES_MISC = [
         description='Bureau of Prisons inmate telephone privileges Program Statement',
         replace_text_with_description=True,
     ),
+    DocCfg(
+        id='EFTA00004477',
+        description='Epstein 50th birthday photo book 12 "THAIS, MOSCOW GIRLS, AFRICA, HAWAII, [REDACTED] [REDACTED], Zorro, [REDACTED] [REDACTED] [REDACTED], CRACK WHOLE PROPOSAL, BALI/THAILAND/ASIA, RUSSIA, [REDACTED], [REDACTED], NUDES, YOGAL GIRLS',
+        replace_text_with_description=True,
+    ),
     DocCfg(id='EFTA00008120', description='"Part II: The Art of Receiving a Massage"', replace_text_with_description=True),
     DocCfg(id='EFTA00008020', description='"Massage for Dummies"', replace_text_with_description=True),
     DocCfg(id='EFTA00008220', description='"Massage book: Chapter 11: Putting the Moves Together"', replace_text_with_description=True),
