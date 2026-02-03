@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+# 1.5.0
 * Add support for DOJ Epstein Files Transparency Act documents, printable with `--output-doj-files`
 
 ### 1.4.1
