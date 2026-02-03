@@ -954,7 +954,7 @@ def _parse_timestamp(timestamp_str: str) -> None | datetime:
             timestamp_str = timestamp_str.replace('(GMT-05:00)', 'EST')
             timestamp_str = BAD_TIMEZONE_REGEX.sub(' ', timestamp_str).strip()
 
-        timestamp = parse(timestamp_str, fuzzy=True,7 tzinfos=TIMEZONE_INFO)
+        timestamp = parse(timestamp_str, fuzzy=True, tzinfos=TIMEZONE_INFO)
         logger.debug(f'Parsed timestamp "%s" from string "%s"', timestamp, timestamp_str)
         return remove_timezone(timestamp)
     except Exception as e:
