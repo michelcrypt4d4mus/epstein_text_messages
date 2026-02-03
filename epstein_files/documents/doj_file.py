@@ -22,6 +22,7 @@ from epstein_files.util.rich import RAINBOW, INFO_STYLE, SKIPPED_FILE_MSG_PADDIN
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTALL)
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
+MIN_VALID_LENGTH = 10
 
 OTHER_DOC_URLS = {
     '245-22.pdf': 'https://www.justice.gov/multimedia/Court%20Records/Government%20of%20the%20United%20States%20Virgin%20Islands%20v.%20JPMorgan%20Chase%20Bank,%20N.A.,%20No.%20122-cv-10904%20(S.D.N.Y.%202022)/245-22.pdf'
@@ -130,26 +131,17 @@ class DojFile(OtherFile):
 
     @property
     def info(self) -> list[Text]:
-        """Overloads superclass. Only create info line if `description` is not meant to be full replacement."""
-        if self.config_description and not self.has_replacement_text:
-            description = highlighter(Text(f" <{self.config_description}>", style=INFO_STYLE))
-        else:
-            description = None
-
-        return without_falsey([self.info_txt, description])
+        """Overloads superclass to adjust formatting."""
+        return [Text(' ').append(sentence) for sentence in super().info]
 
     @property
     def is_bad_ocr(self) -> bool:
         return self.file_id in BAD_DOJ_FILE_IDS
 
     @property
-    def has_replacement_text(self) -> bool:
-        return bool(self.config_description and self.config.replace_text_with_description)
-
-    @property
     def is_empty(self) -> bool:
         """Overloads superclass method."""
-        return len(self.text.strip().removesuffix(NO_IMAGE_SUFFIX)) < 20
+        return len(self.text.strip().removesuffix(NO_IMAGE_SUFFIX)) < MIN_VALID_LENGTH
 
     @property
     def prettified_text(self) -> Text:
@@ -159,12 +151,12 @@ class DojFile(OtherFile):
         if self.file_id in PHONE_BILL_IDS:
             pages = self.text.split('MetroPCS')
             text = f"{pages[0]}\n\n(Redacted phone bill {PHONE_BILL_IDS[self.file_id]} {CHECK_LINK_FOR_DETAILS})"
-        elif self.has_replacement_text:
-            if len(self.config_description) < 400:
+        elif self.config and self.config.replace_text_with:
+            if len(self.config.replace_text_with) < 300:
                 style = INFO_STYLE
-                text = f'(Text of {self.config_description} {CHECK_LINK_FOR_DETAILS})'
+                text = f'(Text of {self.config.replace_text_with} {CHECK_LINK_FOR_DETAILS})'
             else:
-                text = self.config_description
+                text = self.config.replace_text_with
         else:
             text = self.text
 
@@ -190,7 +182,7 @@ class DojFile(OtherFile):
         return link_text_obj(self.external_url, self.url_slug)
 
     def external_links_txt(self, _style: str = '', include_alt_links: bool = True) -> Text:
-        """Overrides super() method to apply self.author_style."""
+        """Overrides super() method to apply self.border_style."""
         return super().external_links_txt(self.border_style, include_alt_links=include_alt_links)
 
     def image_with_no_text_msg(self) -> RenderableType:
