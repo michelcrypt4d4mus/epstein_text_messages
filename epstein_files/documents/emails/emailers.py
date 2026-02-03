@@ -109,6 +109,7 @@ EMAILER_ID_PATTERNS: dict[str, str] = {
     SEAN_BANNON: r'sean bannon?',
     SHAHER_ABDULHAK_BESHER: r'\bShaher( Abdulhak Besher)?\b',
     SOON_YI_PREVIN: r'Soon[- ]Yi Previn?',
+    STACEY_RICHMAN: r"srichmanlaw|Stacey\s*Richman",
     STEPHEN_HANSON: r'ste(phen|ve) hanson?|Shanson900',
     STEVE_BANNON: r'steve banno[nr]?',
     STEVEN_SINOFSKY: r'Steven Sinofsky?',
@@ -166,6 +167,7 @@ EMAILERS = [
     'Nancy Portland',
     'Nathan NYSD Chambers',
     'Oliver Goodenough',
+    'Paula Speer',
     'Peter Aldhous',
     'Peter Green',
     ROGER_SCHANK,
@@ -209,7 +211,7 @@ def extract_emailer_names(emailer_str: str) -> list[str]:
 
     names_found = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
 
-    if len(emailer_str) < 2 or BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
+    if len(emailer_str) <= 2 or BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
         if len(names_found) == 0 and emailer_str not in SUPPRESS_LOGS_FOR_AUTHORS:
             logger.warning(f"No emailer found in '{escape_single_quotes(emailer_str)}'")
         else:
