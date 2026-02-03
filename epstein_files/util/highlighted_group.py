@@ -7,11 +7,11 @@ from rich.console import Console
 from rich.highlighter import RegexHighlighter
 from rich.text import Text
 
+from epstein_files.documents.emails.emailers import EMAILER_ID_REGEXES
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
-from epstein_files.util.constants import (EMAILER_ID_REGEXES, EPSTEIN_V_ROTHSTEIN_EDWARDS,
-     OSBORNE_LLP, REPLY_REGEX, SENT_FROM_REGEX)
+from epstein_files.util.constants import EPSTEIN_V_ROTHSTEIN_EDWARDS, OSBORNE_LLP, REPLY_REGEX, SENT_FROM_REGEX
 from epstein_files.util.data import sort_dict, without_falsey
 from epstein_files.util.doc_cfg import *
 from epstein_files.util.env import args
