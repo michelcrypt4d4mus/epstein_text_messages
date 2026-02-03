@@ -932,6 +932,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='025163', truncate_to=NO_TRUNCATE, comment='Tom Pritzer'),
 
     # DOJ files
+    EmailCfg(id='EFTA00935996', recipients=[RENATA_BOLOTOVA], attribution_reason='"sneaky dog"'),
     EmailCfg(id='EFTA02731737', date='2023-06-30T16:05:00'),
     EmailCfg(id='EFTA02731689', author=UNKNOWN, recipients=[None], date='2023-06-09 20:14:00'),
     EmailCfg(id='EFTA02731475', date='2023-05-31T20:53:00'),
