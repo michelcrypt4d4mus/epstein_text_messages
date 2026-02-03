@@ -192,9 +192,9 @@ for emailer in EMAILERS:
     EMAILER_REGEXES[emailer] = re.compile(emailer + '?', re.IGNORECASE)  # Last char optional bc OCR sucks
 
 SUPPRESS_LOGS_FOR_AUTHORS = [
+    'Multiple Senders Multiple Senders',
     'Undisclosed recipients:',
     'undisclosed-recipients:',
-    'Multiple Senders Multiple Senders',
 ]
 
 
