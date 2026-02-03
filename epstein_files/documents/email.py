@@ -477,7 +477,7 @@ class Email(Communication):
 
         self.recipients = sorted(list(set(self.recipients)), key=lambda r: r or UNKNOWN)
         self.text = self._prettify_text()
-        self.actual_text = self._actual_text()
+        self.actual_text = self._extract_actual_text()
         self.sent_from_device = self._sent_from_device()
 
     def is_from_or_to(self, name: str) -> bool:
@@ -502,7 +502,7 @@ class Email(Communication):
 
         return txt.append(CLOSE_PROPERTIES_CHAR)
 
-    def _actual_text(self) -> str:
+    def _extract_actual_text(self) -> str:
         """The text that comes before likely quoted replies and forwards etc."""
         if self.config and self.config.actual_text is not None:
             return self.config.actual_text
@@ -665,7 +665,7 @@ class Email(Communication):
 
         # Share / Tweet lines
         if self.author == KATHRYN_RUEMMLER:
-            text = '\n'.join([l for l in text.split('\n') if l not in ['Share', 'Tweet', 'Bookmark it']])
+            text = '\n'.join([line for line in text.split('\n') if line not in ['Share', 'Tweet', 'Bookmark it']])
 
         return collapse_newlines(text).strip()
 
@@ -868,7 +868,7 @@ class Email(Communication):
 
             lines += text.split('\n')[num_lines_to_skip:]
             text = self.header.rewrite_header() + '\n' + '\n'.join(lines)
-            text = _add_line_breaks(text)  # This was skipped when _prettify_text() w/a broken header so we do it now
+            text = _add_line_breaks(text)
             self.rewritten_header_ids.add(self.file_id)
 
         lines = [
