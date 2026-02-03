@@ -179,6 +179,7 @@ UNKNOWN = '(unknown)'
 
 # DOJ files emails
 ALISON_J_NATHAN = 'Alison J. Nathan'
+AMIR_TAAKI = 'Amir Taaki'
 CHRISTIAN_EVERDELL = 'Christian Everdell'
 CHRISTOPHER_DILORIO = 'Christopher Dilorio'
 DOUGLAS_WIGDOR = 'Douglas Wigdor'
