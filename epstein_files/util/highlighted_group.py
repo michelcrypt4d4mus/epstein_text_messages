@@ -616,6 +616,7 @@ HIGHLIGHTED_NAMES = [
             'Robert Gold': 'helped Epstein track down money belonging to Spanish families',
             'Roy Black': CRIMINAL_DEFENSE_2008,
             SCOTT_J_LINK: CRIMINAL_DEFENSE_ATTORNEY,
+            STACEY_RICHMAN: f"New York {CRIMINAL_DEFENSE_ATTORNEY}",
             TONJA_HADDAD_COLEMAN: f'{EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY}',  # relation of Fred Haddad?
         },
         patterns=[
