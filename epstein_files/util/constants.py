@@ -1036,7 +1036,7 @@ ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
 OTHER_FILES_BOOKS = [
     DocCfg(id='017088', author=ALAN_DERSHOWITZ, description=f'"Taking the Stand: My Life in the Law" (draft)'),
     DocCfg(id='013501', author='Arnold J. Mandell', description=f'The Nearness Of Grace: A Personal Science Of Spiritual Transformation', date='2005-01-01'),
-    DocCfg(id='012899', author='Ben Goertzel', description=f'Engineering General Intelligence: A Path to Advanced AGI Via Embodied Learning and Cognitive Synergy'),
+    DocCfg(id='012899', author='Ben Goertzel', description=f'Engineering General Intelligence: A Path to Advanced AGI Via Embodied Learning and Cognitive Synergy', date='2013-09-19'),
     DocCfg(id='018438', author='Clarisse Thorn', description=f'The S&M Feminist'),
     DocCfg(id='019477', author=EDWARD_JAY_EPSTEIN, description=f'How America Lost Its Secrets: Edward Snowden, the Man, and the Theft'),
     DocCfg(id='020153', author=EDWARD_JAY_EPSTEIN, description=f'The Snowden Affair: A Spy Story In Six Parts'),
