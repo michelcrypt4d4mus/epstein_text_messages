@@ -9,7 +9,7 @@ from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.data import escape_single_quotes
 from epstein_files.util.logging import logger
 
-BAD_EMAILER_REGEX = re.compile(r'^(>|11111111)|agreed|ok|sexy|re:|fwd:|Multiple Senders|((sent|attachments|subject|importance).*|.*(january|201\d|hysterical|i have|image0|so that people|article 1.?|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
+BAD_EMAILER_REGEX = re.compile(r'^(>|11111111)|agreed|ok|sexy|re:|fwd:|Multiple Senders|((sent|attachments|subject|importance).*|.*(january|201\d|hysterical|i have|image0|so that people|article 1.?|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)|afiaata|[IM]{4,}).*)$', re.IGNORECASE)
 BAD_NAME_CHARS_REGEX = re.compile(r"[\"'\[\]*><•=()]")
 TIME_REGEX = re.compile(r'^((\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday)|\d{4} ).*')
 
@@ -209,7 +209,7 @@ def extract_emailer_names(emailer_str: str) -> list[str]:
 
     names_found = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
 
-    if BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
+    if len(emailer_str) < 2 or BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
         if len(names_found) == 0 and emailer_str not in SUPPRESS_LOGS_FOR_AUTHORS:
             logger.warning(f"No emailer found in '{escape_single_quotes(emailer_str)}'")
         else:

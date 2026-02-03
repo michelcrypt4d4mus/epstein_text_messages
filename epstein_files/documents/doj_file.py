@@ -221,7 +221,7 @@ class DojFile(OtherFile):
         number_only_line_count = len(self.lines) - len(non_number_lines)
 
         if number_only_line_count > 20:
-            logger.warning(f"{self.file_id}: Reduced line count from {len(self.lines)} to {len(non_number_lines)}")
+            self.warn(f"Reduced line count from {len(self.lines)} to {len(non_number_lines)}")
             self._set_computed_fields(lines=non_number_lines)
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:

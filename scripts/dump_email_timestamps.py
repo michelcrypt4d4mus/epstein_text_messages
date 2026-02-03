@@ -129,7 +129,7 @@ print_partial_names_used_in_regexes()
 max_sizes = defaultdict(int)
 counts = defaultdict(int)
 
-# for doc in sorted(epstein_files.all_documents(), key=lambda e: e.file_id):
+# for doc in sorted(epstein_files.all_documents, key=lambda e: e.file_id):
 #     max_file_sizes[doc.class_name()] = max(max_file_sizes[doc.class_name()], doc.file_size())
 #     console.print(doc.summary())
 #     print_json('metadata', doc.metadata())
