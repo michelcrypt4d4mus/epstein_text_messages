@@ -180,6 +180,7 @@ UNKNOWN = '(unknown)'
 # DOJ files emails
 ALISON_J_NATHAN = 'Alison J. Nathan'
 AMIR_TAAKI = 'Amir Taaki'
+BROCK_PIERCE = 'Brock Pierce'
 CHRISTIAN_EVERDELL = 'Christian Everdell'
 CHRISTOPHER_DILORIO = 'Christopher Dilorio'
 DOUGLAS_WIGDOR = 'Douglas Wigdor'
@@ -238,7 +239,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     mann marc marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
     nancy nathan neal new nicole norman
     owen
-    paul paula pen peter philip prince
+    paul paula pen peter philip pierce prince
     randall rangel reid richard robert rodriguez roger rosenberg ross roth roy rubenstein rubin
     scott sean skip smith stanley stern stephen steve steven stone susan
     terry the thomas tim tom tony tyler
