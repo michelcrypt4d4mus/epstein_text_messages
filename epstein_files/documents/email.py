@@ -1,7 +1,6 @@
 import json
 import logging
 import re
-from collections import defaultdict
 from copy import deepcopy
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
@@ -23,7 +22,8 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constants import *
-from epstein_files.util.data import AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines, escape_single_quotes, remove_timezone
+from epstein_files.util.data import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines, escape_single_quotes,
+     remove_timezone)
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.file_helper import extract_file_id, file_stem_for_id
 from epstein_files.util.highlighted_group import JUNK_EMAILERS, get_style_for_name
@@ -550,7 +550,7 @@ class Email(Communication):
             self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
 
     def _extract_emailer_names(self, emailer_str: str) -> list[str]:
-        """Return a list of people's names found in 'emailer_str' (email author or recipients field)."""
+        """Return a list of people's names found in `emailer_str` (email author or recipients field)."""
         emailer_str = EmailHeader.cleanup_str(emailer_str)
 
         if len(emailer_str) == 0:
@@ -567,10 +567,10 @@ class Email(Communication):
             return names_found
 
         names_found = names_found or [emailer_str]
-        return [_reverse_first_and_last_names(name) for name in names_found]
+        return [reverse_first_and_last_names(name) for name in names_found]
 
     def _extract_header(self) -> None:
-        """Extract an EmailHeader object from the OCR text."""
+        """Extract an `EmailHeader` from the OCR text."""
         header_match = EMAIL_SIMPLE_HEADER_REGEX.search(self.text)
 
         if header_match:
@@ -586,20 +586,15 @@ class Email(Communication):
         logger.debug(f"{self.file_id} extracted header\n\n{self.header}\n")
 
     def _extract_timestamp(self) -> datetime:
-        if self.header.sent_at:
-            timestamp = _parse_timestamp(self.header.sent_at)
-
-            if timestamp:
-                return timestamp
+        """Find the time this email was sent."""
+        if self.header.sent_at and (timestamp := _parse_timestamp(self.header.sent_at)):
+            return timestamp
 
         searchable_lines = self.lines[0:MAX_NUM_HEADER_LINES]
         searchable_text = '\n'.join(searchable_lines)
-        date_match = DATE_HEADER_REGEX.search(searchable_text)
 
-        if date_match:
-            timestamp = _parse_timestamp(date_match.group(1))
-
-            if timestamp:
+        if (date_match := DATE_HEADER_REGEX.search(searchable_text)):
+            if (timestamp := _parse_timestamp(date_match.group(1))):
                 return timestamp
 
         logger.debug(f"Failed to find timestamp, falling back to parsing {MAX_NUM_HEADER_LINES} lines...")
@@ -608,9 +603,7 @@ class Email(Communication):
             if not TIMESTAMP_LINE_REGEX.search(line):
                 continue
 
-            timestamp = _parse_timestamp(line)
-
-            if timestamp:
+            if (timestamp := _parse_timestamp(line)):
                 logger.debug(f"Fell back to timestamp {timestamp} in line '{line}'...")
                 return timestamp
 
@@ -707,13 +700,17 @@ class Email(Communication):
             self.log(f"Modified text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n')
             self.log_top_lines(12, 'Result of modifications')
 
-        lines = self.repair_ocr_text(OCR_REPAIRS, self.text).split('\n')
+        repaired_text = self._repair_links_and_quoted_subjects(self.repair_ocr_text(OCR_REPAIRS, self.text))
+        self._set_computed_fields(text=repaired_text)
+
+    def _repair_links_and_quoted_subjects(self, text: str) -> str:
+        """Repair links that the OCR has broken into multiple lines as well as 'Subject:' lines."""
+        lines = text.split('\n')
         subject_line = next((line for line in lines if line.startswith('Subject:')), None) or ''
         subject = subject_line.split(':')[1].strip() if subject_line else ''
         new_lines = []
         i = 0
 
-        # Fix links and quoted subjects (remove spaces, merge multiline links to a single line)
         while i < len(lines):
             line = lines[i]
 
@@ -721,8 +718,8 @@ class Email(Communication):
                 while i < (len(lines) - 1) \
                         and not lines[i + 1].startswith('htt') \
                         and (lines[i + 1].endswith('/') \
-                             or any(s in lines[i + 1] for s in URL_SIGNIFIERS) \
-                             or LINK_LINE2_REGEX.match(lines[i + 1])):
+                            or any(s in lines[i + 1] for s in URL_SIGNIFIERS) \
+                            or LINK_LINE2_REGEX.match(lines[i + 1])):
                     logger.debug(f"{self.filename}: Joining link lines\n   1. {line}\n   2. {lines[i + 1]}\n")
                     line += lines[i + 1]
                     i += 1
@@ -744,21 +741,14 @@ class Email(Communication):
                     i += 1
 
             new_lines.append(line)
-
-            # TODO: hacky workaround to get a working link for HOUSE_OVERSIGHT_032564
-            if self.file_id == '032564' and line == 'http://m.huffpost.com/us/entry/us_599f532ae4b0dOef9f1c129d':
-                new_lines.append('(ed. note: an archived version of the above link is here: https://archive.is/hJxT3 )')
-
             i += 1
 
         logger.debug(f"----after line repair---\n" + '\n'.join(new_lines[0:20]) + "\n---")
-        self._set_computed_fields(lines=new_lines)
+        return '\n'.join(lines)
 
     def _sent_from_device(self) -> str | None:
         """Find any 'Sent from my iPhone' style signature line if it exist in the 'actual_text'."""
-        sent_from_match = SENT_FROM_REGEX.search(self.actual_text)
-
-        if sent_from_match:
+        if (sent_from_match := SENT_FROM_REGEX.search(self.actual_text)):
             sent_from = sent_from_match.group(0)
             return 'S' + sent_from[1:] if sent_from.startswith('sent') else sent_from
 
@@ -770,9 +760,7 @@ class Email(Communication):
         else:
             self.config = EmailCfg(id=self.file_id)
 
-        extracted_from_description = extracted_from_doc_cfg.complete_description
-
-        if extracted_from_description:
+        if (extracted_from_description := extracted_from_doc_cfg.complete_description):
             extracted_description = f"{APPEARS_IN} {extracted_from_description}"
 
             if isinstance(extracted_from_doc_cfg, EmailCfg):
@@ -960,14 +948,3 @@ def _parse_timestamp(timestamp_str: str) -> None | datetime:
         return remove_timezone(timestamp)
     except Exception as e:
         logger.debug(f'Failed to parse "{timestamp_str}" to timestamp!')
-
-
-def _reverse_first_and_last_names(name: str) -> str:
-    if '@' in name:
-        return name.lower()
-
-    if ', ' in name:
-        names = name.split(', ')
-        return f"{names[1]} {names[0]}"
-    else:
-        return name

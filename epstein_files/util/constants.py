@@ -387,7 +387,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='026609', author='Mark Green', attribution_reason='Actually a fwd, Mark Green is in signature'),
     EmailCfg(id='030472', author=MARTIN_WEINBERG, attribution_reason='Maybe. in reply', is_attribution_uncertain=True),
     EmailCfg(id='032563', author=MASHA_DROKOVA, attribution_reason='replied to in 033014'),
-    EmailCfg(id='032564', author=MASHA_DROKOVA, attribution_reason='follow up to 032563 about huffpo article with link'),
+    EmailCfg(
+        id='032564',
+        attribution_reason='follow up to 032563 about huffpo article with link',
+        author=MASHA_DROKOVA,
+        description='an archived version of the HuffPost link is here: https://archive.is/hJxT3 '
+    ),
     EmailCfg(id='031544', author=MASHA_DROKOVA, attribution_reason='follow up to 032563 about huffpo article with link'),
     EmailCfg(id='032605', author=MASHA_DROKOVA, attribution_reason="re: PR interview, 031544 says she'll be in NY at that time"),
     EmailCfg(id='032606', author=MASHA_DROKOVA, attribution_reason="re: PR interview, 031544 says she'll be in NY at that time"),
