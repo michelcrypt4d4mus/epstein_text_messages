@@ -356,12 +356,13 @@ LINE_REPAIR_MERGES = {
 class Email(Communication):
     """
     Attributes:
-        actual_text (str) - best effort at the text actually sent in this email, excluding quoted replies and forwards
-        config (EmailCfg | None) - manual config for this email (if it exists)
-        header (EmailHeader) - header data extracted from the text (from/to/sent/subject etc)
-        recipients (list[Name]) - who this email was sent to
-        sent_from_device (str | None) - "Sent from my iPhone" style signature (if it exists)
-        signature_substitution_counts (dict[str, int]) - count of how many times a signature was replaced with <...snipped...> for each participant
+        actual_text (str) - Best effort at the text actually sent in this email, excluding quoted replies and forwards.
+        config (EmailCfg, optional) - Manual config for this email (if it exists).
+        header (EmailHeader) - Header data extracted from the text (from/to/sent/subject etc).
+        recipients (list[Name]) - People to whom this email was sent.
+        sent_from_device (str, optional) - "Sent from my iPhone" style signature (if it exists).
+        signature_substitution_counts (dict[str, int]) - Number of times a signature was replaced with
+            <...snipped...> for each participant
     """
     attached_docs: list[OtherFile] = field(default_factory=list)
     actual_text: str = field(init=False)
