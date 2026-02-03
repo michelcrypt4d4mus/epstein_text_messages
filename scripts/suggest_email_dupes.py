@@ -31,5 +31,5 @@ for email in EpsteinFiles.get_files().emails:
 
     console.print(f"\ncollision between {other_email.file_id} and {email.file_id}")
     console.print(f"    {other_email.filename}: {other_email.description()}")
-    console.print(f"    {email.filename}: {email.summary()}")
+    console.print(f"    {email.filename}: {email.summary}")
     Document.diff_files([str(email.filename), str(other_email.filename)])

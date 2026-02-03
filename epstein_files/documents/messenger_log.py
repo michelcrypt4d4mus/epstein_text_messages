@@ -77,12 +77,12 @@ class MessengerLog(Communication):
         return [m for m in self.messages if m.author == name]
 
     def _build_message(self, match: re.Match) -> TextMessage:
-        """Turn a regex match into a TextMessage."""
+        """Turn a regex match into a `TextMessage`."""
         author_str = REDACTED_AUTHOR_REGEX.sub('', match.group(1).strip())
         is_phone_number = author_str.startswith('+')
 
         if is_phone_number:
-            logger.info(f"{self.summary()} Found phone number: {author_str}")
+            logger.info(f"{self.summary} Found phone number: {author_str}")
             self.phone_number = author_str
 
         # If the Sender: is redacted or if it's an unredacted phone number that means it's from self.author
