@@ -23,7 +23,7 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constants import *
-from epstein_files.util.data import TIMEZONE_INFO, collapse_newlines, escape_single_quotes, remove_timezone
+from epstein_files.util.data import AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines, escape_single_quotes, remove_timezone
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.file_helper import extract_file_id, file_stem_for_id
 from epstein_files.util.highlighted_group import JUNK_EMAILERS, get_style_for_name
@@ -948,9 +948,13 @@ def _add_line_breaks(email_text: str) -> str:
 
 def _parse_timestamp(timestamp_str: str) -> None | datetime:
     try:
-        timestamp_str = timestamp_str.replace('(GMT-05:00)', 'EST')
-        timestamp_str = BAD_TIMEZONE_REGEX.sub(' ', timestamp_str).strip()
-        timestamp = parse(timestamp_str, tzinfos=TIMEZONE_INFO)
+        if (american_date_match := AMERICAN_TIME_REGEX.search(timestamp_str)):
+            timestamp_str = american_date_match.group(1)
+        else:
+            timestamp_str = timestamp_str.replace('(GMT-05:00)', 'EST')
+            timestamp_str = BAD_TIMEZONE_REGEX.sub(' ', timestamp_str).strip()
+
+        timestamp = parse(timestamp_str, fuzzy=True, tzinfos=TIMEZONE_INFO)
         logger.debug(f'Parsed timestamp "%s" from string "%s"', timestamp, timestamp_str)
         return remove_timezone(timestamp)
     except Exception as e:
