@@ -81,6 +81,7 @@ EMAILER_ID_REGEXES: dict[str, re.Pattern] = {
     DAVID_FISZEL: re.compile(r'David\s*Fis?zel', re.IGNORECASE),
     DAVID_HAIG: re.compile(fr'{DAVID_HAIG}|Haig, David', re.IGNORECASE),
     DAVID_STERN: re.compile(r'David Stern?', re.IGNORECASE),
+    DOUGLAS_WIGDOR: re.compile(r'Doug(las)?\s*(H\.?)?\s*Wigdor'),
     EDUARDO_ROBLES: re.compile(r'Ed(uardo)?\s*Robles', re.IGNORECASE),
     EDWARD_JAY_EPSTEIN: re.compile(r'(?<!Jeffrey )Edward (Jay )?Epstein', re.IGNORECASE),
     EHUD_BARAK: re.compile(r'(ehud|e?h)\s*barak|\behud', re.IGNORECASE),
