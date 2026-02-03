@@ -372,6 +372,7 @@ HIGHLIGHTED_NAMES = [
         label='bitcoin',
         style='orange1 bold',
         emailers={
+            AMIR_TAAKI: f"bitcoin bro, partner of {BROCK_PIERCE} (?)",
             BROCK_PIERCE: 'crypto bro, Bannon business partner, Tether co-founder, arrested in house full of machine guns & "8,000 fotografias de pornopgraphia infantil"',
             JEFFREY_WERNICK: 'former COO of Parler, involved in numerous crypto companies like Bitforex',
             JEREMY_RUBIN: 'developer/researcher',
