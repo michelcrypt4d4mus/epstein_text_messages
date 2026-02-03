@@ -582,7 +582,7 @@ HIGHLIGHTED_NAMES = [
         },
         patterns=[
             r"JEGE(\s*Inc)?",
-            r"LSJ",
+            r"LSJE?",  # Virgin Islands corporation
             r"Zorro(\s*Ranch)?",
         ],
     ),
