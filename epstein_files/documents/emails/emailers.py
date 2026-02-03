@@ -189,7 +189,7 @@ for emailer in EMAILERS:
     if emailer in EMAILER_REGEXES:
         raise RuntimeError(f"Can't overwrite emailer regex for '{emailer}'")
 
-    EMAILER_REGEXES[emailer] = re.compile(emailer, re.IGNORECASE)
+    EMAILER_REGEXES[emailer] = re.compile(emailer + '?', re.IGNORECASE)  # Last char optional bc OCR sucks
 
 SUPPRESS_LOGS_FOR_AUTHORS = [
     'Undisclosed recipients:',
