@@ -5,9 +5,14 @@ import re
 from copy import deepcopy
 
 from epstein_files.util.constant.names import *
+from epstein_files.util.constant.strings import REDACTED
+from epstein_files.util.data import escape_single_quotes
+from epstein_files.util.logging import logger
 
+BAD_EMAILER_REGEX = re.compile(r'^(>|11111111)|agreed|ok|sexy|re:|fwd:|Multiple Senders|((sent|attachments|subject|importance).*|.*(january|201\d|hysterical|i have|image0|so that people|article 1.?|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)|afiaata|[IM]{4,}).*)$', re.IGNORECASE)
+BAD_NAME_CHARS_REGEX = re.compile(r"[\"'\[\]*><•=()]")
+TIME_REGEX = re.compile(r'^((\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday)|\d{4} ).*')
 
-# Emailers
 EMAILER_ID_PATTERNS: dict[str, str] = {
     ALAN_DERSHOWITZ: r'(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh',
     ALIREZA_ITTIHADIEH: r'Alireza.[Il]ttihadieh',
@@ -56,6 +61,7 @@ EMAILER_ID_PATTERNS: dict[str, str] = {
     JOHNNY_EL_HACHEM: r'el hachem johnny|johnny el hachem',
     JOI_ITO: r'ji@media.mit.?edu|(joichi|joi)( Ito)?',
     JONATHAN_FARKAS: r'Jonathan Fark(a|u)(s|il)',
+    KARYNA_SHULIAK: r"Karyna\s*Shuliak?",
     KATHRYN_RUEMMLER: r'Kathr?yn? Ruemmler?',
     KEN_STARR: r'starr, ken|Ken(neth\s*(W.\s*)?)?\s+starr?|starr',
     LANDON_THOMAS: r'lando[nr] thomas( jr)?|thomas jr.?, lando[nr]',
@@ -103,6 +109,7 @@ EMAILER_ID_PATTERNS: dict[str, str] = {
     SEAN_BANNON: r'sean bannon?',
     SHAHER_ABDULHAK_BESHER: r'\bShaher( Abdulhak Besher)?\b',
     SOON_YI_PREVIN: r'Soon[- ]Yi Previn?',
+    STACEY_RICHMAN: r"srichmanlaw|Stacey\s*Richman",
     STEPHEN_HANSON: r'ste(phen|ve) hanson?|Shanson900',
     STEVE_BANNON: r'steve banno[nr]?',
     STEVEN_SINOFSKY: r'Steven Sinofsky?',
@@ -160,6 +167,7 @@ EMAILERS = [
     'Nancy Portland',
     'Nathan NYSD Chambers',
     'Oliver Goodenough',
+    'Paula Speer',
     'Peter Aldhous',
     'Peter Green',
     ROGER_SCHANK,
@@ -181,4 +189,35 @@ for emailer in EMAILERS:
     if emailer in EMAILER_REGEXES:
         raise RuntimeError(f"Can't overwrite emailer regex for '{emailer}'")
 
-    EMAILER_REGEXES[emailer] = re.compile(emailer, re.IGNORECASE)
+    EMAILER_REGEXES[emailer] = re.compile(emailer + '?', re.IGNORECASE)  # Last char optional bc OCR sucks
+
+SUPPRESS_LOGS_FOR_AUTHORS = [
+    'Multiple Senders Multiple Senders',
+    'Undisclosed recipients:',
+    'undisclosed-recipients:',
+]
+
+
+def cleanup_str(_str: str) -> str:
+    return BAD_NAME_CHARS_REGEX.sub('', _str.replace(REDACTED, '')).strip().strip('_').strip()
+
+
+def extract_emailer_names(emailer_str: str) -> list[str]:
+    """Return a list of people's names found in `emailer_str` (email author or recipients field)."""
+    emailer_str = cleanup_str(emailer_str)
+
+    if len(emailer_str) == 0:
+        return []
+
+    names_found = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
+
+    if len(emailer_str) <= 2 or BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
+        if len(names_found) == 0 and emailer_str not in SUPPRESS_LOGS_FOR_AUTHORS:
+            logger.warning(f"No emailer found in '{escape_single_quotes(emailer_str)}'")
+        else:
+            logger.info(f"Extracted {len(names_found)} names from semi-invalid '{emailer_str}': {names_found}...")
+
+        return names_found
+
+    names_found = names_found or [emailer_str]
+    return [reverse_first_and_last_names(name) for name in names_found]

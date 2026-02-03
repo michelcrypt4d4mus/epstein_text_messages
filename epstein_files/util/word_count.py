@@ -8,7 +8,7 @@ from rich.console import Console, ConsoleOptions, RenderResult
 from rich.padding import Padding
 from rich.text import Text
 
-from epstein_files.documents.emails.email_header import EmailHeader
+from epstein_files.documents.emails.emailers import cleanup_str
 from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.util.constant.common_words import COMMON_WORDS_LIST, COMMON_WORDS, UNSINGULARIZABLE_WORDS
 from epstein_files.util.constant.names import OTHER_NAMES
@@ -119,7 +119,7 @@ class WordCount:
     singularized: dict[str, int] = field(default_factory=lambda: defaultdict(int))
 
     def tally_word(self, word: str, document_line: SearchResult) -> None:
-        word = EmailHeader.cleanup_str(word).lower().strip()
+        word = cleanup_str(word).lower().strip()
         raw_word = word
 
         if HTML_REGEX.search(word):

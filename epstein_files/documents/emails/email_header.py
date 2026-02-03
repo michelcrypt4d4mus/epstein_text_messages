@@ -2,7 +2,8 @@ import json
 import re
 from dataclasses import asdict, dataclass, field
 
-from epstein_files.util.constant.strings import AUTHOR, REDACTED, indented
+from epstein_files.documents.emails.emailers import BAD_EMAILER_REGEX, TIME_REGEX
+from epstein_files.util.constant.strings import AUTHOR, indented
 from epstein_files.util.constants import ALL_CONFIGS
 from epstein_files.util.doc_cfg import EmailCfg
 from epstein_files.util.logging import logger
@@ -13,18 +14,29 @@ ON_BEHALF_OF = 'on behalf of'
 TO_FIELDS = ['bcc', 'cc', 'to']
 EMAILER_FIELDS = [AUTHOR] + TO_FIELDS
 
+FIELD_PATTERNS = [
+    'Date',
+    'From',
+    'Sent',
+    'To',
+    r"C[cC]",
+    r"B[cC][cC]",
+    'Importance',
+    'Subject',
+    'Attachments',
+    'Classification',
+    'Flag',
+    'Reply-To',
+    'Inline-Images'
+]
+
 DETECT_EMAIL_REGEX = re.compile(r'^(.*\n){0,2}(From|Subject):')  # IDed 140 emails out of 3777 DOJ files with just 'From:' match
-FIELD_PATTERNS = ['Date', 'From', 'Sent', 'To', r"C[cC]", r"B[cC][cC]", 'Importance', 'Subject', 'Attachments', 'Classification', 'Flag', 'Reply-To', 'Inline-Images']
 FIELDS_PATTERN = '|'.join(FIELD_PATTERNS)
 FIELDS_COLON_PATTERN = fr"^({FIELDS_PATTERN}):"
 HEADER_REGEX_STR = fr"(((?:(?:{FIELDS_PATTERN}|Bee):|on behalf of ?)(?! +(by |from my|via )).*\n){{3,}})"
 EMAIL_SIMPLE_HEADER_REGEX = re.compile(rf'^{HEADER_REGEX_STR}')
 EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX = re.compile(HEADER_REGEX_STR)
 EMAIL_PRE_FORWARD_REGEX = re.compile(r"(.{3,2000}?)" + HEADER_REGEX_STR, re.DOTALL)  # Match up to the next email header section
-TIME_REGEX = re.compile(r'^(\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday).*')
-
-BAD_NAME_CHARS_REGEX = re.compile(r"[\"'\[\]*><•]")
-BAD_EMAILER_REGEX = re.compile(r'^(>|11111111)|agreed|ok|sexy|re:|fwd:|Multiple Senders|((sent|attachments|subject|importance).*|.*(january|201\d|hysterical|i have|image0|so that people|article 1.?|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)).*)$', re.IGNORECASE)
 
 CONFIGURED_ACTUAL_TEXTS = [
     cfg.actual_text for cfg in ALL_CONFIGS
@@ -183,7 +195,3 @@ class EmailHeader:
             logger.debug(f"Header being parsed was this:\n\n{header}\n")
 
         return cls(field_names=field_names, header_chars=header, **kw_args)
-
-    @staticmethod
-    def cleanup_str(_str: str) -> str:
-        return BAD_NAME_CHARS_REGEX.sub('', _str.replace(REDACTED, '')).strip().strip('_').strip()

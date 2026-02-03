@@ -129,7 +129,7 @@ print_partial_names_used_in_regexes()
 max_sizes = defaultdict(int)
 counts = defaultdict(int)
 
-# for doc in sorted(epstein_files.all_documents(), key=lambda e: e.file_id):
+# for doc in sorted(epstein_files.all_documents, key=lambda e: e.file_id):
 #     max_file_sizes[doc.class_name()] = max(max_file_sizes[doc.class_name()], doc.file_size())
 #     console.print(doc.summary())
 #     print_json('metadata', doc.metadata())
@@ -175,7 +175,7 @@ for email in sorted(epstein_files.emails, key=lambda e: -len(e.actual_text)):
         max_sizes[email.file_id] = len(email.actual_text)
         console.line(2)
         console.print(Panel(email.summary(), expand=False, style=email.border_style))
-        console.print(escape(email._actual_text()))
+        console.print(escape(email._extract_actual_text()))
 
 console.line(2)
 

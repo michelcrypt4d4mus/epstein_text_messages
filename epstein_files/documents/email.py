@@ -1,7 +1,6 @@
 import json
 import logging
 import re
-from collections import defaultdict
 from copy import deepcopy
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
@@ -16,14 +15,14 @@ from rich.text import Text
 
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, INFO_INDENT
-from epstein_files.documents.emails.email_header import (BAD_EMAILER_REGEX, EMAIL_SIMPLE_HEADER_REGEX,
-     EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, FIELD_NAMES, FIELDS_COLON_PATTERN, TIME_REGEX, EmailHeader)
-from epstein_files.documents.emails.emailers import EMAILER_REGEXES
+from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX,
+     EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, FIELD_NAMES, FIELDS_COLON_PATTERN, EmailHeader)
+from epstein_files.documents.emails.emailers import extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constants import *
-from epstein_files.util.data import AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines, escape_single_quotes, remove_timezone
+from epstein_files.util.data import AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines, remove_timezone
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.file_helper import extract_file_id, file_stem_for_id
 from epstein_files.util.highlighted_group import JUNK_EMAILERS, get_style_for_name
@@ -44,7 +43,6 @@ DATE_HEADER_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\
 TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 
-SUPPRESS_LOGS_FOR_AUTHORS = ['Undisclosed recipients:', 'undisclosed-recipients:', 'Multiple Senders Multiple Senders']
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
 URL_SIGNIFIERS = ['?amp', 'amp?', 'cd=', 'click', 'CMP=', 'contentId', 'ft=', 'gclid', 'htm', 'mp=', 'keywords=', 'Id=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'sp=', 'usg=', 'utm']
 APPEARS_IN = 'appears in'
@@ -356,12 +354,13 @@ LINE_REPAIR_MERGES = {
 class Email(Communication):
     """
     Attributes:
-        actual_text (str) - best effort at the text actually sent in this email, excluding quoted replies and forwards
-        config (EmailCfg | None) - manual config for this email (if it exists)
-        header (EmailHeader) - header data extracted from the text (from/to/sent/subject etc)
-        recipients (list[Name]) - who this email was sent to
-        sent_from_device (str | None) - "Sent from my iPhone" style signature (if it exists)
-        signature_substitution_counts (dict[str, int]) - count of how many times a signature was replaced with <...snipped...> for each participant
+        actual_text (str) - Best effort at the text actually sent in this email, excluding quoted replies and forwards.
+        config (EmailCfg, optional) - Manual config for this email (if it exists).
+        header (EmailHeader) - Header data extracted from the text (from/to/sent/subject etc).
+        recipients (list[Name]) - People to whom this email was sent.
+        sent_from_device (str, optional) - "Sent from my iPhone" style signature (if it exists).
+        signature_substitution_counts (dict[str, int]) - Number of times a signature was replaced with
+            <...snipped...> for each participant
     """
     attached_docs: list[OtherFile] = field(default_factory=list)
     actual_text: str = field(init=False)
@@ -465,7 +464,7 @@ class Email(Communication):
             self.recipients = self.config.recipients
         else:
             for recipient in self.header.recipients():
-                self.recipients.extend(self._extract_emailer_names(recipient))
+                self.recipients.extend(extract_emailer_names(recipient))
 
             # Assume mailing list emails are to Epstein
             if self.author in BCC_LISTS and (self.is_note_to_self or not self.recipients):
@@ -477,7 +476,7 @@ class Email(Communication):
 
         self.recipients = sorted(list(set(self.recipients)), key=lambda r: r or UNKNOWN)
         self.text = self._prettify_text()
-        self.actual_text = self._actual_text()
+        self.actual_text = self._extract_actual_text()
         self.sent_from_device = self._sent_from_device()
 
     def is_from_or_to(self, name: str) -> bool:
@@ -502,7 +501,7 @@ class Email(Communication):
 
         return txt.append(CLOSE_PROPERTIES_CHAR)
 
-    def _actual_text(self) -> str:
+    def _extract_actual_text(self) -> str:
         """The text that comes before likely quoted replies and forwards etc."""
         if self.config and self.config.actual_text is not None:
             return self.config.actual_text
@@ -541,41 +540,23 @@ class Email(Communication):
         return text.strip()
 
     def _extract_author(self) -> None:
+        """Overloads superclass method, called at instantiation time."""
         self._extract_header()
         super()._extract_author()
 
         if not self.author and self.header.author:
-            authors = self._extract_emailer_names(self.header.author)
+            authors = extract_emailer_names(self.header.author)
             self.author = authors[0] if (len(authors) > 0 and authors[0]) else None
 
-    def _extract_emailer_names(self, emailer_str: str) -> list[str]:
-        """Return a list of people's names found in 'emailer_str' (email author or recipients field)."""
-        emailer_str = EmailHeader.cleanup_str(emailer_str)
-
-        if len(emailer_str) == 0:
-            return []
-
-        names_found = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
-
-        if BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
-            if len(names_found) == 0 and emailer_str not in SUPPRESS_LOGS_FOR_AUTHORS:
-                logger.warning(f"'{self.filename}': No emailer found in '{escape_single_quotes(emailer_str)}'")
-            else:
-                logger.info(f"Extracted {len(names_found)} names from semi-invalid '{emailer_str}': {names_found}...")
-
-            return names_found
-
-        names_found = names_found or [emailer_str]
-        return [_reverse_first_and_last_names(name) for name in names_found]
-
     def _extract_header(self) -> None:
-        """Extract an EmailHeader object from the OCR text."""
+        """Extract an `EmailHeader` from the OCR text."""
         header_match = EMAIL_SIMPLE_HEADER_REGEX.search(self.text)
 
         if header_match:
             self.header = EmailHeader.from_header_lines(header_match.group(0))
 
-            if self.header.is_empty():
+            # DOJ file OCR text is broken in a less consistent way than the HOUSE_OVERSIGHT files
+            if self.header.is_empty() and not self.is_doj_file:
                 self.header.repair_empty_header(self.lines)
         else:
             log_level = logging.INFO if self.config else logging.WARNING
@@ -585,20 +566,15 @@ class Email(Communication):
         logger.debug(f"{self.file_id} extracted header\n\n{self.header}\n")
 
     def _extract_timestamp(self) -> datetime:
-        if self.header.sent_at:
-            timestamp = _parse_timestamp(self.header.sent_at)
-
-            if timestamp:
-                return timestamp
+        """Find the time this email was sent."""
+        if self.header.sent_at and (timestamp := _parse_timestamp(self.header.sent_at)):
+            return timestamp
 
         searchable_lines = self.lines[0:MAX_NUM_HEADER_LINES]
         searchable_text = '\n'.join(searchable_lines)
-        date_match = DATE_HEADER_REGEX.search(searchable_text)
 
-        if date_match:
-            timestamp = _parse_timestamp(date_match.group(1))
-
-            if timestamp:
+        if (date_match := DATE_HEADER_REGEX.search(searchable_text)):
+            if (timestamp := _parse_timestamp(date_match.group(1))):
                 return timestamp
 
         logger.debug(f"Failed to find timestamp, falling back to parsing {MAX_NUM_HEADER_LINES} lines...")
@@ -607,9 +583,7 @@ class Email(Communication):
             if not TIMESTAMP_LINE_REGEX.search(line):
                 continue
 
-            timestamp = _parse_timestamp(line)
-
-            if timestamp:
+            if (timestamp := _parse_timestamp(line)):
                 logger.debug(f"Fell back to timestamp {timestamp} in line '{line}'...")
                 return timestamp
 
@@ -665,7 +639,7 @@ class Email(Communication):
 
         # Share / Tweet lines
         if self.author == KATHRYN_RUEMMLER:
-            text = '\n'.join([l for l in text.split('\n') if l not in ['Share', 'Tweet', 'Bookmark it']])
+            text = '\n'.join([line for line in text.split('\n') if line not in ['Share', 'Tweet', 'Bookmark it']])
 
         return collapse_newlines(text).strip()
 
@@ -706,13 +680,17 @@ class Email(Communication):
             self.log(f"Modified text, old:\n\n" + '\n'.join(old_text.split('\n')[0:12]) + '\n')
             self.log_top_lines(12, 'Result of modifications')
 
-        lines = self.repair_ocr_text(OCR_REPAIRS, self.text).split('\n')
+        repaired_text = self._repair_links_and_quoted_subjects(self.repair_ocr_text(OCR_REPAIRS, self.text))
+        self._set_computed_fields(text=repaired_text)
+
+    def _repair_links_and_quoted_subjects(self, text: str) -> str:
+        """Repair links that the OCR has broken into multiple lines as well as 'Subject:' lines."""
+        lines = text.split('\n')
         subject_line = next((line for line in lines if line.startswith('Subject:')), None) or ''
         subject = subject_line.split(':')[1].strip() if subject_line else ''
         new_lines = []
         i = 0
 
-        # Fix links and quoted subjects (remove spaces, merge multiline links to a single line)
         while i < len(lines):
             line = lines[i]
 
@@ -720,8 +698,8 @@ class Email(Communication):
                 while i < (len(lines) - 1) \
                         and not lines[i + 1].startswith('htt') \
                         and (lines[i + 1].endswith('/') \
-                             or any(s in lines[i + 1] for s in URL_SIGNIFIERS) \
-                             or LINK_LINE2_REGEX.match(lines[i + 1])):
+                            or any(s in lines[i + 1] for s in URL_SIGNIFIERS) \
+                            or LINK_LINE2_REGEX.match(lines[i + 1])):
                     logger.debug(f"{self.filename}: Joining link lines\n   1. {line}\n   2. {lines[i + 1]}\n")
                     line += lines[i + 1]
                     i += 1
@@ -743,21 +721,14 @@ class Email(Communication):
                     i += 1
 
             new_lines.append(line)
-
-            # TODO: hacky workaround to get a working link for HOUSE_OVERSIGHT_032564
-            if self.file_id == '032564' and line == 'http://m.huffpost.com/us/entry/us_599f532ae4b0dOef9f1c129d':
-                new_lines.append('(ed. note: an archived version of the above link is here: https://archive.is/hJxT3 )')
-
             i += 1
 
         logger.debug(f"----after line repair---\n" + '\n'.join(new_lines[0:20]) + "\n---")
-        self._set_computed_fields(lines=new_lines)
+        return '\n'.join(lines)
 
     def _sent_from_device(self) -> str | None:
         """Find any 'Sent from my iPhone' style signature line if it exist in the 'actual_text'."""
-        sent_from_match = SENT_FROM_REGEX.search(self.actual_text)
-
-        if sent_from_match:
+        if (sent_from_match := SENT_FROM_REGEX.search(self.actual_text)):
             sent_from = sent_from_match.group(0)
             return 'S' + sent_from[1:] if sent_from.startswith('sent') else sent_from
 
@@ -769,9 +740,7 @@ class Email(Communication):
         else:
             self.config = EmailCfg(id=self.file_id)
 
-        extracted_from_description = extracted_from_doc_cfg.complete_description
-
-        if extracted_from_description:
+        if (extracted_from_description := extracted_from_doc_cfg.complete_description):
             extracted_description = f"{APPEARS_IN} {extracted_from_description}"
 
             if isinstance(extracted_from_doc_cfg, EmailCfg):
@@ -868,7 +837,7 @@ class Email(Communication):
 
             lines += text.split('\n')[num_lines_to_skip:]
             text = self.header.rewrite_header() + '\n' + '\n'.join(lines)
-            text = _add_line_breaks(text)  # This was skipped when _prettify_text() w/a broken header so we do it now
+            text = _add_line_breaks(text)
             self.rewritten_header_ids.add(self.file_id)
 
         lines = [
@@ -959,14 +928,3 @@ def _parse_timestamp(timestamp_str: str) -> None | datetime:
         return remove_timezone(timestamp)
     except Exception as e:
         logger.debug(f'Failed to parse "{timestamp_str}" to timestamp!')
-
-
-def _reverse_first_and_last_names(name: str) -> str:
-    if '@' in name:
-        return name.lower()
-
-    if ', ' in name:
-        names = name.split(', ')
-        return f"{names[1]} {names[0]}"
-    else:
-        return name

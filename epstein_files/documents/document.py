@@ -347,6 +347,10 @@ class Document:
         pattern = patternize(_pattern)
         return [MatchedLine(line, i) for i, line in enumerate(self.lines) if pattern.search(line)]
 
+    def printable_document(self) -> Self:
+        """Overloaded by `DojFile` to convert some files to `Email` objects."""
+        return self
+
     def raw_text(self) -> str:
         """Reload the raw data from the underlying file and return it."""
         with open(self.file_path) as f:
