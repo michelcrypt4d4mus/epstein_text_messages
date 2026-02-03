@@ -446,6 +446,16 @@ class Email(Communication):
         else:
             return self.header.subject or ''
 
+    @property
+    def summary(self) -> Text:
+        """One line summary mostly for logging."""
+        txt = self.summary_with_author
+
+        if len(self.recipients) > 0:
+            txt.append(', ').append(key_value_txt('recipients', self.recipients_txt()))
+
+        return txt.append(CLOSE_PROPERTIES_CHAR)
+
     def __post_init__(self):
         self.filename = self.file_path.name
         self.file_id = extract_file_id(self.filename)
@@ -491,15 +501,6 @@ class Email(Communication):
             Text(r if len(recipients) <= max_full_names else extract_last_name(r), style=get_style_for_name(r))
             for r in recipients
         ], join=', ')
-
-    def summary(self) -> Text:
-        """One line summary mostly for logging."""
-        txt = self._summary()
-
-        if len(self.recipients) > 0:
-            txt.append(', ').append(key_value_txt('recipients', self.recipients_txt()))
-
-        return txt.append(CLOSE_PROPERTIES_CHAR)
 
     def _extract_actual_text(self) -> str:
         """The text that comes before likely quoted replies and forwards etc."""

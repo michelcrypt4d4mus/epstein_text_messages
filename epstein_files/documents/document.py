@@ -122,7 +122,7 @@ class Document:
     def duplicate_file_txt(self) -> Text:
         """If the file is a dupe make a nice message to explain what file it's a duplicate of."""
         if not self.is_duplicate:
-            raise RuntimeError(f"duplicate_file_txt() called on {self.summary()} but not a dupe! config:\n\n{self.config}")
+            raise RuntimeError(f"duplicate_file_txt() called on {self.summary} but not a dupe! config:\n\n{self.config}")
 
         txt = Text(f"Not showing ", style=INFO_STYLE).append(epstein_media_doc_link_txt(self.file_id, style='cyan'))
         txt.append(f" because it's {DUPE_TYPE_STRS[self.config.dupe_type]} ")
@@ -232,9 +232,28 @@ class Document:
         return f"{prefix}timestamp: {remove_zero_time(self.timestamp)}"
 
     @property
+    def summary(self) -> Text:
+        """Summary of this file for logging. Subclasses should extend with a method that closes the open '['."""
+        txt = Text('').append(self._class_name, style=self._class_style)
+        txt.append(f" {self.file_path.stem}", style=FILENAME_STYLE)
+
+        if self.timestamp:
+            timestamp_str = remove_zero_time(self.timestamp).replace('T', ' ')
+            txt.append(' (', style=SYMBOL_STYLE)
+            txt.append(f"{timestamp_str}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
+
+        txt.append(' [').append(key_value_txt('size', Text(str(self.length), style='aquamarine1')))
+        txt.append(", ").append(key_value_txt('lines', self.num_lines))
+
+        if self.config and self.config.duplicate_of_id:
+            txt.append(", ").append(key_value_txt('dupe_of', Text(self.config.duplicate_of_id, style='cyan dim')))
+
+        return txt
+
+    @property
     def summary_panel(self) -> Panel:
         """Panelized description() with info_txt(), used in search results."""
-        sentences = [self.summary()]
+        sentences = [self.summary]
 
         if self.include_description_in_summary_panel:
             sentences += [Text('', style='italic').append(h) for h in self.info]
@@ -366,24 +385,6 @@ class Document:
 
         return text
 
-    def summary(self) -> Text:
-        """Summary of this file for logging. Subclasses should extend with a method that closes the open '['."""
-        txt = Text('').append(self._class_name, style=self._class_style)
-        txt.append(f" {self.file_path.stem}", style=FILENAME_STYLE)
-
-        if self.timestamp:
-            timestamp_str = remove_zero_time(self.timestamp).replace('T', ' ')
-            txt.append(' (', style=SYMBOL_STYLE)
-            txt.append(f"{timestamp_str}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
-
-        txt.append(' [').append(key_value_txt('size', Text(str(self.length), style='aquamarine1')))
-        txt.append(", ").append(key_value_txt('lines', self.num_lines))
-
-        if self.config and self.config.duplicate_of_id:
-            txt.append(", ").append(key_value_txt('dupe_of', Text(self.config.duplicate_of_id, style='cyan dim')))
-
-        return txt
-
     def top_lines(self, n: int = 10) -> str:
         """First n lines."""
         return '\n'.join(self.lines[0:n])[:MAX_TOP_LINES_LEN]
@@ -459,7 +460,7 @@ class Document:
         yield Padding(text_panel, (0, 0, 1, INFO_INDENT))
 
     def __str__(self) -> str:
-        return self.summary().plain
+        return self.summary.plain
 
     @classmethod
     def file_info_table(cls, title: str, first_col_name: str) -> Table:
