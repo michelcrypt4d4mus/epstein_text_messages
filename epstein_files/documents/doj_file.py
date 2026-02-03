@@ -9,7 +9,6 @@ from rich.panel import Panel
 from rich.text import Text
 
 from epstein_files.documents.document import INFO_INDENT, Document
-from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.email_header import FIELDS_COLON_PATTERN
 from epstein_files.documents.other_file import Metadata, OtherFile
@@ -95,10 +94,6 @@ PHONE_BILL_IDS = {
     # 'EFTA00007070':  # TODO: not a messy phone bill, short, has additional info at end
 }
 
-REPLACEMENT_TEXT = {
-    'EFTA00009622': EFTA00009622_TEXT,
-}
-
 INTERESTING_DOJ_FILES = {
     'EFTA02640711': 'Jabor Y home address (HBJ)',
     'EFTA00039689': 'Dilorio emails to SEC about Signature Bank, Hapoalim, Bioptix / RIOT, Honig, etc.',
@@ -164,14 +159,12 @@ class DojFile(OtherFile):
         if self.file_id in PHONE_BILL_IDS:
             pages = self.text.split('MetroPCS')
             text = f"{pages[0]}\n\n(Redacted phone bill {PHONE_BILL_IDS[self.file_id]} {CHECK_LINK_FOR_DETAILS})"
-        elif self.file_id in REPLACEMENT_TEXT:
-            text = REPLACEMENT_TEXT[self.file_id]
-
-            if len(text) < 400:
-                text = f'(Text of {text} {CHECK_LINK_FOR_DETAILS})'
         elif self.has_replacement_text:
-            style = INFO_STYLE
-            text = f'(Text of {self.config_description} {CHECK_LINK_FOR_DETAILS})'
+            if len(self.config_description) < 400:
+                style = INFO_STYLE
+                text = f'(Text of {self.config_description} {CHECK_LINK_FOR_DETAILS})'
+            else:
+                text = self.config_description
         else:
             text = self.text
 

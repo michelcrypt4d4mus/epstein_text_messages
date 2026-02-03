@@ -4,6 +4,7 @@ from typing import cast
 
 from dateutil.parser import parse
 
+from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.doc_cfg import DocCfg, EmailCfg, TextCfg
@@ -1771,8 +1772,10 @@ OTHER_FILES_MISC = [
     DocCfg(id='029448', description=f"weird short essay titled 'President Obama and Self-Deception'"),
 
     # DOJ files
+
     DocCfg(id='EFTA00007781', description='paychecks signed by Epstein deposited at Colonial Bank'),
     DocCfg(id='EFTA00009622', description='handwritten note transcribed by @TheReclamare via Claude AI', date='2006-07-19'),
+    DocCfg(id='EFTA00009622', description=EFTA00009622_TEXT, date='2006-07-19', replace_text_with_description=True),
     DocCfg(
         id='EFTA00039295',
         description='Bureau of Prisons inmate telephone privileges Program Statement',
