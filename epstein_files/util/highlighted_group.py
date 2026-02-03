@@ -1652,6 +1652,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[r"(steven?\s*)?hoffenberg?w?"],
     ),
     HighlightedNames(
+        label='Ghislaine',
         emailers={
             BOBBI_C_STERNHEIM: f"{GHISLAINE_MAXWELL} {CRIMINAL_DEFENSE_ATTORNEY}",
             GHISLAINE_MAXWELL: "Epstein's girlfriend, daughter of the spy Robert Maxwell",
