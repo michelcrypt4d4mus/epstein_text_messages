@@ -70,7 +70,7 @@ git checkout gh_pages
 git merge --no-edit master --quiet
 
 # Build files
-print_deploy_step "Building text messages page... $PICKLE_ARG"
+print_deploy_step "Building text messages page... "
 $GENERATE_CMD
 
 if [ -n "$ONLY_TEXTS" ]; then
