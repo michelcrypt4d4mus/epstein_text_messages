@@ -1623,7 +1623,7 @@ HIGHLIGHTED_NAMES = [
             r"Paul\s*(G.\s*)?Cassell",
             r"Rothstein\s*Rosenfeldt\s*Adler",
             r"(Scott\s*)?Rothstein",
-            r"Wigdor",
+            r"Wigdor(Law)?",
         ],
     ),
     HighlightedNames(
