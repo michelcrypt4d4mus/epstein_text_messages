@@ -1817,6 +1817,7 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00007253', replace_text_with='T-Mobile response to subpoena March 23, 2007 - phone bill'),
     DocCfg(id='EFTA00005586', replace_text_with='Completely redacted 69 pages labeled "Grand Jury - NY"'),
     DocCfg(id='EFTA01622387', author=RENATA_BOLOTOVA, description='iMessage chat log screenshots', is_attribution_uncertain=True),
+    DocCfg(id='EFTA00005569', date='2005-03-17', replace_text_with='Palm Beach police photo lineup featuring Epstein'),
 ]
 
 OTHER_FILES_JUNK = [
