@@ -187,6 +187,7 @@ CHRISTIAN_EVERDELL = 'Christian Everdell'
 CHRISTOPHER_DILORIO = 'Christopher Dilorio'
 DOUGLAS_WIGDOR = 'Douglas Wigdor'
 KARYNA_SHULIAK = 'Karyna Shuliak'
+NICOLE_JUNKERMANN = 'Nicole Junkermann'
 STACEY_RICHMAN = 'Stacey Richman'
 
 # No communications but name is in the files
