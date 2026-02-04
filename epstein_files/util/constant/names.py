@@ -229,6 +229,7 @@ OSBORNE_LLP = f"{IAN_OSBORNE} & Partners"  # Ian Osborne's PR firm
 ROTHSTEIN_ROSENFELDT_ADLER = "Rothstein Rosenfeldt Adler (Rothstein was Roger Stone's partner)"  # and a crook
 TRUMP_ORG = 'Trump Organization'
 UBS = 'UBS'
+VALAR_VENTURES = 'Valar Ventures'
 
 # First and last names that should be made part of a highlighting regex for emailers
 NAMES_TO_NOT_HIGHLIGHT = """
