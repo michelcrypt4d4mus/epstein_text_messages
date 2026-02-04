@@ -167,6 +167,7 @@ EMAILERS = [
     'Nancy Dahl',
     'Nancy Portland',
     'Nathan NYSD Chambers',
+    NICOLE_JUNKERMANN,
     'Oliver Goodenough',
     'Paula Speer',
     'Peter Aldhous',

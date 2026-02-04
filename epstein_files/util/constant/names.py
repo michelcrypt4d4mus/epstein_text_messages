@@ -180,12 +180,14 @@ UNKNOWN = '(unknown)'
 # DOJ files emails
 ALISON_J_NATHAN = 'Alison J. Nathan'
 AMIR_TAAKI = 'Amir Taaki'
+AUSTIN_HILL = 'Austin Hill'
 BOBBI_C_STERNHEIM = 'Bobbi C. Sternheim'
 BROCK_PIERCE = 'Brock Pierce'
 CHRISTIAN_EVERDELL = 'Christian Everdell'
 CHRISTOPHER_DILORIO = 'Christopher Dilorio'
 DOUGLAS_WIGDOR = 'Douglas Wigdor'
 KARYNA_SHULIAK = 'Karyna Shuliak'
+NICOLE_JUNKERMANN = 'Nicole Junkermann'
 STACEY_RICHMAN = 'Stacey Richman'
 
 # No communications but name is in the files
