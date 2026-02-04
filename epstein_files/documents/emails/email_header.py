@@ -24,6 +24,7 @@ FIELD_PATTERNS = [
     'Importance',
     'Subject',
     'Attachments',
+    'Attached',
     'Classification',
     'Flag',
     'Reply-To',
@@ -69,6 +70,7 @@ class EmailHeader:
     importance: str | None = None
     inline_images: str | None = None
     attachments: str | None = None
+    attached: str | None = None
     to: list[str] | None = None
     reply_to: str | None = None
 
