@@ -971,23 +971,16 @@ EMAILS_CONFIG = [
     EmailCfg(id='014797_1', has_uninteresting_bccs=True),
 
     # DOJ files
-
+    EmailCfg(id='EFTA01747822', author=DARREN_INDYKE, attribution_reason='reply'),
+    EmailCfg(id='EFTA00039967', author='DOJ London', recipients=[USANYS]),
+    EmailCfg(id='EFTA02731552', author=FBI),
+    EmailCfg(id='EFTA02730483', author=FBI),
     EmailCfg(id='EFTA01776893', author=DONALD_NORMAN, attribution_reason='"This is Donald"', duplicate_ids=['EFTA00915423']),
     EmailCfg(id='EFTA00656005', author=DONALD_NORMAN, attribution_reason='signed "Donald"', duplicate_ids=['EFTA02691296', 'EFTA01862178']),
-    EmailCfg(id='EFTA00915426', recipients=[DONALD_NORMAN], attribution_reason='"This is Donald"'),
-    EmailCfg(id='EFTA00916133', recipients=[DONALD_NORMAN], attribution_reason='signed "Donald"', duplicate_ids=['EFTA01862243']),
-    EmailCfg(id='EFTA00935996', recipients=[RENATA_BOLOTOVA], attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
-    EmailCfg(id='EFTA01846434', recipients=[RENATA_BOLOTOVA], attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
-    EmailCfg(id='EFTA01961947', author=RENATA_BOLOTOVA, recipients=[JEFFREY_EPSTEIN], attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
-    EmailCfg(id='EFTA01923844', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
-    EmailCfg(id='EFTA00676720', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
-    EmailCfg(id='EFTA00686861', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
+    EmailCfg(id='EFTA00039985', author='Florence Hutner', recipients=[USANYS], attribution_reason='signature'),
     EmailCfg(id='EFTA02296929', author=KARYNA_SHULIAK, attribution_reason='Valentines Day congrats'),
-    EmailCfg(id='EFTA00104945', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True),
-    EmailCfg(id='EFTA02629770', recipients=[JEFFREY_EPSTEIN]),
-    EmailCfg(id='EFTA02731737', date='2023-06-30T16:05:00'),
-    EmailCfg(id='EFTA02731689', author=UNKNOWN, recipients=[None], date='2023-06-09 20:14:00'),
     EmailCfg(id='EFTA00334935', author=LESLEY_GROFF, is_attribution_uncertain=True),
+    EmailCfg(id='EFTA02104454', author=LESLEY_GROFF, attribution_reason='Epstein scheduling'),
     EmailCfg(id='EFTA02067245', author=LESLEY_GROFF, description='Valar Ventures (Thiel) meeting', is_interesting=True, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02068490', author=LESLEY_GROFF, description='Valar Ventures (Thiel) meeting', is_interesting=True, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02067872', author=LESLEY_GROFF, description='Valar Ventures (Thiel) meeting', is_interesting=True, is_attribution_uncertain=True),
@@ -1002,30 +995,60 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02005819', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02159829', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02229858', author=LESLEY_GROFF, is_attribution_uncertain=True),
-
+    EmailCfg(id='EFTA00428084', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02174702', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA00419742', author=LESLEY_GROFF, duplicate_ids=['EFTA02174857']),
+    EmailCfg(id='EFTA01731288', author=LESLEY_GROFF, attribution_reason='signature'),
     EmailCfg(id='EFTA00424931', author=LESLEY_GROFF, is_attribution_uncertain=True, duplicate_ids=['EFTA02181004']),
-
+    EmailCfg(id='EFTA02067282', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02089992', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02104454', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02005819', author=LESLEY_GROFF, is_attribution_uncertain=True, duplicate_ids=['EFTA01890165']),
-
     EmailCfg(id='EFTA00357509', author=LESLEY_GROFF, is_attribution_uncertain=True, duplicate_ids=['EFTA02089323']),
+    EmailCfg(id='EFTA01961947', author=RENATA_BOLOTOVA, recipients=[JEFFREY_EPSTEIN], attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
+    EmailCfg(id='EFTA01923844', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
+    EmailCfg(id='EFTA00676720', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
+    EmailCfg(id='EFTA00686861', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
+    EmailCfg(id='EFTA00995559', author=RENATA_BOLOTOVA, attribution_reason='poorly redacted signature'),
+    EmailCfg(id='EFTA00039663', author=STACEY_RICHMAN, attribution_reason='unredacted in EFTA00039662'),
+    EmailCfg(id='EFTA02731689', author=UNKNOWN, recipients=[None], date='2023-06-09 20:14:00'),
+    EmailCfg(id='EFTA00040121', author=USANYS, recipients=['AT&T Court Appearance Team']),
+    EmailCfg(id='EFTA00040141', author=USANYS),
+    EmailCfg(id='EFTA02731644', author=USANYS),
+    EmailCfg(id='EFTA00040144', author=USANYS),
+    EmailCfg(id='EFTA00039995', author=USANYS),
+    EmailCfg(id='EFTA00039813', author=USANYS),
+    EmailCfg(id='EFTA00039815', author=USANYS),
+    EmailCfg(id='EFTA00039825', author=USANYS),
+    EmailCfg(id='EFTA02731684', author=USANYS),
+    EmailCfg(id='EFTA02068282', recipients=[ANDREW_MCCORMACK]),
+    EmailCfg(id='EFTA00915426', recipients=[DONALD_NORMAN], attribution_reason='"This is Donald"'),
+    EmailCfg(id='EFTA00916133', recipients=[DONALD_NORMAN], attribution_reason='signed "Donald"', duplicate_ids=['EFTA01862243']),
+    EmailCfg(id='EFTA02629770', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='EFTA02089459', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA02187050', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00357515', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00357508', recipients=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA00357523', recipients=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA02089433', recipients=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA02089459', recipients=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA02068381', recipients=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA00840591', recipients=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA00935996', recipients=[RENATA_BOLOTOVA], attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
+    EmailCfg(id='EFTA01846434', recipients=[RENATA_BOLOTOVA], attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
+    EmailCfg(id='EFTA00667441', recipients=[RENATA_BOLOTOVA], attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
+    EmailCfg(id='EFTA02731617', recipients=[USANYS]),
+    EmailCfg(id='EFTA02731737', date='2023-06-30T16:05:00'),
     EmailCfg(id='EFTA02731475', date='2023-05-31T20:53:00'),
     EmailCfg(id='EFTA02731732', date='2024-03-06T12:21:00'),
     EmailCfg(id='EFTA02731485', date='2023-06-12T13:53:00'),
     EmailCfg(id='EFTA02731617', date='2021-04-28T15:05:41'),
-    EmailCfg(id='EFTA02730483', date='2023-07-11T08:25:00'), # TODO: actually reply timewtamp
-    EmailCfg(id='EFTA02730481', date='2023-07-07T11:01:00'), # TODO: actually reply timewtamp
-    EmailCfg(id='EFTA02731754', date='2024-03-06T23:24:00'), # TODO: actually reply timewtamp
-    EmailCfg(id='EFTA02731735', date='2024-03-04T05:04:00'), # TODO: actually reply timewtamp
-    EmailCfg(id='EFTA02731577', date='2024-10-16T00:00:00'), # TODO: actually reply timewtamp
-    EmailCfg(id='EFTA02730468', date='2019-07-11T08:25:00'), # TODO: This is just wrong
+    EmailCfg(id='EFTA02730483', date='2023-07-11T08:25:00'),  # TODO: actually reply timewtamp
+    EmailCfg(id='EFTA02730481', date='2023-07-07T11:01:00'),  # TODO: actually reply timewtamp
+    EmailCfg(id='EFTA02731754', date='2024-03-06T23:24:00'),  # TODO: actually reply timewtamp
+    EmailCfg(id='EFTA02731735', date='2024-03-04T05:04:00'),  # TODO: actually reply timewtamp
+    EmailCfg(id='EFTA02731577', date='2024-10-16T00:00:00'),  # TODO: actually reply timewtamp
+    EmailCfg(id='EFTA02730468', date='2019-07-11T08:25:00'),  # TODO: This is just wrong
     # Generated basd on OtheFile extract_timestamp()
     EmailCfg(id='EFTA02731783', date='2022-01-21 17:28:00'),
     EmailCfg(id='EFTA02731587', date='2022-01-21 17:28:00'),
@@ -1036,20 +1059,18 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731583', date='2022-01-21 17:28:00'),
     EmailCfg(id='EFTA02731552', date='2021-05-26 16:12:00'),
     EmailCfg(id='EFTA00039888', date='2019-05-14 16:49:00'),
-    EmailCfg(id='EFTA02731684', date='2021-05-11 15:27:00'),
     EmailCfg(id='EFTA02731697', date='2021-06-07 17:33:00'),
     EmailCfg(id='EFTA02731733', date='2021-05-17 17:29:00'),
     EmailCfg(id='EFTA00040145', date='2021-11-09 17:24:30'),
     # EmailCfg(id='EFTA02730468', date='2004-02-03 00:00:00'),  # TODO: ???
     EmailCfg(id='EFTA02731528', date='2021-05-06 09:39:15'),
     EmailCfg(id='EFTA02730485', date='2021-12-03 00:00:00'),
+    EmailCfg(id='EFTA00104945', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True),
     EmailCfg(id='EFTA00039689', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA00995559', author=RENATA_BOLOTOVA, attribution_reason='poorly redacted signature'),
     EmailCfg(id='EFTA00875181', duplicate_ids=['EFTA01901268']),
     EmailCfg(id='EFTA00754450', duplicate_ids=['EFTA02418244']),
     EmailCfg(id='EFTA01852975', duplicate_ids=['EFTA02001764']),
     EmailCfg(id='EFTA00039802', duplicate_ids=['EFTA00039809']),
-    EmailCfg(id='EFTA02104454', author=LESLEY_GROFF, attribution_reason='Epstein scheduling'),
     EmailCfg(id='EFTA01051074', description='Brock Pierce arranging meeting between Bannon and Epstein (in Doha?)'),
 ]
 
@@ -1971,7 +1992,7 @@ GERMAN_REPLY_PATTERN = r"Am \d\d\.\d\d\..*schrieb.*"
 NORWEGAIN_REPLY_PATTERN = r"(Den .* folgende|(fre|lor|son)\. .* skrev .*):"
 REPLY_LINE_IN_A_MSG_PATTERN = r"In a message dated \d+/\d+/\d+.*writes:"
 REPLY_LINE_ENDING_PATTERN = r"[_ \n](AM|PM|[<_]|wrote:?)"
-REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"On \d+/\d+/\d+[, ].*{REPLY_LINE_ENDING_PATTERN}"
+REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"(?<!M)On \d+/\d+/\d+[, ].*{REPLY_LINE_ENDING_PATTERN}"
 REPLY_LINE_ON_DATE_PATTERN = fr"^[> •]*On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Jan|Fe(b|vr\.)|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*)[, ].*{REPLY_LINE_ENDING_PATTERN}"
 REPLY_LINE_PATTERN = rf"({FRENCH_REPLY_PATTERN}|{GERMAN_REPLY_PATTERN}|{NORWEGAIN_REPLY_PATTERN}|{REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
