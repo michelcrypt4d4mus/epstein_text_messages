@@ -15556,10 +15556,13 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "references Berkeley",
+                "author": "Mariya Prusakova",
                 "bytes": 1148,
                 "comment": "'What happens with zubair's project?'",
                 "file_id": "030630",
                 "filename": "HOUSE_OVERSIGHT_030630.txt",
+                "is_attribution_uncertain": true,
                 "is_interesting": true,
                 "num_lines": 17,
                 "recipients": [
@@ -34779,10 +34782,14 @@
             },
             {
                 "author": "Richard Kahn",
-                "bytes": 564,
+                "bytes": 548,
                 "file_id": "EFTA01034779",
                 "filename": "EFTA01034779.txt",
-                "num_lines": 19,
+                "num_lines": 12,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Valar Financial Statements and K-1's",
                 "timestamp": "2019-03-29T12:16:06",
                 "type": "Email"
             },
@@ -35099,7 +35106,7 @@
                 "type": "Email"
             },
             {
-                "author": "Velar Ventures on behalf of Valar Ventures",
+                "author": "Valar Ventures",
                 "bytes": 1032,
                 "file_id": "EFTA01805070",
                 "filename": "EFTA01805070.txt",
@@ -44571,7 +44578,7 @@
         "Macky Sall": "Africa, prime minister of Senegal, defeated Abdoulaye Wade",
         "Manuela Martinez": "modeling, Mega Partners (Brazilian agency)",
         "Marc Leon": "finance, Luxury Properties Sari Morrocco",
-        "Mariya Prusakova": "Russia, AKA Masha Prusso, investor and former Olympic snowboarder \"found ladies\" for Epstein",
+        "Mariya Prusakova": "Russia, AKA Masha Prusso, investor/former Olympic snowboarder who \"found ladies\" for Epstein",
         "Mark Epstein": "Epstein, brother of Jeffrey",
         "Mark Tramo": "academia, professor of neurology at UCLA",
         "Martin Nowak": "Harvard, professor of mathematics and biology",
