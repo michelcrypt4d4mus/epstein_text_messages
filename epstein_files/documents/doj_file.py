@@ -120,6 +120,11 @@ INTERESTING_DOJ_FILES = {
     'EFTA01003346': "Peter Thiel tells Epstein to invest in his fund",
     'EFTA00811866': "list of Epstein's bank accounts",
     'EFTA00811666': "asset valuations of Epstein's holdings, includes 'Coinbase via grat'",
+    'EFTA00803405': "Honeycomb Asset Management (Spotify and Tencent investors) 2018 firm brochure",
+    'EFTA00803491': "Honeycomb Asset Management (Spotify and Tencent investors) deck",
+    'EFTA00803459': "Honeycomb Asset Management (Spotify and Tencent investors) January 2019 report",
+    'EFTA00603445': "Honeycomb Asset Management (Spotify and Tencent investors) July 2017 report",
+    'EFTA00803464': "Honeycomb Asset Management (Spotify and Tencent investors) July 2018 report",
 }
 
 NO_IMAGE_SUFFIX = """
