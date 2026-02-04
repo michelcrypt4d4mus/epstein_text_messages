@@ -32715,6 +32715,8 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "unredacted in EFTA00039662",
+                "author": "Stacey Richman",
                 "bytes": 1232,
                 "file_id": "EFTA00039663",
                 "filename": "EFTA00039663.txt",
@@ -32746,10 +32748,12 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 506,
                 "file_id": "EFTA00039790",
                 "filename": "EFTA00039790.txt",
-                "num_lines": 9,
+                "num_lines": 8,
+                "subject": "Opinion on Maxwell Motions",
                 "timestamp": "2021-04-16T22:09:33",
                 "type": "Email"
             },
@@ -32768,7 +32772,8 @@
                 "type": "Email"
             },
             {
-                "bytes": 1234,
+                "author": "USANYS",
+                "bytes": 1238,
                 "file_id": "EFTA00039796",
                 "filename": "EFTA00039796.txt",
                 "num_lines": 20,
@@ -32825,10 +32830,10 @@
                 "type": "Email"
             },
             {
-                "bytes": 1677,
+                "bytes": 1666,
                 "file_id": "EFTA00039806",
                 "filename": "EFTA00039806.txt",
-                "num_lines": 46,
+                "num_lines": 47,
                 "sent_from_device": "Sent from my iPhone",
                 "timestamp": "2019-02-24T20:18:01",
                 "type": "Email"
@@ -32845,20 +32850,21 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 1553,
                 "file_id": "EFTA00039813",
                 "filename": "EFTA00039813.txt",
                 "num_lines": 34,
                 "recipients": [
                     "Brad Edwards",
-                    "Brittany Henderson",
-                    "USANYS"
+                    "Brittany Henderson"
                 ],
                 "subject": "RE: United States v. Ghislaine Maxwell",
                 "timestamp": "2021-04-20T21:32:54",
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 869,
                 "file_id": "EFTA00039815",
                 "filename": "EFTA00039815.txt",
@@ -32883,6 +32889,7 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 1258,
                 "file_id": "EFTA00039825",
                 "filename": "EFTA00039825.txt",
@@ -32977,10 +32984,14 @@
                 "type": "Email"
             },
             {
-                "bytes": 657,
+                "bytes": 669,
                 "file_id": "EFTA00039885",
                 "filename": "EFTA00039885.txt",
-                "num_lines": 17,
+                "num_lines": 18,
+                "recipients": [
+                    "FBI"
+                ],
+                "subject": "RE: Epstein update",
                 "timestamp": "2019-09-17T20:30:38",
                 "type": "Email"
             },
@@ -33044,19 +33055,21 @@
                 "type": "Email"
             },
             {
-                "bytes": 739,
+                "bytes": 738,
                 "file_id": "EFTA00039894",
                 "filename": "EFTA00039894.txt",
-                "num_lines": 13,
+                "num_lines": 12,
                 "subject": "Issue with Declaration Filing",
                 "timestamp": "2020-08-06T11:42:36",
                 "type": "Email"
             },
             {
-                "bytes": 894,
+                "author": "USANYS",
+                "bytes": 896,
                 "file_id": "EFTA00039964",
                 "filename": "EFTA00039964.txt",
                 "num_lines": 27,
+                "subject": "RE:",
                 "timestamp": "2020-07-14T19:15:40",
                 "type": "Email"
             },
@@ -33070,12 +33083,13 @@
                 "type": "Email"
             },
             {
-                "bytes": 7817,
+                "author": "DOJ London",
+                "bytes": 7812,
                 "file_id": "EFTA00039967",
                 "filename": "EFTA00039967.txt",
-                "num_lines": 121,
+                "num_lines": 122,
                 "recipients": [
-                    "London"
+                    "USANYS"
                 ],
                 "subject": "RE: Independent: Prince Andrew: Refusal to talk to Epstein investigators 'straining relations between UK and America'",
                 "timestamp": "2021-08-24T16:34:32",
@@ -33125,24 +33139,32 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "signature",
+                "author": "Florence Hutner",
                 "bytes": 7597,
                 "file_id": "EFTA00039985",
                 "filename": "EFTA00039985.txt",
                 "num_lines": 140,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "RE: Epstein File - Redactions",
                 "timestamp": "2019-09-11T14:19:37",
                 "type": "Email"
             },
             {
-                "bytes": 3815,
+                "author": "USANYS",
+                "bytes": 3801,
                 "file_id": "EFTA00039989",
                 "filename": "EFTA00039989.txt",
-                "num_lines": 147,
+                "num_lines": 145,
                 "sent_from_device": "Sent from my iPhone",
+                "subject": "Fwd:",
                 "timestamp": "2019-09-12T11:57:01",
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 335,
                 "file_id": "EFTA00039995",
                 "filename": "EFTA00039995.txt",
@@ -33166,7 +33188,7 @@
             },
             {
                 "author": "Paula Speer",
-                "bytes": 644,
+                "bytes": 634,
                 "file_id": "EFTA00040105",
                 "filename": "EFTA00040105.txt",
                 "num_lines": 14,
@@ -33205,10 +33227,14 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 2578,
                 "file_id": "EFTA00040121",
                 "filename": "EFTA00040121.txt",
                 "num_lines": 55,
+                "recipients": [
+                    "AT&T Court Appearance Team"
+                ],
                 "subject": "RE: AT&T FILE # 227815.001 - Affidavit for purged records",
                 "timestamp": "2021-11-17T20:24:07",
                 "type": "Email"
@@ -33253,6 +33279,7 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 347,
                 "file_id": "EFTA00040141",
                 "filename": "EFTA00040141.txt",
@@ -33272,23 +33299,26 @@
                 "type": "Email"
             },
             {
-                "bytes": 1045,
+                "author": "USANYS",
+                "bytes": 1035,
                 "file_id": "EFTA00040144",
                 "filename": "EFTA00040144.txt",
                 "num_lines": 26,
-                "recipients": [
-                    " II "
-                ],
                 "subject": "RE: 3500 production",
                 "timestamp": "2021-11-09T17:25:46",
                 "type": "Email"
             },
             {
-                "bytes": 1036,
+                "author": "USANYS",
+                "bytes": 1011,
                 "date": "2021-11-09 17:24:30",
                 "file_id": "EFTA00040145",
                 "filename": "EFTA00040145.txt",
-                "num_lines": 26,
+                "num_lines": 24,
+                "recipients": [
+                    "USANYS"
+                ],
+                "subject": "RE: 3500 production",
                 "timestamp": "2021-11-09T17:24:30",
                 "type": "Email"
             },
@@ -33458,6 +33488,9 @@
                 "file_id": "EFTA00357523",
                 "filename": "EFTA00357523.txt",
                 "num_lines": 46,
+                "recipients": [
+                    "Lesley Groff"
+                ],
                 "subject": "Re: Jeffrey Epstein",
                 "timestamp": "2014-12-03T17:08:49",
                 "type": "Email"
@@ -33636,9 +33669,11 @@
                 "type": "Email"
             },
             {
+                "author": "Lesley Groff",
                 "bytes": 911,
                 "file_id": "EFTA00428084",
                 "filename": "EFTA00428084.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 26,
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Fwd: Jeffrey Epstein",
@@ -33827,12 +33862,14 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\"",
                 "bytes": 3886,
                 "file_id": "EFTA00667441",
                 "filename": "EFTA00667441.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 85,
                 "recipients": [
-                    "Jeffrey Epstein"
+                    "Renata Bolotova"
                 ],
                 "sent_from_device": "Sent from my iPad",
                 "subject": "Re: Re:",
@@ -34097,6 +34134,9 @@
                 "file_id": "EFTA00840591",
                 "filename": "EFTA00840591.txt",
                 "num_lines": 33,
+                "recipients": [
+                    "Lesley Groff"
+                ],
                 "subject": "Re: Conan Leung",
                 "timestamp": "2015-11-17T04:57:07",
                 "type": "Email"
@@ -34978,6 +35018,8 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "signature",
+                "author": "Lesley Groff",
                 "bytes": 1249,
                 "file_id": "EFTA01731288",
                 "filename": "EFTA01731288.txt",
@@ -34990,6 +35032,7 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "signature",
                 "author": "Lesley Groff",
                 "bytes": 1263,
                 "file_id": "EFTA01731288",
@@ -35003,14 +35046,21 @@
                 "type": "Email"
             },
             {
+                "author": "Andrew McCormack",
                 "bytes": 1335,
                 "file_id": "EFTA01743904",
                 "filename": "EFTA01743904.txt",
                 "num_lines": 28,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Velar update",
                 "timestamp": "2015-08-21T16:31:51",
                 "type": "Email"
             },
             {
+                "attribution_reason": "reply",
+                "author": "Darren Indyke",
                 "bytes": 978,
                 "file_id": "EFTA01747822",
                 "filename": "EFTA01747822.txt",
@@ -35107,10 +35157,14 @@
             },
             {
                 "author": "Valar Ventures",
-                "bytes": 1032,
+                "bytes": 1027,
                 "file_id": "EFTA01805070",
                 "filename": "EFTA01805070.txt",
-                "num_lines": 18,
+                "num_lines": 16,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Valar Ventures - Fall 2016 Update",
                 "timestamp": "2016-12-07T14:38:00",
                 "type": "Email"
             },
@@ -35331,10 +35385,11 @@
                 "type": "Email"
             },
             {
-                "bytes": 179,
+                "author": "Renata Bolotova",
+                "bytes": 224,
                 "file_id": "EFTA01969322",
                 "filename": "EFTA01969322.txt",
-                "num_lines": 5,
+                "num_lines": 6,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -35444,9 +35499,11 @@
                 "type": "Email"
             },
             {
+                "author": "Lesley Groff",
                 "bytes": 573,
                 "file_id": "EFTA02067282",
                 "filename": "EFTA02067282.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 15,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -35491,6 +35548,9 @@
                 "file_id": "EFTA02068282",
                 "filename": "EFTA02068282.txt",
                 "num_lines": 66,
+                "recipients": [
+                    "Andrew McCormack"
+                ],
                 "subject": "Fwd: Valar update",
                 "timestamp": "2015-11-16T20:15:12",
                 "type": "Email"
@@ -35501,8 +35561,7 @@
                 "filename": "EFTA02068381.txt",
                 "num_lines": 30,
                 "recipients": [
-                    "Andrew McCormack",
-                    "James Fitzgerald"
+                    "Lesley Groff"
                 ],
                 "subject": "Re: Velar update",
                 "timestamp": "2015-11-16T20:39:35",
@@ -35571,6 +35630,9 @@
                 "file_id": "EFTA02089433",
                 "filename": "EFTA02089433.txt",
                 "num_lines": 46,
+                "recipients": [
+                    "Lesley Groff"
+                ],
                 "subject": "Re: Jeffrey Epstein",
                 "timestamp": "2014-12-03T17:08:49",
                 "type": "Email"
@@ -35644,11 +35706,11 @@
                 "type": "Email"
             },
             {
-                "attribution_reason": "Epstein scheduling",
                 "author": "Lesley Groff",
                 "bytes": 885,
                 "file_id": "EFTA02104454",
                 "filename": "EFTA02104454.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 23,
                 "recipients": [
                     "Brock Pierce"
@@ -35696,11 +35758,16 @@
                 "type": "Email"
             },
             {
-                "bytes": 825,
+                "author": "Lesley Groff",
+                "bytes": 854,
                 "file_id": "EFTA02172966",
                 "filename": "EFTA02172966.txt",
-                "num_lines": 24,
-                "timestamp": "2026-02-02T15:06:45",
+                "num_lines": 26,
+                "recipients": [
+                    "Steven Victor MD"
+                ],
+                "subject": "Re: Jeffrey Epstein",
+                "timestamp": "2012-03-12T15:06:45",
                 "type": "Email"
             },
             {
@@ -36315,11 +36382,12 @@
                 "type": "Email"
             },
             {
-                "bytes": 1158,
+                "bytes": 1154,
                 "file_id": "EFTA02730469",
                 "filename": "EFTA02730469.txt",
-                "num_lines": 36,
-                "timestamp": "2011-03-23T10:53:00",
+                "num_lines": 38,
+                "subject": "RE: Completed Sections",
+                "timestamp": "2011-03-23T06:54:00",
                 "type": "Email"
             },
             {
@@ -36369,11 +36437,13 @@
                 "type": "Email"
             },
             {
-                "bytes": 1818,
+                "author": "Jeanne M. Christensen",
+                "bytes": 1839,
                 "file_id": "EFTA02731473",
                 "filename": "EFTA02731473.txt",
-                "num_lines": 38,
-                "timestamp": "2023-07-21T22:04:00",
+                "num_lines": 37,
+                "subject": "RE: Leon Black follow up",
+                "timestamp": "2023-07-24T10:45:00",
                 "type": "Email"
             },
             {
@@ -36391,7 +36461,8 @@
                 "file_id": "EFTA02731477",
                 "filename": "EFTA02731477.txt",
                 "num_lines": 18,
-                "timestamp": "2023-06-12T13:53:00",
+                "subject": "RE: Leon Black/Additional HT Subject Referral -- Update",
+                "timestamp": "2026-06-12T13:59:00",
                 "type": "Email"
             },
             {
@@ -36404,18 +36475,22 @@
                 "type": "Email"
             },
             {
-                "bytes": 1233,
+                "author": "Jeanne M. Christensen",
+                "bytes": 1232,
                 "file_id": "EFTA02731479",
                 "filename": "EFTA02731479.txt",
-                "num_lines": 25,
+                "num_lines": 23,
+                "subject": "[EXTERNAL] Leon Black follow up",
                 "timestamp": "2023-07-21T21:55:00",
                 "type": "Email"
             },
             {
-                "bytes": 2401,
+                "author": "Jeanne M. Christensen",
+                "bytes": 2399,
                 "file_id": "EFTA02731480",
                 "filename": "EFTA02731480.txt",
-                "num_lines": 54,
+                "num_lines": 52,
+                "subject": "[EXTERNAL] Re: Follow up, conversation last week",
                 "timestamp": "2023-06-09T16:53:00",
                 "type": "Email"
             },
@@ -36434,7 +36509,8 @@
                 "file_id": "EFTA02731484",
                 "filename": "EFTA02731484.txt",
                 "num_lines": 31,
-                "timestamp": "2023-07-21T21:55:00",
+                "subject": "Fwd: Leon Black follow up",
+                "timestamp": "2023-07-21T22:04:00",
                 "type": "Email"
             },
             {
@@ -36452,7 +36528,8 @@
                 "file_id": "EFTA02731486",
                 "filename": "EFTA02731486.txt",
                 "num_lines": 39,
-                "timestamp": "2023-05-30T09:50:00",
+                "subject": "RE: Epstein/Maxwell/Leon Black/Additional Subject",
+                "timestamp": "2023-05-30T10:20:00",
                 "type": "Email"
             },
             {
@@ -36464,19 +36541,25 @@
                 "type": "Email"
             },
             {
-                "bytes": 7826,
+                "bytes": 7824,
                 "file_id": "EFTA02731490",
                 "filename": "EFTA02731490.txt",
-                "num_lines": 184,
+                "num_lines": 182,
                 "subject": "RE: Re: 1. slack, photos with JE",
                 "timestamp": "2024-03-12T12:48:30",
                 "type": "Email"
             },
             {
-                "bytes": 7392,
+                "bytes": 7394,
                 "file_id": "EFTA02731501",
                 "filename": "EFTA02731501.txt",
-                "num_lines": 172,
+                "num_lines": 167,
+                "recipients": [
+                    "Douglas Wigdor",
+                    "Jeanne M. Christensen",
+                    "Meredith Firetog"
+                ],
+                "subject": "RE: Re: L Black photos with JE",
                 "timestamp": "2024-03-12T12:50:30",
                 "type": "Email"
             },
@@ -36511,8 +36594,8 @@
                 "type": "Email"
             },
             {
-                "author": "Nanat1StirlibUSIO",
-                "bytes": 1906,
+                "author": "Jeanne M. Christensen",
+                "bytes": 1909,
                 "file_id": "EFTA02731515",
                 "filename": "EFTA02731515.txt",
                 "num_lines": 36,
@@ -36583,11 +36666,13 @@
                 "type": "Email"
             },
             {
-                "bytes": 772,
+                "author": "FBI",
+                "bytes": 775,
                 "file_id": "EFTA02731582",
                 "filename": "EFTA02731582.txt",
                 "num_lines": 21,
-                "timestamp": "2023-06-30T16:04:52",
+                "subject": "Re: Memo to w e re DANY ca I on Leon Black/",
+                "timestamp": "2023-07-03T17:24:39",
                 "type": "Email"
             },
             {
@@ -36647,7 +36732,8 @@
                 "bytes": 832,
                 "file_id": "EFTA02731615",
                 "filename": "EFTA02731615.txt",
-                "num_lines": 22,
+                "num_lines": 21,
+                "subject": "RE: Spinoff interview from Maxwell",
                 "timestamp": "2021-05-12T16:06:48",
                 "type": "Email"
             },
@@ -36674,31 +36760,36 @@
                 "file_id": "EFTA02731623",
                 "filename": "EFTA02731623.txt",
                 "num_lines": 128,
+                "subject": "RE: EXTERNAL / Leon Black",
                 "timestamp": "2023-02-28T11:35:00",
                 "type": "Email"
             },
             {
-                "bytes": 2339,
+                "bytes": 2338,
                 "file_id": "EFTA02731628",
                 "filename": "EFTA02731628.txt",
-                "num_lines": 56,
+                "num_lines": 55,
+                "subject": "RE: (EXTERNAL] / Leon Black",
                 "timestamp": "2021-10-29T11:55:00",
                 "type": "Email"
             },
             {
-                "bytes": 2109,
+                "bytes": 2112,
                 "file_id": "EFTA02731630",
                 "filename": "EFTA02731630.txt",
-                "num_lines": 58,
-                "timestamp": "2024-03-05T10:41:00",
+                "num_lines": 57,
+                "subject": "RE: Leon Black",
+                "timestamp": "2024-03-05T10:40:00",
                 "type": "Email"
             },
             {
-                "bytes": 443,
+                "author": "USANYS",
+                "bytes": 449,
                 "file_id": "EFTA02731632",
                 "filename": "EFTA02731632.txt",
-                "num_lines": 17,
-                "timestamp": "2023-08-01T13:24:24",
+                "num_lines": 16,
+                "subject": "Re: Leon Black Inquiry",
+                "timestamp": "2023-08-02T10:10:00",
                 "type": "Email"
             },
             {
@@ -36718,23 +36809,26 @@
                 "file_id": "EFTA02731636",
                 "filename": "EFTA02731636.txt",
                 "num_lines": 31,
-                "timestamp": "2023-06-28T14:03:00",
+                "subject": "RE: Leon Black/Additional HT Subject Referral -- Update",
+                "timestamp": "2023-06-28T22:16:00",
                 "type": "Email"
             },
             {
-                "bytes": 911,
+                "bytes": 910,
                 "file_id": "EFTA02731637",
                 "filename": "EFTA02731637.txt",
-                "num_lines": 22,
-                "timestamp": "2023-06-12T13:53:00",
+                "num_lines": 21,
+                "subject": "RE: Leon Black/Additional HT Subject Referral -- Update",
+                "timestamp": "2023-06-12T13:59:00",
                 "type": "Email"
             },
             {
-                "bytes": 1480,
+                "bytes": 1479,
                 "file_id": "EFTA02731638",
                 "filename": "EFTA02731638.txt",
-                "num_lines": 39,
-                "timestamp": "2023-06-28T22:15:40",
+                "num_lines": 38,
+                "subject": "Re: Leon Black/Additional HT Subject Referral -- Update",
+                "timestamp": "2023-06-28T22:29:00",
                 "type": "Email"
             },
             {
@@ -36764,6 +36858,7 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 1562,
                 "file_id": "EFTA02731644",
                 "filename": "EFTA02731644.txt",
@@ -36791,8 +36886,9 @@
                 "bytes": 2453,
                 "file_id": "EFTA02731648",
                 "filename": "EFTA02731648.txt",
-                "num_lines": 73,
-                "timestamp": "2023-07-24T16:07:00",
+                "num_lines": 72,
+                "subject": "RE: Leon Black follow up",
+                "timestamp": "2023-07-24T16:07:25",
                 "type": "Email"
             },
             {
@@ -36820,24 +36916,25 @@
                 "bytes": 1124,
                 "file_id": "EFTA02731659",
                 "filename": "EFTA02731659.txt",
-                "num_lines": 28,
-                "timestamp": "2023-06-01T21:39:00",
+                "num_lines": 27,
+                "subject": "RE: Time to chat tomorrow?",
+                "timestamp": "2023-06-01T21:41:21",
                 "type": "Email"
             },
             {
-                "bytes": 2125,
+                "bytes": 2115,
                 "file_id": "EFTA02731660",
                 "filename": "EFTA02731660.txt",
                 "num_lines": 49,
-                "timestamp": "2023-07-21T22:16:18",
+                "timestamp": "2023-07-22T11:48:27",
                 "type": "Email"
             },
             {
-                "bytes": 16058,
+                "bytes": 16062,
                 "file_id": "EFTA02731662",
                 "filename": "EFTA02731662.txt",
-                "num_lines": 671,
-                "timestamp": "2023-07-04T14:56:49",
+                "num_lines": 672,
+                "timestamp": "2023-07-04T20:12:21",
                 "type": "Email"
             },
             {
@@ -36855,12 +36952,13 @@
                 "type": "Email"
             },
             {
-                "bytes": 2490,
-                "date": "2021-05-11 15:27:00",
+                "author": "USANYS",
+                "bytes": 2470,
                 "file_id": "EFTA02731684",
                 "filename": "EFTA02731684.txt",
-                "num_lines": 68,
-                "timestamp": "2021-05-11T15:27:00",
+                "num_lines": 65,
+                "subject": "Email Memo to File re",
+                "timestamp": "2021-05-12T17:10:00",
                 "type": "Email"
             },
             {
@@ -36873,14 +36971,15 @@
             },
             {
                 "author": "(unknown)",
-                "bytes": 8035,
+                "bytes": 8030,
                 "date": "2023-06-09 20:14:00",
                 "file_id": "EFTA02731689",
                 "filename": "EFTA02731689.txt",
-                "num_lines": 226,
+                "num_lines": 225,
                 "recipients": [
                     null
                 ],
+                "subject": "FW: (EXTERNAL] / Leon Black",
                 "timestamp": "2023-06-09T20:14:00",
                 "type": "Email"
             },
@@ -36904,21 +37003,21 @@
                 "type": "Email"
             },
             {
-                "author": "glail5flagQI",
-                "bytes": 1536,
+                "author": "Douglas Wigdor",
+                "bytes": 1543,
                 "file_id": "EFTA02731713",
                 "filename": "EFTA02731713.txt",
-                "num_lines": 42,
-                "subject": "E)GRNALELeOn Bac",
+                "num_lines": 41,
+                "subject": "[EXTERNAL] Re: Leon Black",
                 "timestamp": "2024-03-05T14:59:39",
                 "type": "Email"
             },
             {
-                "author": "Nanne M. Qir tenser",
-                "bytes": 3707,
+                "author": "Jeanne M. Christensen",
+                "bytes": 3708,
                 "file_id": "EFTA02731715",
                 "filename": "EFTA02731715.txt",
-                "num_lines": 84,
+                "num_lines": 83,
                 "subject": "EXTERNAL RE: Leon Bac follow up",
                 "timestamp": "2023-07-29T13:38:22",
                 "type": "Email"
@@ -36934,20 +37033,21 @@
                 "type": "Email"
             },
             {
-                "author": "carne M.",
-                "bytes": 4556,
+                "author": "Jeanne M. Christensen",
+                "bytes": 4565,
                 "file_id": "EFTA02731721",
                 "filename": "EFTA02731721.txt",
-                "num_lines": 85,
+                "num_lines": 82,
                 "subject": "EXTERNAL RE: Re Leon Black",
                 "timestamp": "2024-03-13T09:16:34",
                 "type": "Email"
             },
             {
-                "bytes": 2788,
+                "bytes": 2782,
                 "file_id": "EFTA02731724",
                 "filename": "EFTA02731724.txt",
-                "num_lines": 59,
+                "num_lines": 53,
+                "subject": "5130124 Cad Notes \u2022 LB",
                 "timestamp": "2024-05-30T11:01:19",
                 "type": "Email"
             },
@@ -36969,11 +37069,12 @@
                 "type": "Email"
             },
             {
-                "bytes": 889,
+                "bytes": 891,
                 "date": "2024-03-06T12:21:00",
                 "file_id": "EFTA02731732",
                 "filename": "EFTA02731732.txt",
                 "num_lines": 28,
+                "subject": "RE: Black",
                 "timestamp": "2024-03-06T12:21:00",
                 "type": "Email"
             },
@@ -36992,6 +37093,7 @@
                 "file_id": "EFTA02731734",
                 "filename": "EFTA02731734.txt",
                 "num_lines": 31,
+                "subject": "FW: JPMC public document",
                 "timestamp": "2024-08-01T14:33:00",
                 "type": "Email"
             },
@@ -37009,15 +37111,17 @@
                 "file_id": "EFTA02731736",
                 "filename": "EFTA02731736.txt",
                 "num_lines": 19,
+                "subject": "FW: Leon Black/Additional HT Subject Referral -- Update",
                 "timestamp": "2023-06-12T13:53:00",
                 "type": "Email"
             },
             {
-                "bytes": 13639,
+                "bytes": 13642,
                 "date": "2023-06-30T16:05:00",
                 "file_id": "EFTA02731737",
                 "filename": "EFTA02731737.txt",
-                "num_lines": 597,
+                "num_lines": 599,
+                "subject": "FW: Memo to i e re DANY call on Leon Black/",
                 "timestamp": "2023-06-30T16:05:00",
                 "type": "Email"
             },
@@ -37049,22 +37153,26 @@
                 "file_id": "EFTA02731757",
                 "filename": "EFTA02731757.txt",
                 "num_lines": 128,
+                "subject": "RE: EXTERNAL / Leon Black",
                 "timestamp": "2023-02-28T10:44:00",
                 "type": "Email"
             },
             {
-                "bytes": 3673,
+                "author": "Jeanne M. Christensen",
+                "bytes": 3671,
                 "file_id": "EFTA02731762",
                 "filename": "EFTA02731762.txt",
-                "num_lines": 80,
+                "num_lines": 79,
+                "subject": "[EXTERNAL] RE: Leon Black follow up",
                 "timestamp": "2023-07-24T13:38:00",
                 "type": "Email"
             },
             {
-                "bytes": 4165,
+                "bytes": 4164,
                 "file_id": "EFTA02731765",
                 "filename": "EFTA02731765.txt",
-                "num_lines": 144,
+                "num_lines": 143,
+                "subject": "RE: EXTERNAL) / Leon Black",
                 "timestamp": "2023-12-15T14:44:00",
                 "type": "Email"
             },
@@ -37073,7 +37181,8 @@
                 "file_id": "EFTA02731771",
                 "filename": "EFTA02731771.txt",
                 "num_lines": 61,
-                "timestamp": "2023-06-01T06:04:06",
+                "subject": "Re: Leon Black",
+                "timestamp": "2023-06-01T07:09:44",
                 "type": "Email"
             },
             {
@@ -37085,29 +37194,32 @@
                 "type": "Email"
             },
             {
-                "bytes": 1726,
+                "bytes": 1739,
                 "file_id": "EFTA02731775",
                 "filename": "EFTA02731775.txt",
-                "num_lines": 45,
+                "num_lines": 44,
+                "recipients": [
+                    "Douglas Wigdor"
+                ],
                 "subject": "RE: Leon Black",
                 "timestamp": "2024-03-05T15:50:40",
                 "type": "Email"
             },
             {
-                "bytes": 1310,
+                "bytes": 1315,
                 "file_id": "EFTA02731781",
                 "filename": "EFTA02731781.txt",
-                "num_lines": 34,
-                "subject": ": Leon ac",
+                "num_lines": 33,
+                "subject": "Fwd: Leon Black",
                 "timestamp": "2029-03-04T19:02:31",
                 "type": "Email"
             },
             {
-                "bytes": 7046,
+                "bytes": 7044,
                 "date": "2022-01-21 17:28:00",
                 "file_id": "EFTA02731783",
                 "filename": "EFTA02731783.txt",
-                "num_lines": 198,
+                "num_lines": 197,
                 "timestamp": "2022-01-21T17:28:00",
                 "type": "Email"
             }
