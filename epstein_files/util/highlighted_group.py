@@ -422,6 +422,7 @@ HIGHLIGHTED_NAMES = [
             BARRY_J_COHEN: None,
             'David Mitchell': 'Mitchell Holdings, New York real estate developer',
             GERALD_BARTON: "Maryland property developer Landmark Land Company",
+            NICOLE_JUNKERMANN: 'ex-model, NJF Capital, German investor in Revolut, Winamax (online poker) and Carbyen (Ehud Barak)',
             GORDON_GETTY: 'heir to oil tycoon J. Paul Getty',
             'Philip Kafka': 'president of Prince Concepts (and son of Terry Kafka?)',
             ROBERT_LAWRENCE_KUHN: 'investment banker, China expert',
