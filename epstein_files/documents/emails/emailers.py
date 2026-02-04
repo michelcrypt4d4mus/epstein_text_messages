@@ -181,7 +181,7 @@ EMAILERS = [
     'Steven Victor MD',
     'Susan Edelman',
     TOM_BARRACK,
-    'USANYS',
+    USANYS,
     'Vahe Stepanian',
     VALAR_VENTURES,
     'Vladimir Yudashkin',
