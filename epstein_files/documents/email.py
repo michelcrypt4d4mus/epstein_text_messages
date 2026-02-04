@@ -593,7 +593,9 @@ class Email(Communication):
         if self.is_duplicate:
             logger.warning(f"{no_timestamp_msg} but timestamp should be copied from {self.duplicate_of_id}")
         else:
-            raise RuntimeError(f"{no_timestamp_msg}, top lines:\n" + '\n'.join(self.lines[0:MAX_NUM_HEADER_LINES + 10]))
+            logger.error(f"{no_timestamp_msg}, top lines:\n" + '\n'.join(self.lines[0:MAX_NUM_HEADER_LINES + 10]))
+
+        return FALLBACK_TIMESTAMP
 
     def _idx_of_nth_quoted_reply(self, n: int = MAX_QUOTED_REPLIES) -> int | None:
         """Get position of the nth 'On June 12th, 1985 [SOMEONE] wrote:' style line in self.text."""

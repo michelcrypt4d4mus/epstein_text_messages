@@ -42,7 +42,6 @@ any_uncommitted_changes() {
     fi
 }
 
-
 # Preparation (check branch, clean build artifacts, etc.)
 if [[ $CURRENT_BRANCH != "master" ]]; then
     clr_red "ERROR: Current branch is not master: ($CURRENT_BRANCH)"
@@ -52,12 +51,19 @@ elif any_uncommitted_changes; then
     exit 1
 fi
 
+
 # Build .png and push master changes
 git push origin master --quiet
 epstein_generate --make-clean --suppress-output
 print_deploy_step "Building emailer info .png... $PICKLE_ARG"
 $GENERATE_CMD --emailers-info $PICKLE_ARG
 
+# Copy pickle file to emails_extracted_from_legal_filings/
+if [[ $PICKLE_ARG == "--overwrite-pickle" ]]; then
+    cp ./the_epstein_files.pkl.gz emails_extracted_from_legal_filings/
+fi
+
+# Commit if any changes
 if any_uncommitted_changes; then
     git commit -am"Update .png"
     git push origin master --quiet
