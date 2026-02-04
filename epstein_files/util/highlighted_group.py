@@ -730,7 +730,7 @@ HIGHLIGHTED_NAMES = [
             BRAD_WECHSLER: f"head of {LEON_BLACK}'s personal investment vehicle according to FT",
             CECILIA_STEEN: None,
             DANIEL_SABBA: 'UBS Investment Bank',
-            DAVID_FISZEL: 'CIO Honeycomb Asset Management',
+            DAVID_FISZEL: 'CIO Honeycomb Asset Management, Epstein invested in Spotify through him',
             JES_STALEY: 'former CEO of Barclays',
             JIDE_ZEITLIN: 'former partner at Goldman Sachs, allegations of sexual misconduct',
             'Laurie Cameron': 'currency trading',
