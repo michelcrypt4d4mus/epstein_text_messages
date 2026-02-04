@@ -113,6 +113,13 @@ INTERESTING_DOJ_FILES = {
     'EFTA01273102': f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank",
     'EFTA02725909': 'presentation to NYDFS for "NYC Bitcoin Exchanges" with Balaji Srinivisan and Andrew Farkas on the board',
     'EFTA01622387': f"{RENATA_BOLOTOVA} iMessage conversation",
+    'EFTA00810239': "Peter Thiel fund Valar Ventures pitch deck",
+    'EFTA00810510': "Peter Thiel fund Valar Ventures Fall 2016 Update",
+    'EFTA00810474': "Peter Thiel fund Valar Ventures Fall 2018 Update",
+    'EFTA00836182': "Peter Thiel fund Valar Ventures Limited Partners email",
+    'EFTA01003346': "Peter Thiel tells Epstein to invest in his fund",
+    'EFTA00811866': "list of Epstein's bank accounts",
+    'EFTA00811666': "asset valuations of Epstein's holdings, includes 'Coinbase via grat'",
 }
 
 NO_IMAGE_SUFFIX = """

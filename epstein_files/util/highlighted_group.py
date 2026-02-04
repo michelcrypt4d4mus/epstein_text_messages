@@ -1533,7 +1533,7 @@ HIGHLIGHTED_NAMES = [
             r"Softbank",
             r"SpaceX",
             r"Tim\s*Ferriss?",
-            r"Valar(\s*)Ventures",
+            r"Valar(\s*(Global\s*Fund|Ventures))?",
             r"Vision\s*Fund",
             r"WikiLeak(ed|s)",
         ],
