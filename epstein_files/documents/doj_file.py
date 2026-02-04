@@ -125,6 +125,7 @@ INTERESTING_DOJ_FILES = {
     'EFTA00803459': "Honeycomb Asset Management (Spotify and Tencent investors) January 2019 report",
     'EFTA00603445': "Honeycomb Asset Management (Spotify and Tencent investors) July 2017 report",
     'EFTA00803464': "Honeycomb Asset Management (Spotify and Tencent investors) July 2018 report",
+    'EFTA00927927': f"reads like {RENATA_BOLOTOVA} talking about recruiting girls for Epstein",
 }
 
 NO_IMAGE_SUFFIX = """
