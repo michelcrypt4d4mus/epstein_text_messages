@@ -183,6 +183,7 @@ EMAILERS = [
     TOM_BARRACK,
     'USANYS',
     'Vahe Stepanian',
+    VALAR_VENTURES,
     'Vladimir Yudashkin',
 ]
 
