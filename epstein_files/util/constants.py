@@ -969,6 +969,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02730485', date='2021-12-03 00:00:00'),
     EmailCfg(id='EFTA00039689', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00995559', author=RENATA_BOLOTOVA, attribution_reason='poorly redacted signature'),
+    EmailCfg(id='EFTA00875181', duplicate_ids=['EFTA01901268']),
+    EmailCfg(id='EFTA02104454', author=LESLEY_GROFF, attribution_reason='Epstein scheduling'),
+    EmailCfg(id='EFTA01051074', description='Brock Pierce arranging meeting between Bannon and Epstein (in Doha?)'),
 ]
 
 if args.constantize:
