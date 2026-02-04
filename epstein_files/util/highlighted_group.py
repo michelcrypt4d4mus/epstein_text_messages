@@ -375,7 +375,7 @@ HIGHLIGHTED_NAMES = [
             AMIR_TAAKI: f"bitcoin bro, partner of {BROCK_PIERCE} (?)",
             ANTHONY_SCARAMUCCI: 'Skybridge Capital, FTX investor',
             AUSTIN_HILL: 'Blockstream co-founder with Adam Back',
-            BROCK_PIERCE: 'crypto bro, Bannon business partner, Tether co-founder, arrested in house full of machine guns & "8,000 fotografias de pornopgraphia infantil"',
+            BROCK_PIERCE: 'Bannon business partner, Tether co-founder, friend of Yair Netanyahu, sex crime history',
             JEFFREY_WERNICK: 'former COO of Parler, involved in numerous crypto companies like Bitforex',
             JEREMY_RUBIN: 'developer/researcher',
             JOI_ITO: f"former head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative",
