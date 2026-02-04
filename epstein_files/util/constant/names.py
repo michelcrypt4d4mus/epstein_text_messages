@@ -219,6 +219,7 @@ CNN = 'CNN'
 DEUTSCHE_BANK = 'Deutsche Bank'
 ELECTRON_CAPITAL_PARTNERS = 'Electron Capital Partners'
 EPSTEIN_FOUNDATION = 'Jeffrey Epstein VI Foundation'
+FBI = 'FBI'
 GOLDMAN_SACHS = 'Goldman Sachs'
 GOLDMAN_INVESTMENT_MGMT = f'{GOLDMAN_SACHS} Investment Management Division'
 HARVARD = 'Harvard'
@@ -230,6 +231,7 @@ OSBORNE_LLP = f"{IAN_OSBORNE} & Partners"  # Ian Osborne's PR firm
 ROTHSTEIN_ROSENFELDT_ADLER = "Rothstein Rosenfeldt Adler (Rothstein was Roger Stone's partner)"  # and a crook
 TRUMP_ORG = 'Trump Organization'
 UBS = 'UBS'
+USANYS = 'USANYS'
 VALAR_VENTURES = 'Valar Ventures'
 
 # First and last names that should be made part of a highlighting regex for emailers
