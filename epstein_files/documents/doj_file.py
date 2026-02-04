@@ -30,6 +30,7 @@ OTHER_DOC_URLS = {
 
 # DojFile specific repair
 OCR_REPAIRS: dict[str | re.Pattern, str] = {
+    re.compile(r"^Sent (Sun|Mon|Tue|Wed|Thu|Fri|Sat)", re.MULTILINE): r"Sent: \1",
     re.compile(fr"({FIELDS_COLON_PATTERN}.*\n)\nSubject:", re.MULTILINE): r'\1Subject:',
 }
 
@@ -126,6 +127,11 @@ INTERESTING_DOJ_FILES = {
     'EFTA00603445': "Honeycomb Asset Management (Spotify and Tencent investors) July 2017 report",
     'EFTA00803464': "Honeycomb Asset Management (Spotify and Tencent investors) July 2018 report",
     'EFTA00927927': f"reads like {RENATA_BOLOTOVA} talking about recruiting girls for Epstein",
+    'EFTA00805569': 'Mercantile Global Holdings, San Juan Mercantile Bank & Trust, Noble Bank + Signature Bank + BitGo',
+    'EFTA00495372': 'Epstein discussing Medici bank, a successor to Noble Bank as a crypto bank',
+    'EFTA02285514': 'Medici Bank and Maria Pruskova meeting',
+    'EFTA00495349': 'Ed Boyle and Medici Bank',
+    'EFTA01613731': 'Medici Bank conversation on Whatsapp',
 }
 
 NO_IMAGE_SUFFIX = """

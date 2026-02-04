@@ -1,7 +1,8 @@
 from rich.table import Table
 from rich.text import Text
 
-from epstein_files.util.rich import highlighter
+from epstein_files.util.env import DEFAULT_WIDTH
+from epstein_files.util.rich import CONSOLE_ARGS, highlighter
 
 HEADER_INDENT = Text('        ')
 VERTICAL_BAR = '┃ '  # ⎹┃┇┋❘⦀🁢⏐┃⎹
@@ -21,6 +22,11 @@ class LeftBarPanel(Table):
             table.add_row(VERTICAL_BAR, '')
 
         for txt_line in highlighter(text).split('\n'):
-            table.add_row(VERTICAL_BAR, txt_line)
+            if len(txt_line) > DEFAULT_WIDTH - len(VERTICAL_BAR):
+                vertical_bar = f"{VERTICAL_BAR}\n{VERTICAL_BAR}"
+            else:
+                vertical_bar = VERTICAL_BAR
+
+            table.add_row(vertical_bar, txt_line)
 
         return table

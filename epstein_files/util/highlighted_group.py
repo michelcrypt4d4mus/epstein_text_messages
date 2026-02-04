@@ -372,10 +372,11 @@ HIGHLIGHTED_NAMES = [
         label='bitcoin',
         style='orange1 bold',
         emailers={
-            AMIR_TAAKI: f"bitcoin bro, partner of {BROCK_PIERCE} (?)",
+            AMIR_TAAKI: f"bitcoin bro, partner of Donald Norman (and {BROCK_PIERCE}?)",
             ANTHONY_SCARAMUCCI: 'Skybridge Capital, FTX investor',
             AUSTIN_HILL: 'Blockstream co-founder with Adam Back',
-            BROCK_PIERCE: 'crypto bro, Bannon business partner, Tether co-founder, arrested in house full of machine guns & "8,000 fotografias de pornopgraphia infantil"',
+            BROCK_PIERCE: 'Bannon business partner, Tether co-founder, friend of Yair Netanyahu, sex crime history',
+            DONALD_NORMAN: f'co-founder of early British crypto exchange Intersango with {AMIR_TAAKI}',
             JEFFREY_WERNICK: 'former COO of Parler, involved in numerous crypto companies like Bitforex',
             JEREMY_RUBIN: 'developer/researcher',
             JOI_ITO: f"former head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative",
@@ -825,6 +826,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             ALISON_J_NATHAN: "judge in New York's Southern District",
             ANN_MARIE_VILLAFANA: 'Southern District of Florida (SDFL) U.S. Attorney',
+            AUDREY_STRAUSS: "USA Attorney",
             CHRISTOPHER_DILORIO: 'self described whistleblower',
             DANNY_FROST: 'Director of Communications at Manhattan D.A.',
             'Police Code Enforcement': f"{PALM_BEACH} buildings code enforcement",
@@ -959,6 +961,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"AIPAC",
             r"Bibi",
+            r"Carbyne",   # Co. invested in by barak + epstein
             r"(eh|(Ehud|Nili Priell)\s*)?barak",
             r"EB",
             r"Ehud\s*Barack",
@@ -969,6 +972,7 @@ HIGHLIGHTED_NAMES = [
             r"Menachem\s*Begin",
             r"Mossad",
             r"Netanyahu",
+            r"Reporty",  # Co. invested in by barak + epstein
             r"(Sheldon\s*)?Adelson",
             r"Tel\s*Aviv",
             r"(The\s*)?Shimon\s*Post",
@@ -1429,6 +1433,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             'Dasha Zhukova': 'art collector, daughter of Alexander Zhukov',
             KARYNA_SHULIAK: "Epstein's final girlfriend to whom he tried to leave $50-100 million and the island",
+            MARIYA_PRUSAKOVA: 'AKA Masha Prusso, investor and former Olympic snowboarder "found ladies" for Epstein',
             MASHA_DROKOVA: 'silicon valley VC, former Putin Youth member',
             RENATA_BOLOTOVA: 'former model, fund manager at New York State Insurance Fund, Рената Болотова',
             SVETLANA_POZHIDAEVA: "Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and David Blaine",
@@ -1499,6 +1504,7 @@ HIGHLIGHTED_NAMES = [
             'Andrew McCormack': f"partner at {PETER_THIEL}'s Valar Ventures {QUESTION_MARKS}",
             'Auren Hoffman': 'CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp',
             ELON_MUSK: 'father of Mecha-Hitler',
+            'James Fitzgerald': f"{PETER_THIEL}'s Valar Ventures {QUESTION_MARKS}",
             PETER_THIEL: 'Paypal mafia member, founder of Palantir, Facebook investor',
             REID_HOFFMAN: 'PayPal mafia member, founder of LinkedIn',
             STEVEN_SINOFSKY: 'a16z, ex-Microsoft, loves bitcoin',
@@ -1554,7 +1560,7 @@ HIGHLIGHTED_NAMES = [
             r"\bDJ?T\b",
             r"Donald J. Tramp",
             r"(Donald\s+(J\.\s+)?)?Trump(ism|\s*(Org(anization)?|Properties)(\s*LLC)?)?",
-            r"Don(ald| *Jr)(?! (B|Rubin))",
+            r"Don(ald| *Jr)(?! (B|Norman|Rubin))",
             r"Ivank?a",
             r"Jared", r"(?<!Tony )Kushner",
             r"(Madeleine\s*)?Westerhout",
@@ -1708,7 +1714,7 @@ HIGHLIGHTED_TEXTS = [
     HighlightedText(
         label='header_field',
         style='plum4',
-        patterns=[r'^[>• ]{,4}(Date ?|From|Sent|To|C[cC]|Importance|Reply[- ]?To|Subject|Bee|B[cC]{2}|Attachments|Flag|Classification|[Il]nline-[Il]mages|((A|Debut du message transfer[&e]|De(stinataire)?|Envoye|Expe(cl|d)iteur|Objet|Q|Sujet) ?)):|^on behalf of'],
+        patterns=[r'^[>• ]{,4}(Date ?|From|Sent|To|C[cC]|Importance|Reply[- ]?To|Subject|Bee|B[cC]{2}|Attach(ed|ments)|Flag|Classification|[Il]nline-[Il]mages|((A|Debut du message transfer[&e]|De(stinataire)?|Envoye|Expe(cl|d)iteur|Objet|Q|Sujet) ?)):|^on behalf of'],
     ),
     HighlightedText(
         label='http_links',
@@ -1749,7 +1755,7 @@ HIGHLIGHTED_TEXTS = [
     ManualHighlight(
         label='email_attachments',
         style='gray30 italic',
-        pattern=r"^(> )?(Attachments|[Il]nline-[Il]mages): (?P<email_attachments>.*)",
+        pattern=r"^(> )?(Attach(ed|ments)|[Il]nline-[Il]mages): (?P<email_attachments>.*)",
     ),
     ManualHighlight(
         label='email_timestamp',
