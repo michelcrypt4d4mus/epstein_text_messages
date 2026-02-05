@@ -760,6 +760,7 @@ HIGHLIGHTED_NAMES = [
             r"Black(rock|stone)",
             r"B\s*of\s*A",
             r"Boothbay(\sFund\sManagement)?",
+            r"Cantor(\s*(Fitzgerald|Opportunities))?",
             r"Chase\s*Bank",
             r"Conrad B",
             r"Credit\s*Suisse",
