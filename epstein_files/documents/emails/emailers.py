@@ -75,6 +75,7 @@ EMAILER_ID_PATTERNS: dict[str, str] = {
     'LinkedIn': r"Linked[Il]n Updates",
     MANUELA_MARTINEZ: fr'Manuela (- Mega Partners|Martinez)',
     MARIANA_IDZKOWSKA: r'Mariana [Il]d[źi]kowska?',
+    MARIYA_PRUSAKOVA: r"Ma(sha|riy?a)\s*(Prus(kova|so))",
     MARK_EPSTEIN: r'Mark (L\. )?(Epstein|Lloyd)',
     MARC_LEON: r'Marc[.\s]+(Kensington|Leon)|Kensington2',
     MARTIN_NOWAK: r'(Martin.*?)?No[vw]ak|Nowak, Martin',
