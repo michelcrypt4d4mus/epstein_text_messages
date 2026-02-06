@@ -992,7 +992,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00357379', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA00357957', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02005819', author=LESLEY_GROFF, is_attribution_uncertain=True),
-
     EmailCfg(id='EFTA02229858', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA00428084', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02174702', author=LESLEY_GROFF, is_attribution_uncertain=True),
@@ -1130,14 +1129,15 @@ EMAILS_CONFIG = [
     # EmailCfg(id='EFTA02730468', date='2004-02-03 00:00:00'),  # TODO: ???
     EmailCfg(id='EFTA02731528', date='2021-05-06 09:39:15'),
     EmailCfg(id='EFTA02730485', date='2021-12-03 00:00:00'),
+    EmailCfg(id='EFTA01051074', description='Brock Pierce arranging meeting between Bannon and Epstein (in Doha?)'),
+    EmailCfg(id='EFTA00988395', description='"Andy Back" is probably O.G. bitcoiner Adam Back from Blockstream'),
     EmailCfg(id='EFTA00104945', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True),
-    EmailCfg(id='EFTA00039689', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00875181', duplicate_ids=['EFTA01901268']),
     EmailCfg(id='EFTA00754450', duplicate_ids=['EFTA02418244']),
     EmailCfg(id='EFTA01852975', duplicate_ids=['EFTA02001764']),
     EmailCfg(id='EFTA00563586', duplicate_ids=['EFTA02323722']),
     EmailCfg(id='EFTA00039802', duplicate_ids=['EFTA00039809']),
-    EmailCfg(id='EFTA01051074', description='Brock Pierce arranging meeting between Bannon and Epstein (in Doha?)'),
+    EmailCfg(id='EFTA00039689', truncate_to=NO_TRUNCATE),
 ]
 
 if args.constantize:
