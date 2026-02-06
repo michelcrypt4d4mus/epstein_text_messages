@@ -56,6 +56,7 @@ EMAILER_ID_PATTERNS: dict[str, str] = {
     JANUSZ_BANASIAK: r"Janu[is]z Banasiak",
     JEAN_HUGUEN: r"Jean[\s.]Huguen",
     JEAN_LUC_BRUNEL: r'Jean[- ]Luc Brunel?|JeanLuc',
+    JEANNE_M_CHRISTENSEN: r"Jeanne\s*(M\.?)?\s*Christensen",
     JEFF_FULLER: r"jeff@mc2mm.com|Jeff Fuller",
     JEFFREY_EPSTEIN: r'[djl]\s?ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeff(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(Mark L.|ard Jay) )Epstein',
     JESSICA_CADWELL: r'Jessica Cadwell?',
