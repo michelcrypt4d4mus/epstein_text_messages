@@ -398,6 +398,7 @@ HIGHLIGHTED_NAMES = [
             r"(Jim\s*)Pallotta",  # Media lab advisory board
             r"Libra",
             r"Madars",
+            r"Medici\s*Bank",
             r"Mi(chael|ke)\s*Novogratz",
             r"(Patrick\s*)?Murck",
             r"(Hester\s*)?Peirce",
@@ -760,6 +761,7 @@ HIGHLIGHTED_NAMES = [
             r"Black(rock|stone)",
             r"B\s*of\s*A",
             r"Boothbay(\sFund\sManagement)?",
+            r"Cantor(\s*(Fitzgerald|Opportunities))?",
             r"Chase\s*Bank",
             r"Conrad B",
             r"Credit\s*Suisse",
