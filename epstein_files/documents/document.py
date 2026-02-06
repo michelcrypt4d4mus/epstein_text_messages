@@ -20,7 +20,7 @@ from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import ALL_FILE_CONFIGS, DOJ_FILE_STEM_REGEX, FALLBACK_TIMESTAMP
 from epstein_files.util.data import collapse_newlines, date_str, patternize, remove_zero_time, without_falsey
 from epstein_files.util.doc_cfg import DUPE_TYPE_STRS, EmailCfg, DocCfg, Metadata, TextCfg
-from epstein_files.util.env import DOCS_DIR
+from epstein_files.util.env import DOCS_DIR, DOJ_PDFS_20260130_DIR
 from epstein_files.util.file_helper import (coerce_file_path, extract_file_id, file_size, file_size_str,
      file_size_to_str, is_local_extract_file)
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
@@ -198,7 +198,9 @@ class Document:
     @property
     def local_path_and_url(self) -> Text:
         """Text obj with local path and URL."""
-        return Text(f"{self.file_id} URL:         {self.external_url}\n{self.file_id} Local path: '{self.file_path}'")
+        txt = Text(f"{self.file_id}        URL: {self.external_url}\n{self.file_id} Local path: '{self.file_path}'")
+        local_pdf_path = DOJ_PDFS_20260130_DIR.joinpath(self.file_path.parent.stem, 'IMAGES/0001', self.file_path.stem + '.pdf')
+        return txt.append(f"\n{self.file_id}  Local PDF: '{local_pdf_path}'")
 
     @property
     def metadata(self) -> Metadata:
