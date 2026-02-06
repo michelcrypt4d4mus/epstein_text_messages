@@ -1023,6 +1023,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00039663', author=STACEY_RICHMAN, attribution_reason='unredacted in EFTA00039662'),
     EmailCfg(id='EFTA02731689', author=UNKNOWN, recipients=[None], date='2023-06-09 20:14:00'),
     EmailCfg(id='EFTA00040121', author=USANYS, recipients=['AT&T Court Appearance Team']),
+    EmailCfg(id='EFTA02731755', author=USANYS),
     EmailCfg(id='EFTA00040141', author=USANYS),
     EmailCfg(id='EFTA02731644', author=USANYS),
     EmailCfg(id='EFTA00040144', author=USANYS),
