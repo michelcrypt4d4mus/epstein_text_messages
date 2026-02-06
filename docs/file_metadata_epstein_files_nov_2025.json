@@ -33078,10 +33078,11 @@
                 "type": "Email"
             },
             {
-                "bytes": 1140,
+                "author": "USANYS",
+                "bytes": 1147,
                 "file_id": "EFTA00039965",
                 "filename": "EFTA00039965.txt",
-                "num_lines": 32,
+                "num_lines": 33,
                 "subject": "RE: RE: brief Epstein status",
                 "timestamp": "2018-12-09T19:39:05",
                 "type": "Email"
@@ -33750,11 +33751,15 @@
             },
             {
                 "bytes": 523,
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA02323722"
+                ],
                 "file_id": "EFTA00563586",
                 "filename": "EFTA00563586.txt",
                 "num_lines": 10,
                 "recipients": [
-                    "Story Cowles \u2039"
+                    "Story Cowles"
                 ],
                 "subject": "Re:",
                 "timestamp": "2011-08-08T11:07:16",
@@ -33827,7 +33832,13 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\" + \"Sincerely\"",
+                "author": "Renata Bolotova",
                 "bytes": 423,
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA02347987"
+                ],
                 "file_id": "EFTA00639014",
                 "filename": "EFTA00639014.txt",
                 "num_lines": 9,
@@ -33927,9 +33938,12 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\"",
+                "author": "Renata Bolotova",
                 "bytes": 190,
                 "file_id": "EFTA00659818",
                 "filename": "EFTA00659818.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 5,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -33952,13 +33966,14 @@
             },
             {
                 "attribution_reason": "\"sneaky dog\"",
+                "author": "Renata Bolotova",
                 "bytes": 3886,
                 "file_id": "EFTA00667441",
                 "filename": "EFTA00667441.txt",
                 "is_attribution_uncertain": true,
                 "num_lines": 85,
                 "recipients": [
-                    "Renata Bolotova"
+                    "Jeffrey Epstein"
                 ],
                 "sent_from_device": "Sent from my iPad",
                 "subject": "Re: Re:",
@@ -33980,6 +33995,8 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\" + \"Sincerely\"",
+                "author": "Renata Bolotova",
                 "bytes": 1023,
                 "file_id": "EFTA00671467",
                 "filename": "EFTA00671467.txt",
@@ -34073,6 +34090,8 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\" + \"Sincerely\"",
+                "author": "Renata Bolotova",
                 "bytes": 936,
                 "file_id": "EFTA00699453",
                 "filename": "EFTA00699453.txt",
@@ -34085,6 +34104,8 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\" + \"Sincerely\"",
+                "author": "Renata Bolotova",
                 "bytes": 908,
                 "file_id": "EFTA00703980",
                 "filename": "EFTA00703980.txt",
@@ -34111,9 +34132,18 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\"",
+                "author": "Renata Bolotova",
                 "bytes": 414,
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA02696436",
+                    "EFTA02550142",
+                    "EFTA02397691"
+                ],
                 "file_id": "EFTA00708783",
                 "filename": "EFTA00708783.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 10,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -34176,9 +34206,12 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\"",
+                "author": "Renata Bolotova",
                 "bytes": 135,
                 "file_id": "EFTA00816407",
                 "filename": "EFTA00816407.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 5,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -34581,19 +34614,33 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\"",
                 "author": "Jeffrey Epstein",
                 "bytes": 465,
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA01773449",
+                    "EFTA02550388"
+                ],
                 "file_id": "EFTA00929871",
                 "filename": "EFTA00929871.txt",
                 "num_lines": 11,
+                "recipients": [
+                    "Renata Bolotova"
+                ],
                 "subject": "Re:",
                 "timestamp": "2012-02-24T00:08:42",
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\"",
+                "author": "Renata Bolotova",
                 "bytes": 593,
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA02018237",
                 "file_id": "EFTA00930786",
                 "filename": "EFTA00930786.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 12,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -34604,6 +34651,8 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\" + \"Sincerely\"",
+                "author": "Renata Bolotova",
                 "bytes": 1029,
                 "file_id": "EFTA00935516",
                 "filename": "EFTA00935516.txt",
@@ -34621,7 +34670,6 @@
                 "bytes": 3188,
                 "file_id": "EFTA00935996",
                 "filename": "EFTA00935996.txt",
-                "is_attribution_uncertain": true,
                 "num_lines": 66,
                 "recipients": [
                     "Renata Bolotova"
@@ -34631,7 +34679,11 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\" + \"Sincerely\"",
+                "author": "Renata Bolotova",
                 "bytes": 598,
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA02561760",
                 "file_id": "EFTA00945344",
                 "filename": "EFTA00945344.txt",
                 "num_lines": 12,
@@ -34639,11 +34691,15 @@
                     "Jeffrey Epstein"
                 ],
                 "subject": "Re: Thank you so much!",
-                "timestamp": "2017-11-29T23:15:40",
+                "timestamp": "2017-11-29T23:16:00",
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\" + \"Sincerely\"",
+                "author": "Renata Bolotova",
                 "bytes": 550,
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA02561760",
                 "file_id": "EFTA00948275",
                 "filename": "EFTA00948275.txt",
                 "num_lines": 11,
@@ -34651,7 +34707,7 @@
                     "Jeffrey Epstein"
                 ],
                 "subject": "Thank you so much!",
-                "timestamp": "2017-11-28T16:53:36",
+                "timestamp": "2017-11-29T23:16:00",
                 "type": "Email"
             },
             {
@@ -34694,11 +34750,20 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\"",
                 "author": "Jeffrey Epstein",
                 "bytes": 866,
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA02577917",
+                    "EFTA01946045"
+                ],
                 "file_id": "EFTA00977447",
                 "filename": "EFTA00977447.txt",
                 "num_lines": 20,
+                "recipients": [
+                    "Renata Bolotova"
+                ],
                 "subject": "Re:",
                 "timestamp": "2013-12-05T22:29:33",
                 "type": "Email"
@@ -35387,10 +35452,13 @@
                 "type": "Email"
             },
             {
-                "bytes": 298,
+                "bytes": 294,
                 "file_id": "EFTA01748575",
                 "filename": "EFTA01748575.txt",
-                "num_lines": 9,
+                "num_lines": 7,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
                 "timestamp": "2014-08-06T01:46:36",
                 "type": "Email"
             },
@@ -35408,9 +35476,12 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\"",
+                "author": "Renata Bolotova",
                 "bytes": 136,
                 "file_id": "EFTA01757037",
                 "filename": "EFTA01757037.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 4,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -35432,16 +35503,21 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\"",
+                "author": "Renata Bolotova",
                 "bytes": 768,
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA02018237",
                 "file_id": "EFTA01770897",
                 "filename": "EFTA01770897.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 14,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
                 "sent_from_device": "Sorry for all the typos .Sent from my iPhone",
                 "subject": "Re:",
-                "timestamp": "2012-03-02T15:34:00",
+                "timestamp": "2012-03-02T15:34:08",
                 "type": "Email"
             },
             {
@@ -35458,20 +35534,32 @@
                 "type": "Email"
             },
             {
-                "bytes": 834,
+                "attribution_reason": "\"sneaky dog\" + \"Sincerely\"",
+                "author": "Renata Bolotova",
+                "bytes": 831,
                 "file_id": "EFTA01773417",
                 "filename": "EFTA01773417.txt",
-                "num_lines": 26,
+                "num_lines": 25,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
                 "timestamp": "2012-02-23T23:47:00",
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\"",
+                "author": "Jeffrey Epstein",
                 "bytes": 968,
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA00929871",
                 "file_id": "EFTA01773449",
                 "filename": "EFTA01773449.txt",
                 "num_lines": 32,
+                "recipients": [
+                    "Renata Bolotova"
+                ],
                 "sent_from_device": "Sorry for all the typos .Sent from my iPhone",
-                "timestamp": "2012-02-24T00:09:00",
+                "timestamp": "2012-02-24T00:08:42",
                 "type": "Email"
             },
             {
@@ -35532,9 +35620,12 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\"",
+                "author": "Renata Bolotova",
                 "bytes": 120,
                 "file_id": "EFTA01801003",
                 "filename": "EFTA01801003.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 4,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -35543,10 +35634,17 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\" + \"Sincerely\"",
+                "author": "Renata Bolotova",
                 "bytes": 119,
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA02719248",
                 "file_id": "EFTA01803593",
                 "filename": "EFTA01803593.txt",
                 "num_lines": 6,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
                 "timestamp": "2014-11-11T10:12:00",
                 "type": "Email"
             },
@@ -35584,7 +35682,6 @@
                 "bytes": 5278,
                 "file_id": "EFTA01846434",
                 "filename": "EFTA01846434.txt",
-                "is_attribution_uncertain": true,
                 "num_lines": 103,
                 "recipients": [
                     "Renata Bolotova"
@@ -35797,9 +35894,12 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\"",
+                "author": "Renata Bolotova",
                 "bytes": 141,
                 "file_id": "EFTA01931339",
                 "filename": "EFTA01931339.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 4,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -35821,11 +35921,17 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\"",
                 "author": "Jeffrey Epstein",
                 "bytes": 928,
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA00977447",
                 "file_id": "EFTA01946045",
                 "filename": "EFTA01946045.txt",
                 "num_lines": 20,
+                "recipients": [
+                    "Renata Bolotova"
+                ],
                 "timestamp": "2013-12-05T22:29:33",
                 "type": "Email"
             },
@@ -35984,9 +36090,17 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\"",
+                "author": "Renata Bolotova",
                 "bytes": 582,
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA00930786",
+                    "EFTA01770897"
+                ],
                 "file_id": "EFTA02018237",
                 "filename": "EFTA02018237.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 14,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -36069,12 +36183,15 @@
                 "type": "Email"
             },
             {
+                "author": "Lesley Groff",
                 "bytes": 1272,
                 "file_id": "EFTA02068381",
                 "filename": "EFTA02068381.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 30,
                 "recipients": [
-                    "Lesley Groff"
+                    "Andrew McCormack",
+                    "James Fitzgerald"
                 ],
                 "subject": "Re: Velar update",
                 "timestamp": "2015-11-16T20:39:35",
@@ -36169,12 +36286,16 @@
                 "type": "Email"
             },
             {
+                "author": "Lesley Groff",
                 "bytes": 1368,
+                "description": "Nicole Junkermann meeting",
                 "file_id": "EFTA02089459",
                 "filename": "EFTA02089459.txt",
+                "is_attribution_uncertain": true,
+                "is_interesting": true,
                 "num_lines": 31,
                 "recipients": [
-                    "Lesley Groff"
+                    "Jeffrey Epstein"
                 ],
                 "subject": "Re: Nicole Junkermann",
                 "timestamp": "2014-12-03T17:09:39",
@@ -36473,6 +36594,8 @@
             },
             {
                 "bytes": 861,
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA00563586",
                 "file_id": "EFTA02323722",
                 "filename": "EFTA02323722.txt",
                 "num_lines": 23,
@@ -36480,7 +36603,7 @@
                     "Story Cowles"
                 ],
                 "subject": "Re:",
-                "timestamp": "2011-08-08T11:07:00",
+                "timestamp": "2011-08-08T11:07:16",
                 "type": "Email"
             },
             {
@@ -36497,22 +36620,30 @@
                 "type": "Email"
             },
             {
-                "bytes": 152,
+                "bytes": 158,
                 "file_id": "EFTA02328335",
                 "filename": "EFTA02328335.txt",
-                "num_lines": 8,
+                "num_lines": 4,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Karyna Shuliak"
+                ],
                 "timestamp": "2017-03-25T17:47:00",
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\" + \"Sincerely\"",
+                "author": "Renata Bolotova",
                 "bytes": 410,
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA00639014",
                 "file_id": "EFTA02347987",
                 "filename": "EFTA02347987.txt",
                 "num_lines": 7,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
-                "timestamp": "2015-03-30T21:54:00",
+                "timestamp": "2015-03-30T21:53:33",
                 "type": "Email"
             },
             {
@@ -36554,6 +36685,8 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\" + \"Sincerely\"",
+                "author": "Renata Bolotova",
                 "bytes": 790,
                 "file_id": "EFTA02372848",
                 "filename": "EFTA02372848.txt",
@@ -36579,6 +36712,8 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\" + \"Sincerely\"",
+                "author": "Renata Bolotova",
                 "bytes": 611,
                 "file_id": "EFTA02376299",
                 "filename": "EFTA02376299.txt",
@@ -36591,6 +36726,8 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\" + \"Sincerely\"",
+                "author": "Renata Bolotova",
                 "bytes": 286,
                 "file_id": "EFTA02387781",
                 "filename": "EFTA02387781.txt",
@@ -36603,6 +36740,8 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\" + \"Sincerely\"",
+                "author": "Renata Bolotova",
                 "bytes": 600,
                 "file_id": "EFTA02389443",
                 "filename": "EFTA02389443.txt",
@@ -36628,9 +36767,12 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\"",
+                "author": "Renata Bolotova",
                 "bytes": 986,
                 "file_id": "EFTA02395750",
                 "filename": "EFTA02395750.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 21,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -36640,9 +36782,12 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\"",
+                "author": "Renata Bolotova",
                 "bytes": 146,
                 "file_id": "EFTA02396796",
                 "filename": "EFTA02396796.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 4,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -36651,15 +36796,20 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\"",
+                "author": "Renata Bolotova",
                 "bytes": 904,
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA00708783",
                 "file_id": "EFTA02397691",
                 "filename": "EFTA02397691.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 25,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
                 "subject": "Re:",
-                "timestamp": "2012-02-06T14:44:00",
+                "timestamp": "2012-02-06T14:44:03",
                 "type": "Email"
             },
             {
@@ -36677,10 +36827,15 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\" + \"Sincerely\"",
+                "author": "Renata Bolotova",
                 "bytes": 146,
                 "file_id": "EFTA02404938",
                 "filename": "EFTA02404938.txt",
-                "num_lines": 7,
+                "num_lines": 5,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
                 "timestamp": "2016-02-07T16:53:00",
                 "type": "Email"
             },
@@ -36724,10 +36879,17 @@
                 "type": "Email"
             },
             {
-                "bytes": 124,
+                "attribution_reason": "\"sneaky\"",
+                "author": "Renata Bolotova",
+                "bytes": 430,
+                "description": "completely redacted email body",
                 "file_id": "EFTA02455567",
                 "filename": "EFTA02455567.txt",
-                "num_lines": 7,
+                "num_lines": 8,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "<REDACTED>",
                 "timestamp": "2016-08-03T21:34:00",
                 "type": "Email"
             },
@@ -36746,9 +36908,12 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\"",
+                "author": "Renata Bolotova",
                 "bytes": 359,
                 "file_id": "EFTA02462211",
                 "filename": "EFTA02462211.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 8,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -36825,9 +36990,13 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\" + Terje mention",
+                "author": "Renata Bolotova",
                 "bytes": 1609,
+                "description": "email about a future job at Terje R\u00f8d-Larsen's International Peace Institute",
                 "file_id": "EFTA02538649",
                 "filename": "EFTA02538649.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 37,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -36837,9 +37006,13 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\" + Terje mention",
+                "author": "Renata Bolotova",
                 "bytes": 484,
+                "description": "email about a future job at Terje R\u00f8d-Larsen's International Peace Institute",
                 "file_id": "EFTA02540487",
                 "filename": "EFTA02540487.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 13,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -36849,6 +37022,8 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\" + \"Sincerely\"",
+                "author": "Renata Bolotova",
                 "bytes": 265,
                 "file_id": "EFTA02545360",
                 "filename": "EFTA02545360.txt",
@@ -36861,14 +37036,22 @@
                 "type": "Email"
             },
             {
-                "bytes": 1717,
+                "attribution_reason": "\"sneaky dog\"",
+                "author": "Jeffrey Epstein",
+                "bytes": 1713,
                 "file_id": "EFTA02547678",
                 "filename": "EFTA02547678.txt",
-                "num_lines": 40,
+                "num_lines": 39,
+                "recipients": [
+                    "Renata Bolotova"
+                ],
+                "subject": "Re: Thank You and see you early next week 0",
                 "timestamp": "2017-12-15T19:46:00",
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\" + \"Sincerely\"",
+                "author": "Renata Bolotova",
                 "bytes": 1525,
                 "file_id": "EFTA02547825",
                 "filename": "EFTA02547825.txt",
@@ -36881,28 +37064,49 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\"",
+                "author": "Renata Bolotova",
                 "bytes": 959,
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA00708783",
                 "file_id": "EFTA02550142",
                 "filename": "EFTA02550142.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 30,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
                 "subject": "Re:",
-                "timestamp": "2012-02-06T14:44:00",
+                "timestamp": "2012-02-06T14:44:03",
                 "type": "Email"
             },
             {
-                "bytes": 910,
+                "attribution_reason": "\"sneaky dog\"",
+                "author": "Jeffrey Epstein",
+                "bytes": 905,
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA00929871",
                 "file_id": "EFTA02550388",
                 "filename": "EFTA02550388.txt",
-                "num_lines": 29,
+                "num_lines": 27,
+                "recipients": [
+                    "Renata Bolotova"
+                ],
                 "sent_from_device": "Sorry for all the typos .Sent from my iPhone",
-                "timestamp": "2012-02-24T00:09:00",
+                "subject": "Re:",
+                "timestamp": "2012-02-24T00:08:42",
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\" + \"Sincerely\"",
+                "author": "Renata Bolotova",
                 "bytes": 835,
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA00945344",
+                    "EFTA02563292",
+                    "EFTA00948275"
+                ],
                 "file_id": "EFTA02561760",
                 "filename": "EFTA02561760.txt",
                 "num_lines": 18,
@@ -36914,7 +37118,11 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\" + \"Sincerely\"",
+                "author": "Renata Bolotova",
                 "bytes": 556,
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA02561760",
                 "file_id": "EFTA02563292",
                 "filename": "EFTA02563292.txt",
                 "num_lines": 11,
@@ -36922,7 +37130,7 @@
                     "Jeffrey Epstein"
                 ],
                 "subject": "Thank you so much!",
-                "timestamp": "2017-11-28T16:54:00",
+                "timestamp": "2017-11-29T23:16:00",
                 "type": "Email"
             },
             {
@@ -36939,11 +37147,19 @@
                 "type": "Email"
             },
             {
-                "bytes": 1031,
+                "attribution_reason": "\"sneaky dog\"",
+                "author": "Jeffrey Epstein",
+                "bytes": 1026,
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA00977447",
                 "file_id": "EFTA02577917",
                 "filename": "EFTA02577917.txt",
-                "num_lines": 18,
-                "timestamp": "2013-12-05T22:30:00",
+                "num_lines": 16,
+                "recipients": [
+                    "Renata Bolotova"
+                ],
+                "subject": "Re:",
+                "timestamp": "2013-12-05T22:29:33",
                 "type": "Email"
             },
             {
@@ -37001,9 +37217,12 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\"",
+                "author": "Renata Bolotova",
                 "bytes": 272,
                 "file_id": "EFTA02603940",
                 "filename": "EFTA02603940.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 9,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -37013,9 +37232,12 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\"",
+                "author": "Renata Bolotova",
                 "bytes": 341,
                 "file_id": "EFTA02611134",
                 "filename": "EFTA02611134.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 13,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -37051,10 +37273,14 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\"",
                 "bytes": 1038,
                 "file_id": "EFTA02626300",
                 "filename": "EFTA02626300.txt",
                 "num_lines": 21,
+                "recipients": [
+                    "Renata Bolotova"
+                ],
                 "timestamp": "2019-01-20T13:59:00",
                 "type": "Email"
             },
@@ -37190,18 +37416,25 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\"",
+                "author": "Renata Bolotova",
                 "bytes": 903,
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA00708783",
                 "file_id": "EFTA02696436",
                 "filename": "EFTA02696436.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 28,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
                 "subject": "Re:",
-                "timestamp": "2012-02-06T14:44:00",
+                "timestamp": "2012-02-06T14:44:03",
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\" + \"Sincerely\"",
+                "author": "Renata Bolotova",
                 "bytes": 126,
                 "file_id": "EFTA02696764",
                 "filename": "EFTA02696764.txt",
@@ -37213,7 +37446,13 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\" + \"Sincerely\"",
+                "author": "Renata Bolotova",
                 "bytes": 119,
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA01803593"
+                ],
                 "file_id": "EFTA02719248",
                 "filename": "EFTA02719248.txt",
                 "num_lines": 4,
@@ -38150,7 +38389,7 @@
                 "filename": "HOUSE_OVERSIGHT_028375.txt",
                 "is_interesting": false,
                 "num_lines": 1690,
-                "timestamp": "2018-12-05T00:00:00",
+                "timestamp": "2018-12-06T00:00:00",
                 "type": "JsonFile",
                 "was_timestamp_extracted": true
             },
@@ -39467,7 +39706,7 @@
                 "filename": "HOUSE_OVERSIGHT_012048.txt",
                 "is_interesting": true,
                 "num_lines": 2693,
-                "timestamp": "2019-03-05T00:00:00",
+                "timestamp": "2019-03-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -39641,7 +39880,7 @@
                 "filename": "HOUSE_OVERSIGHT_013268.txt",
                 "is_interesting": false,
                 "num_lines": 139,
-                "timestamp": "2014-01-05T00:00:00",
+                "timestamp": "2014-01-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -39796,7 +40035,7 @@
                 "filename": "HOUSE_OVERSIGHT_013796.txt",
                 "is_interesting": false,
                 "num_lines": 8095,
-                "timestamp": "2009-02-05T00:00:00",
+                "timestamp": "2009-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -39809,7 +40048,7 @@
                 "filename": "HOUSE_OVERSIGHT_014037.txt",
                 "is_interesting": true,
                 "num_lines": 1911,
-                "timestamp": "2014-07-05T00:00:00",
+                "timestamp": "2014-07-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -40143,7 +40382,7 @@
                 "filename": "HOUSE_OVERSIGHT_015032.txt",
                 "is_interesting": false,
                 "num_lines": 1918,
-                "timestamp": "2017-07-05T00:00:00",
+                "timestamp": "2017-07-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -40156,7 +40395,7 @@
                 "filename": "HOUSE_OVERSIGHT_015462.txt",
                 "is_interesting": false,
                 "num_lines": 1810,
-                "timestamp": "2013-10-05T00:00:00",
+                "timestamp": "2013-10-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -40169,7 +40408,7 @@
                 "filename": "HOUSE_OVERSIGHT_015501.txt",
                 "is_interesting": false,
                 "num_lines": 1214,
-                "timestamp": "2016-02-05T00:00:00",
+                "timestamp": "2016-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -40247,7 +40486,7 @@
                 "filename": "HOUSE_OVERSIGHT_015675.txt",
                 "is_interesting": false,
                 "num_lines": 12455,
-                "timestamp": "2020-02-05T00:00:00",
+                "timestamp": "2020-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -40480,7 +40719,7 @@
                 "filename": "HOUSE_OVERSIGHT_016636.txt",
                 "is_interesting": false,
                 "num_lines": 1535,
-                "timestamp": "2009-02-05T00:00:00",
+                "timestamp": "2009-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -40637,7 +40876,7 @@
                 "filename": "HOUSE_OVERSIGHT_017526.txt",
                 "is_interesting": false,
                 "num_lines": 4127,
-                "timestamp": "2012-06-05T00:00:00",
+                "timestamp": "2012-06-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -40870,7 +41109,7 @@
                 "filename": "HOUSE_OVERSIGHT_018232.txt",
                 "is_interesting": false,
                 "num_lines": 8558,
-                "timestamp": "2015-03-05T00:00:00",
+                "timestamp": "2015-03-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -40896,7 +41135,7 @@
                 "filename": "HOUSE_OVERSIGHT_018703.txt",
                 "is_interesting": false,
                 "num_lines": 124,
-                "timestamp": "2016-06-05T00:00:00",
+                "timestamp": "2016-06-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -40920,7 +41159,7 @@
                 "filename": "HOUSE_OVERSIGHT_018743.txt",
                 "is_interesting": true,
                 "num_lines": 1855,
-                "timestamp": "2018-02-05T00:00:00",
+                "timestamp": "2018-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41221,7 +41460,7 @@
                 "filename": "HOUSE_OVERSIGHT_019477.txt",
                 "is_interesting": true,
                 "num_lines": 11950,
-                "timestamp": "2017-02-05T00:00:00",
+                "timestamp": "2017-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41292,7 +41531,7 @@
                 "filename": "HOUSE_OVERSIGHT_020153.txt",
                 "is_interesting": true,
                 "num_lines": 2848,
-                "timestamp": "2016-02-05T00:00:00",
+                "timestamp": "2016-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41305,7 +41544,7 @@
                 "filename": "HOUSE_OVERSIGHT_020447.txt",
                 "is_interesting": true,
                 "num_lines": 7325,
-                "timestamp": "2019-02-05T00:00:00",
+                "timestamp": "2019-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41344,7 +41583,7 @@
                 "filename": "HOUSE_OVERSIGHT_021092.txt",
                 "is_interesting": false,
                 "num_lines": 77,
-                "timestamp": "2001-02-05T00:00:00",
+                "timestamp": "2001-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41356,7 +41595,7 @@
                 "filename": "HOUSE_OVERSIGHT_021093.txt",
                 "is_interesting": false,
                 "num_lines": 96,
-                "timestamp": "2003-02-05T00:00:00",
+                "timestamp": "2003-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41395,7 +41634,7 @@
                 "filename": "HOUSE_OVERSIGHT_021145.txt",
                 "is_interesting": false,
                 "num_lines": 6213,
-                "timestamp": "2008-02-05T00:00:00",
+                "timestamp": "2008-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41447,7 +41686,7 @@
                 "filename": "HOUSE_OVERSIGHT_021718.txt",
                 "is_interesting": false,
                 "num_lines": 1754,
-                "timestamp": "2016-02-05T00:00:00",
+                "timestamp": "2016-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41552,7 +41791,7 @@
                 "filename": "HOUSE_OVERSIGHT_022212.txt",
                 "is_interesting": false,
                 "num_lines": 107,
-                "timestamp": "2020-02-05T00:00:00",
+                "timestamp": "2020-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41575,7 +41814,7 @@
                 "filename": "HOUSE_OVERSIGHT_022237.txt",
                 "is_interesting": true,
                 "num_lines": 266,
-                "timestamp": "2014-12-05T00:00:00",
+                "timestamp": "2014-12-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41699,7 +41938,7 @@
                 "filename": "HOUSE_OVERSIGHT_022407.txt",
                 "is_interesting": true,
                 "num_lines": 79,
-                "timestamp": "2018-02-05T00:00:00",
+                "timestamp": "2018-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41712,7 +41951,7 @@
                 "filename": "HOUSE_OVERSIGHT_022417.txt",
                 "is_interesting": true,
                 "num_lines": 1118,
-                "timestamp": "2017-02-05T00:00:00",
+                "timestamp": "2017-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41763,7 +42002,7 @@
                 "filename": "HOUSE_OVERSIGHT_022707.txt",
                 "is_interesting": true,
                 "num_lines": 146,
-                "timestamp": "2014-02-05T00:00:00",
+                "timestamp": "2014-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41776,7 +42015,7 @@
                 "filename": "HOUSE_OVERSIGHT_022727.txt",
                 "is_interesting": true,
                 "num_lines": 146,
-                "timestamp": "2014-02-05T00:00:00",
+                "timestamp": "2014-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41789,7 +42028,7 @@
                 "filename": "HOUSE_OVERSIGHT_022746.txt",
                 "is_interesting": true,
                 "num_lines": 149,
-                "timestamp": "2014-02-05T00:00:00",
+                "timestamp": "2014-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41835,7 +42074,7 @@
                 "filename": "HOUSE_OVERSIGHT_022844.txt",
                 "is_interesting": true,
                 "num_lines": 149,
-                "timestamp": "2014-02-05T00:00:00",
+                "timestamp": "2014-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41848,7 +42087,7 @@
                 "filename": "HOUSE_OVERSIGHT_022863.txt",
                 "is_interesting": true,
                 "num_lines": 109,
-                "timestamp": "2009-02-05T00:00:00",
+                "timestamp": "2009-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41861,7 +42100,7 @@
                 "filename": "HOUSE_OVERSIGHT_022894.txt",
                 "is_interesting": true,
                 "num_lines": 99,
-                "timestamp": "2009-02-05T00:00:00",
+                "timestamp": "2009-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41874,7 +42113,7 @@
                 "filename": "HOUSE_OVERSIGHT_022952.txt",
                 "is_interesting": true,
                 "num_lines": 140,
-                "timestamp": "2014-02-05T00:00:00",
+                "timestamp": "2014-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42179,7 +42418,7 @@
                 "filename": "HOUSE_OVERSIGHT_023435.txt",
                 "is_interesting": false,
                 "num_lines": 107,
-                "timestamp": "2016-02-05T00:00:00",
+                "timestamp": "2016-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42381,7 +42620,7 @@
                 "filename": "HOUSE_OVERSIGHT_023720.txt",
                 "is_interesting": false,
                 "num_lines": 280,
-                "timestamp": "2012-02-05T00:00:00",
+                "timestamp": "2012-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42394,7 +42633,7 @@
                 "filename": "HOUSE_OVERSIGHT_023731.txt",
                 "is_interesting": false,
                 "num_lines": 8219,
-                "timestamp": "2011-02-05T00:00:00",
+                "timestamp": "2011-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42406,7 +42645,7 @@
                 "filename": "HOUSE_OVERSIGHT_024003.txt",
                 "is_interesting": true,
                 "num_lines": 5090,
-                "timestamp": "2020-02-05T00:00:00",
+                "timestamp": "2020-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42418,7 +42657,7 @@
                 "filename": "HOUSE_OVERSIGHT_024117.txt",
                 "is_interesting": true,
                 "num_lines": 751,
-                "timestamp": "2012-07-05T00:00:00",
+                "timestamp": "2012-07-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42509,7 +42748,7 @@
                 "filename": "HOUSE_OVERSIGHT_024229.txt",
                 "is_interesting": true,
                 "num_lines": 79,
-                "timestamp": "2009-02-05T00:00:00",
+                "timestamp": "2009-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42522,7 +42761,7 @@
                 "filename": "HOUSE_OVERSIGHT_024256.txt",
                 "is_interesting": true,
                 "num_lines": 498,
-                "timestamp": "2017-05-05T00:00:00",
+                "timestamp": "2017-05-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42586,7 +42825,7 @@
                 "filename": "HOUSE_OVERSIGHT_024374.txt",
                 "is_interesting": false,
                 "num_lines": 83,
-                "timestamp": "2019-02-05T00:00:00",
+                "timestamp": "2019-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42624,7 +42863,7 @@
                 "filename": "HOUSE_OVERSIGHT_024631.txt",
                 "is_interesting": true,
                 "num_lines": 6977,
-                "timestamp": "2019-02-05T00:00:00",
+                "timestamp": "2019-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42687,7 +42926,7 @@
                 "filename": "HOUSE_OVERSIGHT_025104.txt",
                 "is_interesting": false,
                 "num_lines": 365,
-                "timestamp": "2020-02-05T00:00:00",
+                "timestamp": "2020-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42823,7 +43062,7 @@
                 "filename": "HOUSE_OVERSIGHT_025292.txt",
                 "is_interesting": false,
                 "num_lines": 80,
-                "timestamp": "2016-02-05T00:00:00",
+                "timestamp": "2016-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42880,7 +43119,7 @@
                 "filename": "HOUSE_OVERSIGHT_025540.txt",
                 "is_interesting": true,
                 "num_lines": 36,
-                "timestamp": "2009-07-05T00:00:00",
+                "timestamp": "2009-07-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42975,7 +43214,7 @@
                 "filename": "HOUSE_OVERSIGHT_025849.txt",
                 "is_interesting": false,
                 "num_lines": 603,
-                "timestamp": "2014-02-05T00:00:00",
+                "timestamp": "2014-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43039,7 +43278,7 @@
                 "filename": "HOUSE_OVERSIGHT_026134.txt",
                 "is_interesting": true,
                 "num_lines": 784,
-                "timestamp": "2020-02-05T00:00:00",
+                "timestamp": "2020-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43104,7 +43343,7 @@
                 "filename": "HOUSE_OVERSIGHT_026543.txt",
                 "is_interesting": false,
                 "num_lines": 143,
-                "timestamp": "2020-02-05T00:00:00",
+                "timestamp": "2020-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43265,7 +43504,7 @@
                 "filename": "HOUSE_OVERSIGHT_026731.txt",
                 "is_interesting": false,
                 "num_lines": 250,
-                "timestamp": "2020-02-05T00:00:00",
+                "timestamp": "2020-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43331,7 +43570,7 @@
                 "filename": "HOUSE_OVERSIGHT_026794.txt",
                 "is_interesting": false,
                 "num_lines": 673,
-                "timestamp": "2020-02-05T00:00:00",
+                "timestamp": "2020-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43344,7 +43583,7 @@
                 "filename": "HOUSE_OVERSIGHT_026825.txt",
                 "is_interesting": false,
                 "num_lines": 81,
-                "timestamp": "2015-02-05T00:00:00",
+                "timestamp": "2015-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43540,7 +43779,7 @@
                 "filename": "HOUSE_OVERSIGHT_027071.txt",
                 "is_interesting": true,
                 "num_lines": 120,
-                "timestamp": "2015-02-05T00:00:00",
+                "timestamp": "2015-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43706,7 +43945,7 @@
                 "filename": "HOUSE_OVERSIGHT_029102.txt",
                 "is_interesting": true,
                 "num_lines": 94,
-                "timestamp": "2016-02-05T00:00:00",
+                "timestamp": "2016-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43719,7 +43958,7 @@
                 "filename": "HOUSE_OVERSIGHT_029104.txt",
                 "is_interesting": true,
                 "num_lines": 94,
-                "timestamp": "2016-02-05T00:00:00",
+                "timestamp": "2016-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43890,7 +44129,7 @@
                 "filename": "HOUSE_OVERSIGHT_029328.txt",
                 "is_interesting": false,
                 "num_lines": 230,
-                "timestamp": "2011-02-05T00:00:00",
+                "timestamp": "2011-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43903,7 +44142,7 @@
                 "filename": "HOUSE_OVERSIGHT_029340.txt",
                 "is_interesting": false,
                 "num_lines": 59,
-                "timestamp": "2014-02-05T00:00:00",
+                "timestamp": "2014-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43993,7 +44232,7 @@
                 "filename": "HOUSE_OVERSIGHT_029356.txt",
                 "is_interesting": false,
                 "num_lines": 18,
-                "timestamp": "2001-08-05T00:00:00",
+                "timestamp": "2001-08-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -44091,7 +44330,7 @@
                 "filename": "HOUSE_OVERSIGHT_029448.txt",
                 "is_interesting": true,
                 "num_lines": 25,
-                "timestamp": "2016-02-05T00:00:00",
+                "timestamp": "2016-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -44583,7 +44822,7 @@
                 "filename": "HOUSE_OVERSIGHT_030825.txt",
                 "is_interesting": false,
                 "num_lines": 15,
-                "timestamp": "2013-06-05T00:00:00",
+                "timestamp": "2013-06-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -44609,7 +44848,7 @@
                 "filename": "HOUSE_OVERSIGHT_030840.txt",
                 "is_interesting": false,
                 "num_lines": 332,
-                "timestamp": "2014-02-05T00:00:00",
+                "timestamp": "2014-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -44634,7 +44873,7 @@
                 "filename": "HOUSE_OVERSIGHT_030875.txt",
                 "is_interesting": true,
                 "num_lines": 22,
-                "timestamp": "2004-02-05T00:00:00",
+                "timestamp": "2004-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -44754,7 +44993,7 @@
                 "filename": "HOUSE_OVERSIGHT_031354.txt",
                 "is_interesting": false,
                 "num_lines": 182,
-                "timestamp": "2012-02-05T00:00:00",
+                "timestamp": "2012-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -44767,7 +45006,7 @@
                 "filename": "HOUSE_OVERSIGHT_031359.txt",
                 "is_interesting": false,
                 "num_lines": 794,
-                "timestamp": "2012-05-05T00:00:00",
+                "timestamp": "2012-05-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -44823,7 +45062,7 @@
                 "filename": "HOUSE_OVERSIGHT_031447.txt",
                 "is_interesting": true,
                 "num_lines": 97,
-                "timestamp": "2015-10-05T00:00:00",
+                "timestamp": "2015-10-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -44835,7 +45074,7 @@
                 "filename": "HOUSE_OVERSIGHT_031533.txt",
                 "is_interesting": false,
                 "num_lines": 67,
-                "timestamp": "2016-05-05T00:00:00",
+                "timestamp": "2016-05-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -44944,7 +45183,7 @@
                 "filename": "HOUSE_OVERSIGHT_031794.txt",
                 "is_interesting": false,
                 "num_lines": 24,
-                "timestamp": "2008-02-05T00:00:00",
+                "timestamp": "2008-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45226,7 +45465,7 @@
                 "filename": "HOUSE_OVERSIGHT_033220.txt",
                 "is_interesting": true,
                 "num_lines": 212,
-                "timestamp": "2018-02-05T00:00:00",
+                "timestamp": "2018-02-06T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
