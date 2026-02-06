@@ -1684,7 +1684,7 @@ HIGHLIGHTED_NAMES = [
         ],
         style='deep_pink3',
     ),
-    HighlightedNames(emailers={JABOR_Y: '"an influential man in Qatar"'}, category=MIDEAST, style='spring_green1'),
+    HighlightedNames(emailers={JABOR_Y: 'former Qatari prime minister Hamad bin Jassim AKA HBJ'}, category=MIDEAST, style='spring_green1'),
     HighlightedNames(emailers={KATHRYN_RUEMMLER: 'former Obama legal counsel'}, style='magenta2', category=FRIEND),
     HighlightedNames(emailers={MELANIE_WALKER: f"doctor, friend of {BILL_GATES}"}, style='pale_violet_red1', category=FRIEND),
     HighlightedNames(emailers={PAULA: "Epstein's ex-girlfriend who is now in the opera world"}, label='paula', style='pink1', category=FRIEND),
