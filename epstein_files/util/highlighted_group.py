@@ -398,6 +398,7 @@ HIGHLIGHTED_NAMES = [
             r"(Jim\s*)Pallotta",  # Media lab advisory board
             r"Libra",
             r"Madars",
+            r"Medici\s*Bank",
             r"Mi(chael|ke)\s*Novogratz",
             r"(Patrick\s*)?Murck",
             r"(Hester\s*)?Peirce",
