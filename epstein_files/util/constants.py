@@ -1070,9 +1070,11 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='EFTA00995559', author=RENATA_BOLOTOVA, attribution_reason='poorly redacted signature'),
     EmailCfg(id='EFTA00039663', author=STACEY_RICHMAN, attribution_reason='unredacted in EFTA00039662'),
-    EmailCfg(id='EFTA02731689', author=UNKNOWN, recipients=[None], date='2023-06-09 20:14:00'),
+    EmailCfg(id='EFTA02731689', author=UNKNOWN, recipients=[None], date='2023-06-09 20:14:00', truncate_to=TRUNCATED_CHARS),
     EmailCfg(id='EFTA00040121', author=USANYS, recipients=['AT&T Court Appearance Team']),
     EmailCfg(id='EFTA02731593', author=USANYS, recipients=['Manhattan DA']),
+    EmailCfg(id='EFTA00039419', author=USANYS, recipients=['Manhattan DA']),
+    EmailCfg(id='EFTA00039796', author='SDNY', recipients=[USANYS]),
     EmailCfg(id='EFTA02731755', author=USANYS),
     EmailCfg(id='EFTA00039890', author=USANYS),
     EmailCfg(id='EFTA00040141', author=USANYS),
@@ -1100,13 +1102,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01846434', recipients=[RENATA_BOLOTOVA], attribution_reason='"sneaky dog"'),
     EmailCfg(id='EFTA00929871', recipients=[RENATA_BOLOTOVA], attribution_reason='"sneaky dog"', duplicate_ids=['EFTA01773449', 'EFTA02550388']),
     EmailCfg(id='EFTA00667441', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
-    EmailCfg(id='EFTA02731617', recipients=[USANYS]),
     EmailCfg(id='EFTA02731721', recipients=[USANYS]),
     EmailCfg(id='EFTA02731737', date='2023-06-30T16:05:00'),
     EmailCfg(id='EFTA02731475', date='2023-05-31T20:53:00'),
     EmailCfg(id='EFTA02731732', date='2024-03-06T12:21:00'),
     EmailCfg(id='EFTA02731485', date='2023-06-12T13:53:00'),
-    EmailCfg(id='EFTA02731617', date='2021-04-28T15:05:41'),
+    EmailCfg(id='EFTA02731617', author=USANYS, recipients=['SDNY'], date='2021-04-28T15:05:41'),
     EmailCfg(id='EFTA02730483', date='2023-07-11T08:25:00'),  # TODO: actually reply timewtamp
     EmailCfg(id='EFTA02730481', date='2023-07-07T11:01:00'),  # TODO: actually reply timewtamp
     EmailCfg(id='EFTA02731754', date='2024-03-06T23:24:00'),  # TODO: actually reply timewtamp
