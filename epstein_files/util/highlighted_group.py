@@ -376,12 +376,14 @@ HIGHLIGHTED_NAMES = [
             ANTHONY_SCARAMUCCI: 'Skybridge Capital, FTX investor',
             AUSTIN_HILL: 'Blockstream co-founder with Adam Back',
             BROCK_PIERCE: 'Bannon business partner, Tether co-founder, friend of Yair Netanyahu, sex crime history',
+            BRYAN_BISHOP: 'executive at LedgerX',
             DONALD_NORMAN: f'co-founder of early British crypto exchange Intersango with {AMIR_TAAKI}',
             JEFFREY_WERNICK: 'former COO of Parler, involved in numerous crypto companies like Bitforex',
             JEREMY_RUBIN: 'developer/researcher',
             JOI_ITO: f"former head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative",
         },
         patterns=[
+            r"((Andy|Adam)\s*)Back",
             r"Balaji",
             r"Bart\s*Stephens",  # co-founder, Blockchain Capital
             r"Bioptix",  # Now RIOT Blockchain
@@ -396,6 +398,7 @@ HIGHLIGHTED_NAMES = [
             r"(Gavin )?Andress?en",  # bitcoin dev
             r"(Howard\s+)?Lutnic?k",
             r"(Jim\s*)Pallotta",  # Media lab advisory board
+            r"LedgerX",
             r"Libra",
             r"Madars",
             r"Medici\s*Bank",
@@ -1635,7 +1638,7 @@ HIGHLIGHTED_NAMES = [
             BRAD_EDWARDS: ROTHSTEIN_ROSENFELDT_ADLER,
             'Douglas Wigdor': f'lawsuit against {LEON_BLACK}, Wigdor LLP',
             'Grant J. Smith': ROTHSTEIN_ROSENFELDT_ADLER,
-            'Jeanne M. Christensen': f'lawsuit against {LEON_BLACK}, Wigdor LLP',
+            JEANNE_M_CHRISTENSEN: f'lawsuit against {LEON_BLACK}, Wigdor LLP',
             JACK_SCAROLA: 'Searcy Denney Scarola Barnhart & Shipley',
             KEN_JENNE: ROTHSTEIN_ROSENFELDT_ADLER,
         },
@@ -1684,7 +1687,7 @@ HIGHLIGHTED_NAMES = [
         ],
         style='deep_pink3',
     ),
-    HighlightedNames(emailers={JABOR_Y: '"an influential man in Qatar"'}, category=MIDEAST, style='spring_green1'),
+    HighlightedNames(emailers={JABOR_Y: 'former Qatari prime minister Hamad bin Jassim AKA HBJ'}, category=MIDEAST, style='spring_green1'),
     HighlightedNames(emailers={KATHRYN_RUEMMLER: 'former Obama legal counsel'}, style='magenta2', category=FRIEND),
     HighlightedNames(emailers={MELANIE_WALKER: f"doctor, friend of {BILL_GATES}"}, style='pale_violet_red1', category=FRIEND),
     HighlightedNames(emailers={PAULA: "Epstein's ex-girlfriend who is now in the opera world"}, label='paula', style='pink1', category=FRIEND),
