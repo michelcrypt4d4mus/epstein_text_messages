@@ -1163,6 +1163,12 @@ EMAILS_CONFIG = [
         description=f"discussion of the murder of Martine Vik Magnussen by {SHAHER_ABDULHAK_BESHER}'s son Farouk",
         is_interesting=True,
     ),
+    EmailCfg(
+        id='EFTA01834864',
+        description=f"forged email Epstein wrote to complain about the Mindshift conference to {AL_SECKEL}",
+        is_interesting=True,
+    ),
+    EmailCfg(id='EFTA00901970', description=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=True),
     EmailCfg(id='EFTA01051074', description='Brock Pierce arranging meeting between Bannon and Epstein (in Doha?)'),
     EmailCfg(id='EFTA00988395', description='"Andy Back" is probably O.G. bitcoiner Adam Back from Blockstream'),
     EmailCfg(id='EFTA00104945', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True),
