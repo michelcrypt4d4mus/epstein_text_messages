@@ -1168,6 +1168,7 @@ EMAILS_CONFIG = [
         description=f"forged email Epstein wrote to complain about the Mindshift conference to {AL_SECKEL}",
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA00830911', description='fundraising email for LedgerX which was later acquired by FTX for $298 million'),
     EmailCfg(id='EFTA00901970', description=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=True),
     EmailCfg(id='EFTA01051074', description='Brock Pierce arranging meeting between Bannon and Epstein (in Doha?)'),
     EmailCfg(id='EFTA00988395', description='"Andy Back" is probably O.G. bitcoiner Adam Back from Blockstream'),
@@ -1781,7 +1782,9 @@ OTHER_FILES_PROPERTY = [
     # DOJ files
     DocCfg(id='EFTA00001884', date='2019-03-14', description='photo of letter from Virgin Islands DOJ to Epstein'),
     DocCfg(id='EFTA00005783', date='2019-08-29', description='heavily redacted handwritten note and 30+ completely blacked out redacted pages'),
-
+    DocCfg(id='EFTA01088644', date='2015-10-01', description='Blockchain Capital deck'),
+    DocCfg(id='EFTA00604942', date='2015-10-01', description='Blockchain Capital Investor Update'),
+    DocCfg(id='EFTA00590685', attached_to_email_id='EFTA00830911'),
 ]
 
 OTHER_FILES_REPUTATION = [
