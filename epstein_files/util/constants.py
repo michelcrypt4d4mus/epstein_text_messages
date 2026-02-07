@@ -1997,7 +1997,8 @@ OTHER_FILES_MISC = [
     DocCfg(id='029448', description=f"weird short essay titled 'President Obama and Self-Deception'"),
 
     # DOJ files
-
+    DocCfg(id='EFTA01107738', description="creation of Cantor Urramoor Asset Management with Mr. T's Urramoor and Howard Lutnick's Cantor Fitzgerald", is_interesting=True),
+    DocCfg(id='EFTA01141453', description="referral agreement between Mr. T's Urramoor and Howard Lutnick's Cantor Fitzgerald", is_interesting=True),
     DocCfg(id='EFTA00007781', description='paychecks signed by Epstein deposited at Colonial Bank'),
     DocCfg(id='EFTA00009622', description='handwritten note transcribed Claude AI', date='2006-07-19', replace_text_with=EFTA00009622_TEXT),
     DocCfg(id='EFTA00039295', replace_text_with='Bureau of Prisons inmate telephone privileges Program Statement'),
