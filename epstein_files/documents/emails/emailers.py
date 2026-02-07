@@ -112,7 +112,7 @@ EMAILER_ID_PATTERNS: dict[str, str] = {
     SAMUEL_LEFF: r"Sam(uel)?(/Walli)? Leff",
     SCOTT_J_LINK: r'scott j. link?',
     SEAN_BANNON: r'sean bannon?',
-    SHAHER_ABDULHAK_BESHER: r'\bShaher( Abdulhak Besher)?\b',
+    SHAHER_ABDULHAK_BESHER: r'\bShaher(\s*Abdulhak\s*Besher)?\b',
     SOON_YI_PREVIN: r'Soon[- ]Yi Previn?',
     STACEY_RICHMAN: r"srichmanlaw|Stacey\s*Richman",
     STEPHEN_HANSON: r'ste(phen|ve) hanson?|Shanson900',
