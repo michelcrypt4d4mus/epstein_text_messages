@@ -215,6 +215,7 @@ TULSI_GABBARD = 'Tulsi Gabbard'
 VIRGINIA_GIUFFRE = 'Virginia Giuffre'
 
 # Organizations
+ATT_COURT_APPEARANCE_TEAM = 'AT&T Court Appearance Team'
 BOFA = 'BofA'
 BOFA_MERRILL = f'{BOFA} / Merrill Lynch'
 CNN = 'CNN'

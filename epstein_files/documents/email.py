@@ -22,7 +22,7 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constants import *
-from epstein_files.util.data import AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines, remove_timezone
+from epstein_files.util.data import AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines, remove_timezone, uniquify
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.file_helper import extract_file_id, file_stem_for_id
 from epstein_files.util.highlighted_group import JUNK_EMAILERS, get_style_for_name
@@ -87,6 +87,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r'^INW$', re.MULTILINE): REDACTED,
     # links
     'Imps ://': 'https://',
+    'classified-intelligence-\nmichael-flynn-trump': 'classified-intelligence-michael-flynn-trump',
     'on-accusers-rose-\nmcgowan/ ': 'on-accusers-rose-\nmcgowan/\n',
     'the-truth-\nabout-the-bitcoin-foundation/ )': 'the-truth-about-the-bitcoin-foundation/ )\n',
     'woody-allen-jeffrey-epsteins-\nsociety-friends-close-ranks/ ---': 'woody-allen-jeffrey-epsteins-society-friends-close_ranks/\n',
@@ -98,6 +99,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     "Arrested in\nInauguration Day Riot": "Arrested in Inauguration Day Riot",
     "as Putin Mayhem Tests President's Grip\non GOP": "as Putin Mayhem Tests President's Grip on GOP",
     "avoids testimony from alleged\nvictims": "avoids testimony from alleged victims",
+    "It's a first, but the buyer's\nanonymous": "It's a first, but the buyer's anonymous",
     "but\nwatchdogs say probe is tainted": "watchdogs say probe is tainted",
     "Christmas comes\nearly for most of macro": "Christmas comes early for most of macro",            # 023717
     "but majority still made good\nmoney because": "but majority still made good money because",      # 023717
@@ -421,7 +423,7 @@ class Email(Communication):
 
     @property
     def is_note_to_self(self) -> bool:
-        return self.recipients == [self.author]
+        return uniquify(self.recipients) == [self.author]
 
     @property
     def is_word_count_worthy(self) -> bool:
@@ -483,6 +485,9 @@ class Email(Communication):
 
         # Remove self CCs but preserve self emails
         if not self.is_note_to_self:
+            if self.author in self.recipients:
+                self.warn(f"Removing email to self for {self.author}")
+
             self.recipients = [r for r in self.recipients if r != self.author]
 
         self.recipients = sorted(list(set(self.recipients)), key=lambda r: r or UNKNOWN)

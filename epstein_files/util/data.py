@@ -8,7 +8,6 @@ from dateutil import tz
 from typing import TypeVar
 
 from epstein_files.util.constant import names
-from epstein_files.util.constant.strings import QUESTION_MARKS
 from epstein_files.util.env import args
 from epstein_files.util.logging import logger
 
@@ -88,3 +87,7 @@ def remove_timezone(timestamp: datetime) -> datetime:
 def sort_dict(d: dict[str | None, int] | dict[str, int]) -> list[tuple[str | None, int]]:
     sort_key = lambda e: (e[0] or '').lower() if args.sort_alphabetical else [-e[1], (e[0] or '').lower()]
     return sorted(d.items(), key=sort_key)
+
+
+def uniquify(_list: list[names.Name]) -> list[names.Name]:
+    return list(set(_list))
