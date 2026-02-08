@@ -4861,7 +4861,7 @@
                 "bytes": 2179,
                 "file_id": "025647",
                 "filename": "HOUSE_OVERSIGHT_025647.txt",
-                "num_lines": 45,
+                "num_lines": 44,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -6440,7 +6440,7 @@
                 "bytes": 385,
                 "file_id": "026254",
                 "filename": "HOUSE_OVERSIGHT_026254.txt",
-                "num_lines": 6,
+                "num_lines": 5,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -6453,7 +6453,7 @@
                 "bytes": 1617,
                 "file_id": "026255",
                 "filename": "HOUSE_OVERSIGHT_026255.txt",
-                "num_lines": 30,
+                "num_lines": 29,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -6467,7 +6467,7 @@
                 "bytes": 2911,
                 "file_id": "026256",
                 "filename": "HOUSE_OVERSIGHT_026256.txt",
-                "num_lines": 55,
+                "num_lines": 54,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -6483,7 +6483,7 @@
                 "file_id": "026258",
                 "filename": "HOUSE_OVERSIGHT_026258.txt",
                 "is_interesting": true,
-                "num_lines": 54,
+                "num_lines": 53,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -6499,7 +6499,7 @@
                 "file_id": "026260",
                 "filename": "HOUSE_OVERSIGHT_026260.txt",
                 "is_interesting": true,
-                "num_lines": 78,
+                "num_lines": 77,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -6513,7 +6513,7 @@
                 "bytes": 5233,
                 "file_id": "026263",
                 "filename": "HOUSE_OVERSIGHT_026263.txt",
-                "num_lines": 99,
+                "num_lines": 98,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -6555,7 +6555,7 @@
                 "bytes": 1242,
                 "file_id": "026269",
                 "filename": "HOUSE_OVERSIGHT_026269.txt",
-                "num_lines": 25,
+                "num_lines": 24,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -6568,7 +6568,7 @@
                 "bytes": 2145,
                 "file_id": "026270",
                 "filename": "HOUSE_OVERSIGHT_026270.txt",
-                "num_lines": 47,
+                "num_lines": 46,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -7469,7 +7469,7 @@
                 "bytes": 1092,
                 "file_id": "026473",
                 "filename": "HOUSE_OVERSIGHT_026473.txt",
-                "num_lines": 21,
+                "num_lines": 20,
                 "recipients": [
                     "Steve Bannon"
                 ],
@@ -7482,7 +7482,7 @@
                 "bytes": 1169,
                 "file_id": "026474",
                 "filename": "HOUSE_OVERSIGHT_026474.txt",
-                "num_lines": 21,
+                "num_lines": 20,
                 "recipients": [
                     "Steve Bannon"
                 ],
@@ -8406,7 +8406,7 @@
                 "bytes": 386,
                 "file_id": "026787",
                 "filename": "HOUSE_OVERSIGHT_026787.txt",
-                "num_lines": 6,
+                "num_lines": 5,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -32707,6 +32707,7 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 358,
                 "file_id": "EFTA00039662",
                 "filename": "EFTA00039662.txt",
@@ -32757,6 +32758,9 @@
                 "file_id": "EFTA00039790",
                 "filename": "EFTA00039790.txt",
                 "num_lines": 8,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "Opinion on Maxwell Motions",
                 "timestamp": "2021-04-16T22:09:33",
                 "type": "Email"
@@ -32942,10 +32946,10 @@
                 "type": "Email"
             },
             {
-                "bytes": 4357,
+                "bytes": 4363,
                 "file_id": "EFTA00039872",
                 "filename": "EFTA00039872.txt",
-                "num_lines": 89,
+                "num_lines": 94,
                 "subject": "RE: FW: Ghislaine Maxwell 02879-509",
                 "timestamp": "2020-11-16T17:35:53",
                 "type": "Email"
@@ -33068,6 +33072,9 @@
                 "file_id": "EFTA00039893",
                 "filename": "EFTA00039893.txt",
                 "num_lines": 13,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "Feds Are Asking Jeffrey Epstein's Victims About Sex-Trafficking Crimes",
                 "timestamp": "2019-06-03T15:28:51",
                 "type": "Email"
@@ -33087,6 +33094,9 @@
                 "file_id": "EFTA00039964",
                 "filename": "EFTA00039964.txt",
                 "num_lines": 27,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "RE:",
                 "timestamp": "2020-07-14T19:15:40",
                 "type": "Email"
@@ -33129,6 +33139,9 @@
                 "file_id": "EFTA00039980",
                 "filename": "EFTA00039980.txt",
                 "num_lines": 9,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "2019.09.09 Letter to OCME.v1.docx",
                 "timestamp": "2019-09-09T17:47:35",
                 "type": "Email"
@@ -33177,6 +33190,9 @@
                 "file_id": "EFTA00039989",
                 "filename": "EFTA00039989.txt",
                 "num_lines": 145,
+                "recipients": [
+                    "USANYS"
+                ],
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Fwd:",
                 "timestamp": "2019-09-12T11:57:01",
@@ -33278,6 +33294,9 @@
                 "file_id": "EFTA00040135",
                 "filename": "EFTA00040135.txt",
                 "num_lines": 44,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "RE: [EXTERNAL] Ghislaine Maxwell query",
                 "timestamp": "2021-11-18T16:14:37",
                 "type": "Email"
@@ -33308,11 +33327,14 @@
                 "type": "Email"
             },
             {
-                "author": "testimony g10695@att.com",
+                "author": "AT&T Court Appearance Team",
                 "bytes": 1178,
                 "file_id": "EFTA00040142",
                 "filename": "EFTA00040142.txt",
                 "num_lines": 17,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "[EXTERNAL] 227815.002 USA V GHISLAINE MAXWELL 20 CR 330 (AJN)",
                 "timestamp": "2021-11-19T15:12:50",
                 "type": "Email"
@@ -33907,10 +33929,15 @@
                 "type": "Email"
             },
             {
-                "bytes": 84834,
+                "author": "Gregory Brown",
+                "bytes": 84807,
                 "file_id": "EFTA00642436",
                 "filename": "EFTA00642436.txt",
-                "num_lines": 951,
+                "num_lines": 934,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Fwd: Greg Brown's Weekend Reading and Other Things.... 04/21/2013",
                 "timestamp": "2013-04-21T14:18:50",
                 "type": "Email"
             },
@@ -34143,14 +34170,16 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"iPhone word substitution\" in signature, which is traced back to \"Linda, thanks\" in EFTA00961792",
+                "author": "Linda Stone",
                 "bytes": 2495,
                 "file_id": "EFTA00703417",
                 "filename": "EFTA00703417.txt",
-                "num_lines": 40,
+                "num_lines": 38,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
-                "subject": "Fwd: [Dewayne-Net] Someone just sold a Bitcoin business for $11.4M! It's a first, but the buyer's",
+                "subject": "Fwd: [Dewayne-Net] Someone just sold a Bitcoin business for $11.4M! It's a first, but the buyer's anonymous",
                 "timestamp": "2013-07-19T13:15:54",
                 "type": "Email"
             },
@@ -34183,6 +34212,8 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"iPhone word substitution\" in signature, which is traced back to \"Linda, thanks\" in EFTA00961792",
+                "author": "Linda Stone",
                 "bytes": 5308,
                 "file_id": "EFTA00706814",
                 "filename": "EFTA00706814.txt",
@@ -34604,7 +34635,10 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "renbolotova in body",
+                "author": "Renata Bolotova",
                 "bytes": 1336,
+                "description": "this file has been removed from the DOJ site",
                 "file_id": "EFTA00912012",
                 "filename": "EFTA00912012.txt",
                 "num_lines": 33,
@@ -34716,6 +34750,8 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "renbolotova@gmail in body",
+                "author": "Renata Bolotova",
                 "bytes": 3982,
                 "file_id": "EFTA00920010",
                 "filename": "EFTA00920010.txt",
@@ -34728,6 +34764,8 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "discussion of employment at Institute",
+                "author": "Renata Bolotova",
                 "bytes": 4115,
                 "file_id": "EFTA00920177",
                 "filename": "EFTA00920177.txt",
@@ -35671,13 +35709,17 @@
                 "type": "Email"
             },
             {
-                "bytes": 294,
+                "attribution_reason": "\"sneaky dog\"",
+                "author": "Renata Bolotova",
+                "bytes": 310,
                 "file_id": "EFTA01748575",
                 "filename": "EFTA01748575.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 7,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
+                "subject": "my sneaky sneaky",
                 "timestamp": "2014-08-06T01:46:36",
                 "type": "Email"
             },
@@ -36221,9 +36263,13 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"iPhone word substitution\" in signature, which is traced back to \"Linda, thanks\" in EFTA00961792",
+                "author": "Linda Stone",
                 "bytes": 299,
+                "description": "Barry Silbert became the CEO of Digital Currency Group, the top crypto fund in the U.S.",
                 "file_id": "EFTA01965506",
                 "filename": "EFTA01965506.txt",
+                "is_interesting": true,
                 "num_lines": 10,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -36586,12 +36632,14 @@
                 "type": "Email"
             },
             {
-                "author": "Lesley Groff",
+                "author": "Jeffrey Epstein",
                 "bytes": 980,
                 "file_id": "EFTA02089992",
                 "filename": "EFTA02089992.txt",
-                "is_attribution_uncertain": true,
                 "num_lines": 23,
+                "recipients": [
+                    "Lesley Groff"
+                ],
                 "subject": "Re: Nicole Junkermann",
                 "timestamp": "2014-11-28T14:46:39",
                 "type": "Email"
@@ -36862,7 +36910,7 @@
                     "Jeffrey Epstein",
                     "Renata Bolotova"
                 ],
-                "subject": "Re: Happy Va entine's to a beautiful couple!!!VVV Love both of you!!!",
+                "subject": "Re: Happy Valentine's to a beautiful couple!!!VVV Love both of you!!!",
                 "timestamp": "2019-02-14T15:07:00",
                 "type": "Email"
             },
@@ -37851,13 +37899,17 @@
                 "type": "Email"
             },
             {
+                "author": "Records Management (Sun Sentinel?)",
                 "bytes": 4154,
-                "date": "2013-04-24 16:32:00",
                 "file_id": "EFTA02730473",
                 "filename": "EFTA02730473.txt",
+                "is_interesting": false,
                 "num_lines": 96,
+                "recipients": [
+                    "Records Management Division"
+                ],
                 "subject": "FW: RE: 31E-MM-108062 --- UNCLASSIFIED",
-                "timestamp": "2013-04-24T16:32:00",
+                "timestamp": "2013-04-24T12:32:00",
                 "type": "Email"
             },
             {
@@ -38089,6 +38141,7 @@
                 "type": "Email"
             },
             {
+                "author": "FBI",
                 "bytes": 3864,
                 "date": "2021-05-26 16:12:00",
                 "file_id": "EFTA02731552",
@@ -38461,7 +38514,10 @@
                 "date": "2021-06-07 17:33:00",
                 "file_id": "EFTA02731697",
                 "filename": "EFTA02731697.txt",
-                "num_lines": 42,
+                "num_lines": 43,
+                "recipients": [
+                    "FBI"
+                ],
                 "timestamp": "2021-06-07T17:33:00",
                 "type": "Email"
             },
@@ -38470,7 +38526,11 @@
                 "date": "2021-05-27 10:19:00",
                 "file_id": "EFTA02731699",
                 "filename": "EFTA02731699.txt",
+                "is_interesting": false,
                 "num_lines": 118,
+                "recipients": [
+                    "FBI"
+                ],
                 "subject": "RE: EXTERNAL EMAIL] \u2022 RE: 302",
                 "timestamp": "2021-05-27T10:19:00",
                 "type": "Email"
@@ -38537,11 +38597,12 @@
                 "type": "Email"
             },
             {
-                "bytes": 5797,
+                "bytes": 5802,
                 "date": "2021-08-17 00:00:00",
                 "file_id": "EFTA02731729",
                 "filename": "EFTA02731729.txt",
                 "num_lines": 108,
+                "subject": "Memo to File re Leon Black",
                 "timestamp": "2021-08-17T00:00:00",
                 "type": "Email"
             },
