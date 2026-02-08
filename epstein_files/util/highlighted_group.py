@@ -385,6 +385,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"((Andy|Adam)\s*)Back",
             r"Balaji",
+            r"Barry Silbert",
             r"Bart\s*Stephens",  # co-founder, Blockchain Capital
             r"Bioptix",  # Now RIOT Blockchain
             r"bitcoin(\s*Foundation)?",
@@ -1691,7 +1692,7 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(emailers={KATHRYN_RUEMMLER: 'former Obama legal counsel'}, style='magenta2', category=FRIEND),
     HighlightedNames(emailers={MELANIE_WALKER: f"doctor, friend of {BILL_GATES}"}, style='pale_violet_red1', category=FRIEND),
     HighlightedNames(emailers={PAULA: "Epstein's ex-girlfriend who is now in the opera world"}, label='paula', style='pink1', category=FRIEND),
-    HighlightedNames(emailers={PRINCE_ANDREW: 'British royal family'}, style='dodger_blue1', category='Europe'),
+    HighlightedNames(emailers={PRINCE_ANDREW: 'British royal family'}, patterns=[r'\bPA\b'], style='dodger_blue1', category='Europe'),
     HighlightedNames(emailers={SOON_YI_PREVIN: 'wife of Woody Allen'}, style='hot_pink', category=ARTS),
     HighlightedNames(emailers={SULTAN_BIN_SULAYEM: 'chairman of ports in Dubai, CEO of DP World'}, style='green1', category=MIDEAST),
 
