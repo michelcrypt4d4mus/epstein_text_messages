@@ -99,6 +99,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     "Arrested in\nInauguration Day Riot": "Arrested in Inauguration Day Riot",
     "as Putin Mayhem Tests President's Grip\non GOP": "as Putin Mayhem Tests President's Grip on GOP",
     "avoids testimony from alleged\nvictims": "avoids testimony from alleged victims",
+    "It's a first, but the buyer's\nanonymous": "It's a first, but the buyer's anonymous",
     "but\nwatchdogs say probe is tainted": "watchdogs say probe is tainted",
     "Christmas comes\nearly for most of macro": "Christmas comes early for most of macro",            # 023717
     "but majority still made good\nmoney because": "but majority still made good money because",      # 023717
