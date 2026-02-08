@@ -43,6 +43,7 @@ HEADER_ABBREVIATIONS = {
     'MBS': "Mohammed bin Salman Al Saud (Saudi ruler)",
     'MBZ': "Mohamed bin Zayed Al Nahyan (Emirates sheikh)",
     "Miro": MIROSLAV_LAJCAK,
+    'MJ': "Mohammed Abdul Latif Jameel (chairman of Abdul Latif Jameel)",
     "Mooch": "Anthony 'The Mooch' Scaramucci (Skybridge crypto bro)",
     "NPA": 'non-prosecution agreement',
     "Terje": TERJE_ROD_LARSEN,
