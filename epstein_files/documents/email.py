@@ -22,7 +22,7 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constants import *
-from epstein_files.util.data import AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines, remove_timezone
+from epstein_files.util.data import AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines, remove_timezone, uniquify
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.file_helper import extract_file_id, file_stem_for_id
 from epstein_files.util.highlighted_group import JUNK_EMAILERS, get_style_for_name
@@ -423,7 +423,7 @@ class Email(Communication):
 
     @property
     def is_note_to_self(self) -> bool:
-        return self.recipients == [self.author]
+        return uniquify(self.recipients) == [self.author]
 
     @property
     def is_word_count_worthy(self) -> bool:
@@ -485,6 +485,9 @@ class Email(Communication):
 
         # Remove self CCs but preserve self emails
         if not self.is_note_to_self:
+            if self.author in self.recipients:
+                self.warn(f"Removing email to self for {self.author}")
+
             self.recipients = [r for r in self.recipients if r != self.author]
 
         self.recipients = sorted(list(set(self.recipients)), key=lambda r: r or UNKNOWN)
