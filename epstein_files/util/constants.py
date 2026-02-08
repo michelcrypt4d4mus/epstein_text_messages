@@ -974,9 +974,10 @@ EMAILS_CONFIG = [
     EmailCfg(id='014797_1', has_uninteresting_bccs=True),
 
     # DOJ files
+    EmailCfg(id='EFTA00040142', author=ATT_COURT_APPEARANCE_TEAM, recipients=[USANYS]),
     EmailCfg(id='EFTA01747822', author=DARREN_INDYKE, attribution_reason='reply'),
     EmailCfg(id='EFTA00039967', author='DOJ London', recipients=[USANYS]),
-    EmailCfg(id='EFTA02731552', author=FBI),
+    EmailCfg(id='EFTA02731552', author=FBI, date='2021-05-26 16:12:00'),
     EmailCfg(id='EFTA02730483', author=FBI),
     EmailCfg(id='EFTA01776893', author=DONALD_NORMAN, attribution_reason='"This is Donald"', duplicate_ids=['EFTA00915423']),
     EmailCfg(id='EFTA00656005', author=DONALD_NORMAN, attribution_reason='signed "Donald"', duplicate_ids=['EFTA02691296', 'EFTA01862178']),
@@ -1118,13 +1119,14 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00995559', author=RENATA_BOLOTOVA, attribution_reason='poorly redacted signature'),
     EmailCfg(id='EFTA00039663', author=STACEY_RICHMAN, attribution_reason='unredacted in EFTA00039662'),
     EmailCfg(id='EFTA02731689', author=UNKNOWN, recipients=[None], date='2023-06-09 20:14:00', truncate_to=TRUNCATED_CHARS),
-    EmailCfg(id='EFTA00040121', author=USANYS, recipients=['AT&T Court Appearance Team']),
+    EmailCfg(id='EFTA00040121', author=USANYS, recipients=[ATT_COURT_APPEARANCE_TEAM]),
     EmailCfg(id='EFTA02731593', author=USANYS, recipients=['Manhattan DA']),
     EmailCfg(id='EFTA00039419', author=USANYS, recipients=['Manhattan DA']),
     EmailCfg(id='EFTA02731617', author=USANYS, recipients=['SDNY'], date='2021-04-28T15:05:41'),
     EmailCfg(id='EFTA00039796', author='SDNY', recipients=[USANYS]),
     EmailCfg(id='EFTA02731755', author=USANYS),
     EmailCfg(id='EFTA00039890', author=USANYS),
+    EmailCfg(id='EFTA00039662', author=USANYS),
     EmailCfg(id='EFTA00040141', author=USANYS),
     EmailCfg(id='EFTA02731644', author=USANYS),
     EmailCfg(id='EFTA00040144', author=USANYS),
@@ -1166,9 +1168,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731587', date='2022-01-21 17:28:00'),
     EmailCfg(id='EFTA02731729', date='2021-08-17 00:00:00'),
     EmailCfg(id='EFTA02731578', date='2021-05-28 10:00:00'),
-    EmailCfg(id='EFTA02731699', date='2021-05-27 10:19:00'),
+    EmailCfg(id='EFTA02731699', date='2021-05-27 10:19:00', recipients=[FBI], is_interesting=False),
     EmailCfg(id='EFTA02731583', date='2022-01-21 17:28:00'),
-    EmailCfg(id='EFTA02731552', date='2021-05-26 16:12:00'),
     EmailCfg(id='EFTA00039888', date='2019-05-14 16:49:00'),
     EmailCfg(id='EFTA02731697', date='2021-06-07 17:33:00'),
     EmailCfg(id='EFTA02731733', date='2021-05-17 17:29:00'),
@@ -1212,7 +1213,6 @@ if args.constantize:
 ################################################################################################
 
 # strings
-FBI = 'FBI'
 MEME = 'meme of'
 PRESS_RELEASE = 'press release'
 RESUME_OF = 'professional resumé'
