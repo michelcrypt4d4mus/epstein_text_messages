@@ -385,6 +385,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"((Andy|Adam)\s*)Back",
             r"Balaji",
+            r"Barry Silbert",
             r"Bart\s*Stephens",  # co-founder, Blockchain Capital
             r"Bioptix",  # Now RIOT Blockchain
             r"bitcoin(\s*Foundation)?",
