@@ -33571,6 +33571,76 @@
                 "type": "Email"
             },
             {
+                "author": "Brock Pierce",
+                "bytes": 7451,
+                "file_id": "EFTA00362171",
+                "filename": "EFTA00362171.txt",
+                "num_lines": 131,
+                "recipients": [
+                    "Andrew Farkas ctI",
+                    "Lesley Groff"
+                ],
+                "subject": "Re: 7pm Jeffrey tonight",
+                "timestamp": "2014-09-22T23:19:45",
+                "type": "Email"
+            },
+            {
+                "bytes": 6103,
+                "file_id": "EFTA00381451",
+                "filename": "EFTA00381451.txt",
+                "num_lines": 57,
+                "subject": "Re: October 29 for frank Heidt",
+                "timestamp": "2013-10-10T19:05:10",
+                "type": "Email"
+            },
+            {
+                "bytes": 545,
+                "description": "heavily redacted",
+                "file_id": "EFTA00383023",
+                "filename": "EFTA00383023.txt",
+                "is_interesting": true,
+                "num_lines": 35,
+                "subject": "Re: Quick",
+                "timestamp": "2013-09-24T15:21:42",
+                "type": "Email"
+            },
+            {
+                "author": "Lesley Groff",
+                "bytes": 678,
+                "file_id": "EFTA00383027",
+                "filename": "EFTA00383027.txt",
+                "num_lines": 29,
+                "subject": "Re: Quick",
+                "timestamp": "2013-09-24T15:26:02",
+                "type": "Email"
+            },
+            {
+                "bytes": 14283,
+                "description": "someone visiting for the death of Red Burns",
+                "file_id": "EFTA00384774",
+                "filename": "EFTA00384774.txt",
+                "is_interesting": true,
+                "num_lines": 140,
+                "recipients": [
+                    "11a"
+                ],
+                "subject": "Re: Quick change",
+                "timestamp": "2013-08-25T18:03:55",
+                "type": "Email"
+            },
+            {
+                "bytes": 1419,
+                "file_id": "EFTA00397956",
+                "filename": "EFTA00397956.txt",
+                "num_lines": 47,
+                "recipients": [
+                    "Lesley Groff"
+                ],
+                "subject": "Re: Wow!",
+                "timestamp": "2013-01-14T00:57:37",
+                "type": "Email"
+            },
+            {
                 "author": "Lesley Groff",
                 "bytes": 766,
                 "file_id": "EFTA00405784",
@@ -33819,6 +33889,20 @@
                 "type": "Email"
             },
             {
+                "author": "Brock Pierce",
+                "bytes": 1252,
+                "description": "discussion of a \"sidecar fund\" with Brock Pierce",
+                "file_id": "EFTA00626220",
+                "filename": "EFTA00626220.txt",
+                "num_lines": 25,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Fund Does",
+                "timestamp": "2014-11-12T00:26:47",
+                "type": "Email"
+            },
+            {
                 "author": "Richard Kahn",
                 "bytes": 1643,
                 "file_id": "EFTA00631080",
@@ -33958,6 +34042,19 @@
                 "type": "Email"
             },
             {
+                "author": "Brock Pierce",
+                "bytes": 2423,
+                "file_id": "EFTA00645400",
+                "filename": "EFTA00645400.txt",
+                "num_lines": 56,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Coinbase",
+                "timestamp": "2014-11-14T20:31:04",
+                "type": "Email"
+            },
+            {
                 "attribution_reason": "signed \"Donald\"",
                 "author": "Donald Norman",
                 "bytes": 7122,
@@ -33991,6 +34088,20 @@
                 "type": "Email"
             },
             {
+                "author": "Brock Pierce",
+                "bytes": 2438,
+                "description": "Brock Pierce says they will not invest in Bitfury",
+                "file_id": "EFTA00658457",
+                "filename": "EFTA00658457.txt",
+                "num_lines": 43,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: BitFury Financing",
+                "timestamp": "2015-02-13T20:31:33",
+                "type": "Email"
+            },
+            {
                 "attribution_reason": "\"sneaky dog\"",
                 "author": "Renata Bolotova",
                 "bytes": 190,
@@ -34002,6 +34113,19 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2013-12-05T22:28:51",
+                "type": "Email"
+            },
+            {
+                "author": "Brock Pierce",
+                "bytes": 920,
+                "file_id": "EFTA00664424",
+                "filename": "EFTA00664424.txt",
+                "num_lines": 23,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Larry Summers",
+                "timestamp": "2014-10-28T16:34:33",
                 "type": "Email"
             },
             {
@@ -34088,6 +34212,32 @@
                 "type": "Email"
             },
             {
+                "author": "Brock Pierce",
+                "bytes": 881,
+                "file_id": "EFTA00673123",
+                "filename": "EFTA00673123.txt",
+                "num_lines": 22,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Coinbase",
+                "timestamp": "2014-11-14T01:30:38",
+                "type": "Email"
+            },
+            {
+                "author": "Brock Pierce",
+                "bytes": 1589,
+                "file_id": "EFTA00674962",
+                "filename": "EFTA00674962.txt",
+                "num_lines": 35,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re:",
+                "timestamp": "2014-11-10T16:24:52",
+                "type": "Email"
+            },
+            {
                 "attribution_reason": "\"sneaky dog\"",
                 "author": "Renata Bolotova",
                 "bytes": 198,
@@ -34153,6 +34303,45 @@
                 ],
                 "subject": "Brock Pierce, Brock Pierce, and 4 others shared with you on Google+",
                 "timestamp": "2013-05-17T18:19:56",
+                "type": "Email"
+            },
+            {
+                "author": "Brock Pierce",
+                "bytes": 872,
+                "file_id": "EFTA00693620",
+                "filename": "EFTA00693620.txt",
+                "num_lines": 21,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "CCP",
+                "timestamp": "2014-10-02T14:50:20",
+                "type": "Email"
+            },
+            {
+                "author": "Brock Pierce",
+                "bytes": 920,
+                "file_id": "EFTA00693621-1",
+                "filename": "EFTA00693621-1.txt",
+                "num_lines": 21,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "CCP September Update",
+                "timestamp": "2014-10-02T15:10:48",
+                "type": "Email"
+            },
+            {
+                "author": "Brock Pierce",
+                "bytes": 823,
+                "file_id": "EFTA00699275",
+                "filename": "EFTA00699275.txt",
+                "num_lines": 21,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Coinbase",
+                "timestamp": "2014-12-02T20:26:13",
                 "type": "Email"
             },
             {
@@ -34247,6 +34436,32 @@
                 "type": "Email"
             },
             {
+                "author": "Brock Pierce",
+                "bytes": 1536,
+                "file_id": "EFTA00709489",
+                "filename": "EFTA00709489.txt",
+                "num_lines": 28,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "BitFury Financing",
+                "timestamp": "2015-02-12T18:57:14",
+                "type": "Email"
+            },
+            {
+                "author": "Brock Pierce",
+                "bytes": 2447,
+                "file_id": "EFTA00709543",
+                "filename": "EFTA00709543.txt",
+                "num_lines": 54,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: In NYC?",
+                "timestamp": "2015-02-12T16:37:43",
+                "type": "Email"
+            },
+            {
                 "author": "Richard Kahn",
                 "bytes": 856,
                 "file_id": "EFTA00714098",
@@ -34306,6 +34521,31 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2010-10-18T07:11:26",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 894,
+                "file_id": "EFTA00815877",
+                "filename": "EFTA00815877.txt",
+                "num_lines": 19,
+                "recipients": [
+                    "Jabor Y"
+                ],
+                "timestamp": "2016-10-10T17:31:16",
+                "type": "Email"
+            },
+            {
+                "author": "Jabor Y",
+                "bytes": 1010,
+                "file_id": "EFTA00815900",
+                "filename": "EFTA00815900.txt",
+                "num_lines": 22,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re:",
+                "timestamp": "2016-10-10T19:14:19",
                 "type": "Email"
             },
             {
@@ -34549,6 +34789,19 @@
                 "type": "Email"
             },
             {
+                "author": "Jeffrey Epstein",
+                "bytes": 2986,
+                "file_id": "EFTA00864590-1",
+                "filename": "EFTA00864590-1.txt",
+                "num_lines": 71,
+                "recipients": [
+                    "Brock Pierce"
+                ],
+                "subject": "Re: In NYC?",
+                "timestamp": "2015-02-12T16:54:01",
+                "type": "Email"
+            },
+            {
                 "attribution_reason": "\"sneaky dog\"",
                 "author": "Renata Bolotova",
                 "bytes": 930,
@@ -34620,6 +34873,44 @@
                 "type": "Email"
             },
             {
+                "author": "Jeffrey Epstein",
+                "bytes": 3173,
+                "file_id": "EFTA00888467",
+                "filename": "EFTA00888467.txt",
+                "num_lines": 58,
+                "subject": "Re:",
+                "timestamp": "2010-01-19T12:13:13",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 13098,
+                "description": "negotiation of repurchase of half of Epstein stake in Coinbase",
+                "file_id": "EFTA00900908",
+                "filename": "EFTA00900908.txt",
+                "num_lines": 301,
+                "recipients": [
+                    "Richard Kahn"
+                ],
+                "subject": "Re: Coinbase",
+                "timestamp": "2018-01-30T00:14:14",
+                "type": "Email"
+            },
+            {
+                "author": "Richard Kahn",
+                "bytes": 11168,
+                "description": "discussion of the sale of Epstein stake in Coinbase",
+                "file_id": "EFTA00901772",
+                "filename": "EFTA00901772.txt",
+                "num_lines": 263,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Coinbase",
+                "timestamp": "2018-01-30T23:07:53",
+                "type": "Email"
+            },
+            {
                 "author": "Al Seckel",
                 "bytes": 4119,
                 "description": "Al Seckel's response to Epstein's forged email",
@@ -34647,6 +34938,33 @@
                 ],
                 "subject": "Fwd: External Relations Assistant",
                 "timestamp": "2018-01-11T15:21:57",
+                "type": "Email"
+            },
+            {
+                "author": "Larry Summers",
+                "bytes": 605,
+                "file_id": "EFTA00913754",
+                "filename": "EFTA00913754.txt",
+                "num_lines": 15,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPad",
+                "subject": "Question",
+                "timestamp": "2018-01-08T12:57:14",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 1260,
+                "file_id": "EFTA00913766",
+                "filename": "EFTA00913766.txt",
+                "num_lines": 29,
+                "recipients": [
+                    "Larry Summers"
+                ],
+                "subject": "Re: Question",
+                "timestamp": "2018-01-08T13:35:44",
                 "type": "Email"
             },
             {
@@ -34940,6 +35258,19 @@
                 "type": "Email"
             },
             {
+                "author": "Jeffrey Epstein",
+                "bytes": 4558,
+                "file_id": "EFTA00961792",
+                "filename": "EFTA00961792.txt",
+                "num_lines": 100,
+                "recipients": [
+                    "Bill Gross"
+                ],
+                "subject": "Re: Mutual interest",
+                "timestamp": "2013-05-30T00:19:06",
+                "type": "Email"
+            },
+            {
                 "author": "Eric Doherty",
                 "bytes": 2573,
                 "file_id": "EFTA00968132",
@@ -35037,6 +35368,204 @@
                 "type": "Email"
             },
             {
+                "author": "Brock Pierce",
+                "bytes": 1511,
+                "file_id": "EFTA00997251",
+                "filename": "EFTA00997251.txt",
+                "num_lines": 36,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re:",
+                "timestamp": "2014-09-24T13:16:48",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 2190,
+                "file_id": "EFTA00997253",
+                "filename": "EFTA00997253.txt",
+                "num_lines": 50,
+                "recipients": [
+                    "Brock Pierce"
+                ],
+                "subject": "Re:",
+                "timestamp": "2014-09-24T13:18:43",
+                "type": "Email"
+            },
+            {
+                "author": "Brock Pierce",
+                "bytes": 2164,
+                "file_id": "EFTA00997801",
+                "filename": "EFTA00997801.txt",
+                "num_lines": 39,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Fwd: Crypto Currency Partners II, LP - Legal Documents and Wire Instructions",
+                "timestamp": "2014-09-28T01:04:50",
+                "type": "Email"
+            },
+            {
+                "author": "Brock Pierce",
+                "bytes": 2051,
+                "file_id": "EFTA00997803",
+                "filename": "EFTA00997803.txt",
+                "num_lines": 38,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Fwd: CCP Investor Update, August 2014",
+                "timestamp": "2014-09-28T01:06:35",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 1570,
+                "file_id": "EFTA00998205",
+                "filename": "EFTA00998205.txt",
+                "num_lines": 37,
+                "recipients": [
+                    "Brock Pierce"
+                ],
+                "subject": "Re: CCP September Update",
+                "timestamp": "2014-10-02T17:32:25",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 1605,
+                "file_id": "EFTA00998207",
+                "filename": "EFTA00998207.txt",
+                "num_lines": 36,
+                "recipients": [
+                    "Brock Pierce"
+                ],
+                "subject": "Re: CCP September Update",
+                "timestamp": "2014-10-02T17:33:12",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 4446,
+                "file_id": "EFTA00998278",
+                "filename": "EFTA00998278.txt",
+                "num_lines": 96,
+                "recipients": [
+                    "Brock Pierce"
+                ],
+                "subject": "Re: CCP September Update",
+                "timestamp": "2014-10-03T17:39:07",
+                "type": "Email"
+            },
+            {
+                "author": "Brock Pierce",
+                "bytes": 5143,
+                "file_id": "EFTA00998281",
+                "filename": "EFTA00998281.txt",
+                "num_lines": 114,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: CCP September Update",
+                "timestamp": "2014-10-03T17:40:30",
+                "type": "Email"
+            },
+            {
+                "author": "Brock Pierce",
+                "bytes": 6035,
+                "description": "Brock Pierce and Epstein discuss structure of crypto investments",
+                "file_id": "EFTA00998595",
+                "filename": "EFTA00998595.txt",
+                "num_lines": 133,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: CCP September Update",
+                "timestamp": "2014-10-07T20:38:31",
+                "type": "Email"
+            },
+            {
+                "author": "Brock Pierce",
+                "bytes": 2300,
+                "file_id": "EFTA00999016",
+                "filename": "EFTA00999016.txt",
+                "num_lines": 57,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Breakfast tomorrow",
+                "timestamp": "2014-10-23T20:45:24",
+                "type": "Email"
+            },
+            {
+                "author": "Brock Pierce",
+                "bytes": 2943,
+                "file_id": "EFTA00999224",
+                "filename": "EFTA00999224.txt",
+                "num_lines": 65,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Bitcoin Investment",
+                "timestamp": "2014-10-21T18:08:58",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 1565,
+                "file_id": "EFTA00999392",
+                "filename": "EFTA00999392.txt",
+                "num_lines": 38,
+                "recipients": [
+                    "Brock Pierce"
+                ],
+                "subject": "Re: Sue",
+                "timestamp": "2014-10-31T02:09:24",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 1663,
+                "file_id": "EFTA01000665",
+                "filename": "EFTA01000665.txt",
+                "num_lines": 38,
+                "recipients": [
+                    "Brock Pierce"
+                ],
+                "subject": "Re: Fund Does",
+                "timestamp": "2014-11-12T03:44:31",
+                "type": "Email"
+            },
+            {
+                "author": "Brock Pierce",
+                "bytes": 1021,
+                "description": "Brock Pierce asks for Epstein's permission to disclose his name to Coinbase team",
+                "file_id": "EFTA01000882",
+                "filename": "EFTA01000882.txt",
+                "is_interesting": true,
+                "num_lines": 23,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Coinbase Financing",
+                "timestamp": "2014-11-17T19:12:09",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 1719,
+                "file_id": "EFTA01000943",
+                "filename": "EFTA01000943.txt",
+                "num_lines": 40,
+                "recipients": [
+                    "Brock Pierce"
+                ],
+                "subject": "Re: Coinbase Financing",
+                "timestamp": "2014-11-18T10:20:21",
+                "type": "Email"
+            },
+            {
                 "author": "Andrew McCormack",
                 "bytes": 1209,
                 "file_id": "EFTA01001339",
@@ -35048,6 +35577,58 @@
                 ],
                 "subject": "Re: introductions",
                 "timestamp": "2014-11-15T16:10:28",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 1584,
+                "file_id": "EFTA01001755",
+                "filename": "EFTA01001755.txt",
+                "num_lines": 38,
+                "recipients": [
+                    "Brock Pierce"
+                ],
+                "subject": "Re: Coinbase",
+                "timestamp": "2014-12-03T16:30:36",
+                "type": "Email"
+            },
+            {
+                "author": "Brock Pierce",
+                "bytes": 2357,
+                "file_id": "EFTA01001757",
+                "filename": "EFTA01001757.txt",
+                "num_lines": 56,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Coinbase",
+                "timestamp": "2014-12-03T16:32:35",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 1425,
+                "file_id": "EFTA01002109-1",
+                "filename": "EFTA01002109-1.txt",
+                "num_lines": 36,
+                "recipients": [
+                    "Brock Pierce"
+                ],
+                "subject": "Re: Have time to chat?",
+                "timestamp": "2014-12-01T18:25:46",
+                "type": "Email"
+            },
+            {
+                "author": "Brock Pierce",
+                "bytes": 2264,
+                "file_id": "EFTA01002234",
+                "filename": "EFTA01002234.txt",
+                "num_lines": 56,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Coinbase",
+                "timestamp": "2014-12-02T20:41:17",
                 "type": "Email"
             },
             {
@@ -35602,6 +36183,32 @@
                 "type": "Email"
             },
             {
+                "author": "Jeffrey Epstein",
+                "bytes": 1573,
+                "file_id": "EFTA01055385",
+                "filename": "EFTA01055385.txt",
+                "num_lines": 35,
+                "recipients": [
+                    "Michael Wolff"
+                ],
+                "subject": "Re:",
+                "timestamp": "2018-05-19T13:20:04",
+                "type": "Email"
+            },
+            {
+                "author": "Michael Wolff",
+                "bytes": 1659,
+                "file_id": "EFTA01055393",
+                "filename": "EFTA01055393.txt",
+                "num_lines": 38,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re:",
+                "timestamp": "2018-05-19T13:21:47",
+                "type": "Email"
+            },
+            {
                 "author": "Richard Kahn",
                 "bytes": 828,
                 "file_id": "EFTA01063179",
@@ -35625,6 +36232,20 @@
                 ],
                 "subject": "Re: Valar Global Fund II LP - Capital Call 8",
                 "timestamp": "2016-11-02T19:19:18",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 2892,
+                "description": "Epstein tells Farkas he has not invested in Crypto Currency Partners II",
+                "file_id": "EFTA01139067",
+                "filename": "EFTA01139067.txt",
+                "num_lines": 53,
+                "recipients": [
+                    "Andrew L. Farkas"
+                ],
+                "subject": "Re: Fw: Fwd: Blockchain Capital",
+                "timestamp": "2014-11-07T15:33:30",
                 "type": "Email"
             },
             {
@@ -35679,6 +36300,19 @@
                 ],
                 "subject": "Re: Can you go to event on THurs Oct. 9th w/JE?",
                 "timestamp": "2014-10-07T20:50:28",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 1858,
+                "file_id": "EFTA01731638",
+                "filename": "EFTA01731638.txt",
+                "num_lines": 31,
+                "recipients": [
+                    "Brock Pierce"
+                ],
+                "subject": "Re: Coinbase",
+                "timestamp": "2014-12-02T11:03:00",
                 "type": "Email"
             },
             {
@@ -36109,6 +36743,19 @@
                 "type": "Email"
             },
             {
+                "bytes": 309,
+                "file_id": "EFTA01903950",
+                "filename": "EFTA01903950.txt",
+                "num_lines": 8,
+                "recipients": [
+                    "v i gmail.com"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "subject": ")))",
+                "timestamp": "2051-01-01T00:01:01",
+                "type": "Email"
+            },
+            {
                 "author": "Steven Sinofsky",
                 "bytes": 4243,
                 "file_id": "EFTA01909829",
@@ -36302,6 +36949,19 @@
                 ],
                 "sent_from_device": "Sent from my iPhone",
                 "timestamp": "2013-06-29T04:38:05",
+                "type": "Email"
+            },
+            {
+                "author": "Brock Pierce",
+                "bytes": 1908,
+                "file_id": "EFTA01972665",
+                "filename": "EFTA01972665.txt",
+                "num_lines": 43,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPad",
+                "timestamp": "2013-05-09T12:19:52",
                 "type": "Email"
             },
             {
@@ -36569,6 +37229,18 @@
                 "type": "Email"
             },
             {
+                "bytes": 900,
+                "file_id": "EFTA02069175",
+                "filename": "EFTA02069175.txt",
+                "num_lines": 20,
+                "recipients": [
+                    "arnal inkhu"
+                ],
+                "subject": "Re: Bitcoins for Mongolia",
+                "timestamp": "2015-10-23T12:36:54",
+                "type": "Email"
+            },
+            {
                 "author": "Lesley Groff",
                 "bytes": 1210,
                 "dupe_type": "same",
@@ -36669,6 +37341,38 @@
                 ],
                 "subject": "Jeffrey Epstein",
                 "timestamp": "2014-12-01T14:30:17",
+                "type": "Email"
+            },
+            {
+                "bytes": 901,
+                "file_id": "EFTA02092005",
+                "filename": "EFTA02092005.txt",
+                "num_lines": 19,
+                "recipients": [
+                    "Brock Pierce"
+                ],
+                "timestamp": "2014-10-21T18:26:58",
+                "type": "Email"
+            },
+            {
+                "bytes": 1132,
+                "file_id": "EFTA02092108",
+                "filename": "EFTA02092108.txt",
+                "num_lines": 26,
+                "sent_from_device": "Sent from my iPhone",
+                "timestamp": "2014-10-24T11:51:54",
+                "type": "Email"
+            },
+            {
+                "bytes": 3455,
+                "file_id": "EFTA02095399",
+                "filename": "EFTA02095399.txt",
+                "num_lines": 82,
+                "recipients": [
+                    "Brock Pierce"
+                ],
+                "subject": "Re: NY",
+                "timestamp": "2014-09-02T13:47:08",
                 "type": "Email"
             },
             {
@@ -36976,6 +37680,32 @@
                 "type": "Email"
             },
             {
+                "author": "Brock Pierce",
+                "bytes": 897,
+                "file_id": "EFTA02339109",
+                "filename": "EFTA02339109.txt",
+                "num_lines": 19,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Sue",
+                "timestamp": "2014-10-25T06:04:00",
+                "type": "Email"
+            },
+            {
+                "author": "Brock Pierce",
+                "bytes": 1134,
+                "file_id": "EFTA02341793",
+                "filename": "EFTA02341793.txt",
+                "num_lines": 19,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Bitcoin Investment",
+                "timestamp": "2014-10-16T20:20:00",
+                "type": "Email"
+            },
+            {
                 "attribution_reason": "\"sneaky dog\" + \"Sincerely\"",
                 "author": "Renata Bolotova",
                 "bytes": 410,
@@ -37013,6 +37743,19 @@
                     "Lyn Fontanilla"
                 ],
                 "timestamp": "2014-12-02T16:42:00",
+                "type": "Email"
+            },
+            {
+                "author": "Brock Pierce",
+                "bytes": 1127,
+                "file_id": "EFTA02360165",
+                "filename": "EFTA02360165.txt",
+                "num_lines": 22,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Uber",
+                "timestamp": "2015-01-22T22:17:00",
                 "type": "Email"
             },
             {
@@ -37515,6 +38258,14 @@
                 "type": "Email"
             },
             {
+                "bytes": 1181,
+                "file_id": "EFTA02565917",
+                "filename": "EFTA02565917.txt",
+                "num_lines": 36,
+                "timestamp": "2013-02-05T15:39:00",
+                "type": "Email"
+            },
+            {
                 "author": "Lesley Groff",
                 "bytes": 812,
                 "file_id": "EFTA02569048",
@@ -37556,6 +38307,35 @@
                 "type": "Email"
             },
             {
+                "author": "Vincenzo Iozzo",
+                "bytes": 4767,
+                "description": "Epstein, Ito, and Vincenzo Iozzo discuss crypto food stamps debit cards",
+                "file_id": "EFTA02588748",
+                "filename": "EFTA02588748.txt",
+                "is_interesting": true,
+                "num_lines": 91,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Joi Ito"
+                ],
+                "subject": "Re: de-anonymize tor/bitcoin",
+                "timestamp": "2014-08-23T11:25:00",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 2112,
+                "file_id": "EFTA02590000-1",
+                "filename": "EFTA02590000-1.txt",
+                "num_lines": 46,
+                "recipients": [
+                    "Brock Pierce"
+                ],
+                "subject": "Re:",
+                "timestamp": "2014-09-24T13:21:00",
+                "type": "Email"
+            },
+            {
                 "author": "Lesley Groff",
                 "bytes": 503,
                 "file_id": "EFTA02596951",
@@ -37567,6 +38347,19 @@
                     "Lyn Fontanilla"
                 ],
                 "timestamp": "2014-11-30T21:39:00",
+                "type": "Email"
+            },
+            {
+                "author": "Brock Pierce",
+                "bytes": 2416,
+                "file_id": "EFTA02597754",
+                "filename": "EFTA02597754.txt",
+                "num_lines": 48,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Coinbase",
+                "timestamp": "2014-12-02T20:41:00",
                 "type": "Email"
             },
             {
@@ -37731,6 +38524,20 @@
                 "type": "Email"
             },
             {
+                "author": "Aziza Alahmadi",
+                "bytes": 538,
+                "file_id": "EFTA02637315",
+                "filename": "EFTA02637315.txt",
+                "num_lines": 14,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "subject": "Re: ADGM I ADGM LAUNCHES CRYPTO ASSET REGULATORY FRAMEWORK",
+                "timestamp": "2019-03-28T08:05:00",
+                "type": "Email"
+            },
+            {
                 "author": "Jeffrey Epstein",
                 "bytes": 976,
                 "file_id": "EFTA02641406",
@@ -37740,6 +38547,69 @@
                     "Peter Thiel"
                 ],
                 "timestamp": "2017-07-24T14:33:00",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 950,
+                "file_id": "EFTA02643002",
+                "filename": "EFTA02643002.txt",
+                "num_lines": 12,
+                "recipients": [
+                    "Brad Karp"
+                ],
+                "timestamp": "2018-06-05T11:18:00",
+                "type": "Email"
+            },
+            {
+                "author": "Kathryn Ruemmler",
+                "bytes": 946,
+                "file_id": "EFTA02643355",
+                "filename": "EFTA02643355.txt",
+                "num_lines": 20,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re:",
+                "timestamp": "2018-06-05T12:14:00",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 961,
+                "file_id": "EFTA02644714",
+                "filename": "EFTA02644714.txt",
+                "num_lines": 14,
+                "recipients": [
+                    "Kathryn Ruemmler"
+                ],
+                "timestamp": "2018-06-05T11:18:00",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 1858,
+                "file_id": "EFTA02650051",
+                "filename": "EFTA02650051.txt",
+                "num_lines": 22,
+                "recipients": [
+                    "Steve Bannon"
+                ],
+                "subject": "crypto currency for Italians",
+                "timestamp": "2018-05-30T11:38:00",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 2718,
+                "file_id": "EFTA02650611-1",
+                "filename": "EFTA02650611-1.txt",
+                "num_lines": 47,
+                "recipients": [
+                    "Tom Pritzker"
+                ],
+                "subject": "Fwd: crypto currency for Italians",
+                "timestamp": "2018-05-30T12:16:00",
                 "type": "Email"
             },
             {
@@ -37837,6 +38707,20 @@
                 ],
                 "subject": "CCP LLC Docs",
                 "timestamp": "2014-12-03T16:50:00",
+                "type": "Email"
+            },
+            {
+                "author": "Joi Ito",
+                "bytes": 1157,
+                "file_id": "EFTA02717459",
+                "filename": "EFTA02717459.txt",
+                "num_lines": 23,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Reid Hoffman"
+                ],
+                "subject": "Re:",
+                "timestamp": "2014-08-15T16:24:00",
                 "type": "Email"
             },
             {
@@ -38806,7 +39690,7 @@
                 "filename": "HOUSE_OVERSIGHT_028375.txt",
                 "is_interesting": false,
                 "num_lines": 1690,
-                "timestamp": "2018-12-07T00:00:00",
+                "timestamp": "2018-12-08T00:00:00",
                 "type": "JsonFile",
                 "was_timestamp_extracted": true
             },
@@ -40123,7 +41007,7 @@
                 "filename": "HOUSE_OVERSIGHT_012048.txt",
                 "is_interesting": true,
                 "num_lines": 2693,
-                "timestamp": "2019-03-07T00:00:00",
+                "timestamp": "2019-03-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -40297,7 +41181,7 @@
                 "filename": "HOUSE_OVERSIGHT_013268.txt",
                 "is_interesting": false,
                 "num_lines": 139,
-                "timestamp": "2014-01-07T00:00:00",
+                "timestamp": "2014-01-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -40452,7 +41336,7 @@
                 "filename": "HOUSE_OVERSIGHT_013796.txt",
                 "is_interesting": false,
                 "num_lines": 8095,
-                "timestamp": "2009-02-07T00:00:00",
+                "timestamp": "2009-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -40465,7 +41349,7 @@
                 "filename": "HOUSE_OVERSIGHT_014037.txt",
                 "is_interesting": true,
                 "num_lines": 1911,
-                "timestamp": "2014-07-07T00:00:00",
+                "timestamp": "2014-07-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -40799,7 +41683,7 @@
                 "filename": "HOUSE_OVERSIGHT_015032.txt",
                 "is_interesting": false,
                 "num_lines": 1918,
-                "timestamp": "2017-07-07T00:00:00",
+                "timestamp": "2017-07-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -40812,7 +41696,7 @@
                 "filename": "HOUSE_OVERSIGHT_015462.txt",
                 "is_interesting": false,
                 "num_lines": 1810,
-                "timestamp": "2013-10-07T00:00:00",
+                "timestamp": "2013-10-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -40825,7 +41709,7 @@
                 "filename": "HOUSE_OVERSIGHT_015501.txt",
                 "is_interesting": false,
                 "num_lines": 1214,
-                "timestamp": "2016-02-07T00:00:00",
+                "timestamp": "2016-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -40903,7 +41787,7 @@
                 "filename": "HOUSE_OVERSIGHT_015675.txt",
                 "is_interesting": false,
                 "num_lines": 12455,
-                "timestamp": "2020-02-07T00:00:00",
+                "timestamp": "2020-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41136,7 +42020,7 @@
                 "filename": "HOUSE_OVERSIGHT_016636.txt",
                 "is_interesting": false,
                 "num_lines": 1535,
-                "timestamp": "2009-02-07T00:00:00",
+                "timestamp": "2009-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41293,7 +42177,7 @@
                 "filename": "HOUSE_OVERSIGHT_017526.txt",
                 "is_interesting": false,
                 "num_lines": 4127,
-                "timestamp": "2012-06-07T00:00:00",
+                "timestamp": "2012-06-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41526,7 +42410,7 @@
                 "filename": "HOUSE_OVERSIGHT_018232.txt",
                 "is_interesting": false,
                 "num_lines": 8558,
-                "timestamp": "2015-03-07T00:00:00",
+                "timestamp": "2015-03-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41552,7 +42436,7 @@
                 "filename": "HOUSE_OVERSIGHT_018703.txt",
                 "is_interesting": false,
                 "num_lines": 124,
-                "timestamp": "2016-06-07T00:00:00",
+                "timestamp": "2016-06-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41576,7 +42460,7 @@
                 "filename": "HOUSE_OVERSIGHT_018743.txt",
                 "is_interesting": true,
                 "num_lines": 1855,
-                "timestamp": "2018-02-07T00:00:00",
+                "timestamp": "2018-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41877,7 +42761,7 @@
                 "filename": "HOUSE_OVERSIGHT_019477.txt",
                 "is_interesting": true,
                 "num_lines": 11950,
-                "timestamp": "2017-02-07T00:00:00",
+                "timestamp": "2017-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41948,7 +42832,7 @@
                 "filename": "HOUSE_OVERSIGHT_020153.txt",
                 "is_interesting": true,
                 "num_lines": 2848,
-                "timestamp": "2016-02-07T00:00:00",
+                "timestamp": "2016-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -41961,7 +42845,7 @@
                 "filename": "HOUSE_OVERSIGHT_020447.txt",
                 "is_interesting": true,
                 "num_lines": 7325,
-                "timestamp": "2019-02-07T00:00:00",
+                "timestamp": "2019-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42000,7 +42884,7 @@
                 "filename": "HOUSE_OVERSIGHT_021092.txt",
                 "is_interesting": false,
                 "num_lines": 77,
-                "timestamp": "2001-02-07T00:00:00",
+                "timestamp": "2001-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42012,7 +42896,7 @@
                 "filename": "HOUSE_OVERSIGHT_021093.txt",
                 "is_interesting": false,
                 "num_lines": 96,
-                "timestamp": "2003-02-07T00:00:00",
+                "timestamp": "2003-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42051,7 +42935,7 @@
                 "filename": "HOUSE_OVERSIGHT_021145.txt",
                 "is_interesting": false,
                 "num_lines": 6213,
-                "timestamp": "2008-02-07T00:00:00",
+                "timestamp": "2008-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42103,7 +42987,7 @@
                 "filename": "HOUSE_OVERSIGHT_021718.txt",
                 "is_interesting": false,
                 "num_lines": 1754,
-                "timestamp": "2016-02-07T00:00:00",
+                "timestamp": "2016-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42208,7 +43092,7 @@
                 "filename": "HOUSE_OVERSIGHT_022212.txt",
                 "is_interesting": false,
                 "num_lines": 107,
-                "timestamp": "2020-02-07T00:00:00",
+                "timestamp": "2020-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42231,7 +43115,7 @@
                 "filename": "HOUSE_OVERSIGHT_022237.txt",
                 "is_interesting": true,
                 "num_lines": 266,
-                "timestamp": "2014-12-07T00:00:00",
+                "timestamp": "2014-12-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42355,7 +43239,7 @@
                 "filename": "HOUSE_OVERSIGHT_022407.txt",
                 "is_interesting": true,
                 "num_lines": 79,
-                "timestamp": "2018-02-07T00:00:00",
+                "timestamp": "2018-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42368,7 +43252,7 @@
                 "filename": "HOUSE_OVERSIGHT_022417.txt",
                 "is_interesting": true,
                 "num_lines": 1118,
-                "timestamp": "2017-02-07T00:00:00",
+                "timestamp": "2017-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42419,7 +43303,7 @@
                 "filename": "HOUSE_OVERSIGHT_022707.txt",
                 "is_interesting": true,
                 "num_lines": 146,
-                "timestamp": "2014-02-07T00:00:00",
+                "timestamp": "2014-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42432,7 +43316,7 @@
                 "filename": "HOUSE_OVERSIGHT_022727.txt",
                 "is_interesting": true,
                 "num_lines": 146,
-                "timestamp": "2014-02-07T00:00:00",
+                "timestamp": "2014-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42445,7 +43329,7 @@
                 "filename": "HOUSE_OVERSIGHT_022746.txt",
                 "is_interesting": true,
                 "num_lines": 149,
-                "timestamp": "2014-02-07T00:00:00",
+                "timestamp": "2014-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42491,7 +43375,7 @@
                 "filename": "HOUSE_OVERSIGHT_022844.txt",
                 "is_interesting": true,
                 "num_lines": 149,
-                "timestamp": "2014-02-07T00:00:00",
+                "timestamp": "2014-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42504,7 +43388,7 @@
                 "filename": "HOUSE_OVERSIGHT_022863.txt",
                 "is_interesting": true,
                 "num_lines": 109,
-                "timestamp": "2009-02-07T00:00:00",
+                "timestamp": "2009-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42517,7 +43401,7 @@
                 "filename": "HOUSE_OVERSIGHT_022894.txt",
                 "is_interesting": true,
                 "num_lines": 99,
-                "timestamp": "2009-02-07T00:00:00",
+                "timestamp": "2009-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42530,7 +43414,7 @@
                 "filename": "HOUSE_OVERSIGHT_022952.txt",
                 "is_interesting": true,
                 "num_lines": 140,
-                "timestamp": "2014-02-07T00:00:00",
+                "timestamp": "2014-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -42835,7 +43719,7 @@
                 "filename": "HOUSE_OVERSIGHT_023435.txt",
                 "is_interesting": false,
                 "num_lines": 107,
-                "timestamp": "2016-02-07T00:00:00",
+                "timestamp": "2016-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43037,7 +43921,7 @@
                 "filename": "HOUSE_OVERSIGHT_023720.txt",
                 "is_interesting": false,
                 "num_lines": 280,
-                "timestamp": "2012-02-07T00:00:00",
+                "timestamp": "2012-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43050,7 +43934,7 @@
                 "filename": "HOUSE_OVERSIGHT_023731.txt",
                 "is_interesting": false,
                 "num_lines": 8219,
-                "timestamp": "2011-02-07T00:00:00",
+                "timestamp": "2011-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43062,7 +43946,7 @@
                 "filename": "HOUSE_OVERSIGHT_024003.txt",
                 "is_interesting": true,
                 "num_lines": 5090,
-                "timestamp": "2020-02-07T00:00:00",
+                "timestamp": "2020-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43074,7 +43958,7 @@
                 "filename": "HOUSE_OVERSIGHT_024117.txt",
                 "is_interesting": true,
                 "num_lines": 751,
-                "timestamp": "2012-07-07T00:00:00",
+                "timestamp": "2012-07-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43165,7 +44049,7 @@
                 "filename": "HOUSE_OVERSIGHT_024229.txt",
                 "is_interesting": true,
                 "num_lines": 79,
-                "timestamp": "2009-02-07T00:00:00",
+                "timestamp": "2009-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43178,7 +44062,7 @@
                 "filename": "HOUSE_OVERSIGHT_024256.txt",
                 "is_interesting": true,
                 "num_lines": 498,
-                "timestamp": "2017-05-07T00:00:00",
+                "timestamp": "2017-05-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43242,7 +44126,7 @@
                 "filename": "HOUSE_OVERSIGHT_024374.txt",
                 "is_interesting": false,
                 "num_lines": 83,
-                "timestamp": "2019-02-07T00:00:00",
+                "timestamp": "2019-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43280,7 +44164,7 @@
                 "filename": "HOUSE_OVERSIGHT_024631.txt",
                 "is_interesting": true,
                 "num_lines": 6977,
-                "timestamp": "2019-02-07T00:00:00",
+                "timestamp": "2019-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43343,7 +44227,7 @@
                 "filename": "HOUSE_OVERSIGHT_025104.txt",
                 "is_interesting": false,
                 "num_lines": 365,
-                "timestamp": "2020-02-07T00:00:00",
+                "timestamp": "2020-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43479,7 +44363,7 @@
                 "filename": "HOUSE_OVERSIGHT_025292.txt",
                 "is_interesting": false,
                 "num_lines": 80,
-                "timestamp": "2016-02-07T00:00:00",
+                "timestamp": "2016-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43536,7 +44420,7 @@
                 "filename": "HOUSE_OVERSIGHT_025540.txt",
                 "is_interesting": true,
                 "num_lines": 36,
-                "timestamp": "2009-07-07T00:00:00",
+                "timestamp": "2009-07-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43631,7 +44515,7 @@
                 "filename": "HOUSE_OVERSIGHT_025849.txt",
                 "is_interesting": false,
                 "num_lines": 603,
-                "timestamp": "2014-02-07T00:00:00",
+                "timestamp": "2014-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43695,7 +44579,7 @@
                 "filename": "HOUSE_OVERSIGHT_026134.txt",
                 "is_interesting": true,
                 "num_lines": 784,
-                "timestamp": "2020-02-07T00:00:00",
+                "timestamp": "2020-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43760,7 +44644,7 @@
                 "filename": "HOUSE_OVERSIGHT_026543.txt",
                 "is_interesting": false,
                 "num_lines": 143,
-                "timestamp": "2020-02-07T00:00:00",
+                "timestamp": "2020-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43921,7 +44805,7 @@
                 "filename": "HOUSE_OVERSIGHT_026731.txt",
                 "is_interesting": false,
                 "num_lines": 250,
-                "timestamp": "2020-02-07T00:00:00",
+                "timestamp": "2020-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43987,7 +44871,7 @@
                 "filename": "HOUSE_OVERSIGHT_026794.txt",
                 "is_interesting": false,
                 "num_lines": 673,
-                "timestamp": "2020-02-07T00:00:00",
+                "timestamp": "2020-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -44000,7 +44884,7 @@
                 "filename": "HOUSE_OVERSIGHT_026825.txt",
                 "is_interesting": false,
                 "num_lines": 81,
-                "timestamp": "2015-02-07T00:00:00",
+                "timestamp": "2015-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -44196,7 +45080,7 @@
                 "filename": "HOUSE_OVERSIGHT_027071.txt",
                 "is_interesting": true,
                 "num_lines": 120,
-                "timestamp": "2015-02-07T00:00:00",
+                "timestamp": "2015-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -44362,7 +45246,7 @@
                 "filename": "HOUSE_OVERSIGHT_029102.txt",
                 "is_interesting": true,
                 "num_lines": 94,
-                "timestamp": "2016-02-07T00:00:00",
+                "timestamp": "2016-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -44375,7 +45259,7 @@
                 "filename": "HOUSE_OVERSIGHT_029104.txt",
                 "is_interesting": true,
                 "num_lines": 94,
-                "timestamp": "2016-02-07T00:00:00",
+                "timestamp": "2016-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -44546,7 +45430,7 @@
                 "filename": "HOUSE_OVERSIGHT_029328.txt",
                 "is_interesting": false,
                 "num_lines": 230,
-                "timestamp": "2011-02-07T00:00:00",
+                "timestamp": "2011-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -44559,7 +45443,7 @@
                 "filename": "HOUSE_OVERSIGHT_029340.txt",
                 "is_interesting": false,
                 "num_lines": 59,
-                "timestamp": "2014-02-07T00:00:00",
+                "timestamp": "2014-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -44649,7 +45533,7 @@
                 "filename": "HOUSE_OVERSIGHT_029356.txt",
                 "is_interesting": false,
                 "num_lines": 18,
-                "timestamp": "2001-08-07T00:00:00",
+                "timestamp": "2001-08-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -44747,7 +45631,7 @@
                 "filename": "HOUSE_OVERSIGHT_029448.txt",
                 "is_interesting": true,
                 "num_lines": 25,
-                "timestamp": "2016-02-07T00:00:00",
+                "timestamp": "2016-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45239,7 +46123,7 @@
                 "filename": "HOUSE_OVERSIGHT_030825.txt",
                 "is_interesting": false,
                 "num_lines": 15,
-                "timestamp": "2013-06-07T00:00:00",
+                "timestamp": "2013-06-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45265,7 +46149,7 @@
                 "filename": "HOUSE_OVERSIGHT_030840.txt",
                 "is_interesting": false,
                 "num_lines": 332,
-                "timestamp": "2014-02-07T00:00:00",
+                "timestamp": "2014-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45290,7 +46174,7 @@
                 "filename": "HOUSE_OVERSIGHT_030875.txt",
                 "is_interesting": true,
                 "num_lines": 22,
-                "timestamp": "2004-02-07T00:00:00",
+                "timestamp": "2004-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45410,7 +46294,7 @@
                 "filename": "HOUSE_OVERSIGHT_031354.txt",
                 "is_interesting": false,
                 "num_lines": 182,
-                "timestamp": "2012-02-07T00:00:00",
+                "timestamp": "2012-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45423,7 +46307,7 @@
                 "filename": "HOUSE_OVERSIGHT_031359.txt",
                 "is_interesting": false,
                 "num_lines": 794,
-                "timestamp": "2012-05-07T00:00:00",
+                "timestamp": "2012-05-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45479,7 +46363,7 @@
                 "filename": "HOUSE_OVERSIGHT_031447.txt",
                 "is_interesting": true,
                 "num_lines": 97,
-                "timestamp": "2015-10-07T00:00:00",
+                "timestamp": "2015-10-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45491,7 +46375,7 @@
                 "filename": "HOUSE_OVERSIGHT_031533.txt",
                 "is_interesting": false,
                 "num_lines": 67,
-                "timestamp": "2016-05-07T00:00:00",
+                "timestamp": "2016-05-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45600,7 +46484,7 @@
                 "filename": "HOUSE_OVERSIGHT_031794.txt",
                 "is_interesting": false,
                 "num_lines": 24,
-                "timestamp": "2008-02-07T00:00:00",
+                "timestamp": "2008-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45882,7 +46766,7 @@
                 "filename": "HOUSE_OVERSIGHT_033220.txt",
                 "is_interesting": true,
                 "num_lines": 212,
-                "timestamp": "2018-02-07T00:00:00",
+                "timestamp": "2018-02-08T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
