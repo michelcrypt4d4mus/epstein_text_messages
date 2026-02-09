@@ -1143,6 +1143,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02328335', recipients=[JEFFREY_EPSTEIN, KARYNA_SHULIAK, None]),
     EmailCfg(id='EFTA02187050', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00357515', recipients=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA00368951', recipients=[LESLEY_GROFF], attribution_reason='can be seen in EFTA00368958'),
     EmailCfg(id='EFTA00357508', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00357523', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA02089433', recipients=[LESLEY_GROFF]),
@@ -1189,6 +1190,7 @@ EMAILS_CONFIG = [
         is_interesting=True,
     ),
     EmailCfg(id='EFTA02588748', description=f'Epstein, Ito, and {VINCENZO_IOZZO} discuss crypto food stamps debit cards', is_interesting=True),
+    EmailCfg(id='EFTA02517623', description=f"{VINCENZO_IOZZO} explains to Epstein how to deanonymize bitcoin", is_interesting=True),
     EmailCfg(id='EFTA00901772', description='discussion of the sale of Epstein stake in Coinbase'),
     EmailCfg(id='EFTA00658457', description='Brock Pierce says they will not invest in Bitfury'),
     EmailCfg(id='EFTA00998595', description='Brock Pierce and Epstein discuss structure of crypto investments'),
@@ -2040,6 +2042,7 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA01141453', description="referral agreement between Mr. T's (Prince Andrew?) Urramoor and Howard Lutnick's Cantor Fitzgerald", is_interesting=True),
     DocCfg(id='EFTA00007781', description='paychecks signed by Epstein deposited at Colonial Bank'),
     DocCfg(id='EFTA00009622', description='handwritten note transcribed Claude AI', date='2006-07-19', replace_text_with=EFTA00009622_TEXT),
+    DocCfg(id='EFTA00605996', description='Wedbush BUY rating on Digital Currency Group GBTC'),
     DocCfg(id='EFTA00039295', replace_text_with='Bureau of Prisons inmate telephone privileges Program Statement'),
     DocCfg(
         id='EFTA00004477',
@@ -2065,6 +2068,9 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA01622387', author=RENATA_BOLOTOVA, description=f'{RENATA_BOLOTOVA} iMessage chat log screenshots', is_attribution_uncertain=True),
     DocCfg(id='EFTA00005569', date='2005-03-17', replace_text_with='Palm Beach police photo lineup featuring Epstein'),
     DocCfg(id='EFTA01087311', description='Black Family Partners cash projections'),
+    DocCfg(id='EFTA01612888', description='A Blockchain-Based Approach to Health Information Exchange Networks', author='Kevin Peterson, Bammohan Deeduvanu, Pradip Kanjamala, and Kelly Boles'),
+    DocCfg(id='EFTA01734786', description='LedgerX Series B pitch deck', is_interesting=True),
+    DocCfg(id='EFTA01620764', description='iMessage convo between Melanie Walker and Epstein about Bill Gates being drunk all the time (???)', is_interesting=True),
 ]
 
 OTHER_FILES_JUNK = [
