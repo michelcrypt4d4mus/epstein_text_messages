@@ -181,6 +181,7 @@ ZUBAIR_KHAN = 'Zubair Khan'
 UNKNOWN = '(unknown)'
 
 # DOJ files emails
+ADAM_BACK = 'Adam Back'
 ALISON_J_NATHAN = 'Alison J. Nathan'
 AMIR_TAAKI = 'Amir Taaki'
 ANDREW_FARKAS = 'Andrew Farkas'
