@@ -2071,6 +2071,10 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA01612888', description='A Blockchain-Based Approach to Health Information Exchange Networks', author='Kevin Peterson, Bammohan Deeduvanu, Pradip Kanjamala, and Kelly Boles'),
     DocCfg(id='EFTA01734786', description='LedgerX Series B pitch deck', is_interesting=True),
     DocCfg(id='EFTA01620764', description='iMessage convo between Melanie Walker and Epstein about Bill Gates being drunk all the time (???)', is_interesting=True),
+    DocCfg(id='EFTA01217787', description='Skype conversation with Tyler Shears and Hanna Traff at Spotify'),
+    DocCfg(id='EFTA01217703', description=f'Skype conversation with actress Athena Zelcovich, {JOSCHA_BACH}, and {LAWRENCE_KRAUSS}'),
+    DocCfg(id='EFTA01217736', description=f'Skype conversation with actress Athena Zelcovich, {TYLER_SHEARS}'),
+    DocCfg(id='EFTA01810372', description=f'{TYLER_SHEARS} invoice for reputation management work'),
 ]
 
 OTHER_FILES_JUNK = [
