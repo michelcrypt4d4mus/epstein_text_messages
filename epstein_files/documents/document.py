@@ -199,8 +199,12 @@ class Document:
     def local_path_and_url(self) -> Text:
         """Text obj with local path and URL."""
         txt = Text(f"{self.file_id}        URL: {self.external_url}\n{self.file_id} Local path: '{self.file_path}'")
-        local_pdf_path = DOJ_PDFS_20260130_DIR.joinpath(self.file_path.parent.stem, 'IMAGES/0001', self.file_path.stem + '.pdf')
-        return txt.append(f"\n{self.file_id}  Local PDF: '{local_pdf_path}'")
+
+        if self.is_doj_file:
+            local_pdf_path = next((p for p in DOJ_PDFS_20260130_DIR.glob('**/*.pdf') if p.stem == self.file_path.stem), None)
+            txt.append(f"\n{self.file_id}  Local PDF: '{local_pdf_path}'")
+
+        return txt
 
     @property
     def metadata(self) -> Metadata:

@@ -389,11 +389,13 @@ HIGHLIGHTED_NAMES = [
             r"Bart\s*Stephens",  # co-founder, Blockchain Capital
             r"Bioptix",  # Now RIOT Blockchain
             r"bitcoin(\s*Foundation)?",
+            r"BitFury",
             r"Brian Forde",
             r"Brock(\s*Pierce)?",
+            r"Coinbase",
             r"coins?(\s*Center)?",
             r"Cory\s*Fields",  # bitcoin dev
-            r"cr[iy]?pto(currenc(y|ies))?",
+            r"cr[iy]?pto\s*(currenc(y|ies))?",
             r"Digital\s*Currenc(ies|y)(\s*Initiative)?",
             r"e-currency",
             r"(Gavin )?Andress?en",  # bitcoin dev
@@ -812,6 +814,7 @@ HIGHLIGHTED_NAMES = [
         label=FRIEND,
         style='tan',
         emailers={
+            ANDREW_FARKAS: "heir to the Alexander's department store fortune",
             DANGENE_AND_JENNIE_ENTERPRISE: 'founders of the members-only CORE club',
             DAVID_STERN: f'emailed Epstein from Moscow, knows chairman of {DEUTSCHE_BANK} (?)',
             JONATHAN_FARKAS: "heir to the Alexander's department store fortune",
@@ -821,7 +824,6 @@ HIGHLIGHTED_NAMES = [
             TOM_BARRACK: 'long time friend of Trump',
         },
         patterns=[
-            r"Andrew Farkas",
             r"Jonanthan and Kimberly Farkus",
             r"Thomas\s*(J\.?\s*)?Barrack(\s*Jr)?",
         ],
@@ -872,6 +874,7 @@ HIGHLIGHTED_NAMES = [
             r"(General\s*)?P(a|e)traeus",
             r"Geoff\s*Ling",
             r"Homeland\s*Security",
+            r"Interpol",
             r"IRS",
             r"(James\s*)?Comey",
             r"(Jennifer\s*Shasky\s*)?Calvery",
@@ -1149,6 +1152,7 @@ HIGHLIGHTED_NAMES = [
         style='light_coral',
         emailers={
             BOB_CROWE: 'partner at Nelson Mullins',
+            GANBAT_CHULUUNKHUU: 'Corrupt Mongolian politician who was later wanted by Interpol',
             'Joshua Cooper Ramo': 'co-CEO of Henry Kissinger Associates',
             KATHERINE_KEATING: 'daughter of former Australian prime minister',
             MOHAMED_WAHEED_HASSAN: 'former president of the Maldives',
