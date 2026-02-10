@@ -1529,6 +1529,7 @@ HIGHLIGHTED_NAMES = [
             r"Artificial\s*(General\s*)?Intelligence",
             r"Ben\s*Horowitz",
             r"Chamath", r"Palihapitiya",
+            r"cyber\s*security",
             r"Danny\s*Hillis",
             r"deep learning",
             r"Drew\s*Houston",
