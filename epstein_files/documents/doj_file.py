@@ -106,6 +106,10 @@ PHONE_BILL_IDS = {
     # 'EFTA00007070':  # TODO: not a messy phone bill, short, has additional info at end
 }
 
+STRIP_IMAGE_PANEL_IDS = [
+    'EFTA00384774',
+]
+
 INTERESTING_DOJ_FILES = {
     'EFTA02640711': 'Jabor Y home address (HBJ)',
     'EFTA00039689': 'Dilorio emails to SEC about Signature Bank, Hapoalim, Bioptix / RIOT, Honig, etc.',
@@ -205,7 +209,7 @@ class DojFile(OtherFile):
     def __post_init__(self):
         super().__post_init__()
 
-        if self.file_id in PHONE_BILL_IDS:
+        if self.file_id in PHONE_BILL_IDS or self.file_id in STRIP_IMAGE_PANEL_IDS:
             self.strip_image_ocr_panels()
 
     def doj_link(self) -> Text:
