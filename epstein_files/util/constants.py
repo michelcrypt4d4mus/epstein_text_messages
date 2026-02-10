@@ -976,6 +976,7 @@ EMAILS_CONFIG = [
 
     # DOJ files
     EmailCfg(id='EFTA00040142', author=ATT_COURT_APPEARANCE_TEAM, recipients=[USANYS]),
+    EmailCfg(id='EFTA01947908', author=CHRISTINA_GALBRAITH, attribution_reason='"Christina" appears in EFTA01950559'),
     EmailCfg(id='EFTA01747822', author=DARREN_INDYKE, attribution_reason='reply'),
     EmailCfg(id='EFTA00039967', author='DOJ London', recipients=[USANYS]),
     EmailCfg(id='EFTA02731552', author=FBI, date='2021-05-26 16:12:00'),
@@ -1137,6 +1138,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00039825', author=USANYS),
     EmailCfg(id='EFTA02731684', author=USANYS),
     EmailCfg(id='EFTA02068282', recipients=[ANDREW_MCCORMACK]),
+    EmailCfg(id='EFTA01950559', recipients=[CHRISTINA_GALBRAITH, RICHARD_KAHN], attribution_reason='"Christina" appears in email'),
     EmailCfg(id='EFTA00915426', recipients=[DONALD_NORMAN], attribution_reason='"This is Donald"'),
     EmailCfg(id='EFTA00916133', recipients=[DONALD_NORMAN], attribution_reason='signed "Donald"', duplicate_ids=['EFTA01862243']),
     EmailCfg(id='EFTA02629770', recipients=[JEFFREY_EPSTEIN]),
