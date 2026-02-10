@@ -183,6 +183,7 @@ UNKNOWN = '(unknown)'
 # DOJ files emails
 ALISON_J_NATHAN = 'Alison J. Nathan'
 AMIR_TAAKI = 'Amir Taaki'
+ANDREW_FARKAS = 'Andrew Farkas'
 ANDREW_MCCORMACK = 'Andrew McCormack'
 AUDREY_STRAUSS = 'Audrey Strauss'
 AUSTIN_HILL = 'Austin Hill'
@@ -191,6 +192,7 @@ BROCK_PIERCE = 'Brock Pierce'
 CHRISTIAN_EVERDELL = 'Christian Everdell'
 CHRISTOPHER_DILORIO = 'Christopher Dilorio'
 DOUGLAS_WIGDOR = 'Douglas Wigdor'
+GANBAT_CHULUUNKHUU = 'Ganbat Chuluunkhuu'
 HASSAN_JAMEEL = 'Hassan Jameel'
 KARYNA_SHULIAK = 'Karyna Shuliak'
 NICOLE_JUNKERMANN = 'Nicole Junkermann'
@@ -328,9 +330,9 @@ def extract_last_name(name: str) -> str:
         return first_last_names[-1]
 
 
-def reverse_first_and_last_names(name: str) -> str:
+def reverse_first_and_last_names(name: Name) -> str:
     """If there's a comma in the name in the style 'Lastname, Firstname', reverse it and remove comma."""
-    if '@' in name:
+    if name is None or '@' in name:
         return name.lower()
 
     if ', ' in name:

@@ -976,6 +976,7 @@ EMAILS_CONFIG = [
 
     # DOJ files
     EmailCfg(id='EFTA00040142', author=ATT_COURT_APPEARANCE_TEAM, recipients=[USANYS]),
+    EmailCfg(id='EFTA01947908', author=CHRISTINA_GALBRAITH, attribution_reason='"Christina" appears in EFTA01950559'),
     EmailCfg(id='EFTA01747822', author=DARREN_INDYKE, attribution_reason='reply'),
     EmailCfg(id='EFTA00039967', author='DOJ London', recipients=[USANYS]),
     EmailCfg(id='EFTA02731552', author=FBI, date='2021-05-26 16:12:00'),
@@ -1011,11 +1012,14 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02174702', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02068381', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02067282', author=LESLEY_GROFF, is_attribution_uncertain=True),
-    EmailCfg(id='EFTA02089992', recipients=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA02092005', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02104454', author=LESLEY_GROFF, is_attribution_uncertain=True),
+    EmailCfg(id='EFTA02095399', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA00424931', author=LESLEY_GROFF, is_attribution_uncertain=True, duplicate_ids=['EFTA02181004']),
     EmailCfg(id='EFTA02005819', author=LESLEY_GROFF, is_attribution_uncertain=True, duplicate_ids=['EFTA01890165']),
     EmailCfg(id='EFTA00357509', author=LESLEY_GROFF, is_attribution_uncertain=True, duplicate_ids=['EFTA02089323']),
+    EmailCfg(id='EFTA02069175', author=LESLEY_GROFF, recipients=[GANBAT_CHULUUNKHUU], is_attribution_uncertain=True),
+    EmailCfg(id='EFTA02271414', author=LESLEY_GROFF, recipients=[GANBAT_CHULUUNKHUU], is_attribution_uncertain=True),
     EmailCfg(id='EFTA00405795', author=LESLEY_GROFF, duplicate_ids=['EFTA02159829']),
     EmailCfg(id='EFTA00419742', author=LESLEY_GROFF, duplicate_ids=['EFTA02174857']),
     EmailCfg(
@@ -1137,6 +1141,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00039825', author=USANYS),
     EmailCfg(id='EFTA02731684', author=USANYS),
     EmailCfg(id='EFTA02068282', recipients=[ANDREW_MCCORMACK]),
+    EmailCfg(id='EFTA02518357', recipients=[CHRISTINA_GALBRAITH, RICHARD_KAHN], attribution_reason='"Christina" appears in email'),
     EmailCfg(id='EFTA00915426', recipients=[DONALD_NORMAN], attribution_reason='"This is Donald"'),
     EmailCfg(id='EFTA00916133', recipients=[DONALD_NORMAN], attribution_reason='signed "Donald"', duplicate_ids=['EFTA01862243']),
     EmailCfg(id='EFTA02629770', recipients=[JEFFREY_EPSTEIN]),
@@ -1146,6 +1151,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00368951', recipients=[LESLEY_GROFF], attribution_reason='can be seen in EFTA00368958'),
     EmailCfg(id='EFTA00357508', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00357523', recipients=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA02089992', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA02089433', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00840591', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA02547678', recipients=[RENATA_BOLOTOVA], attribution_reason='"sneaky dog"'),
@@ -1189,6 +1195,11 @@ EMAILS_CONFIG = [
         description=f"forged email Epstein wrote to complain about the Mindshift conference to {AL_SECKEL}",
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA02645857', author=GANBAT_CHULUUNKHUU),
+    EmailCfg(id='EFTA00677752', author=GANBAT_CHULUUNKHUU, description=f'discussion of getting a job in sustainable energy in Mongolia for {REDACTED}'),
+    EmailCfg(id='EFTA02646138', recipients=[GANBAT_CHULUUNKHUU]),
+    EmailCfg(id='EFTA02483194', description=f"discussion of {GANBAT_CHULUUNKHUU}'s arrest", is_interesting=True),
+    EmailCfg(id='EFTA00754450', description='"PA" is probably Prince Andrew'),
     EmailCfg(id='EFTA02588748', description=f'Epstein, Ito, and {VINCENZO_IOZZO} discuss crypto food stamps debit cards', is_interesting=True),
     EmailCfg(id='EFTA02517623', description=f"{VINCENZO_IOZZO} explains to Epstein how to deanonymize bitcoin", is_interesting=True),
     EmailCfg(id='EFTA00901772', description='discussion of the sale of Epstein stake in Coinbase'),
@@ -2071,6 +2082,10 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA01612888', description='A Blockchain-Based Approach to Health Information Exchange Networks', author='Kevin Peterson, Bammohan Deeduvanu, Pradip Kanjamala, and Kelly Boles'),
     DocCfg(id='EFTA01734786', description='LedgerX Series B pitch deck', is_interesting=True),
     DocCfg(id='EFTA01620764', description='iMessage convo between Melanie Walker and Epstein about Bill Gates being drunk all the time (???)', is_interesting=True),
+    DocCfg(id='EFTA01217787', description='Skype conversation with Tyler Shears and Hanna Traff at Spotify'),
+    DocCfg(id='EFTA01217703', description=f'Skype conversation with actress Athena Zelcovich, {JOSCHA_BACH}, and {LAWRENCE_KRAUSS}'),
+    DocCfg(id='EFTA01217736', description=f'Skype conversation with actress Athena Zelcovich, {TYLER_SHEARS}'),
+    DocCfg(id='EFTA01810372', description=f'{TYLER_SHEARS} invoice for reputation management work'),
 ]
 
 OTHER_FILES_JUNK = [

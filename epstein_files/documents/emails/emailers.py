@@ -45,6 +45,7 @@ EMAILER_ID_PATTERNS: dict[str, str] = {
     EDWARD_JAY_EPSTEIN: r'(?<!Jeffrey )Edward (Jay )?Epstein',
     EHUD_BARAK: r'(ehud|e?h)\s*barak|\behud',
     FAITH_KATES: r'faith kates?',
+    GANBAT_CHULUUNKHUU: r"Ganbat(@|\s*Ch(uluunkhuu)?)?",
     GERALD_BARTON: r'Gerald.*Barton',
     GERALD_LEFCOURT: r'Gerald\s*(B\.?\s*)?Lefcourt',
     GHISLAINE_MAXWELL: r'g ?max(well)?|Ghislaine|Maxwell',
@@ -124,6 +125,7 @@ EMAILER_ID_PATTERNS: dict[str, str] = {
     THANU_BOONYAWATANA: r"Thanu (BOONYAWATANA|Cnx)",
     THORBJORN_JAGLAND: r'(Thor.{3,8})?Jag[il]and?',
     TONJA_HADDAD_COLEMAN: r"To(nj|rl)a Haddad Coleman|haddadfm@aol.com",
+    TYLER_SHEARS: r"T[vy]ler\s*Shears",
     VINCENZO_IOZZO: r"Vincenzo [IL]ozzo",
 }
 
@@ -131,6 +133,7 @@ EMAILER_ID_PATTERNS: dict[str, str] = {
 EMAILERS = [
     'Anne Boyles',
     AL_SECKEL,
+    ANDREW_FARKAS,
     'Ariane Dwyer',
     AZIZA_ALAHMADI,
     'Brittany Henderson',
@@ -152,6 +155,7 @@ EMAILERS = [
     'Jack Lang',
     JACK_SCAROLA,
     JAY_LEFKOWITZ,
+    JEREMY_RUBIN,
     JES_STALEY,
     JOHN_PAGE,
     'Jokeland',
@@ -210,14 +214,17 @@ def cleanup_str(_str: str) -> str:
     return BAD_NAME_CHARS_REGEX.sub('', _str.replace(REDACTED, '')).strip().strip('_').strip()
 
 
-def extract_emailer_names(emailer_str: str) -> list[str]:
+def extract_emailer_names(emailer_str: str) -> list[Name]:
     """Return a list of people's names found in `emailer_str` (email author or recipients field)."""
+    raw_names = emailer_str.split(';')
     emailer_str = cleanup_str(emailer_str)
 
-    if len(emailer_str) == 0:
+    if raw_names == [REDACTED] or raw_names == [UNKNOWN]:
+        return [None]
+    elif len(emailer_str) == 0:
         return []
 
-    names_found = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
+    names_found: list[Name] = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
 
     if len(emailer_str) <= 2 or BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
         if len(names_found) == 0 and emailer_str not in SUPPRESS_LOGS_FOR_AUTHORS:
