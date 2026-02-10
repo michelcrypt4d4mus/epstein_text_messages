@@ -372,6 +372,7 @@ HIGHLIGHTED_NAMES = [
         label='bitcoin',
         style='orange1 bold',
         emailers={
+            ADAM_BACK: f"co-founder of Blockstream, bitcoin dev, long time Tether defender",
             AMIR_TAAKI: f"bitcoin bro, partner of Donald Norman (and {BROCK_PIERCE}?)",
             ANTHONY_SCARAMUCCI: 'Skybridge Capital, FTX investor',
             AUSTIN_HILL: 'Blockstream co-founder with Adam Back',
@@ -390,6 +391,7 @@ HIGHLIGHTED_NAMES = [
             r"Bioptix",  # Now RIOT Blockchain
             r"bitcoin(\s*Foundation)?",
             r"BitFury",
+            r"Blockstream",
             r"Brian Forde",
             r"Brock(\s*Pierce)?",
             r"Coinbase",
