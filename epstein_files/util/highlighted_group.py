@@ -393,7 +393,7 @@ HIGHLIGHTED_NAMES = [
             r"Brock(\s*Pierce)?",
             r"coins?(\s*Center)?",
             r"Cory\s*Fields",  # bitcoin dev
-            r"cr[iy]?pto(currenc(y|ies))?",
+            r"cr[iy]?pto\s*(currenc(y|ies))?",
             r"Digital\s*Currenc(ies|y)(\s*Initiative)?",
             r"e-currency",
             r"(Gavin )?Andress?en",  # bitcoin dev

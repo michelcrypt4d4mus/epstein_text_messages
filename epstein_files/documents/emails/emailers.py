@@ -124,6 +124,7 @@ EMAILER_ID_PATTERNS: dict[str, str] = {
     THANU_BOONYAWATANA: r"Thanu (BOONYAWATANA|Cnx)",
     THORBJORN_JAGLAND: r'(Thor.{3,8})?Jag[il]and?',
     TONJA_HADDAD_COLEMAN: r"To(nj|rl)a Haddad Coleman|haddadfm@aol.com",
+    TYLER_SHEARS: r"T[vy]ler\s*Shears",
     VINCENZO_IOZZO: r"Vincenzo [IL]ozzo",
 }
 
@@ -152,6 +153,7 @@ EMAILERS = [
     'Jack Lang',
     JACK_SCAROLA,
     JAY_LEFKOWITZ,
+    JEREMY_RUBIN,
     JES_STALEY,
     JOHN_PAGE,
     'Jokeland',
