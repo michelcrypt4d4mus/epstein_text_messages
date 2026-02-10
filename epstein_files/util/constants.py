@@ -1195,6 +1195,7 @@ EMAILS_CONFIG = [
         description=f"forged email Epstein wrote to complain about the Mindshift conference to {AL_SECKEL}",
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA02645857', author=GANBAT_CHULUUNKHUU),
     EmailCfg(id='EFTA00677752', author=GANBAT_CHULUUNKHUU, description=f'discussion of getting a job in sustainable energy in Mongolia for {REDACTED}'),
     EmailCfg(id='EFTA02646138', recipients=[GANBAT_CHULUUNKHUU]),
     EmailCfg(id='EFTA02483194', description=f"discussion of {GANBAT_CHULUUNKHUU}'s arrest", is_interesting=True),
