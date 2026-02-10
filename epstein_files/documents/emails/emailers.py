@@ -213,14 +213,17 @@ def cleanup_str(_str: str) -> str:
     return BAD_NAME_CHARS_REGEX.sub('', _str.replace(REDACTED, '')).strip().strip('_').strip()
 
 
-def extract_emailer_names(emailer_str: str) -> list[str]:
+def extract_emailer_names(emailer_str: str) -> list[Name]:
     """Return a list of people's names found in `emailer_str` (email author or recipients field)."""
+    raw_names = emailer_str.split(';')
     emailer_str = cleanup_str(emailer_str)
 
-    if len(emailer_str) == 0:
+    if raw_names == [REDACTED]:
+        return [None]
+    elif len(emailer_str) == 0:
         return []
 
-    names_found = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
+    names_found: list[Name] = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
 
     if len(emailer_str) <= 2 or BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
         if len(names_found) == 0 and emailer_str not in SUPPRESS_LOGS_FOR_AUTHORS:
