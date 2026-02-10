@@ -1155,6 +1155,7 @@ HIGHLIGHTED_NAMES = [
             GANBAT_CHULUUNKHUU: 'Corrupt Mongolian politician who was later wanted by Interpol',
             'Joshua Cooper Ramo': 'co-CEO of Henry Kissinger Associates',
             KATHERINE_KEATING: 'daughter of former Australian prime minister',
+            'Khaltmaagiin Battulga': 'former president of Mongolia',
             MOHAMED_WAHEED_HASSAN: 'former president of the Maldives',
             OLIVIER_COLOM: 'France',
             'Paul Keating': 'former prime minister of Australia',
