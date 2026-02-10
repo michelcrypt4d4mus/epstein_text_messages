@@ -977,6 +977,7 @@ EMAILS_CONFIG = [
     # DOJ files
     EmailCfg(id='EFTA00040142', author=ATT_COURT_APPEARANCE_TEAM, recipients=[USANYS]),
     EmailCfg(id='EFTA01947908', author=CHRISTINA_GALBRAITH, attribution_reason='"Christina" appears in EFTA01950559'),
+    EmailCfg(id='EFTA01940349', author=CHRISTINA_GALBRAITH, is_attribution_uncertain=True, attribution_reason='subject matter'),
     EmailCfg(id='EFTA01747822', author=DARREN_INDYKE, attribution_reason='reply'),
     EmailCfg(id='EFTA00039967', author='DOJ London', recipients=[USANYS]),
     EmailCfg(id='EFTA02731552', author=FBI, date='2021-05-26 16:12:00'),
@@ -1012,14 +1013,19 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02174702', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02068381', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02067282', author=LESLEY_GROFF, is_attribution_uncertain=True),
+    EmailCfg(id='EFTA00697417', author=LESLEY_GROFF, is_attribution_uncertain=True, is_interesting=True),
     EmailCfg(id='EFTA02092005', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02104454', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02095399', author=LESLEY_GROFF, is_attribution_uncertain=True),
+    EmailCfg(id='EFTA00361741', author=LESLEY_GROFF, is_attribution_uncertain=True),
+    EmailCfg(id='EFTA00361736', author=LESLEY_GROFF, is_attribution_uncertain=True),
+    EmailCfg(id='EFTA02092108', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA00424931', author=LESLEY_GROFF, is_attribution_uncertain=True, duplicate_ids=['EFTA02181004']),
     EmailCfg(id='EFTA02005819', author=LESLEY_GROFF, is_attribution_uncertain=True, duplicate_ids=['EFTA01890165']),
     EmailCfg(id='EFTA00357509', author=LESLEY_GROFF, is_attribution_uncertain=True, duplicate_ids=['EFTA02089323']),
     EmailCfg(id='EFTA02069175', author=LESLEY_GROFF, recipients=[GANBAT_CHULUUNKHUU], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02271414', author=LESLEY_GROFF, recipients=[GANBAT_CHULUUNKHUU], is_attribution_uncertain=True),
+    EmailCfg(id='EFTA02113506', author=LESLEY_GROFF, recipients=[TYLER_SHEARS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA00405795', author=LESLEY_GROFF, duplicate_ids=['EFTA02159829']),
     EmailCfg(id='EFTA00419742', author=LESLEY_GROFF, duplicate_ids=['EFTA02174857']),
     EmailCfg(
@@ -1161,6 +1167,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00977447', recipients=[RENATA_BOLOTOVA], attribution_reason='"sneaky dog"', duplicate_ids=['EFTA02577917', 'EFTA01946045']),
     EmailCfg(id='EFTA00929871', recipients=[RENATA_BOLOTOVA], attribution_reason='"sneaky dog"', duplicate_ids=['EFTA01773449', 'EFTA02550388']),
     EmailCfg(id='EFTA02731721', recipients=[USANYS]),
+    EmailCfg(id='EFTA02731637', recipients=[USANYS]),
     EmailCfg(id='EFTA02731737', date='2023-06-30T16:05:00'),
     EmailCfg(id='EFTA02731475', date='2023-05-31T20:53:00'),
     EmailCfg(id='EFTA02731732', date='2024-03-06T12:21:00'),
@@ -1195,7 +1202,9 @@ EMAILS_CONFIG = [
         description=f"forged email Epstein wrote to complain about the Mindshift conference to {AL_SECKEL}",
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA02069096', author=GANBAT_CHULUUNKHUU),
     EmailCfg(id='EFTA02645857', author=GANBAT_CHULUUNKHUU),
+    EmailCfg(id='EFTA01030561', author=GANBAT_CHULUUNKHUU, attribution_reason='signature'),
     EmailCfg(id='EFTA00677752', author=GANBAT_CHULUUNKHUU, description=f'discussion of getting a job in sustainable energy in Mongolia for {REDACTED}'),
     EmailCfg(id='EFTA02646138', recipients=[GANBAT_CHULUUNKHUU]),
     EmailCfg(id='EFTA02483194', description=f"discussion of {GANBAT_CHULUUNKHUU}'s arrest", is_interesting=True),
@@ -1215,7 +1224,14 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01051074', description='Brock Pierce arranging meeting between Bannon and Epstein (in Doha?)'),
     EmailCfg(id='EFTA00988395', description='"Andy Back" is probably O.G. bitcoiner Adam Back from Blockstream'),
     EmailCfg(id='EFTA00383023', description='heavily redacted', is_interesting=True),
-    EmailCfg(id='EFTA00384774', description='someone visiting for the death of Red Burns', is_interesting=True),
+    EmailCfg(
+        id='EFTA00384774',
+        attribution_reason='unique email signature',
+        author=LINDA_STONE,
+        description='visiting for the death of Red Burns',
+        is_interesting=True
+    ),
+    EmailCfg(id='EFTA00397956', author=LINDA_STONE, attribution_reason='unique email signature'),
     EmailCfg(id='EFTA00104945', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True),
     EmailCfg(id='EFTA00875181', duplicate_ids=['EFTA01901268']),
     EmailCfg(id='EFTA00754450', duplicate_ids=['EFTA02418244']),
@@ -1223,6 +1239,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00563586', duplicate_ids=['EFTA02323722']),
     EmailCfg(id='EFTA00039802', duplicate_ids=['EFTA00039809']),
     EmailCfg(id='EFTA00039689', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00381451', truncate_to=800),
 ]
 
 if args.constantize:
@@ -2164,7 +2181,7 @@ REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"(?<!M)On \d+/\d+/\d+[, ].*{REPLY_LINE_EN
 REPLY_LINE_ON_DATE_PATTERN = fr"^[> •]*On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Jan|Fe(b|vr\.)|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*)[, ].*{REPLY_LINE_ENDING_PATTERN}"
 REPLY_LINE_PATTERN = rf"({FRENCH_REPLY_PATTERN}|{GERMAN_REPLY_PATTERN}|{NORWEGAIN_REPLY_PATTERN}|{REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
-SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?((Envoyé de mon|Sent (from|via)).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)|Co-authored with iPhone auto-correct', re.M | re.I)
+SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?((Envoyé de mon|Sent (from|via)).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)|Co-authored with iPhone auto-correct|Typos,? misspellings courtesy of iPhone(\s*word & thought substitution)?\.?', re.M | re.I)
 
 # No point in ever displaying these; their emails show up elsewhere because they're mostly CC recipients
 UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_CCS + [

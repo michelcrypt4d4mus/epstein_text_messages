@@ -487,7 +487,7 @@ class Email(Communication):
         self.recipients = uniquify(self.recipients)
 
         # Remove self CCs but preserve self emails
-        if not self.is_note_to_self:
+        if not (self.is_note_to_self or self.author is None):
             if self.author in self.recipients:
                 self.warn(f"Removing email to self for {self.author}")
 
