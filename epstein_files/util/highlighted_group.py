@@ -389,8 +389,10 @@ HIGHLIGHTED_NAMES = [
             r"Bart\s*Stephens",  # co-founder, Blockchain Capital
             r"Bioptix",  # Now RIOT Blockchain
             r"bitcoin(\s*Foundation)?",
+            r"BitFury",
             r"Brian Forde",
             r"Brock(\s*Pierce)?",
+            r"Coinbase",
             r"coins?(\s*Center)?",
             r"Cory\s*Fields",  # bitcoin dev
             r"cr[iy]?pto\s*(currenc(y|ies))?",
