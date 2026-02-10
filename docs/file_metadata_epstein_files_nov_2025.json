@@ -35013,6 +35013,16 @@
                 "type": "Email"
             },
             {
+                "author": "Jeffrey Epstein",
+                "bytes": 1320,
+                "file_id": "EFTA00857165",
+                "filename": "EFTA00857165.txt",
+                "num_lines": 29,
+                "subject": "Re: Seth/bitcoin",
+                "timestamp": "2015-05-12T17:02:07",
+                "type": "Email"
+            },
+            {
                 "author": "Richard Kahn",
                 "bytes": 844,
                 "file_id": "EFTA00861107",
@@ -35631,6 +35641,36 @@
                 "type": "Email"
             },
             {
+                "author": "Austin Hill",
+                "bytes": 10313,
+                "file_id": "EFTA00994706",
+                "filename": "EFTA00994706.txt",
+                "num_lines": 128,
+                "recipients": [
+                    "Alex Fowler",
+                    "Dr Adam Back",
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Fwd: An idea for TED2014 talk to kill cancer and give it away to the world",
+                "timestamp": "2014-08-08T10:05:00",
+                "type": "Email"
+            },
+            {
+                "author": "Austin Hill",
+                "bytes": 10313,
+                "file_id": "EFTA00994706-1",
+                "filename": "EFTA00994706-1.txt",
+                "num_lines": 128,
+                "recipients": [
+                    "Alex Fowler",
+                    "Dr Adam Back",
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Fwd: An idea for TED2014 talk to kill cancer and give it away to the world",
+                "timestamp": "2014-08-08T10:05:00",
+                "type": "Email"
+            },
+            {
                 "attribution_reason": "poorly redacted signature",
                 "author": "Renata Bolotova",
                 "bytes": 224,
@@ -35798,6 +35838,32 @@
                 ],
                 "subject": "Re: Sue",
                 "timestamp": "2014-10-31T02:09:24",
+                "type": "Email"
+            },
+            {
+                "author": "Vincenzo Iozzo",
+                "bytes": 268,
+                "file_id": "EFTA00999891",
+                "filename": "EFTA00999891.txt",
+                "num_lines": 7,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "adam back",
+                "timestamp": "2014-11-04T07:17:58",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 945,
+                "file_id": "EFTA00999897",
+                "filename": "EFTA00999897.txt",
+                "num_lines": 22,
+                "recipients": [
+                    "Vincenzo Iozzo"
+                ],
+                "subject": "Re: adam back",
+                "timestamp": "2014-11-04T10:11:51",
                 "type": "Email"
             },
             {
@@ -36245,6 +36311,20 @@
                 ],
                 "subject": "Fwd: Stash Financial",
                 "timestamp": "2019-03-13T13:58:17",
+                "type": "Email"
+            },
+            {
+                "attribution_reason": "signature",
+                "author": "Ganbat Chuluunkhuu",
+                "bytes": 3591,
+                "file_id": "EFTA01030561",
+                "filename": "EFTA01030561.txt",
+                "num_lines": 55,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Japan, Mongolia agree on North Korea response, economic cooperation I The Japan Times",
+                "timestamp": "2017-09-06T15:03:36",
                 "type": "Email"
             },
             {
@@ -36830,6 +36910,19 @@
                 "type": "Email"
             },
             {
+                "author": "Joi Ito",
+                "bytes": 1350,
+                "file_id": "EFTA01787633",
+                "filename": "EFTA01787633.txt",
+                "num_lines": 27,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Seth/bitcoin",
+                "timestamp": "2015-05-14T11:19:00",
+                "type": "Email"
+            },
+            {
                 "author": "Lesley Groff",
                 "bytes": 520,
                 "file_id": "EFTA01793793",
@@ -37098,6 +37191,16 @@
                 "type": "Email"
             },
             {
+                "bytes": 1496,
+                "description": "discussion of Epstein investment in Blockstream funneled through Joi Ito",
+                "file_id": "EFTA01917402",
+                "filename": "EFTA01917402.txt",
+                "is_interesting": true,
+                "num_lines": 31,
+                "timestamp": "2014-07-15T18:05:27",
+                "type": "Email"
+            },
+            {
                 "attribution_reason": "\"sneaky dog\"",
                 "author": "Renata Bolotova",
                 "bytes": 2792,
@@ -37125,6 +37228,33 @@
                 ],
                 "subject": "Re:",
                 "timestamp": "2014-05-02T16:58:04",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 7396,
+                "file_id": "EFTA01926051",
+                "filename": "EFTA01926051.txt",
+                "num_lines": 151,
+                "recipients": [
+                    "Daphne Wallace"
+                ],
+                "subject": "Re:",
+                "timestamp": "2014-04-16T13:36:32",
+                "type": "Email"
+            },
+            {
+                "author": "Austin Hill",
+                "bytes": 560,
+                "file_id": "EFTA01926082",
+                "filename": "EFTA01926082.txt",
+                "num_lines": 14,
+                "recipients": [
+                    "Dr Adam Bac",
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from Mailbox for iPad",
+                "timestamp": "2014-05-01T00:47:42",
                 "type": "Email"
             },
             {
@@ -38737,6 +38867,20 @@
                 ],
                 "subject": "Fwd: Introduction to Stoneridge re: Cryptocurrency Cocktail Reception on Wednesday",
                 "timestamp": "2018-03-23T08:04:00",
+                "type": "Email"
+            },
+            {
+                "author": "on behalf of Seth Lloyd",
+                "bytes": 617,
+                "file_id": "EFTA02502990",
+                "filename": "EFTA02502990.txt",
+                "num_lines": 15,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Joi Ito"
+                ],
+                "subject": "Re: Seth/bitcoin",
+                "timestamp": "2015-05-12T16:55:00",
                 "type": "Email"
             },
             {
@@ -47752,6 +47896,7 @@
     "people": {
         "Abdoulaye Wade": "Africa, former president of Senegal, father of Karim Wade",
         "Abi Schwinck": "modeling, Jean Luc Brunel's MC2 Model Management (???)",
+        "Adam Back": "bitcoin, co-founder of Blockstream, bitcoin dev, long time Tether defender",
         "Al Seckel": "publicist, Isabel Maxwell's husband, Mindshift conference, fell off a cliff",
         "Alain Forget": "journalist, author of \"How To Get Out Of This World ALIVE\"",
         "Alan Dershowitz": "lawyer, Harvard Law School professor",
