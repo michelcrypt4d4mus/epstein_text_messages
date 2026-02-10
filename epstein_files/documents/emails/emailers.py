@@ -45,6 +45,7 @@ EMAILER_ID_PATTERNS: dict[str, str] = {
     EDWARD_JAY_EPSTEIN: r'(?<!Jeffrey )Edward (Jay )?Epstein',
     EHUD_BARAK: r'(ehud|e?h)\s*barak|\behud',
     FAITH_KATES: r'faith kates?',
+    GANBAT_CHULUUNKHUU: r"Ganbat(@|\s*Ch(uluunkhuu)?)?",
     GERALD_BARTON: r'Gerald.*Barton',
     GERALD_LEFCOURT: r'Gerald\s*(B\.?\s*)?Lefcourt',
     GHISLAINE_MAXWELL: r'g ?max(well)?|Ghislaine|Maxwell',
@@ -218,7 +219,7 @@ def extract_emailer_names(emailer_str: str) -> list[Name]:
     raw_names = emailer_str.split(';')
     emailer_str = cleanup_str(emailer_str)
 
-    if raw_names == [REDACTED]:
+    if raw_names == [REDACTED] or raw_names == [UNKNOWN]:
         return [None]
     elif len(emailer_str) == 0:
         return []
