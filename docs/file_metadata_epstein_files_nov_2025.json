@@ -33390,10 +33390,12 @@
                 "type": "Email"
             },
             {
-                "bytes": 304784,
+                "author": "Christopher Dilorio",
+                "bytes": 304752,
                 "file_id": "EFTA00093702",
                 "filename": "EFTA00093702.txt",
-                "num_lines": 4581,
+                "num_lines": 4577,
+                "subject": "Fw: Formal appeal for covered action 2015-016/ Knight Capital TCR & Appendix",
                 "timestamp": "2021-09-08T12:37:16",
                 "type": "Email"
             },
@@ -33580,9 +33582,11 @@
                 "type": "Email"
             },
             {
+                "author": "Lesley Groff",
                 "bytes": 2593,
                 "file_id": "EFTA00361736",
                 "filename": "EFTA00361736.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 46,
                 "recipients": [
                     "Andrew Farkas",
@@ -33593,9 +33597,11 @@
                 "type": "Email"
             },
             {
+                "author": "Lesley Groff",
                 "bytes": 2632,
                 "file_id": "EFTA00361741",
                 "filename": "EFTA00361741.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 46,
                 "recipients": [
                     "Andrew Farkas",
@@ -33692,17 +33698,19 @@
                 "file_id": "EFTA00381451",
                 "filename": "EFTA00381451.txt",
                 "num_lines": 57,
+                "sent_from_device": "Typos, misspellings courtesy of iPhone.",
                 "subject": "Re: October 29 for frank Heidt",
                 "timestamp": "2013-10-10T19:05:10",
+                "truncate_to": 800,
                 "type": "Email"
             },
             {
-                "bytes": 545,
+                "bytes": 2840,
                 "description": "heavily redacted",
                 "file_id": "EFTA00383023",
                 "filename": "EFTA00383023.txt",
                 "is_interesting": true,
-                "num_lines": 35,
+                "num_lines": 42,
                 "subject": "Re: Quick",
                 "timestamp": "2013-09-24T15:21:42",
                 "type": "Email"
@@ -33718,20 +33726,22 @@
                 "type": "Email"
             },
             {
-                "bytes": 14283,
-                "description": "someone visiting for the death of Red Burns",
+                "attribution_reason": "unique email signature",
+                "author": "Linda Stone",
+                "bytes": 14274,
+                "description": "visiting for the death of Red Burns",
                 "file_id": "EFTA00384774",
                 "filename": "EFTA00384774.txt",
                 "is_interesting": true,
-                "num_lines": 140,
-                "recipients": [
-                    "11a"
-                ],
+                "num_lines": 70,
+                "sent_from_device": "Typos, misspellings courtesy of iPhone word & thought substitution.",
                 "subject": "Re: Quick change",
                 "timestamp": "2013-08-25T18:03:55",
                 "type": "Email"
             },
             {
+                "attribution_reason": "unique email signature",
+                "author": "Linda Stone",
                 "bytes": 1419,
                 "file_id": "EFTA00397956",
                 "filename": "EFTA00397956.txt",
@@ -33739,6 +33749,7 @@
                 "recipients": [
                     "Lesley Groff"
                 ],
+                "sent_from_device": "Typos, misspellings courtesy of iPhone word & thought substitution.",
                 "subject": "Re: Wow!",
                 "timestamp": "2013-01-14T00:57:37",
                 "type": "Email"
@@ -34488,9 +34499,12 @@
                 "type": "Email"
             },
             {
+                "author": "Lesley Groff",
                 "bytes": 400,
                 "file_id": "EFTA00697417",
                 "filename": "EFTA00697417.txt",
+                "is_attribution_uncertain": true,
+                "is_interesting": true,
                 "num_lines": 15,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -34549,6 +34563,7 @@
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
+                "sent_from_device": "Typos, misspellings courtesy of iPhone word & thought substitution.",
                 "subject": "Fwd: [Dewayne-Net] Someone just sold a Bitcoin business for $11.4M! It's a first, but the buyer's anonymous",
                 "timestamp": "2013-07-19T13:15:54",
                 "type": "Email"
@@ -34591,6 +34606,7 @@
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
+                "sent_from_device": "Typos, misspellings courtesy of iPhone word & thought substitution.",
                 "subject": "Fwd: [Dewayne-Net] Bitcoin will prosper \u2014 until governments decide_to_crush_it_overnight_=",
                 "timestamp": "2013-07-14T00:56:19",
                 "type": "Email"
@@ -37055,16 +37071,16 @@
                 "type": "Email"
             },
             {
-                "bytes": 309,
+                "bytes": 324,
                 "file_id": "EFTA01903950",
                 "filename": "EFTA01903950.txt",
                 "num_lines": 8,
                 "recipients": [
-                    "v i gmail.com"
+                    "Jeffrey Epstein"
                 ],
                 "sent_from_device": "Sent from my iPhone",
                 "subject": ")))",
-                "timestamp": "2051-01-01T00:01:01",
+                "timestamp": "2013-02-09T03:39:55",
                 "type": "Email"
             },
             {
@@ -37152,10 +37168,15 @@
                 "type": "Email"
             },
             {
-                "bytes": 574,
+                "author": "Tyler Shears",
+                "bytes": 573,
                 "file_id": "EFTA01931212",
                 "filename": "EFTA01931212.txt",
-                "num_lines": 19,
+                "num_lines": 17,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Yext",
                 "timestamp": "2014-03-04T16:45:41",
                 "type": "Email"
             },
@@ -37202,12 +37223,19 @@
                 "type": "Email"
             },
             {
-                "bytes": 1039,
+                "attribution_reason": "subject matter",
+                "author": "Christina Galbraith",
+                "bytes": 1124,
                 "file_id": "EFTA01940349",
                 "filename": "EFTA01940349.txt",
-                "num_lines": 26,
+                "is_attribution_uncertain": true,
+                "num_lines": 27,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Tyler Shears"
+                ],
                 "subject": "Re: Quick Update",
-                "timestamp": "2026-02-10T17:00:00",
+                "timestamp": "2014-01-02T21:56:55",
                 "type": "Email"
             },
             {
@@ -37277,12 +37305,13 @@
                 "type": "Email"
             },
             {
-                "bytes": 342,
+                "bytes": 345,
                 "file_id": "EFTA01954059",
                 "filename": "EFTA01954059.txt",
                 "num_lines": 11,
                 "recipients": [
-                    "Jeffrey Epstein"
+                    "Jeffrey Epstein",
+                    "Tyler Shears"
                 ],
                 "subject": "Re: Forbes live",
                 "timestamp": "2013-10-03T03:30:42",
@@ -37368,6 +37397,7 @@
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
+                "sent_from_device": "Typos, misspellings courtesy of iPhone",
                 "subject": "Bitcoin",
                 "timestamp": "2013-06-28T00:57:10",
                 "type": "Email"
@@ -37688,6 +37718,7 @@
                 "type": "Email"
             },
             {
+                "author": "Ganbat Chuluunkhuu",
                 "bytes": 458,
                 "file_id": "EFTA02069096",
                 "filename": "EFTA02069096.txt",
@@ -37831,11 +37862,17 @@
                 "type": "Email"
             },
             {
-                "bytes": 1132,
+                "author": "Lesley Groff",
+                "bytes": 1136,
                 "file_id": "EFTA02092108",
                 "filename": "EFTA02092108.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 26,
+                "recipients": [
+                    "Brock Pierce"
+                ],
                 "sent_from_device": "Sent from my iPhone",
+                "subject": "Re: Jeffrey Epstein",
                 "timestamp": "2014-10-24T11:51:54",
                 "type": "Email"
             },
@@ -37868,12 +37905,18 @@
                 "type": "Email"
             },
             {
-                "bytes": 519,
+                "author": "Lesley Groff",
+                "bytes": 534,
                 "file_id": "EFTA02113506",
                 "filename": "EFTA02113506.txt",
-                "num_lines": 18,
+                "is_attribution_uncertain": true,
+                "num_lines": 19,
+                "recipients": [
+                    "Tyler Shears"
+                ],
                 "sent_from_device": "Sent from my iPhone",
-                "timestamp": "2026-02-10T19:05:49",
+                "subject": "Re: Jeffrey Epstein",
+                "timestamp": "2014-03-02T19:05:49",
                 "type": "Email"
             },
             {
@@ -38188,6 +38231,7 @@
                 "filename": "EFTA02328335.txt",
                 "num_lines": 4,
                 "recipients": [
+                    null,
                     "Jeffrey Epstein",
                     "Karyna Shuliak"
                 ],
@@ -38911,10 +38955,15 @@
                 "type": "Email"
             },
             {
-                "bytes": 1181,
+                "bytes": 1190,
                 "file_id": "EFTA02565917",
                 "filename": "EFTA02565917.txt",
-                "num_lines": 36,
+                "num_lines": 35,
+                "recipients": [
+                    null,
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: NOOOOOO",
                 "timestamp": "2013-02-05T15:39:00",
                 "type": "Email"
             },
@@ -39946,6 +39995,9 @@
                 "file_id": "EFTA02731637",
                 "filename": "EFTA02731637.txt",
                 "num_lines": 21,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "RE: Leon Black/Additional HT Subject Referral -- Update",
                 "timestamp": "2023-06-12T13:59:00",
                 "type": "Email"
@@ -47830,6 +47882,7 @@
         "Ken Jenne": "victim lawyer, Rothstein Rosenfeldt Adler (Rothstein was Roger Stone's partner)",
         "Ken Starr": "lawyer, head of the Monica Lewinsky investigation against Bill Clinton",
         "Kenneth E. Mapp": "USVI, Virgin Islands Governor",
+        "Khaltmaagiin Battulga": "lobbyist, former president of Mongolia",
         "Landon Thomas Jr": "journalist, New York Times financial reporter",
         "Larry Summers": "Harvard, board of Digital Currency Group (DCG), Obama economic advisor",
         "Laurie Cameron": "finance, currency trading",
