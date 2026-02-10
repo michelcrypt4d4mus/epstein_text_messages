@@ -132,6 +132,7 @@ EMAILER_ID_PATTERNS: dict[str, str] = {
 EMAILERS = [
     'Anne Boyles',
     AL_SECKEL,
+    ANDREW_FARKAS,
     'Ariane Dwyer',
     AZIZA_ALAHMADI,
     'Brittany Henderson',

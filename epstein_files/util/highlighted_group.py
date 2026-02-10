@@ -812,6 +812,7 @@ HIGHLIGHTED_NAMES = [
         label=FRIEND,
         style='tan',
         emailers={
+            ANDREW_FARKAS: "heir to the Alexander's department store fortune",
             DANGENE_AND_JENNIE_ENTERPRISE: 'founders of the members-only CORE club',
             DAVID_STERN: f'emailed Epstein from Moscow, knows chairman of {DEUTSCHE_BANK} (?)',
             JONATHAN_FARKAS: "heir to the Alexander's department store fortune",
@@ -821,7 +822,6 @@ HIGHLIGHTED_NAMES = [
             TOM_BARRACK: 'long time friend of Trump',
         },
         patterns=[
-            r"Andrew Farkas",
             r"Jonanthan and Kimberly Farkus",
             r"Thomas\s*(J\.?\s*)?Barrack(\s*Jr)?",
         ],

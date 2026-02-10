@@ -183,6 +183,7 @@ UNKNOWN = '(unknown)'
 # DOJ files emails
 ALISON_J_NATHAN = 'Alison J. Nathan'
 AMIR_TAAKI = 'Amir Taaki'
+ANDREW_FARKAS = 'Andrew Farkas'
 ANDREW_MCCORMACK = 'Andrew McCormack'
 AUDREY_STRAUSS = 'Audrey Strauss'
 AUSTIN_HILL = 'Austin Hill'

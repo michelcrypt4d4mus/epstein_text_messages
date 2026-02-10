@@ -423,7 +423,7 @@ class Email(Communication):
 
     @property
     def is_note_to_self(self) -> bool:
-        return uniquify(self.recipients) == [self.author]
+        return self.recipients == [self.author]
 
     @property
     def is_word_count_worthy(self) -> bool:
@@ -482,6 +482,8 @@ class Email(Communication):
             # Assume mailing list emails are to Epstein
             if self.author in BCC_LISTS and (self.is_note_to_self or not self.recipients):
                 self.recipients = [JEFFREY_EPSTEIN]
+
+        self.recipients = uniquify(self.recipients)
 
         # Remove self CCs but preserve self emails
         if not self.is_note_to_self:
