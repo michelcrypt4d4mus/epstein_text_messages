@@ -1207,6 +1207,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01030561', author=GANBAT_CHULUUNKHUU, attribution_reason='signature'),
     EmailCfg(id='EFTA00677752', author=GANBAT_CHULUUNKHUU, description=f'discussion of getting a job in sustainable energy in Mongolia for {REDACTED}'),
     EmailCfg(id='EFTA02646138', recipients=[GANBAT_CHULUUNKHUU]),
+    EmailCfg(id='EFTA01917402', description='discussion of Epstein investment in Blockstream funneled through Joi Ito', is_interesting=True),
     EmailCfg(id='EFTA02483194', description=f"discussion of {GANBAT_CHULUUNKHUU}'s arrest", is_interesting=True),
     EmailCfg(id='EFTA00754450', description='"PA" is probably Prince Andrew'),
     EmailCfg(id='EFTA02588748', description=f'Epstein, Ito, and {VINCENZO_IOZZO} discuss crypto food stamps debit cards', is_interesting=True),
