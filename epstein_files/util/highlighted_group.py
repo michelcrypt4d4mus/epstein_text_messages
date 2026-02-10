@@ -874,6 +874,7 @@ HIGHLIGHTED_NAMES = [
             r"(General\s*)?P(a|e)traeus",
             r"Geoff\s*Ling",
             r"Homeland\s*Security",
+            r"Interpol",
             r"IRS",
             r"(James\s*)?Comey",
             r"(Jennifer\s*Shasky\s*)?Calvery",
@@ -1151,6 +1152,7 @@ HIGHLIGHTED_NAMES = [
         style='light_coral',
         emailers={
             BOB_CROWE: 'partner at Nelson Mullins',
+            GANBAT_CHULUUNKHUU: 'Corrupt Mongolian politician who was later wanted by Interpol',
             'Joshua Cooper Ramo': 'co-CEO of Henry Kissinger Associates',
             KATHERINE_KEATING: 'daughter of former Australian prime minister',
             MOHAMED_WAHEED_HASSAN: 'former president of the Maldives',
