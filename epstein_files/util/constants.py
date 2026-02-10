@@ -1223,7 +1223,14 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01051074', description='Brock Pierce arranging meeting between Bannon and Epstein (in Doha?)'),
     EmailCfg(id='EFTA00988395', description='"Andy Back" is probably O.G. bitcoiner Adam Back from Blockstream'),
     EmailCfg(id='EFTA00383023', description='heavily redacted', is_interesting=True),
-    EmailCfg(id='EFTA00384774', author=LINDA_STONE, attribution_reason='unique email signature', description='visiting for the death of Red Burns', is_interesting=True),
+    EmailCfg(
+        id='EFTA00384774',
+        attribution_reason='unique email signature',
+        author=LINDA_STONE,
+        description='visiting for the death of Red Burns',
+        is_interesting=True
+    ),
+    EmailCfg(id='EFTA00397956', author=LINDA_STONE, attribution_reason='unique email signature'),
     EmailCfg(id='EFTA00104945', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True),
     EmailCfg(id='EFTA00875181', duplicate_ids=['EFTA01901268']),
     EmailCfg(id='EFTA00754450', duplicate_ids=['EFTA02418244']),
