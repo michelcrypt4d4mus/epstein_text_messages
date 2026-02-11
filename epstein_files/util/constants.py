@@ -2138,6 +2138,7 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00005783', date='2019-08-29', description='heavily redacted handwritten note and 30+ completely blacked out redacted pages'),
     DocCfg(id='EFTA01088644', date='2015-10-01', description='Blockchain Capital deck', is_interesting=True),
     DocCfg(id='EFTA00604942', date='2015-10-01', description='Blockchain Capital Investor Update', is_interesting=True),
+    DocCfg(id='EFTA00797613', description='Alphabit crypto fund pitch deck', attached_to_email_id='EFTA00955063'),
     DocCfg(id='EFTA01087311', description='Black Family Partners cash projections'),
     DocCfg(id='EFTA01734786', description='LedgerX Series B pitch deck', is_interesting=True),
     DocCfg(id='EFTA01217787', description='Skype conversation with Tyler Shears and Hanna Traff at Spotify', is_interesting=True),

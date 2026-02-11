@@ -385,6 +385,7 @@ HIGHLIGHTED_NAMES = [
             JOI_ITO: f"former head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative",
         },
         patterns=[
+            r"Alphabit",
             r"((Andy|Adam)\s*)Back",
             r"Balaji",
             r"Barry Silbert",
