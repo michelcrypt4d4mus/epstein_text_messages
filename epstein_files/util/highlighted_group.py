@@ -397,7 +397,8 @@ HIGHLIGHTED_NAMES = [
             r"Coinbase",
             r"coins?(\s*Center)?",
             r"Cory\s*Fields",  # bitcoin dev
-            r"cr[iy]?pto\s*(currenc(y|ies))?",
+            r"cr[iy]?pto\s*(currenc(y|ies)|PR\s*Lab)?",
+            r"cryptoprlab",
             r"Digital\s*Currenc(ies|y)(\s*Initiative)?",
             r"e-currency",
             r"(Gavin )?Andress?en",  # bitcoin dev
@@ -408,6 +409,7 @@ HIGHLIGHTED_NAMES = [
             r"Madars",
             r"Medici\s*Bank",
             r"Mi(chael|ke)\s*Novogratz",
+            r"Noble\s*(Bank|Markets)",  # Crypto bank with Tether ties
             r"(Patrick\s*)?Murck",
             r"(Hester\s*)?Peirce",
             r"(?-i:RIOT)",  # (?-i:) makes it case sensitive
