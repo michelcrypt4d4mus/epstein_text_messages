@@ -37345,6 +37345,19 @@
                 "type": "Email"
             },
             {
+                "author": "Brock Pierce",
+                "bytes": 2762,
+                "file_id": "EFTA01917209",
+                "filename": "EFTA01917209.txt",
+                "num_lines": 149,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "COIN Congress Bitcoin Event I San Francisco July 23 - 24 2014",
+                "timestamp": "2014-06-24T16:32:38",
+                "type": "Email"
+            },
+            {
                 "author": "Austin Hill",
                 "bytes": 1504,
                 "description": "discussion of Epstein investment in Blockstream funneled through Joi Ito",
@@ -37461,6 +37474,19 @@
                     "Amir Taaki"
                 ],
                 "timestamp": "2014-04-19T15:22:45",
+                "type": "Email"
+            },
+            {
+                "author": "Austin Hill",
+                "bytes": 1703,
+                "file_id": "EFTA01929230",
+                "filename": "EFTA01929230.txt",
+                "num_lines": 36,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Meeting in NY",
+                "timestamp": "2014-03-20T22:40:19",
                 "type": "Email"
             },
             {
