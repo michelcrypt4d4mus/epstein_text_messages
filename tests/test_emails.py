@@ -518,6 +518,7 @@ EMAIL_RECIPIENT_COUNTS = {
     TONJA_HADDAD_COLEMAN: 3,
     "Travis Pangburn": 1,
     TYLER_SHEARS: 7,
+    'USAHUB-USAJournal111': 1,
     "Uri Fouzailov": 1,
     USANYS: 37,
     'USMS': 1,
@@ -1123,7 +1124,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     ERIC_ROTH: 5,
     GHISLAINE_MAXWELL: 13,
     JEANNE_M_CHRISTENSEN: 37,
-    "Jeffrey Epstein": 3462,
+    "Jeffrey Epstein": 3642,
     JESSICA_CADWELL: 57,
     KEN_JENNE: 1,
     LARRY_SUMMERS: 233,
@@ -1144,6 +1145,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     "Terry Kafka": 10,
     TOM_PRITZKER: 17,
     "Tonja Haddad Coleman": 9,
+    'W Bradford Stephens': 2,
 }
 
 
