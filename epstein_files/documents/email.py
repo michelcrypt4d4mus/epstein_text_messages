@@ -355,7 +355,6 @@ LINE_REPAIR_MERGES = {
 
     # Note DOJ file line adjustments happen *after* DojFile._repair() is called
     'EFTA00039689': [[4]],
-    'EFTA00040118': [[2], [2], [2], [2], [2], [2], [6], [6]],
 }
 
 

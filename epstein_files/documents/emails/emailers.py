@@ -150,7 +150,6 @@ EMAILERS = [
     'Brittany Henderson',
     BILL_GATES,
     BILL_SIEGEL,
-    'Bobbi C Sternheim',
     BRAD_WECHSLER,
     BROCK_PIERCE,
     BRYAN_BISHOP,
