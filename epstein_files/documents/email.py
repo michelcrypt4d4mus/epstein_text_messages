@@ -493,7 +493,7 @@ class Email(Communication):
         # Remove self CCs but preserve self emails
         if not (self.is_note_to_self or self.author is None):
             if self.author in self.recipients:
-                self.warn(f"Removing email to self for {self.author}")
+                self.log(f"Removing email to self for {self.author}")
 
             self.recipients = [r for r in self.recipients if r != self.author]
 
