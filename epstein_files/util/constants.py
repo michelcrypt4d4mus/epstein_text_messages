@@ -1184,7 +1184,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731638', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731636', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731637', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
-    EmailCfg(id='EFTA02731485', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731659', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731771', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731475', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
