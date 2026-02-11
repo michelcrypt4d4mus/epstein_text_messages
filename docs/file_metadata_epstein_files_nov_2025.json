@@ -33620,12 +33620,13 @@
             },
             {
                 "author": "Brock Pierce",
-                "bytes": 6481,
+                "bytes": 6491,
                 "file_id": "EFTA00362163",
                 "filename": "EFTA00362163.txt",
                 "num_lines": 108,
                 "recipients": [
-                    "Andrew L. Farkas"
+                    "Andrew L. Farkas",
+                    "Lesley Groff"
                 ],
                 "subject": "Re: 7pm Jeffrey tonight",
                 "timestamp": "2014-09-22T23:01:48",
@@ -35781,7 +35782,7 @@
             },
             {
                 "author": "Brock Pierce",
-                "bytes": 6035,
+                "bytes": 6034,
                 "description": "Brock Pierce and Epstein discuss structure of crypto investments",
                 "file_id": "EFTA00998595",
                 "filename": "EFTA00998595.txt",
@@ -36546,11 +36547,11 @@
             },
             {
                 "author": "Brock Pierce",
-                "bytes": 2320,
+                "bytes": 2321,
                 "description": "Brock Pierce arranging meeting between Bannon and Epstein (in Doha?)",
                 "file_id": "EFTA01051074",
                 "filename": "EFTA01051074.txt",
-                "num_lines": 74,
+                "num_lines": 75,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -37729,6 +37730,7 @@
                 "type": "Email"
             },
             {
+                "author": "Lesley Groff",
                 "bytes": 471,
                 "file_id": "EFTA02065181",
                 "filename": "EFTA02065181.txt",
@@ -38425,10 +38427,10 @@
             },
             {
                 "author": "Brock Pierce",
-                "bytes": 897,
+                "bytes": 895,
                 "file_id": "EFTA02339109",
                 "filename": "EFTA02339109.txt",
-                "num_lines": 19,
+                "num_lines": 18,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -39848,10 +39850,15 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 847,
                 "file_id": "EFTA02731477",
                 "filename": "EFTA02731477.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 18,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "RE: Leon Black/Additional HT Subject Referral -- Update",
                 "timestamp": "2023-06-12T13:59:00",
                 "type": "Email"
@@ -39929,10 +39936,15 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 1788,
                 "file_id": "EFTA02731486",
                 "filename": "EFTA02731486.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 39,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "RE: Epstein/Maxwell/Leon Black/Additional Subject",
                 "timestamp": "2023-05-30T10:20:00",
                 "type": "Email"
@@ -39947,18 +39959,25 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 7824,
                 "file_id": "EFTA02731490",
                 "filename": "EFTA02731490.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 182,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "RE: Re: 1. slack, photos with JE",
                 "timestamp": "2024-03-12T12:48:30",
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 7394,
                 "file_id": "EFTA02731501",
                 "filename": "EFTA02731501.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 167,
                 "recipients": [
                     "Douglas Wigdor",
@@ -40088,6 +40107,9 @@
                 "file_id": "EFTA02731582",
                 "filename": "EFTA02731582.txt",
                 "num_lines": 21,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "Re: Memo to w e re DANY ca I on Leon Black/",
                 "timestamp": "2023-07-03T17:24:39",
                 "type": "Email"
@@ -40136,28 +40158,43 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 2220,
                 "file_id": "EFTA02731604",
                 "filename": "EFTA02731604.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 54,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "RE: Spinoff interview from Maxwell",
                 "timestamp": "2021-08-18T09:51:53",
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 1988,
                 "file_id": "EFTA02731608",
                 "filename": "EFTA02731608.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 51,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "Re: Spinoff interview from Maxwell",
                 "timestamp": "2021-08-17T20:34:18",
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 1684,
                 "file_id": "EFTA02731612",
                 "filename": "EFTA02731612.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 37,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "RE: Spinoff Interview from Maxwell",
                 "timestamp": "2021-08-17T17:17:53",
                 "type": "Email"
@@ -40191,10 +40228,15 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 3041,
                 "file_id": "EFTA02731618",
                 "filename": "EFTA02731618.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 73,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "RE: Spinoff Interview from Maxwell",
                 "timestamp": "2021-08-18T12:59:51",
                 "type": "Email"
@@ -40246,9 +40288,11 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 2875,
                 "file_id": "EFTA02731633",
                 "filename": "EFTA02731633.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 65,
                 "recipients": [
                     "Jeanne M. Christensen"
@@ -40258,10 +40302,15 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 1196,
                 "file_id": "EFTA02731636",
                 "filename": "EFTA02731636.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 31,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "RE: Leon Black/Additional HT Subject Referral -- Update",
                 "timestamp": "2023-06-28T22:16:00",
                 "type": "Email"
@@ -40279,10 +40328,15 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 1479,
                 "file_id": "EFTA02731638",
                 "filename": "EFTA02731638.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 38,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "Re: Leon Black/Additional HT Subject Referral -- Update",
                 "timestamp": "2023-06-28T22:29:00",
                 "type": "Email"
@@ -40373,19 +40427,29 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 1124,
                 "file_id": "EFTA02731659",
                 "filename": "EFTA02731659.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 27,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "RE: Time to chat tomorrow?",
                 "timestamp": "2023-06-01T21:41:21",
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 2115,
                 "file_id": "EFTA02731660",
                 "filename": "EFTA02731660.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 49,
+                "recipients": [
+                    "USANYS"
+                ],
                 "timestamp": "2023-07-22T11:48:27",
                 "type": "Email"
             },
@@ -40682,10 +40746,15 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 2164,
                 "file_id": "EFTA02731771",
                 "filename": "EFTA02731771.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 61,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "Re: Leon Black",
                 "timestamp": "2023-06-01T07:09:44",
                 "type": "Email"
@@ -48079,7 +48148,7 @@
         "Ariane de Rothschild": "Rothschild, heiress",
         "Audrey Strauss": "government, USA Attorney",
         "Auren Hoffman": "tech bro, CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp",
-        "Austin Hill": "bitcoin, Blockstream co-founder with Adam Back",
+        "Austin Hill": "bitcoin, Blockstream co-founder with Adam Back, Brudder Ventures",
         "Aziza Alahmadi": "mideast, Abu Dhabi Department of Culture & Tourism, assistant of Al Sabbagh",
         "Barbro C. Ehnbom": "business, Swedish pharmaceuticals, SALSS",
         "Barnaby Marsh": "publicist, co-founder of philanthropy services company Saint Partners",
@@ -48136,7 +48205,7 @@
         "Fabrice Aidan": "Europe, diplomat who worked with Terje R\u00f8d-Larsen",
         "Faith Kates": "modeling, Next Models co-founder",
         "Fred Haddad": "lawyer, co-founder of Heck's in West Virginia",
-        "Ganbat Chuluunkhuu": "lobbyist, Corrupt Mongolian politician who was later wanted by Interpol",
+        "Ganbat Chuluunkhuu": "lobbyist, corrupt Mongolian politician who was later wanted by Interpol",
         "Gerald Barton": "business, Maryland property developer Landmark Land Company",
         "Gerald Lefcourt": "lawyer, friend of Alan Dershowitz",
         "Ghislaine Maxwell": "Epstein, Epstein's girlfriend, daughter of the spy Robert Maxwell",
