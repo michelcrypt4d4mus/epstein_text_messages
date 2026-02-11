@@ -967,6 +967,7 @@ EMAILS_CONFIG = [
 
     # DOJ files
     EmailCfg(id='EFTA00040142', author=ATT_COURT_APPEARANCE_TEAM, recipients=[USANYS]),
+    EmailCfg(id='EFTA00039357', author=BUREAU_OF_PRISONS, recipients=['DOJ Inspector General']),
     EmailCfg(id='EFTA01947908', author=CHRISTINA_GALBRAITH, attribution_reason='"Christina" appears in EFTA01950559'),
     EmailCfg(id='EFTA01940349', author=CHRISTINA_GALBRAITH, is_attribution_uncertain=True, attribution_reason='subject matter'),
     EmailCfg(id='EFTA01747822', author=DARREN_INDYKE, attribution_reason='reply'),
@@ -1005,7 +1006,15 @@ EMAILS_CONFIG = [
         is_interesting=True,
         recipients=[LINDA_STONE],
     ),
+    EmailCfg(
+        id='EFTA02109391',
+        author=LESLEY_GROFF,
+        is_attribution_uncertain=True,
+        description=f"{AUSTIN_HILL} brought a woman named Ellaina Astra to Epstein's house"
+    ),
     EmailCfg(id='EFTA02065181', author=LESLEY_GROFF),
+    EmailCfg(id='EFTA02062308', author=LESLEY_GROFF),
+    EmailCfg(id='EFTA02246900', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02104454', author=LESLEY_GROFF, attribution_reason='Epstein scheduling', is_attribution_uncertain=True),
     EmailCfg(id='EFTA01731288', author=LESLEY_GROFF, attribution_reason='signature'),
     EmailCfg(id='EFTA02067245', author=LESLEY_GROFF, description='Valar Ventures (Thiel) meeting', is_interesting=True, is_attribution_uncertain=True),
@@ -1029,6 +1038,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02095399', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA00361741', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA00361736', author=LESLEY_GROFF, is_attribution_uncertain=True),
+    EmailCfg(id='EFTA00371755', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02092108', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA00697417', author=LESLEY_GROFF, is_attribution_uncertain=True, is_interesting=True),
     EmailCfg(id='EFTA00424931', author=LESLEY_GROFF, is_attribution_uncertain=True, duplicate_ids=['EFTA02181004']),
@@ -1179,6 +1189,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00039815', author=USANYS),
     EmailCfg(id='EFTA00039825', author=USANYS),
     EmailCfg(id='EFTA00039879', author=USANYS),
+    EmailCfg(id='EFTA00039886', author=USANYS, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731651', author=USANYS, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731775', author=USANYS, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731646', author=USANYS, is_attribution_uncertain=True),
@@ -1302,7 +1313,6 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='EFTA00901970', description=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=True),
     EmailCfg(id='EFTA00988395', description='"Andy Back" is probably O.G. bitcoin dev Adam Back from Blockstream', duplicate_ids=['EFTA01928856']),
-    EmailCfg(id='EFTA02109391', description=f"{AUSTIN_HILL} brought a woman named Ellaina Astra to Epstein's house"),
     EmailCfg(id='EFTA01051074', description='Brock Pierce arranging meeting between Bannon and Epstein (in Doha?)'),
     EmailCfg(id='EFTA00658457', description='Brock Pierce says they will not invest in Bitfury'),
     EmailCfg(id='EFTA00998595', description='Brock Pierce and Epstein discuss structure of crypto investments'),
