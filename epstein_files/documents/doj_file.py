@@ -132,9 +132,7 @@ INTERESTING_DOJ_FILES = {
     'EFTA00803464': "Honeycomb Asset Management (Spotify and Tencent investors) July 2018 report",
     'EFTA00927927': f"reads like {RENATA_BOLOTOVA} talking about recruiting girls for Epstein",
     'EFTA00805569': 'Mercantile Global Holdings, San Juan Mercantile Bank & Trust, Noble Bank + Signature Bank + BitGo',
-    'EFTA00495372': 'Epstein discussing Medici bank, a successor to Noble Bank as a crypto bank',
     'EFTA02285514': 'Medici Bank and Maria Pruskova meeting',
-    'EFTA00495349': 'Ed Boyle and Medici Bank',
     'EFTA01613731': 'Medici Bank conversation on Whatsapp',
 }
 
