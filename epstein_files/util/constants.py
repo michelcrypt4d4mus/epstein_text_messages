@@ -1263,7 +1263,7 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(
         id='EFTA01834864',
-        description=f"forged email Epstein wrote to complain about the Mindshift conference to {AL_SECKEL}",
+        description=f"forged email by Epstein complaining about {AL_SECKEL}'s Mindshift conference",
         is_interesting=True,
     ),
     EmailCfg(
