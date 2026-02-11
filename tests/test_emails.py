@@ -3,7 +3,7 @@ from epstein_files.util.data import dict_sets_to_lists
 
 
 EMAIL_AUTHOR_COUNTS = {
-    None: 98,
+    None: 96,
     "Abi Schwinck": 1,
     AL_SECKEL: 8,
     "Alain Forget": 3,
@@ -234,7 +234,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Tom Pritzker": 6,
     TONJA_HADDAD_COLEMAN: 5,
     TYLER_SHEARS: 19,
-    USANYS: 64,
+    USANYS: 66,
     'USMS': 1,
     'Valar Ventures': 1,
     "Valeria Chomsky": 2,
@@ -252,7 +252,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 112,
+    None: 110,
     "ACT for America": 1,
     ADAM_BACK: 3,
     AL_SECKEL: 1,
@@ -330,7 +330,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Erika Kellerhals": 2,
     "Etienne Binant": 1,
     FAITH_KATES: 5,
-    FBI: 3,
+    FBI: 4,
     "Forrest Miller": 1,
     "Francis Derby": 2,
     "Fred Haddad": 3,
@@ -528,7 +528,7 @@ EMAIL_RECIPIENT_COUNTS = {
     TYLER_SHEARS: 7,
     'USAHUB-USAJournal111': 1,
     "Uri Fouzailov": 1,
-    USANYS: 51,
+    USANYS: 52,
     'USMS': 1,
     "Vahe Stepanian": 1,
     "Val Sherman": 1,
@@ -659,7 +659,6 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     'EFTA02730483',
     'EFTA02730485',
     'EFTA02731473',
-    'EFTA02731475',
     'EFTA02731479',
     'EFTA02731480',
     'EFTA02731482',
@@ -686,7 +685,6 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     'EFTA02731733',
     'EFTA02731734',
     'EFTA02731735',
-    'EFTA02731737',
     'EFTA02731754',
     'EFTA02731762',
     'EFTA02731765',
