@@ -1061,6 +1061,11 @@ EMAILS_CONFIG = [
         is_interesting=True,
         recipients=[MARIYA_PRUSAKOVA],
     ),
+    EmailCfg(
+        id='EFTA02312343',
+        description=f"cyrillic email about {RENATA_BOLOTOVA}'s visa issues, possibly marriage related?",
+        is_interesting=True
+    ),
     EmailCfg(id='EFTA02455567', author=RENATA_BOLOTOVA, attribution_reason='"sneaky"', description='completely redacted email body'),
     EmailCfg(id='EFTA00920010', author=RENATA_BOLOTOVA, attribution_reason='renbolotova@gmail in body'),
     EmailCfg(id='EFTA00920177', author=RENATA_BOLOTOVA, attribution_reason='discussion of employment at Institute'),
