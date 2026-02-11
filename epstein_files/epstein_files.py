@@ -55,7 +55,7 @@ class EpsteinFiles:
 
     def __post_init__(self):
         """Iterate through files and build appropriate objects."""
-        self.all_files = sorted([f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')])
+        self.all_files = sorted([f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')], reverse=True)
 
         if DOJ_PDFS_20260130_DIR:
             self.all_files += sorted([f for f in DOJ_PDFS_20260130_DIR.glob('**/*.txt')])
