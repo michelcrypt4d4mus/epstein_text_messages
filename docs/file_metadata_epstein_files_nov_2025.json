@@ -33713,12 +33713,17 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"Lesley\" appears in body + Linda Stone signature",
+                "author": "Lesley Groff",
                 "bytes": 2840,
                 "description": "heavily redacted",
                 "file_id": "EFTA00383023",
                 "filename": "EFTA00383023.txt",
                 "is_interesting": true,
                 "num_lines": 42,
+                "recipients": [
+                    "Linda Stone"
+                ],
                 "subject": "Re: Quick",
                 "timestamp": "2013-09-24T15:21:42",
                 "type": "Email"
