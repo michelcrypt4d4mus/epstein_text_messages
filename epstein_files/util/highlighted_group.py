@@ -392,8 +392,10 @@ HIGHLIGHTED_NAMES = [
             r"Bart\s*Stephens",  # co-founder, Blockchain Capital
             r"Bioptix",  # Now RIOT Blockchain
             r"bitcoin(\s*Foundation)?",
-            r"BitFury",
+            r"Bit(Angels|Fury)",
+            r"block ?chain(\s*capital)?",
             r"Blockstream",
+            r"Bradley\s*Rotter",
             r"Brian Forde",
             r"Brock(\s*Pierce)?",
             r"Coinbase",
@@ -401,9 +403,11 @@ HIGHLIGHTED_NAMES = [
             r"Cory\s*Fields",  # bitcoin dev
             r"cr[iy]?pto\s*(currenc(y|ies)|PR\s*Lab)?",
             r"cryptoprlab",
+            r"(Dan\s*)?Morehead",
             r"Digital\s*Currenc(ies|y)(\s*Initiative)?",
             r"e-currency",
             r"(Gavin )?Andress?en",  # bitcoin dev
+            r"(Hester\s*)?Peirce",
             r"(Howard\s+)?Lutnic?k",
             r"(Jim\s*)Pallotta",  # Media lab advisory board
             r"LedgerX",
@@ -412,11 +416,11 @@ HIGHLIGHTED_NAMES = [
             r"Medici\s*Bank",
             r"Mi(chael|ke)\s*Novogratz",
             r"Noble\s*(Bank|Markets)",  # Crypto bank with Tether ties
+            r"Pantera",
             r"(Patrick\s*)?Murck",
-            r"(Hester\s*)?Peirce",
+            r"Ribbit",
             r"(?-i:RIOT)",  # (?-i:) makes it case sensitive
             r"Ron\s*Rivest",
-            r"block ?chain(\s*capital)?",
             r"(Ross\s*)?Ulbricht",
             r"Silk\s*Road",
             r"SpanCash",
@@ -576,10 +580,12 @@ HIGHLIGHTED_NAMES = [
             JANUSZ_BANASIAK: "Epstein's house manager",
             "John Allessi": "Epstein's houseman",
             JEAN_HUGUEN: 'interior design at Alberto Pinto Cabinet',
+            JOJO_FONTANILLA: 'Filipino housekeeper',
             LAWRANCE_VISOSKI: "Epstein's pilot",
             LESLEY_GROFF: f"Epstein's assistant",
             'Linda Pinto': 'interior design at Alberto Pinto Cabinet',
-            MERWIN_DELA_CRUZ: None,  # HOUSE_OVERSIGHT_032652 Groff says "Jojo and Merwin both requested off Nov. 25 and 26"
+            LYN_FONTANILLA: 'Filipino housekeeper',
+            MERWIN_DELA_CRUZ: 'housekeeper',
             NADIA_MARCINKO: "Epstein's pilot",
             'Sean J. Lancaster': 'airplane reseller',
         },
@@ -1546,7 +1552,9 @@ HIGHLIGHTED_NAMES = [
             r"Drew\s*Houston",
             r"Eliezer\s*Yudkowsky",
             r"Eric\s*Schmidt",
+            r"Facebook",
             r"Greylock(\s*Partners)?",
+            r"Instagram",
             r"(?<!(ustin|Moshe)\s)Hoffmand?",
             r"(Jeff\s*)?Bezos",
             r"Larry Page",
