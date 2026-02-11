@@ -3,7 +3,7 @@ from epstein_files.util.data import dict_sets_to_lists
 
 
 EMAIL_AUTHOR_COUNTS = {
-    None: 99,
+    None: 98,
     "Abi Schwinck": 1,
     AL_SECKEL: 8,
     "Alain Forget": 3,
@@ -176,6 +176,7 @@ EMAIL_AUTHOR_COUNTS = {
     NICOLE_JUNKERMANN: 4,
     "Noam Chomsky": 4,
     "Norman D. Rau": 1,
+    OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL: 1,
     "Olivier Colom": 1,
     "Paul Barrett": 4,
     "Paul Krassner": 27,
@@ -233,7 +234,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Tom Pritzker": 6,
     TONJA_HADDAD_COLEMAN: 5,
     TYLER_SHEARS: 19,
-    USANYS: 63,
+    USANYS: 64,
     'USMS': 1,
     'Valar Ventures': 1,
     "Valeria Chomsky": 2,
@@ -251,7 +252,7 @@ EMAIL_AUTHOR_COUNTS = {
 }
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 111,
+    None: 112,
     "ACT for America": 1,
     ADAM_BACK: 3,
     AL_SECKEL: 1,
@@ -399,6 +400,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Lawrence Krauss": 11,
     "Leah Reis-Dennis": 1,
     'Lee Quarnstrom': 2,
+    'Leo': 1,  # TODO: who is this?
     "Leon Black": 4,
     LESLEY_GROFF: 41,
     "Lilly Sanchez": 2,
@@ -457,6 +459,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Noam Chomsky": 2,
     "Norman Finkelstein": 1,
     'NY FBI': 3,
+    OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL: 1,
     "Oliver Goodenough": 1,
     "Owen Blicksilver": 1,
     PAUL_BARRETT: 2,
