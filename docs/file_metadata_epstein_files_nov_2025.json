@@ -33734,6 +33734,9 @@
                 "file_id": "EFTA00383027",
                 "filename": "EFTA00383027.txt",
                 "num_lines": 29,
+                "recipients": [
+                    "Linda Stone"
+                ],
                 "subject": "Re: Quick",
                 "timestamp": "2013-09-24T15:26:02",
                 "type": "Email"
@@ -33747,6 +33750,9 @@
                 "filename": "EFTA00384774.txt",
                 "is_interesting": true,
                 "num_lines": 70,
+                "recipients": [
+                    "Lesley Groff"
+                ],
                 "sent_from_device": "Typos, misspellings courtesy of iPhone word & thought substitution.",
                 "subject": "Re: Quick change",
                 "timestamp": "2013-08-25T18:03:55",
@@ -35032,11 +35038,15 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "quoted reply line",
                 "author": "Jeffrey Epstein",
                 "bytes": 1320,
                 "file_id": "EFTA00857165",
                 "filename": "EFTA00857165.txt",
                 "num_lines": 29,
+                "recipients": [
+                    "Seth Lloyd"
+                ],
                 "subject": "Re: Seth/bitcoin",
                 "timestamp": "2015-05-12T17:02:07",
                 "type": "Email"
@@ -37205,12 +37215,20 @@
                 "type": "Email"
             },
             {
-                "bytes": 1496,
+                "author": "Austin Hill",
+                "bytes": 1504,
                 "description": "discussion of Epstein investment in Blockstream funneled through Joi Ito",
                 "file_id": "EFTA01917402",
                 "filename": "EFTA01917402.txt",
                 "is_interesting": true,
                 "num_lines": 31,
+                "recipients": [
+                    "Dr Adam Back",
+                    "Hammie Hill",
+                    "Jeffrey Epstein",
+                    "Joi Ito"
+                ],
+                "subject": "Final Blockstream allocation",
                 "timestamp": "2014-07-15T18:05:27",
                 "type": "Email"
             },
@@ -38253,15 +38271,17 @@
             },
             {
                 "attribution_reason": "Crypto PR Lab is Prusakova company",
-                "bytes": 1547,
+                "author": "Lesley Groff",
+                "bytes": 1548,
                 "description": "Ed Boyle and Medici Bank",
                 "file_id": "EFTA02266524",
                 "filename": "EFTA02266524.txt",
                 "is_interesting": true,
-                "num_lines": 33,
+                "num_lines": 32,
                 "recipients": [
                     "Mariya Prusakova"
                 ],
+                "subject": "Re: Crypto PR Lab Financials",
                 "timestamp": "2018-12-09T20:01:40",
                 "type": "Email"
             },
