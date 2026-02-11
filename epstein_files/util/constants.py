@@ -1273,8 +1273,10 @@ EMAILS_CONFIG = [
         attribution_reason='unique email signature',
         author=LINDA_STONE,
         description='visiting for the death of Red Burns',
-        is_interesting=True
+        is_interesting=True,
+        recipients=[LESLEY_GROFF],
     ),
+    EmailCfg(id='EFTA00383027', recipients=[LINDA_STONE]),
     EmailCfg(id='EFTA00104945', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True),
     EmailCfg(id='EFTA00875181', duplicate_ids=['EFTA01901268']),
     EmailCfg(id='EFTA00754450', duplicate_ids=['EFTA02418244']),
