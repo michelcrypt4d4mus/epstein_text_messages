@@ -374,7 +374,7 @@
             {
                 "author": "Darren Indyke",
                 "bytes": 27317,
-                "comment": "Articles about epstein case",
+                "comment": "articles about epstein case",
                 "file_id": "013405",
                 "filename": "HOUSE_OVERSIGHT_013405.txt",
                 "is_fwded_article": true,
@@ -517,7 +517,7 @@
             {
                 "author": "Paul Morris",
                 "bytes": 17090,
-                "comment": "Really more of a mailing list from Paul Morris?",
+                "comment": "really more of a mailing list from Paul Morris?",
                 "file_id": "014525",
                 "filename": "HOUSE_OVERSIGHT_014525.txt",
                 "is_fwded_article": true,
@@ -1826,7 +1826,7 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 32687,
-                "comment": "He was 50 and they were girls",
+                "comment": "He Was 50 and They Were Girls",
                 "file_id": "021764",
                 "filename": "HOUSE_OVERSIGHT_021764.txt",
                 "is_fwded_article": true,
@@ -3675,7 +3675,7 @@
             {
                 "author": "Glenn Dubin",
                 "bytes": 5842,
-                "comment": "BBG ;Leon Black's Tax-Overhaul Dilemma Could Alter Wall Street Model",
+                "comment": "Bloomberg: Leon Black's Tax-Overhaul Dilemma Could Alter Wall Street Model",
                 "file_id": "023564",
                 "filename": "HOUSE_OVERSIGHT_023564.txt",
                 "is_fwded_article": true,
@@ -3855,7 +3855,7 @@
             {
                 "author": "Bill Siegel",
                 "bytes": 40131,
-                "comment": "Interview with Bill Siegal re: Islam",
+                "comment": "interview with Bill Siegal re: Islam",
                 "file_id": "024384",
                 "filename": "HOUSE_OVERSIGHT_024384.txt",
                 "is_fwded_article": true,
@@ -7818,7 +7818,7 @@
             {
                 "author": "Kathryn Ruemmler",
                 "bytes": 4414,
-                "comment": "Article about Ruemmler turning down attorney general job by NEDRA PICKLER",
+                "comment": "article about Ruemmler turning down attorney general job by NEDRA PICKLER",
                 "file_id": "026605",
                 "filename": "HOUSE_OVERSIGHT_026605.txt",
                 "is_fwded_article": true,
@@ -8417,7 +8417,7 @@
             {
                 "author": "Richard Kahn",
                 "bytes": 12610,
-                "comment": "Taxes",
+                "comment": "taxes",
                 "file_id": "026829",
                 "filename": "HOUSE_OVERSIGHT_026829.txt",
                 "is_fwded_article": true,
@@ -9355,6 +9355,7 @@
                 "file_id": "028524",
                 "filename": "HOUSE_OVERSIGHT_028524.txt",
                 "is_fwded_article": true,
+                "is_interesting": false,
                 "num_lines": 127,
                 "recipients": [
                     "Soon-Yi Previn"
@@ -13512,7 +13513,7 @@
             {
                 "author": "Fabrice Aidan",
                 "bytes": 6473,
-                "comment": "Atlantic Council  Syria: Blackberry Diplomacy",
+                "comment": "Atlantic Council \"Syria: Blackberry Diplomacy\"",
                 "file_id": "030209",
                 "filename": "HOUSE_OVERSIGHT_030209.txt",
                 "is_fwded_article": true,
@@ -17717,8 +17718,7 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 3169,
-                "comment": "Barbro Ehnbom talking about Swedish girl",
-                "description": "Barbro C. Ehnbom related donation and Swedish girls discussion",
+                "description": "Barbro C. Ehnbom related donation / Swedish girls discussion",
                 "file_id": "031036",
                 "filename": "HOUSE_OVERSIGHT_031036.txt",
                 "is_interesting": true,
@@ -18923,7 +18923,7 @@
             {
                 "author": "Paul Krassner",
                 "bytes": 1999,
-                "comment": "Article about Alex Jones threatening Robert Mueller",
+                "comment": "article about Alex Jones threatening Robert Mueller",
                 "file_id": "031340",
                 "filename": "HOUSE_OVERSIGHT_031340.txt",
                 "is_fwded_article": true,
@@ -19994,7 +19994,7 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 45525,
-                "comment": "Article by Kathryn Alexeeff fwded to Peter Thiel",
+                "comment": "article by Kathryn Alexeeff fwded to Peter Thiel",
                 "file_id": "031569",
                 "filename": "HOUSE_OVERSIGHT_031569.txt",
                 "is_fwded_article": true,
@@ -20565,7 +20565,7 @@
             {
                 "author": "Bill Siegel",
                 "bytes": 10339,
-                "comment": "Bill Siegel fwd of email about hamas",
+                "comment": "Bill Siegel fwd of email about Hamas",
                 "file_id": "031688",
                 "filename": "HOUSE_OVERSIGHT_031688.txt",
                 "is_fwded_article": true,
@@ -21439,7 +21439,7 @@
             {
                 "author": "Newsmax",
                 "bytes": 1634,
-                "comment": "newsmax on ken starr",
+                "comment": "Newsmax on Ken Starr",
                 "file_id": "031990",
                 "filename": "HOUSE_OVERSIGHT_031990.txt",
                 "is_fwded_article": true,
@@ -32706,6 +32706,9 @@
                 "file_id": "EFTA00039663",
                 "filename": "EFTA00039663.txt",
                 "num_lines": 38,
+                "recipients": [
+                    "USANYS"
+                ],
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Re: Mark Epstein",
                 "timestamp": "2019-10-28T22:19:07",
@@ -32714,6 +32717,7 @@
             {
                 "author": "Christopher Dilorio",
                 "bytes": 73590,
+                "date": "2021-05-21 03:14:00",
                 "file_id": "EFTA00039665",
                 "filename": "EFTA00039665.txt",
                 "num_lines": 887,
@@ -32800,6 +32804,10 @@
             },
             {
                 "bytes": 1580,
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA00039806"
+                ],
                 "file_id": "EFTA00039799",
                 "filename": "EFTA00039799.txt",
                 "num_lines": 49,
@@ -32823,6 +32831,8 @@
             },
             {
                 "bytes": 1666,
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA00039799",
                 "file_id": "EFTA00039806",
                 "filename": "EFTA00039806.txt",
                 "num_lines": 47,
@@ -33089,10 +33099,10 @@
             },
             {
                 "author": "USANYS",
-                "bytes": 1147,
+                "bytes": 1414,
                 "file_id": "EFTA00039965",
                 "filename": "EFTA00039965.txt",
-                "num_lines": 33,
+                "num_lines": 40,
                 "subject": "RE: RE: brief Epstein status",
                 "timestamp": "2018-12-09T19:39:05",
                 "type": "Email"
@@ -33111,10 +33121,14 @@
                 "type": "Email"
             },
             {
+                "author": "FBI",
                 "bytes": 221,
                 "file_id": "EFTA00039971",
                 "filename": "EFTA00039971.txt",
                 "num_lines": 8,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "DRAFT 302",
                 "timestamp": "2019-08-30T16:56:20",
                 "type": "Email"
@@ -33405,6 +33419,7 @@
                 ],
                 "subject": "RE: Deutsche Bank Production - Transaction Charts",
                 "timestamp": "2019-08-13T01:18:13",
+                "truncate_to": 700,
                 "type": "Email"
             },
             {
@@ -34010,9 +34025,11 @@
                 "type": "Email"
             },
             {
+                "author": "Lesley Groff",
                 "bytes": 8485,
                 "file_id": "EFTA00494858",
                 "filename": "EFTA00494858.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 178,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -34023,7 +34040,7 @@
                 "type": "Email"
             },
             {
-                "attribution_reason": "Crypto PR Lab is Prusakova company",
+                "attribution_reason": "Crypto PR Lab",
                 "author": "Mariya Prusakova",
                 "bytes": 2215,
                 "description": "Ed Boyle and Medici Bank",
@@ -34041,7 +34058,7 @@
             },
             {
                 "bytes": 15298,
-                "description": "Epstein discussing Medici Bank, a new successor to Noble Bank as a crypto bank",
+                "description": "discussion of Medici Bank, a new successor to Noble Bank as a crypto bank",
                 "file_id": "EFTA00495372",
                 "filename": "EFTA00495372.txt",
                 "is_interesting": true,
@@ -34085,7 +34102,7 @@
             {
                 "author": "Brock Pierce",
                 "bytes": 1251,
-                "description": "discussion of a \"sidecar fund\" with Brock Pierce",
+                "description": "discussion of a \"sidecar fund\" with Brock Pierce / Crypto Currency Partners II",
                 "file_id": "EFTA00626220",
                 "filename": "EFTA00626220.txt",
                 "num_lines": 24,
@@ -34783,11 +34800,17 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "widely reported",
                 "author": "Jeffrey Epstein",
-                "bytes": 173,
+                "bytes": 169,
+                "comment": "torture video",
                 "file_id": "EFTA00749241",
                 "filename": "EFTA00749241.txt",
+                "is_interesting": true,
                 "num_lines": 6,
+                "recipients": [
+                    "Sultan Ahmed Bin Sulayem"
+                ],
                 "timestamp": "2009-04-24T15:36:38",
                 "type": "Email"
             },
@@ -35228,7 +35251,7 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 13098,
-                "description": "negotiation of repurchase of half of Epstein stake in Coinbase",
+                "description": "negotiation of repurchase of half of Epstein's stake in Coinbase",
                 "file_id": "EFTA00900908",
                 "filename": "EFTA00900908.txt",
                 "num_lines": 301,
@@ -35701,7 +35724,7 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 851,
-                "description": "\"Andy Back\" is probably O.G. bitcoiner Adam Back from Blockstream",
+                "description": "\"Andy Back\" is probably O.G. bitcoin dev Adam Back from Blockstream",
                 "dupe_type": "same",
                 "duplicate_ids": [
                     "EFTA01928856"
@@ -36186,7 +36209,7 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 3905,
-                "description": "bitcoin dev Jeremy Rubin describes \"grey area between pump and develop\" when Epstein declines project on ethical grounds",
+                "description": "bitcoin dev Jeremy Rubin describes \"grey area between pump and develop\" when Epstein objects on ethical grounds",
                 "file_id": "EFTA01007544",
                 "filename": "EFTA01007544.txt",
                 "is_interesting": true,
@@ -37119,7 +37142,7 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 1298,
-                "description": "forged email Epstein wrote to complain about the Mindshift conference to Al Seckel",
+                "description": "forged email by Epstein complaining about Al Seckel's Mindshift conference",
                 "file_id": "EFTA01834864",
                 "filename": "EFTA01834864.txt",
                 "is_interesting": true,
@@ -37428,7 +37451,7 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 826,
-                "description": "\"Andy Back\" is probably O.G. bitcoiner Adam Back from Blockstream",
+                "description": "\"Andy Back\" is probably O.G. bitcoin dev Adam Back from Blockstream",
                 "dupe_type": "same",
                 "duplicate_of_id": "EFTA00988395",
                 "file_id": "EFTA01928856",
@@ -37624,6 +37647,8 @@
                 "attribution_reason": "\"sneaky dog\"",
                 "author": "Renata Bolotova",
                 "bytes": 188,
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA00676720",
                 "file_id": "EFTA01961947",
                 "filename": "EFTA01961947.txt",
                 "is_attribution_uncertain": true,
@@ -38413,7 +38438,7 @@
                 "type": "Email"
             },
             {
-                "attribution_reason": "Crypto PR Lab is Prusakova company",
+                "attribution_reason": "Crypto PR Lab",
                 "author": "Lesley Groff",
                 "bytes": 1548,
                 "description": "Ed Boyle and Medici Bank",
@@ -38512,10 +38537,14 @@
             },
             {
                 "author": "Karyna Shuliak",
-                "bytes": 688,
+                "bytes": 726,
                 "file_id": "EFTA02304891",
                 "filename": "EFTA02304891.txt",
-                "num_lines": 25,
+                "num_lines": 26,
+                "recipients": [
+                    null,
+                    "Renata Bolotova"
+                ],
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Basecamp",
                 "timestamp": "2014-01-12T16:47:00",
@@ -38524,7 +38553,7 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 3744,
-                "description": "cyrillic email about Renata Bolotova's visa issues, possibly marriage related?",
+                "description": "cyrillic Renata Bolotova's visa issues, possibly marriage related?",
                 "file_id": "EFTA02312343",
                 "filename": "EFTA02312343.txt",
                 "is_interesting": true,
@@ -40072,6 +40101,9 @@
                 "file_id": "EFTA02731480",
                 "filename": "EFTA02731480.txt",
                 "num_lines": 52,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "[EXTERNAL] Re: Follow up, conversation last week",
                 "timestamp": "2023-06-09T16:53:00",
                 "type": "Email"
@@ -40170,9 +40202,13 @@
             {
                 "author": "Jeanne M. Christensen",
                 "bytes": 986,
+                "comment": "journal upload followup",
                 "file_id": "EFTA02731511",
                 "filename": "EFTA02731511.txt",
                 "num_lines": 19,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "EXTERNAL Confidental L Black",
                 "timestamp": "2024-03-07T19:10:20",
                 "type": "Email"
@@ -40183,6 +40219,9 @@
                 "file_id": "EFTA02731512",
                 "filename": "EFTA02731512.txt",
                 "num_lines": 36,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "EXT! ..n enbaRNAL L black",
                 "timestamp": "2024-03-07T18:54:05",
                 "type": "Email"
@@ -40190,9 +40229,13 @@
             {
                 "author": "Jeanne M. Christensen",
                 "bytes": 912,
+                "comment": "journal upload followup",
                 "file_id": "EFTA02731514",
                 "filename": "EFTA02731514.txt",
                 "num_lines": 18,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "EXTERNAL Con idenhal L Mad<",
                 "timestamp": "2024-03-07T18:54:26",
                 "type": "Email"
@@ -40200,9 +40243,13 @@
             {
                 "author": "Jeanne M. Christensen",
                 "bytes": 1909,
+                "comment": "journal upload followup",
                 "file_id": "EFTA02731515",
                 "filename": "EFTA02731515.txt",
                 "num_lines": 36,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "EXTil l..neritiaRNAL L Mad(",
                 "timestamp": "2024-03-07T21:20:52",
                 "type": "Email"
@@ -40462,6 +40509,9 @@
                 "file_id": "EFTA02731632",
                 "filename": "EFTA02731632.txt",
                 "num_lines": 16,
+                "recipients": [
+                    "Office of the Deputy Attorney General"
+                ],
                 "subject": "Re: Leon Black Inquiry",
                 "timestamp": "2023-08-02T10:10:00",
                 "type": "Email"
@@ -40587,9 +40637,11 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 3837,
                 "file_id": "EFTA02731651",
                 "filename": "EFTA02731651.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 86,
                 "recipients": [
                     "Jeanne M. Christensen"
@@ -40741,9 +40793,16 @@
             {
                 "author": "Jeanne M. Christensen",
                 "bytes": 3708,
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA02731762"
+                ],
                 "file_id": "EFTA02731715",
                 "filename": "EFTA02731715.txt",
                 "num_lines": 83,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "EXTERNAL RE: Leon Bac follow up",
                 "timestamp": "2023-07-29T13:38:22",
                 "type": "Email"
@@ -40912,11 +40971,16 @@
             {
                 "author": "Jeanne M. Christensen",
                 "bytes": 3671,
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA02731715",
                 "file_id": "EFTA02731762",
                 "filename": "EFTA02731762.txt",
                 "num_lines": 79,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "[EXTERNAL] RE: Leon Black follow up",
-                "timestamp": "2023-07-24T13:38:00",
+                "timestamp": "2023-07-29T13:38:22",
                 "type": "Email"
             },
             {
@@ -43117,14 +43181,14 @@
                 "author": "James Tagg",
                 "bytes": 650261,
                 "category": "book",
+                "date": "2015-06-01",
                 "description": "Are the Androids Dreaming Yet? Amazing Brain Human Communication, Creativity & Free Will",
                 "file_id": "015675",
                 "filename": "HOUSE_OVERSIGHT_015675.txt",
                 "is_interesting": false,
                 "num_lines": 12455,
-                "timestamp": "2020-02-11T00:00:00",
-                "type": "OtherFile",
-                "was_timestamp_extracted": true
+                "timestamp": "2015-06-01T00:00:00",
+                "type": "OtherFile"
             },
             {
                 "author": "BofA / Merrill Lynch",
@@ -43468,14 +43532,14 @@
                 "author": "Alan Dershowitz",
                 "bytes": 1162518,
                 "category": "book",
+                "date": "2012-04-02",
                 "description": "\"Taking the Stand: My Life in the Law\" (draft)",
                 "file_id": "017088",
                 "filename": "HOUSE_OVERSIGHT_017088.txt",
                 "is_interesting": false,
                 "num_lines": 5170,
                 "timestamp": "2012-04-02T00:00:00",
-                "type": "OtherFile",
-                "was_timestamp_extracted": true
+                "type": "OtherFile"
             },
             {
                 "author": "Epstein v. Scott Rothstein, Brad Edwards, & L.M.",
@@ -43740,27 +43804,27 @@
                 "author": "Joshua Cooper Ramo",
                 "bytes": 656408,
                 "category": "book",
+                "date": "2015-03-11",
                 "description": "The Seventh Sense: Power, Fortune & Survival in the Age of Networks",
                 "file_id": "018232",
                 "filename": "HOUSE_OVERSIGHT_018232.txt",
                 "is_interesting": false,
                 "num_lines": 8558,
                 "timestamp": "2015-03-11T00:00:00",
-                "type": "OtherFile",
-                "was_timestamp_extracted": true
+                "type": "OtherFile"
             },
             {
                 "author": "Clarisse Thorn",
                 "bytes": 753638,
                 "category": "book",
+                "date": "2012-05-14",
                 "description": "The S&M Feminist",
                 "file_id": "018438",
                 "filename": "HOUSE_OVERSIGHT_018438.txt",
                 "is_interesting": false,
                 "num_lines": 10444,
                 "timestamp": "2012-05-14T00:00:00",
-                "type": "OtherFile",
-                "was_timestamp_extracted": true
+                "type": "OtherFile"
             },
             {
                 "author": "Andres Serrano",
@@ -48428,6 +48492,7 @@
         "John Brockman": "journalist, literary agent and author specializing in scientific literature",
         "Johnny el Hachem": "Rothschild, Edmond de Rothschild Private Equity",
         "Joi Ito": "bitcoin, former head of MIT Media Lab and MIT Digital Currency Initiative",
+        "Jojo Fontanilla": "employee, Filipino housekeeper",
         "Jonathan Farkas": "friend, heir to the Alexander's department store fortune",
         "Joscha Bach": "academia, cognitive science / AI research",
         "Joshua Cooper Ramo": "lobbyist, co-CEO of Henry Kissinger Associates",
@@ -48454,6 +48519,7 @@
         "Linda Stone": "academia, ex-Microsoft, MIT Media Lab",
         "Lisa New": "Harvard, professor of poetry, wife of Larry Summers, AKA \"Elisa New\"",
         "Lisa Randall": "Harvard, theoretical physicist",
+        "Lyn Fontanilla": "employee, Filipino housekeeper",
         "Macky Sall": "Africa, prime minister of Senegal, defeated Abdoulaye Wade",
         "Manuela Martinez": "modeling, Mega Partners (Brazilian agency)",
         "Marc Leon": "finance, Luxury Properties Sari Morrocco",
@@ -48466,6 +48532,7 @@
         "Matthew Hiltzik": "publicist, crisis PR at Hiltzik Strategies",
         "Melanie Spinella": "finance, representative of Leon Black",
         "Melanie Walker": "friend, doctor, friend of Bill Gates",
+        "Merwin Dela Cruz": "employee, housekeeper",
         "Michael Miller": "lawyer, Steptoe LLP partner",
         "Michael Sanka": "modeling, Jean Luc Brunel's MC2 Model Management (???)",
         "Michael Sitrick": "publicist, crisis PR",
