@@ -1193,7 +1193,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731608', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731612', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731729', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
-    EmailCfg(id='EFTA02731697', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
+    EmailCfg(id='EFTA02731697', author=USANYS, date='2021-06-07 17:33:00', recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(
         id='EFTA02731689',
         author=USANYS,
@@ -1205,8 +1205,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731484', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731757', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731623', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
-    EmailCfg(id='EFTA02731729', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
-    EmailCfg(id='EFTA02731697', author=USANYS, date='2021-06-07 17:33:00', recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731583', author=USANYS, date='2022-01-21 17:28:00', recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731587', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True, date='2022-01-21 17:28:00'),
     EmailCfg(id='EFTA02068282', recipients=[ANDREW_MCCORMACK]),

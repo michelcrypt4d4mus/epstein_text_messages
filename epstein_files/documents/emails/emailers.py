@@ -181,6 +181,7 @@ EMAILERS = [
     'lorraine@mc2mm.com',
     LINDA_STONE,
     MARK_TRAMO,
+    MASHA_DROKOVA,
     MELANIE_WALKER,
     MERWIN_DELA_CRUZ,
     'Michael Simmons',   # Not the only "To:"
