@@ -1038,6 +1038,7 @@ EMAILS_CONFIG = [
         description='Barry Silbert became the CEO of Digital Currency Group, the top crypto fund in the U.S.',
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA00381451', author=LINDA_STONE, attribution_reason='"Typos, misspellings courtesy of iPhone."'),
     EmailCfg(id='EFTA00706814', author=LINDA_STONE, attribution_reason='"iPhone word substitution" in signature, which is traced back to "Linda, thanks" in EFTA00961792'),
     EmailCfg(id='EFTA00703417', author=LINDA_STONE, attribution_reason='"iPhone word substitution" in signature, which is traced back to "Linda, thanks" in EFTA00961792'),
     EmailCfg(id='EFTA00397956', author=LINDA_STONE, attribution_reason='unique email signature'),
