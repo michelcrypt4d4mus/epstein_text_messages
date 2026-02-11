@@ -144,6 +144,7 @@ EMAILER_ID_PATTERNS: dict[str, str] = {
 
 # If found as substring consider them the author
 EMAILERS = [
+    'Amanda Kirby',
     'Anne Boyles',
     AL_SECKEL,
     'Ariane Dwyer',
