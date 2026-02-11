@@ -236,6 +236,8 @@ def print_other_files_section(epstein_files: EpsteinFiles) -> list[OtherFile]:
     else:
         files = [f for f in epstein_files.other_files if args.all_other_files or f.is_interesting]
 
+    files += [f for f in epstein_files.doj_files if args.all_other_files or f.is_interesting]
+    files = Document.sort_by_timestamp(files)
     title_pfx = '' if args.all_other_files else 'Selected '
     category_table = OtherFile.summary_table(files, title_pfx=title_pfx)
     other_files_preview_table = OtherFile.files_preview_table(files, title_pfx=title_pfx)

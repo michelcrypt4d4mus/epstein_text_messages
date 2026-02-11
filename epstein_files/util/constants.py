@@ -1043,11 +1043,15 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='EFTA00706814', author=LINDA_STONE, attribution_reason='"iPhone word substitution" in signature, which is traced back to "Linda, thanks" in EFTA00961792'),
     EmailCfg(id='EFTA00703417', author=LINDA_STONE, attribution_reason='"iPhone word substitution" in signature, which is traced back to "Linda, thanks" in EFTA00961792'),
-
-    EmailCfg(id='EFTA00495349', author=MARIYA_PRUSAKOVA, attribution_reason='Crypto PR Lab is Prusakova company', description='Ed Boyle and Medici Bank'),
+    EmailCfg(
+        id='EFTA00495349',
+        author=MARIYA_PRUSAKOVA,
+        attribution_reason=f'{CRYPTO_PR_LAB} is Prusakova company',
+        description='Ed Boyle and Medici Bank'
+    ),
     EmailCfg(
         id='EFTA02266524',
-        attribution_reason='Crypto PR Lab is Prusakova company',
+        attribution_reason=f'{CRYPTO_PR_LAB} is Prusakova company',
         description='Ed Boyle and Medici Bank',
         is_interesting=True,
         recipients=[MARIYA_PRUSAKOVA],
@@ -1236,7 +1240,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00677752', author=GANBAT_CHULUUNKHUU, description=f'discussion of getting a job in sustainable energy in Mongolia for {REDACTED}'),
     EmailCfg(id='EFTA00397956', author=LINDA_STONE, attribution_reason='unique email signature'),
     EmailCfg(id='EFTA02646138', recipients=[GANBAT_CHULUUNKHUU]),
-    EmailCfg(id='EFTA01013266', description='request for payment to Crypto PR Lab', is_interesting=True),
+    EmailCfg(id='EFTA01013266', description=f'request for payment to {CRYPTO_PR_LAB}', is_interesting=True),
     EmailCfg(id='EFTA00495372', description='Epstein discussing Medici Bank, a new successor to Noble Bank as a crypto bank', is_interesting=True),
     EmailCfg(id='EFTA01917402', description='discussion of Epstein investment in Blockstream funneled through Joi Ito', is_interesting=True),
     EmailCfg(id='EFTA02483194', description=f"discussion of {GANBAT_CHULUUNKHUU}'s arrest", is_interesting=True),
@@ -1876,13 +1880,6 @@ OTHER_FILES_PROPERTY = [
         description=f"{VIRGIN_ISLANDS} property deal pitch deck, building will be leased to the U.S. govt GSA",
         date='2014-06-01',
     ),
-
-    # DOJ files
-    DocCfg(id='EFTA00001884', date='2019-03-14', description='photo of letter from Virgin Islands DOJ to Epstein'),
-    DocCfg(id='EFTA00005783', date='2019-08-29', description='heavily redacted handwritten note and 30+ completely blacked out redacted pages'),
-    DocCfg(id='EFTA01088644', date='2015-10-01', description='Blockchain Capital deck'),
-    DocCfg(id='EFTA00604942', date='2015-10-01', description='Blockchain Capital Investor Update'),
-    DocCfg(id='EFTA00590685', attached_to_email_id='EFTA00830911'),
 ]
 
 OTHER_FILES_REPUTATION = [
@@ -1996,11 +1993,6 @@ OTHER_FILES_ACADEMIA = [
         dupe_type='quoted',
         is_interesting=False,
     ),
-    DocCfg(
-        id='EFTA00295126',
-        description=f"{MARIYA_PRUSAKOVA} and {ALEKSANDRA_KARPOVA}'s Crypto PR Lab financial statement",
-        is_interesting=True,
-    ),
 ]
 
 # resumes and application letters
@@ -2103,20 +2095,72 @@ OTHER_FILES_MISC = [
     DocCfg(id='029448', description=f"weird short essay titled 'President Obama and Self-Deception'"),
 
     # DOJ files
+    DocCfg(id='EFTA00005569', date='2005-03-17', replace_text_with='Palm Beach police photo lineup featuring Epstein'),
+    DocCfg(id='EFTA00001884', date='2019-03-14', description='photo of letter from Virgin Islands DOJ to Epstein'),
+    DocCfg(id='EFTA00005783', date='2019-08-29', description='heavily redacted handwritten note and 30+ completely blacked out redacted pages'),
+    DocCfg(id='EFTA01088644', date='2015-10-01', description='Blockchain Capital deck', is_interesting=True),
+    DocCfg(id='EFTA00604942', date='2015-10-01', description='Blockchain Capital Investor Update', is_interesting=True),
+    DocCfg(id='EFTA01087311', description='Black Family Partners cash projections'),
+    DocCfg(id='EFTA01734786', description='LedgerX Series B pitch deck', is_interesting=True),
+    DocCfg(id='EFTA01217787', description='Skype conversation with Tyler Shears and Hanna Traff at Spotify', is_interesting=True),
+    DocCfg(id='EFTA01217703', description=f'Skype conversation with actress Athena Zelcovich, {JOSCHA_BACH}, and {LAWRENCE_KRAUSS}'),
+    DocCfg(id='EFTA01217736', description=f'Skype conversation with actress Athena Zelcovich, {TYLER_SHEARS}'),
+    DocCfg(id='EFTA01810372', description=f'{TYLER_SHEARS} invoice for reputation management work', is_interesting=True),
+    DocCfg(id='EFTA01613759', description=f"letter of intent to acquire {CRYPTO_PR_LAB} from Transform Group", is_interesting=True),
+    DocCfg(id='EFTA01299820', description=f"bank transfer to {CRYPTO_PR_LAB}", is_interesting=True),
+    DocCfg(id='EFTA01613762', description=f'WhatsApp convo with {MARIYA_PRUSAKOVA} about {CRYPTO_PR_LAB}', is_interesting=True),
+    DocCfg(id='EFTA01612721', description=f'WhatsApp convo with {MARIYA_PRUSAKOVA} about {CRYPTO_PR_LAB}', is_interesting=True),
+    DocCfg(id='EFTA00605996', description='Wedbush BUY rating on Digital Currency Group GBTC', is_interesting=True),
     DocCfg(id='EFTA00128987', description='SAR about Kushner co. crypto payments to a suspicious Russian person'),
-    DocCfg(id='EFTA01089506', description='Crypto Currency Partners II investor report', date='2014-11-01'),
-    DocCfg(id='EFTA01093509', description='Crypto Currency Partners II limited partnership agreement draft'),
-    DocCfg(id='EFTA01089500', description='Crypto Currency Partners II Investor Update', date='2015-01-01'),
-    DocCfg(id='EFTA01089526', description='Crypto Currency Partners II investor report', date='2014-08-01'),
-    DocCfg(id='EFTA00621239', description='Crypto Currency Partners II investor report', date='2014-10-01'),
-    DocCfg(id='EFTA01107738', description="creation of Cantor Urramoor Asset Management with Mr. T's (Prince Andrew?) Urramoor and Howard Lutnick's Cantor Fitzgerald", is_interesting=True),
-    DocCfg(id='EFTA01141453', description="referral agreement between Mr. T's (Prince Andrew?) Urramoor and Howard Lutnick's Cantor Fitzgerald", is_interesting=True),
+    DocCfg(id='EFTA00309271', description=f'{CRYPTO_PR_LAB} financial statement', is_interesting=True),
+    DocCfg(id='EFTA01089506', description='Crypto Currency Partners II investor report', date='2014-11-01', is_interesting=True),
+    DocCfg(id='EFTA01093509', description='Crypto Currency Partners II limited partnership agreement draft', is_interesting=True),
+    DocCfg(id='EFTA01089500', description='Crypto Currency Partners II Investor Update', date='2015-01-01', is_interesting=True),
+    DocCfg(id='EFTA01089526', description='Crypto Currency Partners II investor report', date='2014-08-01', is_interesting=True),
+    DocCfg(id='EFTA00621239', description='Crypto Currency Partners II investor report', date='2014-10-01', is_interesting=True),
     DocCfg(id='EFTA00007781', description='paychecks signed by Epstein deposited at Colonial Bank'),
-    DocCfg(id='EFTA00009622', description='handwritten note transcribed Claude AI', date='2006-07-19', replace_text_with=EFTA00009622_TEXT),
-    DocCfg(id='EFTA00605996', description='Wedbush BUY rating on Digital Currency Group GBTC'),
-    DocCfg(id='EFTA00039295', replace_text_with='Bureau of Prisons inmate telephone privileges Program Statement'),
+    DocCfg(
+        id='EFTA00295126',
+        description=f"{MARIYA_PRUSAKOVA} and {ALEKSANDRA_KARPOVA}'s {CRYPTO_PR_LAB} accounting statement",
+        is_interesting=True,
+    ),
+    DocCfg(
+        id='EFTA01622387',
+        author=RENATA_BOLOTOVA,
+        description=f'{RENATA_BOLOTOVA} iMessage chat log screenshots',
+        is_attribution_uncertain=True,
+    ),
+    DocCfg(
+        id='EFTA01107738',
+        description="creation of Cantor Urramoor Asset Management with Mr. T's (Prince Andrew?) Urramoor and Howard Lutnick's Cantor Fitzgerald",
+        is_interesting=True
+    ),
+    DocCfg(
+        id='EFTA01612888',
+        author='Kevin Peterson, Bammohan Deeduvanu, Pradip Kanjamala, and Kelly Boles',
+        description='A Blockchain-Based Approach to Health Information Exchange Networks',
+        is_interesting=True,
+    ),
+    DocCfg(
+        id='EFTA01620764',
+        description='iMessage convo between Melanie Walker and Epstein about Bill Gates being drunk all the time (???)',
+        is_interesting=True
+    ),
+    DocCfg(
+        id='EFTA01141453',
+        description="referral agreement between Mr. T's (Prince Andrew?) Urramoor and Howard Lutnick's Cantor Fitzgerald",
+        is_interesting=True
+    ),
+    DocCfg(
+        id='EFTA00009622',
+        date='2006-07-19',
+        description='handwritten note transcribed Claude AI',
+        is_interesting=True,
+        replace_text_with=EFTA00009622_TEXT,
+    ),
     DocCfg(
         id='EFTA00004477',
+        is_interesting=True,
         replace_text_with='Epstein 50th birthday photo book 12 "THAIS, MOSCOW GIRLS, AFRICA, HAWAII, [REDACTED] [REDACTED], Zorro, [REDACTED] [REDACTED] [REDACTED], CRACK WHOLE PROPOSAL, BALI/THAILAND/ASIA, RUSSIA, [REDACTED], [REDACTED], NUDES, YOGAL GIRLS',
     ),
     DocCfg(id='EFTA00008120', replace_text_with='"Part II: The Art of Receiving a Massage"'),
@@ -2125,6 +2169,7 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00008320', replace_text_with='"Massage for Dummies (???)"'),
     DocCfg(id='EFTA00000476', replace_text_with='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09'),
     DocCfg(id='EFTA00039312', replace_text_with='Bureau of Prisons Program Statement / Memo about BOP Pharmacy Program'),
+    DocCfg(id='EFTA00039295', replace_text_with='Bureau of Prisons inmate telephone privileges Program Statement'),
     # Phone bills TODO: Some kind of special handling?
     DocCfg(id='EFTA00006387', replace_text_with='T-Mobile phone bill covering 2006-06-15 to 2006-07-23'),
     DocCfg(id='EFTA00007501', replace_text_with='T-Mobile phone bill from 2005'),
@@ -2136,21 +2181,7 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00006100', replace_text_with='Palm Beach Police fax machine activity log 2005-12-28 to 2006-01-04'),
     DocCfg(id='EFTA00007253', replace_text_with='T-Mobile response to subpoena March 23, 2007 - phone bill'),
     DocCfg(id='EFTA00005586', replace_text_with='Completely redacted 69 pages labeled "Grand Jury - NY"'),
-    DocCfg(id='EFTA01622387', author=RENATA_BOLOTOVA, description=f'{RENATA_BOLOTOVA} iMessage chat log screenshots', is_attribution_uncertain=True),
-    DocCfg(id='EFTA00005569', date='2005-03-17', replace_text_with='Palm Beach police photo lineup featuring Epstein'),
-    DocCfg(id='EFTA01087311', description='Black Family Partners cash projections'),
-    DocCfg(id='EFTA01612888', description='A Blockchain-Based Approach to Health Information Exchange Networks', author='Kevin Peterson, Bammohan Deeduvanu, Pradip Kanjamala, and Kelly Boles'),
-    DocCfg(id='EFTA01734786', description='LedgerX Series B pitch deck', is_interesting=True),
-    DocCfg(id='EFTA01620764', description='iMessage convo between Melanie Walker and Epstein about Bill Gates being drunk all the time (???)', is_interesting=True),
-    DocCfg(id='EFTA01217787', description='Skype conversation with Tyler Shears and Hanna Traff at Spotify'),
-    DocCfg(id='EFTA01217703', description=f'Skype conversation with actress Athena Zelcovich, {JOSCHA_BACH}, and {LAWRENCE_KRAUSS}'),
-    DocCfg(id='EFTA01217736', description=f'Skype conversation with actress Athena Zelcovich, {TYLER_SHEARS}'),
-    DocCfg(id='EFTA01810372', description=f'{TYLER_SHEARS} invoice for reputation management work'),
-    DocCfg(id='EFTA01613759', description=f"letter of intent to acquire Crypto PR Lab from Transform Group", is_interesting=True),
-    DocCfg(id='EFTA01299820', description=f"bank transfer to Crypto PR Lab", is_interesting=True),
-    DocCfg(id='EFTA00309271', description='Crypto PR Lab financial statement', is_interesting=True),
-    DocCfg(id='EFTA01613762', description=f'WhatsApp convo with {MARIYA_PRUSAKOVA} about Crypto PR Lab', is_interesting=True),
-    DocCfg(id='EFTA01612721', description=f'WhatsApp convo with {MARIYA_PRUSAKOVA} about Crypto PR Lab', is_interesting=True),
+    DocCfg(id='EFTA00590685', attached_to_email_id='EFTA00830911'),
 ]
 
 OTHER_FILES_JUNK = [
