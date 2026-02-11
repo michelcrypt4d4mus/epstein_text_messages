@@ -1290,6 +1290,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00039802', duplicate_ids=['EFTA00039809']),
     EmailCfg(id='EFTA00039689', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00381451', truncate_to=800),
+    EmailCfg(id='EFTA00362171', truncate_to=1200),
 ]
 
 if args.constantize:
