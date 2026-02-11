@@ -64,6 +64,9 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r'([/vkT]|Ai|li|(I|7)v)rote:'): 'wrote:',
     re.compile(r"([<>.=_HIM][<>.=_HIM14]{5,}[<>.=_HIM]|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
     re.compile(r"([,<>_]|AM|PM)\n(>)? ?wrote:?"): r'\1\2 wrote:',
+    # Headers
+    re.compile(r"^(Sent|Subject) (?![Ff]rom)", re.MULTILINE): r'\1:',
+    'I nline-Images:': 'Inline-Images:',
     # Names / email addresses
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
     'Miroslav Laj6ak': MIROSLAV_LAJCAK,
@@ -159,6 +162,7 @@ EMAIL_SIGNATURE_REGEXES = {
     TOM_PRITZKER: re.compile(r"The contents of this email message.*\ncontain confidential.*\n(not )?the intended.*\n(error|please).*\n(you )?(are )?not the.*\n(this )?message.*"),
     TONJA_HADDAD_COLEMAN: re.compile(fr"Tonja Haddad Coleman.*\nTonja Haddad.*\nAdvocate Building\n315 SE 7th.*(\nSuite.*)?\nFort Lauderdale.*(\n({REDACTED} )?facsimile)?(\nwww.tonjahaddad.com?)?(\nPlease add this efiling.*\nThe information.*\nyou are not.*\nyou are not.*)?", re.IGNORECASE),
     UNKNOWN: re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL),
+    'W Bradford Stephens': re.compile(r"This email \(including.*\n(please.*\n)?it.*\nand do not.*\n(does.*\n)?constitute.*\ninvestment.*\n(info.*\n)?contained.*\nthe.*\s*(sender.*\n)?update.*\nthis.*(\nemail.*)?"),
 }
 
 MAILING_LISTS = [
