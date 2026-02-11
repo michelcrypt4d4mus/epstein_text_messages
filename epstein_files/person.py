@@ -338,8 +338,19 @@ class Person:
         return f"{self.name_str}"
 
     @staticmethod
-    def emailer_info_table(people: list['Person'], highlighted: list['Person'] | None = None, show_epstein_total: bool = False) -> Table:
-        """Table of info about emailers."""
+    def emailer_info_table(
+        people: list['Person'],
+        highlighted: list['Person'] | None = None,
+        show_epstein_total: bool = False
+    ) -> Table:
+        """
+        Table of info about emailers.
+
+        Args:
+            people (list[Person]): Everyone who sent or received an email in the files.
+            highlighted (list[Person], optional): Which emailers should be highlighted (rest will be dim).
+            show_epstein_total (bool, optional): Whether to show total number of emails or just notes to self for Epstein himself.
+        """
         highlighted = highlighted or people
         highlighted_names = [p.name for p in highlighted]
         is_selection = len(people) != len(highlighted) or args.emailers_info
