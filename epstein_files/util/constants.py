@@ -1255,7 +1255,14 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00901970', description=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=True),
     EmailCfg(id='EFTA01051074', description='Brock Pierce arranging meeting between Bannon and Epstein (in Doha?)'),
     EmailCfg(id='EFTA00988395', description='"Andy Back" is probably O.G. bitcoiner Adam Back from Blockstream'),
-    EmailCfg(id='EFTA00383023', description='heavily redacted', is_interesting=True),
+    EmailCfg(
+        id='EFTA00383023',
+        attribution_reason='"Lesley" appears in body + Linda Stone signature',
+        author=LESLEY_GROFF,
+        description='heavily redacted',
+        is_interesting=True,
+        recipients=[LINDA_STONE],
+    ),
     EmailCfg(
         id='EFTA00384774',
         attribution_reason='unique email signature',
