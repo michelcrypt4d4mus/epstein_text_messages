@@ -912,7 +912,7 @@ class Email(Communication):
 
         for email in emails:
             fields = [
-                email.epstein_media_link(link_txt=email.timestamp_without_seconds, style=link_style),
+                link_text_obj(email.external_url, email.timestamp_without_seconds, style=link_style),
                 email.author_txt,
                 email.recipients_txt(max_full_names=1),
                 f"{email.length}",
