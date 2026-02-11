@@ -105,6 +105,7 @@ EMAILER_ID_PATTERNS: dict[str, str] = {
     NEAL_KASSELL: r'Neal\s*Kassell?',
     'Newsmax': r"Newsmax\.com",
     NICHOLAS_RIBIS: r'Nic(holas|k)[\s._]Ribi?s?|Ribbis',
+    OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL: r"\bODAG\b",
     OLIVIER_COLOM: fr'Colom, Olivier|{OLIVIER_COLOM}',
     PAUL_BARRETT: r'Paul Barre(d|tt)',
     PAUL_KRASSNER: r'Pa\s?ul Krassner',
