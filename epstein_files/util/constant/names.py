@@ -182,6 +182,7 @@ UNKNOWN = '(unknown)'
 
 # DOJ files emails
 ADAM_BACK = 'Adam Back'
+ALEKSANDRA_KARPOVA = 'Aleksandra Karpova'
 ALISON_J_NATHAN = 'Alison J. Nathan'
 AMIR_TAAKI = 'Amir Taaki'
 ANDREW_FARKAS = 'Andrew Farkas'
@@ -193,9 +194,11 @@ BROCK_PIERCE = 'Brock Pierce'
 CHRISTIAN_EVERDELL = 'Christian Everdell'
 CHRISTOPHER_DILORIO = 'Christopher Dilorio'
 DOUGLAS_WIGDOR = 'Douglas Wigdor'
+ED_BOYLE = 'Ed Boyle'
 GANBAT_CHULUUNKHUU = 'Ganbat Chuluunkhuu'
 HASSAN_JAMEEL = 'Hassan Jameel'
 KARYNA_SHULIAK = 'Karyna Shuliak'
+LORENZO_DE_MEDICI = 'Lorenzo de Medici'
 NICOLE_JUNKERMANN = 'Nicole Junkermann'
 STACEY_RICHMAN = 'Stacey Richman'
 
@@ -243,8 +246,8 @@ VALAR_VENTURES = 'Valar Ventures'
 
 # First and last names that should be made part of a highlighting regex for emailers
 NAMES_TO_NOT_HIGHLIGHT = """
-    al alain alan alison alfredo allen alex alexander amanda andres andrew anthony
-    bard barrett barry bennet bernard bill black bob boris brad brenner bruce
+    adam al alain alan alison alfredo allen alex alexander amanda andres andrew anthony
+    back bard barrett barry bennet bernard bill black bob boris brad brenner bruce
     cameron caroline carolyn chris christian christina cohen
     dan daniel danny darren dave david debbie donald douglas
     ed edward edwards enforcement enterprise enterprises entourage epstein eric erika etienne
