@@ -55,13 +55,14 @@ class EpsteinFiles:
 
     def __post_init__(self):
         """Iterate through files and build appropriate objects."""
-        self.all_files = sorted([f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')], reverse=True)
+        self.all_files = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
 
         if DOJ_PDFS_20260130_DIR:
-            self.all_files += sorted([f for f in DOJ_PDFS_20260130_DIR.glob('**/*.txt')])
+            self.all_files += [f for f in DOJ_PDFS_20260130_DIR.glob('**/*.txt')]
 
-        docs = []
+        self.all_files = sorted(self.all_files, reverse=True)
         file_type_count = defaultdict(int)  # Hack used by --skip-other-files option to get a few files parsed before skipping the rest
+        docs = []
 
         # Read through and classify all the files
         for file_arg in self.all_files:
