@@ -1448,9 +1448,10 @@ HIGHLIGHTED_NAMES = [
         label='Russia',
         style='red bold',
         emailers={
+            ALEKSANDRA_KARPOVA: "Crypto PR Lab co-founder",
             'Dasha Zhukova': 'art collector, daughter of Alexander Zhukov',
             KARYNA_SHULIAK: "Epstein's final girlfriend to whom he tried to leave $50-100 million and the island",
-            MARIYA_PRUSAKOVA: 'AKA Masha Prusso, investor/former Olympic snowboarder who "found ladies" for Epstein',
+            MARIYA_PRUSAKOVA: 'AKA Masha Prusso, former Olympic snowboarder, Crypto PR Lab co-founder, "found ladies" for Epstein',
             MASHA_DROKOVA: 'silicon valley VC, former Putin Youth member',
             RENATA_BOLOTOVA: 'former model, fund manager at New York State Insurance Fund, Рената Болотова',
             SVETLANA_POZHIDAEVA: "Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and David Blaine",
