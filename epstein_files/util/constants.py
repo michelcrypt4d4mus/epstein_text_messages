@@ -1061,6 +1061,11 @@ EMAILS_CONFIG = [
         is_interesting=True,
         recipients=[MARIYA_PRUSAKOVA],
     ),
+    EmailCfg(
+        id='EFTA02312343',
+        description=f"cyrillic email about {RENATA_BOLOTOVA}'s visa issues, possibly marriage related?",
+        is_interesting=True
+    ),
     EmailCfg(id='EFTA02455567', author=RENATA_BOLOTOVA, attribution_reason='"sneaky"', description='completely redacted email body'),
     EmailCfg(id='EFTA00920010', author=RENATA_BOLOTOVA, attribution_reason='renbolotova@gmail in body'),
     EmailCfg(id='EFTA00920177', author=RENATA_BOLOTOVA, attribution_reason='discussion of employment at Institute'),
@@ -1241,6 +1246,7 @@ EMAILS_CONFIG = [
         description=f"forged email Epstein wrote to complain about the Mindshift conference to {AL_SECKEL}",
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA00699275', description=f"'Fred' is probably Coinbase co-founder Fred Ehrsam"),
     EmailCfg(id='EFTA01013266', description=f'request for payment to {CRYPTO_PR_LAB}', is_interesting=True),
     EmailCfg(id='EFTA00495372', description='Epstein discussing Medici Bank, a new successor to Noble Bank as a crypto bank', is_interesting=True),
     EmailCfg(id='EFTA01917402', description='discussion of Epstein investment in Blockstream funneled through Joi Ito', is_interesting=True),
@@ -1283,8 +1289,11 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01852975', duplicate_ids=['EFTA02001764']),
     EmailCfg(id='EFTA00563586', duplicate_ids=['EFTA02323722']),
     EmailCfg(id='EFTA00039802', duplicate_ids=['EFTA00039809']),
+    EmailCfg(id='EFTA01002234', duplicate_ids=['EFTA02597754']),
     EmailCfg(id='EFTA00039689', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00381451', truncate_to=800),
+    EmailCfg(id='EFTA00362171', truncate_to=1200),
+    EmailCfg(id='EFTA02588748', truncate_to=800),
 ]
 
 if args.constantize:
