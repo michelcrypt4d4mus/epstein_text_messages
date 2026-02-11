@@ -1157,7 +1157,7 @@ HIGHLIGHTED_NAMES = [
         style='light_coral',
         emailers={
             BOB_CROWE: 'partner at Nelson Mullins',
-            GANBAT_CHULUUNKHUU: 'Corrupt Mongolian politician who was later wanted by Interpol',
+            GANBAT_CHULUUNKHUU: 'corrupt Mongolian politician who was later wanted by Interpol',
             'Joshua Cooper Ramo': 'co-CEO of Henry Kissinger Associates',
             KATHERINE_KEATING: 'daughter of former Australian prime minister',
             'Khaltmaagiin Battulga': 'former president of Mongolia',
