@@ -75,6 +75,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r' Banno(r]?|\b)'): ' Bannon',
     re.compile(r'gmax ?[1l] ?[@g]ellmax.c ?om'): 'gmax1@ellmax.com',
     re.compile(r"[ijlp']ee[vy]acation[©@a(&,P ]{1,3}g?mail.com"): 'jeevacation@gmail.com',
+    'gyahoo.com': '@yahoo.com',
     # Signatures
     'BlackBerry by AT &T': 'BlackBerry by AT&T',
     'BlackBerry from T- Mobile': 'BlackBerry from T-Mobile',
@@ -140,7 +141,7 @@ EMAIL_SIGNATURE_REGEXES = {
     ERIC_ROTH: re.compile(r"2221 Smithtown Avenue\nLong Island.*\nRonkonkoma.*\n(.1. )?Phone\nFax\nCell\ne-mail"),
     GHISLAINE_MAXWELL: re.compile(r"FACEBOOK\nTWITTER\nG\+\nPINTEREST\nINSTAGRAM\nPLEDGE\nTHE DAILY CATCH"),
     JEANNE_M_CHRISTENSEN: re.compile(r"A?Please consider the environment.*\nThis communication may.*\nWork Product.*\nresponsible.*\nanyone.*\nhereof.*|This communication may contain Confidential.*\nyou are not the addressee.*\nto such person.*\nor delete this.*"),
-    JEFFREY_EPSTEIN: re.compile(r"((\*+|please note)\n+)?(> )?(• )?(» )?The information contained in this communication is\s*(> )*(» )?confidential.*?all attachments.( copyright -all rights reserved?)?", re.DOTALL),
+    JEFFREY_EPSTEIN: re.compile(r"((\*+|please note)\n+)?([>»•] )?The information contained i[n=] this communication is\s*(> )*(» )?confidential.*?all attachments.( copyright [-=]all rights reserved?)?", re.DOTALL),
     JESSICA_CADWELL: re.compile(r"(f.*\n)?Certified Para.*\nFlorida.*\nBURMAN.*\n515.*\nSuite.*\nWest Palm.*(\nTel:.*)?(\nEmail:.*)?", re.IGNORECASE),
     KEN_JENNE: re.compile(r"Ken Jenne\nRothstein.*\n401 E.*\nFort Lauderdale.*", re.IGNORECASE),
     LARRY_SUMMERS: re.compile(r"Please direct all scheduling.*\nFollow me on twitter.*\nwww.larrysummers.*", re.IGNORECASE),
@@ -354,7 +355,6 @@ LINE_REPAIR_MERGES = {
 
     # Note DOJ file line adjustments happen *after* DojFile._repair() is called
     'EFTA00039689': [[4]],
-    'EFTA00040118': [[2], [2], [2], [2], [2], [2], [6], [6]],
 }
 
 
