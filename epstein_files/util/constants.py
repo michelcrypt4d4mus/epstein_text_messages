@@ -1038,7 +1038,7 @@ EMAILS_CONFIG = [
         description='Barry Silbert became the CEO of Digital Currency Group, the top crypto fund in the U.S.',
         is_interesting=True,
     ),
-    EmailCfg(id='EFTA00381451', author=LINDA_STONE, attribution_reason='"Typos, misspellings courtesy of iPhone."'),
+    EmailCfg(id='EFTA00381451', author=LINDA_STONE, attribution_reason='"Typos, misspellings courtesy of iPhone."', truncate_to=800),
     EmailCfg(id='EFTA00706814', author=LINDA_STONE, attribution_reason='"iPhone word substitution" in signature, which is traced back to "Linda, thanks" in EFTA00961792'),
     EmailCfg(id='EFTA00703417', author=LINDA_STONE, attribution_reason='"iPhone word substitution" in signature, which is traced back to "Linda, thanks" in EFTA00961792'),
     EmailCfg(id='EFTA00397956', author=LINDA_STONE, attribution_reason='unique email signature'),
@@ -1290,7 +1290,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01776411', duplicate_ids=['EFTA02691069']),
     EmailCfg(id='EFTA02390441', duplicate_ids=['EFTA02403336']),
     EmailCfg(id='EFTA00039689', truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA00381451', truncate_to=800),
     EmailCfg(id='EFTA00362171', truncate_to=1200),
     EmailCfg(id='EFTA00869828', truncate_to=TRUNCATED_CHARS),
 ]

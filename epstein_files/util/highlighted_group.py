@@ -1523,6 +1523,7 @@ HIGHLIGHTED_NAMES = [
             ANDREW_MCCORMACK: f"partner at {PETER_THIEL}'s Valar Ventures {QUESTION_MARKS}",
             'Auren Hoffman': 'CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp',
             ELON_MUSK: 'father of Mecha-Hitler',
+            IAN_ODONNELL: "Thiel's Valar Ventures",
             'James Fitzgerald': f"{PETER_THIEL}'s Valar Ventures {QUESTION_MARKS}",
             PETER_THIEL: 'Paypal mafia member, founder of Palantir, Facebook investor',
             REID_HOFFMAN: 'PayPal mafia member, founder of LinkedIn',
