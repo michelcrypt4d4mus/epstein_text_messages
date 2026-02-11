@@ -402,6 +402,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Leon Black": 4,
     LESLEY_GROFF: 41,
     "Lilly Sanchez": 2,
+    'LIMITED PARTNERS': 1,
     LINDA_STONE: 4,
     'Linda W. Grossman': 2,
     "Lisa Albert": 1,
@@ -470,6 +471,7 @@ EMAIL_RECIPIENT_COUNTS = {
     'Players2': 1,
     "Police Code Enforcement": 1,
     "Prince Andrew": 2,
+    'PROSPECTIVE INVESTORS': 2,  # TODO: what is this
     "Raafat Alsabbagh": 2,
     "Rafael Bardaji": 1,
     'Rebecca Risman': 1,
