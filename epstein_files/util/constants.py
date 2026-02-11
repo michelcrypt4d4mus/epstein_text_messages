@@ -1324,6 +1324,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01917402', description=f'discussion of Epstein investment in Blockstream funneled through {JOI_ITO}', is_interesting=True),
     EmailCfg(id='EFTA02483194', description=f"discussion of {GANBAT_CHULUUNKHUU}'s arrest", is_interesting=True),
     EmailCfg(id='EFTA00495372', description=f'discussion of Medici Bank, a new successor to Noble Bank as a crypto bank', is_interesting=True),
+    EmailCfg(id='EFTA00964459', description=f'discussion of sharia compliant crypto token', is_interesting=True),
     EmailCfg(id='EFTA00901772', description=f'discussion of the sale of Epstein stake in Coinbase'),
     EmailCfg(id='EFTA00699275', description=f"'Fred' is probably Coinbase co-founder Fred Ehrsam"),
     EmailCfg(id='EFTA00830911', description='fundraising email for LedgerX which was later acquired by FTX for $298 million'),
