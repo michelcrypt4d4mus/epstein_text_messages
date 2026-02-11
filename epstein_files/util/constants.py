@@ -1261,6 +1261,7 @@ EMAILS_CONFIG = [
         description=f"forged email Epstein wrote to complain about the Mindshift conference to {AL_SECKEL}",
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA01007544', description=f'core bitcoin dev {JEREMY_RUBIN} says "there\'s a grey area between pump and develop"', is_interesting=True),
     EmailCfg(id='EFTA01784901', description=f"discussion of checks {JEREMY_RUBIN} has cashed from Epstein", is_interesting=True),
     EmailCfg(id='EFTA00699275', description=f"'Fred' is probably Coinbase co-founder Fred Ehrsam"),
     EmailCfg(id='EFTA01013266', description=f'request for payment to {CRYPTO_PR_LAB}', is_interesting=True),
