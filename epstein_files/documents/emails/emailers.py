@@ -14,6 +14,7 @@ BAD_NAME_CHARS_REGEX = re.compile(r"[\"'\[\]*><•=()‹]")
 TIME_REGEX = re.compile(r'^((\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday)|\d{4} ).*')
 
 EMAILER_ID_PATTERNS: dict[str, str] = {
+    ADAM_BACK: r"Adam\s*Back?",
     ALAN_DERSHOWITZ: r'(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh',
     ALIREZA_ITTIHADIEH: r'Alireza.[Il]ttihadieh',
     ALISON_J_NATHAN: r"Alison(\s*J\.?)?\s*Nathan|Nathan NYSD Chambers?",

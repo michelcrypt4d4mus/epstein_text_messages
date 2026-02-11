@@ -346,6 +346,7 @@ HIGHLIGHTED_NAMES = [
             r"Ramsey Elkholy",
             r"Regan arts",
             r"shirley maclaine",
+            r"Sotheby's",
             r"Woody( Allen)?",
             r"Zach Braff",
         ],
