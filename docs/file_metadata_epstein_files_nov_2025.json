@@ -32786,7 +32786,7 @@
                 "type": "Email"
             },
             {
-                "author": "ODAG",
+                "author": "Office of the Deputy Attorney General",
                 "bytes": 882,
                 "file_id": "EFTA00039798",
                 "filename": "EFTA00039798.txt",
@@ -32887,8 +32887,7 @@
                 "filename": "EFTA00039825.txt",
                 "num_lines": 15,
                 "recipients": [
-                    "Alison J. Nathan",
-                    "Nathan NYSD Chambers"
+                    "Alison J. Nathan"
                 ],
                 "subject": "US v. Maxwell, 20 Cr. 330 (AJN) - Government Request for Redactions",
                 "timestamp": "2021-04-23T15:41:04",
@@ -33047,7 +33046,7 @@
                 "filename": "EFTA00039892.txt",
                 "num_lines": 13,
                 "recipients": [
-                    "ODAG JMD"
+                    "Office of the Deputy Attorney General"
                 ],
                 "subject": "Epstein",
                 "timestamp": "2019-05-15T15:20:46",
@@ -33244,7 +33243,6 @@
                     "Bobbi C. Sternheim",
                     "Jeff Pagliuca",
                     "Laura Menninger",
-                    "Nathan NYSD Chambers",
                     "USANYS"
                 ],
                 "subject": "[EXTERNAL] U.S. v. Ghislaine Maxwell, S2 20 Cr. 330 (MN) -- Response to Government's Letters re: Accuser-3's Evidence",
@@ -33407,6 +33405,20 @@
                 ],
                 "subject": "RE: Deutsche Bank Production - Transaction Charts",
                 "timestamp": "2019-08-13T01:18:13",
+                "type": "Email"
+            },
+            {
+                "author": "Lesley Groff",
+                "bytes": 827,
+                "file_id": "EFTA00327023",
+                "filename": "EFTA00327023.txt",
+                "num_lines": 23,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "subject": "Jeremy Rubin",
+                "timestamp": "2016-04-01T15:18:58",
                 "type": "Email"
             },
             {
@@ -33611,7 +33623,7 @@
                 "filename": "EFTA00362148.txt",
                 "num_lines": 69,
                 "recipients": [
-                    "Andrew L. Farkas",
+                    "Andrew Farkas",
                     "Lesley Groff"
                 ],
                 "subject": "Re: 7pm Jeffrey tonight",
@@ -33625,7 +33637,7 @@
                 "filename": "EFTA00362163.txt",
                 "num_lines": 108,
                 "recipients": [
-                    "Andrew L. Farkas",
+                    "Andrew Farkas",
                     "Lesley Groff"
                 ],
                 "subject": "Re: 7pm Jeffrey tonight",
@@ -33645,6 +33657,20 @@
                 "subject": "Re: 7pm Jeffrey tonight",
                 "timestamp": "2014-09-22T23:19:45",
                 "truncate_to": 1200,
+                "type": "Email"
+            },
+            {
+                "author": "Lesley Groff",
+                "bytes": 834,
+                "file_id": "EFTA00367406",
+                "filename": "EFTA00367406.txt",
+                "num_lines": 30,
+                "recipients": [
+                    "Jeremy Rubin"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "subject": "Re: Jeffrey Epstein",
+                "timestamp": "2014-06-26T22:28:17",
                 "type": "Email"
             },
             {
@@ -33945,6 +33971,33 @@
             },
             {
                 "author": "Lesley Groff",
+                "bytes": 14313,
+                "file_id": "EFTA00469073",
+                "filename": "EFTA00469073.txt",
+                "num_lines": 168,
+                "recipients": [
+                    "Masha Drokova"
+                ],
+                "subject": "Re: Jeffrey Epstein",
+                "timestamp": "2018-02-08T19:44:24",
+                "type": "Email"
+            },
+            {
+                "author": "Lesley Groff",
+                "bytes": 2661,
+                "file_id": "EFTA00474142",
+                "filename": "EFTA00474142.txt",
+                "num_lines": 66,
+                "recipients": [
+                    "Jeremy Rubin"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "subject": "Re: Jeffrey Epstein",
+                "timestamp": "2018-06-04T12:25:19",
+                "type": "Email"
+            },
+            {
+                "author": "Lesley Groff",
                 "bytes": 2310,
                 "file_id": "EFTA00488431",
                 "filename": "EFTA00488431.txt",
@@ -34054,6 +34107,20 @@
                 ],
                 "subject": "Fwd: Valar Global Fund 2 - 2015 Q3 Financial Statements and Capital Account Statement",
                 "timestamp": "2015-10-30T21:20:57",
+                "type": "Email"
+            },
+            {
+                "author": "Lesley Groff",
+                "bytes": 865,
+                "file_id": "EFTA00632642",
+                "filename": "EFTA00632642.txt",
+                "num_lines": 25,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "subject": "Jeremy Rubin",
+                "timestamp": "2016-04-01T15:18:58",
                 "type": "Email"
             },
             {
@@ -35424,6 +35491,19 @@
                 "type": "Email"
             },
             {
+                "author": "Jeffrey Epstein",
+                "bytes": 3040,
+                "file_id": "EFTA00929418",
+                "filename": "EFTA00929418.txt",
+                "num_lines": 59,
+                "recipients": [
+                    "Paul Barrett"
+                ],
+                "subject": "Fwd: Crypto Hedge Funds",
+                "timestamp": "2017-12-07T21:14:53",
+                "type": "Email"
+            },
+            {
                 "attribution_reason": "\"sneaky dog\"",
                 "author": "Jeffrey Epstein",
                 "bytes": 465,
@@ -35518,6 +35598,19 @@
                 ],
                 "subject": "Thank you so much!",
                 "timestamp": "2017-11-29T23:16:00",
+                "type": "Email"
+            },
+            {
+                "author": "Austin Hill",
+                "bytes": 1517,
+                "file_id": "EFTA00955063",
+                "filename": "EFTA00955063.txt",
+                "num_lines": 21,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Crypto Hedge Funds",
+                "timestamp": "2017-11-16T08:36:50",
                 "type": "Email"
             },
             {
@@ -36077,16 +36170,32 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"sneaky dog\"",
                 "author": "Jeffrey Epstein",
                 "bytes": 941,
                 "file_id": "EFTA01006355",
                 "filename": "EFTA01006355.txt",
                 "num_lines": 27,
                 "recipients": [
-                    "I `zI"
+                    "Renata Bolotova"
                 ],
                 "subject": "Re: Meeting",
                 "timestamp": "2018-07-25T15:11:20",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 3905,
+                "description": "bitcoin dev Jeremy Rubin describes \"grey area between pump and develop\" when Epstein declines project on ethical grounds",
+                "file_id": "EFTA01007544",
+                "filename": "EFTA01007544.txt",
+                "is_interesting": true,
+                "num_lines": 74,
+                "recipients": [
+                    "Jeremy Rubin"
+                ],
+                "subject": "Re: What are next steps?",
+                "timestamp": "2018-08-23T23:19:07",
                 "type": "Email"
             },
             {
@@ -36632,7 +36741,7 @@
                 "filename": "EFTA01139067.txt",
                 "num_lines": 53,
                 "recipients": [
-                    "Andrew L. Farkas"
+                    "Andrew Farkas"
                 ],
                 "subject": "Re: Fw: Fwd: Blockchain Capital",
                 "timestamp": "2014-11-07T15:33:30",
@@ -36667,7 +36776,7 @@
             {
                 "attribution_reason": "signature",
                 "author": "Lesley Groff",
-                "bytes": 1249,
+                "bytes": 1263,
                 "file_id": "EFTA01731288",
                 "filename": "EFTA01731288.txt",
                 "num_lines": 28,
@@ -36681,7 +36790,7 @@
             {
                 "attribution_reason": "signature",
                 "author": "Lesley Groff",
-                "bytes": 1263,
+                "bytes": 1249,
                 "file_id": "EFTA01731288",
                 "filename": "EFTA01731288.txt",
                 "num_lines": 28,
@@ -36911,6 +37020,22 @@
                 ],
                 "subject": "Re: Bitcoin",
                 "timestamp": "2011-07-10T02:16:00",
+                "type": "Email"
+            },
+            {
+                "author": "Jeremy Rubin",
+                "bytes": 3469,
+                "description": "discussion of checks Jeremy Rubin has cashed from Epstein",
+                "file_id": "EFTA01784901",
+                "filename": "EFTA01784901.txt",
+                "is_interesting": true,
+                "num_lines": 101,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Richard Kahn"
+                ],
+                "subject": "Re:",
+                "timestamp": "2016-08-01T13:29:00",
                 "type": "Email"
             },
             {
@@ -37730,6 +37855,19 @@
                 "type": "Email"
             },
             {
+                "bytes": 897,
+                "file_id": "EFTA02062308",
+                "filename": "EFTA02062308.txt",
+                "num_lines": 24,
+                "recipients": [
+                    "Jeremy Rubin"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "subject": "Re: Jeffrey Epstein",
+                "timestamp": "2016-01-25T18:28:00",
+                "type": "Email"
+            },
+            {
                 "author": "Lesley Groff",
                 "bytes": 471,
                 "file_id": "EFTA02065181",
@@ -38253,6 +38391,15 @@
                 "type": "Email"
             },
             {
+                "bytes": 2279,
+                "file_id": "EFTA02246900",
+                "filename": "EFTA02246900.txt",
+                "num_lines": 95,
+                "sent_from_device": "Sent from my iPhone",
+                "timestamp": "2018-06-04T12:03:39",
+                "type": "Email"
+            },
+            {
                 "author": "Bella Klein",
                 "bytes": 989,
                 "file_id": "EFTA02253705",
@@ -38372,6 +38519,21 @@
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Basecamp",
                 "timestamp": "2014-01-12T16:47:00",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 3744,
+                "description": "cyrillic email about Renata Bolotova's visa issues, possibly marriage related?",
+                "file_id": "EFTA02312343",
+                "filename": "EFTA02312343.txt",
+                "is_interesting": true,
+                "num_lines": 54,
+                "recipients": [
+                    "Karyna Shuliak"
+                ],
+                "subject": "Fwd:",
+                "timestamp": "2018-11-13T23:58:00",
                 "type": "Email"
             },
             {
@@ -39022,6 +39184,18 @@
                 ],
                 "subject": "Call Today Please",
                 "timestamp": "2014-08-28T18:44:00",
+                "type": "Email"
+            },
+            {
+                "author": "Masha Drokova",
+                "bytes": 305,
+                "file_id": "EFTA02534854",
+                "filename": "EFTA02534854.txt",
+                "num_lines": 7,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2018-01-26T04:29:00",
                 "type": "Email"
             },
             {
@@ -39840,11 +40014,16 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 1830,
                 "date": "2023-05-31T20:53:00",
                 "file_id": "EFTA02731475",
                 "filename": "EFTA02731475.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 47,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "RE: Leon Black",
                 "timestamp": "2023-05-31T20:53:00",
                 "type": "Email"
@@ -40316,9 +40495,11 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 910,
                 "file_id": "EFTA02731637",
                 "filename": "EFTA02731637.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 21,
                 "recipients": [
                     "USANYS"
@@ -40676,13 +40857,15 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 13671,
                 "date": "2023-06-30T16:05:00",
                 "file_id": "EFTA02731737",
                 "filename": "EFTA02731737.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 599,
                 "recipients": [
-                    null
+                    "FBI"
                 ],
                 "subject": "FW: Memo to i e re DANY call on Leon Black/",
                 "timestamp": "2023-06-30T16:05:00",
