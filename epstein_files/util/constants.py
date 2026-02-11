@@ -975,6 +975,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00656005', author=DONALD_NORMAN, attribution_reason='signed "Donald"', duplicate_ids=['EFTA02691296', 'EFTA01862178']),
     EmailCfg(id='EFTA02731552', author=FBI, date='2021-05-26 16:12:00'),
     EmailCfg(id='EFTA02730483', author=FBI, date='2023-07-11T08:25:00'),  # TODO: actually reply timestamp
+    EmailCfg(id='EFTA00039971', author=FBI, recipients=[USANYS]),  # TODO: recipient uncertain
     EmailCfg(id='EFTA00039985', author='Florence Hutner', recipients=[USANYS], attribution_reason='signature'),
     EmailCfg(id='EFTA02069096', author=GANBAT_CHULUUNKHUU),
     EmailCfg(id='EFTA02645857', author=GANBAT_CHULUUNKHUU),
@@ -1150,7 +1151,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00639014', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog" + "Sincerely"', duplicate_ids=['EFTA02347987']),
     EmailCfg(id='EFTA00995559', author=RENATA_BOLOTOVA, attribution_reason='poorly redacted signature'),
     EmailCfg(id='EFTA00039796', author='SDNY', recipients=[USANYS]),
-    EmailCfg(id='EFTA00039663', author=STACEY_RICHMAN, attribution_reason='unredacted in EFTA00039662'),
+    EmailCfg(id='EFTA00039663', author=STACEY_RICHMAN, recipients=[USANYS], attribution_reason='unredacted in EFTA00039662'),
     EmailCfg(
         id='EFTA02731689',
         author=USANYS,
@@ -1304,7 +1305,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00699275', description=f"'Fred' is probably Coinbase co-founder Fred Ehrsam"),
     EmailCfg(id='EFTA00830911', description='fundraising email for LedgerX which was later acquired by FTX for $298 million'),
     EmailCfg(id='EFTA01139067', description='Epstein tells Farkas he has not invested in Crypto Currency Partners II'),
-    EmailCfg(id='EFTA00104945', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True),
+    EmailCfg(id='EFTA00104945', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True, truncate_to=700),
     EmailCfg(id='EFTA00900908', description="negotiation of repurchase of half of Epstein's stake in Coinbase"),
     EmailCfg(id='EFTA00754450', description='"PA" is probably Prince Andrew', duplicate_ids=['EFTA02418244']),
     EmailCfg(id='EFTA01013266', description=f"request for payment to {MARIYA_PRUSAKOVA}'s {CRYPTO_PR_LAB}", is_interesting=True),
