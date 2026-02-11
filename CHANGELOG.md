@@ -1,4 +1,6 @@
 # NEXT RELEASE
+* Integrate DOJ file emails into the normal email generation
+* Include a pre-packaged `the_epstein_files.pkl.gz` in the repo
 
 # 1.5.0
 * Add support for DOJ Epstein Files Transparency Act documents via `DojFile` class
