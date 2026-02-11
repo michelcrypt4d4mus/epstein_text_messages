@@ -18,7 +18,7 @@ EMAILER_ID_PATTERNS: dict[str, str] = {
     ALAN_DERSHOWITZ: r'(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh',
     ALIREZA_ITTIHADIEH: r'Alireza.[Il]ttihadieh',
     ALISON_J_NATHAN: r"Alison(\s*J\.?)?\s*Nathan|Nathan\s*NYSD\s*Chambers?",
-    ANDREW_FARKAS: r"Andrew\s*(L\.\s*)?Farkas",
+    ANDREW_FARKAS: r"Andrew\s*(L\.\s*)?Farkas|Farkas,\s*Andrew(\s*L\.?)?",
     AMANDA_ENS: r'ens, amanda?|Amanda.Ens',
     AMIR_TAAKI: r'Amir\s*Taaki|genjix',
     ANAS_ALRASHEED: r'anas\s*al\s*rashee[cd]',
