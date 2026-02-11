@@ -1239,6 +1239,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00977447', recipients=[RENATA_BOLOTOVA], attribution_reason='"sneaky dog"', duplicate_ids=['EFTA02577917', 'EFTA01946045']),
     EmailCfg(id='EFTA00929871', recipients=[RENATA_BOLOTOVA], attribution_reason='"sneaky dog"', duplicate_ids=['EFTA01773449', 'EFTA02550388']),
     EmailCfg(id='EFTA00857165', recipients=['Seth Lloyd'], attribution_reason='quoted reply line'),
+    EmailCfg(id='EFTA00749241', recipients=[SULTAN_BIN_SULAYEM], attribution_reason='widely reported', comment='torture video', is_interesting=True),
     EmailCfg(id='EFTA02731721', recipients=[USANYS]),
     EmailCfg(id='EFTA02731582', recipients=[USANYS]),
     EmailCfg(id='EFTA02731512', recipients=[USANYS]),
@@ -1537,7 +1538,6 @@ OTHER_FILES_ARTICLES = [
     DocCfg(id='031170', author=VI_DAILY_NEWS, description='article', date='2019-03-06'),
     DocCfg(id='016506', author=VI_DAILY_NEWS, description='article', date='2019-02-28'),
     DocCfg(id='018862', author=VI_DAILY_NEWS, description='articles about Sen. Alvin Williams Jr. Fraud case, arson', date='2012-11-09'),
-
     DocCfg(id='016507', author=VI_DAILY_NEWS, description=f'"Perversion of Justice" by {JULIE_K_BROWN}', date='2018-12-19'),
     DocCfg(id='019212', author=WAPO, description=f'and Times Tribune articles about Bannon, Trump, and healthcare execs'),
     DocCfg(id='033379', author=WAPO, description=f'"How Washington Pivoted From Finger-Wagging to Appeasement" (about Viktor Orban)', date='2018-05-25'),
