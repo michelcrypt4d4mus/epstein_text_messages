@@ -1,7 +1,7 @@
 from epstein_files.util.constants import ALL_CONFIGS
 
 
-def test_other_files_config():
+def test_no_overlapping_configs():
     encountered_file_ids = set()
 
     for cfg in ALL_CONFIGS:
