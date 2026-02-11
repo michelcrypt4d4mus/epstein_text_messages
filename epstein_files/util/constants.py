@@ -384,6 +384,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='033488', author=LAWRANCE_VISOSKI, duplicate_ids=['033154']),
     EmailCfg(id='033309', author=LINDA_STONE, attribution_reason='"Co-authored with iPhone autocorrect"'),
     EmailCfg(id='017581', author='Lisa Randall', attribution_reason='reply header'),
+    EmailCfg(id='033246', author=MARIYA_PRUSAKOVA, attribution_reason='Kind regards/Cordialement in signature'),
     EmailCfg(id='026609', author='Mark Green', attribution_reason='Actually a fwd, Mark Green is in signature'),
     EmailCfg(id='030472', author=MARTIN_WEINBERG, attribution_reason='Maybe. in reply', is_attribution_uncertain=True),
     EmailCfg(id='032563', author=MASHA_DROKOVA, attribution_reason='replied to in 033014'),
