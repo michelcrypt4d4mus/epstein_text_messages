@@ -1071,7 +1071,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00920177', author=RENATA_BOLOTOVA, attribution_reason='discussion of employment at Institute'),
     EmailCfg(id='EFTA00912012', author=RENATA_BOLOTOVA, attribution_reason='renbolotova in body', description='this file has been removed from the DOJ site'),
     EmailCfg(id='EFTA01923844', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
-    EmailCfg(id='EFTA00676720', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
+    EmailCfg(id='EFTA00676720', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True, duplicate_ids=['EFTA01961947']),
     EmailCfg(id='EFTA00686861', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
     EmailCfg(id='EFTA00870433', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
     EmailCfg(id='EFTA01035614', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
@@ -1290,10 +1290,14 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00563586', duplicate_ids=['EFTA02323722']),
     EmailCfg(id='EFTA00039802', duplicate_ids=['EFTA00039809']),
     EmailCfg(id='EFTA01002234', duplicate_ids=['EFTA02597754']),
+    EmailCfg(id='EFTA01776613', duplicate_ids=['EFTA02691059']),
+    EmailCfg(id='EFTA01776411', duplicate_ids=['EFTA02691069']),
+    EmailCfg(id='EFTA00988395', duplicate_ids=['EFTA01928856']),
     EmailCfg(id='EFTA00039689', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00381451', truncate_to=800),
     EmailCfg(id='EFTA00362171', truncate_to=1200),
     EmailCfg(id='EFTA02588748', truncate_to=800),
+    EmailCfg(id='EFTA00869828', truncate_to=TRUNCATED_CHARS),
 ]
 
 if args.constantize:
