@@ -1287,6 +1287,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01002234', duplicate_ids=['EFTA02597754']),
     EmailCfg(id='EFTA01776613', duplicate_ids=['EFTA02691059']),
     EmailCfg(id='EFTA01776411', duplicate_ids=['EFTA02691069']),
+    EmailCfg(id='EFTA02390441', duplicate_ids=['EFTA02403336']),
     EmailCfg(id='EFTA00039689', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00381451', truncate_to=800),
     EmailCfg(id='EFTA00362171', truncate_to=1200),
