@@ -376,7 +376,7 @@ HIGHLIGHTED_NAMES = [
             ADAM_BACK: f"co-founder of Blockstream, bitcoin dev, long time Tether defender",
             AMIR_TAAKI: f"bitcoin bro, partner of Donald Norman (and {BROCK_PIERCE}?)",
             ANTHONY_SCARAMUCCI: 'Skybridge Capital, FTX investor',
-            AUSTIN_HILL: 'Blockstream co-founder with Adam Back',
+            AUSTIN_HILL: 'Blockstream co-founder with Adam Back, Brudder Ventures',
             BROCK_PIERCE: 'Bannon business partner, Tether co-founder, friend of Yair Netanyahu, sex crime history',
             BRYAN_BISHOP: 'executive at LedgerX',
             DONALD_NORMAN: f'co-founder of early British crypto exchange Intersango with {AMIR_TAAKI}',
@@ -1157,7 +1157,7 @@ HIGHLIGHTED_NAMES = [
         style='light_coral',
         emailers={
             BOB_CROWE: 'partner at Nelson Mullins',
-            GANBAT_CHULUUNKHUU: 'Corrupt Mongolian politician who was later wanted by Interpol',
+            GANBAT_CHULUUNKHUU: 'corrupt Mongolian politician who was later wanted by Interpol',
             'Joshua Cooper Ramo': 'co-CEO of Henry Kissinger Associates',
             KATHERINE_KEATING: 'daughter of former Australian prime minister',
             'Khaltmaagiin Battulga': 'former president of Mongolia',
