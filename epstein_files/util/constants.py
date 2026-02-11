@@ -974,7 +974,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00039967', author='DOJ London', recipients=[USANYS]),
     EmailCfg(id='EFTA01776893', author=DONALD_NORMAN, attribution_reason='"This is Donald"', duplicate_ids=['EFTA00915423']),
     EmailCfg(id='EFTA00656005', author=DONALD_NORMAN, attribution_reason='signed "Donald"', duplicate_ids=['EFTA02691296', 'EFTA01862178']),
-    EmailCfg(id='EFTA02731552', author=FBI, date='2021-05-26 16:12:00'),
+    EmailCfg(id='EFTA02731552', author=FBI, recipients=[USANYS], date='2021-05-26 16:12:00'),  # recipient uncertain
     EmailCfg(id='EFTA02730483', author=FBI, date='2023-07-11T08:25:00'),  # TODO: actually reply timestamp
     EmailCfg(id='EFTA00039971', author=FBI, recipients=[USANYS]),  # TODO: recipient uncertain
     EmailCfg(id='EFTA00039985', author='Florence Hutner', recipients=[USANYS], attribution_reason='signature'),
@@ -1189,6 +1189,9 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00039815', author=USANYS),
     EmailCfg(id='EFTA00039825', author=USANYS),
     EmailCfg(id='EFTA00039879', author=USANYS),
+    EmailCfg(id='EFTA02731699', author=USANYS, is_attribution_uncertain=True, recipients=[FBI], date='2021-05-27 10:19:00'),
+    EmailCfg(id='EFTA02731733', author=USANYS, is_attribution_uncertain=True, date='2021-05-17 17:29:00'),
+    EmailCfg(id='EFTA00039983', author=USANYS, is_attribution_uncertain=True),
     EmailCfg(id='EFTA00039886', author=USANYS, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731651', author=USANYS, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731775', author=USANYS, is_attribution_uncertain=True),
@@ -1235,7 +1238,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02518357', recipients=[CHRISTINA_GALBRAITH, RICHARD_KAHN], attribution_reason='"Christina" appears in email'),
     EmailCfg(id='EFTA00915426', recipients=[DONALD_NORMAN], attribution_reason='"This is Donald"'),
     EmailCfg(id='EFTA00916133', recipients=[DONALD_NORMAN], attribution_reason='signed "Donald"', duplicate_ids=['EFTA01862243']),
-    EmailCfg(id='EFTA02731699', recipients=[FBI], date='2021-05-27 10:19:00', is_interesting=False),
     EmailCfg(id='EFTA02646138', recipients=[GANBAT_CHULUUNKHUU]),
     EmailCfg(id='EFTA02629770', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='EFTA02328335', recipients=[JEFFREY_EPSTEIN, KARYNA_SHULIAK, None]),
@@ -1262,6 +1264,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731721', recipients=[USANYS]),
     EmailCfg(id='EFTA02731582', recipients=[USANYS]),
     EmailCfg(id='EFTA02731512', recipients=[USANYS]),
+    EmailCfg(id='EFTA00039884', recipients=[USANYS]),
     EmailCfg(id='EFTA02731480', recipients=[USANYS]),  # TODO: recipient uncertain
     EmailCfg(id='EFTA02731715', recipients=[USANYS], duplicate_ids=['EFTA02731762']),
     EmailCfg(id='EFTA02731514', recipients=[USANYS], comment='journal upload followup'),
@@ -1278,7 +1281,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731783', date='2022-01-21 17:28:00'),
     EmailCfg(id='EFTA02731578', date='2021-05-28 10:00:00'),
     EmailCfg(id='EFTA00039888', date='2019-05-14 16:49:00'),
-    EmailCfg(id='EFTA02731733', date='2021-05-17 17:29:00'),
     EmailCfg(id='EFTA00040145', date='2021-11-09 17:24:30'),
     # EmailCfg(id='EFTA02730468', date='2004-02-03 00:00:00'),  # TODO: ???
     EmailCfg(id='EFTA02730485', date='2021-12-03 00:00:00'),
