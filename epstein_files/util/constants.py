@@ -1294,6 +1294,7 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='EFTA00901970', description=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=True),
     EmailCfg(id='EFTA00988395', description='"Andy Back" is probably O.G. bitcoin dev Adam Back from Blockstream', duplicate_ids=['EFTA01928856']),
+    EmailCfg(id='EFTA02109391', description=f"{AUSTIN_HILL} brought a woman named Ellaina Astra to Epstein's house"),
     EmailCfg(id='EFTA01051074', description='Brock Pierce arranging meeting between Bannon and Epstein (in Doha?)'),
     EmailCfg(id='EFTA00658457', description='Brock Pierce says they will not invest in Bitfury'),
     EmailCfg(id='EFTA00998595', description='Brock Pierce and Epstein discuss structure of crypto investments'),
