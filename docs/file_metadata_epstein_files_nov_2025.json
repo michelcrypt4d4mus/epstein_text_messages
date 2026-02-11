@@ -15536,10 +15536,11 @@
                 "type": "Email"
             },
             {
-                "attribution_reason": "references Berkeley",
+                "attribution_reason": "Epstein paid for Prusakova to go to Berkely",
                 "author": "Mariya Prusakova",
                 "bytes": 1148,
                 "comment": "'What happens with zubair's project?'",
+                "description": "Masha Prusso asks about Zubair Khan",
                 "file_id": "030630",
                 "filename": "HOUSE_OVERSIGHT_030630.txt",
                 "is_attribution_uncertain": true,
@@ -21436,7 +21437,7 @@
                 "type": "Email"
             },
             {
-                "author": "Newsmax.com newsmaxgreply.newsmax.com",
+                "author": "Newsmax",
                 "bytes": 1634,
                 "comment": "newsmax on ken starr",
                 "file_id": "031990",
@@ -29190,10 +29191,14 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "Epstein paid for Prusakova to go to Berkely",
+                "author": "Mariya Prusakova",
                 "bytes": 729,
                 "comment": "'How is it going with Zubair?'",
+                "description": "Masha Prusso asks about Zubair Khan",
                 "file_id": "033178",
                 "filename": "HOUSE_OVERSIGHT_033178.txt",
+                "is_attribution_uncertain": true,
                 "is_interesting": true,
                 "num_lines": 15,
                 "recipients": [
@@ -29928,6 +29933,8 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "Kind regards/Cordialement in signature",
+                "author": "Mariya Prusakova",
                 "bytes": 590,
                 "file_id": "033246",
                 "filename": "HOUSE_OVERSIGHT_033246.txt",
@@ -32868,7 +32875,7 @@
                 "filename": "EFTA00039816.txt",
                 "num_lines": 27,
                 "recipients": [
-                    "nathannysdchambers@nysd.uscourts.govm"
+                    "Alison J. Nathan"
                 ],
                 "timestamp": "2021-04-22T15:22:17",
                 "type": "Email"
@@ -32953,10 +32960,9 @@
                 "filename": "EFTA00039878.txt",
                 "num_lines": 18,
                 "recipients": [
+                    "Bureau of Prisons",
                     "USAHUB-USAJournal111",
-                    "USANYS",
-                    "bop.gov",
-                    "\u00aebop.gov"
+                    "USANYS"
                 ],
                 "subject": "Re: Laptop for Ghislaine Maxwell (Reg. No. 02879-509)",
                 "timestamp": "2020-11-17T13:59:24",
@@ -33196,7 +33202,7 @@
                 "filename": "EFTA00039996.txt",
                 "num_lines": 68,
                 "recipients": [
-                    "USMS l USMS cas"
+                    "USMS"
                 ],
                 "subject": "FW: Freedom of Information Act Request: USMS files re: Jeffrey Epstein",
                 "timestamp": "2019-09-12T20:37:55",
@@ -33228,17 +33234,20 @@
             },
             {
                 "author": "Christian Everdell",
-                "bytes": 1646,
+                "bytes": 1645,
                 "file_id": "EFTA00040118",
                 "filename": "EFTA00040118.txt",
-                "num_lines": 23,
+                "num_lines": 24,
                 "recipients": [
+                    null,
                     "Alison J. Nathan",
-                    "Bobbi C Sternheim",
+                    "Bobbi C. Sternheim",
                     "Jeff Pagliuca",
-                    "Nathan NYSD Chambers"
+                    "Laura Menninger",
+                    "Nathan NYSD Chambers",
+                    "USANYS"
                 ],
-                "subject": "[EXTERNAL] U.S. v. Ghislaine Maxwell, S2 20 Cr. 330 (MN) -- Response to",
+                "subject": "[EXTERNAL] U.S. v. Ghislaine Maxwell, S2 20 Cr. 330 (MN) -- Response to Government's Letters re: Accuser-3's Evidence",
                 "timestamp": "2021-11-12T04:57:30",
                 "type": "Email"
             },
@@ -33358,14 +33367,18 @@
                 "type": "Email"
             },
             {
-                "author": "Justin Al farm",
-                "bytes": 21067,
+                "author": "Justin Alfano",
+                "bytes": 21079,
                 "file_id": "EFTA00080250",
                 "filename": "EFTA00080250.txt",
-                "num_lines": 587,
+                "num_lines": 586,
                 "recipients": [
-                    "Erika Engelson ala, Andrew Stemmer "
+                    null,
+                    "Andrew Stemmer",
+                    "Erika Engelson",
+                    "Vijay Dewan"
                 ],
+                "subject": "Deutsche Bank Production - Transaction Charts",
                 "timestamp": "2019-08-13T01:13:39",
                 "type": "Email"
             },
@@ -33635,7 +33648,7 @@
             },
             {
                 "attribution_reason": "can be seen in EFTA00368958",
-                "author": "Ike Groff cti",
+                "author": "Ike Groff",
                 "bytes": 5420,
                 "file_id": "EFTA00368951",
                 "filename": "EFTA00368951.txt",
@@ -33654,7 +33667,7 @@
                 "filename": "EFTA00368958.txt",
                 "num_lines": 74,
                 "recipients": [
-                    "Ike Groff el"
+                    "Ike Groff"
                 ],
                 "subject": "Re: BITCOIN - MINE, MINE, MINE",
                 "timestamp": "2014-05-29T15:47:20",
@@ -33675,6 +33688,8 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "\"Typos, misspellings courtesy of iPhone.\"",
+                "author": "Linda Stone",
                 "bytes": 6103,
                 "file_id": "EFTA00381451",
                 "filename": "EFTA00381451.txt",
@@ -34379,6 +34394,10 @@
                 "attribution_reason": "\"sneaky dog\"",
                 "author": "Renata Bolotova",
                 "bytes": 198,
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA01961947"
+                ],
                 "file_id": "EFTA00676720",
                 "filename": "EFTA00676720.txt",
                 "is_attribution_uncertain": true,
@@ -34445,7 +34464,7 @@
                 "type": "Email"
             },
             {
-                "author": "google+ team noreply-475ba29f@plus.google.com",
+                "author": "Google Plus",
                 "bytes": 2123,
                 "file_id": "EFTA00691703",
                 "filename": "EFTA00691703.txt",
@@ -34575,7 +34594,7 @@
                 "filename": "EFTA00704065.txt",
                 "num_lines": 17,
                 "recipients": [
-                    "James Fitzgerald 1",
+                    "James Fitzgerald",
                     "Jeffrey Epstein"
                 ],
                 "subject": "Valar Fund 2 - Fall update",
@@ -34706,6 +34725,7 @@
             },
             {
                 "bytes": 572,
+                "description": "\"PA\" is probably Prince Andrew",
                 "dupe_type": "same",
                 "duplicate_ids": [
                     "EFTA02418244"
@@ -34827,6 +34847,10 @@
                 "attribution_reason": "\"sneaky dog\"",
                 "author": "Renata Bolotova",
                 "bytes": 364,
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA02462211"
+                ],
                 "file_id": "EFTA00826575",
                 "filename": "EFTA00826575.txt",
                 "is_attribution_uncertain": true,
@@ -34911,7 +34935,7 @@
                 "filename": "EFTA00836182.txt",
                 "num_lines": 28,
                 "recipients": [
-                    "James Fitz erald I H",
+                    "James Fitzgerald",
                     "LIMITED PARTNERS"
                 ],
                 "timestamp": "2016-01-21T02:54:34",
@@ -35049,6 +35073,7 @@
                 ],
                 "subject": "Re: proof of burn (re: bitcoin&anonymity)",
                 "timestamp": "2014-07-24T10:14:01",
+                "truncate_to": 1333,
                 "type": "Email"
             },
             {
@@ -35248,7 +35273,7 @@
                 "bytes": 2187,
                 "file_id": "EFTA00915300",
                 "filename": "EFTA00915300.txt",
-                "num_lines": 47,
+                "num_lines": 48,
                 "recipients": [
                     "Amir Taaki"
                 ],
@@ -35373,12 +35398,12 @@
             },
             {
                 "author": "Jeffrey Epstein",
-                "bytes": 2933,
+                "bytes": 2940,
                 "file_id": "EFTA00927963",
                 "filename": "EFTA00927963.txt",
                 "num_lines": 59,
                 "recipients": [
-                    "iketrate-cfenbeleteys@gmetheem"
+                    "Renata Bolotova"
                 ],
                 "subject": "Re: :)",
                 "timestamp": "2012-01-29T14:36:23",
@@ -35386,12 +35411,12 @@
             },
             {
                 "author": "Jeffrey Epstein",
-                "bytes": 3787,
+                "bytes": 3804,
                 "file_id": "EFTA00927986",
                 "filename": "EFTA00927986.txt",
                 "num_lines": 79,
                 "recipients": [
-                    "P - - C."
+                    "Renata Bolotova"
                 ],
                 "subject": "Re: :)",
                 "timestamp": "2012-01-29T17:49:56",
@@ -35527,7 +35552,8 @@
                 "filename": "EFTA00968132.txt",
                 "num_lines": 39,
                 "recipients": [
-                    "Andrew McCormack  James Fitzgerald ",
+                    "Andrew McCormack",
+                    "James Fitzgerald",
                     "PROSPECTIVE INVESTORS"
                 ],
                 "timestamp": "2017-11-02T04:37:53",
@@ -35582,6 +35608,10 @@
                 "author": "Jeffrey Epstein",
                 "bytes": 851,
                 "description": "\"Andy Back\" is probably O.G. bitcoiner Adam Back from Blockstream",
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA01928856"
+                ],
                 "file_id": "EFTA00988395",
                 "filename": "EFTA00988395.txt",
                 "num_lines": 18,
@@ -35624,8 +35654,8 @@
                 "filename": "EFTA00994706.txt",
                 "num_lines": 128,
                 "recipients": [
+                    "Adam Back",
                     "Alex Fowler",
-                    "Dr Adam Back",
                     "Jeffrey Epstein"
                 ],
                 "subject": "Fwd: An idea for TED2014 talk to kill cancer and give it away to the world",
@@ -35876,7 +35906,7 @@
                 "filename": "EFTA01001339.txt",
                 "num_lines": 27,
                 "recipients": [
-                    "James Fitzgerald I",
+                    "James Fitzgerald",
                     "Jeffrey Epstein"
                 ],
                 "subject": "Re: introductions",
@@ -35947,7 +35977,8 @@
                 "num_lines": 12,
                 "recipients": [
                     "Jeffrey Epstein",
-                    "Jo.o Fontanilla L n fontanilla "
+                    "Jojo Fontanilla",
+                    "Lyn Fontanilla"
                 ],
                 "timestamp": "2014-11-29T17:22:06",
                 "type": "Email"
@@ -35979,13 +36010,14 @@
             },
             {
                 "author": "Ian ODonnell",
-                "bytes": 2112,
+                "bytes": 2105,
                 "file_id": "EFTA01003348",
                 "filename": "EFTA01003348.txt",
-                "num_lines": 35,
+                "num_lines": 34,
                 "recipients": [
-                    "Hongbo Bao Reuben Kobulnik  ",
-                    "PROSPECTIVE INVESTORS I"
+                    "Hongbo Bao",
+                    "PROSPECTIVE INVESTORS",
+                    "Reuben Kobulnik"
                 ],
                 "subject": "Valar Global Fund II LP - Updated LPA and PPM Supplement",
                 "timestamp": "2014-12-18T08:04:50",
@@ -36031,13 +36063,12 @@
                 "type": "Email"
             },
             {
-                "author": "Bryan Bishop I",
+                "author": "Bryan Bishop",
                 "bytes": 2287,
                 "file_id": "EFTA01005702",
                 "filename": "EFTA01005702.txt",
                 "num_lines": 41,
                 "recipients": [
-                    "Bryan Bishop Austin Hill I  ",
                     "Jeffrey Epstein"
                 ],
                 "subject": "Re: Invitation: Financial markets & cryptocoins with Jeffrey, Bryan @ Fri 2018-07-20 2pm - 3pm",
@@ -36428,7 +36459,7 @@
                 "filename": "EFTA01043208.txt",
                 "num_lines": 144,
                 "recipients": [
-                    "James Fitzgerald 1"
+                    "James Fitzgerald"
                 ],
                 "subject": "Re: Potential Valar Co-Invest \u2014 CONFIDENTIAL and TIME-SENSITIVE",
                 "timestamp": "2017-06-19T21:27:53",
@@ -36467,7 +36498,7 @@
                 "filename": "EFTA01047393.txt",
                 "num_lines": 104,
                 "recipients": [
-                    "Andrew McCormack ae",
+                    "Andrew McCormack",
                     "Jeffrey Epstein"
                 ],
                 "subject": "Re: Potential Valar Co-Invest -- CONFIDENTIAL and TIME-SENSITIVE",
@@ -36607,13 +36638,13 @@
                 "type": "Email"
             },
             {
-                "author": "Coursera noreplygcoursera.org",
+                "author": "Coursera",
                 "bytes": 6716,
                 "file_id": "EFTA01188963",
                 "filename": "EFTA01188963.txt",
                 "num_lines": 237,
                 "recipients": [
-                    "jeeprojectgyahoo.com"
+                    "Jeffrey Epstein"
                 ],
                 "subject": "Jeffrey epstein, we have recommended courses for you!",
                 "timestamp": "2013-06-12T04:34:38",
@@ -36640,7 +36671,7 @@
                 "filename": "EFTA01731288.txt",
                 "num_lines": 28,
                 "recipients": [
-                    "Renata Bonoron"
+                    "Renata Bolotova"
                 ],
                 "subject": "Re: Can you go to event on THurs Oct. 9th w/JE?",
                 "timestamp": "2014-10-07T20:50:28",
@@ -36723,14 +36754,15 @@
                 "num_lines": 11,
                 "recipients": [
                     "Jeffrey Epstein",
-                    "L n fontanilla: Jo.\u00b0 fontanilla"
+                    "Jojo Fontanilla",
+                    "Lyn Fontanilla"
                 ],
                 "timestamp": "2014-11-16T18:03:00",
                 "type": "Email"
             },
             {
-                "author": "Tyler h ars",
-                "bytes": 1258,
+                "author": "Tyler Shears",
+                "bytes": 1256,
                 "file_id": "EFTA01754551",
                 "filename": "EFTA01754551.txt",
                 "num_lines": 32,
@@ -36831,6 +36863,10 @@
             {
                 "author": "Amir Taaki",
                 "bytes": 2925,
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA02691069"
+                ],
                 "file_id": "EFTA01776411",
                 "filename": "EFTA01776411.txt",
                 "num_lines": 75,
@@ -36844,6 +36880,10 @@
             {
                 "author": "Amir Taaki",
                 "bytes": 1958,
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA02691059"
+                ],
                 "file_id": "EFTA01776613",
                 "filename": "EFTA01776613.txt",
                 "num_lines": 47,
@@ -37164,7 +37204,7 @@
                 "is_interesting": true,
                 "num_lines": 31,
                 "recipients": [
-                    "Dr Adam Back",
+                    "Adam Back",
                     "Hammie Hill",
                     "Jeffrey Epstein",
                     "Joi Ito"
@@ -37223,7 +37263,7 @@
                 "filename": "EFTA01926082.txt",
                 "num_lines": 14,
                 "recipients": [
-                    "Dr Adam Bac",
+                    "Adam Back",
                     "Jeffrey Epstein"
                 ],
                 "sent_from_device": "Sent from Mailbox for iPad",
@@ -37262,6 +37302,9 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 826,
+                "description": "\"Andy Back\" is probably O.G. bitcoiner Adam Back from Blockstream",
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA00988395",
                 "file_id": "EFTA01928856",
                 "filename": "EFTA01928856.txt",
                 "num_lines": 18,
@@ -37480,7 +37523,7 @@
                 "type": "Email"
             },
             {
-                "author": "LinkedIn Connections",
+                "author": "LinkedIn",
                 "bytes": 1176,
                 "file_id": "EFTA01965385",
                 "filename": "EFTA01965385.txt",
@@ -37511,10 +37554,10 @@
             },
             {
                 "author": "Steven Sinofsky",
-                "bytes": 391,
+                "bytes": 389,
                 "file_id": "EFTA01967208",
                 "filename": "EFTA01967208.txt",
-                "num_lines": 6,
+                "num_lines": 5,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -37787,13 +37830,13 @@
                 "type": "Email"
             },
             {
-                "author": "Andrew McCorm",
+                "author": "Andrew McCormack",
                 "bytes": 1365,
                 "file_id": "EFTA02068436",
                 "filename": "EFTA02068436.txt",
                 "num_lines": 31,
                 "recipients": [
-                    "James Fitzgera"
+                    "James Fitzgerald"
                 ],
                 "subject": "Re: Velar update",
                 "timestamp": "2015-11-16T20:45:54",
@@ -37823,7 +37866,7 @@
                 "filename": "EFTA02068531.txt",
                 "num_lines": 41,
                 "recipients": [
-                    "James Fitzgeral"
+                    "James Fitzgerald"
                 ],
                 "subject": "Re: Velar update",
                 "timestamp": "2015-11-16T20:48:58",
@@ -38003,6 +38046,7 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "Epstein scheduling",
                 "author": "Lesley Groff",
                 "bytes": 885,
                 "file_id": "EFTA02104454",
@@ -38486,7 +38530,7 @@
             },
             {
                 "author": "Tyler Shears",
-                "bytes": 446,
+                "bytes": 463,
                 "file_id": "EFTA02372294",
                 "filename": "EFTA02372294.txt",
                 "num_lines": 14,
@@ -38494,7 +38538,7 @@
                     "Jeffrey Epstein"
                 ],
                 "subject": "Fwd: pitch ideas for 3rd article",
-                "timestamp": "2026-02-12T00:00:00",
+                "timestamp": "2014-10-30T14:31:00",
                 "type": "Email"
             },
             {
@@ -38568,14 +38612,21 @@
             },
             {
                 "author": "Lesley Groff",
-                "bytes": 500,
+                "bytes": 498,
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA02403336"
+                ],
                 "file_id": "EFTA02390441",
                 "filename": "EFTA02390441.txt",
                 "num_lines": 13,
                 "recipients": [
                     "Jeffrey Epstein",
-                    "L n fontanilla: Jo o fontanilla"
+                    "Jojo Fontanilla",
+                    "Lyn Fontanilla",
+                    "Merwin Dela Cruz"
                 ],
+                "subject": "Gregory 11:15 confirmed/Justin 11:30 confirmed",
                 "timestamp": "2014-12-03T14:42:00",
                 "type": "Email"
             },
@@ -38628,15 +38679,18 @@
             {
                 "author": "Lesley Groff",
                 "bytes": 394,
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA02390441",
                 "file_id": "EFTA02403336",
                 "filename": "EFTA02403336.txt",
                 "num_lines": 12,
                 "recipients": [
                     "Jeffrey Epstein",
-                    "Jo o",
-                    "i r illa"
+                    "Jojo Fontanilla",
+                    "Lyn Fontanilla",
+                    "Merwin Dela Cruz"
                 ],
-                "timestamp": "2014-12-03T10:14:00",
+                "timestamp": "2014-12-03T14:42:00",
                 "type": "Email"
             },
             {
@@ -38667,6 +38721,7 @@
             },
             {
                 "bytes": 561,
+                "description": "\"PA\" is probably Prince Andrew",
                 "dupe_type": "same",
                 "duplicate_of_id": "EFTA00754450",
                 "file_id": "EFTA02418244",
@@ -38748,6 +38803,8 @@
                 "attribution_reason": "\"sneaky dog\"",
                 "author": "Renata Bolotova",
                 "bytes": 359,
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA00826575",
                 "file_id": "EFTA02462211",
                 "filename": "EFTA02462211.txt",
                 "is_attribution_uncertain": true,
@@ -38756,7 +38813,7 @@
                     "Jeffrey Epstein"
                 ],
                 "subject": "Re:",
-                "timestamp": "2016-05-31T14:33:00",
+                "timestamp": "2016-05-31T14:32:38",
                 "type": "Email"
             },
             {
@@ -38881,8 +38938,8 @@
                 "type": "Email"
             },
             {
-                "author": "on behalf of Seth Lloyd",
-                "bytes": 617,
+                "author": "Seth Lloyd",
+                "bytes": 601,
                 "file_id": "EFTA02502990",
                 "filename": "EFTA02502990.txt",
                 "num_lines": 15,
@@ -38895,7 +38952,7 @@
                 "type": "Email"
             },
             {
-                "author": "Andrew McCormac",
+                "author": "Andrew McCormack",
                 "bytes": 885,
                 "file_id": "EFTA02505986",
                 "filename": "EFTA02505986.txt",
@@ -38939,10 +38996,10 @@
             },
             {
                 "author": "Vincenzo Iozzo",
-                "bytes": 7333,
+                "bytes": 7334,
                 "file_id": "EFTA02517850",
                 "filename": "EFTA02517850.txt",
-                "num_lines": 114,
+                "num_lines": 115,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -39180,8 +39237,10 @@
             {
                 "author": "Vincenzo Iozzo",
                 "bytes": 4769,
+                "description": "Epstein, Ito, and Vincenzo Iozzo discuss crypto food stamps debit cards",
                 "file_id": "EFTA02588748",
                 "filename": "EFTA02588748.txt",
+                "is_interesting": true,
                 "num_lines": 93,
                 "recipients": [
                     "Jeffrey Epstein",
@@ -39257,7 +39316,7 @@
                 "recipients": [
                     "Jeffrey Epstein",
                     "Jojo Fontanilla",
-                    "L n fontanilla"
+                    "Lyn Fontanilla"
                 ],
                 "timestamp": "2014-11-29T17:22:00",
                 "type": "Email"
@@ -39568,6 +39627,8 @@
             {
                 "author": "Amir Taaki",
                 "bytes": 1941,
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA01776613",
                 "file_id": "EFTA02691059",
                 "filename": "EFTA02691059.txt",
                 "num_lines": 46,
@@ -39581,6 +39642,8 @@
             {
                 "author": "Amir Taaki",
                 "bytes": 2937,
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA01776411",
                 "file_id": "EFTA02691069",
                 "filename": "EFTA02691069.txt",
                 "num_lines": 76,
@@ -39746,6 +39809,7 @@
                 "type": "Email"
             },
             {
+                "author": "FBI",
                 "bytes": 1673,
                 "date": "2023-07-11T08:25:00",
                 "file_id": "EFTA02730483",
@@ -39784,12 +39848,12 @@
                 "type": "Email"
             },
             {
-                "bytes": 846,
+                "bytes": 847,
                 "file_id": "EFTA02731477",
                 "filename": "EFTA02731477.txt",
                 "num_lines": 18,
                 "subject": "RE: Leon Black/Additional HT Subject Referral -- Update",
-                "timestamp": "2026-06-12T13:59:00",
+                "timestamp": "2023-06-12T13:59:00",
                 "type": "Email"
             },
             {
@@ -39851,11 +39915,15 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 872,
-                "date": "2023-06-12T13:53:00",
                 "file_id": "EFTA02731485",
                 "filename": "EFTA02731485.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 12,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "Leon Black/Additional HT Subject Referral -- Update",
                 "timestamp": "2023-06-12T13:53:00",
                 "type": "Email"
@@ -39965,11 +40033,16 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 713,
                 "date": "2021-05-06 09:39:15",
                 "file_id": "EFTA02731528",
                 "filename": "EFTA02731528.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 17,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "!PI M.",
                 "timestamp": "2021-05-06T09:39:15",
                 "type": "Email"
@@ -40020,11 +40093,16 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 3973,
                 "date": "2022-01-21 17:28:00",
                 "file_id": "EFTA02731583",
                 "filename": "EFTA02731583.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 96,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "RE: [EXTERNAL] / Leon Black",
                 "timestamp": "2022-01-21T17:28:00",
                 "type": "Email"
@@ -40364,6 +40442,7 @@
             {
                 "author": "USANYS",
                 "bytes": 8030,
+                "date": "2023-06-09 20:14:00",
                 "file_id": "EFTA02731689",
                 "filename": "EFTA02731689.txt",
                 "is_attribution_uncertain": true,
@@ -40372,17 +40451,20 @@
                     "USANYS"
                 ],
                 "subject": "FW: (EXTERNAL] / Leon Black",
-                "timestamp": "2020-06-09T14:01:00",
+                "timestamp": "2023-06-09T20:14:00",
+                "truncate_to": 1333,
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 1658,
                 "date": "2021-06-07 17:33:00",
                 "file_id": "EFTA02731697",
                 "filename": "EFTA02731697.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 43,
                 "recipients": [
-                    "FBI"
+                    "USANYS"
                 ],
                 "timestamp": "2021-06-07T17:33:00",
                 "type": "Email"
@@ -40428,7 +40510,7 @@
                 "filename": "EFTA02731718.txt",
                 "num_lines": 71,
                 "subject": "EXTERNAL RE: Leon Black",
-                "timestamp": "2029-07-09T18:34:24",
+                "timestamp": "2024-07-09T18:34:24",
                 "type": "Email"
             },
             {
@@ -40463,13 +40545,17 @@
                 "type": "Email"
             },
             {
-                "bytes": 5802,
-                "date": "2021-08-17 00:00:00",
+                "author": "USANYS",
+                "bytes": 5801,
                 "file_id": "EFTA02731729",
                 "filename": "EFTA02731729.txt",
-                "num_lines": 108,
+                "is_attribution_uncertain": true,
+                "num_lines": 107,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "Memo to File re Leon Black",
-                "timestamp": "2021-08-17T00:00:00",
+                "timestamp": "2021-08-17T16:22:00",
                 "type": "Email"
             },
             {
@@ -40559,7 +40645,7 @@
                     "Jeanne M. Christensen"
                 ],
                 "subject": "RE: CNBC",
-                "timestamp": "2029-03-20T17:36:10",
+                "timestamp": "2024-03-20T17:36:10",
                 "type": "Email"
             },
             {
@@ -40633,7 +40719,7 @@
                 "filename": "EFTA02731781.txt",
                 "num_lines": 33,
                 "subject": "Fwd: Leon Black",
-                "timestamp": "2029-03-04T19:02:31",
+                "timestamp": "2024-03-04T19:02:31",
                 "type": "Email"
             },
             {
@@ -48064,6 +48150,7 @@
         "Heather Mann": "modeling, South African former model, ex-girlfriend of Prince Andrew (?)",
         "Henry Holt": "journalist, Michael Wolff's book publisher (company not a person)",
         "Howard Rubenstein": "lawyer, Epstein's former spokesman",
+        "Ian O'Donnell": "tech bro, Thiel's Valar Ventures",
         "Ian Osborne": "publicist, Ian Osborne & Partners reputation repairer hired in 2011",
         "Ivan Glasenberg": "Africa, South African former CEO of Glencore, one of the world's largest commodity trading and mining companies",
         "Jabor Y": "mideast, former Qatari prime minister Hamad bin Jassim AKA HBJ",
