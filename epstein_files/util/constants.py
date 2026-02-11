@@ -1240,6 +1240,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731721', recipients=[USANYS]),
     EmailCfg(id='EFTA02731582', recipients=[USANYS]),
     EmailCfg(id='EFTA02731512', recipients=[USANYS]),
+    EmailCfg(id='EFTA02731480', recipients=[USANYS]),  # TODO: recipient uncertain
     EmailCfg(id='EFTA02731715', recipients=[USANYS], duplicate_ids=['EFTA02731762']),
     EmailCfg(id='EFTA02731514', recipients=[USANYS], comment='journal upload followup'),
     EmailCfg(id='EFTA02731511', recipients=[USANYS], comment='journal upload followup'),
