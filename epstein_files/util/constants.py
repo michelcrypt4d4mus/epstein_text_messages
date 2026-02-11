@@ -1170,7 +1170,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00039419', author=USANYS, recipients=['Manhattan DA']),
     EmailCfg(id='EFTA02731617', author=USANYS, recipients=['SDNY'], date='2021-04-28T15:05:41'),
     EmailCfg(id='EFTA02731528', author=USANYS, date='2021-05-06 09:39:15', recipients=[USANYS], is_attribution_uncertain=True),
-    EmailCfg(id='EFTA02731737', author=USANYS, recipients=[FBI], is_attribution_uncertain=True),
+    EmailCfg(id='EFTA02731737', author=USANYS, recipients=[FBI], is_attribution_uncertain=True, date='2023-06-30T16:05:00'),
     EmailCfg(id='EFTA02731615', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731684', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731485', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
@@ -1186,7 +1186,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731637', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731659', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731771', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
-    EmailCfg(id='EFTA02731475', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
+    EmailCfg(id='EFTA02731475', date='2023-05-31T20:53:00', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731486', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731604', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731618', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
@@ -1232,8 +1232,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00857165', recipients=['Seth Lloyd'], attribution_reason='quoted reply line'),
     EmailCfg(id='EFTA02731721', recipients=[USANYS]),
     EmailCfg(id='EFTA02731582', recipients=[USANYS]),
-    EmailCfg(id='EFTA02731737', date='2023-06-30T16:05:00'),
-    EmailCfg(id='EFTA02731475', date='2023-05-31T20:53:00'),
     EmailCfg(id='EFTA02731732', date='2024-03-06T12:21:00'),
     EmailCfg(id='EFTA02730481', date='2023-07-07T11:01:00'),  # TODO: actually reply timestamp
     EmailCfg(id='EFTA02731754', date='2024-03-06T23:24:00'),  # TODO: actually reply timestamp
@@ -2339,3 +2337,19 @@ UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_
     'Travis Pangburn',                       # Random CC
     'Vahe Stepanian',                        # Random CC
 ]
+
+
+def check_no_overlapping_configs():
+    encountered_file_ids = set()
+
+    for cfg in ALL_CONFIGS:
+        if cfg.duplicate_of_id:
+            assert cfg.duplicate_of_id != cfg.id
+
+        if cfg.id in encountered_file_ids:
+            raise RuntimeError(f"{cfg.id} configured twice!")
+
+        encountered_file_ids.add(cfg.id)
+
+
+check_no_overlapping_configs()
