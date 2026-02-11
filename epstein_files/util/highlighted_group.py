@@ -393,7 +393,9 @@ HIGHLIGHTED_NAMES = [
             r"Bioptix",  # Now RIOT Blockchain
             r"bitcoin(\s*Foundation)?",
             r"Bit(Angels|Fury)",
+            r"block ?chain(\s*capital)?",
             r"Blockstream",
+            r"Bradley\s*Rotter",
             r"Brian Forde",
             r"Brock(\s*Pierce)?",
             r"Coinbase",
@@ -401,9 +403,11 @@ HIGHLIGHTED_NAMES = [
             r"Cory\s*Fields",  # bitcoin dev
             r"cr[iy]?pto\s*(currenc(y|ies)|PR\s*Lab)?",
             r"cryptoprlab",
+            r"(Dan\s*)?Morehead",
             r"Digital\s*Currenc(ies|y)(\s*Initiative)?",
             r"e-currency",
             r"(Gavin )?Andress?en",  # bitcoin dev
+            r"(Hester\s*)?Peirce",
             r"(Howard\s+)?Lutnic?k",
             r"(Jim\s*)Pallotta",  # Media lab advisory board
             r"LedgerX",
@@ -412,11 +416,11 @@ HIGHLIGHTED_NAMES = [
             r"Medici\s*Bank",
             r"Mi(chael|ke)\s*Novogratz",
             r"Noble\s*(Bank|Markets)",  # Crypto bank with Tether ties
+            r"Pantera",
             r"(Patrick\s*)?Murck",
-            r"(Hester\s*)?Peirce",
+            r"Ribbit",
             r"(?-i:RIOT)",  # (?-i:) makes it case sensitive
             r"Ron\s*Rivest",
-            r"block ?chain(\s*capital)?",
             r"(Ross\s*)?Ulbricht",
             r"Silk\s*Road",
             r"SpanCash",
