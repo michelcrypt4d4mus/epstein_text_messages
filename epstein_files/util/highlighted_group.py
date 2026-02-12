@@ -383,6 +383,7 @@ HIGHLIGHTED_NAMES = [
             JEFFREY_WERNICK: 'former COO of Parler, involved in numerous crypto companies like Bitforex',
             JEREMY_RUBIN: 'developer/researcher',
             JOI_ITO: f"former head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative",
+            LORENZO_DE_MEDICI: 'Medici Bank, possibly Medici heir?',
         },
         patterns=[
             r"Alphabit",
@@ -575,6 +576,7 @@ HIGHLIGHTED_NAMES = [
         style='medium_purple4',
         emailers={
             'Alfredo Rodriguez': "Epstein's butler, stole the journal",
+            'Bella Klein': "Epstein's accountant",
             'Bernard Kruger': "Epstein's doctor",
             EDUARDO_ROBLES: f'home builder at Creative Kingdom Dubai',
             ERIC_ROTH: 'jet decorator at International Jet',
@@ -590,6 +592,7 @@ HIGHLIGHTED_NAMES = [
             MERWIN_DELA_CRUZ: 'housekeeper',
             NADIA_MARCINKO: "Epstein's pilot",
             'Sean J. Lancaster': 'airplane reseller',
+            'Story Cowles': "Epstein's male assistant",
         },
         patterns=[
             r"Adriana\s*Ross",
@@ -851,7 +854,19 @@ HIGHLIGHTED_NAMES = [
             AUDREY_STRAUSS: "USA Attorney",
             CHRISTOPHER_DILORIO: 'self described whistleblower',
             DANNY_FROST: 'Director of Communications at Manhattan D.A.',
+            'DOJ Inspector General': 'American law enforcement',
+            'DOJ London': 'American law enforcement',
+            FBI: 'American law enforcement',
+            'Florence Hutner': 'New York Office of Chief Medical Examiner',
+            'Justin Alfano': 'American law enforcement',
+            'Manhattan DA': 'American law enforcement',
+            'NY FBI': 'American law enforcement',
+            OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL: 'American law enforcement',
+            'Paula Speer': 'court reporter',
             'Police Code Enforcement': f"{PALM_BEACH} buildings code enforcement",
+            'SDNY': 'American law enforcement',
+            USANYS: 'American law enforcement',
+            'USMS': "United States Marshal Service",
         },
         patterns=[
             r"AG",
@@ -875,7 +890,6 @@ HIGHLIGHTED_NAMES = [
             r"DHS",
             r"DOJ",
             r"EDGAR (Filing|Search)",  # SEC database is EDGAR
-            r"FBI",
             r"FCPA",
             r"FDIC",
             r"FDLE",
@@ -1033,6 +1047,7 @@ HIGHLIGHTED_NAMES = [
             JOHN_BROCKMAN: 'literary agent and author specializing in scientific literature',
             LANDON_THOMAS: 'New York Times financial reporter',
             MICHAEL_WOLFF: 'Author of "Fire and Fury: Inside the Trump White House"',
+            'Newsmax': 'right wing American news outlet',
             PAUL_KRASSNER: '60s counterculture guy',
             'Peter Aldhous': 'Buzzfeed science reporter',
             "Susan Edelman": 'New York Post reporter',
@@ -1535,11 +1550,13 @@ HIGHLIGHTED_NAMES = [
             ANDREW_MCCORMACK: f"partner at {PETER_THIEL}'s Valar Ventures {QUESTION_MARKS}",
             'Auren Hoffman': 'CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp',
             ELON_MUSK: 'father of Mecha-Hitler',
+            GOOGLE_PLUS: 'Google+',
             IAN_ODONNELL: "Thiel's Valar Ventures",
             'James Fitzgerald': f"{PETER_THIEL}'s Valar Ventures {QUESTION_MARKS}",
             PETER_THIEL: 'Paypal mafia member, founder of Palantir, Facebook investor',
             REID_HOFFMAN: 'PayPal mafia member, founder of LinkedIn',
             STEVEN_SINOFSKY: 'a16z, ex-Microsoft, loves bitcoin',
+            VALAR_VENTURES: f"Peter Thiel affiliated fintech venture fund",
             VINCENZO_IOZZO: 'CEO of the identity-security company SlashID',
             ZUBAIR_KHAN: 'Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai',
         },
@@ -1646,6 +1663,9 @@ HIGHLIGHTED_NAMES = [
     HighlightedNames(
         label='victim',
         style=VICTIM_COLOR,
+        emailers={
+            PAULA: 'ex-girlfriend who works in opera now',
+        },
         patterns=[
             r"child\s*pornography",
             r"(David\s*)?Bo[il]es(,?\s*Schiller( & Flexner)?)?",
