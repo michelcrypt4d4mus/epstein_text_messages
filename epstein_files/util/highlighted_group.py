@@ -590,6 +590,7 @@ HIGHLIGHTED_NAMES = [
             MERWIN_DELA_CRUZ: 'housekeeper',
             NADIA_MARCINKO: "Epstein's pilot",
             'Sean J. Lancaster': 'airplane reseller',
+            'Story Cowles': "Epstein's male assistant",
         },
         patterns=[
             r"Adriana\s*Ross",
@@ -1033,6 +1034,7 @@ HIGHLIGHTED_NAMES = [
             JOHN_BROCKMAN: 'literary agent and author specializing in scientific literature',
             LANDON_THOMAS: 'New York Times financial reporter',
             MICHAEL_WOLFF: 'Author of "Fire and Fury: Inside the Trump White House"',
+            'Newsmax': 'right wing American news outlet',
             PAUL_KRASSNER: '60s counterculture guy',
             'Peter Aldhous': 'Buzzfeed science reporter',
             "Susan Edelman": 'New York Post reporter',
