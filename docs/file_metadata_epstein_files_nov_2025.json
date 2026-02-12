@@ -32654,10 +32654,14 @@
                 "type": "Email"
             },
             {
+                "author": "Bureau of Prisons",
                 "bytes": 10201,
                 "file_id": "EFTA00039357",
                 "filename": "EFTA00039357.txt",
                 "num_lines": 366,
+                "recipients": [
+                    "DOJ Inspector General"
+                ],
                 "timestamp": "2019-08-12T08:58:00",
                 "type": "Email"
             },
@@ -32993,6 +32997,9 @@
                 "file_id": "EFTA00039884",
                 "filename": "EFTA00039884.txt",
                 "num_lines": 19,
+                "recipients": [
+                    "USANYS"
+                ],
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Re: Message from Audrey",
                 "timestamp": "2020-07-10T15:08:20",
@@ -33011,9 +33018,11 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 1158,
                 "file_id": "EFTA00039886",
                 "filename": "EFTA00039886.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 50,
                 "recipients": [
                     "NY FBI"
@@ -33159,9 +33168,11 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 1530,
                 "file_id": "EFTA00039983",
                 "filename": "EFTA00039983.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 29,
                 "recipients": [
                     "USANYS"
@@ -33717,6 +33728,35 @@
             },
             {
                 "author": "Lesley Groff",
+                "bytes": 1960,
+                "file_id": "EFTA00371547",
+                "filename": "EFTA00371547.txt",
+                "num_lines": 44,
+                "recipients": [
+                    "Austin Hill"
+                ],
+                "subject": "Re: Jeffrey Epstein",
+                "timestamp": "2014-04-08T13:34:06",
+                "type": "Email"
+            },
+            {
+                "author": "Lesley Groff",
+                "bytes": 455,
+                "file_id": "EFTA00371755",
+                "filename": "EFTA00371755.txt",
+                "is_attribution_uncertain": true,
+                "num_lines": 14,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Lyn Fontanilla",
+                    "Merwin Dela Cruz"
+                ],
+                "subject": "Austin Hill",
+                "timestamp": "2014-04-02T19:52:58",
+                "type": "Email"
+            },
+            {
+                "author": "Lesley Groff",
                 "bytes": 583,
                 "file_id": "EFTA00373948",
                 "filename": "EFTA00373948.txt",
@@ -33985,6 +34025,33 @@
                 "type": "Email"
             },
             {
+                "bytes": 1537,
+                "file_id": "EFTA00461202",
+                "filename": "EFTA00461202.txt",
+                "num_lines": 34,
+                "recipients": [
+                    "Austin Hill"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "subject": "Re: Jeffrey Epstein",
+                "timestamp": "2017-10-23T11:32:50",
+                "type": "Email"
+            },
+            {
+                "author": "Lesley Groff",
+                "bytes": 2582,
+                "file_id": "EFTA00462025",
+                "filename": "EFTA00462025.txt",
+                "num_lines": 64,
+                "recipients": [
+                    "Austin Hill"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "subject": "Re: Jeffrey Epstein",
+                "timestamp": "2017-10-26T11:29:23",
+                "type": "Email"
+            },
+            {
                 "author": "Lesley Groff",
                 "bytes": 14313,
                 "file_id": "EFTA00469073",
@@ -34138,6 +34205,19 @@
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Jeremy Rubin",
                 "timestamp": "2016-04-01T15:18:58",
+                "type": "Email"
+            },
+            {
+                "author": "Austin Hill",
+                "bytes": 3764,
+                "file_id": "EFTA00634728",
+                "filename": "EFTA00634728.txt",
+                "num_lines": 82,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Time to chat",
+                "timestamp": "2017-10-17T20:52:12",
                 "type": "Email"
             },
             {
@@ -34354,6 +34434,32 @@
                 "type": "Email"
             },
             {
+                "author": "Austin Hill",
+                "bytes": 2739,
+                "file_id": "EFTA00664899",
+                "filename": "EFTA00664899.txt",
+                "num_lines": 62,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Yo Plato",
+                "timestamp": "2017-09-12T21:29:41",
+                "type": "Email"
+            },
+            {
+                "author": "Austin Hill",
+                "bytes": 5065,
+                "file_id": "EFTA00665479",
+                "filename": "EFTA00665479.txt",
+                "num_lines": 127,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re:",
+                "timestamp": "2017-09-21T06:37:52",
+                "type": "Email"
+            },
+            {
                 "author": "Richard Kahn",
                 "bytes": 1657,
                 "file_id": "EFTA00666192",
@@ -34447,6 +34553,32 @@
                 ],
                 "subject": "Coinbase",
                 "timestamp": "2014-11-14T01:30:38",
+                "type": "Email"
+            },
+            {
+                "author": "Austin Hill",
+                "bytes": 4130,
+                "file_id": "EFTA00673388",
+                "filename": "EFTA00673388.txt",
+                "num_lines": 82,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Just checking that your Island is OK",
+                "timestamp": "2017-09-11T11:31:23",
+                "type": "Email"
+            },
+            {
+                "author": "Austin Hill",
+                "bytes": 3523,
+                "file_id": "EFTA00673391",
+                "filename": "EFTA00673391.txt",
+                "num_lines": 74,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Just checking that your Island is OK",
+                "timestamp": "2017-09-11T11:28:51",
                 "type": "Email"
             },
             {
@@ -34585,6 +34717,19 @@
                 ],
                 "subject": "CCP September Update",
                 "timestamp": "2014-10-02T15:10:48",
+                "type": "Email"
+            },
+            {
+                "author": "Austin Hill",
+                "bytes": 2798,
+                "file_id": "EFTA00694547",
+                "filename": "EFTA00694547.txt",
+                "num_lines": 66,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re:",
+                "timestamp": "2017-09-16T16:55:06",
                 "type": "Email"
             },
             {
@@ -35047,6 +35192,21 @@
                 "type": "Email"
             },
             {
+                "attribution_reason": "https://x.com/FlippersUpNow/status/2021662725412110565",
+                "author": "Julia Santos",
+                "bytes": 532,
+                "description": "author apparently is daughter of an FSB officer",
+                "file_id": "EFTA00838218",
+                "filename": "EFTA00838218.txt",
+                "is_attribution_uncertain": true,
+                "num_lines": 9,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2015-12-22T15:29:58",
+                "type": "Email"
+            },
+            {
                 "author": "Jeffrey Epstein",
                 "bytes": 1316,
                 "file_id": "EFTA00840591",
@@ -35180,6 +35340,19 @@
                 ],
                 "subject": "Re:",
                 "timestamp": "2014-05-02T16:58:04",
+                "type": "Email"
+            },
+            {
+                "author": "Austin Hill",
+                "bytes": 1034,
+                "file_id": "EFTA00870717",
+                "filename": "EFTA00870717.txt",
+                "num_lines": 18,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Austin Hill & Jeffrey",
+                "timestamp": "2014-03-19T18:17:55",
                 "type": "Email"
             },
             {
@@ -35608,6 +35781,45 @@
                 "type": "Email"
             },
             {
+                "author": "Austin Hill",
+                "bytes": 2665,
+                "file_id": "EFTA00947897",
+                "filename": "EFTA00947897.txt",
+                "num_lines": 52,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Follow up & Next Steps",
+                "timestamp": "2017-11-28T11:35:47",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 3352,
+                "file_id": "EFTA00947904",
+                "filename": "EFTA00947904.txt",
+                "num_lines": 69,
+                "recipients": [
+                    "Austin Hill"
+                ],
+                "subject": "Re: Follow up & Next Steps",
+                "timestamp": "2017-11-28T11:43:03",
+                "type": "Email"
+            },
+            {
+                "author": "Austin Hill",
+                "bytes": 3607,
+                "file_id": "EFTA00947907",
+                "filename": "EFTA00947907.txt",
+                "num_lines": 75,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Follow up & Next Steps",
+                "timestamp": "2017-11-28T11:53:59",
+                "type": "Email"
+            },
+            {
                 "attribution_reason": "\"sneaky dog\" + \"Sincerely\"",
                 "author": "Renata Bolotova",
                 "bytes": 550,
@@ -35722,6 +35934,84 @@
                 "type": "Email"
             },
             {
+                "author": "Austin Hill",
+                "bytes": 3193,
+                "file_id": "EFTA00981553",
+                "filename": "EFTA00981553.txt",
+                "num_lines": 67,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Time to chat",
+                "timestamp": "2017-10-17T15:44:55",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 4779,
+                "file_id": "EFTA00982094",
+                "filename": "EFTA00982094.txt",
+                "num_lines": 94,
+                "recipients": [
+                    "Austin Hill"
+                ],
+                "subject": "Re: Time to chat",
+                "timestamp": "2017-10-17T21:04:30",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 4904,
+                "file_id": "EFTA00982451",
+                "filename": "EFTA00982451.txt",
+                "num_lines": 96,
+                "recipients": [
+                    "Austin Hill"
+                ],
+                "subject": "Re: Time to chat",
+                "timestamp": "2017-10-18T10:19:06",
+                "type": "Email"
+            },
+            {
+                "author": "Austin Hill",
+                "bytes": 5184,
+                "file_id": "EFTA00982818",
+                "filename": "EFTA00982818.txt",
+                "num_lines": 102,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Time to chat",
+                "timestamp": "2017-10-18T15:18:18",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 5910,
+                "file_id": "EFTA00982864",
+                "filename": "EFTA00982864.txt",
+                "num_lines": 120,
+                "recipients": [
+                    "Austin Hill"
+                ],
+                "subject": "Re: Time to chat",
+                "timestamp": "2017-10-18T16:26:06",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 2460,
+                "file_id": "EFTA00987576",
+                "filename": "EFTA00987576.txt",
+                "num_lines": 51,
+                "recipients": [
+                    "Austin Hill"
+                ],
+                "subject": "Re:",
+                "timestamp": "2014-04-15T15:31:40",
+                "type": "Email"
+            },
+            {
                 "author": "Jeffrey Epstein",
                 "bytes": 851,
                 "description": "\"Andy Back\" is probably O.G. bitcoin dev Adam Back from Blockstream",
@@ -35749,6 +36039,19 @@
                 ],
                 "subject": "Fwd: PRIORITY: PayPay Financial",
                 "timestamp": "2014-06-02T17:22:54",
+                "type": "Email"
+            },
+            {
+                "author": "Austin Hill",
+                "bytes": 2651,
+                "file_id": "EFTA00990442",
+                "filename": "EFTA00990442.txt",
+                "num_lines": 54,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Haven't forgotten about you",
+                "timestamp": "2017-10-12T12:58:03",
                 "type": "Email"
             },
             {
@@ -36167,6 +36470,32 @@
                 "type": "Email"
             },
             {
+                "author": "Austin Hill",
+                "bytes": 4377,
+                "file_id": "EFTA01004644",
+                "filename": "EFTA01004644.txt",
+                "num_lines": 92,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: You up for a conversation.with Bryan Bishop?",
+                "timestamp": "2018-07-20T20:06:51",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 3516,
+                "file_id": "EFTA01004727",
+                "filename": "EFTA01004727.txt",
+                "num_lines": 78,
+                "recipients": [
+                    "Austin Hill"
+                ],
+                "subject": "Re: Thanks - just the three of us",
+                "timestamp": "2018-07-21T13:33:21",
+                "type": "Email"
+            },
+            {
                 "author": "Andrew McCormack",
                 "bytes": 3297,
                 "file_id": "EFTA01004829",
@@ -36180,16 +36509,71 @@
                 "type": "Email"
             },
             {
+                "author": "Jeffrey Epstein",
+                "bytes": 2297,
+                "file_id": "EFTA01005687",
+                "filename": "EFTA01005687.txt",
+                "num_lines": 49,
+                "recipients": [
+                    "Austin Hill"
+                ],
+                "subject": "Re: You up for a conversation.with Bryan Bishop?",
+                "timestamp": "2018-07-20T01:21:21",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 3207,
+                "file_id": "EFTA01005699",
+                "filename": "EFTA01005699.txt",
+                "num_lines": 71,
+                "recipients": [
+                    "Austin Hill"
+                ],
+                "subject": "Re: You up for a conversation.with Bryan Bishop?",
+                "timestamp": "2018-07-20T01:35:01",
+                "type": "Email"
+            },
+            {
                 "author": "Bryan Bishop",
                 "bytes": 2287,
                 "file_id": "EFTA01005702",
                 "filename": "EFTA01005702.txt",
                 "num_lines": 41,
                 "recipients": [
+                    "Austin Hill",
                     "Jeffrey Epstein"
                 ],
                 "subject": "Re: Invitation: Financial markets & cryptocoins with Jeffrey, Bryan @ Fri 2018-07-20 2pm - 3pm",
                 "timestamp": "2018-07-20T02:11:30",
+                "type": "Email"
+            },
+            {
+                "author": "Austin Hill",
+                "bytes": 2100,
+                "file_id": "EFTA01005712",
+                "filename": "EFTA01005712.txt",
+                "num_lines": 45,
+                "recipients": [
+                    "Bryan Bishop",
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Invitation: Financial markets & cryptocoins with Jeffrey, Bryan \u00ae Fri Jul 20, 2018 3pm - 4pm",
+                "timestamp": "2018-07-20T12:24:29",
+                "type": "Email"
+            },
+            {
+                "author": "Bryan Bishop",
+                "bytes": 2201,
+                "file_id": "EFTA01005715",
+                "filename": "EFTA01005715.txt",
+                "num_lines": 49,
+                "recipients": [
+                    "Austin Hill",
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Invitation: Financial markets & cryptocoins with Jeffrey, Bryan @ Fri Jul 20, 2018 3pm - 4pm",
+                "timestamp": "2018-07-20T12:30:07",
                 "type": "Email"
             },
             {
@@ -36232,6 +36616,32 @@
                 ],
                 "subject": "Re: Happy New Year!",
                 "timestamp": "2019-01-01T19:24:31",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 7165,
+                "file_id": "EFTA01010209",
+                "filename": "EFTA01010209.txt",
+                "num_lines": 165,
+                "recipients": [
+                    "Austin Hill"
+                ],
+                "subject": "Re:",
+                "timestamp": "2017-09-23T14:59:03",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 8050,
+                "file_id": "EFTA01010308",
+                "filename": "EFTA01010308.txt",
+                "num_lines": 187,
+                "recipients": [
+                    "Austin Hill"
+                ],
+                "subject": "Re:",
+                "timestamp": "2017-09-23T16:05:25",
                 "type": "Email"
             },
             {
@@ -36299,6 +36709,19 @@
             },
             {
                 "author": "Jeffrey Epstein",
+                "bytes": 4177,
+                "file_id": "EFTA01024046",
+                "filename": "EFTA01024046.txt",
+                "num_lines": 98,
+                "recipients": [
+                    "Austin Hill"
+                ],
+                "subject": "Re:",
+                "timestamp": "2017-09-16T21:58:57",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
                 "bytes": 6887,
                 "file_id": "EFTA01026305",
                 "filename": "EFTA01026305.txt",
@@ -36312,6 +36735,19 @@
             },
             {
                 "author": "Jeffrey Epstein",
+                "bytes": 2000,
+                "file_id": "EFTA01026858",
+                "filename": "EFTA01026858.txt",
+                "num_lines": 48,
+                "recipients": [
+                    "Austin Hill"
+                ],
+                "subject": "Re: Yo Plato",
+                "timestamp": "2017-09-12T19:32:11",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
                 "bytes": 7750,
                 "file_id": "EFTA01027134",
                 "filename": "EFTA01027134.txt",
@@ -36321,6 +36757,19 @@
                 ],
                 "subject": "Re: Valar Global Fund IV LP - Draft Subscription Documents \"Action Required\"",
                 "timestamp": "2018-06-13T12:49:00",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 3234,
+                "file_id": "EFTA01028886",
+                "filename": "EFTA01028886.txt",
+                "num_lines": 68,
+                "recipients": [
+                    "Austin Hill"
+                ],
+                "subject": "Re: Just checking that your Island is OK",
+                "timestamp": "2017-09-11T11:26:46",
                 "type": "Email"
             },
             {
@@ -36797,6 +37246,19 @@
                 "type": "Email"
             },
             {
+                "author": "Lesley Groff",
+                "bytes": 1257,
+                "file_id": "EFTA01344195",
+                "filename": "EFTA01344195.txt",
+                "num_lines": 37,
+                "recipients": [
+                    "Amanda Kirby"
+                ],
+                "subject": "Re: Jeffrey Epstein",
+                "timestamp": "2014-01-08T10:06:35",
+                "type": "Email"
+            },
+            {
                 "attribution_reason": "signature",
                 "author": "Lesley Groff",
                 "bytes": 1263,
@@ -36891,6 +37353,33 @@
                     "Lyn Fontanilla"
                 ],
                 "timestamp": "2014-11-16T18:03:00",
+                "type": "Email"
+            },
+            {
+                "author": "Joi Ito",
+                "bytes": 1108,
+                "file_id": "EFTA01748990",
+                "filename": "EFTA01748990.txt",
+                "num_lines": 23,
+                "recipients": [
+                    "Austin Hill",
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Stellar isn't so Stellar",
+                "timestamp": "2014-08-02T14:01:48",
+                "type": "Email"
+            },
+            {
+                "author": "Austin Hill",
+                "bytes": 423,
+                "file_id": "EFTA01750836",
+                "filename": "EFTA01750836.txt",
+                "num_lines": 9,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Travelling with limited Connectivity Until September 8th. Re:",
+                "timestamp": "2014-09-02T11:13:29",
                 "type": "Email"
             },
             {
@@ -37490,6 +37979,19 @@
                 "type": "Email"
             },
             {
+                "author": "Austin Hill",
+                "bytes": 556,
+                "file_id": "EFTA01929919",
+                "filename": "EFTA01929919.txt",
+                "num_lines": 16,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Please meet each other",
+                "timestamp": "2014-03-19T01:15:02",
+                "type": "Email"
+            },
+            {
                 "author": "Tyler Shears",
                 "bytes": 573,
                 "file_id": "EFTA01931212",
@@ -37542,6 +38044,19 @@
                 ],
                 "subject": "Nat Geo",
                 "timestamp": "2014-03-18T00:08:51",
+                "type": "Email"
+            },
+            {
+                "author": "Austin Hill",
+                "bytes": 800,
+                "file_id": "EFTA01932706",
+                "filename": "EFTA01932706.txt",
+                "num_lines": 18,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Austin Hill & Jeffrey",
+                "timestamp": "2014-03-19T18:17:55",
                 "type": "Email"
             },
             {
@@ -37906,6 +38421,7 @@
                 "type": "Email"
             },
             {
+                "author": "Lesley Groff",
                 "bytes": 897,
                 "file_id": "EFTA02062308",
                 "filename": "EFTA02062308.txt",
@@ -38253,6 +38769,22 @@
             },
             {
                 "author": "Lesley Groff",
+                "bytes": 1527,
+                "description": "Austin Hill brought a woman named Ellaina Astra to Epstein's house",
+                "file_id": "EFTA02109391",
+                "filename": "EFTA02109391.txt",
+                "is_attribution_uncertain": true,
+                "num_lines": 41,
+                "recipients": [
+                    "Austin Hill"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "subject": "Re: Jeffrey Epstein",
+                "timestamp": "2014-04-02T21:26:12",
+                "type": "Email"
+            },
+            {
+                "author": "Lesley Groff",
                 "bytes": 534,
                 "file_id": "EFTA02113506",
                 "filename": "EFTA02113506.txt",
@@ -38406,6 +38938,28 @@
                 "type": "Email"
             },
             {
+                "author": "Austin Hill",
+                "bytes": 1285,
+                "file_id": "EFTA02227488",
+                "filename": "EFTA02227488.txt",
+                "num_lines": 36,
+                "subject": "Re: Jeffrey Epstein",
+                "timestamp": "2017-10-23T11:17:36",
+                "type": "Email"
+            },
+            {
+                "bytes": 403,
+                "file_id": "EFTA02229342",
+                "filename": "EFTA02229342.txt",
+                "num_lines": 13,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "How you feeling/Rescheduling",
+                "timestamp": "2017-10-31T14:29:26",
+                "type": "Email"
+            },
+            {
                 "bytes": 1877,
                 "file_id": "EFTA02229402",
                 "filename": "EFTA02229402.txt",
@@ -38442,11 +38996,16 @@
                 "type": "Email"
             },
             {
-                "bytes": 2279,
+                "author": "Lesley Groff",
+                "bytes": 2293,
                 "file_id": "EFTA02246900",
                 "filename": "EFTA02246900.txt",
                 "num_lines": 95,
+                "recipients": [
+                    "Jeremy Rubin"
+                ],
                 "sent_from_device": "Sent from my iPhone",
+                "subject": "Re: Jeffrey Epstein",
                 "timestamp": "2018-06-04T12:03:39",
                 "type": "Email"
             },
@@ -38772,6 +39331,19 @@
                 ],
                 "subject": "Re: an idea",
                 "timestamp": "2015-01-14T19:46:00",
+                "type": "Email"
+            },
+            {
+                "author": "Austin Hill",
+                "bytes": 2617,
+                "file_id": "EFTA02372964",
+                "filename": "EFTA02372964.txt",
+                "num_lines": 49,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Just checking that your Island is OK",
+                "timestamp": "2026-02-16T00:00:00",
                 "type": "Email"
             },
             {
@@ -39440,6 +40012,19 @@
                 "type": "Email"
             },
             {
+                "author": "Austin Hill",
+                "bytes": 2395,
+                "file_id": "EFTA02579686",
+                "filename": "EFTA02579686.txt",
+                "num_lines": 49,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Time to chat",
+                "timestamp": "2017-10-17T15:40:00",
+                "type": "Email"
+            },
+            {
                 "bytes": 1245,
                 "file_id": "EFTA02586413",
                 "filename": "EFTA02586413.txt",
@@ -39553,6 +40138,19 @@
                 "type": "Email"
             },
             {
+                "author": "Austin Hill",
+                "bytes": 2571,
+                "file_id": "EFTA02601259",
+                "filename": "EFTA02601259.txt",
+                "num_lines": 49,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Thanks - just the three of us",
+                "timestamp": "2018-07-21T13:28:00",
+                "type": "Email"
+            },
+            {
                 "attribution_reason": "\"sneaky dog\"",
                 "author": "Renata Bolotova",
                 "bytes": 272,
@@ -39578,6 +40176,19 @@
                 ],
                 "subject": "Re: Happy New Year!",
                 "timestamp": "2019-01-01T18:54:00",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 9134,
+                "file_id": "EFTA02608800",
+                "filename": "EFTA02608800.txt",
+                "num_lines": 206,
+                "recipients": [
+                    "Austin Hill"
+                ],
+                "subject": "Re:",
+                "timestamp": "2017-09-23T16:05:00",
                 "type": "Email"
             },
             {
@@ -39632,6 +40243,20 @@
                 ],
                 "subject": "N26 - Valar Fund II largest holding",
                 "timestamp": "2018-06-12T17:14:00",
+                "type": "Email"
+            },
+            {
+                "attribution_reason": "https://x.com/FlippersUpNow/status/2021662725412110565",
+                "author": "Jeffrey Epstein",
+                "bytes": 3995,
+                "file_id": "EFTA02622513",
+                "filename": "EFTA02622513.txt",
+                "num_lines": 89,
+                "recipients": [
+                    "Julia Santos"
+                ],
+                "subject": "Re:",
+                "timestamp": "2018-09-21T11:34:00",
                 "type": "Email"
             },
             {
@@ -40325,6 +40950,9 @@
                 "file_id": "EFTA02731552",
                 "filename": "EFTA02731552.txt",
                 "num_lines": 110,
+                "recipients": [
+                    "USANYS"
+                ],
                 "subject": "RE: EXTERNAL EMAIL \u2022 RE: 302",
                 "timestamp": "2021-05-26T16:12:00",
                 "type": "Email"
@@ -40793,11 +41421,12 @@
                 "type": "Email"
             },
             {
+                "author": "USANYS",
                 "bytes": 4100,
                 "date": "2021-05-27 10:19:00",
                 "file_id": "EFTA02731699",
                 "filename": "EFTA02731699.txt",
-                "is_interesting": false,
+                "is_attribution_uncertain": true,
                 "num_lines": 118,
                 "recipients": [
                     "FBI"
@@ -40899,10 +41528,12 @@
                 "type": "Email"
             },
             {
-                "bytes": 1180,
+                "author": "USANYS",
+                "bytes": 1182,
                 "date": "2021-05-17 17:29:00",
                 "file_id": "EFTA02731733",
                 "filename": "EFTA02731733.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 32,
                 "subject": "Re: 302",
                 "timestamp": "2021-05-17T17:29:00",
@@ -48523,6 +49154,7 @@
         "Joscha Bach": "academia, cognitive science / AI research",
         "Joshua Cooper Ramo": "lobbyist, co-CEO of Henry Kissinger Associates",
         "Juleanna Glover": "Republican, CEO of D.C. public affairs advisory firm Ridgely|Walsh",
+        "Julia Santos": "Russia, possibly a Russian in Paris that was recruiting girls from Ukraine for Epstein",
         "Karim Wade": "Africa, son of the president of Senegal, facing arrest for corruption, email handle is \"Afri zp\"",
         "Karyna Shuliak": "Russia, Epstein's final girlfriend to whom he tried to leave $50-100 million and the island",
         "Katherine Keating": "lobbyist, daughter of former Australian prime minister",
