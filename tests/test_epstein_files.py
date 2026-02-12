@@ -1,7 +1,7 @@
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.epstein_files import count_by_month
+from epstein_files.util.constants import ALL_FILE_CONFIGS
 from epstein_files.util.rich import console
-
 
 EXPECTED_MONTHLY_COUNTS = {
     "1985-01": 1,
@@ -247,3 +247,10 @@ def test_document_monthly_counts(epstein_files):
     assert counts == EXPECTED_MONTHLY_COUNTS
     len_all_files = len(epstein_files.all_files)
     assert sum(counts.values()) == len_all_files - 1256  # There's 1256 empty files
+
+
+def test_all_configs_exist(epstein_files):
+    all_ids = [doc.file_id for doc in epstein_files.all_documents]
+
+    for id in ALL_FILE_CONFIGS:
+        assert id in all_ids, f"{id} not found in epstein_files!"
