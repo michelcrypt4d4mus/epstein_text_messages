@@ -2184,7 +2184,7 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA01613762', description=f'WhatsApp convo with {MARIYA_PRUSAKOVA} about {CRYPTO_PR_LAB}', is_interesting=True),
     DocCfg(id='EFTA01612721', description=f'WhatsApp convo with {MARIYA_PRUSAKOVA} about {CRYPTO_PR_LAB}', is_interesting=True),
     DocCfg(id='EFTA00605996', description='Wedbush BUY rating on Digital Currency Group GBTC', is_interesting=True),
-    DocCfg(id='EFTA00128987', description='SAR about Kushner co. crypto payments to a suspicious Russian person'),
+    DocCfg(id='EFTA00128987', description='SAR about Kushner co. crypto payments to a suspicious Russian person', is_interesting=True),
     DocCfg(id='EFTA00309271', description=f'{CRYPTO_PR_LAB} financial statement', is_interesting=True),
     DocCfg(id='EFTA01089506', description='Crypto Currency Partners II investor report', date='2014-11-01', is_interesting=True),
     DocCfg(id='EFTA01093509', description='Crypto Currency Partners II limited partnership agreement draft', is_interesting=True),
