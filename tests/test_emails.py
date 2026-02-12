@@ -254,6 +254,7 @@ EMAIL_AUTHOR_COUNTS = {
     "middle.east.update@hotmail.com": 1,
 }
 
+
 EMAIL_RECIPIENT_COUNTS = {
     None: 95,
     "ACT for America": 1,
@@ -332,6 +333,7 @@ EMAIL_RECIPIENT_COUNTS = {
     ED_BOYLE: 1,
     EDWARD_JAY_EPSTEIN: 1,
     EHUD_BARAK: 3,
+    'Elena Bolyakina': 1,
     ERIC_ROTH: 1,
     'Erika Engelson': 2,
     "Erika Kellerhals": 2,
@@ -376,7 +378,7 @@ EMAIL_RECIPIENT_COUNTS = {
     JEANNE_M_CHRISTENSEN: 8,
     JEFF_FULLER: 2,
     'Jeff Pagliuca': 4,
-    JEFFREY_EPSTEIN: 1780,
+    JEFFREY_EPSTEIN: 1782,
     JEREMY_RUBIN: 7,
     JES_STALEY: 7,
     JESSICA_CADWELL: 3,
@@ -477,7 +479,7 @@ EMAIL_RECIPIENT_COUNTS = {
     PEGGY_SIEGAL: 11,
     "Peter Aldhous": 2,
     "Peter Mandelson": 4,
-    PETER_THIEL: 7,
+    PETER_THIEL: 9,
     "Philip Kafka": 3,
     'Players2': 1,
     "Police Code Enforcement": 1,
@@ -508,7 +510,7 @@ EMAIL_RECIPIENT_COUNTS = {
     SDNY: 1,
     SEAN_BANNON: 1,
     "Sean T Lehane": 1,
-    SERGEY_BELYAKOV: 3,
+    SERGEY_BELYAKOV: 5,
     'Seth Lloyd': 1,
     SOON_YI_PREVIN: 4,
     STACEY_RICHMAN: 1,
@@ -650,6 +652,7 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     'EFTA01823635',
     'EFTA01932234',
     'EFTA01950559',
+    'EFTA02060931',
     'EFTA02160715',
     'EFTA02227488',
     'EFTA02229858',
