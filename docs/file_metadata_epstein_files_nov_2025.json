@@ -33740,6 +33740,20 @@
                 "type": "Email"
             },
             {
+                "author": "Vincenzo Iozzo",
+                "bytes": 4495,
+                "file_id": "EFTA00369335",
+                "filename": "EFTA00369335.txt",
+                "num_lines": 154,
+                "recipients": [
+                    "Lesley Groff"
+                ],
+                "sent_from_device": "Sent from my Iphone",
+                "subject": "Re: Vincenzo",
+                "timestamp": "2014-05-18T13:29:54",
+                "type": "Email"
+            },
+            {
                 "author": "Lesley Groff",
                 "bytes": 1960,
                 "file_id": "EFTA00371547",
@@ -34038,6 +34052,7 @@
                 "type": "Email"
             },
             {
+                "author": "Lesley Groff",
                 "bytes": 1537,
                 "file_id": "EFTA00461202",
                 "filename": "EFTA00461202.txt",
@@ -34070,6 +34085,9 @@
                 "file_id": "EFTA00462608",
                 "filename": "EFTA00462608.txt",
                 "num_lines": 16,
+                "recipients": [
+                    "Lesley Groff"
+                ],
                 "subject": "Invitation: Sharia Coin Brainstorming Session @ Sat Nov II, 2017 2pm - 5:50pm (M",
                 "timestamp": "2017-11-08T23:48:57",
                 "type": "Email"
@@ -34158,6 +34176,33 @@
                 ],
                 "subject": "Re: Medici bank pitch deck / summary of calls, meetings",
                 "timestamp": "2019-05-19T21:42:55",
+                "type": "Email"
+            },
+            {
+                "author": "Karyna Shuliak",
+                "bytes": 2661,
+                "file_id": "EFTA00554702",
+                "filename": "EFTA00554702.txt",
+                "num_lines": 63,
+                "recipients": [
+                    "Lorenz Ehrsam"
+                ],
+                "subject": "Re: Hardworking Filipino Housekeeper - Maria Macaracg",
+                "timestamp": "2019-05-07T02:38:17",
+                "type": "Email"
+            },
+            {
+                "author": "Karyna Shuliak",
+                "bytes": 7233,
+                "file_id": "EFTA00554776",
+                "filename": "EFTA00554776.txt",
+                "num_lines": 163,
+                "recipients": [
+                    "Lorenz Ehrsam",
+                    "Richard Kahn"
+                ],
+                "subject": "Re: Hardworking Filipino Housekeeper - Maria Macaraeg",
+                "timestamp": "2019-05-16T14:56:54",
                 "type": "Email"
             },
             {
@@ -34426,6 +34471,19 @@
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Fwd: Jeffrey Epstein",
                 "timestamp": "2011-11-22T12:56:31",
+                "type": "Email"
+            },
+            {
+                "author": "Sergey Belyakov",
+                "bytes": 6060,
+                "file_id": "EFTA00657903",
+                "filename": "EFTA00657903.txt",
+                "num_lines": 118,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re:",
+                "timestamp": "2016-02-11T21:52:20",
                 "type": "Email"
             },
             {
@@ -34825,6 +34883,19 @@
                 "type": "Email"
             },
             {
+                "author": "Sergey Belyakov",
+                "bytes": 2928,
+                "file_id": "EFTA00700605",
+                "filename": "EFTA00700605.txt",
+                "num_lines": 61,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re:",
+                "timestamp": "2015-06-30T09:27:54",
+                "type": "Email"
+            },
+            {
                 "attribution_reason": "\"iPhone word substitution\" in signature, which is traced back to \"Linda, thanks\" in EFTA00961792",
                 "author": "Linda Stone",
                 "bytes": 2495,
@@ -34865,6 +34936,20 @@
                 ],
                 "subject": "Valar Fund 2 - Fall update",
                 "timestamp": "2015-09-18T17:43:33",
+                "type": "Email"
+            },
+            {
+                "attribution_reason": "response to EFTA00835324",
+                "author": "Sergey Belyakov",
+                "bytes": 4019,
+                "file_id": "EFTA00704085",
+                "filename": "EFTA00704085.txt",
+                "num_lines": 69,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Fwd:",
+                "timestamp": "2016-01-30T21:02:44",
                 "type": "Email"
             },
             {
@@ -35201,6 +35286,34 @@
                 "type": "Email"
             },
             {
+                "author": "Vincenzo Iozzo",
+                "bytes": 3150,
+                "file_id": "EFTA00835319",
+                "filename": "EFTA00835319.txt",
+                "num_lines": 46,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my Iphone",
+                "subject": "Re:",
+                "timestamp": "2016-01-30T13:16:27",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 3901,
+                "description": "assessment of Mycelium bitcoin wallet",
+                "file_id": "EFTA00835324",
+                "filename": "EFTA00835324.txt",
+                "num_lines": 65,
+                "recipients": [
+                    "Sergey Belyakov"
+                ],
+                "subject": "Fwd:",
+                "timestamp": "2016-01-30T14:08:26",
+                "type": "Email"
+            },
+            {
                 "author": "Ian ODonnell",
                 "bytes": 1585,
                 "file_id": "EFTA00836182",
@@ -35310,6 +35423,32 @@
                 "type": "Email"
             },
             {
+                "author": "Jeffrey Epstein",
+                "bytes": 1624,
+                "file_id": "EFTA00850130",
+                "filename": "EFTA00850130.txt",
+                "num_lines": 37,
+                "recipients": [
+                    "Sergey Belyakov"
+                ],
+                "subject": "Re:",
+                "timestamp": "2015-07-29T10:45:12",
+                "type": "Email"
+            },
+            {
+                "author": "Sergey Belyakov",
+                "bytes": 2214,
+                "file_id": "EFTA00852324",
+                "filename": "EFTA00852324.txt",
+                "num_lines": 60,
+                "recipients": [
+                    "Alisa Bekins",
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2015-07-06T18:39:12",
+                "type": "Email"
+            },
+            {
                 "attribution_reason": "quoted reply line",
                 "author": "Jeffrey Epstein",
                 "bytes": 1320,
@@ -35321,6 +35460,19 @@
                 ],
                 "subject": "Re: Seth/bitcoin",
                 "timestamp": "2015-05-12T17:02:07",
+                "type": "Email"
+            },
+            {
+                "author": "Sergey Belyakov",
+                "bytes": 906,
+                "file_id": "EFTA00858688",
+                "filename": "EFTA00858688.txt",
+                "num_lines": 21,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re:",
+                "timestamp": "2015-04-23T03:07:33",
                 "type": "Email"
             },
             {
@@ -35886,10 +36038,12 @@
             },
             {
                 "author": "Austin Hill",
-                "bytes": 1517,
+                "bytes": 1514,
+                "description": "Austin Hill discusses investments in crypto funds engaged in fraudulent wash trading",
                 "file_id": "EFTA00955063",
                 "filename": "EFTA00955063.txt",
-                "num_lines": 21,
+                "is_interesting": true,
+                "num_lines": 20,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -36090,6 +36244,19 @@
                     "Amir Taaki"
                 ],
                 "timestamp": "2014-04-19T15:22:45",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 2992,
+                "file_id": "EFTA00988913",
+                "filename": "EFTA00988913.txt",
+                "num_lines": 56,
+                "recipients": [
+                    "Sergey Belyakov"
+                ],
+                "subject": "Re: fun",
+                "timestamp": "2014-05-12T10:35:13",
                 "type": "Email"
             },
             {
@@ -36600,29 +36767,29 @@
             },
             {
                 "author": "Bryan Bishop",
-                "bytes": 2287,
+                "bytes": 2294,
                 "file_id": "EFTA01005702",
                 "filename": "EFTA01005702.txt",
-                "num_lines": 41,
+                "num_lines": 45,
                 "recipients": [
                     "Austin Hill",
                     "Jeffrey Epstein"
                 ],
-                "subject": "Re: Invitation: Financial markets & cryptocoins with Jeffrey, Bryan @ Fri 2018-07-20 2pm - 3pm",
+                "subject": "Re: Invitation: Financial markets & cryptocoins with Jeffrey, Bryan @ Fri 2018-07-20 2pm - 3pm (CDT) (Bryan Bishop)",
                 "timestamp": "2018-07-20T02:11:30",
                 "type": "Email"
             },
             {
                 "author": "Austin Hill",
-                "bytes": 2100,
+                "bytes": 2101,
                 "file_id": "EFTA01005712",
                 "filename": "EFTA01005712.txt",
-                "num_lines": 45,
+                "num_lines": 46,
                 "recipients": [
                     "Bryan Bishop",
                     "Jeffrey Epstein"
                 ],
-                "subject": "Re: Invitation: Financial markets & cryptocoins with Jeffrey, Bryan \u00ae Fri Jul 20, 2018 3pm - 4pm",
+                "subject": "Re: Invitation: Financial markets & cryptocoins with Jeffrey, Bryan \u00ae Fri Jul 20, 2018 3pm - 4pm (EDT) (Jeffrey Epstein)",
                 "timestamp": "2018-07-20T12:24:29",
                 "type": "Email"
             },
@@ -36636,7 +36803,7 @@
                     "Austin Hill",
                     "Jeffrey Epstein"
                 ],
-                "subject": "Re: Invitation: Financial markets & cryptocoins with Jeffrey, Bryan @ Fri Jul 20, 2018 3pm - 4pm",
+                "subject": "Re: Invitation: Financial markets & cryptocoins with Jeffrey, Bryan @ Fri Jul 20, 2018 3pm - 4pm (EDT) (Jeffrey Epstein)",
                 "timestamp": "2018-07-20T12:30:07",
                 "type": "Email"
             },
@@ -37244,6 +37411,60 @@
                 "type": "Email"
             },
             {
+                "author": "Brock Pierce",
+                "bytes": 2974,
+                "file_id": "EFTA01061411",
+                "filename": "EFTA01061411.txt",
+                "num_lines": 90,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Richard Kahn"
+                ],
+                "subject": "Re: Coinbase Investor Newsletter I Sept 2016",
+                "timestamp": "2016-11-16T02:24:37",
+                "type": "Email"
+            },
+            {
+                "author": "Brock Pierce",
+                "bytes": 3909,
+                "file_id": "EFTA01061414",
+                "filename": "EFTA01061414.txt",
+                "num_lines": 110,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Coinbase Investor Newsletter I Sept 2016",
+                "timestamp": "2016-11-16T02:25:11",
+                "type": "Email"
+            },
+            {
+                "author": "Richard Kahn",
+                "bytes": 2242,
+                "file_id": "EFTA01062049",
+                "filename": "EFTA01062049.txt",
+                "num_lines": 65,
+                "recipients": [
+                    "Brock Pierce",
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Coinbase Investor Newsletter I Sept 2016",
+                "timestamp": "2016-11-14T22:25:19",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 3022,
+                "file_id": "EFTA01062056",
+                "filename": "EFTA01062056.txt",
+                "num_lines": 83,
+                "recipients": [
+                    "Brock Pierce"
+                ],
+                "subject": "Fwd: Coinbase Investor Newsletter I Sept 2016",
+                "timestamp": "2016-11-15T03:07:51",
+                "type": "Email"
+            },
+            {
                 "author": "Richard Kahn",
                 "bytes": 828,
                 "file_id": "EFTA01063179",
@@ -37267,6 +37488,20 @@
                 ],
                 "subject": "Re: Valar Global Fund II LP - Capital Call 8",
                 "timestamp": "2016-11-02T19:19:18",
+                "type": "Email"
+            },
+            {
+                "author": "Brock Pierce",
+                "bytes": 2542,
+                "file_id": "EFTA01063205",
+                "filename": "EFTA01063205.txt",
+                "num_lines": 56,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Richard Kahn"
+                ],
+                "subject": "Fwd: FW: Coinbase Investor Newsletter",
+                "timestamp": "2016-11-02T23:18:31",
                 "type": "Email"
             },
             {
@@ -38013,6 +38248,19 @@
                 "type": "Email"
             },
             {
+                "author": "Sergey Belyakov",
+                "bytes": 978,
+                "file_id": "EFTA01926669",
+                "filename": "EFTA01926669.txt",
+                "num_lines": 20,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: fun",
+                "timestamp": "2014-05-04T12:49:21",
+                "type": "Email"
+            },
+            {
                 "author": "Tyler Shears",
                 "bytes": 569,
                 "file_id": "EFTA01927746",
@@ -38511,6 +38759,19 @@
                 "type": "Email"
             },
             {
+                "author": "Sergey Belyakov",
+                "bytes": 484,
+                "file_id": "EFTA02041142",
+                "filename": "EFTA02041142.txt",
+                "num_lines": 16,
+                "recipients": [
+                    "Lesley Groff"
+                ],
+                "subject": "Re: My partner",
+                "timestamp": "2016-10-06T14:57:26",
+                "type": "Email"
+            },
+            {
                 "author": "Lesley Groff",
                 "bytes": 897,
                 "file_id": "EFTA02062308",
@@ -38540,7 +38801,7 @@
             {
                 "author": "Lesley Groff",
                 "bytes": 2711,
-                "description": "Valar Ventures (Thiel) meeting",
+                "description": "meeting with Peter Thiel's Valar Ventures fund",
                 "file_id": "EFTA02067245",
                 "filename": "EFTA02067245.txt",
                 "is_attribution_uncertain": true,
@@ -38584,7 +38845,7 @@
             {
                 "author": "Lesley Groff",
                 "bytes": 1385,
-                "description": "Valar Ventures (Thiel) meeting",
+                "description": "meeting with Peter Thiel's Valar Ventures fund",
                 "file_id": "EFTA02067872",
                 "filename": "EFTA02067872.txt",
                 "is_attribution_uncertain": true,
@@ -38642,7 +38903,7 @@
             {
                 "author": "Lesley Groff",
                 "bytes": 1554,
-                "description": "Valar Ventures (Thiel) meeting",
+                "description": "meeting with Peter Thiel's Valar Ventures fund",
                 "file_id": "EFTA02068490",
                 "filename": "EFTA02068490.txt",
                 "is_attribution_uncertain": true,
@@ -38694,6 +38955,20 @@
                 ],
                 "subject": "Re: Bitcoins for Mongolia",
                 "timestamp": "2015-10-23T12:36:54",
+                "type": "Email"
+            },
+            {
+                "author": "Lesley Groff",
+                "bytes": 935,
+                "file_id": "EFTA02076709",
+                "filename": "EFTA02076709.txt",
+                "num_lines": 29,
+                "recipients": [
+                    "Vincenzo Iozzo"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "subject": "Re: Jeffrey in NYC?",
+                "timestamp": "2015-07-02T11:39:43",
                 "type": "Email"
             },
             {
@@ -39711,6 +39986,19 @@
                 "type": "Email"
             },
             {
+                "author": "Cepreil 6ensi KOS",
+                "bytes": 3212,
+                "file_id": "EFTA02462675",
+                "filename": "EFTA02462675.txt",
+                "num_lines": 73,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re:",
+                "timestamp": "2016-05-11T20:40:00",
+                "type": "Email"
+            },
+            {
                 "author": "Ganbat Chuluunkhuu",
                 "bytes": 2767,
                 "file_id": "EFTA02465832",
@@ -40270,6 +40558,7 @@
             {
                 "author": "Austin Hill",
                 "bytes": 2571,
+                "description": "discussion of investments hidden through Joi Ito",
                 "file_id": "EFTA02601259",
                 "filename": "EFTA02601259.txt",
                 "num_lines": 49,
@@ -40278,6 +40567,19 @@
                 ],
                 "subject": "Re: Thanks - just the three of us",
                 "timestamp": "2018-07-21T13:28:00",
+                "type": "Email"
+            },
+            {
+                "author": "Richard Kahn",
+                "bytes": 3129,
+                "file_id": "EFTA02601958",
+                "filename": "EFTA02601958.txt",
+                "num_lines": 41,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Crypto Exchange Coinbase Tells a Fib, Forms a PAC - 24/7 Wall St.",
+                "timestamp": "2018-07-24T02:18:00",
                 "type": "Email"
             },
             {
@@ -49170,6 +49472,7 @@
         ]
     },
     "people": {
+        "AT&T Court Appearance Team": "business, AT&T",
         "Abdoulaye Wade": "Africa, former president of Senegal, father of Karim Wade",
         "Abi Schwinck": "modeling, Jean Luc Brunel's MC2 Model Management (???)",
         "Adam Back": "bitcoin, co-founder of Blockstream, bitcoin dev, long time Tether defender",
@@ -49181,6 +49484,7 @@
         "Alex Yablon": "journalist, New York Magazine fact checker (?)",
         "Alfredo Rodriguez": "employee, Epstein's butler, stole the journal",
         "Alireza Ittihadieh": "business, CEO Freestream Aircraft Limited",
+        "Alisa Bekins": "tech bro, Peter Thiel's assistant",
         "Alison J. Nathan": "government, judge in New York's Southern District",
         "Amanda Ens": "finance, Citigroup",
         "Amir Taaki": "bitcoin, bitcoin bro, partner of Donald Norman (and Brock Pierce?)",
@@ -49215,6 +49519,7 @@
         "Brock Pierce": "bitcoin, Bannon business partner, Tether co-founder, friend of Yair Netanyahu, sex crime history",
         "Bruce Moskowitz": "Trump, 'Trump's health guy' according to Epstein",
         "Bryan Bishop": "bitcoin, executive at LedgerX",
+        "Bureau of Prisons": "government, American law enforcement",
         "Caroline Lang": "Europe, daughter of Jack Lang",
         "Carolyn Rangel": "deepak, Deepak Chopra's assistant (???)",
         "Cecile de Jongh": "USVI, Virgin Islands first lady 2007-2015",
@@ -49275,8 +49580,9 @@
         "Howard Rubenstein": "lawyer, Epstein's former spokesman",
         "Ian O'Donnell": "tech bro, Thiel's Valar Ventures",
         "Ian Osborne": "publicist, Ian Osborne & Partners reputation repairer hired in 2011",
+        "Ike Groff": "employee, brother of Lesley Groff?",
         "Ivan Glasenberg": "Africa, South African former CEO of Glencore, one of the world's largest commodity trading and mining companies",
-        "Jabor Y": "mideast, former Qatari prime minister Hamad bin Jassim AKA HBJ",
+        "Jabor Y": "mideast, former Qatari prime minister Hamad bin Jassim AKA \"HBJ\"",
         "Jack Goldberger": "lawyer, criminal defense attorney on 2008 case",
         "Jack Lang": "Europe, former French Minister of National Education",
         "Jack Scarola": "victim lawyer, Searcy Denney Scarola Barnhart & Shipley",
@@ -49326,6 +49632,7 @@
         "Lilly Sanchez": "lawyer, criminal defense attorney",
         "Linda Pinto": "employee, interior design at Alberto Pinto Cabinet",
         "Linda Stone": "academia, ex-Microsoft, MIT Media Lab",
+        "LinkedIn": "tech bro, LinkedIn",
         "Lisa New": "Harvard, professor of poetry, wife of Larry Summers, AKA \"Elisa New\"",
         "Lisa Randall": "Harvard, theoretical physicist",
         "Lorenzo de Medici": "bitcoin, Medici Bank, possibly Medici heir?",
@@ -49401,6 +49708,7 @@
         "Scott J. Link": "lawyer, criminal defense attorney",
         "Sean Bannon": "Republican, Steve Bannon's brother",
         "Sean J. Lancaster": "employee, airplane reseller",
+        "Sergey Belyakov": "Russia, graduate of Russia's FSB academy",
         "Shaher Abdulhak Besher": "mideast, Yemeni billionaire",
         "Skip Rimer": "finance, Milken Institute (Michael Milken)",
         "Soon-Yi Previn": "arts, wife of Woody Allen",
@@ -49425,6 +49733,7 @@
         "Tom Pritzker": "business, chairman of The Pritzker Organization and Hyatt Hotels",
         "Tonja Haddad Coleman": "lawyer, civil attorney Epstein v. Scott Rothstein, Brad Edwards, & L.M.",
         "Tyler Shears": "publicist, reputation management, worked on with Christina Galbraith",
+        "USAHUB-USAJournal111": "government, American law enforcement",
         "USANYS": "government, American law enforcement",
         "USMS": "government, United States Marshal Service",
         "Vahe Stepanian": "finance, Cetera Financial Group",
