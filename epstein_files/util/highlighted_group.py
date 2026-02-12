@@ -410,6 +410,7 @@ HIGHLIGHTED_NAMES = [
             r"(Hester\s*)?Peirce",
             r"(Howard\s+)?Lutnic?k",
             r"(Jim\s*)Pallotta",  # Media lab advisory board
+            r"Kraken",
             r"LedgerX",
             r"Libra",
             r"Madars",
@@ -1460,6 +1461,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             ALEKSANDRA_KARPOVA: f"{CRYPTO_PR_LAB} co-founder",
             'Dasha Zhukova': 'art collector, daughter of Alexander Zhukov',
+            JULIA_SANTOS: 'possibly a Russian in Paris that was recruiting girls from Ukraine for Epstein',
             KARYNA_SHULIAK: "Epstein's final girlfriend to whom he tried to leave $50-100 million and the island",
             MARIYA_PRUSAKOVA: f"AKA Masha Prusso, former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein",
             MASHA_DROKOVA: 'silicon valley VC, former Putin Youth member',
