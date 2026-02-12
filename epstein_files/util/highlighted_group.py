@@ -1554,6 +1554,7 @@ HIGHLIGHTED_NAMES = [
         label=TECH_BRO,
         style='bright_cyan',
         emailers={
+            'Alisa Bekins': "Peter Thiel's assistant",
             ANDREW_MCCORMACK: f"partner at {PETER_THIEL}'s Valar Ventures {QUESTION_MARKS}",
             'Auren Hoffman': 'CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp',
             ELON_MUSK: 'father of Mecha-Hitler',
