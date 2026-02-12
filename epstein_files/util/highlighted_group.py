@@ -1580,7 +1580,7 @@ HIGHLIGHTED_NAMES = [
             r"deep learning",
             r"Drew\s*Houston",
             r"Eliezer\s*Yudkowsky",
-            r"Eric\s*Schmidt",
+            r"Erick?\s*Sc?hmidt",
             r"Facebook",
             r"Greylock(\s*Partners)?",
             r"Instagram",
