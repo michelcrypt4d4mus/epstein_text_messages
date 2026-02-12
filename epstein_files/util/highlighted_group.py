@@ -406,7 +406,7 @@ HIGHLIGHTED_NAMES = [
             r"cryptoprlab",
             r"(Dan\s*)?Morehead",
             r"Digital\s*Currenc(ies|y)(\s*Initiative)?",
-            r"e-currency",
+            r"e-?currency",
             r"Fred\s*Ehrsam",
             r"(Gavin )?Andress?en",  # bitcoin dev
             r"(Hester\s*)?Peirce",

@@ -2169,6 +2169,7 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00005783', date='2019-08-29', description='heavily redacted handwritten note and 30+ completely blacked out redacted pages'),
     DocCfg(id='EFTA01088644', date='2015-10-01', description='Blockchain Capital deck', is_interesting=True),
     DocCfg(id='EFTA00604942', date='2015-10-01', description='Blockchain Capital Investor Update', is_interesting=True),
+    DocCfg(id='EFTA01120975', date='2013-12-12', description='Coinbase Series B stock purchase agreement', is_interesting=True),
     DocCfg(id='EFTA00797613', description='Alphabit crypto fund pitch deck', attached_to_email_id='EFTA00955063'),
     DocCfg(id='EFTA01087311', description='Black Family Partners cash projections'),
     DocCfg(id='EFTA00605699', description=f"{KYARA_INVESTMENTS} II LLC incorporation papers"),
