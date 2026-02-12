@@ -338,6 +338,7 @@ EMAIL_RECIPIENT_COUNTS = {
     FAITH_KATES: 5,
     FBI: 4,
     "Forrest Miller": 1,
+    'Francesca Hall': 1,
     "Francis Derby": 2,
     "Fred Haddad": 3,
     GANBAT_CHULUUNKHUU: 8,
