@@ -164,6 +164,7 @@ EMAILERS = [
     DEBBIE_FEIN,
     DEEPAK_CHOPRA,
     ED_BOYLE,
+    'Francesca Hall',
     GLENN_DUBIN,
     GORDON_GETTY,
     'Ike Groff',
