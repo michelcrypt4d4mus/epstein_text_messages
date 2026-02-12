@@ -378,7 +378,7 @@ HIGHLIGHTED_NAMES = [
             ANTHONY_SCARAMUCCI: 'Skybridge Capital, FTX investor',
             AUSTIN_HILL: 'Blockstream co-founder with Adam Back, Brudder Ventures',
             BROCK_PIERCE: 'Bannon business partner, Tether co-founder, friend of Yair Netanyahu, sex crime history',
-            BRYAN_BISHOP: 'executive at LedgerX',
+            BRYAN_BISHOP: 'executive at LedgerX, Polymath fund',
             DONALD_NORMAN: f'co-founder of early British crypto exchange Intersango with {AMIR_TAAKI}',
             JEFFREY_WERNICK: 'former COO of Parler, involved in numerous crypto companies like Bitforex',
             JEREMY_RUBIN: 'developer/researcher',
