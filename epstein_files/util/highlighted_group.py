@@ -575,6 +575,7 @@ HIGHLIGHTED_NAMES = [
         style='medium_purple4',
         emailers={
             'Alfredo Rodriguez': "Epstein's butler, stole the journal",
+            'Bella Klein': "Epstein's accountant",
             'Bernard Kruger': "Epstein's doctor",
             EDUARDO_ROBLES: f'home builder at Creative Kingdom Dubai',
             ERIC_ROTH: 'jet decorator at International Jet',
