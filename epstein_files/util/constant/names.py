@@ -250,6 +250,7 @@ NEXT_MANAGEMENT = 'Next Management LLC'
 OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL = 'Office of the Deputy Attorney General'
 OSBORNE_LLP = f"{IAN_OSBORNE} & Partners"  # Ian Osborne's PR firm
 ROTHSTEIN_ROSENFELDT_ADLER = "Rothstein Rosenfeldt Adler (Rothstein was Roger Stone's partner)"  # and a crook
+SDNY = 'SDNY'
 TRUMP_ORG = 'Trump Organization'
 UBS = 'UBS'
 USANYS = 'USANYS'
