@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.5.1
 * Integrate DOJ file emails into the normal email generation
 * Include a pre-packaged `the_epstein_files.pkl.gz` in the repo
 
