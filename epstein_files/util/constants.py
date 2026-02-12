@@ -155,6 +155,7 @@ MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article about Ep
 # Some emails have a lot of uninteresting CCs
 FLIGHT_IN_2012_PEOPLE: list[Name] = ['Francis Derby', JANUSZ_BANASIAK, 'Louella Rabuyo', 'Richard Barnnet']
 IRAN_DEAL_RECIPIENTS: list[Name] = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
+VALAR_VENTURES_MEETING = f"meeting with {PETER_THIEL}'s {VALAR_VENTURES} fund"
 
 TRIVERS_CCS: list[Name] = [
     "Alan Rogers",
@@ -1015,11 +1016,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02065181', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02062308', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02246900', author=LESLEY_GROFF),
+    EmailCfg(id='EFTA00461202', author=LESLEY_GROFF),
     EmailCfg(id='EFTA02104454', author=LESLEY_GROFF, attribution_reason='Epstein scheduling', is_attribution_uncertain=True),
     EmailCfg(id='EFTA01731288', author=LESLEY_GROFF, attribution_reason='signature'),
-    EmailCfg(id='EFTA02067245', author=LESLEY_GROFF, description='Valar Ventures (Thiel) meeting', is_interesting=True, is_attribution_uncertain=True),
-    EmailCfg(id='EFTA02068490', author=LESLEY_GROFF, description='Valar Ventures (Thiel) meeting', is_interesting=True, is_attribution_uncertain=True),
-    EmailCfg(id='EFTA02067872', author=LESLEY_GROFF, description='Valar Ventures (Thiel) meeting', is_interesting=True, is_attribution_uncertain=True),
+    EmailCfg(id='EFTA02067245', author=LESLEY_GROFF, description=VALAR_VENTURES_MEETING, is_interesting=True, is_attribution_uncertain=True),
+    EmailCfg(id='EFTA02068490', author=LESLEY_GROFF, description=VALAR_VENTURES_MEETING, is_interesting=True, is_attribution_uncertain=True),
+    EmailCfg(id='EFTA02067872', author=LESLEY_GROFF, description=VALAR_VENTURES_MEETING, is_interesting=True, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02089459', author=LESLEY_GROFF, description='Nicole Junkermann meeting', is_interesting=True, is_attribution_uncertain=True),
     EmailCfg(id='EFTA00334935', author=LESLEY_GROFF, is_attribution_uncertain=True),
     EmailCfg(id='EFTA00494858', author=LESLEY_GROFF, is_attribution_uncertain=True),
@@ -1129,12 +1131,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00920010', author=RENATA_BOLOTOVA, attribution_reason='renbolotova@gmail in body'),
     EmailCfg(id='EFTA00912012', author=RENATA_BOLOTOVA, attribution_reason='renbolotova in body', description='this file has been removed from the DOJ site'),
     EmailCfg(id='EFTA02455567', author=RENATA_BOLOTOVA, attribution_reason='"sneaky"', description='completely redacted email body'),
-    EmailCfg(id='EFTA01923844', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
     EmailCfg(id='EFTA00676720', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True, duplicate_ids=['EFTA01961947']),
+    EmailCfg(id='EFTA00826575', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True, duplicate_ids=['EFTA02462211']),
+    EmailCfg(id='EFTA01923844', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
     EmailCfg(id='EFTA00686861', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
     EmailCfg(id='EFTA00870433', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
     EmailCfg(id='EFTA01035614', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
-    EmailCfg(id='EFTA00826575', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True, duplicate_ids=['EFTA02462211']),
     EmailCfg(id='EFTA01840867', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
     EmailCfg(id='EFTA01748575', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
     EmailCfg(id='EFTA01903041', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
@@ -1245,6 +1247,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02187050', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00357515', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00357508', recipients=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA00462608', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00357523', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA02089992', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA02089433', recipients=[LESLEY_GROFF]),

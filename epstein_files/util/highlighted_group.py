@@ -402,7 +402,7 @@ HIGHLIGHTED_NAMES = [
             r"Coinbase",
             r"coins?(\s*Center)?",
             r"Cory\s*Fields",  # bitcoin dev
-            r"cr[iy]?pto\s*(currenc(y|ies)|PR\s*Lab)?",
+            r"cr[iy]?pto\s*(coins?|currenc(y|ies)|PR\s*Lab)?",
             r"cryptoprlab",
             r"(Dan\s*)?Morehead",
             r"Digital\s*Currenc(ies|y)(\s*Initiative)?",
