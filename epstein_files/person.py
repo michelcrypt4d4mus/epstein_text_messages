@@ -301,7 +301,7 @@ class Person:
         else:
             for email in self._printable_emails():
                 if email.is_duplicate:
-                    console.print(Padding(email.duplicate_file_txt.append('...'), SKIPPED_FILE_MSG_PADDING))
+                    console.print(email.duplicate_file_txt_padded)
                     last_printed_email_was_duplicate = True
                 else:
                     if last_printed_email_was_duplicate:
