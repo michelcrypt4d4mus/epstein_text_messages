@@ -15538,7 +15538,7 @@
             },
             {
                 "attribution_reason": "Epstein paid for Prusakova to go to Berkely",
-                "author": "Mariya Prusakova",
+                "author": "Maria Prusakova",
                 "bytes": 1148,
                 "comment": "'What happens with zubair's project?'",
                 "description": "Masha Prusso asks about Zubair Khan",
@@ -23301,7 +23301,7 @@
             },
             {
                 "attribution_reason": "Epstein paid for Prusakova to go to Berkely",
-                "author": "Mariya Prusakova",
+                "author": "Maria Prusakova",
                 "bytes": 463,
                 "description": "Masha Prusso asks about Zubair Khan",
                 "file_id": "032374",
@@ -23316,7 +23316,7 @@
             },
             {
                 "attribution_reason": "Epstein paid for Prusakova to go to Berkely",
-                "author": "Mariya Prusakova",
+                "author": "Maria Prusakova",
                 "bytes": 1234,
                 "description": "Masha Prusso asks about Zubair Khan",
                 "file_id": "032375",
@@ -29192,7 +29192,7 @@
             },
             {
                 "attribution_reason": "Epstein paid for Prusakova to go to Berkely",
-                "author": "Mariya Prusakova",
+                "author": "Maria Prusakova",
                 "bytes": 729,
                 "comment": "'How is it going with Zubair?'",
                 "description": "Masha Prusso asks about Zubair Khan",
@@ -29934,7 +29934,7 @@
             },
             {
                 "attribution_reason": "Kind regards/Cordialement in signature",
-                "author": "Mariya Prusakova",
+                "author": "Maria Prusakova",
                 "bytes": 590,
                 "file_id": "033246",
                 "filename": "HOUSE_OVERSIGHT_033246.txt",
@@ -32781,11 +32781,11 @@
                 "type": "Email"
             },
             {
-                "author": "SANYS",
-                "bytes": 542,
+                "author": "USANYS",
+                "bytes": 536,
                 "file_id": "EFTA00039797",
                 "filename": "EFTA00039797.txt",
-                "num_lines": 17,
+                "num_lines": 18,
                 "recipients": [
                     "USANYS"
                 ],
@@ -34131,7 +34131,7 @@
             },
             {
                 "attribution_reason": "Crypto PR Lab",
-                "author": "Mariya Prusakova",
+                "author": "Maria Prusakova",
                 "bytes": 2215,
                 "description": "Ed Boyle and Medici Bank",
                 "file_id": "EFTA00495349",
@@ -39122,7 +39122,7 @@
                 "is_interesting": true,
                 "num_lines": 32,
                 "recipients": [
-                    "Mariya Prusakova"
+                    "Maria Prusakova"
                 ],
                 "subject": "Re: Crypto PR Lab Financials",
                 "timestamp": "2018-12-09T20:01:40",
@@ -41890,7 +41890,7 @@
                 "filename": "HOUSE_OVERSIGHT_028375.txt",
                 "is_interesting": false,
                 "num_lines": 1690,
-                "timestamp": "2018-12-11T00:00:00",
+                "timestamp": "2018-12-12T00:00:00",
                 "type": "JsonFile",
                 "was_timestamp_extracted": true
             },
@@ -43207,7 +43207,7 @@
                 "filename": "HOUSE_OVERSIGHT_012048.txt",
                 "is_interesting": true,
                 "num_lines": 2693,
-                "timestamp": "2019-03-11T00:00:00",
+                "timestamp": "2019-03-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43381,7 +43381,7 @@
                 "filename": "HOUSE_OVERSIGHT_013268.txt",
                 "is_interesting": false,
                 "num_lines": 139,
-                "timestamp": "2014-01-11T00:00:00",
+                "timestamp": "2014-01-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43536,7 +43536,7 @@
                 "filename": "HOUSE_OVERSIGHT_013796.txt",
                 "is_interesting": false,
                 "num_lines": 8095,
-                "timestamp": "2009-02-11T00:00:00",
+                "timestamp": "2009-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43549,7 +43549,7 @@
                 "filename": "HOUSE_OVERSIGHT_014037.txt",
                 "is_interesting": true,
                 "num_lines": 1911,
-                "timestamp": "2014-07-11T00:00:00",
+                "timestamp": "2014-07-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43883,7 +43883,7 @@
                 "filename": "HOUSE_OVERSIGHT_015032.txt",
                 "is_interesting": false,
                 "num_lines": 1918,
-                "timestamp": "2017-07-11T00:00:00",
+                "timestamp": "2017-07-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43896,7 +43896,7 @@
                 "filename": "HOUSE_OVERSIGHT_015462.txt",
                 "is_interesting": false,
                 "num_lines": 1810,
-                "timestamp": "2013-10-11T00:00:00",
+                "timestamp": "2013-10-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -43909,7 +43909,7 @@
                 "filename": "HOUSE_OVERSIGHT_015501.txt",
                 "is_interesting": false,
                 "num_lines": 1214,
-                "timestamp": "2016-02-11T00:00:00",
+                "timestamp": "2016-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -44220,7 +44220,7 @@
                 "filename": "HOUSE_OVERSIGHT_016636.txt",
                 "is_interesting": false,
                 "num_lines": 1535,
-                "timestamp": "2009-02-11T00:00:00",
+                "timestamp": "2009-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -44377,7 +44377,7 @@
                 "filename": "HOUSE_OVERSIGHT_017526.txt",
                 "is_interesting": false,
                 "num_lines": 4127,
-                "timestamp": "2012-06-11T00:00:00",
+                "timestamp": "2012-06-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -44636,7 +44636,7 @@
                 "filename": "HOUSE_OVERSIGHT_018703.txt",
                 "is_interesting": false,
                 "num_lines": 124,
-                "timestamp": "2016-06-11T00:00:00",
+                "timestamp": "2016-06-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -44660,7 +44660,7 @@
                 "filename": "HOUSE_OVERSIGHT_018743.txt",
                 "is_interesting": true,
                 "num_lines": 1855,
-                "timestamp": "2018-02-11T00:00:00",
+                "timestamp": "2018-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -44961,7 +44961,7 @@
                 "filename": "HOUSE_OVERSIGHT_019477.txt",
                 "is_interesting": true,
                 "num_lines": 11950,
-                "timestamp": "2017-02-11T00:00:00",
+                "timestamp": "2017-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45032,7 +45032,7 @@
                 "filename": "HOUSE_OVERSIGHT_020153.txt",
                 "is_interesting": true,
                 "num_lines": 2848,
-                "timestamp": "2016-02-11T00:00:00",
+                "timestamp": "2016-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45045,7 +45045,7 @@
                 "filename": "HOUSE_OVERSIGHT_020447.txt",
                 "is_interesting": true,
                 "num_lines": 7325,
-                "timestamp": "2019-02-11T00:00:00",
+                "timestamp": "2019-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45084,7 +45084,7 @@
                 "filename": "HOUSE_OVERSIGHT_021092.txt",
                 "is_interesting": false,
                 "num_lines": 77,
-                "timestamp": "2001-02-11T00:00:00",
+                "timestamp": "2001-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45096,7 +45096,7 @@
                 "filename": "HOUSE_OVERSIGHT_021093.txt",
                 "is_interesting": false,
                 "num_lines": 96,
-                "timestamp": "2003-02-11T00:00:00",
+                "timestamp": "2003-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45135,7 +45135,7 @@
                 "filename": "HOUSE_OVERSIGHT_021145.txt",
                 "is_interesting": false,
                 "num_lines": 6213,
-                "timestamp": "2008-02-11T00:00:00",
+                "timestamp": "2008-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45187,7 +45187,7 @@
                 "filename": "HOUSE_OVERSIGHT_021718.txt",
                 "is_interesting": false,
                 "num_lines": 1754,
-                "timestamp": "2016-02-11T00:00:00",
+                "timestamp": "2016-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45292,7 +45292,7 @@
                 "filename": "HOUSE_OVERSIGHT_022212.txt",
                 "is_interesting": false,
                 "num_lines": 107,
-                "timestamp": "2020-02-11T00:00:00",
+                "timestamp": "2020-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45315,7 +45315,7 @@
                 "filename": "HOUSE_OVERSIGHT_022237.txt",
                 "is_interesting": true,
                 "num_lines": 266,
-                "timestamp": "2014-12-11T00:00:00",
+                "timestamp": "2014-12-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45439,7 +45439,7 @@
                 "filename": "HOUSE_OVERSIGHT_022407.txt",
                 "is_interesting": true,
                 "num_lines": 79,
-                "timestamp": "2018-02-11T00:00:00",
+                "timestamp": "2018-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45452,7 +45452,7 @@
                 "filename": "HOUSE_OVERSIGHT_022417.txt",
                 "is_interesting": true,
                 "num_lines": 1118,
-                "timestamp": "2017-02-11T00:00:00",
+                "timestamp": "2017-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45503,7 +45503,7 @@
                 "filename": "HOUSE_OVERSIGHT_022707.txt",
                 "is_interesting": true,
                 "num_lines": 146,
-                "timestamp": "2014-02-11T00:00:00",
+                "timestamp": "2014-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45516,7 +45516,7 @@
                 "filename": "HOUSE_OVERSIGHT_022727.txt",
                 "is_interesting": true,
                 "num_lines": 146,
-                "timestamp": "2014-02-11T00:00:00",
+                "timestamp": "2014-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45529,7 +45529,7 @@
                 "filename": "HOUSE_OVERSIGHT_022746.txt",
                 "is_interesting": true,
                 "num_lines": 149,
-                "timestamp": "2014-02-11T00:00:00",
+                "timestamp": "2014-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45575,7 +45575,7 @@
                 "filename": "HOUSE_OVERSIGHT_022844.txt",
                 "is_interesting": true,
                 "num_lines": 149,
-                "timestamp": "2014-02-11T00:00:00",
+                "timestamp": "2014-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45588,7 +45588,7 @@
                 "filename": "HOUSE_OVERSIGHT_022863.txt",
                 "is_interesting": true,
                 "num_lines": 109,
-                "timestamp": "2009-02-11T00:00:00",
+                "timestamp": "2009-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45601,7 +45601,7 @@
                 "filename": "HOUSE_OVERSIGHT_022894.txt",
                 "is_interesting": true,
                 "num_lines": 99,
-                "timestamp": "2009-02-11T00:00:00",
+                "timestamp": "2009-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45614,7 +45614,7 @@
                 "filename": "HOUSE_OVERSIGHT_022952.txt",
                 "is_interesting": true,
                 "num_lines": 140,
-                "timestamp": "2014-02-11T00:00:00",
+                "timestamp": "2014-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -45919,7 +45919,7 @@
                 "filename": "HOUSE_OVERSIGHT_023435.txt",
                 "is_interesting": false,
                 "num_lines": 107,
-                "timestamp": "2016-02-11T00:00:00",
+                "timestamp": "2016-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -46121,7 +46121,7 @@
                 "filename": "HOUSE_OVERSIGHT_023720.txt",
                 "is_interesting": false,
                 "num_lines": 280,
-                "timestamp": "2012-02-11T00:00:00",
+                "timestamp": "2012-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -46134,7 +46134,7 @@
                 "filename": "HOUSE_OVERSIGHT_023731.txt",
                 "is_interesting": false,
                 "num_lines": 8219,
-                "timestamp": "2011-02-11T00:00:00",
+                "timestamp": "2011-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -46146,7 +46146,7 @@
                 "filename": "HOUSE_OVERSIGHT_024003.txt",
                 "is_interesting": true,
                 "num_lines": 5090,
-                "timestamp": "2020-02-11T00:00:00",
+                "timestamp": "2020-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -46158,7 +46158,7 @@
                 "filename": "HOUSE_OVERSIGHT_024117.txt",
                 "is_interesting": true,
                 "num_lines": 751,
-                "timestamp": "2012-07-11T00:00:00",
+                "timestamp": "2012-07-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -46249,7 +46249,7 @@
                 "filename": "HOUSE_OVERSIGHT_024229.txt",
                 "is_interesting": true,
                 "num_lines": 79,
-                "timestamp": "2009-02-11T00:00:00",
+                "timestamp": "2009-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -46262,7 +46262,7 @@
                 "filename": "HOUSE_OVERSIGHT_024256.txt",
                 "is_interesting": true,
                 "num_lines": 498,
-                "timestamp": "2017-05-11T00:00:00",
+                "timestamp": "2017-05-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -46326,7 +46326,7 @@
                 "filename": "HOUSE_OVERSIGHT_024374.txt",
                 "is_interesting": false,
                 "num_lines": 83,
-                "timestamp": "2019-02-11T00:00:00",
+                "timestamp": "2019-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -46364,7 +46364,7 @@
                 "filename": "HOUSE_OVERSIGHT_024631.txt",
                 "is_interesting": true,
                 "num_lines": 6977,
-                "timestamp": "2019-02-11T00:00:00",
+                "timestamp": "2019-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -46427,7 +46427,7 @@
                 "filename": "HOUSE_OVERSIGHT_025104.txt",
                 "is_interesting": false,
                 "num_lines": 365,
-                "timestamp": "2020-02-11T00:00:00",
+                "timestamp": "2020-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -46563,7 +46563,7 @@
                 "filename": "HOUSE_OVERSIGHT_025292.txt",
                 "is_interesting": false,
                 "num_lines": 80,
-                "timestamp": "2016-02-11T00:00:00",
+                "timestamp": "2016-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -46620,7 +46620,7 @@
                 "filename": "HOUSE_OVERSIGHT_025540.txt",
                 "is_interesting": true,
                 "num_lines": 36,
-                "timestamp": "2009-07-11T00:00:00",
+                "timestamp": "2009-07-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -46715,7 +46715,7 @@
                 "filename": "HOUSE_OVERSIGHT_025849.txt",
                 "is_interesting": false,
                 "num_lines": 603,
-                "timestamp": "2014-02-11T00:00:00",
+                "timestamp": "2014-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -46779,7 +46779,7 @@
                 "filename": "HOUSE_OVERSIGHT_026134.txt",
                 "is_interesting": true,
                 "num_lines": 784,
-                "timestamp": "2020-02-11T00:00:00",
+                "timestamp": "2020-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -46844,7 +46844,7 @@
                 "filename": "HOUSE_OVERSIGHT_026543.txt",
                 "is_interesting": false,
                 "num_lines": 143,
-                "timestamp": "2020-02-11T00:00:00",
+                "timestamp": "2020-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -47005,7 +47005,7 @@
                 "filename": "HOUSE_OVERSIGHT_026731.txt",
                 "is_interesting": false,
                 "num_lines": 250,
-                "timestamp": "2020-02-11T00:00:00",
+                "timestamp": "2020-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -47071,7 +47071,7 @@
                 "filename": "HOUSE_OVERSIGHT_026794.txt",
                 "is_interesting": false,
                 "num_lines": 673,
-                "timestamp": "2020-02-11T00:00:00",
+                "timestamp": "2020-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -47084,7 +47084,7 @@
                 "filename": "HOUSE_OVERSIGHT_026825.txt",
                 "is_interesting": false,
                 "num_lines": 81,
-                "timestamp": "2015-02-11T00:00:00",
+                "timestamp": "2015-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -47280,7 +47280,7 @@
                 "filename": "HOUSE_OVERSIGHT_027071.txt",
                 "is_interesting": true,
                 "num_lines": 120,
-                "timestamp": "2015-02-11T00:00:00",
+                "timestamp": "2015-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -47446,7 +47446,7 @@
                 "filename": "HOUSE_OVERSIGHT_029102.txt",
                 "is_interesting": true,
                 "num_lines": 94,
-                "timestamp": "2016-02-11T00:00:00",
+                "timestamp": "2016-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -47459,7 +47459,7 @@
                 "filename": "HOUSE_OVERSIGHT_029104.txt",
                 "is_interesting": true,
                 "num_lines": 94,
-                "timestamp": "2016-02-11T00:00:00",
+                "timestamp": "2016-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -47630,7 +47630,7 @@
                 "filename": "HOUSE_OVERSIGHT_029328.txt",
                 "is_interesting": false,
                 "num_lines": 230,
-                "timestamp": "2011-02-11T00:00:00",
+                "timestamp": "2011-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -47643,7 +47643,7 @@
                 "filename": "HOUSE_OVERSIGHT_029340.txt",
                 "is_interesting": false,
                 "num_lines": 59,
-                "timestamp": "2014-02-11T00:00:00",
+                "timestamp": "2014-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -47733,7 +47733,7 @@
                 "filename": "HOUSE_OVERSIGHT_029356.txt",
                 "is_interesting": false,
                 "num_lines": 18,
-                "timestamp": "2001-08-11T00:00:00",
+                "timestamp": "2001-08-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -47831,7 +47831,7 @@
                 "filename": "HOUSE_OVERSIGHT_029448.txt",
                 "is_interesting": true,
                 "num_lines": 25,
-                "timestamp": "2016-02-11T00:00:00",
+                "timestamp": "2016-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48323,7 +48323,7 @@
                 "filename": "HOUSE_OVERSIGHT_030825.txt",
                 "is_interesting": false,
                 "num_lines": 15,
-                "timestamp": "2013-06-11T00:00:00",
+                "timestamp": "2013-06-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48349,7 +48349,7 @@
                 "filename": "HOUSE_OVERSIGHT_030840.txt",
                 "is_interesting": false,
                 "num_lines": 332,
-                "timestamp": "2014-02-11T00:00:00",
+                "timestamp": "2014-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48374,7 +48374,7 @@
                 "filename": "HOUSE_OVERSIGHT_030875.txt",
                 "is_interesting": true,
                 "num_lines": 22,
-                "timestamp": "2004-02-11T00:00:00",
+                "timestamp": "2004-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48494,7 +48494,7 @@
                 "filename": "HOUSE_OVERSIGHT_031354.txt",
                 "is_interesting": false,
                 "num_lines": 182,
-                "timestamp": "2012-02-11T00:00:00",
+                "timestamp": "2012-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48507,7 +48507,7 @@
                 "filename": "HOUSE_OVERSIGHT_031359.txt",
                 "is_interesting": false,
                 "num_lines": 794,
-                "timestamp": "2012-05-11T00:00:00",
+                "timestamp": "2012-05-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48563,7 +48563,7 @@
                 "filename": "HOUSE_OVERSIGHT_031447.txt",
                 "is_interesting": true,
                 "num_lines": 97,
-                "timestamp": "2015-10-11T00:00:00",
+                "timestamp": "2015-10-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48575,7 +48575,7 @@
                 "filename": "HOUSE_OVERSIGHT_031533.txt",
                 "is_interesting": false,
                 "num_lines": 67,
-                "timestamp": "2016-05-11T00:00:00",
+                "timestamp": "2016-05-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48684,7 +48684,7 @@
                 "filename": "HOUSE_OVERSIGHT_031794.txt",
                 "is_interesting": false,
                 "num_lines": 24,
-                "timestamp": "2008-02-11T00:00:00",
+                "timestamp": "2008-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -48966,7 +48966,7 @@
                 "filename": "HOUSE_OVERSIGHT_033220.txt",
                 "is_interesting": true,
                 "num_lines": 212,
-                "timestamp": "2018-02-11T00:00:00",
+                "timestamp": "2018-02-12T00:00:00",
                 "type": "OtherFile",
                 "was_timestamp_extracted": true
             },
@@ -49201,6 +49201,7 @@
         "Barbro C. Ehnbom": "business, Swedish pharmaceuticals, SALSS",
         "Barnaby Marsh": "publicist, co-founder of philanthropy services company Saint Partners",
         "Barry Josephson": "arts, American film producer, editor FamilySecurityMatters.org",
+        "Bella Klein": "employee, Epstein's accountant",
         "Bennet Moskowitz": "lawyer, represented the Epstein estate executors",
         "Bernard Kruger": "employee, Epstein's doctor",
         "Bill Gates": "tech bro, ex-Microsoft, Gates Foundation, bgC3",
@@ -49221,6 +49222,8 @@
         "Christina Galbraith": "publicist, Jeffrey Epstein VI Foundation Media/PR, worked with Tyler Shears",
         "Christopher Dilorio": "government, self described whistleblower",
         "Connie Zaguirre": "lawyer, office of Robert D. Critton Jr.",
+        "DOJ Inspector General": "government, American law enforcement",
+        "DOJ London": "government, American law enforcement",
         "Dangene and Jennie Enterprise": "friend, founders of the members-only CORE club",
         "Daniel Kahneman": "academia, Nobel economic sciences laureate and cognitivie psychologist (?)",
         "Daniel Sabba": "finance, UBS Investment Bank",
@@ -49250,8 +49253,10 @@
         "Erika Kellerhals": "lawyer, attorney in St. Thomas",
         "Eva (Dubin?)": "Dubins, possibly Epstein's ex-girlfriend (?)",
         "Eva Dubin": "Dubins, Epstein's ex-girlfriend now married to Glenn Dubin",
+        "FBI": "government, American law enforcement",
         "Fabrice Aidan": "Europe, diplomat who worked with Terje R\u00f8d-Larsen",
         "Faith Kates": "modeling, Next Models co-founder",
+        "Florence Hutner": "government, New York Office of Chief Medical Examiner",
         "Fred Haddad": "lawyer, co-founder of Heck's in West Virginia",
         "Ganbat Chuluunkhuu": "lobbyist, corrupt Mongolian politician who was later wanted by Interpol",
         "Gerald Barton": "business, Maryland property developer Landmark Land Company",
@@ -49260,6 +49265,7 @@
         "Gianni Serazzi": "modeling, fashion consultant?",
         "Gino Yu": "China, professor / game designer in Hong Kong",
         "Glenn Dubin": "Dubins, Highbridge Capital Management, married to Epstein's ex-gf Eva",
+        "Google Plus": "tech bro, Google+",
         "Gordon Getty": "business, heir to oil tycoon J. Paul Getty",
         "Grant J. Smith": "victim lawyer, Rothstein Rosenfeldt Adler (Rothstein was Roger Stone's partner)",
         "Gwendolyn Beck": "employee, Epstein fund manager in the 90s",
@@ -49299,6 +49305,7 @@
         "Joshua Cooper Ramo": "lobbyist, co-CEO of Henry Kissinger Associates",
         "Juleanna Glover": "Republican, CEO of D.C. public affairs advisory firm Ridgely|Walsh",
         "Julia Santos": "Russia, possibly a Russian in Paris that was recruiting girls from Ukraine for Epstein",
+        "Justin Alfano": "government, American law enforcement",
         "Karim Wade": "Africa, son of the president of Senegal, facing arrest for corruption, email handle is \"Afri zp\"",
         "Karyna Shuliak": "Russia, Epstein's final girlfriend to whom he tried to leave $50-100 million and the island",
         "Katherine Keating": "lobbyist, daughter of former Australian prime minister",
@@ -49321,11 +49328,13 @@
         "Linda Stone": "academia, ex-Microsoft, MIT Media Lab",
         "Lisa New": "Harvard, professor of poetry, wife of Larry Summers, AKA \"Elisa New\"",
         "Lisa Randall": "Harvard, theoretical physicist",
+        "Lorenzo de Medici": "bitcoin, Medici Bank, possibly Medici heir?",
         "Lyn Fontanilla": "employee, Filipino housekeeper",
         "Macky Sall": "Africa, prime minister of Senegal, defeated Abdoulaye Wade",
+        "Manhattan DA": "government, American law enforcement",
         "Manuela Martinez": "modeling, Mega Partners (Brazilian agency)",
         "Marc Leon": "finance, Luxury Properties Sari Morrocco",
-        "Mariya Prusakova": "Russia, AKA Masha Prusso, former Olympic snowboarder, Crypto PR Lab co-founder, \"found ladies\" for Epstein",
+        "Maria Prusakova": "Russia, AKA Masha Prusso, former Olympic snowboarder, Crypto PR Lab co-founder, \"found ladies\" for Epstein",
         "Mark Epstein": "Epstein, brother of Jeffrey",
         "Mark Tramo": "academia, professor of neurology at UCLA",
         "Martin Nowak": "Harvard, professor of mathematics and biology",
@@ -49345,15 +49354,18 @@
         "Mohamed Waheed Hassan": "lobbyist, former president of the Maldives",
         "Mortimer Zuckerman": "finance, business partner of Epstein, newspaper publisher",
         "Moshe Hoffman": "Harvard, behavioral and evolutionary economics",
+        "NY FBI": "government, American law enforcement",
         "Nadia Marcinko": "employee, Epstein's pilot",
         "Nancy Dahl": "academia, wife of Lawrence Krauss",
         "Neal Kassell": "academia, professor of neurosurgery at University of Virginia",
+        "Newsmax": "journalist, right wing American news outlet",
         "Nicholas Ribis": "Trump, Hilton CEO, former president of Trump Organization",
         "Nicole Junkermann": "business, ex-model, NJF Capital, German investor in Revolut, Winamax (online poker) and Carbyen (Ehud Barak)",
         "Nili Priell Barak": "Israel, wife of Ehud Barak",
         "Noam Chomsky": "academia, professor of linguistics at MIT",
         "Norman D. Rau": "finance, managing director at Morgan Stanley",
         "Norman Finkelstein": "academia, scholar, well known critic of Israel",
+        "Office of the Deputy Attorney General": "government, American law enforcement",
         "Olivier Colom": "lobbyist, France",
         "Owen Blicksilver": "publicist, OBPR, Inc.",
         "Paul Keating": "lobbyist, former prime minister of Australia",
@@ -49361,6 +49373,7 @@
         "Paul Morris": "finance, Deutsche Bank",
         "Paul Prosperi": "Democrat, friend of Bill Clinton",
         "Paula Heil Fisher (???)": "friend, Epstein's ex-girlfriend who is now in the opera world",
+        "Paula Speer": "government, court reporter",
         "Peggy Siegal": "publicist, socialite, movie promoter",
         "Peter Aldhous": "journalist, Buzzfeed science reporter",
         "Peter Attia": "academia, longevity medicine",
@@ -49384,6 +49397,7 @@
         "Roger Schank": "academia, Teachers College, Columbia University",
         "Ross Gow": "publicist, Acuity Reputation Management",
         "Roy Black": "lawyer, criminal defense attorney on 2008 case",
+        "SDNY": "government, American law enforcement",
         "Scott J. Link": "lawyer, criminal defense attorney",
         "Sean Bannon": "Republican, Steve Bannon's brother",
         "Sean J. Lancaster": "employee, airplane reseller",
@@ -49399,6 +49413,7 @@
         "Steven Hoffenberg": "finance, Epstein's Towers Financial ponzi partner, prison for 18 years",
         "Steven Pfeiffer": "arts, Associate Director at Independent Filmmaker Project (IFP)",
         "Steven Sinofsky": "tech bro, a16z, ex-Microsoft, loves bitcoin",
+        "Story Cowles": "employee, Epstein's male assistant",
         "Sultan Ahmed Bin Sulayem": "mideast, chairman of ports in Dubai, CEO of DP World",
         "Susan Edelman": "journalist, New York Post reporter",
         "Svetlana Pozhidaeva": "Russia, Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and David Blaine",
@@ -49410,7 +49425,10 @@
         "Tom Pritzker": "business, chairman of The Pritzker Organization and Hyatt Hotels",
         "Tonja Haddad Coleman": "lawyer, civil attorney Epstein v. Scott Rothstein, Brad Edwards, & L.M.",
         "Tyler Shears": "publicist, reputation management, worked on with Christina Galbraith",
+        "USANYS": "government, American law enforcement",
+        "USMS": "government, United States Marshal Service",
         "Vahe Stepanian": "finance, Cetera Financial Group",
+        "Valar Ventures": "tech bro, Peter Thiel affiliated fintech venture fund",
         "Valeria Chomsky": "academia, wife of Noam Chomsky",
         "Vincenzo Iozzo": "tech bro, CEO of the identity-security company SlashID",
         "Vinit Sahni": "finance, analyst at Deutsche Bank and Goldman Sachs",
