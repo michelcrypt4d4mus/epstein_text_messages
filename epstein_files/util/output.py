@@ -16,8 +16,8 @@ from epstein_files.util.constant import output_files
 from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.output_files import EMAILERS_TABLE_PNG_PATH, JSON_FILES_JSON_PATH, JSON_METADATA_PATH
-from epstein_files.util.constant.strings import AUTHOR, TIMESTAMP_STYLE
-from epstein_files.util.data import dict_sets_to_lists, uniquify
+from epstein_files.util.constant.strings import AUTHOR
+from epstein_files.util.data import dict_sets_to_lists
 from epstein_files.util.env import args
 from epstein_files.util.file_helper import log_file_write
 from epstein_files.util.logging import logger, exit_with_error
@@ -75,6 +75,9 @@ def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile | Email]:
         if isinstance(doj_file, DojFile) and (doj_file.is_empty or doj_file.is_bad_ocr):
             console.print(doj_file.image_with_no_text_msg(), style='dim')
             last_was_empty = True
+            continue
+        elif doj_file.is_duplicate:
+            console.print(doj_file.duplicate_file_txt_padded)
             continue
 
         if last_was_empty:
