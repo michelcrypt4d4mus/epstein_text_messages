@@ -1487,6 +1487,7 @@ HIGHLIGHTED_NAMES = [
             MARIYA_PRUSAKOVA: f"AKA Masha Prusso, former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein",
             MASHA_DROKOVA: 'silicon valley VC, former Putin Youth member',
             RENATA_BOLOTOVA: 'former model, fund manager at New York State Insurance Fund, Рената Болотова',
+            SERGEY_BELYAKOV: "graduate of Russia's FSB academy",
             SVETLANA_POZHIDAEVA: "Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and David Blaine",
         },
         patterns=[
