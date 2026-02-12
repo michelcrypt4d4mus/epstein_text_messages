@@ -2174,6 +2174,7 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00584696', description=f"{KYARA_INVESTMENTS} III LLC operating agreement"),
     DocCfg(id='EFTA01734786', description='LedgerX Series B pitch deck', is_interesting=True),
     DocCfg(id='EFTA00805860', description=f"{JOI_ITO}'s Neoteny 3 fund investor update / portfolio", is_interesting=True),
+    DocCfg(id='EFTA01118268', description=f"{JOI_ITO}'s Neoteny 3 fund investor update", date='2015-06-30'),
     DocCfg(id='EFTA01217787', description='Skype conversation with Tyler Shears and Hanna Traff at Spotify', is_interesting=True),
     DocCfg(id='EFTA01217703', description=f'Skype conversation with actress Athena Zelcovich, {JOSCHA_BACH}, and {LAWRENCE_KRAUSS}'),
     DocCfg(id='EFTA01217736', description=f'Skype conversation with actress Athena Zelcovich, {TYLER_SHEARS}'),
