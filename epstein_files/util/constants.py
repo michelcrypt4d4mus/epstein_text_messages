@@ -1269,6 +1269,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00929871', recipients=[RENATA_BOLOTOVA], attribution_reason='"sneaky dog"', duplicate_ids=['EFTA01773449', 'EFTA02550388']),
     EmailCfg(id='EFTA00850130', recipients=[SERGEY_BELYAKOV]),
     EmailCfg(id='EFTA00835324', recipients=[SERGEY_BELYAKOV], description='assessment of Mycelium bitcoin wallet'),
+    EmailCfg(id='EFTA00852324', recipients=[SERGEY_BELYAKOV, JEFFREY_EPSTEIN, 'Elena Bolyakina', PETER_THIEL]),
     EmailCfg(id='EFTA00857165', recipients=['Seth Lloyd'], attribution_reason='quoted reply line'),
     EmailCfg(id='EFTA00749241', recipients=[SULTAN_BIN_SULAYEM], attribution_reason='widely reported', comment='torture video', is_interesting=True),
     EmailCfg(id='EFTA02731721', recipients=[USANYS]),
