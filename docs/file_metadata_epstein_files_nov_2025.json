@@ -33700,6 +33700,19 @@
                 "type": "Email"
             },
             {
+                "author": "Francesca Hall",
+                "bytes": 857,
+                "file_id": "EFTA00368281",
+                "filename": "EFTA00368281.txt",
+                "num_lines": 19,
+                "recipients": [
+                    "Austin Hill"
+                ],
+                "subject": "Updated Invitation: Meeting with JE @ Mon Jun 9, 2014 3pm - 3:30pm",
+                "timestamp": "2014-06-08T21:47:49",
+                "type": "Email"
+            },
+            {
                 "attribution_reason": "can be seen in EFTA00368958",
                 "author": "Ike Groff",
                 "bytes": 5420,
@@ -34052,6 +34065,16 @@
                 "type": "Email"
             },
             {
+                "author": "Austin Hill",
+                "bytes": 833,
+                "file_id": "EFTA00462608",
+                "filename": "EFTA00462608.txt",
+                "num_lines": 16,
+                "subject": "Invitation: Sharia Coin Brainstorming Session @ Sat Nov II, 2017 2pm - 5:50pm (M",
+                "timestamp": "2017-11-08T23:48:57",
+                "type": "Email"
+            },
+            {
                 "author": "Lesley Groff",
                 "bytes": 14313,
                 "file_id": "EFTA00469073",
@@ -34357,6 +34380,19 @@
                 ],
                 "subject": "Re: Coinbase",
                 "timestamp": "2014-11-14T20:31:04",
+                "type": "Email"
+            },
+            {
+                "author": "Joi Ito",
+                "bytes": 3569,
+                "file_id": "EFTA00649516",
+                "filename": "EFTA00649516.txt",
+                "num_lines": 49,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Fwd: update",
+                "timestamp": "2015-01-13T20:39:14",
                 "type": "Email"
             },
             {
@@ -35315,6 +35351,19 @@
             },
             {
                 "author": "Jeffrey Epstein",
+                "bytes": 4227,
+                "file_id": "EFTA00866712",
+                "filename": "EFTA00866712.txt",
+                "num_lines": 64,
+                "recipients": [
+                    "Joi Ito"
+                ],
+                "subject": "Re: update",
+                "timestamp": "2015-01-13T20:49:40",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
                 "bytes": 4852,
                 "file_id": "EFTA00869828",
                 "filename": "EFTA00869828.txt",
@@ -35872,6 +35921,21 @@
                 ],
                 "subject": "Re: Mutual interest",
                 "timestamp": "2013-05-30T00:19:06",
+                "type": "Email"
+            },
+            {
+                "author": "Austin Hill",
+                "bytes": 2866,
+                "description": "discussion of sharia compliant crypto token",
+                "file_id": "EFTA00964459",
+                "filename": "EFTA00964459.txt",
+                "is_interesting": true,
+                "num_lines": 61,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Confirming for Saturday",
+                "timestamp": "2017-11-08T11:41:43",
                 "type": "Email"
             },
             {
@@ -37313,6 +37377,19 @@
                 "type": "Email"
             },
             {
+                "author": "Joi Ito",
+                "bytes": 1972,
+                "file_id": "EFTA01746399",
+                "filename": "EFTA01746399.txt",
+                "num_lines": 26,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Wearality announces Former Google Ambassador Michael Jones As New CEO",
+                "timestamp": "2015-04-22T19:02:00",
+                "type": "Email"
+            },
+            {
                 "attribution_reason": "reply",
                 "author": "Darren Indyke",
                 "bytes": 978,
@@ -37380,6 +37457,19 @@
                 ],
                 "subject": "Travelling with limited Connectivity Until September 8th. Re:",
                 "timestamp": "2014-09-02T11:13:29",
+                "type": "Email"
+            },
+            {
+                "author": "Joi Ito",
+                "bytes": 397,
+                "file_id": "EFTA01752601",
+                "filename": "EFTA01752601.txt",
+                "num_lines": 11,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "naming the fund",
+                "timestamp": "2014-01-16T18:42:01",
                 "type": "Email"
             },
             {
@@ -39335,15 +39425,28 @@
             },
             {
                 "author": "Austin Hill",
-                "bytes": 2617,
+                "bytes": 2631,
                 "file_id": "EFTA02372964",
                 "filename": "EFTA02372964.txt",
-                "num_lines": 49,
+                "num_lines": 50,
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
                 "subject": "Re: Just checking that your Island is OK",
-                "timestamp": "2026-02-16T00:00:00",
+                "timestamp": "2017-09-11T11:26:00",
+                "type": "Email"
+            },
+            {
+                "author": "Joi Ito",
+                "bytes": 2065,
+                "file_id": "EFTA02372999",
+                "filename": "EFTA02372999.txt",
+                "num_lines": 41,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: The Wearality Investor November Edition",
+                "timestamp": "2015-11-01T08:43:00",
                 "type": "Email"
             },
             {
@@ -39740,6 +39843,33 @@
                 ],
                 "subject": "Re: Seth/bitcoin",
                 "timestamp": "2015-05-12T16:55:00",
+                "type": "Email"
+            },
+            {
+                "author": "Richard Kahn",
+                "bytes": 793,
+                "description": "summary of Kyara Investment shell companies with Joi Ito",
+                "file_id": "EFTA02505439",
+                "filename": "EFTA02505439.txt",
+                "num_lines": 23,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Joi Ito update",
+                "timestamp": "2015-04-13T15:15:00",
+                "type": "Email"
+            },
+            {
+                "author": "Richard Kahn",
+                "bytes": 1657,
+                "file_id": "EFTA02505570",
+                "filename": "EFTA02505570.txt",
+                "num_lines": 42,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Joi Ito update",
+                "timestamp": "2015-04-13T15:27:00",
                 "type": "Email"
             },
             {
@@ -40478,6 +40608,20 @@
                 "sent_from_device": "Sent from my iPhone",
                 "subject": "Fwd: Aide Memoir",
                 "timestamp": "2015-11-06T09:51:00",
+                "type": "Email"
+            },
+            {
+                "author": "Joi Ito",
+                "bytes": 1140,
+                "description": "email from CEO Michael Jones of company Epstein invested in called Wearality",
+                "file_id": "EFTA02671523",
+                "filename": "EFTA02671523.txt",
+                "num_lines": 21,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Fwd: The Wearality Investor: November Edition",
+                "timestamp": "2015-11-01T07:48:00",
                 "type": "Email"
             },
             {
