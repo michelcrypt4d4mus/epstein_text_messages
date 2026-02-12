@@ -230,7 +230,7 @@ EMAIL_AUTHOR_COUNTS = {
     SULTAN_BIN_SULAYEM: 12,
     TERJE_ROD_LARSEN: 3,
     TERRY_KAFKA: 8,
-    "Thorbjørn Jagland": 7,
+    THORBJORN_JAGLAND: 7,
     "Tim Zagat": 1,
     TOM_BARRACK: 1,
     TOM_PRITZKER: 6,
