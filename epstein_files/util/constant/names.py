@@ -223,6 +223,7 @@ MICHAEL_J_BOCCIO = 'Michael J. Boccio'
 NERIO_ALESSANDRI = 'Nerio Alessandri (Founder and Chairman of Technogym S.p.A. Italy)'
 PAUL_G_CASSELL = 'Paul G. Cassell'
 RUDY_GIULIANI = 'Rudy Giuliani'
+SERGEY_BELYAKOV = 'Sergey Belyakov'
 TULSI_GABBARD = 'Tulsi Gabbard'
 VIRGINIA_GIUFFRE = 'Virginia Giuffre'
 
