@@ -853,7 +853,14 @@ HIGHLIGHTED_NAMES = [
             AUDREY_STRAUSS: "USA Attorney",
             CHRISTOPHER_DILORIO: 'self described whistleblower',
             DANNY_FROST: 'Director of Communications at Manhattan D.A.',
+            'DOJ Inspector General': 'American law enforcement',
+            'DOJ London': 'American law enforcement',
+            FBI: 'American law enforcement',
+            'NY FBI': 'American law enforcement',
+            OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL: 'American law enforcement',
             'Police Code Enforcement': f"{PALM_BEACH} buildings code enforcement",
+            'SDNY': 'American law enforcement',
+            USANYS: 'American law enforcement',
         },
         patterns=[
             r"AG",
@@ -877,7 +884,6 @@ HIGHLIGHTED_NAMES = [
             r"DHS",
             r"DOJ",
             r"EDGAR (Filing|Search)",  # SEC database is EDGAR
-            r"FBI",
             r"FCPA",
             r"FDIC",
             r"FDLE",
