@@ -277,7 +277,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     randall rangel reid richard robert rodriguez roger rosenberg ross roth roy rubenstein rubin
     scott sean skip smith stacey stanley stern stephen steve steven stone susan
     terry the thomas tim tom tony tyler
-    victor
+    ventures victor
     wade waters
     y
 """.strip().split()

@@ -51,6 +51,7 @@ EMAIL_AUTHOR_COUNTS = {
     CHRISTINA_GALBRAITH: 6,
     CHRISTOPHER_DILORIO: 4,
     'Coursera': 1,
+    'Dan Dubno': 1,
     DANGENE_AND_JENNIE_ENTERPRISE: 4,
     DANIEL_SABBA: 3,
     DANIEL_SIAD: 2,
@@ -173,6 +174,7 @@ EMAIL_AUTHOR_COUNTS = {
     MOHAMED_WAHEED_HASSAN: 2,
     MOSHE_HOFFMAN: 1,
     NADIA_MARCINKO: 5,
+    'Neal Berger': 1,
     NEAL_KASSELL: 2,
     'Newsmax': 1,
     NICHOLAS_RIBIS: 42,
@@ -256,7 +258,7 @@ EMAIL_AUTHOR_COUNTS = {
 
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 95,
+    None: 97,
     "ACT for America": 1,
     ADAM_BACK: 3,
     AL_SECKEL: 1,
@@ -378,7 +380,7 @@ EMAIL_RECIPIENT_COUNTS = {
     JEANNE_M_CHRISTENSEN: 8,
     JEFF_FULLER: 2,
     'Jeff Pagliuca': 4,
-    JEFFREY_EPSTEIN: 1782,
+    JEFFREY_EPSTEIN: 1784,
     JEREMY_RUBIN: 7,
     JES_STALEY: 7,
     JESSICA_CADWELL: 3,
@@ -510,7 +512,7 @@ EMAIL_RECIPIENT_COUNTS = {
     SDNY: 1,
     SEAN_BANNON: 1,
     "Sean T Lehane": 1,
-    SERGEY_BELYAKOV: 5,
+    SERGEY_BELYAKOV: 3,
     'Seth Lloyd': 1,
     SOON_YI_PREVIN: 4,
     STACEY_RICHMAN: 1,

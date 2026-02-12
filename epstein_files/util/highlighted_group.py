@@ -399,6 +399,7 @@ HIGHLIGHTED_NAMES = [
             r"Bradley\s*Rotter",
             r"Brian Forde",
             r"Brock(\s*Pierce)?",
+            r"Brudder(\s*Ventures)?",
             r"Coinbase",
             r"coins?(\s*Center)?",
             r"Cory\s*Fields",  # bitcoin dev
