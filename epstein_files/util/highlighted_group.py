@@ -411,6 +411,7 @@ HIGHLIGHTED_NAMES = [
             r"(Howard\s+)?Lutnic?k",
             r"(Jim\s*)Pallotta",  # Media lab advisory board
             r"Kraken",
+            r"Kyara(\s*Investments?)?",  # crypto vehicle with Joi Ito
             r"LedgerX",
             r"Libra",
             r"Madars",
@@ -1564,6 +1565,7 @@ HIGHLIGHTED_NAMES = [
             r"(Marc\s*)?Andreess?en",
             r"(Mark\s*)?Zuckerberg",
             r"Masa(yoshi)?(\sSon)?",
+            r"Neoteny",  # Joi Ito Japanese fund?
             r"Najeev",
             r"Nathan\s*Myhrvold",
             r"Palantir",
