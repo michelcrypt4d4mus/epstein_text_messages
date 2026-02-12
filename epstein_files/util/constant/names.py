@@ -243,6 +243,7 @@ GOOGLE_PLUS = 'Google Plus'
 HARVARD = 'Harvard'
 INSIGHTS_POD = f"InsightsPod"  # Zubair bots
 JP_MORGAN = 'JP Morgan'
+KYARA_INVESTMENTS = 'Kyara Investments'
 MIT_MEDIA_LAB = 'MIT Media Lab'
 NEXT_MANAGEMENT = 'Next Management LLC'
 OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL = 'Office of the Deputy Attorney General'
