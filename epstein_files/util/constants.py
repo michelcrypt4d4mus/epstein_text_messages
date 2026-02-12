@@ -1324,6 +1324,7 @@ EMAILS_CONFIG = [
         is_interesting=True,
         recipients=[LESLEY_GROFF],
     ),
+    EmailCfg(id='EFTA00671263', description="Eagle's View Capital Management September 2017 Performance Update"),
     EmailCfg(id='EFTA00901970', description=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=True),
     EmailCfg(id='EFTA00988395', description='"Andy Back" is probably O.G. bitcoin dev Adam Back from Blockstream', duplicate_ids=['EFTA01928856']),
     EmailCfg(id='EFTA00955063', description='Austin Hill discusses investments in crypto funds engaged in fraudulent wash trading', is_interesting=True),
