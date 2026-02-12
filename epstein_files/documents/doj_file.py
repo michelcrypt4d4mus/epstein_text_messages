@@ -8,16 +8,15 @@ from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
 
-from epstein_files.documents.document import INFO_INDENT, Document
+from epstein_files.documents.document import Document
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.email_header import FIELDS_COLON_PATTERN
 from epstein_files.documents.other_file import Metadata, OtherFile
 from epstein_files.util.constant.names import RENATA_BOLOTOVA
 from epstein_files.util.constants import FALLBACK_TIMESTAMP
-from epstein_files.util.data import without_falsey
 from epstein_files.util.layout.left_bar_panel import LeftBarPanel
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import RAINBOW, INFO_STYLE, SKIPPED_FILE_MSG_PADDING, highlighter, link_text_obj
+from epstein_files.util.rich import RAINBOW, INFO_STYLE, highlighter, link_text_obj
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTALL)
