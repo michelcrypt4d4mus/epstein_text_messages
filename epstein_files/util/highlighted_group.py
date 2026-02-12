@@ -1517,6 +1517,7 @@ HIGHLIGHTED_NAMES = [
             r"Rakishev",
             r"Rosneft",
             r"RT",
+            r"Ruben\s*Vardanyan",
             r"St.?\s*?Petersburg",
             r'Svet',
             r"Russ?ian?",
