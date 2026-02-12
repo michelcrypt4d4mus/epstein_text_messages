@@ -1508,6 +1508,7 @@ HIGHLIGHTED_NAMES = [
             r"Lukoil",
             r'(Semion\s*)?Mogilevich',
             r"Moscow",
+            r"Nic(k|holas)\s*Kovarsky",  # Friend of Belyakov
             r"(Natalia\s*)?Veselnitskaya",
             r"(Oleg\s*)?Deripaska",
             r"Oleksandr Vilkul",
