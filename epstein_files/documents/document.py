@@ -24,8 +24,8 @@ from epstein_files.util.env import DOCS_DIR, DOJ_PDFS_20260130_DIR
 from epstein_files.util.file_helper import (coerce_file_path, extract_file_id, file_size, file_size_str,
      file_size_to_str, is_local_extract_file)
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
-from epstein_files.util.rich import (INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_cols_to_table, build_table,
-     console, highlighter, join_texts, key_value_txt, link_text_obj, parenthesize)
+from epstein_files.util.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE, add_cols_to_table,
+     build_table, console, highlighter, join_texts, key_value_txt, link_text_obj, parenthesize)
 from epstein_files.util.search_result import MatchedLine
 
 ALT_LINK_STYLE = 'white dim'
@@ -127,6 +127,10 @@ class Document:
         txt = Text(f"Not showing ", style=INFO_STYLE).append(epstein_media_doc_link_txt(self.file_id, style='cyan'))
         txt.append(f" because it's {DUPE_TYPE_STRS[self.config.dupe_type]} ")
         return txt.append(epstein_media_doc_link_txt(self.config.duplicate_of_id, style='royal_blue1'))
+
+    @property
+    def duplicate_file_txt_padded(self) -> Padding:
+        return Padding(self.duplicate_file_txt.append('...'), SKIPPED_FILE_MSG_PADDING)
 
     @property
     def duplicate_of_id(self) -> str | None:
