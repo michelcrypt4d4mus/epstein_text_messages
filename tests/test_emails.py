@@ -256,7 +256,7 @@ EMAIL_AUTHOR_COUNTS = {
 
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 95,
+    None: 96,
     "ACT for America": 1,
     ADAM_BACK: 3,
     AL_SECKEL: 1,
@@ -510,7 +510,7 @@ EMAIL_RECIPIENT_COUNTS = {
     SDNY: 1,
     SEAN_BANNON: 1,
     "Sean T Lehane": 1,
-    SERGEY_BELYAKOV: 5,
+    SERGEY_BELYAKOV: 3,
     'Seth Lloyd': 1,
     SOON_YI_PREVIN: 4,
     STACEY_RICHMAN: 1,
