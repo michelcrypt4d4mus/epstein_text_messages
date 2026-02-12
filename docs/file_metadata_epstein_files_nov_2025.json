@@ -34775,6 +34775,19 @@
                 "type": "Email"
             },
             {
+                "author": "Austin Hill",
+                "bytes": 3228,
+                "file_id": "EFTA00691410",
+                "filename": "EFTA00691410.txt",
+                "num_lines": 58,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Haven't forgotten about you",
+                "timestamp": "2017-10-12T14:18:42",
+                "type": "Email"
+            },
+            {
                 "author": "Google Plus",
                 "bytes": 2123,
                 "file_id": "EFTA00691703",
@@ -38774,6 +38787,16 @@
                 "type": "Email"
             },
             {
+                "bytes": 854,
+                "file_id": "EFTA02060931",
+                "filename": "EFTA02060931.txt",
+                "num_lines": 25,
+                "sent_from_device": "Sent from my iPhone",
+                "subject": "Re: Meeting - Feb 4 - 9:30 AM - Peter Thiel dietary restrictions - CONFIDENTIAL",
+                "timestamp": "2016-02-03T18:20:00",
+                "type": "Email"
+            },
+            {
                 "author": "Lesley Groff",
                 "bytes": 897,
                 "file_id": "EFTA02062308",
@@ -40106,6 +40129,21 @@
                 ],
                 "subject": "Re: Valar update",
                 "timestamp": "2015-08-21T16:31:00",
+                "type": "Email"
+            },
+            {
+                "author": "Sergey Belyakov",
+                "bytes": 2369,
+                "file_id": "EFTA02497384",
+                "filename": "EFTA02497384.txt",
+                "num_lines": 62,
+                "recipients": [
+                    "Alisa Bekins",
+                    "Jeffrey Epstein",
+                    "Peter Thiel"
+                ],
+                "subject": "Re: HA: Re:",
+                "timestamp": "2015-07-06T18:39:00",
                 "type": "Email"
             },
             {
@@ -49520,7 +49558,7 @@
         "Brad Wechsler": "finance, head of Leon Black's personal investment vehicle according to FT",
         "Brock Pierce": "bitcoin, Bannon business partner, Tether co-founder, friend of Yair Netanyahu, sex crime history",
         "Bruce Moskowitz": "Trump, 'Trump's health guy' according to Epstein",
-        "Bryan Bishop": "bitcoin, executive at LedgerX",
+        "Bryan Bishop": "bitcoin, executive at LedgerX, Polymath fund",
         "Bureau of Prisons": "government, American law enforcement",
         "Caroline Lang": "Europe, daughter of Jack Lang",
         "Carolyn Rangel": "deepak, Deepak Chopra's assistant (???)",
