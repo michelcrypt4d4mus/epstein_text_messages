@@ -285,7 +285,7 @@ class EpsteinFiles:
         return self._uninteresting_emailers
 
     def _find_email_attachments_and_set_is_first_for_user(self) -> None:
-        for other_file in self.other_files:
+        for other_file in (self.other_files + self.doj_files):
             if other_file.config and other_file.config.attached_to_email_id:
                 email = self.email_for_id(other_file.config.attached_to_email_id)
                 email.attached_docs.append(other_file)
