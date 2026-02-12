@@ -868,7 +868,7 @@ HIGHLIGHTED_NAMES = [
             OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL: 'American law enforcement',
             'Paula Speer': 'court reporter',
             'Police Code Enforcement': f"{PALM_BEACH} buildings code enforcement",
-            'SDNY': 'American law enforcement',
+            SDNY: 'American law enforcement, Southern District of New York',
             'USAHUB-USAJournal111': 'American law enforcement',
             USANYS: 'American law enforcement',
             'USMS': "United States Marshal Service",
