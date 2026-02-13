@@ -16,6 +16,7 @@ TIME_REGEX = re.compile(r'^((\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wed
 EMAILER_ID_PATTERNS: dict[str, str] = {
     ADAM_BACK: r"Adam\s*Back?",
     ALAN_DERSHOWITZ: r'(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh',
+    ALEKSANDRA_KARPOVA: r"Aleksandra\s*Karpova",
     ALIREZA_ITTIHADIEH: r'Alireza.[Il]ttihadieh',
     ALISON_J_NATHAN: r"Alison(\s*J\.?)?\s*Nathan|Nathan\s*NYSD\s*Chambers?",
     ANDREW_FARKAS: r"Andrew\s*(L\.\s*)?Farkas|Farkas,\s*Andrew(\s*L\.?)?",

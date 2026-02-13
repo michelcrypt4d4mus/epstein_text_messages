@@ -155,6 +155,7 @@ MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article about Ep
 # Some emails have a lot of uninteresting CCs
 FLIGHT_IN_2012_PEOPLE: list[Name] = ['Francis Derby', JANUSZ_BANASIAK, 'Louella Rabuyo', 'Richard Barnnet']
 IRAN_DEAL_RECIPIENTS: list[Name] = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
+LINDA_STONE_ATTRIBUTION = '"iPhone word substitution" in signature, which is traced back to "Linda, thanks" in EFTA00961792'
 VALAR_VENTURES_MEETING = f"meeting with {PETER_THIEL}'s {VALAR_VENTURES} fund"
 
 TRIVERS_CCS: list[Name] = [
@@ -1068,9 +1069,15 @@ EMAILS_CONFIG = [
         is_interesting=True,
     ),
     EmailCfg(id='EFTA00381451', author=LINDA_STONE, attribution_reason='"Typos, misspellings courtesy of iPhone."', truncate_to=800),
-    EmailCfg(id='EFTA00706814', author=LINDA_STONE, attribution_reason='"iPhone word substitution" in signature, which is traced back to "Linda, thanks" in EFTA00961792'),
-    EmailCfg(id='EFTA00703417', author=LINDA_STONE, attribution_reason='"iPhone word substitution" in signature, which is traced back to "Linda, thanks" in EFTA00961792'),
+    EmailCfg(id='EFTA00706814', author=LINDA_STONE, attribution_reason=LINDA_STONE_ATTRIBUTION),
+    EmailCfg(id='EFTA00703417', author=LINDA_STONE, attribution_reason=LINDA_STONE_ATTRIBUTION),
     EmailCfg(id='EFTA00397956', author=LINDA_STONE, attribution_reason='unique email signature'),
+    EmailCfg(
+        id='EFTA02349697',
+        attribution_reason='boyfriend Christian mentioned, same as 032374',
+        author=MARIYA_PRUSAKOVA,
+        is_attribution_uncertain=True
+    ),
     EmailCfg(
         id='EFTA00495349',
         author=MARIYA_PRUSAKOVA,
@@ -1262,6 +1269,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00840591', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00369335', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00368951', recipients=[LESLEY_GROFF], attribution_reason='can be seen in EFTA00368958'),
+    EmailCfg(id='EFTA00313867', recipients=[LESLEY_GROFF], truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00383027', recipients=[LINDA_STONE]),
     EmailCfg(id='EFTA02731632', recipients=[OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL]),
     EmailCfg(id='EFTA01006355', recipients=[RENATA_BOLOTOVA], attribution_reason='"sneaky dog"'),

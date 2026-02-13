@@ -2,6 +2,7 @@
 # Extract PDFs from the DOJ 2026-01-30 dump.
 # Requires the EPSTEIN_DOJ_PDFS_20260130_DIR env var to be set.
 import logging
+import re
 from logging import Formatter, Handler
 
 from pdfalyzer.decorators.pdf_file import PdfFile
@@ -16,6 +17,7 @@ from epstein_files.util.rich import console
 assert DOJ_PDFS_20260130_DIR is not None, f"{DOJ_PDFS_20260130_DIR_ENV_VAR} env var is not set!"
 assert DOJ_TXTS_20260130_DIR is not None
 
+BAD_FILENAME_REGEX = re.compile(r".*/EFTA\d+-\d\.pdf")
 EXTRACT_ARGS = ['extract_pdf_text', '--no-page-number-panels', '--panelize-image-text']
 
 if not DOJ_TXTS_20260130_DIR.exists():
@@ -53,6 +55,9 @@ for dir in [d for d in DOJ_PDFS_20260130_DIR.glob('*') if d.is_dir()]:
         extracted_text_dir.mkdir()
 
     for pdf_path in dir.glob('**/*.pdf'):
+        if BAD_FILENAME_REGEX.match(str(pdf_path)):
+            raise RuntimeError(f"Bad filename '{pdf_path}'!")
+
         txt_file_path = extracted_text_dir.joinpath(pdf_path.stem + '.txt')
 
         if txt_file_path.exists():
