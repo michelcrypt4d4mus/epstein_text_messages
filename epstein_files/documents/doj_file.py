@@ -16,7 +16,7 @@ from epstein_files.util.constant.names import RENATA_BOLOTOVA
 from epstein_files.util.constants import FALLBACK_TIMESTAMP
 from epstein_files.util.layout.left_bar_panel import LeftBarPanel
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import RAINBOW, INFO_STYLE, highlighter, link_text_obj
+from epstein_files.util.rich import RAINBOW, INFO_STYLE, highlighter, link_text_obj, wrap_in_markup_style
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTALL)
@@ -47,6 +47,48 @@ BAD_DOJ_FILE_IDS = [
     'EFTA00008493',
     'EFTA00008527',
     'EFTA00008473',
+    'EFTA00001657',
+    'EFTA00008495',
+    'EFTA00001472',
+    'EFTA00000677',
+    'EFTA00001669',
+    'EFTA00003082',
+    'EFTA00008413',
+    'EFTA00001809',
+    'EFTA00002831',
+    'EFTA00002816',
+    'EFTA00001114',
+    'EFTA00008445',
+    'EFTA00001979',
+    'EFTA00001655',
+    'EFTA00001654',
+    'EFTA00002229',
+    'EFTA00002207',
+    'EFTA00002203',
+    'EFTA00001811',
+    'EFTA00000675',
+    'EFTA00001848',
+    'EFTA00001803',
+    'EFTA00008427',
+    'EFTA00008503',
+    'EFTA00008475',
+    'EFTA00002463',
+    'EFTA00002111',
+    'EFTA00002804',
+    'EFTA00002543',
+    'EFTA00002830',
+    'EFTA00002240',
+    'EFTA00002538',
+    'EFTA00002813',
+    'EFTA00008411',
+    'EFTA00008501',
+    'EFTA00008511',
+    'EFTA00008500',
+    'EFTA00008480',
+    'EFTA00008497',
+    'EFTA00008493',
+    'EFTA00008527',
+    'EFTA00008519',
     'EFTA00001846',
     'EFTA00000052',
     'EFTA00008445',
@@ -107,6 +149,11 @@ PHONE_BILL_IDS = {
 
 STRIP_IMAGE_PANEL_IDS = [
     'EFTA00384774',
+    'EFTA00007693',
+    'EFTA02731361',
+    'EFTA00002342',
+    'EFTA00006374',
+    'EFTA00007097',
 ]
 
 INTERESTING_DOJ_FILES = {
@@ -162,6 +209,10 @@ class DojFile(OtherFile):
         return self._border_style
 
     @property
+    def external_link_markup(self) -> str:
+        return wrap_in_markup_style(super().external_link_markup, self.border_style)
+
+    @property
     def info(self) -> list[Text]:
         """Overloads superclass to adjust formatting."""
         return [Text(' ').append(sentence) for sentence in super().info]
@@ -183,6 +234,7 @@ class DojFile(OtherFile):
     def prettified_text(self) -> Text:
         """Returns the string we want to print as the body of the document."""
         style = ''
+        trim_footer_txt = None
 
         if self.file_id in PHONE_BILL_IDS:
             pages = self.text.split('MetroPCS')
@@ -196,7 +248,12 @@ class DojFile(OtherFile):
         else:
             text = self.text
 
-        return Text(text, style)
+        if self.config and self.config.truncate_to:
+            txt = highlighter(Text(text[0:self.config.truncate_to], style))
+            trim_footer_txt = self.truncation_note(self.config.truncate_to)
+            return txt.append('...\n\n').append(trim_footer_txt)
+        else:
+            return highlighter(Text(text, style))
 
     @property
     def timestamp_sort_key(self) -> tuple[datetime, str, int]:
