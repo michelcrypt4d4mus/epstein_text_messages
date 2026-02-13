@@ -16,7 +16,7 @@ from epstein_files.util.constant.names import RENATA_BOLOTOVA
 from epstein_files.util.constants import FALLBACK_TIMESTAMP
 from epstein_files.util.layout.left_bar_panel import LeftBarPanel
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import RAINBOW, INFO_STYLE, highlighter, link_text_obj
+from epstein_files.util.rich import RAINBOW, INFO_STYLE, highlighter, link_text_obj, wrap_in_markup_style
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTALL)
@@ -107,6 +107,7 @@ PHONE_BILL_IDS = {
 
 STRIP_IMAGE_PANEL_IDS = [
     'EFTA00384774',
+    'EFTA00007693',
 ]
 
 INTERESTING_DOJ_FILES = {
@@ -162,6 +163,10 @@ class DojFile(OtherFile):
         return self._border_style
 
     @property
+    def external_link_markup(self) -> str:
+        return wrap_in_markup_style(super().external_link_markup, self.border_style)
+
+    @property
     def info(self) -> list[Text]:
         """Overloads superclass to adjust formatting."""
         return [Text(' ').append(sentence) for sentence in super().info]
@@ -183,6 +188,7 @@ class DojFile(OtherFile):
     def prettified_text(self) -> Text:
         """Returns the string we want to print as the body of the document."""
         style = ''
+        trim_footer_txt = None
 
         if self.file_id in PHONE_BILL_IDS:
             pages = self.text.split('MetroPCS')
@@ -196,7 +202,12 @@ class DojFile(OtherFile):
         else:
             text = self.text
 
-        return Text(text, style)
+        if self.config and self.config.truncate_to:
+            txt = highlighter(Text(text[0:self.config.truncate_to], style))
+            trim_footer_txt = self.truncation_note(self.config.truncate_to)
+            return txt.append('...\n\n').append(trim_footer_txt)
+        else:
+            return highlighter(Text(text, style))
 
     @property
     def timestamp_sort_key(self) -> tuple[datetime, str, int]:

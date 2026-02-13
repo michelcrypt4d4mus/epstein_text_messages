@@ -25,7 +25,7 @@ from epstein_files.util.file_helper import (coerce_file_path, extract_file_id, f
      file_size_to_str, is_local_extract_file)
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 from epstein_files.util.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE, add_cols_to_table,
-     build_table, console, highlighter, join_texts, key_value_txt, link_text_obj, parenthesize)
+     build_table, console, highlighter, join_texts, key_value_txt, link_text_obj, parenthesize, wrap_in_markup_style)
 from epstein_files.util.search_result import MatchedLine
 
 ALT_LINK_STYLE = 'white dim'
@@ -136,6 +136,11 @@ class Document:
     def duplicate_of_id(self) -> str | None:
         if self.config and self.config.duplicate_of_id:
             return self.config.duplicate_of_id
+
+    @property
+    def external_link_markup(self) -> str:
+        """Rich markup string with link to source document."""
+        return link_markup(self.external_url, coerce_file_stem(self.filename))
 
     @property
     def external_url(self) -> str:
@@ -398,6 +403,11 @@ class Document:
     def top_lines(self, n: int = 10) -> str:
         """First n lines."""
         return '\n'.join(self.lines[0:n])[:MAX_TOP_LINES_LEN]
+
+    def truncation_note(self, truncate_to: int) -> Text:
+        link_markup = self.external_link_markup
+        trim_note = f"<...trimmed to {truncate_to:,} characters of {self.length:,}, read the rest at {link_markup}...>"
+        return Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
 
     def warn(self, msg: str) -> None:
         """Print a warning message prefixed by info about this `Document`."""
