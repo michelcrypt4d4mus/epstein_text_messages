@@ -13,6 +13,7 @@ from rich.panel import Panel
 from rich.text import Text
 from rich.table import Table
 
+from epstein_files.documents.documents.doc_locations import DocLocation
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
@@ -207,13 +208,29 @@ class Document:
     @property
     def local_path_and_url(self) -> Text:
         """Text obj with local path and URL."""
+
         txt = Text(f"{self.file_id}        URL: {self.external_url}\n{self.file_id} Local path: '{self.file_path}'")
 
-        if self.is_doj_file:
-            local_pdf_path = next((p for p in DOJ_PDFS_20260130_DIR.glob('**/*.pdf') if p.stem == self.file_path.stem), None)
-            txt.append(f"\n{self.file_id}  Local PDF: '{local_pdf_path}'")
+        if (pdf_path := self.local_pdf_path):
+            txt.append(f"\n{self.file_id}  Local PDF: '{pdf_path}'")
 
         return txt
+
+    @property
+    def local_pdf_path(self) -> Path | None:
+        """Path to the source PDF (only applies to DOJ files that were manually extracted)."""
+        if not self.is_doj_file:
+            return None
+
+        return next((p for p in DOJ_PDFS_20260130_DIR.glob('**/*.pdf') if p.stem == self.file_path.stem), None)
+
+    @property
+    def locations(self) -> DocLocation:
+        return DocLocation(
+            local_path=self.file_path,
+            local_pdf_path=self.local_pdf_path,
+            external_url=self.external_url
+        )
 
     @property
     def metadata(self) -> Metadata:

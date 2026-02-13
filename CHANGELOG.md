@@ -1,4 +1,6 @@
 # NEXT RELEASE
+* `--open-txt`, `--open-pdf`, `--open-both`, `--open-url`, `--open-jmail` command line options for `epstein_show`
+* lots of color highlighting and identification of DOJ 2026-01-30 files
 
 ### 1.5.1
 * Integrate DOJ file emails into the normal email generation
