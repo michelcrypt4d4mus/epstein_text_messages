@@ -1572,7 +1572,7 @@ HIGHLIGHTED_NAMES = [
             ZUBAIR_KHAN: 'Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai',
         },
         patterns=[
-            r"a16z|Andree?ss?e?[eo]n(\s&Horowitz)?",
+            r"a16z|(?<!Gavin )Andree?ss?e?[eo]n(\s&Horowitz)?",
             r"AG?I",
             r"Artificial\s*(General\s*)?Intelligence",
             r"Ben\s*Horowitz",
@@ -1590,7 +1590,7 @@ HIGHLIGHTED_NAMES = [
             r"(Jeff\s*)?Bezos",
             r"Larry Page",
             r"LinkedIn",
-            r"(Marc\s*)?Andreess?en",
+            r"(Marc\s*)?(?<!Gavin )Andreess?en",
             r"(Mark\s*)?Zuckerberg",
             r"Masa(yoshi)?(\sSon)?",
             r"Neoteny",  # Joi Ito Japanese fund?
