@@ -33434,6 +33434,14 @@
                 "type": "Email"
             },
             {
+                "bytes": 1647,
+                "file_id": "EFTA00313867",
+                "filename": "EFTA00313867.txt",
+                "num_lines": 39,
+                "timestamp": "2051-01-01T00:01:01",
+                "type": "Email"
+            },
+            {
                 "author": "Lesley Groff",
                 "bytes": 827,
                 "file_id": "EFTA00327023",
@@ -34687,6 +34695,19 @@
                 ],
                 "subject": "Re: Just checking that your Island is OK",
                 "timestamp": "2017-09-11T11:28:51",
+                "type": "Email"
+            },
+            {
+                "author": "Austin Hill",
+                "bytes": 6708,
+                "file_id": "EFTA00673841",
+                "filename": "EFTA00673841.txt",
+                "num_lines": 129,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: My apologies for interrupting & seeking advice",
+                "timestamp": "2015-01-07T11:20:57",
                 "type": "Email"
             },
             {
@@ -36012,6 +36033,19 @@
             },
             {
                 "author": "Austin Hill",
+                "bytes": 1502,
+                "file_id": "EFTA00947882",
+                "filename": "EFTA00947882.txt",
+                "num_lines": 26,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Follow up & Next Steps",
+                "timestamp": "2017-11-28T11:01:22",
+                "type": "Email"
+            },
+            {
+                "author": "Austin Hill",
                 "bytes": 2665,
                 "file_id": "EFTA00947897",
                 "filename": "EFTA00947897.txt",
@@ -36178,6 +36212,19 @@
                 ],
                 "subject": "Re:",
                 "timestamp": "2013-12-05T22:29:33",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 2348,
+                "file_id": "EFTA00980372",
+                "filename": "EFTA00980372.txt",
+                "num_lines": 37,
+                "recipients": [
+                    "Austin Hill"
+                ],
+                "subject": "Re: Confirmed for Saturday -Sunday in Palm Beach",
+                "timestamp": "2017-10-22T13:28:52",
                 "type": "Email"
             },
             {
@@ -37492,7 +37539,7 @@
             },
             {
                 "author": "Jeffrey Epstein",
-                "bytes": 3022,
+                "bytes": 3027,
                 "file_id": "EFTA01062056",
                 "filename": "EFTA01062056.txt",
                 "num_lines": 83,
@@ -38198,6 +38245,19 @@
                 "type": "Email"
             },
             {
+                "author": "Jeffrey Epstein",
+                "bytes": 1974,
+                "file_id": "EFTA01915883",
+                "filename": "EFTA01915883.txt",
+                "num_lines": 43,
+                "recipients": [
+                    "Joi Ito"
+                ],
+                "subject": "Re: Stellar Isn't so Stellar",
+                "timestamp": "2014-07-31T21:10:17",
+                "type": "Email"
+            },
+            {
                 "author": "Brock Pierce",
                 "bytes": 2762,
                 "file_id": "EFTA01917209",
@@ -38340,6 +38400,19 @@
                     "Amir Taaki"
                 ],
                 "timestamp": "2014-04-19T15:22:45",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "bytes": 3184,
+                "file_id": "EFTA01928866",
+                "filename": "EFTA01928866.txt",
+                "num_lines": 69,
+                "recipients": [
+                    "Austin Hill"
+                ],
+                "subject": "Re:",
+                "timestamp": "2014-04-15T22:46:52",
                 "type": "Email"
             },
             {
@@ -39679,6 +39752,33 @@
                 "type": "Email"
             },
             {
+                "author": "/ C",
+                "bytes": 990,
+                "file_id": "EFTA02349697",
+                "filename": "EFTA02349697.txt",
+                "num_lines": 30,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "NY",
+                "timestamp": "2017-02-08T07:39:00",
+                "type": "Email"
+            },
+            {
+                "author": "Fawzi Siam",
+                "bytes": 9136,
+                "file_id": "EFTA02349713",
+                "filename": "EFTA02349713.txt",
+                "num_lines": 97,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "RE: Block chain",
+                "timestamp": "2017-02-07T15:55:00",
+                "truncate_to": -1,
+                "type": "Email"
+            },
+            {
                 "author": "Lesley Groff",
                 "bytes": 472,
                 "file_id": "EFTA02351944",
@@ -39692,6 +39792,19 @@
                 "type": "Email"
             },
             {
+                "author": "Lesley Groff",
+                "bytes": 336,
+                "file_id": "EFTA02358856",
+                "filename": "EFTA02358856.txt",
+                "num_lines": 9,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "12pm Call Mr. Fawzi Siam",
+                "timestamp": "2017-01-24T16:56:00",
+                "type": "Email"
+            },
+            {
                 "author": "Brock Pierce",
                 "bytes": 1127,
                 "file_id": "EFTA02360165",
@@ -39702,6 +39815,20 @@
                 ],
                 "subject": "Uber",
                 "timestamp": "2015-01-22T22:17:00",
+                "type": "Email"
+            },
+            {
+                "author": "Brock Pierce",
+                "bytes": 4405,
+                "file_id": "EFTA02361144",
+                "filename": "EFTA02361144.txt",
+                "num_lines": 63,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Richard Kahn"
+                ],
+                "subject": "Fwd: Blockstream Series A - Pro Rata Notice",
+                "timestamp": "2015-11-06T23:25:00",
                 "type": "Email"
             },
             {
@@ -39760,6 +39887,7 @@
             {
                 "author": "Austin Hill",
                 "bytes": 2631,
+                "description": "an \"ICO\" is an \"initial coin offering\", a type of crypto scam very popular at this time",
                 "file_id": "EFTA02372964",
                 "filename": "EFTA02372964.txt",
                 "num_lines": 50,
@@ -39808,6 +39936,18 @@
                 ],
                 "subject": "Re: Western union",
                 "timestamp": "2017-04-26T16:12:00",
+                "type": "Email"
+            },
+            {
+                "bytes": 1198,
+                "file_id": "EFTA02385456",
+                "filename": "EFTA02385456.txt",
+                "num_lines": 21,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "RE:",
+                "timestamp": "2017-03-30T07:38:00",
                 "type": "Email"
             },
             {
@@ -39945,6 +40085,19 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2016-02-07T16:53:00",
+                "type": "Email"
+            },
+            {
+                "author": "Ganbat Chuluunkhuu",
+                "bytes": 10437,
+                "file_id": "EFTA02406725",
+                "filename": "EFTA02406725.txt",
+                "num_lines": 215,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re: Battulga",
+                "timestamp": "2017-07-12T11:43:00",
                 "type": "Email"
             },
             {
@@ -40488,6 +40641,19 @@
                 "type": "Email"
             },
             {
+                "author": "Austin Hill",
+                "bytes": 3307,
+                "file_id": "EFTA02568700",
+                "filename": "EFTA02568700.txt",
+                "num_lines": 65,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Fwd: Retainer & Invoicing for our project with Jeffrey",
+                "timestamp": "2017-11-14T13:19:00",
+                "type": "Email"
+            },
+            {
                 "author": "Lesley Groff",
                 "bytes": 812,
                 "file_id": "EFTA02569048",
@@ -40983,6 +41149,43 @@
                 ],
                 "subject": "Re: Honeycomb Ventures I LP - Richard Kahn",
                 "timestamp": "2017-07-06T17:12:00",
+                "type": "Email"
+            },
+            {
+                "author": "Fawzi Siam",
+                "bytes": 6333,
+                "file_id": "EFTA02660820",
+                "filename": "EFTA02660820.txt",
+                "num_lines": 118,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "RE: Block chain",
+                "timestamp": "2017-02-03T07:25:00",
+                "truncate_to": -1,
+                "type": "Email"
+            },
+            {
+                "bytes": 880,
+                "file_id": "EFTA02661442",
+                "filename": "EFTA02661442.txt",
+                "num_lines": 18,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Block chain",
+                "timestamp": "2017-01-25T10:11:00",
+                "type": "Email"
+            },
+            {
+                "bytes": 3918,
+                "file_id": "EFTA02662381",
+                "filename": "EFTA02662381.txt",
+                "num_lines": 72,
+                "recipients": [
+                    "Fawzi Siam"
+                ],
+                "timestamp": "2017-01-26T10:07:00",
                 "type": "Email"
             },
             {
@@ -49648,6 +49851,7 @@
         "FBI": "government, American law enforcement",
         "Fabrice Aidan": "Europe, diplomat who worked with Terje R\u00f8d-Larsen",
         "Faith Kates": "modeling, Next Models co-founder",
+        "Fawzi Siam": "mideast, sharia auditor in Qatar, friend of Sheikh Jabor Al-Thani",
         "Florence Hutner": "government, New York Office of Chief Medical Examiner",
         "Fred Haddad": "lawyer, co-founder of Heck's in West Virginia",
         "Ganbat Chuluunkhuu": "lobbyist, corrupt Mongolian politician who was later wanted by Interpol",
@@ -49796,6 +50000,7 @@
         "Sean Bannon": "Republican, Steve Bannon's brother",
         "Sean J. Lancaster": "employee, airplane reseller",
         "Sergey Belyakov": "Russia, graduate of Russia's FSB academy",
+        "Seth Lloyd": "academia, professor of mechanical engineering at MIT",
         "Shaher Abdulhak Besher": "mideast, Yemeni billionaire",
         "Skip Rimer": "finance, Milken Institute (Michael Milken)",
         "Soon-Yi Previn": "arts, wife of Woody Allen",
