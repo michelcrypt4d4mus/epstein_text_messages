@@ -151,34 +151,6 @@ def join_texts(txts: list[Text], join: str = ' ', encloser: str = '', encloser_s
     return txt
 
 
-def styled_key_value(
-    key: str,
-    val: int | str | Path | Text,
-    key_style: str = KEY_STYLE,
-    indent: int = 0,
-    sep='='
-) -> Text:
-    """Generate `Text` for 'key=value'."""
-    if isinstance(val, Text):
-        val_txt = val
-    else:
-        val_style: str = 'bright_white bold'
-
-        if isinstance(val, int):
-            val = str(val)
-            val_style = 'cyan'
-        elif isinstance(val, str) and val.startswith('http'):
-            val_style = ARCHIVE_LINK_UNDERLINE
-        elif isinstance(val, Path):
-            val = val = f"'{val}'"
-            val_style = 'magenta'
-
-        val_txt = Text(str(val), style=val_style)
-
-    txt = Text('').append(f"{key:>{indent}}", style=key_style)
-    return txt.append(sep, style=SYMBOL_STYLE).append(val_txt)
-
-
 def parenthesize(msg: str | Text, style: str = '') -> Text:
     txt = Text(msg) if isinstance(msg, str) else msg
     return Text('(', style=style).append(txt).append(')')
@@ -319,26 +291,40 @@ def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, styl
     print_centered(wrap_in_markup_style(msg, style))
 
 
-# def style_key_value(key: str, val: str | Text | Path, key_style: str = KEY_STYLE, indent: int = 0) -> Text:
-#     val_style: str = 'bright_white bold'
+def styled_key_value(
+    key: str,
+    val: int | str | Path | Text,
+    key_style: str = KEY_STYLE,
+    indent: int = 0,
+    sep='='
+) -> Text:
+    """Generate `Text` for 'key=value'."""
+    if isinstance(val, Text):
+        val_txt = val
+    else:
+        val_style: str = 'bright_white bold'
 
-#     if isinstance(val, Text):
-#         val_txt = val
-#     elif isinstance(val, str) and val.startswith('http'):
-#         val_style = ARCHIVE_LINK_UNDERLINE
-#     elif isinstance(val, Path):
-#         val_style = 'magenta'
-#         val = val = f"'{val}'"
+        if isinstance(val, int):
+            val = str(val)
+            val_style = 'cyan'
+        elif isinstance(val, str) and val.startswith('http'):
+            val_style = ARCHIVE_LINK_UNDERLINE
+        elif isinstance(val, Path):
+            val = val = f"'{val}'"
+            val_style = 'deep_pink3'
 
-#     val_txt = Text(str(val), style=val_style)
-#     return Text(f"{key:>{indent}}: ", style=key_style).append(val_txt)
+        val_txt = Text(str(val), style=val_style)
+
+    txt = Text('').append(f"{key:>{indent}}", style=key_style)
+    return txt.append(sep, style=SYMBOL_STYLE).append(val_txt)
 
 
 def styled_dict(d: dict[str, str | Path | Text], key_style: str = KEY_STYLE, sep: str = '=') -> Text:
-    key_col_size = max(len(k) for k in d.keys()) + 3
+    """Turn a dict into a colored representation."""
+    key_column_width = max(len(k) for k in d.keys()) + 3
 
     return Text('\n').join([
-        styled_key_value(k, v, key_style=key_style, indent=key_col_size, sep=sep)
+        styled_key_value(k, v, key_style=key_style, indent=key_column_width, sep=sep)
         for k, v in d.items()
     ])
 
