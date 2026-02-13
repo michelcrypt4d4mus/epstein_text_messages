@@ -164,6 +164,11 @@ def parenthesize(msg: str | Text, style: str = '') -> Text:
     return Text('(', style=style).append(txt).append(')')
 
 
+def prefix_with(txt: list[str] | list[Text] | Text | str, prefix: str) -> Text:
+    lines = txt.split('\n') if isinstance(txt, (Text, str)) else txt
+    return Text('\n').join([Text(f"{prefix} ").append(line) for line in lines])
+
+
 def print_centered(obj: RenderableType, style: str = '') -> None:
     console.print(Align.center(obj), style=style)
 
@@ -284,6 +289,22 @@ def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, styl
     spaces = ' ' * num_spaces
     msg = f"{spaces}{stars} {msg} {stars}{spaces}"
     print_centered(wrap_in_markup_style(msg, style))
+
+
+def style_key_value(key: str, val: str | Text | Path, val_style: str = '', indent: int = 0) -> Text:
+    if isinstance(val, Text):
+        val = Text('', style=val_style).append(val)
+    elif isinstance(val, Path):
+        val = Text(f"'{val}'", style=val_style or 'magenta')
+    elif 'http' in key:
+        val = Text(str(val), style=val_style or ARCHIVE_ALT_LINK_STYLE)
+
+    return Text(f"{key:>40}: ").append(val)
+
+
+def styled_dict(d: dict[str, str | Path | Text]) -> Text:
+    key_col_size = max(len(k) for k in d.keys()) + 3
+    return Text('\n').join([style_key_value(k, v, indent=key_col_size) for k, v in d.items()])
 
 
 def vertically_pad(obj: RenderableType, amount: int = 1) -> Padding:

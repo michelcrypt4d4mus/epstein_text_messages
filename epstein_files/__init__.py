@@ -146,7 +146,7 @@ def epstein_grep():
                     console.print(Padding(temp_highlighter(line_txt), INFO_PADDING), style='gray37')
 
             console.line()
-            console.print(doc.local_path_and_url + '\n', style='dim')
+            console.print(doc.locations, style='dim')
 
 
 def epstein_show():
@@ -187,11 +187,12 @@ def epstein_show():
                 metadata['_is_first_for_user'] = doc._is_first_for_user
                 print_json(f"{doc.file_id} Metadata", metadata)
 
-        console.print(doc.local_path_and_url, style='dim')
+        console.print(doc.locations, style='dim')
 
         if args.open_txt:
             check_output(['open', str(doc.file_path)])
-
+        if args.open_url:
+            check_output(['open', str(doc.external_url)])
 
 def epstein_word_count() -> None:
     write_word_counts_html()

@@ -41,7 +41,7 @@ parser.add_argument('--build', '-b', nargs="?", default=None, const=DEFAULT_FILE
 output.add_argument('--email-timeline', action='store_true', help='print a table of all emails in chronological order')
 output.add_argument('--emailers-info', '-ei', action='store_true', help='write a .png of the eeailers info table')
 output.add_argument('--json-files', action='store_true', help='pretty print all the raw JSON data files in the collection and exit')
-output.add_argument('--json-metadata', action='store_true', help='dump JSON metadata for all files and exit')
+output.add_argument('--json-metadata', '-jm', action='store_true', help='dump JSON metadata for all files and exit')
 output.add_argument('--output-doj-files', '-od', action='store_true', help='generate the DOJ files from 2026-01-30')
 output.add_argument('--output-emails', '-oe', action='store_true', help='generate emails section')
 output.add_argument('--output-other', '-oo', action='store_true', help='generate other files section')
@@ -55,7 +55,10 @@ scripts = parser.add_argument_group('SCRIPTS', 'Options used by epstein_grep, ep
 scripts.add_argument('positional_args', nargs='*', help='strings to searchs for, file IDs to show or diff, etc.')
 scripts.add_argument('--email-body', action='store_true', help='epstein_grep but only for the body of the email')
 scripts.add_argument('--min-line-length', type=int, help='epstein_grep minimum length of a matched line')
+scripts.add_argument('--open-both', '-ob', action='store_true', help='open the source PDF and txt after showing')
+scripts.add_argument('--open-pdf', '-pdf', action='store_true', help='open the source PDF file after showing (if it exists)')
 scripts.add_argument('--open-txt', '-o', action='store_true', help='open the file in a text editor after showing')
+scripts.add_argument('--open-url', '-ou', action='store_true', help='open the source URL in a web browser')
 scripts.add_argument('--raw', '-r', action='store_true', help='show raw contents of file (used by epstein_show)')
 scripts.add_argument('--whole-file', '-wf', action='store_true', help='print whole files')
 
@@ -120,6 +123,10 @@ if args.names:
 
 if args.truncate and args.whole_file:
     exit_with_error(f"--whole-file and --truncate are incompatible")
+
+if args.open_both:
+    args.open_pdf = True
+    args.open_txt = True
 
 # Log level args
 if args.deep_debug:
