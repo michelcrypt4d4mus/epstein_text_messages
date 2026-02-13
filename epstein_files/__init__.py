@@ -172,9 +172,10 @@ def epstein_show():
         exit_with_error(str(e))
 
     for doc in docs:
-        console.print('\n', doc, '\n')
+        console.print('\n', doc)
 
         if args.raw:
+            console.line()
             console.print(Panel(Text("RAW: ").append(doc.summary), expand=False, style=doc.border_style))
             console.print(escape(doc.raw_text()), '\n')
 
