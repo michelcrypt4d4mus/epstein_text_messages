@@ -931,6 +931,7 @@ HIGHLIGHTED_NAMES = [
             r"Office\s*of\s*Government\s*Ethics",
             r"PBPD",
             r"police",
+            r"POTUS",
             r"(Preet\s*)?Bharara",
             r"Public\s*Corruption\s*Unit",
             r"SCOTUS",
