@@ -12,6 +12,7 @@ from epstein_files.util.file_helper import coerce_file_stem
 
 # Style stuff
 ARCHIVE_LINK_COLOR = 'slate_blue3'
+ARCHIVE_LINK_UNDERLINE = f"{ARCHIVE_LINK_COLOR} underline"
 ARCHIVE_ALT_LINK_STYLE = 'medium_purple4 italic'
 TEXT_LINK = 'text_link'
 

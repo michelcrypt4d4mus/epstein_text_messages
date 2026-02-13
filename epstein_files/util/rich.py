@@ -296,8 +296,8 @@ def style_key_value(key: str, val: str | Text | Path, val_style: str = '', inden
         val = Text('', style=val_style).append(val)
     elif isinstance(val, Path):
         val = Text(f"'{val}'", style=val_style or 'magenta')
-    elif 'http' in key:
-        val = Text(str(val), style=val_style or ARCHIVE_ALT_LINK_STYLE)
+    elif 'http' in val:
+        val = Text(str(val), style=val_style or ARCHIVE_LINK_UNDERLINE)
 
     return Text(f"{key:>{indent}}: ").append(val)
 
