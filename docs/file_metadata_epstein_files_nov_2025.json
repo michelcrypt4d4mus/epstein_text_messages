@@ -34597,6 +34597,20 @@
                 "type": "Email"
             },
             {
+                "author": "Neal Berger",
+                "bytes": 19255,
+                "description": "Eagle's View Capital Management September 2017 Performance Update",
+                "file_id": "EFTA00671263",
+                "filename": "EFTA00671263.txt",
+                "num_lines": 250,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Eagle's View Capital Management, LLC- September 2017 Performance Update...",
+                "timestamp": "2017-10-22T18:54:01",
+                "type": "Email"
+            },
+            {
                 "attribution_reason": "\"sneaky dog\" + \"Sincerely\"",
                 "author": "Renata Bolotova",
                 "bytes": 1023,
@@ -36892,6 +36906,16 @@
             },
             {
                 "author": "Jeffrey Epstein",
+                "bytes": 793,
+                "file_id": "EFTA01013266-2",
+                "filename": "EFTA01013266-2.txt",
+                "num_lines": 24,
+                "subject": "Fwd: Davos Contract",
+                "timestamp": "2018-12-17T22:41:26",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
                 "bytes": 3090,
                 "file_id": "EFTA01013922",
                 "filename": "EFTA01013922.txt",
@@ -38797,6 +38821,16 @@
                 "type": "Email"
             },
             {
+                "bytes": 854,
+                "file_id": "EFTA02060931-1",
+                "filename": "EFTA02060931-1.txt",
+                "num_lines": 25,
+                "sent_from_device": "Sent from my iPhone",
+                "subject": "Re: Meeting - Feb 4 - 9:30 AM - Peter Thiel dietary restrictions - CONFIDENTIAL",
+                "timestamp": "2016-02-03T18:20:00",
+                "type": "Email"
+            },
+            {
                 "author": "Lesley Groff",
                 "bytes": 897,
                 "file_id": "EFTA02062308",
@@ -39938,6 +39972,19 @@
                 ],
                 "subject": "Leasing #13",
                 "timestamp": "2010-09-02T18:36:09",
+                "type": "Email"
+            },
+            {
+                "author": "Dan Dubno",
+                "bytes": 1962,
+                "file_id": "EFTA02423580",
+                "filename": "EFTA02423580.txt",
+                "num_lines": 35,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Yesterday",
+                "timestamp": "2010-08-25T15:40:49",
                 "type": "Email"
             },
             {
