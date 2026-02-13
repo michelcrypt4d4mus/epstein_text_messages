@@ -35,7 +35,7 @@ VALID_GREYS = [0, 3, 7, 11, 15, 19, 23, 27, 30, 35, 37, 39, 42, 46, 50, 53, 54, 
 DOJ_PAGE_LINK_MSG = 'WIP page with documents from the Epstein Files Transparency Act'
 
 INFO_STYLE = 'white dim italic'
-KEY_STYLE = 'honeydew2 bold'
+KEY_STYLE = 'honeydew2'
 LAST_TIMESTAMP_STYLE = 'wheat4'
 OTHER_PAGE_MSG_STYLE = 'gray78 dim'
 SECTION_HEADER_STYLE = 'bold white on blue3'
@@ -151,8 +151,14 @@ def join_texts(txts: list[Text], join: str = ' ', encloser: str = '', encloser_s
     return txt
 
 
-def key_value_txt(key: str, val: int | str | Path | Text, key_style: str = KEY_STYLE, indent: int = 0, sep='=') -> Text:
-    """Generate a Text obj for 'key=value'."""
+def styled_key_value(
+    key: str,
+    val: int | str | Path | Text,
+    key_style: str = KEY_STYLE,
+    indent: int = 0,
+    sep='='
+) -> Text:
+    """Generate `Text` for 'key=value'."""
     if isinstance(val, Text):
         val_txt = val
     else:
@@ -332,7 +338,7 @@ def styled_dict(d: dict[str, str | Path | Text], key_style: str = KEY_STYLE, sep
     key_col_size = max(len(k) for k in d.keys()) + 3
 
     return Text('\n').join([
-        key_value_txt(k, v, key_style=key_style, indent=key_col_size, sep=sep)
+        styled_key_value(k, v, key_style=key_style, indent=key_col_size, sep=sep)
         for k, v in d.items()
     ])
 

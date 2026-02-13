@@ -465,7 +465,7 @@ class Email(Communication):
         txt = self.summary_with_author
 
         if len(self.recipients) > 0:
-            txt.append(', ').append(key_value_txt('recipients', self.recipients_txt()))
+            txt.append(', ').append(styled_key_value('recipients', self.recipients_txt()))
 
         return txt.append(CLOSE_PROPERTIES_CHAR)
 
