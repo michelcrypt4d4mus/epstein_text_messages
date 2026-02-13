@@ -239,6 +239,7 @@ HIGHLIGHTED_NAMES = [
             PETER_ATTIA: 'longevity medicine',
             ROBERT_TRIVERS: 'evolutionary biology',
             ROGER_SCHANK: 'Teachers College, Columbia University',
+            SETH_LLOYD: 'professor of mechanical engineering at MIT',
             'Valeria Chomsky': f"wife of {NOAM_CHOMSKY}",
         },
         patterns=[
