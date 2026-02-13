@@ -164,9 +164,9 @@ def parenthesize(msg: str | Text, style: str = '') -> Text:
     return Text('(', style=style).append(txt).append(')')
 
 
-def prefix_with(txt: list[str] | list[Text] | Text | str, prefix: str) -> Text:
+def prefix_with(txt: list[str] | list[Text] | Text | str, prefix: str, prefix_style: str = '') -> Text:
     lines = txt.split('\n') if isinstance(txt, (Text, str)) else txt
-    return Text('\n').join([Text(f"{prefix} ").append(line) for line in lines])
+    return Text('\n').join([Text(f"{prefix} ", style=prefix_style).append(line) for line in lines])
 
 
 def print_centered(obj: RenderableType, style: str = '') -> None:
