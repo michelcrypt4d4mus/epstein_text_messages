@@ -50,6 +50,7 @@ EMAILER_ID_PATTERNS: dict[str, str] = {
     EDWARD_JAY_EPSTEIN: r'(?<!Jeffrey )Edward (Jay )?Epstein',
     EHUD_BARAK: r'(ehud|e?h)\s*barak|\behud',
     FAITH_KATES: r'faith kates?',
+    FAWZI_SIAM: r"Fawzi.Siam?",
     GANBAT_CHULUUNKHUU: r"Ganbat(@|\s*Ch(uluunkhuu)?)?",
     GERALD_BARTON: r'Gerald.*Barton',
     GERALD_LEFCOURT: r'Gerald\s*(B\.?\s*)?Lefcourt',

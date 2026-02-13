@@ -975,12 +975,15 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00039967', author='DOJ London', recipients=[USANYS]),
     EmailCfg(id='EFTA01776893', author=DONALD_NORMAN, attribution_reason='"This is Donald"', duplicate_ids=['EFTA00915423']),
     EmailCfg(id='EFTA00656005', author=DONALD_NORMAN, attribution_reason='signed "Donald"', duplicate_ids=['EFTA02691296', 'EFTA01862178']),
+    EmailCfg(id='EFTA02660820', author=FAWZI_SIAM, truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02349713', author=FAWZI_SIAM, truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02731552', author=FBI, recipients=[USANYS], date='2021-05-26 16:12:00'),  # recipient uncertain
     EmailCfg(id='EFTA02730483', author=FBI, date='2023-07-11T08:25:00'),  # TODO: actually reply timestamp
     EmailCfg(id='EFTA00039971', author=FBI, recipients=[USANYS]),  # TODO: recipient uncertain
     EmailCfg(id='EFTA00039985', author='Florence Hutner', recipients=[USANYS], attribution_reason='signature'),
     EmailCfg(id='EFTA02069096', author=GANBAT_CHULUUNKHUU),
     EmailCfg(id='EFTA02645857', author=GANBAT_CHULUUNKHUU),
+    EmailCfg(id='EFTA02406725', author=GANBAT_CHULUUNKHUU),
     EmailCfg(id='EFTA01030561', author=GANBAT_CHULUUNKHUU, attribution_reason='signature'),
     EmailCfg(id='EFTA00677752', author=GANBAT_CHULUUNKHUU, description=f'discussion of getting a job in sustainable energy in Mongolia for {REDACTED}'),
     EmailCfg(
@@ -1243,6 +1246,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02518357', recipients=[CHRISTINA_GALBRAITH, RICHARD_KAHN], attribution_reason='"Christina" appears in email'),
     EmailCfg(id='EFTA00915426', recipients=[DONALD_NORMAN], attribution_reason='"This is Donald"'),
     EmailCfg(id='EFTA00916133', recipients=[DONALD_NORMAN], attribution_reason='signed "Donald"', duplicate_ids=['EFTA01862243']),
+    EmailCfg(id='EFTA02662381', recipients=[FAWZI_SIAM]),
     EmailCfg(id='EFTA02646138', recipients=[GANBAT_CHULUUNKHUU]),
     EmailCfg(id='EFTA02629770', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='EFTA02328335', recipients=[JEFFREY_EPSTEIN, KARYNA_SHULIAK, None]),
@@ -1324,8 +1328,8 @@ EMAILS_CONFIG = [
         is_interesting=True,
         recipients=[LESLEY_GROFF],
     ),
-    EmailCfg(id='EFTA00671263', description="Eagle's View Capital Management September 2017 Performance Update"),
     EmailCfg(id='EFTA00901970', description=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=True),
+    EmailCfg(id='EFTA02372964', description='an "ICO" is an "initial coin offering", a type of crypto scam very popular at this time'),
     EmailCfg(id='EFTA00988395', description='"Andy Back" is probably O.G. bitcoin dev Adam Back from Blockstream', duplicate_ids=['EFTA01928856']),
     EmailCfg(id='EFTA00955063', description='Austin Hill discusses investments in crypto funds engaged in fraudulent wash trading', is_interesting=True),
     EmailCfg(id='EFTA01051074', description='Brock Pierce arranging meeting between Bannon and Epstein (in Doha?)'),
@@ -1341,6 +1345,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02629771', description=f"discussion of {RENATA_BOLOTOVA}'s employment at IPI", is_interesting=True),
     EmailCfg(id='EFTA00964459', description=f'discussion of sharia compliant crypto token', is_interesting=True),
     EmailCfg(id='EFTA00901772', description=f'discussion of the sale of Epstein stake in Coinbase'),
+    EmailCfg(id='EFTA00671263', description="Eagle's View Capital Management September 2017 Performance Update"),
     EmailCfg(id='EFTA02671523', description='email from CEO Michael Jones of company Epstein invested in called Wearality'),
     EmailCfg(id='EFTA01139067', description='Epstein tells Farkas he has not invested in Crypto Currency Partners II'),
     EmailCfg(id='EFTA00699275', description=f"'Fred' is probably Coinbase co-founder Fred Ehrsam"),

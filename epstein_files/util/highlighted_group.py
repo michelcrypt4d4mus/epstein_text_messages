@@ -239,6 +239,7 @@ HIGHLIGHTED_NAMES = [
             PETER_ATTIA: 'longevity medicine',
             ROBERT_TRIVERS: 'evolutionary biology',
             ROGER_SCHANK: 'Teachers College, Columbia University',
+            SETH_LLOYD: 'professor of mechanical engineering at MIT',
             'Valeria Chomsky': f"wife of {NOAM_CHOMSKY}",
         },
         patterns=[
@@ -412,6 +413,7 @@ HIGHLIGHTED_NAMES = [
             r"(Gavin )?Andress?en",  # bitcoin dev
             r"(Hester\s*)?Peirce",
             r"(Howard\s+)?Lutnic?k",
+            r"ICO",
             r"(Jim\s*)Pallotta",  # Media lab advisory board
             r"Kraken",
             r"Kyara(\s*Investments?)?",  # crypto vehicle with Joi Ito
@@ -931,6 +933,7 @@ HIGHLIGHTED_NAMES = [
             r"Office\s*of\s*Government\s*Ethics",
             r"PBPD",
             r"police",
+            r"POTUS",
             r"(Preet\s*)?Bharara",
             r"Public\s*Corruption\s*Unit",
             r"SCOTUS",
@@ -1257,6 +1260,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             ANAS_ALRASHEED: 'former information minister of Kuwait (???)',
             AZIZA_ALAHMADI: 'Abu Dhabi Department of Culture & Tourism, assistant of Al Sabbagh',
+            FAWZI_SIAM: 'sharia auditor in Qatar, friend of Sheikh Jabor Al-Thani',
             RAAFAT_ALSABBAGH: 'Saudi royal advisor',
             SHAHER_ABDULHAK_BESHER: 'Yemeni billionaire',
         },
@@ -1572,7 +1576,7 @@ HIGHLIGHTED_NAMES = [
             ZUBAIR_KHAN: 'Tranchulas cybersecurity, InsightsPod founder, Islamabad / Dubai',
         },
         patterns=[
-            r"a16z|Andree?ss?e?[eo]n(\s&Horowitz)?",
+            r"a16z|(?<!Gavin )Andree?ss?e?[eo]n(\s&Horowitz)?",
             r"AG?I",
             r"Artificial\s*(General\s*)?Intelligence",
             r"Ben\s*Horowitz",
@@ -1590,7 +1594,7 @@ HIGHLIGHTED_NAMES = [
             r"(Jeff\s*)?Bezos",
             r"Larry Page",
             r"LinkedIn",
-            r"(Marc\s*)?Andreess?en",
+            r"(Marc\s*)?(?<!Gavin )Andreess?en",
             r"(Mark\s*)?Zuckerberg",
             r"Masa(yoshi)?(\sSon)?",
             r"Neoteny",  # Joi Ito Japanese fund?
@@ -1606,6 +1610,7 @@ HIGHLIGHTED_NAMES = [
             r"Tim\s*Ferriss?",
             r"Valar(\s*(Global\s*Fund|Ventures))?",
             r"Vision\s*Fund",
+            r"Wearality(\s*Corporation)?",
             r"WikiLeak(ed|s)",
         ],
     ),
@@ -1680,6 +1685,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"child\s*pornography",
             r"(David\s*)?Bo[il]es(,?\s*Schiller( & Flexner)?)?",
+            r"Ellaina\s*Astras?",
             r"(Gloria\s*)?Allred",
             r"(Jane|Tiffany)\s*Doe",
             r"Katie\s*Johnson",
