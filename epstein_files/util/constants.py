@@ -969,6 +969,7 @@ EMAILS_CONFIG = [
 
     # DOJ files
     EmailCfg(id='EFTA00040142', author=ATT_COURT_APPEARANCE_TEAM, recipients=[USANYS]),
+    EmailCfg(id='EFTA02229342', author=AUSTIN_HILL),
     EmailCfg(id='EFTA00039357', author=BUREAU_OF_PRISONS, recipients=['DOJ Inspector General']),
     EmailCfg(id='EFTA01947908', author=CHRISTINA_GALBRAITH, attribution_reason='"Christina" appears in EFTA01950559'),
     EmailCfg(id='EFTA01940349', author=CHRISTINA_GALBRAITH, is_attribution_uncertain=True, attribution_reason='subject matter'),
