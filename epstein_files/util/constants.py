@@ -2194,7 +2194,13 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00604942', date='2015-10-01', description='Blockchain Capital Investor Update', is_interesting=True),
     DocCfg(id='EFTA01120975', date='2013-12-12', description='Coinbase Series B stock purchase agreement', is_interesting=True),
     DocCfg(id='EFTA01092555', date='2013-12-12', description='Coinbase Delaware certificate of incorporation', is_interesting=True),
-    DocCfg(id='EFTA01082451', date='2014-11-10', description='Coinbase / Blockchain Capital nondisclosure agreement possibly regarding Epstein investment', is_interesting=True, truncate_to=2000),
+    DocCfg(
+        id='EFTA01082451',
+        date='2014-11-10',
+        description='Coinbase / Blockchain Capital nondisclosure agreement possibly regarding Epstein investment',
+        is_interesting=True,
+        truncate_to=2000
+    ),
     DocCfg(id='EFTA01121035', date='2014-10-24', description='Coinbase private placement of Series C Preferred Stock', is_interesting=True),
     DocCfg(id='EFTA00797613', description='Alphabit crypto fund pitch deck', attached_to_email_id='EFTA00955063'),
     DocCfg(id='EFTA01087311', description='Black Family Partners cash projections'),
