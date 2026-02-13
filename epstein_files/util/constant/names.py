@@ -206,6 +206,7 @@ JULIA_SANTOS = 'Julia Santos'
 KARYNA_SHULIAK = 'Karyna Shuliak'
 LORENZO_DE_MEDICI = 'Lorenzo de Medici'
 NICOLE_JUNKERMANN = 'Nicole Junkermann'
+SETH_LLOYD = 'Seth Lloyd'
 STACEY_RICHMAN = 'Stacey Richman'
 
 # No communications but name is in the files
