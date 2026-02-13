@@ -975,12 +975,14 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00039967', author='DOJ London', recipients=[USANYS]),
     EmailCfg(id='EFTA01776893', author=DONALD_NORMAN, attribution_reason='"This is Donald"', duplicate_ids=['EFTA00915423']),
     EmailCfg(id='EFTA00656005', author=DONALD_NORMAN, attribution_reason='signed "Donald"', duplicate_ids=['EFTA02691296', 'EFTA01862178']),
+    EmailCfg(id='EFTA02660820', author=FAWZI_SIAM, truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02731552', author=FBI, recipients=[USANYS], date='2021-05-26 16:12:00'),  # recipient uncertain
     EmailCfg(id='EFTA02730483', author=FBI, date='2023-07-11T08:25:00'),  # TODO: actually reply timestamp
     EmailCfg(id='EFTA00039971', author=FBI, recipients=[USANYS]),  # TODO: recipient uncertain
     EmailCfg(id='EFTA00039985', author='Florence Hutner', recipients=[USANYS], attribution_reason='signature'),
     EmailCfg(id='EFTA02069096', author=GANBAT_CHULUUNKHUU),
     EmailCfg(id='EFTA02645857', author=GANBAT_CHULUUNKHUU),
+    EmailCfg(id='EFTA02406725', author=GANBAT_CHULUUNKHUU),
     EmailCfg(id='EFTA01030561', author=GANBAT_CHULUUNKHUU, attribution_reason='signature'),
     EmailCfg(id='EFTA00677752', author=GANBAT_CHULUUNKHUU, description=f'discussion of getting a job in sustainable energy in Mongolia for {REDACTED}'),
     EmailCfg(
@@ -1243,6 +1245,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02518357', recipients=[CHRISTINA_GALBRAITH, RICHARD_KAHN], attribution_reason='"Christina" appears in email'),
     EmailCfg(id='EFTA00915426', recipients=[DONALD_NORMAN], attribution_reason='"This is Donald"'),
     EmailCfg(id='EFTA00916133', recipients=[DONALD_NORMAN], attribution_reason='signed "Donald"', duplicate_ids=['EFTA01862243']),
+    EmailCfg(id='EFTA02662381', recipients=[FAWZI_SIAM]),
     EmailCfg(id='EFTA02646138', recipients=[GANBAT_CHULUUNKHUU]),
     EmailCfg(id='EFTA02629770', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='EFTA02328335', recipients=[JEFFREY_EPSTEIN, KARYNA_SHULIAK, None]),

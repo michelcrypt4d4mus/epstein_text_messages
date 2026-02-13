@@ -198,6 +198,7 @@ CHRISTOPHER_DILORIO = 'Christopher Dilorio'
 DOUGLAS_WIGDOR = 'Douglas Wigdor'
 ED_BOYLE = 'Ed Boyle'
 ELON_MUSK = 'Elon Musk'
+FAWZI_SIAM = 'Fawzi Siam'
 GANBAT_CHULUUNKHUU = 'Ganbat Chuluunkhuu'
 HASSAN_JAMEEL = 'Hassan Jameel'
 IAN_ODONNELL = "Ian O'Donnell"

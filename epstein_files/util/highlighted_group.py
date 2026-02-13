@@ -1260,6 +1260,7 @@ HIGHLIGHTED_NAMES = [
         emailers={
             ANAS_ALRASHEED: 'former information minister of Kuwait (???)',
             AZIZA_ALAHMADI: 'Abu Dhabi Department of Culture & Tourism, assistant of Al Sabbagh',
+            FAWZI_SIAM: 'sharia auditor in Qatar, friend of Sheikh Jabor Al-Thani',
             RAAFAT_ALSABBAGH: 'Saudi royal advisor',
             SHAHER_ABDULHAK_BESHER: 'Yemeni billionaire',
         },
