@@ -299,7 +299,7 @@ def style_key_value(key: str, val: str | Text | Path, val_style: str = '', inden
     elif 'http' in key:
         val = Text(str(val), style=val_style or ARCHIVE_ALT_LINK_STYLE)
 
-    return Text(f"{key:>40}: ").append(val)
+    return Text(f"{key:>{indent}}: ").append(val)
 
 
 def styled_dict(d: dict[str, str | Path | Text]) -> Text:

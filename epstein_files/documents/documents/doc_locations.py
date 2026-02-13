@@ -31,8 +31,21 @@ class DocLocation:
         if is_doj_file(self.local_path):
             self.source_url = self.external_url
 
+    def paths(self) -> dict[str, Path]:
+        return {k: Path(v) for k, v in self._props_with_suffix('path').items()}
+
+    def urls(self) -> dict[str, str]:
+        urls = {k: str(v) for k, v in self._props_with_suffix('url').items()}
+        urls = {k: (v if v.startswith('http') else f"https://{v}") for k, v in urls.items()}
+        return urls
+        return {k: v for k, v in asdict(self).items() if k.endswith('url')}
+
+    def _props_with_suffix(self, suffix: str) -> dict[str, str]:
+        return {k: v for k, v in asdict(self).items() if k.endswith(suffix)}
+
     def __rich__(self) -> Text:
         """Text obj with local paths and URLs."""
+        styled_dict
         links = [style_key_value(k, link_text_obj(v), '') for k, v in asdict(self).items() if k.endswith('url')]
         paths = [style_key_value(k, v, 'magenta') for k, v in asdict(self).items() if k.endswith('path')]
         return prefix_with(links + paths, self.file_id)
