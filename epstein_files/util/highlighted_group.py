@@ -417,6 +417,7 @@ HIGHLIGHTED_NAMES = [
             r"(Jim\s*)Pallotta",  # Media lab advisory board
             r"Kraken",
             r"Kyara(\s*Investments?)?",  # crypto vehicle with Joi Ito
+            r"Layer\s+(1|One)",
             r"LedgerX",
             r"Libra",
             r"Madars",
