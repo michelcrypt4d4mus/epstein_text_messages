@@ -73,6 +73,13 @@ def extract_file_id(filename_or_id: int | str | Path) -> str:
         raise RuntimeError(f"Failed to extract file ID from '{filename_or_id}' (type: {type(filename_or_id).__name__}!")
 
 
+def doj_txt_paths() -> list[Path]:
+    if DOJ_TXTS_20260130_DIR:
+        return [f for f in DOJ_TXTS_20260130_DIR.glob('**/*.txt')]
+    else:
+        return []
+
+
 def file_size_str(file_path, digits: int | None = None):
     return file_size_to_str(file_size(file_path), digits)
 
