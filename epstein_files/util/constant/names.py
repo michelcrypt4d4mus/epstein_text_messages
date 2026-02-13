@@ -198,6 +198,7 @@ CHRISTOPHER_DILORIO = 'Christopher Dilorio'
 DOUGLAS_WIGDOR = 'Douglas Wigdor'
 ED_BOYLE = 'Ed Boyle'
 ELON_MUSK = 'Elon Musk'
+FAWZI_SIAM = 'Fawzi Siam'
 GANBAT_CHULUUNKHUU = 'Ganbat Chuluunkhuu'
 HASSAN_JAMEEL = 'Hassan Jameel'
 IAN_ODONNELL = "Ian O'Donnell"
@@ -206,6 +207,7 @@ JULIA_SANTOS = 'Julia Santos'
 KARYNA_SHULIAK = 'Karyna Shuliak'
 LORENZO_DE_MEDICI = 'Lorenzo de Medici'
 NICOLE_JUNKERMANN = 'Nicole Junkermann'
+SETH_LLOYD = 'Seth Lloyd'
 STACEY_RICHMAN = 'Stacey Richman'
 
 # No communications but name is in the files
@@ -276,7 +278,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     paul paula pen peter philip pierce prince
     randall rangel reid richard robert rodriguez roger rosenberg ross roth roy rubenstein rubin
     scott sean skip smith stacey stanley stern stephen steve steven stone susan
-    terry the thomas tim tom tony tyler
+    team terry the thomas tim tom tony tyler
     ventures victor
     wade waters
     y
