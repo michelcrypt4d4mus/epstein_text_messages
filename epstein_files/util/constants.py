@@ -155,6 +155,7 @@ MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article about Ep
 # Some emails have a lot of uninteresting CCs
 FLIGHT_IN_2012_PEOPLE: list[Name] = ['Francis Derby', JANUSZ_BANASIAK, 'Louella Rabuyo', 'Richard Barnnet']
 IRAN_DEAL_RECIPIENTS: list[Name] = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
+LINDA_STONE_ATTRIBUTION = '"iPhone word substitution" in signature, which is traced back to "Linda, thanks" in EFTA00961792'
 VALAR_VENTURES_MEETING = f"meeting with {PETER_THIEL}'s {VALAR_VENTURES} fund"
 
 TRIVERS_CCS: list[Name] = [
@@ -1068,9 +1069,15 @@ EMAILS_CONFIG = [
         is_interesting=True,
     ),
     EmailCfg(id='EFTA00381451', author=LINDA_STONE, attribution_reason='"Typos, misspellings courtesy of iPhone."', truncate_to=800),
-    EmailCfg(id='EFTA00706814', author=LINDA_STONE, attribution_reason='"iPhone word substitution" in signature, which is traced back to "Linda, thanks" in EFTA00961792'),
-    EmailCfg(id='EFTA00703417', author=LINDA_STONE, attribution_reason='"iPhone word substitution" in signature, which is traced back to "Linda, thanks" in EFTA00961792'),
+    EmailCfg(id='EFTA00706814', author=LINDA_STONE, attribution_reason=LINDA_STONE_ATTRIBUTION),
+    EmailCfg(id='EFTA00703417', author=LINDA_STONE, attribution_reason=LINDA_STONE_ATTRIBUTION),
     EmailCfg(id='EFTA00397956', author=LINDA_STONE, attribution_reason='unique email signature'),
+    EmailCfg(
+        id='EFTA02349697',
+        attribution_reason='boyfriend Christian mentioned, same as 032374',
+        author=MARIYA_PRUSAKOVA,
+        is_attribution_uncertain=True
+    ),
     EmailCfg(
         id='EFTA00495349',
         author=MARIYA_PRUSAKOVA,
@@ -1262,6 +1269,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00840591', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00369335', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00368951', recipients=[LESLEY_GROFF], attribution_reason='can be seen in EFTA00368958'),
+    EmailCfg(id='EFTA00313867', recipients=[LESLEY_GROFF], truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00383027', recipients=[LINDA_STONE]),
     EmailCfg(id='EFTA02731632', recipients=[OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL]),
     EmailCfg(id='EFTA01006355', recipients=[RENATA_BOLOTOVA], attribution_reason='"sneaky dog"'),
@@ -1837,6 +1845,7 @@ OTHER_FILES_FINANCE = [
         author=GOLDMAN_INVESTMENT_MGMT,
         description=f"An Overview of the Current State of Cryptocurrencies and Blockchain",
         date='2017-11-15',
+        duplicate_ids=['EFTA00793120'],
         is_interesting=True,
     ),
     DocCfg(id='014532', author=GOLDMAN_INVESTMENT_MGMT, description=f"Outlook - Half Full", date='2017-01-01'),
@@ -2185,9 +2194,15 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00005783', date='2019-08-29', description='heavily redacted handwritten note and 30+ completely blacked out redacted pages'),
     DocCfg(id='EFTA01088644', date='2015-10-01', description='Blockchain Capital deck', is_interesting=True),
     DocCfg(id='EFTA00604942', date='2015-10-01', description='Blockchain Capital Investor Update', is_interesting=True),
-    DocCfg(id='EFTA01120975', date='2013-12-12', description='Coinbase Series B stock purchase agreement', is_interesting=True),
-    DocCfg(id='EFTA01092555', date='2013-12-12', description='Coinbase Delaware certificate of incorporation', is_interesting=True),
-    DocCfg(id='EFTA01082451', date='2014-11-10', description='Coinbase and Blockchain Capital nondisclosure agreement', is_interesting=True),
+    DocCfg(id='EFTA01120975', date='2013-12-12', description='Coinbase Series B stock purchase agreement', is_interesting=True, truncate_to=MAX_CHARS_TO_PRINT),
+    DocCfg(id='EFTA01092555', date='2013-12-12', description='Coinbase Delaware certificate of incorporation', is_interesting=True, truncate_to=TRUNCATED_CHARS),
+    DocCfg(
+        id='EFTA01082451',
+        date='2014-11-10',
+        description='Coinbase / Blockchain Capital nondisclosure agreement possibly regarding Epstein investment',
+        is_interesting=True,
+        truncate_to=2000
+    ),
     DocCfg(id='EFTA01121035', date='2014-10-24', description='Coinbase private placement of Series C Preferred Stock', is_interesting=True),
     DocCfg(id='EFTA00797613', description='Alphabit crypto fund pitch deck', attached_to_email_id='EFTA00955063'),
     DocCfg(id='EFTA01087311', description='Black Family Partners cash projections'),
@@ -2211,11 +2226,17 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00128987', description='SAR about Kushner co. crypto payments to a suspicious Russian person', is_interesting=True),
     DocCfg(id='EFTA00309271', description=f'{CRYPTO_PR_LAB} financial statement', is_interesting=True),
     DocCfg(id='EFTA01089506', description='Crypto Currency Partners II investor report', date='2014-11-01', is_interesting=True),
-    DocCfg(id='EFTA01093509', description='Crypto Currency Partners II limited partnership agreement draft', is_interesting=True),
+    DocCfg(id='EFTA01093509', description='Crypto Currency Partners II limited partnership agreement draft', is_interesting=True, truncate_to=MAX_CHARS_TO_PRINT * 2),
     DocCfg(id='EFTA01089500', description='Crypto Currency Partners II Investor Update', date='2015-01-01', is_interesting=True),
     DocCfg(id='EFTA01089526', description='Crypto Currency Partners II investor report', date='2014-08-01', is_interesting=True),
     DocCfg(id='EFTA00621239', description='Crypto Currency Partners II investor report', date='2014-10-01', is_interesting=True),
     DocCfg(id='EFTA00007781', description='paychecks signed by Epstein deposited at Colonial Bank'),
+    DocCfg(id='EFTA00803405', description=f"Honeycomb Asset Management fund brochure", truncate_to=MAX_CHARS_TO_PRINT),
+    DocCfg(id='EFTA01121910', description=f"{VALAR_VENTURES} fund contract", truncate_to=MAX_CHARS_TO_PRINT),
+    DocCfg(id='EFTA00808277', description=f"{VALAR_VENTURES} fund contract", truncate_to=MAX_CHARS_TO_PRINT),
+    DocCfg(id='EFTA01088484', description=f"{VALAR_VENTURES} fund contract", truncate_to=MAX_CHARS_TO_PRINT),
+    DocCfg(id='EFTA00591691', description=f"{VALAR_VENTURES} fund contract", truncate_to=MAX_CHARS_TO_PRINT),
+    DocCfg(id='EFTA00810362', description=f"{VALAR_VENTURES} fund investor questionnaire", truncate_to=MAX_CHARS_TO_PRINT),
     DocCfg(
         id='EFTA00295126',
         description=f"{MARIYA_PRUSAKOVA} and {ALEKSANDRA_KARPOVA}'s {CRYPTO_PR_LAB} accounting statement",
@@ -2248,6 +2269,7 @@ OTHER_FILES_MISC = [
         description="referral agreement between Mr. T's (Prince Andrew?) Urramoor and Howard Lutnick's Cantor Fitzgerald",
         is_interesting=True
     ),
+    DocCfg(id='EFTA02731023', description=f"letter from Senator Ron Wyden to {LEON_BLACK}", is_interesting=False),
     DocCfg(
         id='EFTA00009622',
         date='2006-07-19',
@@ -2266,6 +2288,9 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00008320', replace_text_with='"Massage for Dummies (???)"'),
     DocCfg(id='EFTA00000476', replace_text_with='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09'),
     DocCfg(id='EFTA00039312', replace_text_with='Bureau of Prisons Program Statement / Memo about BOP Pharmacy Program'),
+    DocCfg(id='EFTA00039351', replace_text_with='Bureau of Prisons Program Statement / Memo about BOP Pharmacy Program'),
+    DocCfg(id='EFTA00039156', replace_text_with='Bureau of Prisons Standards of Employee Conduct'),
+    DocCfg(id='EFTA00039227', replace_text_with='Bureau of Prisons Inmate Discipline Program Statement'),
     DocCfg(id='EFTA00039295', replace_text_with='Bureau of Prisons inmate telephone privileges Program Statement'),
     # Phone bills TODO: Some kind of special handling?
     DocCfg(id='EFTA00006387', replace_text_with='T-Mobile phone bill covering 2006-06-15 to 2006-07-23'),
@@ -2278,6 +2303,7 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00006100', replace_text_with='Palm Beach Police fax machine activity log 2005-12-28 to 2006-01-04'),
     DocCfg(id='EFTA00007253', replace_text_with='T-Mobile response to subpoena March 23, 2007 - phone bill'),
     DocCfg(id='EFTA00005586', replace_text_with='Completely redacted 69 pages labeled "Grand Jury - NY"'),
+    DocCfg(id='EFTA02731260', replace_text_with='notebook full of handwritten love letters with terrible OCR text'),
     DocCfg(id='EFTA00590685', attached_to_email_id='EFTA00830911'),
 ]
 

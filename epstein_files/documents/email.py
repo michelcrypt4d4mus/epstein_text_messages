@@ -65,6 +65,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"([<>.=_HIM][<>.=_HIM14]{5,}[<>.=_HIM]|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
     re.compile(r"([,<>_]|AM|PM)\n(>)? ?wrote:?"): r'\1\2 wrote:',
     # Headers
+    re.compile(r"^From "): 'From: ',
     re.compile(r"^(Sent|Subject) (?![Ff]rom)", re.MULTILINE): r'\1:',
     'I nline-Images:': 'Inline-Images:',
     # Names / email addresses
@@ -397,6 +398,10 @@ class Email(Communication):
             style = self.author_style
 
         return style.replace('bold', '').strip()
+
+    @property
+    def external_link_markup(self) -> str:
+        return epstein_media_doc_link_markup(self.url_slug, self.author_style)
 
     @property
     def info_txt(self) -> Text:
@@ -836,9 +841,7 @@ class Email(Communication):
         # Truncate long emails but leave a note explaining what happened w/link to source document
         if len(text) > num_chars:
             text = text[0:num_chars]
-            doc_link_markup = epstein_media_doc_link_markup(self.url_slug, self.author_style)
-            trim_note = f"<...trimmed to {num_chars:,} characters of {self.length:,}, read the rest at {doc_link_markup}...>"
-            trim_footer_txt = Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
+            trim_footer_txt = self.truncation_note(num_chars)
 
         # Rewrite broken headers where the values are on separate lines from the field names
         if should_rewrite_header:

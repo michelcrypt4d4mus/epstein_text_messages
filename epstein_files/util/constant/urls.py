@@ -102,6 +102,11 @@ def doj_2026_file_url(dataset_id: int, file_stem: str) -> str:
     return f"{DOJ_2026_FILE_BASE_URL}{dataset_id}/{file_stem}.pdf"
 
 
+def doj_2026_link_markup(dataset_id, file_stem: str, style: str = TEXT_LINK) -> str:
+    url = doj_2026_file_url(dataset_id, file_stem)
+    return link_markup(url, file_stem, style)
+
+
 def jmail_doj_2026_file_url(dataset_id: int, file_stem: str) -> str:
     """Link to Jmail backup of DOJ file."""
     return f"{JMAIL_URL}/drive/vol{dataset_id:05}-{file_stem.lower()}-pdf"
