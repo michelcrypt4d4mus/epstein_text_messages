@@ -5,6 +5,7 @@ Reformat Epstein text message files for readability and count email senders.
     Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT epstein_generate'
 """
 import re
+from subprocess import check_output
 from sys import exit
 
 from dotenv import load_dotenv
@@ -187,6 +188,9 @@ def epstein_show():
                 print_json(f"{doc.file_id} Metadata", metadata)
 
         console.print(doc.local_path_and_url, style='dim')
+
+        if args.open_txt:
+            check_output(['open', str(doc.file_path)])
 
 
 def epstein_word_count() -> None:
