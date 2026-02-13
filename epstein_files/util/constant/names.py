@@ -211,6 +211,7 @@ NICOLE_JUNKERMANN = 'Nicole Junkermann'
 SETH_LLOYD = 'Seth Lloyd'
 STACEY_RICHMAN = 'Stacey Richman'
 STORY_COWLES = 'Story Cowles'
+YUKO_BARNABY = 'Yuko Barnaby'
 
 # No communications but name is in the files
 BILL_GATES = 'Bill Gates'
@@ -263,7 +264,7 @@ VALAR_VENTURES = 'Valar Ventures'
 # First and last names that should be made part of a highlighting regex for emailers
 NAMES_TO_NOT_HIGHLIGHT = """
     adam al alain alan alison alfredo allen alex alexander amanda andres andrew anthony audrey
-    back bard barrett barry bennet bernard bill black bob boris brad brenner bruce
+    back bard barnaby barrett barry bennet bernard bill black bob boris brad brenner bruce
     cameron caroline carolyn chris christian christina cohen
     dan daniel danny darren dave david debbie donald douglas
     ed edward edwards enforcement enterprise enterprises entourage epstein eric erika etienne

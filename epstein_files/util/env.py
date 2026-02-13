@@ -55,6 +55,7 @@ scripts = parser.add_argument_group('SCRIPTS', 'Options used by epstein_grep, ep
 scripts.add_argument('positional_args', nargs='*', help='strings to searchs for, file IDs to show or diff, etc.')
 scripts.add_argument('--email-body', action='store_true', help='epstein_grep but only for the body of the email')
 scripts.add_argument('--min-line-length', type=int, help='epstein_grep minimum length of a matched line')
+scripts.add_argument('--open-txt', '-o', action='store_true', help='open the file in a text editor after showing')
 scripts.add_argument('--raw', '-r', action='store_true', help='show raw contents of file (used by epstein_show)')
 scripts.add_argument('--whole-file', '-wf', action='store_true', help='print whole files')
 

@@ -241,6 +241,7 @@ HIGHLIGHTED_NAMES = [
             ROGER_SCHANK: 'Teachers College, Columbia University',
             SETH_LLOYD: 'professor of mechanical engineering at MIT',
             'Valeria Chomsky': f"wife of {NOAM_CHOMSKY}",
+            YUKO_BARNABY: f"MIT Media Lab Assistant to the Director",
         },
         patterns=[
             r"Andy\s*Lippman",  # Media Lab
@@ -437,6 +438,9 @@ HIGHLIGHTED_NAMES = [
             r"virtual\s*currenc(ies|y)",
             r"Wire\s*ca\n?rd",
             r"Wladimir( van der Laan)?",  # bitcoin dev
+            r"ZCash",
+            r"ZECC?",
+            r"ZeroCoin",
             r"(zero\s+knowledge\s+|zk)pro(of|tocols?)",
         ],
     ),
@@ -909,6 +913,7 @@ HIGHLIGHTED_NAMES = [
             r"Florence Hutner",
             r"FOIA",
             r"FTC",
+            r"Gary\s*Gensler",
             r"(General\s*)?P(a|e)traeus",
             r"Geoff\s*Ling",
             r"Homeland\s*Security",
