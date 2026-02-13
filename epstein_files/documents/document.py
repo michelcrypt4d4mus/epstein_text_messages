@@ -26,7 +26,7 @@ from epstein_files.util.file_helper import (coerce_file_path, extract_file_id, f
      file_size_to_str, is_local_extract_file)
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 from epstein_files.util.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE, add_cols_to_table,
-     build_table, console, highlighter, join_texts, key_value_txt, link_text_obj, parenthesize, wrap_in_markup_style)
+     build_table, console, highlighter, join_texts, styled_key_value, link_text_obj, parenthesize, wrap_in_markup_style)
 from epstein_files.util.search_result import MatchedLine
 
 ALT_LINK_STYLE = 'white dim'
@@ -273,11 +273,11 @@ class Document:
             txt.append(' (', style=SYMBOL_STYLE)
             txt.append(f"{timestamp_str}", style=TIMESTAMP_DIM).append(')', style=SYMBOL_STYLE)
 
-        txt.append(' [').append(key_value_txt('size', Text(str(self.length), style='aquamarine1')))
-        txt.append(", ").append(key_value_txt('lines', self.num_lines))
+        txt.append(' [').append(styled_key_value('size', Text(str(self.length), style='aquamarine1')))
+        txt.append(", ").append(styled_key_value('lines', self.num_lines))
 
         if self.config and self.config.duplicate_of_id:
-            txt.append(", ").append(key_value_txt('dupe_of', Text(self.config.duplicate_of_id, style='cyan dim')))
+            txt.append(", ").append(styled_key_value('dupe_of', Text(self.config.duplicate_of_id, style='cyan dim')))
 
         return txt
 
