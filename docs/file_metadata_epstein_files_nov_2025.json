@@ -33434,11 +33434,17 @@
                 "type": "Email"
             },
             {
-                "bytes": 1647,
+                "author": "Jeffrey Epstein",
+                "bytes": 1639,
                 "file_id": "EFTA00313867",
                 "filename": "EFTA00313867.txt",
-                "num_lines": 39,
-                "timestamp": "2051-01-01T00:01:01",
+                "num_lines": 44,
+                "recipients": [
+                    "Lesley Groff"
+                ],
+                "subject": "Re: Contrrning for Saturday",
+                "timestamp": "2017-11-08T07:37:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -36952,11 +36958,15 @@
                 "type": "Email"
             },
             {
-                "author": "Jeffrey Epstein",
-                "bytes": 793,
-                "file_id": "EFTA01013266-2",
-                "filename": "EFTA01013266-2.txt",
-                "num_lines": 24,
+                "bytes": 787,
+                "description": "request for payment to Maria Prusakova's Crypto PR Lab",
+                "file_id": "EFTA01013266",
+                "filename": "EFTA01013266.txt",
+                "is_interesting": true,
+                "num_lines": 25,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
                 "subject": "Fwd: Davos Contract",
                 "timestamp": "2018-12-17T22:41:26",
                 "type": "Email"
@@ -38894,16 +38904,6 @@
                 "type": "Email"
             },
             {
-                "bytes": 854,
-                "file_id": "EFTA02060931-1",
-                "filename": "EFTA02060931-1.txt",
-                "num_lines": 25,
-                "sent_from_device": "Sent from my iPhone",
-                "subject": "Re: Meeting - Feb 4 - 9:30 AM - Peter Thiel dietary restrictions - CONFIDENTIAL",
-                "timestamp": "2016-02-03T18:20:00",
-                "type": "Email"
-            },
-            {
                 "author": "Lesley Groff",
                 "bytes": 897,
                 "file_id": "EFTA02062308",
@@ -39752,10 +39752,12 @@
                 "type": "Email"
             },
             {
-                "author": "/ C",
-                "bytes": 990,
+                "attribution_reason": "boyfriend Christian mentioned, same as 032374",
+                "author": "Maria Prusakova",
+                "bytes": 983,
                 "file_id": "EFTA02349697",
                 "filename": "EFTA02349697.txt",
+                "is_attribution_uncertain": true,
                 "num_lines": 30,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -47248,6 +47250,10 @@
                 "category": "finance",
                 "date": "2017-11-15",
                 "description": "An Overview of the Current State of Cryptocurrencies and Blockchain",
+                "dupe_type": "same",
+                "duplicate_ids": [
+                    "EFTA00793120"
+                ],
                 "file_id": "025663",
                 "filename": "HOUSE_OVERSIGHT_025663.txt",
                 "is_interesting": true,
