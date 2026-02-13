@@ -276,7 +276,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     paul paula pen peter philip pierce prince
     randall rangel reid richard robert rodriguez roger rosenberg ross roth roy rubenstein rubin
     scott sean skip smith stacey stanley stern stephen steve steven stone susan
-    terry the thomas tim tom tony tyler
+    team terry the thomas tim tom tony tyler
     ventures victor
     wade waters
     y
