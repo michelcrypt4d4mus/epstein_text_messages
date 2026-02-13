@@ -209,6 +209,7 @@ LORENZO_DE_MEDICI = 'Lorenzo de Medici'
 NICOLE_JUNKERMANN = 'Nicole Junkermann'
 SETH_LLOYD = 'Seth Lloyd'
 STACEY_RICHMAN = 'Stacey Richman'
+STORY_COWLES = 'Story Cowles'
 
 # No communications but name is in the files
 BILL_GATES = 'Bill Gates'
