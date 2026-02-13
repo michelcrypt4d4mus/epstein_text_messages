@@ -6,7 +6,7 @@ from rich.text import Text
 from epstein_files.util.file_helper import extract_file_id, is_doj_file
 from epstein_files.util.constant.strings import indented
 from epstein_files.util.constant.urls import link_text_obj
-from epstein_files.util.rich import ARCHIVE_LINK_COLOR, prefix_with, style_key_value
+from epstein_files.util.rich import ARCHIVE_LINK_COLOR, prefix_with, style_key_value, styled_dict
 
 
 @dataclass(kw_only=True)
@@ -23,7 +23,18 @@ class DocLocation:
     local_path: Path
     local_pdf_path: Path | None = None
     source_url: str = ''
+
     # jmail_url: str
+
+    @property
+    def paths(self) -> dict[str, Path]:
+        return {k: Path(v) for k, v in self._props_with_suffix('path').items()}
+
+    @property
+    def urls(self) -> dict[str, str]:
+        urls = {k: str(v) for k, v in self._props_with_suffix('url').items()}
+        urls = {k: (v if v.startswith('http') else f"https://{v}") for k, v in urls.items()}
+        return urls
 
     def __post_init__(self):
         self.file_id = extract_file_id(self.local_path)
@@ -31,24 +42,12 @@ class DocLocation:
         if is_doj_file(self.local_path):
             self.source_url = self.external_url
 
-    def paths(self) -> dict[str, Path]:
-        return {k: Path(v) for k, v in self._props_with_suffix('path').items()}
-
-    def urls(self) -> dict[str, str]:
-        urls = {k: str(v) for k, v in self._props_with_suffix('url').items()}
-        urls = {k: (v if v.startswith('http') else f"https://{v}") for k, v in urls.items()}
-        return urls
-        return {k: v for k, v in asdict(self).items() if k.endswith('url')}
-
     def _props_with_suffix(self, suffix: str) -> dict[str, str]:
         return {k: v for k, v in asdict(self).items() if k.endswith(suffix)}
 
     def __rich__(self) -> Text:
         """Text obj with local paths and URLs."""
-        styled_dict
-        links = [style_key_value(k, link_text_obj(v), '') for k, v in asdict(self).items() if k.endswith('url')]
-        paths = [style_key_value(k, v, 'magenta') for k, v in asdict(self).items() if k.endswith('path')]
-        return prefix_with(links + paths, self.file_id)
+        return styled_dict({**self.paths, **self.urls})
 
     def __str__(self) -> str:
         lines = [f"{k:>40}: {v}" for k, v in asdict(self).items() if k != 'file_id']
