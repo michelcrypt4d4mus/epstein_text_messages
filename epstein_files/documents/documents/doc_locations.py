@@ -6,7 +6,7 @@ from rich.text import Text
 from epstein_files.util.file_helper import extract_file_id, is_doj_file
 from epstein_files.util.constant.strings import indented
 from epstein_files.util.constant.urls import link_text_obj
-from epstein_files.util.rich import ARCHIVE_LINK_COLOR, prefix_with, style_key_value, styled_dict
+from epstein_files.util.rich import ARCHIVE_LINK_COLOR, prefix_with, styled_dict
 
 
 @dataclass(kw_only=True)
@@ -47,7 +47,7 @@ class DocLocation:
 
     def __rich__(self) -> Text:
         """Text obj with local paths and URLs."""
-        txt_lines = styled_dict({'file_id': self.file_id, **self.paths, **self.urls})
+        txt_lines = styled_dict({'file_id': self.file_id, **self.paths, **self.urls}, sep=': ')
         return prefix_with(txt_lines, ' ', pfx_style='grey', indent=2)
 
     def __str__(self) -> str:
