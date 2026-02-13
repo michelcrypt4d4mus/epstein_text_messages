@@ -187,6 +187,7 @@ EMAILERS = [
     LESLEY_GROFF,
     'lorraine@mc2mm.com',
     LINDA_STONE,
+    MADARS_VIRZA,
     MARK_TRAMO,
     MASHA_DROKOVA,
     MELANIE_WALKER,
