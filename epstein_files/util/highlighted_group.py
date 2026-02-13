@@ -413,6 +413,7 @@ HIGHLIGHTED_NAMES = [
             r"(Gavin )?Andress?en",  # bitcoin dev
             r"(Hester\s*)?Peirce",
             r"(Howard\s+)?Lutnic?k",
+            r"ICO",
             r"(Jim\s*)Pallotta",  # Media lab advisory board
             r"Kraken",
             r"Kyara(\s*Investments?)?",  # crypto vehicle with Joi Ito
@@ -1683,6 +1684,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"child\s*pornography",
             r"(David\s*)?Bo[il]es(,?\s*Schiller( & Flexner)?)?",
+            r"Ellaina\s*Astras?",
             r"(Gloria\s*)?Allred",
             r"(Jane|Tiffany)\s*Doe",
             r"Katie\s*Johnson",
