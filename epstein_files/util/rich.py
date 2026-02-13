@@ -164,9 +164,17 @@ def parenthesize(msg: str | Text, style: str = '') -> Text:
     return Text('(', style=style).append(txt).append(')')
 
 
-def prefix_with(txt: list[str] | list[Text] | Text | str, prefix: str, prefix_style: str = '') -> Text:
-    lines = txt.split('\n') if isinstance(txt, (Text, str)) else txt
-    return Text('\n').join([Text(f"{prefix} ", style=prefix_style).append(line) for line in lines])
+def prefix_with(txt: list[str] | list[Text] | Text | str, pfx: str, pfx_style: str = '', indent: str | int = '') -> Text:
+
+    indent = indent * ' ' if isinstance(indent, int) else indent
+
+    lines = [
+        Text('').append(f"{indent}{pfx} ", style=pfx_style).append(line)
+        for line in (txt.split('\n') if isinstance(txt, (Text, str)) else txt)
+    ]
+
+
+    return Text('\n').join(lines)
 
 
 def print_centered(obj: RenderableType, style: str = '') -> None:
@@ -291,20 +299,24 @@ def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, styl
     print_centered(wrap_in_markup_style(msg, style))
 
 
-def style_key_value(key: str, val: str | Text | Path, val_style: str = '', indent: int = 0) -> Text:
+def style_key_value(key: str, val: str | Text | Path, key_style: str = KEY_STYLE, indent: int = 0) -> Text:
+    val_style: str = 'bright_white bold'
+
     if isinstance(val, Text):
-        val = Text('', style=val_style).append(val)
+        val_txt = val
+    elif isinstance(val, str) and val.startswith('http'):
+        val_style = ARCHIVE_LINK_UNDERLINE
     elif isinstance(val, Path):
-        val = Text(f"'{val}'", style=val_style or 'magenta')
-    elif 'http' in val:
-        val = Text(str(val), style=val_style or ARCHIVE_LINK_UNDERLINE)
+        val_style = 'magenta'
+        val = val = f"'{val}'"
 
-    return Text(f"{key:>{indent}}: ").append(val)
+    val_txt = Text(str(val), style=val_style)
+    return Text(f"{key:>{indent}}: ", style=key_style).append(val_txt)
 
 
-def styled_dict(d: dict[str, str | Path | Text]) -> Text:
+def styled_dict(d: dict[str, str | Path | Text], key_style: str = KEY_STYLE) -> Text:
     key_col_size = max(len(k) for k in d.keys()) + 3
-    return Text('\n').join([style_key_value(k, v, indent=key_col_size) for k, v in d.items()])
+    return Text('\n').join([style_key_value(k, v, key_style=key_style, indent=key_col_size) for k, v in d.items()])
 
 
 def vertically_pad(obj: RenderableType, amount: int = 1) -> Padding:
