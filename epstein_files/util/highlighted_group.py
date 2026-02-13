@@ -385,6 +385,7 @@ HIGHLIGHTED_NAMES = [
             JEREMY_RUBIN: 'developer/researcher',
             JOI_ITO: f"former head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative",
             LORENZO_DE_MEDICI: 'Medici Bank, possibly Medici heir?',
+            MADARS_VIRZA: 'ZCash lead dev, MIT Media Lab',
         },
         patterns=[
             r"Alphabit",
