@@ -1608,6 +1608,7 @@ HIGHLIGHTED_NAMES = [
             r"Tim\s*Ferriss?",
             r"Valar(\s*(Global\s*Fund|Ventures))?",
             r"Vision\s*Fund",
+            r"Wearality(\s*Corporation)?",
             r"WikiLeak(ed|s)",
         ],
     ),
