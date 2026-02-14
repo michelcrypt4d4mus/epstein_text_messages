@@ -9,7 +9,7 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.document import Document
-from epstein_files.documents.email import TRUNCATE_EMAILS_FROM, MAILING_LISTS, JUNK_EMAILERS, Email
+from epstein_files.documents.email import TRUNCATE_EMAILS_BY, MAILING_LISTS, JUNK_EMAILERS, Email
 from epstein_files.documents.emails.emailers import CONTACTS_DICT, cleanup_str
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
@@ -247,7 +247,7 @@ class Person:
     @property  # TODO: unused?
     def should_always_truncate(self) -> bool:
         """True if we want to truncate all emails to/from this user."""
-        return self.name in TRUNCATE_EMAILS_FROM or self.is_uninteresting
+        return self.name in TRUNCATE_EMAILS_BY or self.is_uninteresting
 
     @property
     def sole_cc(self) -> str | None:

@@ -1,6 +1,6 @@
 import re
-from epstein_files.output.highlight_config import JUNK_EMAILERS
 from epstein_files.util.constant.names import *
+from epstein_files.util.constant.strings import REDACTED
 
 # Email related regexes (have to be here for circular dependencies reasons)
 FORWARDED_LINE_PATTERN = r"-+ ?(Forwarded|Original)\s*Message ?-*|Begin forwarded message:?"
@@ -17,7 +17,35 @@ SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4
 
 # Some emails have a lot of uninteresting CCs
 FLIGHT_IN_2012_PEOPLE: list[Name] = ['Francis Derby', JANUSZ_BANASIAK, 'Louella Rabuyo', 'Richard Barnnet']
-IRAN_DEAL_RECIPIENTS: list[Name] = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
+
+IRAN_DEAL_RECIPIENTS: list[Name] = [
+    'Allen West',
+    'Rafael Bardaji',
+    'Philip Kafka',
+    'Herb Goodman',
+    'Grant Seeger',
+    'Lisa Albert',
+    'Janet Kafka',
+    'James Ramsey',
+    'ACT for America',
+    'John Zouzelka',
+    'Joel Dunn',
+    'Nate McClain',
+    'Bennet Greenwald',
+    'Taal Safdie',
+    'Uri Fouzailov',
+    'Neil Anderson',
+    'Nate White',
+    'Rita Hortenstine',
+    'Henry Hortenstine',
+    'Gary Gross',
+    'Forrest Miller',
+    'Bennett Schmidt',
+    'Val Sherman',
+    'Marcie Brown',
+    'Michael Horowitz',
+    'Marshall Funk'
+]
 
 TRIVERS_CCS: list[Name] = [
     "Alan Rogers",
@@ -138,8 +166,6 @@ MAILING_LISTS = [
     JP_MORGAN_USGIO,
 ]
 
-BCC_LISTS = JUNK_EMAILERS + MAILING_LISTS
-
 TRUNCATE_EMAILS_FROM_OR_TO = [
     AMANDA_ENS,
     ANTHONY_BARRETT,
@@ -158,7 +184,7 @@ TRUNCATE_EMAILS_FROM_OR_TO = [
     TERRY_KAFKA,
 ]
 
-TRUNCATE_EMAILS_FROM = BCC_LISTS + TRUNCATE_EMAILS_FROM_OR_TO + [
+TRUNCATE_EMAILS_FROM = TRUNCATE_EMAILS_FROM_OR_TO + [
     'Alan S Halperin',
     'Alain Forget',
     ARIANE_DE_ROTHSCHILD,

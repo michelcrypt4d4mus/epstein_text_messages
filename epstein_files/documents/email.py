@@ -44,6 +44,8 @@ DATE_HEADER_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\
 TIMESTAMP_LINE_REGEX = re.compile(r"\d+:\d+")
 LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 
+BCC_LISTS = JUNK_EMAILERS + MAILING_LISTS
+TRUNCATE_EMAILS_BY = BCC_LISTS + TRUNCATE_EMAILS_FROM
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
 URL_SIGNIFIERS = ['?amp', 'amp?', 'cd=', 'click', 'CMP=', 'contentId', 'ft=', 'gclid', 'htm', 'mp=', 'keywords=', 'Id=', 'module=', 'mpweb', 'nlid=', 'ref=', 'smid=', 'sp=', 'usg=', 'utm']
 APPEARS_IN = 'appears in'
@@ -570,7 +572,7 @@ class Email(Communication):
             num_chars = len(self.text) if self.config.truncate_to == NO_TRUNCATE else self.config.truncate_to
         elif self.is_interesting:
             num_chars = len(self.text)
-        elif self.author in TRUNCATE_EMAILS_FROM \
+        elif self.author in TRUNCATE_EMAILS_BY \
                 or any([self.is_from_or_to(n) for n in TRUNCATE_EMAILS_FROM_OR_TO]) \
                 or self.is_fwded_article \
                 or includes_truncate_term:
@@ -602,7 +604,7 @@ class Email(Communication):
         log_args = {
             'num_chars': num_chars,
             '_is_first_for_user': self._is_first_for_user,
-            'author_truncate': self.author in TRUNCATE_EMAILS_FROM,
+            'author_truncate': self.author in TRUNCATE_EMAILS_BY,
             'is_fwded_article': self.is_fwded_article,
             'is_quote_cutoff': quote_cutoff == num_chars,
             'includes_truncate_term': json.dumps(includes_truncate_term) if includes_truncate_term else None,
