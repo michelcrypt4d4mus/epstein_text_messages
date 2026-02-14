@@ -2266,6 +2266,8 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00007253', replace_text_with='T-Mobile response to subpoena March 23, 2007 - phone bill'),
     # Attachments
     DocCfg(id='EFTA00590685', attached_to_email_id='EFTA00830911'),
+    # Dates
+    DocCfg(id='EFTA00599617', date='2017-07-31'),
 ]
 
 # This category is automatically 'interesting', see OtherFile class
