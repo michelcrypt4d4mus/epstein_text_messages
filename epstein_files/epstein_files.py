@@ -54,12 +54,27 @@ class EpsteinFiles:
         return [doc for doc in self.all_documents if doc.is_doj_file]
 
     @property
+    def emailers(self) -> list[Person]:
+        """All the people who sent or received an email."""
+        authors = [email.author for email in self.emails]
+        recipients = flatten([email.recipients for email in self.emails])
+        return self.person_objs(uniquify(authors + recipients))
+
+    @property
     def non_duplicate_emails(self) -> list[Email]:
         return Document.without_dupes(self.emails)
 
     @property
     def non_json_other_files(self) -> list[OtherFile]:
         return [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
+
+    @property
+    def uninteresting_emailers(self) -> list[Name]:
+        """Emailers whom we don't want to print a separate section for because they're just CCed."""
+        if '_uninteresting_emailers' not in vars(self):
+            self._uninteresting_emailers = sorted(uniquify(UNINTERESTING_EMAILERS + self.uninteresting_ccs))
+
+        return self._uninteresting_emailers
 
     def __post_init__(self):
         """Iterate through files and build appropriate objects."""
@@ -106,7 +121,7 @@ class EpsteinFiles:
         return epstein_files
 
     def docs_matching(self, pattern: re.Pattern | str, names: list[Name] | None = None) -> list[SearchResult]:
-        """Find documents whose text matches a pattern (file_type and names args limit the documents searched)."""
+        """Find documents whose text matches `pattern` optionally limited to only docs involving `name`)."""
         results: list[SearchResult] = []
 
         for doc in self.all_documents:
@@ -124,15 +139,18 @@ class EpsteinFiles:
         return results
 
     def earliest_email_at(self, name: Name) -> datetime:
+        """First email timestamp sent to or received by `name`."""
         return self.emails_for(name)[0].timestamp
 
     def last_email_at(self, name: Name) -> datetime:
+        """Last email timestamp sent to or received by `name`."""
         return self.emails_for(name)[-1].timestamp
 
     def email_author_counts(self) -> dict[Name, int]:
+        """Returns dict counting up how many emails were written by each person."""
         return {
             person.name: len(person.unique_emails_by)
-            for person in self.emailers() if len(person.unique_emails_by) > 0
+            for person in self.emailers if len(person.unique_emails_by) > 0
         }
 
     def email_authors_to_device_signatures(self) -> dict[str, set[str]]:
@@ -152,9 +170,10 @@ class EpsteinFiles:
         return signatures
 
     def email_recipient_counts(self) -> dict[Name, int]:
+        """Returns dict counting up how many emails were received by each person."""
         return {
             person.name: len(person.unique_emails_to)
-            for person in self.emailers() if len(person.unique_emails_to) > 0
+            for person in self.emailers if len(person.unique_emails_to) > 0
         }
 
     def email_signature_substitution_counts(self) -> dict[str, int]:
@@ -166,12 +185,6 @@ class EpsteinFiles:
                 substitution_counts[name] += num_replaced
 
         return substitution_counts
-
-    def emailers(self) -> list[Person]:
-        """All the people who sent or received an email."""
-        authors = [email.author for email in self.emails]
-        recipients = flatten([email.recipients for email in self.emails])
-        return self.person_objs(uniquify(authors + recipients))
 
     def emails_by(self, author: Name) -> list[Email]:
         """All emails sent by `author` (including dupes)."""
@@ -244,7 +257,7 @@ class EpsteinFiles:
                 name=name,
                 emails=self.emails_for(name),
                 imessage_logs=self.imessage_logs_for(name),
-                is_uninteresting=name in self.uninteresting_emailers(),
+                is_uninteresting=name in self.uninteresting_emailers,
                 other_files=[f for f in self.other_files if name and name == f.author]
             )
             for name in names
@@ -284,13 +297,6 @@ class EpsteinFiles:
         """IDs of emails whose recipient is not known."""
         return sorted([e.file_id for e in self.emails if None in e.recipients or not e.recipients])
 
-    def uninteresting_emailers(self) -> list[Name]:
-        """Emailers whom we don't want to print a separate section for because they're just CCed."""
-        if '_uninteresting_emailers' not in vars(self):
-            self._uninteresting_emailers = sorted(uniquify(UNINTERESTING_EMAILERS + self.uninteresting_ccs))
-
-        return self._uninteresting_emailers
-
     def _copy_duplicate_email_properties(self) -> None:
         """Ensure dupe emails have the properties of the emails they duplicate to capture any repairs, config etc."""
         for email in self.emails:
@@ -329,7 +335,7 @@ class EpsteinFiles:
 
                 other_file.timestamp = email.timestamp
 
-        for emailer in self.emailers():
+        for emailer in self.emailers:
             first_email = emailer.emails[0]
             first_email._is_first_for_user = True
 

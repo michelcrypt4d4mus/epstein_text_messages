@@ -78,7 +78,7 @@ sys.exit()
 
 
 def print_first_emails():
-    emailers = sorted(epstein_files.emailers(), key=lambda e: e.earliest_email_at)
+    emailers = sorted(epstein_files.emailers, key=lambda e: e.earliest_email_at)
 
     for emailer in emailers:
         first_email = emailer.emails[0]
@@ -138,10 +138,10 @@ counts = defaultdict(int)
 
 
 def print_potential_uninteresting_emailers():
-    emailers = sorted(epstein_files.emailers(), key=lambda e: epstein_files.earliest_email_at(e.name))
+    emailers = sorted(epstein_files.emailers, key=lambda e: epstein_files.earliest_email_at(e.name))
 
     for emailer in emailers:
-        emails = epstein_files.emails_for(emailer)
+        emails = emailer.emails
         emails_sent_by = [e for e in emails if e.author == emailer]
         emailer_str = f"(useless emailer) {emailer}" if emailer in UNINTERESTING_EMAILERS else emailer
         txt = Text('')
@@ -153,7 +153,7 @@ def print_potential_uninteresting_emailers():
                 console.print(txt.append(' [RECEIVED ONE]', style='bright_red dim').append(highlighter(f" {emailer_str} ({len(emails[0].recipients)} recipients)")))
         elif len(emails_sent_by) == 0:
             console.print(txt.append('    [NONE SENT]', style='dim').append(highlighter(f" {emailer_str} received {len(emails)} emails but sent none")))
-        elif get_style_for_name(emailer, default_style='none') == 'none':
+        elif get_style_for_name(emailer.name, default_style='none') == 'none':
             console.print(Text('     [NO STYLE]', style='wheat4').append(highlighter(f" {emailer_str} has no associated styling")))
 
 
