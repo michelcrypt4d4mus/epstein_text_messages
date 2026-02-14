@@ -7,6 +7,7 @@ from rich.text import Text
 
 from epstein_files.documents.documents.doc_cfg import *
 from epstein_files.output.highlighted_names import REGEX_STYLE_PREFIX
+from epstein_files.output.highlight_config import ALL_HIGHLIGHTS
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import sort_dict
 from epstein_files.util.logging import logger

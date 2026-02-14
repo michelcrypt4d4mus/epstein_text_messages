@@ -13,14 +13,15 @@ from epstein_files.documents.email import TRUNCATE_EMAILS_FROM, MAILING_LISTS, J
 from epstein_files.documents.emails.emailers import CONTACTS_DICT, cleanup_str
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
+from epstein_files.output.highlight_config import (QUESTION_MARKS_TXT, get_highlight_group_for_name,
+     get_style_for_name, styled_category, styled_name)
+from epstein_files.output.highlighted_names import HighlightedNames, HighlightedText, ManualHighlight
 from epstein_files.people.contact_info import ContactInfo
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import *
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import days_between, flatten, uniquify, without_falsey
-from epstein_files.util.highlighted_group import (QUESTION_MARKS_TXT, HighlightedNames, HighlightedText, ManualHighlight,
-     get_highlight_group_for_name, get_style_for_name, styled_category, styled_name)
 from epstein_files.util.rich import (GREY_NUMBERS, TABLE_TITLE_STYLE, build_table,
      console, join_texts, print_centered)
 

@@ -25,7 +25,7 @@ from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constants import *
 from epstein_files.util.helpers.data_helpers import AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines, remove_timezone, uniquify
 from epstein_files.util.helpers.file_helper import extract_file_id, file_stem_for_id
-from epstein_files.util.highlighted_group import JUNK_EMAILERS, get_style_for_name
+from epstein_files.output.highlight_config import JUNK_EMAILERS, get_style_for_name
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import *
 
