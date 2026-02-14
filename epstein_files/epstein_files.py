@@ -344,10 +344,11 @@ class EpsteinFiles:
         return docs
 
     def _reload_doj_files(self) -> None:
+        house_oversight_emails = [e for e in self.emails if not e.is_doj_file]
         docs = self._load_file_paths(doj_txt_paths())
+        doj_emails = [d for d in docs if isinstance(d, Email)]
         self.doj_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, DojFile)])
-        self.emails = [e for e in self.emails if not e.is_doj_file]  # Remove old DOJ emails
-        self.emails = Document.sort_by_timestamp(self.emails + [d for d in docs if isinstance(d, Email)])
+        self.emails = Document.sort_by_timestamp(house_oversight_emails + doj_emails)
         self._finalize_data()
 
     def _set_uninteresting_ccs(self) -> None:
