@@ -28,23 +28,6 @@ SOCIAL = 'social'
 PALM_BEACH = 'Palm Beach'
 VIRGIN_ISLANDS = 'Virgin Islands'
 
-# Publications
-BBC = 'BBC'
-BLOOMBERG = 'Bloomberg'
-CHINA_DAILY = "China Daily"
-DAILY_MAIL = 'Daily Mail'
-DAILY_TELEGRAPH = "Daily Telegraph"
-LA_TIMES = 'LA Times'
-LEXIS_NEXIS = 'Lexis Nexis'
-MIAMI_HERALD = 'Miami Herald'
-NYT = "New York Times"
-PALM_BEACH_DAILY_NEWS = f'{PALM_BEACH} Daily News'
-PALM_BEACH_POST = f'{PALM_BEACH} Post'
-SHIMON_POST = 'The Shimon Post'
-THE_REAL_DEAL = 'The Real Deal'
-WAPO = 'WaPo'
-VI_DAILY_NEWS = f'{VIRGIN_ISLANDS} Daily News'
-
 # Site types
 EMAIL = 'email'
 TEXT_MESSAGE = 'text message'
