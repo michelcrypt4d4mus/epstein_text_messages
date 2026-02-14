@@ -50,10 +50,7 @@ class Person:
     _searched_for_highlight_group: bool = False
 
     def __post_init__(self):
-        try:
-            self.contact_info = CONTACTS_DICT.get(str(self.name)) or ContactInfo(name=cleanup_str(str(self.name)))
-        except Exception as e:
-            import pdb;pdb.set_trace()
+        self.contact_info = CONTACTS_DICT.get(str(self.name)) or ContactInfo(name=cleanup_str(str(self.name)))
         self.emails = Document.sort_by_timestamp(self.emails)
         self.imessage_logs = Document.sort_by_timestamp(self.imessage_logs)
 

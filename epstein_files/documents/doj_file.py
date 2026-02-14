@@ -8,7 +8,7 @@ from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
 
-from epstein_files.documents.document import Document
+from epstein_files.documents.document import CHECK_LINK_FOR_DETAILS, Document
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.email_header import FIELDS_COLON_PATTERN
 from epstein_files.documents.other_file import Metadata, OtherFile
@@ -18,7 +18,6 @@ from epstein_files.util.layout.left_bar_panel import LeftBarPanel
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import RAINBOW, INFO_STYLE, highlighter, link_text_obj, wrap_in_markup_style
 
-CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTALL)
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
 SINGLE_IMAGE_NO_TEXT = 'single image with no text'
@@ -34,7 +33,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(fr"({FIELDS_COLON_PATTERN}.*\n)\nSubject:", re.MULTILINE): r'\1Subject:',
 }
 
-BAD_DOJ_FILE_IDS = [
+BAD_OCR_FILE_IDS = [
     'EFTA00008511',
     'EFTA00008503',
     'EFTA00002512',
@@ -60,6 +59,7 @@ BAD_DOJ_FILE_IDS = [
     'EFTA00002816',
     'EFTA00001114',
     'EFTA00008445',
+    'EFTA00000476',
     'EFTA00001979',
     'EFTA00001655',
     'EFTA00001654',
@@ -222,12 +222,12 @@ class DojFile(OtherFile):
         )
 
     @property
-    def highlighted_preview_text(self) -> Text:
+    def preview_text_highlighted(self) -> Text:
         """Overloads superclass method."""
         if self.preview_text == SINGLE_IMAGE_NO_TEXT:
             return Text(self.preview_text, style='dim italic')
         else:
-            return super().highlighted_preview_text
+            return super().preview_text_highlighted
 
     @property
     def info(self) -> list[Text]:
@@ -236,7 +236,7 @@ class DojFile(OtherFile):
 
     @property
     def is_bad_ocr(self) -> bool:
-        return self.file_id in BAD_DOJ_FILE_IDS
+        return self.file_id in BAD_OCR_FILE_IDS
 
     @property
     def is_empty(self) -> bool:
@@ -246,27 +246,12 @@ class DojFile(OtherFile):
     @property
     def prettified_text(self) -> Text:
         """Returns the string we want to print as the body of the document."""
-        style = ''
-        trim_footer_txt = None
-
         if self.file_id in PHONE_BILL_IDS:
             pages = self.text.split('MetroPCS')
             text = f"{pages[0]}\n\n(Redacted phone bill {PHONE_BILL_IDS[self.file_id]} {CHECK_LINK_FOR_DETAILS})"
-        elif self.config and self.config.replace_text_with:
-            if len(self.config.replace_text_with) < 300:
-                style = INFO_STYLE
-                text = f'(Text of {self.config.replace_text_with} {CHECK_LINK_FOR_DETAILS})'
-            else:
-                text = self.config.replace_text_with
+            return highlighter(text)
         else:
-            text = self.text
-
-        if self.config and self.config.truncate_to:
-            txt = highlighter(Text(text[0:self.config.truncate_to], style))
-            trim_footer_txt = self.truncation_note(self.config.truncate_to)
-            return txt.append('...\n\n').append(trim_footer_txt)
-        else:
-            return highlighter(Text(text, style))
+            return super().prettified_text
 
     @property
     def preview_text(self) -> str:
@@ -331,19 +316,14 @@ class DojFile(OtherFile):
             self.warn(f"Reduced line count from {len(self.lines)} to {len(non_number_lines)} by stripping number only lines")
             self._set_computed_fields(lines=non_number_lines)
 
-    def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
-        doc = self.printable_document()
+    def _left_bar_panel(self) -> RenderResult:
+        """Alternate way of displaying DOJ files with a single color bar down the left side."""
+        yield (info_panel := self.file_info_panel())
+        border_style = info_panel.renderables[0].border_style
+        panel_args = [self.prettified_text, border_style]
 
-        # Emails handle their own formatting
-        if isinstance(doc, Email):
-            yield doc
-        else:
-            yield (info_panel := self.file_info_panel())
-            border_style = info_panel.renderables[0].border_style
-            panel_args = [self.prettified_text, border_style]
+        if self.panel_title_timestamp:
+            panel_args.append(Text(f"[{self.panel_title_timestamp}]", style='dim italic ' + border_style))
 
-            if self.panel_title_timestamp:
-                panel_args.append(Text(f"[{self.panel_title_timestamp}]", style='dim italic ' + border_style))
-
-            table = LeftBarPanel.build(*panel_args)
-            yield Padding(table, (0, 0, 1, 1))
+        table = LeftBarPanel.build(*panel_args)
+        yield Padding(table, (0, 0, 1, 1))
