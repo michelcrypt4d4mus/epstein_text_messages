@@ -110,7 +110,7 @@ class HighlightedNames(HighlightedText):
 
     Attributes:
         category (str): optional string to use as an override for self.label in some contexts
-        contacts (list[ContactInfo]): optional ContactInfo objects with names and regexes
+        contacts (list[ContactInfo]): optional `ContactInfo` objects with names and regexes
         _pattern (str): regex pattern combining 'pattern' with first & last names of all 'emailers'
     """
     category: str = ''

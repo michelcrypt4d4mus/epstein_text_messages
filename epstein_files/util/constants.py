@@ -2401,7 +2401,6 @@ SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4
 
 # No point in ever displaying these; their emails show up elsewhere because they're mostly CC recipients
 UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_CCS + [
-    'Alan Dlugash',                          # CCed with Richard Kahn
     'Alan Rogers',                           # Random CC
     'Andrew Friendly',                       # Presumably some relation of Kelly Friendly
     'Ariane Dwyer',  # Sabba CC
