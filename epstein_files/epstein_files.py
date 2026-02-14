@@ -23,7 +23,7 @@ from epstein_files.util.constants import *
 from epstein_files.util.data import flatten, json_safe, listify, uniquify
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.env import DOCS_DIR, DOJ_PDFS_20260130_DIR, args, logger
-from epstein_files.util.file_helper import file_size_str
+from epstein_files.util.file_helper import doj_txt_paths, file_size_str
 from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames
 from epstein_files.util.search_result import SearchResult
 from epstein_files.util.timer import Timer
@@ -55,43 +55,20 @@ class EpsteinFiles:
 
     def __post_init__(self):
         """Iterate through files and build appropriate objects."""
-        self.all_files = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
+        file_paths = [f for f in DOCS_DIR.iterdir() if f.is_file() and not f.name.startswith('.')]
+        file_paths.extend(doj_txt_paths())
+        self.all_files = sorted(file_paths, reverse=True)
 
-        if DOJ_PDFS_20260130_DIR:
-            self.all_files += [f for f in DOJ_PDFS_20260130_DIR.glob('**/*.txt')]
-
-        self.all_files = sorted(self.all_files, reverse=True)
-        file_type_count = defaultdict(int)  # Hack used by --skip-other-files option to get a few files parsed before skipping the rest
-        docs = []
-
-        # Read through and classify all the files
-        for file_arg in self.all_files:
-            doc_timer = Timer(decimals=2)
-            document = Document(file_arg)
-            cls = document_cls(document)
-
-            if document.length == 0:
-                logger.warning(f"Skipping empty file: {document}]")
-                continue
-            elif args.skip_other_files and cls == OtherFile and file_type_count[cls.__name__] > 1:
-                document.log(f"Skipping OtherFile...")
-                continue
-
-            docs.append(cls(file_arg, lines=document.lines, text=document.text).printable_document())
-            logger.info(str(docs[-1]))
-            file_type_count[cls.__name__] += 1
-
-            if doc_timer.seconds_since_start() > SLOW_FILE_SECONDS:
-                doc_timer.print_at_checkpoint(f"Slow file: {docs[-1]} processed")
-
+        # Split up by type
+        docs = self._load_file_paths(self.all_files)
         self.doj_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, DojFile)])
         self.emails = Document.sort_by_timestamp([d for d in docs if isinstance(d, Email)])
         self.imessage_logs = Document.sort_by_timestamp([d for d in docs if isinstance(d, MessengerLog)])
         self.json_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, JsonFile)])
         self.other_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, OtherFile) and not isinstance(d, DojFile)])
-        self._set_uninteresting_ccs()
-        self._copy_duplicate_email_properties()
-        self._find_email_attachments_and_set_is_first_for_user()
+
+        # Set interdependent fields, dupes, etc.
+        self._finalize_data()
 
     @classmethod
     def get_files(cls, timer: Timer | None = None) -> 'EpsteinFiles':
@@ -103,7 +80,11 @@ class EpsteinFiles:
                 epstein_files = pickle.load(file)
                 timer_msg = f"Loaded {len(epstein_files.all_files):,} documents from '{PICKLED_PATH}'"
                 timer.print_at_checkpoint(f"{timer_msg} ({file_size_str(PICKLED_PATH)})")
-                return epstein_files
+
+            if args.reload_doj:
+                epstein_files.reload_doj_files()
+
+            return epstein_files
 
         logger.warning(f"Building new cache file, this will take a few minutes...")
         epstein_files = EpsteinFiles()
@@ -111,9 +92,7 @@ class EpsteinFiles:
         if args.skip_other_files:
             logger.warning(f"Not writing pickled data because --skip-other-files")
         else:
-            with gzip.open(PICKLED_PATH, 'wb') as file:
-                pickle.dump(epstein_files, file)
-                logger.warning(f"Pickled data to '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})...")
+            epstein_files.save_to_disk()
 
         timer.print_at_checkpoint(f'Processed {len(epstein_files.all_files):,} documents')
         return epstein_files
@@ -236,11 +215,11 @@ class EpsteinFiles:
                 OtherFile.__name__: _sorted_metadata(self.non_json_other_files()),
             },
             'people': {
-                name: highlighted_group.info_for(name, include_category=True)
+                contact.name: highlighted_group.info_for(contact.name, include_category=True)
                 for highlighted_group in HIGHLIGHTED_NAMES
                 if isinstance(highlighted_group, HighlightedNames)
-                for name, description in highlighted_group.emailers.items()
-                if description
+                for contact in highlighted_group.contacts
+                if contact.info
             }
         }
 
@@ -265,6 +244,22 @@ class EpsteinFiles:
             for name in names
         ]
 
+    def reload_doj_files(self) -> None:
+        """Reload only the DOJ PDF extracts (keep HOUSE_OVERSIGHT stuff unchanged)."""
+        def doj_file_counts_str():
+            return f"(have {len(self.all_doj_files)}, {len(self.doj_files)} non-email)"
+
+        timer = Timer()
+        logger.warning(f"Only reloading DOJ files {doj_file_counts_str()}...")
+        house_oversight_emails = [e for e in self.emails if not e.is_doj_file]
+        docs = self._load_file_paths(doj_txt_paths())
+        doj_emails = [d for d in docs if isinstance(d, Email)]
+        self.doj_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, DojFile)])
+        self.emails = Document.sort_by_timestamp(house_oversight_emails + doj_emails)
+        timer.print_at_checkpoint(f"Reloaded DOJ files {doj_file_counts_str()}")
+        self._finalize_data()
+        self.save_to_disk()
+
     def overview_table(self) -> Table:
         table = Document.file_info_table('Files Overview', 'File Type')
         table.add_row('Emails', *Document.files_info_row(self.emails))
@@ -272,6 +267,12 @@ class EpsteinFiles:
         table.add_row('JSON Data', *Document.files_info_row(self.json_files, True))
         table.add_row('Other', *Document.files_info_row(self.non_json_other_files()))
         return table
+
+    def save_to_disk(self) -> None:
+        """Write a pickled version of this `EpsteinFiles` object with all documents etc."""
+        with gzip.open(PICKLED_PATH, 'wb') as file:
+            pickle.dump(self, file)
+            logger.warning(f"Pickled data to '{PICKLED_PATH}' ({file_size_str(PICKLED_PATH)})...")
 
     def unknown_recipient_ids(self) -> list[str]:
         """IDs of emails whose recipient is not known."""
@@ -283,23 +284,6 @@ class EpsteinFiles:
             self._uninteresting_emailers = sorted(uniquify(UNINTERESTING_EMAILERS + self.uninteresting_ccs))
 
         return self._uninteresting_emailers
-
-    def _find_email_attachments_and_set_is_first_for_user(self) -> None:
-        for other_file in (self.other_files + self.doj_files):
-            if other_file.config and other_file.config.attached_to_email_id:
-                email = self.email_for_id(other_file.config.attached_to_email_id)
-                email.attached_docs.append(other_file)
-
-                if other_file.timestamp \
-                        and other_file.timestamp != email.timestamp \
-                        and not other_file.config_timestamp:
-                    other_file.warn(f"Overwriting '{other_file.timestamp}' with {email}'s timestamp {email.timestamp}")
-
-                other_file.timestamp = email.timestamp
-
-        for emailer in self.emailers():
-            first_email = emailer.emails[0]
-            first_email._is_first_for_user = True
 
     def _copy_duplicate_email_properties(self) -> None:
         """Ensure dupe emails have the properties of the emails they duplicate to capture any repairs, config etc."""
@@ -319,6 +303,55 @@ class EpsteinFiles:
 
         # Resort in case any timestamp were updated
         self.emails = Document.sort_by_timestamp(self.emails)
+
+    def _finalize_data(self):
+        """Handle computation of fields related to uninterestingness, relationships between documents, etc."""
+        self._set_uninteresting_ccs()
+        self._copy_duplicate_email_properties()
+        self._find_email_attachments_and_set_is_first_for_user()
+
+    def _find_email_attachments_and_set_is_first_for_user(self) -> None:
+        for other_file in (self.other_files + self.doj_files):
+            if other_file.config and other_file.config.attached_to_email_id:
+                email = self.email_for_id(other_file.config.attached_to_email_id)
+                email.attached_docs.append(other_file)
+
+                if other_file.timestamp \
+                        and other_file.timestamp != email.timestamp \
+                        and not other_file.config_timestamp:
+                    other_file.warn(f"Overwriting '{other_file.timestamp}' with {email}'s timestamp {email.timestamp}")
+
+                other_file.timestamp = email.timestamp
+
+        for emailer in self.emailers():
+            first_email = emailer.emails[0]
+            first_email._is_first_for_user = True
+
+    def _load_file_paths(self, file_paths: list[Path]) -> Sequence[Document]:
+        """Load a list of file paths into a list of `Document` object subclasses."""
+        file_type_count = defaultdict(int)  # Hack used by --skip-other-files option to get a few files parsed before skipping the rest
+        docs: Sequence[Document] = []
+
+        for file_path in file_paths:
+            doc_timer = Timer(decimals=2)
+            document = Document(file_path)
+            cls = document_cls(document)
+
+            if document.length == 0:
+                logger.warning(f"Skipping empty file: {document}]")
+                continue
+            elif args.skip_other_files and cls == OtherFile and file_type_count[cls.__name__] > 1:
+                document.log(f"Skipping OtherFile...")
+                continue
+
+            docs.append(cls(file_path, lines=document.lines, text=document.text).printable_document())
+            logger.info(str(docs[-1]))
+            file_type_count[cls.__name__] += 1
+
+            if doc_timer.seconds_since_start() > SLOW_FILE_SECONDS:
+                doc_timer.print_at_checkpoint(f"Slow file: {docs[-1]} processed")
+
+        return docs
 
     def _set_uninteresting_ccs(self) -> None:
         for email in [e for e in self.emails if e.config and e.config.has_uninteresting_bccs]:

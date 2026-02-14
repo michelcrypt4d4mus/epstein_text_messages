@@ -10,8 +10,10 @@ from rich.text import Text
 
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import TRUNCATE_EMAILS_FROM, MAILING_LISTS, JUNK_EMAILERS, Email
+from epstein_files.documents.emails.emailers import CONTACTS_DICT, cleanup_str
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
+from epstein_files.people.contact_info import ContactInfo
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import *
@@ -19,7 +21,7 @@ from epstein_files.util.data import days_between, flatten, uniquify, without_fal
 from epstein_files.util.env import args
 from epstein_files.util.highlighted_group import (QUESTION_MARKS_TXT, HighlightedNames,
      get_highlight_group_for_name, get_style_for_name, styled_category, styled_name)
-from epstein_files.util.rich import (GREY_NUMBERS, SKIPPED_FILE_MSG_PADDING, TABLE_TITLE_STYLE, build_table,
+from epstein_files.util.rich import (GREY_NUMBERS, TABLE_TITLE_STYLE, build_table,
      console, join_texts, print_centered)
 
 ALT_INFO_STYLE = 'medium_purple4'
@@ -39,6 +41,7 @@ INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + MAILING_LISTS + [
 @dataclass(kw_only=True)
 class Person:
     """Collection of data about someone texting or emailing Epstein."""
+    contact_info: ContactInfo = field(init=False)
     name: Name
     emails: list[Email] = field(default_factory=list)
     imessage_logs: list[MessengerLog] = field(default_factory=list)
@@ -46,15 +49,17 @@ class Person:
     is_uninteresting: bool = False
 
     def __post_init__(self):
+        try:
+            self.contact_info = CONTACTS_DICT.get(str(self.name)) or ContactInfo(name=cleanup_str(str(self.name)))
+        except Exception as e:
+            import pdb;pdb.set_trace()
         self.emails = Document.sort_by_timestamp(self.emails)
         self.imessage_logs = Document.sort_by_timestamp(self.imessage_logs)
 
     @property
     def category(self) -> str | None:
-        highlight_group = self.highlight_group
-
-        if highlight_group and isinstance(highlight_group, HighlightedNames):
-            category = highlight_group.category or highlight_group.label
+        if self.highlight_group and isinstance(self.highlight_group, HighlightedNames):
+            category = self.highlight_group.category or self.highlight_group.label
 
             if category != self.name and category != 'paula':  # TODO: this sucks
                 return category

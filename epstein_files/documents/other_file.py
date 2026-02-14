@@ -109,13 +109,25 @@ class OtherFile(Document):
         return styled_category(self.category)
 
     @property
+    def highlighted_preview_text(self) -> Text:
+        try:
+            return highlighter(escape(self.preview_text))
+        except Exception as e:
+            logger.error(f"Failed to apply markup in string '{escape_single_quotes(self.preview_text)}'\n"
+                         f"Original string: '{escape_single_quotes(self.preview_text)}'\n"
+                         f"File: '{self.filename}'\n")
+
+            return Text(escape(self.preview_text))
+
+    @property
     def is_interesting(self) -> bool:
         """Overloaded. False for lame prefixes, duplicates, and other boring files."""
         info_sentences = self.info
+        info_sentence = info_sentences[0].plain if info_sentences else ''
 
         if self.is_duplicate:
             return False
-        elif len(info_sentences) == 0:
+        elif len(info_sentences) == 0 and not self.is_doj_file:
             return True
         elif self.config:
             if self.config.is_interesting is not None:
@@ -126,12 +138,15 @@ class OtherFile(Document):
                 return False
             elif self.category in UNINTERESTING_CATEGORIES:
                 return False
+            elif self.category == CRYPTO:
+                return True
 
         for prefix in UNINTERESTING_PREFIXES:
-            if info_sentences[0].plain.startswith(prefix):
+            if info_sentence.startswith(prefix):
                 return False
 
-        return True
+        # Default to True for HOUSE_OVERSIGHT files, False for DOJ files
+        return not self.is_doj_file
 
     @property
     def metadata(self) -> Metadata:
@@ -144,6 +159,12 @@ class OtherFile(Document):
         return metadata
 
     @property
+    def preview_text(self) -> str:
+        """Text at start of file stripped of newlinesfor display in tables and other cramped settings."""
+        text = self.config.replace_text_with if (self.config and self.config.replace_text_with) else self.text
+        return WHITESPACE_REGEX.sub(' ', text)[0:PREVIEW_CHARS]
+
+    @property
     def summary(self) -> Text:
         """One line summary mostly for logging."""
         return super().summary.append(CLOSE_PROPERTIES_CHAR)
@@ -154,19 +175,6 @@ class OtherFile(Document):
         if self.config is None and VI_DAILY_NEWS_REGEX.search(self.text):
             self.log(f"Creating synthetic config for VI Daily News article...")
             self.config = DocCfg(id=self.file_id, author=VI_DAILY_NEWS, category=ARTICLE, description='article')
-
-    def highlighted_preview_text(self) -> Text:
-        try:
-            return highlighter(escape(self.preview_text()))
-        except Exception as e:
-            logger.error(f"Failed to apply markup in string '{escape_single_quotes(self.preview_text())}'\n"
-                         f"Original string: '{escape_single_quotes(self.preview_text())}'\n"
-                         f"File: '{self.filename}'\n")
-
-            return Text(escape(self.preview_text()))
-
-    def preview_text(self) -> str:
-        return WHITESPACE_REGEX.sub(' ', self.text)[0:PREVIEW_CHARS]
 
     def _extract_timestamp(self) -> datetime | None:
         """Return configured timestamp or value extracted by scanning text with datefinder."""
@@ -226,7 +234,7 @@ class OtherFile(Document):
         table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
 
         for file in files:
-            link_and_info = [file.external_links_txt()]
+            link_and_info = [cls.external_links_txt(file)]  # call superclass method to avoid border_style rainbow
             date_str = file.date_str
 
             if file.is_duplicate:
@@ -234,7 +242,7 @@ class OtherFile(Document):
                 row_style = ' dim'
             else:
                 link_and_info += file.info
-                preview_text = file.highlighted_preview_text()
+                preview_text = file.highlighted_preview_text
                 row_style = ''
 
             table.add_row(

@@ -16,9 +16,6 @@ DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same']
 Metadata = dict[str, bool | datetime | int | str | list[str | None] |dict[str, bool | str]]
 
 # Misc
-INDENT = '    '
-INDENT_NEWLINE = f'\n{INDENT}'
-INDENTED_JOIN = f',{INDENT_NEWLINE}'
 MAX_LINE_LENGTH = 135
 REPUTATION_MGMT = f'{REPUTATION} management'
 SAME = 'same'
@@ -160,6 +157,7 @@ class DocCfg:
             dupe_cfg.is_synthetic = True
             yield dupe_cfg
 
+    @property
     def _props_strs(self) -> list[str]:
         props = []
         add_prop = lambda f, value: props.append(f"{f.name}={value}")
@@ -190,7 +188,7 @@ class DocCfg:
         return props
 
     def __repr__(self) -> str:
-        props = self._props_strs()
+        props = self._props_strs
         type_str = f"{type(self).__name__}("
         single_line_repr = type_str + ', '.join(props) + f')'
 

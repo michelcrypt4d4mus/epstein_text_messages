@@ -56,6 +56,7 @@ TIMESTAMP_DIM = f"turquoise4 dim"
 
 # Misc
 AUTHOR = 'author'
+CRYPTO = 'crypto'
 DEFAULT = 'default'
 EFTA_PREFIX = 'EFTA'
 HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
@@ -72,6 +73,11 @@ JSON_FILE_CLASS = 'JsonFile'
 MESSENGER_LOG_CLASS = 'MessengerLog'
 OTHER_FILE_CLASS = 'OtherFile'
 
+# Whitespace
+INDENT = '    '
+INDENT_NEWLINE = f'\n{INDENT}'
+INDENTED_JOIN = f',{INDENT_NEWLINE}'
+
 # Regexes
 DOJ_FILE_STEM_REGEX = re.compile(fr"{EFTA_PREFIX}\d{{8}}")
 DOJ_FILE_NAME_REGEX = re.compile(fr"{DOJ_FILE_STEM_REGEX.pattern}(\.txt)?")
@@ -84,9 +90,3 @@ QUESTION_MARKS_REGEX = re.compile(fr' {re.escape(QUESTION_MARKS)}$')
 
 
 remove_question_marks = lambda name: QUESTION_MARKS_REGEX.sub('', name).strip()
-
-
-def indented(s: str, spaces: int = 4, prefix: str = '') -> str:
-    indent = ' ' * spaces
-    indent += prefix
-    return indent + f"\n{indent}".join(s.split('\n'))

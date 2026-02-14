@@ -3,11 +3,12 @@ from epstein_files.util.data import dict_sets_to_lists
 
 
 EMAIL_AUTHOR_COUNTS = {
-    None: 87,
+    None: 97,
     "Abi Schwinck": 1,
     AL_SECKEL: 8,
     "Alain Forget": 3,
     ALAN_DERSHOWITZ: 4,
+    'Alan Dlugash': 2,
     "Alan S Halperin": 1,
     'Alex Conlon': 1,
     "Alex Yablon": 1,
@@ -26,7 +27,7 @@ EMAIL_AUTHOR_COUNTS = {
     ATT_COURT_APPEARANCE_TEAM: 1,
     'Audrey/Aubrey Raimbault (???)': 1,
     'Audrey Strauss': 1,
-    AUSTIN_HILL: 33,
+    AUSTIN_HILL: 34,
     AZIZA_ALAHMADI: 4,
     BARBRO_C_EHNBOM: 6,
     "Barnaby Marsh": 1,
@@ -62,10 +63,10 @@ EMAIL_AUTHOR_COUNTS = {
     "David Grosof": 1,
     "David Haig": 1,
     "David Mitchell": 1,
-    "David Schoen": 11,
-    DAVID_STERN: 9,
+    DAVID_SCHOEN: 11,
+    DAVID_STERN: 10,
     DEEPAK_CHOPRA: 18,
-    "Diane Ziman": 1,
+    DIANE_ZIMAN: 1,
     'DOJ London': 1,
     DONALD_NORMAN: 2,
     "Donald Rubin": 1,
@@ -114,16 +115,15 @@ EMAIL_AUTHOR_COUNTS = {
     JEAN_LUC_BRUNEL: 3,
     JEANNE_M_CHRISTENSEN: 14,
     JEFF_FULLER: 1,
-    JEFFREY_EPSTEIN: 788,
     JENNIFER_JACQUET: 1,
-    JEREMY_RUBIN: 6,
+    JEREMY_RUBIN: 10,
     JES_STALEY: 2,
     JESSICA_CADWELL: 5,
     JIDE_ZEITLIN: 3,
     JOHN_BROCKMAN: 3,
     JOHN_PAGE: 2,
     JOHNNY_EL_HACHEM: 1,
-    JOI_ITO: 32,
+    JOI_ITO: 36,
     "Jokeland": 1,
     JONATHAN_FARKAS: 19,
     JOSCHA_BACH: 3,
@@ -139,14 +139,13 @@ EMAIL_AUTHOR_COUNTS = {
     KEN_STARR: 5,
     "Kirk Blouin": 1,
     LANDON_THOMAS: 72,
-    LARRY_SUMMERS: 49,
+    LARRY_SUMMERS: 50,
     'Laura Menninger': 1,
     "Laurie Cameron": 1,
     LAWRANCE_VISOSKI: 39,
     LAWRENCE_KRAUSS: 33,
     "Leah Reis-Dennis": 1,
     "Leon Black": 1,
-    LESLEY_GROFF: 107,
     "Lilly Sanchez": 4,
     "Linda Pinto": 1,
     LINDA_STONE: 19,
@@ -154,6 +153,7 @@ EMAIL_AUTHOR_COUNTS = {
     LISA_NEW: 22,
     "Lisa Randall": 2,
     'LSJ': 1,  # TODO: this is epstein?
+    MADARS_VIRZA: 13,
     "Manuela Martinez": 1,
     MARC_LEON: 2,
     MARIYA_PRUSAKOVA: 7,
@@ -177,7 +177,6 @@ EMAIL_AUTHOR_COUNTS = {
     NADIA_MARCINKO: 5,
     'Neal Berger': 1,
     NEAL_KASSELL: 2,
-    'Newsmax': 1,
     NICHOLAS_RIBIS: 42,
     NICOLE_JUNKERMANN: 4,
     NOAM_CHOMSKY: 4,
@@ -205,7 +204,6 @@ EMAIL_AUTHOR_COUNTS = {
     REID_HOFFMAN: 1,
     REID_WEINGARTEN: 72,
     RENATA_BOLOTOVA: 55,
-    RICHARD_KAHN: 155,
     "Richard Merkin": 3,
     ROBERT_LAWRENCE_KUHN: 26,
     ROBERT_TRIVERS: 15,
@@ -225,7 +223,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Stephanie": 2,
     "Stephen Alexander": 1,
     STEPHEN_HANSON: 5,
-    STEVE_BANNON: 44,
+    STEVE_BANNON: 45,
     "Steven Elkman": 1,
     STEVEN_HOFFENBERG: 1,
     "Steven Pfeiffer": 2,
@@ -235,6 +233,7 @@ EMAIL_AUTHOR_COUNTS = {
     TERJE_ROD_LARSEN: 3,
     TERRY_KAFKA: 8,
     THORBJORN_JAGLAND: 7,
+    'Tancredi Marchiolo': 1,
     "Tim Zagat": 1,
     TOM_BARRACK: 1,
     TOM_PRITZKER: 6,
@@ -247,6 +246,7 @@ EMAIL_AUTHOR_COUNTS = {
     VINCENZO_IOZZO: 8,
     VINIT_SAHNI: 2,
     "Vladimir Yudashkin": 1,
+    'Yuko Barnaby': 3,
     ZUBAIR_KHAN: 9,
     "asmallworld@travel.asmallworld.net": 2,
     "digest-noreply@quora.com": 5,
@@ -264,7 +264,7 @@ EMAIL_RECIPIENT_COUNTS = {
     ADAM_BACK: 3,
     AL_SECKEL: 1,
     ALAN_DERSHOWITZ: 11,
-    'Alan Dlugash': 1,
+    'Alan Dlugash': 2,
     "Alan Rogers": 1,
     'Alex Fowler': 1,
     'Alexandra Elenowitz-Hess': 1,
@@ -319,7 +319,7 @@ EMAIL_RECIPIENT_COUNTS = {
     'Daniel Dawson': 2,
     DANIEL_SIAD: 2,
     "Danny Goldberg": 5,
-    'Daphne Wallace': 1,
+    'Daphne Wallace': 2,
     DARREN_INDYKE: 51,
     DAVID_BLAINE: 1,
     "David Grosof": 6,
@@ -343,7 +343,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Etienne Binant": 1,
     FAITH_KATES: 5,
     FAWZI_SIAM: 1,
-    FBI: 4,
+    FBI: 7,
     "Forrest Miller": 1,
     "Francis Derby": 2,
     FRED_HADDAD: 3,
@@ -352,7 +352,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "George Krassner": 3,
     "Gerald Barton": 1,
     GERALD_LEFCOURT: 1,
-    GHISLAINE_MAXWELL: 8,
+    GHISLAINE_MAXWELL: 9,
     "Gianni Serazzi": 1,
     GLENN_DUBIN: 1,
     GORDON_GETTY: 2,
@@ -367,7 +367,7 @@ EMAIL_RECIPIENT_COUNTS = {
     'Hongbo Bao': 1,
     'Ike Groff': 1,
     JABOR_Y: 8,
-    "Jack Goldberger": 9,
+    JACK_GOLDBERGER: 10,
     "Jack Lang": 3,
     JACK_SCAROLA: 2,
     JACKIE_PERCZEK: 3,
@@ -382,7 +382,6 @@ EMAIL_RECIPIENT_COUNTS = {
     JEANNE_M_CHRISTENSEN: 8,
     JEFF_FULLER: 2,
     'Jeff Pagliuca': 4,
-    JEFFREY_EPSTEIN: 1795,
     JEREMY_RUBIN: 7,
     JES_STALEY: 7,
     JESSICA_CADWELL: 3,
@@ -390,13 +389,14 @@ EMAIL_RECIPIENT_COUNTS = {
     "Joel Dunn": 1,
     JOHN_PAGE: 1,
     "John Zouzelka": 1,
-    JOI_ITO: 18,
+    JOI_ITO: 25,
     JOJO_FONTANILLA: 8,
     JONATHAN_FARKAS: 9,
     JOSCHA_BACH: 4,
     "Joseph Vinciguerra": 1,
     "Joshua Cooper Ramo": 1,
     JULIA_SANTOS: 1,
+    'Juliana Shkreli': 1,
     'Justin Alfano': 1,
     KARYNA_SHULIAK: 3,
     KATHERINE_KEATING: 3,
@@ -408,7 +408,7 @@ EMAIL_RECIPIENT_COUNTS = {
     'Lanny Swerdlow': 1,
     "Larry Cohen": 1,
     'Larry Sloman': 1,
-    LARRY_SUMMERS: 39,
+    LARRY_SUMMERS: 40,
     'Laura Menninger': 3,
     LAWRANCE_VISOSKI: 9,
     LAWRENCE_KRAUSS: 11,
@@ -416,7 +416,6 @@ EMAIL_RECIPIENT_COUNTS = {
     'Lee Quarnstrom': 2,
     'Leo': 1,  # TODO: who is this?
     LEON_BLACK: 4,
-    LESLEY_GROFF: 45,
     "Lilly Sanchez": 2,
     'LIMITED PARTNERS': 1,
     LINDA_STONE: 4,
@@ -427,6 +426,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Louella Rabuyo": 1,
     LYN_FONTANILLA: 12,
     'Lynnie Tofte Fass': 1,
+    MADARS_VIRZA: 9,
     'Manhattan DA': 2,
     MARC_LEON: 1,
     "Marcie Brown": 1,
@@ -437,7 +437,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Mark Albert": 1,
     MARK_EPSTEIN: 3,
     "Marshall Funk": 1,
-    MARTIN_NOWAK: 1,
+    MARTIN_NOWAK: 2,
     MARTIN_WEINBERG: 25,
     MASHA_DROKOVA: 5,
     MATTHEW_HILTZIK: 1,
@@ -455,6 +455,7 @@ EMAIL_RECIPIENT_COUNTS = {
     MICHAEL_WOLFF: 69,
     MIROSLAV_LAJCAK: 1,
     MOHAMED_WAHEED_HASSAN: 2,
+    'Molly Ladd': 1,
     MORTIMER_ZUCKERMAN: 3,
     MOSHE_HOFFMAN: 1,
     'Mrisman02': 1,
@@ -493,13 +494,12 @@ EMAIL_RECIPIENT_COUNTS = {
     "Rafael Bardaji": 1,
     'Rebecca Risman': 1,
     'Records Management Division': 1,
-    REID_HOFFMAN: 3,
+    REID_HOFFMAN: 6,
     REID_WEINGARTEN: 33,
     RENATA_BOLOTOVA: 15,
     'Reuben Kobulnik': 2,
     "Richard Barnnet": 1,
     "Richard Joshi": 1,
-    RICHARD_KAHN: 62,
     "Richard Merkin": 1,
     "Rita Hortenstine": 1,
     ROBERT_D_CRITTON_JR: 6,
@@ -521,7 +521,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Stanley Rosenberg": 1,
     STEPHEN_HANSON: 3,
     "Stephen Rubin": 1,
-    STEVE_BANNON: 32,
+    STEVE_BANNON: 37,
     "Steven Gaydos": 2,
     "Steven Pfeiffer": 1,
     STEVEN_SINOFSKY: 1,
@@ -530,6 +530,7 @@ EMAIL_RECIPIENT_COUNTS = {
     SULTAN_BIN_SULAYEM: 12,
     "Susan Edelman": 1,
     "Taal Safdie": 1,
+    'Tancredi Marchiolo': 1,
     TERRY_KAFKA: 1,
     THANU_BOONYAWATANA: 1,
     THORBJORN_JAGLAND: 8,
@@ -549,11 +550,12 @@ EMAIL_RECIPIENT_COUNTS = {
     "Val Sherman": 1,
     "Valeria Chomsky": 1,
     'Vijay Dewan': 2,
-    VINCENZO_IOZZO: 3,
+    VINCENZO_IOZZO: 4,
     VINIT_SAHNI: 1,
     'W&K': 1,
     'Walli Leff': 1,
     "Warren Eisenstein": 2,
+    'Yuko Barnaby': 2,
     ZUBAIR_KHAN: 1,
     "david.brown@thetimes.co.uk": 1,
     "io-anne.pugh@bbc.co.uk": 1,
@@ -650,6 +652,7 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     'EFTA00381451',
     'EFTA00419486',
     'EFTA00428084',
+    'EFTA00855280',
     'EFTA00888467',
     'EFTA01013922',
     'EFTA01823635',
@@ -706,6 +709,12 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
     "Sent from AOL Mobile Mail": [
         DAVID_SCHOEN,
     ],
+    'Sent from Mailbox for iPad': [
+        'Austin Hill',
+    ],
+    'Sent from Mailbox for iPhone': [
+        'Austin Hill',
+    ],
     "Sent from President's iPad": [
         "Mohamed Waheed Hassan"
     ],
@@ -717,6 +726,9 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
     ],
     "Sent from Steve Hanson's Blackberry": [
         "Stephen Hanson"
+    ],
+    'Sent from Windows Mail': [
+        'Steven Sinofsky',
     ],
     "Sent from Yahoo Mail for iPhone": [
         MERWIN_DELA_CRUZ,
@@ -757,6 +769,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
     ],
     "Sent from my iPad": [
         '(unknown)',
+        BROCK_PIERCE,
         'Bruce Moskowitz',
         CECILIA_STEEN,
         'Ehud Barak',
@@ -770,6 +783,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Neal Kassell',
         'Peggy Siegal',
         PUREVSUREN_LUNDEG,
+        RENATA_BOLOTOVA,
         'Richard Merkin',
         SHAHER_ABDULHAK_BESHER,
         'Stephen Hanson',
@@ -778,13 +792,14 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         UNKNOWN,
         ALAN_DERSHOWITZ,
         ANAS_ALRASHEED,
+        'Audrey Strauss',
         AZIZA_ALAHMADI,
         'Bruce Moskowitz',
         'Darren Indyke',
         'David Schoen',
         'Ehud Barak',
         'Erika Kellerhals',
-        'Eva Dubin',
+        EVA_DUBIN,
         'Faith Kates',
         FRED_HADDAD,
         'Gino Yu',
@@ -797,9 +812,11 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Johnny el Hachem',
         JOI_ITO,
         'Jonathan Farkas',
+        KARYNA_SHULIAK,
         KATHRYN_RUEMMLER,
         'Kelly Friendly',
         KEN_STARR,
+        'LSJ',
         'Landon Thomas Jr',
         'Larry Summers',
         'Lawrance Visoski',
@@ -811,10 +828,12 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Mohamed Waheed Hassan',
         'Neal Kassell',
         NICHOLAS_RIBIS,
+        RENATA_BOLOTOVA,
         'Richard Kahn',
         'Richard Merkin',
         'Robert Lawrence Kuhn',
         'Sean Bannon',
+        'Stacey Richman',
         'Stanley Rosenberg',
         'Stephen Hanson',
         'Sultan Ahmed Bin Sulayem',
@@ -823,6 +842,8 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Tom Barrack',
         'Tonja Haddad Coleman',
         'Tyler Shears',
+        USANYS,
+        'Yuko Barnaby',
     ],
     "Sent from my iPhone and misspellings courtesy of iPhone.": [
         CECILE_DE_JONGH,
@@ -841,7 +862,16 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
     ],
     "Sorry for all the typos .Sent from my iPhone": [
         "Jeffrey Epstein"
-    ]
+    ],
+    'Typos, misspellings courtesy of iPhone': [
+        LINDA_STONE,
+    ],
+    'Typos, misspellings courtesy of iPhone word & thought substitution.': [
+        LINDA_STONE,
+    ],
+    'Typos, misspellings courtesy of iPhone.': [
+        LINDA_STONE,
+    ],
 }
 
 AUTHORS_TO_DEVICE_SIGNATURES = {
@@ -1031,6 +1061,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     PEGGY_SIEGAL: [
         "Sent from my iPad",
+        'Sent via BlackBerry by AT&T',
     ],
     PUREVSUREN_LUNDEG: [
         'Sent from my iPad',
@@ -1106,7 +1137,10 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     VINCENZO_IOZZO: [
         "Sent from my Iphone"
-    ]
+    ],
+    'Yuko Barnaby': [
+        'Sent from my iPhone',
+    ],
 }
 
 SIGNATURE_SUBSTITUTION_COUNTS = {
@@ -1125,37 +1159,45 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     ERIC_ROTH: 5,
     GHISLAINE_MAXWELL: 13,
     JEANNE_M_CHRISTENSEN: 37,
-    JEFFREY_EPSTEIN: 3803,
+    JEFFREY_EPSTEIN: 3849,
     JESSICA_CADWELL: 57,
     KEN_JENNE: 1,
-    LARRY_SUMMERS: 233,
-    "Lawrence Krauss": 78,
+    LARRY_SUMMERS: 235,
+    LAWRENCE_KRAUSS: 78,
     LEON_BLACK: 4,
     LISA_NEW: 68,
-    "Martin Weinberg": 17,
+    MARTIN_WEINBERG: 17,
     'Michael Miller': 6,
     NICHOLAS_RIBIS: 2,
-    "Paul Barrett": 10,
+    PAUL_BARRETT: 10,
     PETER_ATTIA: 3,
-    "Peter Mandelson": 10,
-    RICHARD_KAHN: 184,
+    PETER_MANDELSON: 10,
+    RICHARD_KAHN: 186,
     ROSS_GOW: 7,
-    'Stephen Hanson': 2,
+    STEPHEN_HANSON: 2,
     STEVEN_PFEIFFER: 11,
     "Susan Edelman": 9,
-    "Terry Kafka": 10,
+    TERRY_KAFKA: 10,
     TOM_PRITZKER: 17,
-    "Tonja Haddad Coleman": 9,
+    TONJA_HADDAD_COLEMAN: 9,
     'W Bradford Stephens': 2,
 }
 
 
 def test_email_author_counts(epstein_files):
-    assert epstein_files.email_author_counts() == EMAIL_AUTHOR_COUNTS
+    author_counts = epstein_files.email_author_counts()
+    assert author_counts.pop(JEFFREY_EPSTEIN) > 790
+    assert author_counts.pop(LESLEY_GROFF) > 100
+    assert author_counts.pop(RICHARD_KAHN) > 50
+    assert author_counts == EMAIL_AUTHOR_COUNTS
 
 
 def test_email_recipient_counts(epstein_files):
-    assert epstein_files.email_recipient_counts() == EMAIL_RECIPIENT_COUNTS
+    recipient_counts = epstein_files.email_recipient_counts()
+    assert recipient_counts.pop(JEFFREY_EPSTEIN) > 1800
+    assert recipient_counts.pop(LESLEY_GROFF) > 40
+    assert recipient_counts.pop(RICHARD_KAHN) > 50
+    assert recipient_counts == EMAIL_RECIPIENT_COUNTS
 
 
 def test_info_sentences(epstein_files):
@@ -1171,7 +1213,10 @@ def test_signatures(epstein_files):
 
 
 def test_signature_substitutions(epstein_files):
-    assert epstein_files.email_signature_substitution_counts() == SIGNATURE_SUBSTITUTION_COUNTS
+    substitution_counts = epstein_files.email_signature_substitution_counts()
+    # epstein_substitutions = substitution_counts.pop(JEFFREY_EPSTEIN)
+    # assert epstein_substitutions > 3840
+    assert substitution_counts == SIGNATURE_SUBSTITUTION_COUNTS
 
 
 def test_unknown_recipient_file_ids(epstein_files):

@@ -1,5 +1,11 @@
 # NEXT RELEASE
 
+### 1.5.2
+* `ContactInfo` class to unify regexes and biographical info
+* `epstein_generate` new option `--reload-doj` option to reload DOJ January 2026 files (skips reloading HOUSE_OVERSIGHT files)
+* `epstein_show` new options `--open-txt`, `--open-pdf`, `--open-both`, `--open-url`, `--open-jmail`
+* lots of color highlighting and identification of DOJ 2026-01-30 files
+
 ### 1.5.1
 * Integrate DOJ file emails into the normal email generation
 * Include a pre-packaged `the_epstein_files.pkl.gz` in the repo
