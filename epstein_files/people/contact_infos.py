@@ -1,3 +1,4 @@
+
 from epstein_files.util.constant.names import *
 
 
@@ -37,4 +38,3 @@ CONTACT_INFOS = [
 ]
 
 CONTACT_INFOS_DICT = {contact.name: contact for contact in CONTACT_INFOS}
-

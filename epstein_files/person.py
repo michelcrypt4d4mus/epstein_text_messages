@@ -10,6 +10,7 @@ from rich.text import Text
 
 from epstein_files.documents.document import Document
 from epstein_files.documents.email import TRUNCATE_EMAILS_FROM, MAILING_LISTS, JUNK_EMAILERS, Email
+from epstein_files.documents.emails.emailers import CONTACTS_DICT, cleanup_str
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.contact_info import ContactInfo
@@ -20,7 +21,7 @@ from epstein_files.util.data import days_between, flatten, uniquify, without_fal
 from epstein_files.util.env import args
 from epstein_files.util.highlighted_group import (QUESTION_MARKS_TXT, HighlightedNames,
      get_highlight_group_for_name, get_style_for_name, styled_category, styled_name)
-from epstein_files.util.rich import (GREY_NUMBERS, SKIPPED_FILE_MSG_PADDING, TABLE_TITLE_STYLE, build_table,
+from epstein_files.util.rich import (GREY_NUMBERS, TABLE_TITLE_STYLE, build_table,
      console, join_texts, print_centered)
 
 ALT_INFO_STYLE = 'medium_purple4'
@@ -48,6 +49,10 @@ class Person:
     is_uninteresting: bool = False
 
     def __post_init__(self):
+        try:
+            self.contact_info = CONTACTS_DICT.get(str(self.name)) or ContactInfo(name=cleanup_str(str(self.name)))
+        except Exception as e:
+            import pdb;pdb.set_trace()
         self.emails = Document.sort_by_timestamp(self.emails)
         self.imessage_logs = Document.sort_by_timestamp(self.imessage_logs)
 

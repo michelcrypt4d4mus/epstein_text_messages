@@ -75,7 +75,7 @@ CONFIRMED_TEXTS_CONFIG = [
     TextCfg(id='031054', author=ANTHONY_SCARAMUCCI, attribution_reason="Scaramucci's phone number is at top of raw file"),
     TextCfg(id='027333', author=ANTHONY_SCARAMUCCI, attribution_reason="Scaramucci's phone number is in one of the messages"),
     TextCfg(id='031173', author=ARDA_BESKARDES, attribution_reason=PARTICIPANTS_FIELD),
-    TextCfg(id='027401', author='Eva (Dubin?)', attribution_reason=PARTICIPANTS_FIELD),
+    TextCfg(id='027401', author=EVA, attribution_reason=PARTICIPANTS_FIELD),
     TextCfg(id='027650', author=JOI_ITO, attribution_reason=PARTICIPANTS_FIELD),
     TextCfg(id='027777', author=LARRY_SUMMERS, attribution_reason=PARTICIPANTS_FIELD),
     TextCfg(id='027515', author=MIROSLAV_LAJCAK, attribution_reason='https://x.com/ImDrinknWyn/status/1990210266114789713'),

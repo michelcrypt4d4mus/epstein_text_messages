@@ -259,7 +259,7 @@ EMAIL_AUTHOR_COUNTS = {
 
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 100,
+    None: 97,
     "ACT for America": 1,
     ADAM_BACK: 3,
     AL_SECKEL: 1,
@@ -343,7 +343,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Etienne Binant": 1,
     FAITH_KATES: 5,
     FAWZI_SIAM: 1,
-    FBI: 4,
+    FBI: 7,
     "Forrest Miller": 1,
     "Francis Derby": 2,
     FRED_HADDAD: 3,
@@ -367,7 +367,7 @@ EMAIL_RECIPIENT_COUNTS = {
     'Hongbo Bao': 1,
     'Ike Groff': 1,
     JABOR_Y: 8,
-    "Jack Goldberger": 9,
+    JACK_GOLDBERGER: 10,
     "Jack Lang": 3,
     JACK_SCAROLA: 2,
     JACKIE_PERCZEK: 3,
@@ -494,7 +494,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Rafael Bardaji": 1,
     'Rebecca Risman': 1,
     'Records Management Division': 1,
-    REID_HOFFMAN: 4,
+    REID_HOFFMAN: 6,
     REID_WEINGARTEN: 33,
     RENATA_BOLOTOVA: 15,
     'Reuben Kobulnik': 2,
@@ -530,6 +530,7 @@ EMAIL_RECIPIENT_COUNTS = {
     SULTAN_BIN_SULAYEM: 12,
     "Susan Edelman": 1,
     "Taal Safdie": 1,
+    'Tancredi Marchiolo': 1,
     TERRY_KAFKA: 1,
     THANU_BOONYAWATANA: 1,
     THORBJORN_JAGLAND: 8,
@@ -651,6 +652,7 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     'EFTA00381451',
     'EFTA00419486',
     'EFTA00428084',
+    'EFTA00855280',
     'EFTA00888467',
     'EFTA01013922',
     'EFTA01823635',
@@ -707,6 +709,12 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
     "Sent from AOL Mobile Mail": [
         DAVID_SCHOEN,
     ],
+    'Sent from Mailbox for iPad': [
+        'Austin Hill',
+    ],
+    'Sent from Mailbox for iPhone': [
+        'Austin Hill',
+    ],
     "Sent from President's iPad": [
         "Mohamed Waheed Hassan"
     ],
@@ -718,6 +726,9 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
     ],
     "Sent from Steve Hanson's Blackberry": [
         "Stephen Hanson"
+    ],
+    'Sent from Windows Mail': [
+        'Steven Sinofsky',
     ],
     "Sent from Yahoo Mail for iPhone": [
         MERWIN_DELA_CRUZ,
@@ -758,6 +769,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
     ],
     "Sent from my iPad": [
         '(unknown)',
+        BROCK_PIERCE,
         'Bruce Moskowitz',
         CECILIA_STEEN,
         'Ehud Barak',
@@ -771,6 +783,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Neal Kassell',
         'Peggy Siegal',
         PUREVSUREN_LUNDEG,
+        RENATA_BOLOTOVA,
         'Richard Merkin',
         SHAHER_ABDULHAK_BESHER,
         'Stephen Hanson',
@@ -779,13 +792,14 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         UNKNOWN,
         ALAN_DERSHOWITZ,
         ANAS_ALRASHEED,
+        'Audrey Strauss',
         AZIZA_ALAHMADI,
         'Bruce Moskowitz',
         'Darren Indyke',
         'David Schoen',
         'Ehud Barak',
         'Erika Kellerhals',
-        'Eva Dubin',
+        EVA_DUBIN,
         'Faith Kates',
         FRED_HADDAD,
         'Gino Yu',
@@ -798,9 +812,11 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Johnny el Hachem',
         JOI_ITO,
         'Jonathan Farkas',
+        KARYNA_SHULIAK,
         KATHRYN_RUEMMLER,
         'Kelly Friendly',
         KEN_STARR,
+        'LSJ',
         'Landon Thomas Jr',
         'Larry Summers',
         'Lawrance Visoski',
@@ -812,10 +828,12 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Mohamed Waheed Hassan',
         'Neal Kassell',
         NICHOLAS_RIBIS,
+        RENATA_BOLOTOVA,
         'Richard Kahn',
         'Richard Merkin',
         'Robert Lawrence Kuhn',
         'Sean Bannon',
+        'Stacey Richman',
         'Stanley Rosenberg',
         'Stephen Hanson',
         'Sultan Ahmed Bin Sulayem',
@@ -824,6 +842,8 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Tom Barrack',
         'Tonja Haddad Coleman',
         'Tyler Shears',
+        USANYS,
+        'Yuko Barnaby',
     ],
     "Sent from my iPhone and misspellings courtesy of iPhone.": [
         CECILE_DE_JONGH,
@@ -842,7 +862,16 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
     ],
     "Sorry for all the typos .Sent from my iPhone": [
         "Jeffrey Epstein"
-    ]
+    ],
+    'Typos, misspellings courtesy of iPhone': [
+        LINDA_STONE,
+    ],
+    'Typos, misspellings courtesy of iPhone word & thought substitution.': [
+        LINDA_STONE,
+    ],
+    'Typos, misspellings courtesy of iPhone.': [
+        LINDA_STONE,
+    ],
 }
 
 AUTHORS_TO_DEVICE_SIGNATURES = {
@@ -1032,6 +1061,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     PEGGY_SIEGAL: [
         "Sent from my iPad",
+        'Sent via BlackBerry by AT&T',
     ],
     PUREVSUREN_LUNDEG: [
         'Sent from my iPad',
@@ -1107,7 +1137,10 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     VINCENZO_IOZZO: [
         "Sent from my Iphone"
-    ]
+    ],
+    'Yuko Barnaby': [
+        'Sent from my iPhone',
+    ],
 }
 
 SIGNATURE_SUBSTITUTION_COUNTS = {
@@ -1126,7 +1159,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     ERIC_ROTH: 5,
     GHISLAINE_MAXWELL: 13,
     JEANNE_M_CHRISTENSEN: 37,
-    JEFFREY_EPSTEIN: 3847,
+    JEFFREY_EPSTEIN: 3849,
     JESSICA_CADWELL: 57,
     KEN_JENNE: 1,
     LARRY_SUMMERS: 235,

@@ -234,7 +234,7 @@ class OtherFile(Document):
         table.add_column(FIRST_FEW_LINES, justify='left', style='pale_turquoise4')
 
         for file in files:
-            link_and_info = [file.external_links_txt()]
+            link_and_info = [cls.external_links_txt(file)]  # call superclass method to avoid border_style rainbow
             date_str = file.date_str
 
             if file.is_duplicate:
