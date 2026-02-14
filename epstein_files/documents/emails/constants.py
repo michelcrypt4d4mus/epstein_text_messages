@@ -20,6 +20,7 @@ SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4
 
 # Other email related consts
 FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
+XML_STRIPPED_MSG = '<...removed Apple XML plist...>'
 
 # Some emails have a lot of uninteresting CCs
 FLIGHT_IN_2012_PEOPLE: list[Name] = ['Francis Derby', JANUSZ_BANASIAK, 'Louella Rabuyo', 'Richard Barnnet']

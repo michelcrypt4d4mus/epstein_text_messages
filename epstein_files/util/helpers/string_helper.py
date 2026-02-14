@@ -1,4 +1,6 @@
 """Help with strings."""
+import re
+
 from epstein_files.util.constant.strings import QUESTION_MARKS_REGEX
 
 

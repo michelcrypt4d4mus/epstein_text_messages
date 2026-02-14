@@ -39,6 +39,7 @@ LINK_LINE_REGEX = re.compile(f"^[>• ]*htt")
 LINK_LINE2_REGEX = re.compile(r"^[-\w.%&=/]{5,}$")
 QUOTED_REPLY_LINE_REGEX = re.compile(r'(\nFrom:(.*)|wrote:)\n', re.IGNORECASE)
 REPLY_TEXT_REGEX = re.compile(rf"^(.*?){REPLY_LINE_PATTERN}", re.DOTALL | re.IGNORECASE | re.MULTILINE)
+XML_PLIST_REGEX = re.compile(r"<\?xml version.*</(plist|xml)>", re.DOTALL)
 
 BAD_TIMEZONE_REGEX = re.compile(fr'\((UTC|GMT\+\d\d:\d\d)\)|{REDACTED}')
 DATE_HEADER_REGEX = re.compile(r'(?:Date|Sent):? +(?!by|from|to|via)([^\n]{6,})\n')
@@ -124,6 +125,8 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"PATTERSON NEW\s+BOOK\s+TELLING\s+FEDS\s+COVER\s+UP\s+OF\s+BILLIONAIRE\s+JEFF\s+EPSTEIN\s+CHILD\s+RAPES\s+RELEASE\s+DATE\s+OCT\s+10\s+2016\s+STEVEN\s+HOFFENBERG\s+IS\s+ON\s+THE\s+BOOK\s+WRITING\s+TEAM\s*!!!!"): "PATTERSON NEW BOOK TELLING FEDS COVER UP OF BILLIONAIRE JEFF EPSTEIN CHILD RAPES RELEASE DATE OCT 10 2016 STEVEN HOFFENBERG IS ON THE BOOK WRITING TEAM !!!!",
     re.compile(r"PROCEEDINGS FOR THE ST THOMAS ATTACHMENT OF\s*ALL JEFF EPSTEIN ASSETS"): "PROCEEDINGS FOR THE ST THOMAS ATTACHMENT OF ALL JEFF EPSTEIN ASSETS",
     re.compile(r"Subject:\s*Fwd: Trending Now: Friends for three decades"): "Subject: Fwd: Trending Now: Friends for three decades",
+    # XML footers
+    re.compile('<[iI] ?nteger>'): '<integer>',
     # Misc
     'AVG°': 'AVGO',
     'Saw Matt C with DTF at golf': 'Saw Matt C with DJT at golf',
@@ -444,6 +447,12 @@ class Email(Communication):
         # Share / Tweet lines
         if self.author == KATHRYN_RUEMMLER:
             text = '\n'.join([line for line in text.split('\n') if line not in ['Share', 'Tweet', 'Bookmark it']])
+
+        # Remove XML cruft in some files
+        text, num_plists_stripped = XML_PLIST_REGEX.subn(XML_STRIPPED_MSG, text)
+
+        if num_plists_stripped:
+            self.warn(f"Replaced {num_plists_stripped} XML plists...")
 
         return collapse_newlines(text).strip()
 
