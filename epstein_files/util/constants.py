@@ -2315,6 +2315,7 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01613762', description=f'{CRYPTO_PR_LAB} WhatsApp convo with {MARIYA_PRUSAKOVA}'),
     DocCfg(id='EFTA01612721', description=f'{CRYPTO_PR_LAB} WhatsApp convo with {MARIYA_PRUSAKOVA}'),
     # ZCash
+    DocCfg(id='EFTA00811130', author=PERKINS_COIE, description='tax opinion on ZCash tokens'),
     DocCfg(id='EFTA00603348', description=f"Electric Coin Company created the untraceable crypto ZCash with money from {LARRY_SUMMERS}'s DCG"), # So it's not
     DocCfg(id='EFTA00803405', description=f"Honeycomb Asset Management fund brochure", truncate_to=MAX_CHARS_TO_PRINT),
     # Joi Ito / Kyara
