@@ -22,6 +22,7 @@ IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTA
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
 SINGLE_IMAGE_NO_TEXT = 'single image with no text'
 MIN_VALID_LENGTH = 10
+WORD_REGEX = re.compile(r"[A-Za-z]{3,}")
 
 OTHER_DOC_URLS = {
     '245-22.pdf': 'https://www.justice.gov/multimedia/Court%20Records/Government%20of%20the%20United%20States%20Virgin%20Islands%20v.%20JPMorgan%20Chase%20Bank,%20N.A.,%20No.%20122-cv-10904%20(S.D.N.Y.%202022)/245-22.pdf'
@@ -58,6 +59,7 @@ BAD_OCR_FILE_IDS = [
     'EFTA00001004',
     'EFTA00001808',
     'EFTA00001843',
+    'EFTA00001845',
     'EFTA00003082',
     'EFTA00008413',
     'EFTA00001809',
@@ -256,7 +258,10 @@ class DojFile(OtherFile):
 
     @property
     def is_bad_ocr(self) -> bool:
-        return self.file_id in BAD_OCR_FILE_IDS
+        if self.file_id in BAD_OCR_FILE_IDS:
+            return True
+        else:
+            return not bool(WORD_REGEX.search(self.text))
 
     @property
     def is_empty(self) -> bool:
