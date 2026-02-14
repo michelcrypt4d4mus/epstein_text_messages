@@ -2195,6 +2195,7 @@ OTHER_FILES_MISC = [
 
     # DOJ files
     DocCfg(id='EFTA01810372', author=TYLER_SHEARS, description=f'invoice for reputation management work', is_interesting=True),
+    DocCfg(id='EFTA00039025', description=f"{BUREAU_OF_PRISONS} report on death of Jeffrey Epstein"),
     DocCfg(id='EFTA00005783', description='heavily redacted handwritten note, 30+ completely redacted pages', date='2019-08-29'),
     DocCfg(id='EFTA01087311', description=f'{LEON_BLACK} Family Partners cash projections'),
     DocCfg(id='EFTA01217787', description=f'Skype conversation with {TYLER_SHEARS} and Hanna Traff at Spotify', is_interesting=True),
