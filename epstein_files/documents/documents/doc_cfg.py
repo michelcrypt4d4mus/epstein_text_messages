@@ -9,8 +9,8 @@ from dateutil.parser import parse
 
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.data import remove_zero_time, without_falsey
 from epstein_files.util.env import args
+from epstein_files.util.helpers.data_helpers import without_falsey
 
 DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same']
 Metadata = dict[str, bool | datetime | int | str | list[str | None] |dict[str, bool | str]]

@@ -22,7 +22,7 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import ALL_FILE_CONFIGS, DOJ_FILE_STEM_REGEX, FALLBACK_TIMESTAMP
-from epstein_files.util.data import collapse_newlines, date_str, patternize, remove_zero_time, without_falsey
+from epstein_files.util.helpers.data_helpers import collapse_newlines, date_str, patternize, remove_zero_time, without_falsey
 from epstein_files.util.env import DOCS_DIR, DOJ_PDFS_20260130_DIR
 from epstein_files.util.helpers.file_helper import (coerce_file_path, extract_file_id, file_size, file_size_str,
      file_size_to_str, is_local_extract_file)

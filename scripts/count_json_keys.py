@@ -5,7 +5,7 @@ from collections import defaultdict
 from rich.text import Text
 
 from scripts.use_pickled import console, epstein_files
-from epstein_files.util.data import sort_dict
+from epstein_files.util.helpers.data_helpers import sort_dict
 from epstein_files.util.rich import highlighter, print_subtitle_panel
 
 INDENT = '  '

@@ -1,5 +1,5 @@
 from epstein_files.util.constant.names import *
-from epstein_files.util.data import dict_sets_to_lists
+from epstein_files.util.helpers.data_helpers import dict_sets_to_lists
 
 
 EMAIL_AUTHOR_COUNTS = {

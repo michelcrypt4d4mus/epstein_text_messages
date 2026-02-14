@@ -9,12 +9,12 @@ from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
 
-from epstein_files.documents.emails.emailers import EMAILER_ID_PATTERNS
+from epstein_files.documents.emails.emailers import EMAILER_ID_REGEXES
 from epstein_files.people.contact_info import ContactInfo
 from epstein_files.util.constant.names import *
-from epstein_files.util.data import *
+from epstein_files.util.helpers.data_helpers import *
 from epstein_files.util.helpers.file_helper import log_file_write
-from epstein_files.util.constant.strings import indented
+from epstein_files.util.helpers.string_helper import indented
 from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames, get_style_for_name
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import console, highlighter, print_json, print_subtitle_panel

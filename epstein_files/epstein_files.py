@@ -22,8 +22,8 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.people.person import Person
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
-from epstein_files.util.data import flatten, json_safe, listify, uniquify
 from epstein_files.util.env import DOCS_DIR, args, logger
+from epstein_files.util.helpers.data_helpers import flatten, json_safe, listify, uniquify
 from epstein_files.util.helpers.file_helper import doj_txt_paths, file_size_str
 from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames
 from epstein_files.util.timer import Timer

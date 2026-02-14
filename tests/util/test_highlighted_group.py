@@ -1,7 +1,7 @@
 from rich.text import Text
 
 from epstein_files.util.constants import *
-from epstein_files.util.data import ALL_NAMES
+from epstein_files.util.helpers.data_helpers import ALL_NAMES
 from epstein_files.util.highlighted_group import CATEGORY_STYLES, HIGHLIGHTED_NAMES, get_style_for_category
 
 
