@@ -413,7 +413,7 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
             r"ICO",
             r"(Jim\s*)Pallotta",  # Media lab advisory board
             r"Kraken",
-            r"Kyara(\s*Investments?)?",  # crypto vehicle with Joi Ito
+            r"Kyara(\s*(Investments?|[IV]+))?",  # crypto vehicle with Joi Ito
             r"Layer\s+(1|One)",
             r"LedgerX",
             r"Libra",
@@ -620,9 +620,24 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
             ContactInfo(MARK_EPSTEIN, "brother of Jeffrey", r"Mark (L\. )?(Epstein|Lloyd)")
         ],
         patterns=[
-            r"JEGE(\s*Inc)?",
+            r"(2017\s*)?Caterpillar\s*Trust",
+            r"Enhanced\s*Education",
+            r"FT\s*Real\s*Estate",
+            r"Gratitude\s*America",
+            r"(Butterfly|Haze|Southern)\s*(Financial|Trust)(\s*Co(mpany)?)?",
+            r"Hyperion(\s*Air)?",
+            r"Jeepers(\s*Inc\.?)?",
+            r"JEGE(\s*(Inc|LLC))?",
+            r"Laurel Inc\.?",
+            r"LSJE",
             r"LSJE?(,\s*LLC)?",  # Virgin Islands corporation
-            r"Zorro(\s*Ranch)?",
+            r"Nautilus",
+            r"Neptune\s*LLC",
+            r"NES LLC",
+            r"Plan D",
+            r"Southern\s*Country\s*International",
+            r"Thomas\s*World\s*Air",
+            r"Zorro(\s*(Management|Ranch))?",
         ],
     ),
     HighlightedNames(
@@ -1723,7 +1738,7 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
             ContactInfo(PETER_THIEL, "Paypal mafia member, founder of Palantir, Facebook investor"),
             ContactInfo(REID_HOFFMAN, "PayPal mafia member, founder of LinkedIn"),
             ContactInfo(STEVEN_SINOFSKY, "a16z, ex-Microsoft, loves bitcoin", r"Steven Sinofsky?"),
-            ContactInfo(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund"),
+            ContactInfo(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar\s*(Global\s*Fund|Ventures)?"),
             ContactInfo(VINCENZO_IOZZO, "CEO of the identity-security company SlashID", r"Vincenzo [IL]ozzo"),
             ContactInfo(ZUBAIR_KHAN, f"Tranchulas cybersecurity, {'InsightsPod'} founder, Islamabad / Dubai")
         ],
@@ -1923,7 +1938,6 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         ],
         patterns=[
             r"gmax(1@ellmax.com)?",
-            r"(Haze|Southern)\s*Trust(\s*Company)?",
             r"(The )?TerraMar Project",
             r"(Scott\s*)?Borgenson", # Ghislaine lawyer
         ],
