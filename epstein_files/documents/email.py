@@ -665,7 +665,7 @@ class Email(Communication):
         return collapse_newlines(text).strip()
 
     def _remove_line(self, idx: int) -> None:
-        """Remove a line from self.lines."""
+        """Remove a line from `self.lines`."""
         num_lines = idx * 2
         self.log_top_lines(num_lines, msg=f'before removal of line {idx}')
         del self.lines[idx]

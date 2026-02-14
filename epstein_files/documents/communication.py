@@ -1,7 +1,6 @@
 import re
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import TypeVar
 
 from rich.text import Text
 
