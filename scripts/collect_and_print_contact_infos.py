@@ -10,7 +10,7 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.emails.emailers import EMAILER_ID_REGEXES
-from epstein_files.people.contact_info import ContactInfo
+from epstein_files.people.contact_info import Contact
 from epstein_files.util.constant.names import *
 from epstein_files.util.helpers.data_helpers import *
 from epstein_files.util.helpers.file_helper import log_file_write
@@ -25,7 +25,7 @@ VAR_NAME = 'CONTACT_INFOS'
 BASE_INDENT = 8
 
 
-def repr_string(contact_infos: list[ContactInfo]) -> str:
+def repr_string(contact_infos: list[Contact]) -> str:
     return '[\n' + indented(',\n'.join([repr(contact) for contact in contact_infos]), 4) + '\n],'
 
 
@@ -39,7 +39,7 @@ for cfg in HIGHLIGHTED_NAMES:
         continue
 
     cfg_contact_infos = {
-        name: ContactInfo(
+        name: Contact(
             name=name,
             emailer_pattern=EMAILER_ID_PATTERNS.get(name) or '',
             info=info or ''
@@ -57,7 +57,7 @@ for cfg in HIGHLIGHTED_NAMES:
 for name, pattern in EMAILER_ID_PATTERNS.items():
     if name not in contact_infos:
         logger.warning(f"Appending regex for '{name}': '{pattern}'")
-        contact_infos[name] = ContactInfo(name=name, emailer_pattern=pattern)
+        contact_infos[name] = Contact(name=name, emailer_pattern=pattern)
         unhighlighted_contact_infos[name] = contact_infos[name]
 
 vars_string = ',\n'.join([repr(contact) for contact in unhighlighted_contact_infos.values()])

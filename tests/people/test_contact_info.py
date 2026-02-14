@@ -1,8 +1,8 @@
-from epstein_files.people.contact_info import ContactInfo
+from epstein_files.people.contact_info import Contact
 from epstein_files.util.constant.names import JEFFREY_EPSTEIN
 
 
-CONTACT_INFO = ContactInfo(
+CONTACT_INFO = Contact(
     name=JEFFREY_EPSTEIN,
     emailer_pattern=r"Jeffrey Epstein|jeevacation",
     info="one and only"

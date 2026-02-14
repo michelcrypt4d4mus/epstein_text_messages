@@ -6,7 +6,7 @@ from rich.text import Text
 
 from epstein_files.documents.documents.doc_cfg import *
 from epstein_files.output.highlighted_names import HighlightedNames, HighlightedText, ManualHighlight
-from epstein_files.people.contact_info import ContactInfo
+from epstein_files.people.contact_info import Contact
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
@@ -55,25 +55,25 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label=ACADEMIA,
         style='light_goldenrod2',
         contacts=[
-            ContactInfo('Daniel Kahneman', "Nobel economic sciences laureate and cognitivie psychologist (?)"),
-            ContactInfo(DAVID_HAIG, "evolutionary geneticist?", emailer_pattern=r"David Haig|Haig, David"),
-            ContactInfo('David Grosof', "MIT Sloan School of Management"),
-            ContactInfo('Ed Boyden', f"{MIT_MEDIA_LAB} neurobiology professor"),
-            ContactInfo('Harry Fisch', "men's health expert at New York-Presbyterian / Weill Cornell (?)"),
-            ContactInfo(JOSCHA_BACH, "cognitive science / AI research"),
-            ContactInfo(LAWRENCE_KRAUSS, "theoretical physicist with #MeToo problems", r"Lawrence Kraus[es]?|[jl]awkrauss|kruase"),
-            ContactInfo(LINDA_STONE, f"ex-Microsoft, {MIT_MEDIA_LAB}"),
-            ContactInfo(MARK_TRAMO, "professor of neurology at UCLA"),
-            ContactInfo('Nancy Dahl', f"wife of {LAWRENCE_KRAUSS}"),
-            ContactInfo(NEAL_KASSELL, "professor of neurosurgery at University of Virginia"),
-            ContactInfo(NOAM_CHOMSKY, "professor of linguistics at MIT"),
-            ContactInfo('Norman Finkelstein', "scholar, well known critic of Israel"),
-            ContactInfo(PETER_ATTIA, "longevity medicine"),
-            ContactInfo(ROBERT_TRIVERS, "evolutionary biology", r"tri[vy]ersr@gmail|Robert\s*Trivers?"),
-            ContactInfo(ROGER_SCHANK, "Teachers College, Columbia University"),
-            ContactInfo(SETH_LLOYD, "professor of mechanical engineering at MIT"),
-            ContactInfo('Valeria Chomsky', f"wife of {NOAM_CHOMSKY}"),
-            ContactInfo(YUKO_BARNABY, f"{MIT_MEDIA_LAB} Assistant to the Director", r"Y[ou]ko\s*Ba(m|rn)(aby)?"),
+            Contact('Daniel Kahneman', "Nobel economic sciences laureate and cognitivie psychologist (?)"),
+            Contact(DAVID_HAIG, "evolutionary geneticist?", emailer_pattern=r"David Haig|Haig, David"),
+            Contact('David Grosof', "MIT Sloan School of Management"),
+            Contact('Ed Boyden', f"{MIT_MEDIA_LAB} neurobiology professor"),
+            Contact('Harry Fisch', "men's health expert at New York-Presbyterian / Weill Cornell (?)"),
+            Contact(JOSCHA_BACH, "cognitive science / AI research"),
+            Contact(LAWRENCE_KRAUSS, "theoretical physicist with #MeToo problems", r"Lawrence Kraus[es]?|[jl]awkrauss|kruase"),
+            Contact(LINDA_STONE, f"ex-Microsoft, {MIT_MEDIA_LAB}"),
+            Contact(MARK_TRAMO, "professor of neurology at UCLA"),
+            Contact('Nancy Dahl', f"wife of {LAWRENCE_KRAUSS}"),
+            Contact(NEAL_KASSELL, "professor of neurosurgery at University of Virginia"),
+            Contact(NOAM_CHOMSKY, "professor of linguistics at MIT"),
+            Contact('Norman Finkelstein', "scholar, well known critic of Israel"),
+            Contact(PETER_ATTIA, "longevity medicine"),
+            Contact(ROBERT_TRIVERS, "evolutionary biology", r"tri[vy]ersr@gmail|Robert\s*Trivers?"),
+            Contact(ROGER_SCHANK, "Teachers College, Columbia University"),
+            Contact(SETH_LLOYD, "professor of mechanical engineering at MIT"),
+            Contact('Valeria Chomsky', f"wife of {NOAM_CHOMSKY}"),
+            Contact(YUKO_BARNABY, f"{MIT_MEDIA_LAB} Assistant to the Director", r"Y[ou]ko\s*Ba(m|rn)(aby)?"),
         ],
         patterns=[
             r"Andy\s*Lippman",  # Media Lab
@@ -112,11 +112,11 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label='Africa',
         style='light_pink4',
         contacts=[
-            ContactInfo('Abdoulaye Wade', "former president of Senegal, father of Karim Wade"),
-            ContactInfo('Ivan Glasenberg', "South African former CEO of Glencore, one of the world's largest commodity trading and mining companies"),
-            ContactInfo('Karim Wade', 'son of the president of Senegal, facing arrest for corruption, email handle is "Afri zp"'),
-            ContactInfo('Miles Alexander', "Operations Manager Michaelhouse Balgowan KwaZulu-Natal South Africa"),
-            ContactInfo('Macky Sall', "prime minister of Senegal, defeated Abdoulaye Wade")
+            Contact('Abdoulaye Wade', "former president of Senegal, father of Karim Wade"),
+            Contact('Ivan Glasenberg', "South African former CEO of Glencore, one of the world's largest commodity trading and mining companies"),
+            Contact('Karim Wade', 'son of the president of Senegal, facing arrest for corruption, email handle is "Afri zp"'),
+            Contact('Miles Alexander', "Operations Manager Michaelhouse Balgowan KwaZulu-Natal South Africa"),
+            Contact('Macky Sall', "prime minister of Senegal, defeated Abdoulaye Wade")
         ],
         patterns=[
             r"Buhari",
@@ -145,14 +145,14 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label=ARTS,
         style='light_steel_blue3',
         contacts=[
-            ContactInfo(ANDRES_SERRANO, "'Piss Christ' artist"),
-            ContactInfo('Barry Josephson', "American film producer, editor FamilySecurityMatters.org"),
-            ContactInfo(BILL_SIEGEL, "documentary film producer and director"),
-            ContactInfo(DAVID_BLAINE, "famous magician"),
-            ContactInfo('David Brenner', "American comedian and actor"),
-            ContactInfo('Richard Merkin', "painter, illustrator and arts educator"),
-            ContactInfo(STEVEN_PFEIFFER, "Associate Director at Independent Filmmaker Project (IFP)"),
-            ContactInfo('Steven Gaydos', "American screenwriter and journalist")
+            Contact(ANDRES_SERRANO, "'Piss Christ' artist"),
+            Contact('Barry Josephson', "American film producer, editor FamilySecurityMatters.org"),
+            Contact(BILL_SIEGEL, "documentary film producer and director"),
+            Contact(DAVID_BLAINE, "famous magician"),
+            Contact('David Brenner', "American comedian and actor"),
+            Contact('Richard Merkin', "painter, illustrator and arts educator"),
+            Contact(STEVEN_PFEIFFER, "Associate Director at Independent Filmmaker Project (IFP)"),
+            Contact('Steven Gaydos', "American screenwriter and journalist")
         ],
         patterns=[
             r"(Art )?Spiegelman",
@@ -190,8 +190,8 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         style='turquoise4',
         category=TECH_BRO,
         contacts=[
-            ContactInfo(BILL_GATES, "ex-Microsoft, Gates Foundation, bgC3"),
-            ContactInfo(
+            Contact(BILL_GATES, "ex-Microsoft, Gates Foundation, bgC3"),
+            Contact(
                 name=BORIS_NIKOLIC,
                 info=f"biotech VC partner of {BILL_GATES}, Epstein estate executor",
                 emailer_pattern=r"(boris )?nikolic?",
@@ -211,27 +211,27 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label=CRYPTO,
         style='orange1 bold',
         contacts=[
-            ContactInfo(
+            Contact(
                 name=ADAM_BACK,
                 info=f"co-founder of {BLOCKSTREAM}, bitcoin dev, long time Tether defender",
                 emailer_pattern=r"Adam\s*Back?",
             ),
-            ContactInfo(AMIR_TAAKI, f"bitcoin bro, partner of {DONALD_NORMAN} (and {BROCK_PIERCE}?)", r"Amir\s*Taaki|genjix"),
-            ContactInfo(ANTHONY_SCARAMUCCI, "Skybridge Capital, FTX investor", r"mooch|(Anthony ('The Mooch' )?)?Scaramucci"),
-            ContactInfo(AUSTIN_HILL, f"{BLOCKSTREAM} co-founder with {ADAM_BACK}, Brudder Ventures"),
-            ContactInfo(BROCK_PIERCE, "Bannon partner, Tether co-founder, friend of Yair Netanyahu, sex crime history"),
-            ContactInfo(BRYAN_BISHOP, "executive at LedgerX and Polymath fund"),
-            ContactInfo(DONALD_NORMAN, f"co-founder of early British crypto exchange Intersango with {AMIR_TAAKI}"),
-            ContactInfo(ED_BOYLE, f"Medici Bank", r"Ed\s*Boy(el|le)"),
-            ContactInfo(JEFFREY_WERNICK, "former COO of Parler, involved in numerous crypto companies like Bitforex"),
-            ContactInfo(JEREMY_RUBIN, "developer/researcher", r"Jeremy\s*Rubin"),
-            ContactInfo(
+            Contact(AMIR_TAAKI, f"bitcoin bro, partner of {DONALD_NORMAN} (and {BROCK_PIERCE}?)", r"Amir\s*Taaki|genjix"),
+            Contact(ANTHONY_SCARAMUCCI, "Skybridge Capital, FTX investor", r"mooch|(Anthony ('The Mooch' )?)?Scaramucci"),
+            Contact(AUSTIN_HILL, f"{BLOCKSTREAM} co-founder with {ADAM_BACK}, Brudder Ventures"),
+            Contact(BROCK_PIERCE, "Bannon partner, Tether co-founder, friend of Yair Netanyahu, sex crime history"),
+            Contact(BRYAN_BISHOP, "executive at LedgerX and Polymath fund"),
+            Contact(DONALD_NORMAN, f"co-founder of early British crypto exchange Intersango with {AMIR_TAAKI}"),
+            Contact(ED_BOYLE, f"Medici Bank", r"Ed\s*Boy(el|le)"),
+            Contact(JEFFREY_WERNICK, "former COO of Parler, involved in numerous crypto companies like Bitforex"),
+            Contact(JEREMY_RUBIN, "developer/researcher", r"Jeremy\s*Rubin"),
+            Contact(
                 name=JOI_ITO,
                 info=f"former head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative",
                 emailer_pattern=r"ji@media.mit.?edu|(joichi|joi)( Ito)?",
             ),
-            ContactInfo(LORENZO_DE_MEDICI, "Medici Bank, possibly Medici heir?", r"Prince\s*Lorenzo|Lorenzo\s*de\s*Medici"),
-            ContactInfo(MADARS_VIRZA, f"ZCash lead dev, {MIT_MEDIA_LAB}")
+            Contact(LORENZO_DE_MEDICI, "Medici Bank, possibly Medici heir?", r"Prince\s*Lorenzo|Lorenzo\s*de\s*Medici"),
+            Contact(MADARS_VIRZA, f"ZCash lead dev, {MIT_MEDIA_LAB}")
         ],
         patterns=[
             r"Alphabit",
@@ -294,18 +294,18 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label=BUSINESS,
         style='spring_green4',
         contacts=[
-            ContactInfo(ALIREZA_ITTIHADIEH, "CEO Freestream Aircraft Limited", r"Alireza.[Il]ttihadieh"),
-            ContactInfo('AT&T Court Appearance Team', "AT&T"),
-            ContactInfo(BARBRO_C_EHNBOM, "Swedish pharmaceuticals, SALSS", r"behnbom@aol.com|(Barbro\s.*)?Ehnbom"),
-            ContactInfo(BARRY_J_COHEN, emailer_pattern=r"barry\s*((j.?|james)\s*)?cohen?"),
-            ContactInfo('David Mitchell', "Mitchell Holdings, New York real estate developer"),
-            ContactInfo(GERALD_BARTON, "Maryland property developer Landmark Land Company", r"Gerald.*Barton"),
-            ContactInfo(NICOLE_JUNKERMANN, f"ex-model, NJF Capital, German investor in Revolut, Winamax (online poker) and Carbyen ({EHUD_BARAK})"),
-            ContactInfo(GORDON_GETTY, "heir to oil tycoon J. Paul Getty"),
-            ContactInfo('Philip Kafka', f"president of Prince Concepts (and son of {TERRY_KAFKA}?)"),
-            ContactInfo(ROBERT_LAWRENCE_KUHN, "investment banker, China expert", r"Robert\s*(Lawrence)?\s*Kuhn"),
-            ContactInfo(TERRY_KAFKA, "CEO of Impact Outdoor (highway billboards)", r"Terry Kafka?"),
-            ContactInfo(TOM_PRITZKER, "chairman of The Pritzker Organization and Hyatt Hotels")
+            Contact(ALIREZA_ITTIHADIEH, "CEO Freestream Aircraft Limited", r"Alireza.[Il]ttihadieh"),
+            Contact('AT&T Court Appearance Team', "AT&T"),
+            Contact(BARBRO_C_EHNBOM, "Swedish pharmaceuticals, SALSS", r"behnbom@aol.com|(Barbro\s.*)?Ehnbom"),
+            Contact(BARRY_J_COHEN, emailer_pattern=r"barry\s*((j.?|james)\s*)?cohen?"),
+            Contact('David Mitchell', "Mitchell Holdings, New York real estate developer"),
+            Contact(GERALD_BARTON, "Maryland property developer Landmark Land Company", r"Gerald.*Barton"),
+            Contact(NICOLE_JUNKERMANN, f"ex-model, NJF Capital, German investor in Revolut, Winamax (online poker) and Carbyen ({EHUD_BARAK})"),
+            Contact(GORDON_GETTY, "heir to oil tycoon J. Paul Getty"),
+            Contact('Philip Kafka', f"president of Prince Concepts (and son of {TERRY_KAFKA}?)"),
+            Contact(ROBERT_LAWRENCE_KUHN, "investment banker, China expert", r"Robert\s*(Lawrence)?\s*Kuhn"),
+            Contact(TERRY_KAFKA, "CEO of Impact Outdoor (highway billboards)", r"Terry Kafka?"),
+            Contact(TOM_PRITZKER, "chairman of The Pritzker Organization and Hyatt Hotels")
         ],
         patterns=[
             r"Arthur Klein",
@@ -343,7 +343,7 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label='China',
         style='bright_red',
         contacts=[
-            ContactInfo('Gino Yu', "professor / game designer in Hong Kong")
+            Contact('Gino Yu', "professor / game designer in Hong Kong")
         ],
         patterns=[
             r"Ali.?baba",
@@ -375,15 +375,15 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label='deepak',
         style='dark_sea_green4',
         contacts=[
-            ContactInfo(CAROLYN_RANGEL, f"{DEEPAK_CHOPRA}'s assistant {'(???)'}"),
-            ContactInfo(DEEPAK_CHOPRA, "woo woo")
+            Contact(CAROLYN_RANGEL, f"{DEEPAK_CHOPRA}'s assistant {'(???)'}"),
+            Contact(DEEPAK_CHOPRA, "woo woo")
         ],
     ),
     HighlightedNames(
         label='Democrat',
         style='sky_blue1',
         contacts=[
-            ContactInfo(PAUL_PROSPERI, "friend of Bill Clinton")
+            Contact(PAUL_PROSPERI, "friend of Bill Clinton")
         ],
         patterns=[
             r"(Al\s*)?Franken",
@@ -422,8 +422,8 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label='Dubins',
         style='medium_orchid1',
         contacts=[
-            ContactInfo(EVA_DUBIN, f"Epstein's ex-girlfriend now married to {GLENN_DUBIN}"),
-            ContactInfo(GLENN_DUBIN, "Highbridge Capital Management, married to Epstein's ex-gf Eva"),
+            Contact(EVA_DUBIN, f"Epstein's ex-girlfriend now married to {GLENN_DUBIN}"),
+            Contact(GLENN_DUBIN, "Highbridge Capital Management, married to Epstein's ex-gf Eva"),
         ],
         patterns=[r"((Celina|Eva( Anderss?on)?|Glenn?) )?Dubin"],
     ),
@@ -431,25 +431,25 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label='employee',
         style='medium_purple4',
         contacts=[
-            ContactInfo('Alfredo Rodriguez', "Epstein's butler, stole the journal"),
-            ContactInfo('Bella Klein', "Epstein's accountant"),
-            ContactInfo('Bernard Kruger', "Epstein's doctor"),
-            ContactInfo(EDUARDO_ROBLES, "home builder at Creative Kingdom Dubai", r"Ed(uardo)?\s*Robles"),
-            ContactInfo(ERIC_ROTH, "jet decorator at International Jet"),
-            ContactInfo(GWENDOLYN_BECK, "Epstein fund manager in the 90s"),
-            ContactInfo('Ike Groff', f"brother of {LESLEY_GROFF}?"),
-            ContactInfo(JANUSZ_BANASIAK, "Epstein's house manager", r"Janu[is]z Banasiak"),
-            ContactInfo('John Allessi', "Epstein's houseman"),
-            ContactInfo(JEAN_HUGUEN, "interior design at Alberto Pinto Cabinet", r"Jean[\s.]Huguen"),
-            ContactInfo(JOJO_FONTANILLA, "Filipino housekeeper", r"Jo.. Fontanilla"),
-            ContactInfo(LAWRANCE_VISOSKI, "Epstein's pilot", r"La(rry|wrance) Visoski?|Lvjet"),
-            ContactInfo(LESLEY_GROFF, "Epstein's assistant", r"Lesley\s*Gro(ff)?"),
-            ContactInfo('Linda Pinto', "interior design at Alberto Pinto Cabinet"),
-            ContactInfo(LYN_FONTANILLA, "Filipino housekeeper", r"L.nn? Fontanilla"),
-            ContactInfo(MERWIN_DELA_CRUZ, "housekeeper"),
-            ContactInfo(NADIA_MARCINKO, "Epstein's pilot", r"Na[dď]i?a\s+Marcinko(v[aá])?"),
-            ContactInfo('Sean J. Lancaster', "airplane reseller"),
-            ContactInfo(STORY_COWLES, "Epstein's male assistant")
+            Contact('Alfredo Rodriguez', "Epstein's butler, stole the journal"),
+            Contact('Bella Klein', "Epstein's accountant"),
+            Contact('Bernard Kruger', "Epstein's doctor"),
+            Contact(EDUARDO_ROBLES, "home builder at Creative Kingdom Dubai", r"Ed(uardo)?\s*Robles"),
+            Contact(ERIC_ROTH, "jet decorator at International Jet"),
+            Contact(GWENDOLYN_BECK, "Epstein fund manager in the 90s"),
+            Contact('Ike Groff', f"brother of {LESLEY_GROFF}?"),
+            Contact(JANUSZ_BANASIAK, "Epstein's house manager", r"Janu[is]z Banasiak"),
+            Contact('John Allessi', "Epstein's houseman"),
+            Contact(JEAN_HUGUEN, "interior design at Alberto Pinto Cabinet", r"Jean[\s.]Huguen"),
+            Contact(JOJO_FONTANILLA, "Filipino housekeeper", r"Jo.. Fontanilla"),
+            Contact(LAWRANCE_VISOSKI, "Epstein's pilot", r"La(rry|wrance) Visoski?|Lvjet"),
+            Contact(LESLEY_GROFF, "Epstein's assistant", r"Lesley\s*Gro(ff)?"),
+            Contact('Linda Pinto', "interior design at Alberto Pinto Cabinet"),
+            Contact(LYN_FONTANILLA, "Filipino housekeeper", r"L.nn? Fontanilla"),
+            Contact(MERWIN_DELA_CRUZ, "housekeeper"),
+            Contact(NADIA_MARCINKO, "Epstein's pilot", r"Na[dď]i?a\s+Marcinko(v[aá])?"),
+            Contact('Sean J. Lancaster', "airplane reseller"),
+            Contact(STORY_COWLES, "Epstein's male assistant")
         ],
         patterns=[
             r"Adriana\s*Ross",
@@ -461,11 +461,11 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label='Epstein',
         style='blue1',
         contacts=[
-            ContactInfo(
+            Contact(
                 name=JEFFREY_EPSTEIN,
                 emailer_pattern=r"[djl]\s?ee[vy]acation[©@]?g?(mail.com)?|Epstine|\bJEE?\b|Jeff(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|jeeproject@yahoo.com|J Jep|Jeffery Edwards|(?<!(ark L.|rd Jay|Edward) )Epstein",
             ),
-            ContactInfo(MARK_EPSTEIN, "brother of Jeffrey", r"Mark (L\. )?(Epstein|Lloyd)")
+            Contact(MARK_EPSTEIN, "brother of Jeffrey", r"Mark (L\. )?(Epstein|Lloyd)")
         ],
         patterns=[
             r"(2017\s*)?Caterpillar\s*Trust",
@@ -492,43 +492,43 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label=LAWYER,
         style='purple',
         contacts=[
-            ContactInfo('Alan Dlugash', 'tax partner at Paneth and Shrone'),
-            ContactInfo('Alan S Halperin', "partner at Paul, Weiss"),
-            ContactInfo(ALAN_DERSHOWITZ, f"{HARVARD} Law School professor", r"(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh"),
-            ContactInfo(ARDA_BESKARDES, "NYC immigration attorney allegedly involved in sex-trafficking operations"),
-            ContactInfo(BENNET_MOSKOWITZ, "represented the Epstein estate executors", r"Moskowitz.*Bennet|Bennet.*Moskowitz"),
-            ContactInfo(BRAD_KARP, "head of the law firm Paul Weiss", r"Brad (S.? )?Karp|Karp, Brad"),
-            ContactInfo(
+            Contact('Alan Dlugash', 'tax partner at Paneth and Shrone'),
+            Contact('Alan S Halperin', "partner at Paul, Weiss"),
+            Contact(ALAN_DERSHOWITZ, f"{HARVARD} Law School professor", r"(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh"),
+            Contact(ARDA_BESKARDES, "NYC immigration attorney allegedly involved in sex-trafficking operations"),
+            Contact(BENNET_MOSKOWITZ, "represented the Epstein estate executors", r"Moskowitz.*Bennet|Bennet.*Moskowitz"),
+            Contact(BRAD_KARP, "head of the law firm Paul Weiss", r"Brad (S.? )?Karp|Karp, Brad"),
+            Contact(
                 name=CHRISTIAN_EVERDELL,
                 info=f"{GHISLAINE_MAXWELL}'s lawyer ca. 2021, Cohen & Gresser",
                 emailer_pattern=r"C(hristian\s*)?Everdell?",
             ),
-            ContactInfo('Connie Zaguirre', f"office of {'Robert D. Critton Jr.'}"),
-            ContactInfo(DAVID_SCHOEN, "criminal defense attorney after 2019 arrest"),
-            ContactInfo(DEBBIE_FEIN, f"civil attorney Epstein v. Scott Rothstein, {BRAD_EDWARDS}, & L.M."),
-            ContactInfo('Erika Kellerhals', "attorney in St. Thomas"),
-            ContactInfo(FRED_HADDAD, "co-founder of Heck's in West Virginia"),
-            ContactInfo(GERALD_LEFCOURT, f"friend of {ALAN_DERSHOWITZ}", r"Gerald\s*(B\.?\s*)?Lefcourt"),
-            ContactInfo('Howard Rubenstein', "Epstein's former spokesman"),
-            ContactInfo(JACK_GOLDBERGER, "criminal defense attorney on 2008 case"),
-            ContactInfo(JACKIE_PERCZEK, "criminal defense attorney on 2008 case", r"jackie percze[kl]?"),
-            ContactInfo(JAY_LEFKOWITZ, "Kirkland & Ellis partner, criminal defense attorney on 2008 case"),
-            ContactInfo(JESSICA_CADWELL, f"paralegal to {ROBERT_D_CRITTON_JR}"),
-            ContactInfo(
+            Contact('Connie Zaguirre', f"office of {'Robert D. Critton Jr.'}"),
+            Contact(DAVID_SCHOEN, "criminal defense attorney after 2019 arrest"),
+            Contact(DEBBIE_FEIN, f"civil attorney Epstein v. Scott Rothstein, {BRAD_EDWARDS}, & L.M."),
+            Contact('Erika Kellerhals', "attorney in St. Thomas"),
+            Contact(FRED_HADDAD, "co-founder of Heck's in West Virginia"),
+            Contact(GERALD_LEFCOURT, f"friend of {ALAN_DERSHOWITZ}", r"Gerald\s*(B\.?\s*)?Lefcourt"),
+            Contact('Howard Rubenstein', "Epstein's former spokesman"),
+            Contact(JACK_GOLDBERGER, "criminal defense attorney on 2008 case"),
+            Contact(JACKIE_PERCZEK, "criminal defense attorney on 2008 case", r"jackie percze[kl]?"),
+            Contact(JAY_LEFKOWITZ, "Kirkland & Ellis partner, criminal defense attorney on 2008 case"),
+            Contact(JESSICA_CADWELL, f"paralegal to {ROBERT_D_CRITTON_JR}"),
+            Contact(
                 name=KEN_STARR,
                 info="head of the Monica Lewinsky investigation against Bill Clinton",
                 emailer_pattern=r"starr, ken|Ken(neth\s*(W.\s*)?)?\s+starr?|starr",
             ),
-            ContactInfo(LILLY_SANCHEZ, CRIMINAL_DEFENSE_ATTORNEY, r"Lilly.*Sanchez"),
-            ContactInfo(MARTIN_WEINBERG, CRIMINAL_DEFENSE_ATTORNEY, r"martin.*?weinberg"),
-            ContactInfo(MICHAEL_MILLER, "Steptoe LLP partner", r"Micha(el)? Miller|Miller, Micha(el)?"),
-            ContactInfo(REID_WEINGARTEN, "Steptoe LLP partner", r"Weingarten, Rei[cdi]|Rei[cdi] Weingarten"),
-            ContactInfo(ROBERT_D_CRITTON_JR, CRIMINAL_DEFENSE_ATTORNEY, r"Robert D.? Critton,? Jr\.?"),
-            ContactInfo('Robert Gold', "helped Epstein track down money belonging to Spanish families"),
-            ContactInfo('Roy Black', f"{CRIMINAL_DEFENSE_ATTORNEY} on 2008 case"),
-            ContactInfo(SCOTT_J_LINK, CRIMINAL_DEFENSE_ATTORNEY, r"scott j. link?"),
-            ContactInfo(STACEY_RICHMAN, f"New York {CRIMINAL_DEFENSE_ATTORNEY}", r"srichmanlaw|Stacey\s*Richman"),
-            ContactInfo(
+            Contact(LILLY_SANCHEZ, CRIMINAL_DEFENSE_ATTORNEY, r"Lilly.*Sanchez"),
+            Contact(MARTIN_WEINBERG, CRIMINAL_DEFENSE_ATTORNEY, r"martin.*?weinberg"),
+            Contact(MICHAEL_MILLER, "Steptoe LLP partner", r"Micha(el)? Miller|Miller, Micha(el)?"),
+            Contact(REID_WEINGARTEN, "Steptoe LLP partner", r"Weingarten, Rei[cdi]|Rei[cdi] Weingarten"),
+            Contact(ROBERT_D_CRITTON_JR, CRIMINAL_DEFENSE_ATTORNEY, r"Robert D.? Critton,? Jr\.?"),
+            Contact('Robert Gold', "helped Epstein track down money belonging to Spanish families"),
+            Contact('Roy Black', f"{CRIMINAL_DEFENSE_ATTORNEY} on 2008 case"),
+            Contact(SCOTT_J_LINK, CRIMINAL_DEFENSE_ATTORNEY, r"scott j. link?"),
+            Contact(STACEY_RICHMAN, f"New York {CRIMINAL_DEFENSE_ATTORNEY}", r"srichmanlaw|Stacey\s*Richman"),
+            Contact(
                 name=TONJA_HADDAD_COLEMAN,
                 info=f"civil attorney Epstein v. Scott Rothstein, {BRAD_EDWARDS}, & L.M.",
                 emailer_pattern=r"To(nj|rl)a Haddad Coleman|haddadfm@aol.com",
@@ -553,31 +553,31 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         style='purple3 bold',
         category=LAWYER,
         contacts=[
-            ContactInfo(
+            Contact(
                 name=DARREN_INDYKE,
                 info="Epstein estate executor",
                 emailer_pattern=r"darren$|Darren\s*(K\.?\s*)?[il]n[dq]_?yke?|dkiesq",
             ),
-            ContactInfo(RICHARD_KAHN, "Epstein estate executor", r"rich(ard)? kahn?")
+            Contact(RICHARD_KAHN, "Epstein estate executor", r"rich(ard)? kahn?")
         ],
     ),
     HighlightedNames(
         label='Europe',
         style='light_sky_blue3',
         contacts=[
-            ContactInfo(ANDRZEJ_DUDA, "former president of Poland"),
-            ContactInfo('Caroline Lang', "daughter of Jack Lang"),
-            ContactInfo(EDWARD_ROD_LARSEN, f"son of {TERJE_ROD_LARSEN}"),
-            ContactInfo('Fabrice Aidan', f"diplomat who worked with {TERJE_ROD_LARSEN}"),
-            ContactInfo('Jack Lang', "former French Minister of National Education"),
-            ContactInfo(
+            Contact(ANDRZEJ_DUDA, "former president of Poland"),
+            Contact('Caroline Lang', "daughter of Jack Lang"),
+            Contact(EDWARD_ROD_LARSEN, f"son of {TERJE_ROD_LARSEN}"),
+            Contact('Fabrice Aidan', f"diplomat who worked with {TERJE_ROD_LARSEN}"),
+            Contact('Jack Lang', "former French Minister of National Education"),
+            Contact(
                 name=MIROSLAV_LAJCAK,
                 info=f"Russia-friendly Slovakian politician, friend of {STEVE_BANNON}",
                 emailer_pattern=r"Miro(slav)?(\s+Laj[cč][aá]k)?",
             ),
-            ContactInfo(PETER_MANDELSON, "former UK ambassador to the US", r"((Lord|Peter) )?Mandelson"),
-            ContactInfo(TERJE_ROD_LARSEN, "Norwegian diplomat", r"Terje(( (R[øo]e?d[- ])?)?Lars[eo]n)?"),
-            ContactInfo(
+            Contact(PETER_MANDELSON, "former UK ambassador to the US", r"((Lord|Peter) )?Mandelson"),
+            Contact(TERJE_ROD_LARSEN, "Norwegian diplomat", r"Terje(( (R[øo]e?d[- ])?)?Lars[eo]n)?"),
+            Contact(
                 name=THORBJORN_JAGLAND,
                 info="former prime minister of Norway, Nobel Peace Prize Committee",
                 emailer_pattern=r"(Thor.{3,8})?Jag[il]and?",
@@ -654,37 +654,37 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label=FINANCE,
         style='green',
         contacts=[
-            ContactInfo(AMANDA_ENS, "Citigroup", r"ens, amanda?|Amanda.Ens"),
-            ContactInfo(BRAD_WECHSLER, f"head of {LEON_BLACK}'s personal investment vehicle according to FT"),
-            ContactInfo(CECILIA_STEEN),
-            ContactInfo(DANIEL_SABBA, f"{UBS} Investment Bank"),
-            ContactInfo(
+            Contact(AMANDA_ENS, "Citigroup", r"ens, amanda?|Amanda.Ens"),
+            Contact(BRAD_WECHSLER, f"head of {LEON_BLACK}'s personal investment vehicle according to FT"),
+            Contact(CECILIA_STEEN),
+            Contact(DANIEL_SABBA, f"{UBS} Investment Bank"),
+            Contact(
                 name=DAVID_FISZEL,
                 info="CIO Honeycomb Asset Management, Epstein invested in Spotify through him",
                 emailer_pattern=r"David\s*Fis?zel",
             ),
-            ContactInfo(JES_STALEY, "former CEO of Barclays"),
-            ContactInfo(JIDE_ZEITLIN, f"former partner at {GOLDMAN_SACHS}, allegations of sexual misconduct"),
-            ContactInfo('Laurie Cameron', "currency trading"),
-            ContactInfo(
+            Contact(JES_STALEY, "former CEO of Barclays"),
+            Contact(JIDE_ZEITLIN, f"former partner at {GOLDMAN_SACHS}, allegations of sexual misconduct"),
+            Contact('Laurie Cameron', "currency trading"),
+            Contact(
                 name=LEON_BLACK,
                 info="Apollo CEO who paid Epstein tens of millions for tax advice",
                 emailer_pattern=r"Leon\s*Black?|(?<!Marc )Leon(?! (Botstein|Jaworski|Wieseltier))",
             ),
-            ContactInfo(MARC_LEON, "Luxury Properties Sari Morrocco", r"Marc[.\s]+(Kensington|Leon)|Kensington2"),
-            ContactInfo(MELANIE_SPINELLA, f"representative of {LEON_BLACK}", r"M?elanie Spine[Il]{2}a"),
-            ContactInfo(MORTIMER_ZUCKERMAN, "business partner of Epstein, newspaper publisher"),
-            ContactInfo(NORMAN_D_RAU, "managing director at Morgan Stanley"),
-            ContactInfo(
+            Contact(MARC_LEON, "Luxury Properties Sari Morrocco", r"Marc[.\s]+(Kensington|Leon)|Kensington2"),
+            Contact(MELANIE_SPINELLA, f"representative of {LEON_BLACK}", r"M?elanie Spine[Il]{2}a"),
+            Contact(MORTIMER_ZUCKERMAN, "business partner of Epstein, newspaper publisher"),
+            Contact(NORMAN_D_RAU, "managing director at Morgan Stanley"),
+            Contact(
                 name=PAUL_BARRETT,
                 emailer_pattern=r"Paul Barre(d|tt)",
             ),
-            ContactInfo(PAUL_MORRIS, f"{DEUTSCHE_BANK}", r"morris, paul|Paul Morris"),
-            ContactInfo('Skip Rimer', "Milken Institute (Michael Milken)"),
-            ContactInfo('Steven Elkman', f"{DEUTSCHE_BANK}"),
-            ContactInfo(TANCREDI_MARCHIOLO, "hedge fund manager"),
-            ContactInfo('Vahe Stepanian', "Cetera Financial Group"),
-            ContactInfo(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}")
+            Contact(PAUL_MORRIS, f"{DEUTSCHE_BANK}", r"morris, paul|Paul Morris"),
+            Contact('Skip Rimer', "Milken Institute (Michael Milken)"),
+            Contact('Steven Elkman', f"{DEUTSCHE_BANK}"),
+            Contact(TANCREDI_MARCHIOLO, "hedge fund manager"),
+            Contact('Vahe Stepanian', "Cetera Financial Group"),
+            Contact(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}")
         ],
         patterns=[
             r"Ace\s*Greenberg",
@@ -745,25 +745,25 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label=FRIEND,
         style='tan',
         contacts=[
-            ContactInfo(
+            Contact(
                 name=ANDREW_FARKAS,
                 info="heir to the Alexander's department store fortune",
                 emailer_pattern=r"Andrew\s*(L\.\s*)?Farkas|Farkas,\s*Andrew(\s*L\.?)?",
             ),
-            ContactInfo(DANGENE_AND_JENNIE_ENTERPRISE, "founders of the members-only CORE club"),
-            ContactInfo(name=DAVID_STERN, info=f"emailed Epstein from Moscow, knows chairman of {DEUTSCHE_BANK} (?)"),
-            ContactInfo(
+            Contact(DANGENE_AND_JENNIE_ENTERPRISE, "founders of the members-only CORE club"),
+            Contact(name=DAVID_STERN, info=f"emailed Epstein from Moscow, knows chairman of {DEUTSCHE_BANK} (?)"),
+            Contact(
                 name=JONATHAN_FARKAS,
                 info="heir to the Alexander's department store fortune",
                 emailer_pattern=r"Jonathan Fark(a|u)(s|il)",
             ),
-            ContactInfo('linkspirit', "Skype username of someone Epstein communicated with"),
-            ContactInfo('Peter Thomas Roth', "student of Epstein at Dalton, skincare company founder"),
-            ContactInfo(
+            Contact('linkspirit', "Skype username of someone Epstein communicated with"),
+            Contact('Peter Thomas Roth', "student of Epstein at Dalton, skincare company founder"),
+            Contact(
                 name=STEPHEN_HANSON,
                 emailer_pattern=r"ste(phen|ve) hanson?|Shanson900",
             ),
-            ContactInfo(TOM_BARRACK, "long time friend of Trump")
+            Contact(TOM_BARRACK, "long time friend of Trump")
         ],
         patterns=[
             r"Jonanthan and Kimberly Farkus",
@@ -774,38 +774,38 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label='government',
         style='color(24) bold',
         contacts=[
-            ContactInfo(
+            Contact(
                 name=ALISON_J_NATHAN,
                 info="judge in New York's Southern District",
                 emailer_pattern=r"Alison(\s*J\.?)?\s*Nathan|Nathan\s*NYSD\s*Chambers?",
             ),
-            ContactInfo(
+            Contact(
                 name=ANN_MARIE_VILLAFANA,
                 info="Southern District of Florida (SDFL) U.S. Attorney",
                 emailer_pattern=r"Villafana, Ann Marie|(A(\.|nn) Marie )?Villafa(c|n|ri)a",
             ),
-            ContactInfo(AUDREY_STRAUSS, "USA Attorney", r"Audrey Strauss|Strauss, Audrey"),
-            ContactInfo(BUREAU_OF_PRISONS, "American law enforcement", r"bop\.gov"),
-            ContactInfo(CHRISTOPHER_DILORIO, "self described whistleblower", r"Chris\s*Di[lI]o[nr](io)?"),
-            ContactInfo(
+            Contact(AUDREY_STRAUSS, "USA Attorney", r"Audrey Strauss|Strauss, Audrey"),
+            Contact(BUREAU_OF_PRISONS, "American law enforcement", r"bop\.gov"),
+            Contact(CHRISTOPHER_DILORIO, "self described whistleblower", r"Chris\s*Di[lI]o[nr](io)?"),
+            Contact(
                 name=DANNY_FROST,
                 info="Director of Communications at Manhattan D.A.",
                 emailer_pattern=r"Frost, Danny|frostd@dany.nyc.gov|Danny\s*Frost",
             ),
-            ContactInfo('DOJ Inspector General', "American law enforcement"),
-            ContactInfo('DOJ London', "American law enforcement"),
-            ContactInfo(FBI, "American law enforcement"),
-            ContactInfo('Florence Hutner', "New York Office of Chief Medical Examiner"),
-            ContactInfo('Justin Alfano', "American law enforcement"),
-            ContactInfo('Manhattan DA', "American law enforcement"),
-            ContactInfo('NY FBI', "American law enforcement"),
-            ContactInfo(OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL, "American law enforcement", r"\bODAG\b"),
-            ContactInfo('Paula Speer', "court reporter"),
-            ContactInfo('Police Code Enforcement', "Palm Beach buildings code enforcement"),
-            ContactInfo(SDNY, "American law enforcement, Southern District of New York"),
-            ContactInfo('USAHUB-USAJournal111', "American law enforcement"),
-            ContactInfo(USANYS, "American law enforcement"),
-            ContactInfo('USMS', "United States Marshal Service")
+            Contact('DOJ Inspector General', "American law enforcement"),
+            Contact('DOJ London', "American law enforcement"),
+            Contact(FBI, "American law enforcement"),
+            Contact('Florence Hutner', "New York Office of Chief Medical Examiner"),
+            Contact('Justin Alfano', "American law enforcement"),
+            Contact('Manhattan DA', "American law enforcement"),
+            Contact('NY FBI', "American law enforcement"),
+            Contact(OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL, "American law enforcement", r"\bODAG\b"),
+            Contact('Paula Speer', "court reporter"),
+            Contact('Police Code Enforcement', "Palm Beach buildings code enforcement"),
+            Contact(SDNY, "American law enforcement, Southern District of New York"),
+            Contact('USAHUB-USAJournal111', "American law enforcement"),
+            Contact(USANYS, "American law enforcement"),
+            Contact('USMS', "United States Marshal Service")
         ],
         patterns=[
             r"AG",
@@ -893,22 +893,22 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label=HARVARD,
         style='light_goldenrod3',
         contacts=[
-            ContactInfo('Donald Rubin', "Professor of Statistics"),
-            ContactInfo('Kelly Friendly', f"longtime aide and spokesperson of {LARRY_SUMMERS}"),
-            ContactInfo(
+            Contact('Donald Rubin', "Professor of Statistics"),
+            Contact('Kelly Friendly', f"longtime aide and spokesperson of {LARRY_SUMMERS}"),
+            Contact(
                 name=LARRY_SUMMERS,
                 info="board of Digital Currency Group (DCG), Obama economic advisor",
                 emailer_pattern=r"(La(wrence|rry).{1,5})?Summers?|^LH$|LHS|[Il]hsofficel?",
             ),
-            ContactInfo('Leah Reis-Dennis', f"producer for {LISA_NEW}'s Poetry in America"),
-            ContactInfo(
+            Contact('Leah Reis-Dennis', f"producer for {LISA_NEW}'s Poetry in America"),
+            Contact(
                 name=LISA_NEW,
                 info=f'professor of poetry, wife of {LARRY_SUMMERS}, AKA "Elisa New"',
                 emailer_pattern=r"E?Lisa New?\b",
             ),
-            ContactInfo('Lisa Randall', "theoretical physicist"),
-            ContactInfo(MARTIN_NOWAK, "professor of mathematics and biology", r"(Martin.*?)?No[vw]ak|Nowak, Martin"),
-            ContactInfo(MOSHE_HOFFMAN, "behavioral and evolutionary economics")
+            Contact('Lisa Randall', "theoretical physicist"),
+            Contact(MARTIN_NOWAK, "professor of mathematics and biology", r"(Martin.*?)?No[vw]ak|Nowak, Martin"),
+            Contact(MOSHE_HOFFMAN, "behavioral and evolutionary economics")
         ],
         patterns=[
             r"Cambridge",
@@ -924,7 +924,7 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label='India',
         style='bright_green',
         contacts=[
-            ContactInfo(ANIL_AMBANI, "billionaire chairman of Reliance Group", r"Anil.Ambani")
+            Contact(ANIL_AMBANI, "billionaire chairman of Reliance Group", r"Anil.Ambani")
         ],
         patterns=[
             r"Abraaj",
@@ -945,13 +945,13 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label='Israel',
         style='dodger_blue2',
         contacts=[
-            ContactInfo(
+            Contact(
                 name=EHUD_BARAK,
                 info="former prime minister of Israel, Epstein business partner",
                 emailer_pattern=r"(ehud|e?h)\s*barak|\behud",
             ),
-            ContactInfo('Mitchell Bard', "director of the American-Israeli Cooperative Enterprise (AICE)"),
-            ContactInfo(NILI_PRIELL_BARAK, f"wife of {EHUD_BARAK}")
+            Contact('Mitchell Bard', "director of the American-Israeli Cooperative Enterprise (AICE)"),
+            Contact(NILI_PRIELL_BARAK, f"wife of {EHUD_BARAK}")
         ],
         patterns=[
             r"AIPAC",
@@ -992,33 +992,33 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label=JOURNALIST,
         style='bright_yellow',
         contacts=[
-            ContactInfo('Alain Forget', "author of \"How To Get Out Of This World ALIVE\""),
-            ContactInfo('Alex Yablon', "New York Magazine fact checker (?)"),
-            ContactInfo(
+            Contact('Alain Forget', "author of \"How To Get Out Of This World ALIVE\""),
+            Contact('Alex Yablon', "New York Magazine fact checker (?)"),
+            Contact(
                 name=EDWARD_JAY_EPSTEIN,
                 info="no relation, wrote books about spies",
                 emailer_pattern=r"(?<!Jeffrey )Edward (Jay )?Epstein",
             ),
-            ContactInfo('Dan Dubno', 'producer and technologist for CBS News in New York'),
-            ContactInfo(HENRY_HOLT, f"{MICHAEL_WOLFF}'s book publisher (company not a person)"),
-            ContactInfo(JAMES_HILL, "ABC News", r"hill, james e.|james.e.hill@abc.com"),
-            ContactInfo(JENNIFER_JACQUET, "Future Science magazine"),
-            ContactInfo(JOHN_BROCKMAN, "literary agent and author specializing in scientific literature"),
-            ContactInfo(
+            Contact('Dan Dubno', 'producer and technologist for CBS News in New York'),
+            Contact(HENRY_HOLT, f"{MICHAEL_WOLFF}'s book publisher (company not a person)"),
+            Contact(JAMES_HILL, "ABC News", r"hill, james e.|james.e.hill@abc.com"),
+            Contact(JENNIFER_JACQUET, "Future Science magazine"),
+            Contact(JOHN_BROCKMAN, "literary agent and author specializing in scientific literature"),
+            Contact(
                 name=LANDON_THOMAS,
                 info="New York Times financial reporter",
                 emailer_pattern=r"lando[nr] thomas( jr)?|thomas jr.?, lando[nr]",
             ),
-            ContactInfo(
+            Contact(
                 name=MICHAEL_WOLFF,
                 info="Author of \"Fire and Fury: Inside the Trump White House\"",
                 emailer_pattern=r"Michael\s*Wol(f[ef]e?|i)|Wolff",
             ),
-            ContactInfo('Newsmax', "right wing American news outlet", r"Newsmax(\.com)?"),
-            ContactInfo(PAUL_KRASSNER, "60s counterculture guy", r"Pa\s?ul Krassner"),
-            ContactInfo('Peter Aldhous', "Buzzfeed science reporter"),
-            ContactInfo('Susan Edelman', "New York Post reporter"),
-            ContactInfo('Tim Zagat', "Zagat restaurant guide CEO")
+            Contact('Newsmax', "right wing American news outlet", r"Newsmax(\.com)?"),
+            Contact(PAUL_KRASSNER, "60s counterculture guy", r"Pa\s?ul Krassner"),
+            Contact('Peter Aldhous', "Buzzfeed science reporter"),
+            Contact('Susan Edelman', "New York Post reporter"),
+            Contact('Tim Zagat', "Zagat restaurant guide CEO")
         ],
         patterns=[
             r"ABC(\s*News)?",
@@ -1112,11 +1112,11 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label=JUNK,
         style='gray46',
         contacts=[
-            ContactInfo('asmallworld@travel.asmallworld.net'),
-            ContactInfo('digest-noreply@quora.com'),
-            ContactInfo('editorialstaff@flipboard.com'),
-            ContactInfo('How To Academy', is_junk=True),
-            ContactInfo('Jokeland')
+            Contact('asmallworld@travel.asmallworld.net'),
+            Contact('digest-noreply@quora.com'),
+            Contact('editorialstaff@flipboard.com'),
+            Contact('How To Academy', is_junk=True),
+            Contact('Jokeland')
         ],
         should_match_first_last_name=False,
     ),
@@ -1150,20 +1150,20 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         style='light_coral',
 
         contacts=[
-            ContactInfo(BOB_CROWE, "partner at Nelson Mullins", r"[BR]ob Crowe"),
-            ContactInfo(
+            Contact(BOB_CROWE, "partner at Nelson Mullins", r"[BR]ob Crowe"),
+            Contact(
                 name=GANBAT_CHULUUNKHUU,
                 info="corrupt Mongolian politician who was later wanted by Interpol",
                 emailer_pattern=r"Ganbat(@|\s*Ch(uluunkhuu)?)?",
             ),
-            ContactInfo('Joshua Cooper Ramo', "co-CEO of Henry Kissinger Associates"),
-            ContactInfo(KATHERINE_KEATING, "daughter of former Australian prime minister"),
-            ContactInfo('Khaltmaagiin Battulga', "former president of Mongolia"),
-            ContactInfo(MOHAMED_WAHEED_HASSAN, "former president of the Maldives", r"Mohamed Waheed(\s+Hassan)?"),
-            ContactInfo(OLIVIER_COLOM, "France", r"Colom, Olivier|Olivier Colom"),
-            ContactInfo('Paul Keating', "former prime minister of Australia"),
-            ContactInfo(PUREVSUREN_LUNDEG, "Mongolian ambassador to the UN"),
-            ContactInfo('Stanley Rosenberg', "former President of the Massachusetts Senate")
+            Contact('Joshua Cooper Ramo', "co-CEO of Henry Kissinger Associates"),
+            Contact(KATHERINE_KEATING, "daughter of former Australian prime minister"),
+            Contact('Khaltmaagiin Battulga', "former president of Mongolia"),
+            Contact(MOHAMED_WAHEED_HASSAN, "former president of the Maldives", r"Mohamed Waheed(\s+Hassan)?"),
+            Contact(OLIVIER_COLOM, "France", r"Colom, Olivier|Olivier Colom"),
+            Contact('Paul Keating', "former prime minister of Australia"),
+            Contact(PUREVSUREN_LUNDEG, "Mongolian ambassador to the UN"),
+            Contact('Stanley Rosenberg', "former President of the Massachusetts Senate")
         ],
         patterns=[
             r"CSIS",
@@ -1221,15 +1221,15 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label=MIDEAST,
         style='dark_sea_green4',
         contacts=[
-            ContactInfo(ANAS_ALRASHEED, f"former information minister of Kuwait {'(???)'}", r"anas\s*al\s*rashee[cd]"),
-            ContactInfo(AZIZA_ALAHMADI, "Abu Dhabi Department of Culture & Tourism, assistant of Al Sabbagh"),
-            ContactInfo(
+            Contact(ANAS_ALRASHEED, f"former information minister of Kuwait {'(???)'}", r"anas\s*al\s*rashee[cd]"),
+            Contact(AZIZA_ALAHMADI, "Abu Dhabi Department of Culture & Tourism, assistant of Al Sabbagh"),
+            Contact(
                 name=FAWZI_SIAM,
                 info="sharia auditor in Qatar, friend of Sheikh Jabor Al-Thani",
                 emailer_pattern=r"Fawzi.Siam?",
             ),
-            ContactInfo(RAAFAT_ALSABBAGH, "Saudi royal advisor"),
-            ContactInfo(SHAHER_ABDULHAK_BESHER, "Yemeni billionaire", r"\bShaher(\s*Abdulhak\s*Besher)?\b")
+            Contact(RAAFAT_ALSABBAGH, "Saudi royal advisor"),
+            Contact(SHAHER_ABDULHAK_BESHER, "Yemeni billionaire", r"\bShaher(\s*Abdulhak\s*Besher)?\b")
         ],
         patterns=[
             r"Abdulmalik Al-Makhlafi",
@@ -1326,34 +1326,34 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label='modeling',
         style='pale_violet_red1',
         contacts=[
-            ContactInfo('Abi Schwinck', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management {'(???)'}"),
-            ContactInfo(DANIEL_SIAD),
-            ContactInfo(FAITH_KATES, "Next Models co-founder", r"faith kates?"),
-            ContactInfo('Gianni Serazzi', "fashion consultant?"),
-            ContactInfo(
+            Contact('Abi Schwinck', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management {'(???)'}"),
+            Contact(DANIEL_SIAD),
+            Contact(FAITH_KATES, "Next Models co-founder", r"faith kates?"),
+            Contact('Gianni Serazzi', "fashion consultant?"),
+            Contact(
                 name=HEATHER_MANN,
                 info=f"South African former model, ex-girlfriend of {PRINCE_ANDREW} (?)",
                 emailer_pattern=r"Heather Mann?",
             ),
-            ContactInfo(
+            Contact(
                 name=JEAN_LUC_BRUNEL,
                 info="MC2 Model Management founder, died by suicide in French jail",
                 emailer_pattern=r"Jean[- ]Luc Brunel?|JeanLuc",
             ),
-            ContactInfo(
+            Contact(
                 name=JEFF_FULLER,
                 info=f"president of {JEAN_LUC_BRUNEL}'s MC2 Model Management USA",
                 emailer_pattern=r"jeff@mc2mm.com|Jeff Fuller",
             ),
-            ContactInfo('lorraine@mc2mm.com', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management"),
-            ContactInfo('pink@mc2mm.com', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management", r"^Pink$|pink@mc2mm\.com"),
-            ContactInfo(MANUELA_MARTINEZ, "Mega Partners (Brazilian agency)", r"Manuela (- Mega Partners|Martinez)"),
-            ContactInfo(
+            Contact('lorraine@mc2mm.com', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management"),
+            Contact('pink@mc2mm.com', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management", r"^Pink$|pink@mc2mm\.com"),
+            Contact(MANUELA_MARTINEZ, "Mega Partners (Brazilian agency)", r"Manuela (- Mega Partners|Martinez)"),
+            Contact(
                 name=MARIANA_IDZKOWSKA,
                 emailer_pattern=r"Mariana [Il]d[źi]kowska?",
             ),
-            ContactInfo('Michael Sanka', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management {'(???)'}"),
-            ContactInfo('Vladimir Yudashkin', "director of the 1 Mother Agency")
+            Contact('Michael Sanka', f"{JEAN_LUC_BRUNEL}'s MC2 Model Management {'(???)'}"),
+            Contact('Vladimir Yudashkin', "director of the 1 Mother Agency")
         ],
         patterns=[
             r"\w+@mc2mm.com",
@@ -1366,21 +1366,21 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label=PUBLICIST,
         style='orange_red1',
         contacts=[
-            ContactInfo(AL_SECKEL, "Isabel Maxwell's husband, Mindshift conference, fell off a cliff"),
-            ContactInfo('Barnaby Marsh', "co-founder of philanthropy services company Saint Partners"),
-            ContactInfo(CHRISTINA_GALBRAITH, f"{JEFFREY_EPSTEIN} VI Foundation Media/PR, worked with {TYLER_SHEARS}"),
-            ContactInfo(IAN_OSBORNE, f"{IAN_OSBORNE} & Partners reputation repairer hired in 2011"),
-            ContactInfo(MATTHEW_HILTZIK, "crisis PR at Hiltzik Strategies"),
-            ContactInfo(MICHAEL_SITRICK, "crisis PR", r"(Mi(chael|ke).{0,5})?[CS]itrick"),
-            ContactInfo('Owen Blicksilver', "OBPR, Inc."),
-            ContactInfo(PEGGY_SIEGAL, "socialite, movie promoter", r"Peggy Siegal?"),
-            ContactInfo('R. Couri Hay'),
-            ContactInfo(
+            Contact(AL_SECKEL, "Isabel Maxwell's husband, Mindshift conference, fell off a cliff"),
+            Contact('Barnaby Marsh', "co-founder of philanthropy services company Saint Partners"),
+            Contact(CHRISTINA_GALBRAITH, f"{JEFFREY_EPSTEIN} VI Foundation Media/PR, worked with {TYLER_SHEARS}"),
+            Contact(IAN_OSBORNE, f"{IAN_OSBORNE} & Partners reputation repairer hired in 2011"),
+            Contact(MATTHEW_HILTZIK, "crisis PR at Hiltzik Strategies"),
+            Contact(MICHAEL_SITRICK, "crisis PR", r"(Mi(chael|ke).{0,5})?[CS]itrick"),
+            Contact('Owen Blicksilver', "OBPR, Inc."),
+            Contact(PEGGY_SIEGAL, "socialite, movie promoter", r"Peggy Siegal?"),
+            Contact('R. Couri Hay'),
+            Contact(
                 name=ROSS_GOW,
                 info="Acuity Reputation Management",
                 emailer_pattern=r"Ross(acuity)? Gow|(ross@)?acuity\s*reputation(\.com)?",
             ),
-            ContactInfo(
+            Contact(
                 name=TYLER_SHEARS,
                 info=f"reputation management, worked on with {CHRISTINA_GALBRAITH}",
                 emailer_pattern=r"T[vy]ler\s*Shears",
@@ -1399,9 +1399,9 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label='Republican',
         style='dark_red bold',
         contacts=[
-            ContactInfo('Juleanna Glover', "CEO of D.C. public affairs advisory firm Ridgely|Walsh"),
-            ContactInfo(RUDY_GIULIANI),
-            ContactInfo(TULSI_GABBARD)
+            Contact('Juleanna Glover', "CEO of D.C. public affairs advisory firm Ridgely|Walsh"),
+            Contact(RUDY_GIULIANI),
+            Contact(TULSI_GABBARD)
         ],
         patterns=[
             r"Alberto\sGonzale[sz]",
@@ -1466,12 +1466,12 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label='Rothschild',
         style='indian_red',
         contacts=[
-            ContactInfo(
+            Contact(
                 name=ARIANE_DE_ROTHSCHILD,
                 info="heiress",
                 emailer_pattern=r"AdeR|((Ariane|Edmond) (de )?)?Rothsh?ch?ild|Ariane(?!\s+Dwyer)",
             ),
-            ContactInfo(
+            Contact(
                 name=JOHNNY_EL_HACHEM,
                 info="Edmond de Rothschild Private Equity",
                 emailer_pattern=r"el hachem johnny|johnny el hachem",
@@ -1483,31 +1483,31 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label='Russia',
         style='red bold',
         contacts=[
-            ContactInfo(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra\s*Karpova"),
-            ContactInfo('Dasha Zhukova', "art collector, daughter of Alexander Zhukov"),
-            ContactInfo(JULIA_SANTOS, "possibly a Russian in Paris that was recruiting girls from Ukraine for Epstein"),
-            ContactInfo(
+            Contact(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra\s*Karpova"),
+            Contact('Dasha Zhukova', "art collector, daughter of Alexander Zhukov"),
+            Contact(JULIA_SANTOS, "possibly a Russian in Paris that was recruiting girls from Ukraine for Epstein"),
+            Contact(
                 name=KARYNA_SHULIAK,
                 info="Epstein's final girlfriend to whom he tried to leave $50-100 million and the island",
                 emailer_pattern=r"Karyna\s*Shuliak?",
             ),
-            ContactInfo(
+            Contact(
                 name='Maria Prusakova',
                 info=f"AKA Masha Prusso, former Olympic snowboarder, {CRYPTO_PR_LAB} co-founder, \"found ladies\" for Epstein",
                 emailer_pattern=r"Ma(sha|riy?a)\s*(Prus(kova|so))",
             ),
-            ContactInfo(MASHA_DROKOVA, "silicon valley VC, former Putin Youth member"),
-            ContactInfo(
+            Contact(MASHA_DROKOVA, "silicon valley VC, former Putin Youth member"),
+            Contact(
                 name=RENATA_BOLOTOVA,
                 info="former model, fund manager at New York State Insurance Fund, Рената Болотова",
                 emailer_pattern=r"Renata Bolotova|Rena B|Renata Bo\w+|renbolotova",
             ),
-            ContactInfo(
+            Contact(
                 name=SERGEY_BELYAKOV,
                 info="graduate of Russia's FSB academy",
                 emailer_pattern=r"Sergey\s*Belyako|Беляков\s*Сергей|Cepre(ct|il) [6BES][\w.]+|6(er|of)no\w+\s+[CE]\w+",
             ),
-            ContactInfo(SVETLANA_POZHIDAEVA, f"Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and {DAVID_BLAINE}")
+            Contact(SVETLANA_POZHIDAEVA, f"Epstein's Russian assistant who was recommended for a visa by Sergei Belyakov (FSB) and {DAVID_BLAINE}")
         ],
         patterns=[
             r"Alfa\s*Bank",
@@ -1574,24 +1574,24 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label=TECH_BRO,
         style='bright_cyan',
         contacts=[
-            ContactInfo('Alisa Bekins', f"{PETER_THIEL}'s assistant"),
-            ContactInfo(ANDREW_MCCORMACK, f"partner at {PETER_THIEL}'s {VALAR_VENTURES} {'(???)'}", r"Andrew\s*McCorm(ack?)?"),
-            ContactInfo('Auren Hoffman', "CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp"),
-            ContactInfo(ELON_MUSK, "father of Mecha-Hitler"),
-            ContactInfo(GOOGLE_PLUS, "Google+", r"Google\+"),
-            ContactInfo('Ian O\'Donnell', f"Thiel's {VALAR_VENTURES}", r"Ian O'?Donnell"),
-            ContactInfo(
+            Contact('Alisa Bekins', f"{PETER_THIEL}'s assistant"),
+            Contact(ANDREW_MCCORMACK, f"partner at {PETER_THIEL}'s {VALAR_VENTURES} {'(???)'}", r"Andrew\s*McCorm(ack?)?"),
+            Contact('Auren Hoffman', "CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp"),
+            Contact(ELON_MUSK, "father of Mecha-Hitler"),
+            Contact(GOOGLE_PLUS, "Google+", r"Google\+"),
+            Contact('Ian O\'Donnell', f"Thiel's {VALAR_VENTURES}", r"Ian O'?Donnell"),
+            Contact(
                 name=JAMES_FITZGERALD,
                 info=f"{PETER_THIEL}'s {VALAR_VENTURES} {QUESTION_MARKS}",
                 emailer_pattern=r"James Fitz[g ]eral?d?",
             ),
-            ContactInfo('LinkedIn', "LinkedIn", r"Linked[Il]n(\s*Updates)?"),
-            ContactInfo(PETER_THIEL, "Paypal mafia member, founder of Palantir, Facebook investor"),
-            ContactInfo(REID_HOFFMAN, "PayPal mafia member, founder of LinkedIn"),
-            ContactInfo(STEVEN_SINOFSKY, "a16z, ex-Microsoft, loves bitcoin", r"Steven Sinofsky?"),
-            ContactInfo(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar\s*(Global\s*Fund|Ventures)?"),
-            ContactInfo(VINCENZO_IOZZO, "CEO of the identity-security company SlashID", r"Vincenzo [IL]ozzo"),
-            ContactInfo(ZUBAIR_KHAN, f"Tranchulas cybersecurity, {'InsightsPod'} founder, Islamabad / Dubai")
+            Contact('LinkedIn', "LinkedIn", r"Linked[Il]n(\s*Updates)?"),
+            Contact(PETER_THIEL, "Paypal mafia member, founder of Palantir, Facebook investor"),
+            Contact(REID_HOFFMAN, "PayPal mafia member, founder of LinkedIn"),
+            Contact(STEVEN_SINOFSKY, "a16z, ex-Microsoft, loves bitcoin", r"Steven Sinofsky?"),
+            Contact(VALAR_VENTURES, f"{PETER_THIEL} affiliated fintech venture fund", r"V[ae]lar\s*(Global\s*Fund|Ventures)?"),
+            Contact(VINCENZO_IOZZO, "CEO of the identity-security company SlashID", r"Vincenzo [IL]ozzo"),
+            Contact(ZUBAIR_KHAN, f"Tranchulas cybersecurity, {'InsightsPod'} founder, Islamabad / Dubai")
         ],
         patterns=[
             r"a16z|(?<!Gavin )Andree?ss?e?[eo]n(\s&Horowitz)?",
@@ -1639,8 +1639,8 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label='Trump',
         style='red3 bold',
         contacts=[
-            ContactInfo('Bruce Moskowitz', "'Trump's health guy' according to Epstein"),
-            ContactInfo(
+            Contact('Bruce Moskowitz', "'Trump's health guy' according to Epstein"),
+            Contact(
                 name=NICHOLAS_RIBIS,
                 info=f"Hilton CEO, former president of {TRUMP_ORG}",
                 emailer_pattern=r"Nic(holas|k)[\s._]Ribi?s?|Ribbis",
@@ -1676,9 +1676,9 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label='USVI',
         style='sea_green1',
         contacts=[
-            ContactInfo(CECILE_DE_JONGH, "Virgin Islands first lady 2007-2015"),
-            ContactInfo(KENNETH_E_MAPP, "Virgin Islands Governor"),
-            ContactInfo(STACEY_PLASKETT, "Virgin Islands non-voting member of Congress")
+            Contact(CECILE_DE_JONGH, "Virgin Islands first lady 2007-2015"),
+            Contact(KENNETH_E_MAPP, "Virgin Islands Governor"),
+            Contact(STACEY_PLASKETT, "Virgin Islands non-voting member of Congress")
         ],
         patterns=[
             r"Antigua",
@@ -1705,7 +1705,7 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label='victim',
         style=VICTIM_COLOR,
         contacts=[
-            ContactInfo(PAULA, "ex-girlfriend who works in opera now", r"^Paula( Heil Fisher)?$")
+            Contact(PAULA, "ex-girlfriend who works in opera now", r"^Paula( Heil Fisher)?$")
         ],
         patterns=[
             r"child\s*pornography",
@@ -1726,20 +1726,20 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label='victim lawyer',
         style='medium_orchid1',
         contacts=[
-            ContactInfo(BRAD_EDWARDS, ROTHSTEIN_ROSENFELDT_ADLER, r"Brad(ley)?(\s*J(.?|ames))?\s*Edwards"),
-            ContactInfo(
+            Contact(BRAD_EDWARDS, ROTHSTEIN_ROSENFELDT_ADLER, r"Brad(ley)?(\s*J(.?|ames))?\s*Edwards"),
+            Contact(
                 name=DOUGLAS_WIGDOR,
                 info=f"lawsuit against {LEON_BLACK}, Wigdor LLP",
                 emailer_pattern=r"Doug(las)?\s*(H\.?)?\s*Wigdor",
             ),
-            ContactInfo('Grant J. Smith', ROTHSTEIN_ROSENFELDT_ADLER),
-            ContactInfo(
+            Contact('Grant J. Smith', ROTHSTEIN_ROSENFELDT_ADLER),
+            Contact(
                 name=JEANNE_M_CHRISTENSEN,
                 info=f"lawsuit against {LEON_BLACK}, Wigdor LLP",
                 emailer_pattern=r"Jeanne\s*(M\.?)?\s*Christensen",
             ),
-            ContactInfo(JACK_SCAROLA, "Searcy Denney Scarola Barnhart & Shipley"),
-            ContactInfo(KEN_JENNE, ROTHSTEIN_ROSENFELDT_ADLER)
+            Contact(JACK_SCAROLA, "Searcy Denney Scarola Barnhart & Shipley"),
+            Contact(KEN_JENNE, ROTHSTEIN_ROSENFELDT_ADLER)
         ],
         patterns=[
             r"(Alan(\s*P.)?|MINTZ)\s*FRAADE",
@@ -1756,8 +1756,8 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         style='color(58)',
         category='Republican',
         contacts=[
-            ContactInfo(SEAN_BANNON, f"{STEVE_BANNON}'s brother", r"sean bannon?"),
-            ContactInfo(STEVE_BANNON, "Trump campaign manager, memecoin grifter", r"steve banno[nr]?")
+            Contact(SEAN_BANNON, f"{STEVE_BANNON}'s brother", r"sean bannon?"),
+            Contact(STEVE_BANNON, "Trump campaign manager, memecoin grifter", r"steve banno[nr]?")
         ],
         patterns=[
             r"(American\s*)?Dharma",
@@ -1768,7 +1768,7 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
     # Individuals
     HighlightedNames(
         contacts=[
-            ContactInfo(STEVEN_HOFFENBERG, "Epstein's Towers Financial ponzi partner, prison for 18 years")
+            Contact(STEVEN_HOFFENBERG, "Epstein's Towers Financial ponzi partner, prison for 18 years")
         ],
         style='dark_olive_green3',
         category=FINANCE,
@@ -1779,12 +1779,12 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         style='deep_pink3',
         category='Epstein',
         contacts=[
-            ContactInfo(
+            Contact(
                 name=BOBBI_C_STERNHEIM,
                 info=f"{GHISLAINE_MAXWELL} {CRIMINAL_DEFENSE_ATTORNEY}",
                 emailer_pattern=r"Bobbi C\.? Sternheim",
             ),
-            ContactInfo(
+            Contact(
                 name=GHISLAINE_MAXWELL,
                 info="Epstein's girlfriend, daughter of the spy Robert Maxwell",
                 emailer_pattern=r"g ?max(well)?|Ghislaine|Maxwell",
@@ -1798,7 +1798,7 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
     ),
     HighlightedNames(
         contacts=[
-            ContactInfo(
+            Contact(
                 name=JABOR_Y,
                 info="former Qatari prime minister Hamad bin Jassim AKA \"HBJ\"",
                 emailer_pattern=r"[ji]abor\s*y?",
@@ -1808,25 +1808,25 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         style='spring_green1'
     ),
     HighlightedNames(
-        contacts=[ContactInfo(KATHRYN_RUEMMLER, "former Obama legal counsel", r"Kathr?yn? Ruemmler?")],
+        contacts=[Contact(KATHRYN_RUEMMLER, "former Obama legal counsel", r"Kathr?yn? Ruemmler?")],
         style='magenta2',
         category=FRIEND
     ),
     HighlightedNames(
-        contacts=[ContactInfo(MELANIE_WALKER, f"doctor, friend of {BILL_GATES}")],
+        contacts=[Contact(MELANIE_WALKER, f"doctor, friend of {BILL_GATES}")],
         style='pale_violet_red1',
         category=FRIEND
     ),
     HighlightedNames(
         contacts=[
-            ContactInfo(PAULA, "Epstein's ex-girlfriend who is now in the opera world", r"^Paula( Heil Fisher)?$")
+            Contact(PAULA, "Epstein's ex-girlfriend who is now in the opera world", r"^Paula( Heil Fisher)?$")
         ],
         label='paula',
         style='pink1',
         category=FRIEND
     ),
     HighlightedNames(
-        contacts=[ContactInfo(PRINCE_ANDREW, "British royal family", r"Prince Andrew|The Duke")],
+        contacts=[Contact(PRINCE_ANDREW, "British royal family", r"Prince Andrew|The Duke")],
         patterns=[
             r'\bPA\b',
             r"Urramoor(\s*Limited)?",
@@ -1835,13 +1835,13 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         category='Europe'
     ),
     HighlightedNames(
-        contacts=[ContactInfo(SOON_YI_PREVIN, "wife of Woody Allen", r"Soon[- ]Yi Previn?")],
+        contacts=[Contact(SOON_YI_PREVIN, "wife of Woody Allen", r"Soon[- ]Yi Previn?")],
         style='hot_pink',
         category=ARTS
     ),
     HighlightedNames(
         contacts=[
-            ContactInfo(
+            Contact(
                 name='Sultan Ahmed Bin Sulayem',
                 info="chairman of ports in Dubai, CEO of DP World",
                 emailer_pattern=r"Sultan (Ahmed )?bin Sulaye?m?",

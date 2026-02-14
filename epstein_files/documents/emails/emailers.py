@@ -3,7 +3,7 @@ Constants and methods for dentifying people in email headers.
 """
 import re
 
-from epstein_files.people.contact_info import ContactInfo
+from epstein_files.people.contact_info import Contact
 from epstein_files.output.highlighted_names import HighlightedNames
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES
 from epstein_files.util.constant.names import *
@@ -24,33 +24,33 @@ SUPPRESS_LOGS_FOR_AUTHORS = [
 # Unhighlighted / uncategorized emailer regexes
 ADDITIONAL_CONTACTS = [
     # Custom regex
-    ContactInfo(name='Daphne Wallace', emailer_pattern=r"Da[p ]hne Wallace"),
-    ContactInfo(name=INTELLIGENCE_SQUARED, emailer_pattern=r"intelligence\s*squared"),
-    ContactInfo(name='Matthew Schafer', emailer_pattern=r"matthew\.?schafer?"),
-    ContactInfo(name=MICHAEL_BUCHHOLTZ, emailer_pattern=r"Michael.*Buchholtz"),
-    ContactInfo(name=SAMUEL_LEFF, emailer_pattern=r"Sam(uel)?(/Walli)? Leff"),
-    ContactInfo(name=THANU_BOONYAWATANA, emailer_pattern=r"Thanu (BOONYAWATANA|Cnx)"),
+    Contact(name='Daphne Wallace', emailer_pattern=r"Da[p ]hne Wallace"),
+    Contact(name=INTELLIGENCE_SQUARED, emailer_pattern=r"intelligence\s*squared"),
+    Contact(name='Matthew Schafer', emailer_pattern=r"matthew\.?schafer?"),
+    Contact(name=MICHAEL_BUCHHOLTZ, emailer_pattern=r"Michael.*Buchholtz"),
+    Contact(name=SAMUEL_LEFF, emailer_pattern=r"Sam(uel)?(/Walli)? Leff"),
+    Contact(name=THANU_BOONYAWATANA, emailer_pattern=r"Thanu (BOONYAWATANA|Cnx)"),
     # No custom regex
-    ContactInfo('Amanda Kirby'),
-    ContactInfo('Anne Boyles'),
-    ContactInfo('Ariane Dwyer'),
-    ContactInfo('Brittany Henderson'),
-    ContactInfo('Coursera'),
-    ContactInfo('Danny Goldberg'),
-    ContactInfo(ED_BOYLE),
-    ContactInfo('Francesca Hall'),
-    ContactInfo('Jeff Pagliuca'),
-    ContactInfo('Kevin Bright'),
-    ContactInfo(JOHN_PAGE),
-    ContactInfo('Kathleen Ruderman'),
-    ContactInfo('Larry Cohen'),
-    ContactInfo('Michael Simmons'),
-    ContactInfo('middle.east.update@hotmail.com'),
-    ContactInfo('Nancy Cain'),
-    ContactInfo('Nancy Portland'),
-    ContactInfo('Oliver Goodenough'),
-    ContactInfo('Peter Green'),
-    ContactInfo('Steven Victor MD'),
+    Contact('Amanda Kirby'),
+    Contact('Anne Boyles'),
+    Contact('Ariane Dwyer'),
+    Contact('Brittany Henderson'),
+    Contact('Coursera'),
+    Contact('Danny Goldberg'),
+    Contact(ED_BOYLE),
+    Contact('Francesca Hall'),
+    Contact('Jeff Pagliuca'),
+    Contact('Kevin Bright'),
+    Contact(JOHN_PAGE),
+    Contact('Kathleen Ruderman'),
+    Contact('Larry Cohen'),
+    Contact('Michael Simmons'),
+    Contact('middle.east.update@hotmail.com'),
+    Contact('Nancy Cain'),
+    Contact('Nancy Portland'),
+    Contact('Oliver Goodenough'),
+    Contact('Peter Green'),
+    Contact('Steven Victor MD'),
 ]
 
 HIGHLIGHTED_CONTACTS = flatten([hn.contacts for hn in HIGHLIGHTED_NAMES if isinstance(hn, HighlightedNames)])
