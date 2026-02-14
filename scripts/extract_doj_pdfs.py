@@ -21,10 +21,10 @@ assert DOJ_TXTS_20260130_DIR is not None
 BAD_FILENAME_REGEX = re.compile(r".*/EFTA\d+-\d\.pdf")
 EXTRACT_ARGS = ['extract_pdf_text', '--no-page-number-panels', '--panelize-image-text']
 
+
 if not DOJ_TXTS_20260130_DIR.exists():
     ask_to_proceed(f"Dir {DOJ_TXTS_20260130_DIR} doesn't exist, create?")
     DOJ_TXTS_20260130_DIR.mkdir()
-
 
 for dir in [d for d in DOJ_PDFS_20260130_DIR.glob('*') if d.is_dir()]:
     if (dir_match := DOJ_DATASET_ID_REGEX.search(dir.name)):
