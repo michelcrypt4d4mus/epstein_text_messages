@@ -335,12 +335,6 @@ class DojFile(OtherFile):
         table = LeftBarPanel.build(*panel_args)
         yield Padding(table, (0, 0, 1, 1))
 
-    def _repair(self) -> None:
-        """Overloads superclass method."""
-        new_text = self.repair_ocr_text(OCR_REPAIRS, self.text)
-        self._set_computed_fields(text=new_text)
-        self._remove_number_only_lines()
-
     def _remove_number_only_lines(self) -> None:
         """Remove number only lines (which happen a lot in legal doc OCR) if there are more than a certain amount of them."""
         non_number_lines = [line for line in self.lines if not IGNORE_LINE_REGEX.match(line)]
@@ -349,3 +343,9 @@ class DojFile(OtherFile):
         if number_only_line_count > 20:
             self.warn(f"Reduced line count from {len(self.lines)} to {len(non_number_lines)} by stripping number only lines")
             self._set_computed_fields(lines=non_number_lines)
+
+    def _repair(self) -> None:
+        """Overloads superclass method."""
+        new_text = self.repair_ocr_text(OCR_REPAIRS, self.text)
+        self._set_computed_fields(text=new_text)
+        self._remove_number_only_lines()
