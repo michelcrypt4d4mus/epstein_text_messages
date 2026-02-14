@@ -38753,6 +38753,40 @@
                 "type": "Email"
             },
             {
+                "author": "Joi Ito",
+                "bytes": 1795,
+                "file_id": "EFTA01917472",
+                "filename": "EFTA01917472.txt",
+                "num_lines": 39,
+                "recipients": [
+                    "Adam Back",
+                    "Alexander Lourie",
+                    "Austin Hill",
+                    "Hammie Hill",
+                    "Jeffrey Epstein",
+                    "Jeremy Heckman"
+                ],
+                "subject": "Re: Final Blockstream allocation",
+                "timestamp": "2014-07-15T18:07:59",
+                "type": "Email"
+            },
+            {
+                "bytes": 1468,
+                "file_id": "EFTA01917873",
+                "filename": "EFTA01917873.txt",
+                "num_lines": 33,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Jennifer Kalin",
+                    "Karyna Shuliak",
+                    "Renata Bolotova"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "subject": "Re:",
+                "timestamp": "2014-07-10T16:51:26",
+                "type": "Email"
+            },
+            {
                 "attribution_reason": "\"sneaky dog\"",
                 "author": "Renata Bolotova",
                 "bytes": 2792,
@@ -50751,6 +50785,7 @@
         "Connie Zaguirre": "lawyer, office of Robert D. Critton Jr.",
         "DOJ Inspector General": "government, American law enforcement",
         "DOJ London": "government, American law enforcement",
+        "Dan Dubno": "journalist, producer and technologist for CBS News in New York",
         "Dangene and Jennie Enterprise": "friend, founders of the members-only CORE club",
         "Daniel Kahneman": "academia, Nobel economic sciences laureate and cognitivie psychologist (?)",
         "Daniel Sabba": "finance, UBS Investment Bank",
