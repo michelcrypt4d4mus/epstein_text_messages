@@ -1,6 +1,6 @@
 import re
 
-from epstein_files.util.constant.strings import QUESTION_MARKS
+from epstein_files.util.constant.strings import PALM_BEACH, QUESTION_MARKS, VIRGIN_ISLANDS
 from epstein_files.util.helpers.string_helper import remove_question_marks
 
 Name = str | None
@@ -269,6 +269,24 @@ TRUMP_ORG = 'Trump Organization'
 UBS = 'UBS'
 USANYS = 'USANYS'
 VALAR_VENTURES = 'Valar Ventures'
+
+# Publications
+BBC = 'BBC'
+BLOOMBERG = 'Bloomberg'
+CHINA_DAILY = "China Daily"
+DAILY_MAIL = 'Daily Mail'
+DAILY_TELEGRAPH = "Daily Telegraph"
+LA_TIMES = 'LA Times'
+LEXIS_NEXIS = 'Lexis Nexis'
+MIAMI_HERALD = 'Miami Herald'
+NYT = "New York Times"
+PALM_BEACH_DAILY_NEWS = f'{PALM_BEACH} Daily News'
+PALM_BEACH_POST = f'{PALM_BEACH} Post'
+SHIMON_POST = 'The Shimon Post'
+THE_REAL_DEAL = 'The Real Deal'
+WAPO = 'WaPo'
+VI_DAILY_NEWS = f'{VIRGIN_ISLANDS} Daily News'
+
 
 # First and last names that should be made part of a highlighting regex for emailers
 NAMES_TO_NOT_HIGHLIGHT = """
