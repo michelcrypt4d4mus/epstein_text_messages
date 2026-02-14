@@ -373,6 +373,7 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
             ContactInfo(BROCK_PIERCE, "Bannon business partner, Tether co-founder, friend of Yair Netanyahu, sex crime history"),
             ContactInfo(BRYAN_BISHOP, "executive at LedgerX, Polymath fund"),
             ContactInfo(DONALD_NORMAN, f"co-founder of early British crypto exchange Intersango with {AMIR_TAAKI}"),
+            ContactInfo(ED_BOYLE, f"Medici Bank", r"Ed\s*Boy(el|le)"),
             ContactInfo(JEFFREY_WERNICK, "former COO of Parler, involved in numerous crypto companies like Bitforex"),
             ContactInfo(JEREMY_RUBIN, "developer/researcher", r"Jeremy\s*Rubin"),
             ContactInfo(
