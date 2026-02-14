@@ -7,8 +7,8 @@ from typing import ClassVar
 from rich.text import Text
 
 from epstein_files.documents.other_file import Metadata, OtherFile
-from epstein_files.util.constant.strings import JSON
 from epstein_files.output.rich import INFO_STYLE
+from epstein_files.util.constant.strings import JSON
 
 DESCRIPTION = "JSON data containing preview info for links sent in a messaging app like iMessage"
 

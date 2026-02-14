@@ -1,8 +1,8 @@
 from rich.table import Table
 from rich.text import Text
 
+from epstein_files.output.rich import highlighter
 from epstein_files.util.env import DEFAULT_WIDTH
-from epstein_files.output.rich import CONSOLE_ARGS, highlighter
 
 HEADER_INDENT = Text('        ')
 VERTICAL_BAR = '┃ '  # ⎹┃┇┋❘⦀🁢⏐┃⎹

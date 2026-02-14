@@ -2,8 +2,8 @@ from datetime import datetime
 
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.epstein_files import count_by_month
-from epstein_files.util.constants import ALL_FILE_CONFIGS
 from epstein_files.output.rich import console
+from epstein_files.util.constants import ALL_FILE_CONFIGS
 
 EXPECTED_MONTHLY_COUNTS = {
     "1985-01": 1,
