@@ -150,7 +150,7 @@ PAULA_REASON = 'Signature of "Sent via BlackBerry from T-Mobile"'
 
 # Descriptions
 IS_IT_ROGER_STONE = "is the 'roger' Epstein is trying to meet Roger Stone?"
-KYARA_FUND = f"Epstein crypto fund {KYARA_INVESTMENTS}"
+KYARA_FUND = f"Epstein crypto fund {KYARA_INVESTMENT}"
 MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
 SEC_WHISTLEBLOWER = 'whistleblower emails to SEC'
 VALAR_MEETING = f"meeting with {PETER_THIEL}'s {VALAR_VENTURES} fund"
@@ -1368,7 +1368,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01013266', description=f"request for payment to {MARIYA_PRUSAKOVA}'s {CRYPTO_PR_LAB}", is_interesting=True),
     EmailCfg(id='EFTA00039689', description=f"{SEC_WHISTLEBLOWER} re: Signature Bank, Hapoalim, Bioptix/RIOT, Barry Honig, etc.", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00362171', description=f"{SEC_WHISTLEBLOWER}, rest is visible in EFTA00039689", truncate_to=102_000),
-    EmailCfg(id='EFTA02505439', description=f'summary of Kyara Investment shell companies with {JOI_ITO}'),
+    EmailCfg(id='EFTA02505439', description=f'summary of {KYARA_INVESTMENT} shell companies with {JOI_ITO}'),
     EmailCfg(id='EFTA02517623', description=f"{VINCENZO_IOZZO} explains to Epstein how to deanonymize bitcoin", is_interesting=True),
     EmailCfg(id='EFTA00875181', duplicate_ids=['EFTA01901268']),
     EmailCfg(id='EFTA01852975', duplicate_ids=['EFTA02001764']),
