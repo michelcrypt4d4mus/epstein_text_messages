@@ -1,13 +1,11 @@
 import re
 import logging
 import warnings
-from collections import defaultdict
 from dataclasses import asdict, dataclass
 from datetime import datetime
 from typing import ClassVar, Sequence
 
 import datefinder
-import dateutil
 from rich.console import Group
 from rich.markup import escape
 from rich.panel import Panel
@@ -18,11 +16,11 @@ from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_R
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.doc_cfg import DocCfg, Metadata
-from epstein_files.util.data import days_between, escape_single_quotes, remove_timezone, sort_dict, uniquify
-from epstein_files.util.file_helper import FILENAME_LENGTH, file_size_to_str
+from epstein_files.util.data import days_between, remove_timezone, uniquify
+from epstein_files.util.file_helper import FILENAME_LENGTH
 from epstein_files.util.env import args
 from epstein_files.util.highlighted_group import QUESTION_MARKS_TXT, styled_category
-from epstein_files.util.rich import add_cols_to_table, build_table, highlighter
+from epstein_files.util.rich import build_table, highlighter
 from epstein_files.util.logging import logger
 
 FIRST_FEW_LINES = 'First Few Lines'
@@ -30,8 +28,8 @@ MAX_DAYS_SPANNED_TO_BE_VALID = 10
 MAX_EXTRACTED_TIMESTAMPS = 100
 MIN_TIMESTAMP = datetime(2000, 1, 1)
 MID_TIMESTAMP = datetime(2007, 1, 1)
-PREVIEW_CHARS = int(580 * (1 if args.all_other_files else 1.5))
 LOG_INDENT = '\n         '
+PREVIEW_CHARS = int(580 * (1 if args.all_other_files else 1.5))
 TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
@@ -109,17 +107,6 @@ class OtherFile(Document):
         return styled_category(self.category)
 
     @property
-    def highlighted_preview_text(self) -> Text:
-        try:
-            return highlighter(escape(self.preview_text))
-        except Exception as e:
-            logger.error(f"Failed to apply markup in string '{escape_single_quotes(self.preview_text)}'\n"
-                         f"Original string: '{escape_single_quotes(self.preview_text)}'\n"
-                         f"File: '{self.filename}'\n")
-
-            return Text(escape(self.preview_text))
-
-    @property
     def is_interesting(self) -> bool:
         """Overloaded. False for lame prefixes, duplicates, and other boring files."""
         info_sentences = self.info
@@ -163,6 +150,10 @@ class OtherFile(Document):
         """Text at start of file stripped of newlinesfor display in tables and other cramped settings."""
         text = self.config.replace_text_with if (self.config and self.config.replace_text_with) else self.text
         return WHITESPACE_REGEX.sub(' ', text)[0:PREVIEW_CHARS]
+
+    @property
+    def preview_text_highlighted(self) -> Text:
+        return highlighter(escape(self.preview_text))
 
     @property
     def summary(self) -> Text:
@@ -242,7 +233,7 @@ class OtherFile(Document):
                 row_style = ' dim'
             else:
                 link_and_info += file.info
-                preview_text = file.highlighted_preview_text
+                preview_text = file.preview_text_highlighted
                 row_style = ''
 
             table.add_row(

@@ -979,6 +979,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00656005', author=DONALD_NORMAN, attribution_reason='signed "Donald"', duplicate_ids=['EFTA02691296', 'EFTA01862178']),
     EmailCfg(id='EFTA02660820', author=FAWZI_SIAM, truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02349713', author=FAWZI_SIAM, truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02661442', author=FAWZI_SIAM, truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02731552', author=FBI, recipients=[USANYS], date='2021-05-26 16:12:00'),  # recipient uncertain
     EmailCfg(id='EFTA02730483', author=FBI, date='2023-07-11T08:25:00'),  # TODO: actually reply timestamp
     EmailCfg(id='EFTA00039971', author=FBI, recipients=[USANYS]),  # TODO: recipient uncertain
@@ -1215,6 +1216,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731651', author=USANYS, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731775', author=USANYS, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731646', author=USANYS, is_attribution_uncertain=True),
+    EmailCfg(id='EFTA02731640', author=USANYS, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731643', author=USANYS, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731501', author=USANYS, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731633', author=USANYS, is_attribution_uncertain=True),
@@ -1238,16 +1240,22 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731636', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731637', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731659', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
+    EmailCfg(id='EFTA02731781', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
+    EmailCfg(id='EFTA02731774', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
+    EmailCfg(id='EFTA02731754', author=USANYS, recipients=[USANYS], date='2024-03-06T23:24:00', is_attribution_uncertain=True),
+    EmailCfg(id='EFTA02731724', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731771', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731486', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731604', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731618', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
+    EmailCfg(id='EFTA02731655', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731608', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731612', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731729', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731484', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731757', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731623', author=USANYS, recipients=[USANYS], is_attribution_uncertain=True),
+    EmailCfg(id='EFTA02731732', author=USANYS, recipients=[USANYS], date='2024-03-06T12:21:00', is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731528', author=USANYS, recipients=[USANYS], date='2021-05-06 09:39:15', is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731475', author=USANYS, recipients=[USANYS], date='2023-05-31T20:53:00', is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731697', author=USANYS, recipients=[USANYS], date='2021-06-07 17:33:00', is_attribution_uncertain=True),
@@ -1275,6 +1283,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02246341', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00840591', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00369335', recipients=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA02227488', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00368951', recipients=[LESLEY_GROFF], attribution_reason='can be seen in EFTA00368958'),
     EmailCfg(id='EFTA00313867', recipients=[LESLEY_GROFF], truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00383027', recipients=[LINDA_STONE]),
@@ -1296,14 +1305,15 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731512', recipients=[USANYS]),
     EmailCfg(id='EFTA00039884', recipients=[USANYS]),
     EmailCfg(id='EFTA02731480', recipients=[USANYS]),  # TODO: recipient uncertain
+    EmailCfg(id='EFTA02731482', recipients=[USANYS]),  # TODO: recipient uncertain
+    EmailCfg(id='EFTA02731735', recipients=[USANYS], date='2024-03-04T05:04:00'),  # TODO: recipient uncertain
+    EmailCfg(id='EFTA02731713', recipients=[USANYS]),  # TODO: recipient uncertain
+    EmailCfg(id='EFTA02731718', recipients=[USANYS]),  # TODO: recipient uncertain
     EmailCfg(id='EFTA02731715', recipients=[USANYS], duplicate_ids=['EFTA02731762']),
     EmailCfg(id='EFTA02731514', recipients=[USANYS], comment='journal upload followup'),
     EmailCfg(id='EFTA02731511', recipients=[USANYS], comment='journal upload followup'),
     EmailCfg(id='EFTA02731515', recipients=[USANYS], comment='journal upload followup'),
-    EmailCfg(id='EFTA02731732', date='2024-03-06T12:21:00'),
     EmailCfg(id='EFTA02730481', date='2023-07-07T11:01:00'),  # TODO: actually reply timestamp
-    EmailCfg(id='EFTA02731754', date='2024-03-06T23:24:00'),  # TODO: actually reply timestamp
-    EmailCfg(id='EFTA02731735', date='2024-03-04T05:04:00'),  # TODO: actually reply timestamp
     EmailCfg(id='EFTA02731577', date='2024-10-16T00:00:00'),  # TODO: actually reply timestamp
     EmailCfg(id='EFTA02730468', date='2019-07-11T08:25:00'),  # TODO: This is just wrong
     EmailCfg(id='EFTA00039665', date='2021-05-21 03:14:00'),  # Slow file
@@ -2398,7 +2408,7 @@ REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"(?<!M)On \d+/\d+/\d+[, ].*{REPLY_LINE_EN
 REPLY_LINE_ON_DATE_PATTERN = fr"^[> •]*On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Jan|Fe(b|vr\.)|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*)[, ].*{REPLY_LINE_ENDING_PATTERN}"
 REPLY_LINE_PATTERN = rf"({FRENCH_REPLY_PATTERN}|{GERMAN_REPLY_PATTERN}|{NORWEGAIN_REPLY_PATTERN}|{REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
-SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?((Envoyé de mon|Sent (from|via)).*(and string|AT&T|Droid|iPad|Phone|Mail|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)|Co-authored with iPhone auto-correct|Typos,? misspellings courtesy of iPhone(\s*word & thought substitution)?\.?', re.M | re.I)
+SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?((Envoyé de mon|Sent (from|via)).*(and string|AT&T|Droid|iPad|Phone|Mail|Surface|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)|Co-authored with iPhone auto-correct|Typos,? misspellings courtesy of iPhone(\s*word & thought substitution)?\.?', re.M | re.I)
 
 # No point in ever displaying these; their emails show up elsewhere because they're mostly CC recipients
 UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_CCS + [
