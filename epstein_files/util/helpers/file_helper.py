@@ -35,16 +35,18 @@ def coerce_file_path(filename_or_id: int | str) -> Path:
         return DOCS_DIR.joinpath(filename)
 
 
-def coerce_file_stem(filename_or_id: int | str) -> str:
+def coerce_file_stem(filename_or_id: int | str | Path) -> str:
     """Generate a valid file stem no matter what form the argument comes in."""
     if isinstance(filename_or_id, str) and is_doj_file(filename_or_id):
         return Path(filename_or_id).stem
+    elif isinstance(filename_or_id, Path):
+        filename_or_id = filename_or_id.stem
 
     if isinstance(filename_or_id, str) and filename_or_id.startswith(HOUSE_OVERSIGHT_PREFIX):
         file_id = extract_file_id(filename_or_id)
         file_stem = file_stem_for_id(file_id)
     else:
-        file_stem = file_stem_for_id(filename_or_id)
+        file_stem = file_stem_for_id(str(filename_or_id))
 
     if not HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX.match(file_stem):
         raise RuntimeError(f"Invalid stem '{file_stem}' from '{filename_or_id}'")
@@ -54,7 +56,6 @@ def coerce_file_stem(filename_or_id: int | str) -> str:
 
 def extract_file_id(filename_or_id: int | str | Path) -> str:
     # DOJ 2026-01 files have different pattern
-    # import pdb;pdb.set_trace()
     if isinstance(filename_or_id, (str, Path)) and is_doj_file(filename_or_id):
         return Path(filename_or_id).stem
     elif isinstance(filename_or_id, str):
@@ -74,13 +75,10 @@ def extract_file_id(filename_or_id: int | str | Path) -> str:
 
 
 def doj_txt_paths() -> list[Path]:
-    if DOJ_TXTS_20260130_DIR:
-        return [f for f in DOJ_TXTS_20260130_DIR.glob('**/*.txt')]
-    else:
-        return []
+    return [f for f in DOJ_TXTS_20260130_DIR.glob('**/*.txt')] if DOJ_TXTS_20260130_DIR else []
 
 
-def file_size_str(file_path, digits: int | None = None):
+def file_size_str(file_path: str | Path, digits: int | None = None):
     return file_size_to_str(file_size(file_path), digits)
 
 
@@ -104,24 +102,25 @@ def file_size_to_str(size: int, digits: int | None = None) -> str:
 def file_stem_for_id(id: int | str) -> str:
     if isinstance(id, int) or (isinstance(id, str) and len(id) <= 6):
         return f"{HOUSE_OVERSIGHT_PREFIX}{format_house_oversight_id(id)}"
-    elif len(id) == 8:
+
+    if len(id) == 8:
         return f"{HOUSE_OVERSIGHT_PREFIX}{id}"
     else:
         raise RuntimeError(f"Unknown kind of file id {id}")
 
 
 def format_house_oversight_id(id: int | str) -> str:
+    """Make sure there's enough leading zeroes for 6 digit ID."""
     return f"{int(id):06d}"
 
 
 def is_doj_file(file_or_id: str | Path) -> bool:
     """Check for EFTAXXXXXXX style files."""
-    # import pdb;pdb.set_trace()
     return bool(DOJ_FILE_STEM_REGEX.search(str(file_or_id)))
 
 
 def is_local_extract_file(filename) -> bool:
-    """Return true if filename is of form 'HOUSE_OVERSIGHT_029835_1.txt'."""
+    """Return True if `filename` is of form 'HOUSE_OVERSIGHT_029835_1.txt'."""
     file_match = FILE_ID_REGEX.match(str(filename))
     return True if file_match and file_match.group(2) else False
 
