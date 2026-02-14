@@ -1,8 +1,11 @@
 import re
+
+from dateutil.parser import parse
+
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
 
-# Email related regexes (have to be here for circular dependencies reasons)
+# Email related regexes
 FORWARDED_LINE_PATTERN = r"-+ ?(Forwarded|Original)\s*Message ?-*|Begin forwarded message:?"
 FRENCH_REPLY_PATTERN = r"Le .* a ecrit:"
 GERMAN_REPLY_PATTERN = r"Am \d\d\.\d\d\..*schrieb.*"
@@ -14,6 +17,9 @@ REPLY_LINE_ON_DATE_PATTERN = fr"^[> •]*On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)
 REPLY_LINE_PATTERN = rf"({FRENCH_REPLY_PATTERN}|{GERMAN_REPLY_PATTERN}|{NORWEGAIN_REPLY_PATTERN}|{REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
 REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
 SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?((Envoyé de mon|Sent (from|via)).*(and string|AT&T|Droid|iPad|Phone|Mail|Surface|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)|Co-authored with iPhone auto-correct|Typos,? misspellings courtesy of iPhone(\s*word & thought substitution)?\.?', re.M | re.I)
+
+# Other email related consts
+FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
 
 # Some emails have a lot of uninteresting CCs
 FLIGHT_IN_2012_PEOPLE: list[Name] = ['Francis Derby', JANUSZ_BANASIAK, 'Louella Rabuyo', 'Richard Barnnet']
