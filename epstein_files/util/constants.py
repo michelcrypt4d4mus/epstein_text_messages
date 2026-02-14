@@ -155,6 +155,7 @@ MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article about Ep
 # Some emails have a lot of uninteresting CCs
 FLIGHT_IN_2012_PEOPLE: list[Name] = ['Francis Derby', JANUSZ_BANASIAK, 'Louella Rabuyo', 'Richard Barnnet']
 IRAN_DEAL_RECIPIENTS: list[Name] = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
+KYARA_FUND = f"Epstein crypto fund {KYARA_INVESTMENTS}"
 LINDA_STONE_ATTRIBUTION = '"iPhone word substitution" in signature, which is traced back to "Linda, thanks" in EFTA00961792'
 VALAR_VENTURES_MEETING = f"meeting with {PETER_THIEL}'s {VALAR_VENTURES} fund"
 
@@ -2211,19 +2212,19 @@ OTHER_FILES_MISC = [
     DocCfg(
         id='EFTA01107738',
         description="creation of Cantor Urramoor Asset Management with Mr. T's (Prince Andrew?) Urramoor and Howard Lutnick's Cantor Fitzgerald",
-        is_interesting=True
+        is_interesting=True,
     ),
     DocCfg(
         id='EFTA01620764',
         author=MELANIE_WALKER,
         description=f'iMessage conversation between about Bill Gates being drunk all the time',
         is_attribution_uncertain=True,
-        is_interesting=True
+        is_interesting=True,
     ),
     DocCfg(
         id='EFTA01141453',
         description="referral agreement between Mr. T's (Prince Andrew?) Urramoor and Howard Lutnick's Cantor Fitzgerald",
-        is_interesting=True
+        is_interesting=True,
     ),
     # Replacement text
     DocCfg(
@@ -2316,11 +2317,11 @@ OTHER_FILES_CRYPTO = [
     # Joi Ito / Kyara
     DocCfg(id='EFTA00805860', description=f"{JOI_ITO}'s Neoteny 3 fund investor update / portfolio"),
     DocCfg(id='EFTA01118268', description=f"{JOI_ITO}'s Neoteny 3 fund investor update", date='2015-06-30'),
-    DocCfg(id='EFTA00605699', description=f"{KYARA_INVESTMENTS} II LLC incorporation papers"),
-    DocCfg(id='EFTA01116280', description=f"{KYARA_INVESTMENTS} I LLC operating agreement"),
-    DocCfg(id='EFTA01108775', description=f"{KYARA_INVESTMENTS} I LLC operating agreement"),  # TODO: dupe?
-    DocCfg(id='EFTA01186455', description=f"{KYARA_INVESTMENTS} II LLC operating agreement"),  # TODO: dupe?
-    DocCfg(id='EFTA00584696', description=f"{KYARA_INVESTMENTS} III LLC operating agreement"),
+    DocCfg(id='EFTA00605699', description=f"{KYARA_FUND} II LLC incorporation papers"),
+    DocCfg(id='EFTA01116280', description=f"{KYARA_FUND} I LLC (Physical Graph Corporation) operating agreement with edits"),
+    DocCfg(id='EFTA01108775', description=f"{KYARA_FUND} I LLC (Physical Graph Corporation) operating agreement"),
+    DocCfg(id='EFTA01186455', description=f"{KYARA_FUND} II LLC operating agreement"),
+    DocCfg(id='EFTA00584696', description=f"{KYARA_FUND} III LLC operating agreement"),
     DocCfg(id='EFTA01734786', description='LedgerX Series B pitch deck'),
     DocCfg(id='EFTA00128987', description='suspicious activity report about Kushner co. crypto payments to a suspicious Russian person'),
     # Valar
