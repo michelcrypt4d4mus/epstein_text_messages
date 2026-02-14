@@ -5,6 +5,9 @@ from epstein_files.util.helpers.string_helper import remove_question_marks
 
 Name = str | None
 
+# Unknown / None
+UNKNOWN = '(unknown)'
+
 # Texting Names
 ANDRZEJ_DUDA = 'Andrzej Duda or entourage'
 ANIL_AMBANI = "Anil Ambani"
@@ -183,8 +186,6 @@ TYLER_SHEARS = 'Tyler Shears'  # Reputation manager, like Al Seckel
 VINCENZO_IOZZO = 'Vincenzo Iozzo'
 VINIT_SAHNI = 'Vinit Sahni'
 ZUBAIR_KHAN = 'Zubair Khan'
-
-UNKNOWN = '(unknown)'
 
 # DOJ files emails
 ADAM_BACK = 'Adam Back'
