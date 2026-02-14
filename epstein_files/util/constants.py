@@ -1362,7 +1362,10 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00964459', description=f'discussion of sharia compliant crypto token', is_interesting=True),
     EmailCfg(id='EFTA00901772', description=f'discussion of the sale of Epstein stake in Coinbase'),
     EmailCfg(id='EFTA00671263', description="Eagle's View Capital Management September 2017 Performance Update"),
-    EmailCfg(id='EFTA02671523', description='email from CEO Michael Jones of company Epstein invested in called Wearality'),
+    EmailCfg(
+        id='EFTA02671523',
+        description=f"Jones is former Google chief technology advocate and CEO of Wearality which Epstein & {JOI_ITO} invested in",
+    ),
     EmailCfg(id='EFTA01139067', description=f'Epstein tells Farkas he has not invested in {CRYPTO_CURRENCY_PARTNERS_II}'),
     EmailCfg(id='EFTA00699275', description=f"'Fred' is probably Coinbase co-founder Fred Ehrsam"),
     EmailCfg(id='EFTA00830911', description='fundraising email for LedgerX which was later acquired by FTX for $298 million'),
@@ -1446,6 +1449,7 @@ PALM_BEACH_WATER_COMMITTEE = f'{PALM_BEACH} Water Committee'
 PATTERSON_BOOK_SCANS = f'pages of "Filthy Rich: The Shocking True Story of {JEFFREY_EPSTEIN}"'
 REAL_DEAL_ARTICLE = 'article by Keith Larsen'
 SHIMON_POST_ARTICLE = f'selection of articles about the mideast'
+SKYPE_CONVERSATION = 'Skype conversation with'
 STRANGE_BEDFELLOWS = "'Strange Bedfellows' list of invitees f. Johnny Depp, Woody Allen, Obama, and more"
 SWEDISH_LIFE_SCIENCES_SUMMIT = f"{BARBRO_C_EHNBOM}'s Swedish American Life Science Summit (SALSS)"
 TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Government Ethics"
@@ -1803,7 +1807,7 @@ OTHER_FILES_CONFERENCES = [
     DocCfg(id='024179', author=UN_GENERAL_ASSEMBLY, description=f'president and first lady schedule', date='2012-09-21'),
     DocCfg(
         id='029427',
-        description=f"seems related to an IRL meeting about concerns China will attempt to absorb Mongolia",
+        description=f"seems related to an IRL meeting about Chinese attempts to absorb Mongolia",
         is_interesting=True,
     ),
     DocCfg(
@@ -1903,7 +1907,6 @@ OTHER_FILES_FINANCE = [
         id='012048',
         description=f"{PRESS_RELEASE} 'Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm' and other articles"
     ),
-
     # private placement memoranda
     DocCfg(
         id='024432',
@@ -1911,6 +1914,9 @@ OTHER_FILES_FINANCE = [
         description=f"Michael Milken's Knowledge Universe Education (KUE) $1,000,000 corporate share placement notice (SEC filing?)"
     ),
     DocCfg(id='024003', description=f"New Leaf Ventures ($375 million biotech fund) private placement memorandum"),
+
+    # DOJ files
+    DocCfg(id='EFTA01087311', description=f'{LEON_BLACK} Family Partners cash projections', is_interesting=True),
 ]
 
 OTHER_FILES_LETTERS = [
@@ -2157,12 +2163,11 @@ OTHER_FILES_MISC = [
     DocCfg(id='027074', author=FEMALE_HEALTH_COMPANY, description=f"pitch deck (USAID was a customer)"),
     DocCfg(id='032735', author=GORDON_GETTY, description=f"on Trump", date='2018-03-20'),  # Dated based on concurrent emails from Getty
     DocCfg(id='025540', author=JEFFREY_EPSTEIN, description=f"rough draft of his side of the story"),
-    DocCfg(id='026634', author='Michael Carrier', description=f"comments about an Apollo linked hedge fund 'DE Fund VIII'"),
-    DocCfg(id='031425', author=SCOTT_J_LINK, description=f'completely redacted email from', is_interesting=False),
+    DocCfg(id='026634', author='Michael Carrier', description=f'comments about an Apollo linked fund "DE Fund VIII"'),
+    DocCfg(id='031425', author=SCOTT_J_LINK, description=f'completely redacted email', is_interesting=False),
     DocCfg(id='020447', author='Working Group on Chinese Influence Activities in the U.S.', description=f'Promoting Constructive Vigilance'),
-    DocCfg(id='031743', description=f'a few pages describing the internet as a "New Nation State" (Network State?)'),
     DocCfg(id='012718', description=f"{CVRA} congressional record", date='2011-06-17'),
-    DocCfg(id='024117', description=f"FAQ about anti-money laundering (AML) and terrorist financing (CFT) law in the U.S."),
+    DocCfg(id='024117', description=f"anti-money laundering (AML) & terrorist financing (CFT) U.S. law FAQ"),
     DocCfg(id='019448', description=f"Haitian business investment proposal called Jacmel", attached_to_email_id='019446'),
     DocCfg(id='023644', description=f"interview with Mohammed bin Salman", date='2016-04-25'),
     DocCfg(
@@ -2189,11 +2194,7 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00039156', author=BUREAU_OF_PRISONS, replace_text_with='Standards of Employee Conduct'),
     DocCfg(id='EFTA01810372', author=TYLER_SHEARS, description=f'invoice for reputation management work', is_interesting=True),
     DocCfg(id='EFTA00005783', description='heavily redacted handwritten note, 30+ completely redacted pages', date='2019-08-29'),
-    DocCfg(id='EFTA01087311', description=f'{LEON_BLACK} Family Partners cash projections'),
     DocCfg(id='EFTA00811866', description="list of Epstein's bank accounts", is_interesting=True),
-    DocCfg(id='EFTA01217787', description=f'Skype conversation with {TYLER_SHEARS} and Hanna Traff at Spotify', is_interesting=True),
-    DocCfg(id='EFTA01217703', description=f'Skype conversation with actress Athena Zelcovich, {JOSCHA_BACH}, and {LAWRENCE_KRAUSS}'),
-    DocCfg(id='EFTA01217736', description=f'Skype conversation with actress Athena Zelcovich, {TYLER_SHEARS}'),
     DocCfg(id='EFTA02731023', description=f"letter from Senator Ron Wyden to {LEON_BLACK}", is_interesting=False),
     DocCfg(id='EFTA00007781', description='paychecks signed by Epstein deposited at Colonial Bank'),
     DocCfg(id='EFTA01273102', description=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank", is_interesting=True),
@@ -2251,6 +2252,7 @@ OTHER_FILES_MISC = [
 # This category is automatically 'interesting', see OtherFile class
 OTHER_FILES_CRYPTO = [
     DocCfg(id='024256', author=JOI_ITO, description=f"Internet & Society: The Technologies and Politics of Control"),
+    DocCfg(id='031743', description=f'a few pages describing the internet as a "New Nation State" (Network State?)'),
     DocCfg(id='024271', description=f"{BLOCKCHAIN_CAPITAL} and {BROCK_PIERCE} pitch deck", date='2015-10-01'),
     DocCfg(
         id='025663',
@@ -2275,20 +2277,21 @@ OTHER_FILES_CRYPTO = [
         description='A Blockchain-Based Approach to Health Information Exchange Networks',
     ),
     DocCfg(id='EFTA00797613', description='Alphabit crypto fund pitch deck', attached_to_email_id='EFTA00955063'),
-    DocCfg(id='EFTA00811666', description="asset valuations of Epstein's holdings, includes 'Coinbase via grat'"),
-    DocCfg(id='EFTA01088644', description=f"{BLOCKCHAIN_CAPITAL} deck", date='2015-10-01'),
-    DocCfg(id='EFTA00604942', description=f"{BLOCKCHAIN_CAPITAL} Investor Update", date='2015-10-01'),
+    DocCfg(id='EFTA00811666', description='asset valuations of Epstein\'s holdings, includes "Coinbase via grat"'),
+    DocCfg(id='EFTA01088644', author=BLOCKCHAIN_CAPITAL, description="deck", date='2015-10-01'),
+    DocCfg(id='EFTA00604942', author=BLOCKCHAIN_CAPITAL, description="Investor Update", date='2015-10-01'),
     # Coinbase
     DocCfg(
         id='EFTA01082451',
+        author=BLOCKCHAIN_CAPITAL,
         date='2014-11-10',
-        description=f'Coinbase / {BLOCKCHAIN_CAPITAL} nondisclosure agreement possibly regarding Epstein investment',
+        description=f'/ {COINBASE} nondisclosure agreement possibly regarding Epstein investment',
         is_interesting=True,
         truncate_to=2000
     ),
-    DocCfg(id='EFTA01092555', description='Coinbase certificate of incorporation', date='2013-12-12', truncate_to=TRUNCATED_CHARS),
-    DocCfg(id='EFTA01120975', description='Coinbase Series B stock purchase', date='2013-12-12', truncate_to=MAX_CHARS_TO_PRINT),
-    DocCfg(id='EFTA01121035', description='Coinbase Series C preferred stock purchase', date='2014-10-24'),
+    DocCfg(id='EFTA01092555', author=COINBASE, description='certificate of incorporation', date='2013-12-12', truncate_to=TRUNCATED_CHARS),
+    DocCfg(id='EFTA01120975', author=COINBASE, description='Series B stock purchase', date='2013-12-12', truncate_to=MAX_CHARS_TO_PRINT),
+    DocCfg(id='EFTA01121035', author=COINBASE, description='Series C preferred stock purchase', date='2014-10-24'),
     # CCP (Brock Pierce / Blockchain Capital)
     DocCfg(id='EFTA01089506', description=f"{CRYPTO_CURRENCY_PARTNERS_II} investor report", date='2014-11-01'),
     DocCfg(id='EFTA01093509', description=f"{CRYPTO_CURRENCY_PARTNERS_II} partnership draft", truncate_to=MAX_CHARS_TO_PRINT * 2),
@@ -2332,13 +2335,15 @@ OTHER_FILES_CRYPTO = [
 ]
 
 OTHER_FILES_MESSAGING = [
-    # HOUSE_OVERSIGHT
+    # Skype
     DocCfg(id='032206', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
     DocCfg(id='032208', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
     DocCfg(id='032209', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
     DocCfg(id='032210', category=SKYPE_LOG, author='linkspirit', is_interesting=True),
-
-    # DOJ file
+    DocCfg(id='EFTA01217787', category=SKYPE_LOG, description=f'{TYLER_SHEARS} & Hanna Traff at Spotify', is_interesting=True),
+    DocCfg(id='EFTA01217703', category=SKYPE_LOG, description=f'actress Athena Zelcovich, {JOSCHA_BACH}, and {LAWRENCE_KRAUSS}'),
+    DocCfg(id='EFTA01217736', category=SKYPE_LOG, description=f'actress Athena Zelcovich, {TYLER_SHEARS}'),
+    # iMessage
     DocCfg(id='EFTA01622387', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', is_attribution_uncertain=True),
     DocCfg(id='EFTA01618494', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', is_attribution_uncertain=True),
     DocCfg(
