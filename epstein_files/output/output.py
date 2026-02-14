@@ -94,7 +94,7 @@ def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile | Email]:
 
 def print_email_timeline(epstein_files: EpsteinFiles) -> None:
     """Print a table of all emails in chronological order."""
-    emails = Document.sort_by_timestamp([e for e in epstein_files.non_duplicate_emails() if not e.is_mailing_list])
+    emails = Document.sort_by_timestamp([e for e in epstein_files.non_duplicate_emails if not e.is_mailing_list])
     title = f'Table of All {len(emails):,} Non-Junk Emails in Chronological Order (actual emails below)'
     table = Email.build_emails_table(emails, title=title, show_length=True)
     console.print(Padding(table, (2, 0)))
@@ -327,7 +327,7 @@ def _verify_all_emails_were_printed(epstein_files: EpsteinFiles, already_printed
     logger.warning(f"Printed {len(already_printed_emails):,} emails of {len(email_ids_that_were_printed):,} unique file IDs.")
     missed_an_email = False
 
-    for email in epstein_files.non_duplicate_emails():
+    for email in epstein_files.non_duplicate_emails:
         if email.file_id not in email_ids_that_were_printed:
             logger.error(f"Failed to print {email.summary}")
             missed_an_email = True
