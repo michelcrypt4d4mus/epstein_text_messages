@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.5.2
 * `ContactInfo` class to unify regexes and biographical info
 * `epstein_generate` new option `--reload-doj` option to reload DOJ January 2026 files (skips reloading HOUSE_OVERSIGHT files)
 * `epstein_show` new options `--open-txt`, `--open-pdf`, `--open-both`, `--open-url`, `--open-jmail`
