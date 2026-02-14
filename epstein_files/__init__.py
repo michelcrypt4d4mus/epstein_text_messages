@@ -17,6 +17,7 @@ from rich.text import Text
 
 from epstein_files.epstein_files import EpsteinFiles, document_cls
 from epstein_files.documents.document import INFO_PADDING, Document
+from epstein_files.documents.documents.word_count import write_word_counts_html
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
@@ -33,7 +34,6 @@ from epstein_files.util.helpers.data_helpers import flatten
 from epstein_files.util.helpers.file_helper import extract_file_id
 from epstein_files.util.logging import exit_with_error, logger
 from epstein_files.util.timer import Timer
-from epstein_files.util.word_count import write_word_counts_html
 
 
 def generate_html() -> None:
