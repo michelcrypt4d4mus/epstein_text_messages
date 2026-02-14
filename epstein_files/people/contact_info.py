@@ -7,9 +7,9 @@ from rich.text import Text
 
 from epstein_files.util.constant.names import (NAMES_TO_NOT_HIGHLIGHT, SIMPLE_NAME_REGEX, Name,
      constantize_name, extract_first_name, extract_last_name, reversed_name)
-from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, remove_question_marks
+from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN
 from epstein_files.util.helpers.data_helpers import constantize_names
-from epstein_files.util.helpers.string_helper import indented, quote
+from epstein_files.util.helpers.string_helper import indented, quote, remove_question_marks
 
 
 @dataclass

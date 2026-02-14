@@ -6,9 +6,9 @@ from inflection import parameterize
 from rich.text import Text
 
 from epstein_files.util.constant.output_files import *
-from epstein_files.util.constant.strings import remove_question_marks
 from epstein_files.util.env import args
 from epstein_files.util.helpers.file_helper import coerce_file_stem
+from epstein_files.util.helpers.string_helper import remove_question_marks
 
 # Style stuff
 ARCHIVE_LINK_COLOR = 'slate_blue3'
