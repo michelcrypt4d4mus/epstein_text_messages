@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # Extract PDFs from the DOJ 2026-01-30 dump.
 # Requires the EPSTEIN_DOJ_PDFS_20260130_DIR env var to be set.
-import logging
 import re
-from logging import Formatter, Handler
 
 from pdfalyzer.decorators.pdf_file import PdfFile
 from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
@@ -21,25 +19,10 @@ assert DOJ_TXTS_20260130_DIR is not None
 BAD_FILENAME_REGEX = re.compile(r".*/EFTA\d+-\d\.pdf")
 EXTRACT_ARGS = ['extract_pdf_text', '--no-page-number-panels', '--panelize-image-text']
 
+
 if not DOJ_TXTS_20260130_DIR.exists():
     ask_to_proceed(f"Dir {DOJ_TXTS_20260130_DIR} doesn't exist, create?")
     DOJ_TXTS_20260130_DIR.mkdir()
-
-
-logger.setLevel(logging.DEBUG)
-print(f"logger name = '{logger.name}', handlers = {logger.handlers}")
-
-for app_name in ['pdfalyzer', 'yaralyzer']:
-    app_log = logging.getLogger(app_name)
-
-    for log in [app_log] + app_log.handlers:
-        log.setLevel(logging.DEBUG)
-
-        if isinstance(log, Handler):
-            log.formatter = Formatter("[%(name)s] %(message)s")
-        else:
-            print(f"logger name = '{log.name}', handlers = {log.handlers}")
-
 
 for dir in [d for d in DOJ_PDFS_20260130_DIR.glob('*') if d.is_dir()]:
     if (dir_match := DOJ_DATASET_ID_REGEX.search(dir.name)):
