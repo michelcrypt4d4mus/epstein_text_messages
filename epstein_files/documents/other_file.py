@@ -1,13 +1,11 @@
 import re
 import logging
 import warnings
-from collections import defaultdict
 from dataclasses import asdict, dataclass
 from datetime import datetime
 from typing import ClassVar, Sequence
 
 import datefinder
-import dateutil
 from rich.console import Group
 from rich.markup import escape
 from rich.panel import Panel
@@ -18,11 +16,11 @@ from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, WHITESPACE_R
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.doc_cfg import DocCfg, Metadata
-from epstein_files.util.data import days_between, escape_single_quotes, remove_timezone, sort_dict, uniquify
-from epstein_files.util.file_helper import FILENAME_LENGTH, file_size_to_str
+from epstein_files.util.data import days_between, remove_timezone, uniquify
+from epstein_files.util.file_helper import FILENAME_LENGTH
 from epstein_files.util.env import args
 from epstein_files.util.highlighted_group import QUESTION_MARKS_TXT, styled_category
-from epstein_files.util.rich import add_cols_to_table, build_table, highlighter
+from epstein_files.util.rich import build_table, highlighter
 from epstein_files.util.logging import logger
 
 FIRST_FEW_LINES = 'First Few Lines'
