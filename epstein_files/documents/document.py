@@ -8,6 +8,7 @@ from subprocess import run
 from typing import Callable, ClassVar, Self, Sequence, TypeVar
 
 from rich.console import Console, ConsoleOptions, Group, RenderResult
+from rich.markup import escape
 from rich.padding import Padding
 from rich.panel import Panel
 from rich.text import Text
@@ -30,15 +31,16 @@ from epstein_files.util.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDIN
 from epstein_files.util.search_result import MatchedLine
 
 ALT_LINK_STYLE = 'white dim'
+CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 CLOSE_PROPERTIES_CHAR = ']'
 HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
+DOJ_DATASET_ID_REGEX = re.compile(r"(?:epstein_dataset_|DataSet )(\d+)")
+WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
+
 INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
 MAX_TOP_LINES_LEN = 4000  # Only for logging
 MIN_DOCUMENT_ID = 10477
-
-DOJ_DATASET_ID_REGEX = re.compile(r"(?:epstein_dataset_|DataSet )(\d+)")
-WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
 FILENAME_MATCH_STYLES = [
     'dark_green',
@@ -263,6 +265,28 @@ class Document:
         return f"{prefix}timestamp: {remove_zero_time(self.timestamp)}"
 
     @property
+    def prettified_text(self) -> Text:
+        """Returns the string we want to print as the body of the document."""
+        style = ''
+        trim_footer_txt = None
+
+        if self.config and self.config.replace_text_with:
+            if len(self.config.replace_text_with) < 300:
+                style = INFO_STYLE
+                text = f'(Text of {self.config.replace_text_with} {CHECK_LINK_FOR_DETAILS})'
+            else:
+                text = self.config.replace_text_with
+        else:
+            text = self.text
+
+        if self.config and self.config.truncate_to:
+            txt = highlighter(Text(text[0:self.config.truncate_to], style))
+            trim_footer_txt = self.truncation_note(self.config.truncate_to)
+            return txt.append('...\n\n').append(trim_footer_txt)
+        else:
+            return highlighter(Text(text, style))
+
+    @property
     def summary(self) -> Text:
         """Summary of this file for logging. Subclasses should extend with a method that closes the open '['."""
         txt = Text('').append(self._class_name, style=self._class_style)
@@ -483,17 +507,24 @@ class Document:
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:
         """Default `Document` renderer (Email and MessengerLog override this)."""
-        yield self.file_info_panel()
+        doc = self.printable_document()
 
-        text_panel = Panel(
-            highlighter(self.text),
-            border_style=self.border_style,
-            expand=False,
-            title=f"({self.panel_title_timestamp})",
-            title_align='right',
-        )
+        # import pdb;pdb.set_trace()
+        # Emails handle their own formatting
+        if type(self) != type(doc):
+            yield doc
+        else:
+            yield self.file_info_panel()
 
-        yield Padding(text_panel, (0, 0, 1, INFO_INDENT))
+            text_panel = Panel(
+                self.prettified_text,
+                border_style=self.border_style,
+                expand=False,
+                title=f"({self.panel_title_timestamp})",
+                title_align='right',
+            )
+
+            yield Padding(text_panel, (0, 0, 1, INFO_INDENT))
 
     def __str__(self) -> str:
         return self.summary.plain
