@@ -22,7 +22,7 @@ from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import *
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import days_between, flatten, uniquify, without_falsey
-from epstein_files.util.rich import (GREY_NUMBERS, TABLE_TITLE_STYLE, build_table,
+from epstein_files.output.rich import (GREY_NUMBERS, TABLE_TITLE_STYLE, build_table,
      console, join_texts, print_centered)
 
 ALT_INFO_STYLE = 'medium_purple4'

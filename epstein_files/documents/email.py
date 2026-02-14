@@ -27,7 +27,7 @@ from epstein_files.util.helpers.data_helpers import AMERICAN_TIME_REGEX, TIMEZON
 from epstein_files.util.helpers.file_helper import extract_file_id, file_stem_for_id
 from epstein_files.output.highlight_config import JUNK_EMAILERS, get_style_for_name
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import *
+from epstein_files.output.rich import *
 
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
 BAD_LINE_REGEX = re.compile(r'^(>;?|\d{1,2}|PAGE INTENTIONALLY LEFT BLANK|Classification: External Communication|Hide caption|Importance:?\s*High|[iI,•]|[1i] (_ )?[il]|, [-,]|L\._|_filtered|.*(yiv0232|font-family:|margin-bottom:).*)$')

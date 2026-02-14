@@ -4,7 +4,7 @@ from pathlib import Path
 from rich.text import Text
 
 from epstein_files.util.helpers.file_helper import extract_file_id, is_doj_file
-from epstein_files.util.rich import ARCHIVE_LINK_COLOR, prefix_with, styled_dict
+from epstein_files.output.rich import ARCHIVE_LINK_COLOR, prefix_with, styled_dict
 
 
 @dataclass(kw_only=True)

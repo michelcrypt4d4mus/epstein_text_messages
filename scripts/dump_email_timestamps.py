@@ -18,7 +18,7 @@ from epstein_files.output.highlighted_names import HighlightedNames
 from epstein_files.util.constant.names import *
 from epstein_files.util.helpers.data_helpers import *
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import console, highlighter, print_json, print_subtitle_panel
+from epstein_files.output.rich import console, highlighter, print_json, print_subtitle_panel
 
 # sys.exit()
 # from epstein_files.util.helpers.debugging_helper import _show_timestamps
