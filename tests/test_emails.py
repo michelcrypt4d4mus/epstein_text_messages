@@ -230,7 +230,7 @@ EMAIL_AUTHOR_COUNTS = {
     STEVEN_SINOFSKY: 5,
     "Steven Victor MD": 1,
     SULTAN_BIN_SULAYEM: 12,
-    TERJE_ROD_LARSEN: 3,
+    TERJE_ROD_LARSEN: 4,
     TERRY_KAFKA: 8,
     THORBJORN_JAGLAND: 7,
     'Tancredi Marchiolo': 1,
@@ -239,7 +239,7 @@ EMAIL_AUTHOR_COUNTS = {
     TOM_PRITZKER: 6,
     TONJA_HADDAD_COLEMAN: 5,
     TYLER_SHEARS: 19,
-    USANYS: 72,
+    USANYS: 79,
     'USMS': 1,
     VALAR_VENTURES: 1,
     "Valeria Chomsky": 2,
@@ -544,7 +544,7 @@ EMAIL_RECIPIENT_COUNTS = {
     TYLER_SHEARS: 7,
     'USAHUB-USAJournal111': 1,
     "Uri Fouzailov": 1,
-    USANYS: 79,
+    USANYS: 72,
     'USMS': 1,
     "Vahe Stepanian": 1,
     "Val Sherman": 1,
@@ -716,6 +716,9 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
     "Sent from Steve Hanson's Blackberry": [
         "Stephen Hanson"
     ],
+    'Sent from Surface': [
+        UNKNOWN
+    ],
     'Sent from Windows Mail': [
         'Steven Sinofsky',
     ],
@@ -757,7 +760,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         "Gwendolyn Beck"
     ],
     "Sent from my iPad": [
-        '(unknown)',
+        UNKNOWN,
         BROCK_PIERCE,
         'Bruce Moskowitz',
         CECILIA_STEEN,
