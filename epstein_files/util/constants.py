@@ -14,6 +14,7 @@ from epstein_files.util.logging import logger
 FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
 MAX_CHARS_TO_PRINT = 4000
 NO_TRUNCATE = -1
+PARTICIPANTS_FIELD = 'Participants: field'
 TRUNCATED_CHARS = int(MAX_CHARS_TO_PRINT / 3)
 
 HEADER_ABBREVIATIONS = {
@@ -51,18 +52,6 @@ HEADER_ABBREVIATIONS = {
     "Woody": "Woody Allen",
     "Zug": "City in Switzerland (crypto hub)",
 }
-
-
-#########################
-# Emailers Config Stuff #
-#########################
-
-# Atribution reasons
-BOLOTOVA_REASON = 'Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")'
-KATHY_REASON = 'from "Kathy" about dems, sent from iPad'
-LARRY_REASON = 'Planes discussion signed "Larry"'
-PARTICIPANTS_FIELD = 'Participants: field'
-PAULA_REASON = 'Signature of "Sent via BlackBerry from T-Mobile"'
 
 
 ################################################################################################
@@ -151,13 +140,20 @@ TEXTS_CONFIG = CONFIRMED_TEXTS_CONFIG + UNCONFIRMED_TEXTS_CONFIG
 ################################################ EMAILS ################################################
 ########################################################################################################
 
+# Atribution reasons
+BOLOTOVA_REASON = 'Same signature style as 029020 ("--" followed by "Sincerely Renata Bolotova")'
+KATHY_REASON = 'from "Kathy" about dems, sent from iPad'
+LARRY_REASON = 'Planes discussion signed "Larry"'
+LINDA_STONE_ATTRIBUTION = '"iPhone word substitution" in signature, which is traced back to "Linda, thanks" in EFTA00961792'
+PAULA_REASON = 'Signature of "Sent via BlackBerry from T-Mobile"'
+
+KYARA_FUND = f"Epstein crypto fund {KYARA_INVESTMENTS}"
+VALAR_VENTURES_MEETING = f"meeting with {PETER_THIEL}'s {VALAR_VENTURES} fund"
 MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
+
 # Some emails have a lot of uninteresting CCs
 FLIGHT_IN_2012_PEOPLE: list[Name] = ['Francis Derby', JANUSZ_BANASIAK, 'Louella Rabuyo', 'Richard Barnnet']
 IRAN_DEAL_RECIPIENTS: list[Name] = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
-KYARA_FUND = f"Epstein crypto fund {KYARA_INVESTMENTS}"
-LINDA_STONE_ATTRIBUTION = '"iPhone word substitution" in signature, which is traced back to "Linda, thanks" in EFTA00961792'
-VALAR_VENTURES_MEETING = f"meeting with {PETER_THIEL}'s {VALAR_VENTURES} fund"
 
 TRIVERS_CCS: list[Name] = [
     "Alan Rogers",
@@ -299,8 +295,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='031460', author=EDWARD_JAY_EPSTEIN, attribution_reason='quoted reply has edwardjayepstein.com', is_fwded_article=True),
     EmailCfg(
         id='030475',
-        author=FAITH_KATES,
         attribution_reason='Next Management LLC legal signature',
+        author=FAITH_KATES,
         duplicate_ids=['030575'],
         dupe_type='redacted',
     ),
@@ -321,19 +317,19 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='023208',
         author=JEFFREY_EPSTEIN,
-        recipients=[BRAD_WECHSLER, MELANIE_SPINELLA],
+        comment="Long discussion about leon black's finances",
         description="very long email chain about Leon Black's finances and things like Gratitude America",
         duplicate_ids=['023291'],
         fwded_text_after='Date: Tue, Oct 27',
+        recipients=[BRAD_WECHSLER, MELANIE_SPINELLA],
         truncate_to=NO_TRUNCATE,
-        comment="Long discussion about leon black's finances",
     ),
     EmailCfg(
         id='032214',
-        author=JEFFREY_EPSTEIN,
-        recipients=[MIROSLAV_LAJCAK],
         actual_text='Agreed',
         attribution_reason='Quoted reply has signature',
+        author=JEFFREY_EPSTEIN,
+        recipients=[MIROSLAV_LAJCAK],
     ),
     EmailCfg(id='029582', author=JEFFREY_EPSTEIN, recipients=[RENATA_BOLOTOVA], attribution_reason=BOLOTOVA_REASON),
     EmailCfg(id='030997', author=JEFFREY_EPSTEIN, actual_text='call back'),
