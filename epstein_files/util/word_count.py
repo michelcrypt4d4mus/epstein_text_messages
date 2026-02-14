@@ -11,14 +11,14 @@ from rich.text import Text
 from epstein_files.documents.documents.search_result import MatchedLine, SearchResult
 from epstein_files.documents.emails.emailers import cleanup_str
 from epstein_files.epstein_files import EpsteinFiles
+from epstein_files.output.rich import (console, highlighter, print_centered, print_color_key, print_page_title,
+     print_subtitle_panel, print_starred_header, write_html)
 from epstein_files.util.constant.common_words import COMMON_WORDS_LIST, COMMON_WORDS, UNSINGULARIZABLE_WORDS
 from epstein_files.util.constant.names import OTHER_NAMES
 from epstein_files.util.constant.output_files import WORD_COUNT_HTML_PATH
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import ALL_NAMES, flatten, sort_dict
 from epstein_files.util.logging import logger
-from epstein_files.output.rich import (console, highlighter, print_centered, print_color_key, print_page_title,
-     print_subtitle_panel, print_starred_header, write_html)
 from epstein_files.util.timer import Timer
 
 FIRST_AND_LAST_NAMES = flatten([n.split() for n in ALL_NAMES])

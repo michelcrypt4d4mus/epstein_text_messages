@@ -4,11 +4,11 @@ from dataclasses import asdict, dataclass, field
 
 from epstein_files.documents.documents.doc_cfg import EmailCfg
 from epstein_files.documents.emails.emailers import BAD_EMAILER_REGEX, TIME_REGEX
+from epstein_files.output.rich import UNKNOWN
 from epstein_files.util.constant.strings import AUTHOR
 from epstein_files.util.constants import ALL_CONFIGS
 from epstein_files.util.helpers.string_helper import indented
 from epstein_files.util.logging import logger
-from epstein_files.output.rich import UNKNOWN
 
 FIELD_NAMES = ['Date', 'From', 'Sent', 'Subject']
 ON_BEHALF_OF = 'on behalf of'

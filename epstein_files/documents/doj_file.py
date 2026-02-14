@@ -12,10 +12,10 @@ from epstein_files.documents.document import CHECK_LINK_FOR_DETAILS, Document
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.email_header import FIELDS_COLON_PATTERN
 from epstein_files.documents.other_file import OtherFile
+from epstein_files.output.rich import RAINBOW, highlighter, wrap_in_markup_style
 from epstein_files.util.constants import FALLBACK_TIMESTAMP
 from epstein_files.util.layout.left_bar_panel import LeftBarPanel
 from epstein_files.util.logging import logger
-from epstein_files.output.rich import RAINBOW, highlighter, wrap_in_markup_style
 
 IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTALL)
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")

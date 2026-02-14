@@ -5,8 +5,8 @@ from collections import defaultdict
 from rich.text import Text
 
 from scripts.use_pickled import console, epstein_files
-from epstein_files.util.helpers.data_helpers import sort_dict
 from epstein_files.output.rich import highlighter, print_subtitle_panel
+from epstein_files.util.helpers.data_helpers import sort_dict
 
 INDENT = '  '
 GUID_REGEX = re.compile(r'[-\d\w]{36}')

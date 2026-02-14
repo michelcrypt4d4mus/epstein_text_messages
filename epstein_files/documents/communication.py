@@ -7,9 +7,9 @@ from rich.text import Text
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, Document
 from epstein_files.documents.documents.doc_cfg import CommunicationCfg
 from epstein_files.output.highlight_config import get_style_for_name, styled_name
+from epstein_files.output.rich import styled_key_value
 from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constants import FALLBACK_TIMESTAMP
-from epstein_files.output.rich import styled_key_value
 
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 
