@@ -30,7 +30,6 @@ MIDEAST = 'mideast'
 QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
 REGEX_STYLE_PREFIX = 'regex'
 TECH_BRO = 'tech bro'
-
 VICTIM_COLOR = 'orchid1'
 
 CATEGORY_STYLE_MAPPING = {
