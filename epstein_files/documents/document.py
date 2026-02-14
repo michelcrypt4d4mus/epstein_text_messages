@@ -79,13 +79,12 @@ class Document:
     Attributes:
         file_path (Path): Local path to file
         author (Name): Who is responsible for the text in the file
-        config (DocCfg): Preconfigured information about this file
+        config (DocCfg, optional): Preconfigured information about this file
         doj_2026_dataset_id (int, optional): Only set for files that came from the DOJ website.
-        file_id (str): 6 digit (or 8 digits if it's a local extract file) string ID
-        filename (str): File's basename
-        lines (str): Number of lines in the file after all the cleanup
+        file_id (str): ID string - 6 numbers with zero padding for HOUSE_OVERSIGHT, full EFTAXXXXX for DOJ files.
+        lines (list[str]): Number of lines in the file after all the cleanup
         text (str): Contents of the file
-        timestamp (datetime | None): When the file was originally created
+        timestamp (datetime, optional): When the file was originally created
         url_slug (str): Version of the filename that works in links to epsteinify etc.
     """
     file_path: Path
@@ -94,7 +93,6 @@ class Document:
     config: EmailCfg | DocCfg | TextCfg | None = None
     doj_2026_dataset_id: int | None = None
     file_id: str = field(init=False)
-    filename: str = field(init=False)
     lines: list[str] = field(default_factory=list)
     text: str = ''
     timestamp: datetime | None = None
@@ -158,6 +156,10 @@ class Document:
             return doj_2026_file_url(self.doj_2026_dataset_id, self.url_slug)
         else:
             return epstein_media_doc_url(self.url_slug)
+
+    @property
+    def filename(self) -> str:
+        return self.file_path.name
 
     @property
     def file_id_debug_info(self) -> str:
@@ -342,7 +344,6 @@ class Document:
         if not self.file_path.exists():
             raise FileNotFoundError(f"File '{self.file_path.name}' does not exist!")
 
-        self.filename = self.file_path.name
         self.file_id = extract_file_id(self.filename)
         # config and url_slug could have been pre-set in Email
         self.config = self.config or deepcopy(CONFIGS_BY_ID.get(self.file_id))
@@ -447,6 +448,7 @@ class Document:
         return '\n'.join(self.lines[0:n])[:MAX_CHARS_TO_PRINT]
 
     def truncation_note(self, truncate_to: int) -> Text:
+        """String with link that will replace the text after the truncation point."""
         link_markup = self.external_link_markup
         trim_note = f"<...trimmed to {truncate_to:,} characters of {self.length:,}, read the rest at {link_markup}...>"
         return Text.from_markup(wrap_in_markup_style(trim_note, 'dim'))
@@ -456,7 +458,7 @@ class Document:
         self.log(msg, level=logging.WARNING)
 
     def _extract_author(self) -> None:
-        """Get author from config. Extended in Email subclass to also check headers."""
+        """Get author from config. Extended in `Email` subclass to also check headers."""
         if self.config and self.config.author:
             self.author = self.config.author
 
@@ -483,7 +485,7 @@ class Document:
 
     def _set_computed_fields(self, lines: list[str] | None = None, text: str | None = None) -> None:
         """Sets all fields derived from self.text based on either 'lines' or 'text' arg."""
-        if (lines and text):
+        if lines and text:
             raise RuntimeError(f"[{self.filename}] Either 'lines' or 'text' arg must be provided (got both)")
         elif lines is not None:
             self.text = '\n'.join(lines).strip()

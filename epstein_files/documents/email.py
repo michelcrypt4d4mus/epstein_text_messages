@@ -251,7 +251,6 @@ class Email(Communication):
         return txt.append(CLOSE_PROPERTIES_CHAR)
 
     def __post_init__(self):
-        self.filename = self.file_path.name
         self.file_id = extract_file_id(self.filename)
 
         # Special handling for copying properties out of the config for the document this one was extracted from
