@@ -1,0 +1,14 @@
+from epstein_files.util.helpers.string_helper import has_line_starting_with, indented
+
+
+def test_indented():
+    assert indented('buff') == '    buff'
+    assert indented('buff\nillmatic') == '    buff\n    illmatic'
+    assert indented('buff\nillmatic', prefix='> ') == '    > buff\n    > illmatic'
+
+
+def test_has_line_starting_with():
+    assert has_line_starting_with('foobar\nillmat\nic', 'foo')
+    assert has_line_starting_with('foobar\nillmat\nice', ['ill'])
+    assert has_line_starting_with('foobar\nillmat\nice', ['ice'])
+    assert has_line_starting_with('foobar\nillmat\nice', ['ice'], 2) is False
