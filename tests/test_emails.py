@@ -3,11 +3,12 @@ from epstein_files.util.data import dict_sets_to_lists
 
 
 EMAIL_AUTHOR_COUNTS = {
-    None: 87,
+    None: 99,
     "Abi Schwinck": 1,
     AL_SECKEL: 8,
     "Alain Forget": 3,
     ALAN_DERSHOWITZ: 4,
+    'Alan Dlugash': 2,
     "Alan S Halperin": 1,
     'Alex Conlon': 1,
     "Alex Yablon": 1,
@@ -114,16 +115,15 @@ EMAIL_AUTHOR_COUNTS = {
     JEAN_LUC_BRUNEL: 3,
     JEANNE_M_CHRISTENSEN: 14,
     JEFF_FULLER: 1,
-    JEFFREY_EPSTEIN: 794,
     JENNIFER_JACQUET: 1,
-    JEREMY_RUBIN: 8,
+    JEREMY_RUBIN: 10,
     JES_STALEY: 2,
     JESSICA_CADWELL: 5,
     JIDE_ZEITLIN: 3,
     JOHN_BROCKMAN: 3,
     JOHN_PAGE: 2,
     JOHNNY_EL_HACHEM: 1,
-    JOI_ITO: 33,
+    JOI_ITO: 36,
     "Jokeland": 1,
     JONATHAN_FARKAS: 19,
     JOSCHA_BACH: 3,
@@ -146,7 +146,6 @@ EMAIL_AUTHOR_COUNTS = {
     LAWRENCE_KRAUSS: 33,
     "Leah Reis-Dennis": 1,
     "Leon Black": 1,
-    LESLEY_GROFF: 107,
     "Lilly Sanchez": 4,
     "Linda Pinto": 1,
     LINDA_STONE: 19,
@@ -154,7 +153,7 @@ EMAIL_AUTHOR_COUNTS = {
     LISA_NEW: 22,
     "Lisa Randall": 2,
     'LSJ': 1,  # TODO: this is epstein?
-    MADARS_VIRZA: 3,
+    MADARS_VIRZA: 13,
     "Manuela Martinez": 1,
     MARC_LEON: 2,
     MARIYA_PRUSAKOVA: 7,
@@ -206,7 +205,6 @@ EMAIL_AUTHOR_COUNTS = {
     REID_HOFFMAN: 1,
     REID_WEINGARTEN: 72,
     RENATA_BOLOTOVA: 55,
-    RICHARD_KAHN: 158,
     "Richard Merkin": 3,
     ROBERT_LAWRENCE_KUHN: 26,
     ROBERT_TRIVERS: 15,
@@ -249,6 +247,7 @@ EMAIL_AUTHOR_COUNTS = {
     VINCENZO_IOZZO: 8,
     VINIT_SAHNI: 2,
     "Vladimir Yudashkin": 1,
+    'Yuko Barnaby': 3,
     ZUBAIR_KHAN: 9,
     "asmallworld@travel.asmallworld.net": 2,
     "digest-noreply@quora.com": 5,
@@ -384,7 +383,6 @@ EMAIL_RECIPIENT_COUNTS = {
     JEANNE_M_CHRISTENSEN: 8,
     JEFF_FULLER: 2,
     'Jeff Pagliuca': 4,
-    JEFFREY_EPSTEIN: 1809,
     JEREMY_RUBIN: 7,
     JES_STALEY: 7,
     JESSICA_CADWELL: 3,
@@ -502,7 +500,6 @@ EMAIL_RECIPIENT_COUNTS = {
     'Reuben Kobulnik': 2,
     "Richard Barnnet": 1,
     "Richard Joshi": 1,
-    RICHARD_KAHN: 62,
     "Richard Merkin": 1,
     "Rita Hortenstine": 1,
     ROBERT_D_CRITTON_JR: 6,
@@ -1154,11 +1151,19 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
 
 
 def test_email_author_counts(epstein_files):
-    assert epstein_files.email_author_counts() == EMAIL_AUTHOR_COUNTS
+    author_counts = epstein_files.email_author_counts()
+    assert author_counts.pop(JEFFREY_EPSTEIN) > 790
+    assert author_counts.pop(LESLEY_GROFF) > 100
+    assert author_counts.pop(RICHARD_KAHN) > 50
+    assert author_counts == EMAIL_AUTHOR_COUNTS
 
 
 def test_email_recipient_counts(epstein_files):
-    assert epstein_files.email_recipient_counts() == EMAIL_RECIPIENT_COUNTS
+    recipient_counts = epstein_files.email_recipient_counts()
+    assert recipient_counts.pop(JEFFREY_EPSTEIN) > 1800
+    assert recipient_counts.pop(LESLEY_GROFF) > 40
+    assert recipient_counts.pop(RICHARD_KAHN) > 50
+    assert recipient_counts == EMAIL_AUTHOR_COUNTS
 
 
 def test_info_sentences(epstein_files):

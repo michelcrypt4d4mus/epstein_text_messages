@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.epstein_files import count_by_month
 from epstein_files.util.constants import ALL_FILE_CONFIGS
@@ -254,3 +256,12 @@ def test_all_configs_exist(epstein_files):
 
     for id in ALL_FILE_CONFIGS:
         assert id in all_ids, f"{id} not found in epstein_files!"
+
+
+def test_no_files_after_2025(epstein_files):
+    bad_docs = [d for d in epstein_files.all_documents if d.timestamp and d.timestamp > datetime(2025, 1, 1)]
+
+    for doc in bad_docs:
+        console.print(doc)
+
+    assert len(bad_docs) == 0
