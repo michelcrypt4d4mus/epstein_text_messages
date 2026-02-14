@@ -15,7 +15,7 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constants import FALLBACK_TIMESTAMP
 from epstein_files.util.layout.left_bar_panel import LeftBarPanel
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import RAINBOW, highlighter, link_text_obj, wrap_in_markup_style
+from epstein_files.util.rich import RAINBOW, highlighter, wrap_in_markup_style
 
 IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTALL)
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
