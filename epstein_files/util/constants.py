@@ -1143,6 +1143,7 @@ EMAILS_CONFIG = [
         description=f"email about a future job at {TERJE_ROD_LARSEN}'s International Peace Institute",
         is_attribution_uncertain=True,
     ),
+    EmailCfg(id='EFTA01985762', author=RENATA_BOLOTOVA, recipients=[JEFFREY_EPSTEIN], date='2012-01-24 09:35:00'),
     EmailCfg(id='EFTA00920177', author=RENATA_BOLOTOVA, attribution_reason='discussion of employment at Institute'),
     EmailCfg(id='EFTA00920010', author=RENATA_BOLOTOVA, attribution_reason='renbolotova@gmail in body'),
     EmailCfg(id='EFTA00912012', author=RENATA_BOLOTOVA, attribution_reason='renbolotova in body', description='this file has been removed from the DOJ site'),
