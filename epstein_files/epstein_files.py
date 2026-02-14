@@ -16,6 +16,7 @@ from epstein_files.documents.documents.doc_cfg import Metadata
 from epstein_files.documents.documents.search_result import SearchResult
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
+from epstein_files.documents.emails.constants import UNINTERESTING_EMAILERS
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
