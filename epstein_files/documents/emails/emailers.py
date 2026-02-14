@@ -42,7 +42,7 @@ EMAILER_ID_PATTERNS: dict[str, str] = {
     CHRISTOPHER_DILORIO: r"Chris\s*Di[lI]o[nr](io)?",
     DANGENE_AND_JENNIE_ENTERPRISE: r'Dangene and Jennie Enterprise?',
     DANNY_FROST: r'Frost, Danny|frostd@dany.nyc.gov|Danny\s*Frost',
-    'Daphne Wallace': r'Dap?hne Wallace',
+    'Daphne Wallace': r'Da[p ]hne Wallace',
     DARREN_INDYKE: r'darren$|Darren\s*(K\.?\s*)?[il]n[dq]_?yke?|dkiesq',
     DAVID_FISZEL: r'David\s*Fis?zel',
     DAVID_HAIG: fr'{DAVID_HAIG}|Haig, David',
@@ -108,7 +108,7 @@ EMAILER_ID_PATTERNS: dict[str, str] = {
     MOHAMED_WAHEED_HASSAN: r'Mohamed Waheed(\s+Hassan)?',
     NADIA_MARCINKO: r"Na[dď]i?a\s+Marcinko(v[aá])?",
     NEAL_KASSELL: r'Neal\s*Kassell?',
-    'Newsmax': r"Newsmax\.com",
+    'Newsmax': r"Newsmax(\.com)?",
     NICHOLAS_RIBIS: r'Nic(holas|k)[\s._]Ribi?s?|Ribbis',
     OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL: r"\bODAG\b",
     OLIVIER_COLOM: fr'Colom, Olivier|{OLIVIER_COLOM}',
@@ -146,7 +146,7 @@ EMAILER_ID_PATTERNS: dict[str, str] = {
     TONJA_HADDAD_COLEMAN: r"To(nj|rl)a Haddad Coleman|haddadfm@aol.com",
     TYLER_SHEARS: r"T[vy]ler\s*Shears",
     VINCENZO_IOZZO: r"Vincenzo [IL]ozzo",
-    'Yuko Barnaby': r"Yuko\s*Ba(m|rn)aby",
+    'Yuko Barnaby': r"Y[ou]ko\s*Ba(m|rn)(aby)?",
 }
 
 # If found as substring consider them the author
