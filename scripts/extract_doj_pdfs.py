@@ -26,21 +26,6 @@ if not DOJ_TXTS_20260130_DIR.exists():
     DOJ_TXTS_20260130_DIR.mkdir()
 
 
-logger.setLevel(logging.DEBUG)
-print(f"logger name = '{logger.name}', handlers = {logger.handlers}")
-
-for app_name in ['pdfalyzer', 'yaralyzer']:
-    app_log = logging.getLogger(app_name)
-
-    for log in [app_log] + app_log.handlers:
-        log.setLevel(logging.DEBUG)
-
-        if isinstance(log, Handler):
-            log.formatter = Formatter("[%(name)s] %(message)s")
-        else:
-            print(f"logger name = '{log.name}', handlers = {log.handlers}")
-
-
 for dir in [d for d in DOJ_PDFS_20260130_DIR.glob('*') if d.is_dir()]:
     if (dir_match := DOJ_DATASET_ID_REGEX.search(dir.name)):
         dataset_number = int(dir_match.group(1))

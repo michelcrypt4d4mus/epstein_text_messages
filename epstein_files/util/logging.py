@@ -80,3 +80,18 @@ if env_log_level_str:
 
     logger.warning(f"Setting log level to {env_log_level} based on {LOG_LEVEL_ENV_VAR} env var...")
     set_log_level(env_log_level)
+
+
+# logger.setLevel(logging.DEBUG)
+# print(f"logger name = '{logger.name}', handlers = {logger.handlers}")
+
+# for app_name in ['pdfalyzer', 'yaralyzer']:
+#     app_log = logging.getLogger(app_name)
+
+#     for log in [app_log] + app_log.handlers:
+#         log.setLevel(logging.DEBUG)
+
+#         if isinstance(log, Handler):
+#             log.formatter = Formatter("[%(name)s] %(message)s")
+#         else:
+#             print(f"logger name = '{log.name}', handlers = {log.handlers}")
