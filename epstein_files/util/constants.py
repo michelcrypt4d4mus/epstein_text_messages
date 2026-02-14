@@ -2203,12 +2203,8 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA02731023', description=f"letter from Senator Ron Wyden to {LEON_BLACK}", is_interesting=False),
     DocCfg(id='EFTA00007781', description='paychecks signed by Epstein deposited at Colonial Bank'),
     DocCfg(id='EFTA00001884', description='photo of letter from Virgin Islands DOJ to Epstein', date='2019-03-14'),
-    DocCfg(
-        id='EFTA01622387',
-        author=RENATA_BOLOTOVA,
-        description=f'{RENATA_BOLOTOVA} iMessage chat log screenshots',
-        is_attribution_uncertain=True,
-    ),
+    DocCfg(id='EFTA01622387', author=RENATA_BOLOTOVA, description=f'iMessage chat log screenshots', is_attribution_uncertain=True),
+    DocCfg(id='EFTA01618494', author=RENATA_BOLOTOVA, description=f'iMessage chat log screenshots', is_attribution_uncertain=True),
     DocCfg(
         id='EFTA01107738',
         description="creation of Cantor Urramoor Asset Management with Mr. T's (Prince Andrew?) Urramoor and Howard Lutnick's Cantor Fitzgerald",
