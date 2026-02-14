@@ -4,8 +4,6 @@ from pathlib import Path
 from rich.text import Text
 
 from epstein_files.util.file_helper import extract_file_id, is_doj_file
-from epstein_files.util.constant.strings import indented
-from epstein_files.util.constant.urls import link_text_obj
 from epstein_files.util.rich import ARCHIVE_LINK_COLOR, prefix_with, styled_dict
 
 

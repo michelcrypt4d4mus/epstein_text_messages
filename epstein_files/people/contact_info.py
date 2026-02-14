@@ -1,14 +1,14 @@
 import re
 from dataclasses import asdict, dataclass, field, fields
 from pathlib import Path
+from typing import Self
 
 from rich.text import Text
 
-from epstein_files.util.data import constantize_names
-from epstein_files.util.env import args
 from epstein_files.util.constant.names import NAMES_TO_NOT_HIGHLIGHT, SIMPLE_NAME_REGEX, Name, constantize_name, extract_first_name, extract_last_name, reversed_name
 from epstein_files.util.constant.strings import INDENT, INDENT_NEWLINE, INDENTED_JOIN, remove_question_marks
-from epstein_files.util.helpers.string_helper import quote
+from epstein_files.util.data import constantize_names
+from epstein_files.util.helpers.string_helper import indented, quote
 
 FIELD_SORT_KEY = {'name': 'a'}
 
@@ -21,7 +21,7 @@ class ContactInfo:
         `info` (str, optional): biographical info about this person
         `email_pattern` (str, optional): manually constructed regex pattern to match this person in email headers
     """
-    name: Name
+    name: str
     info: str = ''
     emailer_pattern: str = ''
     emailer_regex: re.Pattern = field(init=False)
@@ -31,10 +31,7 @@ class ContactInfo:
     @property
     def highlight_pattern(self) -> str:
         """`self.emailer_pattern` extended with first/last name variations."""
-        if self.name is None:
-            raise RuntimeError(f"Can't build highlight_pattern for None!")
-
-        name_patterns = [self.emailer_pattern or remove_question_marks(self.name).replace(' ', r"\s+")]
+        name_patterns = [self.pattern]
 
         if self.is_junk or ' ' not in self.name:
             return name_patterns[0]
@@ -51,9 +48,13 @@ class ContactInfo:
 
         return pattern
 
+    @property
+    def pattern(self) -> str:
+        return self.emailer_pattern or remove_question_marks(self.name).replace(' ', r"\s+")
+
     def __post_init__(self):
         if self.name is None:
-            return
+            raise ValueError(f"ContactInfo.name cannot be None!")
 
         emailer_pattern = self.emailer_pattern or f"{self.name}?"
         self.emailer_regex = re.compile(emailer_pattern, re.IGNORECASE)
@@ -94,3 +95,12 @@ class ContactInfo:
             repr_str = type_str + ', '.join(props) + ')'
 
         return repr_str
+
+    @classmethod
+    def build_name_lookup(cls, contacts: list[Self]) -> dict[Name, Self]:
+        """Dict keyed by contact name."""
+        return {c.name: c for c in contacts}
+
+    @classmethod
+    def repr_string(cls, contact_infos: list[Self]) -> str:
+        return '[\n' + indented(',\n'.join([repr(contact) for contact in contact_infos]), 4) + '\n],'

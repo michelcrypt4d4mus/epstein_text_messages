@@ -74,7 +74,7 @@ def print_doj_files(epstein_files: EpsteinFiles) -> list[DojFile | Email]:
 
     for doj_file in Document.sort_by_timestamp(epstein_files.all_doj_files):
         if isinstance(doj_file, DojFile) and (doj_file.is_empty or doj_file.is_bad_ocr):
-            console.print(doj_file.image_with_no_text_msg(), style='dim')
+            console.print(doj_file.image_with_no_text_msg, style='dim')
             last_was_empty = True
             continue
         elif doj_file.is_duplicate:

@@ -90,9 +90,3 @@ QUESTION_MARKS_REGEX = re.compile(fr' {re.escape(QUESTION_MARKS)}$')
 
 
 remove_question_marks = lambda name: QUESTION_MARKS_REGEX.sub('', name).strip()
-
-
-def indented(s: str, spaces: int = 4, prefix: str = '') -> str:
-    indent = ' ' * spaces
-    indent += prefix
-    return indent + f"\n{indent}".join(s.split('\n'))

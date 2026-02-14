@@ -81,16 +81,10 @@ class EpsteinFiles:
                 timer_msg = f"Loaded {len(epstein_files.all_files):,} documents from '{PICKLED_PATH}'"
                 timer.print_at_checkpoint(f"{timer_msg} ({file_size_str(PICKLED_PATH)})")
 
-                if args.reload_doj:
-                    def doj_file_counts_str():
-                        return f"(have {len(epstein_files.all_doj_files)}, {len(epstein_files.doj_files)} non-email)"
+            if args.reload_doj:
+                epstein_files.reload_doj_files()
 
-                    logger.warning(f"Only reloading DOJ files {doj_file_counts_str()}")
-                    epstein_files._reload_doj_files()
-                    timer.print_at_checkpoint(f"Reloaded DOJ files {doj_file_counts_str()}")
-                    epstein_files.save_to_disk()
-
-                return epstein_files
+            return epstein_files
 
         logger.warning(f"Building new cache file, this will take a few minutes...")
         epstein_files = EpsteinFiles()
@@ -221,11 +215,11 @@ class EpsteinFiles:
                 OtherFile.__name__: _sorted_metadata(self.non_json_other_files()),
             },
             'people': {
-                name: highlighted_group.info_for(name, include_category=True)
+                contact.name: highlighted_group.info_for(contact.name, include_category=True)
                 for highlighted_group in HIGHLIGHTED_NAMES
                 if isinstance(highlighted_group, HighlightedNames)
-                for name, description in highlighted_group.emailers.items()
-                if description
+                for contact in highlighted_group.contacts
+                if contact.info
             }
         }
 
@@ -249,6 +243,22 @@ class EpsteinFiles:
             )
             for name in names
         ]
+
+    def reload_doj_files(self) -> None:
+        """Reload only the DOJ PDF extracts (keep HOUSE_OVERSIGHT stuff unchanged)."""
+        def doj_file_counts_str():
+            return f"(have {len(self.all_doj_files)}, {len(self.doj_files)} non-email)"
+
+        timer = Timer()
+        logger.warning(f"Only reloading DOJ files {doj_file_counts_str()}...")
+        house_oversight_emails = [e for e in self.emails if not e.is_doj_file]
+        docs = self._load_file_paths(doj_txt_paths())
+        doj_emails = [d for d in docs if isinstance(d, Email)]
+        self.doj_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, DojFile)])
+        self.emails = Document.sort_by_timestamp(house_oversight_emails + doj_emails)
+        timer.print_at_checkpoint(f"Reloaded DOJ files {doj_file_counts_str()}")
+        self._finalize_data()
+        self.save_to_disk()
 
     def overview_table(self) -> Table:
         table = Document.file_info_table('Files Overview', 'File Type')
@@ -342,14 +352,6 @@ class EpsteinFiles:
                 doc_timer.print_at_checkpoint(f"Slow file: {docs[-1]} processed")
 
         return docs
-
-    def _reload_doj_files(self) -> None:
-        house_oversight_emails = [e for e in self.emails if not e.is_doj_file]
-        docs = self._load_file_paths(doj_txt_paths())
-        doj_emails = [d for d in docs if isinstance(d, Email)]
-        self.doj_files = Document.sort_by_timestamp([d for d in docs if isinstance(d, DojFile)])
-        self.emails = Document.sort_by_timestamp(house_oversight_emails + doj_emails)
-        self._finalize_data()
 
     def _set_uninteresting_ccs(self) -> None:
         for email in [e for e in self.emails if e.config and e.config.has_uninteresting_bccs]:
