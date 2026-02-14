@@ -20,6 +20,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.helpers.data_helpers import days_between, remove_timezone, uniquify
 from epstein_files.util.helpers.file_helper import FILENAME_LENGTH
+from epstein_files.util.helpers.string_helper import has_line_starting_with
 from epstein_files.util.env import args
 from epstein_files.util.logging import logger
 
@@ -162,10 +163,22 @@ class OtherFile(Document):
 
     def __post_init__(self):
         super().__post_init__()
+        self.config = self.config or self._build_derived_cfg()
 
-        if self.config is None and VI_DAILY_NEWS_REGEX.search(self.text):
+    def _build_derived_cfg(self) -> DocCfg | None:
+        """Create a `DocCfg` object if there is none configured and the contents warrant it."""
+        if VI_DAILY_NEWS_REGEX.search(self.text):
             self.log(f"Creating synthetic config for VI Daily News article...")
-            self.config = DocCfg(id=self.file_id, author=VI_DAILY_NEWS, category=ARTICLE, description='article')
+            return DocCfg(id=self.file_id, author=VI_DAILY_NEWS, category=ARTICLE, description='article')
+        elif has_line_starting_with(self.text, [VALAR_GLOBAL_FUND, VALAR_VENTURES], 2):
+            self.log(f"Creating synthetic config for {VALAR_VENTURES}...")
+
+            return DocCfg(
+                id=self.file_id,
+                author=VALAR_VENTURES,
+                category=CRYPTO,
+                description='is a {PETER_THIEL} fintech fund'
+            )
 
     def _extract_timestamp(self) -> datetime | None:
         """Return configured timestamp or value extracted by scanning text with datefinder."""

@@ -4,6 +4,17 @@ import re
 from epstein_files.util.constant.strings import QUESTION_MARKS_REGEX
 
 
+def has_line_starting_with(s: str | list[str], pfxes: str | list[str], limit: int | None = None) -> bool:
+    lines = s.split('\n') if isinstance(s, str) else s
+    lines = lines[0:(limit or len(lines))]
+
+    for line in lines:
+        if any(line.startswith(pfx) for pfx in list(pfxes)):
+            return True
+
+    return False
+
+
 def indented(s: str, spaces: int = 4, prefix: str = '') -> str:
     indent = ' ' * spaces
     indent += prefix
