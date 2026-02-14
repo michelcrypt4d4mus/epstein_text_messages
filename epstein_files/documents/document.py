@@ -24,7 +24,7 @@ from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADD
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
-from epstein_files.util.constants import ALL_FILE_CONFIGS, DOJ_FILE_STEM_REGEX, FALLBACK_TIMESTAMP
+from epstein_files.util.constants import CONFIGS_BY_ID, DOJ_FILE_STEM_REGEX, FALLBACK_TIMESTAMP
 from epstein_files.util.helpers.data_helpers import collapse_newlines, date_str, patternize, remove_zero_time, without_falsey
 from epstein_files.util.env import DOCS_DIR, DOJ_PDFS_20260130_DIR
 from epstein_files.util.helpers.file_helper import (coerce_file_path, extract_file_id, file_size, file_size_str,
@@ -345,7 +345,7 @@ class Document:
         self.filename = self.file_path.name
         self.file_id = extract_file_id(self.filename)
         # config and url_slug could have been pre-set in Email
-        self.config = self.config or deepcopy(ALL_FILE_CONFIGS.get(self.file_id))
+        self.config = self.config or deepcopy(CONFIGS_BY_ID.get(self.file_id))
         self.url_slug = self.url_slug or self.filename.split('.')[0]
 
         # Extract the DOJ dataset ID from the path

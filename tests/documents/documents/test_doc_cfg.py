@@ -4,11 +4,11 @@ from epstein_files.util.constant.strings import *
 
 def test_complete_description():
     cfg = _doc_cfg(SKYPE_LOG)
-    assert cfg.complete_description == SKYPE_LOG
+    assert cfg.complete_description == SKYPE_LOG.lower()
     cfg.author = 'linkspirit'
-    assert cfg.complete_description == f"{SKYPE_LOG} of conversation with linkspirit"
+    assert cfg.complete_description == f"{SKYPE_LOG.lower()} of conversation with linkspirit"
     cfg.description = 'something'
-    assert cfg.complete_description == f"{SKYPE_LOG} of conversation with linkspirit something"
+    assert cfg.complete_description == f"{SKYPE_LOG.lower()} of conversation with linkspirit something"
 
     legal_cfg = _doc_cfg(LEGAL, 'clinton v. trump', 'case law')
     assert legal_cfg.complete_description == f"clinton v. trump: case law"

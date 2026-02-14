@@ -246,6 +246,8 @@ BLOCKSTREAM = 'Blockstream'
 BOFA = 'BofA'
 BOFA_MERRILL = f'{BOFA} / Merrill Lynch'
 BUREAU_OF_PRISONS = 'Bureau of Prisons'
+CANTOR = 'Cantor Fitzgerald'
+CANTOR_URRAMOOR = 'Cantor Urramoor Asset Management'
 COINBASE = 'Coinbase'
 CNN = 'CNN'
 CRYPTO_CURRENCY_PARTNERS_II = 'Crypto Currency Partners II'
@@ -304,7 +306,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr
     kafka kahn karl kate katherine kelly ken kevin krassner
     larry larsen laurie lawrence leon lesley linda link lisa
-    mann marc marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
+    management mann marc marie mark martin matthew melanie michael mike miller mitchell miles morris moskowitz
     nancy nathan neal new nicole norman
     owen
     paul paula pen peter philip pierce prince

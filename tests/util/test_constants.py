@@ -1,10 +1,10 @@
-from epstein_files.util.constants import ALL_CONFIGS
+from epstein_files.util.constants import CONFIGS_BY_ID
 
 
 def test_no_overlapping_configs():
     encountered_file_ids = set()
 
-    for cfg in ALL_CONFIGS:
+    for cfg in CONFIGS_BY_ID.values():
         if cfg.duplicate_of_id:
             assert cfg.duplicate_of_id != cfg.id
 

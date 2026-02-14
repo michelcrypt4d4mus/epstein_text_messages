@@ -25,8 +25,9 @@ def test_each_name_matches_only_one_highlight():
         if '(' in name:
             continue
 
-        highlight_groups = [hg for hg in HIGHLIGHTED_NAMES if hg.regex.search(name)]
-        assert len(highlight_groups) <= 1, f"'{name}' matched {len(highlight_groups)} highlight groups!"
+        groups = [hg for hg in HIGHLIGHTED_NAMES if hg.regex.search(name)]
+        group_labels = [hg.label for hg in groups]
+        assert len(group_labels) <= 1, f"'{name}' matched {len(group_labels)} highlight groups: {group_labels}"
 
 
 def test_styled_category():

@@ -18,11 +18,12 @@ LAWYER = 'lawyer'
 LEGAL = 'legal'
 LOBBYIST = 'lobbyist'
 MIDEAST = 'mideast'
+MONEY = 'money'
 POLITICS = 'politics'
 PROPERTY = 'property'
 PUBLICIST = 'publicist'
 REPUTATION = 'reputation'
-SKYPE_LOG = 'Skype log'
+SKYPE_LOG = 'skype log'
 SOCIAL = 'social'
 
 # Locations

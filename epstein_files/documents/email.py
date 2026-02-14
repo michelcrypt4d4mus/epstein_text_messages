@@ -26,7 +26,7 @@ from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constants import *
 from epstein_files.util.helpers.data_helpers import AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines, remove_timezone, uniquify
 from epstein_files.util.helpers.file_helper import extract_file_id, file_stem_for_id
-from epstein_files.output.highlight_config import JUNK_EMAILERS, get_style_for_name
+from epstein_files.output.highlight_config import JUNK_EMAILERS, QUESTION_MARKS_TXT, get_style_for_name
 from epstein_files.util.logging import logger
 
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
@@ -478,8 +478,8 @@ class Email(Communication):
             self.url_slug = LOCAL_EXTRACT_REGEX.sub('', file_stem_for_id(self.file_id))
             extracted_from_doc_id = self.url_slug.split('_')[-1]
 
-            if extracted_from_doc_id in ALL_FILE_CONFIGS:
-                self._set_config_for_extracted_file(ALL_FILE_CONFIGS[extracted_from_doc_id])
+            if extracted_from_doc_id in CONFIGS_BY_ID:
+                self._set_config_for_extracted_file(CONFIGS_BY_ID[extracted_from_doc_id])
 
         super().__post_init__()
 
@@ -511,14 +511,16 @@ class Email(Communication):
         return name in [self.author] + self.recipients
 
     def recipients_txt(self, max_full_names: int = 2) -> Text:
-        """Text object with comma separated colored versions of all recipients."""
+        """Comma separated colored names (last name only if more than `max_full_names` recipients)."""
         recipients = [r or UNKNOWN for r in self.recipients] if len(self.recipients) > 0 else [UNKNOWN]
 
-        # Use just the last name for each recipient if there's 3 or more recipients
-        return join_texts([
-            Text(r if len(recipients) <= max_full_names else extract_last_name(r), style=get_style_for_name(r))
+        names = [
+            Text(r if len(recipients) <= max_full_names else extract_last_name(r), get_style_for_name(r)) + \
+                (Text(f" {QUESTION_MARKS}", get_style_for_name(r)) if self.is_recipient_uncertain else Text(''))
             for r in recipients
-        ], join=', ')
+        ]
+
+        return join_texts(names, join=', ')
 
     def _extract_actual_text(self) -> str:
         """The text that comes before likely quoted replies and forwards etc."""
@@ -755,8 +757,8 @@ class Email(Communication):
 
     def _set_config_for_extracted_file(self, extracted_from_doc_cfg: DocCfg) -> None:
         """Copy info from original config for file this document was extracted from."""
-        if self.file_id in ALL_FILE_CONFIGS:
-            self.config = cast(EmailCfg, deepcopy(ALL_FILE_CONFIGS[self.file_id]))
+        if self.file_id in CONFIGS_BY_ID:
+            self.config = cast(EmailCfg, deepcopy(CONFIGS_BY_ID[self.file_id]))
             self.log(f"Merging existing cfg for '{self.file_id}' with cfg for extracted document...")
         else:
             self.config = EmailCfg(id=self.file_id)

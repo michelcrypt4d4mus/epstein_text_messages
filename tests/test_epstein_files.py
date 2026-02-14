@@ -3,7 +3,7 @@ from datetime import datetime
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.epstein_files import count_by_month
 from epstein_files.output.rich import console
-from epstein_files.util.constants import ALL_FILE_CONFIGS
+from epstein_files.util.constants import CONFIGS_BY_ID
 
 EXPECTED_MONTHLY_COUNTS = {
     "1985-01": 1,
@@ -246,7 +246,7 @@ EXPECTED_MONTHLY_COUNTS = {
 
 def test_all_configs_exist(epstein_files):
     all_ids = [doc.file_id for doc in epstein_files.all_documents]
-    missing_ids = [id for id in ALL_FILE_CONFIGS.keys() if id not in all_ids]
+    missing_ids = [id for id in CONFIGS_BY_ID.keys() if id not in all_ids]
     assert len(missing_ids) == 0, f"Missing {len(missing_ids)} files that are configured: {missing_ids}"
 
 
