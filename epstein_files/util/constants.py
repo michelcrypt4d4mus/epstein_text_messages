@@ -1380,6 +1380,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00104945', description=f"{LEON_BLACK} / Rothschild Group {DEUTSCHE_BANK} transactions", is_interesting=True, truncate_to=700),
     EmailCfg(id='EFTA00900908', description="negotiation of repurchase of half of Epstein's stake in Coinbase"),
     EmailCfg(id='EFTA00754450', description='"PA" is probably Prince Andrew', duplicate_ids=['EFTA02418244']),
+    EmailCfg(id='EFTA01003346', description=f"{PETER_THIEL} tells Epstein to invest in his fund", is_interesting=True),
     EmailCfg(id='EFTA01013266', description=f"request for payment to {MARIYA_PRUSAKOVA}'s {CRYPTO_PR_LAB}", is_interesting=True),
     EmailCfg(id='EFTA02505439', description=f'summary of Kyara Investment shell companies with {JOI_ITO}'),
     EmailCfg(id='EFTA02517623', description=f"{VINCENZO_IOZZO} explains to Epstein how to deanonymize bitcoin", is_interesting=True),
@@ -1462,6 +1463,7 @@ SWEDISH_LIFE_SCIENCES_SUMMIT = f"{BARBRO_C_EHNBOM}'s Swedish American Life Scien
 TRUMP_DISCLOSURES = f"Donald Trump financial disclosures from U.S. Office of Government Ethics"
 UBS_CIO_REPORT = 'CIO Monthly Extended report'
 UN_GENERAL_ASSEMBLY = '67th U.N. General Assembly'
+VALAR_FUND = f"{PETER_THIEL}'s {VALAR_VENTURES} fund"
 WOMEN_EMPOWERMENT = f"Women Empowerment (WE) conference"
 ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
 
@@ -2195,18 +2197,25 @@ OTHER_FILES_MISC = [
     DocCfg(id='029448', description=f"weird short essay titled 'President Obama and Self-Deception'"),
 
     # DOJ files
+    DocCfg(id='EFTA01622387', author=RENATA_BOLOTOVA, description=f'iMessage chat log screenshots', is_attribution_uncertain=True),
+    DocCfg(id='EFTA01618494', author=RENATA_BOLOTOVA, description=f'iMessage chat log screenshots', is_attribution_uncertain=True),
     DocCfg(id='EFTA01810372', author=TYLER_SHEARS, description=f'invoice for reputation management work', is_interesting=True),
     DocCfg(id='EFTA00039025', description=f"{BUREAU_OF_PRISONS} report on death of Jeffrey Epstein", is_interesting=True),
     DocCfg(id='EFTA00005783', description='heavily redacted handwritten note, 30+ completely redacted pages', date='2019-08-29'),
     DocCfg(id='EFTA01087311', description=f'{LEON_BLACK} Family Partners cash projections'),
+    DocCfg(id='EFTA00811866', description="list of Epstein's bank accounts", is_interesting=True),
     DocCfg(id='EFTA01217787', description=f'Skype conversation with {TYLER_SHEARS} and Hanna Traff at Spotify', is_interesting=True),
     DocCfg(id='EFTA01217703', description=f'Skype conversation with actress Athena Zelcovich, {JOSCHA_BACH}, and {LAWRENCE_KRAUSS}'),
     DocCfg(id='EFTA01217736', description=f'Skype conversation with actress Athena Zelcovich, {TYLER_SHEARS}'),
     DocCfg(id='EFTA02731023', description=f"letter from Senator Ron Wyden to {LEON_BLACK}", is_interesting=False),
     DocCfg(id='EFTA00007781', description='paychecks signed by Epstein deposited at Colonial Bank'),
+    DocCfg(id='EFTA01273102', description=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank", is_interesting=True),
     DocCfg(id='EFTA00001884', description='photo of letter from Virgin Islands DOJ to Epstein', date='2019-03-14'),
-    DocCfg(id='EFTA01622387', author=RENATA_BOLOTOVA, description=f'iMessage chat log screenshots', is_attribution_uncertain=True),
-    DocCfg(id='EFTA01618494', author=RENATA_BOLOTOVA, description=f'iMessage chat log screenshots', is_attribution_uncertain=True),
+    DocCfg(
+        id='EFTA00927927',
+        description=f"reads like {RENATA_BOLOTOVA} talking about recruiting girls for Epstein",
+        is_interesting=True,
+    ),
     DocCfg(
         id='EFTA01107738',
         description="creation of Cantor Urramoor Asset Management with Mr. T's (Prince Andrew?) Urramoor and Howard Lutnick's Cantor Fitzgerald",
@@ -2280,83 +2289,21 @@ OTHER_FILES_CRYPTO = [
     ),
 
     # DOJ files
-    DocCfg(
-        id='EFTA01273102',
-        description=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank",
-        is_interesting=True,
-    ),
-    DocCfg(
-        id='EFTA02725909',
-        description='presentation to NYDFS for "NYC Bitcoin Exchanges" with Balaji Srinivisan and Andrew Farkas on the board',
-        is_interesting=True,
-    ),
-    DocCfg(
-        id='EFTA00810239',
-        description="Peter Thiel fund Valar Ventures pitch deck",
-        is_interesting=True,
-    ),
-    DocCfg(
-        id='EFTA00810510',
-        description="Peter Thiel fund Valar Ventures Fall 2016 Update",
-        is_interesting=True,
-    ),
-    DocCfg(
-        id='EFTA00810474',
-        description="Peter Thiel fund Valar Ventures Fall 2018 Update",
-        is_interesting=True,
-    ),
-    DocCfg(
-        id='EFTA00836182',
-        description="Peter Thiel fund Valar Ventures Limited Partners email",
-        is_interesting=True,
-    ),
-    DocCfg(
-        id='EFTA01003346',
-        description="Peter Thiel tells Epstein to invest in his fund",
-        is_interesting=True,
-    ),
-    DocCfg(
-        id='EFTA00811866',
-        description="list of Epstein's bank accounts",
-        is_interesting=True,
-    ),
-    DocCfg(
-        id='EFTA00811666',
-        description="asset valuations of Epstein's holdings, includes 'Coinbase via grat'",
-        is_interesting=True,
-    ),
     DocCfg(id='EFTA00803491', author=HONEYCOMB_FUND, description="deck", is_interesting=True),
     DocCfg(id='EFTA00803459', author=HONEYCOMB_FUND, description="January 2019 report", is_interesting=True),
     DocCfg(id='EFTA00603445', author=HONEYCOMB_FUND, description="July 2017 report", is_interesting=True),
     DocCfg(id='EFTA00803464', author=HONEYCOMB_FUND, description="July 2018 report", is_interesting=True),
-    DocCfg(
-        id='EFTA00927927',
-        description=f"reads like {RENATA_BOLOTOVA} talking about recruiting girls for Epstein",
-        is_interesting=True,
-    ),
-    DocCfg(
-        id='EFTA00805569',
-        description='Mercantile Global Holdings, San Juan Mercantile Bank & Trust, Noble Bank + Signature Bank + BitGo',
-        is_interesting=True,
-    ),
-    DocCfg(
-        id='EFTA02285514',
-        description='Medici Bank and Maria Pruskova meeting',
-        is_interesting=True,
-    ),
-    DocCfg(
-        id='EFTA01613731',
-        description='Medici Bank conversation on Whatsapp',
-        is_interesting=True,
-    ),
-
-
+    DocCfg(id='EFTA00810239', author=VALAR_FUND, description='pitch deck'),
+    DocCfg(id='EFTA00810510', author=VALAR_FUND, description='Fall 2016 Update'),
+    DocCfg(id='EFTA00810474', author=VALAR_FUND, description='Fall 2018 Update'),
+    DocCfg(id='EFTA00836182', author=VALAR_FUND, description='Limited Partners email'),
     DocCfg(
         id='EFTA01612888',
         author='Kevin Peterson, Bammohan Deeduvanu, Pradip Kanjamala, and Kelly Boles',
         description='A Blockchain-Based Approach to Health Information Exchange Networks',
     ),
     DocCfg(id='EFTA00797613', description='Alphabit crypto fund pitch deck', attached_to_email_id='EFTA00955063'),
+    DocCfg(id='EFTA00811666', description="asset valuations of Epstein's holdings, includes 'Coinbase via grat'"),
     DocCfg(id='EFTA01088644', description=f"{BLOCKCHAIN_CAPITAL} deck", date='2015-10-01'),
     DocCfg(id='EFTA00604942', description=f"{BLOCKCHAIN_CAPITAL} Investor Update", date='2015-10-01'),
     # Coinbase
@@ -2385,7 +2332,7 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01612721', description=f'{CRYPTO_PR_LAB} WhatsApp convo with {MARIYA_PRUSAKOVA}'),
     # ZCash
     DocCfg(id='EFTA00811130', author=PERKINS_COIE, description='tax opinion on ZCash tokens'),
-    DocCfg(id='EFTA00603348', description=f"Electric Coin Company created the untraceable crypto ZCash with money from {LARRY_SUMMERS}'s DCG"), # So it's not
+    DocCfg(id='EFTA00603348', description=f"Electric Coin Company created the untraceable crypto ZCash funded by {LARRY_SUMMERS}'s DCG"),
     DocCfg(id='EFTA00803405', description=f"Honeycomb Asset Management fund brochure", truncate_to=MAX_CHARS_TO_PRINT),
     # Joi Ito / Kyara
     DocCfg(id='EFTA00805860', description=f"{JOI_ITO}'s Neoteny 3 fund investor update / portfolio"),
@@ -2396,6 +2343,11 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01186455', description=f"{KYARA_FUND} II LLC operating agreement"),
     DocCfg(id='EFTA00584696', description=f"{KYARA_FUND} III LLC operating agreement"),
     DocCfg(id='EFTA01734786', description='LedgerX Series B pitch deck'),
+    DocCfg(id='EFTA02725909', description='memo to NYDFS for NYC Bitcoin Exchange, Balaji Srinivisan & Andrew Farkas on board'),
+    # Medici
+    DocCfg(id='EFTA02285514', description=f"Medici Bank and {MARIYA_PRUSAKOVA} meeting"),
+    DocCfg(id='EFTA01613731', description='Medici Bank conversation on Whatsapp'),
+    DocCfg(id='EFTA00805569', description='Mercantile Global Holdings, San Juan Mercantile Bank & Trust, Noble Bank + Signature Bank + BitGo'),
     DocCfg(id='EFTA01088079', description="someone's thoughts on bitcoin"),
     DocCfg(id='EFTA00128987', description='suspicious activity report about Kushner co. crypto payments to a suspicious Russian person'),
     # Valar
