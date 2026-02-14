@@ -32683,6 +32683,20 @@
                 "type": "Email"
             },
             {
+                "author": "Ann Rodriguez",
+                "bytes": 145,
+                "file_id": "EFTA00003154",
+                "filename": "EFTA00003154.txt",
+                "num_lines": 6,
+                "recipients": [
+                    "Daphne Wallace",
+                    "Richard Kahn"
+                ],
+                "subject": "Front of dock",
+                "timestamp": "2015-06-03T10:53:00",
+                "type": "Email"
+            },
+            {
                 "author": "Bureau of Prisons",
                 "bytes": 10201,
                 "file_id": "EFTA00039357",
@@ -32921,6 +32935,18 @@
                     "Alison J. Nathan"
                 ],
                 "timestamp": "2021-04-22T15:22:17",
+                "type": "Email"
+            },
+            {
+                "bytes": 10584,
+                "file_id": "EFTA00039820",
+                "filename": "EFTA00039820.txt",
+                "num_lines": 157,
+                "recipients": [
+                    null
+                ],
+                "subject": "RE: US v Maxwell - [conferrals regarding pretrial disclosures & redactions to replies]",
+                "timestamp": "2021-04-22T21:47:47",
                 "type": "Email"
             },
             {
@@ -38536,6 +38562,21 @@
             {
                 "attribution_reason": "\"sneaky dog\"",
                 "author": "Jeffrey Epstein",
+                "bytes": 446,
+                "file_id": "EFTA01843319",
+                "filename": "EFTA01843319.txt",
+                "num_lines": 13,
+                "recipients": [
+                    "Renata Bolotova"
+                ],
+                "sent_from_device": "Sorry for all the typos .Sent from my iPhone",
+                "subject": "Re:",
+                "timestamp": "2012-02-24T00:08:42",
+                "type": "Email"
+            },
+            {
+                "attribution_reason": "\"sneaky dog\"",
+                "author": "Jeffrey Epstein",
                 "bytes": 5278,
                 "file_id": "EFTA01846434",
                 "filename": "EFTA01846434.txt",
@@ -38814,6 +38855,21 @@
                 ],
                 "subject": "Re:",
                 "timestamp": "2014-05-02T16:58:04",
+                "type": "Email"
+            },
+            {
+                "author": "Daphne Wallace",
+                "bytes": 7148,
+                "file_id": "EFTA01925969",
+                "filename": "EFTA01925969.txt",
+                "num_lines": 138,
+                "recipients": [
+                    "Austin Hill",
+                    "Francesca Hall",
+                    "Jeffrey Epstein"
+                ],
+                "subject": "Re:",
+                "timestamp": "2014-04-16T13:34:42",
                 "type": "Email"
             },
             {
@@ -39259,6 +39315,20 @@
                 "type": "Email"
             },
             {
+                "author": "Renata Bolotova",
+                "bytes": 895,
+                "date": "2012-01-24 09:35:00",
+                "file_id": "EFTA01985762",
+                "filename": "EFTA01985762.txt",
+                "num_lines": 19,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPad",
+                "timestamp": "2012-01-24T09:35:00",
+                "type": "Email"
+            },
+            {
                 "author": "Amir Taaki",
                 "bytes": 274,
                 "file_id": "EFTA01986221",
@@ -39366,6 +39436,26 @@
                 "sent_from_device": "Sent from my iPad",
                 "subject": "Re: Lord Macdonald's trip to Paris",
                 "timestamp": "2012-08-06T20:59:19",
+                "type": "Email"
+            },
+            {
+                "bytes": 260,
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA02025218",
+                "file_id": "EFTA02025218",
+                "filename": "EFTA02025218.txt",
+                "num_lines": 4,
+                "timestamp": "2026-02-14T02:31:00",
+                "type": "Email"
+            },
+            {
+                "bytes": 213,
+                "dupe_type": "same",
+                "duplicate_of_id": "EFTA02025218",
+                "file_id": "EFTA02025218",
+                "filename": "EFTA02025218.txt",
+                "num_lines": 4,
+                "timestamp": "2026-02-14T02:31:00",
                 "type": "Email"
             },
             {
@@ -39636,6 +39726,22 @@
                 ],
                 "subject": "Re: Jeffrey Epstein",
                 "timestamp": "2014-12-03T17:09:01",
+                "type": "Email"
+            },
+            {
+                "author": "Lesley Groff",
+                "bytes": 516,
+                "file_id": "EFTA02089457",
+                "filename": "EFTA02089457.txt",
+                "num_lines": 12,
+                "recipients": [
+                    null,
+                    "Jeffrey Epstein",
+                    "Jojo Fontanilla",
+                    "Lyn Fontanilla",
+                    "Merwin Dela Cruz"
+                ],
+                "timestamp": "2026-02-14T09:00:00",
                 "type": "Email"
             },
             {
@@ -39937,6 +40043,19 @@
             },
             {
                 "author": "Austin Hill",
+                "bytes": 1495,
+                "file_id": "EFTA02228570",
+                "filename": "EFTA02228570.txt",
+                "num_lines": 33,
+                "recipients": [
+                    "Lesley Groff"
+                ],
+                "subject": "Re: Confirming for Saturday",
+                "timestamp": "2017-11-08T12:51:09",
+                "type": "Email"
+            },
+            {
+                "author": "Austin Hill",
                 "bytes": 403,
                 "file_id": "EFTA02229342",
                 "filename": "EFTA02229342.txt",
@@ -39958,6 +40077,18 @@
                 ],
                 "subject": "Re: Velar Call",
                 "timestamp": "2017-11-10T15:47:27",
+                "type": "Email"
+            },
+            {
+                "bytes": 1860,
+                "file_id": "EFTA02229659",
+                "filename": "EFTA02229659.txt",
+                "num_lines": 107,
+                "recipients": [
+                    "Richard Kahn"
+                ],
+                "subject": "Re: Valar Call",
+                "timestamp": "2017-11-10T14:59:14",
                 "type": "Email"
             },
             {
@@ -40296,6 +40427,20 @@
                 "num_lines": 6,
                 "subject": "Alert - 2:00pm Video Skype w/Medici Bank and Maria Pruskova",
                 "timestamp": "2019-05-16T18:31:13",
+                "type": "Email"
+            },
+            {
+                "bytes": 2872,
+                "file_id": "EFTA02285725",
+                "filename": "EFTA02285725.txt",
+                "num_lines": 58,
+                "recipients": [
+                    "Ed Boyle",
+                    "Lesley Groff",
+                    "Lorenzo de Medici"
+                ],
+                "subject": "Re: introduction/ Lorenzo - Jeffrey, Medici Bank",
+                "timestamp": "2019-05-20T15:04:42",
                 "type": "Email"
             },
             {
