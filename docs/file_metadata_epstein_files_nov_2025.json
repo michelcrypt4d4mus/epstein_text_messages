@@ -32775,6 +32775,7 @@
             {
                 "author": "Christopher Dilorio",
                 "bytes": 201191,
+                "description": "emails to SEC about Signature Bank, Hapoalim, Bioptix / RIOT, Barry Honig, etc.",
                 "file_id": "EFTA00039689",
                 "filename": "EFTA00039689.txt",
                 "num_lines": 2924,
@@ -35290,7 +35291,6 @@
                 "attribution_reason": "widely reported",
                 "author": "Jeffrey Epstein",
                 "bytes": 169,
-                "comment": "torture video",
                 "file_id": "EFTA00749241",
                 "filename": "EFTA00749241.txt",
                 "is_interesting": true,
@@ -35545,19 +35545,6 @@
                 ],
                 "subject": "Fwd:",
                 "timestamp": "2016-01-30T14:08:26",
-                "type": "Email"
-            },
-            {
-                "author": "Ian ODonnell",
-                "bytes": 1585,
-                "file_id": "EFTA00836182",
-                "filename": "EFTA00836182.txt",
-                "num_lines": 28,
-                "recipients": [
-                    "James Fitzgerald",
-                    "LIMITED PARTNERS"
-                ],
-                "timestamp": "2016-01-21T02:54:34",
                 "type": "Email"
             },
             {
@@ -36157,19 +36144,6 @@
                 ],
                 "subject": "Re: Valar Global Fund III LP - Capital Call 8",
                 "timestamp": "2018-01-03T23:49:32",
-                "type": "Email"
-            },
-            {
-                "author": "Renata Bolotova",
-                "bytes": 1185,
-                "file_id": "EFTA00927927",
-                "filename": "EFTA00927927.txt",
-                "num_lines": 22,
-                "recipients": [
-                    "Jeffrey Epstein"
-                ],
-                "subject": "Re: your mail",
-                "timestamp": "2012-01-28T18:07:00",
                 "type": "Email"
             },
             {
@@ -37015,8 +36989,10 @@
             {
                 "author": "Peter Thiel",
                 "bytes": 1153,
+                "description": "Peter Thiel tells Epstein to invest in his fund",
                 "file_id": "EFTA01003346",
                 "filename": "EFTA01003346.txt",
+                "is_interesting": true,
                 "num_lines": 27,
                 "recipients": [
                     "Jeffrey Epstein"
@@ -40420,16 +40396,6 @@
                 "type": "Email"
             },
             {
-                "author": "Lesley Groff",
-                "bytes": 234,
-                "file_id": "EFTA02285514",
-                "filename": "EFTA02285514.txt",
-                "num_lines": 6,
-                "subject": "Alert - 2:00pm Video Skype w/Medici Bank and Maria Pruskova",
-                "timestamp": "2019-05-16T18:31:13",
-                "type": "Email"
-            },
-            {
                 "bytes": 2872,
                 "file_id": "EFTA02285725",
                 "filename": "EFTA02285725.txt",
@@ -40492,7 +40458,7 @@
             {
                 "author": "Jeffrey Epstein",
                 "bytes": 3744,
-                "description": "cyrillic Renata Bolotova's visa issues, possibly marriage related?",
+                "description": "cyrillic about Renata Bolotova's visa issues, possibly marriage related?",
                 "file_id": "EFTA02312343",
                 "filename": "EFTA02312343.txt",
                 "is_interesting": true,
@@ -47955,7 +47921,7 @@
             {
                 "author": "Joi Ito",
                 "bytes": 31875,
-                "category": "academia",
+                "category": "crypto",
                 "description": "Internet & Society: The Technologies and Politics of Control",
                 "file_id": "024256",
                 "filename": "HOUSE_OVERSIGHT_024256.txt",
@@ -50951,6 +50917,7 @@
         "Donald Rubin": "Harvard, Professor of Statistics",
         "Douglas Wigdor": "victim lawyer, lawsuit against Leon Black, Wigdor LLP",
         "Ed Boyden": "academia, MIT Media Lab neurobiology professor",
+        "Ed Boyle": "crypto, Medici Bank",
         "Eduardo Robles": "employee, home builder at Creative Kingdom Dubai",
         "Edward Jay Epstein": "journalist, no relation, wrote books about spies",
         "Edward Rod Larsen": "Europe, son of Terje R\u00f8d-Larsen",
