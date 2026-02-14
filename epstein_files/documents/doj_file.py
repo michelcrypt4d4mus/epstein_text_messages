@@ -19,8 +19,8 @@ from epstein_files.util.rich import RAINBOW, highlighter, wrap_in_markup_style
 
 IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTALL)
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
-SINGLE_IMAGE_NO_TEXT = 'single image with no text'
 MIN_VALID_LENGTH = 10
+SINGLE_IMAGE_NO_TEXT = 'single image with no text'
 WORD_REGEX = re.compile(r"[A-Za-z]{3,}")
 
 OTHER_DOC_URLS = {
