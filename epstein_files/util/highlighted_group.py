@@ -1983,7 +1983,7 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         contacts=[ContactInfo(PRINCE_ANDREW, "British royal family", r"Prince Andrew|The Duke")],
         patterns=[
             r'\bPA\b',
-            r"Urramoor",
+            r"Urramoor(\s*Limited)?",
         ],
         style='dodger_blue1',
         category='Europe'
