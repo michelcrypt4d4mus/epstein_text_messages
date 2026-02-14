@@ -13,7 +13,7 @@ from epstein_files.util.helpers.string_helper import indented, quote, remove_que
 
 
 @dataclass
-class ContactInfo:
+class Contact:
     """
     Attributes:
         name (str): Person or organization name

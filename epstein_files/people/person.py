@@ -16,7 +16,7 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import (QUESTION_MARKS_TXT, get_highlight_group_for_name,
      get_style_for_name, styled_category, styled_name)
 from epstein_files.output.highlighted_names import HighlightedNames, HighlightedText, ManualHighlight
-from epstein_files.people.contact_info import ContactInfo
+from epstein_files.people.contact_info import Contact
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import *
@@ -42,7 +42,7 @@ INVALID_FOR_EPSTEIN_WEB = JUNK_EMAILERS + MAILING_LISTS + [
 @dataclass(kw_only=True)
 class Person:
     """Collection of data about someone texting or emailing Epstein."""
-    contact_info: ContactInfo = field(init=False)
+    contact_info: Contact = field(init=False)
     name: Name
     emails: list[Email] = field(default_factory=list)
     imessage_logs: list[MessengerLog] = field(default_factory=list)
@@ -51,7 +51,7 @@ class Person:
     _searched_for_highlight_group: bool = False
 
     def __post_init__(self):
-        self.contact_info = CONTACTS_DICT.get(str(self.name)) or ContactInfo(name=cleanup_str(str(self.name)))
+        self.contact_info = CONTACTS_DICT.get(str(self.name)) or Contact(name=cleanup_str(str(self.name)))
         self.emails = Document.sort_by_timestamp(self.emails)
         self.imessage_logs = Document.sort_by_timestamp(self.imessage_logs)
 

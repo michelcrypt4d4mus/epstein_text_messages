@@ -6,7 +6,7 @@ import json
 import re
 from dataclasses import dataclass, field
 
-from epstein_files.people.contact_info import ContactInfo
+from epstein_files.people.contact_info import Contact
 from epstein_files.util.constant.names import Name, constantize_name
 from epstein_files.util.helpers.data_helpers import without_falsey
 from epstein_files.util.logging import logger
@@ -79,8 +79,8 @@ class HighlightedNames(HighlightedText):
         _pattern (str): regex pattern combining 'pattern' with first & last names of all 'emailers'
     """
     category: str = ''
-    contacts: list[ContactInfo] = field(default_factory=list)
-    contacts_lookup: dict[Name, ContactInfo] = field(default_factory=dict)
+    contacts: list[Contact] = field(default_factory=list)
+    contacts_lookup: dict[Name, Contact] = field(default_factory=dict)
     should_match_first_last_name: bool = True  # TODO: this no longer does anything?
 
     def __post_init__(self):
@@ -95,7 +95,7 @@ class HighlightedNames(HighlightedText):
         super().__post_init__()
         self._pattern = '|'.join([contact.highlight_pattern for contact in self.contacts] + self.patterns)
         self.regex = re.compile(fr"\b({self._match_group_var}({self._pattern})s?)\b", re.IGNORECASE)
-        self.contacts_lookup = ContactInfo.build_name_lookup(self.contacts)
+        self.contacts_lookup = Contact.build_name_lookup(self.contacts)
 
     def category_str(self) -> str:
         if self.category:
