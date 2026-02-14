@@ -1923,6 +1923,7 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         ],
         patterns=[
             r"gmax(1@ellmax.com)?",
+            r"(Haze|Southern)\s*Trust(\s*Company)?",
             r"(The )?TerraMar Project",
             r"(Scott\s*)?Borgenson", # Ghislaine lawyer
         ],
