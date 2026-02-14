@@ -23,16 +23,15 @@ class DocLocation:
     local_path: Path
     local_pdf_path: Path | None = None
     source_url: str = ''
-
     # jmail_url: str
 
     @property
     def paths(self) -> dict[str, Path]:
-        return {k: Path(v) for k, v in self._props_with_suffix('path').items()}
+        return {k: Path(v) for k, v in self._props_with_suffix('path').items() if v}
 
     @property
     def urls(self) -> dict[str, str]:
-        urls = {k: str(v) for k, v in self._props_with_suffix('url').items()}
+        urls = {k: str(v) for k, v in self._props_with_suffix('url').items() if v}
         urls = {k: (v if v.startswith('http') else f"https://{v}") for k, v in urls.items()}
         return urls
 

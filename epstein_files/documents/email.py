@@ -66,7 +66,7 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"([,<>_]|AM|PM)\n(>)? ?wrote:?"): r'\1\2 wrote:',
     # Headers
     re.compile(r"^From "): 'From: ',
-    re.compile(r"^(Sent|Subject) (?![Ff]rom)", re.MULTILINE): r'\1: ',
+    re.compile(r"^(Sent|Subject) (?![Ff]rom|[Vv]ia)", re.MULTILINE): r'\1: ',
     'I nline-Images:': 'Inline-Images:',
     # Names / email addresses
     'Alireza lttihadieh': ALIREZA_ITTIHADIEH,
