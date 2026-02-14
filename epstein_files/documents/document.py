@@ -25,7 +25,7 @@ from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADD
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
-from epstein_files.util.constants import CONFIGS_BY_ID, DOJ_FILE_STEM_REGEX
+from epstein_files.util.constants import CONFIGS_BY_ID, DOJ_FILE_STEM_REGEX, MAX_CHARS_TO_PRINT
 from epstein_files.util.helpers.data_helpers import collapse_newlines, date_str, patternize, remove_zero_time, without_falsey
 from epstein_files.util.env import DOCS_DIR, DOJ_PDFS_20260130_DIR
 from epstein_files.util.helpers.file_helper import (coerce_file_path, extract_file_id, file_size, file_size_str,
@@ -42,7 +42,6 @@ WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 EMPTY_LENGTH = 15
 INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
-MAX_TOP_LINES_LEN = 4000  # Only for logging
 MIN_DOCUMENT_ID = 10477
 
 FILENAME_MATCH_STYLES = [
@@ -243,7 +242,7 @@ class Document:
             metadata['extracted_file'] = {
                 'explanation': 'manually extracted from one of the other files',
                 'extracted_from': self.url_slug + '.txt',
-                'url': extracted_file_url(self.filename),
+                'url': f"{EXTRACTS_BASE_URL}/{self.filename}",
             }
 
         return metadata
@@ -445,7 +444,7 @@ class Document:
 
     def top_lines(self, n: int = 10) -> str:
         """First n lines."""
-        return '\n'.join(self.lines[0:n])[:MAX_TOP_LINES_LEN]
+        return '\n'.join(self.lines[0:n])[:MAX_CHARS_TO_PRINT]
 
     def truncation_note(self, truncate_to: int) -> Text:
         link_markup = self.external_link_markup
