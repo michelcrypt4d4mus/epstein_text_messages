@@ -38,6 +38,7 @@ HOUSE_OVERSIGHT = HOUSE_OVERSIGHT_PREFIX.replace('_', ' ').strip()
 DOJ_DATASET_ID_REGEX = re.compile(r"(?:epstein_dataset_|DataSet )(\d+)")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
 
+EMPTY_LENGTH = 15
 INFO_INDENT = 2
 INFO_PADDING = (0, 0, 0, INFO_INDENT)
 MAX_TOP_LINES_LEN = 4000  # Only for logging
@@ -197,7 +198,7 @@ class Document:
 
     @property
     def is_empty(self) -> bool:
-        return len(self.text.strip()) < 20
+        return len(self.text.strip()) < EMPTY_LENGTH
 
     @property
     def is_interesting(self) -> bool:
