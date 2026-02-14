@@ -9,6 +9,7 @@ ARTICLE = 'article'
 BOOK = 'book'
 BUSINESS = 'business'
 CONFERENCE = 'conference'
+CRYPTO = 'crypto'
 FINANCE = 'finance'
 FRIEND = 'friend'
 FLIGHT_LOG = 'flight log'
@@ -56,7 +57,6 @@ TIMESTAMP_DIM = f"turquoise4 dim"
 
 # Misc
 AUTHOR = 'author'
-CRYPTO = 'crypto'
 DEFAULT = 'default'
 EFTA_PREFIX = 'EFTA'
 HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
@@ -81,9 +81,7 @@ INDENTED_JOIN = f',{INDENT_NEWLINE}'
 # Regexes
 DOJ_FILE_STEM_REGEX = re.compile(fr"{EFTA_PREFIX}\d{{8}}")
 DOJ_FILE_NAME_REGEX = re.compile(fr"{DOJ_FILE_STEM_REGEX.pattern}(\.txt)?")
-
 HOUSE_OVERSIGHT_NOV_2025_ID_REGEX = re.compile(r"\d{6}(_\d{1,2})?")
 HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX = re.compile(fr"{HOUSE_OVERSIGHT_PREFIX}({HOUSE_OVERSIGHT_NOV_2025_ID_REGEX.pattern})")
 HOUSE_OVERSIGHT_NOV_2025_FILE_NAME_REGEX = re.compile(fr"{HOUSE_OVERSIGHT_NOV_2025_FILE_STEM_REGEX.pattern}(\.txt(\.json)?)?")
-
 QUESTION_MARKS_REGEX = re.compile(fr' {re.escape(QUESTION_MARKS)}$')
