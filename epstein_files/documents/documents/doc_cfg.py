@@ -63,6 +63,7 @@ class DocCfg:
 
     Attributes:
         id (str): ID of file
+        attribution_reason (str, optional): Optional explanation of why this email was attributed to this author.
         author (Name): Author of the document (if any)
         category (str | None): Type of file
         date (str | None): Parsed to a datetime by timestamp() if it exists
@@ -76,6 +77,7 @@ class DocCfg:
     """
     id: str
     attached_to_email_id: str | None = None
+    attribution_reason: str | None = None
     author: Name = None
     category: str | None = None
     comment: str = ''
@@ -89,6 +91,7 @@ class DocCfg:
     is_synthetic: bool = False
     replace_text_with: str = ''
     truncate_to: int | None = None
+    uncertain_attribution: str | None = None
 
     @property
     def complete_description(self) -> str | None:
@@ -143,8 +146,17 @@ class DocCfg:
             return parse(self.date)
 
     def __post_init__(self):
+        if self.category:
+            self.category = self.category.lower()
+
+            if self.category in [ARTS, POLITICS]:
+                self.category = self.category.removesuffix('s')
+
         if self.duplicate_of_id or self.duplicate_ids:
             self.dupe_type = self.dupe_type or SAME
+
+        if self.uncertain_attribution:
+            self.is_attribution_uncertain = True
 
     def duplicate_cfgs(self) -> Generator['DocCfg', None, None]:
         """Create synthetic DocCfg objects that set the 'duplicate_of_id' field to point back to this object."""
@@ -157,7 +169,6 @@ class DocCfg:
             dupe_cfg.is_synthetic = True
             yield dupe_cfg
 
-    @property
     def _props_strs(self) -> list[str]:
         props = []
         add_prop = lambda f, value: props.append(f"{f.name}={value}")
@@ -188,7 +199,7 @@ class DocCfg:
         return props
 
     def __repr__(self) -> str:
-        props = self._props_strs
+        props = self._props_strs()
         type_str = f"{type(self).__name__}("
         single_line_repr = type_str + ', '.join(props) + f')'
 
@@ -213,10 +224,12 @@ class CommunicationCfg(DocCfg):
     files to handle the terrible OCR text that Congress provided which messes up a lot of the email headers.
 
     Attributes:
-        attribution_reason (str | None): Optional explanation of why this email was attributed to this author.
-        is_attribution_uncertain (bool): True if we have a good idea of who the author is but are not 100% certain
+        uncertain_recipient (str, optional): Optional explanation of why this recipient was attributed, but uncertainly
     """
-    attribution_reason: str | None = None
+    uncertain_recipient: str | None = None
+
+    def __post_init__(self):
+        return super().__post_init__()
 
     def __repr__(self) -> str:
         return super().__repr__()

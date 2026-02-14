@@ -33,6 +33,10 @@ class Communication(Document):
         return styled_name(self.author)
 
     @property
+    def is_recipient_uncertain(self) -> bool:
+        return bool(self.config and self.config.uncertain_recipient)
+
+    @property
     def summary(self) -> Text:
         """One line summary mostly for logging."""
         return self.summary_with_author.append(CLOSE_PROPERTIES_CHAR)

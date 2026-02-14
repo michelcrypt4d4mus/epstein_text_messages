@@ -29,6 +29,7 @@ CATEGORY_STYLE_MAPPING = {
     ARTICLE: JOURNALIST,
     BOOK: JOURNALIST,
     LEGAL: LAWYER,
+    MONEY: FINANCE,
     POLITICS: LOBBYIST,
     PROPERTY: BUSINESS,
     REPUTATION: PUBLICIST,
@@ -1653,6 +1654,7 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
             r"Donald J. Tramp",
             r"(Donald\s+(J\.\s+)?)?Trump(ism|\s*(Org(anization)?|Properties)(\s*LLC)?)?",
             r"Don(ald| *Jr)(?! (B|Norman|Rubin))",
+            r"(Howard\s*)?Lutnic?k",
             r"Ivank?a",
             r"Jared", r"(?<!Tony )Kushner",
             r"(Madeleine\s*)?Westerhout",
@@ -1827,7 +1829,7 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         contacts=[Contact(PRINCE_ANDREW, "British royal family", r"Prince Andrew|The Duke")],
         patterns=[
             r'\bPA\b',
-            r"Urramoor(\s*Limited)?",
+            r"(?<!Cantor )Urramoor(\s*Limited)?",
         ],
         style='dodger_blue1',
         category='Europe'
