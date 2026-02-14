@@ -659,7 +659,7 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
             ContactInfo(MARTIN_WEINBERG, CRIMINAL_DEFENSE_ATTORNEY, r"martin.*?weinberg"),
             ContactInfo(MICHAEL_MILLER, "Steptoe LLP partner", r"Micha(el)? Miller|Miller, Micha(el)?"),
             ContactInfo(REID_WEINGARTEN, "Steptoe LLP partner", r"Weingarten, Rei[cdi]|Rei[cdi] Weingarten"),
-            ContactInfo(ROBERT_D_CRITTON_JR, CRIMINAL_DEFENSE_ATTORNEY, r"Robert D.? Critton,? Jr.?"),
+            ContactInfo(ROBERT_D_CRITTON_JR, CRIMINAL_DEFENSE_ATTORNEY, r"Robert D.? Critton,? Jr\.?"),
             ContactInfo('Robert Gold', "helped Epstein track down money belonging to Spanish families"),
             ContactInfo('Roy Black', f"{CRIMINAL_DEFENSE_ATTORNEY} on 2008 case"),
             ContactInfo(SCOTT_J_LINK, CRIMINAL_DEFENSE_ATTORNEY, r"scott j. link?"),
