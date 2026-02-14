@@ -10,8 +10,6 @@ from epstein_files.util.constant.strings import INDENT, INDENT_NEWLINE, INDENTED
 from epstein_files.util.data import constantize_names
 from epstein_files.util.helpers.string_helper import indented, quote
 
-FIELD_SORT_KEY = {'name': 'a'}
-
 
 @dataclass
 class ContactInfo:
