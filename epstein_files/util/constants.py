@@ -2,8 +2,6 @@ import re
 from copy import deepcopy
 from typing import cast
 
-from dateutil.parser import parse
-
 from epstein_files.documents.documents.doc_cfg import DocCfg, EmailCfg, TextCfg
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.documents.emails.constants import FLIGHT_IN_2012_PEOPLE, IRAN_DEAL_RECIPIENTS, TRIVERS_CCS
@@ -12,7 +10,6 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args
 from epstein_files.util.logging import logger
 
-FALLBACK_TIMESTAMP = parse("1/1/2051 12:01:01 AM")
 MAX_CHARS_TO_PRINT = 4000
 NO_TRUNCATE = -1
 PARTICIPANTS_FIELD = 'Participants: field'
