@@ -1032,6 +1032,7 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
             r"U\.?S\.? attorney",
             r"USAID",
             USANYS,
+            r"UNITED STATES DISTRICT COURT?",
             r"US\s*(AF|Army|Air\s*Force)",
             r"Walter\s*Reed(\s*Army\s*Institute\s*of\s*Research)?",
             r"(William\s*J\.?\s*)?Zloch",
@@ -1973,7 +1974,10 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
     ),
     HighlightedNames(
         contacts=[ContactInfo(PRINCE_ANDREW, "British royal family", r"Prince Andrew|The Duke")],
-        patterns=[r'\bPA\b'],
+        patterns=[
+            r'\bPA\b',
+            r"Urramoor",
+        ],
         style='dodger_blue1',
         category='Europe'
     ),
