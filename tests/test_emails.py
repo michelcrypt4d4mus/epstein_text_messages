@@ -1,3 +1,4 @@
+from epstein_files.documents.email import Email
 from epstein_files.util.constant.names import *
 from epstein_files.util.helpers.data_helpers import dict_sets_to_lists
 
@@ -1158,7 +1159,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     ERIC_ROTH: 5,
     GHISLAINE_MAXWELL: 13,
     JEANNE_M_CHRISTENSEN: 37,
-    JEFFREY_EPSTEIN: 3853,
+    JEFFREY_EPSTEIN: 3854,
     JESSICA_CADWELL: 57,
     KEN_JENNE: 1,
     LARRY_SUMMERS: 235,
@@ -1200,9 +1201,9 @@ def test_email_recipient_counts(epstein_files):
 
 
 def test_info_sentences(epstein_files):
-    email = epstein_files.for_ids('026290')[0]
+    email = epstein_files.get_id('026290')
     assert len(email.info) == 1
-    email_with_description = epstein_files.for_ids('031278')[0]
+    email_with_description = epstein_files.get_id('031278')
     assert len(email_with_description.info) == 2
 
 
@@ -1223,23 +1224,23 @@ def test_unknown_recipient_file_ids(epstein_files):
 
 
 def test_border_style(epstein_files):
-    email = epstein_files.email_for_id('033071')
+    email = epstein_files.get_id('033071', required_type=Email)
     assert email.border_style == 'purple'
     assert email.author_style == 'blue1'
 
 
 def test_is_fwded_article(epstein_files):
-    fwded_article = epstein_files.email_for_id('033311')
+    fwded_article = epstein_files.get_id('033311', required_type=Email)
     assert fwded_article.is_word_count_worthy is False
-    non_article_with_fwd_text = epstein_files.email_for_id('012197_4')
+    non_article_with_fwd_text = epstein_files.get_id('012197_4', required_type=Email)
     assert non_article_with_fwd_text.is_fwded_article is False
     assert non_article_with_fwd_text.is_word_count_worthy is True
-    article_with_fwd_text = epstein_files.email_for_id('016413')
+    article_with_fwd_text = epstein_files.get_id('016413', required_type=Email)
     assert article_with_fwd_text.is_fwded_article is True
     assert article_with_fwd_text.is_word_count_worthy is True
 
 
 def test_broken_header_repair(epstein_files):
-    broken_email = epstein_files.email_for_id('032213')
+    broken_email = epstein_files.get_id('032213', required_type=Email)
     assert broken_email.actual_text == 'https://www.thedailybeast.com/how-close-is-donald-trump-to-a-psychiatric-breakdown?ref=home\n<...snipped jeffrey epstein email signature...>'
     assert broken_email.header.num_header_rows == 5

@@ -434,6 +434,10 @@ class Document:
         with open(self.file_path) as f:
             return f.read()
 
+    def reload(self) -> Self:
+        """Rebuild a new version of this object by loading the source file from disk again."""
+        return type(self)(self.file_path)
+
     def repair_ocr_text(self, repairs: dict[str | re.Pattern, str], text: str) -> str:
         """Apply a dict of repairs (key is pattern or string, value is replacement string) to text."""
         for k, v in repairs.items():

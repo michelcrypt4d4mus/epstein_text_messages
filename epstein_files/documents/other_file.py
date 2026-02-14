@@ -177,7 +177,7 @@ class OtherFile(Document):
                 id=self.file_id,
                 author=VALAR_VENTURES,
                 category=CRYPTO,
-                description='is a {PETER_THIEL} fintech fund'
+                description=f"is a {PETER_THIEL} fintech fund",
             )
 
     def _extract_timestamp(self) -> datetime | None:
