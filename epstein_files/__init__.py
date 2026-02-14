@@ -23,8 +23,8 @@ from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.util.constant.output_files import make_clean
 from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_NOV_2025_ID_REGEX
-from epstein_files.util.data import flatten
 from epstein_files.util.env import args
+from epstein_files.util.helpers.data_helpers import flatten
 from epstein_files.util.helpers.file_helper import extract_file_id
 from epstein_files.util.logging import exit_with_error, logger
 from epstein_files.util.output import (print_doj_files, print_emails_section, print_json_files, print_stats,

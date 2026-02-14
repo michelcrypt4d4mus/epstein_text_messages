@@ -17,8 +17,8 @@ from epstein_files.util.constant.html import *
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.output_files import EMAILERS_TABLE_PNG_PATH, JSON_FILES_JSON_PATH, JSON_METADATA_PATH
 from epstein_files.util.constant.strings import AUTHOR
-from epstein_files.util.data import dict_sets_to_lists
 from epstein_files.util.env import args
+from epstein_files.util.helpers.data_helpers import dict_sets_to_lists
 from epstein_files.util.helpers.file_helper import log_file_write
 from epstein_files.util.logging import logger, exit_with_error
 from epstein_files.util.rich import *

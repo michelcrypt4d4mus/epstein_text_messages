@@ -7,7 +7,7 @@ from epstein_files.people.contact_info import ContactInfo
 from epstein_files.util.highlighted_group import HighlightedNames, HIGHLIGHTED_NAMES
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
-from epstein_files.util.data import escape_single_quotes, flatten
+from epstein_files.util.helpers.data_helpers import escape_single_quotes, flatten
 from epstein_files.util.logging import logger
 
 BAD_EMAILER_REGEX = re.compile(r'^(>|11111111)|agreed|ok|sexy|re:|fwd:|Multiple Senders|((sent|attachments|subject|importance).*|.*(january|201\d|hysterical|i have|image0|so that people|article 1.?|momminnemummin|These conspiracy theories|your state|undisclosed|www\.theguardian|talk in|it was a|what do|cc:|call (back|me)|afiaata|[IM]{4,}).*)$', re.IGNORECASE)

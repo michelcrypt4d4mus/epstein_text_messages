@@ -17,8 +17,8 @@ from epstein_files.people.contact_info import ContactInfo
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import *
-from epstein_files.util.data import days_between, flatten, uniquify, without_falsey
 from epstein_files.util.env import args
+from epstein_files.util.helpers.data_helpers import days_between, flatten, uniquify, without_falsey
 from epstein_files.util.highlighted_group import (QUESTION_MARKS_TXT, HighlightedNames, HighlightedText, ManualHighlight,
      get_highlight_group_for_name, get_style_for_name, styled_category, styled_name)
 from epstein_files.util.rich import (GREY_NUMBERS, TABLE_TITLE_STYLE, build_table,
