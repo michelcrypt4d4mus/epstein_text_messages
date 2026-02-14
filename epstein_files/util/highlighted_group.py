@@ -372,7 +372,7 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        label='bitcoin',
+        label=CRYPTO,
         style='orange1 bold',
         emailers={
             ADAM_BACK: f"co-founder of Blockstream, bitcoin dev, long time Tether defender",
@@ -407,7 +407,7 @@ HIGHLIGHTED_NAMES = [
             r"coins?(\s*Center)?",
             r"Cory\s*Fields",  # bitcoin dev
             r"cr[iy]?pto\s*(coins?|currenc(y|ies)|PR\s*Lab)?",
-            r"cryptoprlab",
+            r"crypto(prlab)?",
             r"(Dan\s*)?Morehead",
             r"Digital\s*Currenc(ies|y)(\s*Initiative)?",
             r"e-?currency",
