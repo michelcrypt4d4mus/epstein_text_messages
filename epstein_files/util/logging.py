@@ -2,8 +2,6 @@ import logging
 from os import environ
 from sys import exit
 
-import datefinder
-import rich_argparse_plus
 from rich.console import Console
 from rich.highlighter import ReprHighlighter
 from rich.logging import RichHandler
