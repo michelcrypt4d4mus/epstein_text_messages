@@ -180,7 +180,7 @@ class Document:
 
     @property
     def info_txt(self) -> Text | None:
-        """Secondary info about this file (description recipients, etc). Overload in subclasses."""
+        """Secondary info about this file (description, recipients, etc). Overload in subclasses."""
         return None
 
     @property
