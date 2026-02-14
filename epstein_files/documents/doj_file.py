@@ -247,6 +247,14 @@ class DojFile(OtherFile):
         return self._border_style
 
     @property
+    def config_description(self) -> str | None:
+        """Overloads superclass property."""
+        if self.lines[0].lower() == 'valuation report':
+            return f"Epstein investment portfolio valuation report"
+        else:
+            return super().config_description
+
+    @property
     def external_link_markup(self) -> str:
         return wrap_in_markup_style(super().external_link_markup, self.border_style)
 
