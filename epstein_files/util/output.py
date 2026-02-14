@@ -19,7 +19,7 @@ from epstein_files.util.constant.output_files import EMAILERS_TABLE_PNG_PATH, JS
 from epstein_files.util.constant.strings import AUTHOR
 from epstein_files.util.data import dict_sets_to_lists
 from epstein_files.util.env import args
-from epstein_files.util.file_helper import log_file_write
+from epstein_files.util.helpers.file_helper import log_file_write
 from epstein_files.util.logging import logger, exit_with_error
 from epstein_files.util.rich import *
 

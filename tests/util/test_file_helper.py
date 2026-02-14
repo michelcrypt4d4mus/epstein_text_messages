@@ -1,4 +1,4 @@
-from epstein_files.util.file_helper import *
+from epstein_files.util.helpers.file_helper import *
 
 
 def test_build_filename_for_id():

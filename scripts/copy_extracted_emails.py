@@ -3,7 +3,7 @@
 import shutil
 
 from scripts.use_pickled import console, epstein_files
-from epstein_files.util.file_helper import EXTRACTED_EMAILS_DIR
+from epstein_files.util.helpers.file_helper import EXTRACTED_EMAILS_DIR
 
 
 for email in epstein_files.emails:
