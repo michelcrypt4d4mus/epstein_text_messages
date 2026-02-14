@@ -2350,12 +2350,9 @@ OTHER_FILES_JUNK = [
     DocCfg(id='029351', description=OBAMA_JOKE, date='2013-07-26'),
     DocCfg(id='029354', description=OBAMA_JOKE, date='2013-07-26'),
     DocCfg(id='031293'),
-
     # Completely redacted DOJ emails, no timestamp at all
     DocCfg(id='EFTA02731726'),
     DocCfg(id='EFTA02731728'),
-    # Almost no timestamp
-    DocCfg(id='EFTA00003154'),
 ]
 
 OTHER_FILES_CATEGORIES = [
