@@ -54,6 +54,10 @@ class EpsteinFiles:
         return [doc for doc in self.all_documents if doc.is_doj_file]
 
     @property
+    def non_duplicate_emails(self) -> list[Email]:
+        return Document.without_dupes(self.emails)
+
+    @property
     def non_json_other_files(self) -> list[OtherFile]:
         return [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
 
@@ -134,7 +138,7 @@ class EpsteinFiles:
     def email_authors_to_device_signatures(self) -> dict[str, set[str]]:
         signatures = defaultdict(set)
 
-        for email in [e for e in self.non_duplicate_emails() if e.sent_from_device]:
+        for email in [e for e in self.non_duplicate_emails if e.sent_from_device]:
             signatures[email.author_or_unknown].add(email.sent_from_device)
 
         return signatures
@@ -142,7 +146,7 @@ class EpsteinFiles:
     def email_device_signatures_to_authors(self) -> dict[str, set[str]]:
         signatures = defaultdict(set)
 
-        for email in [e for e in self.non_duplicate_emails() if e.sent_from_device]:
+        for email in [e for e in self.non_duplicate_emails if e.sent_from_device]:
             signatures[email.sent_from_device].add(email.author_or_unknown)
 
         return signatures
@@ -232,9 +236,6 @@ class EpsteinFiles:
         }
 
         return json.dumps(metadata, indent=4, sort_keys=True)
-
-    def non_duplicate_emails(self) -> list[Email]:
-        return Document.without_dupes(self.emails)
 
     def person_objs(self, names: list[Name]) -> list[Person]:
         """Construct Person objects for a list of names."""

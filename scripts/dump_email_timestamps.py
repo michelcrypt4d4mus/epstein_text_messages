@@ -69,7 +69,7 @@ for i, doc in enumerate(sorted(epstein_files.doj_files, key=lambda f: -f.length)
 
 sys.exit()
 
-for email in epstein_files.non_duplicate_emails():
+for email in epstein_files.non_duplicate_emails:
     if email._is_first_for_user:
         print(f"{email}, _is_first_for_user={email._is_first_for_user}")
 
