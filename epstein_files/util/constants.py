@@ -152,6 +152,7 @@ PAULA_REASON = 'Signature of "Sent via BlackBerry from T-Mobile"'
 IS_IT_ROGER_STONE = "is the 'roger' Epstein is trying to meet Roger Stone?"
 KYARA_FUND = f"Epstein crypto fund {KYARA_INVESTMENTS}"
 MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article about Epstein by {MICHAEL_WOLFF} written ca. 2014/2015"
+SEC_WHISTLEBLOWER = 'whistleblower emails to SEC'
 VALAR_MEETING = f"meeting with {PETER_THIEL}'s {VALAR_VENTURES} fund"
 
 # Some emails have a lot of uninteresting CCs
@@ -1307,7 +1308,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731578', date='2021-05-28 10:00:00'),
     EmailCfg(id='EFTA00039888', date='2019-05-14 16:49:00'),
     EmailCfg(id='EFTA00040145', date='2021-11-09 17:24:30'),
-    # EmailCfg(id='EFTA02730468', date='2004-02-03 00:00:00'),  # TODO: ???
     EmailCfg(id='EFTA02730485', date='2021-12-03 00:00:00'),
     EmailCfg(
         id='EFTA02021096',
@@ -1366,6 +1366,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00754450', description='"PA" is probably Prince Andrew', duplicate_ids=['EFTA02418244']),
     EmailCfg(id='EFTA01003346', description=f"{PETER_THIEL} tells Epstein to invest in his fund", is_interesting=True),
     EmailCfg(id='EFTA01013266', description=f"request for payment to {MARIYA_PRUSAKOVA}'s {CRYPTO_PR_LAB}", is_interesting=True),
+    EmailCfg(id='EFTA00039689', description=f"{SEC_WHISTLEBLOWER} re: Signature Bank, Hapoalim, Bioptix/RIOT, Barry Honig, etc.", truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00362171', description=f"{SEC_WHISTLEBLOWER}, rest is visible in EFTA00039689", truncate_to=102_000),
     EmailCfg(id='EFTA02505439', description=f'summary of Kyara Investment shell companies with {JOI_ITO}'),
     EmailCfg(id='EFTA02517623', description=f"{VINCENZO_IOZZO} explains to Epstein how to deanonymize bitcoin", is_interesting=True),
     EmailCfg(id='EFTA00875181', duplicate_ids=['EFTA01901268']),
@@ -1378,7 +1380,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01776411', duplicate_ids=['EFTA02691069']),
     EmailCfg(id='EFTA02390441', duplicate_ids=['EFTA02403336']),
     EmailCfg(id='EFTA00362171', truncate_to=1200),
-    EmailCfg(id='EFTA00039689', description='emails to SEC about Signature Bank, Hapoalim, Bioptix / RIOT, Barry Honig, etc.', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00869828', truncate_to=TRUNCATED_CHARS),
 ]
 
