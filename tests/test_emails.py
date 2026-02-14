@@ -423,7 +423,6 @@ EMAIL_RECIPIENT_COUNTS = {
     'Leo': 1,  # TODO: who is this?
     LEON_BLACK: 4,
     "Lilly Sanchez": 2,
-    'LIMITED PARTNERS': 1,
     LINDA_STONE: 4,
     'Linda W. Grossman': 2,
     "Lisa Albert": 1,
