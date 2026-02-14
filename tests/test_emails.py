@@ -3,7 +3,7 @@ from epstein_files.util.data import dict_sets_to_lists
 
 
 EMAIL_AUTHOR_COUNTS = {
-    None: 98,
+    None: 97,
     "Abi Schwinck": 1,
     AL_SECKEL: 8,
     "Alain Forget": 3,
@@ -177,7 +177,6 @@ EMAIL_AUTHOR_COUNTS = {
     NADIA_MARCINKO: 5,
     'Neal Berger': 1,
     NEAL_KASSELL: 2,
-    'Newsmax': 1,
     NICHOLAS_RIBIS: 42,
     NICOLE_JUNKERMANN: 4,
     NOAM_CHOMSKY: 4,
@@ -260,7 +259,7 @@ EMAIL_AUTHOR_COUNTS = {
 
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 101,
+    None: 100,
     "ACT for America": 1,
     ADAM_BACK: 3,
     AL_SECKEL: 1,
@@ -1127,7 +1126,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     ERIC_ROTH: 5,
     GHISLAINE_MAXWELL: 13,
     JEANNE_M_CHRISTENSEN: 37,
-    JEFFREY_EPSTEIN: 3803,
+    JEFFREY_EPSTEIN: 3847,
     JESSICA_CADWELL: 57,
     KEN_JENNE: 1,
     LARRY_SUMMERS: 235,
@@ -1181,7 +1180,10 @@ def test_signatures(epstein_files):
 
 
 def test_signature_substitutions(epstein_files):
-    assert epstein_files.email_signature_substitution_counts() == SIGNATURE_SUBSTITUTION_COUNTS
+    substitution_counts = epstein_files.email_signature_substitution_counts()
+    # epstein_substitutions = substitution_counts.pop(JEFFREY_EPSTEIN)
+    # assert epstein_substitutions > 3840
+    assert substitution_counts == SIGNATURE_SUBSTITUTION_COUNTS
 
 
 def test_unknown_recipient_file_ids(epstein_files):
