@@ -227,10 +227,6 @@ class DojFile(OtherFile):
         return len(self.text.strip().removesuffix(NO_IMAGE_SUFFIX)) < MIN_VALID_LENGTH
 
     @property
-    def is_interesting(self) -> bool:
-        return bool(self.config and self.config.is_interesting)
-
-    @property
     def prettified_text(self) -> Text:
         """Returns the string we want to print as the body of the document."""
         style = ''
