@@ -1,3 +1,5 @@
+import re
+
 from epstein_files.util.constant.strings import QUESTION_MARKS, remove_question_marks
 
 Name = str | None
@@ -316,9 +318,11 @@ OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
     zach zack
 """.strip().split()
 
+SIMPLE_NAME_REGEX = re.compile(r"^[-\w, ]+$", re.IGNORECASE)
+
 
 def constantize_name(name: str) -> str:
-    if name == 'Andrzej Duda or entourage':
+    if name == ANDRZEJ_DUDA:
         return 'ANDRZEJ_DUDA'
     elif name == MIROSLAV_LAJCAK:
         return 'MIROSLAV_LAJCAK'
@@ -330,7 +334,6 @@ def constantize_name(name: str) -> str:
     variable_name = variable_name.upper().replace('-', '_').replace(' ', '_').replace('.', '')
 
     if variable_name not in globals():
-        #print(f"  ****ERROR**** {variable_name} is not a name variable!")
         return f"'{name}'"
     else:
         return variable_name

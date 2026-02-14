@@ -73,6 +73,11 @@ JSON_FILE_CLASS = 'JsonFile'
 MESSENGER_LOG_CLASS = 'MessengerLog'
 OTHER_FILE_CLASS = 'OtherFile'
 
+# Whitespace
+INDENT = '    '
+INDENT_NEWLINE = f'\n{INDENT}'
+INDENTED_JOIN = f',{INDENT_NEWLINE}'
+
 # Regexes
 DOJ_FILE_STEM_REGEX = re.compile(fr"{EFTA_PREFIX}\d{{8}}")
 DOJ_FILE_NAME_REGEX = re.compile(fr"{DOJ_FILE_STEM_REGEX.pattern}(\.txt)?")

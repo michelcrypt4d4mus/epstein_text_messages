@@ -1,46 +1,96 @@
 import re
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass, field, fields
 from pathlib import Path
 
 from rich.text import Text
 
-from epstein_files.util.file_helper import extract_file_id, is_doj_file
-from epstein_files.util.constant.names import Name
-from epstein_files.util.constant.strings import indented
-from epstein_files.util.constant.urls import link_text_obj
-from epstein_files.util.rich import ARCHIVE_LINK_COLOR, prefix_with, styled_dict
+from epstein_files.util.data import constantize_names
+from epstein_files.util.env import args
+from epstein_files.util.constant.names import NAMES_TO_NOT_HIGHLIGHT, SIMPLE_NAME_REGEX, Name, constantize_name, extract_first_name, extract_last_name, reversed_name
+from epstein_files.util.constant.strings import INDENT, INDENT_NEWLINE, INDENTED_JOIN, remove_question_marks
+from epstein_files.util.helpers.string_helper import quote
+
+FIELD_SORT_KEY = {'name': 'a'}
 
 
-@dataclass(kw_only=True)
+@dataclass
 class ContactInfo:
     """
     Attributes:
         `name` (Name): Person or organization name
-        `email_pattern` (str, optional): regex pattern to match this person in email headers
         `info` (str, optional): biographical info about this person
+        `email_pattern` (str, optional): manually constructed regex pattern to match this person in email headers
     """
     name: Name
-    emailer_pattern: str = ''
     info: str = ''
+    emailer_pattern: str = ''
     emailer_regex: re.Pattern = field(init=False)
-
+    is_junk: bool = False
     # jmail_url: str
 
+    @property
+    def highlight_pattern(self) -> str:
+        """`self.emailer_pattern` extended with first/last name variations."""
+        if self.name is None:
+            raise RuntimeError(f"Can't build highlight_pattern for None!")
+
+        name_patterns = [self.emailer_pattern or remove_question_marks(self.name).replace(' ', r"\s+")]
+
+        if self.is_junk or ' ' not in self.name:
+            return name_patterns[0]
+
+        if ' ' in self.name:
+            for partial_name in [reversed_name(self.name), extract_first_name(self.name), extract_last_name(self.name)]:  # Order matters
+                if partial_name.lower() not in NAMES_TO_NOT_HIGHLIGHT and SIMPLE_NAME_REGEX.match(partial_name):
+                    name_patterns.append(partial_name.replace(' ', r"\s+"))
+
+        pattern = '|'.join(name_patterns)
+
+        # if args.deep_debug and args.colors_only:
+        #     debug_console.print(Text('').append(f"{name:25s}", style=self.style).append(f" '{pattern}'", style='dim'))
+
+        return pattern
 
     def __post_init__(self):
-        self.file_id = extract_file_id(self.local_path)
+        if self.name is None:
+            return
 
-        if is_doj_file(self.local_path):
-            self.source_url = self.external_url
+        emailer_pattern = self.emailer_pattern or f"{self.name}?"
+        self.emailer_regex = re.compile(emailer_pattern, re.IGNORECASE)
 
-    def _props_with_suffix(self, suffix: str) -> dict[str, str]:
-        return {k: v for k, v in asdict(self).items() if k.endswith(suffix)}
+    @property
+    def _props_strs(self) -> list[str]:
+        props = []
 
-    def __rich__(self) -> Text:
-        """Text obj with local paths and URLs."""
-        txt_lines = styled_dict({'file_id': self.file_id, **self.paths, **self.urls}, key_style='khaki3', sep=': ')
-        return prefix_with(txt_lines, ' ', pfx_style='grey', indent=2)
+        def add_prop(f, value):
+            if self.emailer_pattern:
+                props.append(f"{f.name}={value}")
+            else:
+                props.append(value)
 
-    def __str__(self) -> str:
-        lines = [f"{k:>40}: {v}" for k, v in asdict(self).items() if k != 'file_id']
-        return '\n'.join(lines)
+        for _field in fields(self):
+            if _field.name == 'name':
+                add_prop(_field, constantize_name(getattr(self, _field.name)))
+            elif (value := getattr(self, _field.name)) and not _field.name.endswith('regex'):
+                if _field.name.endswith('pattern'):
+                    value = f'r"{value}"'
+                else:
+                    value = quote(constantize_names(str(value)))
+                    value = ('f' + value) if '{' in value else value
+
+                add_prop(_field, value)
+
+        return props
+
+    def __repr__(self) -> str:
+        props = self._props_strs
+        type_str = f"{type(self).__name__}("
+
+        if self.emailer_pattern:
+            repr_str = f"{type_str}{INDENT_NEWLINE}" + INDENTED_JOIN.join(props)
+            repr_str += ',' if props else ''
+            repr_str += '\n)'
+        else:
+            repr_str = type_str + ', '.join(props) + ')'
+
+        return repr_str
