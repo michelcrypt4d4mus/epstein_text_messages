@@ -519,7 +519,7 @@ class Document:
                 self.prettified_text,
                 border_style=self.border_style,
                 expand=False,
-                title=f"({self.panel_title_timestamp})" if self.panel_title_timestamp else None,
+                title=Text(f"({self.panel_title_timestamp})", style='dim') if self.panel_title_timestamp else None,
                 title_align='right',
             )
 
