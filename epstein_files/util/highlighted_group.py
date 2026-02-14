@@ -5,7 +5,7 @@ from rich.console import Console
 from rich.text import Text
 
 from epstein_files.documents.documents.doc_cfg import *
-from epstein_files.output.highlighted_names import REGEX_STYLE_PREFIX, HighlightedNames, HighlightedText, ManualHighlight
+from epstein_files.output.highlighted_names import HighlightedNames, HighlightedText, ManualHighlight
 from epstein_files.people.contact_info import ContactInfo
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
