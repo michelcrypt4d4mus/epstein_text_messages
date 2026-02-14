@@ -64,6 +64,19 @@ BAD_OCR_FILE_IDS = [
     'EFTA00008413',
     'EFTA00001809',
     'EFTA00002831',
+    'EFTA00007864',
+    'EFTA00003088',
+    'EFTA00003091',
+    'EFTA00002593',
+    'EFTA00002133',
+    'EFTA00001780',
+    'EFTA00001633',
+    'EFTA00001627',
+    'EFTA00001539',
+    'EFTA00001363',
+    'EFTA00001276',
+    'EFTA00001101',
+    'EFTA00000563',
     'EFTA00002816',
     'EFTA00001114',
     'EFTA00008445',
@@ -153,6 +166,8 @@ BAD_OCR_FILE_IDS = [
     'EFTA00002523',
     'EFTA00001979',
     'EFTA00002110',
+    'EFTA00002342',
+    'EFTA00000554',
     'EFTA00008504',
     'EFTA00001368',
     'EFTA00000134',
@@ -232,6 +247,14 @@ class DojFile(OtherFile):
             type(self).border_style_rainbow_idx += 1
 
         return self._border_style
+
+    @property
+    def config_description(self) -> str | None:
+        """Overloads superclass property."""
+        if self.lines[0].lower() == 'valuation report':
+            return f"Epstein investment portfolio valuation report"
+        else:
+            return super().config_description
 
     @property
     def external_link_markup(self) -> str:

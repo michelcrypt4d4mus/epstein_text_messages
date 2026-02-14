@@ -1,6 +1,5 @@
 import time
 from dataclasses import dataclass, field
-from typing import Type
 
 from epstein_files.util.logging import logger
 

@@ -1099,7 +1099,7 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(
         id='EFTA02312343',
-        description=f"cyrillic {RENATA_BOLOTOVA}'s visa issues, possibly marriage related?",
+        description=f"cyrillic about {RENATA_BOLOTOVA}'s visa issues, possibly marriage related?",
         is_interesting=True
     ),
     EmailCfg(
@@ -1143,6 +1143,7 @@ EMAILS_CONFIG = [
         description=f"email about a future job at {TERJE_ROD_LARSEN}'s International Peace Institute",
         is_attribution_uncertain=True,
     ),
+    EmailCfg(id='EFTA01985762', author=RENATA_BOLOTOVA, recipients=[JEFFREY_EPSTEIN], date='2012-01-24 09:35:00'),
     EmailCfg(id='EFTA00920177', author=RENATA_BOLOTOVA, attribution_reason='discussion of employment at Institute'),
     EmailCfg(id='EFTA00920010', author=RENATA_BOLOTOVA, attribution_reason='renbolotova@gmail in body'),
     EmailCfg(id='EFTA00912012', author=RENATA_BOLOTOVA, attribution_reason='renbolotova in body', description='this file has been removed from the DOJ site'),
@@ -1289,6 +1290,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00313867', recipients=[LESLEY_GROFF], truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00383027', recipients=[LINDA_STONE]),
     EmailCfg(id='EFTA02731632', recipients=[OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL]),
+    EmailCfg(id='EFTA01843319', recipients=[RENATA_BOLOTOVA], attribution_reason='"sneaky dog"'),
     EmailCfg(id='EFTA01006355', recipients=[RENATA_BOLOTOVA], attribution_reason='"sneaky dog"'),
     EmailCfg(id='EFTA02547678', recipients=[RENATA_BOLOTOVA], attribution_reason='"sneaky dog"'),
     EmailCfg(id='EFTA02626300', recipients=[RENATA_BOLOTOVA], attribution_reason='"sneaky dog"'),
@@ -1359,11 +1361,11 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02372964', description='an "ICO" is an "initial coin offering", a type of crypto scam very popular at this time'),
     EmailCfg(id='EFTA00988395', description='"Andy Back" is probably O.G. bitcoin dev Adam Back from Blockstream', duplicate_ids=['EFTA01928856']),
     EmailCfg(id='EFTA00955063', description='Austin Hill discusses investments in crypto funds engaged in fraudulent wash trading', is_interesting=True),
-    EmailCfg(id='EFTA01051074', description='Brock Pierce arranging meeting between Bannon and Epstein (in Doha?)'),
-    EmailCfg(id='EFTA00658457', description='Brock Pierce says they will not invest in Bitfury'),
-    EmailCfg(id='EFTA00998595', description='Brock Pierce and Epstein discuss structure of crypto investments'),
-    EmailCfg(id='EFTA01000882', description="Brock Pierce asks for Epstein's permission to disclose his name to Coinbase team", is_interesting=True),
-    EmailCfg(id='EFTA00626220', description=f'discussion of a "sidecar fund" with Brock Pierce / Crypto Currency Partners II'),
+    EmailCfg(id='EFTA01051074', description=f'{BROCK_PIERCE} arranging meeting between Bannon and Epstein (in Doha?)'),
+    EmailCfg(id='EFTA00658457', description=f'{BROCK_PIERCE} says they will not invest in Bitfury'),
+    EmailCfg(id='EFTA00998595', description=f'{BROCK_PIERCE} and Epstein discuss structure of crypto investments'),
+    EmailCfg(id='EFTA01000882', description=f"{BROCK_PIERCE} asks for Epstein's permission to disclose his name to Coinbase team", is_interesting=True),
+    EmailCfg(id='EFTA00626220', description=f'discussion of a "sidecar fund" with {BROCK_PIERCE} / Crypto Currency Partners II'),
     EmailCfg(id='EFTA01784901', description=f"discussion of checks {JEREMY_RUBIN} has cashed from Epstein", is_interesting=True),
     EmailCfg(id='EFTA01917402', description=f'discussion of Epstein investment in Blockstream funneled through {JOI_ITO}', is_interesting=True),
     EmailCfg(id='EFTA02483194', description=f"discussion of {GANBAT_CHULUUNKHUU}'s arrest", is_interesting=True),
@@ -1383,6 +1385,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01013266', description=f"request for payment to {MARIYA_PRUSAKOVA}'s {CRYPTO_PR_LAB}", is_interesting=True),
     EmailCfg(id='EFTA02505439', description=f'summary of Kyara Investment shell companies with {JOI_ITO}'),
     EmailCfg(id='EFTA02517623', description=f"{VINCENZO_IOZZO} explains to Epstein how to deanonymize bitcoin", is_interesting=True),
+    EmailCfg(id='EFTA02025218', duplicate_ids=['EFTA02025218']),
     EmailCfg(id='EFTA00875181', duplicate_ids=['EFTA01901268']),
     EmailCfg(id='EFTA01852975', duplicate_ids=['EFTA02001764']),
     EmailCfg(id='EFTA00563586', duplicate_ids=['EFTA02323722']),
@@ -2266,6 +2269,8 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00007253', replace_text_with='T-Mobile response to subpoena March 23, 2007 - phone bill'),
     # Attachments
     DocCfg(id='EFTA00590685', attached_to_email_id='EFTA00830911'),
+    # Dates
+    DocCfg(id='EFTA00599617', date='2017-07-31'),
 ]
 
 # This category is automatically 'interesting', see OtherFile class
@@ -2324,6 +2329,7 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01186455', description=f"{KYARA_FUND} II LLC operating agreement"),
     DocCfg(id='EFTA00584696', description=f"{KYARA_FUND} III LLC operating agreement"),
     DocCfg(id='EFTA01734786', description='LedgerX Series B pitch deck'),
+    DocCfg(id='EFTA01088079', description="someone's thoughts on bitcoin"),
     DocCfg(id='EFTA00128987', description='suspicious activity report about Kushner co. crypto payments to a suspicious Russian person'),
     # Valar
     DocCfg(id='EFTA01121910', description=f"{VALAR_VENTURES} fund contract", truncate_to=MAX_CHARS_TO_PRINT),
@@ -2345,12 +2351,9 @@ OTHER_FILES_JUNK = [
     DocCfg(id='029351', description=OBAMA_JOKE, date='2013-07-26'),
     DocCfg(id='029354', description=OBAMA_JOKE, date='2013-07-26'),
     DocCfg(id='031293'),
-
     # Completely redacted DOJ emails, no timestamp at all
     DocCfg(id='EFTA02731726'),
     DocCfg(id='EFTA02731728'),
-    # Almost no timestamp
-    DocCfg(id='EFTA00003154'),
 ]
 
 OTHER_FILES_CATEGORIES = [
