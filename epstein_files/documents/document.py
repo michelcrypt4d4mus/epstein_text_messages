@@ -24,7 +24,7 @@ from epstein_files.util.constants import ALL_FILE_CONFIGS, DOJ_FILE_STEM_REGEX, 
 from epstein_files.util.data import collapse_newlines, date_str, patternize, remove_zero_time, without_falsey
 from epstein_files.util.doc_cfg import DUPE_TYPE_STRS, EmailCfg, DocCfg, Metadata, TextCfg
 from epstein_files.util.env import DOCS_DIR, DOJ_PDFS_20260130_DIR
-from epstein_files.util.file_helper import (coerce_file_path, extract_file_id, file_size, file_size_str,
+from epstein_files.util.helpers.file_helper import (coerce_file_path, extract_file_id, file_size, file_size_str,
      file_size_to_str, is_local_extract_file)
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 from epstein_files.util.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE, add_cols_to_table,

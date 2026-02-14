@@ -17,7 +17,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.doc_cfg import DocCfg, Metadata
 from epstein_files.util.data import days_between, remove_timezone, uniquify
-from epstein_files.util.file_helper import FILENAME_LENGTH
+from epstein_files.util.helpers.file_helper import FILENAME_LENGTH
 from epstein_files.util.env import args
 from epstein_files.util.highlighted_group import QUESTION_MARKS_TXT, styled_category
 from epstein_files.util.rich import build_table, highlighter

@@ -7,7 +7,7 @@ environ.setdefault('OVERWRITE_PICKLE', 'True')  # Set PICKLED=True to override t
 environ['INVOKED_BY_PYTEST'] = 'True'
 
 from epstein_files.epstein_files import EpsteinFiles
-from epstein_files.util.file_helper import *
+from epstein_files.util.helpers.file_helper import *
 
 
 @pytest.fixture(scope='session')

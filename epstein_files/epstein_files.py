@@ -24,7 +24,7 @@ from epstein_files.util.constants import *
 from epstein_files.util.data import flatten, json_safe, listify, uniquify
 from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.env import DOCS_DIR, DOJ_PDFS_20260130_DIR, args, logger
-from epstein_files.util.file_helper import doj_txt_paths, file_size_str
+from epstein_files.util.helpers.file_helper import doj_txt_paths, file_size_str
 from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedNames
 from epstein_files.util.timer import Timer
 
