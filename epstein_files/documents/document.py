@@ -15,6 +15,7 @@ from rich.text import Text
 from rich.table import Table
 
 from epstein_files.documents.documents.doc_locations import DocLocation
+from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
@@ -28,7 +29,6 @@ from epstein_files.util.file_helper import (coerce_file_path, extract_file_id, f
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 from epstein_files.util.rich import (INFO_STYLE, NA_TXT, SKIPPED_FILE_MSG_PADDING, SYMBOL_STYLE, add_cols_to_table,
      build_table, console, highlighter, join_texts, styled_key_value, link_text_obj, parenthesize, wrap_in_markup_style)
-from epstein_files.util.search_result import MatchedLine
 
 ALT_LINK_STYLE = 'white dim'
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
