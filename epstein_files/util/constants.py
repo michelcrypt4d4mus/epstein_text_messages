@@ -1099,7 +1099,7 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(
         id='EFTA02312343',
-        description=f"cyrillic {RENATA_BOLOTOVA}'s visa issues, possibly marriage related?",
+        description=f"cyrillic about {RENATA_BOLOTOVA}'s visa issues, possibly marriage related?",
         is_interesting=True
     ),
     EmailCfg(
