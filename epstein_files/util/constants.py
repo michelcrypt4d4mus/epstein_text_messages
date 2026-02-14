@@ -2234,6 +2234,7 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA01089500', description='Crypto Currency Partners II Investor Update', date='2015-01-01', is_interesting=True),
     DocCfg(id='EFTA01089526', description='Crypto Currency Partners II investor report', date='2014-08-01', is_interesting=True),
     DocCfg(id='EFTA00621239', description='Crypto Currency Partners II investor report', date='2014-10-01', is_interesting=True),
+    DocCfg(id='EFTA00603348', description=f"Electric Coin Company created the untraceable crypto ZCash with money from {LARRY_SUMMERS}'s DCG"), # So it's not
     DocCfg(id='EFTA00007781', description='paychecks signed by Epstein deposited at Colonial Bank'),
     DocCfg(id='EFTA00803405', description=f"Honeycomb Asset Management fund brochure", truncate_to=MAX_CHARS_TO_PRINT),
     DocCfg(id='EFTA01121910', description=f"{VALAR_VENTURES} fund contract", truncate_to=MAX_CHARS_TO_PRINT),
