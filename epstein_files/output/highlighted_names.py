@@ -6,7 +6,7 @@ import json
 import re
 from dataclasses import dataclass, field
 
-from epstein_files.people.contact_info import Contact
+from epstein_files.people.contact import Contact
 from epstein_files.util.constant.names import Name, constantize_name
 from epstein_files.util.helpers.data_helpers import without_falsey
 from epstein_files.util.logging import logger

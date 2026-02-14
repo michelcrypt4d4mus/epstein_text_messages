@@ -16,7 +16,7 @@ from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import (QUESTION_MARKS_TXT, get_highlight_group_for_name,
      get_style_for_name, styled_category, styled_name)
 from epstein_files.output.highlighted_names import HighlightedNames, HighlightedText, ManualHighlight
-from epstein_files.people.contact_info import Contact
+from epstein_files.people.contact import Contact
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import *

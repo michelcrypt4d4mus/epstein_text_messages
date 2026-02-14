@@ -10,7 +10,7 @@ from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.emails.emailers import EMAILER_ID_REGEXES
-from epstein_files.people.contact_info import Contact
+from epstein_files.people.contact import Contact
 from epstein_files.util.constant.names import *
 from epstein_files.util.helpers.data_helpers import *
 from epstein_files.util.helpers.file_helper import log_file_write
