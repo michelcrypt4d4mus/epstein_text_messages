@@ -20,12 +20,10 @@ from epstein_files.util.logging import logger
 CIVIL_ATTORNEY = 'civil attorney'
 CRIMINAL_DEFENSE_ATTORNEY = 'criminal defense attorney'
 CRIMINAL_DEFENSE_2008 = f"{CRIMINAL_DEFENSE_ATTORNEY} on 2008 case"
-EPSTEIN_LAWYER = 'lawyer'
 EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY = f"{CIVIL_ATTORNEY} {EPSTEIN_V_ROTHSTEIN_EDWARDS}"
 ESTATE_EXECUTOR = 'estate executor'
 EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
 MC2_MODEL_MANAGEMENT = f"{JEAN_LUC_BRUNEL}'s MC2 Model Management"
-MIDEAST = 'mideast'
 QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
 TECH_BRO = 'tech bro'
 VICTIM_COLOR = 'orchid1'
@@ -33,7 +31,7 @@ VICTIM_COLOR = 'orchid1'
 CATEGORY_STYLE_MAPPING = {
     ARTICLE: JOURNALIST,
     BOOK: JOURNALIST,
-    LEGAL: EPSTEIN_LAWYER,
+    LEGAL: LAWYER,
     POLITICS: LOBBYIST,
     PROPERTY: BUSINESS,
     REPUTATION: PUBLICIST,
@@ -492,7 +490,7 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         ],
     ),
     HighlightedNames(
-        label=EPSTEIN_LAWYER,
+        label=LAWYER,
         style='purple',
         contacts=[
             ContactInfo('Alan Dlugash', 'tax partner at Paneth and Shrone'),
@@ -554,7 +552,7 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
     HighlightedNames(
         label=ESTATE_EXECUTOR,
         style='purple3 bold',
-        category=EPSTEIN_LAWYER,
+        category=LAWYER,
         contacts=[
             ContactInfo(
                 name=DARREN_INDYKE,
