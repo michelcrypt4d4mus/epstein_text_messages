@@ -14,6 +14,7 @@ from rich.panel import Panel
 from rich.text import Text
 from rich.table import Table
 
+from epstein_files.documents.documents.doc_cfg import DUPE_TYPE_STRS, EmailCfg, DocCfg, Metadata, TextCfg
 from epstein_files.documents.documents.doc_locations import DocLocation
 from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
@@ -22,7 +23,6 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import ALL_FILE_CONFIGS, DOJ_FILE_STEM_REGEX, FALLBACK_TIMESTAMP
 from epstein_files.util.data import collapse_newlines, date_str, patternize, remove_zero_time, without_falsey
-from epstein_files.util.doc_cfg import DUPE_TYPE_STRS, EmailCfg, DocCfg, Metadata, TextCfg
 from epstein_files.util.env import DOCS_DIR, DOJ_PDFS_20260130_DIR
 from epstein_files.util.helpers.file_helper import (coerce_file_path, extract_file_id, file_size, file_size_str,
      file_size_to_str, is_local_extract_file)

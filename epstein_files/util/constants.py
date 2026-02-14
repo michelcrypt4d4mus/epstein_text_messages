@@ -4,10 +4,10 @@ from typing import cast
 
 from dateutil.parser import parse
 
+from epstein_files.documents.documents.doc_cfg import DocCfg, EmailCfg, TextCfg
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.doc_cfg import DocCfg, EmailCfg, TextCfg
 from epstein_files.util.env import args
 from epstein_files.util.logging import logger
 
