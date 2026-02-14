@@ -147,6 +147,7 @@ def epstein_grep():
 
             console.line()
             console.print(doc.locations, style='dim')
+            console.line()
 
 
 def epstein_show():
