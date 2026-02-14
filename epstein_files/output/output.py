@@ -109,7 +109,7 @@ def print_emailers_info(epstein_files: EpsteinFiles) -> None:
     """Print tbe summary table of everyone in the files to an image."""
     print_color_key()
     console.line()
-    all_emailers = sorted(epstein_files.emailers(), key=lambda person: person.sort_key)
+    all_emailers = sorted(epstein_files.emailers, key=lambda person: person.sort_key)
     console.print(Person.emailer_info_table(all_emailers, show_epstein_total=True))
 
     if not args.build:
@@ -137,7 +137,7 @@ def print_emailers_info(epstein_files: EpsteinFiles) -> None:
 def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
     """Returns emails that were printed (may contain dupes if printed for both author and recipient)."""
     print_section_header(('Selections from ' if not args.all_emails else '') + 'His Emails')
-    all_emailers = sorted(epstein_files.emailers(), key=lambda person: person.earliest_email_at)
+    all_emailers = sorted(epstein_files.emailers, key=lambda person: person.earliest_email_at)
     all_emails = Person.emails_from_people(all_emailers)
     num_emails_printed_since_last_color_key = 0
     printed_emails: list[Email] = []
@@ -158,7 +158,7 @@ def print_emails_section(epstein_files: EpsteinFiles) -> list[Email]:
         print_centered(Padding(Person.emailer_info_table(all_emailers, people_to_print), (2, 0, 1, 0)))
 
     for person in people_to_print:
-        if person.name in epstein_files.uninteresting_emailers() and not args.names:
+        if person.name in epstein_files.uninteresting_emailers and not args.names:
             continue
 
         printed_person_emails = person.print_emails()
