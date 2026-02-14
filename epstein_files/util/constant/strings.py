@@ -56,6 +56,7 @@ TIMESTAMP_DIM = f"turquoise4 dim"
 
 # Misc
 AUTHOR = 'author'
+CRYPTO = 'crypto'
 DEFAULT = 'default'
 EFTA_PREFIX = 'EFTA'
 HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'

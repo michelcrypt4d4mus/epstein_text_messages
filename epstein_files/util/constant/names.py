@@ -235,10 +235,13 @@ VIRGINIA_GIUFFRE = 'Virginia Giuffre'
 
 # Organizations
 ATT_COURT_APPEARANCE_TEAM = 'AT&T Court Appearance Team'
+BLOCKCHAIN_CAPITAL = 'Blockchain Capital'
+BLOCKSTREAM = 'Blockstream'
 BOFA = 'BofA'
 BOFA_MERRILL = f'{BOFA} / Merrill Lynch'
 BUREAU_OF_PRISONS = 'Bureau of Prisons'
 CNN = 'CNN'
+CRYPTO_CURRENCY_PARTNERS_II = 'Crypto Currency Partners II'
 CRYPTO_PR_LAB = 'Crypto PR Lab'
 DEUTSCHE_BANK = 'Deutsche Bank'
 ELECTRON_CAPITAL_PARTNERS = 'Electron Capital Partners'

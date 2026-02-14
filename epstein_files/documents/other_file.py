@@ -126,12 +126,15 @@ class OtherFile(Document):
                 return False
             elif self.category in UNINTERESTING_CATEGORIES:
                 return False
+            elif self.category == CRYPTO:
+                return True
 
         for prefix in UNINTERESTING_PREFIXES:
             if info_sentences[0].plain.startswith(prefix):
                 return False
 
-        return True
+        # Default to True for HOUSE_OVERSIGHT files, False for DOJ files
+        return not self.is_doj_file
 
     @property
     def metadata(self) -> Metadata:
