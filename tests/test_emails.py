@@ -3,7 +3,7 @@ from epstein_files.util.data import dict_sets_to_lists
 
 
 EMAIL_AUTHOR_COUNTS = {
-    None: 100,
+    None: 98,
     "Abi Schwinck": 1,
     AL_SECKEL: 8,
     "Alain Forget": 3,
@@ -260,7 +260,7 @@ EMAIL_AUTHOR_COUNTS = {
 
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 97,
+    None: 101,
     "ACT for America": 1,
     ADAM_BACK: 3,
     AL_SECKEL: 1,
@@ -320,7 +320,7 @@ EMAIL_RECIPIENT_COUNTS = {
     'Daniel Dawson': 2,
     DANIEL_SIAD: 2,
     "Danny Goldberg": 5,
-    'Daphne Wallace': 1,
+    'Daphne Wallace': 2,
     DARREN_INDYKE: 51,
     DAVID_BLAINE: 1,
     "David Grosof": 6,
@@ -555,6 +555,7 @@ EMAIL_RECIPIENT_COUNTS = {
     'W&K': 1,
     'Walli Leff': 1,
     "Warren Eisenstein": 2,
+    'Yuko Barnaby': 2,
     ZUBAIR_KHAN: 1,
     "david.brown@thetimes.co.uk": 1,
     "io-anne.pugh@bbc.co.uk": 1,
