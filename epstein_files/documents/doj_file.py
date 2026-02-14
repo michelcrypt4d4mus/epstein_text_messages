@@ -12,11 +12,10 @@ from epstein_files.documents.document import CHECK_LINK_FOR_DETAILS, Document
 from epstein_files.documents.email import Email
 from epstein_files.documents.emails.email_header import FIELDS_COLON_PATTERN
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.util.constant.names import RENATA_BOLOTOVA
 from epstein_files.util.constants import FALLBACK_TIMESTAMP
 from epstein_files.util.layout.left_bar_panel import LeftBarPanel
 from epstein_files.util.logging import logger
-from epstein_files.util.rich import RAINBOW, highlighter, link_text_obj, wrap_in_markup_style
+from epstein_files.util.rich import RAINBOW, highlighter, wrap_in_markup_style
 
 IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTALL)
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
@@ -62,6 +61,7 @@ BAD_OCR_FILE_IDS = [
     'EFTA00001845',
     'EFTA00003082',
     'EFTA00008413',
+    'EFTA00002061',
     'EFTA00001809',
     'EFTA00002831',
     'EFTA00007864',
@@ -132,6 +132,7 @@ BAD_OCR_FILE_IDS = [
     'EFTA00000676',
     'EFTA00000776',
     'EFTA00000785',
+    'EFTA00002061',
     'EFTA00001004',
     'EFTA00001063',
     'EFTA00002172',
@@ -194,33 +195,8 @@ STRIP_IMAGE_PANEL_IDS = [
     'EFTA00007741',
     'EFTA00007893',
     'EFTA02731433',
+    'EFTA00005731',
 ]
-
-INTERESTING_DOJ_FILES = {
-    'EFTA02640711': 'Jabor Y home address (HBJ)',
-    'EFTA00039689': 'Dilorio emails to SEC about Signature Bank, Hapoalim, Bioptix / RIOT, Honig, etc.',
-    'EFTA00039025': 'Investigation and Review of the Federal Bureau of Prisons Custody, Care, and Supervision of Jeffrey Epstein',
-    'EFTA02296929': f"{RENATA_BOLOTOVA} appears to know Epstein's final girlfriend",
-    'EFTA01273102': f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank",
-    'EFTA02725909': 'presentation to NYDFS for "NYC Bitcoin Exchanges" with Balaji Srinivisan and Andrew Farkas on the board',
-    'EFTA01622387': f"{RENATA_BOLOTOVA} iMessage conversation",
-    'EFTA00810239': "Peter Thiel fund Valar Ventures pitch deck",
-    'EFTA00810510': "Peter Thiel fund Valar Ventures Fall 2016 Update",
-    'EFTA00810474': "Peter Thiel fund Valar Ventures Fall 2018 Update",
-    'EFTA00836182': "Peter Thiel fund Valar Ventures Limited Partners email",
-    'EFTA01003346': "Peter Thiel tells Epstein to invest in his fund",
-    'EFTA00811866': "list of Epstein's bank accounts",
-    'EFTA00811666': "asset valuations of Epstein's holdings, includes 'Coinbase via grat'",
-    'EFTA00803405': "Honeycomb Asset Management (Spotify and Tencent investors) 2018 firm brochure",
-    'EFTA00803491': "Honeycomb Asset Management (Spotify and Tencent investors) deck",
-    'EFTA00803459': "Honeycomb Asset Management (Spotify and Tencent investors) January 2019 report",
-    'EFTA00603445': "Honeycomb Asset Management (Spotify and Tencent investors) July 2017 report",
-    'EFTA00803464': "Honeycomb Asset Management (Spotify and Tencent investors) July 2018 report",
-    'EFTA00927927': f"reads like {RENATA_BOLOTOVA} talking about recruiting girls for Epstein",
-    'EFTA00805569': 'Mercantile Global Holdings, San Juan Mercantile Bank & Trust, Noble Bank + Signature Bank + BitGo',
-    'EFTA02285514': 'Medici Bank and Maria Pruskova meeting',
-    'EFTA01613731': 'Medici Bank conversation on Whatsapp',
-}
 
 NO_IMAGE_SUFFIX = """
 ╭──── Page 1, Image 1 ─────╮
@@ -264,7 +240,7 @@ class DojFile(OtherFile):
     def image_with_no_text_msg(self) -> RenderableType:
         """One line of linked text to show if this file doesn't seem to have any OCR text."""
         return Padding(
-            Text('').append(self.doj_link()).append(f" is a {SINGLE_IMAGE_NO_TEXT}..."),
+            Text('').append(Text.from_markup(super().external_link_markup)).append(f" is a {SINGLE_IMAGE_NO_TEXT}..."),
             (0, 0, 0, 1)
         )
 
@@ -326,10 +302,6 @@ class DojFile(OtherFile):
         if self.file_id in PHONE_BILL_IDS or self.file_id in STRIP_IMAGE_PANEL_IDS:
             self.strip_image_ocr_panels()
 
-    def doj_link(self) -> Text:
-        """Link to this file on the DOJ site."""
-        return link_text_obj(self.external_url, self.url_slug)
-
     def external_links_txt(self, _style: str = '', include_alt_links: bool = True) -> Text:
         """Overrides super() method to apply self.border_style."""
         return super().external_links_txt(self.border_style, include_alt_links=include_alt_links)
@@ -351,6 +323,18 @@ class DojFile(OtherFile):
         self.warn(f"Stripped {num_replaced} image panels.")
         self._set_computed_fields(text=new_text)
 
+    def _left_bar_panel(self) -> RenderResult:
+        """Alternate way of displaying DOJ files with a single color bar down the left side."""
+        yield (info_panel := self.file_info_panel())
+        border_style = info_panel.renderables[0].border_style
+        panel_args = [self.prettified_text, border_style]
+
+        if self.panel_title_timestamp:
+            panel_args.append(Text(f"[{self.panel_title_timestamp}]", style='dim italic ' + border_style))
+
+        table = LeftBarPanel.build(*panel_args)
+        yield Padding(table, (0, 0, 1, 1))
+
     def _repair(self) -> None:
         """Overloads superclass method."""
         new_text = self.repair_ocr_text(OCR_REPAIRS, self.text)
@@ -365,15 +349,3 @@ class DojFile(OtherFile):
         if number_only_line_count > 20:
             self.warn(f"Reduced line count from {len(self.lines)} to {len(non_number_lines)} by stripping number only lines")
             self._set_computed_fields(lines=non_number_lines)
-
-    def _left_bar_panel(self) -> RenderResult:
-        """Alternate way of displaying DOJ files with a single color bar down the left side."""
-        yield (info_panel := self.file_info_panel())
-        border_style = info_panel.renderables[0].border_style
-        panel_args = [self.prettified_text, border_style]
-
-        if self.panel_title_timestamp:
-            panel_args.append(Text(f"[{self.panel_title_timestamp}]", style='dim italic ' + border_style))
-
-        table = LeftBarPanel.build(*panel_args)
-        yield Padding(table, (0, 0, 1, 1))

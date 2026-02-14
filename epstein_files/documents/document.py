@@ -141,6 +141,10 @@ class Document:
             return self.config.duplicate_of_id
 
     @property
+    def external_link_txt(self) -> Text:
+        return Text.from_markup(self.external_link_markup)
+
+    @property
     def external_link_markup(self) -> str:
         """Rich markup string with link to source document."""
         return link_markup(self.external_url, coerce_file_stem(self.filename))
