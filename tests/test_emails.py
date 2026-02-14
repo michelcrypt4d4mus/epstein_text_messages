@@ -3,7 +3,7 @@ from epstein_files.util.data import dict_sets_to_lists
 
 
 EMAIL_AUTHOR_COUNTS = {
-    None: 99,
+    None: 100,
     "Abi Schwinck": 1,
     AL_SECKEL: 8,
     "Alain Forget": 3,
@@ -265,7 +265,7 @@ EMAIL_RECIPIENT_COUNTS = {
     ADAM_BACK: 3,
     AL_SECKEL: 1,
     ALAN_DERSHOWITZ: 11,
-    'Alan Dlugash': 1,
+    'Alan Dlugash': 2,
     "Alan Rogers": 1,
     'Alex Fowler': 1,
     'Alexandra Elenowitz-Hess': 1,
@@ -353,7 +353,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "George Krassner": 3,
     "Gerald Barton": 1,
     GERALD_LEFCOURT: 1,
-    GHISLAINE_MAXWELL: 8,
+    GHISLAINE_MAXWELL: 9,
     "Gianni Serazzi": 1,
     GLENN_DUBIN: 1,
     GORDON_GETTY: 2,
@@ -390,13 +390,14 @@ EMAIL_RECIPIENT_COUNTS = {
     "Joel Dunn": 1,
     JOHN_PAGE: 1,
     "John Zouzelka": 1,
-    JOI_ITO: 19,
+    JOI_ITO: 24,
     JOJO_FONTANILLA: 8,
     JONATHAN_FARKAS: 9,
     JOSCHA_BACH: 4,
     "Joseph Vinciguerra": 1,
     "Joshua Cooper Ramo": 1,
     JULIA_SANTOS: 1,
+    'Juliana Shkreli': 1,
     'Justin Alfano': 1,
     KARYNA_SHULIAK: 3,
     KATHERINE_KEATING: 3,
@@ -438,7 +439,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Mark Albert": 1,
     MARK_EPSTEIN: 3,
     "Marshall Funk": 1,
-    MARTIN_NOWAK: 1,
+    MARTIN_NOWAK: 2,
     MARTIN_WEINBERG: 25,
     MASHA_DROKOVA: 5,
     MATTHEW_HILTZIK: 1,
@@ -456,6 +457,7 @@ EMAIL_RECIPIENT_COUNTS = {
     MICHAEL_WOLFF: 69,
     MIROSLAV_LAJCAK: 1,
     MOHAMED_WAHEED_HASSAN: 2,
+    'Molly Ladd': 1,
     MORTIMER_ZUCKERMAN: 3,
     MOSHE_HOFFMAN: 1,
     'Mrisman02': 1,
@@ -521,7 +523,7 @@ EMAIL_RECIPIENT_COUNTS = {
     "Stanley Rosenberg": 1,
     STEPHEN_HANSON: 3,
     "Stephen Rubin": 1,
-    STEVE_BANNON: 35,
+    STEVE_BANNON: 37,
     "Steven Gaydos": 2,
     "Steven Pfeiffer": 1,
     STEVEN_SINOFSKY: 1,
@@ -1163,7 +1165,7 @@ def test_email_recipient_counts(epstein_files):
     assert recipient_counts.pop(JEFFREY_EPSTEIN) > 1800
     assert recipient_counts.pop(LESLEY_GROFF) > 40
     assert recipient_counts.pop(RICHARD_KAHN) > 50
-    assert recipient_counts == EMAIL_AUTHOR_COUNTS
+    assert recipient_counts == EMAIL_RECIPIENT_COUNTS
 
 
 def test_info_sentences(epstein_files):
