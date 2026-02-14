@@ -88,13 +88,14 @@ class Document:
         url_slug (str): Version of the filename that works in links to epsteinify etc.
     """
     file_path: Path
+    file_id: str = field(init=False)
+    lines: list[str] = field(default_factory=list)
+    text: str = ''
+
     # Optional fields
     author: Name = None
     config: EmailCfg | DocCfg | TextCfg | None = None
     doj_2026_dataset_id: int | None = None
-    file_id: str = field(init=False)
-    lines: list[str] = field(default_factory=list)
-    text: str = ''
     timestamp: datetime | None = None
     url_slug: str = ''
 
