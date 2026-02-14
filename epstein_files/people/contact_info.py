@@ -16,15 +16,16 @@ from epstein_files.util.helpers.string_helper import indented, quote, remove_que
 class ContactInfo:
     """
     Attributes:
-        `name` (Name): Person or organization name
-        `info` (str, optional): biographical info about this person
-        `email_pattern` (str, optional): manually constructed regex pattern to match this person in email headers
+        name (str): Person or organization name
+        info (str, optional): biographical info about this person
+        emailer_pattern (str, optional): manually constructed regex pattern to match this person in email headers
+        emailer_regex (re.Pattern): pattern that matches this person's name in various variations
     """
     name: str
     info: str = ''
     emailer_pattern: str = ''
     emailer_regex: re.Pattern = field(init=False)
-    is_junk: bool = False
+    is_junk: bool = False  # TODO: this sucks
     # jmail_url: str
 
     @property
