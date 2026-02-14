@@ -21,7 +21,7 @@ from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import dict_sets_to_lists
 from epstein_files.util.helpers.file_helper import log_file_write
 from epstein_files.util.logging import logger, exit_with_error
-from epstein_files.util.rich import *
+from epstein_files.output.rich import *
 
 DEVICE_SIGNATURE_SUBTITLE = f"Email [italic]Sent from \\[DEVICE][/italic] Signature Breakdown"
 DEVICE_SIGNATURE = 'Device Signature'

@@ -24,12 +24,12 @@ SUPPRESS_LOGS_FOR_AUTHORS = [
 # Unhighlighted / uncategorized emailer regexes
 ADDITIONAL_CONTACTS = [
     # Custom regex
-    Contact(name='Daphne Wallace', emailer_pattern=r"Da[p ]hne Wallace"),
-    Contact(name=INTELLIGENCE_SQUARED, emailer_pattern=r"intelligence\s*squared"),
-    Contact(name='Matthew Schafer', emailer_pattern=r"matthew\.?schafer?"),
-    Contact(name=MICHAEL_BUCHHOLTZ, emailer_pattern=r"Michael.*Buchholtz"),
-    Contact(name=SAMUEL_LEFF, emailer_pattern=r"Sam(uel)?(/Walli)? Leff"),
-    Contact(name=THANU_BOONYAWATANA, emailer_pattern=r"Thanu (BOONYAWATANA|Cnx)"),
+    Contact('Daphne Wallace', emailer_pattern=r"Da[p ]hne Wallace"),
+    Contact(INTELLIGENCE_SQUARED, emailer_pattern=r"intelligence\s*squared"),
+    Contact('Matthew Schafer', emailer_pattern=r"matthew\.?schafer?"),
+    Contact(MICHAEL_BUCHHOLTZ, emailer_pattern=r"Michael.*Buchholtz"),
+    Contact(SAMUEL_LEFF, emailer_pattern=r"Sam(uel)?(/Walli)? Leff"),
+    Contact(THANU_BOONYAWATANA, emailer_pattern=r"Thanu (BOONYAWATANA|Cnx)"),
     # No custom regex
     Contact('Amanda Kirby'),
     Contact('Anne Boyles'),
@@ -57,9 +57,6 @@ HIGHLIGHTED_CONTACTS = flatten([hn.contacts for hn in HIGHLIGHTED_NAMES if isins
 ALL_CONTACTS = HIGHLIGHTED_CONTACTS + ADDITIONAL_CONTACTS
 CONTACTS_DICT = {c.name: c for c in ALL_CONTACTS}
 EMAILER_ID_REGEXES = {c.name: c.emailer_regex for c in ALL_CONTACTS}
-
-# missing_emailers = [ContactInfo(name=n) for n in EMAILERS if n not in EMAILER_ID_REGEXES]
-# print(f"MISSING EMAILERS\n\n{ContactInfo.repr_string(missing_emailers)}")
 
 
 def cleanup_str(_str: str) -> str:
