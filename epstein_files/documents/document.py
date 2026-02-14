@@ -271,17 +271,9 @@ class Document:
     @property
     def prettified_text(self) -> Text:
         """Returns the string we want to print as the body of the document."""
-        style = ''
+        style = INFO_STYLE if self.replace_text_with and len(self.replace_text_with) < 300 else ''
+        text = self.replace_text_with or self.text
         trim_footer_txt = None
-
-        if self.config and self.config.replace_text_with:
-            if len(self.config.replace_text_with) < 300:
-                style = INFO_STYLE
-                text = f'(Text of {self.config.replace_text_with} {CHECK_LINK_FOR_DETAILS})'
-            else:
-                text = self.config.replace_text_with
-        else:
-            text = self.text
 
         if self.config and self.config.truncate_to:
             txt = highlighter(Text(text[0:self.config.truncate_to], style))
@@ -289,6 +281,20 @@ class Document:
             return txt.append('...\n\n').append(trim_footer_txt)
         else:
             return highlighter(Text(text, style))
+
+    @property
+    def replace_text_with(self) -> str | None:
+        """Configured replacement text."""
+        if self.config and self.config.replace_text_with:
+            if self.config.author:
+                text = f"{self.config.author} {self.config.replace_text_with}"
+            else:
+                text = self.config.replace_text_with
+
+            if len(text) < 300:
+                return f"(Text of {text} {CHECK_LINK_FOR_DETAILS})"
+            else:
+                return text
 
     @property
     def summary(self) -> Text:

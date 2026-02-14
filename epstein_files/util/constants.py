@@ -1788,7 +1788,6 @@ OTHER_FILES_CONFERENCES = [
     DocCfg(id='017524', author=SWEDISH_LIFE_SCIENCES_SUMMIT, description=f"2012 program", date='2012-08-18', attached_to_email_id='031226'),
     DocCfg(id='026747', author=SWEDISH_LIFE_SCIENCES_SUMMIT, description=f"2017 program", date='2017-08-23', attached_to_email_id='031215'),
     DocCfg(id='014951', author='TED Talks', description=f"2017 program", date='2017-04-20'),
-    DocCfg(id='024179', author=UN_GENERAL_ASSEMBLY, description=f'president and first lady schedule', date='2012-09-21'),
     DocCfg(
         id='024185',
         author=UN_GENERAL_ASSEMBLY,
@@ -1796,7 +1795,7 @@ OTHER_FILES_CONFERENCES = [
         date='2012-09-21',
         is_interesting=True,
     ),
-    DocCfg(id='017526', description=f'Intellectual Jazz conference brochure f. {DAVID_BLAINE}'),
+    DocCfg(id='024179', author=UN_GENERAL_ASSEMBLY, description=f'president and first lady schedule', date='2012-09-21'),
     DocCfg(
         id='029427',
         description=f"seems related to an IRL meeting about concerns China will attempt to absorb Mongolia",
@@ -1813,6 +1812,7 @@ OTHER_FILES_CONFERENCES = [
         description=f'World Economic Forum (WEF) Annual Meeting 2011 List of Participants',
         date='2011-01-18',
     ),
+    DocCfg(id='017526', description=f'Intellectual Jazz conference brochure f. {DAVID_BLAINE}'),
 ]
 
 # All authors of documents in this category will be marked uninteresting
@@ -2180,10 +2180,15 @@ OTHER_FILES_MISC = [
     DocCfg(id='029448', description=f"weird short essay titled 'President Obama and Self-Deception'"),
 
     # DOJ files
+    DocCfg(id='EFTA00039025', author=BUREAU_OF_PRISONS, description=f"report on death of Jeffrey Epstein", is_interesting=True),
+    DocCfg(id='EFTA00039227', author=BUREAU_OF_PRISONS, replace_text_with='Inmate Discipline Program Statement'),
+    DocCfg(id='EFTA00039295', author=BUREAU_OF_PRISONS, replace_text_with='inmate telephone privileges Program Statement'),
+    DocCfg(id='EFTA00039312', author=BUREAU_OF_PRISONS, replace_text_with='Program Statement / Memo about BOP Pharmacy Program'),
+    DocCfg(id='EFTA00039351', author=BUREAU_OF_PRISONS, replace_text_with='Program Statement / Memo about BOP Pharmacy Program'),
+    DocCfg(id='EFTA00039156', author=BUREAU_OF_PRISONS, replace_text_with='Standards of Employee Conduct'),
     DocCfg(id='EFTA01622387', author=RENATA_BOLOTOVA, description=f'iMessage chat log screenshots', is_attribution_uncertain=True),
     DocCfg(id='EFTA01618494', author=RENATA_BOLOTOVA, description=f'iMessage chat log screenshots', is_attribution_uncertain=True),
     DocCfg(id='EFTA01810372', author=TYLER_SHEARS, description=f'invoice for reputation management work', is_interesting=True),
-    DocCfg(id='EFTA00039025', description=f"{BUREAU_OF_PRISONS} report on death of Jeffrey Epstein", is_interesting=True),
     DocCfg(id='EFTA00005783', description='heavily redacted handwritten note, 30+ completely redacted pages', date='2019-08-29'),
     DocCfg(id='EFTA01087311', description=f'{LEON_BLACK} Family Partners cash projections'),
     DocCfg(id='EFTA00811866', description="list of Epstein's bank accounts", is_interesting=True),
@@ -2238,11 +2243,6 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00008320', replace_text_with='"Massage for Dummies (???)"'),
     DocCfg(id='EFTA02731260', replace_text_with='notebook full of handwritten love letters with terrible OCR text'),
     DocCfg(id='EFTA00000476', replace_text_with='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09'),
-    DocCfg(id='EFTA00039312', replace_text_with='Bureau of Prisons Program Statement / Memo about BOP Pharmacy Program'),
-    DocCfg(id='EFTA00039351', replace_text_with='Bureau of Prisons Program Statement / Memo about BOP Pharmacy Program'),
-    DocCfg(id='EFTA00039156', replace_text_with='Bureau of Prisons Standards of Employee Conduct'),
-    DocCfg(id='EFTA00039227', replace_text_with='Bureau of Prisons Inmate Discipline Program Statement'),
-    DocCfg(id='EFTA00039295', replace_text_with='Bureau of Prisons inmate telephone privileges Program Statement'),
     # Phone bills TODO: Some kind of special handling?
     DocCfg(id='EFTA00006100', replace_text_with='Palm Beach Police fax machine activity log 2005-12-28 to 2006-01-04'),
     DocCfg(id='EFTA00006387', replace_text_with='T-Mobile phone bill covering 2006-06-15 to 2006-07-23'),
