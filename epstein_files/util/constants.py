@@ -1127,6 +1127,11 @@ EMAILS_CONFIG = [
         author=RENATA_BOLOTOVA,
         description='this file has been removed from the DOJ site',
     ),
+    EmailCfg(
+        id='EFTA00927927',
+        description=f"reads like {RENATA_BOLOTOVA} talking about recruiting girls for Epstein",
+        is_interesting=True,
+    ),
     EmailCfg(id='EFTA01985762', author=RENATA_BOLOTOVA, recipients=[JEFFREY_EPSTEIN], date='2012-01-24 09:35:00'),
     EmailCfg(id='EFTA00920177', author=RENATA_BOLOTOVA, attribution_reason='discussion of employment at Institute'),
     EmailCfg(id='EFTA00920010', author=RENATA_BOLOTOVA, attribution_reason='renbolotova@gmail in body'),
@@ -2200,20 +2205,16 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA01273102', description=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank", is_interesting=True),
     DocCfg(id='EFTA00001884', description='photo of letter from Virgin Islands DOJ to Epstein', date='2019-03-14'),
     DocCfg(
-        id='EFTA00927927',
-        description=f"reads like {RENATA_BOLOTOVA} talking about recruiting girls for Epstein",
-        is_interesting=True,
-    ),
-    DocCfg(
-        id='EFTA01107738',
-        description="creation of Cantor Urramoor Asset Management with Mr. T's (Prince Andrew?) Urramoor and Howard Lutnick's Cantor Fitzgerald",
-        is_interesting=True,
-    ),
-    DocCfg(
         id='EFTA01620764',
         author=MELANIE_WALKER,
         description=f'iMessage conversation between about Bill Gates being drunk all the time',
         is_attribution_uncertain=True,
+        is_interesting=True,
+    ),
+    # Urramoor
+    DocCfg(
+        id='EFTA01107738',
+        description="creation of Cantor Urramoor Asset Management with Mr. T's (Prince Andrew?) Urramoor and Howard Lutnick's Cantor Fitzgerald",
         is_interesting=True,
     ),
     DocCfg(
