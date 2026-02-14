@@ -213,16 +213,6 @@ class Document:
         return len(self.text)
 
     @property
-    def local_path_and_url(self) -> Text:
-        """Text obj with local path and URL."""
-        txt = Text(f"{self.file_id}        URL: {self.external_url}\n{self.file_id} Local path: '{self.file_path}'")
-
-        if (pdf_path := self.local_pdf_path):
-            txt.append(f"\n{self.file_id}  Local PDF: '{pdf_path}'")
-
-        return txt
-
-    @property
     def local_pdf_path(self) -> Path | None:
         """Path to the source PDF (only applies to DOJ files that were manually extracted)."""
         if not self.is_doj_file:
