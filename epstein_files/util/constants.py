@@ -1135,13 +1135,16 @@ EMAILS_CONFIG = [
         description=f"email about a future job at {TERJE_ROD_LARSEN}'s International Peace Institute",
         is_attribution_uncertain=True,
     ),
+    EmailCfg(
+        id='EFTA00912012',
+        attribution_reason='renbolotova in body',
+        author=RENATA_BOLOTOVA,
+        description='this file has been removed from the DOJ site',
+    ),
     EmailCfg(id='EFTA01985762', author=RENATA_BOLOTOVA, recipients=[JEFFREY_EPSTEIN], date='2012-01-24 09:35:00'),
     EmailCfg(id='EFTA00920177', author=RENATA_BOLOTOVA, attribution_reason='discussion of employment at Institute'),
     EmailCfg(id='EFTA00920010', author=RENATA_BOLOTOVA, attribution_reason='renbolotova@gmail in body'),
-    EmailCfg(id='EFTA00912012', author=RENATA_BOLOTOVA, attribution_reason='renbolotova in body', description='this file has been removed from the DOJ site'),
     EmailCfg(id='EFTA02455567', author=RENATA_BOLOTOVA, attribution_reason='"sneaky"', description='completely redacted email body'),
-    EmailCfg(id='EFTA00676720', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True, duplicate_ids=['EFTA01961947']),
-    EmailCfg(id='EFTA00826575', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True, duplicate_ids=['EFTA02462211']),
     EmailCfg(id='EFTA01923844', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
     EmailCfg(id='EFTA00686861', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
     EmailCfg(id='EFTA00870433', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
@@ -1163,6 +1166,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01931339', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
     EmailCfg(id='EFTA00659818', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
     EmailCfg(id='EFTA01757037', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True),
+    EmailCfg(id='EFTA00676720', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True, duplicate_ids=['EFTA01961947']),
+    EmailCfg(id='EFTA00826575', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog"', is_attribution_uncertain=True, duplicate_ids=['EFTA02462211']),
     EmailCfg(id='EFTA01773417', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog" + "Sincerely"'),
     EmailCfg(id='EFTA00935516', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog" + "Sincerely"'),
     EmailCfg(id='EFTA02545360', author=RENATA_BOLOTOVA, attribution_reason='"sneaky dog" + "Sincerely"'),
@@ -1203,8 +1208,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00039815', author=USANYS),
     EmailCfg(id='EFTA00039825', author=USANYS),
     EmailCfg(id='EFTA00039879', author=USANYS),
-    EmailCfg(id='EFTA02731699', author=USANYS, is_attribution_uncertain=True, recipients=[FBI], date='2021-05-27 10:19:00'),
-    EmailCfg(id='EFTA02731733', author=USANYS, is_attribution_uncertain=True, date='2021-05-17 17:29:00'),
     EmailCfg(id='EFTA00039983', author=USANYS, is_attribution_uncertain=True),
     EmailCfg(id='EFTA00039886', author=USANYS, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731651', author=USANYS, is_attribution_uncertain=True),
@@ -1214,6 +1217,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02731643', author=USANYS, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731501', author=USANYS, is_attribution_uncertain=True),
     EmailCfg(id='EFTA02731633', author=USANYS, is_attribution_uncertain=True),
+    EmailCfg(id='EFTA02731733', author=USANYS, is_attribution_uncertain=True, date='2021-05-17 17:29:00'),
+    EmailCfg(id='EFTA02731699', author=USANYS, is_attribution_uncertain=True, recipients=[FBI], date='2021-05-27 10:19:00'),
     EmailCfg(id='EFTA00040121', author=USANYS, recipients=[ATT_COURT_APPEARANCE_TEAM]),
     EmailCfg(id='EFTA02731630', author=USANYS, recipients=[FBI]),
     EmailCfg(id='EFTA02731737', author=USANYS, recipients=[FBI], date='2023-06-30T16:05:00', is_attribution_uncertain=True),
@@ -1294,16 +1299,16 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00835324', recipients=[SERGEY_BELYAKOV], description='assessment of Mycelium bitcoin wallet'),
     EmailCfg(id='EFTA00852324', recipients=[SERGEY_BELYAKOV, JEFFREY_EPSTEIN, 'Elena Bolyakina', PETER_THIEL]),
     EmailCfg(id='EFTA00857165', recipients=['Seth Lloyd'], attribution_reason='quoted reply line'),
-    EmailCfg(id='EFTA00749241', recipients=[SULTAN_BIN_SULAYEM], attribution_reason='widely reported', comment='torture video', is_interesting=True),
+    EmailCfg(id='EFTA00749241', recipients=[SULTAN_BIN_SULAYEM], attribution_reason='widely reported', is_interesting=True),
     EmailCfg(id='EFTA02731721', recipients=[USANYS]),
     EmailCfg(id='EFTA02731582', recipients=[USANYS]),
     EmailCfg(id='EFTA02731512', recipients=[USANYS]),
     EmailCfg(id='EFTA00039884', recipients=[USANYS]),
     EmailCfg(id='EFTA02731480', recipients=[USANYS]),  # TODO: recipient uncertain
     EmailCfg(id='EFTA02731482', recipients=[USANYS]),  # TODO: recipient uncertain
-    EmailCfg(id='EFTA02731735', recipients=[USANYS], date='2024-03-04T05:04:00'),  # TODO: recipient uncertain
     EmailCfg(id='EFTA02731713', recipients=[USANYS]),  # TODO: recipient uncertain
     EmailCfg(id='EFTA02731718', recipients=[USANYS]),  # TODO: recipient uncertain
+    EmailCfg(id='EFTA02731735', recipients=[USANYS], date='2024-03-04T05:04:00'),  # TODO: recipient uncertain
     EmailCfg(id='EFTA02731715', recipients=[USANYS], duplicate_ids=['EFTA02731762']),
     EmailCfg(id='EFTA02731514', recipients=[USANYS], comment='journal upload followup'),
     EmailCfg(id='EFTA02731511', recipients=[USANYS], comment='journal upload followup'),
@@ -1332,7 +1337,7 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='EFTA01007544',
         description=f'bitcoin dev {JEREMY_RUBIN} describes "grey area between pump and develop" when Epstein objects on ethical grounds',
-        is_interesting=True
+        is_interesting=True,
     ),
     EmailCfg(
         id='EFTA02588748',
@@ -1351,8 +1356,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00999549', description=f"{JOI_ITO} and {JEREMY_RUBIN} meet {LARRY_SUMMERS} to discuss bitcoin", is_interesting=True),
     EmailCfg(id='EFTA00901970', description=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=True),
     EmailCfg(id='EFTA02372964', description='an "ICO" is an "initial coin offering", a type of crypto scam very popular at this time'),
-    EmailCfg(id='EFTA00988395', description='"Andy Back" is probably O.G. bitcoin dev Adam Back from Blockstream', duplicate_ids=['EFTA01928856']),
-    EmailCfg(id='EFTA00955063', description='Austin Hill discusses investments in crypto funds engaged in fraudulent wash trading', is_interesting=True),
+    EmailCfg(id='EFTA00988395', description=f'"Andy Back" is probably O.G. bitcoin dev {ADAM_BACK} from Blockstream', duplicate_ids=['EFTA01928856']),
+    EmailCfg(id='EFTA00955063', description=f'{AUSTIN_HILL} discusses investments in crypto funds engaged in fraudulent wash trading', is_interesting=True),
     EmailCfg(id='EFTA01051074', description=f'{BROCK_PIERCE} arranging meeting between Bannon and Epstein (in Doha?)'),
     EmailCfg(id='EFTA00658457', description=f'{BROCK_PIERCE} says they will not invest in Bitfury'),
     EmailCfg(id='EFTA00998595', description=f'{BROCK_PIERCE} and Epstein discuss structure of crypto investments'),
@@ -2044,7 +2049,6 @@ OTHER_FILES_POLITICS = [
 ]
 
 OTHER_FILES_ACADEMIA = [
-    DocCfg(id='024256', author=JOI_ITO, description=f"Internet & Society: The Technologies and Politics of Control"),
     DocCfg(id='027004', author=JOSCHA_BACH, description=f"The Computational Structure of Mental Representation", date='2013-02-26'),
     DocCfg(
         id='014697',
@@ -2267,6 +2271,7 @@ OTHER_FILES_MISC = [
 
 # This category is automatically 'interesting', see OtherFile class
 OTHER_FILES_CRYPTO = [
+    DocCfg(id='024256', author=JOI_ITO, description=f"Internet & Society: The Technologies and Politics of Control"),
     DocCfg(id='024271', description=f"{BLOCKCHAIN_CAPITAL} and {BROCK_PIERCE} pitch deck", date='2015-10-01'),
     DocCfg(
         id='025663',
