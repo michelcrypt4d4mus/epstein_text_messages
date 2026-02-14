@@ -448,10 +448,7 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
             ContactInfo(ALIREZA_ITTIHADIEH, "CEO Freestream Aircraft Limited", r"Alireza.[Il]ttihadieh"),
             ContactInfo('AT&T Court Appearance Team', "AT&T"),
             ContactInfo(BARBRO_C_EHNBOM, "Swedish pharmaceuticals, SALSS", r"behnbom@aol.com|(Barbro\s.*)?Ehnbom"),
-            ContactInfo(
-                name=BARRY_J_COHEN,
-                emailer_pattern=r"barry\s*((j.?|james)\s*)?cohen?",
-            ),
+            ContactInfo(BARRY_J_COHEN, emailer_pattern=r"barry\s*((j.?|james)\s*)?cohen?"),
             ContactInfo('David Mitchell', "Mitchell Holdings, New York real estate developer"),
             ContactInfo(GERALD_BARTON, "Maryland property developer Landmark Land Company", r"Gerald.*Barton"),
             ContactInfo(NICOLE_JUNKERMANN, f"ex-model, NJF Capital, German investor in Revolut, Winamax (online poker) and Carbyen ({EHUD_BARAK})"),
