@@ -6,6 +6,7 @@ from dateutil.parser import parse
 
 from epstein_files.documents.documents.doc_cfg import DocCfg, EmailCfg, TextCfg
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
+from epstein_files.documents.emails.constants import FLIGHT_IN_2012_PEOPLE, IRAN_DEAL_RECIPIENTS, TRIVERS_CCS
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args
@@ -156,41 +157,6 @@ MICHAEL_WOLFF_EPSTEIN_ARTICLE_DRAFT = f"draft of an unpublished article about Ep
 SEC_WHISTLEBLOWER = 'whistleblower emails to SEC'
 VALAR_MEETING = f"meeting with {PETER_THIEL}'s {VALAR_VENTURES} fund"
 
-# Some emails have a lot of uninteresting CCs
-FLIGHT_IN_2012_PEOPLE: list[Name] = ['Francis Derby', JANUSZ_BANASIAK, 'Louella Rabuyo', 'Richard Barnnet']
-IRAN_DEAL_RECIPIENTS: list[Name] = ['Allen West', 'Rafael Bardaji', 'Philip Kafka', 'Herb Goodman', 'Grant Seeger', 'Lisa Albert', 'Janet Kafka', 'James Ramsey', 'ACT for America', 'John Zouzelka', 'Joel Dunn', 'Nate McClain', 'Bennet Greenwald', 'Taal Safdie', 'Uri Fouzailov', 'Neil Anderson', 'Nate White', 'Rita Hortenstine', 'Henry Hortenstine', 'Gary Gross', 'Forrest Miller', 'Bennett Schmidt', 'Val Sherman', 'Marcie Brown', 'Michael Horowitz', 'Marshall Funk']
-
-TRIVERS_CCS: list[Name] = [
-    "Alan Rogers",
-    "Anna Dreber",
-    "Anula Jayasuriya",
-    "Bill Prezant",
-    "Bobby McCormick",
-    "Clive Crook",
-    "Dane Stangler",
-    "Ron Bailey",
-    "Ditsa Pines",
-    "David Darst",
-    "Gerry Ohrstrom",
-    "Paul Romer",
-    "John Mallen",
-    "Jim Halligan",
-    "Lee Silver",
-    "Monika Gruter Cheney",
-    "Marguerite Atkins",
-    "Matt Ridley",
-    "Mike Cagney",
-    "Evan Smith",
-    "Roger Edelen",
-    "Oliver Goodenough",
-    "Paul Zak",
-    "Peter J Richerson",
-    "Clair Brown",
-    "Terry Anderson",
-    "Tim Kane",
-    "Rob Hanson",
-    "president@usfca.edu",
-]
 
 EMAILS_CONFIG = [
     # 026294 and 026296 might also be Ittihadieh based on timing
@@ -2367,60 +2333,6 @@ CONFIGS_BY_ID = {cfg.id: cfg for cfg in ALL_CONFIGS}
 for cfg in ALL_CONFIGS:
     for dupe_cfg in cfg.duplicate_cfgs():
         CONFIGS_BY_ID[dupe_cfg.id] = dupe_cfg
-
-
-# Email related regexes (have to be here for circular dependencies reasons)
-FORWARDED_LINE_PATTERN = r"-+ ?(Forwarded|Original)\s*Message ?-*|Begin forwarded message:?"
-FRENCH_REPLY_PATTERN = r"Le .* a ecrit:"
-GERMAN_REPLY_PATTERN = r"Am \d\d\.\d\d\..*schrieb.*"
-NORWEGAIN_REPLY_PATTERN = r"(Den .* folgende|(fre|lor|son)\. .* skrev .*):"
-REPLY_LINE_IN_A_MSG_PATTERN = r"In a message dated \d+/\d+/\d+.*writes:"
-REPLY_LINE_ENDING_PATTERN = r"[_ \n](AM|PM|[<_]|wrote:?)"
-REPLY_LINE_ON_NUMERIC_DATE_PATTERN = fr"(?<!M)On \d+/\d+/\d+[, ].*{REPLY_LINE_ENDING_PATTERN}"
-REPLY_LINE_ON_DATE_PATTERN = fr"^[> •]*On (\d+ )?((Mon|Tues?|Wed(nes)?|Thu(rs)?|Fri|Sat(ur)?|Sun)(day)?|(Jan|Fe(b|vr\.)|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*)[, ].*{REPLY_LINE_ENDING_PATTERN}"
-REPLY_LINE_PATTERN = rf"({FRENCH_REPLY_PATTERN}|{GERMAN_REPLY_PATTERN}|{NORWEGAIN_REPLY_PATTERN}|{REPLY_LINE_IN_A_MSG_PATTERN}|{REPLY_LINE_ON_NUMERIC_DATE_PATTERN}|{REPLY_LINE_ON_DATE_PATTERN}|{FORWARDED_LINE_PATTERN})"
-REPLY_REGEX = re.compile(REPLY_LINE_PATTERN, re.IGNORECASE | re.MULTILINE)
-SENT_FROM_REGEX = re.compile(r'^(?:(Please forgive|Sorry for all the) typos.{1,4})?((Envoyé de mon|Sent (from|via)).*(and string|AT&T|Droid|iPad|Phone|Mail|Surface|BlackBerry(.*(smartphone|device|Handheld|AT&T|T- ?Mobile))?)\.?)|Co-authored with iPhone auto-correct|Typos,? misspellings courtesy of iPhone(\s*word & thought substitution)?\.?', re.M | re.I)
-
-# No point in ever displaying these; their emails show up elsewhere because they're mostly CC recipients
-UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_CCS + [
-    'Alan Rogers',                           # Random CC
-    'Andrew Friendly',                       # Presumably some relation of Kelly Friendly
-    'Ariane Dwyer',                          # Daniel Sabba CC
-    'BS Stern',                              # A random fwd of email we have
-    'Cheryl Kleen',                          # One email from Anne Boyles is displayed under Anne Boyles
-    'Connie Zaguirre',                       # Random CC
-    'Dan Fleuette',                          # Sean Bannon CC
-    'Danny Goldberg',                        # Paul Krassner CC
-    GERALD_LEFCOURT,                         # Single CC
-    GORDON_GETTY,                            # Random CC
-    'Grant J. Smith',                        # Ken Jenne CC
-    JEFF_FULLER,                             # Jean Luc Brunel CC
-    JOJO_FONTANILLA,                         # housekeeper
-    'Joseph Vinciguerra',                    # Random CC
-    'Kirk Blouin',                           # John Page / Police Code Enforcement chain
-    'Larry Cohen',                           # Bill Gates CC
-    LYN_FONTANILLA,                          # housekeeper
-    'Mark Albert',                           # Random CC
-    'Matthew Schafer',                       # Random CC
-    MICHAEL_BUCHHOLTZ,                       # Terry Kafka CC
-    'Nancy Dahl',                            # covered by Lawrence Krauss (her husband)
-    'Michael Simmons',                       # Random CC
-    'Nancy Portland',                        # Lawrence Krauss CC
-    'Oliver Goodenough',                     # Robert Trivers CC
-    'Peter Aldhous',                         # Lawrence Krauss CC
-    'Peter Green',  # Farkas emailer
-    'Players2',                              # Hoffenberg CC
-    'Police Code Enforcement',               # Kirk Blouin / John Page CC
-    'Sam Harris',                            # Lawrence Krauss CC
-    SAMUEL_LEFF,                             # Random CC
-    'Sean T Lehane',                         # Random CC
-    'Stephen Rubin',                         # Random CC
-    THANU_BOONYAWATANA,                      # Eduardo Robles CC
-    'Tim Kane',                              # Random CC
-    'Travis Pangburn',                       # Random CC
-    'Vahe Stepanian',                        # Random CC
-]
 
 
 def check_no_overlapping_configs():

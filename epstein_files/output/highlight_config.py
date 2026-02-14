@@ -5,12 +5,13 @@ from rich.console import Console
 from rich.text import Text
 
 from epstein_files.documents.documents.doc_cfg import *
+from epstein_files.documents.emails.constants import REPLY_REGEX, SENT_FROM_REGEX
 from epstein_files.output.highlighted_names import HighlightedNames, HighlightedText, ManualHighlight
 from epstein_files.people.contact import Contact
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
-from epstein_files.util.constants import EPSTEIN_V_ROTHSTEIN_EDWARDS, REPLY_REGEX, SENT_FROM_REGEX
+from epstein_files.util.constants import EPSTEIN_V_ROTHSTEIN_EDWARDS
 from epstein_files.util.helpers.string_helper import indented
 from epstein_files.util.logging import logger
 

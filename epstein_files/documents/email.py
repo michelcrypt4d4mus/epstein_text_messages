@@ -16,6 +16,7 @@ from rich.text import Text
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, INFO_INDENT
 from epstein_files.documents.documents.doc_cfg import EmailCfg, Metadata
+from epstein_files.documents.emails.constants import *
 from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, FIELD_NAMES, FIELDS_COLON_PATTERN, EmailHeader)
 from epstein_files.documents.emails.emailers import extract_emailer_names
@@ -26,7 +27,7 @@ from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constants import *
 from epstein_files.util.helpers.data_helpers import AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines, remove_timezone, uniquify
 from epstein_files.util.helpers.file_helper import extract_file_id, file_stem_for_id
-from epstein_files.output.highlight_config import JUNK_EMAILERS, QUESTION_MARKS_TXT, get_style_for_name
+from epstein_files.output.highlight_config import JUNK_EMAILERS, get_style_for_name
 from epstein_files.util.logging import logger
 
 BAD_FIRST_LINE_REGEX = re.compile(r'^(>>|Grant_Smith066474"eMailContent.htm|LOVE & KISSES)$')
@@ -127,130 +128,6 @@ OCR_REPAIRS: dict[str | re.Pattern, str] = {
     re.compile(r"[i. ]*Privileged[- ]*Redacted[i. ]*"): '<PRIVILEGED - REDACTED>',
 }
 
-EMAIL_SIGNATURE_REGEXES = {
-    ARIANE_DE_ROTHSCHILD: re.compile(r"Ensemble.*\nCe.*\ndestinataires.*\nremercions.*\nautorisee.*\nd.*\nLe.*\ncontenues.*\nEdmond.*\nRoth.*\nlo.*\nRoth.*\ninfo.*\nFranc.*\n.2.*", re.I),
-    BARBRO_C_EHNBOM: re.compile(r"Barbro C.? Ehn.*\nChairman, Swedish-American.*\n((Office|Cell|Sweden):.*\n)*(360.*\nNew York.*)?"),
-    BRAD_KARP: re.compile(r"This message is intended only for the use of the Addressee and may contain information.*\nnot the intended recipient, you are hereby notified.*\nreceived this communication in error.*"),
-    BROCK_PIERCE: re.compile(r"IMPORTANT NOTICE: This.*\n(individual.*\nthat is.*\nlaw.*\nemployee.*\nrecipient.*|may contain info.*\nreader of this.*)|(Mobile?:?.*\n)?(Skype:.*\n)?E:.*\n(W:.*\n)?(Follow me.*\n)?Co-invest.*(\nLinked.*)?"),
-    DANIEL_SIAD: re.compile(r"Confidentiality Notice: The information contained in this electronic message is PRIVILEGED and confidential information intended only for the use of the individual entity or entities named as recipient or recipients. If the reader is not the intended recipient, be hereby notified that any dissemination, distribution or copy of this communication is strictly prohibited. If you have received this communication in error, please notify me immediately by electronic mail or by telephone and permanently delete this message from your computer system. Thank you.".replace(' ', r'\s*'), re.IGNORECASE),
-    DANNY_FROST: re.compile(r"Danny Frost\nDirector.*\nManhattan District.*\n212.*", re.IGNORECASE),
-    DARREN_INDYKE: re.compile(r"DARREN K. INDYKE.*?\**\nThe information contained in this communication.*?Darren K.[\n\s]+?[Il]ndyke(, PLLC)? — All rights reserved\.? ?\n\*{50,120}(\n\**)?", re.DOTALL),
-    DAVID_FISZEL: re.compile(r"This e-mail and any file.*\nmail and/or any file.*\nmail or any.*\nreceived.*\nmisdirected.*"),
-    DAVID_INGRAM: re.compile(r"Thank you in advance.*\nDavid Ingram.*\nCorrespondent\nReuters.*\nThomson.*(\n(Office|Mobile|Reuters.com).*)*"),
-    DEEPAK_CHOPRA: re.compile(fr"({DEEPAK_CHOPRA}( MD)?\n)?2013 Costa Del Mar Road\nCarlsbad, CA 92009(\n(Chopra Foundation|Super Genes: Unlock.*))?(\nJiyo)?(\nChopra Center for Wellbeing)?(\nHome: Where Everyone is Welcome)?"),
-    EDUARDO_ROBLES: re.compile(r"(• )?email:.*\n(• )?email:\n(• )?website: www.creativekingdom.com\n(• )?address: 5th Floor Office No:504 Aspect Tower,\nBusiness Bay, Dubai United Arab Emirates."),
-    ERIC_ROTH: re.compile(r"2221 Smithtown Avenue\nLong Island.*\nRonkonkoma.*\n(.1. )?Phone\nFax\nCell\ne-mail"),
-    GHISLAINE_MAXWELL: re.compile(r"FACEBOOK\nTWITTER\nG\+\nPINTEREST\nINSTAGRAM\nPLEDGE\nTHE DAILY CATCH"),
-    JEANNE_M_CHRISTENSEN: re.compile(r"A?Please consider the environment.*\nThis communication may.*\nWork Product.*\nresponsible.*\nanyone.*\nhereof.*|This communication may contain Confidential.*\nyou are not the addressee.*\nto such person.*\nor delete this.*"),
-    JEFFREY_EPSTEIN: re.compile(r"((\*+|please note)\n+)?([>»•]+ )*The information contained i[n=] this communication is\s*([>»] )*confidential.*?all\s+([>»] )*attachments.( copyright [-=]all rights reserved?)?", re.DOTALL),
-    JESSICA_CADWELL: re.compile(r"(f.*\n)?Certified Para.*\nFlorida.*\nBURMAN.*\n515.*\nSuite.*\nWest Palm.*(\nTel:.*)?(\nEmail:.*)?", re.IGNORECASE),
-    KEN_JENNE: re.compile(r"Ken Jenne\nRothstein.*\n401 E.*\nFort Lauderdale.*", re.IGNORECASE),
-    LARRY_SUMMERS: re.compile(r"Please direct all scheduling.*\nFollow me on twitter.*\nwww.larrysummers.*", re.IGNORECASE),
-    LAWRENCE_KRAUSS: re.compile(r"Lawrence (M. )?Krauss\n(Director.*\n)?(Co-director.*\n)?Foundation.*\nSchool.*\n(Co-director.*\n)?(and Director.*\n)?Arizona.*(\nResearch.*\nOri.*\n(krauss.*\n)?origins.*)?", re.IGNORECASE),
-    LEON_BLACK: re.compile(r"This email and any files transmitted with it are confidential and intended solely.*\n(they|whom).*\ndissemination.*\nother.*\nand delete.*"),
-    LISA_NEW: re.compile(r"Elisa New\nPowell M. Cabot.*\n(Director.*\n)?Harvard.*\n148.*\n([1I] )?12.*\nCambridge.*\n([1I] )?02138"),
-    MARTIN_WEINBERG: re.compile(r"(Martin G. Weinberg, Esq.\n20 Park Plaza((, )|\n)Suite 1000\nBoston, MA 02116(\n61.*?)?(\n.*?([cC]ell|Office))*\n)?This Electronic Message contains.*?contents of this message is.*?prohibited.", re.DOTALL),
-    MICHAEL_MILLER: re.compile(r"Michael C. Miller\nPartner\nwww.steptoe.com/mmiller\nSteptoe\n(Privileged.*\n)?(\+1\s+)?direct.*\n(\+1\s+)?(\+1\s+)?fax.*\n(\+1.*)?cell.*\n(www.steptoe.com\n)?This message and any.*\nyou are not.*\nnotify the sender.*"),
-    NICHOLAS_RIBIS: re.compile(r"60 Morris Turnpike 2FL\nSummit,? NJ.*\n0:\nF:\n\*{20,}\nCONFIDENTIALITY NOTICE.*\nattachments.*\ncopying.*\nIf you have.*\nthe copy.*\nThank.*\n\*{20,}"),
-    PETER_MANDELSON: re.compile(r'Disclaimer This email and any attachments to it may be.*?with[ \n]+number(.*?EC4V[ \n]+6BJ)?', re.DOTALL | re.IGNORECASE),
-    PAUL_BARRETT: re.compile(r"Paul Barrett[\n\s]+Alpha Group Capital LLC[\n\s]+(142 W 57th Street, 11th Floor, New York, NY 10019?[\n\s]+)?(al?[\n\s]*)?ALPHA GROUP[\n\s]+CAPITAL"),
-    PETER_ATTIA: re.compile(r"The information contained in this transmission may contain.*\n(laws|patient).*\n(distribution|named).*\n(distribution.*\nplease.*|copies.*)"),
-    RICHARD_KAHN: re.compile(fr'Richard Kahn[\n\s]+HBRK Associates Inc.?[\n\s]+((301 East 66th Street, Suite 1OF|575 Lexington Avenue,? 4th Floor,?)[\n\s]+)?New York, (NY|New York) 100(22|65)(\s+(Tel?|Phone)( I|{REDACTED})?\s+Fa[x",]?(_|{REDACTED})*\s+[Ce]el?l?)?', re.IGNORECASE),
-    ROSS_GOW: re.compile(r"Ross Gow\nManaging Partner\nACUITY Reputation Limited\n23 Berkeley Square\nLondon.*\nMobile.*\nTel"),
-    STEPHEN_HANSON: re.compile(r"(> )?Confidentiality Notice: This e-mail transmission.*\n(which it is addressed )?and may contain.*\n(applicable law. If you are not the intended )?recipient you are hereby.*\n(information contained in or attached to this transmission is )?STRICTLY PROHIBITED.*"),
-    STEVEN_PFEIFFER: re.compile(r"Steven\nSteven .*\nAssociate.*\nIndependent Filmmaker Project\nMade in NY.*\n30 .*\nBrooklyn.*\n(p:.*\n)?www\.ifp.*", re.IGNORECASE),
-    'Susan Edelman': re.compile(r'Susan Edel.*\nReporter\n1211.*\n917.*\nsedelman.*', re.IGNORECASE),
-    TERRY_KAFKA: re.compile(r"((>|I) )?Terry B.? Kafka.*\n(> )?Impact Outdoor.*\n(> )?5454.*\n(> )?Dallas.*\n((> )?c?ell.*\n)?(> )?Impactoutdoor.*(\n(> )?cell.*)?", re.IGNORECASE),
-    TOM_PRITZKER: re.compile(r"The contents of this email message.*\ncontain confidential.*\n(not )?the intended.*\n(error|please).*\n(you )?(are )?not the.*\n(this )?message.*"),
-    TONJA_HADDAD_COLEMAN: re.compile(fr"Tonja Haddad Coleman.*\nTonja Haddad.*\nAdvocate Building\n315 SE 7th.*(\nSuite.*)?\nFort Lauderdale.*(\n({REDACTED} )?facsimile)?(\nwww.tonjahaddad.com?)?(\nPlease add this efiling.*\nThe information.*\nyou are not.*\nyou are not.*)?", re.IGNORECASE),
-    UNKNOWN: re.compile(r"(This message is directed to and is for the use of the above-noted addressee only.*\nhereon\.)", re.DOTALL),
-    'W Bradford Stephens': re.compile(r"This email \(including.*\n(please.*\n)?it.*\nand do not.*\n(does.*\n)?constitute.*\ninvestment.*\n(info.*\n)?contained.*\nthe.*\s*(sender.*\n)?update.*\nthis.*(\nemail.*)?"),
-}
-
-MAILING_LISTS = [
-    CAROLYN_RANGEL,
-    INTELLIGENCE_SQUARED,
-    'middle.east.update@hotmail.com',
-    JP_MORGAN_USGIO,
-]
-
-BCC_LISTS = JUNK_EMAILERS + MAILING_LISTS
-
-TRUNCATE_EMAILS_FROM_OR_TO = [
-    AMANDA_ENS,
-    ANTHONY_BARRETT,
-    DANIEL_SABBA,
-    DIANE_ZIMAN,
-    JOSCHA_BACH,
-    KATHERINE_KEATING,
-    LAWRANCE_VISOSKI,
-    LAWRENCE_KRAUSS,
-    LISA_NEW,
-    MOSHE_HOFFMAN,
-    NILI_PRIELL_BARAK,
-    PAUL_KRASSNER,
-    PAUL_PROSPERI,
-    'Susan Edelman',
-    TERRY_KAFKA,
-]
-
-TRUNCATE_EMAILS_FROM = BCC_LISTS + TRUNCATE_EMAILS_FROM_OR_TO + [
-    'Alan S Halperin',
-    'Alain Forget',
-    ARIANE_DE_ROTHSCHILD,
-    AZIZA_ALAHMADI,
-    BILL_SIEGEL,
-    DAVID_HAIG,
-    EDWARD_ROD_LARSEN,
-    JOHNNY_EL_HACHEM,
-    'Mark Green',
-    MELANIE_WALKER,
-    'Mitchell Bard',
-    PEGGY_SIEGAL,
-    ROBERT_LAWRENCE_KUHN,
-    ROBERT_TRIVERS,
-    'Skip Rimer',
-    'Steven Elkman',
-    STEVEN_PFEIFFER,
-    'Steven Victor MD',
-    TERRY_KAFKA,
-]
-
-# These are long forwarded articles so we force a trim to 1,333 chars if these strings exist
-TRUNCATE_TERMS = [
-    'The rebuilding of Indonesia',  # Vikcy ward article
-    'a sleek, briskly paced film whose title suggests a heist movie',  # Inside Job
-    'Calendar of Major Events, Openings, and Fundraisers',
-    'sent over from Marshall Heyman at the WSJ',
-    "In recent months, China's BAT collapse",
-    'President Obama introduces Jim Yong Kim as his nominee',
-    'Trump appears with mobster-affiliated felon at New',
-    'Congratulations to the 2019 Hillman Prize recipients',
-    "Special counsel Robert Mueller's investigation may face a serious legal obstacle",
-    "nearly leak-proof since its inception more than a year ago",
-    # Nikolic
-    'Nuclear Operator Raises Alarm on Crisis',
-    'as responsible for the democratisation of computing and',
-    'AROUND 1,000 operational satellites are circling the Earth',
-    # Sultan Sulayem
-    'co-inventor of the GTX Smart Shoe',
-    'my latest Washington Post column',
-    # Bannon
-    'As Steve Bannon continues his tour of Europe',
-    "Bannon the European: He's opening the populist fort in Brussels",
-    "Steve Bannon doesn't do subtle.",
-    'The Department of Justice lost its latest battle with Congress',
-    'pedophile Jeffrey Epstein bought his way out',
-    # lawyers
-    'recuses itself from Jeffrey Epstein case',
-    # Misc
-    'people from LifeBall',  # Nikolic
-    "It began with deep worries regarding China's growth path",  # Paul Morris
-    'A friendly discussion about Syria with a former US State Department',  # Fabrice Aidan
-    'The US trade war against China: The view from Beijing',  # Robert Kuhn / Groff
-    'This much we know - the Fall elections are shaping up',  # Juleanna Glover / Bannon
-]
-
 METADATA_FIELDS = [
     'is_junk_mail',
     'is_mailing_list',
@@ -259,117 +136,19 @@ METADATA_FIELDS = [
     'subject',
 ]
 
-# Arguments to _merge_lines(). Note the line repair happens *after* 'Importance: High' is removed
-LINE_REPAIR_MERGES = {
-    '013405': [[4]] * 2,
-    '013415': [[4]] * 2,
-    '014397': [[4]] * 2,
-    '014860': [[3], [4], [4]],
-    '017523': [[4]],
-    '030367': [[1, 4], [2, 4]],
-    '019105': [[5]] * 4,
-    '019407': [[2, 4]],
-    '022187': [[1, 8], [2, 8], [3, 8], [4, 8]],
-    '021729': [[2]],
-    '032896': [[2]],
-    '033050': [[0, 6], [1, 6], [2, 6], [3, 6], [4, 6]],
-    '022949': [[0, 4], [1, 4]],
-    '022197': [[0, 5], [1, 5], [3, 5]],
-    '021814': [[1, 6], [2, 6], [3, 6], [4, 6]],
-    '022190': [[1, 7], [0, 6], [3, 6], [4, 6]],
-    '029582': [[0, 5], [1, 5], [3, 5], [3, 5]],
-    '022673': [[9]],
-    '022684': [[9]],
-    '026625': [[0, 7], [1, 7], [2, 7], [3, 7], [4, 7], [5, 7]],
-    '026659': [[0, 5], [1, 5]],
-    '026764': [[0, 6], [1, 6]],
-    '022695': [[4]],
-    '022977': [[9]] * 10,
-    '023001': [[5]] * 3,
-    '023067': [[3]],
-    '025233': [[4]] * 2,
-    '025329': [[2]] * 9,
-    '025790': [[2]],
-    '025812': [[3]] * 2,
-    '025589': [[3]] * 12,
-    '026345': [[3]],
-    '026609': [[4]],
-    '028921': [[5, 4], [4, 5]],
-    '026620': ([[20]] * 4) + [[3, 2]] + ([[2]] * 15) + [[2, 4]],
-    '026829': [[3]],
-    '026924': [[2, 4]],
-    '028728': [[3]],
-    '026451': [[3, 5]] * 2,
-    '028931': [[3, 6]],
-    '029154': [[2, 5]],
-    '029163': [[2, 5]],
-    '029282': [[2]],
-    '029402': [[5]],
-    '029433': [[3]],
-    '029458': [[4]] * 3,
-    '029498': [[2], [2, 4]],
-    '029501': [[2]],
-    '029545': [[3, 5]],
-    '029773': [[2, 5]],
-    '029831': [[3, 6]],
-    '029835': [[2, 4]],
-    '029841': [[3]],
-    '029889': [[2], [2, 5]],
-    '029976': [[3]],
-    '029977': ([[2]] * 4) + [[4], [2, 4]],
-    '030299': [[7, 10]],
-    '030315': [[3, 5]],
-    '030318': [[3, 5]],
-    '030381': [[2, 4]],
-    '030384': [[2, 4]],
-    '030626': [[2], [4]],
-    '030861': [[3, 8]],
-    '030999': [[2, 4]],
-    '031384': [[2]],
-    '031428': [[2], [2, 4]],
-    '031442': [[0]],
-    '031489': [[2, 4], [3, 4], [3, 4], [10]],
-    '031619': [[7], [17], [17]],
-    '031748': [[3]] * 2,
-    '031764': [[3], [8]],  # 8 is just for style fix internally, not header
-    '031980': [[2, 4]],
-    '032063': [[3, 5]],
-    '032272': [[2, 10], [3]],
-    '032405': [[4]],
-    '032637': [[9]] * 3,
-    '033097': [[2]],
-    '033144': [[2, 4]],
-    '033217': [[3]],
-    '033228': [[3, 5]],
-    '033252': [[9]] * 2,
-    '033271': [[3]],
-    '033299': [[3]],
-    '033357': [[2, 4]],
-    '033486': [[7, 9]],
-    '033512': [[2]],
-    '026024': [[1, 3], [2, 3]],
-    '024923': [[0, 5], [2]],
-    '033568': [[5]] * 5,
-    '033575': [[2, 4]],
-    '033576': [[3]],
-    '033583': [[2]],
-
-    # Note DOJ file line adjustments happen *after* DojFile._repair() is called
-    'EFTA00039689': [[4]],
-}
-
 
 @dataclass
 class Email(Communication):
     """
     Attributes:
-        actual_text (str) - Best effort at the text actually sent in this email, excluding quoted replies and forwards.
-        config (EmailCfg, optional) - Manual config for this email (if it exists).
-        header (EmailHeader) - Header data extracted from the text (from/to/sent/subject etc).
-        recipients (list[Name]) - People to whom this email was sent.
-        sent_from_device (str, optional) - "Sent from my iPhone" style signature (if it exists).
-        signature_substitution_counts (dict[str, int]) - Number of times a signature was replaced with
-            <...snipped...> for each participant
+        attached_docs (list[OtherFile]): any attachments that exist as `OtherFile` objects
+        actual_text (str): Best effort at the text actually sent in this email, excluding quoted replies and forwards.
+        config (EmailCfg, optional): Manual config for this email (if it exists).
+        header (EmailHeader): Header data extracted from the text (from/to/sent/subject etc).
+        recipients (list[Name]): People to whom this email was sent.
+        sent_from_device (str, optional): "Sent from my iPhone" style signature (if it exists).
+        signature_substitution_counts (dict[str, int]): Number of times a signature was replaced with
+            <...snipped...> per name
     """
     attached_docs: list[OtherFile] = field(default_factory=list)
     actual_text: str = field(init=False)
@@ -381,12 +160,12 @@ class Email(Communication):
     _is_first_for_user: bool = False  # Only set when printing
     _line_merge_arguments: list[tuple[int] | tuple[int, int]] = field(default_factory=list)
 
-    # For logging how many headers we prettified while printing, kind of janky
+    # Class variable logging how many headers we prettified while printing, kind of janky
     rewritten_header_ids: ClassVar[set[str]] = set([])
 
     @property
     def attachments(self) -> list[str]:
-        """Returns the string in the header."""
+        """Strings in the Attachments: field in the header, split by semicolon."""
         return (self.header.attachments or '').split(';')
 
     @property
@@ -508,6 +287,7 @@ class Email(Communication):
         self.sent_from_device = self._sent_from_device()
 
     def is_from_or_to(self, name: str) -> bool:
+        """True if `name` is either the author or one of the recipients."""
         return name in [self.author] + self.recipients
 
     def recipients_txt(self, max_full_names: int = 2) -> Text:
