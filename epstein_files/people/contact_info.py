@@ -5,8 +5,8 @@ from typing import Self
 
 from rich.text import Text
 
-from epstein_files.util.constant.names import (NAMES_TO_NOT_HIGHLIGHT, SIMPLE_NAME_REGEX, Name, constantize_name,
-     extract_first_name, extract_last_name, reversed_name)
+from epstein_files.util.constant.names import (NAMES_TO_NOT_HIGHLIGHT, SIMPLE_NAME_REGEX, Name,
+     constantize_name, extract_first_name, extract_last_name, reversed_name)
 from epstein_files.util.constant.strings import INDENT_NEWLINE, INDENTED_JOIN, remove_question_marks
 from epstein_files.util.data import constantize_names
 from epstein_files.util.helpers.string_helper import indented, quote
@@ -40,12 +40,7 @@ class ContactInfo:
                 if partial_name.lower() not in NAMES_TO_NOT_HIGHLIGHT and SIMPLE_NAME_REGEX.match(partial_name):
                     name_patterns.append(partial_name.replace(' ', r"\s+"))
 
-        pattern = '|'.join(name_patterns)
-
-        # if args.deep_debug and args.colors_only:
-        #     debug_console.print(Text('').append(f"{name:25s}", style=self.style).append(f" '{pattern}'", style='dim'))
-
-        return pattern
+        return '|'.join(name_patterns)
 
     @property
     def pattern(self) -> str:
