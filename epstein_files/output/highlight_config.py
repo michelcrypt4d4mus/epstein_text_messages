@@ -1579,7 +1579,7 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
             Contact('Auren Hoffman', "CEO of SafeGraph (firm that gathers location data from mobile devices) and LiveRamp"),
             Contact(ELON_MUSK, "father of Mecha-Hitler"),
             Contact(GOOGLE_PLUS, "Google+", r"Google\+"),
-            Contact('Ian O\'Donnell', f"Thiel's {VALAR_VENTURES}", r"Ian O'?Donnell"),
+            Contact(IAN_ODONNELL, f"Thiel's {VALAR_VENTURES}", r"Ian\s*O'?Donnell|O'?Donnell,\s*Ian"),
             Contact(
                 name=JAMES_FITZGERALD,
                 info=f"{PETER_THIEL}'s {VALAR_VENTURES} {QUESTION_MARKS}",
