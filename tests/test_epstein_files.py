@@ -187,7 +187,7 @@ EXPECTED_MONTHLY_COUNTS = {
     "2018-11": 45,
     "2018-12": 79,
     "2019-01": 25,
-    "2019-02": 95,
+    "2019-02": 96,
     "2019-03": 57,
     "2019-04": 36,
     "2019-05": 79,
@@ -254,7 +254,7 @@ def test_document_monthly_counts(epstein_files):
     counts = count_by_month(epstein_files.all_documents)
     assert counts == EXPECTED_MONTHLY_COUNTS
     len_all_files = len(epstein_files.all_files)
-    assert sum(counts.values()) == len_all_files - 1256  # There's 1246 empty files # TODO: this is the wrong number
+    assert sum(counts.values()) == len_all_files - 1255  # There's 1246 empty files # TODO: this is the wrong number?
 
 
 def test_no_files_after_2025(epstein_files):

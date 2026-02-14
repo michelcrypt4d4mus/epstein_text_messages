@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # Extract PDFs from the DOJ 2026-01-30 dump.
 # Requires the EPSTEIN_DOJ_PDFS_20260130_DIR env var to be set.
-import logging
 import re
-from logging import Formatter, Handler
 
 from pdfalyzer.decorators.pdf_file import PdfFile
 from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
