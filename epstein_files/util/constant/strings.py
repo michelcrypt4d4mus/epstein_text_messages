@@ -1,8 +1,7 @@
 import re
 from typing import Literal
 
-
-# categories
+# Categories
 ACADEMIA = 'academia'
 ARTS = 'arts'
 ARTICLE = 'article'
@@ -41,8 +40,6 @@ TIMESTAMP_DIM = f"turquoise4 dim"
 # Misc
 AUTHOR = 'author'
 DEFAULT = 'default'
-EFTA_PREFIX = 'EFTA'
-HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
 JSON = 'json'
 NA = 'n/a'
 REDACTED = '<REDACTED>'
@@ -61,7 +58,9 @@ INDENT = '    '
 INDENT_NEWLINE = f'\n{INDENT}'
 INDENTED_JOIN = f',{INDENT_NEWLINE}'
 
-# Regexes
+# Regexes / file names
+EFTA_PREFIX = 'EFTA'
+HOUSE_OVERSIGHT_PREFIX = 'HOUSE_OVERSIGHT_'
 DOJ_FILE_STEM_REGEX = re.compile(fr"{EFTA_PREFIX}\d{{8}}")
 DOJ_FILE_NAME_REGEX = re.compile(fr"{DOJ_FILE_STEM_REGEX.pattern}(\.txt)?")
 HOUSE_OVERSIGHT_NOV_2025_ID_REGEX = re.compile(r"\d{6}(_\d{1,2})?")
