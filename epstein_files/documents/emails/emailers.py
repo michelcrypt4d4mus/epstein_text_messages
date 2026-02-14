@@ -4,7 +4,8 @@ Constants and methods for dentifying people in email headers.
 import re
 
 from epstein_files.people.contact_info import ContactInfo
-from epstein_files.util.highlighted_group import HighlightedNames, HIGHLIGHTED_NAMES
+from epstein_files.output.highlighted_names import HighlightedNames
+from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.helpers.data_helpers import escape_single_quotes, flatten
