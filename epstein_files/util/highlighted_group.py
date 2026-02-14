@@ -2,7 +2,6 @@ import re
 from collections import defaultdict
 
 from rich.console import Console
-from rich.highlighter import RegexHighlighter
 from rich.text import Text
 
 from epstein_files.documents.documents.doc_cfg import *
@@ -1931,38 +1930,6 @@ HIGHLIGHTED_TEXTS = [
 ALL_HIGHLIGHTS = HIGHLIGHTED_NAMES + HIGHLIGHTED_TEXTS
 JUNK_HIGHLIGHTS: HighlightedNames = [hn for hn in HIGHLIGHTED_NAMES if hn.label == JUNK][0]
 JUNK_EMAILERS = [contact.name for contact in JUNK_HIGHLIGHTS.contacts]
-
-
-class EpsteinHighlighter(RegexHighlighter):
-    """Finds and colors interesting keywords based on the above config."""
-    base_style = f"{REGEX_STYLE_PREFIX}."
-    highlights = [highlight_group.regex for highlight_group in ALL_HIGHLIGHTS]
-    highlight_counts = defaultdict(int)
-
-    def highlight(self, text: Text) -> None:
-        """overrides https://rich.readthedocs.io/en/latest/_modules/rich/highlighter.html#RegexHighlighter"""
-        highlight_regex = text.highlight_regex
-
-        for re_highlight in self.highlights:
-            highlight_regex(re_highlight, style_prefix=self.base_style)
-
-            if args.debug and isinstance(re_highlight, re.Pattern):
-                for match in re_highlight.finditer(text.plain):
-                    type(self).highlight_counts[(match.group(1) or 'None').replace('\n', ' ')] += 1
-
-    def print_highlight_counts(self, console: Console) -> None:
-        """Print counts of how many times strings were highlighted."""
-        highlight_counts = deepcopy(self.highlight_counts)
-        weak_date_regex = re.compile(r"^(\d\d?/|20|http|On ).*")
-
-        for highlighted, count in sort_dict(highlight_counts):
-            if highlighted is None or weak_date_regex.match(highlighted):
-                continue
-
-            try:
-                console.print(f"{highlighted:25s} highlighted {count} times")
-            except Exception as e:
-                logger.error(f"Failed to print highlight count {count} for {highlighted}")
 
 
 def get_highlight_group_for_name(name: str | None) -> HighlightedNames | HighlightedText | ManualHighlight | None:
