@@ -42,6 +42,7 @@ EMAILER_ID_PATTERNS: dict[str, str] = {
     CHRISTOPHER_DILORIO: r"Chris\s*Di[lI]o[nr](io)?",
     DANGENE_AND_JENNIE_ENTERPRISE: r'Dangene and Jennie Enterprise?',
     DANNY_FROST: r'Frost, Danny|frostd@dany.nyc.gov|Danny\s*Frost',
+    'Daphne Wallace': r'Dap?hne Wallace',
     DARREN_INDYKE: r'darren$|Darren\s*(K\.?\s*)?[il]n[dq]_?yke?|dkiesq',
     DAVID_FISZEL: r'David\s*Fis?zel',
     DAVID_HAIG: fr'{DAVID_HAIG}|Haig, David',
@@ -144,6 +145,7 @@ EMAILER_ID_PATTERNS: dict[str, str] = {
     TONJA_HADDAD_COLEMAN: r"To(nj|rl)a Haddad Coleman|haddadfm@aol.com",
     TYLER_SHEARS: r"T[vy]ler\s*Shears",
     VINCENZO_IOZZO: r"Vincenzo [IL]ozzo",
+    'Yuko Barnaby': r"Yuko\s*Ba(m|rn)aby",
 }
 
 # If found as substring consider them the author
