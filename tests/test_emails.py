@@ -3,7 +3,7 @@ from epstein_files.util.data import dict_sets_to_lists
 
 
 EMAIL_AUTHOR_COUNTS = {
-    None: 97,
+    None: 88,
     "Abi Schwinck": 1,
     AL_SECKEL: 8,
     "Alain Forget": 3,
@@ -82,7 +82,7 @@ EMAIL_AUTHOR_COUNTS = {
     "Eva Dubin": 2,
     "Fabrice Aidan": 1,
     FAITH_KATES: 10,
-    FAWZI_SIAM: 2,
+    FAWZI_SIAM: 3,
     FBI: 4,
     'Florence Hutner': 1,
     'Francesca Hall': 1,
@@ -138,7 +138,7 @@ EMAIL_AUTHOR_COUNTS = {
     KEN_JENNE: 1,
     KEN_STARR: 5,
     "Kirk Blouin": 1,
-    LANDON_THOMAS: 72,
+    LANDON_THOMAS: 79,
     LARRY_SUMMERS: 50,
     'Laura Menninger': 1,
     "Laurie Cameron": 1,
@@ -259,7 +259,7 @@ EMAIL_AUTHOR_COUNTS = {
 
 
 EMAIL_RECIPIENT_COUNTS = {
-    None: 97,
+    None: 86,
     "ACT for America": 1,
     ADAM_BACK: 3,
     AL_SECKEL: 1,
@@ -544,7 +544,7 @@ EMAIL_RECIPIENT_COUNTS = {
     TYLER_SHEARS: 7,
     'USAHUB-USAJournal111': 1,
     "Uri Fouzailov": 1,
-    USANYS: 62,
+    USANYS: 79,
     'USMS': 1,
     "Vahe Stepanian": 1,
     "Val Sherman": 1,
@@ -660,7 +660,6 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     'EFTA01950559',
     'EFTA02060931',
     'EFTA02160715',
-    'EFTA02227488',
     'EFTA02229858',
     'EFTA02285514',
     'EFTA02304891',
@@ -675,7 +674,6 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     'EFTA02730485',
     'EFTA02731473',
     'EFTA02731479',
-    'EFTA02731482',
     'EFTA02731488',
     'EFTA02731526',
     'EFTA02731578',
@@ -683,18 +681,10 @@ UNKNOWN_RECIPIENT_FILE_IDS = [
     'EFTA02731648',
     'EFTA02731662',
     'EFTA02731687',
-    'EFTA02731713',
-    'EFTA02731718',
-    'EFTA02731724',
     'EFTA02731727',
-    'EFTA02731732',
     'EFTA02731733',
     'EFTA02731734',
-    'EFTA02731735',
-    'EFTA02731754',
     'EFTA02731765',
-    'EFTA02731774',
-    'EFTA02731781',
     'EFTA02731783',
 ]
 
@@ -725,6 +715,9 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
     ],
     "Sent from Steve Hanson's Blackberry": [
         "Stephen Hanson"
+    ],
+    'Sent from Surface': [
+        UNKNOWN
     ],
     'Sent from Windows Mail': [
         'Steven Sinofsky',
@@ -767,7 +760,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         "Gwendolyn Beck"
     ],
     "Sent from my iPad": [
-        '(unknown)',
+        UNKNOWN,
         BROCK_PIERCE,
         'Bruce Moskowitz',
         CECILIA_STEEN,
@@ -875,6 +868,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
 
 AUTHORS_TO_DEVICE_SIGNATURES = {
     UNKNOWN: [
+        'Sent from Surface',
         "Sent from my Windows 10 phone",
         "Sent from my iPad",
         "Sent from my iPhone",
