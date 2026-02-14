@@ -693,6 +693,7 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
             r"(Leon\s*)?Jaworski",
             r"Michael J. Pike",
             r"Paul,?\s*Weiss",
+            PERKINS_COIE,
             r"Steptoe(\s*& Johnson)?(\s*LLP)?",
             r"Sull(ivan)?\s*(&|and)?\s*Crom(well)?",
             r"Wein(berg|garten)",
