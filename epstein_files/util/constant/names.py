@@ -1,6 +1,7 @@
 import re
 
-from epstein_files.util.constant.strings import QUESTION_MARKS, remove_question_marks
+from epstein_files.util.constant.strings import QUESTION_MARKS
+from epstein_files.util.helpers.string_helper import remove_question_marks
 
 Name = str | None
 
