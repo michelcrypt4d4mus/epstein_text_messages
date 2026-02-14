@@ -266,8 +266,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='031591', duplicate_ids=['031442', '031996']),
     EmailCfg(
         id='019446',
-        author=CHRISTINA_GALBRAITH,
         attribution_reason='shows from "Christina media/PR" which fits',
+        author=CHRISTINA_GALBRAITH,
         is_attribution_uncertain=True,
     ),
     EmailCfg(
@@ -281,14 +281,14 @@ EMAILS_CONFIG = [
     EmailCfg(
         id='031278',
         actual_text='',
-        author=DARREN_INDYKE,
-        recipients=["Charles Michael"],
         attribution_reason='Quoted replies are in 019109',
+        author=DARREN_INDYKE,
+        comment='Hoffenberg',
         date='2016-08-17 11:26:00',
         description="heavily redacted email, quoted replies are from Steven Hoffenberg about James Patterson's book",
+        recipients=["Charles Michael"],
         subject='FW: Privileged and Confidential - Fwd: JAMES PATTERSON NEW BOOK TELLING FEDS COVER UP OF BILLIONAIRE JEFF EPSTEIN CHILD RAPES RELEASE DATE OCT 10 2016 STEVEN HOFFENBERG IS ON THE BOOK WRITING TEAM !!!!',
         truncate_to=2500,
-        comment='Hoffenberg',
     ),
     EmailCfg(id='026290', author=DAVID_SCHOEN, attribution_reason='Signature'),
     EmailCfg(id='031339', author=DAVID_SCHOEN, attribution_reason='Signature'),
@@ -450,16 +450,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='031694', author=PEGGY_SIEGAL, attribution_reason='quoted', is_attribution_uncertain=True),
     EmailCfg(id='032219', author=PEGGY_SIEGAL, attribution_reason='Signed "Peggy"'),
     EmailCfg(id='029020', author=RENATA_BOLOTOVA, attribution_reason='Signature'),
-    EmailCfg(
-        id='029605',
-        author=RENATA_BOLOTOVA,
-        attribution_reason=BOLOTOVA_REASON,
-    ),
-    EmailCfg(
-        id='029606',
-        author=RENATA_BOLOTOVA,
-        attribution_reason=BOLOTOVA_REASON,
-    ),
+    EmailCfg(id='029605', author=RENATA_BOLOTOVA, attribution_reason=BOLOTOVA_REASON),
+    EmailCfg(id='029606', author=RENATA_BOLOTOVA, attribution_reason=BOLOTOVA_REASON),
     EmailCfg(id='029604', author=RENATA_BOLOTOVA, attribution_reason='Continued in 239606 etc'),
     EmailCfg(
         id='033584',
