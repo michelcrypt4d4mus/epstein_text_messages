@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 from rich.console import Console
 
-from epstein_files.util.constants import SENT_FROM_REGEX
+from epstein_files.documents.emails.constants import SENT_FROM_REGEX
 from epstein_files.util.env import DOCS_DIR, args
 
 
