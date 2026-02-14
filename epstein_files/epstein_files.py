@@ -3,7 +3,6 @@ import json
 import pickle
 import re
 from collections import defaultdict
-from copy import copy
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
@@ -29,7 +28,7 @@ from epstein_files.util.helpers.data_helpers import flatten, json_safe, listify,
 from epstein_files.util.helpers.file_helper import doj_txt_paths, file_size_str
 from epstein_files.util.timer import Timer
 
-DUPLICATE_PROPS_TO_COPY = ['author', 'recipients', 'timestamp']
+DUPLICATE_PROPS_TO_COPY = ['author', 'recipients', 'timestamp']  # TODO: also copy the config, get rid of synthetic configs
 PICKLED_PATH = Path("the_epstein_files.pkl.gz")
 SLOW_FILE_SECONDS = 1.0
 
@@ -53,6 +52,10 @@ class EpsteinFiles:
     def all_doj_files(self) -> Sequence[DojFile | Email]:
         """All files with the filename EFTAXXXXXX."""
         return [doc for doc in self.all_documents if doc.is_doj_file]
+
+    @property
+    def non_json_other_files(self) -> list[OtherFile]:
+        return [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
 
     def __post_init__(self):
         """Iterate through files and build appropriate objects."""
@@ -167,10 +170,11 @@ class EpsteinFiles:
         return self.person_objs(uniquify(authors + recipients))
 
     def emails_by(self, author: Name) -> list[Email]:
+        """All emails sent by `author` (including dupes)."""
         return Document.sort_by_timestamp([e for e in self.emails if e.author == author])
 
     def emails_for(self, name: Name) -> list[Email]:
-        """Returns emails to or from a given 'author' sorted chronologically."""
+        """All emails to or from a given 'name' sorted chronologically (including dupes)."""
         emails = self.emails_by(name) + self.emails_to(name)
 
         if len(emails) == 0:
@@ -179,6 +183,7 @@ class EpsteinFiles:
         return Document.sort_by_timestamp(Document.uniquify(emails))
 
     def emails_to(self, name: Name) -> list[Email]:
+        """All `Email`s sent to `name` (including dupes)."""
         if name is None:
             emails = [e for e in self.emails if len(e.recipients) == 0 or None in e.recipients]
         else:
@@ -195,6 +200,7 @@ class EpsteinFiles:
             raise ValueError(f"No email found for {file_id}")
 
     def for_ids(self, file_ids: str | list[str]) -> list[Document]:
+        """Get `Document` objects for `file_ids`."""
         file_ids = listify(file_ids)
         docs = [doc for doc in (list(self.all_documents) + self.doj_files) if doc.file_id in file_ids]
 
@@ -204,6 +210,7 @@ class EpsteinFiles:
         return docs
 
     def imessage_logs_for(self, name: Name) -> list[MessengerLog]:
+        """Return `MessengerLog` objects where Epstein's counterparty is `name`."""
         return [log for log in self.imessage_logs if name == log.author]
 
     def json_metadata(self) -> str:
@@ -213,7 +220,7 @@ class EpsteinFiles:
                 Email.__name__: _sorted_metadata(self.emails),
                 JsonFile.__name__: _sorted_metadata(self.json_files),
                 MessengerLog.__name__: _sorted_metadata(self.imessage_logs),
-                OtherFile.__name__: _sorted_metadata(self.non_json_other_files()),
+                OtherFile.__name__: _sorted_metadata(self.non_json_other_files),
             },
             'people': {
                 contact.name: highlighted_group.info_for(contact.name, include_category=True)
@@ -228,9 +235,6 @@ class EpsteinFiles:
 
     def non_duplicate_emails(self) -> list[Email]:
         return Document.without_dupes(self.emails)
-
-    def non_json_other_files(self) -> list[OtherFile]:
-        return [doc for doc in self.other_files if not isinstance(doc, JsonFile)]
 
     def person_objs(self, names: list[Name]) -> list[Person]:
         """Construct Person objects for a list of names."""
@@ -266,7 +270,7 @@ class EpsteinFiles:
         table.add_row('Emails', *Document.files_info_row(self.emails))
         table.add_row('iMessage Logs', *Document.files_info_row(self.imessage_logs))
         table.add_row('JSON Data', *Document.files_info_row(self.json_files, True))
-        table.add_row('Other', *Document.files_info_row(self.non_json_other_files()))
+        table.add_row('Other', *Document.files_info_row(self.non_json_other_files))
         return table
 
     def save_to_disk(self) -> None:
