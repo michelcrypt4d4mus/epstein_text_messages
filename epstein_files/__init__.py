@@ -189,6 +189,7 @@ def epstein_show():
                 print_json(f"{doc.file_id} Metadata", metadata)
 
         console.print(doc.locations, style='dim')
+        console.print(f' is_interesting={doc.is_interesting}')
 
         if args.open_pdf:
             check_output(['open', str(doc.locations.local_pdf_path)])

@@ -2179,11 +2179,11 @@ OTHER_FILES_MISC = [
     DocCfg(id='029448', description=f"weird short essay titled 'President Obama and Self-Deception'"),
 
     # DOJ files
-DocCfg(id='EFTA01810372', author=TYLER_SHEARS, description=f'invoice for reputation management work', is_interesting=True),
+    DocCfg(id='EFTA01810372', author=TYLER_SHEARS, description=f'invoice for reputation management work', is_interesting=True),
     DocCfg(id='EFTA00005569', replace_text_with='Palm Beach police photo lineup featuring Epstein', date='2005-03-17'),
     DocCfg(id='EFTA00005783', description='heavily redacted handwritten note, 30+ completely redacted pages', date='2019-08-29'),
-    DocCfg(id='EFTA01087311', description='Black Family Partners cash projections'),
-    DocCfg(id='EFTA01217787', description='Skype conversation with Tyler Shears and Hanna Traff at Spotify', is_interesting=True),
+    DocCfg(id='EFTA01087311', description=f'{LEON_BLACK} Family Partners cash projections'),
+    DocCfg(id='EFTA01217787', description=f'Skype conversation with {TYLER_SHEARS} and Hanna Traff at Spotify', is_interesting=True),
     DocCfg(id='EFTA01217703', description=f'Skype conversation with actress Athena Zelcovich, {JOSCHA_BACH}, and {LAWRENCE_KRAUSS}'),
     DocCfg(id='EFTA01217736', description=f'Skype conversation with actress Athena Zelcovich, {TYLER_SHEARS}'),
     DocCfg(id='EFTA02731023', description=f"letter from Senator Ron Wyden to {LEON_BLACK}", is_interesting=False),
@@ -2202,7 +2202,9 @@ DocCfg(id='EFTA01810372', author=TYLER_SHEARS, description=f'invoice for reputat
     ),
     DocCfg(
         id='EFTA01620764',
-        description='iMessage convo between Melanie Walker and Epstein about Bill Gates being drunk all the time (???)',
+        author=MELANIE_WALKER,
+        description=f'iMessage conversation between about Bill Gates being drunk all the time',
+        is_attribution_uncertain=True,
         is_interesting=True
     ),
     DocCfg(
@@ -2214,7 +2216,7 @@ DocCfg(id='EFTA01810372', author=TYLER_SHEARS, description=f'invoice for reputat
     DocCfg(
         id='EFTA00009622',
         date='2006-07-19',
-        description='handwritten note transcribed Claude AI',
+        description='handwritten notes (police notess?) that were transcribed by Claude AI',
         is_interesting=True,
         replace_text_with=EFTA00009622_TEXT,
     ),
