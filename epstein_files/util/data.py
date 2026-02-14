@@ -36,6 +36,14 @@ uniquify = lambda _list: list(set(_list))
 without_falsey = lambda _list: [e for e in _list if e]
 
 
+def constantize_names(s: str) -> str:
+    """Replace occurences of 'Jeffrey Epstein' with '{JEFFREY_EPSTEIN}' etc."""
+    for name in ALL_NAMES:
+        s = s.replace(name, f"{{{names.constantize_name(name)}}}")
+
+    return s
+
+
 def dict_sets_to_lists(d: dict[str, set]) -> dict[str, list]:
     return {k: sorted(list(v)) for k, v in d.items()}
 

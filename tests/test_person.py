@@ -22,7 +22,7 @@ def anne_boyles(epstein_files) -> Person:
 
 @pytest.fixture(scope='session')
 def eva(epstein_files) -> Person:
-    return epstein_files.person_objs(['Eva Dubin'])[0]
+    return epstein_files.person_objs([EVA_DUBIN])[0]
 
 
 def test_info_str(anne_boyles, john_page, eva, sultan):

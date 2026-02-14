@@ -21,6 +21,7 @@ from epstein_files.util.rich import RAINBOW, INFO_STYLE, highlighter, link_text_
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTALL)
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
+SINGLE_IMAGE_NO_TEXT = 'single image with no text'
 MIN_VALID_LENGTH = 10
 
 OTHER_DOC_URLS = {
@@ -213,6 +214,22 @@ class DojFile(OtherFile):
         return wrap_in_markup_style(super().external_link_markup, self.border_style)
 
     @property
+    def image_with_no_text_msg(self) -> RenderableType:
+        """One line of linked text to show if this file doesn't seem to have any OCR text."""
+        return Padding(
+            Text('').append(self.doj_link()).append(f" is a {SINGLE_IMAGE_NO_TEXT}..."),
+            (0, 0, 0, 1)
+        )
+
+    @property
+    def highlighted_preview_text(self) -> Text:
+        """Overloads superclass method."""
+        if self.preview_text == SINGLE_IMAGE_NO_TEXT:
+            return Text(self.preview_text, style='dim italic')
+        else:
+            return super().highlighted_preview_text
+
+    @property
     def info(self) -> list[Text]:
         """Overloads superclass to adjust formatting."""
         return [Text(' ').append(sentence) for sentence in super().info]
@@ -225,10 +242,6 @@ class DojFile(OtherFile):
     def is_empty(self) -> bool:
         """Overloads superclass method."""
         return len(self.text.strip().removesuffix(NO_IMAGE_SUFFIX)) < MIN_VALID_LENGTH
-
-    @property
-    def is_interesting(self) -> bool:
-        return bool(self.config and self.config.is_interesting)
 
     @property
     def prettified_text(self) -> Text:
@@ -256,6 +269,14 @@ class DojFile(OtherFile):
             return highlighter(Text(text, style))
 
     @property
+    def preview_text(self) -> str:
+        """Text at start of file stripped of newlinesfor display in tables and other cramped settings."""
+        if self.is_empty or self.is_bad_ocr:
+            return SINGLE_IMAGE_NO_TEXT
+        else:
+            return super().preview_text
+
+    @property
     def timestamp_sort_key(self) -> tuple[datetime, str, int]:
         """Overloads parent method."""
         dupe_idx = 0
@@ -277,13 +298,6 @@ class DojFile(OtherFile):
     def external_links_txt(self, _style: str = '', include_alt_links: bool = True) -> Text:
         """Overrides super() method to apply self.border_style."""
         return super().external_links_txt(self.border_style, include_alt_links=include_alt_links)
-
-    def image_with_no_text_msg(self) -> RenderableType:
-        """One line of linked text to show if this file doesn't seem to have any OCR text."""
-        return Padding(
-            Text('').append(self.doj_link()).append(f" is a single image with no text..."),
-            (0, 0, 0, 1)
-        )
 
     def printable_document(self) -> Self | Email:
         """Return a copy of this `DojFile` with simplified text if file ID is in `REPLACEMENT_TEXT`."""
@@ -314,7 +328,7 @@ class DojFile(OtherFile):
         number_only_line_count = len(self.lines) - len(non_number_lines)
 
         if number_only_line_count > 20:
-            self.warn(f"Reduced line count from {len(self.lines)} to {len(non_number_lines)}")
+            self.warn(f"Reduced line count from {len(self.lines)} to {len(non_number_lines)} by stripping number only lines")
             self._set_computed_fields(lines=non_number_lines)
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:

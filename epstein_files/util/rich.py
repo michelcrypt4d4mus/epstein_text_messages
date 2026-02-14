@@ -35,7 +35,7 @@ VALID_GREYS = [0, 3, 7, 11, 15, 19, 23, 27, 30, 35, 37, 39, 42, 46, 50, 53, 54, 
 DOJ_PAGE_LINK_MSG = 'WIP page with documents from the Epstein Files Transparency Act'
 
 INFO_STYLE = 'white dim italic'
-KEY_STYLE = 'honeydew2 bold'
+KEY_STYLE = 'honeydew2'
 LAST_TIMESTAMP_STYLE = 'wheat4'
 OTHER_PAGE_MSG_STYLE = 'gray78 dim'
 SECTION_HEADER_STYLE = 'bold white on blue3'
@@ -151,17 +151,22 @@ def join_texts(txts: list[Text], join: str = ' ', encloser: str = '', encloser_s
     return txt
 
 
-def key_value_txt(key: str, value: Text | int | str) -> Text:
-    """Generate a Text obj for 'key=value'."""
-    if isinstance(value, int):
-        value = Text(f"{value}", style='cyan')
-
-    return Text('').append(key, style=KEY_STYLE).append('=', style=SYMBOL_STYLE).append(value)
-
-
 def parenthesize(msg: str | Text, style: str = '') -> Text:
     txt = Text(msg) if isinstance(msg, str) else msg
     return Text('(', style=style).append(txt).append(')')
+
+
+def prefix_with(txt: list[str] | list[Text] | Text | str, pfx: str, pfx_style: str = '', indent: str | int = '') -> Text:
+
+    indent = indent * ' ' if isinstance(indent, int) else indent
+
+    lines = [
+        Text('').append(f"{indent}{pfx} ", style=pfx_style).append(line)
+        for line in (txt.split('\n') if isinstance(txt, (Text, str)) else txt)
+    ]
+
+
+    return Text('\n').join(lines)
 
 
 def print_centered(obj: RenderableType, style: str = '') -> None:
@@ -284,6 +289,44 @@ def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, styl
     spaces = ' ' * num_spaces
     msg = f"{spaces}{stars} {msg} {stars}{spaces}"
     print_centered(wrap_in_markup_style(msg, style))
+
+
+def styled_key_value(
+    key: str,
+    val: int | str | Path | Text,
+    key_style: str = KEY_STYLE,
+    indent: int = 0,
+    sep='='
+) -> Text:
+    """Generate `Text` for 'key=value'."""
+    if isinstance(val, Text):
+        val_txt = val
+    else:
+        val_style: str = 'bright_white bold'
+
+        if isinstance(val, int):
+            val = str(val)
+            val_style = 'cyan'
+        elif isinstance(val, str) and val.startswith('http'):
+            val_style = ARCHIVE_LINK_UNDERLINE
+        elif isinstance(val, Path):
+            val = val = f"'{val}'"
+            val_style = 'deep_pink3'
+
+        val_txt = Text(str(val), style=val_style)
+
+    txt = Text('').append(f"{key:>{indent}}", style=key_style)
+    return txt.append(sep, style=SYMBOL_STYLE).append(val_txt)
+
+
+def styled_dict(d: dict[str, str | Path | Text], key_style: str = KEY_STYLE, sep: str = '=') -> Text:
+    """Turn a dict into a colored representation."""
+    key_column_width = max(len(k) for k in d.keys()) + 3
+
+    return Text('\n').join([
+        styled_key_value(k, v, key_style=key_style, indent=key_column_width, sep=sep)
+        for k, v in d.items()
+    ])
 
 
 def vertically_pad(obj: RenderableType, amount: int = 1) -> Padding:

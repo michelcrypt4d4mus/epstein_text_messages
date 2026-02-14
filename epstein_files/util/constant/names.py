@@ -1,3 +1,5 @@
+import re
+
 from epstein_files.util.constant.strings import QUESTION_MARKS, remove_question_marks
 
 Name = str | None
@@ -66,6 +68,7 @@ EDWARD_JAY_EPSTEIN = 'Edward Jay Epstein'
 EDWARD_ROD_LARSEN = 'Edward Rod Larsen'
 EHUD_BARAK = 'Ehud Barak'
 ERIC_ROTH = 'Eric Roth'
+EVA_DUBIN = 'Eva Dubin'
 FAITH_KATES = 'Faith Kates'
 FRED_HADDAD = 'Fred Haddad'
 GERALD_BARTON = 'Gerald Barton'
@@ -206,10 +209,13 @@ JAMES_FITZGERALD = 'James Fitzgerald'
 JULIA_SANTOS = 'Julia Santos'
 KARYNA_SHULIAK = 'Karyna Shuliak'
 LORENZO_DE_MEDICI = 'Lorenzo de Medici'
+MADARS_VIRZA = 'Madars Virza'
 NICOLE_JUNKERMANN = 'Nicole Junkermann'
 SETH_LLOYD = 'Seth Lloyd'
 STACEY_RICHMAN = 'Stacey Richman'
 STORY_COWLES = 'Story Cowles'
+TANCREDI_MARCHIOLO = 'Tancredi Marchiolo'
+YUKO_BARNABY = 'Yuko Barnaby'
 
 # No communications but name is in the files
 BILL_GATES = 'Bill Gates'
@@ -232,10 +238,13 @@ VIRGINIA_GIUFFRE = 'Virginia Giuffre'
 
 # Organizations
 ATT_COURT_APPEARANCE_TEAM = 'AT&T Court Appearance Team'
+BLOCKCHAIN_CAPITAL = 'Blockchain Capital'
+BLOCKSTREAM = 'Blockstream'
 BOFA = 'BofA'
 BOFA_MERRILL = f'{BOFA} / Merrill Lynch'
 BUREAU_OF_PRISONS = 'Bureau of Prisons'
 CNN = 'CNN'
+CRYPTO_CURRENCY_PARTNERS_II = 'Crypto Currency Partners II'
 CRYPTO_PR_LAB = 'Crypto PR Lab'
 DEUTSCHE_BANK = 'Deutsche Bank'
 ELECTRON_CAPITAL_PARTNERS = 'Electron Capital Partners'
@@ -262,7 +271,7 @@ VALAR_VENTURES = 'Valar Ventures'
 # First and last names that should be made part of a highlighting regex for emailers
 NAMES_TO_NOT_HIGHLIGHT = """
     adam al alain alan alison alfredo allen alex alexander amanda andres andrew anthony audrey
-    back bard barrett barry bennet bernard bill black bob boris brad brenner bruce
+    back bard barnaby barrett barry bennet bernard bill black bob boris brad brenner bruce
     cameron caroline carolyn chris christian christina cohen
     dan daniel danny darren dave david debbie donald douglas
     ed edward edwards enforcement enterprise enterprises entourage epstein eric erika etienne
@@ -310,9 +319,11 @@ OTHER_NAMES = NAMES_TO_NOT_HIGHLIGHT + """
     zach zack
 """.strip().split()
 
+SIMPLE_NAME_REGEX = re.compile(r"^[-\w, ]+$", re.IGNORECASE)
+
 
 def constantize_name(name: str) -> str:
-    if name == 'Andrzej Duda or entourage':
+    if name == ANDRZEJ_DUDA:
         return 'ANDRZEJ_DUDA'
     elif name == MIROSLAV_LAJCAK:
         return 'MIROSLAV_LAJCAK'
@@ -324,7 +335,6 @@ def constantize_name(name: str) -> str:
     variable_name = variable_name.upper().replace('-', '_').replace(' ', '_').replace('.', '')
 
     if variable_name not in globals():
-        #print(f"  ****ERROR**** {variable_name} is not a name variable!")
         return f"'{name}'"
     else:
         return variable_name

@@ -1,4 +1,9 @@
 from epstein_files.util.constant.names import extract_last_name
+from epstein_files.util.data import constantize_names
+
+
+def test_constantize_names():
+    assert constantize_names(f"Jeffrey Epstein's assistant Lesley Groff office") == "{JEFFREY_EPSTEIN}'s assistant {LESLEY_GROFF} office"
 
 
 def test_extract_last_name():

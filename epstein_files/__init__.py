@@ -5,6 +5,7 @@ Reformat Epstein text message files for readability and count email senders.
     Run: 'EPSTEIN_DOCS_DIR=/path/to/TXT epstein_generate'
 """
 import re
+from subprocess import check_output
 from sys import exit
 
 from dotenv import load_dotenv
@@ -145,7 +146,7 @@ def epstein_grep():
                     console.print(Padding(temp_highlighter(line_txt), INFO_PADDING), style='gray37')
 
             console.line()
-            console.print(doc.local_path_and_url + '\n', style='dim')
+            console.print(doc.locations, style='dim')
 
 
 def epstein_show():
@@ -171,9 +172,10 @@ def epstein_show():
         exit_with_error(str(e))
 
     for doc in docs:
-        console.print('\n', doc, '\n')
+        console.print('\n', doc)
 
         if args.raw:
+            console.line()
             console.print(Panel(Text("RAW: ").append(doc.summary), expand=False, style=doc.border_style))
             console.print(escape(doc.raw_text()), '\n')
 
@@ -186,8 +188,14 @@ def epstein_show():
                 metadata['_is_first_for_user'] = doc._is_first_for_user
                 print_json(f"{doc.file_id} Metadata", metadata)
 
-        console.print(doc.local_path_and_url, style='dim')
+        console.print(doc.locations, style='dim')
 
+        if args.open_pdf:
+            check_output(['open', str(doc.locations.local_pdf_path)])
+        if args.open_txt:
+            check_output(['open', str(doc.file_path)])
+        if args.open_url:
+            check_output(['open', str(doc.external_url)])
 
 def epstein_word_count() -> None:
     write_word_counts_html()

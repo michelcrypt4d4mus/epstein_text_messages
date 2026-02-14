@@ -9,6 +9,7 @@ from pdfalyzer.decorators.pdf_file import PdfFile
 from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
 from yaralyzer.util.helpers.shell_helper import ShellResult
 
+from epstein_files.epstein_files import EpsteinFiles
 from epstein_files.documents.document import DOJ_DATASET_ID_REGEX
 from epstein_files.util.env import DOJ_PDFS_20260130_DIR, DOJ_TXTS_20260130_DIR, DOJ_PDFS_20260130_DIR_ENV_VAR
 from epstein_files.util.logging import logger
@@ -71,3 +72,5 @@ for dir in [d for d in DOJ_PDFS_20260130_DIR.glob('*') if d.is_dir()]:
         result = ShellResult.from_cmd(cmd, verify_success=True)
         logger.debug(result.output_logs(), extra={"highlighter": None})
         console.line()
+
+EpsteinFiles.get_files().reload_doj_files()

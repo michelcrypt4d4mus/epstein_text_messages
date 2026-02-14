@@ -1,4 +1,4 @@
-from epstein_files.util.constant.strings import indented
+from epstein_files.util.helpers.string_helper import indented
 
 
 def test_indented():

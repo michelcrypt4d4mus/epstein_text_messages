@@ -1,6 +1,8 @@
+from rich.text import Text
+
 from epstein_files.util.constants import *
 from epstein_files.util.data import ALL_NAMES
-from epstein_files.util.highlighted_group import CATEGORY_STYLES, HIGHLIGHTED_NAMES
+from epstein_files.util.highlighted_group import CATEGORY_STYLES, HIGHLIGHTED_NAMES, get_style_for_category
 
 
 def test_category_styles():
@@ -25,3 +27,7 @@ def test_each_name_matches_only_one_highlight():
 
         highlight_groups = [hg for hg in HIGHLIGHTED_NAMES if hg.regex.search(name)]
         assert len(highlight_groups) <= 1, f"'{name}' matched {len(highlight_groups)} highlight groups!"
+
+
+def test_styled_category():
+    assert get_style_for_category('crypto') == 'orange1 bold'

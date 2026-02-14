@@ -10,7 +10,7 @@ from epstein_files.util.constant.names import UNKNOWN
 from epstein_files.util.constants import FALLBACK_TIMESTAMP
 from epstein_files.util.doc_cfg import CommunicationCfg
 from epstein_files.util.highlighted_group import get_style_for_name, styled_name
-from epstein_files.util.rich import key_value_txt
+from epstein_files.util.rich import styled_key_value
 
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}$")
 
@@ -42,7 +42,7 @@ class Communication(Document):
     def summary_with_author(self) -> Text:
         """Append author information to `super().summary`, bracket is left open."""
         txt = super().summary.append(', ')
-        return txt.append(key_value_txt('author', Text(f"'{self.author_or_unknown}'", style=self.author_style)))
+        return txt.append(styled_key_value('author', Text(f"'{self.author_or_unknown}'", style=self.author_style)))
 
     @property
     def timestamp_without_seconds(self) -> str:
