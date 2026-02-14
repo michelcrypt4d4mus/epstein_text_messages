@@ -62,6 +62,7 @@ BAD_OCR_FILE_IDS = [
     'EFTA00001845',
     'EFTA00003082',
     'EFTA00008413',
+    'EFTA00002061',
     'EFTA00001809',
     'EFTA00002831',
     'EFTA00007864',
@@ -195,32 +196,6 @@ STRIP_IMAGE_PANEL_IDS = [
     'EFTA00007893',
     'EFTA02731433',
 ]
-
-INTERESTING_DOJ_FILES = {
-    'EFTA02640711': 'Jabor Y home address (HBJ)',
-    'EFTA00039689': 'Dilorio emails to SEC about Signature Bank, Hapoalim, Bioptix / RIOT, Honig, etc.',
-    'EFTA00039025': 'Investigation and Review of the Federal Bureau of Prisons Custody, Care, and Supervision of Jeffrey Epstein',
-    'EFTA02296929': f"{RENATA_BOLOTOVA} appears to know Epstein's final girlfriend",
-    'EFTA01273102': f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank",
-    'EFTA02725909': 'presentation to NYDFS for "NYC Bitcoin Exchanges" with Balaji Srinivisan and Andrew Farkas on the board',
-    'EFTA01622387': f"{RENATA_BOLOTOVA} iMessage conversation",
-    'EFTA00810239': "Peter Thiel fund Valar Ventures pitch deck",
-    'EFTA00810510': "Peter Thiel fund Valar Ventures Fall 2016 Update",
-    'EFTA00810474': "Peter Thiel fund Valar Ventures Fall 2018 Update",
-    'EFTA00836182': "Peter Thiel fund Valar Ventures Limited Partners email",
-    'EFTA01003346': "Peter Thiel tells Epstein to invest in his fund",
-    'EFTA00811866': "list of Epstein's bank accounts",
-    'EFTA00811666': "asset valuations of Epstein's holdings, includes 'Coinbase via grat'",
-    'EFTA00803405': "Honeycomb Asset Management (Spotify and Tencent investors) 2018 firm brochure",
-    'EFTA00803491': "Honeycomb Asset Management (Spotify and Tencent investors) deck",
-    'EFTA00803459': "Honeycomb Asset Management (Spotify and Tencent investors) January 2019 report",
-    'EFTA00603445': "Honeycomb Asset Management (Spotify and Tencent investors) July 2017 report",
-    'EFTA00803464': "Honeycomb Asset Management (Spotify and Tencent investors) July 2018 report",
-    'EFTA00927927': f"reads like {RENATA_BOLOTOVA} talking about recruiting girls for Epstein",
-    'EFTA00805569': 'Mercantile Global Holdings, San Juan Mercantile Bank & Trust, Noble Bank + Signature Bank + BitGo',
-    'EFTA02285514': 'Medici Bank and Maria Pruskova meeting',
-    'EFTA01613731': 'Medici Bank conversation on Whatsapp',
-}
 
 NO_IMAGE_SUFFIX = """
 ╭──── Page 1, Image 1 ─────╮

@@ -1353,6 +1353,7 @@ EMAILS_CONFIG = [
         is_interesting=True,
         recipients=[LESLEY_GROFF],
     ),
+    EmailCfg(id='EFTA02640711', description='Jabor Y / HBJ home address', is_interesting=True),
     EmailCfg(id='EFTA00999549', description=f"{JOI_ITO} and {JEREMY_RUBIN} meet {LARRY_SUMMERS} to discuss bitcoin", is_interesting=True),
     EmailCfg(id='EFTA00901970', description=f"{AL_SECKEL}'s response to Epstein's forged email", is_interesting=True),
     EmailCfg(id='EFTA02372964', description='an "ICO" is an "initial coin offering", a type of crypto scam very popular at this time'),
@@ -1393,7 +1394,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01776411', duplicate_ids=['EFTA02691069']),
     EmailCfg(id='EFTA02390441', duplicate_ids=['EFTA02403336']),
     EmailCfg(id='EFTA00362171', truncate_to=1200),
-    EmailCfg(id='EFTA00039689', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00039689', description='emails to SEC about Signature Bank, Hapoalim, Bioptix / RIOT, Barry Honig, etc.', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00869828', truncate_to=TRUNCATED_CHARS),
 ]
 
@@ -1440,6 +1441,7 @@ FEMALE_HEALTH_COMPANY = 'Female Health Company (FHC)'
 FIRE_AND_FURY = f"Fire And Fury"
 HARVARD_POETRY = f'{HARVARD} poetry stuff from {LISA_NEW}'
 HBS_APPLICATION = f"{HARVARD} Business School application letter"
+HONEYCOMB_FUND = 'Honeycomb Asset Management (Spotify and Tencent investors)'
 JASTA = 'JASTA'
 JASTA_SAUDI_LAWSUIT = f"{JASTA} lawsuit against Saudi Arabia by 9/11 victims"
 JP_MORGAN_EYE_ON_THE_MARKET = f"Eye On The Market"
@@ -2194,7 +2196,7 @@ OTHER_FILES_MISC = [
 
     # DOJ files
     DocCfg(id='EFTA01810372', author=TYLER_SHEARS, description=f'invoice for reputation management work', is_interesting=True),
-    DocCfg(id='EFTA00039025', description=f"{BUREAU_OF_PRISONS} report on death of Jeffrey Epstein"),
+    DocCfg(id='EFTA00039025', description=f"{BUREAU_OF_PRISONS} report on death of Jeffrey Epstein", is_interesting=True),
     DocCfg(id='EFTA00005783', description='heavily redacted handwritten note, 30+ completely redacted pages', date='2019-08-29'),
     DocCfg(id='EFTA01087311', description=f'{LEON_BLACK} Family Partners cash projections'),
     DocCfg(id='EFTA01217787', description=f'Skype conversation with {TYLER_SHEARS} and Hanna Traff at Spotify', is_interesting=True),
@@ -2278,6 +2280,77 @@ OTHER_FILES_CRYPTO = [
     ),
 
     # DOJ files
+    DocCfg(
+        id='EFTA01273102',
+        description=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank",
+        is_interesting=True,
+    ),
+    DocCfg(
+        id='EFTA02725909',
+        description='presentation to NYDFS for "NYC Bitcoin Exchanges" with Balaji Srinivisan and Andrew Farkas on the board',
+        is_interesting=True,
+    ),
+    DocCfg(
+        id='EFTA00810239',
+        description="Peter Thiel fund Valar Ventures pitch deck",
+        is_interesting=True,
+    ),
+    DocCfg(
+        id='EFTA00810510',
+        description="Peter Thiel fund Valar Ventures Fall 2016 Update",
+        is_interesting=True,
+    ),
+    DocCfg(
+        id='EFTA00810474',
+        description="Peter Thiel fund Valar Ventures Fall 2018 Update",
+        is_interesting=True,
+    ),
+    DocCfg(
+        id='EFTA00836182',
+        description="Peter Thiel fund Valar Ventures Limited Partners email",
+        is_interesting=True,
+    ),
+    DocCfg(
+        id='EFTA01003346',
+        description="Peter Thiel tells Epstein to invest in his fund",
+        is_interesting=True,
+    ),
+    DocCfg(
+        id='EFTA00811866',
+        description="list of Epstein's bank accounts",
+        is_interesting=True,
+    ),
+    DocCfg(
+        id='EFTA00811666',
+        description="asset valuations of Epstein's holdings, includes 'Coinbase via grat'",
+        is_interesting=True,
+    ),
+    DocCfg(id='EFTA00803491', author=HONEYCOMB_FUND, description="deck", is_interesting=True),
+    DocCfg(id='EFTA00803459', author=HONEYCOMB_FUND, description="January 2019 report", is_interesting=True),
+    DocCfg(id='EFTA00603445', author=HONEYCOMB_FUND, description="July 2017 report", is_interesting=True),
+    DocCfg(id='EFTA00803464', author=HONEYCOMB_FUND, description="July 2018 report", is_interesting=True),
+    DocCfg(
+        id='EFTA00927927',
+        description=f"reads like {RENATA_BOLOTOVA} talking about recruiting girls for Epstein",
+        is_interesting=True,
+    ),
+    DocCfg(
+        id='EFTA00805569',
+        description='Mercantile Global Holdings, San Juan Mercantile Bank & Trust, Noble Bank + Signature Bank + BitGo',
+        is_interesting=True,
+    ),
+    DocCfg(
+        id='EFTA02285514',
+        description='Medici Bank and Maria Pruskova meeting',
+        is_interesting=True,
+    ),
+    DocCfg(
+        id='EFTA01613731',
+        description='Medici Bank conversation on Whatsapp',
+        is_interesting=True,
+    ),
+
+
     DocCfg(
         id='EFTA01612888',
         author='Kevin Peterson, Bammohan Deeduvanu, Pradip Kanjamala, and Kelly Boles',
