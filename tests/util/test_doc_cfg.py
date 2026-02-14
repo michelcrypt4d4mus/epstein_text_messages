@@ -1,5 +1,5 @@
+from epstein_files.documents.documents.doc_cfg import DocCfg, EmailCfg
 from epstein_files.util.constant.strings import *
-from epstein_files.util.doc_cfg import DocCfg, EmailCfg
 
 
 def test_complete_description():

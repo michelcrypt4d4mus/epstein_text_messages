@@ -7,13 +7,13 @@ from rich.console import Console
 from rich.highlighter import RegexHighlighter
 from rich.text import Text
 
+from epstein_files.documents.documents.doc_cfg import *
 from epstein_files.people.contact_info import ContactInfo
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import ARCHIVE_LINK_COLOR
-from epstein_files.util.constants import EPSTEIN_V_ROTHSTEIN_EDWARDS, OSBORNE_LLP, REPLY_REGEX, SENT_FROM_REGEX
+from epstein_files.util.constants import EPSTEIN_V_ROTHSTEIN_EDWARDS, REPLY_REGEX, SENT_FROM_REGEX
 from epstein_files.util.data import sort_dict, without_falsey
-from epstein_files.util.doc_cfg import *
 from epstein_files.util.env import args
 from epstein_files.util.helpers.string_helper import indented
 from epstein_files.util.logging import logger

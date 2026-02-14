@@ -15,6 +15,7 @@ from rich.text import Text
 
 from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import CLOSE_PROPERTIES_CHAR, INFO_INDENT
+from epstein_files.documents.documents.doc_cfg import EmailCfg, Metadata
 from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX,
      EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, FIELD_NAMES, FIELDS_COLON_PATTERN, EmailHeader)
 from epstein_files.documents.emails.emailers import extract_emailer_names
@@ -23,7 +24,6 @@ from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import REDACTED
 from epstein_files.util.constants import *
 from epstein_files.util.data import AMERICAN_TIME_REGEX, TIMEZONE_INFO, collapse_newlines, remove_timezone, uniquify
-from epstein_files.util.doc_cfg import EmailCfg, Metadata
 from epstein_files.util.helpers.file_helper import extract_file_id, file_stem_for_id
 from epstein_files.util.highlighted_group import JUNK_EMAILERS, get_style_for_name
 from epstein_files.util.logging import logger
