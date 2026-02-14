@@ -115,7 +115,7 @@ def epstein_grep():
         last_document = None
 
         for search_result in search_results:
-            doc = search_result.document.printable_document
+            doc = search_result.document.printable_document()
             lines = search_result.lines
 
             if (isinstance(doc, Email) and not args.output_emails) \

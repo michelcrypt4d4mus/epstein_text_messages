@@ -336,6 +336,7 @@ class DojFile(OtherFile):
 
     def printable_document(self) -> Self | Email:
         """Return a copy of this `DojFile` with simplified text if file ID is in `REPLACEMENT_TEXT`."""
+        import pdb;pdb.set_trace()
         if Document.is_email(self):
             try:
                 return Email(self.file_path, text=self.text)  # Pass text= to avoid reprocessing
