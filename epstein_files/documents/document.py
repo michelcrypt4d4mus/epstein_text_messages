@@ -509,7 +509,6 @@ class Document:
         """Default `Document` renderer (Email and MessengerLog override this)."""
         doc = self.printable_document()
 
-        # import pdb;pdb.set_trace()
         # Emails handle their own formatting
         if type(self) != type(doc):
             yield doc
@@ -520,7 +519,7 @@ class Document:
                 self.prettified_text,
                 border_style=self.border_style,
                 expand=False,
-                title=f"({self.panel_title_timestamp})",
+                title=f"({self.panel_title_timestamp})" if self.panel_title_timestamp else None,
                 title_align='right',
             )
 

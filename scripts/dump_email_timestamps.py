@@ -20,11 +20,6 @@ from epstein_files.util.highlighted_group import HIGHLIGHTED_NAMES, HighlightedN
 from epstein_files.util.logging import logger
 from epstein_files.util.rich import console, highlighter, print_json, print_subtitle_panel
 
-
-# for i, doc in enumerate(sorted(epstein_files.all_documents, key=lambda f: -f.length)):
-#     if doc.timestamp and doc.timestamp > datetime(2025, 1, 1):
-#         console.print(doc)
-
 # sys.exit()
 # from epstein_files.util.helpers.debugging_helper import _show_timestamps
 # _show_timestamps(epstein_files)

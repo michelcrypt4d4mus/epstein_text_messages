@@ -22,6 +22,7 @@ IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n", re.DOTA
 IGNORE_LINE_REGEX = re.compile(r"^(\d+\n?|[\s+❑]{2,})$")
 SINGLE_IMAGE_NO_TEXT = 'single image with no text'
 MIN_VALID_LENGTH = 10
+WORD_REGEX = re.compile(r"[A-Za-z]{3,}")
 
 OTHER_DOC_URLS = {
     '245-22.pdf': 'https://www.justice.gov/multimedia/Court%20Records/Government%20of%20the%20United%20States%20Virgin%20Islands%20v.%20JPMorgan%20Chase%20Bank,%20N.A.,%20No.%20122-cv-10904%20(S.D.N.Y.%202022)/245-22.pdf'
@@ -51,7 +52,14 @@ BAD_OCR_FILE_IDS = [
     'EFTA00008495',
     'EFTA00001472',
     'EFTA00000677',
+    'EFTA00000473',
+    'EFTA00000587',
+    'EFTA00000783',
     'EFTA00001669',
+    'EFTA00001004',
+    'EFTA00001808',
+    'EFTA00001843',
+    'EFTA00001845',
     'EFTA00003082',
     'EFTA00008413',
     'EFTA00001809',
@@ -102,6 +110,18 @@ BAD_OCR_FILE_IDS = [
     'EFTA00008494',
     'EFTA00008469',
     'EFTA00008461',
+    'EFTA00000509',
+    'EFTA00000514',
+    'EFTA00000516',
+    'EFTA00000531',
+    'EFTA00000587',
+    'EFTA00000635',
+    'EFTA00000676',
+    'EFTA00000776',
+    'EFTA00000785',
+    'EFTA00001004',
+    'EFTA00001063',
+    'EFTA00002172',
     'EFTA00008453',
     'EFTA00008443',
     'EFTA00008427',
@@ -157,6 +177,8 @@ STRIP_IMAGE_PANEL_IDS = [
     'EFTA00007097',
     'EFTA00002342',
     'EFTA00007741',
+    'EFTA00007893',
+    'EFTA02731433',
 ]
 
 INTERESTING_DOJ_FILES = {
@@ -238,7 +260,10 @@ class DojFile(OtherFile):
 
     @property
     def is_bad_ocr(self) -> bool:
-        return self.file_id in BAD_OCR_FILE_IDS
+        if self.file_id in BAD_OCR_FILE_IDS:
+            return True
+        else:
+            return not bool(WORD_REGEX.search(self.text))
 
     @property
     def is_empty(self) -> bool:

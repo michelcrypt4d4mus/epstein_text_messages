@@ -1133,6 +1133,7 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
                 info="no relation, wrote books about spies",
                 emailer_pattern=r"(?<!Jeffrey )Edward (Jay )?Epstein",
             ),
+            ContactInfo('Dan Dubno', 'producer and technologist for CBS News in New York'),
             ContactInfo(HENRY_HOLT, f"{MICHAEL_WOLFF}'s book publisher (company not a person)"),
             ContactInfo(JAMES_HILL, "ABC News", r"hill, james e.|james.e.hill@abc.com"),
             ContactInfo(JENNIFER_JACQUET, "Future Science magazine"),
