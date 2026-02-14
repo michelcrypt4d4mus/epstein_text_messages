@@ -240,7 +240,7 @@ class DojFile(OtherFile):
     def image_with_no_text_msg(self) -> RenderableType:
         """One line of linked text to show if this file doesn't seem to have any OCR text."""
         return Padding(
-            Text('').append(self.doj_link()).append(f" is a {SINGLE_IMAGE_NO_TEXT}..."),
+            Text('').append(Text.from_markup(super().external_link_markup)).append(f" is a {SINGLE_IMAGE_NO_TEXT}..."),
             (0, 0, 0, 1)
         )
 
@@ -301,10 +301,6 @@ class DojFile(OtherFile):
 
         if self.file_id in PHONE_BILL_IDS or self.file_id in STRIP_IMAGE_PANEL_IDS:
             self.strip_image_ocr_panels()
-
-    def doj_link(self) -> Text:
-        """Link to this file on the DOJ site."""
-        return link_text_obj(self.external_url, self.url_slug)
 
     def external_links_txt(self, _style: str = '', include_alt_links: bool = True) -> Text:
         """Overrides super() method to apply self.border_style."""
