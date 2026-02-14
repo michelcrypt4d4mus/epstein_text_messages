@@ -2143,10 +2143,6 @@ OTHER_FILES_ARTS = [
 OTHER_FILES_MISC = [
     DocCfg(id='022780', category=FLIGHT_LOG),
     DocCfg(id='022816', category=FLIGHT_LOG),
-    DocCfg(id='032206', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
-    DocCfg(id='032208', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
-    DocCfg(id='032209', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
-    DocCfg(id='032210', category=SKYPE_LOG, author='linkspirit', is_interesting=True),
     DocCfg(
         id='018224',
         category=SKYPE_LOG,
@@ -2191,8 +2187,6 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00039312', author=BUREAU_OF_PRISONS, replace_text_with='Program Statement / Memo about BOP Pharmacy Program'),
     DocCfg(id='EFTA00039351', author=BUREAU_OF_PRISONS, replace_text_with='Program Statement / Memo about BOP Pharmacy Program'),
     DocCfg(id='EFTA00039156', author=BUREAU_OF_PRISONS, replace_text_with='Standards of Employee Conduct'),
-    DocCfg(id='EFTA01622387', author=RENATA_BOLOTOVA, description=f'iMessage chat log screenshots', is_attribution_uncertain=True),
-    DocCfg(id='EFTA01618494', author=RENATA_BOLOTOVA, description=f'iMessage chat log screenshots', is_attribution_uncertain=True),
     DocCfg(id='EFTA01810372', author=TYLER_SHEARS, description=f'invoice for reputation management work', is_interesting=True),
     DocCfg(id='EFTA00005783', description='heavily redacted handwritten note, 30+ completely redacted pages', date='2019-08-29'),
     DocCfg(id='EFTA01087311', description=f'{LEON_BLACK} Family Partners cash projections'),
@@ -2204,13 +2198,6 @@ OTHER_FILES_MISC = [
     DocCfg(id='EFTA00007781', description='paychecks signed by Epstein deposited at Colonial Bank'),
     DocCfg(id='EFTA01273102', description=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank", is_interesting=True),
     DocCfg(id='EFTA00001884', description='photo of letter from Virgin Islands DOJ to Epstein', date='2019-03-14'),
-    DocCfg(
-        id='EFTA01620764',
-        author=MELANIE_WALKER,
-        description=f'iMessage conversation between about Bill Gates being drunk all the time',
-        is_attribution_uncertain=True,
-        is_interesting=True,
-    ),
     # Urramoor
     DocCfg(
         id='EFTA01107738',
@@ -2300,21 +2287,21 @@ OTHER_FILES_CRYPTO = [
         truncate_to=2000
     ),
     DocCfg(id='EFTA01092555', description='Coinbase certificate of incorporation', date='2013-12-12', truncate_to=TRUNCATED_CHARS),
-    DocCfg(id='EFTA01121035', description='Coinbase private placement of Series C Preferred Stock', date='2014-10-24'),
-    DocCfg(id='EFTA01120975', description='Coinbase Series B stock purchase agreement', date='2013-12-12', truncate_to=MAX_CHARS_TO_PRINT),
+    DocCfg(id='EFTA01120975', description='Coinbase Series B stock purchase', date='2013-12-12', truncate_to=MAX_CHARS_TO_PRINT),
+    DocCfg(id='EFTA01121035', description='Coinbase Series C preferred stock purchase', date='2014-10-24'),
     # CCP (Brock Pierce / Blockchain Capital)
     DocCfg(id='EFTA01089506', description=f"{CRYPTO_CURRENCY_PARTNERS_II} investor report", date='2014-11-01'),
-    DocCfg(id='EFTA01093509', description=f"{CRYPTO_CURRENCY_PARTNERS_II} partnership agreement draft", truncate_to=MAX_CHARS_TO_PRINT * 2),
+    DocCfg(id='EFTA01093509', description=f"{CRYPTO_CURRENCY_PARTNERS_II} partnership draft", truncate_to=MAX_CHARS_TO_PRINT * 2),
     DocCfg(id='EFTA01089500', description=f"{CRYPTO_CURRENCY_PARTNERS_II} Investor Update", date='2015-01-01'),
     DocCfg(id='EFTA01089526', description=f"{CRYPTO_CURRENCY_PARTNERS_II} investor report", date='2014-08-01'),
     DocCfg(id='EFTA00621239', description=f"{CRYPTO_CURRENCY_PARTNERS_II} investor report", date='2014-10-01'),
     # Crypto PR Lab
-    DocCfg(id='EFTA00295126', description=f"{CRYPTO_PR_LAB} accounting statement"),
-    DocCfg(id='EFTA01299820', description=f"{CRYPTO_PR_LAB} bank transfer"),
-    DocCfg(id='EFTA00309271', description=f'{CRYPTO_PR_LAB} financial statement'),
-    DocCfg(id='EFTA01613759', description=f"{CRYPTO_PR_LAB} letter of intent of acquisitionfrom Transform Group"),
-    DocCfg(id='EFTA01613762', description=f'{CRYPTO_PR_LAB} WhatsApp convo with {MARIYA_PRUSAKOVA}'),
-    DocCfg(id='EFTA01612721', description=f'{CRYPTO_PR_LAB} WhatsApp convo with {MARIYA_PRUSAKOVA}'),
+    DocCfg(id='EFTA00295126', author=CRYPTO_PR_LAB, description="accounting statement"),
+    DocCfg(id='EFTA01299820', author=CRYPTO_PR_LAB, description="bank transfer"),
+    DocCfg(id='EFTA00309271', author=CRYPTO_PR_LAB, description='financial statement'),
+    DocCfg(id='EFTA01613759', author=CRYPTO_PR_LAB, description="letter of intent of acquisitionfrom Transform Group"),
+    DocCfg(id='EFTA01613762', author=CRYPTO_PR_LAB, description=f"WhatsApp convo with {MARIYA_PRUSAKOVA}"),
+    DocCfg(id='EFTA01612721', author=CRYPTO_PR_LAB, description=f"WhatsApp convo with {MARIYA_PRUSAKOVA}"),
     # ZCash
     DocCfg(id='EFTA00811130', author=PERKINS_COIE, description='tax opinion on ZCash tokens'),
     DocCfg(id='EFTA00603348', description=f"Electric Coin Company created the untraceable crypto ZCash funded by {LARRY_SUMMERS}'s DCG"),
@@ -2322,9 +2309,9 @@ OTHER_FILES_CRYPTO = [
     # Joi Ito / Kyara
     DocCfg(id='EFTA00805860', description=f"{JOI_ITO}'s Neoteny 3 fund investor update / portfolio"),
     DocCfg(id='EFTA01118268', description=f"{JOI_ITO}'s Neoteny 3 fund investor update", date='2015-06-30'),
-    DocCfg(id='EFTA00605699', description=f"{KYARA_FUND} II LLC incorporation papers"),
     DocCfg(id='EFTA01116280', description=f"{KYARA_FUND} I LLC (Physical Graph Corporation) operating agreement with edits"),
     DocCfg(id='EFTA01108775', description=f"{KYARA_FUND} I LLC (Physical Graph Corporation) operating agreement"),
+    DocCfg(id='EFTA00605699', description=f"{KYARA_FUND} II LLC incorporation papers"),
     DocCfg(id='EFTA01186455', description=f"{KYARA_FUND} II LLC operating agreement"),
     DocCfg(id='EFTA00584696', description=f"{KYARA_FUND} III LLC operating agreement"),
     DocCfg(id='EFTA01734786', description='LedgerX Series B pitch deck'),
@@ -2334,7 +2321,7 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01613731', description='Medici Bank conversation on Whatsapp'),
     DocCfg(id='EFTA00805569', description='Mercantile Global Holdings, San Juan Mercantile Bank & Trust, Noble Bank + Signature Bank + BitGo'),
     DocCfg(id='EFTA01088079', description="someone's thoughts on bitcoin"),
-    DocCfg(id='EFTA00128987', description='suspicious activity report about Kushner co. crypto payments to a suspicious Russian person'),
+    DocCfg(id='EFTA00128987', description='suspicious activity report (SAR) about Kushner co. crypto payments to suspicious Russian person'),
     # Valar
     DocCfg(id='EFTA01121910', description=f"{VALAR_VENTURES} fund contract", truncate_to=MAX_CHARS_TO_PRINT),
     DocCfg(id='EFTA00808277', description=f"{VALAR_VENTURES} fund contract", truncate_to=MAX_CHARS_TO_PRINT),
@@ -2342,6 +2329,25 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA00591691', description=f"{VALAR_VENTURES} fund contract", truncate_to=MAX_CHARS_TO_PRINT),
     DocCfg(id='EFTA00810362', description=f"{VALAR_VENTURES} fund investor questionnaire", truncate_to=MAX_CHARS_TO_PRINT),
     DocCfg(id='EFTA00605996', description='Wedbush BUY rating on Digital Currency Group GBTC', is_interesting=False),
+]
+
+OTHER_FILES_MESSAGING = [
+    # HOUSE_OVERSIGHT
+    DocCfg(id='032206', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
+    DocCfg(id='032208', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
+    DocCfg(id='032209', category=SKYPE_LOG, author=LAWRENCE_KRAUSS),
+    DocCfg(id='032210', category=SKYPE_LOG, author='linkspirit', is_interesting=True),
+
+    # DOJ file
+    DocCfg(id='EFTA01622387', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', is_attribution_uncertain=True),
+    DocCfg(id='EFTA01618494', author=RENATA_BOLOTOVA, description=f'iMessage screenshots', is_attribution_uncertain=True),
+    DocCfg(
+        id='EFTA01620764',
+        author=MELANIE_WALKER,
+        description=f'iMessage conversation between about Bill Gates being drunk all the time',
+        is_attribution_uncertain=True,
+        is_interesting=True,
+    ),
 ]
 
 OTHER_FILES_JUNK = [
@@ -2371,6 +2377,7 @@ OTHER_FILES_CATEGORIES = [
     JUNK,
     LEGAL,
     'LETTERS',
+    'MESSAGING',
     'MISC',
     POLITICS,
     PROPERTY,
