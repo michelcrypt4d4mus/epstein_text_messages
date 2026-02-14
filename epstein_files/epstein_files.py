@@ -19,7 +19,7 @@ from epstein_files.documents.email import Email
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MSG_REGEX, MessengerLog
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.person import Person
+from epstein_files.people.person import Person
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import *
 from epstein_files.util.data import flatten, json_safe, listify, uniquify

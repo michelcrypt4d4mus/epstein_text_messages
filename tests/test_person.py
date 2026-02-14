@@ -1,6 +1,6 @@
 import pytest
 
-from epstein_files.person import Person
+from epstein_files.people.person import Person
 from epstein_files.util.constant.names import *
 from epstein_files.util.constant.strings import QUESTION_MARKS
 
