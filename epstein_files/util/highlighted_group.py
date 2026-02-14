@@ -645,6 +645,7 @@ HIGHLIGHTED_NAMES: list[HighlightedNames | HighlightedText | ManualHighlight] = 
         label=EPSTEIN_LAWYER,
         style='purple',
         contacts=[
+            ContactInfo('Alan Dlugash', 'tax partner at Paneth and Shrone'),
             ContactInfo('Alan S Halperin', "partner at Paul, Weiss"),
             ContactInfo(ALAN_DERSHOWITZ, f"{HARVARD} Law School professor", r"(alan.{1,7})?dershowi(lz?|t?z)|AlanDersh"),
             ContactInfo(ARDA_BESKARDES, "NYC immigration attorney allegedly involved in sex-trafficking operations"),
