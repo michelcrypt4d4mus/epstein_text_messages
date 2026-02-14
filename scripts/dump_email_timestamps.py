@@ -187,7 +187,7 @@ for i, id_count in enumerate(sort_dict(max_sizes)):
 
     id = id_count[0]
     count = id_count[1]
-    email = epstein_files.for_ids([id])[0]
+    email = epstein_files.get_ids([id])[0]
     console.print(f"{count:6d}: {email.summary.plain}")
 
 

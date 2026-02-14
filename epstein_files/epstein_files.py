@@ -208,23 +208,24 @@ class EpsteinFiles:
 
         return Document.sort_by_timestamp(emails)
 
-    def email_for_id(self, file_id: str) -> Email:
-        docs = self.for_ids([file_id])
-
-        if docs and isinstance(docs[0], Email):
-            return docs[0]
-        else:
-            raise ValueError(f"No email found for {file_id}")
-
-    def for_ids(self, file_ids: str | list[str]) -> list[Document]:
-        """Get `Document` objects for `file_ids`."""
-        file_ids = listify(file_ids)
-        docs = [doc for doc in (list(self.all_documents) + self.doj_files) if doc.file_id in file_ids]
+    def get_ids(self, file_ids: list[str], rebuild: bool = False) -> Sequence[Document]:
+        """Get `Document` objects for `file_ids`. If `rebuild` is True then rebuild `Document` from .txt file."""
+        docs = [d for d in self.all_documents if d.file_id in file_ids]
 
         if len(docs) != len(file_ids):
-            logger.warning(f"{len(file_ids)} file IDs provided but only {len(docs)} Epstein files found!")
+            logger.warning(f"{len(file_ids)} file IDs provided but only {len(docs)} documents found!")
 
-        return docs
+        return [d.reload() if rebuild else d for d in docs]
+
+    def get_id(self, file_id: str, rebuild: bool = False, required_type: Type = Document) -> Document:
+        """Singular ID version of `get_ids()` but with option to require a type of document subclass."""
+        doc = self.get_ids([file_id], rebuild)[0]
+
+        if required_type:
+            if not isinstance(doc, required_type):
+                raise ValueError(f"No {required_type.__name__} found for {file_id} (found {doc})")
+
+        return doc
 
     def imessage_logs_for(self, name: Name) -> list[MessengerLog]:
         """Return `MessengerLog` objects where Epstein's counterparty is `name`."""
@@ -300,10 +301,10 @@ class EpsteinFiles:
     def _copy_duplicate_email_properties(self) -> None:
         """Ensure dupe emails have the properties of the emails they duplicate to capture any repairs, config etc."""
         for email in self.emails:
-            if not email.is_duplicate:
+            if not email.duplicate_of_id:
                 continue
 
-            original = self.email_for_id(email.duplicate_of_id)
+            original = self.get_id(email.duplicate_of_id, required_type=Email)
 
             for field_name in DUPLICATE_PROPS_TO_COPY:
                 original_prop = getattr(original, field_name)
@@ -325,7 +326,7 @@ class EpsteinFiles:
     def _find_email_attachments_and_set_is_first_for_user(self) -> None:
         for other_file in (self.other_files + self.doj_files):
             if other_file.config and other_file.config.attached_to_email_id:
-                email = self.email_for_id(other_file.config.attached_to_email_id)
+                email: Email = self.get_id(other_file.config.attached_to_email_id, required_type=Email)
                 email.attached_docs.append(other_file)
 
                 if other_file.timestamp \
