@@ -56,7 +56,7 @@ class BaseHighlight:
 
     Attributes:
         label (str): RegexHighlighter match group name
-        pattern (str): regex pattern identifying strings matching this group
+        regex (re.Pattern): regex pattern identifying strings matching this group
         style (str): Rich style to apply to text matching this group
         theme_style_name (str): The style name that must be a part of the rich.Console's theme
     """
@@ -82,7 +82,6 @@ class HighlightedText(BaseHighlight):
     Color highlighting for things other than people's names (e.g. phone numbers, email headers).
 
     Attributes:
-        label (str): RegexHighlighter match group name, defaults to 1st 'emailers' key if only 1 emailer provided
         patterns (list[str]): regex patterns identifying strings matching this group
     """
     patterns: list[str] = field(default_factory=list)
@@ -110,12 +109,14 @@ class HighlightedNames(HighlightedText):
     Attributes:
         category (str): optional string to use as an override for self.label in some contexts
         contacts (list[ContactInfo]): optional `ContactInfo` objects with names and regexes
+        contacts_lookup (dict[Name, ContactInfo]): lookup dictionary for `ContactInfo` objects
+        should_match_first_last_name (bool): if False don't match first/last/reversed versions of emailers
         _pattern (str): regex pattern combining 'pattern' with first & last names of all 'emailers'
     """
     category: str = ''
     contacts: list[ContactInfo] = field(default_factory=list)
     contacts_lookup: dict[Name, ContactInfo] = field(default_factory=dict)
-    should_match_first_last_name: bool = True
+    should_match_first_last_name: bool = True  # TODO: this no longer does anything?
 
     def __post_init__(self):
         if not (self.patterns or self.contacts):
