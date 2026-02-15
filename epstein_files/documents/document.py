@@ -114,7 +114,7 @@ class Document:
 
     @property
     def config(self) -> DocCfg | None:
-        """Configured timestamp, if any."""
+        """Get the configured `DocCfg` object for this file id (if any)."""
         return CONFIGS_BY_ID.get(self.file_id)
 
     @property
@@ -208,10 +208,16 @@ class Document:
         return len(self.text.strip()) < EMPTY_LENGTH
 
     @property
+    def is_house_oversight_file(self) -> bool:
+        return not self.is_doj_file
+
+    @property
     def is_interesting(self) -> bool | None:
         """TODO: currently default to True for HOUSE_OVERSIGHT_FILES, false for DOJ."""
         if self.config and self.config.is_of_interest is not None:
             return self.config.is_of_interest
+        elif self.is_house_oversight_file and not (self.author or self.config):
+            return True
 
     @property
     def is_local_extract_file(self) -> bool:

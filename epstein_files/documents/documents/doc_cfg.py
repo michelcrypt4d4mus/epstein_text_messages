@@ -302,13 +302,7 @@ class DocCfg:
         elif any (self.description.startswith(pfx) for pfx in UNINTERESTING_PREFIXES):
             return False
 
-        # HOUSE_OVERSIGHT files default True, DOJ files default False or None
-        if self.is_house_file:
-            return True
-        elif self.has_any_info:
-            return True
-        else:
-            return None
+        return None
 
     @property
     def metadata(self) -> Metadata:
