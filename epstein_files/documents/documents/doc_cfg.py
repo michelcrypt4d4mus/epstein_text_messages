@@ -18,6 +18,7 @@ from epstein_files.util.helpers.string_helper import join_truthy, quote
 DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same']
 Metadata = dict[str, bool | datetime | int | str | list[str | None] |dict[str, bool | str]]
 
+FALSEABLE_PROPS = ['is_interesting']
 MAX_LINE_LENGTH = 135
 SAME = 'same'
 ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
@@ -55,7 +56,7 @@ CATEGORIES_THAT_ARE_NOT_VARNAME_SUFFIXES = [
     SKYPE_LOG,
 ]
 
-# Authors
+# Authors of financial report pablum
 FINANCIAL_REPORTS_AUTHORS = [
     BOFA_MERRILL,
     DEUTSCHE_BANK,
@@ -72,7 +73,7 @@ INTERESTING_AUTHORS = [
     EDWARD_JAY_EPSTEIN,
     EHUD_BARAK,
     JOI_ITO,
-    NOAM_CHOMSKY,
+    # NOAM_CHOMSKY,
     MICHAEL_WOLFF,
     SVETLANA_POZHIDAEVA,
 ]
@@ -123,7 +124,7 @@ NON_METADATA_FIELDS = [
     'replace_text_with',
 ]
 
-# Categories where we want to include the category name in the description
+# Categories where we want to include the category name at start of the description string
 CATEGORY_PREAMBLES = {
     BOOK: 'book titled',
     LETTER: 'letter',
@@ -134,9 +135,6 @@ CATEGORY_PREAMBLES = {
     TWEET: TWEET.title(),
 }
 
-NULLABLE_PROPS = [AUTHOR]
-FALSEABLE_PROPS = ['is_interesting']
-
 
 @dataclass(kw_only=True)
 class DocCfg:
@@ -145,6 +143,7 @@ class DocCfg:
 
     Attributes:
         id (str): ID of file
+        attached_to_email_id (str, optional): ID of `Email` object this document was an attachment of
         author (Name): Author of the document (if any)
         author_reason (str, optional): Optional explanation of why we are sure this email can be attributed to this author
         author_uncertain(str | bool, optional): Like setting `author_reason` but `is_attribution_uncertain` will be False
@@ -387,8 +386,8 @@ class DocCfg:
         for id in self.duplicate_ids:
             dupe_cfg = deepcopy(self)
             dupe_cfg.id = id
-            dupe_cfg.duplicate_of_id = self.id
             dupe_cfg.duplicate_ids = []
+            dupe_cfg.duplicate_of_id = self.id
             dupe_cfg.dupe_type = self.dupe_type
             dupe_cfg.is_synthetic = True
             yield dupe_cfg
