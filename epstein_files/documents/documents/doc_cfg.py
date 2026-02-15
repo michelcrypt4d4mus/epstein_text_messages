@@ -419,7 +419,7 @@ class DocCfg:
         type_str = f"{type(self).__name__}("
         single_line_repr = type_str + ', '.join(props) + f')'
 
-        if len(single_line_repr) < MAX_LINE_LENGTH or (self.comment and 'is_fwded_article' in dir(self) and (is_fwd := getattr(self, 'is_fwded_article'))):
+        if len(single_line_repr) < MAX_LINE_LENGTH or (self.comment and 'is_fwded_article' in dir(self) and getattr(self, 'is_fwded_article')):
             repr_str = single_line_repr
         else:
             repr_str = f"{type_str}{INDENT_NEWLINE}" + INDENTED_JOIN.join(props)
