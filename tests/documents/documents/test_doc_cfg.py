@@ -76,6 +76,11 @@ def skype_author() -> DocCfg:
     return _oversight_cfg(SKYPE_LOG, author='linkspirit')
 
 
+@pytest.fixture
+def tweet_cfg() -> DocCfg:
+    return _doj_cfg(TWEET, author='Klippenstein')
+
+
 def test_category_txt(blockchain_cap_cfg, empty_house_cfg, junk_doc_cfg, legal_cfg, skype_cfg, skype_author):
     assert blockchain_cap_cfg.category_txt.style == 'orange1 bold'
     assert empty_house_cfg.category_txt == QUESTION_MARKS_TXT
@@ -85,7 +90,7 @@ def test_category_txt(blockchain_cap_cfg, empty_house_cfg, junk_doc_cfg, legal_c
     assert legal_cfg.category_txt.style == 'purple'
 
 
-def test_complete_description(blockchain_cap_cfg, empty_house_cfg, finance_report, junk_doc_cfg, legal_cfg, skype_cfg, skype_author):
+def test_complete_description(blockchain_cap_cfg, empty_house_cfg, finance_report, junk_doc_cfg, legal_cfg, skype_cfg, skype_author, tweet_cfg):
     assert blockchain_cap_cfg.complete_description == "Blockchain Capital investor report"
     # Empty
     assert empty_house_cfg.complete_description == ''
@@ -97,11 +102,16 @@ def test_complete_description(blockchain_cap_cfg, empty_house_cfg, finance_repor
     assert junk_doc_cfg.complete_description == 'junk mail'
     # Legal
     assert legal_cfg.complete_description == f"clinton v. trump: case law"
-    # Skype
+    # Skype no author
     assert skype_cfg.complete_description == SKYPE_LOG.lower()
+    # Skype with author
     assert skype_author.complete_description == f"{SKYPE_LOG.lower()} of conversation with linkspirit"
     skype_author.description = 'something'
     assert skype_author.complete_description == f"{SKYPE_LOG.lower()} of conversation with linkspirit something"
+    # Tweet
+    assert tweet_cfg.complete_description == 'tweet by Klippenstein'
+    tweet_cfg.description = 'libelous'
+    assert tweet_cfg.complete_description == 'tweet by Klippenstein libelous'
 
 
 def test_is_of_interest(
