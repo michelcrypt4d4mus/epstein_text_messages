@@ -33,6 +33,8 @@ LOG_INDENT = '\n         '
 PREVIEW_CHARS = int(580 * (1 if args.all_other_files else 1.5))
 TIMESTAMP_LOG_INDENT = f'{LOG_INDENT}    '
 VAST_HOUSE = 'vast house'  # Michael Wolff article draft about Epstein indicator
+
+LEGAL_FILING_REGEX = re.compile(r"^Case (\d+:\d+-.*?) Doc")
 VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IGNORECASE)
 
 SKIP_TIMESTAMP_EXTRACT = [
@@ -99,22 +101,25 @@ class OtherFile(Document):
 
     def __post_init__(self):
         super().__post_init__()
-        self.derived_cfg = self.derived_cfg if self.config else self._build_derived_cfg()
+
+        if not self.config:
+            self.derived_cfg = self._build_derived_cfg()
 
     def _build_derived_cfg(self) -> DocCfg | None:
         """Create a `DocCfg` object if there is none configured and the contents warrant it."""
-        if VI_DAILY_NEWS_REGEX.search(self.text):
-            self.log(f"Creating synthetic config for VI Daily News article...")
-            return DocCfg(id=self.file_id, author=VI_DAILY_NEWS, category=ARTICLE)
-        elif has_line_starting_with(self.text, [VALAR_GLOBAL_FUND, VALAR_VENTURES], 2):
-            self.log(f"Creating synthetic config for {VALAR_VENTURES}...")
+        cfg = None
 
-            return DocCfg(
-                id=self.file_id,
-                author=VALAR_VENTURES,
-                category=CRYPTO,
-                description=f"is a {PETER_THIEL} fintech fund",
-            )
+        if VI_DAILY_NEWS_REGEX.search(self.text):
+            cfg = DocCfg(id=self.file_id, author=VI_DAILY_NEWS, category=ARTICLE)
+        elif has_line_starting_with(self.text, [VALAR_GLOBAL_FUND, VALAR_VENTURES], 2):
+            cfg = DocCfg(id=self.file_id, author=VALAR_VENTURES, category=CRYPTO, description=f"is a {PETER_THIEL} fintech fund")
+        elif (case_match := LEGAL_FILING_REGEX.search(self.text)):
+            cfg = DocCfg(id=self.file_id, category=LEGAL, description=f"filing in case {case_match.group(1)}")
+
+        if cfg:
+            self.warn(f"Build synthetic cfg: {cfg}")
+
+        return cfg
 
     def _extract_timestamp(self) -> datetime | None:
         """Return configured timestamp or value extracted by scanning text with datefinder."""
