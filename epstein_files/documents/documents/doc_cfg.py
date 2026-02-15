@@ -468,6 +468,14 @@ class CommunicationCfg(DocCfg):
     def recipients_str(self) -> str:
         return ', '.join([r or UNKNOWN for r in self.recipients])
 
+    @property
+    def is_of_interest(self) -> bool | None:
+        """Fwded articles are not interesting."""
+        if self.is_fwded_article and not self.is_interesting:
+            return False
+        else:
+            return super().is_of_interest
+
     def __post_init__(self):
         return super().__post_init__()
 

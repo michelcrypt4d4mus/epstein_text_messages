@@ -610,8 +610,8 @@ class Email(Communication):
                 num_chars = min(self.file_size, MAX_CHARS_TO_PRINT)
 
             # Always print whole email for 1st email for user
-            if self._is_first_for_user and num_chars < self.file_size and not self.is_duplicate:
-                logger.info(f"{self} Overriding cutoff {num_chars} for first email")
+            if self._is_first_for_user and num_chars < self.file_size and not self.is_duplicate and not self.is_fwded_article:
+                logger.warning(f"{self} Overriding cutoff {num_chars} for first email")
                 num_chars = self.file_size
 
         log_args = {
@@ -625,7 +625,8 @@ class Email(Communication):
         }
 
         log_args_str = ', '.join([f"{k}={v}" for k, v in log_args.items() if v])
-        logger.debug(f"Truncate determination: {log_args_str}")
+        logger.error(f"Truncate determination: {log_args_str}")
+        # import pdb;pdb.set_trace()
         return num_chars
 
     def __rich_console__(self, console: Console, options: ConsoleOptions) -> RenderResult:

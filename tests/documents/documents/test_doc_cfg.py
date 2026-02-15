@@ -39,6 +39,10 @@ def finance_report() -> DocCfg:
     return _oversight_cfg(FINANCE, author=BOFA_MERRILL, description="Grapes")
 
 @pytest.fixture
+def fwded_article() -> EmailCfg:
+    return EmailCfg(id='123456', author=BOFA_MERRILL, is_fwded_article=True)
+
+@pytest.fixture
 def interesting_doc() -> DocCfg:
     cfg = _oversight_cfg(ACADEMIA)
     cfg.is_interesting = True
@@ -135,6 +139,7 @@ def test_is_of_interest(
     empty_doj_cfg,
     empty_house_cfg,
     finance_report,
+    fwded_article,
     harvard_poetry_cfg,
     interesting_author,
     interesting_doc,
@@ -149,6 +154,7 @@ def test_is_of_interest(
     assert empty_doj_cfg.is_of_interest is None
     assert empty_house_cfg.is_of_interest is True
     assert finance_report.is_of_interest is False
+    assert fwded_article.is_of_interest is False
     assert harvard_poetry_cfg.is_of_interest is False
     assert interesting_author.is_of_interest is True
     assert interesting_doc.is_of_interest is True
