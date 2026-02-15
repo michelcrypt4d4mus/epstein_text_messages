@@ -188,16 +188,20 @@ class DocCfg:
             preamble_separator = " of conversation with "
         elif self.category == LETTER:
             preamble_separator = ' from '
+            description = join_truthy(preamble, self.author, ' from ')
 
             if 'recipients' in dir(self) and (recipients := getattr(self, 'recipients')):
                 # import pdb; pdb.set_trace()
                 recipient_str = recipients[0] if len(recipients) == 1 else ', '.join(recipients)
-                description = join_truthy(recipient_str, description, ', ')
+                description = join_truthy(description, recipient_str, ' to ')
+
+            description = join_truthy(description, self.description)
         elif self.category in [RESUME, TWEET]:
             preamble_separator = 'of' if self.category == RESUME else 'by'
             preamble_separator = preamble_separator.center(3, ' ')
         elif self.category == FINANCE and self.description and (first_char := self.description[0]):
             if (self.author in FINANCIAL_REPORTS_AUTHORS and first_char.isupper()) or first_char in ["'", '"']:
+                self.description = quote(self.description) if first_char.isupper() else self.description
                 author_separator = ' report: '
 
         if not description:

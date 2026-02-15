@@ -222,7 +222,7 @@ HIGHLIGHT_GROUPS: Sequence[BaseHighlight] = [
         patterns=[
             r"Alphabit",
             r"((Andy|Adam)\s*)Back",
-            r"Balaji",
+            r"Balaji(\s*Srinivisan)?",
             r"Barry Silbert",
             r"Bart\s*Stephens",  # co-founder, Blockchain Capital
             r"Bioptix",  # Now RIOT Blockchain
@@ -250,7 +250,7 @@ HIGHLIGHT_GROUPS: Sequence[BaseHighlight] = [
             r"ICO",
             r"(Jim\s*)Pallotta",  # Media lab advisory board
             r"Kraken",
-            r"Kyara(\s*(Investments?|[IV]+))?",  # crypto vehicle with Joi Ito
+            r"Kyara(\s*Investments?)?(\s*[IV]+)?",  # crypto vehicle with Joi Ito
             r"Layer\s+(1|One)",
             r"LedgerX",
             r"Libra",

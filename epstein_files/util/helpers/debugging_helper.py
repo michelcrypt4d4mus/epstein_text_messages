@@ -24,8 +24,8 @@ def print_interesting_doc_panels_and_props(epstein_files):
     for doc in epstein_files.all_documents:
         if isinstance(doc, OtherFile) and doc.is_interesting:
             pass
-        elif doc.config and doc.config.has_any_info:
-            pass
+        # elif doc.config and doc.config.has_any_info:
+        #     pass
         else:
             continue
 
@@ -41,5 +41,9 @@ def print_interesting_doc_panels_and_props(epstein_files):
 
         # console.print(doc.summary_panel)
         console.print(Padding(doc.file_info_panel(), (0, 0, 1, 0)))
-        console.print(styled_dict(props, sep=': '))
+        from epstein_files.util.env import args
+
+        if args.debug:
+            console.print(styled_dict(props, sep=': '))
+
         console.line()
