@@ -259,12 +259,12 @@ FBI = 'FBI'
 GOLDMAN_SACHS = 'Goldman Sachs'
 GOLDMAN_INVESTMENT_MGMT = f'{GOLDMAN_SACHS} Investment Management Division'
 GOOGLE_PLUS = 'Google Plus'
-HARVARD = 'Harvard'
 INSIGHTS_POD = f"InsightsPod"  # Zubair bots
 JP_MORGAN = 'JP Morgan'
 KYARA_INVESTMENT = 'Kyara Investment'
 MIT_MEDIA_LAB = 'MIT Media Lab'
 NEXT_MANAGEMENT = 'Next Management LLC'
+NOBEL_CHARITABLE_TRUST = 'Nobel Charitable Trust'
 OFFICE_OF_THE_DEPUTY_ATTORNEY_GENERAL = 'Office of the Deputy Attorney General'
 OSBORNE_LLP = f"{IAN_OSBORNE} & Partners"  # Ian Osborne's PR firm
 ROTHSTEIN_ROSENFELDT_ADLER = "Rothstein Rosenfeldt Adler (Rothstein was Roger Stone's partner)"  # and a crook
@@ -272,6 +272,7 @@ SDNY = 'SDNY'
 TRUMP_ORG = 'Trump Organization'
 UBS = 'UBS'
 USANYS = 'USANYS'
+US_ORG = 'US Office of Government Information Services'
 VALAR_GLOBAL_FUND = 'Valar Global Fund'
 VALAR_VENTURES = 'Valar Ventures'
 
@@ -303,7 +304,7 @@ NAMES_TO_NOT_HIGHLIGHT = """
     faith fisher fitzgerald forget fred friendly frost fuller fund
     gates gerald george gold gordon
     haddad hanson harry hay heather henry hill hoffman howard
-    ian ivan
+    ian inc inc. ivan
     jack james jay jean jeff jeffrey jennifer jeremy jessica joel john jon jonathan joseph jr
     kafka kahn karl kate katherine kelly ken kevin krassner
     larry larsen laurie lawrence leon lesley linda link lisa
@@ -312,8 +313,8 @@ NAMES_TO_NOT_HIGHLIGHT = """
     owen
     paul paula pen peter philip pierce prince
     randall rangel reid richard robert rodriguez roger rosenberg ross roth roy rubenstein rubin
-    scott sean skip smith stacey stanley stern stephen steve steven stone susan
-    team terry the thomas tim tom tony tyler
+    scott sean service services skip smith stacey stanley stern stephen steve steven stone susan
+    team terry the thomas tim tom tony trust tyler
     ventures victor
     wade waters
     y

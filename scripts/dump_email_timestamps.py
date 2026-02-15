@@ -16,22 +16,31 @@ from epstein_files.documents.email import Email, UNINTERESTING_EMAILERS
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.output.highlighted_names import HighlightedNames
 from epstein_files.util.constant.names import *
+from epstein_files.util.constants import CONFIGS_BY_ID, EmailCfg
 from epstein_files.util.helpers.data_helpers import *
+from epstein_files.util.helpers.string_helper import quote
 from epstein_files.util.logging import logger
 from epstein_files.output.rich import console, highlighter, print_json, print_subtitle_panel
 
-# sys.exit()
-# from epstein_files.util.helpers.debugging_helper import _show_timestamps
-# _show_timestamps(epstein_files)
-# sys.exit()
 
-# Print all DOJ files from biggest to smallest.
-for i, doc in enumerate(sorted(epstein_files.doj_files, key=lambda f: -f.length)):
-    # txt = Text('').append(Text('interesting', style='green') if doc.is_interesting else Text('not interesting', style='red'))
-    # console.print(txt.append(': ') + doc.summary)
-    console.print(doc)
+for cfg in CONFIGS_BY_ID.values():
+    if isinstance(cfg, EmailCfg) and not cfg.description:
+        continue
 
-sys.exit()
+    console.print(repr(cfg))
+    txt = Text(f"{cfg.id} interesting? {cfg.is_of_interest}, ")
+    txt.append(f"complete_description=", 'grey').append(quote(cfg.complete_description), style='wheat4')
+    # console.print(txt)
+    logger.warning(txt.plain)
+    console.line(2)
+
+# # Print all DOJ files from biggest to smallest.
+# for i, doc in enumerate(sorted(epstein_files.doj_files, key=lambda f: -f.length)):
+#     # txt = Text('').append(Text('interesting', style='green') if doc.is_interesting else Text('not interesting', style='red'))
+#     # console.print(txt.append(': ') + doc.summary)
+#     console.print(doc)
+
+# sys.exit()
 
 
 # Look for possible email files in the DOJ files
