@@ -199,7 +199,7 @@ class DocCfg:
 
         # If description is set it must be fully constructed
         if self.category == BOOK or (self.category == ACADEMIA and self.author and self.description):
-            description = join_truthy(self.description_as_title, self.author, ' by ')  # note reversed args
+            description = join_truthy(self.description, self.author, ' by ')  # note reversed args
             description = join_truthy(preamble, description)
         elif self.category == FINANCE and self.is_description_a_title:
             author_separator = ' report: '
@@ -248,13 +248,13 @@ class DocCfg:
     @property
     def is_description_a_title(self) -> bool:
         """True if first char is uppercase or a quote."""
-        if self.description and self.category in [ACADEMIA, BOOK, FINANCE]:
-            first_char = self.description[0]
+        if not (self.category in [ACADEMIA, BOOK, FINANCE] and self.description):
+            return False
+        elif self.category == FINANCE and self.author not in FINANCIAL_REPORTS_AUTHORS:
+            return False
 
-            if first_char.isupper() or first_char in ["'", '"']:
-                return self.category != FINANCE or self.author in FINANCIAL_REPORTS_AUTHORS
-
-        return False
+        first_char = self.description[0]
+        return first_char.isupper() or first_char in ["'", '"']
 
     @property
     def is_doj_file(self) -> bool:
@@ -371,13 +371,8 @@ class DocCfg:
         if self.date:
             return parse(self.date)
 
-    @property
-    def description_as_title(self) -> str:
-        """Quote likely titles."""
-        return quote(self.description) if self.is_description_a_title else self.description
-
     def __post_init__(self):
-        self.category = self.category.lower()
+        self.set_category(self.category)
 
         if self.author_uncertain and isinstance(self.author_uncertain, str):
             self.author_reason = self.author_uncertain  # Copy field
@@ -395,6 +390,11 @@ class DocCfg:
             dupe_cfg.dupe_type = self.dupe_type
             dupe_cfg.is_synthetic = True
             yield dupe_cfg
+
+    def set_category(self, category: str) -> None:
+        """Update the title if we changed to a category that allows titling (books, academia, finance)."""
+        self.category = category.lower()
+        self.description = quote(self.description) if self.is_description_a_title else self.description
 
     def _props_strs(self) -> list[str]:
         props = []

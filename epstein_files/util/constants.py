@@ -2272,7 +2272,7 @@ OTHER_FILES_CONFIG: list[DocCfg] = []
 
 for category in OTHER_FILES_CATEGORIES:
     for cfg in locals()[f"OTHER_FILES_{category.upper()}"]:
-        cfg.category = cfg.category or category  # Set category to OTHER_FILES_ var name suffix
+        cfg.set_category(cfg.category or category)  # Set category to OTHER_FILES_ var name suffix
         OTHER_FILES_CONFIG.append(cfg)
 
 ALL_CONFIGS = EMAILS_CONFIG + OTHER_FILES_CONFIG + TEXTS_CONFIG
