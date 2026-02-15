@@ -1,4 +1,4 @@
-from epstein_files.documents.documents.doc_cfg import DocCfg, EmailCfg, TextCfg
+from epstein_files.documents.documents.doc_cfg import CommunicationCfg, DocCfg, EmailCfg, TextCfg
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.documents.emails.constants import FLIGHT_IN_2012_PEOPLE, IRAN_DEAL_RECIPIENTS, TRIVERS_CCS
 from epstein_files.util.helpers.string_helper import quote
@@ -1855,9 +1855,9 @@ OTHER_FILES_LETTER = [
         date='2016-06-24',  # date is based on Brexit reference but he could be backtesting,
         description=f"letter about algorithmic trading",
     ),
-    DocCfg(id='026134', description=f'letter to someone named George about investment opportunities in the Ukraine banking sector'),
+    CommunicationCfg(id='026134', recipients=['George'], description=f'about investment opportunities in the Ukraine banking sector'),
     # DOJ files
-    DocCfg(id='EFTA02731023', description=f"letter from Senator Ron Wyden to {LEON_BLACK}", is_interesting=False),
+    DocCfg(id='EFTA02731023', author='Senator Ron Wyden', description=f"to {LEON_BLACK}", is_interesting=False),
 ]
 
 OTHER_FILES_PROPERTY = [
@@ -2221,11 +2221,11 @@ OTHER_FILES_CRYPTO = [
     DocCfg(id='EFTA01088079', description="someone's thoughts on bitcoin"),
     DocCfg(id='EFTA00128987', description='suspicious activity report (SAR) about Kushner co. crypto payments to suspicious Russian person'),
     # Valar
-    DocCfg(id='EFTA01121910', description=f"{VALAR_VENTURES} fund contract", truncate_to=MAX_CHARS_TO_PRINT),
-    DocCfg(id='EFTA00808277', description=f"{VALAR_VENTURES} fund contract", truncate_to=MAX_CHARS_TO_PRINT),
-    DocCfg(id='EFTA01088484', description=f"{VALAR_VENTURES} fund contract", truncate_to=MAX_CHARS_TO_PRINT),
-    DocCfg(id='EFTA00591691', description=f"{VALAR_VENTURES} fund contract", truncate_to=MAX_CHARS_TO_PRINT),
-    DocCfg(id='EFTA00810362', description=f"{VALAR_VENTURES} fund investor questionnaire", truncate_to=MAX_CHARS_TO_PRINT),
+    DocCfg(id='EFTA01121910', author=VALAR_VENTURES, description="contract", truncate_to=MAX_CHARS_TO_PRINT),
+    DocCfg(id='EFTA00808277', author=VALAR_VENTURES, description="contract", truncate_to=MAX_CHARS_TO_PRINT),
+    DocCfg(id='EFTA01088484', author=VALAR_VENTURES, description="contract", truncate_to=MAX_CHARS_TO_PRINT),
+    DocCfg(id='EFTA00591691', author=VALAR_VENTURES, description="contract", truncate_to=MAX_CHARS_TO_PRINT),
+    DocCfg(id='EFTA00810362', author=VALAR_VENTURES, description="investor questionnaire", truncate_to=MAX_CHARS_TO_PRINT),
     DocCfg(id='EFTA00605996', description='Wedbush BUY rating on Digital Currency Group GBTC', is_interesting=False),
 ]
 

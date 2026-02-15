@@ -50,6 +50,8 @@ class OtherFile(Document):
         was_timestamp_extracted (bool): True if the timestamp was programmatically extracted (and could be wrong)
     """
     was_timestamp_extracted: bool = False
+
+    # Class vars
     include_description_in_summary_panel: ClassVar[bool] = True  # Class var for logging output
     max_timestamp: ClassVar[datetime] = datetime(2022, 12, 31) # Overloaded in DojFile
 
