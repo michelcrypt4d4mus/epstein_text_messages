@@ -20,8 +20,13 @@ def blockchain_cap_cfg() -> DocCfg:
 
 
 @pytest.fixture
-def empty_cfg() -> DocCfg:
+def empty_doj_cfg() -> DocCfg:
     return _doj_cfg()
+
+
+@pytest.fixture
+def empty_house_cfg() -> DocCfg:
+    return _oversight_cfg()
 
 
 @pytest.fixture
@@ -99,6 +104,8 @@ def test_complete_description(blockchain_cap_cfg, finance_report, junk_doc_cfg, 
 def test_is_of_interest(
     academia_doc,
     blockchain_cap_cfg,
+    empty_doj_cfg,
+    empty_house_cfg,
     finance_report,
     interesting_author,
     interesting_doc,
@@ -110,12 +117,14 @@ def test_is_of_interest(
 ):
     assert academia_doc.is_of_interest is False
     assert blockchain_cap_cfg.is_of_interest is True
+    assert empty_doj_cfg.is_of_interest is False
+    assert empty_house_cfg.is_of_interest is True
     assert finance_report.is_of_interest is False
     assert interesting_author.is_of_interest is True
     assert interesting_doc.is_of_interest is True
     assert junk_doc_cfg.is_of_interest is False
     assert junk_email_cfg.is_of_interest is False
-    assert legal_cfg.is_of_interest is None
+    assert legal_cfg.is_of_interest is True
     assert skype_cfg.is_of_interest is True
     assert uninteresting_description.is_of_interest is False
 

@@ -244,9 +244,9 @@ class DocCfg:
 
         if not self.has_any_info:
             # HOUSE_OVERSIGHT files w/no author or description are interesting, DOJ files with same are not (yet)
-            return None if self.is_doj_file else True
+            return False if self.is_doj_file else True
         else:
-            return None
+            return None if self.is_doj_file else True
 
     @property
     def metadata(self) -> Metadata:
