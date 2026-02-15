@@ -41,8 +41,11 @@ DEFAULT_NAME_STYLE = 'grey23'
 SUBHEADER_STYLE = 'grey46'
 TIMESTAMP_STYLE = 'turquoise4'
 TIMESTAMP_DIM = f"turquoise4 dim"
+# Highlighter
+REGEX_STYLE_PREFIX = 'regex'
 
 # Misc
+APPEARS_IN = 'appears in'
 AUTHOR = 'author'
 DEFAULT = 'default'
 JSON = 'json'

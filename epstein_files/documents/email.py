@@ -49,14 +49,13 @@ LOCAL_EXTRACT_REGEX = re.compile(r"_\d$")
 # Junk mail
 JUNK_EMAILERS = [
     contact.name
-    for junk_hg in HIGHLIGHTED_NAMES if junk_hg.category == JUNK
+    for junk_hg in HIGHLIGHTED_NAMES if junk_hg.label == JUNK
     for contact in junk_hg.contacts
 ]
 
 BCC_LISTS = JUNK_EMAILERS + MAILING_LISTS
 TRUNCATE_EMAILS_BY = BCC_LISTS + TRUNCATE_EMAILS_FROM
 REWRITTEN_HEADER_MSG = "(janky OCR header fields were prettified, check source if something seems off)"
-APPEARS_IN = 'appears in'
 
 # numbers
 MAX_NUM_HEADER_LINES = 14

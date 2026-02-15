@@ -6,7 +6,6 @@ from rich.console import Console
 from rich.text import Text
 
 from epstein_files.documents.documents.categories import CATEGORY_STYLES, CATEGORY_STYLE_MAPPING
-from epstein_files.documents.documents.doc_cfg import *
 from epstein_files.documents.emails.constants import REPLY_REGEX, SENT_FROM_REGEX, XML_STRIPPED_MSG
 from epstein_files.output.highlighted_names import BaseHighlight, HighlightedNames, HighlightedText, ManualHighlight
 from epstein_files.people.contact import Contact
@@ -25,6 +24,7 @@ ESTATE_EXECUTOR = 'estate executor'
 EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
 MC2_MODEL_MANAGEMENT = f"{JEAN_LUC_BRUNEL}'s MC2 Model Management"
 QUESTION_MARKS_TXT = Text(QUESTION_MARKS, style='grey50')
+REPUTATION_MGMT = f'{REPUTATION} management'
 TECH_BRO = 'tech bro'
 VICTIM_COLOR = 'orchid1'
 

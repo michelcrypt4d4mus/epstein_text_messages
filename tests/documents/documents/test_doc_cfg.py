@@ -32,6 +32,11 @@ def skype_author() -> DocCfg:
     return _doc_cfg(SKYPE_LOG, author='linkspirit')
 
 
+def test_category_txt(junk_doc_cfg, legal_cfg, skype_cfg, skype_author):
+    assert junk_doc_cfg.category_txt.plain == JUNK
+    assert skype_cfg.category_txt.plain == SKYPE_LOG
+    import pdb;pdb.set_trace
+
 def test_complete_description(junk_doc_cfg, legal_cfg, skype_cfg, skype_author):
     assert legal_cfg.complete_description == f"clinton v. trump: case law"
     # Junk

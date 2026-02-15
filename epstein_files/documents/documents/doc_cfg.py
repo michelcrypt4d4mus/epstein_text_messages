@@ -17,7 +17,6 @@ DuplicateType = Literal['bounced', 'earlier', 'quoted', 'redacted', 'same']
 Metadata = dict[str, bool | datetime | int | str | list[str | None] |dict[str, bool | str]]
 
 MAX_LINE_LENGTH = 135
-REPUTATION_MGMT = f'{REPUTATION} management'
 SAME = 'same'
 
 UNINTERESTING_CATEGORIES = [
@@ -151,6 +150,7 @@ class DocCfg:
     @property
     def category_txt(self) -> Text:
         """Returns '???' for missing category."""
+        from epstein_files.output.highlight_config import styled_category
         return styled_category(self.category)
 
     @property

@@ -11,16 +11,6 @@ MESSENGER_LOG_ID = '027133'
 
 
 @pytest.fixture
-def doj_file() -> DojFile:
-    return DojFile.from_file_id(DOJ_FILE_ID)
-
-
-@pytest.fixture
-def doj_file_thats_an_email() -> DojFile:
-    return DojFile.from_file_id('EFTA00039689')
-
-
-@pytest.fixture
 def email() -> Email:
     return Email.from_file_id('019446')
 
@@ -33,3 +23,24 @@ def messenger_log() -> MessengerLog:
 @pytest.fixture
 def other_file() -> OtherFile:
     return OtherFile.from_file_id('019448') # Jacmel Haiti proposal
+
+
+# DOJ files
+@pytest.fixture
+def doj_file() -> DojFile:
+    return DojFile.from_file_id(DOJ_FILE_ID)
+
+
+@pytest.fixture
+def doj_email_file() -> DojFile:
+    return DojFile.from_file_id('EFTA00039689')
+
+
+@pytest.fixture
+def blockchain_capital_coinbase_nda(epstein_files) -> DojFile:
+    return epstein_files.get_id('EFTA01082451', required_type=DojFile)
+
+
+@pytest.fixture
+def valar_ventures_doc(epstein_files) -> DojFile:
+    return epstein_files.get_id('EFTA00609489', required_type=DojFile)
