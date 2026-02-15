@@ -19,6 +19,7 @@ from epstein_files.output.highlighted_names import HighlightedNames
 from epstein_files.util.constant.names import *
 from epstein_files.util.constants import CONFIGS_BY_ID, EmailCfg
 from epstein_files.util.helpers.data_helpers import *
+from epstein_files.util.helpers.debugging_helper import print_interesting_doc_panels_and_props
 from epstein_files.util.helpers.string_helper import quote
 from epstein_files.util.logging import logger
 from epstein_files.output.rich import console, highlighter, styled_key_value, print_subtitle_panel
@@ -41,24 +42,7 @@ from epstein_files.output.rich import console, highlighter, styled_key_value, pr
 
 #     console.line(2)
 
-
-for doc in epstein_files.all_documents:
-    txt = Text(f"interesting? {doc.is_interesting}, ").append(doc.summary)
-
-    if isinstance(doc, OtherFile) and doc.is_interesting:
-        console.print(txt)
-        console.print(doc.summary_panel)
-    elif doc.config and doc.config.has_any_info:
-        console.print(txt)
-        console.print(doc.summary_panel)
-    else:
-        continue
-
-    if doc.config:
-        console.print(styled_key_value('      complete_description', quote(doc.config.complete_description)))
-
-    console.line()
-
+print_interesting_doc_panels_and_props(epstein_files)
 sys.exit()
 # # Print all DOJ files from biggest to smallest.
 # for i, doc in enumerate(sorted(epstein_files.doj_files, key=lambda f: -f.length)):
