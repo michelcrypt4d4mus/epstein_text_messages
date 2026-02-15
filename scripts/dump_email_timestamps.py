@@ -36,7 +36,6 @@ for i, doc in enumerate(epstein_files.other_files):
         console.line(2)
         console.print(doc.preview_text)
         console.line(2)
-        # import pdb;pdb.set_trace()
         console.print(doc)
 
 sys.exit()

@@ -191,7 +191,7 @@ class Email(Communication):
         return style.replace('bold', '').strip()
 
     @property
-    def config(self) -> DocCfg | None:
+    def config(self) -> EmailCfg | None:
         """Configured timestamp, if any."""
         if self.is_local_extract_file:
             extracted_from_doc_id = self.url_slug.split('_')[-1]
@@ -239,6 +239,12 @@ class Email(Communication):
             return self.config.is_fwded_article is not False
         else:
             return bool(self.config.is_fwded_article)
+
+    @property
+    def is_interesting(self) -> bool | None:
+        """TODO: currently default to True for HOUSE_OVERSIGHT_FILES, false for DOJ."""
+        if self.config and self.config.is_of_interest is not None:
+            return self.config.is_of_interest
 
     @property
     def is_junk_mail(self) -> bool:
@@ -319,8 +325,6 @@ class Email(Communication):
         self.text = self._prettify_text()
         self.actual_text = self._extract_actual_text()
         self.sent_from_device = self._sent_from_device()
-        # from epstein_files.util.constants import CONFIGS_BY_ID
-        # import pdb;pdb.set_trace()
 
     def is_from_or_to(self, name: str) -> bool:
         """True if `name` is either the author or one of the recipients."""
@@ -582,7 +586,6 @@ class Email(Communication):
         quote_cutoff = self._idx_of_nth_quoted_reply()  # Trim if there's many quoted replies
         includes_truncate_term = next((term for term in TRUNCATE_TERMS if term in self.text), None)
 
-        # import pdb;pdb.set_trace()
         if args.whole_file:
             num_chars = len(self.text)
         elif args.truncate:
