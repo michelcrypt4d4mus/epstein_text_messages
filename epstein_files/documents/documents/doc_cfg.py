@@ -173,9 +173,6 @@ class DocCfg:
 
         if self.category in [ACADEMIA, BOOK]:
             description = optional_prefix(quote(self.description), self.author, ' by ')  # note reversed args
-
-            if self.category == BOOK:
-                author_separator = ': '
         if self.category == SKYPE_LOG:
             preamble_separator = " of conversation with "
         elif self.category == REPUTATION:
@@ -191,7 +188,7 @@ class DocCfg:
         description = optional_prefix(preamble, description, preamble_separator)
 
         if self.attached_to_email_id:
-            description = optional_prefix(description, f"attached to email {self.attached_to_email_id}")
+            description = optional_prefix(description, f"attached to email {self.attached_to_email_id}", sep=', ')
 
         return description
 
