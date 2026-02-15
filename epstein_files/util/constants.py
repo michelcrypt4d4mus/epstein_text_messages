@@ -2273,16 +2273,18 @@ OTHER_FILES_JUNK = [
     DocCfg(id='EFTA02731728'),
 ]
 
-# These categories can be either interesting or not interesting. DocCfg will sort it out.
-OTHER_FILES_CATEGORIES = INTERESTING_CATEGORIES + UNINTERESTING_CATEGORIES + NEUTRAL_CATEGORIES
-
 # Build OtherFile / DojFile config list by combining OTHER_FILES_[BLAH] variables
+OTHER_FILES_CATEGORIES = INTERESTING_CATEGORIES + UNINTERESTING_CATEGORIES + NEUTRAL_CATEGORIES
 OTHER_FILES_CONFIG: list[DocCfg] = []
 
 for category in OTHER_FILES_CATEGORIES:
+    logger.warning(f"Setting category to '{category}' for " + str(len(locals()[f"OTHER_FILES_{category.upper()}"])) + ' configs')
+
     for cfg in locals()[f"OTHER_FILES_{category.upper()}"]:
         cfg.set_category(cfg.category or category)  # Set category to OTHER_FILES_ var name suffix
         OTHER_FILES_CONFIG.append(cfg)
+        # if cfg.id == '032125':
+        #     import pdb;pdb.set_trace()
 
 ALL_CONFIGS = EMAILS_CONFIG + OTHER_FILES_CONFIG + TEXTS_CONFIG
 CONFIGS_BY_ID = {cfg.id: cfg for cfg in ALL_CONFIGS}

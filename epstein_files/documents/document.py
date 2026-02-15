@@ -1,6 +1,5 @@
 import logging
 import re
-from copy import deepcopy
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
