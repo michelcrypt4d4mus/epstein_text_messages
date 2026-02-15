@@ -1,6 +1,7 @@
 import pytest
 
 from epstein_files.documents.document import Document
+from epstein_files.documents.documents.doc_cfg import DocCfg
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.email import Email
 from epstein_files.documents.messenger_log import MessengerLog
@@ -8,6 +9,17 @@ from epstein_files.documents.other_file import OtherFile
 
 DOJ_FILE_ID = 'EFTA00005783'
 MESSENGER_LOG_ID = '027133'
+
+
+
+@pytest.fixture
+def harvard_poetry_doc(epstein_files) -> OtherFile:
+    return epstein_files.get_id('023452', required_type=OtherFile)
+
+
+@pytest.fixture
+def harvard_poetry_cfg(harvard_poetry_doc) -> DocCfg:
+    return harvard_poetry_doc.config
 
 
 @pytest.fixture

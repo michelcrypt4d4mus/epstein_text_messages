@@ -91,6 +91,7 @@ def test_complete_description(
     book_cfg,
     empty_house_cfg,
     finance_report,
+    harvard_poetry_cfg,
     junk_doc_cfg,
     junk_email_cfg,
     legal_cfg,
@@ -107,6 +108,8 @@ def test_complete_description(
     assert empty_house_cfg.complete_description == f"attached to email {junk_email_cfg.id}"
     # Finance
     assert finance_report.complete_description == f"{BOFA_MERRILL} report: grapes"
+    # Harvard
+    assert harvard_poetry_cfg.complete_description == 'Harvard poetry stuff from Lisa New'
     # Junk
     assert junk_doc_cfg.complete_description == 'junk'
     junk_doc_cfg.description = 'junk mail'
@@ -131,6 +134,7 @@ def test_is_of_interest(
     empty_doj_cfg,
     empty_house_cfg,
     finance_report,
+    harvard_poetry_cfg,
     interesting_author,
     interesting_doc,
     junk_doc_cfg,
@@ -141,9 +145,10 @@ def test_is_of_interest(
 ):
     assert academia_doc.is_of_interest is False
     assert blockchain_cap_cfg.is_of_interest is True
-    assert empty_doj_cfg.is_of_interest is False
+    assert empty_doj_cfg.is_of_interest is None
     assert empty_house_cfg.is_of_interest is True
     assert finance_report.is_of_interest is False
+    assert harvard_poetry_cfg.is_of_interest is False
     assert interesting_author.is_of_interest is True
     assert interesting_doc.is_of_interest is True
     assert junk_doc_cfg.is_of_interest is False
@@ -151,6 +156,7 @@ def test_is_of_interest(
     assert legal_cfg.is_of_interest is True
     assert skype_cfg.is_of_interest is True
     assert uninteresting_description.is_of_interest is False
+
 
 
 def _oversight_cfg(category: str = '', **kwargs) -> DocCfg:
