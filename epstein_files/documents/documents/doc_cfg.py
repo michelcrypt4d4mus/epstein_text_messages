@@ -199,7 +199,8 @@ class DocCfg:
 
         # If description is set it must be fully constructed
         if self.category == BOOK or (self.category == ACADEMIA and self.author and self.description):
-            description = join_truthy(quote(self.description), self.author, ' by ')  # note reversed args
+            description = quote(self.description) if self.is_description_a_title else self.description
+            description = join_truthy(description, self.author, ' by ')  # note reversed args
             description = join_truthy(preamble, description)
         elif (self.category == LEGAL and 'v.' in self.author_str) or self.category == REPUTATION:
             author_separator = ": "

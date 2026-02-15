@@ -26,25 +26,6 @@ from epstein_files.util.logging import logger
 from epstein_files.output.rich import bool_txt, console, highlighter, styled_key_value, print_subtitle_panel
 
 
-# for cfg in CONFIGS_BY_ID.values():
-#     if isinstance(cfg, EmailCfg) and not cfg.description:
-#         continue
-
-#     txt = Text('').append(cfg.category_txt).append(f"{cfg.id} interesting? {cfg.is_of_interest}, ")
-#     txt.append(f"complete_description=", 'grey').append(quote(cfg.complete_description), style='wheat4')
-#     # console.print(txt)
-#     logger.warning(txt.plain)
-#     logger.warning(repr(cfg))
-#     # console.print(cfg.__rich__().plain)
-
-#     # if cfg.is_of_interest:
-#     #     console.line()
-#         # console.print(repr(cfg))
-
-#     console.line(2)
-
-#print_interesting_doc_panels_and_props(epstein_files)
-
 # Print CRYPTO_CURRENCY_PARTNERS_II OtherFiles
 for i, doc in enumerate(epstein_files.other_files):
     # if CRYPTO_CURRENCY_PARTNERS_II.lower() in doc.preview_text.lower():
