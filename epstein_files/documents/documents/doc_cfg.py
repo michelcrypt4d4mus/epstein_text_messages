@@ -287,7 +287,8 @@ class DocCfg:
                 props['cfg.complete_description'] = self.complete_description
 
         if (category_txt := self.category_txt):
-            props['cfg.category_style'] = category_txt.style
+            props['cfg.category_txt'] = category_txt
+            # props['cfg.category_style'] = category_txt.style
 
         if self.timestamp:
             props['timestamp'] = self.timestamp

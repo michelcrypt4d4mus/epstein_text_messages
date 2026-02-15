@@ -197,7 +197,7 @@ class Email(Communication):
     @property
     def subheader(self) -> Text:
         txt = Text(f"OCR text of ", SUBHEADER_STYLE).append('fwded article' if self.is_fwded_article else 'email')
-        txt.append(self.author_txt)
+        txt.append(' from ').append(self.author_txt)
 
         if self.config and self.config.is_attribution_uncertain:
             txt.append(f" {QUESTION_MARKS}", style=self.author_style)

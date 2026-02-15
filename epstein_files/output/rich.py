@@ -305,6 +305,15 @@ def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, styl
     print_centered(wrap_in_markup_style(msg, style))
 
 
+def quote_txt(t: Text | str, try_double_quote_first: bool = False, style: str = '') -> Text:
+    if try_double_quote_first:
+        quote_char = '"' if '"' not in t else "'"
+    else:
+        quote_char = "'" if "'" not in t else '"'
+
+    return Text(quote_char, style=style).append(t).append(quote_char)
+
+
 def styled_key_value(
     key: str,
     val: int | str | Path | Text,
@@ -315,6 +324,7 @@ def styled_key_value(
     """Generate `Text` for 'key=value'."""
     val_style = ''
 
+
     if '.' in key and key_style == KEY_STYLE:
         key_style = KEY_STYL_ALT
 
@@ -323,6 +333,10 @@ def styled_key_value(
     elif isinstance(val, bool):
         val_txt = bool_txt(val)
     else:
+        val_txt = None
+
+        if isinstance(val, list):
+            val_txt = highlighter(json.dumps(val))
         if isinstance(val, int):
             val = str(val)
             val_style = 'cyan'
@@ -333,12 +347,18 @@ def styled_key_value(
             if val.startswith('http'):
                 val_style = ARCHIVE_LINK_UNDERLINE
             elif key.endswith('style'):
-                val_style = val
+                val_style = f"{val} bold reverse"
+                val = val.center(4, ' ')
+            elif key.endswith('_type'):
+                val_style = 'light_slate_gray bold'
+            elif key.endswith('id'):
+                val_style = 'cyan'
             else:
-                val = quote(val, try_single_quote_first=True)
                 val_style = STR_VAL_STYLE_ALT if '.' in key else STR_VAL_STYLE
+                val_txt = quote_txt(highlighter(val), style=val_style)
 
-        val_txt = Text(str(val), style=val_style or 'bright_white')
+        val_txt = val_txt or Text(str(val), style=val_style or 'bright_white')
+        # val_txt = highlighter(val_txt)
 
     txt = Text('').append(f"{key:>{indent}}", style=key_style)
     txt.append(sep, style=SYMBOL_STYLE).append(val_txt)
