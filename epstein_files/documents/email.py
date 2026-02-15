@@ -611,7 +611,7 @@ class Email(Communication):
 
             # Always print whole email for 1st email for user
             if self._is_first_for_user and num_chars < self.file_size and not self.is_duplicate and not self.is_fwded_article:
-                logger.warning(f"{self} Overriding cutoff {num_chars} for first email")
+                self.log(f"{self} Overriding cutoff {num_chars} for first email")
                 num_chars = self.file_size
 
         log_args = {
