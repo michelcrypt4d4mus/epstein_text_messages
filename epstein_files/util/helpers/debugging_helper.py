@@ -28,16 +28,15 @@ def print_interesting_doc_panels_and_props(epstein_files):
         else:
             continue
 
-        props = {}
-
         if doc.config:
-            props.update(doc.config.important_props)
+            props = doc.config.important_props
+            props.pop('id')
 
             if doc.config.is_of_interest != doc.is_interesting:
                 logger.warning(f"mismatch of config.is_of_interest and doc.is_interesting")
                 props['doc.is_interesting'] = doc.is_interesting
         else:
-            props['doc.is_interesting'] = doc.is_interesting
+            props = {'doc.is_interesting': doc.is_interesting}
 
         console.print(doc.summary_panel)
         console.print(styled_dict(props, sep=': '))
