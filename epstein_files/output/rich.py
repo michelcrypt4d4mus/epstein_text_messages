@@ -309,6 +309,13 @@ def print_starred_header(msg: str, num_stars: int = 7, num_spaces: int = 2, styl
     print_centered(wrap_in_markup_style(msg, style))
 
 
+def cfg_table(cfg: 'DocCfg') -> Padding:
+    props = cfg.important_props
+    props.pop('id')
+    props_table = styled_dict(props, sep=': ')
+    return Padding(indent_txt(props_table, 12), (0, 0, 1, 0))
+
+
 def quote_txt(t: Text | str, try_double_quote_first: bool = False, style: str = '') -> Text:
     if try_double_quote_first:
         quote_char = '"' if '"' not in t else "'"

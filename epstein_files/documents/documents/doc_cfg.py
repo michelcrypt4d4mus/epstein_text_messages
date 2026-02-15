@@ -6,6 +6,7 @@ from datetime import datetime
 from typing import Generator, Literal, Self
 
 from dateutil.parser import parse
+from rich.padding import Padding
 from rich.text import Text
 
 from epstein_files.util.constant.names import *
