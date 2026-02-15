@@ -1,4 +1,4 @@
-from epstein_files.documents.documents.doc_cfg import CommunicationCfg, DocCfg, EmailCfg, TextCfg
+from epstein_files.documents.documents.doc_cfg import INTERESTING_CATEGORIES, NEUTRAL_CATEGORIES, UNINTERESTING_CATEGORIES, CommunicationCfg, DocCfg, EmailCfg, TextCfg
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
 from epstein_files.documents.emails.constants import FLIGHT_IN_2012_PEOPLE, IRAN_DEAL_RECIPIENTS, TRIVERS_CCS
 from epstein_files.util.helpers.string_helper import quote
@@ -1328,7 +1328,7 @@ NEW_YORK_V_EPSTEIN = f"New York v. {JEFFREY_EPSTEIN}"
 # Descriptions of non-email, non-text message files
 ARTICLE_DRAFT = 'draft of an article about'
 BOFA_WEALTH_MGMT = f'{BOFA} Wealth Management'
-DAVID_BLAINE_VISA_LETTER = f"letter of recommendation for visa for a model"
+DAVID_BLAINE_VISA_LETTER = f"recommending genius visa for a Epstein's assistant {SVETLANA_POZHIDAEVA}"
 DERSH_GIUFFRE_TWEET = f"about {VIRGINIA_GIUFFRE}"
 DEUTSCHE_BANK_TAX_TOPICS = f'{DEUTSCHE_BANK} Wealth Management Tax Topics'
 DIANA_DEGETTE_CAMPAIGN = "Colorado legislator Diana DeGette's campaign"
@@ -1810,7 +1810,7 @@ OTHER_FILES_FINANCE = [
     ),
 ]
 
-# Epstein money
+# Epstein money. This category makes is_interesting = True
 OTHER_FILES_MONEY = [
     # private placement memoranda
     DocCfg(
@@ -1820,36 +1820,37 @@ OTHER_FILES_MONEY = [
     ),
     DocCfg(id='024003', description=f"New Leaf Ventures ($375 million biotech fund) private placement memorandum"),
     # DOJ files
-    DocCfg(id='EFTA01087311', description=f'{LEON_BLACK} Family Partners cash projections', is_interesting=True),
+    DocCfg(id='EFTA01087311', description=f'{LEON_BLACK} Family Partners cash projections'),
     DocCfg(id='EFTA00007781', description='paychecks signed by Epstein deposited at Colonial Bank'),
-    DocCfg(id='EFTA00811866', description="list of Epstein's bank accounts", is_interesting=True),
-    DocCfg(id='EFTA01273102', description=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank", is_interesting=True),
+    DocCfg(id='EFTA00811866', description="list of Epstein's bank accounts"),
+    DocCfg(id='EFTA01273102', description=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank"),
     DocCfg(id='EFTA00000476', replace_text_with='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS for the month 2006-09'),
 ]
 
+# This category makes is_interesting default to True
 OTHER_FILES_LETTER = [
-    DocCfg(
+    CommunicationCfg(
         id='019086',
         author=DAVID_BLAINE,
-        description=f"{DAVID_BLAINE_VISA_LETTER} from Russia 'Svet' ({SVETLANA_POZHIDAEVA}?), names Putin puppet regimes",
+        description=f"{DAVID_BLAINE_VISA_LETTER} naming various Putin puppet regimes",
         date='2015-05-27',  # Date is a guess based on other drafts,
-        is_interesting=True,
+        recipients=['immigration']
     ),
-    DocCfg(
+    CommunicationCfg(
         id='019474',
         author=DAVID_BLAINE,
-        description=f"{DAVID_BLAINE_VISA_LETTER} from Russia 'Svetlana' ({SVETLANA_POZHIDAEVA}?)",
+        description=DAVID_BLAINE_VISA_LETTER,
         date='2015-05-29',
-        is_interesting=True,
+        recipients=['immigration']
     ),
-    DocCfg(
+    CommunicationCfg(
         id='019476',
         author=DAVID_BLAINE,
-        description=f"{DAVID_BLAINE_VISA_LETTER} (probably {SVETLANA_POZHIDAEVA}?)",
+        description=DAVID_BLAINE_VISA_LETTER,
         date='2015-06-01',
-        is_interesting=True,
+        recipients=['immigration']
     ),
-    DocCfg(
+    CommunicationCfg(
         id='026011',
         author='Gennady Mashtalyar',
         date='2016-06-24',  # date is based on Brexit reference but he could be backtesting,
@@ -1949,6 +1950,7 @@ OTHER_FILES_POLITICS = [
     DocCfg(id='033468', description=f'{ARTICLE_DRAFT} Rod Rosenstein', date='2018-09-24'),
     DocCfg(id='025849', author=US_ORG, description=quote('Building a Bridge Between FOIA Requesters & Agencies'),
     ),
+    # CommunicationCfg(id='031670', author="General Mike Flynn's lawyers", recipients=['Sen. Mark Warner & Richard Burr'], description=f"about subpoena"),
     DocCfg(id='031670', description=f"letter from General Mike Flynn's lawyers to senators Mark Warner & Richard Burr about subpoena"),
     DocCfg(
         id='029357',
@@ -2273,27 +2275,8 @@ OTHER_FILES_JUNK = [
     DocCfg(id='EFTA02731728'),
 ]
 
-OTHER_FILES_CATEGORIES = [
-    ACADEMIA,
-    ARTICLE,
-    ARTS,
-    BOOK,
-    CONFERENCE,
-    CRYPTO,
-    FINANCE,
-    JUNK,
-    LEGAL,
-    LETTER,
-    TEXT_MSG,
-    MONEY,
-    MISC,
-    POLITICS,
-    PROPERTY,
-    REPUTATION,
-    RESUME,
-    SOCIAL,
-]
-
+# These categories can be either interesting or not interesting. DocCfg will sort it out.
+OTHER_FILES_CATEGORIES = INTERESTING_CATEGORIES + UNINTERESTING_CATEGORIES + NEUTRAL_CATEGORIES
 
 # Build OtherFile / DojFile config list by combining OTHER_FILES_[BLAH] variables
 OTHER_FILES_CONFIG: list[DocCfg] = []

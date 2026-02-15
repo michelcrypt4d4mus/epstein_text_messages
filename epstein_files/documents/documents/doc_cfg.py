@@ -22,8 +22,21 @@ MAX_LINE_LENGTH = 135
 SAME = 'same'
 ZUBAIR_AND_ANYA = f"{ZUBAIR_KHAN} and Anya Rasulova"
 
+# These category names correspond to OTHER_FILES_[CATEGORY] vars in constants.py
 INTERESTING_CATEGORIES = [
     CRYPTO,
+    LETTER,
+    MONEY,
+    REPUTATION,
+    RESUME,
+    # SKYPE_LOG,
+    TEXT_MSG,
+]
+
+NEUTRAL_CATEGORIES = [
+    FINANCE,
+    LEGAL,
+    MISC,
 ]
 
 UNINTERESTING_CATEGORIES = [
@@ -34,8 +47,8 @@ UNINTERESTING_CATEGORIES = [
     CONFERENCE,
     JUNK,
     POLITICS,
-    # SKYPE_LOG,
-    # TWEET,
+    PROPERTY,
+    SOCIAL,
 ]
 
 # Authors
@@ -44,6 +57,7 @@ FINANCIAL_REPORTS_AUTHORS = [
     DEUTSCHE_BANK,
     ELECTRON_CAPITAL_PARTNERS,
     GOLDMAN_INVESTMENT_MGMT,
+    INSIGHTS_POD,
     'Invesco',
     JP_MORGAN,
     'Morgan Stanley',
