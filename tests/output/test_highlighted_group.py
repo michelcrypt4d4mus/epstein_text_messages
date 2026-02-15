@@ -12,14 +12,6 @@ def test_category_styles():
             assert highlight_group.label != category
 
 
-def test_highlight_labels():
-    labels: set[str] = set([])
-
-    for highlight_group in HIGHLIGHT_GROUPS:
-        assert highlight_group.label not in labels
-        labels.add(highlight_group.label)
-
-
 def test_each_name_matches_only_one_highlight():
     for name in ALL_NAMES:
         if '(' in name:
@@ -28,6 +20,14 @@ def test_each_name_matches_only_one_highlight():
         groups = [hg for hg in HIGHLIGHT_GROUPS if hg.regex.search(name)]
         group_labels = [hg.label for hg in groups]
         assert len(group_labels) <= 1, f"'{name}' matched {len(group_labels)} highlight groups: {group_labels}"
+
+
+def test_highlight_labels():
+    labels: set[str] = set([])
+
+    for highlight_group in HIGHLIGHT_GROUPS:
+        assert highlight_group.label not in labels
+        labels.add(highlight_group.label)
 
 
 def test_styled_category():

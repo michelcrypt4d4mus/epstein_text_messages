@@ -165,6 +165,11 @@ def test_is_of_interest(
     assert uninteresting_description.is_of_interest is False
 
 
+def test_academia(epstein_files):
+    speech = epstein_files.get_id('026731', required_type=OtherFile)
+    assert speech.config.complete_description == 'speech at first inaugural Cornell Carl Sagan Lecture by Lord Martin Rees'
+
+
 def test_books(epstein_files):
     book = epstein_files.get_id('010912', required_type=OtherFile)
     assert book.config.category == BOOK
@@ -172,11 +177,6 @@ def test_books(epstein_files):
     book = epstein_files.get_id('018438', required_type=OtherFile)
     assert book.config.category == BOOK
     assert book.config.complete_description == 'book titled "The S&M Feminist" by Clarisse Thorn'
-
-
-def test_academia(epstein_files):
-    speech = epstein_files.get_id('026731', required_type=OtherFile)
-    assert speech.config.complete_description == 'speech at first inaugural Cornell Carl Sagan Lecture by Lord Martin Rees'
 
 
 def _oversight_cfg(category: str = '', **kwargs) -> DocCfg:

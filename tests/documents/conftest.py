@@ -11,7 +11,6 @@ DOJ_FILE_ID = 'EFTA00005783'
 MESSENGER_LOG_ID = '027133'
 
 
-
 @pytest.fixture
 def harvard_poetry_doc(epstein_files) -> OtherFile:
     return epstein_files.get_id('023452', required_type=OtherFile)
